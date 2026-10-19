@@ -1,0 +1,52 @@
+vertices: box
+perturbation                                  AUC  SP-SR  MP-SR  RPE cm MPPE cm
+GT (no error)                               1.000   1.00   1.00    0.00    0.00
+scale +1%                                   1.000   1.00   1.00    0.13    0.13
+scale +3%                                   0.998   1.00   1.00    0.38    0.40
+scale +5%                                   0.983   1.00   1.00    0.64    0.66
+scale +10%                                  0.923   1.00   0.90    1.27    1.33
+scale -10%                                  0.923   1.00   0.90    1.27    1.33
+slot0 init rot 2 deg (random axis)          0.997   1.00   1.00    0.00    0.42
+slot0 init rot 5 deg (random axis)          0.948   1.00   0.96    0.00    1.05
+slot0 init rot 10 deg (random axis)         0.813   1.00   0.68    0.01    2.10
+slot0 init rot 2 deg (yaw, world z)         0.996   1.00   1.00    0.00    0.39
+slot0 init rot 5 deg (yaw, world z)         0.950   1.00   0.95    0.00    0.97
+slot0 init rot 10 deg (yaw, world z)        0.819   1.00   0.60    0.01    1.94
+slot0 init trans 1 cm                       0.966   1.00   1.00    0.00    1.00
+slot0 init trans 3 cm                       0.740   1.00   0.63    0.01    2.99
+lag 1 fr                                    0.990   1.00   1.00    0.38    0.30
+lag 3 fr                                    0.933   1.00   1.00    1.09    0.88
+lag 5 fr                                    0.872   1.00   1.00    1.73    1.41
+jitter 0.5 cm/axis                          0.958   1.00   1.00    0.73    1.14
+jitter 1 cm/axis                            0.836   1.00   0.91    1.47    2.27
+jitter 2 cm/axis                            0.558   1.00   0.00    2.94    4.55
+jitter 0.5 cm/axis, anchor exact            0.984   1.00   1.00    0.73    0.80
+jitter 1 cm/axis, anchor exact              0.914   1.00   1.00    1.47    1.59
+jitter 2 cm/axis, anchor exact              0.725   1.00   0.01    2.93    3.18
+rot jitter 1 deg/axis                       0.997   1.00   1.00    0.28    0.35
+rot jitter 3 deg/axis                       0.939   1.00   0.96    0.84    1.04
+rot jitter 5 deg/axis                       0.847   1.00   0.83    1.40    1.73
+drift 1 cm common                           1.000   1.00   1.00    0.00    0.50
+drift 3 cm common                           0.916   1.00   1.00    0.00    1.50
+drift 5 cm common                           0.799   1.00   1.00    0.00    2.50
+drift 1 cm per-object                       1.000   1.00   1.00    0.43    0.50
+drift 3 cm per-object                       0.916   1.00   1.00    1.29    1.50
+drift 5 cm per-object                       0.799   1.00   1.00    2.15    2.50
+rot drift 1 deg common                      1.000   1.00   1.00    0.00    0.10
+rot drift 3 deg common                      0.998   1.00   1.00    0.00    0.31
+rot drift 5 deg common                      0.988   1.00   1.00    0.00    0.52
+slot1 body rot 5 deg                        0.997   1.00   1.00    0.00    0.11
+slot1 body rot 15 deg                       0.961   1.00   1.00    0.00    0.33
+slot1 body trans 1 cm                       0.990   1.00   1.00    0.65    0.33
+slot1 body trans 3 cm                       0.918   1.00   0.65    1.95    0.98
+slot1 body rot 5 deg [multi]                0.995   1.00   1.00    0.00    0.17
+slot1 body rot 15 deg [multi]               0.940   1.00   1.00    0.00    0.51
+slot1 body trans 1 cm [multi]               0.984   1.00   1.00    1.00    0.50
+slot1 body trans 3 cm [multi]               0.875   1.00   0.46    3.00    1.50
+slot0 body rot 5 deg (all frames)           0.953   1.00   0.97    0.88    0.94
+slot0 body rot 15 deg (all frames)          0.721   1.00   0.44    2.65    2.82
+drop most-moving @onset                     0.550   0.55   0.05    7.61    6.97
+drop most-moving after 1st motion           0.943   0.95   0.90    0.32    0.78
+drop slot1 @onset [multi]                   0.772   0.85   0.31    8.40    4.29
+drop all @onset                             0.442   0.45   0.00   11.17    8.76
+all frozen at frame 0                       0.446   0.45   0.00   10.87    9.31

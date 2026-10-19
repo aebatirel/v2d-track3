@@ -1,0 +1,57 @@
+# v2d-track3
+
+Our entry for **NVIDIA V2D Challenge, Track 3**: head-camera video of a person handling objects → a trained robot
+policy per episode (two simulated Sharpa hands in NVIDIA's FlashCHORD simulator) → the official evaluator's simulated
+object trajectories → scored against motion capture on Kaggle. Leaderboard freeze: **2026-11-04 17:00 EST**.
+
+Clean-room repository: it holds our own code, research notes and status only. The dataset, NVIDIA's code and kit, model
+weights and run outputs are downloaded or produced by scripts and are git-ignored.
+
+**Start here:** read [`STATUS.md`](STATUS.md) for where things stand and what to do next, then [`CLAUDE.md`](CLAUDE.md)
+for the working rules.
+
+## Layout
+
+| Path | What it is |
+|---|---|
+| `STATUS.md` | Current state, results, gotchas, next actions. Keep it current. |
+| `CLAUDE.md` | Working rules for any agent continuing this work. |
+| `pipeline/setup.sh` | One-shot machine setup (FlashCHORD venv at the evaluator pin, dataset episode, kit, SAM2, FoundationStereo, FoundationPose). |
+| `pipeline/perc2.py` | **Validated perception** (mean AUC 0.809 on 20 public episodes): stereo depth → scan-matching detection → FoundationPose tracking → visual odometry → kit metrics. |
+| `pipeline/perc.py` | perc4 = perc2 + render-and-compare detection check + reworked visual odometry. Built, **not validated**. |
+| `pipeline/diag.py`, `summ.py` | Per-frame error diagnostics with overlay montage; batch summary table. |
+| `pipeline/hands_mp.py` | MediaPipe hands on the colour camera, lifted to 3-D with stereo depth. Written, not run. |
+| `pipeline/mkref.py` | Builds the FlashCHORD reference (table frame, Sharpa IK via NVIDIA's unchanged retargeter, contacts, validation). Written, not run. |
+| `pipeline/score_sim.py` | Scores an official-evaluator rollout of a public episode against mocap. Written, not run. |
+| `pipeline/pipeline_ep.sh` | One episode end to end: perception → hands → reference → train → evaluate → score. Written, not run. |
+| `pipeline/run_public.sh` | Fetches all 20 public episodes and runs perception on each. |
+| `pipeline/README_ref.md` | Exact commands and conventions for the reference / train / evaluate steps. |
+| `pipeline/archive/` | Superseded experiments (OWLv2 text-prompt detector, first single-episode script). |
+| `spoon/` | Parametric wooden-spoon model (no public scan exists), frame-convention analysis, fitting skeleton. |
+| `notebooks/` | Plain-language explained notebook of the Colab experiments, plus its builder. |
+| `docs/research/` | 22 research notes (`notes/`), the Track 3 requirements digest, and supporting scripts. Notes cite paths as `reports/v2d-challenge/research/...`, which map to `docs/research/notes/...` here. |
+| `docs/gpu-rental/` | Research on the cheapest GPU rental (report + notes). |
+| `docs/work-log.md` | Dated chronological log of the work so far (from the original handoff file). |
+
+## Running on a rented GPU (Vast.ai)
+
+The scripts were written on Google Colab and use `/content` as their root. On a fresh Linux GPU box (root user):
+
+```bash
+ln -s /workspace /content          # scripts expect /content
+git clone https://github.com/aebatirel/v2d-track3.git /workspace/v2d-track3
+cp /workspace/v2d-track3/pipeline/*.py /workspace/v2d-track3/pipeline/*.sh /content/
+DEBIAN_FRONTEND=noninteractive setsid nohup bash /content/setup.sh > /content/setup.log 2>&1 < /dev/null &
+grep -aE '[A-Z0-9]+-OK|DONE' /content/setup.log      # wait for SETUP-DONE (~15 min)
+```
+
+Requirements: one NVIDIA GPU with ≥ 48 GB (RTX PRO 6000 96 GB recommended), driver ≥ 580 (CUDA 13), ≥ 16 vCPU,
+≥ 64 GB RAM, ~200 GB disk. See `STATUS.md` for the GPU plan and costs.
+
+## Links (private to the owner unless shared)
+
+- Explained Colab notebook: https://colab.research.google.com/drive/1rSlDlcC91UggWeCsDS0H8KFrp_C6ygX5
+- Visual explainer page: https://claude.ai/artifact/GJegn8ZZHnb7PFDTnCDpgd
+- Challenge: https://nvidia-isaac.github.io/video_to_data/v2d_challenge/
+- Dataset: https://huggingface.co/datasets/nvidia/video_to_data_challenge (track_3)
+- NVIDIA code (evaluator pin `8c778f905cb35f76f8e6cd6e2ea486da4fb9e0ef`): https://github.com/nvidia-isaac/video_to_data

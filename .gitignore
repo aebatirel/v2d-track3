@@ -1,0 +1,34 @@
+# data and run outputs (regenerable or too large)
+data/
+t3/
+perc/
+perc*/
+refs/
+runs/
+results/
+outputs/
+ckpt/
+*.npy
+*.npz
+*.mp4
+*.safetensors
+*.pt
+*.pth
+*.parquet
+*.log
+
+# environments and caches
+.venv/
+venv/
+mpvenv/
+rtvenv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# secrets
+*.pem
+id_*
+*_key
+.env
+vast_api_key

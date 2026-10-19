@@ -1,0 +1,18 @@
+scenario / leave-one-out                    AUC  SP-SR  MP-SR    RPE   MPPE
+A: careful stereo                         0.889   1.00   0.97   0.98   1.71
+  without anchor 0.5cm                    0.899   1.00   0.98   0.98   1.61
+  without anchor rot 2deg                 0.898   1.00   0.99   0.98   1.63
+  without jitter 0.5cm                    0.909   1.00   0.97   0.58   1.50
+  without rot jitter 2deg                 0.918   1.00   1.00   0.75   1.51
+  without drift 2cm                       0.929   1.00   0.99   0.98   1.29
+  without scale 1%                        0.891   1.00   0.98   0.96   1.69
+  without body rot 5deg s1                0.892   1.00   0.97   0.98   1.70
+B: rough mono/learned                     0.531   1.00   0.01   2.59   4.57
+  without anchor 1.5cm                    0.573   1.00   0.01   2.59   4.20
+  without anchor rot 5deg                 0.559   1.00   0.02   2.59   4.35
+  without jitter 1cm                      0.579   1.00   0.08   1.94   4.13
+  without rot jitter 3deg                 0.571   1.00   0.04   2.40   4.28
+  without drift 5cm                       0.666   1.00   0.24   2.59   3.40
+  without scale 10%                       0.598   1.00   0.07   2.05   3.98
+  without lag 2fr                         0.543   1.00   0.03   2.31   4.47
+  without body rot 15deg s1               0.546   1.00   0.01   2.59   4.54

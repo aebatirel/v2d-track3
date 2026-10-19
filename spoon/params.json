@@ -1,0 +1,738 @@
+{
+ "generator": "colab/spoon/spoon_template.py",
+ "date": "2026-10-13",
+ "params": {
+  "total_length": 0.3069049762779389,
+  "bowl_length": 0.095,
+  "bowl_width": 0.052,
+  "bowl_widest_frac": 0.5,
+  "bowl_depth": 0.01,
+  "bowl_thickness": 0.005,
+  "rim_height": 0.002,
+  "bowl_bend": 0.0013,
+  "bowl_pitch_deg": 0.0,
+  "pivot_station": 0.118,
+  "bend_blend": 0.01,
+  "neck_station": 0.105,
+  "neck_width": 0.016,
+  "neck_aspect": 1.0,
+  "handle_station": 0.172,
+  "handle_d_start": 0.0188,
+  "handle_d_max": 0.0213,
+  "handle_d_end": 0.0188,
+  "handle_aspect": 1.0,
+  "end_cap_length": 0.0094,
+  "bowl_blend_in": 0.01,
+  "bowl_blend_out": 0.015,
+  "marker_layout": "note20",
+  "marker_radius": 0.0072,
+  "marker_stem_foot_radius": 0.0055,
+  "marker_junction_frac": 0.82,
+  "marker_mount_height": 0.0109,
+  "m_station1": [
+   120.5,
+   3.0
+  ],
+  "m_dz12": [
+   41.5,
+   1.5
+  ],
+  "m_station3": [
+   315.0,
+   3.0
+  ],
+  "m_lat1": [
+   18.9,
+   0.6
+  ],
+  "m_up1": [
+   6.0,
+   1.5
+  ],
+  "m_lat2": [
+   15.5,
+   0.8
+  ],
+  "m_up2": [
+   10.0,
+   2.0
+  ],
+  "m_lat3": [
+   1.9,
+   1.2
+  ],
+  "m_up3": [
+   11.0,
+   1.5
+  ],
+  "m_tri": [
+   [
+    53.0,
+    1.6
+   ],
+   [
+    153.2,
+    0.6
+   ],
+   [
+    194.2,
+    1.5
+   ]
+  ],
+  "note13_stations": [
+   0.114,
+   0.154
+  ]
+ },
+ "resolution": {
+  "n_tip": 10,
+  "n_bowl": 9,
+  "n_neck": 16,
+  "n_handle": 14,
+  "n_end": 6,
+  "n_cap": 5,
+  "n_flat": 7,
+  "bowl_cap_deg": 65.0,
+  "n_marker": 16,
+  "n_sphere_rings": 6,
+  "smooth_p": 6.0
+ },
+ "marker_layout_report": {
+  "method": "weighted least squares: 9 coordinates vs note-20 priors + 3 triangle lengths",
+  "chi2": 0.42256936681385726,
+  "dof_note": "12 residuals, 9 unknowns",
+  "adjusted_mm": {
+   "m_station1": [
+    121.029,
+    2.18
+   ],
+   "m_dz12": [
+    40.891,
+    0.976
+   ],
+   "m_station3": [
+    314.471,
+    2.18
+   ],
+   "m_lat1": [
+    18.848,
+    0.589
+   ],
+   "m_up1": [
+    6.042,
+    1.498
+   ],
+   "m_lat2": [
+    15.427,
+    0.768
+   ],
+   "m_up2": [
+    9.94,
+    1.995
+   ],
+   "m_lat3": [
+    1.857,
+    1.192
+   ],
+   "m_up3": [
+    10.991,
+    1.5
+   ]
+  },
+  "triangle_mm": [
+   53.498,
+   153.156,
+   194.609
+  ],
+  "triangle_target_mm": [
+   53.0,
+   153.2,
+   194.2
+  ],
+  "total_length_rule": "auto: M3 centre at marker_mount_height above the hemispherical end cap",
+  "total_length": 0.3069049762779389
+ },
+ "marker_reports": [
+  {
+   "centre_mm": [
+    6.04,
+    -18.85,
+    121.03
+   ],
+   "foot_mm": [
+    3.04,
+    -7.64,
+    121.23
+   ],
+   "axis": [
+    0.2588,
+    -0.9658,
+    -0.0172
+   ],
+   "centre_above_surface_mm": 11.61,
+   "stem_len_mm": 5.71,
+   "foot_ring_depth_mm": [
+    -3.09,
+    0.03
+   ],
+   "faces_removed": 80,
+   "hole_shape": "rect",
+   "hole_grow_cells": 1,
+   "hole_loop_vertices": 26,
+   "faces_added": 314,
+   "stem_foot_radius_mm": 5.5,
+   "name": "M1"
+  },
+  {
+   "centre_mm": [
+    9.94,
+    15.43,
+    161.92
+   ],
+   "foot_mm": [
+    5.39,
+    7.55,
+    162.09
+   ],
+   "axis": [
+    0.4999,
+    0.8659,
+    -0.0183
+   ],
+   "centre_above_surface_mm": 9.1,
+   "stem_len_mm": 3.19,
+   "foot_ring_depth_mm": [
+    -2.57,
+    -0.0
+   ],
+   "faces_removed": 96,
+   "hole_shape": "rect",
+   "hole_grow_cells": 1,
+   "hole_loop_vertices": 28,
+   "faces_added": 316,
+   "stem_foot_radius_mm": 5.5,
+   "name": "M2"
+  },
+  {
+   "centre_mm": [
+    10.99,
+    1.86,
+    314.47
+   ],
+   "foot_mm": [
+    5.27,
+    0.69,
+    305.2
+   ],
+   "axis": [
+    0.5223,
+    0.1061,
+    0.8461
+   ],
+   "centre_above_surface_mm": 10.96,
+   "stem_len_mm": 5.05,
+   "foot_ring_depth_mm": [
+    -2.28,
+    -1.43
+   ],
+   "faces_removed": 193,
+   "hole_shape": "cap+tongue (cap from station row 54)",
+   "hole_grow_cells": 1,
+   "hole_loop_vertices": 35,
+   "faces_added": 323,
+   "stem_foot_radius_mm": 5.5,
+   "name": "M3"
+  }
+ ],
+ "markers_construction_m": [
+  [
+   0.006042308224239411,
+   -0.018848142869503863,
+   0.12102945969690664
+  ],
+  [
+   0.009939914282832595,
+   0.015427120025893823,
+   0.16192059758663693
+  ],
+  [
+   0.010991490053485141,
+   0.0018565512172863383,
+   0.3144705403411149
+  ]
+ ],
+ "markers_canonical_m": [
+  [
+   -0.006689647527399422,
+   0.01793276279978835,
+   -0.023336375243068336
+  ],
+  [
+   -0.009421419398250228,
+   -0.01599960184035375,
+   0.01793349499936892
+  ],
+  [
+   -0.008494685735946713,
+   -0.0009521956872519269,
+   0.17034565959448195
+  ]
+ ],
+ "marker_triangle_mm": [
+  53.498,
+  153.156,
+  194.609
+ ],
+ "construction_frame": "x = out of the concave face, y = z x x (toward M2), z = bowl tip -> handle end; origin = bowl tip on the handle axis",
+ "canonical_from_construction": {
+  "R": [
+   [
+    -0.9997553715548142,
+    0.01674002221584209,
+    0.014455749842510255
+   ],
+   [
+    -0.016599131126462954,
+    -0.9998140797511584,
+    0.009811971116499776
+   ],
+   [
+    0.014617314840373749,
+    0.00956961794209437,
+    0.9998473666111743
+   ]
+  ],
+  "c": [
+   -6.919399752061687e-06,
+   -0.0005834090899833419,
+   0.1442830211504988
+  ],
+  "note": "p_canonical = R @ (p_construction - c)",
+  "forced_B": false
+ },
+ "frame_check": {
+  "mid": {
+   "label": "A",
+   "axis_dots_with_construction": [
+    -0.999755,
+    -0.999814,
+    0.999847
+   ],
+   "tilt_deg": [
+    1.267,
+    1.105,
+    1.001
+   ],
+   "skews_along_canonical_axes": [
+    0.03013,
+    0.00384,
+    0.22594
+   ],
+   "sd_mm": [
+    6.2,
+    10.65,
+    92.4
+   ],
+   "origin_construction_mm": [
+    -0.007,
+    -0.583,
+    144.283
+   ],
+   "y_toward_M2": false,
+   "markers_canonical_mm": [
+    [
+     -6.69,
+     17.93,
+     -23.34
+    ],
+    [
+     -9.42,
+     -16.0,
+     17.93
+    ],
+    [
+     -8.49,
+     -0.95,
+     170.35
+    ]
+   ],
+   "R": [
+    [
+     -0.9997553715548142,
+     0.01674002221584209,
+     0.014455749842510255
+    ],
+    [
+     -0.016599131126462954,
+     -0.9998140797511584,
+     0.009811971116499776
+    ],
+    [
+     0.014617314840373749,
+     0.00956961794209437,
+     0.9998473666111743
+    ]
+   ],
+   "c": [
+    -6.919399752061687e-06,
+    -0.0005834090899833419,
+    0.1442830211504988
+   ]
+  },
+  "x": {
+   "label": "A",
+   "axis_dots_with_construction": [
+    -0.999755,
+    -0.999814,
+    0.999847
+   ],
+   "tilt_deg": [
+    1.267,
+    1.105,
+    1.001
+   ],
+   "skews_along_canonical_axes": [
+    0.03013,
+    0.00384,
+    0.22594
+   ],
+   "sd_mm": [
+    6.2,
+    10.65,
+    92.4
+   ],
+   "origin_construction_mm": [
+    -0.007,
+    -0.583,
+    144.283
+   ],
+   "y_toward_M2": false,
+   "markers_canonical_mm": [
+    [
+     -6.69,
+     17.93,
+     -23.34
+    ],
+    [
+     -9.42,
+     -16.0,
+     17.93
+    ],
+    [
+     -8.49,
+     -0.95,
+     170.35
+    ]
+   ],
+   "R": [
+    [
+     -0.9997553715548139,
+     0.016740022215842087,
+     0.014455749842510255
+    ],
+    [
+     -0.016599131126462954,
+     -0.9998140797511584,
+     0.009811971116499984
+    ],
+    [
+     0.014617314840373749,
+     0.00956961794209437,
+     0.9998473666111743
+    ]
+   ],
+   "c": [
+    -6.919399752061687e-06,
+    -0.0005834090899833419,
+    0.1442830211504988
+   ]
+  },
+  "skew_toward_concave_x": -0.03013,
+  "skew_toward_M2_y": -0.00384,
+  "skew_toward_handle_z": 0.22594,
+  "noisy_mid_axis": {
+   "skew_toward_M2": -0.0038,
+   "se1": 1.7331,
+   "P_B_at_n=1600": 0.4646,
+   "P_B_at_n=5600": 0.4341,
+   "P_B_at_n=18000": 0.383,
+   "P_B_noisy_posterior": 0.4282
+  }
+ },
+ "idempotence_on_export": {
+  "origin_mm": 1.514014809699363e-07,
+  "max_axis_dev_deg": 1.4787793334710982e-06,
+  "diag_signs": [
+   1,
+   1,
+   1
+  ],
+  "skews": [
+   0.03013,
+   0.00384,
+   0.22594
+  ]
+ },
+ "mesh_checks": {
+  "n_vertices": 1614,
+  "n_faces": 3224,
+  "under_budget": true,
+  "each_directed_edge_once": true,
+  "every_edge_has_opposite": true,
+  "edge_manifold_closed": true,
+  "vertex_manifold": true,
+  "euler_characteristic": 2,
+  "genus": 0,
+  "components": 1,
+  "signed_volume_cm3": 84.833,
+  "area_cm2": 238.305,
+  "min_face_area_mm2": 0.09074199710964519,
+  "min_angle_deg": 2.084828932992191,
+  "p01_angle_deg": 8.660807986126665,
+  "self_intersections": 0,
+  "self_intersection_pairs_tested": 515277,
+  "self_intersection_examples": [],
+  "duplicate_faces": 0
+ },
+ "dimensions": {
+  "wood_length_mm": 306.8,
+  "overall_extent_with_markers_mm": [
+   28.74,
+   52.0,
+   321.55
+  ],
+  "bowl_length_mm": 95.0,
+  "bowl_max_width_mm": 52.0,
+  "bowl_inner_depth_mm": 10.0,
+  "bowl_wall_thickness_mm": 5.0,
+  "rim_top_above_axis_mm": 4.5,
+  "bowl_back_lowest_mm": -10.24,
+  "neck_min_width_mm": 16.0,
+  "handle_diameter_mm": {
+   "172": 18.8,
+   "181": 19.46,
+   "190": 20.02,
+   "199": 20.48,
+   "208": 20.84,
+   "217": 21.1,
+   "226": 21.25,
+   "235": 21.3,
+   "244": 21.25,
+   "253": 21.1,
+   "262": 20.84,
+   "271": 20.48,
+   "280": 20.02,
+   "289": 19.46,
+   "298": 18.8
+  },
+  "handle_max_diameter_mm": 21.3
+ },
+ "glb": {
+  "reload_identical": true,
+  "texture_colours_match": true,
+  "visual_kind": "texture",
+  "postprocessed": true,
+  "reload_watertight": true,
+  "reload_winding_consistent": true,
+  "bytes": 72556,
+  "structure": {
+   "nodes": [
+    {
+     "name": "world",
+     "mesh": null,
+     "children": [
+      1
+     ],
+     "matrix": null,
+     "translation": null,
+     "rotation": null,
+     "scale": null
+    },
+    {
+     "name": "wooden_spoon",
+     "mesh": 0,
+     "children": [],
+     "matrix": null,
+     "translation": null,
+     "rotation": null,
+     "scale": null
+    }
+   ],
+   "scene_roots": [
+    0
+   ],
+   "meshes": 1,
+   "primitives": 1,
+   "material": {
+    "name": "_texture",
+    "metallic": 0.0,
+    "roughness": 1.0,
+    "texture": true,
+    "doubleSided": true
+   },
+   "generator": "https://github.com/mikedh/trimesh",
+   "attributes": [
+    "POSITION",
+    "TEXCOORD_0"
+   ]
+  }
+ },
+ "urdf_inertial": {
+  "centroid": [
+   5.998346833090743e-18,
+   5.179721470193122e-18,
+   5.11017719072091e-16
+  ],
+  "inertia": [
+   [
+    0.0025954136479979712,
+    -3.416868816156476e-21,
+    1.0563630681958728e-18
+   ],
+   [
+    -3.428149906851088e-21,
+    0.0025729564634218056,
+    4.132766831636564e-19
+   ],
+   [
+    1.058253084775324e-18,
+    4.140021440729407e-19,
+    4.554597617032908e-05
+   ]
+  ]
+ },
+ "variants": [
+  {
+   "variant": "default (note-20 layout, bend 1.3 mm)",
+   "label_mid": "A",
+   "label_x": "A",
+   "skew_x_concave": -0.03013,
+   "skew_y_M2": -0.00384,
+   "skew_z_handle": 0.22594,
+   "P_B_noisy": 0.4282,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "bend 0",
+   "label_mid": "B",
+   "label_x": "A",
+   "skew_x_concave": -0.02951,
+   "skew_y_M2": 0.00101,
+   "skew_z_handle": 0.22601,
+   "P_B_noisy": 0.5189,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "bend 2.8 mm (note-20 upper)",
+   "label_mid": "A",
+   "label_x": "A",
+   "skew_x_concave": -0.0309,
+   "skew_y_M2": -0.01023,
+   "skew_z_handle": 0.22577,
+   "P_B_noisy": 0.3176,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "M2 lat 16.6 (asym -1.1 mm)",
+   "label_mid": "B",
+   "label_x": "A",
+   "skew_x_concave": -0.0342,
+   "skew_y_M2": 0.01082,
+   "skew_z_handle": 0.22537,
+   "P_B_noisy": 0.6915,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "M2 lat 14.4 (asym +1.1 mm)",
+   "label_mid": "A",
+   "label_x": "A",
+   "skew_x_concave": -0.02654,
+   "skew_y_M2": -0.01525,
+   "skew_z_handle": 0.22645,
+   "P_B_noisy": 0.2477,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "note-13 in-plane layout, bend 0",
+   "label_mid": "B",
+   "label_x": "B",
+   "skew_x_concave": 0.00952,
+   "skew_y_M2": 0.04851,
+   "skew_z_handle": 0.24249,
+   "P_B_noisy": 0.9556,
+   "faces": 3284,
+   "manifold": true
+  },
+  {
+   "variant": "no markers, bend 1.3",
+   "label_mid": "A",
+   "label_x": "B",
+   "skew_x_concave": 0.00627,
+   "skew_y_M2": -0.02388,
+   "skew_z_handle": 0.22072,
+   "P_B_noisy": 0.1724,
+   "faces": 2640,
+   "manifold": true
+  },
+  {
+   "variant": "no markers, bend 0 (tessellation floor)",
+   "label_mid": "B",
+   "label_x": "B",
+   "skew_x_concave": 0.00627,
+   "skew_y_M2": 0.0,
+   "skew_z_handle": 0.22076,
+   "P_B_noisy": 0.5,
+   "faces": 2640,
+   "manifold": true
+  },
+  {
+   "variant": "bowl depth 6 mm",
+   "label_mid": "A",
+   "label_x": "A",
+   "skew_x_concave": -0.04642,
+   "skew_y_M2": -0.00599,
+   "skew_z_handle": 0.1972,
+   "P_B_noisy": 0.392,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "bowl depth 14 mm",
+   "label_mid": "A",
+   "label_x": "A",
+   "skew_x_concave": -0.04768,
+   "skew_y_M2": -0.00202,
+   "skew_z_handle": 0.26395,
+   "P_B_noisy": 0.4608,
+   "faces": 3224,
+   "manifold": true
+  },
+  {
+   "variant": "oval handle+neck (aspect 0.8)",
+   "label_mid": "A",
+   "label_x": "B",
+   "skew_x_concave": 0.08102,
+   "skew_y_M2": -0.00256,
+   "skew_z_handle": 0.27742,
+   "P_B_noisy": 0.4508,
+   "faces": 3186,
+   "manifold": true
+  },
+  {
+   "variant": "rim 4 mm above axis",
+   "label_mid": "A",
+   "label_x": "A",
+   "skew_x_concave": -0.06916,
+   "skew_y_M2": -0.00235,
+   "skew_z_handle": 0.22601,
+   "P_B_noisy": 0.4559,
+   "faces": 3224,
+   "manifold": true
+  }
+ ]
+}
