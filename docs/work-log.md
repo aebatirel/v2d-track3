@@ -261,3 +261,18 @@ Machine: Claude Code cloud session (no GPU), repo at 4d1d7ee. Commands and resul
 - No SSH key generated yet: the key would be lost with the session before it could be registered.
 - `HF_STORE` is still the placeholder `HF-USER/v2d-store` (the HF username is needed).
 No spending. Waiting on the owner checklist (runbook §3), mainly network access Full plus the two network secrets.
+
+## 2026-10-20 (cloud session, later): Vast key works; SSH out probably blocked
+After the owner set the network access and added the `console.vast.ai` network secret:
+- `curl https://console.vast.ai/api/v0/users/current/` → HTTP 200 (account 751312). **The Bearer network secret
+  works.** Credit $0.00, no billing on file yet: top-up needed before any box.
+- `ops/vast.sh show` → `0 instance(s)`.
+- HF public dataset API → 200 (network open; no HF secret yet).
+- Installed `openssh-client` in the VM, generated `~/.ssh/v2d_cloud` (session-local, never committed) and registered it:
+  `ops/vast.sh ssh-key ~/.ssh/v2d_cloud.pub` → success, Vast key id 1621422. A new session needs a new key.
+- SSH out: the VM has no DNS of its own; direct TCP to port 22 fails. The proxy answers `CONNECT github.com:22` with
+  200 but no SSH banner ever arrives, and `ssh.github.com:443` is reset. The proxy appears to pass only TLS. **SSH to
+  Vast boxes will most likely not work**; box 0 gives the definitive test. Plan for HTTPS-only mode (runbook §1).
+- The repo is private (anonymous GitHub → 404), so boxes need `GH_TOKEN` to clone, or code must reach them another
+  way (for example a tarball in the HF store).
+No spending.
