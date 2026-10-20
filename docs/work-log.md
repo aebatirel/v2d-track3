@@ -324,3 +324,10 @@ No spending.
   - SSH to the real box via `ssh -p 24874 root@ssh3.vast.ai` through the proxy: connection reset. SSH is not usable.
   - Job exit 0 at 15:18:52; self-destroy pushed the final logs and destroyed the instance (0 instances at 15:19:16).
   - Cost: credit 25.00 → 24.99 (**$0.01**). Outputs: HF store `runs/20261020-smoke-9c70bca/`.
+
+## 2026-10-20 (cloud session): box 1 day-1 job launched
+- Owner go-ahead for box 1 (estimate $6–8, 4–5 h; batch ceiling $25).
+- `ops/vast.sh offers` → cheapest compliant RTX PRO 6000 WS on demand: offer 56213818, Greece, $1.444/h all-in
+  (GPU $1.402 + disk $0.042), 30 CPUs, 90 GB RAM, reliability 0.986, $2.67/TB download.
+- Launch: `ops/vast.sh V2D_COMMIT=70f6169… create 56213818 20261020-day1-70f6169 'bash ops/jobs/day1.sh'` (disk 150 GB)
+  → instance **56913250**, commit 70f6169, created about 15:33 UTC (18:33 TRT).
