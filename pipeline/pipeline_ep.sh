@@ -8,7 +8,10 @@ EP=$1; STEPS=${STEPS:-250003456}; SEED=${SEED:-42}; PERC=${PERC:-perc2}
 S=${REPO_DIR:-/content/v2d-track3}/pipeline
 # PERC=oracle (public episodes only) swaps in mocap object poses on top of perc2's camera trajectory: oracle_poses.py
 case $PERC in perc2|oracle) PSCRIPT=$S/perc2.py ;; perc4) PSCRIPT=$S/perc.py ;; *) echo "unknown PERC=$PERC"; exit 1 ;; esac
-P=/content/$PERC/ep$EP; R=/content/refs/$PERC/ep$EP; RUN=/content/runs/$PERC/ep$EP-s$SEED; RES=/content/results/$PERC/ep$EP-s$SEED
+# VARIANT (e.g. "v") keeps a variant's refs, runs and results apart (refs/perc2v/...); PDIR overrides the perception
+# folder (e.g. /content/perc2c/epN from DET_PRIOR=compact); HANDS_ARGS is passed to hands_mp.py (e.g. "--linker greedy").
+V=${VARIANT:-}
+P=${PDIR:-/content/$PERC/ep$EP}; R=/content/refs/$PERC$V/ep$EP; RUN=/content/runs/$PERC$V/ep$EP-s$SEED; RES=/content/results/$PERC$V/ep$EP-s$SEED
 FC=/content/v2d/robotic_grounding/flash_chord
 mkdir -p $P $R $RUN $RES
 SEQ=$(printf 't3_ep%03d' $EP)
@@ -31,7 +34,7 @@ echo "[$(date +%T)] perception: $(grep -a '^\[.* vo  ' $P/log.txt | tail -1 | cu
 # 2) hands (MediaPipe on colour cam_a, lifted with stereo depth)
 if [ ! -s $R/hands.npz ]; then
   DEP=$(readlink -f $P/depths_fs0.5.npy)
-  /content/mpvenv/bin/python $S/hands_mp.py --ep $EP --depth $DEP --poses $P/poses.npz --out $R > $R/hands_log.txt 2>&1 \
+  /content/mpvenv/bin/python $S/hands_mp.py --ep $EP ${HANDS_ARGS:-} --depth $DEP --poses $P/poses.npz --out $R > $R/hands_log.txt 2>&1 \
     || { echo "hands FAILED"; tail -5 $R/hands_log.txt; exit 1; }
 fi
 echo "[$(date +%T)] hands done"
