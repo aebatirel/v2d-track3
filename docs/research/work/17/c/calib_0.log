@@ -1,0 +1,22 @@
+t 0 16
+t 40 375
+t 80 508
+t 120 547
+t 160 547
+t 200 547
+t 240 607
+t 280 616
+t 320 911
+t 360 1258
+white_pot k0 (large): n 335 (a/b/c [115, 112, 108]), res a-eq px before 3.74 after 3.75; offset mm (-2.4, +0.1, -1.7) |3.0|
+white_pot k1: 0 obs (skip)
+white_pot k2 (large): n 141 (a/b/c [91, 1, 49]), res a-eq px before 5.40 after 4.06; offset mm (-10.6, +3.3, -8.7) |14.0|
+white_pot k3: 0 obs (skip)
+white_pot k4: 0 obs (skip)
+white_pot k5: 2 obs (skip)
+white_pot_lid k0 (large): n 193 (a/b/c [63, 66, 64]), res a-eq px before 5.09 after 3.77; offset mm (-4.1, +0.6, +2.1) |4.6|
+white_pot_lid k1 (large): n 209 (a/b/c [70, 70, 69]), res a-eq px before 3.41 after 3.41; offset mm (-1.9, +0.8, +1.7) |2.6|
+white_pot_lid k2 (large): n 207 (a/b/c [69, 69, 69]), res a-eq px before 6.06 after 4.46; offset mm (-6.6, +1.5, +1.9) |7.1|
+white_pot_lid k3 (small): n 145 (a/b/c [58, 49, 38]), res a-eq px before 6.30 after 3.62; offset mm (-7.0, +2.1, +1.8) |7.5|
+white_pot_lid k4 (small): n 101 (a/b/c [26, 26, 49]), res a-eq px before 11.57 after 2.08; offset mm (-6.3, -0.6, -2.1) |6.7|
+done

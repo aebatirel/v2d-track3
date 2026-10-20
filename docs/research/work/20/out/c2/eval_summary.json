@@ -1,0 +1,452 @@
+[
+ {
+  "ep": 1,
+  "slot0": "white_pot",
+  "pick": "tmpl s0.75 dcol2",
+  "depth": 0.5459954324938199,
+  "C_a": 28,
+  "M_a": 45,
+  "c_a": 38,
+  "n": 1,
+  "c_bc": 37,
+  "window_end_row": 34,
+  "empty": false,
+  "view_contact": [
+   24,
+   32
+  ],
+  "view_motion": [
+   48,
+   127
+  ],
+  "flags": [],
+  "note": "L hand grips pot handle f24-32; maybe nudged at lid removal f48-60; lift f127"
+ },
+ {
+  "ep": 3,
+  "slot0": "white_pot",
+  "pick": "tmpl s0.51 dcol2",
+  "depth": 0.5614229319517154,
+  "C_a": 15,
+  "M_a": 14,
+  "c_a": 14,
+  "n": 1,
+  "c_bc": 13,
+  "window_end_row": 10,
+  "empty": false,
+  "view_contact": [
+   50,
+   56
+  ],
+  "view_motion": null,
+  "flags": [
+   "C-early"
+  ],
+  "note": "pot near-static all clip; handle hand-occluded f50-300"
+ },
+ {
+  "ep": 5,
+  "slot0": "white_pot",
+  "pick": "tmpl s0.50 dcol2",
+  "depth": 0.5779400424944463,
+  "C_a": 13,
+  "M_a": 25,
+  "c_a": 23,
+  "n": 1,
+  "c_bc": 22,
+  "window_end_row": 19,
+  "empty": false,
+  "view_contact": [
+   16,
+   20
+  ],
+  "view_motion": [
+   24,
+   40
+  ],
+  "flags": [],
+  "note": "rotated/slid while held f24-40"
+ },
+ {
+  "ep": 6,
+  "slot0": "white_pot",
+  "pick": "tmpl s0.46 dcol2",
+  "depth": 0.596756304038274,
+  "C_a": 12,
+  "M_a": 22,
+  "c_a": 22,
+  "n": 1,
+  "c_bc": 21,
+  "window_end_row": 18,
+  "empty": false,
+  "view_contact": [
+   8,
+   16
+  ],
+  "view_motion": [
+   24,
+   32
+  ],
+  "flags": [],
+  "note": "L hand on handle by f16"
+ },
+ {
+  "ep": 8,
+  "slot0": "beige_cup",
+  "pick": "tmpl s0.59 dcol1",
+  "depth": 0.5051863049218509,
+  "C_a": 33,
+  "M_a": 45,
+  "c_a": 43,
+  "n": 1,
+  "c_bc": 42,
+  "window_end_row": 39,
+  "empty": false,
+  "view_contact": [
+   40,
+   44
+  ],
+  "view_motion": [
+   52,
+   56
+  ],
+  "flags": [],
+  "note": "R hand reaches f32-40, grasps f44, lifts f52-56"
+ },
+ {
+  "ep": 10,
+  "slot0": "blue_cup",
+  "pick": "tmpl s0.62 dcol1",
+  "depth": 0.46703990358635467,
+  "C_a": 17,
+  "M_a": 39,
+  "c_a": 27,
+  "n": 1,
+  "c_bc": 26,
+  "window_end_row": 23,
+  "empty": false,
+  "view_contact": [
+   16,
+   24
+  ],
+  "view_motion": null,
+  "flags": [],
+  "note": "L hand wraps cup during stacking f24-120; possibly near-static"
+ },
+ {
+  "ep": 14,
+  "slot0": "blue_cup",
+  "pick": "tmpl s0.61 dcol4",
+  "depth": 0.4279164751388897,
+  "C_a": 14,
+  "M_a": 25,
+  "c_a": 24,
+  "n": 1,
+  "c_bc": 23,
+  "window_end_row": 20,
+  "empty": false,
+  "view_contact": [
+   16,
+   16
+  ],
+  "view_motion": [
+   24,
+   32
+  ],
+  "flags": [],
+  "note": "lift+tilt f24-32"
+ },
+ {
+  "ep": 15,
+  "slot0": "plastic_dish_rack",
+  "pick": "tmpl s0.17 dcol1",
+  "depth": 0.5865001762270524,
+  "C_a": 34,
+  "M_a": null,
+  "c_a": 44,
+  "n": 1,
+  "c_bc": 43,
+  "window_end_row": 40,
+  "empty": false,
+  "view_contact": [
+   60,
+   105
+  ],
+  "view_motion": null,
+  "flags": [
+   "C-early"
+  ],
+  "note": "R hand rests on the rack f60-105; static"
+ },
+ {
+  "ep": 16,
+  "slot0": "plastic_dish_rack",
+  "pick": "tmpl s0.18 dcol0",
+  "depth": 0.6088945103371018,
+  "C_a": 14,
+  "M_a": 75,
+  "c_a": 24,
+  "n": 1,
+  "c_bc": 23,
+  "window_end_row": 20,
+  "empty": false,
+  "view_contact": [
+   75,
+   120
+  ],
+  "view_motion": null,
+  "flags": [
+   "C-early"
+  ],
+  "note": "touched by the spoon insertion only; static >= ~90"
+ },
+ {
+  "ep": 19,
+  "slot0": "mini_sweeper",
+  "pick": "tmpl s0.54 dcol4",
+  "depth": 0.5192830150965894,
+  "C_a": 16,
+  "M_a": 20,
+  "c_a": 20,
+  "n": 1,
+  "c_bc": 19,
+  "window_end_row": 16,
+  "empty": false,
+  "view_contact": [
+   12,
+   16
+  ],
+  "view_motion": [
+   16,
+   24
+  ],
+  "flags": [],
+  "note": "no open-hands prefix; lifted by f24"
+ },
+ {
+  "ep": 20,
+  "slot0": "blue_cup",
+  "pick": "tmpl s0.36 dcol19",
+  "depth": 0.5489628420440711,
+  "C_a": 29,
+  "M_a": 3,
+  "c_a": 3,
+  "n": 1,
+  "c_bc": 2,
+  "window_end_row": -1,
+  "empty": true,
+  "view_contact": [
+   0,
+   0
+  ],
+  "view_motion": [
+   0,
+   0
+  ],
+  "flags": [
+   "EMPTY"
+  ],
+  "note": "cup held in the air at f0"
+ },
+ {
+  "ep": 25,
+  "slot0": "wooden_piece_1",
+  "pick": "tmpl s0.33 dcol8",
+  "depth": 0.6311420308405965,
+  "C_a": 38,
+  "M_a": 86,
+  "c_a": 48,
+  "n": 1,
+  "c_bc": 47,
+  "window_end_row": 44,
+  "empty": false,
+  "view_contact": [
+   32,
+   32
+  ],
+  "view_motion": [
+   48,
+   56
+  ],
+  "flags": [],
+  "note": "L hand grips left board f32, slides it f48-56"
+ },
+ {
+  "ep": 28,
+  "slot0": "plastic_dish_rack",
+  "pick": "tmpl s0.19 dcol1",
+  "depth": 0.6142641821284527,
+  "C_a": 11,
+  "M_a": null,
+  "c_a": 21,
+  "n": 1,
+  "c_bc": 20,
+  "window_end_row": 17,
+  "empty": false,
+  "view_contact": null,
+  "view_motion": null,
+  "flags": [],
+  "note": "rack static all clip; only the pot touches it"
+ },
+ {
+  "ep": 30,
+  "slot0": "mini_sweeper",
+  "pick": "tmpl s0.50 dcol5",
+  "depth": 0.5148465361697739,
+  "C_a": 29,
+  "M_a": 38,
+  "c_a": 38,
+  "n": 1,
+  "c_bc": 37,
+  "window_end_row": 34,
+  "empty": false,
+  "view_contact": [
+   32,
+   32
+  ],
+  "view_motion": [
+   40,
+   56
+  ],
+  "flags": [],
+  "note": "R hand reaches f24, grips sweeper f32, lifts f40-56"
+ },
+ {
+  "ep": 32,
+  "slot0": "blue_cup",
+  "pick": "tmpl s0.64 dcol2",
+  "depth": 0.49505792654493197,
+  "C_a": 6,
+  "M_a": 8,
+  "c_a": 8,
+  "n": 1,
+  "c_bc": 7,
+  "window_end_row": 4,
+  "empty": false,
+  "view_contact": [
+   0,
+   0
+  ],
+  "view_motion": [
+   10,
+   16
+  ],
+  "flags": [],
+  "note": "hand on the cup at f0, lifted by f16"
+ },
+ {
+  "ep": 33,
+  "slot0": "blue_cup",
+  "pick": "tmpl s0.63 dcol2",
+  "depth": 0.5032903687963887,
+  "C_a": 12,
+  "M_a": 24,
+  "c_a": 22,
+  "n": 1,
+  "c_bc": 21,
+  "window_end_row": 18,
+  "empty": false,
+  "view_contact": [
+   16,
+   16
+  ],
+  "view_motion": [
+   24,
+   40
+  ],
+  "flags": [],
+  "note": "grips f16, lifts f24-40"
+ },
+ {
+  "ep": 35,
+  "slot0": "wooden_spoon",
+  "pick": "blob s1.19 h2 l31",
+  "depth": 0.574151116541082,
+  "C_a": 11,
+  "M_a": 24,
+  "c_a": 21,
+  "n": 1,
+  "c_bc": 20,
+  "window_end_row": 17,
+  "empty": false,
+  "view_contact": [
+   16,
+   24
+  ],
+  "view_motion": [
+   32,
+   32
+  ],
+  "flags": [],
+  "note": "R hand grips handle end f16-24, lifts f32"
+ },
+ {
+  "ep": 36,
+  "slot0": "wooden_spoon",
+  "pick": "blob s1.95 h5 l21",
+  "depth": 0.43665005540680585,
+  "C_a": 19,
+  "M_a": 11,
+  "c_a": 11,
+  "n": 1,
+  "c_bc": 10,
+  "window_end_row": 7,
+  "empty": false,
+  "view_contact": [
+   24,
+   32
+  ],
+  "view_motion": [
+   40,
+   40
+  ],
+  "flags": [],
+  "note": "grips f24-32, lifts f40"
+ },
+ {
+  "ep": 37,
+  "slot0": "wooden_spoon",
+  "pick": "blob s1.09 h3 l35",
+  "depth": 0.5565952883148403,
+  "C_a": 11,
+  "M_a": 32,
+  "c_a": 21,
+  "n": 1,
+  "c_bc": 20,
+  "window_end_row": 17,
+  "empty": false,
+  "view_contact": [
+   16,
+   32
+  ],
+  "view_motion": [
+   40,
+   40
+  ],
+  "flags": [],
+  "note": "touches f16, grips f24-32, lifts f40"
+ },
+ {
+  "ep": 38,
+  "slot0": "mini_dust_pan",
+  "pick": "tmpl s0.45 dcol1",
+  "depth": 0.553107346104274,
+  "C_a": 33,
+  "M_a": 36,
+  "c_a": 36,
+  "n": 1,
+  "c_bc": 35,
+  "window_end_row": 32,
+  "empty": false,
+  "view_contact": [
+   40,
+   40
+  ],
+  "view_motion": [
+   40,
+   56
+  ],
+  "flags": [],
+  "note": "L hand grips f40 (twin GT onset 48)"
+ }
+]

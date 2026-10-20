@@ -1,0 +1,17 @@
+ep 0 win 12: nobs 1052 (a 519 b 247 c 286) res(a-eq px) med 3.38 p90 7.74; 86s
+ep 0 win 8: nobs 1023 (a 488 b 248 c 287) res(a-eq px) med 2.90 p90 6.17; 173s
+ep 0 win 6: nobs 914 (a 428 b 226 c 260) res(a-eq px) med 2.51 p90 5.01; 271s
+drift knots (deg, mm) max |rot| 0.122 max |trans| 4.9
+   cam a white_pot          n  184 res med 2.90 p90 5.00 (a-eq px)
+   cam a white_pot_lid      n  244 res med 2.35 p90 5.05 (a-eq px)
+   cam b white_pot          n   96 res med 1.62 p90 4.18 (a-eq px)
+   cam b white_pot_lid      n  130 res med 2.50 p90 4.94 (a-eq px)
+   cam c white_pot          n   94 res med 2.27 p90 4.51 (a-eq px)
+   cam c white_pot_lid      n  166 res med 3.28 p90 5.21 (a-eq px)
+   LOMO white_pot m0: n 294 held-out res (a-eq px) med 3.71 p90 6.42
+   LOMO white_pot m2: n 80 held-out res (a-eq px) med 4.19 p90 5.73
+   LOMO white_pot_li m0: n 102 held-out res (a-eq px) med 2.99 p90 5.04
+   LOMO white_pot_li m1: n 191 held-out res (a-eq px) med 2.67 p90 5.51
+   LOMO white_pot_li m2: n 240 held-out res (a-eq px) med 3.28 p90 5.33
+LOMO all: n 907; px(a-eq) med 3.29 p75 4.73 p90 5.78; lateral mm med 1.40 p90 2.44
+total 428.7355442047119

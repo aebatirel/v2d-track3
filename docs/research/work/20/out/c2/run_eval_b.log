@@ -1,0 +1,10 @@
+e20 {"C_a": 29, "M_a": 3, "c_a": 3, "n": 1, "c_bc": 2, "window_end_row": -1, "empty": true} depth 0.55 r0 87
+e25 {"C_a": 71, "M_a": 99, "c_a": 81, "n": 1, "c_bc": 80, "window_end_row": 77, "empty": false} depth 0.67 r0 104
+e28 {"C_a": 11, "M_a": null, "c_a": 21, "n": 1, "c_bc": 20, "window_end_row": 17, "empty": false} depth 0.61 r0 232
+e30 {"C_a": 29, "M_a": 38, "c_a": 38, "n": 1, "c_bc": 37, "window_end_row": 34, "empty": false} depth 0.51 r0 78
+e32 {"C_a": 6, "M_a": 8, "c_a": 8, "n": 1, "c_bc": 7, "window_end_row": 4, "empty": false} depth 0.50 r0 88
+e33 {"C_a": 12, "M_a": 24, "c_a": 22, "n": 1, "c_bc": 21, "window_end_row": 18, "empty": false} depth 0.50 r0 88
+e35 {"C_a": 11, "M_a": 24, "c_a": 21, "n": 1, "c_bc": 20, "window_end_row": 17, "empty": false} depth 0.57 r0 164
+e36 {"C_a": 19, "M_a": 11, "c_a": 11, "n": 1, "c_bc": 10, "window_end_row": 7, "empty": false} depth 0.44 r0 155
+e37 {"C_a": 11, "M_a": 32, "c_a": 21, "n": 1, "c_bc": 20, "window_end_row": 17, "empty": false} depth 0.56 r0 380
+e38 {"C_a": 33, "M_a": 36, "c_a": 36, "n": 1, "c_bc": 35, "window_end_row": 32, "empty": false} depth 0.55 r0 102

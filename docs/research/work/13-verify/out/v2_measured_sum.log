@@ -1,0 +1,4 @@
+model         N=30 toM2>0 30/30 med +0.039 [+0.026,+0.052] | P(B) mean 0.919 | toConc>0 28 | midIsY 1.00 | z>0 30
+meas_inplane  N=30 toM2>0 3/30 med -0.080 [-0.179,+0.024] | P(B) mean 0.085 | toConc>0 29 | midIsY 1.00 | z>0 30
+meas          N=30 toM2>0 4/30 med -0.054 [-0.166,+0.061] | P(B) mean 0.142 | toConc>0 30 | midIsY 1.00 | z>0 30
+meas: lat1-lat2 range 0.5..11.3 mm; toM2>0 cases at d= [3.7 1.4 0.8 0.5]

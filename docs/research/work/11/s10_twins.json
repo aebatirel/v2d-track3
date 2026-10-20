@@ -1,0 +1,402 @@
+[
+ {
+  "ev": 1,
+  "objs": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "n": 335,
+  "bracket": [
+   0,
+   2
+  ],
+  "task": "Pot_with_lid",
+  "twins": [
+   0,
+   2
+  ],
+  "same_slot_order": [
+   0,
+   2
+  ],
+  "slot0": "white_pot",
+  "sym0": "asymmetric",
+  "sym1": "continuous"
+ },
+ {
+  "ev": 3,
+  "objs": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "n": 313,
+  "bracket": [
+   2,
+   11
+  ],
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "white_pot",
+  "sym0": "asymmetric",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 5,
+  "objs": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "n": 288,
+  "bracket": [
+   2,
+   11
+  ],
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "white_pot",
+  "sym0": "asymmetric",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 6,
+  "objs": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "n": 243,
+  "bracket": [
+   2,
+   11
+  ],
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "white_pot",
+  "sym0": "asymmetric",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 8,
+  "objs": [
+   "beige_cup",
+   "white_pot"
+  ],
+  "n": 219,
+  "bracket": [
+   2,
+   11
+  ],
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "beige_cup",
+  "sym0": "continuous",
+  "sym1": "asymmetric"
+ },
+ {
+  "ev": 10,
+  "objs": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "n": 161,
+  "bracket": [
+   2,
+   11
+  ],
+  "task": "Cup_Stack",
+  "twins": [
+   11
+  ],
+  "same_slot_order": [],
+  "slot0": "blue_cup",
+  "sym0": "continuous",
+  "sym1": "continuous"
+ },
+ {
+  "ev": 14,
+  "objs": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "n": 158,
+  "bracket": [
+   13,
+   18
+  ],
+  "task": "Cup_In_Dish_Rack",
+  "twins": [
+   12,
+   13
+  ],
+  "same_slot_order": [
+   12,
+   13
+  ],
+  "slot0": "blue_cup",
+  "sym0": "continuous",
+  "sym1": "near-2-fold (15 mm)"
+ },
+ {
+  "ev": 15,
+  "objs": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "n": 166,
+  "bracket": [
+   13,
+   18
+  ],
+  "task": "unknown (task_index 5..7, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "plastic_dish_rack",
+  "sym0": "near-2-fold (15 mm)",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 16,
+  "objs": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "n": 173,
+  "bracket": [
+   13,
+   18
+  ],
+  "task": "unknown (task_index 5..7, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "plastic_dish_rack",
+  "sym0": "near-2-fold (15 mm)",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 19,
+  "objs": [
+   "mini_sweeper",
+   "mini_dust_pan"
+  ],
+  "n": 235,
+  "bracket": [
+   18,
+   21
+  ],
+  "task": "Dust_Brush",
+  "twins": [
+   18
+  ],
+  "same_slot_order": [],
+  "slot0": "mini_sweeper",
+  "sym0": "2-fold",
+  "sym1": "asymmetric"
+ },
+ {
+  "ev": 20,
+  "objs": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "n": 202,
+  "bracket": [
+   18,
+   21
+  ],
+  "task": "Water_Can_Blue_Cup",
+  "twins": [
+   21,
+   22
+  ],
+  "same_slot_order": [
+   21,
+   22
+  ],
+  "slot0": "blue_cup",
+  "sym0": "continuous",
+  "sym1": "asymmetric"
+ },
+ {
+  "ev": 25,
+  "objs": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "n": 356,
+  "bracket": [
+   24,
+   26
+  ],
+  "task": "Planter_Stand",
+  "twins": [
+   23,
+   24
+  ],
+  "same_slot_order": [
+   23,
+   24
+  ],
+  "slot0": "wooden_piece_1",
+  "sym0": "2-fold",
+  "sym1": "2-fold"
+ },
+ {
+  "ev": 28,
+  "objs": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "n": 220,
+  "bracket": [
+   27,
+   31
+  ],
+  "task": "Pan_In_Dishrack",
+  "twins": [
+   26,
+   27
+  ],
+  "same_slot_order": [
+   26,
+   27
+  ],
+  "slot0": "plastic_dish_rack",
+  "sym0": "near-2-fold (15 mm)",
+  "sym1": "asymmetric"
+ },
+ {
+  "ev": 30,
+  "objs": [
+   "mini_sweeper",
+   "plastic_dish_rack"
+  ],
+  "n": 263,
+  "bracket": [
+   27,
+   31
+  ],
+  "task": "Brush_Dishrack",
+  "twins": [
+   31
+  ],
+  "same_slot_order": [
+   31
+  ],
+  "slot0": "mini_sweeper",
+  "sym0": "2-fold",
+  "sym1": "near-2-fold (15 mm)"
+ },
+ {
+  "ev": 32,
+  "objs": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "n": 259,
+  "bracket": [
+   31,
+   39
+  ],
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "blue_cup",
+  "sym0": "continuous",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 33,
+  "objs": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "n": 348,
+  "bracket": [
+   31,
+   39
+  ],
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "blue_cup",
+  "sym0": "continuous",
+  "sym1": "mirror (roll sign)"
+ },
+ {
+  "ev": 35,
+  "objs": [
+   "wooden_spoon"
+  ],
+  "n": 421,
+  "bracket": [
+   31,
+   39
+  ],
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "wooden_spoon",
+  "sym0": "mirror (roll sign)",
+  "sym1": null
+ },
+ {
+  "ev": 36,
+  "objs": [
+   "wooden_spoon"
+  ],
+  "n": 407,
+  "bracket": [
+   31,
+   39
+  ],
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "wooden_spoon",
+  "sym0": "mirror (roll sign)",
+  "sym1": null
+ },
+ {
+  "ev": 37,
+  "objs": [
+   "wooden_spoon"
+  ],
+  "n": 151,
+  "bracket": [
+   31,
+   39
+  ],
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "same_slot_order": [],
+  "slot0": "wooden_spoon",
+  "sym0": "mirror (roll sign)",
+  "sym1": null
+ },
+ {
+  "ev": 38,
+  "objs": [
+   "mini_dust_pan"
+  ],
+  "n": 263,
+  "bracket": [
+   31,
+   39
+  ],
+  "task": "Dustpan_Solo",
+  "twins": [
+   39,
+   40
+  ],
+  "same_slot_order": [
+   39,
+   40
+  ],
+  "slot0": "mini_dust_pan",
+  "sym0": "asymmetric",
+  "sym1": null
+ }
+]

@@ -1,0 +1,8 @@
+beige_cup tilt free view-pairs 105
+  centre bound 0 mm: wrong-branch rms px median 10.3 p10 6.4; share of view-pairs < 3 px 0.00, < 6 px 0.08
+  centre bound 1 mm: wrong-branch rms px median 8.2 p10 4.0; share of view-pairs < 3 px 0.06, < 6 px 0.27
+  centre bound 2 mm: wrong-branch rms px median 6.6 p10 1.9; share of view-pairs < 3 px 0.18, < 6 px 0.46
+  centre bound 3 mm: wrong-branch rms px median 5.4 p10 0.7; share of view-pairs < 3 px 0.25, < 6 px 0.54
+  centre bound 5 mm: wrong-branch rms px median 3.8 p10 0.0; share of view-pairs < 3 px 0.38, < 6 px 0.68
+  centre bound 8 mm: wrong-branch rms px median 2.9 p10 0.0; share of view-pairs < 3 px 0.51, < 6 px 0.76
+  wrong fits at 8 mm (rms<1px): |d_ray| median 5.5 mm, |d_lat| median 6.2 mm, spin [ 99. 109. 143.]

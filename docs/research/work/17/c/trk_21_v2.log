@@ -1,0 +1,11 @@
+ep 21 t 0 blue_cup st2 nm2 c0 water_pi st2 nm2 c0 0.49s/fr 0s
+ep 21 t 20 blue_cup st2 nm2 c0 water_pi st2 nm2 c0 0.37s/fr 8s
+ep 21 t 40 blue_cup st0 nm0 c3 water_pi st1 nm1 c4 0.38s/fr 16s
+ep 21 t 60 blue_cup st1 nm1 c23 water_pi st0 nm0 c19 0.39s/fr 24s
+ep 21 t 80 blue_cup st1 nm1 c43 water_pi st0 nm0 c39 0.43s/fr 35s
+ep 21 t 100 blue_cup st1 nm1 c1 water_pi st0 nm0 c59 0.44s/fr 44s
+ep 21 t 120 blue_cup st2 nm2 c0 water_pi st0 nm0 c79 0.44s/fr 53s
+ep 21 t 140 blue_cup st3 nm3 c0 water_pi st0 nm0 c99 0.43s/fr 61s
+ep 21 t 160 blue_cup st2 nm2 c0 water_pi st0 nm0 c119 0.43s/fr 70s
+ep 21 t 180 blue_cup st2 nm2 c0 water_pi st0 nm0 c139 0.43s/fr 78s
+done 0.43s/frame 80s

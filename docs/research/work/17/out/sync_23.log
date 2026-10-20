@@ -1,0 +1,4 @@
+ep 23: n 78; delta = +1.087 +- 0.016 frames (+54.3 ms; a captured delta earlier than b at the same index)
+  extrinsic correction rot (deg) [-0.061  0.185 -0.207] +- [0.004 0.004 0.004]; trans (mm) [-0.6  0.7 -4.7] +- [0.2 0.2 0.2]
+  per-frame residual sd: rot [0.079 0.073 0.045] deg, trans [3.4 3.2 3.2] mm
+  calibrated & delta 0: rot rms 0.256 deg; fitted: 0.068 deg

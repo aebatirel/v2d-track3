@@ -1,0 +1,5 @@
+round n=  1000  P(B) mean over 12 shapes 0.707 (min 0.64)  P(z ok) 1.000
+round n=  3000  P(B) mean over 12 shapes 0.807 (min 0.75)  P(z ok) 1.000
+round n= 10000  P(B) mean over 12 shapes 0.932 (min 0.89)  P(z ok) 1.000
+round n= 30000  P(B) mean over 12 shapes 0.994 (min 0.98)  P(z ok) 1.000
+round n=100000  P(B) mean over 12 shapes 1.000 (min 1.00)  P(z ok) 1.000

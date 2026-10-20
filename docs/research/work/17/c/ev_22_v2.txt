@@ -1,0 +1,10 @@
+c/trk_22_v2.npz MODE reg SH -0.5 T 189 runtime 0.56 s/frame
+  blue_cup: AUC(ADD, this trajectory, no policy) 0.761; status 3/2/1/0 = 0.16 / 0.49 / 0.33 / 0.02
+    rest     n  75 fix>=2 0.89 fix3 0.13 | fix3 n10 t 3.8/6.4 r 2.11/3.41 ADD 4.5/6.5 | fix2 n57 t 31.8/35.0 r 20.59/25.42 ADD 33.4/37.2 | all n75 t 31.1/35.1 r 19.99/25.08 ADD 33.3/37.2 |
+    held     n  70 fix>=2 0.69 fix3 0.24 | fix3 n17 t 4.7/7.3 r 3.31/4.72 ADD 5.2/7.7 | fix2 n31 t 17.0/25.5 r 12.27/17.49 ADD 18.2/26.9 | all n70 t 16.8/58.0 r 11.95/25.25 ADD 18.0/61.7 |
+    carried  n  44 fix>=2 0.18 fix3 0.07 | fix3 n3 t 5.7/7.5 r 1.64/1.92 ADD 5.9/7.7 | fix2 n5 t 8.1/38.8 r 5.99/21.99 ADD 9.1/42.2 | all n44 t 44.4/53.3 r 18.17/23.83 ADD 46.9/55.8 |
+  water_pitcher: AUC(ADD, this trajectory, no policy) 0.371; status 3/2/1/0 = 0.00 / 0.13 / 0.58 / 0.29
+    rest     n 102 fix>=2 0.21 fix3 0.00 | fix2 n21 t 9.5/12.3 r 11.20/13.52 ADD 19.5/24.3 | all n102 t 60.4/60.5 r 22.63/22.76 ADD 67.1/67.3 |
+    held     n  21 fix>=2 0.14 fix3 0.00 | fix2 n3 t 4.0/10.1 r 5.94/6.78 ADD 10.2/14.2 | all n21 t 60.5/66.0 r 22.44/25.17 ADD 66.9/72.8 |
+    carried  n  66 fix>=2 0.02 fix3 0.00 | all n66 t 195.9/317.3 r 48.93/91.68 ADD 211.0/343.7 |
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object blue_cup:0.703 water_pitcher:0.322 mean 0.513

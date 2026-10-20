@@ -23,8 +23,13 @@ These carry over the rules the owner set while this work ran locally. Follow the
   name the experiment that would falsify them.
 
 ## Spending and accounts
-- GPU rental only within the owner's approved budget (see `STATUS.md`). Pay only while working: destroy instances at
-  the end of a work block or before any idle gap over ~30 minutes. A stopped Vast instance keeps billing storage.
+- The owner set no hard spending cap. Before each rental batch, state the plan and its expected cost and get the
+  owner's go-ahead. Then rent through the Vast API (`VAST_API_KEY` secret), and give every machine:
+  - a self-destroy at the end of its job;
+  - a hard time limit as a safety net.
+
+  Pay only while working: destroy instances at the end of a work block or before any idle gap over ~30 minutes.
+  A stopped Vast instance keeps billing storage. Copy results off (git, backup) before destroying.
 - Never commit secrets (SSH private keys, API keys, tokens). Keep keys in the environment or the provider's key store.
 - The owner does all account actions: sign-ups, payments, challenge registration, accepting Kaggle rules, uploading
   submissions, and emailing the organisers. Prepare files and drafts for them.

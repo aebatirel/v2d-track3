@@ -1,0 +1,10 @@
+c/trk_12_s90.npz | all: n 56 winner 270 (OK) margin 59/5 | t<40: n 6 winner 270 (OK) margin 6/0
+c/trk_12_s180.npz | all: n 61 winner 180 (OK) margin 65/5 | t<40: n 6 winner 180 (OK) margin 6/0
+c/trk_21_s90.npz | all: n 89 winner 270 (OK) margin 123/3 | t<40: n 29 winner 255 (OK) margin 41/3
+c/trk_21_s180.npz | all: n 112 winner 180 (OK) margin 158/3 | t<40: n 35 winner 165 (OK) margin 54/0
+c/trk_13_s90.npz | all: n 99 winner 270 (OK) margin 83/23 | t<40: n 14 winner 270 (OK) margin 16/0
+c/trk_22_s90.npz | all: n 108 winner 270 (OK) margin 171/2 | t<40: n 33 winner 270 (OK) margin 51/1
+c/trk_21_s90n10.npz | all: n 107 winner 270 (OK) margin 94/21 | t<40: n 37 winner 255 (OK) margin 45/7
+c/trk_21_s90n20.npz | all: n 62 winner 255 (OK) margin 26/12 | t<40: n 16 winner 255 (OK) margin 19/1
+c/trk_12_s90n10.npz | all: n 61 winner 270 (OK) margin 47/13 | t<40: n 4 winner 270 (OK) margin 4/0
+c/trk_12_s90n20.npz | all: n 25 winner 15 (WRONG) margin 7/7 | t<40: n 0 winner 0 (WRONG) margin 0/0

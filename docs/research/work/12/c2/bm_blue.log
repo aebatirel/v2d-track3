@@ -1,0 +1,8 @@
+blue_cup tilt fixed view-pairs 228
+  centre bound 0 mm: wrong-branch rms px median 34.1 p10 18.4; share of view-pairs < 3 px 0.00, < 6 px 0.00
+  centre bound 1 mm: wrong-branch rms px median 31.5 p10 17.5; share of view-pairs < 3 px 0.00, < 6 px 0.01
+  centre bound 2 mm: wrong-branch rms px median 29.3 p10 15.9; share of view-pairs < 3 px 0.00, < 6 px 0.01
+  centre bound 3 mm: wrong-branch rms px median 27.9 p10 13.8; share of view-pairs < 3 px 0.00, < 6 px 0.04
+  centre bound 5 mm: wrong-branch rms px median 25.9 p10 10.8; share of view-pairs < 3 px 0.00, < 6 px 0.07
+  centre bound 8 mm: wrong-branch rms px median 23.3 p10 6.0; share of view-pairs < 3 px 0.04, < 6 px 0.10
+  wrong fits at 8 mm (rms<1px): |d_ray| median 8.3 mm, |d_lat| median 7.1 mm, spin [167. 172. 185.]

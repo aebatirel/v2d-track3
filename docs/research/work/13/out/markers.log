@@ -1,0 +1,70 @@
+wooden_piece_1: total area 608 cm2; 4 grey blobs (>1.5cm2) totalling 11.6 cm2
+     3.74cm2  ctr[  +13.1   -45.4  -102.1]mm  r=  7.2  rms=0.26
+     3.25cm2  ctr[  +12.8   +33.6   -95.6]mm  r=  7.0  rms=0.24
+     2.31cm2  ctr[  +12.3   +51.7  +106.7]mm  r=  6.8  rms=0.14
+     2.25cm2  ctr[  +12.5   -45.3  +104.5]mm  r=  6.6  rms=0.17
+wooden_piece_2: total area 628 cm2; 3 grey blobs (>1.5cm2) totalling 15.5 cm2
+     5.25cm2  ctr[  -12.7   -47.3   -74.6]mm  r=  6.9  rms=0.18
+     5.14cm2  ctr[  -13.9   -24.3  +101.0]mm  r=  7.0  rms=0.32
+     5.10cm2  ctr[  -13.2   +12.0  -103.1]mm  r=  7.0  rms=0.16
+mini_sweeper: total area 264 cm2; 3 grey blobs (>1.5cm2) totalling 7.2 cm2
+     2.87cm2  ctr[  +16.2   -15.7    +3.2]mm  r=  7.2  rms=0.17
+     2.45cm2  ctr[  +16.1   +16.9    +2.6]mm  r=  7.1  rms=0.08
+     1.88cm2  ctr[  -17.4   -14.3    +2.2]mm  r=  6.9  rms=0.06
+mini_dust_pan: total area 491 cm2; 0 grey blobs (>1.5cm2) totalling 0.0 cm2
+white_pot_lid: total area 784 cm2; 8 grey blobs (>1.5cm2) totalling 125.7 cm2
+    60.08cm2  ctr[ +282.4    +2.1    +5.3]mm  r=293.9  rms=2.56
+    40.02cm2  ctr[  -34.8   +26.9   +19.8]mm  r= 77.2  rms=5.42
+    12.62cm2  ctr[  +67.1    +4.3    +3.4]mm  r=113.5  rms=1.40
+     4.31cm2  ctr[   +5.2   +42.4   +54.7]mm  r=  7.5  rms=0.50
+     2.59cm2  ctr[   +8.0   -57.0   -28.9]mm  r=  5.7  rms=1.36
+     2.48cm2  ctr[   +7.4   -49.7   +16.4]mm  r=  7.3  rms=0.22
+     1.89cm2  ctr[ +303.7    -5.5    +9.5]mm  r=318.6  rms=0.32
+     1.70cm2  ctr[ -220.0    -9.2   -27.6]mm  r=218.8  rms=0.30
+white_pot: total area 1231 cm2; 10 grey blobs (>1.5cm2) totalling 184.1 cm2
+    66.77cm2  ctr[ +685.3   +81.8  +230.6]mm  r=677.2  rms=5.20
+    52.55cm2  ctr[ +443.1   +16.1   +57.8]mm  r=491.2  rms=2.74
+    30.61cm2  ctr[ +284.1    +9.4   +45.4]mm  r=249.4  rms=0.63
+    10.82cm2  ctr[-5293.6  -186.5 -1181.9]mm  r=5384.4  rms=0.06
+     5.78cm2  ctr[  +37.4    +3.8  +105.5]mm  r=  7.3  rms=0.24
+     4.56cm2  ctr[   -5.5   +88.1   +15.1]mm  r=  7.1  rms=0.20
+     4.16cm2  ctr[  +13.7   -33.2  -106.9]mm  r=  7.3  rms=0.29
+     3.80cm2  ctr[  +33.6   +83.9   -54.9]mm  r=  7.2  rms=0.14
+     2.61cm2  ctr[-7317.5  -237.2 -1537.6]mm  r=7439.1  rms=0.02
+     2.43cm2  ctr[-15033.0  -511.6 -3105.1]mm  r=15317.0  rms=0.02
+blue_cup: total area 711 cm2; 5 grey blobs (>1.5cm2) totalling 19.9 cm2
+     5.63cm2  ctr[  +29.9   +33.5   +72.5]mm  r=  7.6  rms=0.39
+     5.35cm2  ctr[  -32.7   -30.5   +64.1]mm  r=  7.7  rms=0.35
+     4.85cm2  ctr[  +27.1   -45.7   -50.9]mm  r=  7.5  rms=0.29
+     2.43cm2  ctr[  -47.1   +18.5   -71.8]mm  r=  7.3  rms=0.15
+     1.68cm2  ctr[  -47.6   +18.7   -70.0]mm  r=  7.3  rms=0.13
+beige_cup: total area 759 cm2; 5 grey blobs (>1.5cm2) totalling 55.2 cm2
+    35.78cm2  ctr[   -3.6    +3.7   +50.5]mm  r= 42.4  rms=4.46
+     5.51cm2  ctr[  +47.8   -17.4   -71.2]mm  r=  7.3  rms=0.19
+     5.38cm2  ctr[  -10.3   +54.9   -62.9]mm  r=  7.3  rms=0.12
+     5.27cm2  ctr[  -33.4   -41.8   -68.8]mm  r=  7.4  rms=0.14
+     3.27cm2  ctr[-2729.8 +1601.8  +181.5]mm  r=3127.5  rms=0.05
+water_pitcher: total area 2236 cm2; 11 grey blobs (>1.5cm2) totalling 64.5 cm2
+    12.08cm2  ctr[   +1.3  +120.5   -11.4]mm  r= 16.5  rms=3.56
+    11.24cm2  ctr[  +80.4  -867.6  +109.2]mm  r=839.6  rms=1.81
+     8.53cm2  ctr[   +1.4  -299.6  -389.6]mm  r=361.1  rms=0.09
+     5.43cm2  ctr[  -61.1   -20.7    +9.3]mm  r=  7.4  rms=0.30
+     5.09cm2  ctr[  -65.1   +57.5   +31.7]mm  r=  7.4  rms=0.25
+     4.98cm2  ctr[ +525.5  +333.8  +424.3]mm  r=660.9  rms=0.91
+     4.95cm2  ctr[  +61.7    +4.8   -26.5]mm  r=  7.2  rms=0.29
+     4.38cm2  ctr[  +37.1   -10.9  +121.9]mm  r=  7.1  rms=0.18
+     4.07cm2  ctr[ +156.6  +154.8   -30.1]mm  r=138.8  rms=0.16
+     2.12cm2  ctr[-192334.5 -37889.9 +48278.6]mm  r=201938.3  rms=0.15
+     1.65cm2  ctr[  +25.9  +359.2   +91.5]mm  r=395.3  rms=0.25
+plastic_dish_rack: total area 3435 cm2; 11 grey blobs (>1.5cm2) totalling 64.0 cm2
+    23.61cm2  ctr[ -620.6    -0.8  -114.6]mm  r=694.7  rms=1.54
+     9.35cm2  ctr[+193351.5 -2275.1 -13729.2]mm  r=193771.1  rms=1.03
+     4.91cm2  ctr[  -10.5   +82.1    +1.3]mm  r=  7.6  rms=0.27
+     4.91cm2  ctr[  +35.6    -2.4  -207.2]mm  r=  7.6  rms=0.17
+     4.84cm2  ctr[  -31.6   +27.5  -152.1]mm  r=110.5  rms=1.03
+     4.68cm2  ctr[  +18.3   +31.5  +288.8]mm  r=  6.8  rms=0.45
+     4.48cm2  ctr[   +7.8   -79.5  +192.2]mm  r=  6.9  rms=0.23
+     2.40cm2  ctr[  +17.0   +39.1  -152.9]mm  r= 58.9  rms=0.91
+     1.69cm2  ctr[  -19.5   -33.7  -158.9]mm  r= 19.1  rms=0.31
+     1.59cm2  ctr[   +8.2   -27.8  +235.9]mm  r= 46.6  rms=0.46
+     1.57cm2  ctr[   +2.5   +40.0  +242.6]mm  r= 38.7  rms=0.61

@@ -1,0 +1,20 @@
+ep 0 t 0 white_po st2 nm2 c0 white_po st3 nm5 c0 4.46s/fr 4s
+ep 0 t 20 white_po st2 nm2 c0 white_po st3 nm5 c0 3.48s/fr 73s
+ep 0 t 40 white_po st2 nm2 c0 white_po st3 nm4 c0 2.30s/fr 94s
+ep 0 t 60 white_po st2 nm2 c0 white_po st3 nm3 c0 1.80s/fr 110s
+ep 0 t 80 white_po st1 nm1 c9 white_po st3 nm4 c0 1.56s/fr 126s
+ep 0 t 100 white_po st1 nm1 c29 white_po st3 nm4 c0 1.39s/fr 141s
+ep 0 t 120 white_po st0 nm2 c49 white_po st3 nm4 c0 1.24s/fr 150s
+ep 0 t 140 white_po st1 nm1 c16 white_po st3 nm4 c0 1.13s/fr 159s
+ep 0 t 160 white_po st2 nm2 c0 white_po st3 nm5 c0 1.05s/fr 169s
+ep 0 t 180 white_po st0 nm0 c10 white_po st2 nm2 c0 0.99s/fr 178s
+ep 0 t 200 white_po st1 nm1 c30 white_po st3 nm3 c0 0.93s/fr 188s
+ep 0 t 220 white_po st2 nm2 c0 white_po st3 nm5 c0 0.89s/fr 197s
+ep 0 t 240 white_po st2 nm2 c0 white_po st3 nm4 c0 0.85s/fr 206s
+ep 0 t 260 white_po st0 nm0 c3 white_po st3 nm4 c0 0.82s/fr 215s
+ep 0 t 280 white_po st1 nm1 c1 white_po st3 nm5 c0 0.79s/fr 223s
+ep 0 t 300 white_po st2 nm2 c0 white_po st3 nm3 c0 0.77s/fr 232s
+ep 0 t 320 white_po st2 nm2 c0 white_po st3 nm5 c0 0.75s/fr 241s
+ep 0 t 340 white_po st1 nm1 c6 white_po st3 nm5 c0 0.73s/fr 249s
+ep 0 t 360 white_po st1 nm1 c26 white_po st3 nm5 c0 0.71s/fr 257s
+done 0.70s/frame 263s

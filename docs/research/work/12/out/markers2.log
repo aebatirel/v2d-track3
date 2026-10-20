@@ -1,0 +1,25 @@
+blue_cup: 4 markers; (theta deg, height mm, radius mm): (-139,-72,44) (-28,51,52) (47,-65,45) (110,70,53)
+   full-set: best non-identity spin 344 deg mean marker mismatch 13.5 mm
+   view el 30: visible markers min 1 mean 1.5; azimuths with 0 visible 0.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.08
+   view el 55: visible markers min 0 mean 1.2; azimuths with 0 visible 0.03; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.03 / 0.24
+   view el 80: visible markers min 0 mean 0.0; azimuths with 0 visible 1.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 1.00 / 1.00
+beige_cup: 3 markers; (theta deg, height mm, radius mm): (-69,71,54) (35,69,53) (171,63,52)
+   full-set: best non-identity spin 119 deg mean marker mismatch 13.0 mm
+   view el 30: visible markers min 0 mean 1.1; azimuths with 0 visible 0.01; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.44 / 0.97
+   view el 55: visible markers min 0 mean 0.9; azimuths with 0 visible 0.12; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.71 / 1.00
+   view el 80: visible markers min 0 mean 0.0; azimuths with 0 visible 1.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 1.00 / 1.00
+white_pot_lid: 4 markers; (theta deg, height mm, radius mm): (-92,2,57) (-32,-0,67) (72,2,46) (117,-1,64)
+   full-set: best non-identity spin 344 deg mean marker mismatch 16.3 mm
+   view el 30: visible markers min 4 mean 4.0; azimuths with 0 visible 0.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.00
+   view el 55: visible markers min 4 mean 4.0; azimuths with 0 visible 0.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.00
+   view el 80: visible markers min 4 mean 4.0; azimuths with 0 visible 0.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.00
+white_pot: 7 markers; (theta deg, height mm, radius mm): (-117,24,95) (-70,1,96) (-2,60,112) (74,-8,88) (117,28,88) (143,-33,78) (161,-11,95)
+   full-set: best non-identity spin 344 deg mean marker mismatch 25.9 mm
+   view el 30: visible markers min 1 mean 2.3; azimuths with 0 visible 0.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.00
+   view el 55: visible markers min 1 mean 1.7; azimuths with 0 visible 0.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.01
+   view el 80: visible markers min 0 mean 0.0; azimuths with 0 visible 1.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 1.00 / 1.00
+water_pitcher: 4 markers; (theta deg, height mm, radius mm): (-156,133,90) (-73,23,65) (67,101,69) (110,37,65)
+   full-set: best non-identity spin 16 deg mean marker mismatch 20.1 mm
+   view el 30: visible markers min 0 mean 1.4; azimuths with 0 visible 0.03; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.00 / 0.00
+   view el 55: visible markers min 0 mean 1.1; azimuths with 0 visible 0.12; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 0.12 / 0.12
+   view el 80: visible markers min 0 mean 0.0; azimuths with 0 visible 1.00; ambiguous (another spin >15 deg explains the visible set within 6 / 12 mm): 1.00 / 1.00

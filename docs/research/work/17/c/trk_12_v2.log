@@ -1,0 +1,11 @@
+ep 12 t 0 blue_cup st1 nm1 c7 plastic_ st2 nm2 c0 1.29s/fr 1s
+ep 12 t 20 blue_cup st1 nm1 c27 plastic_ st2 nm2 c0 1.29s/fr 27s
+ep 12 t 40 blue_cup st1 nm1 c47 plastic_ st2 nm2 c0 2.55s/fr 105s
+ep 12 t 60 blue_cup st1 nm1 c67 plastic_ st2 nm2 c0 2.54s/fr 155s
+ep 12 t 80 blue_cup st1 nm1 c87 plastic_ st2 nm2 c0 2.43s/fr 197s
+ep 12 t 100 blue_cup st1 nm1 c107 plastic_ st1 nm1 c13 2.84s/fr 286s
+ep 12 t 120 blue_cup st1 nm1 c127 plastic_ st1 nm1 c33 3.32s/fr 402s
+ep 12 t 140 blue_cup st1 nm1 c147 plastic_ st1 nm1 c53 3.58s/fr 504s
+ep 12 t 160 blue_cup st1 nm1 c167 plastic_ st2 nm2 c0 3.56s/fr 573s
+ep 12 t 180 blue_cup st0 nm0 c187 plastic_ st2 nm2 c0 3.36s/fr 608s
+done 3.36s/frame 608s

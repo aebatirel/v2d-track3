@@ -1,0 +1,7 @@
+   LOBO block   0- 29: held-out n 111, max gap to kept obs  30 frames; px med 2.29 p90 4.15; mm med 0.87 p90 1.83
+   LOBO block  30- 59: held-out n  44, max gap to kept obs  15 frames; px med 2.70 p90 4.83; mm med 1.28 p90 2.14
+   LOBO block  60- 89: held-out n  52, max gap to kept obs  22 frames; px med 1.99 p90 4.58; mm med 0.92 p90 2.07
+   LOBO block  90-119: held-out n  20, max gap to kept obs  18 frames; px med 2.72 p90 4.49; mm med 1.22 p90 2.03
+   LOBO block 120-149: held-out n  15, max gap to kept obs  16 frames; px med 2.11 p90 4.14; mm med 0.95 p90 1.92
+   LOBO block 150-179: held-out n  60, max gap to kept obs  15 frames; px med 2.46 p90 4.83; mm med 1.13 p90 2.16
+LOBO all ep 12 (block 30): n 302 px med 2.36 p90 4.47; mm med 1.01 p90 2.01

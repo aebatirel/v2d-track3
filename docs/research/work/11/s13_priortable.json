@@ -1,0 +1,590 @@
+[
+ {
+  "ev": 1,
+  "task": "Pot_with_lid",
+  "twins": [
+   0,
+   2
+  ],
+  "takes": [
+   "Ep_0",
+   "Ep_2"
+  ],
+  "slot0": "white_pot",
+  "sym0": 1,
+  "slot1": "white_pot_lid",
+  "sym1": 0,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    4.9,
+    4.6
+   ],
+   "mean": 4.7,
+   "rms": 0.1,
+   "pairdiff": 0.3
+  },
+  "rel": {
+   "vals": [
+    131.9,
+    166.1
+   ],
+   "mean": 149.0,
+   "rms": 17.1,
+   "pairdiff": 34.2
+  },
+  "brg": {
+   "vals": [
+    -176.5,
+    -178.5
+   ],
+   "mean": -177.5,
+   "rms": 1.0,
+   "pairdiff": 2.0
+  },
+  "dist_cm": [
+   1.6,
+   1.5
+  ],
+  "slot1_rel": {
+   "vals": [
+    -131.9,
+    -166.1
+   ],
+   "mean": -149.0,
+   "rms": 17.1
+  },
+  "slot1_brg": {
+   "vals": [
+    -128.4,
+    -164.6
+   ],
+   "mean": -146.5,
+   "rms": 18.1
+  }
+ },
+ {
+  "ev": 3,
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "white_pot",
+  "sym0": 1,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 5,
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "white_pot",
+  "sym0": 1,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 6,
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "white_pot",
+  "sym0": 1,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 8,
+  "task": "unknown (task_index 0..4, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "beige_cup",
+  "sym0": 0,
+  "slot1": "white_pot",
+  "sym1": 1,
+  "order_same": false
+ },
+ {
+  "ev": 10,
+  "task": "Cup_Stack",
+  "twins": [
+   11
+  ],
+  "takes": [
+   "Ep_3"
+  ],
+  "slot0": "blue_cup",
+  "sym0": 0,
+  "slot1": "beige_cup",
+  "sym1": 0,
+  "order_same": false,
+  "abs": {
+   "vals": [
+    41.1
+   ],
+   "mean": 41.1,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "rel": {
+   "vals": [
+    -138.0
+   ],
+   "mean": -138.0,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "brg": {
+   "vals": [
+    -49.0
+   ],
+   "mean": -49.0,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "dist_cm": [
+   17.4
+  ],
+  "slot1_rel": {
+   "vals": [
+    138.0
+   ],
+   "mean": 138.0,
+   "rms": 0.0
+  },
+  "slot1_brg": {
+   "vals": [
+    -90.9
+   ],
+   "mean": -90.9,
+   "rms": 0.0
+  }
+ },
+ {
+  "ev": 14,
+  "task": "Cup_In_Dish_Rack",
+  "twins": [
+   12,
+   13
+  ],
+  "takes": [
+   "Ep_0",
+   "Ep_1"
+  ],
+  "slot0": "blue_cup",
+  "sym0": 0,
+  "slot1": "plastic_dish_rack",
+  "sym1": 2,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    65.5,
+    62.8
+   ],
+   "mean": 64.1,
+   "rms": 1.3,
+   "pairdiff": 2.7
+  },
+  "rel": {
+   "vals": [
+    -24.4,
+    -26.3
+   ],
+   "mean": -25.4,
+   "rms": 0.9,
+   "pairdiff": 1.9
+  },
+  "brg": {
+   "vals": [
+    -137.0,
+    -93.3
+   ],
+   "mean": -115.2,
+   "rms": 21.9,
+   "pairdiff": 43.7
+  },
+  "dist_cm": [
+   18.0,
+   16.7
+  ],
+  "slot1_rel": {
+   "vals": [
+    24.4,
+    26.3
+   ],
+   "mean": 25.4,
+   "rms": 0.9
+  },
+  "slot1_brg": {
+   "vals": [
+    67.4,
+    113.0
+   ],
+   "mean": 90.2,
+   "rms": 22.8
+  }
+ },
+ {
+  "ev": 15,
+  "task": "unknown (task_index 5..7, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "plastic_dish_rack",
+  "sym0": 2,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 16,
+  "task": "unknown (task_index 5..7, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "plastic_dish_rack",
+  "sym0": 2,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 19,
+  "task": "Dust_Brush",
+  "twins": [
+   18
+  ],
+  "takes": [
+   "Ep_2"
+  ],
+  "slot0": "mini_sweeper",
+  "sym0": 2,
+  "slot1": "mini_dust_pan",
+  "sym1": 1,
+  "order_same": false,
+  "abs": {
+   "vals": [
+    16.3
+   ],
+   "mean": 16.3,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "rel": {
+   "vals": [
+    39.2
+   ],
+   "mean": 39.2,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "brg": {
+   "vals": [
+    105.2
+   ],
+   "mean": 105.2,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "dist_cm": [
+   22.1
+  ]
+ },
+ {
+  "ev": 20,
+  "task": "Water_Can_Blue_Cup",
+  "twins": [
+   21,
+   22
+  ],
+  "takes": [
+   "Ep_3",
+   "Ep_6"
+  ],
+  "slot0": "blue_cup",
+  "sym0": 0,
+  "slot1": "water_pitcher",
+  "sym1": 1,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    -64.8,
+    -72.8
+   ],
+   "mean": -68.8,
+   "rms": 4.0,
+   "pairdiff": 8.0
+  },
+  "rel": {
+   "vals": [
+    -102.1,
+    -111.6
+   ],
+   "mean": -106.9,
+   "rms": 4.7,
+   "pairdiff": 9.5
+  },
+  "brg": {
+   "vals": [
+    -161.0,
+    -167.0
+   ],
+   "mean": -164.0,
+   "rms": 3.0,
+   "pairdiff": 6.0
+  },
+  "dist_cm": [
+   32.5,
+   28.5
+  ]
+ },
+ {
+  "ev": 25,
+  "task": "Planter_Stand",
+  "twins": [
+   23,
+   24
+  ],
+  "takes": [
+   "Ep_1",
+   "Ep_2"
+  ],
+  "slot0": "wooden_piece_1",
+  "sym0": 2,
+  "slot1": "wooden_piece_2",
+  "sym1": 2,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    -175.7,
+    -178.8
+   ],
+   "mean": -177.2,
+   "rms": 1.5,
+   "pairdiff": 3.1
+  },
+  "rel": {
+   "vals": [
+    3.6,
+    3.2
+   ],
+   "mean": 3.4,
+   "rms": 0.2,
+   "pairdiff": 0.4
+  },
+  "brg": {
+   "vals": [
+    91.8,
+    90.5
+   ],
+   "mean": 91.2,
+   "rms": 0.6,
+   "pairdiff": 1.3
+  },
+  "dist_cm": [
+   27.9,
+   30.6
+  ],
+  "slot1_rel": {
+   "vals": [
+    -3.6,
+    -3.2
+   ],
+   "mean": -3.4,
+   "rms": 0.2
+  },
+  "slot1_brg": {
+   "vals": [
+    -91.8,
+    -92.7
+   ],
+   "mean": -92.2,
+   "rms": 0.5
+  }
+ },
+ {
+  "ev": 28,
+  "task": "Pan_In_Dishrack",
+  "twins": [
+   26,
+   27
+  ],
+  "takes": [
+   "Ep_1",
+   "Ep_6"
+  ],
+  "slot0": "plastic_dish_rack",
+  "sym0": 2,
+  "slot1": "white_pot",
+  "sym1": 1,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    93.0,
+    91.6
+   ],
+   "mean": 92.3,
+   "rms": 0.7,
+   "pairdiff": 1.4
+  },
+  "rel": {
+   "vals": [
+    49.3,
+    0.2
+   ],
+   "mean": 24.7,
+   "rms": 24.5,
+   "pairdiff": 49.1
+  },
+  "brg": {
+   "vals": [
+    4.9,
+    59.0
+   ],
+   "mean": 31.9,
+   "rms": 27.1,
+   "pairdiff": 54.1
+  },
+  "dist_cm": [
+   12.2,
+   21.8
+  ]
+ },
+ {
+  "ev": 30,
+  "task": "Brush_Dishrack",
+  "twins": [
+   31
+  ],
+  "takes": [
+   "Ep_3"
+  ],
+  "slot0": "mini_sweeper",
+  "sym0": 2,
+  "slot1": "plastic_dish_rack",
+  "sym1": 2,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    -3.5
+   ],
+   "mean": -3.5,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "rel": {
+   "vals": [
+    -94.7
+   ],
+   "mean": -94.7,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "brg": {
+   "vals": [
+    84.9
+   ],
+   "mean": 84.9,
+   "rms": 0.0,
+   "pairdiff": null
+  },
+  "dist_cm": [
+   10.7
+  ],
+  "slot1_rel": {
+   "vals": [
+    94.7
+   ],
+   "mean": 94.7,
+   "rms": 0.0
+  },
+  "slot1_brg": {
+   "vals": [
+    -0.4
+   ],
+   "mean": -0.4,
+   "rms": 0.0
+  }
+ },
+ {
+  "ev": 32,
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "blue_cup",
+  "sym0": 0,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 33,
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "blue_cup",
+  "sym0": 0,
+  "slot1": "wooden_spoon",
+  "sym1": -1,
+  "order_same": false
+ },
+ {
+  "ev": 35,
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "wooden_spoon",
+  "sym0": -1,
+  "slot1": null,
+  "sym1": null,
+  "order_same": false
+ },
+ {
+  "ev": 36,
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "wooden_spoon",
+  "sym0": -1,
+  "slot1": null,
+  "sym1": null,
+  "order_same": false
+ },
+ {
+  "ev": 37,
+  "task": "unknown (task_index 11..14, not in public)",
+  "twins": [],
+  "takes": [],
+  "slot0": "wooden_spoon",
+  "sym0": -1,
+  "slot1": null,
+  "sym1": null,
+  "order_same": false
+ },
+ {
+  "ev": 38,
+  "task": "Dustpan_Solo",
+  "twins": [
+   39,
+   40
+  ],
+  "takes": [
+   "Ep_1",
+   "Ep_2"
+  ],
+  "slot0": "mini_dust_pan",
+  "sym0": 1,
+  "slot1": null,
+  "sym1": null,
+  "order_same": true,
+  "abs": {
+   "vals": [
+    -16.5,
+    -2.8
+   ],
+   "mean": -9.7,
+   "rms": 6.9
+  }
+ }
+]

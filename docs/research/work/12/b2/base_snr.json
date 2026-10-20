@@ -1,0 +1,26 @@
+{
+ "a": {
+  "px_per_mm": 2.17,
+  "base_width_px": 152,
+  "base_rms": 4.41,
+  "wall_rms": 1.98,
+  "ratio": 2.23,
+  "mean_grey": 152.3
+ },
+ "b": {
+  "px_per_mm": 1.06,
+  "base_width_px": 74,
+  "base_rms": 2.85,
+  "wall_rms": 1.55,
+  "ratio": 1.83,
+  "mean_grey": 140.4
+ },
+ "c": {
+  "px_per_mm": 1.03,
+  "base_width_px": 72,
+  "base_rms": 4.01,
+  "wall_rms": 1.28,
+  "ratio": 3.13,
+  "mean_grey": 157.9
+ }
+}

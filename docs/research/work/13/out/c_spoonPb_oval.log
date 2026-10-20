@@ -1,0 +1,5 @@
+oval n=  1000  P(B) mean over 12 shapes 0.755 (min 0.69)  P(z ok) 1.000
+oval n=  3000  P(B) mean over 12 shapes 0.880 (min 0.76)  P(z ok) 1.000
+oval n= 10000  P(B) mean over 12 shapes 0.982 (min 0.94)  P(z ok) 1.000
+oval n= 30000  P(B) mean over 12 shapes 0.999 (min 0.99)  P(z ok) 1.000
+oval n=100000  P(B) mean over 12 shapes 1.000 (min 1.00)  P(z ok) 1.000

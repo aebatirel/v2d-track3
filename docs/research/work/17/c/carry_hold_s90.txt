@@ -1,0 +1,24 @@
+c/trk_13_s90.npz SMIN 2 K 0:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.618 (f0 ADD 3 r 3) | carry 0.815 (f0 ADD 3 r 3) | fix frames 99
+  plastic_dish_rack: prior 0.937 (f0 ADD 22 r 7) | fused 0.954 (f0 ADD 22 r 7) | carry 0.975 (f0 ADD 11 r 3) | fix frames 69
+  SCORER-STYLE: prior 0.178 0.000 mean 0.089 | fused 0.607 0.930 mean 0.768 | carry 0.789 0.947 mean 0.868
+c/trk_22_s90.npz SMIN 2 K 0:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.735 (f0 ADD 13 r 1) | carry 0.946 (f0 ADD 13 r 1) | fix frames 108
+  water_pitcher: prior 0.949 (f0 ADD 15 r 7) | fused 0.948 (f0 ADD 16 r 8) | carry 0.949 (f0 ADD 16 r 8) | fix frames 154
+  SCORER-STYLE: prior 0.661 0.000 mean 0.331 | fused 0.682 0.892 mean 0.787 | carry 0.873 0.895 mean 0.884
+c/trk_13_s90.npz SMIN 2 K 2:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.618 (f0 ADD 3 r 3) | carry 0.828 (f0 ADD 3 r 0) | fix frames 99
+  plastic_dish_rack: prior 0.937 (f0 ADD 22 r 7) | fused 0.954 (f0 ADD 22 r 7) | carry 0.972 (f0 ADD 12 r 3) | fix frames 69
+  SCORER-STYLE: prior 0.178 0.000 mean 0.089 | fused 0.607 0.930 mean 0.768 | carry 0.826 0.972 mean 0.899
+c/trk_22_s90.npz SMIN 2 K 2:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.735 (f0 ADD 13 r 1) | carry 0.977 (f0 ADD 13 r 1) | fix frames 108
+  water_pitcher: prior 0.949 (f0 ADD 15 r 7) | fused 0.948 (f0 ADD 16 r 8) | carry 0.960 (f0 ADD 16 r 8) | fix frames 154
+  SCORER-STYLE: prior 0.661 0.000 mean 0.331 | fused 0.682 0.892 mean 0.787 | carry 0.919 0.900 mean 0.909
+c/trk_13_s90.npz SMIN 3 K 0:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.618 (f0 ADD 3 r 3) | carry 0.898 (f0 ADD 3 r 0) | fix frames 10
+  plastic_dish_rack: prior 0.937 (f0 ADD 22 r 7) | fused 0.954 (f0 ADD 22 r 7) | carry 0.966 (f0 ADD 11 r 3) | fix frames 19
+  SCORER-STYLE: prior 0.178 0.000 mean 0.089 | fused 0.607 0.930 mean 0.768 | carry 0.900 0.969 mean 0.935
+c/trk_22_s90.npz SMIN 3 K 0:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.735 (f0 ADD 13 r 1) | carry 0.962 (f0 ADD 13 r 1) | fix frames 66
+  water_pitcher: prior 0.949 (f0 ADD 15 r 7) | fused 0.948 (f0 ADD 16 r 8) | carry 0.949 (f0 ADD 15 r 7) | fix frames 0
+  SCORER-STYLE: prior 0.661 0.000 mean 0.331 | fused 0.682 0.892 mean 0.787 | carry 0.873 0.912 mean 0.893

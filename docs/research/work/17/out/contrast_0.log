@@ -1,0 +1,14 @@
+ep 0 t 0 n 23 0s
+ep 0 t 30 n 369 1s
+ep 0 t 60 n 711 3s
+ep 0 t 90 n 1061 4s
+ep 0 t 120 n 1416 5s
+ep 0 t 150 n 1776 6s
+ep 0 t 180 n 2112 8s
+ep 0 t 210 n 2471 9s
+ep 0 t 240 n 2831 10s
+ep 0 t 270 n 3169 12s
+ep 0 t 300 n 3519 13s
+ep 0 t 330 n 3879 15s
+ep 0 t 360 n 4239 16s
+done 16.352155923843384

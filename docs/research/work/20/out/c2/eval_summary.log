@@ -1,0 +1,21 @@
+e1   white_pot    tmpl s0.75 dcol2       z0.55 | C a  28 M a   45 -> a   38 end row    34 | view contact [24, 32] motion [48, 127] | 
+e3   white_pot    tmpl s0.51 dcol2       z0.56 | C a  15 M a   14 -> a   14 end row    10 | view contact [50, 56] motion None | C-early
+e5   white_pot    tmpl s0.50 dcol2       z0.58 | C a  13 M a   25 -> a   23 end row    19 | view contact [16, 20] motion [24, 40] | 
+e6   white_pot    tmpl s0.46 dcol2       z0.60 | C a  12 M a   22 -> a   22 end row    18 | view contact [8, 16] motion [24, 32] | 
+e8   beige_cup    tmpl s0.59 dcol1       z0.51 | C a  33 M a   45 -> a   43 end row    39 | view contact [40, 44] motion [52, 56] | 
+e10  blue_cup     tmpl s0.62 dcol1       z0.47 | C a  17 M a   39 -> a   27 end row    23 | view contact [16, 24] motion None | 
+e14  blue_cup     tmpl s0.61 dcol4       z0.43 | C a  14 M a   25 -> a   24 end row    20 | view contact [16, 16] motion [24, 32] | 
+e15  plastic_dish tmpl s0.17 dcol1       z0.59 | C a  34 M a None -> a   44 end row    40 | view contact [60, 105] motion None | C-early
+e16  plastic_dish tmpl s0.18 dcol0       z0.61 | C a  14 M a   75 -> a   24 end row    20 | view contact [75, 120] motion None | C-early
+e19  mini_sweeper tmpl s0.54 dcol4       z0.52 | C a  16 M a   20 -> a   20 end row    16 | view contact [12, 16] motion [16, 24] | 
+e20  blue_cup     tmpl s0.36 dcol19      z0.55 | C a  29 M a    3 -> a    3 end row    -1 | view contact [0, 0] motion [0, 0] | EMPTY
+e25  wooden_piece tmpl s0.34 dcol6       z0.67 | C a  71 M a   99 -> a   81 end row    77 | view contact [32, 32] motion [48, 56] | LATE?
+e28  plastic_dish tmpl s0.19 dcol1       z0.61 | C a  11 M a None -> a   21 end row    17 | view contact None motion None | 
+e30  mini_sweeper tmpl s0.50 dcol5       z0.51 | C a  29 M a   38 -> a   38 end row    34 | view contact [32, 32] motion [40, 56] | 
+e32  blue_cup     tmpl s0.64 dcol2       z0.50 | C a   6 M a    8 -> a    8 end row     4 | view contact [0, 0] motion [10, 16] | 
+e33  blue_cup     tmpl s0.63 dcol2       z0.50 | C a  12 M a   24 -> a   22 end row    18 | view contact [16, 16] motion [24, 40] | 
+e35  wooden_spoon blob s1.19 h2 l31      z0.57 | C a  11 M a   24 -> a   21 end row    17 | view contact [16, 24] motion [32, 32] | 
+e36  wooden_spoon blob s1.95 h5 l21      z0.44 | C a  19 M a   11 -> a   11 end row     7 | view contact [24, 32] motion [40, 40] | 
+e37  wooden_spoon blob s1.09 h3 l35      z0.56 | C a  11 M a   32 -> a   21 end row    17 | view contact [16, 32] motion [40, 40] | 
+e38  mini_dust_pa tmpl s0.45 dcol1       z0.55 | C a  33 M a   36 -> a   36 end row    32 | view contact [40, 40] motion [40, 56] | 
+n 20; empty 1; window end median 18; flags: e3:C-early, e15:C-early, e16:C-early, e20:EMPTY, e25:LATE?

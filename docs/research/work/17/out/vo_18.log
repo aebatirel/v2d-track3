@@ -1,0 +1,18 @@
+20 {'t': 20, 'nmatch': 593, 'ninl': 222, 'med_px': 0.5338638397537767, 'nstereo': 401, 'kf': 0, 'ok': True} 19s
+40 {'t': 40, 'nmatch': 570, 'ninl': 241, 'med_px': 0.47704906168745576, 'nstereo': 448, 'kf': 0, 'ok': True} 29s
+60 {'t': 60, 'nmatch': 621, 'ninl': 252, 'med_px': 0.3565988679694643, 'nstereo': 446, 'kf': 40, 'ok': True} 36s
+80 {'t': 80, 'nmatch': 591, 'ninl': 238, 'med_px': 0.492225109156713, 'nstereo': 446, 'kf': 40, 'ok': True} 43s
+100 {'t': 100, 'nmatch': 624, 'ninl': 232, 'med_px': 0.5788886605208186, 'nstereo': 416, 'kf': 80, 'ok': True} 49s
+120 {'t': 120, 'nmatch': 592, 'ninl': 225, 'med_px': 0.3737867840811324, 'nstereo': 452, 'kf': 80, 'ok': True} 56s
+140 {'t': 140, 'nmatch': 599, 'ninl': 253, 'med_px': 0.4179553423369848, 'nstereo': 409, 'kf': 80, 'ok': True} 62s
+160 {'t': 160, 'nmatch': 624, 'ninl': 227, 'med_px': 0.5355053256216495, 'nstereo': 381, 'kf': 120, 'ok': True} 69s
+180 {'t': 180, 'nmatch': 678, 'ninl': 230, 'med_px': 0.45621707798349564, 'nstereo': 401, 'kf': 160, 'ok': True} 75s
+200 {'t': 200, 'nmatch': 628, 'ninl': 226, 'med_px': 0.43693861291374625, 'nstereo': 393, 'kf': 160, 'ok': True} 81s
+220 {'t': 220, 'nmatch': 666, 'ninl': 285, 'med_px': 0.4227676844602544, 'nstereo': 396, 'kf': 200, 'ok': True} 88s
+240 {'t': 240, 'nmatch': 658, 'ninl': 286, 'med_px': 0.4461780755448625, 'nstereo': 429, 'kf': 200, 'ok': True} 93s
+260 {'t': 260, 'nmatch': 669, 'ninl': 301, 'med_px': 0.46853077071626925, 'nstereo': 430, 'kf': 240, 'ok': True} 100s
+280 {'t': 280, 'nmatch': 679, 'ninl': 296, 'med_px': 0.44730717402878933, 'nstereo': 427, 'kf': 240, 'ok': True} 107s
+300 {'t': 300, 'nmatch': 618, 'ninl': 297, 'med_px': 0.3946583821332245, 'nstereo': 390, 'kf': 280, 'ok': True} 116s
+320 {'t': 320, 'nmatch': 611, 'ninl': 266, 'med_px': 0.47684457871165803, 'nstereo': 442, 'kf': 280, 'ok': True} 121s
+340 {'t': 340, 'nmatch': 628, 'ninl': 296, 'med_px': 0.40004412469005146, 'nstereo': 410, 'kf': 320, 'ok': True} 127s
+done 130.19575095176697

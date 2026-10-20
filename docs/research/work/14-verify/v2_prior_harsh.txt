@@ -1,0 +1,10 @@
+dig (never+good | fall50_tipped+good / freeze)          real 1 seed     note15: 0.702-0.785 / 0.687-0.897 / 0.236-0.543
+dig (never+good | fall50_tipped+good / freeze)          headroom best3  note15: 0.784-0.866 / 0.769-0.927 / 0.423-0.670
+   all-fail ('never+good', 'freeze50+good'): AUC 0.661 SP 0.777 MP 0.031
+   all-fail ('never+good', 'fall50_tipped+good'): AUC 0.640 SP 0.582 MP 0.000
+early: never+good + fall20_tipped+good                  real 1 seed     note15: 0.642-0.738 / 0.484-0.681 / 0.236-0.528
+early: never+good + fall20_tipped+good                  headroom best3  note15: 0.740-0.832 / 0.613-0.770 / 0.423-0.659
+   all-fail ('never+good', 'fall20_tipped+good'): AUC 0.561 SP 0.321 MP 0.000
+two-object: ALL_never+good + ALL_fall50_tipped+good     real 1 seed     note15: 0.584-0.702 / 0.436-0.651 / 0.236-0.528
+two-object: ALL_never+good + ALL_fall50_tipped+good     headroom best3  note15: 0.693-0.806 / 0.576-0.749 / 0.423-0.659
+   all-fail ('ALL_never+good', 'ALL_fall50_tipped+good'): AUC 0.489 SP 0.259 MP 0.000

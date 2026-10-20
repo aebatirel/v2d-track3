@@ -1,0 +1,12 @@
+frame 0 eval camera reproj 4.07 px
+blue_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/4; auto blobs 3 -> matched 2, false 1
+   base prior: spin err median 0.35 deg, |err|>30: 0/40, values(sample) [-0.5 -0.3 -0.3 -0.5 -0.6 -0.3 -0.6 -0.7]
+   tight prior: spin err median 0.50 deg, |err|>30: 0/40, values(sample) [-0.8 -0.3 -1.  -0.1 -0.8 -0.5 -1.2  1. ]
+   base_wm0 prior: spin err median 0.51 deg, |err|>30: 0/40, values(sample) [-1.  -0.4  0.3 -0.8 -0.4 -0.7 -0.7 -0.5]
+   tight_wm0 prior: spin err median 0.50 deg, |err|>30: 0/40, values(sample) [-1.4 -0.  -0.3 -0.6 -1.1 -0.4 -0.7 -1.2]
+beige_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/3; auto blobs 3 -> matched 2, false 1
+   add3: beige detections now 4
+   base prior: spin err median 0.85 deg, |err|>30: 0/40, values(sample) [0.7 0.9 1.  0.6 1.1 0.8 0.7 1. ]
+   tight prior: spin err median 0.91 deg, |err|>30: 0/40, values(sample) [0.9 1.1 1.  0.8 0.9 0.9 1.  1.1]
+   base_wm0 prior: spin err median 0.86 deg, |err|>30: 0/40, values(sample) [0.9 0.9 0.9 0.7 1.  0.9 6.4 0.8]
+   tight_wm0 prior: spin err median 0.99 deg, |err|>30: 1/40, values(sample) [1.1 0.8 1.1 1.1 0.9 0.8 0.9 0.8]

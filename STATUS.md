@@ -1,4 +1,6 @@
-# Status (2026-10-19)
+# Status (2026-10-20)
+
+Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
 ## Goal and constraints
 - **Goal:** top of the NVIDIA V2D Challenge Track 3 leaderboard (ranked by AUC), plus the Industry Innovation award.

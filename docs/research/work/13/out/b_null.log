@@ -1,0 +1,7 @@
+observed #fitting: {'F1': 0, 'F2': 15, 'F2b': 1, 'F4': 0, 'F3': 154}
+  F1: P(>=1)=0.054  P(count>=obs=0)=0.054
+  F2: P(>=1)=0.208  P(count>=obs=15)=0.035
+  F2b: P(>=1)=0.013  P(count>=obs=1)=0.013
+  F4: P(>=1)=0.106  P(count>=obs=0)=0.106
+  F3: P(>=1)=0.948  P(count>=obs=154)=0.092
+  joint F1|F2|F2b|F4: P(>=1 rule fits)=0.296;  with F3: 0.955

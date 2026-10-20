@@ -1,0 +1,11 @@
+T_ac factory t [-3.81  0.03  0.08] self t [-3.68 -0.27  0.82] cm; rot diff deg 0.281
+00:25:48 p26 decoded 158 frames; tracks {'rig': 158, 'rigS': 158, 'a': 158, 'vo': 158, 'map': 6}
+  offset map: [ 0.3271 -0.0092  0.0052] (n fit 6)
+  offset rig: [ 0.3322 -0.0105  0.0068] (n fit 16)
+  offset rigS: [ 0.3191 -0.0105 -0.0028] (n fit 16)
+  offset a: [ 0.3201 -0.0115 -0.0023] (n fit 16)
+  p26 map: n=6 shift median 0.19 cm p90 0.38 max 0.51 | chamfer0 median 3.05 px
+  p26 rig: n=158 shift median 0.41 cm p90 0.76 max 2.50 | chamfer0 median 3.28 px
+  p26 rigS: n=158 shift median 0.18 cm p90 0.45 max 2.12 | chamfer0 median 3.12 px
+  p26 a  : n=158 shift median 0.13 cm p90 0.29 max 2.16 | chamfer0 median 3.08 px
+  p26 vo : n=158 shift median 0.51 cm p90 0.87 max 2.61 | chamfer0 median 3.33 px

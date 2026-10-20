@@ -1,0 +1,9 @@
+c/trk_26_v2.npz MODE reg SH -0.5 T 158 runtime 0.39 s/frame
+  plastic_dish_rack: AUC(ADD, this trajectory, no policy) 0.985; status 3/2/1/0 = 0.00 / 0.56 / 0.40 / 0.04
+    rest     n 138 fix>=2 0.57 fix3 0.00 | fix2 n78 t 5.6/13.9 r 3.33/7.07 ADD 6.6/15.9 | all n138 t 4.7/13.7 r 2.97/6.78 ADD 5.8/15.0 |
+    held     n  20 fix>=2 0.55 fix3 0.00 | fix2 n11 t 2.6/2.8 r 3.36/3.87 ADD 3.8/4.5 | all n20 t 2.4/3.0 r 2.32/3.86 ADD 3.4/4.5 |
+  white_pot: AUC(ADD, this trajectory, no policy) 0.325; status 3/2/1/0 = 0.02 / 0.15 / 0.16 / 0.67
+    rest     n  93 fix>=2 0.28 fix3 0.03 | fix3 n3 t 16.3/17.7 r 2.64/9.47 ADD 18.6/20.1 | fix2 n23 t 15.3/18.6 r 2.03/2.48 ADD 15.3/19.0 | all n93 t 210.0/210.4 r 169.73/170.32 ADD 241.4/241.7 |
+    held     n  24 fix>=2 0.00 fix3 0.00 | all n24 t 210.2/210.9 r 169.73/173.28 ADD 241.8/242.1 |
+    carried  n  41 fix>=2 0.00 fix3 0.00 | all n41 t 150.1/197.7 r 164.57/177.58 ADD 201.5/235.3 |
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object plastic_dish_rack:0.980 white_pot:0.312 mean 0.646

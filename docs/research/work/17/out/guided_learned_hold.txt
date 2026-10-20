@@ -1,0 +1,15 @@
+W 15.0 px a-eq, THR 0.05: hit rate (null false-pick rate)
+  cam a large: rest 0.71 (0.00) n326; held 0.53 (0.00) n147; carried 0.40 (0.01) n172
+  cam a small: 
+  cam b large: rest 0.67 (0.00) n299; held 0.45 (0.00) n139; carried 0.43 (0.00) n162
+  cam b small: 
+  cam c large: rest 0.52 (0.00) n292; held 0.37 (0.00) n140; carried 0.41 (0.00) n162
+  cam c small: 
+per frame/object distinct markers hit: >=3 / >=2  [z-visible >=3] (frames with >=1 z-visible marker)
+  blue_cup           carried  abc  n   40: 0.15 / 0.72  [0.82]
+  blue_cup           held     abc  n   47: 0.32 / 0.62  [0.81]
+  blue_cup           rest     abc  n   40: 0.57 / 0.90  [0.75]
+  plastic_dish_rack  rest     abc  n   64: 0.06 / 0.58  [0.36]
+  water_pitcher      carried  abc  n   22: 0.00 / 0.68  [0.64]
+  water_pitcher      held     abc  n    7: 0.00 / 0.71  [0.14]
+  water_pitcher      rest     abc  n   34: 0.00 / 0.82  [0.00]

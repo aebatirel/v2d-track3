@@ -1,0 +1,11 @@
+beige_cup skew_x:flip skew_y:OK hybrid:OK |c|=0.0000mm skew=[-0.0901  0.1214  0.2305] max|d vs b_feats|=2.2e-09
+blue_cup skew_x:OK skew_y:flip hybrid:OK |c|=0.0000mm skew=[ 0.0674 -0.0092  0.1939] max|d vs b_feats|=6.0e-09
+mini_dust_pan skew_x:OK skew_y:flip hybrid:OK |c|=0.0000mm skew=[ 0.1357 -0.0007  0.4744] max|d vs b_feats|=2.8e-09
+mini_sweeper skew_x:OK skew_y:OK hybrid:OK |c|=0.0000mm skew=[0.2721 0.0551 0.3663] max|d vs b_feats|=9.6e-10
+plastic_dish_rack skew_x:OK skew_y:OK hybrid:OK |c|=0.0000mm skew=[1.0718 0.032  0.3188] max|d vs b_feats|=6.6e-09
+water_pitcher skew_x:flip skew_y:OK hybrid:OK |c|=0.0000mm skew=[-0.0137  0.5766  0.904 ] max|d vs b_feats|=1.8e-09
+white_pot skew_x:OK skew_y:flip hybrid:OK |c|=0.0000mm skew=[ 0.3089 -0.0086  0.9396] max|d vs b_feats|=2.9e-09
+white_pot_lid skew_x:OK skew_y:OK hybrid:OK |c|=0.0000mm skew=[2.8322 0.0081 0.0354] max|d vs b_feats|=3.4e-09
+wooden_piece_1 skew_x:OK skew_y:OK hybrid:OK |c|=0.0000mm skew=[0.9797 0.0184 0.0147] max|d vs b_feats|=4.5e-11
+wooden_piece_2 skew_x:flip skew_y:OK hybrid:flip |c|=0.0000mm skew=[-5.356e-01  3.900e-03  3.000e-04] max|d vs b_feats|=2.5e-10
+totals (published roll reproduced): {'skew_x': 7, 'skew_y': 7, 'hybrid': 9}

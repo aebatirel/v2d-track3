@@ -1,0 +1,53 @@
+episodes [22]
+
+RECALL of z-visible markers (rows: thr, cam, seg, size): n, recall
+ thr 0.1: a-rest-l 0.72 (n140); a-held-l 0.55 (n87); a-carr-l 0.28 (n105); b-rest-l 0.68 (n140); b-held-l 0.52 (n86); b-carr-l 0.41 (n94); c-rest-l 0.46 (n140); c-held-l 0.33 (n82); c-carr-l 0.38 (n97)
+ thr 0.3: a-rest-l 0.70 (n140); a-held-l 0.52 (n87); a-carr-l 0.26 (n105); b-rest-l 0.59 (n140); b-held-l 0.50 (n86); b-carr-l 0.37 (n94); c-rest-l 0.44 (n140); c-held-l 0.33 (n82); c-carr-l 0.36 (n97)
+ thr 0.5: a-rest-l 0.67 (n140); a-held-l 0.52 (n87); a-carr-l 0.25 (n105); b-rest-l 0.54 (n140); b-held-l 0.48 (n86); b-carr-l 0.37 (n94); c-rest-l 0.41 (n140); c-held-l 0.32 (n82); c-carr-l 0.32 (n97)
+ thr 0.7: a-rest-l 0.67 (n140); a-held-l 0.51 (n87); a-carr-l 0.25 (n105); b-rest-l 0.49 (n140); b-held-l 0.41 (n86); b-carr-l 0.34 (n94); c-rest-l 0.39 (n140); c-held-l 0.28 (n82); c-carr-l 0.27 (n97)
+ thr 0.9: a-rest-l 0.66 (n140); a-held-l 0.47 (n87); a-carr-l 0.24 (n105); b-rest-l 0.39 (n140); b-held-l 0.31 (n86); b-carr-l 0.29 (n94); c-rest-l 0.35 (n140); c-held-l 0.20 (n82); c-carr-l 0.24 (n97)
+
+PRECISION (ignoring detections near hidden/unmatched projected markers) and false detections per image
+ thr 0.1: a-full P 0.54 (n92) FP/img 2.6; a-roi P 0.67 (n267) FP/img 1.4; b-full P 0.43 (n99) FP/img 3.5; b-roi P 0.78 (n232) FP/img 0.8; c-full P 0.33 (n96) FP/img 4.0; c-roi P 0.63 (n205) FP/img 1.2
+ thr 0.3: a-full P 0.64 (n72) FP/img 1.6; a-roi P 0.73 (n232) FP/img 1.0; b-full P 0.67 (n58) FP/img 1.2; b-roi P 0.88 (n182) FP/img 0.3; c-full P 0.62 (n50) FP/img 1.2; c-roi P 0.82 (n150) FP/img 0.4
+ thr 0.5: a-full P 0.69 (n64) FP/img 1.2; a-roi P 0.76 (n218) FP/img 0.8; b-full P 0.79 (n48) FP/img 0.6; b-roi P 0.92 (n166) FP/img 0.2; c-full P 0.76 (n34) FP/img 0.5; c-roi P 0.88 (n129) FP/img 0.2
+ thr 0.7: a-full P 0.76 (n58) FP/img 0.9; a-roi P 0.80 (n204) FP/img 0.6; b-full P 0.87 (n38) FP/img 0.3; b-roi P 0.93 (n145) FP/img 0.2; c-full P 0.89 (n27) FP/img 0.2; c-roi P 0.93 (n112) FP/img 0.1
+ thr 0.9: a-full P 0.90 (n48) FP/img 0.3; a-roi P 0.88 (n179) FP/img 0.3; b-full P 0.92 (n25) FP/img 0.1; b-roi P 0.95 (n114) FP/img 0.1; c-full P 1.00 (n17) FP/img 0.0; c-roi P 0.99 (n89) FP/img 0.0
+
+PER-FRAME distinct markers per object at thr 0.5: fraction with >=3 / 2 / 1 / 0 DETECTED (z-visible >=3 in brackets)
+  blue_cup           carried  a    n   15: det 0.07 / 0.20 / 0.20 / 0.53  [zvis>=3 1.00]
+  blue_cup           carried  abc  n   15: det 0.20 / 0.47 / 0.27 / 0.07  [zvis>=3 1.00]
+  blue_cup           carried  b    n   15: det 0.13 / 0.13 / 0.47 / 0.27  [zvis>=3 1.00]
+  blue_cup           carried  bc   n   15: det 0.13 / 0.27 / 0.53 / 0.07  [zvis>=3 1.00]
+  blue_cup           carried  c    n   15: det 0.00 / 0.13 / 0.53 / 0.33  [zvis>=3 0.87]
+  blue_cup           held     a    n   24: det 0.38 / 0.21 / 0.08 / 0.33  [zvis>=3 1.00]
+  blue_cup           held     abc  n   24: det 0.46 / 0.33 / 0.17 / 0.04  [zvis>=3 1.00]
+  blue_cup           held     b    n   24: det 0.08 / 0.46 / 0.29 / 0.17  [zvis>=3 1.00]
+  blue_cup           held     bc   n   24: det 0.25 / 0.42 / 0.21 / 0.12  [zvis>=3 1.00]
+  blue_cup           held     c    n   24: det 0.00 / 0.29 / 0.38 / 0.33  [zvis>=3 0.79]
+  blue_cup           rest     a    n   24: det 0.75 / 0.12 / 0.12 / 0.00  [zvis>=3 1.00]
+  blue_cup           rest     abc  n   24: det 0.88 / 0.04 / 0.08 / 0.00  [zvis>=3 1.00]
+  blue_cup           rest     b    n   24: det 0.17 / 0.38 / 0.38 / 0.08  [zvis>=3 1.00]
+  blue_cup           rest     bc   n   24: det 0.29 / 0.33 / 0.29 / 0.08  [zvis>=3 1.00]
+  blue_cup           rest     c    n   24: det 0.00 / 0.17 / 0.50 / 0.33  [zvis>=3 1.00]
+  water_pitcher      carried  a    n   22: det 0.00 / 0.23 / 0.18 / 0.59  [zvis>=3 0.59]
+  water_pitcher      carried  abc  n   22: det 0.00 / 0.50 / 0.41 / 0.09  [zvis>=3 0.64]
+  water_pitcher      carried  b    n   22: det 0.00 / 0.18 / 0.45 / 0.36  [zvis>=3 0.23]
+  water_pitcher      carried  bc   n   22: det 0.00 / 0.41 / 0.45 / 0.14  [zvis>=3 0.50]
+  water_pitcher      carried  c    n   22: det 0.00 / 0.23 / 0.41 / 0.36  [zvis>=3 0.45]
+  water_pitcher      held     a    n    7: det 0.00 / 0.14 / 0.57 / 0.29  [zvis>=3 0.14]
+  water_pitcher      held     abc  n    7: det 0.00 / 0.14 / 0.71 / 0.14  [zvis>=3 0.14]
+  water_pitcher      held     b    n    7: det 0.00 / 0.14 / 0.57 / 0.29  [zvis>=3 0.00]
+  water_pitcher      held     bc   n    7: det 0.00 / 0.14 / 0.57 / 0.29  [zvis>=3 0.14]
+  water_pitcher      held     c    n    7: det 0.00 / 0.00 / 0.43 / 0.57  [zvis>=3 0.14]
+  water_pitcher      rest     a    n   34: det 0.00 / 0.12 / 0.68 / 0.21  [zvis>=3 0.00]
+  water_pitcher      rest     abc  n   34: det 0.00 / 0.32 / 0.68 / 0.00  [zvis>=3 0.00]
+  water_pitcher      rest     b    n   34: det 0.00 / 0.12 / 0.85 / 0.03  [zvis>=3 0.00]
+  water_pitcher      rest     bc   n   34: det 0.00 / 0.29 / 0.68 / 0.03  [zvis>=3 0.00]
+  water_pitcher      rest     c    n   34: det 0.00 / 0.15 / 0.79 / 0.06  [zvis>=3 0.00]
+
+GT-video time offset scan (thr 0.5; recall of moving-object markers vs GT shift in frames, b/c clock; cam a also -delta)
+  a  carried  n  105: -2.00:0.10 -1.75:0.10 -1.50:0.16 -1.25:0.17 -1.00:0.20 -0.75:0.21 -0.50:0.25 -0.25:0.25 +0.00:0.29 +0.25:0.30 +0.50:0.26 +0.75:0.24 +1.00:0.21
+  a  held     n   87: -2.00:0.39 -1.75:0.43 -1.50:0.45 -1.25:0.46 -1.00:0.47 -0.75:0.51 -0.50:0.52 -0.25:0.53 +0.00:0.52 +0.25:0.53 +0.50:0.55 +0.75:0.56 +1.00:0.55
+  bc carried  n  191: -2.00:0.14 -1.75:0.17 -1.50:0.16 -1.25:0.19 -1.00:0.24 -0.75:0.28 -0.50:0.35 -0.25:0.32 +0.00:0.26 +0.25:0.19 +0.50:0.17 +0.75:0.13 +1.00:0.12
+  bc held     n  168: -2.00:0.30 -1.75:0.32 -1.50:0.36 -1.25:0.36 -1.00:0.38 -0.75:0.39 -0.50:0.40 -0.25:0.40 +0.00:0.39 +0.25:0.39 +0.50:0.39 +0.75:0.39 +1.00:0.38

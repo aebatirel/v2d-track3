@@ -1,0 +1,22 @@
+feature size (mm) -> pixels, cam a fx 1150 | cam b fx 567, at Z (m) = [0.35, 0.45, 0.55, 0.7, 1.0]
+marker sphere (large)             14.6  a:   48.0   37.3   30.5   24.0   16.8  | b:   23.7   18.4   15.1   11.8    8.3
+marker sphere (lid small) [E]      6.5  a:   21.4   16.6   13.6   10.7    7.5  | b:   10.5    8.2    6.7    5.3    3.7
+black mount [E]                   12.0  a:   39.4   30.7   25.1   19.7   13.8  | b:   19.4   15.1   12.4    9.7    6.8
+base inscription mark [E]          6.0  a:   19.7   15.3   12.5    9.9    6.9  | b:    9.7    7.6    6.2    4.9    3.4
+base inscription extent [E]       50.0  a:  164.3  127.8  104.5   82.1   57.5  | b:   81.0   63.0   51.5   40.5   28.4
+lid screw head [E]                 7.0  a:   23.0   17.9   14.6   11.5    8.1  | b:   11.3    8.8    7.2    5.7    4.0
+cup rim dia                       90.0  a:  295.7  230.0  188.2  147.9  103.5  | b:  145.8  113.4   92.8   72.9   51.0
+lid dia                          190.0  a:  624.3  485.6  397.3  312.1  218.5  | b:  307.8  239.4  195.9  153.9  107.7
+pot stick handle length [E]      150.0  a:  492.9  383.3  313.6  246.4  172.5  | b:  243.0  189.0  154.6  121.5   85.0
+
+spin sensitivity: px shift of a feature at radius r per 1 deg of spin (side-on, worst-case max); deg per 1 px
+cup rim marker r=54mm      cam a: Z0.45:  2.41px/deg  0.42deg/px Z0.7:  1.55px/deg  0.65deg/px
+cup rim marker r=54mm      cam b: Z0.45:  1.19px/deg  0.84deg/px Z0.7:  0.76px/deg  1.31deg/px
+cup base marker r=45mm     cam a: Z0.45:  2.01px/deg  0.50deg/px Z0.7:  1.29px/deg  0.78deg/px
+cup base marker r=45mm     cam b: Z0.45:  0.99px/deg  1.01deg/px Z0.7:  0.64px/deg  1.57deg/px
+base inscription r~20mm    cam a: Z0.45:  0.89px/deg  1.12deg/px Z0.7:  0.57px/deg  1.74deg/px
+base inscription r~20mm    cam b: Z0.45:  0.44px/deg  2.27deg/px Z0.7:  0.28px/deg  3.54deg/px
+lid marker r~60mm          cam a: Z0.45:  2.68px/deg  0.37deg/px Z0.7:  1.72px/deg  0.58deg/px
+lid marker r~60mm          cam b: Z0.45:  1.32px/deg  0.76deg/px Z0.7:  0.85px/deg  1.18deg/px
+
+marker lookalike: beige 119 deg spin leaves 13 mm mean / 8.8 mm best-pair mismatch -> Z0.45: a  22.5px b  11.1px Z0.7: a  14.5px b   7.1px Z1.0: a  10.1px b   5.0px

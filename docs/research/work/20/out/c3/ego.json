@@ -1,0 +1,2010 @@
+{
+ "p0": {
+  "C_a": 33,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "33": [
+    {
+     "area": 5357,
+     "touch": 227,
+     "label": "ego",
+     "angle": 31.386597665292022,
+     "reach": false,
+     "far_r": 230.59635597001483,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 663,
+     "touch": 21,
+     "label": "ego",
+     "angle": -9.338350111338746,
+     "reach": false,
+     "far_r": 197.21212931925706,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "34": [
+    {
+     "area": 1403,
+     "touch": 905,
+     "label": "ego",
+     "angle": -15.268086338225961,
+     "reach": false,
+     "far_r": 199.86678834397313,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 4485,
+     "touch": 336,
+     "label": "ego",
+     "angle": 26.714221257757853,
+     "reach": false,
+     "far_r": 218.98615456369504,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p2": {
+  "C_a": 37,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "37": [
+    {
+     "area": 3043,
+     "touch": 311,
+     "label": "ego",
+     "angle": -14.589828470769808,
+     "reach": false,
+     "far_r": 212.10908321990965,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "38": [
+    {
+     "area": 2402,
+     "touch": 846,
+     "label": "ego",
+     "angle": -12.953785331366038,
+     "reach": false,
+     "far_r": 215.43728824026633,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p11": {
+  "C_a": 8,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "8": [
+    {
+     "area": 2603,
+     "touch": 160,
+     "label": "ego",
+     "angle": -8.008977699114661,
+     "reach": false,
+     "far_r": 167.3303920875127,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 8014,
+     "touch": 8,
+     "label": "ego",
+     "angle": -32.52314491938019,
+     "reach": false,
+     "far_r": 250.20599557081326,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "9": [
+    {
+     "area": 10984,
+     "touch": 761,
+     "label": "ego",
+     "angle": -28.070296546040925,
+     "reach": false,
+     "far_r": 236.8750187815917,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 1362,
+     "touch": 19,
+     "label": "ego",
+     "angle": -51.021515498548695,
+     "reach": false,
+     "far_r": 98.83825128519746,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p12": {
+  "C_a": 19,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "19": [
+    {
+     "area": 5474,
+     "touch": 205,
+     "label": "other",
+     "angle": 64.31749444887873,
+     "reach": false,
+     "far_r": 181.2215253460544,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "20": [
+    {
+     "area": 1944,
+     "touch": 386,
+     "label": "other",
+     "angle": 63.90464858302444,
+     "reach": false,
+     "far_r": 188.1533761503298,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 2434,
+     "touch": 193,
+     "label": "other",
+     "angle": 74.11370586451233,
+     "reach": false,
+     "far_r": 126.18856189418977,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p13": {
+  "C_a": 16,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "16": [
+    {
+     "area": 4220,
+     "touch": 288,
+     "label": "ego",
+     "angle": -35.29085238656635,
+     "reach": false,
+     "far_r": 143.4053953679855,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "17": [
+    {
+     "area": 3282,
+     "touch": 791,
+     "label": "ego",
+     "angle": -30.707707120296387,
+     "reach": false,
+     "far_r": 143.87031478316393,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p18": {
+  "C_a": 30,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "30": [
+    {
+     "area": 3770,
+     "touch": 169,
+     "label": "ego",
+     "angle": 44.04564217203219,
+     "reach": false,
+     "far_r": 192.3975227342089,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "31": [
+    {
+     "area": 3157,
+     "touch": 207,
+     "label": "ego",
+     "angle": 42.19881492539448,
+     "reach": false,
+     "far_r": 200.5451461270293,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 605,
+     "touch": 77,
+     "label": "other",
+     "angle": 140.01241389756908,
+     "reach": false,
+     "far_r": 68.72714247724767,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p21": {
+  "C_a": 28,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "28": [
+    {
+     "area": 550,
+     "touch": 764,
+     "label": "ego",
+     "angle": 52.867325832263944,
+     "reach": false,
+     "far_r": 89.84160005916912,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 11379,
+     "touch": 122,
+     "label": "ego",
+     "angle": -30.8154144808531,
+     "reach": false,
+     "far_r": 213.68494388176248,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "29": [
+    {
+     "area": 9288,
+     "touch": 1128,
+     "label": "ego",
+     "angle": -28.343309267500995,
+     "reach": false,
+     "far_r": 220.8319328297656,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 180,
+     "touch": 486,
+     "label": "other",
+     "angle": 144.41639449511075,
+     "reach": false,
+     "far_r": 83.00253826010322,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p22": {
+  "C_a": 8,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "8": [
+    {
+     "area": 13622,
+     "touch": 317,
+     "label": "ego",
+     "angle": -41.669684548068275,
+     "reach": false,
+     "far_r": 247.6554857710182,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "9": [
+    {
+     "area": 11743,
+     "touch": 670,
+     "label": "ego",
+     "angle": -25.80011791157218,
+     "reach": false,
+     "far_r": 218.59768309484087,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p23": {
+  "C_a": 21,
+  "src": "c3",
+  "label": "ego",
+  "intruders": {
+   "21": [
+    {
+     "area": 11712,
+     "touch": 340,
+     "label": "ego",
+     "angle": -18.948413024107147,
+     "reach": false,
+     "far_r": 222.35199513467683,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "22": [
+    {
+     "area": 12057,
+     "touch": 314,
+     "label": "ego",
+     "angle": -13.255327721829035,
+     "reach": false,
+     "far_r": 223.74235045990187,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 61,
+     "touch": 95,
+     "label": "other",
+     "angle": -148.74345685834615,
+     "reach": false,
+     "far_r": 93.82923528135852,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p24": {
+  "C_a": 3,
+  "src": "c3",
+  "label": "other",
+  "intruders": {
+   "3": [
+    {
+     "area": 5907,
+     "touch": 341,
+     "label": "other",
+     "angle": -62.848669017178864,
+     "reach": false,
+     "far_r": 208.4239603648932,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "4": [
+    {
+     "area": 6863,
+     "touch": 400,
+     "label": "other",
+     "angle": -62.24450759017843,
+     "reach": false,
+     "far_r": 206.36501770776204,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p26": {
+  "C_a": 9,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "9": [
+    {
+     "area": 15099,
+     "touch": 430,
+     "label": "ego",
+     "angle": -58.53216390808217,
+     "reach": false,
+     "far_r": 384.73360479199584,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "10": [
+    {
+     "area": 15458,
+     "touch": 345,
+     "label": "ego",
+     "angle": -57.968854085721745,
+     "reach": false,
+     "far_r": 388.4143194497192,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p27": {
+  "C_a": 27,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "27": [
+    {
+     "area": 1195,
+     "touch": 421,
+     "label": "ego",
+     "angle": 21.906582834973374,
+     "reach": false,
+     "far_r": 128.96081965210277,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "28": [
+    {
+     "area": 449,
+     "touch": 648,
+     "label": "ego",
+     "angle": 2.985364617269191,
+     "reach": false,
+     "far_r": 103.33263127563997,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p31": {
+  "C_a": 21,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "21": [
+    {
+     "area": 10163,
+     "touch": 226,
+     "label": "ego",
+     "angle": 57.22248664689642,
+     "reach": true,
+     "far_r": 144.823707312414,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 196
+     }
+    }
+   ],
+   "22": [
+    {
+     "area": 11226,
+     "touch": 251,
+     "label": "ego",
+     "angle": 34.9873520171318,
+     "reach": true,
+     "far_r": 226.09243426977005,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 650
+     }
+    }
+   ]
+  }
+ },
+ "p39": {
+  "C_a": 34,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "34": [
+    {
+     "area": 10052,
+     "touch": 879,
+     "label": "ego",
+     "angle": -41.89595830608212,
+     "reach": true,
+     "far_r": 243.42967417621765,
+     "sides": {
+      "bottom": 37,
+      "top": 0,
+      "left": 497,
+      "right": 0
+     }
+    }
+   ],
+   "35": [
+    {
+     "area": 10199,
+     "touch": 818,
+     "label": "ego",
+     "angle": -42.021415557710704,
+     "reach": true,
+     "far_r": 241.6758268419329,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 415,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p40": {
+  "C_a": 20,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "20": [
+    {
+     "area": 10620,
+     "touch": 178,
+     "label": "ego",
+     "angle": -40.14698389791434,
+     "reach": true,
+     "far_r": 254.08051881259607,
+     "sides": {
+      "bottom": 323,
+      "top": 0,
+      "left": 831,
+      "right": 0
+     }
+    }
+   ],
+   "21": [
+    {
+     "area": 11612,
+     "touch": 288,
+     "label": "ego",
+     "angle": -40.6715786146683,
+     "reach": true,
+     "far_r": 253.41141239553468,
+     "sides": {
+      "bottom": 316,
+      "top": 0,
+      "left": 824,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p41": {
+  "C_a": 14,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "14": [
+    {
+     "area": 51,
+     "touch": 1243,
+     "label": "ego",
+     "angle": 12.552476916537099,
+     "reach": false,
+     "far_r": 195.12114157862175,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "15": [
+    {
+     "area": 1464,
+     "touch": 1351,
+     "label": "ego",
+     "angle": 20.16465376119324,
+     "reach": false,
+     "far_r": 222.9329400486431,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p42": {
+  "C_a": 26,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "26": [
+    {
+     "area": 20670,
+     "touch": 1367,
+     "label": "other",
+     "angle": 61.34172614251822,
+     "reach": false,
+     "far_r": 447.82257937684034,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "27": [
+    {
+     "area": 20985,
+     "touch": 1142,
+     "label": "other",
+     "angle": 61.436430455576115,
+     "reach": false,
+     "far_r": 448.3511729265107,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p43": {
+  "C_a": 8,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "8": [
+    {
+     "area": 30334,
+     "touch": 383,
+     "label": "ego",
+     "angle": 55.28474650233705,
+     "reach": false,
+     "far_r": 467.43112620683223,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "9": [
+    {
+     "area": 31041,
+     "touch": 1131,
+     "label": "ego",
+     "angle": 55.23476279731791,
+     "reach": false,
+     "far_r": 466.33556630395304,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p44": {
+  "C_a": 14,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "14": [
+    {
+     "area": 10893,
+     "touch": 628,
+     "label": "ego",
+     "angle": 28.945222529857688,
+     "reach": false,
+     "far_r": 214.07525028630948,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 16675,
+     "touch": 435,
+     "label": "ego",
+     "angle": -34.60406791847332,
+     "reach": false,
+     "far_r": 316.9523670765759,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 515,
+     "touch": 3,
+     "label": "ego",
+     "angle": -6.241985054181875,
+     "reach": false,
+     "far_r": 140.46076709135625,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "15": [
+    {
+     "area": 11071,
+     "touch": 846,
+     "label": "ego",
+     "angle": 27.047118436776948,
+     "reach": false,
+     "far_r": 215.6342685954136,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 16894,
+     "touch": 76,
+     "label": "ego",
+     "angle": -34.159593900427296,
+     "reach": false,
+     "far_r": 314.92491986551346,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 5488,
+     "touch": 20,
+     "label": "other",
+     "angle": 75.13512392319358,
+     "reach": false,
+     "far_r": 175.491550794212,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "p45": {
+  "C_a": 13,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "13": [
+    {
+     "area": 7478,
+     "touch": 515,
+     "label": "ego",
+     "angle": 16.16906227202695,
+     "reach": false,
+     "far_r": 237.83878203576276,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 3292,
+     "touch": 20,
+     "label": "other",
+     "angle": -88.53554771364576,
+     "reach": false,
+     "far_r": 180.4282537369298,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "14": [
+    {
+     "area": 6467,
+     "touch": 894,
+     "label": "ego",
+     "angle": 12.095198763552272,
+     "reach": false,
+     "far_r": 237.78212643419116,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 3715,
+     "touch": 127,
+     "label": "other",
+     "angle": -91.57410883241646,
+     "reach": false,
+     "far_r": 179.53896167074117,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e1": {
+  "C_a": 28,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "28": [
+    {
+     "area": 7037,
+     "touch": 124,
+     "label": "ego",
+     "angle": 27.94578468135622,
+     "reach": false,
+     "far_r": 225.30035302983293,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 17989,
+     "touch": 40,
+     "label": "other",
+     "angle": 66.52039223907198,
+     "reach": false,
+     "far_r": 352.802072404784,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "29": [
+    {
+     "area": 11782,
+     "touch": 345,
+     "label": "ego",
+     "angle": -36.173266834407265,
+     "reach": false,
+     "far_r": 254.25041799404218,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 5198,
+     "touch": 330,
+     "label": "ego",
+     "angle": 29.21056688748361,
+     "reach": false,
+     "far_r": 232.168164807535,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 2007,
+     "touch": 38,
+     "label": "other",
+     "angle": 129.64698047736658,
+     "reach": false,
+     "far_r": 183.16756896370887,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e3": {
+  "C_a": 15,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "15": [
+    {
+     "area": 638,
+     "touch": 804,
+     "label": "other",
+     "angle": 62.035108077072174,
+     "reach": false,
+     "far_r": 86.6836685282918,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 286,
+     "touch": 106,
+     "label": "ego",
+     "angle": -25.220025665716452,
+     "reach": false,
+     "far_r": 201.12076065185184,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "16": [
+    {
+     "area": 740,
+     "touch": 779,
+     "label": "other",
+     "angle": -97.90982340219642,
+     "reach": false,
+     "far_r": 91.21078270122115,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 524,
+     "touch": 114,
+     "label": "ego",
+     "angle": -24.739520335464988,
+     "reach": false,
+     "far_r": 203.82840249461094,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e5": {
+  "C_a": 13,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "13": [
+    {
+     "area": 16028,
+     "touch": 2049,
+     "label": "ego",
+     "angle": -53.42073770975191,
+     "reach": true,
+     "far_r": 379.55614553994155,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 101,
+      "right": 0
+     }
+    }
+   ],
+   "14": [
+    {
+     "area": 18553,
+     "touch": 2481,
+     "label": "ego",
+     "angle": -53.16369050134596,
+     "reach": false,
+     "far_r": 377.4732898165126,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e6": {
+  "C_a": 12,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "12": [
+    {
+     "area": 8313,
+     "touch": 307,
+     "label": "ego",
+     "angle": -51.61247461466713,
+     "reach": false,
+     "far_r": 326.39872375393753,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "13": [
+    {
+     "area": 9970,
+     "touch": 281,
+     "label": "ego",
+     "angle": -50.52331551324664,
+     "reach": false,
+     "far_r": 329.60101700995045,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e8": {
+  "C_a": 33,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "33": [
+    {
+     "area": 18878,
+     "touch": 432,
+     "label": "ego",
+     "angle": 43.13457635551212,
+     "reach": false,
+     "far_r": 271.9732101204855,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "34": [
+    {
+     "area": 19648,
+     "touch": 831,
+     "label": "ego",
+     "angle": 42.35092414188887,
+     "reach": false,
+     "far_r": 271.2887232712432,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e10": {
+  "C_a": 17,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "17": [
+    {
+     "area": 7968,
+     "touch": 827,
+     "label": "ego",
+     "angle": -25.87716076906762,
+     "reach": false,
+     "far_r": 173.27023643547182,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "18": [
+    {
+     "area": 7311,
+     "touch": 1906,
+     "label": "ego",
+     "angle": -19.970315386628766,
+     "reach": false,
+     "far_r": 168.22563636086826,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e14": {
+  "C_a": 14,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "14": [
+    {
+     "area": 600,
+     "touch": 354,
+     "label": "ego",
+     "angle": -32.06077564339569,
+     "reach": false,
+     "far_r": 120.86484851980055,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "15": [
+    {
+     "area": 3141,
+     "touch": 533,
+     "label": "ego",
+     "angle": -55.96923339799101,
+     "reach": false,
+     "far_r": 179.71033718180217,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e15": {
+  "C_a": 34,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "34": [
+    {
+     "area": 40673,
+     "touch": 129,
+     "label": "ego",
+     "angle": 51.863528511689864,
+     "reach": true,
+     "far_r": 449.28709438068006,
+     "sides": {
+      "bottom": 832,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "35": [
+    {
+     "area": 39697,
+     "touch": 1120,
+     "label": "ego",
+     "angle": 51.64996112594766,
+     "reach": true,
+     "far_r": 438.7193938049463,
+     "sides": {
+      "bottom": 873,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e16": {
+  "C_a": 14,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "14": [
+    {
+     "area": 17350,
+     "touch": 1620,
+     "label": "other",
+     "angle": 63.16964157253798,
+     "reach": false,
+     "far_r": 465.7713721950748,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "15": [
+    {
+     "area": 15594,
+     "touch": 220,
+     "label": "other",
+     "angle": 62.542935472742236,
+     "reach": false,
+     "far_r": 457.8547350658876,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e19": {
+  "C_a": 16,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "16": [
+    {
+     "area": 9804,
+     "touch": 230,
+     "label": "ego",
+     "angle": 39.40569310199286,
+     "reach": true,
+     "far_r": 215.07042761111882,
+     "sides": {
+      "bottom": 20,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "17": [
+    {
+     "area": 10685,
+     "touch": 133,
+     "label": "ego",
+     "angle": 36.189158831060105,
+     "reach": true,
+     "far_r": 227.0905532874124,
+     "sides": {
+      "bottom": 165,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e20": {
+  "C_a": 29,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "29": [
+    {
+     "area": 4662,
+     "touch": 681,
+     "label": "other",
+     "angle": -143.05335103332396,
+     "reach": true,
+     "far_r": 206.23429787047579,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 102,
+      "right": 48
+     }
+    },
+    {
+     "area": 4695,
+     "touch": 53,
+     "label": "other",
+     "angle": -112.11699303981057,
+     "reach": true,
+     "far_r": 185.73805644798975,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 104,
+      "right": 0
+     }
+    },
+    {
+     "area": 223,
+     "touch": 2,
+     "label": "other",
+     "angle": 86.21293578198812,
+     "reach": false,
+     "far_r": 84.43867676962111,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "30": [
+    {
+     "area": 31269,
+     "touch": 1565,
+     "label": "ego",
+     "angle": 55.203905827094616,
+     "reach": true,
+     "far_r": 244.19611709781995,
+     "sides": {
+      "bottom": 120,
+      "top": 0,
+      "left": 810,
+      "right": 2269
+     }
+    },
+    {
+     "area": 1191,
+     "touch": 520,
+     "label": "other",
+     "angle": 89.9686054401881,
+     "reach": false,
+     "far_r": 105.78259813594897,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e25": {
+  "C_a": 29,
+  "src": "c3",
+  "label": "ego",
+  "intruders": {
+   "29": [
+    {
+     "area": 615,
+     "touch": 359,
+     "label": "ego",
+     "angle": -41.65539896436809,
+     "reach": false,
+     "far_r": 117.96793838027273,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "30": [
+    {
+     "area": 976,
+     "touch": 400,
+     "label": "ego",
+     "angle": -39.71306032248078,
+     "reach": false,
+     "far_r": 119.9568311925339,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e28": {
+  "C_a": 11,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "11": [
+    {
+     "area": 40150,
+     "touch": 129,
+     "label": "ego",
+     "angle": -48.88824593008174,
+     "reach": true,
+     "far_r": 515.4974415066979,
+     "sides": {
+      "bottom": 1500,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 311,
+     "touch": 85,
+     "label": "other",
+     "angle": -86.28334213080763,
+     "reach": false,
+     "far_r": 214.37689851090474,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 123,
+     "touch": 9,
+     "label": "ego",
+     "angle": -46.811020666819985,
+     "reach": false,
+     "far_r": 204.06340521702995,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "12": [
+    {
+     "area": 40315,
+     "touch": 141,
+     "label": "ego",
+     "angle": -48.80666476024478,
+     "reach": true,
+     "far_r": 514.5006979135741,
+     "sides": {
+      "bottom": 1463,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 379,
+     "touch": 113,
+     "label": "other",
+     "angle": -85.88634137628962,
+     "reach": false,
+     "far_r": 215.12851153072228,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 157,
+     "touch": 9,
+     "label": "ego",
+     "angle": -46.366728123167334,
+     "reach": false,
+     "far_r": 205.11319444358423,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e30": {
+  "C_a": 29,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "29": [
+    {
+     "area": 25751,
+     "touch": 570,
+     "label": "ego",
+     "angle": 56.85478802854562,
+     "reach": true,
+     "far_r": 149.39892176348386,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 1111,
+      "right": 0
+     }
+    }
+   ],
+   "30": [
+    {
+     "area": 28031,
+     "touch": 1401,
+     "label": "ego",
+     "angle": 56.626031060449286,
+     "reach": true,
+     "far_r": 149.99711749282957,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 1230,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e32": {
+  "C_a": 6,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "6": [
+    {
+     "area": 302,
+     "touch": 118,
+     "label": "other",
+     "angle": -96.34074246772087,
+     "reach": false,
+     "far_r": 68.88850361176884,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 90,
+     "touch": 3,
+     "label": "ego",
+     "angle": 5.663737001330762,
+     "reach": false,
+     "far_r": 113.21731155474131,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "7": [
+    {
+     "area": 354,
+     "touch": 502,
+     "label": "other",
+     "angle": -97.99984711257386,
+     "reach": false,
+     "far_r": 71.64481340540493,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e33": {
+  "C_a": 12,
+  "src": "c2",
+  "label": "other",
+  "intruders": {
+   "12": [
+    {
+     "area": 247,
+     "touch": 528,
+     "label": "other",
+     "angle": 147.8515404544635,
+     "reach": false,
+     "far_r": 86.92805404168833,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 6235,
+     "touch": 77,
+     "label": "ego",
+     "angle": -28.297442430221672,
+     "reach": false,
+     "far_r": 232.33536744661674,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "13": [
+    {
+     "area": 5550,
+     "touch": 963,
+     "label": "ego",
+     "angle": -24.18688156928306,
+     "reach": false,
+     "far_r": 230.0983638960104,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e35": {
+  "C_a": 27,
+  "src": "c3",
+  "label": "other",
+  "intruders": {
+   "27": [
+    {
+     "area": 563,
+     "touch": 414,
+     "label": "other",
+     "angle": -111.14149830299526,
+     "reach": false,
+     "far_r": 92.77555130504376,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 19023,
+     "touch": 100,
+     "label": "ego",
+     "angle": 40.375002932896436,
+     "reach": true,
+     "far_r": 323.0070871535234,
+     "sides": {
+      "bottom": 956,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "28": [
+    {
+     "area": 1340,
+     "touch": 422,
+     "label": "other",
+     "angle": -112.30785398891798,
+     "reach": false,
+     "far_r": 98.11753790106854,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    },
+    {
+     "area": 19824,
+     "touch": 152,
+     "label": "ego",
+     "angle": 41.78462005775066,
+     "reach": true,
+     "far_r": 325.2064880550201,
+     "sides": {
+      "bottom": 970,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e36": {
+  "C_a": 18,
+  "src": "c3",
+  "label": "other",
+  "intruders": {
+   "18": [
+    {
+     "area": 1319,
+     "touch": 131,
+     "label": "other",
+     "angle": 107.83744421524744,
+     "reach": false,
+     "far_r": 179.09192701010343,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "19": [
+    {
+     "area": 912,
+     "touch": 201,
+     "label": "other",
+     "angle": 105.65850518880853,
+     "reach": false,
+     "far_r": 171.5876278404607,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e37": {
+  "C_a": 14,
+  "src": "c3",
+  "label": "ego",
+  "intruders": {
+   "14": [
+    {
+     "area": 18074,
+     "touch": 134,
+     "label": "ego",
+     "angle": 43.0582064516872,
+     "reach": true,
+     "far_r": 258.77030231143505,
+     "sides": {
+      "bottom": 262,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ],
+   "15": [
+    {
+     "area": 17741,
+     "touch": 274,
+     "label": "ego",
+     "angle": 42.43698644366425,
+     "reach": true,
+     "far_r": 257.218764479485,
+     "sides": {
+      "bottom": 389,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ },
+ "e38": {
+  "C_a": 33,
+  "src": "c2",
+  "label": "ego",
+  "intruders": {
+   "33": [
+    {
+     "area": 15933,
+     "touch": 253,
+     "label": "ego",
+     "angle": 36.17017778030111,
+     "reach": true,
+     "far_r": 272.72979497759576,
+     "sides": {
+      "bottom": 1374,
+      "top": 0,
+      "left": 0,
+      "right": 556
+     }
+    }
+   ],
+   "34": [
+    {
+     "area": 21594,
+     "touch": 701,
+     "label": "ego",
+     "angle": -7.255959941379695,
+     "reach": true,
+     "far_r": 275.5816846501344,
+     "sides": {
+      "bottom": 2444,
+      "top": 0,
+      "left": 556,
+      "right": 440
+     }
+    },
+    {
+     "area": 93,
+     "touch": 28,
+     "label": "ego",
+     "angle": 23.545664582061505,
+     "reach": false,
+     "far_r": 51.45153900786269,
+     "sides": {
+      "bottom": 0,
+      "top": 0,
+      "left": 0,
+      "right": 0
+     }
+    }
+   ]
+  }
+ }
+}

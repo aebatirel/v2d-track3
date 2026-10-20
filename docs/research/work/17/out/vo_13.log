@@ -1,0 +1,10 @@
+20 {'t': 20, 'nmatch': 607, 'ninl': 280, 'med_px': 0.42739601963156215, 'nstereo': 440, 'kf': 0, 'ok': True} 2s
+40 {'t': 40, 'nmatch': 598, 'ninl': 229, 'med_px': 0.4740630395516857, 'nstereo': 454, 'kf': 0, 'ok': True} 5s
+60 {'t': 60, 'nmatch': 611, 'ninl': 298, 'med_px': 0.4671216170003123, 'nstereo': 450, 'kf': 40, 'ok': True} 7s
+80 {'t': 80, 'nmatch': 658, 'ninl': 272, 'med_px': 0.39645988914831143, 'nstereo': 475, 'kf': 40, 'ok': True} 9s
+100 {'t': 100, 'nmatch': 699, 'ninl': 272, 'med_px': 0.3799325148002949, 'nstereo': 421, 'kf': 80, 'ok': True} 12s
+120 {'t': 120, 'nmatch': 682, 'ninl': 259, 'med_px': 0.41423457570778305, 'nstereo': 413, 'kf': 80, 'ok': True} 15s
+140 {'t': 140, 'nmatch': 654, 'ninl': 287, 'med_px': 0.40372818832334084, 'nstereo': 437, 'kf': 120, 'ok': True} 17s
+160 {'t': 160, 'nmatch': 618, 'ninl': 275, 'med_px': 0.3792673515474227, 'nstereo': 420, 'kf': 120, 'ok': True} 20s
+180 {'t': 180, 'nmatch': 628, 'ninl': 270, 'med_px': 0.4166836698140241, 'nstereo': 484, 'kf': 160, 'ok': True} 25s
+done 27.207931995391846

@@ -1,0 +1,10 @@
+0 inl 134 med px 1.12
+60 inl 166 med px 1.31
+120 inl 139 med px 1.12
+180 inl 159 med px 1.37
+240 inl 129 med px 0.92
+300 inl 139 med px 1.27
+ep 18: n 88 frames; inliers med 139; reproj med 1.08 px
+  rotation deviation from calibrated extrinsic: mean (deg) [-0.06   0.178 -0.225], sd [0.178 0.166 0.155]
+  translation deviation mm: mean [-0.   1.1 -5.8] sd [2.4 2.9 3.5]
+  dev = k * omega: k = -1.052 frames (-52.6 ms); rms dev before 0.167 after 0.083 deg; corr -0.87

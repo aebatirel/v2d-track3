@@ -1,0 +1,11 @@
+cam6 4.07 px assign ['blue_cup#2', 'blue_cup#0', 'blue_cup#1', 'beige_cup#0', 'beige_cup#1', 'beige_cup#2']; cam5 3.41 px assign ['blue_cup#2', 'blue_cup#0', 'blue_cup#1', 'beige_cup#0', 'beige_cup#1']
+cam6_sc0_st0: n 1 | 2-blob fit max px true 3.5 / wrong 2.5 (median) | true pred to by-eye sphere px median 4.0 max 4.0 | circ true>wrong 1.00 (med 0.73 vs 0.52) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 1.00
+   true pred [1277.0, 888.0], wrong pred [1325.0, 871.0]
+cam6_sc2_st0: n 30 | 2-blob fit max px true 3.5 / wrong 2.6 (median) | true pred to by-eye sphere px median 4.1 max 5.8 | circ true>wrong 1.00 (med 0.75 vs 0.52) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 1.00
+cam6_sc2_st1: n 30 | 2-blob fit max px true 3.7 / wrong 2.6 (median) | true pred to by-eye sphere px median 4.5 max 6.3 | circ true>wrong 1.00 (med 0.74 vs 0.53) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 0.97
+cam6_sc5_st1: n 30 | 2-blob fit max px true 4.3 / wrong 3.2 (median) | true pred to by-eye sphere px median 5.4 max 8.0 | circ true>wrong 0.97 (med 0.71 vs 0.55) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 0.87
+cam5_sc0_st0: n 1 | 2-blob fit max px true 2.8 / wrong 2.0 (median) | true pred to by-eye sphere px median 3.8 max 3.8 | circ true>wrong 1.00 (med 0.76 vs 0.56) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 1.00
+   true pred [1277.0, 888.0], wrong pred [1325.0, 871.0]
+cam5_sc2_st0: n 30 | 2-blob fit max px true 2.9 / wrong 2.1 (median) | true pred to by-eye sphere px median 3.8 max 4.9 | circ true>wrong 1.00 (med 0.76 vs 0.56) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 1.00
+cam5_sc2_st1: n 30 | 2-blob fit max px true 2.7 / wrong 1.9 (median) | true pred to by-eye sphere px median 3.8 max 8.3 | circ true>wrong 1.00 (med 0.82 vs 0.55) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 0.90
+cam5_sc5_st1: n 30 | 2-blob fit max px true 2.9 / wrong 2.4 (median) | true pred to by-eye sphere px median 4.3 max 7.8 | circ true>wrong 0.97 (med 0.75 vs 0.55) | dark true>wrong 1.00 (med 0.017 vs 0.000) | wrong fits better 0.90

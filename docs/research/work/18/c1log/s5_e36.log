@@ -1,0 +1,25 @@
+01:29:40 bank (946793, 128) images 585 points 29900
+I20261007 01:29:40.885971 0x1fe162140 sift.cc:764] Creating SIFT CPU feature extractor
+01:29:40 e36 frames 407 prior from map frame 0: {'c': True, 'a': True} exclude_own 0
+01:29:42 t=0 feat {'a': 1628, 'b': 2149, 'c': 2170} match_bc {'c': 727, 'b': 727} inl_bc 905 (c 641 b 623) inl_a 467 | undist 0.01 sift 0.59 match_bc 0.31 pnp_bc 0.14 a_total 0.05
+01:29:46 t=20 feat {'a': 1550, 'b': 2007, 'c': 1963} match_bc {'c': 574, 'b': 647} inl_bc 757 (c 495 b 544) inl_a 330 | undist 0.00 sift 0.55 match_bc 0.32 pnp_bc 0.13 a_total 0.05
+01:29:51 t=40 feat {'a': 1681, 'b': 2107, 'c': 2028} match_bc {'c': 631, 'b': 594} inl_bc 751 (c 543 b 489) inl_a 426 | undist 0.00 sift 0.57 match_bc 0.33 pnp_bc 0.14 a_total 0.06
+01:29:55 t=60 feat {'a': 1664, 'b': 2200, 'c': 2186} match_bc {'c': 723, 'b': 662} inl_bc 842 (c 617 b 548) inl_a 464 | undist 0.00 sift 0.65 match_bc 0.34 pnp_bc 0.06 a_total 0.05
+01:30:00 t=80 feat {'a': 1677, 'b': 2237, 'c': 2077} match_bc {'c': 632, 'b': 678} inl_bc 752 (c 511 b 542) inl_a 396 | undist 0.00 sift 0.75 match_bc 0.20 pnp_bc 0.06 a_total 0.04
+01:30:04 t=100 feat {'a': 1495, 'b': 2104, 'c': 2019} match_bc {'c': 620, 'b': 641} inl_bc 775 (c 529 b 534) inl_a 397 | undist 0.00 sift 0.57 match_bc 0.42 pnp_bc 0.09 a_total 0.03
+01:30:09 t=120 feat {'a': 1586, 'b': 2108, 'c': 2034} match_bc {'c': 653, 'b': 644} inl_bc 787 (c 557 b 542) inl_a 360 | undist 0.00 sift 0.85 match_bc 0.18 pnp_bc 0.05 a_total 0.03
+01:30:14 t=140 feat {'a': 1513, 'b': 2079, 'c': 1994} match_bc {'c': 663, 'b': 638} inl_bc 779 (c 554 b 528) inl_a 362 | undist 0.00 sift 0.61 match_bc 0.40 pnp_bc 0.05 a_total 0.05
+01:30:18 t=160 feat {'a': 1574, 'b': 2098, 'c': 1922} match_bc {'c': 626, 'b': 661} inl_bc 779 (c 522 b 557) inl_a 353 | undist 0.00 sift 0.61 match_bc 0.17 pnp_bc 0.19 a_total 0.10
+01:30:23 t=180 feat {'a': 1481, 'b': 2051, 'c': 1948} match_bc {'c': 623, 'b': 644} inl_bc 756 (c 512 b 535) inl_a 365 | undist 0.01 sift 0.59 match_bc 0.17 pnp_bc 0.12 a_total 0.03
+01:30:27 t=200 feat {'a': 1414, 'b': 1962, 'c': 1907} match_bc {'c': 678, 'b': 652} inl_bc 822 (c 595 b 546) inl_a 376 | undist 0.01 sift 0.57 match_bc 0.16 pnp_bc 0.13 a_total 0.05
+01:30:32 t=220 feat {'a': 1638, 'b': 2171, 'c': 2085} match_bc {'c': 650, 'b': 619} inl_bc 740 (c 538 b 479) inl_a 364 | undist 0.00 sift 0.74 match_bc 0.17 pnp_bc 0.04 a_total 0.04
+01:30:37 t=240 feat {'a': 1542, 'b': 2090, 'c': 2083} match_bc {'c': 663, 'b': 581} inl_bc 752 (c 567 b 482) inl_a 359 | undist 0.00 sift 0.65 match_bc 0.57 pnp_bc 0.07 a_total 0.05
+01:30:42 t=260 feat {'a': 1591, 'b': 2113, 'c': 2064} match_bc {'c': 651, 'b': 591} inl_bc 770 (c 575 b 490) inl_a 365 | undist 0.01 sift 0.57 match_bc 0.50 pnp_bc 0.10 a_total 0.03
+01:30:47 t=280 feat {'a': 1529, 'b': 1958, 'c': 1955} match_bc {'c': 679, 'b': 613} inl_bc 809 (c 589 b 528) inl_a 423 | undist 0.00 sift 0.58 match_bc 0.14 pnp_bc 0.06 a_total 0.09
+01:30:52 t=300 feat {'a': 1408, 'b': 2028, 'c': 1939} match_bc {'c': 666, 'b': 674} inl_bc 840 (c 589 b 572) inl_a 387 | undist 0.01 sift 0.68 match_bc 0.22 pnp_bc 0.11 a_total 0.03
+01:30:57 t=320 feat {'a': 1651, 'b': 2046, 'c': 1984} match_bc {'c': 646, 'b': 652} inl_bc 764 (c 526 b 550) inl_a 350 | undist 0.00 sift 0.70 match_bc 0.33 pnp_bc 0.05 a_total 0.03
+01:31:01 t=340 feat {'a': 1499, 'b': 2052, 'c': 1934} match_bc {'c': 593, 'b': 648} inl_bc 711 (c 477 b 534) inl_a 247 | undist 0.00 sift 0.60 match_bc 0.44 pnp_bc 0.06 a_total 0.03
+01:31:06 t=360 feat {'a': 1476, 'b': 1961, 'c': 1841} match_bc {'c': 592, 'b': 628} inl_bc 729 (c 490 b 535) inl_a 341 | undist 0.00 sift 0.55 match_bc 0.34 pnp_bc 0.04 a_total 0.04
+01:31:11 t=380 feat {'a': 1485, 'b': 2146, 'c': 2032} match_bc {'c': 635, 'b': 646} inl_bc 768 (c 536 b 538) inl_a 392 | undist 0.01 sift 0.62 match_bc 0.50 pnp_bc 0.10 a_total 0.03
+01:31:16 t=400 feat {'a': 1767, 'b': 2177, 'c': 2079} match_bc {'c': 645, 'b': 656} inl_bc 793 (c 542 b 557) inl_a 457 | undist 0.01 sift 0.69 match_bc 0.34 pnp_bc 0.07 a_total 0.04
+01:31:17 done e36: 82 frames, rig ok 1.000, a ok 1.000, wall 97s

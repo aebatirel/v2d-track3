@@ -1,0 +1,17 @@
+12:29:22 bank (822948, 128) images 525 points 26759
+I20261007 12:29:22.564720 0x1fe162140 sift.cc:764] Creating SIFT CPU feature extractor
+12:29:22 e32 frames 259 prior from map frame 0: {'c': True, 'a': True} exclude_own 0
+12:29:23 t=0 feat {'a': 1694, 'b': 2043, 'c': 1988} match_bc {'c': 544, 'b': 546} inl_bc 623 (c 435 b 411) inl_a 325 | undist 0.00 sift 0.98 match_bc 0.15 pnp_bc 0.04 a_total 0.03
+12:29:28 t=20 feat {'a': 1609, 'b': 2098, 'c': 2083} match_bc {'c': 593, 'b': 599} inl_bc 712 (c 477 b 488) inl_a 321 | undist 0.00 sift 1.04 match_bc 0.15 pnp_bc 0.04 a_total 0.02
+12:29:33 t=40 feat {'a': 1538, 'b': 2095, 'c': 1968} match_bc {'c': 641, 'b': 661} inl_bc 769 (c 534 b 542) inl_a 367 | undist 0.00 sift 0.65 match_bc 0.38 pnp_bc 0.05 a_total 0.05
+12:29:38 t=60 feat {'a': 1599, 'b': 2121, 'c': 2023} match_bc {'c': 600, 'b': 633} inl_bc 692 (c 462 b 506) inl_a 344 | undist 0.00 sift 0.78 match_bc 0.15 pnp_bc 0.09 a_total 0.06
+12:29:43 t=80 feat {'a': 1619, 'b': 2119, 'c': 2068} match_bc {'c': 611, 'b': 595} inl_bc 673 (c 477 b 475) inl_a 341 | undist 0.01 sift 0.91 match_bc 0.29 pnp_bc 0.06 a_total 0.04
+12:29:48 t=100 feat {'a': 1610, 'b': 2130, 'c': 2109} match_bc {'c': 627, 'b': 619} inl_bc 697 (c 489 b 479) inl_a 329 | undist 0.00 sift 0.65 match_bc 0.34 pnp_bc 0.09 a_total 0.03
+12:29:54 t=120 feat {'a': 1594, 'b': 2069, 'c': 1899} match_bc {'c': 583, 'b': 619} inl_bc 698 (c 480 b 494) inl_a 310 | undist 0.01 sift 0.68 match_bc 0.60 pnp_bc 0.07 a_total 0.04
+12:29:59 t=140 feat {'a': 1636, 'b': 2065, 'c': 2017} match_bc {'c': 615, 'b': 595} inl_bc 677 (c 480 b 460) inl_a 300 | undist 0.00 sift 0.77 match_bc 0.33 pnp_bc 0.11 a_total 0.04
+12:30:04 t=160 feat {'a': 1619, 'b': 2121, 'c': 2020} match_bc {'c': 592, 'b': 643} inl_bc 683 (c 457 b 488) inl_a 324 | undist 0.00 sift 0.70 match_bc 0.60 pnp_bc 0.06 a_total 0.09
+12:30:10 t=180 feat {'a': 1605, 'b': 2060, 'c': 2011} match_bc {'c': 607, 'b': 613} inl_bc 719 (c 488 b 500) inl_a 310 | undist 0.00 sift 0.74 match_bc 0.34 pnp_bc 0.08 a_total 0.04
+12:30:15 t=200 feat {'a': 1450, 'b': 1980, 'c': 1849} match_bc {'c': 569, 'b': 550} inl_bc 650 (c 466 b 444) inl_a 259 | undist 0.00 sift 0.63 match_bc 0.21 pnp_bc 0.15 a_total 0.05
+12:30:20 t=220 feat {'a': 1461, 'b': 1961, 'c': 1884} match_bc {'c': 583, 'b': 569} inl_bc 691 (c 489 b 465) inl_a 304 | undist 0.00 sift 0.66 match_bc 0.27 pnp_bc 0.19 a_total 0.03
+12:30:25 t=240 feat {'a': 1477, 'b': 2032, 'c': 1899} match_bc {'c': 599, 'b': 576} inl_bc 712 (c 508 b 472) inl_a 346 | undist 0.01 sift 0.68 match_bc 0.44 pnp_bc 0.09 a_total 0.04
+12:30:29 done e32: 52 frames, rig ok 1.000, a ok 1.000, wall 67s

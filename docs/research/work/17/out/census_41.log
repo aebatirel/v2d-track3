@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/aebatirel/Documents/Code/v2d-research/work/17/census17.py", line 11, in <module>
+    gt = L.load_gt(ep); SRC = os.environ.get('CAMSRC', 'reg2'); RG = json.load(open(f'out/{SRC}_{ep}.json')); N = len(gt['names'])
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'out/reg2_41.json'

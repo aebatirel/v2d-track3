@@ -1,0 +1,13 @@
+faces 99560 area cm2 490.6799465917043 watertight True
+r 5.0 sgn +1 peak-density 1.25 cm2  shell area 2.16 cm2 rms 0.88 mm @[9.7, 74.6, -42.5]
+r 5.0 sgn -1 peak-density 0.73 cm2  shell area 1.55 cm2 rms 0.84 mm @[3.9, -21.9, 85.6]
+r 6.0 sgn +1 peak-density 0.73 cm2  shell area 3.29 cm2 rms 0.84 mm @[11.7, -66.3, -37.7]
+r 6.0 sgn -1 peak-density 0.81 cm2  shell area 2.03 cm2 rms 0.84 mm @[5.1, -11.6, 93.4]
+r 6.6 sgn +1 peak-density 0.84 cm2  shell area 3.62 cm2 rms 0.82 mm @[12.0, -65.5, -38.2]
+r 6.6 sgn -1 peak-density 0.83 cm2  shell area 2.44 cm2 rms 0.73 mm @[6.0, 27.4, 75.7]
+r 7.2 sgn +1 peak-density 0.88 cm2  shell area 4.78 cm2 rms 0.90 mm @[3.8, 9.1, 94.7]
+r 7.2 sgn -1 peak-density 0.79 cm2  shell area 3.35 cm2 rms 0.77 mm @[5.5, 9.4, 94.6]
+r 7.8 sgn +1 peak-density 0.99 cm2  shell area 5.23 cm2 rms 0.86 mm @[5.1, 28.0, 73.7]
+r 7.8 sgn -1 peak-density 0.71 cm2  shell area 4.36 cm2 rms 0.86 mm @[6.2, 9.0, 94.9]
+r 9.0 sgn +1 peak-density 1.03 cm2  shell area 6.81 cm2 rms 0.80 mm @[5.9, 25.7, 80.1]
+r 9.0 sgn -1 peak-density 0.70 cm2  shell area 2.02 cm2 rms 0.87 mm @[-8.6, -1.8, 21.6]

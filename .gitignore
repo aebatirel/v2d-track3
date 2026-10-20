@@ -1,13 +1,13 @@
 # data and run outputs (regenerable or too large)
-data/
-t3/
-perc/
-perc*/
-refs/
-runs/
-results/
-outputs/
-ckpt/
+/data/
+/t3/
+/perc/
+/perc*/
+/refs/
+/runs/
+/results/
+/outputs/
+/ckpt/
 *.npy
 *.npz
 *.mp4
@@ -15,7 +15,8 @@ ckpt/
 *.pt
 *.pth
 *.parquet
-*.log
+/*.log
+/pipeline/*.log
 
 # environments and caches
 .venv/

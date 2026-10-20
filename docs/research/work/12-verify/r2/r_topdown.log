@@ -1,0 +1,14 @@
+true (0 deg)                     circ 0.804 (bg pct 0.83)  dog 2.9 (bg pct 0.40)
+-131 branch                      circ 0.527 (bg pct 0.47)  dog 4.2 (bg pct 0.55)
++120 branch (poor 2-blob fit)    circ 1.174 (bg pct 0.95)  dog 5.3 (bg pct 0.63)
+by-eye true sphere               circ 0.938 (bg pct 0.91)  dog 3.6 (bg pct 0.50)
+detected @35 (control)           circ 2.491 (bg pct 0.99)  dog 10.0 (bg pct 0.87)
+detected @171 (control)          circ 1.790 (bg pct 0.99)  dog 16.2 (bg pct 0.95)
+background circ p50/p90/p99 0.542/0.887/1.563, dog 3.7/11.0/20.8
+true (0 deg)   dark 0.017 (bg pct 0.93)  fine-texture p25 1.54 (share of bg rougher 0.11)
+-131 branch    dark 0.000 (bg pct 0.00)  fine-texture p25 1.40 (share of bg rougher 0.15)
++120 branch    dark 0.016 (bg pct 0.93)  fine-texture p25 1.37 (share of bg rougher 0.16)
+by-eye true    dark 0.017 (bg pct 0.93)  fine-texture p25 1.59 (share of bg rougher 0.09)
+@35 control    dark 0.035 (bg pct 0.94)  fine-texture p25 1.22 (share of bg rougher 0.29)
+@171 control   dark 0.041 (bg pct 0.94)  fine-texture p25 1.42 (share of bg rougher 0.14)
+bg dark p50/p90 0.000/0.004, tex p50 0.92

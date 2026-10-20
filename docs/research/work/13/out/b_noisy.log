@@ -1,0 +1,18 @@
+roll: log-LR vs random (log 2^-10 = -6.93); top models (axis, polarity, stat, best n, LR):
+   y +q10        n*=3e+04  LR=   53.78   P(all 10 | n*)=5.25e-02
+   y -m_lo_abs   n*=3e+03  LR=   17.21   P(all 10 | n*)=1.68e-02
+   y +m5         n*=3e+03  LR=   16.75   P(all 10 | n*)=1.64e-02
+   y +s4         n*=3e+03  LR=   16.07   P(all 10 | n*)=1.57e-02
+   x -shalf      n*=3e+02  LR=   14.64   P(all 10 | n*)=1.43e-02
+   y +skew       n*=3e+03  LR=   14.03   P(all 10 | n*)=1.37e-02
+   y +q05        n*=3e+03  LR=   12.64   P(all 10 | n*)=1.23e-02
+   x +far3d      n*=1e+03  LR=   12.44   P(all 10 | n*)=1.21e-02
+   y +ssq        n*=3e+03  LR=    9.95   P(all 10 | n*)=9.71e-03
+   x +ssq        n*=1e+02  LR=    9.42   P(all 10 | n*)=9.20e-03
+   x -q25        n*=1e+02  LR=    8.36   P(all 10 | n*)=8.17e-03
+   y +q01        n*=1e+03  LR=    7.62   P(all 10 | n*)=7.44e-03
+   profile x +skew: LR(n) = 1e+02:2.75 3e+02:0.11 1e+03:0.00 3e+03:0.00 1e+04:0.00 3e+04:0.00 1e+05:0.00 3e+05:0.00 1e+06:0.00 1e+07:0.00 1e+09:0.00
+   profile y +skew: LR(n) = 1e+02:4.82 3e+02:7.21 1e+03:11.07 3e+03:14.03 1e+04:11.75 3e+04:4.17 1e+05:0.11 3e+05:0.00 1e+06:0.00 1e+07:0.00 1e+09:0.00
+max log-LR observed 3.98 (LR 53.8); null mean LR 77.8, median 13.8; P(null max >= obs) = 0.190
+z: top noisy models: [('+m_az3', '1024'), ('+m_az_absz', '1024'), ('+q10', '1024'), ('+ssq', '1024'), ('+skew', '1024')]
+z: observed max LR 1024; P(null max >= obs) = 0.019

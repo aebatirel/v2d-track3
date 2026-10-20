@@ -1,0 +1,12 @@
+Warp 1.14.0 initialized:
+   CUDA not enabled in this build
+   Devices:
+     "cpu"      : "arm"
+   Kernel cache:
+     /Users/aebatirel/Library/Caches/warp/1.14.0
+Module newton._src.geometry.inertia 019f79b load on device 'cpu' took 6.41 ms  (cached)
+add_urdf 2.5s: bodies=1 shapes=8 colliding mesh shapes=7 verts=[35832, 49576, 54545, 54740, 31453, 15630, 18407] mass=[0.3]
+decomposition 472.6s: new hulls 417; colliding shapes now 417; filter pairs 90136; mass [0.3]
+hull vertex counts: median 86 max 408 >64: 277
+stage B direct calls on the same parts (float64 arrays): 415 hulls in 7 files
+bbox of hull union: e2e [-0.0548 -0.0939 -0.1146]..[0.0779 0.0955 0.2434] | stage B [-0.0548 -0.0939 -0.1146]..[0.0779 0.0955 0.2434]

@@ -1,0 +1,16 @@
+c/trk_12_v1.npz MODE reg SH -0.5 T 181 runtime 0.41 s/frame
+  blue_cup: AUC(ADD, this trajectory, no policy) 0.178; status 3/2/1/0 = 0.00 / 0.02 / 0.12 / 0.86
+    rest     n  74 fix>=2 0.05 fix3 0.00 | fix2 n4 t 23.5/24.2 r 4.18/4.37 ADD 23.6/24.3 | all n74 t 185.0/186.2 r 175.05/175.34 ADD 217.8/218.9 |
+    held     n  33 fix>=2 0.00 fix3 0.00 | all n33 t 181.5/185.4 r 108.23/178.53 ADD 195.0/218.1 |
+    carried  n  74 fix>=2 0.00 fix3 0.00 | all n74 t 182.6/210.9 r 136.15/177.57 ADD 209.6/227.0 |
+  plastic_dish_rack: AUC(ADD, this trajectory, no policy) 0.529; status 3/2/1/0 = 0.08 / 0.17 / 0.08 / 0.67
+    rest     n 161 fix>=2 0.28 fix3 0.09 | fix3 n14 t 3.7/7.0 r 1.03/1.78 ADD 3.9/7.3 | fix2 n31 t 6.5/14.0 r 2.47/5.33 ADD 7.1/18.4 | all n161 t 41.6/45.1 r 31.45/32.61 ADD 65.9/68.0 |
+    held     n  20 fix>=2 0.00 fix3 0.00 | all n20 t 42.5/43.7 r 32.00/32.62 ADD 66.5/67.3 |
+c/trk_12_v1.npz MODE regD SH -0.5 T 181 runtime 0.41 s/frame
+  blue_cup: AUC(ADD, this trajectory, no policy) 0.178; status 3/2/1/0 = 0.00 / 0.02 / 0.12 / 0.86
+    rest     n  74 fix>=2 0.05 fix3 0.00 | fix2 n4 t 24.0/24.6 r 4.19/4.39 ADD 24.1/24.7 | all n74 t 184.5/185.5 r 175.09/175.39 ADD 217.3/218.2 |
+    held     n  33 fix>=2 0.00 fix3 0.00 | all n33 t 179.8/183.5 r 108.21/178.51 ADD 193.7/216.6 |
+    carried  n  74 fix>=2 0.00 fix3 0.00 | all n74 t 180.4/208.8 r 136.16/177.62 ADD 207.5/225.2 |
+  plastic_dish_rack: AUC(ADD, this trajectory, no policy) 0.529; status 3/2/1/0 = 0.08 / 0.17 / 0.08 / 0.67
+    rest     n 161 fix>=2 0.28 fix3 0.09 | fix3 n14 t 3.3/6.9 r 0.98/1.73 ADD 3.5/7.0 | fix2 n31 t 6.2/13.0 r 2.46/5.34 ADD 6.9/17.6 | all n161 t 42.5/45.0 r 31.39/32.57 ADD 66.4/67.7 |
+    held     n  20 fix>=2 0.00 fix3 0.00 | all n20 t 43.8/44.7 r 31.95/32.58 ADD 66.9/67.6 |

@@ -1,0 +1,31 @@
+slot-0 cup episodes: [11, 12, 13, 21, 22]; lid (slot 1) episodes: [0, 2]
+case                                            AUC  SP-SR  MP-SR    RPE   MPPE
+slot0 cup spin 10 deg about body z (5 eps)    0.714   1.00   0.40   3.15   2.81
+slot0 cup spin 30 deg about body z (5 eps)    0.279   0.60   0.00   9.34   8.34
+slot0 cup spin 90 deg about body z (5 eps)    0.195   0.00   0.00  25.52  22.71
+slot0 cup spin 180 deg about body z (5 eps)   0.165   0.00   0.00  36.09  32.00
+slot1 lid spin 30 deg about body x (2 eps)    0.844   1.00   1.00   0.00   0.86
+slot1 lid spin 90 deg about body x (2 eps)    0.500   0.00   0.00   0.00   2.36
+slot1 lid spin 180 deg about body x (2 eps)   0.500   0.00   0.00   0.00   3.33
+
+per-episode static predictor (all objects frozen at frame 0):
+  ep  0 Pot_with_lid       AUC 0.563 SP 1 MP 0 RPE 12.95 MPPE  7.81
+  ep  2 Pot_with_lid       AUC 0.501 SP 1 MP 0 RPE 16.76 MPPE  9.47
+  ep 11 Cup_Stack          AUC 0.599 SP 1 MP 0 RPE 15.42 MPPE  7.71
+  ep 12 Cup_In_Dish_Rack   AUC 0.604 SP 0 MP 0 RPE 17.47 MPPE  7.38
+  ep 13 Cup_In_Dish_Rack   AUC 0.573 SP 0 MP 0 RPE 19.61 MPPE  8.63
+  ep 18 Dust_Brush         AUC 0.601 SP 1 MP 0 RPE  7.36 MPPE  4.32
+  ep 21 Water_Can_Blue_Cup AUC 0.370 SP 1 MP 0 RPE 19.61 MPPE  8.64
+  ep 22 Water_Can_Blue_Cup AUC 0.550 SP 1 MP 0 RPE 11.88 MPPE  6.15
+  ep 23 Planter_Stand      AUC 0.246 SP 0 MP 0 RPE 25.12 MPPE 12.08
+  ep 24 Planter_Stand      AUC 0.244 SP 0 MP 0 RPE 29.03 MPPE 13.70
+  ep 26 Pan_In_Dishrack    AUC 0.671 SP 0 MP 0 RPE 12.41 MPPE  6.87
+  ep 27 Pan_In_Dishrack    AUC 0.559 SP 0 MP 0 RPE 20.25 MPPE 10.53
+  ep 31 Brush_Dishrack     AUC 0.599 SP 1 MP 0 RPE  9.61 MPPE  4.43
+  ep 39 Dustpan_Solo       AUC 0.176 SP 0 MP 0 RPE  0.00 MPPE 16.73
+  ep 40 Dustpan_Solo       AUC 0.400 SP 0 MP 0 RPE  0.00 MPPE 12.92
+  ep 41 Pan_Solo           AUC 0.356 SP 1 MP 0 RPE  0.00 MPPE  9.80
+  ep 42 Pan_Solo           AUC 0.194 SP 0 MP 0 RPE  0.00 MPPE  7.37
+  ep 43 Pan_Solo           AUC 0.130 SP 0 MP 0 RPE  0.00 MPPE 11.84
+  ep 44 Pan_Solo           AUC 0.596 SP 1 MP 0 RPE  0.00 MPPE  6.97
+  ep 45 Pan_Solo           AUC 0.389 SP 0 MP 0 RPE  0.00 MPPE 12.92

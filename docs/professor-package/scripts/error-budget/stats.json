@@ -1,0 +1,1067 @@
+[
+ {
+  "ep": 0,
+  "task": "Pot_with_lid",
+  "T": 373,
+  "dur_s": 18.41600799560547,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 17.23653620718467,
+    "end_disp_cm": 2.6478517764517906,
+    "path_cm": 149.41338917272736,
+    "ext_cm": [
+     9.9,
+     14.7,
+     17.2
+    ],
+    "max_rot_deg": 14.410076110009744,
+    "end_rot_deg": 2.2746020030113487,
+    "peak_v_cms": 74.89103058435839,
+    "peak_w_dps": 148.2530829999205,
+    "moving_pct": 28.418230563002684,
+    "n_move_segs": 2,
+    "onset_frame": 114,
+    "jumps": 0,
+    "held_frames": 13,
+    "gaps": 0,
+    "z0": 0.6445813179016113
+   },
+   {
+    "name": "white_pot_lid",
+    "slot": 1,
+    "max_disp_cm": 23.060168283027156,
+    "end_disp_cm": 2.5596088849352374,
+    "path_cm": 84.56406284629017,
+    "ext_cm": [
+     4.6,
+     23.4,
+     14.6
+    ],
+    "max_rot_deg": 14.101216849485933,
+    "end_rot_deg": 0.6666908488963827,
+    "peak_v_cms": 65.62809623241665,
+    "peak_w_dps": 60.89853665998295,
+    "moving_pct": 22.25201072386059,
+    "n_move_segs": 7,
+    "onset_frame": 58,
+    "jumps": 0,
+    "held_frames": 13,
+    "gaps": 0,
+    "z0": 0.6990879774093628
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   3.499511556400766,
+   13.794987943178977
+  ],
+  "lever_max_cm": [
+   17.23653620718467,
+   21.60357451748742
+  ]
+ },
+ {
+  "ep": 2,
+  "task": "Pot_with_lid",
+  "T": 343,
+  "dur_s": 16.934825897216797,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 12.69841940695895,
+    "end_disp_cm": 3.8845737892827006,
+    "path_cm": 114.65303054766751,
+    "ext_cm": [
+     9.7,
+     13.8,
+     10.8
+    ],
+    "max_rot_deg": 12.486997382079277,
+    "end_rot_deg": 1.4665113418145552,
+    "peak_v_cms": 51.19828935636286,
+    "peak_w_dps": 74.69734895297026,
+    "moving_pct": 28.86297376093295,
+    "n_move_segs": 1,
+    "onset_frame": 117,
+    "jumps": 0,
+    "held_frames": 6,
+    "gaps": 0,
+    "z0": 0.6447510719299316
+   },
+   {
+    "name": "white_pot_lid",
+    "slot": 1,
+    "max_disp_cm": 26.698890304470396,
+    "end_disp_cm": 3.983134434299774,
+    "path_cm": 85.6768450535331,
+    "ext_cm": [
+     4.0,
+     30.1,
+     14.4
+    ],
+    "max_rot_deg": 30.67758350037607,
+    "end_rot_deg": 4.496012953684627,
+    "peak_v_cms": 68.64029211907219,
+    "peak_w_dps": 67.85452505020692,
+    "moving_pct": 28.86297376093295,
+    "n_move_segs": 7,
+    "onset_frame": 61,
+    "jumps": 0,
+    "held_frames": 6,
+    "gaps": 0,
+    "z0": 0.6991064548492432
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   3.5693031147478447,
+   16.51994753453981
+  ],
+  "lever_max_cm": [
+   12.69841940695895,
+   25.542492519591498
+  ]
+ },
+ {
+  "ep": 11,
+  "task": "Cup_Stack",
+  "T": 137,
+  "dur_s": 6.764056205749512,
+  "objs": [
+   {
+    "name": "beige_cup",
+    "slot": 0,
+    "max_disp_cm": 25.202163097072106,
+    "end_disp_cm": 17.89127207135082,
+    "path_cm": 49.3481326926388,
+    "ext_cm": [
+     1.8,
+     17.9,
+     20.6
+    ],
+    "max_rot_deg": 26.30476303553592,
+    "end_rot_deg": 22.36940455265167,
+    "peak_v_cms": 65.52692158726398,
+    "peak_w_dps": 73.63884506949191,
+    "moving_pct": 36.496350364963504,
+    "n_move_segs": 1,
+    "onset_frame": 26,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6897695064544678
+   },
+   {
+    "name": "blue_cup",
+    "slot": 1,
+    "max_disp_cm": 0.4921043400347465,
+    "end_disp_cm": 0.21145456049300004,
+    "path_cm": 3.1403987191668357,
+    "ext_cm": [
+     0.2,
+     0.5,
+     0.2
+    ],
+    "max_rot_deg": 4.6813719227076565,
+    "end_rot_deg": 1.9861425875071714,
+    "peak_v_cms": 4.026351831127678,
+    "peak_w_dps": 49.61165661031137,
+    "moving_pct": 13.86861313868613,
+    "n_move_segs": 4,
+    "onset_frame": null,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6878917813301086
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   15.174790628057048,
+   17.19740828034756
+  ],
+  "lever_max_cm": [
+   25.202163097072106,
+   17.38860148742882
+  ]
+ },
+ {
+  "ep": 12,
+  "task": "Cup_In_Dish_Rack",
+  "T": 181,
+  "dur_s": 8.936453819274902,
+  "objs": [
+   {
+    "name": "blue_cup",
+    "slot": 0,
+    "max_disp_cm": 22.225729362000376,
+    "end_disp_cm": 18.456014809427764,
+    "path_cm": 65.9642458159274,
+    "ext_cm": [
+     15.2,
+     15.6,
+     17.9
+    ],
+    "max_rot_deg": 179.91914581336553,
+    "end_rot_deg": 178.72144635170454,
+    "peak_v_cms": 43.6168546828469,
+    "peak_w_dps": 188.3588955179978,
+    "moving_pct": 56.9060773480663,
+    "n_move_segs": 1,
+    "onset_frame": 37,
+    "jumps": 0,
+    "held_frames": 12,
+    "gaps": 0,
+    "z0": 0.6882848739624023
+   },
+   {
+    "name": "plastic_dish_rack",
+    "slot": 1,
+    "max_disp_cm": 0.4127777551824699,
+    "end_disp_cm": 0.0528798884703201,
+    "path_cm": 4.68103357864764,
+    "ext_cm": [
+     0.1,
+     0.4,
+     0.1
+    ],
+    "max_rot_deg": 1.9009119356166653,
+    "end_rot_deg": 0.3823461848240054,
+    "peak_v_cms": 4.927345732926356,
+    "peak_w_dps": 21.352286690840938,
+    "moving_pct": 0.5524861878453038,
+    "n_move_segs": 0,
+    "onset_frame": null,
+    "jumps": 0,
+    "held_frames": 12,
+    "gaps": 0,
+    "z0": 0.6272660493850708
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   13.92424893129699,
+   18.999137934258034
+  ],
+  "lever_max_cm": [
+   22.225729362000376,
+   19.042882639647676
+  ]
+ },
+ {
+  "ep": 13,
+  "task": "Cup_In_Dish_Rack",
+  "T": 190,
+  "dur_s": 9.380807876586914,
+  "objs": [
+   {
+    "name": "blue_cup",
+    "slot": 0,
+    "max_disp_cm": 28.078167936975223,
+    "end_disp_cm": 18.0630561170002,
+    "path_cm": 78.0797808164824,
+    "ext_cm": [
+     18.3,
+     23.5,
+     18.5
+    ],
+    "max_rot_deg": 179.03353610757236,
+    "end_rot_deg": 172.4800496944019,
+    "peak_v_cms": 45.503702109978946,
+    "peak_w_dps": 248.48689770119302,
+    "moving_pct": 63.68421052631579,
+    "n_move_segs": 3,
+    "onset_frame": 27,
+    "jumps": 0,
+    "held_frames": 2,
+    "gaps": 0,
+    "z0": 0.6870213150978088
+   },
+   {
+    "name": "plastic_dish_rack",
+    "slot": 1,
+    "max_disp_cm": 0.08828142337738633,
+    "end_disp_cm": 0.025994584438213137,
+    "path_cm": 1.0487950964887989,
+    "ext_cm": [
+     0.1,
+     0.0,
+     0.1
+    ],
+    "max_rot_deg": 0.472378992395492,
+    "end_rot_deg": 0.23265237042662656,
+    "peak_v_cms": 0.7521422322225537,
+    "peak_w_dps": 4.778446669586222,
+    "moving_pct": 0.0,
+    "n_move_segs": 0,
+    "onset_frame": null,
+    "jumps": 0,
+    "held_frames": 2,
+    "gaps": 0,
+    "z0": 0.6276162266731262
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   16.540521081357323,
+   17.755301352679986
+  ],
+  "lever_max_cm": [
+   28.078167936975223,
+   17.781039102203707
+  ]
+ },
+ {
+  "ep": 18,
+  "task": "Dust_Brush",
+  "T": 353,
+  "dur_s": 17.42855453491211,
+  "objs": [
+   {
+    "name": "mini_dust_pan",
+    "slot": 0,
+    "max_disp_cm": 19.53388363864353,
+    "end_disp_cm": 2.428009706133235,
+    "path_cm": 76.45666512685936,
+    "ext_cm": [
+     12.5,
+     12.0,
+     15.9
+    ],
+    "max_rot_deg": 66.51033762992958,
+    "end_rot_deg": 2.421284397517633,
+    "peak_v_cms": 43.75646551716091,
+    "peak_w_dps": 195.92426559272252,
+    "moving_pct": 32.29461756373937,
+    "n_move_segs": 5,
+    "onset_frame": 18,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6164368987083435
+   },
+   {
+    "name": "mini_sweeper",
+    "slot": 1,
+    "max_disp_cm": 13.90184099425166,
+    "end_disp_cm": 2.644309189435933,
+    "path_cm": 139.5945938377181,
+    "ext_cm": [
+     4.3,
+     15.7,
+     8.8
+    ],
+    "max_rot_deg": 45.75275041477546,
+    "end_rot_deg": 4.8739549251733845,
+    "peak_v_cms": 70.14336340856174,
+    "peak_w_dps": 262.46339714703964,
+    "moving_pct": 60.90651558073654,
+    "n_move_segs": 10,
+    "onset_frame": 40,
+    "jumps": 1,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.66314297914505
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   3.9965250765584104,
+   21.13949986236345
+  ],
+  "lever_max_cm": [
+   19.53388363864353,
+   26.46046919190005
+  ]
+ },
+ {
+  "ep": 21,
+  "task": "Water_Can_Blue_Cup",
+  "T": 186,
+  "dur_s": 9.183317184448242,
+  "objs": [
+   {
+    "name": "blue_cup",
+    "slot": 0,
+    "max_disp_cm": 9.936009627672542,
+    "end_disp_cm": 2.7828326920119473,
+    "path_cm": 37.94714535043927,
+    "ext_cm": [
+     5.3,
+     6.9,
+     8.3
+    ],
+    "max_rot_deg": 39.125169151632065,
+    "end_rot_deg": 23.322869379508415,
+    "peak_v_cms": 26.28028907996629,
+    "peak_w_dps": 77.38122822861973,
+    "moving_pct": 45.16129032258064,
+    "n_move_segs": 3,
+    "onset_frame": 39,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6871316432952881
+   },
+   {
+    "name": "water_pitcher",
+    "slot": 1,
+    "max_disp_cm": 31.998886885206883,
+    "end_disp_cm": 11.013963101813623,
+    "path_cm": 80.23521845892542,
+    "ext_cm": [
+     15.4,
+     8.8,
+     31.6
+    ],
+    "max_rot_deg": 91.12551453257515,
+    "end_rot_deg": 18.30788126020848,
+    "peak_v_cms": 71.77494258659043,
+    "peak_w_dps": 219.49936206389745,
+    "moving_pct": 43.54838709677419,
+    "n_move_segs": 2,
+    "onset_frame": 42,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.7378317713737488
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   4.789994656453581,
+   38.929572036549345
+  ],
+  "lever_max_cm": [
+   9.936009627672542,
+   50.22707885610617
+  ]
+ },
+ {
+  "ep": 22,
+  "task": "Water_Can_Blue_Cup",
+  "T": 189,
+  "dur_s": 9.331435203552246,
+  "objs": [
+   {
+    "name": "blue_cup",
+    "slot": 0,
+    "max_disp_cm": 9.368446482915525,
+    "end_disp_cm": 1.874023392999221,
+    "path_cm": 31.42114920334935,
+    "ext_cm": [
+     2.9,
+     7.5,
+     8.2
+    ],
+    "max_rot_deg": 28.958887276835963,
+    "end_rot_deg": 17.121786538042585,
+    "peak_v_cms": 35.39223065792208,
+    "peak_w_dps": 84.90947147037767,
+    "moving_pct": 40.74074074074074,
+    "n_move_segs": 6,
+    "onset_frame": 46,
+    "jumps": 0,
+    "held_frames": 1,
+    "gaps": 0,
+    "z0": 0.6874088644981384
+   },
+   {
+    "name": "water_pitcher",
+    "slot": 1,
+    "max_disp_cm": 32.26610304835788,
+    "end_disp_cm": 5.512313995262236,
+    "path_cm": 77.73724153001262,
+    "ext_cm": [
+     7.8,
+     14.3,
+     31.7
+    ],
+    "max_rot_deg": 92.19373735707778,
+    "end_rot_deg": 15.650278071453494,
+    "peak_v_cms": 58.949680819905794,
+    "peak_w_dps": 218.0420183340738,
+    "moving_pct": 42.32804232804233,
+    "n_move_segs": 1,
+    "onset_frame": 44,
+    "jumps": 0,
+    "held_frames": 1,
+    "gaps": 0,
+    "z0": 0.7378403544425964
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   3.4351812175222394,
+   30.843358829756536
+  ],
+  "lever_max_cm": [
+   9.368446482915525,
+   49.266058364688675
+  ]
+ },
+ {
+  "ep": 23,
+  "task": "Planter_Stand",
+  "T": 325,
+  "dur_s": 16.046119689941406,
+  "objs": [
+   {
+    "name": "wooden_piece_1",
+    "slot": 0,
+    "max_disp_cm": 15.860200949931619,
+    "end_disp_cm": 15.802804543776078,
+    "path_cm": 47.48851028205479,
+    "ext_cm": [
+     9.0,
+     16.0,
+     13.2
+    ],
+    "max_rot_deg": 100.94310896541552,
+    "end_rot_deg": 95.6357254535303,
+    "peak_v_cms": 27.462374886714024,
+    "peak_w_dps": 152.57415543712793,
+    "moving_pct": 28.923076923076923,
+    "n_move_segs": 6,
+    "onset_frame": 24,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6048732995986938
+   },
+   {
+    "name": "wooden_piece_2",
+    "slot": 1,
+    "max_disp_cm": 23.00900495244553,
+    "end_disp_cm": 15.020032629763078,
+    "path_cm": 65.6667093651912,
+    "ext_cm": [
+     4.8,
+     22.8,
+     22.4
+    ],
+    "max_rot_deg": 104.79455311844472,
+    "end_rot_deg": 101.72088467504935,
+    "peak_v_cms": 51.2874179310843,
+    "peak_w_dps": 128.05172478994285,
+    "moving_pct": 33.53846153846154,
+    "n_move_segs": 9,
+    "onset_frame": 130,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6071162223815918
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   12.841452830578696,
+   23.69673501555955
+  ],
+  "lever_max_cm": [
+   15.860200949931619,
+   37.61592672773773
+  ]
+ },
+ {
+  "ep": 24,
+  "task": "Planter_Stand",
+  "T": 275,
+  "dur_s": 13.577485084533691,
+  "objs": [
+   {
+    "name": "wooden_piece_1",
+    "slot": 0,
+    "max_disp_cm": 23.98635840702228,
+    "end_disp_cm": 15.494166831968759,
+    "path_cm": 71.36938935616624,
+    "ext_cm": [
+     6.2,
+     21.6,
+     21.3
+    ],
+    "max_rot_deg": 104.61839651609327,
+    "end_rot_deg": 99.85816543963564,
+    "peak_v_cms": 56.18271436048533,
+    "peak_w_dps": 145.46049215920993,
+    "moving_pct": 33.81818181818182,
+    "n_move_segs": 2,
+    "onset_frame": 13,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6047804355621338
+   },
+   {
+    "name": "wooden_piece_2",
+    "slot": 1,
+    "max_disp_cm": 27.340198775087487,
+    "end_disp_cm": 17.64353681537527,
+    "path_cm": 73.66605406278342,
+    "ext_cm": [
+     8.5,
+     25.8,
+     24.0
+    ],
+    "max_rot_deg": 100.60443269867896,
+    "end_rot_deg": 100.2556029223764,
+    "peak_v_cms": 64.26150390822589,
+    "peak_w_dps": 118.77996237647312,
+    "moving_pct": 31.272727272727273,
+    "n_move_segs": 3,
+    "onset_frame": 116,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6072496771812439
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   15.164278637793968,
+   25.61951214161243
+  ],
+  "lever_max_cm": [
+   23.98635840702228,
+   41.88389030511485
+  ]
+ },
+ {
+  "ep": 26,
+  "task": "Pan_In_Dishrack",
+  "T": 158,
+  "dur_s": 7.800882339477539,
+  "objs": [
+   {
+    "name": "plastic_dish_rack",
+    "slot": 0,
+    "max_disp_cm": 0.43298845769056854,
+    "end_disp_cm": 0.38213188183774227,
+    "path_cm": 3.216722943065485,
+    "ext_cm": [
+     0.2,
+     0.5,
+     0.2
+    ],
+    "max_rot_deg": 1.0314675794099208,
+    "end_rot_deg": 0.5724643373692399,
+    "peak_v_cms": 6.700028254328952,
+    "peak_w_dps": 29.749943277153793,
+    "moving_pct": 2.5316455696202533,
+    "n_move_segs": 1,
+    "onset_frame": null,
+    "jumps": 0,
+    "held_frames": 2,
+    "gaps": 0,
+    "z0": 0.6264803409576416
+   },
+   {
+    "name": "white_pot",
+    "slot": 1,
+    "max_disp_cm": 20.491058393024815,
+    "end_disp_cm": 20.413050963032298,
+    "path_cm": 52.92492540858552,
+    "ext_cm": [
+     20.0,
+     5.5,
+     22.8
+    ],
+    "max_rot_deg": 179.97709769126797,
+    "end_rot_deg": 179.87411635694426,
+    "peak_v_cms": 59.50015449280328,
+    "peak_w_dps": 446.4042836637007,
+    "moving_pct": 31.0126582278481,
+    "n_move_segs": 1,
+    "onset_frame": 53,
+    "jumps": 4,
+    "held_frames": 2,
+    "gaps": 0,
+    "z0": 0.6879209280014038
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   0.375357173478852,
+   19.559397272977666
+  ],
+  "lever_max_cm": [
+   0.43298845769056854,
+   27.62566175721275
+  ]
+ },
+ {
+  "ep": 27,
+  "task": "Pan_In_Dishrack",
+  "T": 246,
+  "dur_s": 12.14567756652832,
+  "objs": [
+   {
+    "name": "plastic_dish_rack",
+    "slot": 0,
+    "max_disp_cm": 0.27946496437301427,
+    "end_disp_cm": 0.09145140150222722,
+    "path_cm": 3.2143709059396777,
+    "ext_cm": [
+     0.1,
+     0.3,
+     0.1
+    ],
+    "max_rot_deg": 1.311446148811759,
+    "end_rot_deg": 1.234191950912238,
+    "peak_v_cms": 4.475701773329799,
+    "peak_w_dps": 6.986977304484666,
+    "moving_pct": 0.0,
+    "n_move_segs": 0,
+    "onset_frame": null,
+    "jumps": 0,
+    "held_frames": 9,
+    "gaps": 0,
+    "z0": 0.6263704895973206
+   },
+   {
+    "name": "white_pot",
+    "slot": 1,
+    "max_disp_cm": 38.938752142775996,
+    "end_disp_cm": 18.249437594904112,
+    "path_cm": 88.81858479957168,
+    "ext_cm": [
+     25.5,
+     16.8,
+     29.9
+    ],
+    "max_rot_deg": 179.98478504009924,
+    "end_rot_deg": 178.98980207087052,
+    "peak_v_cms": 55.32064721463601,
+    "peak_w_dps": 131.38595862000878,
+    "moving_pct": 65.4471544715447,
+    "n_move_segs": 3,
+    "onset_frame": 24,
+    "jumps": 0,
+    "held_frames": 9,
+    "gaps": 0,
+    "z0": 0.6454366445541382
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   0.0980421231976708,
+   25.33800836823244
+  ],
+  "lever_max_cm": [
+   0.27946496437301427,
+   41.2459407403952
+  ]
+ },
+ {
+  "ep": 31,
+  "task": "Brush_Dishrack",
+  "T": 290,
+  "dur_s": 14.318075180053711,
+  "objs": [
+   {
+    "name": "mini_sweeper",
+    "slot": 0,
+    "max_disp_cm": 15.589033820435047,
+    "end_disp_cm": 9.181534496604874,
+    "path_cm": 107.80906753583199,
+    "ext_cm": [
+     2.1,
+     24.9,
+     10.9
+    ],
+    "max_rot_deg": 33.71606721376697,
+    "end_rot_deg": 5.073904413151815,
+    "peak_v_cms": 36.32521290121654,
+    "peak_w_dps": 114.46103446061399,
+    "moving_pct": 72.41379310344827,
+    "n_move_segs": 8,
+    "onset_frame": 47,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6672577261924744
+   },
+   {
+    "name": "plastic_dish_rack",
+    "slot": 1,
+    "max_disp_cm": 0.1525368677611451,
+    "end_disp_cm": 0.12870464758664804,
+    "path_cm": 1.897119571204256,
+    "ext_cm": [
+     0.1,
+     0.1,
+     0.1
+    ],
+    "max_rot_deg": 0.929555147145459,
+    "end_rot_deg": 0.8840116403895628,
+    "peak_v_cms": 1.0220323616015226,
+    "peak_w_dps": 5.302577683799142,
+    "moving_pct": 0.0,
+    "n_move_segs": 0,
+    "onset_frame": null,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6269419193267822
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   8.744295542846391,
+   11.41247342159101
+  ],
+  "lever_max_cm": [
+   15.589033820435047,
+   11.480347153890508
+  ]
+ },
+ {
+  "ep": 39,
+  "task": "Dustpan_Solo",
+  "T": 319,
+  "dur_s": 15.749882698059082,
+  "objs": [
+   {
+    "name": "mini_dust_pan",
+    "slot": 0,
+    "max_disp_cm": 39.09954523127308,
+    "end_disp_cm": 8.458117286658503,
+    "path_cm": 191.6113618664324,
+    "ext_cm": [
+     8.8,
+     29.3,
+     27.4
+    ],
+    "max_rot_deg": 108.93198132947303,
+    "end_rot_deg": 27.522580549068536,
+    "peak_v_cms": 57.43942434206468,
+    "peak_w_dps": 176.7594520513506,
+    "moving_pct": 72.72727272727273,
+    "n_move_segs": 2,
+    "onset_frame": 53,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6182625889778137
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   16.431915254542815
+  ],
+  "lever_max_cm": [
+   39.09954523127308
+  ]
+ },
+ {
+  "ep": 40,
+  "task": "Dustpan_Solo",
+  "T": 260,
+  "dur_s": 12.836894989013672,
+  "objs": [
+   {
+    "name": "mini_dust_pan",
+    "slot": 0,
+    "max_disp_cm": 27.274080782247513,
+    "end_disp_cm": 1.8024849049009979,
+    "path_cm": 87.5485720122659,
+    "ext_cm": [
+     6.2,
+     2.4,
+     27.3
+    ],
+    "max_rot_deg": 88.82523205214643,
+    "end_rot_deg": 2.3313429017509404,
+    "peak_v_cms": 40.259409331616894,
+    "peak_w_dps": 213.5692454021316,
+    "moving_pct": 61.15384615384616,
+    "n_move_segs": 4,
+    "onset_frame": 43,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6186928749084473
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   12.83672855597808
+  ],
+  "lever_max_cm": [
+   27.274080782247513
+  ]
+ },
+ {
+  "ep": 41,
+  "task": "Pan_Solo",
+  "T": 299,
+  "dur_s": 14.762429237365723,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 20.462343861851824,
+    "end_disp_cm": 2.4838386299287625,
+    "path_cm": 88.39711718222767,
+    "ext_cm": [
+     7.9,
+     13.1,
+     20.1
+    ],
+    "max_rot_deg": 71.48381054248742,
+    "end_rot_deg": 4.380246407247275,
+    "peak_v_cms": 31.389839837956636,
+    "peak_w_dps": 150.7730134233677,
+    "moving_pct": 64.54849498327759,
+    "n_move_segs": 6,
+    "onset_frame": 35,
+    "jumps": 0,
+    "held_frames": 1,
+    "gaps": 0,
+    "z0": 0.6455442905426025
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   9.704948263632573
+  ],
+  "lever_max_cm": [
+   20.462343861851824
+  ]
+ },
+ {
+  "ep": 42,
+  "task": "Pan_Solo",
+  "T": 257,
+  "dur_s": 12.688776969909668,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 17.966732933601453,
+    "end_disp_cm": 2.9353586811680272,
+    "path_cm": 149.82680729895702,
+    "ext_cm": [
+     14.3,
+     4.9,
+     17.5
+    ],
+    "max_rot_deg": 98.28409698470979,
+    "end_rot_deg": 95.29087539475924,
+    "peak_v_cms": 54.222457072159635,
+    "peak_w_dps": 173.74540174954566,
+    "moving_pct": 63.42412451361867,
+    "n_move_segs": 3,
+    "onset_frame": 39,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6460824608802795
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   5.66479836339999
+  ],
+  "lever_max_cm": [
+   17.966732933601453
+  ]
+ },
+ {
+  "ep": 43,
+  "task": "Pan_Solo",
+  "T": 326,
+  "dur_s": 16.095491409301758,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 23.721776002029813,
+    "end_disp_cm": 5.811328261676708,
+    "path_cm": 121.97800652800896,
+    "ext_cm": [
+     8.8,
+     17.8,
+     22.5
+    ],
+    "max_rot_deg": 179.9974195666021,
+    "end_rot_deg": 179.15247637899415,
+    "peak_v_cms": 35.89531923306822,
+    "peak_w_dps": 193.112844807999,
+    "moving_pct": 69.6319018404908,
+    "n_move_segs": 5,
+    "onset_frame": 30,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6628280282020569
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   9.943008454219484
+  ],
+  "lever_max_cm": [
+   23.721776002029813
+  ]
+ },
+ {
+  "ep": 44,
+  "task": "Pan_Solo",
+  "T": 249,
+  "dur_s": 12.293795585632324,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 21.94370675315546,
+    "end_disp_cm": 2.262676807474083,
+    "path_cm": 55.39557930646123,
+    "ext_cm": [
+     4.0,
+     4.4,
+     21.6
+    ],
+    "max_rot_deg": 23.741354700878922,
+    "end_rot_deg": 5.294226882696547,
+    "peak_v_cms": 36.13338808681404,
+    "peak_w_dps": 71.82321536197387,
+    "moving_pct": 39.3574297188755,
+    "n_move_segs": 3,
+    "onset_frame": 79,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.6451128125190735
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   6.952688515320764
+  ],
+  "lever_max_cm": [
+   21.94370675315546
+  ]
+ },
+ {
+  "ep": 45,
+  "task": "Pan_Solo",
+  "T": 290,
+  "dur_s": 14.318075180053711,
+  "objs": [
+   {
+    "name": "white_pot",
+    "slot": 0,
+    "max_disp_cm": 28.856348191528348,
+    "end_disp_cm": 1.726856947707971,
+    "path_cm": 96.2736957641168,
+    "ext_cm": [
+     7.8,
+     6.1,
+     28.8
+    ],
+    "max_rot_deg": 94.27147192550485,
+    "end_rot_deg": 4.769815978234361,
+    "peak_v_cms": 48.630658752147845,
+    "peak_w_dps": 167.98437885826462,
+    "moving_pct": 64.13793103448275,
+    "n_move_segs": 3,
+    "onset_frame": 52,
+    "jumps": 0,
+    "held_frames": 0,
+    "gaps": 0,
+    "z0": 0.645756185054779
+   }
+  ],
+  "lever_from_slot0_start_cm": [
+   12.808507341700953
+  ],
+  "lever_max_cm": [
+   28.856348191528348
+  ]
+ }
+]

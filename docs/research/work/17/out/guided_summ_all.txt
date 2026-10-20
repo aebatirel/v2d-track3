@@ -1,0 +1,68 @@
+n 5797
+window 6 px (cam-a eq.): hit rate with oracle-centred / offset (4 px a-eq) prediction; null false-alarm rate
+  cam a large: rest 0.64/0.51 null 0.00 (n928); held 0.29/0.22 null 0.00 (n381); carried 0.14/0.11 null 0.01 (n362)
+  cam a small: rest 0.01/0.00 null 0.01 (n166); held 0.02/0.02 null 0.00 (n96); carried 0.00/0.00 null 0.00 (n56)
+  cam b large: rest 0.52/0.43 null 0.00 (n826); held 0.31/0.25 null 0.00 (n371); carried 0.18/0.18 null 0.00 (n341)
+  cam b small: rest 0.01/0.00 null 0.00 (n168); held 0.08/0.07 null 0.00 (n98); carried 0.00/0.00 null 0.00 (n59)
+  cam c large: rest 0.51/0.42 null 0.00 (n886); held 0.29/0.21 null 0.00 (n378); carried 0.18/0.15 null 0.01 (n363)
+  cam c small: rest 0.01/0.00 null 0.00 (n152); held 0.09/0.06 null 0.00 (n93); carried 0.06/0.04 null 0.02 (n53)
+window 15 px (cam-a eq.): hit rate with oracle-centred / offset (9 px a-eq) prediction; null false-alarm rate
+  cam a large: rest 0.68/0.67 null 0.02 (n928); held 0.45/0.42 null 0.01 (n381); carried 0.25/0.23 null 0.03 (n362)
+  cam a small: rest 0.01/0.01 null 0.06 (n166); held 0.02/0.02 null 0.03 (n96); carried 0.00/0.00 null 0.05 (n56)
+  cam b large: rest 0.60/0.59 null 0.02 (n826); held 0.47/0.44 null 0.02 (n371); carried 0.31/0.27 null 0.03 (n341)
+  cam b small: rest 0.01/0.01 null 0.03 (n168); held 0.08/0.08 null 0.06 (n98); carried 0.00/0.00 null 0.03 (n59)
+  cam c large: rest 0.58/0.58 null 0.02 (n884); held 0.38/0.37 null 0.02 (n378); carried 0.27/0.25 null 0.01 (n363)
+  cam c small: rest 0.01/0.01 null 0.05 (n152); held 0.09/0.09 null 0.01 (n93); carried 0.06/0.06 null 0.00 (n53)
+
+per frame/object distinct markers HIT (w6, offset prediction): >=3 / 2 / 1 / 0  [z-visible >=3]  (frames with >=1 z-visible marker)
+  blue_cup           carried  a    n   44: 0.00 / 0.09 / 0.23 / 0.68  [0.86]
+  blue_cup           carried  abc  n   44: 0.07 / 0.27 / 0.34 / 0.32  [0.91]
+  blue_cup           carried  bc   n   44: 0.05 / 0.25 / 0.30 / 0.41  [0.91]
+  blue_cup           held     a    n   34: 0.03 / 0.09 / 0.26 / 0.62  [0.97]
+  blue_cup           held     abc  n   34: 0.06 / 0.24 / 0.38 / 0.32  [0.97]
+  blue_cup           held     bc   n   34: 0.00 / 0.24 / 0.35 / 0.41  [0.97]
+  blue_cup           rest     a    n   45: 0.02 / 0.27 / 0.38 / 0.33  [0.78]
+  blue_cup           rest     abc  n   45: 0.13 / 0.44 / 0.36 / 0.07  [0.78]
+  blue_cup           rest     bc   n   45: 0.07 / 0.24 / 0.51 / 0.18  [0.78]
+  mini_sweeper       carried  a    n   35: 0.00 / 0.00 / 0.00 / 1.00  [0.03]
+  mini_sweeper       carried  abc  n   35: 0.00 / 0.00 / 0.03 / 0.97  [0.06]
+  mini_sweeper       carried  bc   n   35: 0.00 / 0.00 / 0.03 / 0.97  [0.06]
+  mini_sweeper       held     a    n   27: 0.00 / 0.00 / 0.00 / 1.00  [0.33]
+  mini_sweeper       held     abc  n   27: 0.00 / 0.00 / 0.00 / 1.00  [0.48]
+  mini_sweeper       held     bc   n   27: 0.00 / 0.00 / 0.00 / 1.00  [0.48]
+  mini_sweeper       rest     a    n   11: 0.00 / 0.45 / 0.09 / 0.45  [1.00]
+  mini_sweeper       rest     abc  n   11: 0.45 / 0.09 / 0.00 / 0.45  [1.00]
+  mini_sweeper       rest     bc   n   11: 0.18 / 0.18 / 0.18 / 0.45  [1.00]
+  plastic_dish_rack  held     a    n   14: 0.00 / 0.00 / 0.64 / 0.36  [0.00]
+  plastic_dish_rack  held     abc  n   14: 0.00 / 0.21 / 0.64 / 0.14  [0.00]
+  plastic_dish_rack  held     bc   n   14: 0.00 / 0.14 / 0.64 / 0.21  [0.00]
+  plastic_dish_rack  rest     a    n  173: 0.03 / 0.41 / 0.42 / 0.14  [0.50]
+  plastic_dish_rack  rest     abc  n  173: 0.10 / 0.54 / 0.31 / 0.05  [0.50]
+  plastic_dish_rack  rest     bc   n  173: 0.06 / 0.29 / 0.52 / 0.13  [0.37]
+  water_pitcher      carried  a    n   21: 0.00 / 0.10 / 0.00 / 0.90  [0.52]
+  water_pitcher      carried  abc  n   21: 0.00 / 0.29 / 0.05 / 0.67  [0.62]
+  water_pitcher      carried  bc   n   21: 0.00 / 0.19 / 0.10 / 0.71  [0.52]
+  water_pitcher      held     a    n   12: 0.00 / 0.17 / 0.17 / 0.67  [0.00]
+  water_pitcher      held     abc  n   12: 0.00 / 0.42 / 0.17 / 0.42  [0.25]
+  water_pitcher      held     bc   n   12: 0.00 / 0.33 / 0.08 / 0.58  [0.25]
+  water_pitcher      rest     a    n   29: 0.00 / 0.31 / 0.17 / 0.52  [0.00]
+  water_pitcher      rest     abc  n   29: 0.00 / 0.62 / 0.07 / 0.31  [0.00]
+  water_pitcher      rest     bc   n   29: 0.00 / 0.52 / 0.10 / 0.38  [0.00]
+  white_pot          carried  a    n   36: 0.00 / 0.03 / 0.17 / 0.81  [0.83]
+  white_pot          carried  abc  n   36: 0.03 / 0.22 / 0.22 / 0.53  [0.94]
+  white_pot          carried  bc   n   36: 0.03 / 0.17 / 0.25 / 0.56  [0.94]
+  white_pot          held     a    n   17: 0.06 / 0.18 / 0.06 / 0.71  [0.82]
+  white_pot          held     abc  n   17: 0.12 / 0.29 / 0.12 / 0.47  [0.94]
+  white_pot          held     bc   n   17: 0.06 / 0.24 / 0.12 / 0.59  [0.94]
+  white_pot          rest     a    n   94: 0.00 / 0.30 / 0.41 / 0.29  [0.96]
+  white_pot          rest     abc  n   94: 0.01 / 0.57 / 0.21 / 0.20  [0.99]
+  white_pot          rest     bc   n   94: 0.00 / 0.44 / 0.28 / 0.29  [0.98]
+  white_pot_lid      carried  a    n   13: 0.15 / 0.08 / 0.08 / 0.69  [1.00]
+  white_pot_lid      carried  abc  n   13: 0.31 / 0.31 / 0.08 / 0.31  [1.00]
+  white_pot_lid      carried  bc   n   13: 0.23 / 0.31 / 0.15 / 0.31  [1.00]
+  white_pot_lid      held     a    n   43: 0.07 / 0.21 / 0.40 / 0.33  [1.00]
+  white_pot_lid      held     abc  n   43: 0.53 / 0.19 / 0.09 / 0.19  [1.00]
+  white_pot_lid      held     bc   n   43: 0.30 / 0.35 / 0.12 / 0.23  [1.00]
+  white_pot_lid      rest     a    n   38: 0.24 / 0.42 / 0.18 / 0.16  [1.00]
+  white_pot_lid      rest     abc  n   38: 0.66 / 0.21 / 0.00 / 0.13  [1.00]
+  white_pot_lid      rest     bc   n   38: 0.50 / 0.32 / 0.03 / 0.16  [1.00]

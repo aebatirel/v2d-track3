@@ -1,0 +1,5 @@
+N 30 baseline toM2 min 0.023 med 0.034 max 0.054
+slope per mm med 0.0171 [0.0118,0.0266]
+flip at latM1-latM2 = min 1.11 med 1.96 max 2.77 mm
+baseline latM1-latM2 med -0.40 mm
+A_cm2 med 228.1708409380845 sd_mm med [ 5.73831048 10.92548749 88.32177887]

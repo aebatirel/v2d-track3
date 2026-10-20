@@ -1,0 +1,21 @@
+objects: ['beige_cup', 'blue_cup', 'mini_dust_pan', 'mini_sweeper', 'plastic_dish_rack', 'water_pitcher', 'white_pot', 'white_pot_lid', 'wooden_piece_1', 'wooden_piece_2']
+G1: 208 rules, 0 fit 10/10, max fit 7, #fit 9 0
+G2: 156 rules, 0 fit 10/10, max fit 8, #fit 9 0
+G2m: 5408 rules, 0 fit 10/10, max fit 9, #fit 9 6
+G7: 3 rules, 0 fit 10/10, max fit 9, #fit 9 1
+    G7 maj7|top2|skew| [1 1 1 1 1 1 1 1 1 0]
+    G7 maj7|yz [1 0 0 1 1 1 0 1 1 0]
+    G7 maj7|xz [0 1 1 1 1 0 1 1 1 0]
+G2m ('skew', 1, 'y', 'far3d', 1) fails water_pitcher
+G2m ('skew', 1, 'y', 'vskew', 1) fails white_pot
+G2m ('ssq', 1, 'y', 'far3d', 1) fails water_pitcher
+G2m ('ssq', 1, 'y', 'vskew', 1) fails white_pot
+G2m ('q10', 1, 'y', 'far3d', 1) fails water_pitcher
+G2m ('q10', 1, 'y', 'vskew', 1) fails white_pot
+G7 maj7|top2|skew| fails wooden_piece_2
+NULL (1000 random roll configurations, z kept):
+   G1: P(>=1 fits) = 0.000; mean #fit 0.00; P(#fit >= observed 0) = 0.000
+   G2: P(>=1 fits) = 0.004; mean #fit 0.01; P(#fit >= observed 0) = 0.004
+   G2m: P(>=1 fits) = 0.054; mean #fit 0.36; P(#fit >= observed 0) = 0.054
+   G7: P(>=1 fits) = 0.000; mean #fit 0.00; P(#fit >= observed 0) = 0.000
+   union: P(>=1 fits) = 0.054; mean #fit 0.36; P(#fit >= observed 0) = 0.054

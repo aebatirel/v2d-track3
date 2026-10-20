@@ -1,0 +1,19 @@
+c/trk_21_s90n20.npz MODE reg SH -0.5 T 186 runtime 0.68 s/frame
+  blue_cup: AUC(ADD, this trajectory, no policy) 0.330; status 3/2/1/0 = 0.04 / 0.29 / 0.65 / 0.02
+    rest     n  61 fix>=2 0.52 fix3 0.07 | fix3 n4 t 12.9/16.7 r 3.02/3.49 ADD 13.1/16.8 | fix2 n28 t 27.2/35.3 r 45.35/149.94 ADD 41.8/76.9 | all n61 t 30.9/42.8 r 83.43/117.08 ADD 61.2/75.2 |
+    held     n  65 fix>=2 0.26 fix3 0.02 | fix2 n16 t 23.3/62.3 r 136.44/172.95 ADD 76.7/84.9 | all n65 t 28.2/44.8 r 94.37/143.87 ADD 65.8/77.2 |
+    carried  n  60 fix>=2 0.22 fix3 0.05 | fix3 n3 t 22.8/56.6 r 13.40/36.85 ADD 38.7/60.9 | fix2 n10 t 53.2/101.6 r 109.43/138.85 ADD 95.0/112.7 | all n60 t 43.3/57.9 r 90.46/101.15 ADD 73.1/84.5 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.294; t 33.1 r 90.35 ADD 64.3 | FUSED AUC 0.330
+      rest     fix frames n32: prior ADD 60.2 -> fused 38.6 mm; fused worse than prior in 0.25
+      held     fix frames n17: prior ADD 60.6 -> fused 76.6 mm; fused worse than prior in 0.71
+      carried  fix frames n13: prior ADD 64.8 -> fused 83.9 mm; fused worse than prior in 0.54
+  water_pitcher: AUC(ADD, this trajectory, no policy) 0.645; status 3/2/1/0 = 0.00 / 0.49 / 0.49 / 0.02
+    rest     n  86 fix>=2 0.48 fix3 0.00 | fix2 n41 t 13.3/30.7 r 14.67/25.09 ADD 21.7/48.5 | all n86 t 28.9/48.2 r 20.18/28.12 ADD 43.8/60.4 |
+    held     n  39 fix>=2 0.69 fix3 0.00 | fix2 n27 t 8.5/15.9 r 8.76/20.91 ADD 16.6/36.0 | all n39 t 13.2/44.5 r 10.66/20.46 ADD 25.0/47.9 |
+    carried  n  61 fix>=2 0.38 fix3 0.00 | fix2 n23 t 17.1/28.9 r 19.59/28.42 ADD 38.0/48.7 | all n61 t 23.5/39.9 r 24.80/34.64 ADD 45.7/59.3 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.544; t 32.1 r 20.07 ADD 46.8 | FUSED AUC 0.645
+      rest     fix frames n41: prior ADD 36.9 -> fused 21.7 mm; fused worse than prior in 0.05
+      held     fix frames n27: prior ADD 41.1 -> fused 16.6 mm; fused worse than prior in 0.00
+      carried  fix frames n23: prior ADD 47.3 -> fused 38.0 mm; fused worse than prior in 0.00
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object blue_cup:0.300 water_pitcher:0.617 mean 0.459
+  SCORER-STYLE (prior-only; slot-0 frame-0 alignment) AUC per object blue_cup:0.351 water_pitcher:0.000 mean 0.176

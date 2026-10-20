@@ -1,0 +1,8 @@
+[2026-10-06 23:01:05.099] [CoACD] [info] Mesh Manifoldness: true
+RESULT Linux aarch64 /w/19/c/xplat/lib_arm64/coacd/__init__.py /w/19/b/S120/plastic_dish_rack/plastic_dish_rack_p009.npz hulls 95 sec 36
+[2026-10-06 23:01:41.341] [CoACD] [info] Mesh Manifoldness: true
+RESULT Linux aarch64 /w/19/c/xplat/lib_arm64/coacd/__init__.py /w/19/b/S60/white_pot_lid/white_pot_lid_p000.npz hulls 121 sec 19
+[2026-10-06 23:02:00.642] [CoACD] [info] Mesh Manifoldness: true
+RESULT Linux aarch64 /w/19/c/xplat/lib_arm64/coacd/__init__.py /w/19/b/S60/beige_cup/beige_cup_p000.npz hulls 38 sec 9
+[2026-10-06 23:02:09.472] [CoACD] [info] Mesh Manifoldness: true
+RESULT Linux aarch64 /w/19/c/xplat/lib_arm64/coacd/__init__.py /w/19/b/S60/blue_cup/blue_cup_p007.npz hulls 69 sec 15

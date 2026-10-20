@@ -1,0 +1,21 @@
+LOO, parameter-free families: rules fitting the other 9 -> share predicting the held-out roll correctly
+  F1            mean share correct 0.00 | per held-out (n_rules, share): beige_cu:0,nan blue_cup:0,nan mini_dus:0,nan mini_swe:0,nan plastic_:0,nan water_pi:1,0.00 white_po:1,0.00 white_po:0,nan wooden_p:0,nan wooden_p:0,nan
+  F2            mean share correct 0.77 | per held-out (n_rules, share): beige_cu:28,0.54 blue_cup:18,0.83 mini_dus:16,0.94 mini_swe:15,1.00 plastic_:15,1.00 water_pi:16,0.94 white_po:15,1.00 white_po:15,1.00 wooden_p:51,0.29 wooden_p:125,0.12
+  F2b           mean share correct 0.77 | per held-out (n_rules, share): beige_cu:2,0.50 blue_cup:1,1.00 mini_dus:1,1.00 mini_swe:1,1.00 plastic_:1,1.00 water_pi:1,1.00 white_po:1,1.00 white_po:1,1.00 wooden_p:7,0.14 wooden_p:52,0.02
+  F4            mean share correct 0.00 | per held-out (n_rules, share): beige_cu:0,nan blue_cup:0,nan mini_dus:0,nan mini_swe:0,nan plastic_:0,nan water_pi:1,0.00 white_po:5,0.00 white_po:0,nan wooden_p:0,nan wooden_p:3,0.00
+  F1|F2|F2b|F4  mean share correct 0.73 | per held-out (n_rules, share): beige_cu:30,0.53 blue_cup:19,0.84 mini_dus:17,0.94 mini_swe:16,1.00 plastic_:16,1.00 water_pi:19,0.84 white_po:22,0.73 white_po:16,1.00 wooden_p:58,0.28 wooden_p:180,0.09
+LOO, F3 hybrids (tau refitted on 9):
+  held-out beige_cup         :  227 hybrids fit the other 9; share predicting it correctly 0.63
+  held-out blue_cup          :  467 hybrids fit the other 9; share predicting it correctly 0.31
+  held-out mini_dust_pan     :  180 hybrids fit the other 9; share predicting it correctly 0.86
+  held-out mini_sweeper      :  159 hybrids fit the other 9; share predicting it correctly 0.96
+  held-out plastic_dish_rack :  160 hybrids fit the other 9; share predicting it correctly 0.94
+  held-out water_pitcher     :  273 hybrids fit the other 9; share predicting it correctly 0.51
+  held-out white_pot         :  303 hybrids fit the other 9; share predicting it correctly 0.39
+  held-out white_pot_lid     :  206 hybrids fit the other 9; share predicting it correctly 0.62
+  held-out wooden_piece_1    :  197 hybrids fit the other 9; share predicting it correctly 0.62
+  held-out wooden_piece_2    :  493 hybrids fit the other 9; share predicting it correctly 0.25
+  mean share 0.61
+z control: single-stat rules fitting 10/10: [('skew', 1), ('ssq', 1), ('q10', 1)]
+z control null: P(>=1 single-stat z rule fits 10/10 | random z bits) = 0.022
+z control LOO share correct: [1.   1.   1.   1.   1.   1.   1.   1.   1.   0.25] mean 0.92

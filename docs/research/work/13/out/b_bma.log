@@ -1,0 +1,5 @@
+class evidence (avg lik): RAND 9.77e-04  DET 4.76e-03 (16/3364 fit)  NOISY 8.70e-04
+posterior class weights: RAND 0.15  DET 0.72  NOISY 0.13
+nomark : P(A|DET) 0.11  P(A|NOISY) 0.47 (weight w/o saved stat 0.10)  => model-averaged P(A) 0.21, P(B) 0.79
+oval   : P(A|DET) 0.14  P(A|NOISY) 0.10 (weight w/o saved stat 0.10)  => model-averaged P(A) 0.19, P(B) 0.81
+round  : P(A|DET) 0.03  P(A|NOISY) 0.07 (weight w/o saved stat 0.10)  => model-averaged P(A) 0.10, P(B) 0.90

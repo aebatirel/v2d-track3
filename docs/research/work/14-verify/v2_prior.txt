@@ -1,0 +1,34 @@
+real 1 seed      note15 s lo..hi : 0.702-0.785 / 0.687-0.897 / 0.236-0.543
+real 1 seed      s halved (dig: S_LO/2..S_LO) : 0.732-0.815 / 0.736-0.926 / 0.363-0.674
+real 1 seed      s halved (true: S_LO/2..S_HI/2): 0.740-0.815 / 0.750-0.926 / 0.393-0.674
+real 1 seed      class-blind s=0 : 0.779-0.846 / 0.812-0.955 / 0.550-0.806
+real 1 seed      note15, 36->P   : 0.706-0.790 / 0.696-0.904 / 0.247-0.557
+real best3       note15 s lo..hi : 0.742-0.814 / 0.755-0.926 / 0.391-0.666
+real best3       s halved (dig: S_LO/2..S_LO) : 0.793-0.852 / 0.837-0.962 / 0.600-0.829
+real best3       s halved (true: S_LO/2..S_HI/2): 0.806-0.852 / 0.859-0.962 / 0.650-0.829
+real best3       class-blind s=0 : 0.869-0.891 / 0.962-0.998 / 0.909-0.992
+real best3       note15, 36->P   : 0.750-0.821 / 0.771-0.934 / 0.409-0.683
+headroom 1 seed  note15 s lo..hi : 0.749-0.843 / 0.725-0.910 / 0.323-0.600
+headroom 1 seed  s halved (dig: S_LO/2..S_LO) : 0.804-0.889 / 0.792-0.943 / 0.495-0.747
+headroom 1 seed  s halved (true: S_LO/2..S_HI/2): 0.818-0.889 / 0.810-0.943 / 0.536-0.747
+headroom 1 seed  class-blind s=0 : 0.886-0.935 / 0.896-0.975 / 0.750-0.893
+headroom 1 seed  note15, 36->P   : 0.758-0.852 / 0.738-0.918 / 0.338-0.616
+headroom best3   note15 s lo..hi : 0.784-0.866 / 0.769-0.927 / 0.423-0.670
+headroom best3   s halved (dig: S_LO/2..S_LO) : 0.855-0.917 / 0.858-0.963 / 0.650-0.834
+headroom best3   s halved (true: S_LO/2..S_HI/2): 0.874-0.917 / 0.881-0.963 / 0.704-0.834
+headroom best3   class-blind s=0 : 0.963-0.968 / 0.993-1.000 / 0.984-0.999
+headroom best3   note15, 36->P   : 0.795-0.875 / 0.786-0.935 / 0.443-0.687
+all-fail eval-composition, ONLY never+good          : AUC 0.593 SP 0.611 MP 0.000
+all-fail eval-composition, ONLY freeze50+good       : AUC 0.729 SP 0.943 MP 0.062
+all-fail eval-composition, ONLY fall50_tipped+good  : AUC 0.686 SP 0.554 MP 0.000
+all-fail eval-composition, ONLY fall50_tipped       : AUC 0.674 SP 0.431 MP 0.000
+all-fail eval-composition, ONLY never               : AUC 0.609 SP 0.611 MP 0.000
+all-fail eval-composition, ONLY fall50_upright      : AUC 0.727 SP 0.668 MP 0.123
+mid decomposition fm=freeze50+good: total [0.748 0.862 0.388] loss [0.252 0.138 0.612]; cont [0.04 0.   0.  ] ([16.  0.  0.]%); F [0.029 0.022 0.067] ([11. 16. 11.]%); P [0.065 0.036 0.222] ([26. 26. 36.]%); L [0.117 0.08  0.323] ([47. 58. 53.]%)
+   best3 gain note15 [0.037 0.037 0.154] ; class-blind best3 gain [0.067 0.065 0.282]
+mid decomposition fm=fall50_tipped+good: total [0.735 0.741 0.368] loss [0.265 0.259 0.632]; cont [0.04 0.   0.  ] ([15.  0.  0.]%); F [0.031 0.04  0.068] ([12. 15. 11.]%); P [0.07  0.071 0.231] ([26. 27. 37.]%); L [0.125 0.148 0.332] ([47. 57. 53.]%)
+   best3 gain note15 [0.041 0.068 0.158] ; class-blind best3 gain [0.074 0.121 0.291]
+fail row never+good: 1-obj [0.321 0.286 0.   ] 2-obj [0.661 0.692 0.   ]
+fail row freeze50+good: 1-obj [0.551 0.714 0.   ] 2-obj [0.774 1.    0.077]
+fail row fall50_tipped+good: 1-obj [0.496 0.    0.   ] 2-obj [0.733 0.692 0.   ]
+lag30 row: 1-obj [0.833 1.    1.   ] 2-obj [0.907 1.    1.   ]; good: 1-obj [0.955 1.    1.   ] 2-obj [0.972 1.    1.   ]

@@ -1,0 +1,5 @@
+e3 {'C_a': 15, 'M_a': 14, 'c_a': 14, 'n': 1, 'c_bc': 13, 'window_end_row': 10, 'empty': False}
+e15 {'C_a': 34, 'M_a': None, 'c_a': 44, 'n': 1, 'c_bc': 43, 'window_end_row': 40, 'empty': False}
+e16 {'C_a': 14, 'M_a': 75, 'c_a': 24, 'n': 1, 'c_bc': 23, 'window_end_row': 20, 'empty': False}
+e8 {'C_a': 33, 'M_a': 45, 'c_a': 43, 'n': 1, 'c_bc': 42, 'window_end_row': 39, 'empty': False}
+e14 {'C_a': 14, 'M_a': 25, 'c_a': 24, 'n': 1, 'c_bc': 23, 'window_end_row': 20, 'empty': False}

@@ -1,0 +1,17 @@
+ep 21 win 12: nobs 215 (a 188 b 13 c 14) res(a-eq px) med 2.91 p90 6.82; 37s
+ep 21 win 8: nobs 215 (a 181 b 15 c 19) res(a-eq px) med 2.88 p90 6.34; 74s
+ep 21 win 6: nobs 185 (a 156 b 12 c 17) res(a-eq px) med 2.55 p90 5.10; 108s
+drift knots (deg, mm) max |rot| 0.086 max |trans| 3.0
+   cam a blue_cup           n   61 res med 2.98 p90 5.44 (a-eq px)
+   cam a water_pitcher      n   95 res med 2.22 p90 4.63 (a-eq px)
+   cam b blue_cup           n    9 res med 3.73 p90 5.38 (a-eq px)
+   cam b water_pitcher      n    3 res med 2.72 p90 3.65 (a-eq px)
+   cam c blue_cup           n   14 res med 3.25 p90 4.44 (a-eq px)
+   cam c water_pitcher      n    3 res med 3.09 p90 3.11 (a-eq px)
+   LOMO blue_cup m0: n 20 held-out res (a-eq px) med 3.29 p90 4.60
+   LOMO blue_cup m1: n 31 held-out res (a-eq px) med 3.63 p90 5.85
+   LOMO blue_cup m3: n 33 held-out res (a-eq px) med 4.22 p90 6.65
+   LOMO water_pitche m1: n 53 held-out res (a-eq px) med 2.17 p90 5.03
+   LOMO water_pitche m3: n 48 held-out res (a-eq px) med 2.75 p90 4.88
+LOMO all: n 185; px(a-eq) med 2.93 p75 4.35 p90 5.50; lateral mm med 1.38 p90 2.46
+total 144.50206685066223

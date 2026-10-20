@@ -30,7 +30,10 @@ for the working rules.
 | `spoon/` | Parametric wooden-spoon model (no public scan exists), frame-convention analysis, fitting skeleton. |
 | `notebooks/` | Plain-language explained notebook of the Colab experiments, plus its builder. |
 | `docs/research/` | 22 research notes (`notes/`), the Track 3 requirements digest, and supporting scripts. Notes cite paths as `reports/v2d-challenge/research/...`, which map to `docs/research/notes/...` here. |
-| `docs/gpu-rental/` | Research on the cheapest GPU rental (report + notes). |
+| `docs/research/work/` | Scripts, logs and text outputs of the research rounds (folders 11–20 match notes 11–20; `-verify` folders are the independent checks). Binaries and third-party copies were left out. |
+| `docs/professor-package/` | The summary package sent to the professor. |
+| `docs/gpu-rental/` | Research on the cheapest GPU rental (report, notes, live Vast market snapshot). |
+| `docs/context-and-decisions.md` | The owner's goals, preferences and decisions from the original chats. Read this too. |
 | `docs/work-log.md` | Dated chronological log of the work so far (from the original handoff file). |
 
 ## Running on a rented GPU (Vast.ai)

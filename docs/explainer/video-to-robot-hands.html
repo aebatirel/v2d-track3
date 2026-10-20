@@ -1,0 +1,594 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Video to Robot Hands</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; each section pairs a short explanation with one drawing. Pipeline order is real, so stages are numbered. */
+:root {
+  --bg: #F3F5F7;
+  --surface: #FFFFFF;
+  --ink: #141A21;
+  --muted: #586273;
+  --line: #D3DAE2;
+  --soft: #E6EBF0;
+  --accent: #0B6A88;      /* perception / our data */
+  --accent-soft: #D7EAF1;
+  --robot: #A4561A;       /* robot / simulation side */
+  --ok: #2B7A4B;
+  --warn: #A86F0E;
+  --todo: #808A98;
+  --bad: #B2362B;
+  --display: "Barlow Semi Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1217; --surface: #161C23; --ink: #E5EAF0; --muted: #98A3B2; --line: #2B343F; --soft: #1D252E;
+    --accent: #52B4D3; --accent-soft: #163845; --robot: #E39A5E; --ok: #5CC28B; --warn: #E2B04C; --todo: #74808F; --bad: #EC7064;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1217; --surface: #161C23; --ink: #E5EAF0; --muted: #98A3B2; --line: #2B343F; --soft: #1D252E;
+  --accent: #52B4D3; --accent-soft: #163845; --robot: #E39A5E; --ok: #5CC28B; --warn: #E2B04C; --todo: #74808F; --bad: #EC7064;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); }
+.wrap { max-width: 960px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; display: grid; gap: 56px; }
+section { display: grid; gap: 18px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+h1 { font-size: clamp(2.6rem, 7vw, 4.2rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 3.6vw, 2.15rem); font-weight: 600; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 500 0.78rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.lead { font-size: 1.12rem; color: var(--ink); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 0.86em; }
+figure { margin: 0; display: grid; gap: 10px; min-width: 0; }
+figcaption { font-size: 0.9rem; color: var(--muted); max-width: 72ch; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; min-width: 0; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+svg { display: block; max-width: 100%; height: auto; color: var(--ink); font-family: var(--body); }
+.scroll svg.wide { min-width: 720px; }
+
+/* SVG paint classes, all from tokens */
+.t-ink { fill: var(--ink); } .t-muted { fill: var(--muted); } .t-accent { fill: var(--accent); } .t-robot { fill: var(--robot); } .t-bad { fill: var(--bad); }
+.s-ink { stroke: var(--ink); fill: none; } .s-line { stroke: var(--line); fill: none; } .s-muted { stroke: var(--muted); fill: none; }
+.s-accent { stroke: var(--accent); fill: none; } .s-robot { stroke: var(--robot); fill: none; }
+.f-surface { fill: var(--surface); } .f-soft { fill: var(--soft); } .f-accent { fill: var(--accent); } .f-accent-soft { fill: var(--accent-soft); }
+.f-robot { fill: var(--robot); } .f-bad { fill: var(--bad); } .f-ok { fill: var(--ok); } .f-warn { fill: var(--warn); } .f-todo { fill: var(--todo); } .f-ink { fill: var(--ink); }
+.box-ok { fill: var(--surface); stroke: var(--ok); stroke-width: 2; }
+.box-warn { fill: var(--surface); stroke: var(--warn); stroke-width: 2; stroke-dasharray: 6 4; }
+.box-in { fill: var(--soft); stroke: var(--line); stroke-width: 1.5; }
+.lbl { font-size: 13px; font-weight: 600; } .sub { font-size: 11px; } .tiny { font-size: 10.5px; }
+.monot { font-family: var(--mono); font-size: 11px; }
+
+/* status legend + chips */
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 0.88rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 22px; height: 12px; border-radius: 3px; border: 2px solid; background: var(--surface); }
+.sw.ok { border-color: var(--ok); } .sw.warn { border-color: var(--warn); border-style: dashed; } .sw.in { border-color: var(--line); background: var(--soft); }
+
+/* data cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; min-width: 0; }
+.card .num { font: 500 0.75rem/1 var(--mono); color: var(--accent); letter-spacing: 0.06em; }
+.card.rob .num { color: var(--robot); }
+.card svg { height: 78px; width: 100%; }
+.card p { font-size: 0.93rem; }
+.shape { font: 400 0.78rem/1.45 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+
+/* tried-so-far log */
+.log { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.log li { display: grid; grid-template-columns: 112px 1fr; gap: 14px; padding: 12px 16px; border-top: 1px solid var(--line); align-items: start; }
+.log li:first-child { border-top: 0; }
+.chip { font: 500 0.72rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 8px; border-radius: 999px; text-align: center; border: 1.5px solid; white-space: nowrap; }
+.chip.ok { color: var(--ok); border-color: var(--ok); }
+.chip.no { color: var(--bad); border-color: var(--bad); }
+.chip.wip { color: var(--warn); border-color: var(--warn); border-style: dashed; }
+.log b { font-weight: 600; }
+.log .d { color: var(--muted); font-size: 0.93rem; }
+@media (max-width: 520px) { .log li { grid-template-columns: 1fr; gap: 6px; } .chip { justify-self: start; } }
+
+/* tables */
+table { border-collapse: collapse; width: 100%; font-size: 0.94rem; }
+th, td { text-align: left; padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.75rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-top: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* checklist */
+.need { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: n; }
+.need li { counter-increment: n; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; min-width: 0; }
+.need li::before { content: counter(n); font: 600 1.1rem/1 var(--display); color: var(--accent); border: 1.5px solid var(--accent); border-radius: 50%; width: 30px; height: 30px; display: grid; place-items: center; }
+.key { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; min-width: 0; }
+.key code { font: 0.78rem/1.4 var(--mono); background: var(--soft); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; overflow-wrap: anywhere; min-width: 0; flex: 1 1 260px; }
+button { font: 500 0.85rem/1 var(--body); color: var(--surface); background: var(--accent); border: 0; border-radius: 8px; padding: 9px 14px; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--warn); outline-offset: 2px; }
+.note { font-size: 0.88rem; color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+@media (prefers-reduced-motion: no-preference) { button { transition: filter .15s; } button:hover { filter: brightness(1.08); } }
+</style>
+
+<div class="wrap">
+
+<header style="display:grid; gap:16px;">
+  <div class="eyebrow">NVIDIA V2D Challenge · Track 3 · status on 18 Oct 2026</div>
+  <h1>Video to Robot Hands</h1>
+  <p class="lead">A person moves a cup in front of a head-mounted camera. Our job is to make two <b>simulated robot hands</b> move the same cup in the same way. The leaderboard measures how close the simulated cup's path is to the real path, which was recorded with motion capture.</p>
+  <figure class="panel">
+    <svg viewBox="0 0 900 128" role="img" aria-label="Score scale from 0 to 1: other teams 0.23 to 0.37, doing nothing 0.446, the leader 0.765, our object tracking alone 0.809 on public episodes.">
+      <line x1="40" y1="78" x2="860" y2="78" class="s-muted" stroke-width="1.5"/>
+      <g class="t-muted tiny" text-anchor="middle">
+        <text x="40" y="100">0</text><text x="245" y="100">0.25</text><text x="450" y="100">0.5</text><text x="655" y="100">0.75</text><text x="860" y="100">1.0</text>
+      </g>
+      <g class="s-muted"><line x1="40" y1="74" x2="40" y2="82"/><line x1="245" y1="74" x2="245" y2="82"/><line x1="450" y1="74" x2="450" y2="82"/><line x1="655" y1="74" x2="655" y2="82"/><line x1="860" y1="74" x2="860" y2="82"/></g>
+      <!-- other teams 0.23-0.37 -->
+      <rect x="228.6" y="64" width="114.8" height="14" rx="3" class="f-todo" opacity="0.55"/>
+      <text x="286" y="56" text-anchor="middle" class="t-muted sub">other teams 0.23–0.37</text>
+      <!-- nothing moves 0.446 -->
+      <line x1="405.7" y1="58" x2="405.7" y2="78" class="s-ink" stroke-width="2"/>
+      <text x="405.7" y="38" text-anchor="middle" class="t-ink sub">a robot that does nothing</text>
+      <text x="405.7" y="51" text-anchor="middle" class="t-ink sub" font-weight="600">0.446</text>
+      <!-- leader 0.765 -->
+      <line x1="667.3" y1="58" x2="667.3" y2="78" class="s-robot" stroke-width="3"/>
+      <text x="660" y="38" text-anchor="end" class="t-robot sub">leader (after simulation)</text>
+      <text x="660" y="51" text-anchor="end" class="t-robot sub" font-weight="600">0.765</text>
+      <!-- ours 0.809 -->
+      <circle cx="703.4" cy="78" r="7" class="f-accent"/>
+      <text x="712" y="38" class="t-accent sub">our tracking only, public set</text>
+      <text x="712" y="51" class="t-accent sub" font-weight="600">0.809</text>
+      <text x="40" y="122" class="t-muted tiny">AUC score, higher is better</text>
+    </svg>
+    <figcaption>Where everyone stands on the main score. Our 0.809 measures object tracking from video only, before any robot is involved, so it is a ceiling and not a leaderboard result.</figcaption>
+  </figure>
+</header>
+
+<section id="goal">
+  <div class="eyebrow">The goal</div>
+  <h2>Copy a real motion into a simulator</h2>
+  <figure class="panel scroll">
+    <svg class="wide" viewBox="0 0 900 236" role="img" aria-label="Three panels: a real cup path recorded on camera and by motion capture; the same path reproduced by robot hands in a simulator; the two paths compared to give the score.">
+      <defs>
+        <marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+      </defs>
+      <!-- panel frames -->
+      <rect x="8" y="8" width="262" height="220" rx="10" class="f-surface s-line" stroke-width="1.5"/>
+      <rect x="319" y="8" width="262" height="220" rx="10" class="f-surface s-line" stroke-width="1.5"/>
+      <rect x="630" y="8" width="262" height="220" rx="10" class="f-surface s-line" stroke-width="1.5"/>
+      <text x="24" y="34" class="t-ink lbl">The real world</text>
+      <text x="335" y="34" class="t-ink lbl">The simulator</text>
+      <text x="646" y="34" class="t-ink lbl">The score</text>
+      <!-- panel 1: table, cup start/end, real path -->
+      <line x1="28" y1="172" x2="250" y2="172" class="s-muted" stroke-width="2"/>
+      <path d="M62 150 C 110 70, 170 70, 214 120" class="s-accent" stroke-width="3"/>
+      <rect x="50" y="146" width="24" height="26" rx="3" class="f-accent-soft s-accent" stroke-width="2"/>
+      <rect x="202" y="116" width="24" height="26" rx="3" class="f-accent-soft s-accent" stroke-width="2"/>
+      <!-- head camera -->
+      <rect x="120" y="44" width="40" height="18" rx="4" class="f-ink"/>
+      <circle cx="131" cy="53" r="3.5" class="f-surface"/><circle cx="149" cy="53" r="3.5" class="f-surface"/>
+      <text x="166" y="57" class="t-muted tiny">head cameras</text>
+      <text x="24" y="196" class="t-muted sub">A person moves the cup. Cameras film it;</text>
+      <text x="24" y="211" class="t-muted sub">motion capture records the true path.</text>
+      <!-- arrow 1 -->
+      <line x1="274" y1="118" x2="314" y2="118" class="s-ink" stroke-width="2" marker-end="url(#ar1)"/>
+      <text x="294" y="108" text-anchor="middle" class="t-muted tiny">us</text>
+      <!-- panel 2: robot hands carrying cup along dashed path -->
+      <line x1="339" y1="172" x2="561" y2="172" class="s-muted" stroke-width="2"/>
+      <path d="M373 150 C 421 78, 481 74, 525 120" class="s-robot" stroke-width="3" stroke-dasharray="7 5"/>
+      <rect x="361" y="146" width="24" height="26" rx="3" class="f-soft s-robot" stroke-width="2"/>
+      <rect x="513" y="116" width="24" height="26" rx="3" class="f-soft s-robot" stroke-width="2"/>
+      <!-- two robot hands -->
+      <g class="s-robot" stroke-width="2.5" stroke-linecap="round">
+        <rect x="487" y="92" width="16" height="20" rx="3" class="f-surface"/>
+        <line x1="503" y1="96" x2="513" y2="122"/><line x1="503" y1="104" x2="514" y2="128"/>
+        <rect x="547" y="92" width="16" height="20" rx="3" class="f-surface"/>
+        <line x1="547" y1="96" x2="538" y2="122"/><line x1="547" y1="104" x2="537" y2="128"/>
+      </g>
+      <text x="335" y="196" class="t-muted sub">Two robot hands, driven by a trained</text>
+      <text x="335" y="211" class="t-muted sub">policy, must move the same cup.</text>
+      <!-- arrow 2 -->
+      <line x1="585" y1="118" x2="625" y2="118" class="s-ink" stroke-width="2" marker-end="url(#ar1)"/>
+      <text x="605" y="108" text-anchor="middle" class="t-muted tiny">NVIDIA</text>
+      <!-- panel 3: overlay -->
+      <path d="M684 150 C 732 70, 792 70, 836 120" class="s-accent" stroke-width="3"/>
+      <path d="M684 150 C 732 78, 792 74, 836 120" class="s-robot" stroke-width="3" stroke-dasharray="7 5"/>
+      <g class="s-ink" stroke-width="1.2"><line x1="726" y1="94" x2="727" y2="100"/><line x1="760" y1="84" x2="760" y2="90"/><line x1="796" y1="88" x2="795" y2="93"/></g>
+      <g class="sub">
+        <line x1="660" y1="148" x2="684" y2="148" class="s-accent" stroke-width="3"/><text x="690" y="152" class="t-muted">true path (mocap)</text>
+        <line x1="660" y1="166" x2="684" y2="166" class="s-robot" stroke-width="3" stroke-dasharray="7 5"/><text x="690" y="170" class="t-muted">simulated path</text>
+      </g>
+      <text x="646" y="196" class="t-muted sub">The closer the two paths, the higher</text>
+      <text x="646" y="211" class="t-muted sub">the score (AUC, 0 to 1).</text>
+    </svg>
+    <figcaption>We build everything up to the simulator. NVIDIA's official evaluator runs our trained policy and records the simulated path; the scorer compares it with the true path.</figcaption>
+  </figure>
+</section>
+
+<section id="pipeline">
+  <div class="eyebrow">The pipeline</div>
+  <h2>Six steps from video to score</h2>
+  <p>Inputs on the left, the score on the right. Each arrow is labeled with the data that flows along it. Box borders show what already works.</p>
+  <figure class="panel scroll">
+    <svg class="wide" viewBox="0 0 1040 330" role="img" aria-label="Pipeline: videos and object scans feed perception and hands; their outputs feed the robot target builder; then training, the official evaluator, and scoring against motion capture.">
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+      </defs>
+      <!-- inputs -->
+      <rect x="10" y="40" width="160" height="58" rx="8" class="box-in"/>
+      <text x="22" y="64" class="t-ink lbl">Head-camera video</text><text x="22" y="82" class="t-muted sub">3 cameras, ~20 frames/s</text>
+      <rect x="10" y="150" width="160" height="58" rx="8" class="box-in"/>
+      <text x="22" y="174" class="t-ink lbl">Object scans</text><text x="22" y="192" class="t-muted sub">3-D meshes (spoon missing)</text>
+      <rect x="560" y="252" width="190" height="58" rx="8" class="box-in"/>
+      <text x="572" y="276" class="t-ink lbl">Motion capture</text><text x="572" y="294" class="t-muted sub">true paths, public videos only</text>
+      <!-- stage boxes -->
+      <rect x="230" y="40" width="170" height="58" rx="8" class="box-warn"/>
+      <text x="242" y="64" class="t-ink lbl">2 · Hands</text><text x="242" y="82" class="t-muted sub">21 points per hand, in 3-D</text>
+      <rect x="230" y="150" width="170" height="58" rx="8" class="box-ok"/>
+      <text x="242" y="174" class="t-ink lbl">1 · Perception</text><text x="242" y="192" class="t-muted sub">depth, find, track objects</text>
+      <rect x="470" y="95" width="160" height="58" rx="8" class="box-warn"/>
+      <text x="482" y="119" class="t-ink lbl">3 · Robot target</text><text x="482" y="137" class="t-muted sub">what the hands should do</text>
+      <rect x="690" y="95" width="150" height="58" rx="8" class="box-ok"/>
+      <text x="702" y="119" class="t-ink lbl">4 · Train policy</text><text x="702" y="137" class="t-muted sub">RL, 4,096 worlds, ~2 h</text>
+      <rect x="880" y="95" width="150" height="58" rx="8" class="box-ok"/>
+      <text x="892" y="119" class="t-ink lbl">5 · Evaluator</text><text x="892" y="137" class="t-muted sub">official, 1 world</text>
+      <rect x="880" y="252" width="150" height="58" rx="8" class="box-ok"/>
+      <text x="892" y="276" class="t-ink lbl">6 · Score</text><text x="892" y="294" class="t-muted sub">AUC and 4 others</text>
+      <!-- arrows -->
+      <g class="s-ink" stroke-width="1.8">
+        <line x1="170" y1="69" x2="226" y2="69" marker-end="url(#ar2)"/>
+        <line x1="170" y1="86" x2="227" y2="160" marker-end="url(#ar2)"/>
+        <line x1="170" y1="179" x2="226" y2="179" marker-end="url(#ar2)"/>
+        <line x1="400" y1="69" x2="466" y2="110" marker-end="url(#ar2)"/>
+        <line x1="400" y1="179" x2="466" y2="140" marker-end="url(#ar2)"/>
+        <line x1="630" y1="124" x2="686" y2="124" marker-end="url(#ar2)"/>
+        <line x1="840" y1="124" x2="876" y2="124" marker-end="url(#ar2)"/>
+        <line x1="955" y1="153" x2="955" y2="248" marker-end="url(#ar2)"/>
+      </g>
+      <line x1="750" y1="281" x2="876" y2="281" class="s-ink" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#ar2)"/>
+      <!-- arrow labels -->
+      <g class="t-muted tiny">
+        <text x="198" y="62" text-anchor="middle">colour cam</text>
+        <text x="186" y="132" text-anchor="middle">stereo pair</text>
+        <text x="198" y="172" text-anchor="middle">shapes</text>
+        <text x="433" y="78" text-anchor="middle">hand joints</text>
+        <text x="433" y="182" text-anchor="middle">object paths</text>
+        <text x="658" y="116" text-anchor="middle">target</text>
+        <text x="858" y="116" text-anchor="middle">policy</text>
+        <text x="962" y="206">simulated</text><text x="962" y="219">paths</text>
+        <text x="812" y="274" text-anchor="middle">compare</text>
+      </g>
+    </svg>
+    <div class="legend">
+      <span><i class="sw ok"></i>works and was measured</span>
+      <span><i class="sw warn"></i>written, not run yet</span>
+      <span><i class="sw in"></i>given data</span>
+    </div>
+    <figcaption>Steps 4 to 6 work on NVIDIA's own example recording; they have not yet run on our videos. Motion capture is only used for scoring, never inside the pipeline.</figcaption>
+  </figure>
+</section>
+
+<section id="data">
+  <div class="eyebrow">What turns into what</div>
+  <h2>The data at each step</h2>
+  <div class="cards">
+    <article class="card">
+      <div class="num">INPUT</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="Three video frames: colour camera a and black-and-white cameras b and c, 7.5 cm apart.">
+        <rect x="6" y="12" width="44" height="32" rx="3" class="f-accent-soft s-accent" stroke-width="1.5"/>
+        <rect x="60" y="12" width="44" height="32" rx="3" class="f-soft s-muted" stroke-width="1.5"/>
+        <rect x="112" y="12" width="44" height="32" rx="3" class="f-soft s-muted" stroke-width="1.5"/>
+        <g class="tiny" text-anchor="middle"><text x="28" y="58" class="t-accent">a · colour</text><text x="82" y="58" class="t-muted">b</text><text x="134" y="58" class="t-muted">c</text></g>
+        <line x1="82" y1="66" x2="134" y2="66" class="s-muted" stroke-width="1.2"/>
+        <text x="108" y="76" text-anchor="middle" class="t-muted tiny">7.5 cm apart</text>
+      </svg>
+      <h3>Video frames</h3>
+      <p>Three head cameras. The colour one finds hands; the two black-and-white ones act like two eyes and give depth.</p>
+      <div class="shape">137–373 frames per episode · colour 2028×1520 · b, c 1280×800</div>
+    </article>
+    <article class="card">
+      <div class="num">STEP 1</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="Depth map shown as a colour ramp from near 0.15 m to far 2 m.">
+        <defs><linearGradient id="turbo" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="#7A0403"/><stop offset="0.15" stop-color="#D93806"/><stop offset="0.3" stop-color="#FB8022"/><stop offset="0.45" stop-color="#D2E935"/>
+          <stop offset="0.6" stop-color="#46F884"/><stop offset="0.75" stop-color="#1BCFD4"/><stop offset="0.88" stop-color="#4686FB"/><stop offset="1" stop-color="#30123B"/></linearGradient></defs>
+        <rect x="6" y="10" width="148" height="34" rx="3" fill="url(#turbo)"/>
+        <text x="6" y="60" class="t-muted tiny">near 0.15 m</text>
+        <text x="154" y="60" text-anchor="end" class="t-muted tiny">far 2 m</text>
+      </svg>
+      <h3>Depth map</h3>
+      <p>For every pixel, how far away it is. FoundationStereo computes it from the two black-and-white cameras.</p>
+      <div class="shape">1600×1000 per frame, metres · depth = 600 px × 0.0755 m ÷ shift between the two images</div>
+    </article>
+    <article class="card">
+      <div class="num">STEP 1</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="An object's pose: position plus three rotation axes.">
+        <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="50" y="24" width="34" height="30" rx="3" class="f-accent-soft s-accent" stroke-width="1.5" transform="rotate(-12 67 39)"/>
+        <g class="s-ink" stroke-width="1.8"><line x1="67" y1="39" x2="112" y2="30" marker-end="url(#ar3)"/><line x1="67" y1="39" x2="60" y2="4" marker-end="url(#ar3)"/><line x1="67" y1="39" x2="40" y2="62" marker-end="url(#ar3)"/></g>
+        <g class="t-ink tiny"><text x="116" y="32">x</text><text x="64" y="10">z</text><text x="30" y="70">y</text></g>
+        <text x="124" y="64" class="t-muted tiny" text-anchor="middle">4×4</text>
+      </svg>
+      <h3>Pose</h3>
+      <p>Where an object is (x, y, z) and how it is turned. The camera gets one too, because the head moves.</p>
+      <div class="shape">one 4×4 matrix per object per frame, plus one for the camera</div>
+    </article>
+    <article class="card">
+      <div class="num">STEP 1 OUTPUT</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="An object path: a curve of poses from frame 0 to the last frame.">
+        <path d="M10 64 C 40 10, 100 10, 150 46" class="s-accent" stroke-width="2.5"/>
+        <g class="f-accent"><circle cx="10" cy="64" r="3.5"/><circle cx="38" cy="30" r="3"/><circle cx="70" cy="20" r="3"/><circle cx="104" cy="23" r="3"/><circle cx="130" cy="34" r="3"/><circle cx="150" cy="46" r="3.5"/></g>
+        <text x="14" y="76" class="t-muted tiny">frame 0</text><text x="150" y="64" text-anchor="end" class="t-muted tiny">last frame</text>
+      </svg>
+      <h3>Object path</h3>
+      <p>Every object's pose in every frame, in one fixed world. This is what perception delivers.</p>
+      <div class="shape">frames × objects × 7 numbers (x, y, z + 4-number rotation)</div>
+    </article>
+    <article class="card">
+      <div class="num">STEP 2 OUTPUT</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="A hand skeleton with 21 points: the wrist and four points on each finger.">
+        <g class="s-accent" stroke-width="1.8">
+          <polyline points="80,70 52,52 40,40 32,30 26,22"/>
+          <polyline points="80,70 66,40 62,26 60,15 58,6"/>
+          <polyline points="80,70 80,38 80,24 80,13 80,4"/>
+          <polyline points="80,70 92,40 96,27 98,17 100,9"/>
+          <polyline points="80,70 104,46 112,36 118,28 122,21"/>
+        </g>
+        <g class="f-accent">
+          <circle cx="80" cy="70" r="3.6"/>
+          <circle cx="52" cy="52" r="2.4"/><circle cx="40" cy="40" r="2.4"/><circle cx="32" cy="30" r="2.4"/><circle cx="26" cy="22" r="2.4"/>
+          <circle cx="66" cy="40" r="2.4"/><circle cx="62" cy="26" r="2.4"/><circle cx="60" cy="15" r="2.4"/><circle cx="58" cy="6" r="2.4"/>
+          <circle cx="80" cy="38" r="2.4"/><circle cx="80" cy="24" r="2.4"/><circle cx="80" cy="13" r="2.4"/><circle cx="80" cy="4" r="2.4"/>
+          <circle cx="92" cy="40" r="2.4"/><circle cx="96" cy="27" r="2.4"/><circle cx="98" cy="17" r="2.4"/><circle cx="100" cy="9" r="2.4"/>
+          <circle cx="104" cy="46" r="2.4"/><circle cx="112" cy="36" r="2.4"/><circle cx="118" cy="28" r="2.4"/><circle cx="122" cy="21" r="2.4"/>
+        </g>
+        <text x="138" y="62" text-anchor="middle" class="t-muted tiny">21 pts</text>
+      </svg>
+      <h3>Hand joints</h3>
+      <p>MediaPipe finds 21 points per hand on the colour camera; our depth lifts them into 3-D.</p>
+      <div class="shape">frames × 2 hands × 21 points × (x, y, z)</div>
+    </article>
+    <article class="card rob">
+      <div class="num">STEP 3 OUTPUT</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="The robot target file: per frame, wrist poses, 22 finger angles per hand, object poses and finger contacts.">
+        <rect x="6" y="6" width="148" height="66" rx="5" class="f-soft s-line" stroke-width="1.2"/>
+        <g class="monot t-ink"><text x="14" y="22">wrist pose  ×2</text><text x="14" y="36">22 finger angles ×2</text><text x="14" y="50">object poses</text><text x="14" y="64">contacts</text></g>
+        <text x="146" y="22" text-anchor="end" class="t-robot tiny">20 fps</text>
+      </svg>
+      <h3>Robot target</h3>
+      <p>What the robot hands should do in each frame. Human hand points are turned into robot wrist poses and finger angles with NVIDIA's own retargeting code.</p>
+      <div class="shape">one Parquet file per episode, exactly 20 frames per second</div>
+    </article>
+    <article class="card rob">
+      <div class="num">STEP 4 OUTPUT</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="A small neural network: inputs connected to hidden units connected to outputs.">
+        <g class="s-line" stroke-width="1">
+          <line x1="30" y1="16" x2="80" y2="12"/><line x1="30" y1="16" x2="80" y2="39"/><line x1="30" y1="16" x2="80" y2="66"/>
+          <line x1="30" y1="39" x2="80" y2="12"/><line x1="30" y1="39" x2="80" y2="39"/><line x1="30" y1="39" x2="80" y2="66"/>
+          <line x1="30" y1="62" x2="80" y2="12"/><line x1="30" y1="62" x2="80" y2="39"/><line x1="30" y1="62" x2="80" y2="66"/>
+          <line x1="80" y1="12" x2="130" y2="26"/><line x1="80" y1="39" x2="130" y2="26"/><line x1="80" y1="66" x2="130" y2="26"/>
+          <line x1="80" y1="12" x2="130" y2="52"/><line x1="80" y1="39" x2="130" y2="52"/><line x1="80" y1="66" x2="130" y2="52"/>
+        </g>
+        <g class="f-robot"><circle cx="30" cy="16" r="5"/><circle cx="30" cy="39" r="5"/><circle cx="30" cy="62" r="5"/><circle cx="80" cy="12" r="5"/><circle cx="80" cy="39" r="5"/><circle cx="80" cy="66" r="5"/><circle cx="130" cy="26" r="5"/><circle cx="130" cy="52" r="5"/></g>
+      </svg>
+      <h3>Policy</h3>
+      <p>A neural network that drives the robot hands. It learns by trial and error (reinforcement learning) in 4,096 copies of the scene at once.</p>
+      <div class="shape">≈5 MB per episode · about 2 GPU-hours to train</div>
+    </article>
+    <article class="card rob">
+      <div class="num">STEP 5 OUTPUT</div>
+      <svg viewBox="0 0 160 78" role="img" aria-label="The simulated path drawn dashed next to the true path.">
+        <path d="M10 64 C 40 10, 100 10, 150 46" class="s-accent" stroke-width="2.5"/>
+        <path d="M10 64 C 42 18, 100 16, 150 48" class="s-robot" stroke-width="2.5" stroke-dasharray="6 4"/>
+        <text x="14" y="76" class="t-muted tiny">true vs simulated</text>
+      </svg>
+      <h3>Simulated path</h3>
+      <p>The official evaluator runs the policy once and records where the simulated objects went. This file is what gets submitted and scored.</p>
+      <div class="shape">same shape as the object path · scored against motion capture</div>
+    </article>
+  </div>
+</section>
+
+<section id="score">
+  <div class="eyebrow">How the score works</div>
+  <h2>Distance per frame, then a curve</h2>
+  <p>The scorer first lines up the first object at the first frame with one rigid move, and never fixes scale. Then, for every frame:</p>
+  <div class="two">
+    <figure class="panel">
+      <svg viewBox="0 0 320 190" role="img" aria-label="ADD: the true object outline and the predicted outline, slightly shifted; short lines show the distance between matching points.">
+        <rect x="70" y="40" width="120" height="96" rx="10" class="f-accent-soft s-accent" stroke-width="2.5"/>
+        <rect x="96" y="54" width="120" height="96" rx="10" class="s-robot" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <g class="s-ink" stroke-width="1.3"><line x1="70" y1="40" x2="96" y2="54"/><line x1="190" y1="40" x2="216" y2="54"/><line x1="70" y1="136" x2="96" y2="150"/><line x1="190" y1="136" x2="216" y2="150"/></g>
+        <text x="20" y="178" class="t-accent sub">true pose</text><text x="110" y="178" class="t-robot sub">predicted pose</text><text x="228" y="178" class="t-ink sub">distance</text>
+      </svg>
+      <figcaption><b>ADD</b> is the average distance between matching surface points of the true and the predicted object, in centimetres.</figcaption>
+    </figure>
+    <figure class="panel">
+      <svg viewBox="0 0 320 200" role="img" aria-label="AUC example: share of frames with error under each threshold from 1 to 9 cm; the shaded area under the curve is about 0.92.">
+        <polygon points="40,170 40,87.5 72.5,50 105,35 137.5,27.5 170,24.5 202.5,23 235,21.5 267.5,21.5 300,20 300,170" class="f-accent-soft"/>
+        <polyline points="40,87.5 72.5,50 105,35 137.5,27.5 170,24.5 202.5,23 235,21.5 267.5,21.5 300,20" class="s-accent" stroke-width="2.5"/>
+        <line x1="40" y1="170" x2="300" y2="170" class="s-muted" stroke-width="1.2"/>
+        <line x1="40" y1="20" x2="40" y2="170" class="s-muted" stroke-width="1.2"/>
+        <g class="t-muted tiny" text-anchor="middle"><text x="40" y="185">1</text><text x="105" y="185">3</text><text x="170" y="185">5</text><text x="235" y="185">7</text><text x="300" y="185">9 cm</text></g>
+        <g class="t-muted tiny" text-anchor="end"><text x="34" y="173">0</text><text x="34" y="98">0.5</text><text x="34" y="24">1</text></g>
+        <text x="170" y="120" text-anchor="middle" class="t-accent sub">area ≈ 0.92</text>
+        <text x="60" y="16" class="t-muted tiny">share of frames under the threshold</text>
+      </svg>
+      <figcaption><b>AUC</b> is the area under this curve: for thresholds from 1 to 9 cm, how often the error stays below. Every frame under 1 cm scores 1.0. The numbers here are an example.</figcaption>
+    </figure>
+  </div>
+  <p class="muted">The leaderboard ranks by AUC. It also reports SP-SR (average error within 10 cm and 0.5 rad), MP-SR (every object within 3 cm and 30°), RPE (the error between the objects' relative positions) and MPPE (the error of six points placed 5 cm around each object).</p>
+</section>
+
+<section id="tried">
+  <div class="eyebrow">What we tried so far</div>
+  <h2>Tracking works; the robot stage is next</h2>
+  <figure class="panel scroll">
+    <svg class="wide" viewBox="0 0 760 520" role="img" aria-label="Bar chart of tracking AUC for the 20 public episodes, sorted from 0.998 down to 0.031, with lines at 0.446 for doing nothing, 0.765 for the leader and 0.809 for our mean.">
+      <!-- reference lines: x = 175 + v*480 -->
+      <line x1="389.1" y1="40" x2="389.1" y2="486" class="s-muted" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="542.2" y1="40" x2="542.2" y2="486" class="s-robot" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <line x1="563.3" y1="40" x2="563.3" y2="486" class="s-accent" stroke-width="1.5"/>
+      <text x="389.1" y="30" text-anchor="middle" class="t-muted sub">doing nothing 0.446</text>
+      <text x="538" y="16" text-anchor="end" class="t-robot sub">leader 0.765</text>
+      <text x="567" y="30" class="t-accent sub">our mean 0.809</text>
+      <!-- rows: y = 46 + i*22 -->
+      <g class="sub t-ink" text-anchor="end">
+        <text x="165" y="58">ep 13 · cup + rack</text><text x="165" y="80">ep 12 · cup + rack</text><text x="165" y="102">ep 23 · two wood blocks</text>
+        <text x="165" y="124">ep 27 · rack + pot</text><text x="165" y="146">ep 40 · dustpan</text><text x="165" y="168">ep 2 · pot + lid</text>
+        <text x="165" y="190">ep 22 · cup + pitcher</text><text x="165" y="212">ep 18 · broom + dustpan</text><text x="165" y="234">ep 44 · pot</text>
+        <text x="165" y="256">ep 31 · broom + rack</text><text x="165" y="278">ep 11 · two cups</text><text x="165" y="300">ep 21 · cup + pitcher</text>
+        <text x="165" y="322">ep 45 · pot</text><text x="165" y="344">ep 24 · two wood blocks</text><text x="165" y="366">ep 42 · pot</text>
+        <text x="165" y="388">ep 43 · pot</text><text x="165" y="410">ep 41 · pot</text><text x="165" y="432">ep 39 · dustpan</text>
+        <text x="165" y="454">ep 0 · pot + lid</text><text x="165" y="476">ep 26 · rack + pot</text>
+      </g>
+      <g class="f-accent">
+        <rect x="175" y="48" width="479.0" height="13" rx="2"/><rect x="175" y="70" width="477.6" height="13" rx="2"/><rect x="175" y="92" width="477.6" height="13" rx="2"/>
+        <rect x="175" y="114" width="477.1" height="13" rx="2"/><rect x="175" y="136" width="473.3" height="13" rx="2"/>
+        <rect x="175" y="180" width="461.8" height="13" rx="2"/><rect x="175" y="202" width="448.8" height="13" rx="2"/><rect x="175" y="224" width="425.8" height="13" rx="2"/>
+        <rect x="175" y="246" width="424.8" height="13" rx="2"/><rect x="175" y="268" width="418.1" height="13" rx="2"/><rect x="175" y="290" width="411.8" height="13" rx="2"/>
+        <rect x="175" y="312" width="401.3" height="13" rx="2"/><rect x="175" y="334" width="393.6" height="13" rx="2"/><rect x="175" y="356" width="392.2" height="13" rx="2"/>
+        <rect x="175" y="378" width="387.4" height="13" rx="2"/><rect x="175" y="400" width="381.6" height="13" rx="2"/>
+      </g>
+      <rect x="175" y="158" width="470.4" height="13" rx="2" class="f-accent" opacity="0.4"/>
+      <g class="f-bad"><rect x="175" y="422" width="264.0" height="13" rx="2"/><rect x="175" y="444" width="85.9" height="13" rx="2"/><rect x="175" y="466" width="14.9" height="13" rx="2"/></g>
+      <g class="monot t-ink">
+        <text x="666" y="58">0.998</text><text x="666" y="80">0.995</text><text x="666" y="102">0.995</text><text x="666" y="124">0.994</text><text x="666" y="146">0.986</text>
+        <text x="666" y="168" class="t-muted">≈0.98 est.</text>
+        <text x="666" y="190">0.962</text><text x="666" y="212">0.935</text><text x="666" y="234">0.887</text><text x="666" y="256">0.885</text><text x="666" y="278">0.871</text>
+        <text x="666" y="300">0.858</text><text x="666" y="322">0.836</text><text x="666" y="344">0.820</text><text x="666" y="366">0.817</text><text x="666" y="388">0.807</text>
+        <text x="666" y="410">0.795</text><text x="666" y="432">0.550</text><text x="666" y="454">0.179</text><text x="666" y="476">0.031</text>
+      </g>
+      <g class="t-bad tiny">
+        <text x="446" y="432">offset while moving</text>
+        <text x="268" y="454">lid flipped 180° (it looks symmetric)</text>
+        <text x="198" y="476">wrong object picked: white pot inside white rack</text>
+      </g>
+      <g class="t-muted tiny" text-anchor="middle">
+        <text x="175" y="506">0</text><text x="295" y="506">0.25</text><text x="415" y="506">0.5</text><text x="535" y="506">0.75</text><text x="655" y="506">1.0</text>
+      </g>
+    </svg>
+    <figcaption>Tracking accuracy on the 20 public episodes, which come with motion capture. Most episodes are near-perfect. The three red bars are specific failures with known fixes. Episode 2 was not read individually; its value is inferred from the mean.</figcaption>
+  </figure>
+  <ul class="log">
+    <li><span class="chip ok">worked</span><div><b>Simulator on a rented GPU.</b> <span class="d">NVIDIA's robot simulator runs on Colab at 45,300 steps/s, so one full policy takes about 1.5–2 hours. The official evaluator also works.</span></div></li>
+    <li><span class="chip no">failed</span><div><b>Finding objects from text prompts</b> ("a cup", "a pot"). <span class="d">It misses the pot on black-and-white images and swapped two cups. We replaced it with matching against the object scans.</span></div></li>
+    <li><span class="chip ok">worked</span><div><b>Scan matching + FoundationPose + camera tracking.</b> <span class="d">0.809 mean on the 20 public episodes; the twin-cup episode went from 0.10 to 0.87.</span></div></li>
+    <li><span class="chip no">failed</span><div><b>Choosing objects by FoundationPose's own confidence.</b> <span class="d">That score can't compare different image regions: a piece of the rack outscored the real cup, 143 to 73.</span></div></li>
+    <li><span class="chip no">failed</span><div><b>Hands on the black-and-white cameras.</b> <span class="d">MediaPipe almost never finds them there.</span></div></li>
+    <li><span class="chip ok">worked</span><div><b>Hands on the colour camera.</b> <span class="d">Both hands found in 173 of 181 and 338 of 373 frames. NVIDIA's hand retargeting works with these 21 points, so we don't need the licensed MANO hand model.</span></div></li>
+    <li><span class="chip wip">built</span><div><b>Written, not run yet:</b> <span class="d">3-D hand lifting, the robot-target builder, the one-command pipeline, a shape check that rejects wrong detections, and better camera tracking.</span></div></li>
+    <li><span class="chip wip">built</span><div><b>A model of the wooden spoon,</b> <span class="d">which has no scan and appears in 10 of 20 eval episodes. Its orientation convention is close to a coin flip, so we will ask the organisers.</span></div></li>
+    <li><span class="chip ok">done</span><div><b>GPU price research.</b> <span class="d">Cheapest fit: an RTX PRO 6000 on Vast.ai at about $1.10 per hour; the whole campaign comes to about $110.</span></div></li>
+  </ul>
+</section>
+
+<section id="expect">
+  <div class="eyebrow">What the final score might be</div>
+  <h2>Tracking is the ceiling; the robot takes some off</h2>
+  <figure class="panel scroll">
+    <svg class="wide" viewBox="0 0 760 236" role="img" aria-label="Expected AUC ranges: our tracking 0.809 measured; on eval episodes an estimated 0.72 to 0.81; first submission guessed 0.60 to 0.75; after fixes 0.75 to 0.85; compared with the leader at 0.765 and other teams at 0.23 to 0.37.">
+      <!-- x = 200 + (v-0.2)*650 -->
+      <rect x="219.5" y="48" width="91" height="152" class="f-todo" opacity="0.18"/>
+      <line x1="359.9" y1="48" x2="359.9" y2="200" class="s-muted" stroke-width="1.2" stroke-dasharray="4 4"/>
+      <line x1="567.3" y1="48" x2="567.3" y2="200" class="s-robot" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="265" y="22" text-anchor="middle" class="t-muted sub">other teams</text>
+      <text x="359.9" y="38" text-anchor="middle" class="t-muted sub">doing nothing</text>
+      <text x="567.3" y="22" text-anchor="middle" class="t-robot sub">leader 0.765</text>
+      <g class="sub t-ink" text-anchor="end">
+        <text x="188" y="78">Our tracking, public</text><text x="188" y="114">Tracking on eval videos</text><text x="188" y="150">First submission</text><text x="188" y="186">After the fixes</text>
+      </g>
+      <g class="tiny t-muted" text-anchor="end">
+        <text x="188" y="90">measured</text><text x="188" y="126">estimate</text><text x="188" y="162">guess</text><text x="188" y="198">guess</text>
+      </g>
+      <circle cx="595.9" cy="78" r="7" class="f-accent"/>
+      <rect x="538" y="108" width="58.5" height="12" rx="6" class="f-accent"/>
+      <rect x="460" y="144" width="97.5" height="12" rx="6" class="f-accent" opacity="0.75"/>
+      <rect x="557.5" y="180" width="65" height="12" rx="6" class="f-accent" opacity="0.75"/>
+      <g class="monot t-muted">
+        <text x="608" y="82">0.809</text><text x="604" y="118">0.72–0.81</text><text x="452" y="154" text-anchor="end">0.60–0.75</text><text x="630" y="190">0.75–0.85</text>
+      </g>
+      <line x1="200" y1="210" x2="720" y2="210" class="s-muted" stroke-width="1.2"/>
+      <g class="t-muted tiny" text-anchor="middle"><text x="200" y="228">0.2</text><text x="330" y="228">0.4</text><text x="460" y="228">0.6</text><text x="590" y="228">0.8</text><text x="720" y="228">1.0</text></g>
+    </svg>
+    <figcaption>On the eval videos, half the episodes contain the wooden spoon, which we have not tracked yet; that sets the low end of the second row. The robot then adds its own error, which we have not measured. The first end-to-end test replaces these guesses with a real number.</figcaption>
+  </figure>
+</section>
+
+<section id="gpu">
+  <div class="eyebrow">Once we have the GPU</div>
+  <h2>About 5 days to the first leaderboard score</h2>
+  <figure class="panel scroll">
+    <svg class="wide" viewBox="0 0 760 214" role="img" aria-label="Timeline in days after the GPU is ready: setup and first public test on day 1; fixes on days 1 to 3; 20 trainings and first submission on days 3 to 5; improvements and resubmissions until the 4 November freeze.">
+      <!-- x = 260 + d*28.24 ; 17 days to freeze if we start 18 Oct -->
+      <g class="s-line" stroke-width="1"><line x1="260" y1="26" x2="260" y2="176"/><line x1="401.2" y1="26" x2="401.2" y2="176"/><line x1="542.4" y1="26" x2="542.4" y2="176"/><line x1="683.6" y1="26" x2="683.6" y2="176"/></g>
+      <line x1="740" y1="18" x2="740" y2="176" class="s-robot" stroke-width="2"/>
+      <text x="736" y="14" text-anchor="end" class="t-robot sub">4 Nov freeze</text>
+      <g class="sub t-ink" text-anchor="end">
+        <text x="250" y="46">Set up, first public test</text><text x="250" y="76">Fix tracking, run eval videos</text>
+        <text x="250" y="106">20 trainings, first submission</text><text x="250" y="136">Improve and resubmit</text><text x="250" y="166">Last 3 days, unlimited</text>
+      </g>
+      <rect x="260" y="34" width="28.2" height="16" rx="3" class="f-accent"/>
+      <rect x="288.2" y="64" width="56.5" height="16" rx="3" class="f-accent"/>
+      <rect x="344.7" y="94" width="56.5" height="16" rx="3" class="f-robot"/>
+      <rect x="401.2" y="124" width="254.2" height="16" rx="3" class="f-robot" opacity="0.6"/>
+      <rect x="655.4" y="154" width="84.6" height="16" rx="3" class="f-robot"/>
+      <g class="t-muted tiny"><text x="294" y="46">≈$4–12</text><text x="351" y="76">≈$5</text><text x="407" y="106">≈$35–50</text><text x="410" y="152">up to 5 submissions a week</text></g>
+      <g class="t-muted tiny" text-anchor="middle"><text x="260" y="196">day 0</text><text x="401.2" y="196">day 5</text><text x="542.4" y="196">day 10</text><text x="683.6" y="196">day 15</text></g>
+    </svg>
+    <figcaption>Days after the machine is ready, assuming we start on 18 October. Campaign total about $110 of GPU time, plus about $1 of storage.</figcaption>
+  </figure>
+  <table>
+    <thead><tr><th>When</th><th>What happens</th><th>GPU cost</th></tr></thead>
+    <tbody>
+      <tr><td class="num">Hour 0–1</td><td>Rent the GPU, run our setup script, check speed, check that training can resume after an interruption.</td><td class="num">≈$2</td></tr>
+      <tr><td class="num">Day 1</td><td>First full run on 2–3 public episodes: hands → robot target → 2 h of training → official evaluator → score against motion capture. A second run uses the true motion as the target, so we can see how much the robot alone loses.</td><td class="num">≈$4–12</td></tr>
+      <tr><td class="num">Days 2–3</td><td>Fix the tracking failures: shape check for detections, markers for the symmetric lid, camera drift, losing objects during grasps. Run perception on the 20 eval videos.</td><td class="num">≈$5</td></tr>
+      <tr><td class="num">Days 3–5</td><td>Train 20 policies on 5–10 rented GPUs at once, evaluate them, pack the file. You upload it to Kaggle.</td><td class="num">≈$35–50</td></tr>
+      <tr><td class="num">Until 4 Nov</td><td>Spoon tracking, robot tuning, several training runs per episode keeping the best. Resubmit as scores improve.</td><td class="num">≈$110 total</td></tr>
+    </tbody>
+  </table>
+  <p class="note">To keep costs down we rent by the second, delete the machine at the end of every work session, and keep files in cheap cloud storage (about $1 for the whole period) plus your Mac.</p>
+</section>
+
+<section id="need">
+  <div class="eyebrow">What we need from you</div>
+  <h2>Five things only you can do</h2>
+  <ol class="need">
+    <li><div><b>Create a Vast.ai account</b>, add $10–20 of credit, and add this SSH key under Account → Keys, so I can log in to the rented machine.
+      <div class="key"><code id="sshkey">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHTVtdW7GcFMS1e68XKszJCeZfQxax+T1ZwXKfrixOdj v2d-claude</code><button type="button" id="copykey">Copy key</button></div></div></li>
+    <li><div><b>Register the team</b> on the challenge form and accept the Kaggle rules for Track 3.</div></li>
+    <li><div><b>Create a private GitHub repo</b> shared with the organisers. Every submission has to link to a commit in it; I prepare the contents.</div></li>
+    <li><div><b>Upload the submission file on Kaggle.</b> I build the file; I can't use your Kaggle login.</div></li>
+    <li><div><b>Send the organisers the spoon question</b> (which way its axes point). I'll draft it.</div></li>
+  </ol>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copykey');
+  var code = document.getElementById('sshkey');
+  if (!btn || !code) return;
+  btn.addEventListener('click', function () {
+    var text = code.textContent;
+    function selectIt() {
+      try { var r = document.createRange(); r.selectNodeContents(code); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+      btn.textContent = 'Selected, press Copy';
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, selectIt);
+      } else { selectIt(); }
+    } catch (e) { selectIt(); }
+  });
+})();
+</script>
+
+</body></html>

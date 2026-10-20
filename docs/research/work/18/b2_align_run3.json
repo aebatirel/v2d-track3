@@ -1,0 +1,32 @@
+{
+ "Ra": [
+  [
+   0.9993434571246529,
+   -0.03257659284405674,
+   -0.015856238545735934
+  ],
+  [
+   0.029638901565044708,
+   0.9867794058086932,
+   -0.15933593375588545
+  ],
+  [
+   0.020837231489915252,
+   0.1587613613903426,
+   0.9870970772488994
+  ]
+ ],
+ "ta": [
+  -2.8891831784102253e-05,
+  0.0010689317576399492,
+  -0.0015446320289595127
+ ],
+ "n_common": 525,
+ "n_run2": 525,
+ "centre_res_mm_median": 0.5785823563199065,
+ "centre_res_mm_p90": 1.7204299936122478,
+ "rot_res_deg_median": 0.010946499864124241,
+ "rot_res_deg_p90": 0.032616454660797156,
+ "centre_spread_ratio": 1.00110327810062,
+ "run2_summary": "Reconstruction:\n\tnum_rigs = 2\n\tnum_cameras = 3\n\tnum_frames = 350\n\tnum_reg_frames = 350\n\tnum_images = 525\n\tnum_points3D = 26759\n\tnum_observations = 822948\n\tmean_track_length = 30.7541\n\tmean_observations_per_image = 1567.52\n\tmean_reprojection_error = 1.1038"
+}

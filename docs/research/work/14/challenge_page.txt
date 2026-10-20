@@ -1,0 +1,184 @@
+ 
+ V2D Challenge 
+ Why This, Why Now 
+ Tracks 
+ Awards 
+ Judges 
+ Timeline 
+ Leaderboard 
+ More Than a Leaderboard 
+ Organizers 
+ Contact 
+ CoRL Tutorial ↗ 
+ Register Now 
+ V2D 
+ CHALLENGE 
+ Registration open 
+ Video to Data (V2D) Challenge 
+ From Human Video to Grounded Data 
+ Where does the pipeline from human video to grounded data break? Three coupled tracks answer this with shared task suites: 4D reconstruction, robotic grounding, and end-to-end egocentric transfer. 
+ Register Now 
+ Tracks 
+ Awards 
+ Judges 
+ Timeline 
+ Leaderboard 
+ More Than a Leaderboard 
+ Starter Toolkit 
+ CoRL Tutorial ↗ 
+ Why This, Why Now 
+ Human video has the potential to be the largest and most scalable training corpus for robotics; every ingredient needed to use it is ready at once. 
+ Ready now 
+ 01 
+ VLA and WAM are scaling beyond what teleoperation data can support. 
+ 02 
+ 4D human-object reconstruction can now produce digital twins of the real world for robots to learn within. 
+ 03 
+ The advancements in humanoid and dexterous-hand hardware have narrowed the morphology gap between human demonstrations and deployable robots. 
+ 04 
+ With massively parallel GPU simulation, human demonstrations can be transformed into deployable robotic skills through RL and generate diverse, physically grounded data at scale for model pre- and post-training. 
+ Still missing 
+ What is still missing is measurement and scale . 
+ Measurement, because existing benchmarks evaluate stages in isolation. Without evaluating every stage on the same tasks end-to-end, the field cannot localize where a pipeline breaks, trace how errors propagate, or quantify the downstream value of improving each component. 
+ Scale, because success on a small, curated benchmark does not show whether a method will remain robust across thousands of tasks, objects, behaviors, and environments. 
+ This challenge 
+ This challenge supplies both. For measurement, we provide a representative benchmark that evaluates individual stages and the end-to-end pipeline under shared tasks, spanning both third-person and egocentric human video. For scale, participants develop and validate their solutions on a curated subset of our large-scale in-house dataset with held-out ground truth, supported by an end-to-end baseline. After the challenge, we evaluate the top solutions on the broader dataset to determine how well they generalize and perform at large scale. 
+ Challenge Tracks 
+ TRACK 01 
+ Reconstruction 
+ Third-Person-View Video → 4D HOI 
+ Can we reconstruct 4D human-object interaction from monocular video? 
+ {{ label1 }} 
+ Challenge Dataset: track 1 ↗ 
+ Third-Person-View Video 
+ → 
+ 4D HOI 
+ One RGB camera, third person, no rigs, no depth — the setting that scales to internet video and low-cost capture. From a single clip, teams recover the full 4D scene: human body, object pose, and geometry, in metric scale and a consistent world frame. This track identifies the frontier of monocular HOI reconstruction, allowing practitioners to calibrate future stages to the errors expected when applied at scale. 
+ Data. Our third-person RGB video dataset with held-out ground truth. This dataset includes challenging scenarios such as heavy occlusion, bimanual coordination, and long horizons. 
+ Submissions.  Teams will submit reconstruction results for the test split using the eval_reconstruction.py script to produce the artifact for submission. 
+ Evaluation. Results will be evaluated on 2 axes against a multi-view reconstruction (MV) baseline, representing an upper bound. 
+ Axis 1, Accuracy: chamfer distance to MV human mesh, chamfer distance to MV object mesh 
+ Axis 2, Physical Plausibility: acceleration error of joints compared to MV, acceleration error of object compared to MV, contact penetration compared to MV 
+ Each axis is weighted equally when awarding points. 
+ TRACK 02 
+ Robotic Grounding 
+ Third-Person-View 4D HOI → Policy 
+ How much reconstruction error can be tolerated? 
+ {{ label2 }} 
+ Challenge Dataset: track 2 ↗ 
+ Third-Person-View 4D HOI 
+ → 
+ Policy 
+ Embodiment and simulator are fixed and provided: G1 + Dex3, so entries compete on retargeting and policy learning, not simulation engineering. Teams turn human demonstrations into robot policies at varying levels of noise and inaccuracy. This track identifies the tolerance of human-to-robot transfer pipelines to errors and noise from upstream reconstruction. 
+ TIER 1 
+ Clean multi-view caption, representing an upper bound for upstream reconstruction. 
+ TIER 2 
+ Synthetic corruption: jitter, dropout, and contact errors are sampled from Track 1's error distributions. 
+ TIER 3 
+ Off-the-shelf reconstructions. Today's best practice. 
+ Teams will be evaluated against the clean multi-view captioned object trajectory in all three tiers. For Tiers 2 and 3, teams are encouraged to propose methods for recovering better estimates of the object trajectory using anything other than the clean trajectory captions provided in Tier 1 . For Tier 3, video to data provides CARI4D as an off the shelf solution. 
+ Submission. Teams will submit recorded evaluations of their trained policies using the eval_robotic_grounding.py script provided to produce the artifact for submission. 
+ Evaluation. At each tier, submissions will be evaluated for object-tracking accuracy using AUC, SP-SR, MP-SR, and MPPE as defined in the CHORD manuscript. Strong performance on more challenging tiers will be weighted appropriately when awarding points. 
+ TRACK 03 
+ Egocentric 
+ Egocentric Video → Policy 
+ Can we holistically reconstruct and transfer from egocentric video? 
+ {{ label3 }} 
+ Challenge Dataset: track 3 ↗ 
+ Egocentric Video 
+ → 
+ Policy 
+ Unlike motion capture and other data-collection approaches that require extensive equipment and infrastructure, the egocentric view can scale because it can leverage low-cost and accessible capture devices. This track critically evaluates the overall pipeline end-to-end, from egocentric videos to robotic skills. 
+ Data. The provided testing dataset is curated from our large-scale in-house dataset with held-out ground truth. We provide an end-to-end baseline that participants may build upon, modify, or choose not to use. 
+ Method-agnostic. This track holistically evaluates the end-to-end results without constraining the overall approach, whether through explicit reconstruct-then-retargeting or implicit end-to-end learning with pre-trained VLA or WAM. 
+ Submission.  Teams will submit reconstructions and recorded evaluations of their end-to-end pipeline using the eval_e2e.py script to produce the artifact for submission. 
+ Awards 
+ Three winners per track will be announced at the CoRL 2026 tutorial, with two determined by leaderboard rankings: 
+ Track Winner: first on the track leaderboard. Prize: To be announced 
+ Track Runner-Up: second by the same metric. Prize: To be announced 
+ The Industry Innovation Award asks a different question: Which solution would a robotics team actually put into production? 
+ Any team with a valid final submission, a commitment to release its code, and a technical report in any track is eligible, regardless of leaderboard rank. The invited panel will evaluate submissions against these criteria: 
+ Economic Viability: Does it reduce the cost of simulation or data generation at scale? 
+ Data Flywheel: Does it improve the system over time without additional manual effort? 
+ Innovation: Does this challenge an assumption the field treats as fixed? 
+ Complexity Reduction: Does it simplify the problem, reduce input-capture effort, and help another team deploy it faster? Prize: To be announced 
+ Eligibility for all awards: a valid final submission, agreed code release (research license), and the short technical report. Organizer entries are non-competing. 
+ Top teams will be invited to present at our CoRL 2026 tutorial, with remote participation available, and selected solutions will receive large-scale evaluation and upstream integration. Awardees will serve as core authors of the post-challenge technical report, while all teams with valid final submissions will be invited to contribute as co-authors. 
+ Judges 
+ Hao Su 
+ Fudan University 
+ Website ↗ 
+ Yunzhu Li 
+ Columbia University 
+ SceniX & World Labs 
+ Website ↗ LinkedIn ↗ 
+ Louis Lian 
+ Lightwheel 
+ LinkedIn ↗ 
+ Changliu Liu 
+ CMU 
+ Website ↗ 
+ Yuting Ye 
+ Meta 
+ Website ↗ 
+ Kaifeng Zhang 
+ Sharpa 
+ Website ↗ 
+ Javier Romero 
+ Meta 
+ Website ↗ 
+ Timeline 
+ September 21 
+ Registration 
+ September 21 — Now 
+ Challenge data release and official launch Challenge Dataset ↗ 
+ November 4, 2026 (Wed) 5:00 p.m. EST 
+ Leaderboard freeze 
+ November 12 
+ Winner announced at our CoRL 2026 tutorial and invited to give a brief presentation to the community. 
+ After November 12 
+ Winner solution eval and tech report preparation 
+ Register Now 
+ {{ regNote }} 
+ Leaderboard 
+ Live from the data release until the freeze on Wednesday, November 4, 2026, at 5:00 p.m. EST . Standings here may take up to 24 hours to reflect a new submission ; your score appears on the Kaggle competition page as soon as it is computed. Track 2 is scored separately at each of its three input tiers. Every tier is measured against the same clean multi-view trajectory, so the three are directly comparable: the gap between them is how much upstream reconstruction error a pipeline absorbs. Each team may submit up to five times per week, with unlimited submissions during the final three days. To get started with a submission, take a look at the readme in the relevant track, or point your agent at the skills folder. 
+ Challenge Dataset ↗ Submission Kit ↓ 
+ The leaderboard needs JavaScript. Standings are also visible on each competition’s Kaggle page. 
+ More Than a Leaderboard 
+ Reach 
+ Top teams are invited to present their solutions at our CoRL 2026 tutorial session. 
+ Integration 
+ Top solutions receive large-scale evaluation and are invited to upstream their solutions to a maintained code repository. 
+ Authorship 
+ Teams are invited to co-author the post-challenge technical report, mapping where the field stands and setting the baseline for the next challenge. 
+ Organizers 
+ Yan Chang 
+ NVIDIA 
+ Xinghao Zhu 
+ NVIDIA 
+ Bowen Wen 
+ NVIDIA 
+ Shalin Jain 
+ NVIDIA 
+ Zeo Liu 
+ NVIDIA 
+ Mrinal Verghese 
+ NVIDIA 
+ John Welsh 
+ NVIDIA 
+ Daniel Zou 
+ NVIDIA 
+ Abrar Anwar 
+ NVIDIA 
+ Naema Bhatti 
+ NVIDIA 
+ Michael Lin 
+ NVIDIA 
+ Chenran Li 
+ NVIDIA 
+ Contact 
+ For questions about the challenge, please contact the organizers. 
+ v2d_challenge@nvidia.com 
+ CoRL 2026 Tutorial ↗ 
+  · 
+ nvidia-isaac/video_to_data ↗ 

@@ -1,0 +1,14 @@
+07:23:46 bank (946793, 128) images 585 points 29900
+I20261007 07:23:46.909951 0x1fe162140 sift.cc:764] Creating SIFT CPU feature extractor
+07:23:46 p12 frames 181 prior from map frame 0: {'c': True, 'a': True} exclude_own 1
+07:23:48 t=0 feat {'a': 1796, 'b': 2473, 'c': 2506} match_bc {'c': 778, 'b': 753} inl_bc 907 (c 646 b 622) inl_a 529 | undist 0.01 sift 0.61 match_bc 0.35 pnp_bc 0.17 a_total 0.04
+07:24:11 t=20 feat {'a': 1736, 'b': 2333, 'c': 2393} match_bc {'c': 763, 'b': 739} inl_bc 875 (c 637 b 611) inl_a 471 | undist 0.00 sift 0.73 match_bc 0.28 pnp_bc 0.09 a_total 0.12
+07:24:36 t=40 feat {'a': 1694, 'b': 2319, 'c': 2352} match_bc {'c': 773, 'b': 732} inl_bc 887 (c 645 b 609) inl_a 484 | undist 0.00 sift 0.71 match_bc 0.35 pnp_bc 0.05 a_total 0.04
+07:25:04 t=60 feat {'a': 1882, 'b': 2429, 'c': 2485} match_bc {'c': 715, 'b': 699} inl_bc 821 (c 586 b 568) inl_a 561 | undist 0.01 sift 1.19 match_bc 0.17 pnp_bc 0.05 a_total 0.03
+07:25:32 t=80 feat {'a': 1753, 'b': 2495, 'c': 2483} match_bc {'c': 728, 'b': 716} inl_bc 826 (c 598 b 590) inl_a 514 | undist 0.01 sift 1.43 match_bc 0.21 pnp_bc 0.06 a_total 0.03
+07:26:01 t=100 feat {'a': 1835, 'b': 2461, 'c': 2526} match_bc {'c': 757, 'b': 745} inl_bc 872 (c 636 b 611) inl_a 510 | undist 0.00 sift 0.56 match_bc 0.65 pnp_bc 0.06 a_total 0.05
+07:26:25 t=120 feat {'a': 1751, 'b': 2447, 'c': 2477} match_bc {'c': 744, 'b': 733} inl_bc 867 (c 614 b 620) inl_a 511 | undist 0.00 sift 0.71 match_bc 0.41 pnp_bc 0.07 a_total 0.04
+07:26:50 t=140 feat {'a': 1859, 'b': 2539, 'c': 2509} match_bc {'c': 765, 'b': 748} inl_bc 861 (c 630 b 598) inl_a 538 | undist 0.00 sift 0.91 match_bc 0.17 pnp_bc 0.05 a_total 0.03
+07:27:15 t=160 feat {'a': 1954, 'b': 2506, 'c': 2586} match_bc {'c': 792, 'b': 734} inl_bc 876 (c 629 b 598) inl_a 539 | undist 0.00 sift 0.91 match_bc 0.19 pnp_bc 0.06 a_total 0.05
+07:27:40 t=180 feat {'a': 1935, 'b': 2520, 'c': 2601} match_bc {'c': 768, 'b': 695} inl_bc 820 (c 612 b 551) inl_a 560 | undist 0.00 sift 0.75 match_bc 0.23 pnp_bc 0.07 a_total 0.06
+07:27:40 done p12: 181 frames, rig ok 1.000, a ok 1.000, wall 234s

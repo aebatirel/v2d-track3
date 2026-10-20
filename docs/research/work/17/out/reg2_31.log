@@ -1,0 +1,11 @@
+ep 31 win 12: nobs 527 (a 431 b 48 c 48) res(a-eq px) med 2.89 p90 5.96; 80s
+ep 31 win 8: nobs 539 (a 438 b 49 c 52) res(a-eq px) med 2.82 p90 5.94; 248s
+ep 31 win 6: nobs 491 (a 418 b 37 c 36) res(a-eq px) med 2.48 p90 5.15; 414s
+drift knots (deg, mm) max |rot| 0.140 max |trans| 5.0
+   cam a mini_sweeper       n   55 res med 3.93 p90 5.53 (a-eq px)
+   cam a plastic_dish_rack  n  363 res med 2.03 p90 4.88 (a-eq px)
+   cam b mini_sweeper       n   14 res med 3.34 p90 5.78 (a-eq px)
+   cam b plastic_dish_rack  n   23 res med 4.29 p90 5.18 (a-eq px)
+   cam c mini_sweeper       n   14 res med 1.88 p90 4.06 (a-eq px)
+   cam c plastic_dish_rack  n   22 res med 5.33 p90 5.97 (a-eq px)
+total 414.4839382171631

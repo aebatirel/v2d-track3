@@ -1,0 +1,7 @@
+02:01:25 bank (822948, 128) images 525 points 26759
+I20261007 02:01:25.457263 0x1fe162140 sift.cc:764] Creating SIFT CPU feature extractor
+02:01:25 e20 frames 202 prior from map frame 0: {'c': True, 'a': True} exclude_own 0
+02:01:27 t=0 feat {'a': 1544, 'b': 2076, 'c': 2047} match_bc {'c': 619, 'b': 587} inl_bc 718 (c 540 b 466) inl_a 384 | undist 0.00 sift 1.13 match_bc 0.26 pnp_bc 0.06 a_total 0.04
+02:01:34 t=100 feat {'a': 1635, 'b': 2235, 'c': 2287} match_bc {'c': 664, 'b': 675} inl_bc 801 (c 562 b 562) inl_a 399 | undist 0.00 sift 1.05 match_bc 0.29 pnp_bc 0.08 a_total 0.04
+02:01:40 t=200 feat {'a': 1680, 'b': 2245, 'c': 2300} match_bc {'c': 714, 'b': 669} inl_bc 861 (c 622 b 582) inl_a 435 | undist 0.00 sift 0.76 match_bc 0.31 pnp_bc 0.07 a_total 0.03
+02:01:40 done e20: 9 frames, rig ok 1.000, a ok 1.000, wall 15s

@@ -1,0 +1,19 @@
+c/trk_0_h10.npz MODE reg SH -0.5 T 373 runtime 1.42 s/frame
+  white_pot: AUC(ADD, this trajectory, no policy) 0.895; status 3/2/1/0 = 0.04 / 0.69 / 0.27 / 0.01
+    rest     n 248 fix>=2 0.71 fix3 0.01 | fix3 n3 t 5.7/5.8 r 0.98/1.07 ADD 5.7/6.0 | fix2 n172 t 9.5/21.8 r 3.59/9.42 ADD 11.1/22.5 | all n248 t 11.9/24.0 r 4.72/18.86 ADD 13.7/31.7 |
+    held     n  31 fix>=2 0.94 fix3 0.03 | fix2 n28 t 11.2/15.7 r 2.75/9.15 ADD 11.6/18.0 | all n31 t 11.3/17.2 r 2.82/11.27 ADD 11.7/19.4 |
+    carried  n  94 fix>=2 0.70 fix3 0.11 | fix3 n10 t 14.8/19.0 r 2.05/2.70 ADD 15.0/18.9 | fix2 n56 t 14.9/21.7 r 4.92/9.47 ADD 16.5/24.9 | all n94 t 15.6/24.8 r 4.82/10.62 ADD 17.3/26.5 |
+    PRIOR-ONLY (emulated model-based, PN [10.0, 5.0, 0.95]): AUC 0.864; t 17.0 r 8.04 ADD 20.6 | FUSED AUC 0.895
+      rest     fix frames n175: prior ADD 19.8 -> fused 10.8 mm; fused worse than prior in 0.20
+      held     fix frames n29: prior ADD 15.1 -> fused 11.6 mm; fused worse than prior in 0.28
+      carried  fix frames n66: prior ADD 21.1 -> fused 16.1 mm; fused worse than prior in 0.30
+  white_pot_lid: AUC(ADD, this trajectory, no policy) 0.983; status 3/2/1/0 = 0.99 / 0.01 / 0.00 / 0.00
+    rest     n 154 fix>=2 1.00 fix3 0.99 | fix3 n153 t 6.2/11.1 r 7.05/8.98 ADD 8.1/11.9 | all n154 t 6.2/11.1 r 7.08/8.99 ADD 8.1/12.1 |
+    held     n 168 fix>=2 1.00 fix3 0.99 | fix3 n167 t 6.0/12.2 r 3.11/7.01 ADD 6.6/13.1 | all n168 t 6.0/12.3 r 3.13/7.03 ADD 6.6/13.1 |
+    carried  n  51 fix>=2 1.00 fix3 1.00 | fix3 n51 t 8.5/14.5 r 6.42/8.35 ADD 10.6/15.4 | all n51 t 8.5/14.5 r 6.42/8.35 ADD 10.6/15.4 |
+    PRIOR-ONLY (emulated model-based, PN [10.0, 5.0, 0.95]): AUC 0.896; t 15.8 r 7.79 ADD 17.8 | FUSED AUC 0.983
+      rest     fix frames n154: prior ADD 18.0 -> fused 8.1 mm; fused worse than prior in 0.02
+      held     fix frames n168: prior ADD 17.1 -> fused 6.6 mm; fused worse than prior in 0.07
+      carried  fix frames n51: prior ADD 21.3 -> fused 10.6 mm; fused worse than prior in 0.08
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object white_pot:0.875 white_pot_lid:0.960 mean 0.917
+  SCORER-STYLE (prior-only; slot-0 frame-0 alignment) AUC per object white_pot:0.841 white_pot_lid:0.830 mean 0.835

@@ -1,0 +1,43 @@
+p0   white_pot    c2 conf ok  (final 0.70 vs thr 0.23 (n6), dcol 3) | C a33 M a55 end  39 | pert 64/109 | err raw  -22 rob  -67 | n  40 dt 0.12 dR 0.13
+p2   white_pot    c2 conf ok  (final 0.67 vs thr 0.23 (n6), dcol 3) | C a37 M a59 end  43 | pert 26/112 | err raw  +20 rob  -66 | n  44 dt 0.13 dR 0.15
+p11  blue_cup     c2 conf ok  (final 0.54 vs thr 0.30 (n4), dcol 2) | C a8 M a68 end  14 | pert 30/30 | err raw  -13 rob  -13 | n  15 dt 0.22 dR 0.20
+p12  blue_cup     c2 conf ok  (final 0.53 vs thr 0.30 (n4), dcol 9) | C a19 M a35 end  25 | pert 31/33 | err raw   -3 rob   -5 | n  26 dt 0.24 dR 0.23
+p13  blue_cup     c2 conf ok  (final 0.55 vs thr 0.29 (n4), dcol 5) | C a16 M a22 end  18 | pert 21/21 | err raw   +0 rob   +0 | n  19 dt 0.13 dR 0.06
+p18  mini_sweeper c2 conf ok  (final 0.38 vs thr 0.20 (n1), dcol 3) | C a30 M a38 end  34 | pert 20/33 | err raw  +17 rob   +4 LATE | n  35 dt 0.07 dR 0.30
+p21  blue_cup     c2 conf ok  (final 0.64 vs thr 0.27 (n4), dcol 2) | C a28 M a36 end  31 | pert 32/33 | err raw   +2 rob   +1 | n  32 dt 0.16 dR 0.10
+p22  blue_cup     c2 conf ok  (final 0.65 vs thr 0.27 (n4), dcol 2) | C a8 M a44 end  13 | pert 15/17 | err raw   +1 rob   -1 | n  14 dt 0.35 dR 0.48
+p23  wooden_piece c3 conf ok  (2 good footprints (size score 0.23)) | C a21 M a19 end  15 | pert 18/19 | err raw   +0 rob   -1 | n  16 dt 0.13 dR 0.15
+p24  wooden_piece c3 conf ok  (2 good footprints (size score 0.15)) | C a3 M a9 end   5 | pert 8/8 | err raw   +0 rob   +0 | n   6 dt 0.02 dR 0.01
+p26  plastic_dish c2 conf ok  (final 0.14 vs thr 0.10 (n1), dcol 0) | C a9 M a112 end  15 | pert 3/4 | err raw  +15 rob  +14 LATE | n  16 dt 2.03 dR 0.58
+p27  plastic_dish c2 conf ok  (final 0.20 vs thr 0.07 (n1), dcol 1) | C a27 M aNone end  33 | pert 55/55 | err raw  -19 rob  -19 | n  34 dt 0.51 dR 0.18
+p31  mini_sweeper c2 conf ok  (final 0.40 vs thr 0.19 (n1), dcol 7) | C a21 M a25 end  21 | pert 26/28 | err raw   -2 rob   -4 | n  22 dt 0.02 dR 0.03
+p39  mini_dust_pa c2 conf ok  (final 0.37 vs thr 0.17 (n1), dcol 0) | C a34 M a48 end  40 | pert 46/46 | err raw   -3 rob   -3 | n  41 dt 0.46 dR 0.16
+p40  mini_dust_pa c2 conf ok  (final 0.34 vs thr 0.18 (n1), dcol 2) | C a20 M a32 end  26 | pert 31/40 | err raw   -2 rob  -11 | n  27 dt 0.16 dR 0.15
+p41  white_pot    c2 conf ok  (final 0.44 vs thr 0.23 (n6), dcol 4) | C a14 M a29 end  20 | pert 26/27 | err raw   -3 rob   -4 | n  21 dt 0.01 dR 0.01
+p42  white_pot    c2 conf ok  (final 0.48 vs thr 0.23 (n6), dcol 4) | C a26 M a36 end  32 | pert 32/34 | err raw   +3 rob   +1 | n  33 dt 0.15 dR 0.09
+p43  white_pot    c2 conf ok  (final 0.44 vs thr 0.23 (n6), dcol 5) | C a8 M a27 end  14 | pert 23/25 | err raw   -6 rob   -8 | n  15 dt 0.03 dR 0.02
+p44  white_pot    c2 conf ok  (final 0.46 vs thr 0.23 (n6), dcol 4) | C a14 M a77 end  20 | pert 63/74 | err raw  -40 rob  -51 | n  21 dt 0.07 dR 0.07
+p45  white_pot    c2 conf ok  (final 0.45 vs thr 0.23 (n6), dcol 2) | C a13 M a48 end  19 | pert 46/47 | err raw  -24 rob  -25 | n  20 dt 0.21 dR 0.17
+== final pipeline, public 20 (19 + p45): n 20 | onset err raw median -2 p10/p90 -22/+15 range [-40,20] (|e|<=2: 7); robust median -4 p10/p90 -52/+1 | late raw/robust 4/2 empty 0 | window median 22 | dt 0.14/0.46/2.03 mm | dR 0.15/0.32/0.58 deg | flagged []
+== final pipeline, Stage C 19: n 19 | onset err raw median -2 p10/p90 -20/+15 range [-40,20] (|e|<=2: 7); robust median -4 p10/p90 -54/+2 | late raw/robust 4/2 empty 0 | window median 22 | dt 0.13/0.47/2.03 mm | dR 0.15/0.34/0.58 deg | flagged []
+e1   white_pot    c2 conf ok  (final 0.72 vs thr 0.23 (n7), dcol 2) | C a28 M a45 -> a38 end row 34 | view contact [24, 32] motion [48, 127] |
+e3   white_pot    c2 conf ok  (final 0.49 vs thr 0.23 (n7), dcol 2) | C a15 M a14 -> a14 end row 10 | view contact [50, 56] motion None |
+e5   white_pot    c2 conf ok  (final 0.48 vs thr 0.23 (n7), dcol 2) | C a13 M a25 -> a23 end row 19 | view contact [16, 20] motion [24, 40] |
+e6   white_pot    c2 conf ok  (final 0.44 vs thr 0.23 (n7), dcol 2) | C a12 M a22 -> a22 end row 18 | view contact [8, 16] motion [24, 32] |
+e8   beige_cup    c2 conf ok  (final 0.58 vs thr 0.27 (n5), dcol 1) | C a33 M a45 -> a43 end row 39 | view contact [40, 44] motion [52, 56] |
+e10  blue_cup     c2 conf ok  (final 0.61 vs thr 0.27 (n5), dcol 1) | C a17 M a39 -> a27 end row 23 | view contact [16, 24] motion None |
+e14  blue_cup     c2 conf ok  (final 0.57 vs thr 0.27 (n5), dcol 4) | C a14 M a25 -> a24 end row 20 | view contact [16, 16] motion [24, 32] |
+e15  plastic_dish c2 conf ok  (final 0.16 vs thr 0.08 (n2), dcol 1) | C a34 M aNone -> a44 end row 40 | view contact [60, 105] motion None |
+e16  plastic_dish c2 conf ok  (final 0.18 vs thr 0.08 (n2), dcol 0) | C a14 M a75 -> a24 end row 20 | view contact [75, 120] motion None |
+e19  mini_sweeper c2 conf ok  (final 0.50 vs thr 0.19 (n2), dcol 4) | C a16 M a20 -> a20 end row 16 | view contact [12, 16] motion [16, 24] |
+e20  blue_cup     c2 conf FLAG (final 0.17 vs thr 0.27 (n5), dcol 19) | C a29 M a3 -> a3 end row -1 | view contact [0, 0] motion [0, 0] |EMPTY CONF-FLAG
+e25  wooden_piece c3 conf ok  (2 good footprints (size score 0.23)) | C a29 M a36 -> a36 end row 32 | view contact [32, 32] motion [48, 56] |
+e28  plastic_dish c2 conf ok  (final 0.17 vs thr 0.08 (n2), dcol 1) | C a11 M aNone -> a21 end row 17 | view contact None motion None |
+e30  mini_sweeper c2 conf ok  (final 0.45 vs thr 0.19 (n2), dcol 5) | C a29 M a38 -> a38 end row 34 | view contact [32, 32] motion [40, 56] |
+e32  blue_cup     c2 conf ok  (final 0.62 vs thr 0.27 (n5), dcol 2) | C a6 M a8 -> a8 end row 4 | view contact [0, 0] motion [10, 16] |
+e33  blue_cup     c2 conf ok  (final 0.61 vs thr 0.27 (n5), dcol 2) | C a12 M a24 -> a22 end row 18 | view contact [16, 16] motion [24, 40] |
+e35  wooden_spoon c3 conf ok  (1 good footprints (size score 0.11)) | C a27 M a24 -> a24 end row 20 | view contact [16, 24] motion [32, 32] |
+e36  wooden_spoon c3 conf ok  (1 good footprints (size score 0.11)) | C a18 M a33 -> a28 end row 24 | view contact [24, 32] motion [40, 40] |
+e37  wooden_spoon c3 conf ok  (1 good footprints (size score 0.29)) | C a14 M a33 -> a24 end row 20 | view contact [16, 32] motion [40, 40] |
+e38  mini_dust_pa c2 conf ok  (final 0.44 vs thr 0.18 (n2), dcol 1) | C a33 M a36 -> a36 end row 32 | view contact [40, 40] motion [40, 56] |
+eval: n 20; empty 1; late? []; flagged ['e20']; window end median 20

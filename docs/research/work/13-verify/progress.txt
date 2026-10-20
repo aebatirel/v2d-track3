@@ -1,0 +1,70 @@
+# dig 13 verifier progress (2026-10-05)
+C1 [V] own code v_geom.py/v_noisy.py reproduce: origin=area centroid (all 39 scans, <=0.001 mm); T2 fresh nondeg mid 12/14 P=0.0065, max 13/16 P=0.0106; min 7/14; joint LR 4.8e10, n med 5.6e3 [1.6e3,1.8e4]; all failures |skew|<=0.0124.
+C1 caveat [V]: T2 stored axes are NOT area-PCA: they match trimesh min-volume OBB (0.00 deg snack_box/book, <=1.4 deg others) and are ordered by OBB extent y<x<z in 29/29, but by variance only 22/29 (monitor x sd 154 > z 134). T3 stored axes = exact area PCA (0.000 deg), OBB 3-13 deg off. => T2 and T3 use DIFFERENT axis steps; shared sign step is H. T3 alone: mid 6/8 nondeg (P=0.14), LR 3.3.
+C1 caveat [V]: ssq / -median / q10 fit T2 fresh mid 13/14 (better than skew 12/14) -> 'third moment' not uniquely identified.
+C2 [V] premise '10/10 public T3 scans include markers' REFUTED: mini_dust_pan scan has 0 marker spheres (dig's own out/markers.log: 0 blobs; my geometric sphere search v_markers.py: 0, peak shell density ~1 cm2 vs ~6 cm2 for real markers), yet the physical dust pan carries markers in public ep 39 (frames/dustpan39.jpg). => 9/10; P(markers in spoon scan) ~0.83-0.9 not 0.95.
+C2 [V model] robustness: added real-object asymmetries (handle bend +-2 mm, bowl lateral asym +-6% (~1.5 mm), M3 lateral +-2 mm; v_spoon_rand.py, 60 shapes): skew_toM2 > 0 in 59/60, P(B|rule,markers) post-avg 0.876 (vs 0.90); +-1mm/+-3%: 60/60, 0.887. z toward handle min +0.16. So the marker mechanism survives moderate asymmetry.
+C2 [V] reproduced from dig jsonl: round 300/300 & oval 150/150 skew_y toward M2; P(B) 0.900/0.917/0.498 (nomark).
+C5 [V] reproduced (own removal by outward normal, v_partial.py N=40; v_partial_cdo.py kit CD-O N=5): bowl underside missing -> z flips 88%, origin 21-23.5 mm, CD-O 0.22-0.25 cm (floor ~0.073). BUT scenario-specific: whole underside missing (bowl+handle, typical top-down-only fusion) -> z flips 0/40; half bowl underside -> 0/40; 70% -> 12%. Mid-axis (toward M2) sign kept 40/40 in all variants.
+C9 [V] kit config/tracks.json: submission_policy 5/week + unlimited final 3 days; max_final_submissions 2; track_3 private_fraction 0 (note: field max_daily_submissions=5 mislabelled vs weekly text). No kit text on probing; tracks/track_3/README says reference trajectories are confidential. EV arithmetic 0.17x(0.477, 0.073-0.5, 3.2-4.25) reproduced; with P(A) 0.16-0.27 -> 0.08-0.13 SP-SR, 0.5-1.1 cm MPPE (upper bounds).
+Joint mid-only LR (T3+T2, 26 bits) 1.3e4; T3 mid alone 3.3 -> most of 4.8e10 comes from z bits and Track 2.
+DONE: verdicts C1 partly right (numbers V, transfer/statistic over-stated), C2 partly right (10/10 markers false -> 9/10; overall P(B) ~0.73-0.84), C5 right for stated scenario but pattern-specific, C9 right (EV slightly low).
+
+# run 2 (2026-10-06), new claim set C1 (frame B, P(B)), C2 (slot-0 warp, roll cost), C3 (legality)
+- start: read notes + prior verify. Prior verify never varied M1 vs M2 LATERAL protrusion; Stage A measured M1 lat 1.9 cm vs M2 1.0 cm,
+  while the MC places both at halfw(z)+base+0.85r (near-equal). Testing sensitivity: v2_latasym.py
+- [V model] v2_latasym.py smoke (3 shapes, seed 101): model M1/M2 lateral centres 17.8-20.9 / 18.3-21.4 mm (M2 0.4-0.5 mm further out).
+  skew toward M2 vs M2 lateral shift dM2 (mm): 0:+0.026..+0.040; -2:0.000..+0.007; -4:-0.018..-0.028; -9:-0.04..-0.07; +2:+0.06..+0.08.
+  => ~0.02 skew per mm of M1-vs-M2 lateral asymmetry; sign flips (frame A) once M1 sits ~2-2.5 mm further out than M2.
+  The MC never samples this asymmetry (both at halfw+base+0.85r), so P(B)=0.90 conditions on an unmeasured ~1 mm detail.
+- [V model] v2_kfasym.py (3 shapes): unequal sphere capture M1/M2 (0.95/0.55 vs 0.55/0.95) moves skew_toM2 only +-0.01-0.02, sign kept
+  (dropped cap faces the wood). Capture asymmetry is NOT a sign risk; lateral protrusion asymmetry is.
+- RUNNING: v2_latasym.py 30 102 -> out/v2_latasym_102.{jsonl,log} (zero-crossing distribution)
+- [V model] DONE v2_latasym 30 shapes (out/v2_latasym_sum.log): baseline skew_toM2 +0.023..+0.054 (med 0.034; model M2 0.4 mm further out
+  than M1); slope 0.017/mm [0.012,0.027]; sign flips to frame A when M1 protrudes 1.1-2.8 mm (med 2.0) further than M2.
+  Visual (crop35/36/37_f0): M1 sphere fully outside the wood with base visible; M2 sphere overlaps the handle edge, base on the handle
+  -> M1 looks further out (Stage A measured 19 vs 10 mm lateral). Confound: M1 is on the far side in all 3 rest views (parallax).
+  Next: full-res frontal held frames (ep36 ~f238-290) to measure lateral offsets without parallax.
+- [V visual, hand-read, verifier analysis only] ep36 ego_cam_a f260 (near-frontal held, bowl up; frames2/n260.png 3x grid): M1 centre ~(775,783),
+  diam ~30 px; wood at that row ~800-861 (centre ~830) -> M1 lateral ~55 px (~26 mm). M2 centre ~(884,879), diam ~30-36 px; wood ~814-858
+  (centre ~836) -> lateral ~48 px (~19-23 mm). M1-M2 ~ +3.5..+7 mm (body is wider at M1: it sits where the bowl flares, model puts M1 on
+  the narrowest neck). Exceeds the 1.1-2.8 mm flip threshold -> under the dig's own rule the spoon would be frame A. Needs 2nd view.
+- [V visual, verifier hand-read] ep36 f200 (frontal, CONCAVE toward camera, bowl up, M1 right/M2 left: confirms dig chirality) frames2/n200.png:
+  M1 centre (1054,801) diam 34 px, wood 971-1034 (c 1002.5) -> lat 52 px = 21.9 mm; M2 centre (977,888) diam 36 px, wood 988-1036 (c 1012)
+  -> lat 35.5 px = 14.3 mm. M2 sphere OVERLAPS the wood silhouette here and hides behind its base in f260 (convex toward camera) ->
+  M2 is mounted on the concave-side shoulder (sphere raised ~9-15 mm toward the concave face), M1 roughly in-plane.
+  Three views (rest top-down, f260 convex, f200 concave): M1 lateral > M2 by ~4-9 mm in all. Flip threshold 1.1-2.8 mm -> frame A risk.
+  Next: v2_measured.py = MC bodies + markers at measured positions (incl. M2 x offset).
+- [V model] v2_measured.py smoke (2 shapes): dig placement toM2 +0.045/+0.054 (PB .94/.96); measured layout toM2 -0.018/-0.097 (PB .23/.01);
+  M2 in-plane variant -0.028/-0.119. skew toward concave stays + (x-rule still B). RUNNING: v2_measured.py 30 302 -> out/v2_measured_302.*
+- [V doc] C2: note 07 sec 5 per-episode roll-flip: slot1 AUC .969 SP 0 MP 0 MPPE 3.33; slot0 moving AUC .231 SP .15 MP 0 MPPE 20.5.
+  Board SP-SR -0.477 = (7*-1 + 3*-0.85)/20: 73% from slot>=1 episodes. MP-SR equal per episode. So "costs most in 35-37" holds for
+  AUC/MPPE only; for SP-SR/MP-SR slot>=1 episodes lose as much or more per episode and dominate the board total.
+- [V code+data] C2 v2_rollcost.py (kit _warp_to_reference_start/_mean_per_point_error_cm/_spider_success imported unmodified, public GT,
+  out/v2_rollcost.log): slot0 alone on 13 moving hosts: flip MPPE 20.53 cm, SP 0.154; slot1 (13 eps): MPPE 3.33, SP 0.000. Reproduces note 07.
+  Kit: warp = q_ref(f0,world0,slot0)*conj(q_ach(f0,w,slot0)) + offset, applied to all bodies/frames, identical in AUC/SP/MP/RPE/MPPE,
+  _ALIGN_INITIAL_POSE=True. Eval objects: spoon slot0 only in 35,36,37 (alone); slot1 in 3,5,6,15,16,32,33. [V]
+- [V model] DONE v2_measured 30 shapes (out/v2_measured_sum.log): dig layout toM2>0 30/30, P(B)=0.919 (reproduces dig 0.90-0.92).
+  MEASURED layout (M1 lat 19-26, M2 13-20 mm, M2 raised 6-15 mm to concave): toM2>0 4/30, med -0.054, P(B) mean 0.142; M2 in-plane: 3/30,
+  P(B) 0.085. skew toward concave >0 in 30/30 (x-rules still B), z ok 30/30, mid axis = y 30/30.
+  => Under the mid-axis rule (C1's basis) the real spoon is more likely frame A; y- and x-based rules DISAGREE on the real spoon.
+- [V] C1 numbers reproduce: c_spoonP.py rerun byte-identical (round .900, oval .917, nomark .498); c2_budget_7 sk_true y in [-0.0510,-0.0224] 30/30;
+  binomial tails 106/16384=0.0065, 697/65536=0.0106. Numbers OK; the conclusion fails on the measured marker layout (above).
+- [V doc] C3: kit config/tracks.json rules: max_final_submissions 2 (a FINAL-SELECTION rule exists in the kit, contra C3 "says nothing"),
+  max_daily_submissions 5 (configured Kaggle cap is per DAY; text says 5/week, website wins per _comment), private_fraction 0 (track 3),
+  winner Apache-2.0 (Section 2.9.e), provenance cols incl. code_commit_url + 5 sha256 (metric code). Kaggle per-competition rule pages unread.
+- [V doc] C3: kit tracks/track_3/README.md: "Track 3 requires two separate files": pose CSV -> five pose competitions (--track track_3),
+  mesh Parquet -> CD-O competition (--track track_3_mesh). So "one packed file goes to all six boards" is WRONG (five; CD-O separate;
+  irrelevant to the frame A/B since CD-O is frame-blind). README also states the slot-0 warp (supports C2).
+- [V doc] C3 sources read 2026-10-06: challenge page (WebFetch): "Each team may submit up to five times per week, with unlimited submissions
+  during the final three days"; awards need "agreed code release (research license)" (vs FAQ/kit Apache-2.0: inconsistent); no text on
+  probing/frames. FAQ PDF (3 pp, read): limit "applies per track and tier"; Track 2 "top solutions will be required to provide code to
+  reproduce their results"; Track 3 needs git commit + hashes; winners "asked to release their code under an Apache 2.0 license"; nothing on
+  probing/frames/final selection.
+- [V] Kaggle rules page (track3-mppe/rules) via WebFetch: title only (login/JS wall); unread, as C3 says. LEADERBOARDS.md: Track 3 = 5 Pose
+  boards + 1 Mesh CD-O board. No rules template in the kit.
+RUN 2 VERDICTS: C1 REFUTED (numbers reproduce; conclusion flips on measured marker layout: y-rule -> A, P(B|mid rule, markers) ~0.09-0.14;
+  x-rules -> B; overall P(B) ~0.2-0.5 [E]). C2 partly right (mechanism + 20.53 cm/0.154 SP reproduced; "costs most in 35-37" true for AUC/MPPE,
+  false for SP-SR/MP-SR, board SP-SR -0.477 is 73% slot>=1). C3 partly right (not forbidden by text seen: OK; errors: 5 pose boards + separate
+  CD-O file, kit has max_final_submissions 2; page says research license vs FAQ Apache-2.0; configured Kaggle cap 5/day).
+Files: v2_latasym.py, v2_kfasym.py, v2_measured.py, v2_rollcost.py; out/v2_*; frames2/ (n200.png, n260.png, n275.png, sheet36*.jpg).

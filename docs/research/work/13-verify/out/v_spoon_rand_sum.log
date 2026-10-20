@@ -1,0 +1,2 @@
+bend+-2mm, asym+-0.06, m3+-2mm       N=60 skew_toM2 mean +0.0341 sd 0.0139 min -0.0018 P(>0) 0.983 P(>0.02) 0.85 | P(B) post-avg 0.876 | skew_toHandle min +0.170 | corr(a,s) -0.76
+bend+-1mm, asym+-0.03, m3+-2mm       N=60 skew_toM2 mean +0.0331 sd 0.0097 min +0.0178 P(>0) 1.000 P(>0.02) 0.92 | P(B) post-avg 0.887 | skew_toHandle min +0.159 | corr(a,s) -0.68

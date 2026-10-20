@@ -1,0 +1,11 @@
+ep 22 win 12: nobs 347 (a 223 b 63 c 61) res(a-eq px) med 3.46 p90 7.50; 53s
+ep 22 win 8: nobs 326 (a 214 b 53 c 59) res(a-eq px) med 2.97 p90 6.21; 100s
+ep 22 win 6: nobs 290 (a 186 b 54 c 50) res(a-eq px) med 2.49 p90 5.00; 143s
+drift knots (deg, mm) max |rot| 0.108 max |trans| 7.7
+   cam a blue_cup           n  116 res med 3.01 p90 4.81 (a-eq px)
+   cam a water_pitcher      n   70 res med 2.43 p90 5.09 (a-eq px)
+   cam b blue_cup           n   20 res med 1.28 p90 3.46 (a-eq px)
+   cam b water_pitcher      n   34 res med 1.95 p90 4.94 (a-eq px)
+   cam c blue_cup           n   28 res med 1.66 p90 5.56 (a-eq px)
+   cam c water_pitcher      n   22 res med 2.75 p90 3.86 (a-eq px)
+total 143.51614332199097

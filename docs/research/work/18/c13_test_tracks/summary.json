@@ -1,0 +1,56 @@
+{
+ "33": {
+  "frames": 348,
+  "keyframes": 70,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.82,
+  "a_c_spread": [
+   0.032,
+   0.06
+  ]
+ },
+ "35": {
+  "frames": 421,
+  "keyframes": 85,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.83,
+  "a_c_spread": [
+   0.034,
+   0.051
+  ]
+ },
+ "36": {
+  "frames": 407,
+  "keyframes": 82,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.85,
+  "a_c_spread": [
+   0.031,
+   0.059
+  ]
+ }
+}

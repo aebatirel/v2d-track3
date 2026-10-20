@@ -1,0 +1,15 @@
+t 0 0
+t 40 59
+t 80 105
+t 120 167
+plastic_dish_rack k0: 0 obs (skip)
+plastic_dish_rack k1 (large): n 148 (a/b/c [60, 28, 60]), res a-eq px before 2.49 after 2.29; offset mm (-3.6, -2.3, +0.0) |4.2|
+plastic_dish_rack k2: 0 obs (skip)
+plastic_dish_rack k3 (large): n 33 (a/b/c [30, 2, 1]), res a-eq px before 2.68 after 2.23; offset mm (-21.4, -15.9, +13.3) |29.8|
+white_pot k0 (large): n 63 (a/b/c [23, 20, 20]), res a-eq px before 8.02 after 3.10; offset mm (-11.4, -2.1, -2.6) |11.8|
+white_pot k1: 1 obs (skip)
+white_pot k2 (large): n 44 (a/b/c [23, 20, 1]), res a-eq px before 4.23 after 3.41; offset mm (+12.9, +2.6, +7.3) |15.0|
+white_pot k3 (large): n 9 (a/b/c [9, 0, 0]), res a-eq px before 1.44 after 1.26; offset mm (-7.6, -5.2, +3.3) |9.8|
+white_pot k4: 0 obs (skip)
+white_pot k5: 1 obs (skip)
+done

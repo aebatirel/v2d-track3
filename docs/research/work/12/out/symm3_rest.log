@@ -1,0 +1,4 @@
+blue_cup: aniso rms all 0.0376 nomk 0.0232; marker area 0.076 carries 0.65 of energy; corr@0 all 0.95 nomk 0.95; max corr |spin|>15: all 0.33 @ 344, nomk 0.39 @ 344
+white_pot_lid: aniso rms all 0.0401 nomk 0.0302; marker area 0.102 carries 0.49 of energy; corr@0 all 0.94 nomk 0.95; max corr |spin|>15: all 0.20 @ 16, nomk 0.40 @ 344
+white_pot: aniso rms all 0.0355 nomk 0.0253; marker area 0.065 carries 0.52 of energy; corr@0 all 0.93 nomk 0.94; max corr |spin|>15: all 0.28 @ 16, nomk 0.55 @ 344
+water_pitcher: aniso rms all 0.0346 nomk 0.0172; marker area 0.027 carries 0.76 of energy; corr@0 all 0.96 nomk 0.90; max corr |spin|>15: all 0.29 @ 182, nomk 0.49 @ 175

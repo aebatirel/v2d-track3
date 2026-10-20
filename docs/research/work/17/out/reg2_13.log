@@ -1,0 +1,11 @@
+ep 13 win 12: nobs 313 (a 263 b 29 c 21) res(a-eq px) med 1.95 p90 3.81; 80s
+ep 13 win 8: nobs 312 (a 262 b 29 c 21) res(a-eq px) med 1.84 p90 3.78; 129s
+ep 13 win 6: nobs 316 (a 263 b 29 c 24) res(a-eq px) med 1.73 p90 3.68; 179s
+drift knots (deg, mm) max |rot| 0.059 max |trans| 3.3
+   cam a blue_cup           n   53 res med 1.58 p90 3.25 (a-eq px)
+   cam a plastic_dish_rack  n  210 res med 1.71 p90 3.63 (a-eq px)
+   cam b blue_cup           n   26 res med 1.67 p90 4.13 (a-eq px)
+   cam b plastic_dish_rack  n    3 res med 2.96 p90 3.34 (a-eq px)
+   cam c blue_cup           n   16 res med 2.94 p90 4.04 (a-eq px)
+   cam c plastic_dish_rack  n    8 res med 1.95 p90 2.26 (a-eq px)
+total 179.17910718917847

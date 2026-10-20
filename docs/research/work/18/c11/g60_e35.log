@@ -1,0 +1,9 @@
+08:03:07 bank (822948, 128) images 525 points 26759
+I20261007 08:03:07.684906 0x1fe162140 sift.cc:764] Creating SIFT CPU feature extractor
+08:03:07 e35 frames 421 prior from map frame 0: {'c': True, 'a': True} exclude_own 0
+08:03:08 t=0 feat {'a': 1534, 'b': 1880, 'c': 1725} match_bc {'c': 547, 'b': 503} inl_bc 639 (c 461 b 409) inl_a 302 | undist 0.00 sift 0.66 match_bc 0.13 pnp_bc 0.04 a_total 0.04
+08:03:12 t=100 feat {'a': 1313, 'b': 1894, 'c': 1880} match_bc {'c': 603, 'b': 584} inl_bc 707 (c 507 b 477) inl_a 312 | undist 0.00 sift 0.67 match_bc 0.14 pnp_bc 0.05 a_total 0.04
+08:03:16 t=200 feat {'a': 1434, 'b': 2024, 'c': 2059} match_bc {'c': 628, 'b': 590} inl_bc 738 (c 537 b 500) inl_a 379 | undist 0.00 sift 0.60 match_bc 0.15 pnp_bc 0.06 a_total 0.02
+08:03:20 t=300 feat {'a': 1354, 'b': 1871, 'c': 1846} match_bc {'c': 542, 'b': 590} inl_bc 688 (c 459 b 485) inl_a 282 | undist 0.00 sift 0.72 match_bc 0.15 pnp_bc 0.05 a_total 0.02
+08:03:24 t=400 feat {'a': 1351, 'b': 1773, 'c': 1708} match_bc {'c': 517, 'b': 533} inl_bc 638 (c 422 b 446) inl_a 243 | undist 0.00 sift 0.58 match_bc 0.12 pnp_bc 0.04 a_total 0.03
+08:03:24 done e35: 17 frames, rig ok 1.000, a ok 1.000, wall 17s

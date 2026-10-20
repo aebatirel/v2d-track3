@@ -1,0 +1,21 @@
+T2 all      mid nondeg 16/18 P=0.0007 | max nondeg 18/22 P=0.0022 | min nondeg 10/18 | mid incl degen 27/29 P=0.0000 | max incl degen 25/29 P=0.00005
+T2 fresh22  mid nondeg 12/14 P=0.0065 | max nondeg 13/16 P=0.0106 | min nondeg 7/14 | mid incl degen 20/22 P=0.0001 | max incl degen 19/22 P=0.00043
+T3 all      mid nondeg 6/8 P=0.1445 | max nondeg 9/9 P=0.0020 | min nondeg 6/8 | mid incl degen 7/10 P=0.1719 | max incl degen 10/10 P=0.00098
+failures (mid/max nondeg, both tracks):
+  T2 cyan_water_bottle  role max skew -0.00802  z@n=1e4 -0.55
+  T2 light_blue_book    role max skew -0.00059  z@n=1e4 -0.04
+  T2 rolling_luggage    role mid skew -0.00921  z@n=1e4 -0.62
+  T2 skateboard         role max skew -0.00235  z@n=1e4 -0.15
+  T2 step_ladder        role mid skew -0.00053  z@n=1e4 -0.03
+  T2 toy_stroller       role max skew -0.01242  z@n=1e4 -0.78
+  T3 mini_dust_pan      role mid skew -0.00068  z@n=1e4 -0.05
+  T3 white_pot          role mid skew -0.00865  z@n=1e4 -0.65
+T3 mid                   bits   8 pos   6 avgLR 3.28 maxLR 12.3 n med 5.62e+03 [355,3.55e+04]
+T3 max                   bits   9 pos   9 avgLR 304 maxLR 512 n med 5.01e+06 [2.51e+03,3.98e+08]
+T2 mid                   bits  18 pos  16 avgLR 1.37e+03 maxLR 6e+03 n med 7.08e+03 [1e+03,3.98e+04]
+T2 max                   bits  22 pos  18 avgLR 7.09e+03 maxLR 2.67e+04 n med 1.78e+03 [224,1.26e+04]
+joint mid+max            bits  57 pos  49 avgLR 4.8e+10 maxLR 3.39e+11 n med 5.62e+03 [1.58e+03,1.78e+04]
+joint mid only           bits  26 pos  22 avgLR 1.29e+04 maxLR 7.37e+04 n med 7.94e+03 [1.58e+03,2.82e+04]
+T2 min contrast          bits  18 pos  10 avgLR 4.63e-18 maxLR 6.44e-16 n med 100 [100,100]
+T3 min contrast          bits   8 pos   6 avgLR 0.143 maxLR 4.11 n med 126 [100,224]
+joint, n in [1e1,1e12]   bits  57 pos  49 avgLR 3.06e+10 maxLR 3.39e+11 n med 5.62e+03 [1.58e+03,1.78e+04]

@@ -1,0 +1,16 @@
+c/trk_12_h10.npz slot0 blue_cup static prefix 30 frames, fixes used 1 (SMIN 2) | carry: f0 ADD 3.7 mm, scorer-style 0.898 0.846 mean 0.872 | pooled: f0 ADD 3.7 mm, scorer-style 0.913 0.846 mean 0.879
+c/trk_12_h20.npz slot0 blue_cup static prefix 30 frames, fixes used 1 (SMIN 2) | carry: f0 ADD 43.0 mm, scorer-style 0.292 0.026 mean 0.159 | pooled: f0 ADD 43.0 mm, scorer-style 0.355 0.026 mean 0.191
+c/trk_0_h10.npz slot0 white_pot static prefix 105 frames, fixes used 65 (SMIN 2) | carry: f0 ADD 7.1 mm, scorer-style 0.891 0.960 mean 0.925 | pooled: f0 ADD 3.7 mm, scorer-style 0.943 0.985 mean 0.964
+c/trk_0_h20.npz slot0 white_pot static prefix 105 frames, fixes used 53 (SMIN 2) | carry: f0 ADD 54.0 mm, scorer-style 0.378 0.331 mean 0.355 | pooled: f0 ADD 29.9 mm, scorer-style 0.642 0.599 mean 0.620
+c/trk_21_h10.npz slot0 blue_cup static prefix 29 frames, fixes used 28 (SMIN 2) | carry: f0 ADD 8.3 mm, scorer-style 0.947 0.861 mean 0.904 | pooled: f0 ADD 7.7 mm, scorer-style 0.951 0.853 mean 0.902
+c/trk_21_h20.npz slot0 blue_cup static prefix 29 frames, fixes used 20 (SMIN 2) | carry: f0 ADD 8.5 mm, scorer-style 0.869 0.701 mean 0.785 | pooled: f0 ADD 8.4 mm, scorer-style 0.880 0.646 mean 0.763
+c/trk_26_h10.npz slot0 plastic_dish_rack static prefix 0 frames, fixes used 0 (SMIN 2) | carry: f0 ADD 8.4 mm, scorer-style 0.920 0.932 mean 0.926 | pooled: f0 ADD 8.4 mm, scorer-style 0.920 0.932 mean 0.926
+c/trk_26_h20.npz slot0 plastic_dish_rack static prefix 0 frames, fixes used 0 (SMIN 2) | carry: f0 ADD 11.8 mm, scorer-style 0.777 0.704 mean 0.741 | pooled: f0 ADD 11.8 mm, scorer-style 0.777 0.704 mean 0.741
+c/trk_12_s90.npz slot0 blue_cup static prefix 30 frames, fixes used 5 (SMIN 2) | carry: f0 ADD 10.7 mm, scorer-style 0.717 0.417 mean 0.567 | pooled: f0 ADD 2.6 mm, scorer-style 0.835 0.942 mean 0.889
+c/trk_12_s180.npz slot0 blue_cup static prefix 30 frames, fixes used 5 (SMIN 2) | carry: f0 ADD 10.7 mm, scorer-style 0.676 0.418 mean 0.547 | pooled: f0 ADD 2.6 mm, scorer-style 0.796 0.935 mean 0.865
+c/trk_21_s90.npz slot0 blue_cup static prefix 29 frames, fixes used 22 (SMIN 2) | carry: f0 ADD 13.1 mm, scorer-style 0.879 0.906 mean 0.893 | pooled: f0 ADD 8.0 mm, scorer-style 0.928 0.838 mean 0.883
+c/trk_21_s180.npz slot0 blue_cup static prefix 29 frames, fixes used 27 (SMIN 2) | carry: f0 ADD 13.1 mm, scorer-style 0.878 0.906 mean 0.892 | pooled: f0 ADD 8.4 mm, scorer-style 0.907 0.838 mean 0.872
+c/trk_13_s90.npz slot0 blue_cup static prefix 18 frames, fixes used 6 (SMIN 2) | carry: f0 ADD 3.0 mm, scorer-style 0.789 0.947 mean 0.868 | pooled: f0 ADD 5.9 mm, scorer-style 0.811 0.970 mean 0.891
+c/trk_22_s90.npz slot0 blue_cup static prefix 0 frames, fixes used 0 (SMIN 2) | carry: f0 ADD 13.3 mm, scorer-style 0.873 0.895 mean 0.884 | pooled: f0 ADD 13.3 mm, scorer-style 0.873 0.895 mean 0.884
+c/trk_13_h10.npz slot0 blue_cup static prefix 18 frames, fixes used 14 (SMIN 2) | carry: f0 ADD 8.9 mm, scorer-style 0.865 0.800 mean 0.833 | pooled: f0 ADD 8.0 mm, scorer-style 0.938 0.857 mean 0.897
+c/trk_22_h10.npz slot0 blue_cup static prefix 0 frames, fixes used 0 (SMIN 2) | carry: f0 ADD 13.0 mm, scorer-style 0.931 0.864 mean 0.897 | pooled: f0 ADD 13.0 mm, scorer-style 0.931 0.864 mean 0.897

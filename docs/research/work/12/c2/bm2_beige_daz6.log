@@ -1,0 +1,5 @@
+beige_cup two views, daz 6 deg, view-pairs 90
+  centre bound 2 mm: wrong-branch rms px median 9.1 p10 4.9; share < 3 px 0.02, < 6 px 0.19
+  centre bound 3 mm: wrong-branch rms px median 7.8 p10 3.0; share < 3 px 0.10, < 6 px 0.34
+  centre bound 5 mm: wrong-branch rms px median 5.8 p10 1.9; share < 3 px 0.20, < 6 px 0.52
+  centre bound 8 mm: wrong-branch rms px median 4.3 p10 1.6; share < 3 px 0.30, < 6 px 0.67

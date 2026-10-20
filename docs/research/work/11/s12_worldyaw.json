@@ -1,0 +1,572 @@
+{
+ "res": [
+  {
+   "task": "Pot_with_lid",
+   "when": "start",
+   "q": "yaw:white_pot",
+   "eps": [
+    0,
+    2
+   ],
+   "val": [
+    4.9,
+    4.6
+   ],
+   "dev": [
+    0.1,
+    -0.1
+   ]
+  },
+  {
+   "task": "Pot_with_lid",
+   "when": "start",
+   "q": "yaw:white_pot_lid",
+   "eps": [
+    0,
+    2
+   ],
+   "val": [
+    -127.0,
+    -161.5
+   ],
+   "dev": [
+    17.3,
+    -17.3
+   ]
+  },
+  {
+   "task": "Pot_with_lid",
+   "when": "end",
+   "q": "yaw:white_pot",
+   "eps": [
+    0,
+    2
+   ],
+   "val": [
+    6.6,
+    6.1
+   ],
+   "dev": [
+    0.3,
+    -0.3
+   ]
+  },
+  {
+   "task": "Pot_with_lid",
+   "when": "end",
+   "q": "yaw:white_pot_lid",
+   "eps": [
+    0,
+    2
+   ],
+   "val": [
+    -127.7,
+    -157.0
+   ],
+   "dev": [
+    14.7,
+    -14.7
+   ]
+  },
+  {
+   "task": "Cup_In_Dish_Rack",
+   "when": "start",
+   "q": "yaw:blue_cup",
+   "eps": [
+    12,
+    13
+   ],
+   "val": [
+    65.5,
+    62.8
+   ],
+   "dev": [
+    1.3,
+    -1.3
+   ]
+  },
+  {
+   "task": "Cup_In_Dish_Rack",
+   "when": "start",
+   "q": "yaw:plastic_dish_rack",
+   "eps": [
+    12,
+    13
+   ],
+   "val": [
+    89.9,
+    89.1
+   ],
+   "dev": [
+    0.4,
+    -0.4
+   ]
+  },
+  {
+   "task": "Cup_In_Dish_Rack",
+   "when": "start",
+   "q": "bearing:blue_cup->plastic_dish_rack",
+   "eps": [
+    12,
+    13
+   ],
+   "val": [
+    -157.5,
+    156.1
+   ],
+   "dev": [
+    23.2,
+    -23.2
+   ]
+  },
+  {
+   "task": "Cup_In_Dish_Rack",
+   "when": "end",
+   "q": "yaw:plastic_dish_rack",
+   "eps": [
+    12,
+    13
+   ],
+   "val": [
+    89.5,
+    89.1
+   ],
+   "dev": [
+    0.2,
+    -0.2
+   ]
+  },
+  {
+   "task": "Water_Can_Blue_Cup",
+   "when": "start",
+   "q": "yaw:blue_cup",
+   "eps": [
+    21,
+    22
+   ],
+   "val": [
+    -64.8,
+    -72.8
+   ],
+   "dev": [
+    4.0,
+    -4.0
+   ]
+  },
+  {
+   "task": "Water_Can_Blue_Cup",
+   "when": "start",
+   "q": "bearing:blue_cup->water_pitcher",
+   "eps": [
+    21,
+    22
+   ],
+   "val": [
+    96.2,
+    94.2
+   ],
+   "dev": [
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "task": "Water_Can_Blue_Cup",
+   "when": "end",
+   "q": "yaw:blue_cup",
+   "eps": [
+    21,
+    22
+   ],
+   "val": [
+    -88.1,
+    -89.9
+   ],
+   "dev": [
+    0.9,
+    -0.9
+   ]
+  },
+  {
+   "task": "Water_Can_Blue_Cup",
+   "when": "end",
+   "q": "bearing:blue_cup->water_pitcher",
+   "eps": [
+    21,
+    22
+   ],
+   "val": [
+    112.8,
+    105.8
+   ],
+   "dev": [
+    3.5,
+    -3.5
+   ]
+  },
+  {
+   "task": "Planter_Stand",
+   "when": "start",
+   "q": "yaw:wooden_piece_1",
+   "eps": [
+    23,
+    24
+   ],
+   "val": [
+    -175.7,
+    -178.8
+   ],
+   "dev": [
+    1.5,
+    -1.5
+   ]
+  },
+  {
+   "task": "Planter_Stand",
+   "when": "start",
+   "q": "yaw:wooden_piece_2",
+   "eps": [
+    23,
+    24
+   ],
+   "val": [
+    -179.3,
+    178.0
+   ],
+   "dev": [
+    1.3,
+    -1.3
+   ]
+  },
+  {
+   "task": "Planter_Stand",
+   "when": "start",
+   "q": "bearing:wooden_piece_1->wooden_piece_2",
+   "eps": [
+    23,
+    24
+   ],
+   "val": [
+    92.5,
+    90.7
+   ],
+   "dev": [
+    0.9,
+    -0.9
+   ]
+  },
+  {
+   "task": "Pan_In_Dishrack",
+   "when": "start",
+   "q": "yaw:plastic_dish_rack",
+   "eps": [
+    26,
+    27
+   ],
+   "val": [
+    93.0,
+    91.6
+   ],
+   "dev": [
+    0.7,
+    -0.7
+   ]
+  },
+  {
+   "task": "Pan_In_Dishrack",
+   "when": "start",
+   "q": "bearing:plastic_dish_rack->white_pot",
+   "eps": [
+    26,
+    27
+   ],
+   "val": [
+    88.1,
+    32.6
+   ],
+   "dev": [
+    27.7,
+    -27.7
+   ]
+  },
+  {
+   "task": "Pan_In_Dishrack",
+   "when": "end",
+   "q": "yaw:plastic_dish_rack",
+   "eps": [
+    26,
+    27
+   ],
+   "val": [
+    92.9,
+    91.0
+   ],
+   "dev": [
+    1.0,
+    -1.0
+   ]
+  },
+  {
+   "task": "Pan_In_Dishrack",
+   "when": "end",
+   "q": "bearing:plastic_dish_rack->white_pot",
+   "eps": [
+    26,
+    27
+   ],
+   "val": [
+    26.8,
+    85.5
+   ],
+   "dev": [
+    -29.3,
+    29.3
+   ]
+  },
+  {
+   "task": "Dustpan_Solo",
+   "when": "start",
+   "q": "yaw:mini_dust_pan",
+   "eps": [
+    39,
+    40
+   ],
+   "val": [
+    -16.5,
+    -2.8
+   ],
+   "dev": [
+    -6.9,
+    6.9
+   ]
+  },
+  {
+   "task": "Dustpan_Solo",
+   "when": "end",
+   "q": "yaw:mini_dust_pan",
+   "eps": [
+    39,
+    40
+   ],
+   "val": [
+    10.9,
+    -0.6
+   ],
+   "dev": [
+    5.8,
+    -5.8
+   ]
+  },
+  {
+   "task": "Pan_Solo",
+   "when": "end",
+   "q": "yaw:white_pot",
+   "eps": [
+    41,
+    42,
+    43,
+    44,
+    45
+   ],
+   "val": [
+    -2.1,
+    0.3,
+    0.9,
+    -4.5,
+    0.3
+   ],
+   "dev": [
+    -1.0,
+    1.3,
+    1.9,
+    -3.5,
+    1.3
+   ]
+  }
+ ],
+ "ep_shift": {
+  "0": {
+   "devs": [
+    [
+     "yaw:white_pot",
+     0.1
+    ],
+    [
+     "yaw:white_pot_lid",
+     17.3
+    ]
+   ],
+   "mean": 8.700000000000001,
+   "spread": 8.6
+  },
+  "2": {
+   "devs": [
+    [
+     "yaw:white_pot",
+     -0.1
+    ],
+    [
+     "yaw:white_pot_lid",
+     -17.3
+    ]
+   ],
+   "mean": -8.700000000000001,
+   "spread": 8.6
+  },
+  "12": {
+   "devs": [
+    [
+     "yaw:blue_cup",
+     1.3
+    ],
+    [
+     "yaw:plastic_dish_rack",
+     0.4
+    ],
+    [
+     "bearing:blue_cup->plastic_dish_rack",
+     23.2
+    ]
+   ],
+   "mean": 8.299999999999999,
+   "spread": 10.54229576515476
+  },
+  "13": {
+   "devs": [
+    [
+     "yaw:blue_cup",
+     -1.3
+    ],
+    [
+     "yaw:plastic_dish_rack",
+     -0.4
+    ],
+    [
+     "bearing:blue_cup->plastic_dish_rack",
+     -23.2
+    ]
+   ],
+   "mean": -8.299999999999999,
+   "spread": 10.54229576515476
+  },
+  "21": {
+   "devs": [
+    [
+     "yaw:blue_cup",
+     4.0
+    ],
+    [
+     "bearing:blue_cup->water_pitcher",
+     1.0
+    ]
+   ],
+   "mean": 2.5,
+   "spread": 1.5
+  },
+  "22": {
+   "devs": [
+    [
+     "yaw:blue_cup",
+     -4.0
+    ],
+    [
+     "bearing:blue_cup->water_pitcher",
+     -1.0
+    ]
+   ],
+   "mean": -2.5,
+   "spread": 1.5
+  },
+  "23": {
+   "devs": [
+    [
+     "yaw:wooden_piece_1",
+     1.5
+    ],
+    [
+     "yaw:wooden_piece_2",
+     1.3
+    ],
+    [
+     "bearing:wooden_piece_1->wooden_piece_2",
+     0.9
+    ]
+   ],
+   "mean": 1.2333333333333332,
+   "spread": 0.2494438257849294
+  },
+  "24": {
+   "devs": [
+    [
+     "yaw:wooden_piece_1",
+     -1.5
+    ],
+    [
+     "yaw:wooden_piece_2",
+     -1.3
+    ],
+    [
+     "bearing:wooden_piece_1->wooden_piece_2",
+     -0.9
+    ]
+   ],
+   "mean": -1.2333333333333332,
+   "spread": 0.2494438257849294
+  },
+  "26": {
+   "devs": [
+    [
+     "yaw:plastic_dish_rack",
+     0.7
+    ],
+    [
+     "bearing:plastic_dish_rack->white_pot",
+     27.7
+    ]
+   ],
+   "mean": 14.2,
+   "spread": 13.5
+  },
+  "27": {
+   "devs": [
+    [
+     "yaw:plastic_dish_rack",
+     -0.7
+    ],
+    [
+     "bearing:plastic_dish_rack->white_pot",
+     -27.7
+    ]
+   ],
+   "mean": -14.2,
+   "spread": 13.5
+  },
+  "39": {
+   "devs": [
+    [
+     "yaw:mini_dust_pan",
+     -6.9
+    ]
+   ],
+   "mean": -6.9,
+   "spread": 0.0
+  },
+  "40": {
+   "devs": [
+    [
+     "yaw:mini_dust_pan",
+     6.9
+    ]
+   ],
+   "mean": 6.9,
+   "spread": 0.0
+  }
+ },
+ "rack": {
+  "12": 89.872176486442,
+  "13": 89.08827453336222,
+  "26": 92.95995225285944,
+  "27": 91.59788920520033,
+  "31": 91.21967308583181
+ }
+}

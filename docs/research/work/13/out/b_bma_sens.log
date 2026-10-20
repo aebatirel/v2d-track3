@@ -1,0 +1,10 @@
+round far3d (in sd units) x: median |v| 0.255 -> 1.5 mm; y: median |v| 0.040 -> 0.4 mm; z: median 1.96
+far3d at handle end (z>0) share 1.0
+prior RAND 0.33: post RAND 0.15 round: P(B)=0.90
+prior RAND 0.33: post RAND 0.15 oval: P(B)=0.81
+prior RAND 0.50: post RAND 0.26 round: P(B)=0.84
+prior RAND 0.50: post RAND 0.26 oval: P(B)=0.77
+prior RAND 0.80: post RAND 0.58 round: P(B)=0.69
+prior RAND 0.80: post RAND 0.58 oval: P(B)=0.65
+prior RAND 0.90: post RAND 0.76 round: P(B)=0.61
+prior RAND 0.90: post RAND 0.76 oval: P(B)=0.59

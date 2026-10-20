@@ -1,0 +1,27 @@
+ep 41: sync delta 0.000; 299 frames, using every 3; static frac per object [0.18]
+win 90: nobs 2 (a 2, b 0, c 0); res px(a-eq) med 66.14 p90 118.88; inl<4px 0.50; step rot 110.39 deg trans 883.6 mm; 11s
+win 60: nobs 10 (a 10, b 0, c 0); res px(a-eq) med 15.32 p90 99.74; inl<4px 0.20; step rot 45.69 deg trans 598.2 mm; 20s
+win 40: nobs 3 (a 2, b 1, c 0); res px(a-eq) med 0.12 p90 0.12; inl<4px 1.00; step rot 132.41 deg trans 1086.7 mm; 30s
+win 25: nobs 2 (a 2, b 0, c 0); res px(a-eq) med 1.93 p90 1.98; inl<4px 1.00; step rot 129.42 deg trans 1631.7 mm; 39s
+  return _methods._mean(a, axis=axis, dtype=dtype,
+  ret = ret.dtype.type(ret / rcount)
+Traceback (most recent call last):
+  File "/Users/aebatirel/Documents/Code/v2d-research/work/17/reg17.py", line 91, in <module>
+    f'res px(a-eq) med {np.median(e):.2f} p90 {np.percentile(e,90):.2f}; inl<4px {np.mean(e<4):.2f}; step rot {np.degrees(np.linalg.norm(dx[:3])):.2f} deg trans {np.linalg.norm(dx[3:])*1000:.1f} mm; {time.time()-t0:.0f}s', flush=True)
+                                               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4258, in percentile
+    return _quantile_unchecked(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4522, in _quantile_unchecked
+    return _ureduce(a,
+           ^^^^^^^^^^^
+  File "/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 3892, in _ureduce
+    r = func(a, **kwargs)
+        ^^^^^^^^^^^^^^^^^
+  File "/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4681, in _quantile_ureduce_func
+    result = _quantile(arr,
+             ^^^^^^^^^^^^^^
+  File "/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4805, in _quantile
+    slices_having_nans = np.isnan(arr[-1, ...])
+                                  ~~~^^^^^^^^^
+IndexError: index -1 is out of bounds for axis 0 with size 0

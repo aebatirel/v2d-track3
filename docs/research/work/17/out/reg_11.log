@@ -1,0 +1,10 @@
+ep 11: sync delta 1.081; 137 frames, using every 3; static frac per object [0.26 0.47]
+multi-start best: 5 obs < 5 px at dpsi 0 dth -12 dz 0.15; 500s
+win 25: nobs 21 (a 20, b 1, c 0); res px(a-eq) med 11.38 p90 21.65; inl<4px 0.24; step rot 6.38 deg trans 82.4 mm; 527s
+win 15: nobs 10 (a 9, b 1, c 0); res px(a-eq) med 3.47 p90 9.68; inl<4px 0.50; step rot 7.20 deg trans 96.6 mm; 545s
+win 10: nobs 10 (a 9, b 1, c 0); res px(a-eq) med 2.66 p90 7.69; inl<4px 0.60; step rot 6.17 deg trans 87.9 mm; 556s
+win 8: nobs 9 (a 9, b 0, c 0); res px(a-eq) med 3.33 p90 6.12; inl<4px 0.78; step rot 0.50 deg trans 7.7 mm; 567s
+final: sd rot [3.425 4.677 1.035] deg, sd trans [63.34 49.08 17.95] mm (formal, robust-scaled)
+frame-0 cam_a vs s25: rot 29.05 deg, dC mm [-155.2   -4.6  -96.9]; heading -13.71 pitch 82.04
+   cam a beige_cup          n    5 res med 1.41 p90 5.19 (a-eq px)
+   cam a blue_cup           n    4 res med 3.51 p90 5.33 (a-eq px)

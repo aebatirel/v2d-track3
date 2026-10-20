@@ -1,0 +1,594 @@
+{
+ "schema": 1,
+ "generated_at": "2026-10-06T07:44:21+00:00",
+ "source": "kaggle",
+ "tracks": [
+  {
+   "key": "track_1",
+   "title": "Track 1 - Reconstruction",
+   "short_title": "Track 1",
+   "metrics": [
+    {
+     "key": "cd_h_cm",
+     "display": "CD-H",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track1-cd-h",
+     "available": true
+    },
+    {
+     "key": "cd_o_cm",
+     "display": "CD-O",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track1-cd-o",
+     "available": true
+    },
+    {
+     "key": "acc_h_cm",
+     "display": "ACC-H",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track1-acc-h",
+     "available": true
+    },
+    {
+     "key": "acc_o_cm",
+     "display": "ACC-O",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track1-acc-o",
+     "available": true
+    },
+    {
+     "key": "interpenetration_cm",
+     "display": "PEN",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track1-pen",
+     "available": true
+    }
+   ],
+   "rows": [
+    {
+     "team": "ByeByeHelloHaHaHa",
+     "members": [
+      "byebyehellohahaha"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "cd_h_cm": 14.20515,
+      "cd_o_cm": 31.40578,
+      "acc_h_cm": 0.16957,
+      "acc_o_cm": 0.13563,
+      "interpenetration_cm": 0.00058
+     },
+     "submission_count": {
+      "cd_h_cm": 2,
+      "cd_o_cm": 2,
+      "acc_h_cm": 2,
+      "acc_o_cm": 2,
+      "interpenetration_cm": 2
+     },
+     "last_submission": "2026-10-04 16:07:28",
+     "kaggle_rank": {
+      "cd_h_cm": 1,
+      "cd_o_cm": 2,
+      "acc_h_cm": 1,
+      "acc_o_cm": 1,
+      "interpenetration_cm": 1
+     },
+     "rank": 1
+    },
+    {
+     "team": "Open4D",
+     "members": [
+      "alex0807",
+      "gsadhas"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "cd_h_cm": 15.41265,
+      "cd_o_cm": 24.5668,
+      "acc_h_cm": 0.17835,
+      "acc_o_cm": 0.19278,
+      "interpenetration_cm": 0.00286
+     },
+     "submission_count": {
+      "cd_h_cm": 4,
+      "cd_o_cm": 4,
+      "acc_h_cm": 4,
+      "acc_o_cm": 4,
+      "interpenetration_cm": 4
+     },
+     "last_submission": "2026-10-04 06:45:29",
+     "kaggle_rank": {
+      "cd_h_cm": 2,
+      "cd_o_cm": 1,
+      "acc_h_cm": 2,
+      "acc_o_cm": 2,
+      "interpenetration_cm": 2
+     },
+     "rank": 2
+    },
+    {
+     "team": "CARI4D Basline",
+     "members": [],
+     "is_baseline": true,
+     "scores": {
+      "cd_h_cm": 15.57527,
+      "cd_o_cm": 23.16246,
+      "acc_h_cm": 1.97387,
+      "acc_o_cm": 0.72622,
+      "interpenetration_cm": 0.00423
+     },
+     "submission_count": {
+      "cd_h_cm": 1,
+      "cd_o_cm": 1,
+      "acc_h_cm": 1,
+      "acc_o_cm": 1,
+      "interpenetration_cm": 1
+     },
+     "last_submission": "2026-10-01 20:49:51",
+     "kaggle_rank": {
+      "cd_h_cm": 0,
+      "cd_o_cm": 0,
+      "acc_h_cm": 0,
+      "acc_o_cm": 0,
+      "interpenetration_cm": 0
+     },
+     "rank": null
+    },
+    {
+     "team": "Lattice Studios",
+     "members": [
+      "latticestudios"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "cd_h_cm": 36.38952,
+      "cd_o_cm": 54.44914,
+      "acc_h_cm": 1.65537,
+      "acc_o_cm": 1.93386,
+      "interpenetration_cm": 0.0582
+     },
+     "submission_count": {
+      "cd_h_cm": 2,
+      "cd_o_cm": 2,
+      "acc_h_cm": 2,
+      "acc_o_cm": 2,
+      "interpenetration_cm": 2
+     },
+     "last_submission": "2026-10-04 20:44:14",
+     "kaggle_rank": {
+      "cd_h_cm": 3,
+      "cd_o_cm": 3,
+      "acc_h_cm": 3,
+      "acc_o_cm": 3,
+      "interpenetration_cm": 3
+     },
+     "rank": 3
+    }
+   ],
+   "incomplete": [],
+   "warnings": []
+  },
+  {
+   "key": "track_2_tier1",
+   "title": "Track 2 - Robotic Grounding (Tier 1: multi-view input)",
+   "short_title": "Track 2 \u00b7 Tier 1",
+   "metrics": [
+    {
+     "key": "add_auc",
+     "display": "AUC",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier1-auc",
+     "available": true
+    },
+    {
+     "key": "spider_sr",
+     "display": "SP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier1-sp-sr",
+     "available": true
+    },
+    {
+     "key": "maniptrans_sr",
+     "display": "MP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier1-mp-sr",
+     "available": true
+    },
+    {
+     "key": "mppe_cm",
+     "display": "MPPE",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track2-tier1-mppe",
+     "available": true
+    }
+   ],
+   "rows": [
+    {
+     "team": "Xueyi Wang (FF)",
+     "members": [
+      "wxy821018"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "add_auc": 0.55687,
+      "spider_sr": 0.7,
+      "maniptrans_sr": 0.66666,
+      "mppe_cm": 8.22045
+     },
+     "submission_count": {
+      "add_auc": 2,
+      "spider_sr": 2,
+      "maniptrans_sr": 2,
+      "mppe_cm": 2
+     },
+     "last_submission": "2026-10-06 06:19:57",
+     "kaggle_rank": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "rank": 1
+    },
+    {
+     "team": "CHORD Baseline",
+     "members": [],
+     "is_baseline": true,
+     "scores": {
+      "add_auc": 0.51038,
+      "spider_sr": 0.7,
+      "maniptrans_sr": 0.2,
+      "mppe_cm": 17.73644
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "last_submission": "2026-09-30 23:35:58",
+     "kaggle_rank": {
+      "add_auc": 0,
+      "spider_sr": 0,
+      "maniptrans_sr": 0,
+      "mppe_cm": 0
+     },
+     "rank": null
+    }
+   ],
+   "incomplete": [],
+   "warnings": []
+  },
+  {
+   "key": "track_2_tier2",
+   "title": "Track 2 - Robotic Grounding (Tier 2: synthetically corrupted input)",
+   "short_title": "Track 2 \u00b7 Tier 2",
+   "metrics": [
+    {
+     "key": "add_auc",
+     "display": "AUC",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier2-auc",
+     "available": true
+    },
+    {
+     "key": "spider_sr",
+     "display": "SP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier2-sp-sr",
+     "available": true
+    },
+    {
+     "key": "maniptrans_sr",
+     "display": "MP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier2-mp-sr",
+     "available": true
+    },
+    {
+     "key": "mppe_cm",
+     "display": "MPPE",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track2-tier2-mppe",
+     "available": true
+    }
+   ],
+   "rows": [
+    {
+     "team": "Xueyi Wang (FF)",
+     "members": [
+      "wxy821018"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "add_auc": 0.42073,
+      "spider_sr": 0.53333,
+      "maniptrans_sr": 0.26666,
+      "mppe_cm": 15.34253
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "last_submission": "2026-10-06 05:34:24",
+     "kaggle_rank": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "rank": 1
+    },
+    {
+     "team": "CHORD Baseline",
+     "members": [],
+     "is_baseline": true,
+     "scores": {
+      "add_auc": 0.37374,
+      "spider_sr": 0.53333,
+      "maniptrans_sr": 0.06666,
+      "mppe_cm": 20.52402
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "last_submission": "2026-09-30 23:36:10",
+     "kaggle_rank": {
+      "add_auc": 0,
+      "spider_sr": 0,
+      "maniptrans_sr": 0,
+      "mppe_cm": 0
+     },
+     "rank": null
+    }
+   ],
+   "incomplete": [],
+   "warnings": []
+  },
+  {
+   "key": "track_2_tier3",
+   "title": "Track 2 - Robotic Grounding (Tier 3: bring your own reconstruction)",
+   "short_title": "Track 2 \u00b7 Tier 3",
+   "metrics": [
+    {
+     "key": "add_auc",
+     "display": "AUC",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier3-auc",
+     "available": true
+    },
+    {
+     "key": "spider_sr",
+     "display": "SP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier3-sp-sr",
+     "available": true
+    },
+    {
+     "key": "maniptrans_sr",
+     "display": "MP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track2-tier3-mp-sr",
+     "available": true
+    },
+    {
+     "key": "mppe_cm",
+     "display": "MPPE",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track2-tier3-mppe",
+     "available": true
+    }
+   ],
+   "rows": [
+    {
+     "team": "Xueyi Wang (FF)",
+     "members": [
+      "wxy821018"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "add_auc": 0.15315,
+      "spider_sr": 0.0,
+      "maniptrans_sr": 0.0,
+      "mppe_cm": 77.66743
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "last_submission": "2026-10-06 05:34:46",
+     "kaggle_rank": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "rank": 1
+    },
+    {
+     "team": "CHORD Baseline (CARI4D Reconstruction)",
+     "members": [],
+     "is_baseline": true,
+     "scores": {
+      "add_auc": 0.00226,
+      "spider_sr": 0.0,
+      "maniptrans_sr": 0.0,
+      "mppe_cm": 70.17205
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "mppe_cm": 1
+     },
+     "last_submission": "2026-09-30 23:36:21",
+     "kaggle_rank": {
+      "add_auc": 0,
+      "spider_sr": 0,
+      "maniptrans_sr": 0,
+      "mppe_cm": 0
+     },
+     "rank": null
+    }
+   ],
+   "incomplete": [],
+   "warnings": []
+  },
+  {
+   "key": "track_3",
+   "title": "Track 3 - Egocentric",
+   "short_title": "Track 3",
+   "metrics": [
+    {
+     "key": "add_auc",
+     "display": "AUC",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track3-auc",
+     "available": true
+    },
+    {
+     "key": "spider_sr",
+     "display": "SP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track3-sp-sr",
+     "available": true
+    },
+    {
+     "key": "maniptrans_sr",
+     "display": "MP-SR",
+     "unit": "",
+     "higher_is_better": true,
+     "competition": "v2d-challenge-track3-mp-sr",
+     "available": true
+    },
+    {
+     "key": "rpe_cm",
+     "display": "RPE",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track3-rpe",
+     "available": true
+    },
+    {
+     "key": "mppe_cm",
+     "display": "MPPE",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track3-mppe",
+     "available": true
+    },
+    {
+     "key": "cd_o_cm",
+     "display": "CD-O",
+     "unit": "cm",
+     "higher_is_better": false,
+     "competition": "v2d-challenge-track3-cd-o",
+     "available": true
+    }
+   ],
+   "rows": [
+    {
+     "team": "SoySauceChicken",
+     "members": [
+      "zihangao2001"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "add_auc": 0.64908,
+      "spider_sr": 0.35,
+      "maniptrans_sr": 0.25,
+      "rpe_cm": 5.13161,
+      "mppe_cm": 7.28277
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "rpe_cm": 1,
+      "mppe_cm": 1
+     },
+     "last_submission": "2026-10-06 07:13:37",
+     "kaggle_rank": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "rpe_cm": 1,
+      "mppe_cm": 1
+     },
+     "missing": [
+      "cd_o_cm"
+     ],
+     "rank": 1
+    },
+    {
+     "team": "Panav Raaj",
+     "members": [
+      "panavraaj"
+     ],
+     "is_baseline": false,
+     "scores": {
+      "add_auc": 0.21199,
+      "spider_sr": 0.05,
+      "maniptrans_sr": 0.0,
+      "rpe_cm": 20.04542,
+      "mppe_cm": 15.22125,
+      "cd_o_cm": 0.11218
+     },
+     "submission_count": {
+      "add_auc": 1,
+      "spider_sr": 1,
+      "maniptrans_sr": 1,
+      "rpe_cm": 1,
+      "mppe_cm": 1,
+      "cd_o_cm": 1
+     },
+     "last_submission": "2026-10-05 06:23:31",
+     "kaggle_rank": {
+      "add_auc": 2,
+      "spider_sr": 2,
+      "maniptrans_sr": 2,
+      "rpe_cm": 2,
+      "mppe_cm": 2,
+      "cd_o_cm": 1
+     },
+     "rank": 2
+    }
+   ],
+   "incomplete": [
+    {
+     "team": "SoySauceChicken",
+     "missing": [
+      "cd_o_cm"
+     ]
+    }
+   ],
+   "warnings": []
+  }
+ ]
+}

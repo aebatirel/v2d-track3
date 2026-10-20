@@ -1,0 +1,17 @@
+c/trk_26_h10.npz MODE reg SH -0.5 T 158 runtime 0.39 s/frame
+  plastic_dish_rack: AUC(ADD, this trajectory, no policy) 0.921; status 3/2/1/0 = 0.00 / 0.71 / 0.25 / 0.04
+    rest     n 138 fix>=2 0.72 fix3 0.00 | fix2 n99 t 8.2/12.3 r 4.79/12.04 ADD 9.8/17.3 | all n138 t 10.0/23.1 r 6.42/17.90 ADD 12.1/26.6 |
+    held     n  20 fix>=2 0.65 fix3 0.00 | fix2 n13 t 7.2/14.8 r 2.99/7.02 ADD 8.4/22.2 | all n20 t 10.3/19.3 r 5.36/8.77 ADD 11.4/22.5 |
+    PRIOR-ONLY (emulated model-based, PN [10.0, 5.0, 0.95]): AUC 0.860; t 16.8 r 9.33 ADD 21.4 | FUSED AUC 0.921
+      rest     fix frames n99: prior ADD 21.0 -> fused 9.8 mm; fused worse than prior in 0.07
+      held     fix frames n13: prior ADD 15.4 -> fused 8.4 mm; fused worse than prior in 0.15
+  white_pot: AUC(ADD, this trajectory, no policy) 0.934; status 3/2/1/0 = 0.19 / 0.59 / 0.15 / 0.06
+    rest     n  93 fix>=2 0.76 fix3 0.12 | fix3 n11 t 6.4/15.8 r 3.48/7.51 ADD 9.9/16.4 | fix2 n60 t 8.4/15.4 r 3.56/8.37 ADD 10.0/16.3 | all n93 t 10.7/16.6 r 4.88/10.29 ADD 12.7/20.5 |
+    held     n  24 fix>=2 0.88 fix3 0.17 | fix3 n4 t 3.2/8.8 r 4.70/5.43 ADD 6.9/10.1 | fix2 n17 t 7.7/11.7 r 2.83/5.11 ADD 8.7/12.4 | all n24 t 8.3/15.7 r 3.54/9.25 ADD 8.9/19.1 |
+    carried  n  41 fix>=2 0.78 fix3 0.37 | fix3 n15 t 5.0/20.5 r 3.64/8.05 ADD 5.6/20.6 | fix2 n17 t 11.5/16.3 r 6.88/17.19 ADD 13.4/21.4 | all n41 t 11.6/22.8 r 6.88/17.73 ADD 13.7/31.9 |
+    PRIOR-ONLY (emulated model-based, PN [10.0, 5.0, 0.95]): AUC 0.849; t 16.4 r 9.64 ADD 20.9 | FUSED AUC 0.934
+      rest     fix frames n71: prior ADD 23.7 -> fused 9.9 mm; fused worse than prior in 0.00
+      held     fix frames n21: prior ADD 16.9 -> fused 7.7 mm; fused worse than prior in 0.00
+      carried  fix frames n32: prior ADD 19.8 -> fused 10.9 mm; fused worse than prior in 0.19
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object plastic_dish_rack:0.903 white_pot:0.921 mean 0.912
+  SCORER-STYLE (prior-only; slot-0 frame-0 alignment) AUC per object plastic_dish_rack:0.828 white_pot:0.736 mean 0.782

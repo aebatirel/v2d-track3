@@ -1,0 +1,45 @@
+== comb axisc0
+frame 0 eval camera reproj 4.07 px
+   blue_cup gauge origin moved 1.82 mm onto the axis
+   beige_cup gauge origin moved 2.84 mm onto the axis
+blue_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/4; auto blobs 3 -> matched 2, false 1
+   base prior: spin err median 0.35 deg, |err|>30: 0/40, values(sample) [-0.5 -0.3 -0.3 -0.5 -0.6 -0.3 -0.6 -0.7]
+   tight prior: spin err median 0.50 deg, |err|>30: 0/40, values(sample) [-0.8 -0.3 -0.9 -0.1 -0.8 -0.5 -1.2  1. ]
+   base_wm0 prior: spin err median 0.51 deg, |err|>30: 0/40, values(sample) [-1.  -0.4  0.3 -0.8 -0.4 -0.7 -0.7 -0.5]
+   tight_wm0 prior: spin err median 0.50 deg, |err|>30: 0/40, values(sample) [-1.4 -0.  -0.3 -0.6 -1.1 -0.3 -0.7 -1.2]
+beige_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/3; auto blobs 3 -> matched 2, false 1
+   base prior: spin err median 130.85 deg, |err|>30: 23/40, values(sample) [-1.323e+02 -1.313e+02  1.400e+00 -1.000e-01 -1.307e+02 -1.318e+02
+  2.000e-01 -1.310e+02]
+   tight prior: spin err median 50.29 deg, |err|>30: 20/40, values(sample) [   0.9 -131.3 -131.5    0.4 -131.8    1.     0.8    0.8]
+   base_wm0 prior: spin err median 130.81 deg, |err|>30: 26/40, values(sample) [-131.5 -131.1 -131.2 -132.  -130.8 -131.1 -130.5    0.9]
+   tight_wm0 prior: spin err median 0.93 deg, |err|>30: 15/40, values(sample) [-131.3    0.8    0.9    1.2    0.6    0.5    0.6    0.5]
+== comb fix171 axisc0
+frame 0 eval camera reproj 3.52 px
+   blue_cup gauge origin moved 1.82 mm onto the axis
+   beige_cup gauge origin moved 2.84 mm onto the axis
+blue_cup Z 0.49 m, expected sphere 34 px; GT markers visible 3/4; auto blobs 3 -> matched 3, false 0
+   base prior: spin err median 0.44 deg, |err|>30: 0/40, values(sample) [-0.6 -0.4 -0.4 -0.6 -0.7 -0.4 -0.7 -0.8]
+   tight prior: spin err median 0.46 deg, |err|>30: 0/40, values(sample) [-0.8 -0.3 -0.9 -0.1 -0.8 -0.4 -1.2  1. ]
+   base_wm0 prior: spin err median 0.59 deg, |err|>30: 0/40, values(sample) [-1.1 -0.5  0.2 -0.9 -0.5 -0.8 -0.8 -0.6]
+   tight_wm0 prior: spin err median 0.47 deg, |err|>30: 0/40, values(sample) [-1.4  0.  -0.2 -0.6 -1.  -0.3 -0.7 -1.2]
+beige_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/3; auto blobs 3 -> matched 2, false 1
+   base prior: spin err median 66.15 deg, |err|>30: 20/40, values(sample) [-1.324e+02 -1.314e+02  1.500e+00  1.000e-01  1.600e+00 -1.318e+02
+  4.000e-01  1.200e+00]
+   tight prior: spin err median 0.91 deg, |err|>30: 8/40, values(sample) [   1.1    1.1 -131.6    0.5    0.7    1.1    0.9    0.9]
+   base_wm0 prior: spin err median 1.69 deg, |err|>30: 19/40, values(sample) [-131.6 -131.2 -131.3    0.8 -130.9    0.9 -130.7    1.1]
+   tight_wm0 prior: spin err median 1.00 deg, |err|>30: 9/40, values(sample) [1.1 1.  1.  1.3 0.8 0.6 0.7 0.6]
+== comb add3 axisc0
+frame 0 eval camera reproj 4.07 px
+   blue_cup gauge origin moved 1.82 mm onto the axis
+   beige_cup gauge origin moved 2.84 mm onto the axis
+blue_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/4; auto blobs 3 -> matched 2, false 1
+   base prior: spin err median 0.35 deg, |err|>30: 0/40, values(sample) [-0.5 -0.3 -0.3 -0.5 -0.6 -0.3 -0.6 -0.7]
+   tight prior: spin err median 0.50 deg, |err|>30: 0/40, values(sample) [-0.8 -0.3 -0.9 -0.1 -0.8 -0.5 -1.2  1. ]
+   base_wm0 prior: spin err median 0.51 deg, |err|>30: 0/40, values(sample) [-1.  -0.4  0.3 -0.8 -0.4 -0.7 -0.7 -0.5]
+   tight_wm0 prior: spin err median 0.50 deg, |err|>30: 0/40, values(sample) [-1.4 -0.  -0.3 -0.6 -1.1 -0.3 -0.7 -1.2]
+beige_cup Z 0.49 m, expected sphere 34 px; GT markers visible 2/3; auto blobs 3 -> matched 2, false 1
+   add3: beige detections now 4
+   base prior: spin err median 0.85 deg, |err|>30: 0/40, values(sample) [0.7 0.9 1.  0.6 1.1 0.8 0.7 1. ]
+   tight prior: spin err median 0.92 deg, |err|>30: 0/40, values(sample) [0.9 1.1 1.  0.8 0.9 0.9 1.  1.1]
+   base_wm0 prior: spin err median 0.86 deg, |err|>30: 1/40, values(sample) [0.9 0.9 0.9 0.7 1.  0.9 6.5 0.8]
+   tight_wm0 prior: spin err median 1.00 deg, |err|>30: 0/40, values(sample) [1.1 0.8 1.1 1.1 0.9 0.8 0.9 0.9]

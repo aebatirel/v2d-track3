@@ -1,0 +1,55 @@
+objects: ['beige_cup', 'blue_cup', 'mini_dust_pan', 'mini_sweeper', 'plastic_dish_rack', 'water_pitcher', 'white_pot', 'white_pot_lid', 'wooden_piece_1', 'wooden_piece_2']
+n odd stats: 28
+F1: 112 rules, 0 fit 10/10, max fit 9
+F2: 1624 rules, 15 fit 10/10, max fit 10
+    ('F2', 'skew', 'shalf', -1)
+    ('F2', 'm5', 'shalf', -1)
+    ('F2', 'ssq', 'shalf', -1)
+    ('F2', 's4', 'shalf', -1)
+    ('F2', 'shalf', 'shalf', -1)
+    ('F2', 'shalf', 'afrac', -1)
+    ('F2', 'shalf', 'negmed', 1)
+    ('F2', 'shalf', 'q05', 1)
+    ('F2', 'afrac', 'shalf', -1)
+    ('F2', 'negmed', 'shalf', -1)
+    ('F2', 'q01', 'shalf', -1)
+    ('F2', 'ext', 'shalf', -1)
+    ('F2', 'absmax', 'shalf', -1)
+    ('F2', 'hull_skew', 'shalf', -1)
+    ('F2', 'skewz', 'shalf', -1)
+F2b: 1404 rules, 1 fit 10/10, max fit 10
+    ('F2b', 'shalf', 'q05', 1)
+F4: 224 rules, 0 fit 10/10, max fit 9
+F3: 112x112 shapes, fitting (shape,k) combos 302, distinct shapes 154
+  top hybrid shapes by tau-interval width (log10 hi/lo): primary (stat,pol,axis) | fallback | k below | tau in [lo,hi)
+    2.27  ('q10', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.002224, 0.4116)
+    1.95  ('m5', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.03368, 2.972)
+    1.90  ('s4', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.0169, 1.342)
+    1.80  ('skew', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.009239, 0.5766)
+    1.67  ('ssq', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.004375, 0.2048)
+    1.62  ('q10', 1, 'y') | ('shalf', -1, 'x') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8)] | [0.002224, 0.09174)
+    1.53  ('q05', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.01589, 0.5351)
+    1.31  ('shalf', -1, 'y') | ('far3d', 1, 'y') | k=[np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.004018, 0.08253)
+    1.25  ('q01', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.03656, 0.6486)
+    1.22  ('afrac', -1, 'y') | ('far3d', 1, 'y') | k=[np.int64(7), np.int64(8), np.int64(9)] | [0.01042, 0.1739)
+    1.21  ('negmed', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.01311, 0.2137)
+    1.19  ('s4', 1, 'y') | ('shalf', -1, 'x') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8)] | [0.0169, 0.2591)
+    1.18  ('m5', 1, 'y') | ('shalf', -1, 'x') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8)] | [0.03368, 0.5128)
+    1.12  ('skew', 1, 'y') | ('shalf', -1, 'x') | k=[np.int64(5), np.int64(6), np.int64(7), np.int64(8)] | [0.009239, 0.1214)
+    1.05  ('vskew', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)] | [0.04606, 0.519)
+    1.03  ('m_hi2', -1, 'y') | ('far3d', 1, 'y') | k=[np.int64(9)] | [0.03357, 0.363)
+    1.01  ('ssq', 1, 'y') | ('shalf', -1, 'x') | k=[np.int64(5), np.int64(6), np.int64(7), np.int64(8)] | [0.004375, 0.04493)
+    0.92  ('m_hi_abs', -1, 'y') | ('far3d', 1, 'y') | k=[np.int64(9)] | [0.02374, 0.1956)
+    0.88  ('hull_surf_off', 1, 'y') | ('far3d', 1, 'y') | k=[np.int64(7), np.int64(8), np.int64(9)] | [0.0201, 0.1521)
+    0.86  ('m_az3', 1, 'x') | ('vskew', 1, 'y') | k=[np.int64(7), np.int64(8), np.int64(9)] | [0.04872, 0.3558)
+    0.85  ('q05', 1, 'y') | ('shalf', -1, 'x') | k=[np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8)] | [0.01589, 0.1137)
+    0.81  ('q10', 1, 'y') | ('negmed', 1, 'x') | k=[np.int64(4), np.int64(5)] | [0.002224, 0.01424)
+    0.81  ('q10', 1, 'y') | ('q05', 1, 'x') | k=[np.int64(4), np.int64(5)] | [0.002224, 0.01424)
+    0.81  ('q10', 1, 'y') | ('far3d', 1, 'x') | k=[np.int64(4), np.int64(5)] | [0.002224, 0.01424)
+    0.81  ('q10', 1, 'y') | ('afrac', -1, 'x') | k=[np.int64(4), np.int64(5)] | [0.002224, 0.01424)
+NULL (2000 random roll-flip configurations):
+   F1: P(>=1 rule fits 10/10) = 0.057; mean #fitting 0.1; median 0
+   F2: P(>=1 rule fits 10/10) = 0.199; mean #fitting 1.8; median 0
+   F2b: P(>=1 rule fits 10/10) = 0.015; mean #fitting 0.0; median 0
+   F4: P(>=1 rule fits 10/10) = 0.113; mean #fitting 0.2; median 0
+   F3: P(>=1 rule fits 10/10) = 0.940; mean #fitting 64.9; median 25

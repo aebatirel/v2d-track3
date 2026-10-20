@@ -1,0 +1,14 @@
+t 0 4
+t 40 51
+t 80 51
+t 120 51
+t 160 140
+blue_cup k0 (large): n 17 (a/b/c [17, 0, 0]), res a-eq px before 5.50 after 4.61; offset mm (+2.5, +19.4, +22.9) |30.1|
+blue_cup k1 (large): n 62 (a/b/c [30, 17, 15]), res a-eq px before 5.25 after 4.14; offset mm (-1.1, -6.7, -12.7) |14.4|
+blue_cup k2: 0 obs (skip)
+blue_cup k3 (large): n 28 (a/b/c [5, 13, 10]), res a-eq px before 6.70 after 4.80; offset mm (+3.3, +7.0, +12.0) |14.3|
+water_pitcher k0: 0 obs (skip)
+water_pitcher k1 (large): n 95 (a/b/c [34, 30, 31]), res a-eq px before 3.19 after 3.03; offset mm (-2.7, -4.0, -1.0) |4.9|
+water_pitcher k2: 0 obs (skip)
+water_pitcher k3 (large): n 36 (a/b/c [33, 1, 2]), res a-eq px before 4.51 after 4.33; offset mm (-2.7, -5.7, -0.2) |6.3|
+done

@@ -1,0 +1,10 @@
+critic 16 progress (2026-10-06)
+- read 10-synthesis, 11..15 heads.
+- [V doc] leaderboard aggregator (MVerghese/v2d-leaderboard-data aggregator/v2d_aggregate.py, fetched here) ranks rows by the FIRST metric (Track 3: ADD AUC); challenge page: "Track Winner: first on the track leaderboard", "Runner-Up: second by the same metric" -> single-metric ranking, very likely AUC. Notes 08/10 still list combination as open.
+- contradictions: 13 summary P(B) 0.80-0.87 vs 13-verify v2_measured (P(B) 0.09-0.14 under mid-axis rule); 12 limitations says K convention open vs 11 resolved; 14 summary SP-SR floor 0.58 refuted; 15 summary "never average to onset (1-8.6 deg bias)" vs verifier 0.33 median; 15 palms vs verifier frames.
+- [V doc] kit v2dlb/dataset.py usage_split docstring: "the real held-out evaluation happens offline on private data after the challenge closes"; challenge page: "After the challenge, we evaluate the top solutions on the broader dataset". Winner still "first on the track leaderboard" (page). -> pipeline must be automatic/generalisable; marker/twin reliance is a generalisation/innovation risk.
+- [V] mono cams: markers NOT IR-bright (b12_f0.png): no IR shortcut.
+- [V] downloads: eval cam_b 8/20, cam_c 4/20; public cam_c 1/20 -> stereo needs ~48 more clips.
+- [V] Track 3 board 2026-10-06: leader 0.649/0.35/0.25 (no CD-O), ~ all-fail floor 0.64 (note 14); CD-O best 0.112 cm.
+- [V] watertight/part-split CoACD test NOT done (15-verify/r2/manif2.py only counted boundary edges). [H] inflation may be set by CoACD concavity threshold (bbox-normalised) more than voxel res: cups 6-8 mm vs bbox/50 = 3.4 mm.
+- composing final structured output (gaps, contradictions, ranked digs).

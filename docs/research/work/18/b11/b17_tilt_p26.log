@@ -1,0 +1,5 @@
+T_ac factory t [-3.81  0.03  0.08] self t [-3.67 -0.26  0.83] cm; rot diff deg 0.284
+07:38:58 p26 decoded 158 frames; tracks {'rig': 158, 'rigS': 158, 'a': 158, 'vo': 0, 'map': 6}
+  offset a: [ 0.3196 -0.0105 -0.0021] (n fit 16)
+  tilt profile about horizontal axis az 50 deg: best +0.09 deg (curv 0.281) -3:3.507 -2:3.272 -1:3.079 +0:2.913 +1:3.029 +2:3.025 +3:3.183
+  tilt profile about horizontal axis az 140 deg: best -0.20 deg (curv 0.144) -3:3.192 -2:3.058 -1:2.957 +0:2.913 +1:3.013 +2:3.138 +3:3.332

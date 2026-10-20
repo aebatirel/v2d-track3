@@ -1,0 +1,938 @@
+[2026-10-07 07:49:35.485] [CoACD] [info] threshold               0.05
+[2026-10-07 07:49:35.485] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:49:35.485] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:49:35.485] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:49:35.485] [CoACD] [info] pca                     false
+[2026-10-07 07:49:35.485] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:49:35.485] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:49:35.485] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:49:35.485] [CoACD] [info] merge                   true
+[2026-10-07 07:49:35.485] [CoACD] [info] decimate                false
+[2026-10-07 07:49:35.485] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:49:35.485] [CoACD] [info] extrude                 false
+[2026-10-07 07:49:35.485] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:49:35.485] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:49:35.485] [CoACD] [info] seed                    0
+[2026-10-07 07:49:35.485] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:49:35.498] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:49:35.513] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:49:35.513] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:49:35.513] [CoACD] [info] Manifold Check Time: 0.027507s
+[2026-10-07 07:49:35.523] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:49:35.523] [CoACD] [info] # Points: 10630
+[2026-10-07 07:49:35.523] [CoACD] [info] # Triangles: 21252
+[2026-10-07 07:49:35.523] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:49:35.523] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:49:35.523] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:37.499] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:37.499] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:49:37.499] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:38.761] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:49:40.359] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:40.359] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:49:40.359] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:41.250] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:49:42.355] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:49:43.411] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:49:45.065] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:45.066] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:49:45.066] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:45.699] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:49:46.331] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:49:46.351] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:49:46.363] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:49:47.314] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:49:48.218] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:49:49.029] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:49:50.151] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:50.151] [CoACD] [info] iter 4 ---- waiting pool: 12
+[2026-10-07 07:49:50.151] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:51.079] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:49:51.089] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:49:51.101] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:49:51.138] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:49:51.818] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:49:53.477] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:53.477] [CoACD] [info] iter 5 ---- waiting pool: 10
+[2026-10-07 07:49:53.477] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:53.483] [CoACD] [info] Processing [20.0%]
+[2026-10-07 07:49:53.944] [CoACD] [info] Processing [40.0%]
+[2026-10-07 07:49:54.608] [CoACD] [info] Processing [60.0%]
+[2026-10-07 07:49:55.701] [CoACD] [info] Processing [80.0%]
+[2026-10-07 07:49:56.936] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:56.936] [CoACD] [info] iter 6 ---- waiting pool: 12
+[2026-10-07 07:49:56.936] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:57.243] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:49:57.537] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:49:57.542] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:49:58.144] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:49:59.055] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:49:59.978] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:49:59.978] [CoACD] [info] iter 7 ---- waiting pool: 16
+[2026-10-07 07:49:59.978] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:49:59.983] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:00.229] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:00.233] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:50:00.239] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:00.244] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:50:00.565] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:00.823] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:50:01.267] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:01.267] [CoACD] [info] iter 8 ---- waiting pool: 8
+[2026-10-07 07:50:01.267] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:01.380] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:01.382] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:01.385] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:50:01.387] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:01.390] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:50:01.392] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:01.399] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:50:01.403] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:01.403] [CoACD] [info] iter 9 ---- waiting pool: 2
+[2026-10-07 07:50:01.403] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:01.407] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:01.427] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:01.427] [CoACD] [info] iter 10 ---- waiting pool: 2
+[2026-10-07 07:50:01.427] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:01.429] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:01.431] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:01.431] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:50:02.880] [CoACD] [info] Compute Time: 23.705312s
+[2026-10-07 07:50:02.880] [CoACD] [info] # Convex Hulls: 38
+RESULT beige_cup_p000_r0.npz hulls 38 sec 27
+[2026-10-07 07:50:02.885] [CoACD] [info] threshold               0.05
+[2026-10-07 07:50:02.885] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:50:02.885] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:50:02.885] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:50:02.885] [CoACD] [info] pca                     false
+[2026-10-07 07:50:02.885] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:50:02.885] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:50:02.885] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:50:02.885] [CoACD] [info] merge                   true
+[2026-10-07 07:50:02.885] [CoACD] [info] decimate                false
+[2026-10-07 07:50:02.885] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:50:02.885] [CoACD] [info] extrude                 false
+[2026-10-07 07:50:02.885] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:50:02.885] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:50:02.885] [CoACD] [info] seed                    0
+[2026-10-07 07:50:02.886] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:50:02.900] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:50:02.910] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:50:02.910] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:50:02.910] [CoACD] [info] Manifold Check Time: 0.023421s
+[2026-10-07 07:50:02.913] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:50:02.913] [CoACD] [info] # Points: 10630
+[2026-10-07 07:50:02.913] [CoACD] [info] # Triangles: 21252
+[2026-10-07 07:50:02.913] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:50:02.913] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:50:02.913] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:05.277] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:05.277] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:50:05.277] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:06.646] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:08.352] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:08.352] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:50:08.352] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:09.368] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:10.320] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:11.408] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:12.590] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:12.591] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:50:12.591] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:13.130] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:13.873] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:13.883] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:50:13.893] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:14.757] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:50:15.603] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:16.416] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:50:17.439] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:17.439] [CoACD] [info] iter 4 ---- waiting pool: 12
+[2026-10-07 07:50:17.439] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:17.854] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:50:17.867] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:50:17.879] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:17.892] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:50:18.498] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:50:20.068] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:20.068] [CoACD] [info] iter 5 ---- waiting pool: 8
+[2026-10-07 07:50:20.068] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:20.372] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:20.375] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:20.379] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:50:21.054] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:21.605] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:50:22.154] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:22.712] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:50:23.337] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:23.337] [CoACD] [info] iter 6 ---- waiting pool: 12
+[2026-10-07 07:50:23.337] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:23.342] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:50:24.042] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:50:24.337] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:24.692] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:50:25.500] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:50:26.355] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:26.355] [CoACD] [info] iter 7 ---- waiting pool: 14
+[2026-10-07 07:50:26.355] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:26.361] [CoACD] [info] Processing [14.3%]
+[2026-10-07 07:50:26.386] [CoACD] [info] Processing [28.6%]
+[2026-10-07 07:50:26.731] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:50:26.983] [CoACD] [info] Processing [57.1%]
+[2026-10-07 07:50:27.288] [CoACD] [info] Processing [71.4%]
+[2026-10-07 07:50:27.579] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:50:28.333] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:28.333] [CoACD] [info] iter 8 ---- waiting pool: 14
+[2026-10-07 07:50:28.333] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:28.348] [CoACD] [info] Processing [14.3%]
+[2026-10-07 07:50:28.353] [CoACD] [info] Processing [28.6%]
+[2026-10-07 07:50:28.358] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:50:28.363] [CoACD] [info] Processing [57.1%]
+[2026-10-07 07:50:28.368] [CoACD] [info] Processing [71.4%]
+[2026-10-07 07:50:28.373] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:50:28.379] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:28.379] [CoACD] [info] iter 9 ---- waiting pool: 2
+[2026-10-07 07:50:28.379] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:28.381] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:28.383] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:28.383] [CoACD] [info] iter 10 ---- waiting pool: 2
+[2026-10-07 07:50:28.383] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:28.385] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:28.388] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:28.388] [CoACD] [info] iter 11 ---- waiting pool: 2
+[2026-10-07 07:50:28.388] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:28.392] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:28.394] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:28.394] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:50:30.155] [CoACD] [info] Compute Time: 24.621761s
+[2026-10-07 07:50:30.155] [CoACD] [info] # Convex Hulls: 36
+RESULT beige_cup_p000_r3.npz hulls 36 sec 27
+[2026-10-07 07:50:30.161] [CoACD] [info] threshold               0.05
+[2026-10-07 07:50:30.161] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:50:30.161] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:50:30.161] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:50:30.161] [CoACD] [info] pca                     false
+[2026-10-07 07:50:30.161] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:50:30.161] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:50:30.161] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:50:30.161] [CoACD] [info] merge                   true
+[2026-10-07 07:50:30.161] [CoACD] [info] decimate                false
+[2026-10-07 07:50:30.161] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:50:30.161] [CoACD] [info] extrude                 false
+[2026-10-07 07:50:30.161] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:50:30.161] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:50:30.161] [CoACD] [info] seed                    0
+[2026-10-07 07:50:30.161] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:50:30.174] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:50:30.185] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:50:30.185] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:50:30.185] [CoACD] [info] Manifold Check Time: 0.023392s
+[2026-10-07 07:50:30.188] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:50:30.188] [CoACD] [info] # Points: 9928
+[2026-10-07 07:50:30.188] [CoACD] [info] # Triangles: 19864
+[2026-10-07 07:50:30.188] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:50:30.188] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:50:30.188] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:32.400] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:32.400] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:50:32.400] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:33.967] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:35.289] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:35.289] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:50:35.289] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:36.345] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:37.491] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:38.500] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:39.358] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:39.358] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:50:39.358] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:39.991] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:40.922] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:41.927] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:50:42.463] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:43.238] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:50:43.918] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:44.510] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:50:45.579] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:45.579] [CoACD] [info] iter 4 ---- waiting pool: 16
+[2026-10-07 07:50:45.579] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:46.608] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:47.839] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:49.221] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:50:49.739] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:50:50.443] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:50:51.001] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:50:51.014] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:50:51.945] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:51.945] [CoACD] [info] iter 5 ---- waiting pool: 22
+[2026-10-07 07:50:51.945] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:52.113] [CoACD] [info] Processing [13.6%]
+[2026-10-07 07:50:53.005] [CoACD] [info] Processing [27.3%]
+[2026-10-07 07:50:54.461] [CoACD] [info] Processing [40.9%]
+[2026-10-07 07:50:56.077] [CoACD] [info] Processing [54.5%]
+[2026-10-07 07:50:57.082] [CoACD] [info] Processing [68.2%]
+[2026-10-07 07:50:57.581] [CoACD] [info] Processing [81.8%]
+[2026-10-07 07:50:57.597] [CoACD] [info] Processing [95.5%]
+[2026-10-07 07:50:57.600] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:50:57.600] [CoACD] [info] iter 6 ---- waiting pool: 24
+[2026-10-07 07:50:57.600] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:50:57.887] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:50:58.749] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:50:59.745] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:51:00.656] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:01.664] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:51:02.703] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:03.453] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:51:03.863] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:03.863] [CoACD] [info] iter 7 ---- waiting pool: 36
+[2026-10-07 07:51:03.863] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:04.436] [CoACD] [info] Processing [11.1%]
+[2026-10-07 07:51:05.321] [CoACD] [info] Processing [22.2%]
+[2026-10-07 07:51:05.909] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:51:06.832] [CoACD] [info] Processing [44.4%]
+[2026-10-07 07:51:08.069] [CoACD] [info] Processing [55.6%]
+[2026-10-07 07:51:08.619] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:51:09.449] [CoACD] [info] Processing [77.8%]
+[2026-10-07 07:51:10.275] [CoACD] [info] Processing [88.9%]
+[2026-10-07 07:51:10.288] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:10.288] [CoACD] [info] iter 8 ---- waiting pool: 40
+[2026-10-07 07:51:10.288] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:10.538] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:51:10.550] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:51:10.910] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:51:10.922] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:11.924] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:51:12.552] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:13.080] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:51:13.092] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:13.092] [CoACD] [info] iter 9 ---- waiting pool: 18
+[2026-10-07 07:51:13.092] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:13.097] [CoACD] [info] Processing [11.1%]
+[2026-10-07 07:51:13.102] [CoACD] [info] Processing [22.2%]
+[2026-10-07 07:51:13.838] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:51:14.048] [CoACD] [info] Processing [44.4%]
+[2026-10-07 07:51:14.052] [CoACD] [info] Processing [55.6%]
+[2026-10-07 07:51:14.315] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:51:14.320] [CoACD] [info] Processing [77.8%]
+[2026-10-07 07:51:14.325] [CoACD] [info] Processing [88.9%]
+[2026-10-07 07:51:14.579] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:14.579] [CoACD] [info] iter 10 ---- waiting pool: 10
+[2026-10-07 07:51:14.579] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:14.585] [CoACD] [info] Processing [20.0%]
+[2026-10-07 07:51:14.764] [CoACD] [info] Processing [40.0%]
+[2026-10-07 07:51:14.969] [CoACD] [info] Processing [60.0%]
+[2026-10-07 07:51:14.973] [CoACD] [info] Processing [80.0%]
+[2026-10-07 07:51:14.978] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:14.978] [CoACD] [info] iter 11 ---- waiting pool: 4
+[2026-10-07 07:51:14.978] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:14.980] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:51:15.126] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:15.128] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:15.130] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:15.130] [CoACD] [info] iter 12 ---- waiting pool: 2
+[2026-10-07 07:51:15.130] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:15.132] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:15.135] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:15.135] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:51:21.047] [CoACD] [info] Compute Time: 47.732704s
+[2026-10-07 07:51:21.047] [CoACD] [info] # Convex Hulls: 63
+RESULT blue_cup_p007_r0.npz hulls 63 sec 51
+[2026-10-07 07:51:21.051] [CoACD] [info] threshold               0.05
+[2026-10-07 07:51:21.051] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:51:21.051] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:51:21.051] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:51:21.051] [CoACD] [info] pca                     false
+[2026-10-07 07:51:21.051] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:51:21.051] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:51:21.051] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:51:21.051] [CoACD] [info] merge                   true
+[2026-10-07 07:51:21.051] [CoACD] [info] decimate                false
+[2026-10-07 07:51:21.051] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:51:21.051] [CoACD] [info] extrude                 false
+[2026-10-07 07:51:21.051] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:51:21.051] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:51:21.051] [CoACD] [info] seed                    0
+[2026-10-07 07:51:21.051] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:51:21.064] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:51:21.073] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:51:21.073] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:51:21.073] [CoACD] [info] Manifold Check Time: 0.02241s
+[2026-10-07 07:51:21.076] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:51:21.076] [CoACD] [info] # Points: 9928
+[2026-10-07 07:51:21.076] [CoACD] [info] # Triangles: 19864
+[2026-10-07 07:51:21.076] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:51:21.076] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:51:21.076] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:23.188] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:23.188] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:51:23.188] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:24.729] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:26.004] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:26.004] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:51:26.004] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:27.033] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:51:28.224] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:29.150] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:30.185] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:30.186] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:51:30.186] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:30.819] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:51:31.728] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:51:32.712] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:51:33.251] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:33.844] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:51:34.591] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:35.110] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:51:35.791] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:35.791] [CoACD] [info] iter 4 ---- waiting pool: 16
+[2026-10-07 07:51:35.791] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:36.437] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:51:37.643] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:51:39.085] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:51:39.637] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:51:40.171] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:51:40.775] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:40.786] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:51:41.749] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:41.749] [CoACD] [info] iter 5 ---- waiting pool: 20
+[2026-10-07 07:51:41.749] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:42.253] [CoACD] [info] Processing [15.0%]
+[2026-10-07 07:51:43.287] [CoACD] [info] Processing [30.0%]
+[2026-10-07 07:51:45.025] [CoACD] [info] Processing [45.0%]
+[2026-10-07 07:51:46.431] [CoACD] [info] Processing [60.0%]
+[2026-10-07 07:51:46.877] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:51:46.889] [CoACD] [info] Processing [90.0%]
+[2026-10-07 07:51:47.328] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:47.328] [CoACD] [info] iter 6 ---- waiting pool: 22
+[2026-10-07 07:51:47.328] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:48.441] [CoACD] [info] Processing [13.6%]
+[2026-10-07 07:51:49.832] [CoACD] [info] Processing [27.3%]
+[2026-10-07 07:51:51.077] [CoACD] [info] Processing [40.9%]
+[2026-10-07 07:51:52.125] [CoACD] [info] Processing [54.5%]
+[2026-10-07 07:51:53.193] [CoACD] [info] Processing [68.2%]
+[2026-10-07 07:51:53.670] [CoACD] [info] Processing [81.8%]
+[2026-10-07 07:51:53.978] [CoACD] [info] Processing [95.5%]
+[2026-10-07 07:51:53.982] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:53.982] [CoACD] [info] iter 7 ---- waiting pool: 34
+[2026-10-07 07:51:53.982] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:51:54.316] [CoACD] [info] Processing [11.8%]
+[2026-10-07 07:51:54.899] [CoACD] [info] Processing [23.5%]
+[2026-10-07 07:51:56.285] [CoACD] [info] Processing [35.3%]
+[2026-10-07 07:51:56.991] [CoACD] [info] Processing [47.1%]
+[2026-10-07 07:51:57.718] [CoACD] [info] Processing [58.8%]
+[2026-10-07 07:51:58.427] [CoACD] [info] Processing [70.6%]
+[2026-10-07 07:51:59.094] [CoACD] [info] Processing [82.4%]
+[2026-10-07 07:51:59.730] [CoACD] [info] Processing [94.1%]
+[2026-10-07 07:51:59.736] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:51:59.736] [CoACD] [info] iter 8 ---- waiting pool: 34
+[2026-10-07 07:51:59.736] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:00.388] [CoACD] [info] Processing [11.8%]
+[2026-10-07 07:52:01.332] [CoACD] [info] Processing [23.5%]
+[2026-10-07 07:52:02.054] [CoACD] [info] Processing [35.3%]
+[2026-10-07 07:52:02.362] [CoACD] [info] Processing [47.1%]
+[2026-10-07 07:52:03.499] [CoACD] [info] Processing [58.8%]
+[2026-10-07 07:52:04.205] [CoACD] [info] Processing [70.6%]
+[2026-10-07 07:52:04.759] [CoACD] [info] Processing [82.4%]
+[2026-10-07 07:52:05.142] [CoACD] [info] Processing [94.1%]
+[2026-10-07 07:52:05.147] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:05.147] [CoACD] [info] iter 9 ---- waiting pool: 34
+[2026-10-07 07:52:05.147] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:05.719] [CoACD] [info] Processing [11.8%]
+[2026-10-07 07:52:05.728] [CoACD] [info] Processing [23.5%]
+[2026-10-07 07:52:05.738] [CoACD] [info] Processing [35.3%]
+[2026-10-07 07:52:05.747] [CoACD] [info] Processing [47.1%]
+[2026-10-07 07:52:05.758] [CoACD] [info] Processing [58.8%]
+[2026-10-07 07:52:06.025] [CoACD] [info] Processing [70.6%]
+[2026-10-07 07:52:06.335] [CoACD] [info] Processing [82.4%]
+[2026-10-07 07:52:06.847] [CoACD] [info] Processing [94.1%]
+[2026-10-07 07:52:06.860] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:06.860] [CoACD] [info] iter 10 ---- waiting pool: 12
+[2026-10-07 07:52:06.860] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:06.865] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:52:06.870] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:52:06.875] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:52:06.879] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:52:06.884] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:52:06.889] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:06.889] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:52:12.056] [CoACD] [info] Compute Time: 47.894226s
+[2026-10-07 07:52:12.056] [CoACD] [info] # Convex Hulls: 65
+RESULT blue_cup_p007_r3.npz hulls 65 sec 51
+[2026-10-07 07:52:12.060] [CoACD] [info] threshold               0.05
+[2026-10-07 07:52:12.060] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:52:12.060] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:52:12.060] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:52:12.060] [CoACD] [info] pca                     false
+[2026-10-07 07:52:12.060] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:52:12.060] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:52:12.060] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:52:12.060] [CoACD] [info] merge                   true
+[2026-10-07 07:52:12.060] [CoACD] [info] decimate                false
+[2026-10-07 07:52:12.060] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:52:12.060] [CoACD] [info] extrude                 false
+[2026-10-07 07:52:12.060] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:52:12.060] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:52:12.060] [CoACD] [info] seed                    0
+[2026-10-07 07:52:12.061] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:52:12.102] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:52:12.134] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:52:12.134] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:52:12.134] [CoACD] [info] Manifold Check Time: 0.073334s
+[2026-10-07 07:52:12.145] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:52:12.145] [CoACD] [info] # Points: 29792
+[2026-10-07 07:52:12.145] [CoACD] [info] # Triangles: 59584
+[2026-10-07 07:52:12.145] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:52:12.145] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:52:12.145] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:15.834] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:15.835] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:52:15.835] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:18.314] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:52:20.793] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:20.793] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:52:20.793] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:22.946] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:52:24.237] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:52:26.917] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:52:29.148] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:29.148] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:52:29.148] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:30.627] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:52:32.028] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:52:32.035] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:52:32.046] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:52:34.089] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:52:36.042] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:52:37.387] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:52:38.568] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:38.569] [CoACD] [info] iter 4 ---- waiting pool: 12
+[2026-10-07 07:52:38.569] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:40.559] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:52:42.432] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:52:44.922] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:52:47.459] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:52:49.183] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:52:50.770] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:52:50.770] [CoACD] [info] iter 5 ---- waiting pool: 24
+[2026-10-07 07:52:50.770] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:52:52.352] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:52:53.402] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:52:55.773] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:52:57.982] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:53:00.566] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:53:02.476] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:53:03.360] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:53:04.623] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:04.623] [CoACD] [info] iter 6 ---- waiting pool: 42
+[2026-10-07 07:53:04.623] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:06.018] [CoACD] [info] Processing [11.9%]
+[2026-10-07 07:53:07.288] [CoACD] [info] Processing [23.8%]
+[2026-10-07 07:53:10.099] [CoACD] [info] Processing [35.7%]
+[2026-10-07 07:53:12.466] [CoACD] [info] Processing [47.6%]
+[2026-10-07 07:53:14.164] [CoACD] [info] Processing [59.5%]
+[2026-10-07 07:53:16.520] [CoACD] [info] Processing [71.4%]
+[2026-10-07 07:53:16.538] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:53:17.919] [CoACD] [info] Processing [95.2%]
+[2026-10-07 07:53:17.930] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:17.930] [CoACD] [info] iter 7 ---- waiting pool: 54
+[2026-10-07 07:53:17.930] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:18.568] [CoACD] [info] Processing [11.1%]
+[2026-10-07 07:53:19.213] [CoACD] [info] Processing [22.2%]
+[2026-10-07 07:53:19.489] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:53:20.385] [CoACD] [info] Processing [44.4%]
+[2026-10-07 07:53:21.621] [CoACD] [info] Processing [55.6%]
+[2026-10-07 07:53:21.642] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:53:23.717] [CoACD] [info] Processing [77.8%]
+[2026-10-07 07:53:24.255] [CoACD] [info] Processing [88.9%]
+[2026-10-07 07:53:24.274] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:24.274] [CoACD] [info] iter 8 ---- waiting pool: 34
+[2026-10-07 07:53:24.274] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:24.284] [CoACD] [info] Processing [11.8%]
+[2026-10-07 07:53:24.786] [CoACD] [info] Processing [23.5%]
+[2026-10-07 07:53:25.081] [CoACD] [info] Processing [35.3%]
+[2026-10-07 07:53:25.233] [CoACD] [info] Processing [47.1%]
+[2026-10-07 07:53:25.246] [CoACD] [info] Processing [58.8%]
+[2026-10-07 07:53:25.258] [CoACD] [info] Processing [70.6%]
+[2026-10-07 07:53:26.232] [CoACD] [info] Processing [82.4%]
+[2026-10-07 07:53:26.796] [CoACD] [info] Processing [94.1%]
+[2026-10-07 07:53:26.803] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:26.803] [CoACD] [info] iter 9 ---- waiting pool: 18
+[2026-10-07 07:53:26.803] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:27.044] [CoACD] [info] Processing [11.1%]
+[2026-10-07 07:53:27.049] [CoACD] [info] Processing [22.2%]
+[2026-10-07 07:53:27.054] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:53:27.059] [CoACD] [info] Processing [44.4%]
+[2026-10-07 07:53:27.064] [CoACD] [info] Processing [55.6%]
+[2026-10-07 07:53:27.070] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:53:27.338] [CoACD] [info] Processing [77.8%]
+[2026-10-07 07:53:27.343] [CoACD] [info] Processing [88.9%]
+[2026-10-07 07:53:27.349] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:27.349] [CoACD] [info] iter 10 ---- waiting pool: 6
+[2026-10-07 07:53:27.349] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:27.351] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:53:27.354] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:53:27.356] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:53:27.358] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:53:27.361] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:53:27.363] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:27.363] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:53:31.923] [CoACD] [info] Compute Time: 76.185577s
+[2026-10-07 07:53:31.923] [CoACD] [info] # Convex Hulls: 98
+RESULT plastic_dish_rack_p009_r0.npz hulls 98 sec 80
+[2026-10-07 07:53:31.931] [CoACD] [info] threshold               0.05
+[2026-10-07 07:53:31.931] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:53:31.931] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:53:31.931] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:53:31.931] [CoACD] [info] pca                     false
+[2026-10-07 07:53:31.931] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:53:31.931] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:53:31.931] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:53:31.931] [CoACD] [info] merge                   true
+[2026-10-07 07:53:31.931] [CoACD] [info] decimate                false
+[2026-10-07 07:53:31.931] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:53:31.931] [CoACD] [info] extrude                 false
+[2026-10-07 07:53:31.931] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:53:31.931] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:53:31.931] [CoACD] [info] seed                    0
+[2026-10-07 07:53:31.931] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:53:31.975] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:53:31.989] [CoACD] [info] 	Triangle self-intersection
+[2026-10-07 07:53:31.989] [CoACD] [info] Manifold Check Time: 0.057565s
+[2026-10-07 07:53:31.999] [CoACD] [info] Mesh Manifoldness: false
+[2026-10-07 07:53:31.999] [CoACD] [info]  - Preprocess
+[2026-10-07 07:53:31.999] [CoACD] [info] Preprocess resolution: 50
+[2026-10-07 07:53:32.098] [CoACD] [info] Preprocess Time: 0.606943s
+[2026-10-07 07:53:32.099] [CoACD] [info] # Points: 47348
+[2026-10-07 07:53:32.099] [CoACD] [info] # Triangles: 94688
+[2026-10-07 07:53:32.099] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:53:32.099] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:53:32.099] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:38.623] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:38.633] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:53:38.633] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:42.974] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:53:47.248] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:47.248] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:53:47.248] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:53:51.135] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:53:53.527] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:53:56.710] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:53:59.629] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:53:59.630] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:53:59.630] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:01.923] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:54:03.949] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:54:03.959] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:54:03.965] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:54:06.375] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:54:08.705] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:54:10.770] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:54:12.761] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:12.762] [CoACD] [info] iter 4 ---- waiting pool: 12
+[2026-10-07 07:54:12.762] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:16.011] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:54:19.415] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:54:20.431] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:54:21.285] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:54:23.936] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:54:26.712] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:26.712] [CoACD] [info] iter 5 ---- waiting pool: 20
+[2026-10-07 07:54:26.713] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:28.751] [CoACD] [info] Processing [15.0%]
+[2026-10-07 07:54:29.554] [CoACD] [info] Processing [30.0%]
+[2026-10-07 07:54:32.056] [CoACD] [info] Processing [45.0%]
+[2026-10-07 07:54:32.957] [CoACD] [info] Processing [60.0%]
+[2026-10-07 07:54:35.702] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:54:37.271] [CoACD] [info] Processing [90.0%]
+[2026-10-07 07:54:39.120] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:39.120] [CoACD] [info] iter 6 ---- waiting pool: 30
+[2026-10-07 07:54:39.120] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:39.849] [CoACD] [info] Processing [13.3%]
+[2026-10-07 07:54:40.437] [CoACD] [info] Processing [26.7%]
+[2026-10-07 07:54:42.202] [CoACD] [info] Processing [40.0%]
+[2026-10-07 07:54:43.547] [CoACD] [info] Processing [53.3%]
+[2026-10-07 07:54:44.275] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:54:45.262] [CoACD] [info] Processing [80.0%]
+[2026-10-07 07:54:47.062] [CoACD] [info] Processing [93.3%]
+[2026-10-07 07:54:47.072] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:47.072] [CoACD] [info] iter 7 ---- waiting pool: 34
+[2026-10-07 07:54:47.072] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:47.905] [CoACD] [info] Processing [11.8%]
+[2026-10-07 07:54:47.931] [CoACD] [info] Processing [23.5%]
+[2026-10-07 07:54:47.943] [CoACD] [info] Processing [35.3%]
+[2026-10-07 07:54:47.956] [CoACD] [info] Processing [47.1%]
+[2026-10-07 07:54:48.192] [CoACD] [info] Processing [58.8%]
+[2026-10-07 07:54:48.203] [CoACD] [info] Processing [70.6%]
+[2026-10-07 07:54:48.909] [CoACD] [info] Processing [82.4%]
+[2026-10-07 07:54:49.288] [CoACD] [info] Processing [94.1%]
+[2026-10-07 07:54:49.295] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:49.295] [CoACD] [info] iter 8 ---- waiting pool: 12
+[2026-10-07 07:54:49.295] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:49.306] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:54:49.508] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:54:49.513] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:54:49.519] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:54:49.524] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:54:49.529] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:49.529] [CoACD] [info] iter 9 ---- waiting pool: 2
+[2026-10-07 07:54:49.529] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:49.533] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:54:49.535] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:49.535] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:54:52.610] [CoACD] [info] Compute Time: 75.332225s
+[2026-10-07 07:54:52.610] [CoACD] [info] # Convex Hulls: 63
+RESULT plastic_dish_rack_p009_r3.npz hulls 63 sec 81
+[2026-10-07 07:54:52.615] [CoACD] [info] threshold               0.05
+[2026-10-07 07:54:52.615] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:54:52.615] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:54:52.615] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:54:52.615] [CoACD] [info] pca                     false
+[2026-10-07 07:54:52.615] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:54:52.615] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:54:52.615] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:54:52.615] [CoACD] [info] merge                   true
+[2026-10-07 07:54:52.615] [CoACD] [info] decimate                false
+[2026-10-07 07:54:52.615] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:54:52.615] [CoACD] [info] extrude                 false
+[2026-10-07 07:54:52.615] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:54:52.615] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:54:52.615] [CoACD] [info] seed                    0
+[2026-10-07 07:54:52.615] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:54:52.622] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:54:52.628] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:54:52.628] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:54:52.628] [CoACD] [info] Manifold Check Time: 0.012936s
+[2026-10-07 07:54:52.630] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:54:52.630] [CoACD] [info] # Points: 5479
+[2026-10-07 07:54:52.630] [CoACD] [info] # Triangles: 11046
+[2026-10-07 07:54:52.630] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:54:52.630] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:54:52.630] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:54.480] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:54.480] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:54:54.480] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:55.983] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:54:57.226] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:54:57.226] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:54:57.226] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:54:58.222] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:54:59.268] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:55:00.082] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:55:01.058] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:01.058] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:55:01.058] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:01.673] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:55:02.385] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:55:03.075] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:55:03.665] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:55:04.281] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:55:04.289] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:55:04.826] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:55:05.696] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:05.696] [CoACD] [info] iter 4 ---- waiting pool: 14
+[2026-10-07 07:55:05.696] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:06.674] [CoACD] [info] Processing [14.3%]
+[2026-10-07 07:55:07.901] [CoACD] [info] Processing [28.6%]
+[2026-10-07 07:55:08.997] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:55:09.899] [CoACD] [info] Processing [57.1%]
+[2026-10-07 07:55:10.743] [CoACD] [info] Processing [71.4%]
+[2026-10-07 07:55:11.939] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:55:13.047] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:13.047] [CoACD] [info] iter 5 ---- waiting pool: 28
+[2026-10-07 07:55:13.047] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:14.232] [CoACD] [info] Processing [10.7%]
+[2026-10-07 07:55:15.142] [CoACD] [info] Processing [21.4%]
+[2026-10-07 07:55:16.684] [CoACD] [info] Processing [32.1%]
+[2026-10-07 07:55:17.893] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:55:18.849] [CoACD] [info] Processing [53.6%]
+[2026-10-07 07:55:19.949] [CoACD] [info] Processing [64.3%]
+[2026-10-07 07:55:20.634] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:55:21.014] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:55:21.923] [CoACD] [info] Processing [96.4%]
+[2026-10-07 07:55:22.276] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:22.276] [CoACD] [info] iter 6 ---- waiting pool: 46
+[2026-10-07 07:55:22.276] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:23.846] [CoACD] [info] Processing [10.9%]
+[2026-10-07 07:55:24.886] [CoACD] [info] Processing [21.7%]
+[2026-10-07 07:55:26.564] [CoACD] [info] Processing [32.6%]
+[2026-10-07 07:55:28.183] [CoACD] [info] Processing [43.5%]
+[2026-10-07 07:55:29.484] [CoACD] [info] Processing [54.3%]
+[2026-10-07 07:55:30.386] [CoACD] [info] Processing [65.2%]
+[2026-10-07 07:55:31.145] [CoACD] [info] Processing [76.1%]
+[2026-10-07 07:55:32.390] [CoACD] [info] Processing [87.0%]
+[2026-10-07 07:55:33.637] [CoACD] [info] Processing [97.8%]
+[2026-10-07 07:55:33.942] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:33.942] [CoACD] [info] iter 7 ---- waiting pool: 76
+[2026-10-07 07:55:33.942] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:35.118] [CoACD] [info] Processing [10.5%]
+[2026-10-07 07:55:36.493] [CoACD] [info] Processing [21.1%]
+[2026-10-07 07:55:37.646] [CoACD] [info] Processing [31.6%]
+[2026-10-07 07:55:38.422] [CoACD] [info] Processing [42.1%]
+[2026-10-07 07:55:40.022] [CoACD] [info] Processing [52.6%]
+[2026-10-07 07:55:40.834] [CoACD] [info] Processing [63.2%]
+[2026-10-07 07:55:41.781] [CoACD] [info] Processing [73.7%]
+[2026-10-07 07:55:42.471] [CoACD] [info] Processing [84.2%]
+[2026-10-07 07:55:43.556] [CoACD] [info] Processing [94.7%]
+[2026-10-07 07:55:43.880] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:43.880] [CoACD] [info] iter 8 ---- waiting pool: 84
+[2026-10-07 07:55:43.880] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:44.124] [CoACD] [info] Processing [10.7%]
+[2026-10-07 07:55:44.146] [CoACD] [info] Processing [21.4%]
+[2026-10-07 07:55:44.771] [CoACD] [info] Processing [32.1%]
+[2026-10-07 07:55:45.342] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:55:46.249] [CoACD] [info] Processing [53.6%]
+[2026-10-07 07:55:46.491] [CoACD] [info] Processing [64.3%]
+[2026-10-07 07:55:46.532] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:55:47.137] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:55:47.755] [CoACD] [info] Processing [96.4%]
+[2026-10-07 07:55:47.874] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:47.874] [CoACD] [info] iter 9 ---- waiting pool: 38
+[2026-10-07 07:55:47.874] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:47.884] [CoACD] [info] Processing [10.5%]
+[2026-10-07 07:55:47.912] [CoACD] [info] Processing [21.1%]
+[2026-10-07 07:55:47.999] [CoACD] [info] Processing [31.6%]
+[2026-10-07 07:55:48.009] [CoACD] [info] Processing [42.1%]
+[2026-10-07 07:55:48.018] [CoACD] [info] Processing [52.6%]
+[2026-10-07 07:55:48.033] [CoACD] [info] Processing [63.2%]
+[2026-10-07 07:55:48.042] [CoACD] [info] Processing [73.7%]
+[2026-10-07 07:55:48.125] [CoACD] [info] Processing [84.2%]
+[2026-10-07 07:55:48.148] [CoACD] [info] Processing [94.7%]
+[2026-10-07 07:55:48.152] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:48.152] [CoACD] [info] iter 10 ---- waiting pool: 8
+[2026-10-07 07:55:48.152] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:48.155] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:55:48.156] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:55:48.159] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:55:48.161] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:55:48.163] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:55:48.165] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:55:48.167] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:55:48.169] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:48.169] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:55:54.070] [CoACD] [info] Compute Time: 59.502546s
+[2026-10-07 07:55:54.070] [CoACD] [info] # Convex Hulls: 124
+RESULT white_pot_lid_p000_r0.npz hulls 124 sec 61
+[2026-10-07 07:55:54.075] [CoACD] [info] threshold               0.05
+[2026-10-07 07:55:54.075] [CoACD] [info] max # convex hull       -1
+[2026-10-07 07:55:54.075] [CoACD] [info] preprocess mode         auto
+[2026-10-07 07:55:54.075] [CoACD] [info] preprocess resolution   50
+[2026-10-07 07:55:54.075] [CoACD] [info] pca                     false
+[2026-10-07 07:55:54.075] [CoACD] [info] mcts max depth          3
+[2026-10-07 07:55:54.075] [CoACD] [info] mcts nodes              20
+[2026-10-07 07:55:54.075] [CoACD] [info] mcts iterations         150
+[2026-10-07 07:55:54.075] [CoACD] [info] merge                   true
+[2026-10-07 07:55:54.075] [CoACD] [info] decimate                false
+[2026-10-07 07:55:54.075] [CoACD] [info] max_ch_vertex           256
+[2026-10-07 07:55:54.076] [CoACD] [info] extrude                 false
+[2026-10-07 07:55:54.076] [CoACD] [info] extrude margin          0.01
+[2026-10-07 07:55:54.076] [CoACD] [info] approximate mode        ch
+[2026-10-07 07:55:54.076] [CoACD] [info] seed                    0
+[2026-10-07 07:55:54.076] [CoACD] [info]  - Manifold Check
+[2026-10-07 07:55:54.082] [CoACD] [info] [1/3] Edge check finish
+[2026-10-07 07:55:54.088] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-07 07:55:54.088] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-07 07:55:54.088] [CoACD] [info] Manifold Check Time: 0.012289s
+[2026-10-07 07:55:54.089] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-07 07:55:54.090] [CoACD] [info] # Points: 5479
+[2026-10-07 07:55:54.090] [CoACD] [info] # Triangles: 11046
+[2026-10-07 07:55:54.090] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-07 07:55:54.090] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-07 07:55:54.090] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:55.918] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:55.918] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-07 07:55:55.918] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:57.477] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:55:58.714] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:55:58.715] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-07 07:55:58.715] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:55:59.735] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:56:00.745] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:56:01.553] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:56:02.481] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:02.481] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-07 07:56:02.481] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:03.096] [CoACD] [info] Processing [12.5%]
+[2026-10-07 07:56:03.768] [CoACD] [info] Processing [25.0%]
+[2026-10-07 07:56:04.454] [CoACD] [info] Processing [37.5%]
+[2026-10-07 07:56:05.050] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:56:05.668] [CoACD] [info] Processing [62.5%]
+[2026-10-07 07:56:05.676] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:56:06.290] [CoACD] [info] Processing [87.5%]
+[2026-10-07 07:56:07.619] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:07.619] [CoACD] [info] iter 4 ---- waiting pool: 14
+[2026-10-07 07:56:07.619] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:08.639] [CoACD] [info] Processing [14.3%]
+[2026-10-07 07:56:09.900] [CoACD] [info] Processing [28.6%]
+[2026-10-07 07:56:11.041] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:56:11.925] [CoACD] [info] Processing [57.1%]
+[2026-10-07 07:56:12.755] [CoACD] [info] Processing [71.4%]
+[2026-10-07 07:56:13.724] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:56:14.794] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:14.794] [CoACD] [info] iter 5 ---- waiting pool: 28
+[2026-10-07 07:56:14.794] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:15.702] [CoACD] [info] Processing [10.7%]
+[2026-10-07 07:56:16.564] [CoACD] [info] Processing [21.4%]
+[2026-10-07 07:56:18.158] [CoACD] [info] Processing [32.1%]
+[2026-10-07 07:56:19.605] [CoACD] [info] Processing [42.9%]
+[2026-10-07 07:56:20.612] [CoACD] [info] Processing [53.6%]
+[2026-10-07 07:56:21.605] [CoACD] [info] Processing [64.3%]
+[2026-10-07 07:56:22.158] [CoACD] [info] Processing [75.0%]
+[2026-10-07 07:56:22.505] [CoACD] [info] Processing [85.7%]
+[2026-10-07 07:56:23.641] [CoACD] [info] Processing [96.4%]
+[2026-10-07 07:56:23.931] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:23.931] [CoACD] [info] iter 6 ---- waiting pool: 46
+[2026-10-07 07:56:23.931] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:25.697] [CoACD] [info] Processing [10.9%]
+[2026-10-07 07:56:27.080] [CoACD] [info] Processing [21.7%]
+[2026-10-07 07:56:27.843] [CoACD] [info] Processing [32.6%]
+[2026-10-07 07:56:29.622] [CoACD] [info] Processing [43.5%]
+[2026-10-07 07:56:31.073] [CoACD] [info] Processing [54.3%]
+[2026-10-07 07:56:32.136] [CoACD] [info] Processing [65.2%]
+[2026-10-07 07:56:33.457] [CoACD] [info] Processing [76.1%]
+[2026-10-07 07:56:34.725] [CoACD] [info] Processing [87.0%]
+[2026-10-07 07:56:35.599] [CoACD] [info] Processing [97.8%]
+[2026-10-07 07:56:35.602] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:35.602] [CoACD] [info] iter 7 ---- waiting pool: 70
+[2026-10-07 07:56:35.602] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:37.102] [CoACD] [info] Processing [11.4%]
+[2026-10-07 07:56:37.826] [CoACD] [info] Processing [22.9%]
+[2026-10-07 07:56:38.938] [CoACD] [info] Processing [34.3%]
+[2026-10-07 07:56:40.306] [CoACD] [info] Processing [45.7%]
+[2026-10-07 07:56:41.600] [CoACD] [info] Processing [57.1%]
+[2026-10-07 07:56:42.285] [CoACD] [info] Processing [68.6%]
+[2026-10-07 07:56:42.832] [CoACD] [info] Processing [80.0%]
+[2026-10-07 07:56:43.526] [CoACD] [info] Processing [91.4%]
+[2026-10-07 07:56:44.015] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:44.015] [CoACD] [info] iter 8 ---- waiting pool: 72
+[2026-10-07 07:56:44.015] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:44.106] [CoACD] [info] Processing [11.1%]
+[2026-10-07 07:56:44.125] [CoACD] [info] Processing [22.2%]
+[2026-10-07 07:56:44.673] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:56:44.906] [CoACD] [info] Processing [44.4%]
+[2026-10-07 07:56:45.262] [CoACD] [info] Processing [55.6%]
+[2026-10-07 07:56:45.281] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:56:45.438] [CoACD] [info] Processing [77.8%]
+[2026-10-07 07:56:45.664] [CoACD] [info] Processing [88.9%]
+[2026-10-07 07:56:45.942] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:45.942] [CoACD] [info] iter 9 ---- waiting pool: 30
+[2026-10-07 07:56:45.942] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:45.951] [CoACD] [info] Processing [13.3%]
+[2026-10-07 07:56:45.959] [CoACD] [info] Processing [26.7%]
+[2026-10-07 07:56:45.968] [CoACD] [info] Processing [40.0%]
+[2026-10-07 07:56:45.977] [CoACD] [info] Processing [53.3%]
+[2026-10-07 07:56:46.071] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:56:46.081] [CoACD] [info] Processing [80.0%]
+[2026-10-07 07:56:46.148] [CoACD] [info] Processing [93.3%]
+[2026-10-07 07:56:46.344] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:46.344] [CoACD] [info] iter 10 ---- waiting pool: 6
+[2026-10-07 07:56:46.344] [CoACD] [info] Processing [0.0%]
+[2026-10-07 07:56:46.346] [CoACD] [info] Processing [16.7%]
+[2026-10-07 07:56:46.349] [CoACD] [info] Processing [33.3%]
+[2026-10-07 07:56:46.351] [CoACD] [info] Processing [50.0%]
+[2026-10-07 07:56:46.353] [CoACD] [info] Processing [66.7%]
+[2026-10-07 07:56:46.355] [CoACD] [info] Processing [83.3%]
+[2026-10-07 07:56:46.357] [CoACD] [info] Processing [100.0%]
+[2026-10-07 07:56:46.357] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-07 07:56:52.220] [CoACD] [info] Compute Time: 55.52674s
+[2026-10-07 07:56:52.220] [CoACD] [info] # Convex Hulls: 107
+RESULT white_pot_lid_p000_r3.npz hulls 107 sec 58

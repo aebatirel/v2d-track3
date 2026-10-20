@@ -1,0 +1,362 @@
+{
+ "1": {
+  "frames": 335,
+  "keyframes": 67,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 4,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.91,
+  "a_c_spread": [
+   0.025,
+   0.06
+  ]
+ },
+ "3": {
+  "frames": 313,
+  "keyframes": 63,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.87,
+  "a_c_spread": [
+   0.034,
+   0.064
+  ]
+ },
+ "5": {
+  "frames": 288,
+  "keyframes": 58,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.86,
+  "a_c_spread": [
+   0.043,
+   0.076
+  ]
+ },
+ "6": {
+  "frames": 243,
+  "keyframes": 49,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.84,
+  "a_c_spread": [
+   0.037,
+   0.09
+  ]
+ },
+ "8": {
+  "frames": 219,
+  "keyframes": 44,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 3,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.88,
+  "a_c_spread": [
+   0.026,
+   0.053
+  ]
+ },
+ "10": {
+  "frames": 161,
+  "keyframes": 33,
+  "rejected": 1,
+  "trusted_gate": 0,
+  "max_bridge": 5,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.81,
+  "a_c_spread": [
+   0.019,
+   0.03
+  ]
+ },
+ "14": {
+  "frames": 158,
+  "keyframes": 32,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.7,
+  "a_c_spread": [
+   0.021,
+   0.043
+  ]
+ },
+ "15": {
+  "frames": 166,
+  "keyframes": 34,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.75,
+  "a_c_spread": [
+   0.025,
+   0.046
+  ]
+ },
+ "16": {
+  "frames": 173,
+  "keyframes": 35,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.74,
+  "a_c_spread": [
+   0.035,
+   0.067
+  ]
+ },
+ "19": {
+  "frames": 235,
+  "keyframes": 47,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 4,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.79,
+  "a_c_spread": [
+   0.024,
+   0.072
+  ]
+ },
+ "20": {
+  "frames": 202,
+  "keyframes": 41,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   2,
+   50,
+   -0.1
+  ],
+  "t_ac_cm": 3.81,
+  "a_c_spread": [
+   0.029,
+   0.063
+  ]
+ },
+ "25": {
+  "frames": 356,
+  "keyframes": 72,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.8,
+  "a_c_spread": [
+   0.028,
+   0.062
+  ]
+ },
+ "28": {
+  "frames": 220,
+  "keyframes": 44,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 4,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.89,
+  "a_c_spread": [
+   0.039,
+   0.072
+  ]
+ },
+ "30": {
+  "frames": 263,
+  "keyframes": 53,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.82,
+  "a_c_spread": [
+   0.026,
+   0.051
+  ]
+ },
+ "32": {
+  "frames": 259,
+  "keyframes": 52,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 3,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.83,
+  "a_c_spread": [
+   0.025,
+   0.06
+  ]
+ },
+ "33": {
+  "frames": 348,
+  "keyframes": 70,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.82,
+  "a_c_spread": [
+   0.032,
+   0.06
+  ]
+ },
+ "35": {
+  "frames": 421,
+  "keyframes": 85,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.15
+  ],
+  "t_ac_cm": 3.83,
+  "a_c_spread": [
+   0.034,
+   0.051
+  ]
+ },
+ "36": {
+  "frames": 407,
+  "keyframes": 82,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.85,
+  "a_c_spread": [
+   0.031,
+   0.059
+  ]
+ },
+ "37": {
+  "frames": 151,
+  "keyframes": 31,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.2
+  ],
+  "t_ac_cm": 3.84,
+  "a_c_spread": [
+   0.024,
+   0.036
+  ]
+ },
+ "38": {
+  "frames": 263,
+  "keyframes": 53,
+  "rejected": 0,
+  "trusted_gate": 0,
+  "max_bridge": 2,
+  "lag": [
+   1,
+   1,
+   null,
+   -0.1
+  ],
+  "t_ac_cm": 3.81,
+  "a_c_spread": [
+   0.03,
+   0.054
+  ]
+ }
+}

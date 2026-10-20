@@ -1,0 +1,24 @@
+c/trk_12_h10.npz SMIN 2 K 2:
+  blue_cup: prior 0.885 (f0 ADD 7 r 7) | fused 0.911 (f0 ADD 4 r 4) | carry 0.952 (f0 ADD 4 r 3) | fix frames 80
+  plastic_dish_rack: prior 0.809 (f0 ADD 39 r 12) | fused 0.852 (f0 ADD 39 r 12) | carry 0.888 (f0 ADD 27 r 15) | fix frames 68
+  SCORER-STYLE: prior 0.814 0.698 mean 0.756 | fused 0.874 0.818 mean 0.846 | carry 0.909 0.868 mean 0.888
+c/trk_21_s90.npz SMIN 2 K 2:
+  blue_cup: prior 0.438 (f0 ADD 54 r 87) | fused 0.677 (f0 ADD 13 r 2) | carry 0.956 (f0 ADD 12 r 1) | fix frames 89
+  water_pitcher: prior 0.950 (f0 ADD 16 r 7) | fused 0.966 (f0 ADD 16 r 6) | carry 0.974 (f0 ADD 15 r 7) | fix frames 166
+  SCORER-STYLE: prior 0.568 0.000 mean 0.284 | fused 0.642 0.907 mean 0.775 | carry 0.911 0.878 mean 0.894
+c/trk_12_s90.npz SMIN 2 K 2:
+  blue_cup: prior 0.434 (f0 ADD 54 r 87) | fused 0.565 (f0 ADD 11 r 14) | carry 0.873 (f0 ADD 3 r 2) | fix frames 56
+  plastic_dish_rack: prior 0.938 (f0 ADD 22 r 7) | fused 0.952 (f0 ADD 22 r 7) | carry 0.960 (f0 ADD 15 r 5) | fix frames 64
+  SCORER-STYLE: prior 0.225 0.000 mean 0.113 | fused 0.495 0.391 mean 0.443 | carry 0.860 0.947 mean 0.904
+c/trk_12_h20.npz SMIN 2 K 2:
+  blue_cup: prior 0.647 (f0 ADD 14 r 14) | fused 0.693 (f0 ADD 43 r 15) | carry 0.747 (f0 ADD 37 r 23) | fix frames 45
+  plastic_dish_rack: prior 0.498 (f0 ADD 77 r 23) | fused 0.538 (f0 ADD 77 r 23) | carry 0.642 (f0 ADD 58 r 23) | fix frames 33
+  SCORER-STYLE: prior 0.483 0.276 mean 0.380 | fused 0.249 0.055 mean 0.152 | carry 0.352 0.090 mean 0.221
+c/trk_26_h20.npz SMIN 2 K 2:
+  plastic_dish_rack: prior 0.590 (f0 ADD 28 r 14) | fused 0.683 (f0 ADD 28 r 14) | carry 0.797 (f0 ADD 25 r 13) | fix frames 60
+  white_pot: prior 0.585 (f0 ADD 62 r 23) | fused 0.685 (f0 ADD 62 r 23) | carry 0.763 (f0 ADD 31 r 12) | fix frames 78
+  SCORER-STYLE: prior 0.535 0.348 mean 0.442 | fused 0.590 0.393 mean 0.491 | carry 0.676 0.566 mean 0.621
+c/trk_0_h20.npz SMIN 2 K 2:
+  white_pot: prior 0.619 (f0 ADD 21 r 14) | fused 0.622 (f0 ADD 54 r 19) | carry 0.719 (f0 ADD 49 r 16) | fix frames 155
+  white_pot_lid: prior 0.665 (f0 ADD 56 r 23) | fused 0.920 (f0 ADD 8 r 7) | carry 0.936 (f0 ADD 13 r 12) | fix frames 367
+  SCORER-STYLE: prior 0.559 0.535 mean 0.547 | fused 0.315 0.332 mean 0.324 | carry 0.413 0.329 mean 0.371

@@ -1,0 +1,15 @@
+src A mode box cone 95.0 view-pairs 232 views with >=2 visible 186 of 216
+  s 0 mm: median 33.1 p10 17.6; share < 3 px 0.00, < 6 px 0.00
+  s 1 mm: median 30.7 p10 16.3; share < 3 px 0.00, < 6 px 0.02
+  s 2 mm: median 28.3 p10 14.9; share < 3 px 0.01, < 6 px 0.04
+  s 3 mm: median 26.6 p10 12.9; share < 3 px 0.01, < 6 px 0.05
+  s 5 mm: median 24.8 p10 8.9; share < 3 px 0.02, < 6 px 0.09
+  s 8 mm: median 22.2 p10 4.5; share < 3 px 0.06, < 6 px 0.13
+c0 in axis frame (mm) [ 1.12 -1.41  3.59]
+src A mode box cone 95.0 view-pairs 232 views with >=2 visible 186 of 216
+  s 0 mm: median 32.3 p10 17.5; share < 3 px 0.01, < 6 px 0.01
+  s 1 mm: median 30.0 p10 16.0; share < 3 px 0.01, < 6 px 0.02
+  s 2 mm: median 27.9 p10 14.8; share < 3 px 0.01, < 6 px 0.03
+  s 3 mm: median 26.4 p10 13.2; share < 3 px 0.01, < 6 px 0.06
+  s 5 mm: median 25.2 p10 9.0; share < 3 px 0.03, < 6 px 0.07
+  s 8 mm: median 22.2 p10 4.5; share < 3 px 0.07, < 6 px 0.12

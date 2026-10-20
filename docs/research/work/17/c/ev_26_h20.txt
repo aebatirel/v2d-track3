@@ -1,0 +1,17 @@
+c/trk_26_h20.npz MODE reg SH -0.5 T 158 runtime 0.40 s/frame
+  plastic_dish_rack: AUC(ADD, this trajectory, no policy) 0.683; status 3/2/1/0 = 0.00 / 0.38 / 0.49 / 0.13
+    rest     n 138 fix>=2 0.36 fix3 0.00 | fix2 n50 t 13.3/21.9 r 7.84/14.87 ADD 16.4/27.0 | all n138 t 26.7/48.5 r 17.15/37.72 ADD 39.8/54.5 |
+    held     n  20 fix>=2 0.50 fix3 0.00 | fix2 n10 t 10.0/21.4 r 5.77/12.49 ADD 11.5/27.4 | all n20 t 16.0/38.5 r 11.11/17.89 ADD 25.1/44.4 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.590; t 33.5 r 18.66 ADD 42.7 | FUSED AUC 0.683
+      rest     fix frames n50: prior ADD 36.4 -> fused 16.4 mm; fused worse than prior in 0.00
+      held     fix frames n10: prior ADD 28.5 -> fused 11.5 mm; fused worse than prior in 0.00
+  white_pot: AUC(ADD, this trajectory, no policy) 0.685; status 3/2/1/0 = 0.11 / 0.39 / 0.35 / 0.15
+    rest     n  93 fix>=2 0.35 fix3 0.05 | fix3 n5 t 8.9/16.1 r 3.00/19.96 ADD 9.6/30.4 | fix2 n28 t 12.4/36.7 r 8.30/18.27 ADD 17.3/39.8 | all n93 t 29.9/53.6 r 14.08/25.06 ADD 39.9/59.8 |
+    held     n  24 fix>=2 0.75 fix3 0.17 | fix3 n4 t 4.9/10.2 r 4.51/6.91 ADD 8.6/11.3 | fix2 n14 t 12.1/30.0 r 8.08/25.08 ADD 13.5/38.4 | all n24 t 12.1/36.0 r 8.44/28.23 ADD 15.9/47.8 |
+    carried  n  41 fix>=2 0.66 fix3 0.20 | fix3 n8 t 6.6/18.7 r 3.86/14.81 ADD 7.5/23.9 | fix2 n19 t 17.8/25.5 r 12.48/28.98 ADD 24.3/34.3 | all n41 t 22.1/46.4 r 20.69/35.47 ADD 29.2/63.2 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.585; t 32.8 r 19.28 ADD 41.7 | FUSED AUC 0.685
+      rest     fix frames n33: prior ADD 41.5 -> fused 16.7 mm; fused worse than prior in 0.06
+      held     fix frames n18: prior ADD 31.1 -> fused 12.2 mm; fused worse than prior in 0.11
+      carried  fix frames n27: prior ADD 38.4 -> fused 20.6 mm; fused worse than prior in 0.04
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object plastic_dish_rack:0.590 white_pot:0.393 mean 0.491
+  SCORER-STYLE (prior-only; slot-0 frame-0 alignment) AUC per object plastic_dish_rack:0.535 white_pot:0.348 mean 0.442

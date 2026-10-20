@@ -1,0 +1,10 @@
+beige_cup          sphere-like clusters (area>=1cm2, rms<0.6mm): 3 :: 6.5cm2 @[-33.0, -41.0, -69.0] rms0.37; 6.4cm2 @[-10.0, 54.0, -63.0] rms0.34; 6.3cm2 @[48.0, -18.0, -71.0] rms0.28
+blue_cup           sphere-like clusters (area>=1cm2, rms<0.6mm): 4 :: 6.8cm2 @[-47.0, 19.0, -71.0] rms0.60; 6.7cm2 @[-33.0, -31.0, 64.0] rms0.53; 6.6cm2 @[30.0, 34.0, 73.0] rms0.55; 6.5cm2 @[27.0, -46.0, -51.0] rms0.48
+mini_dust_pan      sphere-like clusters (area>=1cm2, rms<0.6mm): 0 :: 
+mini_sweeper       sphere-like clusters (area>=1cm2, rms<0.6mm): 3 :: 5.9cm2 @[16.0, -16.0, 3.0] rms0.29; 5.8cm2 @[16.0, 17.0, 3.0] rms0.35; 5.7cm2 @[-17.0, -14.0, 2.0] rms0.43
+plastic_dish_rack  sphere-like clusters (area>=1cm2, rms<0.6mm): 45 :: 6.6cm2 @[-11.0, 82.0, 1.0] rms0.45; 6.6cm2 @[35.0, -2.0, -207.0] rms0.40; 5.8cm2 @[8.0, -79.0, 192.0] rms0.46; 5.6cm2 @[-16.0, -64.0, -1.0] rms0.54; 4.9cm2 @[-21.0, -31.0, -88.0] rms0.49; 4.8cm2 @[-10.0, -64.0, -13.0] rms0.58
+water_pitcher      sphere-like clusters (area>=1cm2, rms<0.6mm): 4 :: 6.5cm2 @[-65.0, 57.0, 31.0] rms0.32; 6.5cm2 @[62.0, 5.0, -26.0] rms0.35; 6.4cm2 @[-61.0, -21.0, 9.0] rms0.33; 5.9cm2 @[37.0, -11.0, 122.0] rms0.31
+white_pot          sphere-like clusters (area>=1cm2, rms<0.6mm): 4 :: 6.2cm2 @[37.0, 4.0, 105.0] rms0.26; 6.1cm2 @[14.0, -33.0, -107.0] rms0.36; 5.9cm2 @[34.0, 84.0, -55.0] rms0.33; 5.8cm2 @[-5.0, 88.0, 15.0] rms0.35
+white_pot_lid      sphere-like clusters (area>=1cm2, rms<0.6mm): 3 :: 5.9cm2 @[5.0, -56.0, -29.0] rms0.51; 5.5cm2 @[7.0, -50.0, 17.0] rms0.46; 5.3cm2 @[5.0, 42.0, 55.0] rms0.35
+wooden_piece_1     sphere-like clusters (area>=1cm2, rms<0.6mm): 3 :: 5.9cm2 @[13.0, -45.0, -102.0] rms0.38; 5.9cm2 @[13.0, 34.0, -96.0] rms0.37; 5.5cm2 @[12.0, 52.0, 106.0] rms0.53
+wooden_piece_2     sphere-like clusters (area>=1cm2, rms<0.6mm): 3 :: 5.9cm2 @[-14.0, -24.0, 101.0] rms0.46; 5.8cm2 @[-13.0, 12.0, -103.0] rms0.38; 5.7cm2 @[-13.0, -47.0, -74.0] rms0.45

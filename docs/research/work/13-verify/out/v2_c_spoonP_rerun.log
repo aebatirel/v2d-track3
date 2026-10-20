@@ -1,0 +1,3 @@
+round   N=300 skew_y -0.0354+-0.0092 se1_y 1.79 | P(B) post-avg 0.900  at n=1e3 0.732 3e3 0.858 1e4 0.962 3e4 0.996 | P(z ok) post-avg 0.9999
+oval    N=150 skew_y -0.0381+-0.0090 se1_y 1.74 | P(B) post-avg 0.917  at n=1e3 0.752 3e3 0.882 1e4 0.975 3e4 0.999 | P(z ok) post-avg 1.0000
+nomark  N=100 skew_y +0.0001+-0.0112 se1_y 1.90 | P(B) post-avg 0.498  at n=1e3 0.499 3e3 0.498 1e4 0.497 3e4 0.495 | P(z ok) post-avg 0.9998

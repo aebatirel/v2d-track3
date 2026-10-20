@@ -1,0 +1,31 @@
+c0 in axis frame (mm) [ -0.84   2.66 -67.81]
+src A mode box cone 95.0 view-pairs 104 views with >=2 visible 104 of 216
+  s 0 mm: median 13.2 p10 9.4; share < 3 px 0.00, < 6 px 0.00
+  s 1 mm: median 11.2 p10 6.7; share < 3 px 0.00, < 6 px 0.04
+  s 2 mm: median 9.2 p10 4.3; share < 3 px 0.04, < 6 px 0.23
+  s 3 mm: median 7.7 p10 2.6; share < 3 px 0.14, < 6 px 0.38
+  s 5 mm: median 5.5 p10 1.1; share < 3 px 0.26, < 6 px 0.56
+  s 8 mm: median 3.8 p10 0.0; share < 3 px 0.41, < 6 px 0.67
+c0 in axis frame (mm) [ -0.84   2.66 -67.81]
+src A mode box cone 95.0 view-pairs 104 views with >=2 visible 104 of 216
+  s 0 mm: median 13.2 p10 9.4; share < 3 px 0.00, < 6 px 0.00
+  s 1 mm: median 11.2 p10 6.7; share < 3 px 0.00, < 6 px 0.04
+  s 2 mm: median 9.2 p10 4.3; share < 3 px 0.04, < 6 px 0.23
+  s 3 mm: median 7.7 p10 2.6; share < 3 px 0.14, < 6 px 0.38
+  s 5 mm: median 5.5 p10 1.1; share < 3 px 0.26, < 6 px 0.56
+  s 8 mm: median 3.8 p10 0.0; share < 3 px 0.41, < 6 px 0.67
+src A mode box cone 95.0 view-pairs 105 views with >=2 visible 105 of 216
+  s 0 mm: median 10.3 p10 5.8; share < 3 px 0.00, < 6 px 0.13
+  s 1 mm: median 7.3 p10 3.1; share < 3 px 0.10, < 6 px 0.33
+  s 2 mm: median 5.6 p10 1.6; share < 3 px 0.21, < 6 px 0.59
+  s 3 mm: median 4.6 p10 0.7; share < 3 px 0.30, < 6 px 0.64
+  s 5 mm: median 3.9 p10 0.2; share < 3 px 0.42, < 6 px 0.68
+  s 8 mm: median 3.3 p10 0.0; share < 3 px 0.45, < 6 px 0.75
+c0 in axis frame (mm) [-0.84  2.66  0.  ]
+src A mode box cone 95.0 view-pairs 105 views with >=2 visible 105 of 216
+  s 0 mm: median 12.0 p10 8.9; share < 3 px 0.00, < 6 px 0.00
+  s 1 mm: median 9.9 p10 6.2; share < 3 px 0.00, < 6 px 0.09
+  s 2 mm: median 7.8 p10 3.7; share < 3 px 0.05, < 6 px 0.27
+  s 3 mm: median 6.2 p10 1.9; share < 3 px 0.15, < 6 px 0.48
+  s 5 mm: median 4.7 p10 0.8; share < 3 px 0.34, < 6 px 0.65
+  s 8 mm: median 3.6 p10 0.0; share < 3 px 0.41, < 6 px 0.71

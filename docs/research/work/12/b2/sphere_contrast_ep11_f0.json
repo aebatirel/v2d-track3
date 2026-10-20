@@ -1,0 +1,65 @@
+{
+ "beige_cup#0": {
+  "theta": 35,
+  "R_px": 20.0,
+  "dE_median": 20.0,
+  "dE_p25": 16.8,
+  "inner_L": 63.3,
+  "edge_grad_median": 25.8,
+  "edge_frac_weak": 0.39
+ },
+ "beige_cup#1": {
+  "theta": 171,
+  "R_px": 19.1,
+  "dE_median": 28.3,
+  "dE_p25": 14.1,
+  "inner_L": 52.4,
+  "edge_grad_median": 20.6,
+  "edge_frac_weak": 0.49
+ },
+ "beige_cup#2": {
+  "theta": -69,
+  "R_px": 17.6,
+  "dE_median": 16.8,
+  "dE_p25": 4.7,
+  "inner_L": 64.8,
+  "edge_grad_median": 12.8,
+  "edge_frac_weak": 0.64
+ },
+ "blue_cup#0": {
+  "theta": -28,
+  "R_px": 18.0,
+  "dE_median": 54.7,
+  "dE_p25": 32.4,
+  "inner_L": 40.6,
+  "edge_grad_median": 28.5,
+  "edge_frac_weak": 0.39
+ },
+ "blue_cup#1": {
+  "theta": -139,
+  "R_px": 16.6,
+  "dE_median": 48.2,
+  "dE_p25": 46.6,
+  "inner_L": 55.2,
+  "edge_grad_median": 23.8,
+  "edge_frac_weak": 0.44
+ },
+ "blue_cup#2": {
+  "theta": 110,
+  "R_px": 18.0,
+  "dE_median": 17.7,
+  "dE_p25": 7.7,
+  "inner_L": 51.2,
+  "edge_grad_median": 24.2,
+  "edge_frac_weak": 0.47
+ },
+ "blue_cup#3": {
+  "theta": 47,
+  "R_px": 14.8,
+  "dE_median": 2.8,
+  "dE_p25": 2.0,
+  "inner_L": 31.4,
+  "edge_grad_median": 4.3,
+  "edge_frac_weak": 0.78
+ }
+}

@@ -1,0 +1,19 @@
+got /Users/aebatirel/Documents/Code/v2d-research/data/track_3/public/videos/chunk-000/observation.images.ego_cam_b/episode_000013.mp4 2503538
+got /Users/aebatirel/Documents/Code/v2d-research/data/track_3/public/videos/chunk-000/observation.images.ego_cam_b/episode_000022.mp4 2583538
+got /Users/aebatirel/Documents/Code/v2d-research/data/track_3/public/videos/chunk-000/observation.images.ego_cam_b/episode_000026.mp4 2052424
+got /Users/aebatirel/Documents/Code/v2d-research/data/track_3/public/videos/chunk-000/observation.images.ego_cam_b/episode_000027.mp4 2937523
+curl: (28) Operation timed out after 293381 milliseconds with 717496 out of 3319616 bytes received
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+curl: (6) Could not resolve host: huggingface.co

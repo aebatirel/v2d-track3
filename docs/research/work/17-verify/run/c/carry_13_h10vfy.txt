@@ -1,0 +1,4 @@
+c/trk_13_h10vfy.npz SMIN 2 K 0:
+  blue_cup: prior 0.879 (f0 ADD 7 r 7) | fused 0.932 (f0 ADD 9 r 7) | carry 0.946 (f0 ADD 9 r 7) | fix frames 142
+  plastic_dish_rack: prior 0.812 (f0 ADD 39 r 12) | fused 0.858 (f0 ADD 39 r 12) | carry 0.864 (f0 ADD 23 r 5) | fix frames 78
+  SCORER-STYLE: prior 0.791 0.743 mean 0.767 | fused 0.843 0.762 mean 0.803 | carry 0.865 0.800 mean 0.833

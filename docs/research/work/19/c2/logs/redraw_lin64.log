@@ -1,0 +1,8 @@
+[2026-10-07 04:59:42.742] [CoACD] [info]  - Manifold Check
+[2026-10-07 04:59:42.777] [CoACD] [info] Manifold Check Time: 0.033896s
+[2026-10-07 04:59:42.777] [CoACD] [info] Mesh Manifoldness: true
+RESULT /w/c2/rd/white_pot_lid_p000_r0.npz hulls 118 sec 20
+[2026-10-07 05:00:03.962] [CoACD] [info]  - Manifold Check
+[2026-10-07 05:00:03.999] [CoACD] [info] Manifold Check Time: 0.029872s
+[2026-10-07 05:00:04.000] [CoACD] [info] Mesh Manifoldness: true
+RESULT /w/c2/rd/white_pot_lid_p000_r3.npz hulls 98 sec 20

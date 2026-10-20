@@ -1,0 +1,101 @@
+# 14-verify notes (skeptical verifier for dig 14). Started 2026-10-05.
+- read notes 14 + work/14 scripts (common14, track_err, e_mix, e_rows, kin). Plan: C1 grep repo/kit; C2 rerun e_mix GT
+  rows w/ own scorer-faithful script; C3 recompute kin + read builder/residual/sharpa_hands; C4 recompute mixture.
+- C1 [V]: EVT-07 only in repo/README.md:14 (memory gate) and docs/media/README.md:8 (GIF actors); V2D_INTEGRATION.md:83
+  "not the final training-reproduction gate". Tree @8c778f90 has no Sharpa actor weights (only sonic + vega onnx);
+  HF API search (flash_chord, flashchord, chord-sharpa, nvidia+chord/v2d) = no models. Kit run_policy_evaluation.py:74-77
+  always passes metrics_output + object_trajectories_output, world_count arg, reset_mode explicit. harness.py:535 scores
+  via compute_object_tracking_metrics, thresholds identical to kit (0.1 m/0.5 rad, 3 cm/30 deg, ADD 1-9 cm), _aligned_poses
+  = shape check only (no frame-0 warp). Nuances: ADD vertices = sim mesh 500 samples seed 0 (scorer uses hidden payload);
+  single rollout = one nondeterministic sample.
+- C3 code [V]: sharpa_hands.py:55 wrist_[xyz] kp 25 kd 6 effort 45; :59 rotvec effort kp 25; gravcomp loop :190-196 runs
+  inside embodiment.build (builder.py:451) BEFORE spawn_objects (:456) -> objects not compensated. All 10 public URDFs
+  mass 0.3 with comment "0.3 kg is a placeholder mass" (organiser placeholder, not measured -> mass is an asset choice
+  [H rules]). residual.py:61-67 input_scale=clip/((1-ema)scale)=5.714; filter f=0.3 prev+0.7 v s, clamp 0.2; steady f=v s
+  -> v=2.354 -> rational n/((1-n)+n/5.714) -> n=0.80 [V arithmetic].
+- C3 proxy re-derived (kin_v.py, own loader, gaussian sigma 1/1.5/2.5 frames): NORM criterion reproduces: s=1 21-25/27 tracks,
+  5.8-9.5 % moving frames; s=0.5 0-1/27, 0-0.1 %. BUT hand_pose.py:247-257,273-277 + :408 show the wrist residual is clipped
+  PER AXIS (world x/y/z each +-0.2 m; rpy each +-1.0 rad), so |F|/kp > 0.2 (kin.py) overstates saturation. Recomputing per-axis.
+- C3 per-axis proxy (kin_axis.py, sigma 1-2.5): s=1.0 19-25/27 tracks saturate, 4.6-6.9 % of moving frames (not 7.9 %),
+  almost all on z; excess over clip median 2-4 cm, p95 7-12 cm. s=0.5: 0-1/27, <=0.12 %. Mass sensitivity (sigma 1.5, s=1):
+  0.3 kg 24/27, 5.9 %; 0.15 kg 12/27, 1.3 %; 0 kg 1/27, 0.04 % -> saturation is driven by the 0.3 kg PLACEHOLDER mass.
+  Verdict C3: arithmetic [V], track count reproduces, frame % overstated (norm vs per-axis), consequence (drops) [H].
+- C2 independent (c2_kit.py: own loader/models, kit AUC/SP-SR/MP-SR score() on DataFrames, own surface samples seed 7):
+  ident 1/1/1; good(lag .1+3mm/1deg+place 1cm/3deg) 0.966/1/1; lag30 0.881/1/1; never 0.555/0.55/0; never+good 0.542/0.55/0;
+  freeze50 0.677/0.85/0; freeze50+good 0.696/0.90/0.05; PHYSICAL drop at 50 % (falls to rest z): upright 0.700/0.65/0.10,
+  tipped 90 deg 0.639/0.35/0.00 (+good 0.650/0.45/0). -> dig numbers reproduce; freeze model understates SP-SR loss of drops.
+- C2 per-episode cost (good minus fail, kit score): never+good 0.12-0.83 (med 0.38; 1-obj med 0.62, 2-obj med 0.32);
+  freeze50+good 0.04-0.47 (med 0.24); fall-tipped 0.18-0.49 (med 0.25). Only 10-45 % of episodes fall inside "0.3-0.45".
+  lag30 per-episode cost med 0.095, max 0.289. Loss shares from dig's own e_mix GT rows: real speed (lag30/mid, p .2-.45)
+  discrete share of AUC loss 0.31-0.56; half speed (good, p .07-.25) 0.41-0.71. SP-SR/MP-SR loss 100 % discrete by model
+  construction. -> "most of e_track is discrete" holds for SP-SR/MP-SR, NOT established for AUC.
+- C4 mixture re-derived from my own kit-scored rows: freeze-drop version reproduces e_rows within 0.01-0.015 (real N=1
+  0.763-0.829/0.876-0.945/0.561-0.805; N=3 0.857-0.879/0.975-0.998/0.911-0.992; half N=1 0.879-0.942/0.931-0.981/0.756-0.932;
+  N=3 0.960-0.966/0.996-1/0.985-1). Physical tipped drop lowers SP-SR: real N=1 0.775-0.900, half N=1 0.875-0.965.
+  Implied p from CHORD Table 1 under the dig's own fail model: AUC 0.135, SP-SR 0.247, MP-SR 0.11 -> p=0.07 lower bound
+  is inconsistent (gives SP-SR 0.98 > paper's 0.926); half-speed N=1 upper ends (0.94/0.98/0.93) exceed CHORD Table 1
+  (0.918/0.926/0.894) itself. Correlated seeds (10 % hard eps, p_h .8-.9, same mean p .2-.45): q3 = 0.053-0.131 vs 0.008-0.091
+  -> best-of-3 MP-SR ~0.87-0.95 instead of 0.91-0.99. Real-speed p 0.20-0.45 has no quantitative derivation (judgment).
+- C4 corrected ranges (c4_corrected.txt): fail = 50/50 never + {freeze, physical tipped} drop; half-speed p 0.11-0.25 (implied by
+  CHORD Table 1 under the dig's own model); N=3 q from independent to 10 %-hard-episode correlation.
+
+# PASS 2 (2026-10-06/07, claims C1/C2/C3/C5 of Stage C re-run). Own scripts: v2_*.py here.
+- P2 [V kit code SP-SR.py:130-155,431-433]: SP-SR and MP-SR are BINARY PER EPISODE (world_count 1): SP-SR = 1 iff time-mean position err
+  averaged over objects <=10 cm AND time-mean geodesic averaged over objects <=0.5 rad; MP-SR = per object time-mean <3 cm & <30 deg
+  (time-averaged, not every frame). So "SP-SR all-fail 0.58" = fraction of eval eps whose time/object-averaged error under the chosen fail
+  model stays inside 10 cm/0.5 rad -> model-dependent, not a bound. Leader row verified lb_live4.json: 0.64908/0.35/0.25 (7/20, 5/20 eps).
+- P2 c2_kit.py fail models act on ONE object (most-moving) per episode; 2-object eps keep the other object exact/good -> object-averaged
+  SP-SR error halves -> eval set (16/20 two-object) keeps SP-SR high under "all fail".
+- P2 C1 [V reproduced, v2_prior.py -> v2_prior.txt, own composition code on c2_kit_surf.csv]: note-15 rows reproduce exactly
+  (real 1 seed 0.702-0.785/0.687-0.897/0.236-0.543; best3 0.742-0.814/0.755-0.926/0.391-0.666; headroom best3 0.784-0.866/0.769-0.927/
+  0.423-0.670). "s halved" in eval_prior.py uses s in [S_LO/2, S_LO], not [S_LO/2, S_HI/2]: true halving gives headroom best3
+  0.874-0.917/0.881-0.963/0.704-0.834 (dig 0.855-0.917/0.86-0.96/0.65-0.83) - dig is pessimistic at the low end, small.
+  Class: note 15 lists 36 as "AT RISK (borderline)", eval_prior puts it in L; 36->P shifts ranges +0.004-0.014 (small).
+  Class-blind public-like rows in the claim come from c4_corrected.txt (pass 1), not eval_prior (eval-composition class-blind
+  1 seed = 0.779-0.846/0.81-0.96/0.55-0.81) - labelled "public-like", consistent.
+- P2 C3 [V arithmetic]: dig's split (cont 0.107 ~40-43 %, L 32-33 %, P 17-18 %, F 8 %) reproduces ONLY with lag-first accounting
+  (continuous = 1-lag30 on all eps; discrete = p*(lag30-fail)). Failure-first accounting (cont only on surviving eps) gives cont
+  0.040 (15-16 %), L 47 %, P 26 %, F 11-12 %. So "~40 % continuous" is an order-dependent attribution (range 15-43 %).
+  Structural (s-part) share of total AUC loss 41-42 %, random (r-part) 17 % (lag-first). Best3 gain at mid: note15 0.037-0.041 AUC,
+  class-blind 0.067-0.074 (at r=0.2 class-blind gain ~0.045). MP-SR/SP-SR loss is 100 % discrete because lag30 scores SP/MP 1.0.
+  Fail-row AUC 1-obj 0.41-0.44 / 2-obj ~0.70 [V]. All of it follows from s = judgment -> "mostly seed-independent" is an input, not a finding.
+- P2 C2 SP-SR "bound" REFUTED [V kit, v2_fail.py -> v2_fail.csv; eval composition = 4x1-obj + 16x2-obj public means]: all-fail SP-SR is
+  model-dependent: only never+good 0.611; only fall50_tipped+good 0.554; fall50_tipped (no good) 0.431; ALL moving objects never 0.488;
+  one object tipped-drop at 20 % of motion 0.03; ALL objects tipped at 50 % 0.03. 0.58 = mean of two mild one-object models, not a floor.
+  The leader's 0.35 is reachable by e_track alone with early drops/tips or two-object failures.
+- P2 C2 AUC/MP-SR part [V reproduced]: eval-set e_track loss vs perfect = 1-0.785..1-0.702 = 0.21-0.30 AUC, 0.46-0.76 MP-SR. PERC_M alone
+  (dig's track_err PERC_M, 4 reps, kit metrics via common14): public 0.800/1.00/0.775; eval composition (4x1-obj,16x2-obj) 0.797/1.00/0.764
+  -> -0.20 AUC / -0.22..-0.24 MP-SR [V]. Caveat: e_track side carries note-15 task difficulty (s judgment), PERC_M side is class-blind
+  public noise; same-basis comparison (class-blind e_track real/1 seed, c4: 0.75-0.84) gives AUC loss 0.16-0.25 ~= PERC_M. So
+  "as large as or larger" holds only with the judgment s and default wrist; with headroom + best3 class-blind it is 0.03-0.06.
+- P2 C5 [V code]: sharpa_hands.py:56 wrist_[xyz] kp 25/kd 6/effort 45; residual clip per axis (hand_pose.py:400-408 clip[start:start+3]=
+  wrist_pos_clip); 10/10 public URDF mass 0.3 "placeholder"; CoACD hulls density 0 (objects.py:191) so URDF mass is used; joint position
+  integral exists (joint_drive.py:98-154) but env/rl.yaml arm_position_integral gain_s_inv2 0.0 -> no integral sag removal on the wrist.
+  Hand mass sum right_sharpawave.urdf 1.231 kg (kin_axis MH 1.243, ok). mg/kp = 0.3*9.81/25 = 11.8 cm [V]. kin_axis re-run: s=1.0
+  25/27 6.9 % (sig1), 24/27 5.9 % (sig1.5), 19/27 4.6 % (sig2.5), z 94-100 %; s=0.5 1/1/0 of 27 [V reproduced]. NVIDIA's canonical
+  sharpa_flash_sac.yaml itself trains at motion_speed 0.5.
+- P2 C5 lifted-only proxy (v2_kin.py; frames with object z > 5th pct + 2 cm): s=1.0 18-23/27 tracks, 3.1-4.6 % of moving frames
+  (3.7-5.5 % of lifted moving frames); s=0.5 0-1/27. -> the 4.6-6.9 % includes on-table drag frames where the table carries mg; core holds.
+  Saturation of the residual clip = hand lags the reference (PD error grows), not a force cap; drops are [H].
+- P2 C1/C2 fail-model sensitivity (v2_prior_harsh.txt): real 1 seed note-15 ranges with the dig's mild one-object mid-clip fails
+  0.702-0.785/0.687-0.897/0.236-0.543; with never + early (20 %) tipped drop 0.642-0.738/0.484-0.681/0.236-0.528; with both moving
+  objects failing 0.584-0.702/0.436-0.651/0.236-0.528. All-fail SP-SR 0.58 (dig) -> 0.32 (early) / 0.26 (two-object). MP-SR barely moves
+  (already 0 on fail). So C1's SP-SR and AUC lower ends depend on the failure-severity model, which no data pins down.
+- P2 C5 half speed [V v2_halfspeed.py]: s=0.5 export packed as-is 0.415/0.30/0.00 (ratio .508), 0.412/0.30/0 (.5) reproduced. But note 06
+  section 3 step 3 keeps a 1:1-row half-speed-equivalent route [H] (parquet fps 10, sim.fps 10, s 1; 10 Hz control). So "half speed cannot
+  be submitted" holds for motion_speed=0.5 exports only; the 10 Hz route and asset mass are further untested levers besides wrist gains.
+- P2 C1 attribution: note 15 classes are for OUR grasp-synthesis hand source (note 10 P9 "rigid grasp-and-carry per segment"), mapped to
+  RL e_track by judgment; r 0.20-0.45 (real speed) is the dig's judgment (pass 1 flagged no derivation), only 0.11-0.25 came from pass 1.
+- P2 C3 lag term [V arithmetic, E reading]: lag30 = first-order low-pass tau 0.30 s (e_mix.py "saturated soft wrist [H]"). Uncompensated
+  PD ramp lag = kd/kp = 6/25 = 0.24 s, i.e. lag30 ~ "policy never compensates"; the learned residual can cancel lag on the ~93-97 %
+  unsaturated frames. Eval-composition continuous loss: lag30 0.108, good (tau .1) 0.031 -> continuous share spans ~0.03-0.11 AUC.
+- P2 C2 wording: note 12 says a 90/180 deg anchor spin GIVES episode AUC 0.195/0.165 (cost ~0.8 on that ep, ~0.04 on the board), not
+  "costs ~0.17-0.2". Note 07 spoon roll: dSP-SR -0.48, dMP-SR -0.50, dAUC -0.13 upper bound [V text].
+- P2 rules: allocating a recipe variant to "the 16 P/L eps" by note-15 hand classes would be a per-episode hand label in the pipeline;
+  triggers must be automatic (e.g. metrics_output failure vs our own reference).
+- P2 VERDICTS: C1 not refuted (exact reproduction) but corrected: s-halving bug (true halving 0.87-0.92/0.88-0.96/0.70-0.83), lower ends
+  fail-model dependent (SP-SR to 0.44-0.48, AUC 0.58-0.64 with early/two-object fails), all inputs judgment. C2 REFUTED on SP-SR (0.58 not
+  a floor: 0.26-0.43 under plausible fail models; leader 0.35 reachable by e_track); AUC/MP-SR part reproduces but class-asymmetric.
+  C3 not refuted on arithmetic; 40 % lag share is lag-first accounting (15 % failure-first) and lag30 is a no-compensation choice;
+  "mostly seed-independent" is the s input. C5 not refuted on numbers; "carried" overstated (lifted-only 18-23/27, 3.1-4.6 %), "cannot
+  be submitted" true only for s=0.5 exports (note 06 10 Hz route [H]); fix = one of gains / mass / 10 Hz playback.

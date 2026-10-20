@@ -1,0 +1,6 @@
+/Users/aebatirel/Documents/Code/v2d-research/work/17/sync_fit.py:28: RuntimeWarning: invalid value encountered in sqrt
+  sd = np.sqrt(np.diag(cov))
+ep 41: n 1; delta = +0.000 +- nan frames (+0.0 ms; a captured delta earlier than b at the same index)
+  extrinsic correction rot (deg) [-0.365  0.18  -0.237] +- [nan nan nan]; trans (mm) [-2.1 -0.9 -1.1] +- [nan nan nan]
+  per-frame residual sd: rot [0. 0. 0.] deg, trans [0. 0. 0.] mm
+  calibrated & delta 0: rot rms 0.272 deg; fitted: 0.000 deg

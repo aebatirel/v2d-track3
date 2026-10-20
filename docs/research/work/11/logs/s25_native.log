@@ -1,0 +1,6 @@
+ep 12 IoU 0.951 psi  180.61 (s24  177.74) th  32.4 ph   6.7 Crel [ 0.297 -0.037  0.433] profile dIoU [np.float64(-0.0152), np.float64(-0.015), np.float64(-0.0122), np.float64(-0.0347)]
+ep 13 IoU 0.969 psi  183.00 (s24  181.36) th  37.8 ph   8.2 Crel [0.297 0.038 0.457] profile dIoU [np.float64(-0.0325), np.float64(-0.0159), np.float64(-0.0116), np.float64(-0.0345)]
+ep 21 IoU 0.874 psi  177.04 (s24  175.79) th  46.0 ph   4.7 Crel [ 0.284 -0.03   0.416] profile dIoU [np.float64(-0.0072), np.float64(-0.0016), np.float64(-0.0063), np.float64(-0.012)]
+ep  0 IoU 0.953 psi  181.44 (s24  177.99) th  44.0 ph   4.2 Crel [0.297 0.027 0.473] profile dIoU [np.float64(-0.014), np.float64(-0.0318), np.float64(-0.0063), np.float64(0.0001)]
+ep 26 IoU 0.912 psi  182.61 (s24  176.43) th  48.5 ph   6.1 Crel [ 0.356 -0.014  0.525] profile dIoU [np.float64(0.0107), np.float64(0.0089), np.float64(-0.0036), np.float64(-0.0097)]
+ep 22 IoU 0.872 psi  176.78 (s24  176.25) th  41.2 ph   0.3 Crel [ 0.292 -0.084  0.422] profile dIoU [np.float64(-0.0373), np.float64(-0.0155), np.float64(0.0092), np.float64(0.008)]

@@ -1,0 +1,8 @@
+c/trk_22_h10.npz SMIN 2 K 0:
+  blue_cup: prior 0.874 (f0 ADD 7 r 7) | fused 0.973 (f0 ADD 13 r 3) | carry 0.975 (f0 ADD 13 r 3) | fix frames 188
+  water_pitcher: prior 0.829 (f0 ADD 29 r 12) | fused 0.892 (f0 ADD 20 r 12) | carry 0.902 (f0 ADD 20 r 12) | fix frames 164
+  SCORER-STYLE: prior 0.899 0.621 mean 0.760 | fused 0.930 0.854 mean 0.892 | carry 0.931 0.864 mean 0.897
+c/trk_22_h10.npz SMIN 2 K 2:
+  blue_cup: prior 0.874 (f0 ADD 7 r 7) | fused 0.973 (f0 ADD 13 r 3) | carry 0.989 (f0 ADD 6 r 3) | fix frames 188
+  water_pitcher: prior 0.829 (f0 ADD 29 r 12) | fused 0.892 (f0 ADD 20 r 12) | carry 0.914 (f0 ADD 21 r 12) | fix frames 164
+  SCORER-STYLE: prior 0.899 0.621 mean 0.760 | fused 0.930 0.854 mean 0.892 | carry 0.972 0.854 mean 0.913

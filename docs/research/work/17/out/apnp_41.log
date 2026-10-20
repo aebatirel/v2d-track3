@@ -1,0 +1,9 @@
+0 inl 29 med px 1.15
+/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3036: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/Users/aebatirel/Documents/Code/v2d-research/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3037: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+ep 41: n 1 frames; inliers med 44; reproj med 1.23 px
+  rotation deviation from calibrated extrinsic: mean (deg) [-0.368  0.186 -0.227], sd [0. 0. 0.]
+  translation deviation mm: mean [-2.1 -0.9 -1.1] sd [0. 0. 0.]
+  dev = k * omega: k = -2.223 frames (-111.1 ms); rms dev before 0.000 after 0.000 deg; corr +nan

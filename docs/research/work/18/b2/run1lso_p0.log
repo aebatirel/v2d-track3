@@ -1,0 +1,11 @@
+T_ac factory t [-3.81  0.03  0.08] self t [-3.94 -0.15  0.25] cm; rot diff deg 0.246
+07:32:13 p00 decoded 373 frames; tracks {'rig': 373, 'rigS': 373, 'a': 373, 'vo': 373, 'map': 13}
+  offset map: [0.334  0.0224 0.0056] (n fit 4)
+  offset rig: [0.3387 0.0241 0.008 ] (n fit 11)
+  offset rigS: [0.3343 0.0217 0.0068] (n fit 11)
+  offset a: [0.3343 0.0216 0.0061] (n fit 11)
+  p00 map: n=4 shift median 0.13 cm p90 1.65 max 2.29 | chamfer0 median 2.56 px
+  p00 rig: n=109 shift median 0.16 cm p90 0.63 max 2.31 | chamfer0 median 2.66 px
+  p00 rigS: n=109 shift median 0.16 cm p90 0.68 max 2.32 | chamfer0 median 2.68 px
+  p00 a  : n=109 shift median 0.16 cm p90 0.49 max 2.34 | chamfer0 median 2.68 px
+  p00 vo : n=109 shift median 0.22 cm p90 0.71 max 2.32 | chamfer0 median 2.73 px

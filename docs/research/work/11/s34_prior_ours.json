@@ -1,0 +1,102 @@
+[
+ {
+  "ev": 10,
+  "obj": "blue_cup",
+  "y_mocap": 41.1,
+  "W_native": 180.35,
+  "y_ours_native": -139.3,
+  "y_ours_flipped": -137.4,
+  "mod": 360,
+  "note": "Cup_Stack n=1"
+ },
+ {
+  "ev": 14,
+  "obj": "blue_cup",
+  "y_mocap": 64.1,
+  "W_native": 181.94,
+  "y_ours_native": -117.8,
+  "y_ours_flipped": -116.1,
+  "mod": 360,
+  "note": "twin diff 2.7 (rel-to-rack preferred)"
+ },
+ {
+  "ev": 14,
+  "obj": "plastic_dish_rack",
+  "y_mocap": 89.5,
+  "W_native": 181.94,
+  "y_ours_native": -92.4,
+  "y_ours_flipped": -90.7,
+  "mod": 180,
+  "note": "branch"
+ },
+ {
+  "ev": 15,
+  "obj": "plastic_dish_rack",
+  "y_mocap": 91.0,
+  "W_native": 180.75,
+  "y_ours_native": -89.7,
+  "y_ours_flipped": -87.7,
+  "mod": 180,
+  "note": "cross-task rms 1.4"
+ },
+ {
+  "ev": 16,
+  "obj": "plastic_dish_rack",
+  "y_mocap": 91.0,
+  "W_native": 182.79,
+  "y_ours_native": -91.8,
+  "y_ours_flipped": -90.1,
+  "mod": 180,
+  "note": "cross-task rms 1.4"
+ },
+ {
+  "ev": 19,
+  "obj": "mini_sweeper",
+  "y_mocap": 16.3,
+  "W_native": 179.38,
+  "y_ours_native": -163.1,
+  "y_ours_flipped": -161.0,
+  "mod": 180,
+  "note": "ep 18 n=1"
+ },
+ {
+  "ev": 20,
+  "obj": "blue_cup",
+  "y_mocap": -68.8,
+  "W_native": 178.57,
+  "y_ours_native": 112.6,
+  "y_ours_flipped": 114.8,
+  "mod": 360,
+  "note": "twin diff 8.0; cup in hand at f0"
+ },
+ {
+  "ev": 25,
+  "obj": "wooden_piece_1",
+  "y_mocap": -177.2,
+  "W_native": 182.2,
+  "y_ours_native": 0.6,
+  "y_ours_flipped": 2.4,
+  "mod": 180,
+  "note": "rms 1.5"
+ },
+ {
+  "ev": 28,
+  "obj": "plastic_dish_rack",
+  "y_mocap": 92.3,
+  "W_native": 179.39,
+  "y_ours_native": -87.1,
+  "y_ours_flipped": -84.9,
+  "mod": 180,
+  "note": "rms 0.7"
+ },
+ {
+  "ev": 30,
+  "obj": "mini_sweeper",
+  "y_mocap": -3.5,
+  "W_native": 182.97,
+  "y_ours_native": 173.5,
+  "y_ours_flipped": 175.7,
+  "mod": 180,
+  "note": "ep 31 n=1"
+ }
+]

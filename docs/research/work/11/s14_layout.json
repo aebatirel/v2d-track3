@@ -1,0 +1,340 @@
+[
+ {
+  "ep": 0,
+  "task": "Pot_with_lid",
+  "when": "start",
+  "pair": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "dist_cm": 1.6,
+  "bearing": -178.6,
+  "mod180": 1.4,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 0,
+  "task": "Pot_with_lid",
+  "when": "end",
+  "pair": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "dist_cm": 1.4,
+  "bearing": -172.0,
+  "mod180": 8.0,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 2,
+  "task": "Pot_with_lid",
+  "when": "start",
+  "pair": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "dist_cm": 1.5,
+  "bearing": -176.9,
+  "mod180": 3.1,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 2,
+  "task": "Pot_with_lid",
+  "when": "end",
+  "pair": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "dist_cm": 1.3,
+  "bearing": -172.3,
+  "mod180": 7.7,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 11,
+  "task": "Cup_Stack",
+  "when": "start",
+  "pair": [
+   "beige_cup",
+   "blue_cup"
+  ],
+  "dist_cm": 17.4,
+  "bearing": -89.9,
+  "mod180": 90.1,
+  "plusy": "beige_cup"
+ },
+ {
+  "ep": 11,
+  "task": "Cup_Stack",
+  "when": "end",
+  "pair": [
+   "beige_cup",
+   "blue_cup"
+  ],
+  "dist_cm": 0.6,
+  "bearing": 119.0,
+  "mod180": 119.0,
+  "plusy": "blue_cup"
+ },
+ {
+  "ep": 12,
+  "task": "Cup_In_Dish_Rack",
+  "when": "start",
+  "pair": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "dist_cm": 18.0,
+  "bearing": -157.5,
+  "mod180": 22.5,
+  "plusy": "blue_cup"
+ },
+ {
+  "ep": 12,
+  "task": "Cup_In_Dish_Rack",
+  "when": "end",
+  "pair": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "dist_cm": 17.5,
+  "bearing": -95.0,
+  "mod180": 85.0,
+  "plusy": "blue_cup"
+ },
+ {
+  "ep": 13,
+  "task": "Cup_In_Dish_Rack",
+  "when": "start",
+  "pair": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "dist_cm": 16.7,
+  "bearing": 156.1,
+  "mod180": 156.1,
+  "plusy": "plastic_dish_rack"
+ },
+ {
+  "ep": 13,
+  "task": "Cup_In_Dish_Rack",
+  "when": "end",
+  "pair": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "dist_cm": 2.5,
+  "bearing": -86.7,
+  "mod180": 93.3,
+  "plusy": "blue_cup"
+ },
+ {
+  "ep": 18,
+  "task": "Dust_Brush",
+  "when": "start",
+  "pair": [
+   "mini_dust_pan",
+   "mini_sweeper"
+  ],
+  "dist_cm": 22.1,
+  "bearing": 91.1,
+  "mod180": 91.1,
+  "plusy": "mini_sweeper"
+ },
+ {
+  "ep": 18,
+  "task": "Dust_Brush",
+  "when": "end",
+  "pair": [
+   "mini_dust_pan",
+   "mini_sweeper"
+  ],
+  "dist_cm": 22.0,
+  "bearing": 91.8,
+  "mod180": 91.8,
+  "plusy": "mini_sweeper"
+ },
+ {
+  "ep": 21,
+  "task": "Water_Can_Blue_Cup",
+  "when": "start",
+  "pair": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "dist_cm": 32.5,
+  "bearing": 96.2,
+  "mod180": 96.2,
+  "plusy": "water_pitcher"
+ },
+ {
+  "ep": 21,
+  "task": "Water_Can_Blue_Cup",
+  "when": "end",
+  "pair": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "dist_cm": 33.8,
+  "bearing": 112.8,
+  "mod180": 112.8,
+  "plusy": "water_pitcher"
+ },
+ {
+  "ep": 22,
+  "task": "Water_Can_Blue_Cup",
+  "when": "start",
+  "pair": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "dist_cm": 28.5,
+  "bearing": 94.2,
+  "mod180": 94.2,
+  "plusy": "water_pitcher"
+ },
+ {
+  "ep": 22,
+  "task": "Water_Can_Blue_Cup",
+  "when": "end",
+  "pair": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "dist_cm": 23.6,
+  "bearing": 105.8,
+  "mod180": 105.8,
+  "plusy": "water_pitcher"
+ },
+ {
+  "ep": 23,
+  "task": "Planter_Stand",
+  "when": "start",
+  "pair": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "dist_cm": 27.9,
+  "bearing": 92.5,
+  "mod180": 92.5,
+  "plusy": "wooden_piece_2"
+ },
+ {
+  "ep": 23,
+  "task": "Planter_Stand",
+  "when": "end",
+  "pair": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "dist_cm": 0.1,
+  "bearing": -42.7,
+  "mod180": 137.3,
+  "plusy": "wooden_piece_1"
+ },
+ {
+  "ep": 24,
+  "task": "Planter_Stand",
+  "when": "start",
+  "pair": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "dist_cm": 30.6,
+  "bearing": 90.7,
+  "mod180": 90.7,
+  "plusy": "wooden_piece_2"
+ },
+ {
+  "ep": 24,
+  "task": "Planter_Stand",
+  "when": "end",
+  "pair": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "dist_cm": 0.2,
+  "bearing": 134.9,
+  "mod180": 134.9,
+  "plusy": "wooden_piece_2"
+ },
+ {
+  "ep": 26,
+  "task": "Pan_In_Dishrack",
+  "when": "start",
+  "pair": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "dist_cm": 12.2,
+  "bearing": 88.1,
+  "mod180": 88.1,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 26,
+  "task": "Pan_In_Dishrack",
+  "when": "end",
+  "pair": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "dist_cm": 22.5,
+  "bearing": 26.8,
+  "mod180": 26.8,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 27,
+  "task": "Pan_In_Dishrack",
+  "when": "start",
+  "pair": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "dist_cm": 21.8,
+  "bearing": 32.6,
+  "mod180": 32.6,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 27,
+  "task": "Pan_In_Dishrack",
+  "when": "end",
+  "pair": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "dist_cm": 16.5,
+  "bearing": 85.5,
+  "mod180": 85.5,
+  "plusy": "white_pot"
+ },
+ {
+  "ep": 31,
+  "task": "Brush_Dishrack",
+  "when": "start",
+  "pair": [
+   "mini_sweeper",
+   "plastic_dish_rack"
+  ],
+  "dist_cm": 10.7,
+  "bearing": -88.4,
+  "mod180": 91.6,
+  "plusy": "mini_sweeper"
+ },
+ {
+  "ep": 31,
+  "task": "Brush_Dishrack",
+  "when": "end",
+  "pair": [
+   "mini_sweeper",
+   "plastic_dish_rack"
+  ],
+  "dist_cm": 1.5,
+  "bearing": -76.3,
+  "mod180": 103.7,
+  "plusy": "mini_sweeper"
+ }
+]

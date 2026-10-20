@@ -1,0 +1,20 @@
+p 0 C a33 M a56 -> bc 42 end 39 | pert 64/109 | dR 0.132 dt 0.12 | stored same: True
+p 2 C a37 M a58 -> bc 46 end 43 | pert 26/112 | dR 0.150 dt 0.13 | stored same: True
+p11 C a9 M a107 -> bc 18 end 15 | pert 30/30 | dR 0.206 dt 0.22 | stored same: True
+p12 C a20 M a36 -> bc 29 end 26 | pert 31/33 | dR 0.236 dt 0.25 | stored same: True
+p13 C a16 M a22 -> bc 21 end 18 | pert 21/21 | dR 0.060 dt 0.13 | stored same: True
+p18 C a32 M a38 -> bc 37 end 34 | pert 20/33 | dR 0.303 dt 0.07 | stored same: True
+p21 C a29 M a36 -> bc 34 end 31 | pert 32/33 | dR 0.095 dt 0.16 | stored same: True
+p22 C a9 M a44 -> bc 17 end 14 | pert 15/17 | dR 0.487 dt 0.35 | stored same: True
+p23 C a13 M a19 -> bc 18 end 15 | pert 18/19 | dR 0.147 dt 0.13 | stored same: True
+p24 C a2 M a9 -> bc 8 end 5 | pert 8/8 | dR 0.012 dt 0.02 | stored same: True
+p26 C a11 M a112 -> bc 20 end 17 | pert 3/4 | dR 0.593 dt 2.20 | stored same: True
+p27 C a26 M a10000 -> bc 35 end 32 | pert 55/55 | dR 0.174 dt 0.50 | stored same: True
+p31 C a23 M a26 -> bc 25 end 22 | pert 26/28 | dR 0.028 dt 0.02 | stored same: True
+p39 C a31 M a48 -> bc 40 end 37 | pert 46/46 | dR 0.159 dt 0.46 | stored same: True
+p40 C a24 M a32 -> bc 31 end 28 | pert 31/40 | dR 0.136 dt 0.15 | stored same: True
+p41 C a11 M a29 -> bc 20 end 17 | pert 26/27 | dR 0.008 dt 0.01 | stored same: True
+p42 C a24 M a36 -> bc 33 end 30 | pert 32/34 | dR 0.074 dt 0.13 | stored same: True
+p43 C a7 M a27 -> bc 16 end 13 | pert 23/25 | dR 0.015 dt 0.03 | stored same: True
+p44 C a10 M a77 -> bc 19 end 16 | pert 63/74 | dR 0.079 dt 0.08 | stored same: True
+raw err median +0.0 p10/p90 -20.4/+17.0; robust median -4.0; dt med/p90/max 0.13/0.46/2.20; dR 0.14/0.34/0.59; n med 23; mismatches vs stored json: 0

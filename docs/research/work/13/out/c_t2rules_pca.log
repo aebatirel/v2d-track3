@@ -1,0 +1,136 @@
+feats baseball_bat [ 0.001 -0.011  0.613] sd_mm [ 25.2  25.4 151.2] dev [48.56 48.56  0.51]
+feats big_black_box [-0.233  0.004  0.101] sd_mm [138.4 169.4 264.8] dev [2.66 3.3  4.21]
+feats big_red_bowl [ 0.048  0.043 -0.038] sd_mm [41.1 81.1 81.5] dev [ 0.73 83.34 83.34]
+feats black_platform [-1.552  0.128  0.007] sd_mm [ 31.8 188.  258.4] dev [0.52 1.39 1.29]
+feats blue_easter_basket [ 0.232 -0.01   0.096] sd_mm [50.2 67.2 69.9] dev [ 4.32 49.9  50.05]
+feats blue_trash_can [0.027 0.007 0.627] sd_mm [122.7 129.6 209.1] dev [87.01 87.01  0.69]
+feats cane [0.656 0.12  0.356] sd_mm [ 28.6  45.7 330.2] dev [0.5  0.35 0.51]
+feats contigo_coffee_mug [-0.044  0.286  0.305] sd_mm [24.1 32.9 63.8] dev [23.5  24.06  6.62]
+feats cyan_water_bottle [ 0.003  0.016 -0.008] sd_mm [28.9 29.9 87.2] dev [5.18 5.18 0.4 ]
+feats iron [0.132 0.384 0.143] sd_mm [33.9 37.1 76.6] dev [5.47 5.74 2.  ]
+feats light_blue_book [ 0.022  0.047 -0.001] sd_mm [25.2 62.5 84.8] dev [0.98 0.99 0.17]
+feats monitor [ 0.654 -0.037 -0.286] sd_mm [ 40.5 133.7 154.4] dev [ 2.91 85.84 85.77]
+feats rice_cooker [0.025 0.022 0.012] sd_mm [62.7 69.9 72.9] dev [46.55 47.03  8.81]
+feats rolling_luggage [ 0.101 -0.006  0.699] sd_mm [ 86.5 120.7 213.1] dev [7.63 0.91 7.58]
+feats round_table [0.063 0.061 1.892] sd_mm [184.3 189.2 229.5] dev [9.39 2.85 9.41]
+feats skateboard [ 1.701  0.002 -0.002] sd_mm [ 22.   56.1 213.6] dev [0.08 0.09 0.1 ]
+feats skinny_wood_chair [ 1.015  0.036 -0.031] sd_mm [110.5 132.9 195.2] dev [87.93 87.56 41.08]
+feats snack_box [-0.021  0.001  0.002] sd_mm [ 80.7 121.  140. ] dev [0.28 1.7  1.7 ]
+feats spray_bottle [ 0.006 -0.     0.256] sd_mm [25.  26.6 89.8] dev [23.11 23.11  1.  ]
+feats squeegee [ 0.067 -0.054  0.538] sd_mm [ 10.7  76.9 512.7] dev [1.01 0.95 0.47]
+feats step_ladder [ 0.54  -0.333 -0.023] sd_mm [ 81.7 143.3 149.2] dev [ 5.89 73.38 73.06]
+feats tall_bar_stool [-0.39   0.005  0.403] sd_mm [137.8 141.9 215.6] dev [84.45 85.2  25.  ]
+feats toy_stroller [-0.192  0.116 -0.004] sd_mm [ 73.4  79.4 142.4] dev [7.5  8.82 5.35]
+feats traffic_cone [0.09  0.218 1.053] sd_mm [48.9 49.5 99.6] dev [61.31 61.35  2.18]
+feats vacuum [-0.459  0.517  0.348] sd_mm [ 37.2  38.6 291.1] dev [30.41 30.35  1.91]
+feats watering_can [-0.009 -0.069  0.675] sd_mm [27.4 51.7 59. ] dev [12.33 21.2  24.47]
+feats wet_floor_sign [-0.045  0.016  0.18 ] sd_mm [ 78.4  89.2 177.7] dev [6.48 6.55 1.47]
+feats white_desk [-0.08   1.555  0.019] sd_mm [156.8 291.6 317.7] dev [2.3  2.1  1.46]
+feats woven_basket [-0.621  0.047  0.017] sd_mm [19.9 69.6 93.3] dev [0.27 1.62 1.6 ]
+
+Track 2 scans: 29 | roll-degenerate (min/mid sd > 0.91): ['baseball_bat', 'blue_trash_can', 'cyan_water_bottle', 'iron', 'round_table', 'spray_bottle', 'tall_bar_stool', 'toy_stroller', 'traffic_cone', 'vacuum'] | z-degenerate: ['big_red_bowl', 'blue_easter_basket', 'rice_cooker', 'step_ladder', 'white_desk']
+  baseball_bat         sd(min,mid,max) [ 25.2  25.4 151.2] skew [ 0.001 -0.011  0.613] dev [48.56 48.56  0.51] FIRST7 DEGEN
+  big_black_box        sd(min,mid,max) [138.4 169.4 264.8] skew [-0.233  0.004  0.101] dev [2.66 3.3  4.21]
+  big_red_bowl         sd(min,mid,max) [41.1 81.1 81.5] skew [ 0.048  0.043 -0.038] dev [ 0.73 83.34 83.34] FIRST7
+  black_platform       sd(min,mid,max) [ 31.8 188.  258.4] skew [-1.552  0.128  0.007] dev [0.52 1.39 1.29]
+  blue_easter_basket   sd(min,mid,max) [50.2 67.2 69.9] skew [ 0.232 -0.01   0.096] dev [ 4.32 49.9  50.05]
+  blue_trash_can       sd(min,mid,max) [122.7 129.6 209.1] skew [0.027 0.007 0.627] dev [87.01 87.01  0.69] DEGEN
+  cane                 sd(min,mid,max) [ 28.6  45.7 330.2] skew [0.656 0.12  0.356] dev [0.5  0.35 0.51] FIRST7
+  contigo_coffee_mug   sd(min,mid,max) [24.1 32.9 63.8] skew [-0.044  0.286  0.305] dev [23.5  24.06  6.62]
+  cyan_water_bottle    sd(min,mid,max) [28.9 29.9 87.2] skew [ 0.003  0.016 -0.008] dev [5.18 5.18 0.4 ] DEGEN
+  iron                 sd(min,mid,max) [33.9 37.1 76.6] skew [0.132 0.384 0.143] dev [5.47 5.74 2.  ] FIRST7 DEGEN
+  light_blue_book      sd(min,mid,max) [25.2 62.5 84.8] skew [ 0.022  0.047 -0.001] dev [0.98 0.99 0.17] FIRST7
+  monitor              sd(min,mid,max) [ 40.5 133.7 154.4] skew [ 0.654 -0.037 -0.286] dev [ 2.91 85.84 85.77]
+  rice_cooker          sd(min,mid,max) [62.7 69.9 72.9] skew [0.025 0.022 0.012] dev [46.55 47.03  8.81]
+  rolling_luggage      sd(min,mid,max) [ 86.5 120.7 213.1] skew [ 0.101 -0.006  0.699] dev [7.63 0.91 7.58]
+  round_table          sd(min,mid,max) [184.3 189.2 229.5] skew [0.063 0.061 1.892] dev [9.39 2.85 9.41] DEGEN
+  skateboard           sd(min,mid,max) [ 22.   56.1 213.6] skew [ 1.701  0.002 -0.002] dev [0.08 0.09 0.1 ]
+  skinny_wood_chair    sd(min,mid,max) [110.5 132.9 195.2] skew [ 1.015  0.036 -0.031] dev [87.93 87.56 41.08]
+  snack_box            sd(min,mid,max) [ 80.7 121.  140. ] skew [-0.021  0.001  0.002] dev [0.28 1.7  1.7 ]
+  spray_bottle         sd(min,mid,max) [25.  26.6 89.8] skew [ 0.006 -0.     0.256] dev [23.11 23.11  1.  ] FIRST7 DEGEN
+  squeegee             sd(min,mid,max) [ 10.7  76.9 512.7] skew [ 0.067 -0.054  0.538] dev [1.01 0.95 0.47] FIRST7
+  step_ladder          sd(min,mid,max) [ 81.7 143.3 149.2] skew [ 0.54  -0.333 -0.023] dev [ 5.89 73.38 73.06]
+  tall_bar_stool       sd(min,mid,max) [137.8 141.9 215.6] skew [-0.39   0.005  0.403] dev [84.45 85.2  25.  ] DEGEN
+  toy_stroller         sd(min,mid,max) [ 73.4  79.4 142.4] skew [-0.192  0.116 -0.004] dev [7.5  8.82 5.35] DEGEN
+  traffic_cone         sd(min,mid,max) [48.9 49.5 99.6] skew [0.09  0.218 1.053] dev [61.31 61.35  2.18] DEGEN
+  vacuum               sd(min,mid,max) [ 37.2  38.6 291.1] skew [-0.459  0.517  0.348] dev [30.41 30.35  1.91] DEGEN
+  watering_can         sd(min,mid,max) [27.4 51.7 59. ] skew [-0.009 -0.069  0.675] dev [12.33 21.2  24.47]
+  wet_floor_sign       sd(min,mid,max) [ 78.4  89.2 177.7] skew [-0.045  0.016  0.18 ] dev [6.48 6.55 1.47]
+  white_desk           sd(min,mid,max) [156.8 291.6 317.7] skew [-0.08   1.555  0.019] dev [2.3  2.1  1.46]
+  woven_basket         sd(min,mid,max) [19.9 69.6 93.3] skew [-0.621  0.047  0.017] dev [0.27 1.62 1.6 ]
+
+Single statistics, #positive along stored direction (min / mid / max)  [Track 3 10 scans | T2 non-degenerate sets]
+  skew           T3  7  7 10/10 | T2_all_nondeg 11/19 13/19 18/24 | T2_fresh22_nondeg 7/15 10/15 13/18
+  m5             T3  7  8  9/10 | T2_all_nondeg 11/19 12/19 19/24 | T2_fresh22_nondeg 7/15 9/15 14/18
+  ssq            T3  7  7 10/10 | T2_all_nondeg 11/19 14/19 19/24 | T2_fresh22_nondeg 7/15 10/15 14/18
+  s4             T3  7  7  9/10 | T2_all_nondeg 11/19 13/19 19/24 | T2_fresh22_nondeg 7/15 10/15 14/18
+  shalf          T3  2  4  1/10 | T2_all_nondeg 9/19 6/19 6/24 | T2_fresh22_nondeg 8/15 6/15 5/18
+  afrac          T3  3  4  1/10 | T2_all_nondeg 9/19 5/19 6/24 | T2_fresh22_nondeg 8/15 5/15 5/18
+  negmed         T3  7  6  9/10 | T2_all_nondeg 10/19 14/19 18/24 | T2_fresh22_nondeg 7/15 10/15 13/18
+  q01            T3  7  7  8/10 | T2_all_nondeg 12/19 11/19 21/24 | T2_fresh22_nondeg 8/15 8/15 16/18
+  q05            T3  7  8  9/10 | T2_all_nondeg 11/19 12/19 18/24 | T2_fresh22_nondeg 7/15 9/15 13/18
+  q10            T3  5  8 10/10 | T2_all_nondeg 10/19 15/19 15/24 | T2_fresh22_nondeg 6/15 11/15 11/18
+  q25            T3  3  4  2/10 | T2_all_nondeg 6/19 10/19 6/24 | T2_fresh22_nondeg 5/15 9/15 4/18
+  ext            T3  6  8  9/10 | T2_all_nondeg 11/19 10/19 20/24 | T2_fresh22_nondeg 8/15 7/15 15/18
+  absmax         T3  6  8  9/10 | T2_all_nondeg 11/19 10/19 20/24 | T2_fresh22_nondeg 8/15 7/15 15/18
+  far3d          T3  7  9  6/10 | T2_all_nondeg 12/19 10/19 20/24 | T2_fresh22_nondeg 10/15 7/15 14/18
+  m_ar2          T3  7  6  4/10 | T2_all_nondeg 11/19 16/19 10/24 | T2_fresh22_nondeg 7/15 13/15 10/18
+  m_lo2          T3  5  2  2/10 | T2_all_nondeg 11/19 10/19 3/24 | T2_fresh22_nondeg 8/15 9/15 3/18
+  m_hi2          T3  6  7  4/10 | T2_all_nondeg 10/19 12/19 7/24 | T2_fresh22_nondeg 7/15 8/15 6/18
+  m_lo_abs       T3  6  2  3/10 | T2_all_nondeg 10/19 9/19 3/24 | T2_fresh22_nondeg 7/15 8/15 3/18
+  m_hi_abs       T3  6  7  4/10 | T2_all_nondeg 11/19 13/19 7/24 | T2_fresh22_nondeg 8/15 9/15 6/18
+  m_az_absz      T3  6  6 10/10 | T2_all_nondeg 9/19 7/19 24/24 | T2_fresh22_nondeg 7/15 4/15 18/18
+  m_az3          T3  6  6 10/10 | T2_all_nondeg 7/19 7/19 24/24 | T2_fresh22_nondeg 6/15 4/15 18/18
+  vmean          T3  8  3  2/10 | T2_all_nondeg 11/19 8/19 12/24 | T2_fresh22_nondeg 9/15 5/15 8/18
+  vmean_weld     T3  8  3  2/10 | T2_all_nondeg 11/19 9/19 12/24 | T2_fresh22_nondeg 9/15 6/15 8/18
+  vskew          T3  6  9  9/10 | T2_all_nondeg 10/19 14/19 20/24 | T2_fresh22_nondeg 7/15 10/15 15/18
+  hull_surf_off  T3  7  8  6/10 | T2_all_nondeg 11/19 15/19 17/24 | T2_fresh22_nondeg 8/15 12/15 13/18
+  hull_vol_off   T3  7  6  6/10 | T2_all_nondeg 12/19 14/19 13/24 | T2_fresh22_nondeg 9/15 11/15 12/18
+  hull_skew      T3  5  6  8/10 | T2_all_nondeg 11/19 9/19 19/24 | T2_fresh22_nondeg 9/15 7/15 14/18
+  vol_off        T3  6  4  4/10 | T2_all_nondeg 9/19 10/19 11/24 | T2_fresh22_nondeg 6/15 8/15 9/18
+
+Stage B survivors re-derived on Track 3: F2 15, F2b 1
+
+T2_all_nondeg (n=19):
+  ('F2', 'skew', 'shalf', -1)                   12/19  P(>=|random)=0.180
+  ('F2', 'm5', 'shalf', -1)                     13/19  P(>=|random)=0.084
+  ('F2', 'ssq', 'shalf', -1)                    12/19  P(>=|random)=0.180
+  ('F2', 's4', 'shalf', -1)                     13/19  P(>=|random)=0.084
+  ('F2', 'shalf', 'shalf', -1)                  13/19  P(>=|random)=0.084
+  ('F2', 'shalf', 'afrac', -1)                  13/19  P(>=|random)=0.084
+  ('F2', 'shalf', 'negmed', 1)                  13/19  P(>=|random)=0.084
+  ('F2', 'shalf', 'q05', 1)                     12/19  P(>=|random)=0.180
+  ('F2', 'afrac', 'shalf', -1)                  13/19  P(>=|random)=0.084
+  ('F2', 'negmed', 'shalf', -1)                 12/19  P(>=|random)=0.180
+  ('F2', 'q01', 'shalf', -1)                    13/19  P(>=|random)=0.084
+  ('F2', 'ext', 'shalf', -1)                    14/19  P(>=|random)=0.032
+  ('F2', 'absmax', 'shalf', -1)                 15/19  P(>=|random)=0.010
+  ('F2', 'hull_skew', 'shalf', -1)              12/19  P(>=|random)=0.180
+  ('F2', 'skewz', 'shalf', -1)                  12/19  P(>=|random)=0.180
+  ('F2b', 'shalf', 'q05', 1)                    7/19  P(>=|random)=0.916
+  textbook cascade (|skew| top-2 by +skew)      9/19  P=0.676
+  H1 mid-axis skew>0                            13/19  P=0.084
+  min-axis skew>0                               11/19  P=0.324
+
+T2_fresh22_nondeg (n=15):
+  ('F2', 'skew', 'shalf', -1)                   9/15  P(>=|random)=0.304
+  ('F2', 'm5', 'shalf', -1)                     9/15  P(>=|random)=0.304
+  ('F2', 'ssq', 'shalf', -1)                    9/15  P(>=|random)=0.304
+  ('F2', 's4', 'shalf', -1)                     9/15  P(>=|random)=0.304
+  ('F2', 'shalf', 'shalf', -1)                  9/15  P(>=|random)=0.304
+  ('F2', 'shalf', 'afrac', -1)                  9/15  P(>=|random)=0.304
+  ('F2', 'shalf', 'negmed', 1)                  9/15  P(>=|random)=0.304
+  ('F2', 'shalf', 'q05', 1)                     9/15  P(>=|random)=0.304
+  ('F2', 'afrac', 'shalf', -1)                  9/15  P(>=|random)=0.304
+  ('F2', 'negmed', 'shalf', -1)                 9/15  P(>=|random)=0.304
+  ('F2', 'q01', 'shalf', -1)                    9/15  P(>=|random)=0.304
+  ('F2', 'ext', 'shalf', -1)                    10/15  P(>=|random)=0.151
+  ('F2', 'absmax', 'shalf', -1)                 11/15  P(>=|random)=0.059
+  ('F2', 'hull_skew', 'shalf', -1)              8/15  P(>=|random)=0.500
+  ('F2', 'skewz', 'shalf', -1)                  9/15  P(>=|random)=0.304
+  ('F2b', 'shalf', 'q05', 1)                    5/15  P(>=|random)=0.941
+  textbook cascade (|skew| top-2 by +skew)      5/15  P=0.941
+  H1 mid-axis skew>0                            10/15  P=0.151
+  min-axis skew>0                               7/15  P=0.696
+H3 z skew>0 on T2_all (n=24): 18/24  P=0.0113; min |skew_z| 0.0007
+H3 z skew>0 on T2_fresh22 (n=18): 13/18  P=0.0481; min |skew_z| 0.0023

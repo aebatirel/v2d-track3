@@ -1,0 +1,4 @@
+beige_cup axis spin exact wrong fits (<0.5 px) found for 105 view-pairs
+  |shift| mm median 24.7 p10 6.5; along-ray median 20.0; lateral median 5.0; max |per-axis| median 21.5 p10 6.0
+beige_cup OFFAXIS exact wrong fits (<0.5 px) found for 105 view-pairs
+  |shift| mm median 24.9 p10 8.1; along-ray median 19.5; lateral median 6.5; max |per-axis| median 21.6 p10 6.8

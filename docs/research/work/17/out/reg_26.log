@@ -1,0 +1,15 @@
+ep 26: 158 frames, using every 3; static frac per object [0.65 0.42]
+win 90: nobs 123 (a 88, b 20, c 15); res px(a-eq) med 6.20 p90 67.78; inl<4px 0.26; step rot 6.36 deg trans 75.7 mm; 17s
+win 60: nobs 124 (a 84, b 23, c 17); res px(a-eq) med 5.05 p90 14.08; inl<4px 0.37; step rot 0.46 deg trans 5.3 mm; 28s
+win 40: nobs 120 (a 80, b 23, c 17); res px(a-eq) med 5.00 p90 10.90; inl<4px 0.38; step rot 0.03 deg trans 0.4 mm; 37s
+win 25: nobs 114 (a 74, b 23, c 17); res px(a-eq) med 4.87 p90 9.56; inl<4px 0.40; step rot 0.06 deg trans 0.7 mm; 46s
+win 15: nobs 113 (a 75, b 22, c 16); res px(a-eq) med 4.69 p90 9.20; inl<4px 0.41; step rot 0.04 deg trans 0.5 mm; 55s
+win 10: nobs 103 (a 72, b 18, c 13); res px(a-eq) med 4.18 p90 8.15; inl<4px 0.48; step rot 0.06 deg trans 0.7 mm; 65s
+win 8: nobs 89 (a 63, b 15, c 11); res px(a-eq) med 3.83 p90 6.63; inl<4px 0.55; step rot 0.11 deg trans 1.4 mm; 75s
+final: sd rot [0.458 0.486 0.243] deg, sd trans [6.21 5.47 1.97] mm (formal, robust-scaled)
+frame-0 cam_a vs s25: rot 6.87 deg, dC mm [ 55.6 -15.1 -51.9]; heading -179.17 pitch 41.73
+   cam a plastic_dish_rack  n   32 res med 3.93 p90 6.90 (a-eq px)
+   cam a white_pot          n   31 res med 3.93 p90 6.53 (a-eq px)
+   cam b white_pot          n   15 res med 3.28 p90 7.17 (a-eq px)
+   cam c plastic_dish_rack  n    1 res med 4.97 p90 4.97 (a-eq px)
+   cam c white_pot          n   10 res med 3.01 p90 4.11 (a-eq px)

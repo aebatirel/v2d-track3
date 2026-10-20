@@ -1,0 +1,16 @@
+c/trk_12_h20.npz MODE reg SH -0.5 T 181 runtime 1.26 s/frame
+  blue_cup: AUC(ADD, this trajectory, no policy) 0.693; status 3/2/1/0 = 0.07 / 0.18 / 0.56 / 0.19
+    rest     n  74 fix>=2 0.08 fix3 0.01 | fix2 n5 t 13.8/34.4 r 8.74/12.44 ADD 15.3/36.5 | all n74 t 34.6/48.2 r 14.80/23.06 ADD 39.7/51.2 |
+    held     n  33 fix>=2 0.33 fix3 0.09 | fix3 n3 t 6.0/6.7 r 1.82/5.09 ADD 7.0/7.6 | fix2 n8 t 7.5/24.4 r 7.81/20.09 ADD 9.3/29.8 | all n33 t 33.1/42.6 r 12.44/33.97 ADD 35.2/50.3 |
+    carried  n  74 fix>=2 0.38 fix3 0.11 | fix3 n8 t 9.5/27.5 r 6.31/18.24 ADD 11.3/30.7 | fix2 n20 t 11.5/24.8 r 6.97/23.54 ADD 16.0/28.5 | all n74 t 23.8/47.5 r 22.92/40.74 ADD 32.8/61.4 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.647; t 33.1 r 18.28 ADD 37.7 | FUSED AUC 0.693
+      rest     fix frames n6: prior ADD 41.3 -> fused 12.4 mm; fused worse than prior in 0.17
+      held     fix frames n11: prior ADD 31.9 -> fused 7.0 mm; fused worse than prior in 0.09
+      carried  fix frames n28: prior ADD 28.5 -> fused 14.6 mm; fused worse than prior in 0.14
+  plastic_dish_rack: AUC(ADD, this trajectory, no policy) 0.538; status 3/2/1/0 = 0.02 / 0.16 / 0.76 / 0.06
+    rest     n 161 fix>=2 0.20 fix3 0.02 | fix3 n4 t 6.4/7.3 r 1.99/3.03 ADD 6.7/7.6 | fix2 n29 t 19.9/38.2 r 13.81/23.02 ADD 30.5/55.2 | all n161 t 28.5/46.4 r 19.43/31.38 ADD 46.0/63.1 |
+    held     n  20 fix>=2 0.00 fix3 0.00 | all n20 t 37.8/58.0 r 23.00/27.20 ADD 62.9/73.0 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.498; t 32.4 r 19.97 ADD 49.8 | FUSED AUC 0.538
+      rest     fix frames n33: prior ADD 48.0 -> fused 27.4 mm; fused worse than prior in 0.06
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object blue_cup:0.249 plastic_dish_rack:0.055 mean 0.152
+  SCORER-STYLE (prior-only; slot-0 frame-0 alignment) AUC per object blue_cup:0.483 plastic_dish_rack:0.276 mean 0.380

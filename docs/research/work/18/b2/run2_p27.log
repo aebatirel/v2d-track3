@@ -1,0 +1,13 @@
+T_ac factory t [-3.81  0.03  0.08] self t [-3.74 -0.14  0.84] cm; rot diff deg 0.293
+00:58:15 p27 decoded 246 frames; tracks {'rig': 246, 'rigS': 246, 'a': 246, 'vo': 246, 'map': 9}
+  offset map: [ 0.3414 -0.0358 -0.0004] (n fit 9)
+  offset rig: [ 0.3456 -0.036   0.0012] (n fit 25)
+  offset rigS: [ 3.409e-01 -3.510e-02 -3.000e-04] (n fit 25)
+  offset a: [ 0.3387 -0.0371 -0.0031] (n fit 25)
+  yaw profile a: best d +0.35 deg (curv 0.357) -3:3.635 -2:3.296 -1:2.914 +0:2.611 +1:2.666 +2:3.013 +3:3.272
+  yaw profile rigS: best d +0.37 deg (curv 0.389) -3:3.623 -2:3.325 -1:2.948 +0:2.612 +1:2.664 +2:3.022 +3:3.283
+  p27 map: n=9 shift median 0.13 cm p90 0.17 max 0.18 | chamfer0 median 2.71 px
+  p27 rig: n=246 shift median 0.13 cm p90 0.40 max 1.47 | chamfer0 median 2.80 px
+  p27 rigS: n=246 shift median 0.18 cm p90 0.37 max 1.65 | chamfer0 median 2.85 px
+  p27 a  : n=246 shift median 0.12 cm p90 0.28 max 1.64 | chamfer0 median 2.63 px
+  p27 vo : n=246 shift median 0.45 cm p90 0.64 max 1.19 | chamfer0 median 3.06 px

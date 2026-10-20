@@ -1,0 +1,40 @@
+p0    full  -49.61 | top  -56.16 mid  -44.13 bot  -33.31 ms | band y [0.12 0.53 0.83] | slope +31.96 ms/height
+p2    full  -49.06 | top  -56.55 mid  -44.29 bot  -33.63 ms | band y [0.12 0.52 0.84] | slope +31.48 ms/height
+p11   full  -50.88 | top  -55.49 mid  -43.03 bot  -34.47 ms | band y [0.14 0.53 0.82] | slope +30.69 ms/height
+p12   full  -51.40 | top  -56.01 mid  -43.61 bot  -35.39 ms | band y [0.14 0.51 0.8 ] | slope +31.23 ms/height
+p13   full  -50.89 | top  -56.04 mid  -42.53 bot  -34.50 ms | band y [0.13 0.54 0.81] | slope +32.05 ms/height
+p18   full  -48.52 | top  -56.32 mid  -42.67 bot  -33.35 ms | band y [0.12 0.53 0.83] | slope +32.46 ms/height
+p23   full  -47.45 | top  -55.49 mid  -43.70 bot  -32.79 ms | band y [0.12 0.51 0.85] | slope +31.19 ms/height
+p24   full  -47.84 | top  -55.54 mid  -42.80 bot  -32.72 ms | band y [0.12 0.51 0.84] | slope +32.00 ms/height
+p26   full  -49.78 | top  -56.78 mid  -43.47 bot  -35.27 ms | band y [0.12 0.54 0.82] | slope +30.84 ms/height
+p27   full  -47.81 | top  -56.66 mid  -44.42 bot  -33.97 ms | band y [0.1  0.51 0.83] | slope +31.16 ms/height
+p31   full  -46.29 | top  -56.36 mid  -43.88 bot  -33.86 ms | band y [0.1  0.51 0.83] | slope +31.05 ms/height
+p39   full  -46.23 | top  -56.26 mid  -43.34 bot  -32.07 ms | band y [0.11 0.49 0.83] | slope +33.68 ms/height
+p40   full  -47.56 | top  -56.19 mid  -43.00 bot  -33.57 ms | band y [0.1  0.5  0.83] | slope +31.07 ms/height
+p41   full  -49.83 | top  -56.65 mid  -43.70 bot  -33.20 ms | band y [0.11 0.53 0.84] | slope +32.43 ms/height
+p42   full  -47.59 | top  -56.42 mid  -43.28 bot  -32.95 ms | band y [0.1  0.52 0.84] | slope +31.82 ms/height
+p43   full  -47.96 | top  -56.71 mid  -43.59 bot  -33.98 ms | band y [0.1  0.52 0.85] | slope +30.73 ms/height
+p44   full  -48.88 | top  -55.73 mid  -41.63 bot  -31.39 ms | band y [0.12 0.52 0.84] | slope +33.67 ms/height
+e1    full  -48.88 | top  -56.41 mid  -43.91 bot  -33.71 ms | band y [0.12 0.52 0.84] | slope +31.17 ms/height
+e3    full  -47.33 | top  -56.72 mid  -43.68 bot  -33.37 ms | band y [0.11 0.51 0.84] | slope +31.76 ms/height
+e5    full  -48.93 | top  -56.13 mid  -43.56 bot  -34.58 ms | band y [0.11 0.52 0.84] | slope +29.52 ms/height
+e6    full  -50.29 | top  -56.22 mid  -42.61 bot  -35.98 ms | band y [0.12 0.53 0.84] | slope +28.31 ms/height
+e8    full  -46.60 | top  -57.21 mid  -44.36 bot  -34.31 ms | band y [0.11 0.5  0.84] | slope +31.46 ms/height
+e10   full  -50.69 | top  -55.44 mid  -42.51 bot  -33.86 ms | band y [0.14 0.53 0.82] | slope +31.79 ms/height
+e14   full  -50.39 | top  -55.25 mid  -44.08 bot  -35.69 ms | band y [0.14 0.51 0.8 ] | slope +29.41 ms/height
+e15   full  -50.57 | top  -56.63 mid  -44.42 bot  -34.75 ms | band y [0.13 0.55 0.82] | slope +31.48 ms/height
+e16   full  -51.12 | top  -56.00 mid  -42.96 bot  -35.19 ms | band y [0.14 0.54 0.81] | slope +31.18 ms/height
+e19   full  -47.55 | top  -55.80 mid  -42.07 bot  -33.24 ms | band y [0.12 0.53 0.83] | slope +32.09 ms/height
+e25   full  -48.64 | top  -55.60 mid  -42.84 bot  -31.79 ms | band y [0.12 0.52 0.84] | slope +32.83 ms/height
+e28   full  -48.65 | top  -56.48 mid  -43.57 bot  -34.69 ms | band y [0.11 0.51 0.83] | slope +30.54 ms/height
+e30   full  -46.18 | top  -55.67 mid  -44.56 bot  -35.27 ms | band y [0.11 0.51 0.83] | slope +28.27 ms/height
+e32   full  -46.10 | top  -56.75 mid  -43.75 bot  -31.91 ms | band y [0.1  0.5  0.84] | slope +33.82 ms/height
+e33   full  -46.36 | top  -55.91 mid  -43.39 bot  -32.82 ms | band y [0.1  0.51 0.84] | slope +31.31 ms/height
+e35   full  -47.67 | top  -56.29 mid  -43.96 bot  -32.12 ms | band y [0.11 0.51 0.83] | slope +33.25 ms/height
+e36   full  -46.16 | top  -56.58 mid  -43.31 bot  -31.75 ms | band y [0.1  0.5  0.84] | slope +33.69 ms/height
+e37   full  -47.24 | top  -56.59 mid  -43.69 bot  -32.31 ms | band y [0.1  0.5  0.84] | slope +32.83 ms/height
+e38   full  -45.39 | top  -55.48 mid  -44.24 bot  -33.77 ms | band y [0.13 0.49 0.83] | slope +31.02 ms/height
+p21   full  -97.40 | top -105.61 mid  -93.28 bot  -82.96 ms | band y [0.12 0.52 0.83] | slope +31.79 ms/height
+p22   full  -47.21 | top  -56.25 mid  -43.31 bot  -33.66 ms | band y [0.12 0.51 0.83] | slope +31.73 ms/height
+e20   full  -97.52 | top -106.96 mid  -92.41 bot  -82.25 ms | band y [0.12 0.52 0.83] | slope +34.74 ms/height
+MEAN full -50.88 top -58.75 mid -45.99 bot -36.16 slope 31.63 +- 1.36 (sd)

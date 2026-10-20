@@ -1,0 +1,5 @@
+nomark n=  1000  P(B) mean over 12 shapes 0.516 (min 0.39)  P(z ok) 1.000
+nomark n=  3000  P(B) mean over 12 shapes 0.471 (min 0.29)  P(z ok) 1.000
+nomark n= 10000  P(B) mean over 12 shapes 0.464 (min 0.20)  P(z ok) 1.000
+nomark n= 30000  P(B) mean over 12 shapes 0.421 (min 0.05)  P(z ok) 1.000
+nomark n=100000  P(B) mean over 12 shapes 0.399 (min 0.00)  P(z ok) 1.000

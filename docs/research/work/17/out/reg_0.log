@@ -1,0 +1,16 @@
+ep 0: sync delta 1.102; 373 frames, using every 3; static frac per object [0.34 0.31]
+win 90: nobs 509 (a 261, b 120, c 128); res px(a-eq) med 7.37 p90 34.05; inl<4px 0.30; step rot 1.38 deg trans 20.0 mm; 24s
+win 60: nobs 473 (a 245, b 107, c 121); res px(a-eq) med 6.59 p90 21.90; inl<4px 0.33; step rot 0.06 deg trans 0.6 mm; 52s
+win 40: nobs 467 (a 241, b 106, c 120); res px(a-eq) med 6.48 p90 17.64; inl<4px 0.33; step rot 0.03 deg trans 0.3 mm; 78s
+win 25: nobs 439 (a 228, b 100, c 111); res px(a-eq) med 5.88 p90 15.19; inl<4px 0.35; step rot 0.02 deg trans 0.2 mm; 101s
+win 15: nobs 396 (a 203, b 91, c 102); res px(a-eq) med 5.26 p90 11.95; inl<4px 0.39; step rot 0.04 deg trans 0.4 mm; 121s
+win 10: nobs 336 (a 169, b 79, c 88); res px(a-eq) med 4.53 p90 8.70; inl<4px 0.45; step rot 0.06 deg trans 0.8 mm; 144s
+win 8: nobs 279 (a 135, b 66, c 78); res px(a-eq) med 3.53 p90 7.03; inl<4px 0.56; step rot 0.11 deg trans 1.3 mm; 167s
+final: sd rot [0.243 0.323 0.167] deg, sd trans [4.15 2.91 1.13] mm (formal, robust-scaled)
+frame-0 cam_a vs s25: rot 1.17 deg, dC mm [ -0.8   9.1 -10.6]; heading -177.17 pitch 43.69
+   cam a white_pot          n   46 res med 3.79 p90 7.06 (a-eq px)
+   cam a white_pot_lid      n   89 res med 3.58 p90 7.16 (a-eq px)
+   cam b white_pot          n   22 res med 1.82 p90 5.54 (a-eq px)
+   cam b white_pot_lid      n   44 res med 3.82 p90 7.14 (a-eq px)
+   cam c white_pot          n   26 res med 2.04 p90 7.10 (a-eq px)
+   cam c white_pot_lid      n   52 res med 4.34 p90 6.05 (a-eq px)

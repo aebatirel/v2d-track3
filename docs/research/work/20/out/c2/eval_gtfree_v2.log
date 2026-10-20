@@ -1,0 +1,24 @@
+p 0 white_pot    iou 0.88 | C a33 M a55 -> bc   42 end   39 | pert 64/109 on 112 | err raw  -22 rob  -67 | n  40 dt 0.12 dR 0.13 || GT-mask: C a33 M a56 bc 42 end 39.0 dR 0.13
+p 2 white_pot    iou 0.92 | C a37 M a59 -> bc   46 end   43 | pert 26/112 on 114 | err raw  +20 rob  -66 | n  44 dt 0.13 dR 0.15 || GT-mask: C a37 M a58 bc 46 end 43.0 dR 0.15
+p11 blue_cup     iou 0.91 | C a8 M a68 -> bc   17 end   14 | pert 30/30 on 137 | err raw  -13 rob  -13 | n  15 dt 0.22 dR 0.20 || GT-mask: C a9 M a107 bc 18 end 15.0 dR 0.21
+p12 blue_cup     iou 0.88 | C a19 M a35 -> bc   28 end   25 | pert 31/33 on 35 | err raw   -3 rob   -5 | n  26 dt 0.24 dR 0.23 || GT-mask: C a20 M a36 bc 29 end 26.0 dR 0.24
+p13 blue_cup     iou 0.84 | C a16 M a22 -> bc   21 end   18 | pert 21/21 on 25 | err raw   +0 rob   +0 | n  19 dt 0.13 dR 0.06 || GT-mask: C a16 M a22 bc 21 end 18.0 dR 0.06
+p18 mini_sweeper iou 0.45 | C a30 M a38 -> bc   37 end   34 | pert 20/33 on 39 | err raw  +17 rob   +4 LATE | n  35 dt 0.07 dR 0.30 || GT-mask: C a32 M a38 bc 37 end 34.0 dR 0.30
+p21 blue_cup     iou 0.85 | C a28 M a36 -> bc   34 end   31 | pert 32/33 on 37 | err raw   +2 rob   +1 | n  32 dt 0.16 dR 0.10 || GT-mask: C a29 M a36 bc 34 end 31.0 dR 0.10
+p22 blue_cup     iou 0.77 | C a8 M a44 -> bc   16 end   13 | pert 15/17 on 44 | err raw   +1 rob   -1 | n  14 dt 0.35 dR 0.48 || GT-mask: C a9 M a44 bc 17 end 14.0 dR 0.49
+p23 wooden_piece iou 0.73 | C a20 M a19 -> bc   18 end   15 | pert 18/19 on 21 | err raw   +0 rob   -1 | n  16 dt 0.13 dR 0.15 || GT-mask: C a13 M a19 bc 18 end 15.0 dR 0.15
+p24 wooden_piece iou 0.90 | C a3 M a9 -> bc    8 end    5 | pert 8/8 on 10 | err raw   +0 rob   +0 | n   6 dt 0.02 dR 0.01 || GT-mask: C a2 M a9 bc 8 end 5.0 dR 0.01
+p26 plastic_dish iou 0.86 | C a9 M a112 -> bc   18 end   15 | pert 3/4 on 158 | err raw  +15 rob  +14 LATE | n  16 dt 2.03 dR 0.58 || GT-mask: C a11 M a112 bc 20 end 17.0 dR 0.59
+p27 plastic_dish iou 0.80 | C a27 M aNone -> bc   36 end   33 | pert 55/55 on 246 | err raw  -19 rob  -19 | n  34 dt 0.51 dR 0.18 || GT-mask: C a26 M a10000 bc 35 end 32.0 dR 0.17
+p31 mini_sweeper iou 0.66 | C a21 M a25 -> bc   24 end   21 | pert 26/28 on 47 | err raw   -2 rob   -4 | n  22 dt 0.02 dR 0.03 || GT-mask: C a23 M a26 bc 25 end 22.0 dR 0.03
+p39 mini_dust_pa iou 0.84 | C a34 M a48 -> bc   43 end   40 | pert 46/46 on 50 | err raw   -3 rob   -3 | n  41 dt 0.46 dR 0.16 || GT-mask: C a31 M a48 bc 40 end 37.0 dR 0.16
+p40 mini_dust_pa iou 0.69 | C a20 M a32 -> bc   29 end   26 | pert 31/40 on 41 | err raw   -2 rob  -11 | n  27 dt 0.16 dR 0.15 || GT-mask: C a24 M a32 bc 31 end 28.0 dR 0.14
+p41 white_pot    iou 0.88 | C a14 M a29 -> bc   23 end   20 | pert 26/27 on 31 | err raw   -3 rob   -4 | n  21 dt 0.01 dR 0.01 || GT-mask: C a11 M a29 bc 20 end 17.0 dR 0.01
+p42 white_pot    iou 0.90 | C a26 M a36 -> bc   35 end   32 | pert 32/34 on 38 | err raw   +3 rob   +1 | n  33 dt 0.15 dR 0.09 || GT-mask: C a24 M a36 bc 33 end 30.0 dR 0.07
+p43 white_pot    iou 0.83 | C a8 M a27 -> bc   17 end   14 | pert 23/25 on 27 | err raw   -6 rob   -8 | n  15 dt 0.03 dR 0.02 || GT-mask: C a7 M a27 bc 16 end 13.0 dR 0.01
+p44 white_pot    iou 0.88 | C a14 M a77 -> bc   23 end   20 | pert 63/74 on 77 | err raw  -40 rob  -51 | n  21 dt 0.07 dR 0.07 || GT-mask: C a10 M a77 bc 19 end 16.0 dR 0.08
+p45 white_pot    iou nan | C a13 M a48 -> bc   22 end   19 | pert 46/47 on 51 | err raw  -24 rob  -25 | n  20 dt 0.21 dR 0.17 || fresh holdout
+== GT-free masks, all eps: n 20 | onset err raw median -2 p10/p90 -22/+15; robust median -4 | late raw/robust 4/2 empty 0 | window median 22 | dt 0.14/0.46/2.03 mm | dR 0.15/0.32/0.58 deg
+== GT-free masks, the 19 Stage C eps: n 19 | onset err raw median -2 p10/p90 -20/+15; robust median -4 | late raw/robust 4/2 empty 0 | window median 22 | dt 0.13/0.47/2.03 mm | dR 0.15/0.34/0.58 deg
+== GT-free, right-object picks (IoU > 0.3): n 19 | onset err raw median -2 p10/p90 -20/+15; robust median -4 | late raw/robust 4/2 empty 0 | window median 22 | dt 0.13/0.47/2.03 mm | dR 0.15/0.34/0.58 deg
+identical window end to the GT-mask run in 7 of 19 ; |diff| <= 2 rows in 16

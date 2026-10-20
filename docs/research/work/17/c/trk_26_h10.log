@@ -1,0 +1,9 @@
+ep 26 t 0 plastic_ st2 nm2 c0 white_po st2 nm2 c0 0.45s/fr 0s
+ep 26 t 20 plastic_ st2 nm2 c0 white_po st1 nm1 c2 0.37s/fr 8s
+ep 26 t 40 plastic_ st2 nm2 c0 white_po st1 nm1 c12 0.35s/fr 14s
+ep 26 t 60 plastic_ st1 nm1 c1 white_po st3 nm3 c0 0.35s/fr 21s
+ep 26 t 80 plastic_ st1 nm1 c1 white_po st2 nm2 c0 0.36s/fr 29s
+ep 26 t 100 plastic_ st2 nm2 c0 white_po st3 nm3 c0 0.37s/fr 38s
+ep 26 t 120 plastic_ st1 nm1 c1 white_po st2 nm2 c0 0.38s/fr 46s
+ep 26 t 140 plastic_ st2 nm2 c0 white_po st2 nm2 c0 0.39s/fr 55s
+done 0.39s/frame 61s

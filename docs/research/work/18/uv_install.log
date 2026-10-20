@@ -1,0 +1,15 @@
+Using Python 3.12.7 environment at: venv18
+Resolved 8 packages in 1.30s
+Downloading pycolmap (19.8MiB)
+ Downloaded pycolmap
+Prepared 1 package in 33.01s
+Installed 8 packages in 122ms
+ + numpy==2.5.3
+ + opencv-python-headless==5.0.0.93
+ + pandas==3.0.6
+ + pyarrow==25.0.1
+ + pycolmap==4.2.1
+ + python-dateutil==2.9.0.post0
+ + scipy==1.18.1
+ + six==1.17.0
+exit 0

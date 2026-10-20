@@ -1,0 +1,130 @@
+0 cands 20 d 53.2 152.3 192.5 | front 0.83 ax.view 0.40 speed 10 9 8
+2 cands 21 d 53.3 152.4 192.7 | front 0.83 ax.view 0.40 speed 4 4 3
+4 cands 26 d 52.8 153.0 192.9 | front 0.83 ax.view 0.41 speed 2 1 1
+6 cands 36 d 54.8 151.9 193.4 | front 0.82 ax.view 0.40 speed 4 4 4
+8 cands 27 d 54.7 151.9 193.2 | front 0.81 ax.view 0.39 speed 8 8 8
+10 cands 22 d 52.1 153.0 192.5 | front 0.85 ax.view 0.40 speed 2 2 2
+12 cands 25 d 52.8 152.6 192.3 | front 0.84 ax.view 0.40 speed 4 4 3
+14 cands 27 d 53.8 151.8 192.7 | front 0.82 ax.view 0.40 speed 5 6 6
+16 cands 22 d 52.8 153.2 193.4 | front 0.84 ax.view 0.41 speed 4 4 4
+18 cands 42 d 53.8 152.8 193.8 | front 0.82 ax.view 0.41 speed 1 2 2
+20 cands 51 d 51.2 153.0 191.9 | front 0.86 ax.view 0.41 speed 10 10 11
+22 cands 14 d 51.0 152.7 191.2 | front 0.85 ax.view 0.41 speed 18 17 16
+24 cands 11 no triple
+26 cands 10 no triple
+28 cands 11 d 54.6 152.8 195.7 | front 0.81 ax.view 0.47 speed 21 22 19
+30 cands 14 d 53.6 151.5 192.3 | front 0.83 ax.view 0.42 speed 15 15 16
+32 cands 17 d 52.1 152.5 191.9 | front 0.85 ax.view 0.42 speed 4 4 5
+34 cands 42 d 52.1 154.3 193.8 | front 0.85 ax.view 0.44 speed 5 4 5
+36 cands 16 d 51.0 154.1 192.5 | front 0.86 ax.view 0.43 speed 3 3 3
+38 cands 39 no triple
+40 cands 17 no triple
+42 cands 14 no triple
+44 cands 16 no triple
+46 cands 21 d 54.4 152.8 193.8 | front 0.83 ax.view 0.45 speed 7 7 304
+48 cands 23 no triple
+50 cands 34 d 55.2 153.9 197.3 | front 0.72 ax.view 0.46 speed 20 17 6
+52 cands 43 d 49.1 153.7 192.3 | front 0.83 ax.view 0.31 speed 22 17 12
+54 cands 25 no triple
+56 cands 44 no triple
+58 cands 32 no triple
+60 cands 19 no triple
+62 cands 23 no triple
+64 cands 18 no triple
+66 cands 39 no triple
+68 cands 30 no triple
+70 cands 18 no triple
+72 cands 42 no triple
+74 cands 34 no triple
+76 cands 19 no triple
+78 cands 22 no triple
+80 cands 18 no triple
+82 cands 21 no triple
+84 cands 44 no triple
+86 cands 34 no triple
+88 cands 19 no triple
+90 cands 45 no triple
+92 cands 49 no triple
+94 cands 25 no triple
+96 cands 45 no triple
+98 cands 46 no triple
+100 cands 44 no triple
+102 cands 30 no triple
+104 cands 14 no triple
+106 cands 19 no triple
+108 cands 47 no triple
+110 cands 23 no triple
+112 cands 24 no triple
+114 cands 18 no triple
+116 cands 16 no triple
+118 cands 22 no triple
+120 cands 33 no triple
+122 cands 38 d 52.7 153.9 195.0 | front 0.76 ax.view 0.28 speed 3 1 374
+124 cands 33 no triple
+126 cands 14 no triple
+128 cands 16 no triple
+130 cands 48 no triple
+132 cands 43 no triple
+134 cands 57 no triple
+136 cands 59 no triple
+138 cands 59 no triple
+140 cands 50 no triple
+142 cands 51 no triple
+144 cands 59 no triple
+146 cands 34 no triple
+148 cands 22 no triple
+150 cands 19 no triple
+152 cands 27 no triple
+154 cands 16 no triple
+156 cands 27 no triple
+158 cands 32 no triple
+160 cands 17 no triple
+162 cands 16 no triple
+164 cands 43 no triple
+166 cands 27 no triple
+168 cands 27 no triple
+170 cands 21 no triple
+172 cands 50 no triple
+174 cands 44 no triple
+176 cands 55 no triple
+178 cands 58 no triple
+180 cands 45 no triple
+182 cands 45 no triple
+184 cands 23 no triple
+186 cands 44 no triple
+188 cands 20 no triple
+190 cands 19 no triple
+192 cands 18 no triple
+194 cands 26 no triple
+196 cands 23 no triple
+198 cands 39 no triple
+200 cands 45 no triple
+202 cands 41 no triple
+204 cands 30 no triple
+206 cands 25 no triple
+208 cands 39 no triple
+210 cands 13 no triple
+212 cands 15 no triple
+214 cands 31 d 54.5 153.5 194.6 | front 0.68 ax.view 0.23 speed 5 6 3
+216 cands 30 no triple
+218 cands 56 no triple
+220 cands 52 no triple
+222 cands 50 no triple
+224 cands 54 d 55.8 153.8 194.6 | front 0.68 ax.view 0.24 speed 5 5 6
+226 cands 62 d 50.1 155.1 194.6 | front 0.83 ax.view 0.35 speed 2 2 4
+228 cands 61 d 55.7 154.3 195.1 | front 0.70 ax.view 0.25 speed 1 2 4
+230 cands 58 d 50.6 153.9 193.0 | front 0.84 ax.view 0.28 speed 2 2 2
+232 cands 59 d 50.6 154.0 193.1 | front 0.85 ax.view 0.28 speed 2 1 2
+234 cands 47 d 50.8 154.5 194.5 | front 0.86 ax.view 0.34 speed 3 5 4
+236 cands 57 d 50.9 154.7 194.4 | front 0.89 ax.view 0.33 speed 2 2 2
+238 cands 57 d 51.8 153.9 194.5 | front 0.86 ax.view 0.33 speed 0 0 1
+240 cands 55 d 50.1 154.7 193.9 | front 0.89 ax.view 0.32 speed 2 2 2
+242 cands 22 d 50.3 154.8 194.2 | front 0.88 ax.view 0.33 speed 6 6 6
+244 cands 20 d 50.9 154.0 193.1 | front 0.86 ax.view 0.27 speed 2 2 319
+246 cands 19 no triple
+248 cands 20 d 52.2 153.5 193.8 | front 0.86 ax.view 0.28 speed 8 8 8
+250 cands 24 d 51.8 153.3 193.2 | front 0.86 ax.view 0.27 speed 5 4 4
+252 cands 15 d 50.3 154.6 194.2 | front 0.88 ax.view 0.35 speed 2 2 2
+254 cands 21 d 50.1 153.9 193.3 | front 0.89 ax.view 0.33 speed 6 5 5
+256 cands 34 d 50.4 153.9 193.6 | front 0.88 ax.view 0.34 speed 3 3 3
+done 32 frames 259

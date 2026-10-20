@@ -1,0 +1,9 @@
+N 30 faces lo min/max 3324 3648 verts lo max 1992 faces hi med 33662
+CD-O truthlo_vs_truthhi   mean 0.0766 sd 0.0022 p90 0.0795
+CD-O ourhi_vs_truthhi     mean 0.1069 sd 0.0163 p90 0.1266
+CD-O ourlo_vs_truthhi     mean 0.1074 sd 0.0157 p90 0.1255
+CD-O ourlo_vs_truthlo     mean 0.1061 sd 0.0173 p90 0.1271
+frame truthlo_vs_truthhi   origin mm med 0.18 max 0.58 | axis deg max x/y/z [0.03, 0.02, 0.02] | same sign x/y/z [1.0, 1.0, 1.0] | min |skew| x/y/z [0.012, 0.022, 0.174]
+frame ourlo_vs_ourhi       origin mm med 0.20 max 0.65 | axis deg max x/y/z [0.03, 0.02, 0.02] | same sign x/y/z [1.0, 1.0, 1.0] | min |skew| x/y/z [0.004, 0.023, 0.177]
+frame ourlo_vs_truthhi     origin mm med 3.11 max 8.18 | axis deg max x/y/z [1.87, 0.24, 1.86] | same sign x/y/z [0.93, 1.0, 1.0] | min |skew| x/y/z [0.004, 0.023, 0.177]
+truth skew y mean/min/max -0.0371 -0.051 -0.0224

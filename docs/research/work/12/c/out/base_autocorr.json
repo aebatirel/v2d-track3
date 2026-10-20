@@ -1,0 +1,58 @@
+{
+ "blue_cup/bp_0.25-1.5mm": {
+  "r<25": {
+   "peak0": 1.0,
+   "half_width_deg": 2,
+   "max_outside_20": 0.03895305469632149,
+   "at": 142
+  },
+  "r<30": {
+   "peak0": 1.0,
+   "half_width_deg": 2,
+   "max_outside_20": 0.14311279356479645,
+   "at": 22
+  }
+ },
+ "blue_cup/bp_0.5-3mm": {
+  "r<25": {
+   "peak0": 1.0,
+   "half_width_deg": 4,
+   "max_outside_20": 0.1505310833454132,
+   "at": 22
+  },
+  "r<30": {
+   "peak0": 1.0,
+   "half_width_deg": 76,
+   "max_outside_20": 0.8660705089569092,
+   "at": 338
+  }
+ },
+ "beige_cup/bp_0.25-1.5mm": {
+  "r<25": {
+   "peak0": 1.0,
+   "half_width_deg": 2,
+   "max_outside_20": 0.06656549870967865,
+   "at": 336
+  },
+  "r<30": {
+   "peak0": 1.0,
+   "half_width_deg": 2,
+   "max_outside_20": 0.14864695072174072,
+   "at": 338
+  }
+ },
+ "beige_cup/bp_0.5-3mm": {
+  "r<25": {
+   "peak0": 1.0,
+   "half_width_deg": 6,
+   "max_outside_20": 0.369609534740448,
+   "at": 336
+  },
+  "r<30": {
+   "peak0": 1.0,
+   "half_width_deg": 54,
+   "max_outside_20": 0.7679628133773804,
+   "at": 22
+  }
+ }
+}

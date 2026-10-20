@@ -1,0 +1,21 @@
+beige_cup tilt fixed view-pairs 105
+  centre bound 0 mm: wrong-branch rms px median 13.2 p10 9.2; share of view-pairs < 3 px 0.00, < 6 px 0.00
+  centre bound 1 mm: wrong-branch rms px median 11.0 p10 6.9; share of view-pairs < 3 px 0.00, < 6 px 0.05
+  centre bound 2 mm: wrong-branch rms px median 9.4 p10 4.5; share of view-pairs < 3 px 0.02, < 6 px 0.22
+  centre bound 3 mm: wrong-branch rms px median 7.7 p10 2.6; share of view-pairs < 3 px 0.13, < 6 px 0.38
+  centre bound 5 mm: wrong-branch rms px median 5.5 p10 1.2; share of view-pairs < 3 px 0.24, < 6 px 0.54
+  centre bound 8 mm: wrong-branch rms px median 3.8 p10 0.0; share of view-pairs < 3 px 0.40, < 6 px 0.67
+  wrong fits at 8 mm (rms<1px): |d_ray| median 5.5 mm, |d_lat| median 5.4 mm, spin [104. 132. 138.]
+Traceback (most recent call last):
+  File "/Users/aebatirel/Documents/Code/v2d-research/work/12-verify/r2/branch_margin_r2.py", line 11, in <module>
+    up = np.array(mc.AX[name]['gt_up'], float); up /= np.linalg.norm(up)
+                  ~~~~~^^^^^^
+KeyError: 'beige_cup tilt'
+blue_cup tilt fixed view-pairs 228
+  centre bound 0 mm: wrong-branch rms px median 34.1 p10 18.4; share of view-pairs < 3 px 0.00, < 6 px 0.00
+  centre bound 1 mm: wrong-branch rms px median 31.5 p10 17.5; share of view-pairs < 3 px 0.00, < 6 px 0.01
+  centre bound 2 mm: wrong-branch rms px median 29.3 p10 15.9; share of view-pairs < 3 px 0.00, < 6 px 0.01
+  centre bound 3 mm: wrong-branch rms px median 27.9 p10 13.8; share of view-pairs < 3 px 0.00, < 6 px 0.04
+  centre bound 5 mm: wrong-branch rms px median 25.9 p10 10.8; share of view-pairs < 3 px 0.00, < 6 px 0.07
+  centre bound 8 mm: wrong-branch rms px median 23.3 p10 6.0; share of view-pairs < 3 px 0.04, < 6 px 0.10
+  wrong fits at 8 mm (rms<1px): |d_ray| median 8.3 mm, |d_lat| median 7.1 mm, spin [167. 172. 185.]

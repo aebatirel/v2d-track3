@@ -1,0 +1,22 @@
+01:29:40 bank (946793, 128) images 585 points 29900
+I20261007 01:29:40.927382 0x1fe162140 sift.cc:764] Creating SIFT CPU feature extractor
+01:29:40 e25 frames 356 prior from map frame 0: {'c': True, 'a': True} exclude_own 0
+01:29:42 t=0 feat {'a': 1698, 'b': 2201, 'c': 2226} match_bc {'c': 790, 'b': 743} inl_bc 956 (c 707 b 643) inl_a 499 | undist 0.01 sift 0.73 match_bc 0.33 pnp_bc 0.06 a_total 0.04
+01:29:46 t=20 feat {'a': 1743, 'b': 2234, 'c': 2233} match_bc {'c': 707, 'b': 623} inl_bc 814 (c 626 b 518) inl_a 466 | undist 0.00 sift 0.78 match_bc 0.24 pnp_bc 0.05 a_total 0.03
+01:29:51 t=40 feat {'a': 1645, 'b': 2176, 'c': 2153} match_bc {'c': 717, 'b': 670} inl_bc 815 (c 591 b 562) inl_a 433 | undist 0.01 sift 0.66 match_bc 0.38 pnp_bc 0.05 a_total 0.04
+01:29:55 t=60 feat {'a': 1909, 'b': 2376, 'c': 2357} match_bc {'c': 609, 'b': 579} inl_bc 683 (c 494 b 449) inl_a 329 | undist 0.00 sift 0.70 match_bc 0.31 pnp_bc 0.04 a_total 0.05
+01:30:00 t=80 feat {'a': 1750, 'b': 2239, 'c': 2240} match_bc {'c': 649, 'b': 586} inl_bc 702 (c 541 b 440) inl_a 414 | undist 0.00 sift 0.63 match_bc 0.29 pnp_bc 0.06 a_total 0.03
+01:30:04 t=100 feat {'a': 1653, 'b': 2180, 'c': 2243} match_bc {'c': 607, 'b': 548} inl_bc 677 (c 490 b 425) inl_a 376 | undist 0.00 sift 0.77 match_bc 0.24 pnp_bc 0.05 a_total 0.03
+01:30:09 t=120 feat {'a': 1646, 'b': 2063, 'c': 2164} match_bc {'c': 693, 'b': 605} inl_bc 803 (c 622 b 508) inl_a 421 | undist 0.00 sift 0.64 match_bc 0.19 pnp_bc 0.12 a_total 0.07
+01:30:14 t=140 feat {'a': 1648, 'b': 2015, 'c': 2153} match_bc {'c': 679, 'b': 589} inl_bc 772 (c 583 b 486) inl_a 422 | undist 0.00 sift 0.66 match_bc 0.34 pnp_bc 0.05 a_total 0.05
+01:30:18 t=160 feat {'a': 1688, 'b': 2249, 'c': 2196} match_bc {'c': 670, 'b': 598} inl_bc 743 (c 580 b 479) inl_a 410 | undist 0.01 sift 0.65 match_bc 0.40 pnp_bc 0.04 a_total 0.06
+01:30:23 t=180 feat {'a': 1954, 'b': 2186, 'c': 2203} match_bc {'c': 694, 'b': 675} inl_bc 836 (c 611 b 572) inl_a 486 | undist 0.00 sift 0.63 match_bc 0.27 pnp_bc 0.09 a_total 0.04
+01:30:28 t=200 feat {'a': 1638, 'b': 2023, 'c': 2147} match_bc {'c': 666, 'b': 638} inl_bc 768 (c 555 b 515) inl_a 402 | undist 0.01 sift 0.63 match_bc 0.19 pnp_bc 0.16 a_total 0.03
+01:30:32 t=220 feat {'a': 1702, 'b': 2041, 'c': 2084} match_bc {'c': 659, 'b': 649} inl_bc 795 (c 569 b 541) inl_a 405 | undist 0.00 sift 0.72 match_bc 0.40 pnp_bc 0.05 a_total 0.03
+01:30:37 t=240 feat {'a': 1662, 'b': 2072, 'c': 2080} match_bc {'c': 686, 'b': 643} inl_bc 794 (c 568 b 546) inl_a 453 | undist 0.00 sift 0.67 match_bc 0.46 pnp_bc 0.05 a_total 0.05
+01:30:42 t=260 feat {'a': 1663, 'b': 2055, 'c': 2016} match_bc {'c': 648, 'b': 671} inl_bc 780 (c 547 b 547) inl_a 423 | undist 0.00 sift 0.57 match_bc 0.58 pnp_bc 0.06 a_total 0.06
+01:30:47 t=280 feat {'a': 1621, 'b': 2073, 'c': 2052} match_bc {'c': 681, 'b': 667} inl_bc 815 (c 598 b 553) inl_a 464 | undist 0.00 sift 0.71 match_bc 0.31 pnp_bc 0.06 a_total 0.03
+01:30:52 t=300 feat {'a': 1616, 'b': 2047, 'c': 2013} match_bc {'c': 673, 'b': 693} inl_bc 802 (c 573 b 556) inl_a 448 | undist 0.00 sift 0.77 match_bc 0.22 pnp_bc 0.06 a_total 0.04
+01:30:57 t=320 feat {'a': 1639, 'b': 2017, 'c': 2026} match_bc {'c': 699, 'b': 648} inl_bc 817 (c 591 b 537) inl_a 417 | undist 0.00 sift 0.69 match_bc 0.34 pnp_bc 0.07 a_total 0.03
+01:31:01 t=340 feat {'a': 1693, 'b': 2155, 'c': 2162} match_bc {'c': 728, 'b': 610} inl_bc 812 (c 615 b 520) inl_a 391 | undist 0.00 sift 0.69 match_bc 0.37 pnp_bc 0.07 a_total 0.04
+01:31:05 done e25: 72 frames, rig ok 1.000, a ok 1.000, wall 85s

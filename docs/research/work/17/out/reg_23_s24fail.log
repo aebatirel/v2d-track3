@@ -1,0 +1,12 @@
+ep 23: sync delta 1.087; 325 frames, using every 3; static frac per object [0.21 0.37]
+win 90: nobs 37 (a 29, b 5, c 3); res px(a-eq) med 40.19 p90 71.07; inl<4px 0.03; step rot 8.02 deg trans 128.5 mm; 32s
+win 60: nobs 33 (a 31, b 1, c 1); res px(a-eq) med 36.17 p90 67.90; inl<4px 0.12; step rot 13.96 deg trans 189.7 mm; 61s
+win 40: nobs 23 (a 23, b 0, c 0); res px(a-eq) med 19.21 p90 34.42; inl<4px 0.04; step rot 14.48 deg trans 183.9 mm; 85s
+win 25: nobs 14 (a 14, b 0, c 0); res px(a-eq) med 11.39 p90 21.73; inl<4px 0.21; step rot 5.63 deg trans 72.2 mm; 108s
+win 15: nobs 12 (a 12, b 0, c 0); res px(a-eq) med 6.28 p90 18.75; inl<4px 0.33; step rot 1.70 deg trans 8.4 mm; 136s
+win 10: nobs 9 (a 9, b 0, c 0); res px(a-eq) med 3.46 p90 5.88; inl<4px 0.56; step rot 0.73 deg trans 8.3 mm; 158s
+win 8: nobs 10 (a 10, b 0, c 0); res px(a-eq) med 2.39 p90 7.96; inl<4px 0.70; step rot 0.69 deg trans 16.6 mm; 188s
+final: sd rot [0.836 0.816 0.829] deg, sd trans [19.65  9.72  1.49] mm (formal, robust-scaled)
+frame-0 cam_a vs s25: rot 28.14 deg, dC mm [  86.2   75.3 -307.9]; heading -172.73 pitch 37.58
+   cam a wooden_piece_1     n    1 res med 0.46 p90 0.46 (a-eq px)
+   cam a wooden_piece_2     n    9 res med 2.60 p90 8.01 (a-eq px)

@@ -1,0 +1,19 @@
+c/trk_0_h20.npz MODE reg SH -0.5 T 373 runtime 0.70 s/frame
+  white_pot: AUC(ADD, this trajectory, no policy) 0.622; status 3/2/1/0 = 0.03 / 0.39 / 0.51 / 0.08
+    rest     n 248 fix>=2 0.47 fix3 0.02 | fix3 n4 t 50.4/78.6 r 28.83/43.75 ADD 61.1/95.4 | fix2 n113 t 23.5/66.8 r 11.61/30.25 ADD 30.4/72.1 | all n248 t 34.2/56.3 r 15.42/35.92 ADD 41.9/64.3 |
+    held     n  31 fix>=2 0.61 fix3 0.00 | fix2 n19 t 14.9/52.1 r 6.49/22.32 ADD 18.3/62.5 | all n31 t 18.4/40.5 r 11.27/27.37 ADD 22.7/46.5 |
+    carried  n  94 fix>=2 0.20 fix3 0.06 | fix3 n6 t 16.8/23.1 r 1.98/2.73 ADD 17.0/23.1 | fix2 n13 t 16.9/63.0 r 6.34/28.41 ADD 20.2/65.8 | all n94 t 34.1/50.5 r 16.77/26.51 ADD 42.7/53.0 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.619; t 34.0 r 16.07 ADD 41.1 | FUSED AUC 0.622
+      rest     fix frames n117: prior ADD 38.6 -> fused 32.2 mm; fused worse than prior in 0.45
+      held     fix frames n19: prior ADD 26.6 -> fused 18.3 mm; fused worse than prior in 0.16
+      carried  fix frames n19: prior ADD 30.2 -> fused 18.3 mm; fused worse than prior in 0.26
+  white_pot_lid: AUC(ADD, this trajectory, no policy) 0.920; status 3/2/1/0 = 0.89 / 0.09 / 0.02 / 0.00
+    rest     n 154 fix>=2 0.96 fix3 0.92 | fix3 n142 t 6.5/12.2 r 7.34/9.29 ADD 8.5/13.2 | fix2 n6 t 27.8/41.5 r 21.19/25.63 ADD 34.4/47.2 | all n154 t 6.8/16.4 r 7.56/15.12 ADD 8.7/17.6 |
+    held     n 168 fix>=2 1.00 fix3 0.85 | fix3 n143 t 7.1/24.6 r 4.28/25.47 ADD 7.6/30.1 | fix2 n25 t 21.1/31.9 r 24.89/28.87 ADD 34.0/42.1 | all n168 t 7.9/25.8 r 5.10/27.15 ADD 8.9/34.8 |
+    carried  n  51 fix>=2 1.00 fix3 0.94 | fix3 n48 t 8.2/14.5 r 6.80/9.08 ADD 10.0/16.0 | fix2 n3 t 36.5/74.1 r 24.87/39.46 ADD 43.5/80.5 | all n51 t 9.1/16.4 r 6.98/14.28 ADD 10.0/19.7 |
+    PRIOR-ONLY (emulated model-based, PN [20.0, 10.0, 0.95]): AUC 0.665; t 31.5 r 15.57 ADD 35.6 | FUSED AUC 0.920
+      rest     fix frames n148: prior ADD 36.1 -> fused 8.6 mm; fused worse than prior in 0.02
+      held     fix frames n168: prior ADD 33.9 -> fused 8.9 mm; fused worse than prior in 0.12
+      carried  fix frames n51: prior ADD 42.0 -> fused 10.0 mm; fused worse than prior in 0.04
+  SCORER-STYLE (tracker/fused; slot-0 frame-0 alignment) AUC per object white_pot:0.315 white_pot_lid:0.332 mean 0.324
+  SCORER-STYLE (prior-only; slot-0 frame-0 alignment) AUC per object white_pot:0.559 white_pot_lid:0.535 mean 0.547

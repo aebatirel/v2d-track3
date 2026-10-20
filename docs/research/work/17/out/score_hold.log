@@ -1,0 +1,5 @@
+holdout 13 a: train 73950 (2435 pos); sampled AUC 0.987 AP 0.856; pos p>0.5 0.59; 37s
+holdout 22 a: train 73950 (2435 pos); sampled AUC 0.994 AP 0.848; pos p>0.5 0.78; 40s
+holdout 13 bc: train 107235 (4166 pos); sampled AUC 0.958 AP 0.679; pos p>0.5 0.48; 97s
+holdout 22 bc: train 107235 (4166 pos); sampled AUC 0.987 AP 0.769; pos p>0.5 0.55; 100s
+done
