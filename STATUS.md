@@ -1,6 +1,24 @@
-# Status (2026-10-20)
+# Status (2026-10-20, night; times TRT = UTC+3)
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
+
+## Night of 2026-10-20 → 21 (owner asleep; mandate: spend the $25 Vast credit on retries, fix failures, research)
+Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
+- **Infrastructure works on Vast.** Snapshot restore 2 min (`ENV_SNAPSHOT=pt2.11-cu130-py313-20261020`), full setup
+  10 min, HTTPS `ops/vast.sh exec` instead of SSH (SSH blocked), headless rollout video `pipeline/render_rollout.sh`.
+- **First end-to-end score was invalid** (AUC 0.009): mkref's table fit picked the floor, objects fell 60 cm. Fixed
+  (support-plane choice + guard). ep12 perc2 + oracle retrained on box 1, results ≈ 01:20–01:40.
+- **Perception:** compactness detection prior (now default) → 20-episode mean AUC 0.883 → 0.932 (ep26 0.065 → 0.988).
+- **Reference (hands → robot):** (1) Viterbi hand-identity linker (default) fixes the ep12 hand-over swap; A/B over
+  all episodes running (`ops/jobs/hands_ab.sh`). (2) Robot wrist jumps of 10–31 cm/frame come from NVIDIA's E2S IK
+  (wrist cost 0.2 vs fingertips 1.0, warm-start drift); `mkref --wrist_cost 3.0` cuts them to ≤ 8 cm on ep44/ep12
+  (fingertip error +1–2 cm). Bone normalisation and a larger `mano_to_robot_scale` did not help.
+- **Robot:** mid-stiffness wrist embodiment `flashchord_conf/embodiment/sharpa_hands_mid.yaml` (kp 400 vs 25 N/m;
+  FAQ allows other embodiments; owner to confirm before any submission uses it).
+- **Running now:** box 1 (56915259): ep12 perc2 + oracle. Box 2 (56940182): ep12 `vw` (Viterbi + mid wrist) and
+  `vc` (Viterbi + wrist cost 3), plus the hands A/B. Both boxes self-destroy when done.
+- **Open questions for the owner:** njmax 512 overflows in training (raising it changes sim settings → ask the
+  organisers); the mid wrist (embodiment) for submissions; spoon frame (A vs B).
 
 ## Goal and constraints
 - **Goal:** top of the NVIDIA V2D Challenge Track 3 leaderboard (ranked by AUC), plus the Industry Innovation award.
