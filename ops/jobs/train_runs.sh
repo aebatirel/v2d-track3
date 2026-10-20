@@ -1,0 +1,34 @@
+#!/bin/bash
+# Run several pipeline_ep.sh trainings on one box, CONCURRENT at a time (default 2 per GPU), each a spec
+# "EP:PERC[:VARIANT[:PDIR[:HANDS_ARGS]]]" in RUNS, e.g. RUNS="12:perc2:v 27:perc2". Written 2026-10-20 night.
+# As a job: ops/vast.sh create ... 'RUNS="12:perc2:v 27:perc2" bash ops/jobs/train_runs.sh'. Started by hand on a box
+# whose job already ended (run_job.sh exited on HOLD), it refreshes a 30-min HOLD while the GPU is busy and removes
+# it at the end, so the watchdog saves and destroys the box.
+. /content/v2d-track3/ops/box/lib.sh
+P=$REPO_DIR/pipeline; J=/content/job.log; C=${CONCURRENT:-2}
+(while sleep 300; do
+   [ -e $ST/runs_done ] && break
+   u=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | sort -n | tail -1)
+   [ "${u:-0}" -ge 10 ] && [ -e $ST/held_exit ] && echo $(( $(date +%s) + 1800 )) > /content/HOLD
+ done) &
+rm -f $ST/runs_done
+[ -e $ST/held_exit ] && echo $(( $(date +%s) + 1800 )) > /content/HOLD     # before the first refresh (no race)
+one() {
+  IFS=: read -r ep perc var pdir hargs <<< "$1"
+  local tag=${perc}${var}_ep$ep
+  log "run $tag: start, commit $(git -C $REPO_DIR rev-parse --short HEAD)" >> $J
+  VARIANT=$var PDIR=$pdir HANDS_ARGS=$hargs PERC=$perc bash $P/pipeline_ep.sh $ep > /content/pipe_$tag.log 2>&1
+  log "run $tag: rc=$? $(grep -aE 'DONE|FAILED' /content/pipe_$tag.log | tail -1)" >> $J
+}
+label "train runs: $RUNS"
+n=0
+for spec in $RUNS; do
+  one "$spec" &
+  n=$((n + 1)); [ $((n % C)) -eq 0 ] && wait
+  sleep 120                                                             # stagger the JIT compiles
+done
+wait
+touch $ST/runs_done
+bash $OPS/store.sh push-run > /dev/null 2>&1 || true
+[ -e $ST/held_exit ] && rm -f /content/HOLD
+exit 0
