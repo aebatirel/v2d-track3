@@ -109,7 +109,7 @@ exec)
     || { echo "no access record for $2 in $HF_STORE (tunnel not up yet?)"; exit 1; }
   URL=$(echo "$ACC" | python3 -c 'import json,sys; print(json.load(sys.stdin)["url"])')
   TOK=$(echo "$ACC" | python3 -c 'import json,sys; print(json.load(sys.stdin)["token"])')
-  curl -sS -m $(( ${4:-120} + 30 )) -X POST -H "X-Token: $TOK" -H "X-Timeout: ${4:-120}" --data-binary "$3" "$URL/exec"
+  curl -sSf -m $(( ${4:-120} + 30 )) -X POST -H "X-Token: $TOK" -H "X-Timeout: ${4:-120}" --data-binary "$3" "$URL/exec"
   ;;
 *) sed -n '2,25p' "$0"; exit 1 ;;
 esac
