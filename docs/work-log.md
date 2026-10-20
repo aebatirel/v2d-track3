@@ -276,3 +276,12 @@ After the owner set the network access and added the `console.vast.ai` network s
 - The repo is private (anonymous GitHub → 404), so boxes need `GH_TOKEN` to clone, or code must reach them another
   way (for example a tarball in the HF store).
 No spending.
+
+## 2026-10-20 (cloud session): HF secret works, store exists
+- `huggingface.co` network secret: whoami → user `aebatirel`, fine-grained token "ClaudeToken" with write on the user's
+  repos (broader than the planned one-repo token).
+- `aebatirel/v2d-store` (private dataset) exists → set `HF_STORE=aebatirel/v2d-store` in `ops/config.env`.
+- Vast account env vars: `GET /api/v0/secrets/` returns an empty list, so `HF_TOKEN`/`GH_TOKEN` are not visible as
+  account env vars yet. The box-0 smoke test checks injection directly. Vast credit is still $0.
+- Owner reports the GitHub token on Vast is full-access with no expiry; recommended replacing it with a read-only
+  token for this repo with an expiry (boxes are third-party machines).
