@@ -249,3 +249,15 @@ Proposed:
 - the Vast key and the HF read token as cloud network secrets.
 
 Next: the owner checklist (runbook §3), then box 0 (smoke) and box 1 (day 1). Expected batch cost $14–16, ceiling $25.
+
+## 2026-10-20 (cloud session): step 0 checks, blocked on environment settings
+Machine: Claude Code cloud session (no GPU), repo at 4d1d7ee. Commands and results:
+- `curl $HTTPS_PROXY/__agentproxy/status`: proxy enabled, not selective.
+- `ops/vast.sh show` and `curl https://console.vast.ai/api/v0/users/current/`: **`CONNECT tunnel failed, response 403`**.
+  The proxy denies console.vast.ai, so the network policy does not allow it yet. The Bearer header is still untested.
+- `curl https://huggingface.co/api/whoami-v2`: **403 from the proxy**, same cause.
+- Direct TCP from the VM: port 443 to 1.1.1.1 connected; **port 22 to a GitHub IP timed out**. Raw SSH out looks
+  blocked at the current setting. Retest against a Vast box once network access is Full.
+- No SSH key generated yet: the key would be lost with the session before it could be registered.
+- `HF_STORE` is still the placeholder `HF-USER/v2d-store` (the HF username is needed).
+No spending. Waiting on the owner checklist (runbook §3), mainly network access Full plus the two network secrets.
