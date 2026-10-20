@@ -151,7 +151,11 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 1. **Done 2026-10-20:** owner checklist (Vast key, $25 credit, HF store `aebatirel/v2d-store`, narrow HF/GH tokens) and
    the **box 0 smoke test: all checks passed, cost $0.01** (details in the work log). Still untested: the stall
    watchdog's destroy path, `setup.sh` on the Vast image, throughput on the PRO 6000.
-2. Get the owner's go-ahead for box 1 (about $6–8; batch ceiling $25).
+2. **Box 1 (2026-10-20, instance 56915259, running):** setup 10 min, IMPORTS-OK, env snapshot
+   `pt2.11-cu130-py313-20261020` and weight mirror in the store; perc2 ep12 perception AUC 0.997 on Vast; resume test
+   passed; two trainings on one GPU ≈ 45–50k steps/s combined. The first end-to-end score (AUC 0.009) was invalid:
+   mkref's table fit picked the floor, so the objects fell 60 cm in sim. Fixed in 30d3633; retraining perc2 + oracle
+   since 19:20 UTC (`ops/jobs/train_pair.sh`). Fixed on the way: missing pandas etc. in setup, pinocchio 4.1 call in mkref.
 3. Box 1 `ops/jobs/day1.sh`:
    - setup and environment snapshot;
    - perc2 on ep 12;

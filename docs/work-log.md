@@ -384,3 +384,32 @@ No spending.
   mkref it would have failed as perc2 did. So the oracle reference was built with 3aa3b5f's mkref.py. The perc2
   run's reference was built by hand with 3aa3b5f; its training ran at cc30cbe (day1_perc2.sh). pipeline_ep.sh should
   record the commit per stage, not only at start.
+
+## 2026-10-20 evening: first end-to-end score was invalid (floor bug), fixed, retraining
+- perc2 ep12 finished 19:09 UTC (250M steps, resumed once): **sim vs mocap AUC 0.009**, MPPE 61 cm; evaluator's own
+  add_auc 0.0076. `reference_vs_mocap` 0.9965; "nothing moves" floor 0.604.
+- Diagnosis (trajectory dump `/content/diag.py`): both objects fall about 55–60 cm in the first 10 frames, from
+  z ≈ 1.23 to 0.63–0.69, and stay there. mkref's log already said "frame-0 object bottoms above the fitted table:
+  60.4 / 59.3 cm". Checked and ruled out: intrinsics (mkref and perc2 build the same P1), depth scale (depth at the
+  cup's pixels 0.376 m vs pose 0.390 m), quaternion or frame bugs in score_sim.py (static floor at sim frame 0
+  matches GT).
+- **Root cause:** `fit_table` ran one RANSAC on a 90-px ring around the objects. The ring also holds the floor past
+  the table edge. The floor got 55 % of the points and won; the table had 39 %. Camera height above the "table" was
+  1.14 m (floor); the real table is 0.535 m below the camera.
+- Fix 30d3633: sequential RANSAC (up to 4 planes, each >= 3 % of the points); pick the plane parallel to the
+  dominant one (<= 25 deg) that is closest under the lowest object point; abort if the lowest frame-0 bottom is not
+  within -3…+5 cm of it. ep12 now: candidates floor (0.55, 59.3 cm) and table (0.39, -1.5 cm, tilt 1.2 deg, rms
+  0.7 mm); table picked; bottoms cup -0.07 cm, rack -1.5 cm, per-object snap +0.07 / +1.5 cm; VALIDATION OK.
+  The snap costs the reference itself 0.997 → 0.973 vs mocap (rack per-object 0.996 → 0.948); to refine.
+- Sanity check: old (floor-bug) perc2 policy evaluated on the new perc2 scene (temporary symlink to the old parquet
+  name, removed afterwards): objects stay on the table; sim vs mocap 0.603 ≈ static floor 0.604 (the old policy does
+  not move the cup). Results in `/content/results/sanity_newscene_oldpolicy`.
+- The oracle training (84 %, same floor bug in its reference: bottoms 60.4 / 60.1 cm) was stopped at about 19:14 UTC
+  to stop paying for it. Old refs, runs and results are kept as `*_floorbug` on the box (pushed to the store).
+- Retraining started 19:19:46 UTC with `ops/jobs/train_pair.sh` (commit 4ba4013 incl. fix 30d3633): perc2 and oracle,
+  250M steps each, on the same box. Expected done about 22:00–22:15 UTC.
+- Open: "nefc overflow - please increase njmax" in 45 of 294 lines of the perc2 train log. `sim/rl.yaml` sets
+  njmax 512 / nconmax 256; requests were 513–629. NVIDIA's `dexmate_sharpa_flash_sac` uses njmax 1024. Hypothesis:
+  dropped constraints let contacts slip in some training worlds. Check which sim config the official evaluator uses
+  before changing anything; test by training with `sim.njmax=1024` and comparing scores.
+- Cost so far (Vast credit): $3.97 at 18:15 UTC; box 1 runs at $1.442/h.
