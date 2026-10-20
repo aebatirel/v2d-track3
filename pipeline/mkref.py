@@ -888,8 +888,12 @@ def Xform "support_surfaces"
         for i, t_ in enumerate(tn):
             log(f'    {t_:28s} {np.median(E[:, i]):7.1f} {np.percentile(E[:, i], 95):7.1f} {E[:, i].max():7.1f} {E[0, i]:7.1f}')
         wr = np.asarray(getattr(data, f'robot_{s}_wrist_position'), float)
+        steps = np.linalg.norm(np.diff(wr, axis=0), axis=1) * 100
         log(f'    robot wrist travel {np.linalg.norm(wr - wr[0], axis=1).max():.3f} m, '
-            f'max step {np.linalg.norm(np.diff(wr, axis=0), axis=1).max() * 100:.1f} cm/frame')
+            f'max step {steps.max():.1f} cm/frame')
+        summary.setdefault('wrist', {})[s] = dict(travel_m=float(np.linalg.norm(wr - wr[0], axis=1).max()),
+                                                  max_step_cm=float(steps.max()), p99_step_cm=float(np.percentile(steps, 99)),
+                                                  steps_over_5cm=int((steps > 5).sum()))
     summary['ik'] = ik
 
     # ---------------- (f) FlashCHORD validation
@@ -913,6 +917,8 @@ def Xform "support_surfaces"
     summary['task_parquet'] = task_dir
     summary['support_usda'] = usda
     json.dump(summary, open(os.path.join(a.out, 'ref_summary.json'), 'w'), indent=1, default=str)
+    if not summary.get('validation', {}).get('ok', True):
+        raise SystemExit('FlashCHORD validation failed: do not train on this reference')
     log(f'DONE. Train with task.parquet={task_dir} task.motion_speed=1.0')
 
 

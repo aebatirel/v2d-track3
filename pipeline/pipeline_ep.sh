@@ -44,7 +44,8 @@ if ! ls $R/processed/sequence_id=$SEQ/robot_name=sharpa_wave/*.parquet > /dev/nu
     || { echo "mkref FAILED"; tail -8 $R/mkref_log.txt; exit 1; }
 fi
 REFDIR=$R/processed/sequence_id=$SEQ/robot_name=sharpa_wave
-echo "[$(date +%T)] reference: $REFDIR"
+echo "[$(date +%T)] reference: $REFDIR (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
+[ "${STOP_AFTER:-}" = reference ] && exit 0
 
 # 4) train (timing rule: fps 20 written in the parquet, motion_speed 1.0, sim=rl at 20 fps).
 #    Checkpoints every 5M env steps (policy_<step> + state_<step>); a rerun resumes from the newest state_ file
@@ -58,7 +59,7 @@ if ! ls $RUN/policy_*.safetensors > /dev/null 2>&1 || [ ! -e $RUN/.done ]; then
     && touch $RUN/.done || { echo "train FAILED"; tail -15 $RUN/train.log; exit 1; }
 fi
 CK=$(ls -v $RUN/policy_*.safetensors | tail -1)
-echo "[$(date +%T)] trained: $CK"
+echo "[$(date +%T)] trained: $CK (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
 
 # 5) official evaluator, 1 world, trajectory export
 cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
