@@ -58,7 +58,7 @@ if ! ls $RUN/policy_*.safetensors > /dev/null 2>&1 || [ ! -e $RUN/.done ]; then
   [ -n "$LAST" ] && RESUME=(training.resume=true training.checkpoint_path=$LAST) && echo "[$(date +%T)] resuming from $LAST"
   cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py \
     experiment=sharpa_flash_sac "task.parquet='$REFDIR'" task.motion_speed=1.0 reset.seed=$SEED \
-    logging.mode=disabled output_dir=$RUN training.total_environment_steps=$STEPS "${RESUME[@]}" >> $RUN/train.log 2>&1 \
+    logging.mode=disabled output_dir=$RUN training.total_environment_steps=$STEPS ${TRAIN_ARGS:-} "${RESUME[@]}" >> $RUN/train.log 2>&1 \
     && touch $RUN/.done || { echo "train FAILED"; tail -15 $RUN/train.log; exit 1; }
 fi
 CK=$(ls -v $RUN/policy_*.safetensors | tail -1)

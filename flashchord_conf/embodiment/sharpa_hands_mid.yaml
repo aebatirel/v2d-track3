@@ -1,0 +1,16 @@
+# Sharpa Wave hands with a mid-stiffness wrist POSITION drive (2026-10-20, hypothesis from research note 14).
+# Default: prismatic wrist kp 25 N/m, kd 6, 45 N -> holding 0.3 kg sags the wrist ~12 cm and saturates the 0.2 m
+# residual clip at real speed. NVIDIA's stiff_tracking variant uses kp 6000 (tuned for 200 Hz, collision-free replay).
+# Here kp 400 N/m (0.3 kg sags ~0.7 cm), kd 20, 150 N; wrist rotation and fingers unchanged. Same keys as the default
+# SharpaHandsConfig.joint_overrides (the dict replaces the default one, so every entry is repeated).
+# Use: train with hydra.searchpath=[file:///content/v2d-track3/flashchord_conf] embodiment=sharpa_hands_mid. The
+# checkpoint stores the resolved config, which the evaluator rebuilds; the FAQ allows other embodiments.
+_target_: flash_chord.embodiments.sharpa_hands.SharpaHands
+config:
+  _target_: flash_chord.embodiments.sharpa_hands.SharpaHandsConfig
+  joint_overrides:
+    "wrist_[xyz]$": {kp: 400.0, kd: 20.0, effort_limit: 150.0}
+    "right_wrist_y": {default_pos: 0.25}
+    "left_wrist_y": {default_pos: -0.25}
+    "wrist_z$": {default_pos: 0.5}
+    "wrist_rotvec$": {mode: effort, kp: 25.0, kd: 6.0, effort_limit: 45.0}

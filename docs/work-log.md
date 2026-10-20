@@ -457,3 +457,13 @@ No spending.
   0.50 rad; contact_wrench_support weight 10, unintended_contact −10, termination −100; keypoint weights set by the
   curriculum (`tracking_250m_mixed_reset`). Checkpoints every 10M steps in this recipe.
 - `pipeline_ep.sh`: `VARIANT`, `PDIR` and `HANDS_ARGS` for side-by-side variants (commit after 6ad3db7).
+- **Wrist stiffness (note 14 hypothesis), set up for an A/B:** in FlashCHORD `action.wrist_kp/wrist_tau_max` drive only
+  the wrist ROTATION (ball-joint effort, control.py); the wrist POSITION is the embodiment's prismatic joints,
+  `SharpaHandsConfig.joint_overrides["wrist_[xyz]$"]` = kp 25 N/m, kd 6, 45 N (gravity compensation covers the hand,
+  not a held object). The FAQ says "Sharpa Wave is the default embodiment. Other embodiments are welcome, including
+  fixed-base arm-and-hand setups and floating hands" (docs/research/work/14/c2/faqs.txt). Hydra command-line dict keys
+  cannot hold the regex keys, so the variant is a YAML in our repo, `flashchord_conf/embodiment/sharpa_hands_mid.yaml`
+  (wrist position kp 400, kd 20, 150 N; rest unchanged), selected with
+  `hydra.searchpath=[file:///content/v2d-track3/flashchord_conf] embodiment=sharpa_hands_mid`. Dry run (`--cfg job`)
+  composes. NVIDIA's checkout is untouched; the checkpoint's resolved config carries the dict for the evaluator
+  (to verify at the first eval). `pipeline_ep.sh` takes `TRAIN_ARGS`; in `train_runs.sh` a variant with "w" uses it.

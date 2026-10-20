@@ -15,9 +15,11 @@ rm -f $ST/runs_done
 [ -e $ST/held_exit ] && echo $(( $(date +%s) + 1800 )) > /content/HOLD     # before the first refresh (no race)
 one() {
   IFS=: read -r ep perc var pdir hargs <<< "$1"
-  local tag=${perc}${var}_ep$ep
-  log "run $tag: start, commit $(git -C $REPO_DIR rev-parse --short HEAD)" >> $J
-  VARIANT=$var PDIR=$pdir HANDS_ARGS=$hargs PERC=$perc bash $P/pipeline_ep.sh $ep > /content/pipe_$tag.log 2>&1
+  local tag=${perc}${var}_ep$ep targs=""
+  # a variant containing "w" trains the mid-stiffness wrist (flashchord_conf/embodiment/sharpa_hands_mid.yaml)
+  case $var in *w*) targs="hydra.searchpath=[file://$REPO_DIR/flashchord_conf] embodiment=sharpa_hands_mid" ;; esac
+  log "run $tag: start, commit $(git -C $REPO_DIR rev-parse --short HEAD) ${targs:+($targs)}" >> $J
+  VARIANT=$var PDIR=$pdir HANDS_ARGS=$hargs TRAIN_ARGS=$targs PERC=$perc bash $P/pipeline_ep.sh $ep > /content/pipe_$tag.log 2>&1
   log "run $tag: rc=$? $(grep -aE 'DONE|FAILED' /content/pipe_$tag.log | tail -1)" >> $J
 }
 label "train runs: $RUNS"
