@@ -63,7 +63,8 @@ python -c "import torch; torch.hub.load('facebookresearch/dinov2', 'dinov2_vitl1
 
 # FoundationStereo / FoundationPose weights: our HF mirror if available, else the authors' Google Drive folders
 if [ -n "${HF_STORE:-}" ]; then
-  hf download $HF_STORE --repo-type dataset --include 'weights/*' --local-dir /content/hfstore > /dev/null 2>&1 && echo WEIGHTS-MIRROR-OK
+  hf download $HF_STORE --repo-type dataset --include 'weights/*' --local-dir /content/hfstore > /dev/null 2>&1   # an empty match also exits 0
+  [ -n "$(ls -A /content/hfstore/weights 2> /dev/null)" ] && echo WEIGHTS-MIRROR-OK
 fi
 
 # FoundationStereo (ViT-L 23-51-11)
