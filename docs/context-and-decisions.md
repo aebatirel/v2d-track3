@@ -33,6 +33,16 @@ the answers that matter for future work. Dates are 2026.
   - Announce each rental batch with its expected cost before starting it.
   - The first Vast API key was pasted in chat and must be considered exposed. The owner is replacing it and will
     store the new key as a secret (`VAST_API_KEY`), never in the repo.
+- **Compute strategy (2026-10-20):**
+  - Use **many RTX PRO 6000s in parallel** for batches: same total cost, results in hours instead of days.
+  - Use **interruptible machines** for training once checkpoint resume is verified.
+  - On the first box, **test two trainings on one 96 GB GPU**.
+  - Do not buy faster GPU types: H100/H200/B200 are estimated at no faster for this simulator and cost 2–7× more.
+  - **Google Cloud in parallel:** the owner may create a GCP account, upgrade it to paid (keeping the $300 credit)
+    and request Spot RTX PRO 6000 (G4) quota in us-central1. Use it if quota arrives; Vast is the default meanwhile.
+  - **Colab:** about 156 Pro compute units remain (about 17 G4 hours). They are usable only when the owner keeps a
+    Chrome session connected, since a cloud agent cannot drive Colab. Colab is not the base for the campaign: no SSH,
+    no persistence, effectively one runtime at a time.
 - **GPU choice:** RTX PRO 6000 96 GB is the default. 48 GB cards (PRO 5000, 6000 Ada, L40S) work but save little per
   finished policy and leave only ~7 GB of headroom. Interruptible PRO 6000s are the main saving, once checkpoint
   resume is verified. See `docs/gpu-rental/`.
