@@ -163,6 +163,15 @@ def e2s_entry(argv):
     v2d = argv[1]
     rest = argv[3:] if len(argv) > 2 and argv[2] == '--' else argv[2:]
     pin = install_compat(v2d)
+    if os.environ.get('E2S_WRIST_COST'):
+        # Retargeting weights are ours to choose (only the evaluator is fixed). NVIDIA's mapping weights the wrist
+        # (hand_C_MC) position at 0.2 vs 1.0 per fingertip, and the warm-started IK then drifts the wrist up to 33 cm
+        # to reach fingertips (2026-10-20, ep44). Patched in place, so E2S's own import sees it; E2S itself unchanged.
+        from robotic_grounding.retarget import params as rgp
+        k = '.*_hand_C_MC'
+        src, pos, ori = rgp.SHARPA_TO_MANO_MAPPING[k]
+        rgp.SHARPA_TO_MANO_MAPPING[k] = (src, float(os.environ['E2S_WRIST_COST']), float(os.environ.get('E2S_WRIST_ORI_COST', ori)))
+        print(f'E2S mapping patched: {k} {(src, pos, ori)} -> {rgp.SHARPA_TO_MANO_MAPPING[k]}', flush=True)
     patch_logger(sharpa_layout(pin, v2d))
     e2s = os.path.join(v2d, 'robotic_grounding', 'scripts', 'retarget', 'ego_recon_to_sharpa.py')
     sys.argv = [e2s] + rest
@@ -598,6 +607,9 @@ def parse_args():
     p.add_argument('--attach_dist', type=float, default=0.03)
     # retarget
     p.add_argument('--mano_to_robot_scale', type=float, default=1.2)
+    p.add_argument('--wrist_cost', type=float, default=None,
+                   help='E2S IK position cost of the wrist (hand_C_MC); NVIDIA default 0.2 (fingertips 1.0)')
+    p.add_argument('--wrist_ori_cost', type=float, default=None, help='E2S IK orientation cost of the wrist (default 0.2)')
     p.add_argument('--bone_norm', action='store_true', help='fix bone lengths to the episode median (normalize_bones)')
     p.add_argument('--hand_scale', type=float, default=1.0, help='with --bone_norm: multiply the median bone lengths')
     p.add_argument('--warmup', type=int, default=10, help='copies of frame 0 prepended for the IK, dropped after')
@@ -849,6 +861,10 @@ def Xform "support_surfaces"
                '--mano_to_robot_scale', str(a.mano_to_robot_scale), '--sequence_id', a.seq] + shlex.split(a.e2s_args)
         env = dict(os.environ)
         env['PYTHONPATH'] = rg_src(a.v2d) + (':' + env['PYTHONPATH'] if env.get('PYTHONPATH') else '')
+        if a.wrist_cost is not None:
+            env['E2S_WRIST_COST'] = str(a.wrist_cost)
+        if a.wrist_ori_cost is not None:
+            env['E2S_WRIST_ORI_COST'] = str(a.wrist_ori_cost)
         log('running E2S:', ' '.join(cmd))
         subprocess.run(cmd, check=True, env=env, cwd=os.path.join(a.v2d, 'robotic_grounding'))
 
