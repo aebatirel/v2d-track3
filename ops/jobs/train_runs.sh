@@ -6,12 +6,12 @@
 # it at the end, so the watchdog saves and destroys the box.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=/content/job.log; C=${CONCURRENT:-2}
-(while sleep 300; do
-   [ -e $ST/runs_done ] && break
+DONE=$ST/runs_done_$$                                                  # one marker per invocation (several may run)
+(while sleep 60; do
+   [ -e $DONE ] && break
    u=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | sort -n | tail -1)
    [ "${u:-0}" -ge 10 ] && [ -e $ST/held_exit ] && echo $(( $(date +%s) + 1800 )) > /content/HOLD
  done) &
-rm -f $ST/runs_done
 [ -e $ST/held_exit ] && echo $(( $(date +%s) + 1800 )) > /content/HOLD     # before the first refresh (no race)
 one() {
   IFS=: read -r ep perc var pdir hargs <<< "$1"
@@ -30,7 +30,8 @@ for spec in $RUNS; do
   sleep 120                                                             # stagger the JIT compiles
 done
 wait
-touch $ST/runs_done
+touch $DONE
 bash $OPS/store.sh push-run > /dev/null 2>&1 || true
-[ -e $ST/held_exit ] && rm -f /content/HOLD
+# release the hold only if no other pipeline still runs on this box
+pgrep -f '[p]ipeline_ep.sh' > /dev/null || { [ -e $ST/held_exit ] && rm -f /content/HOLD; }
 exit 0
