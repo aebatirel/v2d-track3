@@ -475,3 +475,13 @@ No spending.
   ep39 0.55 → 0.998); single runs vary, so differences under ~0.01 are noise.
 - Reference sweep (box 2, `refs_sweep.sh`): 19/20 episodes built a FlashCHORD-validated reference; ep26 rejected by
   the new support guard (rack detection, now fixed by the prior). Report: `/content/results/ref_report_perc2.txt`.
+- **Robot wrist jumps come from the IK, not hand tracking** (box 2, refs from the sweep). ep44 right: human palm steps
+  ≤ 2.6 cm/frame but robot wrist steps up to 30.9 cm/frame; frames 10–29 the IK's `hand_C_MC` task error grows
+  9.6 → 33 cm with every solve at the 100-iteration cap (warm-started from the previous frame), then at f30 it snaps
+  back (error 1.9 cm) with a 30.9 cm / 108° step. Same pattern on ep39/41 (palm ~1 cm, wrist 9–26 cm).
+  `ref_report` flags WRIST-JUMP (> 8 cm/frame) on most episodes.
+- Mechanism (hypothesis): NVIDIA's `SHARPA_TO_MANO_MAPPING` weights the wrist (`hand_C_MC`) at position cost 0.2 vs
+  1.0 per fingertip, so unreachable fingertip targets pull the robot wrist away; our hand fit says the hand is small
+  (wrist→middle tip ~12 cm), and E2S scales MANO by `--mano_to_robot_scale` 1.2. Test: mkref on ep44 and ep12 at
+  scale 1.2 / 1.35 / 1.5 and 1.35 + `--smooth_reference` (E2S flags, code unchanged), compare C_MC error, wrist
+  jumps and contacts (`/content/dev/scale_sweep.sh`, `/content/dev/scale_cmp.py` on box 2).
