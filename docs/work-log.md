@@ -485,3 +485,15 @@ No spending.
   (wrist→middle tip ~12 cm), and E2S scales MANO by `--mano_to_robot_scale` 1.2. Test: mkref on ep44 and ep12 at
   scale 1.2 / 1.35 / 1.5 and 1.35 + `--smooth_reference` (E2S flags, code unchanged), compare C_MC error, wrist
   jumps and contacts (`/content/dev/scale_sweep.sh`, `/content/dev/scale_cmp.py` on box 2).
+- Scale hypothesis **falsified** on ep44: `--mano_to_robot_scale 1.5` vs 1.2 → right C_MC median 3.1 vs 2.8 cm, p95
+  11.4 vs 11.7 cm, wrist max step 29.8 vs 30.9 cm, contact 0.52 vs 0.60 (no gain, contacts worse). (The other
+  scale-sweep variants died from thread exhaustion, `Resource temporarily unavailable`, caused by too many parallel
+  mkref processes on box 2; `--e2s_args "--smooth_reference"` must be written `--e2s_args=--smooth_reference`.)
+- New finding (ep44 right, frames 8–32): the reconstructed hand changes shape per frame: wrist→middle-MCP 5.6–9.0 cm,
+  palm width 4.7–5.8 cm (an adult palm is ~8 cm); human wrist orientation steps 6–29° per frame. During the drift the
+  robot wrist sits 150–177° from the human wrist frame versus the normal ~121° offset, i.e. the IK settles into another
+  basin and stays there under warm start until it snaps back at f30 (108° step).
+- New option `mkref.py --bone_norm [--hand_scale k]`: rebuild the skeleton with every bone at its episode-median
+  length (× k) along each bone's own direction (`normalize_bones`). Hypothesis: a constant hand shape removes the IK
+  drift and jumps. Falsified if ep44/ep12 C_MC p95 and wrist jumps don't drop. Test: `/content/dev/bn_sweep.sh` on box 2
+  (base / bn10 / bn12, 3 processes at a time, thread caps).

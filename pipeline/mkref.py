@@ -239,6 +239,23 @@ def hand_rotations(J, side):
     return R
 
 
+PARENT = [-1, 0, 1, 2, 3, 0, 5, 6, 7, 0, 9, 10, 11, 0, 13, 14, 15, 0, 17, 18, 19]   # MediaPipe order
+
+
+def normalize_bones(J, valid, scale=1.0):
+    """Rebuild the 21-joint skeleton with every bone at its median length over the valid frames (x scale), keeping
+    each bone's direction (2026-10-20: ep44's wrist->middle-MCP varied 5.6-9.0 cm within 20 frames, and the E2S IK
+    drifted up to 33 cm from the wrist and snapped back). Parents precede children in MediaPipe order."""
+    L = np.zeros(21)
+    for k in range(1, 21):
+        L[k] = np.median(np.linalg.norm(J[valid, k] - J[valid, PARENT[k]], axis=-1)) * scale
+    out = J.copy()
+    for k in range(1, 21):
+        d = J[:, k] - J[:, PARENT[k]]
+        out[:, k] = out[:, PARENT[k]] + d / np.maximum(np.linalg.norm(d, axis=-1, keepdims=True), 1e-9) * L[k]
+    return out, L
+
+
 def palmar_score(J, R):
     """Mean (MCPs -> tips) . palmar; > 0 means flexion goes palmar, i.e. the side label fits the chirality."""
     y = R[:, 0, :, 1]
@@ -581,6 +598,8 @@ def parse_args():
     p.add_argument('--attach_dist', type=float, default=0.03)
     # retarget
     p.add_argument('--mano_to_robot_scale', type=float, default=1.2)
+    p.add_argument('--bone_norm', action='store_true', help='fix bone lengths to the episode median (normalize_bones)')
+    p.add_argument('--hand_scale', type=float, default=1.0, help='with --bone_norm: multiply the median bone lengths')
     p.add_argument('--warmup', type=int, default=10, help='copies of frame 0 prepended for the IK, dropped after')
     p.add_argument('--e2s_args', default='', help='extra ego_recon_to_sharpa.py flags, e.g. "--smooth_reference"')
     p.add_argument('--skip_e2s', action='store_true', help='reuse OUT/e2s_raw (redo contacts + validation only)')
@@ -710,6 +729,10 @@ def main():
         if len(Jw) != T:
             raise SystemExit(f'hands.npz joints_{s} has {len(Jw)} frames, poses have {T}')
         Js = Jw @ T_tab[:3, :3].T + T_tab[:3, 3]
+        if a.bone_norm and valid.sum() >= 5:
+            Js, Lb = normalize_bones(Js, valid, a.hand_scale)
+            log(f'{s}: bone lengths fixed to the episode median x {a.hand_scale} (wrist->middle MCP {Lb[9] * 100:.1f} cm, '
+                f'middle finger {Lb[10:13].sum() * 100:.1f} cm)')
         n_valid = int(valid.sum())
         if n_valid < max(10, a.min_valid_frac * T):
             c = obj_pos.reshape(-1, 3).mean(0)
