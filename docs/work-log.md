@@ -312,3 +312,15 @@ No spending.
   (health, wrong token → 403, exit codes, timeout). `vast.sh` now accepts `KEY=VALUE` settings before the subcommand.
 - Launch: `ops/vast.sh V2D_COMMIT=9c70bca… SETUP=none DISK=40 create 50595368 20261020-smoke-9c70bca 'bash ops/jobs/smoke.sh'`
   → instance **56909517**, offer 50595368 (GTX 1070, South Korea, $0.061/h all-in, $4/TB download), commit 9c70bca.
+- **Result (box 0, all times UTC; TRT = UTC+3):** created 15:03, image loaded and running 15:09:34, onstart started
+  run_job 15:10:00.
+  - env: `HF_TOKEN GH_TOKEN HF_STORE CONTAINER_ID CONTAINER_API_KEY RUN_ID V2D_COMMIT V2D_IMAGE` all present.
+  - Private repo clone with `GH_TOKEN` at commit 9c70bca: OK.
+  - Label set from the box with `CONTAINER_API_KEY`: OK.
+  - Host: GTX 1070 8 GB, driver 580.178.04, 56 CPUs, 31 GB RAM, Python 3.13.16, `hf` in `/venv/main`.
+  - HF public download of 0.69 GB (Track 3 evaluation split): 45 s. HF store write: `HF-WRITE-OK`, files visible from
+    the session through the `huggingface.co` network secret.
+  - Tunnel: `TUNNEL-OK` 16 s after start; `ops/vast.sh exec` ran commands (set and removed HOLD, read logs).
+  - SSH to the real box via `ssh -p 24874 root@ssh3.vast.ai` through the proxy: connection reset. SSH is not usable.
+  - Job exit 0 at 15:18:52; self-destroy pushed the final logs and destroyed the instance (0 instances at 15:19:16).
+  - Cost: credit 25.00 → 24.99 (**$0.01**). Outputs: HF store `runs/20261020-smoke-9c70bca/`.

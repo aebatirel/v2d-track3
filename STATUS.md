@@ -129,20 +129,18 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Cost:** included in the owner's Claude plan; usage counts toward the plan's limits; no charge for the cloud VM.
   The VM is small (about 4 vCPU, 16 GB RAM, 30 GB disk, no GPU), which is enough to orchestrate. All GPU work runs on
   Vast.
-- **SSH out may not work.** Cloud traffic goes through an HTTP/HTTPS proxy, and raw SSH to arbitrary hosts or ports
-  is not documented. **First action in a new cloud session:** with network access set to Full, run
-  `ssh -o BatchMode=yes -p <port> root@<host> true` against a Vast box and record the result here.
-- **If SSH is blocked**, drive Vast over HTTPS only:
-  - create instances through the API with an on-start script that clones this repo and runs the job on its own;
-  - push results to git or object storage over HTTPS;
-  - read logs through the Vast API;
-  - self-destroy at the end.
-
-  Interactive debugging then needs another route, such as Jupyter over HTTPS on the box or the owner opening a
-  session on the box.
-- **Vast API key:** store it as a *network secret* on the environment (allowed host `console.vast.ai`), never as an
-  environment variable or file. The proxy adds the header outside the VM. Vast's v0 API takes
-  `Authorization: Bearer <key>`; this header format has not been verified.
+- **SSH out is blocked (measured 2026-10-20).** The proxy resets non-TLS traffic, including SSH to a real Vast box
+  through `ssh3.vast.ai`. Everything runs over HTTPS instead:
+  - instances are created through the API; the on-start script clones this repo and runs the job on its own;
+  - results go to the HF store; logs come through the Vast API and the label;
+  - boxes self-destroy at the end;
+  - **interactive access:** `ops/vast.sh exec <run_id> '<cmd>'` runs commands on a box through `rexec.py` behind a
+    Cloudflare quick tunnel. The URL and token are in the HF store at `access/<run_id>.json`. This works.
+- **Vast API key:** a *network secret* on the environment (host `console.vast.ai`); the `Authorization: Bearer` header
+  works. HF uses the same mechanism (host `huggingface.co`). Vast account env vars hold `HF_TOKEN` and `GH_TOKEN`
+  (owner swapped in narrow tokens).
+- **Permission mode:** Auto mode's classifier blocks the tunnel and `ops/vast.sh create`. The owner runs this work in
+  **Accept edits** mode and approves each command.
 - **Idle pauses:** the VM pauses after a few idle minutes. The conversation survives, but background shell commands
   and loops do not. Long jobs must therefore run on the GPU box by themselves (nohup + self-destroy + stall watchdog) and
   must never depend on the cloud session staying awake.
@@ -150,18 +148,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   installed on the repo, or `/web-setup` from a terminal.
 
 ## Next actions, in order
-0. **2026-10-20 cloud session:** the Vast network secret works (HTTP 200) and network access is open. The session's SSH
-   key is registered (Vast key id 1621422). SSH out is blocked (tested against a public SSH server); WebSocket over HTTPS works, so monitoring goes over HTTPS (web terminal through a tunnel, Vast logs, HF pushes).
-   Still needed: Vast credit (balance $0), an HF store repo and token, and a clone route for the private repo
-   (`GH_TOKEN` or a code tarball in the HF store).
-1. Owner checklist in `docs/runbook-vast.md` §3:
-   - new Vast key and credit;
-   - HF store repo and the two tokens;
-   - the GitHub read-only PAT and the Claude GitHub App;
-   - cloud environment network secrets;
-   - go-ahead for the day-1 batch (about $14–16, ceiling $25).
-2. Box 0 smoke test (`ops/jobs/smoke.sh`). It checks SSH from the cloud session, env injection, HF write, the label
-   and self-destroy. Record each result here.
+1. **Done 2026-10-20:** owner checklist (Vast key, $25 credit, HF store `aebatirel/v2d-store`, narrow HF/GH tokens) and
+   the **box 0 smoke test: all checks passed, cost $0.01** (details in the work log). Still untested: the stall
+   watchdog's destroy path, `setup.sh` on the Vast image, throughput on the PRO 6000.
+2. Get the owner's go-ahead for box 1 (about $6–8; batch ceiling $25).
 3. Box 1 `ops/jobs/day1.sh`:
    - setup and environment snapshot;
    - perc2 on ep 12;

@@ -24,11 +24,13 @@ Written 2026-10-20. Every script named here is in the repo. They are **written b
 - **Scripts.** Launch, bootstrap, save, watchdog, self-destroy, environment snapshot and restore, data fetch, the
   mocap oracle and the day-1 job. Section 4 shows the flow.
 
-**Unverified until box 0 or box 1 runs:**
-- SSH from the Claude cloud session to a Vast box.
-- Injection of account-level env vars.
-- Whether the instance key `CONTAINER_API_KEY` may set the label and destroy its own instance.
-- HF uploads from the box.
+**Verified by box 0 (2026-10-20, instance 56909517, $0.01):** account env vars reach the box; the private repo clones
+with `GH_TOKEN`; `CONTAINER_API_KEY` sets the label and destroys its own instance; HF download (0.69 GB in 45 s) and
+upload to the store work; `ops/vast.sh exec` (HTTPS tunnel) works. **SSH from the Claude cloud session does not work**
+(proxy resets it); use `ops/vast.sh exec` instead of the SSH commands below.
+
+**Unverified until box 1 runs:**
+- The stall watchdog's destroy path.
 - `setup.sh` on the Vast image.
 - Throughput of the WS card against the Server Edition we measured.
 - Two trainings on one GPU.
