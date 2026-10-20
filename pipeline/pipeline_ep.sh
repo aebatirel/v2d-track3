@@ -43,7 +43,7 @@ echo "[$(date +%T)] hands done"
 if ! ls $R/processed/sequence_id=$SEQ/robot_name=sharpa_wave/*.parquet > /dev/null 2>&1; then
   DEP=$(readlink -f $P/depths_fs0.5.npy)
   PYTHONPATH=/content/v2d/robotic_grounding/source/robotic_grounding /content/rtvenv/bin/python $S/mkref.py \
-    --ep $EP --poses $P/poses.npz --depth $DEP --hands $R/hands.npz --out $R > $R/mkref_log.txt 2>&1 \
+    --ep $EP --poses $P/poses.npz --depth $DEP --hands $R/hands.npz --out $R ${MKREF_ARGS:-} > $R/mkref_log.txt 2>&1 \
     || { echo "mkref FAILED"; tail -8 $R/mkref_log.txt; exit 1; }
 fi
 REFDIR=$R/processed/sequence_id=$SEQ/robot_name=sharpa_wave

@@ -497,3 +497,12 @@ No spending.
   length (× k) along each bone's own direction (`normalize_bones`). Hypothesis: a constant hand shape removes the IK
   drift and jumps. Falsified if ep44/ep12 C_MC p95 and wrist jumps don't drop. Test: `/content/dev/bn_sweep.sh` on box 2
   (base / bn10 / bn12, 3 processes at a time, thread caps).
+- **Bone normalisation: mixed, not adopted.** ep44 right C_MC p95 11.7 → 5.1 cm and wrist max 30.9 → 9.6 cm, but
+  left unchanged, and ep12 right got much worse (C_MC median 4.8 → 14.6 cm).
+- **Wrist IK cost: confirmed.** `mkref --wrist_cost` patches NVIDIA's `SHARPA_TO_MANO_MAPPING['.*_hand_C_MC']`
+  position cost (0.2 → k) in our E2S shim (E2S code unchanged). Results (base 0.2 / 1.0 / 3.0):
+  ep44 right C_MC p95 11.7 / 7.3 / **2.5** cm, wrist max 30.9 / 16.8 / **4.6** cm (steps > 5 cm 9 / 5 / 0); left p95
+  19.5 / 15.7 / **6.3**, max 25.0 / 19.8 / **8.1**; ep12 right p95 8.2 / 5.6 / **2.9**, max 11.7 / 9.7 / 7.4; left p95
+  17.1 / 12.8 / **4.3**, max 12.6 / 9.7 / **4.7**. Cost: fingertip median error 0.8–1.4 → 1.6–3.1 cm. Contacts
+  unchanged; all VALIDATION OK. Variant letter `c` in train_runs (MKREF_ARGS="--wrist_cost 3.0"). Whether it raises
+  the sim score is untested.
