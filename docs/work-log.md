@@ -371,3 +371,11 @@ No spending.
   and logs were renamed `*_attempt1`.
 - Note: `git checkout` on a box while a bash script from the repo runs is safe only because git replaces files
   (new inode); never edit a running script in place.
+- **Resume test passed (16:27–16:33 UTC):** perc2 killed after `state_10002432`; the rerun logged
+  `resuming from …/state_10002432.safetensors` and its training progress continued at 10,002,432/250,003,456 (4.0%) →
+  12.5M, not from zero. (Replay buffer not saved, so it refills; whether the final score matches an uninterrupted run
+  is still unmeasured.)
+- Two trainings on one GPU: 82 GB of 96 GB used, GPU 100%. Oracle averaged 36.1k env steps/s over its first 19.6 min
+  (alone for the first ~9 min); perc2 14.8k steps/s in its first 2.8 min after resume (shared GPU, JIT). Oracle ETA
+  ~18:10 UTC; perc2 estimated ~19:00–19:15 UTC.
+- A monitor false alarm ("instance gone") came from one failed `vast.sh show` call; the monitor now needs two misses.
