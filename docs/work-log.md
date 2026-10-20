@@ -413,3 +413,16 @@ No spending.
   dropped constraints let contacts slip in some training worlds. Check which sim config the official evaluator uses
   before changing anything; test by training with `sim.njmax=1024` and comparing scores.
 - Cost so far (Vast credit): $3.97 at 18:15 UTC; box 1 runs at $1.442/h.
+- 19:26 UTC: **box 2** launched for the reference sweep: offer 49231571 (Czechia, $1.468/h, 8 Gbps down,
+  $2.67/TB), instance 56940182, run `20261020-refsweep-ea14fdf`, `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020`,
+  job `ops/jobs/refs_sweep.sh` (perception → hands → mkref on all 20 public episodes, 2 streams, no training, then
+  `pipeline/ref_report.py`). Host: 64 CPUs, 503 GB RAM. **Snapshot restore works: setup 2 min** (`RESTORE-OK`).
+- Evaluator config: `evaluate_policy.yaml` rebuilds env, task, embodiment and sim from the checkpoint's resolved
+  config, so the training-time `sim` (njmax) also applies at evaluation. Our requirements note records "changing
+  simulator physics or evaluation behaviour would count as manipulating the evaluation", so raising njmax for a
+  submission needs the owner's or organisers' OK, although NVIDIA's own `dexmate_sharpa_flash_sac.yaml` uses 1024.
+- **Rollout rendering works:** `pipeline/render_rollout.sh` uses `view_policy.py` with the mp4 viewer backend.
+  Needed: `PYGLET_HEADLESS=1` (no X display); `markers.keypoints=false markers.contacts=false` (their warp kernel
+  fails: `widths` float vs array); camera aimed at the table. The first montage (old floor-bug policy on the fixed
+  ep12 scene) shows the round support table, cup and rack resting on it, and both Sharpa hands barely moving
+  toward the cup. `pipeline_ep.sh` now renders every evaluated policy to `$RES/render/{view.mp4,montage.jpg}`.

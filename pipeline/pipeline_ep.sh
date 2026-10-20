@@ -71,4 +71,6 @@ echo "[$(date +%T)] evaluated"
 
 # 6) score the simulated trajectory against mocap (evaluation only)
 python $S/score_sim.py $EP $RES 2>&1 | tail -40
+# 7) a video and a frame montage of the rollout, for looking at failures (RENDER=0 to skip)
+[ "${RENDER:-1}" = 1 ] && { bash $S/render_rollout.sh $CK $RES/render || echo "render failed (not fatal)"; }
 echo "[$(date +%T)] ep$EP DONE"
