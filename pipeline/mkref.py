@@ -330,27 +330,53 @@ def fit_table(depth0, KR, W0, cam_T0, meshes, a):
     P = P @ W0[:3, :3].T + W0[:3, 3]
     if len(P) > 30000:
         P = P[rng.choice(len(P), 30000, replace=False)]
-    best, best_cnt = None, -1
-    for _ in range(a.plane_iters):
-        p0, p1, p2 = P[rng.choice(len(P), 3, replace=False)]
-        n = np.cross(p1 - p0, p2 - p0)
-        nn = np.linalg.norm(n)
-        if nn < 1e-9:
-            continue
-        n = n / nn
-        cnt = int((np.abs(P @ n - n @ p0) < a.plane_thr).sum())
-        if cnt > best_cnt:
-            best, best_cnt = (n, -n @ p0), cnt
-    n, d = best
-    inl = np.abs(P @ n + d) < a.plane_thr
-    for _ in range(3):
-        c = P[inl].mean(0)
-        n = np.linalg.svd(P[inl] - c, full_matrices=False)[2][2]
-        d = -n @ c
+    # Object vertices in world, to pick the plane the objects stand on. The ring can also hold the floor past the
+    # table edge, and the floor can win a plain RANSAC (box 1, ep12: the floor 60 cm under the objects won).
+    Vw = [np.asarray(m.vertices) @ (W0 @ cam_T0[n_])[:3, :3].T + (W0 @ cam_T0[n_])[:3, 3] for n_, m in meshes.items()]
+
+    def ransac(Q):
+        best, best_cnt = None, -1
+        for _ in range(a.plane_iters):
+            p0, p1, p2 = Q[rng.choice(len(Q), 3, replace=False)]
+            n = np.cross(p1 - p0, p2 - p0)
+            nn = np.linalg.norm(n)
+            if nn < 1e-9:
+                continue
+            n = n / nn
+            cnt = int((np.abs(Q @ n - n @ p0) < a.plane_thr).sum())
+            if cnt > best_cnt:
+                best, best_cnt = (n, -n @ p0), cnt
+        n, d = best
+        inl = np.abs(Q @ n + d) < a.plane_thr
+        for _ in range(3):
+            c = Q[inl].mean(0)
+            n = np.linalg.svd(Q[inl] - c, full_matrices=False)[2][2]
+            d = -n @ c
+            inl = np.abs(Q @ n + d) < a.plane_thr
+        if n @ W0[:3, 3] + d < 0:                  # camera on the positive side: n points up, toward the camera
+            n, d = -n, -d
+        return n, d
+
+    # Sequential RANSAC: up to 4 planes holding >= 3 % of the ring points each.
+    cands, rest = [], np.ones(len(P), bool)
+    for _ in range(4):
+        if rest.sum() < max(500, 0.03 * len(P)):
+            break
+        n, d = ransac(P[rest])
         inl = np.abs(P @ n + d) < a.plane_thr
-    if n @ W0[:3, 3] + d < 0:                      # camera on the positive side: n points up, toward the camera
-        n, d = -n, -d
-    return n, d, float(inl.mean()), len(P), float(np.sqrt(np.mean((P[inl] @ n + d) ** 2)))
+        if (inl & rest).sum() < 0.03 * len(P):
+            break
+        lowest = min(float((V @ n).min() + d) for V in Vw)          # lowest object point above this plane (m)
+        cands.append(dict(n=n, d=d, frac=float(inl.mean()), lowest=lowest,
+                          tilt=float(np.degrees(np.arccos(np.clip(abs(n @ cands[0]['n']), -1, 1)))) if cands else 0.0,
+                          rms=float(np.sqrt(np.mean((P[inl] @ n + d) ** 2)))))
+        rest &= ~inl
+    # The support plane: parallel to the dominant plane (within 25 deg) and closest under the lowest object point.
+    ok = [c for c in cands if c['tilt'] <= 25 and c['lowest'] > -a.support_tol]
+    pick = min(ok or cands, key=lambda c: abs(c['lowest']))
+    a._plane_cands = [{k: (round(v, 4) if isinstance(v, float) else None) for k, v in c.items() if k not in ('n', 'd')}
+                      for c in cands]
+    return pick['n'], pick['d'], pick['frac'], len(P), pick['rms']
 
 
 def table_frame(n, d, W0, centroid_w, table_z):
@@ -541,6 +567,10 @@ def parse_args():
     p.add_argument('--ring_out', type=int, default=90)
     p.add_argument('--plane_thr', type=float, default=0.006)
     p.add_argument('--plane_iters', type=int, default=1000)
+    p.add_argument('--support_max', type=float, default=0.05,
+                   help='abort if the lowest frame-0 object bottom is more than this above the table (m)')
+    p.add_argument('--support_tol', type=float, default=0.03,
+                   help='abort if it is more than this below the table (m); also the plane-pick tolerance')
     p.add_argument('--snap', choices=['none', 'lowest', 'per_object'], default='per_object',
                    help='lowest: move the plane to the lowest object bottom at frame 0; per_object: lift/lower each '
                         'object whose frame-0 bottom is within SNAP_MAX of the plane onto it (whole trajectory)')
@@ -641,7 +671,13 @@ def main():
 
     OBJ = obj_in_table(T_tab)
     h = bottoms(OBJ)
+    log(f'table plane candidates (fraction of ring points, lowest object point above it in m, tilt vs the first): '
+        f'{a._plane_cands}')
     log(f'frame-0 object bottoms above the fitted table (cm): {dict(zip(names, np.round(h * 100, 2).tolist()))}')
+    if not -a.support_tol <= h.min() <= a.support_max:
+        raise SystemExit(f'no support plane under the objects: the lowest object bottom is {h.min() * 100:.1f} cm above '
+                         f'the fitted table (allowed {-a.support_tol * 100:.0f} to {a.support_max * 100:.0f} cm); '
+                         f'the simulated objects would fall or start inside the table')
     shifts = np.zeros(B)
     if a.snap == 'lowest' and abs(h.min()) <= a.snap_max:
         T_tab[2, 3] -= h.min()
