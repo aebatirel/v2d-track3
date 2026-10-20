@@ -16,14 +16,18 @@ for the working rules.
 |---|---|
 | `STATUS.md` | Current state, results, gotchas, next actions. Keep it current. |
 | `CLAUDE.md` | Working rules for any agent continuing this work. |
-| `pipeline/setup.sh` | One-shot machine setup (FlashCHORD venv at the evaluator pin, dataset episode, kit, SAM2, FoundationStereo, FoundationPose). |
+| `docs/runbook-vast.md` | **How to run on Vast.ai:** readiness, where data and keys live, the run flow, the day-1 batch, the failure playbook. |
+| `ops/` | Vast control (`vast.sh`, `config.env`), box scripts (`box/`: on-start, bootstrap, HF store, watchdog, self-destroy) and jobs (`jobs/`). Written, not yet run on Vast. |
+| `pipeline/setup.sh` | One-shot machine setup (FlashCHORD venv at the evaluator pin, hand venvs, kit, SAM2, DINOv2, FoundationStereo, FoundationPose; calls `fetch_data.sh`). |
+| `pipeline/fetch_data.sh` | Fetches the whole Track 3 dataset (1.47 GB) into the `/content/t3` layout, plus the spoon model. |
+| `pipeline/oracle_poses.py` | Evaluation-only oracle: mocap object poses on perc2's camera track (public episodes only). |
 | `pipeline/perc2.py` | **Validated perception** (mean AUC 0.809 on 20 public episodes): stereo depth → scan-matching detection → FoundationPose tracking → visual odometry → kit metrics. |
 | `pipeline/perc.py` | perc4 = perc2 + render-and-compare detection check + reworked visual odometry. Built, **not validated**. |
 | `pipeline/diag.py`, `summ.py` | Per-frame error diagnostics with overlay montage; batch summary table. |
 | `pipeline/hands_mp.py` | MediaPipe hands on the colour camera, lifted to 3-D with stereo depth. Written, not run. |
 | `pipeline/mkref.py` | Builds the FlashCHORD reference (table frame, Sharpa IK via NVIDIA's unchanged retargeter, contacts, validation). Written, not run. |
 | `pipeline/score_sim.py` | Scores an official-evaluator rollout of a public episode against mocap. Written, not run. |
-| `pipeline/pipeline_ep.sh` | One episode end to end: perception → hands → reference → train → evaluate → score. Written, not run. |
+| `pipeline/pipeline_ep.sh` | One episode end to end: perception (`PERC=perc2`, `perc4` or `oracle`) → hands → reference → train (auto-resume) → evaluate → score. Written, not run. |
 | `pipeline/run_public.sh` | Fetches all 20 public episodes and runs perception on each. |
 | `pipeline/README_ref.md` | Exact commands and conventions for the reference / train / evaluate steps. |
 | `pipeline/archive/` | Superseded experiments (OWLv2 text-prompt detector, first single-episode script). |
@@ -38,14 +42,16 @@ for the working rules.
 
 ## Running on a rented GPU (Vast.ai)
 
-The scripts were written on Google Colab and use `/content` as their root. On a fresh Linux GPU box (root user):
+Follow [`docs/runbook-vast.md`](docs/runbook-vast.md). `ops/vast.sh create` starts a box that sets itself up, runs one
+job, saves to the HF store and destroys itself. The scripts use `/content` as their root, as on Colab; on Vast,
+`/content` is a symlink to `/workspace`. To set up a box by hand (root user):
 
 ```bash
-ln -s /workspace /content          # scripts expect /content
+ln -s /workspace /content
 git clone https://github.com/aebatirel/v2d-track3.git /workspace/v2d-track3
-cp /workspace/v2d-track3/pipeline/*.py /workspace/v2d-track3/pipeline/*.sh /content/
+cp /workspace/v2d-track3/pipeline/setup.sh /content/
 DEBIAN_FRONTEND=noninteractive setsid nohup bash /content/setup.sh > /content/setup.log 2>&1 < /dev/null &
-grep -aE '[A-Z0-9]+-OK|DONE' /content/setup.log      # wait for SETUP-DONE (~15 min)
+grep -aE '[A-Z0-9]+-(OK|FAIL)|DONE' /content/setup.log      # wait for SETUP-DONE (~20-30 min)
 ```
 
 Requirements: one NVIDIA GPU with ≥ 48 GB (RTX PRO 6000 96 GB recommended), driver ≥ 580 (CUDA 13), ≥ 16 vCPU,

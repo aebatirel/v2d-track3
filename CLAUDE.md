@@ -37,7 +37,10 @@ These carry over the rules the owner set while this work ran locally. Follow the
 - Keep large or regenerable data out of git: the dataset and videos, depth caches, model weights, and bulk or
   intermediate checkpoints (see `.gitignore`).
   - GPU machines download the public dataset and weights with the setup scripts.
-  - Large artifacts worth keeping go to object storage (to be set up), not git.
+  - Large artifacts worth keeping go to the HF store, not git. The store is a private Hugging Face dataset repo
+    (`HF_STORE` in `ops/config.env`; proposed 2026-10-20, active once the owner creates it). See
+    `docs/runbook-vast.md`.
+  - GPU boxes write only to the HF store, never to git. The agent commits summaries and scores.
   - Reasons: GitHub rejects files over 100 MB, binaries bloat the history forever, and every cloud session clones the
     whole repo.
 - Each submission must reference a commit of the repo shared with the organisers (this one or a cleaned copy), so

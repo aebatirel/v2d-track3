@@ -41,6 +41,32 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Retargeting without MANO is feasible.** NVIDIA's `ego_recon_to_sharpa.py` reads only 21 joint positions plus
   orientations, in MediaPipe order. See `docs/research/notes/22-hand-reference-contract.md`.
 
+## Staging for Vast (2026-10-20): see `docs/runbook-vast.md`
+- **Ready off the clock.** Scripts are written but not yet run on Vast (only `ops/vast.sh offers` was tested on the
+  live market):
+  - `ops/vast.sh`: launch, list, logs, label and destroy through the API with curl;
+  - `ops/box/`: on-start, bootstrap, HF store, stall watchdog, self-destroy;
+  - `ops/jobs/smoke.sh` (box 0) and `ops/jobs/day1.sh` (box 1);
+  - `pipeline/fetch_data.sh`: the whole 1.47 GB dataset;
+  - `pipeline/oracle_poses.py`: the evaluation-only mocap oracle.
+- **Changed in the pipeline:**
+  - `setup.sh` now also installs CUDA dev headers, both hand venvs and the MediaPipe model, and can pull weights from
+    the HF mirror.
+  - `pipeline_ep.sh` now defaults to the validated **perc2** (it ran the unvalidated perc4 before), keeps one output
+    folder per variant and seed, supports `PERC=oracle`, and resumes training from the newest `state_` checkpoint.
+- **Found today:**
+  - FlashCHORD resumes (`training.resume=true training.checkpoint_path=<state file>`) and checkpoints every 5M steps;
+    the replay buffer is not saved by default.
+  - The Vast image `vastai/pytorch:2.11.0-cu130-cuda-13.2-mini-py313-2026-10-16` matches Colab's torch, CUDA and
+    Python.
+  - PRO 6000 WS on demand costs $1.45–1.65/h all-in (market on 2026-10-20 afternoon); interruptible from $0.54/h.
+- **Storage:** a private HF dataset repo (`HF_STORE` in `ops/config.env`) holds the weight mirror, environment
+  snapshots, depth caches and run outputs. Git holds code and summaries. Boxes never push to git.
+- **Keys:**
+  - Vast key and HF read token → network secrets in the Claude cloud environment.
+  - HF write token and GitHub read-only token → Vast account env vars (narrow scope, expiring).
+  - Owner checklist: runbook §3.
+
 ## Written, not run yet (first things to test)
 - `hands_mp.py` → `mkref.py` → `pipeline_ep.sh` → `score_sim.py`. `README_ref.md` lists the checks to do first:
   - pinocchio frame/finger/task counts should be 67/22/11;
@@ -124,12 +150,23 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   installed on the repo, or `/web-setup` from a terminal.
 
 ## Next actions, in order
-1. Owner: Vast.ai account, $10–20 credit, add the agent's SSH public key, rent 1× RTX PRO 6000 as above, and share
-   the SSH command.
-2. Setup on the box (see README); check throughput and checkpoint resume.
-3. Public end-to-end on ep 12 (then 22 and 27): `hands_mp` → `mkref` → train 250M → evaluate → `score_sim`. Also train
-   with the mocap object trajectory as the reference (evaluation-only oracle) to separate tracking error from robot
-   error.
+1. Owner checklist in `docs/runbook-vast.md` §3:
+   - new Vast key and credit;
+   - HF store repo and the two tokens;
+   - the GitHub read-only PAT and the Claude GitHub App;
+   - cloud environment network secrets;
+   - go-ahead for the day-1 batch (about $14–16, ceiling $25).
+2. Box 0 smoke test (`ops/jobs/smoke.sh`). It checks SSH from the cloud session, env injection, HF write, the label
+   and self-destroy. Record each result here.
+3. Box 1 `ops/jobs/day1.sh`:
+   - setup and environment snapshot;
+   - perc2 on ep 12;
+   - resume test;
+   - ep 12 trained twice at once, on perception objects and on the evaluation-only mocap oracle, which separates
+     tracking error from robot error;
+   - evaluate and `score_sim`.
+
+   Then ep 22 and 27 from the snapshot.
 4. Perception fixes, validated on public episodes:
    - detection check (perc4 verify);
    - marker spin for lid and cups;

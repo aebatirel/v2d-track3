@@ -216,3 +216,36 @@ small results/final policies, keep bulk data out (owner asked why: GitHub 100 MB
 approach -> approved, exhaust improvements before changing architecture; spoon -> agent decides frame from evidence,
 owner checks visuals on request; repoforsubmit -> undecided, may send a cleaned copy. Undecided (1): remote ("first
 settle the rules"). Applied to CLAUDE.md, STATUS.md, docs/context-and-decisions.md, README.md.
+
+2026-10-20 (evening): Vast staging prepared off the clock. The owner asked whether we are ready: where data and keys
+live, and every small detail, because the clock runs once on Vast.
+
+Checked:
+- The Track 3 dataset on HF is 1.47 GB in total.
+- The Vast image `vastai/pytorch:2.11.0-cu130-cuda-13.2-mini-py313-2026-10-16` matches Colab (torch 2.11+cu130,
+  Python 3.13). It has nvcc but no CUDA -dev library headers.
+- Vast API: create, destroy, logs, label and ssh-key; `onstart` is limited to 4048 characters; account-level env vars
+  are supported.
+- FlashCHORD at the pin resumes from `state_<step>.safetensors` and saves every 5M steps. The replay buffer is not
+  saved by default.
+- Market: PRO 6000 WS $1.45–1.65/h on demand, from $0.54/h interruptible; any GPU from $0.10/h.
+
+Wrote (not yet run on Vast):
+- `docs/runbook-vast.md`;
+- `ops/vast.sh` (`offers` tested on the public API) and `ops/config.env`;
+- `ops/box/{onstart,lib,run_job,store,watchdog}.sh`;
+- `ops/jobs/{smoke,day1}.sh`;
+- `pipeline/fetch_data.sh` and `pipeline/oracle_poses.py`.
+
+Changed:
+- `setup.sh`: CUDA dev headers, hand venvs, MediaPipe model, DINOv2 pre-fetch, HF weight mirror, full dataset fetch.
+- `pipeline_ep.sh`: defaults to perc2 (it ran the unvalidated perc4); adds `PERC=oracle`; one output folder per variant
+  and seed; automatic training resume.
+
+Proposed:
+- a private HF dataset repo as the artifact store;
+- boxes never push to git;
+- narrow, expiring tokens on boxes, in Vast account env vars;
+- the Vast key and the HF read token as cloud network secrets.
+
+Next: the owner checklist (runbook §3), then box 0 (smoke) and box 1 (day 1). Expected batch cost $14–16, ceiling $25.

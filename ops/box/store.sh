@@ -1,0 +1,91 @@
+#!/bin/bash
+# Artifact store: a private Hugging Face dataset repo ($HF_STORE, e.g. <owner>/v2d-store), written with the HF_TOKEN
+# from the Vast account env. Written 2026-10-20, not yet run.
+# Layout in the store:
+#   weights/FoundationStereo/23-51-11/...       weights/FoundationPose/<dated dirs>/...   (mirror of Google Drive)
+#   env/<name>/env.tar.zst.part-* + SHA256SUMS  environment snapshot (venvs, built extensions, weights, kit, caches)
+#   cache/depth/<public|eval>/ep<N>/depths_fs0.5.npy                                      (FoundationStereo depth)
+#   runs/<run_id>/...                           logs, perception outputs, references, latest policy/state, eval results
+#
+#   store.sh push-run                  stage this run's outputs (hard links) and upload them as one commit
+#   store.sh push-depth <ep> [public|eval] [perc_dir]
+#   store.sh pull-depth <ep> [public|eval]
+#   store.sh pull-run <run_id>         put an earlier run's outputs back under /content (stages skip, training resumes)
+#   store.sh mirror-weights            upload FoundationStereo/FoundationPose weights after a Google Drive setup
+#   store.sh snapshot-env <name>       tar + zstd + upload the built environment (same image tag required to restore)
+#   store.sh restore-env <name>
+. /etc/v2d_env 2> /dev/null || true
+[ -f /venv/main/bin/activate ] && . /venv/main/bin/activate      # before set -u: activate scripts read unset vars
+set -euo pipefail
+: "${HF_STORE:?HF_STORE is not set}"
+up()   { hf upload "$HF_STORE" "$1" "$2" --repo-type dataset --commit-message "$3" > /dev/null; }
+down() { hf download "$HF_STORE" --repo-type dataset --include "$1" --local-dir "$2" > /dev/null; }
+need_zstd() { command -v zstd > /dev/null || apt-get -qq install -y zstd > /dev/null 2>&1; }
+SNAP_PATHS="workspace/v2d workspace/FoundationStereo workspace/FoundationPose workspace/ckpt workspace/kit
+            workspace/mpvenv workspace/rtvenv venv/main .uv root/.cache/torch/hub"
+
+case ${1:-} in
+push-run)
+  : "${RUN_ID:?}"; S=/content/push/$RUN_ID; rm -rf $S; mkdir -p $S; cd /content
+  for d in perc2 perc4 oracle refs runs results; do
+    [ -d $d ] || continue
+    find $d -type f ! -name 'depths_*.npy' ! -path '*/dbg/*' ! -path '*/hydra/*/.hydra/*.lock' | while read -r f; do
+      mkdir -p "$S/$(dirname "$f")"; ln "$f" "$S/$f" 2> /dev/null || cp "$f" "$S/$f"
+    done
+  done
+  # keep only the newest policy_* and state_* per run directory (the latest for evaluation and for resuming)
+  for r in $S/runs/*/; do
+    [ -d "$r" ] || continue
+    for pfx in policy_ state_; do
+      { ls -v "$r" | grep "^$pfx" || true; } | head -n -1 | while read -r x; do rm -rf "$r/$x"; done
+    done
+  done
+  cp /workspace/run_job.log /content/*.log $S/ 2> /dev/null || true
+  cp -r /content/run_state $S/ 2> /dev/null || true
+  git -C /content/v2d-track3 rev-parse HEAD > $S/COMMIT
+  up $S runs/$RUN_ID "run $RUN_ID: $(date -u +%FT%TZ)"
+  echo "pushed runs/$RUN_ID ($(du -sh $S | cut -f1))"
+  ;;
+push-depth)
+  EP=$2; SPLIT=${3:-public}; PD=${4:-/content/perc2}
+  up "$(readlink -f $PD/ep$EP/depths_fs0.5.npy)" cache/depth/$SPLIT/ep$EP/depths_fs0.5.npy "depth $SPLIT ep$EP"
+  ;;
+pull-depth)
+  EP=$2; SPLIT=${3:-public}
+  down "cache/depth/$SPLIT/ep$EP/*" /content/hfstore
+  mkdir -p /content/cache/depth/ep$EP
+  ln -sf /content/hfstore/cache/depth/$SPLIT/ep$EP/depths_fs0.5.npy /content/cache/depth/ep$EP/
+  ;;
+pull-run)
+  down "runs/$2/*" /content/hfstore
+  for d in perc2 perc4 oracle refs runs results; do
+    [ -d /content/hfstore/runs/$2/$d ] && mkdir -p /content/$d && cp -rn /content/hfstore/runs/$2/$d/. /content/$d/
+  done
+  echo "pulled runs/$2"
+  ;;
+mirror-weights)
+  up /content/FoundationStereo/pretrained_models/23-51-11 weights/FoundationStereo/23-51-11 "FoundationStereo weights"
+  up /content/FoundationPose/weights weights/FoundationPose "FoundationPose weights"
+  echo "weights mirrored"
+  ;;
+snapshot-env)
+  NAME=$2; need_zstd; O=/content/snap/$NAME; rm -rf $O; mkdir -p $O
+  ( . /venv/main/bin/activate 2> /dev/null; pip freeze ) > $O/pip-freeze-main.txt 2> /dev/null || true
+  echo "image ${V2D_IMAGE:-unknown}; commit $(git -C /content/v2d-track3 rev-parse HEAD); $(date -u +%FT%TZ)" > $O/README.txt
+  # shellcheck disable=SC2086
+  tar -C / --exclude='*/__pycache__' -cf - $(cd / && ls -d $SNAP_PATHS 2> /dev/null) | zstd -q -T0 -3 | split -b 8G - $O/env.tar.zst.part-
+  (cd $O && sha256sum env.tar.zst.part-* > SHA256SUMS)
+  up $O env/$NAME "environment snapshot $NAME"
+  echo "snapshot env/$NAME uploaded ($(du -sh $O | cut -f1))"; rm -rf $O
+  ;;
+restore-env)
+  NAME=$2; need_zstd; D=/content/snapdl
+  down "env/$NAME/*" $D
+  (cd $D/env/$NAME && sha256sum -c --quiet SHA256SUMS)
+  cat $D/env/$NAME/env.tar.zst.part-* | zstd -q -d | tar -C / -xf -
+  rm -rf $D
+  apt-get -qq update > /dev/null 2>&1; apt-get -qq install -y libeigen3-dev libboost-all-dev > /dev/null 2>&1 || true
+  echo "ENV-RESTORE-OK $NAME"
+  ;;
+*) sed -n '2,18p' "$0"; exit 1 ;;
+esac
