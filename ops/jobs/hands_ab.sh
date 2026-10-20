@@ -20,14 +20,15 @@ one() {
   log "ab $V ep$ep: mkref rc=$?" >> $J
 }
 label "hands A/B"
-n=0
+# wait only on the workers: a bare `wait` would also wait for the hold loop above and deadlock (2026-10-20)
+pids=()
 for ep in $EPS; do
   for V in g v; do
-    one $ep $V &
-    n=$((n + 1)); [ $((n % 6)) -eq 0 ] && wait                          # 6 runs at a time (CPU-bound)
+    one $ep $V & pids+=($!)
+    [ ${#pids[@]} -ge 6 ] && { wait "${pids[@]}"; pids=(); }           # 6 runs at a time (CPU-bound)
   done
 done
-wait
+[ ${#pids[@]} -gt 0 ] && wait "${pids[@]}"
 python $P/ref_report.py perc2g > /content/results/ref_report_perc2g.txt 2>&1
 python $P/ref_report.py perc2v > /content/results/ref_report_perc2v.txt 2>&1
 { echo "== A (greedy)"; cat /content/results/ref_report_perc2g.txt; echo "== B (viterbi)"; cat /content/results/ref_report_perc2v.txt; } >> $J

@@ -26,13 +26,14 @@ one() {
   log "run $tag: rc=$? $(grep -aE 'DONE|FAILED' /content/pipe_$tag.log | tail -1)" >> $J
 }
 label "train runs: $RUNS"
-n=0
+# wait only on the workers: a bare `wait` would also wait for the hold loop above and deadlock (2026-10-20)
+pids=()
 for spec in $RUNS; do
-  one "$spec" &
-  n=$((n + 1)); [ $((n % C)) -eq 0 ] && wait
+  one "$spec" & pids+=($!)
+  [ ${#pids[@]} -ge $C ] && { wait "${pids[@]}"; pids=(); }
   sleep 120                                                             # stagger the JIT compiles
 done
-wait
+[ ${#pids[@]} -gt 0 ] && wait "${pids[@]}"
 touch $DONE
 bash $OPS/store.sh push-run > /dev/null 2>&1 || true
 # release the hold only if no other pipeline still runs on this box

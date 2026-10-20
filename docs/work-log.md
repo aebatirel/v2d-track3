@@ -525,3 +525,10 @@ No spending.
   2:perc2:vc" at d144d02+ (Viterbi hands + wrist cost 3.0, default wrist). `ops/box/hold_guard.sh` on both boxes keeps
   the hold while any `pipeline_ep.sh` runs (a finishing job removing the hold could otherwise let the watchdog
   destroy a box mid-training).
+- **Bug found and fixed:** `hands_ab.sh`, `train_runs.sh` and `train_pair.sh` used a bare `wait` after starting a
+  background hold-refresh loop, so they also waited for that loop, which only ends when the job ends → deadlock.
+  Effects: the hands A/B stalled after its first batch (ep0/2/11); `train_pair.sh` on box 1 never finished (its
+  pipelines did, including eval; only the final push and hold release were skipped); the `train_runs.sh` jobs now
+  running on both boxes will do the same after their trainings (the watchdog then destroys the box ≤ 30 min after
+  the GPU goes idle; release the hold by hand to save that). Fixed by waiting on the worker PIDs only. Also killed six
+  scale-sweep mkref/E2S processes hung since the thread-exhaustion failure (1h50 at 0 % CPU).

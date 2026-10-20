@@ -13,10 +13,10 @@ EP=${EP:-12}; P=$REPO_DIR/pipeline; J=/content/job.log
  done) &
 label "pair ep$EP: perc2 + oracle"
 log "pair ep$EP: start, commit $(git -C $REPO_DIR rev-parse --short HEAD)" >> $J
-PERC=perc2  bash $P/pipeline_ep.sh $EP > /content/pipe_perc2_ep$EP.log 2>&1 &
+PERC=perc2  bash $P/pipeline_ep.sh $EP > /content/pipe_perc2_ep$EP.log 2>&1 & p1=$!
 sleep 120                                                              # stagger the JIT compiles
-PERC=oracle bash $P/pipeline_ep.sh $EP > /content/pipe_oracle_ep$EP.log 2>&1 &
-wait
+PERC=oracle bash $P/pipeline_ep.sh $EP > /content/pipe_oracle_ep$EP.log 2>&1 & p2=$!
+wait $p1 $p2                     # not a bare `wait`: that would also wait for the hold loop and deadlock (2026-10-20)
 for r in perc2 oracle; do
   log "pair ep$EP $r: $(grep -aE 'DONE|FAILED' /content/pipe_${r}_ep$EP.log | tail -1)" >> $J
 done
