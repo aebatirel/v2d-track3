@@ -532,3 +532,10 @@ No spending.
   running on both boxes will do the same after their trainings (the watchdog then destroys the box ≤ 30 min after
   the GPU goes idle; release the hold by hand to save that). Fixed by waiting on the worker PIDs only. Also killed six
   scale-sweep mkref/E2S processes hung since the thread-exhaustion failure (1h50 at 0 % CPU).
+- **Hands A/B result (box 2, 18 public episodes, mkref at NVIDIA weights; proxy = robot wrist steps > 5 cm,
+  confounded by the IK drift):** greedy 255 vs Viterbi(w_arm 0.8) 276 → **not a clear win**. Better: ep18 (18 → 5,
+  right C_MC p95 28.9 → 6.8 cm), ep24 (32 → 20), ep2, ep23, ep43, ep12 (hand-over fixed). Worse: ep31 (3 → 18), ep39
+  (13 → 36), ep22 (1 → 17), ep21 (13 → 18). Viterbi assigns more detections (valid frames up, e.g. ep21 R 129 → 185).
+  Hypothesis: the forearm cue (weight 0.8) is near-random for the left hand (ep12: left forearm x median +0.01) and
+  forces wrong overrides. Test: hands-only rerun with w_arm 0.3 and 0.0 on ep31/39/22/18/12/24, scored by human palm
+  steps > 4 cm (no IK involved).
