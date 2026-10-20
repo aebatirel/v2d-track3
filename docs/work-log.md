@@ -295,3 +295,10 @@ No spending.
   works. **Hypothesis:** an interactive shell on a box is reachable over HTTPS/WSS, either through Vast's instance
   portal (Cloudflare tunnel + web terminal/Jupyter) or a cloudflared quick tunnel we start. Falsified if box 0 cannot
   open such a terminal from this session.
+
+## 2026-10-20 (cloud session): Vast billing check
+- Owner swapped in restricted tokens (GH: this repo, Contents read-only) and added credit. API now shows credit $25.00,
+  `has_billing` true, `autobill_threshold`/`autobill_amount` null (**autobilling not configured**), `billing_creditonly` 1,
+  `balance_threshold` -0.01 enabled.
+- Vast docs (guides/reference/billing): at $0 instances stop; a saved card is still charged automatically to cover a
+  negative balance (mainly disk of stopped instances). Without a card, instances and data are destroyed instead.
