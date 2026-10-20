@@ -357,3 +357,17 @@ No spending.
   trainings failed at the same step. Set HOLD to 16:49 UTC from the session to keep the built box.
 - Fix 3aa3b5f (fallback to the 3-argument form), checked out on the box via `exec`, mkref rerun by hand in the
   background (Cloudflare cuts HTTP requests at about 100 s, so long steps run under nohup and are polled).
+- 16:07 UTC: environment snapshot `env/pt2.11-cu130-py313-20261020` uploaded to the store (from day1.sh).
+- mkref rerun by hand (commit 3aa3b5f) on perc2 ep12: **VALIDATION OK** (FlashCHORD `load_reference`), 181 frames at
+  20 fps, 22 finger DoF per hand, 194 s. E2S output 191 frames (10 warm-up frames dropped). Contacts: right 0.67 of
+  frames (blue cup), left 0.28. IK frame-task error, median: fingertips 10–35 mm, hand root 37–49 mm; p95 up to
+  171 mm (left hand root). Wrist max step 11.7 / 12.6 cm per frame (right / left): likely hand-tracking jumps; to
+  inspect later.
+- The oracle pipeline (started 120 s after the failed perc2 one) reached mkref after the fix was checked out, so its
+  reference built and its 250M-step training started at about 16:08 UTC. day1.sh is waiting on it.
+- Started `ops/jobs/day1_perc2.sh` (commit cc30cbe) on the box at 16:16 UTC: perc2 ep12 250M-step training next to
+  the oracle one (two jobs on one GPU), killed after the first checkpoint >= 10M steps and rerun (resume test). It
+  refreshes a 30-min HOLD while the GPU is busy, so the box outlives day1.sh if needed. The failed attempt's run dir
+  and logs were renamed `*_attempt1`.
+- Note: `git checkout` on a box while a bash script from the repo runs is safe only because git replaces files
+  (new inode); never edit a running script in place.
