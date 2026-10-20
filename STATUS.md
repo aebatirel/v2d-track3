@@ -151,7 +151,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 
 ## Next actions, in order
 0. **2026-10-20 cloud session:** the Vast network secret works (HTTP 200) and network access is open. The session's SSH
-   key is registered (Vast key id 1621422). Raw SSH out is most likely blocked by the proxy, so plan for HTTPS-only.
+   key is registered (Vast key id 1621422). SSH out is blocked (tested against a public SSH server); WebSocket over HTTPS works, so monitoring goes over HTTPS (web terminal through a tunnel, Vast logs, HF pushes).
    Still needed: Vast credit (balance $0), an HF store repo and token, and a clone route for the private repo
    (`GH_TOKEN` or a code tarball in the HF store).
 1. Owner checklist in `docs/runbook-vast.md` §3:

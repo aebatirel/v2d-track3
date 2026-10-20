@@ -285,3 +285,13 @@ No spending.
   account env vars yet. The box-0 smoke test checks injection directly. Vast credit is still $0.
 - Owner reports the GitHub token on Vast is full-access with no expiry; recommended replacing it with a read-only
   token for this repo with an expiry (boxes are third-party machines).
+
+## 2026-10-20 (cloud session): SSH definitively blocked; WebSocket works
+- Vast account env vars now list `GH_TOKEN` and `HF_TOKEN` (owner saved them).
+- SSH via the agent proxy (`ProxyCommand` doing HTTP CONNECT) to the public test server `test.rebex.net:22`: the
+  proxy accepts the CONNECT, then resets the connection before the SSH banner (`kex_exchange_identification:
+  Connection closed`). Direct TCP has no route. **SSH out of the cloud session does not work**, whatever the host.
+- WebSocket over TLS through the proxy (`wss://echo.websocket.org`, Python `websockets`, proxy CA bundle) → echo
+  works. **Hypothesis:** an interactive shell on a box is reachable over HTTPS/WSS, either through Vast's instance
+  portal (Cloudflare tunnel + web terminal/Jupyter) or a cloudflared quick tunnel we start. Falsified if box 0 cannot
+  open such a terminal from this session.
