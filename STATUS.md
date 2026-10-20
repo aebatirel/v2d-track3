@@ -98,6 +98,30 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Remote access:** an agent working from a cloud session needs its own SSH key added to the owner's Vast account, and
   the cloud environment needs outbound network access to the rented host. Never commit private keys.
 
+## Running from a Claude Code cloud session (checked against the docs, 2026-10-20)
+- **Cost:** included in the owner's Claude plan; usage counts toward the plan's limits; no charge for the cloud VM.
+  The VM is small (about 4 vCPU, 16 GB RAM, 30 GB disk, no GPU), which is enough to orchestrate. All GPU work runs on
+  Vast.
+- **SSH out may not work.** Cloud traffic goes through an HTTP/HTTPS proxy, and raw SSH to arbitrary hosts or ports
+  is not documented. **First action in a new cloud session:** with network access set to Full, run
+  `ssh -o BatchMode=yes -p <port> root@<host> true` against a Vast box and record the result here.
+- **If SSH is blocked**, drive Vast over HTTPS only:
+  - create instances through the API with an on-start script that clones this repo and runs the job on its own;
+  - push results to git or object storage over HTTPS;
+  - read logs through the Vast API;
+  - self-destroy at the end.
+
+  Interactive debugging then needs another route, such as Jupyter over HTTPS on the box or the owner opening a
+  session on the box.
+- **Vast API key:** store it as a *network secret* on the environment (allowed host `console.vast.ai`), never as an
+  environment variable or file. The proxy adds the header outside the VM. Vast's v0 API takes
+  `Authorization: Bearer <key>`; this header format has not been verified.
+- **Idle pauses:** the VM pauses after a few idle minutes. The conversation survives, but background shell commands
+  and loops do not. Long jobs must therefore run on the GPU box by themselves (nohup + self-destroy + time limit) and
+  must never depend on the cloud session staying awake.
+- Each session starts from a fresh clone, so commit and push everything. Private repos need the Claude GitHub App
+  installed on the repo, or `/web-setup` from a terminal.
+
 ## Next actions, in order
 1. Owner: Vast.ai account, $10–20 credit, add the agent's SSH public key, rent 1× RTX PRO 6000 as above, and share
    the SSH command.
