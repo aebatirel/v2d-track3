@@ -91,7 +91,13 @@ def install_compat(v2d):
 
     def build_from_mjcf(filename, root_joint=None, *args, **kwargs):
         # Kinematic model only: the IK never touches geometry, and the robot STL meshes may be LFS pointers.
-        model = pin.buildModelFromMJCF(filename, root_joint) if root_joint is not None else pin.buildModelFromMJCF(filename)
+        if root_joint is None:
+            model = pin.buildModelFromMJCF(filename)
+        else:
+            try:
+                model = pin.buildModelFromMJCF(filename, root_joint)
+            except TypeError:  # pin 4.1 (box 1, 2026-10-20) also wants the root joint's name
+                model = pin.buildModelFromMJCF(filename, root_joint, 'root_joint')
         if isinstance(model, tuple):
             model = model[0]
         try:
