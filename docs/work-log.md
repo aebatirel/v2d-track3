@@ -379,3 +379,8 @@ No spending.
   (alone for the first ~9 min); perc2 14.8k steps/s in its first 2.8 min after resume (shared GPU, JIT). Oracle ETA
   ~18:10 UTC; perc2 estimated ~19:00–19:15 UTC.
 - A monitor false alarm ("instance gone") came from one failed `vast.sh show` call; the monitor now needs two misses.
+- Provenance note: `pipe_oracle_ep12.log` says `code cfbff6b` (the commit when that pipeline started, 16:04:31 UTC),
+  but its mkref ran 16:05:20–16:08:08 UTC, after the box checkout moved to 3aa3b5f (pinocchio fix); with cfbff6b's
+  mkref it would have failed as perc2 did. So the oracle reference was built with 3aa3b5f's mkref.py. The perc2
+  run's reference was built by hand with 3aa3b5f; its training ran at cc30cbe (day1_perc2.sh). pipeline_ep.sh should
+  record the commit per stage, not only at start.
