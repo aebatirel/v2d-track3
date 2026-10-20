@@ -15,9 +15,12 @@
 #   ops/vast.sh destroy <instance_id>               irreversible: deletes the instance and its disk
 #   ops/vast.sh ssh-key <public_key_file>           add a key to the account (applies to new instances)
 #   ops/vast.sh attach-key <instance_id> <public_key_file>
+#   Settings can also lead the arguments, e.g. ops/vast.sh SETUP=none DISK=40 create ..., so that one permission rule
+#   "Bash(ops/vast.sh *)" in .claude/settings.json covers every call.
 set -euo pipefail
 API=https://console.vast.ai/api/v0
 HERE=$(cd "$(dirname "$0")" && pwd)
+while [[ ${1:-} =~ ^(V2D_COMMIT|ENV_SNAPSHOT|HF_STORE|SETUP|RESUME_FROM|IMAGE|DISK)=[^\ ]*$ ]]; do export "$1"; shift; done
 . "$HERE/config.env"
 AUTH=(); [ -n "${VAST_API_KEY:-}" ] && AUTH=(-H "Authorization: Bearer $VAST_API_KEY")
 req() { curl -sS ${AUTH[@]+"${AUTH[@]}"} -H 'Content-Type: application/json' "$@"; }   # bash 3.2-safe
