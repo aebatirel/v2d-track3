@@ -86,6 +86,13 @@ def parse_args():
     p.add_argument('--reassign_near', type=float, default=0.06)
     p.add_argument('--reassign_far', type=float, default=0.15)
     p.add_argument('--max_jump', type=float, default=0.25)
+    p.add_argument('--linker', choices=['viterbi', 'greedy'], default='viterbi')
+    p.add_argument('--w_label', type=float, default=0.5, help='viterbi: cost of overriding the MediaPipe label (x score)')
+    p.add_argument('--w_arm', type=float, default=0.8, help='viterbi: cost of a forearm pointing to the other side')
+    p.add_argument('--w_imgx', type=float, default=0.2, help='viterbi: cost of a wrist on the other image half')
+    p.add_argument('--w_unused', type=float, default=1.0, help='viterbi: cost of leaving a detection unassigned')
+    p.add_argument('--w_motion', type=float, default=1.0, help='viterbi: cost per 5 cm of palm step beyond the free band')
+    p.add_argument('--motion_free', type=float, default=0.03, help='viterbi: palm step per frame that costs nothing (m)')
     p.add_argument('--outlier_dist', type=float, default=0.06)
     p.add_argument('--max_gap', type=int, default=15)
     p.add_argument('--smooth_win', type=int, default=7)
@@ -371,6 +378,72 @@ def link_tracks(cands, T, a):
     return out, st
 
 
+def forearm_x(d):
+    """Image-x direction from the knuckles to the wrist, in [-1, 1]. Egocentric views: the right forearm leaves the
+    hand toward image-right (> 0), the left one toward image-left (< 0), even when the hands cross at an object."""
+    f = d['uv'][0] - d['uv'][[5, 9, 13, 17]].mean(0)
+    return float(f[0] / (np.linalg.norm(f) + 1e-6))
+
+
+def link_viterbi(cands, T, a, img_w):
+    """Whole-clip identity assignment (2026-10-20, box 1 ep12: the greedy linker put the right-hand track on the
+    left hand during a hand-over, frames 61-83). Per frame, options = which detection is right / left / unused.
+    Costs: MediaPipe label disagreement (x its score), forearm direction, image side (weak), unused detection, and
+    palm motion beyond a free band between consecutive frames. Dynamic programming over all frames."""
+    sg = {'right': 1.0, 'left': -1.0}
+
+    def emit(d, s):
+        c = a.w_label * d['score'] * (d['side'] != s)
+        c += a.w_arm * max(0.0, -sg[s] * forearm_x(d))
+        c += a.w_imgx * max(0.0, -sg[s] * (d['u_wrist'] - img_w / 2) / (img_w / 2))
+        return c
+
+    opts, ocost = [], []
+    for k in range(T):
+        ds = sorted(cands[k], key=lambda d: -d['score'])
+        if len(ds) == 2 and np.linalg.norm(palm_c(ds[0]['J']) - palm_c(ds[1]['J'])) < a.dup_dist:
+            ds = ds[:1]
+        cands[k] = ds
+        n = len(ds)
+        o = [{}] + [{s: i} for i in range(n) for s in SIDES] + \
+            [{'right': i, 'left': j} for i in range(n) for j in range(n) if i != j]
+        opts.append(o)
+        ocost.append([sum(emit(ds[i], s) for s, i in m.items()) + a.w_unused * (n - len(m)) for m in o])
+
+    def trans(k, m0, m1):
+        c = 0.0
+        for s in SIDES:
+            if s in m0 and s in m1:
+                step = np.linalg.norm(palm_c(cands[k - 1][m0[s]]['J']) - palm_c(cands[k][m1[s]]['J']))
+                c += a.w_motion * max(0.0, step - a.motion_free) / 0.05
+        return c
+
+    acc, back = [np.array(ocost[0])], []
+    for k in range(1, T):
+        cur, bk = np.empty(len(opts[k])), np.empty(len(opts[k]), int)
+        for j, m1 in enumerate(opts[k]):
+            tot = [acc[-1][i] + trans(k, m0, m1) for i, m0 in enumerate(opts[k - 1])]
+            bk[j] = int(np.argmin(tot))
+            cur[j] = tot[bk[j]] + ocost[k][j]
+        acc.append(cur)
+        back.append(bk)
+    path = [int(np.argmin(acc[-1]))]
+    for k in range(T - 1, 0, -1):
+        path.append(int(back[k - 1][path[-1]]))
+    path = path[::-1]
+    out = {s: [None] * T for s in SIDES}
+    st = dict(label_overridden=0, unused=0, arm_disagrees_label=0)
+    for k in range(T):
+        m = opts[k][path[k]]
+        st['unused'] += len(cands[k]) - len(m)
+        for s, i in m.items():
+            d = cands[k][i]
+            out[s][k] = d
+            st['label_overridden'] += d['side'] != s
+            st['arm_disagrees_label'] += (forearm_x(d) > 0) != (d['side'] == 'right')
+    return out, st
+
+
 def postprocess(seq, T, a):
     J = np.zeros((T, 21, 3))
     meas = np.zeros(T, bool)
@@ -522,8 +595,8 @@ def main():
             cands[k].append(dict(d, J=Jw, fit=f))
     log(f'lifted {n_fit - n_rej}/{n_fit} detections (rejected {n_rej})')
 
-    seq, st = link_tracks(cands, T, a)
-    log('linking:', st)
+    seq, st = link_viterbi(cands, T, a, Wa) if a.linker == 'viterbi' else link_tracks(cands, T, a)
+    log(f'linking ({a.linker}):', st)
     res = {}
     for s in SIDES:
         J, valid, meas, filled, n_out = postprocess(seq[s], T, a)

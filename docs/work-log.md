@@ -426,3 +426,16 @@ No spending.
   fails: `widths` float vs array); camera aimed at the table. The first montage (old floor-bug policy on the fixed
   ep12 scene) shows the round support table, cup and rack resting on it, and both Sharpa hands barely moving
   toward the cup. `pipeline_ep.sh` now renders every evaluated policy to `$RES/render/{view.mp4,montage.jpg}`.
+- **Hand identity swap found (ep12)** from the `hands_overlay.jpg` montage: at k=71 (cup hand-over) the green
+  "right" skeleton was on the LEFT hand (the one wearing the white watch). The right-wrist jumps > 4 cm cluster at
+  frames 61–83. MediaPipe's own labels there are mostly correct (k=71: right x=0.66, left x=0.39), but at k=66 and
+  k=76 it labels both hands "Right", and the greedy linker's distance rules (`same_label` 9, `reassigned` 7) moved
+  the right track onto the left hand. Also seen: the fit scale sits at its lower bound 0.85 for both hands
+  (wrist→middle tip 12.5 cm vs ~18–19 cm adult); not yet explained.
+- New `--linker viterbi` (default) in hands_mp.py: a whole-clip assignment (dynamic programming) with costs for
+  overriding the label (× score), forearm direction (knuckles→wrist image-x), image half (weak), unused detections
+  and palm motion beyond 3 cm/frame. Measured cue on ep12: right forearm x median +0.16 (79 % > 0), left +0.01
+  (52 % > 0), so the forearm cue mostly helps the right hand. ep12 result (dev copy on box 1): k=71 now correct;
+  right palm max step 5.7 → 3.8 cm (steps > 4 cm: 8 → 0); left valid frames 155 → 180, max step 6.5 → 4.2 cm.
+  Hypothesis to test: fewer identity swaps across all public episodes. A/B on box 2: `ops/jobs/hands_ab.sh` (perc2 =
+  greedy from the sweep vs perc2v = viterbi), compared with ref_report.py.
