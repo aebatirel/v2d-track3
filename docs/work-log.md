@@ -514,3 +514,14 @@ No spending.
 - Rollout montage (`results/e2e/ep12_perc2_rollout.jpg`, view_policy, not the evaluator): the right hand grasps the
   cup, both hands lift and turn it in the air, and it is set down upright by the rack, whereas the human placed it
   upside down in the rack; the cup's placement and orientation are the likely loss.
+- **ep12 oracle (mocap objects, evaluation-only diagnostic):** sim vs mocap **AUC 0.858**, SP 1.00, **MP 0.00**,
+  MPPE 1.8 cm (cup 0.719, rack 0.998); reference vs mocap 1.000; sim vs reference 0.855. Lower than perc2 (0.890)
+  despite a perfect object reference → on ep12 the perception loss is small and the **robot (policy tracking) sets
+  the score**: sim-vs-reference 0.855–0.863, i.e. ~0.14 AUC lost in the robot, with ±0.03 policy-to-policy variance
+  (larger than the perception difference). Consistent with research note 14. Decision: the reference/robot fixes
+  (wrist IK cost, hand linker, mid wrist) are the main lever; compare them over several episodes, and later train
+  more than one seed per episode.
+- Box 1 reused at 22:32 UTC (hold set before `train_pair.sh` released it): `train_runs.sh` RUNS="27:perc2:vc
+  2:perc2:vc" at d144d02+ (Viterbi hands + wrist cost 3.0, default wrist). `ops/box/hold_guard.sh` on both boxes keeps
+  the hold while any `pipeline_ep.sh` runs (a finishing job removing the hold could otherwise let the watchdog
+  destroy a box mid-training).
