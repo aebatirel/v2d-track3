@@ -33,4 +33,4 @@ python $P/ref_report.py perc2v > /content/results/ref_report_perc2v.txt 2>&1
 { echo "== A (greedy)"; cat /content/results/ref_report_perc2g.txt; echo "== B (viterbi)"; cat /content/results/ref_report_perc2v.txt; } >> $J
 touch $ST/ab_done
 bash $OPS/store.sh push-run > /dev/null 2>&1 || true
-rm -f /content/HOLD
+pgrep -f '[t]rain_runs.sh' > /dev/null || rm -f /content/HOLD          # trainings on this box keep their own hold
