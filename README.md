@@ -4,7 +4,7 @@ Our entry for **NVIDIA V2D Challenge, Track 3**: head-camera video of a person h
 policy per episode (two simulated Sharpa hands in NVIDIA's FlashCHORD simulator) → the official evaluator's simulated
 object trajectories → scored against motion capture on Kaggle. Leaderboard freeze: **2026-11-04 17:00 EST**.
 
-Clean-room repository: it holds our own code, research notes and status only. The dataset, NVIDIA's code and kit, model
+This repository holds our code, research notes and status. The dataset, NVIDIA's code and kit, model
 weights and run outputs are downloaded or produced by scripts and are git-ignored.
 
 **Start here:** read [`STATUS.md`](STATUS.md) for where things stand and what to do next, then [`CLAUDE.md`](CLAUDE.md)

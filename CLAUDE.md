@@ -22,22 +22,23 @@ These carry over the rules the owner set while this work ran locally. Follow the
   open-source review: primary papers, author repositories, official docs. Label new ideas as hypotheses and
   name the experiment that would falsify them.
 
-## Spending and accounts
+## Spending
 - The owner set no hard spending cap. Before each rental batch, state the plan and its expected cost and get the
-  owner's go-ahead. Then rent through the Vast API (`VAST_API_KEY` secret), and give every machine:
-  - a self-destroy at the end of its job;
-  - a hard time limit as a safety net.
-
-  Pay only while working: destroy instances at the end of a work block or before any idle gap over ~30 minutes.
+  owner's go-ahead. Then rent through the Vast API (`VAST_API_KEY` secret).
+- Every machine destroys itself when its job finishes. There is **no fixed time limit**: never cut a job that is
+  still making progress. A stall watchdog destroys a machine only when its job has stopped making progress (no new
+  log lines or checkpoints for ~30 minutes), after saving what exists.
+- Pay only while working: destroy instances at the end of a work block or before any idle gap over ~30 minutes.
   A stopped Vast instance keeps billing storage. Copy results off (git, backup) before destroying.
 - Never commit secrets (SSH private keys, API keys, tokens). Keep keys in the environment or the provider's key store.
-- The owner does all account actions: sign-ups, payments, challenge registration, accepting Kaggle rules, uploading
-  submissions, and emailing the organisers. Prepare files and drafts for them.
-- Downloads on rented GPU or cloud machines (dataset, model weights, Python packages the pipeline needs) are fine.
-  Ask before installing anything on the owner's personal computer.
 
-## Code
-- Clean-room: write our own code. Do not copy code from the owner's older SlamDunk project.
-- Never commit data, videos, depth caches, checkpoints or other large outputs (see `.gitignore`).
-- Submissions must reference a commit of this repository shared with the organisers' GitHub account, so commit the
-  exact code used for every submitted run.
+## Code and data
+- Git holds code, results and small artifacts: scores, summaries, logs, final policy checkpoints up to ~10 MB each.
+- Keep large or regenerable data out of git: the dataset and videos, depth caches, model weights, and bulk or
+  intermediate checkpoints (see `.gitignore`).
+  - GPU machines download the public dataset and weights with the setup scripts.
+  - Large artifacts worth keeping go to object storage (to be set up), not git.
+  - Reasons: GitHub rejects files over 100 MB, binaries bloat the history forever, and every cloud session clones the
+    whole repo.
+- Each submission must reference a commit of the repo shared with the organisers (this one or a cleaned copy), so
+  commit the exact code used for every submitted run.

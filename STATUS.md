@@ -7,7 +7,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   Freeze 2026-11-04 17:00 EST. The owner said "anything goes" for the leaderboard, within the rules.
 - **Budget:** the professor considered $1,000–1,500 reasonable. The plan below needs about $110–200 of GPU time.
 - **Owner-only actions:** Vast.ai account and credit, challenge registration, accepting the Kaggle Track 3 rules,
-  creating the GitHub repo shared with organisers (this repo can be it), uploading submissions, emailing organisers.
+  sharing a repo with the organisers (this one or a cleaned copy), uploading submissions. The agent cannot sign up,
+  sign in or pay.
 
 ## How Track 3 is scored (verified from the kit)
 - Submitted rows must be **FlashCHORD rollouts from the official evaluator** of a trained policy per eval episode, with
@@ -73,8 +74,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Room map (note 18):** a public-frames SfM map relocalises all eval clips with about 1–2 mm accuracy, worth about
   +0.06–0.07 AUC over our VO. Not yet integrated.
 - **Spoon:** the parametric model is in `spoon/`. The scan-frame rule gives **frame A by a near-tie**
-  (P(B) ≈ 0.40–0.45; ≈ 0.17 if the organisers' scan lacks markers). This contradicts note 13's "commit to B". Ask the
-  organisers.
+  (P(B) ≈ 0.40–0.45; ≈ 0.17 if the organisers' scan lacks markers). This contradicts note 13's "commit to B". Decide
+  from evidence (owner's choice); the owner can check overlays visually on request.
 - **Setup gotchas:**
   - Background jobs started from an interactive terminal must use `setsid nohup … < /dev/null`, or apt gets
     SIGTTIN-stopped.
@@ -117,7 +118,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   environment variable or file. The proxy adds the header outside the VM. Vast's v0 API takes
   `Authorization: Bearer <key>`; this header format has not been verified.
 - **Idle pauses:** the VM pauses after a few idle minutes. The conversation survives, but background shell commands
-  and loops do not. Long jobs must therefore run on the GPU box by themselves (nohup + self-destroy + time limit) and
+  and loops do not. Long jobs must therefore run on the GPU box by themselves (nohup + self-destroy + stall watchdog) and
   must never depend on the cloud session staying awake.
 - Each session starts from a fresh clone, so commit and push everything. Private repos need the Claude GitHub App
   installed on the repo, or `/web-setup` from a terminal.
@@ -135,8 +136,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
    - VO drift (room map or loop closure);
    - track recovery (re-registration, bidirectional tracking, full-resolution depth);
    - rest snap and table snap.
-5. Spoon: fit the template to the eval videos (`spoon/fit_spoon.py` skeleton), track it, decide the frame after the
-   organisers answer.
+5. Spoon: fit the template to the eval videos (`spoon/fit_spoon.py` skeleton), track it, decide the frame from
+   evidence; ask the owner for visual checks of overlays.
 6. Eval run: perception on the 20 eval videos → references → 20 trainings in parallel → evaluator → kit
    `pack_submission.py` → owner uploads. Commit the exact code first (provenance).
 7. Iterate: up to 5 submissions a week, unlimited in the final 3 days. Train several seeds per episode and keep the

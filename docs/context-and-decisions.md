@@ -15,21 +15,21 @@ the answers that matter for future work. Dates are 2026.
 - The owner's rules for the work:
   - "If it helps with leaderboard anything goes", within the official rules.
   - "Infer and try to figure it out yourself; dig deep where you see treasure."
-  - A clean-room repository, with no code from their older SlamDunk project.
   - The owner rents GPUs and handles Discord, email, registration and Kaggle.
-- **Downloads:** on the owner's personal Mac, ask before downloading data, models or packages. Downloads on rented or
-  cloud machines are fine.
 
 ## Decisions so far
 - **Approach:** a perception-first pipeline. Stereo depth + scan-based detection + FoundationPose tracking + visual
   odometry produce object trajectories. MediaPipe hands on the colour camera feed NVIDIA's own retargeter, which
   produces the FlashCHORD reference. Then FlashCHORD training per episode, the official evaluator and the kit packer.
   Background is in `docs/research/notes/10-synthesis.md`, `16-synthesis-round3.md` and `21-synthesis-round4.md`.
+  The owner approved it. If it falls short, exhaust the improvements within this pipeline before changing its
+  architecture.
 - **Compute:**
   - Colab Pro (G4 = RTX PRO 6000) was used for bring-up. It is not persistent and needs a browser, so the main work
     moves to Vast.ai over SSH.
   - The owner set **no spending cap**. They want the agent to rent through the Vast API only while work runs and to
-    destroy machines right after: per-second billing, self-destruct at job end, a hard time limit, and an idle rule.
+    destroy machines right after: per-second billing, self-destruct at job end, a stall watchdog instead of a fixed
+    time limit (never cut a job that is still progressing), and an idle rule.
   - Announce each rental batch with its expected cost before starting it.
   - The first Vast API key was pasted in chat and must be considered exposed. The owner is replacing it and will
     store the new key as a secret (`VAST_API_KEY`), never in the repo.
@@ -38,16 +38,25 @@ the answers that matter for future work. Dates are 2026.
   - Use **interruptible machines** for training once checkpoint resume is verified.
   - On the first box, **test two trainings on one 96 GB GPU**.
   - Do not buy faster GPU types: H100/H200/B200 are estimated at no faster for this simulator and cost 2–7× more.
-  - **Google Cloud in parallel:** the owner may create a GCP account, upgrade it to paid (keeping the $300 credit)
-    and request Spot RTX PRO 6000 (G4) quota in us-central1. Use it if quota arrives; Vast is the default meanwhile.
-  - **Colab:** about 156 Pro compute units remain (about 17 G4 hours). They are usable only when the owner keeps a
-    Chrome session connected, since a cloud agent cannot drive Colab. Colab is not the base for the campaign: no SSH,
-    no persistence, effectively one runtime at a time.
+  - **Vast.ai only.** The owner dropped the Google Cloud and Colab options: "no need, you can yolo in Vast.ai".
+    Rental batches are still announced with their expected cost first.
 - **GPU choice:** RTX PRO 6000 96 GB is the default. 48 GB cards (PRO 5000, 6000 Ada, L40S) work but save little per
   finished policy and leave only ~7 GB of headroom. Interruptible PRO 6000s are the main saving, once checkpoint
   resume is verified. See `docs/gpu-rental/`.
 - **Remote work:** the owner will continue with a Claude Code cloud session on this repo. The agent's SSH key on the
   owner's Mac is not in the repo; a cloud agent makes its own key and the owner adds it to Vast.
+- **Spoon:** the agent decides the spoon's frame convention itself, from evidence. The owner is available to check
+  overlays visually ("I can tell you whether something is working visually"), so send them images when that helps.
+  Asking the organisers is no longer the plan.
+- **Submission repo:** not decided. The owner may send a cleaned copy rather than this repo; there is no rule for it.
+- **Repository rules review (2026-10-20):** the owner reviewed every rule on a review page and chose Keep, Change or
+  Remove for each (https://claude.ai/artifact/H8Rp47MHz8kvwe5MKkzw6L).
+  - Removed: the clean-room rule (code from SlamDunk may be reused), the "owner does account actions" rule, the
+    ask-before-downloading rule, the Google Cloud plan and the Colab plan.
+  - Changed: no fixed time limit on machines; small results and final policies may be committed; spoon frame decided
+    by the agent; submission repo undecided.
+  - The agent still cannot create accounts, sign in, enter payment details or accept terms, so those stay with the
+    owner in practice.
 - **Shared artefacts** (private unless the owner shares them):
   - Explained Colab notebook: https://colab.research.google.com/drive/1rSlDlcC91UggWeCsDS0H8KFrp_C6ygX5
   - Visual explainer page: https://claude.ai/artifact/GJegn8ZZHnb7PFDTnCDpgd
@@ -83,5 +92,4 @@ the answers that matter for future work. Dates are 2026.
 ## Open items
 - The owner asked whether hand-overs, flips, twirls and sliding were researched. A dedicated research round on those
   manipulation risks was offered but not run.
-- The question to the organisers about the spoon frame (see `spoon/README.md`) has not been sent.
-- Registration, Kaggle rules and sharing this repo with the organisers' GitHub account are still for the owner to do.
+- Registration, accepting the Kaggle rules and sharing a repo with the organisers' GitHub account are still open.

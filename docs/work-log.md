@@ -207,3 +207,12 @@ artifacts in B2/HF free tiers + Mac; est. (a) first public test $4-12, (b) first
 Unverified: FlashCHORD checkpoint resume (needed for interruptible), Max-Q speed, preemption rates.
 Kaggle note for user: perception AUC (0.809, public eps) cannot be submitted — boards score the 20 eval episodes and
 Track 3 rows must be official-evaluator rollouts of trained policies with evaluator/checkpoint digests + commit URL.
+
+2026-10-20: Owner reviewed all 29 repo rules/decisions on https://claude.ai/artifact/H8Rp47MHz8kvwe5MKkzw6L.
+Keep (18): resume, runlog, research, nogt, separate, preserve, honest, approval, secrets, provenance, goal, professor,
+order, handrisks, gpu, parallel, interruptible, vast. Remove (5): accounts, cleanroom, downloads, gcp, colab ("no need
+you can yolo in vastai"). Change (5): selfdestroy -> no fixed time limit, stall watchdog instead; nodata -> commit
+small results/final policies, keep bulk data out (owner asked why: GitHub 100 MB limit, history bloat, fresh clones);
+approach -> approved, exhaust improvements before changing architecture; spoon -> agent decides frame from evidence,
+owner checks visuals on request; repoforsubmit -> undecided, may send a cleaned copy. Undecided (1): remote ("first
+settle the rules"). Applied to CLAUDE.md, STATUS.md, docs/context-and-decisions.md, README.md.
