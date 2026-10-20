@@ -15,6 +15,8 @@
 #   ops/vast.sh destroy <instance_id>               irreversible: deletes the instance and its disk
 #   ops/vast.sh ssh-key <public_key_file>           add a key to the account (applies to new instances)
 #   ops/vast.sh attach-key <instance_id> <public_key_file>
+#   ops/vast.sh exec <run_id> '<bash command>' [timeout_s]   run a command on the box over HTTPS (SSH replacement:
+#                                                   rexec.py behind a Cloudflare tunnel; URL and token from the HF store)
 #   Settings can also lead the arguments, e.g. ops/vast.sh SETUP=none DISK=40 create ..., so that one permission rule
 #   "Bash(ops/vast.sh *)" in .claude/settings.json covers every call.
 set -euo pipefail
@@ -100,5 +102,14 @@ label)   req -X PUT "$API/instances/$2/" -d "$(python3 -c 'import json,sys; prin
 destroy) req -X DELETE "$API/instances/$2/"; echo ;;
 ssh-key) req -X POST "$API/ssh/" -d "$(python3 -c 'import json,sys; print(json.dumps({"ssh_key": open(sys.argv[1]).read().strip()}))' "$2")"; echo ;;
 attach-key) req -X POST "$API/instances/$2/ssh/" -d "$(python3 -c 'import json,sys; print(json.dumps({"ssh_key": open(sys.argv[1]).read().strip()}))' "$3")"; echo ;;
-*) sed -n '2,20p' "$0"; exit 1 ;;
+exec)
+  # The huggingface.co network secret (or HF_TOKEN) authorises the read of the private store.
+  HFA=(); [ -n "${HF_TOKEN:-}" ] && HFA=(-H "Authorization: Bearer $HF_TOKEN")
+  ACC=$(curl -sSfL ${HFA[@]+"${HFA[@]}"} "https://huggingface.co/datasets/$HF_STORE/resolve/main/access/$2.json") \
+    || { echo "no access record for $2 in $HF_STORE (tunnel not up yet?)"; exit 1; }
+  URL=$(echo "$ACC" | python3 -c 'import json,sys; print(json.load(sys.stdin)["url"])')
+  TOK=$(echo "$ACC" | python3 -c 'import json,sys; print(json.load(sys.stdin)["token"])')
+  curl -sS -m $(( ${4:-120} + 30 )) -X POST -H "X-Token: $TOK" -H "X-Timeout: ${4:-120}" --data-binary "$3" "$URL/exec"
+  ;;
+*) sed -n '2,25p' "$0"; exit 1 ;;
 esac

@@ -11,6 +11,7 @@ log "run ${RUN_ID:-?}: job [$JOB] commit $(git -C $REPO_DIR rev-parse HEAD) inst
 log "gpu: $(nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>&1)  cpus: $(nproc)" \
     " ram: $(free -g | awk '/Mem/{print $2}') GB  disk free: $(df -h /workspace | awk 'NR==2{print $4}')"
 setsid nohup bash $OPS/watchdog.sh >> /content/watchdog.log 2>&1 < /dev/null &
+[ "${REXEC:-1}" = 0 ] || setsid nohup bash $OPS/tunnel.sh >> /content/tunnel.log 2>&1 < /dev/null &   # HTTPS shell
 
 label "setup"
 if [ "${SETUP:-}" = none ]; then
