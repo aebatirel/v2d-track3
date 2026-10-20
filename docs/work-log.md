@@ -344,3 +344,16 @@ No spending.
   and pyyaml, then runs an import check (`IMPORTS-OK`/`IMPORTS-FAIL`), including `import estimater` (FoundationPose)
   and `import core.foundation_stereo` (FoundationStereo). `run_job.sh` holds a failed box for `FAIL_HOLD_MIN` (default
   30) min for debugging through `exec`; the watchdog destroys it when the hold expires.
+
+## 2026-10-20 (cloud session): box 1 attempt 2 (instance 56915259, run 20261020-day1b-cfbff6b, commit cfbff6b)
+- Same Greek host (offer 56213818, $1.444/h). Created 15:48 UTC; setup 15:49–15:59 (**10 min**, `IMPORTS-OK`).
+- Weight mirror uploaded to the store: FoundationStereo 23-51-11 (3.3 GB), FoundationPose 2023-10-28 (68 MB) and
+  2024-01-11 (190 MB). The `hf upload` summary line "0 uploaded, 0 committed" is misleading; the files are there.
+- **Perception perc2 ep12 on Vast: AUC 0.997, SP 1.00, MP 1.00, MPPE 0.52 cm, RPE 0.80 cm in 96 s** (scored after
+  inference against mocap; matches Colab 0.986–0.998). Depth cache pushed to the store.
+- hands_mp.py ran (first run anywhere): `hands done` in about 50 s.
+- **mkref.py failed (first run anywhere):** pinocchio 4.1.0 has no 2-argument `buildModelFromMJCF(file, root_joint)`;
+  it wants `(file, root_joint, root_joint_name)`. The resume test was skipped (`RESUME-TEST-SKIPPED`) and both
+  trainings failed at the same step. Set HOLD to 16:49 UTC from the session to keep the built box.
+- Fix 3aa3b5f (fallback to the 3-argument form), checked out on the box via `exec`, mkref rerun by hand in the
+  background (Cloudflare cuts HTTP requests at about 100 s, so long steps run under nohup and are polled).
