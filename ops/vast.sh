@@ -30,14 +30,16 @@ offers)
 if sys.argv[1] == "any": q.update(verified={"eq":True}, cuda_max_good={"gte":13.0}, order=[["dph_total","asc"]], limit=64)
 else: q["gpu_name"] = {"eq": sys.argv[1]}
 print(json.dumps(q))' "$GPU" "$TYPE")
-  OFFERS=$(curl -sS -X POST $API/bundles/ -H 'Content-Type: application/json' -d "$Q") python3 - "$TYPE" "$DISK" "$GPU" <<'EOF'
+  OF=$(mktemp); trap 'rm -f "$OF"' EXIT     # a file, not an env var: the market list can exceed ARG_MAX
+  curl -sS -X POST $API/bundles/ -H 'Content-Type: application/json' -d "$Q" > "$OF"
+  OFFERS_FILE=$OF python3 - "$TYPE" "$DISK" "$GPU" <<'EOF'
 import json, os, sys
 bid = sys.argv[1] == "bid"; disk = float(sys.argv[2]); small = sys.argv[3] == "any"
 ok = lambda o: (o.get("cuda_max_good") or 0) >= 13.0 and o.get("verification") == "verified" \
     and (o.get("inet_down") or 0) >= 300 and (o.get("reliability2") or 0) >= (0.97 if small else 0.98) and (small or (
     (o.get("cpu_cores_effective") or 0) >= 16 and (o.get("cpu_ram") or 0) >= 64000 and (o.get("disk_space") or 0) >= disk))
 rows = []
-for o in json.loads(os.environ["OFFERS"])["offers"]:
+for o in json.load(open(os.environ["OFFERS_FILE"]))["offers"]:
     if not ok(o): continue
     gpu = o["min_bid"] if bid else o["dph_total"]
     store = (o.get("storage_cost") or 0) * disk / 720          # $/GB/month -> $/h
