@@ -467,3 +467,11 @@ No spending.
   `hydra.searchpath=[file:///content/v2d-track3/flashchord_conf] embodiment=sharpa_hands_mid`. Dry run (`--cfg job`)
   composes. NVIDIA's checkout is untouched; the checkpoint's resolved config carries the dict for the evaluator
   (to verify at the first eval). `pipeline_ep.sh` takes `TRAIN_ARGS`; in `train_runs.sh` a variant with "w" uses it.
+- **Perception A/B result (box 2, all 20 public episodes, scored vs mocap after inference, `perc_ab.sh`):** mean AUC
+  **0.883 → 0.932** with `DET_PRIOR=compact DET_K=80`. Gains: ep26 +0.923 (0.065 → 0.988, MP 0 → 1), ep45 +0.026,
+  ep2 +0.016, ep31 +0.012, ep21 +0.007, ep24 +0.006, ep42 +0.005, ep18 +0.004; worst −0.003 (ep0, ep22), within the
+  run-to-run noise. **Made the default** (DET_PRIOR=compact, DET_K=80). Remaining weak episodes: ep0 0.18 (lid
+  symmetry), ep24 0.85, ep11 0.87, ep31 0.89. Note the baseline here (0.883) is higher than the Colab-era 0.809 (e.g.
+  ep39 0.55 → 0.998); single runs vary, so differences under ~0.01 are noise.
+- Reference sweep (box 2, `refs_sweep.sh`): 19/20 episodes built a FlashCHORD-validated reference; ep26 rejected by
+  the new support guard (rack detection, now fixed by the prior). Report: `/content/results/ref_report_perc2.txt`.

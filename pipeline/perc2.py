@@ -209,9 +209,9 @@ def centroid3d(m):
 ri, ci = linear_sum_assignment(-S)
 # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the rack):
 # joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
-if os.environ.get('DET_PRIOR', 'none') == 'compact' and len(names) > 1:
+if os.environ.get('DET_PRIOR', 'compact') == 'compact' and len(names) > 1:   # default since the 20-episode A/B
     import itertools
-    K_, D0, LAM_D = int(os.environ.get('DET_K', 4)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
+    K_, D0, LAM_D = int(os.environ.get('DET_K', 80)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
     top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
     PC = {int(k): centroid3d(props[k]) for t in top for k in t}
     best = None
