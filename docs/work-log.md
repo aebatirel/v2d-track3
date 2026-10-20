@@ -539,3 +539,12 @@ No spending.
   Hypothesis: the forearm cue (weight 0.8) is near-random for the left hand (ep12: left forearm x median +0.01) and
   forces wrong overrides. Test: hands-only rerun with w_arm 0.3 and 0.0 on ep31/39/22/18/12/24, scored by human palm
   steps > 4 cm (no IK involved).
+- **Hand linker, final decision tonight: back to greedy as default.** Proxy without IK = human palm steps > 4 cm
+  (right+left), greedy / Viterbi(w_arm 0.8) / Viterbi(0.3) / Viterbi(0.0) / Viterbi(0.3, w_unused 0.15, jump gate):
+  ep31 0 / 20 / 0 / 0 / 3 (valid L 289 → 19 with the last one); ep39 8 / 31 / 31 / 35 / 40; ep22 1 / 15 / 15 / 23 / 7
+  (max 51 cm); ep18 0 / 7 (max 44 cm) / 7 / 11 / 12; ep24 12 / 13 / 12 / 12 / 5 (but valid 273 → 208); ep12 (greedy
+  failed the hand-over, Viterbi fixed it). Viterbi only wins the ep12 hand-over; it follows long spurious tracks
+  elsewhere (likely the second person's hands seen in many clips), and making unassignment cheaper lets it skip
+  across gaps. Kept as `--linker viterbi` (w_arm 0.3, w_unused 1.0) for later work; idea for next time: identity
+  from the white smartwatch on the wearer's left wrist + arm continuity from the image bottom (note 15).
+  NB: the `vc`/`vw` trainings tonight used Viterbi(w_arm 0.8) hands, i.e. the old default.

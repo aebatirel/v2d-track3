@@ -86,9 +86,12 @@ def parse_args():
     p.add_argument('--reassign_near', type=float, default=0.06)
     p.add_argument('--reassign_far', type=float, default=0.15)
     p.add_argument('--max_jump', type=float, default=0.25)
-    p.add_argument('--linker', choices=['viterbi', 'greedy'], default='viterbi')
+    # Default greedy after the 2026-10-20 A/B (palm steps > 4 cm on ep31/39/22/18/24: greedy best or tied; Viterbi only
+    # fixed the ep12 hand-over). Viterbi with w_arm 0.8 broke ep31 (left-forearm cue near-random; 0.3 fixes it), and it
+    # still follows long spurious tracks on ep18/22/39; a cheaper w_unused (0.15) plus a jump gate was worse.
+    p.add_argument('--linker', choices=['viterbi', 'greedy'], default='greedy')
     p.add_argument('--w_label', type=float, default=0.5, help='viterbi: cost of overriding the MediaPipe label (x score)')
-    p.add_argument('--w_arm', type=float, default=0.8, help='viterbi: cost of a forearm pointing to the other side')
+    p.add_argument('--w_arm', type=float, default=0.3, help='viterbi: cost of a forearm pointing to the other side')
     p.add_argument('--w_imgx', type=float, default=0.2, help='viterbi: cost of a wrist on the other image half')
     p.add_argument('--w_unused', type=float, default=1.0, help='viterbi: cost of leaving a detection unassigned')
     p.add_argument('--w_motion', type=float, default=1.0, help='viterbi: cost per 5 cm of palm step beyond the free band')
