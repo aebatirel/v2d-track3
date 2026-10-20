@@ -18,6 +18,7 @@ stream $A &
 sleep 60
 stream $B &
 wait
+while pgrep -f '[s]tore.sh push-depth' > /dev/null; do sleep 15; done          # let the depth uploads finish
 python $P/ref_report.py perc2 > /content/results/ref_report_perc2.txt 2>&1
 cat /content/results/ref_report_perc2.txt >> $J
 log "refs sweep done" >> $J
