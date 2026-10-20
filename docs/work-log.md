@@ -447,3 +447,13 @@ No spending.
   the same (no rack candidate near the pot); with **DET_K=80: ep26 vo AUC 0.065 → 0.988** (rack 0.998, pot 0.978;
   rack proposal 1, S 0.111). Hypothesis: objects of a task start within ~0.45 m of each other. A/B on all public
   episodes: `ops/jobs/perc_ab.sh` on box 2 (baseline = sweep's perc2).
+- Hand scale check (ep12, dev, viterbi): `--scale_min 0.55 --scale_max 1.3` → median scale 0.839 (was pinned at the
+  0.85 bound), wrist→middle tip 11.9 cm; measured frames right 157 → 162, left 145 → 157; palm steps unchanged
+  (max 3.9 / 3.5 cm). So the bound was not forcing the fit; the data say a small hand. Unresolved hypotheses: depth
+  bias toward the camera (~7 cm at 0.45 m would explain it), MediaPipe world-landmark scale, or a genuinely small hand.
+  Low priority.
+- FlashCHORD recipe facts (`experiment/sharpa_flash_sac.yaml`, `termination/tracking.yaml`, `objective/tracking.yaml`):
+  default `task.motion_speed: 0.5` (we pass 1.0 per the timing rule); terminations wrist 0.15 m, object 0.10 m /
+  0.50 rad; contact_wrench_support weight 10, unintended_contact −10, termination −100; keypoint weights set by the
+  curriculum (`tracking_250m_mixed_reset`). Checkpoints every 10M steps in this recipe.
+- `pipeline_ep.sh`: `VARIANT`, `PDIR` and `HANDS_ARGS` for side-by-side variants (commit after 6ad3db7).
