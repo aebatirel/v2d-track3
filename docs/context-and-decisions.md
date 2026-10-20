@@ -51,7 +51,8 @@ the answers that matter for future work. Dates are 2026.
 - **Submission repo:** not decided. The owner may send a cleaned copy rather than this repo; there is no rule for it.
 - **Repository rules review (2026-10-20):** the owner reviewed every rule on a review page and chose Keep, Change or
   Remove for each (https://claude.ai/artifact/H8Rp47MHz8kvwe5MKkzw6L).
-  - Removed: the clean-room rule (code from SlamDunk may be reused), the "owner does account actions" rule, the
+  - Removed: the clean-room rule (moot: SlamDunk is not in this repo and a cloud session cannot see it), the
+    "owner does account actions" rule, the
     ask-before-downloading rule, the Google Cloud plan and the Colab plan.
   - Changed: no fixed time limit on machines; small results and final policies may be committed; spoon frame decided
     by the agent; submission repo undecided.
