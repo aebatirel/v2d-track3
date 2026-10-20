@@ -506,3 +506,11 @@ No spending.
   17.1 / 12.8 / **4.3**, max 12.6 / 9.7 / **4.7**. Cost: fingertip median error 0.8–1.4 → 1.6–3.1 cm. Contacts
   unchanged; all VALIDATION OK. Variant letter `c` in train_runs (MKREF_ARGS="--wrist_cost 3.0"). Whether it raises
   the sim score is untested.
+- **FIRST VALID END-TO-END SCORE (box 1, 22:26 UTC): ep12 perc2** (greedy hands, NVIDIA retarget weights, default
+  wrist; mkref 30d3633 support fix; training 4ba4013): **sim vs mocap AUC 0.890, SP-SR 1.00, MP-SR 1.00, MPPE 1.5 cm**
+  (cup 0.780, rack 1.000). Reference vs mocap 0.973 (upper bound), sim vs reference 0.863 (policy tracking), static
+  floor 0.604. The evaluator's own metrics vs our reference: add_auc 0.859, chord_sr 1.0, maniptrans_sr 1.0,
+  mppe 2.77 cm. One easy public episode, not an eval average.
+- Rollout montage (`results/e2e/ep12_perc2_rollout.jpg`, view_policy, not the evaluator): the right hand grasps the
+  cup, both hands lift and turn it in the air, and it is set down upright by the rack, whereas the human placed it
+  upside down in the rack; the cup's placement and orientation are the likely loss.
