@@ -331,3 +331,16 @@ No spending.
   (GPU $1.402 + disk $0.042), 30 CPUs, 90 GB RAM, reliability 0.986, $2.67/TB download.
 - Launch: `ops/vast.sh V2D_COMMIT=70f6169… create 56213818 20261020-day1-70f6169 'bash ops/jobs/day1.sh'` (disk 150 GB)
   → instance **56913250**, commit 70f6169, created about 15:33 UTC (18:33 TRT).
+- **Result (box 1, instance 56913250, 15:33–15:47 UTC, about $0.29):**
+  - Host: RTX PRO 6000 Blackwell **Workstation** Edition, 97,887 MiB, 450 W limit, driver 595.99.02, 30 CPUs, 90 GB RAM.
+  - Full `setup.sh` on the Vast image: **10 min**, all markers OK (CUDADEV KIT PYDEPS SAM2 DINOV2 FSTEREO NVDIFFRAST
+    PYTORCH3D MYCPP FPOSE, FLASHCHORD, DATA: 60 public + 60 eval videos, 20 parquets, 11 meshes, 11 URDFs).
+  - Tunnel and `ops/vast.sh exec` worked.
+  - **Failure:** perception ep12 → `ModuleNotFoundError: No module named 'pandas'` (pyarrow `to_pandas` in perc2.py). The
+    mini image's `/venv/main` lacks packages that Colab preinstalls. Job exit 1, then self-destroy (push OK, destroy OK).
+  - Bug found: `setup.sh` printed `WEIGHTS-MIRROR-OK` with an empty store (an empty `--include` match exits 0), so
+    `day1.sh` skipped `mirror-weights`. Fixed in 27a4e8c.
+- Fixes for the relaunch: `setup.sh` installs pandas, scipy, opencv-python-headless, pillow, matplotlib, scikit-learn
+  and pyyaml, then runs an import check (`IMPORTS-OK`/`IMPORTS-FAIL`), including `import estimater` (FoundationPose)
+  and `import core.foundation_stereo` (FoundationStereo). `run_job.sh` holds a failed box for `FAIL_HOLD_MIN` (default
+  30) min for debugging through `exec`; the watchdog destroys it when the hold expires.

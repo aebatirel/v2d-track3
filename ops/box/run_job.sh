@@ -35,5 +35,10 @@ rc=$?
 echo $rc > $ST/exit_code
 log "job exit $rc after $(( ($(date +%s) - t0) / 60 )) min total"
 touch $ST/done
+# On failure keep the box FAIL_HOLD_MIN minutes so the agent can debug through `ops/vast.sh exec` without paying for
+# setup again; the watchdog destroys it when the hold expires (CLAUDE.md: no idle gap over ~30 min).
+if [ $rc -ne 0 ] && [ "${FAIL_HOLD_MIN:-30}" -gt 0 ] && ! held; then
+  echo $(( $(date +%s) + ${FAIL_HOLD_MIN:-30} * 60 )) > /content/HOLD; log "job failed: holding ${FAIL_HOLD_MIN:-30} min"
+fi
 if held; then touch $ST/held_exit; label "done rc=$rc, on HOLD"; log "HOLD set: the watchdog destroys when it expires"; exit 0; fi
 self_destroy "job finished rc=$rc"
