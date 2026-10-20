@@ -202,7 +202,31 @@ for a, n in enumerate(names):
     S[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)
     log('det', n, 'ext', round(ext, 3), 'tint', round(tint), [(int(k), round(S[a, k], 3), round(pext[k], 3), round(pint[k])) for k in np.argsort(-S[a])[:4]])
 del dino; torch.cuda.empty_cache()
-ri, ci = linear_sum_assignment(-S); MASK = {names[a]: props[k] for a, k in zip(ri, ci)}
+def centroid3d(m):
+    v, u = np.nonzero(m & (depths[0] > 0))
+    if len(v) < 30: return np.full(3, np.nan)
+    z = depths[0][v, u]; return np.median(np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1), 0)
+ri, ci = linear_sum_assignment(-S)
+# DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the rack):
+# joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
+if os.environ.get('DET_PRIOR', 'none') == 'compact' and len(names) > 1:
+    import itertools
+    K_, D0, LAM_D = int(os.environ.get('DET_K', 4)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
+    top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
+    PC = {int(k): centroid3d(props[k]) for t in top for k in t}
+    best = None
+    for combo in itertools.product(*top):
+        if len(set(combo)) < len(combo) or any(S[a, k] <= -10 for a, k in enumerate(combo)): continue
+        P_ = np.array([PC[int(k)] for k in combo]); spread = 0.0
+        if np.isfinite(P_).all():
+            spread = max(np.linalg.norm(P_[i] - P_[j]) for i in range(len(P_)) for j in range(i + 1, len(P_)))
+        cost = -sum(S[a, k] for a, k in enumerate(combo)) + LAM_D * max(0.0, spread - D0)
+        if best is None or cost < best[0]: best = (cost, combo, spread)
+    if best is not None:
+        log('det prior compact: top', {names[a]: [(int(k), round(float(S[a, k]), 3), np.round(PC[int(k)], 2).tolist()) for k in top[a]] for a in range(len(names))},
+            '-> chosen', [int(k) for k in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(k) for k in ci])
+        ri, ci = np.arange(len(names)), np.array(best[1])
+MASK = {names[a]: props[k] for a, k in zip(ri, ci)}
 DET = {names[a]: [int(k), float(S[a, k])] for a, k in zip(ri, ci)}; log('proposals', len(props), 'assignment', DET)
 vis = img0.copy(); cols = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (0, 255, 255)]
 for j, n in enumerate(names):

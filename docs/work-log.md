@@ -439,3 +439,11 @@ No spending.
   right palm max step 5.7 → 3.8 cm (steps > 4 cm: 8 → 0); left valid frames 155 → 180, max step 6.5 → 4.2 cm.
   Hypothesis to test: fewer identity swaps across all public episodes. A/B on box 2: `ops/jobs/hands_ab.sh` (perc2 =
   greedy from the sweep vs perc2v = viterbi), compared with ref_report.py.
+- **ep26 perception failure diagnosed:** the pot's mask and pose are fine (pose 0.60 m, depth 0.576 m), but the rack
+  (slot 0, the anchor) was assigned to a red floor-tape proposal ~1 m away (S 0.287). Its top-4 proposals were all
+  0.4–1.4 m from the pot. mkref's new guard rejected the scene (rack bottom -4.1 cm, pot +62.6 cm).
+- New opt-in detection prior in perc2.py (`DET_PRIOR=compact`): a joint choice over each object's top-`DET_K`
+  size-gated proposals, cost = −ΣS + 0.5·max(0, max pairwise 3-D centroid distance − 0.45 m). With DET_K=4 it chose
+  the same (no rack candidate near the pot); with **DET_K=80: ep26 vo AUC 0.065 → 0.988** (rack 0.998, pot 0.978;
+  rack proposal 1, S 0.111). Hypothesis: objects of a task start within ~0.45 m of each other. A/B on all public
+  episodes: `ops/jobs/perc_ab.sh` on box 2 (baseline = sweep's perc2).
