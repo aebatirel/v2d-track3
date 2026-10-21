@@ -1055,3 +1055,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 19:12 TRT: **ep24 mcs training started** (default wrist, seed 42, CK_SWEEP 0.4/0.6/0.8; REPO_DIR=/content/v2d-2)
   on the same box, concurrent with the last third of ep24 mcw. Hypothesis: a clean start lets the policy learn the
   episode; falsified if mcs's sim_vs_ref stays under the static floor (0.220).
+- 19:17 TRT, **ep18 mcw (mid wrist) result**: sweep chose 100M (sim_vs_ref 0.192; 150M 0.142, 200M 0.121, final
+  0.118) → `harmful`; vs mocap AUC **0.193** (sweeper 0.063, dust pan 0.322) vs mc 0.381. **Mid-wrist hypothesis
+  falsified for ep18.** Note: the same 100M checkpoint scored 0.308 sim_vs_ref in my earlier manual evaluation and
+  0.192 in the sweep → single evaluations are noisy (GPU sim nondeterminism); selection by one rollout is weak.
+- No-policy soft-wrist replay of ep18: sweeper still for 20 frames, dust pan nudged 14–16° at f20, the episode ends
+  at ~f20 (right wrist can't follow the 0.6 m/s reach; default kd 6 needs ~20 cm target offset vs the 0.2 m clip).
+- 19:20 TRT credit **$9.78**. ep18 box (57058717) reused for the **controls ep12 + ep27** (owner: "if money left"):
+  worktree /content/v2d-2 at 82a5fe4 (hand separation on), `SELF_HOLD=1 EPS="12 27" RETRIES=0 bash
+  /content/v2d-2/ops/jobs/auto_runs.sh` (library_v2, colourless assets). Expected ≈ $3.5.
