@@ -877,3 +877,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   their rollouts and scores remain. `auto_ep.sh` now copies the exact checkpoint of the published rollout to
   `results/final/epN/policy.safetensors` with its sha256 in final.json (dry-run checked); I commit those finals to
   git after each batch.
+- **Mesh library v1 complete** (11 objects; scored with perception poses from scan tracking, registered scorer,
+  our meshes / the scans): dustpan ep39 0.992 / 0.997, ep40 0.971 / 0.997 (fused 39/40/18); sweeper ep18 0.920 /
+  0.956, ep31 0.801 / 0.876 with **flip rate 0.12–0.25** (near-tie 178°: a coin-toss risk at Kaggle, to improve);
+  beige cup ep11: keeping only the largest mesh piece cut the cup in half (0.417); keeping every piece ≥ 5 % of the
+  main one within 15 cm gives 9.9 × 11.0 × 17.4 cm (scan 10.4 × 11.1 × 17.0), 3.3° tilt, no flips, **0.857 / 0.914**.
+- Validation box launched (owner topped up $10; credit $19.79): `auto_runs.sh` EPS="18 24" RETRIES=1, route A
+  (our meshes), commit 3c11668, instance 57047922 (PRO 6000 Spain $1.39/h). Controls 12 + 27 to follow if the
+  first stages work and money allows.

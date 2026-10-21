@@ -271,9 +271,13 @@ def main():
     verts = verts - a.voxel - a.half + 0.5 * a.voxel               # back to object-frame coordinates
     import trimesh
     m = trimesh.Trimesh(verts, faces, process=True)
-    parts = m.split(only_watertight=False)                        # floating fragments (ep11 beige cup: 20 cm away)
+    # drop floating fragments (ep11 beige cup: bits 25-35 cm away) but keep every substantial piece near the main one
+    # (keeping only the largest piece cut that cup in half: registered AUC 0.84 -> 0.42)
+    parts = m.split(only_watertight=False)
     if len(parts) > 1:
-        m = max(parts, key=lambda q: q.area)
+        big = max(parts, key=lambda q: q.area)
+        keep = [q for q in parts if q.area >= 0.05 * big.area and np.linalg.norm(q.centroid - big.centroid) < 0.15]
+        m = trimesh.util.concatenate(keep)
     m.export(a.out.replace('.glb', '_full.glb'))
     if os.path.isdir(a.kit):
         sys.path.insert(0, a.kit)
