@@ -29,8 +29,19 @@ Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
   placement (ends ~8 cm off, on the rack edge).
 - **Hand linker:** Viterbi was mixed over 18 episodes (fixes the ep12 hand-over, follows spurious tracks elsewhere);
   greedy is the default again.
-- **Box 1** runs ep27 + ep2 with `vc` (results ≈ 04:15 / 04:55 TRT); box 2 finished and self-destroyed 00:40 UTC.
-  Vast credit ≈ $4 at 03:40 TRT → ≈ $2.3 left when box 1 ends. No new runs after that.
+- **ep27 (pot into rack) vc: AUC 0.965, SP 1, MP 1, MPPE 0.9 cm; ep2 (pot + lid) vc: AUC 0.926, SP 1, MP 1,
+  MPPE 1.3 cm.** Both rollouts reproduce the video (pot flipped onto the rack; lid off, pot lifted). Best run per
+  episode over 12/27/2: mean AUC 0.927 (public, one seed each; not a leaderboard estimate).
+- All boxes destroyed; Vast credit $2.22 left (≈ $22.8 spent on 2026-10-20). Results in the HF store and `results/e2e/`.
+
+## Next steps (proposed for the owner)
+1. **Multi-seed per episode** and pick the policy by sim-vs-our-reference (no GT): policy variance is ±0.03 and a
+   catastrophic failure (ep12 vc) can happen in one seed.
+2. **Wrist IK cost**: test 1.0 vs 3.0 vs 0.2 over several episodes and seeds (3.0 removed the jumps; one failure on
+   ep12, successes on 27 and 2).
+3. **Eval run plumbing**: perception on eval videos with object names from the kit json; spoon model + frame decision;
+   then a first 20-episode submission (≈ $50 on demand at ~$2.4 per policy, less with interruptible boxes).
+4. Open questions: njmax overflow and the mid-wrist embodiment vs the rules; spoon frame A vs B.
 - **Open questions for the owner:** njmax 512 overflows in training (raising it changes sim settings → ask the
   organisers); the mid wrist (embodiment) for submissions; spoon frame (A vs B).
 

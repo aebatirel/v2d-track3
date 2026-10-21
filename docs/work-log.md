@@ -572,3 +572,23 @@ No spending.
   add_auc 0.968, chord/maniptrans 1.0. Montage (`results/e2e/ep27_vc_rollout.jpg`): the right hand grasps the pot by
   the handle, lifts it, turns it over and places it upside down on the rack, as in the video. So `vc` is not broken in
   general; ep12's vc failure (0.604) looks like a bad policy draw or an ep12-specific grasp problem; multi-seed needed.
+- **ep2 vc (box 1, 01:42 UTC): sim vs mocap AUC 0.926, SP 1.00, MP 1.00, MPPE 1.3 cm** (white_pot 0.929,
+  white_pot_lid 0.923); reference vs mocap 0.995; sim vs reference 0.936; static floor 0.503; evaluator add_auc 0.935,
+  chord/maniptrans 1.0. Montage (`results/e2e/ep2_vc_rollout.jpg`): the left hand takes the lid off and sets it on the
+  table, the right hand lifts the pot by its handle, as in the video.
+- Box 1 released 01:45 UTC (push, then hold removed; my push request hit Cloudflare's ~100 s limit (HTTP 524) but the
+  command ran on; the watchdog pushed again); 0 instances. All scores, trajectories and montages are in the HF store
+  (`runs/20261020-day1b-cfbff6b/results`, `runs/20261020-refsweep-ea14fdf/results`); score JSONs copied to
+  `results/e2e/`. **Final Vast credit $2.22** (spent ≈ $22.78 of $25 over the day).
+
+### Night summary (end-to-end, public episodes, one seed each)
+| episode | config | AUC | SP | MP | MPPE |
+|---|---|---|---|---|---|
+| 12 | perc2 (greedy hands, NVIDIA weights) | 0.890 | 1.00 | 1.00 | 1.5 cm |
+| 12 | oracle objects (diagnostic) | 0.858 | 1.00 | 0.00 | 1.8 cm |
+| 12 | vw (Viterbi + mid wrist) | 0.860 | 1.00 | 1.00 | 1.8 cm |
+| 12 | vc (Viterbi + wrist cost 3) | 0.604 | 0.00 | 0.00 | 7.7 cm |
+| 27 | vc | 0.965 | 1.00 | 1.00 | 0.9 cm |
+| 2 | vc | 0.926 | 1.00 | 1.00 | 1.3 cm |
+Mean of the best run per episode (12/27/2): AUC 0.927, SP 1.00, MP 1.00. Public episodes are easier than eval;
+not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
