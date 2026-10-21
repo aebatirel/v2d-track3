@@ -1094,3 +1094,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (2610.01849; same hand and RL algorithm; reported 86 % vs CHORD 50 % on Sharpa), Do as I Do (2606.19333, SPIDER sampling MPC
   in MuJoCo Warp), Gen2Dex (2610.24392), extrinsic dexterity (2211.01500). Papers verified on arXiv; code repos not opened
   (GitHub 403 from this session).
+
+### 2026-10-21 21:40 TRT — owner: "faster attempts on the failure places; start from the cleanest frames, multiple starts that meet"
+- FlashCHORD already resets training episodes to uniformly random reference frames (frame 0 with p 0.1, 0.5 in the last
+  stage) and turns the object assist on for 20 steps after every reset; training/evaluation windows exist
+  (`task.motion_start_frame/end_frame`, `evaluation.motion_start_frame/end_frame`). The official evaluation starts at frame
+  0 with no settling.
+- **Per-start-frame pop map** (`tools/frame_quality_probe.py`: reset to frame f without settling, one physics step, worst
+  object jump): ep24 (separated reference) 49 / 55 start frames pop > 3° or 0.5 cm (median 8.6°, p90 16.3°); ep24 old
+  reference 48 / 55; ep18 52 / 71 (clean: 0–10 and rest phases ~215–290). At almost every contact frame the robot hand is
+  inside an object/the table/the other hand: per-frame contact check on ep24 → 242 / 275 frames with > 2 mm penetration
+  (worst 32.6 mm, p95 20.1 mm). Training hides this with the 20-step assist; the evaluation does not.
+- **`pipeline/robot_clearance.py`** (the owner's "anchors that meet and settle": per frame, minimal wrist translations
+  that clear the robot hands' contacts by 1 mm; anchored temporal smoothing argmin |d − need|² + 4 |Δd|², clean frames pull
+  to 0; 3 rounds; shifts wrist positions and all 67 robot frames). ep24: dirty frames 242 → 87, p95 penetration 20.1 →
+  13.3 mm, shifts median 3.2 cm (left) / 1.4 cm (right), max 5.8 cm. Pop map: dirty start frames 49 → 31 / 55, median pop
+  8.6° → 2.5°, p90 16.3° → 9.6°, **frame 0 6.2° → 0.8°**. Remaining penetration is mostly fingers wrapped through objects
+  (translation cannot clear it) → next: open penetrating fingers per frame (finger-joint correction).
