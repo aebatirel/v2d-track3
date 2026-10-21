@@ -1131,3 +1131,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   ones is our 6 mm depenetration clearance). The robot hand then lands 2–3 cm inside the objects everywhere: E2S matches
   the human wrist (wrist cost 3.0) and scaled keypoints with a larger, thicker hand.
 - ep12/ep27 references carry no recorded MANO contact points (`mano_*_object_contact_positions` empty), ep18/ep24 do.
+
+### 2026-10-21 22:35 TRT — contact-anchored retargeting prototype (owner: "snap the fingertips, let the wrist follow")
+- `pipeline/contact_retarget.py`: per hand and frame, human fingertips within 2.5 cm of an object surface are projected
+  onto it (object SDF); wrist pose + 22 finger joints are solved on the robot's own geometry (Newton FK of the FlashCHORD
+  scene; any distal-link surface sample may touch the target; hand surface samples kept 1 mm outside objects and above
+  the table disc; close to E2S; continuous in time) with a small explicit Levenberg-Marquardt (scipy's least_squares
+  returned zero gradients: float32 FK + max(0,·) kinks vs tiny default steps). Bugs fixed on the way: warp `.numpy()`
+  returns a live view of one buffer (stored FK results aliased).
+- ep24 (separated reference), whole episode in 287 s on CPU. Tool's own metric: penetration p95 left 20.7 → 3.8 mm,
+  right 15.3 → 3.7 mm; pads to snapped contacts median 6.4 / 4.4 mm (p90 17 / 14 mm).
+- **Simulator check (MuJoCo contacts):** dirty frames 242 → 205, penetration p95 20.1 → 16.6 mm; pop map 49 → 41 / 55
+  start frames, median pop 8.6° → 5.1°, p90 16.3° → 9.6°, frame 0 6.2° → 0.8°. The simulator collides convex
+  decompositions (CoACD hulls of our board, convex hull per finger link mesh), fatter than the exact mesh and the 30
+  vertex samples per link the tool uses → next: optimise against the simulator's own shapes.
+- Research (agents; `docs/research/contact-retargeting-2026-10-21.md`, `docs/research/port-recipes-2026-10-21.md`;
+  code of FlashDexRetarget, Do as I Do, SPIDER cloned to the scratchpad): EgoCPT (2610.17572: Sharpa, egocentric,
+  sweep-with-dustpan) — contact refinement alone 1/10, with a force-feasibility check 10/10; Gen2Dex — resets from raw
+  penetrating reference poses 0/10 tasks, from physics-checked states 9/10; FlashCHORD's object keypoints at ±1 m make a
+  2.9° rotation count like 3 cm and saturate beyond ~0.3 rad (FlashDexRetarget scales so 30° ≈ 3 cm); Do as I Do ≈ 62
+  GPU-h per 50 Sharpa clips (1,024 samples × 32 iterations).
