@@ -469,6 +469,61 @@ def table_disc(depth0, KR, T_tab, table_z, band=0.008, cell=0.01):
     return float(cx), float(cy), float(r)
 
 
+def separate_hands(J, valid, meas, gap, lead_in):
+    """Rigid per-frame shifts that keep the two hands apart (table frame, z up). Returns ({side: (T, 3)}, stats).
+
+    1) lead-in: a hand first valid at t1 > 0 was held at its first pose from frame 0 (fill_invalid); it now starts
+       15 cm out (horizontally away from the other hand) and 10 cm up and arrives over the LEAD_IN frames before t1.
+    2) separation: where the closest left/right joint pair is nearer than GAP, the hand that is not measured in that
+       frame moves (both half-way if both or neither are measured), away from the other hand and upward (free space).
+       Each round adds the needed shifts box-smoothed over 5 frames, up to 5 rounds (the last unsmoothed), so no
+       overlap is left and the shifts do not jump. Evidence: ep24 the right hand, unseen for frames 0-16, was held where it first appeared, 1-6 cm from the
+       left hand; the two robot hands overlapped by up to 14 mm at reset and the near board popped 15 deg.
+    """
+    from scipy.ndimage import uniform_filter1d
+    T = len(J['left']); z = np.array([0, 0, 1.0]); off = {s: np.zeros((T, 3)) for s in SIDES}; st = {}
+    other = {'left': 'right', 'right': 'left'}
+    for s in SIDES:                                              # 1) lead-in
+        v = np.nonzero(valid[s][:T])[0]; t1 = int(v[0]) if len(v) else 0; st[s] = dict(first_valid=t1, lead_in=0)
+        if t1 <= 0 or lead_in <= 0:
+            continue
+        u = (J[s][t1, 0] - J[other[s]][t1, 0]) * np.array([1, 1, 0.0])
+        u = u / np.linalg.norm(u) if np.linalg.norm(u) > 0.01 else np.array([0, -1.0 if s == 'right' else 1.0, 0])
+        w = np.clip((t1 - np.arange(T)) / min(lead_in, t1), 0, 1)
+        off[s] += w[:, None] * (0.15 * u + 0.10 * z)[None]; st[s]['lead_in'] = t1
+    def needs():                                                 # per-frame shifts that would clear every overlap
+        raw = {s: np.zeros((T, 3)) for s in SIDES}; n = 0; w = 0.0
+        for t in range(T):
+            A = J['left'][t] + off['left'][t]; B = J['right'][t] + off['right'][t]
+            for _ in range(6):
+                d = np.linalg.norm((A + raw['left'][t])[:, None] - (B + raw['right'][t])[None], axis=2).min()
+                if d >= gap:
+                    break
+                w = max(w, gap - d)
+                u = (B.mean(0) - A.mean(0)) * np.array([1, 1, 0.0]); u = u / max(np.linalg.norm(u), 1e-6)
+                share = ({'left': 0.0, 'right': 1.0} if meas['left'][t] and not meas['right'][t] else
+                         {'left': 1.0, 'right': 0.0} if meas['right'][t] and not meas['left'][t] else {'left': 0.5, 'right': 0.5})
+                for s, sgn in (('left', -1.0), ('right', 1.0)):
+                    dv = sgn * u + 0.7 * z; raw[s][t] += share[s] * (gap - d + 0.005) * dv / np.linalg.norm(dv)
+            n += bool(np.abs(raw['left'][t]).sum() + np.abs(raw['right'][t]).sum() > 0)
+        return raw, n, w
+    nfix = worst = None; moved = {s: np.zeros(T) for s in SIDES}
+    for rnd in range(5):                                         # correct, smooth (5 frames), repeat on what is left
+        raw, n, w = needs()
+        if nfix is None:
+            nfix, worst = n, w
+        if n == 0:
+            break
+        for s in SIDES:
+            sm = uniform_filter1d(raw[s], 5, axis=0, mode='nearest') if rnd < 4 else raw[s]
+            off[s] += sm; moved[s] = np.maximum(moved[s], np.linalg.norm(raw[s], axis=1))
+    for s in SIDES:
+        st[s].update(sep_frames=int((moved[s] > 0).sum()), sep_max_cm=round(float(moved[s].max() * 100), 1))
+    st['rounds'] = rnd + 1; st['left_overlap_frames'] = n
+    st['overlap_frames'] = nfix; st['worst_overlap_cm'] = round(worst * 100, 1)
+    return off, st
+
+
 def depenetrate(J, OBJ, queries, table_z, clear, disc=None):
     """Physics-aware hand targets (2026-10-21; cf. ContactOpt, Grady et al. CVPR 2021, which tolerates ~2 mm of
     interpenetration): every joint centre is kept at least CLEAR outside every object surface and above the table
@@ -687,6 +742,12 @@ def parse_args():
     # hands
     p.add_argument('--min_valid_frac', type=float, default=0.10, help='park a side with fewer valid frames')
     p.add_argument('--gap_fill', choices=['attach', 'hold'], default='attach')
+    p.add_argument('--hand_sep', type=float, default=0.04,
+                   help='minimum gap between any left and any right hand joint (m); the robot hands are larger than '
+                        'human hands and overlapped at reset in ep24 (2026-10-21); <= 0: off')
+    p.add_argument('--lead_in', type=int, default=10,
+                   help='a hand first seen at frame t1 > 0 comes in from 15 cm out and 10 cm up over the LEAD_IN frames '
+                        'before t1 instead of holding its first pose from frame 0')
     p.add_argument('--attach_dist', type=float, default=0.03)
     # retarget
     p.add_argument('--mano_to_robot_scale', type=float, default=1.2)
@@ -875,6 +936,15 @@ def main():
         log(f'{s}: palmar-flexion score median {np.median(ps) * 1000:+.1f} mm (negative => chirality/handedness '
             f'suspect; neg. frac {(ps < -0.005).mean():.2f}), joints below table {below:.2f}, '
             f'wrist->middle tip {np.median(hl) * 100:.1f} cm')
+    if a.hand_sep > 0 and all(hinfo[s]['mode'] == 'tracked' for s in SIDES):
+        off, sep = separate_hands(J, {s: Hn[f'valid_{s}'].astype(bool) for s in SIDES},
+                                  {s: Hn[f'measured_{s}'].astype(bool) for s in SIDES}, a.hand_sep, a.lead_in)
+        for s in SIDES:
+            J[s] = J[s] + off[s][:, None, :]                       # rigid shifts: the rotations Q are unchanged
+            if a.depenetrate > 0:
+                J[s], _ = depenetrate(J[s], OBJ, queries, a.table_z, a.depenetrate, disc)
+            hinfo[s]['separation'] = sep[s]
+        log(f'hand separation (min joint gap {a.hand_sep * 100:.1f} cm, lead-in {a.lead_in} frames): {sep}')
     summary['hands'] = hinfo
 
     # ---------------- write the loaded ManoSharpaData

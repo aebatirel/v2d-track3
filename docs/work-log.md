@@ -1026,3 +1026,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   at reset and over resting objects (FK of the Sharpa collision bodies, not MANO joints); (2) settle resting objects
   onto a stable facet at frame 0 and over their rest segment; (3) remaining board-1 pop source (contact with board 2
   or the left hand; needs a per-contact dump).
+
+### 2026-10-21 19:00 TRT — ep24 reset pop explained: the two robot hands overlap at reset; hand separation in mkref
+- Contact dump right after reset (training env, 1 world, CPU, stiff wrists; `scratchpad contact_probe.py`):
+  **ep24: the left and right robot hands interpenetrate** (left ring finger inside right index/middle/pinky bases,
+  −6 to −14 mm), the right index finger is 12.7 mm inside a board, plus right-hand self-contacts; the simulator
+  resolves this in one step → board 1 pops 15°. **ep18: 0 contacts at reset** (its early sweeper knock-over is the
+  policy's doing).
+- Cause: ep24's right hand is not valid in frames 0–16; its first detection (f17–18) lies 1–4 cm from the left hand
+  (mean joint distance ≥ 4.1 cm: not a duplicate; the hands are really close) and mkref's fill held that pose back to
+  frame 0. Robot hands are larger than human hands and nothing kept the two apart (26 frames with a joint gap < 4 cm).
+- Fix: `mkref.separate_hands` (`--hand_sep 0.04`, `--lead_in 10`, default on): a hand first seen at t1 > 0 comes in
+  from 15 cm out and 10 cm up over the 10 frames before t1; where any left/right joint pair is closer than 4 cm the
+  unmeasured hand (else both half-way) moves away from the other and upward, in up to 5 correct-and-smooth rounds;
+  depenetration vs objects/table is re-applied. Unit test on the real hand tracks (crude up axis): ep24 frames with
+  gap < 4 cm 26 → 0, frame-0 gap 0.6 → 8.9 cm, largest shift change 6.2 cm/frame; ep18 unchanged.
