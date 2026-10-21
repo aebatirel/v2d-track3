@@ -1008,3 +1008,21 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `VARIANT=mcw PDIR=/content/perc2m/ep$EP MKREF_ARGS="--wrist_cost 3.0" TRAIN_ARGS="hydra.searchpath=[file:///content/v2d-track3/flashchord_conf] embodiment=sharpa_hands_mid" SEED=42 CK_SWEEP="0.4 0.6 0.8" MESH_DIR=…/library_v2 ASSETS=/content/assets bash pipeline/pipeline_ep.sh $EP`
   + `ops/box/hold_guard.sh`. Hypothesis: the mid wrist lets the policy follow the fast reach and lift the objects.
   Falsified if mcw's sim_vs_ref stays below the static floor on both episodes.
+
+### 2026-10-21 18:55 TRT — why the hard-episode policies fail (CPU replays, no policy; `scratchpad replay_probe.py`)
+- Early read of the mid wrist (mcw) at 100M steps, scored like the sweep: ep18 sim_vs_ref 0.308 (mc 100M: 0.342),
+  vs mocap 0.303; ep24 0.018 (mc: 0.017). No gain at 100M; final checkpoints pending.
+- Frame-by-frame, attempt-1 rollouts (sim vs reference): **ep18 sweeper** tips from f1, 40° by f10, 81° by f20 while
+  the reference has it still until ~f40; **ep24 board 1** is 10° off at f0 and slides/rotates from f1, ends flipped
+  180° by f40 (reference starts moving it at f11). Both objects go wrong before or at first contact.
+- No-policy replay in the training env with stiff wrists along the reference:
+  - ep18: the sweeper stays still (≤ 1°) for 20 frames → it does not fall by itself; in the rollout the policy's
+    hand knocks it over early. The dust pan is nudged ~13° at f15 by the fast right-hand reach.
+  - ep24: **board 1 pops on the first physics step** (15° and +1.6 cm). Hands lifted 5 cm: 7°; official scan boards
+    (hands lifted): 8°. So partly the hand pressing into the board at reset (robot links thicker than the MANO joint
+    centres kept 6 mm clear) and partly something else, not our mesh shape: frame-0 tilt vs the best resting facet
+    is only 3.2° (board 2 0.6°), both boards fully on the table disc (max r 0.203 / 0.291 vs 0.301).
+- Leads (hypotheses, each falsifiable with the same CPU replay before any GPU spend): (1) robot-geometry clearance
+  at reset and over resting objects (FK of the Sharpa collision bodies, not MANO joints); (2) settle resting objects
+  onto a stable facet at frame 0 and over their rest segment; (3) remaining board-1 pop source (contact with board 2
+  or the left hand; needs a per-contact dump).
