@@ -1069,3 +1069,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   no-ground-truth sim_vs_ref correlates 0.98 with it and its best pick (r4) is the true best (0.410). Best-of-N
   rollouts by sim_vs_ref is a strong lever (+0.08 here) but is cherry-picking stochastic rollouts → **owner to decide**
   before any submission uses it; organisers may re-run policies.
+- 20:00 TRT, **ep24 mcw (mid wrist) result**: sweep chose 200M (sim_vs_ref 0.055; 100M 0.017, 150M 0.020, final
+  0.018) → `harmful`; vs mocap AUC **0.050** (boards 0.027 / 0.073) vs mc 0.096; floor 0.122. **Mid-wrist hypothesis
+  falsified on both hard episodes.** The ep24 box continues with mcs (hand separation) alone on the GPU.
