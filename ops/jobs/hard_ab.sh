@@ -12,7 +12,8 @@
 # BASE "auto" = the variant auto_ep.sh published for that episode (results/final/ep<N>/final.json, its policy.safetensors).
 # Overnight rounds (2026-10-22) set: SEED (default 42), SUF (variant suffix, default k), CR (1 = contact retargeting),
 # BASE_EVAL (0 = skip re-evaluating the base), TRAIN_ARGS (passed to training, e.g. reward weights / embodiment),
-# FC_OBJECT_KEYPOINT_SCALE (object-keypoint reward distance in m; patches FlashCHORD, see ops/box/patch_flashchord.py).
+# FC_OBJECT_KEYPOINT_SCALE (object-keypoint reward distance in m), FC_IMMEDIATE_FIRST_FRAME (share of late-stage resets
+# that start like the official evaluation); both patch FlashCHORD, see ops/box/patch_flashchord.py.
 # Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; NREP=${NREP:-6}; PAR=${PAR:-3}
@@ -23,9 +24,10 @@ FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/hard_ab; mkdir
 log "hard_ab code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], suffix $SUF seed $SEED CR $CR, NREP $NREP, TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
 pip install -q fast_simplification >> $J 2>&1 || true              # kit budget_mesh (score_registered --meshes)
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
-if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}" ]; then                    # opt-in reward patch (ops/box/patch_flashchord.py)
+if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ]; then   # opt-in patches (ops/box/patch_flashchord.py)
   python $REPO_DIR/ops/box/patch_flashchord.py $FC >> $J 2>&1 || { log "FlashCHORD patch FAILED" >> $J; exit 1; }
-  export FC_OBJECT_KEYPOINT_SCALE; log "object keypoints at $FC_OBJECT_KEYPOINT_SCALE m (patched FlashCHORD)" >> $J
+  export FC_OBJECT_KEYPOINT_SCALE FC_IMMEDIATE_FIRST_FRAME
+  log "patched FlashCHORD: object keypoints ${FC_OBJECT_KEYPOINT_SCALE:-1} m, deployment-exact starts p ${FC_IMMEDIATE_FIRST_FRAME:-0}" >> $J
 fi
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }

@@ -3,11 +3,13 @@ table per episode (registered AUC with our meshes and sim_vs_ref, mean ± std an
 difference of the mean to the base policy). Usage: ab_table.py DIR [DIR ...] where each DIR holds
 results/hard_ab/ep<N>/<variant>/summary.json (e.g. the scratchpad copies boxres/<run_id>/).
 Variant names: base = mc / mcs (published policy); <base>k = contact retargeting, <base>kq = k + object keypoints at
-0.15 m, <base>p = primitive-collision hand, <base>kp = k + primitive; suffix -s<seed>."""
+0.15 m, <base>p = primitive-collision hand, <base>kp = k + primitive, i = + deployment-exact starts; suffix -s<seed>."""
 import glob, json, os, re, sys
 
 LABEL = {'k': 'contact retargeting', 'kq': 'retargeting + keypoints 0.15 m', 'p': 'primitive hand',
-         'kp': 'retargeting + primitive hand', '': 'base (published policy)'}
+         'kp': 'retargeting + primitive hand', 'ki': 'retargeting + deployment-exact starts',
+         'kpi': 'retargeting + primitive hand + deployment-exact starts', 'pi': 'primitive hand + deployment-exact starts',
+         '': 'base (published policy)'}
 rows = {}
 for d in sys.argv[1:]:
     for f in glob.glob(os.path.join(d, 'results/hard_ab/ep*/*/summary.json')):
@@ -20,7 +22,7 @@ for d in sys.argv[1:]:
 
 
 def kind(var):
-    m = re.match(r'^(mcs|mc|m)(k|kq|p|kp)?(?:-s(\d+))?$', var)
+    m = re.match(r'^(mcs|mc|m)(kpi|kp|kq|ki|k|pi|p)?(?:-s(\d+))?$', var)
     return (m.group(1), m.group(2) or '', int(m.group(3)) if m.group(3) else 42) if m else (var, '?', 0)
 
 
