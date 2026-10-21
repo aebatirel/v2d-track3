@@ -1,0 +1,53 @@
+rows 706 frames 353 0 352 gt rows 353 slots [0 1]
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "sim_vs_mocap": {
+  "AUC": 0.3809,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 6.99,
+  "RPE_cm": 27.571,
+  "per_obj": {
+   "mini_sweeper": 0.0853,
+   "mini_dust_pan": 0.6765
+  }
+ },
+ "static_floor": {
+  "AUC": 0.6365,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 4.146,
+  "RPE_cm": 8.731,
+  "per_obj": {
+   "mini_sweeper": 0.6009,
+   "mini_dust_pan": 0.6721
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.982,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.752,
+  "RPE_cm": 1.394,
+  "per_obj": {
+   "mini_sweeper": 0.9956,
+   "mini_dust_pan": 0.9685
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 0.3435,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 7.202,
+  "RPE_cm": 27.619,
+  "per_obj": {
+   "mini_sweeper": 0.0825,
+   "mini_dust_pan": 0.6045
+  }
+ }
+}

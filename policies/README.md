@@ -15,3 +15,5 @@ are in `results/e2e/`. From now on `pipeline/auto_ep.sh` copies the chosen check
 | 20261020-refsweep-ea14fdf | perc2vc | ep12 | 5.1 MB | 0.6041 | `7c66041372ed92c0…` |
 | 20261020-refsweep-ea14fdf | perc2vw | ep12 | 5.1 MB | 0.8595 | `0e027e4948f6142f…` |
 | 20261021-hard-ep21-6f2f98a | perc2 | ep21 | 5.1 MB | 0.8261 | `0a6b5fd51223c37c…` |
+| 20261021-auto18-966eb96 | perc2mc (own meshes, sweep → 150M) | ep18 | 5.1 MB | 0.3809 (registered, our meshes 0.3962) | `add62ba6230aa7fd…` |
+| 20261021-auto24-966eb96 | perc2mc (own meshes, sweep → 150M) | ep24 | 5.1 MB | 0.0958 (registered, our meshes 0.0799) | `a8e1fc72e2551ac9…` |
