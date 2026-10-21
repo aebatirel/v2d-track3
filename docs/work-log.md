@@ -592,3 +592,18 @@ No spending.
 | 2 | vc | 0.926 | 1.00 | 1.00 | 1.3 cm |
 Mean of the best run per episode (12/27/2): AUC 0.927, SP 1.00, MP 1.00. Public episodes are easier than eval;
 not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
+
+## 2026-10-21 (owner topped up; credit $27.19): hard-episode A/B batch
+- Owner picked "hardest 3"; chosen public episodes 24 (Planter_Stand: two thin boards, slides/pivots, twin of eval
+  25), 18 (Dust_Brush: sweeper + dustpan, tool strokes and slides, twin of eval 19/30) and 21 (Water_Can_Blue_Cup:
+  pouring, cup held tilted in the air, twin of eval 20). No public spoon or stirring episode exists.
+- Plan: per episode two trainings on one box: default (greedy hands, NVIDIA retarget weights, default wrist) and `c`
+  (`mkref --wrist_cost 3.0`), to settle the wrist-cost question on hard tasks. Estimate ~3 h, ~$13. Owner approved.
+- `train_runs.sh` now runs perception once per episode before the variants start (6f2f98a; two variants of one
+  episode would otherwise both write /content/perc2/epN).
+- Launches (commit 6f2f98a, `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020`, job
+  `OMP_NUM_THREADS=4 … RUNS='<ep>:perc2 <ep>:perc2:c' bash ops/jobs/train_runs.sh`):
+  - ep21: offer 56213818 (Greece, $1.442/h) → instance 56997724, run `20261021-hard-ep21-6f2f98a`;
+  - ep24: offer 55481539 ($1.375/h) → instance 56997746, run `20261021-hard-ep24-6f2f98a`;
+  - ep18: offer 31125570 ($1.431/h) → instance 56997750, run `20261021-hard-ep18-6f2f98a`.
+  (Offers 28810508, 46000981 and 49836882 were taken before the create calls.)
