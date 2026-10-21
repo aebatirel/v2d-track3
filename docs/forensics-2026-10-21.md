@@ -106,6 +106,15 @@ become pushing contacts. The policy is still learned (residual RL on the primiti
 scripted controller then RL fine-tuning), which satisfies "from learned policies". Falsified if ep24 (slide + lift) and ep18
 (sweep) policies trained on primitive references stay below their floors.
 
+  *Prototype (measured, `tools/manip_segments.py`, our perception + hands only):*
+  - ep12 cup: rest 0–19 → hand 20–32 → lift 33–36 → carry 37–130 → release 131–141 → rest (pick-and-place).
+  - ep24 board 1: hand on it from 0 → **slide 8–15 → lift 16–20 → carry 21–90** → rest; board 2: rest to 105 → slide 112–123
+    → lift → carry 127–218 → rest (slide to the edge, then lift and carry).
+  - ep18 sweeper: rest to 27 → hand 28–36 → alternating **slide / lift / carry 37–125** (sweeping strokes) → rest; dust
+    pan: picked by the fast reach at 16–27, slides 36–93, carried 117–166.
+  The hard episodes are short sequences of a few primitives, so a primitive library (grasp-carry, slide/push, lift from an
+  edge, sweep stroke) covers them.
+
 **D. Physics-based reference generation (SPIDER-style sampling MPC; 2–4 days).** Use the simulator itself to find robot
 actions that make the object follow the perceived trajectory (batched rollouts on the GPU, cost = object tracking + contact
 guidance + hand prior), then distil into the policy. This attacks the root cause in §1.1 directly: references become
