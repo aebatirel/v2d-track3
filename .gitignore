@@ -8,6 +8,7 @@
 /results/*
 !/results/e2e/
 !/results/registered/
+!/results/recon/
 /outputs/
 /ckpt/
 *.npy

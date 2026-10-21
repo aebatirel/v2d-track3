@@ -1,0 +1,24 @@
+{
+ "obj": "white_pot",
+ "frames": 299,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.8533795555555556,
+ "inside_vox": 15374,
+ "solid_vox": 14456,
+ "components": 1688,
+ "hand_dropped": 0,
+ "table_dropped": 6381444,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  14.5,
+  18.7,
+  36.1
+ ],
+ "watertight": false,
+ "sec": 96.1
+}

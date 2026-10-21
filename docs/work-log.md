@@ -678,3 +678,22 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
   our stereo depth along our tracks gives a mesh whose registered AUC is within 0.02 of the clean scan on public
   episodes (falsified if mean drop > 0.02 or any flip); (H2) FoundationPose tracking with our reconstructed mesh
   instead of the scan loses < 0.03 perception AUC (needs a GPU run).
+
+### 2026-10-21 08:55 TRT: own-mesh reconstruction v0 (`pipeline/recon_mesh.py`), first result (H1 holds on ep41)
+- Method: dense TSDF in the object frame along our tracked poses (refsweep perc2 `poses.npz`), our FoundationStereo
+  depth (`cache/depth/public/ep41`), running average of clip(sdf/1.2 cm) incl. free space (carving), unknown voxels
+  enclosed by the shape count as inside, component nearest the origin, Gaussian-smoothed occupancy → marching cubes →
+  kit `budget_mesh` (4096/4096). Table: frame-0 support plane by RANSAC constrained to lie 0–30 cm under the object
+  origin; table and hand samples carve free space but never vote for a surface. CPU in the cloud VM, ~1.5 min.
+- Iterations on ep41 (white_pot alone; registered AUC with the scan 0.9985):
+  | version | CD-O cm | reg. rot ° | anchor cm | AUC with our mesh |
+  |---|---|---|---|---|
+  | v0 (no table handling, cube ±20 cm) | 0.981 | 2.35 | 0.67 | 0.9925 |
+  | + hand capsules dropped | 0.972 | 2.61 | 0.69 | 0.9910 |
+  | table plane = largest plane (was the **floor**, 1.1 m) | 1.012 | 3.14 | 0.67 | 0.9889 |
+  | table samples dropped entirely (lost free-space carving) | 1.090 | 27.5 | 0.86 | 0.7107 |
+  | table/hand samples carve but never vote surface | 0.671 | 1.74 | 0.89 | 0.9881 |
+  | + cube ±30 cm (handle was clipped at 20 cm) | **0.564** | **1.12** | **0.58** | **0.9979** |
+- Hand masking had no measurable effect on ep41 (kept as an option `--hands`; 7× slower).
+- Outputs in `results/recon/ep41/` (mesh, stats, picture vs scan). Next: the other objects (rack, lid, cups, pitcher,
+  boards, sweeper, dustpan) on public episodes 27, 2, 23, 39, 18, 12, 21.
