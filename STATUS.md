@@ -16,7 +16,7 @@ Details: `docs/work-log.md` (22:35–23:05 TRT entries). Vast credit **$2.69**, 
   `ops/jobs/hard_ab.sh` (pull a run's perception + references, retarget, train 250M seed 42 with the sweep, then 6
   repeat evaluations each of the new policy and today's base policy from `policies/`, registered scores; also scores
   the ep12 / ep27 controls left in the store).
-- **Launch after the top-up and the owner's go-ahead (≈ $6–7 for both, ~2.2 h):** two RTX PRO 6000 boxes,
+- **Launch after the top-up and the owner's go-ahead (≈ $7–8 for both at 23:10 TRT offers of $1.62–1.75/h, ~2.2 h):** two RTX PRO 6000 boxes,
   `ops/vast.sh V2D_COMMIT=<head> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run_id>
   'PAIRS="24:20261021-auto24-966eb96:mcs" bash ops/jobs/hard_ab.sh'` and the same with
   `PAIRS="18:20261021-auto18-966eb96:mc"`. Falsified if the new mean (sim_vs_ref and registered AUC over the
