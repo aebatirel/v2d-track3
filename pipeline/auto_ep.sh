@@ -7,7 +7,7 @@
 #   2) train the best-ranked reference (checkpoint sweep CK_SWEEP) -> qa_policy verdict (ok / weak / harmful).
 #   3) not ok and RETRIES >= 1: train the other reference; still not ok and RETRIES >= 2: the first again, SEED+1.
 #   4) the attempt that tracks our reference best (sim_vs_ref) is copied to /content/results/final/ep<EP>/ with
-#      final.json listing every attempt.
+#      its exact checkpoint (policy.safetensors) and final.json listing every attempt and the checkpoint sha256.
 # Usage (env as for pipeline_ep.sh: SPLIT, PERC, PDIR, STEPS, ASSETS, MESH_DIR ...):
 #   BV=m RETRIES=2 bash pipeline/auto_ep.sh 1
 set -u
@@ -30,7 +30,7 @@ done
 order=($(printf '%s\n' "${cands[@]}" | sort -t: -k1,1g | cut -d: -f2- | sed 's/^$/_/'))
 # 2) + 3) attempts
 plan=("${order[0]}:$SEED0"); [ ${#order[@]} -gt 1 ] && plan+=("${order[1]}:$SEED0"); plan+=("${order[0]}:$((SEED0 + 1))")
-n_max=$(( 1 + ${RETRIES:-2} )); att=(); best=-1; bestres=""
+n_max=$(( 1 + ${RETRIES:-2} )); att=(); best=-1; bestres=""; bestck=""
 for k in "${!plan[@]}"; do
   [ $k -ge $n_max ] && break
   IFS=: read -r suf sd <<< "${plan[$k]}"; [ "$suf" = _ ] && suf=""; V=$BV$suf
@@ -39,13 +39,17 @@ for k in "${!plan[@]}"; do
   rc=$?; RES=/content/results/$PERC$V/ep$EP-s$sd
   v=$(python -c "import json; d=json.load(open('$RES/qa_policy.json')); print(d['sim_vs_ref'], d['floor_vs_ref'], d['verdict'])" 2>/dev/null || echo "nan nan failed")
   read -r sim floor verdict <<< "$v"; log "attempt $((k + 1)) rc=$rc: sim_vs_ref $sim floor $floor -> $verdict"
-  att+=("{\"variant\": \"$V\", \"seed\": $sd, \"rc\": $rc, \"sim_vs_ref\": \"$sim\", \"floor_vs_ref\": \"$floor\", \"verdict\": \"$verdict\", \"res\": \"$RES\"}")
-  if [ "$verdict" != failed ] && python -c "import sys; sys.exit(0 if float('$sim') > float('$best') else 1)"; then best=$sim; bestres=$RES; fi
+  # the checkpoint behind this rollout: the sweep's choice, else the newest policy of the run
+  ck=$(python -c "import json; print(json.load(open('$RES/selection.json'))['chosen'])" 2>/dev/null || ls -v /content/runs/$PERC$V/ep$EP-s$sd/policy_*.safetensors 2>/dev/null | tail -1)
+  att+=("{\"variant\": \"$V\", \"seed\": $sd, \"rc\": $rc, \"sim_vs_ref\": \"$sim\", \"floor_vs_ref\": \"$floor\", \"verdict\": \"$verdict\", \"res\": \"$RES\", \"checkpoint\": \"$ck\"}")
+  if [ "$verdict" != failed ] && python -c "import sys; sys.exit(0 if float('$sim') > float('$best') else 1)"; then best=$sim; bestres=$RES; bestck=$ck; fi
   [ "$verdict" = ok ] && break
 done
 # 4) publish the best attempt
 [ -n "$bestres" ] || { log "no attempt produced a rollout"; exit 1; }
 F=/content/results/final/ep$EP; mkdir -p $F; E6=$(printf %06d $EP)
 cp $bestres/episode_$E6.parquet $bestres/episode_$E6.json $bestres/qa_policy.json $F/
-( IFS=,; echo "{\"episode\": $EP, \"chosen\": \"$bestres\", \"sim_vs_ref\": $best, \"attempts\": [${att[*]}]}" ) > $F/final.json
+# the exact checkpoint of the published rollout (submission provenance: its sha256 goes into the packed rows)
+sha=""; [ -s "${bestck:-}" ] && cp $bestck $F/policy.safetensors && sha=$(sha256sum $F/policy.safetensors | cut -d' ' -f1)
+( IFS=,; echo "{\"episode\": $EP, \"chosen\": \"$bestres\", \"checkpoint\": \"${bestck:-}\", \"checkpoint_sha256\": \"$sha\", \"sim_vs_ref\": $best, \"attempts\": [${att[*]}]}" ) > $F/final.json
 log "final: $bestres (sim_vs_ref $best)"

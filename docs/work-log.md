@@ -871,3 +871,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   reached the full store, so the renders use the newest stored ones: 240M/120M/220M/100M). ep18: the robot never
   picks up the sweeper or the dustpan; the hands hover. Side-by-sides sent to the owner.
 - recon_mesh keeps the largest mesh piece (ep11 beige cup had fragments 20 cm away; rebuilding).
+- **Checkpoints (owner asked):** none were in git (CLAUDE.md allows final policies up to ~10 MB; ours are 5.1 MB).
+  Committed the 7 surviving finals with a sha256 index (`policies/README.md`). Lost: the final 250M policies of the
+  hard batch's ep18 (both variants), ep24 (both) and ep21 wrist-cost (store full at their last upload, boxes gone);
+  their rollouts and scores remain. `auto_ep.sh` now copies the exact checkpoint of the published rollout to
+  `results/final/epN/policy.safetensors` with its sha256 in final.json (dry-run checked); I commit those finals to
+  git after each batch.
