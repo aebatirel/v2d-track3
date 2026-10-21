@@ -4,10 +4,15 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 
 ## 2026-10-21 (owner topped up: credit $27.19 before the batch)
 Details and commands: `docs/work-log.md` (2026-10-21 entries).
-- **Running:** hard-episode A/B batch, 3 boxes (RTX PRO 6000, ~$1.4/h each), commit 6f2f98a, each trains default
-  and `c` (E2S wrist cost 3.0): ep21 (instance 56997724), ep24 (56997746; its rexec tunnel answers 502, the job runs
-  on and pushes to the store), ep18 (56997750). Two trainings per box run at ~19–22k steps/s each, so training takes
-  ~3.3 h (ETA ≈ 11:30 TRT), more than the 2 h assumed; batch ≈ $15–16, not $13. Boxes self-destroy after the push.
+- **Hard-episode A/B batch done** (3 boxes destroyed 11:35 TRT; **credit $10.63**, the batch cost ≈ $16.6;
+  training took 3.3 h at ~21k steps/s per policy with two per box). Sim vs mocap AUC (registered ≈ same):
+  **ep21 pouring 0.826** (SP 1, MP 1; ref 0.985), **ep24 planter boards 0.235 = static floor** (boards never lifted),
+  **ep18 sweeper + dustpan 0.127 / 0.337, below the static floor 0.61** (the sweeper falls). Wrist cost 3.0: no
+  consistent effect. Policy failure on hard tasks is the main risk (eval twins 19, 25, 30, 38).
+- **Blocker: the HF store is full** (99.6 GB of the private quota; final pushes failed with "Private storage limit
+  reached"). Cause: `store.sh push-run` pruned checkpoints one directory level too high, so every 5M-step policy and
+  state went up (state_ files of finished runs: 44 GB). Prune fixed (7b4621e). Freeing space needs the owner:
+  delete finished runs' state_ files + `super_squash_history` (irreversible), or a larger HF plan.
 - **Leaderboard moved** (2026-10-21 00:55 UTC): Zihao Guo AUC 0.831 (SP 0.95, MP 0.75, CD-O 0.313), SoySauceChicken
   0.823 (CD-O 0.065), SRL 0.657. The bar is 0.831.
 - **The official pose scorers now register our submitted mesh to the hidden scan** (kit `metric_code/track_3`,
@@ -23,9 +28,13 @@ Details and commands: `docs/work-log.md` (2026-10-21 entries).
   own reconstructed meshes" → **owner decision**: (A) reconstruct first, track with our own mesh (compliant, more
   work) or (B) keep tracking with the public scans and submit only our own meshes (rule risk); and ask
   v2d_challenge@nvidia.com whether public scans may be used for tracking.
-- **Own-mesh reconstruction v0** (`pipeline/recon_mesh.py`, CPU, ~1.5 min/object): TSDF of our stereo depth in the
-  object frame along our tracks, table/hands carve but never vote surface. **ep41 pot: CD-O 0.56 cm, registration
-  1.1° / 0.6 cm, registered AUC 0.9979 vs 0.9985 with the scan.** Running on episodes 27, 2, 23, 39, 18, 12, 21.
+- **Own-mesh reconstruction** (`pipeline/recon_mesh.py`, CPU in the cloud VM, 1.5–4 min/object; versions v0–v6 in
+  the work log): TSDF of our stereo depth in the object frame along our tracks; table (per-frame refit plane),
+  hands and other tracked objects carve but never vote surface; auto closing (fill vs near). Registered AUC with
+  our mesh / with the scan: **ep41 pot 0.998 / 0.999, ep23 boards 0.997 / 0.999** (v5), ep39 dustpan 0.953 / 0.997
+  (v3; the edge filter hurts it), ep21 cup + pitcher 0.917 / 0.975 (v3). Risk: board registration flips 180° in
+  0–25 % of sampling seeds depending on small parameter changes. Multi-episode fusion implemented, not yet tested.
+  QA tool for eval tracks: `pipeline/track_overlay.py`.
 - **Eval-episode plumbing** done in code (`SPLIT=eval`), not yet run on a box. Eval ep1 videos have 335 frames =
   the kit roster.
 - `.gitignore` had hidden `results/`; `results/e2e`, `results/registered`, `results/recon` are now committed.
