@@ -712,3 +712,20 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
     1.2 cm, ≤ 10° correction): **6.4°, AUC 0.823**; a wedge remained behind the plate.
   - v3 = closing 'near' (unknown voxels count as inside only within 3 voxels of observed inside, then enclosed
     cavities; 'fill' turned every enclosed unknown region into solid): **CD-O 0.58 cm, 1.95°, AUC 0.953** (scan 0.997).
+- v3 on more episodes, with `recon_eval.py` now repeating the registration over 8 sampling seeds (seed 0 = the
+  official one for the episode and slot) and measuring symmetry-aware rotation errors (cups: axis tilt; lid: modulo
+  180°). Columns: CD-O cm, rotation ° (official seed), flip rate (> 30°), worst rotation °; registered AUC ours vs
+  scan.
+  | ep | object(s) | CD-O | rot | flip rate | worst | AUC ours / scan |
+  |---|---|---|---|---|---|---|
+  | 41 | white_pot | 0.70 | 2.6 | 0 | 2.6 | 0.984 / 0.999 |
+  | 39 | mini_dust_pan | 0.58 | 2.0 | 0 | 3.2 | 0.953 / 0.997 |
+  | 23 | wooden_piece_1 / _2 | 0.29 / 0.60 | 1.9 / 2.6 | **0.12 / 0.12** | 179 / 180 | 0.976 / 0.999 |
+  | 21 | blue_cup / water_pitcher | 0.85 / 1.15 | 0.6 / 2.4 | 0 / 0 | 7.9 / 2.4 | 0.917 / 0.975 |
+  Reading: the boards sit on a near-tie between identity and a 180° flip (1 seed in 8 flips → a coin toss at
+  Kaggle, whose scan samples differ). 2–3° of registration error already costs 0.015–0.06 AUC, most when the object
+  sets the scene rotation (ep21: the pitcher anchors, the cup is symmetric). v3 on ep41 is worse than the best v0
+  variant (0.998): to ablate (closing mode, hands, table refit).
+- Note (to test): a mesh fused along our own tracks inherits any constant tracking bias β as a rotation β⁻¹ of the
+  mesh, and the scorer's registration then multiplies it back out (converted pose = R_pose·Rᵀ), so a constant bias
+  cancels; only time-varying pose error and depth-shape error remain.

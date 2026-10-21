@@ -103,6 +103,8 @@ def main():
                    help='fill: every enclosed unknown voxel is inside (made wedges behind thin plates: ep39); near: '
                         'unknown voxels within --near_vox of observed-inside voxels, then enclosed cavities')
     p.add_argument('--near_vox', type=int, default=3)
+    p.add_argument('--edge_thr', type=float, default=0.02,
+                   help='ignore depth where max-min over a 5x5 window exceeds this (flying pixels at silhouettes; <0 off)')
     p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
     p.add_argument('--hands', default=None, help='hands.npz (hands_mp.py): drop depth samples on the hands/forearms')
     p.add_argument('--hand_r', type=float, default=0.03, help='radius around hand bones (m)')
@@ -151,7 +153,12 @@ def main():
         v[ok] = np.round(K[1, 1] * Xc[ok, 1] / z[ok] + K[1, 2]).astype(np.int64)
         ok &= (u >= 0) & (u < W) & (v >= 0) & (v < H)
         idx = np.nonzero(ok)[0]
-        d = np.asarray(D[t])[v[idx], u[idx]]
+        Dt = np.array(D[t], dtype=np.float32)
+        if a.edge_thr >= 0:                                        # flying pixels between foreground and background
+            import cv2
+            Dz = np.where(np.isfinite(Dt), Dt, 0).astype(np.float32); k5 = np.ones((5, 5), np.uint8)
+            Dt[(cv2.dilate(Dz, k5) - cv2.erode(Dz, k5)) > a.edge_thr] = np.nan
+        d = Dt[v[idx], u[idx]]
         good = np.isfinite(d) & (d > 0.05) & (d < a.zmax)
         idx, d = idx[good], d[good]
         sdf = d - z[idx]

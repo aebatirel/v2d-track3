@@ -1,8 +1,10 @@
 """Evaluate reconstructed meshes against the public scans (diagnostic, public episodes only, after inference).
 
 For each <obj>.glb in RECON_DIR: kit CD-O (Sim(3)-registered symmetric Chamfer, cm; v2dlb.object_mesh), the kit
-registration of the mesh to the scan (rotation and anchor shift; a large rotation means a flip), extents, and a
-4-view picture (scan grey, ours red). Then, if POSES (poses_world_vo.npz) is given, the registered AUC of that
+registration of the mesh to the scan (rotation and anchor shift; a large rotation means a flip; symmetry-aware for cups and lid), extents, and a
+4-view picture (scan grey, ours red). The registration is repeated with --seeds sampling seeds (seed 0 = the
+official one for this episode and slot); flip_rate = share of seeds whose rotation exceeds 30 deg (the hidden scan's
+own sampling differs from ours, so a near-tie is a coin toss at Kaggle). Then, if POSES (poses_world_vo.npz) is given, the registered AUC of that
 perception trajectory with our meshes vs with the scans (score_registered.py).
 Usage: python recon_eval.py EP RECON_DIR [--poses NPZ] [--t3 ..] [--kit ..]
 """
@@ -10,7 +12,7 @@ import argparse, json, os, subprocess, sys
 import numpy as np, trimesh
 
 p = argparse.ArgumentParser(); p.add_argument('ep', type=int); p.add_argument('recon')
-p.add_argument('--poses'); p.add_argument('--t3', default='/content/t3'); p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
+p.add_argument('--poses'); p.add_argument('--t3', default='/content/t3'); p.add_argument('--seeds', type=int, default=8); p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
 a = p.parse_args()
 sys.path.insert(0, a.kit)
 from v2dlb.object_mesh import _surface_moments
@@ -26,17 +28,38 @@ def scan_path(n):
     return q if os.path.exists(q) else f'{a.t3}/mesh/{n}/{n}_visual.glb'
 
 
+import pyarrow.parquet as pq
+names = [str(o['name']) for o in pq.read_table(f'{a.t3}/ep{a.ep}.parquet').to_pandas()['observation.objects'].iloc[0]]
 out = {}
 objs = sorted(f[:-4] for f in os.listdir(a.recon) if f.endswith('.glb') and not f.endswith('_full.glb'))
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 fig, ax = plt.subplots(len(objs), 4, figsize=(16, 4 * len(objs)), squeeze=False)
 for i, n in enumerate(objs):
     ref = budget_mesh(scan_path(n), 4096, 4096); cand = budget_mesh(f'{a.recon}/{n}.glb', 4096, 4096)
-    cd = CDO._object_chamfer_cm(ref, cand, 1_000_003 * a.ep)
+    slot = names.index(n) if n in names else 0
+    cd = CDO._object_chamfer_cm(ref, cand, 1_000_003 * a.ep + 101 * slot)
     rc, _ = _surface_moments(*ref)
-    ca, R = T3._register_object_body(cand, ref, rc, 1_000_003 * a.ep)
     from scipy.spatial.transform import Rotation as Rot
-    out[n] = dict(cd_o_cm=round(float(cd), 3), reg_rot_deg=round(float(np.degrees(Rot.from_matrix(R).magnitude())), 2),
+    # symmetry as scored (README): cups = spin about the central axis is free (error = axis tilt); lid = 180 deg about
+    # its normal is free. Axes from the scan's principal directions, as in score_registered.py.
+    pts = trimesh.sample.sample_surface(trimesh.Trimesh(*ref, process=False), 4000, seed=0)[0]
+    w_, U_ = np.linalg.eigh(np.cov((pts - pts.mean(0)).T))
+    def sym_err(R_k):
+        if n in ('beige_cup', 'blue_cup'):
+            k_ = int(np.argmax([abs(w_[i] - np.mean(np.delete(w_, i))) for i in range(3)])); ax_ = U_[:, k_]
+            return float(np.degrees(np.arccos(np.clip(abs(ax_ @ R_k @ ax_), -1, 1))))
+        e = float(np.degrees(Rot.from_matrix(R_k).magnitude()))
+        if n == 'white_pot_lid':
+            e = min(e, float(np.degrees((Rot.from_matrix(R_k) * Rot.from_rotvec(np.pi * U_[:, 0])).magnitude())))
+        return e
+    rots = []                     # registration over several sampling seeds: a near-tie flips with the samples
+    for k in range(a.seeds):
+        ca_k, R_k = T3._register_object_body(cand, ref, rc, 1_000_003 * a.ep + 101 * slot + 7919 * k)
+        rots.append(sym_err(R_k))
+        if k == 0:
+            ca, R = ca_k, R_k     # k = 0 is the official seed (episode, slot)
+    out[n] = dict(cd_o_cm=round(float(cd), 3), reg_rot_deg=round(rots[0], 2),
+                  flip_rate=round(float(np.mean(np.array(rots) > 30)), 2), rot_deg_max=round(max(rots), 1),
                   reg_anchor_shift_cm=round(float(np.linalg.norm(ca - rc) * 100), 2),
                   extents_ours_cm=np.round(np.ptp(cand[0], 0) * 100, 1).tolist(),
                   extents_scan_cm=np.round(np.ptp(ref[0], 0) * 100, 1).tolist())
