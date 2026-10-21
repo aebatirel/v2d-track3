@@ -155,6 +155,13 @@ def integrate(a, K, X, tsdf, wgt, poses, depth, hands, others_spec, cnt):
                     nc, cc = nn, -nn @ q0
             tb = Pd @ nc + cc <= a.table_band
             other |= tb; ntable += int((tb & (sdf <= a.trunc)).sum())
+            if a.below_carve >= 0:
+                # the object is never inside the table: voxels more than BELOW_CARVE under this frame's table plane
+                # count as one free-space observation. The camera never sees under a resting plate, and 'fill'
+                # closed that space down to wherever other views had carved (dust pan: a 3.5 cm slab under the
+                # table, 2026-10-21). TSDF averaging outvotes the rare frame whose pose sinks the object.
+                fb = np.nonzero(Xc @ nc + cc < -a.below_carve)[0]
+                tsdf[fb] = (tsdf[fb] * wgt[fb] + 1) / (wgt[fb] + 1); wgt[fb] += 1; cnt['below'] += len(fb)
         if segs_t is not None and len(segs_t[t][0]):
             A0, B0, rad = segs_t[t]
             hd = np.zeros(len(idx), bool)
@@ -208,6 +215,9 @@ def main():
     p.add_argument('--arm_len', type=float, default=0.15)
     p.add_argument('--table_band', type=float, default=0.015,
                    help='drop depth samples less than this above the frame-0 support plane, or below it (<0: off)')
+    p.add_argument('--below_carve', type=float, default=0.004,
+                   help='voxels more than this under the per-frame table plane are free space (<0: off; needs the '
+                        'table plane, --table_band >= 0)')
     p.add_argument('--others', default='', help='NAME=MESH,...: the episode\'s other tracked objects (posed by their '
                    'cam_T_NAME in --poses); depth samples within --other_r of them carve but never vote surface')
     p.add_argument('--other_r', type=float, default=0.012)
@@ -219,7 +229,7 @@ def main():
     n = int(round(2 * a.half / a.voxel)); g = (np.arange(n) + 0.5) * a.voxel - a.half
     X = np.stack(np.meshgrid(g, g, g, indexing='ij'), -1).reshape(-1, 3)          # voxel centres, object frame
     tsdf = np.zeros(len(X), np.float32); wgt = np.zeros(len(X), np.float32)
-    cnt = dict(hand=0, table=0, other=0, frames=0)
+    cnt = dict(hand=0, table=0, other=0, below=0, frames=0)
     # several episodes of the same object fuse into one grid (comma-separated lists; --others per episode by ';')
     poses_l, depth_l = a.poses.split(','), a.depth.split(',')
     hands_l = a.hands.split(',') if a.hands else [None] * len(poses_l)
@@ -289,7 +299,7 @@ def main():
     m.export(a.out)
     st = dict(obj=a.obj, episodes=len(poses_l), frames=int(cnt['frames']), stride=a.stride, voxel=a.voxel, trunc=a.trunc, half=a.half, grid=n,
               known_frac=float(known.mean()), inside_vox=int(inside.sum()), solid_vox=int(solid.sum()),
-              closing=mode, unknown_share=round(unk_frac, 3), components=int(nl), hand_dropped=cnt['hand'], table_dropped=cnt['table'], other_dropped=cnt['other'],
+              closing=mode, unknown_share=round(unk_frac, 3), components=int(nl), hand_dropped=cnt['hand'], table_dropped=cnt['table'], other_dropped=cnt['other'], below_carved=cnt['below'], below_carve=a.below_carve,
               verts=int(len(m.vertices)), faces=int(len(m.faces)),
               extents_cm=(np.round(m.extents * 100, 1)).tolist(), watertight=bool(m.is_watertight),
               sec=round(time.time() - t0, 1))

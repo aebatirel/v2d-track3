@@ -906,3 +906,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   while ep24 trains, instead of renting a second box.
 - ep24 on the box: perception with our meshes AUC 0.795 (wooden_piece_1 0.76); reference m: left wrist IK p95
   217 mm, max step 13.2 cm → QA fails as expected; the wrist-cost variant mc is built next.
+
+### 2026-10-21 15:45 TRT — correction: the table-plane fix did not remove the dust pan slab
+- The dust pan rebuilt with the 65° cone (`loc/library_v2/mini_dust_pan_col.glb`, 873 s locally): table pixels
+  dropped 18.1 M → 25.2 M, but the mesh is unchanged: still 3.3–3.5 cm under the table in ep39/40/18 (v1 the same).
+  The plane bug was real but was not the cause; my first diagnosis was incomplete.
+- Where the slab is: under the plate, along the table normal (body −x), 28 % of the surface more than 5 mm under
+  the table. Cause: the underside of a resting plate is never seen; 'auto' closing chose 'fill' (unknown share 0.129
+  < 0.5) and filled the never-seen space down to wherever other views had carved it.
+- Fix (hypothesis, testing now): `recon_mesh --below_carve 0.004` (default on): in every frame, voxels more than
+  4 mm under that frame's refitted table plane count as one free-space observation (the object is never inside the
+  table). Falsified if the rebuilt dust pan still reaches > 1 cm under the table, or if its registered AUC vs the
+  scan drops below v1's (ep39 0.992, ep40 0.971). Two rebuilds in parallel: carve + auto, carve + `--close near`.
+- Checked every library_v1 mesh against mkref's table at frame 0 of its source episodes (lowest surface point,
+  ours / scan, cm): **white_pot −5.5 / −0.2…−0.5 in ep2, 27, 41, 44** (same never-seen-bottom cause; would have failed
+  the ep27 control and eval episodes with the pot), dust pan −3.5 / −0.1, wooden_piece_1 −1.2 / −0.4,
+  wooden_piece_2 −0.9 / −0.2; blue cup, beige cup, dish rack, pitcher, sweeper and lid within 0.4 cm of the scan.
+  Rebuilding the white pot with `--below_carve` (episodes 41 44 2 27, as v1; `scratchpad rebuild_obj.sh`).
