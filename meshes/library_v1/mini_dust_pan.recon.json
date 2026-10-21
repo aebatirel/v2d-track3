@@ -1,0 +1,28 @@
+{
+ "obj": "mini_dust_pan",
+ "episodes": 3,
+ "frames": 932,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.9998038518518518,
+ "inside_vox": 3711,
+ "solid_vox": 4100,
+ "closing": "fill",
+ "unknown_share": 0.122,
+ "components": 9,
+ "hand_dropped": 2444208,
+ "table_dropped": 18091891,
+ "other_dropped": 419430,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  5.8,
+  16.0,
+  17.1
+ ],
+ "watertight": false,
+ "sec": 1720.9
+}
