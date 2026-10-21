@@ -740,3 +740,9 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
 - New tools: `pipeline/track_overlay.py` (tracked meshes drawn on the rectified frames; QA for eval episodes, CPU) and
   `ops/jobs/eval_perc.sh` (perception on the 20 eval episodes, one at a time, depth pushed to the store; ~4 min
   per episode measured on ep18, so ≈ 1.5 h on one box ≈ $2–3; not launched).
+- v5 = v4 + `--close auto` (threshold 0.5 on the never-observed share of the filled object): pot 0.042 → fill,
+  boards 0.140 / 0.015 → fill, dustpan 0.629 → near. Registered AUC ours / scan: **ep41 0.998 / 0.999, ep23 0.997 /
+  0.999 (boards CD-O 0.22 / 0.22 cm, 0.2° / 1.0°, flip rate 0 / 0)**, ep39 0.880 / 0.997 (the 2 cm edge filter strips
+  the dustpan plate's edges; v3 without it: 0.953). Next: edge threshold 5 cm (v6).
+- `recon_mesh.py` now fuses several episodes of one object into one grid; checked: one episode gives an identical
+  mesh to v5 (ep41, 13,258 vertices).
