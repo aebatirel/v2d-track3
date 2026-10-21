@@ -147,15 +147,43 @@ a policy is `harmful` the static floor beats it; a policy trained to keep its ha
 **H. Thin-object meshes.** Add the public episodes where the boards appear (23, 24, …) to their fusion and evaluate the
 flatness and registration; the eval twins use those meshes for tracking.
 
-## 4. What the leaders probably do differently
+## 4. What the leaders probably do differently (research: `docs/research/competitors-2026-10-21.md`)
 
-See §5 (research on the two leading participants, their supervisors and labs; filled in from the research report).
+Leaderboard (Kaggle data, 2026-10-21 15:25 UTC, verified): **SoySauceChicken 0.848** (SP 0.85, MP 0.75, MPPE 2.13 cm,
+**CD-O 0.065 cm**), **Zihao Guo 0.831** (**SP 0.95**, MP 0.75, RPE 2.10 cm, CD-O 0.313 cm), SRL 0.694.
 
-## 6. Recommended next steps (Nov 4 freeze)
+- **Identity:** the two homepages in the owner's message are almost certainly other people with the same names (an HCI PhD at
+  UW-Madison, a transport-optimisation PhD in Paris). SoySauceChicken's Kaggle members are a Duke student (Isaac Sim RL,
+  sim-to-real coursework) and Danyang Yan of Boyuan Chen's Duke General Robotics Lab (dexterous hands; collision-aware pose
+  search in a physics simulator; keyframes and temporal smoothing). "Zihao Guo" (Kaggle `hideinpoopoo`) is unidentified; prize
+  eligibility requires a code release and a technical report, so we will learn more after the freeze.
+- **SoySauceChicken's clearest edge is geometry:** CD-O 0.065 cm (≈ 0.65 mm) is far better than any reconstruction we have
+  seen (ours 0.3–0.6 cm), and the official scorer registers submitted meshes to the hidden scans, so near-exact meshes lift every
+  pose metric. Inference: near-exact meshes, possibly the public scans for objects that recur. **This makes the organisers'
+  answer on public scans decisive for us** (we chose own meshes for compliance).
+- **Zihao Guo's clearest edge is policy success:** SP 0.95 = 19 of 20 episodes within 10 cm / 0.5 rad, so their policies also
+  work on the tool-use and board episodes where ours fail. Inference: object-dominant rewards and/or physically feasible
+  references before RL (their mesh error is ordinary).
+- **Directly reusable work found (papers verified on arXiv; code links from the papers, not opened here):**
+  - **FlashDexRetarget** (arXiv 2610.01849; the FlashSAC authors; ships Sharpa Wave): reported 86 % success on Sharpa Wave
+    against 50 % for CHORD (the organisers' method behind FlashCHORD). Design: object reward from the 3 worst surface-point
+    errors (ADD-like, like our score), a one-sided fingertip-distance reward (close gaps without copying penetrations), the next
+    10 reference frames as input, separate actor-critics per hand, and one policy over many references.
+  - **Do as I Do** (arXiv 2606.19333; SPIDER-based sampling MPC in MuJoCo Warp with a Sharpa option): physically feasible
+    references from monocular video.
+  - **Gen2Dex** (2610.24392): backward curriculum and a cache of valid reset states for long, imperfect references.
+  - **Extrinsic dexterity** (Zhou & Held 2211.01500): learn to push a thin object to an edge, then grasp — exactly ep24.
+  - Better kinematic references alone (interaction-graph retargeting, DexOAK 2610.26762) raised ADD-AUC 62.7 → 77.9 % on
+    ARCTIC.
 
-1. Preflight gate (A) and robot-level depenetration (B) on CPU; rerun ep18/ep24 only when they pass.
-2. Test E1 (`sharpa_hands_primitive`) on CPU, then one GPU run per hard episode.
-3. In parallel, get a first full 20-episode submission on the board with the current pipeline (needs a Vast top-up of
-   ~$50–70): easy episodes near 0.9 already; it also exercises packing, provenance and upload.
-4. Prototype C (manipulation-type segmentation, grasp-carry primitive) on ep24 and ep18; ask the organisers about E2
-   (gripper) and G (rollout selection) before building them.
+## 5. Recommended next steps (Nov 4 freeze)
+
+1. **Ask the organisers (owner):** may public scans be used as the submitted mesh for objects that appear in the public data?
+   May a gripper embodiment be used? May we choose among several rollouts of the same policy?
+2. **Port FlashDexRetarget's reward and observation design into our FlashCHORD runs** (same hand, same RL algorithm); test on
+   ep18/ep24 at the same 250M budget. Highest expected value per cost.
+3. **Physics preflight gate (A) and robot-level depenetration (B)** on CPU before every training; `sharpa_hands_primitive` (E1)
+   as a cheap extra.
+4. **First full 20-episode submission** with the current pipeline (needs a Vast top-up of ~$50–70): easy episodes ~0.9.
+5. **Hard episodes:** sampling-MPC references (Do as I Do / SPIDER) and the manipulation-type primitives (C), with backward
+   curriculum (Gen2Dex) and the edge-push-then-grasp shaping for the boards.
