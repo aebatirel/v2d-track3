@@ -1228,3 +1228,25 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   | C | 57117669 | 1.60 | `20261022-r1c-65c5a52` | `SEED=43 BASE_EVAL=0 PAIRS="24:…:mcs 18:…:mc"` (second seed of the new references) |
   Expected ≈ 3.5 h per box, ≈ $17 for the round. Each variant: stage 3c contact retargeting → 250M steps → sweep
   0.4/0.6/0.8 → 6 repeat evaluations, registered scores with our meshes.
+
+### 01:55 TRT — round-1 bug, in-place restarts, round-2 candidates launched in parallel
+- **Bug:** `hard_ab.sh` copied the base reference with `cp -r $R0 $R1` before `refs/perc2<variant>/` existed, so the
+  copy failed silently, the pipeline found no hands and tried to rerun hand tracking (no depth cache) → every new
+  variant failed in minutes. My local emulation had covered stage 3c, not the job's `one()` function. Fixed
+  (d4ac331: `mkdir -p`, check that `hands.npz` arrived; finished evaluations are skipped on reruns) and `one()` now
+  passes a stubbed dry run (`scratchpad drytest/`).
+- Measured before the fix (box B): **controls from the store, registered with our meshes: ep12 0.757 (SP 1, MP 0),
+  ep27 0.956 (SP 1, MP 1)**; **ep18 base policy (mc 150M) over 6 evaluations: registered AUC mean 0.345, std 0.046,
+  0.275–0.400; sim_vs_ref mean 0.308 (0.254–0.353).**
+- Boxes A and B were kept (offers were scarce at 01:20) and restarted in place with `ops/box/restart_job.sh`
+  (hold, stop the job's processes, check out d4ac331, restart; the hold is refreshed only while outputs change).
+  Box C had already finished (no base evaluations to run), saved and self-destroyed (≈ $0.5 lost).
+- Offers recovered (≈ $1.41–1.65/h), so round-2 candidates run now, in parallel, on the hard episodes (ep24, ep18):
+  | box | instance | run id | job |
+  |---|---|---|---|
+  | C′ | 57119638 | `20261022-r1c2-d4ac331` | `SEED=43 BASE_EVAL=0` fixed reference "k" (second seed) |
+  | D | 57119640 | `20261022-r2p-d4ac331` | `SUF=p CR=0 TRAIN_ARGS="embodiment=sharpa_hands_primitive"`: base reference, NVIDIA's primitive-collision Sharpa (compare with the base) |
+  | E | 57119641 | `20261022-r2q-d4ac331` | `SUF=kq FC_OBJECT_KEYPOINT_SCALE=0.15`: fixed reference + object keypoints 15 cm out (compare with k seed 42) |
+  Hypotheses: (D) primitive collision geometry makes contact-rich starts steadier (CPU replay: ep24 board tilt 13° vs
+  20° at f10) → higher mean score than the base; falsified if not. (E) keypoints at object scale weight position vs
+  rotation like the scorer's surface points → higher mean than k s42; falsified if not. Credit $51.01 at 01:50.
