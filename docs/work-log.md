@@ -1250,3 +1250,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   Hypotheses: (D) primitive collision geometry makes contact-rich starts steadier (CPU replay: ep24 board tilt 13° vs
   20° at f10) → higher mean score than the base; falsified if not. (E) keypoints at object scale weight position vs
   rotation like the scorer's surface points → higher mean than k s42; falsified if not. Credit $51.01 at 01:50.
+
+### 02:45 TRT — CPU diagnostics while round 1/2 train
+- **Stiff no-policy replay** (`tools/replay_probe.py`, STIFF=1: wrists and fingers driven along the reference, no
+  policy, first episode from frame 0): ep24 board 1 at step 5 / 10: old reference 5.7 cm 21° / 2.7 cm 11° → retargeted
+  **0.0 cm 0°** / 0.9 cm 8°; both terminate ~f17 once the reference starts sliding the board (f11). ep18 dust pan at
+  step 15 / 20: 13° / 21° → **1°** / 11°; sweeper at step 25: 23° → 15°. Reading: the start is now clean; touching-only
+  fingers cannot carry the objects through the manipulation (grip force is the policy's job).
+- **Contact retargeting for NVIDIA's primitive-collision hand** (`--embodiment sharpa_hands_primitive`; same joint
+  layout, but every link collides as capsules / boxes and no mesh): hand samples now come from the simulator's own
+  MuJoCo geoms (`MjPen.link_samples`, MuJoCo axis conventions, mapped into each link frame through FK). ep24: tool
+  penetration p95 21.7 → 3.5 mm (left), 15.7 → 3.9 mm (right), pads to contacts median 4.8 / 3.9 mm. Pop map with the
+  primitive hand: old reference 46 / 55 popping, median 7.4°, f0 2.0° → retargeted **32 / 55, median 2.5°, p90 6.1°,
+  f0 0.8°** (default hand retargeted: 35 / 55, 2.9°, 6.4°). Ready for a "k + primitive" variant if box D (primitive
+  hand alone) wins.
+- Round 1/2 progress 02:40: B ep18 k s42 at 20M steps, A ep24 k s42 at 10M; C′, D starting; E in setup.

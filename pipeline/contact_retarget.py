@@ -102,6 +102,8 @@ def hand_geometry(model, side, max_pts=40):
         V = hull_samples(V, max_pts)
         V = Rot.from_quat(tf[s, 3:7]).apply(V) + tf[s, :3]
         pts_b.append(np.full(len(V), sb[s])); pts_l.append(V)
+    if not pts_b:                                                  # primitive-only hands: MjPen.link_samples fills in
+        return bodies, np.zeros(0, int), np.zeros((0, 3))
     return bodies, np.concatenate(pts_b), np.concatenate(pts_l)
 
 
@@ -189,6 +191,38 @@ class MjPen:
         self.own = own; self.geoms = {s: np.nonzero(own == k)[0] for s, k in (('left', 1), ('right', 2))}
         self.slot = {s: {g: i for i, g in enumerate(v)} for s, v in self.geoms.items()}
         self.state = self.m.state(); self.base = None
+        self.gbody = np.array([sb[g2s[g]] if g2s[g] >= 0 else -1 for g in range(self.mm.ngeom)])
+
+    def link_samples(self, q58, fk, side, n=40):
+        """Surface samples (Newton body-local) of this hand's colliding geoms as MuJoCo sees them, for links whose collision
+        shapes are primitives (sharpa_hands_primitive: capsules / boxes, no mesh vertices). MuJoCo convention: capsule and
+        cylinder along local z (size radius, half-length), box half-sizes. Returns {body: (k, 3)}."""
+        mj, mm, md = self.mj, self.mm, self.md
+        q = (self.base if self.base is not None else self.env.state_0.joint_q.numpy()).copy(); q[:58] = q58
+        self.state.joint_q.assign(q.astype(np.float32)); self.sol._update_mjc_data(md, self.m, self.state)
+        mj.mj_kinematics(mm, md); bq = fk(q58); out = {}
+        u = np.linspace(0, 2 * np.pi, 8, endpoint=False)
+        CAP, CYL, SPH, BOX = (int(getattr(mj.mjtGeom, f'mjGEOM_{k}')) for k in ('CAPSULE', 'CYLINDER', 'SPHERE', 'BOX'))
+        for g in self.geoms[side]:
+            if not (mm.geom_contype[g] or mm.geom_conaffinity[g]):
+                continue
+            t, sz = int(mm.geom_type[g]), mm.geom_size[g]
+            if t in (CAP, CYL):
+                r, h = sz[0], sz[1]; z = np.linspace(-h, h, max(2, n // 8))
+                P = np.array([[r * np.cos(a), r * np.sin(a), zz] for zz in z for a in u])
+                if t == CAP:
+                    P = np.vstack([P, [0, 0, h + r], [0, 0, -h - r]] + [[r * np.cos(a) * 0.7, r * np.sin(a) * 0.7, sgn * (h + r * 0.71)] for a in u for sgn in (1, -1)])
+            elif t == SPH:
+                P = hull_samples(np.array([[sz[0] * np.cos(a) * np.sin(b), sz[0] * np.sin(a) * np.sin(b), sz[0] * np.cos(b)] for a in u for b in np.linspace(0, np.pi, 6)]), n)
+            elif t == BOX:
+                c = np.array([[x, y, z] for x in (-1, 1) for y in (-1, 1) for z in (-1, 1)], float) * sz[:3]
+                P = hull_samples(c, n)
+            else:
+                continue                                           # meshes keep the Newton-mesh samples
+            W = md.geom_xmat[g].reshape(3, 3) @ P.T + md.geom_xpos[g][:, None]
+            b = self.gbody[g]; Rb = Rot.from_quat(bq[b, 3:7])
+            out.setdefault(b, []).append(Rb.inv().apply(W.T - bq[b, :3]))
+        return {b: np.vstack(v) for b, v in out.items()}
 
     def frame(self, f):
         self.env.reset(frame_id=f); self.base = self.env.state_0.joint_q.numpy().copy()
@@ -272,6 +306,12 @@ def main():
 
     for side, o in SIDES.items():
         bodies, pb, pl = hand_geometry(m, side)
+        if mjp is not None:                                        # primitive-collision links (no mesh samples)
+            prim = mjp.link_samples(qref[0], fk, side)
+            add = [b for b in prim if b not in set(pb.tolist())]
+            if add:
+                pb = np.concatenate([pb] + [np.full(len(prim[b]), b) for b in add]); pl = np.concatenate([pl] + [prim[b] for b in add])
+                print(f'{side}: primitive collision samples for {len(add)} links', flush=True)
         tip_parent = [bodies[f'{side}_{fn}_DP'] for fn in FINGERS]
         # tip-site offsets in their DP link frames, from the E2S frames (median over 10 frames)
         fnames = t.column(f'{side}_robot_frame_names')[0].as_py(); FR = np.array(t.column(f'robot_{side}_frames')[0].as_py(), float).reshape(T, -1, 7)
