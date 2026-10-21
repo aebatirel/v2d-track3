@@ -1,0 +1,12 @@
+{"episode": 18, "checkpoint": "runs/perc2mc/ep18-s42/policy_150007808.safetensors (sha256 add62ba6230aa7fd...)",
+ "note": "8 repeat evaluations of the same policy (official evaluator, world_count 1, reset_mode explicit) on box 57058717, 2026-10-21 ~16:25 UTC. sim_vs_ref = qa.py (no ground truth); vs mocap = score_sim.py (diagnostic only).",
+ "rollouts": [
+  {"run": "r1", "sim_vs_ref": 0.3429, "auc_vs_mocap": 0.3667, "per_obj": {"mini_sweeper": 0.0637, "mini_dust_pan": 0.6696}},
+  {"run": "r2", "sim_vs_ref": 0.381, "auc_vs_mocap": 0.3954, "per_obj": {"mini_sweeper": 0.1151, "mini_dust_pan": 0.6758}},
+  {"run": "r3", "sim_vs_ref": 0.3094, "auc_vs_mocap": 0.3443, "per_obj": {"mini_sweeper": 0.1197, "mini_dust_pan": 0.5689}},
+  {"run": "r4", "sim_vs_ref": 0.3831, "auc_vs_mocap": 0.4101, "per_obj": {"mini_sweeper": 0.1121, "mini_dust_pan": 0.708}},
+  {"run": "r5", "sim_vs_ref": 0.3424, "auc_vs_mocap": 0.3762, "per_obj": {"mini_sweeper": 0.0752, "mini_dust_pan": 0.6772}},
+  {"run": "r6", "sim_vs_ref": 0.1333, "auc_vs_mocap": 0.1306, "per_obj": {"mini_sweeper": 0.1018, "mini_dust_pan": 0.1593}},
+  {"run": "r7", "sim_vs_ref": 0.3096, "auc_vs_mocap": 0.2958, "per_obj": {"mini_sweeper": 0.0623, "mini_dust_pan": 0.5292}},
+  {"run": "r8", "sim_vs_ref": 0.3079, "auc_vs_mocap": 0.3372, "per_obj": {"mini_sweeper": 0.0898, "mini_dust_pan": 0.5846}}],
+ "summary": {"auc_vs_mocap_mean": 0.332, "auc_vs_mocap_min": 0.131, "auc_vs_mocap_max": 0.410, "best_by_sim_vs_ref": "r4 (0.410 vs mocap, also the true best)"}}

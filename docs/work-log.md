@@ -1064,3 +1064,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 19:20 TRT credit **$9.78**. ep18 box (57058717) reused for the **controls ep12 + ep27** (owner: "if money left"):
   worktree /content/v2d-2 at 82a5fe4 (hand separation on), `SELF_HOLD=1 EPS="12 27" RETRIES=0 bash
   /content/v2d-2/ops/jobs/auto_runs.sh` (library_v2, colourless assets). Expected ≈ $3.5.
+- 19:30 TRT, **evaluation noise measured** (ep18 mc s42 150M, 8 repeat evaluations; `results/e2e/val_20261021/
+  ep18_mc_s42_150M_eval_noise.json`): vs mocap 0.131–0.410, mean 0.332, std 0.08 (one bad rollout); our
+  no-ground-truth sim_vs_ref correlates 0.98 with it and its best pick (r4) is the true best (0.410). Best-of-N
+  rollouts by sim_vs_ref is a strong lever (+0.08 here) but is cherry-picking stochastic rollouts → **owner to decide**
+  before any submission uses it; organisers may re-run policies.
