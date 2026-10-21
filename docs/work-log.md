@@ -836,3 +836,38 @@ Sim vs mocap, our scorer (old) and the registered scorer with the public scans a
   only the right robot hand is ever in view. Fix candidates: fixed bone lengths per hand (`mkref --bone_norm`,
   measured from the hand's good frames), and pushing finger targets out of object/table geometry.
 - Mesh library: blue_cup (12/13/21/22; 9.5 × 9.6 × 16.7 cm) committed.
+
+### 2026-10-21 15:00 TRT: automatic QA + retries, hand refinement, physics-aware targets, real table size
+Owner asked: bone lengths from the best frames with a margin, physics-aware targets (literature), automatic QA with
+retries targeted at where it got stuck. Literature: SPIDER (Meta FAIR/CMU 2025, arXiv 2511.09484; physics-based
+retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CVPR 2025, arXiv 2503.21860; imitator
++ residual under interaction constraints), ContactOpt (CVPR 2021, arXiv 2104.07267; contact optimisation tolerating
+~2 mm interpenetration). Implemented (all GT-free):
+- `pipeline/hand_refine.py` (pipeline stage 2b, default on): per-hand reference bone lengths = median over the best
+  30 % frames (lowest reprojection rms); palm fitted rigidly at fixed size; fingers rebuilt joint by joint on the
+  camera ray of their 2-D landmark at the reference length ±10 % (owner's margin); light smoothing. ep24: bone
+  length CV 0.24 → 0.07 (left), 0.22 → 0.08 (right). Correction to the earlier note: ep24's left hand was not
+  crushed; wrist→middle-tip is short because the hand is curled around the board; the flexion-invariant chain
+  ratio p10 was 0.85 → 0.98 after refinement.
+- `pipeline/qa.py`: `ref` (robot wrist IK p95 > 60 mm or a wrist step > 10 cm fails) and `policy` (rollout vs OUR
+  reference and the reference's static floor → ok / weak / harmful). On the hard batch the policy check matches
+  mocap closely: ep18 0.13 / 0.38 (mocap 0.127 / 0.337; floor 0.62 → harmful), ep21 0.83 / 0.80 ok, ep24 0.24 weak /
+  0.13 harmful. Reference check: every default-wrist reference fails (ep18 right p95 289 mm), wrist cost 3.0 passes
+  on 24 and 21, ep18 c fails narrowly (77 mm).
+- `pipeline_ep.sh`: stage 2b hand refinement, 3b reference QA, 5b checkpoint sweep (CK_SWEEP fractions; best by the
+  policy check), qa_policy.json per rollout. `pipeline/auto_ep.sh`: both references (default / wrist 3.0) ranked by
+  the reference QA → train the best → if not ok, the other reference, then a new seed → publish the best to
+  results/final/epN with final.json (dry-run with a stub pipeline: correct retry and selection).
+- `mkref.py` physics-aware targets (`--depenetrate 0.006`, default on): joint centres kept ≥ 6 mm outside objects
+  and above the table (≈ 8 mm finger radius − 2 mm squeeze, as ContactOpt); a joint pinned between table and object
+  goes to the object's top; unit-tested on a synthetic board.
+- **Real table size (new finding):** the simulated support was a 0.45 m-radius cylinder centred on the objects; the
+  real round table measured from frame-0 depth is ~0.22–0.25 m in radius (plot `table_extent.png`: ep24, 18, 27, 21).
+  The table edges the person uses (ep24 slides a board until it overhangs, then grips under it; ep18 sweeps with the
+  dustpan at the edge) did not exist in sim. `mkref --table_fit 1` (default) now measures the disc (connected
+  on-plane region near the objects, minimum enclosing circle, ≥ the objects' frame-0 reach) and writes the support
+  cylinder there; depenetration applies the table rule only over the disc.
+- Full-length re-renders (`ops/jobs/render_runs.sh`, instance 57043103, ~$0.6; the final 250M checkpoints never
+  reached the full store, so the renders use the newest stored ones: 240M/120M/220M/100M). ep18: the robot never
+  picks up the sweeper or the dustpan; the hands hover. Side-by-sides sent to the owner.
+- recon_mesh keeps the largest mesh piece (ep11 beige cup had fragments 20 cm away; rebuilding).
