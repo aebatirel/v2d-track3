@@ -548,3 +548,12 @@ No spending.
   across gaps. Kept as `--linker viterbi` (w_arm 0.3, w_unused 1.0) for later work; idea for next time: identity
   from the white smartwatch on the wearer's left wrist + arm continuity from the image bottom (note 15).
   NB: the `vc`/`vw` trainings tonight used Viterbi(w_arm 0.8) hands, i.e. the old default.
+- **ep12 vw (Viterbi(0.8) hands + mid-stiffness wrist kp 400; NVIDIA retarget weights)** finished 00:11 UTC:
+  sim vs mocap **AUC 0.860**, SP 1.00, MP 1.00, MPPE 1.8 cm (cup 0.733, rack 0.986); reference vs mocap 0.993;
+  sim vs reference 0.841; evaluator add_auc 0.838, chord/maniptrans 1.0. The evaluator rebuilt the custom embodiment
+  from the checkpoint without our config dir (confirmed). ep12 so far: perc2 0.890, oracle 0.858, vw 0.860 → all
+  within the ~±0.03 policy-to-policy spread; **no measurable gain from the mid wrist on ep12** (one seed each).
+- Where ep12 loses (vw, cup sim vs reference): f90 2.6 cm / 5.6°, f120 1.0 cm / 4.0°, f150 5.1 cm, f180 7.7 cm /
+  13.3°; the sim cup ends 3 cm higher than the reference (z 0.718 vs 0.687), i.e. set down on the rack's edge/pegs
+  instead of beside it. (Correction: the reference cup ends upright, not upside down.) Final placement is the loss.
+  Montage: `results/e2e/ep12_vw_rollout.jpg`.
