@@ -1,4 +1,4 @@
-# Status (2026-10-21, afternoon; times TRT = UTC+3)
+# Status (2026-10-21, evening; times TRT = UTC+3)
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
@@ -13,13 +13,18 @@ Details: `docs/work-log.md` (15:20 TRT onwards).
     `meshes/library_v2` (pot now 13.1 × 19.0 × 36.2 cm vs scan 13.2 × 18.9 × 35.7; registered AUC 0.991–0.998);
   - Newton splits coloured meshes into one shape per colour (174 per board) → `make_assets.py` writes colourless
     simulator copies (reproduced and verified on CPU with FlashCHORD's pins: 64 worlds 4.2 s / 0.61 GB).
-- **Validation, round 2 (commit 966eb96, two boxes from 13:22 UTC):** both pipelines ran end to end.
-  **First complete scores with our own meshes (registered, leaderboard-style): ep18 0.396, ep24 0.080** (sim vs mocap
-  0.381 / 0.096; static floors 0.637 / 0.123; our references vs mocap 0.982 / 0.799; earlier best 0.337 / 0.235).
-  QA verdict `harmful` on both (the policy does worse than not moving). Cause: wrist tracking fails (evaluator
-  termination cause = wrist). With stiff gains the reference is followed within ~1 cm (CPU replay), so the default
-  soft wrist (25 N/m, 45 N) is the limit. Running now: **mid-wrist variant mcw** (kp 400, same references) on both
-  boxes, results ≈ 16:30 UTC (19:30 TRT).
+- **Validation, round 2 (commit 966eb96 + 47518d5, two boxes from 13:22 UTC).** Final hard-episode scores today
+  (registered, our own meshes): **ep18 0.396** (mc s42; static floor 0.637; reference 0.982), **ep24 0.232** (mcs s42 =
+  wrist cost 3.0 + hand separation; floor 0.229; reference 0.816). Earlier (scans): ep18 0.128 / 0.337, ep24 0.236 / 0.152.
+  - Found and fixed on CPU replays (`scratchpad replay_probe.py`, `contact_probe.py`, FlashCHORD pins): the two robot hands
+    overlapped at ep24's reset (right hand unseen f0–16 and held next to the left) → `mkref --hand_sep 0.04 --lead_in 10`;
+    ep24 0.080 → 0.232.
+  - Falsified: mid-stiffness wrist (ep18 0.193, ep24 0.050), larger joint clearance (10 mm: finger deeper in the board).
+  - Rollout noise: one policy, 8 evaluations, 0.13–0.41 vs mocap; `sim_vs_ref` (no GT) correlates 0.98.
+  - Controls ep12 + ep27 running on box 57058717 (newest code, RETRIES=0), results ≈ 22:30 TRT; credit ≈ $2 after.
+- **Forensics and ideas for the owner: `docs/forensics-2026-10-21.md`** (architecture shortcomings, embodiment options
+  incl. NVIDIA's `sharpa_hands_primitive` (CPU-tested, helps ep24's start), manipulation-type segmentation prototype
+  `tools/manip_segments.py`, physics preflight gate, SPIDER-style references; research on the two leaders pending).
 
 ## 2026-10-21 (owner topped up: credit $27.19 before the batch)
 Details and commands: `docs/work-log.md` (2026-10-21 entries).
