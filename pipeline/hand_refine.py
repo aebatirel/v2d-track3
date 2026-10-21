@@ -13,7 +13,7 @@ cm from frame 100 on; scale on its lower clamp) and the robot reference inherits
      landmark keep the current direction with the clipped length;
   4. light Savitzky-Golay smoothing, then bone lengths re-clipped.
 QA (before / after) per hand goes to OUT .json: wrist->middle-tip median / p10, per-bone length CV, collapsed-frame
-share (wrist->middle-tip < COLLAPSE x reference), joints under the table if --table is given.
+share (summed wrist->middle-tip chain < 0.75 x reference; flexion-invariant), joints under the table if --table is given.
 Usage: python hand_refine.py --hands hands.npz --poses poses.npz --out hands_refined.npz [--table table_frame.npz]
 """
 import argparse, json
@@ -42,9 +42,10 @@ def stats(J, valid, ref_len=None, table=None):
     L = np.stack([np.linalg.norm(J[:, b] - J[:, a], axis=1) for a, b in BONES], 1)
     out = dict(wrist_midtip_cm_median=round(float(np.median(wt) * 100), 1), wrist_midtip_cm_p10=round(float(np.percentile(wt, 10) * 100), 1),
                bone_cv_median=round(float(np.median(L.std(0) / np.maximum(L.mean(0), 1e-6))), 3))
-    if ref_len is not None:
-        ref_wt = ref_len['wrist_midtip']
-        out['collapsed_share'] = round(float((wt < 0.6 * ref_wt).mean()), 3)
+    if ref_len is not None:                                    # flexion-invariant: summed middle-finger chain
+        ch = sum(np.linalg.norm(J[:, b] - J[:, a], axis=1) for a, b in [(0, 9), (9, 10), (10, 11), (11, 12)])
+        out['chain_ratio_p10'] = round(float(np.percentile(ch / ref_len['chain'], 10)), 2)
+        out['collapsed_share'] = round(float((ch < 0.75 * ref_len['chain']).mean()), 3)
     if table is not None:
         n, d = table
         out['frames_joint_below_table_5mm'] = round(float(((J @ n + d).min(1) < -0.005).mean()), 3)
@@ -83,8 +84,11 @@ def main():
             R, tr = kabsch(Ja[t, PALM], palm0); P.append(Ja[t, PALM] @ R.T + tr - palm0.mean(0))
         palm_ref = np.median(np.stack(P), 0)
         ref_wt = float(np.median(np.linalg.norm(Ja[best, 12] - Ja[best, 0], axis=1)))
+        ref_ch = float(np.median(sum(np.linalg.norm(Ja[best, b] - Ja[best, a], axis=1)
+                                     for a, b in [(0, 9), (9, 10), (10, 11), (11, 12)])))
+        REF = dict(wrist_midtip=ref_wt, chain=ref_ch)
         before = stats(np.stack([Ja[t] @ np.linalg.inv(A_T_W[t])[:3, :3].T + np.linalg.inv(A_T_W[t])[:3, 3] for t in range(T)]),
-                       valid[:T], dict(wrist_midtip=ref_wt), table)
+                       valid[:T], REF, table)
         # 2) + 3) per frame
         out = Ja.copy(); nray = nmiss = 0
         for t in range(T):
@@ -133,8 +137,8 @@ def main():
                         out[t, j] = out[t, pa] + L * d / max(ld, 1e-9)
         Jw = np.stack([out[t] @ np.linalg.inv(A_T_W[t])[:3, :3].T + np.linalg.inv(A_T_W[t])[:3, 3] for t in range(T)])
         H[f'joints_{side}'] = np.concatenate([Jw, J[T:]]).astype(np.float32)
-        after = stats(Jw, valid[:T], dict(wrist_midtip=ref_wt), table)
-        qa[side] = dict(best_frames=len(best), ref_wrist_midtip_cm=round(ref_wt * 100, 1),
+        after = stats(Jw, valid[:T], REF, table)
+        qa[side] = dict(best_frames=len(best), ref_wrist_midtip_cm=round(ref_wt * 100, 1), ref_chain_cm=round(ref_ch * 100, 1),
                         ref_palm_width_cm=round(float(np.linalg.norm(palm_ref[2] - palm_ref[5]) * 100), 1),
                         ray_solved=nray, ray_missed=nmiss, before=before, after=after)
     np.savez_compressed(a.out, **H)

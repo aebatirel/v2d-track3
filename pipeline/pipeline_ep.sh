@@ -50,16 +50,25 @@ if [ ! -s $R/hands.npz ]; then
     || { echo "hands FAILED"; tail -5 $R/hands_log.txt; exit 1; }
 fi
 echo "[$(date +%T)] hands done"
+# 2b) bone-length-consistent refinement (hand_refine.py; HAND_REFINE=0 to skip): mkref then reads hands_refined.npz
+HANDS=$R/hands.npz
+if [ "${HAND_REFINE:-1}" = 1 ]; then
+  [ -s $R/hands_refined.npz ] || python $S/hand_refine.py --hands $R/hands.npz --poses $P/poses.npz \
+    --out $R/hands_refined.npz > $R/hand_refine_log.txt 2>&1 || echo "hand_refine failed (using raw hands)"
+  [ -s $R/hands_refined.npz ] && HANDS=$R/hands_refined.npz
+fi
 
 # 3) reference (table frame, Sharpa IK via unchanged E2S, contacts, FlashCHORD validation)
 if ! ls $R/processed/sequence_id=$SEQ/robot_name=sharpa_wave/*.parquet > /dev/null 2>&1; then
   DEP=$(readlink -f $P/depths_fs0.5.npy)
   PYTHONPATH=/content/v2d/robotic_grounding/source/robotic_grounding /content/rtvenv/bin/python $S/mkref.py \
-    --ep $EP --poses $P/poses.npz --depth $DEP --hands $R/hands.npz --out $R ${MKREF_ARGS:-} > $R/mkref_log.txt 2>&1 \
+    --ep $EP --poses $P/poses.npz --depth $DEP --hands $HANDS --out $R ${MKREF_ARGS:-} > $R/mkref_log.txt 2>&1 \
     || { echo "mkref FAILED"; tail -8 $R/mkref_log.txt; exit 1; }
 fi
 REFDIR=$R/processed/sequence_id=$SEQ/robot_name=sharpa_wave
 echo "[$(date +%T)] reference: $REFDIR (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
+# 3b) reference QA (robot wrist IK error, wrist jumps): $R/qa_ref.json, used by auto_ep.sh to choose/retry variants
+[ -s $R/ref_summary.json ] && echo "[$(date +%T)] qa_ref: $(python $S/qa.py ref $R/ref_summary.json 2>&1 | tail -1)"
 [ "${STOP_AFTER:-}" = reference ] && exit 0
 
 # 4) train (timing rule: fps 20 written in the parquet, motion_speed 1.0, sim=rl at 20 fps).
@@ -83,6 +92,33 @@ cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scr
   evaluation.object_trajectories_output=$RES/episode_$(printf %06d $EP).parquet \
   hydra.run.dir=$RES/hydra logging.mode=disabled > $RES/eval.log 2>&1 || { echo "eval FAILED"; tail -15 $RES/eval.log; exit 1; }
 echo "[$(date +%T)] evaluated"
+# 5b) checkpoint sweep (CK_SWEEP = fractions of training, e.g. "0.4 0.6 0.8"; default off): evaluate earlier policies
+#     and keep the one that tracks OUR reference best (qa.py policy; no ground truth). The chosen rollout is copied
+#     over the main one; every candidate stays in $RES/sweep/<step>/; $RES/selection.json records the choice.
+python $S/qa.py policy $RES $EP > /dev/null 2>&1
+if [ -n "${CK_SWEEP:-}" ]; then
+  E6=$(printf %06d $EP); best=$(python -c "import json; print(json.load(open('$RES/qa_policy.json'))['sim_vs_ref'])"); bestck=$CK
+  for fr in $CK_SWEEP; do
+    want=$(python -c "print(int($fr * $STEPS))")
+    C2=$(ls $RUN/policy_*.safetensors | python -c "import sys; L=[l.strip() for l in sys.stdin]; print(min(L, key=lambda f: abs(int(f.rsplit('_',1)[1].split('.')[0]) - $want)))")
+    [ "$C2" = "$CK" ] && continue
+    D2=$RES/sweep/$(basename $C2 .safetensors); mkdir -p $D2
+    (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+      evaluation.checkpoint=$C2 evaluation.world_count=1 evaluation.reset_mode=explicit \
+      evaluation.metrics_output=$D2/episode_$E6.json evaluation.object_trajectories_output=$D2/episode_$E6.parquet \
+      hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1) || continue
+    v=$(python $S/qa.py policy $D2 $EP 2>/dev/null | python -c "import json,sys; print(json.loads(sys.stdin.read())['sim_vs_ref'])")
+    echo "[$(date +%T)] sweep $(basename $C2): sim_vs_ref $v (best so far $best)"
+    if python -c "import sys; sys.exit(0 if float('$v') > float('$best') else 1)"; then best=$v; bestck=$C2; fi
+  done
+  if [ "$bestck" != "$CK" ]; then
+    D2=$RES/sweep/$(basename $bestck .safetensors); mkdir -p $RES/sweep/final
+    cp $RES/episode_$E6.json $RES/episode_$E6.parquet $RES/qa_policy.json $RES/sweep/final/
+    cp $D2/episode_$E6.json $D2/episode_$E6.parquet $D2/qa_policy.json $RES/; CK=$bestck
+  fi
+  echo "{\"chosen\": \"$CK\", \"sim_vs_ref\": $best}" > $RES/selection.json
+fi
+echo "[$(date +%T)] qa_policy: $(cat $RES/qa_policy.json | tr -d '\n ')"
 
 # 6) score the simulated trajectory against mocap (public episodes only; after inference)
 [ $SPLIT = public ] && python $S/score_sim.py $EP $RES 2>&1 | tail -40
