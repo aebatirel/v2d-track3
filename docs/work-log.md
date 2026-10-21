@@ -973,3 +973,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - One episode per box: a training alone runs ~36–45k steps/s (~1.7 h for 250M) instead of ~21k with two per box,
   so results come ~2 h sooner for about $0.7 more. Expected ≈ $3.3–3.6 per box without a retry, ≈ $6 with one.
   Controls ep12 + ep27 afterwards if the credit allows (owner's condition).
+- 16:40 TRT: both boxes past setup (3–4 min). **The fixes hold on the GPU boxes:** ep18's references now build (dust
+  pan check passes); both trainings passed the 4096-world scene build in ~2 min (ep24 box: 11 GB of 91 GB RAM used).
+  - ep24: perception AUC 0.795 (same as before: deterministic); reference m QA fail (98 / 176 mm), mc pass
+    (15 / 30 mm) → training mc seed 42 from 13:32 UTC.
+  - ep18: perception AUC 0.971; reference m QA fail (wrist p95 102 / 264 mm, steps 14 / 20 cm), mc fail by a little
+    (right p95 67 mm > 60; left 20 mm; steps ≤ 8.3 cm) → mc ranked best, training mc seed 42 from 13:37 UTC.
+- Library v2 white pot vs scan (registered AUC, v1 → v2): ep41 0.987 → 0.998, ep44 0.986 → 0.997, ep2 0.983 →
+  0.991, ep27 0.993 → 0.994; CD-O 0.58 → 0.44 cm.
