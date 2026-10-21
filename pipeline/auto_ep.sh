@@ -27,9 +27,18 @@ for suf in "" c; do
   cands+=("$sc:$suf")
 done
 [ ${#cands[@]} -gt 0 ] || { log "no reference could be built"; exit 1; }
-order=($(printf '%s\n' "${cands[@]}" | sort -t: -k1,1g | cut -d: -f2- | sed 's/^$/_/'))
-# 2) + 3) attempts
-plan=("${order[0]}:$SEED0"); [ ${#order[@]} -gt 1 ] && plan+=("${order[1]}:$SEED0"); plan+=("${order[0]}:$((SEED0 + 1))")
+order=(); okref=()                                    # suffixes best first; okref: 1 if that reference passed its QA
+for c in $(printf '%s\n' "${cands[@]}" | sort -t: -k1,1g); do
+  s=${c%%:*}; f=${c#*:}; order+=("${f:-_}"); [ "${s%%.*}" -lt 1000 ] && okref+=(1) || okref+=(0)
+done
+# 2) + 3) attempts. A reference that failed its QA is trained only after the passing one has had a second seed
+# (2026-10-21 ep24: the retry trained the reference with wrist p95 176 mm).
+plan=("${order[0]}:$SEED0")
+if [ ${#order[@]} -gt 1 ] && [ "${okref[1]}" = 1 ]; then
+  plan+=("${order[1]}:$SEED0" "${order[0]}:$((SEED0 + 1))")
+else
+  plan+=("${order[0]}:$((SEED0 + 1))"); [ ${#order[@]} -gt 1 ] && plan+=("${order[1]}:$SEED0")
+fi
 n_max=$(( 1 + ${RETRIES:-2} )); att=(); best=-1; bestres=""; bestck=""
 for k in "${!plan[@]}"; do
   [ $k -ge $n_max ] && break

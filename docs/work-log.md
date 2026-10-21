@@ -930,3 +930,37 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - `store.sh`: uploads refused when the store holds ≥ `STORE_MAX_GB` (default 800 GB) so no overage bill; policies kept
   every 10th (`KEEP_EVERY`, was 25); `pull-depth` no longer leaves a dangling link when a cache is missing.
   `own_eval.sh` pushes eval depth caches by default; `auto_runs.sh` pulls depth for eval episodes too.
+
+### 2026-10-21 16:00 TRT — validation box ended: both ep24 trainings killed; box self-destroyed (as designed)
+- Box 57047922 ran 11:58–12:51 UTC (~53 min, ≈ $1.2). The rexec tunnel answered 530 from ~12:45 UTC.
+- ep24: attempt 1 (variant mc, passing reference) and attempt 2 (variant m) both ended `train FAILED` ~12 min after
+  start: `pipeline_ep.sh: line 84: Killed ... train_flash_sac.py` (SIGKILL, no Python traceback; train.log stops after
+  the Newton model build). No rollout → `auto ep24: no attempt produced a rollout`; ep18 had no reference (dust pan).
+  The job ended rc 0 and run_job self-destroyed after pushing (store: runs/20261021-autohard-3c11668).
+- Only change vs the earlier successful ep24 trainings: simulator assets from our meshes (`make_assets.py`), whose
+  URDF uses the whole visual mesh as the collision mesh; the public assets ship a separate `<obj>_collision.glb`.
+  Newton runs CoACD (threshold 0.05) on every collision mesh, and note 19 measured 0.1–1 TB build RAM for 4096-world
+  training when hull counts are high. Hypothesis: our reconstructed (noisy) surfaces decompose into many more hulls
+  → out of memory at the 4096-world build. Test: CoACD 1.0.11 with Newton's settings on the public
+  wooden_piece_1_collision.glb vs our library mesh (hull count, time). Falsified if the counts are similar.
+- Retry-plan flaw seen: attempt 2 trained the reference that failed its QA (p95 176 mm). To fix in auto_ep.sh: retry
+  a passing reference with a new seed before any failing one.
+
+### 2026-10-21 16:20 TRT — root cause of the killed trainings: Newton splits coloured meshes; fixed and verified on CPU
+- Reproduced the ep24 scene build on CPU in the cloud VM with FlashCHORD's pins (newton 1.2.0, warp 1.14.0,
+  coacd 1.0.11, mujoco-warp 3.8.1; nvidia-isaac/video_to_data clone, Sharpa meshes via media.githubusercontent.com).
+  `scratchpad scene_probe.py` = `setup_scene` as in `train_flash_sac.py`, device cpu. The box's own references.
+  - Public assets, 4 worlds: 62.5 s (cold CoACD), peak RSS 1.26 GB, 525 shapes.
+  - Our assets (library_v1 via make_assets): > 10 min inside `run_coacd`, never finished (py-spy stack).
+- Cause: `newton/_src/utils/mesh.py load_meshes_from_file` splits a mesh with vertex/face colours into one shape per
+  distinct (rounded) face colour. Our video-coloured board → **174 open fragments**, each decomposed by CoACD (voxel
+  preprocessing, many hulls) and replicated to 4096 worlds → slow and out of memory (SIGKILL on the box). The public
+  assets carry a texture → 1 shape. My first hypothesis (more CoACD hulls on our bumpy surface: 17 vs 10) was not it.
+- Fix: `make_assets.py` writes the simulator copy without colours (`trimesh.Trimesh(v, f, process=True)`). All 11
+  objects now load as 1 colliding shape. ep24 scene, 64 worlds: ours 4.2 s / 0.61 GB / 9,025 shapes vs public 5.2 s /
+  0.69 GB / 8,385 shapes. The coloured meshes stay for perception and the submission.
+- Library v2 (dust pan, white pot with `--below_carve`): lowest point vs table −0.2…−0.6 cm (v1 −3.3…−5.5, scan
+  −0.1…+0.2); pot extents 13.1 × 19.0 × 36.2 cm (scan 13.2 × 18.9 × 35.7). Registered AUC of the dust pan vs the scan
+  dropped slightly (ep39 0.992 → 0.982, ep40 0.971 → 0.963, ep18 0.920 → 0.917; CD-O 0.52 → 0.33 cm): the
+  falsification bar I set is missed by ~0.01, accepted because v1 cannot be simulated; carve margin to tune later.
+- `auto_ep.sh`: a reference that failed its QA is trained only after the passing one got a second seed.

@@ -1,10 +1,15 @@
 """Simulator assets from our own meshes (route A, 2026-10-21): the same layout as the public Track 3 assets.
 
-For every LIBRARY/<obj>.glb writes OUT/mesh/<obj>/<obj>.glb (visual = collision, as in the public URDFs) and
+For every LIBRARY/<obj>.glb writes OUT/mesh/<obj>/<obj>.glb (visual = collision, geometry only) and
 OUT/urdf/<obj>_rigid.urdf with the public files' conventions: placeholder mass 0.3 kg, centre of mass and inertia
 from a uniform triangle-surface estimate over the mesh (the public comment says the same), mesh frame = link frame.
 mkref.py --assets OUT then writes these paths into the reference, so FlashCHORD trains and evaluates with our objects.
 Usage: python make_assets.py LIBRARY_DIR OUT_DIR [--mass 0.3]
+
+The simulator copy carries no colours. Newton's loader (newton/_src/utils/mesh.py, load_meshes_from_file) splits a mesh
+with per-vertex or per-face colours into one shape per distinct face colour; FlashCHORD then runs CoACD on every
+fragment. With our video-coloured meshes a board became 174 open fragments: CoACD ran > 10 min and the 4096-world
+training build was killed for memory (2026-10-21, ep24 twice). Geometry only, the board loads as 1 watertight shape.
 """
 import argparse, os
 import numpy as np, trimesh
@@ -52,6 +57,7 @@ def main():
             continue
         n = f[:-4]
         m = trimesh.load(f'{a.library}/{f}', force='mesh')
+        m = trimesh.Trimesh(np.asarray(m.vertices), np.asarray(m.faces), process=True)   # drop colours (see above)
         os.makedirs(f'{a.out}/mesh/{n}', exist_ok=True)
         m.export(f'{a.out}/mesh/{n}/{n}.glb')
         c, I = surface_inertia(m, a.mass)
