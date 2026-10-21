@@ -32,7 +32,7 @@ ROBUST = 0.015                                                     # tip errors 
 SIDES = {'left': 0, 'right': 29}                                    # joint_q offset of each hand (wrist xyz, quat xyzw, 22)
 
 
-def build_scene(parquet, fc):
+def build_scene(parquet, fc, embodiment=None):
     import warp as wp
     from hydra import compose, initialize_config_dir
     from flash_chord.configuration import instantiate_typed
@@ -41,7 +41,8 @@ def build_scene(parquet, fc):
     from flash_chord.scene.collision import CollisionPolicy
     from flash_chord.scene.setup import setup_scene
     with initialize_config_dir(version_base='1.3', config_dir=f'{fc}/src/flash_chord/configs'):
-        cfg = compose(config_name='train_flash_sac', overrides=['experiment=sharpa_flash_sac', f"task.parquet='{parquet}'"])
+        cfg = compose(config_name='train_flash_sac', overrides=['experiment=sharpa_flash_sac', f"task.parquet='{parquet}'"]
+                      + ([f'embodiment={embodiment}'] if embodiment else []))
     env_config = instantiate_typed(cfg.env, RLEnvConfig)
     with wp.ScopedDevice('cpu'):
         st = setup_scene(parquet=parquet, control_fps=env_config.sim.fps, motion_speed=1.0,
@@ -243,10 +244,12 @@ def main():
     p.add_argument('--margin', type=float, default=0.001, help='clearance of hand surface samples (m)')
     p.add_argument('--max_shift', type=float, default=0.06, help='largest wrist translation from E2S per axis (m)')
     p.add_argument('--max_turn', type=float, default=0.5, help='largest wrist rotation from E2S per axis (rad)')
+    p.add_argument('--embodiment', default=None, help='FlashCHORD embodiment config (default: the experiment\'s, '
+                   'sharpa_hands); must match training, e.g. sharpa_hands_primitive')
     p.add_argument('--frames', default=None, help='A:B only these frames (debug)')
     a = p.parse_args()
     fc = os.environ.get('FC', os.getcwd()); t0 = time.time()
-    st, env = build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
+    st, env = build_scene(os.path.abspath(a.inp), fc, a.embodiment); m = st.scene.model
     mjp = MjPen(env, a.margin) if os.environ.get('CR_PEN', 'mj') == 'mj' else None   # CR_PEN=samples: hull samples vs SDF
     t = pq.read_table(a.inp); T = int(np.asarray(st.scene.robot_reference.joint_q).shape[0])
     qref = np.asarray(st.scene.robot_reference.joint_q, float).copy()
