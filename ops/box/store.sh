@@ -33,12 +33,18 @@ push-run)
       mkdir -p "$S/$(dirname "$f")"; ln "$f" "$S/$f" 2> /dev/null || cp "$f" "$S/$f"
     done
   done
-  # keep only the newest policy_* and state_* per run directory (the latest for evaluation and for resuming)
-  for r in $S/runs/*/; do
+  # per run directory (runs/<perc><variant>/ep<N>-s<seed>/): keep every 25th policy_* plus the newest (checkpoint
+  # choice), and the newest state_* only while training is unfinished (no .done; it is for resuming). The old loop
+  # looked one level too high (runs/<perc>/), so every checkpoint was uploaded and the 100 GB store filled up
+  # (2026-10-21: 44 GB of state_ files).
+  for r in $S/runs/*/*/; do
     [ -d "$r" ] || continue
-    for pfx in policy_ state_; do
-      { ls -v "$r" | grep "^$pfx" || true; } | head -n -1 | while read -r x; do rm -rf "$r/$x"; done
-    done
+    { ls -v "$r" | grep '^policy_' || true; } | head -n -1 | awk 'NR % 25 != 0' | while read -r x; do rm -rf "$r/$x"; done
+    if [ -e "$r/.done" ]; then
+      rm -rf "$r"/state_*
+    else
+      { ls -v "$r" | grep '^state_' || true; } | head -n -1 | while read -r x; do rm -rf "$r/$x"; done
+    fi
   done
   cp /workspace/run_job.log /content/*.log $S/ 2> /dev/null || true
   cp -r /content/run_state $S/ 2> /dev/null || true
