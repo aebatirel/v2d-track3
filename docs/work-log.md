@@ -1276,3 +1276,30 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - `ops/vast.sh offers` now searches all three 96 GB PRO 6000 versions by default (comma-separated names, Vast `in`
   filter); right after the change the cheapest compliant offer was a Max-Q at $1.07/h. Max-Q speed for our training is
   not measured yet: next launches record steps/s per GPU type.
+
+### 03:05 TRT — first results; ep18 failure mechanism; a train/eval start mismatch; round 3 launched
+- **ep18, contact retargeting (k, seed 42), 6 evaluations: registered AUC 0.319 ± 0.042 (0.258–0.362) vs the base
+  0.345 ± 0.046 (0.275–0.400)**; sim_vs_ref 0.302 vs 0.308. Sweep chose 150M (as the base). No gain: falsified for ep18.
+- **ep24, primitive-collision hand on the base reference (p, seed 42), 6 evaluations: registered AUC 0.282 ± 0.023
+  (0.250–0.323)**, sim_vs_ref 0.269 vs static floor 0.220 (verdict weak, above the floor). The base's single
+  published rollout scored 0.232; its 6-evaluation mean is still running (box A).
+- **ep18 failure, frame by frame** (`scratchpad traj_diag.py` on box B, rollouts r1/r2 of base and k): the sweeper
+  is 4° off at frame 0 and > 5 cm / 20° by **f8–f10** (66° by f44); the reference keeps it still until f40. The dust
+  pan follows until ~f20. Same with and without retargeting. No-policy replays keep the sweeper still (≤ 1°), so
+  the policy's hands tip it.
+- **Train/eval start mismatch (FlashCHORD source):** the Sharpa reset (`ReferenceReset`) always scales the finger angles
+  by U(0, 0.7) and holds the reset frame with full object assist for 20 steps (`voc_decay_steps`), in every stage.
+  The official evaluation (`reset_mode=explicit`, the only mode the evaluator publishes; kit example default) starts
+  at frame 0 with exact fingers, no hold, no assist: a start the policy never trains on. NVIDIA's ReconBody reset
+  has "deployment-exact" immediate starts for this (`immediate_first_frame_probability`, 25 % then 50 % in its final
+  stages); the Sharpa reset has none. New opt-in patch `FC_IMMEDIATE_FIRST_FRAME=p` (`ops/box/patch_flashchord.py`):
+  once the curriculum assist is below 0.1, a fraction p of resets start explicit-like (frame 0, finger factor 1,
+  no hold, curriculum assist). CPU test with 4,096 resets: unset → upstream (frame-0 10.5 %, all held); p 0.25 →
+  24.7 % deployment-exact at assist 0, none at assist 1.
+- Round 3 (code 342d72c), seed 42, ep24 then ep18, compare with k / p:
+  | box | instance | GPU, $/h | run id | job |
+  |---|---|---|---|---|
+  | F | 57128646 | Max-Q, 1.30 | `20261022-r3ki-342d72c` | `SUF=ki FC_IMMEDIATE_FIRST_FRAME=0.25` (retargeting + deployment-exact starts) |
+  | G | 57128647 | WS, 1.44 | `20261022-r3kpi-342d72c` | `SUF=kpi FC_IMMEDIATE_FIRST_FRAME=0.25 CR_ARGS="--embodiment sharpa_hands_primitive" TRAIN_ARGS="embodiment=sharpa_hands_primitive"` |
+  Hypothesis (F): training on the evaluation's start stops the early knock-over → the sweeper's first > 20° frame
+  moves past f10 and the mean registered AUC rises over k; falsified if not. Credit $39.40 at 03:00.
