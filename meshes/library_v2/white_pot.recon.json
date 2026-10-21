@@ -1,0 +1,28 @@
+{
+ "obj": "white_pot",
+ "episodes": 4,
+ "frames": 1137,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.9840663703703704,
+ "inside_vox": 13065,
+ "solid_vox": 14541,
+ "closing": "near",
+ "unknown_share": 0.54,
+ "components": 2,
+ "hand_dropped": 2251246,
+ "table_dropped": 24399916,
+ "other_dropped": 3086686,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  16.2,
+  19.2,
+  37.2
+ ],
+ "watertight": false,
+ "sec": 1146.1
+}

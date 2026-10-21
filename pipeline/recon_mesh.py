@@ -55,10 +55,12 @@ def hand_segments(path, W_C, a):
     return out
 
 
-def table_plane(D0, K, obj_pos, rng_seed=0, thr=0.006, iters=1500, hmin=-0.05, hmax=0.30):
+def table_plane(D0, K, obj_pos, rng_seed=0, thr=0.006, iters=1500, hmin=-0.05, hmax=0.30, cone=65):
     """Support plane in frame 0 (camera = world at frame 0): RANSAC over depth points; candidate planes must have a
-    normal within 45 deg of camera 'up' (-y) and lie under the object origin by HMIN..HMAX (the floor, ~1 m down, is
-    otherwise the largest plane: the 2026-10-20 mkref bug). Returns (n, c, inlier frac) with n.x + c = 0, n up."""
+    normal within CONE deg of camera 'up' (-y) and lie under the object origin by HMIN..HMAX (the floor, ~1 m down, is
+    otherwise the largest plane: the 2026-10-20 mkref bug). Returns (n, c, inlier frac) with n.x + c = 0, n up.
+    CONE was 45 until 2026-10-21: the table normal is 48-50 deg from camera up in ep39/ep40 (steeper camera), the real
+    table was rejected, a wrong plane was used and table pixels under the dust pan fused into a 3.5 cm slab."""
     H, W = D0.shape
     vv, uu = np.mgrid[0:H:4, 0:W:4]
     d = np.asarray(D0)[vv, uu]
@@ -73,7 +75,7 @@ def table_plane(D0, K, obj_pos, rng_seed=0, thr=0.006, iters=1500, hmin=-0.05, h
         nrm /= ln
         if nrm[1] > 0:
             nrm = -nrm
-        if -nrm[1] < np.cos(np.radians(45)):
+        if -nrm[1] < np.cos(np.radians(cone)):
             continue
         c = -nrm @ s[0]
         if not hmin <= nrm @ obj_pos + c <= hmax:

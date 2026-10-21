@@ -1,0 +1,28 @@
+{
+ "obj": "water_pitcher",
+ "episodes": 2,
+ "frames": 375,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.783069037037037,
+ "inside_vox": 19819,
+ "solid_vox": 19915,
+ "closing": "fill",
+ "unknown_share": 0.006,
+ "components": 239,
+ "hand_dropped": 562882,
+ "table_dropped": 6603577,
+ "other_dropped": 435525,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  14.9,
+  26.2,
+  41.5
+ ],
+ "watertight": false,
+ "sec": 572.6
+}

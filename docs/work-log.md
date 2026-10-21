@@ -885,3 +885,24 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Validation box launched (owner topped up $10; credit $19.79): `auto_runs.sh` EPS="18 24" RETRIES=1, route A
   (our meshes), commit 3c11668, instance 57047922 (PRO 6000 Spain $1.39/h). Controls 12 + 27 to follow if the
   first stages work and money allows.
+
+### 2026-10-21 15:20 TRT — validation box: ep18 reference failed on our dustpan mesh; root cause fixed
+- Box 57047922 (`20261021-autohard-3c11668`): ep18 perception with our meshes AUC 0.970 (scan template 0.957), but
+  both references failed in mkref: "frame-0 object bottoms above the fitted table: sweeper 59.0 cm, dustpan 56.8 cm"
+  (the table was rejected and the floor chosen). mkref drops table candidates whose lowest object point is more than
+  3 cm under them (`--support_tol`).
+- Measured locally: our library_v1 dustpan hangs 3.3–3.6 cm under the resting table in ep39, ep40 and ep18 (30 % of
+  its vertices more than 3 mm under it; the scan: −0.13 cm). Sweeper: −0.89 cm (scan −0.66), fine.
+- Root cause (recon_mesh.py `table_plane`): candidate planes had to have a normal within 45° of camera up. In ep39 and
+  ep40 the camera looks down more steeply and the real table normal is 48–50° from camera up, so it was rejected; RANSAC
+  took a wrong plane (inlier share 0.06; ep40 33° off) and the table pixels under the dustpan were fused as a slab.
+  The per-frame refit accepts only 10° corrections, so it could not recover. Every other library mesh had a correct
+  plane (logs checked).
+- Fix: cone 65° (`table_plane(..., cone=65)`). Now ep39 / ep40 / ep18 match mkref's planes within 0.5° and 1 mm,
+  inlier share 0.18–0.21. Rebuilding the dustpan with the v1 arguments (episodes 39, 40, 18; stride 2;
+  `--edge_thr -1`) into meshes/library_v2 (v1 kept); auto_runs.sh now defaults to library_v2.
+- auto_runs.sh can run as a second job on a busy box (own worktree, assets, perception folder `PROOT`, variant `BV`;
+  `SELF_HOLD=1` keeps the box held while that job makes progress). Plan: redo ep18 on the same box (variant n)
+  while ep24 trains, instead of renting a second box.
+- ep24 on the box: perception with our meshes AUC 0.795 (wooden_piece_1 0.76); reference m: left wrist IK p95
+  217 mm, max step 13.2 cm → QA fails as expected; the wrist-cost variant mc is built next.

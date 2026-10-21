@@ -1,0 +1,28 @@
+{
+ "obj": "plastic_dish_rack",
+ "episodes": 3,
+ "frames": 617,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.4425917037037037,
+ "inside_vox": 16074,
+ "solid_vox": 15366,
+ "closing": "fill",
+ "unknown_share": 0.016,
+ "components": 167,
+ "hand_dropped": 1291575,
+ "table_dropped": 12690138,
+ "other_dropped": 1801601,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  11.0,
+  16.1,
+  49.7
+ ],
+ "watertight": false,
+ "sec": 1016.5
+}
