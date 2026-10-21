@@ -7,15 +7,19 @@
 # embodiment and training recipe are the same. Then the base's chosen checkpoint and the new chosen checkpoint are
 # evaluated NREP times each (the evaluator is not deterministic: ep18 mc ranged 0.13-0.41 vs mocap over 8 rollouts)
 # and every rollout is scored: sim_vs_ref (no ground truth) and, afterwards, registered vs mocap with our meshes.
-# Both episodes train concurrently on one GPU.
+# Episodes listed together train concurrently on one GPU.
 #   ops/vast.sh create <offer> <run_id> 'bash ops/jobs/hard_ab.sh'      (no RESUME_FROM: the job pulls the runs)
-# Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N>.log.
+# BASE "auto" = the variant auto_ep.sh published for that episode (results/final/ep<N>/final.json, its policy.safetensors).
+# Overnight rounds (2026-10-22) set: SEED (default 42), SUF (variant suffix, default k), CR (1 = contact retargeting),
+# BASE_EVAL (0 = skip re-evaluating the base), TRAIN_ARGS (passed to training, e.g. reward weights / embodiment).
+# Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; NREP=${NREP:-6}; PAR=${PAR:-3}
+SEED=${SEED:-42}; SUF=${SUF:-k}; CR=${CR:-1}; BASE_EVAL=${BASE_EVAL:-1}
 PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 18:20261021-auto18-966eb96:mc"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets SPLIT=public PERC=perc2 STEPS=${STEPS:-250003456}
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/hard_ab; mkdir -p $O
-log "hard_ab code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], NREP $NREP" >> $J
+log "hard_ab code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], suffix $SUF seed $SEED CR $CR, NREP $NREP, TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
 pip install -q fast_simplification >> $J 2>&1 || true              # kit budget_mesh (score_registered --meshes)
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u); do
@@ -82,22 +86,28 @@ EOF
 }
 
 one() {
-  local ep=$1 run=$2 base=$3 k=${3}k R0 R1 ck0 ck1
-  R0=/content/refs/perc2$base/ep$ep; R1=/content/refs/perc2$k/ep$ep
+  local ep=$1 run=$2 base=$3 k R0 R1 ck0="" ck1 F LG
+  if [ "$base" = auto ]; then                                       # the variant auto_ep.sh published
+    base=$(python -c "import json, os; print(os.path.basename(os.path.dirname(json.load(open('/content/results/final/ep$ep/final.json'))['chosen'])).replace('perc2', '', 1))" 2>/dev/null)
+    [ -n "$base" ] || { log "ab ep$ep: no results/final/ep$ep/final.json in the pulled run" >> $J; return 1; }
+    ck0=/content/results/final/ep$ep/policy.safetensors; log "ab ep$ep: auto base = $base ($ck0)" >> $J
+  fi
+  k=$base$SUF; R0=/content/refs/perc2$base/ep$ep; R1=/content/refs/perc2$k/ep$ep; LG=/content/hard_ab_ep$ep$SUF-s$SEED.log
   [ -d $R0/processed ] || { log "ab ep$ep: no reference $R0 in the pulled run" >> $J; return 1; }
   fix_assets $(ls $R0/processed/*/*/*.parquet | head -1) >> $J 2>&1 || { log "ab ep$ep: assets missing" >> $J; return 1; }
   rm -rf $R1; cp -r $R0 $R1                                        # a real copy: stage 3c rewrites the parquet in place
   rm -f $R1/contact_retarget.json $R1/e2s_reference.parquet
-  VARIANT=$k PDIR=/content/perc2m/ep$ep CONTACT_RETARGET=1 SEED=42 CK_SWEEP="0.4 0.6 0.8" \
-    bash $P/pipeline_ep.sh $ep > /content/hard_ab_ep$ep.log 2>&1
-  log "ab ep$ep $k: pipeline rc=$? $(grep -a 'contact_retarget:\|qa_policy:' /content/hard_ab_ep$ep.log | cut -c1-300 | tr '\n' ' ')" >> $J
-  F=/content/results/perc2$k/ep$ep-s42
+  VARIANT=$k PDIR=/content/perc2m/ep$ep CONTACT_RETARGET=$CR SEED=$SEED CK_SWEEP="0.4 0.6 0.8" \
+    bash $P/pipeline_ep.sh $ep > $LG 2>&1
+  log "ab ep$ep $k s$SEED: pipeline rc=$? $(grep -a 'contact_retarget:\|qa_policy:' $LG | cut -c1-300 | tr '\n' ' ')" >> $J
+  F=/content/results/perc2$k/ep$ep-s$SEED
   [ -s $F/episode_$(printf %06d $ep).parquet ] && python $P/score_registered.py $ep $F --meshes $MESH_DIR > /dev/null 2>&1
   # the base checkpoint behind today's score is in git (policies/<run>/perc2<base>/); the store keeps every 10th only
-  ck0=$(ls $REPO_DIR/policies/$run/perc2$base/ep${ep}_policy_*.safetensors 2>/dev/null | head -1)
+  [ -s "$ck0" ] || ck0=$(ls $REPO_DIR/policies/$run/perc2$base/ep${ep}_policy_*.safetensors 2>/dev/null | head -1)
   [ -s "$ck0" ] || ck0=$(chosen /content/results/perc2$base/ep$ep-s42 /content/runs/perc2$base/ep$ep-s42 2>> $J)
-  ck1=$(chosen $F /content/runs/perc2$k/ep$ep-s42 2>> $J)
-  for v in "$base:$ck0" "$k:$ck1"; do
+  ck1=$(chosen $F /content/runs/perc2$k/ep$ep-s$SEED 2>> $J)
+  local todo=("$k-s$SEED:$ck1"); [ "$BASE_EVAL" = 1 ] && todo=("$base:$ck0" "${todo[@]}")
+  for v in "${todo[@]}"; do
     [ -s "${v#*:}" ] || { log "ab ep$ep ${v%%:*}: no checkpoint" >> $J; continue; }
     evalrep ${v#*:} $O/ep$ep/${v%%:*} $ep
     log "ab ep$ep ${v%%:*} ($(basename ${v#*:})): $(python -c "import json; d=json.load(open('$O/ep$ep/${v%%:*}/summary.json')); print('n', d['n'], 'sim_vs_ref', d.get('sim_vs_ref'), 'registered AUC', d.get('auc'))" 2>&1 | tail -1)" >> $J

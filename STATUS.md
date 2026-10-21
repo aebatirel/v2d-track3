@@ -2,7 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-21 night: contact-anchored retargeting ready for the GPU A/B (waiting for the owner's top-up)
+## 2026-10-22 overnight (owner asleep; $50 top-up, credit $52.69 at 01:00 TRT; "go crazy, I trust you")
+Plan: round 1 = contact-retargeted references ("k") on ep12, ep18, ep24, ep27 (seed 42, 250M, sweep) + 6 repeat
+evaluations each of the new and the base policies; round 2 = second seed + fixes for what fails; round 3 = confirm the
+best setup with a fresh seed. Live log of rounds: `docs/work-log.md` (2026-10-22 entries).
+
+## 2026-10-21 night: contact-anchored retargeting ready for the GPU A/B (prepared before the top-up)
 Details: `docs/work-log.md` (22:35–23:05 TRT entries). Vast credit **$2.69**, no instances running.
 - **Diagnosis (measured):** the robot hand in our references sits 16–20 mm (p95) inside the objects at most contact
   frames (easy and hard episodes alike); the evaluation starts without the training's 20-step object assist.
