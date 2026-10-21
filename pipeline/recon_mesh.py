@@ -89,53 +89,21 @@ def table_plane(D0, K, obj_pos, rng_seed=0, thr=0.006, iters=1500, hmin=-0.05, h
     return nrm, -nrm @ q0, int(inl.sum()) / len(Pts)
 
 
-def main():
-    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('--poses', required=True); p.add_argument('--depth', required=True)
-    p.add_argument('--calib', required=True); p.add_argument('--obj', required=True); p.add_argument('--out', required=True)
-    p.add_argument('--half', type=float, default=0.30, help='half size of the cube around the object origin (m)')
-    p.add_argument('--voxel', type=float, default=0.004)
-    p.add_argument('--trunc', type=float, default=0.012)
-    p.add_argument('--stride', type=int, default=1, help='use every STRIDE-th frame')
-    p.add_argument('--min_obs', type=int, default=3, help='voxels with fewer updates count as unknown')
-    p.add_argument('--zmax', type=float, default=1.5, help='ignore depth beyond this (m)')
-    p.add_argument('--close', choices=['none', 'fill', 'near', 'auto'], default='auto',
-                   help='fill: every enclosed unknown voxel is inside (made wedges behind thin plates: ep39); near: '
-                        'unknown voxels within --near_vox of observed-inside voxels, then enclosed cavities; auto: see '
-                        '--auto_thr')
-    p.add_argument('--auto_thr', type=float, default=0.5, help='auto: near if the never-observed share of the '
-                   'filled solid exceeds this (to calibrate)')
-    p.add_argument('--near_vox', type=int, default=3)
-    p.add_argument('--edge_thr', type=float, default=0.02,
-                   help='ignore depth where max-min over a 5x5 window exceeds this (flying pixels at silhouettes; <0 off)')
-    p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
-    p.add_argument('--hands', default=None, help='hands.npz (hands_mp.py): drop depth samples on the hands/forearms')
-    p.add_argument('--hand_r', type=float, default=0.03, help='radius around hand bones (m)')
-    p.add_argument('--arm_r', type=float, default=0.045, help='radius around the forearm segment (m)')
-    p.add_argument('--arm_len', type=float, default=0.15)
-    p.add_argument('--table_band', type=float, default=0.015,
-                   help='drop depth samples less than this above the frame-0 support plane, or below it (<0: off)')
-    p.add_argument('--others', default='', help='NAME=MESH,...: the episode\'s other tracked objects (posed by their '
-                   'cam_T_NAME in --poses); depth samples within --other_r of them carve but never vote surface')
-    p.add_argument('--other_r', type=float, default=0.012)
-    p.add_argument('--merge_vox', type=int, default=2,
-                   help='components within this many voxels of the chosen one are kept (dilation before labelling)')
-    a = p.parse_args()
-    t0 = time.time()
-    P = np.load(a.poses); T_co = P[f'cam_T_{a.obj}'].astype(np.float64)
+def integrate(a, K, X, tsdf, wgt, poses, depth, hands, others_spec, cnt):
+    """Fuse one episode (its poses.npz, depth cache, hands.npz, other objects) into the shared grid."""
+    P = np.load(poses); T_co = P[f'cam_T_{a.obj}'].astype(np.float64)
     W_C = P['world_T_cam'].astype(np.float64)
-    segs_t = hand_segments(a.hands, W_C, a) if a.hands else None
+    segs_t = hand_segments(hands, W_C, a) if hands else None
     others = []                                                    # (cam_T_other per frame, KD-tree of surface pts)
-    if a.others:
+    if others_spec:
         import trimesh
         from scipy.spatial import cKDTree
-        for spec in a.others.split(','):
+        for spec in others_spec.split(','):
             nm, path = spec.split('=', 1)
             pts = trimesh.sample.sample_surface(trimesh.load(path, force='mesh'), 20000, seed=0)[0]
             others.append((P[f'cam_T_{nm}'].astype(np.float64), cKDTree(pts), pts.min(0), pts.max(0)))
     nother = 0
-    D = np.load(a.depth, mmap_mode='r'); N = min(len(T_co), len(D)); H, W = D.shape[1:]
-    K = rectified_K(a.calib)
+    D = np.load(depth, mmap_mode='r'); N = min(len(T_co), len(D)); H, W = D.shape[1:]
     plane = None
     if a.table_band >= 0:
         o0 = (W_C[0] @ T_co[0])[:3, 3]                             # world = rectified-left camera at frame 0
@@ -144,9 +112,7 @@ def main():
         print(f'table plane n={np.round(nw, 3)} c={cw:.3f} inlier frac {frac:.2f} object origin height '
               f'{nw @ o0 + cw:.3f}', flush=True)
     ntable = 0
-    n = int(round(2 * a.half / a.voxel)); g = (np.arange(n) + 0.5) * a.voxel - a.half
-    X = np.stack(np.meshgrid(g, g, g, indexing='ij'), -1).reshape(-1, 3)          # voxel centres, object frame
-    tsdf = np.zeros(len(X), np.float32); wgt = np.zeros(len(X), np.float32); nhand = 0
+    nhand = 0
     for t in range(0, N, a.stride):
         R, tr = T_co[t][:3, :3], T_co[t][:3, 3]
         Xc = X @ R.T + tr; z = Xc[:, 2]
@@ -210,6 +176,56 @@ def main():
         idx, sdf = idx[keep], sdf[keep]
         obs = np.clip(sdf / a.trunc, -1, 1).astype(np.float32)
         tsdf[idx] = (tsdf[idx] * wgt[idx] + obs) / (wgt[idx] + 1); wgt[idx] += 1
+    cnt['hand'] += nhand; cnt['table'] += ntable; cnt['other'] += nother; cnt['frames'] += N
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument('--poses', required=True, help='poses.npz (comma-separated: several episodes fused)')
+    p.add_argument('--depth', required=True, help='depth cache(s), one per --poses entry')
+    p.add_argument('--calib', required=True); p.add_argument('--obj', required=True); p.add_argument('--out', required=True)
+    p.add_argument('--half', type=float, default=0.30, help='half size of the cube around the object origin (m)')
+    p.add_argument('--voxel', type=float, default=0.004)
+    p.add_argument('--trunc', type=float, default=0.012)
+    p.add_argument('--stride', type=int, default=1, help='use every STRIDE-th frame')
+    p.add_argument('--min_obs', type=int, default=3, help='voxels with fewer updates count as unknown')
+    p.add_argument('--zmax', type=float, default=1.5, help='ignore depth beyond this (m)')
+    p.add_argument('--close', choices=['none', 'fill', 'near', 'auto'], default='auto',
+                   help='fill: every enclosed unknown voxel is inside (made wedges behind thin plates: ep39); near: '
+                        'unknown voxels within --near_vox of observed-inside voxels, then enclosed cavities; auto: see '
+                        '--auto_thr')
+    p.add_argument('--auto_thr', type=float, default=0.5, help='auto: near if the never-observed share of the '
+                   'filled solid exceeds this (to calibrate)')
+    p.add_argument('--near_vox', type=int, default=3)
+    p.add_argument('--edge_thr', type=float, default=0.02,
+                   help='ignore depth where max-min over a 5x5 window exceeds this (flying pixels at silhouettes; <0 off)')
+    p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
+    p.add_argument('--hands', default=None, help='hands.npz (hands_mp.py): drop depth samples on the hands/forearms')
+    p.add_argument('--hand_r', type=float, default=0.03, help='radius around hand bones (m)')
+    p.add_argument('--arm_r', type=float, default=0.045, help='radius around the forearm segment (m)')
+    p.add_argument('--arm_len', type=float, default=0.15)
+    p.add_argument('--table_band', type=float, default=0.015,
+                   help='drop depth samples less than this above the frame-0 support plane, or below it (<0: off)')
+    p.add_argument('--others', default='', help='NAME=MESH,...: the episode\'s other tracked objects (posed by their '
+                   'cam_T_NAME in --poses); depth samples within --other_r of them carve but never vote surface')
+    p.add_argument('--other_r', type=float, default=0.012)
+    p.add_argument('--merge_vox', type=int, default=2,
+                   help='components within this many voxels of the chosen one are kept (dilation before labelling)')
+    a = p.parse_args()
+    t0 = time.time()
+    K = rectified_K(a.calib)
+    n = int(round(2 * a.half / a.voxel)); g = (np.arange(n) + 0.5) * a.voxel - a.half
+    X = np.stack(np.meshgrid(g, g, g, indexing='ij'), -1).reshape(-1, 3)          # voxel centres, object frame
+    tsdf = np.zeros(len(X), np.float32); wgt = np.zeros(len(X), np.float32)
+    cnt = dict(hand=0, table=0, other=0, frames=0)
+    # several episodes of the same object fuse into one grid (comma-separated lists; --others per episode by ';')
+    poses_l, depth_l = a.poses.split(','), a.depth.split(',')
+    hands_l = a.hands.split(',') if a.hands else [None] * len(poses_l)
+    others_l = a.others.split(';') if a.others else [''] * len(poses_l)
+    if not len(poses_l) == len(depth_l) == len(hands_l) == len(others_l):
+        raise SystemExit('--poses, --depth, --hands and --others need one entry per episode')
+    for pp, dp, hp, op in zip(poses_l, depth_l, hands_l, others_l):
+        integrate(a, K, X, tsdf, wgt, pp, dp, hp or None, op, cnt)
     vol = tsdf.reshape(n, n, n); w = wgt.reshape(n, n, n)
     known = w >= a.min_obs
     inside = known & (vol < 0)
@@ -262,9 +278,9 @@ def main():
         vb, fb = budget_mesh(a.out.replace('.glb', '_full.glb'), 4096, 4096)
         m = trimesh.Trimesh(vb, fb, process=False)
     m.export(a.out)
-    st = dict(obj=a.obj, frames=int(N), stride=a.stride, voxel=a.voxel, trunc=a.trunc, half=a.half, grid=n,
+    st = dict(obj=a.obj, episodes=len(poses_l), frames=int(cnt['frames']), stride=a.stride, voxel=a.voxel, trunc=a.trunc, half=a.half, grid=n,
               known_frac=float(known.mean()), inside_vox=int(inside.sum()), solid_vox=int(solid.sum()),
-              closing=mode, unknown_share=round(unk_frac, 3), components=int(nl), hand_dropped=nhand, table_dropped=ntable, other_dropped=nother,
+              closing=mode, unknown_share=round(unk_frac, 3), components=int(nl), hand_dropped=cnt['hand'], table_dropped=cnt['table'], other_dropped=cnt['other'],
               verts=int(len(m.vertices)), faces=int(len(m.faces)),
               extents_cm=(np.round(m.extents * 100, 1)).tolist(), watertight=bool(m.is_watertight),
               sec=round(time.time() - t0, 1))
