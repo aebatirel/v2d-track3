@@ -1213,3 +1213,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   kept, staging tree removed, same numbers as the direct run. `hard_ab.sh` evaluates today's base checkpoints from
   `policies/` (ep18 mc 150M, ep24 mcs 250M) next to the new ones; its summary snippets were tested on fake rollouts.
 - Vast credit $2.69 (23:00 TRT); no instances running.
+
+## 2026-10-22 overnight (owner asleep; $50 top-up → credit $52.69 at 01:00 TRT; "go crazy, I trust you")
+
+### 01:25 TRT — round 1 launched: contact-retargeted references on the four validation episodes
+- Code 65c5a52 (`hard_ab.sh` with auto base / seed / suffix options; `pipeline_ep.sh TRAIN_LOCK`: trainings on one box
+  take turns on the GPU, in PAIRS order, because two at once were ~30 % slower in total; evaluations overlap the next
+  training). Snapshot `pt2.11-cu130-py313-20261020`. Only RTX PRO 6000 boxes fit (training peaks at 40.5 GB: the
+  $0.83 RTX 5090 has 32 GB; A100 FP32 is 0.16× the PRO 6000). Offers vanished twice while creating (404 no_such_ask).
+  | box | instance | $/h | run id | job |
+  |---|---|---|---|---|
+  | A | 57117675 | 1.36 | `20261022-r1a-65c5a52` | `PAIRS="24:…auto24…:mcs 12:…auto18…:auto"` seed 42, + 6 base re-evaluations |
+  | B | 57117645 | 1.91 | `20261022-r1b-65c5a52` | `PAIRS="18:…auto18…:mc 27:…auto18…:auto"` seed 42, + 6 base re-evaluations |
+  | C | 57117669 | 1.60 | `20261022-r1c-65c5a52` | `SEED=43 BASE_EVAL=0 PAIRS="24:…:mcs 18:…:mc"` (second seed of the new references) |
+  Expected ≈ 3.5 h per box, ≈ $17 for the round. Each variant: stage 3c contact retargeting → 250M steps → sweep
+  0.4/0.6/0.8 → 6 repeat evaluations, registered scores with our meshes.
