@@ -4,7 +4,7 @@ FoundationPose compares rendered appearance with the image, and a reconstruction
 Each vertex is projected into every STRIDE-th rectified-left mono frame of each episode with cam_T_<obj>; where the
 stereo depth at that pixel agrees with the vertex depth (|d - z| < --vis_tol, i.e. visible, not occluded) the grey
 level is collected; the vertex colour is the median. Vertices never seen get the median of all seen vertices.
-Usage: python mesh_color.py --mesh in.glb --obj NAME --poses a.npz[,b.npz] --depth a.npy[,b.npy]
+Usage: python mesh_color.py --mesh in.glb --obj NAME --poses a.npz[,b.npz] [--depth a.npy[,b.npy]]
                             --video a_c.mp4[,b_c.mp4] --calib calib.json --out out.glb
 """
 import argparse, json
@@ -25,19 +25,22 @@ def rectify(calib_path):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    for k in ('mesh', 'obj', 'poses', 'depth', 'video', 'calib', 'out'):
+    for k in ('mesh', 'obj', 'poses', 'video', 'calib', 'out'):
         p.add_argument(f'--{k}', required=True)
+    p.add_argument('--depth', default=None, help='stereo depth per episode for the visibility test; without it the '
+                   "mesh's own z-buffer decides (self-occlusion only; hands are outvoted by the median)")
     p.add_argument('--stride', type=int, default=4); p.add_argument('--vis_tol', type=float, default=0.01)
     a = p.parse_args()
     (MX, MY), K = rectify(a.calib)
     m = trimesh.load(a.mesh, force='mesh'); V = np.asarray(m.vertices)
     samples = [[] for _ in range(len(V))]
-    for pp, dp, vp in zip(a.poses.split(','), a.depth.split(','), a.video.split(',')):
-        T = np.load(pp)[f'cam_T_{a.obj}']; D = np.load(dp, mmap_mode='r')
+    depths = a.depth.split(',') if a.depth else [None] * len(a.poses.split(','))
+    for pp, dp, vp in zip(a.poses.split(','), depths, a.video.split(',')):
+        T = np.load(pp)[f'cam_T_{a.obj}']; D = np.load(dp, mmap_mode='r') if dp else None
         cap = cv2.VideoCapture(vp); t = -1
         while True:
             ok, f = cap.read(); t += 1
-            if not ok or t >= min(len(T), len(D)):
+            if not ok or t >= (min(len(T), len(D)) if D is not None else len(T)):
                 break
             if t % a.stride:
                 continue
@@ -49,7 +52,12 @@ def main():
             v[ok_] = np.round(K[1, 1] * X[ok_, 1] / z[ok_] + K[1, 2]).astype(int)
             ok_ &= (u >= 0) & (u < g.shape[1]) & (v >= 0) & (v < g.shape[0])
             idx = np.nonzero(ok_)[0]
-            d = np.asarray(D[t])[v[idx], u[idx]]
+            if D is not None:
+                d = np.asarray(D[t])[v[idx], u[idx]]
+            else:                                                  # own z-buffer on a 4-px grid
+                zb = np.full((g.shape[0] // 4 + 1, g.shape[1] // 4 + 1), np.inf)
+                np.minimum.at(zb, (v[idx] // 4, u[idx] // 4), z[idx])
+                d = zb[v[idx] // 4, u[idx] // 4]
             vis = np.isfinite(d) & (np.abs(d - z[idx]) < a.vis_tol)
             for i, val in zip(idx[vis], g[v[idx[vis]], u[idx[vis]]]):
                 samples[i].append(val)
