@@ -60,6 +60,8 @@ EOF
 create)
   OFFER=$2; RUN_ID=$3; JOB=$4; PRICE=${5:-}
   COMMIT=${V2D_COMMIT:-$(git -C "$HERE/.." rev-parse origin/main)}
+  # the box runs `git fetch origin <commit>`, which needs the full 40-char hash (a short one gave CHECKOUT-FAIL)
+  [ ${#COMMIT} -eq 40 ] || COMMIT=$(git -C "$HERE/.." rev-parse --verify "$COMMIT^{commit}") || { echo "unknown commit $COMMIT"; exit 1; }
   ONSTART="$HERE/box/onstart.sh"; [ $(wc -c < "$ONSTART") -le 4048 ] || { echo "onstart.sh > 4048 chars"; exit 1; }
   BODY=$(python3 - "$IMAGE" "$DISK" "$RUN_ID" "$JOB" "$COMMIT" "${ENV_SNAPSHOT:-}" "${HF_STORE:-}" "$PRICE" "$ONSTART" \
                    "${SETUP:-}" "${RESUME_FROM:-}" <<'EOF'
