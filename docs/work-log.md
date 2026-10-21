@@ -567,3 +567,8 @@ No spending.
   or a two-stage IK (wrist first, then fingers) next. Montage: `results/e2e/ep12_vc_rollout.jpg`.
 - Box 2 released at 00:39 UTC (results pushed by the watchdog's self-destroy). Box 1's ep27/ep2 runs also use `vc`;
   letting them finish (~$1.9) to see whether vc fails generally.
+- **ep27 vc (box 1, 01:22 UTC): sim vs mocap AUC 0.965, SP 1.00, MP 1.00, MPPE 0.9 cm** (white_pot 0.930, rack
+  1.000); reference vs mocap 0.997; sim vs reference 0.965; static floor 0.559 (the pot travels ~20 cm); evaluator
+  add_auc 0.968, chord/maniptrans 1.0. Montage (`results/e2e/ep27_vc_rollout.jpg`): the right hand grasps the pot by
+  the handle, lifts it, turns it over and places it upside down on the rack, as in the video. So `vc` is not broken in
+  general; ep12's vc failure (0.604) looks like a bad policy draw or an ep12-specific grasp problem; multi-seed needed.
