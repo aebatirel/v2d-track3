@@ -15,8 +15,22 @@ Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
   (fingertip error +1–2 cm). Bone normalisation and a larger `mano_to_robot_scale` did not help.
 - **Robot:** mid-stiffness wrist embodiment `flashchord_conf/embodiment/sharpa_hands_mid.yaml` (kp 400 vs 25 N/m;
   FAQ allows other embodiments; owner to confirm before any submission uses it).
-- **Running now:** box 1 (56915259): ep12 perc2 + oracle. Box 2 (56940182): ep12 `vw` (Viterbi + mid wrist) and
-  `vc` (Viterbi + wrist cost 3), plus the hands A/B. Both boxes self-destroy when done.
+- **End-to-end results, ep12 (public; sim vs mocap, our scorer with the kit metric functions):**
+
+  | run | config | AUC | SP | MP | MPPE | robot tracking (sim vs ref) |
+  |---|---|---|---|---|---|---|
+  | perc2 | greedy hands, NVIDIA retarget weights, default wrist | **0.890** | 1.00 | 1.00 | 1.5 cm | 0.863 |
+  | oracle | mocap objects (diagnostic only) | 0.858 | 1.00 | 0.00 | 1.8 cm | 0.855 |
+  | vw | Viterbi hands + mid-stiffness wrist | 0.860 | 1.00 | 1.00 | 1.8 cm | 0.841 |
+  | vc | Viterbi hands + E2S wrist cost 3.0 | 0.604 (failed) | 0 | 0 | 7.7 cm | 0.576 |
+
+  Reading: on ep12 the robot, not perception, sets the score (~0.14 AUC lost in tracking; ±0.03 between policies);
+  the mid wrist gave no measurable gain; wrist cost 3.0 failed once (one seed). Loss in the good runs = final cup
+  placement (ends ~8 cm off, on the rack edge).
+- **Hand linker:** Viterbi was mixed over 18 episodes (fixes the ep12 hand-over, follows spurious tracks elsewhere);
+  greedy is the default again.
+- **Box 1** runs ep27 + ep2 with `vc` (results ≈ 04:15 / 04:55 TRT); box 2 finished and self-destroyed 00:40 UTC.
+  Vast credit ≈ $4 at 03:40 TRT → ≈ $2.3 left when box 1 ends. No new runs after that.
 - **Open questions for the owner:** njmax 512 overflows in training (raising it changes sim settings → ask the
   organisers); the mid wrist (embodiment) for submissions; spoon frame (A vs B).
 
