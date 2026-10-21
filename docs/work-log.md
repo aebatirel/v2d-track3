@@ -764,3 +764,22 @@ Sim vs mocap, our scorer (old) and the registered scorer with the public scans a
   0.232): the sim's frame-0 object poses differ between the two runs (settling at reset; to check).
 - Box ep24's rexec tunnel answered 502 the whole run, but the job finished and pushed (the store, not the tunnel, is
   the result path).
+
+### 2026-10-21 11:25 TRT: hard-episode A/B, ep18 (sweeper + dustpan) and batch summary
+| ep | run | AUC old | AUC registered | SP | MP | MPPE | reference vs mocap | static floor |
+|---|---|---|---|---|---|---|---|---|
+| 18 | perc2 | **0.127** | 0.128 | 0 | 0 | 10.4 cm | 0.974 | **0.610** |
+| 18 | perc2c | 0.337 | 0.337 | 0 | 0 | 8.9 cm | 0.974 | 0.610 |
+- ep18 is **below the static floor**: in the evaluator rollout the sweeper, standing upright in the reference, falls
+  over (z 0.663 → 0.615 m) and both objects end 5–15 cm off. (The montage from `render_rollout.sh` is a separate
+  replay and shows little motion; the evaluator parquet is the record.)
+- Batch summary (one seed each): ep21 0.826 (works), **ep24 0.235 (= floor; boards never lifted)**, **ep18
+  0.13–0.34 (< floor 0.61)**. Wrist cost 3.0: −0.03 / −0.07 / +0.21 → no consistent effect. Policy failure, not
+  perception (references 0.84–0.97), is the main risk on hard tasks. Eval twins: 19 and 30 (sweeper), 25 (boards),
+  38 (dustpan alone).
+- Idea (hypothesis, owner to judge): pick per episode between the trained policy and a fallback using only our own
+  reference (GT-free): if the evaluator's sim-vs-reference AUC is below the reference's own static floor, the
+  rollout is worse than not moving. Candidates for the fallback: an earlier checkpoint (`policy_*` every 5M steps),
+  another seed, or a policy that keeps the hands off the objects.
+- Reconstruction v6 (edge threshold 5 cm): ep41 0.996, ep39 0.892, ep23 0.973 but board 2 **flip rate 0.25** →
+  the board registration is fragile to small parameter changes; v7 (edge filter off, auto closing) running.
