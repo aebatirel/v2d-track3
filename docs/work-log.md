@@ -964,3 +964,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   dropped slightly (ep39 0.992 → 0.982, ep40 0.971 → 0.963, ep18 0.920 → 0.917; CD-O 0.52 → 0.33 cm): the
   falsification bar I set is missed by ~0.01, accepted because v1 cannot be simulated; carve margin to tune later.
 - `auto_ep.sh`: a reference that failed its QA is trained only after the passing one got a second seed.
+
+### 2026-10-21 16:35 TRT — validation relaunched (commit 966eb96; credit $18.39 before)
+- `ops/vast.sh V2D_COMMIT=966eb96… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'EPS="<ep>" RETRIES=1
+  bash ops/jobs/auto_runs.sh'` (library_v2 by default, colourless simulator assets):
+  - ep18: offer 56213818 (Greece, 30 CPU, 90 GB), instance 57058717, run `20261021-auto18-966eb96`, $1.44/h.
+  - ep24: offer 49270977 (Alberta, 16 CPU, 92 GB), instance 57058719, run `20261021-auto24-966eb96`, $1.49/h.
+- One episode per box: a training alone runs ~36–45k steps/s (~1.7 h for 250M) instead of ~21k with two per box,
+  so results come ~2 h sooner for about $0.7 more. Expected ≈ $3.3–3.6 per box without a retry, ≈ $6 with one.
+  Controls ep12 + ep27 afterwards if the credit allows (owner's condition).
