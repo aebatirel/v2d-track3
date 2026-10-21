@@ -557,3 +557,13 @@ No spending.
   13.3°; the sim cup ends 3 cm higher than the reference (z 0.718 vs 0.687), i.e. set down on the rack's edge/pegs
   instead of beside it. (Correction: the reference cup ends upright, not upside down.) Final placement is the loss.
   Montage: `results/e2e/ep12_vw_rollout.jpg`.
+- **ep12 vc (Viterbi(0.8) hands + `--wrist_cost 3.0`, default wrist) FAILED** (00:38 UTC): sim vs mocap AUC 0.604 =
+  static floor (cup 0.208, SP 0, MP 0, MPPE 7.7 cm); sim vs reference 0.576; evaluator add_auc 0.575, chord 0,
+  maniptrans 0. Exported trajectory: cup axis flipped (−1.00) at table height from f60 to the end (pos error 15–22 cm,
+  rot error ~180°); the view_policy montage shows the hands never reaching the cup (the viewer's reset differs from
+  the evaluator's). One seed, so cause vs bad luck is unresolved. Hypothesis: wrist cost 3.0 moves fingertip targets
+  1–2 cm away from the human's (right tips median 3.1 cm on ep12), the contact reward becomes hard to earn, and the
+  policy learns to stay away. **Do not adopt `--wrist_cost 3.0` without a multi-seed test**; try a milder cost (1.0)
+  or a two-stage IK (wrist first, then fingers) next. Montage: `results/e2e/ep12_vc_rollout.jpg`.
+- Box 2 released at 00:39 UTC (results pushed by the watchdog's self-destroy). Box 1's ep27/ep2 runs also use `vc`;
+  letting them finish (~$1.9) to see whether vc fails generally.
