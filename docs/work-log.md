@@ -803,3 +803,19 @@ Sim vs mocap, our scorer (old) and the registered scorer with the public scans a
   (pot 41/44/2/27, lid 2, rack 12/13/27, blue cup 12/13/21/22, pitcher 21/22, beige cup 11, dustpan 39/40/18 with
   the edge filter off, sweeper 18/31, boards 23); spoon = our parametric model (`spoon/wooden_spoon.glb`).
 - v7 (edge filter off, auto closing): ep23 0.9915 (board 1 flip rate 0.12), ep39 0.953.
+
+### 2026-10-21 14:00 TRT: rollout videos looked at; why ep24 fails; render bug
+- Side-by-side videos (real cam_a | `render_rollout.sh` replay) for ep18, ep24, ep21, ep27, sent to the owner.
+- **Render bug:** `render_rollout.sh` defaulted to 181 frames (ep12's length) for every episode, so ep18 (353) and
+  ep24 (275) renders showed only the first 9 s. `pipeline_ep.sh` now passes the episode length (e8b5735). Montages
+  of earlier long episodes are therefore partial. Note also that the render is a separate replay (view_policy), not
+  the evaluator's scored rollout.
+- **ep24 (boards):** in the video the left hand first slides the left board until it overhangs the table edge (f20),
+  then grips the overhang and lifts (f60). In sim only the right robot hand ever approaches a board; the left
+  board never moves. hands_log: the left hand's median wrist→middle-tip is **4.6 cm** (good episodes 10–15 cm), i.e.
+  the left hand's 3-D joints collapse; mkref's IK errors for ep24 reach 115–135 mm (p95) / 170–200 mm (max) at the
+  wrists. So the reference does not carry the slide-to-edge move → the policy cannot learn it. Fix candidates:
+  hand lifting on this episode (depth sampling for a hand pressed flat on a board), and a hand-quality check
+  (wrist→tip length, IK error) that flags such episodes before training.
+- Mesh library: plastic_dish_rack (12/13/27; 11.0 × 16.1 × 49.7 cm vs scan 11.7 × 17.6 × 51.2) and the two boards
+  (23) committed; lid committed earlier.
