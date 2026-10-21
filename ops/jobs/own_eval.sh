@@ -5,7 +5,7 @@
 #   2) H2 check on public episodes H2_EPS: perception tracking with our meshes, scored afterwards against mocap with
 #      the registered scorer and our meshes (pipeline/score_registered.py)
 #   3) eval episodes EPS: perception (our meshes) -> hands -> reference (our assets), i.e. ready for training
-# Outputs: /content/perc2m/epN, /content/refs/perc2m/epN; eval depth caches go to the store (cache/depth/eval).
+# Outputs: /content/perc2m/epN, /content/refs/perc2m/epN (depth caches stay on the box unless PUSH_DEPTH=1).
 # As a job: ops/vast.sh create ... 'bash ops/jobs/own_eval.sh'
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=/content/job.log
@@ -30,7 +30,9 @@ for ep in $EPS; do
     > /content/pipe_eval_ep$ep.log 2>&1
   rc=$?
   log "eval ep$ep rc=$rc $(grep -aE 'reference:|FAILED' /content/pipe_eval_ep$ep.log | tail -1 | cut -c1-150)" >> $J
-  [ -s /content/perc2m/ep$ep/depths_fs0.5.npy ] && bash $OPS/store.sh push-depth $ep eval /content/perc2m > /dev/null 2>&1
+  # eval depth caches (1-2.4 GB each) stay off the store unless PUSH_DEPTH=1: 20 of them would refill the 100 GB quota
+  [ "${PUSH_DEPTH:-0}" = 1 ] && [ -s /content/perc2m/ep$ep/depths_fs0.5.npy ] && \
+    bash $OPS/store.sh push-depth $ep eval /content/perc2m > /dev/null 2>&1
   bash $OPS/store.sh push-run > /dev/null 2>&1 || true                 # outputs so far (a crash keeps them)
 done
 exit 0
