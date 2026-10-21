@@ -7,18 +7,19 @@ Details: `docs/work-log.md` (15:20 TRT onwards).
 - **HF PRO (owner, 2026-10-21):** 1 TB private storage included, then pay-as-you-go $18/TB/month. `store.sh` refuses
   uploads once the store holds `STORE_MAX_GB` (800); checkpoints kept every 10th (was 25th); eval depth caches are
   pushed (`own_eval.sh PUSH_DEPTH=1` default). The store still reports 99.5 GB used.
-- **Validation box 57047922** (`20261021-autohard-3c11668`, PRO 6000 $1.39/h; `auto_runs.sh` EPS="18 24"
-  RETRIES=1, our meshes library_v1):
-  - ep24: perception with our meshes AUC 0.795 (scan template 0.843: our board meshes cost ~0.05). Reference QA:
-    default wrist failed (p95 98 / 176 mm, jumps 13 / 22 cm), wrist cost 3.0 passed (15 / 30 mm, ≤ 7 cm) and was
-    chosen automatically; training since 15:24 TRT.
-  - ep18: perception AUC 0.970 (scan 0.957), but mkref refused both references: **our dust pan mesh reaches 3.5 cm
-    under the table** (table rejected, floor picked, guard fired).
-- **Mesh bug found (library_v1):** the never-seen underside of resting objects was filled solid: white pot 5.5 cm and
-  dust pan 3.5 cm under the table (scans ≤ 0.5 cm); wooden pieces ~1 cm; the rest within 0.4 cm of the scan.
-  Fixes in `recon_mesh.py`: table-plane cone 45→65° (real bug, not the cause) and `--below_carve 0.004` (space under
-  each frame's table plane is free). Dust pan (2 closing variants) and white pot rebuilding into `meshes/library_v2`;
-  then ep18 reruns on the same box as a second job (`auto_runs.sh SELF_HOLD=1`, variant n).
+- **Validation, round 1 (box 57047922, 11:58–12:51 UTC, ≈ $1.4):** ep18 mkref refused our dust pan (3.5 cm under the
+  table); both ep24 trainings were SIGKILLed in the 4096-world build. Causes found and fixed (details in the work log):
+  - mesh undersides filled solid (dust pan 3.5 cm, white pot 5.5 cm under the table) → `recon_mesh --below_carve`,
+    `meshes/library_v2` (pot now 13.1 × 19.0 × 36.2 cm vs scan 13.2 × 18.9 × 35.7; registered AUC 0.991–0.998);
+  - Newton splits coloured meshes into one shape per colour (174 per board) → `make_assets.py` writes colourless
+    simulator copies (reproduced and verified on CPU with FlashCHORD's pins: 64 worlds 4.2 s / 0.61 GB).
+- **Validation, round 2 (commit 966eb96, two boxes from 13:22 UTC):** both pipelines ran end to end.
+  **First complete scores with our own meshes (registered, leaderboard-style): ep18 0.396, ep24 0.080** (sim vs mocap
+  0.381 / 0.096; static floors 0.637 / 0.123; our references vs mocap 0.982 / 0.799; earlier best 0.337 / 0.235).
+  QA verdict `harmful` on both (the policy does worse than not moving). Cause: wrist tracking fails (evaluator
+  termination cause = wrist). With stiff gains the reference is followed within ~1 cm (CPU replay), so the default
+  soft wrist (25 N/m, 45 N) is the limit. Running now: **mid-wrist variant mcw** (kp 400, same references) on both
+  boxes, results ≈ 16:30 UTC (19:30 TRT).
 
 ## 2026-10-21 (owner topped up: credit $27.19 before the batch)
 Details and commands: `docs/work-log.md` (2026-10-21 entries).
