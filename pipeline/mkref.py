@@ -584,6 +584,9 @@ def parse_args():
     p.add_argument('--hands', default=None, help='default OUT/hands.npz')
     p.add_argument('--out', default=None, help='default /content/refs/epN')
     p.add_argument('--seq', default=None, help='sequence_id (default t3_epNNN)')
+    p.add_argument('--assets', default=os.environ.get('ASSETS') or None,
+                   help='object assets root (mesh/<obj>/<obj>.glb, urdf/<obj>_rigid.urdf); default --t3 = the public '
+                        'scans; route A uses our own (pipeline/make_assets.py; default from env ASSETS)')
     p.add_argument('--split', choices=['public', 'eval'], default=os.environ.get('SPLIT', 'public'),
                    help='eval: object names from the kit roster (default from env SPLIT)')
     p.add_argument('--v2d', default='/content/v2d')
@@ -668,9 +671,10 @@ def main():
         cam_T[nm] = P[f'cam_T_{nm}'].astype(np.float64)
         if len(cam_T[nm]) != T:
             raise SystemExit(f'cam_T_{nm} has {len(cam_T[nm])} frames, world_T_cam has {T}')
-    vis_p = {nm: visual_mesh_path(a.t3, nm) for nm in names}
-    con_p = {nm: contact_mesh_path(a.t3, nm) for nm in names}
-    urdf_p = {nm: f'{a.t3}/urdf/{nm}_rigid.urdf' for nm in names}
+    A = a.assets or a.t3                     # route A: our own meshes and URDFs (make_assets.py), same layout
+    vis_p = {nm: visual_mesh_path(A, nm) for nm in names}
+    con_p = {nm: contact_mesh_path(A, nm) for nm in names}
+    urdf_p = {nm: f'{A}/urdf/{nm}_rigid.urdf' for nm in names}
     for nm in names:
         for pth in (vis_p[nm], con_p[nm], urdf_p[nm]):
             if not os.path.exists(pth):
