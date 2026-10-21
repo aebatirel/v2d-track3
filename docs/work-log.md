@@ -783,3 +783,23 @@ Sim vs mocap, our scorer (old) and the registered scorer with the public scans a
   another seed, or a policy that keeps the hands off the objects.
 - Reconstruction v6 (edge threshold 5 cm): ep41 0.996, ep39 0.892, ep23 0.973 but board 2 **flip rate 0.25** →
   the board registration is fragile to small parameter changes; v7 (edge filter off, auto closing) running.
+
+### 2026-10-21 13:20 TRT: owner decisions, store cleanup, route A plumbing
+- **Owner decisions:** (1) HF store: delete + squash now, upgrade HF later; (2) **route A: our own meshes only**
+  (implemented as "A-lite": on the eval episodes only our meshes are used, in detection, tracking, the simulator and
+  the submission; the public scans are used only to build those meshes from the public videos, i.e. as a development
+  aid; to be confirmed with the organisers); (3) eval perception approved; "do whatever it takes for the best score".
+- **Store cleanup** (`ops/jobs/store_cleanup.sh`): two failed launches first — box 1 vanished (logs lost), box 2
+  `CHECKOUT-FAIL`: I passed a short commit hash and the box's `git fetch origin <commit>` needs the full one
+  (`ops/vast.sh` now expands short hashes). Box 3 (instance 57035347, RTX A4000 $0.118/h, ~10 min): deleted all 266
+  `runs/**/state_*` files (44 GB) and squashed the history: tree 99.6 → 55.5 GB, 2 commits; writes work again. HF's
+  `usedStorage` still read 99.5 GB right after (expected to update after garbage collection; to recheck).
+- **Route A tools:** `pipeline/mesh_color.py` (grey vertex colours from our video, for FoundationPose's appearance
+  terms; ep41 pot: 90 % of vertices seen, 50 s), `pipeline/make_assets.py` (URDF + mesh in the public-asset layout,
+  placeholder 0.3 kg like the public files, COM/inertia from our surface), `mkref.py --assets` / env `ASSETS`,
+  `perc2.py` env `MESH_DIR`, job `ops/jobs/own_eval.sh` (assets → H2 check on 8 public episodes → perception, hands
+  and references for the 20 eval episodes with our meshes; ~3 h on one PRO 6000 ≈ $4.5).
+- **Mesh library v1** being built here (CPU): each object fused over the public episodes where our tracking holds
+  (pot 41/44/2/27, lid 2, rack 12/13/27, blue cup 12/13/21/22, pitcher 21/22, beige cup 11, dustpan 39/40/18 with
+  the edge filter off, sweeper 18/31, boards 23); spoon = our parametric model (`spoon/wooden_spoon.glb`).
+- v7 (edge filter off, auto closing): ep23 0.9915 (board 1 flip rate 0.12), ep39 0.953.
