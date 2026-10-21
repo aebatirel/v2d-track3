@@ -99,9 +99,12 @@ def main():
     p.add_argument('--stride', type=int, default=1, help='use every STRIDE-th frame')
     p.add_argument('--min_obs', type=int, default=3, help='voxels with fewer updates count as unknown')
     p.add_argument('--zmax', type=float, default=1.5, help='ignore depth beyond this (m)')
-    p.add_argument('--close', choices=['none', 'fill', 'near'], default='near',
+    p.add_argument('--close', choices=['none', 'fill', 'near', 'auto'], default='auto',
                    help='fill: every enclosed unknown voxel is inside (made wedges behind thin plates: ep39); near: '
-                        'unknown voxels within --near_vox of observed-inside voxels, then enclosed cavities')
+                        'unknown voxels within --near_vox of observed-inside voxels, then enclosed cavities; auto: see '
+                        '--auto_thr')
+    p.add_argument('--auto_thr', type=float, default=0.5, help='auto: near if the never-observed share of the '
+                   'filled solid exceeds this (to calibrate)')
     p.add_argument('--near_vox', type=int, default=3)
     p.add_argument('--edge_thr', type=float, default=0.02,
                    help='ignore depth where max-min over a 5x5 window exceeds this (flying pixels at silhouettes; <0 off)')
@@ -211,18 +214,27 @@ def main():
     known = w >= a.min_obs
     inside = known & (vol < 0)
     from scipy import ndimage
-    if a.close == 'fill':
-        # unknown voxels count as inside only where enclosed (not connected to the cube boundary through unknown space)
-        lab, nl = ndimage.label(~known)
-        border = np.unique(np.r_[lab[0].ravel(), lab[-1].ravel(), lab[:, 0].ravel(), lab[:, -1].ravel(),
-                                 lab[:, :, 0].ravel(), lab[:, :, -1].ravel()])
-        outside_unknown = np.isin(lab, border[border > 0])
-        solid = inside | (~known & ~outside_unknown)
-    elif a.close == 'near':
-        solid = inside | (~known & ndimage.binary_dilation(inside, iterations=a.near_vox))
-        solid = ndimage.binary_fill_holes(solid)
-    else:
-        solid = inside
+    # closing of never-observed space. fill: every enclosed unknown voxel is inside (right for bulky objects whose
+    # bottom is never seen: ep41 pot 0.998 vs 0.986 with near); near: only unknown voxels within NEAR_VOX of observed
+    # inside, then enclosed cavities (right for thin plates, where fill grows a wedge behind the plate: ep39 0.82 vs
+    # 0.95). auto: fill unless the never-observed share of the filled solid exceeds --auto_thr.
+    lab, nl = ndimage.label(~known)
+    border = np.unique(np.r_[lab[0].ravel(), lab[-1].ravel(), lab[:, 0].ravel(), lab[:, -1].ravel(),
+                             lab[:, :, 0].ravel(), lab[:, :, -1].ravel()])
+    solid_fill = inside | (~known & ~np.isin(lab, border[border > 0]))
+    solid_near = ndimage.binary_fill_holes(inside | (~known & ndimage.binary_dilation(inside, iterations=a.near_vox)))
+    def main_part(sol):                                            # the component nearest the origin (as below)
+        lb, k = ndimage.label(ndimage.binary_dilation(sol, iterations=max(a.merge_vox, 1)))
+        if k == 0:
+            return sol
+        c0 = np.array(sol.shape) // 2; sz = ndimage.sum(sol, lb, range(1, k + 1)); cand = np.argsort(-sz)[:5] + 1
+        best = cand[int(np.argmin([np.min(np.linalg.norm(np.argwhere(lb == q) - c0, axis=1)) for q in cand]))]
+        return sol & (lb == best)
+    mf = main_part(solid_fill)
+    unk_frac = float((mf & ~inside).sum() / max(mf.sum(), 1))       # never-observed share of the filled object
+    mode = a.close if a.close != 'auto' else ('near' if unk_frac > a.auto_thr else 'fill')
+    solid = {'fill': solid_fill, 'near': solid_near, 'none': inside}[mode]
+    print(f'closing: unknown share of filled solid {unk_frac:.3f} -> {mode}', flush=True)
     # keep the component nearest the object origin; label after a small dilation so parts separated by a thin gap
     # (ep2: rim and handle cut off from the pot body) stay together, then return to the undilated voxels
     grown = ndimage.binary_dilation(solid, iterations=a.merge_vox) if a.merge_vox > 0 else solid
@@ -252,7 +264,7 @@ def main():
     m.export(a.out)
     st = dict(obj=a.obj, frames=int(N), stride=a.stride, voxel=a.voxel, trunc=a.trunc, half=a.half, grid=n,
               known_frac=float(known.mean()), inside_vox=int(inside.sum()), solid_vox=int(solid.sum()),
-              components=int(nl), hand_dropped=nhand, table_dropped=ntable, other_dropped=nother,
+              closing=mode, unknown_share=round(unk_frac, 3), components=int(nl), hand_dropped=nhand, table_dropped=ntable, other_dropped=nother,
               verts=int(len(m.vertices)), faces=int(len(m.faces)),
               extents_cm=(np.round(m.extents * 100, 1)).tolist(), watertight=bool(m.is_watertight),
               sec=round(time.time() - t0, 1))

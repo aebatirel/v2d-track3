@@ -729,3 +729,14 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
 - Note (to test): a mesh fused along our own tracks inherits any constant tracking bias β as a rotation β⁻¹ of the
   mesh, and the scorer's registration then multiplies it back out (converted pose = R_pose·Rᵀ), so a constant bias
   cancels; only time-varying pose error and depth-shape error remain.
+- v4 = v3 + depth-edge filter (5×5 max−min > 2 cm → no information; flying pixels at silhouettes): ep41 0.984
+  (CD-O 0.65, 2.2°), ep39 **0.880** (5.0°; the thin plate loses much of its depth), ep23 0.966 (boards 0.45° /
+  2.5°, **flip rate 0 / 0** vs 0.12 / 0.12 in v3). Mixed → off by default for now.
+- Ablation on ep41 (pot), registered AUC with our mesh (scan 0.9985): fill closing + hands 0.9979 (0.9°);
+  fill, no hands 0.9983; near, no hands 0.9862; fill, no edge filter 0.9969. **Closing mode decides** (fill for the
+  bulky pot, near for the thin dustpan); hand masking and the edge filter do not matter on ep41.
+- New: `--close auto` (default): fill unless the never-observed share of the filled object exceeds `--auto_thr`
+  (to calibrate on 41 / 39 / 23, run v5).
+- New tools: `pipeline/track_overlay.py` (tracked meshes drawn on the rectified frames; QA for eval episodes, CPU) and
+  `ops/jobs/eval_perc.sh` (perception on the 20 eval episodes, one at a time, depth pushed to the store; ~4 min
+  per episode measured on ep18, so ≈ 1.5 h on one box ≈ $2–3; not launched).
