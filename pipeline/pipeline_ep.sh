@@ -78,7 +78,7 @@ if [ "${CONTACT_RETARGET:-0}" = 1 ] && [ ! -s $R/contact_retarget.json ]; then
   mkdir -p $(dirname $CRP) && ln -sfn $R/reconstructed_stage $CRT/reconstructed_stage
   (cd $FC && FC=$FC .venv/bin/python $S/contact_retarget.py $REFP $CRP ${CR_ARGS:-} > $R/contact_retarget_log.txt 2>&1) \
     || { echo "contact_retarget FAILED"; tail -8 $R/contact_retarget_log.txt; exit 1; }
-  cp -n $REFP $R/e2s_reference.parquet && cp $CRP $REFP && cp ${CRP%.parquet}_contact_retarget.json $R/contact_retarget.json \
+  { [ -e $R/e2s_reference.parquet ] || cp $REFP $R/e2s_reference.parquet; } && cp $CRP $REFP && cp ${CRP%.parquet}_contact_retarget.json $R/contact_retarget.json \
     && rm -rf $CRT || { echo "contact_retarget: could not install the new reference"; exit 1; }
   echo "[$(date +%T)] contact_retarget: $(tr -d '\n ' < $R/contact_retarget.json | cut -c1-400)"
 fi

@@ -1152,7 +1152,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   2.9° rotation count like 3 cm and saturate beyond ~0.3 rad (FlashDexRetarget scales so 30° ≈ 3 cm); Do as I Do ≈ 62
   GPU-h per 50 Sharpa clips (1,024 samples × 32 iterations).
 
-### 2026-10-21 23:40 TRT — contact retargeting against the simulator's convex pieces (CPU, no spend)
+### 2026-10-21 22:50 TRT — contact retargeting against the simulator's convex pieces (CPU, no spend)
 - `contact_retarget.py`: object distance = union of the object's convex collision pieces from the FlashCHORD scene
   (`HullSDF`, per piece max over face planes, tabulated on a 2.5 mm grid: exact plane tests were ~9 s per frame); hand
   samples on each link's convex hull (hull vertices + area-weighted surface points, 40 per link). ep24 (separated
@@ -1178,3 +1178,38 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `ops/jobs/hard_ab.sh` (ep24 mcs / ep18 mc vs the same references after retargeting, same recipe, NREP repeat
   evaluations of both chosen checkpoints, registered scores; also reports the ep12/ep27 controls from the store). The
   control box 57058717 is gone (0 instances); its results are in the store (`runs/20261021-auto18-966eb96`).
+
+### 2026-10-21 23:05 TRT — contact retargeting with the simulator's own collision: ep24 and ep18 references cleared (CPU)
+- `contact_retarget.py` penetration term = CPU MuJoCo collision of the FlashCHORD scene (`MjPen`: Newton's `mj_model`,
+  scene state at the reference frame, `mj_kinematics` + `mj_collision`, per hand geom max(0, 1 mm − depth) against
+  objects, table and the other hand). Wrist moves bounded to ±6 cm / ±0.5 rad per axis from E2S (the unbounded run
+  drifted 17 cm on ep24's right hand); tip-to-target errors beyond 1.5 cm pull with a square-root weight. ~0.3 s per
+  frame: ep24 in 3 min, ep18 in ~6 min (4 CPUs, shared).
+- Commands (scratchpad; FC = FlashCHORD clone, fcvenv = its pinned venv; run from FC):
+  `FC=$FC fcvenv/bin/python pipeline/contact_retarget.py loc/val/tree24s/.../ref.parquet loc/val/tree24m/.../ref.parquet`
+  (ep18: tree18 → tree18m), then `robot_clearance.py OUT dummy --rounds 0`, `tools/frame_quality_probe.py OUT 5 1`,
+  `tools/contact_breakdown.py OUT 5`.
+
+  | simulator check (MuJoCo, reset without settling) | ep24 before (mcs) | ep24 after | ep18 before (mc) | ep18 after |
+  |---|---|---|---|---|
+  | frames with a hand > 2 mm inside something | 242 / 275 | **62** | ~77 % | **41 / 361** |
+  | penetration p95 / worst | 20.1 / 32.6 mm | **6.0 / 10.9 mm** | 16 mm | **2.7 / 9.7 mm** |
+  | sampled frames with hand–object penetration | 49 / 55 | **14 / 55** | 55 / 71 | **8 / 71** |
+  | hand–hand penetration (sampled frames) | 1 | 0 | 0 | 0 |
+  | start frames popping an object in one step | 49 / 55 | 35 / 55 | 52 / 71 | 41 / 71 |
+  | median / p90 pop | 8.6° / 16.3° | **2.9° / 6.4°** | 8.0° / – | **3.1° / 9.0°** |
+  | frame 0 (evaluation start) | 6.2° | 0.8° / 0.1 cm | 0.7° | 0.7° / 0.2 cm |
+
+  Tool's own numbers: ep24 left / right penetration p95 23.7 → 3.2 / 16.9 → 3.3 mm, pads to snapped contacts median
+  5.6 / 3.8 mm; ep18 16.0 → 2.7 / 18.8 → 2.4 mm, median 3.9 / 3.1 mm.
+- What still pops is mostly not penetration: object height change after one step (new `dz` column) shows boards
+  dropping ~1.7 cm while lifted or carried (free fall in 50 ms is 1.2 cm: the hand touches but does not yet squeeze)
+  and some pushed up 0.5–1.7 cm (fingers in light contact). Holding them is the policy's job; the reference no
+  longer asks the hand to be inside the objects.
+- Not yet known (the GPU A/B decides): whether the policy learns better from the cleaned reference. Hypothesis:
+  sim_vs_ref and the registered score rise on both hard episodes (ep24 0.232, ep18 0.396 registered); falsified if
+  the mean over repeat evaluations does not beat the base policies' mean.
+- Pipeline stage 3c emulated locally on a box-like tree (copy of the ep24 reference): rc 0, `e2s_reference.parquet`
+  kept, staging tree removed, same numbers as the direct run. `hard_ab.sh` evaluates today's base checkpoints from
+  `policies/` (ep18 mc 150M, ep24 mcs 250M) next to the new ones; its summary snippets were tested on fake rollouts.
+- Vast credit $2.69 (23:00 TRT); no instances running.

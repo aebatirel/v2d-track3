@@ -2,6 +2,28 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-21 night: contact-anchored retargeting ready for the GPU A/B (waiting for the owner's top-up)
+Details: `docs/work-log.md` (22:35–23:05 TRT entries). Vast credit **$2.69**, no instances running.
+- **Diagnosis (measured):** the robot hand in our references sits 16–20 mm (p95) inside the objects at most contact
+  frames (easy and hard episodes alike); the evaluation starts without the training's 20-step object assist.
+- **`pipeline/contact_retarget.py`** (owner: "snap the fingertips, let the wrist follow"): per frame, human fingertips
+  near a surface become contact targets; wrist pose (±6 cm / ±0.5 rad) and finger joints are solved so the robot
+  pads reach them while the simulator's own collision (CPU MuJoCo on the scene's convex pieces) reports no
+  penetration. CPU, 3–6 min per episode. Simulator check: ep24 penetrating frames 242 → 62 / 275 (p95 20.1 → 6.0 mm),
+  ep18 ~77 % → 41 / 361 (p95 16 → 2.7 mm), no hand–hand overlap, frame 0 clean (0.8° / 0.7°). Remaining one-step pops
+  are mostly carried boards falling (the policy must grip), not penetration.
+- **Wired in:** `pipeline_ep.sh` stage 3c (`CONTACT_RETARGET=1`, E2S parquet kept as `e2s_reference.parquet`);
+  `ops/jobs/hard_ab.sh` (pull a run's perception + references, retarget, train 250M seed 42 with the sweep, then 6
+  repeat evaluations each of the new policy and today's base policy from `policies/`, registered scores; also scores
+  the ep12 / ep27 controls left in the store).
+- **Launch after the top-up and the owner's go-ahead (≈ $6–7 for both, ~2.2 h):** two RTX PRO 6000 boxes,
+  `ops/vast.sh V2D_COMMIT=<head> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run_id>
+  'PAIRS="24:20261021-auto24-966eb96:mcs" bash ops/jobs/hard_ab.sh'` and the same with
+  `PAIRS="18:20261021-auto18-966eb96:mc"`. Falsified if the new mean (sim_vs_ref and registered AUC over the
+  repeats) does not beat the base mean on both episodes.
+- Next after that (ideas with tests in `docs/forensics-2026-10-21.md`): physics search over hand motions (SPIDER /
+  Do as I Do style) for the remaining hard segments; object-scaled keypoint reward; one-sided fingertip reward.
+
 ## 2026-10-21 afternoon: validation of the new pipeline (owner topped up $10; credit $19.79 at 14:58 TRT)
 Details: `docs/work-log.md` (15:20 TRT onwards).
 - **HF PRO (owner, 2026-10-21):** 1 TB private storage included, then pay-as-you-go $18/TB/month. `store.sh` refuses

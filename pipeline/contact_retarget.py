@@ -8,10 +8,12 @@ Per hand and frame, starting from the E2S solution (wrist pose + 22 finger joint
   1. contact targets: each human fingertip (MANO 4/8/12/16/20) within SNAP of an object surface is projected onto it
      (object SDF gradient) and offset outward by the robot tip site's depth under its pad; targets are smoothed per contact
      run in the object frame (window 5) to remove frame-to-frame jitter;
-  2. solve wrist translation + rotation and finger joints (bounded by the joint limits) with least squares on the robot's
-     own geometry (Newton forward kinematics of the FlashCHORD scene): robot tip sites on the targets, every collision-
-     surface sample of the hand outside the objects and above the table disc by MARGIN, close to E2S, continuous with the
-     previous frame. Frames without contact or penetration relax back toward E2S.
+  2. solve wrist translation + rotation (at most MAX_SHIFT / MAX_TURN from E2S) and finger joints (joint limits) with
+     least squares on the robot's own geometry (Newton forward kinematics of the FlashCHORD scene): the nearest distal-
+     link surface point on each target (pseudo-Huber beyond ROBUST), no penetration as the simulator sees it (CPU MuJoCo
+     collision of the scene's own convex pieces: objects, table and the other hand; CR_PEN=samples for the older
+     hull-sample test), close to E2S, continuous with the previous frame. Frames without contact or penetration relax
+     back toward E2S. Hands are solved left then right; the right sees the solved left.
   3. write the new wrist position / quaternion, finger joints and all 67 robot frames (rigid offsets to their links).
 Usage (FlashCHORD python, run from the flash_chord dir, FC set):
   python contact_retarget.py IN_PARQUET OUT_PARQUET [--snap 0.025] [--margin 0.001] [--frames A:B]
@@ -26,6 +28,7 @@ from scipy.spatial.transform import Rotation as Rot
 
 FINGERS = ('thumb', 'index', 'middle', 'ring', 'pinky')
 MANO_TIPS = (4, 8, 12, 16, 20)
+ROBUST = 0.015                                                     # tip errors beyond this pull with sqrt weight (m)
 SIDES = {'left': 0, 'right': 29}                                    # joint_q offset of each hand (wrist xyz, quat xyzw, 22)
 
 
@@ -34,7 +37,7 @@ def build_scene(parquet, fc):
     from hydra import compose, initialize_config_dir
     from flash_chord.configuration import instantiate_typed
     from flash_chord.embodiments.base import Embodiment
-    from flash_chord.envs.rl import RLEnvConfig
+    from flash_chord.envs.rl import RLEnv, RLEnvConfig
     from flash_chord.scene.collision import CollisionPolicy
     from flash_chord.scene.setup import setup_scene
     with initialize_config_dir(version_base='1.3', config_dir=f'{fc}/src/flash_chord/configs'):
@@ -45,7 +48,8 @@ def build_scene(parquet, fc):
                          embodiment=instantiate_typed(cfg.embodiment, Embodiment),
                          collision=instantiate_typed(cfg.collision, CollisionPolicy), world_count=1, include_support=True,
                          decompose_objects=True)
-    return st
+        env = RLEnv(st.scene, st.reference, config=env_config)
+    return st, env
 
 
 class FK:
@@ -163,6 +167,45 @@ class HullSDF:
         return g / np.maximum(np.linalg.norm(g, axis=-1, keepdims=True), 1e-9)
 
 
+class MjPen:
+    """Hand penetration as the simulator sees it: CPU MuJoCo collision (Newton keeps the mj_model it hands to MuJoCo Warp:
+    the same convex pieces, 0.3-0.7 ms per query; reproduces the warp contacts). frame(f) puts the scene at reference
+    frame f (objects included); __call__(q58, side) returns, per collision geom of that hand, max(0, margin - depth)
+    over its contacts with objects, the table and the other hand (geom margins set to MARGIN so near-contacts count)."""
+
+    def __init__(self, env, margin):
+        import mujoco
+        self.mj, self.env, self.sol, self.m = mujoco, env, env.solver, env.solver.model
+        self.mm = self.sol.mj_model; self.mm.geom_margin[:] = margin; self.md = mujoco.MjData(self.mm); self.margin = margin
+        g2s = self.sol.mjc_geom_to_newton_shape.numpy(); g2s = g2s[0] if g2s.ndim == 2 else g2s
+        sb = self.m.shape_body.numpy(); labels = list(getattr(self.m, 'body_label', None) or getattr(self.m, 'body_key', []))
+        own = np.zeros(self.mm.ngeom, int)                         # 0 table/ground, 1 left, 2 right, 3 + body: objects
+        for g in range(self.mm.ngeom):
+            sh = g2s[g]
+            if sh >= 0 and sb[sh] >= 0:
+                lab = labels[sb[sh]].split('/')[-1]
+                own[g] = 1 if lab.startswith('left_') else 2 if lab.startswith('right_') else 3 + sb[sh]
+        self.own = own; self.geoms = {s: np.nonzero(own == k)[0] for s, k in (('left', 1), ('right', 2))}
+        self.slot = {s: {g: i for i, g in enumerate(v)} for s, v in self.geoms.items()}
+        self.state = self.m.state(); self.base = None
+
+    def frame(self, f):
+        self.env.reset(frame_id=f); self.base = self.env.state_0.joint_q.numpy().copy()
+
+    def __call__(self, q58, side):
+        q = self.base.copy(); q[:58] = q58; self.state.joint_q.assign(q.astype(np.float32))
+        self.sol._update_mjc_data(self.md, self.m, self.state)
+        self.mj.mj_kinematics(self.mm, self.md); self.mj.mj_collision(self.mm, self.md)
+        out = np.zeros(len(self.geoms[side])); n = self.md.ncon; me = 1 if side == 'left' else 2
+        if n:
+            G = self.md.contact.geom[:n]; D = self.md.contact.dist[:n]; o0, o1 = self.own[G[:, 0]], self.own[G[:, 1]]
+            for (g0, g1), d, a, b in zip(G, D, o0, o1):
+                if a == b or (a != me and b != me):
+                    continue
+                i = self.slot[side][g0 if a == me else g1]; out[i] = max(out[i], self.margin - d)
+        return np.maximum(out, 0)
+
+
 def lm_solve(res, x0, h, iters=8, lo=None, hi=None):
     """Small Levenberg-Marquardt with explicit central-difference steps H (float32 kinematics and max(0, .) kinks make
     scipy's default tiny steps return a zero gradient). LO/HI clip the iterate."""
@@ -198,10 +241,13 @@ def main():
     p.add_argument('inp'); p.add_argument('out')
     p.add_argument('--snap', type=float, default=0.025, help='human fingertip within this of a surface = contact (m)')
     p.add_argument('--margin', type=float, default=0.001, help='clearance of hand surface samples (m)')
+    p.add_argument('--max_shift', type=float, default=0.06, help='largest wrist translation from E2S per axis (m)')
+    p.add_argument('--max_turn', type=float, default=0.5, help='largest wrist rotation from E2S per axis (rad)')
     p.add_argument('--frames', default=None, help='A:B only these frames (debug)')
     a = p.parse_args()
     fc = os.environ.get('FC', os.getcwd()); t0 = time.time()
-    st = build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
+    st, env = build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
+    mjp = MjPen(env, a.margin) if os.environ.get('CR_PEN', 'mj') == 'mj' else None   # CR_PEN=samples: hull samples vs SDF
     t = pq.read_table(a.inp); T = int(np.asarray(st.scene.robot_reference.joint_q).shape[0])
     qref = np.asarray(st.scene.robot_reference.joint_q, float).copy()
     names = t.column('object_body_names')[0].as_py(); paths = t.column('object_mesh_paths')[0].as_py()
@@ -273,12 +319,14 @@ def main():
         scale = np.r_[np.full(3, 0.02), np.full(3, 0.3), np.full(22, 0.5)]
         cont = np.r_[np.full(3, 0.01), np.full(3, 0.1), np.full(22, 0.2)]
 
-        def q_of(f, x):
-            q = qref[f].copy(); q[o:o + 3] += x[:3]
+        def q_of(f, x):                                            # the other hand as solved so far
+            q = q_new[f].copy(); q[o:o + 3] = qref[f, o:o + 3] + x[:3]
             q[o + 3:o + 7] = (Rot.from_rotvec(x[3:6]) * Rot.from_quat(qref[f, o + 3:o + 7])).as_quat()
             q[o + 7:o + 29] = np.clip(qref[f, o + 7:o + 29] + x[6:], dof_lo[6:], dof_hi[6:]); return q
 
-        def penetration(f, bq):
+        def penetration(f, bq, q=None):
+            if mjp is not None:
+                return mjp(q, side)
             X = world_points(bq, pb, pl); r = []
             for j, sdf in enumerate(sdfs):
                 r.append(np.maximum(0, a.margin - sdf(to_obj(j, f, X))))
@@ -287,27 +335,30 @@ def main():
             return np.concatenate(r)
 
         for f in rng:
-            bq = fk(q_of(f, prev * 0.8)); pen = penetration(f, bq); has_c = (tgt_id[f] >= 0).any()
-            pen_before.append(float(penetration(f, fk(qref[f])).max()))
+            if mjp is not None:
+                mjp.frame(f)
+            q0 = q_of(f, prev * 0.8); pen = penetration(f, fk(q0), q0); has_c = (tgt_id[f] >= 0).any()
+            qe = q_of(f, np.zeros(28)); pen_before.append(float(penetration(f, fk(qe), qe).max()))
             if not has_c and pen.max() <= a.margin:
-                prev = prev * 0.8; q_new[f, o:o + 29] = q_of(f, prev)[o:o + 29]; pen_after.append(float(pen.max())); continue
+                prev = prev * 0.8; q_new[f, o:o + 29] = q0[o:o + 29]; pen_after.append(float(pen.max())); continue
             ks = np.nonzero(tgt_id[f] >= 0)[0]
             tw = np.array([OR[tgt_id[f, k]][f].apply(tgt_obj[f, k]) + OP[f, tgt_id[f, k]] for k in ks]) if len(ks) else np.zeros((0, 3))
 
             def res(x):
-                bq = fk(q_of(f, x))
+                q = q_of(f, x); bq = fk(q)
                 X = world_points(bq, pb, pl)
                 tips = np.array([X[dp_rows[k]][np.argmin(np.linalg.norm(X[dp_rows[k]] - tw[i], axis=1))] for i, k in enumerate(ks)]) if len(ks) else np.zeros((0, 3))
-                return np.concatenate([((tips - tw) / 0.005).ravel(), penetration(f, bq) / 0.002, x / scale, (x - prev) / cont])
+                e = tips - tw; w = 1 / np.sqrt(np.maximum(1, np.linalg.norm(e, axis=1, keepdims=True) / ROBUST))  # pseudo-Huber
+                return np.concatenate([(w * e / 0.005).ravel(), penetration(f, bq, q) / 0.002, x / scale, (x - prev) / cont])
 
-            x0 = np.clip(prev, np.r_[np.full(6, -np.inf), dof_lo[6:] - qref[f, o + 7:o + 29]], np.r_[np.full(6, np.inf), dof_hi[6:] - qref[f, o + 7:o + 29]])
-            xs, cs = lm_solve(res, x0, np.r_[np.full(3, 1e-3), np.full(25, 1e-2)],
-                              lo=np.r_[np.full(6, -np.inf), dof_lo[6:] - qref[f, o + 7:o + 29]], hi=np.r_[np.full(6, np.inf), dof_hi[6:] - qref[f, o + 7:o + 29]])
-            sol = type('S', (), dict(x=xs, cost=cs / 2, status=0, message='lm_solve', nfev=-1))()
-            if os.environ.get('CR_DEBUG') and nopt < 3:
-                print('debug', side, f, 'status', sol.status, sol.message, 'nfev', sol.nfev, 'cost', res(x0) @ res(x0) / 2, '->', sol.cost, 'x', np.round(sol.x[:6], 4), 'd res for +1 cm z', float(np.abs(res(x0 + np.r_[0, 0, 0.01, np.zeros(25)]) - res(x0)).max()), 'tip/pen sizes', len(ks), 'q diff', float(np.abs(q_of(f, x0 + np.r_[0, 0, 0.01, np.zeros(25)]) - q_of(f, x0)).max()), 'fk diff', float(np.abs(fk(q_of(f, x0 + np.r_[0, 0, 0.01, np.zeros(25)])) - fk(q_of(f, x0))).max()), 'bounds ok', bool(np.all(np.r_[np.full(6, -np.inf), dof_lo[6:] - qref[f, o + 7:o + 29]] <= x0)), flush=True)
-            prev = sol.x; nopt += 1; qf = q_of(f, prev); q_new[f, o:o + 29] = qf[o:o + 29]; bq = fk(qf)
-            pen_after.append(float(penetration(f, bq).max()))
+            # wrist moves at most MAX_SHIFT / MAX_TURN from E2S: a contact the hand cannot reach without a larger move is
+            # more likely a wrong target than a wrong hand (owner: "if the object and hand don't match, we made a mistake")
+            lo_x = np.r_[np.full(3, -a.max_shift), np.full(3, -a.max_turn), dof_lo[6:] - qref[f, o + 7:o + 29]]
+            hi_x = np.r_[np.full(3, a.max_shift), np.full(3, a.max_turn), dof_hi[6:] - qref[f, o + 7:o + 29]]
+            x0 = np.clip(prev, lo_x, hi_x)
+            xs, cs = lm_solve(res, x0, np.r_[np.full(3, 1e-3), np.full(25, 1e-2)], lo=lo_x, hi=hi_x)
+            prev = xs; nopt += 1; qf = q_of(f, prev); q_new[f, o:o + 29] = qf[o:o + 29]; bq = fk(qf)
+            pen_after.append(float(penetration(f, bq, qf).max()))
             if len(ks):
                 X = world_points(bq, pb, pl)
                 tips = np.array([X[dp_rows[k]][np.argmin(np.linalg.norm(X[dp_rows[k]] - tw[i], axis=1))] for i, k in enumerate(ks)])
@@ -357,4 +408,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import warp as wp
+    with wp.ScopedDevice('cpu'):
+        main()

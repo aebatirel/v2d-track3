@@ -82,7 +82,7 @@ EOF
 }
 
 one() {
-  local ep=$1 base=$2 k=${2}k R0 R1 ck0 ck1
+  local ep=$1 run=$2 base=$3 k=${3}k R0 R1 ck0 ck1
   R0=/content/refs/perc2$base/ep$ep; R1=/content/refs/perc2$k/ep$ep
   [ -d $R0/processed ] || { log "ab ep$ep: no reference $R0 in the pulled run" >> $J; return 1; }
   fix_assets $(ls $R0/processed/*/*/*.parquet | head -1) >> $J 2>&1 || { log "ab ep$ep: assets missing" >> $J; return 1; }
@@ -93,7 +93,9 @@ one() {
   log "ab ep$ep $k: pipeline rc=$? $(grep -a 'contact_retarget:\|qa_policy:' /content/hard_ab_ep$ep.log | cut -c1-300 | tr '\n' ' ')" >> $J
   F=/content/results/perc2$k/ep$ep-s42
   [ -s $F/episode_$(printf %06d $ep).parquet ] && python $P/score_registered.py $ep $F --meshes $MESH_DIR > /dev/null 2>&1
-  ck0=$(chosen /content/results/perc2$base/ep$ep-s42 /content/runs/perc2$base/ep$ep-s42 2>> $J)
+  # the base checkpoint behind today's score is in git (policies/<run>/perc2<base>/); the store keeps every 10th only
+  ck0=$(ls $REPO_DIR/policies/$run/perc2$base/ep${ep}_policy_*.safetensors 2>/dev/null | head -1)
+  [ -s "$ck0" ] || ck0=$(chosen /content/results/perc2$base/ep$ep-s42 /content/runs/perc2$base/ep$ep-s42 2>> $J)
   ck1=$(chosen $F /content/runs/perc2$k/ep$ep-s42 2>> $J)
   for v in "$base:$ck0" "$k:$ck1"; do
     [ -s "${v#*:}" ] || { log "ab ep$ep ${v%%:*}: no checkpoint" >> $J; continue; }
@@ -106,7 +108,7 @@ label "hard A/B: $PAIRS"
 pids=()
 for x in $PAIRS; do
   IFS=: read -r ep run base <<< "$x"
-  one $ep $base & pids+=($!)
+  one $ep $run $base & pids+=($!)
   sleep 120                                                       # stagger the JIT compiles
 done
 wait "${pids[@]}"

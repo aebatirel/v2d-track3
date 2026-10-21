@@ -1,6 +1,7 @@
 """Per-start-frame cleanliness map (CPU, 1 world, real soft wrists, zero policy action, explicit reset = no settling,
 as in the official evaluation). For start frames f = 0, STEP, 2*STEP, ...: reset to f, step K times, report the worst
-object deviation from the reference (cm / deg) and whether the episode terminated. Usage: PARQUET STEP K"""
+object deviation from the reference (cm / deg), whether the episode terminated, and each object's height change
+after the first step (dz cm: about -1.2 = free fall during a carry, + = pushed up). Usage: PARQUET STEP K"""
 import os, sys, numpy as np, warp as wp, pyarrow.parquet as pq
 from hydra import compose, initialize_config_dir
 from scipy.spatial.transform import Rotation as Rot
@@ -28,7 +29,7 @@ with wp.ScopedDevice('cpu'):
     objs = [next(i for i, l in enumerate(labels) if n in l) for n in names]
     print('frame  ' + '  '.join(f'{n[:14]:>22s}' for n in names) + '   survived')
     for f in range(0, T - K, step):
-        env.reset(frame_id=f); worst = np.zeros((len(names), 2)); surv = K
+        env.reset(frame_id=f); worst = np.zeros((len(names), 2)); surv = K; dz = np.zeros(len(names))
         for k in range(1, K + 1):
             env.step(None)
             ts = int(env.timestep.numpy()[0])
@@ -37,5 +38,5 @@ with wp.ScopedDevice('cpu'):
             q = env.state_0.body_q.numpy()
             for j, ob in enumerate(objs):
                 dp = 100 * np.linalg.norm(q[ob, :3] - RP[ts, j]); da = np.degrees((Rot.from_quat(q[ob, 3:7]) * Rot.from_quat(RQ[ts, j]).inv()).magnitude())
-                worst[j] = np.maximum(worst[j], [dp, da])
-        print(f'{f:5d}  ' + '  '.join(f'{w[0]:8.1f} cm {w[1]:6.1f} deg' for w in worst) + f'   {surv:2d}/{K}', flush=True)
+                worst[j] = np.maximum(worst[j], [dp, da]); dz[j] = 100 * (q[ob, 2] - RP[ts, j, 2]) if k == 1 else dz[j]
+        print(f'{f:5d}  ' + '  '.join(f'{w[0]:8.1f} cm {w[1]:6.1f} deg' for w in worst) + f'   {surv:2d}/{K}  dz ' + ' '.join(f'{v:+.2f}' for v in dz), flush=True)
