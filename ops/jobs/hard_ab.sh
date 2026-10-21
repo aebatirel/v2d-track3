@@ -100,7 +100,9 @@ one() {
   k=$base$SUF; R0=/content/refs/perc2$base/ep$ep; R1=/content/refs/perc2$k/ep$ep; LG=/content/hard_ab_ep$ep$SUF-s$SEED.log
   [ -d $R0/processed ] || { log "ab ep$ep: no reference $R0 in the pulled run" >> $J; return 1; }
   fix_assets $(ls $R0/processed/*/*/*.parquet | head -1) >> $J 2>&1 || { log "ab ep$ep: assets missing" >> $J; return 1; }
-  rm -rf $R1; cp -r $R0 $R1                                        # a real copy: stage 3c rewrites the parquet in place
+  rm -rf $R1; mkdir -p $(dirname $R1)                              # 2026-10-22: without the parent, cp failed silently
+  cp -r $R0 $R1 || { log "ab ep$ep: copy $R0 -> $R1 FAILED" >> $J; return 1; }   # a real copy: stage 3c rewrites it
+  [ -s $R1/hands.npz ] || { log "ab ep$ep: $R1 has no hands.npz" >> $J; return 1; }
   rm -f $R1/contact_retarget.json $R1/e2s_reference.parquet
   VARIANT=$k PDIR=/content/perc2m/ep$ep CONTACT_RETARGET=$CR SEED=$SEED CK_SWEEP="0.4 0.6 0.8" \
     bash $P/pipeline_ep.sh $ep > $LG 2>&1
@@ -114,6 +116,7 @@ one() {
   local todo=("$k-s$SEED:$ck1"); [ "$BASE_EVAL" = 1 ] && todo=("$base:$ck0" "${todo[@]}")
   for v in "${todo[@]}"; do
     [ -s "${v#*:}" ] || { log "ab ep$ep ${v%%:*}: no checkpoint" >> $J; continue; }
+    [ -s $O/ep$ep/${v%%:*}/summary.json ] && { log "ab ep$ep ${v%%:*}: already evaluated" >> $J; continue; }
     evalrep ${v#*:} $O/ep$ep/${v%%:*} $ep
     log "ab ep$ep ${v%%:*} ($(basename ${v#*:})): $(python -c "import json; d=json.load(open('$O/ep$ep/${v%%:*}/summary.json')); print('n', d['n'], 'sim_vs_ref', d.get('sim_vs_ref'), 'registered AUC', d.get('auc'))" 2>&1 | tail -1)" >> $J
   done
