@@ -286,7 +286,9 @@ def rectified_K(calib_path):
     return P1[:3, :3].copy()
 
 
-def load_names(t3, ep):
+def load_names(t3, ep, split='public', roster='/content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json'):
+    if split == 'eval':                                                  # eval: the kit roster (no episode parquet)
+        return [str(n) for n in json.load(open(roster))['episodes'][str(ep)]]
     import pyarrow.parquet as pq
     tab = pq.read_table(f'{t3}/ep{ep}.parquet', columns=['observation.objects'])
     return [str(o['name']) for o in tab.column('observation.objects')[0].as_py()]   # slot order only
@@ -582,6 +584,8 @@ def parse_args():
     p.add_argument('--hands', default=None, help='default OUT/hands.npz')
     p.add_argument('--out', default=None, help='default /content/refs/epN')
     p.add_argument('--seq', default=None, help='sequence_id (default t3_epNNN)')
+    p.add_argument('--split', choices=['public', 'eval'], default=os.environ.get('SPLIT', 'public'),
+                   help='eval: object names from the kit roster (default from env SPLIT)')
     p.add_argument('--v2d', default='/content/v2d')
     p.add_argument('--fc_python', default='/content/v2d/robotic_grounding/flash_chord/.venv/bin/python')
     p.add_argument('--fps', type=float, default=20.0)
@@ -652,7 +656,7 @@ def main():
     summary = dict(ep=a.ep, seq=a.seq, fps=a.fps)
 
     # ---------------- objects
-    names = load_names(a.t3, a.ep)
+    names = load_names(a.t3, a.ep, a.split)
     B = len(names)
     P = np.load(a.poses)
     W_C = P['world_T_cam'].astype(np.float64)

@@ -100,11 +100,13 @@ def parse_args():
     p.add_argument('--max_gap', type=int, default=15)
     p.add_argument('--smooth_win', type=int, default=7)
     p.add_argument('--overlay_frames', type=int, default=6)
+    p.add_argument('--split', choices=['public', 'eval'], default=os.environ.get('SPLIT', 'public'),
+                   help='eval: videos in T3/eval/v (default from env SPLIT)')
     a = p.parse_args()
     n = a.ep
     a.depth = a.depth or f'/content/perc/ep{n}/depths_fs0.5.npy'
     a.poses = a.poses or f'/content/perc2/ep{n}/poses.npz'
-    a.video_a = a.video_a or f'{a.t3}/v/ep{n}_a.mp4'
+    a.video_a = a.video_a or f'{a.t3}/{"eval/v" if a.split == "eval" else "v"}/ep{n}_a.mp4'
     a.out = a.out or f'/content/refs/ep{n}'
     return a
 

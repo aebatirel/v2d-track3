@@ -34,9 +34,16 @@ def mesh_path(n):
     p = f'{D}/mesh/{n}/{n}.glb'
     return p if os.path.exists(p) else f'{D}/mesh/{n}/{n}_visual.glb'
 
-tab = pq.read_table(f'{D}/ep{EP}.parquet').to_pandas()
-names = [o['name'] for o in tab['observation.objects'].iloc[0]]          # slot order only
-log('episode', EP, 'objects', names)
+# SPLIT=eval: eval videos in D/eval/v, object names (slot order) from the kit roster, no episode parquet, no scoring
+SPLIT = os.environ.get('SPLIT', 'public')
+ROSTER = '/content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json'
+if SPLIT == 'eval':
+    tab, VD = None, f'{D}/eval/v'
+    names = json.load(open(ROSTER))['episodes'][str(EP)]
+else:
+    tab, VD = pq.read_table(f'{D}/ep{EP}.parquet').to_pandas(), f'{D}/v'
+    names = [o['name'] for o in tab['observation.objects'].iloc[0]]      # slot order only
+log('episode', EP, SPLIT, 'objects', names)
 
 # ---------- calibration + rectification (left = ego_cam_c, right = ego_cam_b) ----------
 C = json.load(open(f'{D}/calib.json')); cam = C['cameras']
@@ -58,12 +65,13 @@ def frames(path):
         if not ok: break
         out.append(cv2.cvtColor(f, cv2.COLOR_BGR2GRAY))
     return out
-fc, fb = frames(f'{D}/v/ep{EP}_c.mp4'), frames(f'{D}/v/ep{EP}_b.mp4')
-N = min(len(fc), len(fb), len(tab))
+fc, fb = frames(f'{VD}/ep{EP}_c.mp4'), frames(f'{VD}/ep{EP}_b.mp4')
+NROWS = len(tab) if tab is not None else len(fc)          # eval: the kit's frame roster = the video frame count
+N = min(len(fc), len(fb), NROWS)
 rc = [cv2.remap(fc[i], MC[0], MC[1], cv2.INTER_LINEAR) for i in range(N)]
 rb = [cv2.remap(fb[i], MB[0], MB[1], cv2.INTER_LINEAR) for i in range(N)]
 rgb = lambda g: np.repeat(g[..., None], 3, 2)
-log('frames c/b/rows', len(fc), len(fb), len(tab), 'focal', round(FR, 1), 'baseline', round(BASE, 4))
+log('frames c/b/rows', len(fc), len(fb), NROWS, 'focal', round(FR, 1), 'baseline', round(BASE, 4))
 
 # ---------- FoundationStereo depth (cached) ----------
 DCACHE = f'{OUT}/depths_fs{FS_SCALE}.npy'
@@ -242,6 +250,13 @@ for n in names:
         P.append(ests[n].track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=2))
     poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1))
 np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})
+if SPLIT == 'eval':                                                   # no ground truth exists: write outputs, stop
+    np.savez(f'{OUT}/poses_world_vo.npz', **{n: np.stack([W_C[i] @ poses[n][i] for i in range(N)]) for n in names})
+    json.dump({'episode': EP, 'split': SPLIT, 'objects': names, 'frames': N, 'fs_scale': FS_SCALE,
+               'vo_stats': {'keyframes': len(kfs), 'fails': fails, 'median_inliers': int(np.median(ninl[1:]))},
+               'det': DET, 'n_proposals': len(props)}, open(f'{OUT}/result.json', 'w'), indent=1)
+    log('DONE (eval: not scored)')
+    sys.exit(0)
 
 # ---------- scoring (GT read only here) ----------
 def T_of(p):  # [x,y,z,qw,qx,qy,qz] -> 4x4

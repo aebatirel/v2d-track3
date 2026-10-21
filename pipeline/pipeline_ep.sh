@@ -6,6 +6,18 @@
 set -u
 EP=$1; STEPS=${STEPS:-250003456}; SEED=${SEED:-42}; PERC=${PERC:-perc2}
 S=${REPO_DIR:-/content/v2d-track3}/pipeline
+# SPLIT=eval: an eval episode (videos in /content/t3/eval/v, object names from the kit roster, no ground truth):
+# perception, hands and mkref read SPLIT from the environment; scoring against mocap is skipped. Public and eval
+# episode numbers are disjoint, so the folders below cannot collide.
+export SPLIT=${SPLIT:-public}
+ROSTER=/content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json
+if [ $SPLIT = eval ]; then
+  [ $PERC = oracle ] && { echo "PERC=oracle needs mocap; not allowed with SPLIT=eval"; exit 1; }
+  python -c "import json,sys; sys.exit(0 if '$EP' in json.load(open('$ROSTER'))['episodes'] else 1)" \
+    || { echo "episode $EP is not in the eval roster $ROSTER"; exit 1; }
+elif [ ! -s /content/t3/ep$EP.parquet ]; then
+  echo "episode $EP has no public parquet (an eval episode needs SPLIT=eval)"; exit 1
+fi
 # PERC=oracle (public episodes only) swaps in mocap object poses on top of perc2's camera trajectory: oracle_poses.py
 case $PERC in perc2|oracle) PSCRIPT=$S/perc2.py ;; perc4) PSCRIPT=$S/perc.py ;; *) echo "unknown PERC=$PERC"; exit 1 ;; esac
 # VARIANT (e.g. "v") keeps a variant's refs, runs and results apart (refs/perc2v/...); PDIR overrides the perception
@@ -15,7 +27,7 @@ P=${PDIR:-/content/$PERC/ep$EP}; R=/content/refs/$PERC$V/ep$EP; RUN=/content/run
 FC=/content/v2d/robotic_grounding/flash_chord
 mkdir -p $P $R $RUN $RES
 SEQ=$(printf 't3_ep%03d' $EP)
-echo "[$(date +%T)] ep$EP start (perception $PERC, steps $STEPS, seed $SEED, code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
+echo "[$(date +%T)] ep$EP start ($SPLIT, perception $PERC, steps $STEPS, seed $SEED, code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
 
 # 1) perception (uses a cached depth if present)
 if [ $PERC = oracle ] && [ ! -s $P/poses.npz ]; then
@@ -28,7 +40,7 @@ if [ ! -s $P/poses.npz ]; then
   [ -n "$D" ] && [ ! -e $P/depths_fs0.5.npy ] && ln -sf $(readlink -f $D) $P/
   KF_MIN=120 EP=$EP OUT=$P python $PSCRIPT > $P/log.txt 2>&1 || { echo "perception FAILED"; tail -15 $P/log.txt; exit 1; }
 fi
-echo "[$(date +%T)] perception: $(grep -a '^\[.* vo  ' $P/log.txt | tail -1 | cut -c1-120)"
+echo "[$(date +%T)] perception: $(grep -a '^\[.* vo  \|DONE (eval' $P/log.txt | tail -1 | cut -c1-120)"
 [ "${STOP_AFTER:-}" = perception ] && exit 0
 
 # 2) hands (MediaPipe on colour cam_a, lifted with stereo depth)
@@ -72,8 +84,8 @@ cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scr
   hydra.run.dir=$RES/hydra logging.mode=disabled > $RES/eval.log 2>&1 || { echo "eval FAILED"; tail -15 $RES/eval.log; exit 1; }
 echo "[$(date +%T)] evaluated"
 
-# 6) score the simulated trajectory against mocap (evaluation only)
-python $S/score_sim.py $EP $RES 2>&1 | tail -40
+# 6) score the simulated trajectory against mocap (public episodes only; after inference)
+[ $SPLIT = public ] && python $S/score_sim.py $EP $RES 2>&1 | tail -40
 # 7) a video and a frame montage of the rollout, for looking at failures (RENDER=0 to skip)
 [ "${RENDER:-1}" = 1 ] && { bash $S/render_rollout.sh $CK $RES/render || echo "render failed (not fatal)"; }
 echo "[$(date +%T)] ep$EP DONE"

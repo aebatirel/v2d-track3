@@ -607,3 +607,25 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
   - ep24: offer 55481539 ($1.375/h) → instance 56997746, run `20261021-hard-ep24-6f2f98a`;
   - ep18: offer 31125570 ($1.431/h) → instance 56997750, run `20261021-hard-ep18-6f2f98a`.
   (Offers 28810508, 46000981 and 49836882 were taken before the create calls.)
+
+### 2026-10-21 07:40 TRT: eval-episode plumbing; the official scorer registers meshes (new finding)
+- **Eval plumbing (code only, not yet run on a box):** `SPLIT=eval` in `pipeline_ep.sh` (exported to perc2.py,
+  hands_mp.py, mkref.py). Eval videos from `/content/t3/eval/v`, object names in slot order from the kit roster
+  `data/track_3_evaluation_objects.json`, N = video frame count (no parquet), no scoring against mocap, `PERC=oracle`
+  refused, an episode outside the roster refused; a public run on an episode without a parquet is refused.
+  Checked: the kit's sample-submission roster has frames 0..N-1 per eval episode (ep1: 335) and eval ep1's three
+  videos have 335 frames each (ffprobe), so N from the videos matches the roster.
+- **Finding: the current kit's pose scorers (AUC, SP-SR, MP-SR, MPPE, RPE) register our submitted mesh to the
+  confidential scan first** (`metric_code/track_3/AUC.py` `_score_registered_track3`, `_REGISTER_OBJECT_MESH = True`):
+  1. our mesh is centred at its surface centroid, scaled to the scan's radius and ICP-aligned to the scan (25 starts:
+     identity + PCA permutations, 40 trimmed iterations);
+  2. our poses are moved to the scan's hidden anchor point and expressed in the scan's axes;
+  3. one rigid world transform from frame 0: anchored on the first object without a symmetry axis (full rotation),
+     else on object 0's axis plus the direction to object 1;
+  4. errors are symmetry-aware: cups any spin about the central axis, lid 0/180° about its normal (README).
+  Our scorer (`score_sim.py`, perc2's block) uses the older unregistered path (`_warp_to_reference_start` from slot 0,
+  no symmetry), so **our numbers are not exactly the official ones**. With a mesh in the scan's own body frame the
+  registration is ≈ identity; a poor reconstruction (wrong ICP rotation) adds a constant body-frame error to every
+  frame. The submission must carry **our own reconstructed mesh per (eval episode, object)** (FAQ: not the public
+  scans). Next: a local copy of the registered scorer (public scan as stand-in for the confidential scan) and a
+  mesh-reconstruction prototype.
