@@ -1,6 +1,34 @@
-# Status (2026-10-20, night; times TRT = UTC+3)
+# Status (2026-10-21, morning; times TRT = UTC+3)
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
+
+## 2026-10-21 (owner topped up: credit $27.19 before the batch)
+Details and commands: `docs/work-log.md` (2026-10-21 entries).
+- **Running:** hard-episode A/B batch, 3 boxes (RTX PRO 6000, ~$1.4/h each), commit 6f2f98a, each trains default
+  and `c` (E2S wrist cost 3.0): ep21 (instance 56997724), ep24 (56997746; its rexec tunnel answers 502, the job runs
+  on and pushes to the store), ep18 (56997750). Two trainings per box run at ~19–22k steps/s each, so training takes
+  ~3.3 h (ETA ≈ 11:30 TRT), more than the 2 h assumed; batch ≈ $15–16, not $13. Boxes self-destroy after the push.
+- **Leaderboard moved** (2026-10-21 00:55 UTC): Zihao Guo AUC 0.831 (SP 0.95, MP 0.75, CD-O 0.313), SoySauceChicken
+  0.823 (CD-O 0.065), SRL 0.657. The bar is 0.831.
+- **The official pose scorers now register our submitted mesh to the hidden scan** (kit `metric_code/track_3`,
+  `_score_registered_track3`): mesh ICP → poses moved to the scan's anchor and axes → one frame-0 scene alignment on
+  the first object without a symmetry axis → symmetry-aware errors (cup spin and lid 180° not scored).
+  `pipeline/score_registered.py` reproduces it locally with the public scan as stand-in. With the scan as our mesh the
+  20-episode perception mean is unchanged (0.8828 → 0.8824); ep12 0.998 → 0.940 (the rack now sets the rotation),
+  ep11 0.873 → 0.913.
+- **Mesh quality is now first-order for all five pose metrics.** Damaged-scan test (6 episodes, mean AUC): clean
+  0.987, convex hull 0.947, bottom missing 0.904, 3 mm noise 0.825, 5 mm thicker 0.608 (flat objects register
+  flipped). Scale errors are free.
+- **FAQ (current):** "participants should reconstruct the objects to generate object trajectories and submit their
+  own reconstructed meshes" → **owner decision**: (A) reconstruct first, track with our own mesh (compliant, more
+  work) or (B) keep tracking with the public scans and submit only our own meshes (rule risk); and ask
+  v2d_challenge@nvidia.com whether public scans may be used for tracking.
+- **Own-mesh reconstruction v0** (`pipeline/recon_mesh.py`, CPU, ~1.5 min/object): TSDF of our stereo depth in the
+  object frame along our tracks, table/hands carve but never vote surface. **ep41 pot: CD-O 0.56 cm, registration
+  1.1° / 0.6 cm, registered AUC 0.9979 vs 0.9985 with the scan.** Running on episodes 27, 2, 23, 39, 18, 12, 21.
+- **Eval-episode plumbing** done in code (`SPLIT=eval`), not yet run on a box. Eval ep1 videos have 335 frames =
+  the kit roster.
+- `.gitignore` had hidden `results/`; `results/e2e`, `results/registered`, `results/recon` are now committed.
 
 ## Night of 2026-10-20 → 21 (owner asleep; mandate: spend the $25 Vast credit on retries, fix failures, research)
 Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
@@ -34,7 +62,10 @@ Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
   episode over 12/27/2: mean AUC 0.927 (public, one seed each; not a leaderboard estimate).
 - All boxes destroyed; Vast credit $2.22 left (≈ $22.8 spent on 2026-10-20). Results in the HF store and `results/e2e/`.
 
-## Next steps (proposed for the owner)
+## Next steps (proposed for the owner, updated 2026-10-21)
+0. **Meshes and the FAQ rule** (new, highest priority): finish reconstruction v0 on all objects (public episodes,
+   CPU), then (H2) a GPU run tracking with our own reconstructed mesh instead of the scan, measured on public
+   episodes; decide A/B with the owner; spoon from its parametric model or reconstruction.
 1. **Multi-seed per episode** and pick the policy by sim-vs-our-reference (no GT): policy variance is ±0.03 and a
    catastrophic failure (ep12 vc) can happen in one seed.
 2. **Wrist IK cost**: test 1.0 vs 3.0 vs 0.2 over several episodes and seeds (3.0 removed the jumps; one failure on
