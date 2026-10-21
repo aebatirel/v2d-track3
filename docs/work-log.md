@@ -819,3 +819,9 @@ Sim vs mocap, our scorer (old) and the registered scorer with the public scans a
   (wrist→tip length, IK error) that flags such episodes before training.
 - Mesh library: plastic_dish_rack (12/13/27; 11.0 × 16.1 × 49.7 cm vs scan 11.7 × 17.6 × 51.2) and the two boards
   (23) committed; lid committed earlier.
+- **Mesh library v1 scored on public episodes** (perception poses from scan tracking, registered scorer, our library
+  meshes vs the scans; flip rate over 8 seeds = 0 everywhere): ep41 0.987 / 0.999, ep42 0.958 / 0.986, ep43 0.979 /
+  0.993, ep44 0.986 / 0.999, ep45 0.964 / 0.966 (pot; 42/43/45 not used to build it), **ep27 0.993 / 0.994** (rack +
+  pot), **ep2 0.983 / 0.977** (pot + lid), **ep23 0.997 / 0.999, ep24 0.864 / 0.840** (boards; CD-O 0.22 cm).
+- Full-length re-render of the ep18/ep24 policies launched (`ops/jobs/render_runs.sh`, instance 57043103, PRO 6000
+  $1.35/h, ~25 min ≈ $0.6; owner asked to see the whole failures).
