@@ -655,3 +655,26 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
 - Fix: `.gitignore` ignored all of `/results/`, so the e2e score JSONs and rollout montages of 2026-10-20 were never
   committed (they were only in this session's checkout and the HF store). Now `/results/e2e/` and
   `/results/registered/` are tracked and committed.
+
+### 2026-10-21 08:25 TRT: mesh-defect sensitivity of the registered scorer (`pipeline/mesh_sensitivity.py`)
+- Same perception trajectories (refsweep perc2), candidate mesh = a damaged public scan, stand-in host scan = the clean
+  scan. Six public episodes (41 pot, 23 wooden pieces, 39 dustpan, 27 rack + pot, 18 sweeper + dustpan, 2 pot + lid).
+  Mean AUC: clean 0.987; ×1.10 scale 0.987; one side slab (20 %) removed 0.986; convex hull 0.947; bottom 20 % removed
+  0.904; 3 mm vertex noise 0.825; 5 mm inflation 0.608 (wooden piece and sweeper registered **180° flipped** →
+  ep23 0.052, ep18 0.247; dustpan 8.5° off → ep39 0.470). Per-episode values in `results/registered/sensitivity/`.
+- Reading: scale is free (normalised), but **shape errors move the ICP registration** (rotation 2–4°, anchor 1–7 cm,
+  or a flip for flat, nearly symmetric objects), and that error hits every frame. Mesh quality is now a first-order
+  term of all five pose metrics, not only of CD-O. Thin/flat objects (wooden pieces, sweeper, dustpan; eval 19, 25,
+  30, 38) and an unseen bottom are the main risks.
+- FAQ (current PDF, downloaded today): "While some objects in the eval set have meshes in the public data,
+  participants should reconstruct the objects to generate object trajectories and submit their own reconstructed
+  meshes." Our tracker uses the public scans as templates, so the trajectory part is also in question → owner
+  decision / ask the organisers.
+- Literature/open source (quick review): BundleSDF (Wen et al., CVPR 2023, NVlabs/BundleSDF; joint tracking +
+  neural SDF reconstruction from RGB-D with a frame-0 mask; heavy, older CUDA stack); SAM 3D Objects (Meta,
+  CVPR 2026; single image → complete mesh, arbitrary scale, coarse detail); EgoGrasp (arXiv 2601.01050: SAM3D mesh
+  from an anchor frame + PnP tracking), FlowHOI (2602.13444: SAM3 + Depth Anything 3 + SAM3D), EgoAERO (2606.08057:
+  asset-free tracking + coarse-to-fine mesh, no code found). Hypotheses to test next: (H1) TSDF/carving fusion of
+  our stereo depth along our tracks gives a mesh whose registered AUC is within 0.02 of the clean scan on public
+  episodes (falsified if mean drop > 0.02 or any flip); (H2) FoundationPose tracking with our reconstructed mesh
+  instead of the scan loses < 0.03 perception AUC (needs a GPU run).
