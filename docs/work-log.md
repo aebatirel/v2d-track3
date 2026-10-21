@@ -923,3 +923,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   the ep27 control and eval episodes with the pot), dust pan −3.5 / −0.1, wooden_piece_1 −1.2 / −0.4,
   wooden_piece_2 −0.9 / −0.2; blue cup, beige cup, dish rack, pitcher, sweeper and lid within 0.4 cm of the scan.
   Rebuilding the white pot with `--below_carve` (episodes 41 44 2 27, as v1; `scratchpad rebuild_obj.sh`).
+
+### 2026-10-21 16:00 TRT — HF PRO
+- Owner upgraded to HF PRO (`whoami-v2`: isPro true). HF docs: PRO = 1 TB private storage, then pay-as-you-go
+  $18/TB/month. Store usage still reported as 99.5 GB.
+- `store.sh`: uploads refused when the store holds ≥ `STORE_MAX_GB` (default 800 GB) so no overage bill; policies kept
+  every 10th (`KEEP_EVERY`, was 25); `pull-depth` no longer leaves a dangling link when a cache is missing.
+  `own_eval.sh` pushes eval depth caches by default; `auto_runs.sh` pulls depth for eval episodes too.

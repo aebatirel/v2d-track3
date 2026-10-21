@@ -1,6 +1,24 @@
-# Status (2026-10-21, morning; times TRT = UTC+3)
+# Status (2026-10-21, afternoon; times TRT = UTC+3)
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
+
+## 2026-10-21 afternoon: validation of the new pipeline (owner topped up $10; credit $19.79 at 14:58 TRT)
+Details: `docs/work-log.md` (15:20 TRT onwards).
+- **HF PRO (owner, 2026-10-21):** 1 TB private storage included, then pay-as-you-go $18/TB/month. `store.sh` refuses
+  uploads once the store holds `STORE_MAX_GB` (800); checkpoints kept every 10th (was 25th); eval depth caches are
+  pushed (`own_eval.sh PUSH_DEPTH=1` default). The store still reports 99.5 GB used.
+- **Validation box 57047922** (`20261021-autohard-3c11668`, PRO 6000 $1.39/h; `auto_runs.sh` EPS="18 24"
+  RETRIES=1, our meshes library_v1):
+  - ep24: perception with our meshes AUC 0.795 (scan template 0.843: our board meshes cost ~0.05). Reference QA:
+    default wrist failed (p95 98 / 176 mm, jumps 13 / 22 cm), wrist cost 3.0 passed (15 / 30 mm, ≤ 7 cm) and was
+    chosen automatically; training since 15:24 TRT.
+  - ep18: perception AUC 0.970 (scan 0.957), but mkref refused both references: **our dust pan mesh reaches 3.5 cm
+    under the table** (table rejected, floor picked, guard fired).
+- **Mesh bug found (library_v1):** the never-seen underside of resting objects was filled solid: white pot 5.5 cm and
+  dust pan 3.5 cm under the table (scans ≤ 0.5 cm); wooden pieces ~1 cm; the rest within 0.4 cm of the scan.
+  Fixes in `recon_mesh.py`: table-plane cone 45→65° (real bug, not the cause) and `--below_carve 0.004` (space under
+  each frame's table plane is free). Dust pan (2 closing variants) and white pot rebuilding into `meshes/library_v2`;
+  then ep18 reruns on the same box as a second job (`auto_runs.sh SELF_HOLD=1`, variant n).
 
 ## 2026-10-21 (owner topped up: credit $27.19 before the batch)
 Details and commands: `docs/work-log.md` (2026-10-21 entries).
@@ -9,7 +27,7 @@ Details and commands: `docs/work-log.md` (2026-10-21 entries).
   **ep21 pouring 0.826** (SP 1, MP 1; ref 0.985), **ep24 planter boards 0.235 = static floor** (boards never lifted),
   **ep18 sweeper + dustpan 0.127 / 0.337, below the static floor 0.61** (the sweeper falls). Wrist cost 3.0: no
   consistent effect. Policy failure on hard tasks is the main risk (eval twins 19, 25, 30, 38).
-- **Blocker: the HF store is full** (99.6 GB of the private quota; final pushes failed with "Private storage limit
+- **(Resolved: squash, then HF PRO in the afternoon.) Blocker: the HF store is full** (99.6 GB of the private quota; final pushes failed with "Private storage limit
   reached"). Cause: `store.sh push-run` pruned checkpoints one directory level too high, so every 5M-step policy and
   state went up (state_ files of finished runs: 44 GB). Prune fixed (7b4621e). Freeing space needs the owner:
   delete finished runs' state_ files + `super_squash_history` (irreversible), or a larger HF plan.

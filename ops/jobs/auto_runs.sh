@@ -33,7 +33,7 @@ DONE=$ST/auto_done_$$
 label "auto ($SPLIT): $EPS"
 one() {
   ep=$1
-  [ $SPLIT = public ] && bash $OPS/store.sh pull-depth $ep public > /dev/null 2>&1
+  bash $OPS/store.sh pull-depth $ep $SPLIT > /dev/null 2>&1           # eval caches exist once own_eval.sh pushed them
   PDIR=$PROOT/ep$ep BV=$BV RETRIES=${RETRIES:-2} bash $P/auto_ep.sh $ep > /content/auto_ep$ep$BV.log 2>&1
   log "auto ep$ep rc=$? $(tail -1 /content/auto_ep$ep$BV.log)" >> $J
   F=/content/results/final/ep$ep

@@ -18,7 +18,15 @@
 [ -f /venv/main/bin/activate ] && . /venv/main/bin/activate      # before set -u: activate scripts read unset vars
 set -euo pipefail
 : "${HF_STORE:?HF_STORE is not set}"
-up()   { hf upload "$HF_STORE" "$1" "$2" --repo-type dataset --commit-message "$3" > /dev/null; }
+# HF PRO (owner, 2026-10-21): 1 TB private storage included, then pay-as-you-go ($18/TB/month). Refuse uploads once
+# the store holds STORE_MAX_GB, so a pruning bug cannot run up a bill (the 100 GB free quota filled once already).
+store_gb() { curl -s -m 30 -H "Authorization: Bearer ${HF_TOKEN:-}" "https://huggingface.co/api/datasets/$HF_STORE?expand%5B%5D=usedStorage" \
+  | python3 -c "import json,sys; print(int(json.load(sys.stdin).get('usedStorage', 0) / 1e9))" 2> /dev/null || echo 0; }
+up() {
+  local g; g=$(store_gb)
+  [ "$g" -lt "${STORE_MAX_GB:-800}" ] || { echo "store holds $g GB >= STORE_MAX_GB ${STORE_MAX_GB:-800}: not uploading $2" >&2; return 1; }
+  hf upload "$HF_STORE" "$1" "$2" --repo-type dataset --commit-message "$3" > /dev/null
+}
 down() { hf download "$HF_STORE" --repo-type dataset --include "$1" --local-dir "$2" > /dev/null; }
 need_zstd() { command -v zstd > /dev/null || apt-get -qq install -y zstd > /dev/null 2>&1; }
 SNAP_PATHS="workspace/v2d workspace/FoundationStereo workspace/FoundationPose workspace/ckpt workspace/kit
@@ -33,13 +41,13 @@ push-run)
       mkdir -p "$S/$(dirname "$f")"; ln "$f" "$S/$f" 2> /dev/null || cp "$f" "$S/$f"
     done
   done
-  # per run directory (runs/<perc><variant>/ep<N>-s<seed>/): keep every 25th policy_* plus the newest (checkpoint
-  # choice), and the newest state_* only while training is unfinished (no .done; it is for resuming). The old loop
-  # looked one level too high (runs/<perc>/), so every checkpoint was uploaded and the 100 GB store filled up
-  # (2026-10-21: 44 GB of state_ files).
+  # per run directory (runs/<perc><variant>/ep<N>-s<seed>/): keep every KEEP_EVERY-th policy_* plus the newest
+  # (checkpoint choice), and the newest state_* only while training is unfinished (no .done; it is for resuming). The
+  # old loop looked one level too high (runs/<perc>/), so every checkpoint was uploaded and the 100 GB store filled up
+  # (2026-10-21: 44 GB of state_ files). KEEP_EVERY 25 -> 10 after the HF PRO upgrade (1 TB; policies are 5 MB).
   for r in $S/runs/*/*/; do
     [ -d "$r" ] || continue
-    { ls -v "$r" | grep '^policy_' || true; } | head -n -1 | awk 'NR % 25 != 0' | while read -r x; do rm -rf "$r/$x"; done
+    { ls -v "$r" | grep '^policy_' || true; } | head -n -1 | awk -v k="${KEEP_EVERY:-10}" 'NR % k != 0' | while read -r x; do rm -rf "$r/$x"; done
     if [ -e "$r/.done" ]; then
       rm -rf "$r"/state_*
     else
@@ -59,8 +67,10 @@ push-depth)
 pull-depth)
   EP=$2; SPLIT=${3:-public}
   down "cache/depth/$SPLIT/ep$EP/*" /content/hfstore
+  F=/content/hfstore/cache/depth/$SPLIT/ep$EP/depths_fs0.5.npy
+  [ -s $F ] || { echo "no stored depth for $SPLIT ep$EP" >&2; exit 1; }    # never leave a dangling link (perception would read it)
   mkdir -p /content/cache/depth/ep$EP
-  ln -sf /content/hfstore/cache/depth/$SPLIT/ep$EP/depths_fs0.5.npy /content/cache/depth/ep$EP/
+  ln -sf $F /content/cache/depth/ep$EP/
   ;;
 pull-run)
   down "runs/$2/*" /content/hfstore
