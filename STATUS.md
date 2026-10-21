@@ -71,6 +71,18 @@ Details and every command: `docs/work-log.md`. Branch `main-bsky37`.
   episode over 12/27/2: mean AUC 0.927 (public, one seed each; not a leaderboard estimate).
 - All boxes destroyed; Vast credit $2.22 left (≈ $22.8 spent on 2026-10-20). Results in the HF store and `results/e2e/`.
 
+## Path to the first score (route A, owner decision 2026-10-21; "do whatever it takes for the best score")
+1. Mesh library v1 from the public videos (CPU here; `meshes/library_v1/`, coloured by `mesh_color.py`; spoon = our
+   parametric model). Fused pot on episodes 41–45: registered AUC 0.958–0.987 vs 0.966–0.999 with the scan, no flips.
+2. One GPU box, `ops/jobs/own_eval.sh` (~3 h, ~$4.5): assets from our meshes; H2 check (tracking with our meshes on
+   8 public episodes, scored against mocap); perception + hands + references for the 20 eval episodes.
+3. Visual QA of the eval tracks (`qa_eval.sh` → `results/qa/`), fix the worst.
+4. **Owner: top up Vast ≈ $60**, then 20 trainings on ~10 boxes (`ops/jobs/train_eval.sh`, RESUME_FROM = the
+   own_eval run, 2 per box, ~3.5 h, ≈ $50).
+5. Pack (`tools/pack_submission.py --meshes` = our library per episode, `--code-commit` URL), **owner uploads**
+   (Kaggle rules accepted for the 6 Track 3 competitions; repo shared with GitHub user `Nvidia-V2D-Challenge`).
+6. Iterate on the weakest episodes (policy fallback when a rollout is worse than not moving; spoon; meshes).
+
 ## Next steps (proposed for the owner, updated 2026-10-21)
 0. **Meshes and the FAQ rule** (new, highest priority): finish reconstruction v0 on all objects (public episodes,
    CPU), then (H2) a GPU run tracking with our own reconstructed mesh instead of the scan, measured on public
