@@ -825,3 +825,14 @@ Sim vs mocap, our scorer (old) and the registered scorer with the public scans a
   pot), **ep2 0.983 / 0.977** (pot + lid), **ep23 0.997 / 0.999, ep24 0.864 / 0.840** (boards; CD-O 0.22 cm).
 - Full-length re-render of the ep18/ep24 policies launched (`ops/jobs/render_runs.sh`, instance 57043103, PRO 6000
   $1.35/h, ~25 min ≈ $0.6; owner asked to see the whole failures).
+- **ep24 hands, measured (owner asked why the robot hand looks stuck at the table):** MediaPipe's 2-D landmarks sit
+  on both real hands in every overlay frame (`refs/perc2/ep24/hands_overlay.jpg`), so detection is fine. The 3-D
+  lifting is not: from f≈100 on (both hands gripping/slotting the boards) the left hand collapses to wrist→middle-tip
+  3.8–5.2 cm with every joint at the wrist's height (5 cm above the table); the fit's scale sits on its lower clamp
+  (0.85) for both hands; the right hand dips to 1.6 cm above the table at f116, i.e. inside the 2.7 cm board. Only
+  7 % (left) / 2 % (right) of frames have a joint > 0.5 cm under the table plane, so the table is not the issue: the
+  stereo depth at hand pixels hits the board the hand is holding, the 3-D hand is squashed into it, the robot IK
+  cannot fit (wrist error up to 17–20 cm), and the robot reference carries targets inside the board. In the render
+  only the right robot hand is ever in view. Fix candidates: fixed bone lengths per hand (`mkref --bone_norm`,
+  measured from the hand's good frames), and pushing finger targets out of object/table geometry.
+- Mesh library: blue_cup (12/13/21/22; 9.5 × 9.6 × 16.7 cm) committed.
