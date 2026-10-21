@@ -26,6 +26,12 @@ one() {
   log "run $tag: rc=$? $(grep -aE 'DONE|FAILED' /content/pipe_$tag.log | tail -1)" >> $J
 }
 label "train runs: $RUNS"
+# perception once per episode first: two variants of one episode would otherwise both write /content/<perc>/epN
+for spec in $RUNS; do
+  IFS=: read -r ep perc var pdir hargs <<< "$spec"
+  [ -z "$pdir" ] && [ ! -s /content/$perc/ep$ep/poses.npz ] && \
+    PERC=$perc STEPS=0 STOP_AFTER=perception bash $P/pipeline_ep.sh $ep > /content/perc_${perc}_ep$ep.log 2>&1
+done
 # wait only on the workers: a bare `wait` would also wait for the hold loop above and deadlock (2026-10-20)
 pids=()
 for spec in $RUNS; do
