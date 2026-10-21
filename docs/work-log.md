@@ -1303,3 +1303,21 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   | G | 57128647 | WS, 1.44 | `20261022-r3kpi-342d72c` | `SUF=kpi FC_IMMEDIATE_FIRST_FRAME=0.25 CR_ARGS="--embodiment sharpa_hands_primitive" TRAIN_ARGS="embodiment=sharpa_hands_primitive"` |
   Hypothesis (F): training on the evaluation's start stops the early knock-over → the sweeper's first > 20° frame
   moves past f10 and the mean registered AUC rises over k; falsified if not. Credit $39.40 at 03:00.
+
+### 03:00 TRT — ep24 results: retargeting makes ep24 consistent, not better on average; failures move to the lift
+- 6 evaluations each, registered AUC with our meshes (sim_vs_ref in brackets):
+  | ep24 | mean ± std (range) |
+  |---|---|
+  | base mcs (published policy; its published single rollout scored 0.232) | **0.297 ± 0.055 (0.228–0.369)** [0.314] |
+  | k s42 (retargeting) | 0.307 ± 0.002 (0.304–0.311) [0.314] |
+  | k s43 | 0.306 ± 0.018 (0.272–0.322) [0.321] |
+  | p s42 (primitive hand, base reference) | 0.282 ± 0.023 (0.250–0.323) [0.269] |
+  Retargeting: +0.01 mean (within noise) on two seeds, but the rollout spread shrinks 3–25×. Primitive hand: no gain.
+  The published 0.232 was a low draw of a 0.30-mean policy (single evaluations mislead by ±0.07).
+- Frame by frame (`traj_diag.py`, base r1/r2 vs k s42 r1/r2): board 1 error at f34 / f68: base 24 / 25 cm and 6 / 6 cm,
+  **k 1–2 cm / 1–2 cm** (the slide phase now tracks); then board 1 fails at ~f102 (20–26 cm, 83–100°) and board 2
+  at f117 (26 cm, 43° → ~100°) in every rollout: **the policy never lifts / flips a board.** Collision config:
+  `robot_support_collision: false` (hands pass through the table), `contact_friction 1.0`, so a lift is
+  physically possible; the failure is in learning.
+- Box H (instance 57129042, `20261022-r3kie-342d72c`): `SUF=ki FC_IMMEDIATE_FIRST_FRAME=0.25` on ep12 + ep27 (does
+  the start fix hurt the easy episodes?). Credit $38.77 at 03:05.
