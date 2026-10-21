@@ -15,6 +15,7 @@
 *.npz
 *.mp4
 *.safetensors
+!/policies/**/*.safetensors
 *.pt
 *.pth
 *.parquet
