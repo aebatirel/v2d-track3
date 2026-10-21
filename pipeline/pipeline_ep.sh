@@ -69,6 +69,19 @@ REFDIR=$R/processed/sequence_id=$SEQ/robot_name=sharpa_wave
 echo "[$(date +%T)] reference: $REFDIR (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
 # 3b) reference QA (robot wrist IK error, wrist jumps): $R/qa_ref.json, used by auto_ep.sh to choose/retry variants
 [ -s $R/ref_summary.json ] && echo "[$(date +%T)] qa_ref: $(python $S/qa.py ref $R/ref_summary.json 2>&1 | tail -1)"
+# 3c) contact-anchored retargeting (CONTACT_RETARGET=1; contact_retarget.py, CPU, a few minutes): the robot hand is
+#     re-fitted to the objects' collision shapes (fingertips on the human contacts, no penetration). The E2S parquet is
+#     kept as $R/e2s_reference.parquet, the stats go to $R/contact_retarget.json. Use a VARIANT so refs stay apart.
+if [ "${CONTACT_RETARGET:-0}" = 1 ] && [ ! -s $R/contact_retarget.json ]; then
+  REFP=$(ls $REFDIR/*.parquet | head -1); CRT=$R/cr_stage
+  CRP=$CRT/processed/sequence_id=$SEQ/robot_name=sharpa_wave/$(basename $REFP)
+  mkdir -p $(dirname $CRP) && ln -sfn $R/reconstructed_stage $CRT/reconstructed_stage
+  (cd $FC && FC=$FC .venv/bin/python $S/contact_retarget.py $REFP $CRP ${CR_ARGS:-} > $R/contact_retarget_log.txt 2>&1) \
+    || { echo "contact_retarget FAILED"; tail -8 $R/contact_retarget_log.txt; exit 1; }
+  cp -n $REFP $R/e2s_reference.parquet && cp $CRP $REFP && cp ${CRP%.parquet}_contact_retarget.json $R/contact_retarget.json \
+    && rm -rf $CRT || { echo "contact_retarget: could not install the new reference"; exit 1; }
+  echo "[$(date +%T)] contact_retarget: $(tr -d '\n ' < $R/contact_retarget.json | cut -c1-400)"
+fi
 [ "${STOP_AFTER:-}" = reference ] && exit 0
 
 # 4) train (timing rule: fps 20 written in the parquet, motion_speed 1.0, sim=rl at 20 fps).

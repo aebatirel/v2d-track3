@@ -1151,3 +1151,30 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   penetrating reference poses 0/10 tasks, from physics-checked states 9/10; FlashCHORD's object keypoints at ±1 m make a
   2.9° rotation count like 3 cm and saturate beyond ~0.3 rad (FlashDexRetarget scales so 30° ≈ 3 cm); Do as I Do ≈ 62
   GPU-h per 50 Sharpa clips (1,024 samples × 32 iterations).
+
+### 2026-10-21 23:40 TRT — contact retargeting against the simulator's convex pieces (CPU, no spend)
+- `contact_retarget.py`: object distance = union of the object's convex collision pieces from the FlashCHORD scene
+  (`HullSDF`, per piece max over face planes, tabulated on a 2.5 mm grid: exact plane tests were ~9 s per frame); hand
+  samples on each link's convex hull (hull vertices + area-weighted surface points, 40 per link). ep24 (separated
+  reference `mcs`) whole episode in 276 s. Tool's own metric: penetration p95 left 20.9 → 3.1 mm, right 15.4 → 5.8 mm;
+  pads to snapped contacts median 8.5 / 8.1 mm.
+- Simulator check (same probes as before; `tree24s` = mcs, `tree24k` = mesh-SDF version, `tree24h` = this):
+
+  | ep24 | dirty frames (> 2 mm) | penetration p95 | popping start frames | median pop | p90 pop | frame 0 |
+  |---|---|---|---|---|---|---|
+  | mcs | 242 / 275 | 20.1 mm | 49 / 55 | 8.6° | 16.3° | 6.2° |
+  | mesh SDF | 205 | 16.6 mm | 41 | 5.1° | 9.6° | 0.8° |
+  | convex pieces | 166 | 16.6 mm | 40 | 3.6° | 7.1° | 2.8° |
+
+- Breakdown of what remains (sampled every 5th frame, `scratchpad contact_breakdown.py`): hand–object 49 → 34 / 55
+  frames (p95 20.2 → 17.0 mm), now mostly right index/middle/ring MP and DP links; hand–hand 1 → 4 frames (26 mm; the
+  tool moves each hand alone). Cause: the tool tests hand-surface points against the objects, which misses a thin
+  board edge cutting through a finger (MuJoCo's depth is the minimal separating translation, ~ finger radius + half
+  board thickness). Right-hand wrist shifts reach 17 cm at f150 (to be checked).
+- Next (CPU): use the simulator's own collision as the penetration term. Newton keeps a CPU `mj_model`; setting the
+  scene state and calling `mj_kinematics` + `mj_collision` costs 0.3–0.7 ms and reproduces the warp contacts (f0: 18 vs 17
+  contacts deeper than 2 mm, f150: 31 vs 28).
+- Pipeline: `pipeline_ep.sh` stage 3c (`CONTACT_RETARGET=1`; E2S parquet kept as `e2s_reference.parquet`);
+  `ops/jobs/hard_ab.sh` (ep24 mcs / ep18 mc vs the same references after retargeting, same recipe, NREP repeat
+  evaluations of both chosen checkpoints, registered scores; also reports the ep12/ep27 controls from the store). The
+  control box 57058717 is gone (0 instances); its results are in the store (`runs/20261021-auto18-966eb96`).

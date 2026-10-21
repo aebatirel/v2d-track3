@@ -63,7 +63,22 @@ class FK:
         return self.state.body_q.numpy().copy()                     # .numpy() is a live view of one buffer
 
 
-def hand_geometry(model, side, max_pts=30):
+def hull_samples(V, n):
+    """Vertices plus area-weighted points on the convex hull of V (what MuJoCo collides for a mesh geom)."""
+    from scipy.spatial import ConvexHull
+    try:
+        h = ConvexHull(V)
+    except Exception:
+        return V[np.linspace(0, len(V) - 1, min(n, len(V))).astype(int)]
+    P = V[h.vertices]; tri = V[h.simplices]
+    area = 0.5 * np.linalg.norm(np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]), axis=1)
+    rng = np.random.default_rng(0); k = rng.choice(len(tri), size=n, p=area / area.sum())
+    u, v = rng.random(n), rng.random(n); flip = u + v > 1; u[flip], v[flip] = 1 - u[flip], 1 - v[flip]
+    S = tri[k, 0] + u[:, None] * (tri[k, 1] - tri[k, 0]) + v[:, None] * (tri[k, 2] - tri[k, 0])
+    return np.vstack([P[np.linspace(0, len(P) - 1, min(n, len(P))).astype(int)], S])
+
+
+def hand_geometry(model, side, max_pts=40):
     """Body ids, tip-site parents and collision-surface samples (body-local) of one hand."""
     import newton
     labels = list(getattr(model, 'body_label', None) or getattr(model, 'body_key', []))
@@ -79,7 +94,7 @@ def hand_geometry(model, side, max_pts=30):
         if src is None or not hasattr(src, 'vertices'):
             continue
         V = np.asarray(src.vertices, float) * sc[s]
-        V = V[np.linspace(0, len(V) - 1, min(max_pts, len(V))).astype(int)]
+        V = hull_samples(V, max_pts)
         V = Rot.from_quat(tf[s, 3:7]).apply(V) + tf[s, :3]
         pts_b.append(np.full(len(V), sb[s])); pts_l.append(V)
     return bodies, np.concatenate(pts_b), np.concatenate(pts_l)
@@ -106,6 +121,44 @@ class ObjectSDF:
         return self.f(np.clip(P, self.lo, self.hi))
 
     def grad(self, P, h=0.002):
+        g = np.stack([(self(P + e) - self(P - e)) / (2 * h) for e in np.eye(3) * h], -1)
+        return g / np.maximum(np.linalg.norm(g, axis=-1, keepdims=True), 1e-9)
+
+
+class HullSDF:
+    """Signed distance (positive outside) to the union of the convex collision pieces of one object body, in its body
+    frame: per piece max over face planes (exact inside, a lower bound outside), then the minimum over pieces."""
+
+    def __init__(self, model, body, voxel=0.0025, pad=0.04, cap=160):
+        import newton
+        from scipy.spatial import ConvexHull
+        sb = model.shape_body.numpy(); flags = model.shape_flags.numpy(); tf = model.shape_transform.numpy()
+        sc = model.shape_scale.numpy(); collide = int(newton.ShapeFlags.COLLIDE_SHAPES); self.planes = []; allv = []
+        for s in range(model.shape_count):
+            src = model.shape_source[s]
+            if sb[s] != body or not (int(flags[s]) & collide) or src is None or not hasattr(src, 'vertices'):
+                continue
+            V = Rot.from_quat(tf[s, 3:7]).apply(np.asarray(src.vertices, float) * sc[s]) + tf[s, :3]
+            self.planes.append(ConvexHull(V).equations); allv.append(V)  # n . x + d <= 0 inside
+        if not self.planes:
+            raise SystemExit(f'no collision pieces for body {body}')
+        # exact plane tests per query cost ~9 s per solved frame: tabulate once on a grid and interpolate
+        allv = np.vstack(allv); lo, hi = allv.min(0) - pad, allv.max(0) + pad
+        n = np.minimum(np.ceil((hi - lo) / voxel).astype(int) + 1, cap)
+        axes = [np.linspace(lo[k], hi[k], n[k]) for k in range(3)]
+        G = np.stack(np.meshgrid(*axes, indexing='ij'), -1).reshape(-1, 3)
+        d = np.concatenate([self.exact(G[i:i + 100000]) for i in range(0, len(G), 100000)])
+        self.f = RegularGridInterpolator(axes, d.reshape(n), bounds_error=False, fill_value=None); self.lo, self.hi = lo, hi
+
+    def exact(self, P):
+        P = np.atleast_2d(P)
+        return np.min([np.max(P @ E[:, :3].T + E[:, 3], axis=1) for E in self.planes], axis=0)
+
+    def __call__(self, P):
+        P = np.atleast_2d(P); Q = np.clip(P, self.lo, self.hi)
+        return self.f(Q) + np.linalg.norm(P - Q, axis=-1)           # beyond the grid: add the distance to it
+
+    def grad(self, P, h=0.001):
         g = np.stack([(self(P + e) - self(P - e)) / (2 * h) for e in np.eye(3) * h], -1)
         return g / np.maximum(np.linalg.norm(g, axis=-1, keepdims=True), 1e-9)
 
@@ -157,7 +210,9 @@ def main():
     tree = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(a.inp)))))
     usda = [os.path.join(tree, 'reconstructed_stage', f) for f in os.listdir(os.path.join(tree, 'reconstructed_stage')) if f.endswith('.usda')][0]
     cxy, rdisc, ztop = parse_support(usda)
-    sdfs = [ObjectSDF(pth) for pth in paths]
+    blabels = list(getattr(m, 'body_label', None) or getattr(m, 'body_key', []))
+    obj_body = [next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/')) for n in names]
+    sdfs = [HullSDF(m, b) for b in obj_body] if os.environ.get('CR_SDF', 'hull') == 'hull' else [ObjectSDF(pth) for pth in paths]
     print(f'[{time.time() - t0:.0f}s] scene + {len(sdfs)} object SDFs; table top {ztop:.3f} disc r {rdisc:.3f}', flush=True)
     fk = FK(m); lo_lim = m.joint_limit_lower.numpy(); hi_lim = m.joint_limit_upper.numpy()
     rng = range(T) if not a.frames else range(*[int(x) for x in a.frames.split(':')])
@@ -208,7 +263,6 @@ def main():
                     tgt_obj[f:e, k] = uniform_filter1d(tgt_obj[f:e, k], 5, axis=0, mode='nearest')
                 f = e
         # 2) per-frame solve, forward in time
-        idx_f = np.arange(o + 7, o + 29); lo = lo_lim[idx_f - 0 * o] if False else None
         dof_lo = np.full(28, -np.inf); dof_hi = np.full(28, np.inf)
         jl = list(getattr(m, 'joint_label', None) or getattr(m, 'joint_key', []))
         dstart = m.joint_qd_start.numpy(); jidx = {l: i for i, l in enumerate(jl)}
