@@ -7,6 +7,7 @@
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=/content/job.log; C=${CONCURRENT:-2}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v1} ASSETS=/content/assets SPLIT=${SPLIT:-public} PERC=perc2
+pip install -q fast_simplification >> $J 2>&1 || true            # kit budget_mesh (score_registered --meshes)
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 DONE=$ST/auto_done_$$
 (while sleep 60; do                                   # keep a HOLD while the GPU works (box started by hand)
