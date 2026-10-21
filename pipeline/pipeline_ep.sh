@@ -87,5 +87,7 @@ echo "[$(date +%T)] evaluated"
 # 6) score the simulated trajectory against mocap (public episodes only; after inference)
 [ $SPLIT = public ] && python $S/score_sim.py $EP $RES 2>&1 | tail -40
 # 7) a video and a frame montage of the rollout, for looking at failures (RENDER=0 to skip)
-[ "${RENDER:-1}" = 1 ] && { bash $S/render_rollout.sh $CK $RES/render || echo "render failed (not fatal)"; }
+# the whole episode: render_rollout.sh defaults to 181 frames (ep12), which cut longer episodes short (2026-10-21)
+NF=$(python -c "import numpy as np; print(len(np.load('$P/poses.npz')['world_T_cam']))" 2>/dev/null || echo 181)
+[ "${RENDER:-1}" = 1 ] && { bash $S/render_rollout.sh $CK $RES/render $NF || echo "render failed (not fatal)"; }
 echo "[$(date +%T)] ep$EP DONE"
