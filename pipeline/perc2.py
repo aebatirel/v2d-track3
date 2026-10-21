@@ -9,7 +9,8 @@ as the kit provides them for eval episodes):
   camera: keyframe SIFT + depth PnP (world = rectified-left camera at frame 0)
 Scoring: official kit Track 3 metric functions vs mocap, for world variants
   'vo' (camera from PnP) and 'anchor:<obj>' (that object assumed static; analysis only).
-Env: EP, FS_SCALE (0.5), OUT. Outputs result.json, poses.npz, masks_f0.jpg, vo.json in OUT.
+Env: EP, FS_SCALE (0.5), OUT, SPLIT (public|eval), MESH_DIR (track with our meshes; score with
+score_registered.py then, this block's unregistered score assumes the scan frame). Outputs result.json, poses.npz, masks_f0.jpg, vo.json in OUT.
 """
 import os, sys, json, time, importlib
 import numpy as np, cv2, torch, trimesh
@@ -30,9 +31,12 @@ PROMPT = {'white_pot': 'a cooking pot', 'white_pot_lid': 'a pot lid', 'blue_cup'
 t_all = time.time()
 def log(*a):
     print(f'[{time.time() - t_all:7.1f}s]', *a, flush=True)
-def mesh_path(n):
+MESH_DIR = os.environ.get('MESH_DIR')  # our own reconstructions (MESH_DIR/<obj>.glb) instead of the public scans
+def scan_path(n):
     p = f'{D}/mesh/{n}/{n}.glb'
     return p if os.path.exists(p) else f'{D}/mesh/{n}/{n}_visual.glb'
+def mesh_path(n):                      # the tracking template
+    return f'{MESH_DIR}/{n}.glb' if MESH_DIR else scan_path(n)
 
 # SPLIT=eval: eval videos in D/eval/v, object names (slot order) from the kit roster, no episode parquet, no scoring
 SPLIT = os.environ.get('SPLIT', 'public')
@@ -271,7 +275,7 @@ sys.path.insert(0, '/content/kit/v2d_submission_kit/metric_code/track_3')
 A = importlib.import_module('AUC')
 VERTS = {}
 for n in names:
-    pts, _ = trimesh.sample.sample_surface(trimesh.load(mesh_path(n), force='mesh'), 500, seed=0); VERTS[n] = np.asarray(pts)
+    pts, _ = trimesh.sample.sample_surface(trimesh.load(scan_path(n), force='mesh'), 500, seed=0); VERTS[n] = np.asarray(pts)
 def score(pred, objs):
     ach = np.stack([[xyzw(pred[n][i]) for n in objs] for i in range(N)])[:, None]
     ref = np.stack([[xyzw(gt[n][i]) for n in objs] for i in range(N)])[:, None]

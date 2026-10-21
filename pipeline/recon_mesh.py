@@ -107,11 +107,25 @@ def main():
     p.add_argument('--arm_len', type=float, default=0.15)
     p.add_argument('--table_band', type=float, default=0.015,
                    help='drop depth samples less than this above the frame-0 support plane, or below it (<0: off)')
+    p.add_argument('--others', default='', help='NAME=MESH,...: the episode\'s other tracked objects (posed by their '
+                   'cam_T_NAME in --poses); depth samples within --other_r of them carve but never vote surface')
+    p.add_argument('--other_r', type=float, default=0.012)
+    p.add_argument('--merge_vox', type=int, default=2,
+                   help='components within this many voxels of the chosen one are kept (dilation before labelling)')
     a = p.parse_args()
     t0 = time.time()
     P = np.load(a.poses); T_co = P[f'cam_T_{a.obj}'].astype(np.float64)
     W_C = P['world_T_cam'].astype(np.float64)
     segs_t = hand_segments(a.hands, W_C, a) if a.hands else None
+    others = []                                                    # (cam_T_other per frame, KD-tree of surface pts)
+    if a.others:
+        import trimesh
+        from scipy.spatial import cKDTree
+        for spec in a.others.split(','):
+            nm, path = spec.split('=', 1)
+            pts = trimesh.sample.sample_surface(trimesh.load(path, force='mesh'), 20000, seed=0)[0]
+            others.append((P[f'cam_T_{nm}'].astype(np.float64), cKDTree(pts), pts.min(0), pts.max(0)))
+    nother = 0
     D = np.load(a.depth, mmap_mode='r'); N = min(len(T_co), len(D)); H, W = D.shape[1:]
     K = rectified_K(a.calib)
     plane = None
@@ -151,11 +165,22 @@ def main():
         if segs_t is not None and len(segs_t[t][0]):
             A0, B0, rad = segs_t[t]
             hd = np.zeros(len(idx), bool)
+            lo = np.minimum(A0, B0).min(0) - rad.max(); hi = np.maximum(A0, B0).max(0) + rad.max()
+            near = np.nonzero(np.all((Pd >= lo) & (Pd <= hi), axis=1))[0]   # only samples in the hands' box
+            Q = Pd[near]; hq = np.zeros(len(near), bool)
             for s in range(len(A0)):                               # point-to-segment distance, one bone at a time
-                ab = B0[s] - A0[s]; ap = Pd - A0[s]
+                ab = B0[s] - A0[s]; ap = Q - A0[s]
                 h = np.clip(ap @ ab / max(ab @ ab, 1e-12), 0, 1)
-                hd |= np.linalg.norm(ap - h[:, None] * ab, axis=1) <= rad[s]
+                hq |= np.linalg.norm(ap - h[:, None] * ab, axis=1) <= rad[s]
+            hd[near] = hq
             other |= hd; nhand += int((hd & (sdf <= a.trunc)).sum())
+        for T_oo, tree, lo, hi in others:                          # samples on another tracked object
+            Ti = np.linalg.inv(T_oo[t]); Po = Pd @ Ti[:3, :3].T + Ti[:3, 3]
+            near = np.nonzero(np.all((Po >= lo - a.other_r) & (Po <= hi + a.other_r), axis=1))[0]
+            if len(near):
+                od = np.zeros(len(idx), bool)
+                od[near] = tree.query(Po[near], k=1, distance_upper_bound=a.other_r)[0] <= a.other_r
+                other |= od; nother += int((od & (sdf <= a.trunc)).sum())
         keep = ~other | (sdf > a.trunc)
         idx, sdf = idx[keep], sdf[keep]
         obs = np.clip(sdf / a.trunc, -1, 1).astype(np.float32)
@@ -173,15 +198,18 @@ def main():
         solid = inside | (~known & ~outside_unknown)
     else:
         solid = inside
-    lab, nl = ndimage.label(solid)
+    # keep the component nearest the object origin; label after a small dilation so parts separated by a thin gap
+    # (ep2: rim and handle cut off from the pot body) stay together, then return to the undilated voxels
+    grown = ndimage.binary_dilation(solid, iterations=a.merge_vox) if a.merge_vox > 0 else solid
+    lab, nl = ndimage.label(grown)
     if nl == 0:
         raise SystemExit('nothing reconstructed')
-    sizes = ndimage.sum(solid, lab, range(1, nl + 1))
-    c = n // 2                                                     # keep the component nearest the object origin
+    sizes = ndimage.sum(grown, lab, range(1, nl + 1))
+    c = n // 2
     cand = np.argsort(-sizes)[:5] + 1
     dist = [np.min(np.linalg.norm(np.argwhere(lab == k) - c, axis=1)) for k in cand]
     keepc = cand[int(np.argmin(dist))]
-    solid = lab == keepc
+    solid = solid & (lab == keepc)
     field = np.where(solid, -1.0, 1.0).astype(np.float32)
     field = ndimage.gaussian_filter(field, 0.8)
     field = np.pad(field, 1, constant_values=1.0)
@@ -199,7 +227,8 @@ def main():
     m.export(a.out)
     st = dict(obj=a.obj, frames=int(N), stride=a.stride, voxel=a.voxel, trunc=a.trunc, half=a.half, grid=n,
               known_frac=float(known.mean()), inside_vox=int(inside.sum()), solid_vox=int(solid.sum()),
-              components=int(nl), hand_dropped=nhand, table_dropped=ntable,verts=int(len(m.vertices)), faces=int(len(m.faces)),
+              components=int(nl), hand_dropped=nhand, table_dropped=ntable, other_dropped=nother,
+              verts=int(len(m.vertices)), faces=int(len(m.faces)),
               extents_cm=(np.round(m.extents * 100, 1)).tolist(), watertight=bool(m.is_watertight),
               sec=round(time.time() - t0, 1))
     json.dump(st, open(a.out.replace('.glb', '.json'), 'w'), indent=1)
