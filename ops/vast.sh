@@ -5,7 +5,8 @@
 # Auth: in a Claude Code cloud session the VAST_API_KEY network secret makes the proxy add
 # "Authorization: Bearer <key>" for console.vast.ai, so nothing is needed here. Elsewhere, export VAST_API_KEY.
 #
-#   ops/vast.sh offers [gpu_name|any] [on-demand|bid]   cheapest compliant offers (default "RTX PRO 6000 WS",
+#   ops/vast.sh offers [gpu_names|any] [on-demand|bid]  cheapest compliant offers (comma-separated names; default the
+#                                                   three 96 GB cards "RTX PRO 6000 WS,RTX PRO 6000 S,RTX PRO 6000 Max-Q",
 #                                                   on-demand); "any" = cheapest GPU of any kind (for the smoke box)
 #   ops/vast.sh create <offer_id> <run_id> '<job command>' [bid_price]
 #        optional env: V2D_COMMIT (default: origin/main), ENV_SNAPSHOT, HF_STORE, SETUP=none, RESUME_FROM, IMAGE, DISK
@@ -29,11 +30,11 @@ req() { curl -sS ${AUTH[@]+"${AUTH[@]}"} -H 'Content-Type: application/json' "$@
 
 case ${1:-} in
 offers)
-  GPU=${2:-RTX PRO 6000 WS}; TYPE=${3:-on-demand}
+  GPU=${2:-RTX PRO 6000 WS,RTX PRO 6000 S,RTX PRO 6000 Max-Q}; TYPE=${3:-on-demand}
   Q=$(python3 -c 'import json,sys; q={"rentable":{"eq":True},"rented":{"eq":False},"num_gpus":{"eq":1},"type":sys.argv[2],
       "limit":500}
 if sys.argv[1] == "any": q.update(verified={"eq":True}, cuda_max_good={"gte":13.0}, order=[["dph_total","asc"]], limit=64)
-else: q["gpu_name"] = {"eq": sys.argv[1]}
+else: q["gpu_name"] = {"in": sys.argv[1].split(",")}   # comma-separated names (2026-10-22: all three 96 GB PRO 6000s)
 print(json.dumps(q))' "$GPU" "$TYPE")
   OF=$(mktemp); trap 'rm -f "$OF"' EXIT     # a file, not an env var: the market list can exceed ARG_MAX
   curl -sS -X POST $API/bundles/ -H 'Content-Type: application/json' -d "$Q" > "$OF"

@@ -1265,3 +1265,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   f0 0.8°** (default hand retargeted: 35 / 55, 2.9°, 6.4°). Ready for a "k + primitive" variant if box D (primitive
   hand alone) wins.
 - Round 1/2 progress 02:40: B ep18 k s42 at 20M steps, A ep24 k s42 at 10M; C′, D starting; E in setup.
+
+### 02:55 TRT — owner: "are you checking all RTX 6000 versions? I see cheaper ones"
+- No: `ops/vast.sh offers` matched only the name "RTX PRO 6000 WS". Market check (on-demand, 1 GPU): RTX PRO 6000 WS 18
+  offers (cheapest any $1.00, but unverified + slow net; cheapest compliant $1.38), **RTX PRO 6000 Max-Q** 13 (cheapest
+  compliant $1.26; 300 W version of the same 96 GB chip), **RTX PRO 6000 S** (Server Edition, where the 45k steps/s
+  benchmark ran) 18 ($1.45), RTX 6000D 84 GB 1 ($1.26), RTX 6000 Ada 48 GB 5 (compliant $0.65; our training peaks at
+  40.5 GB, so it would fit; speed untested), RTX PRO 5000 48 GB ($1.18). Cheaper listings fail the compliance filter
+  (unverified host, reliability < 0.98, < 300 Mbps, < 16 CPUs or < 64 GB RAM).
+- `ops/vast.sh offers` now searches all three 96 GB PRO 6000 versions by default (comma-separated names, Vast `in`
+  filter); right after the change the cheapest compliant offer was a Max-Q at $1.07/h. Max-Q speed for our training is
+  not measured yet: next launches record steps/s per GPU type.
