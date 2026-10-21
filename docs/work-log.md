@@ -1111,3 +1111,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   13.3 mm, shifts median 3.2 cm (left) / 1.4 cm (right), max 5.8 cm. Pop map: dirty start frames 49 → 31 / 55, median pop
   8.6° → 2.5°, p90 16.3° → 9.6°, **frame 0 6.2° → 0.8°**. Remaining penetration is mostly fingers wrapped through objects
   (translation cannot clear it) → next: open penetrating fingers per frame (finger-joint correction).
+
+### 2026-10-21 22:05 TRT — owner: "why do easy episodes place the hand well and hard ones not?" (measured, CPU)
+- Same checks on today's control references (ep12 cup, ep27 pot; refs from box 57058717, library_v2 assets):
+
+  | | ep12 | ep27 | ep18 | ep24 |
+  |---|---|---|---|---|
+  | frames with robot hand > 2 mm inside something | 63 % | 70 % | 77 % | 88 % |
+  | robot penetration p95 | 19 mm | 19 mm | 16 mm | 20 mm |
+  | start frames popping an object in 1 step | 63 % | 69 % | 73 % | 89 % |
+  | median pop | 4.6° | 4.1° | 8.0° | 8.6° |
+  | pop at frame 0 (evaluation start) | 0.0° | 0.0° | 0.7° | 6.2° |
+  | human (MANO) fingertips inside objects | 0 % | 0 % | 0 % | 0 % |
+  | median human fingertip gap to the surface (tips within 3 cm) | 0.6 cm | 0.6 cm | 1.0 cm | 1.8 cm |
+
+- Reading: easy references are not clean either; they start with the hands away from the objects and the tasks
+  (power grasps on a cup / pot handle) tolerate a wrong grip. Hard ones start in contact (ep24) and need specific
+  contacts on thin parts; their human hand–object relative pose is also off by 1–2 cm (fingertips hover; 0.6 cm on easy
+  ones is our 6 mm depenetration clearance). The robot hand then lands 2–3 cm inside the objects everywhere: E2S matches
+  the human wrist (wrist cost 3.0) and scaled keypoints with a larger, thicker hand.
+- ep12/ep27 references carry no recorded MANO contact points (`mano_*_object_contact_positions` empty), ep18/ep24 do.
