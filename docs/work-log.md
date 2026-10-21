@@ -1072,3 +1072,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 20:00 TRT, **ep24 mcw (mid wrist) result**: sweep chose 200M (sim_vs_ref 0.055; 100M 0.017, 150M 0.020, final
   0.018) → `harmful`; vs mocap AUC **0.050** (boards 0.027 / 0.073) vs mc 0.096; floor 0.122. **Mid-wrist hypothesis
   falsified on both hard episodes.** The ep24 box continues with mcs (hand separation) alone on the GPU.
+- 20:50 TRT, **ep24 mcs (hand separation) result**: sweep chose the final 250M (sim_vs_ref 0.218; 100M 0.213, 150M
+  0.203, 200M 0.157) vs floor 0.220 → `harmful` by 0.002. Vs mocap **AUC 0.231, registered (our meshes) 0.232**
+  (boards 0.065 / 0.397); static floor 0.229 (the clean start raises the floor too: mc's popped board gave 0.122).
+  3× attempt 1 (0.080), 4× mcw (0.050), level with the pre-route-A best (0.236 with the scans). The boards are still
+  not lifted. Box 57058719 pushed (`runs/20261021-auto24-966eb96`, 232 MB) and destroyed at 20:55 TRT.
+- **Hard-episode scores today (registered, our own meshes): ep18 0.396 (mc s42 attempt 1; 8-rollout range of that
+  policy 0.13–0.41 vs mocap), ep24 0.232 (mcs s42).**

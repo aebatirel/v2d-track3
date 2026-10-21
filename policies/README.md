@@ -17,3 +17,4 @@ are in `results/e2e/`. From now on `pipeline/auto_ep.sh` copies the chosen check
 | 20261021-hard-ep21-6f2f98a | perc2 | ep21 | 5.1 MB | 0.8261 | `0a6b5fd51223c37c…` |
 | 20261021-auto18-966eb96 | perc2mc (own meshes, sweep → 150M) | ep18 | 5.1 MB | 0.3809 (registered, our meshes 0.3962) | `add62ba6230aa7fd…` |
 | 20261021-auto24-966eb96 | perc2mc (own meshes, sweep → 150M) | ep24 | 5.1 MB | 0.0958 (registered, our meshes 0.0799) | `a8e1fc72e2551ac9…` |
+| 20261021-auto24-966eb96 | perc2mcs (own meshes + hand separation, 250M) | ep24 | 5.1 MB | 0.2307 (registered, our meshes 0.2316) | `ec45fe16e9e51364…` |

@@ -1,0 +1,75 @@
+{
+  "checkpoint": "/workspace/runs/perc2mcs/ep24-s42/policy_250003456.safetensors",
+  "checkpoint_sha256": "ec45fe16e9e513646ded5d3f8a9c92745fd52ffd55a5005ab03e34c50b285d1e",
+  "environment_steps": 250003456,
+  "metrics": {
+    "add_auc": 0.2153409090909091,
+    "add_auc_per_body": [
+      0.061136363636363635,
+      0.36954545454545457
+    ],
+    "add_std_m": 0.07676281275918265,
+    "add_std_per_body_m": [
+      0.04294374230605615,
+      0.09945250666617164
+    ],
+    "chord_sr": 0.0,
+    "gated_causes": [
+      "wrist",
+      "object"
+    ],
+    "maniptrans_sr": 0.0,
+    "mean_add_m": 0.1319425540819393,
+    "mean_per_point_error_cm": 13.227843704746675,
+    "mppe_cm": 17.880070847236247,
+    "object_body_names": [
+      "wooden_piece_1",
+      "wooden_piece_2"
+    ],
+    "object_orientation_error_deg": 72.65975059408746,
+    "object_orientation_error_per_body_rad": [
+      1.6799122499306012,
+      0.8563915131588624
+    ],
+    "object_orientation_error_rad": 1.268151881544732,
+    "object_orientation_error_std_deg": 0.0,
+    "object_orientation_error_std_rad": 0.0,
+    "object_position_error_m": 0.12577352414941578,
+    "object_position_error_per_body_m": [
+      0.12354536236792393,
+      0.12800168593090763
+    ],
+    "object_position_error_std_m": 0.0,
+    "position_mean_centered": false,
+    "relative_position_error_cm": 19.88115954559178,
+    "spider_position_error_centered_m": 0.07771419915516567,
+    "spider_sr_uncentered": 0.0,
+    "step_count": 275,
+    "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+    },
+    "world_count": 1
+  },
+  "motion_end_frame": -1,
+  "motion_start_frame": 0,
+  "non_finite_worlds": [],
+  "object_orientation_threshold_rad": 0.5,
+  "object_position_threshold_m": 0.1,
+  "parquet": "/workspace/refs/perc2mcs/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet",
+  "reference_tracking": {
+    "failure_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+    },
+    "reference_end_fraction": 1.0,
+    "success_rate": 0.0
+  },
+  "reset_mode": "explicit",
+  "settling_steps": 0,
+  "sim_control_fps": 20.0,
+  "sim_physics_fps": 100.0,
+  "start_frame": 0,
+  "step_count": 275,
+  "world_count": 1
+}

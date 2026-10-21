@@ -1,0 +1,64 @@
+{
+ "episode": 24,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 275,
+ "meshes": "/content/v2d-track3/meshes/library_v2",
+ "registration": {
+  "wooden_piece_1": {
+   "rot_deg": 0.35,
+   "anchor_shift_cm": 0.21,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "wooden_piece_2": {
+   "rot_deg": 0.47,
+   "anchor_shift_cm": 0.4,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "sim": {
+  "AUC": 0.2316,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 11.5621,
+  "RPE_cm": 20.1474,
+  "per_obj_AUC": {
+   "wooden_piece_1": 0.065,
+   "wooden_piece_2": 0.3982
+  }
+ },
+ "reference": {
+  "AUC": 0.8163,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 2.2858,
+  "RPE_cm": 1.0992,
+  "per_obj_AUC": {
+   "wooden_piece_1": 0.7764,
+   "wooden_piece_2": 0.8561
+  }
+ },
+ "static_floor": {
+  "AUC": 0.2291,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 13.8412,
+  "RPE_cm": 29.3834,
+  "per_obj_AUC": {
+   "wooden_piece_1": 0.0573,
+   "wooden_piece_2": 0.4009
+  }
+ }
+}
