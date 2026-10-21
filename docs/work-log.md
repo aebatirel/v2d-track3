@@ -1041,3 +1041,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   unmeasured hand (else both half-way) moves away from the other and upward, in up to 5 correct-and-smooth rounds;
   depenetration vs objects/table is re-applied. Unit test on the real hand tracks (crude up axis): ep24 frames with
   gap < 4 cm 26 → 0, frame-0 gap 0.6 → 8.9 cm, largest shift change 6.2 cm/frame; ep18 unchanged.
+- 19:00–19:10 TRT, ep24 references rebuilt on box 57058719 from a second worktree (`/content/v2d-2` at 47518d5,
+  fetched with the GH_TOKEN header as in onstart.sh; refs copied hands.npz/hands_refined.* from perc2mc):
+  - **mcs** (wrist cost 3.0, hand separation, 6 mm clearance): QA pass (15 / 30 mm, steps 4.9 / 6.8 cm); separation
+    moved the right hand in 13 frames (max 7.2 cm, lead-in from f17), the left in 11 (max 8.6 cm). Reset contacts:
+    no hand–hand overlap left; remaining left ring fingertip 3.5 mm into board 1, board 0.8 mm into the table.
+  - **mcs10** (same, `--depenetrate 0.010`): worse — left ring fingertip 8.0 mm into the board. Joint-target clearance
+    does not control the robot's finger geometry after IK (different finger kinematics, heavy wrist cost); robot-level
+    clearance would need FK of the Sharpa collision bodies after retargeting (lead, not done).
+  - No-policy replay with the real soft wrists (zero residual): old reference (mc) → board 1 pops 20° / +2.3 cm on
+    step 1 and the episode terminates at once (so in training every frame-0 episode died immediately); mcs → 6° on
+    step 1, 8° at f5, the episode continues (20° by f10, where the reference starts sliding the board at f11).
+- 19:12 TRT: **ep24 mcs training started** (default wrist, seed 42, CK_SWEEP 0.4/0.6/0.8; REPO_DIR=/content/v2d-2)
+  on the same box, concurrent with the last third of ep24 mcw. Hypothesis: a clean start lets the policy learn the
+  episode; falsified if mcs's sim_vs_ref stays under the static floor (0.220).
