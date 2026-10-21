@@ -116,10 +116,14 @@ one() {
 
 label "hard A/B: $PAIRS"
 pids=()
+# trainings take turns on the GPU in PAIRS order (pipeline_ep.sh TRAIN_LOCK); the next episode starts its CPU stages
+# once the previous one holds the GPU (or has ended), so its training is next in line
+export TRAIN_LOCK=${TRAIN_LOCK:-/content/train.lock}; rm -f $TRAIN_LOCK.ep*
 for x in $PAIRS; do
   IFS=: read -r ep run base <<< "$x"
   one $ep $run $base & pids+=($!)
-  sleep 120                                                       # stagger the JIT compiles
+  while [ ! -e $TRAIN_LOCK.ep$ep ] && kill -0 $! 2> /dev/null; do sleep 20; done
+  sleep 60
 done
 wait "${pids[@]}"
 python - $O << 'EOF' > $O/summary.json

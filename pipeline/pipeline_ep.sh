@@ -90,11 +90,18 @@ fi
 if ! ls $RUN/policy_*.safetensors > /dev/null 2>&1 || [ ! -e $RUN/.done ]; then
   LAST=$(ls -v $RUN/state_*.safetensors 2> /dev/null | tail -1); RESUME=()
   [ -n "$LAST" ] && RESUME=(training.resume=true training.checkpoint_path=$LAST) && echo "[$(date +%T)] resuming from $LAST"
+  # TRAIN_LOCK (a file path): trainings on one box take turns on the GPU (two at once ran ~30 % slower in total than
+  # one after the other, 2026-10-21); the lock is held for the training only, so evaluations overlap the next training
+  if [ -n "${TRAIN_LOCK:-}" ]; then
+    exec 9> $TRAIN_LOCK; echo "[$(date +%T)] waiting for the GPU (TRAIN_LOCK)"; flock 9; touch $TRAIN_LOCK.ep$EP
+    echo "[$(date +%T)] GPU lock acquired"
+  fi
   cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py \
     experiment=sharpa_flash_sac "task.parquet='$REFDIR'" task.motion_speed=1.0 reset.seed=$SEED \
     logging.mode=disabled output_dir=$RUN training.total_environment_steps=$STEPS ${TRAIN_ARGS:-} "${RESUME[@]}" >> $RUN/train.log 2>&1 \
     && touch $RUN/.done || { echo "train FAILED"; tail -15 $RUN/train.log; exit 1; }
 fi
+exec 9>&-                                                    # release TRAIN_LOCK (no-op without it)
 CK=$(ls -v $RUN/policy_*.safetensors | tail -1)
 echo "[$(date +%T)] trained: $CK (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
 
