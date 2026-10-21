@@ -981,3 +981,30 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     (right p95 67 mm > 60; left 20 mm; steps ≤ 8.3 cm) → mc ranked best, training mc seed 42 from 13:37 UTC.
 - Library v2 white pot vs scan (registered AUC, v1 → v2): ep41 0.987 → 0.998, ep44 0.986 → 0.997, ep2 0.983 →
   0.991, ep27 0.993 → 0.994; CD-O 0.58 → 0.44 cm.
+
+### 2026-10-21 18:05 TRT — validation attempt 1 results (first complete scores with our own meshes); diagnosis; mid wrist
+- Training alone on a PRO 6000: 55–63k env steps/s, 250M steps in 71–79 min (box clocks).
+- **ep18 (sweeper + dust pan), mc seed 42**, checkpoint sweep chose 150M (sim_vs_ref 0.346 vs static floor 0.619 →
+  `harmful`). Scored vs mocap: AUC 0.381 (sweeper 0.085, dust pan 0.677), **registered with our meshes 0.396**, SP 0,
+  MP 0; static floor 0.637; our reference vs mocap 0.982 (sweeper 0.996). Earlier best 0.337. Published to
+  results/final/ep18 (sha256 add62ba6…).
+- **ep24 (boards), mc seed 42**, sweep chose 150M (sim_vs_ref 0.058 vs floor 0.220 → `harmful`). Vs mocap: AUC 0.096
+  (boards 0.030 / 0.162), **registered 0.080**; static floor 0.123; reference vs mocap 0.799. Earlier 0.235 / 0.152.
+  Published (sha256 a8e1fc72…).
+- Evaluator metrics: both rollouts fail on **wrist** (and object) tracking (`termination_cause_fraction.wrist` 1).
+  Rollout frames: ep18 one hand stays at its start beside the table, the sweeper tips over; ep24 the hand reaches the
+  near board but never lifts it while the reference lifts it from f219.
+- Diagnosis on CPU (FlashCHORD env, 1 world, the box's reference, `scratchpad replay_probe.py`):
+  - Hypothesis "a hand is trapped by the (too small) table" — **falsified**: with NVIDIA's stiff_tracking gains
+    (kp 6000) both wrists follow the reference within ~1 cm (frame 20: 3.8 cm during a fast reach, then < 1 cm), and
+    a 0.60 m table changes nothing. The reference is physically feasible.
+  - ep18's right hand is undetected for frames 18–22 (motion blur) and reaches ~30 cm in 0.5 s (≈ 0.6 m/s).
+  - With FlashCHORD's default wrist (kp 25 N/m, 45 N; our note 14: a 0.3 kg object sags it ~12 cm and the 0.2 m
+    residual clips at real speed) the policy cannot keep up → wrist termination early in training episodes.
+- Decision: the seed-43 retries (started 14:50 UTC) were stopped at 15:02 UTC — another seed does not change a
+  force limit. On the same boxes, **variant mcw** = same references (`cp -al refs/perc2mc → refs/perc2mcw`), mid
+  wrist `embodiment=sharpa_hands_mid` (kp 400, kd 20, 150 N; FAQ allows other embodiments, owner to confirm before
+  any submission uses it). Command (exec on each box, EP=18/24): HOLD 1 h; kill the s43 pipeline + trainer;
+  `VARIANT=mcw PDIR=/content/perc2m/ep$EP MKREF_ARGS="--wrist_cost 3.0" TRAIN_ARGS="hydra.searchpath=[file:///content/v2d-track3/flashchord_conf] embodiment=sharpa_hands_mid" SEED=42 CK_SWEEP="0.4 0.6 0.8" MESH_DIR=…/library_v2 ASSETS=/content/assets bash pipeline/pipeline_ep.sh $EP`
+  + `ops/box/hold_guard.sh`. Hypothesis: the mid wrist lets the policy follow the fast reach and lift the objects.
+  Falsified if mcw's sim_vs_ref stays below the static floor on both episodes.
