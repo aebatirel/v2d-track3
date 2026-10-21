@@ -1,0 +1,52 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "sim_vs_mocap": {
+  "AUC": 0.9258,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.299,
+  "RPE_cm": 1.881,
+  "per_obj": {
+   "white_pot": 0.9286,
+   "white_pot_lid": 0.9231
+  }
+ },
+ "static_floor": {
+  "AUC": 0.5035,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 9.529,
+  "RPE_cm": 16.935,
+  "per_obj": {
+   "white_pot": 0.6685,
+   "white_pot_lid": 0.3384
+  }
+ },
+ "reference_vs_mocap": {
+  "AUC": 0.9946,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.503,
+  "RPE_cm": 0.807,
+  "per_obj": {
+   "white_pot": 0.9934,
+   "white_pot_lid": 0.9958
+  }
+ },
+ "sim_vs_reference": {
+  "AUC": 0.9357,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.194,
+  "RPE_cm": 1.997,
+  "per_obj": {
+   "white_pot": 0.9324,
+   "white_pot_lid": 0.939
+  }
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "episode": 0,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 373,
+ "meshes": "public scans",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 0.3,
+   "anchor_shift_cm": 0.02,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "white_pot_lid": {
+   "rot_deg": 0.23,
+   "anchor_shift_cm": 0.04,
+   "axis": [
+    1.0,
+    -0.003,
+    0.005
+   ],
+   "order": 2
+  }
+ },
+ "perception": {
+  "AUC": 0.1836,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 9.3049,
+  "RPE_cm": 11.697,
+  "per_obj_AUC": {
+   "white_pot": 0.3663,
+   "white_pot_lid": 0.0008
+  }
+ }
+}

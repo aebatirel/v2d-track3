@@ -5,7 +5,9 @@
 /perc*/
 /refs/
 /runs/
-/results/
+/results/*
+!/results/e2e/
+!/results/registered/
 /outputs/
 /ckpt/
 *.npy

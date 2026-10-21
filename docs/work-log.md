@@ -629,3 +629,29 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
   frame. The submission must carry **our own reconstructed mesh per (eval episode, object)** (FAQ: not the public
   scans). Next: a local copy of the registered scorer (public scan as stand-in for the confidential scan) and a
   mesh-reconstruction prototype.
+
+### 2026-10-21 08:00 TRT: local registered scorer (`pipeline/score_registered.py`) and what it changes
+- Calls the kit's own `v2dlb.track3_pose` functions (register mesh → convert body → align scene → symmetric metrics)
+  with a stand-in for the hidden host geometry: public scan, anchor = surface centroid (guess), 1000 surface points,
+  cup axis = distinct principal axis (order 360), lid axis = thinnest principal axis (order 2; the lid scan's normal is
+  its x axis, extent 4.7 cm). Candidate meshes = public scans by default (decimated by the packer's `budget_mesh`), or
+  `--meshes DIR` for our reconstructions. Run in this cloud VM (CPU, scratch venv: numpy scipy pandas pyarrow trimesh
+  fast_simplification) on files from the HF store; outputs in `results/registered/`.
+- **Perception, 20 public episodes (refsweep perc2 poses, pre-compact-prior, commit ea14fdf): mean AUC 0.8828 old vs
+  0.8824 registered; SP 0.90 / 0.90; MP 0.90 / 0.90; MPPE 3.90 / 3.92 cm.** Per episode the change is ≤ 0.006
+  except ep12 0.998 → 0.940 (cup in slot 0; the rack now sets the scene rotation, so the rack's frame-0 orientation
+  error reaches the cup) and ep11 0.873 → 0.913 (two cups: no fixed object, axis + direction alignment, spin not
+  scored).
+- **End-to-end rollouts, old → registered (sim vs mocap AUC):** ep12 perc2 0.890 → 0.875, oracle 0.858 → 0.857,
+  vw 0.860 → 0.848, vc 0.604 → 0.589; ep27 vc 0.965 → 0.967; ep2 vc 0.926 → 0.925. Reference vs mocap on ep12 drops
+  more (perc2 0.973 → 0.853, vc/vw 0.993 → 0.877): mkref's object trajectories carry a rack orientation error that the
+  rack-anchored alignment exposes (to look into).
+- Eval episodes where the new rule anchors on a different object than slot 0: 8 (pot), 14 (rack), 20 (pitcher),
+  32/33 (**spoon**). The spoon also anchors 35–37. With registration, the spoon's body-frame convention (A vs B) no
+  longer matters: the scorer ICP-aligns our mesh to the scan, so only mesh-pose consistency and shape count.
+- **Leaderboard moved** (leaderboard.json generated 2026-10-21 00:55 UTC): Zihao Guo AUC 0.831 / SP 0.95 / MP 0.75 /
+  MPPE 3.51 / RPE 2.10 / CD-O 0.313; SoySauceChicken 0.823 / 0.85 / 0.70 / 2.62 / 3.85 / CD-O **0.065**; SRL 0.657;
+  Alcor Z 0.636; Zimo Li 0.630. The bar to beat is now 0.831.
+- Fix: `.gitignore` ignored all of `/results/`, so the e2e score JSONs and rollout montages of 2026-10-20 were never
+  committed (they were only in this session's checkout and the HF store). Now `/results/e2e/` and
+  `/results/registered/` are tracked and committed.
