@@ -697,3 +697,18 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
 - Hand masking had no measurable effect on ep41 (kept as an option `--hands`; 7× slower).
 - Outputs in `results/recon/ep41/` (mesh, stats, picture vs scan). Next: the other objects (rack, lid, cups, pitcher,
   boards, sweeper, dustpan) on public episodes 27, 2, 23, 39, 18, 12, 21.
+
+### 2026-10-21 09:15 TRT: reconstruction v0 → v3 on more objects (CPU, cloud VM)
+- v0 batch (episodes 27, 2, 23, 39, 18; 12 and 21 were cut off by the 30-min limit on background shell commands; the
+  batch scripts now run detached with nohup): registered AUC with our mesh vs with the scan:
+  ep27 0.933 vs 0.994 (pot 8.8° off: the hand on the handle fused in), **ep2 0.305** vs 0.977 (pot: only the lower
+  body kept, rim and handle were separate components → 102°), **ep23 0.036** vs 0.999 (board 1 with board 2 fused
+  on → **flipped 175°**), **ep39 0.212** vs 0.997 (dustpan 123°: the tabletop around it fused), ep18 0.627 vs 0.956
+  (sweeper 41°). Good objects: rack 0.66 cm / 1.3°, lid 0.41 cm / 0.9°, board 2 0.22 cm / 0.9°, ep18 dustpan 0.49 cm.
+- Fixes, one at a time on ep39 (dustpan alone, lifted by its ring and turned upright):
+  - v1 = + hand capsules + other tracked objects (scans at their tracked poses, option B) carve-only + merge
+    components within 2 voxels: ep39 still 131° (AUC 0.202) → the extra sheet is the tabletop, not the hand.
+  - v2 = + per-frame re-fit of the table plane (frame-0 RANSAC plane moved by VO, refit to samples within 3 then
+    1.2 cm, ≤ 10° correction): **6.4°, AUC 0.823**; a wedge remained behind the plate.
+  - v3 = closing 'near' (unknown voxels count as inside only within 3 voxels of observed inside, then enclosed
+    cavities; 'fill' turned every enclosed unknown region into solid): **CD-O 0.58 cm, 1.95°, AUC 0.953** (scan 0.997).

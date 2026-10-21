@@ -99,7 +99,10 @@ def main():
     p.add_argument('--stride', type=int, default=1, help='use every STRIDE-th frame')
     p.add_argument('--min_obs', type=int, default=3, help='voxels with fewer updates count as unknown')
     p.add_argument('--zmax', type=float, default=1.5, help='ignore depth beyond this (m)')
-    p.add_argument('--close', choices=['none', 'fill'], default='fill')
+    p.add_argument('--close', choices=['none', 'fill', 'near'], default='near',
+                   help='fill: every enclosed unknown voxel is inside (made wedges behind thin plates: ep39); near: '
+                        'unknown voxels within --near_vox of observed-inside voxels, then enclosed cavities')
+    p.add_argument('--near_vox', type=int, default=3)
     p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
     p.add_argument('--hands', default=None, help='hands.npz (hands_mp.py): drop depth samples on the hands/forearms')
     p.add_argument('--hand_r', type=float, default=0.03, help='radius around hand bones (m)')
@@ -159,8 +162,20 @@ def main():
         Pd = Xc[idx] * (d / z[idx])[:, None]                       # the observed surface point on this voxel's ray
         other = np.zeros(len(idx), bool)
         if plane is not None:
-            Pw = Pd @ W_C[t][:3, :3].T + W_C[t][:3, 3]
-            tb = Pw @ plane[0] + plane[1] <= a.table_band
+            # the frame-0 plane moved into this camera by VO, then re-fitted to this frame's samples near it (VO drift
+            # and a slightly tilted global fit left table patches as surfaces: ep39)
+            C_W = np.linalg.inv(W_C[t]); nc = C_W[:3, :3] @ plane[0]; cc = plane[1] - nc @ C_W[:3, 3]
+            for thr in (0.03, 0.012):
+                hgt = Pd @ nc + cc; sel = np.abs(hgt) < thr
+                if sel.sum() < 500:
+                    break
+                Q = Pd[sel][:: max(1, int(sel.sum()) // 20000)]; q0 = Q.mean(0)
+                nn = np.linalg.svd(Q - q0, full_matrices=False)[2][2]
+                if nn @ nc < 0:
+                    nn = -nn
+                if nn @ nc > np.cos(np.radians(10)):              # accept only a small correction
+                    nc, cc = nn, -nn @ q0
+            tb = Pd @ nc + cc <= a.table_band
             other |= tb; ntable += int((tb & (sdf <= a.trunc)).sum())
         if segs_t is not None and len(segs_t[t][0]):
             A0, B0, rad = segs_t[t]
@@ -196,6 +211,9 @@ def main():
                                  lab[:, :, 0].ravel(), lab[:, :, -1].ravel()])
         outside_unknown = np.isin(lab, border[border > 0])
         solid = inside | (~known & ~outside_unknown)
+    elif a.close == 'near':
+        solid = inside | (~known & ndimage.binary_dilation(inside, iterations=a.near_vox))
+        solid = ndimage.binary_fill_holes(solid)
     else:
         solid = inside
     # keep the component nearest the object origin; label after a small dilation so parts separated by a thin gap
