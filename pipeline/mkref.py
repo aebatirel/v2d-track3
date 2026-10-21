@@ -440,6 +440,81 @@ class BodyQuery:
         return c, np.where(inside, 0.0, d), tri, inside
 
 
+def table_disc(depth0, KR, T_tab, table_z, band=0.008, cell=0.01):
+    """The real table's footprint in the table frame (2026-10-21: the simulated cylinder had radius 0.45 m around the
+    objects' centroid while the real round table measures ~0.22-0.25 m, so table edges that the person uses -- a board
+    slid until it overhangs, a dustpan held at the edge -- did not exist in sim). Frame-0 depth points within BAND of
+    the plane, a 1 cm occupancy grid, the connected region nearest the objects (origin), its minimum enclosing circle."""
+    import cv2
+    from scipy import ndimage
+    H, W = depth0.shape
+    v, u = np.mgrid[0:H:2, 0:W:2]; z = np.asarray(depth0)[v, u]
+    ok = np.isfinite(z) & (z > 0.2) & (z < 1.5)
+    X = np.stack([(u[ok] - KR[0, 2]) * z[ok] / KR[0, 0], (v[ok] - KR[1, 2]) * z[ok] / KR[1, 1], z[ok]], 1)
+    P = X @ T_tab[:3, :3].T + T_tab[:3, 3]
+    Q = P[np.abs(P[:, 2] - table_z) < band, :2]
+    Q = Q[np.abs(Q).max(1) < 1.0]
+    if len(Q) < 1000:
+        return None
+    n = int(2.0 / cell); ij = np.clip(((Q + 1.0) / cell).astype(int), 0, n - 1)
+    G = np.zeros((n, n), bool); G[ij[:, 0], ij[:, 1]] = True
+    G = ndimage.binary_closing(G, iterations=3)                    # holes under objects / sparse depth
+    lab, nl = ndimage.label(G)
+    if nl == 0:
+        return None
+    c0 = int(1.0 / cell); cand = np.argwhere(lab > 0)
+    k = lab[tuple(cand[np.argmin(np.linalg.norm(cand - c0, axis=1))])]
+    pts = (np.argwhere(lab == k) * cell - 1.0 + cell / 2).astype(np.float32)
+    (cx, cy), r = cv2.minEnclosingCircle(pts)
+    return float(cx), float(cy), float(r)
+
+
+def depenetrate(J, OBJ, queries, table_z, clear, disc=None):
+    """Physics-aware hand targets (2026-10-21; cf. ContactOpt, Grady et al. CVPR 2021, which tolerates ~2 mm of
+    interpenetration): every joint centre is kept at least CLEAR outside every object surface and above the table
+    (joint centres sit ~8 mm inside the skin, so CLEAR = 6 mm leaves ~2 mm of squeeze). A joint inside an object, or
+    closer than CLEAR, moves along the surface normal of its closest point; under the table it moves up. Inside
+    tests: mesh.contains for watertight meshes (our reconstructions), else the side of the closest face. The table
+    rule applies only over the measured table DISC (cx, cy, r): fingers under a board that overhangs the real edge stay.
+    A joint pinned between the table and an object goes to the object's top above it (highest surface sample within 1.5 cm in
+    x-y + CLEAR) instead of oscillating between the two rules."""
+    out = J.copy(); T = len(J); moved = 0; depth_max = 0.0
+    for t in range(T):
+        P = out[t].reshape(-1, 3)
+        for b, q in enumerate(queries):
+            M = OBJ[t, b]; Pl = (P - M[:3, 3]) @ M[:3, :3]
+            c, d, tri = q.q.on_surface(Pl)
+            n = q.fn[tri]
+            inside = q.mesh.contains(Pl) if q.watertight else (np.einsum('ij,ij->i', Pl - c, n) < 0) & (d < 0.03)
+            sd = np.where(inside, -d, d)                               # signed distance, negative inside
+            k = sd < clear
+            if k.any():
+                Pl[k] = c[k] + n[k] * clear
+                moved += int(k.sum()); depth_max = max(depth_max, float(-sd[k].min()))
+                P = Pl @ M[:3, :3].T + M[:3, 3]
+        low = P[:, 2] < table_z + clear
+        if disc is not None:
+            low &= np.linalg.norm(P[:, :2] - np.array(disc[:2]), axis=1) < disc[2]
+        if low.any():
+            depth_max = max(depth_max, float(table_z + clear - P[low, 2].min())); moved += int(low.sum())
+            P[low, 2] = table_z + clear
+            for b, q in enumerate(queries):                        # pinned between table and object -> object top
+                M = OBJ[t, b]; Pl = (P[low] - M[:3, 3]) @ M[:3, :3]
+                inside = q.mesh.contains(Pl) if q.watertight else np.zeros(len(Pl), bool)
+                if inside.any():
+                    if not hasattr(q, 'dense'):                    # surface samples (vertices are too sparse on flat faces)
+                        import trimesh
+                        q.dense = np.asarray(trimesh.sample.sample_surface(q.mesh, 20000, seed=0)[0])
+                    Vw = q.dense @ M[:3, :3].T + M[:3, 3]
+                    idx = np.nonzero(low)[0][inside]
+                    for i in idx:
+                        near = np.linalg.norm(Vw[:, :2] - P[i, :2], axis=1) < 0.015
+                        if near.any():
+                            P[i, 2] = Vw[near, 2].max() + clear
+        out[t] = P.reshape(out[t].shape)
+    return out, dict(joints_moved=moved, joint_frames=int(T * J.shape[1]), max_push_cm=round(depth_max * 100, 2))
+
+
 def anchor_body(Jt, t, OBJ, queries, a):
     pts = Jt[TIPS + PALM]
     best, bd = None, a.attach_dist
@@ -594,7 +669,8 @@ def parse_args():
     p.add_argument('--fps', type=float, default=20.0)
     # table
     p.add_argument('--table_z', type=float, default=0.60)
-    p.add_argument('--table_radius', type=float, default=0.45)
+    p.add_argument('--table_radius', type=float, default=0.45, help='support disc radius when --table_fit fails or is off')
+    p.add_argument('--table_fit', type=int, default=1, help='1: support disc (centre, radius) measured from frame-0 depth')
     p.add_argument('--table_height', type=float, default=0.02)
     p.add_argument('--ring_in', type=int, default=10)
     p.add_argument('--ring_out', type=int, default=90)
@@ -617,6 +693,8 @@ def parse_args():
     p.add_argument('--wrist_cost', type=float, default=None,
                    help='E2S IK position cost of the wrist (hand_C_MC); NVIDIA default 0.2 (fingertips 1.0)')
     p.add_argument('--wrist_ori_cost', type=float, default=None, help='E2S IK orientation cost of the wrist (default 0.2)')
+    p.add_argument('--depenetrate', type=float, default=0.006,
+                   help='keep hand joint centres this far outside objects and above the table (m; 0 = off)')
     p.add_argument('--bone_norm', action='store_true', help='fix bone lengths to the episode median (normalize_bones)')
     p.add_argument('--hand_scale', type=float, default=1.0, help='with --bone_norm: multiply the median bone lengths')
     p.add_argument('--warmup', type=int, default=10, help='copies of frame 0 prepended for the IK, dropped after')
@@ -734,8 +812,16 @@ def main():
     obj_pos = OBJ[:, :, :3, 3]
     obj_wxyz = continuous(wxyz_from_R(OBJ[:, :, :3, :3]))
     log(f'object travel (cm): {dict(zip(names, np.round(np.linalg.norm(obj_pos - obj_pos[:1], axis=-1).max(0) * 100, 1).tolist()))}')
+    disc = (0.0, 0.0, a.table_radius)
+    if a.table_fit:
+        dm = table_disc(depth0, KR, T_tab, a.table_z)
+        if dm is not None:
+            reach = float((np.linalg.norm(obj_pos[0, :, :2] - dm[:2], axis=-1) + np.array(radius) * 0.5).max())
+            disc = (dm[0], dm[1], float(np.clip(max(dm[2], reach), 0.15, 0.6)))
+        log(f'table disc measured from frame-0 depth: centre ({disc[0]:.3f}, {disc[1]:.3f}) m, radius {disc[2]:.3f} m '
+            f'(was a {a.table_radius} m disc at the object centroid)')
     np.savez(f'{a.out}/table_frame.npz', T_table_from_world=T_tab, plane_n=n, plane_d=d, names=np.array(names),
-             object_z_shift=shifts, table_z=a.table_z)
+             object_z_shift=shifts, table_z=a.table_z, table_disc=np.array(disc))
     summary['table'] = dict(inlier_frac=inl_frac, rms_mm=rms * 1000, bottoms_cm=(h * 100).tolist(),
                             bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist())
 
@@ -772,6 +858,10 @@ def main():
             log(f'{s}: {n_valid}/{T} valid frames; invalid runs (start, end, from, anchor body): {notes}')
         if not np.isfinite(Js).all():
             raise SystemExit(f'non-finite {s} joints')
+        if a.depenetrate > 0 and hinfo[s]['mode'] == 'tracked':
+            Js, pen = depenetrate(Js, OBJ, queries, a.table_z, a.depenetrate, disc)
+            hinfo[s]['depenetrate'] = pen
+            log(f'{s}: depenetrate (clearance {a.depenetrate * 1000:.0f} mm): {pen}')
         R = hand_rotations(Js, s)
         J[s] = Js
         Q[s] = continuous(wxyz_from_R(R))
@@ -851,14 +941,15 @@ def Xform "support_surfaces"
         uniform token axis = "Z"
         double height = {hgt:.6f}
         color3f[] primvars:displayColor = [(0.6, 0.6, 0.6)]
-        double radius = {a.table_radius:.6f}
-        double3 xformOp:translate = (0, 0, {zc:.6f})
+        double radius = {disc[2]:.6f}
+        double3 xformOp:translate = ({disc[0]:.6f}, {disc[1]:.6f}, {zc:.6f})
         uniform token[] xformOpOrder = ["xformOp:translate"]
     }}
 }}
 ''')
-    far = float(np.linalg.norm(obj_pos[..., :2], axis=-1).max())
-    log(f'support USDA {usda} (objects reach {far:.3f} m from the table centre, radius {a.table_radius})')
+    far = float(np.linalg.norm(obj_pos[..., :2] - np.array(disc[:2]), axis=-1).max())
+    log(f'support USDA {usda} (objects reach {far:.3f} m from the table centre, radius {disc[2]:.3f})')
+    summary['table']['disc'] = list(disc)
     if far > a.table_radius - 0.05:
         log('WARNING: an object comes within 5 cm of the table edge; raise --table_radius')
 

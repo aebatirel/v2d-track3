@@ -271,6 +271,9 @@ def main():
     verts = verts - a.voxel - a.half + 0.5 * a.voxel               # back to object-frame coordinates
     import trimesh
     m = trimesh.Trimesh(verts, faces, process=True)
+    parts = m.split(only_watertight=False)                        # floating fragments (ep11 beige cup: 20 cm away)
+    if len(parts) > 1:
+        m = max(parts, key=lambda q: q.area)
     m.export(a.out.replace('.glb', '_full.glb'))
     if os.path.isdir(a.kit):
         sys.path.insert(0, a.kit)
