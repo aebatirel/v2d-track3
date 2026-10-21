@@ -746,3 +746,21 @@ not comparable to the leaderboard (eval average, spoon, white pot, hand-overs).
   the dustpan plate's edges; v3 without it: 0.953). Next: edge threshold 5 cm (v6).
 - `recon_mesh.py` now fuses several episodes of one object into one grid; checked: one episode gives an identical
   mesh to v5 (ep41, 13,258 vertices).
+
+### 2026-10-21 11:10 TRT: hard-episode A/B results, ep21 and ep24 (commit 6f2f98a; default vs `c` = E2S wrist cost 3.0)
+Sim vs mocap, our scorer (old) and the registered scorer with the public scans as our meshes:
+| ep | run | AUC old | AUC registered | SP | MP | MPPE | reference vs mocap | static floor |
+|---|---|---|---|---|---|---|---|---|
+| 21 (water can + blue cup, pouring) | perc2 | **0.826** | 0.825 | 1 | 1 | 2.1 cm | 0.985 | 0.359 |
+| 21 | perc2c | 0.793 | 0.828 | 1 | 1 | 2.5 cm | 0.985 | 0.359 |
+| 24 (planter stand, two boards) | perc2 | **0.235** | 0.236 | 0 | 0 | 14.3 cm | 0.844 | 0.232 |
+| 24 | perc2c | 0.167 | 0.152 | 0 | 0 | 15.9 cm | 0.844 | 0.177 |
+- ep21: the rollout lifts the pitcher and tilts it over the cup as in the video (`results/e2e/ep21_perc2_rollout.jpg`);
+  the robot loses ~0.16 AUC against the reference. Wrist cost 3.0 makes no clear difference (−0.03 old, +0.003
+  registered).
+- **ep24 fails**: in sim the two boards stay flat on the table; one hand hovers over a board and never lifts it
+  (`results/e2e/ep24_perc2_rollout.jpg`). Sim ≈ static floor. A thin flat board on a table is a hard grasp for the
+  policy in 250M steps. Its eval twin is episode 25 (same two boards). The `c` run's static floor differs (0.177 vs
+  0.232): the sim's frame-0 object poses differ between the two runs (settling at reset; to check).
+- Box ep24's rexec tunnel answered 502 the whole run, but the job finished and pushed (the store, not the tunnel, is
+  the result path).
