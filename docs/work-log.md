@@ -1079,3 +1079,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   not lifted. Box 57058719 pushed (`runs/20261021-auto24-966eb96`, 232 MB) and destroyed at 20:55 TRT.
 - **Hard-episode scores today (registered, our own meshes): ep18 0.396 (mc s42 attempt 1; 8-rollout range of that
   policy 0.13–0.41 vs mocap), ep24 0.232 (mcs s42).**
+
+### 2026-10-21 21:10 TRT — forensics, ideas and competitor research for the owner
+- `docs/forensics-2026-10-21.md`: measured standing, failure analysis by layer (architecture, embodiment, hand perception,
+  learning, objects, process), alternatives allowed by the rules, ranked ideas with falsification tests, the leaders, plan.
+- CPU test of NVIDIA's `sharpa_hands_primitive` (24 collision primitives per hand) on ep24 (separated reference, no policy,
+  soft wrists): board 1 tilt 2° / 5° / 13° at f1 / f5 / f10 vs 6° / 8° / 20° with the standard hands; survives to ~f20
+  (vs ~f10). ep18 unchanged. Run from the FlashCHORD dir (its embodiment yaml uses relative URDF paths).
+- `tools/manip_segments.py`: manipulation-type segmentation from our perception + hands (rest / carry / slide / lift / tool);
+  ep12 pick-carry-place, ep24 slide → lift → carry per board, ep18 sweeping slide/lift/carry cycles.
+- Research (background agent; `docs/research/competitors-2026-10-21.md`): leaderboard 15:25 UTC (verified) SoySauceChicken
+  0.848 (CD-O 0.065 cm), Zihao Guo 0.831 (SP 0.95). The two homepages the owner sent are other people with the same names;
+  SoySauceChicken = Duke (a student + Danyang Yan, Boyuan Chen's lab); "Zihao Guo" unidentified. Key finds: FlashDexRetarget
+  (2610.01849; same hand and RL algorithm; reported 86 % vs CHORD 50 % on Sharpa), Do as I Do (2606.19333, SPIDER sampling MPC
+  in MuJoCo Warp), Gen2Dex (2610.24392), extrinsic dexterity (2211.01500). Papers verified on arXiv; code repos not opened
+  (GitHub 403 from this session).
