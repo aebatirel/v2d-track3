@@ -8,7 +8,10 @@ literature review (section 5). Paths below are relative to `robotic_grounding/fl
 ## 1. Bottom line
 - **Nobody has shown that 250M steps are needed for our episodes.** NVIDIA calls the schedule "validated"
   (FCR/docs/configuration.md:13,31), meaning it works on their demos, not that it is the minimum. They ship no learning
-  curve or ablation. [V]
+  curve or ablation, and no paper we found measures where this kind of training plateaus (section 5). [V]
+- **250M is NVIDIA's 1.97B-step PPO schedule divided by 10**, plus a 50M frame-0 stage (recomputed exactly, section 5).
+  The schedule has survived one compression already. FlashSAC's own dexterous curves are still rising at 50M, so 50M
+  is too aggressive; 125M is untested. [V/H]
 - **Our setting is harder than the one it was validated on**, so the answer can go either way: our references play at
   twice NVIDIA's speed (section 3). [V/H]
 - **As the scripts stand, day 1 cannot answer the question.** Training runs with `logging.mode=disabled`, so no training
@@ -76,8 +79,40 @@ curriculum.thresholds=[9830400,17203200,24576000,31948800,39321600,46694400,5406
 - The evaluator accepts such a checkpoint: the saved curriculum only sets training stages, and evaluation forces VOC 0
   (`FC/training/checkpoint_metadata.py:420-439`, `FC/evaluation/harness.py:265-272`).
 
-## 5. Literature
-Pending (review running 2026-10-22).
+## 5. Where 250M comes from, and the literature
+**Origin of the number [V].** The first nine thresholds are NVIDIA's PPO reference schedule divided by 10:
+`configs/curriculum/reference.yaml` thresholds 2,000…14,000 iterations × 24 rollout steps
+(`configs/training/reference_ppo.yaml:4`) × 4,096 worlds ÷ 10 reproduce 19,660,800…137,625,600 exactly (recomputed
+here). The PPO recipe runs 20,000 iterations, 1.97B steps. "The validated 10x VOC schedule" in the YAML comment is
+therefore a PPO schedule compressed tenfold for FlashSAC, plus a 50M frame-0 stage. The G1 FlashSAC curriculum says
+the same of its own ("stage fractions exactly match the stable 20,000-iteration PPO recipe"). [H] A round factor of
+10 suggests NVIDIA stopped at the first compression that worked, not at a measured minimum. The schedule has already
+survived one compression; whether it survives another is the open question.
+
+**Literature** (background review 2026-10-22; claims not re-checked here are marked [R]):
+
+| Method | Setting | Steps or wall clock per sequence | Measured or budget | Source |
+|---|---|---|---|---|
+| CHORD | Isaac Lab, FlashSAC, 2,048 envs | ~2 h per sequence on one L40S | measured; no curves. Harder tasks need longer; "stable training requires the contact wrench reward to converge before decaying the VOC" [R] | arXiv 2607.00033 App. B, §4.1 |
+| FlashCHORD G1 body | 2,048 worlds | 350M | budget | `curriculum/recon_body_flash_sac.yaml:4` [V] |
+| FlashSAC benchmarks | 1,024 envs, 2 updates per collection | 50M | budget; curves measured. Cube reorientation still rising at 50M: Shadow 4,329 → 4,676 → 4,900 at 40.5 / 45.5 / 50M, Allegro 2,266 → 2,468 → 2,599 [V: mean of the rows in the repo's `results/stateRL_gpusim/FlashSAC.csv`] | arXiv 2604.04539 §5.1 |
+| DexMachina | Genesis, PPO, 12,000 envs | not given in the paper; CHORD reports ~10 h per task | adaptive VOC gate (below); no curves [R] | arXiv 2505.24853 |
+| ManipTrans | Isaac Gym, PPO, 4,096 envs | ~15 min per 60-frame clip after 1.5 days of imitator pretraining | measured [R] | arXiv 2503.21860 |
+| Human2Sim2Robot | Isaac Gym, PPO, 4,096 envs | 5–24 h per task | measured wall clock [R] | arXiv 2504.12609 App. E |
+| PhysHOI | Isaac Gym, 2,048 envs | 102M (GRAB), 307M (BallPlay) | budget [R] | arXiv 2312.04393 |
+| BeyondMimic | Isaac Lab, PPO, 4,096 envs, one motion per policy | failure-weighted start frames halve the iterations on an easy motion (2k vs 4k) and solve hard ones that otherwise fail | measured [R] | arXiv 2508.08241 |
+
+- **No source measures where CHORD or FlashCHORD performance plateaus.** 250M is a budget, not a point read off a
+  curve.
+- **The closest curves do not support going down to 50M.** FlashSAC's dexterous tasks still rise at 50M, about 98k
+  updates. Our recipe also reaches about 98k updates at 50M steps (8 updates per 4,096-world collection), though cube
+  reorientation is a different task from tracking. 125M (244k updates) is untested anywhere.
+- **Adaptive VOC decay is the only published alternative, with no measured saving.** In DexMachina's repo
+  defaults [R], VOC gains decay by × 0.8 only when every reward term's 30-epoch mean clears its threshold, the slope is
+  under 1e-3, 40 epochs have passed and episodes run nearly full length. A "dial-back" restores gains when episodes
+  shorten. CHORD's remark above supports gating on convergence rather than on step count.
+- **BeyondMimic's 2× comes from reset sampling, not VOC.** FlashCHORD samples reset frames uniformly
+  (`FC/lifecycle/reset.py`, note 01 C.7). Weighting resets toward frames where episodes fail is a separate [H] lever.
 
 ## 6. Proposed experiments
 Integrity: public episodes only; mocap is read only by `score_sim.py`. On eval episodes, any choice of checkpoint, seed
@@ -99,6 +134,15 @@ seeds, mean AUC against mocap drops by more than the seed-to-seed spread, or any
 - **Stage B, on boxes 2–3** (already in the runbook) plus episode 12: {250M, 125M} × seeds {42, 7} on episodes 12, 22
   and 27, whose tracking is clean (perception AUC 0.94–0.998), so robot error dominates. 12 runs, 6 × 2 h + 6 × 1 h =
   **18 GPU-h, about $9–29** [E], fewer boxes if two trainings per GPU work on day 1. Apply the H2 rule above.
+  - Optional third arm, 62.5M (thresholds × 0.25, rounded to multiples of 4,096): +3 GPU-h. It brackets the answer if
+    125M passes.
+  - Per episode, also record the floor: physical replay of the reference with no policy and no assist
+    (FlashCHORD `configs/replay.yaml`; note 09 tier I1), which shows how much RL adds.
+  - Check before running that the three episodes span different motions (one or two objects, slow or fast). The
+    review's fuller design (4 episodes × 3 seeds × 3 arms plus an adaptive arm, ~39 GPU-h) is the next step if the
+    result is borderline.
+- **Later, only if B is borderline:** a DexMachina-style adaptive gate (decay VOC when the reward plateaus). This needs
+  training-loop code in a wrapper; FlashCHORD's curriculum is fixed (`FC/lifecycle/curriculum.py`).
 
 ## 7. What it is worth [E]
 - Per policy: 250M ≈ 1.5–2 h; 125M ≈ 0.8–1 h.

@@ -70,6 +70,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 ## Training budget (2026-10-22): see `docs/research/notes/23-training-budget.md`
 - Analysis only, from the pinned FlashCHORD code; nothing run. The 250M-step schedule is "validated" by NVIDIA but not
   shown to be the minimum. 49 % of steps are assisted, 31 % unassisted, the last 20 % mostly eval-like frame-0 starts.
+- 250M is NVIDIA's 1.97B-step PPO schedule divided by 10, plus a 50M frame-0 stage (recomputed exactly). No paper
+  measures where this training plateaus; FlashSAC's own dexterous curves still rise at 50M, so 125M is the test.
 - Our references play at twice NVIDIA's speed (motion_speed 1.0 at 20 fps vs 0.5 at 30 fps), so we may need more steps,
   not fewer. The 20M tissue-box result (AUC 0.918) is weak evidence: that policy trained almost only at full assist.
 - **Day 1 as written cannot measure a learning curve:** `logging.mode=disabled` records no training metric, and
