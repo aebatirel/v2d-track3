@@ -1342,3 +1342,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   better at some frames (f168–176, f216–240: 5–10° vs 14–21°) and slightly worse at others (f144, f160).
 - Box I (`SUF=kri CR_ARGS="--rest_settle 1" FC_IMMEDIATE_FIRST_FRAME=0.25`, ep24 + ep18) vs F (ki): isolates rest
   settling; if both help, it is the combined recipe. Credit $35.86 at 03:20.
+
+### 04:00 TRT — box D done: primitive hand on ep18
+- **ep18 p (primitive-collision hand, base reference), 6 evaluations: 0.377 ± 0.021 (0.357–0.419)** vs base 0.345 ±
+  0.046 (+0.032, ~1 std); sim_vs_ref 0.336 vs 0.308. On ep24 the same change was −0.015. Mixed, small.
+- Box D finished its job at 00:51 UTC (exit 0, self-destroyed) between two result copies; its summaries were read
+  back from the HF store through box A (`hf download` on the box). The copier now polls every 3 min.
