@@ -1576,3 +1576,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   sweeper + pot episode weighting + watertight decimation; spoon reconstruction path (proxy objects); adversarial tests
   of the interaction gates; collision path (own convex pieces, CPU replay of ep24 end state) → global decision + port
   spec (`docs/mesh-v5-spec.md`) → critic. Outputs `scratchpad/interact/v5/`.
+
+### 14:55 TRT — leaderboard jump (owner: "the accuracy goal just got a huge jump")
+- `leaderboard.json` generated 2026-10-22 10:38 UTC (saved `docs/research/work/leaderboard-2026-10-22T1038Z.json`).
+  Track 3 leader now **richchentw: ADD-AUC 0.903, SP 1.00, MP 0.95, RPE 1.50 cm, MPPE 1.46 cm, CD-O 0.282 cm**
+  (2 submissions, last 2026-10-22 09:55 UTC). Then SoySauceChicken 0.848 (CD-O 0.065), Zihao Guo 0.831, SRL 0.694.
+  Reading: the leader's mesh CD-O is mediocre (ours ≈ 0.48 library) while every eval episode succeeds single-object
+  and 19/20 multi-object → the gap is in tracking/physics/policy success, not mesh polish.
