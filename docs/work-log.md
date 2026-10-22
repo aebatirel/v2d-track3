@@ -1376,3 +1376,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   so far (ep24 0.313 ± 0.011) but on one seed, within the ≈ 0.04 seed spread: not yet evidence.
 - `scratchpad store_peek.sh` reads a finished box's summaries from the store through a live box (its quoting failed
   the first time; done by hand).
+
+### 04:30 TRT — ep12 (control) with retargeting: better and tighter
+- **ep12 base (published mc), 6 evaluations: 0.725 ± 0.067 (0.581–0.777); k s42: 0.790 ± 0.023 (0.744–0.817), +0.066.**
+- Retargeting vs base over the four validation episodes (6 evaluations each): ep12 +0.066, ep24 +0.010 (two seeds),
+  ep18 −0.005 (two-seed mean), ep27 −0.031; mean ≈ +0.01. The consistent effect is a smaller rollout spread
+  (ep12 ±0.067 → ±0.023, ep24 ±0.055 → ±0.002–0.018): fewer bad draws. Box A done (self-destroys).
