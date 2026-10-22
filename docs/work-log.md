@@ -1386,3 +1386,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 ### 04:50 TRT — ep24 ki (retargeting + deployment-exact starts)
 - **ep24 ki s42, 6 evaluations: 0.318 ± 0.001 (0.317–0.319)** (final 250M) vs k 0.307 / 0.306, kq 0.313, base 0.297:
   best and tightest on ep24, +0.011 over k (within noise).
+
+### 05:10 TRT — ep12 ki (container restart in between: copier and monitor restarted, nothing lost)
+- **ep12 ki s42 (retargeting + deployment-exact starts), 6 evaluations: 0.763 ± 0.025 (0.727–0.797)** vs k 0.790 ±
+  0.023 (−0.027, within seed noise) and base 0.725 ± 0.067 (+0.038): the start fix does not visibly hurt ep12.
