@@ -1364,3 +1364,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **GPU speed (same recipe, 4,096 worlds):** RTX PRO 6000 **Max-Q** (300 W cap, drawing 269 W) 41.7k env steps/s
   (box F) vs **WS** (500 W, drawing 404 W) 55.1k (box C′): Max-Q = 76 % of WS. A 250M policy: Max-Q ≈ 100 min,
   WS ≈ 76 min; a Max-Q at $1.30/h costs about as much per policy as a WS at $1.71/h (≈ $2.2 per policy).
+
+### 04:10 TRT — ep18 k second seed
+- **ep18 k s43: 0.361 ± 0.038 (0.284–0.394)** (sweep chose 150M again); k s42 was 0.319 ± 0.042. Two-seed mean
+  0.340 vs base 0.345: no effect on ep18. **Seed-to-seed spread (≈ 0.04) is as large as most effects tonight**:
+  single-seed differences below ~0.05 are not evidence. Box C′ done (self-destroys).
