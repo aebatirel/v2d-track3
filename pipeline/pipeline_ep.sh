@@ -47,7 +47,7 @@ REFDIR=$R/processed/sequence_id=$SEQ/robot_name=sharpa_wave
 echo "[$(date +%T)] reference: $REFDIR"
 
 # 4) train (timing rule: fps 20 written in the parquet, motion_speed 1.0, sim=rl at 20 fps).
-#    Checkpoints every 5M env steps (policy_<step> + state_<step>); a rerun resumes from the newest state_ file
+#    Checkpoints every 10,000,384 env steps (policy_<step> + state_<step>); a rerun resumes from the newest state_ file
 #    (FlashCHORD training.resume; the replay buffer is not saved by default, so it refills after a resume).
 if ! ls $RUN/policy_*.safetensors > /dev/null 2>&1 || [ ! -e $RUN/.done ]; then
   LAST=$(ls -v $RUN/state_*.safetensors 2> /dev/null | tail -1); RESUME=()

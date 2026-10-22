@@ -249,3 +249,16 @@ Proposed:
 - the Vast key and the HF read token as cloud network secrets.
 
 Next: the owner checklist (runbook §3), then box 0 (smoke) and box 1 (day 1). Expected batch cost $14–16, ceiling $25.
+
+2026-10-22: Owner asked whether any part would benefit from a Rust rewrite (answer: no; GPU training dominates, CPU
+Python is glue or already in C++), then how to make the project cheaper (answer in chat: measure whether 250M steps are
+needed, lean training-only boxes, several policies per box, gate references, cache compiled kernels), then asked to
+analyse the 250M steps. Read FlashCHORD at the pin in a fresh clone (upstream main 7eb9721 has identical training
+configs); a background agent reviewed the literature. Wrote docs/research/notes/23-training-budget.md. Findings: the
+schedule is validated but not shown minimal; our references play 2x faster than NVIDIA's; training metrics are not
+recorded with logging.mode=disabled and push-run keeps only the newest policy, so day 1 as written gives no learning
+curve; checkpoint cadence is 10,000,384 steps, not 5M (corrected in STATUS, runbook, pipeline_ep.sh comment). A half
+schedule (125M) override was checked with Hydra compose against the pinned configs (config only, nothing trained).
+Proposed: stage A on day 1 (+0.5-1.5 GPU-h), stage B A/B {250M,125M} x 2 seeds on eps 12/22/27 (18 GPU-h, ~$9-29).
+Nothing rented; no code changes to the pipeline yet beyond the comment.
+

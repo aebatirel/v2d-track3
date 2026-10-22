@@ -11,8 +11,8 @@ Written 2026-10-20. Every script named here is in the repo. They are **written b
   minute with no token.
 - **Image.** `vastai/pytorch:2.11.0-cu130-cuda-13.2-mini-py313-2026-10-16` matches the validated Colab runtime
   (torch 2.11+cu130, Python 3.13). It ships nvcc but not the CUDA library headers; `setup.sh` now installs those.
-- **Resume.** FlashCHORD at the evaluator pin can resume. It writes `policy_<step>` and `state_<step>` every 5M env
-  steps (about 2 min) and accepts `training.resume=true training.checkpoint_path=<state file>`; the replay buffer is
+- **Resume.** FlashCHORD at the evaluator pin can resume. It writes `policy_<step>` and `state_<step>` every
+  10,000,384 env steps (about 3.7 min; the Sharpa recipe overrides the 5M default, note 23) and accepts `training.resume=true training.checkpoint_path=<state file>`; the replay buffer is
   not saved by default. `pipeline_ep.sh` now resumes on its own, so interruptible (cheaper) machines are workable.
 - **Vast API.** Endpoints and fields come from the API reference:
   - create: `PUT /api/v0/asks/{offer}/` with `image`, `disk`, `env`, `onstart` (≤ 4048 characters), `label`, `price`;
@@ -132,7 +132,7 @@ ops/vast.sh show / logs / ssh; HF store  ◀──── labels, logs, pushed re
   - a new or changed file under the output paths; or
   - GPU utilisation ≥ 10 %.
 
-  Training prints progress at every 1 % (about once a minute) and saves every 5M steps, so a healthy job is never
+  Training prints progress at every 1 % (about once a minute) and saves every 10M steps, so a healthy job is never
   idle for that long.
 - **HOLD.** `echo $(( $(date +%s) + 3600 )) > /content/HOLD` (sent over SSH) keeps the box for an hour after its job
   ends, for debugging. The watchdog destroys it when HOLD expires.

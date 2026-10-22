@@ -1,4 +1,4 @@
-# Status (2026-10-20)
+# Status (2026-10-22)
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
@@ -55,8 +55,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   - `pipeline_ep.sh` now defaults to the validated **perc2** (it ran the unvalidated perc4 before), keeps one output
     folder per variant and seed, supports `PERC=oracle`, and resumes training from the newest `state_` checkpoint.
 - **Found today:**
-  - FlashCHORD resumes (`training.resume=true training.checkpoint_path=<state file>`) and checkpoints every 5M steps;
-    the replay buffer is not saved by default.
+  - FlashCHORD resumes (`training.resume=true training.checkpoint_path=<state file>`) and checkpoints every 10,000,384 steps
+    (the Sharpa recipe overrides the 5M default; corrected 2026-10-22, note 23); the replay buffer is not saved by default.
   - The Vast image `vastai/pytorch:2.11.0-cu130-cuda-13.2-mini-py313-2026-10-16` matches Colab's torch, CUDA and
     Python.
   - PRO 6000 WS on demand costs $1.45–1.65/h all-in (market on 2026-10-20 afternoon); interruptible from $0.54/h.
@@ -66,6 +66,17 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   - Vast key and HF read token → network secrets in the Claude cloud environment.
   - HF write token and GitHub read-only token → Vast account env vars (narrow scope, expiring).
   - Owner checklist: runbook §3.
+
+## Training budget (2026-10-22): see `docs/research/notes/23-training-budget.md`
+- Analysis only, from the pinned FlashCHORD code; nothing run. The 250M-step schedule is "validated" by NVIDIA but not
+  shown to be the minimum. 49 % of steps are assisted, 31 % unassisted, the last 20 % mostly eval-like frame-0 starts.
+- Our references play at twice NVIDIA's speed (motion_speed 1.0 at 20 fps vs 0.5 at 30 fps), so we may need more steps,
+  not fewer. The 20M tissue-box result (AUC 0.918) is weak evidence: that policy trained almost only at full assist.
+- **Day 1 as written cannot measure a learning curve:** `logging.mode=disabled` records no training metric, and
+  `store.sh push-run` keeps only the newest policy. Fixes are listed in note 23 §8 (not made yet).
+- A half schedule (all thresholds × 0.5, 125M) composes as a Hydra override (config check only). Proposed A/B:
+  {250M, 125M} × 2 seeds on public eps 12, 22, 27 (18 GPU-h, about $9–29). If it holds, a 20-policy cycle drops from
+  about 40 to 20 GPU-h.
 
 ## Written, not run yet (first things to test)
 - `hands_mp.py` → `mkref.py` → `pipeline_ep.sh` → `score_sim.py`. `README_ref.md` lists the checks to do first:
