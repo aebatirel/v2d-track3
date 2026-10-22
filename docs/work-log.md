@@ -1538,3 +1538,25 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (`runs/20261021-auto18-966eb96/perc2m/`) and ep24 (`runs/20261021-auto24-966eb96/perc2m/`, also `autohard`); the
   other public episodes only have scan-templated tracks (`scratchpad/loc/perc`). So the four validation episodes can be
   re-fused per episode from their own video along own-mesh tracks — the same procedure planned for eval episodes.
+
+### 13:30 TRT — interaction-mesh design workflow done (critic re-running after a usage-limit stop)
+- `wf_8a372398-57b`: census, defects, code map, research, 3 designs, judge. Outputs in
+  `docs/research/work/interaction-meshes-2026-10-22/` (judged plan, three designs, measurements JSON, prototype code).
+- **Judge's verdict:** observation-first fusion is the backbone (weighted 42 vs XCarve 36, min-cut 30); the owner's
+  interaction idea becomes its step S3 (XCarve rules R1 closing-loses, R2 insertion split, R3 evidence ratio; min-cut's
+  track-error gates), plus an automatic support rule (S4) and **collision geometry we control (S5, mandatory)**.
+- Key measurements [M = measured, D = diagnostic with scans]: 51 % of the 2,940 cm³ library excess lies within 4 mm of
+  the scan surface (thickened walls); interaction carving reaches ≈ 3 %. Kit CD-O proxy (library mean 0.478 cm;
+  leaders 0.313 / 0.065): observation-first lid 0.415 → 0.368–0.385, dust pan 0.333 → 0.251, board 1 0.223 → 0.189,
+  pot regresses 0.440 → 0.727 (holes; a GT-free evidence gate catches it → fallback). Stereo cannot see the board slot
+  (depth evidence in the slot looks like wood); the RGB silhouette does (89 % of slot voxels vs 1 % of wood) → slot
+  fill 0.97/1.0 → 0.00/0.05, assembled overlap 10.6 → 0.9–1.0 cm³ (scan-on-scan floor 1.4). **FlashCHORD's CoACD
+  (threshold 0.05) refills the slot: hull overlap 16.9–17.0 cm³ for both old and new boards** (0.01 still 8.7) → a
+  collision-geometry stage is required for any slot fix to reach the simulator. XCarve on real ep24: slot fill
+  80/52 % → 11/0 %; its support rule reproduced the v3 sweeper and v4 board-2 patches automatically (2.2°, 1.1°).
+  Min-cut made the lid's CD-O worse (0.565 → 0.726). Per-frame `below_carve` erased real board-2 wood.
+- Plan (CPU unless noted): S0 prerequisites (svd fix, --save_grid, G0 compliance guard, CD-O proxy tool) → S1
+  observation-first core (2 mm ROI grid, 4→12 mm truncation cascade, adj closing, continuous marching cubes, gates with
+  per-object fallback) → S2 silhouette free space → S3 interaction exclusion → S4 support rule → S5 own collision
+  pieces → S6 library_v5 (needs perc2m re-tracking of public episodes, GPU ≈ $3–6) → S7 per-eval re-fusion + spoon,
+  rehearsed on public twins → S8 GPU A/B (owner: 3–4 public episodes).
