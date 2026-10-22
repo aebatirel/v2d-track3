@@ -1,5 +1,5 @@
 """Per-start-frame cleanliness map (CPU, 1 world, real soft wrists, zero policy action, explicit reset = no settling,
-as in the official evaluation). For start frames f = 0, STEP, 2*STEP, ...: reset to f, step K times, report the worst
+as in the official evaluation; object assist VOC, default 0 like the evaluation). For start frames f = 0, STEP, 2*STEP, ...: reset to f, step K times, report the worst
 object deviation from the reference (cm / deg), whether the episode terminated, and each object's height change
 after the first step (dz cm: about -1.2 = free fall during a carry, + = pushed up). Usage: PARQUET STEP K"""
 import os, sys, numpy as np, warp as wp, pyarrow.parquet as pq
@@ -25,6 +25,7 @@ with wp.ScopedDevice('cpu'):
     st = setup_scene(parquet=sys.argv[1], control_fps=env_config.sim.fps, motion_speed=1.0, embodiment=emb, collision=col,
                      world_count=1, include_support=True, decompose_objects=True)
     env = RLEnv(st.scene, st.reference, config=env_config); m = st.scene.model
+    env.set_voc_scale(float(os.environ.get('VOC', '0')))     # object assist: 0 as in the official evaluation (a fresh env starts at 1)
     labels = list(getattr(m, 'body_label', None) or getattr(m, 'body_key', []))
     objs = [next(i for i, l in enumerate(labels) if n in l) for n in names]
     print('frame  ' + '  '.join(f'{n[:14]:>22s}' for n in names) + '   survived')

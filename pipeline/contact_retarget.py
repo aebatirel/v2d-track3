@@ -150,7 +150,7 @@ class HullSDF:
         if not self.planes:
             raise SystemExit(f'no collision pieces for body {body}')
         # exact plane tests per query cost ~9 s per solved frame: tabulate once on a grid and interpolate
-        allv = np.vstack(allv); self.verts = allv; lo, hi = allv.min(0) - pad, allv.max(0) + pad
+        self.pieces = allv; allv = np.vstack(allv); self.verts = allv; lo, hi = allv.min(0) - pad, allv.max(0) + pad
         n = np.minimum(np.ceil((hi - lo) / voxel).astype(int) + 1, cap)
         axes = [np.linspace(lo[k], hi[k], n[k]) for k in range(3)]
         G = np.stack(np.meshgrid(*axes, indexing='ij'), -1).reshape(-1, 3)
@@ -224,17 +224,18 @@ class MjPen:
             out.setdefault(b, []).append(Rb.inv().apply(W.T - bq[b, :3]))
         return {b: np.vstack(v) for b, v in out.items()}
 
-    def frame(self, f, dz=None):
-        """Scene at reference frame f; DZ (per object, m) moves the objects vertically (rest_settle)."""
+    def frame(self, f, dpos=None, quat=None):
+        """Scene at reference frame f; DPOS (per object, m) shifts the objects and QUAT (per object, xyzw) replaces their
+        orientation (rest_settle)."""
         self.env.reset(frame_id=f); self.base = self.env.state_0.joint_q.numpy().copy()
-        if dz is not None:
-            for qz, d in zip(self.obj_qz, dz):
-                self.base[qz] += d
+        if dpos is not None:
+            for q0, d, q in zip(self.obj_q0, dpos, quat):
+                self.base[q0:q0 + 3] += d; self.base[q0 + 3:q0 + 7] = q
 
     def bind_objects(self, obj_body):
-        """joint_q index of each object's root z (free joint whose child is the object body)."""
+        """joint_q start of each object's free joint (p xyz, quat xyzw; the joint whose child is the object body)."""
         child = self.m.joint_child.numpy(); qs = self.m.joint_q_start.numpy()
-        self.obj_qz = [int(qs[int(np.nonzero(child == b)[0][0])]) + 2 for b in obj_body]
+        self.obj_q0 = [int(qs[int(np.nonzero(child == b)[0][0])]) for b in obj_body]
 
     def __call__(self, q58, side):
         q = self.base.copy(); q[:58] = q58; self.state.joint_q.assign(q.astype(np.float32))
@@ -273,7 +274,34 @@ def lm_solve(res, x0, h, iters=8, lo=None, hi=None):
     return x, c
 
 
-def rest_settle(OP, OR, J, sdfs, ztop, hold=0.03, gap_max=0.05, lam=4.0, v_static=0.004, w_static=2.0):
+def stable_ups(sdf, margin=0.002):
+    """Mesh-frame 'up' directions of the object's stable resting poses on a plane: faces of the convex hull of its
+    collision pieces that contain the projection of the centre of mass (volume-weighted centroid of the pieces) with
+    MARGIN to spare; up = minus the face's outward normal (quasi-static, scipy only)."""
+    from scipy.spatial import ConvexHull, Delaunay
+    vol, cen = [], []
+    for P in sdf.pieces:
+        h = ConvexHull(P); vol.append(h.volume); cen.append(P[h.vertices].mean(0))
+    vol = np.array(vol); com = (np.array(cen) * vol[:, None]).sum(0) / vol.sum()
+    H = ConvexHull(sdf.verts); V = sdf.verts[H.vertices]; ups = []
+    for n in np.unique(np.round(H.equations, 4), axis=0):
+        nn, d = n[:3] / np.linalg.norm(n[:3]), n[3] / np.linalg.norm(n[:3])
+        face = V[np.abs(V @ nn + d) < 1e-3]
+        if len(face) < 3:
+            continue
+        e1 = np.cross(nn, [1.0, 0, 0] if abs(nn[0]) < 0.9 else [0, 1.0, 0]); e1 /= np.linalg.norm(e1); e2 = np.cross(nn, e1)
+        f2 = np.c_[face @ e1, face @ e2]; c2 = np.array([com @ e1, com @ e2])
+        try:
+            fh = ConvexHull(f2)
+        except Exception:
+            continue
+        if np.max(fh.equations[:, :2] @ c2 + fh.equations[:, 2]) < -margin:      # inside with margin
+            if not any(np.dot(-nn, u) > 0.999 for u in ups):
+                ups.append(-nn)
+    return np.array(ups)
+
+
+def rest_settle(OP, OR, J, sdfs, ztop, hold=0.03, gap_max=0.05, lam=4.0, v_static=0.004, w_static=2.0, max_tilt=15.0):
     """Objects that are not being moved rest on the table (2026-10-22). Evidence: ep24's boards float 2-4 cm above the
     table in our reference while they stand or lie still (standing board centre +8.9 cm vs +6.5 cm in mocap, flat board
     +1.5-2.2 cm vs 0), also while a hand steadies them (fingertips 1-3 cm away), and every rollout fails where a
@@ -281,9 +309,14 @@ def rest_settle(OP, OR, J, sdfs, ztop, hold=0.03, gap_max=0.05, lam=4.0, v_stati
     top, not resting on another object, and either no human fingertip within HOLD of it or static (speed below
     V_STATIC m/frame and W_STATIC deg/frame over +-2 frames: steadied, not lifted or slid) -> the vertical shift that
     puts it on the table; shifts are smoothed in time (anchored least squares; other frames pull to zero). Uses only
-    our perception and hands (no ground truth). Returns new positions, stats."""
+    our perception and hands (no ground truth).
+    Orientation (2026-10-22, ep18): the perceived pose can stand an object on an edge (sweeper tilted ~6 deg from its own
+    upright, centre of mass 3 cm outside a 0.3 cm^2 footprint: with the object assist off it falls in 5 steps, mocap
+    has it standing). In those frames the object is also turned (minimal rotation, heading kept) onto the nearest of
+    its stable resting poses when that is within MAX_TILT deg; rotations are smoothed like the shifts.
+    Returns new positions, new orientations (lists of Rotation), stats."""
     from robot_clearance import settle
-    T, B = OP.shape[:2]; OP = OP.copy(); stats = []
+    T, B = OP.shape[:2]; OP = OP.copy(); OR = [list(r) for r in OR]; stats = []
     tips = np.concatenate([J[s][:, list(MANO_TIPS)] for s in J], 1)          # (T, 10, 3) human fingertips
     for j in range(B):
         need = np.zeros(T); free = np.zeros(T, bool); V = sdfs[j].verts
@@ -300,11 +333,24 @@ def rest_settle(OP, OR, J, sdfs, ztop, hold=0.03, gap_max=0.05, lam=4.0, v_stati
             low = W[W[:, 2] < zmin + 0.005]
             if any((sdfs[k](OR[k][f].inv().apply(low - OP[f, k])) < 0.01).any() for k in range(B) if k != j):
                 continue                                               # resting on another object
-            need[f] = -gap; free[f] = True
+            free[f] = True
+        tilt = np.zeros(T)
+        if max_tilt > 0 and free.any():                            # turn onto the nearest stable resting pose
+            ups = stable_ups(sdfs[j]); qv = np.zeros((T, 3))
+            for f in np.nonzero(free)[0]:
+                w = OR[j][f].apply(ups); ang = np.degrees(np.arccos(np.clip(w[:, 2], -1, 1))); k = int(np.argmin(ang))
+                ax = np.cross(w[k], [0.0, 0.0, 1.0]); n = np.linalg.norm(ax)
+                if ang[k] < max_tilt and n > 1e-6:
+                    qv[f] = ax / n * np.radians(ang[k]); tilt[f] = ang[k]
+            qs = settle(qv, lam); OR[j] = [Rot.from_rotvec(qs[f]) * OR[j][f] for f in range(T)]
+        for f in np.nonzero(free)[0]:                               # then onto the table
+            need[f] = ztop - (OR[j][f].apply(V) + OP[f, j])[:, 2].min()
         d = settle(need[:, None].repeat(3, 1), lam)[:, 0]; OP[:, j, 2] += d     # settle() works on (T, 3)
         stats.append(dict(free_frames=int(free.sum()), median_gap_cm=round(float(np.median(-need[free]) * 100), 2) if free.any() else None,
-                          max_shift_cm=round(float(np.abs(d).max() * 100), 2)))
-    return OP, stats
+                          max_shift_cm=round(float(np.abs(d).max() * 100), 2),
+                          median_turn_deg=round(float(np.median(tilt[free])), 2) if free.any() else None,
+                          max_turn_deg=round(float(tilt.max()), 2)))
+    return OP, OR, stats
 
 
 def parse_support(usda):
@@ -344,7 +390,7 @@ def main():
     rs_stats = None
     if a.rest_settle:
         Jall = {s: np.array(t.column(f'mano_{s}_joints')[0].as_py(), float).reshape(T, 21, 3) for s in SIDES}
-        OP0 = OP.copy(); OP, rs_stats = rest_settle(OP, OR, Jall, sdfs, ztop)
+        OP0 = OP.copy(); OP, OR, rs_stats = rest_settle(OP, OR, Jall, sdfs, ztop)
         if mjp is not None:
             mjp.bind_objects(obj_body)
         print(f'[{time.time() - t0:.0f}s] rest settle: ' + json.dumps(dict(zip(names, rs_stats))), flush=True)
@@ -430,7 +476,10 @@ def main():
 
         for f in rng:
             if mjp is not None:
-                mjp.frame(f, None if rs_stats is None else OP[f, :, 2] - OP0[f, :, 2])
+                if rs_stats is None:
+                    mjp.frame(f)
+                else:
+                    mjp.frame(f, OP[f] - OP0[f], [OR[j][f].as_quat() for j in range(len(names))])
             q0 = q_of(f, prev * 0.8); pen = penetration(f, fk(q0), q0); has_c = (tgt_id[f] >= 0).any()
             qe = q_of(f, np.zeros(28)); pen_before.append(float(penetration(f, fk(qe), qe).max()))
             if not has_c and pen.max() <= a.margin:
@@ -497,7 +546,9 @@ def main():
             i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
         stats[side]['frames_rigidly_attached'] = f'{len(parent)}/{len(fnames)}'
     if rs_stats is not None:                                       # the settled object positions
-        for c, v in (('object_body_position', OP), ('object_root_position', OP[:, 0])):
+        WX = np.array([[OR[j][f].as_quat()[[3, 0, 1, 2]] for j in range(len(names))] for f in range(T)])
+        for c, v in (('object_body_position', OP), ('object_root_position', OP[:, 0]), ('object_body_wxyz', WX),
+                     ('object_root_axis_angle', np.array([OR[0][f].as_rotvec() for f in range(T)]))):
             i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
         stats['rest_settle'] = dict(zip(names, rs_stats))
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True); pq.write_table(out, a.out)
