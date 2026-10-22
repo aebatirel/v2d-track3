@@ -1583,3 +1583,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (2 submissions, last 2026-10-22 09:55 UTC). Then SoySauceChicken 0.848 (CD-O 0.065), Zihao Guo 0.831, SRL 0.694.
   Reading: the leader's mesh CD-O is mediocre (ours ≈ 0.48 library) while every eval episode succeeds single-object
   and 19/20 multi-object → the gap is in tracking/physics/policy success, not mesh polish.
+
+### 16:45 TRT — ep24 with the organisers' meshes: is ep24 about the mesh? (owner added $10)
+- Owner: "do we get good score with pre mesh for the ep 24 … test that before we see if its really about the mesh.
+  I added 10 bucks". Credit $12.90.
+- `hard_ab.sh ASSET_SRC=public` (commit 72ecb2f): the simulator gets the organisers' public URDFs, scans and their
+  separate collision meshes (`/content/t3/urdf`, `/content/t3/mesh`); everything else as our best ep24 run k s42
+  (0.307 ± 0.002): same base reference (`20261021-auto24-966eb96` mcs: perc2m tracks, E2S + hand separation), contact
+  retargeting, 250M steps, sweep 0.4/0.6/0.8, 6 evaluations; scored registered against the scans (≈ identity) and
+  with our meshes. Caveat: our tracks/reference are in our mesh frame, ≈ the scan frame within the registration offset
+  (boards 2.8–3.7 mm ADD_static, critic N2).
+- CPU pre-check (`scratchpad/pubtest/`): scene builds with the public assets; contact retargeting pen p95 left
+  22.9 → 3.4 mm, right 18.2 → 2.9 mm (ours: 20.1 → 6.0 overall).
+- Box: instance 57218943, RTX PRO 6000 WS $1.644/h (Virginia), run `20261022-r5ks-72ecb2f`, job
+  `export ASSET_SRC=public SUF=ks BASE_EVAL=0 PAIRS="24:20261021-auto24-966eb96:mcs"; SEED=42 bash ops/jobs/hard_ab.sh;
+  SEED=43 bash ops/jobs/hard_ab.sh`. Expected ≈ 4–4.5 h ≈ $7. Falsification: if public meshes do not lift ep24 clearly
+  above 0.31 (both seeds), the ep24 limit is not the mesh (learning / reference).
+- Also answered the owner on ADD-AUC (kit `AUC.py`): per frame and object, mean distance of scan surface points at our
+  pose vs mocap pose (symmetry-aware), after registering our mesh to the scan and one rigid alignment of the whole
+  episode at frame 0; per-frame score 1.0 below 1 cm, −0.125 per further cm, 0 at ≥ 9 cm; mean over frames, objects,
+  episodes.
