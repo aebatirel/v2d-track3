@@ -1828,3 +1828,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   fine). ep12 at 39k env steps/s (ETA 1 h 46 min; the stored ep12 base ran 22.7k/s, ep18 58k/s: the dish rack is the
   slow part, not the patch; this card's power limit is 400 W). Revised cost: A/B ≈ $12, ep35 retrain ≈ $2 →
   ≈ $14 of $17.98.
+
+### 02:30 TRT — detection-rule replay tooling (CPU; spoon detection fix, step 1 of the VLM review's plan)
+- `pipeline/perc2.py`: frame-k detection is now a function; every run dumps `det_f<k>.npz` (all SAM2 proposals at half
+  resolution, DINOv2 similarity per object before the size gate, intensity, 3-D extent raw / eroded, centroid, depth,
+  image; `DET_DUMP=0` off; wrapped so a dump error cannot stop perception). `DET_ONLY=1 DET_FRAMES=0,a,b`: detection
+  only (depth for those frames, no VO / tracking). Frame-0 choice unchanged (same scores, gate, compact prior).
+  Not run on a GPU yet; pyflakes clean apart from the pre-existing `del dino` false positive.
+- `tools/det_score.py` (diagnostic, public only): reference label maps = public scans at the mocap pose in perc2's
+  rectified camera (half resolution), mocap→perception world by one Kabsch fit to our own tracks (ep12 / ep27 residual
+  0.39 cm median); visual check `scratchpad/det/lab_check.jpg` aligns with cup, rack and pot. Hit = ≥ 50 % of the
+  chosen proposal's pixels on the right object.
+- `tools/det_replay.py`: replays the choice from dumps under a grid fixed before replay (size term λ ∈ {0, .05, .1,
+  .2}, dead zone, raw / eroded extent, gate 0.3 / 0.5, part-of merge on / off; 52 variants) with a fixed selection
+  rule (no regression vs R0 on public instances, then most hits, ties → simplest). R0 reproduces the pipeline.
+- Synthetic ep3-like test (pot body + separate handle + spoon): R0 gives the spoon the handle; merge gives pot = body,
+  spoon = spoon. Found and fixed in the test: without an order the spoon absorbed the pot body (most confident choice
+  first, confirmed choices protected); a 0.5× gate drops a pot whose handle is split off (to be measured on public).
+- `ops/jobs/det_dump.sh`: dumps for all 20 public episodes at frames 0 and the quarter points (≈ 80 frames,
+  ≈ 1 h GPU, ≈ $1.5–2 incl. setup [E]); `store.sh push-run` now also uploads `det/` and skips all `depths_*` caches.

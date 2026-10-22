@@ -11,6 +11,11 @@ Scoring: official kit Track 3 metric functions vs mocap, for world variants
   'vo' (camera from PnP) and 'anchor:<obj>' (that object assumed static; analysis only).
 Env: EP, FS_SCALE (0.5), OUT, SPLIT (public|eval), MESH_DIR (track with our meshes; score with
 score_registered.py then, this block's unregistered score assumes the scan frame). Outputs result.json, poses.npz, masks_f0.jpg, vo.json in OUT.
+Detection dump (2026-10-23): det_f<k>.npz in OUT with every SAM2 proposal of the detected frame (masks at half
+resolution, DINOv2 similarity per object before the size gate, intensity, 3-D extent raw and on an eroded mask, 3-D
+centroid) plus half-resolution depth and image, for offline replay of detection rules (tools/det_replay.py).
+DET_DUMP=0 turns it off. DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
+depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
 """
 import os, sys, json, time, importlib
 import numpy as np, cv2, torch, trimesh
@@ -76,10 +81,17 @@ rc = [cv2.remap(fc[i], MC[0], MC[1], cv2.INTER_LINEAR) for i in range(N)]
 rb = [cv2.remap(fb[i], MB[0], MB[1], cv2.INTER_LINEAR) for i in range(N)]
 rgb = lambda g: np.repeat(g[..., None], 3, 2)
 log('frames c/b/rows', len(fc), len(fb), NROWS, 'focal', round(FR, 1), 'baseline', round(BASE, 4))
+DET_ONLY = os.environ.get('DET_ONLY', '0') == '1'
+DET_FRAMES = [int(x) for x in os.environ.get('DET_FRAMES', '0').split(',')] if DET_ONLY else [0]
+DET_FRAMES = [k for k in DET_FRAMES if 0 <= k < N]
 
 # ---------- FoundationStereo depth (cached) ----------
 DCACHE = f'{OUT}/depths_fs{FS_SCALE}.npy'
-if os.path.exists(DCACHE):
+if DET_ONLY:
+    DCACHE = f'{OUT}/depths_fs{FS_SCALE}_det.npz'
+if DET_ONLY and os.path.exists(DCACHE):
+    depths = {int(k[1:]): v for k, v in np.load(DCACHE).items()}
+elif not DET_ONLY and os.path.exists(DCACHE):
     depths = list(np.load(DCACHE))
 else:
     sys.path.insert(0, '/content/FoundationStereo')
@@ -91,9 +103,9 @@ else:
     cfg['valid_iters'] = 32; cfg['hiera'] = 0
     cfg['vit_size'] = cfg.get('vit_size', 'vitl')
     fs = FoundationStereo(cfg); fs.load_state_dict(torch.load(CK, weights_only=False)['model']); fs.cuda().eval()
-    depths = []
+    depths = {} if DET_ONLY else []
     with torch.no_grad():
-        for i in range(N):
+        for i in (DET_FRAMES if DET_ONLY else range(N)):
             a = cv2.resize(rc[i], None, fx=FS_SCALE, fy=FS_SCALE); b = cv2.resize(rb[i], None, fx=FS_SCALE, fy=FS_SCALE)
             t0 = torch.as_tensor(rgb(a)).cuda().float()[None].permute(0, 3, 1, 2)
             t1 = torch.as_tensor(rgb(b)).cuda().float()[None].permute(0, 3, 1, 2)
@@ -104,8 +116,15 @@ else:
             disp = cv2.resize(disp, RSZ, interpolation=cv2.INTER_LINEAR) / FS_SCALE
             z = np.where(disp > 1, FR * BASE / np.maximum(disp, 1e-6), 0).astype(np.float32)
             z[(z < 0.15) | (z > 2.0)] = 0
-            depths.append(z)
-    np.save(DCACHE, np.stack(depths).astype(np.float32)); del fs; torch.cuda.empty_cache()
+            if DET_ONLY:
+                depths[i] = z
+            else:
+                depths.append(z)
+    if DET_ONLY:
+        np.savez(DCACHE, **{f'f{k}': v for k, v in depths.items()})
+    else:
+        np.save(DCACHE, np.stack(depths).astype(np.float32))
+    del fs; torch.cuda.empty_cache()
     for k in [k for k, m in list(sys.modules.items()) if (getattr(m, '__file__', None) or '').startswith('/content/FoundationStereo')]:
         del sys.modules[k]
     sys.path.remove('/content/FoundationStereo')
@@ -135,7 +154,7 @@ def pnp(kf, i):
     return M, len(inl)                                                     # cam_i <- cam_kf
 KF_MIN = int(os.environ.get('KF_MIN', 250))
 W_C = [np.eye(4)]; kf = 0; kfs = [0]; ninl = [0]; fails = 0
-for i in range(1, N):
+for i in range(1, 1 if DET_ONLY else N):                    # DET_ONLY: no camera track
     M, n = pnp(kf, i)
     if n < KF_MIN and i - 1 > kf:
         kf = i - 1; kfs.append(kf); M, n = pnp(kf, i)
@@ -143,8 +162,9 @@ for i in range(1, N):
         fails += 1; W_C.append(W_C[-1].copy()); ninl.append(0); continue
     W_C.append(W_C[kf] @ np.linalg.inv(M)); ninl.append(n)
 W_C = np.stack(W_C)
-log('vo keyframes', len(kfs), 'fails', fails, 'median inliers', int(np.median(ninl[1:])), 'min', int(np.min(ninl[1:])))
-json.dump({'keyframes': kfs, 'inliers': ninl, 'fails': fails}, open(f'{OUT}/vo.json', 'w'))
+if not DET_ONLY:
+    log('vo keyframes', len(kfs), 'fails', fails, 'median inliers', int(np.median(ninl[1:])), 'min', int(np.min(ninl[1:])))
+    json.dump({'keyframes': kfs, 'inliers': ninl, 'fails': fails}, open(f'{OUT}/vo.json', 'w'))
 
 # ---------- FoundationPose setup (gray textures: the ego stereo cameras are monochrome) ----------
 os.chdir('/content/FoundationPose'); sys.path.insert(0, '/content/FoundationPose')
@@ -168,12 +188,10 @@ from sam2.build_sam import build_sam2
 from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 gen = SAM2AutomaticMaskGenerator(build_sam2('configs/sam2.1/sam2.1_hiera_l.yaml', '/content/ckpt/sam2.1_hiera_large.pt', device='cuda'),
                                  points_per_side=32, pred_iou_thresh=0.7, stability_score_thresh=0.85)
-img0 = rgb(rc[0]); props = [m['segmentation'] for m in gen.generate(img0) if m['area'] >= 400]
-del gen; torch.cuda.empty_cache()
-def extent3d(m):
-    v, u = np.nonzero(m & (depths[0] > 0))
+def extent3d(m, dep):
+    v, u = np.nonzero(m & (dep > 0))
     if len(v) < 30: return 0.0
-    z = depths[0][v, u]; X = np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1)
+    z = dep[v, u]; X = np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1)
     X = X[::max(1, len(X) // 5000)]; X = X - np.median(X, 0)
     pr = X @ np.linalg.svd(X, full_matrices=False)[2].T
     return float((np.percentile(pr, 97, 0) - np.percentile(pr, 3, 0)).max())
@@ -205,39 +223,71 @@ def templates(n):
     col = (col.clamp(0, 1) * 255).cpu().numpy().astype(np.uint8); msk = dep.cpu().numpy() > 0
     ks = [k for k in range(len(col)) if msk[k].sum() > 50]
     return desc([crop(col[k], msk[k]) for k in ks]), float(np.mean([col[k][msk[k]].mean() for k in ks]))
-PD = desc([crop(img0, m) for m in props])
-pint = np.array([img0[m].mean() for m in props]); pext = np.array([extent3d(m) for m in props])
-S = np.full((len(names), len(props)), -10.0); LAM_I = float(os.environ.get('LAM_I', 0.3))
-for a, n in enumerate(names):
-    Tn, tint = templates(n); sim = (PD @ Tn.T).topk(min(5, len(Tn)), dim=1).values.mean(1).cpu().numpy()
-    ext = float(meshes[n].bounding_box_oriented.extents.max()); ok = (pext > 0.3 * ext) & (pext < 1.3 * ext)
-    S[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)
-    log('det', n, 'ext', round(ext, 3), 'tint', round(tint), [(int(k), round(S[a, k], 3), round(pext[k], 3), round(pint[k])) for k in np.argsort(-S[a])[:4]])
-del dino; torch.cuda.empty_cache()
-def centroid3d(m):
-    v, u = np.nonzero(m & (depths[0] > 0))
+def centroid3d(m, dep):
+    v, u = np.nonzero(m & (dep > 0))
     if len(v) < 30: return np.full(3, np.nan)
-    z = depths[0][v, u]; return np.median(np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1), 0)
-ri, ci = linear_sum_assignment(-S)
-# DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the rack):
-# joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
-if os.environ.get('DET_PRIOR', 'compact') == 'compact' and len(names) > 1:   # default since the 20-episode A/B
-    import itertools
-    K_, D0, LAM_D = int(os.environ.get('DET_K', 80)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
-    top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
-    PC = {int(k): centroid3d(props[k]) for t in top for k in t}
-    best = None
-    for combo in itertools.product(*top):
-        if len(set(combo)) < len(combo) or any(S[a, k] <= -10 for a, k in enumerate(combo)): continue
-        P_ = np.array([PC[int(k)] for k in combo]); spread = 0.0
-        if np.isfinite(P_).all():
-            spread = max(np.linalg.norm(P_[i] - P_[j]) for i in range(len(P_)) for j in range(i + 1, len(P_)))
-        cost = -sum(S[a, k] for a, k in enumerate(combo)) + LAM_D * max(0.0, spread - D0)
-        if best is None or cost < best[0]: best = (cost, combo, spread)
-    if best is not None:
-        log('det prior compact: top', {names[a]: [(int(k), round(float(S[a, k]), 3), np.round(PC[int(k)], 2).tolist()) for k in top[a]] for a in range(len(names))},
-            '-> chosen', [int(k) for k in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(k) for k in ci])
-        ri, ci = np.arange(len(names)), np.array(best[1])
+    z = dep[v, u]; return np.median(np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1), 0)
+LAM_I = float(os.environ.get('LAM_I', 0.3))
+TPL = {n: templates(n) for n in names}                               # (DINOv2 descriptors, mean render intensity)
+EXT = {n: float(meshes[n].bounding_box_oriented.extents.max()) for n in names}
+DET_PRIOR = os.environ.get('DET_PRIOR', 'compact')
+K_, D0, LAM_D = int(os.environ.get('DET_K', 80)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
+def detect(k):
+    """Proposals, scores and the object -> proposal choice on frame k (frame 0 in the pipeline)."""
+    img, dep = rgb(rc[k]), depths[k]
+    props = [m['segmentation'] for m in gen.generate(img) if m['area'] >= 400]
+    PD = desc([crop(img, m) for m in props])
+    pint = np.array([img[m].mean() for m in props]); pext = np.array([extent3d(m, dep) for m in props])
+    S = np.full((len(names), len(props)), -10.0); SIM = np.zeros((len(names), len(props)))
+    for a, n in enumerate(names):
+        Tn, tint = TPL[n]; sim = (PD @ Tn.T).topk(min(5, len(Tn)), dim=1).values.mean(1).cpu().numpy(); SIM[a] = sim
+        ext = EXT[n]; ok = (pext > 0.3 * ext) & (pext < 1.3 * ext)
+        S[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)
+        log('det', f'f{k}', n, 'ext', round(ext, 3), 'tint', round(tint), [(int(j), round(S[a, j], 3), round(pext[j], 3), round(pint[j])) for j in np.argsort(-S[a])[:4]])
+    ri, ci = linear_sum_assignment(-S)
+    # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the rack):
+    # joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
+    if DET_PRIOR == 'compact' and len(names) > 1:   # default since the 20-episode A/B
+        import itertools
+        top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
+        PC = {int(j): centroid3d(props[j], dep) for t in top for j in t}
+        best = None
+        for combo in itertools.product(*top):
+            if len(set(combo)) < len(combo) or any(S[a, j] <= -10 for a, j in enumerate(combo)): continue
+            P_ = np.array([PC[int(j)] for j in combo]); spread = 0.0
+            if np.isfinite(P_).all():
+                spread = max(np.linalg.norm(P_[i] - P_[j]) for i in range(len(P_)) for j in range(i + 1, len(P_)))
+            cost = -sum(S[a, j] for a, j in enumerate(combo)) + LAM_D * max(0.0, spread - D0)
+            if best is None or cost < best[0]: best = (cost, combo, spread)
+        if best is not None:
+            log('det prior compact: top', {names[a]: [(int(j), round(float(S[a, j]), 3), np.round(PC[int(j)], 2).tolist()) for j in top[a]] for a in range(len(names))},
+                '-> chosen', [int(j) for j in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(j) for j in ci])
+            ri, ci = np.arange(len(names)), np.array(best[1])
+    if os.environ.get('DET_DUMP', '1') == '1' and props:     # all proposals + features for offline rule replay
+        try:
+            mk = np.stack([m[::2, ::2] for m in props])
+            ero = np.ones((5, 5), np.uint8)
+            chosen = np.full(len(names), -1); chosen[ri] = ci
+            np.savez_compressed(f'{OUT}/det_f{k}.npz', names=np.array(names), frame=k, masks=np.packbits(mk, axis=-1),
+                                mask_shape=np.array(mk.shape), sim=SIM, score=S, intensity=pint, extent=pext,
+                                extent_eroded=np.array([extent3d(cv2.erode(m.astype(np.uint8), ero).astype(bool), dep) for m in props]),
+                                centroid=np.stack([centroid3d(m, dep) for m in props]), area=np.array([int(m.sum()) for m in props]),
+                                template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
+                                chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
+                                params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]))
+            log('det dump', f'{OUT}/det_f{k}.npz', len(props), 'proposals')
+        except Exception as e:
+            log('det dump failed (detection unaffected):', repr(e))
+    return props, S, ri, ci
+if DET_ONLY:                                                          # detection rules replay: dumps only, then stop
+    for k in DET_FRAMES:
+        detect(k)
+    json.dump({'episode': EP, 'split': SPLIT, 'objects': names, 'det_frames': DET_FRAMES}, open(f'{OUT}/det_only.json', 'w'))
+    log('DONE (DET_ONLY)')
+    sys.exit(0)
+props, S, ri, ci = detect(0)
+del gen, dino; torch.cuda.empty_cache()
+img0 = rgb(rc[0])
 MASK = {names[a]: props[k] for a, k in zip(ri, ci)}
 DET = {names[a]: [int(k), float(S[a, k])] for a, k in zip(ri, ci)}; log('proposals', len(props), 'assignment', DET)
 vis = img0.copy(); cols = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (0, 255, 255)]

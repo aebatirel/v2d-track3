@@ -35,9 +35,9 @@ SNAP_PATHS="workspace/v2d workspace/FoundationStereo workspace/FoundationPose wo
 case ${1:-} in
 push-run)
   : "${RUN_ID:?}"; S=/content/push/$RUN_ID; rm -rf $S; mkdir -p $S; cd /content
-  for d in perc2 perc2m perc4 oracle refs runs results; do
+  for d in perc2 perc2m perc4 oracle refs runs results det; do        # det: detection dumps (ops/jobs/det_dump.sh)
     [ -d $d ] || continue
-    find $d -type f ! -name 'depths_*.npy' ! -path '*/dbg/*' ! -path '*/hydra/*/.hydra/*.lock' | while read -r f; do
+    find $d -type f ! -name 'depths_*' ! -path '*/dbg/*' ! -path '*/hydra/*/.hydra/*.lock' | while read -r f; do
       mkdir -p "$S/$(dirname "$f")"; ln "$f" "$S/$f" 2> /dev/null || cp "$f" "$S/$f"
     done
   done
