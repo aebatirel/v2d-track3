@@ -1431,3 +1431,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   gap 1.0 cm, turned ≤ 5°); ep27 rack 0.4 cm / 1.4°, pot 4.4°, drops 0.03 cm.
 - Box L (instance 57152728, `20261022-r4kr-*`): `SUF=kr CR_ARGS="--rest_settle 1"` on ep12 (compare with k 0.790 ±
   0.023): does the generic rest settling help an easy episode's score? Credit $9.11 at 06:35; guard kept.
+- **ep18 kri s42 (box I, code 764afba: height-only rest settling, library_v2 sweeper), 6 evaluations: 0.368 ± 0.069
+  (0.215–0.413)** vs ki 0.342 ± 0.096: +0.026, within noise; the rounded sweeper still cannot stand. Box K tests the
+  full fix (flattened sweeper + stable-pose settling).
