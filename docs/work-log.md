@@ -1773,3 +1773,25 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - CPU graph capture of FlashCHORD's transition segfaults with and without the patch (CPU APIC path); the boxes use
     CUDA graph capture as before (driver ≥ 12.3 compiles modules during capture; the module is also pre-loaded).
 - Commits and the A/B launch follow.
+
+### 01:20 TRT — ep35 (spoon alone, eval) result and cause; lead-in speed cap in mkref
+- Box `20261022-spoon35-d82d447` (France RTX PRO 6000 S, ≈ 4.4 h incl. setup, ≈ $6) finished 21:27 UTC, self-destroyed.
+  Store files read directly (`https://huggingface.co/datasets/aebatirel/v2d-store/resolve/main/runs/<run>/...`).
+  Variant mc, seed 42: sim_vs_ref 0.1274 (checkpoint 150M; 100M 0.113, 200M 0.121) vs static floor 0.1116 → verdict
+  weak. The evaluator's metrics (vs our reference): spoon position error 15.2 cm, orientation 52°, both wrist and
+  object limits exceeded. Perception was fine (spoon detected; hands found in 420/421 frames; reference QA pass,
+  contact retargeting p95 penetration 26 → 3.4 mm).
+- Video `scratchpad/vid3/spoon/ep35_rgb_vs_sim.mp4` (RGB camera vs rollout, frame-synced, 421 frames): the simulated
+  hands never move from their frame-0 pose and the spoon stays on the table; the person picks it up at ~f30.
+- Cause found [measured, CPU]: the right hand is first detected at frame 6. mkref's lead-in (added 2026-10-21 for
+  ep24) starts an undetected hand 15 cm out and 10 cm up and brings it in over min(10, t1) frames, so here 18 cm in
+  6 frames: the reference right wrist moves exactly 3.0 cm per frame (60 cm/s) for f0–f6. Zero-action replay in the
+  training environment on CPU (`scratchpad/fdr/replay_zero.py`, assist off): right palm error 3.0 / 5.9 / 8.6 cm at
+  steps 1–3 and 16.1 cm at step 10, past the 15 cm wrist limit; the spoon lifts 6 cm by f30 and 12 cm by f35.
+  Reading [I]: the evaluation start (frame 0) falls off the policy's training distribution within ~0.5 s, after which
+  the policy holds the hands still. Falsifier: retrain ep35 with the capped lead-in; if sim_vs_ref stays near the
+  floor, the limit is grasping the spoon, not the start.
+- Fix (generic, no per-episode choice): `mkref.py --lead_in_speed` (default 0.2 m/s = 1 cm per frame at 20 fps)
+  caps the approach; a hand first seen early starts nearer (ep35: 6 cm instead of 18 cm; ep24's right hand, first seen
+  at f16: 10 cm instead of 18 cm). `--lead_in_speed 0` reproduces the old rule. Synthetic unit test passed. Existing
+  references are unchanged until mkref reruns; the running FDR A/B reuses stored references and is unaffected.

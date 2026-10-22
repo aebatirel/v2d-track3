@@ -469,11 +469,15 @@ def table_disc(depth0, KR, T_tab, table_z, band=0.008, cell=0.01):
     return float(cx), float(cy), float(r)
 
 
-def separate_hands(J, valid, meas, gap, lead_in):
+def separate_hands(J, valid, meas, gap, lead_in, lead_in_step=0.01):
     """Rigid per-frame shifts that keep the two hands apart (table frame, z up). Returns ({side: (T, 3)}, stats).
 
     1) lead-in: a hand first valid at t1 > 0 was held at its first pose from frame 0 (fill_invalid); it now starts
        15 cm out (horizontally away from the other hand) and 10 cm up and arrives over the LEAD_IN frames before t1.
+       The approach moves at most LEAD_IN_STEP per frame (m): with few frames before t1 the start is nearer.
+       Evidence (2026-10-23, eval ep35): the right hand was first valid at t1 = 6, so 18 cm came in over 6 frames
+       (3 cm per frame = 60 cm/s); with zero policy action the simulated wrist fell 16 cm behind by step 10 (the
+       wrist termination is 15 cm) and the trained policy never moved its hands. 1 cm per frame = 20 cm/s at 20 fps.
     2) separation: where the closest left/right joint pair is nearer than GAP, the hand that is not measured in that
        frame moves (both half-way if both or neither are measured), away from the other hand and upward (free space).
        Each round adds the needed shifts box-smoothed over 5 frames, up to 5 rounds (the last unsmoothed), so no
@@ -489,8 +493,11 @@ def separate_hands(J, valid, meas, gap, lead_in):
             continue
         u = (J[s][t1, 0] - J[other[s]][t1, 0]) * np.array([1, 1, 0.0])
         u = u / np.linalg.norm(u) if np.linalg.norm(u) > 0.01 else np.array([0, -1.0 if s == 'right' else 1.0, 0])
-        w = np.clip((t1 - np.arange(T)) / min(lead_in, t1), 0, 1)
-        off[s] += w[:, None] * (0.15 * u + 0.10 * z)[None]; st[s]['lead_in'] = t1
+        n = min(lead_in, t1); o = 0.15 * u + 0.10 * z
+        if lead_in_step > 0 and np.linalg.norm(o) / n > lead_in_step:
+            o = o * (lead_in_step * n / np.linalg.norm(o))
+        w = np.clip((t1 - np.arange(T)) / n, 0, 1)
+        off[s] += w[:, None] * o[None]; st[s]['lead_in'] = t1; st[s]['lead_in_cm'] = round(float(np.linalg.norm(o)) * 100, 1)
     def needs():                                                 # per-frame shifts that would clear every overlap
         raw = {s: np.zeros((T, 3)) for s in SIDES}; n = 0; w = 0.0
         for t in range(T):
@@ -748,6 +755,9 @@ def parse_args():
     p.add_argument('--lead_in', type=int, default=10,
                    help='a hand first seen at frame t1 > 0 comes in from 15 cm out and 10 cm up over the LEAD_IN frames '
                         'before t1 instead of holding its first pose from frame 0')
+    p.add_argument('--lead_in_speed', type=float, default=0.2,
+                   help='largest lead-in approach speed (m/s); a hand first seen early starts nearer (2026-10-23, '
+                        'ep35: 18 cm in 6 frames left the simulated wrist 16 cm behind); <= 0: no limit')
     p.add_argument('--attach_dist', type=float, default=0.03)
     # retarget
     p.add_argument('--mano_to_robot_scale', type=float, default=1.2)
@@ -938,7 +948,8 @@ def main():
             f'wrist->middle tip {np.median(hl) * 100:.1f} cm')
     if a.hand_sep > 0 and all(hinfo[s]['mode'] == 'tracked' for s in SIDES):
         off, sep = separate_hands(J, {s: Hn[f'valid_{s}'].astype(bool) for s in SIDES},
-                                  {s: Hn[f'measured_{s}'].astype(bool) for s in SIDES}, a.hand_sep, a.lead_in)
+                                  {s: Hn[f'measured_{s}'].astype(bool) for s in SIDES}, a.hand_sep, a.lead_in,
+                                  a.lead_in_speed / a.fps)
         for s in SIDES:
             J[s] = J[s] + off[s][:, None, :]                       # rigid shifts: the rotations Q are unchanged
             if a.depenetrate > 0:
