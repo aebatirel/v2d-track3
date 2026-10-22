@@ -1527,3 +1527,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `selection.json` and `final.json` record `floor_vs_ref` and `harmful`. Stub test (`scratchpad/guardtest/`): the
   extra sweep picks an earlier non-harmful checkpoint; syntax checked. Note: a "do nothing" rollout cannot be submitted
   (rows must be learned-policy rollouts), so the guard can only choose among learned checkpoints.
+
+### 12:10 TRT — owner: CPU work first, then 3–4 public episodes on GPU, then the full 20
+- **Owner (12:00):** "first finish what you need to do and what you can with cpu and then with the new model we can go
+  for 3-4 public examples and if we get acceptable results we go for full 20". The baseline eval submission is
+  therefore not run first.
+- Facts for the CPU work: the HF store is readable directly from this session through the proxy (no token in env;
+  ~55 MB/s, a 2 GB depth cache in ~40 s), so local depth caches can be deleted and re-fetched (local disk 3.2 GB free).
+  Tracks made with **our own meshes** (perc2m, route A) exist in the store for ep12, ep18, ep27
+  (`runs/20261021-auto18-966eb96/perc2m/`) and ep24 (`runs/20261021-auto24-966eb96/perc2m/`, also `autohard`); the
+  other public episodes only have scan-templated tracks (`scratchpad/loc/perc`). So the four validation episodes can be
+  re-fused per episode from their own video along own-mesh tracks — the same procedure planned for eval episodes.
