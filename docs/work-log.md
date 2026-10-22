@@ -1560,3 +1560,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   per-object fallback) → S2 silhouette free space → S3 interaction exclusion → S4 support rule → S5 own collision
   pieces → S6 library_v5 (needs perc2m re-tracking of public episodes, GPU ≈ $3–6) → S7 per-eval re-fusion + spoon,
   rehearsed on public twins → S8 GPU A/B (owner: 3–4 public episodes).
+
+### 14:10 TRT — critic of the interaction-mesh plan; CPU evidence round launched
+- Critic (`docs/research/work/interaction-meshes-2026-10-22/critique.md`, new measurements in
+  `scratchpad/interact/review2/`): direction holds, but (N2) the kit's pose registration offset — which enters all five
+  pose leaderboards — gets *worse* for the Design O lid (7.6 → 14.0 mm) and pot (6.8 → 11.5 mm); eval-pair-weighted CD-O
+  gain of the Design O meshes is only −0.006 cm (N4); the 4096-face Design O files are not watertight (21–146
+  components, N5); the pot regression depends on the episode (ep27-only pot 0.323 vs 0.727 all episodes, N6); the v3
+  sweeper (hand flattening) registers flipped on 1 of 6 seeds (N3). Spoon = 10 of 36 CD-O pairs, today's rules would
+  discard its depth. Scans may decide only global method choices (no per-object switches). Interaction gates need
+  adversarial tests (ep0 flip, ep11 sunk cup, ep12/13 cup in rack, ep31 bristles).
+- Local depth caches deleted (all 15 in the store; disk 3.2 → 17 GB free).
+- Workflow `wf_f198e86a-d3b` (CPU, repo untouched): metric (eval-weighted CD-O + kit registration offset/flip on ≥ 6
+  seeds incl. eval seeds + GT-free ambiguity) → in parallel: fusion variants on blue cup, beige cup, pitcher, rack,
+  sweeper + pot episode weighting + watertight decimation; spoon reconstruction path (proxy objects); adversarial tests
+  of the interaction gates; collision path (own convex pieces, CPU replay of ep24 end state) → global decision + port
+  spec (`docs/mesh-v5-spec.md`) → critic. Outputs `scratchpad/interact/v5/`.
