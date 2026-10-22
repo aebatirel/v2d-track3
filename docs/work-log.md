@@ -1397,3 +1397,27 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   the sim board is not stood up), board 2 is never lifted (f117+). **ep24's ceiling (~0.31) is the policy not
   learning the lift-and-stand-up manipulation**, not reference geometry: reference fixes tonight (retargeting, rest
   settling, keypoint scale, start fix) all land at 0.306–0.318.
+
+### 06:45 TRT — ep18 root cause found: our sweeper cannot stand; fix tested on CPU, one GPU test launched
+- **ep18 i (start fix alone, base reference), 6 evaluations: 0.351 ± 0.056 (0.232–0.399)** vs base 0.345: no effect; the
+  sweeper is 4° off at frame 0 and > 20° by f5 as before. **Start-fix hypothesis falsified.**
+- First 12 rollout frames (video from box J): no hand is near the sweeper (left hand off the table, right hand at
+  the dust pan); the upright sweeper tips by itself.
+- **My CPU probes were built with the object assist at 1.0** (a fresh training env starts at the first curriculum
+  stage); the official evaluation runs with assist 0. With assist 0 the ep18 sweeper tilts 3.4° on step 1 and 24.8°
+  by step 5 (assist 1: ≤ 1°). Earlier no-policy stability numbers were therefore optimistic; `tools/frame_quality_probe.py`
+  now sets the assist to 0 by default (env `VOC`).
+- Cause: at our frame-0 pose the sweeper (14.7 cm tall, centre of mass 6.6 cm up) stands on a rounded underside:
+  0.3 cm² within 2 mm of the lowest point, centre of mass 3.3 cm outside it (within 5 mm: 4.7 cm², +1.3 mm). Its hull
+  has no stable upright face (only lying ones, 80–96° away). Diagnostic only (public scan): the real sweeper's base is
+  flat, 11.7 cm² within 5 mm, centre of mass 5 mm inside. Our TSDF cannot see the underside (table) and closes it round.
+- Fix (no scan, no ground truth): `pipeline/flatten_base.py` flattens the underside along the up of our own resting
+  pose (8 mm band onto one plane) → `meshes/library_v3` (only the sweeper changed): footprint 9.7 cm², +4.0 mm; the
+  simulator's convex pieces keep it (10.9 cm², +5.0 mm, stable face at 0.2° from the perceived up). Plus
+  `rest_settle` now also turns resting objects onto their nearest stable pose (≤ 15°; scipy hull facets) and seats
+  them on the table. CPU, assist 0, no policy, from frame 0: old sweeper 17.6° by step 4; flattened + settled
+  **≤ 0.7° for 9 steps, ≤ 2.6° to step 15** (hands 20–42 cm away). From step 16 both objects drift 5–20° from the
+  reference while no hand is near (the reference starts moving them early: a perception issue, open).
+- Budget: box J stopped after its ep18 result (its ep27 part redundant with box H). New box K (instance 57150979,
+  `20261022-r4kfi-a30ac72`, code a30ac72): `LIB=library_v3 SUF=kfi CR_ARGS="--rest_settle 1"
+  FC_IMMEDIATE_FIRST_FRAME=0.25` on ep18 only; compare with I (kri, library_v2). Result expected ≈ 09:00 TRT.
