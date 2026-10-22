@@ -1823,3 +1823,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 EPS="35"; bash ops/jobs/auto_runs.sh` (same as
   `20261022-spoon35-d82d447`). Estimate ≈ 1.8 h, ≈ $2–3. Budget check: A/B ≈ $10 + this ≈ $3 + $3 margin ≤ $17.98.
   Compare: before 0.127 (floor 0.112). Falsifier as above (stays near the floor → grasp, not start).
+- 02:00 TRT: FDR A/B training started on GPU: box 42 log `v2d_fdr: object points ON, tip bound ON; body 52: 128
+  points, max radius 0.092 m; body 53: … 0.283 m; tips: 10 fingertip frames` (module compiled, CUDA graph capture
+  fine). ep12 at 39k env steps/s (ETA 1 h 46 min; the stored ep12 base ran 22.7k/s, ep18 58k/s: the dish rack is the
+  slow part, not the patch; this card's power limit is 400 W). Revised cost: A/B ≈ $12, ep35 retrain ≈ $2 →
+  ≈ $14 of $17.98.
