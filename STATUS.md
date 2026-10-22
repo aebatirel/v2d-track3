@@ -26,6 +26,9 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   f6 and mkref's lead-in brought it in from 18 cm away in 6 frames (60 cm/s); with zero action the simulated wrist
   is 16 cm behind by step 10 (wrist limit 15 cm). Fixed generically: `mkref --lead_in_speed 0.2` (commit 20d0017).
   Retrain ep35 to confirm (≈ $3–5) before the eval run.
+- Spoon detection fix, CPU side ready (commit 2aaca55): perc2 dumps all frame-0 candidates (`DET_DUMP`, `DET_ONLY`),
+  `tools/det_replay.py` (52 rule variants, grid + selection rule fixed in advance), `tools/det_score.py` (public
+  labels, 18 episodes / 72 frames rendered). Needs one GPU job `ops/jobs/det_dump.sh` (≈ $1.5–2) for the dumps.
 - VLM / grounding research done (`scratchpad/vlm/`, summary in the work log 01:30 TRT): ship first the cheap fixes
   (soft size term, part-of merge rule) replayed on public frame-0 dumps; Grounding DINO tiny as an extra assignment
   term second; a VLM verifier only after the first submission.

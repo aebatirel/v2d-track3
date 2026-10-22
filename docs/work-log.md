@@ -1847,3 +1847,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   first, confirmed choices protected); a 0.5× gate drops a pot whose handle is split off (to be measured on public).
 - `ops/jobs/det_dump.sh`: dumps for all 20 public episodes at frames 0 and the quarter points (≈ 80 frames,
   ≈ 1 h GPU, ≈ $1.5–2 incl. setup [E]); `store.sh push-run` now also uploads `det/` and skips all `depths_*` caches.
+- 02:45 TRT: reference label maps rendered for the dump frames of all 20 public episodes (0 and quarter points; CPU,
+  `scratchpad/det/lab_all/`). Usable: 18 episodes / 72 frames; ep0 (fit residual 5.7 cm) and ep26 (35 cm: our old
+  tracks there are wrong) are excluded by the 2 cm rule. ep11 median 1.1 cm (p90 5.1) kept.
+- Pending for the detection fix: the GPU dump job (`ops/jobs/det_dump.sh`, ≈ $1.5–2) — after the running batch, with
+  the owner's go-ahead (credit after the current boxes ≈ $4, below a safe margin for another box).
