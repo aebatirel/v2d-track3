@@ -1670,3 +1670,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 21:10 TRT: ep3 alone at 100M / 250M (10M per ≈ 7.5 min = 1.33M/min on this Max-Q); expected results ≈ 23:15 TRT;
   credit $4.77 (≈ $2 left after ep3). ep35 cannot be funded: a box-side watcher kills its paused training
   (`kill -9 11687`) once ep3's training is done, so the job finishes and the box self-destroys.
+- 21:25 TRT: owner added $10 (credit $14.37) for ep35 → separate box: instance 57254286 (RTX PRO 6000 S, $1.377/h,
+  France), run `20261022-spoon35-d82d447`, job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 EPS="35"; bash
+  ops/jobs/auto_runs.sh`; expected ≈ 2 h ≈ $3. The paused ep35 on the first spoon box is still killed after ep3 trains.
