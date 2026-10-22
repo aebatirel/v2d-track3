@@ -1857,3 +1857,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **ep12 mckd s42 (k reference + FDR rewards; box `20261023-fdr42-715c9f7`), 6 evaluations: registered AUC
   0.891 ± 0.015 (0.866–0.915), sim_vs_ref 0.905 ± 0.009** vs the same reference without FDR (k s42, 2026-10-22):
   0.790 ± 0.023, sim_vs_ref 0.791. +0.10 on both. Chosen checkpoint 250M. One seed; seed 43 and ep18 pending.
+- 02:42 TRT: **ep12 mckd s43** (box `20261023-fdr43-715c9f7`), 6 evaluations: registered AUC **0.762 ± 0.078
+  (0.638–0.839)**, sim_vs_ref 0.774 ± 0.097. Two-seed FDR mean 0.826 vs k s42 0.790 (no k s43 exists). Seed spread
+  0.13 is far above the ≈ 0.04 seen before → not yet a decision; ep18 pending on both boxes.
