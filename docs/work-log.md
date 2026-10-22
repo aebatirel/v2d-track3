@@ -1673,3 +1673,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 21:25 TRT: owner added $10 (credit $14.37) for ep35 → separate box: instance 57254286 (RTX PRO 6000 S, $1.377/h,
   France), run `20261022-spoon35-d82d447`, job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 EPS="35"; bash
   ops/jobs/auto_runs.sh`; expected ≈ 2 h ≈ $3. The paused ep35 on the first spoon box is still killed after ep3 trains.
+
+### 21:45 TRT — CPU evidence round for mesh v5 done (`wf_f198e86a-d3b`): small, risky mesh gains; do not port as specified
+- Outputs: `docs/research/work/mesh-v5-evidence-2026-10-22/` (metric, four experiments, decision, critique, metric
+  script) and the draft spec `docs/mesh-v5-spec-draft.md` (not adopted).
+- Metric (kit CD-O + kit registration offset, eval seeds, eval-pair weights): of 186 meshes only the observation-first
+  + local-fallback set (lid, dust pan, pot) passes "no worse on both" (−0.025 cm, −0.39 mm); v3/v4 patches neutral;
+  the library sweeper flips 178° at eval ep30's seed in v1–v4.
+- Spec proposed: observation-first mesher (2 mm, below-table votes removed), GT-free gates per object, our own convex
+  pieces, spoon = template fitted to the episode's evidence, per-episode stage 2m. **Critic:** the fallback mesher (F4,
+  today's recon_mesh on one episode) is much worse than v2 where measured (ep18 sweeper 0.510 cm and flips 6/6; dust pan
+  0.642 vs 0.331); the gates do not stop flips; the nobc decision was made on library meshes only; gates were
+  calibrated on scan-templated tracks; our convex pieces should be off by default; spoon flip risk high (template
+  ambiguity 2.0 mm). Estimated 3–4 days of porting + 2–3 CPU days of runs.
+- Spoon experiment: submit the template (fitted to the episode's evidence if its gates pass, else unfitted), not a
+  fused mesh (single-episode fused proxies 0.25–0.46 cm vs template ≈ 0.10–0.12 cm synthetic); finger-scale hand masks
+  falsified; a seed band (samples > 6 mm outside the seed mesh may clear space, never form surface) is the strongest new
+  fusion rule.
