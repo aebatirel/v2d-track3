@@ -1434,3 +1434,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **ep18 kri s42 (box I, code 764afba: height-only rest settling, library_v2 sweeper), 6 evaluations: 0.368 ± 0.069
   (0.215–0.413)** vs ki 0.342 ± 0.096: +0.026, within noise; the rounded sweeper still cannot stand. Box K tests the
   full fix (flattened sweeper + stable-pose settling).
+- **ep27 ki s42 (box H), 6 evaluations: 0.897 ± 0.013 (0.873–0.914)** vs k 0.911 ± 0.017, base 0.942 ± 0.017:
+  retargeting costs ep27 0.03–0.04 with or without the start fix (only the right hand is retargeted there; the left
+  never comes near an object). Box H done.
