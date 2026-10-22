@@ -1667,3 +1667,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   board 2 is never lifted. Conclusion: ep24's limit is the reference / learning (board-2 pick-up from flat, board 2
   floating 2.6 cm in our reference at the grasp), not the mesh; boards are 5 % of the final score → no further ep24
   spending. Cost of the test ≈ $4.6 (box 1 ≈ 1.5 h × $1.64, box 2 ≈ 2.7 h × $1.07).
+- 21:10 TRT: ep3 alone at 100M / 250M (10M per ≈ 7.5 min = 1.33M/min on this Max-Q); expected results ≈ 23:15 TRT;
+  credit $4.77 (≈ $2 left after ep3). ep35 cannot be funded: a box-side watcher kills its paused training
+  (`kill -9 11687`) once ep3's training is done, so the job finishes and the box self-destroys.
