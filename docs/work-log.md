@@ -1421,3 +1421,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Budget: box J stopped after its ep18 result (its ep27 part redundant with box H). New box K (instance 57150979,
   `20261022-r4kfi-a30ac72`, code a30ac72): `LIB=library_v3 SUF=kfi CR_ARGS="--rest_settle 1"
   FC_IMMEDIATE_FIRST_FRAME=0.25` on ep18 only; compare with I (kri, library_v2). Result expected ≈ 09:00 TRT.
+- **ep18 ki s42 (box F; read back from the store), 6 evaluations: 0.342 ± 0.096 (0.144–0.421)**: no gain (one very bad
+  rollout). Every ep18 variant without a stable sweeper lands at 0.32–0.38.
