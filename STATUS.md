@@ -12,6 +12,12 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   interaction census over our 12 two-object public episodes, mesh-vs-scan defect diagnostics, code map, three designs
   judged). Plan to follow in `docs/` (sim-valid meshes).
 - Waiting on the owner: top-up for GPU tests (ep24 with slots + standing edges, ep18 second seed ≈ $10).
+- **Owner decisions (11:20):** reconstruct the spoon ourselves; generalised automatic rules OK; per eval episode
+  re-create the mesh from that episode's video (library mesh only as a tracking seed); room map dropped (GT-registered).
+- **Plan proposed (11:25), awaiting go-ahead + ≈ $60 top-up for step 1:** (1) baseline eval submission with the current
+  pipeline; (2) mesher fix (TSDF zero level, thin walls, CPU); (3) automatic physics check + repair incl. interaction
+  carving; (4) per-eval re-fusion + spoon reconstruction; (5) floor guard (done 11:40); (6) public-twin validation
+  ≈ $40; (7) final eval run ≈ $70. Library must be rebuilt (v5): v1–v4 used public scans as `--others`.
 
 ## 2026-10-22 overnight (owner asleep; $50 top-up, credit $52.69 at 01:00 TRT; "go crazy, I trust you")
 Plan: round 1 = contact-retargeted references ("k") on ep12, ep18, ep24, ep27 (seed 42, 250M, sweep) + 6 repeat

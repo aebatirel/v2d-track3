@@ -118,25 +118,36 @@ echo "[$(date +%T)] evaluated"
 python $S/qa.py policy $RES $EP > /dev/null 2>&1
 if [ -n "${CK_SWEEP:-}" ]; then
   E6=$(printf %06d $EP); best=$(python -c "import json; print(json.load(open('$RES/qa_policy.json'))['sim_vs_ref'])"); bestck=$CK
-  for fr in $CK_SWEEP; do
-    want=$(python -c "print(int($fr * $STEPS))")
-    C2=$(ls $RUN/policy_*.safetensors | python -c "import sys; L=[l.strip() for l in sys.stdin]; print(min(L, key=lambda f: abs(int(f.rsplit('_',1)[1].split('.')[0]) - $want)))")
-    [ "$C2" = "$CK" ] && continue
-    D2=$RES/sweep/$(basename $C2 .safetensors); mkdir -p $D2
-    (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
-      evaluation.checkpoint=$C2 evaluation.world_count=1 evaluation.reset_mode=explicit \
-      evaluation.metrics_output=$D2/episode_$E6.json evaluation.object_trajectories_output=$D2/episode_$E6.parquet \
-      hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1) || continue
-    v=$(python $S/qa.py policy $D2 $EP 2>/dev/null | python -c "import json,sys; print(json.loads(sys.stdin.read())['sim_vs_ref'])")
-    echo "[$(date +%T)] sweep $(basename $C2): sim_vs_ref $v (best so far $best)"
-    if python -c "import sys; sys.exit(0 if float('$v') > float('$best') else 1)"; then best=$v; bestck=$C2; fi
-  done
+  floor=$(python -c "import json; print(json.load(open('$RES/qa_policy.json'))['floor_vs_ref'])"); seen=" $CK "
+  sweep() {                                                  # evaluate the checkpoints nearest the given fractions
+    for fr in "$@"; do
+      want=$(python -c "print(int($fr * $STEPS))")
+      C2=$(ls $RUN/policy_*.safetensors | python -c "import sys; L=[l.strip() for l in sys.stdin]; print(min(L, key=lambda f: abs(int(f.rsplit('_',1)[1].split('.')[0]) - $want)))")
+      case "$seen" in *" $C2 "*) continue ;; esac; seen="$seen$C2 "
+      D2=$RES/sweep/$(basename $C2 .safetensors); mkdir -p $D2
+      (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+        evaluation.checkpoint=$C2 evaluation.world_count=1 evaluation.reset_mode=explicit \
+        evaluation.metrics_output=$D2/episode_$E6.json evaluation.object_trajectories_output=$D2/episode_$E6.parquet \
+        hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1) || continue
+      v=$(python $S/qa.py policy $D2 $EP 2>/dev/null | python -c "import json,sys; print(json.loads(sys.stdin.read())['sim_vs_ref'])")
+      echo "[$(date +%T)] sweep $(basename $C2): sim_vs_ref $v (best so far $best, floor $floor)"
+      if python -c "import sys; sys.exit(0 if float('$v') > float('$best') else 1)"; then best=$v; bestck=$C2; fi
+    done
+  }
+  sweep $CK_SWEEP
+  # floor guard (2026-10-22): if every checkpoint so far tracks our reference worse than leaving the objects where
+  # they start (qa verdict 'harmful'), try more checkpoints of the same run; the submission must stay a learned policy
+  if python -c "import sys; sys.exit(0 if float('$best') < float('$floor') else 1)"; then
+    echo "[$(date +%T)] floor guard: best sim_vs_ref $best < floor $floor; extra sweep ${CK_SWEEP_EXTRA:-0.2 0.3 0.5 0.7 0.9}"
+    sweep ${CK_SWEEP_EXTRA:-0.2 0.3 0.5 0.7 0.9}
+  fi
   if [ "$bestck" != "$CK" ]; then
     D2=$RES/sweep/$(basename $bestck .safetensors); mkdir -p $RES/sweep/final
     cp $RES/episode_$E6.json $RES/episode_$E6.parquet $RES/qa_policy.json $RES/sweep/final/
     cp $D2/episode_$E6.json $D2/episode_$E6.parquet $D2/qa_policy.json $RES/; CK=$bestck
   fi
-  echo "{\"chosen\": \"$CK\", \"sim_vs_ref\": $best}" > $RES/selection.json
+  harm=$(python -c "print('true' if float('$best') < float('$floor') else 'false')")
+  echo "{\"chosen\": \"$CK\", \"sim_vs_ref\": $best, \"floor_vs_ref\": $floor, \"harmful\": $harm}" > $RES/selection.json
 fi
 echo "[$(date +%T)] qa_policy: $(cat $RES/qa_policy.json | tr -d '\n ')"
 

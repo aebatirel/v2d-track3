@@ -51,7 +51,7 @@ for k in "${!plan[@]}"; do
   # the checkpoint behind this rollout: the sweep's choice, else the newest policy of the run
   ck=$(python -c "import json; print(json.load(open('$RES/selection.json'))['chosen'])" 2>/dev/null || ls -v /content/runs/$PERC$V/ep$EP-s$sd/policy_*.safetensors 2>/dev/null | tail -1)
   att+=("{\"variant\": \"$V\", \"seed\": $sd, \"rc\": $rc, \"sim_vs_ref\": \"$sim\", \"floor_vs_ref\": \"$floor\", \"verdict\": \"$verdict\", \"res\": \"$RES\", \"checkpoint\": \"$ck\"}")
-  if [ "$verdict" != failed ] && python -c "import sys; sys.exit(0 if float('$sim') > float('$best') else 1)"; then best=$sim; bestres=$RES; bestck=$ck; fi
+  if [ "$verdict" != failed ] && python -c "import sys; sys.exit(0 if float('$sim') > float('$best') else 1)"; then best=$sim; bestfloor=$floor; bestres=$RES; bestck=$ck; fi
   [ "$verdict" = ok ] && break
 done
 # 4) publish the best attempt
@@ -60,5 +60,7 @@ F=/content/results/final/ep$EP; mkdir -p $F; E6=$(printf %06d $EP)
 cp $bestres/episode_$E6.parquet $bestres/episode_$E6.json $bestres/qa_policy.json $F/
 # the exact checkpoint of the published rollout (submission provenance: its sha256 goes into the packed rows)
 sha=""; [ -s "${bestck:-}" ] && cp $bestck $F/policy.safetensors && sha=$(sha256sum $F/policy.safetensors | cut -d' ' -f1)
-( IFS=,; echo "{\"episode\": $EP, \"chosen\": \"$bestres\", \"checkpoint\": \"${bestck:-}\", \"checkpoint_sha256\": \"$sha\", \"sim_vs_ref\": $best, \"attempts\": [${att[*]}]}" ) > $F/final.json
+# harmful: even the best attempt tracks our reference worse than the static floor (flag it; it is still a learned policy)
+harm=$(python -c "import sys; print('true' if float('$best') < float('${bestfloor:-nan}') else 'false')" 2>/dev/null || echo false)
+( IFS=,; echo "{\"episode\": $EP, \"chosen\": \"$bestres\", \"checkpoint\": \"${bestck:-}\", \"checkpoint_sha256\": \"$sha\", \"sim_vs_ref\": $best, \"floor_vs_ref\": \"${bestfloor:-nan}\", \"harmful\": $harm, \"attempts\": [${att[*]}]}" ) > $F/final.json
 log "final: $bestres (sim_vs_ref $best)"

@@ -1510,3 +1510,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   contacts (ep18, ep31): compliant bristles, do not carve. ep0 lid track flipped 179°. Against our own depth plane the
   objects sit 0.2–1.3 cm *into* the table at frame 0 (track/plane bias), not floating: the two table estimates
   (recon_mesh vs mkref) disagree and must be unified before treating floats.
+
+### 11:40 TRT — owner decisions on the compliance flags; floor guard; container restart
+- **Owner (11:20):** (1) spoon: reconstruct it ourselves (from the eval videos, seeded by our template); (2) automatic
+  rules are fine if generalised (no per-episode hand choices); (3) asked for more on the room map (answered: not in the
+  pipeline; its mocap registration used public GT constants — table height 0.6012 m, GT lean, GT heading fit — so it is
+  inadmissible as built; a GT-free rebuild is allowed but its gain is bounded, +0.01 vs a decent VO; dropped for now);
+  (4) "don't you re-create the mesh for the eval episodes" → adopt: per eval episode track with the library mesh as a
+  seed only, re-fuse that episode's mesh from its own video along our tracks, re-track, submit the new mesh.
+- Design-workflow finding: the current library was fused with `--others` = **public scans** (not inference-legal) and
+  along scan-templated tracks → rebuild as library_v5 with our own meshes as `--others` and perc2m tracks.
+- Container restarted at ~11:30: lost the interaction-design workflow's third design (observation-first) and its
+  helper wait; resumed `wf_8a372398-57b` from cache (measure ×4, joint and minimal designs cached).
+- **Floor guard** (`pipeline_ep.sh` 5b, `auto_ep.sh`): when every swept checkpoint has sim_vs_ref < floor_vs_ref
+  (verdict harmful), sweep more checkpoints of the same run (`CK_SWEEP_EXTRA`, default 0.2 0.3 0.5 0.7 0.9);
+  `selection.json` and `final.json` record `floor_vs_ref` and `harmful`. Stub test (`scratchpad/guardtest/`): the
+  extra sweep picks an earlier non-harmful checkpoint; syntax checked. Note: a "do nothing" rollout cannot be submitted
+  (rows must be learned-policy rollouts), so the guard can only choose among learned checkpoints.
