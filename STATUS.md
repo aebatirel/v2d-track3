@@ -16,8 +16,19 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   (normalized rational mapping up to the clip; 5 cm / 0.15 rad is only the gain near zero), so no action change.
 - CPU tests passed (ep18 reference; `scratchpad/fdr/test_fdr*.py`): both terms 1.0 on the reference, object +2 cm →
   0.8187 = exp(-0.2), hands +5 cm → tip term 0.11–0.71, mesh distance = trimesh within 0.002 mm, eager env steps OK.
-- **ep35 (spoon, eval) finished; its box self-destroyed ~00:30 TRT.** Results are in the HF store
-  (`runs/20261022-spoon35-d82d447/`); this session reads the store only through a live box → fetch via the A/B box.
+- **A/B running (launched 00:50 TRT, code 715c9f7):** box `20261023-fdr42-715c9f7` (Illinois WS, $1.54/h) and
+  `20261023-fdr43-715c9f7` (Japan WS, $1.64/h); each trains ep12 (k + FDR, "mckd") then ep18 (kfi + FDR, "mckfid"),
+  sweep 0.4/0.6/0.8, 6 evaluations each. Baselines (s42): ep12 k 0.790 ± 0.023, ep18 kfi 0.715 ± 0.240. Expected
+  ≈ 3–3.5 h, ≈ $10. Decision: adopt if both episodes gain on both seeds, or one gains clearly (≥ 0.05) and the
+  other loses ≤ 0.02.
+- **ep35 (spoon alone, eval): weak, sim_vs_ref 0.127 vs static floor 0.112** (box self-destroyed 00:27 TRT, ≈ $6).
+  The simulated hands never move; the spoon stays on the table. Cause [measured]: the right hand is first detected at
+  f6 and mkref's lead-in brought it in from 18 cm away in 6 frames (60 cm/s); with zero action the simulated wrist
+  is 16 cm behind by step 10 (wrist limit 15 cm). Fixed generically: `mkref --lead_in_speed 0.2` (commit 20d0017).
+  Retrain ep35 to confirm (≈ $3–5) before the eval run.
+- VLM / grounding research done (`scratchpad/vlm/`, summary in the work log 01:30 TRT): ship first the cheap fixes
+  (soft size term, part-of merge rule) replayed on public frame-0 dumps; Grounding DINO tiny as an extra assignment
+  term second; a VLM verifier only after the first submission.
 
 ## 2026-10-22 evening (19:10 TRT): priorities by score weight
 - Final AUC = plain mean over the 20 eval episodes; objects equal within an episode. Object shares: **spoon 32.5 %**,

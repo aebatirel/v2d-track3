@@ -1795,3 +1795,25 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   caps the approach; a hand first seen early starts nearer (ep35: 6 cm instead of 18 cm; ep24's right hand, first seen
   at f16: 10 cm instead of 18 cm). `--lead_in_speed 0` reproduces the old rule. Synthetic unit test passed. Existing
   references are unchanged until mkref reruns; the running FDR A/B reuses stored references and is unaffected.
+
+### 01:30 TRT — VLM / grounding research workflow `wf_21f9f547-c34` done (CPU, $0; outputs `scratchpad/vlm/`)
+- Owner's question (23:25): how can VLMs, large vision models or multimodal decision models make detection robust?
+- **CPU test** (public frames scored against scan projections at mocap poses, diagnostic only; eval spoon frames only
+  described, nothing tuned): Grounding DINO tiny (Apache-2.0, ≈ 6 s per prompt on 4 CPU threads) was the most
+  accurate at frame 0: 10/10 objects on the colour camera a, 7/10 on the grey camera c, and its top-5 contained a
+  correct box in 20/20 on every camera. Florence-2-large 8/10; OWLv2 4/10 (better only as a presence check);
+  LLMDet unusable in transformers 5.20.2. On the eval spoon frames all working models boxed the spoon, not the pot
+  handle (description only; by the rules this may not be used to choose the method).
+- **Critique (binding):** the evidence for any one detector is thin (n = 10); a "wooden spoon" prompt also scores
+  0.32–0.66 on public frames with no spoon (pot handle, pitcher), so a grounding score cannot be a hard test; the
+  tabletop is a decoy for "wooden" prompts; the ep3-motivated rules are eval-tainted and need an owner decision
+  ("general rules motivated by an eval failure", grid and selection rule committed before replay, ep3 numbers never
+  cited); `pipeline/perc.py` already has a geometric verifier (FoundationPose on the top-4 candidates, depth
+  agreement) to port first; the VLM verifier cannot be calibrated on public data (few frame-0 errors) → after the
+  first submission. Also flagged: STATUS/task #6 "owner checks eval overlays visually" is a human judging eval
+  outputs, which the rules forbid → overlays may be logged, not used to choose.
+- **Order:** (1) dump all frame-0 proposals (masks, similarity, size, centres) for the public episodes on the next
+  approved GPU box (≈ 2–3 min per episode); (2) replay on CPU: soft size term + part-of merge rule (+ spoon intensity
+  consistency), keep only with no public regression; (3) Grounding DINO tiny as an extra Hungarian term (score
+  normalised by the phrase's best, top-5 kept, off for objects outside camera a); (4) port perc.py's verify step;
+  (5) VLM (Qwen3-VL, Apache-2.0) as a numbered-candidate selector, later.
