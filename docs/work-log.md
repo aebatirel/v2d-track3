@@ -1423,3 +1423,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   FC_IMMEDIATE_FIRST_FRAME=0.25` on ep18 only; compare with I (kri, library_v2). Result expected ≈ 09:00 TRT.
 - **ep18 ki s42 (box F; read back from the store), 6 evaluations: 0.342 ± 0.096 (0.144–0.421)**: no gain (one very bad
   rollout). Every ep18 variant without a stable sweeper lands at 0.32–0.38.
+
+### 06:40 TRT — floating objects are general; rest settling fixes the start on ep12 / ep27 (CPU); box L
+- Assist-off drop test from frame 0 (no policy) on the other references: ep12 the dish rack floats ~1 cm (drops
+  1.07 cm) and the blue cup tips 23° within 4 steps (episode ends); ep27 the dish rack drops 1.05 cm, the pot moves 6°;
+  ep24 fine at the start. With `contact_retarget --rest_settle 1`: ep12 cup 0.4 cm / 3.5°, all 20 steps (rack seated:
+  gap 1.0 cm, turned ≤ 5°); ep27 rack 0.4 cm / 1.4°, pot 4.4°, drops 0.03 cm.
+- Box L (instance 57152728, `20261022-r4kr-*`): `SUF=kr CR_ARGS="--rest_settle 1"` on ep12 (compare with k 0.790 ±
+  0.023): does the generic rest settling help an easy episode's score? Credit $9.11 at 06:35; guard kept.
