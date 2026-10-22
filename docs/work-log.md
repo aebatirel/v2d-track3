@@ -1817,3 +1817,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   consistency), keep only with no public regression; (3) Grounding DINO tiny as an extra Hungarian term (score
   normalised by the phrase's best, top-5 kept, off for objects outside camera a); (4) port perc.py's verify step;
   (5) VLM (Qwen3-VL, Apache-2.0) as a numbered-candidate selector, later.
+- 01:55 TRT: owner: "go as far as you can before using the GPU … or if the budget is enough, do the test". Credit
+  $17.98 (A/B boxes still loading/setting up). Launched the ep35 retrain with the capped lead-in only (no other
+  change): instance 57278692 (RTX PRO 6000 WS, Australia, $1.07/h), run `20261023-spoon35L-d9fb9b9`, code d9fb9b9,
+  job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 EPS="35"; bash ops/jobs/auto_runs.sh` (same as
+  `20261022-spoon35-d82d447`). Estimate ≈ 1.8 h, ≈ $2–3. Budget check: A/B ≈ $10 + this ≈ $3 + $3 margin ≤ $17.98.
+  Compare: before 0.127 (floor 0.112). Falsifier as above (stays near the floor → grasp, not start).
