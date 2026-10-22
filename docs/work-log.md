@@ -1353,3 +1353,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **ep27 base (published mc policy), 6 evaluations: 0.942 ± 0.017 (0.908–0.956); k (retargeting) s42: 0.911 ± 0.017
   (0.874–0.922), −0.031.** So far k vs base: ep24 +0.010 (spread 3–25× smaller), ep18 −0.025, ep27 −0.031: not a
   recipe to adopt everywhere. Box B finished (both episodes) and self-destroys.
+
+### 04:15 TRT — budget swap: box G (kpi) stopped, box J (start fix alone) started
+- Credit $24.26 at 04:05 (spend ≈ $12/h); the running boxes need ≈ $18 more, so a new box would break the guard.
+  Box G (`kpi`: primitive hand + retargeting + start fix; three changes at once, hard to read) destroyed while still
+  training its first episode (≈ $1.5 spent). Replaced by box J (instance 57136645, `20261022-r3i-*`): `SUF=i CR=0
+  FC_IMMEDIATE_FIRST_FRAME=0.25` on ep18 + ep27, i.e. the deployment-exact start fix alone on the base reference,
+  compared with the base (ep18 0.345, ep27 0.942). This is the test the morning recommendation hinges on: retargeting
+  hurts ep27, so the start fix must stand without it.
