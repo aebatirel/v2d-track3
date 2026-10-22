@@ -2,6 +2,15 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-22 evening (19:10 TRT): priorities by score weight
+- Final AUC = plain mean over the 20 eval episodes; objects equal within an episode. Object shares: **spoon 32.5 %**,
+  pot 15 %, blue cup 12.5 %, rack 12.5 %, dust pan 7.5 %, beige cup 5 %, sweeper 5 %, lid / pitcher / boards 2.5 % each.
+- ep24 with the organisers' meshes (s42): 0.389 vs 0.307 with ours; board 2 is never lifted in any rollout (it floats
+  2.6 cm above the table in our reference at the grasp) → ep24's limit is mostly not the mesh. Seed 43 pending
+  (box 57224262). Boards are 5 % of the score → stop ep24-specific spending.
+- Next: spoon reconstruction / registration robustness first; generic support constraint (objects at rest sit on the
+  table); mesher evidence round `wf_f198e86a-d3b` running; sweeper flips at eval ep30's registration seed.
+
 ## 2026-10-22 morning (09:20 TRT): overnight closed; next = physically valid meshes built from interactions
 - Last box (L, ep12 rest settle + stable pose) done: 0.740 ± 0.032 vs retargeting alone 0.790 ± 0.023 (one seed).
   Rest settling helps only where an object cannot stand by itself (ep18). Overnight spend $49.76 (credit $2.93,

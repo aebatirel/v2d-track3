@@ -1620,3 +1620,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Reading: the true meshes buy ≈ +0.08 (board 1 can stand); ep24's ceiling is the board-2 lift and the final
   insertion, which fail with perfect meshes → reference/learning (hand assignment around the board-2 lift; owner's
   "two hands snap onto the same board"), not the mesh. Seed 43 (box 2) pending for confirmation.
+
+### 19:10 TRT — how the final AUC weighs episodes and objects (kit AUC.py); spoon = 32.5 % of the score
+- `_score_registered_track3`: per episode, per object, per frame ADD (after mesh registration and one frame-0 scene
+  alignment) → per-frame score (1.0 < 1 cm, −0.125 per further cm, 0 at ≥ 9 cm) → mean over frames per object → mean
+  over objects per episode → **plain mean over the 20 eval episodes (each 1/20, regardless of length or object
+  count)**. Boards are 100 % public (no private split; `docs/research/track3-requirements.md`).
+- Object share of the final AUC (roster `track_3_evaluation_objects.json`): wooden_spoon 32.5 %, white_pot 15 %,
+  blue_cup 12.5 %, plastic_dish_rack 12.5 %, mini_dust_pan 7.5 %, beige_cup 5 %, mini_sweeper 5 %, white_pot_lid,
+  water_pitcher, wooden_piece_1, wooden_piece_2 2.5 % each.
+- Consequences: the spoon (no public episode, no scan, parametric template, flip-prone by the scan-free ambiguity
+  test) is the top risk; ep25 (boards) is 5 % → ep24-specific work deprioritised (proposed $2.5 board-2 seating test
+  not run unless the owner insists); pot / cups / rack are 40 %.
+- Evidence-round metric (`scratchpad/interact/v5/metric/`): only the Design O + local-fallback set for lid / dust pan /
+  pot passes "no worse on eval-weighted CD-O and registration offset" (−0.025 cm, −0.39 mm); v3/v4 patches are
+  neutral on these metrics; the library sweeper registers flipped 178° at eval ep30's seed (ADD 45.6 mm) in v1–v4.
