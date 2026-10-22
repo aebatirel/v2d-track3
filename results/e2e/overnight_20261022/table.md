@@ -32,6 +32,8 @@
 | mcski-s42 | retargeting + deployment-exact starts | 42 | 6 | 0.318 ± 0.001 (0.317–0.319) | 0.326 ± 0.001 (0.325–0.329) | +0.021 |
 | mcskq-s42 | retargeting + keypoints 0.15 m | 42 | 6 | 0.313 ± 0.011 (0.297–0.326) | 0.329 ± 0.009 (0.318–0.343) | +0.016 |
 | mcskri-s42 | retargeting + rest settle + deployment-exact starts | 42 | 6 | 0.312 ± 0.003 (0.309–0.317) | 0.323 ± 0.006 (0.318–0.336) | +0.014 |
+| mcsks-s42 | retargeting, PUBLIC scan assets (oracle mesh) | 42 | 6 | 0.389 ± 0.076 (0.283–0.478) | 0.385 ± 0.084 (0.261–0.472) | +0.092 |
+| mcsks-s43 | retargeting, PUBLIC scan assets (oracle mesh) | 43 | 6 | 0.245 ± 0.001 (0.245–0.247) | 0.223 ± 0.002 (0.220–0.226) | -0.052 |
 | mcsp-s42 | primitive hand | 42 | 6 | 0.282 ± 0.023 (0.250–0.323) | 0.269 ± 0.022 (0.227–0.290) | -0.015 |
 
 **ep27**

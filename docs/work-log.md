@@ -1657,3 +1657,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   funds it, otherwise it is killed when ep3 is done so the box finishes and self-destroys.
 - Fix for later runs: `auto_runs.sh` now exports `TRAIN_LOCK` (trainings take turns, as in `hard_ab.sh`).
 - Credit $6.28 at 17:06 UTC (box 2 ≈ $0.45 to go; ep3 alone ≈ 2.5 h ≈ $3.25).
+
+### 20:15 TRT — ep24 with the organisers' meshes, seed 43: 0.245 ± 0.001 → the mesh is not ep24's limit
+- Run `20261022-r5ks43-72ecb2f` (box 2, Max-Q, self-destroyed), mcsks-s43, 6 evaluations: registered AUC vs scans
+  **0.245 ± 0.001 (0.245–0.247)**, sim_vs_ref 0.223; all six rollouts near-identical, SP/MP 0, close to the static
+  floor 0.229 (the policy barely acts).
+- ep24 summary: our meshes s42 0.307 / s43 0.306 (mean 0.307); organisers' meshes s42 0.389 / s43 0.245 (mean 0.317).
+  The seed spread with perfect meshes (0.14) exceeds the mesh effect; the s42 gain was seed luck. In every rollout
+  board 2 is never lifted. Conclusion: ep24's limit is the reference / learning (board-2 pick-up from flat, board 2
+  floating 2.6 cm in our reference at the grasp), not the mesh; boards are 5 % of the final score → no further ep24
+  spending. Cost of the test ≈ $4.6 (box 1 ≈ 1.5 h × $1.64, box 2 ≈ 2.7 h × $1.07).
