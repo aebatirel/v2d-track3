@@ -20,7 +20,7 @@ episode is the policy published on 2026-10-21, re-evaluated 6 times. Rows: `resu
 | k + rest settle (height only) + start fix (kri) | | | 0.368 ± 0.069 | 0.312 ± 0.003 |
 | start fix alone (i) | | | 0.351 ± 0.056 | |
 | primitive-collision hand (p) | | | 0.377 ± 0.021 | 0.282 ± 0.023 |
-| k + rest settle + stable pose (kr) | pending (box L) | | | |
+| k + rest settle + stable pose (kr) | 0.740 ± 0.032 | | | |
 | **kri + flattened sweeper, stable pose (kfi)** | | | **0.715 ± 0.240; 5 of 6 rollouts 0.79–0.84, SP/MP 1** | |
 
 Four-episode mean: base 0.577; retargeting 0.587 (two-seed means on the hard episodes). **ep18 rose from 0.345 to
@@ -46,8 +46,10 @@ Four-episode mean: base 0.577; retargeting 0.587 (two-seed means on the hard epi
    mean, 5 of 6 rollouts 0.79–0.84 with SP and MP success** (one rollout drops the sweeper at f88).
 4. **Objects float above the table in our references** (ep24 boards 2–4 cm, ep12 and ep27 dish rack ~1 cm). With the
    assist off they drop at the start; ep12's cup tips 23° within 4 steps. `--rest_settle 1` seats them (ep12 cup
-   0.4 cm / 3.5°, all steps; ep27 rack drop 1.05 → 0.03 cm). GPU on ep12: pending (box L). On ep24 it did not change
-   the score (0.312 vs 0.318).
+   0.4 cm / 3.5°, all steps; ep27 rack drop 1.05 → 0.03 cm). **But it does not raise the score where no object
+   falls over by itself:** ep12 kr 0.740 ± 0.032 (0.671–0.762) vs k 0.790 ± 0.023 (one seed, −0.05; `sim_vs_ref`
+   ranks them the same way, 0.763 vs 0.791); ep24 0.312 vs 0.318. It paid off on ep18 only together with a sweeper
+   that can stand. So the drop-test flag alone is not a rule to apply it: keep it as a candidate chosen by `sim_vs_ref`.
 5. **ep24's ceiling is learning, not geometry:** every variant tracks the slide (board 1 within 1–2 cm to f68) and fails
    where a board is lifted and stood on its edge (board 1 ~f102, board 2 ~f117). Retargeting, rest settling, keypoint
    scale and the start fix all land at 0.306–0.318.
@@ -62,17 +64,42 @@ Four-episode mean: base 0.577; retargeting 0.587 (two-seed means on the hard epi
 
 ## 3. Recommendation
 
-(final after boxes K and L) Draft:
-- **Pipeline for the submission:** build both references (E2S and contact-retargeted), train both, keep the better
-  by `sim_vs_ref` (no ground truth; same ranking as the true score on all four episodes, one tie). Cost ≈ 2
-  trainings per episode; use the mean of several evaluations, a single one is noisy.
-- **Add a physical-feasibility gate to every reference** (CPU, minutes): assist-off drop test from frame 0 and at rest
-  segments; settle floating/unstable resting objects (`--rest_settle 1`), flatten undersides of objects seen standing.
-  It found three of four episodes with objects that fall or drop with no hand near them.
+- **Pipeline for the submission:** build candidate references (E2S; contact-retargeted; retargeted + rest settling),
+  train each, keep the best by `sim_vs_ref` (no ground truth; it ranked the variants like the true score on all
+  four episodes tonight, one tie). Cost ≈ 2–3 trainings per episode; use the mean of several evaluations, a single
+  one is noisy.
+- **Physical-feasibility gate on every reference** (CPU, minutes): assist-off drop test from frame 0 and at rest
+  segments; it found three of four episodes with objects that drop or fall with no hand near them. Where an object
+  cannot stand on its own (no stable pose near its perceived resting pose) the mesh must be fixed (ep18: 0.345 →
+  0.715). Floating alone (ep12) is not worth a fix by itself (kr −0.05 on ep12).
+- **Mesh validity is the main lever found tonight**, and per-object hand patches (flattening one object along one
+  episode's up) do not scale to the 20 evaluation episodes. Owner's direction (09:00): build the meshes from how the
+  objects interact (no overlap at co-located frames, swept volumes are empty, resting objects touch the table with a
+  flat patch, fingertip contacts lie on the surface). Research and design for that: in progress (two research
+  workflows, plan to follow).
 - Not adopting: keypoint scale, primitive hand, start fix (no measurable effect; patches stay opt-in).
-- **Hard-episode ceiling** (ep24 lift-and-stand, ep18 tool use): needs a different way to produce feasible hand motion
-  (physics search / sampling MPC as in Do as I Do), not more reference cleaning.
+- **Hard-episode ceiling** (ep24 stand-up, ep18 tool use): ep18 was mostly the mesh; ep24 needs the boards' slots and
+  standing edges first (`meshes/library_v4` is a hand patch for the edges, no slots yet), then possibly a different
+  way to produce feasible hand motion (physics search / sampling MPC as in Do as I Do).
 
 ## 4. Spend and runs
 
-(final after boxes K and L)
+**Vast credit $52.69 at 01:00 TRT → $2.93 at 09:15 TRT: $49.76 spent overnight**, 13 RTX PRO 6000 boxes (WS, S and
+Max-Q, $1.30–1.91/h), all self-destroyed; none running. Per-box instance, $/h, job and commit: the box tables in
+`docs/work-log.md` (2026-10-22 entries). Run ids and what each measured:
+
+| run id | variant(s) | result |
+|---|---|---|
+| `20261022-r1a-65c5a52` (A) | ep24 k s42, ep12 k s42 + base re-evaluations | ep24 0.307, ep12 0.790; base 0.297 / 0.725 |
+| `20261022-r1b-65c5a52` (B) | ep18 k s42, ep27 k s42 + base re-evaluations | ep18 0.319, ep27 0.911; base 0.345 / 0.942 |
+| `20261022-r1c-65c5a52` (C) | seed 43 | lost to the `hard_ab.sh` copy bug (≈ $0.5) |
+| `20261022-r1c2-d4ac331` (C′) | ep24 k s43, ep18 k s43 | 0.306, 0.361 |
+| `20261022-r2p-d4ac331` (D) | primitive hand ep18, ep24 | 0.377, 0.282 |
+| `20261022-r2q-d4ac331` (E) | keypoints 0.15 m ep18, ep24 | 0.381, 0.313 |
+| `20261022-r3ki-342d72c` (F) | start fix ep24, ep18 | 0.318, 0.342 |
+| `20261022-r3kpi-342d72c` (G) | primitive + start fix | stopped while training (≈ $1.5) |
+| `20261022-r3kie-342d72c` (H) | start fix ep12, ep27 | 0.763, 0.897 |
+| `20261022-r3kri-764afba` (I) | rest settle (height) + start fix ep24, ep18 | 0.312, 0.368 |
+| `20261022-r3i-1fc3dc9` (J) | start fix alone ep18 | 0.351 |
+| `20261022-r4kfi-a30ac72` (K) | flattened sweeper + stable-pose settling ep18 | **0.715** |
+| `20261022-r4kr-28e4883` (L) | rest settle + stable pose ep12 | 0.740 |

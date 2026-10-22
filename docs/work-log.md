@@ -1458,3 +1458,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (`meshes/library_v4`, experimental): board 2 then has a stable standing face at 0° (27 cm², +5.7 mm); board 1 is
   marginal (+0.1 mm: our standing pose leans; in the video a hand steadies it). GPU test needs ≈ $2.5 (credit too low
   for the $3 margin after box L).
+
+### 09:20 TRT — box L: rest settling on ep12; overnight closed; owner asks for a robust, interaction-based mesh method
+- **ep12 kr s42 (box L, `20261022-r4kr-28e4883`, `SUF=kr CR_ARGS="--rest_settle 1"`, code 28e4883), 6 evaluations:
+  registered AUC 0.740 ± 0.032 (0.671–0.762), sim_vs_ref 0.763 ± 0.047** vs k 0.790 ± 0.023 (sim_vs_ref 0.791), base
+  0.725 ± 0.067. One seed, −0.05 vs k; `sim_vs_ref` ranks them like the true score. Selected rollout: rack AUC 1.0,
+  cup 0.53. Rest settling seats the floating rack/cup (CPU), but that is not what limits ep12. The box destroyed
+  itself before the summary file was copied; `summary.json` transcribed from the job log line (marked so).
+- Overnight spend: credit $52.69 (01:00) → $2.93 (09:15): **$49.76**, 13 boxes, none running. Report finalised.
+- Owner (08:30–09:00 TRT): (1) ep24: both hands snap onto one board, and our boards lack the interlocking slots
+  (confirmed: 13.5 cm³ overlap at the assembled pose, slots visible in the video at k=0); (2) "would this be a robust
+  solution … what would be the stages … look at the research"; (3) "when creating meshes we see how pieces interact
+  with each other and build the meshes according to that". Answer: per-object patches (flatten along one episode's
+  up, carve one slot) are not robust; the general problem is a physically invalid reconstructed scene.
+  Workflows launched (ultracode): `wf_b93ee63b-f35` (7 literature angles + verification + our-object audit →
+  synthesis → critic) and `wf_8a372398-57b` (interaction census over the 12 two-object public episodes with our
+  meshes and tracks, mesh-vs-scan defect diagnostics [scans for diagnostics only], code map, targeted research →
+  3 designs → judge → critic). Outputs under `scratchpad/interact/`; plan to be written to `docs/`.

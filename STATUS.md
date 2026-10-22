@@ -2,6 +2,17 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-22 morning (09:20 TRT): overnight closed; next = physically valid meshes built from interactions
+- Last box (L, ep12 rest settle + stable pose) done: 0.740 ± 0.032 vs retargeting alone 0.790 ± 0.023 (one seed).
+  Rest settling helps only where an object cannot stand by itself (ep18). Overnight spend $49.76 (credit $2.93,
+  no instances). Report final: `docs/overnight-2026-10-22.md` (results, recommendation, spend per run id).
+- Owner (08:30–09:00): ep24 also has the two hands snapping onto one board and boards without their interlocking
+  slots; asked whether the per-object patches are robust (they are not: hand-made per object/episode) and suggested
+  building the meshes from how the pieces interact. Two research workflows running (literature sweep + verification;
+  interaction census over our 12 two-object public episodes, mesh-vs-scan defect diagnostics, code map, three designs
+  judged). Plan to follow in `docs/` (sim-valid meshes).
+- Waiting on the owner: top-up for GPU tests (ep24 with slots + standing edges, ep18 second seed ≈ $10).
+
 ## 2026-10-22 overnight (owner asleep; $50 top-up, credit $52.69 at 01:00 TRT; "go crazy, I trust you")
 Plan: round 1 = contact-retargeted references ("k") on ep12, ep18, ep24, ep27 (seed 42, 250M, sweep) + 6 repeat
 evaluations each of the new and the base policies; round 2 = second seed + fixes for what fails; round 3 = confirm the
