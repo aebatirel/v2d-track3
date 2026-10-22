@@ -1,0 +1,10 @@
+{
+ "inp": "meshes/library_v3/wooden_piece_1.glb",
+ "up": [
+  -0.1146,
+  0.9934,
+  -0.0016
+ ],
+ "depth": 0.008,
+ "vertices_moved": 130
+}

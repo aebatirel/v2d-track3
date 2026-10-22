@@ -1,0 +1,28 @@
+{
+ "obj": "blue_cup",
+ "episodes": 4,
+ "frames": 746,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.9840242962962963,
+ "inside_vox": 5659,
+ "solid_vox": 6772,
+ "closing": "fill",
+ "unknown_share": 0.166,
+ "components": 81,
+ "hand_dropped": 1669467,
+ "table_dropped": 16441994,
+ "other_dropped": 4726029,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  9.5,
+  9.6,
+  16.7
+ ],
+ "watertight": false,
+ "sec": 1371.2
+}
