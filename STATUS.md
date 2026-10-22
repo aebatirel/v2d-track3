@@ -7,6 +7,19 @@ Plan: round 1 = contact-retargeted references ("k") on ep12, ep18, ep24, ep27 (s
 evaluations each of the new and the base policies; round 2 = second seed + fixes for what fails; round 3 = confirm the
 best setup with a fresh seed. Live log of rounds: `docs/work-log.md` (2026-10-22 entries).
 
+Interim (03:25 TRT; registered AUC with our meshes, mean ± std over 6 evaluations; table: `tools/ab_table.py` on
+the scratchpad copies `boxres/<run_id>/`):
+- ep24: base 0.297 ± 0.055; retargeting (k) 0.307 ± 0.002 (s42) / 0.306 ± 0.018 (s43); k + keypoints 0.15 m
+  0.313 ± 0.011; primitive hand 0.282 ± 0.023. Retargeting makes ep24 consistent (spread 3–25× smaller), not better
+  on average; the slide now tracks (1–2 cm), every rollout fails at the lift/stand phase (board 1 ~f102, board 2 ~f117).
+- ep18: base 0.345 ± 0.046; k 0.319 ± 0.042. The sweeper is knocked over by f8–10 (reference: still until f40).
+- Controls (from the store, single published rollouts): ep12 0.757, ep27 0.956.
+- Found: (1) a train/eval start mismatch (training always opens the fingers and holds the reset frame 20 steps; the
+  official evaluation starts exact and free) → opt-in patch `FC_IMMEDIATE_FIRST_FRAME`; (2) our reference has resting
+  boards 2–4 cm above the table → opt-in `contact_retarget --rest_settle 1`.
+- Running (all self-destroy when done): A ep12 k, B ep27 k, C′ ep18 k s43, D ep18 p, E ep18 kq, F ki (ep24, ep18),
+  G kpi (ep24, ep18), H ki (ep12, ep27), I kri (ep24, ep18).
+
 ## 2026-10-21 night: contact-anchored retargeting ready for the GPU A/B (prepared before the top-up)
 Details: `docs/work-log.md` (22:35–23:05 TRT entries). Vast credit **$2.69**, no instances running.
 - **Diagnosis (measured):** the robot hand in our references sits 16–20 mm (p95) inside the objects at most contact
