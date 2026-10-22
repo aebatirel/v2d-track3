@@ -1635,3 +1635,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Evidence-round metric (`scratchpad/interact/v5/metric/`): only the Design O + local-fallback set for lid / dust pan /
   pot passes "no worse on eval-weighted CD-O and registration offset" (−0.025 cm, −0.39 mm); v3/v4 patches are
   neutral on these metrics; the library sweeper registers flipped 178° at eval ep30's seed (ADD 45.6 mm) in v1–v4.
+
+### 19:40 TRT — first eval-pipeline run: spoon episodes 3 and 35 (owner: "we have 8 dollars do a run for a hard spoon episode")
+- Spoon montage of the 10 eval spoon episodes (RGB cam a; `scratchpad/vid3/spoon/spoon_eval_episodes.mp4`): stirring in
+  the pot (3, 5, 6), standing it in the rack's holder (15, 16), with the blue cup (32, 33), spoon alone and handed over
+  (35, 36, 37). Before today nothing beyond the parametric template and research notes existed for the spoon.
+- Box: instance 57237264 (RTX PRO 6000 Max-Q, $1.297/h, Japan), run `20261022-spoon-40ff0cd`, commit 40ff0cd, job
+  `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 CONCURRENT=2 EPS="3 35"; bash ops/jobs/auto_runs.sh` (route A,
+  library_v2 incl. the spoon template; perception → hands → mkref (2 variants ranked by qa_ref) → contact retargeting
+  → 250M steps → sweep + floor guard → render). Expected ≈ 3 h ≈ $4 (credit $8.54 at launch, box 2 still finishing).
+  No ground truth: outputs are sim_vs_ref / floor_vs_ref and videos; this is also the first-ever eval pipeline run.
+  Rule note: an inference run on eval episodes; findings may change the pipeline only generically (no per-episode tuning).
