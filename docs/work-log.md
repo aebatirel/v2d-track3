@@ -1382,3 +1382,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Retargeting vs base over the four validation episodes (6 evaluations each): ep12 +0.066, ep24 +0.010 (two seeds),
   ep18 −0.005 (two-seed mean), ep27 −0.031; mean ≈ +0.01. The consistent effect is a smaller rollout spread
   (ep12 ±0.067 → ±0.023, ep24 ±0.055 → ±0.002–0.018): fewer bad draws. Box A done (self-destroys).
+
+### 04:50 TRT — ep24 ki (retargeting + deployment-exact starts)
+- **ep24 ki s42, 6 evaluations: 0.318 ± 0.001 (0.317–0.319)** (final 250M) vs k 0.307 / 0.306, kq 0.313, base 0.297:
+  best and tightest on ep24, +0.011 over k (within noise).
