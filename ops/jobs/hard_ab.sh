@@ -14,6 +14,7 @@
 # BASE_EVAL (0 = skip re-evaluating the base), TRAIN_ARGS (passed to training, e.g. reward weights / embodiment),
 # FC_OBJECT_KEYPOINT_SCALE (object-keypoint reward distance in m), FC_IMMEDIATE_FIRST_FRAME (share of late-stage resets
 # that start like the official evaluation); both patch FlashCHORD, see ops/box/patch_flashchord.py.
+# ASSET_SRC=public: the organisers' public URDFs/meshes in the simulator instead of ours (oracle-mesh test).
 # Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; NREP=${NREP:-6}; PAR=${PAR:-3}
@@ -23,7 +24,15 @@ export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets SPLIT
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/hard_ab; mkdir -p $O
 log "hard_ab code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], suffix $SUF seed $SEED CR $CR, NREP $NREP, TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
 pip install -q fast_simplification >> $J 2>&1 || true              # kit budget_mesh (score_registered --meshes)
-python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
+SCORE_MESH="--meshes $MESH_DIR"
+if [ "${ASSET_SRC:-ours}" = public ]; then   # 2026-10-22 owner test: the organisers' public assets (scans + their collision
+  rm -rf $ASSETS; mkdir -p $ASSETS/urdf      # meshes) in the simulator, everything else unchanged ("is ep24 about the mesh?")
+  cp /content/t3/urdf/*_rigid.urdf $ASSETS/urdf/ && ln -s /content/t3/mesh $ASSETS/mesh || { log "public assets FAILED" >> $J; exit 1; }
+  SCORE_MESH=""                              # registered against the scans themselves (~identity); our-mesh score kept too
+  log "assets: PUBLIC scans + collision meshes ($(ls $ASSETS/urdf | wc -l) urdfs)" >> $J
+else
+  python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
+fi
 if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ]; then   # opt-in patches (ops/box/patch_flashchord.py)
   python $REPO_DIR/ops/box/patch_flashchord.py $FC >> $J 2>&1 || { log "FlashCHORD patch FAILED" >> $J; exit 1; }
   export FC_OBJECT_KEYPOINT_SCALE FC_IMMEDIATE_FIRST_FRAME
@@ -67,7 +76,9 @@ evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluatio
         evaluation.metrics_output=$d/r$i/episode_$E6.json evaluation.object_trajectories_output=$d/r$i/episode_$E6.parquet \
         hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1 \
       && python $P/qa.py policy $d/r$i $ep > /dev/null 2>&1 \
-      && python $P/score_registered.py $ep $d/r$i --meshes $MESH_DIR > /dev/null 2>&1 ) & pids+=($!)
+      && python $P/score_registered.py $ep $d/r$i $SCORE_MESH > /dev/null 2>&1 \
+      && { [ -z "$SCORE_MESH" ] && python $P/score_registered.py $ep $d/r$i --meshes $MESH_DIR \
+             --out $d/r$i/score_registered_ours_ep$ep.json > /dev/null 2>&1 || true; } ) & pids+=($!)
     [ ${#pids[@]} -ge $PAR ] && { wait "${pids[@]}"; pids=(); }
   done
   [ ${#pids[@]} -gt 0 ] && wait "${pids[@]}"
@@ -79,11 +90,13 @@ for r in sorted(glob.glob(f'{d}/r*/')):
     try:
         q = json.load(open(f'{r}qa_policy.json')); s = json.load(open(f'{r}score_registered_ep{ep}.json'))['sim']
         rows.append(dict(rollout=os.path.basename(r[:-1]), sim_vs_ref=q['sim_vs_ref'], auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR']))
+        if os.path.exists(f'{r}score_registered_ours_ep{ep}.json'):        # public-asset runs: also our mesh registered
+            rows[-1]['auc_ours'] = json.load(open(f'{r}score_registered_ours_ep{ep}.json'))['sim']['AUC']
     except Exception as e:
         rows.append(dict(rollout=os.path.basename(r[:-1]), error=str(e)[:120]))
 ok = [x for x in rows if 'auc' in x]; agg = {}
-for k in ('sim_vs_ref', 'auc'):
-    v = np.array([x[k] for x in ok], float)
+for k in ('sim_vs_ref', 'auc', 'auc_ours'):
+    v = np.array([x[k] for x in ok if k in x], float)
     if len(v):
         agg[k] = dict(mean=round(float(v.mean()), 4), std=round(float(v.std()), 4), min=round(float(v.min()), 4), max=round(float(v.max()), 4))
 if ok:
@@ -110,7 +123,7 @@ one() {
     bash $P/pipeline_ep.sh $ep > $LG 2>&1
   log "ab ep$ep $k s$SEED: pipeline rc=$? $(grep -a 'contact_retarget:\|qa_policy:' $LG | cut -c1-300 | tr '\n' ' ')" >> $J
   F=/content/results/perc2$k/ep$ep-s$SEED
-  [ -s $F/episode_$(printf %06d $ep).parquet ] && python $P/score_registered.py $ep $F --meshes $MESH_DIR > /dev/null 2>&1
+  [ -s $F/episode_$(printf %06d $ep).parquet ] && python $P/score_registered.py $ep $F $SCORE_MESH > /dev/null 2>&1
   # the base checkpoint behind today's score is in git (policies/<run>/perc2<base>/); the store keeps every 10th only
   [ -s "$ck0" ] || ck0=$(ls $REPO_DIR/policies/$run/perc2$base/ep${ep}_policy_*.safetensors 2>/dev/null | head -1)
   [ -s "$ck0" ] || ck0=$(chosen /content/results/perc2$base/ep$ep-s42 /content/runs/perc2$base/ep$ep-s42 2>> $J)
