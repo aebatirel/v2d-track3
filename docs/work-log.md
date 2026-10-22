@@ -1852,3 +1852,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   tracks there are wrong) are excluded by the 2 cm rule. ep11 median 1.1 cm (p90 5.1) kept.
 - Pending for the detection fix: the GPU dump job (`ops/jobs/det_dump.sh`, ≈ $1.5–2) — after the running batch, with
   the owner's go-ahead (credit after the current boxes ≈ $4, below a safe margin for another box).
+
+### 02:35 TRT (23:35 UTC) — FDR A/B, first result: ep12 seed 42
+- **ep12 mckd s42 (k reference + FDR rewards; box `20261023-fdr42-715c9f7`), 6 evaluations: registered AUC
+  0.891 ± 0.015 (0.866–0.915), sim_vs_ref 0.905 ± 0.009** vs the same reference without FDR (k s42, 2026-10-22):
+  0.790 ± 0.023, sim_vs_ref 0.791. +0.10 on both. Chosen checkpoint 250M. One seed; seed 43 and ep18 pending.
