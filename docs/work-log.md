@@ -1361,3 +1361,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   FC_IMMEDIATE_FIRST_FRAME=0.25` on ep18 + ep27, i.e. the deployment-exact start fix alone on the base reference,
   compared with the base (ep18 0.345, ep27 0.942). This is the test the morning recommendation hinges on: retargeting
   hurts ep27, so the start fix must stand without it.
+- **GPU speed (same recipe, 4,096 worlds):** RTX PRO 6000 **Max-Q** (300 W cap, drawing 269 W) 41.7k env steps/s
+  (box F) vs **WS** (500 W, drawing 404 W) 55.1k (box C′): Max-Q = 76 % of WS. A 250M policy: Max-Q ≈ 100 min,
+  WS ≈ 76 min; a Max-Q at $1.30/h costs about as much per policy as a WS at $1.71/h (≈ $2.2 per policy).
