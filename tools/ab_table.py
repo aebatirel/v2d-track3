@@ -10,6 +10,7 @@ LABEL = {'k': 'contact retargeting', 'kq': 'retargeting + keypoints 0.15 m', 'p'
          'kp': 'retargeting + primitive hand', 'ki': 'retargeting + deployment-exact starts',
          'kpi': 'retargeting + primitive hand + deployment-exact starts',
          'kri': 'retargeting + rest settle + deployment-exact starts', 'i': 'deployment-exact starts', 'kfi': 'kri + flattened sweeper base (library_v3)', 'kr': 'retargeting + rest settle', 'ks': 'retargeting, PUBLIC scan assets (oracle mesh)', 'pi': 'primitive hand + deployment-exact starts',
+         'kd': 'retargeting + FDR rewards (object points, fingertip bound)', 'kfid': 'kfi + FDR rewards (object points, fingertip bound)',
          '': 'base (published policy)'}
 rows = {}
 for d in sys.argv[1:]:
@@ -23,7 +24,7 @@ for d in sys.argv[1:]:
 
 
 def kind(var):
-    m = re.match(r'^(mcs|mc|m)(kfi|kri|kpi|kp|kq|kr|ks|ki|k|pi|p|i)?(?:-s(\d+))?$', var)
+    m = re.match(r'^(mcs|mc|m)(kfid|kfi|kri|kpi|kp|kq|kr|ks|kd|ki|k|pi|p|i)?(?:-s(\d+))?$', var)
     return (m.group(1), m.group(2) or '', int(m.group(3)) if m.group(3) else 42) if m else (var, '?', 0)
 
 

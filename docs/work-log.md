@@ -1722,3 +1722,54 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   critic). Ideas kept for later: automatic failure diagnosis (per-frame error timeline + render → failure class →
   targeted retry), warm starts from twin policies, WS-only GPUs, one training per GPU. Data:
   `docs/research/work/checkpoint-sweeps-2026-10-22.json`.
+
+## 2026-10-23
+
+### 00:50 TRT — FlashDexRetarget-style training rewards (owner: "start developing the flashdexretarget version")
+- Owner's scope: test on a few public episodes with per-episode training (ep12 easy, ep18 hard; seeds 42 and 43,
+  ≈ $10); if acceptable, the full 20. Keep in mind, not now: evaluator-in-the-loop checkpoint selection / early stop,
+  automatic failure diagnosis, warm starts, a VLM critic for diagnosis.
+- Read (FlashCHORD source): `objectives/{tracking,config,composition,keypoints,shaping,joints}.py`,
+  `runtime/actions/hand_pose.py`, `runtime/residual.py`, `evaluation/harness.py`. The evaluator rebuilds the
+  environment from the checkpoint's resolved config (objective included) and applies the checkpoint's curriculum stage
+  weights through `set_weights`, which rejects unknown term names. So new reward terms must reuse FlashCHORD's own
+  term names, or the official evaluator could not load our checkpoints.
+- **Design (training reward only; FDR = arXiv 2610.01849 and its code, see `docs/research/port-recipes-2026-10-21.md`
+  §2.1, T1, T2):**
+  - `FC_FDR_OBJ=1`: the `object_keypoints` slot computes FDR's point match: 128 area-weighted points on each object's
+    own visual mesh (the simulator's shape), error = mean of the top-3 distances between the points at the simulated
+    and the reference pose, value exp(-e/0.1) (FlashCHORD's Laplacian with var 0.1 = FDR's exp(-10 e)), mean over
+    objects. **Deviation from FDR:** true object size instead of FDR's rescale to a 5.8 cm radius, because the score
+    is ADD on true geometry (FDR's own Sharpa rotation error is worse than CHORD's, 0.32 vs 0.19 rad). For ep18 the
+    true radii are 8.1 / 9.9 cm, close to FDR's anyway. `FC_FDR_OBJ_RADIUS=0.058` reproduces FDR exactly.
+  - `FC_FDR_TIPS=1`: the `force_closure` slot (enabled via config, weight 6 = FDR's 0.3 × object 20) computes FDR's
+    one-sided fingertip bound: per fingertip exp(-max(0, d_sim - d_ref)/0.01), mean over both hands' 5 tips. d =
+    unsigned distance to the nearest object's visual mesh (Warp BVH query); d_ref from our reference robot fingertips
+    at the reference object pose (FDR uses human MANO tips; after contact retargeting our robot tips are the cleaner
+    hand-object distances). No contact labels needed.
+  - Contact wrench terms kept but down-weighted (labels from monocular hands are noisy; port recipe T2 arm C): wrench
+    support 10 → 3, unintended contact -10 → -2, missed -1. New curriculum file `tracking_250m_mixed_reset_v2d`
+    (stock, with missed/unintended stage weights read from the objective config; stock defaults reproduce stock).
+  - **Not changed:** hand tracking weights (0.25 / 0.25). FDR gives hand tracking ~41 % of its reward, but its finger
+    actions are absolute and its benchmark scores hand tracking; FlashCHORD's actions are residuals on the reference
+    hand (zero action = reference) and our score is objects only [I: hypothesis; falsifier = a later arm with FDR's
+    hand share]. Termination, observation, network, learner, action limits unchanged.
+  - **Correction of my earlier statement (to the owner):** the Sharpa recipe's wrist corrections already reach ±20 cm
+    and ±1 rad: `input_mode: normalized, normalized_mapping: rational` maps the policy's ±1 onto the clip
+    (`wrist_pos_clip 0.2`, `wrist_ori_clip 1.0`, fingers 1.0); 5 cm / 0.15 rad is only the gain near zero. FDR's
+    ±10 cm / ±1 rad is not wider, so no action change.
+- Code: `ops/box/fc_v2d_fdr.py` (installed as `flash_chord/objectives/v2d_fdr.py`; wraps `TrackingObjective.build`
+  and `evaluate`, overwrites the two slots after FlashCHORD's own evaluation and recomposes the score),
+  `ops/box/patch_flashchord_fdr.py` (idempotent; the hook is inert unless a flag is set at import),
+  `ops/jobs/hard_ab.sh` (FDR flags; per-episode settings `ENV_EP<N>` so ep12 (k baseline) and ep18 (kfi baseline)
+  share a box), `tools/ab_table.py` (labels kd / kfid).
+- CPU tests (scratch copy of FlashCHORD, ep18 kfi reference `scratchpad/vid3/ep18/tree`; `scratchpad/fdr/`):
+  - curriculum override resolves (stage weights object 20, tips 6, wrench 3, unintended -2); `set_weights` accepts.
+  - on the reference pose both terms = 1.0; object +2 cm → 0.8187 = exp(-0.2) exactly; object yawed 0.2 rad → 0.85–0.86;
+    hands +5 cm → hand keypoints 0.6065 = exp(-0.5), tip term 0.11–0.71 by frame; reference tip-to-surface distances
+    at f176 0.2–5.0 cm.
+  - Warp mesh distance vs trimesh closest point, 800 random points: max difference 0.002 mm.
+  - six eager environment steps with zero actions: terms and score recomposed as expected (score = frame_dt × Σ w·term).
+  - CPU graph capture of FlashCHORD's transition segfaults with and without the patch (CPU APIC path); the boxes use
+    CUDA graph capture as before (driver ≥ 12.3 compiles modules during capture; the module is also pre-loaded).
+- Commits and the A/B launch follow.

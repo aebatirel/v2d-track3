@@ -2,6 +2,23 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-23 00:50 TRT: FlashDexRetarget-style rewards ready for a 2-episode x 2-seed A/B
+- Owner (22:xx TRT 10-22): "start developing the flashdexretarget version"; test on a few public episodes, per-episode
+  training, ≈ $10 (ep12 + ep18, seeds 42 / 43); if acceptable, go to the full 20.
+- **Port, training reward only** (`ops/box/fc_v2d_fdr.py`, installed by `ops/box/patch_flashchord_fdr.py`, inert
+  unless `FC_FDR_OBJ` / `FC_FDR_TIPS` are set): the `object_keypoints` slot becomes FDR's point match (128 points on
+  our own object mesh at its true size, top-3 error, exp(-e/0.1)); the `force_closure` slot becomes FDR's one-sided
+  fingertip bound (exp(-max(0, d_sim - d_ref)/1 cm), d_ref from our reference robot tips). Weights: object 20, tips 6,
+  wrench support 10 → 3, unintended contact -10 → -2; hand terms unchanged (0.25 / 0.25). The checkpoint config keeps
+  FlashCHORD's own term names (unpatched evaluator loads it). Not ported: K=10 future encoder, per-hand actor-critic,
+  multi-reference training, FDR terminations, FDR's 5.8 cm point normalisation (we use true size: the score is ADD).
+- **Correction:** FlashCHORD's Sharpa recipe already lets the policy move the wrist ±20 cm / ±1 rad from the reference
+  (normalized rational mapping up to the clip; 5 cm / 0.15 rad is only the gain near zero), so no action change.
+- CPU tests passed (ep18 reference; `scratchpad/fdr/test_fdr*.py`): both terms 1.0 on the reference, object +2 cm →
+  0.8187 = exp(-0.2), hands +5 cm → tip term 0.11–0.71, mesh distance = trimesh within 0.002 mm, eager env steps OK.
+- **ep35 (spoon, eval) finished; its box self-destroyed ~00:30 TRT.** Results are in the HF store
+  (`runs/20261022-spoon35-d82d447/`); this session reads the store only through a live box → fetch via the A/B box.
+
 ## 2026-10-22 evening (19:10 TRT): priorities by score weight
 - Final AUC = plain mean over the 20 eval episodes; objects equal within an episode. Object shares: **spoon 32.5 %**,
   pot 15 %, blue cup 12.5 %, rack 12.5 %, dust pan 7.5 %, beige cup 5 %, sweeper 5 %, lid / pitcher / boards 2.5 % each.

@@ -15,6 +15,10 @@
 # FC_OBJECT_KEYPOINT_SCALE (object-keypoint reward distance in m), FC_IMMEDIATE_FIRST_FRAME (share of late-stage resets
 # that start like the official evaluation); both patch FlashCHORD, see ops/box/patch_flashchord.py.
 # ASSET_SRC=public: the organisers' public URDFs/meshes in the simulator instead of ours (oracle-mesh test).
+# FC_FDR_OBJ / FC_FDR_TIPS (2026-10-22): FlashDexRetarget-style training rewards, see ops/box/patch_flashchord_fdr.py.
+# ENV_EP<N> (2026-10-22): space-separated VAR=value settings for episode N only (no spaces inside a value), e.g.
+#   ENV_EP18="SUF=kfid CR_ARGS=--rest_settle=1 FC_IMMEDIATE_FIRST_FRAME=0.25", so episodes with different baselines
+#   share one box.
 # Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; NREP=${NREP:-6}; PAR=${PAR:-3}
@@ -33,10 +37,17 @@ if [ "${ASSET_SRC:-ours}" = public ]; then   # 2026-10-22 owner test: the organi
 else
   python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fi
-if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ]; then   # opt-in patches (ops/box/patch_flashchord.py)
+if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ] \
+   || env | grep -q '^ENV_EP[0-9]*=.*FC_\(OBJECT_KEYPOINT_SCALE\|IMMEDIATE_FIRST_FRAME\)='; then   # opt-in patches
   python $REPO_DIR/ops/box/patch_flashchord.py $FC >> $J 2>&1 || { log "FlashCHORD patch FAILED" >> $J; exit 1; }
-  export FC_OBJECT_KEYPOINT_SCALE FC_IMMEDIATE_FIRST_FRAME
-  log "patched FlashCHORD: object keypoints ${FC_OBJECT_KEYPOINT_SCALE:-1} m, deployment-exact starts p ${FC_IMMEDIATE_FIRST_FRAME:-0}" >> $J
+  [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}" ] && export FC_OBJECT_KEYPOINT_SCALE
+  [ -n "${FC_IMMEDIATE_FIRST_FRAME:-}" ] && export FC_IMMEDIATE_FIRST_FRAME
+  log "patched FlashCHORD (ops/box/patch_flashchord.py): object keypoints ${FC_OBJECT_KEYPOINT_SCALE:-1} m, deployment-exact starts p ${FC_IMMEDIATE_FIRST_FRAME:-0} (job-wide; per-episode values in ENV_EP<N>)" >> $J
+fi
+if [ -n "${FC_FDR_OBJ:-}${FC_FDR_TIPS:-}" ]; then   # FlashDexRetarget-style rewards (ops/box/patch_flashchord_fdr.py)
+  python $REPO_DIR/ops/box/patch_flashchord_fdr.py $FC >> $J 2>&1 || { log "FlashCHORD FDR patch FAILED" >> $J; exit 1; }
+  export FC_FDR_OBJ FC_FDR_TIPS FC_FDR_OBJ_POINTS FC_FDR_OBJ_TOPK FC_FDR_OBJ_RADIUS FC_FDR_TIP_SIGMA
+  log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0} (radius ${FC_FDR_OBJ_RADIUS:-true}, top-k ${FC_FDR_OBJ_TOPK:-3}), fingertip bound ${FC_FDR_TIPS:-0} (sigma ${FC_FDR_TIP_SIGMA:-0.01} m)" >> $J
 fi
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }
@@ -106,8 +117,12 @@ EOF
 }
 
 one() {
-  local ep=$1 run=$2 base=$3 k R0 R1 ck0="" ck1 F LG
-  if [ "$base" = auto ]; then                                       # the variant auto_ep.sh published
+  local ep=$1 run=$2 base=$3 k R0 R1 ck0="" ck1 F LG ev=ENV_EP$1
+  if [ -n "${!ev:-}" ]; then                                        # per-episode settings; one() runs in its own
+    eval "export ${!ev}" || { log "ab ep$ep: bad $ev" >> $J; return 1; }   # subshell, so they stay with this episode
+    log "ab ep$ep: $ev = ${!ev}" >> $J
+  fi
+  if [ "$base" = auto ]; then                                      # the variant auto_ep.sh published
     base=$(python -c "import json, os; print(os.path.basename(os.path.dirname(json.load(open('/content/results/final/ep$ep/final.json'))['chosen'])).replace('perc2', '', 1))" 2>/dev/null)
     [ -n "$base" ] || { log "ab ep$ep: no results/final/ep$ep/final.json in the pulled run" >> $J; return 1; }
     ck0=/content/results/final/ep$ep/policy.safetensors; log "ab ep$ep: auto base = $base ($ck0)" >> $J
