@@ -9,7 +9,7 @@ import glob, json, os, re, sys
 LABEL = {'k': 'contact retargeting', 'kq': 'retargeting + keypoints 0.15 m', 'p': 'primitive hand',
          'kp': 'retargeting + primitive hand', 'ki': 'retargeting + deployment-exact starts',
          'kpi': 'retargeting + primitive hand + deployment-exact starts',
-         'kri': 'retargeting + rest settle + deployment-exact starts', 'pi': 'primitive hand + deployment-exact starts',
+         'kri': 'retargeting + rest settle + deployment-exact starts', 'i': 'deployment-exact starts', 'pi': 'primitive hand + deployment-exact starts',
          '': 'base (published policy)'}
 rows = {}
 for d in sys.argv[1:]:
@@ -23,7 +23,7 @@ for d in sys.argv[1:]:
 
 
 def kind(var):
-    m = re.match(r'^(mcs|mc|m)(kri|kpi|kp|kq|ki|k|pi|p)?(?:-s(\d+))?$', var)
+    m = re.match(r'^(mcs|mc|m)(kri|kpi|kp|kq|ki|k|pi|p|i)?(?:-s(\d+))?$', var)
     return (m.group(1), m.group(2) or '', int(m.group(3)) if m.group(3) else 42) if m else (var, '?', 0)
 
 
