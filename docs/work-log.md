@@ -1704,3 +1704,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   and an exclusion rule (pixels explained by another object's registered render cannot be another object's
   detection); validate on public perception logs before use. Affects the 7 two-object spoon episodes (3, 5, 6 pot;
   15, 16 rack; 32, 33 cup).
+- 23:25 TRT: owner asks how VLMs / large vision models / multimodal decision models could make detection robust (ep3).
+  Workflow `wf_21f9f547-c34`: research on grounding models (SAM 3, Grounding DINO, OWLv2, Florence-2, Qwen-VL, Molmo,
+  APIs) and VLM-as-verifier; code + rules map (colour cam a → mono cam c transfer); CPU feasibility test of
+  open-vocabulary grounding on public frames (colour vs grayscale, scored with diagnostic scan projections) and on the
+  spoon frames (report only, no tuning on eval); design; critic. Outputs `scratchpad/vlm/`.
