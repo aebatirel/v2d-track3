@@ -1390,3 +1390,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 ### 05:10 TRT — ep12 ki (container restart in between: copier and monitor restarted, nothing lost)
 - **ep12 ki s42 (retargeting + deployment-exact starts), 6 evaluations: 0.763 ± 0.025 (0.727–0.797)** vs k 0.790 ±
   0.023 (−0.027, within seed noise) and base 0.725 ± 0.067 (+0.038): the start fix does not visibly hurt ep12.
+
+### 05:10 TRT — ep24 kri (retargeting + rest settling + deployment-exact starts)
+- **ep24 kri s42, 6 evaluations: 0.312 ± 0.003 (0.309–0.317)** (sweep chose 200M) vs ki 0.318 ± 0.001: rest settling
+  adds nothing on ep24. Rollouts (r1, r2): board 1 tracks within 1–2 cm to f68, then fails at f102 (13–23 cm, ~104°:
+  the sim board is not stood up), board 2 is never lifted (f117+). **ep24's ceiling (~0.31) is the policy not
+  learning the lift-and-stand-up manipulation**, not reference geometry: reference fixes tonight (retargeting, rest
+  settling, keypoint scale, start fix) all land at 0.306–0.318.
