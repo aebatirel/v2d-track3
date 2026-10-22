@@ -1447,3 +1447,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   vs f5–10 before) and is tracked within 1–7 cm through the sweeping; the failing rollout (r2) drops it at ~f88.
 - One seed: confirm with a second seed, and check every library object for the same flaw (undersides of objects that
   rest on the table are not observed by the cameras).
+
+### 08:20 TRT — ep24 videos; the boards cannot stand on their edges either (CPU)
+- Videos (base vs best tonight, from the store via box L): the policy does lift the boards (one is in the hand at
+  f40 and f140) but always lays them back down flat; the reference (and mocap) stands them on an edge to assemble the
+  planter. Correction to 03:00/05:10: the failure is the stand-up, not the lift.
+- Our board meshes have no stable standing pose (board 1 at f150: 0.1 cm² within 2 mm of the lowest point, centre of
+  mass 89 mm outside; board 2 at f250: nearest stable faces 87–89° away = lying flat). Same root cause as the ep18
+  sweeper (edges/undersides the cameras do not see come out rounded). `flatten_base.py` along each board's standing up
+  (`meshes/library_v4`, experimental): board 2 then has a stable standing face at 0° (27 cm², +5.7 mm); board 1 is
+  marginal (+0.1 mm: our standing pose leans; in the video a hand steadies it). GPU test needs ≈ $2.5 (credit too low
+  for the $3 margin after box L).
