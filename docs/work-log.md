@@ -1608,3 +1608,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   instance 57224262 (RTX PRO 6000 Max-Q, $1.073/h, Australia), run `20261022-r5ks43-72ecb2f`, job
   `export ASSET_SRC=public SUF=ks BASE_EVAL=0 PAIRS="24:20261021-auto24-966eb96:mcs"; SEED=43 bash ops/jobs/hard_ab.sh`.
   Box 1 is destroyed once its s42 results are in the store (before it starts its own s43).
+
+### 18:20 TRT — ep24 with the organisers' meshes, seed 42: 0.389 ± 0.077 (ours 0.307); board 2 still fails at f117
+- Run `20261022-r5ks-72ecb2f` (box 1, destroyed after its s42 summary reached the store at 18:15 TRT), variant mcsks-s42,
+  6 evaluations: registered AUC vs scans **0.389 ± 0.077 (0.284–0.479)**, with our mesh registered 0.391; sim_vs_ref
+  0.385; SP 0 / MP 0 in all rollouts. Ours (k): s42 0.307 ± 0.002, s43 0.306 ± 0.018. Summary copied to
+  `results/e2e/overnight_20261022/20261022-r5ks-72ecb2f/`.
+- Frame by frame vs our reference (`scratchpad/traj_diag.py`, rollouts r1/r4/r5): board 1 now tracks within 3–8 cm
+  through f238 in the good rollouts (with our meshes it failed at ~f102, 20–26 cm, 83–100°), then the final assembly
+  fails (f272 27–31 cm); **board 2 fails at f117 in every rollout (26 cm → ~100°), exactly as with our meshes.**
+- Reading: the true meshes buy ≈ +0.08 (board 1 can stand); ep24's ceiling is the board-2 lift and the final
+  insertion, which fail with perfect meshes → reference/learning (hand assignment around the board-2 lift; owner's
+  "two hands snap onto the same board"), not the mesh. Seed 43 (box 2) pending for confirmation.
