@@ -7,13 +7,14 @@ Plan: round 1 = contact-retargeted references ("k") on ep12, ep18, ep24, ep27 (s
 evaluations each of the new and the base policies; round 2 = second seed + fixes for what fails; round 3 = confirm the
 best setup with a fresh seed. Live log of rounds: `docs/work-log.md` (2026-10-22 entries).
 
-Interim (05:15 TRT; registered AUC with our meshes, mean ± std over 6 evaluations; full table and findings:
-`docs/overnight-2026-10-22.md`, rows `results/e2e/overnight_20261022/`):
-- ep12: base 0.725 ± 0.067; k 0.790 ± 0.023; ki 0.763 ± 0.025.  ep27: base 0.942 ± 0.017; k 0.911 ± 0.017.
-- ep18: base 0.345 ± 0.046; k 0.319 / 0.361 (two seeds); kq 0.381 ± 0.012; p 0.377 ± 0.021.
-- ep24: base 0.297 ± 0.055; k 0.307 / 0.306; kq 0.313; ki 0.318 ± 0.001; kri 0.312; p 0.282. Ceiling ≈ 0.31: the
-  policy never lifts / stands up the boards (every rollout fails at f102 / f117).
-- Running: F ki ep18, H ki ep27, I kri ep18, J i (start fix alone) ep18 + ep27; done by ≈ 07:45 TRT. Credit $16.12.
+Morning summary (07:10 TRT; full report `docs/overnight-2026-10-22.md`, rows `results/e2e/overnight_20261022/`):
+registered AUC with our meshes, mean of 6 evaluations: base ep12 0.725 / ep27 0.942 / ep18 0.345 / ep24 0.297;
+contact retargeting 0.790 / 0.911 / 0.32–0.36 / 0.31 (consistent rollouts, mean ≈ +0.01). No variant lifts ep18
+above ~0.38 or ep24 above ~0.32. Root causes found: ep18's reconstructed sweeper cannot stand (rounded underside) and
+falls with no hand near it once the object assist is off; objects float 1–4 cm above the table in our references
+(ep12, ep24, ep27); ep24's limit is learning the lift/stand-up. Fixes: `flatten_base.py` + `meshes/library_v3`,
+`contact_retarget --rest_settle 1` (stable rest poses); GPU tests running: K = ep18 kfi (≈ 08:00 TRT), L = ep12 kr
+(≈ 09:00 TRT). Credit $7.55 at 06:55 TRT; both boxes self-destroy.
 
 ## 2026-10-21 night: contact-anchored retargeting ready for the GPU A/B (prepared before the top-up)
 Details: `docs/work-log.md` (22:35–23:05 TRT entries). Vast credit **$2.69**, no instances running.
