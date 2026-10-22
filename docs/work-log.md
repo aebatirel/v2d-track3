@@ -1437,3 +1437,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **ep27 ki s42 (box H), 6 evaluations: 0.897 ± 0.013 (0.873–0.914)** vs k 0.911 ± 0.017, base 0.942 ± 0.017:
   retargeting costs ep27 0.03–0.04 with or without the start fix (only the right hand is retargeted there; the left
   never comes near an object). Box H done.
+
+### 08:00 TRT — **ep18 solved in 5 of 6 rollouts: a stable sweeper**
+- **ep18 kfi s42 (box K: retargeting + rest settling with stable poses + start fix + `meshes/library_v3` flattened
+  sweeper), 6 evaluations: registered AUC 0.715 ± 0.240; per rollout 0.785, 0.179, 0.841, 0.815, 0.842, 0.828; SP 1 / MP 1
+  in 5 of 6** (sweep chose 200M; its rollout sim_vs_ref 0.816 vs floor 0.619, verdict ok). Base 0.345 ± 0.046; kri
+  (same but rounded sweeper, height-only settling) 0.368 ± 0.069. So the gain comes from the stable sweeper.
+- Frame by frame: the sweeper starts on its reference (0 cm, 0°), stays until the pick-up (first > 5 cm / 20° at f43
+  vs f5–10 before) and is tracked within 1–7 cm through the sweeping; the failing rollout (r2) drops it at ~f88.
+- One seed: confirm with a second seed, and check every library object for the same flaw (undersides of objects that
+  rest on the table are not observed by the cameras).

@@ -21,10 +21,10 @@ episode is the policy published on 2026-10-21, re-evaluated 6 times. Rows: `resu
 | start fix alone (i) | | | 0.351 ± 0.056 | |
 | primitive-collision hand (p) | | | 0.377 ± 0.021 | 0.282 ± 0.023 |
 | k + rest settle + stable pose (kr) | pending (box L) | | | |
-| kri + flattened sweeper, stable pose (kfi) | | | pending (box K) | |
+| **kri + flattened sweeper, stable pose (kfi)** | | | **0.715 ± 0.240; 5 of 6 rollouts 0.79–0.84, SP/MP 1** | |
 
-Four-episode mean: base 0.577; retargeting 0.587 (two-seed means on the hard episodes). **No variant tonight lifts
-the hard episodes above ~0.38 (ep18) / ~0.32 (ep24); the leaders' mean is 0.83–0.85.**
+Four-episode mean: base 0.577; retargeting 0.587 (two-seed means on the hard episodes). **ep18 rose from 0.345 to
+0.715 (median 0.82) once our sweeper could stand; ep24 stays at ~0.32; the leaders' mean is 0.83–0.85.**
 
 ## 2. What we learned (measured)
 
@@ -42,7 +42,8 @@ the hard episodes above ~0.38 (ep18) / ~0.32 (ep24); the leaders' mean is 0.83�
    the official evaluation) it falls in 4–5 steps. (Diagnostic only: the public scan stands on a flat 11.7 cm² base.)
    Fix, from our own data only: `pipeline/flatten_base.py` (flat underside along our perceived up) →
    `meshes/library_v3`, plus `contact_retarget --rest_settle 1` turning resting objects onto their nearest stable pose.
-   CPU, assist off, no policy: sweeper 17.6° by step 4 → ≤ 0.7° for 9 steps. GPU: pending (box K).
+   CPU, assist off, no policy: sweeper 17.6° by step 4 → ≤ 0.7° for 9 steps. **GPU (box K): ep18 0.345 → 0.715
+   mean, 5 of 6 rollouts 0.79–0.84 with SP and MP success** (one rollout drops the sweeper at f88).
 4. **Objects float above the table in our references** (ep24 boards 2–4 cm, ep12 and ep27 dish rack ~1 cm). With the
    assist off they drop at the start; ep12's cup tips 23° within 4 steps. `--rest_settle 1` seats them (ep12 cup
    0.4 cm / 3.5°, all steps; ep27 rack drop 1.05 → 0.03 cm). GPU on ep12: pending (box L). On ep24 it did not change
