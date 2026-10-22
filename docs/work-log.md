@@ -1709,3 +1709,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   APIs) and VLM-as-verifier; code + rules map (colour cam a → mono cam c transfer); CPU feasibility test of
   open-vocabulary grounding on public frames (colour vs grayscale, scored with diagnostic scan projections) and on the
   spoon frames (report only, no tuning on eval); design; critic. Outputs `scratchpad/vlm/`.
+
+### 23:30 TRT — how many of the 250M steps do we need? (owner idea: a fast per-frame critic / faster training)
+- 111 stored runs with checkpoint sweeps (sim_vs_ref at 100/150/200/250M; many are copies of the same base runs):
+  easy episodes keep improving to 250M (ep12 mc 0.647 → 0.698 → 0.752 → 0.775; mck, mcki, mckr alike); ep27 flat from
+  100M (0.957 → 0.961); hard episodes swing between checkpoints (ep18 mckfi 0.236 / 0.414 / 0.816 / 0.213; ep24
+  mcsks s42 0.22 → 0.44 only at 250M; ep3 0.23–0.30 noisy). Best checkpoint at 250M in 48 of 111, earlier in 63.
+- Reading: a blind cut of steps costs easy episodes ≈ 0.03; the larger lever is checkpoint selection. One official
+  evaluation takes ≈ 12 s vs ≈ 6 min of training per 10M steps → evaluate every checkpoint during training (≈ 3 %
+  overhead), stop on plateau, keep the best (with repeat evaluations of the top few; single-rollout picks are optimistic
+  by ≈ +0.026). A VLM inside training adds nothing (the simulator gives exact per-frame distances; SAC learns its own
+  critic). Ideas kept for later: automatic failure diagnosis (per-frame error timeline + render → failure class →
+  targeted retry), warm starts from twin policies, WS-only GPUs, one training per GPU. Data:
+  `docs/research/work/checkpoint-sweeps-2026-10-22.json`.
