@@ -14,6 +14,9 @@ export REPO_DIR=$(cd "$(dirname "$(readlink -f "$0")")/../.." && pwd)    # this 
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; C=${CONCURRENT:-2}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=${ASSETS:-/content/assets} SPLIT=${SPLIT:-public} PERC=perc2
 PROOT=${PROOT:-/content/perc2m}; BV=${BV:-m}
+# trainings take turns on the GPU (pipeline_ep.sh TRAIN_LOCK): 2026-10-22 spoon box, two concurrent 250M trainings on one
+# Max-Q ran 0.62M steps/min each (1.25M/min together) vs 1.8M/min for one alone; perception and evaluations still overlap
+export TRAIN_LOCK=${TRAIN_LOCK:-/content/train.lock}
 log "auto_runs code $(git -C $REPO_DIR rev-parse --short HEAD), meshes $MESH_DIR" >> $J
 pip install -q fast_simplification >> $J 2>&1 || true            # kit budget_mesh (score_registered --meshes)
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }

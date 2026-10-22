@@ -1646,3 +1646,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   → 250M steps → sweep + floor guard → render). Expected ≈ 3 h ≈ $4 (credit $8.54 at launch, box 2 still finishing).
   No ground truth: outputs are sim_vs_ref / floor_vs_ref and videos; this is also the first-ever eval pipeline run.
   Rule note: an inference run on eval episodes; findings may change the pipeline only generically (no per-episode tuning).
+
+### 20:10 TRT — spoon run: eval perception works; concurrent training too slow → ep35 paused
+- Box `20261022-spoon-40ff0cd`: eval perception done for ep3 (134 s) and ep35 (167 s), spoon tracked in both (first
+  eval perception ever); references: variant m failed qa_ref (wrist IK p95 165 / 142 mm), variant mc (wrist cost 3.0)
+  passed (ep3 wrist p95 8 / 41 mm, ep35 29 / 11 mm); training of both started ≈ 16:28 UTC.
+- Speed: two concurrent 250M trainings on this Max-Q: 10M steps per ≈ 16 min each (0.62M/min, 1.25M/min together) →
+  ≈ 6.5 h; one training alone on the seed-43 Max-Q: 1.8M/min (≈ 51 % of the WS's 3.5M/min, not the 76 % measured for
+  box F). Paused ep35's training (`kill -STOP 11687`, 17:04:54 UTC) so ep3 trains alone; ep35 resumes only if the owner
+  funds it, otherwise it is killed when ep3 is done so the box finishes and self-destroys.
+- Fix for later runs: `auto_runs.sh` now exports `TRAIN_LOCK` (trainings take turns, as in `hard_ab.sh`).
+- Credit $6.28 at 17:06 UTC (box 2 ≈ $0.45 to go; ep3 alone ≈ 2.5 h ≈ $3.25).
