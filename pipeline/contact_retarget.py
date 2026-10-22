@@ -150,7 +150,7 @@ class HullSDF:
         if not self.planes:
             raise SystemExit(f'no collision pieces for body {body}')
         # exact plane tests per query cost ~9 s per solved frame: tabulate once on a grid and interpolate
-        allv = np.vstack(allv); lo, hi = allv.min(0) - pad, allv.max(0) + pad
+        allv = np.vstack(allv); self.verts = allv; lo, hi = allv.min(0) - pad, allv.max(0) + pad
         n = np.minimum(np.ceil((hi - lo) / voxel).astype(int) + 1, cap)
         axes = [np.linspace(lo[k], hi[k], n[k]) for k in range(3)]
         G = np.stack(np.meshgrid(*axes, indexing='ij'), -1).reshape(-1, 3)
@@ -224,8 +224,17 @@ class MjPen:
             out.setdefault(b, []).append(Rb.inv().apply(W.T - bq[b, :3]))
         return {b: np.vstack(v) for b, v in out.items()}
 
-    def frame(self, f):
+    def frame(self, f, dz=None):
+        """Scene at reference frame f; DZ (per object, m) moves the objects vertically (rest_settle)."""
         self.env.reset(frame_id=f); self.base = self.env.state_0.joint_q.numpy().copy()
+        if dz is not None:
+            for qz, d in zip(self.obj_qz, dz):
+                self.base[qz] += d
+
+    def bind_objects(self, obj_body):
+        """joint_q index of each object's root z (free joint whose child is the object body)."""
+        child = self.m.joint_child.numpy(); qs = self.m.joint_q_start.numpy()
+        self.obj_qz = [int(qs[int(np.nonzero(child == b)[0][0])]) + 2 for b in obj_body]
 
     def __call__(self, q58, side):
         q = self.base.copy(); q[:58] = q58; self.state.joint_q.assign(q.astype(np.float32))
@@ -264,6 +273,40 @@ def lm_solve(res, x0, h, iters=8, lo=None, hi=None):
     return x, c
 
 
+def rest_settle(OP, OR, J, sdfs, ztop, hold=0.03, gap_max=0.05, lam=4.0, v_static=0.004, w_static=2.0):
+    """Objects that are not being moved rest on the table (2026-10-22). Evidence: ep24's boards float 2-4 cm above the
+    table in our reference while they stand or lie still (standing board centre +8.9 cm vs +6.5 cm in mocap, flat board
+    +1.5-2.2 cm vs 0), also while a hand steadies them (fingertips 1-3 cm away), and every rollout fails where a
+    floating standing board falls over. Per object and frame: its lowest collision point within GAP_MAX of the table
+    top, not resting on another object, and either no human fingertip within HOLD of it or static (speed below
+    V_STATIC m/frame and W_STATIC deg/frame over +-2 frames: steadied, not lifted or slid) -> the vertical shift that
+    puts it on the table; shifts are smoothed in time (anchored least squares; other frames pull to zero). Uses only
+    our perception and hands (no ground truth). Returns new positions, stats."""
+    from robot_clearance import settle
+    T, B = OP.shape[:2]; OP = OP.copy(); stats = []
+    tips = np.concatenate([J[s][:, list(MANO_TIPS)] for s in J], 1)          # (T, 10, 3) human fingertips
+    for j in range(B):
+        need = np.zeros(T); free = np.zeros(T, bool); V = sdfs[j].verts
+        a_, b_ = np.clip(np.arange(T) - 2, 0, T - 1), np.clip(np.arange(T) + 2, 0, T - 1); span = np.maximum(b_ - a_, 1)
+        speed = np.linalg.norm(OP[b_, j] - OP[a_, j], axis=1) / span
+        turn = np.array([np.degrees((OR[j][b] * OR[j][a].inv()).magnitude()) for a, b in zip(a_, b_)]) / span
+        static = (speed < v_static) & (turn < w_static)
+        for f in range(T):
+            R = OR[j][f]; W = R.apply(V) + OP[f, j]; zmin = W[:, 2].min(); gap = zmin - ztop
+            if not -gap_max < gap < gap_max:
+                continue
+            if not static[f] and (sdfs[j](R.inv().apply(tips[f] - OP[f, j])) < hold).any():
+                continue                                               # being moved by a hand
+            low = W[W[:, 2] < zmin + 0.005]
+            if any((sdfs[k](OR[k][f].inv().apply(low - OP[f, k])) < 0.01).any() for k in range(B) if k != j):
+                continue                                               # resting on another object
+            need[f] = -gap; free[f] = True
+        d = settle(need[:, None].repeat(3, 1), lam)[:, 0]; OP[:, j, 2] += d     # settle() works on (T, 3)
+        stats.append(dict(free_frames=int(free.sum()), median_gap_cm=round(float(np.median(-need[free]) * 100), 2) if free.any() else None,
+                          max_shift_cm=round(float(np.abs(d).max() * 100), 2)))
+    return OP, stats
+
+
 def parse_support(usda):
     s = open(usda).read()
     r = float(re.search(r'double radius = ([-0-9.e]+)', s).group(1)); h = float(re.search(r'double height = ([-0-9.e]+)', s).group(1))
@@ -280,6 +323,7 @@ def main():
     p.add_argument('--max_turn', type=float, default=0.5, help='largest wrist rotation from E2S per axis (rad)')
     p.add_argument('--embodiment', default=None, help='FlashCHORD embodiment config (default: the experiment\'s, '
                    'sharpa_hands); must match training, e.g. sharpa_hands_primitive')
+    p.add_argument('--rest_settle', type=int, default=0, help='1: objects that are not being moved rest on the table (see rest_settle)')
     p.add_argument('--frames', default=None, help='A:B only these frames (debug)')
     a = p.parse_args()
     fc = os.environ.get('FC', os.getcwd()); t0 = time.time()
@@ -297,6 +341,13 @@ def main():
     obj_body = [next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/')) for n in names]
     sdfs = [HullSDF(m, b) for b in obj_body] if os.environ.get('CR_SDF', 'hull') == 'hull' else [ObjectSDF(pth) for pth in paths]
     print(f'[{time.time() - t0:.0f}s] scene + {len(sdfs)} object SDFs; table top {ztop:.3f} disc r {rdisc:.3f}', flush=True)
+    rs_stats = None
+    if a.rest_settle:
+        Jall = {s: np.array(t.column(f'mano_{s}_joints')[0].as_py(), float).reshape(T, 21, 3) for s in SIDES}
+        OP0 = OP.copy(); OP, rs_stats = rest_settle(OP, OR, Jall, sdfs, ztop)
+        if mjp is not None:
+            mjp.bind_objects(obj_body)
+        print(f'[{time.time() - t0:.0f}s] rest settle: ' + json.dumps(dict(zip(names, rs_stats))), flush=True)
     fk = FK(m); lo_lim = m.joint_limit_lower.numpy(); hi_lim = m.joint_limit_upper.numpy()
     rng = range(T) if not a.frames else range(*[int(x) for x in a.frames.split(':')])
     q_new = qref.copy(); stats = {}
@@ -379,7 +430,7 @@ def main():
 
         for f in rng:
             if mjp is not None:
-                mjp.frame(f)
+                mjp.frame(f, None if rs_stats is None else OP[f, :, 2] - OP0[f, :, 2])
             q0 = q_of(f, prev * 0.8); pen = penetration(f, fk(q0), q0); has_c = (tgt_id[f] >= 0).any()
             qe = q_of(f, np.zeros(28)); pen_before.append(float(penetration(f, fk(qe), qe).max()))
             if not has_c and pen.max() <= a.margin:
@@ -445,6 +496,10 @@ def main():
         for c, v in cols.items():
             i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
         stats[side]['frames_rigidly_attached'] = f'{len(parent)}/{len(fnames)}'
+    if rs_stats is not None:                                       # the settled object positions
+        for c, v in (('object_body_position', OP), ('object_root_position', OP[:, 0])):
+            i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
+        stats['rest_settle'] = dict(zip(names, rs_stats))
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True); pq.write_table(out, a.out)
     json.dump(stats, open(os.path.splitext(a.out)[0] + '_contact_retarget.json', 'w'), indent=1)
     print(f'[{time.time() - t0:.0f}s] wrote {a.out}', json.dumps(stats), flush=True)

@@ -1321,3 +1321,24 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   physically possible; the failure is in learning.
 - Box H (instance 57129042, `20261022-r3kie-342d72c`): `SUF=ki FC_IMMEDIATE_FIRST_FRAME=0.25` on ep12 + ep27 (does
   the start fix hurt the easy episodes?). Credit $38.77 at 03:05.
+
+### 03:20 TRT — ep24 kq result; objects float above the table in our reference; rest settling (opt-in)
+- **ep24 kq (retargeting + object keypoints 0.15 m), 6 evaluations: 0.313 ± 0.011 (0.297–0.326)** vs k 0.307 → no
+  effect of the keypoint scale.
+- **Diagnostic vs mocap (public ep24, after inference):** tilt of our boards follows mocap within 1–3° throughout,
+  but whenever a board is not being moved our reference has it 2–2.5 cm too high relative to frame 0: standing board 1
+  +8.9 cm vs mocap +6.5 cm (frames 96–274), flat board 2 +1.3–2.2 cm vs 0.0 (frames 48–112), standing board 2 +8.6 vs
+  +6.5. Our lowest collision point sits 3.6–4.5 cm (board 1 standing) / 1–2 cm (board 2 flat) above the table top.
+  While board 1 stands a human fingertip stays 1.2–3.2 cm from it (steadied by a hand); in the final frames it
+  leans on board 2. The lift itself is in our reference and in mocap alike (board 1 +20 cm, tilting 27° → 92°).
+- `contact_retarget.py --rest_settle 1` (opt-in, default off so earlier k runs stay reproducible): per object and
+  frame, lowest collision point within 5 cm of the table, not resting on another object, and either no fingertip
+  within 3 cm or static (< 4 mm/frame and < 2°/frame over ±2 frames) → vertical shift onto the table; anchored
+  temporal smoothing (λ 4). The MuJoCo penetration check uses the settled heights. ep24: board 1 194 frames settled
+  (median gap 4.0 cm), board 2 177 frames (1.8 cm). Height-change error vs mocap, median: board 1 2.39 → 1.57 cm
+  (now −1.5 cm while standing: our board mesh is narrower than the real board), board 2 2.05 → 0.61 cm.
+- No-policy 10-step stability from every 8th frame (soft wrists, zero action): inconclusive. The retargeted fingers
+  already hold the standing board in the old reference (board 1 0.2–0.8 cm, 1–2° at f104–f160); rest settling is
+  better at some frames (f168–176, f216–240: 5–10° vs 14–21°) and slightly worse at others (f144, f160).
+- Box I (`SUF=kri CR_ARGS="--rest_settle 1" FC_IMMEDIATE_FIRST_FRAME=0.25`, ep24 + ep18) vs F (ki): isolates rest
+  settling; if both help, it is the combined recipe. Credit $35.86 at 03:20.
