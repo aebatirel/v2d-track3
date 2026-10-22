@@ -1690,3 +1690,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   fused mesh (single-episode fused proxies 0.25–0.46 cm vs template ≈ 0.10–0.12 cm synthetic); finger-scale hand masks
   falsified; a seed band (samples > 6 mm outside the seed mesh may clear space, never form surface) is the strongest new
   fusion rule.
+
+### 23:10 TRT — spoon run ep3 result: harmful policy, caused by a detection error (pot handle taken as the spoon)
+- Box `20261022-spoon-40ff0cd` finished at 19:56 UTC and self-destroyed (ep35's paused training killed at 19:54 as
+  planned). ep3: sim_vs_ref 0.298 < floor_vs_ref 0.326 → verdict harmful; the floor guard's extra sweep (8 checkpoints,
+  0.227–0.298) found nothing above the floor. Total box ≈ 3.9 h × $1.295 ≈ $5.
+- Video (`scratchpad/vid3/spoon/ep3_rgb_vs_sim.mp4`): the simulated spoon starts inside the pot and never moves; hands
+  never grasp. Cause (`perc2m/ep3/masks_f0.jpg`, `log.txt`): frame-0 detection labelled the **pot handle** as the
+  spoon (proposal 9: score 0.423, 3-D extent 0.14 m) over the real spoon lying on the table (proposal 5: 0.390, extent
+  0.297 m; template extent 0.323 m). The size gate in `perc2.py:213` only requires 0.3–1.3 × the template extent, so a
+  14 cm candidate passes for a 32 cm spoon. ep35 (spoon alone) was detected correctly.
+- Generic fix to test (no per-episode tuning): a soft size term in the detection score (e.g. − λ·|log(extent ratio)|)
+  and an exclusion rule (pixels explained by another object's registered render cannot be another object's
+  detection); validate on public perception logs before use. Affects the 7 two-object spoon episodes (3, 5, 6 pot;
+  15, 16 rack; 32, 33 cup).
