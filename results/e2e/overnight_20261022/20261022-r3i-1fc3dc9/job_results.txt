@@ -1,0 +1,4 @@
+[2026-10-22T01:09:40Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-22T01:09:49Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-22T01:11:10Z] ab ep27: auto base = mc (/content/results/final/ep27/policy.safetensors)
+

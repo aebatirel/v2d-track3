@@ -1,0 +1,2 @@
+{"sim": {"AUC": 0.3143, "SP_SR": 0.0, "MP_SR": 0.0, "MPPE_cm": 13.8856, "RPE_cm": 9.807, "per_obj_AUC": {"wooden_piece_1": 0.197, "wooden_piece_2": 0.4316}}, "static_floor": {"AUC": 0.2437, "SP_SR": 0.0, "MP_SR": 0.0, "MPPE_cm": 13.7508, "RPE_cm": 29.3133, "per_obj_AUC": {"wooden_piece_1": 0.0573, "wooden_piece_2": 0.4302}}, "reference": {"AUC": 0.8163, "SP_SR": 1.0, "MP_SR": 1.0, "MPPE_cm": 2.2858, "RPE_cm": 1.0992, "per_obj_AUC": {"wooden_piece_1": 0.7764, "wooden_piece_2": 0.8561}}}
+

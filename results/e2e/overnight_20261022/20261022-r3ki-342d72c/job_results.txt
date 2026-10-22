@@ -1,0 +1,3 @@
+[2026-10-21T23:57:33Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-21T23:57:37Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+

@@ -1,0 +1,62 @@
+{
+ "checkpoint": "/content/v2d-track3/policies/20261021-auto24-966eb96/perc2mcs/ep24_policy_250003456.safetensors",
+ "n": 6,
+ "sim_vs_ref": {
+  "mean": 0.3143,
+  "std": 0.0735,
+  "min": 0.2137,
+  "max": 0.3999
+ },
+ "auc": {
+  "mean": 0.2975,
+  "std": 0.0552,
+  "min": 0.2284,
+  "max": 0.369
+ },
+ "auc_of_best_sim_vs_ref": 0.369,
+ "rollouts": [
+  {
+   "rollout": "r1",
+   "sim_vs_ref": 0.2137,
+   "auc": 0.2284,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r2",
+   "sim_vs_ref": 0.3141,
+   "auc": 0.2844,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r3",
+   "sim_vs_ref": 0.2215,
+   "auc": 0.2312,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r4",
+   "sim_vs_ref": 0.3999,
+   "auc": 0.369,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r5",
+   "sim_vs_ref": 0.3524,
+   "auc": 0.3155,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r6",
+   "sim_vs_ref": 0.3844,
+   "auc": 0.3567,
+   "sp": 0.0,
+   "mp": 0.0
+  }
+ ]
+}
+

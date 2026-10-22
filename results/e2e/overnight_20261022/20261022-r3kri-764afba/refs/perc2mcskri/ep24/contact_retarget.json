@@ -1,0 +1,46 @@
+{
+ "left": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 193,
+  "optimised": 235,
+  "pen_p95_mm_before": 23.7,
+  "pen_p95_mm_after": 3.5,
+  "tip_to_target_mm_median": 5.8,
+  "tip_to_target_mm_p90": 21.7,
+  "frames_rigidly_attached": "66/67"
+ },
+ "right": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 181,
+  "optimised": 188,
+  "pen_p95_mm_before": 17.0,
+  "pen_p95_mm_after": 3.4,
+  "tip_to_target_mm_median": 4.0,
+  "tip_to_target_mm_p90": 17.1,
+  "frames_rigidly_attached": "66/67"
+ },
+ "rest_settle": {
+  "wooden_piece_1": {
+   "free_frames": 194,
+   "median_gap_cm": 4.02,
+   "max_shift_cm": 4.37
+  },
+  "wooden_piece_2": {
+   "free_frames": 177,
+   "median_gap_cm": 1.77,
+   "max_shift_cm": 2.89
+  }
+ }
+}

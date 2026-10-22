@@ -1,0 +1,62 @@
+{
+ "checkpoint": "/content/results/final/ep12/policy.safetensors",
+ "n": 6,
+ "sim_vs_ref": {
+  "mean": 0.7289,
+  "std": 0.0742,
+  "min": 0.5675,
+  "max": 0.789
+ },
+ "auc": {
+  "mean": 0.7246,
+  "std": 0.0668,
+  "min": 0.5813,
+  "max": 0.7766
+ },
+ "auc_of_best_sim_vs_ref": 0.7766,
+ "rollouts": [
+  {
+   "rollout": "r1",
+   "sim_vs_ref": 0.7756,
+   "auc": 0.7626,
+   "sp": 1.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r2",
+   "sim_vs_ref": 0.5675,
+   "auc": 0.5813,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r3",
+   "sim_vs_ref": 0.7548,
+   "auc": 0.77,
+   "sp": 1.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r4",
+   "sim_vs_ref": 0.789,
+   "auc": 0.7766,
+   "sp": 1.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r5",
+   "sim_vs_ref": 0.7502,
+   "auc": 0.7301,
+   "sp": 1.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r6",
+   "sim_vs_ref": 0.7362,
+   "auc": 0.7272,
+   "sp": 1.0,
+   "mp": 0.0
+  }
+ ]
+}
+
