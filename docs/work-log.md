@@ -1489,3 +1489,24 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.637 (overnight report corrected).
 - Compliance flags for the owner: ground-truth-registered room map (do not use at eval), no hand-picked per-episode
   fixes on eval episodes, spoon template provenance, A-lite provenance, NVIDIA non-commercial licences.
+
+### 10:30 TRT — research workflow done (sim-valid meshes); interaction census measured
+- `wf_b93ee63b-f35` (7 literature angles each fact-checked, our-object audit, synthesis, critic): outputs in
+  `docs/research/work/simvalid-2026-10-22/`. Caveat: the synthesis saw only 2 of the 7 angles (input truncation);
+  the other 5 (HOI plausibility, multi-object assembly, real2sim collision, physically consistent tracking,
+  challenge/leaders) still need folding in; a consolidation pass follows the interaction-design workflow.
+- Headlines (audit [M], to be rechecked): objects never simulated with our own meshes that cannot stand or hold
+  (pitcher 1.2–1.5 cm² footprint, CoM 18–26 mm outside; beige cup 2 pieces, no bottom; rack tower without floor,
+  basket 36 % holes; blue cup cavity floor 5.5 cm high; lid starts 9 mm inside the pot) touch 11–16 of the 20 eval
+  episodes. Critic: our mesher blurs a ±1 occupancy (σ 0.8 voxel) and drops the TSDF's sub-voxel values → 12 mm walls
+  and rounded edges; collision = the decimated visual mesh (CoACD manifold check unverified); frame-0 anchor
+  alignment amplifies any start pop; repairs belong in a separate collision proxy so the scored mesh stays faithful
+  (needs the organisers' OK); do a baseline eval submission by ~27 Oct.
+- Interaction census (`wf_8a372398-57b`, scripts `scratchpad/interact/`): overlap is a mesh property, not track
+  noise (our meshes at mocap relative poses overlap as much as at our tracks; scans at mocap ≤ 0.9–1.6 cm³ = method
+  floor). Boards: a 1.0 × 11.3 × 1.2 cm column, 10.8 cm³, same place in ep23 and ep24 within 1 mm, CV 0.02–0.03 =
+  the two missing notches; the insertion direction says which half belongs to which board (H-I1). Lid on pot (ep2):
+  a 20–25 cm³ ring = the lid's filled lower ring (~8 mm). Cups nested (ep11): 42.7 cm³, walls too thick. Sweeper
+  contacts (ep18, ep31): compliant bristles, do not carve. ep0 lid track flipped 179°. Against our own depth plane the
+  objects sit 0.2–1.3 cm *into* the table at frame 0 (track/plane bias), not floating: the two table estimates
+  (recon_mesh vs mkref) disagree and must be unified before treating floats.
