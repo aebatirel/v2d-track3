@@ -1348,3 +1348,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.046 (+0.032, ~1 std); sim_vs_ref 0.336 vs 0.308. On ep24 the same change was −0.015. Mixed, small.
 - Box D finished its job at 00:51 UTC (exit 0, self-destroyed) between two result copies; its summaries were read
   back from the HF store through box A (`hf download` on the box). The copier now polls every 3 min.
+
+### 04:05 TRT — ep27 (control): retargeting hurts the easy episode
+- **ep27 base (published mc policy), 6 evaluations: 0.942 ± 0.017 (0.908–0.956); k (retargeting) s42: 0.911 ± 0.017
+  (0.874–0.922), −0.031.** So far k vs base: ep24 +0.010 (spread 3–25× smaller), ep18 −0.025, ep27 −0.031: not a
+  recipe to adopt everywhere. Box B finished (both episodes) and self-destroys.
