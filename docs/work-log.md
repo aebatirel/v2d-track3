@@ -1369,3 +1369,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **ep18 k s43: 0.361 ± 0.038 (0.284–0.394)** (sweep chose 150M again); k s42 was 0.319 ± 0.042. Two-seed mean
   0.340 vs base 0.345: no effect on ep18. **Seed-to-seed spread (≈ 0.04) is as large as most effects tonight**:
   single-seed differences below ~0.05 are not evidence. Box C′ done (self-destroys).
+
+### 04:25 TRT — ep18 kq (box E done; result read back from the HF store through box A)
+- **ep18 kq (retargeting + object keypoints 0.15 m), 6 evaluations: 0.381 ± 0.012 (0.363–0.395)** (sweep chose 100M)
+  vs base 0.345 ± 0.046, k 0.319 / 0.361 (two seeds). kq is the best (and tightest) variant on both hard episodes
+  so far (ep24 0.313 ± 0.011) but on one seed, within the ≈ 0.04 seed spread: not yet evidence.
+- `scratchpad store_peek.sh` reads a finished box's summaries from the store through a live box (its quoting failed
+  the first time; done by hand).
