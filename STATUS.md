@@ -7,18 +7,13 @@ Plan: round 1 = contact-retargeted references ("k") on ep12, ep18, ep24, ep27 (s
 evaluations each of the new and the base policies; round 2 = second seed + fixes for what fails; round 3 = confirm the
 best setup with a fresh seed. Live log of rounds: `docs/work-log.md` (2026-10-22 entries).
 
-Interim (03:25 TRT; registered AUC with our meshes, mean ± std over 6 evaluations; table: `tools/ab_table.py` on
-the scratchpad copies `boxres/<run_id>/`):
-- ep24: base 0.297 ± 0.055; retargeting (k) 0.307 ± 0.002 (s42) / 0.306 ± 0.018 (s43); k + keypoints 0.15 m
-  0.313 ± 0.011; primitive hand 0.282 ± 0.023. Retargeting makes ep24 consistent (spread 3–25× smaller), not better
-  on average; the slide now tracks (1–2 cm), every rollout fails at the lift/stand phase (board 1 ~f102, board 2 ~f117).
-- ep18: base 0.345 ± 0.046; k 0.319 ± 0.042. The sweeper is knocked over by f8–10 (reference: still until f40).
-- Controls (from the store, single published rollouts): ep12 0.757, ep27 0.956.
-- Found: (1) a train/eval start mismatch (training always opens the fingers and holds the reset frame 20 steps; the
-  official evaluation starts exact and free) → opt-in patch `FC_IMMEDIATE_FIRST_FRAME`; (2) our reference has resting
-  boards 2–4 cm above the table → opt-in `contact_retarget --rest_settle 1`.
-- Running (all self-destroy when done): A ep12 k, B ep27 k, C′ ep18 k s43, D ep18 p, E ep18 kq, F ki (ep24, ep18),
-  G kpi (ep24, ep18), H ki (ep12, ep27), I kri (ep24, ep18).
+Interim (05:15 TRT; registered AUC with our meshes, mean ± std over 6 evaluations; full table and findings:
+`docs/overnight-2026-10-22.md`, rows `results/e2e/overnight_20261022/`):
+- ep12: base 0.725 ± 0.067; k 0.790 ± 0.023; ki 0.763 ± 0.025.  ep27: base 0.942 ± 0.017; k 0.911 ± 0.017.
+- ep18: base 0.345 ± 0.046; k 0.319 / 0.361 (two seeds); kq 0.381 ± 0.012; p 0.377 ± 0.021.
+- ep24: base 0.297 ± 0.055; k 0.307 / 0.306; kq 0.313; ki 0.318 ± 0.001; kri 0.312; p 0.282. Ceiling ≈ 0.31: the
+  policy never lifts / stands up the boards (every rollout fails at f102 / f117).
+- Running: F ki ep18, H ki ep27, I kri ep18, J i (start fix alone) ep18 + ep27; done by ≈ 07:45 TRT. Credit $16.12.
 
 ## 2026-10-21 night: contact-anchored retargeting ready for the GPU A/B (prepared before the top-up)
 Details: `docs/work-log.md` (22:35–23:05 TRT entries). Vast credit **$2.69**, no instances running.
