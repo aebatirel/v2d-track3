@@ -1475,3 +1475,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   synthesis → critic) and `wf_8a372398-57b` (interaction census over the 12 two-object public episodes with our
   meshes and tracks, mesh-vs-scan defect diagnostics [scans for diagnostics only], code map, targeted research →
   3 designs → judge → critic). Outputs under `scratchpad/interact/`; plan to be written to `docs/`.
+
+### 09:50 TRT — novelty review of the whole approach (owner: "How innovative out of the box is our full current approach")
+- Workflow `wf_bb595b80-90d` (5 prior-art reviews by stage → scorecard → sceptical reviewer). Report:
+  `docs/research/novelty-2026-10-22.md`; raw outputs in `docs/research/work/novelty-2026-10-22/`.
+- Verdict ≈ 1.5–2 of 5: a careful, measured integration; every stage has close prior art (flat base + start check in
+  SPIDER / Do as I Do, simulator-collision retargeting in mink / SPIDER / EgoCPT, occluder carving in BundleSDF /
+  TSDF++; the "invalid geometry breaks tracking policies" finding is CRISP's). Ours: the validated no-GT self-check,
+  the registered-scoring sensitivity to mesh quality, and (planned) evidence-based overlap assignment at co-located
+  frames.
+- Checked by me: SPIDER and Do as I Do `flatten_base` (local clones); `auto_ep.sh` publishes a "harmful" best attempt
+  (no floor guard); spoon is a parametric template; ep18 kri → kfi confounded (mesh + settling mode) and its floor is
+  0.637 (overnight report corrected).
+- Compliance flags for the owner: ground-truth-registered room map (do not use at eval), no hand-picked per-episode
+  fixes on eval episodes, spoon template provenance, A-lite provenance, NVIDIA non-commercial licences.

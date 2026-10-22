@@ -44,6 +44,9 @@ Four-episode mean: base 0.577; retargeting 0.587 (two-seed means on the hard epi
    `meshes/library_v3`, plus `contact_retarget --rest_settle 1` turning resting objects onto their nearest stable pose.
    CPU, assist off, no policy: sweeper 17.6° by step 4 → ≤ 0.7° for 9 steps. **GPU (box K): ep18 0.345 → 0.715
    mean, 5 of 6 rollouts 0.79–0.84 with SP and MP success** (one rollout drops the sweeper at f88).
+   *Caveats (review of 09:40, `docs/research/novelty-2026-10-22.md`):* kri → kfi changed two things at once (the
+   mesh v2 → v3 and height-only → stable-pose settling), so the share due to the mesh is not isolated; one seed; the
+   do-nothing floor on ep18 is 0.637, so the fix is +0.08 over leaving the objects where they start.
 4. **Objects float above the table in our references** (ep24 boards 2–4 cm, ep12 and ep27 dish rack ~1 cm). With the
    assist off they drop at the start; ep12's cup tips 23° within 4 steps. `--rest_settle 1` seats them (ep12 cup
    0.4 cm / 3.5°, all steps; ep27 rack drop 1.05 → 0.03 cm). **But it does not raise the score where no object
