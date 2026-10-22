@@ -1603,3 +1603,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   pose vs mocap pose (symmetry-aware), after registering our mesh to the scan and one rigid alignment of the whole
   episode at frame 0; per-frame score 1.0 below 1 cm, −0.125 per further cm, 0 at ≥ 9 cm; mean over frames, objects,
   episodes.
+- 17:25 TRT: box 1 at 70M/250M steps (≈ 3.5M steps/min; setup ≈ 15 min, retargeting 4 min, training ≈ 70 min, sweep +
+  6 evaluations ≈ 15 min per seed). Owner asked why it takes so long → seed 43 moved to a second box in parallel:
+  instance 57224262 (RTX PRO 6000 Max-Q, $1.073/h, Australia), run `20261022-r5ks43-72ecb2f`, job
+  `export ASSET_SRC=public SUF=ks BASE_EVAL=0 PAIRS="24:20261021-auto24-966eb96:mcs"; SEED=43 bash ops/jobs/hard_ab.sh`.
+  Box 1 is destroyed once its s42 results are in the store (before it starts its own s43).
