@@ -1973,3 +1973,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   is frozen by this commit: the check is reported, not used to change the rule (that would be tuning on eval).
 - 06:50 TRT: eval spoon check launched: instance 57329922, run `20261023-detspoon-ab06a32`, code ab06a32, job
   `SPLIT=eval EPS="3 5 6 15 16 32 33 35 36 37" DET_VERIFY=0 bash ops/jobs/det_dump.sh` (frame 0 only). Credit $3.94.
+
+### 07:10 TRT — owner added $25 (credit $28.80): "make sure 3 and 35 run well, then full eval"
+- `pipeline/auto_ep.sh`: `SEEDS_MIN=N` trains at least N attempts (best reference, seeds 42, 43, ...) even when the
+  first is ok; each attempt's chosen checkpoint gets `AUTO_NREP` (6) more official evaluations; attempts compared on
+  the mean sim_vs_ref; the published rollout is the official evaluation of the chosen checkpoint that tracks our
+  reference best (`final.json` "rollout"). Stub dry run (`scratchpad/autotest/`): seed 42 with one lucky rollout (0.80,
+  mean 0.56) loses to seed 43 (mean 0.69); final.json, policy and rollout published as expected.
+- Plan for the rehearsal: ep3 and ep35 on two boxes, everything new on: FDR rewards (default), detection rules
+  (default), capped lead-in, contact retargeting, SEEDS_MIN=2. ≈ $11.
