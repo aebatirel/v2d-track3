@@ -2601,3 +2601,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **57431686** New York $1.44/h `20261024-w2-37cc551`: ep12 + ep27 seed 43 on the stored references, library_v3
     (seed spread; check that the new defaults do not hurt the easy episodes).
   - Estimate ≈ $5.3; projected reserve ≈ $2 at the end of both waves.
+- 22:36 UTC kf18 restart (ep18 settled + library_v3, SF=0, the reference hand knocked the brush at f24–28,
+  re-plan 1 kept):
+  - registered AUC **0.219 ± 0.092** (sim_vs_ref 0.248; curve 0.390 / 0.369 / 0.403 / 0.084; chosen 50M);
+  - any variant where the brush ends up lying scores ≈ 0.2–0.4. Box released after push.
+- E1 (`--approach_cm 15`) zero action on GPU: the brush stands until the grasp (max 9.4 mm / 9.5°, only at f53–54
+  when the hand closes on it; before, knocked flat at f24–27). Re-plan check found 5.3 cm / 19.5° vs the reference at
+  f43 (the reference brush drifts early: perception), re-planned zero action 0.114 < 0.135 → not kept.
+- E3 references: ep39 perception AUC 0.982 (dust pan stable as is); ep2 0.994 (pot stable; lid rests on the pot at
+  f0, skipped). E2: ep21 0.925 (pitcher 0.849), ep31 0.950.
