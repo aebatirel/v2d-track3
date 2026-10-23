@@ -2278,3 +2278,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   1,477–2,045 N against a 2.9 N weight (alternating by frame) → use only relative per-link shares. Per-link shares
   over the ep35 hold: kp 400 palm and index DP dominate, ring/pinky distal ≈ 0; kp 25 pinky PP and middle DP dominate.
 - Box price $1.375/h; asked the owner for a 30 min extension (fine-tune curve + video need until ≈ 14:45 UTC).
+
+### 15:45–15:50 TRT (12:45–12:50 UTC) — physics-aware grip, first results on eval ep35
+- `pipeline/grasp_force.py` + `grasp_lock.py --force_design 1` (notes 24): unit check 2-contact pinch 4.68 N per contact
+  (analytic 4.68). ep35 single-hand wrap: 10 contacts, all frames feasible, total designed normal force 27–37 N,
+  squeezes ≤ 0.2 rad (was a uniform 0.4), separating release direction margin 0.31.
+- **fd25 (kp 25) zero action: sim_vs_ref 0.175** (uniform squeeze s5: 0.150–0.185) → no gain; in-hand roll up to 115°,
+  tipping up to 48°. **H1 (balanced squeeze stops the roll) falsified for this version.**
+- New diagnosis: the reference spoon itself rolls about its axis (+82° near f100 and back; rate p95 110°/s, max 415°/s)
+  and the hand follows it (cumulative hand rotation about the spoon axis tracks the reference), but the SIMULATED spoon
+  rolls ≈ 90° during the PICK-UP (f20–60) while hand and reference do not: the closing fingers, coming from under the
+  table (hands do not collide with it), roll the handle lying on the table. Next (queued, `/content/glock/run_fd2.sh`):
+  anatomy closing order (`--mcp_first`: MCP first, IPs second, thumb last; Muzykewicz 2013: IP-first roll-up pushes
+  objects out of the palm), slower close (10 frames), palm pressing 1 mm on the handle (`--palm_clear -0.001`), with
+  the designed squeeze at f_min 1.5 N and 4 N.
