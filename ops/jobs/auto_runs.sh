@@ -4,7 +4,7 @@
 # afterwards (evaluation only: score_sim.py and score_registered.py with our meshes); eval episodes are not scored.
 #   ops/vast.sh create ... 'EPS="18 24" RETRIES=1 bash ops/jobs/auto_runs.sh'          (public validation)
 #   ops/vast.sh create ... 'SPLIT=eval EPS="1 3" bash ops/jobs/auto_runs.sh'           (eval; RESUME_FROM optional)
-#   FDR=1: FlashDexRetarget-style training rewards (ops/box/lib.sh fc_patches; default from 2026-10-23 if confirmed)
+#   FDR (default 1 since 2026-10-23, owner): FlashDexRetarget-style training rewards (ops/box/lib.sh fc_patches); FDR=0 stock
 # A second job on a box that is already running one (2026-10-21: ep18 redone with library_v2 while ep24 trained):
 # check the new commit out in its own worktree and give it its own assets, perception folder and variant, e.g.
 #   git -C /content/v2d-track3 worktree add /content/v2d-2 <commit>

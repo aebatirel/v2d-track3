@@ -33,12 +33,13 @@ self_destroy() {  # $1 = reason. Save what exists first (CLAUDE.md), then destro
 }
 
 # FlashDexRetarget-style training rewards (2026-10-23 A/B, results/e2e/fdr_20261023: four-run mean 0.830 vs 0.753).
-# FDR=1 sets the reward flags and the training overrides; fc_patches applies the opt-in FlashCHORD patches that the
+# FDR=1 (the default since the owner's decision, 2026-10-23; FDR=0 for stock FlashCHORD) sets the reward flags and the
+# training overrides; fc_patches applies the opt-in FlashCHORD patches that the
 # environment asks for (ops/box/patch_flashchord.py, ops/box/patch_flashchord_fdr.py). $1 = job log.
 FDR_TRAIN_ARGS="curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2"
 fc_patches() {
   local J=$1 FCD=/content/v2d/robotic_grounding/flash_chord
-  if [ "${FDR:-0}" = 1 ]; then
+  if [ "${FDR:-1}" = 1 ]; then                              # default since 2026-10-23 (owner); FDR=0 = stock rewards
     export FC_FDR_OBJ=${FC_FDR_OBJ:-1} FC_FDR_TIPS=${FC_FDR_TIPS:-1} TRAIN_ARGS="$FDR_TRAIN_ARGS ${TRAIN_ARGS:-}"
   fi
   if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ]; then

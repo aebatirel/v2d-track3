@@ -16,6 +16,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   (normalized rational mapping up to the clip; 5 cm / 0.15 rad is only the gain near zero), so no action change.
 - CPU tests passed (ep18 reference; `scratchpad/fdr/test_fdr*.py`): both terms 1.0 on the reference, object +2 cm →
   0.8187 = exp(-0.2), hands +5 cm → tip term 0.11–0.71, mesh distance = trimesh within 0.002 mm, eager env steps OK.
+- **Owner (04:35 TRT): FDR is the default (`FDR=1` in auto_runs; `FDR=0` = stock). Fix the spoon episodes before the
+  full launch.** Spoon plan ≈ $10–12 (work log 04:40): ep35 + ep36 with FDR, detection dumps + replay, ep3 end to end.
 - **FDR A/B done (04:15 TRT): FDR rewards help.** Registered AUC, 6 evaluations each: ep12 0.790 → 0.891 (s42) /
   0.762 (s43); ep18 0.715 → 0.776 (s42) / 0.889 (s43, all rollouts succeed). Mean of four runs 0.830 vs 0.753.
   Recommendation: FDR rewards as the default training (owner to confirm). Table `results/e2e/fdr_20261023/`.

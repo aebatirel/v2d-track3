@@ -1901,3 +1901,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Spend this batch: box 42 ≈ $5.0, box 43 ≈ $5.4, ep35 retrain ≈ $3.1 → $13.4 (credit $17.98 → $4.54). No instances.
 - 04:25 TRT: `FDR=1` preset (`ops/box/lib.sh` `fc_patches`, called by `auto_runs.sh`): sets the FDR flags and
   training overrides and applies the patches; dry-run of the shell logic passed. Launch commands in STATUS.md.
+
+### 04:40 TRT — owner: FDR is the default; fix the spoon episodes before the full launch
+- Owner: "Fdr can be default … We need to fix the spoon episodes before full launch." `ops/box/lib.sh`: `FDR` now
+  defaults to 1 in `auto_runs.sh` (`FDR=0` = stock FlashCHORD). Credit $4.54, no instances.
+- CPU evidence for the spoon reward hypothesis (ep35 reference, our spoon template, 128 points, max radius 17 cm):
+  reward when the simulated spoon is the reference delayed by L frames (episode means):
+  L = 2 / 5 / 10 / 20: FlashCHORD 0.56 / 0.39 / 0.27 / 0.16 vs FDR 0.84 / 0.69 / 0.55 / 0.39. Pure rotation error
+  0.1 / 0.3 / 0.6 / 1.0 / 1.5 rad: FlashCHORD 0.46 / 0.11 / 0.02 / 0.001 / 0.000 vs FDR 0.87 / 0.66 / 0.44 / 0.26 /
+  0.15. FlashCHORD's object reward has no usable gradient past ~0.5 rad; the ep35 reference turns the spoon up to
+  140° (2.4 rad). Still a hypothesis until ep35 trains with FDR.
+- Spoon plan before the full launch (estimates): (A) ep35 + ep36 (spoon alone) with FDR on one WS box, trainings in
+  turn ≈ $5–6; (B) detection dumps on the 20 public episodes ≈ $1–2, CPU replay, ship the rule; (C) ep3 (pot + spoon)
+  end to end with the fixed detection + FDR ≈ $3. Total ≈ $10–12; needs a top-up (keep a $3 margin).
