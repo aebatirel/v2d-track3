@@ -2353,3 +2353,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 14:31 UTC: box `20261023-spoon3R-4c31271` (instance 57331929) destroyed by its watchdog after the hold (push-run
   first); `vast show` lists 0 instances. Session GPU cost today on this box ≈ $1.375/h.
 - 14:40 UTC: Vast credit **$9.06** (API users/current), no instances. Budget guard (estimate + $3 ≤ credit) allows a batch of ≤ $6.
+
+### 17:45–17:55 TRT (14:45–14:55 UTC) — owner go-ahead: public validation of the recipe (≈ $4–5)
+- Owner: "redo the public episodes we did, including the board one, and score them" → go ahead (≈ $4–5).
+  Only ep12, ep18, ep24, ep27 have own-mesh references in the store (ep2 / ep21 were run with scan meshes only), so
+  these four. Earlier registered AUC with our meshes: ep12 0.891 (FDR s42) / 0.762 (s43), ep18 0.776 / 0.889,
+  ep24 0.307 (0.389 with the organisers' meshes), ep27 0.942–0.956.
+- `ops/jobs/glock_public.sh` (commit 0f7e3a7): stored reference → grasp_lock (FROZEN: `--single_hand 1 --mcp_first 1
+  --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1`, GL_WRIST_KP 400) → wrist ILC (kp 400) → zero-action
+  sim_vs_ref → fine-tune 70M (kp 400, FDR + VOC fix, seed 42) → checkpoints scored by sim_vs_ref (every second one),
+  chosen by sim_vs_ref only → 5 official evaluations, each scored sim_vs_ref + registered AUC vs mocap (our meshes).
+- Offers vanished three times (404 no_such_ask; WS $1.644, S $1.829); rented instance **57400615**, RTX PRO 6000 WS,
+  Alberta, **$1.763/h**, run `20261023-glockpub-0f7e3a7`, snapshot pt2.11-cu130-py313-20261020, job
+  `export EVERY=2; PAIRS="24:20261021-auto24-966eb96:mcs 12:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh;
+  PAIRS="18:20261021-auto18-966eb96:mc 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh`. Estimate
+  ≈ 2.4–2.8 h ≈ $4.2–4.9 (credit $9.06). Self-destroys after pushing.
