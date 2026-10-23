@@ -2610,3 +2610,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   f43 (the reference brush drifts early: perception), re-planned zero action 0.114 < 0.135 → not kept.
 - E3 references: ep39 perception AUC 0.982 (dust pan stable as is); ep2 0.994 (pot stable; lid rests on the pot at
   f0, skipped). E2: ep21 0.925 (pitcher 0.849), ep31 0.950.
+- 22:45 UTC W1:
+  - **ep24 with `library_v4` (flattened boards): perception vs mocap AUC 0.029** (MPPE 20 cm; earlier with v2 boards
+    0.795) → the flattened boards break perception (mesh-based tracking). v4 is not usable for perception (could only
+    simulate with v4 while perceiving with v3, untested). The ep24 part was stopped before training to save the GPU
+    for ep26.
+  - ep26 (pot + rack, reverse): perception 0.952, qa_ref pass, pot stable at f120 (f0 fill blocked), rack as is.
+- E3 rest checks:
+  - ep39 dust pan 1.7 mm / 2.6° (ok);
+  - **ep2: the lid jumps 31 mm / 27° by f23 before any hand, the pot shifts 71 mm by f64.** The lid starts ~8 mm
+    inside the pot's convex collision pieces (note 15 / 19: "lid/pot ep2 f0 8.1 mm"), and the solver ejects it.
+    Collision-geometry issue (eval 1 risk).
+  - ep39 re-plan 0.169 < 0.176, not kept.
+- W2 (seed 43) rest checks: cup / pot ≤ 1.9 mm; racks 11–13 mm / 2.6–3.0° (as certified); nothing re-planned.
