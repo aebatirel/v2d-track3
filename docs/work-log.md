@@ -2547,3 +2547,27 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 
   Round 2 ep18 (mc, library_v2): 0.320 ± 0.072.
 - ep27 support fill (box B): curve 0.699 / 0.634 / 0.600 / 0.976, chosen 70M; evaluations pending.
+
+### ~01:15 TRT (22:15 UTC) — owner: "topped it off … exhaust the credits to test the robustness of our recipe … no early stopping … top 3"
+- Credit $16.80 after the top-up. Early stopping: written (`tools/early_stop.sh`, `glock_public.sh ES=1`) but
+  **off** (owner: we must see how good it can get).
+- **ep18 findings tonight:**
+  - The 0.889 policy, played on the settled reference with `library_v3`, keeps the brush still: tilt ≤ 0.3° and
+    < 1 mm until it picks the brush up at f45–60.
+  - The support fill had a bug: a slab for one resting pose (f222) stood under another (f0) and tipped it. Fixed in
+    `support_fill.py`: a fill may not reach below any other resting pose; the settled ep18 now gets no fill.
+  - The earlier "≥ 10° margin" conclusion is retracted (same bug on the fill box).
+  - Without the fill (kf18 restart, `SF=0`, GPU) the brush stands ≤ 0.9° until f24. The grasp-lock reference's right
+    hand then knocks it at f24–28 (7 cm away, before its approach) → `grasp_lock --approach_cm 6`: from the first
+    frame the reference hand comes within 6 cm of the object it will grasp, it follows the backed-off (4 cm), open
+    pre-grasp moving with the object and slides in over the last 4 frames. CPU check: the approach starts at f22.
+  - On CPU the settled brush tips by itself at f12–20 (tilt 5.4° at f12): its 3.2° margin is a knife edge;
+    GPU (2 traces) keeps it standing. Risk noted for eval 19.
+- `glock_public.sh` RUN=new: builds the reference from the raw episode (perception, hands, mkref with wrist cost 3.0
+  and the capped lead-in, contact retargeting with rest settling = variant mck), then the recipe.
+- **Wave 1** (code e49e83d; all: SF=1 (fixed), REPLAN=1, LIB=library_v3, GL_ARGS + `--approach_cm 6`):
+  - **57430028** Utah $1.51/h `20261024-e1-e49e83d`: ep18 settled (mckfid) s42 (knock fix);
+  - **57430029** France $1.51/h `20261024-e2-e49e83d`: e2e ep21 (cup + pitcher, twin of eval 20) + ep31
+    (sweeper + rack, eval 30);
+  - **57430065** New York $1.52/h `20261024-e3-e49e83d`: e2e ep2 (lid + pot, eval 1) + ep39 (dust pan, eval 38).
+  - Still running: kf18 restart (ep18 settled, SF=0, re-plan kept on a knocked brush). Estimate ≈ $8–9.
