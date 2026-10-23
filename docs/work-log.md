@@ -2262,3 +2262,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   are small; the grip is not holding along the handle. Grasp report: 10 flexion joints hit their limit after the squeeze
   (fingers touch at 72–85 % curl on the 2.7 cm handle), thumb closes 2.5 %. Contact-force replays running
   (`trace_rollout.py` now records per-pair contact forces with `CONTACTS=1`).
+
+### 15:30–15:45 TRT (12:30–12:45 UTC) — physics-aware grasp design: research + diagnosis
+- Owner: design grasps physics-aware (real physics, anatomy / physiotherapy of grasping). Two research briefs done
+  (grasp physics; human grasp anatomy and motor control); synthesis in `docs/research/notes/24` (next).
+- Video for the owner: eval ep3, wrap grasp-lock + ILC + kp 400, zero action (0.658): real camera | sim drawn on the
+  camera with the target outline | 3-D sim (`tools/sim_vs_real_video.py`); strip
+  `results/e2e/spoon_20261023/ep3_k400_zero_action_vs_real_strip.jpg`.
+- **Diagnosis of the ep35 losses [measured, zero-action traces]:** the spoon ROLLS about its own handle inside the grasp
+  (kp 25: up to 72°, kp 400: up to 63°; ep3 kp 400 ≤ 29°); bowl tipping ≤ 7° with kp 25 but up to 50° with kp 400;
+  axial slide ≤ 1–3 cm. Explanation consistent with the physics brief: the uniform +0.4 rad squeeze is not an
+  equilibrium (τ = kp·0.4 not in range(Jᵀ)), so the fingers keep curling and roll the thin handle (r 1.3 cm: friction
+  roll capacity μ Σf_n r is small); the thumb barely participates (2.5 % closing).
+- Contact-force readout (`trace_rollout.py CONTACTS=1`) is NOT calibrated: the spoon resting on the table reads
+  1,477–2,045 N against a 2.9 N weight (alternating by frame) → use only relative per-link shares. Per-link shares
+  over the ep35 hold: kp 400 palm and index DP dominate, ring/pinky distal ≈ 0; kp 25 pinky PP and middle DP dominate.
+- Box price $1.375/h; asked the owner for a 30 min extension (fine-tune curve + video need until ≈ 14:45 UTC).
