@@ -2502,3 +2502,26 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `20261023-sf18b-a674fd7` on offer 56228576 (Utah, $1.51/h), same test (`SF=1`, ep18 mc), code a674fd7 (adds only the
   rest_check window fix and the inert REPLAN / drop options). Holds of 100 min set on the ep18 boxes for the policy
   videos (released after `vid_after.sh`).
+
+### ~00:35 TRT (21:35 UTC) — first results of the batch
+- **ep18 with the support fill (`20261023-sf18b-a674fd7`): the brush still falls** (rest check 94.2 mm / 84.8° by f36).
+  - Trace (no hand within 20 cm, dust pan 22 cm away): the brush tilts 0.9° f1, 1.9° f2, 4.3° f8, 7.2° f10, and lies
+    flat (82°) by f18. The start transient of the soft contact (ke 1e3: 0.3 kg sinks ~3 mm, then bounces; z −1.2 mm
+    f1, +1.9 mm f2; the dust pan jumps 2.4 mm at f1) tilts it ~2°; the certificate's 3.7° tip margin is not enough.
+  - Calibration so far, as is or after the fill:
+
+    | object | tip margin | in the simulator |
+    |---|---|---|
+    | pot | 44° | stays (4.9 mm) |
+    | dust pan | 21° | stays |
+    | cup | 18° | stays (1.3–2.0 mm) |
+    | brush (filled) | 3.7° | falls |
+
+  - → TIP_MIN must be ~10° (hypothesis). No downward fill reaches it for the brush (2 cm: 7.0°).
+  - Options: a wider foot, settling the start pose (the previous best ep18, 0.889, used rest settling), or
+    re-plan / recovery training (tests running).
+- **ep12 with recovery training** (`20261023-dr12-a674fd7`, SF=1, drop starts 0.2):
+  - registered AUC vs mocap **0.869 ± 0.052** (0.798–0.925), sim_vs_ref 0.892 ± 0.050 (70M);
+  - curve 0.532 / 0.588 / 0.363 / 0.847 at 10 / 30 / 50 / 70M;
+  - zero action 0.656 (box B, same reference: 0.560, simulator noise).
+  - Comparison pending: box B ep12 SF=1 without drops (earlier recipe without the fill: 0.910 ± 0.023).
