@@ -2,6 +2,24 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-23 ~23:00 TRT: 5 boxes running — support fill, grasp re-plan in the simulated world, recovery training
+- Owner: "snap and grasp in a dynamic world; a drop should not stop the recipe" → both parts built and approved:
+  - **part 1** re-plans holds against the simulated world (`grasp_lock.py --sim_trace`, `glock_public.sh REPLAN`);
+  - **part 2** adds recovery training to FlashCHORD: drop starts with relaxed termination
+    (`ops/box/patch_flashchord_drop.py`, `FC_DROP_START`, training only, CPU-tested).
+- Running:
+
+  | box | run | test |
+  |---|---|---|
+  | A | `20261023-sf18-bfb973a` | ep18 with the support fill |
+  | B | `20261023-sf1227-bfb973a` | ep12 + ep27 with the support fill |
+  | C | `20261023-rp18-a674fd7` | ep18 without the fill + REPLAN 2 |
+  | D1 | `20261023-dr18-a674fd7` | ep18 without the fill + drop starts 0.2 |
+  | D2 | `20261023-dr12-a674fd7` | ep12 with the fill + drop starts 0.2 (regression check vs B) |
+
+- Credit $14.41 at 22:55 TRT; total of these batches ≈ $9.4.
+- After results: videos of ep18 (`ops/jobs/vid_after.sh` on a held box, or locally from the pushed traces).
+
 ## 2026-10-23 ~21:30 TRT: support-consistent meshes (stability certificate) ready; public check ep18/12/27 next
 - Owner: the mesh should physically support the start pose, with a mathematical stability condition. Done in
   `pipeline/support_fill.py` (notes 25):
