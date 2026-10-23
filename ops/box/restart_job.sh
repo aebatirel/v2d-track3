@@ -8,6 +8,7 @@ set -u
 SHA=$1; JOB=$2
 echo $(( $(date +%s) + 1800 )) > /content/HOLD
 pkill -f '^bash ops/jobs/' ; pkill -f '^bash /content/job2.sh'; pkill -f '^bash .*pipeline/pipeline_ep.sh'
+pkill -f '^bash .*pipeline/auto_ep.sh'                    # 2026-10-23: auto_runs' children outlive their parent
 pkill -f '[t]rain_flash_sac.py'; pkill -f '[e]valuate_policy.py'; pkill -f '[c]ontact_retarget.py'
 pkill -f '[s]core_registered.py'; pkill -f '[r]ender_rollout'
 sleep 5
