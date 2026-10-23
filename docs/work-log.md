@@ -2525,3 +2525,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - curve 0.532 / 0.588 / 0.363 / 0.847 at 10 / 30 / 50 / 70M;
   - zero action 0.656 (box B, same reference: 0.560, simulator noise).
   - Comparison pending: box B ep12 SF=1 without drops (earlier recipe without the fill: 0.910 ± 0.023).
+- `20261023-sf18b-a674fd7` destroyed at ~21:38 UTC after its zero-action replay (pushed first): the brush falls with the fill too, so its training would only repeat round 2 (0.320), the baseline for the re-plan / recovery tests.
