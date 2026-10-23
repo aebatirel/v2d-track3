@@ -1899,3 +1899,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   means both episodes gain. **Recommendation: adopt FDR rewards as the default training for the next runs**
   (owner to confirm); keep the per-episode choice by sim_vs_ref (it ranked every pair above correctly).
 - Spend this batch: box 42 ≈ $5.0, box 43 ≈ $5.4, ep35 retrain ≈ $3.1 → $13.4 (credit $17.98 → $4.54). No instances.
+- 04:25 TRT: `FDR=1` preset (`ops/box/lib.sh` `fc_patches`, called by `auto_runs.sh`): sets the FDR flags and
+  training overrides and applies the patches; dry-run of the shell logic passed. Launch commands in STATUS.md.

@@ -22,6 +22,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **ep35 retrain with the capped lead-in: 0.147** (was 0.127, floor 0.112): the start was not the main limit. The
   reference turns the spoon up to 140° (in-hand reorientation); hypothesis: FlashCHORD's 1 m axis-point reward gives
   no gradient past ~0.3 rad. Next test: ep35 with FDR rewards (≈ $3).
+- Ready to launch (commit after this one; `ops/vast.sh V2D_COMMIT=<head> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  <WS offer> <run_id> '<job>'`): ep35 + FDR `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 EPS="35" FDR=1; bash
+  ops/jobs/auto_runs.sh` (≈ $3); detection dumps `bash ops/jobs/det_dump.sh` (≈ $2); full eval with FDR = the same
+  auto_runs job with all 20 eval episodes (≈ $50–60, one training per GPU, WS cards).
 - Credit $4.54, no instances. Next GPU needs a top-up: ep35 + FDR (≈ $3), detection dumps (≈ $2), then the first
   full eval submission with FDR (≈ $50–60).
 - **ep35 (spoon alone, eval): weak, sim_vs_ref 0.127 vs static floor 0.112** (box self-destroyed 00:27 TRT, ≈ $6).
