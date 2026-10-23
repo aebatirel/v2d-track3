@@ -1,0 +1,12 @@
+# seed 43, kp 400, 40M steps (official evaluator, one evaluation per checkpoint)
+## ep3
+  10M  sim_vs_ref 0.755  |  white_pot: lift   2.8 (ref  8.3) in3cm 0.44 lost@None/313  wooden_spoon: lift  28.0 (ref 27.5) in3cm 0.87 lost@None/313
+  20M  sim_vs_ref 0.777  |  white_pot: lift   4.1 (ref  8.3) in3cm 0.48 lost@None/313  wooden_spoon: lift  26.9 (ref 27.5) in3cm 0.76 lost@None/313
+  30M  sim_vs_ref 0.642  |  white_pot: lift   4.4 (ref  8.3) in3cm 0.22 lost@None/313  wooden_spoon: lift  26.7 (ref 27.5) in3cm 0.89 lost@None/313
+  40M  sim_vs_ref 0.843  |  white_pot: lift   7.9 (ref  8.3) in3cm 0.54 lost@None/313  wooden_spoon: lift  29.2 (ref 27.5) in3cm 0.99 lost@None/313
+## ep35
+  10M  sim_vs_ref 0.901  |  wooden_spoon: lift  23.2 (ref 21.7) in3cm 0.97 lost@None/421
+  20M  sim_vs_ref 0.709  |  wooden_spoon: lift  23.2 (ref 21.7) in3cm 0.71 lost@267/421
+  30M  sim_vs_ref 0.971  |  wooden_spoon: lift  21.9 (ref 21.7) in3cm 1.00 lost@None/421
+  40M  sim_vs_ref 0.973  |  wooden_spoon: lift  21.7 (ref 21.7) in3cm 1.00 lost@None/421
+

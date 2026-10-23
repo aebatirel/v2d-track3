@@ -2340,3 +2340,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   equal to the evaluator's record). Curve `ep35_finetune_k400_curve.txt`.
 - `/content/glock` uploaded to the HF store (`runs/20261023-spoon3R-4c31271/glock`, commit 17eb7fa).
 - Running: 5 repeated official evaluations each of ep3 70M and ep35 40M (variance), ep35 fine-tuned video.
+
+### 16:55–17:22 TRT (13:55–14:22 UTC) — seed 43 (recipe robustness), box end
+- Seed 43, kp 400, 40M steps, ep3 and ep35 trained in parallel (13:55–14:20), official evaluator per checkpoint
+  (`results/e2e/spoon_20261023/finetune_seed43_curves.txt`):
+  - **ep35: 10M 0.901, 20M 0.709, 30M 0.971, 40M 0.973** → reproduces seed 42 (0.979 at 40M).
+  - **ep3: 10M 0.755, 20M 0.777, 30M 0.642, 40M 0.843**; spoon within 3 cm 99 % at 40M, the POT only 54 % → ep3's
+    variable part is the pot (left hand, copied human grasp); seed 42 needed 40–70M (0.965–0.981). Use 70M for ep3-like
+    episodes and pick the checkpoint by sim_vs_ref over repeated evaluations.
+- `/content/glock` re-uploaded to the HF store (commit 577bf4e). The watchdog saves `runs/` and `results/` (push-run)
+  and destroys the box when the hold expires at 14:30 UTC.
