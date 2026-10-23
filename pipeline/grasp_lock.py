@@ -70,6 +70,8 @@ def main():
     p.add_argument('--sf', type=float, default=gf.SF); p.add_argument('--f_min', type=float, default=gf.F_MIN)
     p.add_argument('--lead', type=int, default=2); p.add_argument('--oblique_deg', type=float, default=0.0)
     p.add_argument('--withdraw', type=float, default=0.06)
+    p.add_argument('--palm_clear', type=float, default=wg.CLEAR, help='wrap: palm-handle clearance (m); < 0 presses')
+    p.add_argument('--mcp_first', type=int, default=0, help='close MCP/knuckle joints first, IPs second, thumb last')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -81,10 +83,10 @@ def main():
     mass = [float(m.body_mass.numpy()[next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/'))]) for n in names]
     lo_lim, hi_lim = m.joint_limit_lower.numpy(), m.joint_limit_upper.numpy(); dstart = m.joint_qd_start.numpy()
     jl = list(getattr(m, 'joint_label', None) or getattr(m, 'joint_key', [])); jidx = {l: i for i, l in enumerate(jl)}
-    lim, flex, distal, kpf = {}, {}, {}, {}; ke = m.joint_target_ke.numpy()
+    lim, flex, distal, kpf, thumb = {}, {}, {}, {}, {}; ke = m.joint_target_ke.numpy()
     for side in cr.SIDES:
         fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py(); flex[side] = flexion_mask(fj); distal[side] = distal_mask(fj)
-        kpf[side] = np.array([ke[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj])
+        kpf[side] = np.array([ke[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]); thumb[side] = np.array(['_thumb_' in n for n in fj], float)
         lim[side] = (np.array([lo_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]),
                      np.array([hi_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]))
     ph = hold_phases(a.inp)[0]['phases']
@@ -142,7 +144,8 @@ def main():
             bodies, pb, pl = cr.hand_geometry(m, side); bq = fk(qref[g])
             knuckles = np.mean([bq[bodies[f'{side}_{fn}_PP'], :3] for fn in wg.FINGERS], 0)
             c, ax, r, rng, tpos = wg.handle_geometry(V, OR[j][g].inv().apply(knuckles - OP[g, j]))
-            R_ow, T_ow_p = wg.wrap_pose(R_ow, c, ax, r, oblique=np.radians(a.oblique_deg) * (-1 if side == 'right' else 1))
+            R_ow, T_ow_p = wg.wrap_pose(R_ow, c, ax, r, oblique=np.radians(a.oblique_deg) * (-1 if side == 'right' else 1),
+                                        clear=a.palm_clear)
             qw = qref[g].copy(); qw[o:o + 3] = OR[j][g].apply(T_ow_p) + OP[g, j]; qw[o + 3:o + 7] = (OR[j][g] * R_ow).as_quat()
             qw[o + 7:o + 29] = np.clip(0.0, lo, hi)
             if j not in sdf:
@@ -212,7 +215,12 @@ def main():
                 lift[side][f] = max(lift[side][f], in_air[f, j] * mass[j] * G / WRIST_KP / max(1.0, n_hold[f, j]))
             if f < s1:                                             # hold: locked grasp, fingers closing then held
                 q_new[f, o:o + 3] = pos; q_new[f, o + 3:o + 7] = rot.as_quat()
-                q_new[f, o + 7:o + 29] = blend(qpre, QS[f], wc)
+                if a.mcp_first:                                     # anatomy: MCP first, then the IPs, thumb last (IP-first
+                    wv = np.where(thumb[side] > 0, np.clip(2 * wc - 1, 0, 1),   # "roll-up" pushes objects out of the palm,
+                                  np.where(distal[side] > 0, np.clip(2 * wc - 1, 0, 1), min(1.0, 2 * wc)))  # Muzykewicz 2013)
+                    q_new[f, o + 7:o + 29] = blend(qpre, QS[f], wv)
+                else:
+                    q_new[f, o + 7:o + 29] = blend(qpre, QS[f], wc)
             else:                                                  # release (eval ep35: opening all joints at once hooked and
                 k = f - s1 + 1                                     # flicked the spoon up, f396; sliding off along the handle
                 wo = min(1.0, k / a.open)                          # with the fingers still wrapped dragged it away, f404)
