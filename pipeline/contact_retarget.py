@@ -107,6 +107,42 @@ def hand_geometry(model, side, max_pts=40):
     return bodies, np.concatenate(pts_b), np.concatenate(pts_l)
 
 
+def write_robot(t, m, fk, qref, q_new):
+    """The table t with both hands' wrist position / quaternion, finger joints and all robot frames replaced by q_new
+    (joint_q layout of SIDES). Each frame is a rigid offset to its parent link, found on qref's FK (also used by
+    pipeline/grasp_lock.py). Returns (table, {side: 'attached/total' frames})."""
+    T = len(q_new); out = t; attached = {}
+    for side, o in SIDES.items():
+        bodies, _, _ = hand_geometry(m, side, max_pts=1)
+        fnames = t.column(f'{side}_robot_frame_names')[0].as_py(); FR = np.array(t.column(f'robot_{side}_frames')[0].as_py(), float).reshape(T, -1, 7)
+        samp = np.linspace(0, T - 1, 4).astype(int); bq_ref = [fk(qref[f]) for f in samp]
+        parent, rel = {}, {}
+        for k, fn in enumerate(fnames):
+            best = None
+            for b in bodies.values():
+                rels = []
+                for i, f in enumerate(samp):
+                    Rb = Rot.from_quat(bq_ref[i][b, 3:7]); Rf = Rot.from_quat(FR[f, k, [4, 5, 6, 3]])
+                    rels.append(np.r_[Rb.inv().apply(FR[f, k, :3] - bq_ref[i][b, :3]), (Rb.inv() * Rf).as_quat()])
+                rels = np.array(rels); spread = np.abs(rels[:, :3] - rels[0, :3]).max()
+                if best is None or spread < best[0]:
+                    best = (spread, b, rels[0])
+            if best[0] < 1e-3:
+                parent[k], rel[k] = best[1], best[2]
+        newF = FR.copy()
+        for f in range(T):
+            bq = fk(q_new[f])
+            for k, b in parent.items():
+                Rb = Rot.from_quat(bq[b, 3:7]); pos = Rb.apply(rel[k][:3]) + bq[b, :3]; qx = (Rb * Rot.from_quat(rel[k][3:])).as_quat()
+                newF[f, k] = np.r_[pos, qx[[3, 0, 1, 2]]]
+        cols = {f'robot_{side}_wrist_position': q_new[:, o:o + 3], f'robot_{side}_wrist_wxyz': q_new[:, o + 3:o + 7][:, [3, 0, 1, 2]],
+                f'robot_{side}_finger_joints': q_new[:, o + 7:o + 29], f'robot_{side}_frames': newF}
+        for c, v in cols.items():
+            i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
+        attached[side] = f'{len(parent)}/{len(fnames)}'
+    return out, attached
+
+
 def world_points(bq, body_ids, local):
     R = Rot.from_quat(bq[body_ids, 3:7]); return R.apply(local) + bq[body_ids, :3]
 
@@ -516,35 +552,9 @@ def main():
                            tip_to_target_mm_p90=round(float(np.percentile(tip_err, 90) * 1000), 1) if tip_err else None)
         print(json.dumps({side: stats[side]}), flush=True)
     # 3) write: wrist, fingers, all robot frames (rigid offsets to their parent links, found on the E2S solution)
-    out = t
-    for side, o in SIDES.items():
-        bodies, _, _ = hand_geometry(m, side, max_pts=1)
-        fnames = t.column(f'{side}_robot_frame_names')[0].as_py(); FR = np.array(t.column(f'robot_{side}_frames')[0].as_py(), float).reshape(T, -1, 7)
-        samp = np.linspace(0, T - 1, 4).astype(int); bq_ref = [fk(qref[f]) for f in samp]
-        parent, rel = {}, {}
-        for k, fn in enumerate(fnames):
-            best = None
-            for b in bodies.values():
-                rels = []
-                for i, f in enumerate(samp):
-                    Rb = Rot.from_quat(bq_ref[i][b, 3:7]); Rf = Rot.from_quat(FR[f, k, [4, 5, 6, 3]])
-                    rels.append(np.r_[Rb.inv().apply(FR[f, k, :3] - bq_ref[i][b, :3]), (Rb.inv() * Rf).as_quat()])
-                rels = np.array(rels); spread = np.abs(rels[:, :3] - rels[0, :3]).max()
-                if best is None or spread < best[0]:
-                    best = (spread, b, rels[0])
-            if best[0] < 1e-3:
-                parent[k], rel[k] = best[1], best[2]
-        newF = FR.copy()
-        for f in range(T):
-            bq = fk(q_new[f])
-            for k, b in parent.items():
-                Rb = Rot.from_quat(bq[b, 3:7]); pos = Rb.apply(rel[k][:3]) + bq[b, :3]; qx = (Rb * Rot.from_quat(rel[k][3:])).as_quat()
-                newF[f, k] = np.r_[pos, qx[[3, 0, 1, 2]]]
-        cols = {f'robot_{side}_wrist_position': q_new[:, o:o + 3], f'robot_{side}_wrist_wxyz': q_new[:, o + 3:o + 7][:, [3, 0, 1, 2]],
-                f'robot_{side}_finger_joints': q_new[:, o + 7:o + 29], f'robot_{side}_frames': newF}
-        for c, v in cols.items():
-            i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
-        stats[side]['frames_rigidly_attached'] = f'{len(parent)}/{len(fnames)}'
+    out, attached = write_robot(t, m, fk, qref, q_new)
+    for side in SIDES:
+        stats[side]['frames_rigidly_attached'] = attached[side]
     if rs_stats is not None:                                       # the settled object positions
         WX = np.array([[OR[j][f].as_quat()[[3, 0, 1, 2]] for j in range(len(names))] for f in range(T)])
         for c, v in (('object_body_position', OP), ('object_root_position', OP[:, 0]), ('object_body_wxyz', WX),
