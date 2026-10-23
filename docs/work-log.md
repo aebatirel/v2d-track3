@@ -2352,3 +2352,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   and destroys the box when the hold expires at 14:30 UTC.
 - 14:31 UTC: box `20261023-spoon3R-4c31271` (instance 57331929) destroyed by its watchdog after the hold (push-run
   first); `vast show` lists 0 instances. Session GPU cost today on this box ≈ $1.375/h.
+- 14:40 UTC: Vast credit **$9.06** (API users/current), no instances. Budget guard (estimate + $3 ≤ credit) allows a batch of ≤ $6.
