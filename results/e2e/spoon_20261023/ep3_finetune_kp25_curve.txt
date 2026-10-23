@@ -1,0 +1,12 @@
+  10M  sim_vs_ref 0.292  |  white_pot: lift   8.1 (ref  8.3) in3cm 0.24 lost@138/313  wooden_spoon: lift  18.2 (ref 27.5) in3cm 0.16 lost@57/313
+  20M  sim_vs_ref 0.417  |  white_pot: lift   0.6 (ref  8.3) in3cm 0.21 lost@None/313  wooden_spoon: lift   0.5 (ref 27.5) in3cm 0.31 lost@53/313
+  30M  sim_vs_ref 0.232  |  white_pot: lift   9.5 (ref  8.3) in3cm 0.20 lost@69/313  wooden_spoon: lift   1.3 (ref 27.5) in3cm 0.14 lost@53/313
+  40M  sim_vs_ref 0.385  |  white_pot: lift   0.8 (ref  8.3) in3cm 0.21 lost@None/313  wooden_spoon: lift   1.2 (ref 27.5) in3cm 0.21 lost@53/313
+  50M  sim_vs_ref 0.320  |  white_pot: lift   3.1 (ref  8.3) in3cm 0.38 lost@None/313  wooden_spoon: lift   4.4 (ref 27.5) in3cm 0.13 lost@54/313
+  60M  sim_vs_ref 0.398  |  white_pot: lift   4.1 (ref  8.3) in3cm 0.21 lost@None/313  wooden_spoon: lift   0.5 (ref 27.5) in3cm 0.31 lost@53/313
+  70M  sim_vs_ref 0.259  |  white_pot: lift   5.9 (ref  8.3) in3cm 0.21 lost@79/313  wooden_spoon: lift   0.3 (ref 27.5) in3cm 0.27 lost@53/313
+  80M  sim_vs_ref 0.281  |  white_pot: lift   5.3 (ref  8.3) in3cm 0.20 lost@81/313  wooden_spoon: lift   1.4 (ref 27.5) in3cm 0.30 lost@53/313
+  90M  sim_vs_ref 0.348  |  white_pot: lift  15.7 (ref  8.3) in3cm 0.21 lost@75/313  wooden_spoon: lift   9.4 (ref 27.5) in3cm 0.25 lost@53/313
+ 100M  sim_vs_ref 0.345  |  white_pot: lift   5.2 (ref  8.3) in3cm 0.25 lost@187/313  wooden_spoon: lift   0.1 (ref 27.5) in3cm 0.30 lost@53/313
+ 110M  sim_vs_ref 0.324  |  white_pot: lift   8.4 (ref  8.3) in3cm 0.20 lost@234/313  wooden_spoon: lift   0.1 (ref 27.5) in3cm 0.22 lost@53/313
+
