@@ -23,17 +23,19 @@
 #      CURR_SCALE=s scales the curriculum's step thresholds (s=0.4: object assist 0 from 49M instead of 123M);
 #   6. official evaluation of every checkpoint (tools/ckpt_curve.sh, sim_vs_ref), checkpoint chosen by sim_vs_ref only
 #      (no ground truth), then NREP official evaluations of it, each scored sim_vs_ref + registered AUC vs mocap.
+# SPLIT=eval (2026-10-24): eval episodes, EP:new:mck only; the reference is built from the eval videos (no ground truth
+# exists), the policies are scored against our reference only (pipeline/qa.py sim_vs_ref) and nothing is scored vs mocap.
 # Episodes listed together run concurrently (two trainings share the GPU).
 #   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> \
 #     'PAIRS="24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh'
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
-SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
+SPLIT=${SPLIT:-public}; SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
-log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
+log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
@@ -68,7 +70,7 @@ evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluatio
         evaluation.metrics_output=$d/r$i/episode_$E6.json evaluation.object_trajectories_output=$d/r$i/episode_$E6.parquet \
         hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1 \
       && python $P/qa.py policy $d/r$i $ep > /dev/null 2>&1 \
-      && python $P/score_registered.py $ep $d/r$i --meshes $MESH_DIR > /dev/null 2>&1 ) & pids+=($!)
+      && { [ "$SPLIT" = eval ] || python $P/score_registered.py $ep $d/r$i --meshes $MESH_DIR > /dev/null 2>&1; } ) & pids+=($!)
     [ ${#pids[@]} -ge $PAR ] && { wait "${pids[@]}"; pids=(); }
   done
   [ ${#pids[@]} -gt 0 ] && wait "${pids[@]}"
@@ -78,13 +80,15 @@ import numpy as np
 d, ep, ck = sys.argv[1], int(sys.argv[2]), sys.argv[3]; rows = []
 for r in sorted(glob.glob(f'{d}/r*/')):
     try:
-        q = json.load(open(f'{r}qa_policy.json')); s = json.load(open(f'{r}score_registered_ep{ep}.json'))['sim']
-        rows.append(dict(rollout=os.path.basename(r[:-1]), sim_vs_ref=q['sim_vs_ref'], auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR']))
+        q = json.load(open(f'{r}qa_policy.json')); row = dict(rollout=os.path.basename(r[:-1]), sim_vs_ref=q['sim_vs_ref'])
+        if os.path.exists(f'{r}score_registered_ep{ep}.json'):          # public episodes only (vs mocap)
+            s = json.load(open(f'{r}score_registered_ep{ep}.json'))['sim']; row.update(auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR'])
+        rows.append(row)
     except Exception as e:
         rows.append(dict(rollout=os.path.basename(r[:-1]), error=str(e)[:120]))
-ok = [x for x in rows if 'auc' in x]; agg = {}
+ok = [x for x in rows if 'sim_vs_ref' in x]; agg = {}
 for k in ('sim_vs_ref', 'auc'):
-    v = np.array([x[k] for x in ok], float)
+    v = np.array([x[k] for x in ok if k in x], float)
     if len(v):
         agg[k] = dict(mean=round(float(v.mean()), 4), std=round(float(v.std()), 4), min=round(float(v.min()), 4), max=round(float(v.max()), 4))
 print(json.dumps(dict(checkpoint=ck, n=len(ok), **agg, rollouts=rows), indent=1))
@@ -95,7 +99,7 @@ one() {
   local ep=$1 run=$2 base=$3 R0 P0 hive G RD N RUN LG=/content/glock_ep$1.log ck
   if [ "$run" = new ]; then                                        # end to end from the raw episode (perception on)
     ( export VARIANT=$base MKREF_ARGS="--wrist_cost 3.0" CONTACT_RETARGET=1 CR_ARGS="--rest_settle 1" STEPS=0 \
-        STOP_AFTER=reference SPLIT=public PERC=perc2; bash $P/pipeline_ep.sh $ep ) > /content/ref_ep$ep.log 2>&1 \
+        STOP_AFTER=reference SPLIT=$SPLIT PERC=perc2; bash $P/pipeline_ep.sh $ep ) > /content/ref_ep$ep.log 2>&1 \
       || { log "glock ep$ep: reference build FAILED ($(tail -3 /content/ref_ep$ep.log | tr '\n' ' ' | cut -c1-300))" >> $J; return 1; }
     log "glock ep$ep: reference built from the raw episode ($(grep -a 'perception:\|qa_ref\|contact_retarget:' /content/ref_ep$ep.log | cut -c1-160 | tr '\n' ' ' | cut -c1-500))" >> $J
   fi
