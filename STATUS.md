@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-23 15:15 TRT (12:15 UTC): wrap grasp-lock reference beats RL on ep3; ep35 release being fixed
+- `pipeline/grasp_lock.py` + `pipeline/wrap_grasp.py` + `pipeline/wrist_ilc.py`: a built wrap (power) grasp on the
+  spoon handle, locked to the object during the hold, wrist lag corrected by ILC. Zero action, evaluator physics,
+  sim_vs_ref (our reference only): **ep3 0.462** (floor 0.439, VOC-fixed RL s42 0.380); **ep35 single-hand carry
+  0.267** with the v4 release (floor 0.112, VOC-fixed RL s42/s43 0.289/0.337). ep35 still loses the spoon at the final
+  release (f404); v5 release (unroll fingertips first, then lift the palm away) running.
+- Rehearsal (VOC fix): ep35 s43 final 0.337; ep3 s43 at 230M/250M at 12:08 UTC. Then the ep3 wrap RL fine-tune
+  (`/content/glock/ft_ep3.sh`, seed 42, 250M) starts by itself on the same box.
+- Box `20261023-spoon3R-4c31271` held to 14:30 UTC (`/content/hold_until.sh`); copy `/content/glock/*` off first.
+
 ## 2026-10-23 12:45 TRT (09:45 UTC): spoon root cause = VOC explosion; rehearsal restarted on the fix (2 seeds)
 - Rehearsal seed 42 (FDR + detection rules + capped lead-in): **ep3 0.410 (floor 0.439), ep35 0.105 (floor 0.112)**,
   no object moves in any rollout. Reference, contact labels and the in-hand physics checked out (work log).

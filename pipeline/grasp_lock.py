@@ -47,6 +47,10 @@ def flexion_mask(names):
     return np.array([any(k in n for k in ('_FE', '_PIP', '_DIP', '_IP')) for n in names], float)
 
 
+def distal_mask(names):                                            # PIP, DIP and the thumb IP: unrolled first on release
+    return np.array([n.split('_')[-1] in ('PIP', 'DIP', 'IP') for n in names], float)
+
+
 def blend(a, b, w):
     return (1 - w) * a + w * b
 
@@ -71,9 +75,9 @@ def main():
     mass = [float(m.body_mass.numpy()[next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/'))]) for n in names]
     lo_lim, hi_lim = m.joint_limit_lower.numpy(), m.joint_limit_upper.numpy(); dstart = m.joint_qd_start.numpy()
     jl = list(getattr(m, 'joint_label', None) or getattr(m, 'joint_key', [])); jidx = {l: i for i, l in enumerate(jl)}
-    lim, flex = {}, {}
+    lim, flex, distal = {}, {}, {}
     for side in cr.SIDES:
-        fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py(); flex[side] = flexion_mask(fj)
+        fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py(); flex[side] = flexion_mask(fj); distal[side] = distal_mask(fj)
         lim[side] = (np.array([lo_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]),
                      np.array([hi_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]))
     ph = hold_phases(a.inp)[0]['phases']
@@ -151,7 +155,7 @@ def main():
             q_new[f, o:o + 3] = blend(qref[f, o:o + 3], pos, min(1.0, 2 * wb))
             q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([qref[f, o + 3:o + 7], rot.as_quat()]))([wb]).as_quat()[0]
             q_new[f, o + 7:o + 29] = blend(qref[f, o + 7:o + 29], qpre, wb)
-        end = min(T, s1 + 3 * a.open)                             # release: OPEN frames to open, then 2 x OPEN to withdraw
+        end = min(T, s1 + 4 * a.open)                             # release: relax, unroll (OPEN frames each), withdraw (2 x OPEN)
         for f in range(h0, end):
             pos = OR[j][f].apply(T_ow_p) + OP[f, j]; rot = OR[j][f] * R_ow
             wc = min(1.0, (f - h0 + 1) / a.close)                  # finger closing ramp (from pre-open)
@@ -160,12 +164,17 @@ def main():
             if f < s1:                                             # hold: locked grasp, fingers closing then held
                 q_new[f, o:o + 3] = pos; q_new[f, o + 3:o + 7] = rot.as_quat()
                 q_new[f, o + 7:o + 29] = blend(qpre, qs, wc)
-            else:                                                  # release: open the fingers with the wrist still locked,
-                wo = min(1.0, (f - s1 + 1) / a.open)              # then withdraw to the reference (v3 did both at once and
-                ww = max(0.0, (f - s1 + 1 - a.open) / max(1, end - s1 - a.open))   # flung the eval ep35 spoon at f392)
-                q_new[f, o:o + 3] = blend(pos, qref[f, o:o + 3], ww)
-                q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([ww]).as_quat()[0]
-                q_new[f, o + 7:o + 29] = blend(qs, qpre, wo) if ww == 0 else blend(qpre, qref[f, o + 7:o + 29], ww)
+            else:                                                  # release (eval ep35: opening all joints at once hooked and
+                k = f - s1 + 1                                     # flicked the spoon up, f396; sliding off along the handle
+                wo = min(1.0, k / a.open)                          # with the fingers still wrapped dragged it away, f404)
+                wu = float(np.clip((k - a.open) / a.open, 0, 1))   # 1) relax to the touching grasp, wrist locked
+                ww = max(0.0, (k - 2 * a.open) / max(1, end - s1 - 2 * a.open))   # 2) unroll: PIP/DIP/IP first, then the
+                wj = np.minimum(1.0, 2 * wu) * distal[side] + np.clip(2 * wu - 1, 0, 1) * (1 - distal[side])  # knuckles
+                qo = blend(qf, qpre, wj)                           # 3) withdraw along the palm normal, then to the reference
+                away = pos + (OR[j][f] * R_ow).apply([-max(back, 0.04), 0.0, 0.0]) * min(1.0, 2 * ww)
+                q_new[f, o:o + 3] = away if ww < 0.5 else blend(away, qref[f, o:o + 3], 2 * ww - 1)
+                q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
+                q_new[f, o + 7:o + 29] = blend(qs, qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
         report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info,
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,

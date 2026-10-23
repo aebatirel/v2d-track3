@@ -2205,3 +2205,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Box hold: hold_guard.sh had overwritten HOLD with now+30 min; stopped; `/content/hold_until.sh` pins HOLD to 14:30 UTC.
 - Queued on the ep3 box after seed 43's training: RL fine-tune of the ep3 wrap+ILC reference (seed 42, 250M, FDR + VOC
   fix, `/content/runs/glock/ep3wrap-s42`), then a per-checkpoint curve.
+
+### 15:05–15:20 TRT (12:05–12:20 UTC) — ep35 single-hand carry: the final release
+- `grasp_lock.py` release, measured on eval ep35 (single-hand wrap + ILC, zero action, sim_vs_ref against OUR
+  reference only; floor 0.1116):
+  - v3 (open all finger joints together, wrist locked, then withdraw): **0.218**. Render
+    (`ep35_s3_end.mp4`, frames 370–415): opening flicked the spoon upright (f396–400, z 0.62 → 0.72) and the
+    withdrawing hand then knocked it off the table.
+  - v4 (relax to the touching pose, then slide 10.5 cm along the handle with the fingers still wrapped): **0.267**,
+    within 3 cm in 51.5 % of frames (v3 44.7 %). Relaxing alone kept the spoon still (f390–398 z 0.623–0.625), but the
+    slide dragged it up and away (f404 z 0.685, f420 on the floor, 78 cm off).
+  - At the release the palm faces down onto the handle (palm normal (0.47, 0.24, −0.85)) and the fingers wrap under
+    it, through the table (hands do not collide with the table). Hypothesis: opening every joint at once hooks the
+    handle with the curled fingertips and pulls it up. v5 tests this: relax (6 frames), unroll PIP/DIP/thumb IP first
+    and the knuckles second (6), wrist locked, then withdraw along the palm normal (up) and back to the reference.
+    Falsified if the spoon still rises more than 1 cm while the hand unrolls (f396–402).
