@@ -2623,3 +2623,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     Collision-geometry issue (eval 1 risk).
   - ep39 re-plan 0.169 < 0.176, not kept.
 - W2 (seed 43) rest checks: cup / pot ≤ 1.9 mm; racks 11–13 mm / 2.6–3.0° (as certified); nothing re-planned.
+- 22:50 UTC:
+  - **ep26 (pot in rack) start jolt:** pot 117 mm / 52°, rack 40 mm / 44° before any hand (hull overlap 9.8 mm,
+    note 15). Re-plan 1 picked the flung pot where it lay: zero action **0.490 vs 0.212**, kept, training on it.
+  - Second failure class identified: overlapping convex collision pieces of stacked objects at frame 0 (ep2 lid on
+    pot, ep26 pot in rack; eval 1, 28, and the rack episodes 14 / 15 / 16 / 30 at risk). Note 19's measured fix
+    (rack / pot split into ≤ 120 mm parts) needs new assets, a Linux crash screen and 0.1–1 TB build RAM for
+    4096-world training: not tonight.
+  - **`tools/sim_settle.py`** (new, generic): the scene is frozen at frame 0 and simulated 20 steps with the object
+    assist on, then 30 off; each object's settled pose is used until its first hold closes, then blended into the
+    perceived path over 20 frames; never-held objects keep it. CPU test on ep2: pot settles 5.2 mm / 1.7°; the lid
+    settles 20 mm / 27.6° (peak 20.6 mm, i.e. no flight; it cannot sit flat on the pot's hulls). `glock_public.sh
+    SETTLE=1` (default off), to be A/B-tested on ep2 / ep26.
+  - `ops/jobs/submit_pack.sh` written (pristine FlashCHORD worktree evaluator, library meshes per (episode, object),
+    kit packer; upload by the owner).
