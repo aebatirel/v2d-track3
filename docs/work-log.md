@@ -2240,3 +2240,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   for ILC and replay; `wrist_ilc.py` now reads `EMB`) on ep3 and ep35, and 3 repeat replays of ep35 s5 for variance
   (`/content/glock/run_k400.sh`). Hypothesis: with the grasp locked, the remaining ep3 loss is the soft wrist lagging
   in the carry (spoon > 10 cm off from f100); falsified if kp 400 does not cut the carry error.
+- **12:19 UTC — embodiment test, eval ep3 (wrap grasp-lock + ILC, zero action, evaluator physics, sim_vs_ref vs our
+  reference): wrist kp 400 (`sharpa_hands_mid`, lift feed-forward sized for kp 400) 0.658 vs kp 25 0.462** (floor 0.439).
+  Spoon within 3 cm 87.5 % of frames (kp 25: 16.9 %), mean error 1.9 cm (7.3), never lost (lost at f105); pot mean error
+  4.8 cm (7.3). Hypothesis (carry loss = soft wrist lag) confirmed. The earlier "mid wrist hurts" result was plain RL on
+  the old references; with a locked grasp it is the main lever.
+- ep35 s5 run-to-run variance (default wrist, same reference, 3 replays): 0.150 / 0.172 / 0.185.
+- Sim physics inventory (`tools/sim_physics_inventory.py`, `/content/glock/sim_inventory.json`): MuJoCo-Warp solver,
+  pyramidal cones, impratio 20, 20 fps x 5 substeps; contact mu 1.0, torsional 0.005, rolling 1e-4, ke 1e3, kd 1e2;
+  finger joints kp 1.7 Nm/rad, kd 0.1, effort 10 Nm (all 22 the same); wrist xyz kp 25 N/m, kd 6, 45 N; rotation effort
+  PD kp 25, 45 Nm; hand 1.24 kg; spoon and pot 0.3 kg (kit placeholder). Spoon inertia (26.0, 25.8, 0.455) e-4 kg m².
