@@ -2311,3 +2311,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   are not merged, so hand switches follow the human; the receiver closes before the overlap ends, the lift is shared,
   the giver relaxes, unrolls and withdraws along the separating direction. Runs `hof` (force design) and `hou`
   (uniform squeeze) on the box (`/content/glock/run_ho.sh`).
+
+### 16:10–16:30 TRT (13:10–13:30 UTC) — **ep3 RL fine-tune on the wrap grasp-lock reference: 0.96–0.98**
+- Fine-tune `/content/runs/glock/ep3k400-s42` (seed 42, kp 400 embodiment, wrap grasp-lock + ILC reference, FDR + VOC
+  fix, 160M planned). Checkpoint metadata carries the kp 400 joint overrides (the official evaluator rebuilds from it).
+  Official evaluator per checkpoint (`ckpt_curve.sh`; harness forces voc_scale 0, VOC max force/torque 0, frame-0
+  start, no auto-reset — checked in `evaluation/harness.py`), sim_vs_ref vs our reference, one evaluation each:
+  10M 0.747 · 20M 0.188 · 30M 0.513 · **40M 0.965 · 50M 0.946 · 60M 0.980 · 70M 0.981**; spoon and pot within 3 cm
+  in 99–100 % of frames from 40M. (Zero action on this reference 0.658; RL alone 0.380 / 0.413; floor 0.439.)
+  Caveats: our-reference metric (the reconstruction's own error is not included); single evaluation per checkpoint
+  (earlier policies varied ± 0.1 across 7 evaluations) → repeat evaluations of the chosen checkpoint needed.
+- ep35 hand switches (copy the human's handovers): `hof` (force design) 0.069, `hou` (uniform) 0.105, `hos` (+ snap the
+  copied bowl grasp) 0.179 — all lose the spoon at the first switch to the LEFT hand's bowl grasp (f52–64): the copied
+  human bowl grasp does not hold the spoon alone. Single-hand wrap carry stays the best ep35 (0.521).
+- Same anatomy rule on ep3 (kp 400): mq400 0.429, mqf400 0.454 vs 0.658 with the older simultaneous closing →
+  the rule that fixes ep35 costs ep3 0.2; which part (MCP-first order, palm press, close 10) is not yet isolated.
