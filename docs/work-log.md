@@ -2571,3 +2571,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     (sweeper + rack, eval 30);
   - **57430065** New York $1.52/h `20261024-e3-e49e83d`: e2e ep2 (lid + pot, eval 1) + ep39 (dust pan, eval 38).
   - Still running: kf18 restart (ep18 settled, SF=0, re-plan kept on a knocked brush). Estimate ≈ $8–9.
+- Evening batch, final (registered AUC vs mocap, 5 evaluations, our meshes):
+  - ep12 support fill 0.886 ± 0.039; ep27 support fill 0.963 ± 0.006 (round 1 without the fill: 0.910 ± 0.023 /
+    0.972 ± 0.004);
+  - ep12 fill + drop starts 0.869 ± 0.052; ep18 re-plan 0.405 ± 0.016; ep18 drop starts 0.220 ± 0.103.
+  - → On easy episodes neither the fill nor recovery training gains (−0.01 to −0.04, within seed noise); neither goes
+    into the default recipe without a measured gain.
