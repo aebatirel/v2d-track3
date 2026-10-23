@@ -2526,3 +2526,24 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - zero action 0.656 (box B, same reference: 0.560, simulator noise).
   - Comparison pending: box B ep12 SF=1 without drops (earlier recipe without the fill: 0.910 ± 0.023).
 - `20261023-sf18b-a674fd7` destroyed at ~21:38 UTC after its zero-action replay (pushed first): the brush falls with the fill too, so its training would only repeat round 2 (0.320), the baseline for the re-plan / recovery tests.
+
+### ~00:50 TRT — why ep18 regressed, and the rerun with the old fix (owner: "lets go ahead and fix this")
+- The 0.889 ep18 result (FDR s43, 250M) came from the 22 Oct fix: `flatten_base.py` → `meshes/library_v3` (sweeper
+  underside flattened, stable face 0.2° from the perceived up) + `contact_retarget --rest_settle 1` (resting objects
+  seated and turned onto their nearest stable pose ≤ 15°: the real margin) → base 0.345 → kfi 0.715 → FDR 0.776 / 0.889.
+- The grasp-lock public check (round 2) and all of today's ep18 tests used the `mc` reference (not settled) and
+  `library_v2` (rounded sweeper): my oversight. That is why the brush falls again; the support fill re-invented part
+  of the fix with too small a margin.
+- Rerun: **57428255** Utah $1.51/h, `20261023-kf18-a674fd7`: `export EVERY=2 SF=1 REPLAN=1
+  LIB=/content/v2d-track3/meshes/library_v3; PAIRS="18:20261023-fdr43-715c9f7:mckfid"` (the settled reference of the
+  0.889 run + grasp-lock recipe + re-plan safety net). Credit $7.80 before; estimate ≈ $1.7.
+- Results of the 23:00 batch so far (registered AUC vs mocap, 5 evaluations; our meshes):
+
+  | run | ep | setup | AUC |
+  |---|---|---|---|
+  | `rp18` | 18 | mc, library_v2, re-plan (part 1) | **0.405 ± 0.016** (sim_vs_ref 0.353; chosen 50M; curve 0.304 / 0.184 / 0.346 / 0.168) |
+  | `dr18` | 18 | mc, library_v2, drop starts 0.2 (part 2) | **0.220 ± 0.103** (curve 0.113 / 0.042 / 0.066 / 0.260) |
+  | `dr12` | 12 | support fill + drop starts 0.2 | **0.869 ± 0.052** |
+
+  Round 2 ep18 (mc, library_v2): 0.320 ± 0.072.
+- ep27 support fill (box B): curve 0.699 / 0.634 / 0.600 / 0.976, chosen 70M; evaluations pending.
