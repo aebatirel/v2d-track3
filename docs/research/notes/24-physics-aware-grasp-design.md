@@ -77,3 +77,38 @@ drive a rule). [M] = measured by us, [L] = literature, [I] = our inference / hyp
 - Missing anatomy pieces: thumb opposition (abducted thumb pressing back over the fingers) is not built yet; the thumb
   is closed from its zero pose only. MCP-first closing order not enforced (closing is simultaneous).
 - Validation protocol with noise and time scaling (section 4.7) not yet run.
+
+## 8. Results (2026-10-23 afternoon) [M]
+Zero action = the reference replayed in evaluator physics with no policy; fine-tune = FlashSAC RL from scratch on that
+reference (FDR + VOC fix). sim_vs_ref = qa.py's AUC against OUR reference (no ground truth; 0.997 correlation with the
+registered AUC on public episodes).
+
+| eval episode | what | score |
+|---|---|---|
+| ep3 | floor / RL alone (s42, s43) | 0.439 / 0.380, 0.413 |
+| ep3 | wrap grasp-lock + ILC, kp 25 / kp 400, zero action | 0.462 / 0.658 |
+| ep3 | + fine-tune, kp 400, 40M / 60M / 70M (one eval each) | 0.965 / 0.980 / 0.981 |
+| ep3 | 70M, 5 repeated official evaluations | mean 0.968, sd 0.020, min 0.928 |
+| ep3 | + fine-tune, kp 25 (same recipe otherwise), 10–110M | 0.23–0.42 (spoon not lifted) |
+| ep35 | floor / RL alone (s42, s43) | 0.112 / 0.289, 0.337 |
+| ep35 | single-hand wrap, uniform squeeze, older closing (kp 25) | 0.15–0.27 |
+| ep35 | + anatomy closing (MCP first, IPs, thumb last; close 10) + palm press 1 mm (kp 25) | 0.521 |
+| ep35 | same, kp 400 reference, zero action | 0.412 |
+| ep35 | + fine-tune kp 400, 10M / 40M / 70M | 0.943 / 0.979 / 0.961 |
+| ep35 | 40M, 5 repeated official evaluations | mean 0.978, sd 0.002, min 0.976 |
+| ep35 | copying the human's hand switches (left hand keeps its bowl grasp) | 0.07–0.18 (spoon dropped at the first switch) |
+
+What the physics and anatomy work contributed:
+- The decisive physical facts were measured, not assumed: the in-hand ROLL of a thin handle during pick-up (closing
+  fingers from under the table rolled it ≈ 90°), the stiff-wrist requirement (the soft wrist sags mg/kp = 11.8 cm and lags),
+  and the release mechanics (opening all joints at once hooks the handle; dragging with wrapped fingers flings it).
+- Anatomy rules that helped: close MCP first and the thumb last (Muzykewicz 2013: IP-first roll-up pushes objects out
+  of the palm), palm as the opposing surface (palm pressing on the handle), release by relaxing the grip, unrolling
+  the fingertips first, then withdrawing along a separating direction.
+- What did not help: minimal-force squeezes from the contact-force LP (too light for soft contacts and PD fingers:
+  ep3 0.309); an oblique handle (25°) (less roll, more tipping); the stiff wrist at ZERO action on ep35 (0.412 vs 0.521)
+  — but it is essential once RL fine-tunes.
+- RL is still needed: zero-action references reach 0.41–0.66; the fine-tune on them reaches 0.96–0.98 within 40–70M
+  steps (≈ 11–19 min on one RTX PRO 6000), versus 250M steps and ≤ 0.41 for RL from the plain retargeted reference.
+- Open: the anatomy closing rule lowers ep3's zero-action score (0.658 → 0.43); its effect after fine-tuning is
+  untested. Hand switches need a secure grasp for the second hand on a wide part (bowl): not built yet.
