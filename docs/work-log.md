@@ -2406,3 +2406,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   evaluations averaged 0.889 vs mocap (trained on the settled `kfid` reference: overlay/score reference mismatch or
   a bad rollout; not representative).
 - Summaries `results/e2e/glock_public_20261023/`. Hold released after the videos; box self-destroys.
+- Box 57400615 destroyed by its watchdog after the hold was released; Vast credit $5.2 after this batch (≈ $3.9 spent incl. the video hold).
