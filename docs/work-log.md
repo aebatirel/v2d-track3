@@ -2088,3 +2088,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   sit on the real objects through the episode, including the spoon inside the pot (ep3 f120) and the two-handed
   handling (ep35); hand skeletons follow the hands; ep35 f0 right hand drawn a few cm above the real hand.
   Strips `results/e2e/spoon_20261023/ep*_reconstruction_overlay_strip.jpg`.
+
+### 13:50 TRT (10:50 UTC) — **ep35 seed 42 with the VOC fix: the spoon is picked up**
+- Box `20261023-spoon35R-25b7779`, code 8db32a1 (FDR + detection rules + capped lead-in + **VOC inertia fix**).
+  Checkpoint sweep (sim_vs_ref, our reference): 100M 0.121, 150M 0.326, **200M 0.394 (chosen)**, 250M 0.326.
+  7 official evaluations of 200M: 0.394 0.301 0.312 0.316 0.106 0.272 0.319 → **mean 0.289** (floor 0.112; stock-VOC
+  seed 42: 0.105). Training 54–61k steps/s (stock 27.5k/s).
+- Rollouts (object trajectories vs our reference): the spoon is lifted in all 7 (max lift 10–29 cm, reference 21.7);
+  within 3 cm of its path for ≈ 33 % of the frames (the pick-up and first hold), then lost; one rollout at the floor.
+  Evaluator-like render (`results/e2e/spoon_20261023/ep35_s42_vocfix_evallike_strip.jpg`): both hands lift the spoon
+  together (f40); it is dropped when the person turns it upright (≈ f80) and stays on the table.
+- Reading: the VOC bug was the cause of "never touches"; the next limit is holding through the in-hand reorientation
+  (two-handed, up to 140°). Seed 43 running; ep3 seed 42 result pending.
