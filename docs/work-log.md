@@ -2169,3 +2169,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   target at f35, identical across along-shift variants); (3) the soft wrist (1 N per 4 cm) lags, but a stiffer wrist
   alone does not fix the spoon. Next: a real grasp synthesis on the handle (thumb opposite the fingers, contact points
   on the mesh, finger IK + squeeze), then the same physics search around it.
+
+### 15:05–15:25 TRT (12:05–12:25 UTC) — owner: keep the ep3 box 2 h, build the grasp-first approach; "wrap the hand around the handle, that's the strongest grasp"
+- Box `20261023-spoon3R-4c31271` held until 14:30 UTC (`/content/HOLD`; hold2.sh stopped; the watchdog saves and
+  destroys at expiry). ≈ $2.75 approved.
+- `pipeline/wrap_grasp.py` + `grasp_lock.py --wrap` (default on for objects with hull PCA ratio ≥ 3): BUILT power grasp
+  on the handle — axis + radius from the collision hulls, grip point = the human knuckle centre projected on the axis
+  (kept 4.5 cm inside the narrow part), hand y ∥ handle (sign as the human), palm normal closest to the human's, handle
+  in the palm 2.2 cm + r in front of the wrist axis at z 8 cm, each finger and the thumb curled until a link touches
+  the hulls (+0.4 rad squeeze), approach backed off 4 cm along the palm normal then slid in. Hand frame measured with FK.
+- eval ep3 (spoon r 1.31 cm, grip at −7.3 cm; fingers touch at 70–83 % curl; 74.5° from the human hand angle), zero
+  action, evaluator physics: **spoon lifted 24.2 cm (ref 27.5)** with ILC, 24.7 cm without (all pinch variants ≤ 1.7 cm);
+  spoon mean path error 7.3 cm (pinch 13–15 cm); > 10 cm off the path from ≈ f100 (the carry into the pot), back to
+  4–6 cm at f240–270; pot 3.8 cm lift. Close-up `results/e2e/spoon_20261023/ep3_wrap_grasp_zero_action_grid.jpg`:
+  the hand wraps the handle (f35–40), lifts it (f50–65) and keeps it (f90–120).
+- Next: grasp search around the wrap (security first, human closeness second), path tracking during the hold, ep35
+  (hand changes), then RL fine-tune on top.

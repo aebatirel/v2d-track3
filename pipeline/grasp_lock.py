@@ -16,6 +16,9 @@ than replicating it"; docs/research/notes/23). Rewrites a FlashCHORD reference s
     (rewards, keypoints) keep the locked grasp pose (v1 put the lift into the frames too: the reference hand floated
     12 cm above the spoon and the simulated hand left without it);
   - after the phase the fingers reopen and the wrist blends back to the original reference over OPEN frames.
+With --wrap, elongated objects (hull PCA ratio >= WRAP_RATIO with a narrow part) get a BUILT wrap (power) grasp
+instead of the copied human one (pipeline/wrap_grasp.py; owner: the copied grasps pinch, a wrap is the strongest): the
+hand comes in open, backed off BACK along its palm normal, slides onto the handle and closes until each finger touches.
 Object trajectories are not touched. Only our own reference is read (no ground truth). The candidate is not trusted:
 pipeline/grasp_test.py replays it in the evaluator's physics and measures whether the object is held.
 Usage (FlashCHORD python, from the flash_chord dir, FC set):
@@ -30,6 +33,7 @@ from scipy.spatial.transform import Rotation as Rot, Slerp
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import contact_retarget as cr  # noqa: E402
+import wrap_grasp as wg  # noqa: E402
 from hold_phases import hold_phases  # noqa: E402
 
 WRIST_KP, G = float(os.environ.get('GL_WRIST_KP', 25.0)), 9.81   # GL_WRIST_KP: wrist position kp of the embodiment used
@@ -49,6 +53,8 @@ def main():
     p.add_argument('--open', type=int, default=6); p.add_argument('--lift', type=int, default=1)
     p.add_argument('--move_cm', type=float, default=1.0); p.add_argument('--search', type=int, default=10)
     p.add_argument('--blend', type=int, default=8); p.add_argument('--preopen', type=float, default=0.3)
+    p.add_argument('--wrap', type=int, default=1); p.add_argument('--wrap_ratio', type=float, default=3.0)
+    p.add_argument('--back', type=float, default=0.04); p.add_argument('--wrap_squeeze', type=float, default=0.4)
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -70,6 +76,14 @@ def main():
     sdf = {}; fk = cr.FK(m); dp = {}
     for side in cr.SIDES:
         bodies, pb, pl = cr.hand_geometry(m, side); dp[side] = [(pb == bodies[f'{side}_{fn}_DP'], fn) for fn in cr.FINGERS] + [(pb, pl)]
+
+    def hull_vertices(j):                                          # object-frame vertices of its collision pieces
+        sb = m.shape_body.numpy(); sc = m.shape_scale.numpy(); tf = m.shape_transform.numpy(); out = []
+        for s_ in range(m.shape_count):
+            src = m.shape_source[s_]
+            if sb[s_] == obj_body[j] and src is not None and hasattr(src, 'vertices'):
+                out.append(Rot.from_quat(tf[s_, 3:7]).apply(np.asarray(src.vertices, float) * sc[s_]) + tf[s_, :3])
+        return np.vstack(out)
 
     def on_object(side, j, f):                                     # (fingers within 5 mm, mean distal-link distance)
         if j not in sdf:
@@ -93,11 +107,31 @@ def main():
         h0 = max(0, min(s0, move - a.close))
         Rw_g = Rot.from_quat(qref[g, o + 3:o + 7]); T_ow_p = OR[j][g].inv().apply(qref[g, o:o + 3] - OP[g, j]); R_ow = OR[j][g].inv() * Rw_g
         lo, hi = lim[side]; qf = qref[g, o + 7:o + 29]; qs = np.clip(qf + a.squeeze * flex[side], lo, hi)
-        qpre = np.clip(qf - a.preopen * flex[side], lo, hi)
-        for f in range(max(0, h0 - a.blend), h0):                  # approach: blend into the locked pose, fingers pre-open
+        qpre = np.clip(qf - a.preopen * flex[side], lo, hi); back = 0.0; wrap_info = None
+        V = hull_vertices(j)
+        sv = np.linalg.svd(V - V.mean(0), compute_uv=False)
+        if a.wrap and sv[0] / max(sv[1], 1e-9) >= a.wrap_ratio:       # elongated: build a wrap grasp on the handle
+            bodies, pb, pl = cr.hand_geometry(m, side); bq = fk(qref[g])
+            knuckles = np.mean([bq[bodies[f'{side}_{fn}_PP'], :3] for fn in wg.FINGERS], 0)
+            c, ax, r, rng, tpos = wg.handle_geometry(V, OR[j][g].inv().apply(knuckles - OP[g, j]))
+            R_ow, T_ow_p = wg.wrap_pose(R_ow, c, ax, r)
+            qw = qref[g].copy(); qw[o:o + 3] = OR[j][g].apply(T_ow_p) + OP[g, j]; qw[o + 3:o + 7] = (OR[j][g] * R_ow).as_quat()
+            qw[o + 7:o + 29] = np.clip(0.0, lo, hi)
+            if j not in sdf:
+                sdf[j] = cr.HullSDF(m, obj_body[j])
+            fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py()
+            qf, qs, closing = wg.close_fingers(fk, qw, o, side, fj, lo, hi, bodies, pb, pl, sdf[j],
+                                               lambda X: OR[j][g].inv().apply(X - OP[g, j]), a.wrap_squeeze)
+            qpre = np.clip(np.zeros(22), lo, hi); back = a.back
+            wrap_info = dict(radius_cm=round(100 * r, 2), axis_pos_cm=round(100 * tpos, 1), narrow_cm=[round(100 * x, 1) for x in rng],
+                             closing=closing, human_angle_deg=round(float(np.degrees((Rw_g.inv() * (OR[j][g] * R_ow)).magnitude())), 1))
+        x_back = lambda f: (OR[j][f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
+        for f in range(max(0, h0 - a.blend), h0):                  # approach: blend into the (backed-off) pose, then slide in
             wb = (f - (h0 - a.blend) + 1) / (a.blend + 1)
-            pos = OR[j][f].apply(T_ow_p) + OP[f, j]; rot = OR[j][f] * R_ow
-            q_new[f, o:o + 3] = blend(qref[f, o:o + 3], pos, wb)
+            w_back = 1.0 if wb < 0.5 else 2 * (1 - wb)              # backed off in the first half, slid in over the second
+            pos = OR[j][f].apply(T_ow_p) + OP[f, j] + x_back(f) * w_back
+            rot = OR[j][f] * R_ow
+            q_new[f, o:o + 3] = blend(qref[f, o:o + 3], pos, min(1.0, 2 * wb))
             q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([qref[f, o + 3:o + 7], rot.as_quat()]))([wb]).as_quat()[0]
             q_new[f, o + 7:o + 29] = blend(qref[f, o + 7:o + 29], qpre, wb)
         end = min(T, s1 + a.open)
@@ -114,10 +148,12 @@ def main():
                 q_new[f, o:o + 3] = blend(pos, qref[f, o:o + 3], wr)
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([wr]).as_quat()[0]
                 q_new[f, o + 7:o + 29] = blend(qs, qref[f, o + 7:o + 29], wr)
-        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on,
+        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info,
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
                            joints_at_limit_after_squeeze=int(((qs >= hi - 1e-6) & (flex[side] > 0)).sum())))
+        if wrap_info:
+            print(f"{side} {x['object']}: WRAP grasp {json.dumps(wrap_info)}", flush=True)
         print(f"{side} {x['object']} {s0}-{s1}: grasp pose from f{g} ({n_on} fingers on, mean gap {1000 * gap:.1f} mm), "
               f"hold from f{h0}, object moves f{move}, lift {report[-1]['lift_cm']} cm", flush=True)
     out, attached = cr.write_robot(t, m, fk, qref, q_new)          # frames from the kinematic (lift-free) grasp
