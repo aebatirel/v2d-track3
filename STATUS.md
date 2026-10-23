@@ -14,6 +14,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   8db32a1 (`restart_job.sh`; old runs kept as `/content/{runs,results}/perc2mc_voc0`, logs `*_voc0.log`):
   `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS=<3|35>; bash ops/jobs/auto_runs.sh`.
   Seed 42 ≈ 12:10 UTC, final ≈ 15:00 UTC. Credit $19.82 at ≈ 09:30 UTC.
+- **11:15 UTC owner decision: build a secure grasp-lock reference** (grasp-first; security over replication; gate on
+  zero-action replay before RL; develop on public episodes). In progress (work log 14:15 TRT).
+- Learning curves (VOC-fixed seed 42): pick-up learned at 70–90M as VOC fades; drop point flat from 90M to 250M
+  (ep3 f105–109, ep35 f141–147) → longer training unlikely to fix the hold.
 - Owner asked about non-RL alternatives: plan in `docs/research/notes/23-grasp-controller-and-rl-handoff.md`
   (grasp controller written into the reference, then RL fine-tune); waits for the fixed rehearsal and a go-ahead.
 - Measured (`tools/hand_object_gap.py`): the reference puts the right fingers on the spoon; zero action reaches

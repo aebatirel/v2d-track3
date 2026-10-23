@@ -2130,3 +2130,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   ep35: the upright turn / hand change).
 - Ruled out for ep3: the reference spoon path does not touch the pot's collision pieces (31 CoACD hulls) nor its mesh
   on frames 60–240 (0 points inside; `tools/pot_hull_check.py`).
+
+### 14:15 TRT (11:15 UTC) — owner: replicate grasps, not the whole policy; "secure grasp is more important than replicating it"
+- Owner asked about a grasp-first approach (detect where/how the hand touches in the video, grasp, then move the hand)
+  and about Do as I Do vs SPIDER (answered in chat: both are parallel-sim sampling optimisers producing open-loop plans;
+  Do as I Do adds the Sharpa model, object-welded warm-up, random pushes and a held-phase contact penalty, reports 25 →
+  71 % on in-the-wild reconstructions, MIT code, ≈ 1.2 GPU-h per clip; SPIDER is CC BY-NC, Sharpa its weakest hand).
+- Decision (owner): build a **secure grasp-lock reference** — per hold phase pick the grasp that is most secure in the
+  evaluator's own physics (human contacts only as the starting guess / tie-break), lock it, move the wrist with the
+  object's tracked path (+ feed-forward lift), handle approach/close/release/hand changes; gate on zero-action replay
+  (held through every hold in ≥ 4/5 noisy runs) before RL. Develop on public episodes, apply frozen to the spoon.
+- Physics facts checked: contact friction μ = 1.0 for all shapes (`scene/eval.yaml`); wrist kp 25 N/m, kd 6, 45 N
+  (`embodiments/sharpa_hands.py:56-60`); hands do not collide with the table. To check: contact condim (torsional
+  friction), finger PD gains, joint limits.
+- Boxes: no weight test approved → both self-destroy after seed 43 (≈ 12:30–12:45 UTC).
