@@ -2658,3 +2658,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - question: does it lift the dust pan where the grasp lock cannot? It decides whether the eval run trains both
     recipes per episode and keeps the one with the better sim_vs_ref (one rule, no ground truth).
   - Estimate ≈ 2.3 h ≈ $2.7; credit $7.39 before.
+- 23:30 UTC E2:
+  - **ep31 (sweeper + rack, eval 30) 0.767 ± 0.016** (70M; curve still rising: 0.36 / 0.51 / 0.56 / 0.71);
+  - **ep21 (cup + pitcher, eval 20) 0.281 ± 0.012**: the pitcher falls at the start.
+  - Checkpoint choice: ep21's 30M scored 0.831 sim_vs_ref in its single curve evaluation, but its 5 repeats average
+    0.27. A single evaluation per checkpoint is too noisy (the 23 Oct auto pipeline used the mean of repeats: corr
+    0.997 with the true score) → for the eval run score each checkpoint with ≥ 3 evaluations.
