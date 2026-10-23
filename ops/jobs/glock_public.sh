@@ -8,6 +8,8 @@
 #      the 22 Oct ep18 fix), i.e. EP:new:mck;
 #      with SF=1 (default since 2026-10-23) its meshes are made support-consistent first (pipeline/support_fill.py:
 #      a resting pose the mesh cannot hold gets the smallest certified underside fill; public ep18's brush fell over);
+#      SETTLE=1 then settles the start in the simulator (tools/sim_settle.py: frozen frame 0, object assist on, then
+#      off; each object's settled pose until its first hold closes): no start jolt from overlapping collision pieces;
 #   2. pipeline/grasp_lock.py with GL_ARGS (single-hand carry per object, anatomy closing, palm press, wrap only where
 #      the human holds a narrow part, copied grasps snapped to the surface), lift feed-forward for the kp 400 wrist;
 #   3. pipeline/wrist_ilc.py with the kp 400 embodiment (EMB=sharpa_hands_mid);
@@ -31,11 +33,11 @@
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
-SPLIT=${SPLIT:-public}; SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
+SPLIT=${SPLIT:-public}; SETTLE=${SETTLE:-0}; SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
-log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
+log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
@@ -121,6 +123,13 @@ one() {
     log "glock ep$ep: support_fill $(python -c "
 import json; d = json.load(open('$O/ep$ep/support_fill.json'))
 print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('frame'), r.get('status', 'skipped'), r.get('fill_cm')) for r in o['fills']]) for n, o in d['objects'].items()))" 2>&1 | cut -c1-600)" >> $J
+  fi
+  if [ "$SETTLE" = 1 ]; then                                       # settle the start in the simulator
+    local SST=/content/refs/settle/ep$ep; mkdir -p $SST/$hive; cp -r $R0/reconstructed_stage $SST/
+    ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/sim_settle.py $P0 $SST/$hive/ref_settled.parquet ) > $LG.settle 2>&1 \
+      || { log "glock ep$ep: sim_settle FAILED ($(tail -1 $LG.settle | cut -c1-200))" >> $J; return 1; }
+    cp $SST/$hive/ref_settled_settle.json $O/ep$ep/settle.json; P0=$SST/$hive/ref_settled.parquet
+    log "glock ep$ep: sim_settle $(tail -1 $LG.settle | cut -c1-500)" >> $J
   fi
   ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl.parquet $GL_ARGS ) >> $LG 2>&1 \
     || { log "glock ep$ep: grasp_lock FAILED" >> $J; return 1; }
