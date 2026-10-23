@@ -1985,3 +1985,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 07:15 TRT: ep35 rehearsal launched: instance 57330847 (RTX PRO 6000 WS, $1.41/h), run `20261023-spoon35R-25b7779`,
   job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS="35"; bash ops/jobs/auto_runs.sh` (FDR rewards,
   detection rules, capped lead-in by default). ep3 waits for the frame-0 detection check (box 57329922, still in setup).
+- 07:25 TRT: **eval spoon frame-0 check of the frozen rules** (box `20261023-detspoon-ab06a32`, ≈ 20 min incl. setup,
+  ≈ $0.3; transformers installed, grounding active in all 10): the chosen masks put the spoon on the spoon in all 10
+  spoon episodes; ep3 / ep5 / ep6 take the pot with its handle as one mask and the spoon separately (the 2026-10-22
+  ep3 failure is gone); rack, cup and the spoon-only episodes look right
+  (`results/e2e/det_20261023/eval_spoon_f0_masks.jpg`). Reported only; the rule was frozen at ab06a32 and is not changed
+  on this basis. Reach barred 36–67 of 48–79 proposals per frame. Replay summary `results/e2e/det_20261023/replay_summary.json`.
+- 07:25 TRT: ep3 rehearsal launched: instance 57331929 (RTX PRO 6000 WS, $1.38/h), run `20261023-spoon3R-4c31271`, job
+  `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS="3"; bash ops/jobs/auto_runs.sh`. Credit $28.52.
