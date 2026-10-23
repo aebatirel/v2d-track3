@@ -1914,3 +1914,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Spoon plan before the full launch (estimates): (A) ep35 + ep36 (spoon alone) with FDR on one WS box, trainings in
   turn ≈ $5–6; (B) detection dumps on the 20 public episodes ≈ $1–2, CPU replay, ship the rule; (C) ep3 (pot + spoon)
   end to end with the fixed detection + FDR ≈ $3. Total ≈ $10–12; needs a top-up (keep a $3 margin).
+
+### 05:10 TRT — owner: "what do you need to fix that now?"; detection replay extended (CPU, $0)
+- Owner noted we cannot know whether a spoon is present: we do — the kit's roster
+  (`track_3_evaluation_objects.json`) names every eval episode's objects and slot order (allowed input); spoon in
+  3, 5, 6 (pot), 15, 16 (rack), 32, 33 (blue cup), 35–37 (alone). Detection's job is "where is it, and which pixels
+  are it and not part of the other object".
+- `perc2.py` `DET_VERIFY=N` (default off; the dump job uses 4): pipeline/perc.py's render-and-compare check on each
+  object's top N proposals, stored in the dump (`verify`, `verify_matched`).
+- `tools/det_replay.py`: two more signals, grid fixed now: verify (C = v + 0.5 S, plain Hungarian, as perc.py) and a
+  Grounding DINO term (LAM_G ∈ {0, .1, .2, .4}; boxes on the colour camera, prompt = roster name with underscores as
+  spaces and trailing digits dropped; proposals projected rectified-c → raw c → camera a; off for an object with a
+  proposal < 80 % inside camera a). Synthetic: verify picks the real spoon over the handle. Projection check on ep12 /
+  ep27 colour frames: scans at the mocap pose land on the rack, cup and pot (`scratchpad/det/g/proj_check.jpg`).
+- Grounding DINO tiny running on CPU over the 80 public colour frames (stereo frame k ↔ camera-a frame k+1);
+  ≈ 15 s per frame. First frame ep0: "white pot" and "white pot lid" return the same box (lid on the pot) — why the
+  term keeps the top 5 and lets the proposal-level assignment decide.

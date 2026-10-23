@@ -14,7 +14,8 @@ score_registered.py then, this block's unregistered score assumes the scan frame
 Detection dump (2026-10-23): det_f<k>.npz in OUT with every SAM2 proposal of the detected frame (masks at half
 resolution, DINOv2 similarity per object before the size gate, intensity, 3-D extent raw and on an eroded mask, 3-D
 centroid) plus half-resolution depth and image, for offline replay of detection rules (tools/det_replay.py).
-DET_DUMP=0 turns it off. DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
+DET_DUMP=0 turns it off. DET_VERIFY=N adds pipeline/perc.py's render-and-compare check on each object's top N
+proposals to the dump (off by default). DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
 depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
 """
 import os, sys, json, time, importlib
@@ -232,6 +233,33 @@ TPL = {n: templates(n) for n in names}                               # (DINOv2 d
 EXT = {n: float(meshes[n].bounding_box_oriented.extents.max()) for n in names}
 DET_PRIOR = os.environ.get('DET_PRIOR', 'compact')
 K_, D0, LAM_D = int(os.environ.get('DET_K', 80)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
+DET_VERIFY = int(os.environ.get('DET_VERIFY', 0))                    # >0: geometric check on that many top proposals
+_VEST = {}
+def verify_scores(k, props, S):
+    """Render-and-compare check (as pipeline/perc.py, 2026-10-23 dumps only): FoundationPose registered on each
+    object's top DET_VERIFY proposals, its render compared with the depth: matched / (matched + free-space
+    violations) and the matched pixel count. Comparable across masks, unlike FoundationPose's own score."""
+    V = np.full(S.shape, np.nan); Vm = np.zeros(S.shape)
+    D0t = torch.as_tensor(depths[k]).cuda()
+    for a, n in enumerate(names):
+        if n not in _VEST:
+            _VEST[n] = (FoundationPose(model_pts=meshes[n].vertices, model_normals=meshes[n].vertex_normals, mesh=meshes[n],
+                                       scorer=scorer, refiner=refiner, debug_dir=f'{OUT}/dbg', debug=0, glctx=glctx),
+                        make_mesh_tensors(meshes[n]))
+        est, mt = _VEST[n]
+        for j in np.argsort(-S[a])[:DET_VERIFY]:
+            if S[a, j] <= -10: continue
+            try:
+                pose = est.register(K=KR, rgb=rgb(rc[k]), depth=depths[k], ob_mask=props[j], iteration=5)
+                _, dr_, _ = nvdiffrast_render(K=KR, H=RSZ[1], W=RSZ[0], ob_in_cams=torch.as_tensor(pose[None]).float().cuda(),
+                                              glctx=glctx, mesh_tensors=mt)
+                r = dr_[0]; vis = (r > 0) & (D0t > 0)
+                m = (vis & ((D0t - r).abs() < 0.015)).sum().item(); viol = (vis & (D0t > r + 0.015)).sum().item()
+                V[a, j] = m / (m + viol + 1.0); Vm[a, j] = m
+            except Exception as e:
+                log('verify failed', n, int(j), repr(e))
+    log('verify', f'f{k}', {f'{names[a]}#{int(j)}': [round(float(V[a, j]), 3), int(Vm[a, j])] for a in range(len(names)) for j in np.nonzero(np.isfinite(V[a]))[0]})
+    return V, Vm
 def detect(k):
     """Proposals, scores and the object -> proposal choice on frame k (frame 0 in the pipeline)."""
     img, dep = rgb(rc[k]), depths[k]
@@ -268,13 +296,14 @@ def detect(k):
             mk = np.stack([m[::2, ::2] for m in props])
             ero = np.ones((5, 5), np.uint8)
             chosen = np.full(len(names), -1); chosen[ri] = ci
+            V, Vm = verify_scores(k, props, S) if DET_VERIFY > 0 else (np.full(S.shape, np.nan), np.zeros(S.shape))
             np.savez_compressed(f'{OUT}/det_f{k}.npz', names=np.array(names), frame=k, masks=np.packbits(mk, axis=-1),
                                 mask_shape=np.array(mk.shape), sim=SIM, score=S, intensity=pint, extent=pext,
                                 extent_eroded=np.array([extent3d(cv2.erode(m.astype(np.uint8), ero).astype(bool), dep) for m in props]),
                                 centroid=np.stack([centroid3d(m, dep) for m in props]), area=np.array([int(m.sum()) for m in props]),
                                 template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
                                 chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
-                                params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]))
+                                params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm)
             log('det dump', f'{OUT}/det_f{k}.npz', len(props), 'proposals')
         except Exception as e:
             log('det dump failed (detection unaffected):', repr(e))
