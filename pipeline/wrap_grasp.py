@@ -53,13 +53,15 @@ def handle_geometry(V, ref_point):
     return c, a, r, (lo, hi), t
 
 
-def wrap_pose(R_human, c, a, r):
-    """Hand orientation / position (object frame) for a wrap on the axis (c, a) of radius r, closest to the human hand."""
+def wrap_pose(R_human, c, a, r, oblique=0.0):
+    """Hand orientation / position (object frame) for a wrap on the axis (c, a) of radius r, closest to the human hand.
+    OBLIQUE (rad): rotation of the hand about its palm normal, so the handle crosses the palm obliquely as in the human
+    power grip (handle-hand angle ~65 deg, Young 2013: from the hypothenar to the index base; sign chosen by the caller)."""
     yh, xh = R_human.apply([0, 1.0, 0]), R_human.apply([1.0, 0, 0])
     y = a * (1.0 if np.dot(yh, a) >= 0 else -1.0)
     x = xh - np.dot(xh, y) * y
     x = x / np.linalg.norm(x) if np.linalg.norm(x) > 1e-6 else np.cross(y, [0, 0, 1.0]) / max(np.linalg.norm(np.cross(y, [0, 0, 1.0])), 1e-9)
-    z = np.cross(x, y); R = Rot.from_matrix(np.stack([x, y, z], 1))
+    z = np.cross(x, y); R = Rot.from_matrix(np.stack([x, y, z], 1)) * Rot.from_rotvec([oblique, 0.0, 0.0])
     p = c - R.apply([PALM_X + r + CLEAR, GRIP_Y, GRIP_Z])
     return R, p
 

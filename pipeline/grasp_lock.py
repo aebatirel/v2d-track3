@@ -37,7 +37,9 @@ from scipy.spatial.transform import Rotation as Rot, Slerp
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import contact_retarget as cr  # noqa: E402
+import grasp_force as gf  # noqa: E402
 import wrap_grasp as wg  # noqa: E402
+from task_wrench import wrench as task_wrench  # noqa: E402
 from hold_phases import hold_phases  # noqa: E402
 
 WRIST_KP, G = float(os.environ.get('GL_WRIST_KP', 25.0)), 9.81   # GL_WRIST_KP: wrist position kp of the embodiment used
@@ -64,6 +66,10 @@ def main():
     p.add_argument('--wrap', type=int, default=1); p.add_argument('--wrap_ratio', type=float, default=3.0)
     p.add_argument('--back', type=float, default=0.04); p.add_argument('--wrap_squeeze', type=float, default=0.4)
     p.add_argument('--single_hand', type=int, default=0)
+    p.add_argument('--force_design', type=int, default=0, help='1: squeeze from a per-frame contact-force LP (grasp_force.py)')
+    p.add_argument('--sf', type=float, default=gf.SF); p.add_argument('--f_min', type=float, default=gf.F_MIN)
+    p.add_argument('--lead', type=int, default=2); p.add_argument('--oblique_deg', type=float, default=0.0)
+    p.add_argument('--withdraw', type=float, default=0.06)
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -75,9 +81,10 @@ def main():
     mass = [float(m.body_mass.numpy()[next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/'))]) for n in names]
     lo_lim, hi_lim = m.joint_limit_lower.numpy(), m.joint_limit_upper.numpy(); dstart = m.joint_qd_start.numpy()
     jl = list(getattr(m, 'joint_label', None) or getattr(m, 'joint_key', [])); jidx = {l: i for i, l in enumerate(jl)}
-    lim, flex, distal = {}, {}, {}
+    lim, flex, distal, kpf = {}, {}, {}, {}; ke = m.joint_target_ke.numpy()
     for side in cr.SIDES:
         fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py(); flex[side] = flexion_mask(fj); distal[side] = distal_mask(fj)
+        kpf[side] = np.array([ke[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj])
         lim[side] = (np.array([lo_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]),
                      np.array([hi_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]))
     ph = hold_phases(a.inp)[0]['phases']
@@ -135,7 +142,7 @@ def main():
             bodies, pb, pl = cr.hand_geometry(m, side); bq = fk(qref[g])
             knuckles = np.mean([bq[bodies[f'{side}_{fn}_PP'], :3] for fn in wg.FINGERS], 0)
             c, ax, r, rng, tpos = wg.handle_geometry(V, OR[j][g].inv().apply(knuckles - OP[g, j]))
-            R_ow, T_ow_p = wg.wrap_pose(R_ow, c, ax, r)
+            R_ow, T_ow_p = wg.wrap_pose(R_ow, c, ax, r, oblique=np.radians(a.oblique_deg) * (-1 if side == 'right' else 1))
             qw = qref[g].copy(); qw[o:o + 3] = OR[j][g].apply(T_ow_p) + OP[g, j]; qw[o + 3:o + 7] = (OR[j][g] * R_ow).as_quat()
             qw[o + 7:o + 29] = np.clip(0.0, lo, hi)
             if j not in sdf:
@@ -147,6 +154,47 @@ def main():
             wrap_info = dict(grip_obj_m=[round(float(x), 4) for x in c], com_obj_m=[round(float(x), 4) for x in m.body_com.numpy()[obj_body[j]]],
                              radius_cm=round(100 * r, 2), axis_pos_cm=round(100 * tpos, 1), narrow_cm=[round(100 * x, 1) for x in rng],
                              closing=closing, human_angle_deg=round(float(np.degrees((Rw_g.inv() * (OR[j][g] * R_ow)).magnitude())), 1))
+        QS = np.repeat(qs[None], T, 0); fd_info = None; d_obj = None
+        if a.force_design:                                         # physics-aware squeeze (grasp_force.py)
+            if j not in sdf:
+                sdf[j] = cr.HullSDF(m, obj_body[j])
+            bodies, pb, pl = cr.hand_geometry(m, side)
+            qg = qref[g].copy(); qg[o:o + 3] = OR[j][g].apply(T_ow_p) + OP[g, j]; qg[o + 3:o + 7] = (OR[j][g] * R_ow).as_quat()
+            qg[o + 7:o + 29] = qf; con = gf.find_contacts(fk(qg), side, bodies, pb, pl, sdf[j], OR[j][g], OP[g, j])
+            Jc = gf.contact_jacobians(fk, qg, o, con, OR[j][g]) if con else None
+            com = m.body_com.numpy()[obj_body[j]].astype(float); Ib = np.diag(m.body_inertia.numpy()[obj_body[j]]).astype(float)
+            tw = task_wrench(OP[:, j], OR[j].as_quat(), mass[j], Ib, 20.0, com=com)          # reference rows at 20 fps
+            fdz = gf.ForceDesign(con, Jc, com, kpf[side], np.maximum(hi - qf, 0), np.maximum(qf - lo, 0), sf=a.sf, f_min=a.f_min) if len(con) >= 2 else None
+            tau = np.full((T, 22), np.nan); fn = np.full(T, np.nan); bad = 0
+            for f in range(h0, s1):
+                if fdz is None:
+                    break
+                share = in_air[f, j] / max(1.0, n_hold[f, j])          # on the table the support carries the load
+                W = np.r_[OR[j][f].inv().apply(tw['F'][f]), OR[j][f].inv().apply(tw['tau'][f])] * share
+                lam, tq = fdz.solve(W)
+                if lam is None:
+                    bad += 1; continue
+                tau[f] = tq; fn[f] = fdz.normal_forces(lam).sum()
+            ok = ~np.isnan(tau[:, 0])
+            if fdz is not None and ok.any():
+                idx = np.nonzero(ok)[0]
+                for k_ in range(22):                                   # fill infeasible frames, then lead + smooth
+                    tau[h0:s1, k_] = np.interp(np.arange(h0, s1), idx, tau[idx, k_])
+                tl = np.array([tau[f:min(s1, f + a.lead + 1)].max(0) for f in range(h0, s1)])
+                tl = np.array([tl[max(0, i - 1):i + 2].mean(0) for i in range(len(tl))])
+                QS[h0:s1] = np.clip(qf + tl / np.maximum(kpf[side], 1e-6), lo, hi)
+            fd_info = dict(contacts=[(c_['link'], c_['gap_mm']) for c_ in con], infeasible_frames=int(bad),
+                           normal_force_total_N=[round(float(np.nanpercentile(fn, q_)), 2) for q_ in (5, 50, 95)] if ok.any() else None,
+                           squeeze_rad_max=[round(float(x_), 3) for x_ in (QS[h0:s1] - qf).max(0)] if ok.any() else None,
+                           joints_at_limit=int(((QS[h0:s1] >= hi - 1e-6) & (QS[h0:s1] - qf > 1e-4)).any(0).sum()))
+            qo_ = qg.copy(); qo_[o + 7:o + 29] = qpre                   # release direction from the OPENED hand
+            Xo = OR[j][g].inv().apply(cr.world_points(fk(qo_), pb, pl) - OP[g, j]); near = sdf[j](Xo) < 0.015
+            if near.any():
+                d_obj, s_sep = gf.separating_direction(sdf[j].grad(Xo[near]))
+                fd_info.update(separating_dir_obj=[round(float(x_), 3) for x_ in d_obj], separating_margin=round(float(s_sep), 3))
+                if s_sep <= 0.05:
+                    d_obj = None
+            print(f"{side} {x['object']}: FORCE DESIGN {json.dumps(fd_info)}", flush=True)
         x_back = lambda f: (OR[j][f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
         for f in range(max(0, h0 - a.blend), h0):                  # approach: blend into the (backed-off) pose, then slide in
             wb = (f - (h0 - a.blend) + 1) / (a.blend + 1)
@@ -164,7 +212,7 @@ def main():
                 lift[side][f] = max(lift[side][f], in_air[f, j] * mass[j] * G / WRIST_KP / max(1.0, n_hold[f, j]))
             if f < s1:                                             # hold: locked grasp, fingers closing then held
                 q_new[f, o:o + 3] = pos; q_new[f, o + 3:o + 7] = rot.as_quat()
-                q_new[f, o + 7:o + 29] = blend(qpre, qs, wc)
+                q_new[f, o + 7:o + 29] = blend(qpre, QS[f], wc)
             else:                                                  # release (eval ep35: opening all joints at once hooked and
                 k = f - s1 + 1                                     # flicked the spoon up, f396; sliding off along the handle
                 wo = min(1.0, k / a.open)                          # with the fingers still wrapped dragged it away, f404)
@@ -172,11 +220,12 @@ def main():
                 ww = max(0.0, (k - 2 * a.open) / max(1, end - s1 - 2 * a.open))   # 2) unroll: PIP/DIP/IP first, then the
                 wj = np.minimum(1.0, 2 * wu) * distal[side] + np.clip(2 * wu - 1, 0, 1) * (1 - distal[side])  # knuckles
                 qo = blend(qf, qpre, wj)                           # 3) withdraw along the palm normal, then to the reference
-                away = pos + (OR[j][f] * R_ow).apply([-max(back, 0.04), 0.0, 0.0]) * min(1.0, 2 * ww)
+                away = pos + (OR[j][f].apply(d_obj * a.withdraw) if d_obj is not None else
+                              (OR[j][f] * R_ow).apply([-max(back, 0.04), 0.0, 0.0])) * min(1.0, 2 * ww)
                 q_new[f, o:o + 3] = away if ww < 0.5 else blend(away, qref[f, o:o + 3], 2 * ww - 1)
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
-                q_new[f, o + 7:o + 29] = blend(qs, qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
-        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info,
+                q_new[f, o + 7:o + 29] = blend(QS[s1 - 1], qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
+        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info,
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
                            joints_at_limit_after_squeeze=int(((qs >= hi - 1e-6) & (flex[side] > 0)).sum())))
