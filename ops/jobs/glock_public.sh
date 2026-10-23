@@ -15,6 +15,9 @@
 #      a re-planned version is kept only if its zero-action sim_vs_ref is at least the previous one (no ground truth);
 #   5. RL fine-tune: embodiment=sharpa_hands_mid, FDR rewards + VOC fix (lib.sh fc_patches), STEPS (70M), SEED;
 #      FC_DROP_START=p adds recovery training (ops/box/patch_flashchord_drop.py: drop starts, training process only);
+#      ES=1: early stopping (tools/early_stop.sh; STEPS is then the cap): checkpoints scored as they appear (ES_N
+#      official evaluations, sim_vs_ref), stop at two in a row >= ES_TARGET or no new best for ES_PATIENCE steps;
+#      CURR_SCALE=s scales the curriculum's step thresholds (s=0.4: object assist 0 from 49M instead of 123M);
 #   6. official evaluation of every checkpoint (tools/ckpt_curve.sh, sim_vs_ref), checkpoint chosen by sim_vs_ref only
 #      (no ground truth), then NREP official evaluations of it, each scored sim_vs_ref + registered AUC vs mocap.
 # Episodes listed together run concurrently (two trainings share the GPU).
@@ -23,14 +26,18 @@
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
-SF=${SF:-1}; REPLAN=${REPLAN:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
+SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
-log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, GL_ARGS [$GL_ARGS]" >> $J
+log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
+if [ -n "${CURR_SCALE:-}" ]; then                                # curriculum thresholds scaled to the planned length
+  TRAIN_ARGS="$TRAIN_ARGS curriculum.thresholds=$(python -c "s = $CURR_SCALE; t = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]; print('[' + ','.join(str(int(x * s)) for x in t) + ']')")"
+  log "curriculum thresholds scaled by $CURR_SCALE: TRAIN_ARGS [$TRAIN_ARGS]" >> $J
+fi
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml   # kp 400 wrist (the checkpoint stores the resolved config)
 [ -s $E ] || cp $REPO_DIR/flashchord_conf/embodiment/sharpa_hands_mid.yaml $E || { log "embodiment copy FAILED" >> $J; exit 1; }
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u); do
@@ -139,14 +146,23 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   log "glock ep$ep: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
   ( cd $FC && env ${TRAIN_ENV:-} MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
       embodiment=sharpa_hands_mid "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \
-      output_dir=$RUN training.total_environment_steps=$STEPS $TRAIN_ARGS ) >> $RUN/train.log 2>&1 \
-    || { log "glock ep$ep: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1; }
-  log "glock ep$ep: trained $(ls $RUN/policy_*.safetensors | wc -l) checkpoints" >> $J
+      output_dir=$RUN training.total_environment_steps=$STEPS $TRAIN_ARGS ) >> $RUN/train.log 2>&1 &
+  local tp=$! esp= rc
+  if [ "$ES" = 1 ]; then J=$J REPO_DIR=$REPO_DIR bash $T/early_stop.sh $RUN $O/ep$ep/curve $ep $tp & esp=$!; fi
+  wait $tp; rc=$?
+  [ -n "$esp" ] && wait $esp
+  if [ $rc -ne 0 ] && [ ! -f $RUN/EARLY_STOPPED ]; then
+    log "glock ep$ep: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1
+  fi
+  log "glock ep$ep: trained $(ls $RUN/policy_*.safetensors | wc -l) checkpoints$([ -f $RUN/EARLY_STOPPED ] && echo "; early stop: $(cat $RUN/EARLY_STOPPED)")" >> $J
   REPO_DIR=$REPO_DIR PAR=$PAR bash $T/ckpt_curve.sh $RUN $O/ep$ep/curve $ep >> $LG 2>&1
   python $T/ckpt_curve_summary.py $O/ep$ep/curve > $O/ep$ep/curve.txt 2>&1
   ck=$(python - $O/ep$ep/curve $RUN << 'EOF'
 import glob, json, os, sys
-best = max(((json.load(open(f)).get('sim_vs_ref', -1), os.path.basename(os.path.dirname(f))) for f in glob.glob(f'{sys.argv[1]}/policy_*/qa_policy.json')), default=None)
+def score(f):                                                       # the early-stop mean of several evaluations if present
+    e = os.path.join(os.path.dirname(f), 'es.json')
+    return json.load(open(e))['mean'] if os.path.exists(e) else json.load(open(f)).get('sim_vs_ref', -1)
+best = max(((score(f), os.path.basename(os.path.dirname(f))) for f in glob.glob(f'{sys.argv[1]}/policy_*/qa_policy.json')), default=None)
 print(f'{sys.argv[2]}/{best[1]}.safetensors' if best else '')
 EOF
 )

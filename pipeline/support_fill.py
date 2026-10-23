@@ -18,8 +18,10 @@ Rule (every object, every episode; our own reference only, no ground truth):
      object frame, manifold boolean union; concatenation if the union fails), the smallest FILL in FILLS that
      certifies it and stays in free space along our reference (surface samples of the other objects inside the slab
      in at most OV_RUN consecutive / OV_TOTAL frames: a brief contact, never another object resting in the fill; public
-     ep12's cup sits in the rack 1 cm above the table). If none does, nothing is added and the pose is reported
-     UNSTABLE / BLOCKED.
+     ep12's cup sits in the rack 1 cm above the table), and that does not reach below the object's lowest point at any
+     of its OTHER resting poses (public ep18 2026-10-23: a 1 cm fill for the brush's f222 pose stuck out 4 mm under its
+     f0 pose, lifted it onto the slab's edge and tipped it in 12 frames). If none does, nothing is added and the pose is
+     reported UNSTABLE / BLOCKED.
      (Leaning on other objects would need the friction-cone equilibrium LP of grasp_force.py with the table and the
      other objects as contacts; not needed for poses resting on the table.)
 Writes a per-episode asset folder (urdf/ + mesh/, filled meshes only where needed) and a copy of the reference parquet
@@ -142,6 +144,16 @@ def fill_one(mesh, poses, ztop, fill=None, com_obj=None, own=None, others=()):
     """Returns (filled mesh or None, per-pose report). COM_OBJ: the centre of mass the simulator uses (URDF inertial);
     OWN / OTHERS: trajectories for the free-space test (see blocked)."""
     com_obj = mesh.center_mass if com_obj is None else com_obj; HV = np.asarray(mesh.convex_hull.vertices, float)
+    all_poses = [(int(f), np.asarray(p, float), np.asarray(q, float)) for f, p, q in poses]
+
+    def lifts(slab_obj, own_R):                                    # first other resting pose the slab would stand under
+        for f2, p2, q2 in all_poses:
+            R2 = R.from_quat(q2)
+            if (R2 * own_R.inv()).magnitude() < np.radians(3):      # the same resting pose (its own window)
+                continue
+            if (R2.apply(slab_obj)[:, 2]).min() < (R2.apply(V)[:, 2]).min() - 0.001:
+                return f2
+        return None
     V = np.asarray(mesh.vertices, float); slabs, rep, done = [], [], []
     for f, p, q in poses:
         Rq = R.from_quat(q)
@@ -167,6 +179,9 @@ def fill_one(mesh, poses, ztop, fill=None, com_obj=None, own=None, others=()):
                 hit = blocked(Rq.inv().apply(pts - p), own, others) if own is not None else None
                 if hit:
                     r['blocked'] = f'{hit[0]} from frame {hit[1]} ({hit[2]} frames)'; continue
+                f_lift = lifts(Rq.inv().apply(pts - p), Rq)
+                if f_lift is not None:
+                    r['blocked'] = f'would stand under its own resting pose at frame {f_lift}'; continue
                 slab = trimesh.Trimesh(Rq.inv().apply(pts - p), hull.simplices, process=True); trimesh.repair.fix_normals(slab)
                 r.update(slab_cm3=round(1e6 * float(hull.volume), 1), status='CERTIFIED BY FILL'); slabs.append(slab); break
         else:
