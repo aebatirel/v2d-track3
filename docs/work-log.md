@@ -2456,3 +2456,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     the test.
 - `ops/jobs/glock_public.sh`: SF=1 (default) runs support_fill before grasp_lock, logs its decisions, and runs the rest
   check after the zero-action replay; it also installs manifold3d.
+- Rented (owner's $10 top-up go-ahead, credit $15.01 before): **57421336** RTX PRO 6000 WS Virginia $1.644/h, run
+  `20261023-sf18-bfb973a`, job `export EVERY=2; PAIRS="18:20261021-auto18-966eb96:mc" bash ops/jobs/glock_public.sh`;
+  **57421344** RTX PRO 6000 S New York $1.689/h, run `20261023-sf1227-bfb973a`, job `export EVERY=2;
+  PAIRS="12:20261021-auto18-966eb96:auto 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh`. Code bfb973a,
+  snapshot pt2.11-cu130-py313-20261020. Estimate ≈ 1.1 h + 1.4 h ≈ $4.3. Both self-destroy after pushing.
