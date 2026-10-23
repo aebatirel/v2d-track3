@@ -2644,3 +2644,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - The start fix is necessary but not sufficient for ep18: the only recipe that solved it is the standard FDR RL
     on the settled reference, 250M (0.776 / 0.889 on two seeds), without the grasp lock.
   - Box released.
+- 23:30 UTC wave results:
+  - **ep26** (W1, e2e, pot in rack, re-plan kept): **0.383 ± 0.131** (sim_vs_ref 0.426, chosen 10M).
+  - Curves (sim_vs_ref at 10 / 30 / 50 / 70M):
+    - ep31 0.356 / 0.512 / 0.559 / 0.713 (70M);
+    - ep21 0.206 / 0.831 / 0.209 / 0.299 (30M);
+    - **ep39 flat 0.172–0.177: the dust pan is never lifted** (as the copied dust-pan grasp on ep18).
+  - Pattern: the grasp-lock recipe is strong on rigid graspable objects (pot, cup, spoon) and fails on plates
+    (sweeper, dust pan, boards: the copied clamp does not hold) and on stacked starts.
+- **Standard-recipe check** on ep39 (, Spain .18/h):
+  - setup: hard_ab with the ep39 mck reference built tonight, FDR rewards + VOC fix + deployment-exact starts 0.25,
+    250M, checkpoint sweep, 5 evaluations; i.e. the ep18 0.889 recipe;
+  - question: does it lift the dust pan where the grasp lock cannot? It decides whether the eval run trains both
+    recipes per episode and keeps the one with the better sim_vs_ref (one rule, no ground truth).
+  - Estimate ≈ 2.3 h ≈ $2.7; credit $7.39 before.
