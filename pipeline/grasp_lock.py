@@ -74,6 +74,8 @@ def main():
     p.add_argument('--mcp_first', type=int, default=0, help='close MCP/knuckle joints first, IPs second, thumb last')
     p.add_argument('--wrap_where_held', type=int, default=0, help='1: wrap only where the human holds the narrow part '
                    '(MANO contacts); elsewhere (e.g. a spoon bowl) keep the human grasp + squeeze')
+    p.add_argument('--snap', type=int, default=0, help='non-wrap grasps: curl each finger from the human pose until it '
+                   'touches the object hulls, then squeeze (eval ep35: the copied bowl grasp was 11.5 mm off the bowl)')
     p.add_argument('--held_tol', type=float, default=0.08, help='human hold within this distance (m) of the narrow part '
                    'counts as holding the handle (eval ep35: right hand 3-6 cm from it, left hand on the bowl 17-21 cm)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
@@ -170,6 +172,15 @@ def main():
             wrap_info = dict(grip_obj_m=[round(float(x), 4) for x in c], com_obj_m=[round(float(x), 4) for x in m.body_com.numpy()[obj_body[j]]],
                              radius_cm=round(100 * r, 2), axis_pos_cm=round(100 * tpos, 1), narrow_cm=[round(100 * x, 1) for x in rng],
                              closing=closing, human_angle_deg=round(float(np.degrees((Rw_g.inv() * (OR[j][g] * R_ow)).magnitude())), 1))
+        if a.snap and wrap_info is None:                           # snap the human grasp onto the surface (fingers curl to contact)
+            if j not in sdf:
+                sdf[j] = cr.HullSDF(m, obj_body[j])
+            bodies, pb, pl = cr.hand_geometry(m, side); fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py()
+            qh = qref[g].copy(); qh[o + 7:o + 29] = np.clip(qf - a.preopen * flex[side], lo, hi)   # from slightly open
+            qf, qs, closing = wg.close_fingers(fk, qh, o, side, fj, lo, hi, bodies, pb, pl, sdf[j],
+                                               lambda X: OR[j][g].inv().apply(X - OP[g, j]), a.squeeze)
+            qpre = np.clip(qf - a.preopen * flex[side], lo, hi)
+            print(f"{side} {x['object']}: SNAP human grasp, closing {json.dumps(closing)}", flush=True)
         QS = np.repeat(qs[None], T, 0); fd_info = None; d_obj = None
         if a.force_design:                                         # physics-aware squeeze (grasp_force.py)
             if j not in sdf:
