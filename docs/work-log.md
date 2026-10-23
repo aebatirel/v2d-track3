@@ -2461,3 +2461,32 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   **57421344** RTX PRO 6000 S New York $1.689/h, run `20261023-sf1227-bfb973a`, job `export EVERY=2;
   PAIRS="12:20261021-auto18-966eb96:auto 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh`. Code bfb973a,
   snapshot pt2.11-cu130-py313-20261020. Estimate ≈ 1.1 h + 1.4 h ≈ $4.3. Both self-destroy after pushing.
+
+### ~22:30 TRT — owner: "snap and grasp in the dynamic world; a drop should not stop the recipe" — both parts built ("go ahead with both")
+- Facts (notes 01): the policy observes the simulated object pose and the object command; the residual wrist
+  envelope is 0.2 m / 1 rad; but training terminates at 10 cm / 0.5 rad object error (15 cm wrist) and resets put
+  the objects exactly on their reference (no randomisation), so a policy never sees a dropped object.
+- **Part 1, re-plan against the simulated world** (`pipeline/grasp_lock.py --sim_trace`, `glock_public.sh REPLAN=N`):
+  - from a zero-action trace of the previous version, a hold whose object is > 2 cm / 10° off its reference before
+    the old hand arrived (frame h0 − blend − 2) is grasped where it lies in the simulation;
+  - the same object-frame grasp is used, then carried back onto the reference path over 20 frames after closing;
+  - iterated with ILC + zero replay, and kept only if the zero-action sim_vs_ref does not drop (no ground truth).
+  - On the round-2 ep18 trace this triggers for the brush (9.4 cm / 86° off at f41) and not for the dust pan
+    (0.3 cm / 0.9° at f2).
+- **Part 2, recovery training** (`ops/box/patch_flashchord_drop.py`, `FC_DROP_START=p`; inert when unset, no config
+  field added):
+  - drop starts once the curriculum assist is < 0.3: fingers open, no assist for the episode, objects shifted
+    3–8 cm;
+  - termination relaxed to 35 cm / 3.2 rad / wrist 25 cm in those worlds;
+  - passed to the training process only (`TRAIN_ENV`).
+  - Kernel tests on CPU with the local FlashCHORD copy (warp 1.14, the same source as the box; applied after
+    `patch_flashchord.py` and the VOC fix):
+    - p=1: 64/64 drop worlds, fingers 0, assist 0 after advance/sync, shift 3.0–8.0 cm, no termination at 20 cm;
+    - p=0.25: 13/64 drop worlds, normal worlds keep assist 0.25 and terminate;
+    - p=0: identical to stock;
+    - the explicit (evaluation) reset clears the flag; idempotent.
+- `tools/rest_check.py`: an object no hand holds (a rack) is checked only until the first hold of any object
+  (public ep12 / ep27 racks were flagged when the cup / pot was placed into them: 39 mm, 15.5 mm).
+- Box B so far:
+  - ep12: support_fill as local, rest check cup ok (1.3 mm / 0.8°), zero action 0.560;
+  - ep27: pot ok (4.9 mm / 1.4°), zero action 0.655 (round 2: 0.590).

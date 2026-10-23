@@ -10,7 +10,11 @@
 #   3. pipeline/wrist_ilc.py with the kp 400 embodiment (EMB=sharpa_hands_mid);
 #   4. zero-action replay (tools/trace_rollout.py) scored with tools/trace_score.py (sim_vs_ref, our reference) and
 #      checked by tools/rest_check.py (every object stays within 5 mm / 2 deg until a hand comes for it);
+#      With REPLAN=N (> 0) the holds are then re-planned against the simulated world up to N times (grasp_lock.py
+#      --sim_trace: an object that is off its reference before its grasp is grasped where it lies and carried back);
+#      a re-planned version is kept only if its zero-action sim_vs_ref is at least the previous one (no ground truth);
 #   5. RL fine-tune: embodiment=sharpa_hands_mid, FDR rewards + VOC fix (lib.sh fc_patches), STEPS (70M), SEED;
+#      FC_DROP_START=p adds recovery training (ops/box/patch_flashchord_drop.py: drop starts, training process only);
 #   6. official evaluation of every checkpoint (tools/ckpt_curve.sh, sim_vs_ref), checkpoint chosen by sim_vs_ref only
 #      (no ground truth), then NREP official evaluations of it, each scored sim_vs_ref + registered AUC vs mocap.
 # Episodes listed together run concurrently (two trainings share the GPU).
@@ -19,11 +23,11 @@
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
-SF=${SF:-1}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
+SF=${SF:-1}; REPLAN=${REPLAN:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
-log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SF $SF, GL_ARGS [$GL_ARGS]" >> $J
+log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, GL_ARGS [$GL_ARGS]" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
@@ -108,8 +112,32 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   ( cd $REPO_DIR && python $T/trace_score.py $RD/$hive/ref_gl_ilc.parquet $O/ep$ep/zero.npz:zero_action ) > $O/ep$ep/zero_score.txt 2>&1
   python $T/rest_check.py $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check.json 2>&1
   log "glock ep$ep: rest check $(cut -c1-400 $O/ep$ep/rest_check.json)" >> $J
+  if [ "$REPLAN" -gt 0 ]; then                                     # re-plan against the simulated world
+    local it n sc tr=$O/ep$ep/zero.npz best RT
+    best=$(grep -a 'zero_action:' $O/ep$ep/zero_score.txt | awk '{print $NF}')
+    for it in $(seq 1 $REPLAN); do
+      ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl_r$it.parquet $GL_ARGS --sim_trace $tr ) >> $LG 2>&1 \
+        || { log "glock ep$ep: replan $it: grasp_lock FAILED" >> $J; break; }
+      n=$(python -c "import json; print(sum(1 for x in json.load(open('$G/$hive/ref_gl_r${it}_grasp_lock.json'))['phases'] if x.get('replan')))")
+      [ "${n:-0}" -gt 0 ] || { log "glock ep$ep: replan $it: every object is where its reference says before its grasp; nothing to re-plan" >> $J; break; }
+      ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl_r$it.parquet $G/$hive/ref_gl_r${it}_ilc.parquet --iters 4 --device cuda ) >> $LG 2>&1 \
+        || { log "glock ep$ep: replan $it: wrist_ilc FAILED" >> $J; break; }
+      RT=$RD.r$it; mkdir -p $RT/$hive; cp -r $R0/reconstructed_stage $RT/; cp $G/$hive/ref_gl_r${it}_ilc.parquet $RT/$hive/ref_gl_ilc.parquet
+      ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
+      ( cd $REPO_DIR && python $T/trace_score.py $RT/$hive/ref_gl_ilc.parquet $O/ep$ep/zero_r$it.npz:zero_action ) > $O/ep$ep/zero_score_r$it.txt 2>&1
+      python $T/rest_check.py $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check_r$it.json 2>&1
+      sc=$(grep -a 'zero_action:' $O/ep$ep/zero_score_r$it.txt | awk '{print $NF}')
+      log "glock ep$ep: replan $it: $n holds re-planned ($(grep -a 'REPLAN against' $LG | tail -$n | cut -d' ' -f1-2,6- | tr '\n' ' ' | cut -c1-300)); zero action $sc (previous $best)" >> $J
+      if [ -n "$sc" ] && python -c "import sys; sys.exit(0 if $sc >= $best else 1)"; then
+        cp $RT/$hive/ref_gl_ilc.parquet $RD/$hive/ref_gl_ilc.parquet; tr=$O/ep$ep/zero_r$it.npz; best=$sc
+        log "glock ep$ep: replan $it KEPT (training on it)" >> $J
+      else
+        log "glock ep$ep: replan $it not better; kept the previous version" >> $J; break
+      fi
+    done
+  fi
   log "glock ep$ep: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
-  ( cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
+  ( cd $FC && env ${TRAIN_ENV:-} MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
       embodiment=sharpa_hands_mid "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \
       output_dir=$RUN training.total_environment_steps=$STEPS $TRAIN_ARGS ) >> $RUN/train.log 2>&1 \
     || { log "glock ep$ep: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1; }

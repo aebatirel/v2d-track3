@@ -35,7 +35,8 @@ self_destroy() {  # $1 = reason. Save what exists first (CLAUDE.md), then destro
 # FlashDexRetarget-style training rewards (2026-10-23 A/B, results/e2e/fdr_20261023: four-run mean 0.830 vs 0.753).
 # FDR=1 (the default since the owner's decision, 2026-10-23; FDR=0 for stock FlashCHORD) sets the reward flags and the
 # training overrides; fc_patches applies the opt-in FlashCHORD patches that the
-# environment asks for (ops/box/patch_flashchord.py, ops/box/patch_flashchord_fdr.py) and the VOC inertia fix
+# environment asks for (ops/box/patch_flashchord.py, ops/box/patch_flashchord_fdr.py, ops/box/patch_flashchord_drop.py:
+# FC_DROP_START sets TRAIN_ENV, which the training command must pass with env ${TRAIN_ENV}) and the VOC inertia fix
 # (ops/box/patch_flashchord_voc.py, on unless FC_VOC_INERTIA=0). $1 = job log.
 FDR_TRAIN_ARGS="curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2"
 fc_patches() {
@@ -58,6 +59,12 @@ fc_patches() {
     python $REPO_DIR/ops/box/patch_flashchord_fdr.py $FCD >> $J 2>&1 || { log "FlashCHORD FDR patch FAILED" >> $J; return 1; }
     export FC_FDR_OBJ FC_FDR_TIPS TRAIN_ARGS
     log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0}, fingertip bound ${FC_FDR_TIPS:-0}; TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
+  fi
+  if [ -n "${FC_DROP_START:-}" ]; then                         # recovery training (2026-10-23); after patch_flashchord.py
+    python $REPO_DIR/ops/box/patch_flashchord_drop.py $FCD >> $J 2>&1 || { log "FlashCHORD drop patch FAILED" >> $J; return 1; }
+    TRAIN_ENV="FC_DROP_START=$FC_DROP_START FC_DROP_SHIFT=${FC_DROP_SHIFT:-0.03,0.08} FC_DROP_RELAX=${FC_DROP_RELAX:-0.35,3.2,0.25} FC_DROP_VOC=${FC_DROP_VOC:-0.3}"
+    unset FC_DROP_START                                        # training process only (env ${TRAIN_ENV}); evaluations stay stock
+    log "patched FlashCHORD (recovery training: drop starts), training env [$TRAIN_ENV]" >> $J
   fi
 }
 

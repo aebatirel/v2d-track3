@@ -23,6 +23,12 @@ With --single_hand 1, each object is carried by ONE hand from its first pick-up 
 most hold frames on it): the other hand's holds on that object are dropped and, if it holds nothing else, it stays
 parked at its frame-0 pose (eval ep35: the human passes the spoon between hands six times; the locked two-hand
 handovers flung it at f230). Security first: one locked grasp, no handovers.
+With --sim_trace TRACE.npz (a zero-action replay of the previous version, tools/trace_rollout.py), each hold is
+re-planned against the SIMULATED world (owner, 2026-10-23: "the drop shouldn't stop our recipe, it should still go
+after the grasp"): if the simulated object is off its reference at the hold start by more than REPLAN_MM / REPLAN_DEG
+(public ep18: the brush fell over at f4-8), the hand approaches and grasps it where it lies in the simulation (the
+grasp is the same, defined in the object frame) and carries it back onto its reference path over CARRY frames after
+closing. The objects' reference trajectories are not changed (the policy is still asked to track them).
 Object trajectories are not touched. Only our own reference is read (no ground truth). The candidate is not trusted:
 pipeline/grasp_test.py replays it in the evaluator's physics and measures whether the object is held.
 Usage (FlashCHORD python, from the flash_chord dir, FC set):
@@ -76,6 +82,10 @@ def main():
                    '(MANO contacts); elsewhere (e.g. a spoon bowl) keep the human grasp + squeeze')
     p.add_argument('--snap', type=int, default=0, help='non-wrap grasps: curl each finger from the human pose until it '
                    'touches the object hulls, then squeeze (eval ep35: the copied bowl grasp was 11.5 mm off the bowl)')
+    p.add_argument('--sim_trace', default='', help='zero-action trace of the previous version: re-plan holds whose object '
+                   'is off its reference at the hold start (see the docstring)')
+    p.add_argument('--replan_mm', type=float, default=20.0); p.add_argument('--replan_deg', type=float, default=10.0)
+    p.add_argument('--carry', type=int, default=20, help='frames to carry a re-planned object back onto its reference path')
     p.add_argument('--held_tol', type=float, default=0.08, help='human hold within this distance (m) of the narrow part '
                    'counts as holding the handle (eval ep35: right hand 3-6 cm from it, left hand on the bowl 17-21 cm)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
@@ -109,6 +119,13 @@ def main():
         ph = merged
         print(f'single-hand carry: {[(x["hand"], x["object"], x["start"], x["end"]) for x in ph]}; parked {parked}', flush=True)
     obj_body = [next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/')) for n in names]
+    SIM = {}                                                       # simulated object poses of the previous version
+    if a.sim_trace:
+        d_ = np.load(a.sim_trace); L_ = [str(x_) for x_ in d_['labels']]; fr_ = np.asarray(d_['frame']).astype(int)
+        for j_, n_ in enumerate(names):
+            i_ = L_.index(f'track3_{n_}/object'); P_ = np.full((T, 3), np.nan); Q_ = np.full((T, 4), np.nan)
+            ok_ = (fr_ >= 0) & (fr_ < T); P_[fr_[ok_]] = d_['q'][ok_, i_, :3]; Q_[fr_[ok_]] = d_['q'][ok_, i_, 3:7]
+            SIM[j_] = (P_, Q_)
     sdf = {}; fk = cr.FK(m); dp = {}
     for side in cr.SIDES:
         bodies, pb, pl = cr.hand_geometry(m, side); dp[side] = [(pb == bodies[f'{side}_{fn}_DP'], fn) for fn in cr.FINGERS] + [(pb, pl)]
@@ -222,18 +239,34 @@ def main():
                 if s_sep <= 0.05:
                     d_obj = None
             print(f"{side} {x['object']}: FORCE DESIGN {json.dumps(fd_info)}", flush=True)
-        x_back = lambda f: (OR[j][f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
+        OPh, ORh, replan = OP[:, j], OR[j], None                    # the object path the hand follows
+        fa = max(0, h0 - a.blend - 2)                              # before the previous version's hand got there (ep18: its
+        if j in SIM and not np.isnan(SIM[j][0][fa]).any():         # approach pushed the fallen brush at f43-51)
+            sp, sq = SIM[j][0][fa], SIM[j][1][fa]
+            dpos = float(np.linalg.norm(sp - OP[fa, j])); drot = float(np.degrees((Rot.from_quat(sq) * OR[j][fa].inv()).magnitude()))
+            if dpos * 1000 > a.replan_mm or drot > a.replan_deg:  # off its reference: go for it where it lies, carry it back
+                c0 = h0 + a.close; OPh = OP[:, j].copy(); qh_ = OR[j].as_quat().copy()
+                for f in range(T):
+                    if f < c0:
+                        OPh[f] = sp; qh_[f] = sq
+                    elif f < c0 + a.carry:
+                        w_ = (f - c0 + 1) / (a.carry + 1); OPh[f] = (1 - w_) * sp + w_ * OP[f, j]
+                        qh_[f] = Slerp([0, 1], Rot.from_quat([sq, OR[j][f].as_quat()]))([w_]).as_quat()[0]
+                ORh = Rot.from_quat(qh_)
+                replan = dict(seen_at_frame=int(fa), hold_from=int(h0), off_cm=round(100 * dpos, 1), off_deg=round(drot, 1), carry_back=[int(c0), int(c0 + a.carry)])
+                print(f"{side} {x['object']}: REPLAN against the simulation {json.dumps(replan)}", flush=True)
+        x_back = lambda f: (ORh[f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
         for f in range(max(0, h0 - a.blend), h0):                  # approach: blend into the (backed-off) pose, then slide in
             wb = (f - (h0 - a.blend) + 1) / (a.blend + 1)
             w_back = 1.0 if wb < 0.5 else 2 * (1 - wb)              # backed off in the first half, slid in over the second
-            pos = OR[j][f].apply(T_ow_p) + OP[f, j] + x_back(f) * w_back
-            rot = OR[j][f] * R_ow
+            pos = ORh[f].apply(T_ow_p) + OPh[f] + x_back(f) * w_back
+            rot = ORh[f] * R_ow
             q_new[f, o:o + 3] = blend(qref[f, o:o + 3], pos, min(1.0, 2 * wb))
             q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([qref[f, o + 3:o + 7], rot.as_quat()]))([wb]).as_quat()[0]
             q_new[f, o + 7:o + 29] = blend(qref[f, o + 7:o + 29], qpre, wb)
         end = min(T, s1 + 4 * a.open)                             # release: relax, unroll (OPEN frames each), withdraw (2 x OPEN)
         for f in range(h0, end):
-            pos = OR[j][f].apply(T_ow_p) + OP[f, j]; rot = OR[j][f] * R_ow
+            pos = ORh[f].apply(T_ow_p) + OPh[f]; rot = ORh[f] * R_ow
             wc = min(1.0, (f - h0 + 1) / a.close)                  # finger closing ramp (from pre-open)
             if a.lift and f < s1:                                  # weight shared by the hands holding it, while in the air
                 lift[side][f] = max(lift[side][f], in_air[f, j] * mass[j] * G / WRIST_KP / max(1.0, n_hold[f, j]))
@@ -252,12 +285,12 @@ def main():
                 ww = max(0.0, (k - 2 * a.open) / max(1, end - s1 - 2 * a.open))   # 2) unroll: PIP/DIP/IP first, then the
                 wj = np.minimum(1.0, 2 * wu) * distal[side] + np.clip(2 * wu - 1, 0, 1) * (1 - distal[side])  # knuckles
                 qo = blend(qf, qpre, wj)                           # 3) withdraw along the palm normal, then to the reference
-                away = pos + (OR[j][f].apply(d_obj * a.withdraw) if d_obj is not None else
-                              (OR[j][f] * R_ow).apply([-max(back, 0.04), 0.0, 0.0])) * min(1.0, 2 * ww)
+                away = pos + (ORh[f].apply(d_obj * a.withdraw) if d_obj is not None else
+                              (ORh[f] * R_ow).apply([-max(back, 0.04), 0.0, 0.0])) * min(1.0, 2 * ww)
                 q_new[f, o:o + 3] = away if ww < 0.5 else blend(away, qref[f, o:o + 3], 2 * ww - 1)
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
                 q_new[f, o + 7:o + 29] = blend(QS[s1 - 1], qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
-        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info,
+        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan,
                            human_hold_axis_cm=None if s_med is None else round(100 * s_med, 1),
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
