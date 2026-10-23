@@ -2497,3 +2497,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **57423441** RTX PRO 6000 S France $1.55/h, `20261023-dr12-a674fd7`: part 2 regression on a normal episode,
     `SF=1 FC_DROP_START=0.2` on ep12 (compare with box B's ep12 SF=1).
   - Estimate ≈ 3 × 1.1 h ≈ $5.1. All self-destroy after pushing.
+- Box A (57421336, Virginia) destroyed at ~21:22 UTC, unused (≈ $0.85): image pull ~22 min, then setup I/O-bound (disk
+  pressure 67 % "full"; apt still installing boost packages, ~7 s each, after 30 min); no job had started. Replaced by
+  `20261023-sf18b-a674fd7` on offer 56228576 (Utah, $1.51/h), same test (`SF=1`, ep18 mc), code a674fd7 (adds only the
+  rest_check window fix and the inert REPLAN / drop options). Holds of 100 min set on the ep18 boxes for the policy
+  videos (released after `vid_after.sh`).
