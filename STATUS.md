@@ -2,6 +2,21 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-23 16:30 TRT (13:30 UTC): **eval ep3 fine-tune 0.96–0.98; ep35 grasp-lock 0.52 at zero action**
+- Recipe that works on eval ep3: wrap grasp-lock reference (`grasp_lock.py`, wrap on the handle) + wrist ILC + **kp 400
+  wrist embodiment (`sharpa_hands_mid`)** + RL fine-tune (FDR + VOC fix). Official evaluator (VOC 0, frame 0), sim_vs_ref
+  vs our reference, one evaluation each: 40M 0.965, 60M 0.980, **70M 0.981** (policy committed:
+  `results/e2e/spoon_20261023/ep3_ft_k400_s42_policy_70M.safetensors`, sha256 f889339d…), 90M 0.965. Zero action on
+  the same reference 0.658; RL alone 0.380 / 0.413; floor 0.439. The same fine-tune with the kp 25 wrist fails
+  (0.23–0.42, spoon not lifted) → the stiff wrist is essential. Repeat evaluations of the chosen checkpoint still to do.
+- eval ep35: single-hand wrap carry with the anatomy closing (`--mcp_first 1 --close 10 --palm_clear -0.001`) 0.521 at
+  zero action (was 0.15–0.27; RL alone 0.337; floor 0.112); copying the human's hand switches fails so far (the copied
+  left-hand bowl grasp drops the spoon: 0.07–0.18). Fine-tune of the kp 400 version running (`ft_ep35k.sh`, 70M).
+- Physics-aware design (notes 24): minimal-force squeezes hurt (ep3 0.309); a firm squeeze + anatomy closing order
+  helps ep35 but the same rule costs ep3 0.2 at zero action (not isolated yet).
+- Box `20261023-spoon3R-4c31271` hold to 14:30 UTC; `/content/glock` uploaded to the HF store
+  (`runs/20261023-spoon3R-4c31271/glock`).
+
 ## 2026-10-23 15:15 TRT (12:15 UTC): wrap grasp-lock reference beats RL on ep3; ep35 release being fixed
 - `pipeline/grasp_lock.py` + `pipeline/wrap_grasp.py` + `pipeline/wrist_ilc.py`: a built wrap (power) grasp on the
   spoon handle, locked to the object during the hold, wrist lag corrected by ILC. Zero action, evaluator physics,
