@@ -2185,3 +2185,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   the hand wraps the handle (f35–40), lifts it (f50–65) and keeps it (f90–120).
 - Next: grasp search around the wrap (security first, human closeness second), path tracking during the hold, ep35
   (hand changes), then RL fine-tune on top.
+
+### 14:50–15:05 TRT (11:50–12:05 UTC) — wrap grasp: security tests, scores, ep35 single-hand carry; ep3 RL fine-tune queued
+- (Correction: the previous entry's header times were ≈ 20 min ahead; it covered ≈ 11:40–11:50 UTC.)
+- `grasp_search.py` now starts every world at frame 0 like the evaluator (a frame-25 reset placed the hand instantly:
+  the unchanged wrap slipped 37 cm there but holds from frame 0) and judges security by SLIP (object position in the
+  hand frame vs when the fingers closed; < 2 cm) instead of path error (which mixes in the soft wrist's tracking).
+- ep3 wrap + ILC, right hand, hold from f35: 36 variants (along ±2, down 0/−1, roll ±20°, squeeze +0/0.2) × 3 trials
+  (2 disturbed 1.5 cm / 5°): 34/36 hold in all trials, slip ≤ 1.4 cm; choice = the unchanged wrap (closest to the
+  human). Whole hold (f25–292), 8 trials: hold 8/8 at 1.5 cm/5° and at 3 cm/10°, slip ≤ 1.7 cm. Path error 6.5 cm mean.
+- `tools/trace_score.py` (qa.py's metric on recorded rollouts). ep3, sim_vs_ref, zero action unless noted:
+  floor 0.4388 | original ref 0.380 | pinch v3+ILC 0.367 | wrap no ILC 0.377 | **wrap + ILC 0.462** | RL stock-VOC s42
+  policy 0.401 (VOC-fixed RL s42 mean of 7: 0.380). First ep3 result above the floor.
+- ep35 (copied to the ep3 box from the ep35 box): per-hand wraps with the human's six handovers flung the spoon at
+  f230 (0.094, floor 0.112). Handle detection fixed (longest contiguous narrow run; the left wrap had landed on the
+  bowl, r 2.6 cm). `grasp_lock.py --single_hand 1`: one carrier (right, f20–390), left hand parked: spoon held to
+  f392, within 3 cm 46 % of frames, **sim_vs_ref 0.205** (original zero action 0.093); the final release flung it
+  (73 cm, last 30 frames) → release now opens the fingers with the wrist locked, then withdraws (re-test running).
+- Box hold: hold_guard.sh had overwritten HOLD with now+30 min; stopped; `/content/hold_until.sh` pins HOLD to 14:30 UTC.
+- Queued on the ep3 box after seed 43's training: RL fine-tune of the ep3 wrap+ILC reference (seed 42, 250M, FDR + VOC
+  fix, `/content/runs/glock/ep3wrap-s42`), then a per-checkpoint curve.

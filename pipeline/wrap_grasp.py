@@ -34,8 +34,17 @@ def handle_geometry(V, ref_point):
     for i in range(40):
         m = (s >= bins[i]) & (s < bins[i + 1])
         width[i] = 2 * np.percentile(radial[m], 90) if m.sum() > 3 else np.inf
-    narrow = np.nonzero(width <= MAX_WIDTH)[0]
-    lo, hi = (bins[narrow.min()], bins[narrow.max() + 1]) if len(narrow) else (s.min(), s.max())
+    narrow = width <= MAX_WIDTH                                       # the handle = the LONGEST contiguous narrow run
+    runs, i = [], 0                                                  # (min..max of all narrow bins spanned the bowl on
+    while i < 40:                                                    # eval ep35: a left-hand wrap of radius 2.6 cm)
+        if narrow[i]:
+            k = i
+            while k < 40 and narrow[k]:
+                k += 1
+            runs.append((k - i, i, k)); i = k
+        else:
+            i += 1
+    lo, hi = (bins[max(runs)[1]], bins[max(runs)[2]]) if runs else (s.min(), s.max())
     t = float(np.dot(ref_point - c0, a))
     t = float(np.clip(t, lo + HAND_HALF, hi - HAND_HALF)) if hi - lo > 2 * HAND_HALF else 0.5 * (lo + hi)
     m = np.abs(s - t) < 0.015; r = float(np.percentile(radial[m], 90)) if m.sum() > 3 else float(np.percentile(radial, 50))

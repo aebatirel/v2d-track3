@@ -9,8 +9,10 @@ with many worlds (evaluator physics: VOC 0, no termination), grasp variants arou
          handle (target 2 cm below the table top, inside the space under the handle) and stayed on top of it.
 Each variant runs TRIALS times with different smooth wrist disturbances (NOISE_CM / NOISE_DEG random walk = pushes).
 The variant is applied as a constant residual action (raw mode: residual = action x scale), from the approach start
-FRAMES before the hold to HOLD frames into it. A trial holds when the object stays within HOLD_CM of its reference path
-from the moment it starts moving to the end of the window.
+FRAMES before the hold to HOLD frames into it. A trial holds when the object does not slip in the hand: its position
+in the hand (C_MC) frame stays within SLIP_CM of where it was when the fingers had closed (CLOSE frames after the hold
+start) to the end of the window, and it was lifted with the hand (path error is reported too, but it mixes the soft
+wrist's own tracking error with the grasp).
 Choice (security first, closeness to the human grasp second): among variants holding in >= MIN_RATE of the trials,
 the one closest to the human grasp (|along, down| cm + |roll| / 15 deg); if none reaches MIN_RATE, the highest rate,
 then the closest. Our reference only, no ground truth.
@@ -40,6 +42,7 @@ def main():
     p.add_argument('--side', default='0'); p.add_argument('--below', default='0'); p.add_argument('--approach_in', type=int, default=4)
     p.add_argument('--noise_cm', type=float, default=1.0); p.add_argument('--noise_deg', type=float, default=3.0)
     p.add_argument('--hold_cm', type=float, default=3.0); p.add_argument('--min_rate', type=float, default=0.8)
+    p.add_argument('--slip_cm', type=float, default=2.0); p.add_argument('--close', type=int, default=6)
     a = p.parse_args(); t0 = time.time()
     import warp as wp
     from hydra import compose, initialize_config_dir
@@ -83,7 +86,13 @@ def main():
         noise_r = gaussian_filter1d(rng.normal(size=(W, n_steps, 3)), 3, axis=1); noise_r *= np.radians(a.noise_deg) / max(noise_r.std(), 1e-9)
         G = np.array([g for g in grid for _ in range(a.trials)]); trial = np.tile(np.arange(a.trials), len(grid))
         noise_p[trial == 0] = 0; noise_r[trial == 0] = 0           # trial 0 of every variant is undisturbed
-        env.reset(frame_id=f0); act = np.zeros((W, A_dim), np.float32); err = np.zeros((W, n_steps))
+        # every world starts at frame 0 like the evaluator (a mid-episode reset places the hand instantly and changed the
+        # outcome: the unchanged wrap slipped 37 cm from a frame-25 reset but held from frame 0); zero action until F0
+        env.reset(frame_id=0); zero = wp.zeros(W * A_dim, dtype=wp.float32, device='cuda')
+        for f in range(0, f0):
+            env.step(zero)
+        act = np.zeros((W, A_dim), np.float32); err = np.zeros((W, n_steps)); inhand = np.zeros((W, n_steps, 3))
+        wb0 = next(i for i, l in enumerate(labels) if l.endswith(f'{a.hand}_hand_C_MC')); hand_ids = wb0 + bpw * np.arange(W)
         for k, f in enumerate(range(f0, f1)):
             ax_w = OR[f].apply(axis); c_w = OR[f].apply(cg) + OP[f]
             Rroll = Rot.from_rotvec(np.radians(G[:, 2])[:, None] * ax_w[None])
@@ -99,17 +108,23 @@ def main():
             act[:, ho + 3:ho + 6] = np.clip(rr, -CLIP['rot'], CLIP['rot']) / SCALE['rot']
             act[:, ho + 6:ho + 28] = np.clip(rf, -CLIP['finger'], CLIP['finger']) / SCALE['finger']
             env.step(wp.array(act.reshape(-1), dtype=wp.float32, device='cuda'))
-            q = env.state_0.body_q.numpy()[obj_ids]; err[:, k] = np.linalg.norm(q[:, :3] - OP[min(f + 1, T - 1)], axis=1)
+            BQ = env.state_0.body_q.numpy(); q = BQ[obj_ids]; hq = BQ[hand_ids]
+            err[:, k] = np.linalg.norm(q[:, :3] - OP[min(f + 1, T - 1)], axis=1)
+            inhand[:, k] = Rot.from_quat(hq[:, 3:7]).inv().apply(q[:, :3] - hq[:, :3])
             if k == a.approach and os.environ.get('GS_DEBUG'):          # wrist placement check: does the variant move the hand?
                 wb0 = next(i for i, l in enumerate(labels) if l.endswith(f'{a.hand}_hand_C_MC')); wq = env.state_0.body_q.numpy()[wb0 + bpw * np.arange(W)]
                 for i in range(0, W, max(1, W // 12)):
                     print('debug f', f, 'variant', G[i].tolist(), 'wrist sim', np.round(wq[i, :3], 3).tolist(), 'target', np.round(Pd[i], 3).tolist(), flush=True)
     moving = np.nonzero(np.linalg.norm(OP[f0:f1] - OP[f0], axis=1) > 0.01)[0]; ks = int(moving[0]) if len(moving) else 0
-    held = err[:, ks:].max(1) < a.hold_cm / 100; mean_err = 100 * err[:, ks:].mean(1)
+    kc = min(n_steps - 1, a.start - f0 + a.close)                       # fingers closed
+    slip = np.linalg.norm(inhand[:, kc:] - inhand[:, kc:kc + 1], axis=2).max(1)
+    path_ok = err[:, ks:].max(1) < a.hold_cm / 100
+    held = slip < a.slip_cm / 100; mean_err = 100 * err[:, ks:].mean(1)
     rows = []
     for i, g in enumerate(grid):
         sel = slice(i * a.trials, (i + 1) * a.trials)
         rows.append(dict(along_cm=g[0], down_cm=g[1], roll_deg=g[2], squeeze_rad=g[3], side_cm=g[4], below_cm=g[5], hold_rate=float(held[sel].mean()),
+                         slip_cm=round(float(100 * slip[sel].max()), 1), path_rate=float(path_ok[sel].mean()),
                          mean_err_cm=round(float(mean_err[sel].mean()), 2), max_err_cm=round(float(100 * err[sel, ks:].max()), 1),
                          human_dev=round(float(np.hypot(g[0], g[1]) + abs(g[2]) / 15), 2)))
     best_rate = max(r['hold_rate'] for r in rows)

@@ -19,6 +19,10 @@ than replicating it"; docs/research/notes/23). Rewrites a FlashCHORD reference s
 With --wrap, elongated objects (hull PCA ratio >= WRAP_RATIO with a narrow part) get a BUILT wrap (power) grasp
 instead of the copied human one (pipeline/wrap_grasp.py; owner: the copied grasps pinch, a wrap is the strongest): the
 hand comes in open, backed off BACK along its palm normal, slides onto the handle and closes until each finger touches.
+With --single_hand 1, each object is carried by ONE hand from its first pick-up to its last release (the hand with the
+most hold frames on it): the other hand's holds on that object are dropped and, if it holds nothing else, it stays
+parked at its frame-0 pose (eval ep35: the human passes the spoon between hands six times; the locked two-hand
+handovers flung it at f230). Security first: one locked grasp, no handovers.
 Object trajectories are not touched. Only our own reference is read (no ground truth). The candidate is not trusted:
 pipeline/grasp_test.py replays it in the evaluator's physics and measures whether the object is held.
 Usage (FlashCHORD python, from the flash_chord dir, FC set):
@@ -55,6 +59,7 @@ def main():
     p.add_argument('--blend', type=int, default=8); p.add_argument('--preopen', type=float, default=0.3)
     p.add_argument('--wrap', type=int, default=1); p.add_argument('--wrap_ratio', type=float, default=3.0)
     p.add_argument('--back', type=float, default=0.04); p.add_argument('--wrap_squeeze', type=float, default=0.4)
+    p.add_argument('--single_hand', type=int, default=0)
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -72,6 +77,18 @@ def main():
         lim[side] = (np.array([lo_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]),
                      np.array([hi_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]))
     ph = hold_phases(a.inp)[0]['phases']
+    parked = []
+    if a.single_hand:                                              # one carrier per object, from first grasp to last release
+        merged = []
+        for o_ in sorted({x['object'] for x in ph}):
+            xs = [x for x in ph if x['object'] == o_]
+            frames = {sd: sum(x['frames'] for x in xs if x['hand'] == sd) for sd in ('left', 'right')}
+            hand = max(frames, key=frames.get); s1_ = max(x['end'] for x in xs)
+            first = min((x for x in xs if x['hand'] == hand), key=lambda x: x['start'])
+            merged.append(dict(first, end=s1_, frames=s1_ - first['start'], merged_from=len(xs)))
+        held_by = {x['hand'] for x in merged}; parked = [sd for sd in ('left', 'right') if sd not in held_by]
+        ph = merged
+        print(f'single-hand carry: {[(x["hand"], x["object"], x["start"], x["end"]) for x in ph]}; parked {parked}', flush=True)
     obj_body = [next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/')) for n in names]
     sdf = {}; fk = cr.FK(m); dp = {}
     for side in cr.SIDES:
@@ -134,7 +151,7 @@ def main():
             q_new[f, o:o + 3] = blend(qref[f, o:o + 3], pos, min(1.0, 2 * wb))
             q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([qref[f, o + 3:o + 7], rot.as_quat()]))([wb]).as_quat()[0]
             q_new[f, o + 7:o + 29] = blend(qref[f, o + 7:o + 29], qpre, wb)
-        end = min(T, s1 + a.open)
+        end = min(T, s1 + 3 * a.open)                             # release: OPEN frames to open, then 2 x OPEN to withdraw
         for f in range(h0, end):
             pos = OR[j][f].apply(T_ow_p) + OP[f, j]; rot = OR[j][f] * R_ow
             wc = min(1.0, (f - h0 + 1) / a.close)                  # finger closing ramp (from pre-open)
@@ -143,11 +160,12 @@ def main():
             if f < s1:                                             # hold: locked grasp, fingers closing then held
                 q_new[f, o:o + 3] = pos; q_new[f, o + 3:o + 7] = rot.as_quat()
                 q_new[f, o + 7:o + 29] = blend(qpre, qs, wc)
-            else:                                                  # release: reopen, blend back to the reference
-                wr = (f - s1 + 1) / (end - s1)
-                q_new[f, o:o + 3] = blend(pos, qref[f, o:o + 3], wr)
-                q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([wr]).as_quat()[0]
-                q_new[f, o + 7:o + 29] = blend(qs, qref[f, o + 7:o + 29], wr)
+            else:                                                  # release: open the fingers with the wrist still locked,
+                wo = min(1.0, (f - s1 + 1) / a.open)              # then withdraw to the reference (v3 did both at once and
+                ww = max(0.0, (f - s1 + 1 - a.open) / max(1, end - s1 - a.open))   # flung the eval ep35 spoon at f392)
+                q_new[f, o:o + 3] = blend(pos, qref[f, o:o + 3], ww)
+                q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([ww]).as_quat()[0]
+                q_new[f, o + 7:o + 29] = blend(qs, qpre, wo) if ww == 0 else blend(qpre, qref[f, o + 7:o + 29], ww)
         report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info,
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
@@ -156,6 +174,8 @@ def main():
             print(f"{side} {x['object']}: WRAP grasp {json.dumps(wrap_info)}", flush=True)
         print(f"{side} {x['object']} {s0}-{s1}: grasp pose from f{g} ({n_on} fingers on, mean gap {1000 * gap:.1f} mm), "
               f"hold from f{h0}, object moves f{move}, lift {report[-1]['lift_cm']} cm", flush=True)
+    for side in parked:                                            # idle hand: keep its frame-0 pose (out of the way)
+        o = cr.SIDES[side]; q_new[:, o:o + 29] = q_new[0, o:o + 29]
     out, attached = cr.write_robot(t, m, fk, qref, q_new)          # frames from the kinematic (lift-free) grasp
     if a.lift:                                                     # the lift goes into the wrist target column only
         import pyarrow as pa
