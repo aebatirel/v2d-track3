@@ -2490,3 +2490,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Box B so far:
   - ep12: support_fill as local, rest check cup ok (1.3 mm / 0.8°), zero action 0.560;
   - ep27: pot ok (4.9 mm / 1.4°), zero action 0.655 (round 2: 0.590).
+- Rented for the two parts (owner: "go ahead with both"; credit $14.41 with boxes A/B still running), code a674fd7:
+  - **57423439** RTX PRO 6000 S Utah $1.51/h, `20261023-rp18-a674fd7`: part 1 on ep18 with the brush mesh as before
+    (it falls): `export EVERY=2 SF=0 REPLAN=2; PAIRS="18:20261021-auto18-966eb96:mc"`;
+  - **57423440** RTX PRO 6000 S New York $1.54/h, `20261023-dr18-a674fd7`: part 2 on the same: `SF=0 FC_DROP_START=0.2`;
+  - **57423441** RTX PRO 6000 S France $1.55/h, `20261023-dr12-a674fd7`: part 2 regression on a normal episode,
+    `SF=1 FC_DROP_START=0.2` on ep12 (compare with box B's ep12 SF=1).
+  - Estimate ≈ 3 × 1.1 h ≈ $5.1. All self-destroy after pushing.
