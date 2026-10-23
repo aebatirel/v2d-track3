@@ -1942,3 +1942,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   apart objects, not nested ones → it stays a weighted vote; the public replay sets its weight.
 - Also sent the owner the FDR comparison videos (`scratchpad/vid3/fdr/ep12_fdr_compare.mp4`, `ep18_fdr_compare.mp4`:
   RGB | before | FDR s42 | FDR s43, frame-synced).
+- 05:45 TRT: owner asked whether the better seed can be known without ground truth. Measured over all 27 stored
+  policies with 6-evaluation means (`scratchpad/boxres/*/results/hard_ab`): corr(sim_vs_ref, registered AUC) =
+  0.997, mean |diff| 0.021; within an episode, every pair whose true scores differ by ≥ 0.02 is ranked correctly
+  (63/63). The FDR seeds: ep12 s42 0.905 > s43 0.774 and ep18 s43 0.922 > s42 0.791 — both right. Caveats:
+  single-rollout picks are noisier and optimistic (≈ +0.03); sim_vs_ref cannot see a wrong reference (ep3).
+  Proposal: two seeds per eval episode (or a second seed only where the first scores < 0.85), keep the better by the
+  6-evaluation sim_vs_ref mean; ≈ +0.06 on the A/B, training cost up to ×2.
