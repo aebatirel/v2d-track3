@@ -2220,3 +2220,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     handle with the curled fingertips and pulls it up. v5 tests this: relax (6 frames), unroll PIP/DIP/thumb IP first
     and the knuckles second (6), wrist locked, then withdraw along the palm normal (up) and back to the reference.
     Falsified if the spoon still rises more than 1 cm while the hand unrolls (f396–402).
+- v5 result (12:13 UTC): **release fixed, withdrawal not**. Unrolling fingertips first kept the spoon still while the hand
+  opened (f390–404, z 0.616–0.618: hypothesis confirmed), but the withdrawal (palm up, then back to the reference hand
+  path) dragged it again (f406–420, 46 cm off at f420). Whole-episode sim_vs_ref **0.150** (v4 0.267) with a mid-episode
+  lapse near f105 although frames before f390 are identical in v4 and v5 → run-to-run variance (GPU replays + ILC)
+  is large; measuring it now.
+
+### 15:15 TRT (12:15 UTC) — owner: another embodiment? a Sharpa grasp library? "magnet" fingers, support from below?
+- Rules: the FAQ welcomes other embodiments (floating hands, fixed-base arm + hand). FlashCHORD ships `sharpa_hands`,
+  `_primitive`, `_stiff`, `dexmate_sharpa` (arm + Sharpa) and `g1_dex3` (3-finger). Earlier measurements: mid wrist (kp
+  400) hurt plain RL on ep18/ep24 (0.193 vs 0.381, 0.050 vs 0.096); primitive collision +0.03–0.05 (ep24 0.282, ep18 0.377).
+- Literature check (search): no official Sharpa grasp library found. A third-party DexLearn fork mentions a "22-joint
+  Sharpa dataset" (not bundled, CC BY-NC, unverified). Generic synthesisers: BODex (GPU bilevel optimisation; Shadow,
+  Allegro, Leap; adapted to XHand in SynManDex 2606.09798), Dexonomy (31 GRASP-taxonomy types incl. power grasps, one
+  annotated template per hand and type, CC BY-NC). Our `wrap_grasp.py` already synthesises a power grasp on our own
+  mesh with FlashCHORD's collision geometry. "Magnets": not possible at evaluation (pinned FlashCHORD, VOC 0); in
+  training the decaying assist is VOC (DexMachina 2505.24853), which already showed the hand-over problem.
+- Test started (box, already paid): wrap reference with the kp 400 wrist (`GL_WRIST_KP=400`, `EMB=sharpa_hands_mid`
+  for ILC and replay; `wrist_ilc.py` now reads `EMB`) on ep3 and ep35, and 3 repeat replays of ep35 s5 for variance
+  (`/content/glock/run_k400.sh`). Hypothesis: with the grasp locked, the remaining ep3 loss is the soft wrist lagging
+  in the carry (spoon > 10 cm off from f100); falsified if kp 400 does not cut the carry error.

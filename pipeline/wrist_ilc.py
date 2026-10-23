@@ -28,7 +28,8 @@ def replay(parquet, n, device):
     from flash_chord.scene.setup import setup_scene
     off = [f'termination.{k}.enabled=false' for k in ('wrist_position', 'object_position', 'object_orientation', 'reference_end')]
     with initialize_config_dir(version_base='1.3', config_dir=os.path.abspath('src/flash_chord/configs')):
-        cfg = compose(config_name='train_flash_sac', overrides=['experiment=sharpa_flash_sac', f"task.parquet='{parquet}'"] + off)
+        cfg = compose(config_name='train_flash_sac', overrides=['experiment=sharpa_flash_sac', f"task.parquet='{parquet}'"] + off
+                      + ([f"embodiment={os.environ['EMB']}"] if os.environ.get('EMB') else []))   # EMB: embodiment config name
     env_config = dataclasses.replace(instantiate_typed(cfg.env, RLEnvConfig), auto_reset=False, voc_scale=0.0)
     with wp.ScopedDevice(device):
         st = setup_scene(parquet=parquet, control_fps=env_config.sim.fps, motion_speed=1.0,
