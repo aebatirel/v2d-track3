@@ -1982,3 +1982,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   mean 0.56) loses to seed 43 (mean 0.69); final.json, policy and rollout published as expected.
 - Plan for the rehearsal: ep3 and ep35 on two boxes, everything new on: FDR rewards (default), detection rules
   (default), capped lead-in, contact retargeting, SEEDS_MIN=2. ≈ $11.
+- 07:15 TRT: ep35 rehearsal launched: instance 57330847 (RTX PRO 6000 WS, $1.41/h), run `20261023-spoon35R-25b7779`,
+  job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS="35"; bash ops/jobs/auto_runs.sh` (FDR rewards,
+  detection rules, capped lead-in by default). ep3 waits for the frame-0 detection check (box 57329922, still in setup).
