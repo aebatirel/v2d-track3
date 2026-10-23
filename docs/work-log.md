@@ -2100,3 +2100,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   together (f40); it is dropped when the person turns it upright (≈ f80) and stays on the table.
 - Reading: the VOC bug was the cause of "never touches"; the next limit is holding through the in-hand reorientation
   (two-handed, up to 140°). Seed 43 running; ep3 seed 42 result pending.
+
+### 13:58 TRT (10:58 UTC) — ep3 seed 42 with the VOC fix: spoon grasped and lifted late in training, then dropped
+- Box `20261023-spoon3R-4c31271`, code 8db32a1. Sweep (sim_vs_ref): 50M 0.362, **70M 0.446 (chosen)**, 100M 0.383,
+  120M 0.395, 150M 0.278, 170M 0.339, 200M 0.381, 220M 0.401, 250M 0.393; floor 0.439. 7 official evaluations of 70M:
+  0.446 0.396 0.349 0.353 0.363 0.361 0.390 → **mean 0.380** (stock-VOC seed 42: 0.410).
+- Rollouts: 70M barely touches anything (spoon lift ≤ 2.6 cm, pot ≤ 2.5 cm: a near do-nothing policy). 220M / 250M
+  lift the spoon 22 / 27.5 cm (reference 27.5) but lose it (mean error 38–40 cm); the render of 250M shows the right
+  hand grasping and lifting the spoon (f40–80) and dropping it off the table on the way into the pot (≈ f110); the pot
+  is never lifted (reference 8 cm). Losing a lifted spoon scores below leaving it, so the selection keeps 70M.
+- Both spoon episodes now share the next limit: holding the spoon through manipulation (ep35 in-hand turn, ep3 the
+  move into the pot). Candidate levers (not yet tested): squeeze targets + wrist feed-forward in the reference (note 23),
+  later checkpoints / longer training, and the placeholder mass (0.3 kg vs ≈ 60 g for an 85 cm³ wooden spoon; the soft
+  wrist sags ≈ 12 cm under 0.3 kg) — a modelling choice for the owner.
