@@ -2043,3 +2043,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   What they show: the hands move but stay away from the reference wrists and from the objects; nothing is touched
   (`results/e2e/spoon_20261023/*_strip.jpg`). Consistent with a policy trained on exploding spoon episodes (being near
   the spoon meant violent impulses and early termination). `pipeline/render_rollout.sh` now renders this way too.
+- 09:40 UTC: the fixed training runs **1.9–2× faster**: at 5 % of 250M, ep35 54.7k env steps/s (stock VOC, same box:
+  27.5k/s), ep3 53.3k/s (stock 29k/s). The exploding spoon was also stalling the simulator. ETA per seed ≈ 1 h 15 min
+  → seed 42 ≈ 11:00 UTC, both seeds + evaluations ≈ 12:40 UTC, ≈ $8.5 for the two boxes instead of ≈ $15.
+  (Side note for later: line 1828 records the dish-rack episode training at 22.7k/s; the rack's inertia ratio 6.4
+  is marginal for stock VOC 1.0, so the fix may speed that up as well — unmeasured.)
