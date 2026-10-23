@@ -1860,3 +1860,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 02:42 TRT: **ep12 mckd s43** (box `20261023-fdr43-715c9f7`), 6 evaluations: registered AUC **0.762 ± 0.078
   (0.638–0.839)**, sim_vs_ref 0.774 ± 0.097. Two-seed FDR mean 0.826 vs k s42 0.790 (no k s43 exists). Seed spread
   0.13 is far above the ≈ 0.04 seen before → not yet a decision; ep18 pending on both boxes.
+
+### 03:50 TRT — ep35 retrain with the capped lead-in: still weak
+- Box `20261023-spoon35L-d9fb9b9` (Australia WS $1.07/h, 28k env steps/s, ≈ 2.9 h ≈ $3.1) finished 00:43 UTC.
+  The right hand now starts 6 cm out (log `lead_in_cm 6.0`). sim_vs_ref **0.147** (was 0.127; floor 0.112; sweep
+  0.128 / 0.129 / 0.127 at 100/150/200M, 0.147 at 250M), evaluator: spoon error 15.1 cm / 52°, no success. Video
+  (`scratchpad/vid3/spoon/e35L/view.mp4`): the hands now move but never go to the spoon in the table centre.
+- Falsifier met: the start was not the main limit. Reference (CPU): the spoon is lifted at f30 and turned up to 140°
+  from its start (upright around f100, long axis z +0.58 → -0.68 by f150), max step 22° (f113), position steps ≤
+  2.3 cm: an in-hand reorientation task, not a tracking glitch.
+- Hypothesis [I]: FlashCHORD's object reward (six axis points 1 m out, exp(-d/0.1)) gives almost no gradient once
+  the rotation error passes ~0.3 rad, so a spoon that turns 140° gives the policy no signal after it falls behind.
+  FDR's true-size point match keeps a gradient. Test: ep35 with FDR rewards (≈ $3); falsified if it stays < 0.2.
+- Training logs carry no reward / episode metrics (logging disabled), so learning curves are not available.
