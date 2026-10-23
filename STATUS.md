@@ -2,6 +2,24 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-23 ~21:30 TRT: support-consistent meshes (stability certificate) ready; public check ep18/12/27 next
+- Owner: the mesh should physically support the start pose, with a mathematical stability condition. Done in
+  `pipeline/support_fill.py` (notes 25):
+  - criterion: the COM must be over the support polygon with margin d ≥ 3 mm and tip angle atan(d / h) ≥ 3°;
+  - as-is poses are judged after quasi-static rocking of up to 3°;
+  - otherwise the smallest certified underside fill (0.5–2 cm) is added, if it stays in free space along our
+    reference;
+  - `tools/rest_check.py` checks it in the simulator (zero action: within 5 mm / 2° until grasped). On the round-2
+    ep18 trace the brush moved 88.7 mm / 81.7°.
+- Decisions on the public references:
+  - ep18 brush: 1 cm fill; dust pan as is;
+  - ep12: cup 0.5 cm fill, rack blocked;
+  - ep27: pot 1 cm fill;
+  - ep24: unchanged, so its 0.202 stands.
+- The human holds the ep18 plates with a thumb–fingers clamp (palm contact 0–13%), so the grasp rule is unchanged for
+  this test.
+- Next: `glock_public.sh` with SF=1 on ep18 (alone) and ep12 + ep27; ≈ $4, approved with the $10 top-up.
+
 ## 2026-10-23 17:25 TRT (14:25 UTC): **eval spoon episodes: ep3 0.968, ep35 0.978 (fine-tuned, mean of 5 evaluations)**
 - Recipe that works on eval ep3: wrap grasp-lock reference (`grasp_lock.py`, wrap on the handle) + wrist ILC + **kp 400
   wrist embodiment (`sharpa_hands_mid`)** + RL fine-tune (FDR + VOC fix). Official evaluator (VOC 0, frame 0), sim_vs_ref

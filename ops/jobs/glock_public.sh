@@ -3,10 +3,13 @@
 # the eval spoon episodes to sim_vs_ref ≈ 0.97 (docs/research/notes/24), FROZEN as below, on public episodes that have
 # references built with our own meshes, scored against mocap afterwards (registered AUC with our meshes, evaluation only):
 #   1. reference = the stored own-mesh reference of a finished run (store pull-run; EP:RUN:BASE as in hard_ab.sh);
+#      with SF=1 (default since 2026-10-23) its meshes are made support-consistent first (pipeline/support_fill.py:
+#      a resting pose the mesh cannot hold gets the smallest certified underside fill; public ep18's brush fell over);
 #   2. pipeline/grasp_lock.py with GL_ARGS (single-hand carry per object, anatomy closing, palm press, wrap only where
 #      the human holds a narrow part, copied grasps snapped to the surface), lift feed-forward for the kp 400 wrist;
 #   3. pipeline/wrist_ilc.py with the kp 400 embodiment (EMB=sharpa_hands_mid);
-#   4. zero-action replay (tools/trace_rollout.py) scored with tools/trace_score.py (sim_vs_ref, our reference);
+#   4. zero-action replay (tools/trace_rollout.py) scored with tools/trace_score.py (sim_vs_ref, our reference) and
+#      checked by tools/rest_check.py (every object stays within 5 mm / 2 deg until a hand comes for it);
 #   5. RL fine-tune: embodiment=sharpa_hands_mid, FDR rewards + VOC fix (lib.sh fc_patches), STEPS (70M), SEED;
 #   6. official evaluation of every checkpoint (tools/ckpt_curve.sh, sim_vs_ref), checkpoint chosen by sim_vs_ref only
 #      (no ground truth), then NREP official evaluations of it, each scored sim_vs_ref + registered AUC vs mocap.
@@ -16,12 +19,12 @@
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
-STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
+SF=${SF:-1}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
-log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, GL_ARGS [$GL_ARGS]" >> $J
-pip install -q fast_simplification >> $J 2>&1 || true              # kit budget_mesh (score_registered --meshes)
+log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SF $SF, GL_ARGS [$GL_ARGS]" >> $J
+pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml   # kp 400 wrist (the checkpoint stores the resolved config)
@@ -86,6 +89,15 @@ one() {
   hive=$(dirname ${P0#$R0/}); G=/content/refs/glock/ep$ep; RD=/content/refs/glockt/ep$ep; RUN=/content/runs/glock/ep$ep-s$SEED
   mkdir -p $G/$hive $RD/$hive $RUN $O/ep$ep; cp -r $R0/reconstructed_stage $G/; cp -r $R0/reconstructed_stage $RD/
   log "glock ep$ep: base $base ($P0)" >> $J
+  if [ "$SF" = 1 ]; then                                           # support-consistent meshes; the reference then names them
+    local SFT=/content/refs/sf/ep$ep; mkdir -p $SFT/$hive; cp -r $R0/reconstructed_stage $SFT/
+    python $P/support_fill.py $P0 $(ls $R0/reconstructed_stage/*.usda | head -1) $SFT/assets $SFT/$hive/ref_sf.parquet > $LG.sf 2>&1 \
+      || { log "glock ep$ep: support_fill FAILED ($(tail -1 $LG.sf | cut -c1-200))" >> $J; return 1; }
+    cp $SFT/$hive/ref_sf_support_fill.json $O/ep$ep/support_fill.json; P0=$SFT/$hive/ref_sf.parquet
+    log "glock ep$ep: support_fill $(python -c "
+import json; d = json.load(open('$O/ep$ep/support_fill.json'))
+print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('frame'), r.get('status', 'skipped'), r.get('fill_cm')) for r in o['fills']]) for n, o in d['objects'].items()))" 2>&1 | cut -c1-600)" >> $J
+  fi
   ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl.parquet $GL_ARGS ) >> $LG 2>&1 \
     || { log "glock ep$ep: grasp_lock FAILED" >> $J; return 1; }
   ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters 4 --device cuda ) >> $LG 2>&1 \
@@ -94,6 +106,8 @@ one() {
   N=$(python -c "import numpy as np, pyarrow.parquet as pq; print(len(np.array(pq.read_table('$P0').column('robot_left_wrist_position')[0].as_py()).reshape(-1, 3)))")
   ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
   ( cd $REPO_DIR && python $T/trace_score.py $RD/$hive/ref_gl_ilc.parquet $O/ep$ep/zero.npz:zero_action ) > $O/ep$ep/zero_score.txt 2>&1
+  python $T/rest_check.py $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check.json 2>&1
+  log "glock ep$ep: rest check $(cut -c1-400 $O/ep$ep/rest_check.json)" >> $J
   log "glock ep$ep: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
   ( cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
       embodiment=sharpa_hands_mid "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \

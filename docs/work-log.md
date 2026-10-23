@@ -2431,3 +2431,28 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   the underside down to the table where the gap is ≤ 1 cm; check statics; settle only if still unsupported; verify by a
   zero-action replay with the hands away. Keeps the observed pose (settling flat would move the brush off its true
   pose for ~60 frames).
+
+### ~21:30 TRT — owner: "a mathematical requirement to make sure it starts stable"; support-consistent meshes
+- `pipeline/support_fill.py` (new, notes 25):
+  - certificate: the COM (URDF inertial) is over the support polygon with d ≥ 3 mm and atan(d / h) ≥ 3°;
+  - as is = quasi-static rocking, at most 3°;
+  - else the smallest certifying fill of 0.5 / 1 / 1.5 / 2 cm (convex slab, manifold union);
+  - free space: other objects may be inside the slab ≤ 5 frames in a row and ≤ 15 in all.
+  - Two earlier versions were rejected after measuring them:
+    - the contacts at the pose itself (no rocking) called the cup, rack and pot unstable, though the simulator kept them;
+    - a single hull face within 3° fails on faceted bottoms.
+  - Unfilled meshes are copied bit for bit.
+- `tools/rest_check.py` (new): zero-action trace, every object within 5 mm / 2° until (first hold − 6). On the round-2
+  ep18 trace: mini_sweeper 88.7 mm / 81.7° FAIL, dust pan 2.8 mm / 1.6° ok (reproduces the failure).
+- Local results on the public references (scratchpad `sfcheck/`; references from the HF store):
+  - ep18: brush 1 cm fill (d 4.3 mm, 3.7°; touches the dust pan in 6 sweeping frames); dust pan as is (settles 2.2°);
+  - ep12: cup f0 0.5 cm; rack blocked (the cup rests in it from f128);
+  - ep24: unchanged;
+  - ep27: pot 1 cm; rack as is.
+- Our MANO link contacts on ep18:
+  - left hand on the dust pan: palm 0.13, thumb distal 0.75, middle 0.74–0.91;
+  - right hand on the sweeper: palm 0.08 / 0.00, thumb distal 0.87 / 0.61.
+  - This is a thumb–fingers clamp, so the copied (snapped) grasp type is right and the grasp rule is unchanged for
+    the test.
+- `ops/jobs/glock_public.sh`: SF=1 (default) runs support_fill before grasp_lock, logs its decisions, and runs the rest
+  check after the zero-action replay; it also installs manifold3d.
