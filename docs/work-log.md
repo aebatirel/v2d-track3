@@ -2419,3 +2419,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `kfid` reference) would seat it. Both objects are thin plates (3.5–3.6 cm thick, PCA ratio 1.3–1.7): the recipe's
   wrap rule (PCA ≥ 3) never applies to them; the copied grasps do not hold them; the fine-tuned policy moves its
   hands away from the table (learned avoidance after the start was already lost).
+
+### 19:45 TRT — owner: "the brush is a weird shape; the mesh should physically support the starting position" — confirmed
+- Diagnostic with ground truth (public ep18, after inference; reporting only): mocap + the organisers' scan at f0 put the
+  brush STANDING on its bristles (flat face 86.2° from the table, centre z 0.663, contact patch 10.9 × 3.7 cm, COM
+  1.6 cm from the patch centre: stable). Our reconstruction has the same pose (87.6°, centre z 0.667) — perception is
+  right — but our mesh touches the table on 0.9 × 0.6 cm only (COM 3.7 cm off): the ragged/rounded bristle underside.
+- Our mesh underside over the footprint: median 1.05 cm above the table, 58 of 125 cells within 1 cm. Filling gaps
+  ≤ 1 cm down to the table (convex slab) gives a 10.2 × 4.5 cm base, COM inside (margin 0.5 cm, tips beyond 4°), +11 cm³
+  on a 115 cm³ mesh. → Proposed rule (all objects, all episodes, no ground truth): at every observed resting pose fill
+  the underside down to the table where the gap is ≤ 1 cm; check statics; settle only if still unsupported; verify by a
+  zero-action replay with the hands away. Keeps the observed pose (settling flat would move the brush off its true
+  pose for ~60 frames).
