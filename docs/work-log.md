@@ -2637,3 +2637,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     SETTLE=1` (default off), to be A/B-tested on ep2 / ep26.
   - `ops/jobs/submit_pack.sh` written (pristine FlashCHORD worktree evaluator, library meshes per (episode, object),
     kit packer; upload by the owner).
+- 22:58 UTC **E1 ep18** (settled + library_v3, SF=1, `--approach_cm 15`, brush standing until the grasp):
+  - registered AUC **0.302 ± 0.094** (sim_vs_ref 0.310);
+  - curve 0.446 / 0.357 / 0.307 / 0.060 at 10 / 30 / 50 / 70M: the grasp-lock fine-tune degrades with training on
+    this two-handed tool task; chosen 10M.
+  - The start fix is necessary but not sufficient for ep18: the only recipe that solved it is the standard FDR RL
+    on the settled reference, 250M (0.776 / 0.889 on two seeds), without the grasp lock.
+  - Box released.
