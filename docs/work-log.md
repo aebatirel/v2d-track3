@@ -2587,3 +2587,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - perception vs mocap (diagnostic) ep21 AUC 0.925, ep31 0.950; qa_ref pass;
   - support_fill: water pitcher and the ep31 sweeper (standing in the rack dividers) not certifiable on the table;
     left as is (the certificate does not model support by other objects).
+- 22:25 UTC wave-1 rest checks: the support certificate's UNSTABLE calls were right.
+  - ep21: the water pitcher falls 134 mm / 73° by f20, before its grasp. Its nearest stable face is 17° from the
+    perceived up and is a 32 × 5 cm side face: our pitcher has no flat bottom (unobserved underside, as the sweeper
+    had). The re-plan picked it up where it lay: zero action 0.297 vs 0.357, not kept.
+  - ep31: the sweeper standing in the rack dividers tips 24° by f18.
+  - Start stability is therefore general: eval twins 19 (sweeper), 20 (pitcher), 30 (sweeper in rack).
+  - Candidate generic fix (not built): flatten / fill along each object's perceived resting up when the pose is not
+    certified, with every resting pose re-certified.
+- **Wave 2** (code 37cc551, GL_ARGS + `--approach_cm 15`, SF=1, REPLAN=1; credit $15.06 before):
+  - **57431685** US $1.44/h `20261024-w1-37cc551`: e2e ep24 (boards, eval 25) + ep26 (pot + rack reverse, eval 28),
+    LIB=library_v4 (v3 + flattened boards, first GPU test);
+  - **57431686** New York $1.44/h `20261024-w2-37cc551`: ep12 + ep27 seed 43 on the stored references, library_v3
+    (seed spread; check that the new defaults do not hurt the easy episodes).
+  - Estimate ≈ $5.3; projected reserve ≈ $2 at the end of both waves.
