@@ -1993,3 +1993,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   on this basis. Reach barred 36–67 of 48–79 proposals per frame. Replay summary `results/e2e/det_20261023/replay_summary.json`.
 - 07:25 TRT: ep3 rehearsal launched: instance 57331929 (RTX PRO 6000 WS, $1.38/h), run `20261023-spoon3R-4c31271`, job
   `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS="3"; bash ops/jobs/auto_runs.sh`. Credit $28.52.
+- 11:20 TRT (08:20 UTC): both rehearsals training seed 42 with FDR (`v2d_fdr` module loaded) and the detection rules
+  (logs: `det rules f0 … barred by reach`); reference QA chose variant mc on both (wrist p95 ep35 29 mm, ep3 41 mm).
+  Training speed ≈ 29k env steps/s on both spoon episodes (ep35's earlier stock run: 28k/s) → ≈ 2.4 h per seed;
+  seed-42 results ≈ 09:10 UTC, final ≈ 11:45 UTC; ≈ $15 for both boxes. Credit $23.02.
