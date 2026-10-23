@@ -16,6 +16,8 @@
 # that start like the official evaluation); both patch FlashCHORD, see ops/box/patch_flashchord.py.
 # ASSET_SRC=public: the organisers' public URDFs/meshes in the simulator instead of ours (oracle-mesh test).
 # FC_FDR_OBJ / FC_FDR_TIPS (2026-10-22): FlashDexRetarget-style training rewards, see ops/box/patch_flashchord_fdr.py.
+# FC_VOC_INERTIA=1 (2026-10-23): virtual object controller with the full inertia tensor (ops/box/patch_flashchord_voc.py;
+#   default on in auto_runs via lib.sh fc_patches, opt-in here so A/Bs against older baselines stay comparable).
 # ENV_EP<N> (2026-10-22): space-separated VAR=value settings for episode N only (no spaces inside a value), e.g.
 #   ENV_EP18="SUF=kfid CR_ARGS=--rest_settle=1 FC_IMMEDIATE_FIRST_FRAME=0.25", so episodes with different baselines
 #   share one box.
@@ -48,6 +50,10 @@ if [ -n "${FC_FDR_OBJ:-}${FC_FDR_TIPS:-}" ]; then   # FlashDexRetarget-style rew
   python $REPO_DIR/ops/box/patch_flashchord_fdr.py $FC >> $J 2>&1 || { log "FlashCHORD FDR patch FAILED" >> $J; exit 1; }
   export FC_FDR_OBJ FC_FDR_TIPS FC_FDR_OBJ_POINTS FC_FDR_OBJ_TOPK FC_FDR_OBJ_RADIUS FC_FDR_TIP_SIGMA
   log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0} (radius ${FC_FDR_OBJ_RADIUS:-true}, top-k ${FC_FDR_OBJ_TOPK:-3}), fingertip bound ${FC_FDR_TIPS:-0} (sigma ${FC_FDR_TIP_SIGMA:-0.01} m)" >> $J
+fi
+if [ "${FC_VOC_INERTIA:-0}" != 0 ]; then   # VOC with the full inertia tensor (ops/box/patch_flashchord_voc.py); opt-in here
+  python $REPO_DIR/ops/box/patch_flashchord_voc.py $FC >> $J 2>&1 || { log "FlashCHORD VOC patch FAILED" >> $J; exit 1; }
+  export FC_VOC_INERTIA; log "patched FlashCHORD (VOC with the full inertia tensor)" >> $J
 fi
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }

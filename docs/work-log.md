@@ -1997,3 +1997,33 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (logs: `det rules f0 … barred by reach`); reference QA chose variant mc on both (wrist p95 ep35 29 mm, ep3 41 mm).
   Training speed ≈ 29k env steps/s on both spoon episodes (ep35's earlier stock run: 28k/s) → ≈ 2.4 h per seed;
   seed-42 results ≈ 09:10 UTC, final ≈ 11:45 UTC; ≈ $15 for both boxes. Credit $23.02.
+
+### 12:05–13:10 TRT — spoon rehearsal, seed 42: both at the floor; root cause found (VOC explodes the spoon)
+- Seed 42 results (FDR + detection rules + capped lead-in, 7 official evaluations each, sim_vs_ref vs our reference):
+  ep3 mean 0.410 (floor 0.439) → harmful; ep35 mean 0.105 (floor 0.112) → harmful. In both rollouts no object moves:
+  ep3 pot ≤ 0.4 cm and spoon ≤ 0.3 cm (reference lifts them 8.8 and 28.7 cm), ep35 spoon ≤ 1.8 cm (reference 23.5 cm).
+  Seed 43 started 09:04 / 09:10 UTC on both boxes.
+- Ruled out (ep3 reference, no ground truth): contact labels are right (MANO contacts right hand → spoon 246 frames from
+  f28, left hand → pot 221 frames from f50); reference robot tips within 1.5 cm of the spoon (3–4 tips) f48–f264
+  (`scratchpad lift_check.py`); the reference hand does not pass through the table before f27 (max 1.8 cm fingertip
+  depth later, while pinching the spoon on the table); started mid-grasp with zero action the hand holds the spoon
+  (sim–ref ≤ 0.3 cm over 40 steps). The rollout video from render_rollout.sh is not the evaluator rollout:
+  view_policy auto-resets (frames 0, 30, 60, 90 are identical), so it showed the right hand parked at its start pose.
+- **Root cause (measured):** `tools/replay_f0.py` (training env, frame 0, zero action, no termination) — the spoon
+  explodes with the virtual object controller (VOC) on: 1.9 m off at frame 3 on CPU, NaN after; on the GPU box 1e8 m at
+  frame 30 and it throws the right hand (1.5 m) and the pot (46 cm). VOC 0: stable (≤ 0.6 cm). Cause: FlashCHORD's VOC
+  converts the desired angular acceleration into a torque with one scalar, the MEAN of the inertia diagonal. The spoon
+  (our mesh, 0.3 kg placeholder mass) has principal inertias 0.46 / 25.8 / 26.0 e-4 kg m²: mean/min = 38, so the long
+  axis gets 38× the intended gains (effective damping 1530 1/s); at the 10 ms training substep (20 fps × 5) explicit
+  damping diverges above VOC ≈ 0.13 → the first four curriculum stages (VOC 1.0 → 0.25, ≈ 64M of 250M steps) train on
+  exploding spoon episodes. Other eval objects: mean/min 1.4–2.9 (fine) except the dish rack 6.4 (marginal at VOC 1.0).
+- Fix (training only; the evaluator runs VOC 0): `ops/box/fc_v2d_voc.py` + `patch_flashchord_voc.py`, torque
+  R I Rᵀ α with the full body-frame inertia (the documented acceleration-level gains on every axis). Hooked through
+  `FC_VOC_INERTIA`, default on in `lib.sh fc_patches` (auto_runs), opt-in in hard_ab. Local test, ep3, zero action
+  from frame 0, patched VOC 1.0 / 0.5 / 0.25: no explosion; the spoon follows the reference within 2–10 cm to
+  frame 120 (the intended early-curriculum behaviour).
+- Hypothesis to falsify: with the fix, seed 42 on ep3/ep35 moves the spoon (sim_vs_ref clearly above the floor). If it
+  still sits at the floor, VOC was not the main cause (next suspects: grasping a flat 2-cm spoon off the table,
+  termination at 10 cm object error during the lift).
+- Credit $19.82 at 10:10 UTC. Seed 43 on both boxes is training with the bug; asked the owner whether to restart both
+  boxes on the fix (one seed each ≈ 2.7 h ≈ $7.5).

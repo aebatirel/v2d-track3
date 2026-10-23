@@ -35,12 +35,20 @@ self_destroy() {  # $1 = reason. Save what exists first (CLAUDE.md), then destro
 # FlashDexRetarget-style training rewards (2026-10-23 A/B, results/e2e/fdr_20261023: four-run mean 0.830 vs 0.753).
 # FDR=1 (the default since the owner's decision, 2026-10-23; FDR=0 for stock FlashCHORD) sets the reward flags and the
 # training overrides; fc_patches applies the opt-in FlashCHORD patches that the
-# environment asks for (ops/box/patch_flashchord.py, ops/box/patch_flashchord_fdr.py). $1 = job log.
+# environment asks for (ops/box/patch_flashchord.py, ops/box/patch_flashchord_fdr.py) and the VOC inertia fix
+# (ops/box/patch_flashchord_voc.py, on unless FC_VOC_INERTIA=0). $1 = job log.
 FDR_TRAIN_ARGS="curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2"
 fc_patches() {
   local J=$1 FCD=/content/v2d/robotic_grounding/flash_chord
   if [ "${FDR:-1}" = 1 ]; then                              # default since 2026-10-23 (owner); FDR=0 = stock rewards
     export FC_FDR_OBJ=${FC_FDR_OBJ:-1} FC_FDR_TIPS=${FC_FDR_TIPS:-1} TRAIN_ARGS="$FDR_TRAIN_ARGS ${TRAIN_ARGS:-}"
+  fi
+  # full-inertia virtual object controller (bug fix, default since 2026-10-23; FC_VOC_INERTIA=0 = stock): the stock
+  # scalar inertia makes the spoon explode in the VOC > 0.13 curriculum stages (ops/box/fc_v2d_voc.py)
+  export FC_VOC_INERTIA=${FC_VOC_INERTIA:-1}
+  if [ "$FC_VOC_INERTIA" != 0 ]; then
+    python $REPO_DIR/ops/box/patch_flashchord_voc.py $FCD >> $J 2>&1 || { log "FlashCHORD VOC patch FAILED" >> $J; return 1; }
+    log "patched FlashCHORD (VOC with the full inertia tensor)" >> $J
   fi
   if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ]; then
     python $REPO_DIR/ops/box/patch_flashchord.py $FCD >> $J 2>&1 || { log "FlashCHORD patch FAILED" >> $J; return 1; }
