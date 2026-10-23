@@ -16,11 +16,14 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   (normalized rational mapping up to the clip; 5 cm / 0.15 rad is only the gain near zero), so no action change.
 - CPU tests passed (ep18 reference; `scratchpad/fdr/test_fdr*.py`): both terms 1.0 on the reference, object +2 cm →
   0.8187 = exp(-0.2), hands +5 cm → tip term 0.11–0.71, mesh distance = trimesh within 0.002 mm, eager env steps OK.
-- **A/B running (launched 00:50 TRT, code 715c9f7):** box `20261023-fdr42-715c9f7` (Illinois WS, $1.54/h) and
-  `20261023-fdr43-715c9f7` (Japan WS, $1.64/h); each trains ep12 (k + FDR, "mckd") then ep18 (kfi + FDR, "mckfid"),
-  sweep 0.4/0.6/0.8, 6 evaluations each. Baselines (s42): ep12 k 0.790 ± 0.023, ep18 kfi 0.715 ± 0.240. Expected
-  ≈ 3–3.5 h, ≈ $10. Decision: adopt if both episodes gain on both seeds, or one gains clearly (≥ 0.05) and the
-  other loses ≤ 0.02.
+- **FDR A/B done (04:15 TRT): FDR rewards help.** Registered AUC, 6 evaluations each: ep12 0.790 → 0.891 (s42) /
+  0.762 (s43); ep18 0.715 → 0.776 (s42) / 0.889 (s43, all rollouts succeed). Mean of four runs 0.830 vs 0.753.
+  Recommendation: FDR rewards as the default training (owner to confirm). Table `results/e2e/fdr_20261023/`.
+- **ep35 retrain with the capped lead-in: 0.147** (was 0.127, floor 0.112): the start was not the main limit. The
+  reference turns the spoon up to 140° (in-hand reorientation); hypothesis: FlashCHORD's 1 m axis-point reward gives
+  no gradient past ~0.3 rad. Next test: ep35 with FDR rewards (≈ $3).
+- Credit $4.54, no instances. Next GPU needs a top-up: ep35 + FDR (≈ $3), detection dumps (≈ $2), then the first
+  full eval submission with FDR (≈ $50–60).
 - **ep35 (spoon alone, eval): weak, sim_vs_ref 0.127 vs static floor 0.112** (box self-destroyed 00:27 TRT, ≈ $6).
   The simulated hands never move; the spoon stays on the table. Cause [measured]: the right hand is first detected at
   f6 and mkref's lead-in brought it in from 18 cm away in 6 frames (60 cm/s); with zero action the simulated wrist

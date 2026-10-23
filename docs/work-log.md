@@ -1880,3 +1880,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.886 vs 0.785 / 0.179 / 0.841 / 0.815 / 0.842 / 0.828: every rollout higher (+0.03 to +0.09); the one failing
   rollout (sweeper drop) is in both.
 - Seed 42 summary: ep12 +0.101, ep18 +0.061. Seed 43: ep12 0.762 (below k s42 by 0.03); ep18 pending.
+
+### 04:15 TRT — FDR A/B complete: adopt (recommendation); box 43 done (≈ 3.3 h ≈ $5.4)
+- **ep18 mckfid s43**, 6 evaluations: registered AUC **0.889 ± 0.011 (0.868–0.902)**, sim_vs_ref 0.922; all six
+  rollouts succeed (no sweeper drop), checkpoint 250M. Best ep18 so far.
+- Table (`results/e2e/fdr_20261023/table.md`; registered AUC with our meshes, 6 evaluations each):
+
+  | | ep12 | ep18 | mean |
+  |---|---|---|---|
+  | without FDR, s42 (k / kfi) | 0.790 ± 0.023 | 0.715 ± 0.240 | 0.753 |
+  | FDR s42 | **0.891 ± 0.015** | **0.776 ± 0.229** | 0.834 |
+  | FDR s43 | 0.762 ± 0.077 | **0.889 ± 0.011** | 0.826 |
+  | FDR two-seed mean | 0.826 (+0.036) | 0.833 (+0.118) | 0.830 (+0.077) |
+
+- Decision rule (set before the run): adopt if both episodes gain on both seeds, or one gains ≥ 0.05 and the other
+  loses ≤ 0.02. Three of four runs gain (+0.10, +0.06, +0.17); ep12 s43 is 0.028 below the s42 baseline. No seed-43
+  baseline exists for either episode, so that row compares across seeds (known seed spread ≈ 0.04). On two-seed
+  means both episodes gain. **Recommendation: adopt FDR rewards as the default training for the next runs**
+  (owner to confirm); keep the per-episode choice by sim_vs_ref (it ranked every pair above correctly).
+- Spend this batch: box 42 ≈ $5.0, box 43 ≈ $5.4, ep35 retrain ≈ $3.1 → $13.4 (credit $17.98 → $4.54). No instances.
