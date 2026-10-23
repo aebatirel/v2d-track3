@@ -74,6 +74,8 @@ def main():
     p.add_argument('--mcp_first', type=int, default=0, help='close MCP/knuckle joints first, IPs second, thumb last')
     p.add_argument('--wrap_where_held', type=int, default=0, help='1: wrap only where the human holds the narrow part '
                    '(MANO contacts); elsewhere (e.g. a spoon bowl) keep the human grasp + squeeze')
+    p.add_argument('--held_tol', type=float, default=0.08, help='human hold within this distance (m) of the narrow part '
+                   'counts as holding the handle (eval ep35: right hand 3-6 cm from it, left hand on the bowl 17-21 cm)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -150,7 +152,7 @@ def main():
             if pts:
                 c0_ = V.mean(0); ax_ = np.linalg.svd(V - c0_, full_matrices=False)[2][0]
                 _, _, _, rng_, _ = wg.handle_geometry(V, c0_); s_med = float(np.median((np.vstack(pts) - c0_) @ ax_))
-                held_on_narrow = rng_[0] - 0.02 <= s_med <= rng_[1] + 0.02
+                held_on_narrow = rng_[0] - a.held_tol <= s_med <= rng_[1] + a.held_tol
         if a.wrap and sv[0] / max(sv[1], 1e-9) >= a.wrap_ratio and held_on_narrow:   # elongated: wrap on the handle
             bodies, pb, pl = cr.hand_geometry(m, side); bq = fk(qref[g])
             knuckles = np.mean([bq[bodies[f'{side}_{fn}_PP'], :3] for fn in wg.FINGERS], 0)
