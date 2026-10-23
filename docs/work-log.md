@@ -2048,3 +2048,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   → seed 42 ≈ 11:00 UTC, both seeds + evaluations ≈ 12:40 UTC, ≈ $8.5 for the two boxes instead of ≈ $15.
   (Side note for later: line 1828 records the dish-rack episode training at 22.7k/s; the rack's inertia ratio 6.4
   is marginal for stock VOC 1.0, so the fix may speed that up as well — unmeasured.)
+
+### 12:48 TRT (09:48 UTC) — owner: "clearly the hands and objects are not placed relatively correct" — measured
+- New diagnostics: `tools/trace_rollout.py` (records every body pose of a rollout played like the evaluator: the trained
+  policy via view_policy, or zero residual action) and `tools/hand_object_gap.py` (distal-phalanx origins to the object
+  surface; DP origins coincide sim vs reference to 0.0 mm at reset). Tables `results/e2e/spoon_20261023/ep*_hand_spoon_gap.txt`.
+- **The data places hand and spoon consistently:** reference right fingers within ≈ 1 cm of the spoon surface (3–5 DP
+  origins within 3 cm) through the grasp (ep3 f40–f260, ep35 f25–f325).
+- **Zero action (the reference played in physics, no policy):** right wrist 1–3 cm from the reference, fingers 2–5 cm;
+  ep35 f25: 4 fingers within 3 cm of the spoon (gap 1.5 cm); ep3 f40: 3.3 cm. The spoon is not gripped and stays on
+  the table (moves ≤ 3 cm) while the reference lifts it.
+- **The trained seed-42 policies (stock VOC) pull the hands away:** by f20–25 the right wrist is 36–43 cm from the
+  reference and stays 26–39 cm away all episode; fingers never closer than 16 cm (ep3) / 26 cm (ep35) to the spoon.
+  So the "drift" in the videos is learned behaviour, not misplacement. Consistent with training in the exploding-spoon
+  simulator (near the spoon = violent impulses, early termination, −100); both chosen checkpoints come from the VOC
+  stages (ep3 70M, stage 4; ep35 50M, stage 3). Test: the fixed runs should stay near the reference and touch the spoon.
+- 09:48 UTC: fixed ep3 training at 17 %, 55k steps/s, ETA 1 h 02 min.
