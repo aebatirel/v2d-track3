@@ -2368,3 +2368,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `export EVERY=2; PAIRS="24:20261021-auto24-966eb96:mcs 12:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh;
   PAIRS="18:20261021-auto18-966eb96:mc 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh`. Estimate
   ≈ 2.4–2.8 h ≈ $4.2–4.9 (credit $9.06). Self-destroys after pushing.
+- Round 1 results (box `20261023-glockpub-0f7e3a7`; registered AUC vs mocap with our meshes, 5 official evaluations
+  of the checkpoint chosen by sim_vs_ref; no ground truth used for any choice):
+  - **ep12 (cup onto rack): 0.910 ± 0.023 (0.867–0.930)** at 70M, sim_vs_ref 0.926 — best ep12 so far (FDR s42 at
+    250M 0.891, s43 0.762; k s42 0.790). Zero action 0.602 (floor 0.605): the snapped human grasp does not carry the
+    cup alone; the fine-tune does it within 70M (curve 0.53 / 0.57 / 0.66 / 0.93 at 10/30/50/70M, still rising).
+    Training log full of "nefc overflow - please increase njmax" (MuJoCo constraint buffer 512): some contacts dropped.
+  - **ep24 (boards): 0.202 ± 0.072** at 30M (curve 0.095 / 0.165 / 0.072 / 0.078) — below the floor 0.229 and our
+    earlier 0.307. Zero action 0.219 = floor. Expected: the slide-to-the-edge-then-lift task has no grasp at the start
+    (the board lies flat); the recipe has no slide primitive.
