@@ -1,0 +1,527 @@
+[
+ {
+  "ckpt_M": 10,
+  "sim_vs_ref": 0.3566,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.9,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 1.1,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.14,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 20,
+  "sim_vs_ref": 0.3658,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 1.2,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.2,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 2.5,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.26,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 30,
+  "sim_vs_ref": 0.369,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.28,
+   "moves_from": 47,
+   "lost_at": 52,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 40,
+  "sim_vs_ref": 0.3822,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.9,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 0.3,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.26,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 50,
+  "sim_vs_ref": 0.391,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.9,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 3.4,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.14,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 60,
+  "sim_vs_ref": 0.3885,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 1.0,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 0.7,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.3,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 70,
+  "sim_vs_ref": 0.4071,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 0.7,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.26,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 80,
+  "sim_vs_ref": 0.4026,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.7,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 1.6,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.15,
+   "moves_from": 47,
+   "lost_at": 53,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 90,
+  "sim_vs_ref": 0.3741,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.0,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 22.1,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.15,
+   "moves_from": 47,
+   "lost_at": 105,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 100,
+  "sim_vs_ref": 0.3942,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.2,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 19.9,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.27,
+   "moves_from": 47,
+   "lost_at": 105,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 110,
+  "sim_vs_ref": 0.3475,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 4.4,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": 122,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 20.6,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.27,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 120,
+  "sim_vs_ref": 0.3854,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.9,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 32.1,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.28,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 130,
+  "sim_vs_ref": 0.4022,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.5,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 22.6,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.29,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 140,
+  "sim_vs_ref": 0.313,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 26.2,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": 169,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 27.1,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.29,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 150,
+  "sim_vs_ref": 0.4444,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.8,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.31,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 23.0,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.29,
+   "moves_from": 47,
+   "lost_at": 107,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 160,
+  "sim_vs_ref": 0.3873,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.5,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 22.8,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.29,
+   "moves_from": 47,
+   "lost_at": 108,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 170,
+  "sim_vs_ref": 0.4396,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 4.3,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.42,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 26.0,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.27,
+   "moves_from": 47,
+   "lost_at": 107,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 180,
+  "sim_vs_ref": 0.3079,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 2.1,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": 197,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 21.2,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.3,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 190,
+  "sim_vs_ref": 0.3817,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.7,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 20.7,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.3,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 200,
+  "sim_vs_ref": 0.3314,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 5.2,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.2,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 20.3,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.29,
+   "moves_from": 47,
+   "lost_at": 106,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 210,
+  "sim_vs_ref": 0.3284,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 5.5,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 25.7,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.3,
+   "moves_from": 47,
+   "lost_at": 109,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 220,
+  "sim_vs_ref": 0.3774,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 3.1,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": 280,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 22.1,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.3,
+   "moves_from": 47,
+   "lost_at": 108,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 230,
+  "sim_vs_ref": 0.3619,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 6.6,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.27,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 18.5,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.11,
+   "moves_from": 47,
+   "lost_at": 61,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 240,
+  "sim_vs_ref": 0.4386,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.5,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 22.7,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.32,
+   "moves_from": 47,
+   "lost_at": 108,
+   "frames": 313
+  }
+ },
+ {
+  "ckpt_M": 250,
+  "sim_vs_ref": 0.4105,
+  "floor": 0.4388,
+  "white_pot": {
+   "lift_cm": 0.9,
+   "ref_lift_cm": 8.3,
+   "within3cm": 0.21,
+   "moves_from": 66,
+   "lost_at": null,
+   "frames": 313
+  },
+  "wooden_spoon": {
+   "lift_cm": 21.7,
+   "ref_lift_cm": 27.5,
+   "within3cm": 0.31,
+   "moves_from": 47,
+   "lost_at": 107,
+   "frames": 313
+  }
+ }
+]

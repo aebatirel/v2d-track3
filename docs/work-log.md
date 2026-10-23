@@ -2113,3 +2113,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   move into the pot). Candidate levers (not yet tested): squeeze targets + wrist feed-forward in the reference (note 23),
   later checkpoints / longer training, and the placeholder mass (0.3 kg vs ≈ 60 g for an 85 cm³ wooden spoon; the soft
   wrist sags ≈ 12 cm under 0.3 kg) — a modelling choice for the owner.
+
+### 14:05 TRT (11:05 UTC) — owner: "it picks it up but drops it; how did training progress?" — checkpoint curves
+- `tools/ckpt_curve.sh` + `ckpt_curve_summary.py`: one official evaluation per saved checkpoint (25 per run, 4 at a
+  time next to the seed-43 training), scored vs our reference, with lift and "lost at" (first frame > 10 cm off the
+  path after the reference starts moving the object). `results/e2e/spoon_20261023/ep*_s42_vocfix_ckpt_curve.json`.
+- Both runs learn in two steps and then plateau (curriculum VOC: 0.1 at 64–79M, 0.05 at 79–93M, 0 from 123M, frame-0
+  starts from 200M):
+  - 10–60M: no lift (ep35 spoon lost at f32, ep3 at f53, where the reference starts lifting).
+  - 70–90M, as VOC drops to 0.1–0.05: the pick-up appears (ep35 lift 6 → 14 → 30 cm; ep3 22 cm at 90M).
+  - 90–250M: flat. ep35 lifts 18–30 cm and loses the spoon at f141–147 in every checkpoint; ep3 lifts 20–32 cm and
+    loses it at f105–109 (one at f61). Scores fluctuate (ep35 0.28–0.42; ep3 0.31–0.44, floor 0.439) without trend.
+- Reading [I]: 160M steps after the pick-up did not move the drop point → longer training of this setup is unlikely to
+  fix the hold (the 400M test is now low value); the pick-up itself is learned by ~90–120M (shorter, faster-decaying
+  schedules may reach it sooner). The drop is tied to one moment of the motion (ep3: carrying the spoon into the pot;
+  ep35: the upright turn / hand change).
+- Ruled out for ep3: the reference spoon path does not touch the pot's collision pieces (31 CoACD hulls) nor its mesh
+  on frames 60–240 (0 points inside; `tools/pot_hull_check.py`).
