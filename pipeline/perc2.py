@@ -17,6 +17,8 @@ centroid) plus half-resolution depth and image, for offline replay of detection 
 DET_DUMP=0 turns it off. DET_VERIFY=N adds pipeline/perc.py's render-and-compare check on each object's top N
 proposals to the dump (off by default). DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
 depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
+Detection rules (2026-10-23, pipeline/det_rules.py, chosen on public episodes): reach gate, size term, Grounding
+DINO term; DET_RULES=0 restores the earlier rule; DET_LAM_S / DET_REACH / DET_LAM_G override.
 """
 import os, sys, json, time, importlib
 import numpy as np, cv2, torch, trimesh
@@ -260,18 +262,55 @@ def verify_scores(k, props, S):
                 log('verify failed', n, int(j), repr(e))
     log('verify', f'f{k}', {f'{names[a]}#{int(j)}': [round(float(V[a, j]), 3), int(Vm[a, j])] for a in range(len(names)) for j in np.nonzero(np.isfinite(V[a]))[0]})
     return V, Vm
+import det_rules                                                      # shared with tools/det_replay.py (2026-10-23)
+DET_RULES = os.environ.get('DET_RULES', '1') == '1'                 # 0: the rules before 2026-10-23 (reproduce old runs)
+R_LAM_S = float(os.environ.get('DET_LAM_S', det_rules.LAM_S)) if DET_RULES else 0.0
+R_REACH = (None if os.environ.get('DET_REACH', str(det_rules.REACH)) in ('none', '0') else float(os.environ.get('DET_REACH', det_rules.REACH))) if DET_RULES else None
+R_LAM_G = float(os.environ.get('DET_LAM_G', det_rules.LAM_G)) if DET_RULES else 0.0
+_GD = {}
+def color_frame(k):
+    """Camera-a (colour) frame paired with stereo frame k (k + A_OFFSET), RGB; None when missing."""
+    cap = cv2.VideoCapture(f'{VD}/ep{EP}_a.mp4'); f = None
+    for _ in range(k + det_rules.A_OFFSET + 1):
+        ok, f = cap.read()
+        if not ok: return None
+    return cv2.cvtColor(f, cv2.COLOR_BGR2RGB)
+def grounding(k, names_):
+    """Grounding DINO boxes per roster name on the colour frame of stereo frame k; None if unavailable."""
+    try:
+        if 'm' not in _GD:
+            _GD['m'] = det_rules.GroundingDino('cuda'); _GD['cam'] = det_rules.make_cam(f'{D}/calib.json', R1)
+        im = color_frame(k)
+        return None if im is None else _GD['m'](im, names_)
+    except Exception as e:
+        log('grounding unavailable (term off):', repr(e)); _GD['m'] = None; return None
 def detect(k):
     """Proposals, scores and the object -> proposal choice on frame k (frame 0 in the pipeline)."""
     img, dep = rgb(rc[k]), depths[k]
     props = [m['segmentation'] for m in gen.generate(img) if m['area'] >= 400]
     PD = desc([crop(img, m) for m in props])
     pint = np.array([img[m].mean() for m in props]); pext = np.array([extent3d(m, dep) for m in props])
-    S = np.full((len(names), len(props)), -10.0); SIM = np.zeros((len(names), len(props)))
+    ero = np.ones((5, 5), np.uint8)
+    pext_e = np.array([extent3d(cv2.erode(m.astype(np.uint8), ero).astype(bool), dep) for m in props])
+    cen = np.stack([centroid3d(m, dep) for m in props]) if props else np.zeros((0, 3))
+    near = det_rules.reach_ok(cen, R_REACH)
+    S0 = np.full((len(names), len(props)), -10.0); S = S0.copy(); SIM = np.zeros((len(names), len(props))); oks = []
     for a, n in enumerate(names):
         Tn, tint = TPL[n]; sim = (PD @ Tn.T).topk(min(5, len(Tn)), dim=1).values.mean(1).cpu().numpy(); SIM[a] = sim
         ext = EXT[n]; ok = (pext > 0.3 * ext) & (pext < 1.3 * ext)
-        S[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)
-        log('det', f'f{k}', n, 'ext', round(ext, 3), 'tint', round(tint), [(int(j), round(S[a, j], 3), round(pext[j], 3), round(pint[j])) for j in np.argsort(-S[a])[:4]])
+        S0[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)               # the rule before 2026-10-23
+        oks.append(ok & near)
+        S[a] = np.where(oks[a], S0[a] - det_rules.size_penalty(pext_e, ext, R_LAM_S), -10.0)
+    mk = np.stack([m[::2, ::2] for m in props]) if props else np.zeros((0, 1, 1), bool)
+    dh = dep[::2, ::2].astype(np.float16).astype(np.float32); Kh = KR.copy(); Kh[:2] *= 0.5
+    gdet = grounding(k, names) if (R_LAM_G > 0 and props) else None
+    if gdet is not None:
+        G, inside = det_rules.ground_scores(mk, dh, Kh, names, gdet, _GD['cam'])
+        S = np.where(S > -10, S + det_rules.ground_term(G, inside, oks, R_LAM_G), S)
+    log('det rules', f'f{k}', dict(lam_s=R_LAM_S, reach=R_REACH, lam_g=R_LAM_G if gdet is not None else 0.0),
+        'barred by reach', int((~near).sum()), 'of', len(props))
+    for a, n in enumerate(names):
+        log('det', f'f{k}', n, 'ext', round(EXT[n], 3), 'tint', round(TPL[n][1]), [(int(j), round(S[a, j], 3), round(pext[j], 3), round(pint[j])) for j in np.argsort(-S[a])[:4]])
     ri, ci = linear_sum_assignment(-S)
     # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the rack):
     # joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
@@ -293,14 +332,13 @@ def detect(k):
             ri, ci = np.arange(len(names)), np.array(best[1])
     if os.environ.get('DET_DUMP', '1') == '1' and props:     # all proposals + features for offline rule replay
         try:
-            mk = np.stack([m[::2, ::2] for m in props])
-            ero = np.ones((5, 5), np.uint8)
             chosen = np.full(len(names), -1); chosen[ri] = ci
             V, Vm = verify_scores(k, props, S) if DET_VERIFY > 0 else (np.full(S.shape, np.nan), np.zeros(S.shape))
             np.savez_compressed(f'{OUT}/det_f{k}.npz', names=np.array(names), frame=k, masks=np.packbits(mk, axis=-1),
-                                mask_shape=np.array(mk.shape), sim=SIM, score=S, intensity=pint, extent=pext,
-                                extent_eroded=np.array([extent3d(cv2.erode(m.astype(np.uint8), ero).astype(bool), dep) for m in props]),
-                                centroid=np.stack([centroid3d(m, dep) for m in props]), area=np.array([int(m.sum()) for m in props]),
+                                mask_shape=np.array(mk.shape), sim=SIM, score=S0, score_rules=S, intensity=pint, extent=pext,
+                                extent_eroded=pext_e, centroid=cen, area=np.array([int(m.sum()) for m in props]),
+                                rules=np.array([R_LAM_S, R_REACH or 0.0, R_LAM_G if gdet is not None else 0.0]),
+                                gdino=json.dumps(gdet) if gdet is not None else '',
                                 template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
                                 chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
                                 params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm)
@@ -310,7 +348,11 @@ def detect(k):
     return props, S, ri, ci
 if DET_ONLY:                                                          # detection rules replay: dumps only, then stop
     for k in DET_FRAMES:
-        detect(k)
+        props_k, S_k, ri_k, ci_k = detect(k)
+        vis = rgb(rc[k]).copy(); cols = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (0, 255, 255)]
+        for a, j in zip(ri_k, ci_k):
+            m = props_k[j]; vis[m] = (0.5 * vis[m] + 0.5 * np.array(cols[a % 4])).astype(np.uint8)
+        cv2.imwrite(f'{OUT}/masks_f{k}.jpg', vis)
     json.dump({'episode': EP, 'split': SPLIT, 'objects': names, 'det_frames': DET_FRAMES}, open(f'{OUT}/det_only.json', 'w'))
     log('DONE (DET_ONLY)')
     sys.exit(0)

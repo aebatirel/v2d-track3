@@ -52,3 +52,11 @@ fc_patches() {
     log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0}, fingertip bound ${FC_FDR_TIPS:-0}; TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
   fi
 }
+
+# Grounding DINO for perc2's detection rules (pipeline/det_rules.py, 2026-10-23): transformers as in the CPU study;
+# when it cannot be installed the grounding term is off (perc2 logs it) and perception still runs. $1 = job log.
+ensure_gdino() {
+  python -c "import transformers" 2> /dev/null && return 0
+  pip install -q "transformers==5.20.2" >> $1 2>&1 && log "installed transformers 5.20.2 (Grounding DINO)" >> $1 \
+    || log "transformers install FAILED: detection grounding term off" >> $1
+}

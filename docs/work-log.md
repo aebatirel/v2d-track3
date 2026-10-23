@@ -1949,3 +1949,25 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   single-rollout picks are noisier and optimistic (≈ +0.03); sim_vs_ref cannot see a wrong reference (ep3).
   Proposal: two seeds per eval episode (or a second seed only where the first scores < 0.85), keep the better by the
   6-evaluation sim_vs_ref mean; ≈ +0.06 on the A/B, training cost up to ×2.
+
+### 06:45 TRT — detection rules chosen on public episodes and shipped in perc2 (spoon detection fix)
+- Dump job `20261023-detdump-31e9d45` (India Max-Q $1.34/h, ≈ 27 min, $0.60): 20 public episodes × 4 frames, all
+  dumps fine (`scratchpad/det/dumps/`, 39 MB). Replay R0 reproduces the pipeline's choice on 80/80 frames.
+- Baseline vs reference labels (116 instances, 29 at frame 0): **78 right (22 at frame 0)**. Inspection of the frame-0
+  misses (`scratchpad/det/miss_check.jpg`): ep11 and ep22 put *both* objects on small blobs 1.0–1.4 m away at the image
+  edge (people / chairs / floor); their DINOv2 similarity (0.47–0.52) beat the real cups and pitcher on the table
+  (0.26–0.39) and the compact prior favoured the two adjacent blobs. ep23 twin pieces swapped; ep2 pot took pot + lid.
+- Added (public development, after the baseline, logged as such): reach gate {none, 1.0, 0.8 m} (real objects at
+  frame 0: 0.46–0.78 m from the camera). Full grid 1,248 variants (`scratchpad/det/replay_all.json`).
+- Single signals: reach 1.0 → 90 (+12, 0 lost); geometric check → 59 (23 lost: small far blobs fit their templates
+  well); merge → 77 (1 lost); size 0.1 → 78; gate 0.5 → 78 (4 lost); grounding alone → 78 (no change).
+- **Selected by the fixed rule (no instance lost, most hits, simplest among ties): reach 1.0 m + size 0.05 on the
+  eroded extent + grounding 0.2 → 93/116 (24/29 at frame 0), 0 lost** (reach alone 90, + size 92, + grounding 93).
+  The geometric check and the merge rule are not shipped.
+- `pipeline/det_rules.py` (new, shared by perc2 and the replay; the refactored replay reproduces the saved choices on
+  320/320 checks; the Grounding DINO wrapper reproduces the CPU study's boxes exactly). perc2 applies the rules by
+  default (`DET_RULES=0` = the earlier rule; `DET_LAM_S` / `DET_REACH` / `DET_LAM_G` override); the grounding model
+  loads on the GPU box (`ops/box/lib.sh ensure_gdino`, transformers 5.20.2; if it fails the term is off and logged).
+  DET_ONLY writes `masks_f<k>.jpg`. Spoon-specific value cannot be measured on public data (no public spoon).
+- Next: inference-only check of the frozen rule on eval frame 0 of the 10 spoon episodes (DET_ONLY, ≈ $0.6). The rule
+  is frozen by this commit: the check is reported, not used to change the rule (that would be tuning on eval).

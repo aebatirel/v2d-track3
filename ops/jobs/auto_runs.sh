@@ -21,6 +21,7 @@ export TRAIN_LOCK=${TRAIN_LOCK:-/content/train.lock}
 log "auto_runs code $(git -C $REPO_DIR rev-parse --short HEAD), meshes $MESH_DIR" >> $J
 pip install -q fast_simplification >> $J 2>&1 || true            # kit budget_mesh (score_registered --meshes)
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
+ensure_gdino $J                                                  # detection grounding term (pipeline/det_rules.py)
 fc_patches $J || exit 1                                          # FDR=1 / FC_* opt-in patches (ops/box/lib.sh)
 DONE=$ST/auto_done_$$
 (while sleep 60; do

@@ -21,7 +21,10 @@ Rules (applied to the dump's stored features; R0 reproduces the pipeline's own c
          projected into camera a) x score / best score of that prompt; off for an object when any of its gated
          proposals is < 80 % inside camera a (critique 2026-10-22 C15)
 GRID (fixed 2026-10-23 before any replay): LAM_S {0, 0.05, 0.1, 0.2} x DZ {1, 1.5} x EXT_SRC {full, eroded} x gate
-{0.3, 0.5} x merge {off, on} x verify {off, on} x LAM_G {0, 0.1, 0.2, 0.4}.
+{0.3, 0.5} x merge {off, on} x verify {off, on} x LAM_G {0, 0.1, 0.2, 0.4}; reach {none, 1.0, 0.8} m added
+2026-10-23 after the public baseline (ep11 / ep22: both objects assigned to small blobs 1.0-1.4 m away at the image
+edge while the real ones sat on the table ~0.5 m away; a proposal whose 3-D centroid is farther than REACH from the
+head camera is barred: objects a person manipulates are within arm's reach).
 SELECTION (fixed before replay): among variants with no regression (no public instance that R0 gets right turns
 wrong), the most hits; ties go to the simplest (merge off, gate 0.3, smallest LAM_S, DZ 1, full extent). Ship only if
 it beats R0 or equals it with more margin on the decoy check (spoon prompt on public pot/pitcher frames).
@@ -32,9 +35,11 @@ Usage: det_replay.py DUMPROOT OUT.json [LABDIR] [--g GDINO.json --t3 T3]   (DUMP
 import itertools, json, os, sys, glob
 import numpy as np, cv2
 from scipy.optimize import linear_sum_assignment
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'pipeline'))
+import det_rules as R  # noqa: E402  (the rules perc2 ships)
 
 GRID = dict(lam_s=[0.0, 0.05, 0.1, 0.2], dz=[1.0, 1.5], ext_src=['full', 'eroded'], gate=[0.3, 0.5], merge=[False, True],
-            verify=[False, True], lam_g=[0.0, 0.1, 0.2, 0.4])
+            verify=[False, True], lam_g=[0.0, 0.1, 0.2, 0.4], reach=[None, 1.0, 0.8])
 
 
 def unpack(d):
@@ -56,25 +61,7 @@ class Frame:
 
     def ground(self, gdet, cam):
         """Grounding term from camera-a boxes (gdet: {name: {boxes, scores}}); cam: projection helper."""
-        P = len(self.masks); self.G = np.zeros((len(self.names), P)); inside = np.zeros(P); bb = np.zeros((P, 4))
-        fx, cx, cy = self.Kh[0, 0], self.Kh[0, 2], self.Kh[1, 2]
-        for j, m in enumerate(self.masks):
-            v, u = np.nonzero(m & (self.depth > 0))
-            if len(v) < 20: continue
-            sel = np.linspace(0, len(v) - 1, min(len(v), 400)).astype(int); v, u = v[sel], u[sel]; z = self.depth[v, u]
-            X = np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1)
-            uv, ok = cam(X); inside[j] = ok.mean()
-            if ok.sum() >= 10: bb[j] = [*uv[ok].min(0), *uv[ok].max(0)]
-        self.g_inside = inside
-        for a, n in enumerate(self.names):
-            g = gdet.get(n)
-            if not g or not g['scores']: continue
-            best = max(g['scores'])
-            for box, sc in zip(g['boxes'], g['scores']):
-                ix = np.clip(np.minimum(bb[:, 2], box[2]) - np.maximum(bb[:, 0], box[0]), 0, None)
-                iy = np.clip(np.minimum(bb[:, 3], box[3]) - np.maximum(bb[:, 1], box[1]), 0, None)
-                inter = ix * iy; uni = (bb[:, 2] - bb[:, 0]) * (bb[:, 3] - bb[:, 1]) + (box[2] - box[0]) * (box[3] - box[1]) - inter
-                self.G[a] = np.maximum(self.G[a], np.where(uni > 0, inter / np.maximum(uni, 1e-9), 0) * sc / best)
+        self.G, self.g_inside = R.ground_scores(self.masks, self.depth, self.Kh, self.names, gdet, cam)
 
     def extent_mask(self, m):
         """3-D extent of a half-resolution mask (as perc2's extent3d, on the half-resolution depth)."""
@@ -85,20 +72,31 @@ class Frame:
         pr = X @ np.linalg.svd(X, full_matrices=False)[2].T
         return float((np.percentile(pr, 97, 0) - np.percentile(pr, 3, 0)).max())
 
-    def scores(self, lam_s, dz, ext_src, gate, lam_g=0.0):
-        pext = self.ext[ext_src]; S = np.full(self.sim.shape, -10.0)
+    def scores(self, lam_s, dz, ext_src, gate, lam_g=0.0, reach=None):
+        pext = self.ext[ext_src]; S = np.full(self.sim.shape, -10.0); near = R.reach_ok(self.cen, reach)
+        oks = []
         for a in range(len(self.names)):
-            e = self.text[a]; ok = (self.ext['full'] > gate * e) & (self.ext['full'] < 1.3 * e)   # hard gate as perc2
-            pen = lam_s * np.maximum(0.0, np.abs(np.log(np.maximum(pext, 1e-3) / e)) - np.log(dz))
-            g = 0.0
-            if lam_g > 0 and self.G is not None and (self.g_inside[ok] >= 0.8).all():
-                g = lam_g * self.G[a]
-            S[a] = np.where(ok, self.sim[a] - self.lam_i * np.abs(self.pint - self.tint[a]) / 255 - pen + g, -10.0)
+            e = self.text[a]; ok = (self.ext['full'] > gate * e) & (self.ext['full'] < 1.3 * e) & near   # hard gate as perc2
+            S[a] = np.where(ok, self.sim[a] - self.lam_i * np.abs(self.pint - self.tint[a]) / 255 - R.size_penalty(pext, e, lam_s, dz), -10.0)
+            oks.append(ok)
+        if lam_g > 0 and self.G is not None:
+            S = np.where(S > -10, S + R.ground_term(self.G, self.g_inside, oks, lam_g), S)
         return S
 
     def assign(self, S):
         ri, ci = linear_sum_assignment(-S)
-        if self.compact and len(self.names) > 1:
+        if self.compact and len(self.names) == 2:              # vectorised form of the loop below (same choice)
+            K = int(self.K_top); t0, t1 = np.argsort(-S[0])[:K], np.argsort(-S[1])[:K]
+            P0, P1 = self.cen[t0], self.cen[t1]
+            spread = np.linalg.norm(P0[:, None] - P1[None], axis=2)
+            spread = np.where(np.isfinite(spread), spread, 0.0)
+            cost = -(S[0, t0][:, None] + S[1, t1][None]) + self.lam_d * np.maximum(0.0, spread - self.D0)
+            bad = (t0[:, None] == t1[None]) | (S[0, t0][:, None] <= -10) | (S[1, t1][None] <= -10)
+            cost = np.where(bad, np.inf, cost)
+            if np.isfinite(cost).any():
+                i, j = np.unravel_index(np.argmin(cost), cost.shape)
+                ri, ci = np.arange(2), np.array([t0[i], t1[j]])
+        elif self.compact and len(self.names) > 2:
             top = [list(np.argsort(-S[a])[:int(self.K_top)]) for a in range(len(self.names))]
             best = None
             for combo in itertools.product(*top):
@@ -113,7 +111,13 @@ class Frame:
         ch = np.full(len(self.names), -1); ch[ri] = ci; return ch
 
     def part_of(self, a, j, q):
-        """Is proposal q part of object a, whose chosen proposal is j?"""
+        """Is proposal q part of object a, whose chosen proposal is j? (cached: independent of the rule variant)"""
+        key = (int(a), int(j), int(q)); cache = self.__dict__.setdefault('_part_cache', {})
+        if key not in cache:
+            cache[key] = self._part_of(a, j, q)
+        return cache[key]
+
+    def _part_of(self, a, j, q):
         Ma, Mq = self.masks[j], self.masks[q]
         if Mq.sum() == 0: return False
         if (Ma & Mq).sum() >= 0.5 * Mq.sum(): return True
@@ -128,8 +132,8 @@ class Frame:
         after = abs(np.log(max(self.extent_mask(Ma | Mq), 1e-3) / e))
         return after < before
 
-    def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0):
-        S = self.scores(lam_s, dz, ext_src, gate, lam_g)
+    def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None):
+        S = self.scores(lam_s, dz, ext_src, gate, lam_g, reach)
         if verify and self.V is not None and np.isfinite(self.V).any():
             C = np.where(np.isfinite(self.V) & (self.Vm >= 200) & (S > -10), np.nan_to_num(self.V) + 0.5 * S, -10.0)
             if (C > -10).any(axis=1).all():
@@ -173,7 +177,7 @@ def variants():
 
 def vname(v):
     return (f"s{v['lam_s']}_dz{v['dz']}_{v['ext_src']}_g{v['gate']}_{'merge' if v['merge'] else 'nomerge'}"
-            f"_{'verify' if v['verify'] else 'noverify'}_G{v['lam_g']}")
+            f"_{'verify' if v['verify'] else 'noverify'}_G{v['lam_g']}_reach{v['reach']}")
 
 
 if __name__ == '__main__':
@@ -190,15 +194,7 @@ if __name__ == '__main__':
     HAVE['verify'] = any(fr.V is not None and np.isfinite(fr.V).any() for fr in frames.values())
     if '--g' in opt:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import det_score
-        _, (R1, P1, Kc, dc) = det_score.rect_K(opt['--t3'])
-        C = json.load(open(f"{opt['--t3']}/calib.json"))['cameras']
-        ext = lambda n: np.array(C[n]['extrinsics_to_stereo_left'], float)
-        T_a_c = np.linalg.inv(ext('ego_cam_a')) @ ext('ego_cam_c')
-        Ka, Da = np.array(C['ego_cam_a']['intrinsic_matrix'], float), np.array(C['ego_cam_a']['distortion_coefficients'], float)
-        def cam(X):                                              # rectified-left c -> raw c (R1^T) -> camera a pixels
-            Xa = (X @ R1) @ T_a_c[:3, :3].T + T_a_c[:3, 3]; ok = Xa[:, 2] > 0.05
-            uv, _ = cv2.projectPoints(Xa.reshape(-1, 1, 3), np.zeros(3), np.zeros(3), Ka, Da); uv = uv.reshape(-1, 2)
-            ok &= (uv[:, 0] >= 0) & (uv[:, 0] < 2028) & (uv[:, 1] >= 0) & (uv[:, 1] < 1520); return uv, ok
+        _, (R1, P1, Kc, dc) = det_score.rect_K(opt['--t3']); cam = R.make_cam(f"{opt['--t3']}/calib.json", R1)
         G = json.load(open(opt['--g']))['jobs']
         for key, fr in frames.items():
             if key in G: fr.ground(G[key]['det'], cam)
@@ -211,19 +207,32 @@ if __name__ == '__main__':
     res = {}
     for v in variants():
         res[vname(v)] = dict(params=v, choices={k: fr.choose(**v).tolist() for k, fr in frames.items()})
-    if labdir:
-        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import det_score
-        import tempfile
-        base = None
+    if labdir:                                                    # diagnostic scoring (public): per-proposal truth once
+        meta = json.load(open(f'{labdir}/labels_meta.json')); truth = {}
+        for key, fr in frames.items():
+            ep, k = key.split('_'); m = meta.get(ep[2:])
+            lf = f'{labdir}/{key}_lab.npy'
+            if m is None or m['fit_resid_cm_median'] > 2.0 or not os.path.exists(lf): continue
+            lab = np.load(lf); area = fr.masks.reshape(len(fr.masks), -1).sum(1)
+            for a in range(len(fr.names)):
+                vis = int((lab == a + 1).sum())
+                if vis < 50: continue
+                inter = (fr.masks & (lab == a + 1)[None]).reshape(len(fr.masks), -1).sum(1)
+                truth[(key, a)] = inter / np.maximum(area, 1) >= 0.5          # hit = purity >= 0.5
+        base_key = vname(dict(lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None))
         for name, r in res.items():
-            with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as t:
-                json.dump(r['choices'], t)
-            summ, rows = det_score.score(labdir, root, t.name, quiet=True); os.unlink(t.name)
-            r['score'] = summ; r['rows'] = rows
-            if name == vname(dict(lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0)): base = rows
+            hits = {kk: (r['choices'][kk[0]][kk[1]] >= 0 and bool(t[r['choices'][kk[0]][kk[1]]])) for kk, t in truth.items()}
+            r['hits'] = hits; r['n_hits'] = sum(hits.values())
+            r['n_hits_f0'] = sum(v for kk, v in hits.items() if kk[0].endswith('_f0'))
+        base = res[base_key]['hits']; n0 = sum(1 for kk in truth if kk[0].endswith('_f0'))
         for name, r in res.items():
-            right0 = {(x['ep'], x['frame'], x['obj']) for x in base if x['hit']}
-            r['regressions'] = [f"ep{x['ep']} f{x['frame']} {x['obj']}" for x in r['rows'] if x['hit'] is False and (x['ep'], x['frame'], x['obj']) in right0]
-            print(f"{name:40s} hits {r['score']['hits']}/{r['score']['instances']} good {r['score']['good']} regressions {len(r['regressions'])}")
+            r['regressions'] = [f'{kk[0]} {frames[kk[0]].names[kk[1]]}' for kk, v in r['hits'].items() if base[kk] and not v]
+            r['fixed'] = [f'{kk[0]} {frames[kk[0]].names[kk[1]]}' for kk, v in r['hits'].items() if v and not base[kk]]
+        order = sorted(res, key=lambda nm: (-res[nm]['n_hits'], len(res[nm]['regressions'])))
+        print(f'{len(truth)} scored instances ({n0} at frame 0); baseline {res[base_key]["n_hits"]} hits ({res[base_key]["n_hits_f0"]} at frame 0)')
+        for nm in order[:25]:
+            r = res[nm]; print(f"{nm:62s} hits {r['n_hits']:3d} f0 {r['n_hits_f0']:2d} fixed {len(r['fixed']):2d} regressions {len(r['regressions'])}")
+        for r in res.values():
+            r['hits'] = {f'{kk[0]}#{kk[1]}': v for kk, v in r['hits'].items()}
     json.dump(res, open(out, 'w'), indent=1, default=lambda o: o.item() if hasattr(o, 'item') else str(o))
     print('wrote', out)
