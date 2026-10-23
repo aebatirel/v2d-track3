@@ -2577,3 +2577,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - ep12 fill + drop starts 0.869 ± 0.052; ep18 re-plan 0.405 ± 0.016; ep18 drop starts 0.220 ± 0.103.
   - → On easy episodes neither the fill nor recovery training gains (−0.01 to −0.04, within seed noise); neither goes
     into the default recipe without a measured gain.
+- 22:20 UTC: E1's ep18 (`--approach_cm 6`):
+  - The brush stood (0.3°) until f24, then was knocked at f24–27 again: the 6 cm trigger fired at f22, too late, as
+    the reference hand comes in at ~2.5 cm/frame. With `--approach_cm 15` (CPU): approach from f16; the wrist goes
+    monotonically into the backed-off pre-grasp (17.2 cm from the brush origin from f20) instead of dipping to 15.0 cm
+    at f24.
+  - E1 restarted on the same box (hold set; old outputs renamed `*_app6`), `job2.log`, GL_ARGS `--approach_cm 15`.
+- E2 references built from the raw episodes, ≈ 4 min each:
+  - perception vs mocap (diagnostic) ep21 AUC 0.925, ep31 0.950; qa_ref pass;
+  - support_fill: water pitcher and the ep31 sweeper (standing in the rack dividers) not certifiable on the table;
+    left as is (the certificate does not model support by other objects).
