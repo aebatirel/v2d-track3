@@ -2064,3 +2064,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   simulator (near the spoon = violent impulses, early termination, −100); both chosen checkpoints come from the VOC
   stages (ep3 70M, stage 4; ep35 50M, stage 3). Test: the fixed runs should stay near the reference and touch the spoon.
 - 09:48 UTC: fixed ep3 training at 17 %, 55k steps/s, ETA 1 h 02 min.
+
+### 13:25 TRT (10:25 UTC) — owner: non-RL controller → FlashCHORD policy → RL fine-tune; grasp-controller research
+- Two literature agents (grasp controllers; controller→RL handoff) + code checks, summarised in
+  `docs/research/notes/23-grasp-controller-and-rl-handoff.md`. Verified: residual action on the reference (zero action =
+  reference PD targets, ours to write); `robot_support_collision: false` (hands pass through the table, also at
+  evaluation); soft wrist kp 25 N/m sags ≈ 12 cm under the 0.3 kg placeholder mass (note 14).
+- Cost estimate given to the owner (measured: zero-action replay of ep35, 421 frames, 34 s incl. setup on a training
+  GPU): reference-repair controller ≈ $2.5–5 for 20 episodes; SPIDER-style optimiser ≈ $7–35 (papers' speeds) + 1.5–2
+  days; RL as now ≈ $2 per spoon seed after the VOC fix; full eval ≈ $55 one seed / $110 two seeds.
+- Plan (pending the fixed rehearsal): (1) reference repair (lag correction, squeeze, wrist feed-forward), developed on
+  public episodes, gate E0 at zero action; (2) sampling refinement only if needed; (3) RL fine-tune with zeroed actor
+  head + critic burn-in. Awaiting owner go-ahead; nothing launched.
