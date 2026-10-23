@@ -1930,3 +1930,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Grounding DINO tiny running on CPU over the 80 public colour frames (stereo frame k ↔ camera-a frame k+1);
   ≈ 15 s per frame. First frame ep0: "white pot" and "white pot lid" return the same box (lid on the pot) — why the
   term keeps the top 5 and lets the proposal-level assignment decide.
+- 05:25 TRT: owner: "go ahead and test it". Launched the detection dumps: instance 57324909 (RTX PRO 6000 Max-Q,
+  India, $1.34/h; the $1.07 Australia offer had gone), run `20261023-detdump-31e9d45`, code 31e9d45, job
+  `bash ops/jobs/det_dump.sh` (20 public episodes × frames 0 and quarter points, DET_VERIFY=4). Estimate ≈ 1.3 h
+  ≈ $1.75; credit $4.54 (≈ $0.2 inside my $3 margin; watched).
