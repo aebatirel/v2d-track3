@@ -2,7 +2,7 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-23 16:30 TRT (13:30 UTC): **eval ep3 fine-tune 0.96–0.98; ep35 grasp-lock 0.52 at zero action**
+## 2026-10-23 17:25 TRT (14:25 UTC): **eval spoon episodes: ep3 0.968, ep35 0.978 (fine-tuned, mean of 5 evaluations)**
 - Recipe that works on eval ep3: wrap grasp-lock reference (`grasp_lock.py`, wrap on the handle) + wrist ILC + **kp 400
   wrist embodiment (`sharpa_hands_mid`)** + RL fine-tune (FDR + VOC fix). Official evaluator (VOC 0, frame 0), sim_vs_ref
   vs our reference, one evaluation each: 40M 0.965, 60M 0.980, **70M 0.981** (policy committed:
@@ -14,8 +14,14 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   left-hand bowl grasp drops the spoon: 0.07–0.18). Fine-tune of the kp 400 version running (`ft_ep35k.sh`, 70M).
 - Physics-aware design (notes 24): minimal-force squeezes hurt (ep3 0.309); a firm squeeze + anatomy closing order
   helps ep35 but the same rule costs ep3 0.2 at zero action (not isolated yet).
-- Box `20261023-spoon3R-4c31271` hold to 14:30 UTC; `/content/glock` uploaded to the HF store
-  (`runs/20261023-spoon3R-4c31271/glock`).
+- **eval ep35 fine-tune (kp 400 reference, zero action 0.412): 40M 0.979; 5 repeated evaluations mean 0.978 (sd
+  0.002)**; seed 43 reproduces (40M 0.973). ep3 70M 5 repeats mean 0.968 (sd 0.020); ep3 seed 43 at 40M 0.843 (the pot,
+  held by the copied human grasp, is the variable part) → train 70M and select by repeated sim_vs_ref.
+  Policies: `results/e2e/spoon_20261023/ep3_ft_k400_s42_policy_70M.safetensors`, `ep35_ft_k400_s42_policy_40M.safetensors`.
+- Box `20261023-spoon3R-4c31271`: hold expires 14:30 UTC, the watchdog pushes runs/ + results/ and destroys it.
+  `/content/glock` (references, traces, videos) in the HF store `runs/20261023-spoon3R-4c31271/glock`.
+- Next (owner go-ahead + cost needed, Vast top-up likely): the other 8 spoon eval episodes (≈ $12–15 one seed); validate
+  the recipe on public episodes with other objects against ground truth (≈ $6–8); a secure second-hand (bowl) grasp.
 
 ## 2026-10-23 15:15 TRT (12:15 UTC): wrap grasp-lock reference beats RL on ep3; ep35 release being fixed
 - `pipeline/grasp_lock.py` + `pipeline/wrap_grasp.py` + `pipeline/wrist_ilc.py`: a built wrap (power) grasp on the
