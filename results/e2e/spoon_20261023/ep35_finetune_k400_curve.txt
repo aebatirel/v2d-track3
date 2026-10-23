@@ -1,0 +1,11 @@
+  10M  sim_vs_ref 0.943  |  wooden_spoon: lift  21.8 (ref 21.7) in3cm 0.99 lost@None/421
+  20M  sim_vs_ref 0.879  |  wooden_spoon: lift  21.0 (ref 21.7) in3cm 0.93 lost@None/421
+  30M  sim_vs_ref 0.949  |  wooden_spoon: lift  22.5 (ref 21.7) in3cm 1.00 lost@None/421
+  40M  sim_vs_ref 0.979  |  wooden_spoon: lift  21.9 (ref 21.7) in3cm 1.00 lost@None/421
+  50M  sim_vs_ref 0.971  |  wooden_spoon: lift  21.4 (ref 21.7) in3cm 1.00 lost@None/421
+  60M  sim_vs_ref 0.963  |  wooden_spoon: lift  22.4 (ref 21.7) in3cm 1.00 lost@None/421
+  70M  sim_vs_ref 0.961  |  wooden_spoon: lift  22.1 (ref 21.7) in3cm 1.00 lost@None/421
+
+ep35_mq400_zero_action: sim_vs_ref 0.4123
+  10M  sim_vs_ref 0.943  |  wooden_spoon: lift  21.8 (ref 21.7) in3cm 0.99 lost@None/421
+

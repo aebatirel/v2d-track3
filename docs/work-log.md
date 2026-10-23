@@ -2326,3 +2326,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   human bowl grasp does not hold the spoon alone. Single-hand wrap carry stays the best ep35 (0.521).
 - Same anatomy rule on ep3 (kp 400): mq400 0.429, mqf400 0.454 vs 0.658 with the older simultaneous closing →
   the rule that fixes ep35 costs ep3 0.2; which part (MCP-first order, palm press, close 10) is not yet isolated.
+
+### 16:30–16:55 TRT (13:30–13:55 UTC) — **eval ep35 fine-tune: 0.94–0.98**
+- ep3: the kp 25 wrap fine-tune (`ep3wrap-s42`, the old `ft_ep3.sh`, had already launched its training before the
+  script was killed at 12:20; ran in parallel until 13:28) = 0.23–0.42 at 10–110M, spoon not lifted → the kp 400
+  embodiment is essential for the fine-tune. ep3 kp 400 run stopped at 90M (80M 0.924, 90M 0.965).
+- ep35: the kp 25 fine-tune was started then replaced (evidence above) by `ft_ep35k.sh`: reference rebuilt for kp 400
+  (`GL_WRIST_KP=400`, `--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001`, ILC with `EMB=sharpa_hands_mid`;
+  zero action 0.412), fine-tune `embodiment=sharpa_hands_mid`, 70M steps, 62.5k env steps/s alone on the GPU → 18.7 min
+  (13:29:55–13:49:16). Official evaluator per checkpoint: **10M 0.943, 20M 0.879, 30M 0.949, 40M 0.979, 50M 0.971,
+  60M 0.963, 70M 0.961**; spoon within 3 cm 99–100 % of frames, never lost (RL alone 0.337, floor 0.112).
+  Policy 40M committed (`results/e2e/spoon_20261023/ep35_ft_k400_s42_policy_40M.safetensors`, sha256 01a2a4d4…,
+  equal to the evaluator's record). Curve `ep35_finetune_k400_curve.txt`.
+- `/content/glock` uploaded to the HF store (`runs/20261023-spoon3R-4c31271/glock`, commit 17eb7fa).
+- Running: 5 repeated official evaluations each of ep3 70M and ep35 40M (variance), ep35 fine-tuned video.
