@@ -2144,3 +2144,28 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (`embodiments/sharpa_hands.py:56-60`); hands do not collide with the table. To check: contact condim (torsional
   friction), finger PD gains, joint limits.
 - Boxes: no weight test approved → both self-destroy after seed 43 (≈ 12:30–12:45 UTC).
+
+### 14:30–15:05 TRT (11:30–12:05 UTC) — grasp-lock / grasp search on eval ep3 (zero action, evaluator physics, ep3 box GPU)
+- Tools: `pipeline/hold_phases.py` (gaps ≤ 12 frames bridged), `grasp_lock.py` (v3: grasp pose from the best-contact
+  frame, hold from before the object moves, squeeze 0.4 rad on flexion joints, wrist lift as a target-only offset gated
+  by object height), `wrist_ilc.py` (lag correction), `grasp_search.py` (variants as per-world constant residuals, raw
+  action mode, wrist rotation as FlashCHORD's quat_rpy), `tools/trace_rollout.py` / `trace_object_track.py` /
+  `render_trace.py` (close-up renders of recorded rollouts).
+- Results (zero residual action, eval ep3, our reference only):
+  | reference | pot lift (ref 8.3 cm) | spoon lift (ref 27.5 cm) |
+  |---|---|---|
+  | original (mc) | 0.0 | 14.5 then lost (GPU replay) |
+  | grasp-lock v1 (lift baked into the frames: bug) | 0.2 | 0.1 |
+  | v2 (lift = target offset only) | 3.0 | 1.4 |
+  | v2 + wrist ILC (right wrist err 11.4 → 4.3 cm mean, left 7.7 → 3.4) | **6.0, held to f296** | 0.0 |
+  | v3 (grasp from best-contact frame f50: 5 fingers ≤ 5 mm in the reference) + ILC | 3.2 | 1.7 |
+  | v3 with the mid-stiffness wrist (kp 400, `sharpa_hands_mid`) | 3.8 | 0.4 |
+- Grasp search (v3 + ILC, right hand, hold from f35): 150 variants (along ±4 cm, down 0..−2 cm, roll ±30°, squeeze +0/0.3)
+  × 2 trials, then 216 variants adding approach directions (side ±6 cm, from 3 cm below) × 2 trials: **hold rate 0 for
+  every variant** (spoon error 15.3–15.8 cm: it stays on the table).
+- Diagnosis [measured]: (1) close-up render: the copied human grasp lands on the end of the handle with the fingers
+  curled beside / above it, no thumb opposition under the handle; (2) the reference hand target sits ≈ 2 cm below the
+  table top inside the space under the handle, so the simulated hand rests ON the handle (debug: wrist 13–14 cm from its
+  target at f35, identical across along-shift variants); (3) the soft wrist (1 N per 4 cm) lags, but a stiffer wrist
+  alone does not fix the spoon. Next: a real grasp synthesis on the handle (thumb opposite the fingers, contact points
+  on the mesh, finger IK + squeeze), then the same physics search around it.

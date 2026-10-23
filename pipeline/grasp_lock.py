@@ -32,7 +32,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import contact_retarget as cr  # noqa: E402
 from hold_phases import hold_phases  # noqa: E402
 
-WRIST_KP, G = 25.0, 9.81
+WRIST_KP, G = float(os.environ.get('GL_WRIST_KP', 25.0)), 9.81   # GL_WRIST_KP: wrist position kp of the embodiment used
 
 
 def flexion_mask(names):
