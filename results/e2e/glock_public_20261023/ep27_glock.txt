@@ -1,0 +1,16 @@
+## zero action
+floor_vs_ref 0.5785
+zero_action: sim_vs_ref 0.5904
+## curve
+  10M  sim_vs_ref 0.643  |  plastic_dish: lift   1.2 (ref  0.4) in3cm 1.00 lost@None/246  white_pot: lift  29.3 (ref 29.7) in3cm 0.18 lost@130/246
+  30M  sim_vs_ref 0.906  |  plastic_dish: lift   0.2 (ref  0.4) in3cm 1.00 lost@None/246  white_pot: lift  29.7 (ref 29.7) in3cm 0.79 lost@136/246
+  50M  sim_vs_ref 0.956  |  plastic_dish: lift   0.1 (ref  0.4) in3cm 1.00 lost@None/246  white_pot: lift  30.0 (ref 29.7) in3cm 0.89 lost@None/246
+  70M  sim_vs_ref 0.974  |  plastic_dish: lift   0.3 (ref  0.4) in3cm 1.00 lost@None/246  white_pot: lift  29.7 (ref 29.7) in3cm 1.00 lost@None/246
+## chosen checkpoint, 5 official evaluations
+{'rollout': 'r1', 'sim_vs_ref': 0.982, 'auc': 0.9745, 'sp': 1.0, 'mp': 1.0}
+{'rollout': 'r2', 'sim_vs_ref': 0.9789, 'auc': 0.9764, 'sp': 1.0, 'mp': 1.0}
+{'rollout': 'r3', 'sim_vs_ref': 0.9789, 'auc': 0.9737, 'sp': 1.0, 'mp': 1.0}
+{'rollout': 'r4', 'sim_vs_ref': 0.9766, 'auc': 0.9693, 'sp': 1.0, 'mp': 1.0}
+{'rollout': 'r5', 'sim_vs_ref': 0.9766, 'auc': 0.9666, 'sp': 1.0, 'mp': 1.0}
+{"checkpoint": "/content/runs/glock/ep27-s42/policy_70004736.safetensors", "n": 5, "sim_vs_ref": {"mean": 0.9786, "std": 0.002, "min": 0.9766, "max": 0.982}, "auc": {"mean": 0.9721, "std": 0.0036, "min": 0.9666, "max": 0.9764}}
+

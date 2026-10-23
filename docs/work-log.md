@@ -2390,3 +2390,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   axis 5.6 cm, outside narrow part ± 8 cm).
 - Videos (owner): ep12 new vs previous (the new cup ends upright in the rack; this rollout of the previous policy ends
   with the cup on its side, sim_vs_ref 0.948 vs 0.694), ep24 new vs previous (0.221 vs 0.367 this rollout).
+
+### 18:15 TRT (≈ 16:15 UTC) — **public recipe check done** (registered AUC vs mocap, our meshes, 5 evaluations each)
+| episode | NEW recipe (frozen; checkpoint chosen by sim_vs_ref) | previous best (own meshes) | floor |
+|---|---|---|---|
+| ep27 pot into rack | **0.972 ± 0.004** (70M) | 0.942–0.956 | 0.579 (sim) |
+| ep12 cup onto rack | **0.910 ± 0.023** (70M) | 0.891 (FDR s42 250M), 0.762 (s43) | 0.605 (sim) |
+| ep18 sweeper + dust pan | 0.320 ± 0.072 (30M) | **0.889** (FDR s43 250M), 0.776 (s42) | 0.637 |
+| ep24 boards | 0.202 ± 0.072 (30M) | **0.307** | 0.229 |
+- Where an object can be gripped and carried (pot, cup, spoon), the recipe wins with 3.5× fewer steps. It loses on
+  tool use / non-grasp tasks: ep18 (the sweeper is knocked off at f4–8 before it is gripped; base `mc` reference,
+  not the rest-settled `kfid` one the previous best used; copied dust-pan grasp) and ep24 (boards slid to the edge
+  before lifting). Comparison videos sent: ep12, ep24, ep18, ep27 new vs previous (`scratchpad/pub/`). The ep18
+  previous-policy video rollout scored 0.126 sim_vs_ref against the `mc` reference although its 6 official
+  evaluations averaged 0.889 vs mocap (trained on the settled `kfid` reference: overlay/score reference mismatch or
+  a bad rollout; not representative).
+- Summaries `results/e2e/glock_public_20261023/`. Hold released after the videos; box self-destroys.
