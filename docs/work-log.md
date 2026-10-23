@@ -2382,3 +2382,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   250M (0.891), ep18 FDR s43 250M (0.889; fetched from the store with its reference), ep24 mcs 250M (git), ep27 auto
   250M. HOLD set to box-now + 90 min so the round-2 videos are rendered after the job ends (≈ $0.3–0.6); to be released
   as soon as they are downloaded. ep2 / ep21 not included (no own-mesh references; rebuilding them ≈ $0.5–1).
+- Round 2 zero action: ep18 0.239 (floor 0.619), ep27 0.590 (floor 0.579). ep18 diagnosis (zero-action trace): the
+  sweeper moves 8.6 cm in f4–8 while no hand is near it (nearest hand-body origin ≥ 17 cm; the right hand grasps it
+  only at f61) — either the left hand's dust-pan pick-up pushes the dust pan into it, or a start overlap in this older
+  `mc` reference pops it (the previous best ep18 run used the rest-settled `kfid` reference). The copied dust-pan grasp
+  does not lift it without RL (0.4 vs 16.1 cm). The sweeper got the copied grasp, not a wrap (human holds it at
+  axis 5.6 cm, outside narrow part ± 8 cm).
+- Videos (owner): ep12 new vs previous (the new cup ends upright in the rack; this rollout of the previous policy ends
+  with the cup on its side, sim_vs_ref 0.948 vs 0.694), ep24 new vs previous (0.221 vs 0.367 this rollout).
