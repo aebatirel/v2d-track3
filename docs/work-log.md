@@ -1873,3 +1873,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   the rotation error passes ~0.3 rad, so a spoon that turns 140° gives the policy no signal after it falls behind.
   FDR's true-size point match keeps a gradient. Test: ep35 with FDR rewards (≈ $3); falsified if it stays < 0.2.
 - Training logs carry no reward / episode metrics (logging disabled), so learning curves are not available.
+
+### 04:00 TRT — FDR A/B: ep18 seed 42; box 42 done (self-destroyed 01:00 UTC, ≈ 3.2 h ≈ $5)
+- **ep18 mckfid s42**, 6 evaluations: registered AUC **0.776 ± 0.229** (0.265–0.891), sim_vs_ref 0.791; checkpoint
+  200M. Per rollout vs kfi s42 (same reference and settings without FDR): 0.875 / 0.265 / 0.871 / 0.870 / 0.891 /
+  0.886 vs 0.785 / 0.179 / 0.841 / 0.815 / 0.842 / 0.828: every rollout higher (+0.03 to +0.09); the one failing
+  rollout (sweeper drop) is in both.
+- Seed 42 summary: ep12 +0.101, ep18 +0.061. Seed 43: ep12 0.762 (below k s42 by 0.03); ep18 pending.
