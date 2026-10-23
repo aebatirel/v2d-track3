@@ -59,3 +59,17 @@ controller." Two literature agents plus code checks. R = reported (source), I = 
 3. **RL fine-tune:** zero the actor mean's last layer, critic burn-in with the actor frozen, lower initial finger
    noise, 25–50 % controller rollouts in each batch, resets from simulated controller states, checkpoint 0 as a
    fallback; A/B whether VOC is still needed. E1: ep35 2 seeds ≈ $4.
+
+## Results so far (2026-10-23, step 1 built as `grasp_lock.py` + `wrap_grasp.py` + `wrist_ilc.py`)
+- Pinch-style locks (the human finger pose + squeeze) never lifted the spoon (≤ 1.7 cm). The owner asked for a wrap
+  around the handle: built from the collision hulls (axis, radius, grip point from the human knuckles), palm normal
+  closest to the human's, each finger curled to contact + 0.4 rad. Zero action, evaluator physics, sim_vs_ref against
+  our reference (measured): **eval ep3 0.462** (floor 0.439; VOC-fixed RL alone 0.380), spoon lifted 24 cm, 34/36 grasp
+  variants and 8/8 noisy trials hold (slip ≤ 1.7 cm). **eval ep35** single-hand carry 0.205 → 0.267 across release
+  fixes (floor 0.112); the final release still loses the spoon (see the work log).
+- Deviation from the plan: this was developed on the eval spoon episodes, checked with sim_vs_ref only (no ground
+  truth read). The spoon is in no public episode, so its own checks can only be sim_vs_ref. The rules (wrap geometry,
+  release order, single-hand carry) are generic, not per-episode; confirm them on public episodes with elongated
+  objects (sweeper, boards) against ground truth before a submission relies on them.
+- Release lessons (ep35): opening all finger joints at once hooks a thin handle and flicks it; sliding off with the
+  fingers wrapped drags it. Relaxing to the touching pose with the wrist locked keeps it still.
