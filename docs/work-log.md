@@ -2652,7 +2652,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     - **ep39 flat 0.172–0.177: the dust pan is never lifted** (as the copied dust-pan grasp on ep18).
   - Pattern: the grasp-lock recipe is strong on rigid graspable objects (pot, cup, spoon) and fails on plates
     (sweeper, dust pan, boards: the copied clamp does not hold) and on stacked starts.
-- **Standard-recipe check** on ep39 (, Spain .18/h):
+- **Standard-recipe check** on ep39 (**57437630** `20261024-std39-1f306be`, Spain $1.39/h; the $1.18 offer was gone):
   - setup: hard_ab with the ep39 mck reference built tonight, FDR rewards + VOC fix + deployment-exact starts 0.25,
     250M, checkpoint sweep, 5 evaluations; i.e. the ep18 0.889 recipe;
   - question: does it lift the dust pan where the grasp lock cannot? It decides whether the eval run trains both
