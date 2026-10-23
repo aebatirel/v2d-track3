@@ -2076,3 +2076,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Plan (pending the fixed rehearsal): (1) reference repair (lag correction, squeeze, wrist feed-forward), developed on
   public episodes, gate E0 at zero action; (2) sampling refinement only if needed; (3) RL fine-tune with zeroed actor
   head + critic burn-in. Awaiting owner go-ahead; nothing launched.
+
+### 13:47 TRT (10:47 UTC) — owner: "show our reconstructed spoon and hands next to the real video"
+- `tools/ref_overlay_video.py`: draws the reference the simulator follows (object meshes at the reference poses, MANO
+  hands, robot hand) onto camera a, next to the raw frames. Chain: sim world → inv(T_table_from_world) (minus the
+  per-object z snap) → inv(world_T_cam[k]) → camera a via inv(hands_refined T_rect_a) (hands_mp stores rect←a) →
+  Ka/Da; camera-a frame k + a_offset. Check: reference MANO → world equals hands_refined joints (0.0 cm); projected
+  joints vs 2-D detections median 10.1 px (ep3) / 8.6 px (ep35) on a 2028 px image (first attempt with T_rect_a
+  un-inverted: 160–180 px, caught by the check).
+- Eval ep3 / ep35, whole episodes, sent to the owner (reporting only, nothing chosen from it): the spoon and pot meshes
+  sit on the real objects through the episode, including the spoon inside the pot (ep3 f120) and the two-handed
+  handling (ep35); hand skeletons follow the hands; ep35 f0 right hand drawn a few cm above the real hand.
+  Strips `results/e2e/spoon_20261023/ep*_reconstruction_overlay_strip.jpg`.
