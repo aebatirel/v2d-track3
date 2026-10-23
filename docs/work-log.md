@@ -1934,3 +1934,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   India, $1.34/h; the $1.07 Australia offer had gone), run `20261023-detdump-31e9d45`, code 31e9d45, job
   `bash ops/jobs/det_dump.sh` (20 public episodes × frames 0 and quarter points, DET_VERIFY=4). Estimate ≈ 1.3 h
   ≈ $1.75; credit $4.54 (≈ $0.2 inside my $3 margin; watched).
+- 05:35 TRT: Grounding DINO tiny done on the 80 public colour frames (CPU, ≈ 6–15 s per frame;
+  `scratchpad/det/g/gdino_public.json`). Plumbing test with the reference masks as stand-in proposals and depth
+  rendered from the scans (`scratchpad/det/pseudo/`): grounding agreement own mask vs other mask — ep12 cup 0.92 /
+  0.12, rack 0.90 / 0.10; ep27 rack 0.92 / 0.17, pot 0.95 / 0.32; ep21 cup 0.92 / 0.09 but pitcher 0.96 / 0.84 (its box
+  covers the nearby cup); ep2 pot / lid both prefer the lid mask (0.78 / 0.51: lid on the pot). The term separates
+  apart objects, not nested ones → it stays a weighted vote; the public replay sets its weight.
+- Also sent the owner the FDR comparison videos (`scratchpad/vid3/fdr/ep12_fdr_compare.mp4`, `ep18_fdr_compare.mp4`:
+  RGB | before | FDR s42 | FDR s43, frame-synced).
