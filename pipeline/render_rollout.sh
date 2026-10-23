@@ -3,15 +3,18 @@
 # Usage: bash render_rollout.sh <checkpoint> <out_dir> [num_frames]
 # Uses FlashCHORD's view_policy.py with the mp4 viewer backend; needs PYGLET_HEADLESS (no X display on the boxes).
 # Keypoint and contact markers are off (their kernel fails with this warp version); object and wrist axes stay on.
-# It shows the checkpoint's own reference scene from frame 0 with VOC 0, but view_policy reports reset_assist_steps=20,
-# so it can differ slightly from the official evaluator: for looking, not for scoring.
+# 2026-10-23: played like the official evaluator (frame 0 to the end, VOC 0, no reset assist, failure terminations off).
+# Before, view_policy kept the checkpoint's terminations and restarted at frame 0 whenever the wrist or object drifted,
+# so a failing policy looked frozen at its start pose. Still for looking, not for scoring.
 set -u
 CK=$1; OUT=$2; NF=${3:-181}; FC=/content/v2d/robotic_grounding/flash_chord
 mkdir -p $OUT
+EVAL_LIKE="reset.voc_decay_steps=0 reset.always_reset_to_first_frame=true"
+for t in wrist_position object_position object_orientation; do EVAL_LIKE="$EVAL_LIKE termination.$t.enabled=false"; done
 cd $FC && PYGLET_HEADLESS=1 MUJOCO_GL=egl .venv/bin/python scripts/view_policy.py evaluation.checkpoint=$CK \
   viewer.backend=mp4 viewer.headless=true viewer.realtime=false viewer.output_path=$OUT/view.mp4 viewer.num_frames=$NF \
   viewer.width=960 viewer.height=540 markers.keypoints=false markers.contacts=false \
-  "viewer.camera_position=${CAM_POS:-[0.55,-0.45,1.05]}" "viewer.camera_target=${CAM_TGT:-[0.0,0.0,0.65]}" \
+  "viewer.camera_position=${CAM_POS:-[0.55,-0.45,1.05]}" "viewer.camera_target=${CAM_TGT:-[0.0,0.0,0.65]}" $EVAL_LIKE \
   > $OUT/view.log 2>&1 || { echo "render FAILED"; tail -5 $OUT/view.log; exit 1; }
 python - "$OUT" <<'EOF'
 import sys, cv2, numpy as np

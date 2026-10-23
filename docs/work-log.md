@@ -2027,3 +2027,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   termination at 10 cm object error during the lift).
 - Credit $19.82 at 10:10 UTC. Seed 43 on both boxes is training with the bug; asked the owner whether to restart both
   boxes on the fix (one seed each ≈ 2.7 h ≈ $7.5).
+
+### 12:30–12:45 TRT (09:30–09:45 UTC) — restart on the VOC fix (owner: "fix 2"), evaluator-like videos
+- Correction to the entry above: its clock times ran ≈ 40 min fast; the credit reading ($19.82) was at ≈ 09:30 UTC.
+- Stock VOC check (CPU, ep3, zero action from frame 0): VOC 0.25 → spoon 82 m off by frame 60 (explodes once the
+  hand arrives); VOC 0.1 → 13 cm (bounded). Matches the predicted stability limit (≈ 0.13).
+- **Owner: restart with the fix, 2 seeds each (≈ $15).** 09:34 UTC both boxes restarted in place at 8db32a1
+  (`restart_job.sh`, which now also stops `auto_ep.sh`): old runs moved to `/content/{runs,results}/perc2mc_voc0`,
+  logs to `*_voc0.log`; job `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS=<3|35>; bash
+  ops/jobs/auto_runs.sh`. Training processes carry FC_VOC_INERTIA=1, FC_FDR_OBJ=1, FC_FDR_TIPS=1. Seed 42 ≈ 12:10 UTC,
+  final ≈ 15:00 UTC.
+- Owner asked for the whole failed episode, not the misleading video. `tools/render_eval.sh` (view_policy with the
+  failure terminations off, no reset assist, always frame 0, VOC 0) rendered the chosen seed-42 checkpoints (ep3
+  policy_70004736, ep35 policy_50003968) for the full 313 / 421 frames; sent to the owner side by side with the RGB.
+  What they show: the hands move but stay away from the reference wrists and from the objects; nothing is touched
+  (`results/e2e/spoon_20261023/*_strip.jpg`). Consistent with a policy trained on exploding spoon episodes (being near
+  the spoon meant violent impulses and early termination). `pipeline/render_rollout.sh` now renders this way too.

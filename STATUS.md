@@ -2,6 +2,22 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-23 12:45 TRT (09:45 UTC): spoon root cause = VOC explosion; rehearsal restarted on the fix (2 seeds)
+- Rehearsal seed 42 (FDR + detection rules + capped lead-in): **ep3 0.410 (floor 0.439), ep35 0.105 (floor 0.112)**,
+  no object moves in any rollout. Reference, contact labels and the in-hand physics checked out (work log).
+- **Root cause [measured]:** FlashCHORD's virtual object controller (VOC) scales torque by the MEAN inertia; the spoon's
+  long axis has 1/38 of that, so with VOC > ~0.13 (curriculum stages 1.0 → 0.25, ≈ 64M of 250M steps) the spoon
+  explodes in training (zero-action replay from frame 0: 1.9 m off at frame 3 CPU, 1e8 m at frame 30 GPU; stock VOC
+  0.25 → 82 m by frame 60, 0.1 → 13 cm). Fix `ops/box/fc_v2d_voc.py` (torque R I Rᵀ α), default on via
+  `FC_VOC_INERTIA` in `lib.sh fc_patches`; patched VOC 1.0/0.5/0.25 stays stable. Training only (evaluator VOC 0).
+- **Owner (≈09:30 UTC): restart with the fix, 2 seeds each** (≈ $15). Both boxes restarted in place 09:34 UTC at
+  8db32a1 (`restart_job.sh`; old runs kept as `/content/{runs,results}/perc2mc_voc0`, logs `*_voc0.log`):
+  `export SPLIT=eval CONTACT_RETARGET=1 RETRIES=0 SEEDS_MIN=2 EPS=<3|35>; bash ops/jobs/auto_runs.sh`.
+  Seed 42 ≈ 12:10 UTC, final ≈ 15:00 UTC. Credit $19.82 at ≈ 09:30 UTC.
+- The rollout videos from `render_rollout.sh` were misleading (view_policy ends episodes on drift and restarts at
+  frame 0, the evaluator does not). Evaluator-like renders of the failed seed-42 policies running
+  (`scratchpad/render_eval.sh`: failure terms off, VOC caps 0, no reset assist).
+
 ## 2026-10-23 00:50 TRT: FlashDexRetarget-style rewards ready for a 2-episode x 2-seed A/B
 - Owner (22:xx TRT 10-22): "start developing the flashdexretarget version"; test on a few public episodes, per-episode
   training, ≈ $10 (ep12 + ep18, seeds 42 / 43); if acceptable, go to the full 20.
