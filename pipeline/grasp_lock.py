@@ -72,6 +72,8 @@ def main():
     p.add_argument('--withdraw', type=float, default=0.06)
     p.add_argument('--palm_clear', type=float, default=wg.CLEAR, help='wrap: palm-handle clearance (m); < 0 presses')
     p.add_argument('--mcp_first', type=int, default=0, help='close MCP/knuckle joints first, IPs second, thumb last')
+    p.add_argument('--wrap_where_held', type=int, default=0, help='1: wrap only where the human holds the narrow part '
+                   '(MANO contacts); elsewhere (e.g. a spoon bowl) keep the human grasp + squeeze')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -140,7 +142,16 @@ def main():
         qpre = np.clip(qf - a.preopen * flex[side], lo, hi); back = 0.0; wrap_info = None
         V = hull_vertices(j)
         sv = np.linalg.svd(V - V.mean(0), compute_uv=False)
-        if a.wrap and sv[0] / max(sv[1], 1e-9) >= a.wrap_ratio:       # elongated: build a wrap grasp on the handle
+        held_on_narrow, s_med = True, None
+        if a.wrap_where_held:                                      # where does the human hand hold it? (our MANO contacts)
+            Pc = np.array(t.column(f'mano_{side}_object_contact_positions')[0].as_py(), float).reshape(T, -1, 3)
+            pid = np.array(t.column(f'mano_{side}_object_contact_part_ids')[0].as_py()).reshape(T, -1)
+            pts = [OR[j][f].inv().apply(Pc[f][pid[f] == j + 1] - OP[f, j]) for f in range(s0, s1) if (pid[f] == j + 1).any()]
+            if pts:
+                c0_ = V.mean(0); ax_ = np.linalg.svd(V - c0_, full_matrices=False)[2][0]
+                _, _, _, rng_, _ = wg.handle_geometry(V, c0_); s_med = float(np.median((np.vstack(pts) - c0_) @ ax_))
+                held_on_narrow = rng_[0] - 0.02 <= s_med <= rng_[1] + 0.02
+        if a.wrap and sv[0] / max(sv[1], 1e-9) >= a.wrap_ratio and held_on_narrow:   # elongated: wrap on the handle
             bodies, pb, pl = cr.hand_geometry(m, side); bq = fk(qref[g])
             knuckles = np.mean([bq[bodies[f'{side}_{fn}_PP'], :3] for fn in wg.FINGERS], 0)
             c, ax, r, rng, tpos = wg.handle_geometry(V, OR[j][g].inv().apply(knuckles - OP[g, j]))
@@ -234,12 +245,14 @@ def main():
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
                 q_new[f, o + 7:o + 29] = blend(QS[s1 - 1], qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
         report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info,
+                           human_hold_axis_cm=None if s_med is None else round(100 * s_med, 1),
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
                            joints_at_limit_after_squeeze=int(((qs >= hi - 1e-6) & (flex[side] > 0)).sum())))
         if wrap_info:
             print(f"{side} {x['object']}: WRAP grasp {json.dumps(wrap_info)}", flush=True)
-        print(f"{side} {x['object']} {s0}-{s1}: grasp pose from f{g} ({n_on} fingers on, mean gap {1000 * gap:.1f} mm), "
+        print(f"{side} {x['object']} {s0}-{s1}: {'WRAP' if wrap_info else 'human grasp'} (human holds at axis "
+              f"{None if s_med is None else round(100 * s_med, 1)} cm), grasp pose from f{g} ({n_on} fingers on, mean gap {1000 * gap:.1f} mm), "
               f"hold from f{h0}, object moves f{move}, lift {report[-1]['lift_cm']} cm", flush=True)
     for side in parked:                                            # idle hand: keep its frame-0 pose (out of the way)
         o = cr.SIDES[side]; q_new[:, o:o + 29] = q_new[0, o:o + 29]
