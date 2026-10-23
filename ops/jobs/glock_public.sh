@@ -3,6 +3,9 @@
 # the eval spoon episodes to sim_vs_ref ≈ 0.97 (docs/research/notes/24), FROZEN as below, on public episodes that have
 # references built with our own meshes, scored against mocap afterwards (registered AUC with our meshes, evaluation only):
 #   1. reference = the stored own-mesh reference of a finished run (store pull-run; EP:RUN:BASE as in hard_ab.sh);
+#      RUN=new builds it here from the raw episode, end to end as for an eval episode: perception (perc2, our
+#      library), hands, mkref (wrist cost 3.0, capped lead-in), contact retargeting with rest settling (variant mck,
+#      the 22 Oct ep18 fix), i.e. EP:new:mck;
 #      with SF=1 (default since 2026-10-23) its meshes are made support-consistent first (pipeline/support_fill.py:
 #      a resting pose the mesh cannot hold gets the smallest certified underside fill; public ep18's brush fell over);
 #   2. pipeline/grasp_lock.py with GL_ARGS (single-hand carry per object, anatomy closing, palm press, wrap only where
@@ -40,7 +43,7 @@ if [ -n "${CURR_SCALE:-}" ]; then                                # curriculum th
 fi
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml   # kp 400 wrist (the checkpoint stores the resolved config)
 [ -s $E ] || cp $REPO_DIR/flashchord_conf/embodiment/sharpa_hands_mid.yaml $E || { log "embodiment copy FAILED" >> $J; exit 1; }
-for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u); do
+for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u | grep -v '^new$'); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }
 done
 
@@ -90,6 +93,12 @@ EOF
 
 one() {
   local ep=$1 run=$2 base=$3 R0 P0 hive G RD N RUN LG=/content/glock_ep$1.log ck
+  if [ "$run" = new ]; then                                        # end to end from the raw episode (perception on)
+    ( export VARIANT=$base MKREF_ARGS="--wrist_cost 3.0" CONTACT_RETARGET=1 CR_ARGS="--rest_settle 1" STEPS=0 \
+        STOP_AFTER=reference SPLIT=public PERC=perc2; bash $P/pipeline_ep.sh $ep ) > /content/ref_ep$ep.log 2>&1 \
+      || { log "glock ep$ep: reference build FAILED ($(tail -3 /content/ref_ep$ep.log | tr '\n' ' ' | cut -c1-300))" >> $J; return 1; }
+    log "glock ep$ep: reference built from the raw episode ($(grep -a 'perception:\|qa_ref\|contact_retarget:' /content/ref_ep$ep.log | cut -c1-160 | tr '\n' ' ' | cut -c1-500))" >> $J
+  fi
   if [ "$base" = auto ]; then                                      # the variant auto_ep.sh published for that episode
     base=$(python -c "import json, os; print(os.path.basename(os.path.dirname(json.load(open('/content/results/final/ep$ep/final.json'))['chosen'])).replace('perc2', '', 1))" 2>/dev/null)
     [ -n "$base" ] || { log "glock ep$ep: no results/final/ep$ep/final.json in the pulled run" >> $J; return 1; }
