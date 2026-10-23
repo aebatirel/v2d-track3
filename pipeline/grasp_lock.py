@@ -144,7 +144,8 @@ def main():
             qf, qs, closing = wg.close_fingers(fk, qw, o, side, fj, lo, hi, bodies, pb, pl, sdf[j],
                                                lambda X: OR[j][g].inv().apply(X - OP[g, j]), a.wrap_squeeze)
             qpre = np.clip(np.zeros(22), lo, hi); back = a.back
-            wrap_info = dict(radius_cm=round(100 * r, 2), axis_pos_cm=round(100 * tpos, 1), narrow_cm=[round(100 * x, 1) for x in rng],
+            wrap_info = dict(grip_obj_m=[round(float(x), 4) for x in c], com_obj_m=[round(float(x), 4) for x in m.body_com.numpy()[obj_body[j]]],
+                             radius_cm=round(100 * r, 2), axis_pos_cm=round(100 * tpos, 1), narrow_cm=[round(100 * x, 1) for x in rng],
                              closing=closing, human_angle_deg=round(float(np.degrees((Rw_g.inv() * (OR[j][g] * R_ow)).magnitude())), 1))
         x_back = lambda f: (OR[j][f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
         for f in range(max(0, h0 - a.blend), h0):                  # approach: blend into the (backed-off) pose, then slide in

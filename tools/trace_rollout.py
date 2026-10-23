@@ -4,6 +4,9 @@ venv from the flash_chord directory.
   trace_rollout.py policy OUT.npz <view_policy overrides...>  the trained policy (pass tools/render_eval.sh's overrides)
   trace_rollout.py zero OUT.npz PARQUET N                     zero residual action: the reference played in physics
 OUT.npz: q (frames, bodies, 7) body poses [x y z qx qy qz qw], frame (reference frame per row), labels (body names).
+CONTACTS=1 also records per frame and body pair the summed contact normal force, tangential force and contact count
+(cf: frames x bodies x bodies x 3; body -1 = world/support stored in the last slot) from FlashCHORD's own contact
+readout (solver.update_contacts with forces), for grip-force analysis (docs/research/notes/24).
 No ground truth is read. Analysis: tools/hand_object_gap.py.
 """
 import atexit, dataclasses, os, sys
@@ -11,15 +14,30 @@ import atexit, dataclasses, os, sys
 import numpy as np
 
 mode, out = sys.argv[1], sys.argv[2]
-REC = {'q': [], 'frame': [], 'labels': []}
+REC = {'q': [], 'frame': [], 'labels': [], 'cf': []}
+CONTACTS = os.environ.get('CONTACTS', '0') not in ('', '0')
+
+
+def contact_table(env):
+    """(bodies+1, bodies+1, 3): summed |normal force|, |tangential force|, count per body pair (last index = world)."""
+    from flash_chord.runtime.contact import read_contacts_w
+    model = env.model if hasattr(env, 'model') else env.scene.model
+    rd = read_contacts_w(model, env.state_0, env.contacts); nb = env.state_0.body_q.shape[0]; t = np.zeros((nb + 1, nb + 1, 3), np.float32)
+    for b0, b1, f, n in zip(rd.body0_ids, rd.body1_ids, rd.contact_force_w, rd.contact_normal_w):
+        fn = float(np.dot(f, n)); ft = float(np.linalg.norm(f - fn * n)); i, k = sorted((int(b0) if b0 >= 0 else nb, int(b1) if b1 >= 0 else nb))
+        t[i, k] += (abs(fn), ft, 1.0)
+    return t
 
 
 def record(env):
     REC['q'].append(env.state_0.body_q.numpy().copy()); REC['frame'].append(int(env.timestep.numpy()[0]))
+    if CONTACTS:
+        REC['cf'].append(contact_table(env))
 
 
 def save():
-    np.savez_compressed(out, q=np.array(REC['q'], np.float32), frame=np.array(REC['frame']), labels=np.array(REC['labels']))
+    extra = dict(cf=np.array(REC['cf'], np.float32)) if REC['cf'] else {}
+    np.savez_compressed(out, q=np.array(REC['q'], np.float32), frame=np.array(REC['frame']), labels=np.array(REC['labels']), **extra)
     print(f'trace: {len(REC["q"])} frames -> {out}', flush=True)
 
 

@@ -2250,3 +2250,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   pyramidal cones, impratio 20, 20 fps x 5 substeps; contact mu 1.0, torsional 0.005, rolling 1e-4, ke 1e3, kd 1e2;
   finger joints kp 1.7 Nm/rad, kd 0.1, effort 10 Nm (all 22 the same); wrist xyz kp 25 N/m, kd 6, 45 N; rotation effort
   PD kp 25, 45 Nm; hand 1.24 kg; spoon and pot 0.3 kg (kit placeholder). Spoon inertia (26.0, 25.8, 0.455) e-4 kg m².
+- 12:20 UTC: **eval ep3 seed 43 (VOC fix, RL alone) final: mean of 7 official evaluations 0.413** (floor 0.439; seed 42
+  0.380) → RL alone stays below the floor on ep3. ep35 seed 43 earlier: 0.337.
+- 12:20 UTC: queued fine-tune replaced (`ft_ep3.sh` killed before it started): `/content/glock/ft_ep3k.sh` trains seed
+  42 on the kp 400 wrap reference (`/content/glock/ep3k400/...`, zero action 0.658) with `embodiment=sharpa_hands_mid`,
+  160M steps (fits the 14:30 hold), then the per-checkpoint curve (`/content/results/glock/ep3k400-s42/curve`).
+- **ep35 with the kp 400 wrist: 0.104 / 0.084 (2 replays; kp 25 v5: 0.150–0.185; floor 0.112).** Not a table push: the
+  reference spoon is in the air f40–360. Slip of the spoon in the hand frame grows from 1 cm (f80) to ~10 cm (f240–340)
+  with kp 400 (kp 25: ≤ 3.5 cm); the spoon sags up to 10 cm below its path. Task wrench along the ep35 spoon reference
+  (`pipeline/task_wrench.py`): |F| ≤ 3.4 N (weight 2.9 N), acceleration p95 1.05 m/s², COM torque ≤ 0.04 N m → the loads
+  are small; the grip is not holding along the handle. Grasp report: 10 flexion joints hit their limit after the squeeze
+  (fingers touch at 72–85 % curl on the 2.7 cm handle), thumb closes 2.5 %. Contact-force replays running
+  (`trace_rollout.py` now records per-pair contact forces with `CONTACTS=1`).
