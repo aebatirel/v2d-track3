@@ -2377,3 +2377,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **ep24 (boards): 0.202 ± 0.072** at 30M (curve 0.095 / 0.165 / 0.072 / 0.078) — below the floor 0.229 and our
     earlier 0.307. Zero action 0.219 = floor. Expected: the slide-to-the-edge-then-lift task has no grasp at the start
     (the board lies flat); the recipe has no slide primitive.
+- Owner asked for videos of the public episodes, new vs previous version. `/content/vid_pub.sh` on the box renders
+  evaluator-like rollouts (real | sim on camera | 3-D) of NEW (grasp-lock fine-tune) and PREVIOUS best: ep12 FDR s42
+  250M (0.891), ep18 FDR s43 250M (0.889; fetched from the store with its reference), ep24 mcs 250M (git), ep27 auto
+  250M. HOLD set to box-now + 90 min so the round-2 videos are rendered after the job ends (≈ $0.3–0.6); to be released
+  as soon as they are downloaded. ep2 / ep21 not included (no own-mesh references; rebuilding them ≈ $0.5–1).
