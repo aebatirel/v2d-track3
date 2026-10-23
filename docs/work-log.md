@@ -2407,3 +2407,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   a bad rollout; not representative).
 - Summaries `results/e2e/glock_public_20261023/`. Hold released after the videos; box self-destroys.
 - Box 57400615 destroyed by its watchdog after the hold was released; Vast credit $5.2 after this batch (≈ $3.9 spent incl. the video hold).
+
+### 19:30 TRT — ep18 video before / after fine-tune (owner); start problem identified
+- Rendered locally (box gone): the zero-action trace and reference from the HF store, the public camera video from the
+  dataset, `tools/trace_render_cv.py` (new: OpenCV software 3-D render of a trace with our library meshes) +
+  `tools/sim_vs_real_video.py`; stacked with the fine-tuned video. Strip `results/e2e/glock_public_20261023/
+  ep18_before_after_strip.jpg`.
+- **Cause of the early knock [measured]:** the brush (mini_sweeper) starts TILTED on its edge in our `mc` reference
+  (lowest point at the table, z 0.600, but its centre at 0.667); at f4–8 it tips over flat (centre 0.665 → 0.616,
+  moves 6 cm) before any hand is near. Rest settling (contact_retarget `--rest_settle 1`, used by the previous best
+  `kfid` reference) would seat it. Both objects are thin plates (3.5–3.6 cm thick, PCA ratio 1.3–1.7): the recipe's
+  wrap rule (PCA ≥ 3) never applies to them; the copied grasps do not hold them; the fine-tuned policy moves its
+  hands away from the table (learned avoidance after the start was already lost).
