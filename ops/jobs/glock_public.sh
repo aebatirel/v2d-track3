@@ -177,7 +177,7 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
     log "glock ep$ep: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1
   fi
   log "glock ep$ep: trained $(ls $RUN/policy_*.safetensors | wc -l) checkpoints$([ -f $RUN/EARLY_STOPPED ] && echo "; early stop: $(cat $RUN/EARLY_STOPPED)")" >> $J
-  REPO_DIR=$REPO_DIR PAR=$PAR bash $T/ckpt_curve.sh $RUN $O/ep$ep/curve $ep >> $LG 2>&1
+  REPO_DIR=$REPO_DIR PAR=$PAR REP=${CURVE_REP:-1} bash $T/ckpt_curve.sh $RUN $O/ep$ep/curve $ep >> $LG 2>&1
   python $T/ckpt_curve_summary.py $O/ep$ep/curve > $O/ep$ep/curve.txt 2>&1
   ck=$(python - $O/ep$ep/curve $RUN << 'EOF'
 import glob, json, os, sys
