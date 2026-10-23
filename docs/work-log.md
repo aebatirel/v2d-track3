@@ -1971,3 +1971,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   DET_ONLY writes `masks_f<k>.jpg`. Spoon-specific value cannot be measured on public data (no public spoon).
 - Next: inference-only check of the frozen rule on eval frame 0 of the 10 spoon episodes (DET_ONLY, ≈ $0.6). The rule
   is frozen by this commit: the check is reported, not used to change the rule (that would be tuning on eval).
+- 06:50 TRT: eval spoon check launched: instance 57329922, run `20261023-detspoon-ab06a32`, code ab06a32, job
+  `SPLIT=eval EPS="3 5 6 15 16 32 33 35 36 37" DET_VERIFY=0 bash ops/jobs/det_dump.sh` (frame 0 only). Credit $3.94.
