@@ -2292,3 +2292,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   anatomy closing order (`--mcp_first`: MCP first, IPs second, thumb last; Muzykewicz 2013: IP-first roll-up pushes
   objects out of the palm), slower close (10 frames), palm pressing 1 mm on the handle (`--palm_clear -0.001`), with
   the designed squeeze at f_min 1.5 N and 4 N.
+
+### 15:50–16:10 TRT (12:50–13:10 UTC) — ep35 fixed at pick-up; owner: copy the hand switches
+- ep3 force design minimal force (fd400) **0.309** vs uniform 0.4 rad squeeze 0.658 → minimal-force squeezes are too
+  light for this simulator; robustness (preload) matters more than force economy. Oblique 25° (fdo25) 0.093: less roll
+  but bowl tipping up to 112°. fd400 on ep35 0.163.
+- **ep35 anatomy closing (`--mcp_first 1 --close 10`, palm pressing `--palm_clear -0.001`), single-hand carry, zero
+  action: uniform squeeze (mq25) 0.521, force design f_min 4 N / SF 2 (mqf25) 0.501** (was 0.150–0.267; RL alone best
+  0.337; floor 0.112). mqf25 in-hand roll ≤ 29°, tipping ≤ 13° through the carry; mq25 roll grows late (≤ 125°).
+  The pick-up roll was the main ep35 loss. The release in these runs does not throw the spoon (still from f382 to
+  f420, final error 3.7 cm); the throw in the owner's video was the older slide-off release (s4).
+- Owner watched the ep35 s4 video: "the grasp works; know which hand holds what and when, act accordingly, copy the hand
+  switches in a way that makes sense; the curl hold is usually the right solution". Human holds on ep35 (MANO contacts,
+  spoon body z, + = handle end): RIGHT hand always on the handle side (z +1 … +9.5 cm), LEFT hand always on the bowl
+  (z −6 … −14 cm); 5 handovers, overlaps 11–32 frames.
+- `grasp_lock.py --wrap_where_held 1 --held_tol 0.08`: per phase, wrap only if the human holds within 8 cm of the narrow
+  part (right: 3–6 cm away → wrap), otherwise keep the human grasp + squeeze (left on the bowl, 17–21 cm away). Phases
+  are not merged, so hand switches follow the human; the receiver closes before the overlap ends, the lift is shared,
+  the giver relaxes, unrolls and withdraws along the separating direction. Runs `hof` (force design) and `hou`
+  (uniform squeeze) on the box (`/content/glock/run_ho.sh`).
