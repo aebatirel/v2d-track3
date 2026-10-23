@@ -2350,3 +2350,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     episodes and pick the checkpoint by sim_vs_ref over repeated evaluations.
 - `/content/glock` re-uploaded to the HF store (commit 577bf4e). The watchdog saves `runs/` and `results/` (push-run)
   and destroys the box when the hold expires at 14:30 UTC.
+- 14:31 UTC: box `20261023-spoon3R-4c31271` (instance 57331929) destroyed by its watchdog after the hold (push-run
+  first); `vast show` lists 0 instances. Session GPU cost today on this box ≈ $1.375/h.
