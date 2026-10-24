@@ -2853,3 +2853,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.247 -> 0.579. Before: grasp lock 0.22-0.41; standard RL 0.776 / 0.889 (best ever). The zero-action gate of the
   EA-vs-RL report (< 0.36 zero action -> <= 0.43 fine-tuned, 10/10 on old runs) does not hold here: hold windows at
   0.50-0.58 were finished by the fine-tune; keep it as a warning, not a gate.
+- 11:34 UTC (box time) **eval 38 (dust pan, from the eval videos, no ground truth): sim_vs_ref 0.9997 ± 0.0004** over 5
+  official evaluations of the chosen 70M (curve 0.823 / 0.650 / 0.995 / 0.994 / 0.999 / 0.998 / 1.000); search window
+  0.156 -> 0.349 (phase 0). Its public twin ep39 tracked at 0.999 and scored 0.958 vs mocap (perception 0.982). The
+  chosen checkpoint is in `runs/20261024-ev2-2c1e4dd/results/glock_public/ep38/best/policy.safetensors` (patched copy)
+  for the submission. Box ev2 done (push + self-destroy).
