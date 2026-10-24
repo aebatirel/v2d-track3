@@ -3368,3 +3368,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     ep39 9.5 mm/frame); (2) a rest is a run of ≥ 15 still **and** hand-far frames (hand flag median-filtered over 5
     frames), because the spec's "≥ 80 % hand-free over the whole still run" and the prototype both drop a rest that ends
     in a grasp (ep39: frames 0–24 still, hand arrives at 18). With both: ep39 rest = frames 0–17.
+- 23:10 UTC **v5 port step: `pipeline/rest_support.py`** (spec §6, from the prototype `minimal/auto_rest.py` with the
+  spec's thresholds and acceptance checks i–v). `recon_mesh.py obs` now also stores the per-frame table planes
+  (world frame) and rest masks per episode, so a rest's plane is the median of its per-frame refits (critique 22).
+  **Test (ep18, library_v2 sweeper, 21 Oct perc2m tracks, mkref table plane, the study's sweeper grid):** one rest,
+  frames 0–27; unstable before (COM 4.4 mm outside a 0.4 cm² support); flattened 8 mm → stable (margin 3.8 mm,
+  9.8 cm²); checks: no other rest broken, 0.0 cm³ removed inside observed voxels, X 0 flips, G6 0.16° / 0.29 mm →
+  **accepted**; its up is within ≈ 0.5° of the hand-made v3 patch. The automatic rule reproduces the manual fix.
+- G1 box: ep0 tracked and hands done; its registered perception score failed (`fast_simplification` missing on the
+  box). The score is a diagnostic and will be computed on CPU from the pushed tracks; the job now installs it.

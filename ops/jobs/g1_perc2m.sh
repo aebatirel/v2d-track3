@@ -13,6 +13,7 @@ P=$REPO_DIR/pipeline; J=${J:-/content/job.log}
 EPS=${EPS:-"0 2 11 13 21 22 23 26 31 39 40 41 42 43 44 45"}
 log "g1_perc2m code $(git -C $REPO_DIR rev-parse --short HEAD), episodes [$EPS]" >> $J
 ensure_gdino $J                                                  # detection grounding term (pipeline/det_rules.py)
+pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh in score_registered (2026-10-25: missing)
 label "G1 perc2m: $EPS"
 for ep in $EPS; do
   bash $OPS/store.sh pull-depth $ep public > /dev/null 2>&1 || log "g1 ep$ep: no cached depth (computed here)" >> $J

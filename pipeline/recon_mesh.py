@@ -258,7 +258,7 @@ def fuse_obs(a, K):
     z32 = lambda: np.zeros(nv, np.float32)  # noqa: E731
     S = {t: z32() for t in OBS_TAUS}; W = {t: z32() for t in OBS_TAUS}
     NB, NF, NV, NF3, NFL3, M0, M1, M2, NBR, NVR = (z32() for _ in range(10))
-    cnt = dict(frames=0, below=0, rest_frames=0)
+    cnt = dict(frames=0, below=0, rest_frames=0); planes = {}                 # per-frame refit planes, world frame
     print('grid', shape, nv, flush=True)
     import cv2
     for poses, depth, hands, stride, others_s in a.ep:
@@ -276,6 +276,7 @@ def fuse_obs(a, K):
         o0 = (W_C[0] @ T_co[0])[:3, 3]
         nw, cw, frac = table_plane(np.array(D[0], np.float32), K, o0)
         print(poses, 'table', np.round(nw, 3), round(cw, 3), round(frac, 2), 'rest frames', int(rest.sum()), flush=True)
+        pl = np.full((N, 4), np.nan)
         for t in range(0, N, stride):
             R, tr = T_co[t][:3, :3], T_co[t][:3, 3]
             Xc = X @ R.T + tr; z = Xc[:, 2]
@@ -308,6 +309,7 @@ def fuse_obs(a, K):
                     nn = -nn
                 if nn @ nc > np.cos(np.radians(10)):
                     nc, cc = nn, -nn @ q0
+            n_w = W_C[t][:3, :3] @ nc; pl[t] = [*n_w, cc - n_w @ W_C[t][:3, 3]]   # n_w . x_w + c_w = 0 (support rule)
             other |= Pd @ nc + cc <= a.table_band
             if a.below_carve >= 0:
                 fb = np.nonzero(Xc @ nc + cc < -a.below_carve)[0]
@@ -343,12 +345,13 @@ def fuse_obs(a, K):
             own = ~other & (np.abs(sdf) <= 0.012)
             ii = idx[own]; M0[ii] += 1; M1[ii] += sdf[own]; M2[ii] += sdf[own] ** 2
             cnt['frames'] += 1
+        k = len(planes) // 2; planes[f'plane_ep{k}'] = pl; planes[f'rest_ep{k}'] = rest   # per --ep, in order
         print(poses, 'done', cnt, round(time.time() - t0), 's', flush=True)
     r = lambda x: x.reshape(shape)  # noqa: E731
     np.savez_compressed(a.out, shape=np.array(shape), lo=lo, voxel=a.voxel,
                         **{f'S{int(t * 1000)}': r(S[t]) for t in OBS_TAUS}, **{f'W{int(t * 1000)}': r(W[t]) for t in OBS_TAUS},
                         NF=r(NF), NV=r(NV), NB=r(NB), NBR=r(NBR), NVR=r(NVR), NF3=r(NF3), NFL3=r(NFL3), M0=r(M0), M1=r(M1), M2=r(M2),
-                        args=json.dumps(vars(a)), cnt=json.dumps(cnt))
+                        args=json.dumps(vars(a)), cnt=json.dumps(cnt), **planes)
     print('saved', a.out, round(time.time() - t0), 's', flush=True)
     return cnt
 
