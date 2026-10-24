@@ -97,7 +97,7 @@ On the one measured clean case, yes, for the grasp part.
 
 | ep39 | value [M-lead] | physics | compute |
 |---|---|---|---|
-| CMA-ES grasp edit, zero action | sim_vs_ref **0.877** | CPU | about 15–20 min on 4 shared CPUs; fresh-process replay |
+| CMA-ES grasp edit, zero action | sim_vs_ref **0.877** | CPU | about 11–18 min on 4 shared CPUs (per-generation times × generations); fresh-process replay |
 | standard RL (250M steps) | 0.826 sim_vs_ref; 0.802 registered | GPU | about 1.6 GPU-h |
 
 This is not yet decisive:
@@ -134,9 +134,8 @@ The verdicts are from the parallel audits [M-lead]; the grip column is my mappin
 | ep26 (28) | white_pot in the rack | **Start first:** perceived 29 mm too deep, ejected 152 mm. Then a tolerant handle grasp. | **Oblique squeeze grip** on the 15 cm handle (3.1 × 2.5 cm cross-section), with closure until contact. | A wider couple arm against the pitch moment (section 4.6). |
 | ep31 (30) | mini_sweeper in the rack | **Not a grasp failure.** First-step ejection from the rack hulls. Fixing that frame alone gives 0.840. | none needed | – |
 
-**Count.** A designed grip is the primary fix for 3 holds (ep18 pan, ep24 boards, ep2 lid). It is a secondary fix for
-4 (ep39 pan, ep21 pitcher, ep21 cup, ep26 pot). It is not the fix for 2 (ep18 sweeper: timing; ep31: start
-geometry).
+**Count.** A designed grip is the primary fix in 3 cases (ep18 pan, ep24 boards, ep2 lid). It is a secondary fix in 4
+(ep39 pan, ep21 pitcher, ep21 cup, ep26 pot). It is not the fix in 2 (ep18 sweeper: timing; ep31: start geometry).
 
 ---
 
@@ -165,7 +164,8 @@ Reading the timeline [I]:
 
 ### 2.2 Ape grips: the inherited repertoire
 **Napier 1960** [L-abs]: young chimpanzees and an orangutan.
-- They show "a functional duality of prehension", but the two grips are "executed profoundly" differently from Man.
+- They show "a functional duality of prehension", but "the execution of the two grips differs profoundly from that of
+  Man".
 - The difference comes from "the disproportion in the length of the thumb and fingers".
 - A "double-locking" mechanism of digits 2–5 at the MCP joints "compensates in some measure for the ineffectiveness of
   the thumb".
@@ -497,7 +497,7 @@ pre-lift squeeze; the audit's mechanism is that the squeeze on non-opposed conta
 
 | episode | method | result | cost | caveat |
 |---|---|---|---|---|
-| ep39 | CMA-ES grasp edit (round 1: pop 16 × 8 generations, window f22–122; round 2: 8 worlds × 12 generations, f22–312), baked, zero action, full episode | sim_vs_ref **0.877** (onset anchor alone 0.164; old grasp lock 0.176 = floor) | round 1: 16–21 s per generation; round 2: 45–75 s per generation; about 15–20 min on 4 shared CPUs | CPU physics. Fitness vs our reference. One episode. Fresh-process replay, so not affected by the leakage bug. |
+| ep39 | CMA-ES grasp edit (round 1: pop 16 × 8 generations, window f22–122; round 2: 8 worlds × 12 generations, f22–312), baked, zero action, full episode | sim_vs_ref **0.877** (onset anchor alone 0.164; old grasp lock 0.176 = floor) | round 1: 16–21 s × 8 generations; round 2: 45–75 s × 12 generations; about 11–18 min on 4 shared CPUs | CPU physics. Fitness vs our reference. One episode. Fresh-process replay, so not affected by the leakage bug. |
 | ep39 | standard FDR RL, 250M steps | sim_vs_ref 0.826; registered AUC 0.802 ± 0.280 (4 of 5 rollouts 0.94) | about 1.6 GPU-h | GPU, official evaluator |
 | ep18, ep24 | CMA-ES | pan 0.211 → 0.404 in search, 0.354 replay; sweeper search did not reproduce (0.584 in search, 0.374 fresh) | – | **Contaminated**: simulator state leaked across generations (`bbe57e6`, `72d60cb`). Rerun pending; no conclusion yet. |
 
