@@ -1,0 +1,92 @@
+{
+ "label": "e3 ep39 zero",
+ "trace": "data/hf/runs/20261024-e3-e49e83d/results/glock_public/ep39/zero.npz",
+ "phases": [
+  {
+   "hand": "right",
+   "object": "mini_dust_pan",
+   "approach_from": 56,
+   "hold_from": 64,
+   "closed_at": 74,
+   "ref_move": 74,
+   "end": 292,
+   "grasp_frame": 75,
+   "grasp_type": "snapped human grasp",
+   "sim_at_hold_from": {
+    "err_cm": 20.9,
+    "disp_mm": 1.9,
+    "turn_deg": 3.1
+   },
+   "sim_at_closed": {
+    "err_cm": 19.1,
+    "disp_mm": 1.6,
+    "turn_deg": 2.4,
+    "contacts": "",
+    "palm_mm": 119.8,
+    "ref_contacts": "",
+    "ref_palm_mm": 38.6
+   },
+   "ref_peak_lift": {
+    "frame": 240,
+    "ref_lift_cm": 26.9,
+    "sim_lift_cm": -0.1,
+    "err_cm": 37.6
+   },
+   "max_sim_lift_in_phase_cm": -0.1,
+   "frames_ref_lifted_gt2cm": 160,
+   "frames_sim_lifted_gt2cm": 0,
+   "frac_err_le3cm_in_phase": 0.0,
+   "mean_contacts_while_held": 0.0,
+   "mean_ref_contacts_while_held": 0.0,
+   "contact_share_sim": {},
+   "contact_share_ref": {},
+   "slip_cm_p50_max": [
+    19.1,
+    52.2
+   ],
+   "slip_deg_p50_max": [
+    78.3,
+    114.3
+   ],
+   "first_slip_gt2cm_f": 85
+  }
+ ],
+ "events": {
+  "mini_dust_pan": {
+   "first_departure_from_sim_rest_f": 61,
+   "first_err_gt3cm_f": 53,
+   "first_err_gt10cm_f": 56,
+   "mean_err_cm": 16.57,
+   "frac_within_3cm": 0.166,
+   "max_sim_lift_cm": 0.0,
+   "max_ref_lift_cm": 26.9,
+   "at_departure": {
+    "f": 61,
+    "obj": "mini_dust_pan",
+    "ref_lift_cm": 18.5,
+    "sim_lift_cm": -0.3,
+    "err_cm": 18.9,
+    "err_deg": 15.1,
+    "sim_disp_mm": 2.7,
+    "sim_turn_deg": 3.1,
+    "ref_disp_mm": 186.5,
+    "left_min_mm": 110.4,
+    "left_contacts": "",
+    "left_ncontact": 0,
+    "left_palm_mm": 151.0,
+    "left_ref_contacts": "",
+    "left_ref_ncontact": 0,
+    "left_ref_min_mm": 92.1,
+    "left_ref_palm_mm": 180.9,
+    "right_min_mm": 87.6,
+    "right_contacts": "",
+    "right_ncontact": 0,
+    "right_palm_mm": 112.8,
+    "right_ref_contacts": "",
+    "right_ref_ncontact": 0,
+    "right_ref_min_mm": 28.4,
+    "right_ref_palm_mm": 51.1
+   }
+  }
+ }
+}
