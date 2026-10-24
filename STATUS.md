@@ -2,6 +2,23 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~10:00 TRT (07:00 UTC): overnight robustness batch done; eval-run plan waits for the owner
+- Report for the owner: Claude Docs "V2D Track 3 overnight report, 24 Oct" (https://claude.ai/artifact/SnxYC73hNa84NFPjFDCpRH).
+- No boxes running. Credit $4.08 (overnight spend $12.72 measured).
+- Results (registered AUC vs mocap, 5 evaluations): grasp-lock strong on rigid graspables (ep27 0.957–0.972, ep12
+  0.854–0.910, eval spoon sim_vs_ref 0.97), weak on plates and stacked / unsupported starts (ep39 0.174, ep18
+  0.22–0.41, ep21 0.281, ep2 0.306, ep26 0.383; ep31 0.767). **Standard FDR RL (250M) lifts the ep39 dust pan:
+  0.802 ± 0.280** (4 of 5 rollouts 0.94), as it solved ep18 (0.776 / 0.889).
+- Keep: early approach 15 cm, re-plan (kept only when replay improves), 3 evaluations per checkpoint, support fill
+  (neutral). Drop: recovery training (drop starts), library_v4 flattened boards. Early stopping off (owner).
+- Proposal (owner's ruling needed: "we cannot pick and choose"): `ops/jobs/eval_both.sh` (7a08bf4, not run) =
+  grasp-lock learner on every eval episode, standard learner on the same reference where the grasp lock tracks
+  below 0.9, then `tools/choose_learner.py` (mean sim_vs_ref vs the perceived path; picked the better learner in
+  3 of 3 public pairs). Option B ≈ $45–55, ≈ 7 h, staged (first box eval 38 + eval 3). Projected eval ADD-AUC ≈ 0.77
+  (estimate, range 0.67–0.86); leaderboard #3 is 0.831 (23 Oct 21:52 UTC).
+- Owner decisions open: the choice rule, go-ahead + top-up (≈ $60), which rollout to pack (fresh unmodified
+  evaluator by default), Kaggle upload.
+
 ## 2026-10-23 ~23:00 TRT: 5 boxes running — support fill, grasp re-plan in the simulated world, recovery training
 - Owner: "snap and grasp in a dynamic world; a drop should not stop the recipe" → both parts built and approved:
   - **part 1** re-plans holds against the simulated world (`grasp_lock.py --sim_trace`, `glock_public.sh REPLAN`);
