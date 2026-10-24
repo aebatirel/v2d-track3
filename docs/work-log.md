@@ -2858,3 +2858,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.156 -> 0.349 (phase 0). Its public twin ep39 tracked at 0.999 and scored 0.958 vs mocap (perception 0.982). The
   chosen checkpoint is in `runs/20261024-ev2-2c1e4dd/results/glock_public/ep38/best/policy.safetensors` (patched copy)
   for the submission. Box ev2 done (push + self-destroy).
+
+### 24 Oct ~11:40 UTC (box time) — eval run started (validated recipe)
+- Recipe (frozen for tonight, code 38877d0): `glock_public.sh SPLIT=eval PAIRS="<N>:new:mck ..."`, LIB library_v3,
+  SF=1, REPLAN=0, EVOLVE=1 (256 worlds = 64 x 4, 20 generations per hold), CURVE_REP=3, NREP=5, seed 42, GL_ARGS =
+  `--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15
+  --onset_anchor 1`. No ground truth anywhere; checkpoint chosen on the mean sim_vs_ref of 3 evaluations.
+- Box plan: F 33,35,36 (started) | A 1,3,5 | B 6,8,10 | C 14,15,16 | D 19,20,25 | E 28,30,32 | G 37; eval 38 from ev2.
+- **57507961** Utah RTX PRO 6000 S $1.51/h `20261024-evF-38877d0`: eval 33, 35, 36 — started within the credit ($8.96,
+  ev3 still running ~$0.8; estimate ~$3.6 + $3 reserve). The other six boxes (~$20) wait for the owner's top-up.
