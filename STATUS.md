@@ -2,6 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~21:45 TRT: FIRST LEADERBOARD SCORE — Track 3 AUC 0.57468, 9th
+- Uploaded by the agent through the owner's Kaggle token (network secret; `tools/kaggle_upload.py`). Board: 0.932 /
+  0.884 / 0.865 / 0.752 / 0.730 / 0.662 / 0.636 / 0.630 / **0.575 us**. Other five boards: owner must Join first.
+- Below the 0.68 estimate: perception loses ~19 % on eval (3–4 % on public twins); estimated mostly the spoon
+  (spoon factor ≈ 0.72 by inference). Spoon perception + mesh become the top priority inside the v5 rebuild.
+
 ## 2026-10-24 ~21:20 TRT: FIRST FULL SUBMISSION PACKED — waiting for the owner's Kaggle upload
 - `results/submissions/20261024-track3/track3_submission.parquet` (20 episodes, 9,120 rows, 1.3 MB, 0 mesh warnings,
   code commit 6f1aea3). Packed rollouts sim_vs_ref mean 0.710; projected ADD-AUC ≈ 0.68 (0.62–0.72).

@@ -1,0 +1,16 @@
+{
+  "track": "track_3",
+  "file": "/home/user/v2d-track3/results/submissions/20261024-track3/track3_submission.parquet",
+  "message": "first full run 24 Oct 2026, code commit 6f1aea3",
+  "submissions": {
+    "add_auc": {
+      "slug": "v2d-challenge-track3-auc",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261024-track3/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - AUC",
+      "ref": 57603766,
+      "public_score": "0.57468",
+      "error": ""
+    }
+  }
+}

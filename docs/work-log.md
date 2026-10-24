@@ -3135,3 +3135,27 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Projection (estimate): ADD-AUC ≈ 0.68 (0.62-0.72).
   - Upload is the owner's: Kaggle credentials and the accepted rules. The repo must also be shared with GitHub
     account Nvidia-V2D-Challenge so the commit URL resolves.
+
+### 24 Oct ~18:45 UTC — FIRST LEADERBOARD SCORE: Track 3 AUC 0.57468, 9th of the AUC board
+- Owner added a Kaggle API token as a network secret (Bearer, `*.kaggle.com`); the proxy injects it into every
+  request, so the token never enters the container. The kaggle client pre-checks a token by sending it in a request
+  body, which the proxy cannot fill, so `tools/kaggle_upload.py` runs the kit's `submit/v2d_submit.py` with that one
+  client-side check stubbed; Kaggle authenticates every call with the real token.
+- Command, from the kit root: `KAGGLE_API_TOKEN=placeholder python tools/kaggle_upload.py submit/v2d_submit.py
+  results/submissions/20261024-track3/track3_submission.parquet --track track_3 --only add_auc -m "first full run
+  24 Oct 2026, code commit 6f1aea3" --wait`
+- Result: **ACCEPTED, AUC 0.57468** (submission 57603766; receipt in `results/submissions/20261024-track3/`).
+- AUC board at 18:45 UTC: 0.932 / 0.884 / 0.865 / 0.752 / 0.730 / 0.662 / 0.636 / 0.630 / **0.575 (us, 9th)** / 0.532.
+  Joined so far: AUC only. SP-SR, MP-SR, RPE, MPPE and CD-O wait for the owner to Join.
+- **Below the estimate** (0.68, range 0.62-0.72): the packed rollouts track our reference at 0.710, so perception
+  costs 19 % on eval against 3-4 % on the public twins.
+  - Inference, an estimate: put the non-spoon episodes at 0.96 × their packed sim_vs_ref (sum 5.13). The spoon
+    episodes then average about 0.64 AUC, against a sim_vs_ref of 0.886. That is a spoon perception factor of about
+    0.72, so the spoon (10 of 20 episodes) loses about 0.12 of the total.
+  - Hypotheses, each with its falsifying test:
+    - (H1) the spoon mesh registers flipped or offset to the confidential scan. Test: registration robustness of our
+      spoon template, on ≥ 6 seeds, against a measured stand-in.
+    - (H2) the spoon pose track is poor; it is thin and occluded. Test: spoon-like public objects (the sweeper
+      handle) and the reprojection residuals of our spoon track on eval frames, which needs no GT.
+    - (H3) eval perception is worse on all objects. Test: the MPPE and MP-SR boards once joined.
+  - The spoon moves to the top of the v5 work (TODO #16).
