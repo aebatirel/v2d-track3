@@ -2992,3 +2992,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **57528834** `20261024-evE-664e5fd` RTX PRO 6000 S, New York, $1.68/h: eval 28, 30, 32
   - **57528835** `20261024-evG-664e5fd` RTX PRO 6000 Max-Q, Australia, $1.13/h: eval 37
   - Together $9.17/h.
+- **57529120** `20261024-packtest-13ff3f1` RTX 3060, Poland, $0.115/h: a dry run of the pack step, which has never
+  run end to end.
+  - Job: `RUNS="20261024-ev2-2c1e4dd 20261024-evF-38877d0" ALLOW_MISSING=1 COMMIT_URL=.../commit/13ff3f1... bash
+    ops/jobs/pack_eval.sh`.
+  - It covers the pristine evaluator on the four finished eval policies (33, 35, 36, 38), the kit packer and the
+    mesh copy. The packer may refuse a 4-of-20 file, which is acceptable for this test.
+  - Why: the checkpoints were trained on patched FlashCHORD (FDR, VOC); `patch_flashchord_fdr.py` keeps stock
+    term names so the unpatched evaluator should load them, but this has not been checked.
