@@ -2831,3 +2831,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   out of tonight's recipe** (`--templates` kept as an option).
 - GPU box ev2 (first numbers): the robust GPU search (256 worlds = 64 x 4) finished each hold in minutes: ep12 window
   0.563 -> 0.772 (gen 17 / 20), ep27 0.791 -> 0.866 (gen 18 / 20).
+- 10:56 UTC (box time) **stale-data catch on ev3**: pull-run of `20261024-e3-e49e83d` (for the ep39 mck reference) also
+  restored E3's `runs/glock/ep39-s42/policy_*` and `results/glock_public/ep39/curve/`. The new training started from 0
+  (no resume; it overwrites the same-step files 10M-70M), but `ckpt_curve.sh` skips checkpoints that already have a
+  `qa_policy.json`, so the checkpoint would have been chosen on E3's OLD scores. Deleted the stale `curve/`, `best/`,
+  `curve.txt` for ep39 on the box ~6 min before its training ended. ev2's pulled run (auto18, 21 Oct) has no glock data.
+  The eval run (RUN=new, nothing pulled) is not exposed. To fix in glock_public.sh: clear `$RUN` and `$O/ep<N>` for a
+  pulled run before training.
