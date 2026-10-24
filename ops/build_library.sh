@@ -3,11 +3,12 @@
 # of each object (episode sets in pipeline/mesh_v5.json), along our own-mesh perc2m tracks (G1 run + the 21 Oct runs),
 # our MediaPipe hands and our depth caches. Step 1: pass 0 (M0) for every object; step 2: pipeline/ep_mesh.py library
 # per object, in parallel (fusion with the other objects' M0, post-pass + gates, F4, selection, support rule,
-# decimation, collision pieces). Output /content/library_v5/<obj>.glb, <obj>_full.glb, <obj>.json, pieces/, README.md,
-# pushed with the run (the agent copies the result into meshes/library_v5 after review). Tier P1 (owner decision O1).
+# decimation, collision pieces). Output /content/results/library_v5/<obj>.glb, <obj>_full.glb, <obj>.json, pieces/,
+# README.md, pushed with the run (under results/: store.sh push-run uploads it and the stall watchdog sees its files;
+# the 25 Oct run wrote /content/library_v5, outside both, and needed a copier on the box) (the agent copies the result into meshes/library_v5 after review). Tier P1 (owner decision O1).
 #   ops/vast.sh create <offer> <run> 'G1RUN=20261025-g1-022fece bash ops/build_library.sh'   [OBJS="..." PAR=6]
 . /content/v2d-track3/ops/box/lib.sh
-P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; OUT=/content/library_v5; M0=$OUT/m0; mkdir -p $OUT $M0
+P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; OUT=/content/results/library_v5; M0=$OUT/m0; mkdir -p $OUT $M0
 G1RUN=${G1RUN:?G1RUN (the G1 perc2m run) missing}; OLDRUNS=${OLDRUNS:-"20261021-auto18-966eb96 20261021-auto24-966eb96"}
 OBJS=${OBJS:-"white_pot white_pot_lid blue_cup beige_cup plastic_dish_rack water_pitcher mini_sweeper mini_dust_pan wooden_piece_1 wooden_piece_2"}
 PAR=${PAR:-6}
