@@ -99,6 +99,9 @@ def ground_scores(masks, depth, K, names, gdet, cam):
 # 0.19 against the best 0.59, bounded the real broom). Thresholds fixed before any replay:
 REPROP_MIN, REPROP_IOU, REPROP_AREA = 0.25, 0.5, 0.25   # box score >= 0.25 x the prompt's best; no proposal's camera-a
                                                         # box with IoU >= 0.5; box area <= 25 % of the camera-a image
+REPROP_GMIN = 0.2   # (2026-10-25, after plain re-proposal broke 2 public instances) re-proposed masks only for an object
+                    # whose choice without them has grounding agreement G < 0.2 (correct choices 0.42-0.96 on the eval
+                    # frames, eval 30's wrist blob 0.001); fixed before the gated replay
 
 
 def uncovered_boxes(gdet, names, bb, W=2028, H=1520, min_rel=REPROP_MIN, iou_max=REPROP_IOU, max_area=REPROP_AREA):

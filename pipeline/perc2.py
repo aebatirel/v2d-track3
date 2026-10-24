@@ -334,6 +334,7 @@ def detect(k):
         S[a] = np.where(oks[a], S0[a] - det_rules.size_penalty(pext_e, ext, R_LAM_S), -10.0)
     mk = np.stack([m[::2, ::2] for m in props]) if props else np.zeros((0, 1, 1), bool)
     dh = dep[::2, ::2].astype(np.float16).astype(np.float32); Kh = KR.copy(); Kh[:2] *= 0.5
+    G = None
     if gdet is not None and R_LAM_G > 0:
         G, inside = det_rules.ground_scores(mk, dh, Kh, names, gdet, _GD['cam'])
         S = np.where(S > -10, S + det_rules.ground_term(G, inside, oks, R_LAM_G), S)
@@ -341,25 +342,36 @@ def detect(k):
         'barred by reach', int((~near).sum()), 'of', len(props))
     for a, n in enumerate(names):
         log('det', f'f{k}', n, 'ext', round(EXT[n], 3), 'tint', round(TPL[n][1]), [(int(j), round(S[a, j], 3), round(pext[j], 3), round(pint[j])) for j in np.argsort(-S[a])[:4]])
-    ri, ci = linear_sum_assignment(-S)
-    # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the rack):
-    # joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
-    if DET_PRIOR == 'compact' and len(names) > 1:   # default since the 20-episode A/B
-        import itertools
-        top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
-        PC = {int(j): centroid3d(props[j], dep) for t in top for j in t}
-        best = None
-        for combo in itertools.product(*top):
-            if len(set(combo)) < len(combo) or any(S[a, j] <= -10 for a, j in enumerate(combo)): continue
-            P_ = np.array([PC[int(j)] for j in combo]); spread = 0.0
-            if np.isfinite(P_).all():
-                spread = max(np.linalg.norm(P_[i] - P_[j]) for i in range(len(P_)) for j in range(i + 1, len(P_)))
-            cost = -sum(S[a, j] for a, j in enumerate(combo)) + LAM_D * max(0.0, spread - D0)
-            if best is None or cost < best[0]: best = (cost, combo, spread)
-        if best is not None:
-            log('det prior compact: top', {names[a]: [(int(j), round(float(S[a, j]), 3), np.round(PC[int(j)], 2).tolist()) for j in top[a]] for a in range(len(names))},
-                '-> chosen', [int(j) for j in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(j) for j in ci])
-            ri, ci = np.arange(len(names)), np.array(best[1])
+    def assign(S):
+        ri, ci = linear_sum_assignment(-S)
+        # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the
+        # rack): joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
+        if DET_PRIOR == 'compact' and len(names) > 1:   # default since the 20-episode A/B
+            import itertools
+            top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
+            PC = {int(j): centroid3d(props[j], dep) for t in top for j in t}
+            best = None
+            for combo in itertools.product(*top):
+                if len(set(combo)) < len(combo) or any(S[a, j] <= -10 for a, j in enumerate(combo)): continue
+                P_ = np.array([PC[int(j)] for j in combo]); spread = 0.0
+                if np.isfinite(P_).all():
+                    spread = max(np.linalg.norm(P_[i] - P_[j]) for i in range(len(P_)) for j in range(i + 1, len(P_)))
+                cost = -sum(S[a, j] for a, j in enumerate(combo)) + LAM_D * max(0.0, spread - D0)
+                if best is None or cost < best[0]: best = (cost, combo, spread)
+            if best is not None:
+                log('det prior compact: top', {names[a]: [(int(j), round(float(S[a, j]), 3), np.round(PC[int(j)], 2).tolist()) for j in top[a]] for a in range(len(names))},
+                    '-> chosen', [int(j) for j in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(j) for j in ci])
+                ri, ci = np.arange(len(names)), np.array(best[1])
+        return ri, ci
+    if reprop.any():   # DET_REPROP gate (2026-10-25; public replay: plain re-proposal broke 2 instances, gated none):
+        S_off = S.copy(); S_off[:, reprop] = -10.0         # re-proposed masks only for an object whose choice without them
+        ch0 = dict(zip(*assign(S_off)))                     # has grounding agreement G < REPROP_GMIN
+        allow = [a for a in range(len(names)) if a not in ch0 or G is None or G[a, ch0[a]] < det_rules.REPROP_GMIN]
+        for a in range(len(names)):
+            if a not in allow: S[a, reprop] = -10.0
+        log('reproposal gate', f'f{k}', {names[a]: (int(ch0[a]) if a in ch0 else None, round(float(G[a, ch0[a]]), 3) if G is not None and a in ch0 else None,
+                                         'allowed' if a in allow else 'barred') for a in range(len(names))})
+    ri, ci = assign(S)
     if os.environ.get('DET_DUMP', '1') == '1' and props:     # all proposals + features for offline rule replay
         try:
             chosen = np.full(len(names), -1); chosen[ri] = ci

@@ -135,6 +135,21 @@ class Frame:
         after = abs(np.log(max(self.extent_mask(Ma | Mq), 1e-3) / e))
         return after < before
 
+    def choose_gated(self, g_min=R.REPROP_GMIN, **v):
+        """Re-proposed masks only for objects whose choice without them has grounding agreement G < g_min (2026-10-25,
+        pipeline/perc2.py DET_REPROP); merge / verify are not combined with it."""
+        off = self.choose(**v, reprop=False)
+        if self.G is None or not self.reprop.any():
+            return off
+        allow = [a for a in range(len(self.names)) if off[a] < 0 or self.G[a, off[a]] < g_min]
+        if not allow:
+            return off
+        S = self.scores(v.get('lam_s', 0.0), v.get('dz', 1.0), v.get('ext_src', 'full'), v.get('gate', 0.3), v.get('lam_g', 0.0), v.get('reach'))
+        for a in range(len(self.names)):
+            if a not in allow:
+                S[a, self.reprop] = -10.0
+        return self.assign(S)
+
     def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None, reprop=True):
         S = self.scores(lam_s, dz, ext_src, gate, lam_g, reach, reprop)
         if verify and self.V is not None and np.isfinite(self.V).any():
