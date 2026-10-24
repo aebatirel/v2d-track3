@@ -3054,3 +3054,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     training and checkpoint selection.
 - **16:00 UTC evG eval 37 (spoon only): sim_vs_ref 0.9982 ± 0.0004** over 5 evaluations, chosen 70M; curve
   0.995 / 0.989 / 0.988 / 0.992 / 0.997 / 0.998 / ... Box G: 15:07 -> 16:00, about 55 min on the Max-Q.
+- **16:10-16:25 UTC results** (sim_vs_ref, 5 official evaluations of the chosen checkpoint, our reference only):
+  - eval 30 (sweeper + rack, evR, support fallback): **0.469 ± 0.004**, chosen 30M
+  - eval 16 (rack + spoon, evC): **0.795 ± 0.076** (0.73-0.92), chosen 60M. Its reference had a QA reason: left
+    wrist step 19 cm.
+  - eval 14 (cup + rack, evC): **0.506 ± 0.036**, chosen 10M, so later checkpoints were worse. Twin ep12 scored
+    0.868 vs mocap.
+  - eval 28 (rack + pot, evE): **0.694 ± 0.085**, chosen 10M
+  - eval 8 (beige cup + pot, evR2, support fallback): **0.777 ± 0.065**, chosen 70M
