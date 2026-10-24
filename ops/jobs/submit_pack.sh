@@ -18,9 +18,15 @@ LIB=${LIB:-$REPO_DIR/meshes/library_v3}; CLEAN=/content/v2d_clean; FCV=/content/
 mkdir -p $OUT/results $OUT/meshes
 [ -d $CLEAN ] || git -C /content/v2d worktree add --detach $CLEAN HEAD >> $J 2>&1 || { log "submit_pack: clean worktree FAILED" >> $J; exit 1; }
 log "submit_pack: clean evaluator $(git -C $CLEAN rev-parse --short HEAD), modified files: $(git -C $CLEAN status --short | wc -l)" >> $J
+if [ "$(python -c "import json, sys; print(len(json.load(open(sys.argv[1]))))" $CHECKPOINTS)" -gt 0 ]; then
 ( cd $CLEAN/robotic_grounding/flash_chord && PYTHONPATH=$CLEAN/robotic_grounding/flash_chord/src MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false \
     $FCV $KIT/examples/run_policy_evaluation.py --checkpoints $CHECKPOINTS --results $OUT/results \
     --runtime-root $CLEAN/robotic_grounding/flash_chord ) > $OUT/eval.log 2>&1 || { log "submit_pack: evaluation FAILED ($(tail -2 $OUT/eval.log | tr '\n' ' ' | cut -c1-200))" >> $J; exit 1; }
+fi
+if [ -n "${KEPT_DIR:-}" ]; then                                   # KEEP_RESULTS (pack_eval.sh): earlier official rollouts of
+  cp -n $KEPT_DIR/episode_* $OUT/results/                         # unchanged checkpoints; never over a new evaluation
+  log "submit_pack: kept earlier rollouts: $(ls $KEPT_DIR | grep -c parquet) episodes" >> $J
+fi
 python - $KIT/data/track_3_evaluation_objects.json $LIB $OUT/meshes << 'EOF' >> $J 2>&1 || exit 1
 import json, os, shutil, sys
 roster, lib, out = json.load(open(sys.argv[1]))['episodes'], sys.argv[2], sys.argv[3]

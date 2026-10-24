@@ -39,5 +39,41 @@ if [ -n "${PICK:-}" ]; then                                         # PICK="EP:R
   done
 fi
 log "pack_eval: checkpoints $(tr -d '\n ' < $F/checkpoints.json | cut -c1-300)" >> $J
-CHECKPOINTS=$F/checkpoints.json LIB=${LIB:-$REPO_DIR/meshes/library_v3} bash $REPO_DIR/ops/jobs/submit_pack.sh
+CK_EVAL=$F/checkpoints.json; KEPT=
+if [ -n "${KEEP_RESULTS:-}" ]; then   # KEEP_RESULTS=<earlier pack run> (2026-10-25): an episode whose chosen checkpoint is
+  # byte-identical (sha256) to the one that pack evaluated keeps that pack's official rollout; only changed episodes are
+  # evaluated again. The rule depends on the checkpoint alone, never on a score: re-rolling an unchanged, bimodal
+  # episode (evals 3, 5, 15: one bad mode in five) would add variance and no expected gain.
+  K=/content/keep/$KEEP_RESULTS; KEPT=$F/kept; mkdir -p $K $KEPT
+  hf download "$HF_STORE" --repo-type dataset --include "runs/$KEEP_RESULTS/results/submission/results/episode_*" --local-dir $K > /dev/null \
+    || { log "pack_eval: KEEP_RESULTS $KEEP_RESULTS download FAILED" >> $J; exit 1; }
+  python - $F/checkpoints.json $K/runs/$KEEP_RESULTS/results/submission/results $F/checkpoints_eval.json $KEPT << 'PYEOF' >> $J 2>&1 || exit 1
+import hashlib, json, os, shutil, sys
+ck, old, out, kept = sys.argv[1:5]; m = json.load(open(ck)); ev, keep = {}, []
+for ep, p in m.items():
+    j = f'{old}/episode_{int(ep):06d}.json'; h = hashlib.sha256(open(p, 'rb').read()).hexdigest()
+    if os.path.exists(j) and os.path.exists(j[:-5] + '.parquet') and json.load(open(j)).get('checkpoint_sha256') == h:
+        for x in ('.json', '.parquet'):
+            shutil.copy(j[:-5] + x, kept)
+        keep.append(int(ep))
+    else:
+        ev[ep] = p
+json.dump(ev, open(out, 'w'), indent=1, sort_keys=True)
+print(f'pack_eval: earlier official rollout kept for {sorted(keep)} (checkpoint unchanged); evaluating {sorted(map(int, ev))}')
+PYEOF
+  CK_EVAL=$F/checkpoints_eval.json
+fi
+CHECKPOINTS=$CK_EVAL KEPT_DIR=$KEPT LIB=${LIB:-$REPO_DIR/meshes/library_v3} bash $REPO_DIR/ops/jobs/submit_pack.sh
+S=/content/results/submission                                       # each packed rollout scored against our reference
+for p in $S/results/episode_*.parquet; do                           # (sim_vs_ref, qa.py policy; no ground truth)
+  e=$((10#$(basename $p .parquet | cut -d_ -f2))); mkdir -p $S/qa/ep$e; cp ${p%.parquet}.* $S/qa/ep$e/
+  python $REPO_DIR/pipeline/qa.py policy $S/qa/ep$e $e > /dev/null 2>&1 || true
+done
+python - $S/qa > $S/summary.txt 2>&1 << 'PYEOF'
+import glob, json, sys
+v = {f.split('/ep')[-1].split('/')[0]: json.load(open(f))['sim_vs_ref'] for f in glob.glob(f'{sys.argv[1]}/ep*/qa_policy.json')}
+v = dict(sorted(v.items(), key=lambda x: int(x[0])))
+print(json.dumps({k: round(x, 4) for k, x in v.items()})); print('n', len(v), 'mean', round(sum(v.values()) / max(len(v), 1), 4))
+PYEOF
+log "pack_eval: packed rollouts sim_vs_ref $(tr '\n' ' ' < $S/summary.txt | cut -c1-600)" >> $J
 bash $OPS/store.sh push-run > /dev/null 2>&1 || true
