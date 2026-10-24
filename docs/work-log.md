@@ -3314,3 +3314,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   padding. Test on the 10 study meshes still on disk (CPU, mesh only): 10/10 by open3d, watertight, Euler kept, kit
   passthrough true, 2–4 s each; the pymeshlab path alone also keeps topology on the sweeper and the pitcher (0.6 / 3.6 s).
   Not wired into any job yet (v5 needs owner decision O1 first).
+- 23:35 UTC **v5 port steps: `pipeline/collision_decomp.py` + `make_assets.py --pieces`** (spec §8.2): free-space-guided
+  convex decomposition (Warp winding number on CPU, same kernel parameters as the study's `vox2`), cap 32 pieces or
+  64 above 300 cm³, hulls ≤ 64 vertices, optional partner weighting. **Port acceptance met:** on library_v3's
+  sweeper it reproduces the study's `v3_sweeper` run exactly (30 pieces, union 128.8 cm³ = 1.109 × solid, free in
+  union 3.19 cm³, every piece volume identical; 151 s, scratch fcvenv). `make_assets.py --pieces DIR` writes one
+  `<collision>` element per piece; without it the output is byte-identical to before (diff of all 11 objects).
+  Not wired into any job yet.

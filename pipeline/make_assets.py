@@ -11,7 +11,7 @@ with per-vertex or per-face colours into one shape per distinct face colour; Fla
 fragment. With our video-coloured meshes a board became 174 open fragments: CoACD ran > 10 min and the 4096-world
 training build was killed for memory (2026-10-21, ep24 twice). Geometry only, the board loads as 1 watertight shape.
 """
-import argparse, os
+import argparse, glob, os, shutil
 import numpy as np, trimesh
 
 URDF = """<?xml version="1.0"?>
@@ -29,13 +29,16 @@ URDF = """<?xml version="1.0"?>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry><mesh filename="../mesh/{n}/{n}.glb" scale="1 1 1"/></geometry>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry><mesh filename="../mesh/{n}/{n}.glb" scale="1 1 1"/></geometry>
-    </collision>
+{collisions}
   </link>
 </robot>
 """
+
+
+COLLISION = """    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="../mesh/{f}" scale="1 1 1"/></geometry>
+    </collision>"""
 
 
 def surface_inertia(m, mass):
@@ -50,6 +53,8 @@ def surface_inertia(m, mass):
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('library'); p.add_argument('out'); p.add_argument('--mass', type=float, default=0.3)
+    p.add_argument('--pieces', help='DIR/<obj>/piece_*.obj (pipeline/collision_decomp.py; mesh v5 spec 8.2): one '
+                                    '<collision> element per convex piece for those objects, the visual stays the mesh')
     a = p.parse_args()
     os.makedirs(f'{a.out}/urdf', exist_ok=True)
     for f in sorted(os.listdir(a.library)):
@@ -61,11 +66,17 @@ def main():
         os.makedirs(f'{a.out}/mesh/{n}', exist_ok=True)
         m.export(f'{a.out}/mesh/{n}/{n}.glb')
         c, I = surface_inertia(m, a.mass)
+        cols = [f'{n}/{n}.glb']
+        pieces = sorted(glob.glob(f'{a.pieces}/{n}/piece_*.obj')) if a.pieces else []
+        if pieces:                                       # FlashCHORD's CoACD keeps each convex piece as one hull
+            cols = []
+            for k, pc in enumerate(pieces):
+                shutil.copy(pc, f'{a.out}/mesh/{n}/col_{k:02d}.obj'); cols.append(f'{n}/col_{k:02d}.obj')
         open(f'{a.out}/urdf/{n}_rigid.urdf', 'w').write(URDF.format(
             n=n, m=a.mass, cx=c[0], cy=c[1], cz=c[2], ixx=I[0, 0], ixy=I[0, 1], ixz=I[0, 2], iyy=I[1, 1], iyz=I[1, 2],
-            izz=I[2, 2]))
+            izz=I[2, 2], collisions='\n'.join(COLLISION.format(f=f) for f in cols)))
         print(f'{n}: {len(m.vertices)} verts, watertight {m.is_watertight}, extents cm {np.round(m.extents * 100, 1)}, '
-              f'com {np.round(c * 100, 2)} cm')
+              f'com {np.round(c * 100, 2)} cm' + (f', {len(pieces)} collision pieces' if pieces else ''))
 
 
 if __name__ == '__main__':
