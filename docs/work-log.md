@@ -3377,3 +3377,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   **accepted**; its up is within ≈ 0.5° of the hand-made v3 patch. The automatic rule reproduces the manual fix.
 - G1 box: ep0 tracked and hands done; its registered perception score failed (`fast_simplification` missing on the
   box). The score is a diagnostic and will be computed on CPU from the pushed tracks; the job now installs it.
+- 23:34 UTC **v5 orchestration end-to-end code test** (`ep_mesh.py library mini_dust_pan`, ep18 with the sweeper as the
+  other object + ep39; the study's scan-templated s2 inputs, so a code test only, G0 off; 4 local cores, 20 min:
+  pass 0 392 s, fusion 196 s, post 2 s, F4 358 s, support 2 s, pieces 204 s). Result: O chosen (G1 0.03 cm³, G2 0.012,
+  T, X 0 flips, ADD median 3.0 mm vs M0); support rule found 3 rests (ep18 f95–121 and f124–177, ep39 f0–17), one
+  cluster, already stable (margin 5.4 mm, 30 cm²) → unchanged; final 4096 faces, watertight, Euler kept; 32 pieces,
+  **union 1.32 × solid, above the §8.3 acceptance of 1.25** (thin plate at the 32-piece cap; E6 decides, e.g. 64).
