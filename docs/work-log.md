@@ -2911,3 +2911,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   3. The spoon mesh is a parametric template sized from our own stereo measurements, not a fusion from the eval
      videos (TODO #13). This is the email's question 4.
 - The email has still not been sent (owner action, TODO #14).
+- **12:35 UTC costed plan for the rest of the eval run** (owner asked: money and time for a full run).
+  - Measured box times: ev3 (3 public episodes, cached references) 09:53 -> 12:02 = 2.2 h; ev2 (2 public + eval 38)
+    1.7 h. Box F (3 eval episodes from raw video, spoon-heavy) started 11:36; perception took 18 min and the grasp
+    search was still running at 12:32 (long spoon windows; 3 searches share one GPU, 100 % busy, 81 GB).
+  - Estimate per 3-episode box: 2.5-3.5 h at about $1.51/h, so $3.8-5.3. Six boxes remain (A-E with 3 episodes each,
+    G with 1): $23-31, about $27 central, including the pack step (about $1.5).
+  - Wall clock: about 3 h, since the boxes run in parallel, plus about 45 min to pack. That is 3.5-4 h from launch to
+    the submission file.
+  - Credit $6.67 at 12:32 UTC, of which box F still needs about $2.5. Top-up needed is about $26 including the $3
+    reserve; $30 is suggested.
