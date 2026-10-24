@@ -3262,3 +3262,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   30's sweeper (170 frames), eval 33's cup (31 frames, intermittent while the cup is held tilted) and eval 32's cup
   (4 frames); none in 14, 15, 16, 28. Not turned into a rule tonight: in 33 the flagged frames are mixed with real
   holds, and no public twin has the cup + spoon combination to validate on.
+- 22:22 UTC: **settle box 57572068 destroyed after ~8 min (still in setup, ≈ $0.2).** The 24 Oct starts audit
+  (`audit-starts-ep21-ep2-ep26.md`) had already measured that ep2's start overlap costs only 0.042 in zero-action
+  variants and that the failure is the lid grasp (the lid is flicked out at the lift onset in all five variants,
+  whatever the start). SETTLE on eval 1 could therefore gain at most ≈ 0.002 of the 20-episode AUC. Eval 1 needs a
+  lid-grasp fix and a thinner pot wall (v5), not a start fix. `--start_overlap` stays in mkref, off by default.
+- Packer: `pack_eval.sh KEEP_RESULTS=<pack run>` (d046600) keeps the earlier pack's official rollout for every episode
+  whose chosen checkpoint is byte-identical (sha256 recorded by the evaluator); only changed episodes are evaluated.
+  Re-rolling unchanged bimodal episodes (3, 5, 15) adds variance and no expected gain. The rule depends on the
+  checkpoint hash only. The packed rollouts are now scored (sim_vs_ref) by the job itself.
