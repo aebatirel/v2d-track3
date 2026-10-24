@@ -3028,3 +3028,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Evals 6, 28 and 32 passed this step.
 - **57531603** `20261024-evR2-9c63c87` RTX PRO 6000 Max-Q, Switzerland, $1.62/h: eval 8 rerun from the raw video,
   same recipe.
+- 15:39 UTC: the pack test box 57529120 was still pulling its image after 31 min, so it was destroyed (about
+  $0.06). Replaced by **57532028** `20261024-packtest2-6ab78d0` (RTX A4000, Estonia, $0.18/h), same job.
