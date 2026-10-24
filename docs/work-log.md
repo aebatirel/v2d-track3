@@ -3419,3 +3419,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   every 90 s (grids excluded until the end), refreshes a rolling 40-min HOLD (so the box is freed 40 min after the
   job if the copier dies), and after the job copies everything (grids included), drops the hold and self-destroys
   (push first). Repo fix for later runs: output under `/content/results/library_v5` (9faeabe).
+- 23:57 UTC **pre-registered (before any library v5 output is seen): v5 pitcher for eval 20.** Motivation: eval 20
+  (blue cup + pitcher, sim_vs_ref 0.336) fails on the pitcher mesh (a twisted shell in v2/v3; v3 = v2 for the pitcher,
+  so the eval 20 tracks live in the same frame as v5, which is built along library_v2-seeded perc2m tracks). The v5
+  pitcher is fused along G1 ep21 + ep22, whose pitcher tracks are fair (registered AUC 0.683 / 0.749).
+  - **Step 1, E2 (CPU, diagnostic):** proceed only if the v5 pitcher has CD-O (eval seed) < v2's 0.894 cm, no flip at
+    any seed, and the pitcher's registered AUC along the G1 tracks of ep21 and ep22 with v5 is ≥ the v2 value − 0.01
+    in each episode.
+  - **Step 2, public twin (GPU, ground truth):** ep21 with the frozen recipe twice, base (library_v3) and v5 pitcher
+    (library_v3 with only the pitcher replaced), same perception tracks; registered AUC vs mocap, mean of 5
+    evaluations. **Adopt iff v5 ≥ base − 0.02 and the pitcher object's AUC (v5) ≥ base's.**
+  - Eval 20 may be trained with the v5 pitcher in parallel to save time; its policy is used only if step 2 adopts,
+    whatever its sim_vs_ref. No other object changes in this test.
