@@ -3337,3 +3337,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   scan and a renamed library_v3 mesh by hash, a missing manifest, P0 / P1 propagation and a changed artifact all behave
   as specified; 3 pytest cases pass. Not yet enforced in any job (the enforcement points of spec §3.4 come with the
   mesher port).
+- 22:56 UTC **mesh v5 G1 launched** (spec §12, recommended "now" in O6; ≈ $2–3, inside tonight's go-ahead): box
+  **57575992** `20261025-g1-022fece` (RTX PRO 6000 WS, UK, $1.48/h), `bash ops/jobs/g1_perc2m.sh`: perc2 with
+  `MESH_DIR=meshes/library_v2` on public episodes 0, 2, 11, 13, 21, 22, 23, 26, 31, 39, 40–45 (depth from the store
+  cache), MediaPipe hands + refinement, `STOP_AFTER=hands` (new in `pipeline_ep.sh`), then the registered perception
+  score with library_v2 [D, after inference]; pushes after every episode. Output tier P1 (owner decision O1). Today's
+  perc2 defaults (23 Oct detection rules) differ from the 21 Oct perc2m runs of ep12/18/24/27 in detection only.
