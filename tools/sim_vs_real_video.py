@@ -116,3 +116,9 @@ for k in range(min(T, n_tr)):
         cv2.putText(r3, a.score, (6, Hs - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2, cv2.LINE_AA)
     out.write(np.hstack([raw, ov, r3]))
 out.release(); print(f'wrote {a.out}.tmp.mp4 ({min(T, n_tr)} frames)', flush=True)
+# H.264 for players and phones (2026-10-24: the mp4v temp file was never converted, so no OUT appeared)
+import shutil, subprocess  # noqa: E402
+if shutil.which('ffmpeg') and subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', f'{a.out}.tmp.mp4', '-c:v', 'libx264',
+                                              '-pix_fmt', 'yuv420p', '-crf', '26', '-preset', 'veryfast', a.out]).returncode == 0:
+    import os  # noqa: E402
+    os.remove(f'{a.out}.tmp.mp4'); print(f'wrote {a.out} (H.264)', flush=True)
