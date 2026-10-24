@@ -3271,3 +3271,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   whose chosen checkpoint is byte-identical (sha256 recorded by the evaluator); only changed episodes are evaluated.
   Re-rolling unchanged bimodal episodes (3, 5, 15) adds variance and no expected gain. The rule depends on the
   checkpoint hash only. The packed rollouts are now scored (sim_vs_ref) by the job itself.
+- Disk note (cloud session): the session disk was 96 % full, so pip/uv caches, unused VLM weights (Florence-2,
+  OWLv2, LLMDet, MM-GDINO) and the scratch folders `interact/obs` and `interact/minimal` (data and caches, 2.5 GB) were
+  deleted. The prototype code of both is committed under
+  `docs/research/work/interaction-meshes-2026-10-22/prototypes/`; `scratchpad/interact/v5/` (the v5 evidence round)
+  is kept.
