@@ -3070,3 +3070,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     mocap.
   - Boxes C, D, R and R2 are done and destroyed; A (1, 3, 5), B (6, 10) and E (32) are still training.
   - 14 of 20 done; mean sim_vs_ref over those 14 is 0.692.
+- **17:05 UTC results:**
+  - eval 6 (pot + spoon, evB): **0.982 ± 0.007**, chosen 70M
+  - eval 5 (pot + spoon, evA): **0.855 ± 0.234**, one rollout of five at 0.387, chosen 70M
+  - eval 1 (pot + lid, evA): **0.297 ± 0.101**, chosen 30M. Twin ep2 scored 0.306.
+  - 17 of 20 done; evals 3, 10 and 32 are still running.
+- **Owner (≈ 20:10 TRT): "why don't you reconstruct everything for the simulation, you need to recreate for all"**,
+  after the pitcher question.
+  - Adopted: mesh pipeline v5 (`docs/mesh-v5-spec-draft.md`) for all objects, starting after tonight's pack. It adds
+    the base completion found in today's audit (pitcher foot of 8 convex sectors) to the support rule.
+  - Plan: (1) CPU port, $0; (2) G1 re-track of 16 public episodes, ≈ $2-3; (3) build library v5 and stand-test every
+    object, CPU; (4) G2 public-twin validation with GT on ep18 / 12 / 27 / 24 / 21 / 26 / 31, ≈ $15-20; (5) G3 20-eval
+    rerun and pack, ≈ $33.
+  - About $50-55 in total; second submission around 27-28 Oct. GPU steps wait for the owner's go-ahead.

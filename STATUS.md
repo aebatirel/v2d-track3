@@ -2,6 +2,11 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~20:10 TRT: owner directive — rebuild every mesh for the simulation (v5), after tonight's pack
+- Plan (`docs/mesh-v5-spec-draft.md` + today's pitcher base completion): CPU port, G1 re-track 16 public episodes
+  (≈ $2–3), library v5 with stand tests, G2 public-twin validation vs GT (≈ $15–20), G3 20-eval rerun + pack (≈ $33).
+  Total ≈ $50–55; second submission ≈ 27–28 Oct. GPU steps need the owner's go-ahead.
+
 ## 2026-10-24 ~18:05 TRT: 20-episode eval run — six boxes running (owner topped up $50)
 - evA 1,3,5 | evB 6,8,10 | evC 14,15,16 | evD 19,20,25 | evE 28,30,32 | evG 37 (all `20261024-ev?-664e5fd`, $9.17/h
   together); evals 33/35/36 (evF) and 38 (ev2) are done. Then `ops/jobs/pack_eval.sh` over ev2 + evA-G; the owner
