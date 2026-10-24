@@ -3352,3 +3352,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.177 (> 0.05): it would fall back to F4 under the frozen gates, as the spec's E0c table says. Not wired into a job.
 - Seed 43, **eval 19: 0.6534** (std 0.033) vs seed 42's 0.6469: higher, so seed 43 is picked by the rule fixed
   beforehand (a negligible margin; the packed rollout will be re-drawn).
+- 23:03 UTC **v5 port step: `pipeline/mesh_gates.py`** (spec §4.5 / §6: X flip check, C consistency, G6 registration
+  move, T topology; the kit's own `_register_object_body` and `_object_chamfer_cm`). Port acceptance: the X check
+  reproduces the study's `xreg` records exactly (rotation and ADD per seed) for library_v4 sweeper, library_v4 board 1
+  and the review2 board 1 mesh (rotations up to 2.4°, ADD median 3.255 mm). Not wired into a job.
+- 23:02 UTC eval 30 box: both references built and passed QA. **Public twin ep31 perception with the gated
+  re-proposal: AUC 0.881 vs mocap** (SP 1.00, MP 1.00, MPPE 1.23 cm; sweeper 0.949). Training next.
