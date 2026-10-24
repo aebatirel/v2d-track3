@@ -10,7 +10,9 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   the organisers (email draft `docs/organiser-email-draft-2026-10-22.md`, now 5 questions, not sent): the kp 400
   wrist embodiment, mesh provenance (library_v3 built along scan-templated tracks; v5 rebuild not done), and the
   spoon template.
-- Expected result of this run (estimate): 20-episode ADD-AUC ≈ 0.76 (0.60–0.86). Leaderboard on 23 Oct 21:52 UTC:
+- Box F done: eval 35 0.9915, eval 36 0.9935, **eval 33 0.391** (sim_vs_ref; our perceived cup track tilts 90–130°
+  after frame 48: a perception failure). Eval 33 retrained after a GPU OOM (fixed: at most 2 trainings per GPU).
+- Expected result of this run (estimate, revised after eval 33): 20-episode ADD-AUC ≈ 0.74 (0.58–0.85). Leaderboard on 23 Oct 21:52 UTC:
   0.930 / 0.884 / 0.831 / 0.730, so the estimate is about 4th. The weak episodes are eval 1, 20, 25 (and 28).
 - Box F 57507961 (`20261024-evF-38877d0`) running; credit $7.73 at 12:00 UTC, the other 16 episodes (A-E, G ≈ $20)
   wait for the owner's top-up. Then `ops/jobs/pack_eval.sh` over all eval runs (ev2 + evA-G).

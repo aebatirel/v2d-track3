@@ -2958,3 +2958,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Chosen checkpoints are at `runs/20261024-evF-38877d0/results/glock_public/ep{35,36}/best/policy.safetensors`.
 - 13:10 UTC the follow-up started on evF at 16783cf: `REUSE_REF` reused eval 33's reference, took training slot 1 and
   is training.
+- **13:50 UTC eval 33 (blue cup + spoon): sim_vs_ref 0.391 ± 0.029** (chosen 60M; curve 0.34-0.43; zero action 0.199,
+  floor 0.214). Grasp search: cup hold 0.556 -> 0.794, spoon hold 0.107 -> 0.316. Follow-up exit 0; the store has
+  `runs/20261024-evF-38877d0/results/glock_public/ep33/best/policy.safetensors`.
+- Diagnosis (CPU, `scratchpad/ev33/`; our reference and the simulated rollout only, no ground truth exists):
+  - The perceived spoon never enters the cup's collision mesh (0 of 87 checked frames over 2 mm), so this is not a
+    mesh-cavity clash.
+  - **Our perceived cup track goes wrong after frame ~48.** It tilts 87-130° and dips 10-15 cm, to 54-60 cm, below
+    its resting height of 68.8 cm, for the rest of the episode. No hand is within 12 cm of it, yet the left hand's
+    contact list is never empty. The likely real action is: the left hand holds the cup upright while the right hand
+    works the spoon in it. Our tracker then loses or flips the cup, and grasp_lock sees the left hold only from 17 to
+    48.
+  - In the simulation the released cup falls over (86° by frame 55), so the cup is lost against our reference and
+    probably against the truth too. The spoon is 3-5 cm off for most of the episode and 14 cm off at the end.
+  - Class: a perception failure on a held, partly occluded cup. It is not a grasp or RL failure. No public episode
+    has a spoon inside a cup.
+  - Eval 32 (also blue cup + spoon) may share it. A generic fix (a flip / tilt plausibility check on tracked objects
+    while held, and the render-and-compare check, TODO #6) needs public validation. It is not a tonight item, and
+    there is no per-episode fix on eval data.
+- Revised 20-episode estimate: eval 33 at about 0.35 instead of 0.85 gives **≈ 0.74 (0.58–0.85)**.
