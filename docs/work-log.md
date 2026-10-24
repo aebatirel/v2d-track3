@@ -2874,3 +2874,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   slide-to-edge primitive). Impact on the 20-episode mean vs standard RL: ~ -0.004 (one episode, -0.07). The `ep2`
   row in ev3's summary is stale (pulled from an earlier run's results, 30M; ep2 was not trained on ev3).
   Box ev3 (57498018): validation done (ep39 0.958, ep18 0.957, ep24 0.241), push + self-destroy.
+- **ep18 0.957, what the recipe changed** (decoded from `runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/evolve/
+  phase{0,1}.json` and `refs/glock/ep18/.../ref_gl_grasp_lock.json` in the store):
+  - Sweeper (right hand): the onset anchor moved the grasp from frame 53 to frame 29. The perceived sweeper starts
+    moving at frame 39 and had already travelled 5.5 cm by frame 53. The approach now starts at frame 16 (15 cm).
+    The pan's hold already began before its motion (hold 8, motion 18), so the anchor did not change it.
+  - Pan search: the best edit came from **generation 0** (the broad first sample, fit 0.497 vs 0.280 unedited). It
+    moves the wrist 8.0 cm in the pan frame (-3.5, -3.1, -6.5 cm), rolls it 10°, and offsets the fingers by up to
+    24°. Later generations converged elsewhere (mean 0.317 -> 0.374, best 0.39-0.43).
+  - Sweeper search: best at **generation 1** (fit 0.579 vs 0.247). It moves the wrist 2.7 cm, yaws it 9°, and offsets
+    the fingers by up to 36°. The median hold ADD is 3.6 cm, vs 11.2 cm on the pan.
+  - So at zero action the search only got the holds halfway (0.50 / 0.58). The 70M fine-tune finished them: curve
+    0.48 -> 0.99, sim_vs_ref 0.992. The rest of the gap to 0.957 is perception (perceived path vs mocap). CMA-ES acted
+    mostly as a robust broad sampler here.
+  - Not measured: the separate effect of the anchor and of the search on ep18 (no ablation), and whether more search
+    generations would beat a broader first sample.
+  - Caveat: ep18 is a development episode (its failures were diagnosed with ground truth), so 0.957 is in-sample for
+    the design. The held-out test is its eval twin, eval 19 (sweeper + dust pan).
