@@ -1,0 +1,20 @@
+{
+ "_note": "Frozen parameters of mesh pipeline v5 (docs/mesh-v5-spec-draft.md Appendix A). Committed; never set from eval outputs. E1 / E3 may change below_mode / edge_thr only through their pre-registered rules.",
+ "fusion": {"voxel": 0.002, "margin": 0.04, "taus": [0.004, 0.006, 0.012], "min_obs": 3, "free_m": 0.008, "free_s": 0.003,
+            "table_band": 0.015, "refit_max_deg": 10, "below_carve": 0.004, "hand_r": 0.03, "arm_r": 0.045, "arm_len": 0.15,
+            "other_r": 0.012, "edge_thr": 0.02, "zmax": 1.5, "stride": 2},
+ "post": {"variant": "4c12_adj_g2_f0_cont@lc25", "adj_share": 0.5, "lc_fraction": 0.25, "merge_m": 0.008,
+          "fragment_area_share": 0.05, "fragment_dist_m": 0.15, "below_mode": "nobc"},
+ "gates": {"G1_cm3": 0.5, "G2_share": 0.05, "G2_dist_m": 0.008, "X_max_deg": 90, "X_seeds_total": 6, "C_cm": 0.5, "C_seeds": [11, 22]},
+ "fallback_F4": {"voxel": 0.004, "trunc": 0.012, "close": "auto", "below_carve": 0.004, "others": "own M0"},
+ "pass0_M0": {"voxel": 0.004, "trunc": 0.012, "close": "auto", "below_carve": 0.004, "others": "none"},
+ "decimate": {"faces": 4096, "first": "open3d", "fallback": "pymeshlab QEC, qualitythr 0.3, staged"},
+ "support": {"move_mm": 2.0, "jitter_factor": 2.5, "min_len": 15, "plane_tol_m": 0.02, "hand_mm": 20, "carry_frames": 6,
+             "cluster_deg": 10, "snap_deg": 5, "margin_mm": 2.0, "area_cm2": 1.0, "flatten_m": 0.008, "strong_removal_cm3": 0.5,
+             "G6_mm": 2.0, "G6_deg": 2.0},
+ "collision": {"margin_mm": 0.75, "margin_partner_mm": 0.5, "tol_cm3": 0.3, "max_pieces": 32, "max_pieces_large": 64,
+               "large_solid_cm3": 300, "max_hull_verts": 64, "overlap_mm": 1.0, "quantiles": 19, "lam": 10, "contact_mm": 1.0},
+ "library_episodes": {"white_pot": [0, 2, 26, 27, 41, 42, 43, 44, 45], "white_pot_lid": [0, 2], "blue_cup": [11, 12, 13, 21, 22],
+                      "beige_cup": [11], "plastic_dish_rack": [12, 13, 26, 27, 31], "water_pitcher": [21, 22],
+                      "mini_sweeper": [18, 31], "mini_dust_pan": [18, 39, 40], "wooden_piece_1": [23, 24], "wooden_piece_2": [23, 24]}
+}
