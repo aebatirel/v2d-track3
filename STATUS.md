@@ -2,6 +2,11 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~17:05 TRT: 20-episode eval run — six boxes running (owner topped up $50)
+- evA 1,3,5 | evB 6,8,10 | evC 14,15,16 | evD 19,20,25 | evE 28,30,32 | evG 37 (all `20261024-ev?-664e5fd`, $9.17/h
+  together); evals 33/35/36 (evF) and 38 (ev2) are done. Then `ops/jobs/pack_eval.sh` over ev2 + evA-G; the owner
+  uploads to Kaggle. Estimate ≈ $29-33 in total, ready about 4 h after 14:05 UTC.
+
 ## 2026-10-24 ~15:05 TRT: eval run under way (box F: eval 33/35/36); six boxes wait for credit
 - GPU validation of the recipe (registered AUC vs mocap, 5 evaluations): ep39 0.958, ep18 0.957, ep27 0.949, ep12
   0.868 (one rollout in five fails), **ep24 (boards) 0.241 ± 0.125** (standard RL 0.31: boards stay weak, only eval

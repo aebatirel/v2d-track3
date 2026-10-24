@@ -2977,3 +2977,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     while held, and the render-and-compare check, TODO #6) needs public validation. It is not a tonight item, and
     there is no per-episode fix on eval data.
 - Revised 20-episode estimate: eval 33 at about 0.35 instead of 0.85 gives **≈ 0.74 (0.58–0.85)**.
+
+### 24 Oct ~14:05 UTC — the owner topped up $50 (credit $54.61): "run the whole pipeline with 20 eval, let's get our ranking"
+- Plan: the remaining 16 eval episodes on six boxes with the frozen recipe, at code 664e5fd (38877d0 plus the
+  two-training GPU slot gate and REUSE_REF, which is off). Evals 33/35/36 (evF) and 38 (ev2) are reused, being the
+  same recipe. Then `ops/jobs/pack_eval.sh` over all eight runs. Estimate ≈ $27-31 for the boxes plus ≈ $1.5 to pack;
+  about 3-3.5 h, plus 45 min to pack.
+- Launched (job: `glock_public.sh` SPLIT=eval, as for evF):
+  - **57528831** `20261024-evA-664e5fd` RTX PRO 6000 S, Australia, $1.51/h: eval 1, 3, 5
+  - **57528845** `20261024-evB-664e5fd` RTX PRO 6000 S, New York, $1.72/h: eval 6, 8, 10 (the first offer, 57151485,
+    had gone)
+  - **57528832** `20261024-evC-664e5fd` RTX PRO 6000 S, France, $1.55/h: eval 14, 15, 16
+  - **57528833** `20261024-evD-664e5fd` RTX PRO 6000 S, Virginia, $1.58/h: eval 19, 20, 25
+  - **57528834** `20261024-evE-664e5fd` RTX PRO 6000 S, New York, $1.68/h: eval 28, 30, 32
+  - **57528835** `20261024-evG-664e5fd` RTX PRO 6000 Max-Q, Australia, $1.13/h: eval 37
+  - Together $9.17/h.
