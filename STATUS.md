@@ -2,23 +2,25 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-25 ~02:25 TRT: night work, in progress (owner asleep; see the work log for every step)
-**Boxes running:** seed 43 for evals 19/3/5/15/16/28 (`20261024-seed43-61101f5`, done ≈ 05:00 TRT); eval 30 + its
-public twin ep31 with the fixed detection (`20261024-ev30rp-07eef1a`, ≈ 04:10 TRT); mesh v5 G1 re-tracking of 16
-public episodes (`20261025-g1-022fece`, ≈ 02:40 TRT). Then one pack with only the changed episodes re-evaluated, and
-the upload.
+## 2026-10-25 ~03:00 TRT: night work, in progress (owner asleep; see the work log for every step)
+**Boxes running (credit $22.20 at 02:56 TRT):** seed 43 for evals 16 and 28 (`20261024-seed43-61101f5`, done
+≈ 05:00 TRT); eval 30 + its public twin ep31 with the fixed detection (`20261024-ev30rp-07eef1a`, ≈ 04:00 TRT); library
+v5 build (`20261025-lib5-c476e68`, CPU, ≈ 05:00 TRT; a copier on the box saves its output, see the work log).
+Next: one pack with only the changed episodes re-evaluated (eval 30 + seed-43 picks), then the Kaggle upload.
 
 **Results so far**
-- Grounding DINO was missing on the eval boxes; replay shows it changed no eval detection. Fixed for later runs.
-- Eval 30: gated re-proposal (public: 93 → 95 of 116 instances, no regression) picks the broom in the rack; the public
-  twin ep31 with the same rule: perception AUC 0.881 vs ground truth.
-- Seed 43: eval 3 0.929 (seed 42: 0.851, bad mode gone); eval 19 0.653 (0.647). Both picked by the pre-set rule.
-- Eval 1 start-overlap: not the cause (lid grasp is); no GPU spent beyond 8 min. Spoon template length: fine.
+- Seed 43 beats seed 42 on every episode finished: eval 3 0.929 (0.851), 19 0.653 (0.647), 15 0.941 (0.901), 5 0.966
+  (0.855). Picked by the rule set beforehand (higher 5-evaluation mean).
+- Eval 30: gated re-proposal picks the broom in the rack; the public twin ep31 perception AUC 0.881 vs ground truth.
+- G1 (16 public episodes re-tracked with library_v2 seeds): registered perception AUC mean 0.810; failures ep0 (lid
+  assigned to the pot handle), ep11 (beige cup assigned to the lap), ep23 (boards, identity swap suspected). These feed
+  the v5 lid / beige cup / boards, so those v5 meshes are expected to be poor; E2 (CPU) will measure it.
+- Pre-registered (work log, before any v5 output): the v5 pitcher replaces the twisted v3 pitcher in eval 20 only if
+  it passes E2 and a public-twin test on ep21 (≈ $5–6, within tonight's go-ahead).
 
 **Mesh v5 port (owner directive), CPU, each module verified against the v5 study's own outputs:** decimation,
-collision pieces (exact), provenance + deny-list (tests), post-pass (exact), gates X/C/G6 (exact), evidence fusion
-(bit-identical grid), support rule (reproduces the hand-made v3 sweeper fix automatically), orchestration
-`ep_mesh.py` + `ops/build_library.sh`. Not used by any submission. Spoon branch not ported yet.
+collision pieces, provenance + deny-list (tests), post-pass, gates X/C/G6, evidence fusion, support rule,
+orchestration `ep_mesh.py` (library + per-episode modes) + `ops/build_library.sh`. Spoon branch not ported.
 
 **Owner decisions needed:** O1 (accept library_v2-seeded tracks, tier P1) and O5 (spoon fit questions) in
 `docs/mesh-v5-spec-draft.md` §13; two [H] deviations in the rest detector (work log, recon_mesh port entry); repo
