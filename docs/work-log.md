@@ -2758,3 +2758,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   the rack hulls, 11.3 deg; fixing that frame alone 0.840).
 - `glock_public.sh EVOLVE=1` (EV_POP, EV_GENS): the search per hold on the GPU box, baked before the zero replay and
   training; with `--onset_anchor 1` in GL_ARGS.
+- 09:20 UTC ep18 and ep24 on CPU (onset anchor + CMA-ES per hold, 8 worlds):
+  - ep18 onset anchor: sweeper onset f39 -> hold from f29 (was 53); zero action 0.137 (old 0.135, floor 0.619).
+    Evolved pan hold (phase 0, window f0-207: 0.211 -> 0.404): full replay **0.354**; + sweeper hold (phase 1, window
+    f10-343: 0.375 -> 0.730 in the search): full replay 0.357 -- the sweeper search did not reproduce (sweeper 12-21 cm off
+    from f40 in the replay).
+  - ep24 onset anchor: board 2 onset f39 -> hold from f29 (was 103; may be board 1 pushing it, not a hand); board 1
+    hold search 0.194 -> 0.513 (generation-0 sample, not improved later).
+  - **Bug found in the search:** the same edit evaluated in a fresh process scores 0.5078 in every world (2 or 8
+    worlds), but 0.46 / 0.41 / 0.59 when another batch ran first in the same process: MuJoCo-Warp's warm start
+    (`mjw_data.qacc_warmstart`) survives `env.reset`. The official evaluator starts fresh, so the search now zeroes the
+    warm start (and qacc / constraint forces) before every evaluation (`bbe57e6`); afterwards the primed test matches the
+    fresh one exactly. The ep39 result (0.877) was measured in a fresh process and stands; the ep18 / ep24 searches
+    ranked candidates on contaminated fitness and are being rerun.
