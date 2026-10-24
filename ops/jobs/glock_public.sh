@@ -118,6 +118,9 @@ one() {
   [ -s "$P0" ] || { log "glock ep$ep: no reference under $R0" >> $J; return 1; }
   fix_assets $P0 >> $LG 2>&1 || { log "glock ep$ep: assets missing" >> $J; return 1; }
   hive=$(dirname ${P0#$R0/}); G=/content/refs/glock/ep$ep; RD=/content/refs/glockt/ep$ep; RUN=/content/runs/glock/ep$ep-s$SEED
+  local ts_=$(date +%s)                                           # a pulled run may hold old checkpoints / curve scores for this
+  [ -d $RUN ] && [ -n "$(ls -A $RUN 2>/dev/null)" ] && mv $RUN $RUN.pulled_$ts_   # episode (ev3 2026-10-24: ckpt_curve skips scored
+  [ -d $O/ep$ep ] && [ -n "$(ls -A $O/ep$ep 2>/dev/null)" ] && mv $O/ep$ep $O/ep$ep.pulled_$ts_   # checkpoints): keep them aside
   mkdir -p $G/$hive $RD/$hive $RUN $O/ep$ep; cp -r $R0/reconstructed_stage $G/; cp -r $R0/reconstructed_stage $RD/
   log "glock ep$ep: base $base ($P0)" >> $J
   if [ "$SF" = 1 ]; then                                           # support-consistent meshes; the reference then names them
