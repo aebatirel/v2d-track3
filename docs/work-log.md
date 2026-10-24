@@ -3243,3 +3243,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Box **57570913** `20261024-reprop-88822b2` (RTX PRO 6000 Max-Q, Japan, $1.40/h; estimate ≈ 45 min, ≈ $1.1):
   `export DET_REPROP=1 LIB=…/library_v3 DET_VERIFY=0; bash ops/jobs/det_dump.sh; SPLIT=eval EPS="<20 eval>" bash
   ops/jobs/det_dump.sh` (public: frames 0 and quarter points; eval: frame 0).
+- 22:20 UTC: start-overlap scan of the 20 eval references (CPU, our references + library_v3 only): overlaps only in
+  eval 1 (344 of 3000 lid samples inside the pot) and eval 8 (17 pot samples inside the beige cup; the pot stands on
+  the table, so the rule now never lifts an object within 2 cm of the table). In eval 1 a lift clears the lid only
+  at ≈ 3 cm: the pot mesh's wall is thick (the TSDF thin-wall issue), so the lid's lower part sits 2.8 cm below the
+  pot's rim. This failure class was already found on 22 Oct (ep2 "lid ejected from the pot's hulls") and
+  `SETTLE=1` (`tools/sim_settle.py`) was written then but never A/B tested.
+- Box **57572068** `20261024-settle-053e150` (RTX PRO 6000 WS, New York, $1.44/h; estimate ≈ 1.5 h, ≈ $2.3): the
+  current recipe with `SETTLE=1` on public ep2 (pot + lid, `20261024-e3-e49e83d` mck reference; ground-truth baseline
+  0.306 ± 0.115 with the E3 recipe) and on eval 1 (`20261024-evA-664e5fd` mck reference). Eval 1's result is used
+  only if ep2 improves clearly against ground truth (the recipes differ slightly: approach 6 + REPLAN=1 in E3).
+  Job: `export LIB=…/library_v3 SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5 SETTLE=1 GL_ARGS="<frozen>"; (SPLIT=public
+  PAIRS="2:20261024-e3-e49e83d:mck" bash ops/jobs/glock_public.sh) & sleep 90; (SPLIT=eval
+  PAIRS="1:20261024-evA-664e5fd:mck" bash ops/jobs/glock_public.sh) & wait`.
+- Eval 10's beige cup: the library mesh is a poor reconstruction overall (one episode, 42 % of the volume unknown,
+  268 fragments, 16.5 × 5–7 cm), not just an open bottom; a cap would not fix it. Left to the v5 rebuild.
+- Wrist signal (CPU, GT-free): object centroid within 6 cm of a forearm point 8 cm behind the wrist joint flags eval
+  30's sweeper (170 frames), eval 33's cup (31 frames, intermittent while the cup is held tilted) and eval 32's cup
+  (4 frames); none in 14, 15, 16, 28. Not turned into a rule tonight: in 33 the flagged frames are mixed with real
+  holds, and no public twin has the cup + spoon combination to validate on.
