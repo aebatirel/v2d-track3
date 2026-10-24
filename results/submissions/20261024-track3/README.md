@@ -13,3 +13,8 @@
   score.
 - Upload (owner, kit root, Kaggle credentials, rules accepted for all six Track 3 competitions):
   `python3 submit/v2d_submit.py track3_submission.parquet --track track_3 -m "first full run 24 Oct" --wait`
+- `track3_submission.cd-o.parquet`: the CD-O (mesh) file, extracted from the combined file with the kit uploader's
+  own code (`v2dlb.track3_pose.cd_o_submission`), 294,912 rows, 3,010,505 bytes. Both files pass the kit uploader's
+  `validate_submission` locally.
+- Manual upload in the Kaggle web page: the combined `track3_submission.parquet` goes to the five pose competitions
+  (AUC, SP-SR, MP-SR, RPE, MPPE), the same file the uploader sends them; `track3_submission.cd-o.parquet` goes to CD-O.
