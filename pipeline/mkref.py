@@ -470,6 +470,53 @@ def table_disc(depth0, KR, T_tab, table_z, band=0.008, cell=0.01):
     return float(cx), float(cy), float(r)
 
 
+def start_overlap_lift(OBJ, names, vis, con, cap, n_samp=3000, min_in=5, margin=0.0005):
+    """Objects that start inside one another (2026-10-24, eval 1: 243 of 3000 lid surface samples 7.6 mm inside the pot
+    solid at frame 0; the simulated lid was wedged and never lifted; public twin ep2 has the same failure). For each
+    frame-0 pair, surface samples of the object with the higher bottom (the one resting on the other: lid on pot, cup
+    in pot) are tested against the other's watertight solid; when >= MIN_IN are inside, the upper object is lifted along
+    the table normal, whole trajectory, as the table snap. The lift is the largest upward exit distance of the inside
+    samples (vertical rays) + MARGIN, checked by a containment test (< MIN_IN inside), then raised by half steps.
+    Not resolved within CAP: left unchanged and reported. Returns the per-object lifts (m) and a log record."""
+    import trimesh
+    B = len(names); lift = np.zeros(B); rec = []
+    pts = [np.asarray(trimesh.sample.sample_surface(vis[nm], n_samp, seed=0)[0]) for nm in names]
+
+    def in_c(b, c, dz):                                                 # b's samples in c's mesh frame, inside mask
+        Rb, tb = OBJ[0, b, :3, :3], OBJ[0, b, :3, 3] + np.array([0.0, 0.0, lift[b] + dz])
+        Rc, tc = OBJ[0, c, :3, :3], OBJ[0, c, :3, 3] + np.array([0.0, 0.0, lift[c]])
+        P = (pts[b] @ Rb.T + tb - tc) @ Rc
+        return P, con[names[c]].contains(P)
+
+    bot = np.array([(np.asarray(vis[nm].vertices) @ OBJ[0, b, :3, :3].T + OBJ[0, b, :3, 3])[:, 2].min()
+                    for b, nm in enumerate(names)])
+    for b in range(B):
+        for c in range(B):
+            if b == c or bot[b] < bot[c] or not con[names[c]].is_watertight:   # b is the upper object of the pair
+                continue
+            P, ins = in_c(b, c, 0.0); n0 = int(ins.sum())
+            if n0 < min_in:
+                continue
+            up = OBJ[0, c, :3, :3].T @ np.array([0.0, 0.0, 1.0])            # table normal in c's mesh frame
+            loc, ri, _ = con[names[c]].ray.intersects_location(P[ins], np.repeat(up[None], n0, 0), multiple_hits=True)
+            ex = np.full(n0, np.inf)
+            if len(ri):
+                np.minimum.at(ex, ri, (loc - P[ins][ri]) @ up)               # first exit above each inside sample
+            dz = float(np.max(ex[np.isfinite(ex)], initial=0.0)) + margin
+            while dz <= cap and int(in_c(b, c, dz)[1].sum()) >= min_in:
+                dz += max(0.5 * dz, 0.001)
+            dz = None if dz > cap else dz
+            r = dict(upper=names[b], lower=names[c], samples_inside=n0, of=n_samp)
+            if dz is None:
+                r['lift_cm'] = None; r['note'] = f'not resolved within {cap * 100:.1f} cm: unchanged'
+            else:
+                lift[b] += dz; r['lift_cm'] = round(dz * 100, 2)
+            rec.append(r)
+    for b in range(B):
+        OBJ[:, b, 2, 3] += lift[b]
+    return lift, rec
+
+
 def separate_hands(J, valid, meas, gap, lead_in, lead_in_step=0.01):
     """Rigid per-frame shifts that keep the two hands apart (table frame, z up). Returns ({side: (T, 3)}, stats).
 
@@ -750,6 +797,9 @@ def parse_args():
                    help='lowest: move the plane to the lowest object bottom at frame 0; per_object: lift/lower each '
                         'object whose frame-0 bottom is within SNAP_MAX of the plane onto it (whole trajectory)')
     p.add_argument('--snap_max', type=float, default=0.02)
+    p.add_argument('--start_overlap', type=float, default=0.0,
+                   help='lift an object that starts inside another (higher bottom = upper) by the least that clears it, '
+                        'at most this (m; 2026-10-24, eval 1 lid 7.6 mm inside the pot); 0 = off')
     # hands
     p.add_argument('--min_valid_frac', type=float, default=0.10, help='park a side with fewer valid frames')
     p.add_argument('--gap_fill', choices=['attach', 'hold'], default='attach')
@@ -906,6 +956,11 @@ def main():
         log(f'snap=per_object: z shifts (cm) {dict(zip(names, np.round(shifts * 100, 2).tolist()))}')
     elif a.snap != 'none':
         log(f'WARNING: snap={a.snap} skipped, bottom offset {h.min() * 100:.1f} cm > snap_max')
+    overlap = []
+    if a.start_overlap > 0 and B > 1:
+        olift, overlap = start_overlap_lift(OBJ, names, vis, con, a.start_overlap)
+        shifts = shifts + olift
+        log(f'start overlap (cap {a.start_overlap * 100:.0f} cm): {overlap if overlap else "none"}')
     h2 = bottoms(OBJ)
     obj_pos = OBJ[:, :, :3, 3]
     obj_wxyz = continuous(wxyz_from_R(OBJ[:, :, :3, :3]))
@@ -921,7 +976,8 @@ def main():
     np.savez(f'{a.out}/table_frame.npz', T_table_from_world=T_tab, plane_n=n, plane_d=d, names=np.array(names),
              object_z_shift=shifts + lifted, table_z=a.table_z, table_disc=np.array(disc))
     summary['table'] = dict(inlier_frac=inl_frac, rms_mm=rms * 1000, bottoms_cm=(h * 100).tolist(),
-                            bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist(), support_fallback_lift_cm=(lifted * 100).tolist())
+                            bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist(), support_fallback_lift_cm=(lifted * 100).tolist(),
+                            start_overlap=overlap)
 
     # ---------------- (b) hands
     Hn = np.load(a.hands)

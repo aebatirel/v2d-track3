@@ -284,10 +284,41 @@ def grounding(k, names_):
         return None if im is None else _GD['m'](im, names_)
     except Exception as e:
         log('grounding unavailable (term off):', repr(e)); _GD['m'] = None; return None
+DET_REPROP = os.environ.get('DET_REPROP', '0') == '1'
+def reproposals(img, dep, props, gdet):
+    """DET_REPROP (2026-10-24): SAM2 box prompts (multimask) for the Grounding DINO boxes that no automatic proposal
+    covers (det_rules.uncovered_boxes), each box mapped into the rectified-left image through the frame's depth. The new
+    masks join the proposals and go through the same scores, gates and assignment. Eval 30: the sweeper standing in the
+    rack had no proposal of its own (it was inside the rack's mask)."""
+    try:
+        cam = _GD['cam']; dh = dep[::2, ::2]; Kh = KR.copy(); Kh[:2] *= 0.5
+        bb, _ = det_rules.boxes_in_a(np.stack([m[::2, ::2] for m in props]), dh, Kh, cam)
+        todo = det_rules.uncovered_boxes(gdet, names, bb); new = []
+        if todo:
+            pred = gen.predictor; pred.set_image(img)
+            for n, box, sc in todo:
+                rb = det_rules.box_to_rect(box, dh, Kh, cam)
+                if rb is None:
+                    log('reproposal', n, 'box', [round(v) for v in box], 'not visible in the rectified view'); continue
+                ms, ss, _ = pred.predict(box=rb * 2, multimask_output=True)
+                kept = 0
+                for m in np.asarray(ms).astype(bool):
+                    if m.sum() < 400 or any((m & q).sum() > 0.9 * (m | q).sum() for q in props + new): continue
+                    new.append(m); kept += 1
+                log('reproposal', n, 'score', round(sc, 3), 'box a', [round(v) for v in box], 'rect', np.round(rb * 2).astype(int).tolist(), 'masks kept', kept)
+        log('reproposals', len(todo), 'uncovered boxes ->', len(new), 'new proposals')
+        return new
+    except Exception as e:
+        log('reproposal failed (none added):', repr(e)); return []
 def detect(k):
     """Proposals, scores and the object -> proposal choice on frame k (frame 0 in the pipeline)."""
     img, dep = rgb(rc[k]), depths[k]
     props = [m['segmentation'] for m in gen.generate(img) if m['area'] >= 400]
+    gdet = grounding(k, names) if ((R_LAM_G > 0 or DET_REPROP) and props) else None
+    n_auto = len(props)
+    if DET_REPROP and gdet is not None:
+        props = props + reproposals(img, dep, props, gdet)
+    reprop = np.arange(len(props)) >= n_auto
     PD = desc([crop(img, m) for m in props])
     pint = np.array([img[m].mean() for m in props]); pext = np.array([extent3d(m, dep) for m in props])
     ero = np.ones((5, 5), np.uint8)
@@ -303,8 +334,7 @@ def detect(k):
         S[a] = np.where(oks[a], S0[a] - det_rules.size_penalty(pext_e, ext, R_LAM_S), -10.0)
     mk = np.stack([m[::2, ::2] for m in props]) if props else np.zeros((0, 1, 1), bool)
     dh = dep[::2, ::2].astype(np.float16).astype(np.float32); Kh = KR.copy(); Kh[:2] *= 0.5
-    gdet = grounding(k, names) if (R_LAM_G > 0 and props) else None
-    if gdet is not None:
+    if gdet is not None and R_LAM_G > 0:
         G, inside = det_rules.ground_scores(mk, dh, Kh, names, gdet, _GD['cam'])
         S = np.where(S > -10, S + det_rules.ground_term(G, inside, oks, R_LAM_G), S)
     log('det rules', f'f{k}', dict(lam_s=R_LAM_S, reach=R_REACH, lam_g=R_LAM_G if gdet is not None else 0.0),
@@ -341,7 +371,8 @@ def detect(k):
                                 gdino=json.dumps(gdet) if gdet is not None else '',
                                 template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
                                 chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
-                                params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm)
+                                params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm,
+                                reprop=reprop)
             log('det dump', f'{OUT}/det_f{k}.npz', len(props), 'proposals')
         except Exception as e:
             log('det dump failed (detection unaffected):', repr(e))

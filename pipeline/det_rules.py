@@ -57,9 +57,9 @@ def make_cam(calib_path, R1):
     return cam
 
 
-def ground_scores(masks, depth, K, names, gdet, cam):
-    """G (n_obj, n_props) and each proposal's share of points inside camera a. masks / depth / K at one resolution."""
-    P = len(masks); G = np.zeros((len(names), P)); inside = np.zeros(P); bb = np.zeros((P, 4))
+def boxes_in_a(masks, depth, K, cam):
+    """Each proposal's bounding box in camera a (zeros when < 10 points project) and its share of points inside a."""
+    P = len(masks); inside = np.zeros(P); bb = np.zeros((P, 4))
     fx, cx, cy = K[0, 0], K[0, 2], K[1, 2]
     for j, m in enumerate(masks):
         v, u = np.nonzero(m & (depth > 0))
@@ -69,17 +69,66 @@ def ground_scores(masks, depth, K, names, gdet, cam):
         uv, ok = cam(np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1)); inside[j] = ok.mean()
         if ok.sum() >= 10:
             bb[j] = [*uv[ok].min(0), *uv[ok].max(0)]
+    return bb, inside
+
+
+def box_iou(bb, box):
+    """IoU of each row of bb (N, 4) with one box (x0, y0, x1, y1)."""
+    ix = np.clip(np.minimum(bb[:, 2], box[2]) - np.maximum(bb[:, 0], box[0]), 0, None)
+    iy = np.clip(np.minimum(bb[:, 3], box[3]) - np.maximum(bb[:, 1], box[1]), 0, None)
+    inter = ix * iy; uni = (bb[:, 2] - bb[:, 0]) * (bb[:, 3] - bb[:, 1]) + (box[2] - box[0]) * (box[3] - box[1]) - inter
+    return np.where(uni > 0, inter / np.maximum(uni, 1e-9), 0)
+
+
+def ground_scores(masks, depth, K, names, gdet, cam):
+    """G (n_obj, n_props) and each proposal's share of points inside camera a. masks / depth / K at one resolution."""
+    P = len(masks); G = np.zeros((len(names), P))
+    bb, inside = boxes_in_a(masks, depth, K, cam)
     for a, n in enumerate(names):
         g = gdet.get(n)
         if not g or not g['scores']:
             continue
         best = max(g['scores'])
         for box, sc in zip(g['boxes'], g['scores']):
-            ix = np.clip(np.minimum(bb[:, 2], box[2]) - np.maximum(bb[:, 0], box[0]), 0, None)
-            iy = np.clip(np.minimum(bb[:, 3], box[3]) - np.maximum(bb[:, 1], box[1]), 0, None)
-            inter = ix * iy; uni = (bb[:, 2] - bb[:, 0]) * (bb[:, 3] - bb[:, 1]) + (box[2] - box[0]) * (box[3] - box[1]) - inter
-            G[a] = np.maximum(G[a], np.where(uni > 0, inter / np.maximum(uni, 1e-9), 0) * sc / best)
+            G[a] = np.maximum(G[a], box_iou(bb, box) * sc / best)
     return G, inside
+
+
+# Re-proposal (2026-10-24, DET_REPROP; eval 30: the sweeper standing in the rack had no SAM2 proposal of its own, it was
+# inside the rack's mask, so the sweeper went to a blob on the person's wrist; Grounding DINO's third "mini sweeper" box,
+# 0.19 against the best 0.59, bounded the real broom). Thresholds fixed before any replay:
+REPROP_MIN, REPROP_IOU, REPROP_AREA = 0.25, 0.5, 0.25   # box score >= 0.25 x the prompt's best; no proposal's camera-a
+                                                        # box with IoU >= 0.5; box area <= 25 % of the camera-a image
+
+
+def uncovered_boxes(gdet, names, bb, W=2028, H=1520, min_rel=REPROP_MIN, iou_max=REPROP_IOU, max_area=REPROP_AREA):
+    """[(name, box, score)]: Grounding DINO boxes that no proposal covers (camera-a boxes bb from boxes_in_a)."""
+    out = []
+    for n in names:
+        g = gdet.get(n)
+        if not g or not g['scores']:
+            continue
+        best = max(g['scores'])
+        for box, sc in zip(g['boxes'], g['scores']):
+            area = (box[2] - box[0]) * (box[3] - box[1])
+            if sc < min_rel * best or area > max_area * W * H or area <= 0:
+                continue
+            if len(bb) and box_iou(bb, box).max() >= iou_max:
+                continue
+            out.append((n, [float(v) for v in box], float(sc)))
+    return out
+
+
+def box_to_rect(box, depth, K, cam, step=2):
+    """Box (x0, y0, x1, y1) in the rectified-left image at DEPTH's resolution around the points whose camera-a
+    projection falls inside the camera-a box (2nd-98th percentiles); None when fewer than 20 such points."""
+    H, W = depth.shape; v, u = np.mgrid[0:H:step, 0:W:step]; z = depth[v, u]; ok = z > 0
+    v, u, z = v[ok], u[ok], z[ok]; fx, cx, cy = K[0, 0], K[0, 2], K[1, 2]
+    uv, okc = cam(np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1))
+    inb = okc & (uv[:, 0] >= box[0]) & (uv[:, 0] <= box[2]) & (uv[:, 1] >= box[1]) & (uv[:, 1] <= box[3])
+    if inb.sum() < 20:
+        return None
+    return np.array([np.percentile(u[inb], 2), np.percentile(v[inb], 2), np.percentile(u[inb], 98), np.percentile(v[inb], 98)])
 
 
 def ground_term(G, inside, gated_ok, lam_g=LAM_G):

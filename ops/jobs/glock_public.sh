@@ -48,7 +48,9 @@ log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
-if [ -n "${CURR_SCALE:-}" ]; then                                # curriculum thresholds scaled to the planned length
+case " $PAIRS" in *:new:*) ensure_gdino $J ;; esac              # perception runs here: detection grounding term (2026-10-24:
+                                                                 # missing on the 24 Oct eval boxes, so that term was off)
+if [ -n "${CURR_SCALE:-}" ]; then                               # curriculum thresholds scaled to the planned length
   TRAIN_ARGS="$TRAIN_ARGS curriculum.thresholds=$(python -c "s = $CURR_SCALE; t = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]; print('[' + ','.join(str(int(x * s)) for x in t) + ']')")"
   log "curriculum thresholds scaled by $CURR_SCALE: TRAIN_ARGS [$TRAIN_ARGS]" >> $J
 fi

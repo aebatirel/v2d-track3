@@ -58,6 +58,7 @@ class Frame:
         self.Kh = self.K.copy(); self.Kh[:2] *= 0.5
         self.V = d['verify'] if 'verify' in d.files else None; self.Vm = d['verify_matched'] if 'verify_matched' in d.files else None
         self.G = None                                            # (n_obj, n_props) grounding agreement, set by ground()
+        self.reprop = d['reprop'].astype(bool) if 'reprop' in d.files else np.zeros(len(self.masks), bool)   # DET_REPROP masks
 
     def ground(self, gdet, cam):
         """Grounding term from camera-a boxes (gdet: {name: {boxes, scores}}); cam: projection helper."""
@@ -72,8 +73,10 @@ class Frame:
         pr = X @ np.linalg.svd(X, full_matrices=False)[2].T
         return float((np.percentile(pr, 97, 0) - np.percentile(pr, 3, 0)).max())
 
-    def scores(self, lam_s, dz, ext_src, gate, lam_g=0.0, reach=None):
+    def scores(self, lam_s, dz, ext_src, gate, lam_g=0.0, reach=None, reprop=True):
         pext = self.ext[ext_src]; S = np.full(self.sim.shape, -10.0); near = R.reach_ok(self.cen, reach)
+        if not reprop:                                           # as a run without DET_REPROP: those masks never existed
+            near = near & ~self.reprop
         oks = []
         for a in range(len(self.names)):
             e = self.text[a]; ok = (self.ext['full'] > gate * e) & (self.ext['full'] < 1.3 * e) & near   # hard gate as perc2
@@ -132,8 +135,8 @@ class Frame:
         after = abs(np.log(max(self.extent_mask(Ma | Mq), 1e-3) / e))
         return after < before
 
-    def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None):
-        S = self.scores(lam_s, dz, ext_src, gate, lam_g, reach)
+    def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None, reprop=True):
+        S = self.scores(lam_s, dz, ext_src, gate, lam_g, reach, reprop)
         if verify and self.V is not None and np.isfinite(self.V).any():
             C = np.where(np.isfinite(self.V) & (self.Vm >= 200) & (S > -10), np.nan_to_num(self.V) + 0.5 * S, -10.0)
             if (C > -10).any(axis=1).all():
