@@ -17,6 +17,8 @@ Episode mode (spec 10.1, stage 2m): one episode, every roster object; C against 
   python ep_mesh.py m0      OBJ M0_DIR  --ep POSES DEPTH HANDS - [--ep ...]   (library step 1: pass 0 only)
   python ep_mesh.py library OBJ OUT_DIR --ep POSES DEPTH HANDS OTHERS [--ep ...] [--m0_dir M0_DIR] [--calib C] [--g0]
   python ep_mesh.py object  OBJ OUT_DIR --ep ... --seed SEED.glb            (episode mode for one object)
+  python ep_mesh.py episode EP --names a,b --poses P --depth D --hands H --seed_lib LIB --out_assets DIR [--spoon T0]
+                                                                             (stage 2m: every roster object + assets)
   OTHERS: '-', NAME=M0.glb,... or bare names resolved to M0_DIR/<name>_M0.glb (the other objects of that episode,
   posed by their own tracks in POSES).
 Writes OUT_DIR/<obj>.glb, <obj>_full.glb, <obj>.json (branch, gates, timings), work/ (M0, grid, O, F4) and
@@ -170,8 +172,50 @@ def _export(m, p):
     m.export(p); return p
 
 
+def episode(ep, names, poses, depth, hands, seed_lib, out_meshes, out_assets, calib, g0=False, spoon=None):
+    """Stage 2m (spec 10.1): every roster object of one episode from that episode alone. Pass 0 for each object, then
+    each object's chain with the other objects' M0 as others and the seed library mesh for gate C. The spoon is the
+    template T0 (SPOON, default the seed library's; spoon_mesh / T_fit not ported) and, posed by its track, an 'other'
+    of the remaining objects (labelling only). Writes OUT_MESHES/episode_<EP6>/<obj>.glb (+ _full, .json) for the
+    packer and OUT_ASSETS (make_assets with collision pieces) for mkref."""
+    d = f'{out_meshes}/episode_{int(ep):06d}'; m0 = f'{d}/m0'; os.makedirs(m0, exist_ok=True); rep = dict(ep=ep, objects={})
+    spoon = spoon or f'{seed_lib}/wooden_spoon.glb'
+    for n in names:
+        if n != 'wooden_spoon':
+            m0_only(n, [(poses, depth, hands, '-')], m0, calib)
+    for n in names:
+        if n == 'wooden_spoon':
+            shutil.copy(spoon, f'{d}/{n}.glb'); shutil.copy(spoon, f'{d}/{n}_full.glb')
+            import collision_decomp, trimesh
+            hulls, crep = collision_decomp.decompose(trimesh.load(f'{d}/{n}_full.glb', force='mesh'), log=lambda *a: None)
+            collision_decomp.write(hulls, crep, f'{d}/pieces/{n}')
+            rep['objects'][n] = dict(branch='template T0 (seed)', pieces=crep['n_pieces']); continue
+        others = ','.join(o if o != 'wooden_spoon' else f'{o}={spoon}' for o in names if o != n) or '-'
+        r = build(n, [(poses, depth, hands, others)], d, calib, mode='object', seed=f'{seed_lib}/{n}.glb', g0=g0, m0_dir=m0)
+        rep['objects'][n] = dict(branch=r.get('branch'), O=r.get('O'), gates_O=r.get('gates_O'), gates_F4=r.get('gates_F4'),
+                                 support_changed=(r.get('support') or {}).get('changed'), pieces=r.get('pieces'))
+    lib = f'{d}/lib'; os.makedirs(lib, exist_ok=True)
+    for n in names:
+        shutil.copy(f'{d}/{n}.glb', f'{lib}/{n}.glb')
+    subprocess.run([sys.executable, f'{HERE}/make_assets.py', lib, out_assets, '--pieces', f'{d}/pieces'], check=True,
+                   stdout=open(f'{d}/make_assets.log', 'w'), stderr=subprocess.STDOUT)
+    json.dump(rep, open(f'{d}/ep_mesh.json', 'w'), indent=1, default=str)
+    return rep
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
+    if len(sys.argv) > 1 and sys.argv[1] == 'episode':
+        e = argparse.ArgumentParser(prog='ep_mesh.py episode')
+        e.add_argument('ep', type=int); e.add_argument('--names', required=True); e.add_argument('--poses', required=True)
+        e.add_argument('--depth', required=True); e.add_argument('--hands', required=True); e.add_argument('--seed_lib', required=True)
+        e.add_argument('--out_meshes', default='/content/meshes_ep'); e.add_argument('--out_assets', required=True)
+        e.add_argument('--calib', default='/content/t3/calib.json'); e.add_argument('--spoon', help='spoon template T0')
+        e.add_argument('--g0', action='store_true', default=os.environ.get('COMPLIANT') == '1')
+        b = e.parse_args(sys.argv[2:])
+        r = episode(b.ep, b.names.split(','), b.poses, b.depth, b.hands, b.seed_lib, b.out_meshes, b.out_assets, b.calib, b.g0,
+                    b.spoon)
+        print(json.dumps(r, default=str)[:3000]); return
     ap.add_argument('mode', choices=['m0', 'library', 'object']); ap.add_argument('obj'); ap.add_argument('out')
     ap.add_argument('--ep', nargs=4, action='append', metavar=('POSES', 'DEPTH', 'HANDS', 'OTHERS'), required=True)
     ap.add_argument('--calib', default='/content/t3/calib.json'); ap.add_argument('--seed')
