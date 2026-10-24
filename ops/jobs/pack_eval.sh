@@ -5,6 +5,8 @@
 # truth), checks all 20 roster episodes are present, then runs ops/jobs/submit_pack.sh (pristine evaluator, our
 # library meshes, kit packer). Uploading stays with the owner.
 # Usage: RUNS="20261024-evA-xxxxxxx 20261024-evB-xxxxxxx ..." COMMIT_URL=https://github.com/<o>/<r>/commit/<sha> bash ops/jobs/pack_eval.sh
+# PICK="EP:RUN ..." replaces those episodes' checkpoints with the chosen checkpoint of another run trained on the SAME
+# reference (REUSE_REF, e.g. a second seed); the choice between runs is made beforehand by sim_vs_ref (no ground truth).
 # Order matters: store.sh pull-run never overwrites (cp -rn), so the FIRST run listed wins for a file path. Put the
 # runs that redid an episode first (2026-10-24: evR redid eval 25, whose failed evD attempt left references with the
 # same names; the policy must be evaluated on the reference it was trained on).
@@ -25,6 +27,17 @@ json.dump(m, open(out, 'w'), indent=1, sort_keys=True)
 print(f'pack_eval: {len(m)} of {len(roster)} episodes have a chosen checkpoint; missing {missing}')
 sys.exit(1 if missing and not os.environ.get('ALLOW_MISSING') else 0)
 PYEOF
+if [ -n "${PICK:-}" ]; then                                         # PICK="EP:RUN ...": that run's chosen checkpoint for EP
+  for x in $PICK; do                                               # (e.g. a second seed trained on the same reference)
+    ep=${x%%:*}; r=${x#*:}; d=/content/pick/$r; mkdir -p $d
+    hf download "$HF_STORE" --repo-type dataset --include "runs/$r/results/glock_public/ep$ep/best/*" --local-dir $d > /dev/null \
+      || { log "pack_eval: PICK $x download FAILED" >> $J; exit 1; }
+    p=$d/runs/$r/results/glock_public/ep$ep/best/policy.safetensors
+    [ -s $p ] || { log "pack_eval: PICK $x has no best/policy.safetensors" >> $J; exit 1; }
+    python -c "import json, sys; f = sys.argv[1]; m = json.load(open(f)); m[sys.argv[2]] = sys.argv[3]; json.dump(m, open(f, 'w'), indent=1, sort_keys=True)" \
+      $F/checkpoints.json $ep $p
+  done
+fi
 log "pack_eval: checkpoints $(tr -d '\n ' < $F/checkpoints.json | cut -c1-300)" >> $J
 CHECKPOINTS=$F/checkpoints.json LIB=${LIB:-$REPO_DIR/meshes/library_v3} bash $REPO_DIR/ops/jobs/submit_pack.sh
 bash $OPS/store.sh push-run > /dev/null 2>&1 || true

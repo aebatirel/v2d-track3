@@ -137,6 +137,10 @@ one() {
   local ts_=$(date +%s)                                           # a pulled run may hold old checkpoints / curve scores for this
   [ -d $RUN ] && [ -n "$(ls -A $RUN 2>/dev/null)" ] && mv $RUN $RUN.pulled_$ts_   # episode (ev3 2026-10-24: ckpt_curve skips scored
   [ $reuse = 0 ] && [ -d $O/ep$ep ] && [ -n "$(ls -A $O/ep$ep 2>/dev/null)" ] && mv $O/ep$ep $O/ep$ep.pulled_$ts_   # checkpoints): keep them aside
+  if [ $reuse = 1 ]; then                                          # e.g. another seed on a pulled reference: the earlier
+    for d in curve best; do [ -d $O/ep$ep/$d ] && mv $O/ep$ep/$d $O/ep$ep/$d.prev_$ts_; done   # scores must not be reused
+    rm -f $O/ep$ep/curve.txt
+  fi
   mkdir -p $G/$hive $RD/$hive $RUN $O/ep$ep; cp -r $R0/reconstructed_stage $G/; cp -r $R0/reconstructed_stage $RD/
   log "glock ep$ep: base $base ($P0)$([ $reuse = 1 ] && echo "; REUSE_REF: training on this box's finished reference $RD/$hive/ref_gl_ilc.parquet")" >> $J
   if [ $reuse = 0 ]; then                                          # reference stages (skipped with REUSE_REF)
