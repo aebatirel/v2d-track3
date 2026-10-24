@@ -57,6 +57,7 @@ if [ "${HAND_REFINE:-1}" = 1 ]; then
     --out $R/hands_refined.npz > $R/hand_refine_log.txt 2>&1 || echo "hand_refine failed (using raw hands)"
   [ -s $R/hands_refined.npz ] && HANDS=$R/hands_refined.npz
 fi
+[ "${STOP_AFTER:-}" = hands ] && exit 0   # mesh v5 G1 (spec 12): tracks + hands only; mkref would read the scans without ASSETS
 
 # 3) reference (table frame, Sharpa IK via unchanged E2S, contacts, FlashCHORD validation)
 if ! ls $R/processed/sequence_id=$SEQ/robot_name=sharpa_wave/*.parquet > /dev/null 2>&1; then
