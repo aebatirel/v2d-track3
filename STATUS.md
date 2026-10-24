@@ -6,6 +6,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - GPU validation of the recipe (registered AUC vs mocap, 5 evaluations): ep39 0.958, ep18 0.957, ep27 0.949, ep12
   0.868 (one rollout in five fails), **ep24 (boards) 0.241 ± 0.125** (standard RL 0.31: boards stay weak, only eval
   25 has boards). Eval 38 done: sim_vs_ref 0.9997, checkpoint in the store (ev2 run).
+- Rules check (owner asked, 15:40): the method is within the published rules as read. Three items are open and need
+  the organisers (email draft `docs/organiser-email-draft-2026-10-22.md`, now 5 questions, not sent): the kp 400
+  wrist embodiment, mesh provenance (library_v3 built along scan-templated tracks; v5 rebuild not done), and the
+  spoon template.
 - Box F 57507961 (`20261024-evF-38877d0`) running; credit $7.73 at 12:00 UTC, the other 16 episodes (A-E, G ≈ $20)
   wait for the owner's top-up. Then `ops/jobs/pack_eval.sh` over all eval runs (ev2 + evA-G).
 

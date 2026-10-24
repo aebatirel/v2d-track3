@@ -5,12 +5,12 @@ longer collision-geometry wording, with the measurements behind it.
 
 ---
 
-**Subject:** Track 3: own reconstructed meshes, collision geometry, the spoon
+**Subject:** Track 3: own reconstructed meshes, collision geometry, the spoon, the wrist servo
 
 Hello V2D team,
 
 We are a Track 3 team using our own reconstructed object meshes (FAQ: "participants should submit their own
-reconstructed meshes"). Before our final runs we would like to confirm four points.
+reconstructed meshes"). Before our final runs we would like to confirm five points.
 
 1. **Collision geometry separate from the submitted mesh.** May the simulator asset's `<collision>` geometry differ
    from the visual mesh we submit for scoring? An example is the same reconstruction made watertight, split into
@@ -36,6 +36,13 @@ reconstructed meshes"). Before our final runs we would like to confirm four poin
 
 4. **The wooden spoon** (no public asset). We start tracking from a parametric spoon model built from our own
    measurements in the videos, then fuse the submitted mesh from the eval videos along our tracks. Is that acceptable?
+
+5. **A stiffer wrist servo on the floating Sharpa hands** (added 2026-10-24). The FAQ says other embodiments are welcome,
+   including floating hands. We use the default Sharpa Wave hands and fingers unchanged, with only the floating wrist's
+   position servo changed from kp 25 N/m / kd 6 / 45 N to kp 400 N/m / kd 20 / 150 N. This is an embodiment YAML in our
+   repository, selected with Hydra; the FlashCHORD checkout and the evaluator are untouched, and the checkpoint's
+   resolved config carries the setting. Is that acceptable for Track 3 leaderboard rows, and should we declare it
+   anywhere besides the technical report?
 
 Optional, if easy to answer: does validation run the kit runner at world_count 1, and on which platform (Linux x86_64
 or aarch64)? CoACD gives slightly different hulls across platforms.

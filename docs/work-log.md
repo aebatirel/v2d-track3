@@ -2891,3 +2891,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     generations would beat a broader first sample.
   - Caveat: ep18 is a development episode (its failures were diagnosed with ground truth), so 0.957 is in-sample for
     the design. The held-out test is its eval twin, eval 19 (sweeper + dust pan).
+
+### 24 Oct ~15:40 TRT — owner asked whether the recipe is inside the challenge rules
+- Read again: `docs/research/track3-requirements.md` (Kaggle rules summary), the FAQ capture
+  `docs/research/work/14/c2/faqs.txt`, the challenge page capture, `docs/context-and-decisions.md`.
+- Within the published rules as read: the method is free ("Method-agnostic ... without constraining the overall
+  approach"; "Track 3 evaluates the final trajectory"). Rows come from the unmodified official evaluator (pristine
+  worktree, assist off) on trained FlashSAC checkpoints. The grasp search and the onset anchor only edit our own
+  reference before training, and the evaluator's physics is untouched. The search fitness and the checkpoint choice
+  use only our perceived path, with no ground truth on eval episodes. The same automatic recipe runs on every episode
+  (Kaggle: no hand labelling).
+- Still open (all logged earlier, none answered):
+  1. The kp 400 wrist embodiment (`sharpa_hands_mid`, position servo kp 400 / kd 20 / 150 N vs 25 / 6 / 45; rotation
+     and fingers unchanged). The FAQ welcomes other embodiments, but the owner's confirmation was never recorded.
+     Added to the organiser email draft as question 5.
+  2. Mesh provenance. `library_v3` is our own TSDF reconstruction from the public videos, but it was fused along
+     tracks templated on the public scans, with the scans carving the other objects (22 Oct finding; the library_v5
+     rebuild, TODO #12, is not done). On eval episodes only our meshes are used. This is the email's question 3.
+  3. The spoon mesh is a parametric template sized from our own stereo measurements, not a fusion from the eval
+     videos (TODO #13). This is the email's question 4.
+- The email has still not been sent (owner action, TODO #14).
