@@ -1,0 +1,141 @@
+{
+ "source": {
+  "trace": "/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/grasp_work/rl-grasp/data/hf/runs/20261023-kf18-a674fd7/results/old889/policy_trace.npz",
+  "reference": "3af5ffc5761c4b7e8231df7f8381de05-0.parquet",
+  "note": "ep18 standard RL (FDR s43, 250M, registered AUC 0.889); see docs/research/grasp/rl-discovered-grasps.md"
+ },
+ "templates": {
+  "mini_dust_pan": {
+   "side": "left",
+   "frame": 20,
+   "wrist_pos_obj": [
+    -0.047562,
+    -0.11129,
+    0.161604
+   ],
+   "wrist_quat_obj_xyzw": [
+    -0.819978,
+    0.22169,
+    0.26725,
+    0.455047
+   ],
+   "finger_joint_names": [
+    "left_thumb_CMC_FE",
+    "left_thumb_CMC_AA",
+    "left_thumb_MCP_FE",
+    "left_thumb_MCP_AA",
+    "left_thumb_IP",
+    "left_index_MCP_FE",
+    "left_index_MCP_AA",
+    "left_index_PIP",
+    "left_index_DIP",
+    "left_middle_MCP_FE",
+    "left_middle_MCP_AA",
+    "left_middle_PIP",
+    "left_middle_DIP",
+    "left_ring_MCP_FE",
+    "left_ring_MCP_AA",
+    "left_ring_PIP",
+    "left_ring_DIP",
+    "left_pinky_CMC",
+    "left_pinky_MCP_FE",
+    "left_pinky_MCP_AA",
+    "left_pinky_PIP",
+    "left_pinky_DIP"
+   ],
+   "finger_joints": [
+    1.21613,
+    -0.10296,
+    0.56832,
+    0.13629,
+    0.06969,
+    0.83745,
+    0.30692,
+    0.86619,
+    0.0051,
+    1.12643,
+    0.25749,
+    0.65146,
+    -0.01289,
+    1.49267,
+    0.01025,
+    0.06353,
+    0.12534,
+    0.23863,
+    0.97572,
+    0.0435,
+    0.12271,
+    0.41203
+   ],
+   "off_axis_residual_max": 0.0,
+   "object_moved_cm_at_frame": 1.22,
+   "object_rot_deg_at_frame": 7.8
+  },
+  "mini_sweeper": {
+   "side": "right",
+   "frame": 58,
+   "wrist_pos_obj": [
+    0.03947,
+    0.096915,
+    -0.026867
+   ],
+   "wrist_quat_obj_xyzw": [
+    0.535208,
+    -0.170675,
+    -0.465056,
+    0.684212
+   ],
+   "finger_joint_names": [
+    "right_thumb_CMC_FE",
+    "right_thumb_CMC_AA",
+    "right_thumb_MCP_FE",
+    "right_thumb_MCP_AA",
+    "right_thumb_IP",
+    "right_index_MCP_FE",
+    "right_index_MCP_AA",
+    "right_index_PIP",
+    "right_index_DIP",
+    "right_middle_MCP_FE",
+    "right_middle_MCP_AA",
+    "right_middle_PIP",
+    "right_middle_DIP",
+    "right_ring_MCP_FE",
+    "right_ring_MCP_AA",
+    "right_ring_PIP",
+    "right_ring_DIP",
+    "right_pinky_CMC",
+    "right_pinky_MCP_FE",
+    "right_pinky_MCP_AA",
+    "right_pinky_PIP",
+    "right_pinky_DIP"
+   ],
+   "finger_joints": [
+    1.50769,
+    0.24113,
+    -0.2676,
+    -0.21825,
+    0.0334,
+    0.90038,
+    0.17647,
+    0.23149,
+    1.33038,
+    0.80861,
+    0.29078,
+    0.50237,
+    0.42132,
+    0.84699,
+    0.22836,
+    0.68142,
+    0.09596,
+    0.07748,
+    0.824,
+    0.35508,
+    1.01744,
+    0.20186
+   ],
+   "off_axis_residual_max": 0.0,
+   "object_moved_cm_at_frame": 4.05,
+   "object_rot_deg_at_frame": 13.3
+  }
+ }
+}

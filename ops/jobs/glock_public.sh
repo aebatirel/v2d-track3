@@ -207,6 +207,7 @@ EOF
   [ -s "$ck" ] || { log "glock ep$ep: no scored checkpoint" >> $J; return 1; }
   log "glock ep$ep: curve $(tr -s ' ' < $O/ep$ep/curve.txt | cut -c1-40 | tr '\n' ';' | cut -c1-500); chosen by sim_vs_ref: $(basename $ck)" >> $J
   evalrep $ck $O/ep$ep/best $ep
+  cp $ck $O/ep$ep/best/policy.safetensors                        # the chosen checkpoint survives the store's pruning
   log "glock ep$ep RESULT ($(basename $ck)): $(python -c "import json; d=json.load(open('$O/ep$ep/best/summary.json')); print('n', d['n'], 'sim_vs_ref', d.get('sim_vs_ref'), 'registered AUC vs mocap', d.get('auc'))" 2>&1 | tail -1)" >> $J
 }
 

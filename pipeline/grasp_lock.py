@@ -100,6 +100,10 @@ def main():
                    'pre-grasp pose (moving with the object) and slides in over the last BLEND/2 frames (public ep18: the '
                    'reference hand passing 7 cm from the standing brush knocked it over at f24-28)')
     p.add_argument('--approach_back', type=float, default=0.04, help='pre-grasp back-off along the palm normal (m), all grasps')
+    p.add_argument('--templates', default='', help='grasp templates JSON (tools/extract_grasp_templates.py): a hold on an object '
+                   'with a template, by the template\'s hand, uses its object-frame wrist pose and finger posture (2026-10-24: the '
+                   'ep18 0.889 policy\'s dust-pan key pinch and sweeper neck clamp); with --single_hand that hand carries the object')
+    p.add_argument('--template_squeeze', type=float, default=0.2, help='templates: extra flexion beyond the (touching) template posture')
     p.add_argument('--squeeze_profile', default='uniform', choices=['uniform', 'anatomic'],
                    help='anatomic: squeeze weighted MCP 1 : PIP 0.55 : DIP 0.25 (thumb CMC 0.6, IP 0.4) instead of equal')
     p.add_argument('--onset_anchor', type=int, default=0, help='1: lock the hand from the object motion onset in OUR reference '
@@ -128,6 +132,7 @@ def main():
         lim[side] = (np.array([lo_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]),
                      np.array([hi_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]))
     ph = hold_phases(a.inp)[0]['phases']
+    TPL = json.load(open(a.templates))['templates'] if a.templates else {}
     parked = []
     if a.single_hand:                                              # one carrier per object, from first grasp to last release
         merged = []
@@ -135,6 +140,8 @@ def main():
             xs = [x for x in ph if x['object'] == o_]
             frames = {sd: sum(x['frames'] for x in xs if x['hand'] == sd) for sd in ('left', 'right')}
             hand = max(frames, key=frames.get); s1_ = max(x['end'] for x in xs)
+            if o_ in TPL and frames.get(TPL[o_]['side'], 0) > 0:     # the hand that has a proven grasp for this object
+                hand = TPL[o_]['side']
             first = min((x for x in xs if x['hand'] == hand), key=lambda x: x['start'])
             merged.append(dict(first, end=s1_, frames=s1_ - first['start'], merged_from=len(xs)))
         held_by = {x['hand'] for x in merged}; parked = [sd for sd in ('left', 'right') if sd not in held_by]
@@ -234,6 +241,16 @@ def main():
             print(f"{side} {x['object']}: SNAP human grasp, closing {json.dumps(closing)}", flush=True)
         if a.squeeze_profile != 'uniform':                         # knuckle-heavy squeeze from the touching grasp
             qs = np.clip(qf + (a.wrap_squeeze if wrap_info else a.squeeze) * sqw[side], lo, hi)
+        tpl_info = None
+        if x['object'] in TPL and TPL[x['object']]['side'] == side:  # a proven grasp from a successful policy
+            tp = TPL[x['object']]; fjn = t.column(f'{side}_robot_finger_joint_names')[0].as_py()
+            qt = dict(zip(tp['finger_joint_names'], tp['finger_joints']))
+            T_ow_p = np.array(tp['wrist_pos_obj'], float); R_ow = Rot.from_quat(tp['wrist_quat_obj_xyzw'])
+            qf = np.clip(np.array([qt[n] for n in fjn], float), lo, hi)
+            qs = np.clip(qf + a.template_squeeze * sqw[side], lo, hi); qpre = np.clip(qf - a.preopen * flex[side], lo, hi)
+            wrap_info = None; back = max(back, a.approach_back)
+            tpl_info = dict(template=os.path.basename(a.templates), frame=tp['frame'], squeeze=a.template_squeeze)
+            print(f"{side} {x['object']}: TEMPLATE grasp {json.dumps(tpl_info)}", flush=True)
         QS = np.repeat(qs[None], T, 0); fd_info = None; d_obj = None
         if a.force_design:                                         # physics-aware squeeze (grasp_force.py)
             if j not in sdf:
@@ -351,7 +368,7 @@ def main():
                 q_new[f, o:o + 3] = away if ww < 0.5 else blend(away, qref[f, o:o + 3], 2 * ww - 1)
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
                 q_new[f, o + 7:o + 29] = blend(QS[s1 - 1], qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
-        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan, approach=appr, onset_anchor=onset_info,
+        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan, approach=appr, onset_anchor=onset_info, template=tpl_info,
                            human_hold_axis_cm=None if s_med is None else round(100 * s_med, 1),
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
