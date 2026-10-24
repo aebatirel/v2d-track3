@@ -12,7 +12,8 @@ printf '%s\n' "cd /content/v2d-track3" "$JOB" > /content/job3.sh
 cat > /content/followup.sh << EOF
 . /content/v2d-track3/ops/box/lib.sh
 while [ ! -f \$ST/done ]; do echo \$(( \$(date +%s) + 1800 )) > /content/HOLD; sleep 60; done
-git -C /content/v2d-track3 fetch -q origin && git -C /content/v2d-track3 checkout -q $SHA \
+H="http.extraheader=Authorization: Basic \$(printf 'x-access-token:%s' "\$GH_TOKEN" | base64 -w0)"   # as in onstart.sh
+git -C /content/v2d-track3 -c "\$H" fetch -q origin $SHA && git -C /content/v2d-track3 checkout -q $SHA \
   || { log "followup: checkout $SHA FAILED" >> /content/job.log; rm -f /content/HOLD; exit 1; }
 log "followup at $SHA: \$(tail -1 /content/job3.sh)" >> /content/job.log
 label "followup running"
