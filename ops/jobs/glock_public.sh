@@ -146,7 +146,7 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
     for k in $(seq 0 $((np_ - 1))); do
       ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/grasp_evolve.py $G/$hive/ref_gl_ilc.parquet $G/$hive/ref_gl_grasp_lock.json \
           $EV/phase$k.json --phase $k --all_objects --pop ${EV_POP:-256} --gens ${EV_GENS:-20} --sigma_pos 0.03 --sigma_fin 0.3 \
-          --robust ${EV_ROBUST:-4} --jitter ${EV_JITTER:-0.005} \
+          --robust ${EV_ROBUST:-4} --jitter ${EV_JITTER:-0.005} --keep_env \
           --bake $EV/phase$k.parquet ) > $EV/phase$k.log 2>&1 && [ -s $EV/phase$k.parquet ] && cp $EV/phase$k.parquet $G/$hive/ref_gl_ilc.parquet
       log "glock ep$ep: evolve phase $k: $(python -c "import json; d=json.load(open('$EV/phase$k.json')); g=d['generations']; print('window', d['window'], 'unedited', g[0]['unedited'], 'best', d['best']['fit'], 'at gen', d['best']['gen'], 'of', len(g))" 2>&1 | tail -1)" >> $J
     done

@@ -55,6 +55,15 @@ def flexion_mask(names):
     return np.array([any(k in n for k in ('_FE', '_PIP', '_DIP', '_IP')) for n in names], float)
 
 
+def squeeze_weights(names, profile):  # per flexion joint, x the squeeze; 'anatomic' (2026-10-24, docs/research/grasp/
+    # human-hand-biomechanics.md: 5-8 N at a fingertip with finger kp 1.7 N m/rad needs dq MCP:PIP:DIP ~ 0.31-0.49 :
+    # 0.17-0.27 : 0.08-0.12 rad; a uniform squeeze puts 26 N at the DIP vs 6.5 N at the MCP and curls the tip off a plate)
+    if profile != 'anatomic':
+        return flexion_mask(names)
+    w = {'MCP_FE': 1.0, 'PIP': 0.55, 'DIP': 0.25, 'IP': 0.4, 'CMC_FE': 0.6}
+    return np.array([next((v for k, v in w.items() if n.endswith(k)), 0.0) for n in names], float)
+
+
 def distal_mask(names):                                            # PIP, DIP and the thumb IP: unrolled first on release
     return np.array([n.split('_')[-1] in ('PIP', 'DIP', 'IP') for n in names], float)
 
@@ -91,6 +100,8 @@ def main():
                    'pre-grasp pose (moving with the object) and slides in over the last BLEND/2 frames (public ep18: the '
                    'reference hand passing 7 cm from the standing brush knocked it over at f24-28)')
     p.add_argument('--approach_back', type=float, default=0.04, help='pre-grasp back-off along the palm normal (m), all grasps')
+    p.add_argument('--squeeze_profile', default='uniform', choices=['uniform', 'anatomic'],
+                   help='anatomic: squeeze weighted MCP 1 : PIP 0.55 : DIP 0.25 (thumb CMC 0.6, IP 0.4) instead of equal')
     p.add_argument('--onset_anchor', type=int, default=0, help='1: lock the hand from the object motion onset in OUR reference '
                    '(from its rest pose before the hold) when the hold would start later (2026-10-24: ep39 dust pan lifted '
                    '18 cm, ep18 sweeper 12 cm, ep24 board 10 cm before the human hand track reaches them)')
@@ -109,9 +120,10 @@ def main():
     mass = [float(m.body_mass.numpy()[next(i for i, l in enumerate(blabels) if l.startswith(f'track3_{n}/'))]) for n in names]
     lo_lim, hi_lim = m.joint_limit_lower.numpy(), m.joint_limit_upper.numpy(); dstart = m.joint_qd_start.numpy()
     jl = list(getattr(m, 'joint_label', None) or getattr(m, 'joint_key', [])); jidx = {l: i for i, l in enumerate(jl)}
-    lim, flex, distal, kpf, thumb = {}, {}, {}, {}, {}; ke = m.joint_target_ke.numpy()
+    lim, flex, distal, kpf, thumb, sqw = {}, {}, {}, {}, {}, {}; ke = m.joint_target_ke.numpy()
     for side in cr.SIDES:
         fj = t.column(f'{side}_robot_finger_joint_names')[0].as_py(); flex[side] = flexion_mask(fj); distal[side] = distal_mask(fj)
+        sqw[side] = squeeze_weights(fj, a.squeeze_profile)
         kpf[side] = np.array([ke[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]); thumb[side] = np.array(['_thumb_' in n for n in fj], float)
         lim[side] = (np.array([lo_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]),
                      np.array([hi_lim[dstart[jidx[f'{side}_sharpa_wave/{n}']]] for n in fj]))
@@ -220,6 +232,8 @@ def main():
                                                lambda X: OR[j][g].inv().apply(X - OP[g, j]), a.squeeze)
             qpre = np.clip(qf - a.preopen * flex[side], lo, hi)
             print(f"{side} {x['object']}: SNAP human grasp, closing {json.dumps(closing)}", flush=True)
+        if a.squeeze_profile != 'uniform':                         # knuckle-heavy squeeze from the touching grasp
+            qs = np.clip(qf + (a.wrap_squeeze if wrap_info else a.squeeze) * sqw[side], lo, hi)
         QS = np.repeat(qs[None], T, 0); fd_info = None; d_obj = None
         if a.force_design:                                         # physics-aware squeeze (grasp_force.py)
             if j not in sdf:
