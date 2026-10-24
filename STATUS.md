@@ -2,14 +2,38 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-25 ~01:30 TRT: night work under way (credit ≈ $29.9)
-- Running: seed-43 retrain of evals 19, 3, 5, 15, 16, 28 (`20261024-seed43-61101f5`); detection dumps with the new
-  re-proposal rule (`20261024-reprop-88822b2`, public + eval frame 0).
-- Found and fixed: Grounding DINO was missing on the 24 Oct eval boxes. Replayed on CPU: it would not have changed
-  any eval detection, so no rerun is needed for it.
-- Eval 30: the sweeper had no SAM2 proposal (inside the rack mask). New opt-in re-proposal from Grounding DINO boxes;
-  validating on public episodes against ground truth before rerunning eval 30.
-- Eval 1: new opt-in start-overlap lift (lid inside pot). Checking which eval references it would change.
+## 2026-10-25 ~02:20 TRT: night work, mid-way (credit $27.39 at 01:55 TRT; owner asleep)
+**Running**
+- `20261024-seed43-61101f5` (57567887, $1.48/h): seed 43 for evals 19, 3, 5, 15, 16, 28 on the same references.
+  Slower than estimated (≈ 90 min per training, two at a time): done ≈ 06:00–06:30 TRT, ≈ $8 in total. A seed
+  replaces seed 42 only if its 5-evaluation mean sim_vs_ref is higher (seed 42: 0.647 / 0.851 / 0.855 / 0.901 /
+  0.795 / 0.694).
+- `20261024-ev30rp-07eef1a` (57574634, $1.35/h): eval 30 rerun end to end with the fixed detection, plus its public
+  twin ep31 the same way (ground truth). ≈ 1.5 h.
+
+**Found and fixed tonight**
+- Grounding DINO was never installed on the 24 Oct eval boxes, so the validated grounding term was off. Replayed on
+  CPU: it would have changed no eval detection. Fixed for future runs; nothing to rerun.
+- **Eval 30**: the sweeper had no candidate mask (it stands inside the rack's mask), so the detector took the white
+  watch strap. New gated re-proposal: Grounding DINO boxes that no mask covers are turned into SAM2 masks, used only
+  for an object whose normal choice disagrees with Grounding DINO. Public test against ground truth: 93 → 95 of 116,
+  no regression (the ungated version broke 2 and was rejected by the rule written beforehand). On the 20 eval
+  frames it changes only eval 30, to the broom in the rack.
+- Packer: an episode whose checkpoint is unchanged keeps its earlier official rollout (sha256 rule), so unchanged
+  bimodal episodes are not re-rolled.
+
+**Checked and not pursued**
+- Eval 1 start overlap (lid inside the pot): an earlier audit already showed it costs ep2 only 0.042; the failure is
+  the lid grasp. The test box was cancelled after 8 min. Needs a lid-grasp fix and thinner pot walls (v5).
+- Eval 10 beige cup: the mesh is poor overall (one episode, 42 % unknown), not just open; v5 item.
+- Spoon template length: matches the observed spoon within ≈ 0.5 cm in all 10 episodes, so that is not the cause.
+- Wrist signal for tracking (evals 33, 14): no clean rule yet, and no public twin to validate it.
+
+**v5 progress (owner directive)**: `pipeline/mesh_decimate.py` ported and tested (10/10 watertight, topology kept).
+The next v5 steps need owner decision O1 (provenance) and the GPU go-ahead in `docs/mesh-v5-spec-draft.md`.
+
+**Next tonight**: when both boxes finish, pack (eval 30 rerun + seed winners, other episodes keep their rollouts)
+and upload all six boards if the packed rollouts hold up. Estimated total tonight ≈ $13; ≈ $14–15 left for v5.
 
 ## 2026-10-24 ~22:55 TRT: night work (owner asleep, "do as much as you can with the vast money", credit $29.98)
 - Running: `20261024-seed43-61101f5` (57567887): a second seed for evals 19, 3, 5, 15, 16 and 28 on the same
