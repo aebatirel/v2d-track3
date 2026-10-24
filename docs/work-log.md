@@ -3083,3 +3083,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     object, CPU; (4) G2 public-twin validation with GT on ep18 / 12 / 27 / 24 / 21 / 26 / 31, ≈ $15-20; (5) G3 20-eval
     rerun and pack, ≈ $33.
   - About $50-55 in total; second submission around 27-28 Oct. GPU steps wait for the owner's go-ahead.
+- **17:04 UTC eval 32 (blue cup + spoon, evE): 0.838 ± 0.013**, chosen 50M; curve 0.687 / 0.637 / 0.692 / 0.791 /
+  0.829 / 0.680 / 0.719. Its cup + spoon twin eval 33 got 0.391. Box E done and destroyed.
+  - Note: `list_repo_files` first showed no `ep32/best`; `list_repo_tree` shows `best/policy.safetensors` (5.1 MB)
+    and the summary. The first listing was stale.
+  - 18 of 20 done; eval 3 (evA) and eval 10 (evB) are training.
