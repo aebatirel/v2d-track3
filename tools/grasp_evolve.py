@@ -32,6 +32,8 @@ p.add_argument('--pre', type=int, default=6); p.add_argument('--post', type=int,
 p.add_argument('--all_objects', action='store_true'); p.add_argument('--bake', default='')
 p.add_argument('--max_steps', type=int, default=0, help='debug: cap the rollout length')
 p.add_argument('--init', default='', help="a previous OUT.json: start from its best theta (the search mean / the GA's first parent)")
+p.add_argument('--repeat_best', default='', help="a previous OUT.json: evaluate its best theta in worlds 1..pop-1 (world 0 unedited) "
+               "and exit (repeatability of the fitness across worlds)")
 a = p.parse_args()
 rng = np.random.default_rng(a.seed)
 
@@ -132,7 +134,33 @@ def add_auc(sim_p, sim_q, ref_p, ref_q):  # (F, 3), (F, 4 xyzw): kit ADD AUC on 
     return float(trap(np.array([np.mean(add < x) for x in THR]), x=AX)), add
 
 
+def find_solvers(obj, depth=0, seen=None):  # the MuJoCo-Warp solver(s) holding mjw_data (warm start lives there)
+    seen = set() if seen is None else seen
+    if id(obj) in seen or depth > 3:
+        return []
+    seen.add(id(obj)); out = [obj] if hasattr(obj, 'mjw_data') else []
+    for k in list(getattr(obj, '__dict__', {}).keys()):
+        v = getattr(obj, k, None)
+        if v is not None and not isinstance(v, (int, float, str, bool, np.ndarray)) and type(v).__module__.split('.')[0] in ('flash_chord', 'newton'):
+            out += find_solvers(v, depth + 1, seen)
+    return out
+
+
+SOLVERS = find_solvers(env)
+print(f'solvers with mjw_data: {len(SOLVERS)}', flush=True)
+
+
+def clear_warmstart():  # each candidate starts like a fresh official evaluation (warm start 0; 2026-10-24: the same edit
+    for sv in SOLVERS:  # scored 0.46-0.59 after another batch vs 0.508 fresh: qacc_warmstart carried over the reset)
+        d = sv.mjw_data
+        for f in ('qacc_warmstart', 'qacc', 'qfrc_constraint', 'efc_force'):
+            x = getattr(d, f, None) if not hasattr(d, 'efc') or f != 'efc_force' else getattr(d.efc, 'force', None)
+            if x is not None and hasattr(x, 'zero_'):
+                x.zero_()
+
+
 def evaluate(theta_phys):
+    clear_warmstart()
     env.reset(frame_id=int(f0))
     track, frames = [], []
     for f in win:
@@ -157,6 +185,16 @@ def evaluate(theta_phys):
                   'sim q', track[k, 0, j_obj, 3:7].round(3).tolist(), 'ref q', OQ[win[k], j_obj].round(3).tolist(), flush=True)
     return fit, detail, track
 
+
+if a.repeat_best:                                                             # same edit in every world but 0
+    thb = np.array(json.load(open(a.repeat_best))['best']['theta'], float); th = np.tile(thb, (W, 1)); th[0] = 0.0
+    if os.environ.get('GE_PRIME'):                                            # test: a random batch first, same process
+        f_r, _, _ = evaluate(np.clip(rng.normal(size=th.shape), -3, 3) * np.r_[sig, np.zeros(th.shape[1] - dim)])
+        print('prime batch', f_r.round(4).tolist(), flush=True)
+    fit, detail, _ = evaluate(th)
+    print(json.dumps(dict(repeat_best=a.repeat_best, unedited=round(float(fit[0]), 4), edited=[round(float(x), 4) for x in fit[1:]],
+                          edited_mean=round(float(fit[1:].mean()), 4), edited_sd=round(float(fit[1:].std()), 4))), flush=True)
+    sys.exit(0)
 
 log = dict(args=vars(a), side=side, object=obj, hold=[hs, he], approach_from=a0, window=[int(f0), int(f1)], dim=dim,
            sigma=sig.tolist(), generations=[])
