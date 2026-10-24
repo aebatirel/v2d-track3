@@ -2,6 +2,13 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~15:05 TRT: eval run under way (box F: eval 33/35/36); six boxes wait for credit
+- GPU validation of the recipe (registered AUC vs mocap, 5 evaluations): ep39 0.958, ep18 0.957, ep27 0.949, ep12
+  0.868 (one rollout in five fails), **ep24 (boards) 0.241 ± 0.125** (standard RL 0.31: boards stay weak, only eval
+  25 has boards). Eval 38 done: sim_vs_ref 0.9997, checkpoint in the store (ev2 run).
+- Box F 57507961 (`20261024-evF-38877d0`) running; credit $7.73 at 12:00 UTC, the other 16 episodes (A-E, G ≈ $20)
+  wait for the owner's top-up. Then `ops/jobs/pack_eval.sh` over all eval runs (ev2 + evA-G).
+
 ## 2026-10-24 ~14:15 TRT: GPU validation of the onset anchor + robust evolutionary grasp search running
 - Boxes 57498018 (`20261024-ev3-2c1e4dd`: ep39, ep18, ep24) and 57498007 (`20261024-ev2-2c1e4dd`: ep12, ep27, then eval
   38 from the eval videos). ~3 h, ~$8; credit $14.08 before. Owner wants the 20-episode eval run tonight (~$25-30;

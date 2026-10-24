@@ -2867,3 +2867,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Box plan: F 33,35,36 (started) | A 1,3,5 | B 6,8,10 | C 14,15,16 | D 19,20,25 | E 28,30,32 | G 37; eval 38 from ev2.
 - **57507961** Utah RTX PRO 6000 S $1.51/h `20261024-evF-38877d0`: eval 33, 35, 36 — started within the credit ($8.96,
   ev3 still running ~$0.8; estimate ~$3.6 + $3 reserve). The other six boxes (~$20) wait for the owner's top-up.
+- **12:00 UTC (box time) ep24 (two boards; eval 25 is the only board eval episode): 0.241 ± 0.125** (0.090-0.367;
+  sim_vs_ref 0.267 ± 0.138), chosen 50M; curve 0.231 / 0.316 / 0.227 / 0.352 / 0.391 / 0.202 / 0.147 at 10-70M.
+  Before: grasp lock 0.202 ± 0.072; best standard RL 0.307-0.318 (ki s42 0.318). The board grasp is not solved by the
+  search (windows board 1 0.324 -> 0.469, board 2 0.12 -> 0.197): boards stay a known weak class (TODO #24, the
+  slide-to-edge primitive). Impact on the 20-episode mean vs standard RL: ~ -0.004 (one episode, -0.07). The `ep2`
+  row in ev3's summary is stale (pulled from an earlier run's results, 30M; ep2 was not trained on ev3).
+  Box ev3 (57498018): validation done (ep39 0.958, ep18 0.957, ep24 0.241), push + self-destroy.
