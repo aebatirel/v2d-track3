@@ -1,0 +1,191 @@
+{
+ "beige_cup": {
+  "aabb_cm": [
+   9.93,
+   11.04,
+   17.39
+  ],
+  "pca_extent_cm": [
+   18.81,
+   12.56,
+   9.99
+  ],
+  "watertight": true,
+  "faces": 7526
+ },
+ "blue_cup": {
+  "aabb_cm": [
+   9.51,
+   9.65,
+   16.7
+  ],
+  "pca_extent_cm": [
+   16.8,
+   10.11,
+   9.36
+  ],
+  "watertight": true,
+  "faces": 11986
+ },
+ "mini_dust_pan": {
+  "aabb_cm": [
+   3.93,
+   15.91,
+   16.85
+  ],
+  "pca_extent_cm": [
+   17.3,
+   15.84,
+   3.7
+  ],
+  "watertight": true,
+  "faces": 6664,
+  "local_thickness_cm_p10_p50_p90": [
+   1.11,
+   1.47,
+   2.43
+  ]
+ },
+ "mini_sweeper": {
+  "aabb_cm": [
+   3.4,
+   11.05,
+   14.66
+  ],
+  "pca_extent_cm": [
+   14.41,
+   11.03,
+   3.35
+  ],
+  "watertight": true,
+  "faces": 4396,
+  "local_thickness_cm_p10_p50_p90": [
+   0.92,
+   1.46,
+   2.19
+  ]
+ },
+ "plastic_dish_rack": {
+  "aabb_cm": [
+   10.94,
+   15.91,
+   49.6
+  ],
+  "pca_extent_cm": [
+   49.65,
+   16.0,
+   10.97
+  ],
+  "watertight": true,
+  "faces": 32912
+ },
+ "water_pitcher": {
+  "aabb_cm": [
+   14.79,
+   26.14,
+   41.2
+  ],
+  "pca_extent_cm": [
+   42.48,
+   27.69,
+   15.03
+  ],
+  "watertight": true,
+  "faces": 31832,
+  "local_thickness_cm_p10_p50_p90": [
+   2.16,
+   4.2,
+   12.98
+  ]
+ },
+ "white_pot": {
+  "aabb_cm": [
+   13.1,
+   19.04,
+   36.23
+  ],
+  "pca_extent_cm": [
+   35.94,
+   19.1,
+   12.1
+  ],
+  "watertight": true,
+  "faces": 23734
+ },
+ "white_pot_lid": {
+  "aabb_cm": [
+   5.19,
+   18.95,
+   18.5
+  ],
+  "pca_extent_cm": [
+   18.48,
+   16.94,
+   5.24
+  ],
+  "watertight": true,
+  "faces": 9732,
+  "local_thickness_cm_p10_p50_p90": [
+   1.14,
+   1.43,
+   3.45
+  ]
+ },
+ "wooden_piece_1": {
+  "aabb_cm": [
+   3.05,
+   13.26,
+   22.87
+  ],
+  "pca_extent_cm": [
+   22.9,
+   13.16,
+   3.06
+  ],
+  "watertight": true,
+  "faces": 8208,
+  "local_thickness_cm_p10_p50_p90": [
+   0.54,
+   0.8,
+   1.68
+  ]
+ },
+ "wooden_piece_2": {
+  "aabb_cm": [
+   2.66,
+   13.76,
+   22.9
+  ],
+  "pca_extent_cm": [
+   22.89,
+   13.76,
+   2.67
+  ],
+  "watertight": true,
+  "faces": 8644,
+  "local_thickness_cm_p10_p50_p90": [
+   0.95,
+   1.21,
+   1.41
+  ]
+ },
+ "wooden_spoon": {
+  "aabb_cm": [
+   2.87,
+   5.2,
+   32.17
+  ],
+  "pca_extent_cm": [
+   32.16,
+   5.19,
+   2.8
+  ],
+  "watertight": true,
+  "faces": 3224,
+  "local_thickness_cm_p10_p50_p90": [
+   0.37,
+   1.23,
+   2.03
+  ]
+ }
+}

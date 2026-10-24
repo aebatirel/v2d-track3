@@ -1,0 +1,62 @@
+{
+ "T1 handle-end pinch (thumb top / index under at -22 cm)": {
+  "0.5": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 83,
+   "of": 83
+  },
+  "0.71": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 83,
+   "of": 83
+  },
+  "1.0": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 83,
+   "of": 83
+  }
+ },
+ "T2 medium wrap: 4 fingers under+side at -13..-19, palm side, thumb + palm heel on top": {
+  "0.5": {
+   "max_normal_N": 10.21,
+   "total_normal_N": 70.05,
+   "infeasible_frames": 0,
+   "of": 83
+  },
+  "0.71": {
+   "max_normal_N": 7.97,
+   "total_normal_N": 60.6,
+   "infeasible_frames": 0,
+   "of": 83
+  },
+  "1.0": {
+   "max_normal_N": 6.09,
+   "total_normal_N": 50.34,
+   "infeasible_frames": 0,
+   "of": 83
+  }
+ },
+ "T3 wrap far out (-19..-25 only, the human thumb zone)": {
+  "0.5": {
+   "max_normal_N": 21.22,
+   "total_normal_N": 100.62,
+   "infeasible_frames": 0,
+   "of": 83
+  },
+  "0.71": {
+   "max_normal_N": 17.31,
+   "total_normal_N": 98.41,
+   "infeasible_frames": 0,
+   "of": 83
+  },
+  "1.0": {
+   "max_normal_N": 13.06,
+   "total_normal_N": 89.74,
+   "infeasible_frames": 0,
+   "of": 83
+  }
+ }
+}

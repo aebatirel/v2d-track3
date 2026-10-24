@@ -1,0 +1,215 @@
+{
+ "robot_cm": {
+  "thumb_MC(CMC->MCP)": 6.609836355009101,
+  "thumb_PP": 3.9,
+  "thumb_DP(to tip)": 2.7611,
+  "index_PP": 4.7,
+  "index_MP": 3.15,
+  "index_DP(to tip)": 2.6009,
+  "thumb_total": 13.270936355009102,
+  "index_digit_total(MCP->tip)": 10.4509,
+  "thumbCMC_to_indexMCP": 7.516475237769363,
+  "indexMCP_to_pinkyMCP(width)": 6.208838605507939,
+  "ratio_thumb_total/index_digit": 1.2698366987540883
+ },
+ "human_mano_cm": {
+  "right": {
+   "thumb_MC(CMC->MCP)": 3.0783028602600098,
+   "thumb_PP": 2.9775640964508057,
+   "thumb_DP(to tip)": 2.511256694793701,
+   "index_PP": 2.4348905086517334,
+   "index_MP": 1.8991013765335083,
+   "index_DP(to tip)": 1.91823410987854,
+   "thumbCMC_to_indexMCP": 5.746654510498047,
+   "indexMCP_to_pinkyMCP(width)": 4.982873916625977,
+   "n_frames": 231,
+   "thumb_total": 8.567123651504517,
+   "index_digit_total(MCP->tip)": 6.252225995063782,
+   "ratio_thumb_total/index_digit": 1.3702517564573606
+  },
+  "left": {
+   "thumb_MC(CMC->MCP)": 3.17453932762146,
+   "thumb_PP": 3.1532487869262695,
+   "thumb_DP(to tip)": 2.3424298763275146,
+   "index_PP": 2.325793504714966,
+   "index_MP": 2.3719706535339355,
+   "index_DP(to tip)": 1.7505884170532227,
+   "thumbCMC_to_indexMCP": 5.861793041229248,
+   "indexMCP_to_pinkyMCP(width)": 5.23314905166626,
+   "n_frames": 281,
+   "thumb_total": 8.670217990875244,
+   "index_digit_total(MCP->tip)": 6.448352575302124,
+   "ratio_thumb_total/index_digit": 1.3445632647450299
+  }
+ },
+ "index_MP_radial_side": {
+  "faces": 17,
+  "area_cm2": 3.676781367457164
+ },
+ "opposition": {
+  "pad_to_pad_thumb_index": {
+   "dot<-0.6": {
+    "shared_voxels": 1268,
+    "opposed_voxels": 232,
+    "opposed_volume_cm3": 29.0,
+    "best_dot": -0.985460473048901
+   },
+   "dot<-0.7": {
+    "shared_voxels": 1268,
+    "opposed_voxels": 175,
+    "opposed_volume_cm3": 21.875,
+    "best_dot": -0.985460473048901
+   },
+   "dot<-0.8": {
+    "shared_voxels": 1268,
+    "opposed_voxels": 119,
+    "opposed_volume_cm3": 14.875,
+    "best_dot": -0.985460473048901
+   },
+   "dot<-0.9": {
+    "shared_voxels": 1268,
+    "opposed_voxels": 61,
+    "opposed_volume_cm3": 7.625,
+    "best_dot": -0.985460473048901
+   }
+  },
+  "pad_to_pad_thumb_middle": {
+   "dot<-0.6": {
+    "shared_voxels": 1225,
+    "opposed_voxels": 202,
+    "opposed_volume_cm3": 25.25,
+    "best_dot": -0.9764484107804888
+   },
+   "dot<-0.7": {
+    "shared_voxels": 1225,
+    "opposed_voxels": 146,
+    "opposed_volume_cm3": 18.25,
+    "best_dot": -0.9764484107804888
+   },
+   "dot<-0.8": {
+    "shared_voxels": 1225,
+    "opposed_voxels": 92,
+    "opposed_volume_cm3": 11.5,
+    "best_dot": -0.9764484107804888
+   },
+   "dot<-0.9": {
+    "shared_voxels": 1225,
+    "opposed_voxels": 38,
+    "opposed_volume_cm3": 4.75,
+    "best_dot": -0.9764484107804888
+   }
+  },
+  "pad_to_pad_thumb_ring": {
+   "dot<-0.6": {
+    "shared_voxels": 1015,
+    "opposed_voxels": 158,
+    "opposed_volume_cm3": 19.75,
+    "best_dot": -0.9850218412217145
+   },
+   "dot<-0.7": {
+    "shared_voxels": 1015,
+    "opposed_voxels": 111,
+    "opposed_volume_cm3": 13.875,
+    "best_dot": -0.9850218412217145
+   },
+   "dot<-0.8": {
+    "shared_voxels": 1015,
+    "opposed_voxels": 58,
+    "opposed_volume_cm3": 7.25,
+    "best_dot": -0.9850218412217145
+   },
+   "dot<-0.9": {
+    "shared_voxels": 1015,
+    "opposed_voxels": 27,
+    "opposed_volume_cm3": 3.375,
+    "best_dot": -0.9850218412217145
+   }
+  },
+  "pad_to_pad_thumb_pinky": {
+   "dot<-0.6": {
+    "shared_voxels": 795,
+    "opposed_voxels": 147,
+    "opposed_volume_cm3": 18.375,
+    "best_dot": -0.9958907454275912
+   },
+   "dot<-0.7": {
+    "shared_voxels": 795,
+    "opposed_voxels": 100,
+    "opposed_volume_cm3": 12.5,
+    "best_dot": -0.9958907454275912
+   },
+   "dot<-0.8": {
+    "shared_voxels": 795,
+    "opposed_voxels": 65,
+    "opposed_volume_cm3": 8.125,
+    "best_dot": -0.9958907454275912
+   },
+   "dot<-0.9": {
+    "shared_voxels": 795,
+    "opposed_voxels": 30,
+    "opposed_volume_cm3": 3.75,
+    "best_dot": -0.9958907454275912
+   }
+  },
+  "pad_to_side_thumb_indexMP_radial": {
+   "dot<-0.6": {
+    "shared_voxels": 1255,
+    "opposed_voxels": 191,
+    "opposed_volume_cm3": 23.875,
+    "best_dot": -0.9393849846348439
+   },
+   "dot<-0.7": {
+    "shared_voxels": 1255,
+    "opposed_voxels": 124,
+    "opposed_volume_cm3": 15.5,
+    "best_dot": -0.9393849846348439
+   },
+   "dot<-0.8": {
+    "shared_voxels": 1255,
+    "opposed_voxels": 60,
+    "opposed_volume_cm3": 7.5,
+    "best_dot": -0.9393849846348439
+   },
+   "dot<-0.9": {
+    "shared_voxels": 1255,
+    "opposed_voxels": 5,
+    "opposed_volume_cm3": 0.625,
+    "best_dot": -0.9393849846348439
+   }
+  },
+  "note": "volumes of 5 mm voxels where a thumb-pad sample and a finger-surface sample coexist with normals opposed (dot < -0.8); uniform joint sampling within URDF limits; no collision check"
+ },
+ "pads": {
+  "thumb": {
+   "width_mm": 14.257494288902398,
+   "area_cm2": 2.8815276416035425,
+   "normal_vs_flexion_proxy_dot": 0.9026107263540849
+  },
+  "index": {
+   "width_mm": 11.641649587381737,
+   "area_cm2": 2.0752261830024166,
+   "normal_vs_flexion_proxy_dot": 0.9651158177995859
+  },
+  "middle": {
+   "width_mm": 11.641649587381737,
+   "area_cm2": 2.0752261830024166,
+   "normal_vs_flexion_proxy_dot": 0.9651158177982104
+  },
+  "ring": {
+   "width_mm": 11.641649587381737,
+   "area_cm2": 2.0752261830024166,
+   "normal_vs_flexion_proxy_dot": 0.9651158177994316
+  },
+  "pinky": {
+   "width_mm": 11.641649587381737,
+   "area_cm2": 2.0752261830024166,
+   "normal_vs_flexion_proxy_dot": 0.9651158177994962
+  }
+ },
+ "opposition_reach": {
+  "thumb_tip_to_index_tip_min_mm_opposed": 0.24942851220044437,
+  "thumb_tip_to_middle_tip_min_mm_opposed": 0.32386510161940696,
+  "thumb_tip_to_ring_tip_min_mm_opposed": 0.3744448692922526,
+  "thumb_tip_to_pinky_tip_min_mm_opposed": 0.671758111909138
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "S1 band clamp (thumb DP+PP on +face, 3 fingers on -face, 2 cm spread)": {
+  "0.5": {
+   "max_normal_N": 14.61,
+   "total_normal_N": 57.44,
+   "infeasible_frames": 0,
+   "of": 240
+  },
+  "0.71": {
+   "max_normal_N": 8.77,
+   "total_normal_N": 34.07,
+   "infeasible_frames": 0,
+   "of": 240
+  },
+  "1.0": {
+   "max_normal_N": 6.23,
+   "total_normal_N": 23.91,
+   "infeasible_frames": 0,
+   "of": 240
+  }
+ },
+ "S2 neck/head clamp (RL-found: thumb column one face, 4 fingers flat on other, 6 x 5 cm spread)": {
+  "0.5": {
+   "max_normal_N": 3.38,
+   "total_normal_N": 16.08,
+   "infeasible_frames": 0,
+   "of": 240
+  },
+  "0.71": {
+   "max_normal_N": 1.92,
+   "total_normal_N": 11.29,
+   "infeasible_frames": 0,
+   "of": 240
+  },
+  "1.0": {
+   "max_normal_N": 1.44,
+   "total_normal_N": 7.42,
+   "infeasible_frames": 0,
+   "of": 240
+  }
+ },
+ "S3 single pinch on the ring end (one point)": {
+  "0.5": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 240,
+   "of": 240
+  },
+  "0.71": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 240,
+   "of": 240
+  },
+  "1.0": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 240,
+   "of": 240
+  }
+ }
+}

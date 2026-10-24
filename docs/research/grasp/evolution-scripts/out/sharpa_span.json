@@ -1,0 +1,1 @@
+{"max_span_thumb_index_cm": 20.5, "max_span_thumb_middle_cm": 22.1, "max_span_thumb_ring_cm": 23.2, "max_span_thumb_pinky_cm": 24.4, "method": "max over 200 random directions of the projected extent between 40k thumb-pad and 40k finger-pad samples; pads not required to oppose; no collision check"}

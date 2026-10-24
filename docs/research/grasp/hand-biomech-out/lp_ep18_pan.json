@@ -1,0 +1,82 @@
+{
+ "P1 single pinch at ring end (thumb top / index under, one point)": {
+  "0.5": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 178,
+   "of": 178
+  },
+  "0.71": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 178,
+   "of": 178
+  },
+  "1.0": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 178,
+   "of": 178
+  }
+ },
+ "P2 key pinch across end band, spread 3 cm along band": {
+  "0.5": {
+   "max_normal_N": 60.49,
+   "total_normal_N": 236.82,
+   "infeasible_frames": 0,
+   "of": 178
+  },
+  "0.71": {
+   "max_normal_N": 43.36,
+   "total_normal_N": 168.3,
+   "infeasible_frames": 0,
+   "of": 178
+  },
+  "1.0": {
+   "max_normal_N": 31.53,
+   "total_normal_N": 120.99,
+   "infeasible_frames": 0,
+   "of": 178
+  }
+ },
+ "P3 hook through hole + thumb on end band + middle under end band": {
+  "0.5": {
+   "max_normal_N": 7.78,
+   "total_normal_N": 31.12,
+   "infeasible_frames": 0,
+   "of": 178
+  },
+  "0.71": {
+   "max_normal_N": 7.05,
+   "total_normal_N": 28.19,
+   "infeasible_frames": 0,
+   "of": 178
+  },
+  "1.0": {
+   "max_normal_N": 6.24,
+   "total_normal_N": 24.96,
+   "infeasible_frames": 0,
+   "of": 178
+  }
+ },
+ "P4 P3 + thumb spread (thumb DP + PP on band top, 3 cm apart)": {
+  "0.5": {
+   "max_normal_N": 7.23,
+   "total_normal_N": 43.39,
+   "infeasible_frames": 0,
+   "of": 178
+  },
+  "0.71": {
+   "max_normal_N": 6.21,
+   "total_normal_N": 36.17,
+   "infeasible_frames": 0,
+   "of": 178
+  },
+  "1.0": {
+   "max_normal_N": 5.31,
+   "total_normal_N": 29.28,
+   "infeasible_frames": 0,
+   "of": 178
+  }
+ }
+}

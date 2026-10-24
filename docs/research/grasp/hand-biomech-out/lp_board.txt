@@ -1,0 +1,63 @@
+##### ep24 board (left hand, 'wooden_piece_2' in our ref) 60-201
+B1 edge pinch, one point (thumb top / index under)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+B2 parallel extension at long edge: thumb DP+PP on top, 3 fingertips under 4 cm in, PPs under at edge
+    mu 0.5: max normal per contact   3.32 N, total 10.59 N, infeasible 126/142 frames
+    mu 0.71: max normal per contact   2.16 N, total 6.01 N, infeasible 125/142 frames
+    mu 1.0: max normal per contact  28.57 N, total 57.13 N, infeasible 0/142 frames
+B3 short-edge grip (grip 10 cm from COM): thumb top at edge, fingers under 3.5 cm in, spread 4 cm
+    mu 0.5: max normal per contact   9.15 N, total 27.03 N, infeasible 138/142 frames
+    mu 0.71: max normal per contact   8.39 N, total 25.92 N, infeasible 131/142 frames
+    mu 1.0: max normal per contact 143.46 N, total 411.24 N, infeasible 0/142 frames
+B4 pad opposition: thumb DP opposite index/middle DPs 3 cm in, thumb PP at edge, fingers spread 4 cm
+    mu 0.5: max normal per contact   3.49 N, total 17.29 N, infeasible 0/142 frames
+    mu 0.71: max normal per contact   3.30 N, total 12.13 N, infeasible 0/142 frames
+    mu 1.0: max normal per contact   3.03 N, total 14.53 N, infeasible 0/142 frames
+B5 two pad pairs 6 cm apart along the edge (thumb vs index, palm-heel/thumbPP vs ring), 3 cm in
+    mu 0.5: max normal per contact   4.86 N, total 25.5 N, infeasible 0/142 frames
+    mu 0.71: max normal per contact   4.38 N, total 22.64 N, infeasible 0/142 frames
+    mu 1.0: max normal per contact   3.90 N, total 19.74 N, infeasible 0/142 frames
+##### ep24 board (right hand, 'wooden_piece_1') 102-243
+B1 edge pinch, one point (thumb top / index under)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+B2 parallel extension at long edge: thumb DP+PP on top, 3 fingertips under 4 cm in, PPs under at edge
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact 240.72 N, total 476.56 N, infeasible 0/142 frames
+B3 short-edge grip (grip 10 cm from COM): thumb top at edge, fingers under 3.5 cm in, spread 4 cm
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact 351.53 N, total 828.57 N, infeasible 0/142 frames
+B4 pad opposition: thumb DP opposite index/middle DPs 3 cm in, thumb PP at edge, fingers spread 4 cm
+    mu 0.5: max normal per contact   9.52 N, total 32.74 N, infeasible 0/142 frames
+    mu 0.71: max normal per contact   9.03 N, total 30.76 N, infeasible 0/142 frames
+    mu 1.0: max normal per contact   8.45 N, total 28.46 N, infeasible 0/142 frames
+B5 two pad pairs 6 cm apart along the edge (thumb vs index, palm-heel/thumbPP vs ring), 3 cm in
+    mu 0.5: max normal per contact  27.86 N, total 106.1 N, infeasible 0/142 frames
+    mu 0.71: max normal per contact  20.42 N, total 76.3 N, infeasible 0/142 frames
+    mu 1.0: max normal per contact  15.27 N, total 55.73 N, infeasible 0/142 frames
+##### ep24 board (left hand, first hold 0-55)
+B1 edge pinch, one point (thumb top / index under)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 56/56 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 56/56 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 56/56 frames
+B2 parallel extension at long edge: thumb DP+PP on top, 3 fingertips under 4 cm in, PPs under at edge
+    mu 0.5: max normal per contact   2.69 N, total 11.09 N, infeasible 0/56 frames
+    mu 0.71: max normal per contact   2.63 N, total 10.72 N, infeasible 0/56 frames
+    mu 1.0: max normal per contact   2.56 N, total 10.28 N, infeasible 0/56 frames
+B3 short-edge grip (grip 10 cm from COM): thumb top at edge, fingers under 3.5 cm in, spread 4 cm
+    mu 0.5: max normal per contact   5.75 N, total 23.28 N, infeasible 0/56 frames
+    mu 0.71: max normal per contact   5.55 N, total 22.66 N, infeasible 0/56 frames
+    mu 1.0: max normal per contact   5.29 N, total 21.87 N, infeasible 0/56 frames
+B4 pad opposition: thumb DP opposite index/middle DPs 3 cm in, thumb PP at edge, fingers spread 4 cm
+    mu 0.5: max normal per contact   4.58 N, total 19.08 N, infeasible 0/56 frames
+    mu 0.71: max normal per contact   4.29 N, total 14.54 N, infeasible 0/56 frames
+    mu 1.0: max normal per contact   3.94 N, total 20.73 N, infeasible 0/56 frames
+B5 two pad pairs 6 cm apart along the edge (thumb vs index, palm-heel/thumbPP vs ring), 3 cm in
+    mu 0.5: max normal per contact   6.29 N, total 32.7 N, infeasible 0/56 frames
+    mu 0.71: max normal per contact   5.69 N, total 29.08 N, infeasible 0/56 frames
+    mu 1.0: max normal per contact   5.07 N, total 25.39 N, infeasible 0/56 frames

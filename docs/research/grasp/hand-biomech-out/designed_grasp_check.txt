@@ -1,0 +1,74 @@
+######## ep12  (runs/20261023-sf1227-bfb973a/refs/glock/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave)
+== right blue_cup: hold 26-144, grasp frame 43, fingers_on 4, gap 5.5 mm, squeeze 0.4 rad, joints at limit 3, wrap False
+   frame 36: sites within 12 mm: [('thumb_DP_site', 10.2), ('index_tip_site', 4.0), ('middle_tip_site', 6.9), ('pinky_DP_site', -2.7), ('pinky_tip_site', -1.0)]
+      thumb sites 1, finger sites 4, thumb-vs-finger surface-normal angle 124.0 deg (180 = opposed), palm frame [84.5] mm
+   frame 90: sites within 12 mm: [('thumb_DP_site', 10.2), ('index_tip_site', 4.0), ('middle_tip_site', 6.9), ('pinky_DP_site', -2.7), ('pinky_tip_site', -1.0)]
+      thumb sites 1, finger sites 4, thumb-vs-finger surface-normal angle 124.0 deg (180 = opposed), palm frame [84.5] mm
+######## ep27  (runs/20261023-sf1227-bfb973a/refs/glock/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave)
+== right white_pot: hold 17-221, grasp frame 33, fingers_on 3, gap 24.1 mm, squeeze 0.4 rad, joints at limit 7, wrap False
+   frame 27: sites within 12 mm: [('thumb_DP_site', 3.3), ('thumb_tip_site', 6.2), ('index_DP_site', -2.4), ('index_tip_site', -0.9), ('middle_DP_site', 5.2)]
+      thumb sites 2, finger sites 3, thumb-vs-finger surface-normal angle 160.0 deg (180 = opposed), palm frame [37.6] mm
+   frame 124: sites within 12 mm: [('thumb_DP_site', 3.3), ('thumb_tip_site', 6.2), ('index_DP_site', -2.4), ('index_tip_site', -0.9), ('middle_DP_site', 5.2)]
+      thumb sites 2, finger sites 3, thumb-vs-finger surface-normal angle 160.0 deg (180 = opposed), palm frame [37.6] mm
+######## ep18  (runs/20261024-e1-e49e83d/refs/glock/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave)
+== left mini_dust_pan: hold 8-187, grasp frame 16, fingers_on 5, gap 0.6 mm, squeeze 0.4 rad, joints at limit 2, wrap False
+   frame 18: sites within 12 mm: []
+      thumb sites 0, finger sites 0, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [132.6] mm
+   frame 102: sites within 12 mm: []
+      thumb sites 0, finger sites 0, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [132.6] mm
+== right mini_sweeper: hold 53-323, grasp frame 62, fingers_on 5, gap 0.6 mm, squeeze 0.4 rad, joints at limit 0, wrap False
+   frame 63: sites within 12 mm: [('thumb_DP_site', 7.3), ('thumb_tip_site', 11.2)]
+      thumb sites 2, finger sites 0, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [121.9] mm
+   frame 193: sites within 12 mm: [('thumb_DP_site', 7.3), ('thumb_tip_site', 11.2)]
+      thumb sites 2, finger sites 0, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [121.9] mm
+######## ep39  (runs/20261024-e3-e49e83d/refs/glock/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave)
+== right mini_dust_pan: hold 64-292, grasp frame 75, fingers_on 4, gap 5.3 mm, squeeze 0.4 rad, joints at limit 3, wrap False
+   frame 74: sites within 12 mm: []
+      thumb sites 0, finger sites 0, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [124.0] mm
+   frame 183: sites within 12 mm: []
+      thumb sites 0, finger sites 0, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [124.0] mm
+######## ep24  (runs/20261023-glockpub-0f7e3a7/refs/glock/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave)
+== left wooden_piece_1: hold 1-240, grasp frame 12, fingers_on 4, gap 3.1 mm, squeeze 0.4 rad, joints at limit 6, wrap False
+   frame 11: sites within 12 mm: [('thumb_DP_site', -3.3), ('index_MP_site', 2.0), ('index_tip_site', 4.8), ('middle_DP_site', 9.9), ('ring_MP_site', 9.5), ('ring_DP_site', 11.6)]
+      thumb sites 1, finger sites 5, thumb-vs-finger surface-normal angle 126.0 deg (180 = opposed), palm frame [54.7] mm
+   frame 125: sites within 12 mm: [('thumb_DP_site', -3.3), ('index_MP_site', 2.0), ('index_tip_site', 4.8), ('middle_DP_site', 9.9), ('ring_MP_site', 9.5), ('ring_DP_site', 11.6)]
+      thumb sites 1, finger sites 5, thumb-vs-finger surface-normal angle 126.0 deg (180 = opposed), palm frame [54.7] mm
+== right wooden_piece_2: hold 103-244, grasp frame 124, fingers_on 4, gap 5.1 mm, squeeze 0.4 rad, joints at limit 5, wrap False
+   frame 113: sites within 12 mm: [('thumb_DP_site', -2.1), ('index_MP_site', -0.5), ('index_DP_site', -4.0), ('index_tip_site', 5.5), ('middle_MP_site', 11.8), ('middle_DP_site', -3.3), ('ring_DP_site', 11.0)]
+      thumb sites 1, finger sites 6, thumb-vs-finger surface-normal angle 72.0 deg (180 = opposed), palm frame [83.5] mm
+   frame 178: sites within 12 mm: [('thumb_DP_site', -2.1), ('index_MP_site', -0.5), ('index_DP_site', -4.0), ('index_tip_site', 5.5), ('middle_MP_site', 11.8), ('middle_DP_site', -3.3), ('ring_DP_site', 11.0)]
+      thumb sites 1, finger sites 6, thumb-vs-finger surface-normal angle 72.0 deg (180 = opposed), palm frame [83.5] mm
+######## ep31  (runs/20261024-e2-e49e83d/refs/glock/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave)
+== right mini_sweeper: hold 21-265, grasp frame 27, fingers_on 4, gap 5.3 mm, squeeze 0.4 rad, joints at limit 7, wrap False
+   frame 31: sites within 12 mm: [('thumb_DP_site', 2.5), ('index_DP_site', 5.9), ('middle_DP_site', 8.8)]
+      thumb sites 1, finger sites 2, thumb-vs-finger surface-normal angle 18.0 deg (180 = opposed), palm frame [103.2] mm
+   frame 148: sites within 12 mm: [('thumb_DP_site', 2.5), ('index_DP_site', 5.9), ('middle_DP_site', 8.8)]
+      thumb sites 1, finger sites 2, thumb-vs-finger surface-normal angle 18.0 deg (180 = opposed), palm frame [103.2] mm
+######## ep21  (runs/20261024-e2-e49e83d/refs/glock/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave)
+== left blue_cup: hold 27-158, grasp frame 30, fingers_on 5, gap 0.8 mm, squeeze 0.4 rad, joints at limit 0, wrap False
+   frame 37: sites within 12 mm: [('thumb_DP_site', -2.0), ('thumb_tip_site', 5.1), ('index_DP_site', -2.6), ('index_tip_site', 8.1), ('ring_DP_site', 11.2)]
+      thumb sites 2, finger sites 3, thumb-vs-finger surface-normal angle 139.0 deg (180 = opposed), palm frame [112.1] mm
+   frame 97: sites within 12 mm: [('thumb_DP_site', -2.0), ('thumb_tip_site', 5.1), ('index_DP_site', -2.6), ('index_tip_site', 8.1), ('ring_DP_site', 11.2)]
+      thumb sites 2, finger sites 3, thumb-vs-finger surface-normal angle 139.0 deg (180 = opposed), palm frame [112.1] mm
+== right water_pitcher: hold 32-135, grasp frame 35, fingers_on 5, gap 0.3 mm, squeeze 0.4 rad, joints at limit 5, wrap False
+   frame 42: sites within 12 mm: [('thumb_DP_site', 11.8), ('thumb_tip_site', 5.1), ('index_DP_site', 6.6), ('middle_DP_site', 8.2), ('middle_tip_site', -1.5), ('ring_DP_site', 2.7), ('ring_tip_site', 6.3), ('pinky_MP_site', 10.6), ('pinky_DP_site', 8.7), ('pinky_tip_site', 8.0)]
+      thumb sites 2, finger sites 8, thumb-vs-finger surface-normal angle 38.0 deg (180 = opposed), palm frame [80.8] mm
+   frame 88: sites within 12 mm: [('thumb_DP_site', 11.8), ('thumb_tip_site', 5.1), ('index_DP_site', 6.6), ('middle_DP_site', 8.2), ('middle_tip_site', -1.5), ('ring_DP_site', 2.7), ('ring_tip_site', 6.3), ('pinky_MP_site', 10.6), ('pinky_DP_site', 8.7), ('pinky_tip_site', 8.0)]
+      thumb sites 2, finger sites 8, thumb-vs-finger surface-normal angle 38.0 deg (180 = opposed), palm frame [80.8] mm
+######## ep2  (runs/20261024-e3-e49e83d/refs/glock/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave)
+== left white_pot: hold 105-337, grasp frame 108, fingers_on 5, gap 0.0 mm, squeeze 0.4 rad, joints at limit 4, wrap False
+   frame 115: sites within 12 mm: [('thumb_DP_site', 5.2), ('thumb_tip_site', -1.0), ('index_DP_site', 11.8), ('middle_MP_site', 11.0), ('middle_DP_site', -0.5), ('middle_tip_site', 6.9), ('ring_DP_site', 1.4), ('ring_tip_site', -1.7), ('pinky_DP_site', 6.1), ('pinky_tip_site', 5.6)]
+      thumb sites 2, finger sites 8, thumb-vs-finger surface-normal angle 95.0 deg (180 = opposed), palm frame [67.1] mm
+   frame 226: sites within 12 mm: [('thumb_DP_site', 5.2), ('thumb_tip_site', -1.0), ('index_DP_site', 11.8), ('middle_MP_site', 11.0), ('middle_DP_site', -0.5), ('middle_tip_site', 6.9), ('ring_DP_site', 1.4), ('ring_tip_site', -1.7), ('pinky_DP_site', 6.1), ('pinky_tip_site', 5.6)]
+      thumb sites 2, finger sites 8, thumb-vs-finger surface-normal angle 95.0 deg (180 = opposed), palm frame [67.1] mm
+== right white_pot_lid: hold 49-304, grasp frame 62, fingers_on 4, gap 2.4 mm, squeeze 0.4 rad, joints at limit 4, wrap False
+   frame 59: sites within 12 mm: [('thumb_DP_site', 4.6), ('thumb_tip_site', 10.3), ('index_DP_site', 7.1), ('pinky_DP_site', 10.5)]
+      thumb sites 2, finger sites 2, thumb-vs-finger surface-normal angle 52.0 deg (180 = opposed), palm frame [95.1] mm
+   frame 181: sites within 12 mm: [('thumb_DP_site', 4.6), ('thumb_tip_site', 10.3), ('index_DP_site', 7.1), ('pinky_DP_site', 10.5)]
+      thumb sites 2, finger sites 2, thumb-vs-finger surface-normal angle 52.0 deg (180 = opposed), palm frame [95.1] mm
+######## ep26  (runs/20261024-w1-37cc551/refs/glock/ep26/processed/sequence_id=t3_ep026/robot_name=sharpa_wave)
+== right white_pot: hold 42-118, grasp frame 56, fingers_on 5, gap 0.3 mm, squeeze 0.4 rad, joints at limit 3, wrap False
+   frame 52: sites within 12 mm: [('index_DP_site', -0.4), ('index_tip_site', 8.3), ('middle_DP_site', -0.8), ('middle_tip_site', 8.6), ('ring_DP_site', 0.9), ('ring_tip_site', 7.1), ('pinky_DP_site', 8.7)]
+      thumb sites 0, finger sites 7, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [76.0] mm
+   frame 85: sites within 12 mm: [('index_DP_site', -0.4), ('index_tip_site', 8.3), ('middle_DP_site', -0.8), ('middle_tip_site', 8.6), ('ring_DP_site', 0.9), ('ring_tip_site', 7.1), ('pinky_DP_site', 8.7)]
+      thumb sites 0, finger sites 7, thumb-vs-finger surface-normal angle None deg (180 = opposed), palm frame [76.0] mm

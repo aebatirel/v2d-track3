@@ -1,0 +1,8 @@
+left plastic_dish_rack [77, 98] n 22 | F_max 2.96 acc95 0.16 tau_grip 0.591 / 0.595 | grip 21.2 cm | tilt 2.2 lift -0.5
+   links {'index1': 0.68, 'ring1': 0.18}
+    fingers n 19 pos [-20.6, -0.0, 4.9] p10 [-22.2, -0.3, 4.7] p90 [-15.1, 1.0, 5.6] nrm [0.57, 0.01, 0.11] +thin 0.79
+right white_pot [36, 118] n 83 | F_max 3.49 acc95 1.8 tau_grip 0.517 / 0.614 | grip 18.0 cm | tilt 179.8 lift 19.1
+   links {'palm': 0.6, 'thumb1': 0.27, 'thumb2': 0.45, 'thumb3': 0.42, 'index1': 0.63, 'index2': 0.34, 'index3': 0.33, 'middle1': 0.36, 'middle2': 0.36, 'middle3': 0.3, 'ring1': 0.12, 'ring2': 0.42, 'ring3': 0.37, 'pinky1': 0.1, 'pinky3': 0.61}
+    palm n 50 pos [-9.8, -0.4, 2.7] p10 [-11.0, -1.4, 1.1] p90 [-8.6, 0.2, 3.8] nrm [0.18, 0.21, -0.22] +thin 0.44
+    thumb n 94 pos [-19.7, 0.1, 2.9] p10 [-22.9, -0.9, 2.1] p90 [-15.0, 1.2, 3.5] nrm [0.06, 0.21, -0.65] +thin 0.2
+    fingers n 329 pos [-18.5, 0.8, 2.2] p10 [-23.9, -0.8, 0.9] p90 [-12.9, 1.9, 3.3] nrm [0.02, -0.21, -0.04] +thin 0.47

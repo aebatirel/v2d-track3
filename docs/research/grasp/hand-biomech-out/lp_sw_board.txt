@@ -1,0 +1,52 @@
+##### ep18 sweeper right 60-225
+S1 band clamp (thumb DP+PP on +face, 3 fingers on -face, 2 cm spread)
+    mu 0.5: max normal per contact  16.41 N, total 67.76 N, infeasible 0/166 frames
+    mu 0.71: max normal per contact   9.31 N, total 39.37 N, infeasible 0/166 frames
+    mu 1.0: max normal per contact   6.73 N, total 30.19 N, infeasible 0/166 frames
+S2 neck/head clamp (RL-found: thumb column one face, 4 fingers flat on other, 6 x 5 cm spread)
+    mu 0.5: max normal per contact   3.70 N, total 16.41 N, infeasible 0/166 frames
+    mu 0.71: max normal per contact   1.98 N, total 11.17 N, infeasible 0/166 frames
+    mu 1.0: max normal per contact   1.35 N, total 9.19 N, infeasible 0/166 frames
+S3 single pinch on the ring end (one point)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 166/166 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 166/166 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 166/166 frames
+##### ep31 sweeper right 25-264
+S1 band clamp (thumb DP+PP on +face, 3 fingers on -face, 2 cm spread)
+    mu 0.5: max normal per contact  14.61 N, total 57.44 N, infeasible 0/240 frames
+    mu 0.71: max normal per contact   8.77 N, total 34.07 N, infeasible 0/240 frames
+    mu 1.0: max normal per contact   6.23 N, total 23.91 N, infeasible 0/240 frames
+S2 neck/head clamp (RL-found: thumb column one face, 4 fingers flat on other, 6 x 5 cm spread)
+    mu 0.5: max normal per contact   3.38 N, total 16.08 N, infeasible 0/240 frames
+    mu 0.71: max normal per contact   1.92 N, total 11.29 N, infeasible 0/240 frames
+    mu 1.0: max normal per contact   1.44 N, total 7.42 N, infeasible 0/240 frames
+S3 single pinch on the ring end (one point)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 240/240 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 240/240 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 240/240 frames
+##### ep24 board (left hand, 'wooden_piece_2' in our ref) 60-201
+B1 edge pinch, one point (thumb top / index under)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+B2 parallel extension at long edge: thumb DP+PP on top, 3 fingertips under 4 cm in, PPs under at edge
+    mu 0.5: max normal per contact   3.32 N, total 10.59 N, infeasible 126/142 frames
+    mu 0.71: max normal per contact   2.16 N, total 6.01 N, infeasible 125/142 frames
+    mu 1.0: max normal per contact  28.57 N, total 57.13 N, infeasible 0/142 frames
+B3 short-edge grip (grip 10 cm from COM): thumb top at edge, fingers under 3.5 cm in, spread 4 cm
+    mu 0.5: max normal per contact   9.15 N, total 27.03 N, infeasible 138/142 frames
+    mu 0.71: max normal per contact   8.39 N, total 25.92 N, infeasible 131/142 frames
+    mu 1.0: max normal per contact 143.46 N, total 411.24 N, infeasible 0/142 frames
+##### ep24 board (right hand, 'wooden_piece_1') 102-243
+B1 edge pinch, one point (thumb top / index under)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+B2 parallel extension at long edge: thumb DP+PP on top, 3 fingertips under 4 cm in, PPs under at edge
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact 240.72 N, total 476.56 N, infeasible 0/142 frames
+B3 short-edge grip (grip 10 cm from COM): thumb top at edge, fingers under 3.5 cm in, spread 4 cm
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 142/142 frames
+    mu 1.0: max normal per contact 351.53 N, total 828.57 N, infeasible 0/142 frames
