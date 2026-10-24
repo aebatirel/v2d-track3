@@ -3088,3 +3088,27 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Note: `list_repo_files` first showed no `ep32/best`; `list_repo_tree` shows `best/policy.safetensors` (5.1 MB)
     and the summary. The first listing was stale.
   - 18 of 20 done; eval 3 (evA) and eval 10 (evB) are training.
+- **17:38 UTC all 20 eval episodes trained.** Eval 3 (pot + spoon, evA): **0.851 ± 0.247**, one of five rollouts at
+  0.358, chosen 70M. Eval 10 (two cups, evB): **0.334 ± 0.023**, chosen 40M.
+  - Per-episode sim_vs_ref (mean of 5 official evaluations of the chosen checkpoint, our reference, no ground truth):
+
+    | Eval | Score | Eval | Score | Eval | Score | Eval | Score |
+    |---|---|---|---|---|---|---|---|
+    | 1 | 0.297 | 3 | 0.851 | 5 | 0.855 | 6 | 0.982 |
+    | 8 | 0.777 | 10 | 0.334 | 14 | 0.506 | 15 | 0.901 |
+    | 16 | 0.795 | 19 | 0.647 | 20 | 0.287 | 25 | 0.243 |
+    | 28 | 0.694 | 30 | 0.469 | 32 | 0.838 | 33 | 0.391 |
+    | 35 | 0.992 | 36 | 0.994 | 37 | 0.998 | 38 | 1.000 |
+
+  - **Mean 0.692**: spoon episodes 0.860, the other ten 0.525.
+  - Projection (estimate): ADD-AUC vs truth ≈ 0.96 × sim_vs_ref on the good public twins, so **≈ 0.66 (0.60-0.70)**.
+    Spoon perception is unmeasured. Evals 3, 5 and 15 have a bad rollout mode (std 0.13-0.25), and the pack makes one
+    fresh rollout per episode with no choice among rollouts. 23 Oct board: 0.930 / 0.884 / 0.831 / 0.730 / 0.694 /
+    0.662, so the projection places us about 6th.
+- **57544403** `20261024-pack-31ef267` RTX PRO 6000 S, Australia, $1.51/h: the final pack.
+  - Command: `RUNS="evR evR2 ev2 evF evG evA evB evC evD evE"` (full IDs in the job; reruns first, since pull-run
+    never overwrites), `COMMIT_URL=.../commit/31ef267...`, `bash ops/jobs/pack_eval.sh`.
+  - Code per run: ev2 2c1e4dd; evF 38877d0, plus 16783cf for the eval 33 retrain; evA-E and evG 664e5fd; evR and
+    evR2 9c63c87. HEAD 31ef267 contains all of them; its later changes only act on failure paths (slot gate, ILC
+    divergence guard, support fallback, NaN fitness).
+  - Eval box spend this afternoon (estimate from rates x uptime): about $22.

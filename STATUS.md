@@ -2,6 +2,11 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~20:40 TRT: all 20 eval policies trained; final pack running (`20261024-pack-31ef267`, 57544403)
+- sim_vs_ref mean 0.692 (spoon 0.860, others 0.525); weak: 1 lid 0.30, 10 cups 0.33, 20 pitcher 0.29, 25 boards 0.24,
+  30 sweeper+rack 0.47, 33 cup+spoon 0.39, 14 cup+rack 0.51. Projected ADD-AUC ≈ 0.66 (0.60–0.70), ≈ 6th on the
+  23 Oct board. The owner uploads the packed file to Kaggle.
+
 ## 2026-10-24 ~20:10 TRT: owner directive — rebuild every mesh for the simulation (v5), after tonight's pack
 - Plan (`docs/mesh-v5-spec-draft.md` + today's pitcher base completion): CPU port, G1 re-track 16 public episodes
   (≈ $2–3), library v5 with stand tests, G2 public-twin validation vs GT (≈ $15–20), G3 20-eval rerun + pack (≈ $33).
