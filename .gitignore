@@ -9,6 +9,7 @@
 !/results/e2e/
 !/results/registered/
 !/results/recon/
+!/results/submissions/
 /outputs/
 /ckpt/
 *.npy
@@ -19,6 +20,7 @@
 *.pt
 *.pth
 *.parquet
+!/results/submissions/**/*.parquet
 /*.log
 /pipeline/*.log
 

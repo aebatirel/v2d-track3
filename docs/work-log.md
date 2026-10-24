@@ -3112,3 +3112,26 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     evR2 9c63c87. HEAD 31ef267 contains all of them; its later changes only act on failure paths (slot gate, ILC
     divergence guard, support fallback, NaN fitness).
   - Eval box spend this afternoon (estimate from rates x uptime): about $22.
+- **18:16 UTC final pack done** (box `20261024-pack-31ef267`, 57544403):
+  - pack_eval found 20 of 20 chosen checkpoints. The eval 25 references used match evR byte for byte, checked by
+    md5 over every file of `refs/sf/ep25` and `refs/glockt/ep25`.
+  - The pristine evaluator (8c778f9, 0 modified files) ran 20 rollouts in about 10 min.
+  - The kit packer first FAILED with `ModuleNotFoundError: fast_simplification`; the pack job never installed it, and
+    the dry run had stopped before that step. It was installed on the box and the packer rerun by hand with the code
+    commit 6f1aea3 (the pack_eval install fix) → **`track3_submission.parquet`, 9,120 rows, 1,329,173 B,
+    0 MESH WARNING**, sha256 ff6a2051…5393.
+  - Committed with the checkpoint map in `results/submissions/20261024-track3/`; the full run is in the store.
+  - **Packed rollouts, sim_vs_ref vs our reference: mean 0.710.**
+
+    | Eval | Score | Eval | Score | Eval | Score | Eval | Score |
+    |---|---|---|---|---|---|---|---|
+    | 1 | 0.205 | 3 | 0.875 | 5 | 0.974 | 6 | 0.971 |
+    | 8 | 0.823 | 10 | 0.342 | 14 | 0.557 | 15 | 0.958 |
+    | 16 | 0.850 | 19 | 0.627 | 20 | 0.336 | 25 | 0.232 |
+    | 28 | 0.751 | 30 | 0.472 | 32 | 0.836 | 33 | 0.421 |
+    | 35 | 0.983 | 36 | 0.991 | 37 | 0.998 | 38 | 1.000 |
+
+    One fresh rollout per episode, none chosen.
+  - Projection (estimate): ADD-AUC ≈ 0.68 (0.62-0.72).
+  - Upload is the owner's: Kaggle credentials and the accepted rules. The repo must also be shared with GitHub
+    account Nvidia-V2D-Challenge so the commit URL resolves.

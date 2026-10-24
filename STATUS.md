@@ -2,6 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~21:20 TRT: FIRST FULL SUBMISSION PACKED — waiting for the owner's Kaggle upload
+- `results/submissions/20261024-track3/track3_submission.parquet` (20 episodes, 9,120 rows, 1.3 MB, 0 mesh warnings,
+  code commit 6f1aea3). Packed rollouts sim_vs_ref mean 0.710; projected ADD-AUC ≈ 0.68 (0.62–0.72).
+- Owner: upload (`python3 submit/v2d_submit.py track3_submission.parquet --track track_3 -m "..." --wait` from the kit),
+  share the repo with GitHub `Nvidia-V2D-Challenge`, send the organiser email. Next: mesh pipeline v5 (owner directive).
+
 ## 2026-10-24 ~20:40 TRT: all 20 eval policies trained; final pack running (`20261024-pack-31ef267`, 57544403)
 - sim_vs_ref mean 0.692 (spoon 0.860, others 0.525); weak: 1 lid 0.30, 10 cups 0.33, 20 pitcher 0.29, 25 boards 0.24,
   30 sweeper+rack 0.47, 33 cup+spoon 0.39, 14 cup+rack 0.51. Projected ADD-AUC ≈ 0.66 (0.60–0.70), ≈ 6th on the
