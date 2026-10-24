@@ -3329,3 +3329,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **eval 30 rerun, perception:** the re-proposal fired as replayed (2 uncovered boxes → 5 masks); the gate allowed
     re-proposed masks for the sweeper (its old choice #57, G 0.001) and barred them for the rack (#5, G 0.872); the
     assignment is the broom, #64 (score 0.405), and the rack, #5.
+- 22:54 UTC **v5 port step: `pipeline/provenance.py` + `ops/provenance/denylist.json` + `tools/build_denylist.py` +
+  `tests/test_provenance.py`** (spec §3): tiers P0 / P1 / DENY, `write()` manifests (`<file>.prov.json`), `check()`
+  raises on a deny-list match or on a derived input without a manifest. The deny-list holds the spec's globs plus the
+  sha256 of the 13 public scan files (from the dataset's LFS metadata, nothing downloaded), the 34 library_v1–v4
+  files and the 20 scan-templated `loc/perc` poses, so renamed copies are caught. Checks: a scan by path, a renamed
+  scan and a renamed library_v3 mesh by hash, a missing manifest, P0 / P1 propagation and a changed artifact all behave
+  as specified; 3 pytest cases pass. Not yet enforced in any job (the enforcement points of spec §3.4 come with the
+  mesher port).
