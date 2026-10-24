@@ -2,6 +2,15 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-25 ~01:30 TRT: night work under way (credit ≈ $29.9)
+- Running: seed-43 retrain of evals 19, 3, 5, 15, 16, 28 (`20261024-seed43-61101f5`); detection dumps with the new
+  re-proposal rule (`20261024-reprop-88822b2`, public + eval frame 0).
+- Found and fixed: Grounding DINO was missing on the 24 Oct eval boxes. Replayed on CPU: it would not have changed
+  any eval detection, so no rerun is needed for it.
+- Eval 30: the sweeper had no SAM2 proposal (inside the rack mask). New opt-in re-proposal from Grounding DINO boxes;
+  validating on public episodes against ground truth before rerunning eval 30.
+- Eval 1: new opt-in start-overlap lift (lid inside pot). Checking which eval references it would change.
+
 ## 2026-10-24 ~22:55 TRT: night work (owner asleep, "do as much as you can with the vast money", credit $29.98)
 - Running: `20261024-seed43-61101f5` (57567887): a second seed for evals 19, 3, 5, 15, 16 and 28 on the same
   references. The better seed is chosen by mean sim_vs_ref.

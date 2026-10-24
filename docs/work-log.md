@@ -3214,3 +3214,32 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   reference.
 - **57567887** `20261024-seed43-61101f5` (RTX PRO 6000): SEED=43 REUSE_REF=1 on evals 19, 3, 5, 15, 16 and 28, with
   references from `20261024-pack-31ef267`. Estimate ≈ 2.5-3 h, ≈ $4.5.
+
+### 24 Oct ~21:35–22:30 UTC — night work, part 1 (owner asleep; credit $29.96)
+- Seed-43 box **57567887** `20261024-seed43-61101f5`: the container only started its job at 21:37 UTC (launched
+  ~19:55; it sat in Vast's loading state, credit unchanged, so no cost). Setup 2 min; training evals 19, 3, 5, 15, 16,
+  28 on the `20261024-pack-31ef267` references (REUSE_REF), two at a time.
+- **Bug found: Grounding DINO was off on all 24 Oct eval boxes.** `glock_public.sh` never called `ensure_gdino`; the
+  eval perception logs say `grounding unavailable (term off): No module named 'transformers'`. The validated
+  detection rule (reach + size + grounding, 93/116 public instances) therefore ran without its grounding term.
+  - Impact check, CPU, no ground truth: the shipped `det_rules.GroundingDino` on the 20 eval colour frames (camera a,
+    frame 1; `tools`-free script in the scratchpad, ~25 s per frame), then the shipped rule replayed on the 20 eval
+    frame-0 dumps with and without the term (`tools/det_replay.py` Frame). **No eval choice changes**; the replay
+    without the term reproduces every pipeline choice. No rerun needed for this bug. Fixed for later runs (88822b2).
+  - Grounding DINO agrees with every chosen frame-0 mask (0.42–0.96) except eval 30's sweeper (0.001).
+- **Eval 30 detection**: the SAM2 proposals contain no mask of the sweeper; the broom stands in the rack and is part
+  of the rack's mask. The chosen "sweeper" (prop 57) is the white watch strap, 7.9 cm from the left wrist joint of
+  our own hand track. Grounding DINO's third "mini sweeper" box (0.19; best 0.59 = the whole rack) bounds the real
+  broom; mapped through the frame-0 depth into the rectified view it lands on the broom (`ep30_rect.jpg`, scratch).
+  - New, opt-in `DET_REPROP=1` (perc2 + det_rules, 88822b2): for Grounding DINO boxes that no automatic proposal
+    covers (score ≥ 0.25 × the prompt's best, IoU < 0.5 with every proposal's camera-a box, ≤ 25 % of the image;
+    thresholds fixed before any replay), SAM2 is prompted with the box mapped into the rectified view; the new masks
+    go through the same scores and assignment. On the 20 eval frames it would fire for 6 boxes in evals 19, 25, 30, 38.
+  - [H] With the broom proposed, the rule picks it over the watch. Test: the dump box below, then the public replay
+    against ground truth (no regression allowed) before any eval rerun.
+- **Start overlap (eval 1)**: `mkref.py --start_overlap CAP` (default off, 88822b2): an object whose frame-0 surface
+  samples lie inside another's solid is lifted (the one with the higher bottom) by the least that clears it (upward
+  ray exits, then a containment check), whole trajectory, at most CAP. Offline scan of the 20 eval references running.
+- Box **57570913** `20261024-reprop-88822b2` (RTX PRO 6000 Max-Q, Japan, $1.40/h; estimate ≈ 45 min, ≈ $1.1):
+  `export DET_REPROP=1 LIB=…/library_v3 DET_VERIFY=0; bash ops/jobs/det_dump.sh; SPLIT=eval EPS="<20 eval>" bash
+  ops/jobs/det_dump.sh` (public: frames 0 and quarter points; eval: frame 0).
