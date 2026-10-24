@@ -10,6 +10,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   the organisers (email draft `docs/organiser-email-draft-2026-10-22.md`, now 5 questions, not sent): the kp 400
   wrist embodiment, mesh provenance (library_v3 built along scan-templated tracks; v5 rebuild not done), and the
   spoon template.
+- Expected result of this run (estimate): 20-episode ADD-AUC ≈ 0.76 (0.60–0.86). Leaderboard on 23 Oct 21:52 UTC:
+  0.930 / 0.884 / 0.831 / 0.730, so the estimate is about 4th. The weak episodes are eval 1, 20, 25 (and 28).
 - Box F 57507961 (`20261024-evF-38877d0`) running; credit $7.73 at 12:00 UTC, the other 16 episodes (A-E, G ≈ $20)
   wait for the owner's top-up. Then `ops/jobs/pack_eval.sh` over all eval runs (ev2 + evA-G).
 

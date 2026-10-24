@@ -2921,3 +2921,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     the submission file.
   - Credit $6.67 at 12:32 UTC, of which box F still needs about $2.5. Top-up needed is about $26 including the $3
     reserve; $30 is suggested.
+- **12:50 UTC: estimate of this run's 20-episode ADD-AUC is about 0.76 (range 0.60-0.86).** It is an estimate: no eval
+  episode has ground truth. It updates the earlier 0.74 with today's GPU validation. Per episode (estimate, range):
+  - spoon x10: 0.85 (0.70-0.93); the eval spoon tracks our reference at 0.97-0.98, but spoon perception is
+    unmeasured;
+  - 14: 0.87 (twin ep12 0.868);
+  - 30: 0.77 (twin ep31 0.767, old recipe);
+  - 8 and 10: 0.85 each;
+  - 28: 0.65 (twins ep27 0.949 / ep26 0.383);
+  - 38: 0.93 (twin ep39 0.958, eval 38 sim_vs_ref 0.9997);
+  - 19: 0.80 (twin ep18 0.957, but chaotic);
+  - 1: 0.40 (twin ep2 0.306, old recipe);
+  - 20: 0.35 (twin ep21 0.281, old recipe);
+  - 25: 0.25 (twin ep24 0.241).
+- Live leaderboard (JSON generated 23 Oct 21:52 UTC, not refreshed since), Track 3 AUC: 0.930, 0.884, 0.831, 0.730,
+  0.694. The estimate places us 4th.
