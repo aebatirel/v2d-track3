@@ -3321,3 +3321,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   union 3.19 cm³, every piece volume identical; 151 s, scratch fcvenv). `make_assets.py --pieces DIR` writes one
   `<collision>` element per piece; without it the output is byte-identical to before (diff of all 11 objects).
   Not wired into any job yet.
+- 22:50 UTC (box clocks; the entries above marked 23:15 / 23:35 were written before this, times approximate)
+  - **seed 43, eval 3: 5-evaluation mean sim_vs_ref 0.9285** (std 0.011, min 0.907, chosen 70M; curve 0.784 / 0.594
+    / 0.770 / 0.717 / 0.785 / … at 10–50M) against seed 42's 0.851 (std 0.246, one rollout at 0.358). By the rule
+    fixed beforehand (higher 5-evaluation mean), **seed 43 replaces seed 42 for eval 3**. Eval 19's training is done
+    and being evaluated; evals 5 and 15 are training.
+  - **eval 30 rerun, perception:** the re-proposal fired as replayed (2 uncovered boxes → 5 masks); the gate allowed
+    re-proposed masks for the sweeper (its old choice #57, G 0.001) and barred them for the rack (#5, G 0.872); the
+    assignment is the broom, #64 (score 0.405), and the rack, #5.
