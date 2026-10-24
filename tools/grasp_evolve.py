@@ -31,6 +31,9 @@ p.add_argument('--sigma_fin', type=float, default=0.15); p.add_argument('--no_fi
 p.add_argument('--pre', type=int, default=6); p.add_argument('--post', type=int, default=20); p.add_argument('--ramp', type=int, default=8)
 p.add_argument('--all_objects', action='store_true'); p.add_argument('--bake', default='')
 p.add_argument('--max_steps', type=int, default=0, help='debug: cap the rollout length')
+p.add_argument('--robust', type=int, default=1, help='K: each candidate runs as K copies (copy 0 exact, the others with '
+               '--jitter noise on theta); fitness = their mean (2026-10-24: ep18 is chaotic, 1e-5 changes 0.37 -> 0.18-0.44)')
+p.add_argument('--jitter', type=float, default=0.005, help='robust copies: Gaussian noise on theta (m / rad), all components')
 p.add_argument('--keep_env', action='store_true', help='reuse one environment for all generations (faster, not reproducible)')
 p.add_argument('--init', default='', help="a previous OUT.json: start from its best theta (the search mean / the GA's first parent)")
 p.add_argument('--repeat_best', default='', help="a previous OUT.json: evaluate its best theta in worlds 1..pop-1 (world 0 unedited) "
@@ -205,6 +208,8 @@ def evaluate(theta_phys):
 
 if a.repeat_best:                                                             # same edit in every world but 0
     thb = np.array(json.load(open(a.repeat_best))['best']['theta'], float); th = np.tile(thb, (W, 1)); th[0] = 0.0
+    if os.environ.get('GE_JITTER'):                                           # test: tiny perturbations (chaos?)
+        th[2:] = th[2:] + rng.normal(size=th[2:].shape) * float(os.environ['GE_JITTER'])
     if os.environ.get('GE_MIX'):                                              # test: other worlds random (batch coupling?)
         th[2:] = np.clip(rng.normal(size=th[2:].shape), -3, 3) * np.r_[sig, np.zeros(th.shape[1] - dim)]
     if os.environ.get('GE_PRIME'):                                            # test: a random batch first, same process
@@ -221,7 +226,7 @@ best = dict(fit=-1.0)
 mean, C, ps, pc, sigma = np.zeros(dim), np.eye(dim), np.zeros(dim), np.zeros(dim), 1.0          # CMA-ES state (normalised)
 if a.init:                                                                    # continue from an earlier search's best
     th0 = np.array(json.load(open(a.init))['best']['theta'], float); mean = (th0[:dim] / sig).copy(); log['init'] = a.init
-lam = W; mu = lam // 2; wts = np.log(mu + 0.5) - np.log(np.arange(1, mu + 1)); wts /= wts.sum(); mueff = 1.0 / (wts ** 2).sum()
+K = max(1, a.robust); lam = W // K; mu = max(1, lam // 2); wts = np.log(mu + 0.5) - np.log(np.arange(1, mu + 1)); wts /= wts.sum(); mueff = 1.0 / (wts ** 2).sum()
 cc = (4 + mueff / dim) / (dim + 4 + 2 * mueff / dim); cs = (mueff + 2) / (dim + mueff + 5)
 c1 = 2 / ((dim + 1.3) ** 2 + mueff); cmu = min(1 - c1, 2 * (mueff - 2 + 1 / mueff) / ((dim + 2) ** 2 + mueff))
 damps = 1 + 2 * max(0, np.sqrt((mueff - 1) / (dim + 1)) - 1) + cs; chiN = np.sqrt(dim) * (1 - 1 / (4 * dim) + 1 / (21 * dim ** 2))
@@ -248,11 +253,17 @@ for g in range(a.gens):
             X[1] = mean                                                       # and the starting point
     X = np.clip(X, -4, 4)
     phys = X * sig
-    th = np.zeros((lam, 6 + nf)); th[:, :dim] = phys
-    fit, detail, _ = evaluate(th)
+    thc = np.zeros((lam, 6 + nf)); thc[:, :dim] = phys                           # one row per candidate
+    th = np.repeat(thc, K, axis=0)                                            # K copies per candidate, world-major
+    if K > 1:
+        jit = rng.normal(size=th.shape) * a.jitter; jit[::K] = 0.0; jit[:, dim:] = 0.0; th = th + jit
+    fit_w, detail_w, _ = evaluate(np.vstack([th, np.zeros((W - len(th), th.shape[1]))]) if len(th) < W else th)
+    fit_w = fit_w[:lam * K]; fit = fit_w.reshape(lam, K).mean(1); spread = fit_w.reshape(lam, K).std(1)
+    detail = [dict(detail_w[i * K], robust_mean=round(float(fit[i]), 4), robust_sd=round(float(spread[i]), 4)) for i in range(lam)]
+    th = thc
     order = np.argsort(-fit)
     if fit[order[0]] > best['fit']:
-        best = dict(fit=float(fit[order[0]]), gen=g, theta=th[order[0]].round(5).tolist(), detail=detail[order[0]])
+        best = dict(fit=float(fit[order[0]]), gen=g, theta=th[order[0]].tolist(), detail=detail[order[0]], robust=K)
     if a.algo == 'cmaes':
         sel = X[order[:mu]]; old = mean.copy(); mean = (wts[:, None] * sel).sum(0)
         invsq = evecs @ np.diag(1 / np.sqrt(evals)) @ evecs.T

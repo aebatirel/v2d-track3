@@ -2785,3 +2785,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   RL-discovered grasp (`rl-discovered-grasps.md`): the 0.889 ep18 policy holds the dust pan's ring handle with a
   lateral (key) pinch, thumb on top, index under, palm up, sliding in low; for the long lift it hooks fingers through
   the ring.
+- 10:40 UTC the ep18 discrepancy is chaos, not state: with a fresh environment per generation the search reproduces
+  itself exactly (generation 7 best 0.5843 again), the body layout is world-major (55 bodies per world), identical
+  edits score identically in every world, but **jittering the best edit by 1e-5 moves its score to 0.18-0.44** (1e-3:
+  0.30-0.49). The search picked a lucky trajectory. ep39's evolved grasp is robust at the mm level (1e-3 jitter: mean
+  0.841, range 0.78-0.91) but not at the cm level (1e-2: mean 0.46, 3 of 6 copies fail at ~0.1).
+- `grasp_evolve.py --robust K --jitter s`: each candidate runs as K copies (one exact, K-1 with Gaussian noise on theta);
+  fitness = their mean (DexEvolve's perturbation idea), so the search prefers wide-basin grasps. On 8 CPU worlds that is
+  2 candidates per generation, too few: the robust search belongs on the GPU (`glock_public.sh EVOLVE=1`, defaults
+  EV_POP 256 worlds = 64 candidates x EV_ROBUST 4, EV_JITTER 0.005).
