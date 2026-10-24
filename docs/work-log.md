@@ -2698,3 +2698,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   true AUC 0.891 vs 0.854) and ep18 (0.768 vs 0.310; true 0.776 vs 0.302); with ep39 (0.826 vs 0.173; true 0.802 vs
   0.174) the rule picks the better learner in all 3 public pairs. Without re-plan the grasp-lock reference's object
   path equals the perceived one (max difference 0.0 m, ep12 / ep18).
+
+### 24 Oct ~07:15 UTC (10:15 TRT) — owner decision: option 2 (one recipe, designed grasps), in-depth research first
+- Owner: "Lets go with 2 make sure it is the case all the failed ones, do research on grasping and holding something
+  anatomically humanly ... biomechanics mechanics ... even evolution of the grasping in humans ... also research
+  evolutionary algorithms ... see if using evolutionary algorithms genetic algorithms give us an edge over rl."
+- So: the eval run stays on hold; the grasp-lock recipe gets designed grasps for every failure class instead of the
+  both-learners choice. First a root-cause audit of every failed public episode (is it really the grasp?), then the
+  research, then the design.
+- Workflow `wf_cdd41283-528` (9 agents, CPU / web only, no rentals): audits of ep18 + ep39 (plates), ep24 + ep31
+  (boards, sweeper in rack), ep21 + ep2 + ep26 (unstable starts), the grasp the successful standard RL found on ep18
+  (old889 trace); research on hand anatomy / biomechanics / grasp mechanics, the evolution of human grasping, robot
+  thin-object and tool grasping, evolutionary algorithms vs RL, FlashCHORD capabilities for grasp search. Reports go
+  to `docs/research/grasp/`.

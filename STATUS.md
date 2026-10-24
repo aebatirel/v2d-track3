@@ -2,6 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~10:15 TRT: owner chose option 2 — one recipe (grasp-lock) with designed grasps; research first
+- Eval run on hold. Root-cause audit of every failed public episode + in-depth research (hand anatomy and
+  biomechanics, evolution of human grasping, robot thin-object / tool grasping, evolutionary algorithms vs RL,
+  FlashCHORD capabilities): workflow `wf_cdd41283-528`, reports in `docs/research/grasp/`. Then the grasp design,
+  CPU tests, and a costed GPU test plan for the owner.
+
 ## 2026-10-24 ~10:00 TRT (07:00 UTC): overnight robustness batch done; eval-run plan waits for the owner
 - Report for the owner: Claude Docs "V2D Track 3 overnight report, 24 Oct" (https://claude.ai/artifact/SnxYC73hNa84NFPjFDCpRH).
 - No boxes running. Credit $4.08 (overnight spend $12.72 measured).
