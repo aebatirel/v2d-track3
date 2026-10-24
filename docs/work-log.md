@@ -2682,3 +2682,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     - ep39 (dust pan, eval 38) **0.174 ± 0.003**, chosen 70M; curve flat 0.17: the dust pan is never lifted.
   - All wave boxes self-destroyed after their pushes; only std39 (57437630) is up, at 150M / 250M (00:33 UTC),
     100 % GPU. Credit $4.95: std39 needs ≈ $1.4 more; with the $3 reserve, no further rental tonight.
+- 01:07 UTC **std39: standard recipe on ep39 (dust pan, eval 38) — the dust pan is lifted**:
+  - hard_ab `mcks` s42 (the ep18 0.889 recipe: FDR + VOC fix + deployment-exact starts 0.25, library_v3, 250M) on
+    tonight's E3 mck reference; sweep chose 250M (sim_vs_ref 0.976 vs floor 0.176);
+  - 5 official evaluations: registered AUC **0.802 ± 0.280**; per rollout 0.946 / 0.241 / 0.948 / 0.937 / 0.937
+    (SP 1 / MP 1 in 4 of 5; one rollout loses the pan, as ep18 s42's r2 0.24); sim_vs_ref 0.826 (0.252–0.979);
+  - grasp-lock on the same reference: 0.174 ± 0.003 (pan never lifted). The plate failure class is a grasp-lock
+    failure, not a perception or physics limit.
+  - Box self-destroyed after its push (≈ $2.0). Credit $4.08 at 06:50 UTC.
+- The session worker was down 01:06–06:50 UTC (no boxes were running; nothing lost).
+- Eval run job prepared (7a08bf4, not run): `ops/jobs/eval_both.sh` (reference once; grasp-lock learner; standard
+  learner on the same reference when the grasp lock's mean sim_vs_ref < GATE 0.9; `tools/choose_learner.py` keeps the
+  learner that tracks the perceived reference best, all candidates scored against the same perceived object
+  trajectory). Local test on stored public rollouts: picks the standard learner on ep12 (sim_vs_ref 0.903 vs 0.857;
+  true AUC 0.891 vs 0.854) and ep18 (0.768 vs 0.310; true 0.776 vs 0.302); with ep39 (0.826 vs 0.173; true 0.802 vs
+  0.174) the rule picks the better learner in all 3 public pairs. Without re-plan the grasp-lock reference's object
+  path equals the perceived one (max difference 0.0 m, ep12 / ep18).
