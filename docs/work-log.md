@@ -2978,7 +2978,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     there is no per-episode fix on eval data.
 - Revised 20-episode estimate: eval 33 at about 0.35 instead of 0.85 gives **≈ 0.74 (0.58–0.85)**.
 
-### 24 Oct ~14:05 UTC — the owner topped up $50 (credit $54.61): "run the whole pipeline with 20 eval, let's get our ranking"
+### 24 Oct ~15:05 UTC — the owner topped up $50 (credit $54.61): "run the whole pipeline with 20 eval, let's get our ranking"
 - Plan: the remaining 16 eval episodes on six boxes with the frozen recipe, at code 664e5fd (38877d0 plus the
   two-training GPU slot gate and REUSE_REF, which is off). Evals 33/35/36 (evF) and 38 (ev2) are reused, being the
   same recipe. Then `ops/jobs/pack_eval.sh` over all eight runs. Estimate ≈ $27-31 for the boxes plus ≈ $1.5 to pack;
