@@ -5,171 +5,194 @@ The submission: Track 3 AUC **0.575** (9th), MPPE 8.7 cm, CD-O 0.405 cm.
 Sources:
 - the 20 packed official rollouts, `results/submissions/20261024-track3/`;
 - per-object diagnostics, `diagnostics.json` and `tools/eval_diagnostics.py`;
-- the per-checkpoint curves, grasp-lock hold windows, grasp-search logs and perception logs in the store
-  (`runs/20261024-pack-31ef267`).
+- per-checkpoint curves, grasp-lock hold windows, grasp-search and perception logs (store,
+  `runs/20261024-pack-31ef267`);
+- **the 20 videos** (store, `runs/20261024-vid-7f31368/results/eval_videos/`). Each is real camera | simulated objects
+  (filled) and robot hands (green / magenta lines) drawn on the camera, with our reference as a white outline | 3-D
+  simulation. The policy is replayed the way the official evaluator plays it.
 
-No ground truth exists for eval episodes, so everything here compares the simulated objects with **our own
-reference**, the perceived path (sim_vs_ref), or checks that reference for physical plausibility. Labels:
-**[M]** measured on our outputs, **[I]** inferred, **[H]** hypothesis with the test that would falsify it.
+No ground truth exists for eval episodes. Everything here compares the simulation with **our own reference** (the
+perceived path, sim_vs_ref), checks that reference for physical plausibility, or compares the white outline with
+the real camera image in the videos. Labels: **[M]** measured, **[V]** seen in the video, **[I]** inferred,
+**[H]** hypothesis with the test that would falsify it.
+
+**Revised after watching the videos.** Eval 30 is a perception failure, not a support one, and evals 14 and 33 share
+its pattern. The pitcher and board meshes are worse than the first draft said.
 
 ## 1. Where the 0.425 of lost AUC goes
 
-The score has two factors. The first is how well the robot follows our reference: the packed rollouts average
-0.710 [M]. The second is how close our reference is to the truth: it turns 0.710 into 0.575 [M, Kaggle]. On the
-public twins this second factor cost only 3–4 % [M].
+There are two factors. The first is how well the robot follows our reference: the packed rollouts average 0.710 [M].
+The second is how close that reference is to the truth: it takes 0.710 down to 0.575 [M, Kaggle]. On the public
+twins the second factor cost only 3–4 % [M].
 
 | Loss | Size on the 20-episode mean | Main episodes |
 |---|---|---|
-| A. **Objects cannot stand at the start** (mesh or support) | ≈ 0.09 [I] | 10, 20, 30 |
-| B. **Our reference moves an object with no detected hold, or is physically impossible** (perception and hold detection) | ≈ 0.06 [I] | 14, 33 cup, 8, 32 (and 30) |
-| C. **Grasps that are never acquired, slip, or misplace** on hard shapes | ≈ 0.13 [I] | 25, 1, 19, 33 spoon, 28, 16, 3 |
-| D. **Our reference vs the truth**, invisible in sim_vs_ref | ≈ 0.135 [M total], of which the spoon ≈ 0.12 [I] | the 10 spoon episodes |
+| A. **Broken or unstable meshes**: the object cannot stand, or the task is physically impossible with our shape | ≈ 0.08 [I] | 20 (pitcher is a twisted shell), 10 (beige cup open shell), 25 (boards lack their slots) |
+| B. **Perception loses an object to the person's wrist** (white watch) or the track becomes impossible | ≈ 0.09 [I] | 30 (sweeper detected on the wrist from frame 0), 14 and 33 (cup jumps to the wrist when hidden), 8, 32 |
+| C. **Grasps not acquired, slipping, or misplaced** | ≈ 0.11 [I] | 1 (lid never lifted), 19 (dust pan), 25 (boards), 33 spoon, 28, 16, 3 |
+| D. **Our reference vs the truth**, invisible in sim_vs_ref | ≈ 0.135 [M total]; spoon ≈ 0.12 [I] | the 10 spoon episodes |
 
-Rows A–C are 1 − sim_vs_ref of the episodes in each class, summed over the classes and divided by 20. An episode
-with several causes is split by object. Row D is 0.710 − 0.575. The spoon share comes from assuming the non-spoon
-episodes lose 4 %, as their public twins did.
+Rows A–C are 1 − sim_vs_ref of the episodes in each class, summed and divided by 20. Episodes with several causes
+are split by object. Row D is 0.710 − 0.575. The spoon share assumes the non-spoon episodes lose 4 %, as their public
+twins did.
 
 ## 2. All 20 episodes
 
-sim_vs_ref of the submitted rollout (packed), with the class of each loss.
+sim_vs_ref of the submitted rollout (packed), with the main cause of each loss.
 
 | Eval | Objects | Score | Main cause |
 |---|---|---|---|
 | 38 | dust pan | 1.000 | — |
-| 37 | spoon | 0.998 | — (D: spoon perception unknown) |
+| 37 | spoon | 0.998 | — (D: spoon accuracy against the truth unknown) |
 | 36 | spoon | 0.991 | — (D) |
-| 35 | spoon | 0.983 | — (D) |
-| 5 | pot + spoon | 0.974 | — (D); a bad mode exists, one of 5 earlier rollouts was at 0.39 |
+| 35 | spoon | 0.983 | — (D); the outline sits on the real spoon in the video [V] |
+| 5 | pot + spoon | 0.974 | — (D); a bad mode exists, one of 5 earlier rollouts at 0.39 |
 | 6 | pot + spoon | 0.971 | — (D) |
 | 15 | rack + spoon | 0.958 | — (D) |
 | 3 | pot + spoon | 0.875 | pot slips during its hold (C), mild |
-| 16 | rack + spoon | 0.850 | spoon left 12.7 cm off after its hold ends (C/B) |
-| 32 | blue cup + spoon | 0.836 | cup reference jumpy and below its start (B), but held, so the robot follows |
-| 8 | beige cup + pot | 0.823 | beige cup never held, low-confidence detection (B) |
-| 28 | rack + pot | 0.751 | pot leaves the reference while it is placed; the rack is knocked at the end |
+| 16 | rack + spoon | 0.850 | spoon left 12.7 cm off after its hold (C) |
+| 32 | blue cup + spoon | 0.836 | cup track jumpy and below its start (B), but held, so the robot follows |
+| 8 | beige cup + pot | 0.823 | beige cup low-confidence detection (0.22), never held (B) |
+| 28 | rack + pot | 0.751 | pot placed 8.5 cm off; the rack is knocked at the end (C) |
 | 19 | sweeper + dust pan | 0.627 | dust pan grasp weak (C) |
-| 14 | blue cup + rack | 0.557 | cup hold detected for 20 frames only; then the perceived cup sinks below the table (B) |
-| 30 | sweeper + rack | 0.472 | sweeper topples and falls off the table at once (A); no hold ever detected (B) |
-| 33 | blue cup + spoon | 0.421 | cup track flips after the hold (B); spoon grasp weak (C) |
-| 10 | blue cup + beige cup | 0.342 | beige cup falls over at the start (A) |
-| 20 | blue cup + pitcher | 0.336 | pitcher falls over at the start (A) |
-| 25 | two boards | 0.232 | board grasps never acquired (C) |
-| 1 | pot + lid | 0.205 | lid and pot lost right after their grasps (C) |
+| 14 | blue cup + rack | 0.557 | cup placed upside-down on the rack, then the track jumps to the wrist (B) |
+| 30 | sweeper + rack | 0.472 | sweeper detected on the person's wrist, not in the rack (B) |
+| 33 | blue cup + spoon | 0.421 | cup track jumps to the wrist (B); spoon grasp weak (C) |
+| 10 | blue cup + beige cup | 0.342 | beige cup mesh is an open shell and falls over at the start (A) |
+| 20 | blue cup + pitcher | 0.336 | pitcher mesh is a twisted shell and falls flat at the start (A) |
+| 25 | two boards | 0.232 | boards must be slotted into a cross; our meshes have no slots (A), and the grasps fail (C) |
+| 1 | pot + lid | 0.205 | the robot never lifts the lid off the pot; the pot turns in the hand (C) |
 
 ## 3. The low scorers, one by one
 
-**Eval 1, pot + lid: 0.205.**
-- [M] Both objects are in a hold most of the time (pot 214 of 335 frames, lid 262 of 335). The lid leaves the
-  reference at f50, 12 frames after its hold starts at f38. The pot leaves at f96, the frame its hold starts.
-- [M] The mean rotation error is 65–74°: the objects turn in the hand.
-- [M] The grasp search improved the windows only partly: pot 0.39 → 0.56, lid 0.23 → 0.45.
+**Eval 1, pot + lid: 0.205 (grasp).**
+- [V] The person lifts the lid off the pot, puts it on the table, then lifts and tilts the pot by its handle.
+  The white outlines sit on the real pot and lid all the way, so **perception is good**.
+- [V] In the simulation the lid stays on the pot all episode. The pot turns in the robot's hand, with its handle
+  pointing the wrong way.
+- [M] The lid leaves the reference 12 frames after its hold starts (f38 → f50), and the pot at the start of its
+  hold (f96). The mean rotation error is 65–74°.
 - [M] No checkpoint lifts the pot to its reference height (3–9 cm against 12.8 cm).
-- The public twin ep2 scored 0.31 against mocap with the older recipe.
-- Cause: lid and pot grasps (C). The lid is a flat disc with a small knob, the pot is large and two-handled, and the
-  lid sits on the pot, so each grasp disturbs the other object.
+- Cause: the lid pick (a flat disc with a small knob, seated in the pot) and the pot handle grasp (C).
 
-**Eval 25, two boards: 0.232.**
-- [M] The copied human grasp on board 1 touches it with 1 finger (gap 23 mm); the grasp search ends with a median
-  hold error of 60 cm, so the board is not held. Board 2 is lost at f44, 13 frames into its hold.
-- [M] All 7 checkpoints score 0.14–0.27.
-- The public twin ep24 scored 0.241 against mocap with this recipe.
-- Cause: thin flat boards lying on the table cannot be picked up with a copied pinch (C). The planned "slide to the
-  table edge, then grip" primitive (TODO #24) has not been built.
+**Eval 25, two boards: 0.232 (mesh + grasp).**
+- [V] The person stands board 1 up, picks up board 2 and **slots the two together into a cross**. Our outlines
+  follow this correctly.
+- [V] In the simulation board 1 is lifted and stands briefly (frame 120), then both boards end flat on the table,
+  away from the cross.
+- [M, mesh audit 22 Oct] Our board meshes lack the two slots: the "1.0 × 11.3 × 1.2 cm column" that overlaps
+  between the boards is the missing notch. **With our meshes the cross cannot be assembled at all.**
+- [M] The copied grasp on board 2 touches it with 1 finger (gap 23 mm). All 7 checkpoints score 0.14–0.27.
+- The public twin ep24 scored 0.241 against mocap.
+- Cause: mesh (A) plus grasp (C). Needed: the slots in the mesh, and the board edge primitive (TODO #24).
 
-**Eval 20, blue cup + pitcher: 0.336.**
-- [M] The pitcher tips over by itself before any hand arrives: tilt 11° at f4, 35° at f8. Its reference rises 36 cm;
-  no checkpoint lifts it at all.
-- [M, public audit] Our pitcher mesh lacks about half of its base, and its centre of mass is 2.8–4.1 cm outside its
-  footprint.
-- [M] The cup is lost from f2, held from f0, disturbed by the falling pitcher and the hand.
-- Cause: mesh (A). A base completion that stands for 60 frames on CPU exists (8 convex sectors); it is not yet in the
-  pipeline.
+**Eval 20, blue cup + pitcher: 0.336 (mesh).**
+- [V] The person holds the cup and lifts the pitcher to pour into it. The outlines follow both well, so
+  **perception is good**.
+- [V] In the 3-D view **our pitcher mesh is a thin, twisted shell**, not a closed watering can. It tips over by
+  f8 (tilt 35° [M]) and lies flat for the rest of the episode. Its reference rises 36 cm; no checkpoint lifts it.
+- Cause: a broken mesh (A). A base completion alone, as in the public audit, would not be enough; the body itself
+  needs rebuilding.
 
-**Eval 10, blue cup + beige cup: 0.342.**
-- [M] The beige cup falls over at the start: tilt 35° at f3, 84° at f10. Its reference rises 23 cm; no checkpoint
-  lifts it.
-- [M, mesh audit 22 Oct] Our beige cup mesh is 2 pieces with no bottom.
-- [M] The blue cup slips during its hold: 27 % of frames within 3 cm.
-- Cause: mesh (A), probably made worse by the cups starting nested.
+**Eval 10, blue cup + beige cup: 0.342 (mesh).**
+- [V] The person lifts the beige cup and stacks it into the blue cup. The outlines follow both cups, so
+  **perception is good**.
+- [V, M] In the simulation the beige cup falls over at the start (tilt 35° at f3, 84° at f10). In the 3-D view it
+  is an open shell with no bottom, matching the 22 Oct audit: "2 pieces, no bottom".
+- Cause: a broken mesh (A).
 
-**Eval 30, sweeper + rack: 0.472.**
-- [M] Perception put the sweeper 7.1 cm under the table plane at frame 0, as for eval 8's beige cup. The automatic
-  support fallback lifted it onto the plane.
-- [M] In the simulator it then tips at once (tilt 17° at f2, 104° at f6) and falls **off the table**: z 3.8 cm by
-  f20, 72 cm off its reference.
-- [M] **No hold was detected for either object**, so the robot never tries to grasp the sweeper.
-- [I] The public twin ep31's note ("sweeper standing in the rack dividers") suggests the sweeper starts inside the
-  rack: supported by the rack, not the table, and partly occluded. That fits the wrong depth and the missing hand
-  contacts.
-- Cause: start or support (A) plus hold detection (B).
+**Eval 30, sweeper + rack: 0.472 (perception).**
+- [V] The real sweeper stands upright **inside the dish rack** at frame 0; the person lifts it out and uses it.
+- [V] **Our detection put the sweeper at the person's left wrist**, next to a white watch, off the table. The white
+  outline then follows the wrist, never the sweeper. Its detection score was the lowest of all 40 objects (0.20).
+- [M] This explains every measured symptom: the sweeper started "7 cm under the table", the support fallback lifted
+  it at the table edge, it fell to the floor (z 3.8 cm by f20), and no hold was detected because the real hand never
+  touches the wrongly placed sweeper.
+- [V] The rack is tracked well.
+- Cause: detection (B). The support fallback did what it was designed to do on a wrong input.
 
-**Eval 33, blue cup + spoon: 0.421.**
-- [M] The cup is held only from f17 to f48. After that our perceived cup moves 233 cm of path with no hand on it,
-  tilts up to 144° and goes 14.6 cm below its start height.
-- [I] The person holds the cup while working the spoon in it; our tracker loses or flips the partly hidden cup.
-- [M] The spoon is lost at f110 during its hold; the search reached only 0.11 → 0.32 (median hold error 19 cm).
-- Cause: cup perception and hold detection (B), plus a weak spoon grasp (C).
-- [M] Its twin eval 32, also blue cup + spoon, scored 0.836: the cup was held there for 250 frames.
+**Eval 33, blue cup + spoon: 0.421 (perception + grasp).**
+- [V] The person holds the cup up in the left hand and works the spoon in it with the right. The outline is right
+  at first (f30). Once the hand covers the cup, **the outline jumps to the left wrist and watch** (f160, f250) while
+  the real cup is held higher up.
+- [M] The cup hold is detected only from f17 to f48. After that our reference moves the cup 233 cm of path with no
+  hand on it, tilting up to 144° and dropping 14.6 cm.
+- [M] The spoon grasp was weak: the search went only 0.11 → 0.32, and the spoon is lost at f110.
+- Cause: perception (B) plus grasp (C). Its twin eval 32 scored 0.836 because the cup stayed tracked and held.
 
-**Eval 14, blue cup + rack: 0.557.**
-- [M] The cup is held f18–37 and followed well to f45 (error 1.5 cm). From there the perceived cup sinks to z 55 cm,
-  **5 cm below the table top** (60 cm), and turns 90°, which cannot be real. No hold is detected after f37.
-- [I] The cup is put into the rack, where the rack wires hide it and the track drifts.
-- Cause: perception plus hold detection (B). The public twin ep12 scored 0.868 because its holds were detected.
+**Eval 14, blue cup + rack: 0.557 (perception).**
+- [V] The person picks up the cup, turns it over and puts it upside-down on a rack peg.
+- [V] The outline follows the cup until it reaches the rack. Then **it drops to the left wrist near the table
+  edge**: our reference cup goes 5 cm below the table top [M], which is impossible.
+- [V] The simulated cup ends near where the real cup goes, so the truth score is probably better than 0.557 here
+  [I].
+- [V] The simulated rack is knocked a few cm.
+- Cause: perception (B). The public twin ep12 scored 0.868 because the cup stayed tracked.
 
-**Eval 19, sweeper + dust pan: 0.627.**
+**Eval 19, sweeper + dust pan: 0.627 (grasp).**
 - [M] The dust pan is lost at f26, during its hold.
-- [M] The grasp search lifted its window only 0.18 → 0.36 (median hold error 14.6 cm); ep18's pan reached 0.50.
-- [M] The fine-tune did not finish it this time. The 10M checkpoint was best (0.63) and later ones dropped to 0.27.
-- [M] The sweeper is fine at 10M (83 % within 3 cm).
-- Cause: dust pan grasp (C). This is the chaotic plate grasp seen on ep18, and this time the search did not find a
-  good basin.
+- [M] The grasp search reached only 0.18 → 0.36 (median hold error 14.6 cm); ep18's pan reached 0.50.
+- [M] The 10M checkpoint was best (0.63); later ones dropped to 0.27.
+- Cause: the chaotic plate grasp seen on ep18; this time the search found no good basin (C).
 
 **Eval 28, rack + pot: 0.751.**
-- [M] The pot follows its reference through the lift (2–5 cm off).
-- [M] At the end it is placed 8.5 cm off, and the rack is knocked 15.8 cm at the last frames.
-- Cause: placement into the rack, a pot–rack collision (mild).
+- [M] The pot follows its reference through the lift (2–5 cm off). It is placed 8.5 cm off at the end, and the
+  rack is knocked 15.8 cm in the last frames.
+- Cause: placing the pot into the rack (C), mild.
 
 **Eval 8, beige cup + pot: 0.823.**
-- [M] The beige cup is never held. Its detection confidence is low (0.22, against 0.60 for the pot); it was placed
-  7 cm under the table and lifted by the support fallback.
-- [M] Its reference jitters: 121 cm of path while unheld, tilt up to 44°.
-- [I] The cup is inside the pot.
-- Mild in sim_vs_ref, because the simulated cup sits still while the jittering reference stays near it. Probably
-  worse against the truth.
+- [M] The beige cup is never held. Its detection confidence is low (0.22). It was placed 7 cm under the table and
+  lifted by the fallback, and its reference jitters (121 cm of path while unheld).
+- Cause: perception (B). Mild in sim_vs_ref, but probably worse against the truth.
 
-## 4. The perception gap (D) and the spoon
+## 4. Pattern: the person's wrist and white watch
 
-- [M] sim_vs_ref 0.710 vs Kaggle AUC 0.575; the public twins lost 3–4 %.
+- [V] The person wears a white watch on the left wrist in these eval videos (14, 20, 25, 30, 33, 35 at least).
+- [V] In 30, 33 and 14 our object track ends on that wrist. In 30 the sweeper was detected there from frame 0. In 33
+  and 14 the cup track jumped there when the hand or the rack hid the cup.
+- [H] The detector and tracker accept wrist and watch pixels as the object when the object is hidden.
+  - Test: run frame-0 detection and tracking with the hand and forearm pixels removed. MediaPipe already gives us the
+    hands. If the outline still goes to the wrist in 30, 33 and 14, the hypothesis is wrong.
+- Generic fixes, no per-episode choices:
+  - remove hand and forearm pixels before detection and tracking;
+  - reject a detection or track that sits on the wrist or moves with it while no hold is detected;
+  - forbid object poses below the table;
+  - hold the last good pose while the object is hidden.
+
+## 5. The spoon and the perception gap (D)
+
+- [M] sim_vs_ref 0.710 against a Kaggle AUC of 0.575; the public twins lost 3–4 %.
 - [I] If the non-spoon episodes lose 4 %, the 10 spoon episodes average **≈ 0.64 AUC against a sim_vs_ref of
-  0.886**. The spoon reference is then about 28 % off the truth: about 0.12 of the total, the largest single item.
-- [H1] Our spoon mesh (a parametric template) registers to the hidden scan flipped or offset.
-  - Falsified if it registers stably on ≥ 6 seeds against a measured stand-in.
-- [H2] Our spoon pose track is poor; the spoon is thin and occluded by the hand.
-  - Falsified if the reprojection residual of our spoon mesh on the eval frames is as small as for the other objects.
-    No ground truth is needed for this check.
-- [H3] Perception is worse on all objects in the eval set.
-  - The MPPE board (8.7 cm) cannot separate H3 from the spoon, since the score is a single total. A second upload
-    that changes only the spoon would.
+  0.886**. That is about 0.12 of the total, the largest single item.
+- [V] In eval 35 the spoon outline sits on the real spoon throughout, at least in 2-D. Gross 2-D tracking failures
+  are therefore not the explanation there. Depth along the camera ray, roll about the handle, and the mesh itself
+  cannot be judged from this view.
+- [H1] Our spoon mesh is a parametric template with fixed dimensions. Kaggle aligns it with the hidden scan, and if
+  that alignment lands flipped or offset, all 10 episodes pay.
+  - Test: our template's alignment against a stand-in on ≥ 6 seeds, including flips along the handle.
+- [H2] Depth or roll errors of the spoon track.
+  - Test: stereo depth of the spoon pixels against our track depth on eval frames. This needs no ground truth.
 
-## 5. What fixes what, by expected gain
+## 6. What fixes what, by expected gain
 
 All gains are estimates, on the 20-episode AUC.
 
-1. **Spoon perception and mesh (D):** ≈ +0.05 to +0.12. Per-episode spoon fit, a flip and registration check, and
-   reprojection QA. Part of v5 (D10) and TODO #13 / #16.
-2. **Meshes that can stand (A):** ≈ +0.05 to +0.09.
-   - Base completion for objects whose support check says UNSTABLE (pitcher, beige cup).
-   - Multi-piece collision hulls.
-   - No start inside another object (sweeper in the rack). The mesh v5 rebuild the owner asked for covers this.
-3. **Hold detection and reference plausibility (B):** ≈ +0.03 to +0.06. These are generic rules for every episode:
-   - an object that moves while no hold is detected gets a hold from the nearest hand, or its motion is frozen;
-   - an object cannot go below the table, or flip while unsupported, so such frames are clamped;
-   - an object perceived 7 cm under the table is a perception warning, not just a lift.
-4. **Grasps on hard shapes (C):** ≈ +0.03 to +0.05.
-   - Board edge primitive (TODO #24).
-   - Lid knob pinch.
-   - Plate grasp search with more seeds when the search window stays below 0.5 (eval 19 0.36, eval 38 0.35, eval 33
-     spoon 0.32).
+1. **Spoon mesh and pose:** ≈ +0.05 to +0.12.
+   - Per-episode spoon fit from the eval video (v5 D10).
+   - An alignment and flip check.
+   - The stereo depth check.
+2. **Meshes rebuilt for the simulation** (the owner's v5 directive): ≈ +0.05 to +0.08.
+   - Closed, standing pitcher and beige cup.
+   - Board slots.
+   - Multi-piece collision shapes.
+3. **Perception robust to the hand and wrist:** ≈ +0.04 to +0.08.
+   - Hand and forearm masking in detection and tracking.
+   - Rejecting tracks that sit on the wrist.
+   - The below-table and plausibility guards from §4.
+4. **Grasps:** ≈ +0.03 to +0.05.
+   - Lid pick.
+   - Board edge primitive.
+   - More search seeds when a grasp window stays below 0.5 (eval 19 0.36, eval 38 0.35, eval 33 spoon 0.32).
 
-Each fix is tested on public twins against ground truth first. No change is made per episode on eval data.
+Each fix is validated on public twins against ground truth before it is used. Nothing is changed per episode on
+eval data.

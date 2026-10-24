@@ -3176,3 +3176,24 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     poses are off as well.
   - CD-O 0.405 cm: the mesh shape error is middling; the leaders are at 0.11-0.26 cm.
   - SP-SR 0.45 / MP-SR 0.35: about 9 and 7 of 20 episodes count as successes under the two definitions.
+
+### 24 Oct ~19:30 UTC — eval videos (20) and the low-score analysis
+- Box **57551970** `20261024-vid-7f31368` (RTX PRO 6000 S, $1.70/h, about 25 min including setup, then destroyed).
+  - Job: `ops/jobs/eval_videos.sh` with RUNS in the pack order, EPS = all 20, SCORES = the packed sim_vs_ref.
+  - Per episode: `vid_after.sh` (the chosen checkpoint replayed like the evaluator, trace + FlashCHORD view), then
+    `tools/sim_vs_real_video.py`.
+  - Bug: the script only wrote the mp4v temp file. The temp files were converted to H.264 locally, and the
+    conversion is now in the script (1717300).
+  - Videos are in the store under `runs/20261024-vid-7f31368/results/eval_videos/` (mp4v) and were sent to the owner
+    as H.264 (about 2-3.5 MB each, 52 MB in total; no videos in git).
+- Analysis: `docs/analysis/eval-20261024-low-scores.md`, with frame strips in `docs/analysis/eval-20261024-strips/`.
+  The videos corrected the first draft:
+  - eval 30 is a **detection failure**: the sweeper was detected on the person's left wrist and white watch from
+    frame 0, while the real sweeper stands in the rack. It is not a support problem.
+  - in evals 33 and 14 the cup track jumps to the same wrist when the cup is hidden;
+  - our pitcher mesh is a twisted thin shell (eval 20); the beige cup is an open shell (eval 10);
+  - the eval 25 boards are slotted into a cross, which our slot-less board meshes cannot do;
+  - eval 1: perception is good, but the robot never lifts the lid;
+  - eval 35: the spoon outline sits on the real spoon in 2-D.
+- New generic fix candidate: hand and forearm masking in detection and tracking, plus rejecting wrist-following
+  tracks. This is a hypothesis with a stated test.
