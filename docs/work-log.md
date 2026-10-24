@@ -3034,3 +3034,21 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (frac 0.331, tilt 1.41°) supports 1 of 2 objects; the sweeper was lifted 7.11 cm onto it and the rack snapped by
   0.88 cm; qa_ref passed. Eval 25's reference also built (its failure was later, at ILC). The pack test (packtest2)
   started its job at 15:41.
+- **15:55 UTC pack dry run (packtest2, RTX A4000): the pack path works.**
+  - The pristine evaluator (worktree at 8c778f9, 0 modified files) loaded and rolled out all four checkpoints trained
+    with patched FlashCHORD. The mesh copy for 20 episodes from library_v3 worked. The kit packer refused only
+    because 16 of 20 episodes have no trajectory, as expected.
+  - The pristine rollouts scored with `qa.py policy` (sim_vs_ref, our reference), against the 5 patched-evaluator
+    runs on RTX PRO 6000:
+
+    | Eval | Pristine, A4000 | Patched, PRO 6000 (5 runs) |
+    |---|---|---|
+    | 33 | 0.407 | 0.391 ± 0.029 |
+    | 35 | **0.949** | 0.9915 (0.9896-0.9929) |
+    | 36 | 0.992 | 0.9935 |
+    | 38 | 1.000 | 0.9997 |
+
+  - Eval 35 falls outside its range on the other GPU. The likely cause is hardware numerics plus chaotic contact,
+    since VOC is 0 in evaluation and FDR only changes rewards, but that is not tested.
+  - Decision, made before any final result: run the final pack on an RTX PRO 6000 S, the GPU family used for
+    training and checkpoint selection.
