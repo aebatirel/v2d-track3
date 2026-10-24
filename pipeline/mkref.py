@@ -470,14 +470,16 @@ def table_disc(depth0, KR, T_tab, table_z, band=0.008, cell=0.01):
     return float(cx), float(cy), float(r)
 
 
-def start_overlap_lift(OBJ, names, vis, con, cap, n_samp=3000, min_in=5, margin=0.0005):
+def start_overlap_lift(OBJ, names, vis, con, cap, table_z, n_samp=3000, min_in=5, margin=0.0005, on_table=0.02):
     """Objects that start inside one another (2026-10-24, eval 1: 243 of 3000 lid surface samples 7.6 mm inside the pot
     solid at frame 0; the simulated lid was wedged and never lifted; public twin ep2 has the same failure). For each
     frame-0 pair, surface samples of the object with the higher bottom (the one resting on the other: lid on pot, cup
     in pot) are tested against the other's watertight solid; when >= MIN_IN are inside, the upper object is lifted along
     the table normal, whole trajectory, as the table snap. The lift is the largest upward exit distance of the inside
     samples (vertical rays) + MARGIN, checked by a containment test (< MIN_IN inside), then raised by half steps.
-    Not resolved within CAP: left unchanged and reported. Returns the per-object lifts (m) and a log record."""
+    An upper object whose bottom is within ON_TABLE of the table stands on the table and is never lifted (eval 8: the
+    pot beside the beige cup). Not resolved within CAP: left unchanged and reported. Returns the per-object lifts (m)
+    and a log record."""
     import trimesh
     B = len(names); lift = np.zeros(B); rec = []
     pts = [np.asarray(trimesh.sample.sample_surface(vis[nm], n_samp, seed=0)[0]) for nm in names]
@@ -493,6 +495,8 @@ def start_overlap_lift(OBJ, names, vis, con, cap, n_samp=3000, min_in=5, margin=
     for b in range(B):
         for c in range(B):
             if b == c or bot[b] < bot[c] or not con[names[c]].is_watertight:   # b is the upper object of the pair
+                continue
+            if bot[b] - table_z < on_table:                             # b stands on the table, not on c
                 continue
             P, ins = in_c(b, c, 0.0); n0 = int(ins.sum())
             if n0 < min_in:
@@ -958,7 +962,7 @@ def main():
         log(f'WARNING: snap={a.snap} skipped, bottom offset {h.min() * 100:.1f} cm > snap_max')
     overlap = []
     if a.start_overlap > 0 and B > 1:
-        olift, overlap = start_overlap_lift(OBJ, names, vis, con, a.start_overlap)
+        olift, overlap = start_overlap_lift(OBJ, names, vis, con, a.start_overlap, a.table_z)
         shifts = shifts + olift
         log(f'start overlap (cap {a.start_overlap * 100:.0f} cm): {overlap if overlap else "none"}')
     h2 = bottoms(OBJ)
