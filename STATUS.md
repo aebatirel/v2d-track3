@@ -3,6 +3,8 @@
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
 ## 2026-10-24 ~21:45 TRT: FIRST LEADERBOARD SCORE — Track 3 AUC 0.57468, 9th
+- All six boards (owner joined): AUC 0.575 (9th), SP-SR 0.45 (11th), MP-SR 0.35 (9th), RPE 12.6 cm (13th), MPPE 8.7 cm
+  (10th), CD-O 0.405 cm (10th). Leaders: MPPE 1.2 cm, CD-O 0.11 cm.
 - Uploaded by the agent through the owner's Kaggle token (network secret; `tools/kaggle_upload.py`). Board: 0.932 /
   0.884 / 0.865 / 0.752 / 0.730 / 0.662 / 0.636 / 0.630 / **0.575 us**. Other five boards: owner must Join first.
 - Below the 0.68 estimate: perception loses ~19 % on eval (3–4 % on public twins); estimated mostly the spoon

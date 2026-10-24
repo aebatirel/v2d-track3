@@ -3159,3 +3159,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
       handle) and the reprojection residuals of our spoon track on eval frames, which needs no GT.
     - (H3) eval perception is worse on all objects. Test: the MPPE and MP-SR boards once joined.
   - The spoon moves to the top of the v5 work (TODO #16).
+- **18:55 UTC: all six Track 3 boards scored** with the same file; the CD-O mesh file was extracted by the uploader.
+  Receipts are in `results/submissions/20261024-track3/`. Ranks are among the first 20 rows the API returns.
+
+  | Board | Ours | Rank | Top 5 |
+  |---|---|---|---|
+  | AUC ↑ | 0.575 | 9 | 0.932 / 0.884 / 0.865 / 0.752 / 0.730 |
+  | SP-SR ↑ | 0.45 | 11 | 1.00 / 1.00 / 0.90 / 0.80 / 0.75 |
+  | MP-SR ↑ | 0.35 | 9 | 1.00 / 0.85 / 0.80 / 0.55 / 0.55 |
+  | RPE (cm) ↓ | 12.58 | 13 | 1.35 / 1.94 / 1.97 / 4.85 / 5.18 |
+  | MPPE (cm) ↓ | 8.66 | 10 | 1.24 / 1.65 / 1.83 / 3.61 / 4.33 |
+  | CD-O (cm) ↓ | 0.405 | 10 | 0.112 / 0.228 / 0.239 / 0.253 / 0.264 |
+
+  - MPPE 8.7 cm: on average our simulated objects are about 9 cm from the truth, while the leaders are at 1.2-1.8 cm.
+    On public data our perception alone (scan-templated, 22 Oct) was 3.9 cm. RPE 12.6 cm: the objects' relative
+    poses are off as well.
+  - CD-O 0.405 cm: the mesh shape error is middling; the leaders are at 0.11-0.26 cm.
+  - SP-SR 0.45 / MP-SR 0.35: about 9 and 7 of 20 episodes count as successes under the two definitions.
