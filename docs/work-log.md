@@ -3300,3 +3300,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   configuration). Job: `export LIB=…/library_v3 SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5 DET_REPROP=1
   GL_ARGS="<frozen>"; (SPLIT=eval PAIRS="30:new:mck" bash ops/jobs/glock_public.sh) & sleep 90; (SPLIT=public
   PAIRS="31:new:mck" bash ops/jobs/glock_public.sh) & wait`.
+- 23:00 UTC **spoon template length check (CPU, GT-free; eval frame-0 dumps + our frame-0 track):** the observed spoon
+  (chosen mask eroded 1 px, stereo depth) is 30.0–30.7 cm long along its main axis (1–99 % of points) in all 10 spoon
+  episodes; our template rendered at our tracked frame-0 pose (CPU ray casting into the same half-resolution grid) is
+  30.7–31.0 cm by the same measure (evals 35, 36, 37, 3, 15, 33). The ≈ 0.5 cm gap is mostly the 1 px erosion.
+  **H1 "the template is the wrong length" is not supported.** Same frames: 2-D IoU of the rendered template with the
+  detected mask 0.74–0.80; median depth of the rendered surface 0–1.5 cm nearer than the stereo depth (35: 1.3, 3:
+  1.5, 33: 0.9, others ≈ 0). That fits H2 (depth / pose error) weakly but compares different pixel sets; the spoon's
+  loss is more likely later in the episode (fast motion, hand occlusion), which frame 0 cannot show.
