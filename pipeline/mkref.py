@@ -404,6 +404,7 @@ def fit_table(depth0, KR, W0, cam_T0, meshes, a):
     pick = min(ok or cands, key=lambda c: abs(c['lowest']))
     a._plane_cands = [{k: (round(v, 4) if isinstance(v, float) else None) for k, v in c.items() if k not in ('n', 'd')}
                       for c in cands]
+    a._plane_full = cands
     return pick['n'], pick['d'], pick['frac'], len(P), pick['rms']
 
 
@@ -742,6 +743,9 @@ def parse_args():
                    help='abort if the lowest frame-0 object bottom is more than this above the table (m)')
     p.add_argument('--support_tol', type=float, default=0.03,
                    help='abort if it is more than this below the table (m); also the plane-pick tolerance')
+    p.add_argument('--support_fallback', type=int, default=1,
+                   help='when no plane passes the support check: the candidate supporting most objects, objects that '
+                        'start inside the table lifted onto it (2026-10-24, eval 30)')
     p.add_argument('--snap', choices=['none', 'lowest', 'per_object'], default='per_object',
                    help='lowest: move the plane to the lowest object bottom at frame 0; per_object: lift/lower each '
                         'object whose frame-0 bottom is within SNAP_MAX of the plane onto it (whole trajectory)')
@@ -862,6 +866,29 @@ def main():
     log(f'table plane candidates (fraction of ring points, lowest object point above it in m, tilt vs the first): '
         f'{a._plane_cands}')
     log(f'frame-0 object bottoms above the fitted table (cm): {dict(zip(names, np.round(h * 100, 2).tolist()))}')
+    lifted = np.zeros(B)
+    if not -a.support_tol <= h.min() <= a.support_max and a.support_fallback:
+        # Only on this failure path (eval 30, 2026-10-24: the dominant plane was the floor, 54 cm under the objects; the
+        # table candidate had the rack 1.7 cm and the sweeper 7.1 cm inside it): take the near-parallel candidate under
+        # which most objects start within the allowed band, then lift objects that start inside the table onto it
+        # (a body cannot start inside the table; whole trajectory shifted). Episodes that pass the check are unchanged.
+        alt = []
+        for c in a._plane_full:
+            if c['tilt'] > 25:
+                continue
+            Tt = table_frame(c['n'], c['d'], W_C[0], centroid, a.table_z); hh = bottoms(obj_in_table(Tt))
+            nin = int(((hh >= -a.support_tol) & (hh <= a.support_max)).sum())
+            alt.append((nin, -float(np.abs(hh).sum()), c, Tt, hh))
+        alt.sort(key=lambda x: x[:2], reverse=True)
+        if alt and alt[0][0] > 0:
+            _, _, c, T_tab, hh = alt[0]; n, d = c['n'], c['d']; OBJ = obj_in_table(T_tab)
+            for b in range(B):
+                if hh[b] < -a.support_tol:
+                    lifted[b] = -hh[b]; OBJ[:, b, 2, 3] += lifted[b]
+            h = bottoms(OBJ)
+            log(f'support fallback: plane {dict(frac=round(c["frac"], 4), tilt=round(c["tilt"], 2))} supports {alt[0][0]} of {B} '
+                f'objects; lifted onto the table (cm) {dict(zip(names, np.round(lifted * 100, 2).tolist()))}; bottoms now (cm) '
+                f'{dict(zip(names, np.round(h * 100, 2).tolist()))}')
     if not -a.support_tol <= h.min() <= a.support_max:
         raise SystemExit(f'no support plane under the objects: the lowest object bottom is {h.min() * 100:.1f} cm above '
                          f'the fitted table (allowed {-a.support_tol * 100:.0f} to {a.support_max * 100:.0f} cm); '
@@ -892,9 +919,9 @@ def main():
         log(f'table disc measured from frame-0 depth: centre ({disc[0]:.3f}, {disc[1]:.3f}) m, radius {disc[2]:.3f} m '
             f'(was a {a.table_radius} m disc at the object centroid)')
     np.savez(f'{a.out}/table_frame.npz', T_table_from_world=T_tab, plane_n=n, plane_d=d, names=np.array(names),
-             object_z_shift=shifts, table_z=a.table_z, table_disc=np.array(disc))
+             object_z_shift=shifts + lifted, table_z=a.table_z, table_disc=np.array(disc))
     summary['table'] = dict(inlier_frac=inl_frac, rms_mm=rms * 1000, bottoms_cm=(h * 100).tolist(),
-                            bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist())
+                            bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist(), support_fallback_lift_cm=(lifted * 100).tolist())
 
     # ---------------- (b) hands
     Hn = np.load(a.hands)
