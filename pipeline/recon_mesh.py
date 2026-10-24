@@ -86,7 +86,7 @@ def table_plane(D0, K, obj_pos, rng_seed=0, thr=0.006, iters=1500, hmin=-0.05, h
     if best[1] is None:
         raise SystemExit('no support plane under the object')
     nrm, c, inl = best[1]
-    Q = Pts[inl]; q0 = Q.mean(0); _, _, Vt = np.linalg.svd(Q - q0)       # least-squares refit
+    Q = Pts[inl]; q0 = Q.mean(0); _, _, Vt = np.linalg.svd(Q - q0, full_matrices=False)   # least-squares refit (thin)
     nrm = Vt[2] if Vt[2][1] < 0 else -Vt[2]
     return nrm, -nrm @ q0, int(inl.sum()) / len(Pts)
 
@@ -188,7 +188,205 @@ def integrate(a, K, X, tsdf, wgt, poses, depth, hands, others_spec, cnt):
     cnt['hand'] += nhand; cnt['table'] += ntable; cnt['other'] += nother; cnt['frames'] += N
 
 
+
+# ======================================================================== evidence fusion (mesh v5, spec section 4.2)
+OBS_TAUS = (0.012, 0.006, 0.004)
+
+
+def rest_frames(T_co, W_C, hands, roi_pts, min_len=15, hand_mm=20.0, lost_hold=6):
+    """Unassisted rest frames (spec section 6 step 1, motion and hand parts): the object origin (world) moves less than
+    max(2 mm, 2.5 x the track's frame-to-frame jitter) per frame (5-frame median), no hand joint within HAND_MM of the
+    object's surface (ROI points posed by the track), for >= MIN_LEN consecutive frames; a hand lost by MediaPipe counts
+    as near if it was near within the last LOST_HOLD frames. The jitter is the lower quartile of
+    the per-frame speed (see below). The table-plane condition of section 6 is left to the support rule. Returns a
+    bool mask per frame."""
+    P = np.stack([(W_C[t] @ T_co[t])[:3, 3] for t in range(len(T_co))])
+    sp = np.r_[0.0, np.linalg.norm(np.diff(P, axis=0), axis=1)]
+    from scipy.ndimage import median_filter
+    sp5 = median_filter(sp, size=5, mode='nearest')
+    # jitter = the lower quartile of the per-frame speed: the spec's 'median frame-to-frame jitter' read as the track's
+    # noise at rest; the median over a whole episode that moves most of the time is motion (ep39: 9.5 mm/frame)
+    thr = max(0.002, 2.5 * float(np.percentile(sp[1:], 25))) if len(sp) > 1 else 0.002
+    still = sp5 < thr
+    near = np.zeros(len(T_co), bool)
+    if hands is not None:
+        H = np.load(hands); last = -10 ** 9
+        Q = roi_pts[:: max(1, len(roi_pts) // 2000)]
+        for t in range(len(T_co)):
+            Wo = W_C[t] @ T_co[t]; Qw = Q @ Wo[:3, :3].T + Wo[:3, 3]; nt = False; seen = False
+            for side in ('left', 'right'):
+                if t < len(H[f'valid_{side}']) and H[f'valid_{side}'][t]:
+                    J = H[f'joints_{side}'][t].astype(np.float64)
+                    if np.all(np.isfinite(J)):
+                        seen = True
+                        d = np.linalg.norm(Qw[:, None] - J[None], axis=2).min()
+                        nt |= d * 1000 < hand_mm
+            if nt:
+                last = t
+            near[t] = nt or (not seen and t - last <= lost_hold)
+    # Runs of still AND hand-far frames (the hand flag median-filtered over 5 frames). Deviation from spec section 6,
+    # [H], 2026-10-25: there the hand test is on the whole still run (>= 80 % hand-free), which drops a rest followed
+    # by a grasp (ep39: frames 0-24 are still, the hand arrives at 18, 72 % hand-free, so no rest at all).
+    ok = still & ~(median_filter(near.astype(np.uint8), size=5, mode='nearest') > 0)
+    rest = np.zeros(len(T_co), bool); t = 0
+    while t < len(T_co):
+        if not ok[t]:
+            t += 1; continue
+        e = t
+        while e < len(T_co) and ok[e]:
+            e += 1
+        if e - t >= min_len:
+            rest[t:e] = True
+        t = e
+    return rest
+
+
+def fuse_obs(a, K):
+    """One pass over the episodes: TSDF sums / weights at 12, 6 and 4 mm, the free-space counters NF (> FREE_M behind),
+    NF3 (> FREE_S, any label) and NFL3 (the same from table / hand / other-labelled samples), NV, the own-sample moments
+    M0-M2, NB (per-frame below-table hits, also added to S / W so 'nobc' = S - NB, W - NB) and NBR / NVR (NB and NV
+    counted only in rest frames, for experiment E1). Port of the v5 study's obsfuse4.py without the band-mask deltas;
+    per-sample rules as integrate()."""
+    import trimesh
+    from scipy.spatial import cKDTree
+    t0 = time.time()
+    mr = trimesh.load(a.roi, force='mesh'); lo = mr.bounds[0] - a.margin; hi = mr.bounds[1] + a.margin
+    shape = tuple(int(np.ceil((hi[k] - lo[k]) / a.voxel)) for k in range(3))
+    axes = [lo[k] + (np.arange(shape[k]) + 0.5) * a.voxel for k in range(3)]
+    X = np.stack(np.meshgrid(*axes, indexing='ij'), -1).reshape(-1, 3); nv = len(X)
+    roi_pts = trimesh.sample.sample_surface(mr, 20000, seed=0)[0]
+    z32 = lambda: np.zeros(nv, np.float32)  # noqa: E731
+    S = {t: z32() for t in OBS_TAUS}; W = {t: z32() for t in OBS_TAUS}
+    NB, NF, NV, NF3, NFL3, M0, M1, M2, NBR, NVR = (z32() for _ in range(10))
+    cnt = dict(frames=0, below=0, rest_frames=0)
+    print('grid', shape, nv, flush=True)
+    import cv2
+    for poses, depth, hands, stride, others_s in a.ep:
+        stride = int(stride); hands = None if hands == '-' else hands
+        P = np.load(poses); T_co = P[f'cam_T_{a.obj}'].astype(np.float64); W_C = P['world_T_cam'].astype(np.float64)
+        segs_t = hand_segments(hands, W_C, a) if hands else None
+        others = []
+        if others_s != '-':
+            for spec in others_s.split(','):
+                nm, path = spec.split('=', 1)
+                pts = trimesh.sample.sample_surface(trimesh.load(path, force='mesh'), 20000, seed=0)[0]
+                others.append((P[f'cam_T_{nm}'].astype(np.float64), cKDTree(pts), pts.min(0), pts.max(0)))
+        D = np.load(depth, mmap_mode='r'); N = min(len(T_co), len(D)); H, Wd = D.shape[1:]
+        rest = rest_frames(T_co[:N], W_C[:N], hands, roi_pts)
+        o0 = (W_C[0] @ T_co[0])[:3, 3]
+        nw, cw, frac = table_plane(np.array(D[0], np.float32), K, o0)
+        print(poses, 'table', np.round(nw, 3), round(cw, 3), round(frac, 2), 'rest frames', int(rest.sum()), flush=True)
+        for t in range(0, N, stride):
+            R, tr = T_co[t][:3, :3], T_co[t][:3, 3]
+            Xc = X @ R.T + tr; z = Xc[:, 2]
+            ok = z > 0.05
+            u = np.full(nv, -1, np.int64); v = u.copy()
+            u[ok] = np.round(K[0, 0] * Xc[ok, 0] / z[ok] + K[0, 2]).astype(np.int64)
+            v[ok] = np.round(K[1, 1] * Xc[ok, 1] / z[ok] + K[1, 2]).astype(np.int64)
+            ok &= (u >= 0) & (u < Wd) & (v >= 0) & (v < H)
+            idx = np.nonzero(ok)[0]
+            Dt = np.array(D[t], dtype=np.float32)
+            if a.edge_thr >= 0:
+                Dz = np.where(np.isfinite(Dt), Dt, 0).astype(np.float32); k5 = np.ones((5, 5), np.uint8)
+                Dt[(cv2.dilate(Dz, k5) - cv2.erode(Dz, k5)) > a.edge_thr] = np.nan
+            d = Dt[v[idx], u[idx]]
+            good = np.isfinite(d) & (d > 0.05) & (d < a.zmax)
+            idx, d = idx[good], d[good]
+            sdf = d - z[idx]
+            keep = sdf > -max(OBS_TAUS)
+            idx, sdf, d = idx[keep], sdf[keep], d[keep]
+            Pd = Xc[idx] * (d / z[idx])[:, None]
+            other = np.zeros(len(idx), bool)
+            C_W = np.linalg.inv(W_C[t]); nc = C_W[:3, :3] @ nw; cc = cw - nc @ C_W[:3, 3]
+            for thr in (0.03, 0.012):                                   # per-frame plane refit, <= 10 deg correction
+                hgt = Pd @ nc + cc; sel = np.abs(hgt) < thr
+                if sel.sum() < 500:
+                    break
+                Q = Pd[sel][:: max(1, int(sel.sum()) // 20000)]; q0 = Q.mean(0)
+                nn = np.linalg.svd(Q - q0, full_matrices=False)[2][2]
+                if nn @ nc < 0:
+                    nn = -nn
+                if nn @ nc > np.cos(np.radians(10)):
+                    nc, cc = nn, -nn @ q0
+            other |= Pd @ nc + cc <= a.table_band
+            if a.below_carve >= 0:
+                fb = np.nonzero(Xc @ nc + cc < -a.below_carve)[0]
+                for tau in OBS_TAUS:
+                    S[tau][fb] += 1.0; W[tau][fb] += 1
+                NB[fb] += 1; cnt['below'] += len(fb)
+                if rest[t]:
+                    NBR[fb] += 1
+            if segs_t is not None and len(segs_t[t][0]):
+                A0, B0, rad = segs_t[t]
+                lo_ = np.minimum(A0, B0).min(0) - rad.max(); hi_ = np.maximum(A0, B0).max(0) + rad.max()
+                near = np.nonzero(np.all((Pd >= lo_) & (Pd <= hi_), axis=1))[0]
+                Q = Pd[near]; hq = np.zeros(len(near), bool)
+                for sg in range(len(A0)):
+                    ab = B0[sg] - A0[sg]; ap = Q - A0[sg]
+                    h = np.clip(ap @ ab / max(ab @ ab, 1e-12), 0, 1)
+                    hq |= np.linalg.norm(ap - h[:, None] * ab, axis=1) <= rad[sg]
+                other[near[hq]] = True
+            for T_oo, tree, olo, ohi in others:
+                Ti = np.linalg.inv(T_oo[t]); Po = Pd @ Ti[:3, :3].T + Ti[:3, 3]
+                near = np.nonzero(np.all((Po >= olo - a.other_r) & (Po <= ohi + a.other_r), axis=1))[0]
+                if len(near):
+                    od = tree.query(Po[near], k=1, distance_upper_bound=a.other_r)[0] <= a.other_r
+                    other[near[od]] = True
+            for tau in OBS_TAUS:
+                m = (sdf > -tau) & (~other | (sdf > tau))
+                ii = idx[m]; S[tau][ii] += np.clip(sdf[m] / tau, -1, 1); W[tau][ii] += 1
+            NF[idx[sdf > a.free_m]] += 1; NV[idx] += 1
+            if rest[t]:
+                NVR[idx] += 1; cnt['rest_frames'] += 1
+            f3 = sdf > a.free_s
+            NF3[idx[f3]] += 1; NFL3[idx[f3 & other]] += 1
+            own = ~other & (np.abs(sdf) <= 0.012)
+            ii = idx[own]; M0[ii] += 1; M1[ii] += sdf[own]; M2[ii] += sdf[own] ** 2
+            cnt['frames'] += 1
+        print(poses, 'done', cnt, round(time.time() - t0), 's', flush=True)
+    r = lambda x: x.reshape(shape)  # noqa: E731
+    np.savez_compressed(a.out, shape=np.array(shape), lo=lo, voxel=a.voxel,
+                        **{f'S{int(t * 1000)}': r(S[t]) for t in OBS_TAUS}, **{f'W{int(t * 1000)}': r(W[t]) for t in OBS_TAUS},
+                        NF=r(NF), NV=r(NV), NB=r(NB), NBR=r(NBR), NVR=r(NVR), NF3=r(NF3), NFL3=r(NFL3), M0=r(M0), M1=r(M1), M2=r(M2),
+                        args=json.dumps(vars(a)), cnt=json.dumps(cnt))
+    print('saved', a.out, round(time.time() - t0), 's', flush=True)
+    return cnt
+
+
+def obs_main(argv):
+    """recon_mesh.py obs --obj NAME --out GRID.npz --roi MESH --ep POSES DEPTH HANDS STRIDE OTHERS [--ep ...]
+    HANDS / OTHERS may be '-'; OTHERS = NAME=MESH,... (their own tracks in POSES; they carve, never vote surface).
+    --g0 (or COMPLIANT=1): every input must pass pipeline/provenance.check (spec section 3.4); the grid gets a manifest."""
+    p = argparse.ArgumentParser(prog='recon_mesh.py obs')
+    p.add_argument('--obj', required=True); p.add_argument('--out', required=True); p.add_argument('--roi', required=True)
+    p.add_argument('--ep', nargs=5, action='append', metavar=('POSES', 'DEPTH', 'HANDS', 'STRIDE', 'OTHERS'), required=True)
+    p.add_argument('--calib', default='/content/t3/calib.json')
+    p.add_argument('--voxel', type=float, default=0.002); p.add_argument('--margin', type=float, default=0.04)
+    p.add_argument('--free_m', type=float, default=0.008); p.add_argument('--free_s', type=float, default=0.003)
+    p.add_argument('--edge_thr', type=float, default=0.02); p.add_argument('--zmax', type=float, default=1.5)
+    p.add_argument('--table_band', type=float, default=0.015); p.add_argument('--below_carve', type=float, default=0.004)
+    p.add_argument('--hand_r', type=float, default=0.03); p.add_argument('--arm_r', type=float, default=0.045)
+    p.add_argument('--arm_len', type=float, default=0.15); p.add_argument('--other_r', type=float, default=0.012)
+    p.add_argument('--g0', action='store_true', default=os.environ.get('COMPLIANT') == '1')
+    a = p.parse_args(argv)
+    inputs = []
+    if a.g0:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import provenance
+        inputs = [dict(role='roi', path=a.roi), dict(role='calib', path=a.calib)]
+        for poses, depth, hands, _, others_s in a.ep:
+            inputs += [dict(role='poses', path=poses), dict(role='depth', path=depth)]
+            inputs += [dict(role='hands', path=hands)] if hands != '-' else []
+            inputs += [dict(role='others', path=s.split('=', 1)[1]) for s in others_s.split(',')] if others_s != '-' else []
+        print('G0 tier', provenance.check(inputs), flush=True)
+    cnt = fuse_obs(a, rectified_K(a.calib))
+    if a.g0:
+        provenance.write(a.out, 'grid', inputs, dict(vars(a), ep=a.ep), command=' '.join(sys.argv))
+    return cnt
+
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == 'obs':                 # mesh v5 evidence fusion (spec 4.2)
+        return obs_main(sys.argv[2:])
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--poses', required=True, help='poses.npz (comma-separated: several episodes fused)')
     p.add_argument('--depth', required=True, help='depth cache(s), one per --poses entry')

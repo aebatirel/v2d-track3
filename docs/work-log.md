@@ -3358,3 +3358,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   and the review2 board 1 mesh (rotations up to 2.4°, ADD median 3.255 mm). Not wired into a job.
 - 23:02 UTC eval 30 box: both references built and passed QA. **Public twin ep31 perception with the gated
   re-proposal: AUC 0.881 vs mocap** (SP 1.00, MP 1.00, MPPE 1.23 cm; sweeper 0.949). Training next.
+- 23:05 UTC **v5 port step: `recon_mesh.py obs`** (spec §4.2; port of the study's `obsfuse4.py` without the band-mask
+  deltas): one pass over an object's episodes accumulates the 12 / 6 / 4 mm TSDFs, NF, NF3, NFL3, NV, M0–M2 and NB, plus
+  the new rest counters NBR / NVR for E1; optional G0 provenance gate (`--g0` or `COMPLIANT=1`); classic mode
+  unchanged except the spec's thin-SVD fix in `table_plane` (same result, no N × N allocation). **Port acceptance met:**
+  on the study's ep39 dust-pan inputs all 14 accumulators are bit-identical to the study's saved grid (184 s CPU).
+  - Rest frames (for NBR / NVR and later the support rule): two deviations from spec §6, both [H], flagged for the
+    owner: (1) the jitter is the lower quartile of the per-frame speed (the overall median of a moving track is motion:
+    ep39 9.5 mm/frame); (2) a rest is a run of ≥ 15 still **and** hand-far frames (hand flag median-filtered over 5
+    frames), because the spec's "≥ 80 % hand-free over the whole still run" and the prototype both drop a rest that ends
+    in a grasp (ep39: frames 0–24 still, hand arrives at 18). With both: ep39 rest = frames 0–17.
