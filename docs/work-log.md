@@ -2771,3 +2771,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     warm start (and qacc / constraint forces) before every evaluation (`bbe57e6`); afterwards the primed test matches the
     fresh one exactly. The ep39 result (0.877) was measured in a fresh process and stands; the ep18 / ep24 searches
     ranked candidates on contaminated fitness and are being rerun.
+- 10:05 UTC search reproducibility, second fix: the rerun ep18 sweeper search (warm start cleared) reported a best
+  window AUC of 0.584 (unedited 0.375), but the same edit scores **0.374** in any fresh process (2 or 8 worlds, alone
+  or among random neighbours; contact buffer 296 / 2048 used, no overflow), and its baked reference replays at 0.352
+  (baked-with-no-edit 0.396, so the bake path agrees with the action path). So state still builds up across
+  generations inside one process beyond the warm start. Fix (`72d60cb`): a fresh environment per generation (setup
+  ~6 s vs ~40 s per evaluation on CPU); primed test now gives 0.374 in every world. ep39's 0.877 was a fresh replay
+  of its bake and stands; ep18 / ep24 searches rerun with the fix.
+- Research audits added: starts (`audit-starts-ep21-ep2-ep26.md`): ep2 = the LID GRASP (flicked out at the lift
+  onset in all 5 zero-action variants, whatever the start; the 9.6 mm hull overlap costs only 0.042); ep21 = the start
+  (our pitcher mesh lacks ~half its base, COM 2.8-4.1 cm outside the support; it falls with no hand), then the grasps;
+  ep26 = the start (our pot sits 29 mm too deep in the rack, ejected 152 mm / 99 deg), then a tolerant handle grasp.
+  RL-discovered grasp (`rl-discovered-grasps.md`): the 0.889 ep18 policy holds the dust pan's ring handle with a
+  lateral (key) pinch, thumb on top, index under, palm up, sliding in low; for the long lift it hooks fingers through
+  the ring.
