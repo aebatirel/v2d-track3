@@ -3343,3 +3343,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   cache), MediaPipe hands + refinement, `STOP_AFTER=hands` (new in `pipeline_ep.sh`), then the registered perception
   score with library_v2 [D, after inference]; pushes after every episode. Output tier P1 (owner decision O1). Today's
   perc2 defaults (23 Oct detection rules) differ from the 21 Oct perc2m runs of ep12/18/24/27 in detection only.
+- 22:59 UTC **v5 port step: `pipeline/mesh_post.py`** (spec §4.3; obspost2.build / gates + obspost5.main_part_lc /
+  make_mesh + gate_ev): grids → solid → full-resolution mesh → `mesh_decimate`, with G1 (seen-free violation),
+  G2 (unexplained evidence at 8 mm), G5 (12 mm-only share), thickness and hull stability. **Port acceptance met on the
+  study's saved grids:** blue cup (5 public episodes) `nobc` 4c12_adj_g2_f0_cont and `def` …@lc25 give vertex-identical
+  meshes with the same solid, G1, G2 and topology as the study; the pitcher (ep21 + 22) reproduces both the old
+  main-part rule (a 0.02 cm³ fragment, 16 faces) and the `lc25` fix (921 cm³, 176,810 faces). The blue cup's G2 is
+  0.177 (> 0.05): it would fall back to F4 under the frozen gates, as the spec's E0c table says. Not wired into a job.
+- Seed 43, **eval 19: 0.6534** (std 0.033) vs seed 42's 0.6469: higher, so seed 43 is picked by the rule fixed
+  beforehand (a negligible margin; the packed rollout will be re-drawn).
