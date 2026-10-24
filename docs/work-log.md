@@ -3000,3 +3000,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     mesh copy. The packer may refuse a 4-of-20 file, which is acceptable for this test.
   - Why: the checkpoints were trained on patched FlashCHORD (FDR, VOC); `patch_flashchord_fdr.py` keeps stock
     term names so the unpatched evaluator should load them, but this has not been checked.
+- **15:23 UTC evD eval 25 (boards): wrist_ilc FAILED.** The replay at iteration 3 diverged to NaN; MuJoCo-Warp printed
+  7 "nefc overflow" warnings. The NaN targets were written into the next reference, and loading it failed ("left
+  wrist position must be finite"). Iterations 0-2 were finite: left 9.7 / 9.2 / 7.8 cm mean, right 1.1-2.4 cm.
+  - Fix 78f7d65: `wrist_ilc.py` stops at a diverged replay and keeps the last iteration whose replay stayed finite.
+    Mock-tested: unchanged when nothing diverges; a divergence at iteration 3 keeps ilc2, and at iteration 0 keeps
+    the input. `grasp_evolve.py` scores a diverged world 0 instead of crashing on NaN quaternions.
+- **15:25 UTC evE eval 30 (sweeper + rack): reference build FAILED in mkref.** The dominant plane candidate was the
+  floor, 54 cm under the objects. The table candidate (33 % of ring points, tilt 1.4°) had the rack 1.7 cm and the
+  sweeper 7.1 cm inside it, past the 3 cm tolerance, so no plane passed and mkref aborted.
+  - Fix 9c63c87: `mkref.py --support_fallback 1`, used only when no plane passes the check. It takes the
+    near-parallel candidate (tilt ≤ 25°) under which most objects start within the band. Objects that start inside
+    the table are lifted onto it, with the whole trajectory shifted and recorded in `table_frame.npz`
+    object_z_shift and summary `support_fallback_lift_cm`. Episodes that pass the check are unchanged.
+- **57531103** `20261024-evR-9c63c87` RTX PRO 6000 S, France, $1.55/h: evals 25 and 30 rerun from the raw videos at
+  9c63c87, same recipe (about 1.5 h, about $2.5). Pack order: evR after evD / evE.
