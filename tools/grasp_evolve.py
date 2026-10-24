@@ -193,6 +193,8 @@ def evaluate(theta_phys):
     objs = range(B) if a.all_objects else [j_obj]
     fit = np.zeros(W); detail = []
     for w_ in range(W):
+        if not np.isfinite(track[:, w_]).all():                                  # this world's simulation diverged (NaN)
+            fit[w_] = 0.0; detail.append(dict(auc=0.0, diverged=True)); continue
         s = [add_auc(track[:, w_, j, :3], track[:, w_, j, 3:7], OP[win, j], OQ[win, j]) for j in objs]
         fit[w_] = np.mean([x[0] for x in s])
         hold = (win >= hs) & (win <= he)

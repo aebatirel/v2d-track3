@@ -58,9 +58,16 @@ def main():
         tgt[s] = [np.array(t.column(f'robot_{s}_wrist_position')[0].as_py(), float).reshape(T, 3),
                   Rot.from_quat(np.array(t.column(f'robot_{s}_wrist_wxyz')[0].as_py(), float).reshape(T, 4)[:, [1, 2, 3, 0]])]
     base = {s: [tgt[s][0].copy(), tgt[s][1]] for s in tgt}
-    work = os.path.splitext(a.out)[0]; cur = a.inp
+    work = os.path.splitext(a.out)[0]; cur = a.inp; last_ok = None
     for it in range(a.iters + 1):
         Q, labels = replay(os.path.abspath(cur), T, a.device); row = dict(iter=it)
+        bad = ~np.isfinite(Q).all(axis=(1, 2))
+        if bad.any():   # the replay diverged (eval 25, 2026-10-24: iteration 3 NaN): stop, keep the last finite iteration
+            row['diverged_from_frame'] = int(np.argmax(bad)); stats.append(row)
+            print(f'[{time.time() - t0:.0f}s] iter {it}: replay diverged from frame {row["diverged_from_frame"]}; '
+                  f'keeping {os.path.basename(last_ok or a.inp)}', flush=True)
+            break
+        last_ok = cur
         for s in ('left', 'right'):
             b = next(i for i, l in enumerate(labels) if l.endswith(f'{s}_hand_C_MC'))
             ep = want[s][0] - Q[:, b, :3]; er = (want[s][1] * Rot.from_quat(Q[:, b, 3:7]).inv()).as_rotvec()
@@ -84,7 +91,7 @@ def main():
             for c, v in ((f'robot_{s}_wrist_position', tgt[s][0]), (f'robot_{s}_wrist_wxyz', tgt[s][1].as_quat()[:, [3, 0, 1, 2]])):
                 i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
         cur = f'{work}_ilc{it + 1}.parquet'; pq.write_table(out, cur)
-    shutil.copyfile(cur, a.out)
+    shutil.copyfile(last_ok or a.inp, a.out)
     json.dump(dict(iterations=stats, args=vars(a)), open(f'{work}_wrist_ilc.json', 'w'), indent=1)
     print(f'[{time.time() - t0:.0f}s] wrote {a.out}', flush=True)
 
