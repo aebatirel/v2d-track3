@@ -7,6 +7,7 @@
 . /content/v2d-track3/ops/box/lib.sh
 EP=$1; O=/content/results/glock_public/ep$EP; V=$O/vid; FC=/content/v2d/robotic_grounding/flash_chord; mkdir -p $V
 CK=$(python -c "import json; print(json.load(open('$O/best/summary.json'))['checkpoint'])")
+[ -s "$CK" ] || CK=$O/best/policy.safetensors                    # a pulled run keeps only every 10th checkpoint
 REF=$(ls /content/refs/glockt/ep$EP/processed/*/*/ref_gl_ilc.parquet | head -1)
 N=$(python -c "import numpy as np, pyarrow.parquet as pq; print(len(np.array(pq.read_table('$REF').column('robot_left_wrist_position')[0].as_py()).reshape(-1, 3)))")
 OV="evaluation.checkpoint=$CK reset.voc_decay_steps=0 reset.always_reset_to_first_frame=true"
