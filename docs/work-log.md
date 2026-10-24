@@ -3197,3 +3197,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - eval 35: the spoon outline sits on the real spoon in 2-D.
 - New generic fix candidate: hand and forearm masking in detection and tracking, plus rejecting wrist-following
   tracks. This is a hypothesis with a stated test.
+- Eval 1 check (CPU, our reference and library_v3 meshes, no GT): **the lid mesh starts 7.6 mm inside the pot mesh**
+  (243 of 3,000 lid surface samples inside the pot solid at f0; 7.4 mm at f20; 6.6 mm at f37). This is consistent
+  with the video, where the lid is never lifted. Eval 1 now counts as mesh overlap plus grasp.

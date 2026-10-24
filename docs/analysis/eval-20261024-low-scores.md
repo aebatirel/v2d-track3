@@ -61,7 +61,7 @@ sim_vs_ref of the submitted rollout (packed), with the main cause of each loss.
 | 10 | blue cup + beige cup | 0.342 | beige cup mesh is an open shell and falls over at the start (A) |
 | 20 | blue cup + pitcher | 0.336 | pitcher mesh is a twisted shell and falls flat at the start (A) |
 | 25 | two boards | 0.232 | boards must be slotted into a cross; our meshes have no slots (A), and the grasps fail (C) |
-| 1 | pot + lid | 0.205 | the robot never lifts the lid off the pot; the pot turns in the hand (C) |
+| 1 | pot + lid | 0.205 | lid mesh starts 7.6 mm inside the pot mesh, so it is wedged (A); the robot never lifts it; the pot turns in the hand (C) |
 
 ## 3. The low scorers, one by one
 
@@ -73,7 +73,11 @@ sim_vs_ref of the submitted rollout (packed), with the main cause of each loss.
 - [M] The lid leaves the reference 12 frames after its hold starts (f38 → f50), and the pot at the start of its
   hold (f96). The mean rotation error is 65–74°.
 - [M] No checkpoint lifts the pot to its reference height (3–9 cm against 12.8 cm).
-- Cause: the lid pick (a flat disc with a small knob, seated in the pot) and the pot handle grasp (C).
+- [M] **At the start our lid mesh sits 7.6 mm inside our pot mesh**: 8 % of the lid's surface points are inside the
+  pot (f0; still 6.6 mm at f37 when the lift begins). The public twin showed 9 mm.
+- [I] Overlapping collision shapes wedge the lid in the pot, which fits the video: the lid never comes off.
+- Cause: mesh overlap (A) plus the lid pick (a flat disc with a small knob) and the pot handle grasp (C).
+- Fix: rest the lid on the pot rim instead of overlapping it, part of the v5 interaction rules.
 
 **Eval 25, two boards: 0.232 (mesh + grasp).**
 - [V] The person stands board 1 up, picks up board 2 and **slots the two together into a cross**. Our outlines
