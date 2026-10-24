@@ -3392,3 +3392,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   ≈ 2 h, ≈ $3), `G1RUN=20261025-g1-022fece PAR=10 bash ops/build_library.sh` (G1 + 21 Oct perc2m tracks, all 10 objects,
   pass 0 then the full chain per object in parallel). Output tier P1; not used by any submission before O1 and G2.
   Credit $24.02 before; committed ≈ $7 (seed 43, eval 30, pack) + this ≈ $3.
+- 23:50 UTC **G1 registered perception scores** [D, diagnostic after inference; library_v2 meshes and seeds; computed on
+  this CPU by `score_registered.py` from the pushed `poses_world_vo.npz`] — 16 public episodes, mean AUC **0.810**:
+  ep2 0.987, ep13 0.960, ep21 0.833 (pitcher 0.683), ep22 0.871 (pitcher 0.749), ep26 0.973, ep31 0.869, ep39 0.960,
+  ep40 0.957, ep41–45 0.948–0.997; **failures:** ep0 0.496 (lid 0.000: at frame 0 the pot mask covers pot + lid and
+  the lid is assigned to the pot handle), ep11 0.102 (blue cup 0.203, beige cup 0.000: the beige cup is assigned to
+  the person's lap; library_v2's beige cup also registers to the scan at 145°, a flip), ep23 0.041 (both boards are
+  segmented at frame 0, AUC ≈ 0 and MPPE 16 cm ≈ their spacing: identity swap suspected, not yet checked).
+  Consequence for library v5 (built along these tracks, running now): the lid (ep0 + ep2), the beige cup (ep11 only)
+  and the boards (ep23 + ep24) are fused partly or wholly along wrong tracks. The GT-free gates cannot see this
+  (X uses M0 of the same build); E2 (CD-O vs scans, diagnostic) will show it, and E2b is the pre-registered GT-free
+  remedy. Files: scratchpad `g1score/ep*.json` (not committed; numbers above).
