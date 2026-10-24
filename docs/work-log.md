@@ -3308,3 +3308,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   detected mask 0.74–0.80; median depth of the rendered surface 0–1.5 cm nearer than the stereo depth (35: 1.3, 3:
   1.5, 33: 0.9, others ≈ 0). That fits H2 (depth / pose error) weakly but compares different pixel sets; the spoon's
   loss is more likely later in the episode (fast motion, hand occlusion), which frame 0 cannot show.
+- 23:15 UTC **v5 port step: `pipeline/mesh_decimate.py`** (spec §5, port of the study's `obsnew/scripts/decim.py`):
+  open3d quadric to 4096 faces, pymeshlab staged topology-preserving QEC as fallback, topology gate (watertight,
+  bodies, Euler) → `GateFail('T')`, and a check that the kit's `budget_mesh` leaves the result unchanged apart from
+  padding. Test on the 10 study meshes still on disk (CPU, mesh only): 10/10 by open3d, watertight, Euler kept, kit
+  passthrough true, 2–4 s each; the pymeshlab path alone also keeps topology on the sweeper and the pitcher (0.6 / 3.6 s).
+  Not wired into any job yet (v5 needs owner decision O1 first).
