@@ -2,6 +2,14 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~22:35 TRT: eval videos (20) sent; low-score analysis `docs/analysis/eval-20261024-low-scores.md`
+- Causes, from the diagnostics and the videos: (A) broken meshes: the pitcher is a twisted shell, the beige cup an
+  open shell, the boards lack their slots (evals 20, 10, 25); (B) perception: objects tracked onto the person's left
+  wrist / white watch (30 from frame 0; 33 and 14 when the cup is hidden); (C) grasps: lid never lifted (1), dust pan
+  (19), boards, spoon (33); (D) spoon accuracy vs the truth ≈ 0.12 (inference).
+- Next, in priority order: spoon, mesh v5 (owner directive), hand and wrist masking in perception, grasps. Each is
+  validated on public twins first.
+
 ## 2026-10-24 ~21:45 TRT: FIRST LEADERBOARD SCORE — Track 3 AUC 0.57468, 9th
 - All six boards (owner joined): AUC 0.575 (9th), SP-SR 0.45 (11th), MP-SR 0.35 (9th), RPE 12.6 cm (13th), MPPE 8.7 cm
   (10th), CD-O 0.405 cm (10th). Leaders: MPPE 1.2 cm, CD-O 0.11 cm.
