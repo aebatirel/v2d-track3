@@ -3052,3 +3052,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     since VOC is 0 in evaluation and FDR only changes rewards, but that is not tested.
   - Decision, made before any final result: run the final pack on an RTX PRO 6000 S, the GPU family used for
     training and checkpoint selection.
+- **16:00 UTC evG eval 37 (spoon only): sim_vs_ref 0.9982 ± 0.0004** over 5 evaluations, chosen 70M; curve
+  0.995 / 0.989 / 0.988 / 0.992 / 0.997 / 0.998 / ... Box G: 15:07 -> 16:00, about 55 min on the Max-Q.
