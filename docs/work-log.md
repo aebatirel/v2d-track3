@@ -3062,3 +3062,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     0.868 vs mocap.
   - eval 28 (rack + pot, evE): **0.694 ± 0.085**, chosen 10M
   - eval 8 (beige cup + pot, evR2, support fallback): **0.777 ± 0.065**, chosen 70M
+- **16:40-17:00 UTC results** (sim_vs_ref, 5 evaluations; summaries read from the store):
+  - eval 20 (cup + pitcher, evD): **0.287 ± 0.020**, chosen 40M
+  - eval 19 (sweeper + dust pan, evD): **0.647 ± 0.018**, chosen 10M. Its public twin ep18 reached 0.992 / 0.957.
+  - eval 15 (rack + spoon, evC): **0.901 ± 0.126** (0.65-0.97), chosen 70M
+  - eval 25 (boards, evR rerun, ILC kept iteration ≤ 3): **0.243 ± 0.009**, chosen 10M. Twin ep24 scored 0.241 vs
+    mocap.
+  - Boxes C, D, R and R2 are done and destroyed; A (1, 3, 5), B (6, 10) and E (32) are still training.
+  - 14 of 20 done; mean sim_vs_ref over those 14 is 0.692.
