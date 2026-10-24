@@ -2936,3 +2936,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - 25: 0.25 (twin ep24 0.241).
 - Live leaderboard (JSON generated 23 Oct 21:52 UTC, not refreshed since), Track 3 AUC: 0.930, 0.884, 0.831, 0.730,
   0.694. The estimate places us 4th.
+- **12:37 UTC evF: the eval 33 training FAILED, out of GPU memory.** Eval 35 and 36 were training at 40.4 GB each
+  (nvidia-smi: 80.8 of 96 GB) when eval 33 finished its grasp search and started a third training (CUDA OOM at graph
+  creation). The validation boxes had not hit this because their three trainings never overlapped.
+  - Fix in 842afc5: `glock_public.sh` lets at most TRAIN_SLOTS = 2 trainings share the GPU (atomic `mkdir` slots,
+    stub-tested); the others wait, and an out-of-memory training is retried twice. `REUSE_REF=1` trains an episode on
+    the reference already finished on the box.
+  - New `ops/box/followup_job.sh <commit> '<job>'` (16783cf): holds the box, waits for the running job to end,
+    checks the commit out (authenticated fetch as in onstart.sh), runs the follow-up, pushes to the store and
+    releases the hold, so the watchdog then saves and destroys.
+  - Queued on evF at 12:52 UTC: commit 16783cf, the same recipe plus `REUSE_REF=1 PAIRS="33:new:mck"`. The reference
+    (perception, grasp lock, ILC, search) was built at 38877d0, and the training code is unchanged. Expect about
+    35 min after evF's main job ends, about $0.9.
+  - The six remaining boxes will use 16783cf.
