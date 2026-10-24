@@ -3030,3 +3030,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   same recipe.
 - 15:39 UTC: the pack test box 57529120 was still pulling its image after 31 min, so it was destroyed (about
   $0.06). Replaced by **57532028** `20261024-packtest2-6ab78d0` (RTX A4000, Estonia, $0.18/h), same job.
+- 15:40 UTC evR: **the eval 30 reference built at 9c63c87.** The support fallback fired as designed: the table plane
+  (frac 0.331, tilt 1.41°) supports 1 of 2 objects; the sweeper was lifted 7.11 cm onto it and the rack snapped by
+  0.88 cm; qa_ref passed. Eval 25's reference also built (its failure was later, at ILC). The pack test (packtest2)
+  started its job at 15:41.
