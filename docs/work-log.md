@@ -2824,3 +2824,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   checks the 20-episode roster, runs submit_pack.sh.
 - Eval run plan for tonight (to state to the owner): 7 boxes x 3 eval episodes with the validated recipe, ~2.2 h each,
   ~$22 + ~$1.5 packing; after the validation (~$8) credit is ~$6, so a further ~$20-25 top-up is needed.
+- 12:15 UTC template-seeded search on ep39 (CPU, CMA-ES 8 worlds x 14 generations, window f22-312): the template start
+  scores 0.373 on the window and **no candidate beats it** in 14 generations (best of later generations 0.18-0.28);
+  the search from the copied right-hand grasp reached 0.81 (f22-122) / 0.865 (f22-312). Open loop, the 0.889 policy's
+  key pinch is not a good basin for the locked grasp (the policy kept correcting it in closed loop). **Templates stay
+  out of tonight's recipe** (`--templates` kept as an option).
+- GPU box ev2 (first numbers): the robust GPU search (256 worlds = 64 x 4) finished each hold in minutes: ep12 window
+  0.563 -> 0.772 (gen 17 / 20), ep27 0.791 -> 0.866 (gen 18 / 20).
