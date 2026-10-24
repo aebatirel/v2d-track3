@@ -2664,3 +2664,21 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Checkpoint choice: ep21's 30M scored 0.831 sim_vs_ref in its single curve evaluation, but its 5 repeats average
     0.27. A single evaluation per checkpoint is too noisy (the 23 Oct auto pipeline used the mean of repeats: corr
     0.997 with the true score) → for the eval run score each checkpoint with ≥ 3 evaluations.
+- 00:35 UTC 24 Oct, wave finals (registered AUC vs mocap, 5 evaluations; sim_vs_ref = mean of the same 5):
+  - **W2 seed 43** (approach 15, SF=1, REPLAN=1, library_v3):
+    - ep12 (cup + rack, eval 14) **0.854 ± 0.051** (min 0.775, max 0.930; sim_vs_ref 0.857), chosen 70M; curve
+      0.594 / 0.566 / 0.641 / 0.913 at 10 / 30 / 50 / 70M (single evaluations);
+    - ep27 (pot + rack, eval 28) **0.957 ± 0.008** (sim_vs_ref 0.972), chosen 70M; curve 0.844 / 0.762 / 0.966 / 0.974.
+    - Seed spread of the grasp-lock recipe on the easy twins: ep12 0.910 (s42 no fill) / 0.886 (s42 fill) / 0.854
+      (s43 fill + approach 15); ep27 0.972 / 0.963 / 0.957. Each step is within one std; the trend (−0.02 to −0.03
+      per added default) is consistent but not significant at n = 5. The fill and approach do no good on these
+      episodes and may cost a little.
+    - ep12's chosen 70M scored 0.913 in its single curve evaluation, 0.857 as the mean of 5: the single-evaluation
+      choice is optimistic by ~0.05 (as ep21).
+  - **E3** (approach 6, SF=1, REPLAN=1):
+    - ep2 (pot + lid, eval 1) **0.306 ± 0.115** (min 0.169, max 0.451; sim_vs_ref 0.326), chosen 30M; curve 0.367 /
+      0.384 / 0.204 / 0.234. The lid is ejected from the pot's collision hulls at the start (rest check 31 mm / 27°)
+      and the policy never recovers it.
+    - ep39 (dust pan, eval 38) **0.174 ± 0.003**, chosen 70M; curve flat 0.17: the dust pan is never lifted.
+  - All wave boxes self-destroyed after their pushes; only std39 (57437630) is up, at 150M / 250M (00:33 UTC),
+    100 % GPU. Credit $4.95: std39 needs ≈ $1.4 more; with the $3 reserve, no further rental tonight.
