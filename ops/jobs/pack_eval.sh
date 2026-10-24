@@ -10,6 +10,7 @@
 # same names; the policy must be evaluated on the reference it was trained on).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; F=/content/results/final_eval; mkdir -p $F
+pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed)
 for r in ${RUNS:?RUNS missing}; do bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pack_eval: pull-run $r FAILED" >> $J; exit 1; }; done
 python - $F/checkpoints.json /content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json << 'PYEOF' >> $J 2>&1 || exit 1
 import glob, json, os, sys
