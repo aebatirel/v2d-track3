@@ -2949,3 +2949,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     (perception, grasp lock, ILC, search) was built at 38877d0, and the training code is unchanged. Expect about
     35 min after evF's main job ends, about $0.9.
   - The six remaining boxes will use 16783cf.
+- **13:08 UTC evF results** (eval videos, no ground truth; sim_vs_ref over 5 official evaluations of the chosen
+  checkpoint):
+  - **eval 35 (spoon only): 0.9915 ± 0.0011**, chosen 70M; curve 0.952 / 0.970 / 0.982 / 0.973 / 0.988 / 0.988 / 0.991.
+    With this morning's recipe it was 0.978.
+  - **eval 36 (spoon only): 0.9935 ± 0.0005**, chosen 50M; curve 0.962 / 0.963 / 0.987 / 0.990 / 0.994 / 0.992 / 0.993.
+  - Grasp-search windows: 35 0.539 -> 0.929, 36 0.639 -> 0.906.
+  - Chosen checkpoints are at `runs/20261024-evF-38877d0/results/glock_public/ep{35,36}/best/policy.safetensors`.
+- 13:10 UTC the follow-up started on evF at 16783cf: `REUSE_REF` reused eval 33's reference, took training slot 1 and
+  is training.
