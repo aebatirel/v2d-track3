@@ -3286,3 +3286,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Gated variant, defined now before its replay: re-proposed masks are allowed only for an object whose choice
     without them has Grounding DINO agreement G < 0.2 (correct choices: 0.42–0.96 on the 20 eval frames; eval 30's
     sweeper 0.001); then the assignment is redone. Same acceptance rule: no regression on the public frames.
+- 22:50 UTC **gated re-proposal passes** (07eef1a; replay of the same dumps, `det_replay.Frame.choose_gated`, G < 0.2):
+  93 → **95** labelled public instances with **no regression** (fixed: ep23 f243 piece 1, ep31 f217 sweeper; ep31 f0
+  sweeper still right with a re-proposed mask); unlabelled ep26 f39: rack fixed by eye, pot unchanged. On the 20 eval
+  frame-0 dumps (GPU Grounding DINO) it changes **one choice: eval 30's sweeper**, from the watch strap (#57, score
+  0.198, G 0.001) to a re-proposed mask of the broom standing in the rack (#64, score 0.405, G 0.284; checked on the
+  rectified image). The other 19 eval episodes keep their detection, so they need no rerun. perc2 now applies the gate
+  (`assign()` run without re-proposed masks first, then with them for the objects whose choice has G < 0.2).
+- Dump box `20261024-reprop-88822b2`: 22:07–22:38 UTC (setup 9 min with DNS retries), ≈ $0.75, destroyed itself.
+- Box **57574634** `20261024-ev30rp-07eef1a` (RTX PRO 6000 WS, British Columbia, $1.35/h; estimate ≈ 1.5 h, ≈ $2.2):
+  eval 30 end to end with `DET_REPROP=1` (perception → reference → grasp lock + evolve → 70M fine-tune → curve →
+  5 evaluations), plus its public twin ep31 the same way in the second training slot (ground truth for this exact
+  configuration). Job: `export LIB=…/library_v3 SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5 DET_REPROP=1
+  GL_ARGS="<frozen>"; (SPLIT=eval PAIRS="30:new:mck" bash ops/jobs/glock_public.sh) & sleep 90; (SPLIT=public
+  PAIRS="31:new:mck" bash ops/jobs/glock_public.sh) & wait`.
