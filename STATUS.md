@@ -2,38 +2,27 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-25 ~02:20 TRT: night work, mid-way (credit $27.39 at 01:55 TRT; owner asleep)
-**Running**
-- `20261024-seed43-61101f5` (57567887, $1.48/h): seed 43 for evals 19, 3, 5, 15, 16, 28 on the same references.
-  Slower than estimated (≈ 90 min per training, two at a time): done ≈ 06:00–06:30 TRT, ≈ $8 in total. A seed
-  replaces seed 42 only if its 5-evaluation mean sim_vs_ref is higher (seed 42: 0.647 / 0.851 / 0.855 / 0.901 /
-  0.795 / 0.694).
-- `20261024-ev30rp-07eef1a` (57574634, $1.35/h): eval 30 rerun end to end with the fixed detection, plus its public
-  twin ep31 the same way (ground truth). ≈ 1.5 h.
+## 2026-10-25 ~02:25 TRT: night work, in progress (owner asleep; see the work log for every step)
+**Boxes running:** seed 43 for evals 19/3/5/15/16/28 (`20261024-seed43-61101f5`, done ≈ 05:00 TRT); eval 30 + its
+public twin ep31 with the fixed detection (`20261024-ev30rp-07eef1a`, ≈ 04:10 TRT); mesh v5 G1 re-tracking of 16
+public episodes (`20261025-g1-022fece`, ≈ 02:40 TRT). Then one pack with only the changed episodes re-evaluated, and
+the upload.
 
-**Found and fixed tonight**
-- Grounding DINO was never installed on the 24 Oct eval boxes, so the validated grounding term was off. Replayed on
-  CPU: it would have changed no eval detection. Fixed for future runs; nothing to rerun.
-- **Eval 30**: the sweeper had no candidate mask (it stands inside the rack's mask), so the detector took the white
-  watch strap. New gated re-proposal: Grounding DINO boxes that no mask covers are turned into SAM2 masks, used only
-  for an object whose normal choice disagrees with Grounding DINO. Public test against ground truth: 93 → 95 of 116,
-  no regression (the ungated version broke 2 and was rejected by the rule written beforehand). On the 20 eval
-  frames it changes only eval 30, to the broom in the rack.
-- Packer: an episode whose checkpoint is unchanged keeps its earlier official rollout (sha256 rule), so unchanged
-  bimodal episodes are not re-rolled.
+**Results so far**
+- Grounding DINO was missing on the eval boxes; replay shows it changed no eval detection. Fixed for later runs.
+- Eval 30: gated re-proposal (public: 93 → 95 of 116 instances, no regression) picks the broom in the rack; the public
+  twin ep31 with the same rule: perception AUC 0.881 vs ground truth.
+- Seed 43: eval 3 0.929 (seed 42: 0.851, bad mode gone); eval 19 0.653 (0.647). Both picked by the pre-set rule.
+- Eval 1 start-overlap: not the cause (lid grasp is); no GPU spent beyond 8 min. Spoon template length: fine.
 
-**Checked and not pursued**
-- Eval 1 start overlap (lid inside the pot): an earlier audit already showed it costs ep2 only 0.042; the failure is
-  the lid grasp. The test box was cancelled after 8 min. Needs a lid-grasp fix and thinner pot walls (v5).
-- Eval 10 beige cup: the mesh is poor overall (one episode, 42 % unknown), not just open; v5 item.
-- Spoon template length: matches the observed spoon within ≈ 0.5 cm in all 10 episodes, so that is not the cause.
-- Wrist signal for tracking (evals 33, 14): no clean rule yet, and no public twin to validate it.
+**Mesh v5 port (owner directive), CPU, each module verified against the v5 study's own outputs:** decimation,
+collision pieces (exact), provenance + deny-list (tests), post-pass (exact), gates X/C/G6 (exact), evidence fusion
+(bit-identical grid), support rule (reproduces the hand-made v3 sweeper fix automatically), orchestration
+`ep_mesh.py` + `ops/build_library.sh`. Not used by any submission. Spoon branch not ported yet.
 
-**v5 progress (owner directive)**: `pipeline/mesh_decimate.py` ported and tested (10/10 watertight, topology kept).
-The next v5 steps need owner decision O1 (provenance) and the GPU go-ahead in `docs/mesh-v5-spec-draft.md`.
-
-**Next tonight**: when both boxes finish, pack (eval 30 rerun + seed winners, other episodes keep their rollouts)
-and upload all six boards if the packed rollouts hold up. Estimated total tonight ≈ $13; ≈ $14–15 left for v5.
+**Owner decisions needed:** O1 (accept library_v2-seeded tracks, tier P1) and O5 (spoon fit questions) in
+`docs/mesh-v5-spec-draft.md` §13; two [H] deviations in the rest detector (work log, recon_mesh port entry); repo
+sharing with `Nvidia-V2D-Challenge`; the organiser email.
 
 ## 2026-10-24 ~22:55 TRT: night work (owner asleep, "do as much as you can with the vast money", credit $29.98)
 - Running: `20261024-seed43-61101f5` (57567887): a second seed for evals 19, 3, 5, 15, 16 and 28 on the same
