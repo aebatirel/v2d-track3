@@ -32,7 +32,9 @@
 #      (no ground truth), then NREP official evaluations of it, each scored sim_vs_ref + registered AUC vs mocap.
 # SPLIT=eval (2026-10-24): eval episodes, EP:new:mck only; the reference is built from the eval videos (no ground truth
 # exists), the policies are scored against our reference only (pipeline/qa.py sim_vs_ref) and nothing is scored vs mocap.
-# Episodes listed together run concurrently (two trainings share the GPU).
+# Episodes listed together run concurrently; at most TRAIN_SLOTS (2) trainings share the GPU at a time, the others wait,
+# and a training that still runs out of GPU memory is retried twice. REUSE_REF=1 (2026-10-24) skips the reference stages
+# of an episode whose reference is finished on this box (e.g. its training failed) and trains on it.
 #   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> \
 #     'PAIRS="24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh'
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
@@ -67,6 +69,16 @@ for r in sorted({os.path.dirname(os.path.dirname(p)) for p in t.column('object_u
         print('MISSING assets under', r); sys.exit(1)
 EOF
 }
+
+train_slot() {  # take one of TRAIN_SLOTS GPU training slots and print its number. One FlashSAC training (4,096 worlds)
+                # peaks at 40.4 GB; a third one beside two others ran out of memory on the 96 GB card (evF, 2026-10-24)
+  local s
+  while :; do
+    for s in $(seq 1 ${TRAIN_SLOTS:-2}); do mkdir /content/train_slot_$s 2> /dev/null && { echo $s; return; }; done
+    sleep 30
+  done
+}
+rmdir /content/train_slot_* 2> /dev/null                         # stale slots of a job stopped on this box
 
 evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluations, each scored (as in hard_ab.sh)
   local ck=$1 d=$2 ep=$3 E6 i pids=()
@@ -103,8 +115,12 @@ EOF
 }
 
 one() {
-  local ep=$1 run=$2 base=$3 R0 P0 hive G RD N RUN LG=/content/glock_ep$1.log ck
-  if [ "$run" = new ]; then                                        # end to end from the raw episode (perception on)
+  local ep=$1 run=$2 base=$3 R0 P0 hive G RD N RUN LG=/content/glock_ep$1.log ck reuse=0
+  if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
+      && [ -f $O/ep$ep/rest_check.json ]; then                     # finish an episode whose training failed on this box:
+    reuse=1                                                        # keep its finished reference (grasp lock, ILC, search)
+  fi
+  if [ "$run" = new ] && [ $reuse = 0 ]; then                      # end to end from the raw episode (perception on)
     ( export VARIANT=$base MKREF_ARGS="--wrist_cost 3.0" CONTACT_RETARGET=1 CR_ARGS="--rest_settle 1" STEPS=0 \
         STOP_AFTER=reference SPLIT=$SPLIT PERC=perc2; bash $P/pipeline_ep.sh $ep ) > /content/ref_ep$ep.log 2>&1 \
       || { log "glock ep$ep: reference build FAILED ($(tail -3 /content/ref_ep$ep.log | tr '\n' ' ' | cut -c1-300))" >> $J; return 1; }
@@ -120,9 +136,10 @@ one() {
   hive=$(dirname ${P0#$R0/}); G=/content/refs/glock/ep$ep; RD=/content/refs/glockt/ep$ep; RUN=/content/runs/glock/ep$ep-s$SEED
   local ts_=$(date +%s)                                           # a pulled run may hold old checkpoints / curve scores for this
   [ -d $RUN ] && [ -n "$(ls -A $RUN 2>/dev/null)" ] && mv $RUN $RUN.pulled_$ts_   # episode (ev3 2026-10-24: ckpt_curve skips scored
-  [ -d $O/ep$ep ] && [ -n "$(ls -A $O/ep$ep 2>/dev/null)" ] && mv $O/ep$ep $O/ep$ep.pulled_$ts_   # checkpoints): keep them aside
+  [ $reuse = 0 ] && [ -d $O/ep$ep ] && [ -n "$(ls -A $O/ep$ep 2>/dev/null)" ] && mv $O/ep$ep $O/ep$ep.pulled_$ts_   # checkpoints): keep them aside
   mkdir -p $G/$hive $RD/$hive $RUN $O/ep$ep; cp -r $R0/reconstructed_stage $G/; cp -r $R0/reconstructed_stage $RD/
-  log "glock ep$ep: base $base ($P0)" >> $J
+  log "glock ep$ep: base $base ($P0)$([ $reuse = 1 ] && echo "; REUSE_REF: training on this box's finished reference $RD/$hive/ref_gl_ilc.parquet")" >> $J
+  if [ $reuse = 0 ]; then                                          # reference stages (skipped with REUSE_REF)
   if [ "$SF" = 1 ]; then                                           # support-consistent meshes; the reference then names them
     local SFT=/content/refs/sf/ep$ep; mkdir -p $SFT/$hive; cp -r $R0/reconstructed_stage $SFT/
     python $P/support_fill.py $P0 $(ls $R0/reconstructed_stage/*.usda | head -1) $SFT/assets $SFT/$hive/ref_sf.parquet > $LG.sf 2>&1 \
@@ -185,13 +202,24 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
     done
   fi
   log "glock ep$ep: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
-  ( cd $FC && env ${TRAIN_ENV:-} MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
-      embodiment=sharpa_hands_mid "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \
-      output_dir=$RUN training.total_environment_steps=$STEPS $TRAIN_ARGS ) >> $RUN/train.log 2>&1 &
-  local tp=$! esp= rc
-  if [ "$ES" = 1 ]; then J=$J REPO_DIR=$REPO_DIR bash $T/early_stop.sh $RUN $O/ep$ep/curve $ep $tp & esp=$!; fi
-  wait $tp; rc=$?
-  [ -n "$esp" ] && wait $esp
+  fi
+  local tp esp rc slot tries=0
+  while :; do
+    slot=$(train_slot); esp=
+    ( cd $FC && env ${TRAIN_ENV:-} MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/train_flash_sac.py experiment=sharpa_flash_sac \
+        embodiment=sharpa_hands_mid "task.parquet='$RD/$hive'" task.motion_speed=1.0 reset.seed=$SEED logging.mode=disabled \
+        output_dir=$RUN training.total_environment_steps=$STEPS $TRAIN_ARGS ) >> $RUN/train.log 2>&1 &
+    tp=$!
+    if [ "$ES" = 1 ]; then J=$J REPO_DIR=$REPO_DIR bash $T/early_stop.sh $RUN $O/ep$ep/curve $ep $tp & esp=$!; fi
+    wait $tp; rc=$?
+    [ -n "$esp" ] && wait $esp
+    rmdir /content/train_slot_$slot
+    if [ $rc -ne 0 ] && [ $tries -lt 2 ] && grep -aq 'out of memory' $RUN/train.log; then   # another process took the memory
+      tries=$((tries + 1)); mv $RUN $RUN.oom$tries; mkdir -p $RUN
+      log "glock ep$ep: training ran out of GPU memory; retry $tries after 60 s" >> $J; sleep 60; continue
+    fi
+    break
+  done
   if [ $rc -ne 0 ] && [ ! -f $RUN/EARLY_STOPPED ]; then
     log "glock ep$ep: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1
   fi
