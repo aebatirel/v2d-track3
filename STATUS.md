@@ -2,6 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~22:55 TRT: night work (owner asleep, "do as much as you can with the vast money", credit $29.98)
+- Running: `20261024-seed43-61101f5` (57567887): a second seed for evals 19, 3, 5, 15, 16 and 28 on the same
+  references. The better seed is chosen by mean sim_vs_ref.
+- Next: CPU fixes (detection guard, start-overlap rule, capped beige cup, spoon diagnosis), then public validation,
+  then a rerun of evals 1, 8, 10 and 30, then a second pack and Kaggle upload. See the work log for every step.
+
 ## 2026-10-24 ~22:35 TRT: eval videos (20) sent; low-score analysis `docs/analysis/eval-20261024-low-scores.md`
 - Causes, from the diagnostics and the videos: (A) broken meshes: the pitcher is a twisted shell, the beige cup an
   open shell, the boards lack their slots (evals 20, 10, 25); (B) perception: objects tracked onto the person's left

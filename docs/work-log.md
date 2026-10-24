@@ -3200,3 +3200,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Eval 1 check (CPU, our reference and library_v3 meshes, no GT): **the lid mesh starts 7.6 mm inside the pot mesh**
   (243 of 3,000 lid surface samples inside the pot solid at f0; 7.4 mm at f20; 6.6 mm at f37). This is consistent
   with the video, where the lid is never lifted. Eval 1 now counts as mesh overlap plus grasp.
+
+### 24 Oct ~19:55 UTC — owner asleep: "do as much as you can with the money inside the vast account" (credit $29.98)
+- Night plan, keeping estimate + $3 ≤ credit:
+  1. GPU: second training seed (43) for the chaotic episodes on their existing references (REUSE_REF), keeping the
+     better seed per episode by mean sim_vs_ref of 5 evaluations (no ground truth);
+  2. CPU: frame-0 detection guard (replayed on the saved detections), the start-overlap rule, a capped beige cup,
+     and the spoon depth diagnosis;
+  3. GPU: public-twin validation of those fixes against ground truth, rerun of the affected eval episodes, then a
+     second pack and Kaggle upload if it holds up.
+- Code 61101f5: in REUSE_REF mode `glock_public.sh` moves the earlier `curve/` and `best/` aside, so scores are not
+  reused across seeds. `pack_eval.sh PICK="EP:RUN ..."` swaps in another run's chosen checkpoint trained on the same
+  reference.
+- **57567887** `20261024-seed43-61101f5` (RTX PRO 6000): SEED=43 REUSE_REF=1 on evals 19, 3, 5, 15, 16 and 28, with
+  references from `20261024-pack-31ef267`. Estimate ≈ 2.5-3 h, ≈ $4.5.
