@@ -3276,3 +3276,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   deleted. The prototype code of both is committed under
   `docs/research/work/interaction-meshes-2026-10-22/prototypes/`; `scratchpad/interact/v5/` (the v5 evidence round)
   is kept.
+- 22:40 UTC **re-proposal public test (dumps `20261024-reprop-88822b2`, 20 public episodes × 4 frames, scored against
+  the mocap labels; diagnostic only)**: shipped rule without re-proposals 93 / 116 labelled instances, with 95.
+  Fixed: ep31 f217 sweeper and rack, ep23 f243 piece 1 (was the person's arm). Broken: ep23 f243 piece 2 (the two
+  near-identical boards). Unlabelled frames (label fit residual > 2 cm), judged by eye: ep26 f0 rack fixed (was the
+  table top); ep26 f39 rack fixed but the pot then takes a mask that is mostly rack. ep31 f0 (the sweeper standing in
+  the rack, as in eval 30) stays right with a better mask.
+  - **By the rule written before the test ("no regression allowed"), plain re-proposal fails** (2 regressions).
+  - Gated variant, defined now before its replay: re-proposed masks are allowed only for an object whose choice
+    without them has Grounding DINO agreement G < 0.2 (correct choices: 0.42–0.96 on the 20 eval frames; eval 30's
+    sweeper 0.001); then the assignment is redone. Same acceptance rule: no regression on the public frames.
