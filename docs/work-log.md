@@ -2807,3 +2807,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     GPU run of the eval path: `SPLIT=eval PAIRS="38:new:mck"` (eval 38 dust pan from the eval videos, GT-free).
   - Estimate ~3 h each, ~$8 total. Baselines (grasp-lock, 5 evaluations): ep39 0.174, ep18 0.302, ep24 0.202, ep12
     0.910 / 0.886, ep27 0.972 / 0.963.
+- 11:45 UTC the 0.889 grip as a template (`tools/extract_grasp_templates.py` -> `meshes/grasp_templates/rl_ep18_s43.json`,
+  from `runs/20261023-kf18-a674fd7/results/old889/policy_trace.npz`): wrist = the C_MC body (0.0 mm / 0.0 deg vs the
+  reference wrist at f0), finger angles recovered from link poses (0.0 deg vs the reference columns at f0).
+  - mini_dust_pan, left, f20 (pan moved 1.2 cm / 7.8 deg): thumb CMC 70 / MCP 33 / IP 4, index MCP 48 / PIP 50,
+    middle MCP 65 / PIP 37, ring MCP 86 with PIP 4 (the key pinch of the spec);
+  - mini_sweeper, right, f58: thumb CMC 86 / MCP -15 (hyperextended), finger MCPs 46-52 (neck clamp).
+  - `grasp_lock.py --templates FILE` (+ `--template_squeeze`, default 0.2): a hold on an object with a template by the
+    template's hand uses its object-frame wrist pose and finger posture; with --single_hand that hand carries it.
+  - ep39 CPU zero action with the template (left hand carries, hold from the onset f41): **0.243** (copied right-hand
+    grasp 0.164; evolved right-hand grasp 0.877). Open loop the policy's grip alone does not carry the pan; a CMA-ES run
+    from the template start is running to see if it ends better than the evolved copy.
+- `glock_public.sh`: the chosen checkpoint is copied to `results/glock_public/ep<N>/best/policy.safetensors` (the store
+  push keeps only every 10th + the newest checkpoint; a chosen 30M one would be lost); patched on box ev2 too, before
+  its eval-38 run. `ops/jobs/pack_eval.sh`: pulls the eval runs, builds the kit checkpoints JSON from those files,
+  checks the 20-episode roster, runs submit_pack.sh.
+- Eval run plan for tonight (to state to the owner): 7 boxes x 3 eval episodes with the validated recipe, ~2.2 h each,
+  ~$22 + ~$1.5 packing; after the validation (~$8) credit is ~$6, so a further ~$20-25 top-up is needed.
