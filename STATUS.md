@@ -2,6 +2,13 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-24 ~14:15 TRT: GPU validation of the onset anchor + robust evolutionary grasp search running
+- Boxes 57498018 (`20261024-ev3-2c1e4dd`: ep39, ep18, ep24) and 57498007 (`20261024-ev2-2c1e4dd`: ep12, ep27, then eval
+  38 from the eval videos). ~3 h, ~$8; credit $14.08 before. Owner wants the 20-episode eval run tonight (~$25-30;
+  needs ~$20 more after this).
+- CPU results so far (zero action, no policy): ep39 0.176 -> 0.877 (robust at mm level), ep18 0.135 -> 0.352 (chaotic;
+  needs the robust search), ep24 in progress. Research reports in `docs/research/grasp/`.
+
 ## 2026-10-24 ~10:15 TRT: owner chose option 2 — one recipe (grasp-lock) with designed grasps; research first
 - Eval run on hold. Root-cause audit of every failed public episode + in-depth research (hand anatomy and
   biomechanics, evolution of human grasping, robot thin-object / tool grasping, evolutionary algorithms vs RL,

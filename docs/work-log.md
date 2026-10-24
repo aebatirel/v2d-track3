@@ -2794,3 +2794,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   fitness = their mean (DexEvolve's perturbation idea), so the search prefers wide-basin grasps. On 8 CPU worlds that is
   2 candidates per generation, too few: the robust search belongs on the GPU (`glock_public.sh EVOLVE=1`, defaults
   EV_POP 256 worlds = 64 candidates x EV_ROBUST 4, EV_JITTER 0.005).
+
+### 24 Oct ~11:15 UTC — owner topped up $10 ("do the fix ... analyze the 0.889 pinch ... reliable recipe, 20 eval tonight")
+- Credit $14.08 before. Cost note given to the owner: the 20-episode eval run is ~$25-30 (10 boxes x ~2 h x ~$1.45);
+  after this validation (~$8) credit is ~$6, so the eval run needs another ~$20.
+- `--squeeze_profile anatomic` (grasp_lock, MCP 1 : PIP 0.55 : DIP 0.25, thumb CMC 0.6 / IP 0.4; biomechanics report):
+  ep39 zero action 0.166 vs 0.164 uniform (the copied grasp touches nothing there). Left OFF in the validation.
+- **GPU validation** (code 2c1e4dd; LIB library_v3, SF=1, REPLAN=0, EVOLVE=1 with 256 worlds = 64 candidates x 4 jittered
+  copies, 20 generations per hold, CURVE_REP=3, NREP=5, seed 42, GL_ARGS + `--approach_cm 15 --onset_anchor 1`):
+  - **57498018** Utah RTX PRO 6000 S $1.51/h `20261024-ev3-2c1e4dd`: ep39 (e3 mck), ep18 (fdr43 mckfid), ep24 (auto24 mcs);
+  - **57498007** Utah RTX PRO 6000 WS $1.39/h `20261024-ev2-2c1e4dd`: ep12 + ep27 regression (auto18), then the first
+    GPU run of the eval path: `SPLIT=eval PAIRS="38:new:mck"` (eval 38 dust pan from the eval videos, GT-free).
+  - Estimate ~3 h each, ~$8 total. Baselines (grasp-lock, 5 evaluations): ep39 0.174, ep18 0.302, ep24 0.202, ep12
+    0.910 / 0.886, ep27 0.972 / 0.963.
