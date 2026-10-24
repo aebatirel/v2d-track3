@@ -2848,3 +2848,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     0.854-0.910.
   - eval 38 (dust pan, eval videos, SPLIT=eval): reference built on GPU (perception 94 s, qa_ref pass) — the eval path
     works; grasp search and fine-tune running.
+- **11:23 UTC (box time) ep18 (sweeper + dust pan, eval 19): 0.957 ± 0.002** (0.954-0.960; sim_vs_ref 0.992), chosen 70M;
+  curve 0.482 / 0.492 / 0.536 / 0.854 / 0.740 / 0.979 / 0.990 at 10-70M. Search windows: pan 0.280 -> 0.497, sweeper
+  0.247 -> 0.579. Before: grasp lock 0.22-0.41; standard RL 0.776 / 0.889 (best ever). The zero-action gate of the
+  EA-vs-RL report (< 0.36 zero action -> <= 0.43 fine-tuned, 10/10 on old runs) does not hold here: hold windows at
+  0.50-0.58 were finished by the fine-tune; keep it as a warning, not a gate.
