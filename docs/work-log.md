@@ -3403,3 +3403,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   and the boards (ep23 + ep24) are fused partly or wholly along wrong tracks. The GT-free gates cannot see this
   (X uses M0 of the same build); E2 (CD-O vs scans, diagnostic) will show it, and E2b is the pre-registered GT-free
   remedy. Files: scratchpad `g1score/ep*.json` (not committed; numbers above).
+- 23:49 UTC seed 43, **eval 5: 0.9662** (std 0.002) vs seed 42's 0.855: seed 43 picked by the pre-set rule (fourth
+  winner: evals 3, 19, 15, 5). Note: the first pack's single official rollout of eval 5 (seed 42) happened to score
+  0.974; the rule picks by the 5-evaluation mean, so eval 5 is re-drawn with seed 43 (expected ≈ 0.966).
+- Eval frame-0 masks (our own outputs, no ground truth) of the three eval episodes whose public twins failed in G1:
+  eval 1 assigns the pot to its handle and the lid to the whole pot; eval 25 gives board 1 a few pixels only; eval 10
+  looks right. The 24 Oct video review (`docs/analysis/eval-20261024-low-scores.md`) had judged the tracked outlines
+  of 1, 10 and 25 good over the whole episode (the tracker recovers from the frame-0 masks), so these episodes stay
+  classed as mesh / grasp failures. No eval decision is taken from this; the public failures (ep0 lid, ep11 cups,
+  ep23 boards) go to the detection backlog, to be fixed and validated on public dumps only.
+- 23:54 UTC **library box fix (no restart):** `build_library.sh` wrote to `/content/library_v5`, which neither
+  `store.sh push-run` uploads nor the stall watchdog watches, so (a) the result would have been lost at self-destroy
+  and (b) a pass 0 longer than 30 min without a job.log line could have triggered the stall kill. On the box:
+  `/content/lcopy2.sh` (copy of scratchpad `libcopy.sh`) rsyncs `/content/library_v5` → `/content/results/library_v5`
+  every 90 s (grids excluded until the end), refreshes a rolling 40-min HOLD (so the box is freed 40 min after the
+  job if the copier dies), and after the job copies everything (grids included), drops the hold and self-destroys
+  (push first). Repo fix for later runs: output under `/content/results/library_v5` (9faeabe).
