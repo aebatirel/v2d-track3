@@ -3015,3 +3015,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     object_z_shift and summary `support_fallback_lift_cm`. Episodes that pass the check are unchanged.
 - **57531103** `20261024-evR-9c63c87` RTX PRO 6000 S, France, $1.55/h: evals 25 and 30 rerun from the raw videos at
   9c63c87, same recipe (about 1.5 h, about $2.5). Pack order: evR after evD / evE.
+- **15:31 UTC evB eval 8 (beige cup + pot): the same mkref support failure.** The floor was the second candidate this
+  time; the table candidate was first, at frac 0.44 with the lowest object 7.03 cm inside it. Frame-0 bottoms above
+  the floor plane: cup 53.93, pot 60.39. In eval 30 they were sweeper 53.91, rack 59.29.
+  - In both episodes the smaller object (beige cup, sweeper) starts about 7 cm under the table, and in eval 8 its
+    detection score is low (0.22, vs 0.60 for the pot). The cup sits 10 cm deeper along the camera ray than the pot,
+    at about the same image point.
+  - Hypothesis, not tested: the small object starts inside the larger one (the cup in the pot, the sweeper in the
+    rack), and its depth placement lands too deep.
+  - The 9c63c87 fallback lifts it onto the table plane; the later stages (contact retarget with rest settling,
+    support fill) then settle the start.
+  - Evals 6, 28 and 32 passed this step.
+- **57531603** `20261024-evR2-9c63c87` RTX PRO 6000 Max-Q, Switzerland, $1.62/h: eval 8 rerun from the raw video,
+  same recipe.
