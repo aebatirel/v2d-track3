@@ -5,6 +5,9 @@
 # truth), checks all 20 roster episodes are present, then runs ops/jobs/submit_pack.sh (pristine evaluator, our
 # library meshes, kit packer). Uploading stays with the owner.
 # Usage: RUNS="20261024-evA-xxxxxxx 20261024-evB-xxxxxxx ..." COMMIT_URL=https://github.com/<o>/<r>/commit/<sha> bash ops/jobs/pack_eval.sh
+# Order matters: store.sh pull-run never overwrites (cp -rn), so the FIRST run listed wins for a file path. Put the
+# runs that redid an episode first (2026-10-24: evR redid eval 25, whose failed evD attempt left references with the
+# same names; the policy must be evaluated on the reference it was trained on).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; F=/content/results/final_eval; mkdir -p $F
 for r in ${RUNS:?RUNS missing}; do bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pack_eval: pull-run $r FAILED" >> $J; exit 1; }; done
