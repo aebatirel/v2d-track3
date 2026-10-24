@@ -3383,3 +3383,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   T, X 0 flips, ADD median 3.0 mm vs M0); support rule found 3 rests (ep18 f95–121 and f124–177, ep39 f0–17), one
   cluster, already stable (margin 5.4 mm, 30 cm²) → unchanged; final 4096 faces, watertight, Euler kept; 32 pieces,
   **union 1.32 × solid, above the §8.3 acceptance of 1.25** (thin plate at the 32-piece cap; E6 decides, e.g. 64).
+- 23:42 UTC **G1 done**: all 16 public episodes tracked with library_v2 templates + hands (rc 0 each, ≈ 2–2.5 min per
+  episode, 43 min box total ≈ $1.1, self-destroyed); outputs in `runs/20261025-g1-022fece/{perc2m,refs/perc2m}/ep*`.
+  The registered score is computed later on CPU (`fast_simplification` was missing on the box).
+- 23:37 UTC seed 43, **eval 15: 0.9411** (std 0.030, min 0.899) vs seed 42's 0.901 (std 0.126, min 0.650): seed 43
+  picked (third winner after evals 3 and 19).
+- 23:42 UTC **library v5 build launched**: box **57580685** `20261025-lib5-c476e68` (48 cores, 252 GB, $1.44/h; estimate
+  ≈ 2 h, ≈ $3), `G1RUN=20261025-g1-022fece PAR=10 bash ops/build_library.sh` (G1 + 21 Oct perc2m tracks, all 10 objects,
+  pass 0 then the full chain per object in parallel). Output tier P1; not used by any submission before O1 and G2.
+  Credit $24.02 before; committed ≈ $7 (seed 43, eval 30, pack) + this ≈ $3.
