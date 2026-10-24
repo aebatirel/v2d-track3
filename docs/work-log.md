@@ -2739,3 +2739,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   reproduces the search). The pan is lifted 17 cm and carried within 1-4 cm to f220, dropped at f~235 (the reference
   turns it ~90 deg and lowers it fast). Best edit: wrist (0.8, 3.2, -2.6) cm in the pan frame, roll 0.28 rad, finger
   offsets up to +-0.6 rad (thumb joints among the largest). Round 2 running: full window f22-312, from this best.
+- 08:45 UTC **ep39 CMA-ES round 2** (full hold window f22-312, 8 worlds x 12 generations, from the round-1 best; ~45-75 s
+  per generation on the shared CPUs; the first attempt with 16 worlds was OOM-killed together with a research agent's
+  13 GB process, memory of this tool is ~0.66 GB): best window AUC **0.865** (unedited 0.108) at generation 3; baked
+  and replayed alone with zero action over the whole episode: **sim_vs_ref 0.877** (round 1 0.530, onset anchor
+  alone 0.164, old grasp lock 0.176 = floor). For scale: the standard RL policy (250M, ~1.6 GPU-h) tracked our
+  reference at sim_vs_ref 0.826 (registered AUC 0.802). Best edit: wrist (1.3, 2.9, -4.2) cm in the pan frame, rpy
+  (0.28, 0.19, 0.06) rad, 22 finger offsets. CPU physics; still to confirm on GPU (the evaluator runs CUDA) and after
+  an RL fine-tune.
+- Research audits (workflow, written so far): plates (`docs/research/grasp/audit-plates-ep18-ep39.md`): ep39's primary
+  cause = `--single_hand 1` kept the right hand (most hold frames) and deleted the human's LEFT-hand pick-up (f36-103),
+  so no hand was on the pan while the reference lifted it; secondary = the snapped right grasp touches nothing (no
+  thumb). ep18 pan = grasp failure (no opposition; the +0.4 rad squeeze curls the distal links and the thumb off the
+  thin plate; closing from below the table plane flicks it); ep18 sweeper = hold timing (human contacts only from
+  f60, the brush moves from f38). Boards / rack (`audit-boards-ep24-sweeper-rack-ep31.md`): ep24 = grasp (neither
+  board acquired; a designed board clamp, thumb on top, fingers under, is possible because the hand passes through the
+  table in this simulator; counterfactual 0.803); ep31 = NOT a grasp problem (first-step ejection of the sweeper from
+  the rack hulls, 11.3 deg; fixing that frame alone 0.840).
+- `glock_public.sh EVOLVE=1` (EV_POP, EV_GENS): the search per hold on the GPU box, baked before the zero replay and
+  training; with `--onset_anchor 1` in GL_ARGS.

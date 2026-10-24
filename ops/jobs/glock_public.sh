@@ -18,6 +18,10 @@
 #      With REPLAN=N (> 0) the holds are then re-planned against the simulated world up to N times (grasp_lock.py
 #      --sim_trace: an object that is off its reference before its grasp is grasped where it lies and carried back);
 #      a re-planned version is kept only if its zero-action sim_vs_ref is at least the previous one (no ground truth);
+#      EVOLVE=1 (2026-10-24) first refines each hold's grasp by an evolutionary search in the simulator (tools/grasp_evolve.py:
+#      CMA-ES over a wrist offset + rotation + finger offsets, EV_POP worlds per generation, EV_GENS generations, fitness =
+#      ADD AUC vs OUR reference over the hold window; the best edit is baked in). Put --onset_anchor 1 in GL_ARGS to lock
+#      each hold from the object's motion onset (ep39 / ep18 / ep24: the object moves before the human hand track has it);
 #   5. RL fine-tune: embodiment=sharpa_hands_mid, FDR rewards + VOC fix (lib.sh fc_patches), STEPS (70M), SEED;
 #      FC_DROP_START=p adds recovery training (ops/box/patch_flashchord_drop.py: drop starts, training process only);
 #      ES=1: early stopping (tools/early_stop.sh; STEPS is then the cap): checkpoints scored as they appear (ES_N
@@ -37,7 +41,7 @@ SPLIT=${SPLIT:-public}; SETTLE=${SETTLE:-0}; SF=${SF:-1}; REPLAN=${REPLAN:-0}; E
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
-log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
+log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, EVOLVE ${EVOLVE:-0} (pop ${EV_POP:-64}, gens ${EV_GENS:-20}), DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 python $P/make_assets.py $MESH_DIR $ASSETS >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
@@ -135,6 +139,16 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
     || { log "glock ep$ep: grasp_lock FAILED" >> $J; return 1; }
   ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters 4 --device cuda ) >> $LG 2>&1 \
     || { log "glock ep$ep: wrist_ilc FAILED" >> $J; return 1; }
+  if [ "${EVOLVE:-0}" = 1 ]; then                                  # evolutionary grasp refinement, one hold at a time
+    local EV=$O/ep$ep/evolve np_ k; mkdir -p $EV; cp $G/$hive/ref_gl_ilc.parquet $EV/ref_before_evolve.parquet
+    np_=$(python -c "import json; print(len(json.load(open('$G/$hive/ref_gl_grasp_lock.json'))['phases']))")
+    for k in $(seq 0 $((np_ - 1))); do
+      ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/grasp_evolve.py $G/$hive/ref_gl_ilc.parquet $G/$hive/ref_gl_grasp_lock.json \
+          $EV/phase$k.json --phase $k --all_objects --pop ${EV_POP:-64} --gens ${EV_GENS:-20} --sigma_pos 0.03 --sigma_fin 0.3 \
+          --bake $EV/phase$k.parquet ) > $EV/phase$k.log 2>&1 && [ -s $EV/phase$k.parquet ] && cp $EV/phase$k.parquet $G/$hive/ref_gl_ilc.parquet
+      log "glock ep$ep: evolve phase $k: $(python -c "import json; d=json.load(open('$EV/phase$k.json')); g=d['generations']; print('window', d['window'], 'unedited', g[0]['unedited'], 'best', d['best']['fit'], 'at gen', d['best']['gen'], 'of', len(g))" 2>&1 | tail -1)" >> $J
+    done
+  fi
   cp $G/$hive/ref_gl_ilc.parquet $RD/$hive/
   N=$(python -c "import numpy as np, pyarrow.parquet as pq; print(len(np.array(pq.read_table('$P0').column('robot_left_wrist_position')[0].as_py()).reshape(-1, 3)))")
   ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
