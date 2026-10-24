@@ -31,6 +31,7 @@ p.add_argument('--sigma_fin', type=float, default=0.15); p.add_argument('--no_fi
 p.add_argument('--pre', type=int, default=6); p.add_argument('--post', type=int, default=20); p.add_argument('--ramp', type=int, default=8)
 p.add_argument('--all_objects', action='store_true'); p.add_argument('--bake', default='')
 p.add_argument('--max_steps', type=int, default=0, help='debug: cap the rollout length')
+p.add_argument('--keep_env', action='store_true', help='reuse one environment for all generations (faster, not reproducible)')
 p.add_argument('--init', default='', help="a previous OUT.json: start from its best theta (the search mean / the GA's first parent)")
 p.add_argument('--repeat_best', default='', help="a previous OUT.json: evaluate its best theta in worlds 1..pop-1 (world 0 unedited) "
                "and exit (repeatability of the fitness across worlds)")
@@ -76,9 +77,14 @@ env_config = dataclasses.replace(instantiate_typed(cfg.env, RLEnvConfig), auto_r
 emb = instantiate_typed(cfg.embodiment, Embodiment); col = instantiate_typed(cfg.collision, CollisionPolicy)
 t_setup = time.time()
 dev = wp.get_device(os.environ.get('DEV', 'cuda')); wp.set_device(dev)
-st = setup_scene(parquet=a.ref, control_fps=env_config.sim.fps, motion_speed=1.0, embodiment=emb, collision=col,
-                 world_count=W, include_support=True, decompose_objects=True)
-env = RLEnv(st.scene, st.reference, config=env_config)
+def build_env():  # 2026-10-24: a fresh environment per generation; state that survives env.reset across generations made the
+    # search's scores irreproducible (ep18: an edit scored 0.584 in generation 7 and 0.374 in any fresh process)
+    st_ = setup_scene(parquet=a.ref, control_fps=env_config.sim.fps, motion_speed=1.0, embodiment=emb, collision=col,
+                      world_count=W, include_support=True, decompose_objects=True)
+    return st_, RLEnv(st_.scene, st_.reference, config=env_config)
+
+
+st, env = build_env()
 labels = list(getattr(st.scene.model, 'body_label', None) or getattr(st.scene.model, 'body_key', []))
 nb = len(labels) // W
 ob = [labels.index(f'track3_{n}/object') for n in names]                  # world 0 indices (labels repeat per world)
@@ -159,14 +165,25 @@ def clear_warmstart():  # each candidate starts like a fresh official evaluation
                 x.zero_()
 
 
+N_EVAL = [0]
+
+
 def evaluate(theta_phys):
+    global st, env, SOLVERS
+    if N_EVAL[0] > 0 and not a.keep_env:
+        st, env = build_env(); SOLVERS = find_solvers(env)
+    N_EVAL[0] += 1
     clear_warmstart()
     env.reset(frame_id=int(f0))
-    track, frames = [], []
+    track, frames = [], []; nac = 0
     for f in win:
         if f > f0:
             env.step(wp.array(actions(theta_phys, int(f)).reshape(-1), dtype=wp.float32, device=dev))
+            if SOLVERS and os.environ.get('GE_CONTACTS'):
+                nac = max(nac, int(SOLVERS[0].mjw_data.nacon.numpy().max()))
         q = env.state_0.body_q.numpy().reshape(W, nb, 7); track.append(q[:, ob].copy()); frames.append(int(env.timestep.numpy()[0]))
+    if os.environ.get('GE_CONTACTS') and SOLVERS:
+        print(f'contacts: max nacon {nac} of naconmax {int(SOLVERS[0].mjw_data.naconmax)}', flush=True)
     if frames != [int(x) for x in win]:
         print('WARNING: env frames', frames[:3], '...', frames[-3:], 'vs window', int(win[0]), '...', int(win[-1]), flush=True)
     track = np.array(track)                                                       # (F, W, B, 7)
@@ -188,6 +205,8 @@ def evaluate(theta_phys):
 
 if a.repeat_best:                                                             # same edit in every world but 0
     thb = np.array(json.load(open(a.repeat_best))['best']['theta'], float); th = np.tile(thb, (W, 1)); th[0] = 0.0
+    if os.environ.get('GE_MIX'):                                              # test: other worlds random (batch coupling?)
+        th[2:] = np.clip(rng.normal(size=th[2:].shape), -3, 3) * np.r_[sig, np.zeros(th.shape[1] - dim)]
     if os.environ.get('GE_PRIME'):                                            # test: a random batch first, same process
         f_r, _, _ = evaluate(np.clip(rng.normal(size=th.shape), -3, 3) * np.r_[sig, np.zeros(th.shape[1] - dim)])
         print('prime batch', f_r.round(4).tolist(), flush=True)
