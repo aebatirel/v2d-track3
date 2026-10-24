@@ -91,6 +91,11 @@ def main():
                    'pre-grasp pose (moving with the object) and slides in over the last BLEND/2 frames (public ep18: the '
                    'reference hand passing 7 cm from the standing brush knocked it over at f24-28)')
     p.add_argument('--approach_back', type=float, default=0.04, help='pre-grasp back-off along the palm normal (m), all grasps')
+    p.add_argument('--onset_anchor', type=int, default=0, help='1: lock the hand from the object motion onset in OUR reference '
+                   '(from its rest pose before the hold) when the hold would start later (2026-10-24: ep39 dust pan lifted '
+                   '18 cm, ep18 sweeper 12 cm, ep24 board 10 cm before the human hand track reaches them)')
+    p.add_argument('--onset_deg', type=float, default=8.0, help='onset: rotation from rest (deg), besides MOVE_CM')
+    p.add_argument('--approach_step', type=float, default=0.03, help='onset anchor: approach length = wrist distance / this (m/frame)')
     p.add_argument('--held_tol', type=float, default=0.08, help='human hold within this distance (m) of the narrow part '
                    'counts as holding the handle (eval ep35: right hand 3-6 cm from it, left hand on the bowl 17-21 cm)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
@@ -163,6 +168,18 @@ def main():
         scored = [(on_object(side, j, f), f) for f in cand]
         (n_on, gap), g = max(scored, key=lambda r: (r[0][0], -r[0][1]))
         h0 = max(0, min(s0, move - a.close))
+        onset_info = None
+        if a.onset_anchor:                                         # the object moves in OUR reference before this hold starts
+            pe = max([x2['end'] for x2 in ph if x2['object'] == x['object'] and x2['end'] <= s0], default=0)   # its rest
+            d_ = np.linalg.norm(OP[pe:s0, j] - OP[pe, j], axis=1) * 100
+            r_ = np.degrees((OR[j][pe:s0] * OR[j][pe].inv()).magnitude()) if s0 > pe else np.zeros(0)
+            mv_ = np.nonzero((d_ > a.move_cm) | (r_ > a.onset_deg))[0]
+            if len(mv_) and pe + int(mv_[0]) - a.close < h0:       # lock from the onset; the grasp shape stays from f g
+                onset = pe + int(mv_[0])
+                onset_info = dict(onset=onset, hold_from_before=int(h0), hold_start_phase=int(s0),
+                                  travel_cm_at_old_hold=round(float(np.linalg.norm(OP[h0, j] - OP[pe, j]) * 100), 1))
+                h0 = max(pe, onset - a.close)
+                print(f"{side} {x['object']}: ONSET ANCHOR {json.dumps(onset_info)} -> hold from f{h0}", flush=True)
         Rw_g = Rot.from_quat(qref[g, o + 3:o + 7]); T_ow_p = OR[j][g].inv().apply(qref[g, o:o + 3] - OP[g, j]); R_ow = OR[j][g].inv() * Rw_g
         lo, hi = lim[side]; qf = qref[g, o + 7:o + 29]; qs = np.clip(qf + a.squeeze * flex[side], lo, hi)
         qpre = np.clip(qf - a.preopen * flex[side], lo, hi); back = 0.0; wrap_info = None
@@ -272,8 +289,16 @@ def main():
                 if sdf[j](Xh).min() < a.approach_cm / 100:
                     a0 = f; break
             appr = dict(from_frame=int(a0), hold_from=int(h0), back_cm=round(100 * back, 1))
-        x_back = lambda f: (ORh[f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
         n_in, n_slide = max(1, a.blend // 2), max(1, a.blend // 2)
+        if onset_info is not None:                                 # the human hand track is still far: a long enough approach
+            back = max(back, a.approach_back)
+            prev_end = max([min(T, x2['end'] + 4 * a.open) for x2 in ph if x2['hand'] == side and x2['end'] <= s0], default=0)
+            dist = float(np.linalg.norm(qref[max(0, h0 - a.blend), o:o + 3] - (ORh[h0].apply(T_ow_p) + OPh[h0])))
+            n_app = int(np.clip(np.ceil(dist / a.approach_step), a.blend, 40))
+            a0 = max(prev_end, min(a0, h0 - n_app)); n_in = max(n_in, (h0 - a0) - n_slide)
+            appr = dict(from_frame=int(a0), hold_from=int(h0), back_cm=round(100 * back, 1), dist_cm=round(100 * dist, 1), onset_anchor=True)
+            onset_info.update(approach_from=int(a0), approach_dist_cm=round(100 * dist, 1))
+        x_back = lambda f: (ORh[f] * R_ow).apply([-back, 0.0, 0.0])  # noqa: E731  palm backed off along -x (hand frame)
         for f in range(a0, h0):
             if appr is None:                                       # approach: blend into the (backed-off) pose, then slide in
                 wb = (f - a0 + 1) / (a.blend + 1); w_in, w_rot = min(1.0, 2 * wb), wb
@@ -312,7 +337,7 @@ def main():
                 q_new[f, o:o + 3] = away if ww < 0.5 else blend(away, qref[f, o:o + 3], 2 * ww - 1)
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
                 q_new[f, o + 7:o + 29] = blend(QS[s1 - 1], qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
-        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan, approach=appr,
+        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan, approach=appr, onset_anchor=onset_info,
                            human_hold_axis_cm=None if s_med is None else round(100 * s_med, 1),
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,

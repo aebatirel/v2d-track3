@@ -2711,3 +2711,31 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (old889 trace); research on hand anatomy / biomechanics / grasp mechanics, the evolution of human grasping, robot
   thin-object and tool grasping, evolutionary algorithms vs RL, FlashCHORD capabilities for grasp search. Reports go
   to `docs/research/grasp/`.
+
+### 24 Oct ~08:15 UTC — ep39 root cause: hand late in the reference; evolutionary grasp search lifts the dust pan (CPU)
+- Learned grasp models the owner listed (GraspGen / -X, DexGraspNet 2.0, DexEvolve, DemoGrasp) checked:
+  `docs/research/grasp/learned-grasp-models.md` (none supports the Sharpa Wave; DexEvolve's evolutionary refinement and
+  DemoGrasp's edit-one-demonstration are the methods to copy). Owner: "Okay lets test that then".
+- **Root cause on ep39 (measured, our reference only):** the perceived dust pan rises 18 cm from f51 while the
+  human-retargeted right wrist is still 48-51 cm away; the human hand track (MANO contacts) reaches it only at f65-70,
+  so the hold started at f70 and the grasp-lock hand closed in the air where the reference pan already was. The pan's
+  path is right (perception 0.982 vs mocap; standard RL 0.80); the hand track is late. Same pattern (hold starts after
+  the object's motion onset) on ep18 sweeper (+21 frames) and ep24 board 2 (+63); not on the successes (ep12 cup -2,
+  ep27 pot -3) nor on the start-collision failures (ep21, ep2, ep26: -8 to -3).
+- `grasp_lock.py --onset_anchor 1` (default off): lock the hand from the object's motion onset in our reference (from
+  its rest pose before the hold) when the hold would start later; the grasp shape stays from the frames where the human
+  hand is on it; approach length = wrist distance / 3 cm per frame. ep39: onset f51, hold from f41 (was 64), approach
+  from f28 (36 cm).
+- CPU zero-action replay (local FlashCHORD, sharpa_hands_mid, wrist ILC 4 iterations, mean wrist error 0.42 cm): the hand
+  now reaches the pan in time (4 fingertips within 1.5 cm at f45), but the copied four-finger clamp (thumb not on the
+  pan) lets it slide out as the reference lifts: sim_vs_ref **0.164** (old 0.176, floor 0.176).
+- `tools/grasp_evolve.py` (new): DexEvolve / DemoGrasp-style grasp edit theta = [wrist offset in the object frame (3),
+  wrist rpy (3), 22 finger offsets] applied through FlashCHORD's residual hand-pose action (exact inverse of its
+  'rational' input mapping), one candidate per world of one batched simulation, fitness = kit ADD AUC of the object vs
+  OUR reference over the window (no ground truth), CMA-ES (or a GA); the best edit is baked into the reference.
+  16 worlds x 101 frames = 16-21 s per generation on 4 shared CPUs.
+- **CMA-ES on ep39 (pop 16, 8 generations, window f22-122): best 0.810 vs unedited 0.309.** Baked and replayed alone
+  (zero action, full episode): **sim_vs_ref 0.530** (onset anchor alone 0.164; old 0.176); window f22-122 0.854 (bake
+  reproduces the search). The pan is lifted 17 cm and carried within 1-4 cm to f220, dropped at f~235 (the reference
+  turns it ~90 deg and lowers it fast). Best edit: wrist (0.8, 3.2, -2.6) cm in the pan frame, roll 0.28 rad, finger
+  offsets up to +-0.6 rad (thumb joints among the largest). Round 2 running: full window f22-312, from this best.
