@@ -2838,3 +2838,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   `curve.txt` for ep39 on the box ~6 min before its training ended. ev2's pulled run (auto18, 21 Oct) has no glock data.
   The eval run (RUN=new, nothing pulled) is not exposed. To fix in glock_public.sh: clear `$RUN` and `$O/ep<N>` for a
   pulled run before training.
+- **11:08 UTC (box time) GPU validation, first results** (registered AUC vs mocap, 5 official evaluations; recipe =
+  onset anchor + robust GPU grasp search (64 x 4) + 70M fine-tune, checkpoint chosen on the mean of 3 evaluations):
+  - **ep39 (dust pan, eval 38): 0.958 ± 0.002** (0.955-0.960; sim_vs_ref 0.999), chosen 60M; search window
+    0.110 -> 0.857; curve 0.885 / 0.907 / 0.998 / 0.987 / 0.999 / 0.999 / 0.997 at 10-70M. Before: grasp lock 0.174,
+    standard RL 0.802 ± 0.280 (one rollout in five failed).
+  - ep27 (regression): **0.949 ± 0.010** (sim_vs_ref 0.973), 70M; earlier grasp lock 0.957-0.972.
+  - ep12 (regression): **0.868 ± 0.122** (0.626-0.942; one rollout of five fails), 40M (curve 0.957); earlier
+    0.854-0.910.
+  - eval 38 (dust pan, eval videos, SPLIT=eval): reference built on GPU (perception 94 s, qa_ref pass) — the eval path
+    works; grasp search and fine-tune running.
