@@ -200,3 +200,49 @@ All gains are estimates, on the 20-episode AUC.
 
 Each fix is validated on public twins against ground truth before it is used. Nothing is changed per episode on
 eval data.
+
+## 7. Why some eval episodes scored far below their near-identical public twins
+
+The public scores are vs mocap; the eval scores are sim_vs_ref of the submitted rollout.
+
+| Public twin (score) | Eval (score) | Frame-0 detection [V] | Where the eval episode diverged |
+|---|---|---|---|
+| ep31 sweeper + rack (0.767, old recipe) | **30 (0.472)** | public: sweeper found standing in the rack. **eval: the "sweeper" is a blob on the left wrist and watch; the real sweeper is not detected** | perception, from frame 0 |
+| ep12 cup + rack (0.868) | **14 (0.557)** | correct in both | later tracking: the cup is turned upside-down onto a rack peg, hidden, and the track jumps to the wrist |
+| ep18 sweeper + dust pan (0.957) | **19 (0.627)** | correct in both | the robot: pan grasp search 0.18 → 0.36 (ep18: 0.28 → 0.50), fine-tune best at 10M then worse (ep18: rose to 0.99 at 70M) |
+| ep27 rack + pot (0.949) | 28 (0.751) | correct in both | placement: the pot knocks the rack at the end |
+| ep39 dust pan (0.958) | 38 (1.000) | correct in both | none, the same result |
+| ep24 boards (0.241) / ep2 pot + lid (0.31) / ep21 cup + pitcher (0.28) | 25 (0.232) / 1 (0.205) / 20 (0.336) | correct | **same failure in both**: board slots, lid overlap, pitcher shell. The meshes are shared. |
+
+Frame-0 masks: `docs/analysis/eval-20261024-strips/twins_frame0_detection.jpg`.
+
+Reasons, general and evidenced:
+1. **The public twins were our development set (in-sample)** [M]. ep18, ep39, ep12, ep27 and ep24 are the episodes the
+   recipe was built and repaired on. Their scores show the recipe after it was fixed for those exact videos, so they
+   overstate how it carries over.
+2. **Chaotic grasps, with one seed and one rollout per episode** [M]. ep18's physics changes 0.37 → 0.18–0.44 with a
+   1e-5 nudge; evals 3, 5 and 15 had a bad mode in 1 of 5 rollouts. A near-identical video can land in the bad basin
+   with no second try.
+3. **Each video is different for perception** [V]. Occlusion order, how the object is put down (upside-down on a peg in
+   eval 14), and the watch near the objects. Our own-mesh perception had been measured on only 7 public episodes.
+4. **Combinations no public episode has** [M]. The spoon in 10 episodes, cup + spoon (32, 33) and beige cup + pot (8)
+   were never validated against ground truth.
+5. **Shared broken meshes fail the same way in both sets** [M]: pitcher, boards, lid. Here eval matches public, both
+   low.
+
+## 8. Complete list of failure reasons in this submission
+
+1. Broken meshes: the pitcher is a twisted shell (20); the beige cup is an open shell (10, 8).
+2. Missing mesh features: the board slots (25).
+3. Mesh overlap at the start: the lid 7.6 mm inside the pot (1).
+4. Rack mesh with holes and no floor, knocked by placements (28, 14).
+5. Wrong frame-0 detection: the sweeper detected on the wrist and watch (30).
+6. Tracking jumps to the wrist when the object is hidden (14, 33; jitter in 32).
+7. Low-confidence detection of an object inside another, with a jittering track: the beige cup in the pot (8).
+8. Hold not detected or too short, so the robot never moves the object: sweeper (30), cups (14, 33), beige cup (8).
+9. Grasp not acquired: the lid pick (1), board 2 with 1 finger on (25).
+10. Grasp slips or is chaotic: the dust pan (19), the spoon in 33, the pot in 3.
+11. Fine-tune instability: the best checkpoint early, later ones worse (19, 14, 28, 10, 25).
+12. Placement errors and knocks at the end (28, 16).
+13. Spoon accuracy vs the truth (D, inferred ≈ 0.12): template mesh alignment, depth or roll (10 episodes).
+14. Bimodal outcomes, one rollout only (3, 5, 15).
