@@ -3537,3 +3537,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   Cost estimate ≈ $52 in all (twins ≈ $5, std learner ≈ $19, changed episodes ≈ $26, packs ≈ $2); credit $18 →
   the owner is asked for a top-up. Training waits for the precision sweep (if it changes perception, every eval
   reference changes).
+- 00:52 UTC **second pack done** (`20261025-pack2-46b8389`, 18 min, ≈ $0.5): 20 of 20 checkpoints; 14 rollouts kept,
+  6 evaluated (3, 5, 15, 16, 19, 30); packed sim_vs_ref mean **0.7218** (first pack 0.7101): 3 0.942, 5 0.960, 15 0.947,
+  16 0.908, 19 0.683, 30 0.551 (a low draw of a bimodal policy, mean 0.722). File sha256 6e4f6f7b…, 0 mesh warnings;
+  `results/submissions/20261025-track3b/`.
+- 01:03 UTC **Kaggle (uploaded by the agent, five pose boards): AUC 0.58252** (was 0.57468), **MPPE 6.69 cm** (8.7),
+  **RPE 8.82 cm** (12.6), **SP-SR 0.50** (0.45), **MP-SR 0.40** (0.35). The AUC gain (+0.008) is below the +0.02–0.03
+  projected; the position metrics improved more (eval 30's sweeper now follows the real one).
+- **Library v5 build: lid and board 1 failed in pass 0** ("nothing reconstructed" / marching cubes on an empty level):
+  both fuse a broken G1 track (ep0 lid, ep23 board 1) with a good one (ep2, ep24), and the two disagree. The pot and
+  board 2 then failed because their `--others` M0 (lid, board 1) did not exist; the cups box's blue cup failed the
+  same way (the rack's M0 was not built: `OBJS` held only the cups, my configuration error). Fixes: ep_mesh drops a
+  missing "other" with a warning; build_library builds M0 for every object that co-occurs with the requested ones;
+  the library is rebuilt from today's re-tracked public episodes (the sweep's base tracks, with today's detection:
+  ep0 now 0.976, ep11 0.898).

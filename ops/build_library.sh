@@ -7,11 +7,17 @@
 # README.md, pushed with the run (under results/: store.sh push-run uploads it and the stall watchdog sees its files;
 # the 25 Oct run wrote /content/library_v5, outside both, and needed a copier on the box) (the agent copies the result into meshes/library_v5 after review). Tier P1 (owner decision O1).
 #   ops/vast.sh create <offer> <run> 'G1RUN=20261025-g1-022fece bash ops/build_library.sh'   [OBJS="..." PAR=6]
+# TRACKS / HANDS (2026-10-25): path templates with {ep} for the perception tracks and hands (default the perc2m layout);
+# e.g. TRACKS=/content/results/sweep/base/ep{ep}/poses.npz uses a perc_sweep.sh run's re-tracked episodes. Pass 0 also
+# builds the M0 of every object that shares an episode with a requested one (their M0 label the others' pixels).
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; OUT=/content/results/library_v5; M0=$OUT/m0; mkdir -p $OUT $M0
 G1RUN=${G1RUN:?G1RUN (the G1 perc2m run) missing}; OLDRUNS=${OLDRUNS:-"20261021-auto18-966eb96 20261021-auto24-966eb96"}
 OBJS=${OBJS:-"white_pot white_pot_lid blue_cup beige_cup plastic_dish_rack water_pitcher mini_sweeper mini_dust_pan wooden_piece_1 wooden_piece_2"}
 PAR=${PAR:-6}
+export TRACKS=${TRACKS:-/content/perc2m/ep{ep}/poses.npz} HANDS=${HANDS:-/content/refs/perc2m/ep{ep}/hands.npz}
+M0OBJS=$(python -c "import json, sys; lib = json.load(open('$P/mesh_v5.json'))['library_episodes']; want = sys.argv[1].split()
+eps = {e for o in want for e in lib[o]}; print(' '.join(o for o in lib if o in want or set(lib[o]) & eps))" "$OBJS")
 log "build_library code $(git -C $REPO_DIR rev-parse --short HEAD), G1 $G1RUN + $OLDRUNS, objects [$OBJS]" >> $J
 pip install -q fast_simplification manifold3d open3d==0.20.0 pymeshlab==2025.7.post1 warp-lang >> $J 2>&1 || log "pip install FAILED" >> $J
 apt-get install -y -q libopengl0 > /dev/null 2>&1 || true
@@ -24,7 +30,7 @@ epargs() {
 import json, os, sys
 obj, lib = sys.argv[1], json.load(open(sys.argv[2]))['library_episodes']
 for ep in lib[obj]:
-    p, d, h = f'/content/perc2m/ep{ep}/poses.npz', f'/content/cache/depth/ep{ep}/depths_fs0.5.npy', f'/content/refs/perc2m/ep{ep}/hands.npz'
+    p, d, h = os.environ['TRACKS'].format(ep=ep), f'/content/cache/depth/ep{ep}/depths_fs0.5.npy', os.environ['HANDS'].format(ep=ep)
     if not (os.path.exists(p) and os.path.exists(d)):
         print(f'# ep{ep}: missing {"poses" if not os.path.exists(p) else "depth"}', file=sys.stderr); continue
     others = [o for o, e in lib.items() if o != obj and ep in e]
@@ -32,8 +38,9 @@ for ep in lib[obj]:
 EOF
 }
 label "library v5: pass 0"
+log "library v5: pass 0 for [$M0OBJS] (requested [$OBJS] and the objects sharing their episodes); tracks $TRACKS" >> $J
 pids=()
-for o in $OBJS; do
+for o in $M0OBJS; do
   A=$(epargs $o 2>> $J); [ -n "$A" ] || { log "$o: no episodes with tracks and depth" >> $J; continue; }
   python $P/ep_mesh.py m0 $o $M0 --calib /content/t3/calib.json $A >> $M0/$o.log 2>&1 &   # m0 ignores OTHERS
   pids+=($!); [ ${#pids[@]} -ge $PAR ] && { wait "${pids[@]}"; pids=(); }

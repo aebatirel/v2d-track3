@@ -87,11 +87,19 @@ def candidate(name, full_path, tag, work, ref_m0, seed=None):
 
 
 def resolve_others(eps, m0_dir):
-    """OTHERS entries may name objects only ('a,b'): their M0 from M0_DIR (pass 0 of the same build)."""
+    """OTHERS entries may name objects only ('a,b'): their M0 from M0_DIR (pass 0 of the same build). An other whose
+    mesh does not exist is dropped with a warning (its pixels are then not labelled; 2026-10-25: a failed M0 of one
+    object made every object sharing an episode with it fail)."""
     out = []
     for p, d, h, o in eps:
         if o != '-' and m0_dir:
             o = ','.join(x if '=' in x else f'{x}={m0_dir}/{x}_M0.glb' for x in o.split(','))
+        if o != '-':
+            keep = [x for x in o.split(',') if os.path.exists(x.split('=', 1)[1])]
+            for x in o.split(','):
+                if x not in keep:
+                    print(f'ep_mesh: other {x} missing, dropped', file=sys.stderr)
+            o = ','.join(keep) or '-'
         out.append((p, d, h, o))
     return out
 
