@@ -3521,3 +3521,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   beige cup's own AUC (v5) ≥ base's.** If adopted, evals 10 and 8 are re-run end to end with that library (perception
   included, since the beige cup is also the tracking template there). The blue cup stays v3 (it appears in 5 evals;
   a swap would need its own test).
+- 00:46 UTC **protocol clarification (before any twin run), pitcher and beige cup rules:** each public-twin arm runs end
+  to end (`EP:new:mck`), i.e. perception re-tracks with that arm's library as the template, exactly as the eval rerun
+  will. "Same perception tracks" in the pitcher entry is replaced by "same pipeline and seed, each arm with its own
+  library". Detection is identical (the frame-0 choice does not depend on the swapped mesh except through its
+  template descriptors; any change is reported).
