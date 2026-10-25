@@ -3909,3 +3909,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (`/content/skip_std.sh`) stops `hard_ab.sh` once eval_both logs its gate line, so the box records its grasp-lock
   choice for ep8, pushes and self-destroys. (A first attempt used `pgrep -f` patterns that also matched the remote
   shell itself; it killed the trainings but not the watcher install; redone with bracketed patterns.)
+- 17:57 UTC **fr3233 done** (`20261025-fr3233-043275f`, ≈ 1.9 h, ≈ $3.2): frozen recipe on the rebuilt references: ep32 **0.779 ± 0.045** (chosen 30M), ep33 **0.7728 ± 0.053** (chosen 60M; eval_both's grasp lock 0.4857, pack2 rollout 0.421 on the old reference). `fr0810b` self-destroyed after ep8 (0.7615) with ep10 stopped. 3-way choice tooling checked on eval 25 (reproduces std 0.712 / glock 0.3759; frozen 0.297 → std).
