@@ -3494,3 +3494,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   library_v2 meshes. **Rule:** the variant with the highest mean registered AUC is adopted only if its mean gain over
   base is ≥ +0.005 and no episode loses more than 0.02 against base; otherwise base stays. Job
   `ops/jobs/perc_sweep.sh` (new; perc2 gains `REG_ITERS` / `TRACK_ITERS`, defaults unchanged).
+- 00:45 UTC **GT-free track plausibility (measured):** the lowest 5 % of an object's surface more than 2 cm under the
+  table plane (mkref's `table_frame`). Public (20 perc2m tracks, library_v2): fires on exactly the three known track
+  failures (ep0 lid all 373 frames; ep11 beige cup all 137; ep23 board 1 frames 159–325) plus 1 frame of ep12's rack,
+  and on no good track. Eval (20 submitted references, library_v3): fires only on eval 8 beige cup (frames 0–97 and
+  211–216: a frame-0 failure), eval 14 cup (46–158), eval 32 cup (four short segments, 46 frames), eval 33 cup (91–331,
+  204 frames); never on a spoon. These are the episodes the videos showed as perception failures, plus eval 8.
+  Script: scratchpad `guard/flags.py`.
+- **Pre-registered: `TRACK_GUARD=1` in perc2** (written before any run): a frame-0 registration that is implausible
+  is retried on the object's next proposals (up to 4, other objects' excluded); during tracking an implausible frame
+  triggers a re-detection on that frame (at most every 10 frames) and registration on the object's candidates, the
+  first plausible pose restarting the track; with none, the last plausible pose is held and the tracker restarts from
+  it. Table plane: RANSAC on frame 0's own depth (det_rules.table_plane). **Acceptance on the 20 public episodes
+  (base and guard in the same job, registered AUC vs mocap, diagnostic):** registered AUC must not drop by more than
+  0.01 on any episode, and the mean must not fall. Then the eval episodes whose perception changes (expected 8, 14,
+  32, 33) are re-run end to end.

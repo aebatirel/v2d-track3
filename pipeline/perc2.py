@@ -17,6 +17,8 @@ centroid) plus half-resolution depth and image, for offline replay of detection 
 DET_DUMP=0 turns it off. DET_VERIFY=N adds pipeline/perc.py's render-and-compare check on each object's top N
 proposals to the dump (off by default). DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
 depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
+TRACK_GUARD=1 (2026-10-25, off by default until validated): physically implausible poses (below the table) trigger
+re-registration on other proposals / re-detection, else the last plausible pose is held (see the tracking loop).
 Detection rules (2026-10-23, pipeline/det_rules.py, chosen on public episodes): reach gate, size term, Grounding
 DINO term; DET_RULES=0 restores the earlier rule; DET_LAM_S / DET_REACH / DET_LAM_G override. 2026-10-25: gated
 re-proposal (DET_REPROP, now default 1) and the on-table rule (DET_TABLE, default 1), both replayed on the public dumps
@@ -409,7 +411,9 @@ if DET_ONLY:                                                          # detectio
     log('DONE (DET_ONLY)')
     sys.exit(0)
 props, S, ri, ci = detect(0)
-del gen, dino; torch.cuda.empty_cache()
+TRACK_GUARD = os.environ.get('TRACK_GUARD', '0') == '1'
+if not TRACK_GUARD:                                                   # the guard re-detects on later frames
+    del gen, dino; torch.cuda.empty_cache()
 img0 = rgb(rc[0])
 MASK = {names[a]: props[k] for a, k in zip(ri, ci)}
 DET = {names[a]: [int(k), float(S[a, k])] for a, k in zip(ri, ci)}; log('proposals', len(props), 'assignment', DET)
@@ -422,12 +426,69 @@ ests = {n: FoundationPose(model_pts=meshes[n].vertices, model_normals=meshes[n].
 poses = {}
 REG_ITERS, TRACK_ITERS = int(os.environ.get('REG_ITERS', 5)), int(os.environ.get('TRACK_ITERS', 2))   # FoundationPose refiner
 log('FoundationPose iterations: register', REG_ITERS, 'track', TRACK_ITERS)                         # steps (2026-10-25 sweep)
-for n in names:
-    t0 = time.time()
-    P = [ests[n].register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
+# TRACK_GUARD (2026-10-25; pre-registered in docs/work-log.md): a pose is implausible when the lowest 5 % of the object's
+# surface lies more than GUARD_BELOW under the table plane (frame 0, from our own depth). GT-free, and on the 20 public
+# tracks it fired only on the three known failures (ep0 lid, ep11 beige cup, ep23 board 1), never on a good track.
+#   frame 0: an implausible registration is retried on the object's next proposals (up to GUARD_K; others' excluded);
+#   tracking: on an implausible frame the object is re-detected on that frame (detect(i), every GUARD_EVERY frames at
+#   most) and registered on its candidates in order; the first plausible pose restarts the track; if none, the last
+#   plausible pose is held and the tracker restarts from it.
+GUARD_BELOW, GUARD_K, GUARD_EVERY = float(os.environ.get('GUARD_BELOW', 0.02)), int(os.environ.get('GUARD_K', 4)), int(os.environ.get('GUARD_EVERY', 10))
+TPLANE = det_rules.table_plane(depths[0][::2, ::2].astype(np.float32), np.diag([0.5, 0.5, 1.0]) @ KR) if TRACK_GUARD else None
+if TRACK_GUARD:
+    log('track guard: table plane', None if TPLANE is None else (np.round(TPLANE[0], 3).tolist(), round(TPLANE[1], 3)))
+GPTS = {n: trimesh.sample.sample_surface(meshes[n], 400, seed=0)[0] for n in names}
+def low5(n, pose, i):
+    M = W_C[i] @ pose; X = GPTS[n] @ M[:3, :3].T + M[:3, 3]
+    return float(np.percentile(X @ TPLANE[0] + TPLANE[1], 5))
+def plausible(n, pose, i):
+    return TPLANE is None or low5(n, pose, i) >= -GUARD_BELOW
+def set_last(est, X):                                                  # restart FoundationPose's tracker from pose X
+    tf = est.get_tf_to_centered_mesh(); tf = tf.detach().cpu().numpy() if hasattr(tf, 'detach') else np.asarray(tf)
+    est.pose_last = torch.as_tensor(X @ np.linalg.inv(tf), dtype=torch.float32, device='cuda')
+_DETC = {}
+def candidates(i, a):
+    """Object a's proposals on frame i, best first: its assigned one, then the rest by score (others' excluded)."""
+    if i not in _DETC:
+        _DETC[i] = detect(i)
+    pr, Si, rii, cii = _DETC[i]; mine = dict(zip(rii, cii)).get(a); taken = {int(c) for r, c in zip(rii, cii) if r != a}
+    order = ([int(mine)] if mine is not None else []) + [int(j) for j in np.argsort(-Si[a]) if Si[a, j] > -10 and int(j) != mine and int(j) not in taken]
+    return [pr[j] for j in order[:GUARD_K]]
+GLOG = {}
+for a, n in enumerate(names):
+    t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
+    P = [est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
+    if TRACK_GUARD and not plausible(n, P[0], 0):
+        low0 = low5(n, P[0], 0)
+        for m in candidates(0, a)[1:]:
+            g['f0_retries'] += 1; q = est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=m, iteration=REG_ITERS)
+            if plausible(n, q, 0):
+                P[0] = q; break
+        else:
+            set_last(est, P[0])                                         # none plausible: keep the original choice
+        log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
+    last_ok, last_try = (0 if plausible(n, P[0], 0) else None), -10 ** 6
     for i in range(1, N):
-        P.append(ests[n].track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS))
-    poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1))
+        X = est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
+        if TRACK_GUARD and not plausible(n, X, i):
+            g['implausible'] += 1; got = None
+            if i - last_try >= GUARD_EVERY:
+                last_try = i; g['redetect'] += 1
+                for m in candidates(i, a):
+                    q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
+                    if plausible(n, q, i):
+                        got = q; break
+            if got is not None:
+                X = got; g['reacquired'] += 1; log('track guard', n, f'f{i}: re-acquired')
+            elif last_ok is not None:
+                X = np.linalg.inv(W_C[i]) @ (W_C[last_ok] @ P[last_ok])        # hold the last plausible pose (world)
+                set_last(est, X); g['held'] += 1
+        if not TRACK_GUARD or plausible(n, X, i):
+            last_ok = i
+        P.append(X)
+    poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1), 'guard', g if TRACK_GUARD else 'off')
+if TRACK_GUARD:
+    json.dump(GLOG, open(f'{OUT}/track_guard.json', 'w'), indent=1)
 np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})
 if SPLIT == 'eval':                                                   # no ground truth exists: write outputs, stop
     np.savez(f'{OUT}/poses_world_vo.npz', **{n: np.stack([W_C[i] @ poses[n][i] for i in range(N)]) for n in names})
