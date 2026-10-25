@@ -3624,3 +3624,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   ≈ $1.3 each.
 - Eval perception check (cont.): evals 15, 16, 19, 20 unchanged; **eval 14 cup: 1 implausible frame → re-detected
   and re-acquired** (reference changes).
+- 02:40 UTC **pre-registered (before any run): arc-foot fallback in `support_fill.py`** (from the 24 Oct ep21 audit's
+  base completion, which stood ≤ 5 mm for 60 frames on CPU). When no straight fill (≤ 2 cm) certifies a resting pose,
+  fit a circle to the object's points in the band [0, 2 cm] above the table at that pose (algebraic fit in the table
+  plane); accept the circle only if the band points cover an arc ≥ 120° around it, the fit RMS ≤ 15 % of the radius,
+  and 1.5 cm ≤ r ≤ 10 cm. Foot = a 2 cm prism of that circle down to 0.5 mm above the table, split into 8 convex
+  sectors, added as extra `<collision>` elements of the object's URDF (simulator geometry only; the scored mesh and the
+  inertial are unchanged). Accept the foot only if the disc certifies the pose (COM inside, margin ≥ 3 mm, tip ≥ 3°)
+  and it passes the same free-space and other-rest checks as the fill. **Test:** (1) CPU, public ep21 reference:
+  certification and a zero-action replay (the pitcher must stay within 1 cm / 5° for 30 frames with the hands
+  parked); (2) GPU, ep21 twin with the frozen recipe, base vs arc-foot: adopt iff registered AUC vs mocap ≥ base −
+  0.02 and the pitcher's AUC ≥ base's. Unchanged elsewhere by construction (only poses that nothing else certifies).
