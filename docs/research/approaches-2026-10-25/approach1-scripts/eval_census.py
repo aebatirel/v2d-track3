@@ -1,12 +1,12 @@
 """Interaction-infeasibility census over eval references (GT-free): approach-1 study, 2026-10-25.
 
 For each two-object eval episode: the simulator meshes of the packed reference (refs/sf/epN/assets, i.e. library_v3 plus
-support fills) posed by the reference the policy was trained to follow (ref_sf.parquet). Per frame (stride STRIDE):
+support fills) posed by the reference the policy was trained to follow (ref_sf.parquet). Per frame (stride STRIDE, default 3; solid samples at PITCH, default 2 mm):
 mesh-mesh overlap volume (mean of both directions) and the deepest penetration. Reports frame-0 values (the simulator
 starts there exactly: a start jolt), the maximum, frames above 1 cm3, the longest run above 1 cm3 (persistent contact),
 and the overlap while both objects are still (relative motion < 2 mm / frame) after frame 0. Mesh overlap is a lower
 bound on what the simulator sees (CoACD hulls add volume; eval 25: hulls 13.7 vs mesh 10.3 cm3).
-Usage: python eval_census.py ROOT OUT.json   (ROOT/<run>/refs/sf/epN/...)"""
+Usage: [ONLY=epN STRIDE=3 PITCH=0.002] python eval_census.py ROOT OUT.json   (ROOT/<run>/refs/sf/epN/...)"""
 import glob, json, os, sys
 
 import numpy as np
@@ -14,15 +14,17 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pair_overlap as po  # noqa: E402
 
-STRIDE = 2
+STRIDE = int(os.environ.get('STRIDE', 3))
+po.PITCH = float(os.environ.get('PITCH', 0.002))
 root, out = sys.argv[1:3]
+ONLY = os.environ.get('ONLY')                     # one 'epN' at a time (parallel runs); default all
 res = {}
 for ref in sorted(glob.glob(f'{root}/**/ref_sf.parquet', recursive=True)):
     import pyarrow.parquet as pq
     row = pq.read_table(ref, columns=['object_body_names']).to_pylist()[0]
     names = list(row['object_body_names'])
     ep = ref.split('/refs/sf/')[1].split('/')[0]; run = ref.split('/runs/')[1].split('/')[0]
-    if len(names) != 2:
+    if len(names) != 2 or (ONLY and ep != ONLY):
         continue
     base = ref.split('/processed/')[0]
     meshes = [f'{base}/assets/mesh/{n}/{n}.glb' for n in names]

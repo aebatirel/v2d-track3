@@ -11,6 +11,12 @@ object against OUR reference over the window [hold start - PRE, hold end + POST]
 Search: CMA-ES (default; Hansen's (mu/mu_w, lambda) with rank-mu and rank-one updates, in units of --sigma per block) or
 --algo ga (DexEvolve-style: tournament selection, uniform crossover, Gaussian mutation, elitist archive). Generation 0
 evaluates theta = 0 (the unedited grasp) in world 0.
+Portfolio scoring (2026-10-25, docs/research/approaches-2026-10-25/approach3-grasp-taxonomy.md §11.2): --from0 starts the
+window at frame 0 as the official evaluation does (earlier holds' grasps already baked into REF), --f1 sets its end (e.g.
+through the release), --push_cm adds a smooth random-walk push to the edited wrist in the jittered copies, and --cvar Q
+scores a candidate by the mean of its worst Q share of copies instead of the mean (the evaluator gives one rollout).
+--rescore K evaluates OUT.json's best (or --theta_zero: the unedited grasp) as K copies in a fresh process and reports
+mean, CVaR and the held object's rise at --lift_frame.
 Writes OUT.json (per generation: best / mean / timing; the best theta in physical units) and, with --bake OUT.parquet,
 the reference with the best edit written into the hand's wrist pose and finger joints (check it with a plain zero-action
 replay: tools/trace_rollout.py zero + tools/trace_score.py).
@@ -36,6 +42,12 @@ p.add_argument('--robust', type=int, default=1, help='K: each candidate runs as 
 p.add_argument('--jitter', type=float, default=0.005, help='robust copies: Gaussian noise on theta (m / rad), all components')
 p.add_argument('--keep_env', action='store_true', help='reuse one environment for all generations (faster, not reproducible)')
 p.add_argument('--init', default='', help="a previous OUT.json: start from its best theta (the search mean / the GA's first parent)")
+p.add_argument('--from0', action='store_true', help='window from frame 0 (reset at frame 0, as the evaluator)')
+p.add_argument('--f1', type=int, default=-1, help='window end frame (default hold end + POST)')
+p.add_argument('--cvar', type=float, default=0.0, help='> 0: fitness = mean of the worst CVAR share of the K copies')
+p.add_argument('--push_cm', type=float, default=0.0, help='jittered copies: smooth random-walk wrist push (cm, typical size)')
+p.add_argument('--rescore', type=int, default=0, help='K: evaluate the best theta of --init (or 0 with --theta_zero) as K copies and exit')
+p.add_argument('--theta_zero', action='store_true'); p.add_argument('--lift_frame', type=int, default=30)
 p.add_argument('--repeat_best', default='', help="a previous OUT.json: evaluate its best theta in worlds 1..pop-1 (world 0 unedited) "
                "and exit (repeatability of the fitness across worlds)")
 a = p.parse_args()
@@ -51,7 +63,7 @@ ph = json.load(open(a.grasp_lock))['phases'][a.phase]
 side, obj, hs, he = ph['hand'], ph['object'], int(ph['start']), int(ph['end'])
 j_obj = names.index(obj)
 a0 = int((ph.get('approach') or {}).get('from_frame', ph.get('hold_from', hs)))   # edit starts with the approach
-f0 = max(0, min(a0, hs) - a.pre); f1 = min(T - 1, he + a.post)
+f0 = 0 if a.from0 else max(0, min(a0, hs) - a.pre); f1 = min(T - 1, a.f1 if a.f1 >= 0 else he + a.post)
 if a.max_steps:
     f1 = min(f1, f0 + a.max_steps)
 win = np.arange(f0, f1 + 1)
@@ -119,11 +131,14 @@ print(f'setup {time.time() - t_setup:.1f} s: {W} worlds x {nb} bodies, action_di
 R_obj = R.from_quat(OQ[:, j_obj])
 
 
+PUSH = np.zeros((W, T, 3))                                                    # per-world wrist push (m), set per evaluation
+
+
 def actions(theta_phys, f):
     w = weight(f); act = np.zeros((W, A), np.float32)
-    if w <= 0.0:
+    if w <= 0.0 and not PUSH[:, f].any():
         return act
-    dp_w = R_obj[f].apply(theta_phys[:, :3]) * w                                  # object frame -> world frame
+    dp_w = R_obj[f].apply(theta_phys[:, :3]) * w + PUSH[:, f]                     # object frame -> world frame, + push
     act[:, h0:h0 + 3] = to_input(dp_w, slice(h0, h0 + 3))
     act[:, h0 + 3:h0 + 6] = to_input(theta_phys[:, 3:6] * w, slice(h0 + 3, h0 + 6))
     if not a.no_fingers:
@@ -177,6 +192,13 @@ def evaluate(theta_phys):
         st, env = build_env(); SOLVERS = find_solvers(env)
     N_EVAL[0] += 1
     clear_warmstart()
+    PUSH[:] = 0.0
+    if a.push_cm > 0 and len(push_worlds):                                    # smooth random walk, size ~push_cm
+        steps = rng.normal(size=(len(push_worlds), T, 3)); walk = np.cumsum(steps, 1)
+        walk -= walk[:, [a0], :] if a0 < T else 0.0
+        walk = np.array([np.convolve(walk[i, :, k], np.ones(9) / 9, 'same') for i in range(len(walk)) for k in range(3)]).reshape(len(walk), 3, T).transpose(0, 2, 1)
+        walk *= (a.push_cm / 100) / max(1e-9, np.sqrt(len(win)))
+        PUSH[push_worlds] = walk * np.array([weight(f) for f in range(T)])[None, :, None]
     env.reset(frame_id=int(f0))
     track, frames = [], []; nac = 0
     for f in win:
@@ -191,7 +213,8 @@ def evaluate(theta_phys):
         print('WARNING: env frames', frames[:3], '...', frames[-3:], 'vs window', int(win[0]), '...', int(win[-1]), flush=True)
     track = np.array(track)                                                       # (F, W, B, 7)
     objs = range(B) if a.all_objects else [j_obj]
-    fit = np.zeros(W); detail = []
+    fit = np.zeros(W); detail = []; z0 = track[0, :, j_obj, 2].copy()
+    kl = int(np.clip(a.lift_frame - f0, 0, len(win) - 1))
     for w_ in range(W):
         if not np.isfinite(track[:, w_]).all():                                  # this world's simulation diverged (NaN)
             fit[w_] = 0.0; detail.append(dict(auc=0.0, diverged=True)); continue
@@ -199,7 +222,8 @@ def evaluate(theta_phys):
         fit[w_] = np.mean([x[0] for x in s])
         hold = (win >= hs) & (win <= he)
         dz = track[hold, w_, j_obj, 2] - OP[win[hold], j_obj, 2]
-        detail.append(dict(auc=round(fit[w_], 4), hold_add_cm_median=round(100 * float(np.median(s[0][1][hold])), 1),
+        detail.append(dict(auc=round(fit[w_], 4), rise_cm_at_lift_frame=round(100 * float(track[kl, w_, j_obj, 2] - z0[w_]), 1),
+                           hold_add_cm_median=round(100 * float(np.median(s[0][1][hold])), 1),
                            lift_err_cm_median=round(100 * float(np.median(dz)), 1)))
     if os.environ.get('GE_DEBUG'):
         for k in (0, 1, 5, 10, len(win) - 1):
@@ -207,6 +231,25 @@ def evaluate(theta_phys):
                   'sim q', track[k, 0, j_obj, 3:7].round(3).tolist(), 'ref q', OQ[win[k], j_obj].round(3).tolist(), flush=True)
     return fit, detail, track
 
+
+push_worlds = []
+
+
+def score(fk):                                                                # (K,) copy fitnesses -> candidate fitness
+    if a.cvar > 0:
+        return float(np.sort(fk)[:max(1, int(np.ceil(a.cvar * len(fk))))].mean())
+    return float(np.mean(fk))
+
+
+if a.rescore:                                                                 # the best (or unedited) grasp as K copies
+    K_ = min(a.rescore, W); thb = np.zeros(6 + nf) if a.theta_zero else np.array(json.load(open(a.init))['best']['theta'], float)
+    th = np.tile(thb, (W, 1)); jit = rng.normal(size=th.shape) * a.jitter; jit[0] = 0.0; jit[:, dim:] = 0.0; th = th + jit
+    push_worlds = list(range(1, K_))
+    fit, detail, _ = evaluate(th); fk = fit[:K_]
+    print(json.dumps(dict(rescore=a.init or 'unedited', K=K_, mean=round(float(fk.mean()), 4), cvar=round(score(fk), 4), cvar_q=a.cvar,
+                          exact=round(float(fk[0]), 4), copies=[round(float(x), 4) for x in fk],
+                          rise_cm_at_lift_frame=[d_.get('rise_cm_at_lift_frame') for d_ in detail[:K_]], window=[int(f0), int(f1)])), flush=True)
+    sys.exit(0)
 
 if a.repeat_best:                                                             # same edit in every world but 0
     thb = np.array(json.load(open(a.repeat_best))['best']['theta'], float); th = np.tile(thb, (W, 1)); th[0] = 0.0
@@ -259,8 +302,9 @@ for g in range(a.gens):
     th = np.repeat(thc, K, axis=0)                                            # K copies per candidate, world-major
     if K > 1:
         jit = rng.normal(size=th.shape) * a.jitter; jit[::K] = 0.0; jit[:, dim:] = 0.0; th = th + jit
+        push_worlds = [i for i in range(len(th)) if i % K]
     fit_w, detail_w, _ = evaluate(np.vstack([th, np.zeros((W - len(th), th.shape[1]))]) if len(th) < W else th)
-    fit_w = fit_w[:lam * K]; fit = fit_w.reshape(lam, K).mean(1); spread = fit_w.reshape(lam, K).std(1)
+    fit_w = fit_w[:lam * K]; fit = np.array([score(r_) for r_ in fit_w.reshape(lam, K)]); spread = fit_w.reshape(lam, K).std(1)
     detail = [dict(detail_w[i * K], robust_mean=round(float(fit[i]), 4), robust_sd=round(float(spread[i]), 4)) for i in range(lam)]
     th = thc
     order = np.argsort(-fit)

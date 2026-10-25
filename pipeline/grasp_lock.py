@@ -264,6 +264,8 @@ def main():
             T_ow_p = np.array(tp['wrist_pos_obj'], float); R_ow = Rot.from_quat(tp['wrist_quat_obj_xyzw'])
             qf = np.clip(np.array([qt[n] for n in fjn], float), lo, hi)
             qs = np.clip(qf + a.template_squeeze * sqw[side], lo, hi); qpre = np.clip(qf - a.preopen * flex[side], lo, hi)
+            if 'finger_joints_squeezed' in tp:                       # grip_types.py: squeeze INTO the object per digit
+                qs = np.clip(np.array([dict(zip(tp['finger_joint_names'], tp['finger_joints_squeezed']))[n] for n in fjn], float), lo, hi)
             wrap_info = None; back = max(back, a.approach_back)
             tpl_info = dict(template=os.path.basename(a.templates), frame=tp['frame'], squeeze=a.template_squeeze)
             print(f"{side} {x['object']}: TEMPLATE grasp {json.dumps(tpl_info)}", flush=True)

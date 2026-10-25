@@ -17,7 +17,8 @@ scans or mocap, after inference; **[L]** primary source read in full; **[L-abs]*
 - **What the video showed.** The video check (§2.6) found the cause: **our two board identities are swapped** on
   eval 25, and one board is also turned 180° in its plane [V].
   - A GT-free rule built only from our meshes' marker knobs and the video picks the right assignment on the good
-    public track and flags both the eval-25 track and the 24 Oct ep24 track as swapped.
+    public track and flags both the eval-25 track and the 24 Oct ep24 track as swapped. It also undoes all 8 swaps
+    and flips injected into the good track.
   - On that 24 Oct ep24 track, applying the rule's repair raises the score against mocap from **0.029 to 0.706** [D].
 - **What it costs today.** With swapped names the scorer compares each of our boards with the other board's mocap and
   anchors the scene on the wrong board. On public ep24 a swap alone drops a 0.795 track to 0.057 [D]. Eval 25 is
@@ -31,6 +32,8 @@ scans or mocap, after inference; **[L]** primary source read in full; **[L-abs]*
     as with board–board contact off [M, CPU MuJoCo proxy].
   - This is the arc foot's sibling. The arc foot adds "physible" support under observed rests; the carve removes
     "physible" free space where our reference puts a partner.
+  - The need is wider than the boards: 6 of the 16 two-object eval references (evals 1, 8, 10, 25, 28, 30) hold
+    objects 7–12 mm inside each other in resting contact, 4–84 cm³ by mesh alone. Eval 1 starts 8 mm deep (§3) [M].
 - **What does not work:**
   - **Editing the submitted mesh from motion.** Every carve on 22 Oct was CD-O-neutral (±0.01 cm) or harmful: the
     lid min-cut added 0.14–0.18 cm, nested cups went 1.17 → 1.43 cm, and new registration flips appeared [D].
@@ -51,8 +54,8 @@ scans or mocap, after inference; **[L]** primary source read in full; **[L-abs]*
 
 | Item | Effect on eval 25 | Effect on the 20-episode AUC |
 |---|---|---|
-| Rule 1 on eval 25 alone | about +0.15–0.20 (from about 0.03 to about the static floor) | **+0.008–0.010** |
-| Rules 2 and 3 (evals 25, 1, 10, 28), now | – | +0.00–0.01: grasps and perception bind first |
+| Rule 1 on eval 25 alone | about +0.10–0.18 (from about 0.03–0.06 to about the static floor of 0.15–0.22) | **+0.005–0.009** |
+| Rules 2 and 3 (evals 1, 8, 10, 25, 28, 30), now | – | +0.00–0.01: grasps and perception bind first |
 | Rules 2 and 3, after the board clamp and lid grasp | – | up to +0.02–0.03 |
 | CD-O | 0 by design | 0 by design |
 
@@ -173,8 +176,9 @@ The rejections split into two groups:
    - Both episodes show the same layout: the four-knob board on the left, the three-knob board on the right.
    - Our mocap-validated ep24 track calls the left board wooden_piece_1. Our eval-25 track calls it
      wooden_piece_2: **the names are swapped**.
-   - Perception names the two boards by detector score alone (eval 25: 0.41 / 0.54), which for twin boards is a coin
-     flip.
+   - `perc2.py` names objects with a Hungarian match on template similarity, intensity and 3-D extent (eval 25
+     scores 0.41 / 0.54). None of these terms separates two near-identical boards, so the naming is close to a coin
+     flip [I].
 4. **GT-free repair rule** (`identity_rule.py`):
    - For each name assignment and each of the four in-plane symmetries per board, project our own mesh's knobs on the
      camera-facing side at frames 0, 2, 4 and 6, and score knob darkness against the plate.
@@ -183,7 +187,7 @@ The rejections split into two groups:
    | Track | Rule's choice | As-tracked rank | Against mocap [D] |
    |---|---|---|---|
    | ep24, 21 Oct own track | as tracked (−79.9 vs −52.6 for the next) | 1 of 32 | 0.795 |
-   | ep24, 24 Oct w1 track | **swapped**, board-1 track turned 180° about x | 22 of 32 | 0.029 → **0.706** after the rule's repair |
+   | ep24, 24 Oct w1 track | **swapped**; the track that becomes wooden_piece_1 is also turned 180° about its thickness axis x | 22 of 32 | 0.029 → **0.706** after the rule's repair |
    | eval 25 | **swapped**, same prescription | 21 of 32 | (no GT) |
 
    - The work log blamed the w1 failure on the flattened v4 boards. The repair shows it was this swap.
@@ -198,13 +202,30 @@ The rejections split into two groups:
 ## 3. Other "interaction-infeasible" eval failures (Q3)
 `eval_census.py`: packed references and their simulator assets, mesh-mesh overlap. CoACD hulls add more (§2.4).
 
-CENSUS_TABLE
+Mesh-mesh overlap of the simulator assets along the packed references [M] (stride 3, 2 mm samples). "Still" means
+both objects move < 2 mm/frame relative to each other, i.e. resting contact:
+
+| Eval | Objects | Frame 0: cm³ / mm | Max: cm³ / mm (frame) | Frames > 1 cm³ (longest run) | Still overlap, median cm³ (frames) |
+|---|---|---|---|---|---|
+| 1 | pot + lid | **26.8 / 8.0** | 36.7 / 8.2 (294) | 114 (66) | **31.3 (102)** |
+| 8 | beige cup + pot | 0.8 / 4.7 | 16.8 / 12.0 (147) | 216 of 219 (216) | 4.1 (63) |
+| 10 | blue cup + beige cup | 0 | **93.8 / 10.7** (108) | 87 (87) | **83.8 (39)** |
+| 14 | blue cup + rack | 0 | 53.8 / 20.1 (51) | 45 (30) | 5.0 (3): transient, when the cup track jumps |
+| 25 | boards | 0 | 10.9 / 6.7 (294) | 132 (132) | **10.6 (99)** |
+| 28 | rack + pot | 0.1 / 1.8 | 24.3 / 10.4 (213) | 39 (21) | **21.0 (27)** |
+| 30 | sweeper + rack (ev30rp / evR references) | 5.3 / 8.4 and 0 | 19.0 / 9.2 and 27.8 / 9.1 | 189 (63) and 75 (75) | 7.8 (87) and 19.1 (3) |
+| 3, 5, 6 / 15, 16 / 19 / 20 / 32, 33 | pot + spoon / rack + spoon / sweeper + pan / cup + pitcher / cup + spoon | 0 | ≤ 0.9 / ≤ 3.8 | 0 | 0 |
+
+- **Six of the 16 two-object eval references are interaction-infeasible** with our meshes: evals 1, 8, 10, 25, 28
+  and 30 show persistent resting overlap of 4–84 cm³, 7–12 mm deep. CoACD hulls make it worse.
+- Eval 1 starts 8 mm deep: the lid is wedged in the pot from frame 0.
 
 | Eval (twin) | Failure (24 Oct analysis) | Interaction-infeasible? | Would carving or a physics edit fix it? | Binding failure that remains |
 |---|---|---|---|---|
 | 25 (ep24) boards | no slots; grasps never acquired | **Yes** (§2) | the insertion (collision copy, §2.5) | **identity swap** (§2.6), then the board grasp (0.202 floor; counterfactual 0.803) |
 | 1 (ep2) pot + lid | lid 7.6 mm inside the pot at f0, wedged | **Yes**, at start; mostly mesh (lid underside about 7.7 mm too low) [D, 22 Oct] | start jolt: carve the lid's collision underside by the pot at seated frames. Better than lifting the lid in the reference (Picasso / PhysPose style), which adds about 8 mm of pose error [I] | lid pick (flat disc) and pot handle grasp |
 | 10 (ep11, roles reversed) cups | beige cup an open shell that falls at f3; blue cup interior 37 % (O fusion 22 %) solid | Partly: stacking into a filled cavity | collision-copy cavity carve; keep a 2 mm skin so a sunk inner-cup track (2.7 cm on ep11) cannot cut the floor [H] | beige-cup support; also run the identity check (look-alike cups on a grayscale camera) [H] |
+| 8 (none) beige cup + pot | beige cup never held; low-confidence detection, started 7 cm under the table | **Yes**: the cup rests in the pot for 216 of 219 frames at 4–17 cm³, up to 12 mm deep | collision-copy carve of the pot where the cup rests (cup support + start) | perception of the cup; the beige-cup mesh (v5 adopted) |
 | 20 (ep21) pitcher | twisted shell, falls at f8 | **No**: pouring never touches (47–75 mm) | nothing. The fix is support (arc foot) | – |
 | 30 (ep31) sweeper + rack | detected on the wrist from f0 | Secondary: the sweeper rests in the rack's dividers (rack hull concavity 7.5–9.3 mm, note 19) | rack collision carve at the sweeper's rest frames, gated for compliant bristles | perception |
 | 14 (ep12) cup on rack peg | track jumps to the wrist | Possibly: cup cavity filled 37 % from the base | collision-copy cavity | perception |
@@ -255,17 +276,17 @@ Effects are on the 20-episode AUC; one eval episode weighs 0.05.
 
 | Sub-idea | Evals | Expected effect [E] | Cost |
 |---|---|---|---|
-| R1: identity and in-plane symmetry rule | 25 (check 10) | **+0.008–0.010** (eval 25 from about 0.03 to about 0.2) | CPU done; eval-25 rerun ≈ $4–6 |
+| R1: identity and in-plane symmetry rule | 25 (check 10) | **+0.005–0.009** (eval 25 from about 0.03–0.06 to about 0.15–0.22) | CPU done; eval-25 rerun ≈ $4–6 |
 | R2: collision-copy slot carve | 25 | +0.000 now; +0.01–0.02 after the board clamp (H24-1) | 0.5 day CPU |
-| R3: start depenetration (lid, pot in rack) | 1, 28 | +0.000–0.008 | 0.5 day CPU |
+| R3: depenetration of resting stacks (lid on pot, cup in pot, pot in rack, sweeper in rack) | 1, 8, 28, 30 | +0.000–0.008 | 0.5 day CPU |
 | R4: cup cavity carve (collision copy) | 10, 14 | +0.000–0.005 until the beige cup stands and perception holds | 0.5 day CPU |
 | Carving the submitted mesh | – | ≤ 0 (22 Oct) | drop |
 
-**Cheapest falsifying tests (CPU; rules written before running).** Each row is one test.
+**Cheapest falsifying tests (CPU).** Rules are written before running, except T-1, which I ran before writing it down. Each row is one test.
 
 | ID | Twin | Test | Pass / fail rule | Status |
 |---|---|---|---|---|
-| T-1 | ep24 (21 Oct and 24 Oct tracks) and ep23 | identity rule on each public two-board track at frames 0, 2, 4, 6 | Must keep every track whose mocap AUC is ≥ 0.5 and must repair every swapped one to ≥ 0.6 [D]. **Falsified if** any good track is changed | **ep24 both cases pass** (rank 1; 0.029 → 0.706). ep23's G1 track is broken (AUC 0.04) and was not tested |
+| T-1 | ep24: 21 Oct and 24 Oct tracks, plus all 8 injected swap × flip combinations of the 21 Oct track | identity rule at frames 0, 2, 4, 6 | Must keep every track whose mocap AUC is ≥ 0.5, must restore the original in all 8 injected cases, and must repair every swapped track to ≥ 0.6 [D]. **Falsified if** any good track is changed | Both real ep24 tracks pass, post hoc (rank 1; 0.029 → 0.706). **Injection: PASS, 8 of 8 restored to within 1° / 1 mm** (`identity_inject.py`, run after this rule was written). ep23's G1 track is broken (AUC 0.04) and was not tested |
 | T-a | ep24 | FlashCHORD's own stepping (s5coll `replay_rest.py` harness, Newton / MuJoCo-Warp CPU, dt 0.01, object assist driving board 2 along the 23 Oct reference f160–275). Default vs planar-cut pieces through `make_assets --pieces` | **Pass:** cut ≤ 5 mm / 5° over f240–274 with board 1 tilt ≤ 5°, while default ≥ 2 cm or 20°. **Fail:** cut > 1 cm or 10°: the proxy does not transfer; switch to primitives | to run (≈ 2 h) |
 | T-b | ep2 | collision-copy lid carve by the pot at the seated frames f0–59, zero-action replay | **Pass:** lid ≤ 3 mm / 3° by f30 (now 31 mm / 27° by f23, work log 24 Oct). **Fail:** > 5 mm | to run |
 | T-c | ep11 | outer cup's collision cavity carved by the inner cup along our reference, keeping a 2 mm skin; kinematic drive into the nest | **Pass:** lag ≤ 1 cm at the nested frames and the outer cup moves < 5 mm | to run |
@@ -281,7 +302,7 @@ Effects are on the 20-episode AUC; one eval episode weighs 0.05.
 | G-c | broad: twins ep24, ep2, ep26, ep11 × {A1-min off, on} × 2 seeds × 5 evaluations | 16 trainings ≈ 40 GPU-h; on 8 boxes ≈ 6 h wall; **≈ $56–76** | **Pass:** mean gain ≥ +0.03 and no twin below −0.03, thresholds frozen before launch, seeds 42 and 43 | adopt A1-min for all eval reruns |
 
 **Order:**
-1. R1: T-1 is done, so G-1 next, then the eval-25 rerun.
+1. R1: T-1 has passed, so G-1 next, then the eval-25 rerun.
 2. T-a and T-b.
 3. G-a and G-b, only behind the grasp fixes.
 4. G-c, if the owner wants breadth.
@@ -304,7 +325,7 @@ Effects are on the 20-episode AUC; one eval episode weighs 0.05.
   - `pair_overlap.py` (§2.1); `flip_test.py` and `diag_relpose_mocap.py` [D] (§2.2, §2.6); `diag_cut_realwood.py` [D]
     (§2.3);
   - `insert_test.py` (fcvenv with the FlashCHORD CoACD cache; §2.5);
-  - `notch_view.py`, `identity_view.py`, `identity_rule.py`, `diag_swap_cost.py` [D] (§2.6);
+  - `notch_view.py`, `identity_view.py`, `identity_rule.py`, `identity_inject.py`, `diag_swap_cost.py` [D] (§2.6, T-1);
   - `eval_census.py`, `spoon_end_check.py` (§3).
   - §2.4 reused the 22 Oct `interact/v5/s5coll/scripts/hullovl.py`.
 - Inputs from the HF store (≈ 55 MB, scratch only):
