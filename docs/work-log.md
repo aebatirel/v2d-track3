@@ -3842,3 +3842,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   No eval depth cache is stored, so the repair runs on the box between perception and the reference
   (`ops/jobs/eval_idfix.sh`: perception → identity_fix → eval_both).
 - ~15:12 UTC launched 57680499 `20261025-ev25idfix-02de0c7` (Spain WS $1.44/h): `EP=25 bash ops/jobs/eval_idfix.sh`. 9 boxes running, ≈ $13.4/h.
+- (correction: the batch boxes were created ~14:50–14:52 UTC and the eval-25 box ~14:54 UTC, not ~15:00 / ~15:12.)
+- 15:32 UTC **check-in:** all 9 boxes past setup; references built for 8, 10, 14, 20, 32, 33, 25, ep21 (both arms).
+  - **Eval 25: the box's fresh perception named the boards correctly by the same rule** (`identity_fix`: as tracked
+    −63.9, rank 1 of 32; next best −43.3; nothing applied). The stored track (evperc / pack) scored +50.0, rank 21, and
+    was swapped. perc2's naming of the two boards is close to a coin flip (approach 1 §2.6), so the knob rule is the
+    check, not the repair, this time.
+  - **Clarification of the 14:55 eval-25 rule, written before any eval-25 training result:** its purpose was to stop
+    submitting a policy trained on a swapped reference. The rebuilt reference passes the rule; the stored one fails it.
+    So eval 25's packed policy becomes this run's `final_eval` choice, as for every rebuilt episode. "Left as in pack2"
+    applied only if the knob rule had found no swap anywhere.
+  - Support fill on the rebuilt references: arc foot certifies the eval-20 pitcher at f152 (frame 0 still UNSTABLE) and
+    the eval-8 beige cup at f0/f4; eval-10 beige cup UNSTABLE at f0. ep21 twin: base arm pitcher UNSTABLE at both
+    rests, arc arm CERTIFIED BY ARC FOOT at both.
+  - The standard learner runs one training per GPU (`hard_ab` TRAIN_LOCK). Two-episode std boxes therefore take ≈ 3.5–4 h
+    (ep1 at 48k env steps/s, ETA ≈ 16:25 UTC; ep16 then follows). Results ≈ 20:00–20:30 UTC; cost ≈ $60, not $50.
+  - HF returned HTTP 429 during the parallel `pull-run`s (std0116: HEAD requests on unrelated ep10 curve files); the
+    pulls still completed and the references are in place.
