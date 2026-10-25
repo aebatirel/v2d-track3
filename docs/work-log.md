@@ -3827,3 +3827,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   whose final_eval choice exists; upload the five pose boards, and CD-O too since the beige cup mesh changes (8, 10).
 - Estimate: 3 eval_both boxes ≈ 4–5 h ≈ $7 each; 3 std boxes ≈ 3 h ≈ $4.5 each; twins ≈ $2 each; eval 25 ≈ $7;
   pack ≈ $1 → ≈ $50, leaving ≈ $50 for a second round chosen from these results.
+- ~15:00 UTC **launched (code ee7ba8e, ENV_SNAPSHOT pt2.11-cu130-py313-20261020):** 57680239 `20261025-evb0810-ee7ba8e`
+  (Spain WS $1.41/h), 57680241 `-evb1420-` (Spain WS $1.44), 57680242 `-evb3233-` (Korea WS $1.49), 57680243
+  `-std0116-` (Korea WS $1.51), 57680244 `-std1928-` (New York S $1.56), 57680245 `-std30-` (Virginia WS $1.64),
+  57680246 `-twin21base-` (Japan Max-Q $1.43, SF_ARC=0), 57680247 `-twin21arc-` (Czechia Max-Q $1.56, SF_ARC=1). Jobs as in
+  the plan above; twins: `SPLIT=public PAIRS="21:new:mck" LIB=…/library_v3 NREP=5 CURVE_REP=3 REPLAN=1 SF=1
+  GL_ARGS="<eval_both's, approach 15 cm>" bash ops/jobs/glock_public.sh`.
+- ~15:10 UTC **eval 25 identity rule [M, CPU, GT-free]:** `identity_rule.py` on the stored eval-25 poses (frames 0,2,4,6,
+  library_v3 boards): best = **swapped, wooden_piece_1 ← old wooden_piece_2 @ Rx (180° about x), wooden_piece_2 ← old
+  wooden_piece_1** (score −20.9; as tracked +50.0, rank 21 of 32), as approach 1 found. Ported to
+  `pipeline/identity_fix.py` (same scoring; rewrites poses.npz / poses_world_vo.npz in place, keeps *_as_tracked.npz):
+  reproduces the scores exactly, is idempotent (a second run keeps the repair), and on public ep24 keeps the good
+  21 Oct track (−79.9, rank 1) and flags the 24 Oct w1 track (swapped + Rx, as-tracked rank 22), as approach 1's T-1.
+  No eval depth cache is stored, so the repair runs on the box between perception and the reference
+  (`ops/jobs/eval_idfix.sh`: perception → identity_fix → eval_both).
