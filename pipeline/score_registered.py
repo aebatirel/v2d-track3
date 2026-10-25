@@ -30,6 +30,7 @@ p.add_argument('--t3', default='/content/t3')
 p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
 p.add_argument('--out', default=None)
 p.add_argument('--n_points', type=int, default=1000)
+p.add_argument('--per_frame', help='also save per-frame, per-object position error (cm) and ADD (cm) after the alignment')
 a = p.parse_args()
 sys.path.insert(0, a.kit)
 from v2dlb import track3_pose as T3
@@ -132,7 +133,14 @@ def score(ach):
     out['per_obj_AUC'] = {n: round(float(T3._registered_pose_metric('add_auc', ach[:, :, s:s + 1], ref[:, :, s:s + 1],
                                                                    pts[s:s + 1], axes[s:s + 1], orders[s:s + 1])), 4)
                           for s, n in enumerate(names)}
+    PF.append(dict(pos_cm=np.linalg.norm(ach[:, 0, :, :3] - ref[:, 0, :, :3], axis=-1) * 100,
+                   add_cm=np.stack([np.linalg.norm((pts[s] @ T3._rotation_matrix(ach[:, 0, s, 3:]).transpose(0, 2, 1) + ach[:, 0, s, None, :3])
+                                                   - (pts[s] @ T3._rotation_matrix(ref[:, 0, s, 3:]).transpose(0, 2, 1) + ref[:, 0, s, None, :3]),
+                                                   axis=-1).mean(-1) for s in range(B)], 1) * 100))
     return out
+
+
+PF = []
 
 
 res = {'episode': a.ep, 'objects': names, 'frames': int(len(frames)), 'meshes': a.meshes or 'public scans',
@@ -146,3 +154,5 @@ print(json.dumps(res, indent=1))
 out = a.out or (a.source.replace('.npz', '_registered.json') if a.source.endswith('.npz')
                 else os.path.join(a.source, f'score_registered_ep{a.ep}.json'))
 json.dump(res, open(out, 'w'), indent=1)
+if a.per_frame:                                                        # diagnostic: where along the episode it fails
+    np.savez(a.per_frame, names=np.array(names), frames=frames, **{f'{k}_{q}': PF[i][q] for i, k in enumerate(trajs) for q in PF[i]})

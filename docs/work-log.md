@@ -3468,3 +3468,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.453; sim_vs_ref 0.717). Eval 30 stays adopted (its detection is the validated fix).
 - 00:24 UTC seed 43, **eval 16: 0.8045** (std 0.098) vs seed 42's 0.795: seed 43 picked (5 of 5 so far).
 - 00:25 UTC box 57574634 (`20261024-ev30rp-07eef1a`) done, 100 min, self-destroyed (≈ $2.3).
+- 00:33 UTC **where public tracking fails (diagnostic, after inference):** `score_registered.py --per_frame` (new; per-frame
+  position error after the kit's registration and alignment) on all 20 public perc2m tracks (16 G1 + 4 from 21 Oct,
+  library_v2 meshes). No mid-episode track loss anywhere: every failure starts at frame 0 (ep0 lid 23 cm for all 373
+  frames; ep11 both cups; ep23 boards from frame 26, after the frame-0 identity swap). Otherwise median position
+  errors are 0.3–2.3 cm; the pitcher is the least accurate (median 3.5 / 2.6 cm in ep21 / ep22). So the hidden-cup
+  wrist jumps of evals 14 and 33 have no public counterpart; a tracking guard for them can only be checked for no
+  regression on public data.
