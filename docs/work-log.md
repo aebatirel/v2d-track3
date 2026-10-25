@@ -3746,3 +3746,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   Reading: all zero-action scores are 0.05–0.25, so these replays are dominated by chaotic failures (boards knocked off
   the table edge, sweeper lost) rather than by hold timing; the event model may still matter after the fine-tune, but
   it has no evidence for adoption. Outputs `scratchpad/t2/runs/ep{24,2,39,18}{A,B}`.
+- 15:51 UTC **Owner topped up (credit $88.28) and said "go ahead".** Batch = the pre-registered 03:01 UTC plan, with two
+  changes recorded before launch: eval 25 is dropped from the second-learner list (its stored reference has the two
+  board identities swapped, approach-1 report §2.6, so training on it is wasted; it gets an identity-fixed rerun once
+  the rule is wired into perception), and the arc foot is switched on only where it is under test (SF_ARC=1 for ep21
+  twin arm B and eval 20; SF_ARC=0 elsewhere, so the other fixes are tested as validated). Frozen recipe of 24 Oct:
+  SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5, GL_ARGS "--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001
+  --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1"; detection/guard defaults of today's code.
+  Boxes (≈ $1.3–1.5/h; estimate ≈ $55–60 in all):
+  - twin A / B: public ep21 (20261024-e2-e49e83d mck), library_v3, SF_ARC=0 / 1; adopt the arc foot for eval 20 iff
+    registered AUC ≥ base − 0.02 and the pitcher's AUC ≥ base's (rule of 25 Oct 02:3x);
+  - eval_both (library_v3x): evals 8 + 14, 32 + 33, 10 (SF_ARC=0), 20 (SF_ARC=1);
+  - std_learner on stored references: 1, 16, 19 (pack-31ef267; grasp-lock rollouts pack / seed43) and 28, 30
+    (pack-31ef267 / ev30rp-07eef1a).
