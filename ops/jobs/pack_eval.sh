@@ -10,13 +10,22 @@
 # "EP:RUN:final" takes RUN's results/final_eval/ep<EP>/policy.safetensors (tools/choose_learner.py's choice); list RUN in
 # RUNS too, so the reference that policy was trained on is pulled. EP_LIB="EP:DIR ..." packs those episodes' meshes from
 # DIR (the library their policy was trained with; ops/jobs/submit_pack.sh).
-# Order matters: store.sh pull-run never overwrites (cp -rn), so the FIRST run listed wins for a file path. Put the
+# RUNS entries may be RUN@sub1,sub2 to pull only those sub-folders of a run (e.g. RUN@refs: the references a PICKed
+# policy was trained on, without the run's checkpoints). Order matters: store.sh pull-run never overwrites (cp -rn), so the FIRST run listed wins for a file path. Put the
 # runs that redid an episode first (2026-10-24: evR redid eval 25, whose failed evD attempt left references with the
 # same names; the policy must be evaluated on the reference it was trained on).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; F=/content/results/final_eval; mkdir -p $F
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed)
-for r in ${RUNS:?RUNS missing}; do bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pack_eval: pull-run $r FAILED" >> $J; exit 1; }; done
+# Standard-learner references (hard_ab.sh, refs/perc2mcks) name /content/assets/... (make_assets.py on the training box);
+# grasp-lock references carry their own copies (refs/sf/ep<N>/assets). Rebuild the same assets from ASSET_LIB, the
+# library the standard learners were trained with (2026-10-25: the first pack with standard-learner policies).
+[ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets >> $J 2>&1 \
+  || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
+for x in ${RUNS:?RUNS missing}; do             # RUN or RUN@sub1,sub2 (2026-10-25: only those sub-folders, e.g. RUN@refs)
+  r=${x%%@*}; sub=; [ "$r" != "$x" ] && sub=${x#*@}
+  PULL_SUB="${sub//,/ }" bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pack_eval: pull-run $x FAILED" >> $J; exit 1; }
+done
 python - $F/checkpoints.json /content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json << 'PYEOF' >> $J 2>&1 || exit 1
 import glob, json, os, sys
 out, roster = sys.argv[1], json.load(open(sys.argv[2]))['episodes']
