@@ -1,22 +1,25 @@
 """Human grasp census per (episode, hand, object) from OUR reference parquet (perceived MANO hands + perceived object
 poses; no ground truth). For every hold (contiguous frames with MANO contacts on the object):
-  - per-link contact share (palm, thumb1-3, index1-3, ... pinky1-3)
+  - per-slot contact share, labelled by mkref's probe sites (tools/contact_slots.py: tips, DPs, thumb MCP / finger
+    MPs, palm), and per-digit share (any slot of the digit). 2026-10-25: earlier versions labelled the slots in MANO
+    link order (palm, thumb1-3 ... pinky3), which does not describe mkref's slots (approach3-grasp-taxonomy.md §9).
   - contact positions in the object frame (where on the object), mean / p10 / p90 per object PCA axis
   - which side of the object each digit group touches (sign of the contact normal along the PCA thin axis)
   - task wrench along the reference while held: |F| = |m(a - g)|, max acceleration, tilt range, grip torque about
     the human contact centroid (mass 0.3 kg = the simulator's placeholder; inertia from our mesh scaled to 0.3 kg)
 Usage: human_grasp_census.py PARQUET LIBRARY_DIR OUT_JSON
 """
-import json, sys
+import json, os, sys
 import numpy as np
 import pyarrow.parquet as pq
 import trimesh
 from scipy.signal import savgol_filter
 from scipy.spatial.transform import Rotation as Rot
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..', 'tools'))
+from contact_slots import slot_names, short, digit_slots  # noqa: E402
+
 G = np.array([0.0, 0.0, -9.81]); MASS = 0.3; FPS = 20.0
-LINKS = ['palm', 'thumb1', 'thumb2', 'thumb3', 'index1', 'index2', 'index3', 'middle1', 'middle2', 'middle3',
-         'ring1', 'ring2', 'ring3', 'pinky1', 'pinky2', 'pinky3']
 
 
 def holds(mask, min_len=5, gap=3):
@@ -37,7 +40,8 @@ def main(parquet, lib, out):
     P = np.array(t.column('object_body_position')[0].as_py(), float)
     T = P.shape[0]
     Q = np.array(t.column('object_body_wxyz')[0].as_py(), float)[:, :, [1, 2, 3, 0]]
-    res = dict(parquet=parquet, objects=names, frames=T, holds=[])
+    slots = slot_names(t); LABELS = [short(n) for n in slots]; DIG = digit_slots(slots)
+    res = dict(parquet=parquet, objects=names, frames=T, slot_labels=LABELS, holds=[])
     meshes = {}
     for k, n in enumerate(names):
         m = trimesh.load(f'{lib}/{n}.glb', force='mesh')
@@ -65,7 +69,8 @@ def main(parquet, lib, out):
                         no = R[j].inv().apply(cnrm[f, l])
                         pts.append(ax @ (po - M['com'])); nrm.append(ax @ no); lab.append(l)
                 pts = np.array(pts); nrm = np.array(nrm); lab = np.array(lab)
-                grp = {'palm': [0], 'thumb': [1, 2, 3], 'fingers': list(range(4, 16))}
+                grp = {'palm': DIG['palm'], 'thumb': DIG['thumb'],
+                       'fingers': sorted(DIG['index'] + DIG['middle'] + DIG['ring'] + DIG['pinky'])}
                 where = {}
                 for g, ls in grp.items():
                     s = np.isin(lab, ls)
@@ -90,7 +95,8 @@ def main(parquet, lib, out):
                 lift = (Pc[fr, 2] - Pc[0, 2]) * 100
                 res['holds'].append(dict(
                     side=side, object=n, frames=[int(a), int(b)], n=len(fr),
-                    link_share={LINKS[i]: round(float(share[i]), 2) for i in range(16) if share[i] > 0.05},
+                    slot_share={LABELS[i]: round(float(share[i]), 2) for i in range(len(LABELS)) if share[i] > 0.05},
+                    digit_share={g: round(float(on[fr][:, ks].any(1).mean()), 2) for g, ks in DIG.items()},
                     where=where, mesh_pca_extent_cm=(M['ext'] * 100).round(1).tolist(),
                     grip_from_com_cm=round(float(np.linalg.norm(grip) * 100), 1),
                     F_max_N=round(float(np.linalg.norm(F[fr], axis=1).max()), 2),
@@ -105,7 +111,8 @@ def main(parquet, lib, out):
         print(h['side'], h['object'], h['frames'], 'n', h['n'], '| F_max', h['F_max_N'], 'acc95', h['acc_p95_ms2'],
               'tau_grip', h['tau_grip_p50_Nm'], '/', h['tau_grip_max_Nm'], '| grip', h['grip_from_com_cm'], 'cm',
               '| tilt', h['tilt_max_deg'], 'lift', h['lift_max_cm'])
-        print('   links', h['link_share'])
+        print('   slots', h['slot_share'])
+        print('   digits', h['digit_share'])
         for g, w in h['where'].items():
             print('   ', g, 'n', w['n'], 'pos', w['pos_mean_cm'], 'p10', w['pos_p10_cm'], 'p90', w['pos_p90_cm'],
                   'nrm', w['normal_mean'], '+thin', w['thin_axis_normal_pos_share'])

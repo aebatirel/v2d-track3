@@ -44,7 +44,10 @@ PROBE_SITES = ['thumb_tip_site', 'index_tip_site', 'middle_tip_site', 'ring_tip_
                'thumb_DP_site', 'index_DP_site', 'middle_DP_site', 'ring_DP_site', 'pinky_DP_site',
                'thumb_MCP_VL_site', 'index_MP_site', 'middle_MP_site', 'ring_MP_site', 'pinky_MP_site']
 PALM_FRAMES = ['hand_C_MC', 'index_MCP_VL_site', 'middle_MCP_VL_site', 'ring_MCP_VL_site', 'pinky_MC_site']
-N_SLOTS = 16                                                    # 15 site probes + 1 palm probe
+# Slot k of mano_<side>_object_contact_* belongs to CONTACT_SLOT_NAMES[k] ('palm' = mean of PALM_FRAMES); written as the
+# contact_slot_names column. mano_link_names keeps the kit's MANO link list, which does NOT describe these slots.
+CONTACT_SLOT_NAMES = PROBE_SITES + ['palm']
+N_SLOTS = len(CONTACT_SLOT_NAMES)                               # 15 site probes + 1 palm probe
 # Relaxed right hand in the MANO anatomical wrist frame (x proximal, y dorsal, z radial), metres, MediaPipe order.
 TEMPLATE_RIGHT = np.array([
     [0, 0, 0],
@@ -136,8 +139,10 @@ def sharpa_layout(pin, v2d):
     return dict(per_side=per, **{k: per['right'][k] for k in keys})
 
 
-def patch_logger(lay):
-    """Return ManoSharpaData; rebuild it if this pinocchio reports another frame / finger / task count."""
+def patch_logger(lay, slot_names=False):
+    """Return ManoSharpaData; rebuild it if this pinocchio reports another frame / finger / task count. slot_names=True
+    returns a subclass schema with the extra contact_slot_names column (main process only: E2S keeps the kit class,
+    whose from_parquet drops the column, and stage (e) writes it again)."""
     import pyarrow as pa
     import robotic_grounding.retarget.data_logger as dl
     F, NF, NT = lay['n_frames'], lay['n_fingers'], lay['n_tasks']
@@ -155,6 +160,9 @@ def patch_logger(lay):
         dl.SHARPA_NUM_FRAMES = F
         print(f'[compat] ManoSharpaData schema patched: frames {F} (repo 67), finger joints {NF} (22), tasks {NT} (11)',
               flush=True)
+    if slot_names:
+        return dl.create_data_logger_class('ManoSharpaData', list(dl.ManoSharpaData._field_specs)
+                                           + [('contact_slot_names', pa.list_(pa.string()), list[str], False)])
     return dl.ManoSharpaData
 
 
@@ -859,7 +867,7 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     pin = install_compat(a.v2d)
     lay = sharpa_layout(pin, a.v2d)
-    MSD = patch_logger(lay)
+    MSD = patch_logger(lay, slot_names=True)
     from robotic_grounding.retarget.naming import make_usd_safe
     from robotic_grounding.retarget.params import MANO_HAND_LINKS
     log(f'Sharpa layout via pinocchio {pin.__version__}: frames {lay["n_frames"]}, fingers {lay["n_fingers"]}, tasks {lay["n_tasks"]}')
@@ -1060,7 +1068,7 @@ def main():
                    object_name=obj_name, safe_object_name=make_usd_safe(obj_name), object_body_names=list(names),
                    safe_object_body_names=[make_usd_safe(nm) for nm in names],
                    object_mesh_paths=[vis_p[nm] for nm in names], object_urdf_paths=[urdf_p[nm] for nm in names],
-                   object_mesh_radius=radius)
+                   object_mesh_radius=radius, contact_slot_names=list(CONTACT_SLOT_NAMES))
         z16 = np.zeros((N_SLOTS, 3)).tolist()
         i16 = [0] * N_SLOTS
         z45 = [0.0] * 45
@@ -1173,6 +1181,7 @@ def Xform "support_surfaces"
         log(f'{s} contacts: frames with contact {act.any(1).mean():.2f}, mean active slots {act.sum(1).mean():.2f}, '
             f'per body {per_body}, local normal flips {np.round(flips, 3).tolist()}')
     summary['contacts'] = cstats
+    data.contact_slot_names = list(CONTACT_SLOT_NAMES)              # E2S's kit class dropped it from e2s_raw
     data.fps = float(a.fps)
     data.mano_to_robot_scale = float(a.mano_to_robot_scale)
     data.save_to_parquet(final_root, partition_cols=['sequence_id', 'robot_name'])

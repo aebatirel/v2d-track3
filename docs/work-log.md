@@ -3739,3 +3739,28 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   edge-balanced start). Verdict after all four episodes. **P1 definition fixed now, before its run:** "lifts board 1 by
   ≥ 10 cm by f30" = the rise of board 1 at f30 over its own frame-0 height in the exact (unjittered, unpushed) copy of the
   fresh K = 8 re-score; the worst-25 % score is over those 8 copies; pushes 1 cm random walk, theta jitter 5 mm/0.005 rad.
+
+### 25 Oct ~09:40–10:05 UTC — contact slot names: owner decision, mkref column, kit check (session on branch `claude/inspiring-mendel-lbgp9e`, based on `main-bsky37` 53929d0)
+- Task: mkref stage (e) fills the 16 contact slots in PROBE_SITES order + palm, but the reference's `mano_link_names`
+  (MANO link order) was read as slot labels by four analysis scripts (approach3-grasp-taxonomy.md §9).
+- **Owner decision (asked in this session):** mkref writes a new `contact_slot_names` column = PROBE_SITES + ['palm'];
+  `mano_link_names` stays the kit's MANO list.
+- **Kit check [C], evaluator pin 8c778f90 (fetched to the scratchpad):** FlashCHORD `load_reference` /
+  `load_mano_sharpa` read only the columns they name and never `mano_link_names`; the kit's `ManoSharpaData.from_parquet`
+  selects its own schema (extra columns dropped, missing ones null); E2S rebuilds its output as `ManoSharpaData(**d)`
+  from the kit class. Our tools that rewrite references (grasp_lock, contact_retarget, wrist_ilc, support_fill,
+  sim_settle, grasp_evolve) use pyarrow `set_column`/`write_table` (extra columns kept) and none rewrites the contact
+  columns; grasp_lock and hold_phases use any-slot counts only.
+- **Built:** `pipeline/mkref.py` `CONTACT_SLOT_NAMES` + `patch_logger(lay, slot_names=True)` (main process only; E2S
+  keeps the kit class) writing the column into `loaded/` and `processed/`; `tools/contact_slots.py` (single source for
+  analysis code: column, else mkref order for references with `raw_motion_file` 'poses|hands', else refuse; CLI for
+  per-window slot / digit shares, `--mano` reproduces the old reading); `tests/test_contact_slots.py`.
+- **Test [M], cloud VM CPU, scratchpad venv (numpy 2.5.4, pyarrow 26.0.0):** `V2D=<kit 8c778f90> SLOT_REF=<ep12 perc2mc
+  processed> pytest tests/test_contact_slots.py tests/test_g0_code.py` → 7 passed. The round trip (stage (e) write path
+  on the HF ep12 reference `runs/20261021-auto18-966eb96/refs/perc2mc/ep12`) writes the 16 names, keeps
+  `mano_link_names`, the kit class reads every kit field identical to the original, and FlashCHORD `load_reference`
+  gives identical contacts, wrists and fingers (181 frames, 20 fps). Not yet run inside a real mkref + E2S job on a GPU
+  box: the first mkref run after this commit is the end-to-end check (its VALIDATION step runs load_reference).
+- **Reproduced unchanged first:** `slot_order_check.py` on ep12 (slots 97–100 % within threshold of PROBE_SITES[k]; slot 0
+  palm-probe 19 %) and `digit_shares.py` on the 11 tags of `out/inputs.txt` (byte-identical to `out/digit_shares.txt`).
+  Inputs downloaded from the HF store to the scratchpad (19 files, 27 MB).

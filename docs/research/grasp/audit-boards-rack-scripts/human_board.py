@@ -1,10 +1,12 @@
 """Human strategy on the boards (ep24) from OUR reference (perceived board poses + our MANO hand joints; no ground truth).
 Per frame and hand: each fingertip in the board frame: height above the board's UP face (cm, + = above, - = below the
-DOWN face), distance outside the footprint rectangle (cm), nearest edge; contacts (MANO link labels) on the board."""
+DOWN face), distance outside the footprint rectangle (cm), nearest edge; contacts on the board, labelled by contact slot
+(mkref probe order, refload.py; 2026-10-25: earlier versions printed MANO link labels, which mislabel mkref's slots)."""
 import sys, numpy as np, trimesh
 from scipy.spatial.transform import Rotation as R
 sys.path.insert(0, __file__.rsplit('/', 1)[0]); from refload import load_ref
-d = load_ref(sys.argv[1]); lib = sys.argv[2]; every = int(sys.argv[3]); rng = [int(x) for x in sys.argv[4].split(':')] if len(sys.argv) > 4 else [0, d['T']]
+d = load_ref(sys.argv[1]); lib = sys.argv[2]
+assert d['slots'] is not None, 'unknown contact slot order (not an mkref reference)'; every = int(sys.argv[3]); rng = [int(x) for x in sys.argv[4].split(':')] if len(sys.argv) > 4 else [0, d['T']]
 names = d['names']; T = d['T']
 SLAB = {'wooden_piece_1': (-0.004, 0.004), 'wooden_piece_2': (-0.004, 0.008)}
 TIPS = {'T': 4, 'I': 8, 'M': 12, 'R': 16, 'P': 20}
@@ -30,6 +32,6 @@ for j, o in enumerate(names):
                 out = max(y - hy, ly - y, zz - hz, lz - zz, 0)
                 edge = ['+y', '-y', '+z', '-z'][int(np.argmax([y - hy, ly - y, zz - hz, lz - zz]))]
                 parts.append(f'{k}{h*100:+4.1f}/{out*100:3.1f}{edge if out > 0 else "  "}')
-            cl = [d['mano_links'][i].replace('link_', '') for i in np.nonzero(c)[0]]
+            cl = [d['slots'][i] for i in np.nonzero(c)[0]]
             line += f' {hs[0].upper()} ' + ' '.join(parts) + f' c={len(cl)}:{",".join(cl)} |'
         print(line)
