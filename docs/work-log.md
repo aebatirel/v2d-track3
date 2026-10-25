@@ -3693,3 +3693,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   needs the foot plus a carved cavity in the blue cup's collision copy (spec §7 parked rule); not done.
 - 06:47 UTC no boxes running; credit **$1.82**; the owner's top-up has not arrived, so the pre-registered eval rerun
   batch has not started.
+- 06:55 UTC **leaderboard (Kaggle API, 20 teams per board):** AUC **9th** 0.58252 (1–8: 0.932 / 0.884 / 0.865 / 0.752 /
+  0.730 / 0.662 / 0.636 / 0.630); SP-SR 10th 0.50; **MP-SR 7th 0.40**; RPE 9th 8.82 cm; MPPE 9th 6.69 cm; CD-O 10th
+  0.405 cm (leader 0.112).
