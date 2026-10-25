@@ -3915,3 +3915,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - ~18:35 UTC **pack prep (code):** `pack_eval.sh` (1) RUNS entries may be `RUN@refs` (pull only those sub-folders, via store.sh PULL_SUB: the new runs' checkpoints are not needed and a whole-run pull failed earlier); (2) builds `/content/assets` with make_assets.py from ASSET_LIB (default library_v3) when missing: standard-learner references (refs/perc2mcks) name /content/assets/... while grasp-lock references carry copies under refs/sf/ep<N>/assets, and this is the first pack with standard-learner policies (evals 1, 25, 30 …). 3-way choice tooling (scratchpad choose3.sh = tools/choose_learner.py on downloaded rollouts) reproduces eval 25's numbers; eval 8 → eval_both glock 0.9705 (frozen 0.7615).
 - 18:42 UTC **std1928 done** (`20261025-std1928-ee7ba8e`, ≈ 3.7 h, ≈ $5.8): eval 19 standard **0.935** vs grasp lock (seed 43) 0.6534 → **std**; eval 28 standard **0.9347** vs grasp lock 0.6938 → **std** (stored references, like for like).
 - 19:12 UTC **evb3233 done** (≈ 4.3 h, ≈ $6.4): standard learners ep32 0.2988, ep33 0.2487 (both below the eval_both grasp lock 0.4969 / 0.4857). **3-way choice (rule of ~16:05 UTC, yardstick = standard learner rollouts): ep32 → frozen 0.779; ep33 → frozen 0.7728** (`20261025-fr3233-043275f` results/glock_public/ep{32,33}/best).
+- 19:24 UTC **evb1420 done** (≈ 4.4 h, ≈ $6.4): standard learners ep14 0.6192, ep20 0.1461. 3-way choice: **ep14 → eval_both
+  glock 0.6595** (frozen 0.6293, std 0.6192); **ep20 → eval_both glock 0.8923** (frozen 0.8888, std 0.1461). All batch
+  boxes done; credit $48.65 (≈ $53 spent since the top-up, incl. the frozen-recipe boxes and the failed fr0810).
+- **Pack 3 composition (GT-free choices, rules fixed before results):**
+  - new policies (one fresh official rollout each):
+    - 1, 19, 28 (std, stored references);
+    - 30 (std, ev30rp reference);
+    - 25 (std, identity-correct rebuilt reference);
+    - 8 (eval_both glock, library_v3x), 14, 20 (eval_both glock, arc foot for 20);
+    - 32, 33 (frozen-recipe glock);
+  - kept pack2 rollouts (checkpoint unchanged): 3, 5, 15, 16 (seed 43), 6, 10, 35, 36, 37, 38.
+  - Our own sim_vs_ref means of the chosen policies (each against its own reference; not leaderboard numbers):
+    1 0.912, 8 0.971, 14 0.660, 19 0.935, 20 0.892, 25 0.712, 28 0.935, 30 0.919, 32 0.779, 33 0.773.
