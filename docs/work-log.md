@@ -3871,3 +3871,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (eval_both's grasp lock, its standard learner, the frozen-recipe grasp lock), yardstick = the standard learner's
   rollouts as in eval_both; the highest mean sim_vs_ref is packed. No ground truth. ≈ 4 boxes × 2 h ≈ $12.
 - ~16:08 UTC **launched (code 043275f, frozen recipe):** 57687902 `20261025-fr0810-043275f` (Sweden WS $1.58/h, library_v3x, 8 + 10), 57687906 `-fr1420-` (Netherlands S $1.64, 14 + 20), 57687907 `-fr3233-` (New York S $1.67, 32 + 33), 57687908 `-fr25-` (Croatia Max-Q $1.45, 25). 13 boxes ≈ $19.8/h.
+- 15:55 UTC **ep21 twin, base arm (SF_ARC=0) done** (`20261025-twin21base-ee7ba8e`, ≈ 1.1 h, ≈ $1.6, self-destroyed): pitcher UNSTABLE at both rests, falls 117.5 mm / 70.9° by f19 at zero action; chosen 70M; **registered AUC vs mocap 0.6565 ± 0.093** (0.471–0.721), sim_vs_ref 0.8645. Arc arm still running.
