@@ -3578,3 +3578,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 01:39 UTC **TRACK_GUARD validation (base vs guard, same box):** ep0 0.496 → **0.964**; ep11 0.898 = 0.898; ep23 0.041 =
   0.041 (identity swap: both boards plausible, the guard does not trigger); ep12 0.967 → 0.966 (not triggered; GPU
   nondeterminism); ep18 0.938 = 0.938; ep24 0.812 = 0.812. ep31, ep21 pending.
+- 01:44 UTC **TRACK_GUARD PASSES and is adopted** (pre-registered rule; box `20261025-guard-fe3f407`, ≈ 45 min,
+  ≈ $0.8, self-destroyed): 8 public episodes, base vs guard in the same job, registered AUC vs mocap: mean **0.7239 →
+  0.7821**; ep0 +0.468 (lid recovered at frame 0), ep31 +0.0005, ep12 −0.0010, ep21 −0.0023 (pitcher 0.688 → 0.684;
+  not triggered there, GPU nondeterminism), ep11 / 18 / 23 / 24 identical. No episode below −0.01. `perc2.py`
+  default `TRACK_GUARD=1` (`TRACK_GUARD=0` reproduces earlier runs). It does not fix ep23 (a frame-0 identity swap of
+  two plausible boards). Eval episodes it is expected to change: 8, 14, 32, 33 (the plausibility flag fires there);
+  to be confirmed by a perception-only rerun of the 20 eval episodes before any training.

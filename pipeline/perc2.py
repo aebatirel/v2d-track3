@@ -17,8 +17,9 @@ centroid) plus half-resolution depth and image, for offline replay of detection 
 DET_DUMP=0 turns it off. DET_VERIFY=N adds pipeline/perc.py's render-and-compare check on each object's top N
 proposals to the dump (off by default). DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
 depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
-TRACK_GUARD=1 (2026-10-25, off by default until validated): physically implausible poses (below the table) trigger
-re-registration on other proposals / re-detection, else the last plausible pose is held (see the tracking loop).
+TRACK_GUARD=1 (2026-10-25, default on after its public validation: 8 episodes, mean 0.724 -> 0.782, ep0 +0.468, no
+episode below -0.0023): physically implausible poses (below the table) trigger re-registration on other proposals /
+re-detection, else the last plausible pose is held (see the tracking loop). TRACK_GUARD=0 reproduces earlier runs.
 Detection rules (2026-10-23, pipeline/det_rules.py, chosen on public episodes): reach gate, size term, Grounding
 DINO term; DET_RULES=0 restores the earlier rule; DET_LAM_S / DET_REACH / DET_LAM_G override. 2026-10-25: gated
 re-proposal (DET_REPROP, now default 1) and the on-table rule (DET_TABLE, default 1), both replayed on the public dumps
@@ -411,7 +412,7 @@ if DET_ONLY:                                                          # detectio
     log('DONE (DET_ONLY)')
     sys.exit(0)
 props, S, ri, ci = detect(0)
-TRACK_GUARD = os.environ.get('TRACK_GUARD', '0') == '1'
+TRACK_GUARD = os.environ.get('TRACK_GUARD', '1') == '1'   # default on since 2026-10-25 (public validation passed)
 if not TRACK_GUARD:                                                   # the guard re-detects on later frames
     del gen, dino; torch.cuda.empty_cache()
 img0 = rgb(rc[0])
