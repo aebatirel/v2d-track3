@@ -3431,3 +3431,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     evaluations. **Adopt iff v5 ≥ base − 0.02 and the pitcher object's AUC (v5) ≥ base's.**
   - Eval 20 may be trained with the v5 pitcher in parallel to save time; its policy is used only if step 2 adopts,
     whatever its sim_vs_ref. No other object changes in this test.
+- 00:22 UTC **owner (woke briefly): "fix the lower scores properly, do whatever it takes, aim for 4th place" (0.752).**
+  Plan sent: (1) perception robustness (the 16-episode G1 mean 0.81 vs ground truth ≈ the 0.81 Kaggle / sim ratio, so
+  generic perception errors, not only the spoon, likely explain most of the gap), (2) meshes for evals 20 / 10 / 8 /
+  1 / 25, (3) grasps and second seeds, (4) rerun the changed eval episodes. Validation on public data first; a top-up
+  of ≈ $35–45 will be asked for once fixes pass.
+- 00:18 UTC eval 30 rerun (gated re-proposal, correct reference: sweeper in the rack): **sim_vs_ref 0.7216** (5 evals,
+  std 0.249, min 0.304, max 0.929; checkpoint 60M), against 0.472 before on a wrong reference.
+- Frame-0 detection misses on the public dumps (shipped rule, `det_score.py` vs labels, diagnostic): ep11 (blue cup →
+  beige cup's proposal, beige cup → the person's lap, below the table), ep23 (boards swapped; our board meshes lack
+  the slots, so the two are geometrically alike), ep2 (pot mask partly on the lid). In ep11 the joint score margin
+  between the wrong and the right pairing is only 0.586 vs 0.570.
+- **Pre-registered (before any replay): on-table rule.** Objects rest on the support at the detected frame, so a
+  proposal whose median 3-D point lies more than 3 cm **below** the table plane is barred for every object. Table plane:
+  RANSAC on the dump's half-resolution depth (points 0.2–1.0 m from the camera, normal within 65° of camera up, 6 mm
+  inlier band, the largest inlier set). Acceptance: replay on all 80 dumped public frames (116 labelled instances) with
+  **no regression**; shipped if it adds hits. The eval frame-0 dumps are then replayed only to list which eval
+  episodes change (those need a rerun); no eval outcome feeds back into the rule.
