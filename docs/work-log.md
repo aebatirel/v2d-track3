@@ -3774,3 +3774,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   consistency (copies 0.47–0.50) while lifting only 4.9 cm by f30; the lifting grips each had one bad copy (0.27,
   0.19). Zero-action windows do not predict the fine-tuned order reliably (approach-3 §11.3), so only the GPU A/B
   (portfolio vs copy after the fine-tune, ≈ $8–12) can decide adoption. Results: `approaches-2026-10-25/p1-results/`.
+- 16:18 UTC **Spoon diagnosis (CPU, GT-free), `docs/research/spoon-2026-10-25/`:** the kit aligns the whole scene on the
+  anchor object's frame-0 pose; the spoon anchors evals 32, 33, 35, 36, 37. With the kit's own functions, a 10° / 20°
+  frame-0 roll error of the spoon costs 0.09–0.28 / 0.19–0.66 AUC in those five episodes and nothing in the other
+  five. Our frame-0 roll uncertainty is ≈ 2–6° (raw rest jitter sd 1.4–2.4°, reference vs raw rest mean +1.1 … −6.0°;
+  the mesh has three stable rests ~14° apart, so physics cannot pin it) → ≈ 0.03–0.15 per spoon-anchored episode.
+  Proposed: public re-score test of a rest-averaged anchor pose (rule to be written before the run).
