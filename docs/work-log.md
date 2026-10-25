@@ -3696,3 +3696,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 06:55 UTC **leaderboard (Kaggle API, 20 teams per board):** AUC **9th** 0.58252 (1–8: 0.932 / 0.884 / 0.865 / 0.752 /
   0.730 / 0.662 / 0.636 / 0.630); SP-SR 10th 0.50; **MP-SR 7th 0.40**; RPE 9th 8.82 cm; MPPE 9th 6.69 cm; CD-O 10th
   0.405 cm (leader 0.112).
+- 07:20 UTC **Leaderboard snapshot, all six Track 3 boards** (Kaggle API, first page of 20 per board):
+  `docs/research/leaderboard-20261025-0720utc.json`. Unchanged for us (AUC 9th 0.583, CD-O 10th 0.405 cm).
+  - Spearman rank correlation with AUC across teams [M]: MPPE −0.97 (n 18), RPE −0.93, MP-SR +0.93, SP-SR +0.90,
+    **CD-O only −0.51** (n 16). The CD-O leader (Panav Raaj 0.112 cm) is 17th on AUC (0.341). The AUC top 3 have
+    CD-O 0.228 / 0.253 / 0.264 cm but MPPE 1.24 / 1.65 / 1.83 cm vs our 6.69 cm. Reading: pose error, not mesh shape,
+    separates us from the top 4 (4th, SRL: MPPE 3.61 cm, CD-O 0.239 cm).
+  - The Kaggle CD-O is a flat mean over the 36 (episode, object) pairs (kit `metric_code/track_3/CD-O.py`). Our
+    pre-upload proxy (public scans standing in for the hidden ones, eval seeds) for library_v3 was 0.491 cm over the
+    26 pairs with a public scan. If that proxy holds, the 10 spoon pairs average ≈ (0.405·36 − 0.491·26)/10 ≈ 0.18 cm
+    [estimate, assumes the hidden scans ≈ public scans]: the spoon mesh is probably not the weak part; spoon *pose*
+    accuracy is still unknown.
