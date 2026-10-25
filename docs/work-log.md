@@ -3875,3 +3875,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 16:03 UTC `fr0810` failed in `pull-run 20261025-evb0810-ee7ba8e`: HF xet download 'File size mismatch' (a file of the still-running source run changed while it was being pulled; a race with that box's 30-min push). ~16:25 UTC restarted in place (`ops/box/restart_job.sh`, same commit and job; the box was on HOLD, not re-rented). The same race can hit `fr25` (source run ev25idfix still running).
 - 16:05 UTC `fr0810`'s in-place retry failed on the same file with the same sizes (expected 112,519,585 B, got 112,592,196 B): not a race, one checkpoint of the running source run is inconsistent in the store. The box saved and destroyed itself. Fix: `store.sh pull-run` takes `PULL_SUB` (only the named sub-folders; default unchanged). Relaunched with `PULL_SUB="refs/perc2mck/ep8 refs/perc2mck/ep10 perc2/ep8 perc2/ep10"`.
 - ~16:12 UTC launched 57689227 `20261025-fr0810b-4a71eaa` (Australia S $1.51/h) with PULL_SUB (first offer gone).
+- 16:23 UTC **ep21 arc-foot twin: ADOPTED** (pre-registered 02:40 UTC rule; public ep21, registered AUC vs mocap, 5
+  official evaluations each, same recipe and seed, only SF_ARC differs):
+  - base (SF_ARC=0, `20261025-twin21base-ee7ba8e`): **0.6565 ± 0.093** (0.471–0.721); pitcher 0.414, blue cup 0.899;
+    sim_vs_ref 0.8645; curve 0.35 / 0.49 / 0.09 / 0.27 / 0.17 / 0.48 / 0.68 (10–70M).
+  - arc foot (SF_ARC=1, `-twin21arc-`): **0.7723 ± 0.009** (0.766–0.790); pitcher **0.591**, blue cup 0.954;
+    sim_vs_ref 0.983; curve 0.57 / 0.26 / 0.42 / 0.81 / 0.97 / 0.98 / … (stands at both rests, CERTIFIED BY ARC FOOT).
+  - Rule: arc ≥ base − 0.02 (0.772 ≥ 0.637) ✓ and pitcher arc ≥ base (0.591 ≥ 0.414) ✓ → eval 20's rebuilt policies
+    (built with SF_ARC=1, the default) are eligible for the pack. Twin cost ≈ $1.6 + ≈ $2.3 (Max-Q, ≈ 1.5 h).
