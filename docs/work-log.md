@@ -3813,3 +3813,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 19:21 UTC Render box `20261025-vid25-b7dac7f` (57704791) destroyed after ≈ 58 min (≈ $1.3): its whole-run `pull-run`
   of ev25idfix stalled on store HTTP 429 (the other session saw the same today). `vid_policy.sh` now downloads only
   the reference folder and the one checkpoint; relaunched.
+- 19:49 UTC Render box `20261025-vid25b-d6f7285` done (≈ 25 min with setup, ≈ $0.6, self-destroyed): eval 25's chosen
+  standard-learner policy replayed like the official evaluator with FlashCHORD's renderer (hands visible), fresh
+  rollout sim_vs_ref **0.808** (floor 0.308). Store: `runs/20261025-vid25b-d6f7285/results/vid_policy/ep25/`. Sent to
+  the owner. Both render boxes ≈ $1.9 in all.
