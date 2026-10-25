@@ -3648,3 +3648,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   evaluator-like settings): the pitcher stays within **4.7 mm / 1.2°** of its simulated frame-0 pose (without the foot:
   158 mm / 81° by f8 in the 24 Oct audit); the blue cup within 4.9 mm / 2.8°. Next: test (2), GPU twin ep21
   (`SF_ARC=0` vs `SF_ARC=1`, library_v3, frozen recipe).
+- 02:44 UTC credit **$7.37** with 4 boxes running (sweep, eval perception check, two ep11 twin arms; ≈ $4.5 still to
+  spend) → at the $3 reserve. **Blocked on the owner's top-up** (≈ $40 asked): ep21 arc-foot twin (≈ $2.6), eval
+  reruns with the guard (8, 14, + 32 / 33 if the check confirms) and the second learner on the 12 episodes below the
+  gate (≈ $45 with packs).
