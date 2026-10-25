@@ -62,6 +62,11 @@ the answers that matter for future work. Dates are 2026.
   go to sleep". Mandate: redo the four validation episodes (ep12, ep27 good; ep18, ep24 bad) with contact-anchored
   retargeting, test as much as possible, see what works or not, fix it, and have a reliable setup by morning.
   Budget = the credit; agent's own rule: no box starts unless the credit covers its estimated cost + $3.
+- **2026-10-25 (owner, ~03:30 TRT):** "fix the lower scores properly, do whatever it takes, aim for 4th place"
+  (board #4 = 0.752 then; us 0.575). Then, asked about a second learner: **"use both"**: the standard FDR RL learner
+  is trained next to the grasp lock on the eval episodes below GATE 0.9, and the GT-free choice rule
+  (`tools/choose_learner.py`, mean sim_vs_ref over the official repeats) keeps one per episode. This lifts the 24 Oct
+  "one recipe" restriction for those episodes. Every other rule stays (public validation first, no tuning on eval).
 - **Shared artefacts** (private unless the owner shares them):
   - Explained Colab notebook: https://colab.research.google.com/drive/1rSlDlcC91UggWeCsDS0H8KFrp_C6ygX5
   - Visual explainer page: https://claude.ai/artifact/GJegn8ZZHnb7PFDTnCDpgd

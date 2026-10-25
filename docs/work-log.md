@@ -3526,3 +3526,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   will. "Same perception tracks" in the pitcher entry is replaced by "same pipeline and seed, each arm with its own
   library". Detection is identical (the frame-0 choice does not depend on the swapped mesh except through its
   template descriptors; any change is reported).
+- 00:51 UTC **owner decision: "use both" learners.** For the eval episodes whose chosen grasp-lock policy tracks our
+  reference below GATE 0.9 (mean sim_vs_ref of its 5 evaluations), the standard FDR RL learner (250M) is trained on
+  the same reference and `tools/choose_learner.py` keeps the learner whose official rollouts track our perceived
+  reference best (rule of 24 Oct, fixed beforehand; it picked the better learner in 3 of 3 public pairs: ep12, ep18,
+  ep39). Below the gate today: 1 (0.297), 8 (0.777), 10 (0.334), 14 (0.506), 16 (0.805), 19 (0.653), 20 (0.287),
+  25 (0.243), 28 (0.694), 30 (0.722), 32 (0.838), 33 (0.391). Episodes whose reference stays (1, 16, 19, 25, 28, 30):
+  new job `ops/jobs/std_learner.sh` (stored reference + hard_ab.sh SPLIT=eval + choose_learner). Episodes whose
+  reference changes (8, 10, 20 by mesh; 8, 14, 32, 33 by the track guard): `eval_both.sh` after those validations.
+  Cost estimate ≈ $52 in all (twins ≈ $5, std learner ≈ $19, changed episodes ≈ $26, packs ≈ $2); credit $18 →
+  the owner is asked for a top-up. Training waits for the precision sweep (if it changes perception, every eval
+  reference changes).
