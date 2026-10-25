@@ -10,7 +10,11 @@
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; FC=/content/v2d/robotic_grounding/flash_chord; LIB=${LIB:-$REPO_DIR/meshes/library_v3}
 O=/content/results/vid_policy/ep${EP:?EP missing}; mkdir -p $O
-bash $OPS/store.sh pull-run ${RUN:?RUN missing} >> $J 2>&1 || { log "vid_policy: pull-run $RUN FAILED" >> $J; exit 1; }
+for inc in "runs/${RUN:?RUN missing}/refs/${REFV:?REFV missing}/ep$EP/*" "runs/$RUN/${CK:?CK missing}"; do   # only what is needed
+  hf download "$HF_STORE" --repo-type dataset --include "$inc" --local-dir /content/hfstore >> $J 2>&1 \
+    || { log "vid_policy: download $inc FAILED" >> $J; exit 1; }        # (a whole-run pull stalled 55 min on HTTP 429)
+done
+mkdir -p /content/refs /content/results && cp -rn /content/hfstore/runs/$RUN/refs/. /content/refs/ && cp -rn /content/hfstore/runs/$RUN/results/. /content/results/
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true
 python $REPO_DIR/pipeline/make_assets.py $LIB /content/assets >> $J 2>&1 || { log "vid_policy: make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1

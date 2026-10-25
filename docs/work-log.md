@@ -3810,3 +3810,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   standard-learner policy with the robot hands: `ops/jobs/vid_policy.sh` (RUN 20261025-ev25idfix-02de0c7, EP 25,
   CK results/final_eval/ep25/policy.safetensors, REFV perc2mcks). A fresh rollout (GPU physics is not repeatable), not
   the packed one. The batch of the other session is not touched.
+- 19:21 UTC Render box `20261025-vid25-b7dac7f` (57704791) destroyed after ≈ 58 min (≈ $1.3): its whole-run `pull-run`
+  of ev25idfix stalled on store HTTP 429 (the other session saw the same today). `vid_policy.sh` now downloads only
+  the reference folder and the one checkpoint; relaunched.
