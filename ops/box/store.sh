@@ -11,6 +11,7 @@
 #   store.sh push-depth <ep> [public|eval] [perc_dir]
 #   store.sh pull-depth <ep> [public|eval]
 #   store.sh pull-run <run_id>         put an earlier run's outputs back under /content (stages skip, training resumes)
+#                                      (PULL_SUB="sub/dir ..." limits it to those sub-folders of the run)
 #   store.sh mirror-weights            upload FoundationStereo/FoundationPose weights after a Google Drive setup
 #   store.sh snapshot-env <name>       tar + zstd + upload the built environment (same image tag required to restore)
 #   store.sh restore-env <name>
@@ -73,7 +74,11 @@ pull-depth)
   ln -sf $F /content/cache/depth/ep$EP/
   ;;
 pull-run)
-  down "runs/$2/*" /content/hfstore
+  if [ -n "${PULL_SUB:-}" ]; then   # PULL_SUB="refs/perc2mck/ep8 perc2/ep8 ...": only those sub-folders (2026-10-25: pulling
+    for s in $PULL_SUB; do down "runs/$2/$s/*" /content/hfstore; done   # a whole still-running run failed twice on one
+  else                                                                 # checkpoint, "File size mismatch")
+    down "runs/$2/*" /content/hfstore
+  fi
   for d in perc2 perc2m perc4 oracle refs runs results; do
     [ -d /content/hfstore/runs/$2/$d ] && mkdir -p /content/$d && cp -rn /content/hfstore/runs/$2/$d/. /content/$d/
   done
