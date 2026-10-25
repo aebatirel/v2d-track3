@@ -1,0 +1,16 @@
+left mini_dust_pan [35, 102] n 68 | F_max 3.47 acc95 1.28 tau_grip 0.206 / 0.226 | grip 7.1 cm | tilt 55.7 lift 20.7
+   slots {'thumb_tip': 0.44, 'index_tip': 0.85, 'middle_tip': 0.94, 'ring_tip': 0.26, 'pinky_tip': 0.28, 'thumb_DP': 0.28, 'index_DP': 0.31, 'middle_DP': 0.69, 'ring_DP': 0.79, 'pinky_DP': 0.6, 'index_MP': 0.06, 'ring_MP': 0.31, 'pinky_MP': 0.12}
+   digits {'thumb': 0.51, 'index': 0.93, 'middle': 0.99, 'ring': 0.93, 'pinky': 0.65, 'palm': 0.0}
+    thumb n 49 pos [-9.7, 0.3, 0.3] p10 [-10.6, -1.4, -0.6] p90 [-8.6, 2.8, 0.8] nrm [0.42, -0.11, 0.06] +thin 0.49
+    fingers n 355 pos [-6.6, -0.4, 0.8] p10 [-8.3, -3.3, -0.2] p90 [-5.0, 2.7, 1.5] nrm [0.13, 0.16, -0.18] +thin 0.44
+right mini_dust_pan [70, 81] n 12 | F_max 3.05 acc95 0.44 tau_grip 0.159 / 0.163 | grip 5.3 cm | tilt 13.8 lift 18.8
+   slots {'thumb_tip': 0.17, 'index_tip': 0.58, 'middle_tip': 0.42, 'ring_tip': 0.42, 'index_DP': 0.67, 'middle_DP': 0.42, 'ring_DP': 0.42, 'index_MP': 0.25, 'middle_MP': 0.17}
+   digits {'thumb': 0.17, 'index': 0.83, 'middle': 0.5, 'ring': 0.42, 'pinky': 0.0, 'palm': 0.0}
+    thumb n 2 pos [0.1, 4.7, 1.3] p10 [0.0, 4.6, 1.2] p90 [0.1, 4.8, 1.4] nrm [0.51, -0.81, -0.17] +thin 0.5
+    fingers n 40 pos [-4.9, 2.5, 0.3] p10 [-7.6, 1.5, -1.4] p90 [-2.0, 3.5, 1.3] nrm [-0.05, -0.22, -0.02] +thin 0.5
+right mini_dust_pan [104, 292] n 189 | F_max 3.31 acc95 1.19 tau_grip 0.212 / 0.241 | grip 7.5 cm | tilt 88.3 lift 27.0
+   slots {'thumb_tip': 0.26, 'index_tip': 0.42, 'middle_tip': 0.71, 'ring_tip': 0.87, 'pinky_tip': 0.65, 'thumb_DP': 0.05, 'index_DP': 0.35, 'middle_DP': 0.55, 'ring_DP': 0.38, 'pinky_DP': 0.34, 'middle_MP': 0.33, 'ring_MP': 0.15, 'pinky_MP': 0.17, 'palm': 0.73}
+   digits {'thumb': 0.31, 'index': 0.54, 'middle': 0.89, 'ring': 0.9, 'pinky': 0.69, 'palm': 0.73}
+    palm n 138 pos [-9.9, 0.4, 0.2] p10 [-10.6, -0.9, -0.4] p90 [-8.8, 2.3, 0.9] nrm [0.46, 0.01, 0.1] +thin 0.58
+    thumb n 61 pos [-6.1, 3.3, 1.2] p10 [-7.4, 3.0, 0.9] p90 [-3.6, 3.6, 1.3] nrm [-0.08, -0.77, -0.31] +thin 0.05
+    fingers n 933 pos [-7.1, 1.1, 0.5] p10 [-9.7, -2.1, -0.7] p90 [-4.7, 3.3, 1.5] nrm [0.13, -0.09, -0.07] +thin 0.48

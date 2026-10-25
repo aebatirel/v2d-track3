@@ -1,0 +1,5 @@
+right mini_sweeper [25, 264] n 240 | F_max 3.22 acc95 0.89 tau_grip 0.077 / 0.112 | grip 7.1 cm | tilt 30.4 lift 10.5
+   slots {'index_tip': 0.7, 'middle_tip': 1.0, 'ring_tip': 0.97, 'index_DP': 0.1, 'middle_DP': 0.11, 'ring_DP': 0.66}
+   digits {'thumb': 0.03, 'index': 0.7, 'middle': 1.0, 'ring': 0.98, 'pinky': 0.04, 'palm': 0.0}
+    thumb n 7 pos [-6.8, -2.2, 1.1] p10 [-6.9, -2.3, 1.0] p90 [-6.8, -2.1, 1.2] nrm [0.73, 0.66, -0.19] +thin 0.0
+    fingers n 882 pos [-7.0, -1.1, -0.3] p10 [-8.0, -2.0, -1.2] p90 [-5.1, -0.2, 1.1] nrm [0.41, 0.23, 0.31] +thin 0.69

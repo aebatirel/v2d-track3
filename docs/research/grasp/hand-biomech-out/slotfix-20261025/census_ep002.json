@@ -1,0 +1,573 @@
+{
+ "parquet": "hf:aebatirel/v2d-store/runs/20261024-e3-e49e83d/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet",
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "slot_labels": [
+  "thumb_tip",
+  "index_tip",
+  "middle_tip",
+  "ring_tip",
+  "pinky_tip",
+  "thumb_DP",
+  "index_DP",
+  "middle_DP",
+  "ring_DP",
+  "pinky_DP",
+  "thumb_MCP",
+  "index_MP",
+  "middle_MP",
+  "ring_MP",
+  "pinky_MP",
+  "palm"
+ ],
+ "holds": [
+  {
+   "side": "left",
+   "object": "white_pot",
+   "frames": [
+    36,
+    233
+   ],
+   "n": 198,
+   "slot_share": {
+    "thumb_tip": 0.58,
+    "index_tip": 0.06,
+    "middle_tip": 0.57,
+    "ring_tip": 0.54,
+    "pinky_tip": 0.4,
+    "thumb_DP": 0.69,
+    "index_DP": 0.39,
+    "ring_DP": 0.21,
+    "index_MP": 0.62,
+    "pinky_MP": 0.06,
+    "palm": 0.94
+   },
+   "digit_share": {
+    "thumb": 0.8,
+    "index": 0.72,
+    "middle": 0.61,
+    "ring": 0.57,
+    "pinky": 0.47,
+    "palm": 0.94
+   },
+   "where": {
+    "palm": {
+     "n": 186,
+     "pos_mean_cm": [
+      -18.4,
+      1.0,
+      1.7
+     ],
+     "pos_p10_cm": [
+      -19.2,
+      0.8,
+      1.2
+     ],
+     "pos_p90_cm": [
+      -17.8,
+      1.3,
+      2.2
+     ],
+     "normal_mean": [
+      -0.1,
+      -0.3,
+      0.84
+     ],
+     "thin_axis_normal_pos_share": 1.0
+    },
+    "thumb": {
+     "n": 252,
+     "pos_mean_cm": [
+      -12.9,
+      -0.1,
+      3.7
+     ],
+     "pos_p10_cm": [
+      -13.9,
+      -0.8,
+      2.4
+     ],
+     "pos_p90_cm": [
+      -11.9,
+      0.6,
+      4.9
+     ],
+     "normal_mean": [
+      -0.0,
+      0.31,
+      -0.36
+     ],
+     "thin_axis_normal_pos_share": 0.32
+    },
+    "fingers": {
+     "n": 583,
+     "pos_mean_cm": [
+      -16.7,
+      -0.4,
+      2.9
+     ],
+     "pos_p10_cm": [
+      -21.5,
+      -0.9,
+      1.8
+     ],
+     "pos_p90_cm": [
+      -11.4,
+      0.2,
+      3.9
+     ],
+     "normal_mean": [
+      0.02,
+      0.66,
+      0.08
+     ],
+     "thin_axis_normal_pos_share": 0.5
+    }
+   },
+   "mesh_pca_extent_cm": [
+    35.9,
+    19.1,
+    12.1
+   ],
+   "grip_from_com_cm": 16.3,
+   "F_max_N": 3.28,
+   "acc_p95_ms2": 2.17,
+   "speed_max_ms": 0.43,
+   "tau_grip_max_Nm": 0.531,
+   "tau_grip_p50_Nm": 0.462,
+   "tilt_max_deg": 12.3,
+   "lift_max_cm": 10.8
+  },
+  {
+   "side": "left",
+   "object": "white_pot",
+   "frames": [
+    268,
+    337
+   ],
+   "n": 70,
+   "slot_share": {
+    "thumb_tip": 0.27,
+    "index_tip": 0.79,
+    "middle_tip": 0.21,
+    "thumb_DP": 0.76,
+    "index_DP": 0.74,
+    "middle_DP": 0.39,
+    "ring_DP": 0.13,
+    "index_MP": 0.83,
+    "middle_MP": 0.86,
+    "ring_MP": 0.79,
+    "palm": 0.87
+   },
+   "digit_share": {
+    "thumb": 0.84,
+    "index": 0.87,
+    "middle": 0.89,
+    "ring": 0.8,
+    "pinky": 0.03,
+    "palm": 0.87
+   },
+   "where": {
+    "palm": {
+     "n": 61,
+     "pos_mean_cm": [
+      -17.7,
+      1.7,
+      3.6
+     ],
+     "pos_p10_cm": [
+      -18.5,
+      1.5,
+      3.3
+     ],
+     "pos_p90_cm": [
+      -17.3,
+      2.1,
+      3.8
+     ],
+     "normal_mean": [
+      -0.01,
+      -0.89,
+      -0.33
+     ],
+     "thin_axis_normal_pos_share": 0.08
+    },
+    "thumb": {
+     "n": 72,
+     "pos_mean_cm": [
+      -15.1,
+      -0.9,
+      3.1
+     ],
+     "pos_p10_cm": [
+      -16.2,
+      -1.4,
+      2.6
+     ],
+     "pos_p90_cm": [
+      -15.0,
+      -0.9,
+      3.5
+     ],
+     "normal_mean": [
+      0.06,
+      0.76,
+      -0.07
+     ],
+     "thin_axis_normal_pos_share": 0.25
+    },
+    "fingers": {
+     "n": 335,
+     "pos_mean_cm": [
+      -15.1,
+      -0.6,
+      2.7
+     ],
+     "pos_p10_cm": [
+      -17.4,
+      -1.4,
+      1.9
+     ],
+     "pos_p90_cm": [
+      -12.5,
+      0.4,
+      3.8
+     ],
+     "normal_mean": [
+      0.02,
+      0.57,
+      0.32
+     ],
+     "thin_axis_normal_pos_share": 0.7
+    }
+   },
+   "mesh_pca_extent_cm": [
+    35.9,
+    19.1,
+    12.1
+   ],
+   "grip_from_com_cm": 15.7,
+   "F_max_N": 3.0,
+   "acc_p95_ms2": 0.2,
+   "speed_max_ms": 0.04,
+   "tau_grip_max_Nm": 0.45,
+   "tau_grip_p50_Nm": 0.443,
+   "tilt_max_deg": 3.4,
+   "lift_max_cm": 0.5
+  },
+  {
+   "side": "right",
+   "object": "white_pot",
+   "frames": [
+    44,
+    58
+   ],
+   "n": 15,
+   "slot_share": {
+    "pinky_tip": 0.27,
+    "pinky_DP": 1.0,
+    "pinky_MP": 0.13
+   },
+   "digit_share": {
+    "thumb": 0.0,
+    "index": 0.0,
+    "middle": 0.0,
+    "ring": 0.0,
+    "pinky": 1.0,
+    "palm": 0.0
+   },
+   "where": {
+    "fingers": {
+     "n": 21,
+     "pos_mean_cm": [
+      -1.1,
+      -8.6,
+      4.6
+     ],
+     "pos_p10_cm": [
+      -3.0,
+      -9.2,
+      3.6
+     ],
+     "pos_p90_cm": [
+      0.2,
+      -7.7,
+      5.3
+     ],
+     "normal_mean": [
+      0.01,
+      -0.24,
+      -0.32
+     ],
+     "thin_axis_normal_pos_share": 0.24
+    }
+   },
+   "mesh_pca_extent_cm": [
+    35.9,
+    19.1,
+    12.1
+   ],
+   "grip_from_com_cm": 9.8,
+   "F_max_N": 2.98,
+   "acc_p95_ms2": 0.1,
+   "speed_max_ms": 0.03,
+   "tau_grip_max_Nm": 0.25,
+   "tau_grip_p50_Nm": 0.247,
+   "tilt_max_deg": 3.6,
+   "lift_max_cm": 0.2
+  },
+  {
+   "side": "right",
+   "object": "white_pot",
+   "frames": [
+    298,
+    302
+   ],
+   "n": 5,
+   "slot_share": {
+    "pinky_tip": 0.4,
+    "pinky_DP": 0.6,
+    "pinky_MP": 0.8
+   },
+   "digit_share": {
+    "thumb": 0.0,
+    "index": 0.0,
+    "middle": 0.0,
+    "ring": 0.0,
+    "pinky": 1.0,
+    "palm": 0.0
+   },
+   "where": {
+    "fingers": {
+     "n": 9,
+     "pos_mean_cm": [
+      -1.1,
+      -8.8,
+      4.2
+     ],
+     "pos_p10_cm": [
+      -5.1,
+      -9.4,
+      3.8
+     ],
+     "pos_p90_cm": [
+      0.7,
+      -7.7,
+      4.6
+     ],
+     "normal_mean": [
+      0.0,
+      -0.3,
+      -0.7
+     ],
+     "thin_axis_normal_pos_share": 0.0
+    }
+   },
+   "mesh_pca_extent_cm": [
+    35.9,
+    19.1,
+    12.1
+   ],
+   "grip_from_com_cm": 9.8,
+   "F_max_N": 2.95,
+   "acc_p95_ms2": 0.06,
+   "speed_max_ms": 0.01,
+   "tau_grip_max_Nm": 0.253,
+   "tau_grip_p50_Nm": 0.252,
+   "tilt_max_deg": 0.4,
+   "lift_max_cm": 0.0
+  },
+  {
+   "side": "right",
+   "object": "white_pot_lid",
+   "frames": [
+    45,
+    135
+   ],
+   "n": 91,
+   "slot_share": {
+    "thumb_tip": 0.76,
+    "index_tip": 0.43,
+    "middle_tip": 0.54,
+    "ring_tip": 0.79,
+    "pinky_tip": 0.69,
+    "thumb_DP": 0.65,
+    "index_DP": 0.32,
+    "middle_DP": 0.73,
+    "ring_DP": 0.78,
+    "pinky_DP": 0.46,
+    "middle_MP": 0.37,
+    "ring_MP": 0.21,
+    "pinky_MP": 0.1
+   },
+   "digit_share": {
+    "thumb": 0.89,
+    "index": 0.48,
+    "middle": 0.82,
+    "ring": 0.82,
+    "pinky": 0.71,
+    "palm": 0.0
+   },
+   "where": {
+    "thumb": {
+     "n": 128,
+     "pos_mean_cm": [
+      0.4,
+      1.2,
+      2.5
+     ],
+     "pos_p10_cm": [
+      -0.5,
+      -1.6,
+      0.1
+     ],
+     "pos_p90_cm": [
+      1.9,
+      4.4,
+      3.9
+     ],
+     "normal_mean": [
+      -0.02,
+      -0.07,
+      -0.33
+     ],
+     "thin_axis_normal_pos_share": 0.29
+    },
+    "fingers": {
+     "n": 493,
+     "pos_mean_cm": [
+      -1.4,
+      5.6,
+      0.4
+     ],
+     "pos_p10_cm": [
+      -3.5,
+      3.2,
+      -2.2
+     ],
+     "pos_p90_cm": [
+      0.3,
+      8.0,
+      3.5
+     ],
+     "normal_mean": [
+      -0.02,
+      -0.34,
+      -0.33
+     ],
+     "thin_axis_normal_pos_share": 0.27
+    }
+   },
+   "mesh_pca_extent_cm": [
+    18.5,
+    16.9,
+    5.2
+   ],
+   "grip_from_com_cm": 4.9,
+   "F_max_N": 3.22,
+   "acc_p95_ms2": 1.45,
+   "speed_max_ms": 0.52,
+   "tau_grip_max_Nm": 0.153,
+   "tau_grip_p50_Nm": 0.14,
+   "tilt_max_deg": 29.9,
+   "lift_max_cm": 5.7
+  },
+  {
+   "side": "right",
+   "object": "white_pot_lid",
+   "frames": [
+    234,
+    303
+   ],
+   "n": 70,
+   "slot_share": {
+    "thumb_tip": 0.8,
+    "index_tip": 0.43,
+    "middle_tip": 0.81,
+    "ring_tip": 0.9,
+    "pinky_tip": 0.9,
+    "index_DP": 0.14,
+    "middle_DP": 0.94,
+    "ring_DP": 0.97,
+    "pinky_DP": 0.53,
+    "middle_MP": 0.81,
+    "ring_MP": 0.8,
+    "pinky_MP": 0.07
+   },
+   "digit_share": {
+    "thumb": 0.8,
+    "index": 0.44,
+    "middle": 0.94,
+    "ring": 0.99,
+    "pinky": 1.0,
+    "palm": 0.0
+   },
+   "where": {
+    "thumb": {
+     "n": 58,
+     "pos_mean_cm": [
+      -0.2,
+      -0.2,
+      3.4
+     ],
+     "pos_p10_cm": [
+      -0.8,
+      -1.1,
+      3.0
+     ],
+     "pos_p90_cm": [
+      0.2,
+      0.9,
+      3.8
+     ],
+     "normal_mean": [
+      0.77,
+      0.36,
+      -0.06
+     ],
+     "thin_axis_normal_pos_share": 0.48
+    },
+    "fingers": {
+     "n": 512,
+     "pos_mean_cm": [
+      -1.3,
+      3.9,
+      1.5
+     ],
+     "pos_p10_cm": [
+      -4.2,
+      2.3,
+      -0.4
+     ],
+     "pos_p90_cm": [
+      1.1,
+      6.9,
+      3.4
+     ],
+     "normal_mean": [
+      0.01,
+      -0.15,
+      -0.53
+     ],
+     "thin_axis_normal_pos_share": 0.18
+    }
+   },
+   "mesh_pca_extent_cm": [
+    18.5,
+    16.9,
+    5.2
+   ],
+   "grip_from_com_cm": 4.1,
+   "F_max_N": 3.44,
+   "acc_p95_ms2": 1.54,
+   "speed_max_ms": 0.45,
+   "tau_grip_max_Nm": 0.132,
+   "tau_grip_p50_Nm": 0.11,
+   "tilt_max_deg": 36.4,
+   "lift_max_cm": 3.6
+  }
+ ]
+}

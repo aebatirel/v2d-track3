@@ -3764,3 +3764,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - **Reproduced unchanged first:** `slot_order_check.py` on ep12 (slots 97–100 % within threshold of PROBE_SITES[k]; slot 0
   palm-probe 19 %) and `digit_shares.py` on the 11 tags of `out/inputs.txt` (byte-identical to `out/digit_shares.txt`).
   Inputs downloaded from the HF store to the scratchpad (19 files, 27 MB).
+- ~10:05–10:35 UTC **Reports' inputs reproduced, then corrected [M]** (cloud VM, scratchpad venv, HF-store inputs; our
+  references only, no ground truth). Every old number was first reproduced with the old labelling, then recomputed with
+  the mkref slot order; outputs are new files next to the old ones (nothing overwritten):
+  - biomech census: the script at 53929d0 reproduces all 7 `census_ep0*.txt` byte-identically; fixed census →
+    `hand-biomech-out/slotfix-20261025/census_ep*.{txt,json}` + corrected `ct_*.png`. ep2 lid "palm 0.76/0.80" =
+    `thumb_tip` 0.76/0.80, palm slot 0.00; pot handle: palm at −18 to −21 cm and thumb at −11 to −15 cm (reversed).
+  - plates audit §3: old `mano_where.py` reproduces the table; corrected thumb 0.09–0.52, opposition across faces
+    0.05–0.22 (was 0.38–0.69), palm 0.00–0.02 except the ep39 carry 0.73 →
+    `audit-plates-scripts/out/mano_where_slotfix-20261025.txt`.
+  - boards audit §2.2: `contact_slots.py --mano` reproduces every row (b1 = wooden_piece_1 in perc2mcs); corrected: the
+    drag's "palm 0.79" is the thumb tip (palm 0.14); standing hold thumb 0.00 →
+    `audit-boards-rack-scripts/out/ep24_contacts_slotfix-20261025.txt`.
+  - starts audit §2.2/§3.2/§4.2 (grasp-lock phases, all frames as denominator) reproduce exactly; corrected lid palm
+    0.00 (was 0.50 = thumb tip), pitcher palm 0.92 (was 0.33), ep26 pot palm 0.70 →
+    `audit-starts-scripts/out/human_contacts_slotfix-20261025.txt`.
+  - `approach3-scripts/check_digit_shares.py`: the helper's digit shares on the 35 hold_phases holds equal
+    `out/digit_shares.txt` (0 mismatches).

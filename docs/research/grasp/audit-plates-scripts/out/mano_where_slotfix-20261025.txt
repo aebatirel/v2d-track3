@@ -1,0 +1,196 @@
+# mano_where.py on the plates audit §3 windows, 2026-10-25 (cloud VM, scratchpad venv; repo code at this commit).
+# Inputs (HF store aebatirel/v2d-store): ep18 runs/20261024-e1-e49e83d/refs/perc2mckfid/ep18/processed/.../3af5ffc5...-0.parquet;
+#   ep39 runs/20261024-e3-e49e83d/refs/perc2mck/ep39/processed/.../39868b9e...-0.parquet. Our references only, no ground truth.
+# For each window: OLD = the script at 53929d0 (slots labelled by mano_link_names, reproduces the audit's §3 table);
+# CORRECTED = the fixed script (mkref slot order, tools/contact_slots.py).
+
+=== t3_ep018 left mini_dust_pan 10 187 : OLD (mano_link_names labels, wrong)
+left hand on mini_dust_pan, frames 10-187 (177): per MANO link: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  palm     share 0.13  pos ( -7.7,  -1.5,   0.6) sd ( 1.1,  2.0)  +face 0.35 -face 0.13 edge 0.52
+  thumb1   share 0.16  pos ( -4.9,  -2.2,   2.1) sd ( 1.4,  0.6)  +face 0.83 -face 0.14 edge 0.03
+  thumb2   share 0.69  pos ( -6.1,  -2.1,   2.1) sd ( 1.8,  1.0)  +face 0.86 -face 0.13 edge 0.01
+  thumb3   share 0.75  pos ( -3.4,  -1.4,   1.0) sd ( 1.2,  1.7)  +face 0.83 -face 0.13 edge 0.05
+  index1   share 0.83  pos ( -1.4,   0.4,   0.4) sd ( 1.2,  1.7)  +face 0.83 -face 0.13 edge 0.04
+  index2   share 0.15  pos ( -9.1,  -1.5,   0.4) sd ( 0.5,  1.2)  +face 0.54 -face 0.38 edge 0.08
+  index3   share 0.33  pos ( -7.8,  -2.2,   1.2) sd ( 1.5,  0.9)  +face 0.48 -face 0.07 edge 0.45
+  middle1  share 0.73  pos ( -7.8,  -2.0,   1.3) sd ( 1.4,  0.6)  +face 0.62 -face 0.11 edge 0.27
+  middle2  share 0.69  pos ( -4.8,  -0.3,   0.7) sd ( 1.3,  1.3)  +face 0.52 -face 0.34 edge 0.14
+  middle3  share 0.92  pos ( -3.2,   0.8,  -0.2) sd ( 1.1,  1.2)  +face 0.61 -face 0.31 edge 0.07
+  ring2    share 0.20  pos ( -8.5,  -1.0,   0.7) sd ( 1.4,  1.2)  +face 0.63 -face 0.29 edge 0.09
+  ring3    share 0.25  pos ( -7.9,  -1.2,  -0.2) sd ( 1.5,  1.0)  +face 0.11 -face 0.59 edge 0.30
+  pinky1   share 0.25  pos ( -7.7,   0.3,  -0.0) sd ( 1.2,  1.7)  +face 0.34 -face 0.39 edge 0.27
+  pinky2   share 0.19  pos ( -6.2,   1.9,  -0.3) sd ( 2.2,  1.4)  +face 0.24 -face 0.44 edge 0.32
+  pinky3   share 0.02  pos ( -8.4,   2.2,  -0.8) sd ( 0.6,  0.4)  +face 0.00 -face 1.00 edge 0.00
+  contacts with axis1 < -5 cm (handle ring region): 0.47; mesh axis1 range -10.0..7.3 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.83, finger contact 1.00, palm 0.13, thumb-vs-finger opposition across the faces 0.38
+=== t3_ep018 left mini_dust_pan 10 187 : CORRECTED (mkref slot order)
+left hand on mini_dust_pan, frames 10-187 (177): per contact slot: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  thumb_tip  share 0.13  pos ( -7.7,  -1.5,   0.6) sd ( 1.1,  2.0)  +face 0.35 -face 0.13 edge 0.52
+  index_tip  share 0.16  pos ( -4.9,  -2.2,   2.1) sd ( 1.4,  0.6)  +face 0.83 -face 0.14 edge 0.03
+  middle_tip share 0.69  pos ( -6.1,  -2.1,   2.1) sd ( 1.8,  1.0)  +face 0.86 -face 0.13 edge 0.01
+  ring_tip   share 0.75  pos ( -3.4,  -1.4,   1.0) sd ( 1.2,  1.7)  +face 0.83 -face 0.13 edge 0.05
+  pinky_tip  share 0.83  pos ( -1.4,   0.4,   0.4) sd ( 1.2,  1.7)  +face 0.83 -face 0.13 edge 0.04
+  thumb_DP   share 0.15  pos ( -9.1,  -1.5,   0.4) sd ( 0.5,  1.2)  +face 0.54 -face 0.38 edge 0.08
+  index_DP   share 0.33  pos ( -7.8,  -2.2,   1.2) sd ( 1.5,  0.9)  +face 0.48 -face 0.07 edge 0.45
+  middle_DP  share 0.73  pos ( -7.8,  -2.0,   1.3) sd ( 1.4,  0.6)  +face 0.62 -face 0.11 edge 0.27
+  ring_DP    share 0.69  pos ( -4.8,  -0.3,   0.7) sd ( 1.3,  1.3)  +face 0.52 -face 0.34 edge 0.14
+  pinky_DP   share 0.92  pos ( -3.2,   0.8,  -0.2) sd ( 1.1,  1.2)  +face 0.61 -face 0.31 edge 0.07
+  index_MP   share 0.20  pos ( -8.5,  -1.0,   0.7) sd ( 1.4,  1.2)  +face 0.63 -face 0.29 edge 0.09
+  middle_MP  share 0.25  pos ( -7.9,  -1.2,  -0.2) sd ( 1.5,  1.0)  +face 0.11 -face 0.59 edge 0.30
+  ring_MP    share 0.25  pos ( -7.7,   0.3,  -0.0) sd ( 1.2,  1.7)  +face 0.34 -face 0.39 edge 0.27
+  pinky_MP   share 0.19  pos ( -6.2,   1.9,  -0.3) sd ( 2.2,  1.4)  +face 0.24 -face 0.44 edge 0.32
+  palm       share 0.02  pos ( -8.4,   2.2,  -0.8) sd ( 0.6,  0.4)  +face 0.00 -face 1.00 edge 0.00
+  contacts with axis1 < -5 cm (handle ring region): 0.47; mesh axis1 range -10.0..7.3 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.19, finger contact 1.00, palm 0.02, thumb-vs-finger opposition across the faces 0.12
+
+=== t3_ep018 right mini_sweeper 38 323 : OLD (mano_link_names labels, wrong)
+right hand on mini_sweeper, frames 38-323 (285): per MANO link: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  palm     share 0.04  pos ( -6.8,   1.8,   0.6) sd ( 1.0,  0.6)  +face 0.75 -face 0.00 edge 0.25
+  thumb1   share 0.18  pos ( -6.1,   0.5,   0.4) sd ( 1.7,  1.7)  +face 0.54 -face 0.12 edge 0.35
+  thumb2   share 0.72  pos ( -4.8,  -0.4,   0.2) sd ( 1.6,  1.9)  +face 0.56 -face 0.22 edge 0.22
+  thumb3   share 0.68  pos ( -4.1,  -1.4,  -0.4) sd ( 1.4,  1.8)  +face 0.21 -face 0.41 edge 0.38
+  index1   share 0.21  pos ( -3.9,  -1.3,  -0.7) sd ( 1.4,  1.1)  +face 0.21 -face 0.67 edge 0.11
+  index2   share 0.02  pos ( -6.7,   1.1,   0.8) sd ( 1.0,  0.8)  +face 0.80 -face 0.00 edge 0.20
+  index3   share 0.20  pos ( -7.1,   0.6,   0.2) sd ( 0.9,  0.8)  +face 0.30 -face 0.11 edge 0.60
+  middle1  share 0.66  pos ( -6.4,  -0.5,  -0.2) sd ( 1.2,  1.2)  +face 0.21 -face 0.35 edge 0.43
+  middle2  share 0.58  pos ( -5.6,  -1.5,  -0.8) sd ( 1.0,  1.0)  +face 0.05 -face 0.79 edge 0.16
+  middle3  share 0.14  pos ( -4.4,  -1.8,  -0.6) sd ( 0.8,  1.0)  +face 0.23 -face 0.53 edge 0.25
+  ring1    share 0.05  pos ( -7.3,  -1.6,   1.2) sd ( 0.1,  0.2)  +face 0.36 -face 0.00 edge 0.64
+  ring2    share 0.11  pos ( -7.5,  -0.6,   0.2) sd ( 0.3,  0.6)  +face 0.40 -face 0.27 edge 0.33
+  ring3    share 0.25  pos ( -7.3,  -0.7,  -0.9) sd ( 0.6,  0.6)  +face 0.03 -face 0.86 edge 0.11
+  pinky1   share 0.33  pos ( -7.2,  -0.6,  -1.0) sd ( 0.4,  0.4)  +face 0.00 -face 0.89 edge 0.11
+  pinky2   share 0.06  pos ( -6.1,  -0.7,  -1.2) sd ( 0.9,  0.9)  +face 0.00 -face 0.94 edge 0.06
+  contacts with axis1 < -5 cm (handle ring region): 0.64; mesh axis1 range -7.8..6.6 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.82, finger contact 0.73, palm 0.04, thumb-vs-finger opposition across the faces 0.53
+=== t3_ep018 right mini_sweeper 38 323 : CORRECTED (mkref slot order)
+right hand on mini_sweeper, frames 38-323 (285): per contact slot: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  thumb_tip  share 0.04  pos ( -6.8,   1.8,   0.6) sd ( 1.0,  0.6)  +face 0.75 -face 0.00 edge 0.25
+  index_tip  share 0.18  pos ( -6.1,   0.5,   0.4) sd ( 1.7,  1.7)  +face 0.54 -face 0.12 edge 0.35
+  middle_tip share 0.72  pos ( -4.8,  -0.4,   0.2) sd ( 1.6,  1.9)  +face 0.56 -face 0.22 edge 0.22
+  ring_tip   share 0.68  pos ( -4.1,  -1.4,  -0.4) sd ( 1.4,  1.8)  +face 0.21 -face 0.41 edge 0.38
+  pinky_tip  share 0.21  pos ( -3.9,  -1.3,  -0.7) sd ( 1.4,  1.1)  +face 0.21 -face 0.67 edge 0.11
+  thumb_DP   share 0.02  pos ( -6.7,   1.1,   0.8) sd ( 1.0,  0.8)  +face 0.80 -face 0.00 edge 0.20
+  index_DP   share 0.20  pos ( -7.1,   0.6,   0.2) sd ( 0.9,  0.8)  +face 0.30 -face 0.11 edge 0.60
+  middle_DP  share 0.66  pos ( -6.4,  -0.5,  -0.2) sd ( 1.2,  1.2)  +face 0.21 -face 0.35 edge 0.43
+  ring_DP    share 0.58  pos ( -5.6,  -1.5,  -0.8) sd ( 1.0,  1.0)  +face 0.05 -face 0.79 edge 0.16
+  pinky_DP   share 0.14  pos ( -4.4,  -1.8,  -0.6) sd ( 0.8,  1.0)  +face 0.23 -face 0.53 edge 0.25
+  thumb_MCP  share 0.05  pos ( -7.3,  -1.6,   1.2) sd ( 0.1,  0.2)  +face 0.36 -face 0.00 edge 0.64
+  index_MP   share 0.11  pos ( -7.5,  -0.6,   0.2) sd ( 0.3,  0.6)  +face 0.40 -face 0.27 edge 0.33
+  middle_MP  share 0.25  pos ( -7.3,  -0.7,  -0.9) sd ( 0.6,  0.6)  +face 0.03 -face 0.86 edge 0.11
+  ring_MP    share 0.33  pos ( -7.2,  -0.6,  -1.0) sd ( 0.4,  0.4)  +face 0.00 -face 0.89 edge 0.11
+  pinky_MP   share 0.06  pos ( -6.1,  -0.7,  -1.2) sd ( 0.9,  0.9)  +face 0.00 -face 0.94 edge 0.06
+  contacts with axis1 < -5 cm (handle ring region): 0.64; mesh axis1 range -7.8..6.6 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.09, finger contact 0.83, palm 0.00, thumb-vs-finger opposition across the faces 0.05
+
+=== t3_ep018 right mini_sweeper 60 120 : OLD (mano_link_names labels, wrong)
+right hand on mini_sweeper, frames 60-120 (60): per MANO link: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  palm     share 0.15  pos ( -6.8,   1.9,   0.5) sd ( 1.1,  0.7)  +face 0.67 -face 0.00 edge 0.33
+  thumb1   share 0.50  pos ( -5.7,   0.4,   0.5) sd ( 1.7,  1.8)  +face 0.63 -face 0.10 edge 0.27
+  thumb2   share 0.87  pos ( -4.7,   0.3,   0.3) sd ( 1.9,  2.0)  +face 0.56 -face 0.13 edge 0.31
+  thumb3   share 0.75  pos ( -4.8,  -1.0,  -0.5) sd ( 1.1,  1.8)  +face 0.22 -face 0.49 edge 0.29
+  index1   share 0.33  pos ( -2.6,  -2.3,   0.0) sd ( 1.0,  0.8)  +face 0.65 -face 0.15 edge 0.20
+  index2   share 0.08  pos ( -6.7,   1.1,   0.8) sd ( 1.0,  0.8)  +face 0.80 -face 0.00 edge 0.20
+  index3   share 0.48  pos ( -6.7,   0.5,   0.1) sd ( 0.8,  0.8)  +face 0.34 -face 0.17 edge 0.48
+  middle1  share 0.73  pos ( -6.1,  -0.0,  -0.6) sd ( 1.2,  1.7)  +face 0.05 -face 0.50 edge 0.45
+  middle2  share 0.58  pos ( -6.1,  -1.2,  -1.0) sd ( 0.9,  1.0)  +face 0.03 -face 0.86 edge 0.11
+  middle3  share 0.48  pos ( -4.0,  -2.2,  -0.4) sd ( 0.4,  0.7)  +face 0.31 -face 0.48 edge 0.21
+  ring1    share 0.20  pos ( -7.3,  -1.6,   1.1) sd ( 0.0,  0.2)  +face 0.25 -face 0.00 edge 0.75
+  ring2    share 0.27  pos ( -7.5,  -0.4,  -0.4) sd ( 0.2,  0.5)  +face 0.12 -face 0.50 edge 0.38
+  ring3    share 0.30  pos ( -6.8,  -0.9,  -1.1) sd ( 0.6,  0.8)  +face 0.00 -face 0.94 edge 0.06
+  pinky1   share 0.07  pos ( -7.5,  -0.4,  -0.9) sd ( 0.0,  0.2)  +face 0.00 -face 1.00 edge 0.00
+  pinky2   share 0.22  pos ( -5.8,  -1.0,  -1.2) sd ( 0.8,  0.9)  +face 0.00 -face 0.92 edge 0.08
+  contacts with axis1 < -5 cm (handle ring region): 0.63; mesh axis1 range -7.8..6.6 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.97, finger contact 0.98, palm 0.15, thumb-vs-finger opposition across the faces 0.75
+=== t3_ep018 right mini_sweeper 60 120 : CORRECTED (mkref slot order)
+right hand on mini_sweeper, frames 60-120 (60): per contact slot: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  thumb_tip  share 0.15  pos ( -6.8,   1.9,   0.5) sd ( 1.1,  0.7)  +face 0.67 -face 0.00 edge 0.33
+  index_tip  share 0.50  pos ( -5.7,   0.4,   0.5) sd ( 1.7,  1.8)  +face 0.63 -face 0.10 edge 0.27
+  middle_tip share 0.87  pos ( -4.7,   0.3,   0.3) sd ( 1.9,  2.0)  +face 0.56 -face 0.13 edge 0.31
+  ring_tip   share 0.75  pos ( -4.8,  -1.0,  -0.5) sd ( 1.1,  1.8)  +face 0.22 -face 0.49 edge 0.29
+  pinky_tip  share 0.33  pos ( -2.6,  -2.3,   0.0) sd ( 1.0,  0.8)  +face 0.65 -face 0.15 edge 0.20
+  thumb_DP   share 0.08  pos ( -6.7,   1.1,   0.8) sd ( 1.0,  0.8)  +face 0.80 -face 0.00 edge 0.20
+  index_DP   share 0.48  pos ( -6.7,   0.5,   0.1) sd ( 0.8,  0.8)  +face 0.34 -face 0.17 edge 0.48
+  middle_DP  share 0.73  pos ( -6.1,  -0.0,  -0.6) sd ( 1.2,  1.7)  +face 0.05 -face 0.50 edge 0.45
+  ring_DP    share 0.58  pos ( -6.1,  -1.2,  -1.0) sd ( 0.9,  1.0)  +face 0.03 -face 0.86 edge 0.11
+  pinky_DP   share 0.48  pos ( -4.0,  -2.2,  -0.4) sd ( 0.4,  0.7)  +face 0.31 -face 0.48 edge 0.21
+  thumb_MCP  share 0.20  pos ( -7.3,  -1.6,   1.1) sd ( 0.0,  0.2)  +face 0.25 -face 0.00 edge 0.75
+  index_MP   share 0.27  pos ( -7.5,  -0.4,  -0.4) sd ( 0.2,  0.5)  +face 0.12 -face 0.50 edge 0.38
+  middle_MP  share 0.30  pos ( -6.8,  -0.9,  -1.1) sd ( 0.6,  0.8)  +face 0.00 -face 0.94 edge 0.06
+  ring_MP    share 0.07  pos ( -7.5,  -0.4,  -0.9) sd ( 0.0,  0.2)  +face 0.00 -face 1.00 edge 0.00
+  pinky_MP   share 0.22  pos ( -5.8,  -1.0,  -1.2) sd ( 0.8,  0.9)  +face 0.00 -face 0.92 edge 0.08
+  contacts with axis1 < -5 cm (handle ring region): 0.63; mesh axis1 range -7.8..6.6 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.35, finger contact 1.00, palm 0.00, thumb-vs-finger opposition across the faces 0.15
+
+=== t3_ep039 left mini_dust_pan 36 103 : OLD (mano_link_names labels, wrong)
+left hand on mini_dust_pan, frames 36-103 (67): per MANO link: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  palm     share 0.45  pos ( -8.9,   0.1,   0.1) sd ( 1.0,  1.4)  +face 0.33 -face 0.40 edge 0.27
+  thumb1   share 0.87  pos ( -5.4,   2.5,   0.9) sd ( 1.2,  1.4)  +face 0.72 -face 0.07 edge 0.21
+  thumb2   share 0.96  pos ( -4.8,   1.2,   0.1) sd ( 1.1,  0.9)  +face 0.25 -face 0.44 edge 0.31
+  thumb3   share 0.25  pos ( -7.4,  -2.0,  -0.2) sd ( 1.3,  0.4)  +face 0.00 -face 0.82 edge 0.18
+  index1   share 0.27  pos ( -7.0,  -2.7,   0.3) sd ( 0.6,  0.3)  +face 0.00 -face 0.72 edge 0.28
+  index2   share 0.28  pos ( -9.4,   0.9,   0.3) sd ( 0.6,  1.7)  +face 0.32 -face 0.21 edge 0.47
+  index3   share 0.31  pos ( -5.9,   1.4,   0.8) sd ( 1.4,  1.2)  +face 0.86 -face 0.05 edge 0.10
+  middle1  share 0.70  pos ( -5.2,   1.4,   1.0) sd ( 0.8,  1.0)  +face 0.77 -face 0.00 edge 0.23
+  middle2  share 0.81  pos ( -7.2,  -2.4,   0.5) sd ( 0.5,  0.5)  +face 0.19 -face 0.30 edge 0.52
+  middle3  share 0.61  pos ( -6.7,  -3.0,   0.9) sd ( 0.4,  0.2)  +face 0.44 -face 0.34 edge 0.22
+  ring2    share 0.06  pos ( -9.4,   0.4,   0.5) sd ( 0.4,  0.3)  +face 0.75 -face 0.25 edge 0.00
+  pinky1   share 0.31  pos ( -6.7,  -2.7,   1.2) sd ( 0.3,  0.4)  +face 0.76 -face 0.00 edge 0.24
+  pinky2   share 0.12  pos ( -5.9,  -2.8,   1.4) sd ( 0.5,  0.3)  +face 1.00 -face 0.00 edge 0.00
+  contacts with axis1 < -5 cm (handle ring region): 0.73; mesh axis1 range -10.0..7.3 cm (sign-fixed: as PCA)
+  frames with thumb contact 1.00, finger contact 0.99, palm 0.45, thumb-vs-finger opposition across the faces 0.69
+=== t3_ep039 left mini_dust_pan 36 103 : CORRECTED (mkref slot order)
+left hand on mini_dust_pan, frames 36-103 (67): per contact slot: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  thumb_tip  share 0.45  pos ( -8.9,   0.1,   0.1) sd ( 1.0,  1.4)  +face 0.33 -face 0.40 edge 0.27
+  index_tip  share 0.87  pos ( -5.4,   2.5,   0.9) sd ( 1.2,  1.4)  +face 0.72 -face 0.07 edge 0.21
+  middle_tip share 0.96  pos ( -4.8,   1.2,   0.1) sd ( 1.1,  0.9)  +face 0.25 -face 0.44 edge 0.31
+  ring_tip   share 0.25  pos ( -7.4,  -2.0,  -0.2) sd ( 1.3,  0.4)  +face 0.00 -face 0.82 edge 0.18
+  pinky_tip  share 0.27  pos ( -7.0,  -2.7,   0.3) sd ( 0.6,  0.3)  +face 0.00 -face 0.72 edge 0.28
+  thumb_DP   share 0.28  pos ( -9.4,   0.9,   0.3) sd ( 0.6,  1.7)  +face 0.32 -face 0.21 edge 0.47
+  index_DP   share 0.31  pos ( -5.9,   1.4,   0.8) sd ( 1.4,  1.2)  +face 0.86 -face 0.05 edge 0.10
+  middle_DP  share 0.70  pos ( -5.2,   1.4,   1.0) sd ( 0.8,  1.0)  +face 0.77 -face 0.00 edge 0.23
+  ring_DP    share 0.81  pos ( -7.2,  -2.4,   0.5) sd ( 0.5,  0.5)  +face 0.19 -face 0.30 edge 0.52
+  pinky_DP   share 0.61  pos ( -6.7,  -3.0,   0.9) sd ( 0.4,  0.2)  +face 0.44 -face 0.34 edge 0.22
+  index_MP   share 0.06  pos ( -9.4,   0.4,   0.5) sd ( 0.4,  0.3)  +face 0.75 -face 0.25 edge 0.00
+  ring_MP    share 0.31  pos ( -6.7,  -2.7,   1.2) sd ( 0.3,  0.4)  +face 0.76 -face 0.00 edge 0.24
+  pinky_MP   share 0.12  pos ( -5.9,  -2.8,   1.4) sd ( 0.5,  0.3)  +face 1.00 -face 0.00 edge 0.00
+  contacts with axis1 < -5 cm (handle ring region): 0.73; mesh axis1 range -10.0..7.3 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.52, finger contact 1.00, palm 0.00, thumb-vs-finger opposition across the faces 0.22
+
+=== t3_ep039 right mini_dust_pan 104 292 : OLD (mano_link_names labels, wrong)
+right hand on mini_dust_pan, frames 104-292 (188): per MANO link: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  palm     share 0.26  pos ( -5.8,   3.6,   1.0) sd ( 1.1,  0.2)  +face 0.43 -face 0.00 edge 0.57
+  thumb1   share 0.43  pos ( -5.9,   3.0,   1.4) sd ( 0.9,  0.8)  +face 0.94 -face 0.00 edge 0.06
+  thumb2   share 0.72  pos ( -7.4,   1.5,   0.7) sd ( 2.0,  1.2)  +face 0.66 -face 0.04 edge 0.30
+  thumb3   share 0.87  pos ( -6.6,   0.4,   0.1) sd ( 2.3,  1.3)  +face 0.38 -face 0.33 edge 0.29
+  index1   share 0.65  pos ( -6.4,  -1.4,   0.1) sd ( 2.2,  1.5)  +face 0.27 -face 0.50 edge 0.23
+  index2   share 0.05  pos ( -4.2,   3.3,   1.2) sd ( 1.9,  0.2)  +face 0.60 -face 0.00 edge 0.40
+  index3   share 0.35  pos ( -6.2,   3.5,   1.1) sd ( 0.6,  0.8)  +face 0.47 -face 0.03 edge 0.50
+  middle1  share 0.55  pos ( -6.2,   2.4,   0.5) sd ( 1.6,  1.3)  +face 0.33 -face 0.37 edge 0.31
+  middle2  share 0.38  pos ( -6.6,   1.5,  -0.1) sd ( 1.9,  1.4)  +face 0.28 -face 0.51 edge 0.21
+  middle3  share 0.34  pos ( -5.1,  -0.8,  -0.2) sd ( 1.9,  2.0)  +face 0.14 -face 0.44 edge 0.42
+  ring1    share 0.01  pos ( -4.6,   1.5,   1.2) sd ( 0.0,  0.4)  +face 1.00 -face 0.00 edge 0.00
+  ring3    share 0.34  pos ( -7.0,   2.8,   0.5) sd ( 1.0,  1.0)  +face 0.37 -face 0.25 edge 0.38
+  pinky1   share 0.15  pos ( -7.3,   2.5,   0.0) sd ( 1.8,  1.2)  +face 0.21 -face 0.34 edge 0.45
+  pinky2   share 0.18  pos ( -5.9,   0.2,   0.1) sd ( 1.6,  1.7)  +face 0.09 -face 0.52 edge 0.39
+  pinky3   share 0.73  pos ( -9.3,   0.5,   0.1) sd ( 0.7,  1.2)  +face 0.33 -face 0.30 edge 0.38
+  contacts with axis1 < -5 cm (handle ring region): 0.81; mesh axis1 range -10.0..7.3 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.93, finger contact 0.99, palm 0.26, thumb-vs-finger opposition across the faces 0.64
+=== t3_ep039 right mini_dust_pan 104 292 : CORRECTED (mkref slot order)
+right hand on mini_dust_pan, frames 104-292 (188): per contact slot: share of frames, mean PCA position (cm) [axis1 long, axis2 width, axis3 normal], share on the +axis3 face / -axis3 face / edge (|n.axis3|<0.5) of the mesh
+  thumb_tip  share 0.26  pos ( -5.8,   3.6,   1.0) sd ( 1.1,  0.2)  +face 0.43 -face 0.00 edge 0.57
+  index_tip  share 0.43  pos ( -5.9,   3.0,   1.4) sd ( 0.9,  0.8)  +face 0.94 -face 0.00 edge 0.06
+  middle_tip share 0.72  pos ( -7.4,   1.5,   0.7) sd ( 2.0,  1.2)  +face 0.66 -face 0.04 edge 0.30
+  ring_tip   share 0.87  pos ( -6.6,   0.4,   0.1) sd ( 2.3,  1.3)  +face 0.38 -face 0.33 edge 0.29
+  pinky_tip  share 0.65  pos ( -6.4,  -1.4,   0.1) sd ( 2.2,  1.5)  +face 0.27 -face 0.50 edge 0.23
+  thumb_DP   share 0.05  pos ( -4.2,   3.3,   1.2) sd ( 1.9,  0.2)  +face 0.60 -face 0.00 edge 0.40
+  index_DP   share 0.35  pos ( -6.2,   3.5,   1.1) sd ( 0.6,  0.8)  +face 0.47 -face 0.03 edge 0.50
+  middle_DP  share 0.55  pos ( -6.2,   2.4,   0.5) sd ( 1.6,  1.3)  +face 0.33 -face 0.37 edge 0.31
+  ring_DP    share 0.38  pos ( -6.6,   1.5,  -0.1) sd ( 1.9,  1.4)  +face 0.28 -face 0.51 edge 0.21
+  pinky_DP   share 0.34  pos ( -5.1,  -0.8,  -0.2) sd ( 1.9,  2.0)  +face 0.14 -face 0.44 edge 0.42
+  thumb_MCP  share 0.01  pos ( -4.6,   1.5,   1.2) sd ( 0.0,  0.4)  +face 1.00 -face 0.00 edge 0.00
+  middle_MP  share 0.34  pos ( -7.0,   2.8,   0.5) sd ( 1.0,  1.0)  +face 0.37 -face 0.25 edge 0.38
+  ring_MP    share 0.15  pos ( -7.3,   2.5,   0.0) sd ( 1.8,  1.2)  +face 0.21 -face 0.34 edge 0.45
+  pinky_MP   share 0.18  pos ( -5.9,   0.2,   0.1) sd ( 1.6,  1.7)  +face 0.09 -face 0.52 edge 0.39
+  palm       share 0.73  pos ( -9.3,   0.5,   0.1) sd ( 0.7,  1.2)  +face 0.33 -face 0.30 edge 0.38
+  contacts with axis1 < -5 cm (handle ring region): 0.81; mesh axis1 range -10.0..7.3 cm (sign-fixed: as PCA)
+  frames with thumb contact 0.31, finger contact 0.98, palm 0.73, thumb-vs-finger opposition across the faces 0.09
