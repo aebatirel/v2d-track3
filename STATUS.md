@@ -2,29 +2,24 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-25 ~03:00 TRT: night work, in progress (owner asleep; see the work log for every step)
-**Boxes running (credit $22.20 at 02:56 TRT):** seed 43 for evals 16 and 28 (`20261024-seed43-61101f5`, done
-≈ 05:00 TRT); eval 30 + its public twin ep31 with the fixed detection (`20261024-ev30rp-07eef1a`, ≈ 04:00 TRT); library
-v5 build (`20261025-lib5-c476e68`, CPU, ≈ 05:00 TRT; a copier on the box saves its output, see the work log).
-Next: one pack with only the changed episodes re-evaluated (eval 30 + seed-43 picks), then the Kaggle upload.
+## 2026-10-25 ~04:05 TRT: second submission AUC 0.5825; owner target 4th place (0.752), "use both" learners
+**Kaggle (second pack, uploaded 01:00 UTC):** AUC 0.58252 (0.57468 before), MPPE 6.69 cm, RPE 8.82 cm, SP-SR 0.50,
+MP-SR 0.40. Changes: eval 30 detection fix + seed-43 picks for 3, 5, 15, 16, 19.
 
-**Results so far**
-- Seed 43 beats seed 42 on every episode finished: eval 3 0.929 (0.851), 19 0.653 (0.647), 15 0.941 (0.901), 5 0.966
-  (0.855). Picked by the rule set beforehand (higher 5-evaluation mean).
-- Eval 30: gated re-proposal picks the broom in the rack; the public twin ep31 perception AUC 0.881 vs ground truth.
-- G1 (16 public episodes re-tracked with library_v2 seeds): registered perception AUC mean 0.810; failures ep0 (lid
-  assigned to the pot handle), ep11 (beige cup assigned to the lap), ep23 (boards, identity swap suspected). These feed
-  the v5 lid / beige cup / boards, so those v5 meshes are expected to be poor; E2 (CPU) will measure it.
-- Pre-registered (work log, before any v5 output): the v5 pitcher replaces the twisted v3 pitcher in eval 20 only if
-  it passes E2 and a public-twin test on ep21 (≈ $5–6, within tonight's go-ahead).
+**Owner (this night):** "fix the lower scores properly, do whatever it takes, aim for 4th"; "use both" learners (the
+standard FDR RL next to the grasp lock below gate 0.9, GT-free choice). A top-up of ≈ $40 was requested (plan ≈ $52).
 
-**Mesh v5 port (owner directive), CPU, each module verified against the v5 study's own outputs:** decimation,
-collision pieces, provenance + deny-list (tests), post-pass, gates X/C/G6, evidence fusion, support rule,
-orchestration `ep_mesh.py` (library + per-episode modes) + `ops/build_library.sh`. Spoon branch not ported.
+**Validated today (public data, rules written before each replay):**
+- On-table detection rule: ep11 cups fixed (registered tracking AUC 0.102 → 0.898), no regression; shipped.
+- Below-table plausibility flag: on 20 public tracks it fires only on the 3 known failures; on eval it fires on
+  8, 14, 32, 33 (the cup tracks lost to the wrist). `TRACK_GUARD` (re-register / re-detect / hold) is being validated.
 
-**Owner decisions needed:** O1 (accept library_v2-seeded tracks, tier P1) and O5 (spoon fit questions) in
-`docs/mesh-v5-spec-draft.md` §13; two [H] deviations in the rest detector (work log, recon_mesh port entry); repo
-sharing with `Nvidia-V2D-Challenge`; the organiser email.
+**Running:** library v5 (pitcher etc.; lid and board 1 failed on broken tracks → rebuild from re-tracked episodes),
+cups rebuild (beige cup from the fixed ep11), perception precision sweep (FoundationPose iterations, 20 public
+episodes), track-guard validation.
+
+**Next:** sweep result → decide perception settings → pitcher / beige cup twin tests → reruns of the changed eval
+episodes with both learners → pack → upload.
 
 ## 2026-10-24 ~22:55 TRT: night work (owner asleep, "do as much as you can with the vast money", credit $29.98)
 - Running: `20261024-seed43-61101f5` (57567887): a second seed for evals 19, 3, 5, 15, 16 and 28 on the same
