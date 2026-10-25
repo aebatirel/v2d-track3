@@ -3800,3 +3800,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   24 Oct (≈ 0.12) assumed non-spoon episodes lose 4 % to perception; eval 25 (swapped boards), 30 (sweeper on the wrist)
   and the cup tracks of 8, 14, 33 were found since, so the spoon's real share is probably smaller. Next spoon evidence:
   the leaderboard change after the other session's rerun batch.
+- 18:03 UTC Owner asked how eval 25 reaches 0.815 and why the best rollout is not packed. Eval 25 standard learner
+  (`20261025-ev25idfix-02de0c7`, 5 official evaluations vs the identity-correct reference): 0.802 / 0.815 / 0.797 /
+  0.811 / 0.335 (floor 0.308); 4 of 5 lift both boards along the reference (≤ 2 cm through f200), the 5th fails; the
+  final cross is not assembled (no slots in our meshes; boards end flat, 4–6 cm off). Packing keeps a fresh single
+  official rollout (note 14: best-of-N re-evaluation of one checkpoint is cherry-picking; owner's "we cannot pick and
+  choose"). New `tools/render_eval_rollout.py` (CPU 3-D view of an evaluator parquet, H.264).
