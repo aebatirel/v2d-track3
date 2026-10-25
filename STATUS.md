@@ -2,6 +2,28 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-25 ~12:45 TRT: owner's approaches researched; grip portfolio + event anchoring built; CPU tests running
+**Research (CPU/web, `docs/research/approaches-2026-10-25/`):**
+- Approach 1, meshes from motion: carve only the simulator collision copy (slots, nesting, start overlaps), never the
+  submitted mesh. Big side finding: our eval-25 board identities look swapped, so that episode is near zero vs truth.
+  The GT-free identity rule (marker knobs vs frame-0 video) is a prototype; rerun eval 25 (≈ $4–6).
+- Approach 2, primitives: lathe fits help the blue cup and pot on CD-O (0.523 → 0.307, 0.437 → 0.319 cm, diagnostic
+  vs public scans; board CD-O ≈ 0.405 → ≈ 0.33 if adopted) and give the beige cup a flat base. Boards, pitcher, lid,
+  rack and plates are not fixed by primitives.
+- Approach 3, grasp taxonomy: a type classifier on our hands does not work (noise); the owner's phase model and a
+  try-every-grip portfolio scored in the simulator do. Training steps: more steps rarely rescue a low start
+  (`training-steps.md`).
+- Contact slots in references are in mkref PROBE_SITES order, not `mano_link_names` order (older audits mislabelled).
+
+**Built (default off, recipe unchanged):** `grasp_lock --events 1` (load before lift-off, release at the placement;
+`pipeline/object_events.py`), `pipeline/grip_types.py` (board clamp long/short, platform; thumb on top because the
+Sharpa thumb cannot reach the fingertips), `grasp_evolve --from0 --f1 --cvar --push_cm --rescore`,
+`tools/grip_portfolio.sh` + `grip_choose.py`, `tools/cpu_glock_zero.sh`, `tools/window_score.py`.
+
+**Running (CPU, pre-registered at cb86b5b):** T2 event-anchored windows on ep24/2/39/18 (ep24: current 0.184 vs events
+0.095: board 1 carried better but still > 9 cm off, board 2 knocked off the table edge); P1 grip portfolio on ep24
+board 1. **Waiting on the owner:** ≈ $80 Vast top-up (credit $1.82) for the GPU A/B and the queued eval reruns.
+
 ## 2026-10-25 ~09:50 TRT: fixes validated overnight; eval reruns wait for the top-up (credit $1.82)
 **Kaggle (unchanged since 01:00 UTC):** AUC 0.58252 (first submission 0.57468), MPPE 6.69 cm, RPE 8.82 cm, SP-SR 0.50,
 MP-SR 0.40.
