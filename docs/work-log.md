@@ -3746,6 +3746,77 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   Reading: all zero-action scores are 0.05–0.25, so these replays are dominated by chaotic failures (boards knocked off
   the table edge, sweeper lost) rather than by hold timing; the event model may still matter after the fine-tune, but
   it has no evidence for adoption. Outputs `scratchpad/t2/runs/ep{24,2,39,18}{A,B}`.
+- 15:51 UTC **Owner topped up (credit $88.28) and said "go ahead".** Batch = the pre-registered 03:01 UTC plan, with two
+  changes recorded before launch: eval 25 is dropped from the second-learner list (its stored reference has the two
+  board identities swapped, approach-1 report §2.6, so training on it is wasted; it gets an identity-fixed rerun once
+  the rule is wired into perception), and the arc foot is switched on only where it is under test (SF_ARC=1 for ep21
+  twin arm B and eval 20; SF_ARC=0 elsewhere, so the other fixes are tested as validated). Frozen recipe of 24 Oct:
+  SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5, GL_ARGS "--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001
+  --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1"; detection/guard defaults of today's code.
+  Boxes (≈ $1.3–1.5/h; estimate ≈ $55–60 in all):
+  - twin A / B: public ep21 (20261024-e2-e49e83d mck), library_v3, SF_ARC=0 / 1; adopt the arc foot for eval 20 iff
+    registered AUC ≥ base − 0.02 and the pitcher's AUC ≥ base's (rule of 25 Oct 02:3x);
+  - eval_both (library_v3x): evals 8 + 14, 32 + 33, 10 (SF_ARC=0), 20 (SF_ARC=1);
+  - std_learner on stored references: 1, 16, 19 (pack-31ef267; grasp-lock rollouts pack / seed43) and 28, 30
+    (pack-31ef267 / ev30rp-07eef1a).
+- 15:53 UTC **Batch NOT launched from this session — duplicate caught and destroyed.** Another session (branch
+  `claude/inspiring-mendel-lbgp9e`, commits ee7ba8e / 02de0c7, 14:51–14:54 UTC) had already launched the same
+  pre-registered batch after the owner's $100 top-up: 9 boxes (evb0810, evb1420, evb3233, std0116, std1928, std30,
+  twin21base, twin21arc, ev25idfix with `pipeline/identity_fix.py`). This session's 6 boxes (run ids *-a842ab1,
+  instances 57687531/33/34/36/38/41; a 7th create failed with an HTML error) were destroyed 2–3 min after creation,
+  still in setup (≈ $0.9). Credit $87.40 after. The batch belongs to that session; this one does not touch its boxes.
+- 15:53 UTC **P1 result (pre-registered cb86b5b + lift definition 210be58): NOT falsified.** ep24 board 1, left hand, CPU,
+  robust CMA-ES 8 worlds × 14 generations (K = 2), fitness f0–f120 all objects, CVaR 25 %, 1 cm wrist pushes; fresh
+  K = 8 re-score (clamp_short and platform re-scores rerun after a container restart; their searches had finished):
+  copy CVaR 0.321 (mean 0.430, rise at f30 22.0 cm) · clamp_long 0.297 (0.453, 32.4 cm) · **clamp_short 0.475**
+  (0.492, 4.9 cm) · platform 0.392 (0.472, 2.6 cm). Rule: a typed grip beats the copy by ≥ 0.05 (clamp_short +0.154)
+  and a candidate lifts ≥ 10 cm by f30 (copy, clamp_long) → the portfolio idea survives. Caveat: the winner wins on
+  consistency (copies 0.47–0.50) while lifting only 4.9 cm by f30; the lifting grips each had one bad copy (0.27,
+  0.19). Zero-action windows do not predict the fine-tuned order reliably (approach-3 §11.3), so only the GPU A/B
+  (portfolio vs copy after the fine-tune, ≈ $8–12) can decide adoption. Results: `approaches-2026-10-25/p1-results/`.
+- 16:18 UTC **Spoon diagnosis (CPU, GT-free), `docs/research/spoon-2026-10-25/`:** the kit aligns the whole scene on the
+  anchor object's frame-0 pose; the spoon anchors evals 32, 33, 35, 36, 37. With the kit's own functions, a 10° / 20°
+  frame-0 roll error of the spoon costs 0.09–0.28 / 0.19–0.66 AUC in those five episodes and nothing in the other
+  five. Our frame-0 roll uncertainty is ≈ 2–6° (raw rest jitter sd 1.4–2.4°, reference vs raw rest mean +1.1 … −6.0°;
+  the mesh has three stable rests ~14° apart, so physics cannot pin it) → ≈ 0.03–0.15 per spoon-anchored episode.
+  Proposed: public re-score test of a rest-averaged anchor pose (rule to be written before the run).
+- 16:20 UTC **Pre-registered (before any code or score): anchor frame-0 pose test "A-f0".** Public twins with stored
+  official rollouts of the current recipe AND raw perception of the same reference: ep2 + ep39 (`20261024-e3-e49e83d`),
+  ep21 + ep31 (`20261024-e2-e49e83d`). For each of the 5 stored rollouts: registered AUC vs mocap with library_v3 meshes
+  (the kit path of `pipeline/score_registered.py`), (a) as stored; (b) with the kit's ANCHOR object's achieved
+  frame-0 orientation replaced by the raw tracker's rest-averaged orientation (chordal mean over the anchor's frames
+  before its first > 1 cm motion, at most 30), mapped into the reference world by the raw→reference rotation estimated
+  from frames after that rest; (c) the same with the raw single frame-0 orientation (noise reference). **Adopt
+  rest-averaged anchor orientation in reference building iff mean(b − a) ≥ +0.01 over the 4 episodes and no episode
+  drops by > 0.01**; then the eval policies are re-evaluated on updated references (no retraining). Mocap is used only to
+  score.
+- 16:27 UTC **A-f0 result (pre-registered 3e3e194): NOT adopted.** Registered AUC vs mocap, 5 stored rollouts each,
+  library_v3 meshes, (a) as stored / (b) rest-averaged anchor f0 / (c) raw f0: ep2 (pot) 0.3064 / 0.3036 / 0.3049;
+  ep39 (dust pan) 0.1736 / 0.1735 / 0.1736; ep21 (pitcher) 0.2810 / 0.2812 / 0.2815; ep31 (sweeper) 0.7666 / 0.7733 /
+  0.7981. Mean (b − a) = +0.001 < +0.01. Low power: our reference f0 is within ~2° of the raw rest mean in 3 of 4
+  (ep31: 10.3° tilt). `tools/anchor_f0_test.py`, outputs `docs/research/spoon-2026-10-25/af0/`.
+- 16:49 UTC **Spoon registration flips (H1): none.** 30 generator variants × the scorer's 10 spoon-episode seeds, kit
+  `_register_object_body`: 0/300 flips, rotation error median 1.0°, p95 2.5°. Reading: the spoon gap inferred on
+  24 Oct (≈ 0.12) assumed non-spoon episodes lose 4 % to perception; eval 25 (swapped boards), 30 (sweeper on the wrist)
+  and the cup tracks of 8, 14, 33 were found since, so the spoon's real share is probably smaller. Next spoon evidence:
+  the leaderboard change after the other session's rerun batch.
+- 18:03 UTC Owner asked how eval 25 reaches 0.815 and why the best rollout is not packed. Eval 25 standard learner
+  (`20261025-ev25idfix-02de0c7`, 5 official evaluations vs the identity-correct reference): 0.802 / 0.815 / 0.797 /
+  0.811 / 0.335 (floor 0.308); 4 of 5 lift both boards along the reference (≤ 2 cm through f200), the 5th fails; the
+  final cross is not assembled (no slots in our meshes; boards end flat, 4–6 cm off). Packing keeps a fresh single
+  official rollout (note 14: best-of-N re-evaluation of one checkpoint is cherry-picking; owner's "we cannot pick and
+  choose"). New `tools/render_eval_rollout.py` (CPU 3-D view of an evaluator parquet, H.264).
+- 18:17 UTC **Owner go-ahead: one small render box** (≈ $0.3–0.5, ≈ 15–20 min; reporting only) for eval 25's chosen
+  standard-learner policy with the robot hands: `ops/jobs/vid_policy.sh` (RUN 20261025-ev25idfix-02de0c7, EP 25,
+  CK results/final_eval/ep25/policy.safetensors, REFV perc2mcks). A fresh rollout (GPU physics is not repeatable), not
+  the packed one. The batch of the other session is not touched.
+- 19:21 UTC Render box `20261025-vid25-b7dac7f` (57704791) destroyed after ≈ 58 min (≈ $1.3): its whole-run `pull-run`
+  of ev25idfix stalled on store HTTP 429 (the other session saw the same today). `vid_policy.sh` now downloads only
+  the reference folder and the one checkpoint; relaunched.
+- 19:49 UTC Render box `20261025-vid25b-d6f7285` done (≈ 25 min with setup, ≈ $0.6, self-destroyed): eval 25's chosen
+  standard-learner policy replayed like the official evaluator with FlashCHORD's renderer (hands visible), fresh
+  rollout sim_vs_ref **0.808** (floor 0.308). Store: `runs/20261025-vid25b-d6f7285/results/vid_policy/ep25/`. Sent to
+  the owner. Both render boxes ≈ $1.9 in all.
 
 ### 25 Oct ~09:40–10:05 UTC — contact slot names: owner decision, mkref column, kit check (session on branch `claude/inspiring-mendel-lbgp9e`, based on `main-bsky37` 53929d0)
 - Task: mkref stage (e) fills the 16 contact slots in PROBE_SITES order + palm, but the reference's `mano_link_names`

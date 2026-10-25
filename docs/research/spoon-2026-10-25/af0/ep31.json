@@ -1,0 +1,73 @@
+{
+ "ep": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "anchor": "mini_sweeper",
+ "rollouts": {
+  "r1": {
+   "a": 0.7615,
+   "b": 0.7693,
+   "c": 0.7756,
+   "rest_frames": 26,
+   "onset": 26,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.5,
+    10.3,
+    -0.2
+   ]
+  },
+  "r2": {
+   "a": 0.7942,
+   "b": 0.7852,
+   "c": 0.8001,
+   "rest_frames": 26,
+   "onset": 26,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.5,
+    10.3,
+    -0.2
+   ]
+  },
+  "r3": {
+   "a": 0.7581,
+   "b": 0.7707,
+   "c": 0.8018,
+   "rest_frames": 26,
+   "onset": 26,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.5,
+    10.3,
+    -0.2
+   ]
+  },
+  "r4": {
+   "a": 0.7727,
+   "b": 0.7703,
+   "c": 0.7959,
+   "rest_frames": 26,
+   "onset": 26,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.5,
+    10.3,
+    -0.2
+   ]
+  },
+  "r5": {
+   "a": 0.7467,
+   "b": 0.7712,
+   "c": 0.8171,
+   "rest_frames": 26,
+   "onset": 26,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.5,
+    10.3,
+    -0.2
+   ]
+  }
+ },
+ "mean_a": 0.7666,
+ "mean_b": 0.7733,
+ "mean_c": 0.7981
+}

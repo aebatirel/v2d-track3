@@ -85,9 +85,13 @@ Corrected readings [M] (our perception, no GT):
 Sharpa thumb cannot reach the fingertips), `grasp_evolve --from0 --f1 --cvar --push_cm --rescore`,
 `tools/grip_portfolio.sh` + `grip_choose.py`, `tools/cpu_glock_zero.sh`, `tools/window_score.py`.
 
-**Running (CPU, pre-registered at cb86b5b):** T2 event-anchored windows on ep24/2/39/18 (ep24: current 0.184 vs events
-0.095: board 1 carried better but still > 9 cm off, board 2 knocked off the table edge); P1 grip portfolio on ep24
-board 1. **Waiting on the owner:** ≈ $80 Vast top-up (credit $1.82) for the GPU A/B and the queued eval reruns.
+**CPU tests (pre-registered at cb86b5b):** T2 event-anchored windows **FAILED** (0 of 4 twins improved; not adopted).
+P1 grip portfolio on ep24 board 1 **not falsified**: short-end clamp worst-quartile 0.475 vs copy 0.321, but it lifts
+the board only 4.9 cm by f30; the GPU A/B after fine-tuning (≈ $8–12) decides adoption.
+
+**GPU batch (25 Oct ~18:50 TRT):** owner topped up $100. The pre-registered eval rerun batch + eval 25 identity
+repair is run by ANOTHER session (branch `claude/inspiring-mendel-lbgp9e`, 9 boxes from 14:51 UTC). This session
+launched duplicates by mistake and destroyed them in setup (≈ $0.9); it does not touch that session's boxes.
 
 ## 2026-10-25 ~09:50 TRT: fixes validated overnight; eval reruns wait for the top-up (credit $1.82)
 **Kaggle (unchanged since 01:00 UTC):** AUC 0.58252 (first submission 0.57468), MPPE 6.69 cm, RPE 8.82 cm, SP-SR 0.50,

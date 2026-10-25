@@ -1,0 +1,73 @@
+{
+ "ep": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "anchor": "white_pot",
+ "rollouts": {
+  "r1": {
+   "a": 0.4513,
+   "b": 0.4464,
+   "c": 0.4498,
+   "rest_frames": 30,
+   "onset": 115,
+   "ref_f0_vs_rest_mean_deg": [
+    0.0,
+    0.1,
+    -2.1
+   ]
+  },
+  "r2": {
+   "a": 0.1686,
+   "b": 0.1677,
+   "c": 0.1681,
+   "rest_frames": 30,
+   "onset": 115,
+   "ref_f0_vs_rest_mean_deg": [
+    0.0,
+    0.1,
+    -2.1
+   ]
+  },
+  "r3": {
+   "a": 0.3139,
+   "b": 0.3129,
+   "c": 0.3125,
+   "rest_frames": 30,
+   "onset": 115,
+   "ref_f0_vs_rest_mean_deg": [
+    0.0,
+    0.1,
+    -2.1
+   ]
+  },
+  "r4": {
+   "a": 0.1859,
+   "b": 0.1814,
+   "c": 0.1828,
+   "rest_frames": 30,
+   "onset": 115,
+   "ref_f0_vs_rest_mean_deg": [
+    0.0,
+    0.1,
+    -2.1
+   ]
+  },
+  "r5": {
+   "a": 0.4121,
+   "b": 0.4097,
+   "c": 0.4112,
+   "rest_frames": 30,
+   "onset": 115,
+   "ref_f0_vs_rest_mean_deg": [
+    0.0,
+    0.1,
+    -2.1
+   ]
+  }
+ },
+ "mean_a": 0.3064,
+ "mean_b": 0.3036,
+ "mean_c": 0.3049
+}

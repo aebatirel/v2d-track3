@@ -1,0 +1,649 @@
+{
+ "3": {
+  "objects": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "anchor": "white_pot",
+  "spoon_anchors": false,
+  "motion_onset": 41,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 0.6,
+   "median": 0.4,
+   "max": 0.9
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "5": {
+  "objects": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "anchor": "white_pot",
+  "spoon_anchors": false,
+  "motion_onset": 39,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 1.7,
+   "median": 0.4,
+   "max": 1.7
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "6": {
+  "objects": [
+   "white_pot",
+   "wooden_spoon"
+  ],
+  "anchor": "white_pot",
+  "spoon_anchors": false,
+  "motion_onset": 33,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 1.6,
+   "median": 0.5,
+   "max": 6.5
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "15": {
+  "objects": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "anchor": "plastic_dish_rack",
+  "spoon_anchors": false,
+  "motion_onset": 32,
+  "spoon_z0_cm": 61.2,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 3.4,
+   "median": 0.7,
+   "max": 3.4
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "16": {
+  "objects": [
+   "plastic_dish_rack",
+   "wooden_spoon"
+  ],
+  "anchor": "plastic_dish_rack",
+  "spoon_anchors": false,
+  "motion_onset": 31,
+  "spoon_z0_cm": 61.0,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 2.5,
+   "median": 0.5,
+   "max": 4.1
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.969,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.906,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "32": {
+  "objects": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "anchor": "wooden_spoon",
+  "spoon_anchors": true,
+  "motion_onset": 49,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 4.1,
+   "median": 0.3,
+   "max": 4.1
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 0.928,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.73,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.338,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.113,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 0.986,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.925,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.742,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.576,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 0.92,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 0.724,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 0.336,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 0.106,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "33": {
+  "objects": [
+   "blue_cup",
+   "wooden_spoon"
+  ],
+  "anchor": "wooden_spoon",
+  "spoon_anchors": true,
+  "motion_onset": 55,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 1.7,
+   "median": 0.4,
+   "max": 1.7
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 0.933,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.744,
+    "no_scene_align": 0.969
+   },
+   "x20": {
+    "aligned": 0.409,
+    "no_scene_align": 0.906
+   },
+   "x30": {
+    "aligned": 0.209,
+    "no_scene_align": 0.781
+   },
+   "y5": {
+    "aligned": 0.959,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.845,
+    "no_scene_align": 0.969
+   },
+   "y20": {
+    "aligned": 0.585,
+    "no_scene_align": 0.906
+   },
+   "y30": {
+    "aligned": 0.382,
+    "no_scene_align": 0.781
+   },
+   "z5": {
+    "aligned": 0.931,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 0.746,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 0.389,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 0.192,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "35": {
+  "objects": [
+   "wooden_spoon"
+  ],
+  "anchor": "wooden_spoon",
+  "spoon_anchors": true,
+  "motion_onset": 27,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 5.1,
+   "median": 0.6,
+   "max": 6.0
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 0.994,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.946,
+    "no_scene_align": 0.938
+   },
+   "x20": {
+    "aligned": 0.814,
+    "no_scene_align": 0.812
+   },
+   "x30": {
+    "aligned": 0.668,
+    "no_scene_align": 0.562
+   },
+   "y5": {
+    "aligned": 0.948,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.774,
+    "no_scene_align": 0.938
+   },
+   "y20": {
+    "aligned": 0.446,
+    "no_scene_align": 0.812
+   },
+   "y30": {
+    "aligned": 0.226,
+    "no_scene_align": 0.562
+   },
+   "z5": {
+    "aligned": 0.942,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 0.765,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 0.434,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 0.193,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "36": {
+  "objects": [
+   "wooden_spoon"
+  ],
+  "anchor": "wooden_spoon",
+  "spoon_anchors": true,
+  "motion_onset": 33,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 0.7,
+   "median": 0.6,
+   "max": 3.8
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 0.971,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.869,
+    "no_scene_align": 0.938
+   },
+   "x20": {
+    "aligned": 0.612,
+    "no_scene_align": 0.812
+   },
+   "x30": {
+    "aligned": 0.37,
+    "no_scene_align": 0.562
+   },
+   "y5": {
+    "aligned": 0.942,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.76,
+    "no_scene_align": 0.938
+   },
+   "y20": {
+    "aligned": 0.407,
+    "no_scene_align": 0.812
+   },
+   "y30": {
+    "aligned": 0.181,
+    "no_scene_align": 0.562
+   },
+   "z5": {
+    "aligned": 0.961,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 0.825,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 0.553,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 0.311,
+    "no_scene_align": 1.0
+   }
+  }
+ },
+ "37": {
+  "objects": [
+   "wooden_spoon"
+  ],
+  "anchor": "wooden_spoon",
+  "spoon_anchors": true,
+  "motion_onset": 33,
+  "spoon_z0_cm": 61.1,
+  "f0_tilt_from_nearest_stable_rest_deg": {
+   "f0": 1.9,
+   "median": 0.7,
+   "max": 2.4
+  },
+  "sensitivity_auc": {
+   "x5": {
+    "aligned": 1.0,
+    "no_scene_align": 1.0
+   },
+   "x10": {
+    "aligned": 0.991,
+    "no_scene_align": 0.938
+   },
+   "x20": {
+    "aligned": 0.971,
+    "no_scene_align": 0.812
+   },
+   "x30": {
+    "aligned": 0.939,
+    "no_scene_align": 0.562
+   },
+   "y5": {
+    "aligned": 0.971,
+    "no_scene_align": 1.0
+   },
+   "y10": {
+    "aligned": 0.913,
+    "no_scene_align": 0.938
+   },
+   "y20": {
+    "aligned": 0.812,
+    "no_scene_align": 0.812
+   },
+   "y30": {
+    "aligned": 0.781,
+    "no_scene_align": 0.562
+   },
+   "z5": {
+    "aligned": 0.97,
+    "no_scene_align": 1.0
+   },
+   "z10": {
+    "aligned": 0.91,
+    "no_scene_align": 1.0
+   },
+   "z20": {
+    "aligned": 0.812,
+    "no_scene_align": 1.0
+   },
+   "z30": {
+    "aligned": 0.78,
+    "no_scene_align": 1.0
+   }
+  }
+ }
+}

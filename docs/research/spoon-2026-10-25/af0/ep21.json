@@ -1,0 +1,73 @@
+{
+ "ep": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "anchor": "water_pitcher",
+ "rollouts": {
+  "r1": {
+   "a": 0.2764,
+   "b": 0.2755,
+   "c": 0.2769,
+   "rest_frames": 30,
+   "onset": 41,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.2,
+    -0.3,
+    -1.6
+   ]
+  },
+  "r2": {
+   "a": 0.2634,
+   "b": 0.2663,
+   "c": 0.2638,
+   "rest_frames": 30,
+   "onset": 41,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.2,
+    -0.3,
+    -1.6
+   ]
+  },
+  "r3": {
+   "a": 0.2932,
+   "b": 0.2922,
+   "c": 0.2942,
+   "rest_frames": 30,
+   "onset": 41,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.2,
+    -0.3,
+    -1.6
+   ]
+  },
+  "r4": {
+   "a": 0.2964,
+   "b": 0.2957,
+   "c": 0.2964,
+   "rest_frames": 30,
+   "onset": 41,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.2,
+    -0.3,
+    -1.6
+   ]
+  },
+  "r5": {
+   "a": 0.2757,
+   "b": 0.2765,
+   "c": 0.2762,
+   "rest_frames": 30,
+   "onset": 41,
+   "ref_f0_vs_rest_mean_deg": [
+    -1.2,
+    -0.3,
+    -1.6
+   ]
+  }
+ },
+ "mean_a": 0.281,
+ "mean_b": 0.2812,
+ "mean_c": 0.2815
+}
