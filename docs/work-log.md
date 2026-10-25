@@ -3677,3 +3677,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Every other episode keeps its packed rollout (KEEP_RESULTS). Pack with `PICK EP:RUN:final` + `EP_LIB`; upload the
     five pose boards (and CD-O only if a submitted mesh changed).
   - Cost estimate ≈ $50 (boxes ≈ $1.3/h; standard learner ≈ 2.4 h per episode, one training per GPU at a time).
+- 03:15 UTC **eval perception check done** (`20261025-evperc-4f596df`, 20 episodes, ≈ 1.5 h, ≈ $1.9, self-destroyed):
+  evals 35, 36, 37, 38 also unchanged (no guard intervention). Final: the guard changes **8, 14, 32, 33** only; the
+  spoon tracks never trigger it. Outputs (poses, masks, det dumps, track_guard.json) in
+  `runs/20261025-evperc-4f596df/results/evalperc/`.
