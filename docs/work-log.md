@@ -3486,3 +3486,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   gated re-proposal) then `build_library.sh OBJS="blue_cup beige_cup"` along the new ep11 tracks plus the G1 / 21 Oct
   tracks of the blue cup's other episodes. Purpose: a beige cup (evals 10 and 8) fused along a correct track; the
   running library box fuses it along the broken one. Credit $19.61 at 00:35 UTC.
+- 00:37 UTC **pre-registered (before any run): perception precision sweep.** Motivation: with ADD-AUC thresholds 1–9 cm,
+  a typical 1.5 cm track error costs ≈ 0.06 AUC per object against ≈ 0.8 cm; precision touches all 20 eval episodes
+  (the spoon included). FoundationPose tracking takes only ≈ 6 s per object and episode, so refiner iterations are
+  cheap to raise. Variants: **base** (register 5, track 2: today's defaults), **t4** (track 4), **t8** (register 10,
+  track 8); all with today's detection, library_v2 seeds, on the 20 public episodes; registered AUC vs mocap with
+  library_v2 meshes. **Rule:** the variant with the highest mean registered AUC is adopted only if its mean gain over
+  base is ≥ +0.005 and no episode loses more than 0.02 against base; otherwise base stays. Job
+  `ops/jobs/perc_sweep.sh` (new; perc2 gains `REG_ITERS` / `TRACK_ITERS`, defaults unchanged).

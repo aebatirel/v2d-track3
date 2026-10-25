@@ -420,11 +420,13 @@ cv2.imwrite(f'{OUT}/masks_f0.jpg', vis)
 ests = {n: FoundationPose(model_pts=meshes[n].vertices, model_normals=meshes[n].vertex_normals, mesh=meshes[n],
                           scorer=scorer, refiner=refiner, debug_dir=f'{OUT}/dbg', debug=0, glctx=glctx) for n in names}
 poses = {}
+REG_ITERS, TRACK_ITERS = int(os.environ.get('REG_ITERS', 5)), int(os.environ.get('TRACK_ITERS', 2))   # FoundationPose refiner
+log('FoundationPose iterations: register', REG_ITERS, 'track', TRACK_ITERS)                         # steps (2026-10-25 sweep)
 for n in names:
     t0 = time.time()
-    P = [ests[n].register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=5)]
+    P = [ests[n].register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
     for i in range(1, N):
-        P.append(ests[n].track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=2))
+        P.append(ests[n].track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS))
     poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1))
 np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})
 if SPLIT == 'eval':                                                   # no ground truth exists: write outputs, stop
