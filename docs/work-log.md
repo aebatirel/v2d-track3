@@ -3739,3 +3739,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   edge-balanced start). Verdict after all four episodes. **P1 definition fixed now, before its run:** "lifts board 1 by
   ≥ 10 cm by f30" = the rise of board 1 at f30 over its own frame-0 height in the exact (unjittered, unpushed) copy of the
   fresh K = 8 re-score; the worst-25 % score is over those 8 copies; pushes 1 cm random walk, theta jitter 5 mm/0.005 rad.
+- 09:54 UTC **T2 result (pre-registered cb86b5b): FAIL — event-anchored windows not adopted.** Zero action, CPU, code
+  8852ef6/210be58 (grasp_lock identical for T2), hold windows of the current arm, `tools/window_score.py`:
+  ep24 0.160 → 0.058 (full 0.184 → 0.095), ep2 0.104 → 0.090 (full 0.236 → 0.254), ep39 0.0625 → 0.0623,
+  ep18 0.128 → 0.053 (full 0.137 → 0.067). Rule: ≥ +0.05 on 3 of 4 and no drop > 0.02 → fails (0 rises, 2 drops).
+  Reading: all zero-action scores are 0.05–0.25, so these replays are dominated by chaotic failures (boards knocked off
+  the table edge, sweeper lost) rather than by hold timing; the event model may still matter after the fine-tune, but
+  it has no evidence for adoption. Outputs `scratchpad/t2/runs/ep{24,2,39,18}{A,B}`.
