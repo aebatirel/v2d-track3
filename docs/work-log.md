@@ -3883,3 +3883,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     sim_vs_ref 0.983; curve 0.57 / 0.26 / 0.42 / 0.81 / 0.97 / 0.98 / … (stands at both rests, CERTIFIED BY ARC FOOT).
   - Rule: arc ≥ base − 0.02 (0.772 ≥ 0.637) ✓ and pitcher arc ≥ base (0.591 ≥ 0.414) ✓ → eval 20's rebuilt policies
     (built with SF_ARC=1, the default) are eligible for the pack. Twin cost ≈ $1.6 + ≈ $2.3 (Max-Q, ≈ 1.5 h).
+- 16:34 UTC **check-in 2:** 11 boxes, no failures.
+  - Grasp-lock learner (eval_both recipe) on the rebuilt references, mean sim_vs_ref of 5 official evaluations:
+    ep14 0.6595, **ep20 0.8923** (pack2 rollout 0.336 on the old reference; the pitcher now stands with the arc foot),
+    ep32 0.4969, ep33 0.4857, ep25 0.3759; all below gate 0.9, so their standard learners are training.
+    (Each is scored against its own rebuilt reference; not comparable with pack2's numbers on the old references.)
+  - Frozen-recipe search windows so far: ep14 phase 0 0.377 → 0.837; ep20 0.267 → 0.394, 0.375 → 0.537;
+    ep32 0.392 → 0.703, 0.593 → 0.703; ep25 0.296 → 0.401.
+  - **evb0810 is slow:** ep8's 70M grasp-lock training runs at 6.5k env steps/s (ETA ≈ 18:15 UTC; usual ≈ 45k). Same
+    effect as the ep11 v3x twin (1.6 h vs 0.9 h): the v5 beige cup (32 collision pieces, arc-foot sectors) makes the
+    simulation heavier, and two trainings share the GPU. Its standard learners for 8 and 10 would then take ≈ 5 h each,
+    back to back (≈ 05:00 UTC, ≈ $15–17). Decision at ≈ 18:15 UTC; packing will not wait for them.
