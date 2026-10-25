@@ -3681,3 +3681,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   evals 35, 36, 37, 38 also unchanged (no guard intervention). Final: the guard changes **8, 14, 32, 33** only; the
   spoon tracks never trigger it. Outputs (poses, masks, det dumps, track_guard.json) in
   `runs/20261025-evperc-4f596df/results/evalperc/`.
+- 04:27 UTC **ep11 beige cup twin: v5 beige cup ADOPTED** (pre-registered rule: v5 ≥ base − 0.02 and the beige cup's
+  AUC ≥ base's). Registered AUC vs mocap (5 evaluations): base library_v3 **0.525** (blue cup 1.00, beige cup 0.03–0.06;
+  rest check: the beige cup falls 84 mm / 65° by f11), library_v3x **0.570** (blue cup 1.00, beige cup 0.141; falls
+  50 mm / 29°). sim_vs_ref 0.445 vs 0.480. Boxes `20261025-twin11v3-0e8aebb` / `-twin11v3x-0e8aebb` (≈ 0.9 h / 1.6 h,
+  ≈ $1.2 / $2.3), self-destroyed. Evals 10 and 8 are re-run with library_v3x (pre-registered batch).
+- **Why the beige cup still falls (both meshes, GT-free geometry):** its bottom is never observed (it sits on the
+  table), so both reconstructions taper to a 1 cm cone tip at the base end; at the start pose the cup stands on that
+  tip. The arc foot certifies eval 10's start (margin 14.6 mm) but is blocked by the free-space check because the
+  stacked beige cup sits inside the blue cup's filled interior (the v3 blue cup is solid over its lower 37 %). A fix
+  needs the foot plus a carved cavity in the blue cup's collision copy (spec §7 parked rule); not done.
+- 06:47 UTC no boxes running; credit **$1.82**; the owner's top-up has not arrived, so the pre-registered eval rerun
+  batch has not started.

@@ -2,24 +2,25 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
-## 2026-10-25 ~04:05 TRT: second submission AUC 0.5825; owner target 4th place (0.752), "use both" learners
-**Kaggle (second pack, uploaded 01:00 UTC):** AUC 0.58252 (0.57468 before), MPPE 6.69 cm, RPE 8.82 cm, SP-SR 0.50,
-MP-SR 0.40. Changes: eval 30 detection fix + seed-43 picks for 3, 5, 15, 16, 19.
+## 2026-10-25 ~09:50 TRT: fixes validated overnight; eval reruns wait for the top-up (credit $1.82)
+**Kaggle (unchanged since 01:00 UTC):** AUC 0.58252 (first submission 0.57468), MPPE 6.69 cm, RPE 8.82 cm, SP-SR 0.50,
+MP-SR 0.40.
 
-**Owner (this night):** "fix the lower scores properly, do whatever it takes, aim for 4th"; "use both" learners (the
-standard FDR RL next to the grasp lock below gate 0.9, GT-free choice). A top-up of ≈ $40 was requested (plan ≈ $52).
+**Validated on public data (rules written before each test):**
+- On-table detection rule: ep11 tracking 0.102 → 0.898 (shipped).
+- Track guard (below-table poses → re-register / re-detect / hold): 8 public episodes 0.724 → 0.782 (ep0 0.50 → 0.96),
+  no regression (shipped). It changes eval references 8, 14, 32, 33 only.
+- v5 beige cup (fused along the fixed ep11 track): CD-O 0.856 → 0.730; ep11 twin 0.525 → 0.570 → adopted for evals 10, 8
+  (`meshes/library_v3x`).
+- Arc foot (unobserved round base completed as an 8-sector foot, simulator geometry only): ep21 pitcher stands (4.7 mm /
+  1.2° vs a 158 mm fall); GPU twin still to run; changes eval 20.
+- Owner: "use both" learners → the standard learner next to the grasp lock on the 12 episodes below gate 0.9.
 
-**Validated today (public data, rules written before each replay):**
-- On-table detection rule: ep11 cups fixed (registered tracking AUC 0.102 → 0.898), no regression; shipped.
-- Below-table plausibility flag: on 20 public tracks it fires only on the 3 known failures; on eval it fires on
-  8, 14, 32, 33 (the cup tracks lost to the wrist). `TRACK_GUARD` (re-register / re-detect / hold) is being validated.
+**Negative results:** perception precision sweep (no gain; base kept); v5 library worse than v2 except the beige cup;
+v5 pitcher = v3 pitcher.
 
-**Running:** library v5 (pitcher etc.; lid and board 1 failed on broken tracks → rebuild from re-tracked episodes),
-cups rebuild (beige cup from the fixed ep11), perception precision sweep (FoundationPose iterations, 20 public
-episodes), track-guard validation.
-
-**Next:** sweep result → decide perception settings → pitcher / beige cup twin tests → reruns of the changed eval
-episodes with both learners → pack → upload.
+**Next (pre-registered batch, ≈ $50, needs the top-up):** rebuild + both learners for evals 8, 14, 32, 33, 20, 10;
+second learner on stored references for 1, 16, 19, 25, 28, 30; ep21 arc-foot twin; pack; upload.
 
 ## 2026-10-24 ~22:55 TRT: night work (owner asleep, "do as much as you can with the vast money", credit $29.98)
 - Running: `20261024-seed43-61101f5` (57567887): a second seed for evals 19, 3, 5, 15, 16 and 28 on the same
