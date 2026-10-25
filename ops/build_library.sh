@@ -19,7 +19,7 @@ export TRACKS=${TRACKS:-/content/perc2m/ep{ep}/poses.npz} HANDS=${HANDS:-/conten
 M0OBJS=$(python -c "import json, sys; lib = json.load(open('$P/mesh_v5.json'))['library_episodes']; want = sys.argv[1].split()
 eps = {e for o in want for e in lib[o]}; print(' '.join(o for o in lib if o in want or set(lib[o]) & eps))" "$OBJS")
 log "build_library code $(git -C $REPO_DIR rev-parse --short HEAD), G1 $G1RUN + $OLDRUNS, objects [$OBJS]" >> $J
-pip install -q fast_simplification manifold3d open3d==0.20.0 pymeshlab==2025.7.post1 warp-lang >> $J 2>&1 || log "pip install FAILED" >> $J
+pip install -q fast_simplification manifold3d open3d==0.20.0 pymeshlab==2025.7.post1 warp-lang rtree >> $J 2>&1 || log "pip install FAILED" >> $J
 apt-get install -y -q libopengl0 > /dev/null 2>&1 || true
 for r in $G1RUN $OLDRUNS; do bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pull-run $r FAILED" >> $J; exit 1; }; done
 EPS=$(python -c "import json; d = json.load(open('$P/mesh_v5.json'))['library_episodes']; print(' '.join(sorted({str(e) for v in d.values() for e in v}, key=int)))")

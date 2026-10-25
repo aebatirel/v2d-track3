@@ -3568,3 +3568,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   0.885, **ep12 0.967 / 0.968 / 0.720** (blue cup 0.44 with t8). t8 already breaks the pre-registered no-drop condition
   (ep12 −0.247), so it cannot be adopted; t4 is +0.0015 so far (needs +0.005). The guard recovers ep0 robustly (0.964)
   without heavier tracking. Left running for the full table (the base tracks also feed the library rebuild).
+- 01:36 UTC **library box: water_pitcher failed late** (`ModuleNotFoundError: rtree`, after fusion, post-pass, F4 and
+  the candidate gates; needed by trimesh queries in the support rule / pieces). Fixed on the box (`pip install
+  rtree`) before the other objects reached that stage; `build_library.sh` installs it from now on. The pitcher is
+  re-run on the box with `EP_MESH_REUSE=1` (new: reuse the saved grid and F4 of the same inputs), from a copy of the
+  new `ep_mesh.py` (`pipeline/ep_mesh2.py` on the box, so the running job's code is untouched); the copier was
+  replaced by one that also waits for the rerun (`/content/lcopy3.sh`). Lid and board 1 failed again (their M0
+  could not be built from the broken ep0 / ep23 tracks), as expected.
+- 01:39 UTC **TRACK_GUARD validation (base vs guard, same box):** ep0 0.496 → **0.964**; ep11 0.898 = 0.898; ep23 0.041 =
+  0.041 (identity swap: both boards plausible, the guard does not trigger); ep12 0.967 → 0.966 (not triggered; GPU
+  nondeterminism); ep18 0.938 = 0.938; ep24 0.812 = 0.812. ep31, ep21 pending.

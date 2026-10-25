@@ -128,14 +128,24 @@ def build(obj, eps, out, calib, mode='library', seed=None, g0=False, pieces=True
     rep['timings']['pass0'] = round(time.time() - t, 1); rep['M0'] = m0
     m0_dec = f'{work}/M0.glb'                                          # the X reference (scorer-decoded inside the gate)
     # fusion + post
-    t = time.time(); grid = fuse(obj, eps, m0, f'{work}/grid.npz', calib, log, g0); rep['timings']['fuse'] = round(time.time() - t, 1)
+    t = time.time(); reuse = os.environ.get('EP_MESH_REUSE') == '1'      # 2026-10-25: rerun after a late failure without
+    if reuse and os.path.exists(f'{work}/grid.npz'):                     # redoing the fusion / F4 of the same inputs
+        grid = f'{work}/grid.npz'; rep['reused'] = ['grid']
+    else:
+        grid = fuse(obj, eps, m0, f'{work}/grid.npz', calib, log, g0)
+    rep['timings']['fuse'] = round(time.time() - t, 1)
     import mesh_post
     t = time.time(); _, orec = mesh_post.run([grid], f'{work}/O', P5['post']['below_mode'], P5['post']['variant'], decimate=False)
     rep['timings']['post'] = round(time.time() - t, 1)
     rep['O'] = {k: orec.get(k) for k in ('solid_cm3', 'g1_seen_free_violation_cm3', 'g2_unexplained8', 'g5_coarse_only_share',
                                           'g1_pass', 'g2_pass', 'full_topo', 'closing', 'unknown_share')}
     # F4
-    t = time.time(); f4 = classic(obj, eps, f'{work}/F4.glb', calib, log, others=True); rep['timings']['F4'] = round(time.time() - t, 1)
+    t = time.time()
+    if reuse and os.path.exists(f'{work}/F4_full.glb'):
+        f4 = f'{work}/F4_full.glb'; rep.setdefault('reused', []).append('F4')
+    else:
+        f4 = classic(obj, eps, f'{work}/F4.glb', calib, log, others=True)
+    rep['timings']['F4'] = round(time.time() - t, 1)
     # selection (spec 4.5)
     seed_c = seed if mode != 'library' else None
     po, go = candidate(obj, orec['full'], 'O', work, m0_dec, seed_c)
