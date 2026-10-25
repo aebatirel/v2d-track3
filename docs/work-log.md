@@ -3667,3 +3667,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   of a few degrees); the rerun's rest check will show whether the f152 foot holds the start. Eval 10's beige cup:
   certified at f0 (margin 14.6 mm) but blocked by the free-space check (the foot would sit inside the blue cup during
   the stacking, 87 frames). Eval 30's sweeper (standing in the rack) fails the arc fit (RMS 38 %).
+- 03:01 UTC **pre-registered eval rerun batch (fixed before any of its results; runs after the owner's top-up):**
+  - **References rebuilt end to end with today's code** (`eval_both.sh`: detection rules, TRACK_GUARD, support fill with
+    the arc foot; grasp-lock learner, then the standard learner when the grasp lock's mean sim_vs_ref < 0.9; GT-free
+    choice): evals **8, 14, 32, 33** (guard interventions), **20** (arc foot), and **10** only if the ep11 beige cup twin
+    passes (then with library_v3x, and evals 8 too).
+  - **Second learner on stored references** (`std_learner.sh`, unchanged reference, grasp-lock policy kept as the other
+    candidate): evals **1, 16, 19, 25, 28, 30** (and 10 if its reference stays).
+  - Every other episode keeps its packed rollout (KEEP_RESULTS). Pack with `PICK EP:RUN:final` + `EP_LIB`; upload the
+    five pose boards (and CD-O only if a submitted mesh changed).
+  - Cost estimate ≈ $50 (boxes ≈ $1.3/h; standard learner ≈ 2.4 h per episode, one training per GPU at a time).
