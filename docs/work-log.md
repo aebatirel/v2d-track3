@@ -3585,3 +3585,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   default `TRACK_GUARD=1` (`TRACK_GUARD=0` reproduces earlier runs). It does not fix ep23 (a frame-0 identity swap of
   two plausible boards). Eval episodes it is expected to change: 8, 14, 32, 33 (the plausibility flag fires there);
   to be confirmed by a perception-only rerun of the 20 eval episodes before any training.
+- 01:44 UTC new job `ops/jobs/eval_perc_check.sh`: perception-only rerun of the 20 eval episodes with today's defaults
+  (on-table rule, gated re-proposal, TRACK_GUARD), nothing scored; the guard's interventions per episode decide which
+  eval references change (a uniform rule, not a hand choice). (I first wrote it over the existing 21 Oct
+  `eval_perc.sh` by mistake; restored from git before any commit, nothing lost.)
