@@ -3806,3 +3806,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   final cross is not assembled (no slots in our meshes; boards end flat, 4–6 cm off). Packing keeps a fresh single
   official rollout (note 14: best-of-N re-evaluation of one checkpoint is cherry-picking; owner's "we cannot pick and
   choose"). New `tools/render_eval_rollout.py` (CPU 3-D view of an evaluator parquet, H.264).
+- 18:17 UTC **Owner go-ahead: one small render box** (≈ $0.3–0.5, ≈ 15–20 min; reporting only) for eval 25's chosen
+  standard-learner policy with the robot hands: `ops/jobs/vid_policy.sh` (RUN 20261025-ev25idfix-02de0c7, EP 25,
+  CK results/final_eval/ep25/policy.safetensors, REFV perc2mcks). A fresh rollout (GPU physics is not repeatable), not
+  the packed one. The batch of the other session is not touched.
