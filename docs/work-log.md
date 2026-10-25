@@ -3635,3 +3635,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   certification and a zero-action replay (the pitcher must stay within 1 cm / 5° for 30 frames with the hands
   parked); (2) GPU, ep21 twin with the frozen recipe, base vs arc-foot: adopt iff registered AUC vs mocap ≥ base −
   0.02 and the pitcher's AUC ≥ base's. Unchanged elsewhere by construction (only poses that nothing else certifies).
+- 02:41 UTC **arc foot, test (1) on public ep21, variant 1: the fit gate rejects the pitcher** (r 3.47 cm, arc 152°,
+  centre 1.27 cm from the COM, RMS 0.56 cm = 16 % of r > 15 %); the base flares within the 2 cm band, as the audit
+  saw (r 3.5 cm at 0–2 cm, 4.5 cm at 2–5 cm). The blue cup at its frame 0 (fill BLOCKED) also fails the fit (RMS 29 %).
+  **Variant 2 (set now, after seeing ep21's 16 %, public development data only): RMS gate 25 % of r**; the GPU twin
+  test (2) remains the acceptance test.
+- 02:42 UTC **arc foot variant 2 on public ep21 (CPU, `support_fill.py`):** the pitcher is **CERTIFIED BY ARC FOOT** at both
+  observed rests (f0: r 3.47 cm, arc 152°, margin 21.7 mm, tip 7.7°; f147: r 3.42 cm, margin 23.5 mm), 8 sectors each,
+  free-space and other-rest checks passed; the blue cup unchanged (stable as is / fill blocked, arc fit rejected).
+  CPU zero-action replay with the hands parked running (scratchpad `grasp_work/audit-starts/sim/ep21/arcfoot_nohands`).

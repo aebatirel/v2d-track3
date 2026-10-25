@@ -49,6 +49,39 @@ OV_RUN, OV_TOTAL = 5, 15             # free space: a fill may touch another obje
                                       # never persistently (another object resting in it: ep12 cup in the rack)
 SETTLE_DEG, BAND = 3.0, 0.001        # the pose as is may rock by up to SETTLE_DEG (our pose error 1-2 deg); contact band
                                       # = the soft contact's sink (~1 mm)
+# Arc foot (2026-10-25, pre-registered in docs/work-log.md; the 24 Oct ep21 audit: our pitcher's base is an observed arc
+# of 160-170 deg, the rest unobserved, and a circle-completed 8-sector foot stood <= 5 mm for 60 frames): when no fill
+# certifies a resting pose, a circle fitted to the points within ARC_BAND of the table may be completed into a foot of
+# ARC_L, split into ARC_SECTORS convex pieces (MuJoCo's convex-convex collider gives one contact per geom pair, so a single
+# convex foot wobbles). Simulator geometry only: extra <collision> elements of the URDF; mesh and inertial unchanged.
+ARC = os.environ.get('SF_ARC', '1') == '1'
+ARC_BAND, ARC_L, ARC_SECTORS, ARC_MIN_DEG, ARC_RMS, ARC_R = 0.02, 0.02, 8, 120.0, 0.25, (0.015, 0.10)   # RMS 0.15 -> 0.25: variant 2 (ep21 pitcher 16 %, flaring base)
+
+
+def arc_foot(Xs, com, ztop):
+    """Xs: dense surface samples (world) at the pose. Returns (all foot points, [sector points], info) in world
+    coordinates, or (None, None, info) when the fit gates or the certificate fail."""
+    B = Xs[(Xs[:, 2] >= ztop - 0.002) & (Xs[:, 2] < ztop + ARC_BAND)][:, :2]
+    if len(B) < 30:
+        return None, None, dict(ok=False, why=f'{len(B)} band points')
+    A = np.c_[2 * B, np.ones(len(B))]; x = np.linalg.lstsq(A, (B ** 2).sum(1), rcond=None)[0]
+    c = x[:2]; r = float(np.sqrt(max(x[2] + c @ c, 0.0)))
+    rms = float(np.sqrt(np.mean((np.linalg.norm(B - c, axis=1) - r) ** 2)))
+    ang = np.sort(np.arctan2(B[:, 1] - c[1], B[:, 0] - c[0])); cover = 360.0 - np.degrees(np.diff(np.r_[ang, ang[0] + 2 * np.pi]).max())
+    info = dict(r_cm=round(100 * r, 2), rms_cm=round(100 * rms, 2), arc_deg=round(float(cover), 1),
+                centre_to_com_cm=round(100 * float(np.linalg.norm(c - com[:2])), 2))
+    if not (ARC_R[0] <= r <= ARC_R[1] and rms <= ARC_RMS * r and cover >= ARC_MIN_DEG):
+        return None, None, dict(info, ok=False, why='fit gates')
+    th = np.linspace(0, 2 * np.pi, 3 * ARC_SECTORS + 1); ring = c + r * np.c_[np.cos(th), np.sin(th)]
+    ins, d, tip = certify(ring[:-1], com[:2], com[2] - ztop)
+    info.update(inside=ins, margin_mm=round(1000 * d, 1), tip_deg=round(tip, 1), ok=bool(ins and d >= MARGIN_MIN and tip >= TIP_MIN_DEG))
+    if not info['ok']:
+        return None, None, dict(info, why='disc does not certify')
+    z0, z1 = ztop + 0.0005, ztop + ARC_L; secs = []
+    for k in range(ARC_SECTORS):
+        poly = np.r_[[c], ring[3 * k:3 * k + 4]]
+        secs.append(np.r_[np.c_[poly, np.full(len(poly), z0)], np.c_[poly, np.full(len(poly), z1)]])
+    return np.vstack(secs), secs, info
 
 
 def table_top(usda):
@@ -154,7 +187,11 @@ def fill_one(mesh, poses, ztop, fill=None, com_obj=None, own=None, others=()):
             if (R2.apply(slab_obj)[:, 2]).min() < (R2.apply(V)[:, 2]).min() - 0.001:
                 return f2
         return None
-    V = np.asarray(mesh.vertices, float); slabs, rep, done = [], [], []
+    V = np.asarray(mesh.vertices, float); slabs, rep, done, feet = [], [], [], []
+    try:
+        SM = trimesh.sample.sample_surface(mesh, 60000, seed=0)[0]
+    except TypeError:                                                # older trimesh: no seed argument
+        np.random.seed(0); SM = trimesh.sample.sample_surface(mesh, 60000)[0]
     for f, p, q in poses:
         Rq = R.from_quat(q)
         if any(np.linalg.norm(p - p2) < 0.01 and (Rq * R.from_quat(q2).inv()).magnitude() < np.radians(3) for p2, q2 in done):
@@ -185,8 +222,21 @@ def fill_one(mesh, poses, ztop, fill=None, com_obj=None, own=None, others=()):
                 slab = trimesh.Trimesh(Rq.inv().apply(pts - p), hull.simplices, process=True); trimesh.repair.fix_normals(slab)
                 r.update(slab_cm3=round(1e6 * float(hull.volume), 1), status='CERTIFIED BY FILL'); slabs.append(slab); break
         else:
-            r['status'] = 'BLOCKED' if 'blocked' in r else f'UNSTABLE (no fill up to {100 * FILLS[-1]:.1f} cm certifies it)'
+            if ARC:                                                   # arc foot: complete the observed base circle
+                fpts, secs, info = arc_foot(Rq.apply(SM) + p, com, ztop); r['arc'] = info
+                if fpts is not None:
+                    hit = blocked(Rq.inv().apply(fpts - p), own, others) if own is not None else None
+                    f_lift = None if hit else lifts(Rq.inv().apply(fpts - p), Rq)
+                    if hit:
+                        r['arc']['blocked'] = f'{hit[0]} from frame {hit[1]} ({hit[2]} frames)'
+                    elif f_lift is not None:
+                        r['arc']['blocked'] = f'would stand under its own resting pose at frame {f_lift}'
+                    else:
+                        feet.append([Rq.inv().apply(x - p) for x in secs]); r['status'] = 'CERTIFIED BY ARC FOOT'
+            if 'status' not in r:
+                r['status'] = 'BLOCKED' if 'blocked' in r else f'UNSTABLE (no fill up to {100 * FILLS[-1]:.1f} cm certifies it)'
         rep.append(r)
+    fill_one.feet = feet                                            # arc-foot sectors (object frame), read by main()
     if not slabs:
         return None, rep
     try:
@@ -237,8 +287,17 @@ def main():
             filled.export(mesh_dst)
         else:                                                      # untouched: the original file, bit for bit
             shutil.copy(os.path.normpath(os.path.join(os.path.dirname(src), mesh_rel)), mesh_dst)
-        shutil.copy(src, f'{a.out_assets}/urdf/{os.path.basename(src)}'); new_urdfs.append(os.path.abspath(f'{a.out_assets}/urdf/{os.path.basename(src)}'))
+        dst = f'{a.out_assets}/urdf/{os.path.basename(src)}'; shutil.copy(src, dst); new_urdfs.append(os.path.abspath(dst))
+        feet = getattr(fill_one, 'feet', [])
+        if feet:                                                   # arc feet: one convex <collision> per sector
+            os.makedirs(f'{a.out_assets}/urdf/foot', exist_ok=True); cols = []
+            for i_f, secs in enumerate(feet):
+                for k, pts in enumerate(secs):
+                    fn = f'foot/{n}_foot{i_f}_{k}.stl'; trimesh.convex.convex_hull(pts).export(f'{a.out_assets}/urdf/{fn}')
+                    cols.append(f'    <collision>\n      <origin xyz="0 0 0" rpy="0 0 0"/>\n      <geometry><mesh filename="{fn}" scale="1 1 1"/></geometry>\n    </collision>\n')
+            txt = open(dst).read(); open(dst, 'w').write(txt.replace('  </link>', ''.join(cols) + '  </link>', 1))
         report['objects'][n] = dict(rest_frames=[int(p[0]) for p in poses], fills=rep, filled=filled is not None,
+                                    arc_feet=len(feet),
                                     volume_cm3=[round(1e6 * mesh.volume, 1), round(1e6 * (filled if filled is not None else mesh).volume, 1)])
     i = t.column_names.index('object_urdf_paths')
     t = t.set_column(i, 'object_urdf_paths', pa.array([new_urdfs], type=t.schema.field('object_urdf_paths').type))
