@@ -3644,3 +3644,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   observed rests (f0: r 3.47 cm, arc 152°, margin 21.7 mm, tip 7.7°; f147: r 3.42 cm, margin 23.5 mm), 8 sectors each,
   free-space and other-rest checks passed; the blue cup unchanged (stable as is / fill blocked, arc fit rejected).
   CPU zero-action replay with the hands parked running (scratchpad `grasp_work/audit-starts/sim/ep21/arcfoot_nohands`).
+- 02:43 UTC **arc foot test (1) PASSES** (CPU zero-action replay, public ep21, hands parked 0.6 m above, 40 frames,
+  evaluator-like settings): the pitcher stays within **4.7 mm / 1.2°** of its simulated frame-0 pose (without the foot:
+  158 mm / 81° by f8 in the 24 Oct audit); the blue cup within 4.9 mm / 2.8°. Next: test (2), GPU twin ep21
+  (`SF_ARC=0` vs `SF_ARC=1`, library_v3, frozen recipe).
