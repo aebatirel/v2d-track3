@@ -3800,3 +3800,30 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - `approach3-grasp-taxonomy.md` §9: follow-up line.
   - Not changed: FlashCHORD training and our pipeline (any-slot activity only), and the robot-geometry audits.
   - Still open: the end-to-end check of the new column inside a real mkref + E2S run (next GPU mkref run).
+
+### 25 Oct ~14:55 UTC — owner topped up $100 ("go and get me a proper score, I need the ranking"); credit $101.82
+- State: 0 boxes; Kaggle AUC 0.58252 (9th; 8th 0.630, 4th 0.752); live pack `20261025-pack2-46b8389` (sim_vs_ref mean
+  0.7218). The main-bsky37 session is idle (waiting on input), so no parallel launches.
+- **Batch = the pre-registered eval rerun batch of 03:01 UTC**, unchanged except eval 25 (below). Code: branch
+  `claude/inspiring-mendel-lbgp9e` 4667c91 (= main-bsky37 3cb24dc + the contact_slot_names column; training-neutral).
+  `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020`. Two episodes per box at most (hard_ab starts all pairs at once).
+  - `eval_both.sh` (references rebuilt end to end with today's defaults: detection rules, TRACK_GUARD, support fill +
+    arc foot; grasp lock, then the standard learner below gate 0.9; GT-free choice): evals 8 + 10 with
+    `meshes/library_v3x` (ep11 twin adopted the v5 beige cup), 14 + 20, 32 + 33 (library_v3).
+  - `std_learner.sh` on stored references: 1 + 16, 19 + 28, 30. GL sources as in pack2: 1, 28 `20261024-pack-31ef267`;
+    16, 19 `20261024-seed43-61101f5`; 30 `20261024-ev30rp-07eef1a`.
+  - ep21 arc-foot twin (public, frozen recipe, `SPLIT=public PAIRS=21:new:mck`), two boxes: `SF_ARC=0` (base) and
+    `SF_ARC=1`. Rule as pre-registered 02:40 UTC: adopt the arc foot iff registered AUC vs mocap (arc) ≥ base − 0.02
+    and the pitcher's AUC (arc) ≥ base's. Eval 20's rebuilt policy is used only if adopted; else eval 20 keeps pack2.
+- **Pre-registered now (before any eval-25 run): eval 25 identity repair.** The stored eval-25 reference has the board
+  names swapped and wooden_piece_1 turned 180° about x (approach1 §2.6: GT-free knob rule; on public ep24 it keeps the
+  good track, repairs the 24 Oct track 0.029 → 0.706 vs mocap, and undoes all 8 injected swap × flip combinations).
+  So eval 25 drops out of the std-learner list (training on a known-wrong reference). Instead: run `identity_rule.py`
+  on eval 25's stored perception (`runs/20261025-evperc-4f596df/results/evalperc/ep25`, identical poses to the pack's);
+  if it flags the track, write repaired poses (names swapped + the rule's in-plane flip), rebuild the reference from
+  them with `eval_both.sh` (perception skipped because poses.npz exists) and adopt that episode's chosen policy in
+  the pack. If the rule keeps the as-tracked assignment, eval 25 is left as in pack2.
+- Pack after all boxes: `pack_eval.sh KEEP_RESULTS=20261025-pack2-46b8389` + `PICK EP:RUN:final` for every episode
+  whose final_eval choice exists; upload the five pose boards, and CD-O too since the beige cup mesh changes (8, 10).
+- Estimate: 3 eval_both boxes ≈ 4–5 h ≈ $7 each; 3 std boxes ≈ 3 h ≈ $4.5 each; twins ≈ $2 each; eval 25 ≈ $7;
+  pack ≈ $1 → ≈ $50, leaving ≈ $50 for a second round chosen from these results.
