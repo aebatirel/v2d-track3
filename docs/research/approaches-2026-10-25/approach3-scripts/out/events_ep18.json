@@ -1,0 +1,61 @@
+{
+ "mini_sweeper": {
+  "onset": 39,
+  "liftoff": 40,
+  "settle": 126,
+  "hold_on": 61,
+  "hold_off": 323,
+  "holds": [
+   [
+    "right",
+    61,
+    219
+   ],
+   [
+    "right",
+    251,
+    323
+   ]
+  ],
+  "GT_DIAG": {
+   "onset": 39,
+   "liftoff": 40,
+   "settle": 123
+  },
+  "diff_ref_minus_gt": {
+   "onset": 0,
+   "liftoff": 0,
+   "settle": 3
+  },
+  "hold_on_minus_gt_onset": 22,
+  "hold_on_minus_gt_liftoff": 21,
+  "hold_off_minus_gt_settle": 200
+ },
+ "mini_dust_pan": {
+  "onset": 18,
+  "liftoff": 20,
+  "settle": 45,
+  "hold_on": 11,
+  "hold_off": 187,
+  "holds": [
+   [
+    "left",
+    11,
+    187
+   ]
+  ],
+  "GT_DIAG": {
+   "onset": 18,
+   "liftoff": 20,
+   "settle": 51
+  },
+  "diff_ref_minus_gt": {
+   "onset": 0,
+   "liftoff": 0,
+   "settle": -6
+  },
+  "hold_on_minus_gt_onset": -7,
+  "hold_on_minus_gt_liftoff": -9,
+  "hold_off_minus_gt_settle": 136
+ }
+}

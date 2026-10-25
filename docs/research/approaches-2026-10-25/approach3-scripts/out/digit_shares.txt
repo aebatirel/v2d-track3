@@ -1,0 +1,35 @@
+ep12   r blue_cup       28-144 correct: thumb 0.95 index 0.79 middle 0.72 ring 0.76 pinky 0.56 palm 0.35 | as labelled before: thumb 0.69 index 0.92 middle 0.78 ring 0.87 pinky 0.70 palm 0.44
+ep12   l blue_cup       33- 85 correct: thumb 0.29 index 0.58 middle 0.35 ring 0.46 pinky 0.46 palm 0.00 | as labelled before: thumb 0.73 index 0.62 middle 0.50 ring 0.00 pinky 0.15 palm 0.27
+ep2    r white_pot_lid  52-122 correct: thumb 0.97 index 0.57 middle 1.00 ring 1.00 pinky 0.89 palm 0.00 | as labelled before: thumb 1.00 index 0.97 middle 1.00 ring 0.49 pinky 0.30 palm 0.80
+ep2    l white_pot     108-234 correct: thumb 0.88 index 0.82 middle 0.85 ring 0.81 pinky 0.60 palm 0.98 | as labelled before: thumb 0.92 index 0.95 middle 0.29 ring 0.76 pinky 0.99 palm 0.65
+ep2    r white_pot_lid 235-304 correct: thumb 0.81 index 0.45 middle 0.96 ring 1.00 pinky 1.00 palm 0.00 | as labelled before: thumb 1.00 index 0.90 middle 1.00 ring 0.83 pinky 0.81 palm 0.81
+ep2    l white_pot     269-337 correct: thumb 0.85 index 0.88 middle 0.91 ring 0.82 pinky 0.03 palm 0.90 | as labelled before: thumb 0.93 index 0.85 middle 0.50 ring 0.88 pinky 0.99 palm 0.26
+ep24   l wooden_piece_   3-202 correct: thumb 0.32 index 0.86 middle 0.76 ring 0.74 pinky 0.13 palm 0.17 | as labelled before: thumb 0.87 index 0.94 middle 0.75 ring 0.77 pinky 0.77 palm 0.26
+ep24   r wooden_piece_  37- 78 correct: thumb 0.63 index 0.83 middle 0.59 ring 0.56 pinky 0.54 palm 0.51 | as labelled before: thumb 0.88 index 0.83 middle 0.71 ring 0.46 pinky 0.56 palm 0.51
+ep24   r wooden_piece_ 105-244 correct: thumb 0.36 index 0.85 middle 0.86 ring 0.78 pinky 0.03 palm 0.08 | as labelled before: thumb 0.87 index 0.30 middle 0.84 ring 0.35 pinky 0.17 palm 0.25
+ep18   l mini_dust_pan  11-187 correct: thumb 0.19 index 0.39 middle 0.89 ring 0.91 pinky 0.94 palm 0.02 | as labelled before: thumb 0.83 index 0.97 middle 0.97 ring 0.39 pinky 0.31 palm 0.13
+ep18   r mini_sweeper   61-219 correct: thumb 0.15 index 0.42 middle 0.98 ring 0.93 pinky 0.47 palm 0.00 | as labelled before: thumb 0.98 index 0.50 middle 0.96 ring 0.51 pinky 0.58 palm 0.08
+ep18   r mini_sweeper  251-323 correct: thumb 0.03 index 0.28 middle 0.86 ring 0.68 pinky 0.10 palm 0.00 | as labelled before: thumb 0.89 index 0.28 middle 0.67 ring 0.32 pinky 0.18 palm 0.00
+ep39   l mini_dust_pan  44-103 correct: thumb 0.59 index 1.00 middle 1.00 ring 0.92 pinky 0.59 palm 0.00 | as labelled before: thumb 1.00 index 0.69 middle 0.98 ring 0.07 pinky 0.36 palm 0.51
+ep39   r mini_dust_pan  70-292 correct: thumb 0.27 index 0.50 middle 0.80 ring 0.79 pinky 0.61 palm 0.62 | as labelled before: thumb 0.84 index 0.76 middle 0.67 ring 0.31 pinky 0.72 palm 0.23
+ev1    r white_pot_lid  38- 95 correct: thumb 0.25 index 0.47 middle 0.86 ring 1.00 pinky 0.77 palm 0.00 | as labelled before: thumb 0.96 index 0.75 middle 0.96 ring 0.32 pinky 0.33 palm 0.25
+ev1    l white_pot      96-159 correct: thumb 0.76 index 0.92 middle 0.83 ring 0.87 pinky 0.78 palm 0.95 | as labelled before: thumb 0.95 index 0.86 middle 0.24 ring 0.90 pinky 1.00 palm 0.71
+ev1    r white_pot     162-228 correct: thumb 1.00 index 0.11 middle 0.91 ring 0.32 pinky 0.05 palm 1.00 | as labelled before: thumb 0.89 index 1.00 middle 0.09 ring 0.24 pinky 1.00 palm 0.68
+ev1    l white_pot     228-309 correct: thumb 0.91 index 0.95 middle 0.94 ring 0.14 pinky 0.68 palm 0.94 | as labelled before: thumb 0.90 index 0.88 middle 0.00 ring 0.48 pinky 0.98 palm 0.91
+ev1    r white_pot_lid 241-299 correct: thumb 0.45 index 0.38 middle 1.00 ring 0.78 pinky 0.36 palm 0.00 | as labelled before: thumb 1.00 index 0.43 middle 1.00 ring 0.28 pinky 0.00 palm 0.45
+ev16   r wooden_spoon   30-107 correct: thumb 0.44 index 0.79 middle 0.70 ring 0.30 pinky 0.10 palm 0.00 | as labelled before: thumb 0.82 index 0.66 middle 0.49 ring 0.68 pinky 0.08 palm 0.27
+ev16   l wooden_spoon   42- 64 correct: thumb 0.05 index 1.00 middle 0.86 ring 0.18 pinky 0.00 palm 0.00 | as labelled before: thumb 1.00 index 1.00 middle 0.68 ring 0.55 pinky 0.00 palm 0.05
+ev19   l mini_dust_pan  12-194 correct: thumb 0.25 index 0.71 middle 0.88 ring 0.86 pinky 0.52 palm 0.44 | as labelled before: thumb 0.96 index 0.70 middle 0.71 ring 0.36 pinky 0.57 palm 0.10
+ev19   r mini_sweeper   28-235 correct: thumb 0.06 index 0.59 middle 0.97 ring 0.79 pinky 0.35 palm 0.00 | as labelled before: thumb 1.00 index 0.39 middle 0.98 ring 0.05 pinky 0.03 palm 0.06
+ev25   l wooden_piece_  31- 76 correct: thumb 0.91 index 0.80 middle 0.71 ring 0.58 pinky 0.22 palm 0.24 | as labelled before: thumb 0.80 index 0.89 middle 0.71 ring 0.73 pinky 0.40 palm 0.64
+ev25   r wooden_piece_  79-126 correct: thumb 0.66 index 0.62 middle 0.91 ring 0.66 pinky 0.70 palm 0.64 | as labelled before: thumb 0.83 index 0.87 middle 0.94 ring 0.60 pinky 0.81 palm 0.49
+ev25   l wooden_piece_  92-330 correct: thumb 0.55 index 0.91 middle 0.91 ring 0.97 pinky 0.45 palm 0.13 | as labelled before: thumb 0.52 index 0.93 middle 0.97 ring 0.94 pinky 0.86 palm 0.48
+ev25   r wooden_piece_ 144-331 correct: thumb 0.12 index 0.88 middle 0.92 ring 0.87 pinky 0.12 palm 0.04 | as labelled before: thumb 0.90 index 0.78 middle 0.95 ring 0.86 pinky 0.37 palm 0.12
+ev28   l white_pot      10- 63 correct: thumb 0.34 index 0.68 middle 0.62 ring 0.77 pinky 0.30 palm 0.87 | as labelled before: thumb 0.49 index 0.40 middle 0.26 ring 0.62 pinky 0.96 palm 0.34
+ev28   r white_pot      45-205 correct: thumb 0.64 index 0.96 middle 0.89 ring 0.39 pinky 0.21 palm 0.29 | as labelled before: thumb 0.53 index 0.92 middle 0.55 ring 0.77 pinky 0.32 palm 0.50
+ev33   l blue_cup       17- 48 correct: thumb 1.00 index 0.81 middle 0.52 ring 0.45 pinky 0.16 palm 0.39 | as labelled before: thumb 0.26 index 0.77 middle 0.48 ring 1.00 pinky 0.45 palm 0.61
+ev33   r wooden_spoon   48-201 correct: thumb 0.21 index 0.47 middle 0.61 ring 0.57 pinky 0.39 palm 0.03 | as labelled before: thumb 0.54 index 0.55 middle 0.44 ring 0.20 pinky 0.12 palm 0.21
+ev33   l wooden_spoon   80- 97 correct: thumb 0.12 index 0.29 middle 0.29 ring 0.35 pinky 0.29 palm 0.00 | as labelled before: thumb 0.47 index 0.35 middle 0.35 ring 0.00 pinky 0.12 palm 0.12
+ev33   l wooden_spoon  149-167 correct: thumb 0.28 index 0.33 middle 0.72 ring 0.00 pinky 0.00 palm 0.39 | as labelled before: thumb 0.39 index 0.17 middle 0.39 ring 0.89 pinky 0.39 palm 0.17
+ev33   r wooden_spoon  215-251 correct: thumb 0.08 index 0.14 middle 0.31 ring 0.58 pinky 0.67 palm 0.08 | as labelled before: thumb 0.33 index 0.67 middle 0.53 ring 0.00 pinky 0.36 palm 0.08
+ev33   r wooden_spoon  284-325 correct: thumb 0.83 index 0.59 middle 0.05 ring 0.00 pinky 0.00 palm 0.17 | as labelled before: thumb 0.59 index 0.44 middle 0.00 ring 0.00 pinky 0.17 palm 0.83

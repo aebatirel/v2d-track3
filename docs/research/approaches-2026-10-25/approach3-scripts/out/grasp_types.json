@@ -1,0 +1,3485 @@
+[
+ {
+  "tag": "ep12",
+  "hand": "right",
+  "object": "blue_cup",
+  "start": 28,
+  "end": 144,
+  "R_share": {
+   "thumb": 0.95,
+   "palm": 0.35,
+   "fingers_mean": 2.84
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "power",
+    30,
+    39
+   ],
+   [
+    "one-sided",
+    40,
+    48
+   ],
+   [
+    "power",
+    48,
+    58
+   ],
+   [
+    "under",
+    58,
+    65
+   ],
+   [
+    "one-sided",
+    68,
+    124
+   ],
+   [
+    "power",
+    128,
+    137
+   ],
+   [
+    "one-sided",
+    137,
+    144
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "one-sided",
+    28,
+    46
+   ],
+   [
+    "power",
+    46,
+    53
+   ],
+   [
+    "one-sided",
+    53,
+    59
+   ],
+   [
+    "none",
+    59,
+    67
+   ],
+   [
+    "one-sided",
+    67,
+    141
+   ]
+  ],
+  "R_H_frame_agree": 0.36,
+  "H_thumb_and_finger_frac": 0.85,
+  "H_opp_angle_p50": 76.0,
+  "H_opp_ge110_frac": 0.16,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.69,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.8
+   },
+   "2cm": {
+    "frame_agree": 0.54,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 4.5
+   }
+  }
+ },
+ {
+  "tag": "ep12",
+  "hand": "left",
+  "object": "blue_cup",
+  "start": 33,
+  "end": 85,
+  "R_share": {
+   "thumb": 0.29,
+   "palm": 0.0,
+   "fingers_mean": 1.85
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    33,
+    42
+   ],
+   [
+    "under",
+    42,
+    59
+   ],
+   [
+    "one-sided",
+    59,
+    67
+   ],
+   [
+    "top",
+    76,
+    83
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "none",
+    33,
+    46
+   ],
+   [
+    "under",
+    46,
+    55
+   ],
+   [
+    "one-sided",
+    55,
+    67
+   ],
+   [
+    "none",
+    67,
+    85
+   ]
+  ],
+  "R_H_frame_agree": 0.42,
+  "H_thumb_and_finger_frac": 0.25,
+  "H_opp_angle_p50": 14.0,
+  "H_opp_ge110_frac": 0.0,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.76,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.8
+   },
+   "2cm": {
+    "frame_agree": 0.74,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.5
+   }
+  }
+ },
+ {
+  "tag": "ep2",
+  "hand": "right",
+  "object": "white_pot_lid",
+  "start": 52,
+  "end": 122,
+  "R_share": {
+   "thumb": 0.97,
+   "palm": 0.0,
+   "fingers_mean": 3.46
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    52,
+    110
+   ],
+   [
+    "one-sided",
+    110,
+    122
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    53,
+    102
+   ],
+   [
+    "one-sided",
+    102,
+    122
+   ]
+  ],
+  "R_H_frame_agree": 0.71,
+  "H_thumb_and_finger_frac": 0.79,
+  "H_opp_angle_p50": 61.0,
+  "H_opp_ge110_frac": 0.02,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.42,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.0
+   },
+   "2cm": {
+    "frame_agree": 0.33,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 4.8
+   }
+  }
+ },
+ {
+  "tag": "ep2",
+  "hand": "left",
+  "object": "white_pot",
+  "start": 108,
+  "end": 234,
+  "R_share": {
+   "thumb": 0.88,
+   "palm": 0.98,
+   "fingers_mean": 3.07
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "power",
+    108,
+    132
+   ],
+   [
+    "under",
+    132,
+    177
+   ],
+   [
+    "one-sided",
+    177,
+    234
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "under",
+    112,
+    119
+   ],
+   [
+    "power",
+    119,
+    191
+   ],
+   [
+    "top",
+    192,
+    198
+   ],
+   [
+    "power",
+    198,
+    208
+   ],
+   [
+    "under",
+    210,
+    224
+   ],
+   [
+    "power",
+    224,
+    232
+   ]
+  ],
+  "R_H_frame_agree": 0.16,
+  "H_thumb_and_finger_frac": 0.98,
+  "H_opp_angle_p50": 88.0,
+  "H_opp_ge110_frac": 0.22,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.5,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.5
+   },
+   "2cm": {
+    "frame_agree": 0.29,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 7.2
+   }
+  }
+ },
+ {
+  "tag": "ep2",
+  "hand": "right",
+  "object": "white_pot_lid",
+  "start": 235,
+  "end": 304,
+  "R_share": {
+   "thumb": 0.81,
+   "palm": 0.0,
+   "fingers_mean": 3.41
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    235,
+    304
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "one-sided",
+    235,
+    245
+   ],
+   [
+    "top",
+    245,
+    278
+   ],
+   [
+    "one-sided",
+    278,
+    289
+   ],
+   [
+    "top",
+    289,
+    298
+   ],
+   [
+    "one-sided",
+    298,
+    304
+   ]
+  ],
+  "R_H_frame_agree": 0.42,
+  "H_thumb_and_finger_frac": 0.55,
+  "H_opp_angle_p50": 92.0,
+  "H_opp_ge110_frac": 0.08,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.36,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 3.2
+   },
+   "2cm": {
+    "frame_agree": 0.32,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 2.2
+   }
+  }
+ },
+ {
+  "tag": "ep2",
+  "hand": "left",
+  "object": "white_pot",
+  "start": 269,
+  "end": 337,
+  "R_share": {
+   "thumb": 0.85,
+   "palm": 0.9,
+   "fingers_mean": 2.65
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    274,
+    317
+   ],
+   [
+    "power",
+    325,
+    333
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "power",
+    277,
+    309
+   ],
+   [
+    "side",
+    309,
+    320
+   ],
+   [
+    "pad45",
+    323,
+    332
+   ]
+  ],
+  "R_H_frame_agree": 0.18,
+  "H_thumb_and_finger_frac": 0.91,
+  "H_opp_angle_p50": 147.0,
+  "H_opp_ge110_frac": 0.84,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.33,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 4.0
+   },
+   "2cm": {
+    "frame_agree": 0.18,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 4.0
+   }
+  }
+ },
+ {
+  "tag": "ep24",
+  "hand": "left",
+  "object": "wooden_piece_2",
+  "start": 3,
+  "end": 202,
+  "R_share": {
+   "thumb": 0.32,
+   "palm": 0.17,
+   "fingers_mean": 2.49
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "under",
+    7,
+    15
+   ],
+   [
+    "top",
+    15,
+    39
+   ],
+   [
+    "pad2",
+    39,
+    49
+   ],
+   [
+    "under",
+    49,
+    56
+   ],
+   [
+    "one-sided",
+    61,
+    202
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "one-sided",
+    3,
+    9
+   ],
+   [
+    "top",
+    9,
+    16
+   ],
+   [
+    "under",
+    21,
+    31
+   ],
+   [
+    "power",
+    31,
+    38
+   ],
+   [
+    "under",
+    45,
+    52
+   ],
+   [
+    "none",
+    55,
+    62
+   ],
+   [
+    "top",
+    62,
+    69
+   ],
+   [
+    "one-sided",
+    69,
+    202
+   ]
+  ],
+  "R_H_frame_agree": 0.73,
+  "H_thumb_and_finger_frac": 0.28,
+  "H_opp_angle_p50": 73.0,
+  "H_opp_ge110_frac": 0.18,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.65,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 8.0
+   },
+   "2cm": {
+    "frame_agree": 0.45,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 9.5
+   }
+  }
+ },
+ {
+  "tag": "ep24",
+  "hand": "right",
+  "object": "wooden_piece_2",
+  "start": 8,
+  "end": 21,
+  "R_share": {
+   "thumb": 0.0,
+   "palm": 0.15,
+   "fingers_mean": 1.77
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    9,
+    13
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "none",
+    8,
+    21
+   ]
+  ],
+  "R_H_frame_agree": 0.23,
+  "H_thumb_and_finger_frac": 0.08,
+  "H_opp_angle_p50": 171.0,
+  "H_opp_ge110_frac": 1.0,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.88,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.0
+   },
+   "2cm": {
+    "frame_agree": 0.9,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.0
+   }
+  }
+ },
+ {
+  "tag": "ep24",
+  "hand": "right",
+  "object": "wooden_piece_2",
+  "start": 37,
+  "end": 78,
+  "R_share": {
+   "thumb": 0.63,
+   "palm": 0.51,
+   "fingers_mean": 2.51
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "under",
+    37,
+    70
+   ]
+  ],
+  "H_label": "under",
+  "H_stages": [
+   [
+    "under",
+    37,
+    49
+   ],
+   [
+    "power",
+    49,
+    57
+   ],
+   [
+    "under",
+    57,
+    73
+   ]
+  ],
+  "R_H_frame_agree": 0.46,
+  "H_thumb_and_finger_frac": 0.63,
+  "H_opp_angle_p50": 87.0,
+  "H_opp_ge110_frac": 0.42,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.63,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 2.5
+   },
+   "2cm": {
+    "frame_agree": 0.4,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 2.8
+   }
+  }
+ },
+ {
+  "tag": "ep24",
+  "hand": "right",
+  "object": "wooden_piece_1",
+  "start": 105,
+  "end": 244,
+  "R_share": {
+   "thumb": 0.36,
+   "palm": 0.08,
+   "fingers_mean": 2.52
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "under",
+    113,
+    122
+   ],
+   [
+    "one-sided",
+    122,
+    240
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "one-sided",
+    105,
+    194
+   ],
+   [
+    "none",
+    194,
+    200
+   ],
+   [
+    "one-sided",
+    200,
+    212
+   ],
+   [
+    "none",
+    212,
+    220
+   ],
+   [
+    "one-sided",
+    220,
+    228
+   ],
+   [
+    "none",
+    228,
+    243
+   ]
+  ],
+  "R_H_frame_agree": 0.6,
+  "H_thumb_and_finger_frac": 0.27,
+  "H_opp_angle_p50": 83.0,
+  "H_opp_ge110_frac": 0.16,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.56,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 5.5
+   },
+   "2cm": {
+    "frame_agree": 0.39,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 7.2
+   }
+  }
+ },
+ {
+  "tag": "ep18",
+  "hand": "left",
+  "object": "mini_dust_pan",
+  "start": 11,
+  "end": 187,
+  "R_share": {
+   "thumb": 0.19,
+   "palm": 0.02,
+   "fingers_mean": 3.14
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "one-sided",
+    13,
+    27
+   ],
+   [
+    "under",
+    27,
+    63
+   ],
+   [
+    "top",
+    68,
+    137
+   ],
+   [
+    "one-sided",
+    137,
+    149
+   ],
+   [
+    "under",
+    149,
+    158
+   ],
+   [
+    "top",
+    158,
+    171
+   ],
+   [
+    "one-sided",
+    171,
+    179
+   ],
+   [
+    "top",
+    179,
+    187
+   ]
+  ],
+  "H_label": "under",
+  "H_stages": [
+   [
+    "one-sided",
+    15,
+    22
+   ],
+   [
+    "under",
+    22,
+    53
+   ],
+   [
+    "top",
+    53,
+    110
+   ],
+   [
+    "under",
+    110,
+    137
+   ],
+   [
+    "one-sided",
+    137,
+    148
+   ],
+   [
+    "under",
+    148,
+    157
+   ],
+   [
+    "top",
+    159,
+    175
+   ],
+   [
+    "under",
+    178,
+    187
+   ]
+  ],
+  "R_H_frame_agree": 0.58,
+  "H_thumb_and_finger_frac": 0.69,
+  "H_opp_angle_p50": 65.0,
+  "H_opp_ge110_frac": 0.01,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 9.8
+   },
+   "2cm": {
+    "frame_agree": 0.35,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 10.5
+   }
+  }
+ },
+ {
+  "tag": "ep18",
+  "hand": "right",
+  "object": "mini_sweeper",
+  "start": 61,
+  "end": 219,
+  "R_share": {
+   "thumb": 0.15,
+   "palm": 0.0,
+   "fingers_mean": 2.8
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    62,
+    162
+   ],
+   [
+    "under",
+    162,
+    174
+   ],
+   [
+    "one-sided",
+    174,
+    219
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "one-sided",
+    61,
+    186
+   ],
+   [
+    "none",
+    186,
+    202
+   ],
+   [
+    "top",
+    202,
+    213
+   ],
+   [
+    "one-sided",
+    213,
+    219
+   ]
+  ],
+  "R_H_frame_agree": 0.67,
+  "H_thumb_and_finger_frac": 0.46,
+  "H_opp_angle_p50": 49.0,
+  "H_opp_ge110_frac": 0.03,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.62,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 5.2
+   },
+   "2cm": {
+    "frame_agree": 0.43,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 9.0
+   }
+  }
+ },
+ {
+  "tag": "ep18",
+  "hand": "right",
+  "object": "mini_sweeper",
+  "start": 251,
+  "end": 323,
+  "R_share": {
+   "thumb": 0.03,
+   "palm": 0.0,
+   "fingers_mean": 1.92
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    251,
+    265
+   ],
+   [
+    "none",
+    265,
+    273
+   ],
+   [
+    "one-sided",
+    282,
+    296
+   ],
+   [
+    "top",
+    296,
+    308
+   ],
+   [
+    "one-sided",
+    308,
+    323
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    251,
+    264
+   ],
+   [
+    "one-sided",
+    264,
+    292
+   ],
+   [
+    "top",
+    292,
+    315
+   ],
+   [
+    "one-sided",
+    315,
+    323
+   ]
+  ],
+  "R_H_frame_agree": 0.43,
+  "H_thumb_and_finger_frac": 0.0,
+  "H_opp_angle_p50": null,
+  "H_opp_ge110_frac": null,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.6,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 4.2
+   },
+   "2cm": {
+    "frame_agree": 0.42,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 2.8
+   }
+  }
+ },
+ {
+  "tag": "ep39",
+  "hand": "left",
+  "object": "mini_dust_pan",
+  "start": 44,
+  "end": 103,
+  "R_share": {
+   "thumb": 0.59,
+   "palm": 0.0,
+   "fingers_mean": 3.51
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    47,
+    68
+   ],
+   [
+    "top",
+    72,
+    82
+   ],
+   [
+    "one-sided",
+    93,
+    99
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    44,
+    53
+   ],
+   [
+    "one-sided",
+    53,
+    63
+   ],
+   [
+    "side",
+    63,
+    71
+   ],
+   [
+    "top",
+    71,
+    81
+   ],
+   [
+    "one-sided",
+    81,
+    92
+   ],
+   [
+    "top",
+    92,
+    103
+   ]
+  ],
+  "R_H_frame_agree": 0.51,
+  "H_thumb_and_finger_frac": 0.27,
+  "H_opp_angle_p50": 105.0,
+  "H_opp_ge110_frac": 0.44,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.46,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 3.2
+   },
+   "2cm": {
+    "frame_agree": 0.34,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 2.8
+   }
+  }
+ },
+ {
+  "tag": "ep39",
+  "hand": "right",
+  "object": "mini_dust_pan",
+  "start": 70,
+  "end": 292,
+  "R_share": {
+   "thumb": 0.27,
+   "palm": 0.62,
+   "fingers_mean": 2.7
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    73,
+    82
+   ],
+   [
+    "none",
+    82,
+    105
+   ],
+   [
+    "one-sided",
+    105,
+    114
+   ],
+   [
+    "top",
+    114,
+    137
+   ],
+   [
+    "under",
+    137,
+    148
+   ],
+   [
+    "power",
+    148,
+    156
+   ],
+   [
+    "under",
+    157,
+    167
+   ],
+   [
+    "top",
+    173,
+    185
+   ],
+   [
+    "one-sided",
+    185,
+    196
+   ],
+   [
+    "top",
+    196,
+    225
+   ],
+   [
+    "one-sided",
+    225,
+    232
+   ],
+   [
+    "power",
+    232,
+    249
+   ],
+   [
+    "under",
+    249,
+    267
+   ],
+   [
+    "one-sided",
+    271,
+    292
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "one-sided",
+    70,
+    80
+   ],
+   [
+    "none",
+    84,
+    104
+   ],
+   [
+    "one-sided",
+    104,
+    114
+   ],
+   [
+    "power",
+    115,
+    124
+   ],
+   [
+    "top",
+    124,
+    170
+   ],
+   [
+    "power",
+    170,
+    185
+   ],
+   [
+    "top",
+    185,
+    194
+   ],
+   [
+    "power",
+    199,
+    254
+   ],
+   [
+    "one-sided",
+    254,
+    260
+   ],
+   [
+    "top",
+    260,
+    278
+   ],
+   [
+    "one-sided",
+    278,
+    292
+   ]
+  ],
+  "R_H_frame_agree": 0.35,
+  "H_thumb_and_finger_frac": 0.52,
+  "H_opp_angle_p50": 89.0,
+  "H_opp_ge110_frac": 0.3,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.53,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 11.8
+   },
+   "2cm": {
+    "frame_agree": 0.39,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 11.5
+   }
+  }
+ },
+ {
+  "tag": "ep27gl",
+  "hand": "right",
+  "object": "white_pot",
+  "start": 20,
+  "end": 221,
+  "R_share": {
+   "thumb": 0.65,
+   "palm": 0.51,
+   "fingers_mean": 2.95
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "none",
+    25,
+    32
+   ],
+   [
+    "pad45",
+    40,
+    47
+   ],
+   [
+    "power",
+    47,
+    54
+   ],
+   [
+    "pad45",
+    54,
+    74
+   ],
+   [
+    "under",
+    74,
+    83
+   ],
+   [
+    "pad45",
+    83,
+    90
+   ],
+   [
+    "pad2",
+    95,
+    106
+   ],
+   [
+    "top",
+    112,
+    160
+   ],
+   [
+    "pad45",
+    165,
+    171
+   ],
+   [
+    "power",
+    171,
+    178
+   ],
+   [
+    "top",
+    178,
+    220
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "one-sided",
+    20,
+    31
+   ],
+   [
+    "side",
+    31,
+    38
+   ],
+   [
+    "power",
+    39,
+    45
+   ],
+   [
+    "under",
+    45,
+    105
+   ],
+   [
+    "power",
+    105,
+    183
+   ],
+   [
+    "side",
+    183,
+    204
+   ],
+   [
+    "one-sided",
+    204,
+    212
+   ],
+   [
+    "power",
+    212,
+    218
+   ]
+  ],
+  "R_H_frame_agree": 0.16,
+  "H_thumb_and_finger_frac": 0.83,
+  "H_opp_angle_p50": 109.0,
+  "H_opp_ge110_frac": 0.49,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.51,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 8.2
+   },
+   "2cm": {
+    "frame_agree": 0.32,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 12.0
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "right",
+  "object": "white_pot_lid",
+  "start": 38,
+  "end": 95,
+  "R_share": {
+   "thumb": 0.25,
+   "palm": 0.0,
+   "fingers_mean": 3.11
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    38,
+    95
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "one-sided",
+    41,
+    49
+   ],
+   [
+    "top",
+    49,
+    61
+   ],
+   [
+    "none",
+    61,
+    67
+   ],
+   [
+    "top",
+    67,
+    95
+   ]
+  ],
+  "R_H_frame_agree": 0.67,
+  "H_thumb_and_finger_frac": 0.32,
+  "H_opp_angle_p50": 40.0,
+  "H_opp_ge110_frac": 0.0,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.62,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 2.0
+   },
+   "2cm": {
+    "frame_agree": 0.43,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 3.2
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "left",
+  "object": "white_pot",
+  "start": 96,
+  "end": 159,
+  "R_share": {
+   "thumb": 0.76,
+   "palm": 0.95,
+   "fingers_mean": 3.4
+  },
+  "R_label": "power",
+  "R_stages": [
+   [
+    "power",
+    96,
+    147
+   ],
+   [
+    "under",
+    149,
+    156
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "power",
+    111,
+    157
+   ]
+  ],
+  "R_H_frame_agree": 0.63,
+  "H_thumb_and_finger_frac": 0.9,
+  "H_opp_angle_p50": 104.0,
+  "H_opp_ge110_frac": 0.46,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.58,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.8
+   },
+   "2cm": {
+    "frame_agree": 0.31,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 3.2
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "right",
+  "object": "white_pot",
+  "start": 162,
+  "end": 228,
+  "R_share": {
+   "thumb": 1.0,
+   "palm": 1.0,
+   "fingers_mean": 1.38
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "top",
+    162,
+    189
+   ],
+   [
+    "one-sided",
+    189,
+    228
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "power",
+    162,
+    194
+   ],
+   [
+    "under",
+    198,
+    209
+   ],
+   [
+    "power",
+    209,
+    220
+   ],
+   [
+    "under",
+    222,
+    228
+   ]
+  ],
+  "R_H_frame_agree": 0.11,
+  "H_thumb_and_finger_frac": 0.88,
+  "H_opp_angle_p50": 80.0,
+  "H_opp_ge110_frac": 0.19,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.47,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.5
+   },
+   "2cm": {
+    "frame_agree": 0.27,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 4.0
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "left",
+  "object": "white_pot",
+  "start": 228,
+  "end": 309,
+  "R_share": {
+   "thumb": 0.91,
+   "palm": 0.94,
+   "fingers_mean": 2.7
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    228,
+    285
+   ],
+   [
+    "one-sided",
+    302,
+    309
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "under",
+    230,
+    237
+   ],
+   [
+    "power",
+    237,
+    272
+   ],
+   [
+    "one-sided",
+    272,
+    293
+   ],
+   [
+    "power",
+    297,
+    308
+   ]
+  ],
+  "R_H_frame_agree": 0.05,
+  "H_thumb_and_finger_frac": 0.91,
+  "H_opp_angle_p50": 106.0,
+  "H_opp_ge110_frac": 0.49,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 2.2
+   },
+   "2cm": {
+    "frame_agree": 0.26,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 4.5
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "right",
+  "object": "white_pot_lid",
+  "start": 241,
+  "end": 299,
+  "R_share": {
+   "thumb": 0.45,
+   "palm": 0.0,
+   "fingers_mean": 2.52
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    241,
+    293
+   ],
+   [
+    "side",
+    293,
+    299
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "top",
+    246,
+    258
+   ],
+   [
+    "one-sided",
+    258,
+    269
+   ],
+   [
+    "none",
+    269,
+    292
+   ]
+  ],
+  "R_H_frame_agree": 0.26,
+  "H_thumb_and_finger_frac": 0.24,
+  "H_opp_angle_p50": 53.0,
+  "H_opp_ge110_frac": 0.0,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 2.5
+   },
+   "2cm": {
+    "frame_agree": 0.42,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 2.2
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "right",
+  "object": "white_pot",
+  "start": 268,
+  "end": 278,
+  "R_share": {
+   "thumb": 0.0,
+   "palm": 0.0,
+   "fingers_mean": 1.0
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    268,
+    278
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "none",
+    268,
+    278
+   ]
+  ],
+  "R_H_frame_agree": 0.0,
+  "H_thumb_and_finger_frac": 0.0,
+  "H_opp_angle_p50": null,
+  "H_opp_ge110_frac": null,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 1.0,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.0
+   },
+   "2cm": {
+    "frame_agree": 0.82,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.0
+   }
+  }
+ },
+ {
+  "tag": "ev1",
+  "hand": "right",
+  "object": "white_pot",
+  "start": 292,
+  "end": 298,
+  "R_share": {
+   "thumb": 0.0,
+   "palm": 0.0,
+   "fingers_mean": 1.17
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    292,
+    298
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "none",
+    292,
+    298
+   ]
+  ],
+  "R_H_frame_agree": 0.0,
+  "H_thumb_and_finger_frac": 0.0,
+  "H_opp_angle_p50": null,
+  "H_opp_ge110_frac": null,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 1.0,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.0
+   },
+   "2cm": {
+    "frame_agree": 0.75,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 1.0
+   }
+  }
+ },
+ {
+  "tag": "ev3",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 35,
+  "end": 292,
+  "R_share": {
+   "thumb": 0.31,
+   "palm": 0.68,
+   "fingers_mean": 1.85
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "top",
+    35,
+    85
+   ],
+   [
+    "power",
+    85,
+    98
+   ],
+   [
+    "one-sided",
+    101,
+    122
+   ],
+   [
+    "power",
+    122,
+    134
+   ],
+   [
+    "none",
+    138,
+    147
+   ],
+   [
+    "under",
+    155,
+    199
+   ],
+   [
+    "one-sided",
+    199,
+    211
+   ],
+   [
+    "under",
+    211,
+    245
+   ],
+   [
+    "power",
+    245,
+    252
+   ],
+   [
+    "one-sided",
+    258,
+    273
+   ],
+   [
+    "top",
+    273,
+    279
+   ],
+   [
+    "none",
+    281,
+    290
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "top",
+    38,
+    48
+   ],
+   [
+    "power",
+    50,
+    101
+   ],
+   [
+    "one-sided",
+    101,
+    107
+   ],
+   [
+    "power",
+    107,
+    132
+   ],
+   [
+    "none",
+    138,
+    147
+   ],
+   [
+    "power",
+    147,
+    167
+   ],
+   [
+    "top",
+    169,
+    178
+   ],
+   [
+    "under",
+    178,
+    186
+   ],
+   [
+    "power",
+    186,
+    259
+   ],
+   [
+    "one-sided",
+    259,
+    267
+   ],
+   [
+    "top",
+    267,
+    292
+   ]
+  ],
+  "R_H_frame_agree": 0.26,
+  "H_thumb_and_finger_frac": 0.66,
+  "H_opp_angle_p50": 110.0,
+  "H_opp_ge110_frac": 0.5,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 11.2
+   },
+   "2cm": {
+    "frame_agree": 0.31,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 16.8
+   }
+  }
+ },
+ {
+  "tag": "ev3",
+  "hand": "left",
+  "object": "white_pot",
+  "start": 57,
+  "end": 271,
+  "R_share": {
+   "thumb": 0.93,
+   "palm": 0.99,
+   "fingers_mean": 3.7
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "under",
+    57,
+    81
+   ],
+   [
+    "one-sided",
+    81,
+    246
+   ],
+   [
+    "power",
+    246,
+    254
+   ],
+   [
+    "one-sided",
+    254,
+    271
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "under",
+    60,
+    67
+   ],
+   [
+    "power",
+    67,
+    81
+   ],
+   [
+    "top",
+    81,
+    109
+   ],
+   [
+    "power",
+    109,
+    116
+   ],
+   [
+    "top",
+    116,
+    128
+   ],
+   [
+    "power",
+    128,
+    220
+   ],
+   [
+    "top",
+    220,
+    240
+   ],
+   [
+    "power",
+    240,
+    269
+   ]
+  ],
+  "R_H_frame_agree": 0.17,
+  "H_thumb_and_finger_frac": 0.8,
+  "H_opp_angle_p50": 51.0,
+  "H_opp_ge110_frac": 0.2,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.67,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 9.8
+   },
+   "2cm": {
+    "frame_agree": 0.4,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 11.2
+   }
+  }
+ },
+ {
+  "tag": "ev16",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 30,
+  "end": 107,
+  "R_share": {
+   "thumb": 0.44,
+   "palm": 0.0,
+   "fingers_mean": 1.9
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "top",
+    34,
+    56
+   ],
+   [
+    "one-sided",
+    56,
+    107
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "top",
+    30,
+    50
+   ],
+   [
+    "one-sided",
+    55,
+    101
+   ]
+  ],
+  "R_H_frame_agree": 0.68,
+  "H_thumb_and_finger_frac": 0.58,
+  "H_opp_angle_p50": 85.0,
+  "H_opp_ge110_frac": 0.16,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.64,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 3.8
+   },
+   "2cm": {
+    "frame_agree": 0.4,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 5.0
+   }
+  }
+ },
+ {
+  "tag": "ev16",
+  "hand": "left",
+  "object": "wooden_spoon",
+  "start": 42,
+  "end": 64,
+  "R_share": {
+   "thumb": 0.05,
+   "palm": 0.0,
+   "fingers_mean": 2.05
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    46,
+    64
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "one-sided",
+    42,
+    61
+   ]
+  ],
+  "R_H_frame_agree": 0.68,
+  "H_thumb_and_finger_frac": 0.0,
+  "H_opp_angle_p50": null,
+  "H_opp_ge110_frac": null,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.41,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.5
+   },
+   "2cm": {
+    "frame_agree": 0.32,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 1.5
+   }
+  }
+ },
+ {
+  "tag": "ev19",
+  "hand": "left",
+  "object": "mini_dust_pan",
+  "start": 12,
+  "end": 194,
+  "R_share": {
+   "thumb": 0.25,
+   "palm": 0.44,
+   "fingers_mean": 2.98
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    12,
+    76
+   ],
+   [
+    "top",
+    76,
+    97
+   ],
+   [
+    "one-sided",
+    97,
+    103
+   ],
+   [
+    "under",
+    103,
+    116
+   ],
+   [
+    "one-sided",
+    116,
+    152
+   ],
+   [
+    "under",
+    152,
+    170
+   ],
+   [
+    "power",
+    170,
+    182
+   ],
+   [
+    "one-sided",
+    182,
+    194
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "side",
+    18,
+    30
+   ],
+   [
+    "power",
+    34,
+    41
+   ],
+   [
+    "one-sided",
+    41,
+    134
+   ],
+   [
+    "side",
+    134,
+    145
+   ],
+   [
+    "top",
+    145,
+    152
+   ],
+   [
+    "side",
+    152,
+    159
+   ],
+   [
+    "under",
+    164,
+    170
+   ],
+   [
+    "top",
+    170,
+    183
+   ],
+   [
+    "one-sided",
+    183,
+    194
+   ]
+  ],
+  "R_H_frame_agree": 0.39,
+  "H_thumb_and_finger_frac": 0.87,
+  "H_opp_angle_p50": 69.0,
+  "H_opp_ge110_frac": 0.25,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.4,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 10.5
+   },
+   "2cm": {
+    "frame_agree": 0.26,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 10.5
+   }
+  }
+ },
+ {
+  "tag": "ev19",
+  "hand": "right",
+  "object": "mini_sweeper",
+  "start": 28,
+  "end": 235,
+  "R_share": {
+   "thumb": 0.06,
+   "palm": 0.0,
+   "fingers_mean": 2.7
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "top",
+    28,
+    39
+   ],
+   [
+    "one-sided",
+    39,
+    48
+   ],
+   [
+    "top",
+    48,
+    56
+   ],
+   [
+    "one-sided",
+    60,
+    68
+   ],
+   [
+    "top",
+    68,
+    89
+   ],
+   [
+    "one-sided",
+    94,
+    222
+   ],
+   [
+    "pad2",
+    224,
+    233
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "none",
+    28,
+    36
+   ],
+   [
+    "top",
+    40,
+    60
+   ],
+   [
+    "one-sided",
+    60,
+    66
+   ],
+   [
+    "top",
+    66,
+    105
+   ],
+   [
+    "one-sided",
+    105,
+    229
+   ],
+   [
+    "pad3",
+    229,
+    235
+   ]
+  ],
+  "R_H_frame_agree": 0.65,
+  "H_thumb_and_finger_frac": 0.51,
+  "H_opp_angle_p50": 86.0,
+  "H_opp_ge110_frac": 0.14,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.63,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 5.8
+   },
+   "2cm": {
+    "frame_agree": 0.34,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 10.0
+   }
+  }
+ },
+ {
+  "tag": "ev25",
+  "hand": "left",
+  "object": "wooden_piece_2",
+  "start": 31,
+  "end": 76,
+  "R_share": {
+   "thumb": 0.91,
+   "palm": 0.24,
+   "fingers_mean": 2.31
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "top",
+    36,
+    43
+   ],
+   [
+    "one-sided",
+    43,
+    54
+   ],
+   [
+    "under",
+    54,
+    73
+   ]
+  ],
+  "H_label": "under",
+  "H_stages": [
+   [
+    "one-sided",
+    44,
+    54
+   ],
+   [
+    "under",
+    54,
+    76
+   ]
+  ],
+  "R_H_frame_agree": 0.64,
+  "H_thumb_and_finger_frac": 0.73,
+  "H_opp_angle_p50": 58.0,
+  "H_opp_ge110_frac": 0.18,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.49,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 2.5
+   },
+   "2cm": {
+    "frame_agree": 0.36,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 2.5
+   }
+  }
+ },
+ {
+  "tag": "ev25",
+  "hand": "right",
+  "object": "wooden_piece_2",
+  "start": 79,
+  "end": 126,
+  "R_share": {
+   "thumb": 0.66,
+   "palm": 0.64,
+   "fingers_mean": 2.89
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "under",
+    79,
+    114
+   ],
+   [
+    "one-sided",
+    114,
+    126
+   ]
+  ],
+  "H_label": "under",
+  "H_stages": [
+   [
+    "under",
+    79,
+    89
+   ],
+   [
+    "power",
+    89,
+    100
+   ],
+   [
+    "under",
+    100,
+    112
+   ],
+   [
+    "one-sided",
+    112,
+    120
+   ],
+   [
+    "none",
+    120,
+    126
+   ]
+  ],
+  "R_H_frame_agree": 0.51,
+  "H_thumb_and_finger_frac": 0.6,
+  "H_opp_angle_p50": 42.0,
+  "H_opp_ge110_frac": 0.29,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.53,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 3.2
+   },
+   "2cm": {
+    "frame_agree": 0.34,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 3.2
+   }
+  }
+ },
+ {
+  "tag": "ev25",
+  "hand": "left",
+  "object": "wooden_piece_2",
+  "start": 92,
+  "end": 330,
+  "R_share": {
+   "thumb": 0.55,
+   "palm": 0.13,
+   "fingers_mean": 3.24
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "under",
+    92,
+    114
+   ],
+   [
+    "one-sided",
+    114,
+    122
+   ],
+   [
+    "pad45",
+    122,
+    128
+   ],
+   [
+    "one-sided",
+    132,
+    330
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "side",
+    95,
+    101
+   ],
+   [
+    "one-sided",
+    106,
+    330
+   ]
+  ],
+  "R_H_frame_agree": 0.88,
+  "H_thumb_and_finger_frac": 0.34,
+  "H_opp_angle_p50": 58.0,
+  "H_opp_ge110_frac": 0.05,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.76,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 6.8
+   },
+   "2cm": {
+    "frame_agree": 0.58,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 9.8
+   }
+  }
+ },
+ {
+  "tag": "ev25",
+  "hand": "right",
+  "object": "wooden_piece_1",
+  "start": 144,
+  "end": 331,
+  "R_share": {
+   "thumb": 0.12,
+   "palm": 0.04,
+   "fingers_mean": 2.79
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "top",
+    144,
+    188
+   ],
+   [
+    "one-sided",
+    188,
+    331
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "none",
+    144,
+    153
+   ],
+   [
+    "top",
+    153,
+    177
+   ],
+   [
+    "side",
+    177,
+    184
+   ],
+   [
+    "under",
+    184,
+    190
+   ],
+   [
+    "one-sided",
+    190,
+    331
+   ]
+  ],
+  "R_H_frame_agree": 0.83,
+  "H_thumb_and_finger_frac": 0.14,
+  "H_opp_angle_p50": 95.0,
+  "H_opp_ge110_frac": 0.44,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.73,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 4.2
+   },
+   "2cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 5.8
+   }
+  }
+ },
+ {
+  "tag": "ev28",
+  "hand": "left",
+  "object": "white_pot",
+  "start": 10,
+  "end": 63,
+  "R_share": {
+   "thumb": 0.34,
+   "palm": 0.87,
+   "fingers_mean": 2.38
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    10,
+    59
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "power",
+    10,
+    46
+   ],
+   [
+    "none",
+    46,
+    54
+   ]
+  ],
+  "R_H_frame_agree": 0.17,
+  "H_thumb_and_finger_frac": 0.66,
+  "H_opp_angle_p50": 43.0,
+  "H_opp_ge110_frac": 0.06,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 2.8
+   },
+   "2cm": {
+    "frame_agree": 0.27,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 3.2
+   }
+  }
+ },
+ {
+  "tag": "ev28",
+  "hand": "right",
+  "object": "white_pot",
+  "start": 45,
+  "end": 205,
+  "R_share": {
+   "thumb": 0.64,
+   "palm": 0.29,
+   "fingers_mean": 2.44
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "power",
+    50,
+    57
+   ],
+   [
+    "under",
+    61,
+    108
+   ],
+   [
+    "side",
+    110,
+    123
+   ],
+   [
+    "one-sided",
+    123,
+    155
+   ],
+   [
+    "side",
+    155,
+    161
+   ],
+   [
+    "top",
+    166,
+    205
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "power",
+    48,
+    65
+   ],
+   [
+    "side",
+    74,
+    84
+   ],
+   [
+    "under",
+    84,
+    91
+   ],
+   [
+    "power",
+    91,
+    97
+   ],
+   [
+    "one-sided",
+    97,
+    103
+   ],
+   [
+    "power",
+    103,
+    137
+   ],
+   [
+    "one-sided",
+    137,
+    143
+   ],
+   [
+    "power",
+    143,
+    170
+   ],
+   [
+    "top",
+    170,
+    177
+   ],
+   [
+    "power",
+    183,
+    192
+   ],
+   [
+    "top",
+    192,
+    201
+   ]
+  ],
+  "R_H_frame_agree": 0.33,
+  "H_thumb_and_finger_frac": 0.71,
+  "H_opp_angle_p50": 150.0,
+  "H_opp_ge110_frac": 0.69,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.44,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 9.2
+   },
+   "2cm": {
+    "frame_agree": 0.3,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 9.0
+   }
+  }
+ },
+ {
+  "tag": "ev33",
+  "hand": "left",
+  "object": "blue_cup",
+  "start": 17,
+  "end": 48,
+  "R_share": {
+   "thumb": 1.0,
+   "palm": 0.39,
+   "fingers_mean": 1.94
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    17,
+    48
+   ]
+  ],
+  "H_label": "one-sided",
+  "H_stages": [
+   [
+    "one-sided",
+    17,
+    33
+   ]
+  ],
+  "R_H_frame_agree": 0.58,
+  "H_thumb_and_finger_frac": 0.55,
+  "H_opp_angle_p50": 74.0,
+  "H_opp_ge110_frac": 0.18,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.49,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.8
+   },
+   "2cm": {
+    "frame_agree": 0.48,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.2
+   }
+  }
+ },
+ {
+  "tag": "ev33",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 48,
+  "end": 201,
+  "R_share": {
+   "thumb": 0.21,
+   "palm": 0.03,
+   "fingers_mean": 2.04
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    51,
+    57
+   ],
+   [
+    "top",
+    57,
+    69
+   ],
+   [
+    "one-sided",
+    69,
+    100
+   ],
+   [
+    "top",
+    100,
+    108
+   ],
+   [
+    "one-sided",
+    108,
+    155
+   ],
+   [
+    "top",
+    155,
+    182
+   ],
+   [
+    "none",
+    184,
+    192
+   ],
+   [
+    "top",
+    192,
+    201
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    48,
+    100
+   ],
+   [
+    "none",
+    100,
+    107
+   ],
+   [
+    "top",
+    107,
+    116
+   ],
+   [
+    "none",
+    122,
+    131
+   ],
+   [
+    "top",
+    131,
+    143
+   ],
+   [
+    "side",
+    144,
+    151
+   ],
+   [
+    "top",
+    151,
+    182
+   ],
+   [
+    "none",
+    184,
+    198
+   ]
+  ],
+  "R_H_frame_agree": 0.41,
+  "H_thumb_and_finger_frac": 0.17,
+  "H_opp_angle_p50": 101.0,
+  "H_opp_ge110_frac": 0.42,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.55,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 7.8
+   },
+   "2cm": {
+    "frame_agree": 0.41,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 8.5
+   }
+  }
+ },
+ {
+  "tag": "ev33",
+  "hand": "left",
+  "object": "wooden_spoon",
+  "start": 80,
+  "end": 97,
+  "R_share": {
+   "thumb": 0.12,
+   "palm": 0.0,
+   "fingers_mean": 1.24
+  },
+  "R_label": "none",
+  "R_stages": [
+   [
+    "none",
+    88,
+    97
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "one-sided",
+    81,
+    87
+   ],
+   [
+    "none",
+    87,
+    97
+   ]
+  ],
+  "R_H_frame_agree": 0.53,
+  "H_thumb_and_finger_frac": 0.0,
+  "H_opp_angle_p50": null,
+  "H_opp_ge110_frac": null,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.63,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 1.8
+   },
+   "2cm": {
+    "frame_agree": 0.57,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 1.2
+   }
+  }
+ },
+ {
+  "tag": "ev33",
+  "hand": "left",
+  "object": "wooden_spoon",
+  "start": 149,
+  "end": 167,
+  "R_share": {
+   "thumb": 0.28,
+   "palm": 0.39,
+   "fingers_mean": 1.06
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "one-sided",
+    149,
+    156
+   ],
+   [
+    "top",
+    156,
+    162
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "top",
+    149,
+    157
+   ],
+   [
+    "none",
+    157,
+    167
+   ]
+  ],
+  "R_H_frame_agree": 0.17,
+  "H_thumb_and_finger_frac": 0.0,
+  "H_opp_angle_p50": null,
+  "H_opp_ge110_frac": null,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.69,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 1.8
+   },
+   "2cm": {
+    "frame_agree": 0.53,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 1.5
+   }
+  }
+ },
+ {
+  "tag": "ev33",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 215,
+  "end": 251,
+  "R_share": {
+   "thumb": 0.08,
+   "palm": 0.08,
+   "fingers_mean": 1.69
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "none",
+    218,
+    226
+   ],
+   [
+    "top",
+    226,
+    251
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    218,
+    234
+   ],
+   [
+    "none",
+    236,
+    248
+   ]
+  ],
+  "R_H_frame_agree": 0.33,
+  "H_thumb_and_finger_frac": 0.11,
+  "H_opp_angle_p50": 165.0,
+  "H_opp_ge110_frac": 0.75,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.64,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 2.2
+   },
+   "2cm": {
+    "frame_agree": 0.47,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 2.0
+   }
+  }
+ },
+ {
+  "tag": "ev33",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 284,
+  "end": 325,
+  "R_share": {
+   "thumb": 0.83,
+   "palm": 0.17,
+   "fingers_mean": 0.63
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "top",
+    285,
+    293
+   ],
+   [
+    "one-sided",
+    299,
+    325
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    284,
+    290
+   ],
+   [
+    "none",
+    290,
+    297
+   ],
+   [
+    "top",
+    297,
+    321
+   ]
+  ],
+  "R_H_frame_agree": 0.22,
+  "H_thumb_and_finger_frac": 0.56,
+  "H_opp_angle_p50": 93.0,
+  "H_opp_ge110_frac": 0.26,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.45,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 1.8
+   },
+   "2cm": {
+    "frame_agree": 0.31,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 2.5
+   }
+  }
+ },
+ {
+  "tag": "ev35",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 20,
+  "end": 52,
+  "R_share": {
+   "thumb": 0.38,
+   "palm": 0.0,
+   "fingers_mean": 0.97
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "one-sided",
+    20,
+    31
+   ],
+   [
+    "top",
+    31,
+    52
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    29,
+    52
+   ]
+  ],
+  "R_H_frame_agree": 0.62,
+  "H_thumb_and_finger_frac": 0.34,
+  "H_opp_angle_p50": 150.0,
+  "H_opp_ge110_frac": 0.82,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.52,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 1.8
+   },
+   "2cm": {
+    "frame_agree": 0.36,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 1.8
+   }
+  }
+ },
+ {
+  "tag": "ev35",
+  "hand": "left",
+  "object": "wooden_spoon",
+  "start": 41,
+  "end": 136,
+  "R_share": {
+   "thumb": 0.64,
+   "palm": 0.68,
+   "fingers_mean": 1.68
+  },
+  "R_label": "one-sided",
+  "R_stages": [
+   [
+    "top",
+    41,
+    61
+   ],
+   [
+    "one-sided",
+    61,
+    69
+   ],
+   [
+    "top",
+    69,
+    84
+   ],
+   [
+    "one-sided",
+    84,
+    95
+   ],
+   [
+    "under",
+    95,
+    102
+   ],
+   [
+    "one-sided",
+    102,
+    136
+   ]
+  ],
+  "H_label": "top",
+  "H_stages": [
+   [
+    "top",
+    41,
+    50
+   ],
+   [
+    "power",
+    50,
+    59
+   ],
+   [
+    "one-sided",
+    59,
+    72
+   ],
+   [
+    "pad45",
+    76,
+    83
+   ],
+   [
+    "under",
+    85,
+    95
+   ],
+   [
+    "top",
+    109,
+    136
+   ]
+  ],
+  "R_H_frame_agree": 0.25,
+  "H_thumb_and_finger_frac": 0.73,
+  "H_opp_angle_p50": 90.0,
+  "H_opp_ge110_frac": 0.36,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.46,
+    "hold_label_agree": 0.25,
+    "n_stages_mean": 5.8
+   },
+   "2cm": {
+    "frame_agree": 0.26,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 5.5
+   }
+  }
+ },
+ {
+  "tag": "ev35",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 109,
+  "end": 204,
+  "R_share": {
+   "thumb": 0.8,
+   "palm": 0.82,
+   "fingers_mean": 2.74
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "top",
+    114,
+    142
+   ],
+   [
+    "one-sided",
+    142,
+    164
+   ],
+   [
+    "top",
+    178,
+    201
+   ]
+  ],
+  "H_label": "power",
+  "H_stages": [
+   [
+    "none",
+    109,
+    124
+   ],
+   [
+    "power",
+    129,
+    162
+   ],
+   [
+    "one-sided",
+    162,
+    178
+   ],
+   [
+    "power",
+    178,
+    197
+   ],
+   [
+    "one-sided",
+    197,
+    204
+   ]
+  ],
+  "R_H_frame_agree": 0.14,
+  "H_thumb_and_finger_frac": 0.69,
+  "H_opp_angle_p50": 61.0,
+  "H_opp_ge110_frac": 0.02,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.52,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 5.5
+   },
+   "2cm": {
+    "frame_agree": 0.34,
+    "hold_label_agree": 0.0,
+    "n_stages_mean": 4.8
+   }
+  }
+ },
+ {
+  "tag": "ev35",
+  "hand": "left",
+  "object": "wooden_spoon",
+  "start": 183,
+  "end": 253,
+  "R_share": {
+   "thumb": 0.7,
+   "palm": 0.66,
+   "fingers_mean": 1.91
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "under",
+    183,
+    195
+   ],
+   [
+    "one-sided",
+    195,
+    203
+   ],
+   [
+    "under",
+    203,
+    253
+   ]
+  ],
+  "H_label": "under",
+  "H_stages": [
+   [
+    "one-sided",
+    185,
+    194
+   ],
+   [
+    "under",
+    207,
+    253
+   ]
+  ],
+  "R_H_frame_agree": 0.44,
+  "H_thumb_and_finger_frac": 0.59,
+  "H_opp_angle_p50": 89.0,
+  "H_opp_ge110_frac": 0.41,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.36,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 2.8
+   },
+   "2cm": {
+    "frame_agree": 0.24,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 3.0
+   }
+  }
+ },
+ {
+  "tag": "ev35",
+  "hand": "right",
+  "object": "wooden_spoon",
+  "start": 221,
+  "end": 341,
+  "R_share": {
+   "thumb": 0.82,
+   "palm": 0.71,
+   "fingers_mean": 2.63
+  },
+  "R_label": "under",
+  "R_stages": [
+   [
+    "under",
+    221,
+    341
+   ]
+  ],
+  "H_label": "under",
+  "H_stages": [
+   [
+    "under",
+    221,
+    246
+   ],
+   [
+    "power",
+    246,
+    266
+   ],
+   [
+    "one-sided",
+    273,
+    281
+   ],
+   [
+    "power",
+    281,
+    287
+   ],
+   [
+    "under",
+    287,
+    322
+   ],
+   [
+    "side",
+    326,
+    336
+   ]
+  ],
+  "R_H_frame_agree": 0.47,
+  "H_thumb_and_finger_frac": 0.82,
+  "H_opp_angle_p50": 81.0,
+  "H_opp_ge110_frac": 0.27,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.5,
+    "hold_label_agree": 1.0,
+    "n_stages_mean": 6.0
+   },
+   "2cm": {
+    "frame_agree": 0.32,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 6.8
+   }
+  }
+ },
+ {
+  "tag": "ev35",
+  "hand": "left",
+  "object": "wooden_spoon",
+  "start": 321,
+  "end": 390,
+  "R_share": {
+   "thumb": 0.64,
+   "palm": 0.28,
+   "fingers_mean": 2.07
+  },
+  "R_label": "top",
+  "R_stages": [
+   [
+    "one-sided",
+    325,
+    342
+   ],
+   [
+    "under",
+    342,
+    361
+   ],
+   [
+    "top",
+    363,
+    390
+   ]
+  ],
+  "H_label": "none",
+  "H_stages": [
+   [
+    "one-sided",
+    329,
+    336
+   ],
+   [
+    "pad45",
+    336,
+    344
+   ],
+   [
+    "under",
+    355,
+    361
+   ],
+   [
+    "none",
+    361,
+    384
+   ]
+  ],
+  "R_H_frame_agree": 0.28,
+  "H_thumb_and_finger_frac": 0.39,
+  "H_opp_angle_p50": 104.0,
+  "H_opp_ge110_frac": 0.44,
+  "H_noise": {
+   "1cm": {
+    "frame_agree": 0.5,
+    "hold_label_agree": 0.5,
+    "n_stages_mean": 4.0
+   },
+   "2cm": {
+    "frame_agree": 0.39,
+    "hold_label_agree": 0.75,
+    "n_stages_mean": 3.8
+   }
+  }
+ }
+]

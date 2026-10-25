@@ -4,7 +4,7 @@ For a public two-board episode: compare the relative pose of board 2 in board 1'
 (both boards lying flat) and at the assembled frames; and each board's frame-0 orientation error after aligning our
 world to the mocap world with board 1's frame-0 pose (the kit's slot-0 anchor convention) and with board 2's.
 Pose layout in the public parquet: world_T_object [x y z qw qx qy qz] (scan frame = our mesh frame); checked below by
-the quaternion norm. Usage: python diag_relpose_mocap.py EPISODE.parquet OUR_POSES.npz a:b (assembled frames)"""
+the quaternion norm. Usage: python diag_relpose_mocap.py EPISODE.parquet OUR_POSES.npz|REF.parquet a:b (assembled frames)"""
 import sys
 
 import numpy as np
@@ -30,7 +30,12 @@ def T_of(p):  # public parquet: [x y z qw qx qy qz] (as census_gtdiag.py / pipel
 
 
 TG = {n: T_of(G[n]) for n in names}
-P = np.load(ours); TO = {n: P[f'cam_T_{n}'] for n in names}
+if ours.endswith('.npz'):
+    P = np.load(ours); TO = {n: P[f'cam_T_{n}'] for n in names}
+else:                                                          # a reference parquet (world frame of the reference)
+    import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import pair_overlap as po
+    TO = dict(zip(names, po.load_poses(ours, *names)))
 
 
 def rel(TA, TB, t):
