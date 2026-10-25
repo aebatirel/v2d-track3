@@ -3765,3 +3765,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   twin21base, twin21arc, ev25idfix with `pipeline/identity_fix.py`). This session's 6 boxes (run ids *-a842ab1,
   instances 57687531/33/34/36/38/41; a 7th create failed with an HTML error) were destroyed 2–3 min after creation,
   still in setup (≈ $0.9). Credit $87.40 after. The batch belongs to that session; this one does not touch its boxes.
+- 15:53 UTC **P1 result (pre-registered cb86b5b + lift definition 210be58): NOT falsified.** ep24 board 1, left hand, CPU,
+  robust CMA-ES 8 worlds × 14 generations (K = 2), fitness f0–f120 all objects, CVaR 25 %, 1 cm wrist pushes; fresh
+  K = 8 re-score (clamp_short and platform re-scores rerun after a container restart; their searches had finished):
+  copy CVaR 0.321 (mean 0.430, rise at f30 22.0 cm) · clamp_long 0.297 (0.453, 32.4 cm) · **clamp_short 0.475**
+  (0.492, 4.9 cm) · platform 0.392 (0.472, 2.6 cm). Rule: a typed grip beats the copy by ≥ 0.05 (clamp_short +0.154)
+  and a candidate lifts ≥ 10 cm by f30 (copy, clamp_long) → the portfolio idea survives. Caveat: the winner wins on
+  consistency (copies 0.47–0.50) while lifting only 4.9 cm by f30; the lifting grips each had one bad copy (0.27,
+  0.19). Zero-action windows do not predict the fine-tuned order reliably (approach-3 §11.3), so only the GPU A/B
+  (portfolio vs copy after the fine-tune, ≈ $8–12) can decide adoption. Results: `approaches-2026-10-25/p1-results/`.
