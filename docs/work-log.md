@@ -3780,3 +3780,13 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   five. Our frame-0 roll uncertainty is ≈ 2–6° (raw rest jitter sd 1.4–2.4°, reference vs raw rest mean +1.1 … −6.0°;
   the mesh has three stable rests ~14° apart, so physics cannot pin it) → ≈ 0.03–0.15 per spoon-anchored episode.
   Proposed: public re-score test of a rest-averaged anchor pose (rule to be written before the run).
+- 16:20 UTC **Pre-registered (before any code or score): anchor frame-0 pose test "A-f0".** Public twins with stored
+  official rollouts of the current recipe AND raw perception of the same reference: ep2 + ep39 (`20261024-e3-e49e83d`),
+  ep21 + ep31 (`20261024-e2-e49e83d`). For each of the 5 stored rollouts: registered AUC vs mocap with library_v3 meshes
+  (the kit path of `pipeline/score_registered.py`), (a) as stored; (b) with the kit's ANCHOR object's achieved
+  frame-0 orientation replaced by the raw tracker's rest-averaged orientation (chordal mean over the anchor's frames
+  before its first > 1 cm motion, at most 30), mapped into the reference world by the raw→reference rotation estimated
+  from frames after that rest; (c) the same with the raw single frame-0 orientation (noise reference). **Adopt
+  rest-averaged anchor orientation in reference building iff mean(b − a) ≥ +0.01 over the 4 episodes and no episode
+  drops by > 0.01**; then the eval policies are re-evaluated on updated references (no retraining). Mocap is used only to
+  score.
