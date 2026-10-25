@@ -44,6 +44,7 @@ from scipy.spatial.transform import Rotation as Rot, Slerp
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import contact_retarget as cr  # noqa: E402
 import grasp_force as gf  # noqa: E402
+import object_events as oe  # noqa: E402
 import wrap_grasp as wg  # noqa: E402
 from task_wrench import wrench as task_wrench  # noqa: E402
 from hold_phases import hold_phases  # noqa: E402
@@ -113,6 +114,10 @@ def main():
     p.add_argument('--approach_step', type=float, default=0.03, help='onset anchor: approach length = wrist distance / this (m/frame)')
     p.add_argument('--held_tol', type=float, default=0.08, help='human hold within this distance (m) of the narrow part '
                    'counts as holding the handle (eval ep35: right hand 3-6 cm from it, left hand on the bowl 17-21 cm)')
+    p.add_argument('--events', type=int, default=0, help='1: anchor the hold on the OBJECT\'s events (pipeline/object_events.py, '
+                   '2026-10-25): full squeeze by its lift-off - LOAD frames, and the hold ends UNLOAD frames after it settles '
+                   'when that is earlier than the contact-label end (labels end 1.3-6 s after the placement on public twins)')
+    p.add_argument('--load', type=int, default=2); p.add_argument('--unload', type=int, default=2)
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -199,6 +204,17 @@ def main():
                                   travel_cm_at_old_hold=round(float(np.linalg.norm(OP[h0, j] - OP[pe, j]) * 100), 1))
                 h0 = max(pe, onset - a.close)
                 print(f"{side} {x['object']}: ONSET ANCHOR {json.dumps(onset_info)} -> hold from f{h0}", flush=True)
+        ev_info = None
+        if a.events:                                               # load before lift-off, release at the placement
+            pe = max([x2['end'] for x2 in ph if x2['object'] == x['object'] and x2['end'] <= s0], default=0)
+            lf, se = oe.hold_events(OP[:, j], OR[j], pe, s1)
+            ev_info = dict(rest_from=int(pe), liftoff=lf, settle=se, hold_from_before=int(h0), end_before=int(s1))
+            if lf is not None and lf - a.load - a.close < h0:
+                h0 = max(pe, lf - a.load - a.close)
+            if se is not None and se + a.unload < s1:
+                s1 = se + a.unload
+            ev_info.update(hold_from=int(h0), end=int(s1))
+            print(f"{side} {x['object']}: EVENTS {json.dumps(ev_info)}", flush=True)
         Rw_g = Rot.from_quat(qref[g, o + 3:o + 7]); T_ow_p = OR[j][g].inv().apply(qref[g, o:o + 3] - OP[g, j]); R_ow = OR[j][g].inv() * Rw_g
         lo, hi = lim[side]; qf = qref[g, o + 7:o + 29]; qs = np.clip(qf + a.squeeze * flex[side], lo, hi)
         qpre = np.clip(qf - a.preopen * flex[side], lo, hi); back = 0.0; wrap_info = None
@@ -368,7 +384,7 @@ def main():
                 q_new[f, o:o + 3] = away if ww < 0.5 else blend(away, qref[f, o:o + 3], 2 * ww - 1)
                 q_new[f, o + 3:o + 7] = Slerp([0, 1], Rot.from_quat([rot.as_quat(), qref[f, o + 3:o + 7]]))([max(0.0, 2 * ww - 1)]).as_quat()[0]
                 q_new[f, o + 7:o + 29] = blend(QS[s1 - 1], qf, wo) if wu == 0 else blend(qo, qref[f, o + 7:o + 29], ww)
-        report.append(dict(x, grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan, approach=appr, onset_anchor=onset_info, template=tpl_info,
+        report.append(dict(x, end=int(s1), contact_end=int(x['end']), grasp_frame=int(g), hold_from=int(h0), move_frame=int(move), fingers_on=n_on, wrap=wrap_info, force_design=fd_info, replan=replan, approach=appr, onset_anchor=onset_info, events=ev_info, template=tpl_info,
                            human_hold_axis_cm=None if s_med is None else round(100 * s_med, 1),
                            grasp_gap_mm=round(1000 * gap, 1), squeeze_rad=a.squeeze, mass_kg=round(mass[j], 3),
                            lift_cm=round(100 * mass[j] * G / WRIST_KP, 1) if a.lift else 0.0,
