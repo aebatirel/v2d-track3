@@ -3509,3 +3509,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (base and guard in the same job, registered AUC vs mocap, diagnostic):** registered AUC must not drop by more than
   0.01 on any episode, and the mean must not fall. Then the eval episodes whose perception changes (expected 8, 14,
   32, 33) are re-run end to end.
+- 00:45 UTC **public ep11 re-tracked with the on-table rule** (cups box): frame-0 choice blue cup #1, beige cup #2
+  (the replay's prediction; 20 of 71 proposals barred as below the table). **Registered perception AUC vs mocap
+  0.102 → 0.898** (blue cup 0.203 → 0.862, beige cup 0.000 → 0.933; library_v2 meshes; diagnostic). The cup library
+  build along this track follows on the same box.
