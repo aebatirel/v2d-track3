@@ -3928,3 +3928,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - kept pack2 rollouts (checkpoint unchanged): 3, 5, 15, 16 (seed 43), 6, 10, 35, 36, 37, 38.
   - Our own sim_vs_ref means of the chosen policies (each against its own reference; not leaderboard numbers):
     1 0.912, 8 0.971, 14 0.660, 19 0.935, 20 0.892, 25 0.712, 28 0.935, 30 0.919, 32 0.779, 33 0.773.
+- ~19:30 UTC **pack 3 launched:** 57712242 `20261025-pack3-3758189` (British Columbia WS $1.35/h), code 3758189: `pack_eval.sh` with RUNS = the winners' runs @ their reference sub-folders (evb0810 glockt/sf ep8; evb1420 ep14/20; fr3233 ep32/33; std0116 / std1928 / ev25idfix / std30 perc2mcks) then 20261024-pack-31ef267; PICK = seed-43 3, 5, 15, 16 + the new choices above; EP_LIB 8:library_v3x; KEEP_RESULTS=20261025-pack2-46b8389; COMMIT_URL …/commit/3758189c9a823687372f9220464002535d0e2b9c.
