@@ -3551,3 +3551,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   missing "other" with a warning; build_library builds M0 for every object that co-occurs with the requested ones;
   the library is rebuilt from today's re-tracked public episodes (the sweep's base tracks, with today's detection:
   ep0 now 0.976, ep11 0.898).
+- 01:07 UTC **cups box done** (`20261025-cups-46b8389`, ≈ 32 min, ≈ $0.8): beige cup along the re-tracked ep11 →
+  branch **O** (G1 0.02 cm³, G2 0.028, T, X pass), 173 cm³ solid, watertight, 32 collision pieces; no observed
+  unassisted rest (support rule skipped). The blue cup failed (rack M0 missing, configuration error; see above).
+  The library box's beige cup (along the broken G1 ep11 track) failed G2 (0.747) and fell back to F4 (3.7 cm³): not
+  used.
+- 01:13 UTC **E2 step 1 for the v5 beige cup: PASSES** (pre-registered rule): CD-O (eval seeds) **0.730 cm** vs v2's
+  0.856; **0 flips** in 6 seeds (max rotation error 2.8°); registered AUC of the beige cup along the new ep11 track
+  **0.937** with v5 vs 0.933 with v2 (episode 0.899 vs 0.898). Next: step 2, the ep11 public twin (base vs v5 beige).
+- **TRACK_GUARD validation, first episodes** (box `20261025-guard-fe3f407`, base and guard in the same job):
+  ep0 **0.496 → 0.964** (lid 0.000 → 0.936: the lid's frame-0 registration on the handle mask was 4.2 cm under the
+  table; the next proposal registered plausibly; no tracking intervention afterwards); ep11 0.898 → 0.898 (no
+  trigger). Remaining: 23, 12, 18, 24, 31, 21.
