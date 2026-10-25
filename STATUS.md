@@ -2,6 +2,27 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-25 ~23:10 TRT: THIRD SUBMISSION — Track 3 AUC 0.78893, 4th (was 0.58252, 9th)
+- All six boards (agent upload; receipt `results/submissions/20261025-track3c/`):
+  - AUC **0.789, 4th**: 1–3 are 0.932 / 0.884 / 0.865; 5th is SRL at 0.752.
+  - SP-SR 0.80 (5th, tied), MP-SR 0.60 (4th), RPE 4.59 cm (4th), MPPE 3.29 cm (4th), CD-O 0.402 cm (11th).
+- **What changed** (GT-free choices, rules fixed before results):
+  - standard learner on evals 1, 19, 25, 28, 30;
+  - references rebuilt with the track guard for 8, 14, 20, 32, 33;
+  - the frozen recipe won 32 and 33;
+  - eval 25's boards are named correctly;
+  - eval 20 has the arc foot (twin 0.657 → 0.772);
+  - eval 8 uses the v5 beige cup.
+- **Left as before:**
+  - eval 10 (stacked cups: njmax overflow, about 15× slower simulation; needs the blue cup's cavity carve);
+  - 3, 5, 6, 15, 16, 35–38.
+- **Cost:** ≈ $54.6 of the $100 top-up; credit $47.20; 0 boxes running.
+- **Next candidates (not started):**
+  - eval 10's collision cavity carve;
+  - second seeds for the bimodal episodes (25, 33);
+  - 3 and 16 with the standard learner;
+  - the parked lathe meshes for CD-O (owner decision on the organiser question).
+
 ## 2026-10-25 ~18:10 TRT: owner topped up $100 → pre-registered eval rerun batch running (9 boxes, ≈ $13.4/h)
 - **Running** (code ee7ba8e / 02de0c7; details and instance ids in the work log, 25 Oct ~14:55 UTC):
   - `eval_both`: 8 + 10 (library_v3x), 14 + 20, 32 + 33;

@@ -1,0 +1,12 @@
+{
+ "1": "/content/pick/20261025-std0116-ee7ba8e/runs/20261025-std0116-ee7ba8e/results/final_eval/ep1/policy.safetensors",
+ "14": "/content/pick/20261025-evb1420-ee7ba8e/runs/20261025-evb1420-ee7ba8e/results/final_eval/ep14/policy.safetensors",
+ "19": "/content/pick/20261025-std1928-ee7ba8e/runs/20261025-std1928-ee7ba8e/results/final_eval/ep19/policy.safetensors",
+ "20": "/content/pick/20261025-evb1420-ee7ba8e/runs/20261025-evb1420-ee7ba8e/results/final_eval/ep20/policy.safetensors",
+ "25": "/content/pick/20261025-ev25idfix-02de0c7/runs/20261025-ev25idfix-02de0c7/results/final_eval/ep25/policy.safetensors",
+ "28": "/content/pick/20261025-std1928-ee7ba8e/runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/policy.safetensors",
+ "30": "/content/pick/20261025-std30-ee7ba8e/runs/20261025-std30-ee7ba8e/results/final_eval/ep30/policy.safetensors",
+ "32": "/content/pick/20261025-fr3233-043275f/runs/20261025-fr3233-043275f/results/glock_public/ep32/best/policy.safetensors",
+ "33": "/content/pick/20261025-fr3233-043275f/runs/20261025-fr3233-043275f/results/glock_public/ep33/best/policy.safetensors",
+ "8": "/content/pick/20261025-evb0810-ee7ba8e/runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors"
+}

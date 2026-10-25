@@ -1,0 +1,61 @@
+{
+  "track": "track_3",
+  "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.parquet",
+  "message": "25 Oct pack 3: second learner (1,19,25,28,30), rebuilt refs (8,14,20,32,33), eval 25 board identities fixed (commit 3758189)",
+  "submissions": {
+    "add_auc": {
+      "slug": "v2d-challenge-track3-auc",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - AUC",
+      "ref": 57641652,
+      "public_score": "0.78893",
+      "error": ""
+    },
+    "spider_sr": {
+      "slug": "v2d-challenge-track3-sp-sr",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - SP-SR",
+      "ref": 57641653,
+      "public_score": "0.80000",
+      "error": ""
+    },
+    "maniptrans_sr": {
+      "slug": "v2d-challenge-track3-mp-sr",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MP-SR",
+      "ref": 57641654,
+      "public_score": "0.60000",
+      "error": ""
+    },
+    "rpe_cm": {
+      "slug": "v2d-challenge-track3-rpe",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - RPE (cm)",
+      "ref": 57641655,
+      "public_score": "4.58961",
+      "error": ""
+    },
+    "mppe_cm": {
+      "slug": "v2d-challenge-track3-mppe",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MPPE (cm)",
+      "ref": 57641658,
+      "public_score": "3.28955",
+      "error": ""
+    },
+    "cd_o_cm": {
+      "slug": "v2d-challenge-track3-cd-o",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3c/track3_submission.cd-o.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric (object reconstruction) - CD-O (cm)",
+      "ref": 57641659,
+      "public_score": "0.40188",
+      "error": ""
+    }
+  }
+}

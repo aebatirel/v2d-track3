@@ -3930,3 +3930,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     1 0.912, 8 0.971, 14 0.660, 19 0.935, 20 0.892, 25 0.712, 28 0.935, 30 0.919, 32 0.779, 33 0.773.
 - ~19:30 UTC **pack 3 launched:** 57712242 `20261025-pack3-3758189` (British Columbia WS $1.35/h), code 3758189: `pack_eval.sh` with RUNS = the winners' runs @ their reference sub-folders (evb0810 glockt/sf ep8; evb1420 ep14/20; fr3233 ep32/33; std0116 / std1928 / ev25idfix / std30 perc2mcks) then 20261024-pack-31ef267; PICK = seed-43 3, 5, 15, 16 + the new choices above; EP_LIB 8:library_v3x; KEEP_RESULTS=20261025-pack2-46b8389; COMMIT_URL …/commit/3758189c9a823687372f9220464002535d0e2b9c.
 - 19:46 UTC pack3: all RUN@sub pulls and PICKs succeeded; 20 of 20 checkpoints; pack2 rollouts kept for [3, 5, 6, 10, 15, 16, 35, 36, 37, 38] (checkpoint sha unchanged); evaluating [1, 8, 14, 19, 20, 25, 28, 30, 32, 33] with the pristine evaluator (one official rollout each).
+- 19:59 UTC **pack3 done** (`20261025-pack3-3758189`, ≈ 30 min, ≈ $0.7, self-destroyed): 1,387,467 B, 0 mesh warnings,
+  sha256 dc3a5ad1…; packed rollouts' sim_vs_ref mean **0.883** (pack2 0.7218): 1 0.920, 8 0.978, 14 0.909, 19 0.928,
+  20 0.895, 25 0.837, 28 0.929, 30 0.923, 32 0.789, 33 0.611 (a low draw; its 5-evaluation mean was 0.773).
+  (Kept episodes 3 / 15 / 16 score 0.875 / 0.958 / 0.850 here vs 0.942 / 0.947 / 0.908 in pack2's summary although the
+  rollout files are copied unchanged: the local qa yardstick differs on this box; the submitted rollouts are pack2's.)
+- ~20:05 UTC **Kaggle, uploaded by the agent to all six boards** (kit `v2d_submit.py` via `tools/kaggle_upload.py`;
+  dry run first; receipt in `results/submissions/20261025-track3c/`):
+  **AUC 0.78893 → 4th** (was 0.58252, 9th; 1–3: 0.932 / 0.884 / 0.865; 5th SRL 0.752), SP-SR 0.80 (5th, tied with
+  4th), MP-SR 0.60 (4th), RPE 4.59 cm (4th), MPPE 3.29 cm (4th), CD-O 0.402 cm (11th).
+  The owner's target of 24 Oct ("aim for 4th place") is reached on AUC.
+- **Cost of this top-up:** credit $101.82 → $47.20 = **$54.6**. That includes the other session's video box and its
+  six duplicate boxes destroyed in setup (≈ $1–2). 0 boxes running.
