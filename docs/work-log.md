@@ -3707,3 +3707,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     26 pairs with a public scan. If that proxy holds, the 10 spoon pairs average ≈ (0.405·36 − 0.491·26)/10 ≈ 0.18 cm
     [estimate, assumes the hidden scans ≈ public scans]: the spoon mesh is probably not the weak part; spoon *pose*
     accuracy is still unknown.
+- 08:40 UTC **Owner's three approaches + training-steps question** (CPU and web only, no spend). Owner asked to assess:
+  (1) meshes optimised from the observed motion / interactions (e.g. carve the board slot the other board slides
+  into) and slight mesh updates during policy optimisation to fit the video; (2) primitive-based re-creation of the
+  meshes, then physical / interlock refinement; (3) human grasp taxonomy (detect the hold type, use it as the robot
+  grasp seed, maybe in the mesh loop); (4) if the initial score is low, train longer. Three research agents write
+  `docs/research/approaches-2026-10-25/approach{1,2,3}-*.md`; the lead wrote `training-steps.md`:
+  - [M] 29 distinct standard-recipe checkpoint curves: 22 start < 0.5 at 100M → median +0.04 by 250M, 1/22 ends
+    ≥ 0.45, 13/22 end below the zero-action floor; the 7 that start ≥ 0.5 gain +0.09. More steps rarely rescue a low
+    start (structural blockers). Rule proposed: extend only when the last two ≥3-evaluation means each rose > 0.03 and
+    the object is acquired.
+  - The screenshot's failed background jobs ("Başarısız", e.g. the taxonomy PDF fetches) were earlier sessions' shell
+    jobs; the grasp research docs of 24 Oct were still written from the sources that did load.
