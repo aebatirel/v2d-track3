@@ -3870,3 +3870,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   **Choice rule (fixed now):** per rebuilt episode, `tools/choose_learner.py` over all candidates on that reference
   (eval_both's grasp lock, its standard learner, the frozen-recipe grasp lock), yardstick = the standard learner's
   rollouts as in eval_both; the highest mean sim_vs_ref is packed. No ground truth. ≈ 4 boxes × 2 h ≈ $12.
+- ~16:08 UTC **launched (code 043275f, frozen recipe):** 57687902 `20261025-fr0810-043275f` (Sweden WS $1.58/h, library_v3x, 8 + 10), 57687906 `-fr1420-` (Netherlands S $1.64, 14 + 20), 57687907 `-fr3233-` (New York S $1.67, 32 + 33), 57687908 `-fr25-` (Croatia Max-Q $1.45, 25). 13 boxes ≈ $19.8/h.
