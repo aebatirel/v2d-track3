@@ -73,8 +73,16 @@ class Frame:
         pr = X @ np.linalg.svd(X, full_matrices=False)[2].T
         return float((np.percentile(pr, 97, 0) - np.percentile(pr, 3, 0)).max())
 
-    def scores(self, lam_s, dz, ext_src, gate, lam_g=0.0, reach=None, reprop=True):
+    def table_ok(self):
+        """On-table rule (det_rules.on_table_ok) on the dump's half-resolution depth; cached."""
+        if not hasattr(self, '_table'):
+            self._table = R.on_table_ok(self.masks, self.depth, self.Kh)
+        return self._table[0]
+
+    def scores(self, lam_s, dz, ext_src, gate, lam_g=0.0, reach=None, reprop=True, table=False):
         pext = self.ext[ext_src]; S = np.full(self.sim.shape, -10.0); near = R.reach_ok(self.cen, reach)
+        if table == 'gate':                                       # variant 1: barred before the score terms
+            near = near & self.table_ok()
         if not reprop:                                           # as a run without DET_REPROP: those masks never existed
             near = near & ~self.reprop
         oks = []
@@ -84,6 +92,8 @@ class Frame:
             oks.append(ok)
         if lam_g > 0 and self.G is not None:
             S = np.where(S > -10, S + R.ground_term(self.G, self.g_inside, oks, lam_g), S)
+        if table == 'final':                                      # variant 2: barred after every score term
+            S[:, ~self.table_ok()] = -10.0
         return S
 
     def assign(self, S):
@@ -144,14 +154,16 @@ class Frame:
         allow = [a for a in range(len(self.names)) if off[a] < 0 or self.G[a, off[a]] < g_min]
         if not allow:
             return off
-        S = self.scores(v.get('lam_s', 0.0), v.get('dz', 1.0), v.get('ext_src', 'full'), v.get('gate', 0.3), v.get('lam_g', 0.0), v.get('reach'))
+        S = self.scores(v.get('lam_s', 0.0), v.get('dz', 1.0), v.get('ext_src', 'full'), v.get('gate', 0.3), v.get('lam_g', 0.0),
+                        v.get('reach'), table=v.get('table', False))
         for a in range(len(self.names)):
             if a not in allow:
                 S[a, self.reprop] = -10.0
         return self.assign(S)
 
-    def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None, reprop=True):
-        S = self.scores(lam_s, dz, ext_src, gate, lam_g, reach, reprop)
+    def choose(self, lam_s=0.0, dz=1.0, ext_src='full', gate=0.3, merge=False, verify=False, lam_g=0.0, reach=None, reprop=True,
+               table=False):
+        S = self.scores(lam_s, dz, ext_src, gate, lam_g, reach, reprop, table)
         if verify and self.V is not None and np.isfinite(self.V).any():
             C = np.where(np.isfinite(self.V) & (self.Vm >= 200) & (S > -10), np.nan_to_num(self.V) + 0.5 * S, -10.0)
             if (C > -10).any(axis=1).all():

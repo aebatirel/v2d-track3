@@ -40,6 +40,58 @@ def reach_ok(centroids, reach=REACH):
     return np.nan_to_num(np.linalg.norm(centroids, axis=1), nan=9.0) <= reach
 
 
+# On-table rule (2026-10-25, pre-registered in docs/work-log.md before its replay; public ep11: the beige cup went to the
+# person's lap below the table edge): objects rest on the support at the detected frame, so a proposal whose median
+# 3-D point lies more than TABLE_BELOW under the frame's own table plane is barred for every object.
+TABLE_BELOW = 0.03
+
+
+def table_plane(depth, K, dmin=0.2, dmax=1.0, cone=65.0, thr=0.006, iters=800, seed=0, step=4):
+    """Support plane of a frame from its own depth, camera frame (y down): (n, c) with n . x + c = 0 and n up, by RANSAC:
+    the largest set of points dmin-dmax m away within thr of a plane whose normal is within CONE deg of camera up.
+    None if there is no such plane."""
+    H, W = depth.shape; vv, uu = np.mgrid[0:H:step, 0:W:step]; d = np.asarray(depth, np.float32)[vv, uu]
+    ok = np.isfinite(d) & (d > dmin) & (d < dmax)
+    if ok.sum() < 100:
+        return None
+    P = np.stack([(uu[ok] - K[0, 2]) * d[ok] / K[0, 0], (vv[ok] - K[1, 2]) * d[ok] / K[1, 1], d[ok]], 1)
+    rng = np.random.default_rng(seed); best = (0, None); cmin = np.cos(np.radians(cone))
+    for _ in range(iters):
+        s = P[rng.choice(len(P), 3, replace=False)]; n = np.cross(s[1] - s[0], s[2] - s[0]); ln = np.linalg.norm(n)
+        if ln < 1e-9:
+            continue
+        n = n / ln
+        if n[1] > 0:
+            n = -n
+        if -n[1] < cmin:
+            continue
+        c = -n @ s[0]; k = int((np.abs(P @ n + c) < thr).sum())
+        if k > best[0]:
+            best = (k, (n, float(c)))
+    return best[1]
+
+
+def heights(masks, depth, K, plane, min_px=30):
+    """Median height (m) above PLANE of each mask's depth points (nan with fewer than MIN_PX of them)."""
+    n, c = plane; out = np.full(len(masks), np.nan)
+    for j, m in enumerate(masks):
+        v, u = np.nonzero(m & (depth > 0))
+        if len(v) < min_px:
+            continue
+        z = depth[v, u]; X = np.stack([(u - K[0, 2]) * z / K[0, 0], (v - K[1, 2]) * z / K[1, 1], z], 1)
+        out[j] = float(np.median(X @ n + c))
+    return out
+
+
+def on_table_ok(masks, depth, K, below=TABLE_BELOW):
+    """(ok per proposal, plane, heights): False for a proposal whose median point is more than BELOW under the table."""
+    plane = table_plane(depth, K)
+    if plane is None:
+        return np.ones(len(masks), bool), None, np.full(len(masks), np.nan)
+    h = heights(masks, depth, K, plane)
+    return ~(np.nan_to_num(h, nan=0.0) < -below), plane, h
+
+
 def make_cam(calib_path, R1):
     """Map rectified-left camera-c points (m) to camera-a pixels: rectified -> raw c (R1^T) -> camera a, distortion."""
     import cv2

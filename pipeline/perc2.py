@@ -18,7 +18,9 @@ DET_DUMP=0 turns it off. DET_VERIFY=N adds pipeline/perc.py's render-and-compare
 proposals to the dump (off by default). DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
 depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
 Detection rules (2026-10-23, pipeline/det_rules.py, chosen on public episodes): reach gate, size term, Grounding
-DINO term; DET_RULES=0 restores the earlier rule; DET_LAM_S / DET_REACH / DET_LAM_G override.
+DINO term; DET_RULES=0 restores the earlier rule; DET_LAM_S / DET_REACH / DET_LAM_G override. 2026-10-25: gated
+re-proposal (DET_REPROP, now default 1) and the on-table rule (DET_TABLE, default 1), both replayed on the public dumps
+with no regression (docs/work-log.md).
 """
 import os, sys, json, time, importlib
 import numpy as np, cv2, torch, trimesh
@@ -284,7 +286,8 @@ def grounding(k, names_):
         return None if im is None else _GD['m'](im, names_)
     except Exception as e:
         log('grounding unavailable (term off):', repr(e)); _GD['m'] = None; return None
-DET_REPROP = os.environ.get('DET_REPROP', '0') == '1'
+DET_REPROP = os.environ.get('DET_REPROP', '1') == '1'   # default on since 2026-10-25 (gated form validated on public)
+DET_TABLE = os.environ.get('DET_TABLE', '1') == '1' and DET_RULES  # on-table rule (2026-10-25, det_rules.on_table_ok)
 def reproposals(img, dep, props, gdet):
     """DET_REPROP (2026-10-24): SAM2 box prompts (multimask) for the Grounding DINO boxes that no automatic proposal
     covers (det_rules.uncovered_boxes), each box mapped into the rectified-left image through the frame's depth. The new
@@ -363,6 +366,12 @@ def detect(k):
                     '-> chosen', [int(j) for j in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(j) for j in ci])
                 ri, ci = np.arange(len(names)), np.array(best[1])
         return ri, ci
+    table_ok = np.ones(len(props), bool)
+    if DET_TABLE and props:   # on-table rule (2026-10-25; public replay variant 2: ep11 f0 both cups fixed, no regression in
+        table_ok, tpl, th = det_rules.on_table_ok(mk, dh, Kh)   # 116 instances): barred after every score term
+        S[:, ~table_ok] = -10.0
+        log('on-table rule', f'f{k}', 'plane', None if tpl is None else (np.round(tpl[0], 3).tolist(), round(tpl[1], 3)),
+            'barred', int((~table_ok).sum()), 'of', len(props))
     if reprop.any():   # DET_REPROP gate (2026-10-25; public replay: plain re-proposal broke 2 instances, gated none):
         S_off = S.copy(); S_off[:, reprop] = -10.0         # re-proposed masks only for an object whose choice without them
         ch0 = dict(zip(*assign(S_off)))                     # has grounding agreement G < REPROP_GMIN
@@ -384,7 +393,7 @@ def detect(k):
                                 template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
                                 chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
                                 params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm,
-                                reprop=reprop)
+                                reprop=reprop, table_ok=table_ok)
             log('det dump', f'{OUT}/det_f{k}.npz', len(props), 'proposals')
         except Exception as e:
             log('det dump failed (detection unaffected):', repr(e))
