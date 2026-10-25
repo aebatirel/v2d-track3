@@ -117,6 +117,9 @@ Readings:
 
 **Hands (our MANO contacts) [M]:**
 
+> **Correction, 2026-10-25 [M].** This table and the first reading below label the contact slots in MANO link order,
+> which does not describe our references' slots. They are kept as written; the corrected table follows the readings.
+
 | hold | frames | palm share | thumb / finger contact share | thumb-vs-finger opposition across the two faces | where |
 |---|---|---|---|---|---|
 | ep18 left on dust pan | 10–187 | 0.13 | 0.83 / 1.00 | 0.38 of frames | 47% of contacts on the ring region (axis1 < −5 cm). Thumb segments on the **top face** (83–86%); ring-3 and little-3 on the **bottom face** (59%, 100%), little-1/2 split. |
@@ -130,6 +133,29 @@ Readings:
   to f58, while the brush moves from f38. The MANO joints are 15–19 mm from the reference brush at f28–40 and about
   4 mm from f42. So the contact labeller, not the hand tracking, misses the first 22 frames of the manipulation.
   `hold_phases.py` therefore reports `right holds mini_sweeper 61–219` instead of starting about f36.
+
+**Correction, 2026-10-25: hands table with the right slot labels [M].** `mano_where.py` and `mano_contacts.py` read
+the reference's `mano_link_names` (palm, thumb1 … pinky3) as slot labels. `pipeline/mkref.py` fills the 16 slots in its
+probe order: thumb, index, middle, ring and pinky tips, then their DP sites, then the thumb MCP and the finger MP sites,
+and the palm last (`approach3-grasp-taxonomy.md` §9). So "palm" above was the thumb tip, "thumb1–3" the index, middle
+and ring tips, and "little-3" the palm. Same references, windows and code, scripts fixed; old and corrected output:
+`audit-plates-scripts/out/mano_where_slotfix-20261025.txt`.
+
+| hold | frames | palm share | thumb / finger contact share | thumb-vs-finger opposition across the two faces | where |
+|---|---|---|---|---|---|
+| ep18 left on dust pan | 10–187 | 0.02 | **0.19** / 1.00 | 0.12 of frames | 47 % on the ring region. Index–little tips on the **top face** (83–86 %); middle MP on the bottom face (59 %). |
+| ep18 right on sweeper | 38–323 | 0.00 (0.00 over f60–120) | **0.09** / 0.83 (0.35 / 1.00 over f60–120) | 0.05 (0.15 over f60–120) | 64 % on the ring and neck. Index and middle tips on +face (54–56 %); ring DP and the middle / ring / little MPs on the −face (79–94 %). |
+| ep39 left (pick-up) | 36–103 | 0.00 | 0.52 / 1.00 | 0.22 | 73 % on the ring. Index and middle DPs on +face (86 %, 77 %); ring tip on −face (82 %); thumb tip 0.45, faces mixed. |
+| ep39 right (carry) | 104–292 | **0.73** | 0.31 / 0.98 | 0.09 | 81 % on the ring. Palm at the ring end (axis1 −9.3 cm); index tip on +face (94 %); thumb tip 0.26, on the +face or edge. |
+
+- [M] In our perception the fingers hold the ring band across its thickness: tips on one face, DPs or MPs on the
+  other. The **perceived thumb is mostly absent** (0.09–0.52; thumb-vs-finger opposition 0.05–0.22 of frames). The
+  reading "the human clamps the ring handle with the thumb and the fingers on opposite faces" therefore has no basis
+  in our contact labels. The ring-region shares, the late sweeper labels and the motion readings above are unchanged.
+- [I] Thin bands (1.2–2.3 cm) are at or below our hand error (±1–2 cm), so the thumb may be there in the video and missed
+  by perception. The statements in §0, §5 and §8 that cite "the human's clamp" (thumb on one face, fingers on the other) remain
+  hypotheses on mechanical grounds; they are no longer supported by the human contact data. The robot-link contact
+  proxy (§4–§6, including the human-retargeted `mckfid` rows) uses robot geometry and is unaffected.
 
 ## 4. ep18 mini_dust_pan (left hand): a grasp failure
 

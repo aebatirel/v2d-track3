@@ -370,6 +370,14 @@ Consequences:
 - Video-based readings (the boards audit) and FlashCHORD's rewards (which use any-slot activity) are unaffected.
 - In contact-retargeted (`mck`) references the robot frames move after labelling (slot-site consistency 0.47–0.97).
 
+Follow-up, 2026-10-25:
+- mkref now writes a `contact_slot_names` column (owner's choice); `mano_link_names` is unchanged.
+- `tools/contact_slots.py` labels slots for analysis code.
+- The census, `contact_plot.py`, `mano_where.py`, `mano_contacts.py`, `refload.py` and `human_board.py` are fixed.
+- The biomech (§0, §0.2, §9.2), plates (§3), boards (§2.2) and starts (§2.2, §3.2, §4.2) reports carry dated
+  correction notes with corrected tables.
+- `check_digit_shares.py` reproduces `out/digit_shares.txt` from the fixed helper (35 / 35 holds).
+
 ## 10. Reproduction
 
 - Machine: Claude cloud VM (4 CPU). Python: scratchpad `venv` (numpy, scipy, trimesh, pyarrow); `python -I`.

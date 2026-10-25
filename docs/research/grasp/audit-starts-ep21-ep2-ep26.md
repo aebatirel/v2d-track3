@@ -143,6 +143,11 @@ Code facts used:
 - **Human grasps** [M], from our MANO contact labels:
   - cup: a whole-hand wrap. Palm 0.62 of hold frames, index2 0.92, ring 0.62–0.73, thumb2 0.51.
   - pitcher handle: a fingers-and-thumb handle grasp. Pinky3 0.92, thumb2 0.86, ring2 0.72, palm 0.33.
+  - *Correction, 2026-10-25 [M]* (slot labels, see the §3.2 note; grasp-lock phases, all frames).
+    - Cup f30–157: thumb DP 0.92, index MP 0.73, thumb MCP 0.66, thumb tip 0.62, palm 0.46. Still a whole-hand wrap
+      with the thumb.
+    - Pitcher f34–134: palm **0.92** (not 0.33), middle tip 0.86, index MP 0.72, thumb 0.66. A power grasp with the
+      palm on the handle.
   - The grasp-lock snapped (copied) both. Neither got a wrap: the PCA ratio is < 3.
 
 ### 2.3 Policy rollouts (c) [M]
@@ -239,6 +244,22 @@ lid is squeezed out as soon as the lift loads it.
 Human [M], MANO: middle 0.50–0.54, thumb3 0.53, palm 0.50, index1 0.49. A palm-and-fingers grip over the lid, not a
 knob pinch.
 
+> **Correction, 2026-10-25 [M].** The line above reads our contact slots in MANO link order (the reference's
+> `mano_link_names`). `pipeline/mkref.py` fills them in its probe order: thumb, index, middle, ring and pinky tips, then
+> their DP sites, then the thumb MCP and the finger MP sites, and the palm last (`approach3-grasp-taxonomy.md` §9).
+> So "palm" was the thumb tip, "thumb3" the ring tip, "index1" the pinky tip and "middle1–3" the middle, ring and pinky
+> DPs.
+> - Window and denominator: the grasp-lock lid phase f52–303, all 252 frames.
+> - Corrected: **palm 0.00**, thumb 0.54 (thumb tip 0.50), ring DP 0.54, ring tip 0.53, middle DP 0.50, pinky tip 0.49,
+>   index 0.28.
+> - The perceived human grip is **thumb and fingers on the strap and rim, with no palm**, not "a palm-and-fingers grip
+>   over the lid". It is still not a knob pinch.
+> - So F4's "palm on the knob" lid design (§6) has no human support. It stays a mechanical hypothesis, tested by [H7].
+> - The lid-loss measurements above use robot geometry and are unaffected.
+> - Old and corrected output: `audit-starts-scripts/out/human_contacts_slotfix-20261025.txt`
+>   (`tools/contact_slots.py`, with and without `--mano`).
+> - The same mislabelling affects the ep21 lines in §2.2 and the ep26 line in §4.2; their corrections are noted there.
+
 - **Pot (left hand, handle):**
   - In the GPU run the left hand's approach (from f45) touches the pot at f43–47, 60 frames before its hold, and pushes
     it 1–2 cm. The lid fiasco at f63 then drags it 7 cm.
@@ -313,6 +334,9 @@ The curve checkpoints (10–70M, one evaluation each) all show the lid > 2 cm at
   closing-until-contact.
 - **Human [M]:** palm 0.60, index1 0.68, pinky3 0.70, thumb 0.45–0.48: a whole-hand handle grasp. The same kind of
   copied grasp worked on ep27 after the RL fine-tune (zero action 0.59 → 0.957–0.972).
+  - *Correction, 2026-10-25 [M]* (slot labels, see the §3.2 note). Over the grasp-lock phase f45–117 the shares are
+    palm **0.70** (the old "pinky3"), pinky tip 0.68 (the old "index1") and thumb tip 0.60 (the old "palm"). All
+    digits are 0.59–0.71. Still a whole-hand handle grasp.
 
 ### 4.3 Policy rollouts (c) [M]
 - **Pot:**

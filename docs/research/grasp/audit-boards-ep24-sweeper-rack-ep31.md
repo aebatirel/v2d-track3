@@ -95,6 +95,9 @@ labels and finger positions [M].
 
 **Contact pattern per phase [M].** Fraction of contact frames in which each MANO link touches the board.
 
+> **Correction, 2026-10-25 [M].** The link names in this table are wrong: they read the slots in MANO link order. The
+> table is kept as written; the corrected one follows it.
+
 | board / hand / phase | frames | dominant links |
 |---|---|---|
 | b1 / L / drag f4–18 | 14/14 | palm 0.79, index2 0.43, index3/middle3 0.36, thumb1/2 0.29 |
@@ -105,6 +108,36 @@ labels and finger positions [M].
 | b2 / R / drag f110–126 | 16/16 | ring2 0.56, thumb3 0.50, palm 0.50, index3 0.44 |
 | b2 / R / lift f126–140 | 14/14 | palm 1.00, ring3 0.86, thumb1 0.64, index3 0.64 |
 | b2 / R / carry and insert f140–222 | 80/82 | thumb2/3 0.96–1.00, middle1 0.94–1.00, middle2 0.80–0.88 |
+
+**Correction, 2026-10-25: contact pattern with the right slot labels [M].** The table above read the reference's
+`mano_link_names` (palm, thumb1 … pinky3) as slot labels (`human_board.py` via `refload.py`). `pipeline/mkref.py` fills
+the 16 slots in its probe order: thumb, index, middle, ring and pinky tips, then their DP sites, then the thumb MCP and
+the finger MP sites, and the palm last (`approach3-grasp-taxonomy.md` §9). So "palm" was the thumb tip, "thumb1–3" the
+index, middle and ring tips, and "pinky3" the palm.
+- Reproduction: `tools/contact_slots.py --mano` on our `perc2mcs` ep24 reference (`runs/20261021-auto24-966eb96`,
+  b1 = wooden_piece_1) reproduces every row above. Without `--mano` it gives the table below.
+- Output: `audit-boards-rack-scripts/out/ep24_contacts_slotfix-20261025.txt`.
+- Shares are over contact frames, as above.
+
+| board / hand / phase | frames | digit shares: thumb / index / middle / ring / pinky / palm | dominant slots (≥ 0.5) |
+|---|---|---|---|
+| b1 / L / drag f4–18 | 14/14 | 0.86 / 0.36 / 0.29 / 0.14 / 0.36 / **0.14** | thumb tip 0.79 (thumb DP 0.43, index and pinky DPs 0.36) |
+| b1 / L / lift f18–40 | 22/22 | 0.86 / 0.95 / 0.09 / 0.14 / 0.14 / 0.91 | palm 0.91, thumb tip and DP 0.86, index DP 0.77, index tip 0.68, index MP 0.50 |
+| b1 / R / two-hand f40–60 | 20/20 | 0.65 / 0.90 / 0.65 / 0.40 / 0.35 / 0.40 | index DP 0.80; thumb, index and middle tips 0.65; thumb DP 0.50 |
+| b1 / R / rotate f60–85 | 18/25 | 0.44 / 0.67 / 0.39 / 0.72 / 0.72 / 0.67 | pinky MP 0.72, ring DP 0.67, palm 0.67, ring tip and MP 0.61, index tip 0.56 |
+| b1 / L / standing f85–240 | 155/155 | **0.00** / 1.00 / 1.00 / 0.99 / 0.06 / 0.00 | middle, ring and index DPs 0.98–1.00; their MPs 0.90–0.96; index and ring tips 0.74–0.79 |
+| b2 / R / drag f110–126 | 16/16 | 0.50 / 0.69 / 0.38 / 0.62 / 0.12 / 0.12 | index MP 0.56, thumb tip 0.50, ring tip 0.50 |
+| b2 / R / lift f126–140 | 14/14 | 1.00 / 0.79 / 0.86 / 0.36 / 0.00 / 0.29 | thumb tip 1.00, middle MP 0.86, index tip and DP 0.64, middle DP 0.50 |
+| b2 / R / carry and insert f140–222 | 80/82 | 0.23 / 0.91 / 0.97 / 0.97 / 0.00 / 0.03 | middle and ring tips 0.97, middle DP 0.96, index tip 0.91, ring DP 0.85 |
+
+What changes [M]:
+- The contact labels do not show a palm-on-top drag of board 1 (palm 0.14; the old "palm 0.79" is the thumb tip). The
+  drag reading still rests on the video and the mocap, which are unaffected.
+- The palm does touch during board 1's lift (0.91) and rotation (0.67).
+- The perceived thumb is absent while board 1 stands (0.00) and mostly absent during board 2's carry and insertion
+  (0.23). It is present in board 2's lift (1.00).
+
+Unaffected: the fingertip heights below (MANO joints, not slots) and the conclusions drawn from the video.
 
 **Fingers relative to the board [M].** Our reference, board frame. Our hand joints are noisy to about ±1–2 cm, which is
 larger than the 8 mm board, so the sign is reliable only beyond about 1 cm.

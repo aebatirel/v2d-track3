@@ -3781,3 +3781,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     `audit-starts-scripts/out/human_contacts_slotfix-20261025.txt`.
   - `approach3-scripts/check_digit_shares.py`: the helper's digit shares on the 35 hold_phases holds equal
     `out/digit_shares.txt` (0 mismatches).
+- ~10:35–10:50 UTC **Correction notes written (all additions; earlier text and results kept).**
+  - `human-hand-biomechanics.md`: a note in §0 (the human-grasp column), §0.2 and §9.2, a corrected §9.2 table, and a
+    §16 line. Load columns are identical in all 24 holds.
+  - `audit-plates-ep18-ep39.md` §3: corrected hands table. Thumb 0.09–0.52, opposition 0.05–0.22; the "human's clamp"
+    claims in §0/§5/§8 now rest on mechanics only.
+  - `audit-boards-ep24-sweeper-rack-ep31.md` §2.2: corrected contact table. The drag's palm is 0.14 and the standing
+    hold has no thumb; the video readings are unaffected.
+  - `audit-starts-ep21-ep2-ep26.md`: §3.2 lid palm 0.00 (thumb tip 0.50); the F4 "palm on the knob" design loses its
+    human basis. Also §2.2 ep21 (pitcher palm 0.92) and §4.2 ep26 (palm 0.70).
+  - `approach3-grasp-taxonomy.md` §9: follow-up line.
+  - Not changed: FlashCHORD training and our pipeline (any-slot activity only), and the robot-geometry audits.
+  - Still open: the end-to-end check of the new column inside a real mkref + E2S run (next GPU mkref run).

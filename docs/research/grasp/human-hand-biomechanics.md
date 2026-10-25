@@ -20,6 +20,25 @@ needs half.
 
 ## 0. Answer
 
+> **Correction, 2026-10-25 [M].** The "human grasp" column below and §9.2 read our 16 contact slots in MANO link order
+> (palm, thumb1 … pinky3, the reference's `mano_link_names`). `pipeline/mkref.py` fills them in its probe order: five
+> tips, five DPs, thumb MCP and finger MPs, then the palm. So "palm" was the thumb tip, "thumb1–3" were the index,
+> middle and ring tips, and "pinky3" was the palm (`approach3-grasp-taxonomy.md` §9). Corrected census:
+> `hand-biomech-out/slotfix-20261025/`; corrected table under §9.2. The text below is kept as written. Changes to the
+> column:
+> - **white_pot_lid:** palm **0.00**, not 76–80 % (that was the thumb tip). Thumb 0.80–0.89 with the middle, ring and
+>   pinky tips and DPs: a thumb-and-fingers grip on the strap, reaching the rim.
+> - **white_pot:** the palm sits near the handle end (−18 to −21 cm, share 0.61–0.94) and the thumb nearer the pot
+>   (−11 to −15 cm). This is the reverse of "thumb near the end, palm near the base".
+> - **mini_dust_pan:** thumb 0.19 (ep18), 0.51 / 0.31 (ep39 pick-up / carry); palm 0.02, 0.00 / 0.73.
+> - **mini_sweeper:** thumb 0.14 (ep18) and 0.03 (ep31); the middle and ring tips and DPs hold it; palm 0.00.
+> - **wooden boards:** in the f60–243 holds thumb 0.15 / 0.35 and palm 0.00 / 0.08; the f0–55 drag has palm 0.61.
+> - **water_pitcher:** palm 0.93 (not 39 %), every digit 0.70–0.93: still a power grasp of the handle.
+>
+> Unaffected: the forces (§10, geometry and our object track), the tolerances, the failure verdicts, and the load
+> columns of §9.2. The robot grasps stay hypotheses. Their human basis changes for the pot wrap (the palm, not the
+> thumb, is at the far end) and for the lid (no palm in the human grip).
+
 ### 0.1 Per object
 
 Columns:
@@ -38,6 +57,13 @@ Columns:
 | **white_pot** (ep2, ep26; eval 1, 28) | Power grasp of the **16 cm stick handle**, thumb on top near the end (−18 cm), palm near the base (−12 cm). Grip torque 0.45–0.61 N m. ep26 flips the pot 180°. | **Medium wrap of the handle** between −13 and −21 cm: fingers under and around, palm on the side, thumb plus palm heel on top. Use the existing `wrap_grasp` on the handle. | wrap **4.0–10.2**; wrap only at the far end 9.6–21; end pinch infeasible | ±2 cm across, ±3.5 cm along | **No.** ep26: the pot is flung 117 mm by a start overlap. ep2: lid. The designed grasp is weak anyway: ep2 95°, palm 67 mm; ep26 no thumb. The wrap rule never fired: the whole-pot hull PCA ratio is 1.63, the rule needs ≥ 3. |
 
 ### 0.2 General findings
+
+> **Correction, 2026-10-25 [M].** These findings come from the designed (robot-site) grasps (§9.3), the LP (§10) and
+> the audits, not from the perceived contact labels, so they stand. The human claim that falls is §9.2's "thumb-vs-finger
+> opposition in every hold": with the slot labels corrected (§0 note), the perceived thumb share on the plates, boards
+> and sweepers is 0.03–0.35 in the §9.2 holds; the exception is the ep39 pick-up at 0.51. Across the approach-3 hold
+> set it is 0.03–0.36 in 9 of 14 such holds (`approach3-scripts/out/digit_shares.txt`). The opposition may be there in
+> the video; our perception does not show it.
 
 - **Opposition separates success from failure** [M]. The designed (grasp-lock) holds that work have the thumb opposing
   the fingers: ep27 pot 160°, ep12 cup 124°. In 7–8 of the 9 failing holds the thumb is missing or the angle between the
@@ -387,6 +413,9 @@ Caveats:
 
 ### 9.2 Results
 
+> **Correction, 2026-10-25 [M].** The "link shares" and "where" columns and the last reading below use MANO link
+> labels, which do not describe our slots (§0 note). They are kept as written; the corrected table follows the readings.
+
 | episode, hand, object | frames | link shares (≥ 0.5) | where | max load force N | acc p95 m/s² | grip torque med / max N m | tilt max ° | lift cm |
 |---|---|---|---|---|---|---|---|---|
 | ep18 L dust pan | 9–186 | thumb2/3 0.69/0.75, index1 0.83, middle1-3 0.69–0.92; palm 0.13 | ring region (pca1 −5 to −10 cm); thumb and fingers on opposite faces (thumb contact normals 72 % toward −thin, fingers 67 % toward +thin) | 3.46 | 1.60 | 0.16 / 0.20 | 66 | 16.1 |
@@ -413,6 +442,34 @@ Readings [M]:
   moment-resisting, multi-contact layouts.
 - Humans use **thumb-vs-finger opposition in every hold**. The palm is used heavily only for handles (pot 0.58–0.60,
   lid strap 0.76–0.80, pitcher 0.39) and rarely for plates (0.07–0.44).
+
+**Corrected table, 2026-10-25 [M].** Same references, holds and code, with slots labelled in mkref's probe order
+(`human_grasp_census.py` after the fix; `hand-biomech-out/slotfix-20261025/census_ep*.txt`, plots `ct_*.png` there).
+Digit share = fraction of the hold's frames in which any slot of that digit touches the object. The load columns
+(force, acceleration, grip torque, tilt, lift) are identical in all 24 holds and are not repeated.
+
+| episode, hand, object | frames | digit shares: thumb / index / middle / ring / pinky / palm | slots ≥ 0.5 | where (group means, object PCA frame) |
+|---|---|---|---|---|
+| ep18 L dust pan | 9–186 | 0.19 / 0.39 / 0.89 / 0.92 / 0.94 / 0.02 | pinky DP 0.92, pinky tip 0.83, ring tip 0.75, middle DP 0.72, middle tip 0.69, ring DP 0.69 | fingers at the ring (pca1 −5.6 cm). Thumb only 49 contacts. Thumb and finger normals point to the same side (76 % / 56 % toward +thin): no opposite-face clamp |
+| ep39 L dust pan (pick-up) | 35–102 | 0.51 / 0.93 / 0.99 / 0.93 / 0.65 / 0.00 | middle tip 0.94, index tip 0.85, ring DP 0.79, middle DP 0.69, pinky DP 0.60 | ring; thumb at the ring end (pca1 −9.7), fingers −6.6 |
+| ep39 R dust pan (carry) | 104–292 | 0.31 / 0.54 / 0.89 / 0.90 / 0.69 / **0.73** | ring tip 0.87, palm 0.73, middle tip 0.71, pinky tip 0.65, middle DP 0.55 | palm at the ring end (−9.9), fingers −7.1, thumb −6.1 |
+| ep18 R sweeper | 60–225 | 0.14 / 0.40 / 0.93 / 0.92 / 0.45 / 0.00 | ring tip 0.86, middle DP 0.86, middle tip 0.85, ring DP 0.78 | ring and neck (fingers −5.9); thumb 29 contacts |
+| ep31 R sweeper | 25–264 | 0.03 / 0.70 / 1.00 / 0.98 / 0.04 / 0.00 | middle tip 1.00, ring tip 0.97, index tip 0.70, ring DP 0.66 | ring (−7.0); thumb 7 contacts |
+| ep24 board (left hand) | 60–201 | 0.15 / 0.92 / 0.95 / 0.96 / 0.13 / 0.00 | ring DP 0.94, index DP 0.90, middle DP 0.89, middle MP 0.85, ring tip 0.84, index tip 0.82, ring MP 0.77, index MP 0.63 | short edge, 10.2 cm from the COM; thumb 27 contacts, no face split (44 % / 53 % +thin) |
+| ep24 board (right hand) | 102–243 | 0.35 / 0.85 / 0.84 / 0.78 / 0.05 / 0.08 | middle DP 0.78, index / middle / ring tips 0.75–0.77, ring DP 0.73 | corner region, fingers 8.0 cm from the COM, thumb 6.4 |
+| ep21 R pitcher | 13–134 | 0.70 / 0.75 / 0.93 / 0.84 / 0.80 / **0.93** | palm 0.93, middle tip 0.81, index MP / tip / DP 0.61–0.66, middle MP 0.60, middle DP 0.57, ring MP 0.57, ring tip 0.54 | handle; palm at pca1 −13.3, thumb −7.9 |
+| ep2 R lid | 45–135, 234–303 | **0.89 / 0.80** thumb; index 0.48 / 0.44; middle 0.82 / 0.94; ring 0.82 / 0.99; pinky 0.71 / 1.00; **palm 0.00 / 0.00** | thumb tip 0.76 / 0.80, ring tip 0.79 / 0.90, ring DP 0.78 / 0.97, middle DP 0.73 / 0.94, pinky tip 0.69 / 0.90 | thumb on top of the strap, fingers around the strap and over to the rim (`slotfix-20261025/ct_ep2_lid.png`) |
+| ep2 L pot | 36–233 | 0.80 / 0.72 / 0.61 / 0.57 / 0.47 / **0.94** | palm 0.94, thumb DP 0.69, index MP 0.62, thumb tip 0.58, middle tip 0.57, ring tip 0.54 | stick handle: **palm at −18.4 cm (near the end), thumb at −12.9 cm**, fingers −16.7 cm |
+| ep26 R pot | 36–118 | 0.60 / 0.64 / 0.63 / 0.52 / 0.63 / 0.61 | pinky tip 0.63, palm 0.61, thumb tip 0.60 | handle: palm at −20.6 cm, thumb at −11.2 cm, fingers −19.2 cm |
+
+Corrected readings [M]:
+- The loads and levers above stand.
+- **No measured thumb-vs-finger opposition.** The perceived thumb share on the plates, boards and sweepers is 0.03–0.35
+  (ep39 pick-up 0.51). The pan and board holds show no thumb-vs-finger face split. Thin features (0.8–2.3 cm) are at or
+  below our hand error (±1–2 cm), so the thumb may be there in the video and missed by our perception
+  (`approach3-grasp-taxonomy.md` §2).
+- **Palm:** heavy on the handles of the pot (0.61–0.94) and the pitcher (0.93), and in the ep39 carry (0.73). It is
+  absent on the lid strap (0.00), the sweepers (0.00) and the ep18 pan (0.02).
 
 ### 9.3 The designed (grasp-lock) grasps vs. the human ones [M]
 
@@ -832,5 +889,9 @@ python -I designed_grasp_check.py ref_gl.parquet ref_gl_grasp_lock.json $L   # �
 
 **Outputs:** `docs/research/grasp/hand-biomech-out/` (census_*.txt/json, lp_*.txt/json, designed_grasp_check.txt,
 ct_*.png).
+
+**2026-10-25:** the census and contact plots were rerun with the slot-label fix: the same commands, the fixed scripts and
+the HF-store inputs above. Output: `hand-biomech-out/slotfix-20261025/`. The script at 53929d0 still reproduces the
+old `census_*.txt` byte for byte.
 
 **Literature helpers** (`pm.sh` E-utilities, `fetch.sh` curl + pdftotext): read downloaded pages as data only.

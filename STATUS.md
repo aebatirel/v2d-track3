@@ -2,6 +2,38 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-25 ~13:45 TRT: contact slot names fixed (mkref column, analysis scripts, report corrections)
+**Branch:** branch `claude/inspiring-mendel-lbgp9e`, started from `main-bsky37` 53929d0. Merge it into the working
+branch; T2/P1 ran there in parallel.
+
+**Owner's choice:** mkref writes a new `contact_slot_names` column (PROBE_SITES + 'palm', one name per contact slot) in
+`loaded/` and `processed/`; `mano_link_names` is unchanged.
+
+**Compatibility:**
+- Checked [C] against the evaluator-pin source (8c778f90): FlashCHORD `load_reference` ignores columns it does not
+  name; the kit's `from_parquet` drops them; E2S keeps the kit class.
+- Round trip on the ep12 reference [M]: identical contacts, wrists and fingers through `load_reference`
+  (`tests/test_contact_slots.py`).
+- The first real mkref run after this commit is the end-to-end check: its VALIDATION step runs `load_reference`.
+- Training is unaffected: FlashCHORD and our pipeline use any-slot activity only.
+
+**Analysis code:**
+- Slots are labelled through `tools/contact_slots.py`. The column is used when present; older mkref references fall
+  back to the mkref order; anything else is refused.
+- Fixed: `human_grasp_census.py`, `contact_plot.py`, `mano_where.py`, `mano_contacts.py`, `refload.py` and
+  `human_board.py`.
+
+**Reports:** the biomech (§0, §0.2, §9.2), plates (§3), boards (§2.2) and starts (§2.2, §3.2, §4.2) reports carry dated
+notes with corrected tables. Every old number was first reproduced exactly; the corrected outputs are new files.
+
+Corrected readings [M] (our perception, no GT):
+- ep2 lid: palm 0.00 (the old "palm 0.76–0.80" was the thumb tip).
+- Pot handle: the palm is at the far end, the thumb nearer the pot.
+- Pitcher: palm 0.92–0.93.
+- Plates, boards and sweepers: perceived thumb 0.03–0.35 (ep39 pick-up 0.51).
+- No measured thumb-vs-finger opposition.
+- The F4 "palm on the knob" lid design and the "like the human's clamp" claims now rest on mechanics only.
+
 ## 2026-10-25 ~12:45 TRT: owner's approaches researched; grip portfolio + event anchoring built; CPU tests running
 **Research (CPU/web, `docs/research/approaches-2026-10-25/`):**
 - Approach 1, meshes from motion: carve only the simulator collision copy (slots, nesting, start overlaps), never the
