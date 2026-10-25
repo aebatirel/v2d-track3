@@ -3898,3 +3898,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 17:05 UTC **fr25 done** (`20261025-fr25-043275f`, Max-Q, ≈ 1.1 h, ≈ $1.6): eval 25 frozen-recipe grasp lock on the identity-correct reference: search windows 0.296 → 0.401, 0.137 → 0.300; chosen 50M; sim_vs_ref **0.297 ± 0.008** (eval_both's grasp lock on the same reference: 0.376). The standard learner (ev25idfix) is still training; the 3-way choice happens at pack time.
 - 17:21 UTC **fr1420 done** (`20261025-fr1420-043275f`, ≈ 1.4 h, ≈ $2.3): frozen-recipe grasp lock on the rebuilt references, sim_vs_ref: ep20 **0.8888 ± 0.019** (eval_both's grasp lock 0.8923), ep14 **0.6293 ± 0.167** (chosen 10M; eval_both's 0.6595). Near ties; the standard learners for 14 and 20 are still training (evb1420).
 - 17:25 UTC **ev25idfix done** (`20261025-ev25idfix-02de0c7`, ≈ 2.6 h, ≈ $3.8): eval 25 standard learner on the identity-correct reference **0.712 ± 0.189** (0.335–0.815) vs grasp lock 0.376 (eval_both) and 0.297 (frozen recipe, fr25) → **choice: std** (the 3-way rule gives the same winner; the frozen candidate is far lower). Pack2's eval-25 rollout scored 0.232 on the swapped reference.
+- 17:51 UTC **check-in 3** (credit $57.22): fr3233 **ep32 frozen recipe 0.779 ± 0.045** (eval_both's grasp lock 0.497;
+  same reference); ep33 still training. fr0810b **ep8 frozen recipe 0.7615 ± 0.022** (chosen 20M).
+- **Eval 10 stopped (owner: "only run the extra if it makes sense"):** its grasp-lock training runs at 2.4k env steps/s
+  (evb0810, 32 % after 2.5 h, ETA > 5 h) / 8.9k (fr0810b, 62 %), with MuJoCo-Warp "nefc overflow - please increase
+  njmax" on every step (the v5 beige cup stacked in the v3 blue cup, whose lower 37 % is solid: the parked cavity-carve
+  problem). A late, unreliable candidate is not worth ≈ $15; both ep10 trainings were killed at ≈ 17:52 UTC and
+  **eval 10 keeps its pack2 policy** (library_v3 mesh, kept rollout). The real fix is the collision-copy cavity carve.
+- **Standard learners for 8 / 10 skipped** (≈ 5–10 h each at this speed, after tonight's pack): a watcher on evb0810
+  (`/content/skip_std.sh`) stops `hard_ab.sh` once eval_both logs its gate line, so the box records its grasp-lock
+  choice for ep8, pushes and self-destroys. (A first attempt used `pgrep -f` patterns that also matched the remote
+  shell itself; it killed the trainings but not the watcher install; redone with bracketed patterns.)
