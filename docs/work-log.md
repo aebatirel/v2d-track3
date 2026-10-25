@@ -3563,3 +3563,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   ep0 **0.496 → 0.964** (lid 0.000 → 0.936: the lid's frame-0 registration on the handle mask was 4.2 cm under the
   table; the next proposal registered plausibly; no tracking intervention afterwards); ep11 0.898 → 0.898 (no
   trigger). Remaining: 23, 12, 18, 24, 31, 21.
+- 01:14 UTC **precision sweep, interim (4 of 20 episodes):** base / t4 / t8 = ep0 0.496 / 0.496 / **0.976** (10 register
+  iterations happen to recover the lid from its wrong handle mask), ep2 0.982 / 0.986 / 0.976, ep11 0.898 / 0.899 /
+  0.885, **ep12 0.967 / 0.968 / 0.720** (blue cup 0.44 with t8). t8 already breaks the pre-registered no-drop condition
+  (ep12 −0.247), so it cannot be adopted; t4 is +0.0015 so far (needs +0.005). The guard recovers ep0 robustly (0.964)
+  without heavier tracking. Left running for the full table (the base tracks also feed the library rebuild).
