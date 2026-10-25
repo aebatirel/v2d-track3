@@ -3733,3 +3733,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     robust CMA-ES (8 worlds × 14 generations, K = 2 jittered copies) with the new fitness from frame 0 to f120;
     finalists re-scored with K = 8 in fresh processes. **Falsified if** no typed candidate beats the searched copy by
     ≥ 0.05 on the worst-25 % score, **or** no candidate lifts board 1 by ≥ 10 cm by f30. Registered AUC reported only.
+- 09:39 UTC T2 first pair (ep24, zero action, CPU, code 8852ef6): current 0.184 full / 0.160 hold-window vs event-anchored
+  0.095 / 0.058. Board 1 is lifted and carried in the event arm (mean error ~12 cm vs ~30 cm, never lifted in A) but both
+  score ~0.06 (beyond the 9 cm AUC range); board 2 is knocked off the table edge at f40–60 in the event arm (the known
+  edge-balanced start). Verdict after all four episodes. **P1 definition fixed now, before its run:** "lifts board 1 by
+  ≥ 10 cm by f30" = the rise of board 1 at f30 over its own frame-0 height in the exact (unjittered, unpushed) copy of the
+  fresh K = 8 re-score; the worst-25 % score is over those 8 copies; pushes 1 cm random walk, theta jitter 5 mm/0.005 rad.
