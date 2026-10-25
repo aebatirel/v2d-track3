@@ -2,6 +2,18 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-25 ~18:10 TRT: owner topped up $100 → pre-registered eval rerun batch running (9 boxes, ≈ $13.4/h)
+- **Running** (code ee7ba8e / 02de0c7; details and instance ids in the work log, 25 Oct ~14:55 UTC):
+  - `eval_both`: 8 + 10 (library_v3x), 14 + 20, 32 + 33;
+  - `std_learner`: 1 + 16, 19 + 28, 30;
+  - ep21 arc-foot twin: SF_ARC=0 vs SF_ARC=1, which decides whether eval 20's rebuilt policy is used;
+  - **eval 25 with the board identity repair** (`ops/jobs/eval_idfix.sh`). Its stored reference had the two boards
+    swapped and one turned 180°. The GT-free knob rule is ported to `pipeline/identity_fix.py` and reproduces
+    approach 1 on eval 25 and public ep24.
+- **Next:** collect the choices, then pack with `KEEP_RESULTS=20261025-pack2-46b8389` plus the PICKs, upload the five
+  pose boards and CD-O, and read the ranking. Est. ≈ $50 in all; ≈ $50 is left for a second round chosen from these
+  results.
+
 ## 2026-10-25 ~13:45 TRT: contact slot names fixed (mkref column, analysis scripts, report corrections)
 **Branch:** branch `claude/inspiring-mendel-lbgp9e`, started from `main-bsky37` 53929d0. Merge it into the working
 branch; T2/P1 ran there in parallel.

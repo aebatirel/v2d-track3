@@ -3841,3 +3841,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   21 Oct track (−79.9, rank 1) and flags the 24 Oct w1 track (swapped + Rx, as-tracked rank 22), as approach 1's T-1.
   No eval depth cache is stored, so the repair runs on the box between perception and the reference
   (`ops/jobs/eval_idfix.sh`: perception → identity_fix → eval_both).
+- ~15:12 UTC launched 57680499 `20261025-ev25idfix-02de0c7` (Spain WS $1.44/h): `EP=25 bash ops/jobs/eval_idfix.sh`. 9 boxes running, ≈ $13.4/h.
