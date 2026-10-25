@@ -3759,3 +3759,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - eval_both (library_v3x): evals 8 + 14, 32 + 33, 10 (SF_ARC=0), 20 (SF_ARC=1);
   - std_learner on stored references: 1, 16, 19 (pack-31ef267; grasp-lock rollouts pack / seed43) and 28, 30
     (pack-31ef267 / ev30rp-07eef1a).
+- 15:53 UTC **Batch NOT launched from this session — duplicate caught and destroyed.** Another session (branch
+  `claude/inspiring-mendel-lbgp9e`, commits ee7ba8e / 02de0c7, 14:51–14:54 UTC) had already launched the same
+  pre-registered batch after the owner's $100 top-up: 9 boxes (evb0810, evb1420, evb3233, std0116, std1928, std30,
+  twin21base, twin21arc, ev25idfix with `pipeline/identity_fix.py`). This session's 6 boxes (run ids *-a842ab1,
+  instances 57687531/33/34/36/38/41; a 7th create failed with an HTML error) were destroyed 2–3 min after creation,
+  still in setup (≈ $0.9). Credit $87.40 after. The batch belongs to that session; this one does not touch its boxes.
