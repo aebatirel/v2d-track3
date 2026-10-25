@@ -4013,3 +4013,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   The owner's target of 24 Oct ("aim for 4th place") is reached on AUC.
 - **Cost of this top-up:** credit $101.82 → $47.20 = **$54.6**. That includes the other session's video box and its
   six duplicate boxes destroyed in setup (≈ $1–2). 0 boxes running.
+- 20:14 UTC **This session (main-bsky37) takes the collision-copy interaction carve** (owner: after the 0.789 / 4th
+  submission, "then we can do that"): board slots for eval 25 (approach-1 planar half-cut, delivered as our own convex
+  pieces so CoACD cannot refill it) and the blue-cup cavity for eval 10 (nesting). CPU build + FlashCHORD test first;
+  GPU public twin (ep24) and eval reruns only after a pre-registered check. Submitted CD-O meshes stay unchanged.
