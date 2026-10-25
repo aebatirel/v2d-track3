@@ -27,14 +27,17 @@ if [ -n "${KEPT_DIR:-}" ]; then                                   # KEEP_RESULTS
   cp -n $KEPT_DIR/episode_* $OUT/results/                         # unchanged checkpoints; never over a new evaluation
   log "submit_pack: kept earlier rollouts: $(ls $KEPT_DIR | grep -c parquet) episodes" >> $J
 fi
-python - $KIT/data/track_3_evaluation_objects.json $LIB $OUT/meshes << 'EOF' >> $J 2>&1 || exit 1
+# EP_LIB="EP:DIR ..." (2026-10-25): the library an episode's policy was trained with when it is not LIB (e.g. a v5
+# pitcher); the packed mesh must be the file the simulator built the body from
+python - $KIT/data/track_3_evaluation_objects.json $LIB $OUT/meshes "${EP_LIB:-}" << 'EOF' >> $J 2>&1 || exit 1
 import json, os, shutil, sys
 roster, lib, out = json.load(open(sys.argv[1]))['episodes'], sys.argv[2], sys.argv[3]
+per = dict(x.split(':', 1) for x in sys.argv[4].split())
 for ep, objs in roster.items():
     d = f'{out}/episode_{int(ep):06d}'; os.makedirs(d, exist_ok=True)
     for o in objs:
-        shutil.copy(f'{lib}/{o}.glb', f'{d}/{o}.glb')
-print(f'submit_pack: meshes for {len(roster)} episodes from {lib}')
+        shutil.copy(f'{per.get(str(ep), lib)}/{o}.glb', f'{d}/{o}.glb')
+print(f'submit_pack: meshes for {len(roster)} episodes from {lib}; per-episode libraries {per}')
 EOF
 ( cd $KIT && python tools/pack_submission.py --track track_3 --results $OUT/results --meshes $OUT/meshes \
     --code-commit "$COMMIT_URL" --eval-script $KIT/flash_chord/scripts/evaluate_policy.py -o $OUT/track3_submission.parquet ) \
