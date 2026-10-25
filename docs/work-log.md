@@ -3475,3 +3475,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   errors are 0.3–2.3 cm; the pitcher is the least accurate (median 3.5 / 2.6 cm in ep21 / ep22). So the hidden-cup
   wrist jumps of evals 14 and 33 have no public counterpart; a tracking guard for them can only be checked for no
   regression on public data.
+- 00:34 UTC seed 43, **eval 28: 0.6675** (std 0.024) vs seed 42's 0.694: **seed 42 kept**. Final seed-43 picks: evals
+  3, 19, 15, 5, 16 (5 of 6; summaries in the store confirm the `-s43` checkpoints).
+- 00:35 UTC **second pack launched**: box **57586392** `20261025-pack2-46b8389` (RTX PRO 6000 S, France, $1.55/h; ≈ 40 min,
+  ≈ $1): `RUNS="20261024-ev30rp-07eef1a 20261024-pack-31ef267" PICK="3:… 19:… 15:… 5:… 16:20261024-seed43-61101f5"
+  KEEP_RESULTS=20261024-pack-31ef267 COMMIT_URL=…/commit/46b8389… bash ops/jobs/pack_eval.sh` (meshes library_v3, as the
+  first pack). Re-evaluated: 3, 5, 15, 16, 19 (seed 43) and 30 (rerun); the other 14 keep their official rollouts.
+- 00:35 UTC **cups box launched**: **57586405** `20261025-cups-46b8389` (RTX PRO 6000 Max-Q, Czechia, 48 cores, $1.50/h;
+  ≈ 1 h, ≈ $1.5): `EPS=11 bash ops/jobs/g1_perc2m.sh` (public ep11 re-tracked with today's detection: on-table rule +
+  gated re-proposal) then `build_library.sh OBJS="blue_cup beige_cup"` along the new ep11 tracks plus the G1 / 21 Oct
+  tracks of the blue cup's other episodes. Purpose: a beige cup (evals 10 and 8) fused along a correct track; the
+  running library box fuses it along the broken one. Credit $19.61 at 00:35 UTC.
