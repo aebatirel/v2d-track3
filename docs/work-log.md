@@ -3448,3 +3448,23 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   inlier band, the largest inlier set). Acceptance: replay on all 80 dumped public frames (116 labelled instances) with
   **no regression**; shipped if it adds hits. The eval frame-0 dumps are then replayed only to list which eval
   episodes change (those need a rerun); no eval outcome feeds back into the rule.
+- 00:25 UTC **on-table rule, variant 1: FAILS the pre-registered no-regression rule.** Replay of the 100 public dumps
+  (`scratchpad/det/table/replay_table.py`; 116 labelled instances; shipped rule reproduced on 95 of 100 frames):
+  95 → 97 hits; fixed ep11 f0 blue + beige cup and ep11 f34 both; **regressions: ep18 f0 sweeper, ep11 f68 beige cup.**
+  The table test itself is right everywhere (the lowest true-object proposal sits +0.2 cm above its plane; ep11's lap
+  −7.6 cm). The regressions come from interactions: in ep18 f0 the two barred proposals were the ones partly outside
+  camera a, so the Grounding DINO term (off for an object while any of its candidates is < 80 % inside camera a)
+  switched **on** for the sweeper and moved it onto the dust pan's mask; in ep11 f68 the compact prior's joint choice
+  shifted.
+- **Pre-registered variant 2 (before its replay):** the scores are computed exactly as shipped (including the
+  grounding on/off decision), then the below-table proposals are barred (−10) and only the final assignment is redone.
+  Same acceptance: no regression on the 116 instances.
+- 00:28 UTC **on-table rule variant 2 PASSES** (same 100 public dumps): 95 → **97** hits, fixed ep11 f0 blue cup and beige
+  cup, **no regression**; it changes no other public frame and **no eval frame-0 choice** (both eval dump sets, with
+  and without re-proposals), so no eval rerun follows from it. Shipped in `perc2.py` (`DET_TABLE=1` default; barred
+  after every score term, before the re-proposal gate and the assignment) and the gated re-proposal is now on by
+  default (`DET_REPROP=1`) (51ce364). Use: re-track ep11 (cups) for the beige cup mesh.
+- 00:24 UTC public twin **ep31** with the re-proposal recipe: registered AUC vs mocap **0.695** (std 0.122, min
+  0.453; sim_vs_ref 0.717). Eval 30 stays adopted (its detection is the validated fix).
+- 00:24 UTC seed 43, **eval 16: 0.8045** (std 0.098) vs seed 42's 0.795: seed 43 picked (5 of 5 so far).
+- 00:25 UTC box 57574634 (`20261024-ev30rp-07eef1a`) done, 100 min, self-destroyed (≈ $2.3).
