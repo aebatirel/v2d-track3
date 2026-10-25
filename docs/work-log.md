@@ -3652,3 +3652,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   spend) → at the $3 reserve. **Blocked on the owner's top-up** (≈ $40 asked): ep21 arc-foot twin (≈ $2.6), eval
   reruns with the guard (8, 14, + 32 / 33 if the check confirms) and the second learner on the 12 episodes below the
   gate (≈ $45 with packs).
+- 03:01 UTC **precision sweep final** (`20261025-sweep-a894083`, 20 public episodes, ≈ 2.7 h, ≈ $3.7, self-destroyed):
+  mean registered AUC **base 0.8677**, t8 0.8640, t4 0.8551 → **base stays** (pre-registered rule: base has the highest
+  mean). t4 and t8 both drop ep18 by 0.25–0.29 and t8 ep12 by 0.25: tracking is sensitive to small changes in
+  FoundationPose's refinement; the defaults are kept. The base re-track with today's detection (on-table rule, gated
+  re-proposal) averages **0.868 over all 20 public episodes** (the old detection's G1 + 21 Oct tracks: 0.810 on 16).
+- **Eval perception check (today's defaults incl. TRACK_GUARD), evals 1–33 done:** the guard intervenes exactly on
+  **8** (beige cup: frame-0 retry + 2 re-acquisitions), **14** (cup: 1 re-acquisition), **32** (cup: 2), **33** (cup: 1);
+  no intervention on 1, 3, 5, 6, 10, 15, 16, 19, 20, 25, 28, 30 (eval 30 reproduces the rerun's re-proposed sweeper
+  mask). These four references change; the others stay.
+- **Arc foot on the submitted eval references** (CPU, `support_fill.py` with the arc fallback, GT-free): it adds a
+  foot only for **eval 20's pitcher** (rest f152: r 3.44 cm, margin 23.1 mm). Frame 0 itself stays uncertified: its
+  own foot (margin 26.9 mm) is blocked by the other-rest check (it would protrude under the f152 pose; rest-pose noise
+  of a few degrees); the rerun's rest check will show whether the f152 foot holds the start. Eval 10's beige cup:
+  certified at f0 (margin 14.6 mm) but blocked by the free-space check (the foot would sit inside the blue cup during
+  the stacking, 87 frames). Eval 30's sweeper (standing in the rack) fails the arc fit (RMS 38 %).
