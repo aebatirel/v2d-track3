@@ -3859,3 +3859,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     (ep1 at 48k env steps/s, ETA ≈ 16:25 UTC; ep16 then follows). Results ≈ 20:00–20:30 UTC; cost ≈ $60, not $50.
   - HF returned HTTP 429 during the parallel `pull-run`s (std0116: HEAD requests on unrelated ep10 curve files); the
     pulls still completed and the references are in place.
+- ~16:05 UTC **duplicate launch resolved:** the main-bsky37 session also got the owner's go-ahead (15:51 UTC) and launched
+  6 boxes (`…-a842ab1`) for the same batch; on this session's message it destroyed them in setup (its log 4432d56).
+  Credit $87.08 with this session's 9 boxes running.
+- **Correction (mine), recorded before any rebuilt-episode result:** `eval_both.sh`'s grasp-lock defaults (REPLAN=1,
+  EVOLVE=0, no `--onset_anchor`) are NOT the frozen eval recipe that produced the submitted policies (24 Oct 11:40 UTC:
+  SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5, GL_ARGS + `--onset_anchor 1`). The running boxes are left as they are;
+  a frozen-recipe grasp-lock candidate is added on the SAME rebuilt references (`glock_public.sh SPLIT=eval
+  PAIRS="EP:<rebuild run>:mck"`, pulls that run's reference), for evals 8 + 10 (library_v3x), 14 + 20, 32 + 33, 25.
+  **Choice rule (fixed now):** per rebuilt episode, `tools/choose_learner.py` over all candidates on that reference
+  (eval_both's grasp lock, its standard learner, the frozen-recipe grasp lock), yardstick = the standard learner's
+  rollouts as in eval_both; the highest mean sim_vs_ref is packed. No ground truth. ≈ 4 boxes × 2 h ≈ $12.
