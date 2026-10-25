@@ -3790,3 +3790,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   rest-averaged anchor orientation in reference building iff mean(b − a) ≥ +0.01 over the 4 episodes and no episode
   drops by > 0.01**; then the eval policies are re-evaluated on updated references (no retraining). Mocap is used only to
   score.
+- 16:27 UTC **A-f0 result (pre-registered 3e3e194): NOT adopted.** Registered AUC vs mocap, 5 stored rollouts each,
+  library_v3 meshes, (a) as stored / (b) rest-averaged anchor f0 / (c) raw f0: ep2 (pot) 0.3064 / 0.3036 / 0.3049;
+  ep39 (dust pan) 0.1736 / 0.1735 / 0.1736; ep21 (pitcher) 0.2810 / 0.2812 / 0.2815; ep31 (sweeper) 0.7666 / 0.7733 /
+  0.7981. Mean (b − a) = +0.001 < +0.01. Low power: our reference f0 is within ~2° of the raw rest mean in 3 of 4
+  (ep31: 10.3° tilt). `tools/anchor_f0_test.py`, outputs `docs/research/spoon-2026-10-25/af0/`.

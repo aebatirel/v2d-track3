@@ -1,0 +1,72 @@
+{
+ "ep": 39,
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "anchor": "mini_dust_pan",
+ "rollouts": {
+  "r1": {
+   "a": 0.175,
+   "b": 0.175,
+   "c": 0.175,
+   "rest_frames": 30,
+   "onset": 51,
+   "ref_f0_vs_rest_mean_deg": [
+    1.0,
+    0.5,
+    -0.4
+   ]
+  },
+  "r2": {
+   "a": 0.175,
+   "b": 0.1748,
+   "c": 0.175,
+   "rest_frames": 30,
+   "onset": 51,
+   "ref_f0_vs_rest_mean_deg": [
+    1.0,
+    0.5,
+    -0.4
+   ]
+  },
+  "r3": {
+   "a": 0.1679,
+   "b": 0.1679,
+   "c": 0.1679,
+   "rest_frames": 30,
+   "onset": 51,
+   "ref_f0_vs_rest_mean_deg": [
+    1.0,
+    0.5,
+    -0.4
+   ]
+  },
+  "r4": {
+   "a": 0.175,
+   "b": 0.1748,
+   "c": 0.175,
+   "rest_frames": 30,
+   "onset": 51,
+   "ref_f0_vs_rest_mean_deg": [
+    1.0,
+    0.5,
+    -0.4
+   ]
+  },
+  "r5": {
+   "a": 0.1752,
+   "b": 0.1752,
+   "c": 0.1752,
+   "rest_frames": 30,
+   "onset": 51,
+   "ref_f0_vs_rest_mean_deg": [
+    1.0,
+    0.5,
+    -0.4
+   ]
+  }
+ },
+ "mean_a": 0.1736,
+ "mean_b": 0.1735,
+ "mean_c": 0.1736
+}
