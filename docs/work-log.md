@@ -3601,3 +3601,26 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Eval perception check so far (today's defaults, guard): evals 1, 3, 5, 6, 10 unchanged (no guard intervention);
   **eval 8 beige cup: frame-0 registration implausible → next proposal; 2 later implausible frames re-detected and
   re-acquired** → eval 8's reference changes.
+- 02:27 UTC **library box done** (162 min + pitcher rerun, ≈ $4.2, self-destroyed after the copy): v5 meshes for the
+  pitcher, dust pan (O), blue cup (O), sweeper (F4), rack (F4), beige cup (F4, broken-track input, not used); pot,
+  lid, boards failed (broken G1 tracks / missing M0). Store `runs/20261025-lib5-c476e68/results/library_v5`.
+- 02:39 UTC **E2 (diagnostic, CD-O at eval seeds, cm; v5 vs v2):** pitcher **0.890 vs 0.894**, dust pan 0.368 vs 0.331,
+  sweeper 0.526 vs 0.316, rack 0.818 vs 0.555, blue cup 0.540 vs 0.523; 0 flips everywhere. The compliant v5 library
+  is **worse** than v2 for 4 of 5 objects (v2 was fused along scan-templated tracks). Only broken meshes are swapped.
+- **Pitcher: not pursued further.** Step 1 passes on paper (0.890 < 0.894, 0 flips), but the v5 pitcher took the F4
+  branch (O failed G1 and G2), i.e. the same classic fusion as v3: 1203 vs 1221 cm³, same extents, both watertight,
+  both stable on their own base. Eval 20's failure (and ep21's) is the **unobserved base at the observed rest pose**:
+  the pitcher stands with an object-frame up 38° from the mesh's base axis in all three observed rests (ep21, ep22),
+  where our mesh touches the table on a 0.2 cm² patch with the COM 4 cm outside; the v5 support rule's 8 mm flatten
+  does not certify it (check i), and support_fill reports UNSTABLE (no fill up to 2 cm). The 24 Oct audit's fix (a
+  circle-completed 2 cm foot from the observed base arc, 8 convex sectors; stands ≤ 5 mm for 60 frames on CPU) is
+  the candidate; it is not in the pipeline yet. A pitcher twin test now would compare two near-identical meshes.
+- **Frame-0 support status of the submitted eval references** (support_fill reports, GT-free): UNSTABLE at frame 0:
+  eval 10 beige cup, eval 20 pitcher (and the old eval 30 sweeper, since replaced). The v5 beige cup does not fix
+  eval 10's start (at the perceived pose: margin −41.7 mm, as v3 −39.8 mm; the perceived up and the cup's base
+  disagree); eval 8's start improves to margin +0.9 mm (v3 −1.2 mm).
+- 02:39 UTC **ep11 twin test launched** (beige cup rule step 2): boxes **57598983** `20261025-twin11v3-0e8aebb` (library_v3)
+  and **57598986** `20261025-twin11v3x-0e8aebb` (library_v3x), frozen recipe, today's perception defaults, ≈ 1.3 h,
+  ≈ $1.3 each.
+- Eval perception check (cont.): evals 15, 16, 19, 20 unchanged; **eval 14 cup: 1 implausible frame → re-detected
+  and re-acquired** (reference changes).
