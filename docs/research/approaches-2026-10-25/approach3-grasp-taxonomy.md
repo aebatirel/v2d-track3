@@ -57,6 +57,16 @@ already in our designs (biomechanics report §10–11) and needs no classifier. 
 - About 1.5–2 days of CPU work.
 - A strong public-twin GPU test costs about $11–15 (§8.3).
 
+**Owner's follow-up: try every feasible grip type and keep the most stable (§11).**
+- Worth doing as a portfolio of 3–6 constructed types plus the human copy per hold, with no classifier.
+- It needs a new selection fitness:
+  - run from frame 0 through the release, all objects;
+  - score the 25 % worst disturbed trials (CVaR);
+  - re-score the finalists in fresh processes;
+  - the copy wins ties.
+- Cost: about 3.5 engineering days and about $12–19 of search for the 20 eval episodes.
+- Expected gain: about +0.01 to +0.03, overlapping §6.
+
 ## 1. Sources: covered, failed, fetched now
 
 | source | before today | today | what matters for us |
@@ -378,3 +388,153 @@ Consequences:
   - `lag_cost.py OUT TAG=REF …`
   - `fetch.sh NAME URL` (downloads)
 - Outputs: `approach3-scripts/out/`.
+
+## 11. Try every feasible grip type and keep the most stable (owner's follow-up, 25 Oct)
+
+The idea is a generate-and-test portfolio:
+- build one robot grasp per feasible type for each hold, with no classifier;
+- simulate each over its whole phase chain;
+- choose by a GT-free fitness on the object's motion against our reference, release included.
+
+**Verdict.** Yes, as a portfolio of seeds for the existing search, with the human copy as the default. It sidesteps
+§2's perception limit, because no label is needed. Two things are new:
+- a fitness that runs from the evaluator's frame 0 through the release;
+- a robust selection rule.
+
+Without them the search keeps the failures we already measured: chaotic picks (ep18: 1e-5 jitter moves 0.37 to
+0.18–0.44) and starts from a reset [M, work log].
+
+### 11.1 Candidate types per object family (Sharpa-realisable; forces from the LP in biomech §10) [I + M]
+
+| family (holds) | candidates (Feix #) | dropped as infeasible in this simulator |
+|---|---|---|
+| spoon handle, 2.7 cm | medium / small wrap (#3 / #2) at 2 positions along the handle × palm up / down; adducted-thumb wrap (#4) | tip and lateral pinch (one opposing pair: no torsion) |
+| plates: dust pan, sweeper | P3 cage-hook (index through the ring, thumb on the band, middle under); lateral key pinch (#16, RL template); band / neck clamp (#22-like, S2); hook (#15) only as a lift stage | single pinch P1 / S3; key pinch along the band, P2 (30–60 N) |
+| boards | B4 parallel extension (#22) at the long edge and the short end; B5 two pad pairs; platform (fingers under, palm up) | edge-only cantilever B2 / B3; lateral pinch |
+| cups | side wrap (#1 / #3); rim precision disk (#12) from above; current copy | – |
+| pot stick handle | local-PCA wrap (#3) near the middle vs at the end; adducted thumb (#4) | end pinch T1 |
+| lid strap | strap side pinch L1 (#8 / #7 with a 2.4 cm spread) | hook under the strap (1.5 cm gap in our mesh); rim pinch L3 (25–48 N) |
+| pitcher handle | wrap through the loop W1 (#3) | hook W2; pinch W3 |
+
+That gives **3–6 typed candidates per hold**, plus the human copy.
+
+Generation, in the style of `wrap_grasp.py`, with FlashCHORD's own geometry:
+1. Find the held part from local geometry around our contact centroid: the local-PCA axis for handles, the plate
+   normal and nearest edge for plates.
+2. Place the palm frame by a per-type rule: palm normal and approach direction relative to the part axes, plus a grip
+   offset (the B4 and P3 specs in biomech §11).
+3. Close each digit until contact with `close_fingers`; abducted-thumb types close the thumb opposite the finger pads.
+4. Pre-filter with the contact-force LP (`grasp_force.py`): a candidate whose wrench LP is infeasible, or that needs
+   more than about 10 N per contact over the reference's load, is dropped before any simulation.
+
+Dexonomy: its MANO / Shadow templates per type could be retargeted through our E2S IK. But the licence is CC BY-NC
+(work log) and it validates static 6-axis pushes only, so our own constructors are preferred.
+
+### 11.2 Fitness and selection
+
+The current `grasp_evolve.py`:
+- resets objects and hands onto the reference at f0 = approach start − PRE;
+- scores the ADD-AUC of the held object (or all objects) up to the hold end + POST;
+- takes the mean over K jittered copies.
+
+Changes:
+1. **No reset inside the episode.** Simulate from frame 0, as the evaluator does, with the grasps already chosen for
+   earlier holds baked in (holds chosen in time order). A candidate is then judged in the state the evaluator will
+   produce: the other hand's swing, an object that already slid, frame-0 transients.
+2. **Window through the release.** Score up to the next hold of that object, or the episode end, with `--all_objects`.
+   A knocked or dragged object stays wrong for all later frames, so the plain episode ADD-AUC already prices the
+   release. Add two diagnostics:
+   - in-hand slip during the hold (`grasp_search.py`'s slip test);
+   - object drift in the 20 frames after the final rest.
+3. **Disturbed trials.** K = 4–8 copies per candidate, each with:
+   - jitter on the edit (5 mm / 0.05 rad);
+   - an initial object offset (±3 mm / ±2°, perception scale);
+   - a wrist push random walk (`grasp_search` NOISE).
+
+   Fitness = the 25 % lower quantile (CVaR), not the mean: the evaluator gives one rollout, and bimodal episodes
+   (evals 3, 5, 15) pay for the bad mode.
+4. **Against winner's curse.**
+   - Screen with one generation (64 × 4 worlds) per type.
+   - Run a full CMA-ES (64 × 4 × 20 generations) only for the best 2 types plus the copy.
+   - Re-score the 3 finalists in fresh single-world processes with K = 16 new disturbance seeds.
+5. **Ties go to the copy.** Choose a typed candidate only if its re-scored CVaR beats the searched copy by ≥ 0.05 and
+   by at least 2 standard errors. Basis: the ep39 template lost (0.373 vs 0.81–0.865), and the copy carries the human's
+   timing.
+
+### 11.3 Does the choice survive the RL fine-tune?
+
+Partly [M, 18 public runs, EA-vs-RL report; work log]:
+- Spearman ρ = 0.73 between zero-action and fine-tuned sim_vs_ref.
+- Zero action ≥ 0.5 → ≥ 0.73 fine-tuned (8/8); < 0.36 → ≤ 0.43 (10/10).
+- ep39: search window 0.857 → 0.958 vs mocap.
+- ep18: windows 0.50 / 0.58 → 0.957.
+
+**Above the "holds" threshold the order is not reliable.** On ep12 and ep27 the search raised the windows (0.563 → 0.772,
+0.791 → 0.866). Yet the fine-tuned results, 0.868 ± 0.122 (one of five rollouts failing) and 0.949, did not beat the
+earlier unsearched grasp-lock (0.854–0.910, 0.957–0.972). Other recipe changes confound this.
+
+So the portfolio should be used to cross the about 0.5 hold threshold. When finalists are within 0.05, a short 20M
+fine-tune tournament (about 6–8 min each) should decide [H, falsified if the 20M ranking disagrees with the 70M
+ranking in ≥ 2 of 4 twins].
+
+### 11.4 Compute and effort
+
+**Measured unit costs:**
+- GPU: ≤ 0.35 ms per world-frame (300 × 105 frames in 11 s, setup included); a 256-world robust search took
+  "minutes" per hold.
+- CPU: 10–34 ms per world-frame, about 6 s setup per fresh environment.
+
+**Estimated per hold [I], full chain of about 300–400 frames:**
+- screening 5 types × 1 generation: about 5 min;
+- 3 full searches: about 30–40 min;
+- re-scoring: about 2 min.
+
+On one GPU with 2–3 searches running concurrently, that is about 15–20 min of box time per hold.
+
+**For the 20 eval episodes** (about 30 holds after `single_hand`): about 8–10 box-h, **$12–19**, on top of the
+unchanged fine-tunes. CPU is good only for one-hold falsifiers: 8 worlds × 14 generations ≈ 6 min per candidate on
+ep24's 120-frame window.
+
+**Engineering:**
+- constructors for 4 families (B4 / B5, P3 / clamp, local wrap, L1): about 2 days;
+- frame-0 sequential fitness, CVaR, object disturbances, fresh-process re-scoring in `grasp_evolve.py`: about 1 day;
+- LP pre-filter and the `glock_public.sh` driver: about 0.5 day.
+
+Total about 3.5 days. A reduced version takes about 2 days: B4 + local wrap + the fitness changes.
+
+### 11.5 Expected gain [I] and tests
+
+| eval | today | portfolio candidates that matter | expected Δ episode AUC |
+|---|---|---|---|
+| 25 boards | 0.232 (search found no basin: 0.47 / 0.20) | B4 long / short edge, platform | +0.05 … +0.15 (capped by the missing slots) |
+| 1 lid + pot | 0.205 | L1 strap pinch; local wrap on the handle | +0.05 … +0.20 (the lid wedge is a mesh problem, frame 0) |
+| 19 dust pan | 0.627 (search 0.18 → 0.36) | P3 cage-hook, key pinch, band clamp: more basins | 0 … +0.15 |
+| 33 spoon | 0.421 | wrap positions | 0 … +0.05 (perception first) |
+| 28 pot | 0.751 | release-aware fitness (rack knocked, placed 8.5 cm off) | +0.02 … +0.08 |
+| 16 spoon | 0.850 | release-aware fitness (left 12.7 cm off) | +0.02 … +0.08 |
+
+On the 20-episode mean that is about +0.01 to +0.03 (not additive with §6's event anchoring; the two overlap on 28 and
+16).
+
+**Cheapest CPU falsifier (pre-registered).** This is T1 widened to a portfolio.
+- Hold: ep24 board 1, left hand.
+- Candidates: the copy, B4 long edge, B4 short end, platform.
+- Search: each gets the same CPU robust search (8 worlds × 14 generations, K = 2), with the new frame-0-to-f120
+  fitness.
+- Finalists are re-scored with K = 8.
+- **Falsified if:**
+  - no typed candidate beats the searched copy by ≥ 0.05 CVaR;
+  - **or** no candidate lifts board 1 by ≥ 10 cm by f30.
+- Cost: about 1 day of build plus about 1 h of CPU. [D] registered AUC is reported, not used.
+
+**Strong GPU test (pre-registered).**
+- Arms: A = the current recipe (copy + robust CMA-ES); P = the portfolio with the §11.2 rules.
+- Episodes: ep24, ep2, ep18, ep39 + controls ep12, ep27.
+- Each selected grasp: 70M fine-tune, 2 seeds × 5 official evaluations, scored by registered AUC [D].
+- Cost: searches about 3 box-h + fine-tunes about 2 box-h + setup about 1 box-h ≈ 6 box-h, **≈ $8–12**. Arm A can be
+  shared with §8 T3.
+- **Adopt P** if:
+  - P − A ≥ +0.05 mean over the 4 targets, in both seeds;
+  - no control loses more than 0.02.
+- Also report how often P picked a non-copy type, and whether its zero-action margin predicted its fine-tuned gain.
+  This decides whether the portfolio enters the eval rerun.
