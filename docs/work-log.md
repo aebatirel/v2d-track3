@@ -3589,3 +3589,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (on-table rule, gated re-proposal, TRACK_GUARD), nothing scored; the guard's interventions per episode decide which
   eval references change (a uniform rule, not a hand choice). (I first wrote it over the existing 21 Oct
   `eval_perc.sh` by mistake; restored from git before any commit, nothing lost.)
+- 02:22 UTC **cup cavities (measured on our meshes, GT-free):** a probe line along each cup's axis: library_v3 **blue cup
+  is solid over its lower ≈ 37 %** (400 cm³; the inner bottom is never seen, the closing fills it); library_v3 and v5
+  beige cups are hollow (axis line fully outside the solid). The v5 blue cup from the library box is also partly
+  filled (287 cm³ solid). **Our eval references vs the v3 blue cup solid:** eval 10 (beige cup stacked into the blue
+  cup) puts the beige cup inside the blue cup's solid in 46 of 81 sampled frames (up to 48 % of its surface, 1.2 cm
+  deep): the stacking is physically impossible in the simulator, a second cause of eval 10's failure besides the
+  beige cup mesh. Evals 32 / 33 (spoon in the cup) and 20 (pitcher) never penetrate the cup's solid in our references.
+  Candidate fix (spec §7 parked R1-style claim for the collision copy only): carve the container's collision copy
+  where our tracks place the contained object for a sustained period; needs its own pre-registered test.
+- Eval perception check so far (today's defaults, guard): evals 1, 3, 5, 6, 10 unchanged (no guard intervention);
+  **eval 8 beige cup: frame-0 registration implausible → next proposal; 2 later implausible frames re-detected and
+  re-acquired** → eval 8's reference changes.
