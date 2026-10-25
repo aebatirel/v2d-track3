@@ -3719,3 +3719,17 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     the object is acquired.
   - The screenshot's failed background jobs ("Başarısız", e.g. the taxonomy PDF fetches) were earlier sessions' shell
     jobs; the grasp research docs of 24 Oct were still written from the sources that did load.
+- 09:21 UTC **Owner: "lets do the missing parts and test if it helps."** Build (CPU, no spend yet): event-anchored grasp-lock
+  windows, grip-type template constructors (board clamp first), a frame-0 → release fitness with disturbed copies and
+  a worst-quartile (CVaR) score, and a portfolio driver. Asked the owner for a ~$80 Vast top-up (A/B ~$15–20, the
+  queued eval reruns ~$50, margin); no Dexonomy code (CC BY-NC). **Pre-registered at commit 7a00c6f, before any code or run:**
+  - **T2, event-anchored windows (CPU, zero action).** Episodes ep2, ep18, ep24, ep39. Arms: the current grasp-lock
+    (contact-label hold windows) vs event-anchored windows (full squeeze by the object's lift-off − 2 frames; hold end =
+    the object's settle + 2 frames when that is earlier than the contact-label end; events from OUR object track, rules
+    of approach3-scripts/events.py), everything else identical. **Pass** if the hold-window sim_vs_ref rises by ≥ 0.05
+    on at least 3 of 4 episodes and drops by more than 0.02 on none. Registered AUC vs mocap is reported, never used.
+  - **P1, grip portfolio falsifier (CPU).** ep24 board 1, left hand. Candidates: the current copy, the parallel-extension
+    clamp at the long edge, the clamp at the short end, and the platform (fingers under, palm up). Each gets the same
+    robust CMA-ES (8 worlds × 14 generations, K = 2 jittered copies) with the new fitness from frame 0 to f120;
+    finalists re-scored with K = 8 in fresh processes. **Falsified if** no typed candidate beats the searched copy by
+    ≥ 0.05 on the worst-25 % score, **or** no candidate lifts board 1 by ≥ 10 cm by f30. Registered AUC reported only.
