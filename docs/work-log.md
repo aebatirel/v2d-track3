@@ -3513,3 +3513,11 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (the replay's prediction; 20 of 71 proposals barred as below the table). **Registered perception AUC vs mocap
   0.102 → 0.898** (blue cup 0.203 → 0.862, beige cup 0.000 → 0.933; library_v2 meshes; diagnostic). The cup library
   build along this track follows on the same box.
+- 00:46 UTC **pre-registered (before any output of the cups build is seen): v5 beige cup for evals 10 and 8.** Same
+  shape as the pitcher rule. Step 1, E2 (CPU, diagnostic): the beige cup from the cups box (fused along the re-tracked
+  ep11) must have CD-O (eval seeds) < v2's 0.856 cm, no flip at any seed, and registered AUC along the new ep11 track
+  ≥ the v2 mesh's − 0.01. Step 2, public twin ep11 with the frozen recipe twice on one tracking seed set: base
+  (library_v3) and v5 beige cup (library_v3 with only the beige cup replaced); **adopt iff v5 ≥ base − 0.02 and the
+  beige cup's own AUC (v5) ≥ base's.** If adopted, evals 10 and 8 are re-run end to end with that library (perception
+  included, since the beige cup is also the tracking template there). The blue cup stays v3 (it appears in 5 evals;
+  a swap would need its own test).
