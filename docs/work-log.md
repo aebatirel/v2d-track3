@@ -3894,3 +3894,4 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     effect as the ep11 v3x twin (1.6 h vs 0.9 h): the v5 beige cup (32 collision pieces, arc-foot sectors) makes the
     simulation heavier, and two trainings share the GPU. Its standard learners for 8 and 10 would then take ≈ 5 h each,
     back to back (≈ 05:00 UTC, ≈ $15–17). Decision at ≈ 18:15 UTC; packing will not wait for them.
+- 16:49 UTC **std30 done** (`20261025-std30-ee7ba8e`, ≈ 1.8 h, ≈ $3, self-destroyed): eval 30 standard learner (250M, final checkpoint) sim_vs_ref **0.9188 ± 0.012** (0.904–0.934) vs the grasp-lock policy in pack2 0.7216 (0.304–0.929, bimodal) → **choice: std** (`results/final_eval/ep30`). Same reference (ev30rp), so the comparison is like for like.
