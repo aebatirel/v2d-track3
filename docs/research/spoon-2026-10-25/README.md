@@ -43,3 +43,22 @@ rotates every later position of the trajectory.
    every anchor (all 20 eval episodes) and the eval policies are re-evaluated on the updated references (GPU minutes, no
    retraining). Rule to be written before the run.
 2. Spoon position/depth (H2): stereo depth of the spoon pixels vs our track depth, on eval frames (no GT).
+
+## Registration flips (H1) [M, `spoon_regflip.py`, `spoon_regflip.json`]
+30 plausible spoons drawn from the template generator within the measured brackets (`spoon/frame_mc.py`), our template
+registered to each with the kit's `_register_object_body` and the scorer's exact seeds for the 10 spoon episodes:
+**0 flips in 300 registrations**, rotation error median 1.0°, p95 2.5°. The kit's registration of our spoon is robust
+for spoons within our measurement brackets (a real spoon outside them, or a scan without markers, is not covered).
+A 1–2.5° registration error acts like the same frame-0 error in the spoon-anchored episodes (≈ 0.01–0.04 each).
+
+## Anchor frame-0 test A-f0 (public, mocap-scored) — not adopted
+Rest-averaged anchor orientation vs the reference's: mean +0.001 over ep2, ep39, ep21, ep31 (rule: ≥ +0.01).
+
+## Reading
+- The spoon's loss through the scene anchor is real but, by our measured uncertainties, ≈ 0.03–0.15 per
+  spoon-anchored episode, not the whole inferred gap.
+- The "≈ 0.12 spoon gap" (low-score analysis §5) assumed the non-spoon eval episodes lose only 4 % to perception, as
+  their public twins did. Since then several large non-spoon perception errors were found that sim_vs_ref cannot see:
+  eval 25's swapped board names (near zero vs truth), eval 30's sweeper on the wrist, the cup tracks of 8, 14, 33 below
+  the table or on the wrist. They take part of that 0.135 total, so the spoon's share is probably smaller than 0.12.
+  The leaderboard change after the rerun batch (which fixes those) is the next evidence on how much is left for the spoon.

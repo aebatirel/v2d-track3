@@ -3795,3 +3795,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   ep39 (dust pan) 0.1736 / 0.1735 / 0.1736; ep21 (pitcher) 0.2810 / 0.2812 / 0.2815; ep31 (sweeper) 0.7666 / 0.7733 /
   0.7981. Mean (b − a) = +0.001 < +0.01. Low power: our reference f0 is within ~2° of the raw rest mean in 3 of 4
   (ep31: 10.3° tilt). `tools/anchor_f0_test.py`, outputs `docs/research/spoon-2026-10-25/af0/`.
+- 16:49 UTC **Spoon registration flips (H1): none.** 30 generator variants × the scorer's 10 spoon-episode seeds, kit
+  `_register_object_body`: 0/300 flips, rotation error median 1.0°, p95 2.5°. Reading: the spoon gap inferred on
+  24 Oct (≈ 0.12) assumed non-spoon episodes lose 4 % to perception; eval 25 (swapped boards), 30 (sweeper on the wrist)
+  and the cup tracks of 8, 14, 33 were found since, so the spoon's real share is probably smaller. Next spoon evidence:
+  the leaderboard change after the other session's rerun batch.
