@@ -4198,3 +4198,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     s43 led).
   - Proposed (not adopted): a seed race (asynchronous successive halving, one cut at 40 % with 3 evaluations, top third
     continues), ≈ $12–13 per episode for 8 seeds, ≈ $23 for 16; credit $31.74 at 09:33 UTC with three boxes running.
+- ~10:05 UTC same question, grasp lock (`docs/research/seed-race-20261026/glock_early.py`, 66 curves of 23–26 Oct, CPU):
+  - 40 % vs best-of-curve Pearson 0.77 (rank 0.80);
+  - same-episode pairs > 0.1 apart at 40 %: the leader ends better in only 22/38 (standard learner 30/36);
+  - checkpoints jump about 0.10 apart; the median best checkpoint is at 86 % of training.
+  - So the early cut suits the standard learner only; grasp-lock seeds should run to the end (≈ $2 each).
+- 09:48 UTC eval-10 boxes at ≈ 180M / 170M of 250M (stored state files); eval 33 s43 in its fine-tune. Waiter bixsvan7h.

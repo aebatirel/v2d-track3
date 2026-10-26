@@ -1,0 +1,15 @@
+{
+ "n_curves": 66,
+ "n_episodes": 30,
+ "pearson_40_best": 0.766,
+ "spearman_40_best": 0.801,
+ "same_episode_leader_at_40_gap_gt_0_1_has_better_best": "22/38",
+ "mean_abs_change_between_checkpoints": 0.099,
+ "best_checkpoint_position_p10_p25_p50_p75_p90": [
+  0.14,
+  0.46,
+  0.86,
+  1.0,
+  1.0
+ ]
+}

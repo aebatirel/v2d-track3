@@ -72,7 +72,25 @@ gives about 1.7× more seeds per dollar.
   - Top 3 needs about +0.077, i.e. two-thirds of all the policy headroom, or policy and reference gains together.
 - Where seeds matter most: episodes with a large policy loss and a wide seed spread.
   - Standard learner: eval 10 (if today's carve works), eval 25.
-  - Grasp lock: evals 33, 32, 16, 3. The early-sign rule is not yet measured for grasp-lock fine-tunes; their
-    checkpoint curves already exist, so this can be checked on CPU at no cost.
+  - Grasp lock: evals 33, 32, 16, 3. The early-sign rule does NOT hold there (section 5).
 - **Hypothesis:** an 8-seed race lifts a high-spread episode by +0.05 to +0.15 sim_vs_ref. **Falsified if** the race
   winner's 5-evaluation mean does not beat the best of today's two seeds by more than its standard error.
+
+## 5. Grasp-lock fine-tunes: early scores do not pick the better run (`glock_early.py` → `glock_early.json`)
+
+Data: 66 checkpoint curves (70M steps, 30 episodes, the "curve" lines of the grasp-lock job logs of 23–26 Oct).
+
+| Test | Grasp lock | Standard learner (section 1) |
+|---|---|---|
+| Correlation, 40 % vs final (best of the curve here) | 0.77 (rank 0.80) | 0.89 (rank 0.82) |
+| Same episode, > 0.1 apart at 40 %: the leader ends better | **22 of 38 (58 %)** | 30 of 36 (83 %) |
+| Mean change between neighbouring checkpoints | 0.10 | — |
+| Where the best checkpoint sits (median) | 86 % of training (10 % of curves: at 14 %) | — |
+
+Reading:
+- Across episodes the correlation mostly reflects episode difficulty.
+- Within one episode a 40 % lead is close to a coin flip. The curves jump by about 0.1 between checkpoints, and the
+  best checkpoint can come early or late.
+- For grasp-lock episodes, a race with an early cut is not supported. Extra seeds there should run to the end; the
+  checkpoint curve already picks the best checkpoint. Measured cost today: eval 32 seed 43 took about 1.3 h on a
+  $1.51/h box, setup included (about $2).
