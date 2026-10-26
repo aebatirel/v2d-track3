@@ -276,3 +276,19 @@ sensor. Verified in config: sim uses a pyramidal cone with impratio 20, a combin
 filtering in the literature (Zorina 2024 ADD(-S) 0.84 → 0.90; causal EKF can worsen rotation). perc2 has no object
 smoothing; hands_mp.py already has zero-phase Savitzky-Golay. Next: verification workflow over the load-bearing
 claims and the carry model, then the ranked plan.
+2026-10-26 (end): Note 23 COMPLETE after a verification workflow (six adversarial checkers + critic; machine: Claude
+cloud VM; verdicts and reruns in docs/research/work/23/verify/). Corrections applied:
+- the critic is asymmetric (it sees object velocity, VOC context and phase); the actor lacks object velocity;
+- kp 50 is marginal, kp ≥ 100 robust;
+- either feed-forward alone is fragile, and advance + gravity offset breaks the 0.15 m wrist termination;
+- ball k 100 needs wrist_tau_max raised;
+- SPIDER is not residual RL over its kp-1000 base; BeyondMimic's heuristic points to the stiff variant;
+- the D3 evidence is windowed (online), not offline-vs-causal;
+- the code digest covers only flash_chord/evaluation modules;
+- a gravity-only VOC is config.
+New findings:
+- the ball wrist is over-damped (ζ ≈ 4–5.5; kd 1.5–3 removes rotation saturation);
+- the unintended-contact penalty can fire on carries when the reference hand is more than 18 mm from the object;
+- the physics knobs replay unchecked into the scored rollout.
+Plan: note 23 §E. CPU audit first, then batch G1 (30 runs ≈ $75–100 on demand, or a 16-run slice ≈ $40–55), pending
+the owner's go-ahead. Nothing was run in the simulator; all policy-side effects remain hypotheses.

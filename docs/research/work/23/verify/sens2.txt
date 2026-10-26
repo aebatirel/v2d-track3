@@ -1,0 +1,42 @@
+== wrist-to-own-reference gap (m) over moving frames, baseline ==
+adv       median-track p95 0.087  max-track p95 0.128  max 0.151  frames >0.15 m 0.04%  tracks with any >0.15: 1
+grav      median-track p95 0.118  max-track p95 0.118  max 0.118  frames >0.15 m 0.00%  tracks with any >0.15: 0
+adv+grav  median-track p95 0.186  max-track p95 0.243  max 0.267  frames >0.15 m 17.82%  tracks with any >0.15: 27
+adv gap p95 per track quantiles (10/50/90%): [0.054 0.087 0.122]
+== net actuator force needed |(M+m)a|+mg (N), max over tracks; hand gravcomp share on z = 12.2 N ==
+count    27.00
+mean      5.51
+std       1.02
+min       4.11
+25%       4.72
+50%       5.42
+75%       6.02
+max       8.18
+== P-term force kp*|r| max (N) by gain (prismatic) ==
+kp    25 kd   6.0: max |kp r|   8.61 N, max |kd v| part 8.6
+kp    50 kd   8.5: max |kp r|   9.43 N, max |kd v| part 9.4
+kp   100 kd  12.0: max |kp r|  11.02 N, max |kd v| part 11.0
+kp   200 kd  17.0: max |kp r|  13.43 N, max |kd v| part 13.4
+kp   400 kd  24.0: max |kp r|  16.85 N, max |kd v| part 16.8
+kp  6000 kd  60.0: max |kp r|  34.97 N, max |kd v| part 35.0
+== kp sweep: zeta-scaled kd vs kd fixed 6 ==
+zeta {'kp50': (0, np.float64(11.4)), 'kp100': (0, np.float64(6.6)), 'kp200': (0, np.float64(3.8))}
+6.0 {'kp50': (0, np.float64(10.2)), 'kp100': (0, np.float64(5.1)), 'kp200': (0, np.float64(2.6))}
+win5 zeta {'kp50': (9, np.float64(0.54), np.float64(11.9)), 'kp100': (0, np.float64(0.0), np.float64(6.9)), 'kp200': (0, np.float64(0.0), np.float64(4.2))}
+clip.15 zeta {'kp50': (8, np.float64(1.01)), 'kp100': (0, np.float64(0.0)), 'kp200': (0, np.float64(0.0))}
+win5 6.0 {'kp50': (4, np.float64(0.23), np.float64(11.0)), 'kp100': (0, np.float64(0.0), np.float64(5.5)), 'kp200': (0, np.float64(0.0), np.float64(2.7))}
+clip.15 6.0 {'kp50': (4, np.float64(0.35)), 'kp100': (0, np.float64(0.0)), 'kp200': (0, np.float64(0.0))}
+== rotation: inertia sensitivity (tracks per-axis / norm > 1 rad; median p95 axis) ==
+I=0.003 {'rot25': (2, 2, np.float64(0.429), np.float64(0.0007), np.float64(0.461)), 'rot100': (0, 0, np.float64(0.214), np.float64(0.0002), np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.089), np.float64(0.0), np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.011 {'rot25': (2, 2, np.float64(0.429), np.float64(0.0027), np.float64(0.461)), 'rot100': (0, 0, np.float64(0.214), np.float64(0.0007), np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.089), np.float64(0.0001), np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.021 {'rot25': (2, 2, np.float64(0.429), np.float64(0.0051), np.float64(0.461)), 'rot100': (0, 0, np.float64(0.214), np.float64(0.0013), np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.089), np.float64(0.0001), np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.030 {'rot25': (2, 2, np.float64(0.429), np.float64(0.0073), np.float64(0.461)), 'rot100': (0, 0, np.float64(0.214), np.float64(0.0018), np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.089), np.float64(0.0002), np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.050 {'rot25': (2, 2, np.float64(0.429), np.float64(0.0121), np.float64(0.461)), 'rot100': (0, 0, np.float64(0.214), np.float64(0.003), np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.089), np.float64(0.0003), np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.100 {'rot25': (2, 2, np.float64(0.426), np.float64(0.0243), np.float64(0.461)), 'rot100': (0, 0, np.float64(0.215), np.float64(0.0061), np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.089), np.float64(0.0005), np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.021 win5 {'rot25': (2, 3, np.float64(0.463)), 'rot100': (0, 0, np.float64(0.23)), 'rot1200': (0, 0, np.float64(0.096))} 13:blue_cup,26:white_pot
+I=0.021 win7 {'rot25': (2, 2, np.float64(0.43)), 'rot100': (0, 0, np.float64(0.214)), 'rot1200': (0, 0, np.float64(0.089))} 13:blue_cup,26:white_pot
+I=0.021 win11 {'rot25': (2, 2, np.float64(0.408)), 'rot100': (0, 0, np.float64(0.204)), 'rot1200': (0, 0, np.float64(0.085))} 13:blue_cup,26:white_pot
+== wrist rigidly offset from object frame origin (random direction per track), 5 seeds ==
+offset 0.05 m: (default, default%, adv, adv+grav, kp50, kp100) per seed: [(23, np.float64(5.49), 2, 0, 0, 0), (23, np.float64(5.83), 1, 0, 0, 0), (24, np.float64(5.86), 3, 0, 0, 0), (24, np.float64(5.93), 3, 0, 0, 0), (25, np.float64(5.71), 3, 0, 0, 0)]
+offset 0.10 m: (default, default%, adv, adv+grav, kp50, kp100) per seed: [(23, np.float64(5.5), 2, 0, 1, 0), (23, np.float64(5.73), 1, 0, 1, 0), (24, np.float64(6.43), 6, 0, 0, 0), (26, np.float64(6.41), 5, 0, 2, 0), (24, np.float64(6.24), 4, 0, 1, 0)]
+offset 0.15 m: (default, default%, adv, adv+grav, kp50, kp100) per seed: [(24, np.float64(6.21), 4, 0, 1, 0), (24, np.float64(6.82), 3, 0, 1, 0), (24, np.float64(7.7), 9, 0, 1, 0), (26, np.float64(7.52), 5, 0, 2, 0), (23, np.float64(6.73), 5, 0, 3, 0)]

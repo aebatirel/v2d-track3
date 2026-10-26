@@ -1,4 +1,4 @@
-# Status (2026-10-20)
+# Status (2026-10-26)
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
@@ -66,6 +66,31 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   - Vast key and HF read token → network secrets in the Claude cloud environment.
   - HF write token and GitHub read-only token → Vast account env vars (narrow scope, expiring).
   - Owner checklist: runbook §3.
+
+## Policy-stage research (2026-10-26, note 23; nothing run in the simulator yet)
+- **Wrist control is the biggest policy lever, and it is config-only [computed, hypothesis for effect].**
+  - The default floating wrist is a soft spring (kp 25 N/m). At real speed it spends its 0.2 m residual range on object
+    weight (11.8 cm sag) and damping lag (0.24 s × speed), and saturates on 23 of 27 public moving tracks.
+  - kp ≥ 100 removes saturation in every sensitivity rerun; kp 50 is marginal.
+  - The ball wrist is over-damped (ζ ≈ 4–5.5); kd 1.5–3 removes rotation saturation.
+  - The verified Hydra recipe and its traps are in note 23 §B: list all five joint_overrides; set effort_limit,
+    `action.wrist_kp` and `action.wrist_tau_max`.
+- **The hand already feels contact.** Live contact points and force directions are observed, and the PD error acts as a
+  weight sensor. Force magnitude needs code (not for submission). The critic sees object velocity but the actor does not:
+  `observation.object_body_velocity.enabled=true` is a config-only slip signal.
+- **Kalman filtering belongs in the reference.** perc2 object poses are unsmoothed. Plan a robust offline smoother with
+  rest snap and hand-object attachment during carries.
+- **Reference contact labels can penalise carrying.** If the reference hand is more than 18 mm from the object, the −10
+  unintended-contact penalty fires on the grip.
+- **Train/eval start mismatch.** Training resets hold 1 s with full assist; the evaluator starts unassisted at frame 0.
+- **Physics knobs (cone, impratio, friction, object scale, delay) replay unchecked** into the scored rollout:
+  off-limits. The sim uses pyramidal cone + impratio 20, which MuJoCo advises against.
+- **Plan (note 23 §E):**
+  - CPU reference audit first;
+  - smoother test on regenerated perc2 poses;
+  - then GPU batch G1 on public eps 11, 23, 13, 42 (+27): wrist-gain arms, ball damping, a policy bundle and reference
+    feed-forward. Full G1 is 30 runs, ≈ $75–100 on demand; a first slice is 16 runs, ≈ $40–55. Needs the owner's
+    go-ahead after day 1.
 
 ## Written, not run yet (first things to test)
 - `hands_mp.py` → `mkref.py` → `pipeline_ep.sh` → `score_sim.py`. `README_ref.md` lists the checks to do first:
@@ -167,17 +192,20 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
    - evaluate and `score_sim`.
 
    Then ep 22 and 27 from the snapshot.
-4. Perception fixes, validated on public episodes:
+4. Policy-stage levers (note 23 §E): CPU reference feasibility and contact-label audit; then batch G1 (wrist gains,
+   ball damping, actor object velocity, start alignment) on public episodes after the owner's go-ahead.
+5. Perception fixes, validated on public episodes:
    - detection check (perc4 verify);
    - marker spin for lid and cups;
    - VO drift (room map or loop closure);
    - track recovery (re-registration, bidirectional tracking, full-resolution depth);
-   - rest snap and table snap.
-5. Spoon: fit the template to the eval videos (`spoon/fit_spoon.py` skeleton), track it, decide the frame from
+   - rest snap and table snap;
+   - robust offline object smoothing (note 23).
+6. Spoon: fit the template to the eval videos (`spoon/fit_spoon.py` skeleton), track it, decide the frame from
    evidence; ask the owner for visual checks of overlays.
-6. Eval run: perception on the 20 eval videos → references → 20 trainings in parallel → evaluator → kit
+7. Eval run: perception on the 20 eval videos → references → 20 trainings in parallel → evaluator → kit
    `pack_submission.py` → owner uploads. Commit the exact code first (provenance).
-7. Iterate: up to 5 submissions a week, unlimited in the final 3 days. Train several seeds per episode and keep the
+8. Iterate: up to 5 submissions a week, unlimited in the final 3 days. Train several seeds per episode and keep the
    best.
 
 ## Expected score (estimates, not measurements)
