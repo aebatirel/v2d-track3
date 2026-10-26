@@ -4264,3 +4264,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     mean 0.452), A and B. The highest mean sim_vs_ref over 5 official evaluations (object trajectory checked identical)
     goes into the next pack.
   - **Falsified if** neither A nor B exceeds 0.452 + 0.01.
+- 11:15 UTC launched (code 7531779, **interruptible**, bid $0.80/h GPU):
+  - 57805229 `20261026-gl10A-7531779` (PRO 6000 S Virginia, $0.83/h all-in): eval_both variant;
+  - 57805240 `20261026-gl10B-7531779` (PRO 6000 Max-Q Czechia, $0.91/h): frozen variant.
+  - The first B offer (Bulgaria) vanished (404 no_such_ask). Expected ≈ 1.3 h each, ≈ $1.1–1.2 each; self-destroy.
+  - If an instance is paused (outbid), the restart re-runs the whole job (glock_public moves the earlier run aside).
