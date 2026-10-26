@@ -4017,3 +4017,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   submission, "then we can do that"): board slots for eval 25 (approach-1 planar half-cut, delivered as our own convex
   pieces so CoACD cannot refill it) and the blue-cup cavity for eval 10 (nesting). CPU build + FlashCHORD test first;
   GPU public twin (ep24) and eval reruns only after a pre-registered check. Submitted CD-O meshes stay unchanged.
+
+## 2026-10-26 — collision-copy slot carve, first CPU run (eval 25)
+- Code 38d75b1 `pipeline/interaction_carve.py slot` (approach-1 planar half-cut at one shared plane; untouched hulls kept
+  whole; thickness axes from the solids). Owner OK for the CPU test ("Sure"). Machine: this cloud container, CPU,
+  FlashCHORD venv (scratch `fcvenv`, MuJoCo 3.8.1, CoACD cache `approach1/fccache`).
+- Command: `interaction_carve.py slot meshes/library_v3/wooden_piece_1.glb meshes/library_v3/wooden_piece_2.glb
+  <ev25idfix refs/perc2mcks/ep25 reference> <scratch>/carve/ev25 --proxy` (the identity-correct reference the 0.789
+  submission's eval-25 policy tracks; library_v3 = the meshes that run simulated). GT-free.
+- **Rule written before the result:** pass if the cut's proxy lag at the assembled frames is ≤ 0.5 cm and ≤ 5°, the
+  default hulls' is ≥ 2 cm or ≥ 20°, and the collision-hull overlap at assembly drops below 1 cm³. If the default
+  already tracks (< 1 cm, < 10°) on this reference, the slot is not what blocks eval 25 and no GPU run is proposed.
+  The prototype on the old (swapped) reference gave default 0.94 cm / 101°, cut 0.05 cm / 0.5°.
