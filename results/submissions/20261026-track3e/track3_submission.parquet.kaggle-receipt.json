@@ -1,0 +1,52 @@
+{
+  "track": "track_3",
+  "file": "/home/user/v2d-track3/results/submissions/20261026-track3e/track3_submission.parquet",
+  "message": "fifth pack 26 Oct 2026 (eval 20 lathe-completed pitcher mesh, eval 32 seed 46, eval 10 gl10A2), code commit 526918b",
+  "submissions": {
+    "add_auc": {
+      "slug": "v2d-challenge-track3-auc",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261026-track3e/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - AUC",
+      "ref": 57671864,
+      "public_score": "0.80941",
+      "error": ""
+    },
+    "spider_sr": {
+      "slug": "v2d-challenge-track3-sp-sr",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261026-track3e/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - SP-SR",
+      "ref": 57671865,
+      "public_score": "0.85000",
+      "error": ""
+    },
+    "maniptrans_sr": {
+      "slug": "v2d-challenge-track3-mp-sr",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261026-track3e/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MP-SR",
+      "ref": 57671867,
+      "public_score": "0.65000",
+      "error": ""
+    },
+    "rpe_cm": {
+      "slug": "v2d-challenge-track3-rpe",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261026-track3e/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - RPE (cm)",
+      "ref": 57671869,
+      "public_score": "4.00841",
+      "error": ""
+    },
+    "mppe_cm": {
+      "slug": "v2d-challenge-track3-mppe",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261026-track3e/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MPPE (cm)",
+      "ref": 57671871,
+      "public_score": "2.96226",
+      "error": ""
+    }
+  }
+}

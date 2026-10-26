@@ -4376,3 +4376,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - all others kept by sha: KEEP_RESULTS pack4 → pack3 → pack2.
   - Expected (estimate): 10 +0.007 and 32 +0.014 sim_vs_ref vs the packed draws; eval 20 ≈ +0.1 registered (twin).
     Total ≈ +0.005 to +0.007 AUC, if the pitcher swap transfers.
+- 16:06 UTC **pack 5 uploaded** (five pose boards): **AUC 0.80941** (pack 4 0.81056); SP-SR 0.85, MP-SR 0.65,
+  RPE 4.01, MPPE 2.96.
+  - The leaderboard keeps our best (0.81056, 5th; DDD 0.82716).
+  - Packed sim_vs_ref: eval 10 0.456, eval 32 0.866 (mean 0.9164). Those two predict ≈ +0.003, so the eval-20
+    pitcher swap most likely cost ≈ −0.004 (confounded, one submission).
+  - The twin-based mesh choice did not transfer. Reverting it because of this would be a decision on an eval result:
+    put to the owner.
