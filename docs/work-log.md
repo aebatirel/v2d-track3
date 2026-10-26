@@ -4189,3 +4189,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Rule → **eval 25 = carve s42** (0.792 > current 0.712 ± 0.189 with its 0.335 collapse; carve s42's minimum is 0.618).
 - **Eval 32, frozen recipe s43:** 0.7016 ± 0.127 (chosen 40M) < s42 0.779 → **eval 32 keeps fr3233 s42**. Eval 33 s43
   still training (09:26 UTC).
+- ~09:45 UTC **owner question: train many seeds, keep the ones that start well?** CPU analysis, no rental
+  (`docs/research/seed-race-20261026/`, `early_predict.py` → `early_predict.json`; 31 standard-learner curves, GT-free):
+  - score at 40 % vs final: Pearson 0.89, rank 0.82; R² of the final: level at 40 % 0.79, slope 40→60 % 0.04, level at
+    60 % 0.81;
+  - same-episode pairs > 0.1 apart at 40 %: the leader finishes ahead in 30/36;
+  - late jumps 2/31 (public ep18 0.24 → 0.82; eval 25 s42 0.50 → 0.89; s42 dipped to 0.36 / 0.42 at 60 / 80 %, where
+    s43 led).
+  - Proposed (not adopted): a seed race (asynchronous successive halving, one cut at 40 % with 3 evaluations, top third
+    continues), ≈ $12–13 per episode for 8 seeds, ≈ $23 for 16; credit $31.74 at 09:33 UTC with three boxes running.

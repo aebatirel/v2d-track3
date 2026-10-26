@@ -2,6 +2,11 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~09:45 UTC: eval 25 → carve s42; eval 32 keeps s42; eval 10 / eval 33 still running; seed race proposed
+- Waiting: eval-10 carve s42 / s43 and eval-33 frozen s43 (≈ 10:30 UTC), then one pack and upload.
+- Owner question on many seeds: analysis and proposal in `docs/research/seed-race-20261026/README.md` (level at 40 %
+  predicts the final, R² 0.79; one cut at 40 %; ≈ $12–13 per episode for 8 seeds). Not rented; needs the owner's go.
+
 ## 2026-10-26 ~07:35 UTC: batch running (owner go-ahead); forensics delivered
 - Running (credit $41.63 at launch):
   - eval-25 slot carve, standard learner s42 / s43 (57773973 / 57773975), results ≈ 09:30 UTC;
