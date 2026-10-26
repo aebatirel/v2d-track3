@@ -45,9 +45,15 @@ if [ -n "${PICK:-}" ]; then                                         # PICK="EP:R
   for x in $PICK; do                                               # (e.g. a second seed trained on the same reference)
     IFS=: read -r ep r kind <<< "$x"; d=/content/pick/$r; mkdir -p $d   # EP:RUN:final = that run's learner choice
     sub=results/glock_public/ep$ep/best; [ "$kind" = final ] && sub=results/final_eval/ep$ep   # (std_learner / eval_both)
+    if [ "${kind#ck=}" != "$kind" ]; then                          # EP:RUN:ck=<path in the run> (2026-10-26: a carve_rerun
+      f=${kind#ck=}; hf download "$HF_STORE" --repo-type dataset --include "runs/$r/$f" --local-dir $d > /dev/null \
+        || { log "pack_eval: PICK $x download FAILED" >> $J; exit 1; }   # checkpoint, chosen by the pre-registered rule)
+      p=$d/runs/$r/$f
+    else
     hf download "$HF_STORE" --repo-type dataset --include "runs/$r/$sub/*" --local-dir $d > /dev/null \
       || { log "pack_eval: PICK $x download FAILED" >> $J; exit 1; }
     p=$d/runs/$r/$sub/policy.safetensors
+    fi
     [ -s $p ] || { log "pack_eval: PICK $x has no best/policy.safetensors" >> $J; exit 1; }
     python -c "import json, sys; f = sys.argv[1]; m = json.load(open(f)); m[sys.argv[2]] = sys.argv[3]; json.dump(m, open(f, 'w'), indent=1, sort_keys=True)" \
       $F/checkpoints.json $ep $p
