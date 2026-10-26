@@ -4175,3 +4175,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
      checked identical before comparing).
   3. Then one pack: eval-25 winner (its own rule), these winners, pack 3's rollouts for unchanged checkpoints and
      pack 2's seed-43 rollouts for 3/5/15/16 (KEEP_RESULTS="20261025-pack3-3758189 20261025-pack2-46b8389"), upload.
+- 07:32 UTC launched (code 6a8a0e2): 57781951 `20261026-c10s42-6a8a0e2` (Max-Q Poland $1.27/h) and 57781953
+  `20261026-c10s43-6a8a0e2` (Max-Q Virginia $1.33/h): eval-10 carve, seeds 42/43; 57781954 `20261026-fr3233s43-6a8a0e2`
+  (WS Serbia $1.51/h): frozen recipe seed 43 for 32 + 33. Expected ≈ 2.7 h / 2.7 h / 2 h, ≈ $11 together.
