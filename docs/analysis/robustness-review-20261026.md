@@ -260,6 +260,26 @@ and cannot be separated today [E].
 - On the hidden side, our submitted meshes cost registration accuracy: the pitcher twin scores 0.57 with our mesh
   vs 0.95 with the scan [M]. CD-O is 11th.
 
+**Mesh library lineage (checked 26 Oct by md5 of `meshes/library_*/*.glb`):**
+
+| Library | Date | What changed | Status |
+|---|---|---|---|
+| v1 | 21 Oct | first reconstructions from the public videos | dropped: pot and dust pan reached 3.5–5.5 cm below the table |
+| v2 | 21 Oct | pot and dust pan rebuilt (`--below_carve`) | identical to v3 except the sweeper |
+| v3 | 22 Oct | v2 + the sweeper's underside flattened (it fell over) | **submitted** |
+| v3x | 25 Oct | v3 + the v5 beige cup | submitted for eval 8 |
+| v4 | 24 Oct | v3 + flattened boards | dropped: ep24 perception 0.795 → 0.029 |
+| v5 | 25 Oct | full rebuild without the public scans (owner directive 24 Oct) | not adopted: lid, both boards and pot failed to build; CD-O worse than v2 for 4 of 5 objects; only the beige cup improved |
+
+- v1–v4 were fused along tracks templated on the public scans, with the scans carving the other objects (work log
+  22 Oct; organiser email question 3, still not sent). v5 is the scan-free rebuild, and it came out worse. So "v3 is
+  older" is not the problem. The unresolved questions are v3's provenance and whether a scan-free library can match it.
+- **Stale defaults:** `ops/jobs/glock_public.sh` (public twins) defaults to `library_v2`, `ops/jobs/perc_sweep.sh`
+  hard-codes `library_v2`, and `ops/jobs/own_eval.sh` defaults to `library_v1`. The eval, pack and video jobs default
+  to v3. Today v2 differs from v3 only in the sweeper, so public twins of evals 19 and 30 (ep18, ep31) may have
+  been validated on a sweeper we do not submit. Fix: one `meshes/current.json` manifest (the adopted mesh per object,
+  with provenance), read by every job; a job refuses another library unless it is named explicitly.
+
 **Fragility (new finding):**
 - **The pack builds one `/content/assets` per pack, keyed by object name, from `ASSET_PIECES`, which is set by
   hand** (`ops/jobs/pack_eval.sh` lines 20–33).
