@@ -1,0 +1,362 @@
+{
+ "1:white_pot": {
+  "img": "img/ev1_white_pot.jpg",
+  "frame": 228,
+  "w": 480,
+  "h": 425,
+  "tag": "white_pot_k228",
+  "iou": 0.83,
+  "speed_mm": 1.47,
+  "occl": 0.0
+ },
+ "1:white_pot_lid": {
+  "img": "img/ev1_white_pot_lid.jpg",
+  "frame": 0,
+  "w": 480,
+  "h": 391,
+  "tag": "white_pot_lid_k0",
+  "iou": 0.91,
+  "speed_mm": 0.0,
+  "occl": 0.028
+ },
+ "3:white_pot": {
+  "img": "img/ev3_white_pot.jpg",
+  "frame": 252,
+  "w": 480,
+  "h": 423,
+  "tag": "white_pot_k252",
+  "iou": 0.84,
+  "speed_mm": 0.91,
+  "occl": 0.0
+ },
+ "3:wooden_spoon": {
+  "img": "img/ev3_wooden_spoon.jpg",
+  "frame": 297,
+  "w": 480,
+  "h": 370,
+  "tag": "wooden_spoon_k297",
+  "iou": 0.83,
+  "speed_mm": 1.31,
+  "occl": 0.0
+ },
+ "5:white_pot": {
+  "img": "img/ev5_white_pot.jpg",
+  "frame": 228,
+  "w": 480,
+  "h": 426,
+  "tag": "white_pot_k228",
+  "iou": 0.8,
+  "speed_mm": 1.23,
+  "occl": 0.0
+ },
+ "5:wooden_spoon": {
+  "img": "img/ev5_wooden_spoon.jpg",
+  "frame": 240,
+  "w": 480,
+  "h": 384,
+  "tag": "wooden_spoon_k240",
+  "iou": 0.73,
+  "speed_mm": 1.43,
+  "occl": 0.0
+ },
+ "6:white_pot": {
+  "img": "img/ev6_white_pot.jpg",
+  "frame": 200,
+  "w": 480,
+  "h": 424,
+  "tag": "white_pot_k200",
+  "iou": 0.82,
+  "speed_mm": 0.95,
+  "occl": 0.0
+ },
+ "6:wooden_spoon": {
+  "img": "img/ev6_wooden_spoon.jpg",
+  "frame": 224,
+  "w": 480,
+  "h": 359,
+  "tag": "wooden_spoon_k224",
+  "iou": 0.78,
+  "speed_mm": 0.8,
+  "occl": 0.0
+ },
+ "8:beige_cup": {
+  "img": "img/ev8_beige_cup.jpg",
+  "frame": 21,
+  "w": 480,
+  "h": 435,
+  "tag": "beige_cup_k21",
+  "iou": 0.94,
+  "speed_mm": 1.22,
+  "occl": 0.0
+ },
+ "8:white_pot": {
+  "img": "img/ev8_white_pot.jpg",
+  "frame": 40,
+  "w": 480,
+  "h": 440,
+  "tag": "white_pot_k40",
+  "iou": 0.83,
+  "speed_mm": 1.49,
+  "occl": 0.0
+ },
+ "10:blue_cup": {
+  "img": "img/ev10_blue_cup.jpg",
+  "frame": 32,
+  "w": 480,
+  "h": 389,
+  "tag": "blue_cup_k32",
+  "iou": 0.87,
+  "speed_mm": 1.48,
+  "occl": 0.0
+ },
+ "10:beige_cup": {
+  "img": "img/ev10_beige_cup.jpg",
+  "frame": 16,
+  "w": 480,
+  "h": 415,
+  "tag": "beige_cup_k16",
+  "iou": 0.82,
+  "speed_mm": 1.07,
+  "occl": 0.0
+ },
+ "14:blue_cup": {
+  "img": "img/ev14_blue_cup.jpg",
+  "frame": 16,
+  "w": 480,
+  "h": 359,
+  "tag": "blue_cup_k16",
+  "iou": 0.9,
+  "speed_mm": 1.18,
+  "occl": 0.0
+ },
+ "14:plastic_dish_rack": {
+  "img": "img/ev14_plastic_dish_rack.jpg",
+  "frame": 16,
+  "w": 480,
+  "h": 445,
+  "tag": "plastic_dish_rack_k16",
+  "iou": 0.77,
+  "speed_mm": 0.67,
+  "occl": 0.05
+ },
+ "15:plastic_dish_rack": {
+  "img": "img/ev15_plastic_dish_rack.jpg",
+  "frame": 24,
+  "w": 480,
+  "h": 393,
+  "tag": "plastic_dish_rack_k24",
+  "iou": 0.77,
+  "speed_mm": 0.67,
+  "occl": 0.0
+ },
+ "15:wooden_spoon": {
+  "img": "img/ev15_wooden_spoon.jpg",
+  "frame": 0,
+  "w": 480,
+  "h": 359,
+  "tag": "wooden_spoon_k0",
+  "iou": 0.79,
+  "speed_mm": 0.0,
+  "occl": 0.0
+ },
+ "16:plastic_dish_rack": {
+  "img": "img/ev16_plastic_dish_rack.jpg",
+  "frame": 16,
+  "w": 480,
+  "h": 440,
+  "tag": "plastic_dish_rack_k16",
+  "iou": 0.77,
+  "speed_mm": 0.9,
+  "occl": 0.0
+ },
+ "16:wooden_spoon": {
+  "img": "img/ev16_wooden_spoon.jpg",
+  "frame": 16,
+  "w": 480,
+  "h": 421,
+  "tag": "wooden_spoon_k16",
+  "iou": 0.78,
+  "speed_mm": 0.59,
+  "occl": 0.0
+ },
+ "19:mini_sweeper": {
+  "img": "img/ev19_mini_sweeper.jpg",
+  "frame": 168,
+  "w": 480,
+  "h": 376,
+  "tag": "mini_sweeper_k168",
+  "iou": 0.83,
+  "speed_mm": 1.47,
+  "occl": 0.0
+ },
+ "19:mini_dust_pan": {
+  "img": "img/ev19_mini_dust_pan.jpg",
+  "frame": 96,
+  "w": 480,
+  "h": 426,
+  "tag": "mini_dust_pan_k96",
+  "iou": 0.81,
+  "speed_mm": 1.29,
+  "occl": 0.0
+ },
+ "20:blue_cup": {
+  "img": "img/ev20_blue_cup.jpg",
+  "frame": 0,
+  "w": 480,
+  "h": 425,
+  "tag": "blue_cup_k0",
+  "iou": 0.85,
+  "speed_mm": 0.0,
+  "occl": 0.0
+ },
+ "20:water_pitcher": {
+  "img": "img/ev20_water_pitcher.jpg",
+  "frame": 0,
+  "w": 480,
+  "h": 413,
+  "tag": "water_pitcher_k0",
+  "iou": 0.9,
+  "speed_mm": 0.0,
+  "occl": 0.0
+ },
+ "25:wooden_piece_1": {
+  "img": "img/ev25_wooden_piece_1.jpg",
+  "frame": 32,
+  "w": 480,
+  "h": 359,
+  "tag": "wooden_piece_1_k32",
+  "iou": 0.86,
+  "speed_mm": 1.34,
+  "occl": 0.0
+ },
+ "25:wooden_piece_2": {
+  "img": "img/ev25_wooden_piece_2.jpg",
+  "frame": 88,
+  "w": 480,
+  "h": 427,
+  "tag": "wooden_piece_2_k88",
+  "iou": 0.93,
+  "speed_mm": 1.15,
+  "occl": 0.0
+ },
+ "28:plastic_dish_rack": {
+  "img": "img/ev28_plastic_dish_rack.jpg",
+  "frame": 136,
+  "w": 480,
+  "h": 445,
+  "tag": "plastic_dish_rack_k136",
+  "iou": 0.78,
+  "speed_mm": 0.93,
+  "occl": 0.0
+ },
+ "28:white_pot": {
+  "img": "img/ev28_white_pot.jpg",
+  "frame": 8,
+  "w": 480,
+  "h": 411,
+  "tag": "white_pot_k8",
+  "iou": 0.81,
+  "speed_mm": 0.61,
+  "occl": 0.001
+ },
+ "30:mini_sweeper": {
+  "img": "img/ev30_mini_sweeper.jpg",
+  "frame": 224,
+  "w": 480,
+  "h": 416,
+  "tag": "mini_sweeper_k224",
+  "iou": 0.79,
+  "speed_mm": 0.62,
+  "occl": 0.046
+ },
+ "30:plastic_dish_rack": {
+  "img": "img/ev30_plastic_dish_rack.jpg",
+  "frame": 16,
+  "w": 480,
+  "h": 372,
+  "tag": "plastic_dish_rack_k16",
+  "iou": 0.76,
+  "speed_mm": 0.76,
+  "occl": 0.036
+ },
+ "32:blue_cup": {
+  "img": "img/ev32_blue_cup.jpg",
+  "frame": 0,
+  "w": 480,
+  "h": 359,
+  "tag": "blue_cup_k0",
+  "iou": 0.92,
+  "speed_mm": 0.0,
+  "occl": 0.0
+ },
+ "32:wooden_spoon": {
+  "img": "img/ev32_wooden_spoon.jpg",
+  "frame": 0,
+  "w": 480,
+  "h": 359,
+  "tag": "wooden_spoon_k0",
+  "iou": 0.81,
+  "speed_mm": 0.0,
+  "occl": 0.0
+ },
+ "33:blue_cup": {
+  "img": "img/ev33_blue_cup.jpg",
+  "frame": 288,
+  "w": 480,
+  "h": 450,
+  "tag": "blue_cup_k288",
+  "iou": 0.86,
+  "speed_mm": 1.04,
+  "occl": 0.0
+ },
+ "33:wooden_spoon": {
+  "img": "img/ev33_wooden_spoon.jpg",
+  "frame": 24,
+  "w": 480,
+  "h": 426,
+  "tag": "wooden_spoon_k24",
+  "iou": 0.71,
+  "speed_mm": 0.98,
+  "occl": 0.0
+ },
+ "35:wooden_spoon": {
+  "img": "img/ev35_wooden_spoon.jpg",
+  "frame": 8,
+  "w": 480,
+  "h": 427,
+  "tag": "wooden_spoon_k8",
+  "iou": 0.85,
+  "speed_mm": 1.31,
+  "occl": 0.0
+ },
+ "36:wooden_spoon": {
+  "img": "img/ev36_wooden_spoon.jpg",
+  "frame": 24,
+  "w": 480,
+  "h": 383,
+  "tag": "wooden_spoon_k24",
+  "iou": 0.78,
+  "speed_mm": 0.4,
+  "occl": 0.0
+ },
+ "37:wooden_spoon": {
+  "img": "img/ev37_wooden_spoon.jpg",
+  "frame": 24,
+  "w": 480,
+  "h": 415,
+  "tag": "wooden_spoon_k24",
+  "iou": 0.73,
+  "speed_mm": 0.89,
+  "occl": 0.0
+ },
+ "38:mini_dust_pan": {
+  "img": "img/ev38_mini_dust_pan.jpg",
+  "frame": 240,
+  "w": 480,
+  "h": 382,
+  "tag": "mini_dust_pan_k240",
+  "iou": 0.86,
+  "speed_mm": 1.27,
+  "occl": 0.0
+ }
+}

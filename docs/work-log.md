@@ -4398,3 +4398,20 @@ physics-based meshes, …), research methods in depth, test on public data. Outp
     with splatted handle 0.468; with library appendages 0.413 (library 0.437, approach-2 lathe 0.319).
   - Vast market check (read-only, 16:20 UTC): PRO 6000 $1.69/h, A100 $0.70–0.79/h, RTX 6000 Ada $0.76/h.
   - Report: `docs/research/mesh-2026-10-26/README.md`. STATUS updated. No GPU rented.
+- ~17:40 UTC (same session) owner: "show me the meshes we generate for eval with these methods".
+  - **Eval depth was never cached** (store has `cache/depth/public` only; work log 3913), so the multi-frame methods
+    cannot run on eval without a GPU FoundationStereo pass.
+  - Single-frame fallback from the frame-0 perception dump (`scripts/obs_f0.py`), validated on public data first [D]:
+    - points are accurate (median 0.7–1.5 mm) but cover only 24–30 % of a cup or pot, 51 % of the lid;
+    - lathes from them fail: blue cup ep21 1.279 and ep22 1.284 with **7/7 flips**, lid ep2 1.095; pot axis locks
+      onto the handle.
+    - Rejected, not run on eval.
+  - Built instead, GT-free on eval:
+    - colour crops and mesh overlays for all 36 eval pairs (`crops.py`, our evperc tracks `20261025-evperc-4f596df`,
+      at-rest frames, every 8th frame a candidate; eval 8 beige = v3x as submitted);
+    - multi-view renders of the 12 submitted meshes (`scripts/render_views.py`);
+    - an interactive page (`eval-view/index.html`: three.js viewer of the kit-decimated submitted meshes plus the
+      public comparisons, section cut, eval gallery).
+  - Visual review panel running (workflow `wf_c69f9d10-f06`): reviewer per pair, then skeptic verification of
+    flagged issues, then per-object synthesis.
+  - Vast market read-only; no GPU rented.

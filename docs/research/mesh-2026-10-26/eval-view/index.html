@@ -1,0 +1,271 @@
+<title>Eval Mesh Inspector</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: inspection sheet. Status strip, then a viewer bench (mesh list + 3-D stage + readout), then the eval
+   episode gallery, then the plan. Cool steel neutrals; submitted meshes in sand, new-method meshes in signal blue,
+   scans in scan green. */
+:root {
+  --bg: #f1f4f6; --panel: #ffffff; --ink: #142029; --muted: #566572; --line: #d3dbe1; --stage: #e6ebef;
+  --accent: #2463c9; --accent-soft: #dbe6f8; --sand: #b9a17d; --scan: #2f9a68;
+  --good: #2e7d4f; --warn: #b26a00; --bad: #b8382f; --chip: #eef2f5;
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1418; --panel: #161d23; --ink: #e3e9ee; --muted: #93a2ae; --line: #2a343c; --stage: #0b1013;
+  --accent: #6c9cf0; --accent-soft: #1d2a40; --sand: #c8b190; --scan: #4cc38a;
+  --good: #5cc28a; --warn: #e3a34a; --bad: #f07a70; --chip: #1e262d; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1418; --panel: #161d23; --ink: #e3e9ee; --muted: #93a2ae; --line: #2a343c; --stage: #0b1013;
+  --accent: #6c9cf0; --accent-soft: #1d2a40; --sand: #c8b190; --scan: #4cc38a;
+  --good: #5cc28a; --warn: #e3a34a; --bad: #f07a70; --chip: #1e262d; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; letter-spacing: .01em; text-wrap: balance; margin: 0 }
+h1 { font-size: clamp(30px, 4.2vw, 44px); line-height: 1.05 }
+h2 { font-size: 26px }
+h3 { font-size: 18px }
+p { margin: 0; max-width: 72ch }
+.eyebrow { font: 500 12px/1 var(--f-data); text-transform: uppercase; letter-spacing: .12em; color: var(--muted) }
+.num { font-family: var(--f-data); font-variant-numeric: tabular-nums }
+header { display: grid; gap: 12px }
+.lede { color: var(--muted); font-size: 16px }
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 6px }
+.stat b { font: 600 24px/1.1 var(--f-display) }
+.stat span { color: var(--muted); font-size: 13px }
+.stat.flag { border-color: var(--warn) }
+section { display: grid; gap: 14px }
+.bench { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 14px; align-items: start }
+@media (max-width: 860px) { .bench { grid-template-columns: 1fr } .list { max-height: 300px } }
+.list { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px; display: grid; gap: 4px;
+  max-height: 720px; overflow: auto }
+.list h4 { margin: 10px 6px 4px; font: 500 11px/1.2 var(--f-data); text-transform: uppercase; letter-spacing: .1em; color: var(--muted) }
+.item { all: unset; cursor: pointer; display: grid; grid-template-columns: 10px 1fr auto; gap: 8px; align-items: center;
+  padding: 7px 8px; border-radius: 4px; font-size: 14px }
+.item:hover { background: var(--chip) }
+.item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px }
+.item[aria-pressed="true"] { background: var(--accent-soft) }
+.dot { width: 10px; height: 10px; border-radius: 50% }
+.item .num { font-size: 12px; color: var(--muted) }
+.stagebox { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: grid; min-width: 0 }
+#stage { width: 100%; aspect-ratio: 16 / 10; max-width: 100%; background: var(--stage); display: block; touch-action: none }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--line); font-size: 13px }
+.controls label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer }
+.controls input[type=range] { width: 160px; accent-color: var(--accent) }
+.controls input[type=checkbox] { accent-color: var(--accent) }
+.readout { padding: 12px 14px; border-top: 1px solid var(--line); display: grid; gap: 6px }
+.readout .row { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted) }
+.readout .row b { color: var(--ink); font-weight: 500 }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--muted) }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px }
+@media (max-width: 420px) { .gallery { grid-template-columns: 1fr } }
+.ep { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; display: grid; gap: 10px; min-width: 0 }
+.ep header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px }
+.ep .imgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px }
+.ep figure { margin: 0; display: grid; gap: 4px; min-width: 0 }
+.ep img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain; border-radius: 4px; background: var(--stage); display: block }
+.ep figcaption { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap }
+.pill { font: 500 11px/1 var(--f-data); padding: 4px 7px; border-radius: 999px; background: var(--chip); color: var(--muted); white-space: nowrap }
+.pill.good { color: var(--good) } .pill.warn { color: var(--warn) } .pill.bad { color: var(--bad) }
+.qa { font-size: 13px; color: var(--muted); display: grid; gap: 4px }
+.qa b { color: var(--ink); font-weight: 500 }
+table { border-collapse: collapse; width: 100%; font-size: 14px }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing: .06em; color: var(--muted) }
+.tablewrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 6px }
+.note { font-size: 13px; color: var(--muted) }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">V2D Track 3 · object meshes · 26 Oct 2026</div>
+    <h1>Eval Mesh Inspector</h1>
+    <p class="lede">The meshes we submit for the 20 eval episodes, what they look like against the eval videos, and what
+      the new mesh methods produce on public episodes, where a scan lets us measure them. New-method meshes for the eval
+      episodes need one GPU step first (see the end of the page).</p>
+  </header>
+
+  <div class="strip">
+    <div class="stat"><span>CD-O on the board (lower is better)</span><b class="num">0.402 cm</b><span>leaders 0.112 – 0.154 cm</span></div>
+    <div class="stat"><span>Blue cup, public episode 21 (scored against the scan)</span><b class="num">0.523 → 0.291 cm</b><span>submitted mesh → new thin-wall lathe</span></div>
+    <div class="stat"><span>Registration offset, same cup</span><b class="num">10.0 → 4.1 mm</b><span>0 flips in 7 scorer seeds</span></div>
+    <div class="stat flag"><span>New meshes for eval</span><b>Waiting on eval depth</b><span>no depth cache for eval episodes; one GPU run</span></div>
+  </div>
+
+  <section id="viewer">
+    <div class="eyebrow">3-D viewer</div>
+    <h2>Look at the meshes</h2>
+    <p class="note">Drag to rotate, scroll or pinch to zoom. The section cut slices the mesh so you can see wall
+      thickness: the real cups have 2–3 mm walls. Every mesh here went through the kit's own 4,096-face decimation, so
+      this is what Kaggle receives.</p>
+    <div class="bench">
+      <nav class="list" id="list" aria-label="Meshes"></nav>
+      <div class="stagebox">
+        <canvas id="stage" aria-label="3-D view of the selected mesh"></canvas>
+        <div class="controls">
+          <label for="cut"><input type="checkbox" id="cut"> Section cut</label>
+          <label for="cutpos">position <input type="range" id="cutpos" min="-1" max="1" step="0.01" value="0"></label>
+          <label for="scan"><input type="checkbox" id="scan" checked> Show scan (comparisons only)</label>
+          <label for="wire"><input type="checkbox" id="wire"> Wireframe</label>
+          <label for="spin"><input type="checkbox" id="spin" checked> Turn slowly</label>
+        </div>
+        <div class="readout" id="readout"></div>
+      </div>
+    </div>
+    <div class="legend"><span><i style="background:var(--sand)"></i>submitted for eval</span><span><i style="background:var(--accent)"></i>new method (public episode)</span><span><i style="background:var(--scan)"></i>public scan, diagnostic only</span></div>
+  </section>
+
+  <section id="eval">
+    <div class="eyebrow">Eval episodes</div>
+    <h2>Our meshes on the eval videos</h2>
+    <p class="note">One colour frame per object, chosen without ground truth (object at rest, fully in view). Red tint:
+      our submitted mesh projected with our own track. Green line: the object's outline found in the image. Where the
+      two disagree, either the mesh shape or the track is off. A review panel checked each image; its notes are under
+      the pictures.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="plan">
+    <div class="eyebrow">Next</div>
+    <h2>What it takes to build new eval meshes</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Step</th><th>Why</th><th>Cost</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Recompute stereo depth for the eval videos and store it</td><td>The new methods need depth from many frames. Only frame 0 of each eval episode was kept; a single frame failed on public data (CD-O 1.1–1.3 cm, flips).</td><td class="num">≈ $2–4, 1 GPU, ≈ 1 h</td><td><span class="pill warn">needs go-ahead</span></td></tr>
+        <tr><td>Thin-wall lathe for cups, pot and lid (CPU here)</td><td>Blue cup 0.523 → 0.291 cm on public data; pot not better yet.</td><td class="num">$0</td><td><span class="pill">ready, waits on depth</span></td></tr>
+        <tr><td>Generative probe: SAM 3D, TRELLIS.2, Hunyuan3D-2.1 on our crops, then fit to our points</td><td>The only route in the literature to about 1 % of object size; never tried here.</td><td class="num">≈ $4–8, ceiling $12</td><td><span class="pill warn">needs permission + go-ahead</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const canvas = document.getElementById('stage');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.localClippingEnabled = true;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1.6, 0.001, 50);
+  const controls = new THREE.OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, 0.85));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(1, 2, 1.5); scene.add(sun);
+  const fill = new THREE.DirectionalLight(0xffffff, 0.3); fill.position.set(-1.5, -0.5, -1); scene.add(fill);
+  const clip = new THREE.Plane(new THREE.Vector3(1, 0, 0), 0);
+  let meshes = {}, current = null, group = new THREE.Group(); scene.add(group);
+  let extentR = 0.1;
+
+  function themeColors() {
+    renderer.setClearColor(new THREE.Color(css('--stage') || '#e6ebef'));
+  }
+  themeColors();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', themeColors);
+  new MutationObserver(themeColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  function b64(s, Type) { const bin = atob(s); const buf = new ArrayBuffer(bin.length); const u = new Uint8Array(buf);
+    for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new Type(buf); }
+  function geometry(m) {
+    if (m._g) return m._g;
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(b64(m.v, Float32Array), 3));
+    g.setIndex(new THREE.BufferAttribute(b64(m.f, Uint32Array), 1));
+    g.computeVertexNormals(); g.computeBoundingBox(); g.computeBoundingSphere();
+    m._g = g; return g;
+  }
+  function colorFor(m) {
+    if (m.group === 'submitted' || m.id.endsWith('_lib')) return css('--sand');
+    if (m.id.endsWith('_scan')) return css('--scan');
+    return css('--accent');
+  }
+  function material(color, opts) {
+    return new THREE.MeshStandardMaterial(Object.assign({ color: new THREE.Color(color), roughness: 0.62, metalness: 0.02,
+      side: THREE.DoubleSide, clippingPlanes: cutOn() ? [clip] : [], wireframe: document.getElementById('wire').checked }, opts || {}));
+  }
+  const cutOn = () => document.getElementById('cut').checked;
+
+  function show(id) {
+    current = id; const m = meshes[id];
+    document.querySelectorAll('.item').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === id)));
+    group.clear();
+    const g = geometry(m);
+    group.add(new THREE.Mesh(g, material(colorFor(m))));
+    const isCmp = m.group.startsWith('cmp_');
+    if (isCmp && !m.id.endsWith('_scan') && document.getElementById('scan').checked) {
+      const s = Object.values(meshes).find(q => q.group === m.group && q.id.endsWith('_scan'));
+      if (s) group.add(new THREE.Mesh(geometry(s), material(css('--scan'), { transparent: true, opacity: 0.35, depthWrite: false })));
+    }
+    const bs = g.boundingSphere; extentR = bs.radius;
+    group.position.set(-bs.center.x, -bs.center.y, -bs.center.z);
+    updateClip();
+    if (!show._framed || show._framed !== m.group) {
+      camera.position.set(bs.radius * 2.2, bs.radius * 1.4, bs.radius * 2.6); controls.target.set(0, 0, 0);
+      camera.near = bs.radius / 100; camera.far = bs.radius * 100; camera.updateProjectionMatrix(); show._framed = m.group;
+    }
+    readout(m);
+  }
+  function updateClip() { clip.constant = parseFloat(document.getElementById('cutpos').value) * extentR;
+    group.children.forEach(o => { o.material.clippingPlanes = cutOn() ? [clip] : []; o.material.needsUpdate = true; }); }
+  function readout(m) {
+    const r = document.getElementById('readout');
+    const rows = [];
+    rows.push(`<h3>${m.label}</h3>`);
+    const kv = [];
+    if (m.cdo !== undefined) kv.push(`CD-O vs public scan <b class="num">${m.cdo.toFixed(3)} cm</b>`);
+    if (m.add !== undefined) kv.push(`registration offset <b class="num">${m.add.toFixed(1)} mm</b>`);
+    kv.push(`extent <b class="num">${m.ext_cm.join(' × ')} cm</b>`);
+    kv.push(`faces <b class="num">${m.nf}</b>`);
+    rows.push(`<div class="row">${kv.map(x => `<span>${x}</span>`).join('')}</div>`);
+    if (m.note) rows.push(`<div class="row"><span>${m.note}</span></div>`);
+    r.innerHTML = rows.join('');
+  }
+  function resize() { const w = canvas.clientWidth, h = canvas.clientHeight; if (canvas.width !== Math.round(w * renderer.getPixelRatio()) || canvas.height !== Math.round(h * renderer.getPixelRatio())) {
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); } }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) document.getElementById('spin').checked = false;
+  function loop() { resize(); if (document.getElementById('spin').checked) group.rotation.y += 0.004; controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); }
+
+  ['cut', 'wire', 'scan'].forEach(id => document.getElementById(id).addEventListener('change', () => current && show(current)));
+  document.getElementById('cutpos').addEventListener('input', updateClip);
+
+  const GROUPS = [['submitted', 'Submitted for eval'], ['cmp_cup', 'Blue cup · public ep 21/22'], ['cmp_pot', 'White pot · public ep 41']];
+  fetch('meshes.json').then(r => r.json()).then(list => {
+    list.forEach(m => meshes[m.id] = m);
+    const nav = document.getElementById('list');
+    GROUPS.forEach(([g, title]) => {
+      const h = document.createElement('h4'); h.textContent = title; nav.appendChild(h);
+      list.filter(m => m.group === g).forEach(m => {
+        const b = document.createElement('button'); b.className = 'item'; b.dataset.id = m.id; b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = `<span class="dot" style="background:${colorFor(m)}"></span><span>${m.label}</span><span class="num">${m.cdo !== undefined ? m.cdo.toFixed(3) : ''}</span>`;
+        b.addEventListener('click', () => show(m.id)); nav.appendChild(b);
+      });
+    });
+    show('cup_lathe21'); loop();
+  }).catch(() => { document.getElementById('readout').textContent = 'The mesh file did not load. Reload the page to try again.'; });
+
+  fetch('eval.json').then(r => r.json()).then(eps => {
+    const gal = document.getElementById('gallery');
+    eps.forEach(e => {
+      const card = document.createElement('article'); card.className = 'ep';
+      const figs = e.objects.map(o => `<figure><img src="${o.img}" alt="Eval ${e.episode}, ${o.label}: frame ${o.frame} with our mesh projected" loading="lazy" width="${o.w}" height="${o.h}">
+        <figcaption><span>${o.label}</span><span class="num">frame ${o.frame} · ${o.source}</span></figcaption></figure>`).join('');
+      const qa = e.objects.map(o => o.qa ? `<div><b>${o.label}:</b> <span class="pill ${o.qa.cls}">${o.qa.verdict}</span> ${o.qa.text}</div>` : '').join('');
+      card.innerHTML = `<header><h3>Eval ${e.episode}</h3><span class="pill">${e.objects.length} object${e.objects.length > 1 ? 's' : ''}</span></header>
+        <div class="imgs">${figs}</div>${qa ? `<div class="qa">${qa}</div>` : ''}`;
+      gal.appendChild(card);
+    });
+  }).catch(() => { document.getElementById('gallery').textContent = 'The eval images did not load. Reload the page to try again.'; });
+})();
+</script>

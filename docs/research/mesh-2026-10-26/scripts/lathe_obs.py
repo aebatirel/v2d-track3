@@ -111,7 +111,7 @@ def rot_consistency(P, c, a, angles=(45, 90, 135), trim=0.8):
     return float(np.mean(out))
 
 
-def fit_axis(P, C, iters=8, nclust=6):
+def fit_axis(P, C, iters=8, nclust=6, knn=24):
     """Axis of a body of revolution from observed points + camera centres (no GT).
     Directions: line-complex fits (Pottmann & Randrup: normal lines meet the axis; IRLS) on all points and on NCLUST
     spatial clusters, plus the PCA axes of all points and of the inside-viewed points. Each direction is placed by
@@ -120,7 +120,7 @@ def fit_axis(P, C, iters=8, nclust=6):
     handle; PCA alone fails on squat objects.) Returns (consistency_mm, centre, direction, n_candidates)."""
     from scipy.cluster.vq import kmeans2
     c0 = P.mean(0); X = P - c0
-    n, planar = normals(X, C - c0)
+    n, planar = normals(X, C - c0, k=knn)
     nb = np.cross(X, n)
     w0 = planar.clip(0, 1) ** 2
     dirs = [_irls(n, nb, planar, w0.copy(), iters)[0]]
@@ -191,6 +191,7 @@ def revolve(profile, nseg=96):
 
 
 def main():
+    global DH
     p = argparse.ArgumentParser()
     p.add_argument('obs'); p.add_argument('out')
     p.add_argument('--solid', type=int, default=0, help='1: no inner wall (closed solid of the outer profile)')
@@ -201,22 +202,26 @@ def main():
                    help='base: cavity down to base + t; observed: cavity only as deep as the inner wall was seen')
     p.add_argument('--gap', type=int, default=3)
     p.add_argument('--minsec', type=int, default=6)
+    p.add_argument('--dh', type=float, default=DH, help='height bin (m)')
+    p.add_argument('--min_pts', type=int, default=8, help='points per (height bin, sector) cell')
+    p.add_argument('--knn', type=int, default=24, help='neighbours for normals')
     a = p.parse_args()
+    DH = a.dh
     Z = np.load(a.obs); P = Z['pts'].astype(np.float64); C = Z['cam'].astype(np.float64)
     # voxel downsample (keep one point per voxel, the first)
     key = np.floor(P / a.vox_ds).astype(np.int64)
     _, first = np.unique(key, axis=0, return_index=True)
     P, C = P[first], C[first]
     sub = np.random.default_rng(0).choice(len(P), min(60000, len(P)), replace=False)
-    cost, c, d, k = fit_axis(P[sub], C[sub])
+    cost, c, d, k = fit_axis(P[sub], C[sub], knn=a.knn)
     h, r, th, (e1, e2, d) = cyl(P, c, d)
     # classification by viewing side
     v = C - P; v /= np.linalg.norm(v, axis=1, keepdims=True)
     radial = np.stack([np.cos(th), np.sin(th)], 1)
     vr = (v @ e1) * radial[:, 0] + (v @ e2) * radial[:, 1]
     outer, inner = vr > 0.3, vr < -0.3
-    Sout, h0 = sector_stat(h, r, th, outer, q=50)
-    Sin, _ = sector_stat(h, r, th, inner, q=50)
+    Sout, h0 = sector_stat(h, r, th, outer, q=50, min_pts=a.min_pts)
+    Sin, _ = sector_stat(h, r, th, inner, q=50, min_pts=a.min_pts)
     nb = Sout.shape[0]
     nsec_out = np.sum(np.isfinite(Sout), 1); nsec_in = np.sum(np.isfinite(Sin), 1)
     # a height bin belongs to the body of revolution only if >= MINSEC of the NSEC sectors saw it (a handle or a
