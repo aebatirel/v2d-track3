@@ -4348,3 +4348,6 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     5-eval mean sim_vs_ref goes into pack 5, after checking the object trajectory is identical. Every candidate is a
     trained checkpoint (≥ 1M steps); no zero-residual policy.
   - Pack 5 also takes eval 32 = fr32s46b (rule winner, 0.803).
+- 15:45 UTC market: only 4 compliant on-demand offers, $1.81–2.53/h (this morning $1.35). **A′ dropped before any
+  results** (its plan's zero action 0.579 < B′'s 0.663); B′ and C′ run on the two cheapest (≈ $4/h, ≈ $7). Choice rule
+  unchanged (candidates: submitted 0.452, gl10A2 0.4539, B′, C′).
