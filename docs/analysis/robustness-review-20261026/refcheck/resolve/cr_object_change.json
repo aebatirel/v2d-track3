@@ -1,0 +1,584 @@
+[
+ {
+  "A": "pq:runs/20261024-e3-e49e83d/refs/perc2mck/ep2/e2s_reference.parquet",
+  "B": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep2",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet"
+  },
+  "objects": {
+   "white_pot": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -2.02
+    ],
+    "max_mm": 31.055,
+    "median_mm": 1.101,
+    "raw_max_mm": 33.079,
+    "rot_max_deg": 6.336,
+    "frames_over_1mm": 185
+   },
+   "white_pot_lid": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.05
+    ],
+    "max_mm": 11.01,
+    "median_mm": 1.488,
+    "raw_max_mm": 11.058,
+    "rot_max_deg": 4.217,
+    "frames_over_1mm": 173
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261024-e3-e49e83d/refs/perc2mck/ep39/e2s_reference.parquet",
+  "B": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep39",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep39/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/39868b9e09254f1aaf4331a15b374c2b-0.parquet"
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     319,
+     319
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 7.645,
+    "median_mm": 0.016,
+    "raw_max_mm": 7.645,
+    "rot_max_deg": 4.923,
+    "frames_over_1mm": 70
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet",
+  "B": "ref:runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11",
+  "A_info": {
+   "file": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/9854992a55fd4856a79d8904788f2151-0.parquet"
+  },
+  "objects": {
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 1.624,
+    "median_mm": 0.0,
+    "raw_max_mm": 1.624,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 12
+   },
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 4.217,
+    "median_mm": 0.023,
+    "raw_max_mm": 4.217,
+    "rot_max_deg": 2.754,
+    "frames_over_1mm": 22
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet",
+  "B": "ref:runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11",
+  "A_info": {
+   "file": "runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d6e85c126bb940e0b7c17ebaff9e87d6-0.parquet"
+  },
+  "objects": {
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 2.002,
+    "median_mm": 0.0,
+    "raw_max_mm": 2.002,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 6
+   },
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -0.03
+    ],
+    "max_mm": 9.226,
+    "median_mm": 0.215,
+    "raw_max_mm": 9.254,
+    "rot_max_deg": 2.75,
+    "frames_over_1mm": 39
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet",
+  "B": "ref:runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21",
+  "A_info": {
+   "file": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/8cb6093f78b34c5a887117b634dfc9c8-0.parquet"
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -0.09
+    ],
+    "max_mm": 7.876,
+    "median_mm": 0.093,
+    "raw_max_mm": 7.968,
+    "rot_max_deg": 2.082,
+    "frames_over_1mm": 64
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -0.73
+    ],
+    "max_mm": 4.73,
+    "median_mm": 0.732,
+    "raw_max_mm": 5.462,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 56
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet",
+  "B": "ref:runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21",
+  "A_info": {
+   "file": "runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/87a56d2163ac4d4195558d666c396155-0.parquet"
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -0.09
+    ],
+    "max_mm": 7.888,
+    "median_mm": 0.093,
+    "raw_max_mm": 7.981,
+    "rot_max_deg": 2.087,
+    "frames_over_1mm": 65
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -0.59
+    ],
+    "max_mm": 4.743,
+    "median_mm": 0.588,
+    "raw_max_mm": 5.331,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 54
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261024-w1-37cc551/refs/perc2mck/ep26/e2s_reference.parquet",
+  "B": "ref:runs/20261024-w1-37cc551/refs/perc2mck/ep26",
+  "A_info": {
+   "file": "runs/20261024-w1-37cc551/refs/perc2mck/ep26/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-w1-37cc551/refs/perc2mck/ep26/processed/sequence_id=t3_ep026/robot_name=sharpa_wave/27072f78c00f4bd98e582f71c0fa15ab-0.parquet"
+  },
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     158,
+     158
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -2.01
+    ],
+    "max_mm": 2.73,
+    "median_mm": 1.041,
+    "raw_max_mm": 4.741,
+    "rot_max_deg": 3.473,
+    "frames_over_1mm": 81
+   },
+   "white_pot": {
+    "frames": [
+     158,
+     158
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 19.454,
+    "median_mm": 0.005,
+    "raw_max_mm": 19.454,
+    "rot_max_deg": 6.683,
+    "frames_over_1mm": 68
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261024-w1-37cc551/refs/perc2mck/ep24/e2s_reference.parquet",
+  "B": "ref:runs/20261024-w1-37cc551/refs/perc2mck/ep24",
+  "A_info": {
+   "file": "runs/20261024-w1-37cc551/refs/perc2mck/ep24/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-w1-37cc551/refs/perc2mck/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/d40e4b952d7346229a448a055e5f9319-0.parquet"
+  },
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -9.83
+    ],
+    "max_mm": 28.714,
+    "median_mm": 9.834,
+    "raw_max_mm": 38.548,
+    "rot_max_deg": 4.35,
+    "frames_over_1mm": 271
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -35.4
+    ],
+    "max_mm": 35.404,
+    "median_mm": 3.491,
+    "raw_max_mm": 40.613,
+    "rot_max_deg": 6.71,
+    "frames_over_1mm": 218
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/e2s_reference.parquet",
+  "B": "ref:runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31",
+  "A_info": {
+   "file": "runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/919152d3c8c943f3a6900a4ee7fa0c19-0.parquet"
+  },
+  "objects": {
+   "mini_sweeper": {
+    "frames": [
+     290,
+     290
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 5.391,
+    "median_mm": 0.002,
+    "raw_max_mm": 5.391,
+    "rot_max_deg": 8.892,
+    "frames_over_1mm": 44
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     290,
+     290
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -9.31
+    ],
+    "max_mm": 9.3,
+    "median_mm": 3.393,
+    "raw_max_mm": 15.341,
+    "rot_max_deg": 3.143,
+    "frames_over_1mm": 240
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/e2s_reference.parquet",
+  "B": "ref:runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18",
+  "A_info": {
+   "file": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet"
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -2.6
+    ],
+    "max_mm": 29.366,
+    "median_mm": 0.685,
+    "raw_max_mm": 31.963,
+    "rot_max_deg": 12.851,
+    "frames_over_1mm": 155
+   },
+   "mini_sweeper": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -1.32
+    ],
+    "max_mm": 4.226,
+    "median_mm": 1.321,
+    "raw_max_mm": 5.548,
+    "rot_max_deg": 5.319,
+    "frames_over_1mm": 272
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/e2s_reference.parquet",
+  "B": "ref:runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12",
+  "A_info": {
+   "file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/e2s_reference.parquet",
+  "B": "ref:runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24",
+  "A_info": {
+   "file": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet"
+  },
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "pq:runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27/e2s_reference.parquet",
+  "B": "ref:runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27",
+  "A_info": {
+   "file": "runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27/e2s_reference.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/d930a040e5f341bdb56b50cb1aacdcd8-0.parquet"
+  },
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ }
+]

@@ -1,0 +1,1196 @@
+[
+ {
+  "A": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep2",
+  "B": "pq:runs/20261024-e3-e49e83d/refs/sf/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_sf.parquet",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/sf/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_sf.parquet"
+  },
+  "objects": {
+   "white_pot": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot_lid": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep2",
+  "B": "pq:runs/20261024-e3-e49e83d/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "objects": {
+   "white_pot": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot_lid": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep2",
+  "B": "res:runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1/episode_000002.parquet",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1/episode_000002.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 343
+  },
+  "objects": {
+   "white_pot": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot_lid": {
+    "frames": [
+     343,
+     343
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep39",
+  "B": "pq:runs/20261024-ev3-2c1e4dd/refs/glockt/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/39868b9e09254f1aaf4331a15b374c2b-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev3-2c1e4dd/refs/glockt/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     319,
+     319
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261024-e3-e49e83d/refs/perc2mck/ep39",
+  "B": "res:runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r1/episode_000039.parquet",
+  "A_info": {
+   "file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/39868b9e09254f1aaf4331a15b374c2b-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r1/episode_000039.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 319
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     319,
+     319
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11",
+  "B": "res:runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r1/episode_000011.parquet",
+  "A_info": {
+   "file": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/9854992a55fd4856a79d8904788f2151-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r1/episode_000011.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 137
+  },
+  "objects": {
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11",
+  "B": "res:runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/best/r1/episode_000011.parquet",
+  "A_info": {
+   "file": "runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d6e85c126bb940e0b7c17ebaff9e87d6-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/best/r1/episode_000011.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 137
+  },
+  "objects": {
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11",
+  "B": "ref:runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11",
+  "A_info": {
+   "file": "runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d6e85c126bb940e0b7c17ebaff9e87d6-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/9854992a55fd4856a79d8904788f2151-0.parquet"
+  },
+  "objects": {
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     -2.79,
+     0.51,
+     2.34
+    ],
+    "max_mm": 4.304,
+    "median_mm": 1.455,
+    "raw_max_mm": 7.397,
+    "rot_max_deg": 22.635,
+    "frames_over_1mm": 97
+   },
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "const_offset_mm": [
+     -0.13,
+     1.13,
+     0.0
+    ],
+    "max_mm": 9.253,
+    "median_mm": 0.004,
+    "raw_max_mm": 9.326,
+    "rot_max_deg": 1.945,
+    "frames_over_1mm": 17
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto18-966eb96/refs/perc2mc/ep12",
+  "B": "ref:runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12",
+  "A_info": {
+   "file": "runs/20261021-auto18-966eb96/refs/perc2mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12",
+  "B": "ref:runs/20261023-fdr42-715c9f7/refs/perc2mckd/ep12",
+  "A_info": {
+   "file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261023-fdr42-715c9f7/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12",
+  "B": "res:runs/20261023-fdr43-715c9f7/results/hard_ab/ep12/mckd-s43/r1/episode_000012.parquet",
+  "A_info": {
+   "file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261023-fdr43-715c9f7/results/hard_ab/ep12/mckd-s43/r1/episode_000012.parquet",
+   "reference_parquet": "/workspace/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet",
+   "frames": 181
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto18-966eb96/refs/perc2mc/ep12",
+  "B": "res:runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r1/episode_000012.parquet",
+  "A_info": {
+   "file": "runs/20261021-auto18-966eb96/refs/perc2mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r1/episode_000012.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 181
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto18-966eb96/refs/perc2mc/ep18",
+  "B": "ref:runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18",
+  "A_info": {
+   "file": "runs/20261021-auto18-966eb96/refs/perc2mc/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet"
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -2.6
+    ],
+    "max_mm": 29.366,
+    "median_mm": 0.685,
+    "raw_max_mm": 31.963,
+    "rot_max_deg": 12.851,
+    "frames_over_1mm": 155
+   },
+   "mini_sweeper": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     -1.32
+    ],
+    "max_mm": 4.226,
+    "median_mm": 1.321,
+    "raw_max_mm": 5.548,
+    "rot_max_deg": 5.319,
+    "frames_over_1mm": 272
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18",
+  "B": "res:runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r1/episode_000018.parquet",
+  "A_info": {
+   "file": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r1/episode_000018.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 353
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "mini_sweeper": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18",
+  "B": "res:runs/20261022-r4kfi-a30ac72/results/hard_ab/ep18/mckfi-s42/r1/episode_000018.parquet",
+  "A_info": {
+   "file": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r4kfi-a30ac72/results/hard_ab/ep18/mckfi-s42/r1/episode_000018.parquet",
+   "reference_parquet": "/workspace/refs/perc2mckfi/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet",
+   "frames": 353
+  },
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "mini_sweeper": {
+    "frames": [
+     353,
+     353
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21",
+  "B": "res:runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1/episode_000021.parquet",
+  "A_info": {
+   "file": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/8cb6093f78b34c5a887117b634dfc9c8-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1/episode_000021.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 186
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21",
+  "B": "ref:runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21",
+  "A_info": {
+   "file": "runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/87a56d2163ac4d4195558d666c396155-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/processed/sequence_id=t3_ep021/robot_name=sharpa_wave/8cb6093f78b34c5a887117b634dfc9c8-0.parquet"
+  },
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     -0.07,
+     -0.09,
+     -0.0
+    ],
+    "max_mm": 0.037,
+    "median_mm": 0.027,
+    "raw_max_mm": 0.133,
+    "rot_max_deg": 0.036,
+    "frames_over_1mm": 0
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "const_offset_mm": [
+     -0.13,
+     -0.04,
+     -0.02
+    ],
+    "max_mm": 1.7,
+    "median_mm": 0.302,
+    "raw_max_mm": 1.703,
+    "rot_max_deg": 0.565,
+    "frames_over_1mm": 4
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto24-966eb96/refs/perc2mcs/ep24",
+  "B": "ref:runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24",
+  "A_info": {
+   "file": "runs/20261021-auto24-966eb96/refs/perc2mcs/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet"
+  },
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24",
+  "B": "res:runs/20261022-r5ks-72ecb2f/results/hard_ab/ep24/mcsks-s42/r1/episode_000024.parquet",
+  "A_info": {
+   "file": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r5ks-72ecb2f/results/hard_ab/ep24/mcsks-s42/r1/episode_000024.parquet",
+   "reference_parquet": "/workspace/refs/perc2mcsks/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet",
+   "frames": 275
+  },
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto24-966eb96/refs/perc2mcs/ep24",
+  "B": "res:runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r1/episode_000024.parquet",
+  "A_info": {
+   "file": "runs/20261021-auto24-966eb96/refs/perc2mcs/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r1/episode_000024.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 275
+  },
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto24-966eb96/refs/perc2mcs/ep24",
+  "B": "ref:runs/20261024-w1-37cc551/refs/perc2mck/ep24",
+  "A_info": {
+   "file": "runs/20261021-auto24-966eb96/refs/perc2mcs/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-w1-37cc551/refs/perc2mck/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/d40e4b952d7346229a448a055e5f9319-0.parquet"
+  },
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     5.32,
+     -170.8,
+     -38.72
+    ],
+    "max_mm": 246.615,
+    "median_mm": 172.88,
+    "raw_max_mm": 382.894,
+    "rot_max_deg": 179.98,
+    "frames_over_1mm": 275
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "const_offset_mm": [
+     3.26,
+     175.56,
+     -31.27
+    ],
+    "max_mm": 249.465,
+    "median_mm": 180.469,
+    "raw_max_mm": 388.208,
+    "rot_max_deg": 179.926,
+    "frames_over_1mm": 275
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261024-w1-37cc551/refs/perc2mck/ep26",
+  "B": "res:runs/20261024-w1-37cc551/results/glock_public/ep26/best/r1/episode_000026.parquet",
+  "A_info": {
+   "file": "runs/20261024-w1-37cc551/refs/perc2mck/ep26/processed/sequence_id=t3_ep026/robot_name=sharpa_wave/27072f78c00f4bd98e582f71c0fa15ab-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r1/episode_000026.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep26/processed/sequence_id=t3_ep026/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 158
+  },
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     158,
+     158
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot": {
+    "frames": [
+     158,
+     158
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto18-966eb96/refs/perc2mc/ep27",
+  "B": "ref:runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27",
+  "A_info": {
+   "file": "runs/20261021-auto18-966eb96/refs/perc2mc/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/d930a040e5f341bdb56b50cb1aacdcd8-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/d930a040e5f341bdb56b50cb1aacdcd8-0.parquet"
+  },
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27",
+  "B": "res:runs/20261022-r3kie-342d72c/results/hard_ab/ep27/mcki-s42/r1/episode_000027.parquet",
+  "A_info": {
+   "file": "runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/d930a040e5f341bdb56b50cb1aacdcd8-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261022-r3kie-342d72c/results/hard_ab/ep27/mcki-s42/r1/episode_000027.parquet",
+   "reference_parquet": "/workspace/refs/perc2mcki/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/d930a040e5f341bdb56b50cb1aacdcd8-0.parquet",
+   "frames": 246
+  },
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261021-auto18-966eb96/refs/perc2mc/ep27",
+  "B": "res:runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r1/episode_000027.parquet",
+  "A_info": {
+   "file": "runs/20261021-auto18-966eb96/refs/perc2mc/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/d930a040e5f341bdb56b50cb1aacdcd8-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r1/episode_000027.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 246
+  },
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "white_pot": {
+    "frames": [
+     246,
+     246
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ },
+ {
+  "A": "ref:runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31",
+  "B": "res:runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r1/episode_000031.parquet",
+  "A_info": {
+   "file": "runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/919152d3c8c943f3a6900a4ee7fa0c19-0.parquet"
+  },
+  "B_info": {
+   "file": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r1/episode_000031.parquet",
+   "reference_parquet": "/workspace/refs/glockt/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "frames": 290
+  },
+  "objects": {
+   "mini_sweeper": {
+    "frames": [
+     290,
+     290
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     290,
+     290
+    ],
+    "const_offset_mm": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_mm": 0.0,
+    "median_mm": 0.0,
+    "raw_max_mm": 0.0,
+    "rot_max_deg": 0.0,
+    "frames_over_1mm": 0
+   }
+  },
+  "only_A": [],
+  "only_B": []
+ }
+]
