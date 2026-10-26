@@ -4052,3 +4052,16 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   pushed 2.4 cm / 17.6° although held; cut **0.12 cm / 0.4°** (0.35 cm / 1.7°), both boards within 0.08 cm. Before
   contact (f186–206) both variants track alike (drive floor ≈ 0.05 cm). Collision shapes 19 + 9 (default) and 21 + 11
   (cut: every piece kept as one hull). No NaN. Outputs `meshes/carve/ev25/fc_test/`.
+- **Proposed GPU batch (waiting for the owner's go-ahead; nothing rented):** `ops/jobs/carve_rerun.sh` (d0278ac) on
+  eval 25: the stored identity-correct reference of `20261025-ev25idfix-02de0c7` (refs/perc2mck → mcks, byte-identical
+  to the one the pieces were carved from, md5 71ac95f3…), `/content/assets` built with `--pieces meshes/carve/ev25`,
+  the same standard-learner recipe (FDR + VOC + deployment-exact starts 0.25, 250M steps, checkpoint sweep, 5 official
+  evaluations). Two boxes, seeds 42 and 43, ≈ 2.5–3 h each, **≈ $8–10**, then a pack (≈ $0.7) with
+  `ASSET_PIECES=meshes/carve/ev25` and KEEP_RESULTS = pack 3.
+  - **Choice rule, written before any result (GT-free):** candidates = the current eval-25 policy (ev25idfix s42,
+    default collision; 5 rollouts 0.802 / 0.815 / 0.797 / 0.811 / 0.335, mean 0.712), carve s42 and carve s43. The
+    episode's policy is the candidate with the highest mean sim_vs_ref over its 5 official evaluations (all scored
+    against the same reference). Its packed rollout is one fresh official evaluation (no rollout picking). If the
+    current policy wins, pack 3's rollout stays.
+  - Expected (estimate, not measured): carve mean 0.85–0.95 sim_vs_ref; Track 3 AUC +0.003 to +0.010; rank stays 4th
+    (3rd is 0.865, 5th 0.752).

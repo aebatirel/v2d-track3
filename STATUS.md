@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26: eval-25 slot carve passes both CPU tests; GPU rerun proposed (not rented)
+- `pipeline/interaction_carve.py slot` cuts the boards' slots into the SIMULATOR collision copy only (the submitted mesh
+  is unchanged), from our own identity-correct eval-25 reference: 21 + 11 convex pieces in `meshes/carve/ev25/`.
+- CPU proxy (MuJoCo, board 2 dragged along the reference): board 2 at assembly 1.17 cm / 103.7° (today's shapes)
+  → **0.06 cm / 0.5°** (cut). Collision overlap 11.8 → 0.17 cm³.
+- FlashCHORD's own physics (`tools/carve_fc_test.py`, Newton/MuJoCo Warp CPU, dt 0.01, gravity, both boards
+  spring-driven): board 2 relative to board 1 **7.47 cm / 47.9° → 0.12 cm / 0.4°**.
+- Proposed: `ops/jobs/carve_rerun.sh` eval 25, seeds 42 + 43, ≈ $8–10, choice rule pre-registered in the work log
+  (26 Oct). Credit $47.20. Next CPU work: eval 10's cup collision copy (lathe / cavity).
+
 ## 2026-10-25 ~23:10 TRT: THIRD SUBMISSION — Track 3 AUC 0.78893, 4th (was 0.58252, 9th)
 - All six boards (agent upload; receipt `results/submissions/20261025-track3c/`):
   - AUC **0.789, 4th**: 1–3 are 0.932 / 0.884 / 0.865; 5th is SRL at 0.752.
