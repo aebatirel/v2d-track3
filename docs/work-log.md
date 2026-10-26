@@ -4426,3 +4426,21 @@ physics-based meshes, …), research methods in depth, test on public data. Outp
     - cost ≈ $1–1.5;
     - needs the owner's go-ahead.
   - Not run; no GPU rented.
+- ~20:00 UTC eval-mesh review panel done (workflow `wf_c69f9d10-f06`: 36 reviewers + skeptics + synthesis, 68
+  agents, 0 errors); results in `docs/research/mesh-2026-10-26/results/eval_review.json`; page v2 with per-pair notes
+  and a priority table.
+  - Tracking is good: all 36 meshes land on the right object, place and size. Small possible pose offsets on
+    eval 10 and 32 (blue cup) and eval 30 (sweeper).
+  - Mesh problems, in priority order:
+    1. blue cup (5 pairs): poor; side-wall hole near the open end, not round;
+    2. white pot (6): floor mostly missing, wall hole near the rim, filled handle hole;
+    3. dish rack (5): poor; tray floor mostly missing, fused pegs;
+    4. beige cup (2): poor; both versions broken, two pieces, no opening;
+    5. pitcher: wall holes;
+    6. dust pan: terraced scoop;
+    7. sweeper: lumpy ring;
+    8. board 1: spurious hole, no slot;
+    9. lid: rim notch, plate hole;
+    10. board 2: no slot;
+    11. spoon (10): good.
+  - All visual, GT-free. Fix order agrees with the measured lathe gain (cups first).

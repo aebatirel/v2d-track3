@@ -134,6 +134,24 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
     <div class="gallery" id="gallery"></div>
   </section>
 
+  <section id="verdicts" hidden>
+    <div class="eyebrow">Review panel</div>
+    <h2>Which eval meshes need work first</h2>
+    <p class="note" id="overall"></p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Priority</th><th>Object</th><th>Eval pairs</th><th>Verdict</th><th>Main issues (upheld by a second reviewer)</th><th>Recommended method</th></tr></thead>
+      <tbody id="vbody"></tbody>
+    </table></div>
+    <p class="note" id="trackprob"></p>
+    <figure style="margin:0;display:grid;gap:6px;max-width:700px">
+      <img src="img/pot_profile.png" alt="Cross-section of the white pot: our submitted mesh has thick walls and an open centre in its base; the scan's base is closed" width="700" height="600" style="border:1px solid var(--line);border-radius:6px;background:#fff">
+      <figcaption class="note">Checked by hand after the panel flagged it: a cut through the white pot along its axis.
+        Black = our submitted mesh, green = the public scan (diagnostic only). Our base stops about 2.3 cm from the
+        axis, so the pot has a hole roughly 4–5 cm across in the middle of its base, and its walls are 15–20 mm
+        thick instead of about 4 mm. The pot is in 6 eval pairs.</figcaption>
+    </figure>
+  </section>
+
   <section id="plan">
     <div class="eyebrow">Next</div>
     <h2>What it takes to build new eval meshes</h2>
@@ -267,5 +285,21 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
       gal.appendChild(card);
     });
   }).catch(() => { document.getElementById('gallery').textContent = 'The eval images did not load. Reload the page to try again.'; });
+fetch('synthesis.json').then(r => { if (!r.ok) throw 0; return r.json(); }).then(syn => {
+    const body = document.getElementById('vbody');
+    const cls = v => v === 'good' ? 'good' : (v === 'poor' ? 'bad' : 'warn');
+    syn.objects.slice().sort((a, b) => a.priority - b.priority).forEach(o => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td class="num">${o.priority}</td><td>${o.object.replace(/_/g, ' ')}</td><td class="num">${o.eval_pairs}</td>
+        <td><span class="pill ${cls(o.mesh_verdict)}">${o.mesh_verdict}</span></td>
+        <td>${o.main_issues.length ? o.main_issues.map(x => `<div>${x}</div>`).join('') : '<span class="note">none upheld</span>'}</td>
+        <td>${o.recommended_method}</td>`;
+      body.appendChild(tr);
+    });
+    document.getElementById('overall').textContent = syn.overall;
+    if (syn.track_problems && syn.track_problems.length)
+      document.getElementById('trackprob').textContent = 'Pose (track) problems, not mesh problems: ' + syn.track_problems.join(' · ');
+    document.getElementById('verdicts').hidden = false;
+  }).catch(() => {});
 })();
 </script>

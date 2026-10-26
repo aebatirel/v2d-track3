@@ -1,0 +1,850 @@
+{
+ "pairs": [
+  {
+   "episode": 1,
+   "object": "white_pot",
+   "frame": 228,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit), mostly upheld: the red tint follows the rim, body, bottom edge and handle to its tip with no clear shift or rotation, apart from a thin untinted strip of 1-3 px along the left outer edge and the left edge of the handle. The interior floor is left untinted. The white streak on the left wall just below the rim is untinted. The left marker ball is outside the tint. The red over the fingers is just the mesh drawn under the hand. The handle's hanging hole is tinted: its pixels go from about RGB (40,20,20) to (150,10,10), so the mesh fills the hole. One correction: the uncovered interior patch is about 15-25% of the inner opening, not 40%.",
+    "Claim 2 (shape), upheld: the base is missing or has a large hole. The background shows straight through the body in both the front and oblique renders. This matches the untinted floor patch in the projection.",
+    "Claim 3 (shape), upheld: the oblique render shows a thin vertical slit in the left side wall with the background visible through it. That it matches the untinted streak on the left wall in the frame is plausible but cannot be proven from these images.",
+    "Claim 4 (shape), upheld as a cosmetic issue: the silhouettes in the front, side and top renders are irregular, with notches and ragged edges. The rim is not a clean circle, unlike the smooth real pot.",
+    "Claim 5 (shape), partly upheld: in the front view the handle is a plain rod of even width with a rounded end. It has no hanging hole, which matches the filled hole in the projection, and no clearly widened tip. Its outline in the side view is somewhat wavy."
+   ],
+   "refuted": [
+    "Claim 1, size: the uncovered interior patch is not about 40% of the inner opening. Measured from the overlay, it is about 15-25%.",
+    "Claim 5, lump: the bump on the handle near the body in the side view is most likely the mocap marker ball. The real pot has one on the handle at that spot (visible in the frame), so it is not a mesh defect."
+   ],
+   "summary": "The white_pot mesh lines up well with the real pot's rim, body and handle, but its base is missing, so about a fifth of the pot's interior floor is uncovered in the frame. The mesh also has a slit in its left wall, a lumpy surface and a plain rod handle with the hanging hole filled in, and it misses the left marker ball."
+  },
+  {
+   "episode": 1,
+   "object": "white_pot_lid",
+   "frame": 0,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "Claim 1 (fit, observed part): the red tint covers the lid top, the handle and all five markers, and nothing is tinted outside the lid. Enlarged crops show a notch in the tint at about 1 o'clock and an untinted crescent of white rim from there to about 4 o'clock, roughly 8-10 px at its widest. A thin untinted sliver of about 1-2 px also runs along the upper-left rim.",
+    "Claim 2 (shape): the front view clearly shows a wedge-shaped notch cut into the rim at upper left. Beside it is a dark-edged flap of rim that looks separated from the plate. The side view shows a bulbous, thickened end at that rim.",
+    "Claim 3 (shape): there is a through-hole in the plate next to and under the handle. In the face-on front view, pixels inside the lens-shaped opening are exactly the background grey (245,245,245), and the oblique view also shows the background through it. The real lid is solid there.",
+    "Claim 4 (shape): the markers appear only as low dimples or ring-shaped bumps in the front and oblique views. In the side and top views there are at most small nubs (about 10 render px against about 55 px for the handle), and none has a distinct ball-on-stem shape, whereas in the photo the markers clearly protrude.",
+    "Claim 5 (shape): the surface is visibly lumpy, with dark streaks and creases across the face, and the outline along the rim is ragged and uneven."
+   ],
+   "refuted": [
+    "Claim 1 inference that the pose is shifted left or the outline is slightly small: not supported. A leftward shift would push the tint past the left rim, but the left side is also slightly under-covered, with no tint outside it. The 1 o'clock notch and the crescent beside it fit the mesh's missing rim wedge and bent flap better, so a pose error is not clearly visible.",
+    "Cause 'both' (tracking contribution): the visible misfit is explained by mesh defects (the notch, the bent flap and the ragged rim). No clear sign of tracking error was found, and whether the lid is rotated in-plane cannot be judged from a round silhouette."
+   ],
+   "summary": "The projected mesh covers most of the lid. It leaves a notch at 1 o'clock and an uncovered crescent of rim from there to 4 o'clock, which matches a missing wedge and a bent flap in the mesh rim. The mesh also has a through-hole in the plate under the handle, markers that are only shallow bumps instead of balls on stems, and a lumpy surface with a ragged rim."
+  },
+  {
+   "episode": 3,
+   "object": "white_pot",
+   "frame": 252,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit): mostly upheld. The outer outline (both walls, top rim, handle) matches the real pot, and nothing suggests a large shift or rotation. Inside the bowl two areas of real pot surface have no red: a large patch on the floor, centre-right, and a patch on the left inner wall near the rim. One correction: the claim says the handle is covered down to its tip, but a white strip about 6-8 px wide on the left edge of the handle tip has no red.",
+    "Claim 2: the pot floor is mostly missing. In the front render, which looks along the cylinder axis, the background shows through a large ragged opening. This matches the uncovered floor patch in the projection.",
+    "Claim 3: there is missing surface in the left inner wall near the rim. The red tint is a per-pixel silhouette: the floor patch is uncovered, so the tint is not filled in. An uncovered patch inside a correct outer outline therefore means the mesh has no surface along those rays. A pose error would not open a hole in the middle of the object.",
+    "Claim 4 (in part): the mesh surface is lumpy and noisy. The renders show mottled dark blotches and wavy, bumpy outlines on the side view and the handle edges. The real pot is smooth enamel.",
+    "Claim 5: the oblique view clearly shows a thin curved strip of geometry. It rises from the bottom-left wall into the open interior and ends in a free tip. It is likely a leftover flap where the wall and floor were reconstructed only partly.",
+    "Claim 6: the hanging hole is missing from the mesh. The renders show no through-hole at the handle tip. In the projection, the pixels over the real hole are tinted red (about R=185 against about 120 untinted), so the mesh covers the hole. This is a small detail."
+   ],
+   "refuted": [
+    "Claim 4 (rim part): 'the rolled rim lip is not clearly defined' cannot be judged. The rim is a millimetre-scale lip, only 1-2 px at this render resolution, so it would not show even if the mesh modelled it.",
+    "Claim 1 (handle part): 'the whole handle down to its tip is covered' is not accurate. A white strip of real handle about 6-8 px wide on the left edge of the tip has no red. This is a minor under-coverage, not a gross misfit."
+   ],
+   "summary": "The pot's outer outline and pose match well. Only a 6-8 px strip on the left edge of the handle tip is uncovered. The mesh itself is defective: the floor is mostly missing, there is a hole in the left inner wall near the rim, the surface is lumpy, a stray thin flap sits inside the bowl, and the handle's hanging hole is filled in."
+  },
+  {
+   "episode": 3,
+   "object": "wooden_spoon",
+   "frame": 297,
+   "fit": "good",
+   "cause": "unclear",
+   "hand_or_occlusion": false,
+   "issues": [
+    "Claim 1 (fit), main part: the red tint covers the spoon well. The bowl top, the bowl's right edge, the handle and all three marker balls line up within about 1-2 px. Once the two panels are aligned (the right panel is offset by 488 px, not 484), row profiles show a sliver of real bowl about 2-3 px wide left uncovered along the bowl's left and lower-left edge, at rows y=185-200. That is roughly 10% of the bowl's 26 px width. On the right edge only about 1 px is uncovered.",
+    "Claim 3 (shape): the side view clearly shows a narrow waist where the handle meets the bowl. It is about 40% of the handle's thickness. This is minor, and the top-down frame cannot confirm or rule out that the real spoon has the same thickness profile."
+   ],
+   "refuted": [
+    "Claim 1, handle detail ('tint spills past the handle's left shaded edge and leaves a 1 px strip on the right uncovered'): not supported. At rows y=250-290 the tint's left edge sits inside the real left edge, not past it. The tint is roughly centred on the handle and about 1 px narrower than it on both sides. I see no lower-left shift.",
+    "Claim 2 (bowl modelled as a solid lens with no hollow): cannot be determined from these images. A shallow hollow bowl also has a lens-shaped side silhouette that is thickest at the centre. The front and oblique views show only one face, which is shaded convex like the handle; that is consistent with seeing the back of a hollow bowl. The top-down photo shows no depth either. Whatever the truth, the effect would be negligible for a shallow bowl."
+   ],
+   "summary": "The fit is good. The mesh tint covers the spoon and its markers, apart from a thin uncovered sliver about 2-3 px wide along the left and lower-left edge of the bowl. In the side view of the 3-D mesh the neck where the handle meets the bowl is pinched noticeably thinner than the handle, which is a minor shape quirk this top-down frame cannot verify."
+  },
+  {
+   "episode": 5,
+   "object": "white_pot",
+   "frame": 228,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): The outer outline fits well. The rim, the sides, the lower edge of the bowl and the handle down to its hole and tip all line up, with no visible shift or rotation. The only edge mismatch is a 2-3 px white sliver at the left rim and the left edge of the handle tip. Two untinted patches are clearly visible inside the bowl: a large one in the centre-right of the opening, where the inner floor is, and a smaller one on the inner left wall just below the rim. The fingers are tinted, which is correct because the handle lies behind them.",
+    "2 (shape): The bowl bottom has a large through-hole. The front render shows background through the middle of the ring. A ray-crossing map along the bowl axis of meshes/library_v3/white_pot.glb finds no surface across a central region about 7-8 cm wide in a 19 cm bowl. Only a crescent of floor on the handle side remains. The mesh is closed but has genus 5, so this is a real hole, not a rendering artefact.",
+    "3 (shape): There is a hole through the side wall. A cylindrical coverage map of the mesh finds no surface at about 80-135 deg around the bowl, from roughly -2.4 cm to +3.2 cm in height, so the hole is about 5 cm tall and 7-8 cm along the wall. This matches the light gap beside the strip on the left wall in the oblique render and the separate untinted patch on the inner left wall in the pair image.",
+    "4 (shape): A thin strip of surface is clearly visible in the oblique render. Correction to the claim's wording: it is part of the rim, not something hanging inside the bowl. It sits at wall radius and rim height, crosses over the side-wall hole, is attached to the wall at one end and breaks off at the other (about 125-135 deg). It is the same mesh component, not a separate piece.",
+    "5 (shape): The surface is rough and uneven. The render script shades geometry only, so the dark streaks and blotches in the renders come from real normal variation: folds on the remaining floor and ragged rim fragments. Measured wall thickness ranges from about 1-5 mm to over 2 cm (median about 9 mm), and the outer radius varies by about 1.5 cm around the bowl. This is minor next to the holes."
+   ],
+   "refuted": [],
+   "summary": "The pose is good: the rim, bowl and handle outlines match the real pot. The submitted white_pot mesh (library_v3) is defective. It has a large hole through the bowl bottom, about 7-8 cm wide, and a second hole about 5 cm tall in the side wall, crossed by a thin broken-off strip of rim. Its surface is rough and its wall thickness is uneven. The holes are why the inner floor and the inner left wall show untinted in the overlay."
+  },
+  {
+   "episode": 5,
+   "object": "wooden_spoon",
+   "frame": 240,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": true,
+   "issues": [],
+   "refuted": [],
+   "summary": "The submitted wooden_spoon mesh fits the real spoon well in frame 240: bowl, neck, handle and markers all line up, with at most a few pixels of offset at the handle end. The 3-D mesh matches the description: a thin oval shallow bowl, a long straight round handle and the marker balls, with no visible missing parts, blobs or holes."
+  },
+  {
+   "episode": 6,
+   "object": "white_pot",
+   "frame": 200,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): The outer outline of rim, bowl and handle tip matches the real pot to within a few pixels, with no visible rotation. Two untinted light-blue patches of real pot show inside the silhouette at about the stated coordinates: one on the inner left wall (about 594-614 x 177-215) and a large one on the inner floor (about 641-719 x 182-222). Along the gripped middle of the handle the red edge is lumpy and spills about 10 px onto the fingers, and a thin strip of white handle (about 3-5 px) is left uncovered on the handle's left edge. All of this is minor.",
+    "2 (shape): The front render clearly shows a large irregular hole through the bottom of the pot, with the background visible through it. This matches the untinted floor patch in the projection.",
+    "3 (shape): The projection shows a separate untinted patch on the inner left wall, well inside the silhouette. Because the mesh is a thin shell, the only way that pixel stays untinted is missing surface along that ray, so this is a real gap in the wall mesh.",
+    "4 (shape): In the front view the ring outline is visibly uneven, with notches on the upper left and a bulge on the lower right, and the wall shading is blotchy. The notches are several pixels across, larger than rendering stair-steps, so they are real. The effect is cosmetic.",
+    "5 (shape): The oblique view shows a thin vertical sliver standing inside the bowl in the hole region. It is most likely a leftover strip of the broken floor, and it is clearly visible."
+   ],
+   "refuted": [],
+   "summary": "The tracked pose fits the white pot well. The mesh has a large hole through the floor and a smaller one in the inner left wall, so those parts of the real pot are not covered when the mesh is projected. The mesh surface is also ragged: the rim outline is uneven, a thin stray sliver sits inside the bowl, and the red overlay edge is lumpy where the hand grips the handle."
+  },
+  {
+   "episode": 6,
+   "object": "wooden_spoon",
+   "frame": 224,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": false,
+   "issues": [],
+   "refuted": [],
+   "summary": "The wooden_spoon mesh is placed well. The red tint traces the real bowl and handle closely, with at most a 1 px edge offset. The mesh itself looks right: an oval bowl about 30% of the total length, a long straight round handle, and three marker balls in the right places. I see no clear shape defect, though the 3-D views do not show whether the bowl is hollowed."
+  },
+  {
+   "episode": 8,
+   "object": "beige_cup",
+   "frame": 21,
+   "fit": "good",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "1 (fit): I checked the raw pixels in the left panel against the red mask (panel offset 488 px). The rim top is at y~141 in the photo and the red starts at y~142. The base is at y~254 in the photo and the red ends at y~252. The right edge agrees within about 2 px at rows 190, 210, 230 and 245. The left edge sits about 3 px inside the real edge, and part of that is hidden under the green line. The bump at the upper right of the rim lines up with the real grey marker ball. I see no shift or rotation.",
+    "2 (two pieces): I counted components on meshes/library_v3x/beige_cup.glb myself. There are exactly 2 watertight components with 2158 and 1938 faces. One is a lump of 8.5x10.4x10.5 cm at the wide end. The other is a long piece of 7.1x8.2x16.8 cm, and their extents overlap along the axis. Both pieces are plain to see in the front and oblique views.",
+    "3 (tilted strip with gap): In the front and oblique views the narrow half is a strip tilted roughly 25-30 deg from the vertical axis, with background showing through a large gap between it and the lump. My own slicing gives 8 of 12 angular sectors at the narrow-end slices. Rays cast along the axis even pass straight through the centre of the mesh without hitting anything.",
+    "4 (no rim/opening): In the side and front views the wide end is a rounded, closed lump. No rim edge and no cup mouth can be seen anywhere. The lump is a closed watertight piece.",
+    "6 (rough surface): The surface is rough and blotchy, with dark speckles and pits in all four views. White see-through gaps show near the lower-right edge in the top view and in the oblique view. Because both pieces are watertight, these are gaps between the two pieces rather than holes in the surface.",
+    "7 (markers): The photo shows grey marker balls on stems at the left side and at the right of the rim. No distinct ball-on-stem shape can be picked out in any render; there are only a few flap-like bumps that may or may not be marker remnants."
+   ],
+   "refuted": [
+    "5 (wrong proportions): not clearly supported, so refuted. The 12.2 x 10.0 cm figure is the overall bounding size of the two misaligned pieces, not a true cross-section of one cup body. My narrow-end slices measure about 4-6 cm, not 3.5-4 cm. The small narrow end mostly restates claim 3 (missing wall), not a separate proportion error. The side view shows a top-to-bottom taper of about 1.45:1, close to the claimed 1.6:1 for the photo. A 1.6:1 'round cup' ratio cannot be measured reliably from one perspective photo where the rim is nearer the camera."
+   ],
+   "summary": "From this camera view the projected mesh matches the real tumbler within a few pixels, so the tracked pose looks right. The mesh itself is broken: it is two separate closed pieces, a rounded lump at the wide end with no rim or opening and a strip tilted about 25-30 degrees for the narrow half, with a large gap between them, a rough and blotchy surface, and no marker balls that can be identified."
+  },
+  {
+   "episode": 8,
+   "object": "white_pot",
+   "frame": 40,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): The red silhouette matches the real pot's rim ellipse, left and right walls, body bottom and handle down to the tip. I see no pose shift or rotation. Two areas of real pot inside the outline are left untinted: a large grey patch on the interior floor near the centre and a smaller patch on the upper-left inner wall. Because the outline fits, these gaps come from the mesh, not the pose. The tint over the fingers is expected, since the handle is behind the hand.",
+    "2 (shape): The floor is largely missing. The front view (looking down the axis) shows a ring with a big see-through hole and only a partial surface along the upper side. The oblique view shows an open cylinder. This matches the untinted floor patch in the projection.",
+    "3 (shape): There is a hole in the upper-left inner wall. In the projection, the untinted patch sits inside the well-fitting outline. A ray through that point would hit the left wall and then leave the pot, so no wall surface exists there in the mesh. The renders alone do not single it out as clearly, but the projection is enough.",
+    "4 (shape, partly): The wall surfaces look mottled and rough in every render. In the oblique view a thin curved sliver or flap clearly stands inside the bowl on the left."
+   ],
+   "refuted": [
+    "4 (part): 'Uneven wall thickness' cannot be judged from these shaded orthographic views, because no cross-section is shown. Some of the dark blotches may also come from noisy normals rather than real geometric bumps. I only uphold the roughness and the sliver."
+   ],
+   "summary": "The tracked pose fits well; the outline matches the real white pot all the way around, including the handle. The submitted mesh, though, is missing most of the pot's floor and has a hole in the upper-left inner wall, so those areas are left uncovered in the projection, and its walls are rough with a stray thin flap inside the bowl."
+  },
+  {
+   "episode": 10,
+   "object": "blue_cup",
+   "frame": 32,
+   "fit": "minor",
+   "cause": "both",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): Upheld. In a 4x zoom of the pair image, a blue sector at the upper-left rim and inner wall stays untinted. The left grey rim marker sits outside the tint. A near-black spot inside the silhouette on the left inner wall is untinted: the real image shows through, at pixel value about (0,4,6), while the surrounding tint is about (126,0,1). At the lower right, the tint runs onto the holding thumb and fingers and past the visible base by about 10 px (~13% of the cup's visible height). Side edges at mid-height match to within a few pixels. A shift or tilt toward the lower right is a reasonable reading.",
+    "2 (shape): Upheld. The front view has a large through-hole in the lower centre-left of the wall near the wide end, with background showing through. The oblique view shows a torn gap that opens onto the wide-end edge.",
+    "3 (shape): Upheld in part. The wide-end edge is ragged: in the oblique view it is wavy and torn into a hanging strip, and that strip also sticks out past the outline in the top view. Caveat: the ~13 px bump at the lower right of the front view is the right size and place to be a marker ball, so it may not be a flap.",
+    "4 (shape): Upheld. The wall has visible pits and bumps (two dark dents in the oblique view, a ring-shaped bump and streaky depressions in the front view) instead of a smooth tapered shell.",
+    "5 (shape): Upheld in part. The top-view outline is lumpy, with a flat squarish patch on the end cap. Measured silhouette widths also show the cross-section is not round at mid-height: 160 px in the front view against 141 px in the side view. The side view barely tapers (137 to 170 px) while the front view tapers from 135 to 180 px."
+   ],
+   "refuted": [
+    "5 (sub-claim): The front and side views do not differ in width at the narrow end. Measured widths are 135 px and 137 px. The only difference there is two small knobs at the corners in the side view.",
+    "6 (shape): Refuted as not clearly shown. Near the wide end, the front view (right edge, about 13 px out) and the side view (lower right) have bumps of the right size and in the right place for stem-mounted marker balls. At this render resolution (cup about 140 px wide) markers cannot be called missing or malformed with confidence."
+   ],
+   "summary": "The projected blue_cup mesh is slightly off toward the lower right: it misses the upper-left rim and the left marker, and spills about 10 px onto the holding hand. A small untinted dark spot inside the silhouette matches the mesh hole. The mesh itself has a large hole through the wall near the wide end, a torn and ragged wide-end edge, a lumpy, dented wall, and a cross-section that is not round at mid-height and the cap."
+  },
+  {
+   "episode": 10,
+   "object": "beige_cup",
+   "frame": 16,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "1 (fit, mostly): The tint's outer top, left and bottom edges match the real cup to within a few pixels, and its right edge comes close. I see no overall shift or rotation. I checked by drawing the tint's outline on the untouched frame. Upheld local errors: (1) a band along the near rim, between the tinted inside and the tinted outer body, is not covered; (2) a strip about 5 px wide just inside the left rim is not covered; (3) small specks of tint stick out past the right rim, above the right marker; (4) neither marker ball is covered.",
+    "2: The front view clearly shows two separate pieces with empty space between them: a long thin sliver and a lower chunk. The oblique view also shows two lobes.",
+    "3: In the front view both pieces are thin slabs. A round tumbler would look about as wide there as it does in the side view, so the mesh is flattened along one axis and is not a closed tapered cylinder.",
+    "4: No view shows a circular rim or an opening. The top view is an irregular blob with flaps.",
+    "5: The side, top and oblique views show clear stair-step, voxel-like shading with ridges and dents. The tumbler wall should be smooth.",
+    "6: Small fins are clearly visible at the left and bottom of the top view, at the lower left of the oblique view, and beside the wide end in the side view.",
+    "7: The side view is a narrow column on a wider base. A ledge on one side makes it clearly asymmetric, not an even taper."
+   ],
+   "refuted": [
+    "1 part (5), ragged edges on the lower body: The left edge of the tint is smooth and straight. The right edge follows the cup's taper to within about 3 px, with only a slight kink. That is not a clearly visible defect at this resolution."
+   ],
+   "summary": "The beige_cup mesh is poor: two separate, flattened, voxel-blocky pieces with fins, no round rim or opening, and an uneven side profile. Its projection still covers the cup in the right place at the right size, but it misses a band along the near rim, a thin strip inside the left rim and both marker balls, and small bits of tint stick out past the right rim."
+  },
+  {
+   "episode": 14,
+   "object": "blue_cup",
+   "frame": 16,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit), mostly upheld: the red tint matches the real cup's rim, both side walls and the taper. Row by row, both edges agree within about 2-3 px, with no visible rotation or shift. The tint reaches about 2-3 px past the real right wall, and neither grey marker ball is covered.",
+    "Claim 1, sub-point 1, upheld but the size was understated: the blue wedge at the upper-left of the rim that the tint leaves uncovered is clearly visible. By per-row measurement it is about 6-10 px wide over about 20 rows (y of roughly 264-284), not 10x5 px.",
+    "Claim 1, sub-point 2, upheld: there is a dark, untinted spot about 8x9 px inside the opening at the upper-left. It shows a gap in the mesh silhouette, consistent with the hole in the mesh wall.",
+    "Claim 2, upheld: there is a large ragged see-through hole in the side wall near the wide end, in both the front and oblique views. It covers about a fifth of the height, slightly less than the claimed quarter to a third.",
+    "Claim 3, upheld: the wall is lumpy rather than a smooth shell. The front and oblique outlines are uneven (for example a bulge on the right near the wide end and wavy left edges), and the oblique view shows dents.",
+    "Claim 4, upheld: the top view shows a square-ish, stair-stepped flat patch with concentric blocky bands inside a roughly round outline. Blocky stair-stepping is also visible along the side-view edges.",
+    "Claim 5, upheld: a thin loose strip of surface sticks out at the bottom edge of the top view, separated from the disc by a visible gap.",
+    "Claim 6, upheld: in the side view the walls are nearly straight, with the width growing only from about 137 to 148 px down the body. The front view grows from about 136 to 171 px. A round tumbler should taper the same way from every side."
+   ],
+   "refuted": [
+    "Claim 1, sub-point 3 (the tint pokes a few px below the real base, over the holding thumb): not clearly an error. The thumb crosses in front of the cup's lower end, so the tinted area over the thumb is mostly where the real cup is hidden behind it. The tint's lowest edge sits at most about 1-3 px below the visible base, which is within the blur of this low-resolution frame."
+   ],
+   "summary": "The pose fits well, but the mesh is poor. It leaves a wedge of the real rim uncovered at the upper-left and has a small see-through gap inside the opening. The mesh also has a large ragged hole in its wall near the wide end, a lumpy wall surface, blocky stair-stepped facets, a loose strip at one edge, and too little taper in the side view."
+  },
+  {
+   "episode": 14,
+   "object": "plastic_dish_rack",
+   "frame": 16,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): The outer red silhouette follows the cup holder, the front rim and the far right end of the tray, with no visible shift or rotation. Inside the tray there are clear untinted white gaps between the pegs across the middle and right half, roughly x 630-840 in the right panel. Scattered red specks also land on the blue cup, which fits projection without occlusion handling.",
+    "2 (shape): In the front render the background shows through most of the space inside the rim between the peg rows. Only a patch at one end next to the rim is filled. This matches the white gaps inside the tray in the projection.",
+    "4 (shape): The mesh is clearly lumpy and blotchy, and the rim is uneven. In the oblique view the cup holder has obvious horizontal ribbed striations that the smooth real cup holder does not have."
+   ],
+   "refuted": [
+    "3 (shape): The real rack has two rows of rounded, tapered pegs, not thin plates, so 'nubs instead of thin plates' misdescribes the object. In the projection, the red front-row pegs land on the real pegs at about their height. The side view does not clearly show them too short against the cup holder. The pegs are somewhat blobby, but no clear shape error is visible beyond that."
+   ],
+   "summary": "The pose fits well, but the submitted dish-rack mesh is missing most of its tray floor, so the real white tray shows through between the pegs in the projection. The surface is also lumpy, with ribbed artifacts on the cup holder."
+  },
+  {
+   "episode": 15,
+   "object": "plastic_dish_rack",
+   "frame": 24,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "1 (fit): The red outer silhouette follows the cup holder, the back and front rims, the rounded right end and the front marker, and nothing spills outside the object. Inside the tray, a large band of real white floor is left uncovered from just right of the cup holder to near the right end, including the white wedge along the front wall on the right. The pegs show only as isolated red blobs (front row) and stubs hanging from the back wall, at roughly the right positions. A rough pixel count gives about 20% of object pixels uncovered, which is consistent with the 15-20% claimed.",
+    "2 (shape): In the front render, the inside of the rectangular rim shows the background colour, and only a floor patch remains at the end opposite the cup-holder loop. This matches the uncovered floor in the overlay.",
+    "3 (shape): In the side render, the pegs stick out only as short stubs, a small fraction of the cup-holder block's depth. In the front and oblique views they are small dark bumps. The real object has tall conical pegs, roughly half the cup holder's height. The '1 cm' figure is an estimate, but the shortening is clear.",
+    "5 (shape): The renders show uneven, blobby shading and wavy rims, so the surface is lumpy. In the front render, the back-row bumps are fused to the side wall, and in the overlay they appear as drips from the back wall."
+   ],
+   "refuted": [
+    "1, sub-detail only: the claim that the red fin blobs are 'rounder and narrower than the real tapered fins' is not clear. The front-row red blobs are about as wide as the real peg bases and have a similar teardrop or cone outline. The rest of claim 1 is upheld.",
+    "4 (shape): The claim that the tray is a thin plate with low walls, thinner than the real raised rim, is not clearly shown. The edge-on side view mixes wall height with tilt, and its thickness relative to the length is plausible for this tray. In the overlay, the red covers the real front wall and rim height correctly, which argues against walls that are too low."
+   ],
+   "summary": "The pose and outer outline match well, but the mesh is missing most of the tray floor, so about 20% of the real object (the white floor between the pegs) is left uncovered. The pegs are only short stubs or blobs, with the back row fused to the wall, and the surface is lumpy."
+  },
+  {
+   "episode": 15,
+   "object": "wooden_spoon",
+   "frame": 0,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": false,
+   "issues": [],
+   "refuted": [],
+   "summary": "The submitted wooden_spoon mesh (library_v3) fits the real spoon well in eval 15, frame 0. The bowl, the handle and the three marker balls all sit where they are in the photo, with no visible shift or rotation. The renders show the right shape: a shallow oval bowl, a long straight handle with a slight bend at the neck, and proportions close to the real spoon. I found no shape defects."
+  },
+  {
+   "episode": 16,
+   "object": "plastic_dish_rack",
+   "frame": 16,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit): The red outline follows the real outer edge closely around the cup holder, the back and end rims, the front rim and the front marker, with no visible shift or rotation. Inside the tray, a large band of real white tray (the floor and the lower fins, from right of the cup holder to the drain end) shows through untinted, with only scattered blobs at the fin positions. The blurred hand at the lower right overlaps the front-right rim only slightly.",
+    "Claim 2 (shape): The front and oblique renders show the rim as a closed frame with background showing through between the fin rows, so the solid tray floor is missing over most of its length. This matches the untinted interior in the overlay.",
+    "Claim 3 (shape, partly): The front and oblique renders clearly show the fins as rounded, fused knobs in two rows, not the separate tapered pegs in the photo. That part is visible. How tall the fins are is less clear, because the side view's reference line is the rim and the floor is missing.",
+    "Claim 5 (shape): The cup holder has wavy horizontal ripples in the oblique view, and the rim's thickness and outline are uneven, with mottled shading. The real part is smooth moulded plastic. This is a lesser problem than the missing floor."
+   ],
+   "refuted": [
+    "Claim 4: The filled patch at the far end of the front render matches the real drain end, which in the photo is a solid, sloped floor with only shallow grooves. It is not an open area. The patch is the one stretch of floor that was rebuilt. Its ragged diagonal edge comes from the floor missing everywhere else (claim 2), so it is not a separate error, and leaving out the faint grooves is negligible."
+   ],
+   "summary": "The tracked pose and outer outline fit well. The mesh is missing most of the tray floor, so much of the real tray interior shows through as holes. The fins are rebuilt as fused, rounded knobs, and the surface is rippled, especially on the cup holder."
+  },
+  {
+   "episode": 16,
+   "object": "wooden_spoon",
+   "frame": 16,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": true,
+   "issues": [],
+   "refuted": [],
+   "summary": "The submitted wooden_spoon mesh (an oval shallow bowl, a long straight handle and marker balls) looks right in shape and proportion. With our tracked pose it lands on the real spoon to within a few pixels. The only part that can't be checked is the handle end, which is hidden under a blurred hand."
+  },
+  {
+   "episode": 19,
+   "object": "mini_sweeper",
+   "frame": 168,
+   "fit": "good",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit, main part): with the red outline traced onto the untouched frame, the ring top and right edge, the green body with its two marker balls and the bristle fan all line up within a few pixels. There is no visible rotation or shift. The bristle fan's bottom-left tips run slightly past the tint wedge, and the lower-right corner of the green body is only partly covered. Both gaps are small.",
+    "2: the surface is clearly lumpy, with blotchy faceted shading in every view and a wavy outline. It looks nothing like a smooth wooden ring on a moulded body.",
+    "3: in the front view the ring is about 85 px thick on the left and lower left but about 60 px on the right (2x zoom), so the hole sits off-centre toward the upper right. A small tongue sticks into the hole at its upper left, and the outer outline is uneven.",
+    "5: the markers show up only as smooth low bumps: on the body edges in the front view, as one bulge in the side view and two bumps in the top view. None has a separate ball on a stem, while the photo clearly shows grey balls on black stems standing off the body."
+   ],
+   "refuted": [
+    "1 (detail about the ring opening being a narrow slit smaller than the real opening): the thumb runs through and covers most of the real ring opening in this frame, so the true size of the opening cannot be read from the photo.",
+    "4: the small through-hole is really there in the mesh render. But the photo shows the green body edge-on, at about 30 px wide, so a hole that size would be about 2 px in the photo and lost in the JPEG blur. We cannot confirm the real object lacks it, so calling it spurious is not supported.",
+    "6: zoomed in, the bottom edge of the bristle block is a straight, clean line in the front view and nearly smooth in the oblique view (one small notch). The 'ragged' look comes from dark shading facets just above the edge, not from a jagged edge.",
+    "7: the mesh ring is about 0.4 of its outer diameter deep in the side view, so it is not a paper-thin slab, and its depth varies along the object. This frame does not show the object from an angle where its true thickness could be compared, and the first reviewer said it was judged by eye. Not clearly visible."
+   ],
+   "summary": "The projected mesh matches the mini_sweeper closely in this frame, with only small gaps at the bristle tips and the lower body corner. The mesh itself is lumpy and noisy, its ring handle is uneven with an off-centre hole and a small spur, and the marker balls are low bumps rather than balls on stems."
+  },
+  {
+   "episode": 19,
+   "object": "mini_dust_pan",
+   "frame": 96,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit, in part): Upheld. At pixel level, about 3 px of untinted yellow-green wall rim shows inside the green outline along the upper-left wall, from the handle neck to the top corner (columns x~265-283). The green line may hide a few more pixels. On the left side of the ring, the red tint covers the fingertips poking through the hole, while a sliver of real ring on the hole's lower right stays untinted, so the projected hole is shifted right or too small. The outer ring edge, the right lip and the bottom edge match closely, which points to mesh shape rather than pose.",
+    "2 (stair-step banding): Upheld. Clear horizontal terraces run across the scoop face in the front and oblique views.",
+    "3 (lumpy/ragged surface): Upheld. The side view is lumpy and noisy along its whole length, the top-view outline is ragged, and the left edge in the front view is jagged.",
+    "4 (irregular ring hole): Upheld. In the front view the hole is flattened and nearly straight on the lower right and pinched on the lower left, an irregular egg shape. Tilting a circle would give a symmetric ellipse, not this. It matches the hole mismatch seen in the projection.",
+    "6 (no marker bumps): Upheld. The photo clearly shows a dark marker ball on the floor centre and two balls at the bottom edge. No view shows a round, ball-sized bump, although at this render scale a ~1 cm ball would be about 10+ px across."
+   ],
+   "refuted": [
+    "1 (bottom-edge sub-point): Refuted. The first reviewer hedged this. Column by column, the red tint stays within 0-1 px of the yellow lip's lower edge for most of its length, and only near x~310-315, at the grey lip and marker area, does it run about 2-3 px past. That is not a clearly visible overrun.",
+    "5 (walls/lip not distinct): Refuted as not clearly shown. The real side walls are only a few mm high, and both ends of the top-view arc rise, as do the darker rim bands along the slanted edges in the front and oblique views. These could be smoothed walls, so their absence cannot be confirmed at this resolution. The grey lip differs from the rest mainly in colour and material, which an untextured shaded render cannot show. The thin untinted strip on the upper-left wall fits a wall that is too low but does not prove it."
+   ],
+   "summary": "The pose fits closely, but the projected mesh leaves a thin strip (about 3 px) of the upper-left wall rim uncovered and puts the ring hole too far right, so the tint spills over the fingertips. The mesh itself has stair-step terracing across the scoop face, a lumpy, ragged surface, an irregular egg-shaped ring hole and no visible marker-ball bumps."
+  },
+  {
+   "episode": 20,
+   "object": "blue_cup",
+   "frame": 0,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit), partly: an untinted crescent of real blue wall is visible on the left of the rim. I measured it by differencing the two panels: it is about 7 to 13 px wide and about 50 px tall (rows 198 to 246 of the 968x425 pair image), so it is narrower and taller than the 12-20 x 30 px claimed. The top rim edge, the right side and the lean all line up. The tint over the thumb is the occluded narrow end, which is expected. The claimed overshoot on the lower right is not clearly an error, because the tint there ends on the grey stem marker ball, which is part of the object. Grade: minor.",
+    "2: the front view shows a clear white hole through the side wall near the wide end.",
+    "3: the oblique view shows a large ragged section of wall missing at the lower right of the wide end, and the top view shows a torn, detached edge fragment at the bottom.",
+    "4: the surface is clearly lumpy and noisy. The silhouette edges are irregular, there are bulges at the corners and on the lower right of the front view, and the shading shows pockmarks and banding. It does not look like a smooth, thin-walled tumbler.",
+    "5: this is upheld from the mesh alone, without relying on the perspective photo. Between 25% and 75% of the height, the front view widens from 138 to 173 px (ratio about 0.80) but the side view only from 137 to 149 px (about 0.92). A round tapered cup would show the same taper in both views, so one profile is almost straight and the cross-section is not round."
+   ],
+   "refuted": [
+    "6: the outline of the top view is roughly round, if lumpy, not square. The squarish shape is a shaded patch inside the end face, and the oblique view shows the narrow-end cap as round or elliptical. The end's shape is not clearly squarish."
+   ],
+   "summary": "The projected mesh covers the cup well, except for a thin crescent of uncovered wall (about 7-13 px) on the left of the rim. The mesh has a hole and a large missing section of wall at the wide end, a lumpy surface, and almost no taper in its side view, so its cross-section is not round. The rim miss most likely comes from these mesh defects at the wide end, since the rest of the outline lines up."
+  },
+  {
+   "episode": 20,
+   "object": "water_pitcher",
+   "frame": 0,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "Claim 1 (fit), upheld with corrections. The outline fits well: the spout tip, the upper spout edge, the rim, the outer front-left body edge and the base all line up, so the pose is not off overall. (1) There are untinted holes inside the silhouette where the photo shows solid white bowl interior. The largest is a sliver about 45 px long and up to about 10 px tall at x 279-325, y 187-205 in the original frame, so bigger than the 15x5 px reported. A smaller hole sits near the right rim at x 337-346, y 172-180, and a 4-6 px untinted strip runs just inside the lower-left body wall. (2) At the handle, the leftmost ~6 px of the real handle are untinted, but the tint overshoots the handle's right edge by only ~2-3 px, not 5-8. The tint also fills ~7-11 px of floor in the gap between the body's lower-right wall and the handle. (3) The bump of tint over the truss above the upper spout edge is real: it is about 5-8 px high and ~20 px long, at about x 143-160, y 100-108.",
+    "Claim 2 (through-holes), upheld. In the side render there is a fully enclosed hole showing background colour (245,245,245) in the middle of the body. The overlay is missing tint exactly where the photo shows the solid inner wall. Both mean the mesh has gaps that go right through the wall.",
+    "Claim 4 (spout lump), upheld. Next to the bump, the spout edge and spout tip line up within 1-2 px, and the photo shows nothing above the spout edge there (no marker). So the 5-8 px of tint over the background comes from a small protrusion on the mesh, not from the pose.",
+    "Claim 5 (handle), partly upheld: the handle is placed slightly too far right. The tint is offset about 5-6 px right of the real handle (left strip uncovered, small overshoot on the right). The webbing between body and handle is a related mesh-shape error in the same area."
+   ],
+   "refuted": [
+    "Claim 2, oblique-view evidence only: the long slit in the oblique render opens toward the hooked handle tongue. It may just be the real gap between the handle and the body wall, so on its own it does not prove a hole. The claim still stands on the side-render hole and the overlay holes.",
+    "Claim 3 (rough, lumpy surface with dents and dark pits): not clearly visible. The front view is mostly smooth with only faint ripples. Its two dark spots sit where the photo shows the two mocap markers (spout-body junction and lower body), so they are marker features, not defects. The dark, irregular look of the top and side views fits shading on interior surfaces seen through the open bowl. A ragged outline is not clearly shown.",
+    "Claim 5, 'too wide': refuted. The tinted handle is about 11-15 px wide against about 16-21 px for the real handle, so it is narrower, not wider. The problem is placement only.",
+    "Claim 1, size details: tint past the handle's right edge measures ~2-3 px, not 5-8 px. The largest interior hole is much bigger than 15x5 px."
+   ],
+   "summary": "The eval-20 water_pitcher mesh is positioned and oriented correctly, but it has holes through the bowl wall: the side render shows one, and the overlay is missing tint over the real inner wall, with the largest gap about 45x10 px. It also has a small lump of about 5-8 px on the upper spout edge, and the handle sits about 5 px too far right, with mesh filling part of the gap between the handle and the body."
+  },
+  {
+   "episode": 25,
+   "object": "wooden_piece_1",
+   "frame": 32,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "1 (fit): With the panels aligned (the right panel starts 4 px after the left one), the red silhouette follows the real board's outline closely. I see no clear shift or rotation. Two pale untinted patches sit in the upper third, and they match the two openings in the mesh's front view. The top marker ball stays grey while the two lower balls are tinted. One caveat: the slot is only about 1-2 px wide in the photo, so the projection alone cannot show whether the mesh fills it. The render, however, confirms the slot is missing (claim 3).",
+    "2 (hole): The front and oblique views clearly show a large two-lobed opening near one end, with a round island of mesh inside it. A row scan of the front view finds background pixels inside the silhouette over about 80 rows. The real board has no hole there.",
+    "3 (slot missing): The real board has a through-slot cut about 40-45% of the way across the width at mid-length. In the front view neither long edge has a gap anywhere along its length, as the per-row silhouette scan confirms. At most there is a faint surface crease near where the slot should be.",
+    "5 (diagonal crease): The front and oblique views clearly show dark diagonal fold lines with a raised hump near the end opposite the hole. A flat board should not have them.",
+    "6 (uneven slab), partly: The side view shows a blob at one end that flares out on both faces, plus an uneven bulge on one face. The top view shows a lumpy slab with thickened ends and a wavy face. The conical spike in the middle of the top view and the knob at the top of the side view sit where the centred marker balls should project, so they are probably malformed markers rather than spurious geometry.",
+    "7 (markers): No marker is modelled as a distinct ball on a stem. The front view has no round ball features at the marker positions, and the side and top views show only a fused knob and a cone."
+   ],
+   "refuted": [
+    "4 (lumpy, wavy outline): The silhouette edges are essentially straight. In the front view the left edge stays at x=104\u00b11 px over most of the length, and the right edge stays within 257-264 px. The 'blobs at the corners' make the ends wider (about 174-178 px) than the middle (about 155 px). This matches the real board, which has small protruding tabs at all four corners (an I-shape visible in the photo on both wooden boards). Apart from the corners being somewhat rounded, the outline is a fair match."
+   ],
+   "summary": "The tracked pose lines up with the board well. The faults are all in the mesh: a large spurious hole (with an island inside) near one end, which leaves untinted patches in the projection; the missing side slot; a diagonal crease and uneven, lumpy thickness; and markers modelled only as fused bumps, with the top marker left uncovered."
+  },
+  {
+   "episode": 25,
+   "object": "wooden_piece_2",
+   "frame": 88,
+   "fit": "good",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (overall fit good): I lined up the two panels (the right one is offset by 488 px) and traced the tint outline onto the untouched frame. It follows all four board edges, including the small step near the bottom-right corner, with no visible rotation or shift. The tint over the right thumb and fingers is occlusion, not a pose error. One part of the sub-claim is visible: the upper parts of the two top-corner marker balls stay grey (untinted) in the right panel. Only their shadows are tinted, so the balls sit slightly outside the projected mesh.",
+    "Claim 2 (slot missing): the left panel clearly shows a narrow dark slot running from the right long edge (under the right thumb) to about mid-width. The front and oblique renders show a solid, unbroken plate with no notch on either long side. The dark line inside the red tint comes only from the photo showing through the semi-transparent tint, so it is not evidence of a slot in the mesh.",
+    "Claim 3 (wavy/lumpy rim, minor): in the front render the outline is visibly irregular, with a dent on the lower left edge and bulges at the corners. The top and side views show bumps that are probably marker balls. This is a minor defect, as the first reviewer said."
+   ],
+   "refuted": [
+    "Claim 1 sub-detail, 3-7 px board-corner under-coverage at the bottom-left and top-left: at 8x zoom any gap between the tint and the real corner is about 1-3 px and lies under the green outline, so it is not clearly visible as under-coverage.",
+    "Claim 1 sub-detail, bottom-centre marker ball and shadow outside the tint: at zoom the bottom-centre ball and its shadow are fully tinted dark red in the right panel, so they are covered."
+   ],
+   "summary": "The pose fit is good. The mesh is missing the slot that runs from one long edge to about mid-width, its rim is slightly lumpy, and the tops of the two top-corner marker balls stick out past the projected mesh."
+  },
+  {
+   "episode": 28,
+   "object": "plastic_dish_rack",
+   "frame": 136,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "1. fit: The cup holder, long back rim, front edge and front marker line up closely, and there is no visible rotation. In the enlarged pair, large real white tray floor between the fins is untinted along both fin rows and in a wedge at the right end. The front-row fins are covered only by narrow tapered red blobs. The red also bulges a few px (roughly 5-9 px) past the real rounded right end onto the fingertips.",
+    "2. shape: The front render is an open rim frame with background showing through between the fins. Floor survives as a solid patch only at the far end, which matches the untinted interior in the pair.",
+    "3. shape: In the side and oblique views the fins are short rounded nubs or blobs well below the height of the real tall tapered fins. They are not thin, flat vertical fins.",
+    "4. shape (observation only): In the front and oblique views, the blobs of one fin row sit isolated in empty space with no visible link to the rim or a floor. That follows from the missing floor. Orthographic views cannot prove they truly float, but the visible disconnection is clear.",
+    "5. shape: The rim and fins are visibly wavy and lumpy. The overall proportions are right: a long tray with a tall, hollow, oval cup holder at one end (L-shape in the side view)."
+   ],
+   "refuted": [],
+   "summary": "The pose is right and the outer outline fits, apart from a small bulge past the right end. The mesh is missing most of the tray floor, though, so the real floor between the fins is uncovered. Its fins are short lumpy blobs, and in the renders one row looks disconnected rather than being thin, flat fins standing on a floor."
+  },
+  {
+   "episode": 28,
+   "object": "white_pot",
+   "frame": 8,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit): The red tint matches the bowl's outer wall, rim and the whole handle, including the marker at the handle base and the tip in the hand, with no shift or rotation. A large untinted patch sits in the middle of the bowl floor, about a third of the visible inside, and a smaller one sits on the inside wall below the rim at the upper left. The photo shows solid white pot at both spots. The tint falls only a few pixels short along the upper-left outer wall, which does not matter.",
+    "Claim 2 (shape): The front view shows an open ring with the grey background visible through a large hole where the floor should be, and the oblique view shows the same. This matches the untinted centre in the projection.",
+    "Claim 3 (shape), narrowed: The oblique view clearly shows a thin loose strip of mesh at the edge of the hole, with a second opening on its other side cutting into the left wall. Together with the separate untinted patch on the inside wall in the projection, this shows a tear or hole in the wall near the rim. Which spot in the render matches the projected patch is likely but not proven.",
+    "Claim 4 (shape), first part only: The surface is noisy. All four views show mottled shading, and the edges of the handle and wall are lumpy and wavy. This is a cosmetic problem compared with the holes."
+   ],
+   "refuted": [
+    "Claim 4, second part (the rim is not a clean lip): The real pot's rolled rim is a thin, subtle band, and at this render resolution you cannot tell whether the mesh reproduces it. That is too uncertain to uphold."
+   ],
+   "summary": "The white_pot pose is right: the projected outline matches the bowl and the full handle. The problem is the mesh, which has a large hole in the bowl floor and a smaller torn hole in the upper-left inside wall with a loose strip at its edge, plus a noisy, lumpy surface."
+  },
+  {
+   "episode": 30,
+   "object": "mini_sweeper",
+   "frame": 224,
+   "fit": "minor",
+   "cause": "unclear",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit), in part: the wooden handle top is covered well, but the overlay stops at about y=293 while the visible bristle strip runs to about y=300, just above the white rack rail. That leaves the lowest 5-7 px of the bristles uncovered, about half the visible strip rather than 'mostly'. The overlay's top sits about 3 px right of the handle while its bottom lines up with the bristles, so it tilts slightly down-left, about 3-5 degrees. Nothing is grossly misplaced, and most of the body is hidden by the hand.",
+    "Claim 2 (shape): the front view clearly shows a small round through-hole in the body below the neck, with background showing through. The oblique view shows it as a dark slit. The body is hidden in this frame. In the eval-19 frame the green body near the ring is solid, with only marker balls on it and no hole, so the hole is most likely a reconstruction artifact.",
+    "Claim 3 (shape): a small loose tab sticks into the ring opening at its upper-left inner edge in the front view. The real ring is a smooth wooden torus.",
+    "Claim 4 (shape), mildly: the ring's outer outline in the front view is not a clean oval. It bulges and dents on the left side and the ring is thicker on the left than on the right. The 'pointed top-right corner' is only a slight angularity."
+   ],
+   "refuted": [
+    "Claim 1 sub-point 'top edge stops about 2 px below the handle tip': the green outline, which is seeded from the red silhouette, starts at y\u2248216, the same row as the wooden tip. Any gap is within the outline's width.",
+    "Claim 1 sub-point 'tint sits 3-4 px left of the bristle strip': the overlay's bottom spans about x=300-307 and the bristle strip about x=300-309, so they overlap and any offset is 1-2 px at most.",
+    "Claim 5 (lumpy bulges): the two bumps on one broad face in the top view, the mid-height bump in the side view and the neck-side bulge in the front view all fit the grey mocap marker balls on stems. The eval-19 frame shows two such markers on the green body. Markers are expected, so these are not clearly defects.",
+    "Claim 6 (ragged bottom edge, dents): the bottom silhouette is nearly straight. The jaggedness is small shading serrations along the bristle end, and real bristle tips are naturally uneven (the eval-19 frame shows splayed white bristles). The dark patches on the faces are shading at the narrowing neck, not clearly dents."
+   ],
+   "summary": "The projected mesh covers the visible wooden handle, but it stops about 5-7 px short of the visible bristle tips and tilts slightly down-left; the hand hides most of the body. The mesh itself has a small round through-hole in the body, a loose tab sticking into the ring opening, and a mildly irregular, non-oval ring outline."
+  },
+  {
+   "episode": 30,
+   "object": "plastic_dish_rack",
+   "frame": 16,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): Upheld. The red outline follows the real cup holder, the far rim and the front wall, and shows no visible shift or rotation. The tint overshoots the real right end of the tray by about 8 px. At the lower left it runs below the cup holder onto the hand, which is plausibly the hidden base of the cup holder. Inside the tray, the real white floor is left untinted between the fin rows from the cup holder to about two-thirds of the way along, and so is a strip along the inner front wall. These gaps match the floor holes in the render.",
+    "2 (shape): Upheld. In the front and oblique renders the background shows through between the fin rows over the middle and cup-holder half of the tray. Only a wedge-shaped floor patch at the far end is solid.",
+    "5 (shape): Upheld. The photo shows thin parallel ridges on the floor at the far end. The surviving floor patch in the front render is smooth with irregular mottled shading and has no parallel ridges, although this is fine detail."
+   ],
+   "refuted": [
+    "3 (shape): Refuted as not clear. In the overlay, the mesh fins project as tapered red cones whose size and position roughly match the real pegs, which argues against 'short rounded blobs'. One fin row does merge into the wall in the render. But the real back row of pegs stands close to the back wall, and in the overlay that band does not look wrong against the photo, so the merged row is not clearly an error.",
+    "4 (shape): Refuted as not clear. The lumpiness is the merged fin bases from claim 3, not a separate wall defect. The outer edge of that wall in the front render is close to straight with only slight waviness, and the projected back rim in the overlay follows the real rim smoothly."
+   ],
+   "summary": "The submitted dish-rack mesh is missing most of its tray floor between the fin rows, apart from a patch at the far end. That leaves the real floor uncovered over about two-thirds of the tray and along the inner front wall, while the outer outline fits well, about 8 px long at the far end. The thin floor ridges at the far end are also not modelled."
+  },
+  {
+   "episode": 32,
+   "object": "blue_cup",
+   "frame": 0,
+   "fit": "minor",
+   "cause": "unclear",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit), both mismatches are upheld. (a) At the base end, a red skirt flares down and to the right, past the cup's right wall line, over the thumb tip and onto the table. It is about 35 px wide and 10-15 px past the real cup. (b) A thin strip of real blue cup, about 2-4 px wide and about 25 px long, is left uncovered along the upper-left wall and rim next to the index finger. A pixel overlap mask confirms both. The rest of the silhouette, including the rim and the right wall, fits closely. I do NOT uphold the reviewer's 'shift/tilt toward lower right' explanation, because the error is local to the base end and not a uniform offset.",
+    "Claim 2 (shape): the front view shows a large, irregular see-through hole in the side wall, in the half toward the wide end. It spans about a third of the cup's width and is jagged. The real cup has one small round hole (with a marker ball in it), about a sixth of the width. The oblique view also shows a missing section of wall that reaches the wide end.",
+    "Claim 3 (shape): the wide end is ragged rather than a clean circle. The front view has a bulge at the bottom right (silhouette width jumps from 169 px to 185 px). The oblique view shows a gap at the bottom with a loose, flap-like strip. The top view shows a detached-looking fragment at the bottom edge.",
+    "Claim 4 (shape): the wall is visibly uneven. The oblique view has distinct dents and depressions. The side view has wavy shading bands and wavy silhouette edges. The real cup is a smooth tapered cylinder.",
+    "Claim 5 (shape), observation upheld with the location corrected. Measured silhouette widths over the same rows: the front view tapers from 137 to 169 px, while the side view stays at 138-148 px, almost straight-walled. So the cross-section is not round, but the flattening is in the middle and wide part of the body. At the narrow end the front and side widths match (137 vs 138 px).",
+    "Claim 6 (shape), partly upheld. The axial (top) view shows a flat end patch that is clearly squarish and stepped, with straight edges and a smaller square recess. A round cup base would not look like this."
+   ],
+   "refuted": [
+    "Claim 1 interpretation: the reviewer reads the errors as a small shift or tilt of the whole projection toward the lower right. The images do not support this. The right wall and the rim fit closely, and the excess red is a flare confined to the base end. That pattern could equally come from mesh shape at that end (the side view shows a lip about 10% wider at the narrow end). The cause stays unclear.",
+    "Claim 5 sub-point, 'non-circular (flattened) cross-section at the narrow end': refuted. At the narrow end the front and side widths are equal (137 vs 138 px). The difference appears only toward the middle and wide end.",
+    "Claim 6 sub-points, 'small bump on the edge' and 'rather than a round base': not clearly a defect. The overall end outline is roughly round. The small knobs on its edge could be a mocap marker ball and stem, which belong on the mesh. The fragment at the bottom of the top view is the wide-end flap already counted under claim 3."
+   ],
+   "summary": "The projected silhouette mostly fits, but a red skirt flares past the cup's base onto the thumb and table, and a thin strip of the real upper-left wall is left uncovered. The mesh itself has a large jagged hole in the wall toward the open end, a ragged open rim with loose flaps, dented walls, an oval cross-section in the middle and toward the open end, and a squarish stepped patch on the flat end instead of a round base."
+  },
+  {
+   "episode": 32,
+   "object": "wooden_spoon",
+   "frame": 0,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": false,
+   "issues": [],
+   "refuted": [],
+   "summary": "The submitted wooden_spoon mesh (library_v3) has the right shape: an oval, thin, shallow bowl, a long straight handle and the marker balls, in proportions that match the photo. The tracked pose places it accurately on the spoon resting on the table, with only a tiny under-coverage at the left side of the neck."
+  },
+  {
+   "episode": 33,
+   "object": "blue_cup",
+   "frame": 288,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit): The red tint matches the cup's outline, taper and tilt, with no visible rotation or meaningful shift. Inside the open mouth, a dark-blue strip on the inner left wall has no tint, running from near the rim down the visible interior and covering about 20% of the mouth width. The grey marker balls at the upper-right rim and on the left side are left uncovered while their stems are tinted; the lower-right ball is covered. Tint over the thumb is expected because the thumb is in front of the cup.",
+    "2 (holes near wide open end): In the front view, white background shows through a large hole in the lower third, near the wide end. In the oblique view the wide end has a large ragged gap where the wall is missing, running up from the rim.",
+    "3 (ragged rim): The wide-end edge is irregular and notched in the oblique view and wavy in the front view. It is not a clean circle.",
+    "4 (lumpy and noisy surface): All views show dents, wavy banding, blotchy shading and irregular silhouette edges, for example the bumps on the front-view left edge and the dark dents in the oblique view. A moulded tumbler would have smooth walls.",
+    "5 (non-circular cross-section): Silhouette widths measured on the render: the front view widens from about 135 px to 167 px between y=65 and y=265, while the side view stays at about 148 to 144 px over the same height, so it is nearly straight-sided. A circular tapered cup would show the same taper in both views, so the cross-section is uneven or flattened.",
+    "6 (marker balls not modelled): The render shows no distinct ball-on-stem features, only small bumps and one ring-like feature. The pair image agrees: two balls are left untinted while their stems are tinted."
+   ],
+   "refuted": [],
+   "summary": "The tracked pose fits the cup well. The visible gaps come from the mesh: the wall has a large hole and is torn away at the wide rim (so the strip inside the mouth is uncovered), and two marker balls are missing. The mesh is also lumpy, and its cross-section is not round: one side view tapers and the other is nearly straight."
+  },
+  {
+   "episode": 33,
+   "object": "wooden_spoon",
+   "frame": 24,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": false,
+   "issues": [
+    "Claim 1 (fit good, no shift or rotation): upheld. The panels are offset by 488 px, not 484. Once aligned, the red-tint outline drawn on the raw frame follows the bowl rim, the neck and both handle edges, and it includes the end marker ball. Blue-channel profiles taken across the handle show the tint ending at or just inside the real lower edge, so the 'marginally wide' caveat is not supported either."
+   ],
+   "refuted": [
+    "Claim 2 (faceted, uniform-thickness handle; the real handle widens towards its end): refuted. The render shows only faint shading bands, a cosmetic effect. The projected handle widens slightly from neck to end (about 11 to 13 px across) and matches the real handle edges along its whole length. No mismatch in width or taper is visible at this resolution."
+   ],
+   "summary": "In eval 33, frame 24, the submitted wooden_spoon mesh fits the real spoon well with no visible pose error. No mesh-shape problem is visible either."
+  },
+  {
+   "episode": 35,
+   "object": "wooden_spoon",
+   "frame": 8,
+   "fit": "good",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "fit: The red tint follows the spoon along its whole length, with no visible rotation or shift. The bowl, the handle and the dark-tipped handle end all match, and the hand on the right does not cover the spoon. In a zoomed crop, a thin sliver of pale wood is left uncovered on the lower-right edge where the bowl narrows into the handle, next to the upper marker. The tint may run a pixel or two past the handle end, which is within noise.",
+    "shape: In the front render, the mesh bowl is a plain ellipse that joins the cylindrical handle at a short, abrupt neck. The real spoon in the photo has a pear-shaped bowl that narrows gradually into the handle. This matches where the uncovered sliver appears in the projection."
+   ],
+   "refuted": [],
+   "summary": "The projected mesh fits the spoon well. The only flaw is a small uncovered sliver where the bowl meets the handle. That sliver comes from the mesh shape: its bowl is an ellipse with an abrupt neck, while the real spoon narrows gradually into the handle."
+  },
+  {
+   "episode": 36,
+   "object": "wooden_spoon",
+   "frame": 24,
+   "fit": "good",
+   "cause": "none",
+   "hand_or_occlusion": true,
+   "issues": [
+    "1 (fit), with a correction: the overall fit is close. I measured it against the raw frame. The bowl tip and the near (lower) edge match within about 1 px, and there is no visible rotation or length error. The tint over the hand stays in line with the visible handle and ends at the grey end marker beyond the knuckles. About 83% of the visible spoon pixels are under red tint and about 7% sit under the green outline. Only about 6% are clearly uncovered wood. The uncovered band along the far (upper) edge is 2-4 px wide, not 1-2 px, and it is widest where the bowl narrows into the neck (around panel x=260-280). At about 1.3-1.6 mm per pixel that is a few millimetres, not sub-millimetre. It points to a slightly narrower bowl-to-neck shoulder in the mesh, a small cosmetic error.",
+    "3 (shape): the front render shows clear lengthwise shading stripes (faceting) on the bowl. This is cosmetic only and does not affect the silhouette."
+   ],
+   "refuted": [
+    "2 (shape): measured, the render contradicts it. In the front view the mesh handle is not constant width. It goes from about 15 px at the neck to about 19-20 px along most of its length, so the mesh already models a handle that widens from the neck. In the photo the visible handle widens only slightly (about 11 px to 13-14 px vertical extent) before it goes under the fingers. The silhouette mismatch there is only about 2 px on the far edge, which does not show a missing taper."
+   ],
+   "summary": "The wooden_spoon mesh fits the eval-36 frame well: no rotation or length error. The only shortfall is a 2-4 px (a few millimetres) uncovered strip along the far edge, widest where the bowl narrows into the handle. The bowl in the render also shows cosmetic lengthwise faceting."
+  },
+  {
+   "episode": 37,
+   "object": "wooden_spoon",
+   "frame": 24,
+   "fit": "good",
+   "cause": "mesh",
+   "hand_or_occlusion": true,
+   "issues": [
+    "Claim 1 (fit): Upheld. At pixel level the red tint matches the real bowl to within about 1 px on both edges from tip to rim. Past the neck the tint matches the visible handle again. The lower-neck marker and the handle-end marker sit on the real balls. The upper marker sits inside its bump with at most a ~1 px offset, which isn't clear. The only real gap is uncovered cream wood at the bowl-to-neck transition (about original x 248-260). It is about 2-3 px on the upper edge (a little more than the claimed 1-2 px), with a smaller 1-2 px sliver on the lower edge that the claim did not mention. One wording note: to the right of the hand only the end marker is visible, not the handle itself, and the end marker lines up.",
+    "Claim 2 (shape): Upheld. Column by column, the mesh is 2-3 px narrower than the real wood on both edges only at the bowl-to-neck transition. The bowl and the handle further out match. A pose error would shift or scale the whole outline rather than narrow just this one part, so this is mesh shape. The render agrees: an oval bowl joins a thin rod through a short, abrupt flare, while the real spoon tapers gradually from bowl into handle."
+   ],
+   "refuted": [
+    "Claim 3 (shape): Refuted as an issue. The render does show a uniform round rod with a rounded end, but the claim itself says the real cross-section and tip cannot be checked. The handle visible between the neck and the hand matches the tint's width, and the end marker lines up. No defect is visible."
+   ],
+   "summary": "The eval-37 wooden_spoon mesh fits the frame well: the bowl, handle and markers line up within about 1 px. The one flaw is that the mesh's bowl-to-handle join is a little narrower and more abrupt than the real spoon's gradual taper, which leaves thin slivers of real wood (about 2-3 px above, 1-2 px below) uncovered at the neck."
+  },
+  {
+   "episode": 38,
+   "object": "mini_dust_pan",
+   "frame": 240,
+   "fit": "minor",
+   "cause": "mesh",
+   "hand_or_occlusion": false,
+   "issues": [
+    "Claim 1, parts 1, 3 and 4 (fit): I first lined the two panels up (the right panel is offset by 488 px). The tracked pose is right: there is no rotation or shift. But the tint spills into part of the ring's see-through hole, so the uncovered hole is smaller and irregular where the real one is round. The dark bottom-left tip of the grey lip sticks out a few pixels beyond the tint. The two grey mocap balls under the pan's lower edge are not covered.",
+    "Claim 2 (shape): stepped, terrace-like bands across the scoop are clearly visible in the front and oblique views.",
+    "Claim 3 (shape): the ring hole in the front view is pinched and irregular, with an inward bump at the lower right, not round. The ring's width also varies around the loop.",
+    "Claim 4 (shape): the triangle's outline is wavy and lumpy, most visibly along the left edge in the front view and the left rim in the oblique view."
+   ],
+   "refuted": [
+    "Claim 1, part 2 (ring edge overshoots on the right and bottom): in the aligned pixels the tint ends 0 to 2 px inside the real yellow ring edge, and the green line sits on the real edge. There is no outward overshoot.",
+    "Claim 5 (wavy sheet, middle bulge, no lip wall): the thickening in the side view matches the scoop's concave arc seen edge-on, which the top view also shows, so it is not clearly a defect. From this near-top-down photo you cannot tell whether the real grey lip is a raised wall. The waviness is the same artifact as claims 2 and 4.",
+    "Claim 6 (plate bowed too much): the first reviewer hedged it ('may be'). A dust-pan scoop is expected to be somewhat concave, and the top-down photo cannot show how deep the real curve is, so too much curvature is not clearly visible."
+   ],
+   "summary": "The pose is right and the mesh covers the dust pan closely. The small misses all come from the mesh: its ring hole is pinched and irregular, so the tint covers part of the real hole, and the grey lip's bottom tip and two mocap balls under the edge are left uncovered. The mesh surface itself has stair-step terracing on the scoop and lumpy, ragged outer edges."
+  }
+ ],
+ "synthesis": {
+  "objects": [
+   {
+    "object": "blue_cup",
+    "eval_pairs": 5,
+    "mesh_verdict": "poor",
+    "main_issues": [
+     "Large ragged see-through hole in the side wall toward the wide (open) end, with the wall torn away at the rim and loose strips or flaps hanging off it; seen in all 5 pairs",
+     "Cross-section is not round over the middle and wide part of the body: one side view tapers (about 136 to 171 px wide) while the other is almost straight (about 137 to 148 px); at the narrow end the two widths match",
+     "Lumpy, dented wall with wavy outlines, and a squarish, stair-stepped patch on the closed end inside a roughly round outline",
+     "In projection: a wedge or crescent of real rim at the upper left is left uncovered (eval 14: 6-10 px over about 20 rows; eval 20: 7-13 px over about 50 px; eval 33: about 20% of the mouth width), and a small see-through spot shows inside the opening (eval 10, 14)",
+     "Marker balls not modelled as distinct balls: in eval 33 two balls are uncovered while their stems are tinted. At render resolution this could not be confirmed in eval 10"
+    ],
+    "episodes_with_problems": [
+     "eval 10",
+     "eval 14",
+     "eval 20",
+     "eval 32",
+     "eval 33"
+    ],
+    "priority": 1,
+    "recommended_method": "Thin-wall lathe fitted to observed stereo points. This is the one fix with a measured gain: on public episodes CD-O went from 0.523 to 0.291 cm. It needs depth from several eval frames per episode. Check after the rebuild: the wall hole is gone and the front and side widths taper the same way."
+   },
+   {
+    "object": "white_pot",
+    "eval_pairs": 6,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "Floor mostly missing: a large see-through hole in the base, about 7-8 cm wide in a 19 cm bowl (measured on the mesh file in the eval 5 review). It leaves roughly 15-25% to a third of the visible interior uncovered in every eval frame reviewed",
+     "Second hole in the left inner wall near the rim (about 5 cm tall and 7-8 cm along the wall, eval 5). A thin strip or flap of rim crosses it or stands inside the bowl (eval 3, 5, 6, 8, 28), plus a thin slit in the left wall (eval 1)",
+     "Rough, lumpy surface with a ragged, non-circular rim outline. Measured wall thickness ranges from a few mm to over 2 cm",
+     "Handle is a plain rod with its hanging hole filled in",
+     "Small edge misses only: a 2-8 px uncovered strip on the left edge of the rim or handle tip. The left marker ball is not covered in eval 1. The outer outline and pose are otherwise good"
+    ],
+    "episodes_with_problems": [
+     "eval 1",
+     "eval 3",
+     "eval 5",
+     "eval 6",
+     "eval 8",
+     "eval 28"
+    ],
+    "priority": 2,
+    "recommended_method": "Hypothesis (untested on the pot): rebuild the bowl as a thin-wall lathe fitted to observed stereo points (the bowl is a body of revolution), and keep or refit the handle separately with the hanging hole cut. Alternative: directional TSDF thin-wall fusion to close the floor and wall. Falsifying test: CD-O on public episodes must drop below 0.437 cm, and the floor must be closed in an axial render."
+   },
+   {
+    "object": "plastic_dish_rack",
+    "eval_pairs": 5,
+    "mesh_verdict": "poor",
+    "main_issues": [
+     "Most of the tray floor is missing. Only a patch at the drain end survives, so the real white floor between the peg rows shows through: about 20% of object pixels in eval 15, and up to two-thirds of the tray length in eval 30",
+     "Pegs come out as fused rounded knobs or short stubs, with the back row fused to the wall (eval 15, 16, 28). In eval 14 and 30 the projected pegs roughly matched the real ones, so this is a moderate error",
+     "Lumpy, wavy surface and rims, with horizontal ribbing on the cup holder (eval 14, 16)",
+     "The tint runs about 5-9 px past the rounded right end (eval 28, 30). The thin floor ridges at the drain end are not modelled (fine detail)"
+    ],
+    "episodes_with_problems": [
+     "eval 14",
+     "eval 15",
+     "eval 16",
+     "eval 28",
+     "eval 30"
+    ],
+    "priority": 3,
+    "recommended_method": "Better thin-wall fusion (directional TSDF) to recover the floor. Alternative: generative image-to-3D, then fit to observations (untested here). Hypothesis worth a cheap test: fit a plane to the observed floor points and patch the floor in. Falsifying test: CD-O on public episodes must drop below 0.555 cm, and the floor must be closed in the front render."
+   },
+   {
+    "object": "beige_cup",
+    "eval_pairs": 2,
+    "mesh_verdict": "poor",
+    "main_issues": [
+     "Both submitted versions are broken. The eval 8 rebuild (library_v3x) is two separate closed pieces: a rounded lump at the wide end and a strip tilted about 25-30 degrees for the narrow half, with a large gap between them. Rays cast along the axis pass straight through the centre",
+     "The older version used in eval 10 is two separate flattened, voxel-blocky slabs with fins, and its side profile is uneven and lopsided",
+     "Neither version has a rim or a cup opening",
+     "Rough, blotchy surface, and no identifiable marker balls",
+     "The projection still lands in the right place at the right size. In eval 10 it misses a band along the near rim, a strip inside the left rim and both marker balls"
+    ],
+    "episodes_with_problems": [
+     "eval 8",
+     "eval 10"
+    ],
+    "priority": 4,
+    "recommended_method": "Thin-wall lathe fitted to observed stereo points, the same method as the blue cup (needs depth from several eval frames). A large gain from 0.730/0.856 cm is expected but not yet measured for this cup; confirm it on public episodes first."
+   },
+   {
+    "object": "water_pitcher",
+    "eval_pairs": 1,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "Through-holes in the bowl wall: one shows in the side render, and the overlay leaves gaps over the real inner wall, the largest about 45x10 px",
+     "A small lump of about 5-8 px sticks up from the upper spout edge",
+     "The handle sits about 5-6 px right of the real handle, and mesh webbing fills part of the gap between handle and body",
+     "It has the worst measured CD-O of all submitted meshes (0.894 cm on public episodes), so it is probably worse than this single eval frame shows (inference)"
+    ],
+    "episodes_with_problems": [
+     "eval 20"
+    ],
+    "priority": 5,
+    "recommended_method": "Directional TSDF thin-wall fusion. Alternative: generative image-to-3D, then fit to observations (untested). Hypothesis: a lathe body with the spout and handle kept from fusion. Falsifying test: CD-O on public episodes must drop below 0.894 cm."
+   },
+   {
+    "object": "mini_dust_pan",
+    "eval_pairs": 2,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "Stair-step terracing across the scoop face (both pairs)",
+     "The ring hole is pinched and egg-shaped instead of round, so the tint covers part of the real hole and the fingertips in it",
+     "Lumpy, ragged outer edges",
+     "No marker-ball bumps: in eval 38 two mocap balls under the edge are uncovered, and in eval 19 none are visible. A thin strip, about 3 px, of the upper-left wall rim is uncovered in eval 19"
+    ],
+    "episodes_with_problems": [
+     "eval 19",
+     "eval 38"
+    ],
+    "priority": 6,
+    "recommended_method": "Directional TSDF thin-wall fusion. Hypothesis: the terracing is a depth-quantisation or fusion artifact on a thin sheet, so it should disappear with better fusion. Alternative: generative image-to-3D, then fit. Low urgency: CD-O is already 0.331 cm."
+   },
+   {
+    "object": "mini_sweeper",
+    "eval_pairs": 2,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "Lumpy, noisy surface with a wavy outline (eval 19)",
+     "The ring handle is uneven: its hole sits off-centre toward the upper right, a small loose tab sticks into the opening, and the outer outline is not a clean oval (both pairs)",
+     "Marker balls are only low bumps, not balls on stems (eval 19)",
+     "Small round through-hole in the body. It is probably a reconstruction artifact (eval 30), but this could not be confirmed from the eval 19 photo",
+     "In projection: small gaps at the bristle tips and at the lower body corner (eval 19)"
+    ],
+    "episodes_with_problems": [
+     "eval 19",
+     "eval 30"
+    ],
+    "priority": 7,
+    "recommended_method": "Generative image-to-3D then fit to observations (untested), or directional TSDF fusion. Low urgency: CD-O is already 0.317 cm and the fit is good."
+   },
+   {
+    "object": "wooden_piece_1",
+    "eval_pairs": 1,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "Large spurious two-lobed hole near one end, with an island of mesh inside it. It leaves untinted patches in the projection; the real board is solid there",
+     "The through-slot at mid-length is missing",
+     "Diagonal crease lines with a raised hump, and uneven, lumpy thickness with a blob at one end",
+     "Markers appear only as a fused knob and a cone, and the top marker is left uncovered"
+    ],
+    "episodes_with_problems": [
+     "eval 25"
+    ],
+    "priority": 8,
+    "recommended_method": "Extrusion fit: the board outline, including the slot and corner tabs, extruded to the measured thickness, with marker spheres added if they help. This is cheap. CD-O is already 0.222 cm, so the gain is mainly the hole and slot."
+   },
+   {
+    "object": "white_pot_lid",
+    "eval_pairs": 1,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "Wedge-shaped notch in the rim with a bent flap beside it. It leaves an uncovered crescent of rim from about 1 to 4 o'clock, 8-10 px at its widest",
+     "Through-hole in the plate next to and under the handle; the real lid is solid there",
+     "Markers are only shallow bumps, not balls on stems",
+     "Lumpy surface with a ragged rim outline"
+    ],
+    "episodes_with_problems": [
+     "eval 1"
+    ],
+    "priority": 9,
+    "recommended_method": "Hypothesis (untested): the lid is round, so fit the plate as a thin lathe disc and keep or refit the handle. Alternative: directional TSDF fusion. Falsifying test: CD-O on public episodes must drop below 0.421 cm."
+   },
+   {
+    "object": "wooden_piece_2",
+    "eval_pairs": 1,
+    "mesh_verdict": "usable with defects",
+    "main_issues": [
+     "The slot that runs from one long edge to about mid-width is missing",
+     "Slightly lumpy rim, with a dent on the lower-left edge and bulges at the corners",
+     "The tops of the two top-corner marker balls stick out past the projected mesh. The pose fit is otherwise good"
+    ],
+    "episodes_with_problems": [
+     "eval 25"
+    ],
+    "priority": 10,
+    "recommended_method": "Extrusion fit, the same as wooden_piece_1: outline with the slot, extruded to the measured thickness. Cheap. CD-O is already 0.216 cm."
+   },
+   {
+    "object": "wooden_spoon",
+    "eval_pairs": 10,
+    "mesh_verdict": "good",
+    "main_issues": [
+     "Fits within about 1-3 px in all 10 pairs, with no shape defects in 6 of them",
+     "The bowl-to-neck join is a little narrower and more abrupt than the real spoon's gradual taper. This leaves 2-4 px slivers of real wood uncovered at the neck (eval 35, 36, 37) and a 2-3 px sliver along the bowl's left edge (eval 3)",
+     "Cosmetic only: lengthwise faceting on the bowl (eval 36), and a pinched neck in the side render (eval 3) that the frame cannot verify",
+     "It is a parametric template with no scan, so its CD-O is unmeasured"
+    ],
+    "episodes_with_problems": [
+     "eval 3",
+     "eval 35",
+     "eval 36",
+     "eval 37"
+    ],
+    "priority": 11,
+    "recommended_method": "Keep the parametric template. Optional: refine the bowl-to-neck taper with a generalized-cylinder fit to observations. Expected gain is small."
+   }
+  ],
+  "track_problems": [
+   "eval 10 blue_cup (frame 32), cause judged 'both': the projection sits slightly toward the lower right. It misses the upper-left rim and the left marker ball and spills about 10 px (about 13% of the visible cup height) onto the holding hand. A small shift or tilt is the reviewer's reading, on top of the mesh's wall hole.",
+   "eval 32 blue_cup (frame 0), cause unclear: a red skirt about 35 px wide flares 10-15 px past the cup's base onto the thumb and table, and a 2-4 px strip of the upper-left wall is uncovered. The skeptic rejected a uniform pose shift because the rim and right wall fit closely. This may be mesh shape at that end rather than pose.",
+   "eval 30 mini_sweeper (frame 224), cause unclear: the overlay stops 5-7 px short of the visible bristle tips (about half the visible bristle strip) and tilts about 3-5 degrees down-left. The hand hides most of the body, so pose and mesh cannot be separated.",
+   "eval 3 wooden_spoon (frame 297), cause unclear, negligible: a 2-3 px uncovered sliver along the bowl's left and lower-left edge, with the rest aligned within 1-2 px."
+  ],
+  "overall": "Tracking is in good shape. In all 36 eval pairs the mesh landed on the right object, in the right place and at the right size. Only three pairs (the blue cup in eval 10 and 32, the sweeper in eval 30) show a small offset that might come from the pose. The weak point is the meshes. The wooden spoon, in 10 of the 36 pairs, is good. The white pot, blue cup and dish rack, 16 pairs between them, all have large holes: the pot and the rack are missing most of their floors, and the blue cup has a big hole near its open end and is not round. The beige cup is the worst mesh, two separate pieces with no opening, but it appears in only two episodes. Suggested order of work: the blue cup first, because it is the only one with a measured fix (the thin-wall lathe took it from 0.523 to 0.291 cm on public episodes, though it needs depth from several eval frames); then the pot, the rack and the beige cup. The lathe's gain on any object other than the blue cup, and every other method listed, is an untested hypothesis until measured on public episodes. This review looked at one frame per pair, so it does not catch tracking errors in other frames."
+ },
+ "dropped": 0
+}

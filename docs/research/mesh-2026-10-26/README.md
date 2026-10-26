@@ -271,4 +271,24 @@ Review panel (workflow `wf_c69f9d10-f06`):
 - a skeptic re-checks every flagged issue;
 - a final step writes per-object verdicts.
 
-Results are in `results/eval_review.json` when finished.
+Results: `results/eval_review.json` (68 agents, 0 errors). Shown on the page as notes under each image and a priority
+table.
+- **Tracking is good:** all 36 meshes land on the right object, place and size. Possible small pose offsets only on
+  eval 10 and 32 (blue cup) and eval 30 (sweeper).
+- **Meshes, in priority order** (visual, GT-free):
+
+  | # | Object | Pairs | Verdict | Main issues |
+  |---|---|---|---|---|
+  | 1 | blue cup | 5 | poor | side-wall hole near the open end; not round |
+  | 2 | white pot | 6 | usable with defects | floor mostly missing; wall hole near the rim; filled handle hole |
+  | 3 | dish rack | 5 | poor | tray floor mostly missing; fused pegs |
+  | 4 | beige cup | 2 | poor | both versions broken: two pieces, no opening |
+  | 5 | pitcher | 1 | usable with defects | wall holes |
+  | 6 | dust pan | 2 | usable with defects | terraced scoop |
+  | 7 | sweeper | 2 | usable with defects | lumpy, uneven ring handle |
+  | 8 | board 1 | 1 | usable with defects | spurious hole; no slot |
+  | 9 | lid | 1 | usable with defects | rim notch; plate hole |
+  | 10 | board 2 | 1 | usable with defects | no slot |
+  | 11 | spoon | 10 | good | small neck taper only |
+- The order matches the measured lathe gain (cups first). The lathe's effect on the pot, rack and beige cup is still
+  a hypothesis until measured on public episodes.
