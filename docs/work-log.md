@@ -4239,3 +4239,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   to origin/main (the day-1 commit) when V2D_COMMIT was not set; destroyed within a minute (≈ $0.03), before its job ran.
   Relaunched as **57798815 `20261026-pack4-f7a49a9`** (RTX PRO 6000 WS New York $1.47/h, V2D_COMMIT=f7a49a9). Fix:
   vast.sh now defaults to the local HEAD and refuses a commit that is not on origin.
+- 10:51 UTC **pack 4 done** (`20261026-pack4-f7a49a9`, ≈ 25 min, self-destroyed):
+  - kept 17 rollouts (3/5/15/16 from pack 2), evaluated 10 / 25 / 33; checkpoint check OK;
+  - sim_vs_ref mean 0.9121 (10 0.447, 25 0.894, 33 0.932).
+- 10:55 UTC **Kaggle (agent, five pose boards): AUC 0.81056** (was 0.78893), SP-SR 0.85, MP-SR 0.65, RPE 4.03 cm,
+  MPPE 2.94 cm.
+  - Rank **5th**: DDD rose to 0.82716 at 03:36 UTC, above our old 0.789. 1–3: 0.932 / 0.902 / 0.865.
+  - Predicted from the actual draws +0.0285; measured +0.0216 (≈ 76 % transfer). Implied hidden loss
+    0.979 × 0.912 − 0.811 ≈ 0.082 (was ≈ 0.075).
+  - Credit $28.23.

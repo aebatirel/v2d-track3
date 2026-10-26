@@ -2,6 +2,17 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~11:00 UTC: FOURTH SUBMISSION — Track 3 AUC 0.81056, 5th (DDD passed us at 0.82716)
+- Pack 4 (`results/submissions/20261026-track3d/`):
+  - carved collision copies with the standard learner: eval 10 (s43; s42's chosen checkpoint was pruned) and eval 25
+    (s42);
+  - eval 33 = frozen seed 43;
+  - 3/5/15/16 restored to pack 2's seed-43 rollouts.
+  - Our mean 0.912. Boards: SP-SR 0.85, MP-SR 0.65, RPE 4.03 cm, MPPE 2.94 cm.
+- Gaps: 4th DDD 0.827 (+0.017), 3rd 0.865 (+0.054). 0 boxes running.
+- Open owner decisions: seed race pilot (interruptible, ≈ $10–12, `docs/research/seed-race-20261026/`); next levers in
+  `docs/analysis/episode-scoreboard-20261026.md`.
+
 ## 2026-10-26 ~09:45 UTC: eval 25 → carve s42; eval 32 keeps s42; eval 10 / eval 33 still running; seed race proposed
 - Waiting: eval-10 carve s42 / s43 and eval-33 frozen s43 (≈ 10:30 UTC), then one pack and upload.
 - Owner question on many seeds: analysis and proposal in `docs/research/seed-race-20261026/README.md` (level at 40 %
