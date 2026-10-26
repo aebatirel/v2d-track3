@@ -4384,3 +4384,17 @@ physics-based meshes, …), research methods in depth, test on public data. Outp
 - Generative probe prepared (`crops.py`: GT-free colour crops at resting, hand-free frames; 9/10 objects clean;
   beige cup fails: ep11 frame-0 track wrong). Running Hunyuan3D-2mini on CPU was **blocked by the sandbox (third-party
   code)**; SAM 3D Objects returns 403 (owner's HF token lacks the gate). Needs the owner's permission.
+- ~16:40 UTC (same session) more results [D]:
+  - Observed-point accuracy and coverage for all 10 objects (`results/obs_diag.txt`):
+    - median: lid 0.85, cups 0.9, dust pan 1.07, board 2 1.29, pitcher 1.30, sweeper 1.37, rack 1.88, pot 1.89 mm;
+    - coverage within 3 mm: 59–90 %, except the rack (28 %) and board 1 (16 %, ep23 track problem).
+  - Lathe on ep21 cup points: **0.291** (ADD 4.1 mm, 0/7 flips); ep22 0.364; ep21 + 22 merged 0.396. Same pattern as
+    22 Oct: single episode > fusion.
+  - New GT-free selector `obs_fidelity.py` (observed→mesh + mesh→observed trimmed means, both episodes' points):
+    ep21 4.08 < merged 4.23 < ep22 5.79 < library 5.86 < ep22-no-markers 6.63 mm. It picks the CD-O winner;
+    Spearman 0.5 (n = 5).
+  - Pot: axis needed candidate selection by rotational self-consistency plus an opening-direction tie-break (the
+    line complex locks onto the handle; a bowl fits any axis through its centre). Body-only lathe 1.168 with 2/8 flips;
+    with splatted handle 0.468; with library appendages 0.413 (library 0.437, approach-2 lathe 0.319).
+  - Vast market check (read-only, 16:20 UTC): PRO 6000 $1.69/h, A100 $0.70–0.79/h, RTX 6000 Ada $0.76/h.
+  - Report: `docs/research/mesh-2026-10-26/README.md`. STATUS updated. No GPU rented.

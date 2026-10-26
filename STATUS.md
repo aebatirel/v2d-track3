@@ -2,6 +2,31 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~16:40 UTC: mesh accuracy research round (branch `claude/bold-albattani-6qmxsv`, CPU only, $0)
+Report: `docs/research/mesh-2026-10-26/README.md`. Also there: ledger of all past mesh work, three literature
+reviews, scripts and results.
+- **Why it matters:** CD-O ours 0.402 cm against leaders 0.112–0.154. The same mesh registration sets the body frames
+  of all five pose boards.
+- **Measured [D]:**
+  - Our stereo points along our own tracks lie a median 0.85–1.9 mm from the scans and cover 60–90 % of most objects
+    (rack 28 %). The 4 mm binary-blur mesher discards that accuracy (walls 12–20 mm against real 2–4 mm).
+  - The scans are thin double walls and **partial** (no deep inner cup wall). CD-O's RMS-radius scale fix punishes a
+    wrong area distribution: blue-cup lathe 0.382 as scored vs 0.316 at true scale.
+- **New method (GT-free), `lathe_obs.py`:** a thin-walled lathe fitted to observed points.
+  - Blue cup 0.523 → **0.291** (ep21; ADD 10.0 → 4.1 mm, 0/7 flips). Ep22: 0.364. Merged: 0.396 (fusion hurts again).
+  - `obs_fidelity.py` (GT-free) picks the right episode.
+  - Pot not yet: 0.413–0.468 vs 0.437 (inflated handle).
+  - Screened Poisson on raw points fails (≈ 1.0).
+- **Generative models (SAM 3D, TRELLIS.2, Hunyuan3D) were never tried.** Crops are ready (`crops.py`).
+  - The sandbox blocked running third-party model code here.
+  - SAM 3D gives HF 403 (token lacks the gate).
+- **Owner decisions needed:**
+  - (1) permission to run third-party generative model code;
+  - (2) request SAM 3D access and give the token gated read;
+  - (3) GPU probe P1, ≈ $4–8 (ceiling $12), on a box separate from the eval-10 boxes;
+  - (4) licence choice (Hunyuan excludes EU/UK/KR).
+- Nothing in the submission pipeline was changed.
+
 ## 2026-10-26 ~15:25 UTC: eval-10 check done (CPU); one small GPU test proposed
 - Cause: every learner learns to avoid the beige cup. The open-loop plan carries it, but the cup hits the blue cup's
   rim (6–7 cm misalignment in the simulation) and is flung after release.
