@@ -249,3 +249,17 @@ Proposed:
 - the Vast key and the HF read token as cloud network secrets.
 
 Next: the owner checklist (runbook §3), then box 0 (smoke) and box 1 (day 1). Expected batch cost $14–16, ceiling $25.
+
+2026-10-26: Owner asked for research on Kalman filters, control theory, physics-based path following, carry-aware
+methods and force feedback from the hand for policy generation. Started note 23
+(`docs/research/notes/23-carry-control-force.md`).
+- Code study of FlashCHORD @8c778f90 (cloned to the session scratchpad, not committed): the policy already observes
+  live contact points and unit force directions per hand link (no force magnitude), no look-ahead, no object velocity
+  (term exists, disabled). Config-only levers found: wrist gains (embodiment joint_overrides, action.wrist_kp), object
+  velocity observation, force_closure and contact_force_l2 reward terms (disabled), wrist termination threshold.
+- Carry model (`docs/research/work/23/carry_model.py`, CPU, public GT for diagnostics, machine: Claude cloud VM,
+  command `python3 carry_model.py <public data dir> > carry_model.txt`): default soft wrist saturates 23/27 moving
+  tracks (5.8 % of moving frames). Velocity feed-forward via a 0.24 s hand-reference advance cuts this to 1/27;
+  advance + gravity offset to 0/27; kp 50–100 at the default damping ratio to 0/27. Grip/load factor stays 0.84–1.25 g.
+- Three literature reviews running in parallel (control/carry-aware, force/tactile, Kalman/physics-consistent
+  references).

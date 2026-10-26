@@ -1,0 +1,48 @@
+default damping ratio zeta0 = 0.483; gain sweep keeps it (kd = 2 zeta0 sqrt(kp M))
+Per variant over moving object tracks (27 expected); residuals in m (rad for rot), clip 0.20 m / 1.0 rad
+            variant     kp   kd  tracks_saturating  n_tracks  frame_sat_pct  median_z_p95  median_xy_p95  worst_axis  static_sag_cm  lag_s
+       default kp25   25.0  6.0                 23        27          5.809         0.205          0.077       0.344         11.772  0.240
+      kp25 +advance   25.0  6.0                  1        27          0.039         0.151          0.032       0.214         11.772  0.240
+         kp25 +grav   25.0  6.0                  2        27          0.273         0.099          0.077       0.227         11.772  0.240
+ kp25 +advance+grav   25.0  6.0                  0        27          0.000         0.043          0.032       0.133         11.772  0.240
+        kp25 m=0.15   25.0  6.0                 10        27          1.209         0.142          0.074       0.271          5.886  0.240
+               kp50   50.0  8.5                  0        27          0.000         0.114          0.049       0.189          5.886  0.170
+              kp100  100.0 12.0                  0        27          0.000         0.066          0.031       0.110          2.943  0.120
+              kp200  200.0 17.0                  0        27          0.000         0.038          0.019       0.067          1.472  0.085
+              kp400  400.0 24.0                  0        27          0.000         0.023          0.013       0.042          0.736  0.060
+     kp6000 (stiff) 6000.0 60.0                  0        27          0.000         0.003          0.002       0.006          0.049  0.010
+ rot default k25 d6   25.0  6.0                  2        27          0.273           NaN          0.429       1.168            NaN  0.240
+       rot k100 d12  100.0 12.0                  0        27          0.000           NaN          0.214       0.584            NaN  0.120
+rot stiff k1200 d60 1200.0 60.0                  0        27          0.000           NaN          0.089       0.243            NaN  0.050
+
+Grip/load factor |a - g|/g on moving frames (1.0 = static weight), per track:
+ ep            obj  load_p05  load_p50  load_p95  load_max
+  0      white_pot      0.88      1.02      1.14      1.17
+  0  white_pot_lid      0.84      1.01      1.15      1.22
+  2      white_pot      0.91      1.02      1.09      1.12
+  2  white_pot_lid      0.91      1.00      1.09      1.14
+ 11      beige_cup      0.87      1.00      1.16      1.19
+ 12       blue_cup      0.91      1.00      1.10      1.12
+ 13       blue_cup      0.87      1.00      1.09      1.15
+ 18  mini_dust_pan      0.87      1.00      1.11      1.20
+ 18   mini_sweeper      0.86      1.01      1.13      1.17
+ 21       blue_cup      0.96      0.99      1.06      1.08
+ 21  water_pitcher      0.90      0.98      1.14      1.17
+ 22       blue_cup      0.90      0.99      1.09      1.12
+ 22  water_pitcher      0.91      0.99      1.11      1.15
+ 23 wooden_piece_1      0.89      1.00      1.10      1.13
+ 23 wooden_piece_2      0.86      1.00      1.16      1.21
+ 24 wooden_piece_1      0.90      1.00      1.10      1.15
+ 24 wooden_piece_2      0.86      1.00      1.17      1.25
+ 26      white_pot      0.86      1.02      1.14      1.18
+ 27      white_pot      0.94      1.00      1.06      1.12
+ 31   mini_sweeper      0.93      1.00      1.06      1.09
+ 39  mini_dust_pan      0.90      1.01      1.09      1.17
+ 40  mini_dust_pan      0.93      0.99      1.09      1.11
+ 41      white_pot      0.94      1.00      1.06      1.07
+ 42      white_pot      0.85      1.00      1.13      1.17
+ 43      white_pot      0.94      1.00      1.06      1.11
+ 44      white_pot      0.93      1.00      1.07      1.11
+ 45      white_pot      0.94      1.00      1.05      1.15
+over tracks: median p05 0.90, median p95 1.10, max 1.25
+min normal force to hold a 0.3 kg object at the worst load, two-sided pinch: mu=1.0 -> 1.84 N, mu=0.5 -> 3.68 N
