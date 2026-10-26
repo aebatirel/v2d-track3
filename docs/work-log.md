@@ -4269,3 +4269,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - 57805240 `20261026-gl10B-7531779` (PRO 6000 Max-Q Czechia, $0.91/h): frozen variant.
   - The first B offer (Bulgaria) vanished (404 no_such_ask). Expected ≈ 1.3 h each, ≈ $1.1–1.2 each; self-destroy.
   - If an instance is paused (outbid), the restart re-runs the whole job (glock_public moves the earlier run aside).
+- ~11:25 UTC owner: "okay go ahead and start". The seed race on eval 25 is replaced by extra seeds on eval 32.
+  - Reason: an episode keeps its packed rollout until its checkpoint changes. The high-variance episodes' current packed
+    rollouts are high draws (25: 0.894 vs mean 0.79; 33: 0.932 vs 0.79; 14: 0.909 vs 0.66), so a new policy's fresh
+    rollout would most likely lower them.
+  - Eval 32's packed rollout (0.789) is at its policy's mean (0.779), and its loss (≈ 0.010 AUC) is the largest after
+    eval 10's.
+  - Grasp-lock seeds run to the end (`glock_early.py`: no early cut).
+  - Launch: three interruptible boxes, frozen recipe (as fr3233s43, eval 32 only), seeds 44 / 45 / 46, ≈ $1 each.
+  - **Choice rule (now, before results):** candidates = s42 (submitted, 5-eval mean 0.779), s43 (0.702), s44, s45,
+    s46. The highest mean sim_vs_ref over 5 official evaluations (object trajectory checked identical) goes into the
+    next pack.
