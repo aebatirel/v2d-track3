@@ -4369,3 +4369,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - The eval-10 B′/C′ boxes were created at ≈ 14:48 UTC (watcher's first line 14:49:57).
   - The mesh-swap tests ran ≈ 15:00–15:25 UTC.
   - B′/C′ results are expected ≈ 16:30 UTC.
+- ~15:30 UTC **pack 5 launch** (decided parts only; a pack 6 follows if B′ or C′ wins eval 10):
+  - eval 32 = fr32s46b (sha 7bfea035…, refs/glockt/ep32);
+  - eval 10 = gl10A2 (current rule winner 0.4539, sha 76a12265…, refs/glockt/ep10; carved cups via ASSET_PIECES);
+  - eval 20 = same checkpoint and rollout, submitted pitcher mesh from library_v3p (EP_LIB 20);
+  - all others kept by sha: KEEP_RESULTS pack4 → pack3 → pack2.
+  - Expected (estimate): 10 +0.007 and 32 +0.014 sim_vs_ref vs the packed draws; eval 20 ≈ +0.1 registered (twin).
+    Total ≈ +0.005 to +0.007 AUC, if the pitcher swap transfers.
