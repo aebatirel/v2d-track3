@@ -27,7 +27,7 @@ done
 PI=/content/packinfo/runs/$PR/results
 EPS=${EPS:-$(python -c "import json; print(' '.join(sorted(json.load(open('$PI/final_eval/checkpoints.json')), key=int)))")}
 [ -n "$EPS" ] || { log "sub_videos: no episodes (checkpoints.json missing?)" >> $J; exit 1; }
-for x in ${RUNS:?RUNS missing}; do                                 # as pack_eval.sh (first run wins), plus the video inputs
+for x in ${RUNS:-}; do                                 # as pack_eval.sh (first run wins), plus the video inputs
   r=${x%%@*}; sub=; [ "$r" != "$x" ] && sub=${x#*@}
   if [ -n "$sub" ]; then                                           # + base reference and perception of this run's episodes
     eps=$( { echo "$sub" | grep -o 'ep[0-9]*' | tr -d ep; for p in ${PICK:-}; do IFS=: read -r e pr _ <<< "$p"; [ "$pr" = "$r" ] && echo $e; done; } | sort -un)
@@ -53,7 +53,10 @@ mkdir -p /workspace && { [ -e /workspace/refs ] || ln -s /content/refs /workspac
 one() {
   local ep=$1 E6 CK sha want TASK REFDIR N MD O sc
   E6=$(printf %06d $ep); O=$OUTV/ep$ep; mkdir -p $O
-  CK=$(python -c "import json; print(json.load(open('$PI/final_eval/checkpoints.json'))['$ep'])" | sed 's#^/workspace/#/content/#')
+  # the checkpoint the SUBMITTED rollout names (26 Oct: for 3/5/15/16 pack 3's checkpoints.json said seed 43 but the
+  # packed rollouts are the first pack's seed-42 ones, kept by cp -n), else the pack's checkpoints.json entry
+  CK=$(python -c "import json; print(json.load(open('$PI/submission/results/episode_$E6.json'))['checkpoint'])" | sed 's#^/workspace/#/content/#')
+  [ -s "$CK" ] || CK=$(python -c "import json; print(json.load(open('$PI/final_eval/checkpoints.json'))['$ep'])" | sed 's#^/workspace/#/content/#')
   [ -s "$CK" ] || { log "sub_videos ep$ep: checkpoint $CK missing" >> $J; return 1; }
   sha=$(sha256sum $CK | cut -d' ' -f1); want=$(python -c "import json; print(json.load(open('$PI/submission/results/episode_$E6.json'))['checkpoint_sha256'])")
   [ "$sha" = "$want" ] || { log "sub_videos ep$ep: sha256 $sha != submitted $want: refused" >> $J; return 1; }
