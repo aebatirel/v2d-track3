@@ -43,7 +43,19 @@ without touching simulator code (rules caveats in §E):
 - **Reference contents.** The parquet is ours: wrist/finger paths, contacts, object paths. A wrist path shifted in time
   or offset in z changes the PD targets (the residual is added to the reference).
 - Not available without code: wrist feed-forward force (gravity or inertia), target velocities for the PD,
-  force-magnitude observations, look-ahead observations, frame stacking.
+  force-magnitude observations, look-ahead observations, frame stacking. The only future-frame code in FlashCHORD is the
+  G1 SONIC action encoder (`runtime/actions/sonic.py`), not usable for the Sharpa hands.
+- **Reset hold (train/eval mismatch).** Every training reset (`lifecycle/reset.py` `sample_reference_reset`,
+  `advance_reference_reset`) freezes the reference clock for `reset.voc_decay_steps` = 20 steps (1 s) with VOC = 1.0,
+  and opens the fingers by a random factor up to 0.7, then releases at the curriculum VOC (0 after 122.9M). The
+  evaluator (`evaluation/harness.py` `apply_evaluation_composition`) forces `voc_decay_steps = 0`, VOC 0,
+  `always_reset_to_first_frame`, seed 42 and fingers at the exact reference: no hold and no assist. So the policy never
+  trains the exact start it is scored on (frame 0, unassisted, no settle). `reset.voc_decay_steps` is config, but it is
+  global (not per curriculum stage), and setting it to 0 would also remove the hold for mid-carry resets.
+- [V] The evaluator overrides only VOC, reset mode/seed, world count, auto-reset and terminations. Embodiment, action,
+  observation and objective settings come from the checkpoint's resolved config, so the config levers above reach the
+  scored rollout. A `sampled_settled` evaluation reset mode with a settling preamble also exists; the kit uses
+  `explicit`.
 
 ## C. Carry model on the public GT paths [C, `work/23/carry_model.txt`]
 Per-axis residual the policy must hold so the wrist follows the object path exactly, F = kp·e − kd·v with the hand
@@ -88,8 +100,41 @@ Readings:
    and the wrist range (above) is the first-order problem.
 
 ## D. Literature review
-Pending (three parallel reviews: control/carry-aware tracking, force/tactile feedback, Kalman filtering and physically
-consistent references).
+
+### D1. Control theory and carry-aware tracking (review agent, 2026-10-26; [V] = read in primary text or code)
+- **Residual RL over a base controller** speeds learning and helps exploration: Silver 2018 (~10× fewer samples on
+  Push with an MPC base), Johannink 2019 (hardware insertion 15/20 vs 2/20). SPIDER uses u = u_SPIDER + π(o) with
+  MuJoCo position actuators at kp 1000 and `gravcomp` on the palm [V]. Low-gain feedback plus model feed-forward keeps
+  compliant robots compliant (Della Santina 2017 [U]; "Keep soft robots soft" [V]). **No study measures gravity or
+  m·a feed-forward under an RL residual on a soft floating wrist**; the case is first-principles plus residual-RL
+  sample-efficiency results.
+- **Gains.** Our kp 25 N/m is 12–14× softer than DexMachina's wrist (translation kp 300–350, rotation 60–80, hand
+  gravity compensation 0.8) and 40× softer than SPIDER's [V code]. ManipTrans applies a policy-output 6-DoF wrench to
+  a gravity-disabled wrist [V code]. VICES (Martín-Martín 2019): a fixed low impedance never solved path following
+  because it "cannot exert high enough forces"; medium impedance learned fastest [V]. BeyondMimic: a 10 Hz natural
+  frequency beat 5 and 25 Hz [V]. "Tune to Learn" (2026): RL reached 99 % at all corners of a 100× gain grid, but each
+  gain needed its own hyperparameter tuning [V]. DexMachina found tighter wrist residual bounds learned better than
+  looser ones, which argues against simply widening the 0.2 m clip [V, curves].
+- **Look-ahead.** GMT: immediate frame + 2 s of future frames cut MPKPE 8.6 % (46.0 → 42.1 mm) [V]. UniTracker: 1 / 5
+  / 10 / 20-frame windows give success 90.6 / 91.8 / 91.3 / 90.3 %, so the gain saturates near 5 frames [V].
+  Omnigrasp feeds 20 future object frames (~1.3 s); InterMimic uses offsets {1, 2, 4, 16} [V]. Dexterous trackers
+  (DexTrack, ManipTrans `obsFutureLength: 1`) use the next frame only; PHC calls that a limitation for fast motion [V].
+  In FlashCHORD this needs code (§B).
+- **Payload awareness.** RMA estimates payload from a 0.5 s history when mass is unknown (12 kg carried) [V].
+  ManipTrans's privileged observation includes object weight, centre of mass, object velocities and fingertip forces
+  [V code]. With one fixed, known mass per policy, estimation adds nothing; what transfers is a gravity term gated on
+  grasp state, plus fast slip cues (object velocity, contact state). No paper conditions on an explicit carry phase.
+- **Assist curricula (VOC analogues).** CHORD: VOC "can introduce local optima"; the contact-wrench reward must
+  converge before VOC decays [V]. DexMachina decays VOC gains only when reward, slope, epoch and episode-length gates
+  pass, spreads gains per environment, and found a fixed ManipTrans-style gravity ramp "no clear improvement" [V].
+  Yu, Turk & Liu 2018: stepping assistance down within each rollout prevents overfitting to one assist level [V].
+  No paper reports the final unassisted drop rate as a function of the anneal schedule.
+
+### D2. Force and tactile feedback
+Pending (review agent running).
+
+### D3. Kalman filtering and physically consistent references
+Pending (review agent running).
 
 ## E. Rules and integrity notes
 - Gains, observation toggles, reward weights and terminations are training config that the evaluator replays from the

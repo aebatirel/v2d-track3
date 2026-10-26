@@ -263,3 +263,8 @@ methods and force feedback from the hand for policy generation. Started note 23
   advance + gravity offset to 0/27; kp 50–100 at the default damping ratio to 0/27. Grip/load factor stays 0.84–1.25 g.
 - Three literature reviews running in parallel (control/carry-aware, force/tactile, Kalman/physics-consistent
   references).
+2026-10-26 (later): Control/carry-aware review returned (note 23 §D1). Code checks: no look-ahead option for the Sharpa
+hands (future-frame code exists only in the G1 SONIC action); training resets hold the reference 20 steps with VOC 1.0
+and partly opened fingers, while the evaluator starts at frame 0 with no hold, no assist and exact fingers (train/eval
+start mismatch, `reset.voc_decay_steps`). The evaluator keeps embodiment/action/observation/objective config from the
+checkpoint, so config levers reach the scored rollout.
