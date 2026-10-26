@@ -88,6 +88,37 @@ sim_vs_ref cannot see the second one.
 **Checked and cleared:** the 22 Oct claim that our sweeper registers flipped 178° at eval 30's seed does not reproduce
 with library_v3 and the current kit. Eval 19 and 30 seeds agree with the majority solution to within 1°; 4 of 40 random seeds flip.
 
-## 5. What can be improved, ranked by expected points per dollar
+**Where the hidden 0.094 most likely sits (estimate, not a measurement):**
 
-(see the chat summary of 26 Oct; finalised after the videos)
+Method:
+- Score each eval episode as sim_vs_ref × the mean public perception accuracy of its objects. The midpoints of the
+  public ranges are pot 0.97, lid 0.965, blue cup 0.95, beige cup 0.93, rack 0.95, sweeper 0.96, dust pan 0.95,
+  pitcher 0.66 and boards 0.82.
+- Then solve for the one unknown, the spoon (there is no public spoon mocap), so that the total equals the
+  leaderboard's 0.789.
+
+Result:
+- **Implied spoon accuracy: about 0.81.**
+- The 10 spoon episodes would then hold about 0.063 of the hidden loss, and all other episodes 0.032.
+- Spoon accuracy 0.95 would give about +0.045 on the leaderboard: the largest single lever.
+- The estimate shifts if the pitcher or the boards are worse on eval than on their public twins.
+
+Background (`docs/research/spoon-2026-10-25/`):
+- The spoon anchors evals 32, 33, 35, 36 and 37. A 10° frame-0 roll costs 0.09–0.28 there.
+- Our measured random roll is 2–6°. A systematic bias of the template or tracker cannot be measured without ground truth.
+
+## 5. What can be improved, ranked
+
+| # | Lever | Episodes | Evidence | Expected Track 3 gain (estimate) | Cost |
+|---|---|---|---|---|---|
+| 1 | Hybrid cup collision copy (beige stands; empty blue cavity; 8 mm nest shrink) | 10 | CPU, FlashCHORD physics: beige falls 6/6 → 0/6; stack error 4.45 → 0.44 cm. The pre-registered standing rule failed as written (wrong check frame; work log) | +0.02 to +0.03 | 2 seeds ≈ $8–10 |
+| 2 | Board slot carve | 25 | CPU proxy and FlashCHORD: 104° → 0.5°; GPU rerun running | +0.005 to +0.008 | ≈ $9 (running) |
+| 3 | Secure two-handed holds: second seeds, the standard learner, the grip portfolio (approach 3, P1) | 33, 32 | Two-handed hold for ~270 frames; no geometry conflict | +0.01 to +0.02, uncertain | ≈ $10–15 |
+| 4 | Collision carve for placements into the rack / pot (swept-volume carve, as for the slot) | 14, 28, 30, 1 | Hull census 29–72 cm³ conflicts | +0.005 to +0.012 | CPU 2–3 h + ≈ $15–20 |
+| 5 | Spoon perception (frame-0 roll of the anchor; template; depth) | 32, 33, 35–37 (anchor); 3, 5, 6, 15, 16 | Inferred ≈ 0.06 hidden loss; no ground truth to validate | up to +0.045 if solved | CPU research first; re-reference + retrain ≈ $4–5 per episode |
+| 6 | Pitcher mesh / track | 20 | Twin: pitcher 0.571 with our mesh vs 0.95 with the scan | ≈ +0.009 | Mesh work + 1 rerun |
+| 7 | Release / placement (spoon into the rack holder) | 16, 15 | The spoon flips on release; no geometry conflict | +0.005 to +0.01 | Research |
+
+**Projection, all estimates:**
+- Items 1–4 together: ≈ +0.04 to +0.07, i.e. about 0.83–0.86.
+- 3rd place (0.865) also needs item 5 or 6 to pay off.
