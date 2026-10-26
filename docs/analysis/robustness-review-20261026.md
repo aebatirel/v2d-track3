@@ -215,8 +215,9 @@ and cannot be separated today [E].
 - episodes above a threshold get the contact retarget's stricter settings.
 
 **Public measurement:**
-- If the public parquets carry hand mocap (to check), score MediaPipe + lift against it.
-- If not, the proxy above is the measurement.
+- The public parquets carry no hand mocap: `observation.objects` holds object poses and a visibility flag only
+  (dataset `track_3/README.md`, checked 26 Oct). Hands cannot be scored against truth on any episode.
+- The GT-free proxy above is therefore the only measurement of this stage.
 
 ---
 
