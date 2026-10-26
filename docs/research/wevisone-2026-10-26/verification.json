@@ -1,0 +1,190 @@
+{
+  "summary": "Skeptically verify the claims about our own detection pipeline used in the WeVisOne-VL verdict",
+  "agentCount": 3,
+  "logs": [],
+  "result": [
+    {
+      "group": "detector-mechanics",
+      "checks": [
+        {
+          "claim": "Frame-0 detection runs on the MONO rectified-left camera: SAM2 proposals scored by DINOv2 similarity to grey renders of our meshes, plus rules (reach, 3-D size gate, intensity, on-table rule, gated re-proposal).",
+          "verdict": "confirmed",
+          "evidence": "pipeline/perc2.py:88-90 rc = remap of mono cam c, rgb(g)=grey x3; :194 'frame-0 detection: SAM2 proposals x DINOv2 vs gray mesh renders (CNOS-style) + 3-D size gate'; :187-190 GRAY vertex colours; :321 detect uses rgb(rc[k]); :333 reach_ok; :337-338 size gate + LAM_I intensity; :373-375 on-table; :378-383 reprop gate; ops/jobs/det_dump.sh:12 MESH_DIR=library meshes",
+          "correction": "Gist holds. Nuances: 'our meshes' only when MESH_DIR is set (jobs set it; default is the public scans, perc2.py:47-52); the rule set also includes the Grounding DINO term and the compact prior; the perc2.py module docstring (line 6) is stale and still says OWLv2."
+        },
+        {
+          "claim": "pipeline/det_rules.py adds a grounding term from Grounding DINO TINY run on the COLOUR camera ego_cam_a, mapped to the mono frame, with weight LAM_G = 0.2, computed as G = IoU x score / best score.",
+          "verdict": "partly",
+          "evidence": "pipeline/det_rules.py:11-14 'Grounding DINO tiny on the colour camera a (frame k+1) ... G = max over the object's boxes of IoU(box, proposal projected into camera a) x score / best score'; :24 LAM_G = 0.2; :112-124 boxes_in_a projects proposals into camera a; :145 G[a] = max(G[a], box_iou(bb, box) * sc / best)",
+          "correction": "Mapping goes the other way: the mono proposals (mask + depth) are projected into camera a and IoU is computed in camera-a pixels; the boxes are not mapped to the mono frame (only re-proposal boxes are, via box_to_rect). G is the max over the top-5 boxes, uses camera-a frame k+1, and is switched off for an object if any gated proposal is <80% inside camera a."
+        },
+        {
+          "claim": "The gated re-proposal uses Grounding DINO boxes with a threshold of 0.25 x best score, and this fixed eval 30 (sweeper standing in the rack) from a third box with score 0.19.",
+          "verdict": "confirmed",
+          "evidence": "pipeline/det_rules.py:150-152 'Grounding DINO's third \"mini sweeper\" box, 0.19 against the best 0.59, bounded the real broom' ; REPROP_MIN=0.25 'box score >= 0.25 x the prompt's best'; docs/work-log.md:3292-3293 eval 30 sweeper changes from watch strap #57 (G 0.001) to re-proposed broom #64 (score 0.405, G 0.284)",
+          "correction": "Gist holds. The gate itself is a separate G < 0.2 test (REPROP_GMIN, det_rules.py:154). 'Fixed' on eval 30 is a by-eye check plus a changed choice (no eval ground truth); robustness-review-20261026.md:88 also says 'fixed by re-proposal'."
+        },
+        {
+          "claim": "tools/det_replay.py accepts a grounding-box JSON via --g in the format {\"jobs\": {key: {\"det\": {name: {\"boxes\": [[x0,y0,x1,y1]], \"scores\": [...]}}}}} and tools/det_score.py scores replays against labelled public instances (ground truth read only by scoring).",
+          "verdict": "confirmed",
+          "evidence": "tools/det_replay.py:32 'Usage: ... [--g GDINO.json --t3 T3]'; :228 G = json.load(open(opt['--g']))['jobs']; :230 fr.ground(G[key]['det'], cam); key = 'ep<N>_f<k>' (:222); det_rules.py:223 {'boxes': [...], 'scores': [...]}; tools/det_score.py:1-4 'DIAGNOSTIC scorer ... (reads mocap ground truth: never part of inference)'",
+          "correction": "Holds. Details: --g needs --t3 (calib for make_cam, det_replay.py:227); det_replay also scores itself when given LABDIR, using det_score's label maps (det_replay.py:240-251); det_score's CHOICES file is keyed ep<N>_f<k> (det_score.py:111), not det_replay's per-variant output."
+        },
+        {
+          "claim": "Public frame-0 dumps for rule replay are stored in the HF store run runs/20261024-reprop-88822b2 (frame 0 plus quarter points, about 100 frames).",
+          "verdict": "partly",
+          "evidence": "docs/work-log.md:3243-3245 box 20261024-reprop-88822b2: det_dump.sh public (frames 0 and quarter points) then SPLIT=eval 20 eps (frame 0); :3279 '20 public episodes x 4 frames'; :3448 'all 80 dumped public frames'; ops/box/store.sh:39 det, :65 up $S runs/$RUN_ID; work-log:1934 earlier set 20261023-detdump-31e9d45",
+          "correction": "The run holds 80 public dumps (20 episodes x frames 0 + 3 quarter points), not 'public frame-0' only; ~100 counts the 20 eval frame-0 dumps in the same run (work-log 3451 calls them '100 public dumps', inconsistent with 3448). An earlier public dump set exists in runs/20261023-detdump-31e9d45. HF store contents not checked directly."
+        }
+      ]
+    },
+    {
+      "group": "detector-accuracy",
+      "checks": [
+        {
+          "claim": "The shipped detection rule gets 97 of 116 labelled public instances right (work log 25 Oct ~00:28 UTC); an older summary says 93/116.",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:3462 '00:28 UTC **on-table rule variant 2 PASSES** (same 100 public dumps): 95 → **97** hits ... Shipped in `perc2.py` (`DET_TABLE=1` default ...)'; :3448/3452 '116 labelled instances'. Older: pipeline/det_rules.py:5 'with these rules 93, no instance lost'; docs/work-log.md:1965 and :3224 '93/116'.",
+          "correction": "Holds. Caveats: the 00:28 entry sits under the heading '24 Oct ~21:35–22:30 UTC' at docs/work-log.md:3218, but after midnight UTC, so 25 Oct is right. The 97 comes from a CPU replay of the dumps (the replay reproduced the shipped choice on 95 of 100 frames, docs/work-log.md:3452), not from a full pipeline rerun."
+        },
+        {
+          "claim": "ep0 and ep26 are excluded from the 116 labelled instances by a 2 cm fit rule.",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:1851-1852 'Usable: 18 episodes / 72 frames; ep0 (fit residual 5.7 cm) and ep26 (35 cm: our old tracks there are wrong) are excluded by the 2 cm rule.' tools/det_score.py:9 'episodes above --max_resid_cm (default 2) are skipped'; :105 'if m['fit_resid_cm_median'] > max_resid: continue'.",
+          "correction": ""
+        },
+        {
+          "claim": "The remaining public frame-0 misses are essentially ep23 (two near-identical boards) and ep2 (pot mask spilling onto the lid).",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:3441-3443 'Frame-0 detection misses ... ep11 (blue cup → beige cup's proposal, beige cup → the person's lap ...), ep23 (boards swapped; ... the two are geometrically alike), ep2 (pot mask partly on the lid)'; :3462-3463 variant 2 'fixed ep11 f0 blue cup and beige cup, **no regression**'.",
+          "correction": "This is inferred, not stated: no entry lists the misses that remain after variant 2. The numbers agree: 24 of 29 frame-0 instances right at 93/116 (docs/work-log.md:1965), so 5 misses (ep11 x2, ep23 x2, ep2 x1). Fixing the two ep11 cups leaves ep23 and ep2."
+        },
+        {
+          "claim": "Grounding DINO returned the same box for \"white pot\" and \"white pot lid\" (work log 23 Oct).",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:1930-1931 (section '## 2026-10-23', entry '05:10 TRT') 'Grounding DINO tiny running on CPU over the 80 public colour frames ... First frame ep0: \"white pot\" and \"white pot lid\" return the same box (lid on the pot)'.",
+          "correction": "Detail: this was ep0, frame 0, on the colour camera."
+        },
+        {
+          "claim": "In the failed on-table rule variant 1, the grounding term moved the ep18 frame-0 sweeper onto the dust pan mask.",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:3451-3457 '00:25 UTC **on-table rule, variant 1: FAILS** ... **regressions: ep18 f0 sweeper, ep11 f68 beige cup.** ... in ep18 f0 the two barred proposals were the ones partly outside camera a, so the Grounding DINO term ... switched **on** for the sweeper and moved it onto the dust pan's mask'.",
+          "correction": ""
+        },
+        {
+          "claim": "OWLv2 text prompts failed on the mono frames (measured 2026-10-13).",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:128-129 '2026-10-13 ~11:45: OWLv2 batch results: ep12 0.991, ep13 0.997 (VO world); FAIL ep0/2 (white pot not detected in mono frames), ep18 (sweeper/dustpan), ep21; ep11 twin cups SWAPPED ... OWLv2 on grayscale is unreliable'; STATUS.md:706 'OWLv2 text prompts fail on mono images.'",
+          "correction": "Only partly a blanket failure: on 2026-10-13 OWLv2 worked on ep12 (0.991) and ep13 (0.997). It failed on ep0, ep2, ep18 and ep21, and swapped the ep11 cups."
+        }
+      ]
+    },
+    {
+      "group": "loss-budget",
+      "checks": [
+        {
+          "claim": "The 26 Oct scoreboard / forensics attribute about 0.115 of the leaderboard AUC to policies not following our reference (evals 10, 33, 32 first).",
+          "verdict": "confirmed",
+          "evidence": "docs/analysis/episode-scoreboard-20261026.md:63-64 \"Policies not following our reference: ≈ 0.115 of the leaderboard. - Evals 10, 33 and 32 hold more than half of it.\"; docs/analysis/forensics-20261026/README.md:24 \"Policy loss (simulation against our reference) | 0.117 | measured\"; :35 \"Evals 10, 33 and 32 hold 54 % of the policy loss\"",
+          "correction": "Matches. Small caveat: the forensics gives 0.117 (1 - 0.883 sim_vs_ref), not 0.115. It is measured in sim_vs_ref units, not as leaderboard AUC. The later robustness review, which rests on pack 4, puts the policy loss at 0.088 (robustness-review-20261026.md:312)."
+        },
+        {
+          "claim": "About 0.075 is reference-vs-truth error, of which an estimated 0.063 is spoon pose or roll.",
+          "verdict": "partly",
+          "evidence": "episode-scoreboard-20261026.md:58-59 \"≈ 0.075 ... Spoon pose in the 10 spoon episodes ≈ 0.063\"; forensics-20261026/README.md:25 \"≈ 0.075 | derived (0.864 − 0.789)\"; :111 \"Where the hidden 0.094 most likely sits\"; :122 \"spoon episodes ... about 0.063 of the hidden loss, and all other episodes 0.032\"; :134-137 likelier sources: hidden-phase tracking, depth",
+          "correction": "The scoreboard does state 0.075 and 0.063. In the forensics, though, the 0.063 is a share of the full 0.094 hidden loss (0.883 - 0.789 = 0.063 + 0.032), not of the 0.075. It is an estimate solved for, with no spoon ground truth behind it. Frame-0 roll is not named as the likely cause: tracking while the spoon is hidden and depth error are. After pack 4 the work log (work-log.md:4249) raised 0.075 to about 0.082."
+        },
+        {
+          "claim": "A frame-0 check of the five spoon-anchored eval episodes found no gross detection error.",
+          "verdict": "confirmed",
+          "evidence": "docs/analysis/forensics-20261026/README.md:130-132 \"Frame-0 spoon check (videos, camera a, frame 2): in all five spoon-anchored episodes (32, 33, 35, 36, 37) our reference spoon's outline lies on the real spoon. Position, direction and the marker knobs on the handle all agree. No gross frame-0 error is visible. A few degrees of roll would not show from above.\"",
+          "correction": "Gist holds. Detail: it was a visual check at video frame 2 from camera a only. It compared the outline of the reference spoon, not the detector masks themselves, and cannot rule out a few degrees of roll."
+        },
+        {
+          "claim": "On eval 1 frame 0 our detector gave the pot mask to the pot handle and the lid mask to the whole pot; eval 1 scores about 0.92 against our reference.",
+          "verdict": "confirmed",
+          "evidence": "docs/work-log.md:3409-3411 \"Eval frame-0 masks ... eval 1 assigns the pot to its handle and the lid to the whole pot ... (the tracker recovers from the frame-0 masks)\"; work-log.md:3601 \"evals 1, 3, 5, 6, 10 unchanged (no guard intervention)\"; episode-scoreboard-20261026.md:33 eval 1 pack 3 \"0.92\"; forensics README.md:47 \"0.914\", :71 \"0.89–0.93\"",
+          "correction": "Matches. Pack 3 packed 0.920; the table shows 0.914 and the 5-evaluation mean is 0.912 ± 0.014 (work-log.md:3985-ish std0116). The 24 Oct video review judged the tracker to recover after frame 0, so eval 1 was not rerun for detection."
+        },
+        {
+          "claim": "Eval 25 board identity (swap) is handled by pipeline/identity_fix.py.",
+          "verdict": "confirmed",
+          "evidence": "pipeline/identity_fix.py:1-13 \"Board identity and in-plane symmetry repair ... (eval 25 and the 24 Oct ep24 track came out swapped ...)\"; ops/jobs/eval_idfix.sh:17 runs it between perception and eval_both; work-log.md:3918-3921 \"fresh perception named the boards correctly ... nothing applied ... the knob rule is the check, not the repair, this time\"",
+          "correction": "Broadly true, with a nuance. identity_fix.py is the board-identity check and repair, but only ops/jobs/eval_idfix.sh calls it; perc2.py does not. In the run that built the submitted eval-25 reference (20261025-ev25idfix-02de0c7), the fresh perception was already correct. identity_fix only confirmed that and changed nothing. The swap was in the old stored reference."
+        }
+      ]
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "detector-mechanics",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "a52d6063b9d302bd7",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793035791754,
+      "queuedAt": 1793035791727,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Skeptically verify each claim below about the repository at /home/user/v2d-track3 (read-only; do not edit, commit or run GPU\ncode). Look in pipeline/perc2.py, pipeline/det_rules.py, pipeline/identity_fix.py, tools/det_replay.py,\ntools/det_score.py, docs/work-log.md, STATUS.md, docs/analysis/ (episode-scoreboard-20261026.md, forensics-20261026/,\nrobustness-review-20261026.md) and docs/research/. Us…",
+      "promptFramed": true,
+      "lastProgressAt": 1793035951462,
+      "tokens": 122989,
+      "toolCalls": 29,
+      "durationMs": 159708,
+      "resultPreview": "{\"checks\":[{\"claim\":\"Frame-0 detection runs on the MONO rectified-left camera: SAM2 proposals scored by DINOv2 similarity to grey renders of our meshes, plus rules (reach, 3-D size gate, intensity, on-table rule, gated re-proposal).\",\"verdict\":\"confirmed\",\"evidence\":\"pipeline/perc2.py:88-90 rc = remap of mono cam c, rgb(g)=grey x3; :194 'frame-0 detection: SAM2 proposals x DINOv2 vs gray mesh rend…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "detector-accuracy",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "ab505abe2915928d2",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793035791754,
+      "queuedAt": 1793035791728,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Skeptically verify each claim below about the repository at /home/user/v2d-track3 (read-only; do not edit, commit or run GPU\ncode). Look in pipeline/perc2.py, pipeline/det_rules.py, pipeline/identity_fix.py, tools/det_replay.py,\ntools/det_score.py, docs/work-log.md, STATUS.md, docs/analysis/ (episode-scoreboard-20261026.md, forensics-20261026/,\nrobustness-review-20261026.md) and docs/research/. Us…",
+      "promptFramed": true,
+      "lastProgressAt": 1793035927512,
+      "tokens": 101117,
+      "toolCalls": 24,
+      "durationMs": 133903,
+      "resultPreview": "{\"checks\":[{\"claim\":\"The shipped detection rule gets 97 of 116 labelled public instances right (work log 25 Oct ~00:28 UTC); an older summary says 93/116.\",\"verdict\":\"confirmed\",\"evidence\":\"docs/work-log.md:3462 '00:28 UTC **on-table rule variant 2 PASSES** (same 100 public dumps): 95 → **97** hits ... Shipped in `perc2.py` (`DET_TABLE=1` default ...)'; :3448/3452 '116 labelled instances'. Older: …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "loss-budget",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "a4a9ec33d38921b9a",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793035929291,
+      "queuedAt": 1793035791728,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Skeptically verify each claim below about the repository at /home/user/v2d-track3 (read-only; do not edit, commit or run GPU\ncode). Look in pipeline/perc2.py, pipeline/det_rules.py, pipeline/identity_fix.py, tools/det_replay.py,\ntools/det_score.py, docs/work-log.md, STATUS.md, docs/analysis/ (episode-scoreboard-20261026.md, forensics-20261026/,\nrobustness-review-20261026.md) and docs/research/. Us…",
+      "promptFramed": true,
+      "lastProgressAt": 1793036026373,
+      "tokens": 108201,
+      "toolCalls": 18,
+      "durationMs": 97082,
+      "resultPreview": "{\"checks\":[{\"claim\":\"The 26 Oct scoreboard / forensics attribute about 0.115 of the leaderboard AUC to policies not following our reference (evals 10, 33, 32 first).\",\"verdict\":\"confirmed\",\"evidence\":\"docs/analysis/episode-scoreboard-20261026.md:63-64 \\\"Policies not following our reference: ≈ 0.115 of the leaderboard. - Evals 10, 33 and 32 hold more than half of it.\\\"; docs/analysis/forensics-2026…"
+    }
+  ],
+  "totalTokens": 332307,
+  "totalToolCalls": 71
+}

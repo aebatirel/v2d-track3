@@ -1,0 +1,595 @@
+{
+  "summary": "Assess whether WeVisOne-VL should replace or augment our object detection (sources, our failures, alternatives, verified verdict)",
+  "agentCount": 5,
+  "logs": [
+    "parallel[1] failed: agent({schema}): StructuredOutput retry cap (5) exceeded — 5 failed calls with no valid output — last StructuredOutput error: InputValidationError: StructuredOutput was called with input that could not be parsed as JSON. You sent (first 200 of 16835 bytes): {\"pipeline\": \"Detector = pipeline/perc2.py, CNOS-style (SAM2 proposals x DINOv2 vs grey renders of our meshes) plus rules chosen on public episodes. Lines at HEAD 2101c72.\\n0. Camera: MONO rectified-l Common causes: unescaped backslashes in file paths (use / or \\\\), unescaped control characters, or truncated output. Retry with valid JSON."
+  ],
+  "result": {
+    "model": {
+      "release_date": "arXiv 2610.31329 v1 submitted Thu 22 Oct 2026 14:19:50 UTC (only version). HF repos created 2026-10-22 09:47 UTC (2B) and 09:48 UTC (4B). Last modified: 4B 2026-10-23 06:40 UTC (sha 4a7bed9), 2B 2026-10-25 10:16 UTC (sha 798ffc7). GitHub HEAD at the time of reading: 9a6bcd8 \"Update README\", 2026-10-25 18:12 +0800. The GitHub repo creation date is UNVERIFIED because the GitHub API is blocked in this session; I read the repo by shallow git clone and raw files. HF demo Spaces were created 2026-10-23. The model is 4 days old and I found no independent reproduction.",
+      "sizes": [
+        "WeVisOne-VL-2B: Qwen3VLForConditionalGeneration fine-tuned from Qwen3-VL-2B-Instruct. 2,441,744,384 params (HF safetensors metadata), stored F16, model.safetensors 4.88 GB. LLM 28 layers, hidden 2048. ViT 24 layers, patch 16, merge 2. Plus mask_decoder.pt with 9,511,460 params (38.1 MB).",
+        "WeVisOne-VL-4B: fine-tuned from Qwen3-VL-4B-Instruct. 4,830,581,248 params, stored F32, model.safetensors 19.32 GB (config dtype says bfloat16; the engine loads it in bf16 by default). LLM 36 layers, hidden 2560. Same ViT. Plus mask_decoder.pt with 9,609,764 params (38.5 MB).",
+        "Both sizes add vocab 152,680 with coordinate tokens <0>..<1000> and <OBJ> (id 152678). Fine-tuning code is NOT released (README TODO unchecked)."
+      ],
+      "licence": "CODE (GitHub LICENSE, 211 lines): \"Tencent is pleased to support the open source community by making WeVisOne-VL available. Copyright (C) 2026 Tencent. All rights reserved.\" followed by the standard Apache-2.0 text. README: \"Tencent-authored code in this repository is released under the Apache License 2.0. Third-party components keep their original licenses; please check the corresponding source files.\" The deformable attention (wevisone_vl/msda.py) is labelled \"DINO multi-scale deformable attention (pure PyTorch implementation)\" and has no separate licence header (I checked).\n\nWEIGHTS (HF LICENSE, the same in both repos apart from the name, card tag license:apache-2.0, gated=false): \"WeVisOne-VL-4B is licensed under Apache-2.0, except for the third-party components listed below, which remain licensed under their respective original terms. WeVisOne-VL-4B does not impose any additional restrictions beyond those specified in the original licenses of these third-party components.\" Also: \"For the avoidance of doubt, WeVisOne-VL-4B refers to code, parameters, and weights made publicly available by Tencent in accordance with Apache-2.0.\" The only listed third-party component is \"Qwen3-VL-4B-Instruct (2B repo: Qwen3-VL-2B-Instruct), Copyright 2024 Alibaba Cloud, Please note this model has been modified by Tencent\", which is also Apache-2.0.\n\nLIMITS: I grepped the licence for territory, EU, UK and Korea clauses and found none, so there is no Hunyuan-style territorial exclusion and no use-based restriction. The model card's \"Intended Use\" says \"intended for research ... not intended to make autonomous high-impact decisions or to identify individuals\". That is guidance, not a licence term. Training data includes SA-1B, LAION and CC3M; the licence does not pass those terms on. This is compatible with the challenge's Apache-2.0 code-release rule.",
+      "capabilities": [
+        "Open-vocabulary detection: several category names in one prompt, all instances returned as boxes. Trained with up to 500 boxes per response.",
+        "Referring-expression localization of one or more instances using attributes, position, relations or world knowledge. English and Chinese (WeRef-Bench).",
+        "Explicit rejection: returns None when the queried target is absent. Trained with reviewed hard negatives and RL reward 1 only for an empty prediction.",
+        "Counting (count_box / count_point; the response ends with 'Total number: N.').",
+        "Pointing (one point per instance).",
+        "OCR and text grounding.",
+        "Referring / category segmentation and alpha matting via the <OBJ> token and a 9.6M-param pixel decoder (no SAM needed). Masks are full-resolution float maps.",
+        "Box-prompted matting/segmentation: a given box is teacher-forced as the response prefix, then <OBJ> decoding. Paper Sec 5.1.7; engine.decode_masks(boxes=...).",
+        "Undocumented in README and paper but present in code: task='visual_prompt'. The prompt is 'Locate all similar objects in the image based on the reference boxes: <ref>object 1</ref><box>..</box>', with the reference boxes in the SAME image. No benchmark reported, so quality is UNVERIFIED.",
+        "Grounded captioning (freeform prompt, paper Fig. 13).",
+        "Backends: transformers (sdpa) or vLLM 0.23. Devices: cuda, npu, cpu. Batched generation is available (predict_batch)."
+      ],
+      "prompt_types": [
+        "Text: a category list (several categories per call, joined as 'a. b. c.')",
+        "Text: a free-form referring expression (single phrase, may contain commas). The eval code also has a 'Locate a single instance that best matches...' variant.",
+        "Box as input: a pixel xyxy box for box-prompted segmentation/matting, teacher-forced as the response prefix",
+        "Box as input: in-image reference boxes for 'find similar objects' (visual_prompt task; code only, not evaluated)",
+        "Raw prompt override (prompt=...) and freeform tasks such as grounded captions",
+        "NOT supported or documented: a reference image of a specific object from a different image (exemplar or template), multi-image prompts, video, or point-as-input prompts. The package API sends exactly one image per request. The vLLM config allows 10 images, but multi-image use is not documented, trained or evaluated (UNVERIFIED). The model card says it 'currently targets single-turn image perception (video grids are rejected by the pixel decoder)'."
+      ],
+      "benchmarks": [
+        {
+          "task": "Object detection (zero-shot)",
+          "benchmark": "COCO, F1 mean over IoU 0.5:0.95 (F1@0.5 in brackets)",
+          "score": "4B 57.1 (74.0); 2B 55.2 (72.6)",
+          "vs": "GroundingDINO-T 56.6 (69.8); LocateAnything-3B 54.7 (70.1); Rex-Omni-3B 52.9 (72.0); Qwen3.5-9B 49.5; Qwen3-VL-4B 48.7",
+          "source": "arXiv 2610.31329 Table 2"
+        },
+        {
+          "task": "Object detection (zero-shot, long-tail)",
+          "benchmark": "LVIS, F1 mean (F1@0.5)",
+          "score": "4B 55.3 (71.1); 2B 53.3 (69.5)",
+          "vs": "LocateAnything-3B 50.7; Rex-Omni-3B 46.9; Qwen3-VL-4B 44.0; GroundingDINO-T 38.8",
+          "source": "arXiv Table 2"
+        },
+        {
+          "task": "Dense / tiny-object detection",
+          "benchmark": "Dense200 F1 mean; VisDrone F1 mean",
+          "score": "Dense200: 4B 71.3, 2B 61.4. VisDrone: 4B 44.7, 2B 40.4",
+          "vs": "Dense200: LocateAnything-3B 58.7, Rex-Omni-3B 58.3, GroundingDINO-T 33.1. VisDrone: LocateAnything-3B 39.9, GroundingDINO-T 38.5",
+          "source": "arXiv Table 2"
+        },
+        {
+          "task": "Referring object detection (boxes)",
+          "benchmark": "RefCOCOg val / test, F1 mean 0.5:0.95",
+          "score": "4B 80.8 / 81.8; 2B 77.1 / 78.2",
+          "vs": "LocateAnything-3B 76.7 / 77.6; Qwen3-VL-8B 74.6 / 74.9; Rex-Omni-3B 73.6 / 74.3; GroundingDINO-T 45.9 / 46.8",
+          "source": "arXiv Table 3"
+        },
+        {
+          "task": "Rejection of absent objects (boxes)",
+          "benchmark": "RefCOCOg-Rej rejection rate %",
+          "score": "4B 67.4; 2B 50.2",
+          "vs": "Qwen3-VL-8B 22.5; Qwen3.5-4B 18.9; LocateAnything-3B 0.6; Rex-Omni-3B 0.5; GroundingDINO-T 0.0",
+          "source": "arXiv Table 3"
+        },
+        {
+          "task": "Referring + rejection (in-house)",
+          "benchmark": "WeRef-Bench (2,880 EN/ZH queries, in-house): F1 mean / Rej %",
+          "score": "4B 78.7 / 96.4; 2B 73.2 / 92.9",
+          "vs": "LocateAnything-3B 51.7 / 73.0; Qwen3.5-4B 48.1 / 71.6; Qwen3.5-9B 50.7 / 70.7",
+          "source": "arXiv Table 3"
+        },
+        {
+          "task": "Referring + rejection",
+          "benchmark": "PR-Bench F1 mean / Rej %",
+          "score": "4B 54.1 / 52.6; 2B 49.8 / 37.0",
+          "vs": "Qwen3.5-9B 50.8 / 8.3; Qwen3-VL-4B 49.9 / 10.8; LocateAnything-3B 44.5 / 0.2",
+          "source": "arXiv Table 3"
+        },
+        {
+          "task": "Referring detection, other sets",
+          "benchmark": "HumanRef / Ref-Adv-s / DVGBench / Ref-L4, F1 mean",
+          "score": "4B 80.7 / 50.5 / 45.2 / 78.1; 2B 77.4 / 43.6 / 40.8 / 75.1",
+          "vs": "Rex-Omni-3B 79.9 HumanRef; Qwen3.5-9B 47.3 Ref-Adv; Qwen3-VL-8B 43.4 DVG; LocateAnything-3B 74.3 Ref-L4",
+          "source": "arXiv Table 3"
+        },
+        {
+          "task": "Counting (exact-match accuracy %)",
+          "benchmark": "PixMo-Count val/test; CountQA; CLOC val/test; KubriCount testA/testB; MixCount val/test",
+          "score": "4B: 93.7/89.6; 57.1; 28.2/28.3; 37.7/40.1; 42.0/40.4. 2B: 90.9/88.1; 47.9; 27.5/26.9; 29.5/32.4; 30.1/32.2",
+          "vs": "LocateAnything-3B: 88.7/82.8; 52.4; 22.8/23.9; 18.5/22.4; 12.5/15.2. GroundingDINO-T PixMo test 48.3",
+          "source": "arXiv Table 4"
+        },
+        {
+          "task": "Pointing (F1@Point)",
+          "benchmark": "PointBench / PixMo-Points / COCO / LVIS / Dense200 / VisDrone",
+          "score": "4B 71.9 / 74.7 / 85.4 / 79.5 / 87.0 / 64.4; 2B 62.9 / 73.2 / 85.8 / 78.9 / 83.2 / 62.4",
+          "vs": "Rex-Omni-3B 69.9 / 72.9 / 80.5 / 70.8 / 82.5 / 58.9; LocateAnything-3B Dense200 87.6 (best)",
+          "source": "arXiv Table 5"
+        },
+        {
+          "task": "OCR (text grounding + recognition, F1 mean)",
+          "benchmark": "HierText / ICDAR2015 / TotalText / SROIE",
+          "score": "4B 39.0 / 47.8 / 52.0 / 68.1; 2B 30.5 / 42.6 / 42.5 / 62.1",
+          "vs": "PP-OCRv5 30.5 / 25.6 / 25.7 / 58.6; LocateAnything-3B TotalText 43.3",
+          "source": "arXiv Table 6"
+        },
+        {
+          "task": "Referring segmentation (cIoU)",
+          "benchmark": "RefCOCO val/testA/testB; RefCOCO+ val/testA/testB; RefCOCOg val/test",
+          "score": "4B: 81.4/84.5/80.1; 76.5/81.1/72.8; 77.7/77.8. 2B: 79.7/82.9/78.1; 73.1/79.0/66.3; 74.4/74.9",
+          "vs": "UniPixel-7B: 80.8/83.0/77.4; 75.3/80.1/70.0; 76.4/77.1. Youtu-VL-4B: 80.7/82.0/78.4; 76.2/79.6/71.4; 76.5/76.6. LISA-13B(ft) RefCOCO val 76.0",
+          "source": "arXiv Table 7"
+        },
+        {
+          "task": "Reasoning segmentation",
+          "benchmark": "ReasonSeg val / test gIoU",
+          "score": "4B 71.2 / 66.8; 2B 60.9 / 56.9",
+          "vs": "LISA-13B(ft) 65.0 / 61.3; UniPixel-7B 60.5 val",
+          "source": "arXiv Table 7"
+        },
+        {
+          "task": "Segmentation with zero/one/many targets + rejection",
+          "benchmark": "Ref-ZOM cIoU / Rej %",
+          "score": "4B 72.2 / 86.0; 2B 73.4 / 62.4",
+          "vs": "GSVA-7B 66.6 / 41.9; UniPixel-7B 62.9 / 0.3; Youtu-VL-4B 61.0 / 1.3",
+          "source": "arXiv Table 7"
+        },
+        {
+          "task": "Box-prompted matting (MAD x1e3, lower is better)",
+          "benchmark": "P3M-500-NP / AM-2K / PPM-100, ground-truth box prompt",
+          "score": "4B 7.3 / 5.0 / 6.1; 2B 6.6 / 5.7 / 5.3",
+          "vs": "SAM2-Matting(SAM3) 15.4 / 12.1 / 10.8; SAM2-Matting(SAM2.1-B+) 19.0 / 11.1 / 9.3; Matte Anything 24.4 / 13.2 / 10.5",
+          "source": "arXiv Table 8"
+        },
+        {
+          "task": "Text-prompted matting (in-house)",
+          "benchmark": "WeRefMat category / referring, MAD x1e3",
+          "score": "4B 16.4 / 9.8; 2B 17.7 / 15.8",
+          "vs": "SAM2-Matting(SAM3) 70.8 / 51.9; Qwen3.5-9B + SAM2-Matting 77.8 / 22.4",
+          "source": "arXiv Table 8"
+        },
+        {
+          "task": "Latency (author-run tutorial outputs; GPU NOT stated)",
+          "benchmark": "tutorials/01 and 03 notebooks, 4B, transformers backend, bf16, greedy",
+          "score": "1024x696 image: detection of 3 categories (8 boxes) 4.07 s (first call, probably includes warm-up); referring 0.57 s; count_box 1.03 s; count_point 0.94 s; point 0.67 s. 1620x1080 image: segmentation 1.74 s; matting 0.99 s",
+          "vs": "no comparison given",
+          "source": "GitHub Tencent/WeVisOne-VL tutorials/*.ipynb stored outputs"
+        }
+      ],
+      "compute": "MEASURED BY AUTHORS: only the tutorial latencies above (0.6-1.7 s per call on an unnamed GPU, 4B, transformers). The paper reports no VRAM, latency or throughput figures. Hosted demos run on HF ZeroGPU (\"zero-a10g\" label in the Space API).\n\nESTIMATES (mine, not measured): bf16 weights about 9.7 GB for 4B and about 4.9 GB for 2B, plus a 38 MB decoder. Peak VRAM roughly 11-14 GB (4B) and 6-8 GB (2B) at the default limit of 2,025 visual tokens and a context of 8,192 or less, so a 16-24 GB GPU is enough. On CPU the engine forces float32: 4B needs about 19.3 GB of RAM, which does not fit this 16 GB VM; 2B needs about 9.8 GB, which would fit but be slow. That is moot anyway, because the sandbox forbids running it here. Download per GPU box: 19.3 GB for 4B (stored F32) or 4.9 GB for 2B.\n\nResolution: default max_pixels = 2025*32*32, about 2.07 MP (the paper evaluates at 1,960 tokens or fewer). ego_cam_a 2028x1520 (3.08 MP) would be downscaled about 0.82x linearly; the 1280x800 mono frames (about 1,000 tokens) run near native resolution.\n\nDEPENDENCIES (exact pins in requirements.txt / pyproject): python>=3.10 (README uses a 3.10 conda env), torch==2.11.0, torchvision==0.26.0, transformers==5.12.1, accelerate==1.14.0, huggingface-hub==1.21.0, qwen_vl_utils==0.0.14, safetensors==0.8.0, supervision==0.31.0, pycocotools, scipy, numpy==2.2.6, Pillow==12.2.0. Optional: vllm==0.23.0 + triton==3.6.0, and gradio==6.30.0 for the demo. Install with pip install -e . from the GitHub repo (package wevisone_vl).\n\nNo flash-attn is needed (sdpa is the default). The deformable attention is pure PyTorch (F.grid_sample), so there are no custom CUDA ops. from_pretrained is called with trust_remote_code=True, but the HF repos contain no .py files: the architecture is stock transformers Qwen3-VL, and the custom code is the local package. mask_decoder.pt is loaded with weights_only=True. The pinned torch 2.11 / transformers 5.12 stack will likely clash with the FoundationPose environment, so it should run as a separate process or venv.",
+      "output_format": "The model returns generated text in a Rex-Omni-style format:\n- Boxes: <ref>label</ref><box><x0><y0><x1><y1>,<x0><y0><x1><y1></box>, with several labels separated by ', '. Coordinates are integer bins 0-1000, normalized to the input image's width and height and independent of the processor's internal resize. Pixel coordinates are bin/1000*W (or H). One bin is about 2 px on a 2028-px-wide image.\n- Points: <point><x><y>,...</point>.\n- Absent target: None in the coordinate field.\n- Counting appends 'Total number: N.'.\n- Segmentation/matting: an <OBJ> token after each box inside <box>. The engine then runs a teacher-forced forward pass and the pixel decoder, giving one float32 sigmoid map per instance, upsampled to the original HxW (an alpha matte; threshold at 0.5 for a binary mask).\n\nPython API: WeVisOneVL(...).predict(image, task, query, prompt=None, reference_boxes=None) returns InferenceResult(response: str, prompt: str, boxes: list of normalized xyxy, filled only for <OBJ> tasks, masks: list[np.ndarray HxW float32], latency_s). Detection boxes have to be parsed from response with evaluation/utils/parser.py (parse_prediction returns {label: [[x0,y0,x1,y1] in pixels]}). save_result writes overlay/alpha/cutout PNGs plus JSON.\n\nThe model outputs NO confidence scores; the paper uses F1 for that reason. Token log-probs are not exposed by the package (they could in principle be taken from generate's output_scores; UNVERIFIED).",
+      "egocentric_or_grayscale_evidence": "Egocentric: the only link is that EgoObjects (Meta's egocentric object dataset, ICCV 2023) is one of 18 public detection sources in the SFT data (paper Table 9; the public detection total is 18.4M / 16.2M / 8.4M samples across S1-S3). The paper reports NO egocentric benchmark (no EgoObjects, Ego4D or EPIC evaluation) and no head-mounted or robot-camera results; 'embodied intelligence' appears only as a motivating application.\n\nGrayscale/mono: NO evidence anywhere in the paper, the model card or the code. There are no grayscale, IR or mono evaluations or augmentations. Every input goes through PIL .convert('RGB'), so a mono frame is replicated to 3 channels, and the decoder's CNN stem also expects RGB. Behaviour on our ego_cam_b/c mono frames is UNVERIFIED.\n\nRelevant measured project fact (STATUS.md): OWLv2 text prompts failed on our mono images, so text grounding on mono is a known risk here. Running it on the ego_cam_a colour frame and carrying boxes or masks into the stereo frame via the extrinsics is the natural path; that is a hypothesis, not tested.",
+      "instance_vs_category": "Category and language-described instance only, within one image. It can single out a specific instance in the current image when language can describe it (attributes, colour, position, relations; e.g. 'the black and white dog' gives one box). It is trained to answer None when nothing matches. On our classes it is strongest at catching hallucinated absent objects (WeRef Rej 96.4% for 4B, but only 67.4% on public RefCOCOg-Rej and 52.6% on PR-Bench).\n\nIt CANNOT take a reference image of a specific object from another image (a scan render, template or exemplar crop). It cannot do CNOS-style instance matching against our mesh renders, and it gives no identity embedding. The code-only 'visual_prompt' task takes reference boxes in the same image and returns 'all similar objects', which is category-like similarity, not identity, and is not evaluated.\n\nConsequence for us (assessment, not measured): it could name and box 'white saucepan', 'lime green dust pan', 'blue cup', 'wooden spoon' and so on from the kit's object names (allowed at inference). It cannot tell the two near-identical bamboo boards apart except by spatial wording, so board identity must still come from our own geometry, size or marker logic. It also cannot tell our specific beige cup from another beige cup in the scene.",
+      "limitations": [
+        "Very new: arXiv v1 and weights released 22 Oct 2026, with no independent reproduction. All baseline numbers are the authors' own runs. WeRef-Bench and WeRefMat are in-house, and the headline rejection rate 96.4 comes from the in-house set; public RefCOCOg-Rej is 67.4 (4B) / 50.2 (2B) and PR-Bench Rej is 52.6 / 37.0.",
+        "Detection is reported as F1 (no AP, because there are no confidence scores), so it is not comparable with the AP literature. The only specialist detector baseline is GroundingDINO-T; there is no comparison with SAM3, OWLv2 or GroundingDINO-B/L for detection.",
+        "No confidence scores per box: candidates cannot be ranked or thresholded. Our frame-0 seeding currently scores and gates candidates, so its scores would have to come from our own verifiers (size gate, DINOv2 template score, FoundationPose).",
+        "Single image per call; no multi-image, video or reference-image prompts. The model card says the pixel decoder rejects video grids. Fine-tuning code has not been released.",
+        "No egocentric or grayscale evaluation; inputs are forced to RGB. Mono-camera use is untested, and OWLv2 already failed on our mono frames (measured, STATUS.md).",
+        "Default input cap is about 2.07 MP (2,025 visual tokens; trained and evaluated at 1,960 or fewer). The 3.08 MP colour frames are downscaled about 0.82x, which may hurt small or thin objects (spoon) and is UNVERIFIED for our scenes. Box coordinates are quantized to 1/1000 of the image size.",
+        "Model card limitations: fine alpha boundaries are sensitive to resolution, severe occlusion, transparency and prompt phrasing; there is no chain-of-thought; single-turn only. Paper limitations: limited general-purpose data may reduce general abilities versus base Qwen3-VL; benchmark prompts are cleaner than real queries. RL used box-only rewards (mask quality was not RL-optimised).",
+        "Heavy, exactly pinned new stack (torch 2.11.0, transformers 5.12.1, optional vllm 0.23.0) that likely conflicts with the FoundationPose environment, so a separate process or venv is needed. The 4B checkpoint is stored as F32 (19.3 GB download per rented box); the 2B is 4.9 GB.",
+        "Measured compute figures are limited to tutorial latencies on an unnamed GPU; the VRAM figures here are my estimates.",
+        "Could not verify: GitHub repo creation date, star count or issue tracker (GitHub API blocked in this session; repo read via git clone and raw files); Figure 3 task-format examples (image only); the training mix for the visual_prompt task (FSC-147 / FSCD-147 exemplar datasets are listed for counting/detection, but the paper never describes visual prompting); how well visual_prompt or multi-image vLLM requests work.",
+        "Fit assessment (hypothesis, not measured): most useful as an extra text-grounding or verification term on the ego_cam_a colour frame at frame 0, e.g. to reject wrong-object candidates such as a rack fragment or the wrist watch and to propose boxes for SAM2/FoundationPose. It would not replace the scan-matching detector for instance identity. Falsifying experiment: run 2B and 4B (temperature 0, all kit object names in one detection prompt, plus a per-object referring prompt) on the public-episode frame-0 colour frames that already have labels (tools/det_score.py set: 18 episodes / 72 frames). Then compare per-object correct-box rate and absent-object false positives against the current SAM2 x DINOv2 detector, using public data only. Estimated cost is about one short 24 GB GPU job (under 1 h, roughly $0.5-1 plus the 5-19 GB download); this is an estimate and needs the owner's go-ahead."
+      ],
+      "sources": [
+        "https://arxiv.org/abs/2610.31329",
+        "https://arxiv.org/html/2610.31329v1 (full text read, incl. Tables 2-11, Sec 8 Limitations, Appendix A-B)",
+        "https://github.com/Tencent/WeVisOne-VL (README.md, LICENSE, requirements.txt, pyproject.toml, wevisone_vl/prompts.py, wevisone_vl/engine.py, wevisone_vl/msda.py, wevisone_vl/cli.py, evaluation/utils/parser.py, evaluation/utils/prompt_builder.py, configs/wevisone_vl_v1_decoder.json, tutorials/01_object_level_pipeline.ipynb and 03_segmentation_matting_pipeline.ipynb stored outputs, demo/README.md, demo/app.py); read via shallow git clone at commit 9a6bcd85404505df0d05cfb5d97512ccacf35dee",
+        "https://huggingface.co/tencent/WeVisOne-VL-4B (README.md model card, LICENSE, config.json, generation_config.json, processor_config.json)",
+        "https://huggingface.co/tencent/WeVisOne-VL-2B (README.md model card, LICENSE, config.json, processor_config.json)",
+        "https://huggingface.co/api/models/tencent/WeVisOne-VL-4B?blobs=true (licence, gated=false, createdAt, lastModified, param count, file sizes)",
+        "https://huggingface.co/api/models/tencent/WeVisOne-VL-2B?blobs=true",
+        "https://huggingface.co/api/spaces/hugging-apps/wevisone-vl-4b and /wevisone-vl-2b (demo hardware zero-a10g)",
+        "/home/user/v2d-track3/STATUS.md (project context: OWLv2 fails on mono; current SAM2 x DINOv2 scan-matching detector)",
+        "Local copies (scratchpad): /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/paper/p2.txt, /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/repo_dl/wevis, /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/hf4/LICENSE, /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/hf2/LICENSE"
+      ]
+    },
+    "ours": null,
+    "alts": {
+      "candidates": [
+        {
+          "name": "WeVisOne-VL 2B / 4B (Tencent WeChat Vision, released 2026-10-22). This is the reference model the others are compared against.",
+          "what": "A vision-language model built on Qwen3-VL. It predicts boxes as coordinate tokens, then an <OBJ> token drives a small pixel decoder (about 9.5-9.6M parameters, Deformable-DETR-style, coarse-to-fine) that outputs binary masks or alpha mattes. Tasks: detection, referring expressions, counting, pointing, OCR, referring segmentation and matting. It returns 'None' when the target is absent.",
+          "instance_prompting": "NO. The documented API is text only: predict(image, task, query). There are no exemplar or reference-image inputs. The card says 'single-turn image perception', and video grids are rejected by the pixel decoder. The paper uses box-as-prefix input only in its matting evaluation. Multi-image input is undocumented (unverified, even though the Qwen3-VL base supports it).",
+          "key_numbers": "From the paper, arXiv 2610.31329. Detection is Mean F1 over IoU 0.5-0.95, not AP. COCO 0-shot: 4B 57.1, 2B 55.2 (LocateAnything-3B 54.7, Rex-Omni-3B 52.9, Qwen3-VL-4B 48.7). LVIS: 55.3 / 53.3 (Rex-Omni 46.9). Dense200: 71.3 (4B). RefCOCOg referring detection F1: 80.8 / 81.8 (4B). Referring segmentation cIoU, 4B: RefCOCO val/testA/testB 81.4/84.5/80.1, RefCOCO+ 76.5/81.1/72.8, RefCOCOg 77.7/77.8. ReasonSeg gIoU 71.2. Rejection of absent objects (Ref-ZOM): 4B 86.0 %, 2B 62.4 % (UniPixel-7B 0.3 %). No COCO mask AP, no comparison with SAM 3, no latency figures.",
+          "licence": "Code: Apache-2.0 for Tencent-authored code; third-party parts keep their own licences. Weights: the HF tag on both 2B and 4B says apache-2.0, and the base Qwen3-VL is Apache-2.0. Clean for an Apache release. The README gives no separate weights licence text (minor gap).",
+          "compute": "HF safetensors: 2B ≈ 2.44 B params, 4B ≈ 4.83 B. Estimate ≈ 5 / 10 GB VRAM in bf16, so a 24 GB GPU (RTX 3090/4090) is enough. Backends are transformers or vLLM. Speed is not reported. The code is 4 days old.",
+          "fit_for_us": "(a) Helps with category confusions (pot vs rack vs watch strap, pot vs lid vs handle) through attribute and referring text plus rejection. It cannot tell the two bamboo boards apart: text gives no instance identity. (b) It is an RGB model with no grayscale evidence, so run it on colour camera a. Colour also fixes the blue/beige cups. (c) Its masks look good (RefCOCO cIoU 81). It is the Apache-clean option for text-to-mask on camera a, but it is not better proven than SAM 3. Worth a cheap bake-off; not the first pick.",
+          "sources": "https://arxiv.org/abs/2610.31329 ; https://huggingface.co/tencent/WeVisOne-VL-4B ; https://huggingface.co/tencent/WeVisOne-VL-2B ; https://github.com/Tencent/WeVisOne-VL ; https://tencent.github.io/WeVisOne-VL/"
+        },
+        {
+          "name": "SAM 3 / SAM 3.1 (Meta; Nov 2025, ICLR 2026; 3.1 'Object Multiplex' 2026-03-27)",
+          "what": "Promptable Concept Segmentation: a short noun phrase and/or image exemplars (boxes, positive or negative) return masks and identities for all matching instances, in images and video. A DETR-style detector with a presence head and a SAM2-style memory tracker share one Perception Encoder backbone. It also takes SAM-2-style points, boxes and masks. SAM 3.1 adds joint multi-object tracking with shared memory.",
+          "instance_prompting": "PARTLY. Exemplars must be boxes in the same image. Cross-image exemplars are not supported natively: the maintainer reply in GH issue #426 says 'the concept is bounded with the image itself'; see also #185, #317, #265. Workaround: paste the reference crop and the target side by side on one canvas, put the box on the reference half, and keep detections from the target half. Users: FSS-SAM3 (arXiv 2604.05433, code WongKinYiu/FSS-SAM3, training-free), CG-ICS (arXiv 2606.28149, ECCV 2026), PickNik's MoveIt Pro exemplar node. These benchmarks are category-level few-shot, not instance-level. The prompt is concept-level by design: a positive box on board 1 asks for every board.",
+          "key_numbers": "Paper Table 1, zero-shot text. LVIS mask AP 48.5 (DINO-X 38.5, OWLv2* 43.4); LVIS box AP 53.6; COCO box AP 56.4 (DINO-X 56.0, gDino-T 45.7); COCO-O 55.7. SA-Co/Gold instance cgF1 54.1 (human 72.8, OWLv2* 24.6, OWLv2 17.3, gDino-T 3.3, Gemini 2.5 13.0). Table 3, one same-image exemplar, image-only AP+: COCO 76.8 / LVIS 76.0 / ODinW13 82.2 vs T-Rex2 58.5 / 65.8 / 61.8; text+image 78.1 / 78.4 / 81.8. Interactive: +21.6 cgF1 over text-only after 3 exemplar clicks. Video: SA-V test J&F 84.4 vs SAM2.1-L 78.4; MOSEv2 60.3 vs 47.9 (from our notes 03). Correction to docs/research/notes/03-lit-perception.md: '48.5/37.2' is LVIS mask AP / cgF1, not box/mask AP.",
+          "licence": "SAM License, custom, not OSI. It covers code and weights. It gives a royalty-free licence to use, copy, distribute and modify, with no non-commercial clause. Conditions: pass on the licence, acknowledge use in published research, trade-control and end-use bans (military, nuclear, espionage, weapons), indemnity, and termination if you bring an IP suit. HF weights are gated by manual approval (facebook/sam3, facebook/sam3.1). Owner action: request access and check our token. STATUS says the token lacked the SAM 3D gate. Whether an Apache-2.0 release of our code may depend on it is our open question 'A1' (notes 03).",
+          "compute": "848 M params (HF 860 M). The paper reports ≈ 30 ms per image with 100+ objects on an H200, and near real time for about 5 objects in video. Needs Python ≥ 3.12, PyTorch ≥ 2.7, CUDA ≥ 12.6. Fits a 24 GB GPU (estimate). The canvas trick roughly doubles backbone cost.",
+          "fit_for_us": "Best overall candidate for (a) category confusions and (c) masks. Text prompts like 'white cooking pot', 'pot lid' and 'dish rack' on colour camera a give whole-object instance masks, which addresses the part-versus-whole errors (ep2 pot mask on the lid; eval 1 pot→handle, lid→pot). The presence head cuts hallucinated hits. The video tracker can carry masks through occlusion. It does NOT pick one twin board: same concept. (b) No published grayscale numbers. Exemplars cut from our own mono frames avoid the colour gap (hypothesis).",
+          "sources": "https://arxiv.org/abs/2511.16719 ; https://github.com/facebookresearch/sam3 ; https://github.com/facebookresearch/sam3/issues/426 ; https://raw.githubusercontent.com/facebookresearch/sam3/main/LICENSE ; https://arxiv.org/abs/2604.05433 ; https://arxiv.org/abs/2606.28149 ; https://docs.picknik.ai/how_to/robotics_applications/ml_exemplar_segmentation/"
+        },
+        {
+          "name": "CAD-Prompted SAM3 (arXiv 2602.20551, Feb 2026; a 2026 instance-level, mesh-prompted detector)",
+          "what": "SAM 3 fine-tuned to segment the instances of one specific CAD model. 12 canonical renders of the mesh each go through SAM 3's image encoder, with 25 points sampled inside the render mask. SAM 3's GeometryEncoder turns each view into an exemplar embedding, and the 12 are concatenated as prompt tokens. So cross-image, geometry-conditioned exemplars work after fine-tuning. Training: about 15k Isaac-Sim images with 9k ABC meshes and randomised appearance; half the images contain two or more copies of the same model.",
+          "instance_prompting": "YES, from mesh renders, which is our setting (we have scan meshes). Prompting from real reference photos is not documented.",
+          "key_numbers": "PQ / F1 / mIoU, no AP. Custom 3D-print set: 0.754 / 0.803 / 0.749 vs best baseline (adapted Matcher) 0.514 / 0.573 / 0.446. T-LESS: 0.317 / 0.371 / 0.327 vs 0.173 PQ. ITODD: PQ 0.536 vs 0.415 for plain SAM 3 exemplar prompting. 0.46 s per object on an RTX 4070. No CNOS, SAM-6D or NIDS-Net comparison. Look-alikes are not evaluated beyond T-LESS.",
+          "licence": "Code at github.com/kevinPOI/cad_prompted_sam3. The licence type is not named on the page (unverified); the code is built on heyoeyo/muggled_sam. It needs the gated SAM 3 weights (SAM License). The fine-tuned checkpoint is on Google Drive. The author calls it a 'messy work-in-progress'. Renders need Blender 5.0.",
+          "compute": "Laptop-class GPU (RTX 4070) for inference. Training cost is not reported.",
+          "fit_for_us": "The most direct 2026 upgrade of our CNOS-style step (SAM2 automatic proposals × DINOv2 vs grey renders). It conditions on geometry and ignores appearance, so it should transfer to mono frames (hypothesis). But geometry-only conditioning cannot tell the two boards apart either: our board meshes lack the slots, so they are geometrically alike (work log 2026-10-24). Research-grade code.",
+          "sources": "https://arxiv.org/abs/2602.20551 ; https://arxiv.org/html/2602.20551 ; https://github.com/kevinPOI/cad_prompted_sam3"
+        },
+        {
+          "name": "MUSE and the BOP-H3 leaders (model-based 2D detection of unseen objects; BOP 2025)",
+          "what": "MUSE (arXiv 2510.17866) is a training-free CNOS successor. Grounding DINO (Swin-B, prompt 'items') plus SAM2-L give proposals. DINOv2-L class and patch (GeM) embeddings are compared with multi-view mesh templates, using von Mises-Fisher view weighting and an uncertainty-aware objectness prior. Its abstract says it ranked first on the BOP 2025 Classic-Core, H3 and Industrial 2D-detection tracks. The current BOP-H3 leader, 3PT-Detection (Nov 2025), is unpublished and has no code.",
+          "instance_prompting": "YES, from the object mesh (rendered templates). This is exactly our CNOS-style setup.",
+          "key_numbers": "BOP-H3 2D detection AP, live leaderboard fetched 2026-10-26: 3PT-Detection 0.548 (HOT3D 0.484) at 6.6 s/img; MUSE 0.418 (HOT3D 0.438, HOPEv2 0.460, HANDAL 0.357) at 0.92 s on an RTX 4090; CNOS-FastSAM 0.303 (HOT3D 0.350). Classic-Core: MUSE 0.533; CLON (RGB-D, Jun 2026) 0.552; NIDS-Net 0.469. MUSE ablations: patch+class fusion +0.018 APcore; objectness prior +0.028. HOT3D is egocentric and the BOP 2024 report says it has 'RGB and monochrome' streams. Whether the 2D test images include the monochrome ones is UNVERIFIED.",
+          "licence": "MUSE: no code link in the paper (UNVERIFIED availability). It is built from Apache-2.0 parts (Grounding DINO, SAM2, DINOv2), so it could be re-implemented under Apache. 3PT-Detection: no publication, no code.",
+          "compute": "≈ 0.5-0.9 s per image on an RTX 4090.",
+          "fit_for_us": "The cleanest Apache-compatible path: re-implement MUSE's scoring (patch-GeM fusion, vMF view weighting, objectness prior) inside our existing perc2/det_rules pipeline. It is the best published evidence for egocentric, possibly greyscale, data (+8.8 AP over CNOS on HOT3D). Like every template method it does not solve true twins.",
+          "sources": "https://arxiv.org/abs/2510.17866 ; https://arxiv.org/html/2510.17866 ; https://bop.felk.cvut.cz/leaderboards/detection-unseen-bop23/bop-h3/ ; https://bop.felk.cvut.cz/leaderboards/detection-unseen-bop23/bop-classic-core/None/ ; https://bop.felk.cvut.cz/method_info/873/ ; https://arxiv.org/abs/2504.02812"
+        },
+        {
+          "name": "Grounding DINO 1.5 / 1.6 Pro (IDEA, 2024-2025)",
+          "what": "Text-prompted open-set box detector, the successor to Grounding DINO. No masks; it is usually paired with SAM (Grounded-SAM 2).",
+          "instance_prompting": "NO visual prompts documented for 1.5 or 1.6. Text only.",
+          "key_numbers": "Zero-shot box AP. 1.5 Pro: COCO 54.3, LVIS-minival 55.7 (rare 56.1), LVIS-val 47.6, ODinW13 58.7, ODinW35 30.2. 1.6 Pro: COCO 55.4, LVIS-minival 57.7, LVIS-val 51.1. For reference, Grounding DINO tiny (our current G term): COCO 45.7 and SA-Co/Gold cgF1 3.3 in SAM 3's Table 1.",
+          "licence": "API only, hosted on DeepDataSpace (token, paid quota). The API repo is Apache-2.0, but no weights are released. Not reproducible offline, and eval frames would go to a third party.",
+          "compute": "Cloud API.",
+          "fit_for_us": "Poor: closed weights, so no reproducible Apache submission. Text-only, so no instance choice. Not recommended.",
+          "sources": "https://github.com/IDEA-Research/Grounding-DINO-1.5-API ; https://arxiv.org/abs/2405.10300"
+        },
+        {
+          "name": "DINO-X Pro / Edge (IDEA, Nov 2024; API updates to Jul 2025; DINO-XSeek Mar 2025)",
+          "what": "Unified open-world detector built on the Grounding DINO 1.5 design. It has text, visual and customized prompts plus a prompt-free mode, and heads for boxes, masks, keypoints and captions.",
+          "instance_prompting": "Visual prompts are supported (T-Rex2 lineage). Whether they work across images is not stated for DINO-X (unverified).",
+          "key_numbers": "Zero-shot box AP for Pro: COCO 56.0, LVIS-minival 59.7-59.8 (rare 63.3), LVIS-val 52.4 (rare 56.5). Mask AP: COCO 37.9, LVIS-minival 43.8, LVIS-val 38.5. SA-Co/Gold cgF1 21.3 (via API, in SAM 3's Table 1).",
+          "licence": "API only (DeepDataSpace), no open weights. Repo says Apache-2.0.",
+          "compute": "Cloud API.",
+          "fit_for_us": "Not usable for a reproducible, offline Apache submission. SAM 3 beats its masks (LVIS mask AP 48.5 vs 38.5).",
+          "sources": "https://arxiv.org/abs/2411.14347 ; https://github.com/IDEA-Research/DINO-X-API"
+        },
+        {
+          "name": "T-Rex2 (ECCV 2024) and T-Rex-Omni (AAAI 2026, arXiv 2511.08997)",
+          "what": "T-Rex2: a detector driven by text and visual prompts. 'Interactive' mode draws boxes or points on the target image. 'Generic' mode draws them on a reference image and detects in another. 'Customized embedding' builds a reusable visual-prompt embedding from several images. T-Rex-Omni adds negative visual prompts (NNC module, NNH loss).",
+          "instance_prompting": "YES, across images: the generic and customized-embedding workflows. T-Rex-Omni can also suppress a look-alike with a negative prompt, which in principle is the right tool for 'board 1, not board 2'. Its weights and code are not linked in the abstract (unverified).",
+          "key_numbers": "T-Rex2, image prompt, 1 exemplar, in SAM 3's Table 3: COCO 58.5, LVIS 65.8, ODinW13 61.8 AP+. Visual-prompt F1@0.5 in Rex-Omni's Table 6: FSC147 91.5, Dense200 93.9, COCO 72.3, LVIS 71.1. T-Rex-Omni: LVIS-minival AP_r 51.2.",
+          "licence": "T-Rex2 is available only through the DDS cloud API (dds-cloudapi-sdk); no weights. The repo is under IDEA License 1.0 (non-commercial research only). T-Rex-Omni: unknown.",
+          "compute": "Cloud API.",
+          "fit_for_us": "Closest in capability to 'detect this exact object from a crop, not its twin'. It is ruled out by API-only access and the non-commercial licence. Use it as a design idea only (negative exemplars).",
+          "sources": "https://arxiv.org/abs/2403.14610 ; https://github.com/IDEA-Research/T-Rex ; https://arxiv.org/abs/2511.08997"
+        },
+        {
+          "name": "Rex-Omni (IDEA, 2025-10-15)",
+          "what": "A 3B vision-language model (Qwen2.5-VL-3B plus 1000 coordinate tokens, SFT followed by GRPO). Detection is next-token prediction. Tasks: detection, referring, pointing, visual prompting, keypoints, OCR, GUI grounding. There is a 'Rex-Omni + SAM' recipe for masks.",
+          "instance_prompting": "Visual prompts are boxes on the same image (visual_prompt_boxes in absolute coordinates, paper sections 2.2 and 5.5). Cross-image prompting is not described. No masks of its own.",
+          "key_numbers": "COCO F1@0.5 72.0 (Grounding DINO-T 69.8); LVIS F1@0.5 64.3. Visual prompting F1@0.5: COCO 79.1, LVIS 74.4, FSC147 86.0, Dense200 79.5; it trails T-Rex2 overall. In the WeVisOne-VL paper: COCO Mean F1 52.9 vs WeVisOne-4B 57.1.",
+          "licence": "IDEA License 1.0, non-commercial research only (LICENSE file). The base Qwen2.5-VL-3B is under the Qwen Research licence (non-commercial). Conflicts with an Apache/commercial-friendly release.",
+          "compute": "≈ 4.07 B params (HF), so ≈ 8-9 GB in bf16 (estimate). transformers or vLLM; AWQ version available.",
+          "fit_for_us": "Not recommended: non-commercial licence, same-image prompts only, boxes only.",
+          "sources": "https://arxiv.org/abs/2510.12798 ; https://github.com/IDEA-Research/Rex-Omni"
+        },
+        {
+          "name": "OWLv2 (Google, NeurIPS 2023)",
+          "what": "Open-vocabulary detector (CLIP-style ViT, self-trained on web data). Text queries or image queries, boxes only.",
+          "instance_prompting": "YES, across images: Owlv2ForObjectDetection.image_guided_detection with query_pixel_values. A query image replaces the text queries and the model matches image to image (transformers docs).",
+          "key_numbers": "From the paper abstract: LVIS rare AP 31.2 → 44.6 with OWL-ST (L/14). In SAM 3's Table 1: LVIS box AP 35.2 (43.4 boxes and masks for the LVIS-trained OWLv2*), COCO 38.2, SA-Co/Gold cgF1 17.3. Our own measurement (work log 2026-10-13, text prompts on mono frames): the white pot was not detected in ep0/ep2, the sweeper and dust pan failed in ep18, ep21 failed, the ep11 cups were swapped. 'OWLv2 on grayscale is unreliable', which is why it was replaced by perc2.",
+          "licence": "Apache-2.0 for code (scenic) and weights (HF).",
+          "compute": "0.44 B params. Light; fits any GPU.",
+          "fit_for_us": "Licence-clean and supports cross-image exemplars, but it is weak, and our own measurement on grayscale was negative. At most a cheap image-guided baseline; not a fix.",
+          "sources": "https://arxiv.org/abs/2306.09683 ; https://huggingface.co/docs/transformers/model_doc/owlv2 ; https://huggingface.co/google/owlv2-large-patch14-ensemble"
+        },
+        {
+          "name": "Florence-2 base/large (Microsoft, CVPR 2024)",
+          "what": "Small sequence-to-sequence generalist. Task tokens for OD, region proposal, caption-to-phrase grounding and referring expression segmentation (polygons).",
+          "instance_prompting": "NO reference-image prompt. Text and task tokens only.",
+          "key_numbers": "Florence-2-large zero-shot: COCO detection mAP 37.5 (fine-tuned 43.4); RefCOCO val 56.3 zero-shot (93.4 fine-tuned); RefCOCO segmentation val mIoU 35.8 zero-shot (80.5 fine-tuned).",
+          "licence": "MIT for weights and code.",
+          "compute": "0.23 B / 0.77 B params. Very light.",
+          "fit_for_us": "Clean licence but weaker than SAM 3, WeVisOne-VL and Qwen3-VL. Its segmentation masks are polygons, so they need SAM refinement. Not a fix for (a), (b) or (c).",
+          "sources": "https://huggingface.co/microsoft/Florence-2-large ; https://arxiv.org/abs/2311.06242"
+        },
+        {
+          "name": "Qwen2.5-VL and Qwen3-VL grounding (Alibaba; Qwen2.5-VL Jan 2025, Qwen3-VL Sep-Nov 2025)",
+          "what": "General vision-language models that output boxes and points as absolute coordinates or JSON. Qwen3-VL also does 3D grounding and was trained on 'multi-image referring grounding' and visual correspondence (tech report §5.7). No masks of their own: pair with SAM 2.1 or SAM 3.",
+          "instance_prompting": "Only through multi-image chat ('image 1 shows object X; give its box in image 2'). Qwen3-VL was trained on multi-image referring grounding, but there is no instance-level benchmark. Quality for our use is UNVERIFIED (hypothesis).",
+          "key_numbers": "Qwen2.5-VL (Table 6): RefCOCO val 72B 92.7, 7B 90.0, 3B 89.1; ODinW-13 mAP 43.1 / 37.3 / 37.5. Qwen3-VL (Tables 2 and 4, Instruct / Thinking): RefCOCO-avg 2B 84.8/85.6, 4B 88.2/89.0, 8B 88.2/89.1, 235B-A22B 92.1/91.9; ODinW-13 2B 36.0/43.4, 4B 39.4/48.2, 8B 39.8/44.7, 235B 43.2/48.6. WeVisOne paper: Qwen3-VL-4B COCO Mean F1 48.7, Dense200 15.2.",
+          "licence": "Qwen3-VL: Apache-2.0 for every size (tech report; HF tags). Qwen2.5-VL: 7B Apache-2.0; 3B 'qwen-research' (non-commercial); 72B 'qwen' licence.",
+          "compute": "Qwen3-VL-8B ≈ 8.8 B params, ≈ 18 GB bf16 (estimate); 4B ≈ 4.4 B. Autoregressive box decoding is slow for many objects.",
+          "fit_for_us": "Qwen3-VL-8B is the only licence-clean option that might choose 'this instance' from a reference crop, through multi-image grounding. Cheap to test, but there is no benchmark evidence for twin instances, and its detection is weaker than WeVisOne-VL's (its own fine-tune). Box-only, so SAM is needed for masks.",
+          "sources": "https://arxiv.org/abs/2511.21631 ; https://arxiv.org/abs/2502.13923 ; https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct ; https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct"
+        },
+        {
+          "name": "YOLOE (THU, ICCV 2025) and YOLOE-26 (Ultralytics, 2026)",
+          "what": "Real-time open-set detection and instance segmentation (YOLO plus re-parameterisable text prompts, SAVPE visual-prompt encoder, prompt-free mode). YOLOE-26 uses YOLO26's NMS-free head and comes in n/s/m/l/x.",
+          "instance_prompting": "YES, across images: predict(..., visual_prompts={bboxes, cls}, refer_image=<reference image>). Boxes on a reference image condition detection in other images. In video the first frame is the default refer_image. Masks from *-seg checkpoints. The prompt is still category-level ('visually similar objects').",
+          "key_numbers": "LVIS minival mAP50-95, zero-shot, text / visual prompt: YOLOE-26x 40.6 / 38.5, 26l 37.8 / 36.3, 26m 35.4 / 33.9; YOLOE-v8-L 35.9 / 34.2; YOLOE-11-L 35.2 / 33.7. Prompt-free 26x 29.9 / 31.1 (E2E / non-E2E).",
+          "licence": "AGPL-3.0 (THU-MIG/yoloe LICENSE; Ultralytics code and weights), or an Ultralytics Enterprise licence. Copyleft conflicts with an Apache-2.0 code release.",
+          "compute": "Real-time on any GPU; also usable on CPU.",
+          "fit_for_us": "Technically convenient (cross-image visual prompts plus masks, fast), but its accuracy is below SAM 3 and the AGPL licence is a compliance risk. Not recommended for the submission.",
+          "sources": "https://docs.ultralytics.com/models/yoloe ; https://arxiv.org/abs/2503.07465 ; https://github.com/THU-MIG/yoloe ; https://arxiv.org/abs/2606.03748"
+        },
+        {
+          "name": "LocateAnything-3B (NVIDIA, 2026; arXiv 2605.27365)",
+          "what": "Grounding vision-language model (MoonViT-SO-400M plus Qwen2.5-3B) with Parallel Box Decoding: each box is predicted in one step, with a hybrid fallback to autoregressive decoding. Detection, referring, GUI, layout, OCR, pointing.",
+          "instance_prompting": "NO. Image plus text only.",
+          "key_numbers": "Model card numbers are in chart images only. In the WeVisOne-VL paper: COCO Mean F1 54.7, LVIS 50.7, Dense200 58.7, RefCOCOg F1 76.7 / 77.6. Card: 4K image, batch 4, A100, 8.0 s, peak memory 11.7 GB with la_flash.",
+          "licence": "NVIDIA License, non-commercial. The LLM part is under the Qwen Research licence.",
+          "compute": "≈ 3.8 B params; about 12 GB peak on an A100 for 4K images.",
+          "fit_for_us": "Excluded: non-commercial and text-only.",
+          "sources": "https://huggingface.co/nvidia/LocateAnything-3B ; https://research.nvidia.com/labs/lpr/locate-anything/index.html"
+        },
+        {
+          "name": "WALDO (arXiv 2608.28216, Aug 2026): one-shot exemplar-conditioned detection. Included as negative evidence.",
+          "what": "Frozen V-JEPA 2.1 or SigLIP2 backbone plus a 3.39 M head. Patch-to-exemplar cosine similarity plus FiLM conditioning from the exemplar and a text description. Outputs per-patch boxes and a presence logit; no masks.",
+          "instance_prompting": "YES (one reference crop plus text).",
+          "key_numbers": "Catalogue AP@50 0.481 (SigLIP2) / 0.461 (V-JEPA) vs Grounding DINO 0.306 and OWLv2 0.109 on 35 cluttered test scenes. But instance Success@1 is 0.190-0.224 against a 0.190 chance floor: the exemplar features localise the category but do not pick the specific instance. Crop size alone predicted the label until the authors added controls.",
+          "licence": "No code or licence stated (unverified).",
+          "compute": "Small head on frozen encoders.",
+          "fit_for_us": "Not a tool for us, but direct evidence for (a): exemplar-feature matching alone does not separate same-category look-alikes. This matches our ep23 board swap and the ep11 cup margin of 0.586 vs 0.570.",
+          "sources": "https://arxiv.org/abs/2608.28216 ; https://arxiv.org/html/2608.28216"
+        },
+        {
+          "name": "PET-DINO (CVPR 2026 Highlight, arXiv 2604.00503)",
+          "what": "Grounding DINO extended with visual-cue prompts (AFVPG module, intra-batch parallel prompting, a memory bank of visual prompts).",
+          "instance_prompting": "Visual cues are supported. Whether they work across images is unverified.",
+          "key_numbers": "Not extracted (unverified).",
+          "licence": "No official code or licence found (unverified).",
+          "compute": "About Grounding DINO's size (estimate).",
+          "fit_for_us": "Watch-list only until code and weights are confirmed.",
+          "sources": "https://arxiv.org/abs/2604.00503 ; https://cvpr.thecvf.com/virtual/2026/poster/37473"
+        }
+      ],
+      "takeaway": "WeVisOne-VL is worth one cheap test, but it is not the best fix for our detection problem, and it does not take a picture of the object as a prompt. It is text only: it finds objects from a description and returns masks. It has two real strengths. Its licence is clean (code and weights Apache-2.0), and it is good at saying \"not present\" (86 % rejection on Ref-ZOM for the 4B model). It was released 4 days ago, reports no speed figures, and has never been compared with SAM 3.\n\nOur measured state, from the repo: the frame-0 detection rule picks the right mask for 93 of 116 labelled public instances (24/29 at frame 0). The misses split into three kinds:\n- **Different objects that look alike:** the pot mask spills onto the lid (ep2); on eval 1 our own frame-0 output (no ground truth) gives the pot to its handle and the lid to the whole pot; eval 30's sweeper went to a wrist blob (fixed by the Grounding DINO re-proposal).\n- **Colour lost in grayscale:** in ep11 the blue cup took the beige cup's proposal, and the beige cup went to the person's lap.\n- **True twins:** the two boards are swapped in ep23.\n\n**(a) Choosing the right instance among look-alikes**\n- **Different objects that look alike** (white pot vs rack vs watch strap, pot vs lid vs handle): SAM 3 is the best fix, run with text prompts on colour camera a. It returns whole-object masks and leads clearly on concept segmentation (SA-Co/Gold 54.1 vs OWLv2 17.3 and Grounding DINO tiny 3.3). WeVisOne-VL-4B is the Apache-clean second choice. Keep our reach, size, table and FoundationPose depth checks on top.\n- **True twins** (the two near-identical bamboo boards): no model in this survey separates them.\n  - SAM 3 works at the level of a concept, so a box on board 1 asks for every board.\n  - WALDO (Aug 2026) measured exemplar matching at chance for picking a specific instance (0.19 vs a 0.19 floor).\n  - Mesh-prompted methods (CAD-Prompted SAM3, MUSE) see the same geometry for both boards, because our board meshes lack the slots.\n  - The fix has to come from geometry: board meshes with the slots, compared against the stereo depth. The mocap marker layout is another identity cue (note 17), and so is agreement across several frames.\n  - This is a hypothesis. To falsify it, run SAM 3 on public ep23 frame 0 with a board-1 crop pasted beside the frame (the \"canvas\" workaround) and check whether its score separates the two boards by more than about 0.1.\n- **Blue vs beige cup:** this is a colour problem, covered under (b).\n\n**(b) Mono grayscale frames.** The best fix is not a model. Detect on colour camera a and carry the masks into the rectified mono frame through stereo depth and the camera-a to b/c extrinsics. We already do this for Grounding DINO boxes (boxes_in_a, A_OFFSET=1). This restores colour (blue vs beige cup) and puts every model back on the RGB data it was trained on. If a model must run on mono frames directly:\n- **SAM 2.1 or SAM 3**, prompted with crops cut from the same mono stream (the canvas trick), avoids the colour gap. This is a hypothesis; I found no grayscale benchmark for any of these models.\n- **MUSE-style mesh matching** is the closest public evidence. On HOT3D, an egocentric set with monochrome streams, MUSE scores 0.438 AP vs CNOS 0.350, and the unpublished leader 3PT-Detection scores 0.484. Whether the HOT3D 2D test images are mono is unverified.\n- **Avoid OWLv2 on grayscale:** our own measurement on 2026-10-13 was negative.\n\n**(c) Masks good enough to seed 6-DoF tracking**\n- **SAM 3:** instance masks (LVIS mask AP 48.5 zero-shot vs DINO-X 38.5), plus a video tracker for occlusions. The licence is Meta's custom SAM License with gated weights, so the owner needs to request access and decide whether it fits the Apache release.\n- **Fully Apache option:** WeVisOne-VL masks (RefCOCO cIoU 81.4), or box prompts into SAM 2.1 on the mono frame. The box-only models (Qwen3-VL, Rex-Omni, LocateAnything, Florence-2) all need SAM for masks.\n\n**Excluded:**\n- Licence: Rex-Omni and T-Rex2 (IDEA non-commercial), LocateAnything (NVIDIA non-commercial), YOLOE (AGPL).\n- Hosted API only, no weights (not reproducible): Grounding DINO 1.5/1.6, DINO-X, T-Rex2.\n- Too weak: Florence-2 and OWLv2. OWLv2 already failed on our grayscale frames.\n\n**Suggested experiment** (needs the owner's go-ahead; this VM's sandbox does not allow running the model code here):\n- **What:** one GPU box, a single 24 GB card, about 1 hour. Estimate about $1-3, not quoted.\n- **Contenders:** SAM 3 (text, plus canvas exemplar) and WeVisOne-VL-4B (text), both on camera a.\n- **How:** use the existing public frame dumps. Replay each as a replacement for the Grounding DINO tiny term, or as extra proposals, with tools/det_replay.py.\n- **Acceptance, fixed in advance:** more than 93/116 correct with no instance lost.\n- **Also report:** ep11, ep23 and ep2 separately, and the board score margin.\n- **Integrity:** public episodes only; eval episodes are not touched for tuning.\n\nOne correction for docs/research/notes/03-lit-perception.md: the SAM 3 figures \"48.5/37.2\" are LVIS mask AP and a concept-F1 score (cgF1), not box and mask AP. SAM 3's LVIS box AP is 53.6. Still unverified: MUSE code availability, the cad_prompted_sam3 licence, whether T-Rex-Omni and PET-DINO weights are released, how well Qwen3-VL picks an instance from two images, and any model's accuracy on grayscale."
+    },
+    "verified": [
+      {
+        "checks": [
+          {
+            "claim": "1. Licence: GitHub LICENSE (211 lines) is the Tencent preamble plus standard Apache-2.0; README says Tencent-authored code is Apache-2.0; msda.py is labelled 'DINO multi-scale deformable attention (pure PyTorch implementation)' and has no licence header; the HF LICENSE (same in both repos, tag apache-2.0, gated=false) lists only Qwen3-VL-{4B,2B}-Instruct (Apache-2.0) as third party; no territorial or use-based restrictions; Intended Use is guidance; training-data terms are not passed on.",
+            "verdict": "confirmed",
+            "evidence": "Checked a shallow clone of github.com/Tencent/WeVisOne-VL and the HF resolve/main files. `wc -l LICENSE` gives 211. The file opens with \"Tencent is pleased to support the open source community by making WeVisOne-VL available. Copyright (C) 2026 Tencent.  All rights reserved.\" and then \"Terms of Apache-2.0\". Its Apache section differs from /usr/share/common-licenses/Apache-2.0 only in whitespace. README.md:354 reads: \"Tencent-authored code in this repository is released under the [Apache License 2.0](LICENSE). Third-party components keep their original licenses; please check the corresponding source files.\" msda.py line 1 is the quoted docstring, and grep finds no licence or copyright text in any wevisone_vl/*.py. The HF LICENSE (435 lines in both repos) is identical once 2B and 4B are swapped. It contains the quoted 'licensed under Apache-2.0, except for the third-party components...' and 'For the avoidance of doubt...' sentences. Its only listed component is \"1. Qwen3-VL-4B-Instruct / Copyright 2024 Alibaba Cloud / Please note this model has been modified by Tencent in this distribution.\" under \"Open Source Model Licensed under the Apache-2.0\" (Qwen3-VL-2B-Instruct in the 2B repo). The HF API returns gated:false and cardData license 'apache-2.0'. grep for EU, Europe, Kingdom, Korea, territor, prohibit and acceptable use finds nothing. The model card says \"The release is intended for research in visual grounding, ... It is not intended to make autonomous high-impact decisions or to identify individuals.\" Paper section 3: \"WDE draws on GRIT, CC3M, LAION, SA-1B...\". Two small omissions in the claim: the HF LICENSE also has the 'Tencent Modifications' sentence and 'Users are required to comply with all applicable terms ... of the original licenses'. GitHub's API detects the licence as \"Other\" / spdx NOASSERTION because of the preamble. The claim that it fits the challenge rule is an assessment that I did not check against the challenge text."
+          },
+          {
+            "claim": "2. Prompt types: category list ('a. b. c.'), free-form referring phrase (plus a 'Locate a single instance...' eval variant), a pixel xyxy box for box-prompted seg/matting teacher-forced as the response prefix, in-image reference boxes (visual_prompt, code only, not evaluated), raw prompt / freeform. No cross-image exemplar, multi-image, video or point-input; one image per request; vLLM allows 10 images; card says single-turn image perception. Instance prompting is language-only within one image.",
+            "verdict": "refuted",
+            "evidence": "Almost all of this checks out. Only the box-input detail is wrong. Confirmed: prompts.py has detection = \"Locate all the instances that match the following description: \" + \". \".join(labels) + \".\" and a docstring saying \"A referring expression remains a single phrase even when it contains commas.\" evaluation/utils/prompt_builder.py has \"Locate a single instance that best matches the following description: {phrase}\". For visual_prompt the docstring says \"Reference boxes are pixel-space [x1, y1, x2, y2]\" and the prompt is \"Locate all similar objects in the image based on the reference boxes\". visual_prompt is not mentioned in the README, the eval scripts or the paper; it is reachable only through predict() and the CLI flag --reference-boxes. predict(prompt=...) overrides the template, and the demo has caption presets such as \"describe the image with bounding boxes in detail\". engine._inputs passes `images=[image]` (one image per request), and vLLM uses `limit_mm_per_prompt={\"image\": 10, \"video\": 10}`. The card says \"currently targets single-turn image perception (video grids are rejected by the pixel decoder)\". No task takes a point as input; 'point' is pointing output. Paper: \"return None when the target is absent\". Tutorial: 'the black and white dog' gives one box. Table 3 gives 4B Rej 96.4 (WeRef), 67.4 (RefCOCOg-Rej) and 52.6 (PR-Bench). WRONG: box-prompted matting does not take a pixel xyxy box as a response prefix. In evaluation/inference_matting.py, tight_alpha_box returns a \"Normalized xyxy box\". box_response() writes the whole response as `<ref>{expression}</ref><box>{coords}<OBJ></box>` with coords = round(v*1000), and engine.decode_masks(image, prompt, response, boxes=...) teacher-forces it; its docstring says \"`boxes` (normalized xyxy)\". The model generates no continuation, and the user prompt is still the text template with an expression. This path cannot be reached from predict() or the CLI, only from decode_masks. The pixel-xyxy convention belongs to visual_prompt. Other caveats: 'on our classes' is not measured, because the Rej figures are benchmark results. The paper says each <OBJ> hidden state 'serves as a latent representation of the corresponding instance', but it is internal (not returned by the API) and not trained for identity. The 'no identity embedding' point holds in practice."
+          },
+          {
+            "claim": "3. Compute: authors measured only tutorial latencies of 0.6-1.7 s per call (unnamed GPU, 4B, transformers); the paper has no VRAM, latency or throughput figures; demos run on ZeroGPU zero-a10g. Estimates: bf16 ~9.7 GB (4B) / ~4.9 GB (2B) + 38 MB decoder; float32 on CPU (19.3 / 9.8 GB); download 19.3 GB (4B, F32) / 4.9 GB (2B); max_pixels 2025*32*32 ~2.07 MP; paper evaluates at <=1,960 tokens; 2028x1520 downscaled ~0.82x; 1280x800 ~1,000 tokens; exact dependency pins; sdpa default, no flash-attn; pure-PyTorch MSDA; no .py in HF repos; weights_only=True.",
+            "verdict": "refuted",
+            "evidence": "The latency range is wrong; everything else checks out. The tutorial notebook outputs show: detection (dog, chair, bush) \"Latency: 4.07s\", referring 0.57s, count_box 1.03s, count_point 0.94s, pointing 0.67s, OCR \"Latency: 9.52s\", OCR grounding 0.43s, segmentation 1.74s and matting 0.99s. The real range is about 0.43-9.5 s, and the multi-category detection call most relevant to us took 4.07 s, outside the claimed range. No GPU is named in any notebook source or text output. Confirmed: the paper has no latency, throughput or VRAM numbers (GPU appears only in 'We use 128 GPUs for SFT and 160 GPUs for RL'). The Space API shows hugging-apps/wevisone-vl-4b and -2b with hardware current/requested \"zero-a10g\"; liangtm/WeVisOne-VL requests zero-a10g but is in RUNTIME_ERROR. The HF API gives 4B safetensors {F32: 4,830,581,248} and model.safetensors 19,322,413,240 bytes; 2B {F16: 2,441,744,384} and 4,883,564,560 bytes (stored F16, not BF16); mask_decoder.pt is 38.5 / 38.1 MB. That makes bf16 9.66 GB / 4.88 GB and fp32 19.3 GB / 9.77 GB (weights only). engine.py has `if self.device.type == \"cpu\": self.dtype = torch.float32`, `max_pixels: int = 2025 * 32 * 32` (2,073,600), `attention_implementation: str = \"sdpa\"`, `torch.load(sidecar_path, map_location=\"cpu\", weights_only=True)` and trust_remote_code=True. The paper says \"limit each image to 1,960 visual tokens\". processor_config gives patch_size 16 and merge_size 2 (32 px per token): sqrt(2.0736/3.0826) = 0.820, and 1280*800/1024 = 1000. The HF siblings list has no .py files, and config.json has architectures [\"Qwen3VLForConditionalGeneration\"], model_type qwen3_vl and no auto_map. msda.py imports only torch, nn and F and uses F.grid_sample. requirements.txt and pyproject.toml match every listed pin (also matplotlib==3.11.0, pycocotools==2.0.11, scipy==1.18.1). The extras are demo = gradio==6.30.0 and vllm = vllm==0.23.0 + triton==3.6.0. requires-python is \">=3.10\". The README says `conda create -n wevisone-vl python=3.10` then `pip install -r requirements.txt && pip install -v -e .`. The VRAM figures and the FoundationPose clash are unmeasured estimates. Note that the vLLM backend defaults to gpu_memory_utilization=0.45."
+          },
+          {
+            "claim": "4. COCO zero-shot F1 mean (F1@0.5): 4B 57.1 (74.0); 2B 55.2 (72.6); GroundingDINO-T 56.6 (69.8); LocateAnything-3B 54.7 (70.1); Rex-Omni-3B 52.9 (72.0); Qwen3.5-9B 49.5; Qwen3-VL-4B 48.7",
+            "verdict": "confirmed",
+            "evidence": "arXiv HTML Table 2 (caption: \"COCO and LVIS are evaluated in a zero-shot setting\"), COCO columns 0.5 | 0.95 | Mean: GroundingDINO-T 69.8 | 23.0 | 56.6; Qwen3-VL-4B 66.6 | 14.9 | 48.7; Qwen3.5-9B 68.9 | 13.8 | 49.5; Rex-Omni-3B 72.0 | 15.9 | 52.9; LocateAnything-3B 70.1 | 19.3 | 54.7; WeVisOne-VL-2B 72.6 | 18.7 | 55.2; WeVisOne-VL-4B 74.0 | 19.5 | 57.1. All values match. Protocol caveats from the released eval code: eval_coco.sh uses `--prompt_mode single` (one request per category). convert_coco_lvis_to_standard_format.py says \"Only boxes of categories that are annotated as present in the image are kept (positive-only protocol)\", so false positives on absent categories are not penalised. coco_lvis_metric.py averages precision and recall over categories with `safe_mean` (values <= 0 skipped). The metric is F1, not COCO AP. All figures are author-reported."
+          },
+          {
+            "claim": "5. LVIS zero-shot F1 mean (F1@0.5): 4B 55.3 (71.1); 2B 53.3 (69.5); LocateAnything-3B 50.7; Rex-Omni-3B 46.9; Qwen3-VL-4B 44.0; GroundingDINO-T 38.8",
+            "verdict": "confirmed",
+            "evidence": "Table 2, LVIS columns 0.5 | 0.95 | Mean: GroundingDINO-T 47.7 | 22.7 | 38.8; Qwen3-VL-4B 61.3 | 19.5 | 44.0; Rex-Omni-3B 64.3 | 20.7 | 46.9; LocateAnything-3B 62.3 | 31.1 | 50.7; WeVisOne-VL-2B 69.5 | 27.5 | 53.3; WeVisOne-VL-4B 71.1 | 28.8 | 55.3. The caption says LVIS is zero-shot. The same positive-only, per-category (`--prompt_mode single` in eval_lvis.sh) F1 protocol applies. Author-reported."
+          },
+          {
+            "claim": "6. Dense200 F1 mean: 4B 71.3, 2B 61.4 (LocateAnything-3B 58.7, Rex-Omni-3B 58.3, GroundingDINO-T 33.1); VisDrone F1 mean: 4B 44.7, 2B 40.4 (LocateAnything-3B 39.9, GroundingDINO-T 38.5)",
+            "verdict": "confirmed",
+            "evidence": "Table 2, Dense200 0.5 | 0.95 | Mean: GroundingDINO-T 36.9 | 19.7 | 33.1; Rex-Omni-3B 78.4 | 10.3 | 58.3; LocateAnything-3B 74.0 | 18.5 | 58.7; WeVisOne-VL-2B 79.1 | 14.1 | 61.4; WeVisOne-VL-4B 86.9 | 23.2 | 71.3. VisDrone: GroundingDINO-T 55.2 | 3.9 | 38.5; LocateAnything-3B 63.0 | 3.2 | 39.9; WeVisOne-VL-2B 64.5 | 2.8 | 40.4; WeVisOne-VL-4B 68.1 | 3.9 | 44.7. All match. Caveat: the caption calls only COCO and LVIS zero-shot, not Dense200 or VisDrone. VisDrone F1@0.95 is 1.3-3.9 for every method, so tiny-object box precision is poor across the board. Author-reported."
+          },
+          {
+            "claim": "7. RefCOCOg val / test F1 mean 0.5:0.95: 4B 80.8 / 81.8; 2B 77.1 / 78.2 (LocateAnything-3B 76.7 / 77.6; Qwen3-VL-8B 74.6 / 74.9; Rex-Omni-3B 73.6 / 74.3; GroundingDINO-T 45.9 / 46.8)",
+            "verdict": "confirmed",
+            "evidence": "Table 3 (\"Entries are mean F1 over IoU thresholds from 0.5 to 0.95\"), RefCOCOg val | test: GroundingDINO-T 45.9 | 46.8; Qwen3-VL-8B 74.6 | 74.9; Rex-Omni-3B 73.6 | 74.3; LocateAnything-3B 76.7 | 77.6; WeVisOne-VL-2B 77.1 | 78.2; WeVisOne-VL-4B 80.8 | 81.8. All match. The eval uses the 'Locate a single instance that best matches...' template for RefCOCOg_val/test (REFERRING_SINGLE). The benchmark is not described as zero-shot, and Table 10 lists RefCOCOg among the segmentation training sources."
+          },
+          {
+            "claim": "8. RefCOCOg-Rej rejection rate %: 4B 67.4; 2B 50.2 (Qwen3-VL-8B 22.5; Qwen3.5-4B 18.9; LocateAnything-3B 0.6; Rex-Omni-3B 0.5; GroundingDINO-T 0.0)",
+            "verdict": "confirmed",
+            "evidence": "Table 3, RefCOCOg Rej column: GroundingDINO-T 0.0; Qwen3-VL-2B 1.7; Qwen3-VL-4B 18.8; Qwen3-VL-8B 22.5; Qwen3.5-4B 18.9; Qwen3.5-9B 15.2; Rex-Omni-3B 0.5; LocateAnything-3B 0.6; WeVisOne-VL-2B 50.2; WeVisOne-VL-4B 67.4. Every cited value matches; the claim leaves out Qwen3-VL-4B 18.8, Qwen3.5-9B 15.2 and Qwen3-VL-2B 1.7. Paper: \"For RefCOCOg-Rej, we report the Rejection Rate, where a prediction is correct only when no box is produced.\" The caption says the Rej figure \"is evaluated on RefCOCOg-Rej\"."
+          },
+          {
+            "claim": "9. WeRef-Bench (2,880 EN/ZH queries, in-house) F1 mean / Rej %: 4B 78.7 / 96.4; 2B 73.2 / 92.9 (LocateAnything-3B 51.7 / 73.0; Qwen3.5-4B 48.1 / 71.6; Qwen3.5-9B 50.7 / 70.7)",
+            "verdict": "confirmed",
+            "evidence": "Paper section 5.1.2: \"we introduce WeRef-Bench, an in-house benchmark comprising 2,880 English and Chinese queries. It covers single-target referring, multi-target referring, and absent-target queries\". Table 3, WeRef-Bench Mean | Rej: Qwen3.5-4B 48.1 | 71.6; Qwen3.5-9B 50.7 | 70.7; Rex-Omni-3B 50.3 | 43.3; LocateAnything-3B 51.7 | 73.0; WeVisOne-VL-2B 73.2 | 92.9; WeVisOne-VL-4B 78.7 | 96.4. All match. Caveat: WeRef-Bench is not in the released eval code (no WeRef-Bench file or script; the sibling in-house set WeRefMat is marked 'not yet released'), so these numbers cannot be independently reproduced."
+          },
+          {
+            "claim": "10. Release dates: arXiv v1 Thu 22 Oct 2026 14:19:50 UTC (only version); HF repos created 2026-10-22 09:47 (2B) / 09:48 UTC (4B); last modified 4B 2026-10-23 06:40 UTC sha 4a7bed9, 2B 2026-10-25 10:16 UTC sha 798ffc7; GitHub HEAD 9a6bcd8 'Update README' 2026-10-25 18:12 +0800; GitHub repo creation date UNVERIFIED; HF demo Spaces created 2026-10-23; 4 days old, no independent reproduction found.",
+            "verdict": "confirmed",
+            "evidence": "arXiv abs page: \"[v1] Thu, 22 Oct 2026 14:19:50 UTC (32,841 KB)\", with no v2. HF API: 2B createdAt 2026-10-22T09:47:50Z, lastModified 2026-10-25T10:16:07Z, sha 798ffc7c87ad...; 4B createdAt 2026-10-22T09:48:14Z, lastModified 2026-10-23T06:40:09Z, sha 4a7bed92750a.... git log: \"9a6bcd8 2026-10-25 18:12:47 +0800 Update README\", 40f735b (2026-10-23 18:35 +0800) and \"2344782 2026-10-23 16:14:47 +0800 Initial public release of WeVisOne-VL\"; 3 commits in total. The creation date can now be filled in: the GitHub MCP search API returns created_at \"2026-10-22T08:58:16Z\" and pushed_at \"2026-10-25T10:17:41Z\", with 260 stars, 19 forks and 6 open issues as of today. Space API createdAt: hugging-apps/wevisone-vl-4b 2026-10-23T08:47:19Z, hugging-apps/wevisone-vl-2b 2026-10-23T08:47:56Z, liangtm/WeVisOne-VL 2026-10-23T07:11:33Z. 22 Oct to 26 Oct is 4 days. I did not search for an independent reproduction, so that part is unverified, though plausible given the age."
+          }
+        ]
+      },
+      null
+    ],
+    "verdict": {
+      "recommendation": "test first",
+      "why": [
+        "Its licence is clean for our release (verified). The code is Tencent's preamble plus standard Apache-2.0. The weights are Apache-2.0, not gated, and list only Qwen3-VL (also Apache-2.0) as third party. There are no territorial or use-based terms. Minor point: GitHub's licence detector reports 'Other' because of the preamble.",
+        "It is a direct upgrade candidate for one specific part of our detector. Our frame-0 rule (pipeline/det_rules.py) uses Grounding DINO tiny on colour camera a as a weighted vote. The paper benchmarks that same model (verified, author-run). LVIS: WeVisOne-4B 55.3 vs 38.8 mean F1. RefCOCOg referring: 80.8 vs 45.9. Rejection of absent targets on RefCOCOg-Rej: 67.4 % (4B) and 50.2 % (2B) vs 0.0 %. On COCO the two are nearly tied: 57.1 vs 56.6 mean F1, 74.0 vs 69.8 at IoU 0.5.",
+        "The upside on our measured failures is small. The current shipped rule gets 97/116 labelled public instances right (measured, work log 25 Oct 00:28 UTC: reach, size, grounding, gated re-proposal and on-table rule). The computed summary's 93/116 is out of date. By my reading of the work log, only three public frame-0 misses remain: ep23's two near-identical boards, which text cannot separate, and ep2's pot mask spilling onto the lid. So at most one public frame-0 instance is within reach of a text model; this is inferred, not re-measured.",
+        "Detection is no longer the main loss. The 26 Oct scoreboard and forensics put about 0.115 of the leaderboard on policies not following our reference (evals 10, 33, 32 first). About 0.075 is reference-vs-truth error, of which an estimated 0.063 is spoon pose or roll. Our own frame-0 check of the five spoon-anchored eval episodes found no gross detection error. All of these are estimates from our documents, not new measurements.",
+        "There is one concrete case where it could matter: nested pot and lid. Grounding DINO returned the same box for 'white pot' and 'white pot lid' (work log 23 Oct). Our own eval 1 frame-0 output gives the pot to its handle and the lid to the whole pot. The tracker recovered and eval 1 scores 0.92 against our reference, but any hidden loss there is unmeasured. Public ep2 is the twin that a test can score.",
+        "It is cheap to test without touching the pipeline. tools/det_replay.py already takes a grounding-box JSON (--g) in a fixed format. So the WeVisOne boxes can replace the Grounding DINO term in an offline replay of the existing public dumps, scored by tools/det_score.py. Only the GPU inference pass is new.",
+        "It is too new and too limited to adopt blind. It is 4 days old (arXiv v1 22 Oct 2026; GitHub repo created 2026-10-22, 3 commits). There is no independent reproduction (not searched by the verifier, so unverified). It gives no confidence scores, has no grayscale or egocentric evaluation, and takes no reference-image or exemplar prompts. With 9 days to the 2026-11-04 freeze, it has to earn its place with a rule fixed before we see any results."
+      ],
+      "where_it_could_help": [
+        "Public ep2 and eval 1, nested pot and lid. The detector currently puts the pot mask partly on the lid (ep2), and on eval 1 gives the pot to its handle and the lid to the whole pot (our own output, no ground truth). Separate boxes per category or referring phrase might separate them where Grounding DINO gave one shared box. This is a hypothesis: ep2 f0 in the replay tests it.",
+        "Replacing Grounding DINO tiny in the grounding term (LAM_G 0.2). A grounding model that can answer 'not present' (verified 67.4 % RefCOCOg-Rej for 4B, vs 0.0 for Grounding DINO tiny) would cast fewer wrong votes. An example of a wrong vote: in the failed on-table variant 1, the grounding term moved the ep18 f0 sweeper onto the dust pan's mask (measured, work log 25 Oct).",
+        "Hidden or partly occluded objects that the automatic SAM2 proposals miss, like eval 30's sweeper standing in the rack. That fix came from Grounding DINO's third box (score 0.19). A model with better long-tail and referring recall could supply such boxes to the gated re-proposal. This is a hypothesis, and its threshold needs redefining, because WeVisOne gives no scores.",
+        "Category confusions on colour camera a between different objects: white pot vs white rack vs watch strap, pot vs lid vs handle. Text with colour and attributes (for example 'blue cup', 'beige cup', 'lime green dust pan') is where its referring scores are strongest (verified RefCOCOg 80.8 F1 for 4B).",
+        "A GT-free cross-check on eval frame 0, run only after a rule is frozen on public data: flag chosen masks whose camera-a box disagrees with WeVisOne's box. The result lists episodes for re-inspection and is never used to tune the rule on eval."
+      ],
+      "where_it_would_not": [
+        "The two near-identical bamboo boards (ep23, eval 25). Text gives no instance identity, and it takes no exemplar or reference-image prompt (verified: one image per request, text templates only). Eval 25's identity is already handled by pipeline/identity_fix.py.",
+        "Mono ego_cam_b/c frames. There is no grayscale evidence in the paper, card or code, and inputs are forced to RGB. OWLv2 text prompts already failed on our mono frames (measured 2026-10-13). It must run on camera a and map through depth, as the Grounding DINO term already does.",
+        "Ranking or gating candidates by confidence. It outputs no scores, so the current formula G = IoU x score / best score degenerates to IoU, and the re-proposal threshold (0.25 x best score) cannot be used as written.",
+        "The spoon. Frame-0 spoon detection already lies on the real spoon in all five spoon-anchored evals (our check). The spoon's loss is roll or pose (estimated about 0.063 of the leaderboard), which a box or text model does not fix. Thin-object behaviour after the 0.82x downscale of the 2028x1520 frame is also untested.",
+        "Policy-tracking losses (evals 10, 33, 32, 25, 16, 3, 14; estimated about 0.115 of the leaderboard), meshes (CD-O, pitcher, open pot base), and luck of the single packed rollout. None of these are detection.",
+        "Picking our specific beige cup from another beige cup in the scene, or any other same-category instance choice that language cannot express."
+      ],
+      "better_or_complementary_options": [
+        "Bigger levers for the 9 days, from our own estimates. Spoon roll and pose (up to about +0.045 if solved; forensics 26 Oct). Eval 10, 33 and 32 policy fixes (more than half of the about 0.115 tracking loss). Second seeds for the episodes that swing between rollouts. The WeVisOne test should not displace these. It can piggyback on a box that is already being rented.",
+        "Keep the current detector as the base. It is measured at 97/116 public instances, and its frame-0 eval choices were all checked. Any WeVisOne use should be a drop-in replacement for, or a union with, the Grounding DINO term, behind a flag. It should not be a new detector.",
+        "SAM 3 with text prompts on camera a. The alternatives survey ranks it first for category confusions and whole-object masks, but its numbers were NOT verified in this run. Its licence is Meta's custom SAM License (not OSI), the weights are gated, and our HF token already lacked the SAM 3D gate (STATUS, measured). Add it to the same bake-off only if the owner obtains access and accepts the licence question.",
+        "For twins, geometry rather than a detector. Board meshes with the slots, compared against stereo depth, plus the mocap marker layout (note 17) and multi-frame agreement. No surveyed text or exemplar model separates true twins (survey claim, not re-verified here).",
+        "MUSE-style scoring (patch-GeM fusion, vMF view weighting, objectness prior) re-implemented inside det_rules. It is Apache-clean in principle, but its code availability and BOP figures are UNVERIFIED in this run, and it is more engineering than the 9 days comfortably allow.",
+        "A zero-spend variant: run WeVisOne-2B on this CPU VM. In fp32 it needs about 9.8 GB of RAM, which fits 16 GB; my rough estimate is 1-3 min per frame, so about 2-5 h for about 100 frames (not measured). This needs the owner's permission, because the sandbox blocks third-party model code here. The 4B model does not fit (about 19.3 GB fp32)."
+      ],
+      "test_plan": [
+        "0. Owner go-ahead first. One GPU box (or a slot on the next planned box), estimate about $1-1.5, ceiling $3, under 1 h. Public frames only. No eval frames run in this job.",
+        "1. Pre-register (CPU, $0). Before any model output exists, write a dated work-log entry with the arms, prompts, metrics and decision rule below, and commit it. Write tools/wevis_boxes.py. It reads only the camera-a colour frame k+1 for each dumped stereo frame k, plus the episode roster names, so no ground truth is read. It writes the det_replay grounding format {'jobs': {key: {'det': {name: {'boxes': [[x0,y0,x1,y1] px], 'scores': [1.0, ...]}}}}}, with an empty list when the model answers None. Prompts use det_rules.prompt(name) (underscores to spaces, trailing digits dropped). Decoding is greedy, the backend is transformers with sdpa, max_pixels is the default 2025*32*32, and the code is pinned to WeVisOne commit 9a6bcd8 and the HF shas 798ffc7 (2B) and 4a7bed9 (4B).",
+        "2. Inputs. The same public frames as the existing dumps: 20 public episodes, frame 0 plus the quarter points, about 100 frames (dumps in the HF store, runs/20261024-reprop-88822b2). The label set is the existing one: 116 labelled instances (det_score.py; ep0 and ep26 are excluded by the 2 cm fit rule).",
+        "3. Arms. A = 4B, one detection call with all roster names joined as 'a. b.'. B = 4B, one call per roster name, as the Grounding DINO term does now. C = 2B, per name. D = union: G = max(Grounding DINO term, arm B). Only the grounding-box source changes. LAM_G stays at the shipped 0.2. Reach, size, on-table and gated re-proposal (still fed by Grounding DINO) are unchanged. No weight re-tuning.",
+        "4. GPU job. Separate venv with the repo's pinned requirements (transformers 5.12.1; ours is 5.20.2 for Grounding DINO). Log per-call latency, peak VRAM (torch.cuda.max_memory_allocated), exact command, commit and box id. Push the JSON and logs to the HF store, then self-destroy (stall watchdog on).",
+        "5. Replay (CPU). Run tools/det_replay.py on the public dumps with --g set to (a) the existing Grounding DINO JSON, which must reproduce 97/116 or the test is invalid, and (b) each arm. Score with tools/det_score.py.",
+        "6. Primary metric: correct labelled public instances out of 116 with the full shipped rule, plus the list of instances gained and lost.",
+        "7. Secondary metrics (diagnostic only). Report ep2, ep11 and ep23 separately. Box recall at IoU 0.5 against the label masks projected into camera a (via det_rules.boxes_in_a), WeVisOne vs Grounding DINO top-1. Absent-object probe: per frame, query 2 kit object names that are not in that episode's roster, drawn with a fixed seed before the run. Report the rate of non-None answers. Also report median and p90 seconds per frame.",
+        "8. Decision rule (fixed now). An arm passes only if (i) it gets at least 99/116 (at least +2 over the shipped 97) with zero of the 97 currently correct instances lost, and (ii) its median latency is at most 10 s per frame on the box. The +2 margin is there because these 116 instances were already used to select the current rule. Among passing arms: most hits, then the cheaper model (2B before 4B), then fewer calls. If no arm passes: record the negative result, do not adopt, and stop spending on it.",
+        "9. Only if an arm passes. Commit the rule behind a flag in perc2, reading a precomputed per-episode JSON so WeVisOne stays in its own process or venv. Replay the frozen rule on the 20 eval frame-0 dumps, only to list which eval choices change; no eval result feeds back into the rule. Then ask the owner to approve reruns of those episodes (estimate $3-5 each)."
+      ],
+      "cost_and_time": "These are estimates, not quotes. The GPU test costs about $1-1.5 (ceiling $3), with under 1 h of box time. Downloads are 19.3 GB for 4B (stored F32) plus 4.9 GB for 2B. Install takes about 5 min, and inference covers about 100 frames x 4 arms. For comparison, our past detection dump jobs measured $0.60 (27 min) and $0.75. Agent time: about 2-3 h of CPU prep and pre-registration, then about 1 h of replay and scoring, so a decision within about one day of the go-ahead. Running it on a box we already rent removes most of the setup cost. If an arm passes: about half a day to add the flag to perc2, plus eval reruns of the changed episodes at about $3-5 each and 2-4 h wall time per batch. That fits before the 2026-11-04 freeze only if the test runs in the next 2-3 days. Measured compute is thin. The authors' tutorial latencies on an unnamed GPU range from 0.43 to 9.5 s per call, and the multi-category detection call took 4.07 s. The VRAM figures (about 11-14 GB for 4B, 6-8 GB for 2B) are estimates. CPU-only alternative: 2B on this VM at about $0, about 2-5 h (unmeasured), and only with the owner's sandbox permission.",
+      "risks": [
+        "Opportunity cost. With 9 days left, detection holds a small share of the remaining gap: our public frame-0 misses are down to the twin boards and ep2's pot (inferred). Engineering time spent here is time not spent on spoon roll or the eval 10/33/32 policies.",
+        "Selection bias and noise. The 116 instances already chose the current rule out of 1,248 variants, so a +1 change is not trustworthy. Hence the pre-registered +2 and zero-regression bar.",
+        "The model is 4 days old. Every benchmark is author-run. WeRef-Bench (96.4 % rejection) is in-house and not released, so it cannot be reproduced. The COCO and LVIS F1 protocol is positive-only (absent categories are not penalised), so it says nothing about hallucination; only the Rej figures do.",
+        "No confidence scores. The grounding formula collapses to IoU, and the re-proposal threshold cannot use its boxes without a new pre-registered rule.",
+        "Hard cases. Nested objects may still give overlapping boxes, so the ep2 benefit is a hypothesis. The 0.82x downscale of camera a may hurt thin objects such as the spoon (untested).",
+        "Stack. Exact pins (transformers 5.12.1, numpy 2.2.6) differ from our box environment (transformers 5.20.2 for Grounding DINO). It needs a separate venv; Python 3.13 on our image vs the README's 3.10 is untested. The 19.3 GB 4B download per box, and HF rate limits (HTTP 429 seen on 25 Oct), can stall setup.",
+        "Eval side. Any eval frame-0 choice it changes forces a rerun of that episode. A wrong change on eval is invisible, because there is no ground truth. Hence the rule: the frozen public rule only lists changes, and the owner approves the reruns.",
+        "Unverified capabilities must not be relied on: Ref-ZOM 86 % rejection, segmentation cIoU, mask and matting quality, EgoObjects in the training mix, the visual_prompt task, and multi-image vLLM use were not checked in this run. Box-prompted masks are available only through engine.decode_masks with normalized xyxy boxes and a teacher-forced full response, not through predict()."
+      ],
+      "owner_decisions": [
+        "Run the pre-registered public-only test? Estimate about $1-1.5, ceiling $3, under 1 h, on one 24 GB box or a slot on the next planned box. Or choose the $0 CPU route for 2B, which needs your permission to run third-party model code in this VM's sandbox.",
+        "Which sizes: both 2B and 4B (24 GB download, as planned), or only 4B to save time?",
+        "Priority: should this test go ahead of, or after, the higher-value spoon-roll and eval 10/33/32 policy work in the remaining 9 days?",
+        "If an arm passes: approve eval reruns of the episodes whose frame-0 choice changes (estimate $3-5 each). Merging the flag into the pipeline needs no spend.",
+        "Optional: request gated SAM 3 access (and decide whether its custom SAM License is acceptable next to our Apache-2.0 release) if you want it in the same bake-off."
+      ],
+      "summary": "WeVisOne-VL is worth one small test, but it should not be built into the pipeline yet. It is a new (22 Oct 2026) Tencent model that finds objects from text and can answer 'not there'. Its code and weights are Apache-2.0, so it is safe for our release. The authors benchmark it directly against the exact helper model our detector uses now, Grounding DINO tiny. It wins clearly on long-tail objects (LVIS mean F1 55.3 vs 38.8), on finding a described object (RefCOCOg 80.8 vs 45.9) and on refusing absent ones (67 % vs 0 %). On COCO it is about even (57.1 vs 56.6). All of these are the authors' own numbers on a 4-day-old model, with no independent reproduction. It cannot fix our hardest detection problems. It cannot tell the two identical bamboo boards apart, it has no evidence on our grayscale stereo frames, it cannot take a picture of our specific object as a prompt, and it gives no confidence scores. Detection is also no longer our main loss. On public data our detector now gets 97 of 116 labelled objects right (the summary's 93 is out of date), and the remaining frame-0 misses are the twin boards plus the pot and lid on ep2. Most of the remaining leaderboard gap is spoon pose and policies that fail to follow the reference. My recommendation is a pre-registered public-only test (about $1-1.5, under an hour of GPU, decision within a day). It swaps WeVisOne in for Grounding DINO in our existing offline replay and scores against the public labels. Adopt only if it reaches at least 99 of 116 with nothing lost, at an acceptable speed; otherwise drop it and keep the time for the bigger levers before the 4 November freeze."
+    }
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Investigate"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Verdict"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "model-sources",
+      "phaseIndex": 1,
+      "phaseTitle": "Investigate",
+      "agentId": "acff2fe76c56b3e2c",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793033986800,
+      "queuedAt": 1793033986738,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "arXiv 2610.31329 v1 submitted Thu 22 Oct 2026 14:19:50 UTC …",
+      "promptPreview": "Context: NVIDIA V2D Challenge Track 3 (team repo /home/user/v2d-track3). From egocentric video (head rig: ego_cam_a colour\n2028x1520 rolling shutter; ego_cam_b/c MONO (grayscale) stereo pair 1280x800, 75 mm baseline) we detect and track ~11\nknown household objects (white pot/saucepan, pot lid, blue cup, beige cup, white plastic dish rack, mini sweeper, lime\ndust pan, white water pitcher, two near-…",
+      "promptFramed": true,
+      "lastProgressAt": 1793034368198,
+      "tokens": 178842,
+      "toolCalls": 35,
+      "durationMs": 381397,
+      "resultPreview": "{\"release_date\":\"arXiv 2610.31329 v1 submitted Thu 22 Oct 2026 14:19:50 UTC (only version). HF repos created 2026-10-22 09:47 UTC (2B) and 09:48 UTC (4B). Last modified: 4B 2026-10-23 06:40 UTC (sha 4a7bed9), 2B 2026-10-25 10:16 UTC (sha 798ffc7). GitHub HEAD at the time of reading: 9a6bcd8 \\\"Update README\\\", 2026-10-25 18:12 +0800. The GitHub repo creation date is UNVERIFIED because the GitHub AP…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "our-detector",
+      "phaseIndex": 1,
+      "phaseTitle": "Investigate",
+      "agentId": "ac98e47e22a5394fc",
+      "model": "claude-opus-5-5",
+      "state": "error",
+      "startedAt": 1793033986800,
+      "queuedAt": 1793033986738,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Context: NVIDIA V2D Challenge Track 3 (team repo /home/user/v2d-track3). From egocentric video (head rig: ego_cam_a colour\n2028x1520 rolling shutter; ego_cam_b/c MONO (grayscale) stereo pair 1280x800, 75 mm baseline) we detect and track ~11\nknown household objects (white pot/saucepan, pot lid, blue cup, beige cup, white plastic dish rack, mini sweeper, lime\ndust pan, white water pitcher, two near-…",
+      "promptFramed": true,
+      "lastProgressAt": 1793034832485,
+      "error": "agent({schema}): StructuredOutput retry cap (5) exceeded — 5 failed calls with no valid output — last StructuredOutput error: InputValidationError: StructuredOutput was called with input that could not be parsed as JSON. You sent (first 200 of 16835 bytes): {\"pipeline\": \"Detector = pipeline/perc2.py, CNOS-style (SAM2 proposals x DINOv2 vs grey renders of our meshes) plus rules chosen on public episodes. Lines at HEAD 2101c72.\\n0. Camera: MONO rectified-l Common causes: unescaped backslashes in file paths (use / or \\\\), unescaped control characters, or truncated output. Retry with valid JSON.",
+      "tokens": 252469,
+      "toolCalls": 51,
+      "durationMs": 845682
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "alternatives",
+      "phaseIndex": 1,
+      "phaseTitle": "Investigate",
+      "agentId": "a3b7f75619eb6c5e7",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793034370129,
+      "queuedAt": 1793033986739,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "WeVisOne-VL is worth one cheap test, but it is not the best…",
+      "promptPreview": "Context: NVIDIA V2D Challenge Track 3 (team repo /home/user/v2d-track3). From egocentric video (head rig: ego_cam_a colour\n2028x1520 rolling shutter; ego_cam_b/c MONO (grayscale) stereo pair 1280x800, 75 mm baseline) we detect and track ~11\nknown household objects (white pot/saucepan, pot lid, blue cup, beige cup, white plastic dish rack, mini sweeper, lime\ndust pan, white water pitcher, two near-…",
+      "promptFramed": true,
+      "lastProgressAt": 1793035097854,
+      "tokens": 176359,
+      "toolCalls": 78,
+      "durationMs": 727725,
+      "resultPreview": "{\"candidates\":[{\"name\":\"WeVisOne-VL 2B / 4B (Tencent WeChat Vision, released 2026-10-22). This is the reference model the others are compared against.\",\"what\":\"A vision-language model built on Qwen3-VL. It predicts boxes as coordinate tokens, then an <OBJ> token drives a small pixel decoder (about 9.5-9.6M parameters, Deformable-DETR-style, coarse-to-fine) that outputs binary masks or alpha mattes…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "verify-model",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a04cf7990f45753a0",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793035099845,
+      "queuedAt": 1793035099817,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "Skeptically verify each claim below about the Tencent model WeVisOne-VL against its primary\nsources (arXiv 2610.31329 html, github.com/Tencent/WeVisOne-VL, huggingface.co/tencent/WeVisOne-VL-2B and -4B; HF API via\ncurl is fine; do not download weights). Default to \"refuted\" if the source says something different, \"unverifiable\" if\nyou cannot find it. Quote the evidence.\nClaims:\n1. Licence of WeVis…",
+      "promptFramed": true,
+      "lastProgressAt": 1793035492825,
+      "tokens": 144543,
+      "toolCalls": 41,
+      "durationMs": 392980,
+      "resultPreview": "{\"checks\":[{\"claim\":\"1. Licence: GitHub LICENSE (211 lines) is the Tencent preamble plus standard Apache-2.0; README says Tencent-authored code is Apache-2.0; msda.py is labelled 'DINO multi-scale deformable attention (pure PyTorch implementation)' and has no licence header; the HF LICENSE (same in both repos, tag apache-2.0, gated=false) lists only Qwen3-VL-{4B,2B}-Instruct (Apache-2.0) as third …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "verdict",
+      "phaseIndex": 3,
+      "phaseTitle": "Verdict",
+      "agentId": "ab0c7d2daea60af79",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1793035494713,
+      "queuedAt": 1793035494673,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "test first",
+      "promptPreview": "Context: NVIDIA V2D Challenge Track 3 (team repo /home/user/v2d-track3). From egocentric video (head rig: ego_cam_a colour\n2028x1520 rolling shutter; ego_cam_b/c MONO (grayscale) stereo pair 1280x800, 75 mm baseline) we detect and track ~11\nknown household objects (white pot/saucepan, pot lid, blue cup, beige cup, white plastic dish rack, mini sweeper, lime\ndust pan, white water pitcher, two near-…",
+      "promptFramed": true,
+      "lastProgressAt": 1793035756828,
+      "tokens": 143561,
+      "toolCalls": 20,
+      "durationMs": 262113,
+      "resultPreview": "{\"recommendation\":\"test first\",\"why\":[\"Its licence is clean for our release (verified). The code is Tencent's preamble plus standard Apache-2.0. The weights are Apache-2.0, not gated, and list only Qwen3-VL (also Apache-2.0) as third party. There are no territorial or use-based terms. Minor point: GitHub's licence detector reports 'Other' because of the preamble.\",\"It is a direct upgrade candidate…"
+    }
+  ],
+  "totalTokens": 895774,
+  "totalToolCalls": 225
+}

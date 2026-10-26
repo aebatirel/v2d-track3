@@ -4415,3 +4415,14 @@ physics-based meshes, …), research methods in depth, test on public data. Outp
   - Visual review panel running (workflow `wf_c69f9d10-f06`): reviewer per pair, then skeptic verification of
     flagged issues, then per-object synthesis.
   - Vast market read-only; no GPU rented.
+- ~19:30 UTC (same session) owner: "check out WeVisOne-VL for object detection". Research workflow `wf_de751fdc-d81`
+  plus skeptic verification `wf_5af07702-6da`; `docs/research/wevisone-2026-10-26/README.md`.
+  - Model: Tencent, released 22 Oct 2026; Apache-2.0 code and weights.
+  - Beats our Grounding DINO-T helper in the authors' tables: LVIS 55.3 vs 38.8; RefCOCOg 80.8 vs 45.9; rejection
+    67.4 vs 0 %.
+  - Limits: no exemplar prompt, no scores, no grayscale evidence, 4 days old.
+  - **Verdict: test first.** Pre-registered public replay swapping the grounding term:
+    - pass = at least 99/116 with 0 of the shipped 97 lost (97 = the current rule, CPU replay);
+    - cost ≈ $1–1.5;
+    - needs the owner's go-ahead.
+  - Not run; no GPU rented.
