@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~07:35 UTC: batch running (owner go-ahead); forensics delivered
+- Running (credit $41.63 at launch):
+  - eval-25 slot carve, standard learner s42 / s43 (57773973 / 57773975), results ≈ 09:30 UTC;
+  - eval-10 hybrid cups, standard learner s42 / s43 (57781951 / 57781953), ≈ 10:15 UTC;
+  - frozen recipe s43 for 32 + 33 (57781954), ≈ 09:30 UTC.
+- Choice rules pre-registered (work log 26 Oct). Then one pack with
+  KEEP_RESULTS="20261025-pack3-3758189 20261025-pack2-46b8389" (restores the seed-43 rollouts of 3/5/15/16) and upload.
+- Forensics: `docs/analysis/forensics-20261026/README.md`; 20 videos sent to the owner (store
+  `runs/20261026-subvid2-d9c3f7d/results/sub_videos/`).
+
 ## 2026-10-26 ~07:20 UTC: forensics running; packing bug found; eval-25 carve retrains running
 - **Bug:** the third submission packed the FIRST pack's seed-42 rollouts for evals 3, 5, 15, 16 (not the rule-chosen
   seed-43 ones): pulled old submission folder + `cp -n`. ≈ −0.005 Track 3 (estimate). Fixed in pack_eval.sh (empty
