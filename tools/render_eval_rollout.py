@@ -54,7 +54,10 @@ lows = [(R.from_quat(REF[0, j, 3:]).apply(V) + REF[0, j, :3])[:, 2].min() for j,
 ztab = min(lows); ang = np.linspace(0, 2 * np.pi, 64, endpoint=False)
 disc = np.c_[ctr[0] + 0.40 * np.cos(ang), ctr[1] + 0.40 * np.sin(ang), np.full(64, ztab)]
 light = np.array([0.3, -0.4, 0.85]); light /= np.linalg.norm(light)
-COL = [(60, 170, 255), (255, 150, 60), (120, 230, 120), (200, 120, 255)]
+COL = [(60, 170, 255), (255, 150, 60), (120, 230, 120), (200, 120, 255)]   # BGR, by slot unless named below
+NAMED = {'blue_cup': (220, 120, 40), 'beige_cup': (150, 200, 235), 'wooden_spoon': (60, 120, 190), 'white_pot': (225, 225, 225),
+         'white_pot_lid': (200, 200, 200), 'water_pitcher': (230, 200, 160), 'plastic_dish_rack': (120, 200, 120)}   # (26 Oct: the
+COL = [NAMED.get(n, COL[j % len(COL)]) for j, n in enumerate(names)]                                        # blue cup was orange)
 tmp = a.out + '.mp4v.mp4'; vw = cv2.VideoWriter(tmp, cv2.VideoWriter_fourcc(*'mp4v'), a.fps, (W, H))
 for k in range(K):
     img = np.full((H, W, 3), (40, 34, 30), np.uint8)
@@ -63,7 +66,7 @@ for k in range(K):
     for j, (V, F) in enumerate(meshes):
         X = R.from_quat(ACH[k, j, 3:]).apply(V) + ACH[k, j, :3]; uvj, z = proj(X)
         T = X[F]; nrm = np.cross(T[:, 1] - T[:, 0], T[:, 2] - T[:, 0]); nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-12)
-        shade = 0.35 + 0.65 * np.abs(nrm @ light); base = np.array(COL[j % len(COL)], float)
+        shade = 0.35 + 0.65 * np.abs(nrm @ light); base = np.array(COL[j], float)
         for fi in range(len(F)):
             prims.append((z[F[fi]].mean(), uvj[F[fi]].astype(np.int32), tuple(int(c) for c in base * shade[fi])))
     for _, poly, c in sorted(prims, key=lambda r: -r[0]):
