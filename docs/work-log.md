@@ -4235,3 +4235,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     - 3/5/15/16 restored: ≈ +0.005 AUC.
   - Net ≈ +0.017 AUC ± 0.014 (rollout noise only). The leaderboard mapping for eval 10 is unknown (the cup now rests
     where the truth stacks it).
+- 10:33 UTC pack 4 launch: the first box (57798767) started on commit 4d1d7ee because `ops/vast.sh create` defaulted
+  to origin/main (the day-1 commit) when V2D_COMMIT was not set; destroyed within a minute (≈ $0.03), before its job ran.
+  Relaunched as **57798815 `20261026-pack4-f7a49a9`** (RTX PRO 6000 WS New York $1.47/h, V2D_COMMIT=f7a49a9). Fix:
+  vast.sh now defaults to the local HEAD and refuses a commit that is not on origin.

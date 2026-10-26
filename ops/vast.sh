@@ -60,9 +60,12 @@ EOF
   ;;
 create)
   OFFER=$2; RUN_ID=$3; JOB=$4; PRICE=${5:-}
-  COMMIT=${V2D_COMMIT:-$(git -C "$HERE/.." rev-parse origin/main)}
+  # default: the local HEAD (2026-10-26: the old default origin/main was the day-1 commit; a pack box started on it and
+  # was destroyed within a minute); it must already be on origin, since the box fetches it from GitHub
+  COMMIT=${V2D_COMMIT:-$(git -C "$HERE/.." rev-parse HEAD)}
   # the box runs `git fetch origin <commit>`, which needs the full 40-char hash (a short one gave CHECKOUT-FAIL)
   [ ${#COMMIT} -eq 40 ] || COMMIT=$(git -C "$HERE/.." rev-parse --verify "$COMMIT^{commit}") || { echo "unknown commit $COMMIT"; exit 1; }
+  [ -n "$(git -C "$HERE/.." branch -r --contains "$COMMIT" 2> /dev/null)" ] || { echo "commit ${COMMIT:0:7} is not pushed"; exit 1; }
   ONSTART="$HERE/box/onstart.sh"; [ $(wc -c < "$ONSTART") -le 4048 ] || { echo "onstart.sh > 4048 chars"; exit 1; }
   BODY=$(python3 - "$IMAGE" "$DISK" "$RUN_ID" "$JOB" "$COMMIT" "${ENV_SNAPSHOT:-}" "${HF_STORE:-}" "$PRICE" "$ONSTART" \
                    "${SETUP:-}" "${RESUME_FROM:-}" <<'EOF'
