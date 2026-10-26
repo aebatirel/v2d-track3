@@ -65,22 +65,30 @@ if [ -n "${KEEP_RESULTS:-}" ]; then   # KEEP_RESULTS=<earlier pack run> (2026-10
   # byte-identical (sha256) to the one that pack evaluated keeps that pack's official rollout; only changed episodes are
   # evaluated again. The rule depends on the checkpoint alone, never on a score: re-rolling an unchanged, bimodal
   # episode (evals 3, 5, 15: one bad mode in five) would add variance and no expected gain.
-  K=/content/keep/$KEEP_RESULTS; KEPT=$F/kept; mkdir -p $K $KEPT
-  hf download "$HF_STORE" --repo-type dataset --include "runs/$KEEP_RESULTS/results/submission/results/episode_*" --local-dir $K > /dev/null \
-    || { log "pack_eval: KEEP_RESULTS $KEEP_RESULTS download FAILED" >> $J; exit 1; }
-  python - $F/checkpoints.json $K/runs/$KEEP_RESULTS/results/submission/results $F/checkpoints_eval.json $KEPT << 'PYEOF' >> $J 2>&1 || exit 1
+  # 2026-10-26: KEEP_RESULTS may list several packs ("pack3 pack2"); per episode the first whose rollout names the same
+  # checkpoint sha256 is kept (pack 3 re-evaluated 10 episodes; pack 2 holds the seed-43 rollouts of 3/5/15/16)
+  KEPT=$F/kept; mkdir -p $KEPT; OLD=""
+  for kr in $KEEP_RESULTS; do
+    K=/content/keep/$kr; mkdir -p $K
+    hf download "$HF_STORE" --repo-type dataset --include "runs/$kr/results/submission/results/episode_*" --local-dir $K > /dev/null \
+      || { log "pack_eval: KEEP_RESULTS $kr download FAILED" >> $J; exit 1; }
+    OLD="$OLD $K/runs/$kr/results/submission/results"
+  done
+  python - $F/checkpoints.json $F/checkpoints_eval.json $KEPT $OLD << 'PYEOF' >> $J 2>&1 || exit 1
 import hashlib, json, os, shutil, sys
-ck, old, out, kept = sys.argv[1:5]; m = json.load(open(ck)); ev, keep = {}, []
+ck, out, kept, olds = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4:]; m = json.load(open(ck)); ev, keep = {}, {}
 for ep, p in m.items():
-    j = f'{old}/episode_{int(ep):06d}.json'; h = hashlib.sha256(open(p, 'rb').read()).hexdigest()
-    if os.path.exists(j) and os.path.exists(j[:-5] + '.parquet') and json.load(open(j)).get('checkpoint_sha256') == h:
-        for x in ('.json', '.parquet'):
-            shutil.copy(j[:-5] + x, kept)
-        keep.append(int(ep))
+    h = hashlib.sha256(open(p, 'rb').read()).hexdigest()
+    for old in olds:
+        j = f'{old}/episode_{int(ep):06d}.json'
+        if os.path.exists(j) and os.path.exists(j[:-5] + '.parquet') and json.load(open(j)).get('checkpoint_sha256') == h:
+            for x in ('.json', '.parquet'):
+                shutil.copy(j[:-5] + x, kept)
+            keep[int(ep)] = old.split('/runs/')[1].split('/')[0]; break
     else:
         ev[ep] = p
 json.dump(ev, open(out, 'w'), indent=1, sort_keys=True)
-print(f'pack_eval: earlier official rollout kept for {sorted(keep)} (checkpoint unchanged); evaluating {sorted(map(int, ev))}')
+print(f'pack_eval: earlier official rollout kept for {dict(sorted(keep.items()))} (checkpoint unchanged); evaluating {sorted(map(int, ev))}')
 PYEOF
   CK_EVAL=$F/checkpoints_eval.json
 fi
