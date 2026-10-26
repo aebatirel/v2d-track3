@@ -46,9 +46,14 @@ push-run)
   # (checkpoint choice), and the newest state_* only while training is unfinished (no .done; it is for resuming). The
   # old loop looked one level too high (runs/<perc>/), so every checkpoint was uploaded and the 100 GB store filled up
   # (2026-10-21: 44 GB of state_ files). KEEP_EVERY 25 -> 10 after the HF PRO upgrade (1 TB; policies are 5 MB).
+  # 2026-10-26: also keep every checkpoint that an evaluation result names (the sweep's choice can be an earlier
+  # checkpoint: eval 10 carve s42 chose 150M, which was pruned, and the box was gone when the pack needed it)
+  NAMED=$(find /content/results -name '*.json' -exec grep -hoE 'runs/[^"]*/policy_[0-9]+\.safetensors' {} + 2> /dev/null | sort -u)
   for r in $S/runs/*/*/; do
     [ -d "$r" ] || continue
-    { ls -v "$r" | grep '^policy_' || true; } | head -n -1 | awk -v k="${KEEP_EVERY:-10}" 'NR % k != 0' | while read -r x; do rm -rf "$r/$x"; done
+    rel=runs/${r#$S/runs/}
+    { ls -v "$r" | grep '^policy_' || true; } | head -n -1 | awk -v k="${KEEP_EVERY:-10}" 'NR % k != 0' | while read -r x; do
+      echo "$NAMED" | grep -qxF "$rel$x" || rm -rf "$r/$x"; done
     if [ -e "$r/.done" ]; then
       rm -rf "$r"/state_*
     else

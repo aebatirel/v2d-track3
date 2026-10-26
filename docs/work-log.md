@@ -4208,3 +4208,30 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   after re-plan) vs best-of-curve: same-episode leader ends better 3/8 (frozen), 6/15 (all); no support. Interruptible
   PRO 6000 $0.67–0.71/h vs on-demand $1.35–1.39/h (offers now); a paused box's restart path is untested (onstart re-runs
   run_job.sh). README §6.
+- ~10:20 UTC **eval-10 carve results** (both boxes done, self-destroyed):
+  - `20261026-c10s42-6a8a0e2`: 0.4532 ± 0.003 (5 evals 0.450–0.458), chosen 150M;
+  - `20261026-c10s43-6a8a0e2`: 0.4520 ± 0.0014 (0.450–0.454), final 250M.
+  - Floor (zero action) 0.448: the carved cups now stand, so leaving them at rest scores 0.45. The policies barely
+    beat it (verdict "weak"); the stacking is not learned.
+  - Rule → s42. **Its 150M checkpoint is not in the store:** `store.sh push-run` keeps every 10th policy plus the newest,
+    the sweep chose an earlier one, and the box was gone. Same rule on the remaining candidates → **eval 10 = carve s43**
+    (0.452, 0.001 below s42, within noise), sha 6c970778…; trajectory check: carve vs current object columns identical
+    (max diff 0.0).
+  - Fix: `store.sh` now also keeps every checkpoint named by an evaluation result json (mock-tested).
+- **Eval 33 frozen s43:** 0.7853 ± 0.255 (0.277 / 0.924 / 0.935 / 0.865 / 0.926; chosen 60M) vs s42 0.7728 ± 0.053.
+  Object trajectories of the s42 / s43 references identical (max diff 0.0; the glockt hand references differ) →
+  **eval 33 = s43** (sha 88b20644…; it collapses in 1 of 5).
+- **Pack 4 plan** (part of the approved batch):
+  - new checkpoints:
+    - 10 = c10s43 250M (reference refs/perc2mcks/ep10);
+    - 25 = c25s42 250M (7edd445b…, refs/perc2mcks/ep25);
+    - 33 = fr3233s43 best (refs/glockt/ep33, listed before fr3233 so its reference wins);
+  - all others unchanged: KEEP_RESULTS="20261025-pack3-3758189 20261025-pack2-46b8389";
+  - ASSET_PIECES = ev25 + ev10 carve folders.
+  - Expected vs the currently packed draws (estimate, one fresh rollout each):
+    - 10: +0.11;
+    - 25: −0.05 (the packed 0.837 was a lucky draw; new mean 0.792);
+    - 33: +0.17 (packed 0.611 was low);
+    - 3/5/15/16 restored: ≈ +0.005 AUC.
+  - Net ≈ +0.017 AUC ± 0.014 (rollout noise only). The leaderboard mapping for eval 10 is unknown (the cup now rests
+    where the truth stacks it).
