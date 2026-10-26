@@ -4360,3 +4360,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     compensation; partial mesh).
   - Pack 5 plan: eval 32 = fr32s46b; eval 10 = the pre-registered winner of {0.452, gl10A2 0.4539, B′, C′};
     EP_LIB "8:library_v3x 20:library_v3p"; everything else kept by sha.
+- Context for the eval-20 pitcher swap (25 Oct, 02:39 UTC entry): the v5 pitcher was not pursued because it came out
+  ≈ identical to v3, and our mesh's base axis is ≈ 38° off the observed rest up. The approach-2 lathe fits its own axis
+  (axis_d in `water_pitcher.lathe.json`), so its body is a different shape.
+  - Against the 25 Oct adoption criterion on the twin (episode ≥ base − 0.02 and pitcher ≥ base): 0.874 ≥ 0.756 and
+    0.773 ≥ 0.595. Here measured by re-scoring the same rollouts; the frame is unchanged.
