@@ -20,8 +20,10 @@ pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer 
 # Standard-learner references (hard_ab.sh, refs/perc2mcks) name /content/assets/... (make_assets.py on the training box);
 # grasp-lock references carry their own copies (refs/sf/ep<N>/assets). Rebuild the same assets from ASSET_LIB, the
 # library the standard learners were trained with (2026-10-25: the first pack with standard-learner policies).
-[ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets >> $J 2>&1 \
-  || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
+# ASSET_PIECES (2026-10-26): the collision pieces a carved standard learner was trained with (pipeline/interaction_carve.py,
+# e.g. meshes/carve/ev25: eval 25's board slots; only the objects in it change, and the boards occur in eval 25 only).
+[ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets \
+  ${ASSET_PIECES:+--pieces $ASSET_PIECES} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
 for x in ${RUNS:?RUNS missing}; do             # RUN or RUN@sub1,sub2 (2026-10-25: only those sub-folders, e.g. RUN@refs)
   r=${x%%@*}; sub=; [ "$r" != "$x" ] && sub=${x#*@}
   PULL_SUB="${sub//,/ }" bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pack_eval: pull-run $x FAILED" >> $J; exit 1; }
