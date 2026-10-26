@@ -2,6 +2,13 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~11:35 UTC: five boxes running (owner go-ahead), on demand
+- Eval 10, grasp lock on the carved cups (SF=0, PIECES ev10): `20261026-gl10A2-5e0e100` (eval_both variant) and
+  `20261026-gl10B2-5e0e100` (frozen variant).
+- Eval 32, frozen recipe, seeds 44 / 45 / 46: `20261026-fr32s44b/45b/46b-5e0e100`.
+- ≈ $10.5 together, results ≈ 12:50 UTC. Choice rules pre-registered (work log, 26 Oct). Then pack 5 and upload.
+- Interruptible boxes were paused within ≈ 10 min, so the seed race on interruptible is not viable today.
+
 ## 2026-10-26 ~11:00 UTC: FOURTH SUBMISSION — Track 3 AUC 0.81056, 5th (DDD passed us at 0.82716)
 - Pack 4 (`results/submissions/20261026-track3d/`):
   - carved collision copies with the standard learner: eval 10 (s43; s42's chosen checkpoint was pruned) and eval 25
