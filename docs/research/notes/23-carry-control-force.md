@@ -130,8 +130,42 @@ Readings:
   Yu, Turk & Liu 2018: stepping assistance down within each rollout prevents overfitting to one assist level [V].
   No paper reports the final unassisted drop rate as a function of the anneal schedule.
 
-### D2. Force and tactile feedback
-Pending (review agent running).
+### D2. Force and tactile feedback (review agent, 2026-10-26)
+- **Touch helps most when the policy cannot see the object.** Rotating without Seeing (Yin 2023): no sensors 369 vs
+  full binary touch 919 rotation reward in sim; multi-object no-sensor policies fail [V]. RotateIt (Qi 2023): binary
+  touch adds nothing over proprioceptive history, contact location matches full contact (102.4 vs 104.3) [V].
+  Sharpa's own TacBPM (2026, SharpaWave): 40.1 % → 60.4 % success on unseen shapes with 5 smoothed contact magnitudes
+  + 5 contact points per hand, 3 stacked frames [V]. None of these is a privileged per-sequence tracking policy like
+  ours (we see object pose, contact points and force directions).
+- **Force magnitude over location or direction is worth ~0–6 %**: RotateIt +2 %, Koenig 2022 +2.9 points (normal force
+  vs full vector not significant), AnyRotate +6 % under mass shift, Melnik 2021 ≈ 0 (binary on par with continuous)
+  [V]. ManipTrans uses fingertip contact force as a privileged observation ("accelerates convergence") and reward [V].
+- **The hand's PD error is already a force sensor.** The policy sees reference-minus-current for wrist and fingers and
+  the processed residual, so actuator force is a near-linear function of its inputs (Khandate 2022; Sievers 2022 use
+  joint control error as "tactile" input) [V]. Caveat [C]: the signal scales as 1/kp (11.8 cm sag at kp 25, 2.9 cm at
+  100, 0.05 cm stiff); stiffening the wrist makes explicit force channels more valuable.
+- **History in a plain MLP can hurt** (Hora 2022: stacked T3 → T20 history dropped reward 176 → 43) [V], so enabling
+  object velocity is the cheaper route to a slip signal than frame stacking.
+- **Human grip-load coupling.** Grip force tracks load force with a 20–50 % safety margin (review PMC4574045 [V]);
+  GF/LF 2.25–3.07 for a 1.41 kg handheld load and grip leading load by ~14 ms (Flanagan & Wing 1997 [V]); slip
+  reflex ~74 ms [U]. No RL paper uses a GF/LF or friction-cone-margin reward [not found]. With felt weight varying only
+  ±10–25 % in our clips (§C), anticipatory grip modulation is second-order.
+- **Simulator contact physics** [V config + docs]: FlashCHORD uses `cone: pyramidal`, `impratio: 20.0`
+  (`configs/sim/rl.yaml`). MuJoCo's docs say high impratio is not recommended with pyramidal cones, warn of "slow
+  slippage" under persistent tangential load, and recommend elliptic cones, large impratio or the noslip solver when
+  slip is a problem. Pyramid edges inscribe the cone, so diagonal friction capacity is μ/√2 [C]. Contacts are read once
+  per 20 Hz step after the 5th substep, a snapshot. GPU MuJoCo-Warp is not deterministic (atomics;
+  mujoco_warp#562) [V]. Native MuJoCo touch, contact and tactile (incl. slip speed) sensors exist but are not wired
+  through Newton/FlashCHORD (code change).
+- **Rewards.** CHORD Table 2: contact-wrench reward 0.918 AUC vs position-only 0.862 vs none 0.774 [V]. The
+  force-closure term "reduces dexterity" but is flatter under noisy contacts (Fig. 9, note 14). The existing
+  `contact_force_l2` log mode rewards *lower* force at positive weight, the wrong direction for drops [V code].
+  CHORD's paper mentions object-wrench perturbations in training; the port's env code does not have them [V grep].
+  No paper reports drop rate as a function of touch, force magnitude or force-closure reward.
+- **Real hardware (Innovation story).** Sharpa Wave has fingertip tactile arrays ("Dynamic Tactile Array") and
+  per-finger torque sensing [U, press and resellers; no official datasheet read]. NVIDIA's CHORD hardware runs are
+  state-based with mocap [V]. [H] Training with TacBPM-shaped contact channels (smoothed magnitudes + points) would make
+  the policy interface deployable on real Wave tactile hardware.
 
 ### D3. Kalman filtering and physically consistent references
 Pending (review agent running).

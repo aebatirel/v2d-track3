@@ -268,3 +268,7 @@ hands (future-frame code exists only in the G1 SONIC action); training resets ho
 and partly opened fingers, while the evaluator starts at frame 0 with no hold, no assist and exact fingers (train/eval
 start mismatch, `reset.voc_decay_steps`). The evaluator keeps embodiment/action/observation/objective config from the
 checkpoint, so config levers reach the scored rollout.
+2026-10-26 (later): Force/tactile review returned (note 23 §D2). Touch gains in the literature are for policies that
+cannot see the object; force magnitude adds ~0–6 % over location/direction; the PD error is already an implicit force
+sensor. Verified in config: sim uses a pyramidal cone with impratio 20, a combination MuJoCo's docs advise against
+(slow slippage). Physics setting: diagnostic and organiser question only.
