@@ -4147,3 +4147,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     (the choice stays the pre-registered one, whatever the individual rollouts score).
 - Video job: the sha check refused 3/5/15/16 (correctly); a follow-up on the same box (5e651a1) renders the submitted
   checkpoints for them.
+- Integrity check of the other 10 re-evaluated episodes of pack 3: every packed rollout's checkpoint_sha256 equals the
+  chosen checkpoint in the store (1, 8, 14, 19, 20, 25, 28, 30, 32, 33: OK). The bug is confined to 3/5/15/16.
+- First replays from the video box: ep6 0.944, ep1 **0.529** (packed 0.914; 5-eval mean 0.912). Replays are fresh
+  rollouts on the box's patched FlashCHORD (training patches applied by fc_patches), not the pristine evaluator; the
+  CPU renders of the packed rollouts remain the record of what was submitted.
