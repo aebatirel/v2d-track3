@@ -4248,3 +4248,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Predicted from the actual draws +0.0285; measured +0.0216 (≈ 76 % transfer). Implied hidden loss
     0.979 × 0.912 − 0.811 ≈ 0.082 (was ≈ 0.075).
   - Credit $28.23.
+- ~11:10 UTC **owner go-ahead** ("you need any topup or can just start?"; credit $28.23, no top-up needed).
+  - Plan: (1) eval-10 grasp lock on the carved cups, now; (2) the seed-race pilot after its job is pause-safe.
+  - (1) The grasp-lock learner never ran with the hybrid cups: its eval-10 policy (0.334) failed because the beige cup
+    fell at frame 2. Hypothesis: with a standing cup, a locked grip learns the stacking that the standard learner (0.452,
+    at its 0.448 floor) did not.
+  - `glock_public.sh` now takes PIECES (make_assets --pieces); SF=0, because support fill would rebuild the cups'
+    collision from the library mesh. The evB mck reference names /content/assets, so training and evaluation use the
+    pieces.
+  - Two interruptible boxes, seed 42, on the evB eval-10 reference (PULL_SUB refs/perc2mck/ep10 perc2/ep10):
+    - A: eval_both variant, REPLAN=1;
+    - B: frozen variant, EVOLVE=1, onset anchor.
+  - ≈ $1–2 each.
+  - **Choice rule (now, before results):** candidates = the submitted eval-10 policy (carve standard learner s43, 5-eval
+    mean 0.452), A and B. The highest mean sim_vs_ref over 5 official evaluations (object trajectory checked identical)
+    goes into the next pack.
+  - **Falsified if** neither A nor B exceeds 0.452 + 0.01.
