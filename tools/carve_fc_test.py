@@ -23,6 +23,7 @@ ap.add_argument('--names', default='wooden_piece_1,wooden_piece_2')
 ap.add_argument('--start', type=int, default=0); ap.add_argument('--end', type=int, default=-1)
 ap.add_argument('--window', default='', help='frames a:b summarised (e.g. the assembled frames); default start..end')
 ap.add_argument('--hold_hz', type=float, default=8.0); ap.add_argument('--drive_hz', type=float, default=8.0)
+ap.add_argument('--free_until', type=int, default=-1, help='no drive before this frame (do the objects stand at rest?)')
 a = ap.parse_args()
 names = a.names.split(','); FC = os.environ['FC']
 import pyarrow as pa, pyarrow.parquet as pq, warp as wp
@@ -108,7 +109,7 @@ with wp.ScopedDevice('cpu'):
         for s in range(sub):
             tau = times[f] + (s + 1) * dt
             s0.clear_forces(); bf = s0.body_f.numpy()
-            for k in range(len(names)):
+            for k in range(len(names) if f >= a.free_until else 0):
                 Tb = body_T(s0, k); Tr = ref_T(k, tau) @ Ci[k]; Tr2 = ref_T(k, tau + dt) @ Ci[k]
                 w0 = 2 * np.pi * hz[k]
                 pc, pr, pr2 = Tb[:3, :3] @ com[k] + Tb[:3, 3], Tr[:3, :3] @ com[k] + Tr[:3, 3], Tr2[:3, :3] @ com[k] + Tr2[:3, 3]
@@ -122,6 +123,20 @@ with wp.ScopedDevice('cpu'):
             sol.step(s0, s1, env.control, env.contacts, dt); s0, s1 = s1, s0
         if not np.all(np.isfinite(s0.body_q.numpy()[obj_body])):
             nan = f; break
+        if os.environ.get('DIAG') and f == a.start:                 # which solver counters exist (contacts, constraints)
+            print('mjw_data fields:', sorted(k for k in vars(sol.mjw_data) if any(x in k.lower() for x in ('con', 'efc', 'warn', 'max'))), flush=True)
+            bq = s0.body_q.numpy(); objp = bq[obj_body, :3]
+            rob = [i for i, l in enumerate(labels) if not any(l.startswith(f'track3_{n}/') for n in names) and 'support' not in l]
+            dmin = min((float(np.linalg.norm(bq[i, :3] - p)), labels[i]) for i in rob for p in objp)
+            print('closest robot body to an object after parking:', round(dmin[0], 3), 'm', dmin[1], '; robot bodies', len(rob),
+                  '; joint_q[0:3]', np.round(q[0:3], 2).tolist(), 'joint_q[29:32]', np.round(q[29:32], 2).tolist(), flush=True)
+        if os.environ.get('DIAG'):
+            cnt = {}
+            for k in ('nacon', 'ncon', 'nefc', 'ne', 'nf', 'nl'):
+                v = getattr(sol.mjw_data, k, None)
+                if v is not None:
+                    v = v.numpy() if hasattr(v, 'numpy') else v; cnt[k] = int(np.max(v))
+            print('counts f', f + 1, cnt, flush=True)
         Tk = [body_T(s0, k) @ C[k] for k in range(len(names))]; Rk = [ref_T(k, times[f + 1] if f + 1 < nF else times[-1]) for k in range(len(names))]
         r = dict(f=f + 1)
         for k, n in enumerate(names):

@@ -68,6 +68,10 @@ def main():
         c, I = surface_inertia(m, a.mass)
         cols = [f'{n}/{n}.glb']
         pieces = sorted(glob.glob(f'{a.pieces}/{n}/piece_*.obj')) if a.pieces else []
+        inert = f'{a.pieces}/{n}/inertia.json' if a.pieces else ''
+        if pieces and os.path.exists(inert):             # pipeline/lathe_collision.py: uniform solid of the pieces (an
+            js = __import__('json').load(open(inert))     # open-shell mesh puts the surface estimate's COM off the base)
+            c, I = np.array(js['com']), np.array(js['inertia']) * a.mass / js['mass']
         if pieces:                                       # FlashCHORD's CoACD keeps each convex piece as one hull
             cols = []
             for k, pc in enumerate(pieces):

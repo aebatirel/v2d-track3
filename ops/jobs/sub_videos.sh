@@ -19,10 +19,14 @@ J=${J:-/content/job.log}; OUTV=/content/results/sub_videos; mkdir -p $OUTV
 FC=/content/v2d/robotic_grounding/flash_chord; LIB=${LIB:-$REPO_DIR/meshes/library_v3}; PR=${PACK_RUN:?PACK_RUN missing}
 log "sub_videos code $(git -C $REPO_DIR rev-parse --short HEAD), pack $PR" >> $J
 label "sub_videos $PR"
-hf download "$HF_STORE" --repo-type dataset --include "runs/$PR/results/final_eval/checkpoints.json" "runs/$PR/results/submission/results/episode_*.json" \
-  "runs/$PR/results/submission/summary.txt" --local-dir /content/packinfo >> $J 2>&1 || { log "sub_videos: pack info download FAILED" >> $J; exit 1; }
+for inc in "runs/$PR/results/final_eval/checkpoints.json" "runs/$PR/results/submission/results/episode_*.json" \
+           "runs/$PR/results/submission/summary.txt"; do                # one pattern per call (26 Oct: three patterns in one
+  hf download "$HF_STORE" --repo-type dataset --include "$inc" --local-dir /content/packinfo >> $J 2>&1 \
+    || { log "sub_videos: pack info $inc download FAILED" >> $J; exit 1; }   # --include fetched nothing, 0 videos)
+done
 PI=/content/packinfo/runs/$PR/results
 EPS=${EPS:-$(python -c "import json; print(' '.join(sorted(json.load(open('$PI/final_eval/checkpoints.json')), key=int)))")}
+[ -n "$EPS" ] || { log "sub_videos: no episodes (checkpoints.json missing?)" >> $J; exit 1; }
 for x in ${RUNS:?RUNS missing}; do                                 # as pack_eval.sh (first run wins), plus the video inputs
   r=${x%%@*}; sub=; [ "$r" != "$x" ] && sub=${x#*@}
   if [ -n "$sub" ]; then                                           # + base reference and perception of this run's episodes
