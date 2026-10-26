@@ -4121,3 +4121,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Hull census (`tools/hull_census.py`, first-eval sf references, library_v3), partial: evals 15/16 (spoon into the
   rack) have no collision conflict (the eval-16 loss is the release); eval 1 lid in pot up to 16.7 cm³ hull-only;
   evals 3/5/6 clean.
+- Hull census complete (`docs/analysis/forensics-20261026/hull_census/`; first-eval sf references except
+  ep10 = submitted glockt, ep25 = submitted perc2mcks, ep32_sub / ep33_sub = submitted fr3233 glockt):
+  reference-vs-collision conflicts > 10 cm³: eval 10 (112 cm³, nest), 14 (cup into rack, 72 cm³ from f42), 1 (lid on
+  pot, 51), 28 (pot into rack, 39), 8 (beige cup in pot from f0, 38; scores 0.977 anyway), 30 (sweeper in rack from f0,
+  29), 25 (boards, 12). **Evals 32/33 (submitted references): the spoon barely meets the cup's hulls (≤ 15 cm³ in 18 of
+  348 frames)**, so their losses are grasp/carry, not geometry (my first reading of the frame strips was wrong).
+- Sweeper registration flip (22 Oct claim, "eval ep30's seed, ADD 45.6 mm"): **not reproduced** for library_v3 with
+  the current kit (`_register_object_body`, budget_mesh 4096, scan surface-moment anchor): eval 19 and 30 seeds land
+  0.7–0.9° from the majority solution; 4 of 40 random seeds flip 179° (library_v2 likewise).
