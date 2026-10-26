@@ -4204,3 +4204,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - checkpoints jump about 0.10 apart; the median best checkpoint is at 86 % of training.
   - So the early cut suits the standard learner only; grasp-lock seeds should run to the end (≈ $2 each).
 - 09:48 UTC eval-10 boxes at ≈ 180M / 170M of 250M (stored state files); eval 33 s43 in its fine-tune. Waiter bixsvan7h.
+- ~10:10 UTC owner: cheaper way, a race for frozen / eval_both? Pre-training score (evolution best fitness; zero action
+  after re-plan) vs best-of-curve: same-episode leader ends better 3/8 (frozen), 6/15 (all); no support. Interruptible
+  PRO 6000 $0.67–0.71/h vs on-demand $1.35–1.39/h (offers now); a paused box's restart path is untested (onstart re-runs
+  run_job.sh). README §6.

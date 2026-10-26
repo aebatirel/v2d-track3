@@ -94,3 +94,26 @@ Reading:
 - For grasp-lock episodes, a race with an early cut is not supported. Extra seeds there should run to the end; the
   checkpoint curve already picks the best checkpoint. Measured cost today: eval 32 seed 43 took about 1.3 h on a
   $1.51/h box, setup included (about $2).
+
+## 6. Cheaper options (owner, 26 Oct: "is there a cheaper way? maybe a seed race for the frozen or eval_both grasp?")
+
+**Grasp-lock race on the pre-training score.**
+- Frozen variant: the evolutionary grip search's best fitness. eval_both variant: the zero-action score after
+  re-planning.
+- 45 curves; same-episode pairs more than 0.03 apart before training: the leader ends better in **3 of 8** (frozen) and
+  6 of 15 (both kinds).
+- No support (few pairs). Grasp-lock seeds must run to the end.
+
+**Interruptible machines (Vast bid).**
+- Market check 10:10 UTC: PRO 6000 interruptible $0.67–0.71/h all-in, against $1.35–1.39/h on demand: about half.
+- Training resume after a kill was verified on 20 Oct (`pipeline_ep.sh`, same box).
+- Not tested: a paused box restarting. `onstart.sh` re-runs `run_job.sh` from the start, so the job must skip finished
+  steps.
+- Lost work per pause is unknown (guess +10–30 %).
+
+**Small or no savings:**
+- two trainings per GPU: about 30 % slower in total;
+- RTX 5090: 32 GB, less than our 40.5 GB peak;
+- A100: 0.16× the speed;
+- 48 GB cards: little saving per policy;
+- several seeds per box: saves only about 6 min of setup per box.
