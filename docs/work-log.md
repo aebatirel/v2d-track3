@@ -4182,3 +4182,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   from c (≈ 1 px per cm of depth error at 0.6 m), so no independent depth check of the spoon is possible; thread parked.
 - pack_eval.sh: ASSET_PIECES may list several folders (merged per object), so carved eval 25 (boards) and eval 10
   (cups) can share one pack; checked locally (make_assets: boards 21/11, cups 49/53 pieces, others unchanged).
+- **Eval 25 carve results** (boxes done, self-destroyed):
+  - `20261026-c25s42-feb0407`: **0.7919 ± 0.103** (0.618 / 0.904 / 0.808 / 0.749 / 0.881), final checkpoint
+    policy_250003456.
+  - `20261026-c25s43-feb0407`: 0.4739 ± 0.011 (chosen 150M; weak).
+  - Rule → **eval 25 = carve s42** (0.792 > current 0.712 ± 0.189 with its 0.335 collapse; carve s42's minimum is 0.618).
+- **Eval 32, frozen recipe s43:** 0.7016 ± 0.127 (chosen 40M) < s42 0.779 → **eval 32 keeps fr3233 s42**. Eval 33 s43
+  still training (09:26 UTC).
