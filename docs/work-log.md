@@ -4152,3 +4152,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - First replays from the video box: ep6 0.944, ep1 **0.529** (packed 0.914; 5-eval mean 0.912). Replays are fresh
   rollouts on the box's patched FlashCHORD (training patches applied by fc_patches), not the pristine evaluator; the
   CPU renders of the packed rollouts remain the record of what was submitted.
+- Replay vs official evaluation (eval 1: replay 0.529 vs 5 official evaluations 0.89–0.93): both are deterministic
+  (configs/evaluation/*.yaml), but `view_policy.py` (used by `tools/trace_rollout.py policy`) sets the training
+  curriculum stage with `voc_scale=env_config.voc_scale`, while the evaluation harness forces voc 0 and
+  immediate_first_frame_probability 0 (`evaluation/harness.py` `_evaluation_curriculum_stage`). Hypothesis, untested: the
+  viewer path is not the official one for standard-learner checkpoints. Fix for later: record body poses inside the
+  harness's rollout instead of the viewer. Until then replays are illustrative only.
