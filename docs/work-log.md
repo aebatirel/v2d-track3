@@ -4292,3 +4292,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - 57805552 `20261026-gl10B2-5e0e100` (eval 10, frozen variant);
   - 57805554 / 57805555 / 57805558 `20261026-fr32s44b- / s45b- / s46b-5e0e100` (eval 32, frozen, seeds 44 / 45 / 46).
   - ≈ $8.1/h together, ≈ 1.3 h → ≈ $10.5; same choice rules as pre-registered above.
+- 11:46 UTC owner: "let's in another chat think about how to make this more robust … in pieces on our whole flow …
+  where we are losing what". Started cloud session `session_012XqAPiLToh4uBKNWqzx3bV` ("Robustness review").
+  - Brief: a stage-by-stage loss budget (perception → hands → reference → assets → learners → choice → pack → kit
+    metric), measured vs estimated, fragility, GT-free gates, a ranked list to the 4 Nov freeze.
+  - CPU only; no rentals or uploads without the owner.
+  - It writes only `docs/analysis/robustness-review-20261026.md` (+ folder) and must not edit STATUS.md, the work log
+    or the ops/jobs scripts in use here.
