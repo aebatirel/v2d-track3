@@ -421,6 +421,21 @@ perception, be tuned on public episodes and be frozen before eval.
 The oracle arms test the stiffness × reference-error interaction on public episodes only. G1 needs the owner's
 go-ahead, the day-1 smoke and resume tests, and working `hands_mp` → `mkref` references.
 
+**Physics-first screen before any training (added 2026-10-26 after the owner asked to use physics to cut training).**
+- FlashCHORD ships a zero-residual replay (`runtime/replay.py` `ReplayRunner`; `scripts/debug/replay.py` is a viewer
+  wrapper). It drives the hands along our reference with no policy and an optional VOC.
+- Replaying each public reference with VOC 0 under the default wrist, kp 100 and the stiff variant (at `sim=rl`,
+  `motion_speed` 1.0) measures how much of each episode physics alone already carries, with no learning [H]. It needs a
+  small headless wrapper of our own (diagnostic only, not a submission path) and seconds of GPU per episode.
+- Then train only where replay fails, and test a shorter schedule where the controller already does most of the work.
+  Residual RL learns faster when the base controller is good (Silver 2018: ≈ 10× fewer samples to reach 0.9 on Push),
+  so a compressed curriculum is plausible with a stiffer wrist [H].
+- Warm-starting from another episode's policy is native (same observation layout needed) [V note 05; effect H].
+- RL cannot be skipped entirely: the evaluator accepts only trained FlashSAC or PPO checkpoints [V note 05].
+- Why the standard recipe needs this: NVIDIA's recipe plays references at `motion_speed` 0.5, where the default soft
+  wrist saturates on 0/27 public tracks (note 14). We must play at 1.0 (note 06), where it saturates on 23/27 (§C).
+  Stiffening the controller restores the regime NVIDIA validated; everything else in the recipe stays standard.
+
 **Staged alternative (preferred after the owner's cost question, 2026-10-26).** Per-policy costs come from the
 2026-10-20 Vast snapshot [E]: ≈ $2.2–3.3 on demand, ≈ $0.6–1.0 interruptible.
 1. CPU audit (lever 2): $0.
