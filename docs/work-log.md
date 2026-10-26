@@ -272,3 +272,7 @@ checkpoint, so config levers reach the scored rollout.
 cannot see the object; force magnitude adds ~0–6 % over location/direction; the PD error is already an implicit force
 sensor. Verified in config: sim uses a pyramidal cone with impratio 20, a combination MuJoCo's docs advise against
 (slow slippage). Physics setting: diagnostic and organiser question only.
+2026-10-26 (later): Kalman/reference review returned (note 23 §D3). Offline robust SE(3) smoothing beats causal
+filtering in the literature (Zorina 2024 ADD(-S) 0.84 → 0.90; causal EKF can worsen rotation). perc2 has no object
+smoothing; hands_mp.py already has zero-phase Savitzky-Golay. Next: verification workflow over the load-bearing
+claims and the carry model, then the ranked plan.

@@ -167,8 +167,33 @@ Readings:
   state-based with mocap [V]. [H] Training with TacBPM-shaped contact channels (smoothed magnitudes + points) would make
   the policy interface deployable on real Wave tactile hardware.
 
-### D3. Kalman filtering and physically consistent references
-Pending (review agent running).
+### D3. Kalman filtering and physically consistent references (review agent, 2026-10-26)
+Our state [V code]: `perc2.py` applies **no temporal smoothing** to object poses (raw per-frame FoundationPose tracking
+composed with VO); `hands_mp.py` already smooths hand keypoints with a zero-phase Savitzky-Golay filter (window 7).
+- **Offline smoothing beats causal filtering.** Zorina 2024 (RA-L; factor graph over a 1 s window, outlier gate
+  100 mm / 10°, covariance growing along the viewing ray and with small masks): YCB-V ADD(-S) 0.84 → 0.90 over
+  per-frame CosyPose; a 3-frame window gave almost nothing; a constant-pose model beat constant velocity on static
+  scenes; code BSD-2 [V]. Yu & Rodriguez 2018: a causal EKF made rotation *worse* than raw vision (3.4° → 6.4°); a
+  1000-step smoothing history brought it to 1.8° [V]. A causal KF on FoundationPose (2026) gave only 1–17 % [V].
+  Hasson 2021: removing the temporal term raised HO-3D object ADD-S 3.8 → 8.3 cm [V]. Toy (synthetic 1-D, white noise
+  + 3 % outliers): causal KF −25 % RMSE, offline RTS −55 %, Student-t RTS −70 % [toy, agent's script].
+- **Smoothing removes jitter, not bias.** VO drift, wrong detections and symmetric flips are not white noise and need
+  their own fixes (room map, note 18; marker spin, note 17). Over-smoothing lags fast lifts (toy: 30–44 mm worst-case
+  on a 0.25 s lift with too little process noise; 9 mm with more).
+- **Lie-group tools.** Invariant RTS smoother (van der Laan 2024) [V]; manif (MIT) and GTSAM (BSD) [V]. A 260-frame
+  clip fits one batch solve. Quaternions: unroll signs and the object's symmetry group before filtering; average in
+  log space around the window centre.
+- **Rest and carry modes.** No IMM application to rest/carry of video-tracked objects was found. ZUPT practice
+  (Wahlström & Skog 2020): zero-velocity updates stop drift growth; offline, a two-sided detection window can be
+  conservative [V]. Hand-object coupling: ComPose 2026 blends object and hand cues (DexYCB rotation 35° → 20°) [V];
+  EgoGrasp 2026 contact/no-slip term cut H2O translation error 107 → 78 mm [V]; Hasson 2021 joint fitting 7.7 → 3.8 cm
+  ADD-S [V]. The 100DOH hand-object detector (MIT) labels portable vs stationary contact without GT [V].
+- **Cleaner references raise RL success.** SPIDER: a policy trained on the physics-retargeted reference reached task
+  progress 0.99 vs 0.07 on the kinematic one [V]. GMR 2025: penetration and joint jumps took success from 100 % to 0 % on
+  specific motions [V]. OmniRetarget 2025: fewest artifacts, highest RL success (confounded) [V]. CHORD's own QC rejects
+  references with > 2 cm hand-object or hand-hand overlap in any frame and requires a 300-step replay [V].
+  MaskedManipulator drops sequences whose object COM jumps > 10 cm between frames [V]. **No study varies object-
+  reference smoothness and measures dexterous RL success directly**; our Track 2 analysis (note 14) is the closest.
 
 ## E. Rules and integrity notes
 - Gains, observation toggles, reward weights and terminations are training config that the evaluator replays from the
