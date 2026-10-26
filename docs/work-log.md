@@ -4351,3 +4351,36 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 15:45 UTC market: only 4 compliant on-demand offers, $1.81–2.53/h (this morning $1.35). **A′ dropped before any
   results** (its plan's zero action 0.579 < B′'s 0.663); B′ and C′ run on the two cheapest (≈ $4/h, ≈ $7). Choice rule
   unchanged (candidates: submitted 0.452, gl10A2 0.4539, B′, C′).
+
+### 2026-10-26 (mesh research session, branch `claude/bold-albattani-6qmxsv`, CPU only, $0)
+Owner asked: work on 3D mesh generation and make it accurate; review everything tried (video generation, primitives,
+physics-based meshes, …), research methods in depth, test on public data. Outputs: `docs/research/mesh-2026-10-26/`.
+- Branch fast-forwarded to `main-bsky37` 6762f80 (it was at 4d1d7ee, before all submissions). Work in new files only.
+- Kit check: CD-O = kit Chamfer after Sim(3) (scale = ratio of area-weighted RMS radii, PCA-start trimmed ICP); the
+  same registration sets body frames for all five pose boards (already known since 21 Oct).
+- Leaderboard JSON 26 Oct 08:50 UTC: CD-O richchentw 0.154, Panav Raaj 0.112, NVSimranPatil 0.170, ours 0.402.
+- Ledger of all past mesh work (`ledger-of-past-mesh-work.md`): generative models never run; lathe meshes never
+  submitted; submitted meshes are mostly 21 Oct v1 TSDF files fused along scan-templated tracks.
+- Literature (`lit/`): generative (image-to-3D alone ≈ 2 % of size on real images; generate-then-fit works:
+  AGILE, MagicHOI, RecGen3D); video/physics (directional TSDF, envelope Poisson, contact priors, pose refinement);
+  primitives/CAD (closed-profile lathe, extrusions, generalized cylinders; learned CAD not accurate on real objects).
+- Benchmark rebuilt here: `scripts/mesh_metric.py` (copy of the 22 Oct metric, path via MESH_SCR); library_v3
+  reproduces exactly (blue 0.523, pot 0.437, rack 0.555, pitcher 0.894, beige 0.856 / v3x 0.730, lid 0.421, sweeper
+  0.317, dust pan 0.331, boards 0.222 / 0.216) [D].
+- [D] Scans are thin double-walled shells (cups 2.4–3.2 mm, pot 3.9, lid 1.8, pitcher 2.2, rack fins ≈ 2.5), but
+  PARTIAL: the blue-cup scan has no inner wall in its lower half (scanner never saw it) and a recessed foot.
+- [D] Observed stereo points (new `obs_points.py`: depth in the object frame along our perc2m track; table, hands,
+  other objects removed; free-space vote) lie close to the scan: blue cup ep22 median 0.89 mm, p90 3.4 mm, 59 % of
+  the scan within 3 mm; pot ep41 median 1.9 mm, p90 6.6 mm, 88 % covered. The information is in the depth; the
+  4 mm binary-blur mesher discards it.
+- Closed-profile lathe from observed points (`lathe_obs.py`, axis: line-complex candidates scored by rotational
+  self-consistency, opening-direction tie-break; profile from camera-side classified outer/inner points):
+  blue cup 0.523 → **0.364** (ADD 10.0 → 4.7 mm, 0/7 flips; wall 3.06 mm vs scan 3.2); solid version 0.493 (thin
+  walls matter); pot 0.437 → 0.468 with splatted handle (0.413 with library handle; body alone 1.17, 2/8 flips).
+  Earlier library-based lathe (approach 2) was better: cup 0.307, pot 0.319 (multi-episode input).
+- CD-O decomposition (`cdo_decomp.py`): the RMS-radius scale fix punishes wrong surface-area distribution: blue lathe
+  ratio 0.92 → kit 0.382 vs 0.316 at true metric scale. Which surfaces exist matters as much as their shape.
+- Negative: screened Poisson on oriented raw points 0.96–1.11 (noise → crumpled multi-layer surface, 1.6× area).
+- Generative probe prepared (`crops.py`: GT-free colour crops at resting, hand-free frames; 9/10 objects clean;
+  beige cup fails: ep11 frame-0 track wrong). Running Hunyuan3D-2mini on CPU was **blocked by the sandbox (third-party
+  code)**; SAM 3D Objects returns 403 (owner's HF token lacks the gate). Needs the owner's permission.
