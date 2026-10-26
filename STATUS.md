@@ -2,6 +2,17 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~17:15 UTC: SIXTH SUBMISSION — Track 3 AUC 0.81391 (our best); DDD 0.827 still 4th
+- Pack 6 (`results/submissions/20261026-track3f/`): pack 5's rollouts (eval 10 gl10A2, eval 32 s46) with eval 20's
+  pitcher mesh reverted.
+- Today's failed ideas, all recorded:
+  - the eval-10 stack (rim collision, learned avoidance from the first checkpoint);
+  - the early-checkpoint test;
+  - the interruptible seed race;
+  - the pitcher mesh swap (−0.0045).
+- Credit ≈ $12; 0 boxes. Open levers: eval-10 training start (zero-residual init / lower exploration), placement
+  carves, spoon proxy measurement (robustness review).
+
 ## 2026-10-26 ~15:35 UTC: push to beat DDD (0.827): three boxes running
 - **Pack 5** (`20261026-pack5-526918b`):
   - eval 32 = s46, eval 10 = gl10A2;

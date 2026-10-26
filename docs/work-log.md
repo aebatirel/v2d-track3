@@ -4400,3 +4400,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Eval 10 stays gl10A2 (0.4539 > C′ 0.4528).
 - 16:42 UTC **pack 6**: = pack 5 with eval 20's pitcher reverted to library_v3 (owner decision); all 20 rollouts
   kept from pack 5 (no new evaluations). EP_LIB 8:library_v3x only.
+- 17:15 UTC **pack 6 uploaded: AUC 0.81391 (new best)**; SP-SR 0.85, MP-SR 0.65, RPE 3.94, MPPE 2.92.
+  - Pack 5 → 6 changed only eval 20's submitted pitcher mesh, so the lathe pitcher cost 0.0045 AUC (measured).
+  - Lesson: a registered-score gain on one public twin (+0.098) did not transfer. The kit's hidden anchor and points
+    differ from our stand-in, so mesh swaps need ≥ 2 twins or a reference-free argument.
