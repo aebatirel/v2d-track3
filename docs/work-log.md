@@ -4389,3 +4389,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     taken by the owner.
   - `meshes/library_v3p` stays in the repo as a record, unused.
   - Pack 6 = pack 5's choices (eval 10 per its rule, eval 32 s46) with EP_LIB 8:library_v3x only.
+- 16:40 UTC **eval-10 early-checkpoint test: hypothesis falsified.**
+  - C′ (blue at rest + object ILC on the box: zero action 0.340 → 0.546 at ILC iter 7; final zero 0.535): every
+    curve checkpoint from 1M to 70M scores 0.450–0.456; chosen 23M, 5-eval mean 0.4528.
+  - B′ (frozen; zero action 0.544 on this box): checkpoints 1M–8M score 0.446–0.465 per evaluation.
+  - B′ was destroyed before it finished, on cost (≈ $0.6 left) and not on its final score; it is out of the rule as
+    incomplete.
+  - Conclusion: a freshly trained policy is not the plan plus zero. By 1M steps its residuals already break the grip,
+    so early checkpoints cannot carry the open-loop behaviour.
+  - Eval 10 stays gl10A2 (0.4539 > C′ 0.4528).
+- 16:42 UTC **pack 6**: = pack 5 with eval 20's pitcher reverted to library_v3 (owner decision); all 20 rollouts
+  kept from pack 5 (no new evaluations). EP_LIB 8:library_v3x only.
