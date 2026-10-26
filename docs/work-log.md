@@ -4280,3 +4280,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **Choice rule (now, before results):** candidates = s42 (submitted, 5-eval mean 0.779), s43 (0.702), s44, s45,
     s46. The highest mean sim_vs_ref over 5 official evaluations (object trajectory checked identical) goes into the
     next pack.
+- ~11:30 UTC **interruptible failed in practice:**
+  - both eval-10 boxes (57805229, 57805240) were paused by Vast within ≈ 10 min (intended status "stopped", outbid at
+    a $0.80 bid);
+  - 4 of 5 interruptible offers vanished while renting (404 / 410 no_such_ask); s44 (57805418) started.
+  - All three destroyed (≈ $0.4 lost).
+  - Evidence against the interruptible seed race today: the discount comes with preemption within minutes at this
+    demand.
+- 11:33 UTC relaunched **on demand** (code 5e0e100; on-demand prices up to $1.52–1.69/h):
+  - 57805538 `20261026-gl10A2-5e0e100` (eval 10, eval_both variant);
+  - 57805552 `20261026-gl10B2-5e0e100` (eval 10, frozen variant);
+  - 57805554 / 57805555 / 57805558 `20261026-fr32s44b- / s45b- / s46b-5e0e100` (eval 32, frozen, seeds 44 / 45 / 46).
+  - ≈ $8.1/h together, ≈ 1.3 h → ≈ $10.5; same choice rules as pre-registered above.
