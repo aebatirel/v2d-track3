@@ -4040,3 +4040,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Removed hull volume 9.3 / 9.7 cm³. The submitted meshes are unchanged.
 - Next: the same test in FlashCHORD's own physics (Newton / MuJoCo Warp on CPU, dt 0.01, the scene built by
   `setup_scene`), then a pre-registered GPU plan for the owner.
+- **T-a pre-registration (before running):** `tools/carve_fc_test.py` (new; FlashCHORD's `setup_scene` scene, CoACD
+  on, support on, Newton SolverMuJoCo on CPU at sim_dt 0.01, gravity on; hands parked; each board pulled to OUR
+  reference by an 8 Hz critically damped spring on its centre of mass and orientation, board 1 as the holding hand,
+  board 2 as the inserting one), eval 25 frames 185–355, summarised over the assembled frames 294–355.
+  Assets = `make_assets.py meshes/library_v3` without (default) and with `--pieces meshes/carve/ev25` (cut).
+  **Pass:** cut relative pose error (board 2 in board 1 vs the reference's) median ≤ 0.5 cm and ≤ 5°, while default ≥ 2 cm
+  or ≥ 20°. **Fail:** cut > 1 cm or > 10° (the proxy does not transfer; then primitives / box boards).
