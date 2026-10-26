@@ -26,6 +26,13 @@ reviews, scripts and results.
   - (3) GPU probe P1, ≈ $4–8 (ceiling $12), on a box separate from the eval-10 boxes;
   - (4) licence choice (Hunyuan excludes EU/UK/KR).
 - Nothing in the submission pipeline was changed.
+- **~18:30 UTC eval meshes:**
+  - Page: https://claude.ai/artifact/TSEF4dCCSRdErBcfCPR2Ex (submitted eval meshes in 3-D, overlays on the eval
+    videos, public comparisons).
+  - New-method eval meshes need eval depth, which was never cached: `ops/jobs/eval_perc.sh`, ≈ $2–4, owner
+    go-ahead. Single-frame (frame-0) lathes fail on public data (1.1–1.3 cm, flips), so they are not used.
+  - **Found:** the submitted white-pot mesh (6 eval pairs) has an open base, a ≈ 4–5 cm hole; the eval-10 beige cup
+    has an open base; the pitcher is see-through. Simulator impact not checked.
 
 ## 2026-10-26 ~15:25 UTC: eval-10 check done (CPU); one small GPU test proposed
 - Cause: every learner learns to avoid the beige cup. The open-loop plan carries it, but the cup hits the blue cup's
