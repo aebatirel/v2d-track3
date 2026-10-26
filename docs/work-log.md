@@ -4105,3 +4105,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   rocks 4–6° in this harness. Hands are parked 2.9 m away; no constraint overflow (nefc ≤ 98 of 512); the active
   contact count jumps 0–21 between frames (bouncing). Unresolved: no eval-10 GPU run is proposed until the blue cup
   stands reliably in this test.
+- **Eval 10 hybrid collision copy (CPU, FlashCHORD harness):** blue cup = FlashCHORD's own CoACD hulls of our mesh
+  clipped below the inner floor (`lathe_collision.py --base_from_hulls`; the footing that stands today) + lathe wall
+  wedges above (empty cavity, wall 3 mm); beige cup = lathe pieces with ring base, base extension capped (frame 0
+  clears the table), radius shrunk 8 mm ("esh8") or not ("esh0").
+  - Rest, 6 start frames each (f0–10 → f38, no drive): today's beige cup falls **6/6** (46–89°); hybrid: **0/6** falls
+    for either cup in both variants; blue rocks max 9–15° (today's blue 9–13°).
+  - Driven nest, f100–160: esh8 beige **0.44 cm / 2.5°**, blue 0.44 cm / 1.9° (today 4.45 cm / 8.6° and
+    1.97 cm / 9.8°); esh0 beige 8.19 cm (the cups cannot nest as deep as our reference without the shrink).
+  - **The pre-registered standing rule fails as written:** at f37 the beige cup is 2.1–2.2 cm / 7.9–9.5° off. My check
+    frame was wrong: our reference has already moved the beige cup 1.74 cm by f37 (0.31 cm at f34). At f30 (reference
+    still): esh8 beige 0.33 cm / 2.1°, blue 1.1 cm / 6.0°. The 5° bound is also stricter than this harness supports:
+    today's blue cup, which stands in the real rollouts, rocks 7.1° at f30. Recorded as a fail of the rule; any GPU
+    rerun of eval 10 goes to the owner with this caveat.
+- Hull census (`tools/hull_census.py`, first-eval sf references, library_v3), partial: evals 15/16 (spoon into the
+  rack) have no collision conflict (the eval-16 loss is the release); eval 1 lid in pot up to 16.7 cm³ hull-only;
+  evals 3/5/6 clean.

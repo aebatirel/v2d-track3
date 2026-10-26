@@ -31,6 +31,9 @@ ap.add_argument('--base_to_mesh', help='our mesh: extend the base end to its ext
                 'cuts the base at the last observed ring, which can leave the body above the table the mesh stands on)')
 ap.add_argument('--ext_max', type=float, default=1.0, help='cap (m) on the base extension, e.g. so the base does not start '
                 'inside the table at the reference frame-0 pose (a start inside the support makes the object bounce)')
+ap.add_argument('--base_from_hulls', help='our mesh: the base is FlashCHORD\'s own CoACD hulls of this mesh clipped to the '
+                'base side of the inner floor (keeps the footing that stands in the simulator today; the walls above the '
+                'floor come from the lathe, so the cavity is empty)')
 a = ap.parse_args()
 z = np.load(a.profile); fit = json.load(open(a.fit))
 c0, d, e1, e2 = (np.asarray(z[k], float) for k in ('c0', 'd', 'e1', 'e2'))
@@ -76,7 +79,17 @@ for b0, b1 in zip(edges[:-1], edges[1:]):
         ring = np.linspace(0, 2 * np.pi, 2 * a.seg, endpoint=False)
         V = np.array([P(hh, rr, an) for hh, rr in zip(hb_, rb_) for an in ring])
         pieces.append(trimesh.convex.convex_hull(V))
-if hollow:                                                  # base plate of thickness t, as SEG sectors: MuJoCo (Warp)
+if hollow and a.base_from_hulls:
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from interaction_carve import clip, fc_hulls, load_mesh
+    floor = hb - t if base_hi else hb + t                          # keep where (x - c0).d >= floor (base hi) / <= floor
+    nd, off = (-d, float(d @ c0 + floor)) if base_hi else (d, float(-(d @ c0) - floor))
+    for V in fc_hulls(load_mesh(a.base_from_hulls)):
+        Vc = clip(V, [(nd, off)])
+        if Vc is not None:
+            pieces.append(trimesh.convex.convex_hull(Vc))
+elif hollow:                                                # base plate of thickness t, as SEG sectors: MuJoCo (Warp)
     rbase = float(r[np.argmax(h)] if base_hi else r[np.argmin(h)])   # gives one contact per convex pair, so a one-piece
     hs = (hb - t, hb) if base_hi else (hb, hb + t)                  # base stands on a single point and rocks over (eval 10
     ring = np.linspace(0, 2 * np.pi, 2 * a.seg, endpoint=False)    # CPU test, 26 Oct): a centre disc (r/2) plus SEG rim
