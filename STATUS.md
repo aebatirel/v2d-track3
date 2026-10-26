@@ -2,6 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~13:20 UTC: batch done; eval-10 grasp-lock idea falsified; eval 32 → s46 (small)
+- Eval 10: grasp lock on the carved cups never lifts a cup (A 0.454, B 0.438; current 0.452). Rule winner A by 0.002.
+- Eval 32: seeds 44–46 → s46 0.803 vs s42 0.779 (rule winner s46).
+- Both winners wait for the next pack (together ≈ +0.001 AUC, estimate). Credit $17.29, 0 boxes.
+- Robustness review running in session_012XqAPiLToh4uBKNWqzx3bV (`docs/analysis/robustness-review-20261026.md`).
+
 ## 2026-10-26 ~11:35 UTC: five boxes running (owner go-ahead), on demand
 - Eval 10, grasp lock on the carved cups (SF=0, PIECES ev10): `20261026-gl10A2-5e0e100` (eval_both variant) and
   `20261026-gl10B2-5e0e100` (frozen variant).

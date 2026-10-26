@@ -4299,3 +4299,24 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - CPU only; no rentals or uploads without the owner.
   - It writes only `docs/analysis/robustness-review-20261026.md` (+ folder) and must not edit STATUS.md, the work log
     or the ops/jobs scripts in use here.
+- 13:14 UTC **batch done** (all five self-destroyed; credit $28.23 → $17.29, ≈ $10.9 incl. the preempted boxes).
+  - **Eval 10, grasp lock on the carved cups:**
+    - A eval_both 0.4539 ± 0.002 (chosen 60M);
+    - B frozen 0.4377 ± 0.022 (chosen 30M);
+    - every curve checkpoint shows "lift 0" (the cup is never lifted); re-plan: nothing to re-plan;
+    - B's rest check: the beige cup drifts up to 21.5 mm before its grasp.
+    - **Hypothesis falsified** (needed > 0.462).
+    - Rule: A 0.4539 > current 0.452 → A is eval 10's choice for the next pack (+0.002, within noise). Object
+      trajectory vs the current eval-10 reference identical (max diff 0.0).
+  - **Eval 32, frozen seeds:** s44 0.397, s45 0.634, **s46 0.803 ± 0.105** (0.622 / 0.748 / 0.861 / 0.894 / 0.891;
+    chosen 50M).
+    - Rule: s46 > s42 0.779 → s46 is eval 32's choice for the next pack. Object trajectory vs s42 identical.
+  - Expected gain of packing these two now (estimate): eval 10 +0.007 and eval 32 +0.014 sim_vs_ref over the packed
+    draws → ≈ +0.001 AUC, ± 0.005 from s46's rollout spread.
+  - Decision proposed to the owner: no separate pack for this; both winners ride the next pack that carries a larger
+    change.
+  - **New hypothesis (not tested):** the beige cup's collision copy is shrunk 8 mm radially (so the stack nests), but
+    the grasp is planned on the visual library mesh, so the fingers may close on air: no grip, no lift, for both
+    learners.
+    - Falsify on CPU: fingertip-to-collision-surface distance at the planned grasp frames (≈ 8 mm gap if true), or a
+      zero-action hold test of the grasp-lock reference.
