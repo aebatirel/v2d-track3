@@ -4365,3 +4365,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   (axis_d in `water_pitcher.lathe.json`), so its body is a different shape.
   - Against the 25 Oct adoption criterion on the twin (episode ≥ base − 0.02 and pitcher ≥ base): 0.874 ≥ 0.756 and
     0.773 ≥ 0.595. Here measured by re-scoring the same rollouts; the frame is unchanged.
+- Time correction (box clocks): the "~15:40", "15:45" and "~16:45 UTC" stamps in the last entries were estimates.
+  - The eval-10 B′/C′ boxes were created at ≈ 14:48 UTC (watcher's first line 14:49:57).
+  - The mesh-swap tests ran ≈ 15:00–15:25 UTC.
+  - B′/C′ results are expected ≈ 16:30 UTC.
