@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~07:20 UTC: forensics running; packing bug found; eval-25 carve retrains running
+- **Bug:** the third submission packed the FIRST pack's seed-42 rollouts for evals 3, 5, 15, 16 (not the rule-chosen
+  seed-43 ones): pulled old submission folder + `cp -n`. ≈ −0.005 Track 3 (estimate). Fixed in pack_eval.sh (empty
+  folder + sha check); the next pack restores them.
+- Running: eval-25 carve retrains (57773973 s42, 57773975 s43; results ≈ 09:30 UTC); video box 57776867
+  `20261026-subvid2-d9c3f7d` + follow-up for 3/5/15/16.
+- Forensics report draft: `docs/analysis/forensics-20261026/README.md` (score split, per-episode causes, hull census,
+  hidden losses, ranked plan). Eval-10 hybrid cup collision copy built and CPU-tested (`meshes/carve/ev10/`); GPU
+  rerun not yet proposed to the owner.
+
 ## 2026-10-26: eval-25 slot carve passes both CPU tests; GPU rerun proposed (not rented)
 - `pipeline/interaction_carve.py slot` cuts the boards' slots into the SIMULATOR collision copy only (the submitted mesh
   is unchanged), from our own identity-correct eval-25 reference: 21 + 11 convex pieces in `meshes/carve/ev25/`.

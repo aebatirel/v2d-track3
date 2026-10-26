@@ -4130,3 +4130,20 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - Sweeper registration flip (22 Oct claim, "eval ep30's seed, ADD 45.6 mm"): **not reproduced** for library_v3 with
   the current kit (`_register_object_body`, budget_mesh 4096, scan surface-moment anchor): eval 19 and 30 seeds land
   0.7–0.9° from the majority solution; 4 of 40 random seeds flip 179° (library_v2 likewise).
+- **Packing bug found (forensics, sha256 check of the video job):** the third submission's rollouts for evals
+  **3, 5, 15, 16 are the FIRST pack's seed-42 rollouts**, not pack 2's seed-43 ones the pre-registered rule chose.
+  - Packed json checkpoint sha256: 8d256c33 / 3cc946c5 / cf0c9328 / b297186c = `20261024-pack-31ef267`
+    results/glock_public/epN/best (seed 42).
+  - Pack 2's jsons name the seed-43 files (737c7b9e, cd7594a8, …).
+  - Cause: pack 3 pulled `20261024-pack-31ef267` whole, which put the first pack's `results/submission/results/` into
+    the output folder; `submit_pack.sh` then copied the KEPT pack-2 rollouts with `cp -n`, which never overwrites. Pack
+    3's log said "kept for [3, 5, …]" because the keep decision itself was right.
+  - Evals 6, 10, 35–38 are unaffected (same checkpoint in all packs; pack 2's numbers equal pack 3's).
+  - sim_vs_ref, pack 2 vs submitted: 3 0.942 vs 0.867, 5 0.960 vs 0.972, 15 0.947 vs 0.960, 16 0.908 vs 0.843
+    (net +0.115 / 20 ≈ +0.005 Track 3, estimate). My 25 Oct note that the difference was "the local qa yardstick" was
+    wrong.
+  - Fix (pack_eval.sh): empty `results/submission` before packing, then fail unless every packed rollout's
+    checkpoint_sha256 equals its chosen checkpoint. Next pack restores the rule-chosen seed-43 rollouts for all four
+    (the choice stays the pre-registered one, whatever the individual rollouts score).
+- Video job: the sha check refused 3/5/15/16 (correctly); a follow-up on the same box (5e651a1) renders the submitted
+  checkpoints for them.

@@ -84,7 +84,22 @@ print(f'pack_eval: earlier official rollout kept for {sorted(keep)} (checkpoint 
 PYEOF
   CK_EVAL=$F/checkpoints_eval.json
 fi
+# 2026-10-26 (forensics): a pulled pack run brings its own results/submission; submit_pack.sh copies KEPT rollouts with
+# cp -n, so pack 3 silently kept the FIRST pack's seed-42 rollouts for 3/5/15/16 instead of pack 2's seed-43 ones.
+# Start from an empty submission folder, then verify every packed rollout names the intended checkpoint.
+rm -rf /content/results/submission
 CHECKPOINTS=$CK_EVAL KEPT_DIR=$KEPT LIB=${LIB:-$REPO_DIR/meshes/library_v3} bash $REPO_DIR/ops/jobs/submit_pack.sh
+python - $F/checkpoints.json /content/results/submission/results << 'PYEOF' >> $J 2>&1 || { log "pack_eval: packed rollouts do not match the chosen checkpoints" >> $J; exit 1; }
+import hashlib, json, sys
+m, d = json.load(open(sys.argv[1])), sys.argv[2]; bad = []
+for ep, p in m.items():
+    want = hashlib.sha256(open(p, 'rb').read()).hexdigest()
+    got = json.load(open(f'{d}/episode_{int(ep):06d}.json')).get('checkpoint_sha256')
+    if got != want:
+        bad.append((ep, (got or '')[:12], want[:12]))
+print(f'pack_eval: checkpoint check of {len(m)} packed rollouts: {"OK" if not bad else bad}')
+sys.exit(1 if bad else 0)
+PYEOF
 S=/content/results/submission                                       # each packed rollout scored against our reference
 for p in $S/results/episode_*.parquet; do                           # (sim_vs_ref, qa.py policy; no ground truth)
   e=$((10#$(basename $p .parquet | cut -d_ -f2))); mkdir -p $S/qa/ep$e; cp ${p%.parquet}.* $S/qa/ep$e/

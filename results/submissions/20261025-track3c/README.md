@@ -1,5 +1,10 @@
 # Track 3 submission, 25 Oct 2026 (third pack)
 
+> **Correction (26 Oct, forensics):** the rollouts packed for evals **3, 5, 15 and 16** are the FIRST pack's seed-42
+> rollouts (checkpoint sha256 8d256c33…, 3cc946c5…, cf0c9328…, b297186c…), not the second pack's seed-43 rollouts
+> described below. A pulled run's old submission folder was copied in first and `cp -n` kept it. Evals 6, 10 and 35–38
+> are unaffected. See docs/work-log.md (26 Oct); fixed in ops/jobs/pack_eval.sh.
+
 - `track3_submission.parquet`: 9,120 rows, 20 eval episodes, poses plus our meshes, 1,387,467 bytes, sha256
   `dc3a5ad19007c22641302f6e110b22454d252bc6f76f26ad7c1bd4fb7e0396fe`. 0 mesh warnings.
   - Meshes are library_v3 for every episode except eval 8: library_v3x, the v5 beige cup adopted by the ep11 twin.
