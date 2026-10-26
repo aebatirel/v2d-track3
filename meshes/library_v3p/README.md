@@ -1,4 +1,7 @@
-# library_v3p (26 Oct 2026): library_v3 with a lathe-completed water pitcher
+# library_v3p (26 Oct 2026): library_v3 with a lathe-completed water pitcher (NOT USED from pack 6 on)
+
+> Used in pack 5 only. Leaderboard 0.80941 vs pack 4 0.81056, while evals 10 and 32 predicted ≈ +0.003, so
+> the swap most likely cost ≈ −0.004 on eval 20. Reverted by owner decision (work log, 26 Oct ~16:15 UTC).
 
 Every file equals `meshes/library_v3` except `water_pitcher.glb`.
 

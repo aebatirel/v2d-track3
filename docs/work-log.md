@@ -4383,3 +4383,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     pitcher swap most likely cost ≈ −0.004 (confounded, one submission).
   - The twin-based mesh choice did not transfer. Reverting it because of this would be a decision on an eval result:
     put to the owner.
+- ~16:15 UTC **owner decision ("sure do whatever makes sense"): revert eval 20's submitted pitcher to library_v3**
+  from pack 6 on.
+  - Disclosed as a decision informed by the pack-5 leaderboard result, an exception to "never tune on eval results",
+    taken by the owner.
+  - `meshes/library_v3p` stays in the repo as a record, unused.
+  - Pack 6 = pack 5's choices (eval 10 per its rule, eval 32 s46) with EP_LIB 8:library_v3x only.
