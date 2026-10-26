@@ -4160,3 +4160,18 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   harness's rollout instead of the viewer. Until then replays are illustrative only.
 - ~07:25 UTC video box `20261026-subvid2-d9c3f7d` done: 20 videos (16 + follow-up 3/5/15/16 from the submitted
   seed-42 checkpoints), ≈ 40 min, ≈ $1.0; self-destroys. Report: `docs/analysis/forensics-20261026/README.md`.
+- **Owner go-ahead (26 Oct): "If there is enough money in the vast you can go ahead".** Credit $41.63 (2 eval-25
+  boxes still running, ≈ $3 left on them). Batch (≈ $13 incl. the pack):
+  1. **Eval 10, hybrid cup collision copy**, `carve_rerun.sh EP=10 SRC_RUN=20261024-evB-664e5fd` (refs/perc2mck/ep10,
+     object path identical to the submitted glockt reference), `PIECES=meshes/carve/ev10`, standard learner, seeds 42
+     and 43 on two boxes. **Choice rule (now, before results):** candidates = the current eval-10 policy (evB grasp
+     lock, 5 official evaluations mean 0.334), carve s42, carve s43; the highest mean sim_vs_ref over 5 official
+     evaluations (same object trajectory) is packed. Caveat from the CPU test: the pre-registered standing rule failed
+     as written (check-frame error); owner informed.
+  2. **Evals 32/33, second seed of the frozen recipe** (the submitted policies: fr3233 s42, 5-eval means 0.779 / 0.773):
+     same job as fr3233 (`glock_public.sh SPLIT=eval SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5`, same GL_ARGS,
+     library_v3, PAIRS 32/33 on `20261025-evb3233-ee7ba8e`:mck) with SEED=43, pulling only refs/perc2mck + perc2 of
+     32 and 33. **Choice rule:** per episode the higher 5-evaluation mean sim_vs_ref of s42 vs s43 (object trajectory
+     checked identical before comparing).
+  3. Then one pack: eval-25 winner (its own rule), these winners, pack 3's rollouts for unchanged checkpoints and
+     pack 2's seed-43 rollouts for 3/5/15/16 (KEEP_RESULTS="20261025-pack3-3758189 20261025-pack2-46b8389"), upload.
