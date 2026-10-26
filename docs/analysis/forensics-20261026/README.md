@@ -52,6 +52,26 @@ sim_vs_ref cannot see the second one.
 | 15 | 0.960 | 0.002 | The spoon rotates to 46° at the end | Release into the rack |
 | 5, 6, 8, 35–38 | 0.967–1.000 | ≤ 0.002 each | — | — |
 
+### What the videos show (replays with the robot hands; `ops/jobs/sub_videos.sh`, run `20261026-subvid2-d9c3f7d`)
+
+**Episodes:**
+- **Eval 33:** the person holds the cup in the left hand and scoops with the spoon INSIDE the cup with the right
+  hand (f150, f220: the handle sticks out of the cup). In the simulation the spoon stays beside or above the rim.
+  This replay scores 0.811; the packed rollout was a low draw, 0.611 against a 5-evaluation mean of 0.773.
+- **Eval 32:** the person lifts the cup by its rim from above. The simulated left hand loses the cup during the lift
+  (f20–28), and the cup falls back to the table.
+- **Eval 16:** the spoon goes into the rack's holder in this replay (0.920), but flipped in the packed rollout (0.843).
+  The release is a chance outcome.
+- **Eval 25:** the replay lands in the bad mode (0.338, like 1 of its 5 official evaluations). Board 2 is twisted out
+  of the joint.
+- **Eval 10:** the beige cup tips over at the start in the replay too (0.347).
+
+**How faithful the replays are:**
+- Most replays land within ±0.03–0.06 of the packed rollouts.
+- Eval 1's replay (0.529) is far below its 5 official evaluations (0.89–0.93). The pot is lifted far too high. The
+  replay path (`view_policy.py`) differs from the evaluation harness (work log, 26 Oct), so this replay is illustrative only.
+- The CPU renders of the packed rollouts are the exact record of what was submitted.
+
 ## 3. Our reference against the simulator's collision geometry (`hull_census/`)
 
 **Method:**
@@ -119,6 +139,36 @@ Background (`docs/research/spoon-2026-10-25/`):
 | 6 | Pitcher mesh / track | 20 | Twin: pitcher 0.571 with our mesh vs 0.95 with the scan | ≈ +0.009 | Mesh work + 1 rerun |
 | 7 | Release / placement (spoon into the rack holder) | 16, 15 | The spoon flips on release; no geometry conflict | +0.005 to +0.01 | Research |
 
+| 0 | **Packing bug fix:** restore the rule-chosen seed-43 rollouts for 3/5/15/16 | 3, 5, 15, 16 | The third submission packed the first pack's seed-42 rollouts (sha256 check) | ≈ +0.005 | Next pack (≈ $0.7) |
+
 **Projection, all estimates:**
 - Items 1–4 together: ≈ +0.04 to +0.07, i.e. about 0.83–0.86.
 - 3rd place (0.865) also needs item 5 or 6 to pay off.
+
+## 6. Videos
+
+**Location:**
+- HF store: `runs/20261026-subvid2-d9c3f7d/results/sub_videos/ep<N>.mp4` (H.264, 1920×480).
+- Panels: the real camera; the simulation drawn on the camera (our reference outline, robot-hand skeletons); a 3-D view.
+- Each checkpoint was sha256-checked against the submitted rollout's json.
+
+**Replay sim_vs_ref** (a fresh rollout) against the packed rollout:
+
+| Eval | Replay | Packed | | Eval | Replay | Packed |
+|---|---|---|---|---|---|---|
+| 1 | 0.529 | 0.920 | | 20 | 0.953 | 0.895 |
+| 3 | 0.902 | 0.875 | | 25 | 0.338 | 0.837 |
+| 5 | 0.929 | 0.974 | | 28 | 0.921 | 0.929 |
+| 6 | 0.944 | 0.971 | | 30 | 0.914 | 0.923 |
+| 8 | 0.965 | 0.978 | | 32 | 0.747 | 0.789 |
+| 10 | 0.347 | 0.342 | | 33 | 0.811 | 0.611 |
+| 14 | 0.895 | 0.909 | | 35 | 0.983 | 0.983 |
+| 15 | 0.894 | 0.958 | | 36 | 0.967 | 0.991 |
+| 16 | 0.920 | 0.850 | | 37 | 0.976 | 0.998 |
+| 19 | 0.893 | 0.928 | | 38 | 0.981 | 1.000 |
+
+"Packed" is the box's qa yardstick from pack 3's summary.
+
+**CPU renders of the packed rollouts** (objects only, exact):
+- made with `tools/render_eval_rollout.py`, kept in the session scratch;
+- they can be re-made from the pack's `episode_*.parquet`.

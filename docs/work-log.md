@@ -4158,3 +4158,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   immediate_first_frame_probability 0 (`evaluation/harness.py` `_evaluation_curriculum_stage`). Hypothesis, untested: the
   viewer path is not the official one for standard-learner checkpoints. Fix for later: record body poses inside the
   harness's rollout instead of the viewer. Until then replays are illustrative only.
+- ~07:25 UTC video box `20261026-subvid2-d9c3f7d` done: 20 videos (16 + follow-up 3/5/15/16 from the submitted
+  seed-42 checkpoints), ≈ 40 min, ≈ $1.0; self-destroys. Report: `docs/analysis/forensics-20261026/README.md`.
