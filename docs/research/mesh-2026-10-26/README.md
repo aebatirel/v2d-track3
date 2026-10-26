@@ -232,3 +232,43 @@ What not to do, from the evidence:
   - `gen_hy3d.py`: Hunyuan3D-2mini runner, blocked here.
 - `results/`: JSONL scores, manifests, crop choices. Paths inside point at the session scratchpad.
 - `figures/`: crop montage, profile plot, pot axis candidates.
+
+## 8. The eval meshes (added 26 Oct, ~18:30 UTC)
+Interactive page: https://claude.ai/artifact/TSEF4dCCSRdErBcfCPR2Ex (private to the owner). Source: `eval-view/`. It
+shows:
+- a 3-D viewer of every submitted eval mesh after the kit's own 4096-face decimation (what Kaggle receives), with a
+  section cut;
+- the new-method meshes on public episodes beside the scan;
+- one eval colour frame per (episode, object) with our mesh projected by our eval track;
+- a review panel's verdicts.
+
+**New-method meshes for eval cannot be built yet** [M]:
+- The store has no eval depth cache, only `cache/depth/public` (work log line 3913).
+- Only frame 0 survives, in `det_f0.npz`. A lathe from frame 0 alone was tested on public data first (`obs_f0.py`)
+  [D]:
+  - points are accurate (median 0.7–1.5 mm) but cover only 24–30 % of a cup or pot;
+  - the lathes fail: CD-O 1.1–1.3 cm, 7/7 flips on both cups.
+  - So it was not run on eval.
+- The fix is `ops/jobs/eval_perc.sh` on one GPU: it pushes eval depth to the store, ≈ 4 min per episode, ≈ $2–4 for
+  the 11 episodes with a cup, pot or lid, or all 20. After that, `obs_points.py` → `lathe_obs.py` → `obs_fidelity.py`
+  run on CPU.
+
+**Defects found in the submitted eval meshes** (GT-free unless marked):
+- **Open base on the white pot** (6 eval pairs):
+  - the mesh is a closed thick ring with a hole ≈ 4–5 cm across in the middle of its base;
+  - 6 of 9 rays through its centre along its axis hit nothing, while the scan has 0 of 9 [D];
+  - figure: `figures/pot_profile_lib_vs_scan.png`.
+  - Likely from the below-table carving or closing of the never-seen underside (hypothesis). It may also affect the
+    simulator copy; not checked.
+- **Beige cup, eval 10 (library_v3):** the base is entirely open (9 of 9 rays). The ledger already calls it an open
+  shell. Eval 8 uses the v3x rebuild, which is closed.
+- **Water pitcher** (eval 20): see-through holes (3 of 9 rays along one axis; scan 0), matching the "twisted shell" in
+  the forensics.
+- Thick walls on pot, lid, dust pan and cups, as measured before.
+
+Review panel (workflow `wf_c69f9d10-f06`):
+- one reviewer per eval pair compares the raw frame, the projected mesh and the 3-D renders;
+- a skeptic re-checks every flagged issue;
+- a final step writes per-object verdicts.
+
+Results are in `results/eval_review.json` when finished.
