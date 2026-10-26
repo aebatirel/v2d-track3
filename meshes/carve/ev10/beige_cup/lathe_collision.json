@@ -1,0 +1,21 @@
+{
+ "tool": "lathe_collision",
+ "profile": "<scratch>/approach2/out/lathe2/beige_cup_v3_profile.npz",
+ "name": "beige_cup_v3",
+ "hollow": true,
+ "wall_t_mm": 7.41,
+ "shrink_mm": 8.0,
+ "segments": 12,
+ "band_cm": 6.0,
+ "pieces": 49,
+ "volume_cm3": 302.9,
+ "height_cm": 16.71,
+ "r_out_cm": [
+  3.12,
+  4.06
+ ],
+ "base_end": "hi",
+ "wall_fitted_mm": 7.41,
+ "base_extended_mm": 7.1,
+ "max_piece_vertices": 48
+}
