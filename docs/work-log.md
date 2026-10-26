@@ -4047,3 +4047,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   Assets = `make_assets.py meshes/library_v3` without (default) and with `--pieces meshes/carve/ev25` (cut).
   **Pass:** cut relative pose error (board 2 in board 1 vs the reference's) median ≤ 0.5 cm and ≤ 5°, while default ≥ 2 cm
   or ≥ 20°. **Fail:** cut > 1 cm or > 10° (the proxy does not transfer; then primitives / box boards).
+- **T-a result (CPU, 12–13 s of simulation each, code 7f86f51 + carve_fc_test.py): PASS.** Assembled frames 294–355,
+  board 2 relative to board 1 vs the reference (median / max): default **7.47 cm / 47.9°** (8.7 cm / 80.3°), board 1
+  pushed 2.4 cm / 17.6° although held; cut **0.12 cm / 0.4°** (0.35 cm / 1.7°), both boards within 0.08 cm. Before
+  contact (f186–206) both variants track alike (drive floor ≈ 0.05 cm). Collision shapes 19 + 9 (default) and 21 + 11
+  (cut: every piece kept as one hull). No NaN. Outputs `meshes/carve/ev25/fc_test/`.
