@@ -118,6 +118,10 @@ def main():
                    '2026-10-25): full squeeze by its lift-off - LOAD frames, and the hold ends UNLOAD frames after it settles '
                    'when that is earlier than the contact-label end (labels end 1.3-6 s after the placement on public twins)')
     p.add_argument('--load', type=int, default=2); p.add_argument('--unload', type=int, default=2)
+    p.add_argument('--rest_below_cm', type=float, default=0.0, help='> 0: an object whose largest displacement from its '
+                   'frame-0 position in OUR reference stays below this is not held (it rests); a hand left with no hold '
+                   'stays parked at its frame-0 pose (2026-10-26, eval 10: the left hand steadying the blue cup, which '
+                   'moves 5.6 cm, collides with the right hand and the carried beige cup during the stack)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
     st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
@@ -139,6 +143,12 @@ def main():
     ph = hold_phases(a.inp)[0]['phases']
     TPL = json.load(open(a.templates))['templates'] if a.templates else {}
     parked = []
+    if a.rest_below_cm > 0:                                        # objects that barely move are left to rest
+        trav = {n: float(np.linalg.norm(OP[:, j] - OP[0, j], axis=1).max() * 100) for j, n in enumerate(names)}
+        rest = sorted(n for n in names if trav[n] < a.rest_below_cm)
+        ph = [x for x in ph if x['object'] not in rest]
+        parked = [sd for sd in ('left', 'right') if sd not in {x['hand'] for x in ph}]
+        print(f'rest_below_cm {a.rest_below_cm}: left to rest {[(n, round(trav[n], 1)) for n in rest]}; parked {parked}', flush=True)
     if a.single_hand:                                              # one carrier per object, from first grasp to last release
         merged = []
         for o_ in sorted({x['object'] for x in ph}):

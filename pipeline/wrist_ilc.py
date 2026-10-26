@@ -49,9 +49,39 @@ def main():
     p.add_argument('--lead', type=int, default=2); p.add_argument('--smooth', type=int, default=5)
     p.add_argument('--cap', type=float, default=0.12); p.add_argument('--cap_rot', type=float, default=0.6)
     p.add_argument('--device', default='cuda')
+    p.add_argument('--hold', default='', help='grasp_lock.py json (phases): while a hand carries an object (from the '
+                   'phase\'s move_frame to its end) the position error fed back is the HELD OBJECT\'s (reference minus '
+                   'simulated) instead of the wrist\'s, so the object, not the wrist, follows OUR reference (2026-10-26, '
+                   'eval 10: the beige cup sat 3-6 cm low in the grip and hit the blue cup\'s rim instead of nesting)')
     a = p.parse_args(); t0 = time.time()
     t = pq.read_table(a.inp); T = len(np.array(t.column('robot_left_wrist_position')[0].as_py(), float).reshape(-1, 3))
     want, tgt, stats = {}, {}, []
+    holds = json.load(open(a.hold))['phases'] if a.hold else []
+    onames = t.column('object_body_names')[0].as_py()
+    OP = np.array(t.column('object_body_position')[0].as_py(), float).reshape(T, len(onames), 3)
+    OQ = np.array(t.column('object_body_wxyz')[0].as_py(), float).reshape(T, len(onames), 4)[..., [1, 2, 3, 0]]
+    OR = [Rot.from_quat(OQ[:, j]) for j in range(len(onames))]
+    best = (-np.inf, None)                                        # --hold: keep the iteration that scores best (sim_vs_ref)
+
+    def score(Q, labels):                                         # qa.py's metric on the zero-action replay (no ground truth)
+        try:
+            import importlib, sys, types
+            try:
+                import pandas  # noqa: F401
+            except ImportError:                                   # FlashCHORD's venv has no pandas; the three kit functions
+                pd_ = types.ModuleType('pandas'); api = types.ModuleType('pandas.api'); typ = types.ModuleType('pandas.api.types')
+                pd_.api, api.types = api, typ; pd_.__getattr__ = lambda n: object   # used here need numpy only
+                sys.modules.update({'pandas': pd_, 'pandas.api': api, 'pandas.api.types': typ})
+            kit = os.environ.get('KIT', '/content/kit/v2d_submission_kit')   # as pipeline/qa.py
+            sys.path.insert(0, kit); sys.path.insert(0, f'{kit}/metric_code/track_3'); AU = importlib.import_module('AUC')
+            ids = [next(i for i, l in enumerate(labels) if l.startswith(f'track3_{n}/')) for n in onames]
+            ref = np.concatenate([OP, OQ], 2)[:, None]; sim = Q[:T, ids, :7].astype(float)[:, None]
+            rng = np.random.default_rng(0); P_ = rng.normal(size=(500, 3)); P_ = 0.05 * P_ / np.linalg.norm(P_, axis=1, keepdims=True)
+            return float(AU._add_auc(AU._object_add(AU._warp_to_reference_start(sim, ref), ref, np.repeat(P_[None], len(onames), 0))))
+        except Exception as e:                                    # no kit: mean object position error instead
+            print(f'score: kit metric unavailable ({type(e).__name__}); using -mean object error', flush=True)
+            ids = [next(i for i, l in enumerate(labels) if l.startswith(f'track3_{n}/')) for n in onames]
+            return -float(np.linalg.norm(Q[:T, ids, :3] - OP, axis=2).mean())
     for s in ('left', 'right'):
         fn = t.column(f'{s}_robot_frame_names')[0].as_py(); F = np.array(t.column(f'robot_{s}_frames')[0].as_py(), float).reshape(T, -1, 7)
         c = F[:, fn.index(f'{s}_hand_C_MC')]; want[s] = (c[:, :3], Rot.from_quat(c[:, [4, 5, 6, 3]]))
@@ -68,12 +98,23 @@ def main():
                   f'keeping {os.path.basename(last_ok or a.inp)}', flush=True)
             break
         last_ok = cur
+        if holds:
+            row['sim_vs_ref'] = round(score(Q, labels), 4)
+            if row['sim_vs_ref'] > best[0]:
+                best = (row['sim_vs_ref'], cur)
         for s in ('left', 'right'):
             b = next(i for i, l in enumerate(labels) if l.endswith(f'{s}_hand_C_MC'))
             ep = want[s][0] - Q[:, b, :3]; er = (want[s][1] * Rot.from_quat(Q[:, b, 3:7]).inv()).as_rotvec()
             row[s] = dict(pos_err_cm_mean=round(100 * float(np.linalg.norm(ep, axis=1).mean()), 2),
                           pos_err_cm_p95=round(100 * float(np.percentile(np.linalg.norm(ep, axis=1), 95)), 2),
                           rot_err_deg_mean=round(float(np.degrees(np.linalg.norm(er, axis=1)).mean()), 1))
+            for x in (h for h in holds if h['hand'] == s):        # carried object: feed back its error, not the wrist's
+                j = onames.index(x['object']); bo = labels.index(f"track3_{x['object']}/object")
+                f0, f1 = int(x.get('move_frame', x['start'])), min(int(x['end']), T)
+                eo = OP[f0:f1, j] - Q[f0:f1, bo, :3]; ep[f0:f1] = eo   # position, and orientation (the metric's 5 cm
+                er[f0:f1] = (OR[j][f0:f1] * Rot.from_quat(Q[f0:f1, bo, 3:7]).inv()).as_rotvec()   # sphere counts it)
+                row[s][f"{x['object']}_err_cm_mean"] = round(100 * float(np.linalg.norm(eo, axis=1).mean()), 2)
+                row[s][f"{x['object']}_err_cm_max"] = round(100 * float(np.linalg.norm(eo, axis=1).max()), 2)
             if it == a.iters:
                 continue
             sh = lambda x: np.concatenate([x[a.lead:], np.repeat(x[-1:], a.lead, 0)])  # noqa: E731  error LEAD frames ahead
@@ -91,6 +132,8 @@ def main():
             for c, v in ((f'robot_{s}_wrist_position', tgt[s][0]), (f'robot_{s}_wrist_wxyz', tgt[s][1].as_quat()[:, [3, 0, 1, 2]])):
                 i = out.column_names.index(c); out = out.set_column(i, c, pa.array([v.tolist()], type=out.schema.field(c).type))
         cur = f'{work}_ilc{it + 1}.parquet'; pq.write_table(out, cur)
+    if holds and best[1]:                                         # the object loop oscillates near contacts: keep the best
+        last_ok = best[1]; print(f'[{time.time() - t0:.0f}s] best iteration: {os.path.basename(best[1])} sim_vs_ref {best[0]}', flush=True)
     shutil.copyfile(last_ok or a.inp, a.out)
     json.dump(dict(iterations=stats, args=vars(a)), open(f'{work}_wrist_ilc.json', 'w'), indent=1)
     print(f'[{time.time() - t0:.0f}s] wrote {a.out}', flush=True)

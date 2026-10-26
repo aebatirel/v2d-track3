@@ -4320,3 +4320,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     learners.
     - Falsify on CPU: fingertip-to-collision-surface distance at the planned grasp frames (≈ 8 mm gap if true), or a
       zero-action hold test of the grasp-lock reference.
+- ~13:30–15:20 UTC **eval-10 "check and fix"** (CPU only; `docs/analysis/ev10-stack-20261026/README.md`).
+  - Shrink hypothesis rejected: grasp lock plans on the collision pieces.
+  - Trained policies never touch the cups. The zero-action replay carries the beige cup, but it hits the blue cup's
+    rim (≤ 9.6 kN), stalls, and is flung after the mid-air release; training learns avoidance.
+  - The reference path is feasible (≤ 2.4 mm overlap); misalignment in the simulation is 6–7 cm.
+  - New options, both off by default: `grasp_lock.py --rest_below_cm`; `wrist_ilc.py --hold` (object-level ILC,
+    position + orientation, keeps the best iteration; pandas-free kit metric).
+  - Best CPU replay 0.632 (blue at rest + object ILC), but 6 jittered replays give 0.42–0.54: not robust. No GPU
+    spent.
+  - Across 64 stored results, zero action beats training by > 0.02 in 15. For the submission only eval 10 matters:
+    zero action (frozen) 0.663 vs submitted 0.447. A zero-residual policy is an owner decision (22 Oct rule:
+    learned policies only).
