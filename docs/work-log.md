@@ -4065,3 +4065,10 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     current policy wins, pack 3's rollout stays.
   - Expected (estimate, not measured): carve mean 0.85–0.95 sim_vs_ref; Track 3 AUC +0.003 to +0.010; rank stays 4th
     (3rd is 0.865, 5th 0.752).
+- 06:09 UTC **owner go-ahead** ("after you have done with what you are doing…"): launched code feb0407,
+  `ops/jobs/carve_rerun.sh EP=25 SRC_RUN=20261025-ev25idfix-02de0c7`:
+  - 57773973 `20261026-c25s42-feb0407` (RTX PRO 6000 S, France, $1.38/h), SEED=42;
+  - 57773975 `20261026-c25s43-feb0407` (RTX PRO 6000 Max-Q, Finland, $1.48/h), SEED=43.
+  - Expected ≈ 2.5–3 h each, ≈ $8–10 together; both self-destroy. Choice rule above.
+- Owner's next request (same message): videos of the current (third-submission) episodes, then forensics of what went
+  wrong and what can be improved; "something more ambitious".
