@@ -1,0 +1,11 @@
+ec165ea7f396
+ec165ea7f396
+e9bdc82e1f6d
+e9bdc82e1f6d
+ep2: base 0.311 white_pot:white_pot: 0.308 (-0.003) | white_pot:white_pot_app: 0.136 (-0.175)
+ep11: base 0.527 beige_cup:beige_cup_v3: 0.514 (-0.013) | beige_cup:beige_cup_v3_app: 0.534 (+0.007) | blue_cup:blue_cup: 0.505 (-0.022) | blue_cup:blue_cup_app: 0.517 (-0.010)
+ep12: base 0.847 blue_cup:blue_cup: 0.803 (-0.044) | blue_cup:blue_cup_app: 0.828 (-0.019)
+ep21: base 0.776 blue_cup:blue_cup: 0.800 (+0.023) | blue_cup:blue_cup_app: 0.822 (+0.046) | water_pitcher:water_pitcher: 0.874 (+0.098) | water_pitcher:water_pitcher_app: 0.940 (+0.163)
+ep27: base 0.963 white_pot:white_pot: 0.965 (+0.002) | white_pot:white_pot_app: 0.500 (-0.463)
+
+[exited with code 0]

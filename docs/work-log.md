@@ -4351,3 +4351,12 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 15:45 UTC market: only 4 compliant on-demand offers, $1.81–2.53/h (this morning $1.35). **A′ dropped before any
   results** (its plan's zero action 0.579 < B′'s 0.663); B′ and C′ run on the two cheapest (≈ $4/h, ≈ $7). Choice rule
   unchanged (candidates: submitted 0.452, gl10A2 0.4539, B′, C′).
+- ~16:45 UTC **submitted-mesh swap test** (CPU, public twins only; `docs/analysis/meshswap-20261026/`):
+  - Re-scoring stored ep21 rollouts against public mocap with different submitted pitcher meshes: ours 0.776, our
+    lathe fit 0.874, appendage-only 0.940, the scan 0.907.
+  - Other objects (blue cup, beige cup, white pot) show no consistent gain.
+  - **Decision (development, before any eval use):** eval 20's submitted pitcher → our lathe fit
+    (`meshes/library_v3p`, EP_LIB 20). The appendage-only variant is rejected (above the scan, so likely rollout
+    compensation; partial mesh).
+  - Pack 5 plan: eval 32 = fr32s46b; eval 10 = the pre-registered winner of {0.452, gl10A2 0.4539, B′, C′};
+    EP_LIB "8:library_v3x 20:library_v3p"; everything else kept by sha.
