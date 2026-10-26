@@ -22,6 +22,13 @@ pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer 
 # library the standard learners were trained with (2026-10-25: the first pack with standard-learner policies).
 # ASSET_PIECES (2026-10-26): the collision pieces a carved standard learner was trained with (pipeline/interaction_carve.py,
 # e.g. meshes/carve/ev25: eval 25's board slots; only the objects in it change, and the boards occur in eval 25 only).
+# Several folders (space-separated, e.g. "meshes/carve/ev25 meshes/carve/ev10") are merged per object, first wins. Only
+# standard-learner references use /content/assets (1, 19, 25, 28, 30, carved 10); grasp-lock references carry their own.
+if [ -n "${ASSET_PIECES:-}" ] && [ "$(echo $ASSET_PIECES | wc -w)" -gt 1 ]; then
+  PM=/content/pieces_merged; mkdir -p $PM
+  for d in $ASSET_PIECES; do for o in $d/*/; do [ -n "$(ls $o/piece_*.obj 2>/dev/null)" ] && [ ! -e $PM/$(basename $o) ] && ln -s $(readlink -f $o) $PM/$(basename $o); done; done
+  log "pack_eval: merged collision pieces: $(ls $PM | tr '\n' ' ')" >> $J; ASSET_PIECES=$PM
+fi
 [ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets \
   ${ASSET_PIECES:+--pieces $ASSET_PIECES} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
 for x in ${RUNS:?RUNS missing}; do             # RUN or RUN@sub1,sub2 (2026-10-25: only those sub-folders, e.g. RUN@refs)

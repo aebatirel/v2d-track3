@@ -4178,3 +4178,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
 - 07:32 UTC launched (code 6a8a0e2): 57781951 `20261026-c10s42-6a8a0e2` (Max-Q Poland $1.27/h) and 57781953
   `20261026-c10s43-6a8a0e2` (Max-Q Virginia $1.33/h): eval-10 carve, seeds 42/43; 57781954 `20261026-fr3233s43-6a8a0e2`
   (WS Serbia $1.51/h): frozen recipe seed 43 for 32 + 33. Expected ≈ 2.7 h / 2.7 h / 2 h, ≈ $11 together.
+- Exo cameras: the Track 3 dataset has only the head-mounted ego cameras a/b/c (no exo videos), and ego a is ≈ 4 cm
+  from c (≈ 1 px per cm of depth error at 0.6 m), so no independent depth check of the spoon is possible; thread parked.
+- pack_eval.sh: ASSET_PIECES may list several folders (merged per object), so carved eval 25 (boards) and eval 10
+  (cups) can share one pack; checked locally (make_assets: boards 21/11, cups 49/53 pieces, others unchanged).
