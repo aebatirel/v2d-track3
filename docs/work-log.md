@@ -4072,3 +4072,7 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Expected ≈ 2.5–3 h each, ≈ $8–10 together; both self-destroy. Choice rule above.
 - Owner's next request (same message): videos of the current (third-submission) episodes, then forensics of what went
   wrong and what can be improved; "something more ambitious".
+- 06:14 UTC launched 57774411 `20261026-subvid-58468be` (RTX PRO 6000 Max-Q, Texas, $1.55/h): `ops/jobs/sub_videos.sh`
+  PACK_RUN=20261025-pack3-3758189 with pack 3's RUNS and PICK, PAR=4; every checkpoint sha256-checked against the
+  submitted rollout's json; replays carry contact forces (CONTACTS=1) for the forensics. Expected ≈ 40–60 min, ≈ $1–1.5.
+  (First offer 56228587 was gone: no_such_ask.)
