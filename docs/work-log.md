@@ -4076,3 +4076,32 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   PACK_RUN=20261025-pack3-3758189 with pack 3's RUNS and PICK, PAR=4; every checkpoint sha256-checked against the
   submitted rollout's json; replays carry contact forces (CONTACTS=1) for the forensics. Expected ≈ 40–60 min, ≈ $1–1.5.
   (First offer 56228587 was gone: no_such_ask.)
+
+## 2026-10-26 — forensics of the third submission; eval 10 cup collision copy (CPU)
+- Forensics (CPU, no GT): `tools/rollout_forensics.py` on pack 3's 20 official rollouts →
+  `docs/analysis/forensics-20261026/rollout_errors.{json,png}`. Eval 10's beige cup falls at frame 2 (89°, > 20 cm
+  for the whole episode); the eval-10 checkpoint (sha256 2503740…, ref `refs/glockt/ep10` of 20261024-pack-31ef267)
+  simulates library_v3 cups (sf assets identical; support fill had called the beige cup UNSTABLE at frame 0).
+- `pipeline/lathe_collision.py` (new): convex pieces of a cup from approach 2's lathe profile (wall wedges + base,
+  12 segments × 6 cm bands), base extended to our mesh's extreme along the axis (`--base_to_mesh`; beige +10.8 mm,
+  blue +1.6 mm), centre of mass / inertia of the uniform solid pieces (`inertia.json`, read by `make_assets.py`).
+  Geometry on eval 10's reference: the beige cup sits almost concentric in the blue one at f100–160 (origins 0.2–2.8 cm
+  apart); lathe-on-lathe overlap there (blue wall 3 mm) 113 cm³ median with no shrink, 18 cm³ with the beige radius
+  shrunk 8 mm: our reference nests the beige cup deeper than these shapes allow (a perception or size error).
+- **Rule before the FlashCHORD test** (`tools/carve_fc_test.py`, eval-10 tree, `--free_until 38`: no drive while
+  both cups rest, f0–37; then both driven by springs to the end): variants default (library_v3), lathe (blue wall
+  3 mm, beige shrink 0) and lathe-s8 (beige shrink 8 mm). **Pass for the standing part:** with a lathe copy both cups
+  within 1 cm / 5° of the reference at f37, while the default beige cup is not. **Nest:** report the beige error median
+  over f100–160; the lathe variant with the smaller median (GT-free, our reference) is the one proposed for a GPU rerun,
+  and only if it is ≤ 5 cm.
+- 06:34 UTC video box 57774411 `20261026-subvid-58468be` ended with **0 videos** (≈ 17 min, ≈ $0.45): three patterns
+  in one `hf download --include` fetched no manifest. Fixed (one pattern per call, stop if no episodes) in d9c3f7d and
+  relaunched as `20261026-subvid2-d9c3f7d` (RTX PRO 6000 Max-Q, Poland, $1.27/h).
+- CPU (eval 10, FlashCHORD harness): today's cups reproduce the failure (beige falls at rest: 80° by f10). Lathe pieces
+  (ring base, beige base extension capped so frame 0 clears the table, blue wall 3 mm): the beige cup then stands
+  (≤ 13° incl. the reference's 3.1° tilt) and, with the beige radius shrunk 8 mm, the driven nest tracks (f100–160
+  beige 1.03 cm / 2.5° vs 4.45 cm / 8.6° today). **But** the blue lathe cup rocks and in one of two runs falls at rest
+  although its pieces are identical in both (the runs differ only in the beige shrink); our current blue cup also
+  rocks 4–6° in this harness. Hands are parked 2.9 m away; no constraint overflow (nefc ≤ 98 of 512); the active
+  contact count jumps 0–21 between frames (bouncing). Unresolved: no eval-10 GPU run is proposed until the blue cup
+  stands reliably in this test.
