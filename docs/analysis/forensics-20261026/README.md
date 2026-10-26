@@ -127,6 +127,16 @@ Background (`docs/research/spoon-2026-10-25/`):
 - The spoon anchors evals 32, 33, 35, 36 and 37. A 10° frame-0 roll costs 0.09–0.28 there.
 - Our measured random roll is 2–6°. A systematic bias of the template or tracker cannot be measured without ground truth.
 
+**Frame-0 spoon check (videos, camera a, frame 2):** in all five spoon-anchored episodes (32, 33, 35, 36, 37) our
+reference spoon's outline lies on the real spoon. Position, direction and the marker knobs on the handle all agree.
+No gross frame-0 error is visible. A few degrees of roll would not show from above.
+
+If the inferred ≈ 0.06 spoon loss is real, the likelier sources are:
+- tracking while the spoon is hidden inside the pot or cup (stirring in 3, 5, 6; scooping in 33);
+- depth along the camera axis.
+
+Neither can be seen in one top-down view; checking them needs a second camera.
+
 ## 5. What can be improved, ranked
 
 | # | Lever | Episodes | Evidence | Expected Track 3 gain (estimate) | Cost |
