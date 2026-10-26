@@ -13,6 +13,8 @@
 #   2. pipeline/grasp_lock.py with GL_ARGS (single-hand carry per object, anatomy closing, palm press, wrap only where
 #      the human holds a narrow part, copied grasps snapped to the surface), lift feed-forward for the kp 400 wrist;
 #   3. pipeline/wrist_ilc.py with the kp 400 embodiment (EMB=sharpa_hands_mid);
+#      ILC_HOLD=1 (2026-10-26): object-level ILC while a hand carries an object (wrist_ilc.py --hold; ILC_ITERS, ILC_GAIN),
+#      keeping the best-scoring iteration (eval 10: the beige cup sat 3-6 cm low in the grip and hit the blue cup's rim);
 #   4. zero-action replay (tools/trace_rollout.py) scored with tools/trace_score.py (sim_vs_ref, our reference) and
 #      checked by tools/rest_check.py (every object stays within 5 mm / 2 deg until a hand comes for it);
 #      With REPLAN=N (> 0) the holds are then re-planned against the simulated world up to N times (grasp_lock.py
@@ -168,7 +170,8 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   fi
   ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl.parquet $GL_ARGS ) >> $LG 2>&1 \
     || { log "glock ep$ep: grasp_lock FAILED" >> $J; return 1; }
-  ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters 4 --device cuda ) >> $LG 2>&1 \
+  ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
+      ${ILC_HOLD:+--hold $G/$hive/ref_gl_grasp_lock.json --gain ${ILC_GAIN:-0.6}} ) >> $LG 2>&1 \
     || { log "glock ep$ep: wrist_ilc FAILED" >> $J; return 1; }
   if [ "${EVOLVE:-0}" = 1 ]; then                                  # evolutionary grasp refinement, one hold at a time
     local EV=$O/ep$ep/evolve np_ k; mkdir -p $EV; cp $G/$hive/ref_gl_ilc.parquet $EV/ref_before_evolve.parquet
@@ -195,7 +198,8 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
         || { log "glock ep$ep: replan $it: grasp_lock FAILED" >> $J; break; }
       n=$(python -c "import json; print(sum(1 for x in json.load(open('$G/$hive/ref_gl_r${it}_grasp_lock.json'))['phases'] if x.get('replan')))")
       [ "${n:-0}" -gt 0 ] || { log "glock ep$ep: replan $it: every object is where its reference says before its grasp; nothing to re-plan" >> $J; break; }
-      ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl_r$it.parquet $G/$hive/ref_gl_r${it}_ilc.parquet --iters 4 --device cuda ) >> $LG 2>&1 \
+      ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl_r$it.parquet $G/$hive/ref_gl_r${it}_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
+        ${ILC_HOLD:+--hold $G/$hive/ref_gl_r${it}_grasp_lock.json --gain ${ILC_GAIN:-0.6}} ) >> $LG 2>&1 \
         || { log "glock ep$ep: replan $it: wrist_ilc FAILED" >> $J; break; }
       RT=$RD.r$it; mkdir -p $RT/$hive; cp -r $R0/reconstructed_stage $RT/; cp $G/$hive/ref_gl_r${it}_ilc.parquet $RT/$hive/ref_gl_ilc.parquet
       ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1

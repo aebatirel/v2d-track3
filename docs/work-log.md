@@ -4332,3 +4332,19 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Across 64 stored results, zero action beats training by > 0.02 in 15. For the submission only eval 10 matters:
     zero action (frozen) 0.663 vs submitted 0.447. A zero-residual policy is an owner decision (22 Oct rule:
     learned policies only).
+- ~15:40 UTC **owner: "Sure do whatever takes to beat DDD"** (go-ahead; credit $17.29). Gap to DDD ≈ +0.017 AUC, i.e.
+  ≈ +0.46 sim_vs_ref summed over the 20 episodes at today's 76 % transfer; eval 10 holds 0.55 of headroom.
+  - **Eval-10 early-checkpoint test**: three on-demand boxes, eval 10 on the evB reference with the carved cups (SF=0,
+    PIECES ev10), seed 42, 70M steps as before, but `TRAIN_ARGS=training.checkpoint.save_interval_environment_steps=1000448`
+    (a checkpoint every ≈ 1M steps; the curve scores all of them, 3 evaluations each):
+    - A′: eval_both variant (REPLAN=1);
+    - B′: frozen variant (EVOLVE=1, onset anchor), whose zero action scored 0.663 on GPU today;
+    - C′: GL_ARGS + `--rest_below_cm 8`, ILC_HOLD=1 (object-level ILC, 8 iterations, best kept), REPLAN=0.
+  - ≈ 1.6 h each, ≈ $7–8 together.
+  - Hypothesis: early checkpoints (1–5M) have not yet learned to avoid the cup and keep the plan's ≈ 0.6. Falsified
+    if no curve checkpoint beats 0.47 over its 3 evaluations.
+  - **Choice rule (now, before results):** candidates = the submitted eval-10 policy (carve standard learner s43,
+    5-eval mean 0.452), gl10A2 (0.4539), and A′, B′, C′ (5-eval mean of each run's chosen curve checkpoint). The highest
+    5-eval mean sim_vs_ref goes into pack 5, after checking the object trajectory is identical. Every candidate is a
+    trained checkpoint (≥ 1M steps); no zero-residual policy.
+  - Pack 5 also takes eval 32 = fr32s46b (rule winner, 0.803).
