@@ -292,3 +292,11 @@ New findings:
 - the physics knobs replay unchecked into the scored rollout.
 Plan: note 23 §E. CPU audit first, then batch G1 (30 runs ≈ $75–100 on demand, or a 16-run slice ≈ $40–55), pending
 the owner's go-ahead. Nothing was run in the simulator; all policy-side effects remain hypotheses.
+2026-10-26: Owner asked why G1 needs so many GPU hours, what it returns, and whether the expensive GPU is needed.
+Added a staged alternative to note 23 §E:
+- CPU audit ($0);
+- +3 arms riding on the day-1 episodes (≈ $7–10);
+- 6–12 runs only if needed;
+- the full G1 only if the results are mixed.
+Costs per the 2026-10-20 Vast snapshot: ≈ $2.2–3.3 per policy on demand, ≈ $0.6–1.0 interruptible. 48 GB cards cost
+about the same per policy; 24–32 GB cards cannot fit the 4096-world recipe.

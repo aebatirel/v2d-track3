@@ -421,6 +421,19 @@ perception, be tuned on public episodes and be frozen before eval.
 The oracle arms test the stiffness × reference-error interaction on public episodes only. G1 needs the owner's
 go-ahead, the day-1 smoke and resume tests, and working `hands_mp` → `mkref` references.
 
+**Staged alternative (preferred after the owner's cost question, 2026-10-26).** Per-policy costs come from the
+2026-10-20 Vast snapshot [E]: ≈ $2.2–3.3 on demand, ≈ $0.6–1.0 interruptible.
+1. CPU audit (lever 2): $0.
+2. Ride on day 1: add one arm (A1 + ball damping) next to the planned default runs on eps 12, 22 and 27. That is +3 runs,
+   ≈ $7–10 on demand.
+3. Only if step 2 shows a signal, or is ambiguous: 2–4 episodes × 2–3 arms = 6–12 runs, ≈ $15–40 on demand or ≈ $5–12
+   interruptible.
+4. Run the full G1 only if the results are mixed.
+
+Each run must train from scratch to at least the unassisted phase: VOC is off only after 122.9M of the 250M steps. A
+compressed curriculum (all thresholds × 0.5, ≈ 1 h per run) could halve screening cost. That is an untested
+hypothesis: the arm ranking may not carry over to the full schedule.
+
 ## F. Rules and integrity
 - Gains, observation toggles, reward weights and terminations are training config that the evaluator replays from the
   checkpoint. The stiff variant ships in the official repo; non-default gains are the same kind of choice. Ask the
