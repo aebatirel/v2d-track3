@@ -24,3 +24,16 @@ mis-registers and costs score even when the simulated motion is right.
 - The lathe variant stays below the scan, as a genuine registration improvement should.
 
 **Expected (estimate):** ≈ +0.1 on eval 20's AUC, i.e. ≈ +0.005 Track 3 AUC, if eval 20 behaves like its twin.
+
+## Test 2: our other library versions (`test2/`)
+
+Rollouts: ep24 and ep18 from `20261024-ev3-2c1e4dd`, ep31 from `20261024-ev30rp-07eef1a`, all library_v3. The
+script's "base" is library_v2's meshes; for the sweeper, v3 is what the rollouts used.
+
+| Object | Swap | Δ episode AUC |
+|---|---|---|
+| boards (ep24) | v4 flattened vs v3 | ±0.000 |
+| sweeper (ep18 / ep31) | v3 vs v2 | +0.007 / −0.005 |
+| dust pan (ep18) | v1 vs v3 | −0.001 |
+
+No other swap is worth making; only the pitcher changes.
