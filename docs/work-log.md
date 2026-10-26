@@ -4029,3 +4029,14 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   default hulls' is ≥ 2 cm or ≥ 20°, and the collision-hull overlap at assembly drops below 1 cm³. If the default
   already tracks (< 1 cm, < 10°) on this reference, the slot is not what blocks eval 25 and no GPU run is proposed.
   The prototype on the old (swapped) reference gave default 0.94 cm / 101°, cut 0.05 cm / 0.5°.
+- **Result (CPU, 248 s): PASS** on the rule above. Outputs copied to `meshes/carve/ev25/` (21 + 11 convex pieces,
+  `carve.json`, `carve.log`).
+  - Proxy lag of board 2 at the 57 assembled frames (f294–355): default hulls **1.17 cm / 103.7°** (max 5.35 cm),
+    cut **0.06 cm / 0.5°** (max 1.02 cm, penetration ≤ 0.3 mm), contact off 0.03 cm / 0.1°.
+  - Collision-hull overlap at assembly: 11.8 cm³ → **0.17 cm³** (max 0.78). Mesh overlap 9.9 cm³.
+  - Joint from our reference: insertion window f185–355, first overlap f225; board-2 axes in board 1 (x → +z, y → −y,
+    z → +x), the ep24 configuration (the identity fix holds). Slabs 20.0 mm (board 1) and 15.6 mm (board 2) wide
+    against a ≈ 12 mm board; only 2 of 19 and 2 of 9 hulls are split (FlashCHORD's CoACD gives 19 and 9 hulls here).
+  - Removed hull volume 9.3 / 9.7 cm³. The submitted meshes are unchanged.
+- Next: the same test in FlashCHORD's own physics (Newton / MuJoCo Warp on CPU, dt 0.01, the scene built by
+  `setup_scene`), then a pre-registered GPU plan for the owner.

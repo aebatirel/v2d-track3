@@ -1,0 +1,129 @@
+{
+ "tool": "interaction_carve slot",
+ "mesh_a": "meshes/library_v3/wooden_piece_1.glb",
+ "mesh_b": "meshes/library_v3/wooden_piece_2.glb",
+ "ref": "<scratch>/ev25/runs/20261025-ev25idfix-02de0c7/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+ "names": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 356,
+ "solid_cm3": [
+  197.8,
+  323.5
+ ],
+ "n_assembled": 57,
+ "mesh_overlap_cm3_median_assembled": 9.88,
+ "carved": true,
+ "insertion_window": [
+  185,
+  355
+ ],
+ "first_overlap_frame": 225,
+ "assembled_frames": [
+  294,
+  355
+ ],
+ "entry_dir_A": [
+  -0.9245,
+  0.3812,
+  0.0025
+ ],
+ "rel_rot_assembled_B_axes_in_A": [
+  [
+   0.009,
+   -0.009,
+   1.0
+  ],
+  [
+   0.006,
+   -1.0,
+   -0.009
+  ],
+  [
+   1.0,
+   0.006,
+   -0.009
+  ]
+ ],
+ "a": {
+  "claim_cm3": 14.46,
+  "slab_mm": [
+   -5.7,
+   14.3
+  ],
+  "slab_width_mm": 20.0,
+  "slab_axis": [
+   0.0052,
+   0.0062,
+   1.0
+  ],
+  "plane_normal": [
+   -0.9245,
+   0.3812,
+   0.0025
+  ],
+  "plane_offset_mm": -0.6,
+  "own_thickness_sigma_mm": 3.5,
+  "hulls_before": 19,
+  "hulls_touched": 2,
+  "pieces": 21,
+  "hull_cm3_before": 249.1,
+  "hull_cm3_after": 239.8
+ },
+ "b": {
+  "claim_cm3": 16.65,
+  "slab_mm": [
+   -8.7,
+   6.9
+  ],
+  "slab_width_mm": 15.6,
+  "slab_axis": [
+   0.0215,
+   -0.004,
+   0.9998
+  ],
+  "plane_normal": [
+   0.0034,
+   0.3727,
+   0.9279
+  ],
+  "plane_offset_mm": 1.76,
+  "own_thickness_sigma_mm": 3.6,
+  "hulls_before": 9,
+  "hulls_touched": 2,
+  "pieces": 11,
+  "hull_cm3_before": 350.8,
+  "hull_cm3_after": 341.1
+ },
+ "hull_overlap_cm3_assembled": {
+  "default_median": 11.8,
+  "default_max": 12.78,
+  "cut_median": 0.17,
+  "cut_max": 0.78
+ },
+ "proxy": {
+  "default": {
+   "lag_cm_asm_median": 1.17,
+   "lag_deg_asm_median": 103.7,
+   "lag_cm_max": 5.35,
+   "lag_cm_end": 1.1,
+   "pen_mm_max": 4.4
+  },
+  "cut": {
+   "lag_cm_asm_median": 0.06,
+   "lag_deg_asm_median": 0.5,
+   "lag_cm_max": 1.02,
+   "lag_cm_end": 0.08,
+   "pen_mm_max": 0.3
+  },
+  "nocollide": {
+   "lag_cm_asm_median": 0.03,
+   "lag_deg_asm_median": 0.1,
+   "lag_cm_max": 1.02,
+   "lag_cm_end": 0.02,
+   "pen_mm_max": 0.0
+  }
+ },
+ "sec": 247.6
+}
