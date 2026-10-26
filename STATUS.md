@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~15:35 UTC: push to beat DDD (0.827): three boxes running
+- **Pack 5** (`20261026-pack5-526918b`):
+  - eval 32 = s46, eval 10 = gl10A2;
+  - eval 20's submitted pitcher → our lathe reconstruction (`meshes/library_v3p`; twin ep21 registered 0.776 → 0.874
+    with the same rollouts);
+  - then upload.
+- **Eval-10 early-checkpoint test** B′ / C′ (`20261026-e10B/e10C-6762f80`), results ≈ 16:30 UTC; a pack 6 if one
+  wins.
+- Mesh-swap tests: only the pitcher gains (`docs/analysis/meshswap-20261026/`).
+
 ## 2026-10-26 ~15:25 UTC: eval-10 check done (CPU); one small GPU test proposed
 - Cause: every learner learns to avoid the beige cup. The open-loop plan carries it, but the cup hits the blue cup's
   rim (6–7 cm misalignment in the simulation) and is flung after release.
