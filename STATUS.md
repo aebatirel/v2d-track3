@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-26 ~15:25 UTC: eval-10 check done (CPU); one small GPU test proposed
+- Cause: every learner learns to avoid the beige cup. The open-loop plan carries it, but the cup hits the blue cup's
+  rim (6–7 cm misalignment in the simulation) and is flung after release.
+- `docs/analysis/ev10-stack-20261026/README.md`. New tools, off by default: `grasp_lock.py --rest_below_cm`,
+  `wrist_ilc.py --hold` (object-level ILC). Best CPU replay 0.632, not robust (0.42–0.54 under ±3–6 mm jitter).
+- Zero action of the frozen-variant plan: 0.663 vs submitted 0.447. A zero-residual policy is not used: the kit asks
+  for a trained policy (22 Oct rule).
+- Proposed, not rented: eval 10 frozen variant with checkpoints every 1M steps for 20M (curve includes near-plan
+  checkpoints), ≈ $2. Credit $17.29, 0 boxes.
+
 ## 2026-10-26 ~13:20 UTC: batch done; eval-10 grasp-lock idea falsified; eval 32 → s46 (small)
 - Eval 10: grasp lock on the carved cups never lifts a cup (A 0.454, B 0.438; current 0.452). Rule winner A by 0.002.
 - Eval 32: seeds 44–46 → s46 0.803 vs s42 0.779 (rule winner s46).
