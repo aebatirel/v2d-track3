@@ -1,0 +1,46 @@
+[
+ {
+  "ep": 2,
+  "path": "runs/20261020-day1b-cfbff6b/results/perc2vc/ep2-s42/episode_000002.parquet",
+  "lib": "scan",
+  "T_ours": 0.9247,
+  "T_script": 0.9247,
+  "R_ours": 0.9942,
+  "R_script": 0.9942,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 12,
+  "path": "runs/20261020-day1b-cfbff6b/results/oracle/ep12-s42/episode_000012.parquet",
+  "lib": "scan",
+  "T_ours": 0.857,
+  "T_script": 0.857,
+  "R_ours": 1.0,
+  "R_script": 1.0,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 21,
+  "path": "runs/20261025-twin21base-ee7ba8e/results/glock_public/ep21/curve/policy_70004736/r3/episode_000021.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.6079,
+  "T_script": 0.6079,
+  "R_ours": 0.7742,
+  "R_script": 0.7742,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 27,
+  "path": "runs/20261020-day1b-cfbff6b/results/perc2vc/ep27-s42/episode_000027.parquet",
+  "lib": "scan",
+  "T_ours": 0.9674,
+  "T_script": 0.9674,
+  "R_ours": 0.9971,
+  "R_script": 0.9971,
+  "per_obj_match": true,
+  "match": true
+ }
+]

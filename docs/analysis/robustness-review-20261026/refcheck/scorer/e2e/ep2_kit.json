@@ -1,0 +1,23 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "rows": 686,
+ "host_faces": "full scan",
+ "host_geometry_decoded_bytes": 18959688,
+ "host_limit_bytes": 16000000,
+ "packed_sha256": "2324566a459242ed8a3aa4880cbb169a5dadaf2152877240bc10f42bfddfe0d9",
+ "kaggle_metric": {
+  "AUC": 0.451348,
+  "SP-SR": 0.0,
+  "MP-SR": 0.0,
+  "RPE": 17.690907,
+  "MPPE": 10.671308
+ },
+ "packed_minus_rollout_maxabs": 0.0,
+ "packed_quat_norm_dev_max": 1.3169078671992906e-07,
+ "worlds_in_rollout": 1
+}

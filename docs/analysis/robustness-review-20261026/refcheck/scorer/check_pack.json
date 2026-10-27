@@ -1,0 +1,1714 @@
+{
+ "submission_file": "/home/user/v2d-track3/results/submissions/20261026-track3d/track3_submission.parquet",
+ "sha256": "59db1c316d4075f57dc6607593cd5ee7ebc8a65267bb3fabc9ed98ea73d06e5d",
+ "rows": 9120,
+ "row_ids_equal_sample": true,
+ "quat_norm_dev_max": 1.4818711280284447e-07,
+ "worlds": [
+  0
+ ],
+ "episodes": {
+  "1": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": 335,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "white_pot": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "white_pot_lid": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "white_pot": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot/white_pot.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.46,
+      -0.65,
+      -0.46
+     ]
+    },
+    "white_pot_lid": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot_lid/white_pot_lid.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.38,
+      -0.33,
+      0.79
+     ]
+    }
+   },
+   "frame0_gap": {
+    "white_pot": {
+     "pos_mm": 0.774,
+     "rot_deg": 0.273
+    },
+    "white_pot_lid": {
+     "pos_mm": 3.295,
+     "rot_deg": 1.35
+    }
+   }
+  },
+  "3": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "frames": 313,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "white_pot": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "white_pot": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot/white_pot.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.46,
+      -0.65,
+      -0.46
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 10.4164,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "white_pot": {
+     "pos_mm": 2.938,
+     "rot_deg": 1.035
+    },
+    "wooden_spoon": {
+     "pos_mm": 1.971,
+     "rot_deg": 0.319
+    }
+   }
+  },
+  "5": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "frames": 288,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "white_pot": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "white_pot": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot/white_pot.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.46,
+      -0.65,
+      -0.46
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "white_pot": {
+     "pos_mm": 0.892,
+     "rot_deg": 0.683
+    },
+    "wooden_spoon": {
+     "pos_mm": 2.886,
+     "rot_deg": 0.59
+    }
+   }
+  },
+  "6": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "frames": 243,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "white_pot": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "white_pot": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot/white_pot.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.46,
+      -0.65,
+      -0.46
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "white_pot": {
+     "pos_mm": 0.314,
+     "rot_deg": 0.257
+    },
+    "wooden_spoon": {
+     "pos_mm": 0.69,
+     "rot_deg": 0.555
+    }
+   }
+  },
+  "8": {
+   "objects": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "frames": 219,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "beige_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "ebea224c3dace035bdef928fcfa05967",
+     "library": "library_v3x",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": false
+    },
+    "white_pot": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "beige_cup": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/beige_cup/beige_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 17,
+     "com_cm": [
+      -0.06,
+      0.28,
+      -1.76
+     ]
+    },
+    "white_pot": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot/white_pot.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.46,
+      -0.65,
+      -0.46
+     ]
+    }
+   },
+   "frame0_gap": {
+    "beige_cup": {
+     "pos_mm": 1.165,
+     "rot_deg": 0.591
+    },
+    "white_pot": {
+     "pos_mm": 1.979,
+     "rot_deg": 0.104
+    }
+   }
+  },
+  "10": {
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "frames": 161,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "blue_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "7542631493e3a0564f6d74009de67d54",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "beige_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "6226281f120192c52bffec7680fa9d8f",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "blue_cup": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/blue_cup/blue_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.03,
+      -0.01,
+      0.17
+     ]
+    },
+    "beige_cup": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/beige_cup/beige_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.18,
+      0.32,
+      -1.62
+     ]
+    }
+   },
+   "frame0_gap": {
+    "blue_cup": {
+     "pos_mm": 1.656,
+     "rot_deg": 0.384
+    },
+    "beige_cup": {
+     "pos_mm": 2.938,
+     "rot_deg": 1.297
+    }
+   }
+  },
+  "14": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": 158,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "blue_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "7542631493e3a0564f6d74009de67d54",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "plastic_dish_rack": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "blue_cup": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/blue_cup/blue_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.03,
+      -0.01,
+      0.17
+     ]
+    },
+    "plastic_dish_rack": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.65,
+      -0.53,
+      1.15
+     ]
+    }
+   },
+   "frame0_gap": {
+    "blue_cup": {
+     "pos_mm": 1.448,
+     "rot_deg": 0.236
+    },
+    "plastic_dish_rack": {
+     "pos_mm": 1.133,
+     "rot_deg": 0.047
+    }
+   }
+  },
+  "15": {
+   "objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "frames": 166,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "plastic_dish_rack": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "plastic_dish_rack": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.65,
+      -0.53,
+      1.15
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "plastic_dish_rack": {
+     "pos_mm": 1.963,
+     "rot_deg": 0.014
+    },
+    "wooden_spoon": {
+     "pos_mm": 3.435,
+     "rot_deg": 1.236
+    }
+   }
+  },
+  "16": {
+   "objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "frames": 173,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "plastic_dish_rack": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "plastic_dish_rack": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.65,
+      -0.53,
+      1.15
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "plastic_dish_rack": {
+     "pos_mm": 0.923,
+     "rot_deg": 0.615
+    },
+    "wooden_spoon": {
+     "pos_mm": 1.852,
+     "rot_deg": 3.184
+    }
+   }
+  },
+  "19": {
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "frames": 235,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "mini_sweeper": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "mini_dust_pan": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "c33fa41118944a7da340cc82fc6449d8",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "mini_sweeper": {
+     "max_vertex_distance_mm": 5.5746,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/mini_sweeper/mini_sweeper.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.16,
+      -0.03,
+      0.0
+     ]
+    },
+    "mini_dust_pan": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/mini_dust_pan/mini_dust_pan.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.52,
+      -0.18,
+      -0.42
+     ]
+    }
+   },
+   "frame0_gap": {
+    "mini_sweeper": {
+     "pos_mm": 0.859,
+     "rot_deg": 0.57
+    },
+    "mini_dust_pan": {
+     "pos_mm": 0.752,
+     "rot_deg": 0.239
+    }
+   }
+  },
+  "20": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": 202,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "blue_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "7542631493e3a0564f6d74009de67d54",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "water_pitcher": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "blue_cup": {
+     "max_vertex_distance_mm": 28.296,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/blue_cup/blue_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.03,
+      -0.01,
+      0.17
+     ]
+    },
+    "water_pitcher": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/water_pitcher/water_pitcher.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 9,
+     "com_cm": [
+      -0.33,
+      1.37,
+      1.95
+     ]
+    }
+   },
+   "frame0_gap": {
+    "blue_cup": {
+     "pos_mm": 14.715,
+     "rot_deg": 0.0
+    },
+    "water_pitcher": {
+     "pos_mm": 2.899,
+     "rot_deg": 0.56
+    }
+   }
+  },
+  "25": {
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": 356,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "wooden_piece_1": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_piece_2": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "825a7fe364d280603f36226595137f43",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "wooden_piece_1": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_piece_1/wooden_piece_1.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.06,
+      -0.09,
+      -0.26
+     ]
+    },
+    "wooden_piece_2": {
+     "max_vertex_distance_mm": 8.2867,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_piece_2/wooden_piece_2.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.19,
+      0.11,
+      0.18
+     ]
+    }
+   },
+   "frame0_gap": {
+    "wooden_piece_1": {
+     "pos_mm": 1.822,
+     "rot_deg": 1.124
+    },
+    "wooden_piece_2": {
+     "pos_mm": 1.396,
+     "rot_deg": 0.119
+    }
+   }
+  },
+  "28": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": 220,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "plastic_dish_rack": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "white_pot": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "plastic_dish_rack": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.65,
+      -0.53,
+      1.15
+     ]
+    },
+    "white_pot": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/white_pot/white_pot.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.46,
+      -0.65,
+      -0.46
+     ]
+    }
+   },
+   "frame0_gap": {
+    "plastic_dish_rack": {
+     "pos_mm": 1.872,
+     "rot_deg": 1.162
+    },
+    "white_pot": {
+     "pos_mm": 1.387,
+     "rot_deg": 0.278
+    }
+   }
+  },
+  "30": {
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "frames": 263,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "mini_sweeper": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "plastic_dish_rack": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "mini_sweeper": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/mini_sweeper/mini_sweeper.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.16,
+      -0.03,
+      0.0
+     ]
+    },
+    "plastic_dish_rack": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/plastic_dish_rack/plastic_dish_rack.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      0.65,
+      -0.53,
+      1.15
+     ]
+    }
+   },
+   "frame0_gap": {
+    "mini_sweeper": {
+     "pos_mm": 3.839,
+     "rot_deg": 5.199
+    },
+    "plastic_dish_rack": {
+     "pos_mm": 0.791,
+     "rot_deg": 0.577
+    }
+   }
+  },
+  "32": {
+   "objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "frames": 259,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "blue_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "7542631493e3a0564f6d74009de67d54",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "blue_cup": {
+     "max_vertex_distance_mm": 28.2844,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/blue_cup/blue_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.03,
+      -0.01,
+      0.17
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 8.4031,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "blue_cup": {
+     "pos_mm": 3.412,
+     "rot_deg": 4.254
+    },
+    "wooden_spoon": {
+     "pos_mm": 1.183,
+     "rot_deg": 4.27
+    }
+   }
+  },
+  "33": {
+   "objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "frames": 348,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "blue_cup": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "7542631493e3a0564f6d74009de67d54",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    },
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "blue_cup": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/blue_cup/blue_cup.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.03,
+      -0.01,
+      0.17
+     ]
+    },
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "blue_cup": {
+     "pos_mm": 0.185,
+     "rot_deg": 0.137
+    },
+    "wooden_spoon": {
+     "pos_mm": 0.88,
+     "rot_deg": 0.668
+    }
+   }
+  },
+  "35": {
+   "objects": [
+    "wooden_spoon"
+   ],
+   "frames": 421,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "wooden_spoon": {
+     "pos_mm": 1.504,
+     "rot_deg": 2.155
+    }
+   }
+  },
+  "36": {
+   "objects": [
+    "wooden_spoon"
+   ],
+   "frames": 407,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "wooden_spoon": {
+     "pos_mm": 0.79,
+     "rot_deg": 0.228
+    }
+   }
+  },
+  "37": {
+   "objects": [
+    "wooden_spoon"
+   ],
+   "frames": 151,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "wooden_spoon"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "wooden_spoon": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "wooden_spoon": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/wooden_spoon/wooden_spoon.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.0,
+      -0.0,
+      0.07
+     ]
+    }
+   },
+   "frame0_gap": {
+    "wooden_spoon": {
+     "pos_mm": 0.763,
+     "rot_deg": 1.639
+    }
+   }
+  },
+  "38": {
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": 263,
+   "rollout_worlds": 1,
+   "rollout_quaternion_order": "xyzw",
+   "rollout_body_names": [
+    "mini_dust_pan"
+   ],
+   "body_names_match_roster": true,
+   "rows_minus_rollout_maxabs": 0.0,
+   "meshes": {
+    "mini_dust_pan": {
+     "payloads": 1,
+     "payload_equals_budget_mesh": true,
+     "packed_glb_md5": "c33fa41118944a7da340cc82fc6449d8",
+     "library": "library_v3",
+     "packed_glb_equals_library": true,
+     "equals_library_v3": true
+    }
+   },
+   "sim_assets_vs_packed": {
+    "mini_dust_pan": {
+     "max_vertex_distance_mm": 0.0,
+     "visual": [
+      "0 0 0",
+      "0 0 0",
+      "../mesh/mini_dust_pan/mini_dust_pan.glb",
+      "1 1 1"
+     ],
+     "collision_origins_nonzero": [],
+     "n_collision": 1,
+     "com_cm": [
+      -0.52,
+      -0.18,
+      -0.42
+     ]
+    }
+   },
+   "frame0_gap": {
+    "mini_dust_pan": {
+     "pos_mm": 0.239,
+     "rot_deg": 0.104
+    }
+   }
+  }
+ },
+ "all_rows_equal_rollouts": true,
+ "all_payloads_equal_budget_mesh": true,
+ "all_packed_glb_equal_library": true,
+ "one_payload_each": true,
+ "all_body_names_match": true,
+ "public_rollouts_frame0_gap": {
+  "ep21/r1": {
+   "blue_cup": {
+    "pos_mm": 0.733,
+    "rot_deg": 0.316,
+    "com_offset_mm": 1.76
+   },
+   "water_pitcher": {
+    "pos_mm": 0.891,
+    "rot_deg": 0.314,
+    "com_offset_mm": 24.03
+   }
+  },
+  "ep21/r2": {
+   "blue_cup": {
+    "pos_mm": 0.733,
+    "rot_deg": 0.316,
+    "com_offset_mm": 1.76
+   },
+   "water_pitcher": {
+    "pos_mm": 0.891,
+    "rot_deg": 0.314,
+    "com_offset_mm": 24.03
+   }
+  },
+  "ep21/r3": {
+   "blue_cup": {
+    "pos_mm": 0.733,
+    "rot_deg": 0.316,
+    "com_offset_mm": 1.76
+   },
+   "water_pitcher": {
+    "pos_mm": 0.891,
+    "rot_deg": 0.314,
+    "com_offset_mm": 24.03
+   }
+  },
+  "ep21/r4": {
+   "blue_cup": {
+    "pos_mm": 0.733,
+    "rot_deg": 0.316,
+    "com_offset_mm": 1.76
+   },
+   "water_pitcher": {
+    "pos_mm": 0.891,
+    "rot_deg": 0.314,
+    "com_offset_mm": 24.03
+   }
+  },
+  "ep21/r5": {
+   "blue_cup": {
+    "pos_mm": 0.733,
+    "rot_deg": 0.316,
+    "com_offset_mm": 1.76
+   },
+   "water_pitcher": {
+    "pos_mm": 0.891,
+    "rot_deg": 0.314,
+    "com_offset_mm": 24.03
+   }
+  },
+  "ep11/r1": {
+   "blue_cup": {
+    "pos_mm": 2.514,
+    "rot_deg": 0.457,
+    "com_offset_mm": 1.76
+   },
+   "beige_cup": {
+    "pos_mm": 3.711,
+    "rot_deg": 2.052,
+    "com_offset_mm": 17.8
+   }
+  },
+  "ep11/r2": {
+   "blue_cup": {
+    "pos_mm": 2.514,
+    "rot_deg": 0.457,
+    "com_offset_mm": 1.76
+   },
+   "beige_cup": {
+    "pos_mm": 3.711,
+    "rot_deg": 2.052,
+    "com_offset_mm": 17.8
+   }
+  },
+  "ep11/r3": {
+   "blue_cup": {
+    "pos_mm": 2.514,
+    "rot_deg": 0.457,
+    "com_offset_mm": 1.76
+   },
+   "beige_cup": {
+    "pos_mm": 3.711,
+    "rot_deg": 2.052,
+    "com_offset_mm": 17.8
+   }
+  },
+  "ep11/r4": {
+   "blue_cup": {
+    "pos_mm": 2.514,
+    "rot_deg": 0.457,
+    "com_offset_mm": 1.76
+   },
+   "beige_cup": {
+    "pos_mm": 3.711,
+    "rot_deg": 2.052,
+    "com_offset_mm": 17.8
+   }
+  },
+  "ep11/r5": {
+   "blue_cup": {
+    "pos_mm": 2.514,
+    "rot_deg": 0.457,
+    "com_offset_mm": 1.76
+   },
+   "beige_cup": {
+    "pos_mm": 3.711,
+    "rot_deg": 2.052,
+    "com_offset_mm": 17.8
+   }
+  },
+  "ep2/r1": {
+   "white_pot": {
+    "pos_mm": 1.016,
+    "rot_deg": 0.608,
+    "com_offset_mm": 9.17
+   },
+   "white_pot_lid": {
+    "pos_mm": 3.041,
+    "rot_deg": 0.724,
+    "com_offset_mm": 9.4
+   }
+  },
+  "ep2/r2": {
+   "white_pot": {
+    "pos_mm": 1.016,
+    "rot_deg": 0.609,
+    "com_offset_mm": 9.17
+   },
+   "white_pot_lid": {
+    "pos_mm": 3.041,
+    "rot_deg": 0.724,
+    "com_offset_mm": 9.4
+   }
+  },
+  "ep2/r3": {
+   "white_pot": {
+    "pos_mm": 1.016,
+    "rot_deg": 0.609,
+    "com_offset_mm": 9.17
+   },
+   "white_pot_lid": {
+    "pos_mm": 3.041,
+    "rot_deg": 0.724,
+    "com_offset_mm": 9.4
+   }
+  },
+  "ep2/r4": {
+   "white_pot": {
+    "pos_mm": 1.016,
+    "rot_deg": 0.609,
+    "com_offset_mm": 9.17
+   },
+   "white_pot_lid": {
+    "pos_mm": 3.041,
+    "rot_deg": 0.724,
+    "com_offset_mm": 9.4
+   }
+  },
+  "ep2/r5": {
+   "white_pot": {
+    "pos_mm": 1.016,
+    "rot_deg": 0.609,
+    "com_offset_mm": 9.17
+   },
+   "white_pot_lid": {
+    "pos_mm": 3.041,
+    "rot_deg": 0.724,
+    "com_offset_mm": 9.4
+   }
+  },
+  "ep18/r1": {
+   "mini_sweeper": {
+    "pos_mm": 0.093,
+    "rot_deg": 0.083,
+    "com_offset_mm": null
+   },
+   "mini_dust_pan": {
+    "pos_mm": 0.034,
+    "rot_deg": 0.082,
+    "com_offset_mm": null
+   }
+  },
+  "ep18/r2": {
+   "mini_sweeper": {
+    "pos_mm": 0.093,
+    "rot_deg": 0.083,
+    "com_offset_mm": null
+   },
+   "mini_dust_pan": {
+    "pos_mm": 0.034,
+    "rot_deg": 0.082,
+    "com_offset_mm": null
+   }
+  },
+  "ep18/r3": {
+   "mini_sweeper": {
+    "pos_mm": 0.093,
+    "rot_deg": 0.083,
+    "com_offset_mm": null
+   },
+   "mini_dust_pan": {
+    "pos_mm": 0.034,
+    "rot_deg": 0.082,
+    "com_offset_mm": null
+   }
+  },
+  "ep18/r4": {
+   "mini_sweeper": {
+    "pos_mm": 0.093,
+    "rot_deg": 0.083,
+    "com_offset_mm": null
+   },
+   "mini_dust_pan": {
+    "pos_mm": 0.034,
+    "rot_deg": 0.082,
+    "com_offset_mm": null
+   }
+  },
+  "ep18/r5": {
+   "mini_sweeper": {
+    "pos_mm": 0.093,
+    "rot_deg": 0.083,
+    "com_offset_mm": null
+   },
+   "mini_dust_pan": {
+    "pos_mm": 0.034,
+    "rot_deg": 0.082,
+    "com_offset_mm": null
+   }
+  },
+  "ep39/r1": {
+   "mini_dust_pan": {
+    "pos_mm": 0.845,
+    "rot_deg": 0.188,
+    "com_offset_mm": null
+   }
+  },
+  "ep39/r2": {
+   "mini_dust_pan": {
+    "pos_mm": 0.845,
+    "rot_deg": 0.188,
+    "com_offset_mm": null
+   }
+  },
+  "ep39/r3": {
+   "mini_dust_pan": {
+    "pos_mm": 0.845,
+    "rot_deg": 0.188,
+    "com_offset_mm": null
+   }
+  },
+  "ep39/r4": {
+   "mini_dust_pan": {
+    "pos_mm": 0.845,
+    "rot_deg": 0.188,
+    "com_offset_mm": null
+   }
+  },
+  "ep39/r5": {
+   "mini_dust_pan": {
+    "pos_mm": 0.845,
+    "rot_deg": 0.188,
+    "com_offset_mm": null
+   }
+  }
+ }
+}

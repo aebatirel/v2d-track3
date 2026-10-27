@@ -1,0 +1,23 @@
+{
+ "episode": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 186,
+ "rows": 372,
+ "host_faces": "full scan",
+ "host_geometry_decoded_bytes": 18958440,
+ "host_limit_bytes": 16000000,
+ "packed_sha256": "63a5500827d01cffaf84f891e1834a5ddce36a7deec533d97c2397c7dc0e1ca8",
+ "kaggle_metric": {
+  "AUC": 0.790323,
+  "SP-SR": 1.0,
+  "MP-SR": 0.0,
+  "RPE": 1.981356,
+  "MPPE": 2.505146
+ },
+ "packed_minus_rollout_maxabs": 0.0,
+ "packed_quat_norm_dev_max": 1.259910495932104e-07,
+ "worlds_in_rollout": 1
+}
