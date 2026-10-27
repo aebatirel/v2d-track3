@@ -20,24 +20,25 @@ h = height above the cut; table at h = -table_band):
      h_ft = table + T_WALL up; the basin ends at the cup holder's outer face. Outline, s0, s1 by one robust
      least-squares fit to three point classes chosen by the side they were seen from (camera centre per point):
      outer-face points (sd = 0), inner-face points (sd = -s(h)), lip points (sd = -s0/2).
-  2. Cup holder = straight rounded-rectangle tube, upright (CUP_LEAN: else lean and draft linear in h), wall T_WALL; outer
+  2. Cup holder = rounded-rectangle tube, lean and draft linear in h (CUP_LEAN; else straight upright), wall T_WALL; outer
      points sd = 0, inner points sd = -T_WALL, rim points sd = -T_WALL/2; top = robust top height; inner floor =
      up-facing points inside the cavity (else the tray floor).
-  3. Pegs: blobs of a mid-height slice inside the basin, grouped into rows; per row one tapered, leaning
-     elliptic-cone template (half-widths a(h) along x, kappa a(h) along y, centre offset linear in h) and per-peg
+  3. Pegs: blobs of a mid-height slice inside the basin, grouped into rows; per row one tapered cone template,
+     round and upright (PEG_KAPPA = 1, PEG_LEAN = False; half-widths a(h) along x and y) and per-peg
      base centres, robust least squares on the pooled peg points; rounded tip at the row's top height.
   4. Marker balls: compact residual clusters outside the body (prim_potlid.markers_from: sphere fit with the 7 mm
      prior from our own stereo, gap/size/residual tests, stem only when points support it); kept only with a
      curved cap (marker_parts) and not centred over the basin (markers sit on the exterior).
   All parts are unioned with manifold3d (watertight, no hidden internal faces).
-T_WALL = 2.5 mm is a prior for the moulded wall / floor thickness (task brief: thin moulded shells); the never-seen
-floor is a plate of that thickness lying on the table.
+T_WALL is a prior for the moulded wall / floor thickness (PRIM_T_WALL, default 2.5 mm); the never-seen floor is a plate
+of that thickness lying on the table. The 2.5 mm of the first run came from a brief that quoted the scan-measured rack
+wall (leak, work log 2026-10-27); the clean-up round tests 1.5 / 2.5 / 4.0 mm and both cup-lean settings.
 
 Variants (<= 4 for the family; all parameters shared by every episode):
   full  : per-episode fit, all parts + markers
   nomk  : per-episode fit, no marker balls (ablation)
-  joint : the five episodes' points rigidly aligned to a reference episode (point-to-plane ICP on the observed
-          points, trimmed), one fit on the merged points, the mesh then moved to the mean of the episode frames
+  joint : the consistent episodes' points (own 'full' fidelity <= JOINT_TOL x the best) rigidly aligned to a
+          reference episode (trimmed point-to-point ICP on the observed points), one fit on the merged points, the mesh then moved to the mean of the episode frames
           (so no single track frame is preferred); markers from the merged points
   joint_nomk : joint without markers
 Usage:
@@ -60,7 +61,7 @@ import manifold3d as mf                                     # noqa: E402
 
 OBJ = 'plastic_dish_rack'
 VOX = 0.0015            # voxel downsample of the observed points (m)
-T_WALL = 0.0025         # moulded wall / floor thickness prior (task brief); floor and cup-holder walls
+T_WALL = float(os.environ.get('PRIM_T_WALL', 0.0025))   # moulded wall / floor thickness prior (see docstring)
 CELL = 0.01             # lower-envelope cell (m)
 VR = 0.25               # |in-plane view component| that decides outer- vs inner-seen
 F_SCALE = 0.002         # robust loss scale (m)
@@ -75,9 +76,10 @@ MK_FREE_R = (4.0, 12.0)  # marker: free sphere-fit radius range (mm) that counts
 MK_SPREAD = 0.05        # marker: or a cap this curved (1 - |mean direction| from the centre)
 SEG = 6                 # segments per rounded corner
 S0_MIN = 0.004          # lip width lower bound (the lip tops seen from above span ~7-9 mm)
-CUP_LEAN = False        # cup-holder axis perpendicular to the floor (as the pegs). A free lean came out 0.11-0.23
-                        # (6-13 deg backwards) in every episode; the [D] scan diagnostic of a dev candidate showed
-                        # the real holder upright (a wrong-axis bug: stereo on the white tube skews its front face)
+CUP_LEAN = os.environ.get('PRIM_CUP_LEAN', '1') == '1'   # default True: cup-holder lean and draft free (linear in h).
+                        # The first run used False (upright) after a [D] scan diagnostic (leak, work log 2026-10-27);
+                        # in the clean-up round obs_fidelity (GT-free) preferred the free lean at every T_WALL
+                        # (1.5/2.5/4.0 mm: 6.044/5.935/5.921 vs 6.242/6.116/6.138 mm), so the default follows it
 JOINT_TOL = 1.25        # joint fit: episodes whose own fit has fidelity <= JOINT_TOL x the best
 
 

@@ -1,0 +1,6 @@
+{"mesh": "t1.5_fit.glb", "obs_to_mesh_mm": 0.788, "mesh_to_obs_mm": 0.648, "sum_mm": 1.436}
+{"mesh": "t1.5_tsdf.glb", "obs_to_mesh_mm": 0.93, "mesh_to_obs_mm": 0.72, "sum_mm": 1.65}
+{"mesh": "t2.5_fit.glb", "obs_to_mesh_mm": 0.87, "mesh_to_obs_mm": 0.815, "sum_mm": 1.686}
+{"mesh": "t2.5_tsdf.glb", "obs_to_mesh_mm": 1.01, "mesh_to_obs_mm": 0.903, "sum_mm": 1.913}
+{"mesh": "t4.0_fit.glb", "obs_to_mesh_mm": 1.019, "mesh_to_obs_mm": 1.24, "sum_mm": 2.259}
+{"mesh": "t4.0_tsdf.glb", "obs_to_mesh_mm": 1.158, "mesh_to_obs_mm": 1.352, "sum_mm": 2.51}

@@ -5,7 +5,8 @@ Pre-registered round 2026-10-27 (docs/work-log.md). No ground truth: this code n
 mocap or parquet poses; its only input is one obs_points.py npz (pts, cam, frame) in the object (track) frame.
 
 white_pot     = thin-walled lathe body with a CLOSED floor + flat bar handle + marker balls.
-  Axis: lathe_obs.fit_axis (line complex + PCA + opening candidates, rotational self-consistency, opening rule).
+  Axis: pot_axis, a global search over a hemisphere of directions scored by rotational self-consistency
+  (lathe_obs.rot_consistency); cached per episode (--axis_cache).
   Profile: polar parameterization of the (r, h) half-plane about an interior point O = (0, h_O). Each point is
   OUTER-seen or INNER-seen by the sign of its view direction along the polar ray (in the (r, h) plane); per
   (polar-angle bin, azimuth sector) the median polar radius, then the median over >= MINSEC sectors (a handle or a
@@ -18,14 +19,15 @@ white_pot     = thin-walled lathe body with a CLOSED floor + flat bar handle + m
   (2 x median depth below the top plane), bar from inside the wall to the 99.5 % tip, rounded tip (semicircle of the
   bar's half width). Hole: a closed gap in the top-surface occupancy grid (2 mm, after a 1-cell closing) near the
   tip, cut as a circle of the gap's area, only if the gap exists.
-white_pot_lid = thin domed sheet + handle strap (arch) + marker balls on stems.
+white_pot_lid = thin domed sheet + handle strap (arch) + marker balls (stems only where points support them).
   Axis: smallest PCA direction (disc normal), up = towards the cameras (the underside is never seen); centre by a
   circle fit to the per-sector outer edge. Top surface h(r): per (radius bin, sector) median, median over sectors,
   two passes (points > SURF_D above the first-pass surface are residual: arch, markers); near the axis, under the
   arch, h(r) is extended by a quadratic dome fitted on r in [RC0, RC1]. Underside = top - t_lid (prior, never
-  observed). Arch: largest residual cluster, PCA long axis in the disc plane; per 3 mm bin along it the top height
+  observed; PRIM_T_LID, see T_LID). Arch: largest residual cluster, PCA long axis in the disc plane; per 3 mm bin along it the top height
   (75th pct of top-seen points) and lateral centre; the strap (width W from the lateral extent, thickness T from
-  side-seen points or prior) is swept along the smoothed top curve offset by T/2, ends pushed into the sheet.
+  side-seen points or prior) is swept along the smoothed top curve offset by T/2; its ends run down to the sheet's
+  mid-surface at the true radius of the strap end, so the arch is attached to the sheet.
 Marker balls (both): compact residual clusters (bbox diagonal <= 40 mm, >= MK_MIN points) not explained by the
   other parts; sphere fit (free radius kept only if 5-9.5 mm and well supported, else the 7 mm prior from our own
   stereo); a stem cylinder from the ball to the body surface only if >= STEM_MIN points lie in the gap.
@@ -35,7 +37,7 @@ sampling).
 Variants (at most 4 for the family; parameters shared by pot and lid and across episodes):
   fit    : body + fitted parts (handle bar / arch) + marker spheres (+ stems where supported)
   nostem : as fit, markers as bare spheres (no stems)
-  tsdf   : fitted body + the library_v3 TSDF mesh's faces lying outside the body by > 4 mm (handle, markers):
+  tsdf   : fitted body + the library_v3 TSDF mesh's faces lying outside the body by > APP_D = 8 mm (handle, markers):
            the earlier "body + TSDF handle" construction, with the new body (the library mesh is our own TSDF)
   thick  : as fit, but body wall / sheet thickness doubled (sensitivity of the registration scale to thickness)
 Usage: prim_potlid.py {pot,lid} OBS.npz OUT.glb [--variant fit] [--lib LIB.glb]
@@ -62,12 +64,15 @@ MK_MIN = 60           # points for a marker cluster
 MK_DIAG = (0.006, 0.035)   # marker cluster 3..97 % bbox diagonal
 MK_RES = 0.002        # sphere-fit median residual
 MK_GAP = (-0.003, 0.020)   # ball surface to body/handle surface
-MK_R0 = 0.007         # marker-ball radius prior (our own stereo, measured earlier)
+MK_R0 = 0.007         # marker-ball radius prior (our own stereo: spoon template 2026-10-13, 7.2 mm balls)
 MK_RMIN, MK_RMAX = 0.005, 0.0095
 STEM_MIN = 15         # points in the ball-to-surface gap that support a stem
 STEM_R = 0.0035       # stem radius
 T_MIN, T_MAX = 0.002, 0.006
-T_LID = 0.0025        # lid sheet thickness prior (task brief: ~2-3 mm)
+# lid sheet thickness prior. NOT measurable from our points (the lid is only seen from above), so it is a prior.
+# The first run's 2.5 mm came from a brief that quoted scan-measured walls (leak, work log 2026-10-27); the clean-up
+# round tests a generic range 1.5 / 2.5 / 4.0 mm via PRIM_T_LID and keeps 2.5 only if the verdict holds at all three.
+T_LID = float(os.environ.get('PRIM_T_LID', 0.0025))
 BAR_T0 = 0.005        # handle / strap thickness prior when no side evidence
 NSEG = 64             # revolve segments
 
@@ -769,12 +774,12 @@ def arch_strap(Ap, Av, geo, info):
     else:
         T, t_src = BAR_T0, 'prior'
     Hsm = ndimage.median_filter(H, size=3, mode='nearest'); Hsm = ndimage.uniform_filter1d(Hsm, 3, mode='nearest')
-    # ends: run the top curve down into the sheet (lid top surface at the end radius)
+    # ends: run the top curve down to the sheet's mid-surface at the end radius (radius from both strap coordinates,
+    # s along the strap and its lateral offset acen), so the strap end lies inside the sheet and the union attaches it
     def lid_h(sv):
-        rr = np.abs(sv)   # approximate radius along the strap line through the centre region
-        return np.interp(rr, geo['rc'], geo['top'])
+        return np.interp(np.hypot(sv, acen), geo['rc'], geo['top'])
     S2 = np.r_[S[0] - 0.004, S, S[-1] + 0.004]
-    H2 = np.r_[lid_h(S[0] - 0.004) + T * 0.5, Hsm, lid_h(S[-1] + 0.004) + T * 0.5]
+    H2 = np.r_[lid_h(S[0] - 0.004) - 0.5 * geo['t'], Hsm, lid_h(S[-1] + 0.004) - 0.5 * geo['t']]
     curve = np.stack([S2, H2], 1)
     curve = resample(curve, 0.002)
     Tg = unit(np.gradient(curve, axis=0)); Nn = np.stack([-Tg[:, 1], Tg[:, 0]], 1)   # up-ish normal

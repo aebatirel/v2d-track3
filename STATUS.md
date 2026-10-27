@@ -2,6 +2,31 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-27 ~07:10 UTC: kit-of-parts meshes done (CPU, $0, branch `claude/bold-albattani-6qmxsv`)
+Report: `docs/research/mesh-2026-10-26/README.md` §9. Pre-registered rules and all results are in the work log.
+- **Passing objects:** white pot, lid and dish rack now beat library_v3 on the public scans [D].
+
+  | Object | CD-O (cm) | ADD (mm) | Flips |
+  |---|---|---|---|
+  | Pot | 0.437 → **0.342** | 6.7 → 3.05 | 0/8 |
+  | Lid | 0.421 → **0.220** | 8.1 → 4.46 | 0/6 |
+  | Rack | 0.555 → **0.456** | 6.0 → 5.37 | 0/7 |
+
+- **Boards fail.**
+  - Board 1 flips on 1 of 6 seeds.
+  - Board 2's ep23 track looks like board 1.
+- **Leak found and removed.** My brief gave the builders scan-measured thicknesses. A pre-registered clean-up re-ran
+  the lid and rack over 1.5 / 2.5 / 4.0 mm. Both pass at every value. Fidelity, which uses no ground truth, also
+  dropped the scan-informed upright cup holder.
+- **Eval:** the meshes come from public episodes like library_v3 and share its frame, so they need no eval depth.
+  Swapping pot, lid and rack ≈ CD-O 0.402 → 0.367 [E].
+- **Owner decision:** swap only the packed mesh ($0, frames match), or also the simulator copy (GPU re-run of the
+  affected eval episodes)?
+- **Still pending (owner):**
+  - eval depth run (≈ $2–4, for cup lathes on eval);
+  - WeVisOne test (≈ $1–1.5);
+  - generative probe (≈ $4–8, plus code permission).
+
 ## 2026-10-26 ~16:40 UTC: mesh accuracy research round (branch `claude/bold-albattani-6qmxsv`, CPU only, $0)
 Report: `docs/research/mesh-2026-10-26/README.md`. Also there: ledger of all past mesh work, three literature
 reviews, scripts and results.

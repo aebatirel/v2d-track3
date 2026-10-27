@@ -292,3 +292,71 @@ table.
   | 11 | spoon | 10 | good | small neck taper only |
 - The order matches the measured lathe gain (cups first). The lathe's effect on the pot, rack and beige cup is still
   a hypothesis until measured on public episodes.
+
+## 9. Kit-of-parts (primitive-assembly) meshes (added 27 Oct)
+Owner: "Okay do that" (build meshes from primitives fitted to our own points). CPU only, $0. Rules were pre-registered
+in the work log before any result.
+
+**Method** [M]. Each object is a small assembly of parametric parts, fitted to our observed stereo points
+(`obs_points.py`, on our own tracks; no GT). Parts are unioned with manifold3d into one watertight mesh.
+- `scripts/prim_potlid.py`:
+  - pot: thin-walled lathe with a closed floor, wall thickness measured from inner and outer points; flat bar handle;
+    marker balls;
+  - lid: domed sheet, swept arch strap and marker balls.
+- `scripts/prim_boards.py`: board = extruded occupancy outline, thickness from points, marker balls.
+- `scripts/prim_rack.py`:
+  - tray = rounded-rectangle block minus a sloped basin;
+  - cup-holder tube;
+  - 2 × 6 cone pegs;
+  - marker balls;
+  - optional joint fit of the consistent episodes.
+
+Selection is GT-free, by the lowest `obs_fidelity.py` over all of the object's episodes. Each selected mesh was then
+scored once against the public scan [D].
+
+| Object (eval pairs) | Selected mesh | CD-O cm, library_v3 → new | ADD mm, lib → new | Flips | Verdict |
+|---|---|---|---|---|---|
+| white pot (6) | ep41 fit | 0.437 → **0.342** | 6.7 → 3.05 | 0/8 | PASS |
+| pot lid (1) | ep2 fit, T_LID 2.5 | 0.421 → **0.220** | 8.1 → 4.46 | 0/6 | PASS at all thicknesses |
+| dish rack (5) | joint 12/13/27, lean, T_WALL 2.5 | 0.555 → **0.456** | 6.0 → 5.37 | 0/7 | PASS at all thicknesses |
+| board 1 (1) | ep24 occ_d2 | 0.222 → 0.189 | 2.4 → 3.31 | 1/6 | FAIL (flip) |
+| board 2 (1) | ep23 occ_d2 | 0.216 → 0.229 | 3.6 → 78.7 | 3/6 | FAIL (wrong board's track) |
+
+**Integrity.**
+- The first run's lid and rack wall thicknesses (2.5 mm) and the rack's upright cup holder were informed by scan
+  measurements that my workflow brief passed to the builders. An auditor found this.
+- A pre-registered clean-up round re-ran both over a generic range of thickness (1.5 / 2.5 / 4.0 mm) and both cup-lean
+  settings.
+- Our points cannot measure these thicknesses: the lid is seen only from above and the rack floor never. So the rule
+  was "pass at every grid value".
+- Both passed everywhere:
+  - lid worst case 0.224 / 5.06;
+  - rack worst case 0.458 / 6.23.
+- The GT-free fidelity preferred the original leaning cup holder at every thickness. That choice also scores better
+  on ADD.
+- Scan scorings: pot 32, lid 4 + 6, rack 12 + 6, boards 16, plus 6 dev bug checks, all logged.
+- Independent audits re-ran selection and scoring and matched exactly (`results/prim/workflow-result.json`).
+
+**Known defects** (visual, GT-free):
+- pot: one spurious ball mid-handle, no handle hole (not seen in our occupancy), 4 of 5 balls float;
+- lid: one ball floats;
+- rack: straight-walled cup holder, no right-end ribs or marker stems;
+- boards: no slot, notches or correct marker side.
+
+The boards need identity-safe tracks (the ep23 board 2 track looks like board 1 rotated 180°) and a slot detector.
+Both are hypotheses to test before another board round.
+
+**What it would change for eval** [E]:
+- The submitted eval meshes are `library_v3`, which is built from **public** episodes and reused for eval. These
+  meshes are built the same way and lie in the same object frame (median 2–4 mm from the library meshes, without
+  registration).
+- So they **do not need eval depth**.
+- If the hidden scans match the public ones, swapping pot, lid and rack (12 of 36 CD-O pairs) moves our CD-O from
+  0.402 to about **0.367 cm** [E].
+- The AUC effect through the better registration (lower ADD) is unmeasured.
+- Open question for the owner: `ops/jobs/submit_pack.sh` packs the file the simulator built its bodies from.
+  Swapping only the packed mesh (frames match) is a $0 pack change. Swapping the simulator copy too means
+  re-running the affected eval episodes on GPU.
+
+Files: `results/prim/` (candidates, fidelity, scores, selections, meshes, `clean/` for the clean-up round),
+`scripts/prim_*.py`, `scripts/tmeas_lid.py` (the failed GT-free thickness measurement).

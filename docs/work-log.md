@@ -4537,3 +4537,46 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
   - If any grid point fails, the object's earlier pass is withdrawn and reported as thickness-dependent.
   - The shipped default stays 2.5 mm (grid midpoint) only if all three pass.
 - **Pot and boards are unchanged:** the pot is clean, and the boards already fail.
+
+### 2026-10-27 primitive clean-up round — RESULTS (CPU VM, $0; code: this commit's prim_potlid.py / prim_rack.py)
+- **Commands** (scratchpad `prim/clean/`, scripts in `results/prim/clean/`):
+  - lid: `PRIM_T_LID=<t> prim_potlid.py lid obs_all/ep2_white_pot_lid.npz t<t>_<v>.glb --variant <v> --lib
+    meshes/library_v3/white_pot_lid.glb`;
+  - rack: `PRIM_T_WALL=<t> PRIM_CUP_LEAN=<0|1> prim_rack.py run --obs_dir obs_all --out t<t>_lean<l>` (`run_rack.sh`);
+  - scoring: `MESH_SCR=<scratch> mesh_metric.py run --manifest ...`.
+- **Regression checks:**
+  - With the defaults of the first run, prim_rack reproduces all 12 first-run meshes byte for byte.
+  - The pot ep41 fit rebuilds byte-identical.
+- **Lid** (6 scorings [D]; limit CD-O ≤ 0.391, ADD ≤ 9.1, 0 flips). Fidelity, sum mm: fit 1.436 / 1.686 / 2.259,
+  tsdf 1.650 / 1.913 / 2.510, so it prefers the thinner sheet as expected and picks fit at every thickness.
+
+  | T_LID | fit CD-O / ADD / flips | tsdf CD-O / ADD / flips |
+  |---|---|---|
+  | 1.5 mm | **0.224 / 4.56 / 0** | 0.225 / 4.30 / 0 |
+  | 2.5 mm | **0.220 / 4.46 / 0** | 0.216 / 3.47 / 0 |
+  | 4.0 mm | **0.221 / 5.06 / 0** | 0.216 / 4.30 / 0 |
+
+  - **PASS at every thickness.** Clean worst case: 0.224 cm / 5.06 mm (lib 0.421 / 8.1).
+  - The arch fix makes the fit mesh 2 bodies (sheet with arch, plus one floating ball), not 3.
+  - Shipped: T_LID 2.5 mm fit (`results/prim/meshes/white_pot_lid_ep2_fit_v2.glb`).
+- **Rack** (6 scorings [D]; limit CD-O ≤ 0.525, ADD ≤ 7.0, 0 flips). Each config's own selection is the joint mesh.
+  Fidelity sum mm, lean vs upright: 6.044 vs 6.242 (1.5 mm), 5.935 vs 6.116 (2.5 mm), 5.921 vs 6.138 (4.0 mm). So
+  the GT-free choice is the **free lean (pre-scan design)** at every thickness.
+
+  | T_WALL | lean (selected) CD-O / ADD / add_max / flips | upright (first run's choice) |
+  |---|---|---|
+  | 1.5 mm | **0.458 / 6.06 / 7.96 / 0** | 0.454 / 7.22 / 7.81 / 0 (fails ADD) |
+  | 2.5 mm | **0.456 / 5.37 / 6.08 / 0** | 0.454 / 6.41 / 7.70 / 0 |
+  | 4.0 mm | **0.449 / 6.23 / 8.62 / 0** | 0.461 / 6.59 / 7.48 / 0 |
+
+  - **PASS at every thickness.** Clean worst case: 0.458 cm / 6.23 mm (lib 0.555 / 6.0).
+  - The scan-informed upright cup was worse by the GT-free fidelity score and on ADD. Removing it helps.
+  - The ADD margin is still modest: worst 6.23 against 7.0, and single seeds reach 8.6 mm.
+  - prim_rack default `CUP_LEAN` is now True. Shipped: T_WALL 2.5 mm, lean, joint of eps 12/13/27
+    (`results/prim/meshes/plastic_dish_rack_joint_v2.glb`).
+- **Frame check (GT-free, no registration):** the shipped pot, lid and rack meshes lie a median 2–4 mm from the
+  library_v3 meshes of the same objects. They are in the library's object frame, as the method implies (points in the
+  track frame of tracks that follow the library meshes).
+- **Count:** 12 scan scorings this round, as pre-registered.
+- **Final verdicts:** pot PASS (0.342 / 3.05), lid PASS (0.220 / 4.46), rack PASS (0.456 / 5.37), boards FAIL.
+- Default-config rack run (CUP_LEAN default True, no env) reproduces the shipped joint mesh byte for byte.
