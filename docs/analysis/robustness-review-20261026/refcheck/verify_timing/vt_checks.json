@@ -1,0 +1,648 @@
+{
+ "A_quaternion": {
+  "ep39:mini_dust_pan": {
+   "corr_rot_from_f0_correct": 0.999,
+   "corr_rot_from_f0_misread": 0.999,
+   "median_abs_diff_deg_correct": 1.29,
+   "median_abs_diff_deg_misread": 1.29,
+   "ref_vs_perc_rot_spread_deg": 4.784,
+   "gt_upright_z_dot": 0.207
+  },
+  "ep12:blue_cup": {
+   "corr_rot_from_f0_correct": 1.0,
+   "corr_rot_from_f0_misread": 1.0,
+   "median_abs_diff_deg_correct": 1.09,
+   "median_abs_diff_deg_misread": 1.09,
+   "ref_vs_perc_rot_spread_deg": 0.0,
+   "gt_upright_z_dot": 0.939
+  },
+  "ep24:wooden_piece_1": {
+   "corr_rot_from_f0_correct": 1.0,
+   "corr_rot_from_f0_misread": 1.0,
+   "median_abs_diff_deg_correct": 1.53,
+   "median_abs_diff_deg_misread": 1.53,
+   "ref_vs_perc_rot_spread_deg": 0.05,
+   "gt_upright_z_dot": 0.014
+  },
+  "ep21:water_pitcher": {
+   "corr_rot_from_f0_correct": 0.999,
+   "corr_rot_from_f0_misread": 0.999,
+   "median_abs_diff_deg_correct": 0.66,
+   "median_abs_diff_deg_misread": 0.66,
+   "ref_vs_perc_rot_spread_deg": 0.023,
+   "gt_upright_z_dot": 0.793
+  }
+ },
+ "B_false_motion": {
+  "ep11:blue_cup": {
+   "gt_max_disp_from_start_cm": 0.5,
+   "gt_rot_from_start_max_deg": 2.15,
+   "gt_1cm_cross": null,
+   "perc": {
+    "max_disp_cm": 5.41,
+    "argmax": 67,
+    "first_1cm_3frames": 54.49,
+    "frames_over_1cm": 83,
+    "max_swing_or_rot_deg": 7.79
+   },
+   "ref": {
+    "max_disp_cm": 5.38,
+    "argmax": 67,
+    "first_1cm_3frames": 62.36,
+    "frames_over_1cm": 75,
+    "max_swing_or_rot_deg": 6.79
+   }
+  },
+  "ep11:beige_cup": {
+   "gt_max_disp_from_start_cm": 25.2,
+   "gt_rot_from_start_max_deg": 13.97,
+   "gt_1cm_cross": 24.74,
+   "gt_phys_onset": 21,
+   "gt_phys_offset_last_moving": 100,
+   "perc": {
+    "max_disp_cm": 24.81,
+    "argmax": 43,
+    "first_1cm_3frames": 25.19,
+    "frames_over_1cm": 111,
+    "max_swing_or_rot_deg": 12.8,
+    "before_true_onset": {
+     "max_disp_cm": 0.35,
+     "frames_over_1cm": 0,
+     "max_rot_deg": 4.15
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.62,
+     "frames_over_1cm": 0
+    }
+   },
+   "ref": {
+    "max_disp_cm": 24.88,
+    "argmax": 43,
+    "first_1cm_3frames": 25.13,
+    "frames_over_1cm": 111,
+    "max_swing_or_rot_deg": 12.8,
+    "before_true_onset": {
+     "max_disp_cm": 0.29,
+     "frames_over_1cm": 0,
+     "max_rot_deg": 4.15
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.62,
+     "frames_over_1cm": 0
+    }
+   }
+  },
+  "ep24:wooden_piece_2": {
+   "gt_max_disp_from_start_cm": 27.34,
+   "gt_rot_from_start_max_deg": 100.61,
+   "gt_1cm_cross": 113.51,
+   "gt_phys_onset": 112,
+   "gt_phys_offset_last_moving": 219,
+   "perc": {
+    "max_disp_cm": 28.9,
+    "argmax": 148,
+    "first_1cm_3frames": 37.96,
+    "frames_over_1cm": 237,
+    "max_swing_or_rot_deg": 101.19,
+    "before_true_onset": {
+     "max_disp_cm": 2.73,
+     "frames_over_1cm": 74,
+     "max_rot_deg": 6.39
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.73,
+     "frames_over_1cm": 0
+    }
+   },
+   "ref": {
+    "max_disp_cm": 28.9,
+    "argmax": 148,
+    "first_1cm_3frames": 37.96,
+    "frames_over_1cm": 237,
+    "max_swing_or_rot_deg": 101.19,
+    "before_true_onset": {
+     "max_disp_cm": 2.73,
+     "frames_over_1cm": 74,
+     "max_rot_deg": 6.39
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.73,
+     "frames_over_1cm": 0
+    }
+   }
+  },
+  "ep24:wooden_piece_1": {
+   "gt_max_disp_from_start_cm": 23.98,
+   "gt_rot_from_start_max_deg": 104.67,
+   "gt_1cm_cross": 9.58,
+   "gt_phys_onset": 7,
+   "gt_phys_offset_last_moving": 219,
+   "perc": {
+    "max_disp_cm": 26.01,
+    "argmax": 61,
+    "first_1cm_3frames": 10.31,
+    "frames_over_1cm": 264,
+    "max_swing_or_rot_deg": 106.76,
+    "before_true_onset": {
+     "max_disp_cm": 0.09,
+     "frames_over_1cm": 0,
+     "max_rot_deg": 0.37
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.93,
+     "frames_over_1cm": 0
+    }
+   },
+   "ref": {
+    "max_disp_cm": 26.01,
+    "argmax": 61,
+    "first_1cm_3frames": 10.31,
+    "frames_over_1cm": 264,
+    "max_swing_or_rot_deg": 106.76,
+    "before_true_onset": {
+     "max_disp_cm": 0.09,
+     "frames_over_1cm": 0,
+     "max_rot_deg": 0.37
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.93,
+     "frames_over_1cm": 0
+    }
+   }
+  },
+  "ep31:mini_sweeper": {
+   "gt_max_disp_from_start_cm": 15.59,
+   "gt_rot_from_start_max_deg": 33.7,
+   "gt_1cm_cross": 46.84,
+   "gt_phys_onset": 36,
+   "gt_phys_offset_last_moving": 278,
+   "perc": {
+    "max_disp_cm": 15.82,
+    "argmax": 107,
+    "first_1cm_3frames": 25.48,
+    "frames_over_1cm": 245,
+    "max_swing_or_rot_deg": 32.55,
+    "before_true_onset": {
+     "max_disp_cm": 1.66,
+     "frames_over_1cm": 4,
+     "max_rot_deg": 17.54
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.15,
+     "frames_over_1cm": 0
+    }
+   },
+   "ref": {
+    "max_disp_cm": 15.82,
+    "argmax": 107,
+    "first_1cm_3frames": 25.48,
+    "frames_over_1cm": 245,
+    "max_swing_or_rot_deg": 32.55,
+    "before_true_onset": {
+     "max_disp_cm": 1.67,
+     "frames_over_1cm": 4,
+     "max_rot_deg": 16.84
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 0.15,
+     "frames_over_1cm": 0
+    }
+   }
+  },
+  "ep13:blue_cup": {
+   "gt_max_disp_from_start_cm": 28.08,
+   "gt_rot_from_start_max_deg": 176.74,
+   "gt_1cm_cross": 24.15,
+   "gt_phys_onset": 20,
+   "gt_phys_offset_last_moving": 157,
+   "perc": {
+    "max_disp_cm": 28.22,
+    "argmax": 78,
+    "first_1cm_3frames": 23.69,
+    "frames_over_1cm": 166,
+    "max_swing_or_rot_deg": 176.28,
+    "before_true_onset": {
+     "max_disp_cm": 0.44,
+     "frames_over_1cm": 0,
+     "max_rot_deg": 3.68
+    },
+    "after_true_offset": {
+     "max_disp_from_own_end_rest_cm": 2.7,
+     "frames_over_1cm": 11
+    }
+   }
+  },
+  "ep31:plastic_dish_rack": {
+   "gt_max_disp_from_start_cm": 0.15,
+   "gt_rot_from_start_max_deg": 0.93,
+   "gt_1cm_cross": null,
+   "perc": {
+    "max_disp_cm": 1.14,
+    "argmax": 59,
+    "first_1cm_3frames": null,
+    "frames_over_1cm": 2,
+    "max_swing_or_rot_deg": 3.62
+   },
+   "ref": {
+    "max_disp_cm": 1.7,
+    "argmax": 163,
+    "first_1cm_3frames": 82.79,
+    "frames_over_1cm": 80,
+    "max_swing_or_rot_deg": 3.81
+   }
+  },
+  "ep12:plastic_dish_rack": {
+   "gt_max_disp_from_start_cm": 0.41,
+   "gt_rot_from_start_max_deg": 1.9,
+   "gt_1cm_cross": null,
+   "perc": {
+    "max_disp_cm": 0.83,
+    "argmax": 87,
+    "first_1cm_3frames": null,
+    "frames_over_1cm": 0,
+    "max_swing_or_rot_deg": 2.98
+   },
+   "ref": {
+    "max_disp_cm": 0.83,
+    "argmax": 87,
+    "first_1cm_3frames": null,
+    "frames_over_1cm": 0,
+    "max_swing_or_rot_deg": 2.98
+   }
+  }
+ },
+ "C_ep11_spin": {
+  "perc:beige_cup": {
+   "full_rot_step_f0_f4": [
+    17.35,
+    4.58,
+    0.45,
+    0.36
+   ],
+   "swing_step_f0_f4": [
+    4.67,
+    1.19,
+    0.32,
+    0.17
+   ],
+   "full_rot_from_f0_every4": [
+    0.03,
+    21.85,
+    21.1,
+    22.3,
+    24.4,
+    32.5,
+    26.19,
+    25.88,
+    24.02,
+    24.03
+   ]
+  },
+  "perc:blue_cup": {
+   "full_rot_step_f0_f4": [
+    1.83,
+    2.37,
+    0.53,
+    1.12
+   ],
+   "swing_step_f0_f4": [
+    0.48,
+    0.56,
+    0.48,
+    0.25
+   ],
+   "full_rot_from_f0_every4": [
+    0.04,
+    1.9,
+    0.99,
+    2.89,
+    1.72,
+    2.14,
+    5.26,
+    4.45,
+    6.78,
+    6.1
+   ]
+  },
+  "ref:beige_cup": {
+   "full_rot_step_f0_f4": [
+    17.35,
+    4.58,
+    0.45,
+    0.35
+   ],
+   "swing_step_f0_f4": [
+    4.67,
+    1.19,
+    0.32,
+    0.17
+   ],
+   "full_rot_from_f0_every4": [
+    0.0,
+    21.85,
+    21.1,
+    22.3,
+    24.4,
+    32.5,
+    26.19,
+    25.88,
+    24.02,
+    24.03
+   ]
+  },
+  "ref:blue_cup": {
+   "full_rot_step_f0_f4": [
+    1.82,
+    2.36,
+    0.46,
+    1.12
+   ],
+   "swing_step_f0_f4": [
+    0.46,
+    0.49,
+    0.39,
+    0.24
+   ],
+   "full_rot_from_f0_every4": [
+    0.0,
+    1.89,
+    0.71,
+    3.42,
+    1.38,
+    2.08,
+    5.37,
+    4.51,
+    6.76,
+    5.92
+   ]
+  },
+  "mocap:beige_cup": {
+   "full_rot_step_f0_f4": [
+    0.02,
+    0.01,
+    0.01,
+    0.02
+   ],
+   "swing_step_f0_f4": [
+    0.02,
+    0.01,
+    0.01,
+    0.02
+   ]
+  },
+  "mocap:blue_cup": {
+   "full_rot_step_f0_f4": [
+    0.01,
+    0.01,
+    0.28,
+    0.27
+   ],
+   "swing_step_f0_f4": [
+    0.01,
+    0.01,
+    0.09,
+    0.15
+   ]
+  }
+ },
+ "D_noise_floor_mocap_raw_central_diff": {
+  "n_objects": 33,
+  "speed_p95_cms_median": 0.346,
+  "speed_p95_cms_max": 0.777,
+  "rot_p95_degs_median": 3.01,
+  "rot_p95_degs_max": 7.32,
+  "per_object": [
+   [
+    0,
+    "white_pot",
+    0.499,
+    3.08,
+    141
+   ],
+   [
+    0,
+    "white_pot_lid",
+    0.364,
+    4.71,
+    104
+   ],
+   [
+    2,
+    "white_pot",
+    0.255,
+    1.96,
+    160
+   ],
+   [
+    2,
+    "white_pot_lid",
+    0.307,
+    5.35,
+    143
+   ],
+   [
+    11,
+    "blue_cup",
+    0.232,
+    1.73,
+    64
+   ],
+   [
+    11,
+    "beige_cup",
+    0.135,
+    2.44,
+    47
+   ],
+   [
+    12,
+    "blue_cup",
+    0.337,
+    2.68,
+    28
+   ],
+   [
+    12,
+    "plastic_dish_rack",
+    0.204,
+    1.24,
+    111
+   ],
+   [
+    13,
+    "blue_cup",
+    0.345,
+    1.67,
+    42
+   ],
+   [
+    13,
+    "plastic_dish_rack",
+    0.294,
+    1.86,
+    190
+   ],
+   [
+    18,
+    "mini_sweeper",
+    0.615,
+    4.95,
+    37
+   ],
+   [
+    18,
+    "mini_dust_pan",
+    0.279,
+    3.82,
+    180
+   ],
+   [
+    21,
+    "blue_cup",
+    0.232,
+    2.23,
+    51
+   ],
+   [
+    21,
+    "water_pitcher",
+    0.534,
+    1.87,
+    71
+   ],
+   [
+    22,
+    "blue_cup",
+    0.405,
+    3.52,
+    64
+   ],
+   [
+    22,
+    "water_pitcher",
+    0.396,
+    1.56,
+    83
+   ],
+   [
+    23,
+    "wooden_piece_1",
+    0.777,
+    5.83,
+    140
+   ],
+   [
+    23,
+    "wooden_piece_2",
+    0.328,
+    2.47,
+    136
+   ],
+   [
+    24,
+    "wooden_piece_1",
+    0.717,
+    6.58,
+    104
+   ],
+   [
+    24,
+    "wooden_piece_2",
+    0.286,
+    5.98,
+    126
+   ],
+   [
+    26,
+    "plastic_dish_rack",
+    0.436,
+    3.22,
+    129
+   ],
+   [
+    26,
+    "white_pot",
+    0.491,
+    3.18,
+    71
+   ],
+   [
+    27,
+    "plastic_dish_rack",
+    0.29,
+    1.67,
+    180
+   ],
+   [
+    27,
+    "white_pot",
+    0.228,
+    2.36,
+    55
+   ],
+   [
+    31,
+    "mini_sweeper",
+    0.165,
+    1.83,
+    37
+   ],
+   [
+    31,
+    "plastic_dish_rack",
+    0.344,
+    1.95,
+    290
+   ],
+   [
+    39,
+    "mini_dust_pan",
+    0.444,
+    3.01,
+    68
+   ],
+   [
+    40,
+    "mini_dust_pan",
+    0.454,
+    7.09,
+    45
+   ],
+   [
+    41,
+    "white_pot",
+    0.346,
+    2.49,
+    71
+   ],
+   [
+    42,
+    "white_pot",
+    0.403,
+    4.39,
+    70
+   ],
+   [
+    43,
+    "white_pot",
+    0.389,
+    4.56,
+    64
+   ],
+   [
+    44,
+    "white_pot",
+    0.544,
+    7.32,
+    120
+   ],
+   [
+    45,
+    "white_pot",
+    0.465,
+    4.01,
+    79
+   ]
+  ]
+ }
+}

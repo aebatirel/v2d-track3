@@ -14,6 +14,20 @@ and think where we are losing what." This is the first pass, meant to be discuss
   `summary.txt` and the leaderboard AUC. Its output on pack 4 is `loss_budget_pack4.json`. On pack 3 it reproduces
   the forensics numbers (implied spoon accuracy 0.813, hidden loss 0.094).
 
+> **Update 27 Oct: public-mocap check of the reference calculation, verified.**
+> See `robustness-review-20261026/refcheck/README.md`.
+> - **Correct:** scale (1.004), frame indexing, conventions, our scorer vs the kit, the uploaded file.
+> - **Wrong:** mkref's table snap on objects resting on other objects (R1); the frame-0 alignment lottery (R2); the
+>   registration lottery (R3: the submitted sweeper flips at Kaggle's eval-19 / eval-30 seeds on 3–4 of 24 stand-in
+>   scans); mesh registration cost (R4); resting objects moving in our tracks (R5); a half-frame lag (R6, ≈ +0.003);
+>   resting heights (R7).
+> - **Corrections to this review:**
+>   - §9's "the scorer's seeds sit in the majority" holds only for a full-resolution host;
+>   - the loss model's multiplicative form is biased low by ≈ 0.02, so the implied spoon accuracy may be 0.73–0.76,
+>     not 0.80;
+>   - the 0.979 factor is right in size (0.976–0.985) but holds only where the reference scores ≳ 0.93.
+> - **New top item for the ranked list:** a registration-stability gate on every submitted mesh (CPU, GT-free).
+
 ---
 
 ## 0. Summary for the owner

@@ -18,8 +18,8 @@ Steps (each resumable; WORK holds the bulky state; OUT gets small json / md / pn
   python -I calibrate.py verify      # our in-process scorer == pipeline/score_registered.py on a few rollouts
   python -I calibrate.py score [--max N] [--recent N]   # T, R, S per distinct rollout (registration cached)
   python -I calibrate.py fit         # fits, residuals, transfer; writes OUT/calibration.json, tables.md, ...
-  python -I calibrate.py frames      # frame-local loss model (per-frame shares; diagnostic, adds to calibration.json)
-  python -I calibrate.py symS        # GT-free symmetric yardstick S_mesh per rollout (hypothesis test; then re-run fit)
+  python -I calibrate.py symS        # GT-free symmetric yardstick S_mesh per rollout (hypothesis H-yard; then re-run fit)
+  python -I calibrate.py frames      # frame-local loss models, rest/moved split, pair transfer (diagnostic; then re-run fit)
   python -I calibrate.py plot        # OUT/calibration.png (any python with numpy + matplotlib)
 Paths: --sp (refcheck scratch root), --repo (this repository), --out (this folder).
 Scoring with cached registration reproduces score_registered.py exactly (checked by `verify`): the registration and
@@ -200,6 +200,17 @@ def step_libs(a):
 
 
 ROUTE_A_FIRST_RUN = '20261021-auto'      # route A (our meshes in the simulator) from 21 Oct ~10:20 UTC (work log)
+ROUTE_A_UTC = '2026-10-21T10:20'         # (work log 21 Oct 13:20 TRT, route A plumbing)
+
+
+def job_start(a, run):
+    """First UTC timestamp printed in the run's job.log ('' when absent)."""
+    log = os.path.join(a.store, 'runs', run, 'job.log')
+    if os.path.exists(log):
+        m = re.search(r'\[(20\d\d-\d\d-\d\dT\d\d:\d\d:\d\d)Z\]', open(log, errors='replace').read())
+        if m:
+            return m.group(1)
+    return ''
 
 
 def choose_lib(a, run, names, run_libs, box_meshes):
@@ -213,6 +224,8 @@ def choose_lib(a, run, names, run_libs, box_meshes):
         return 'scan', 'job.log: assets PUBLIC scans'
     if not per and run < ROUTE_A_FIRST_RUN:
         return 'scan', 'before route A, no make_assets fingerprint: simulator on the public scans'
+    if not per and job_start(a, run) and job_start(a, run) < ROUTE_A_UTC:
+        return 'scan', f'before route A (job.log starts {job_start(a, run)}Z), no make_assets fingerprint: simulator on the public scans'
     cands = None
     for n in names:
         if n in per and not per[n][0].startswith('UNMATCHED'):
@@ -312,8 +325,10 @@ class Scorer:
             return G
         return frames, grid(tr.pose_xyzw), (grid(tr.reference_xyzw) if tr.reference_xyzw is not None else None)
 
-    def registered(self, ep, lib, traj, frames, return_err=False):
-        """AUC and per-object AUC exactly as score_registered.py (per-object point errors computed once)."""
+    def registered(self, ep, lib, traj, frames, return_err=False, fast=False):
+        """AUC and per-object AUC exactly as score_registered.py (per-object point errors computed once).
+        fast=True uses fast_sym_err for the symmetric objects (equal to the kit function to float rounding; used only
+        by the diagnostic `frames` step, which re-checks the AUC against the scored T)."""
         T3 = self.T3
         names, gt_all, H = self.episode(ep)
         REG = self.registration(ep, lib); B = len(names)
@@ -323,13 +338,14 @@ class Scorer:
             ref[:, :, s, :3] += np.einsum('...ij,j->...i', T3._rotation_matrix(ref[:, :, s, 3:]), H[s]['anchor'])
         axes = [h['axis'] for h in H]; orders = [h['order'] for h in H]; pts = [h['points'] for h in H]
         ach = T3._align_registered_scene(ach, ref, axes)
-        err = [T3._symmetry_point_errors(ach[:, :, i], ref[:, :, i], pts[i], axes[i], orders[i]) for i in range(B)]
+        symerr = (lambda *x: fast_sym_err(T3, *x)) if fast else T3._symmetry_point_errors
+        err = [symerr(ach[:, :, i], ref[:, :, i], pts[i], axes[i], orders[i]) for i in range(B)]
+        if return_err:
+            return np.stack(err, axis=-1)[:, 0]                            # [T, B] mean point error (m)
         auc = round(float(T3._add_auc(np.stack(err, axis=-1))), 4)
         per = {n: round(float(T3._add_auc(np.stack([err[s]], axis=-1))), 4) for s, n in enumerate(names)}
         sp = round(float(T3._registered_pose_metric('spider_sr', ach, ref, pts, axes, orders)), 4)
         mp = round(float(T3._registered_pose_metric('maniptrans_sr', ach, ref, pts, axes, orders)), 4)
-        if return_err:
-            return np.stack(err, axis=-1)[:, 0]                            # [T, B] mean point error (m)
         return dict(AUC=auc, per_obj_AUC=per, SP_SR=sp, MP_SR=mp)
 
     def sphere_add(self, sim, ref):
@@ -361,12 +377,16 @@ def step_verify(a):
     rows = [json.loads(l) for l in open(os.path.join(a.work, 'rows.jsonl'))] if os.path.exists(os.path.join(a.work, 'rows.jsonl')) else []
     if not rows:
         raise SystemExit('score first (verify picks scored rollouts)')
-    rng = np.random.default_rng(1)
+    rows = [r for r in rows if 'error' not in r]
     eps = sorted({r['ep'] for r in rows})
-    pick = [next(r for r in rows if r['ep'] == e) for e in eps]
+    pick = []                                                              # per episode: the most recent own-mesh
+    for e in eps:                                                          # rollout of each mesh library, + one scan
+        for lib in sorted({r['lib'] for r in rows if r['ep'] == e}):
+            pick.append(next(r for r in rows if r['ep'] == e and r['lib'] == lib))
     res = []
     for r in pick:
-        d = os.path.dirname(os.path.join(a.store, r['path'])); o = os.path.join(a.work, 'verify', f"ep{r['ep']}.json")
+        d = os.path.dirname(os.path.join(a.store, r['path']))
+        o = os.path.join(a.work, 'verify', f"ep{r['ep']}_{r['lib']}_{r['sha256'][:8]}.json")
         os.makedirs(os.path.dirname(o), exist_ok=True)
         if not os.path.exists(o):
             mesh = [] if r['lib'] == 'scan' else ['--meshes', f"{a.repo}/meshes/{r['lib']}"]
@@ -379,7 +399,9 @@ def step_verify(a):
                         per_obj_match=s['sim']['per_obj_AUC'] == r['T_obj'],
                         match=(s['sim']['AUC'] == r['T'] and s['reference']['AUC'] == r['R'])))
         print(res[-1], flush=True)
-    jdump(res, os.path.join(a.out, 'verify.json'))
+        jdump(res, os.path.join(a.out, 'verify.json'))
+    print(f"verify: {sum(x['match'] for x in res)}/{len(res)} exact (T and R), "
+          f"{sum(x['per_obj_match'] for x in res)}/{len(res)} per-object exact")
 
 
 # ---------------------------------------------------------------- score
@@ -396,7 +418,18 @@ def step_score(a):
     if a.max:
         D = D[:a.max]
     out = os.path.join(a.work, 'rows.jsonl')
-    done = {json.loads(l)['sha256'] for l in open(out)} if os.path.exists(out) else set()
+    old = [json.loads(l) for l in open(out)] if os.path.exists(out) else []
+    keep = []                                                              # re-score rows whose mesh rule changed
+    for r in old:
+        if 'error' in r or r['lib'] == choose_lib(a, r['run'], r['objects'], run_libs, r.get('box_meshes'))[0]:
+            keep.append(r)
+        else:
+            print(f"re-score (mesh rule now {choose_lib(a, r['run'], r['objects'], run_libs, r.get('box_meshes'))[0]}, was {r['lib']}): {r['path']}")
+    if len(keep) < len(old):
+        with open(out + '.tmp', 'w') as f:
+            f.writelines(json.dumps(r) + '\n' for r in keep)
+        os.replace(out + '.tmp', out)
+    done = {r['sha256'] for r in keep}
     sc = Scorer(a); t0 = time.time(); n = 0
     with open(out, 'a') as fo:
         for r in D:
@@ -499,6 +532,7 @@ def policies(rows):
                       T=float(np.mean([x['T'] for x in g])), S=float(np.mean([x['S'] for x in g])), R=g[0]['R'],
                       Rbar=float(np.mean(list(g[0]['R_obj'].values()))),
                       T_sd=float(np.std([x['T'] for x in g])), S_sd=float(np.std([x['S'] for x in g])),
+                      E=(float(np.mean([x['eval_add_auc'] for x in g])) if all(x.get('eval_add_auc') is not None for x in g) else None),
                       objects=g[0]['objects'],
                       T_obj={n: float(np.mean([x['T_obj'][n] for x in g])) for n in g[0]['objects']},
                       S_obj={n: float(np.mean([x['S_obj'][n] for x in g])) for n in g[0]['objects']},
@@ -586,6 +620,22 @@ def step_fit(a):
     res['fits'] = {k: (fit_models([x['T'] for x in v], [x['S'] for x in v], [x['R'] for x in v], [x['Rbar'] for x in v])
                        if len(v) >= 2 else None) for k, v in sets.items()}
     res['set_episodes'] = {k: dict(sorted(collections.Counter(x['ep'] for x in v).items())) for k, v in sets.items()}
+    # policies are not independent (checkpoint curves of one training): k with each episode weighted equally
+    kb = {}
+    for k in ('policies_own_mesh', 'policies_own_R>=0.95', 'policies_own_S>=0.8', 'policies_own_S>=0.8_R>=0.95'):
+        v = sets[k]; cnt = collections.Counter(x['ep'] for x in v)
+        if len(v) >= 2:
+            w = np.array([1.0 / cnt[x['ep']] for x in v]); T_ = np.array([x['T'] for x in v]); S_ = np.array([x['S'] for x in v])
+            kb[k] = dict(k=round(float(np.sum(w * T_ * S_) / np.sum(w * S_ * S_)), 4), n_eps=len(cnt),
+                         per_episode_k={e: round(float(np.sum([x['T'] * x['S'] for x in v if x['ep'] == e]) /
+                                                       np.sum([x['S'] ** 2 for x in v if x['ep'] == e])), 4) for e in sorted(cnt)})
+    res['k_episode_balanced'] = kb
+    # the evaluator's own add_auc (episode json metrics.add_auc, sim vs reference) as an alternative S
+    esets = {k: [x for x in sets[k] if x.get('E' if k.startswith('policies') else 'eval_add_auc') is not None]
+             for k in ('rollouts_own_mesh', 'rollouts_own_R>=0.95', 'policies_own_mesh', 'policies_own_R>=0.95')}
+    res['fits_eval_add_auc'] = {k: fit_models([x['T'] for x in v], [x['E' if k.startswith('policies') else 'eval_add_auc'] for x in v],
+                                              [x['R'] for x in v], [x['Rbar'] for x in v]) if len(v) >= 2 else None
+                                for k, v in esets.items()}
     # the GT-free symmetric yardstick S_mesh (step symS), where computed: same models with S -> S_mesh
     sm = jload(os.path.join(a.work, 's_mesh.json'), {})
     if sm:
@@ -652,6 +702,51 @@ def step_fit(a):
                                                     R=round(float(np.mean([x[2] for x in v])), 4),
                                                     res_SR=round(float(np.mean([x[0] - x[1] * x[2] for x in v])), 4))
                                 for (ep, n), v in sorted(po.items())}
+    # where each model breaks: mean residual by S bin and R group (own-mesh policy means)
+    a_all = res['fits']['policies_own_mesh']['T=a*S*R']['params']['a']
+    res['a_policies_own'] = a_all
+    bins = [(0.0, 0.3), (0.3, 0.6), (0.6, 0.8), (0.8, 0.9), (0.9, 1.01)]
+    br = []
+    for rg, sel in (('R>=0.95', lambda p: p['R'] >= 0.95), ('0.85<=R<0.95', lambda p: 0.85 <= p['R'] < 0.95),
+                    ('R<0.85', lambda p: p['R'] < 0.85)):
+        for lo, hi in bins:
+            g = [p for p in P if own(p) and sel(p) and lo <= p['S'] < hi]
+            if not g:
+                continue
+            T = np.array([p['T'] for p in g]); S = np.array([p['S'] for p in g]); R = np.array([p['R'] for p in g])
+            br.append(dict(R_group=rg, S_bin=f'{lo:.1f}-{min(hi, 1.0):.1f}', n=len(g), eps=sorted({p['ep'] for p in g}),
+                           S=round(float(S.mean()), 4), R=round(float(R.mean()), 4), T=round(float(T.mean()), 4),
+                           res_kS=round(float(np.mean(T - k95 * S)), 4), res_0979S=round(float(np.mean(T - 0.979 * S)), 4),
+                           res_SR=round(float(np.mean(T - S * R)), 4), res_aSR=round(float(np.mean(T - a_all * S * R)), 4),
+                           T_over_S=round(float(T.sum() / S.sum()), 4)))
+    res['binned_residuals_policies_own'] = br
+    # single-rollout noise of T given S (within one policy): sets the error bar of a one-draw transfer measurement
+    noise = {}
+    pkey = lambda r: (r['ep'], r.get('checkpoint_sha256') or (r['run'] + ':' + re.sub(r'/r\d+$', '', os.path.dirname(r['path']))),
+                      r['ref_digest'], r['lib'])
+    pmean = {}
+    for r in rows:
+        pmean.setdefault(pkey(r), []).append(r['S'])
+    for name, sel in (('all', lambda r: True), ('policy S>=0.8', lambda r: np.mean(pmean[pkey(r)]) >= 0.8)):
+        items = [r for r in rows if own(r) and sel(r)]
+        ws, per = within_slope(items, key=pkey)
+        G = collections.defaultdict(list)
+        for r in items:
+            G[pkey(r)].append(r)
+        rs, rT, rS = [], [], []
+        for k_, g in G.items():
+            if len(g) < 2:
+                continue
+            S_ = np.array([x['S'] for x in g]); T_ = np.array([x['T'] for x in g])
+            dS, dT = S_ - S_.mean(), T_ - T_.mean()
+            rs += list(dT - (ws['slope'] or 0) * dS); rT += list(dT); rS += list(dS)
+        n_pol = sum(1 for g in G.values() if len(g) >= 2)
+        corr = len(rs) / max(len(rs) - n_pol, 1)                         # degrees of freedom (one mean per policy)
+        noise[name] = dict(n_rollouts=len(rs), n_policies=n_pol, within_policy_slope=ws['slope'],
+                           sd_T_given_S=round(float(np.sqrt(np.mean(np.square(rs)) * corr)), 4),
+                           sd_T=round(float(np.sqrt(np.mean(np.square(rT)) * corr)), 4),
+                           sd_S=round(float(np.sqrt(np.mean(np.square(rS)) * corr)), 4))
+    res['rollout_noise'] = noise
     # transfer of sim_vs_ref differences into T (same episode, reference, meshes)
     tr = {}
     for name, items in (('rollouts_own', [r for r in rows if own(r)]), ('policies_own', [p for p in P if own(p)]),
@@ -667,6 +762,9 @@ def step_fit(a):
             mean_R_of_groups=round(float(np.mean(Rw)), 4) if Rw else None, pairs=pt,
             groups={f'ep{k[0]} {k[1][:6]} {k[2].replace("library_", "")}': v for k, v in per.items()})
     res['transfer'] = tr
+    fr = frame_summary(a, rows)
+    if fr:
+        res['frame_local'] = fr
     jdump(res, os.path.join(a.out, 'calibration.json'))
     jdump(sorted([{k: v for k, v in p.items()} for p in P], key=lambda p: (p['ep'], p['run'], p['path'])),
           os.path.join(a.out, 'policies.json'))
@@ -675,8 +773,9 @@ def step_fit(a):
            for r in rows], os.path.join(a.out, 'rollouts.json'))
     box_claim(a, res)
     lb_transfer(a, res)
+    jdump(res, os.path.join(a.out, 'calibration.json'))                    # again, with the box / leaderboard parts
     write_tables(a, res, P, rows)
-    plot(a, rows, P, k95)
+    plot(a, rows, P, k95, res)
     print(json.dumps({k: res[k] for k in ('n_rollouts', 'n_policies', 'n_policies_own_mesh', 'box_check', 'k_policies_own_R>=0.95')}, indent=1))
 
 
@@ -704,6 +803,23 @@ def box_claim(a, res):
         T = np.array([x['T'] for x in B]); S = np.array([x['S'] for x in B])
         out.update(sum_T_over_sum_S=round(float(T.sum() / S.sum()), 4), mean_T_over_S=round(float(np.mean(T / S)), 4),
                    k_ls=round(float(np.sum(T * S) / np.sum(S * S)), 4))
+        # try to reproduce the forensics' "0.979 x sim_vs_ref (57 policy means, 10 episodes)" (no script recorded):
+        # the same statistics on plausible subsets
+        newest = max(B, key=lambda x: (run_of(x['path'])[:8], run_of(x['path'])))['path']
+        subs = {'all': B, f'without newest ({run_of(newest)})': [x for x in B if x['path'] != newest]}
+        for thr in (0.5, 0.8, 0.9):
+            subs[f'S>={thr}'] = [x for x in B if x['S'] >= thr]
+            subs[f'S>={thr}, without newest'] = [x for x in B if x['S'] >= thr and x['path'] != newest]
+        subs['without ep21 (pitcher)'] = [x for x in B if x['ep'] != 21]
+        rep = {}
+        for nm, g in subs.items():
+            if len(g) < 2:
+                continue
+            t = np.array([x['T'] for x in g]); s = np.array([x['S'] for x in g])
+            rep[nm] = dict(n=len(g), n_eps=len({x['ep'] for x in g}), sum_ratio=round(float(t.sum() / s.sum()), 4),
+                           k_ls=round(float(np.sum(t * s) / np.sum(s * s)), 4), mean_ratio=round(float(np.mean(t / s)), 4),
+                           median_ratio=round(float(np.median(t / s)), 4))
+        out['reproduction_attempts'] = rep
         # join with our own R (per episode + reference) through the rollouts' policy means where the dir matches
         out['policies'] = B
     res['box_summaries'] = {k: v for k, v in out.items() if k != 'policies'}
@@ -735,6 +851,16 @@ def lb_transfer(a, res):
         out['predicted'][f'T=S*acc (spoon {spoon})'] = dict(dT=round(pr, 4), transfer=round(pr / (sum(d.values()) / 20), 3))
     k = res.get('k_policies_own_R>=0.95') or 0.979
     out['predicted'][f'T=k*S (k={k})'] = dict(dT=round(k * sum(d.values()) / 20, 4), transfer=k)
+    out['predicted']['T=0.979*S (work log 26 Oct)'] = dict(dT=round(0.979 * sum(d.values()) / 20, 4), transfer=0.979)
+    out['measured_over_0.979_prediction'] = round(dlb / (0.979 * sum(d.values()) / 20), 3)
+    # error bar of this one measurement from single-draw noise alone: each changed episode differs by two draws
+    sd = (res.get('rollout_noise', {}).get('policy S>=0.8') or {}).get('sd_T_given_S')
+    if sd:
+        sig = float(np.sqrt(2 * len(d)) * sd / 20)
+        out['noise'] = dict(sd_T_given_S_per_draw=sd, n_changed=len(d), sigma_dLB=round(sig, 4),
+                            sigma_transfer=round(sig / (sum(d.values()) / 20), 3),
+                            note='T|S noise of public high-S policies (two draws per changed episode); excludes eval-specific '
+                                 'reference error, which changes the slope, not the noise')
     res['leaderboard_transfer'] = out
 
 
@@ -753,6 +879,11 @@ def write_tables(a, res, P, rows):
                 L.append(f"| {k} | {f['n']} | {m} | {', '.join(f'{u}={v}' for u, v in x['params'].items())} | {x['rmse']} | "
                          f"{x['mae']} | {x['max_abs']} | {x['bias']:+.4f} | {x['r2']} |")
         L.append(f"| {k} | {f['n']} | sum T / sum S = {f['sum_T_over_sum_S']}, median T/S = {f['median_T_over_S']}, corr = {f['corr_T_S']} | | | | | | |")
+    if res.get('k_episode_balanced'):
+        L += ['', '## k with every episode weighted equally (policies of one training are not independent)', '',
+              '| set | episodes | k (episode-balanced) | k per episode |', '|---|---|---|---|']
+        for k, v in res['k_episode_balanced'].items():
+            L.append(f"| {k} | {v['n_eps']} | {v['k']} | {', '.join(f'ep{e} {x}' for e, x in v['per_episode_k'].items())} |")
     L += ['', '## Per episode (own-mesh policy means)', '',
           f"k = {res['k_policies_own_R>=0.95']} (fit on own-mesh policies with R >= 0.95).", '',
           '| ep | objects | libs | refs | policies | rollouts | R min-max | mean S | mean T | sumT/sumS | resid kS mean / rmse | resid 0.979S mean | resid SR mean / rmse | policies S>=0.8 | T/S (S>=0.8) | R (S>=0.8) | resid SR (S>=0.8) | resid kS (S>=0.8) |',
@@ -762,6 +893,48 @@ def write_tables(a, res, P, rows):
                  f"{e['R_min']}-{e['R_max']} | {e['S_mean']} | {e['T_mean']} | {e['sumT_sumS']} | {e['res_kS_mean']:+.4f} / {e['res_kS_rmse']} | "
                  f"{e['res_0.979S_mean']:+.4f} | {e['res_SR_mean']:+.4f} / {e['res_SR_rmse']} | {e['n_pol_S>=0.8']} | {f4(e['T_over_S_S>=0.8'])} | "
                  f"{f4(e['R_of_S>=0.8'])} | {f4(e['res_SR_mean_S>=0.8'])} | {f4(e['res_kS_mean_S>=0.8'])} |")
+    L += ['', '## Where each model breaks: mean residual T - prediction by S bin and R group (own-mesh policy means)', '',
+          f"k = {res['k_policies_own_R>=0.95']} (own-mesh policies, R >= 0.95); a = {res['a_policies_own']} (T = a*S*R on all "
+          "own-mesh policies).", '',
+          '| R group | S bin | policies | episodes | mean S | mean R | mean T | sum T / sum S | T - kS | T - 0.979S | T - S*R | T - aSR |',
+          '|---|---|---|---|---|---|---|---|---|---|---|---|']
+    for b in res['binned_residuals_policies_own']:
+        L.append(f"| {b['R_group']} | {b['S_bin']} | {b['n']} | {','.join(map(str, b['eps']))} | {b['S']} | {b['R']} | {b['T']} | "
+                 f"{b['T_over_S']} | {b['res_kS']:+.4f} | {b['res_0979S']:+.4f} | {b['res_SR']:+.4f} | {b['res_aSR']:+.4f} |")
+    if res.get('frame_local'):
+        fr = res['frame_local']
+        L += ['', '## Frame-local loss models (own-mesh rollouts; `frames` step)', '',
+              'prod = mean_f g(e_sim-ref) * g(e_ref-truth); quad = mean_f g(sqrt(e_s^2 + e_r^2)); sum = mean_f g(e_s + e_r); '
+              'g = the kit per-frame AUC share. cov = mean(gs*gr) - mean(gs)*mean(gr).', '',
+              'rest / moved = the part of T - prod from object-frames where the true object is at its frame-0 pose (1.5 cm, 5 deg) '
+              '/ elsewhere; sim>ref = mean max(g(e_t) - g(e_r), 0).', '',
+              '| rollouts | n | episodes | T - prod (rmse / bias) | T - quad | T - sum | T - S*R | mean cov | rest share | T-prod: rest | T-prod: moved | sim>ref |',
+              '|---|---|---|---|---|---|---|---|---|---|---|---|']
+        for k, d in fr.items():
+            if not isinstance(d, dict) or 'n' not in d or 'eps' not in d:
+                continue
+            L.append(f"| {k} | {d['n']} | {','.join(map(str, d['eps']))} | " +
+                     ' | '.join(f"{d[m]['rmse']} / {d[m]['bias']:+.4f}" for m in ('prod', 'quad', 'sum', 'S*R')) + f" | {d['mean_cov_gs_gr']:+.4f} | "
+                     f"{f4(d.get('rest_share'))} | {f4(d.get('T_minus_prod_rest'))} | {f4(d.get('T_minus_prod_moved'))} | {f4(d.get('sim_beats_ref'))} |")
+        for nm, title in (('per_object_S>=0.8', 'rollouts with S >= 0.8'), ('per_object_all', 'all own-mesh rollouts')):
+            if not fr.get(nm):
+                continue
+            L += ['', f'Per object, {title} (per-object frame shares):', '',
+                  '| episode object | rollouts | T_obj | S_obj | R_obj | prod | rest share | T-prod: rest | T-prod: moved |', '|---|---|---|---|---|---|---|---|---|']
+            for k, v in fr[nm].items():
+                L.append(f"| {k} | {v['n']} | {v['T']} | {v['S']} | {v['R']} | {v['prod']} | {v['rest_share']} | {v['T_minus_prod_rest']:+.4f} | {v['T_minus_prod_moved']:+.4f} |")
+        if fr.get('local_transfer'):
+            L += ['', 'Transfer of a sim_vs_ref gain, pairs of policies in one group (H-local): measured dT vs dS, dS*R (global) '
+                  'and dT_local = mean_f dg_s(f) * g_r(f) (the reference accuracy where the gain happens). rmse / bias / sum dT / sum prediction:', '',
+                  '| pairs | n | episodes | dT vs dS | dT vs dS*R | dT vs dT_local |', '|---|---|---|---|---|---|']
+            for k, v in fr['local_transfer'].items():
+                L.append(f"| {k} | {v['n_pairs']} | {','.join(map(str, v['eps']))} | " +
+                         ' | '.join(f"{v[m]['rmse']} / {v[m]['bias']:+.4f} / {v[m]['sum_ratio']}" for m in ('dS', 'dT_global', 'dT_local')) + ' |')
+    if res.get('rollout_noise'):
+        L += ['', '## Single-rollout noise of T given S (inside one policy)', '',
+              '| rollouts | n rollouts | policies | within-policy slope dT/dS | sd(T - slope*S) | sd T | sd S |', '|---|---|---|---|---|---|---|']
+        for k, v in res['rollout_noise'].items():
+            L.append(f"| {k} | {v['n_rollouts']} | {v['n_policies']} | {v['within_policy_slope']} | {v['sd_T_given_S']} | {v['sd_T']} | {v['sd_S']} |")
     L += ['', '## Per object (own-mesh policies with S >= 0.8): T_obj vs S_obj * R_obj', '',
           '| episode object | policies | T_obj | S_obj | R_obj | T_obj - S_obj*R_obj |', '|---|---|---|---|---|---|']
     for k, v in res['per_object_S>=0.8'].items():
@@ -776,6 +949,17 @@ def write_tables(a, res, P, rows):
     L += ['', '### Per group (own-mesh policies)', '', '| group (ep, ref digest, meshes) | policies | R | S range | slope dT/dS | resid sd |', '|---|---|---|---|---|---|']
     for k, v in res['transfer']['policies_own']['groups'].items():
         L.append(f"| {k} | {v['n']} | {v['R']} | {v['S_range'][0]}-{v['S_range'][1]} | {v['slope']} | {v['resid_sd']} |")
+    if res.get('fits_eval_add_auc'):
+        L += ['', "## Same models with the evaluator's own add_auc (episode json metrics.add_auc) in place of S", '',
+              '| set | n | model | params | RMSE | MAE | max abs | bias | R2 |', '|---|---|---|---|---|---|---|---|---|']
+        for k, f in res['fits_eval_add_auc'].items():
+            if not f:
+                continue
+            for m in ('T=k*S', 'T=a*S*R', 'T=b*S+c', 'T=S'):
+                x = f[m]
+                L.append(f"| {k} | {f['n']} | {m.replace('S', 'E')} | {', '.join(f'{u}={v}' for u, v in x['params'].items())} | "
+                         f"{x['rmse']} | {x['mae']} | {x['max_abs']} | {x['bias']:+.4f} | {x['r2']} |")
+            L.append(f"| {k} | {f['n']} | corr(T, E) = {f['corr_T_S']} | | | | | | |")
     if res.get('fits_S_mesh'):
         L += ['', '## Same models with the GT-free symmetric yardstick S_mesh in place of S (hypothesis H-yard; `symS` step)', '',
               '| set | n | model | params | RMSE | MAE | max abs | bias | R2 |', '|---|---|---|---|---|---|---|---|---|']
@@ -799,11 +983,20 @@ def write_tables(a, res, P, rows):
               f"measured transfer = {t['measured_transfer']}.", '', '| model | predicted dLB | predicted transfer |', '|---|---|---|']
         for k, v in t['predicted'].items():
             L.append(f"| {k} | {v['dT']} | {v['transfer']} |")
+        L.append(f"\nMeasured / (0.979 x sum dS / 20) = {t.get('measured_over_0.979_prediction')} (the work log's '76 %').")
+        if t.get('noise'):
+            n = t['noise']
+            L.append(f"Single-draw noise alone (sd(T|S) = {n['sd_T_given_S_per_draw']} per draw, two draws for each of {n['n_changed']} "
+                     f"changed episodes): sigma(dLB) = {n['sigma_dLB']}, sigma(transfer) = {n['sigma_transfer']}.")
     if 'box_summaries' in res:
         b = res['box_summaries']
         L += ['', '## Box-recorded policy means (summary.json; [doc] values recomputed into a ratio here)', '',
               f"{b['n_distinct_policy_means']} distinct policy means from {b['n_summary_files']} files, episodes {b['episodes']}: "
-              f"sum T / sum S = {b.get('sum_T_over_sum_S')}, mean T/S = {b.get('mean_T_over_S')}, least-squares k = {b.get('k_ls')}."]
+              f"sum T / sum S = {b.get('sum_T_over_sum_S')}, mean T/S = {b.get('mean_T_over_S')}, least-squares k = {b.get('k_ls')}.",
+              '', 'Attempts to reproduce the forensics 0.979 (57 policy means, 10 episodes) on subsets:', '',
+              '| subset | n | episodes | sum T / sum S | LS k | mean T/S | median T/S |', '|---|---|---|---|---|---|---|']
+        for k, v in (b.get('reproduction_attempts') or {}).items():
+            L.append(f"| {k} | {v['n']} | {v['n_eps']} | {v['sum_ratio']} | {v['k_ls']} | {v['mean_ratio']} | {v['median_ratio']} |")
     L += ['', '## Policies (mean over distinct rollouts)', '', '| ep | first run | first rollout dir | lib | n | R | Rbar | mean S | mean T | T/S | T - S*R |',
           '|---|---|---|---|---|---|---|---|---|---|---|']
     for p in sorted(P, key=lambda p: (p['ep'], p['run'], p['path'])):
@@ -812,7 +1005,7 @@ def write_tables(a, res, P, rows):
     open(os.path.join(a.out, 'tables.md'), 'w').write('\n'.join(L) + '\n')
 
 
-def plot(a, rows, P, k):
+def plot(a, rows, P, k, res=None):
     try:
         import matplotlib
         matplotlib.use('Agg')
@@ -820,7 +1013,7 @@ def plot(a, rows, P, k):
     except Exception:
         print('matplotlib not available: no plot'); return
     Q = [p for p in P if p['lib'] != 'scan']
-    fig, ax = plt.subplots(1, 3, figsize=(17, 5.5))
+    fig, ax = plt.subplots(1, 4, figsize=(22, 5.5))
     eps = sorted({p['ep'] for p in Q}); cmap = plt.get_cmap('tab10')
     for i, ep in enumerate(eps):
         g = [p for p in Q if p['ep'] == ep]; c = cmap(i % 10)
@@ -838,6 +1031,18 @@ def plot(a, rows, P, k):
     ax[1].set_xlabel('S x R (R = registered reference vs mocap)'); ax[1].set_ylabel('T')
     ax[2].set_xlabel('R'); ax[2].set_ylabel(f'T - {k:.3f} S')
     ax[0].set_title('own-mesh policy means (size ~ rollouts)'); ax[1].set_title('multiplicative model'); ax[2].set_title('residual of T = kS vs R')
+    if res and res.get('transfer'):
+        gr = res['transfer']['policies_own']['groups']
+        for i, ep in enumerate(eps):
+            g = [v for kk, v in gr.items() if kk.startswith(f'ep{ep} ')]
+            ax[3].scatter([v['R'] for v in g], [v['slope'] for v in g], s=[10 + 4 * v['n'] for v in g], color=cmap(i % 10),
+                          edgecolor='k', linewidth=0.3, alpha=0.8)
+            for v in g:
+                ax[3].annotate(f"{v['S_range'][0]:.2f}-{v['S_range'][1]:.2f}", (v['R'], v['slope']), fontsize=6, alpha=0.7)
+        ax[3].plot([0.7, 1], [0.7, 1], 'k:', lw=0.8, label='slope = R')
+        ax[3].axhline(1, color='grey', lw=0.6, ls='--', label='slope = 1')
+        ax[3].set_xlabel('R of the group'); ax[3].set_ylabel('within-group slope dT/dS')
+        ax[3].set_title('transfer of a sim_vs_ref gain (labels: S range)'); ax[3].legend(fontsize=7); ax[3].set_ylim(0, 1.5)
     for z in ax[:2]:
         z.set_xlim(0, 1.02); z.set_ylim(0, 1.02)
     for z in ax:
@@ -860,9 +1065,13 @@ def step_frames(a):
       prod: mean g(e_s) * g(e_r)        (frame-local version of T = S * R)
       quad: mean g(sqrt(e_s^2 + e_r^2)) (independent errors)
       sum:  mean g(e_s + e_r)           (aligned errors: lower bound on T up to alignment differences)
-    with g the kit's per-frame AUC share. Diagnostic only: e_r per frame needs mocap."""
+    with g the kit's per-frame AUC share. Diagnostic only: e_r per frame needs mocap.
+    Also: e_t = the registered sim-vs-mocap point error per frame (T's computation; T_chk re-checks it), and a split
+    of T - prod over object-frames where the TRUE object is at rest at its frame-0 pose (within 1.5 cm and 5 deg) or
+    moved. A positive 'rest' share means the simulation holds a resting object nearer the truth than our reference
+    does (hypothesis H-rest)."""
     rows = [json.loads(l) for l in open(os.path.join(a.work, 'rows.jsonl'))]
-    rows = [r for r in rows if 'error' not in r]
+    rows = [r for r in rows if 'error' not in r and r['lib'] != 'scan']
     seen = set(); rows = [r for r in rows if not (r['sha256'] in seen or seen.add(r['sha256']))]
     sc = Scorer(a); cdir = os.path.join(a.work, 'ref_err'); os.makedirs(cdir, exist_ok=True)
     cp = os.path.join(a.work, 'frames.json'); out = jload(cp, {})
@@ -873,29 +1082,61 @@ def step_frames(a):
     for i, r in enumerate(rows):
         if r['sha256'] in out:
             continue
-        names = r['objects']; frames, sim, ref = sc.grids(os.path.join(a.store, r['path']), len(names))
-        cf = os.path.join(cdir, f"ep{r['ep']}_{mesh_key(a, r['lib'], names).replace('|', '-')}_{r['ref_digest']}.npy")
+        ep = r['ep']; names = r['objects']; frames, sim, ref = sc.grids(os.path.join(a.store, r['path']), len(names))
+        cf = os.path.join(cdir, f"ep{ep}_{mesh_key(a, r['lib'], names).replace('|', '-')}_{r['ref_digest']}.npy")
         if not os.path.exists(cf):
-            np.save(cf, sc.registered(r['ep'], r['lib'], ref, frames, return_err=True))
+            np.save(cf, sc.registered(ep, r['lib'], ref, frames, return_err=True, fast=True))
         er = np.load(cf); es = sc.sphere_add(sim, ref)
-        gs, gr = frame_share(es), frame_share(er)
+        et = sc.registered(ep, r['lib'], sim, frames, return_err=True, fast=True)
+        gs, gr, gt = frame_share(es), frame_share(er), frame_share(et)
+        os.makedirs(os.path.join(a.work, 'frames_arr'), exist_ok=True)     # per-frame shares for the pair analysis
+        np.savez(os.path.join(a.work, 'frames_arr', r['sha256'][:16] + '.npz'), gs=gs.astype(np.float32),
+                 gt=gt.astype(np.float32), gr=gr.astype(np.float32))
+        _, gt_all, _ = sc.episode(ep); q = gt_all[frames]                  # truth poses: diagnostics only
+        dpos = np.linalg.norm(q[:, :, :3] - q[:1, :, :3], axis=-1)
+        dang = 2 * np.degrees(np.arccos(np.clip(np.abs(np.sum(q[:, :, 3:] * q[:1, :, 3:], axis=-1)), 0, 1)))
+        rest = (dpos < 0.015) & (dang < 5.0)
+        d = gt - gs * gr; N = d.size
         out[r['sha256']] = dict(prod=round(float(np.mean(gs * gr)), 4), quad=round(float(np.mean(frame_share(np.hypot(es, er)))), 4),
                                 sum=round(float(np.mean(frame_share(es + er))), 4), S_chk=round(float(np.mean(gs)), 4),
-                                R_chk=round(float(np.mean(gr)), 4),
-                                cov=round(float(np.mean(gs * gr) - np.mean(gs) * np.mean(gr)), 4))
+                                R_chk=round(float(np.mean(gr)), 4), T_chk=round(float(np.mean(gt)), 4),
+                                cov=round(float(np.mean(gs * gr) - np.mean(gs) * np.mean(gr)), 4),
+                                rest_share=round(float(rest.mean()), 4),
+                                T_minus_prod_rest=round(float(d[rest].sum() / N), 4),
+                                T_minus_prod_moved=round(float(d[~rest].sum() / N), 4),
+                                sim_beats_ref=round(float(np.mean(np.maximum(gt - gr, 0))), 4),
+                                obj={n: dict(T=round(float(gt[:, b].mean()), 4), S=round(float(gs[:, b].mean()), 4),
+                                             R=round(float(gr[:, b].mean()), 4), prod=round(float((gs[:, b] * gr[:, b]).mean()), 4),
+                                             rest_share=round(float(rest[:, b].mean()), 4),
+                                             T_minus_prod_rest=round(float(d[rest[:, b], b].sum() / len(d)), 4),
+                                             T_minus_prod_moved=round(float(d[~rest[:, b], b].sum() / len(d)), 4))
+                                     for b, n in enumerate(names)})
+        if abs(out[r['sha256']]['T_chk'] - r['T']) > 2e-4 or abs(out[r['sha256']]['R_chk'] - r['R']) > 2e-4:
+            print(f"WARNING frame shares do not reproduce T/R for {r['path']}: {out[r['sha256']]['T_chk']} vs {r['T']}, "
+                  f"{out[r['sha256']]['R_chk']} vs {r['R']}", flush=True)
         if i % 25 == 0:
-            jdump(out, cp); print(f'[{time.time() - t0:5.0f}s] {i}/{len(rows)}', flush=True)
+            jdump(out, cp); print(f'[{time.time() - t0:5.0f}s] {i}/{len(rows)} ep{ep} T {r["T"]} prod {out[r["sha256"]]["prod"]}', flush=True)
     jdump(out, cp)
-    # fit summary
     res = jload(os.path.join(a.out, 'calibration.json'), {})
-    own = [r for r in rows if r['lib'] != 'scan']
+    res['frame_local'] = fr = frame_summary(a, rows)
+    jdump(res, os.path.join(a.out, 'calibration.json'))
+    print(json.dumps(fr, indent=1))
+
+
+def frame_summary(a, rows):
+    """Fit summary of the frame-local models (WORK/frames.json from step `frames`) on own-mesh rollouts."""
+    out = jload(os.path.join(a.work, 'frames.json'), {})
+    own = [r for r in rows if r['lib'] != 'scan' and r['sha256'] in out]
+    if len(own) < 2:
+        return None
     T = np.array([r['T'] for r in own]); S = np.array([r['S'] for r in own]); R = np.array([r['R'] for r in own])
-    fr = {}
+    fr = dict(n_rollouts_with_frames=len(own))
     for name, sel in (('all', np.ones(len(own), bool)), ('S>=0.8', S >= 0.8), ('S<0.8', S < 0.8),
-                      ('R>=0.95', R >= 0.95), ('R<0.95', R < 0.95)):
+                      ('S<0.5', S < 0.5), ('R>=0.95', R >= 0.95), ('R<0.95', R < 0.95),
+                      ('S>=0.8,R<0.95', (S >= 0.8) & (R < 0.95))):
         if sel.sum() < 2:
             continue
-        d = dict(n=int(sel.sum()))
+        d = dict(n=int(sel.sum()), eps=sorted({r['ep'] for r, s in zip(own, sel) if s}))
         for m in ('prod', 'quad', 'sum'):
             pr = np.array([out[r['sha256']][m] for r in own])[sel]
             e = T[sel] - pr
@@ -903,10 +1144,74 @@ def step_frames(a):
         e = T[sel] - S[sel] * R[sel]; d['S*R'] = dict(rmse=round(float(np.sqrt(np.mean(e ** 2))), 4), bias=round(float(np.mean(e)), 4))
         cv = np.array([out[r['sha256']]['cov'] for r in own])[sel]
         d['mean_cov_gs_gr'] = round(float(np.mean(cv)), 4)
+        d['S_chk_maxdiff'] = round(float(np.max(np.abs(np.array([out[r['sha256']]['S_chk'] for r in own])[sel] - S[sel]))), 4)
+        d['R_chk_maxdiff'] = round(float(np.max(np.abs(np.array([out[r['sha256']]['R_chk'] for r in own])[sel] - R[sel]))), 4)
+        if 'T_chk' in out[own[0]['sha256']]:
+            col = lambda k: np.array([out[r['sha256']][k] for r in own])[sel]
+            d['T_chk_maxdiff'] = round(float(np.max(np.abs(col('T_chk') - T[sel]))), 4)
+            for k in ('rest_share', 'T_minus_prod_rest', 'T_minus_prod_moved', 'sim_beats_ref'):
+                d[k] = round(float(np.mean(col(k))), 4)
         fr[name] = d
-    res['frame_local'] = fr
-    jdump(res, os.path.join(a.out, 'calibration.json'))
-    print(json.dumps(fr, indent=1))
+    # per object (rollouts with S >= 0.8): where T - prod comes from
+    for nm, smin in (('per_object_S>=0.8', 0.8), ('per_object_all', -1.0)):
+        po = collections.defaultdict(list)
+        for r in own:
+            if r['S'] >= smin and 'obj' in out[r['sha256']]:
+                for n, v in out[r['sha256']]['obj'].items():
+                    po[f"ep{r['ep']} {n}"].append(v)
+        fr[nm] = {k: dict(n=len(v), **{m: round(float(np.mean([x[m] for x in v])), 4)
+                                       for m in ('T', 'S', 'R', 'prod', 'rest_share', 'T_minus_prod_rest', 'T_minus_prod_moved')})
+                  for k, v in sorted(po.items())}
+    fr['local_transfer'] = local_transfer(a, own)
+    return fr
+
+
+def local_transfer(a, own, min_dS=0.02):
+    """Hypothesis H-local: a sim_vs_ref gain transfers to T at the reference's accuracy IN THE FRAMES WHERE THE GAIN
+    HAPPENS, not at the global R. For pairs of policies in one group (episode, reference, meshes) with dS >= min_dS:
+    predicted dT_local = mean_f,b [dg_s(f,b) * g_r(f,b)] (policy means of the per-frame shares) vs dT_global = dS * R and
+    the measured dT. Falsified if dT_local predicts dT no better than dS * R."""
+    adir = os.path.join(a.work, 'frames_arr')
+    if not os.path.isdir(adir):
+        return None
+    pol = collections.defaultdict(list)
+    for r in own:
+        f = os.path.join(adir, r['sha256'][:16] + '.npz')
+        if os.path.exists(f):
+            ck = r.get('checkpoint_sha256') or (r['run'] + ':' + re.sub(r'/r\d+$', '', os.path.dirname(r['path'])))
+            pol[(r['ep'], r['ref_digest'], r['lib'], ck)].append((r, f))
+    G = collections.defaultdict(list)
+    for (ep, rd, lib, ck), g in pol.items():
+        A = [np.load(f) for _, f in g]
+        if len({x['gs'].shape for x in A}) != 1:
+            continue
+        G[(ep, rd, lib)].append(dict(ep=ep, R=g[0][0]['R'], S=np.mean([r['S'] for r, _ in g]), T=np.mean([r['T'] for r, _ in g]),
+                                     gs=np.mean([x['gs'] for x in A], 0), gr=A[0]['gr']))
+    pr = []
+    for k, g in G.items():
+        for i in range(len(g)):
+            for j in range(i + 1, len(g)):
+                lo, hi = sorted((g[i], g[j]), key=lambda x: x['S'])
+                if hi['S'] - lo['S'] < min_dS or hi['gs'].shape != lo['gs'].shape:
+                    continue
+                dS = hi['S'] - lo['S']
+                pr.append(dict(ep=k[0], R=lo['R'], dS=dS, dT=hi['T'] - lo['T'], dT_global=dS * lo['R'],
+                               dT_local=float(np.mean((hi['gs'] - lo['gs']) * lo['gr'])), S_hi=hi['S']))
+    if not pr:
+        return None
+    out = {}
+    for nm, sel in (('all', lambda x: True), ('S_hi>=0.8', lambda x: x['S_hi'] >= 0.8), ('R<0.95', lambda x: x['R'] < 0.95),
+                    ('R>=0.95', lambda x: x['R'] >= 0.95)):
+        q = [x for x in pr if sel(x)]
+        if len(q) < 2:
+            continue
+        dT = np.array([x['dT'] for x in q]); d = {}
+        for m in ('dS', 'dT_global', 'dT_local'):
+            p = np.array([x[m] for x in q]); e = dT - p
+            d[m] = dict(rmse=round(float(np.sqrt(np.mean(e ** 2))), 4), bias=round(float(np.mean(e)), 4),
+                        sum_ratio=round(float(dT.sum() / p.sum()), 4))
+        out[nm] = dict(n_pairs=len(q), eps=sorted({x['ep'] for x in q}), **d)
+    return out
 
 
 def fast_sym_err(T3, achieved, reference, points, axis, order):
@@ -996,12 +1301,12 @@ def step_symS(a):
 def step_plot(a):
     """Plot from the fit outputs (needs only numpy + matplotlib; the scoring venv may lack matplotlib)."""
     P = jload(os.path.join(a.out, 'policies.json')); res = jload(os.path.join(a.out, 'calibration.json'))
-    plot(a, None, P, res['k_policies_own_R>=0.95'])
+    plot(a, None, P, res['k_policies_own_R>=0.95'], res)
 
 
 def main():
     a = args()
-    steps = ['inventory', 'fetch', 'libs', 'score', 'verify', 'symS', 'fit', 'frames'] if a.step == 'all' else [a.step]
+    steps = ['inventory', 'fetch', 'libs', 'score', 'verify', 'symS', 'frames', 'fit'] if a.step == 'all' else [a.step]
     for s in steps:
         globals()[f'step_{s}'](a)
 

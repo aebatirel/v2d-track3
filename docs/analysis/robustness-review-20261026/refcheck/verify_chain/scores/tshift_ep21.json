@@ -1,0 +1,115 @@
+{
+ "ep": 21,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 186,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin21arc-ee7ba8e/perc2/ep21/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|perc@-1": {
+   "scene": 0.8254,
+   "per_obj": {
+    "blue_cup": 0.9788,
+    "water_pitcher": 0.672
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.343,
+    "water_pitcher": 2.585
+   },
+   "n_frames": 186
+  },
+  "lib|perc@+0": {
+   "scene": 0.8372,
+   "per_obj": {
+    "blue_cup": 0.9829,
+    "water_pitcher": 0.6915
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.344,
+    "water_pitcher": 2.594
+   },
+   "n_frames": 186
+  },
+  "lib|perc@+1": {
+   "scene": 0.8372,
+   "per_obj": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6929
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.344,
+    "water_pitcher": 2.604
+   },
+   "n_frames": 186
+  },
+  "scan|perc@-1": {
+   "scene": 0.9368,
+   "per_obj": {
+    "blue_cup": 0.9862,
+    "water_pitcher": 0.8874
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.336,
+    "water_pitcher": 1.052
+   },
+   "n_frames": 186
+  },
+  "scan|perc@+0": {
+   "scene": 0.9575,
+   "per_obj": {
+    "blue_cup": 0.9963,
+    "water_pitcher": 0.9187
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.336,
+    "water_pitcher": 1.059
+   },
+   "n_frames": 186
+  },
+  "scan|perc@+1": {
+   "scene": 0.9548,
+   "per_obj": {
+    "blue_cup": 0.9936,
+    "water_pitcher": 0.916
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.336,
+    "water_pitcher": 1.066
+   },
+   "n_frames": 186
+  }
+ },
+ "registration": {
+  "lib": {
+   "blue_cup": {
+    "kind": "ours",
+    "rot_deg": 1.361,
+    "anchor_shift_cm": 1.048
+   },
+   "water_pitcher": {
+    "kind": "ours",
+    "rot_deg": 2.653,
+    "anchor_shift_cm": 0.655
+   }
+  },
+  "scan": {
+   "blue_cup": {
+    "kind": "scan",
+    "rot_deg": 0.321,
+    "anchor_shift_cm": 0.008
+   },
+   "water_pitcher": {
+    "kind": "scan",
+    "rot_deg": 0.141,
+    "anchor_shift_cm": 0.045
+   }
+  }
+ },
+ "sec": 42.0
+}

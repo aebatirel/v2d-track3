@@ -1,0 +1,56 @@
+{
+ "n_entries": 126,
+ "n_distinct": 58,
+ "by_src": {
+  "per-ep file": 58,
+  "top-level key": 0
+ },
+ "episodes": [
+  2,
+  11,
+  12,
+  18,
+  21,
+  24,
+  26,
+  27,
+  31,
+  39
+ ],
+ "all": {
+  "n": 58,
+  "n_eps": 10,
+  "k_ls": 0.976,
+  "sum_ratio": 0.9891,
+  "mean_ratio": 1.0082,
+  "median_ratio": 0.9848
+ },
+ "per_ep_file_only": {
+  "n": 58,
+  "n_eps": 10,
+  "k_ls": 0.976,
+  "sum_ratio": 0.9891,
+  "mean_ratio": 1.0082,
+  "median_ratio": 0.9848
+ },
+ "top_level_only_new": null,
+ "S_ge_0_8": {
+  "n": 19,
+  "n_eps": 5,
+  "k_ls": 0.9575,
+  "sum_ratio": 0.9574,
+  "mean_ratio": 0.9573,
+  "median_ratio": 0.977
+ },
+ "without_ep21": {
+  "n": 55,
+  "n_eps": 9,
+  "k_ls": 0.9909,
+  "sum_ratio": 1.0011,
+  "mean_ratio": 1.016,
+  "median_ratio": 0.9849
+ },
+ "top_level_not_in_per_ep_files": [],
+ "n_top_level_not_in_per_ep_files": 0,
+ "drop_one_hits_0.979": []
+}

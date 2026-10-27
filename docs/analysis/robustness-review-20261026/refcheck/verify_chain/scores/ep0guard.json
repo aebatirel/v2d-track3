@@ -1,0 +1,67 @@
+{
+ "ep": 0,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 373,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "guard": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-guard-fe3f407/results/sweep/guard/ep0/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|guard": {
+   "scene": 0.9641,
+   "per_obj": {
+    "white_pot": 0.9918,
+    "white_pot_lid": 0.9363
+   },
+   "dz_err_cm": {
+    "white_pot": -0.046,
+    "white_pot_lid": -1.13
+   },
+   "n_frames": 373
+  },
+  "scan|guard": {
+   "scene": 0.9945,
+   "per_obj": {
+    "white_pot": 0.9935,
+    "white_pot_lid": 0.9955
+   },
+   "dz_err_cm": {
+    "white_pot": -0.017,
+    "white_pot_lid": -0.428
+   },
+   "n_frames": 373
+  }
+ },
+ "registration": {
+  "lib": {
+   "white_pot": {
+    "kind": "ours",
+    "rot_deg": 1.691,
+    "anchor_shift_cm": 0.68
+   },
+   "white_pot_lid": {
+    "kind": "ours",
+    "rot_deg": 1.738,
+    "anchor_shift_cm": 0.714
+   }
+  },
+  "scan": {
+   "white_pot": {
+    "kind": "scan",
+    "rot_deg": 0.3,
+    "anchor_shift_cm": 0.019
+   },
+   "white_pot_lid": {
+    "kind": "scan",
+    "rot_deg": 0.234,
+    "anchor_shift_cm": 0.036
+   }
+  }
+ },
+ "sec": 11.5
+}

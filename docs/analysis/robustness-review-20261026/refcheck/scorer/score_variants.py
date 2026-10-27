@@ -179,7 +179,10 @@ else:
     if tr.reference_xyzw is not None:
         trajs['reference'] = grid(tr.reference_xyzw)
     trajs['static_floor'] = np.repeat(trajs['sim'][:1], len(frames), 0)
-if a.trajs:
+REF_F0 = trajs['reference'][0].copy() if 'reference' in trajs else None   # kept for f0_from_ref even when --trajs drops it
+if a.trajs:                                                     # (27 Oct fix: before, --trajs sim removed the reference
+                                                                #  first and f0_from_ref silently did nothing; f0/ of 26 Oct
+                                                                #  was moved to f0_INVALID_noop/)
     trajs = {k: v for k, v in trajs.items() if k in a.trajs.split(',')}
 gt = np.stack([[gt_xyzw([o for o in tab['observation.objects'].iloc[fr] if o['name'] == n][0]) for n in names]
                for fr in frames])
@@ -215,12 +218,16 @@ for vname, cfg in VARIANTS:
         REG.append(REG_CACHE[key])
     r = {'config': cfg,
          'registration': {n: {'rot_deg': round(float(np.degrees(Rot.from_matrix(REG[s][1]).magnitude())), 3),
+                              'quat_xyzw': np.round(Rot.from_matrix(REG[s][1]).as_quat(), 6).tolist(),
+                              'cand_anchor_cm': np.round(REG[s][0] * 100, 3).tolist(),
                               'anchor_cm': np.round(H[s]['anchor'] * 100, 3).tolist(),
                               'axis': np.round(H[s]['axis'], 4).tolist(), 'order': H[s]['order']}
                           for s, n in enumerate(names)}}
     for k, v in trajs.items():
-        if cfg['f0_from_ref'] and k == 'sim' and 'reference' in trajs:
-            v = v.copy(); v[0] = trajs['reference'][0]
+        if cfg['f0_from_ref'] and k == 'sim':
+            if REF_F0 is None:
+                raise SystemExit('f0_from_ref needs a results dir with reference columns')
+            v = v.copy(); v[0] = REF_F0
         r[k] = score(v, H, REG)
     r['seconds'] = round(time.time() - t0, 1)
     res['variants'][vname] = r

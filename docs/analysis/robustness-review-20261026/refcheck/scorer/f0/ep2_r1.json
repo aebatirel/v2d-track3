@@ -1,0 +1,162 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.826,
+     "quat_xyzw": [
+      -0.000754,
+      0.013333,
+      -0.0087,
+      0.999873
+     ],
+     "cand_anchor_cm": [
+      0.365,
+      0.088,
+      -0.506
+     ],
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.052,
+     "quat_xyzw": [
+      -0.004397,
+      -0.0014,
+      0.007938,
+      0.999958
+     ],
+     "cand_anchor_cm": [
+      -0.452,
+      -0.122,
+      0.631
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "sim": {
+    "AUC": 0.4513,
+    "SP_SR": 0.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 10.6713,
+    "RPE_cm": 17.6909,
+    "per_obj_AUC": {
+     "white_pot": 0.6263,
+     "white_pot_lid": 0.2764
+    }
+   },
+   "seconds": 5.8
+  },
+  "f0ref": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 1
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.826,
+     "quat_xyzw": [
+      -0.000754,
+      0.013333,
+      -0.0087,
+      0.999873
+     ],
+     "cand_anchor_cm": [
+      0.365,
+      0.088,
+      -0.506
+     ],
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.052,
+     "quat_xyzw": [
+      -0.004397,
+      -0.0014,
+      0.007938,
+      0.999958
+     ],
+     "cand_anchor_cm": [
+      -0.452,
+      -0.122,
+      0.631
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "sim": {
+    "AUC": 0.4515,
+    "SP_SR": 0.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 10.6413,
+    "RPE_cm": 17.6917,
+    "per_obj_AUC": {
+     "white_pot": 0.6257,
+     "white_pot_lid": 0.2773
+    }
+   },
+   "seconds": 0.5
+  }
+ }
+}

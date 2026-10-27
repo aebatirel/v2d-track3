@@ -1,0 +1,33 @@
+# verify_scorer, 27 Oct 2026, 05:15-06:35 UTC. Machine: this CPU container (4 cores), one heavy process at a time.
+# Repo branch main-bsky37 (working tree as found; nothing committed by this check). Venv refcheck/venv. No GPU/Vast/Kaggle.
+# R=/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck
+# V=/home/user/v2d-track3/docs/analysis/robustness-review-20261026/refcheck/verify_scorer ; cwd = $R/work/verify_scorer
+source $R/venv/bin/activate
+python -I $V/t1_rollouts.py 21 runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1 library_v3 $V/t1/ep21_r1.json
+python -I $V/t1_rollouts.py 21 runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r2 library_v3 $V/t1/ep21_r2.json
+python -I $V/t1_rollouts.py 2 runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1 library_v3 $V/t1/ep2_r1.json
+python -I $V/t1_rollouts.py 11 runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r1 library_v3x $V/t1/ep11_r1.json
+python -I $V/t1_rollouts.py 31 runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r1 library_v3 $V/t1/ep31_r1.json
+B=runs/20261025-sweep-a894083/results/sweep/base
+python -I $V/t2_variants.py 31 $B/ep31/poses_world_vo.npz library_v2 $V/t2/ep31_perc.json base off1:off=1 off2:off=2 off6:off=6 f50k:faces=50000 f20k:faces=20000 f4096:faces=4096 c50k:faces=50000,dec=cluster lagm1:lag=-1 lagp1:lag=1
+python -I $V/t2_variants.py 24 $B/ep24/poses_world_vo.npz library_v2 $V/t2/ep24_perc.json base f20k:faces=20000 f50k:faces=50000 f4096:faces=4096 c20k:faces=20000,dec=cluster off6:off=6 lagm1:lag=-1
+python -I $V/t2_variants.py 2 $B/ep2/poses_world_vo.npz library_v2 $V/t2/ep2_perc.json base off2:off=2 f50k:faces=50000 lagm1:lag=-1
+python -I $V/t2_variants.py 13 $B/ep13/poses_world_vo.npz library_v2 $V/t2/ep13_perc.json base bbox:anc=bbox n4000:npts=4000
+python -I $V/t2_variants.py 18 $B/ep18/poses_world_vo.npz library_v2 $V/t2/ep18_perc.json base n4000:npts=4000 bbox:anc=bbox
+python -I $V/t2_variants.py 11 $B/ep11/poses_world_vo.npz library_v2 $V/t2/ep11_perc.json base off1:off=1 bbox:anc=bbox
+python -I $V/t2_variants.py 21 runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1 library_v3 $V/t2/ep21_r1_swap.json v3_s0 v3p_s0:slot_lib=1/library_v3p v3_s3:off=3 v3p_s3:off=3,slot_lib=1/library_v3p v3_s4:off=4 v3p_s4:off=4,slot_lib=1/library_v3p v3_ev:off=-1000003 v3p_ev:off=-1000003,slot_lib=1/library_v3p v3_ev20k:off=-1000003,faces=20000 v3p_ev20k:off=-1000003,faces=20000,slot_lib=1/library_v3p
+python -I $V/t2_variants.py 31 runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r1 library_v3 $V/t2/ep31_r1_v3.json base f50k:faces=50000 f20k:faces=20000 f4096:faces=4096 off2:off=2 off6:off=6 off3:off=3 off4:off=4 off5:off=5
+python -I $V/t3_evalreg.py library_v3 mini_sweeper 30000090 $V/t3/sweeper_v3_ev30.json 40
+python -I $V/t3_evalreg.py library_v3 mini_sweeper 19000057 $V/t3/sweeper_v3_ev19.json 40
+python -I $V/t3_evalreg.py library_v3p water_pitcher 20000161 $V/t3/pitcher_library_v3p_ev20.json 30
+python -I $V/t3_evalreg.py library_v3 water_pitcher 20000161 $V/t3/pitcher_library_v3_ev20.json 30
+bash $V/run_t3_batch.sh     # boards ev25 s0/s1, dust pan ev38/ev19, rack ev14 s1, white_pot ev1 (24 hosts, 20 seeds each)
+python -I $V/t4_budget.py $V/t4_budget.json
+python -I $V/t5_pack.py $V/t5_pack.json
+python -I $V/t6_quat.py $V/t6_quat.json 2 11 18 21 24 31
+python -I $V/t7_official.py 21 runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1 library_v3 $V/t7/ep21_r1.json
+python -I $V/t7_official.py 2 runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1 library_v3 $V/t7/ep2_r1.json
+python -I $V/t8_swapdist.py $V/t8_swapdist.json   # 17.4 min
+# inline (no file): pack 4/5/6 parquet diff (results/submissions/20261026-track3{d,e,f}); AST comparison of v2dlb helpers
+# vs metric_code/track_3/AUC.py (docstrings and annotations stripped); diff of the five metric files.
+# No step failed.

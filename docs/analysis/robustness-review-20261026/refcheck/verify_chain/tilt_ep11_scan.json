@@ -1,0 +1,50 @@
+{
+ "ep": 11,
+ "names": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "mode": "scan",
+ "bottoms_cm": {
+  "blue_cup": {
+   "scan_at_perc_above_mkref_plane": 0.11,
+   "ours_at_perc_above_mkref_plane": 0.04,
+   "scan_at_mocap_above_table": -0.04
+  },
+  "beige_cup": {
+   "scan_at_perc_above_mkref_plane": -0.12,
+   "ours_at_perc_above_mkref_plane": -0.27,
+   "scan_at_mocap_above_table": 0.12
+  }
+ },
+ "rotation_anchor": "axis+direction",
+ "tilt_deg": 2.221,
+ "lever_dz_cm": {
+  "blue_cup": 0.0,
+  "beige_cup": 0.38
+ },
+ "aligned_dz_err_cm": {
+  "blue_cup": 0.0,
+  "beige_cup": 0.05
+ },
+ "levelled_dz_err_cm": {
+  "blue_cup": 0.0,
+  "beige_cup": -0.34
+ },
+ "dist_to_slot0_cm": {
+  "blue_cup": 0.0,
+  "beige_cup": 17.7
+ },
+ "frame0_orientation_err_after_levelled_alignment_deg": {
+  "blue_cup": 2.22,
+  "beige_cup": 2.58
+ },
+ "frame0_orientation_err_after_kit_alignment_deg": {
+  "blue_cup": 0.04,
+  "beige_cup": 3.37
+ },
+ "mocap_axis_tilt_from_vertical_deg": {
+  "blue_cup": 0.3,
+  "beige_cup": 1.7
+ }
+}

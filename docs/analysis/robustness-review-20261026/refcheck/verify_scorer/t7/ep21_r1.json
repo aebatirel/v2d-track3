@@ -1,0 +1,21 @@
+{
+ "ep": 21,
+ "rollout": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1",
+ "lib": "library_v3",
+ "scores": {
+  "weld32": {
+   "decoded_bytes": 3596388,
+   "limit_patched": false,
+   "AUC": 0.790323,
+   "SP-SR": 1.0,
+   "MP-SR": 0.0
+  },
+  "soup64": {
+   "decoded_bytes": 18958440,
+   "limit_patched": true,
+   "AUC": 0.790323,
+   "SP-SR": 1.0,
+   "MP-SR": 0.0
+  }
+ }
+}

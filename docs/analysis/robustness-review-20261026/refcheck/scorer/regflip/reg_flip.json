@@ -1,0 +1,5016 @@
+{
+ "faces": [
+  0,
+  20000,
+  4096
+ ],
+ "results": [
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 8,
+   "slot": 0,
+   "rot_deg": 4.02,
+   "axis_tilt_deg": 3.55,
+   "flip": false,
+   "quat_xyzw": [
+    -0.023266,
+    0.021376,
+    -0.01533,
+    0.999383
+   ],
+   "cand_anchor_cm": [
+    0.048,
+    0.124,
+    -0.49
+   ],
+   "anchor_shift_cm": 0.51
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 10,
+   "slot": 1,
+   "rot_deg": 123.85,
+   "axis_tilt_deg": 3.24,
+   "flip": false,
+   "quat_xyzw": [
+    -0.010279,
+    -0.036296,
+    0.881515,
+    -0.470647
+   ],
+   "cand_anchor_cm": [
+    -0.117,
+    0.476,
+    -0.553
+   ],
+   "anchor_shift_cm": 0.74
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 11,
+   "slot": 1,
+   "rot_deg": 145.26,
+   "axis_tilt_deg": 5.73,
+   "flip": false,
+   "quat_xyzw": [
+    -0.027611,
+    -0.014249,
+    0.953882,
+    0.298568
+   ],
+   "cand_anchor_cm": [
+    -0.39,
+    0.235,
+    -0.372
+   ],
+   "anchor_shift_cm": 0.59
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 8,
+   "slot": 0,
+   "rot_deg": 4.24,
+   "axis_tilt_deg": 3.63,
+   "flip": false,
+   "quat_xyzw": [
+    -0.023321,
+    0.022426,
+    -0.017985,
+    0.999315
+   ],
+   "cand_anchor_cm": [
+    0.04,
+    0.147,
+    -0.477
+   ],
+   "anchor_shift_cm": 0.5
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 10,
+   "slot": 1,
+   "rot_deg": 128.68,
+   "axis_tilt_deg": 3.45,
+   "flip": false,
+   "quat_xyzw": [
+    -0.012184,
+    -0.034669,
+    0.900643,
+    -0.433004
+   ],
+   "cand_anchor_cm": [
+    -0.148,
+    0.459,
+    -0.608
+   ],
+   "anchor_shift_cm": 0.78
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 11,
+   "slot": 1,
+   "rot_deg": 138.24,
+   "axis_tilt_deg": 5.9,
+   "flip": false,
+   "quat_xyzw": [
+    -0.03098,
+    -0.017425,
+    0.933638,
+    0.356449
+   ],
+   "cand_anchor_cm": [
+    -0.385,
+    0.239,
+    -0.491
+   ],
+   "anchor_shift_cm": 0.67
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 8,
+   "slot": 0,
+   "rot_deg": 3.68,
+   "axis_tilt_deg": 3.61,
+   "flip": false,
+   "quat_xyzw": [
+    -0.022147,
+    0.02275,
+    -0.004937,
+    0.999484
+   ],
+   "cand_anchor_cm": [
+    0.045,
+    0.127,
+    -0.523
+   ],
+   "anchor_shift_cm": 0.54
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 10,
+   "slot": 1,
+   "rot_deg": 3.65,
+   "axis_tilt_deg": 3.63,
+   "flip": false,
+   "quat_xyzw": [
+    -0.021523,
+    0.02335,
+    -0.002044,
+    0.999494
+   ],
+   "cand_anchor_cm": [
+    0.046,
+    0.15,
+    -0.492
+   ],
+   "anchor_shift_cm": 0.52
+  },
+  {
+   "lib": "library_v3",
+   "obj": "beige_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 11,
+   "slot": 1,
+   "rot_deg": 3.43,
+   "axis_tilt_deg": 3.36,
+   "flip": false,
+   "quat_xyzw": [
+    -0.019013,
+    0.021926,
+    0.007236,
+    0.999553
+   ],
+   "cand_anchor_cm": [
+    0.09,
+    0.079,
+    -0.44
+   ],
+   "anchor_shift_cm": 0.46
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 10,
+   "slot": 0,
+   "rot_deg": 1.8,
+   "axis_tilt_deg": 1.71,
+   "flip": false,
+   "quat_xyzw": [
+    -0.014441,
+    -0.004273,
+    0.00456,
+    0.999876
+   ],
+   "cand_anchor_cm": [
+    -0.116,
+    0.15,
+    0.913
+   ],
+   "anchor_shift_cm": 0.93
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 14,
+   "slot": 0,
+   "rot_deg": 2.69,
+   "axis_tilt_deg": 1.26,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011182,
+    -0.002542,
+    0.020496,
+    0.999724
+   ],
+   "cand_anchor_cm": [
+    -0.168,
+    0.169,
+    0.905
+   ],
+   "anchor_shift_cm": 0.94
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 20,
+   "slot": 0,
+   "rot_deg": 2.67,
+   "axis_tilt_deg": 0.92,
+   "flip": false,
+   "quat_xyzw": [
+    -0.007187,
+    -0.002312,
+    -0.022029,
+    0.999729
+   ],
+   "cand_anchor_cm": [
+    -0.153,
+    0.179,
+    0.948
+   ],
+   "anchor_shift_cm": 0.98
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 32,
+   "slot": 0,
+   "rot_deg": 1.17,
+   "axis_tilt_deg": 1.05,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00897,
+    -0.00095,
+    -0.004828,
+    0.999948
+   ],
+   "cand_anchor_cm": [
+    -0.116,
+    0.17,
+    0.968
+   ],
+   "anchor_shift_cm": 0.99
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 33,
+   "slot": 0,
+   "rot_deg": 1.14,
+   "axis_tilt_deg": 1.13,
+   "flip": false,
+   "quat_xyzw": [
+    -0.009363,
+    -0.002972,
+    -0.001772,
+    0.99995
+   ],
+   "cand_anchor_cm": [
+    -0.143,
+    0.175,
+    1.019
+   ],
+   "anchor_shift_cm": 1.04
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 11,
+   "slot": 0,
+   "rot_deg": 1.86,
+   "axis_tilt_deg": 1.17,
+   "flip": false,
+   "quat_xyzw": [
+    -0.010373,
+    -0.001923,
+    0.012335,
+    0.999868
+   ],
+   "cand_anchor_cm": [
+    -0.139,
+    0.191,
+    0.953
+   ],
+   "anchor_shift_cm": 0.98
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 12,
+   "slot": 0,
+   "rot_deg": 0.82,
+   "axis_tilt_deg": 0.78,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005343,
+    -0.004095,
+    -0.002395,
+    0.999974
+   ],
+   "cand_anchor_cm": [
+    -0.143,
+    0.14,
+    0.89
+   ],
+   "anchor_shift_cm": 0.91
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 13,
+   "slot": 0,
+   "rot_deg": 1.47,
+   "axis_tilt_deg": 1.2,
+   "flip": false,
+   "quat_xyzw": [
+    -0.010244,
+    -0.002949,
+    0.007071,
+    0.999918
+   ],
+   "cand_anchor_cm": [
+    -0.133,
+    0.185,
+    1.018
+   ],
+   "anchor_shift_cm": 1.04
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 21,
+   "slot": 0,
+   "rot_deg": 1.36,
+   "axis_tilt_deg": 1.32,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011443,
+    0.000252,
+    -0.003174,
+    0.999929
+   ],
+   "cand_anchor_cm": [
+    -0.153,
+    0.167,
+    1.023
+   ],
+   "anchor_shift_cm": 1.05
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 22,
+   "slot": 0,
+   "rot_deg": 1.64,
+   "axis_tilt_deg": 1.57,
+   "flip": false,
+   "quat_xyzw": [
+    -0.013212,
+    -0.003224,
+    -0.004559,
+    0.999897
+   ],
+   "cand_anchor_cm": [
+    -0.113,
+    0.175,
+    0.984
+   ],
+   "anchor_shift_cm": 1.01
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 10,
+   "slot": 0,
+   "rot_deg": 1.82,
+   "axis_tilt_deg": 1.82,
+   "flip": false,
+   "quat_xyzw": [
+    -0.014391,
+    -0.006725,
+    -0.000497,
+    0.999874
+   ],
+   "cand_anchor_cm": [
+    -0.128,
+    0.15,
+    0.907
+   ],
+   "anchor_shift_cm": 0.93
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 14,
+   "slot": 0,
+   "rot_deg": 1.57,
+   "axis_tilt_deg": 1.3,
+   "flip": false,
+   "quat_xyzw": [
+    -0.010402,
+    -0.004897,
+    0.007461,
+    0.999906
+   ],
+   "cand_anchor_cm": [
+    -0.157,
+    0.166,
+    0.921
+   ],
+   "anchor_shift_cm": 0.95
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 20,
+   "slot": 0,
+   "rot_deg": 1.0,
+   "axis_tilt_deg": 0.97,
+   "flip": false,
+   "quat_xyzw": [
+    -0.008246,
+    -0.002027,
+    0.00192,
+    0.999962
+   ],
+   "cand_anchor_cm": [
+    -0.141,
+    0.171,
+    0.971
+   ],
+   "anchor_shift_cm": 1.0
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 32,
+   "slot": 0,
+   "rot_deg": 2.86,
+   "axis_tilt_deg": 1.04,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00841,
+    -0.000873,
+    -0.023513,
+    0.999688
+   ],
+   "cand_anchor_cm": [
+    -0.125,
+    0.179,
+    1.042
+   ],
+   "anchor_shift_cm": 1.06
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 33,
+   "slot": 0,
+   "rot_deg": 1.4,
+   "axis_tilt_deg": 1.38,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011639,
+    -0.003372,
+    0.001637,
+    0.999925
+   ],
+   "cand_anchor_cm": [
+    -0.135,
+    0.195,
+    0.995
+   ],
+   "anchor_shift_cm": 1.02
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 11,
+   "slot": 0,
+   "rot_deg": 1.78,
+   "axis_tilt_deg": 1.31,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011028,
+    -0.001854,
+    -0.010842,
+    0.999879
+   ],
+   "cand_anchor_cm": [
+    -0.143,
+    0.188,
+    0.911
+   ],
+   "anchor_shift_cm": 0.94
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 12,
+   "slot": 0,
+   "rot_deg": 1.44,
+   "axis_tilt_deg": 1.08,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00866,
+    -0.004204,
+    0.008088,
+    0.999921
+   ],
+   "cand_anchor_cm": [
+    -0.144,
+    0.157,
+    0.963
+   ],
+   "anchor_shift_cm": 0.99
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 13,
+   "slot": 0,
+   "rot_deg": 1.55,
+   "axis_tilt_deg": 1.42,
+   "flip": false,
+   "quat_xyzw": [
+    -0.012056,
+    -0.00194,
+    -0.005827,
+    0.999908
+   ],
+   "cand_anchor_cm": [
+    -0.12,
+    0.175,
+    0.994
+   ],
+   "anchor_shift_cm": 1.02
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 21,
+   "slot": 0,
+   "rot_deg": 1.59,
+   "axis_tilt_deg": 1.34,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011398,
+    -0.001433,
+    -0.007827,
+    0.999903
+   ],
+   "cand_anchor_cm": [
+    -0.161,
+    0.164,
+    0.979
+   ],
+   "anchor_shift_cm": 1.01
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 22,
+   "slot": 0,
+   "rot_deg": 1.95,
+   "axis_tilt_deg": 1.36,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011922,
+    -0.00221,
+    0.011998,
+    0.999855
+   ],
+   "cand_anchor_cm": [
+    -0.131,
+    0.187,
+    0.917
+   ],
+   "anchor_shift_cm": 0.95
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 10,
+   "slot": 0,
+   "rot_deg": 2.53,
+   "axis_tilt_deg": 2.06,
+   "flip": false,
+   "quat_xyzw": [
+    -0.017446,
+    -0.002808,
+    -0.013268,
+    0.999756
+   ],
+   "cand_anchor_cm": [
+    -0.132,
+    0.145,
+    0.886
+   ],
+   "anchor_shift_cm": 0.91
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 14,
+   "slot": 0,
+   "rot_deg": 1.46,
+   "axis_tilt_deg": 1.28,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011197,
+    -0.001469,
+    0.00597,
+    0.999918
+   ],
+   "cand_anchor_cm": [
+    -0.144,
+    0.171,
+    0.979
+   ],
+   "anchor_shift_cm": 1.0
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 20,
+   "slot": 0,
+   "rot_deg": 0.95,
+   "axis_tilt_deg": 0.7,
+   "flip": false,
+   "quat_xyzw": [
+    -0.006161,
+    -0.001147,
+    0.005434,
+    0.999966
+   ],
+   "cand_anchor_cm": [
+    -0.147,
+    0.17,
+    0.948
+   ],
+   "anchor_shift_cm": 0.97
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 32,
+   "slot": 0,
+   "rot_deg": 1.4,
+   "axis_tilt_deg": 0.92,
+   "flip": false,
+   "quat_xyzw": [
+    -0.008007,
+    -0.002018,
+    0.009037,
+    0.999925
+   ],
+   "cand_anchor_cm": [
+    -0.113,
+    0.194,
+    1.015
+   ],
+   "anchor_shift_cm": 1.04
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 33,
+   "slot": 0,
+   "rot_deg": 1.0,
+   "axis_tilt_deg": 0.92,
+   "flip": false,
+   "quat_xyzw": [
+    -0.007137,
+    -0.003862,
+    0.003182,
+    0.999962
+   ],
+   "cand_anchor_cm": [
+    -0.151,
+    0.166,
+    0.982
+   ],
+   "anchor_shift_cm": 1.01
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 11,
+   "slot": 0,
+   "rot_deg": 1.99,
+   "axis_tilt_deg": 1.35,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011256,
+    -0.002105,
+    -0.013106,
+    0.999849
+   ],
+   "cand_anchor_cm": [
+    -0.145,
+    0.179,
+    0.938
+   ],
+   "anchor_shift_cm": 0.97
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 12,
+   "slot": 0,
+   "rot_deg": 1.54,
+   "axis_tilt_deg": 0.99,
+   "flip": false,
+   "quat_xyzw": [
+    -0.007476,
+    -0.003807,
+    -0.01053,
+    0.999909
+   ],
+   "cand_anchor_cm": [
+    -0.138,
+    0.15,
+    0.966
+   ],
+   "anchor_shift_cm": 0.99
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 13,
+   "slot": 0,
+   "rot_deg": 175.35,
+   "axis_tilt_deg": 2.21,
+   "flip": false,
+   "quat_xyzw": [
+    -0.017641,
+    -0.013306,
+    0.998933,
+    -0.040558
+   ],
+   "cand_anchor_cm": [
+    0.171,
+    0.211,
+    1.044
+   ],
+   "anchor_shift_cm": 1.08
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 21,
+   "slot": 0,
+   "rot_deg": 4.58,
+   "axis_tilt_deg": 1.24,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011429,
+    -0.002595,
+    0.038223,
+    0.999201
+   ],
+   "cand_anchor_cm": [
+    -0.152,
+    0.189,
+    1.025
+   ],
+   "anchor_shift_cm": 1.05
+  },
+  {
+   "lib": "library_v3",
+   "obj": "blue_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 22,
+   "slot": 0,
+   "rot_deg": 1.84,
+   "axis_tilt_deg": 1.52,
+   "flip": false,
+   "quat_xyzw": [
+    -0.012558,
+    -0.003361,
+    -0.009417,
+    0.999871
+   ],
+   "cand_anchor_cm": [
+    -0.107,
+    0.191,
+    0.92
+   ],
+   "anchor_shift_cm": 0.95
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 19,
+   "slot": 1,
+   "rot_deg": 2.31,
+   "axis_tilt_deg": 2.18,
+   "flip": false,
+   "quat_xyzw": [
+    0.006438,
+    0.018699,
+    0.003928,
+    0.999797
+   ],
+   "cand_anchor_cm": [
+    -0.5,
+    0.041,
+    -0.18
+   ],
+   "anchor_shift_cm": 0.53
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 38,
+   "slot": 0,
+   "rot_deg": 2.74,
+   "axis_tilt_deg": 2.74,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000436,
+    0.021932,
+    0.009517,
+    0.999714
+   ],
+   "cand_anchor_cm": [
+    -0.532,
+    -0.018,
+    -0.26
+   ],
+   "anchor_shift_cm": 0.59
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 18,
+   "slot": 1,
+   "rot_deg": 2.44,
+   "axis_tilt_deg": 2.44,
+   "flip": false,
+   "quat_xyzw": [
+    0.001286,
+    0.020588,
+    0.005405,
+    0.999773
+   ],
+   "cand_anchor_cm": [
+    -0.517,
+    -0.028,
+    -0.276
+   ],
+   "anchor_shift_cm": 0.59
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 39,
+   "slot": 0,
+   "rot_deg": 2.41,
+   "axis_tilt_deg": 2.37,
+   "flip": false,
+   "quat_xyzw": [
+    0.003828,
+    0.020154,
+    0.004786,
+    0.999778
+   ],
+   "cand_anchor_cm": [
+    -0.544,
+    -0.036,
+    -0.246
+   ],
+   "anchor_shift_cm": 0.6
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 40,
+   "slot": 0,
+   "rot_deg": 2.47,
+   "axis_tilt_deg": 2.45,
+   "flip": false,
+   "quat_xyzw": [
+    0.002662,
+    0.020712,
+    0.005256,
+    0.999768
+   ],
+   "cand_anchor_cm": [
+    -0.523,
+    -0.007,
+    -0.216
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 19,
+   "slot": 1,
+   "rot_deg": 2.16,
+   "axis_tilt_deg": 2.16,
+   "flip": false,
+   "quat_xyzw": [
+    0.000546,
+    0.018736,
+    0.002285,
+    0.999822
+   ],
+   "cand_anchor_cm": [
+    -0.519,
+    -0.02,
+    -0.178
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 38,
+   "slot": 0,
+   "rot_deg": 2.66,
+   "axis_tilt_deg": 2.66,
+   "flip": false,
+   "quat_xyzw": [
+    -2.6e-05,
+    0.020375,
+    0.011133,
+    0.99973
+   ],
+   "cand_anchor_cm": [
+    -0.517,
+    -0.007,
+    -0.181
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 18,
+   "slot": 1,
+   "rot_deg": 2.56,
+   "axis_tilt_deg": 2.55,
+   "flip": false,
+   "quat_xyzw": [
+    0.002009,
+    0.022,
+    0.003364,
+    0.99975
+   ],
+   "cand_anchor_cm": [
+    -0.521,
+    -0.015,
+    -0.297
+   ],
+   "anchor_shift_cm": 0.6
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 39,
+   "slot": 0,
+   "rot_deg": 2.2,
+   "axis_tilt_deg": 2.18,
+   "flip": false,
+   "quat_xyzw": [
+    0.002093,
+    0.018429,
+    0.004932,
+    0.999816
+   ],
+   "cand_anchor_cm": [
+    -0.536,
+    -0.043,
+    -0.187
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 40,
+   "slot": 0,
+   "rot_deg": 2.55,
+   "axis_tilt_deg": 2.55,
+   "flip": false,
+   "quat_xyzw": [
+    0.001619,
+    0.021954,
+    0.003505,
+    0.999752
+   ],
+   "cand_anchor_cm": [
+    -0.525,
+    -0.002,
+    -0.227
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 19,
+   "slot": 1,
+   "rot_deg": 2.34,
+   "axis_tilt_deg": 2.24,
+   "flip": false,
+   "quat_xyzw": [
+    0.005938,
+    0.019442,
+    0.002305,
+    0.999791
+   ],
+   "cand_anchor_cm": [
+    -0.515,
+    0.019,
+    -0.227
+   ],
+   "anchor_shift_cm": 0.56
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 38,
+   "slot": 0,
+   "rot_deg": 2.76,
+   "axis_tilt_deg": 2.75,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001655,
+    0.020256,
+    0.012898,
+    0.99971
+   ],
+   "cand_anchor_cm": [
+    -0.523,
+    0.008,
+    -0.169
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 18,
+   "slot": 1,
+   "rot_deg": 2.66,
+   "axis_tilt_deg": 2.65,
+   "flip": false,
+   "quat_xyzw": [
+    0.001861,
+    0.022816,
+    0.003697,
+    0.999731
+   ],
+   "cand_anchor_cm": [
+    -0.529,
+    0.003,
+    -0.276
+   ],
+   "anchor_shift_cm": 0.6
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 39,
+   "slot": 0,
+   "rot_deg": 2.2,
+   "axis_tilt_deg": 2.11,
+   "flip": false,
+   "quat_xyzw": [
+    0.005376,
+    0.017944,
+    0.004248,
+    0.999816
+   ],
+   "cand_anchor_cm": [
+    -0.53,
+    -0.066,
+    -0.204
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_dust_pan",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 40,
+   "slot": 0,
+   "rot_deg": 2.47,
+   "axis_tilt_deg": 2.47,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000392,
+    0.017558,
+    0.012538,
+    0.999767
+   ],
+   "cand_anchor_cm": [
+    -0.509,
+    0.029,
+    -0.181
+   ],
+   "anchor_shift_cm": 0.54
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 19,
+   "slot": 0,
+   "rot_deg": 3.06,
+   "axis_tilt_deg": 2.09,
+   "flip": false,
+   "quat_xyzw": [
+    0.010137,
+    -0.015036,
+    -0.019558,
+    0.999644
+   ],
+   "cand_anchor_cm": [
+    -0.055,
+    -0.123,
+    -0.471
+   ],
+   "anchor_shift_cm": 0.49
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 30,
+   "slot": 0,
+   "rot_deg": 2.81,
+   "axis_tilt_deg": 2.08,
+   "flip": false,
+   "quat_xyzw": [
+    0.013975,
+    -0.011594,
+    -0.016451,
+    0.9997
+   ],
+   "cand_anchor_cm": [
+    -0.071,
+    -0.094,
+    -0.494
+   ],
+   "anchor_shift_cm": 0.51
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 18,
+   "slot": 0,
+   "rot_deg": 3.1,
+   "axis_tilt_deg": 2.45,
+   "flip": false,
+   "quat_xyzw": [
+    0.016766,
+    -0.013219,
+    -0.016671,
+    0.999633
+   ],
+   "cand_anchor_cm": [
+    -0.074,
+    -0.121,
+    -0.373
+   ],
+   "anchor_shift_cm": 0.4
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 31,
+   "slot": 0,
+   "rot_deg": 3.04,
+   "axis_tilt_deg": 1.96,
+   "flip": false,
+   "quat_xyzw": [
+    0.011969,
+    -0.012067,
+    -0.020413,
+    0.999647
+   ],
+   "cand_anchor_cm": [
+    -0.055,
+    -0.186,
+    -0.379
+   ],
+   "anchor_shift_cm": 0.43
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 19,
+   "slot": 0,
+   "rot_deg": 2.77,
+   "axis_tilt_deg": 1.76,
+   "flip": false,
+   "quat_xyzw": [
+    0.006556,
+    -0.013743,
+    -0.01881,
+    0.999707
+   ],
+   "cand_anchor_cm": [
+    -0.057,
+    -0.098,
+    -0.464
+   ],
+   "anchor_shift_cm": 0.48
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 30,
+   "slot": 0,
+   "rot_deg": 2.88,
+   "axis_tilt_deg": 1.88,
+   "flip": false,
+   "quat_xyzw": [
+    0.01155,
+    -0.011617,
+    -0.019099,
+    0.999683
+   ],
+   "cand_anchor_cm": [
+    -0.064,
+    -0.129,
+    -0.482
+   ],
+   "anchor_shift_cm": 0.5
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 18,
+   "slot": 0,
+   "rot_deg": 2.86,
+   "axis_tilt_deg": 2.2,
+   "flip": false,
+   "quat_xyzw": [
+    0.012294,
+    -0.014635,
+    -0.016017,
+    0.999689
+   ],
+   "cand_anchor_cm": [
+    -0.078,
+    -0.049,
+    -0.424
+   ],
+   "anchor_shift_cm": 0.43
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 31,
+   "slot": 0,
+   "rot_deg": 177.29,
+   "axis_tilt_deg": 3.23,
+   "flip": true,
+   "quat_xyzw": [
+    0.010279,
+    0.013272,
+    0.999579,
+    0.023646
+   ],
+   "cand_anchor_cm": [
+    -0.131,
+    -0.018,
+    -0.372
+   ],
+   "anchor_shift_cm": 0.4
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 19,
+   "slot": 0,
+   "rot_deg": 3.44,
+   "axis_tilt_deg": 2.53,
+   "flip": false,
+   "quat_xyzw": [
+    0.017617,
+    -0.013283,
+    -0.020291,
+    0.999551
+   ],
+   "cand_anchor_cm": [
+    -0.055,
+    -0.121,
+    -0.502
+   ],
+   "anchor_shift_cm": 0.52
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 30,
+   "slot": 0,
+   "rot_deg": 177.69,
+   "axis_tilt_deg": 3.33,
+   "flip": true,
+   "quat_xyzw": [
+    0.011071,
+    0.013743,
+    0.999641,
+    0.020184
+   ],
+   "cand_anchor_cm": [
+    -0.128,
+    0.004,
+    -0.462
+   ],
+   "anchor_shift_cm": 0.48
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 18,
+   "slot": 0,
+   "rot_deg": 3.01,
+   "axis_tilt_deg": 2.08,
+   "flip": false,
+   "quat_xyzw": [
+    0.012478,
+    -0.013066,
+    -0.019012,
+    0.999656
+   ],
+   "cand_anchor_cm": [
+    -0.081,
+    -0.092,
+    -0.421
+   ],
+   "anchor_shift_cm": 0.44
+  },
+  {
+   "lib": "library_v3",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 31,
+   "slot": 0,
+   "rot_deg": 3.13,
+   "axis_tilt_deg": 1.81,
+   "flip": false,
+   "quat_xyzw": [
+    0.011701,
+    -0.010578,
+    -0.022311,
+    0.999627
+   ],
+   "cand_anchor_cm": [
+    -0.052,
+    -0.15,
+    -0.435
+   ],
+   "anchor_shift_cm": 0.46
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 14,
+   "slot": 1,
+   "rot_deg": 0.54,
+   "axis_tilt_deg": 0.44,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002379,
+    0.003008,
+    0.002779,
+    0.999989
+   ],
+   "cand_anchor_cm": [
+    0.253,
+    -0.536,
+    -0.165
+   ],
+   "anchor_shift_cm": 0.62
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 15,
+   "slot": 0,
+   "rot_deg": 0.96,
+   "axis_tilt_deg": 0.3,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00091,
+    0.00243,
+    0.007922,
+    0.999965
+   ],
+   "cand_anchor_cm": [
+    0.337,
+    -0.536,
+    0.019
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 16,
+   "slot": 0,
+   "rot_deg": 1.88,
+   "axis_tilt_deg": 0.96,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00167,
+    0.008257,
+    0.014048,
+    0.999866
+   ],
+   "cand_anchor_cm": [
+    0.491,
+    -0.389,
+    -0.24
+   ],
+   "anchor_shift_cm": 0.67
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 28,
+   "slot": 0,
+   "rot_deg": 0.63,
+   "axis_tilt_deg": 0.59,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005036,
+    0.000902,
+    0.002003,
+    0.999985
+   ],
+   "cand_anchor_cm": [
+    0.298,
+    -0.462,
+    -0.041
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 30,
+   "slot": 1,
+   "rot_deg": 1.11,
+   "axis_tilt_deg": 0.52,
+   "flip": false,
+   "quat_xyzw": [
+    -9.9e-05,
+    0.004589,
+    0.008499,
+    0.999953
+   ],
+   "cand_anchor_cm": [
+    0.368,
+    -0.512,
+    -0.172
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 12,
+   "slot": 1,
+   "rot_deg": 1.32,
+   "axis_tilt_deg": 0.53,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003051,
+    0.003404,
+    0.010598,
+    0.999933
+   ],
+   "cand_anchor_cm": [
+    0.272,
+    -0.463,
+    -0.201
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 13,
+   "slot": 1,
+   "rot_deg": 1.77,
+   "axis_tilt_deg": 0.52,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004411,
+    -0.000106,
+    0.014801,
+    0.999881
+   ],
+   "cand_anchor_cm": [
+    0.318,
+    -0.431,
+    0.06
+   ],
+   "anchor_shift_cm": 0.54
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 26,
+   "slot": 0,
+   "rot_deg": 1.82,
+   "axis_tilt_deg": 0.46,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002195,
+    0.003343,
+    0.015381,
+    0.999874
+   ],
+   "cand_anchor_cm": [
+    0.319,
+    -0.468,
+    -0.043
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 27,
+   "slot": 0,
+   "rot_deg": 1.24,
+   "axis_tilt_deg": 0.52,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003214,
+    0.003194,
+    0.00983,
+    0.999941
+   ],
+   "cand_anchor_cm": [
+    0.387,
+    -0.383,
+    -0.091
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 31,
+   "slot": 1,
+   "rot_deg": 1.56,
+   "axis_tilt_deg": 0.43,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002411,
+    0.002825,
+    0.013095,
+    0.999907
+   ],
+   "cand_anchor_cm": [
+    0.32,
+    -0.543,
+    -0.213
+   ],
+   "anchor_shift_cm": 0.67
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 14,
+   "slot": 1,
+   "rot_deg": 0.88,
+   "axis_tilt_deg": 0.34,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002607,
+    -0.001309,
+    0.007151,
+    0.99997
+   ],
+   "cand_anchor_cm": [
+    0.22,
+    -0.51,
+    -0.131
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 15,
+   "slot": 0,
+   "rot_deg": 0.4,
+   "axis_tilt_deg": 0.35,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002445,
+    0.001785,
+    0.001759,
+    0.999994
+   ],
+   "cand_anchor_cm": [
+    0.3,
+    -0.469,
+    -0.142
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 16,
+   "slot": 0,
+   "rot_deg": 1.26,
+   "axis_tilt_deg": 0.24,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001533,
+    0.001346,
+    0.010804,
+    0.99994
+   ],
+   "cand_anchor_cm": [
+    0.351,
+    -0.429,
+    -0.054
+   ],
+   "anchor_shift_cm": 0.56
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 28,
+   "slot": 0,
+   "rot_deg": 1.13,
+   "axis_tilt_deg": 0.62,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005038,
+    0.001806,
+    0.008292,
+    0.999951
+   ],
+   "cand_anchor_cm": [
+    0.318,
+    -0.459,
+    -0.078
+   ],
+   "anchor_shift_cm": 0.56
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 30,
+   "slot": 1,
+   "rot_deg": 1.25,
+   "axis_tilt_deg": 0.42,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003412,
+    0.001292,
+    0.010278,
+    0.999941
+   ],
+   "cand_anchor_cm": [
+    0.248,
+    -0.458,
+    -0.108
+   ],
+   "anchor_shift_cm": 0.53
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 12,
+   "slot": 1,
+   "rot_deg": 0.97,
+   "axis_tilt_deg": 0.69,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003336,
+    0.005016,
+    0.005959,
+    0.999964
+   ],
+   "cand_anchor_cm": [
+    0.317,
+    -0.482,
+    -0.245
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 13,
+   "slot": 1,
+   "rot_deg": 1.57,
+   "axis_tilt_deg": 0.61,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005152,
+    0.001119,
+    0.012639,
+    0.999906
+   ],
+   "cand_anchor_cm": [
+    0.346,
+    -0.389,
+    -0.044
+   ],
+   "anchor_shift_cm": 0.52
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 26,
+   "slot": 0,
+   "rot_deg": 1.86,
+   "axis_tilt_deg": 0.53,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003872,
+    0.002375,
+    0.015571,
+    0.999868
+   ],
+   "cand_anchor_cm": [
+    0.27,
+    -0.46,
+    -0.143
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 27,
+   "slot": 0,
+   "rot_deg": 0.9,
+   "axis_tilt_deg": 0.35,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002795,
+    0.001148,
+    0.007276,
+    0.999969
+   ],
+   "cand_anchor_cm": [
+    0.268,
+    -0.404,
+    -0.054
+   ],
+   "anchor_shift_cm": 0.49
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 31,
+   "slot": 1,
+   "rot_deg": 1.12,
+   "axis_tilt_deg": 0.57,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003568,
+    0.003412,
+    0.008394,
+    0.999953
+   ],
+   "cand_anchor_cm": [
+    0.366,
+    -0.417,
+    -0.11
+   ],
+   "anchor_shift_cm": 0.57
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 14,
+   "slot": 1,
+   "rot_deg": 0.37,
+   "axis_tilt_deg": 0.35,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001653,
+    -0.002537,
+    0.001201,
+    0.999995
+   ],
+   "cand_anchor_cm": [
+    0.168,
+    -0.484,
+    -0.138
+   ],
+   "anchor_shift_cm": 0.53
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 15,
+   "slot": 0,
+   "rot_deg": 0.76,
+   "axis_tilt_deg": 0.17,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001086,
+    0.000987,
+    0.006488,
+    0.999978
+   ],
+   "cand_anchor_cm": [
+    0.258,
+    -0.586,
+    -0.142
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 16,
+   "slot": 0,
+   "rot_deg": 0.96,
+   "axis_tilt_deg": 0.25,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001756,
+    0.00124,
+    0.008061,
+    0.999965
+   ],
+   "cand_anchor_cm": [
+    0.268,
+    -0.476,
+    -0.006
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 28,
+   "slot": 0,
+   "rot_deg": 1.58,
+   "axis_tilt_deg": 0.66,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003871,
+    0.004207,
+    0.012586,
+    0.999904
+   ],
+   "cand_anchor_cm": [
+    0.396,
+    -0.465,
+    -0.14
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 30,
+   "slot": 1,
+   "rot_deg": 1.33,
+   "axis_tilt_deg": 0.4,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001608,
+    0.003077,
+    0.011068,
+    0.999933
+   ],
+   "cand_anchor_cm": [
+    0.329,
+    -0.42,
+    -0.166
+   ],
+   "anchor_shift_cm": 0.56
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 12,
+   "slot": 1,
+   "rot_deg": 1.15,
+   "axis_tilt_deg": 0.44,
+   "flip": false,
+   "quat_xyzw": [
+    0.000494,
+    0.003824,
+    0.009261,
+    0.99995
+   ],
+   "cand_anchor_cm": [
+    0.305,
+    -0.415,
+    -0.116
+   ],
+   "anchor_shift_cm": 0.53
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 13,
+   "slot": 1,
+   "rot_deg": 1.07,
+   "axis_tilt_deg": 0.46,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003907,
+    -0.000393,
+    0.008501,
+    0.999956
+   ],
+   "cand_anchor_cm": [
+    0.27,
+    -0.491,
+    -0.063
+   ],
+   "anchor_shift_cm": 0.56
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 26,
+   "slot": 0,
+   "rot_deg": 1.84,
+   "axis_tilt_deg": 0.59,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004971,
+    0.001073,
+    0.015184,
+    0.999872
+   ],
+   "cand_anchor_cm": [
+    0.236,
+    -0.388,
+    -0.09
+   ],
+   "anchor_shift_cm": 0.46
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 27,
+   "slot": 0,
+   "rot_deg": 0.63,
+   "axis_tilt_deg": 0.44,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003438,
+    0.001709,
+    0.003921,
+    0.999985
+   ],
+   "cand_anchor_cm": [
+    0.276,
+    -0.367,
+    -0.104
+   ],
+   "anchor_shift_cm": 0.47
+  },
+  {
+   "lib": "library_v3",
+   "obj": "plastic_dish_rack",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 31,
+   "slot": 1,
+   "rot_deg": 2.48,
+   "axis_tilt_deg": 0.49,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003422,
+    -0.002283,
+    0.021273,
+    0.999765
+   ],
+   "cand_anchor_cm": [
+    0.218,
+    -0.464,
+    0.063
+   ],
+   "anchor_shift_cm": 0.52
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 20,
+   "slot": 1,
+   "rot_deg": 2.62,
+   "axis_tilt_deg": 2.08,
+   "flip": false,
+   "quat_xyzw": [
+    -0.016608,
+    0.007281,
+    -0.013981,
+    0.999738
+   ],
+   "cand_anchor_cm": [
+    -0.354,
+    0.319,
+    0.367
+   ],
+   "anchor_shift_cm": 0.6
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 21,
+   "slot": 1,
+   "rot_deg": 2.65,
+   "axis_tilt_deg": 2.27,
+   "flip": false,
+   "quat_xyzw": [
+    -0.019071,
+    0.005452,
+    -0.011932,
+    0.999732
+   ],
+   "cand_anchor_cm": [
+    -0.373,
+    0.381,
+    0.38
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 22,
+   "slot": 1,
+   "rot_deg": 3.19,
+   "axis_tilt_deg": 2.49,
+   "flip": false,
+   "quat_xyzw": [
+    -0.020242,
+    0.007893,
+    -0.017363,
+    0.999613
+   ],
+   "cand_anchor_cm": [
+    -0.323,
+    0.343,
+    0.465
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 20,
+   "slot": 1,
+   "rot_deg": 2.8,
+   "axis_tilt_deg": 2.48,
+   "flip": false,
+   "quat_xyzw": [
+    -0.01922,
+    0.009885,
+    -0.011372,
+    0.999702
+   ],
+   "cand_anchor_cm": [
+    -0.331,
+    0.416,
+    0.612
+   ],
+   "anchor_shift_cm": 0.81
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 21,
+   "slot": 1,
+   "rot_deg": 2.43,
+   "axis_tilt_deg": 2.01,
+   "flip": false,
+   "quat_xyzw": [
+    -0.016841,
+    0.004861,
+    -0.011942,
+    0.999775
+   ],
+   "cand_anchor_cm": [
+    -0.361,
+    0.376,
+    0.324
+   ],
+   "anchor_shift_cm": 0.61
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 22,
+   "slot": 1,
+   "rot_deg": 2.49,
+   "axis_tilt_deg": 1.96,
+   "flip": false,
+   "quat_xyzw": [
+    -0.016354,
+    0.005018,
+    -0.013366,
+    0.999764
+   ],
+   "cand_anchor_cm": [
+    -0.36,
+    0.331,
+    0.426
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 20,
+   "slot": 1,
+   "rot_deg": 2.41,
+   "axis_tilt_deg": 2.09,
+   "flip": false,
+   "quat_xyzw": [
+    -0.016597,
+    0.007534,
+    -0.010407,
+    0.99978
+   ],
+   "cand_anchor_cm": [
+    -0.358,
+    0.327,
+    0.404
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 21,
+   "slot": 1,
+   "rot_deg": 2.32,
+   "axis_tilt_deg": 2.01,
+   "flip": false,
+   "quat_xyzw": [
+    -0.017037,
+    0.004204,
+    -0.010029,
+    0.999796
+   ],
+   "cand_anchor_cm": [
+    -0.388,
+    0.375,
+    0.371
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "water_pitcher",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 22,
+   "slot": 1,
+   "rot_deg": 3.0,
+   "axis_tilt_deg": 2.41,
+   "flip": false,
+   "quat_xyzw": [
+    -0.019823,
+    0.007057,
+    -0.015587,
+    0.999657
+   ],
+   "cand_anchor_cm": [
+    -0.33,
+    0.448,
+    0.529
+   ],
+   "anchor_shift_cm": 0.77
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 1,
+   "slot": 0,
+   "rot_deg": 1.62,
+   "axis_tilt_deg": 1.35,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000161,
+    0.011944,
+    -0.0075,
+    0.999901
+   ],
+   "cand_anchor_cm": [
+    0.364,
+    0.06,
+    -0.477
+   ],
+   "anchor_shift_cm": 0.6
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 3,
+   "slot": 0,
+   "rot_deg": 1.96,
+   "axis_tilt_deg": 1.95,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004122,
+    0.016528,
+    -0.001042,
+    0.999854
+   ],
+   "cand_anchor_cm": [
+    0.437,
+    0.138,
+    -0.545
+   ],
+   "anchor_shift_cm": 0.71
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 5,
+   "slot": 0,
+   "rot_deg": 1.78,
+   "axis_tilt_deg": 1.6,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001671,
+    0.014028,
+    -0.006367,
+    0.99988
+   ],
+   "cand_anchor_cm": [
+    0.372,
+    0.075,
+    -0.543
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 6,
+   "slot": 0,
+   "rot_deg": 1.74,
+   "axis_tilt_deg": 1.74,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000823,
+    0.015125,
+    0.000646,
+    0.999885
+   ],
+   "cand_anchor_cm": [
+    0.425,
+    0.153,
+    -0.53
+   ],
+   "anchor_shift_cm": 0.7
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 8,
+   "slot": 1,
+   "rot_deg": 2.36,
+   "axis_tilt_deg": 1.87,
+   "flip": false,
+   "quat_xyzw": [
+    -0.006457,
+    0.014702,
+    0.012927,
+    0.999788
+   ],
+   "cand_anchor_cm": [
+    0.346,
+    0.195,
+    -0.523
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 28,
+   "slot": 1,
+   "rot_deg": 1.8,
+   "axis_tilt_deg": 1.69,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002658,
+    0.01442,
+    0.005564,
+    0.999877
+   ],
+   "cand_anchor_cm": [
+    0.361,
+    0.157,
+    -0.511
+   ],
+   "anchor_shift_cm": 0.64
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 0,
+   "slot": 0,
+   "rot_deg": 1.69,
+   "axis_tilt_deg": 1.66,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00221,
+    0.014357,
+    -0.0026,
+    0.999891
+   ],
+   "cand_anchor_cm": [
+    0.409,
+    0.093,
+    -0.535
+   ],
+   "anchor_shift_cm": 0.68
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 2,
+   "slot": 0,
+   "rot_deg": 1.83,
+   "axis_tilt_deg": 1.51,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000754,
+    0.013333,
+    -0.0087,
+    0.999873
+   ],
+   "cand_anchor_cm": [
+    0.365,
+    0.088,
+    -0.506
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 26,
+   "slot": 1,
+   "rot_deg": 1.77,
+   "axis_tilt_deg": 1.76,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000926,
+    0.015274,
+    0.002169,
+    0.999881
+   ],
+   "cand_anchor_cm": [
+    0.385,
+    0.147,
+    -0.543
+   ],
+   "anchor_shift_cm": 0.68
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 27,
+   "slot": 1,
+   "rot_deg": 1.57,
+   "axis_tilt_deg": 1.54,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004249,
+    0.012825,
+    -0.00224,
+    0.999906
+   ],
+   "cand_anchor_cm": [
+    0.339,
+    0.127,
+    -0.5
+   ],
+   "anchor_shift_cm": 0.62
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 41,
+   "slot": 0,
+   "rot_deg": 1.71,
+   "axis_tilt_deg": 1.58,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003195,
+    0.013292,
+    0.005924,
+    0.999889
+   ],
+   "cand_anchor_cm": [
+    0.372,
+    0.119,
+    -0.582
+   ],
+   "anchor_shift_cm": 0.7
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 42,
+   "slot": 0,
+   "rot_deg": 1.66,
+   "axis_tilt_deg": 1.63,
+   "flip": false,
+   "quat_xyzw": [
+    -0.0051,
+    0.013342,
+    -0.00233,
+    0.999895
+   ],
+   "cand_anchor_cm": [
+    0.384,
+    0.123,
+    -0.524
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 43,
+   "slot": 0,
+   "rot_deg": 1.88,
+   "axis_tilt_deg": 1.87,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004116,
+    0.015805,
+    -0.001158,
+    0.999866
+   ],
+   "cand_anchor_cm": [
+    0.404,
+    0.152,
+    -0.549
+   ],
+   "anchor_shift_cm": 0.7
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 44,
+   "slot": 0,
+   "rot_deg": 1.8,
+   "axis_tilt_deg": 1.67,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001638,
+    0.014645,
+    -0.005459,
+    0.999877
+   ],
+   "cand_anchor_cm": [
+    0.391,
+    0.126,
+    -0.508
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 45,
+   "slot": 0,
+   "rot_deg": 2.05,
+   "axis_tilt_deg": 1.71,
+   "flip": false,
+   "quat_xyzw": [
+    0.000618,
+    0.014614,
+    0.010269,
+    0.99984
+   ],
+   "cand_anchor_cm": [
+    0.351,
+    0.18,
+    -0.585
+   ],
+   "anchor_shift_cm": 0.71
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 1,
+   "slot": 0,
+   "rot_deg": 1.7,
+   "axis_tilt_deg": 1.7,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00143,
+    0.014761,
+    0.000483,
+    0.99989
+   ],
+   "cand_anchor_cm": [
+    0.388,
+    0.121,
+    -0.547
+   ],
+   "anchor_shift_cm": 0.68
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 3,
+   "slot": 0,
+   "rot_deg": 1.78,
+   "axis_tilt_deg": 1.57,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001838,
+    0.013431,
+    0.007596,
+    0.999879
+   ],
+   "cand_anchor_cm": [
+    0.342,
+    0.147,
+    -0.576
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 5,
+   "slot": 0,
+   "rot_deg": 1.62,
+   "axis_tilt_deg": 1.49,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000239,
+    0.012875,
+    0.005849,
+    0.9999
+   ],
+   "cand_anchor_cm": [
+    0.334,
+    0.16,
+    -0.537
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 6,
+   "slot": 0,
+   "rot_deg": 1.65,
+   "axis_tilt_deg": 1.58,
+   "flip": false,
+   "quat_xyzw": [
+    0.001042,
+    0.013649,
+    0.004347,
+    0.999897
+   ],
+   "cand_anchor_cm": [
+    0.408,
+    0.17,
+    -0.534
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 8,
+   "slot": 1,
+   "rot_deg": 1.75,
+   "axis_tilt_deg": 1.75,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00113,
+    0.015209,
+    0.001218,
+    0.999883
+   ],
+   "cand_anchor_cm": [
+    0.393,
+    0.101,
+    -0.58
+   ],
+   "anchor_shift_cm": 0.71
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 28,
+   "slot": 1,
+   "rot_deg": 1.66,
+   "axis_tilt_deg": 1.57,
+   "flip": false,
+   "quat_xyzw": [
+    0.000312,
+    0.013556,
+    0.00501,
+    0.999896
+   ],
+   "cand_anchor_cm": [
+    0.387,
+    0.139,
+    -0.516
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 0,
+   "slot": 0,
+   "rot_deg": 1.39,
+   "axis_tilt_deg": 1.38,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002065,
+    0.011858,
+    0.001757,
+    0.999926
+   ],
+   "cand_anchor_cm": [
+    0.318,
+    0.1,
+    -0.589
+   ],
+   "anchor_shift_cm": 0.68
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 2,
+   "slot": 0,
+   "rot_deg": 1.74,
+   "axis_tilt_deg": 1.73,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00336,
+    0.014664,
+    0.0021,
+    0.999885
+   ],
+   "cand_anchor_cm": [
+    0.339,
+    0.138,
+    -0.531
+   ],
+   "anchor_shift_cm": 0.64
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 26,
+   "slot": 1,
+   "rot_deg": 1.75,
+   "axis_tilt_deg": 1.75,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004496,
+    0.014551,
+    0.000827,
+    0.999884
+   ],
+   "cand_anchor_cm": [
+    0.37,
+    0.138,
+    -0.568
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 27,
+   "slot": 1,
+   "rot_deg": 1.87,
+   "axis_tilt_deg": 1.73,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004017,
+    0.014702,
+    -0.005761,
+    0.999867
+   ],
+   "cand_anchor_cm": [
+    0.331,
+    0.122,
+    -0.521
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 41,
+   "slot": 0,
+   "rot_deg": 1.6,
+   "axis_tilt_deg": 1.54,
+   "flip": false,
+   "quat_xyzw": [
+    0.002569,
+    0.013103,
+    0.003974,
+    0.999903
+   ],
+   "cand_anchor_cm": [
+    0.366,
+    0.083,
+    -0.538
+   ],
+   "anchor_shift_cm": 0.66
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 42,
+   "slot": 0,
+   "rot_deg": 1.8,
+   "axis_tilt_deg": 1.77,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003302,
+    0.015127,
+    -0.00283,
+    0.999876
+   ],
+   "cand_anchor_cm": [
+    0.442,
+    0.114,
+    -0.543
+   ],
+   "anchor_shift_cm": 0.71
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 43,
+   "slot": 0,
+   "rot_deg": 1.65,
+   "axis_tilt_deg": 1.43,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003982,
+    0.011967,
+    -0.006881,
+    0.999897
+   ],
+   "cand_anchor_cm": [
+    0.321,
+    0.105,
+    -0.533
+   ],
+   "anchor_shift_cm": 0.63
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 44,
+   "slot": 0,
+   "rot_deg": 1.45,
+   "axis_tilt_deg": 1.28,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002598,
+    0.011008,
+    -0.005589,
+    0.99992
+   ],
+   "cand_anchor_cm": [
+    0.324,
+    0.094,
+    -0.479
+   ],
+   "anchor_shift_cm": 0.59
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 45,
+   "slot": 0,
+   "rot_deg": 1.77,
+   "axis_tilt_deg": 1.76,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002099,
+    0.015233,
+    -0.000968,
+    0.999881
+   ],
+   "cand_anchor_cm": [
+    0.412,
+    0.119,
+    -0.597
+   ],
+   "anchor_shift_cm": 0.73
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 1,
+   "slot": 0,
+   "rot_deg": 1.65,
+   "axis_tilt_deg": 1.53,
+   "flip": false,
+   "quat_xyzw": [
+    0.0028,
+    0.013163,
+    -0.005011,
+    0.999897
+   ],
+   "cand_anchor_cm": [
+    0.39,
+    0.052,
+    -0.514
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 3,
+   "slot": 0,
+   "rot_deg": 1.52,
+   "axis_tilt_deg": 1.52,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004235,
+    0.01253,
+    0.000505,
+    0.999912
+   ],
+   "cand_anchor_cm": [
+    0.346,
+    0.13,
+    -0.523
+   ],
+   "anchor_shift_cm": 0.64
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 5,
+   "slot": 0,
+   "rot_deg": 1.74,
+   "axis_tilt_deg": 1.66,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000917,
+    0.014337,
+    0.005001,
+    0.999884
+   ],
+   "cand_anchor_cm": [
+    0.384,
+    0.14,
+    -0.544
+   ],
+   "anchor_shift_cm": 0.68
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 6,
+   "slot": 0,
+   "rot_deg": 1.54,
+   "axis_tilt_deg": 1.54,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003291,
+    0.012994,
+    0.000395,
+    0.99991
+   ],
+   "cand_anchor_cm": [
+    0.376,
+    0.141,
+    -0.536
+   ],
+   "anchor_shift_cm": 0.67
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 8,
+   "slot": 1,
+   "rot_deg": 1.85,
+   "axis_tilt_deg": 1.83,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002639,
+    0.015809,
+    -0.001768,
+    0.99987
+   ],
+   "cand_anchor_cm": [
+    0.413,
+    0.088,
+    -0.559
+   ],
+   "anchor_shift_cm": 0.7
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 28,
+   "slot": 1,
+   "rot_deg": 1.69,
+   "axis_tilt_deg": 1.68,
+   "flip": false,
+   "quat_xyzw": [
+    0.001676,
+    0.014597,
+    -0.000946,
+    0.999892
+   ],
+   "cand_anchor_cm": [
+    0.393,
+    0.092,
+    -0.541
+   ],
+   "anchor_shift_cm": 0.67
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 0,
+   "slot": 0,
+   "rot_deg": 1.63,
+   "axis_tilt_deg": 1.37,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00076,
+    0.012158,
+    -0.007393,
+    0.999898
+   ],
+   "cand_anchor_cm": [
+    0.353,
+    0.06,
+    -0.568
+   ],
+   "anchor_shift_cm": 0.67
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 2,
+   "slot": 0,
+   "rot_deg": 1.72,
+   "axis_tilt_deg": 1.71,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002824,
+    0.014683,
+    -0.000696,
+    0.999888
+   ],
+   "cand_anchor_cm": [
+    0.364,
+    0.115,
+    -0.573
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 26,
+   "slot": 1,
+   "rot_deg": 1.8,
+   "axis_tilt_deg": 1.8,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003716,
+    0.015258,
+    -0.0009,
+    0.999876
+   ],
+   "cand_anchor_cm": [
+    0.369,
+    0.145,
+    -0.564
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 27,
+   "slot": 1,
+   "rot_deg": 1.47,
+   "axis_tilt_deg": 1.47,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001613,
+    0.012735,
+    0.000706,
+    0.999917
+   ],
+   "cand_anchor_cm": [
+    0.365,
+    0.157,
+    -0.496
+   ],
+   "anchor_shift_cm": 0.64
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 41,
+   "slot": 0,
+   "rot_deg": 1.79,
+   "axis_tilt_deg": 1.67,
+   "flip": false,
+   "quat_xyzw": [
+    0.000378,
+    0.014388,
+    0.006019,
+    0.999878
+   ],
+   "cand_anchor_cm": [
+    0.391,
+    0.102,
+    -0.563
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 42,
+   "slot": 0,
+   "rot_deg": 1.86,
+   "axis_tilt_deg": 1.83,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00165,
+    0.015806,
+    0.003193,
+    0.999869
+   ],
+   "cand_anchor_cm": [
+    0.402,
+    0.135,
+    -0.549
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 43,
+   "slot": 0,
+   "rot_deg": 1.98,
+   "axis_tilt_deg": 1.8,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005491,
+    0.014903,
+    -0.006909,
+    0.99985
+   ],
+   "cand_anchor_cm": [
+    0.418,
+    0.112,
+    -0.54
+   ],
+   "anchor_shift_cm": 0.69
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 44,
+   "slot": 0,
+   "rot_deg": 2.07,
+   "axis_tilt_deg": 1.87,
+   "flip": false,
+   "quat_xyzw": [
+    -0.007552,
+    0.014615,
+    -0.007497,
+    0.999837
+   ],
+   "cand_anchor_cm": [
+    0.4,
+    0.112,
+    -0.498
+   ],
+   "anchor_shift_cm": 0.65
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 45,
+   "slot": 0,
+   "rot_deg": 1.7,
+   "axis_tilt_deg": 1.67,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002737,
+    0.014413,
+    -0.002363,
+    0.99989
+   ],
+   "cand_anchor_cm": [
+    0.365,
+    0.116,
+    -0.562
+   ],
+   "anchor_shift_cm": 0.68
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 1,
+   "slot": 1,
+   "rot_deg": 1.64,
+   "axis_tilt_deg": 0.88,
+   "flip": false,
+   "quat_xyzw": [
+    -0.012101,
+    0.00296,
+    0.007053,
+    0.999898
+   ],
+   "cand_anchor_cm": [
+    -0.462,
+    -0.307,
+    0.7
+   ],
+   "anchor_shift_cm": 0.89
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 0,
+   "slot": 1,
+   "rot_deg": 1.74,
+   "axis_tilt_deg": 1.51,
+   "flip": false,
+   "quat_xyzw": [
+    0.007533,
+    0.003321,
+    0.012741,
+    0.999885
+   ],
+   "cand_anchor_cm": [
+    -0.415,
+    -0.164,
+    0.557
+   ],
+   "anchor_shift_cm": 0.71
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 2,
+   "slot": 1,
+   "rot_deg": 1.05,
+   "axis_tilt_deg": 0.92,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004397,
+    -0.0014,
+    0.007938,
+    0.999958
+   ],
+   "cand_anchor_cm": [
+    -0.452,
+    -0.122,
+    0.631
+   ],
+   "anchor_shift_cm": 0.79
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 1,
+   "slot": 1,
+   "rot_deg": 1.76,
+   "axis_tilt_deg": 1.2,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011194,
+    0.004827,
+    0.009294,
+    0.999883
+   ],
+   "cand_anchor_cm": [
+    -0.448,
+    -0.158,
+    0.556
+   ],
+   "anchor_shift_cm": 0.73
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 0,
+   "slot": 1,
+   "rot_deg": 1.69,
+   "axis_tilt_deg": 1.47,
+   "flip": false,
+   "quat_xyzw": [
+    -0.007358,
+    0.002713,
+    0.012489,
+    0.999891
+   ],
+   "cand_anchor_cm": [
+    -0.417,
+    -0.187,
+    0.67
+   ],
+   "anchor_shift_cm": 0.81
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 2,
+   "slot": 1,
+   "rot_deg": 1.09,
+   "axis_tilt_deg": 0.87,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005765,
+    0.000774,
+    0.007537,
+    0.999955
+   ],
+   "cand_anchor_cm": [
+    -0.451,
+    -0.308,
+    0.608
+   ],
+   "anchor_shift_cm": 0.82
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 1,
+   "slot": 1,
+   "rot_deg": 1.11,
+   "axis_tilt_deg": 0.88,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005881,
+    0.002962,
+    0.007113,
+    0.999953
+   ],
+   "cand_anchor_cm": [
+    -0.466,
+    -0.217,
+    0.621
+   ],
+   "anchor_shift_cm": 0.81
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 0,
+   "slot": 1,
+   "rot_deg": 1.63,
+   "axis_tilt_deg": 1.3,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00859,
+    0.002269,
+    0.011133,
+    0.999899
+   ],
+   "cand_anchor_cm": [
+    -0.424,
+    -0.227,
+    0.639
+   ],
+   "anchor_shift_cm": 0.8
+  },
+  {
+   "lib": "library_v3",
+   "obj": "white_pot_lid",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 2,
+   "slot": 1,
+   "rot_deg": 0.89,
+   "axis_tilt_deg": 0.86,
+   "flip": false,
+   "quat_xyzw": [
+    -0.001868,
+    -0.000749,
+    0.007464,
+    0.99997
+   ],
+   "cand_anchor_cm": [
+    -0.446,
+    -0.18,
+    0.627
+   ],
+   "anchor_shift_cm": 0.79
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 25,
+   "slot": 0,
+   "rot_deg": 0.28,
+   "axis_tilt_deg": 0.12,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000685,
+    0.00079,
+    0.002182,
+    0.999997
+   ],
+   "cand_anchor_cm": [
+    0.065,
+    -0.077,
+    -0.039
+   ],
+   "anchor_shift_cm": 0.11
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 23,
+   "slot": 0,
+   "rot_deg": 0.58,
+   "axis_tilt_deg": 0.56,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004762,
+    0.001273,
+    0.001142,
+    0.999987
+   ],
+   "cand_anchor_cm": [
+    0.068,
+    -0.157,
+    -0.075
+   ],
+   "anchor_shift_cm": 0.19
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 24,
+   "slot": 0,
+   "rot_deg": 0.35,
+   "axis_tilt_deg": 0.3,
+   "flip": false,
+   "quat_xyzw": [
+    0.002544,
+    0.000481,
+    0.001593,
+    0.999995
+   ],
+   "cand_anchor_cm": [
+    0.066,
+    -0.082,
+    0.181
+   ],
+   "anchor_shift_cm": 0.21
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 25,
+   "slot": 0,
+   "rot_deg": 1.11,
+   "axis_tilt_deg": 1.09,
+   "flip": false,
+   "quat_xyzw": [
+    0.009432,
+    0.000982,
+    0.002058,
+    0.999953
+   ],
+   "cand_anchor_cm": [
+    0.068,
+    -0.138,
+    -0.103
+   ],
+   "anchor_shift_cm": 0.19
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 23,
+   "slot": 0,
+   "rot_deg": 0.32,
+   "axis_tilt_deg": 0.28,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002019,
+    0.001422,
+    0.001315,
+    0.999996
+   ],
+   "cand_anchor_cm": [
+    0.068,
+    -0.096,
+    -0.035
+   ],
+   "anchor_shift_cm": 0.12
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 24,
+   "slot": 0,
+   "rot_deg": 0.17,
+   "axis_tilt_deg": 0.15,
+   "flip": false,
+   "quat_xyzw": [
+    0.001182,
+    0.000604,
+    0.000571,
+    0.999999
+   ],
+   "cand_anchor_cm": [
+    0.063,
+    -0.114,
+    0.086
+   ],
+   "anchor_shift_cm": 0.16
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 25,
+   "slot": 0,
+   "rot_deg": 0.24,
+   "axis_tilt_deg": 0.21,
+   "flip": false,
+   "quat_xyzw": [
+    -0.000878,
+    0.001591,
+    0.001118,
+    0.999998
+   ],
+   "cand_anchor_cm": [
+    0.069,
+    -0.174,
+    -0.146
+   ],
+   "anchor_shift_cm": 0.24
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 23,
+   "slot": 0,
+   "rot_deg": 0.2,
+   "axis_tilt_deg": 0.13,
+   "flip": false,
+   "quat_xyzw": [
+    8.6e-05,
+    0.001179,
+    0.001232,
+    0.999999
+   ],
+   "cand_anchor_cm": [
+    0.071,
+    -0.196,
+    -0.066
+   ],
+   "anchor_shift_cm": 0.22
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_1",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 24,
+   "slot": 0,
+   "rot_deg": 0.28,
+   "axis_tilt_deg": 0.19,
+   "flip": false,
+   "quat_xyzw": [
+    0.001608,
+    0.000389,
+    0.001751,
+    0.999997
+   ],
+   "cand_anchor_cm": [
+    0.069,
+    -0.125,
+    0.1
+   ],
+   "anchor_shift_cm": 0.17
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 25,
+   "slot": 1,
+   "rot_deg": 0.66,
+   "axis_tilt_deg": 0.52,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004135,
+    -0.001751,
+    0.003549,
+    0.999984
+   ],
+   "cand_anchor_cm": [
+    0.154,
+    0.202,
+    0.299
+   ],
+   "anchor_shift_cm": 0.39
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 23,
+   "slot": 1,
+   "rot_deg": 0.44,
+   "axis_tilt_deg": 0.31,
+   "flip": false,
+   "quat_xyzw": [
+    -0.002276,
+    -0.001389,
+    0.002757,
+    0.999993
+   ],
+   "cand_anchor_cm": [
+    0.161,
+    0.127,
+    0.309
+   ],
+   "anchor_shift_cm": 0.37
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 24,
+   "slot": 1,
+   "rot_deg": 0.47,
+   "axis_tilt_deg": 0.21,
+   "flip": false,
+   "quat_xyzw": [
+    -6.2e-05,
+    -0.001792,
+    0.003722,
+    0.999991
+   ],
+   "cand_anchor_cm": [
+    0.164,
+    0.071,
+    0.363
+   ],
+   "anchor_shift_cm": 0.4
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 25,
+   "slot": 1,
+   "rot_deg": 0.7,
+   "axis_tilt_deg": 0.52,
+   "flip": false,
+   "quat_xyzw": [
+    -0.004329,
+    -0.001332,
+    0.004123,
+    0.999981
+   ],
+   "cand_anchor_cm": [
+    0.157,
+    0.227,
+    0.3
+   ],
+   "anchor_shift_cm": 0.41
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 23,
+   "slot": 1,
+   "rot_deg": 0.44,
+   "axis_tilt_deg": 0.22,
+   "flip": false,
+   "quat_xyzw": [
+    8e-06,
+    -0.001882,
+    0.003373,
+    0.999993
+   ],
+   "cand_anchor_cm": [
+    0.158,
+    0.106,
+    0.197
+   ],
+   "anchor_shift_cm": 0.27
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 24,
+   "slot": 1,
+   "rot_deg": 179.63,
+   "axis_tilt_deg": 179.61,
+   "flip": true,
+   "quat_xyzw": [
+    0.999993,
+    0.001554,
+    -0.000628,
+    -0.003253
+   ],
+   "cand_anchor_cm": [
+    0.166,
+    0.026,
+    0.225
+   ],
+   "anchor_shift_cm": 0.28
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 25,
+   "slot": 1,
+   "rot_deg": 0.73,
+   "axis_tilt_deg": 0.65,
+   "flip": false,
+   "quat_xyzw": [
+    -0.005302,
+    -0.001869,
+    0.002978,
+    0.99998
+   ],
+   "cand_anchor_cm": [
+    0.161,
+    0.134,
+    0.273
+   ],
+   "anchor_shift_cm": 0.34
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 23,
+   "slot": 1,
+   "rot_deg": 0.99,
+   "axis_tilt_deg": 0.92,
+   "flip": false,
+   "quat_xyzw": [
+    -0.007917,
+    -0.001288,
+    0.003147,
+    0.999963
+   ],
+   "cand_anchor_cm": [
+    0.16,
+    0.105,
+    0.236
+   ],
+   "anchor_shift_cm": 0.3
+  },
+  {
+   "lib": "library_v3",
+   "obj": "wooden_piece_2",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 24,
+   "slot": 1,
+   "rot_deg": 0.72,
+   "axis_tilt_deg": 0.48,
+   "flip": false,
+   "quat_xyzw": [
+    -0.003321,
+    -0.002377,
+    0.004722,
+    0.999981
+   ],
+   "cand_anchor_cm": [
+    0.159,
+    -0.013,
+    0.236
+   ],
+   "anchor_shift_cm": 0.28
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 19,
+   "slot": 0,
+   "rot_deg": 2.5,
+   "axis_tilt_deg": 1.66,
+   "flip": false,
+   "quat_xyzw": [
+    0.007906,
+    -0.012083,
+    -0.016327,
+    0.999762
+   ],
+   "cand_anchor_cm": [
+    -0.057,
+    -0.065,
+    -0.447
+   ],
+   "anchor_shift_cm": 0.46
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 30,
+   "slot": 0,
+   "rot_deg": 2.49,
+   "axis_tilt_deg": 1.6,
+   "flip": false,
+   "quat_xyzw": [
+    0.008551,
+    -0.010969,
+    -0.016652,
+    0.999765
+   ],
+   "cand_anchor_cm": [
+    -0.06,
+    -0.078,
+    -0.426
+   ],
+   "anchor_shift_cm": 0.44
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 18,
+   "slot": 0,
+   "rot_deg": 2.85,
+   "axis_tilt_deg": 1.35,
+   "flip": false,
+   "quat_xyzw": [
+    0.001569,
+    -0.011442,
+    -0.022007,
+    0.999691
+   ],
+   "cand_anchor_cm": [
+    -0.075,
+    -0.074,
+    -0.398
+   ],
+   "anchor_shift_cm": 0.41
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 31,
+   "slot": 0,
+   "rot_deg": 2.54,
+   "axis_tilt_deg": 1.69,
+   "flip": false,
+   "quat_xyzw": [
+    0.008428,
+    -0.012033,
+    -0.016641,
+    0.999754
+   ],
+   "cand_anchor_cm": [
+    -0.058,
+    -0.111,
+    -0.392
+   ],
+   "anchor_shift_cm": 0.41
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 19,
+   "slot": 0,
+   "rot_deg": 2.59,
+   "axis_tilt_deg": 1.56,
+   "flip": false,
+   "quat_xyzw": [
+    0.003269,
+    -0.013095,
+    -0.018147,
+    0.999744
+   ],
+   "cand_anchor_cm": [
+    -0.056,
+    -0.075,
+    -0.451
+   ],
+   "anchor_shift_cm": 0.46
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 30,
+   "slot": 0,
+   "rot_deg": 2.51,
+   "axis_tilt_deg": 1.51,
+   "flip": false,
+   "quat_xyzw": [
+    0.008082,
+    -0.010324,
+    -0.017538,
+    0.99976
+   ],
+   "cand_anchor_cm": [
+    -0.064,
+    -0.134,
+    -0.464
+   ],
+   "anchor_shift_cm": 0.49
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 18,
+   "slot": 0,
+   "rot_deg": 2.91,
+   "axis_tilt_deg": 1.56,
+   "flip": false,
+   "quat_xyzw": [
+    -0.00239,
+    -0.013145,
+    -0.0216,
+    0.999677
+   ],
+   "cand_anchor_cm": [
+    -0.07,
+    -0.061,
+    -0.447
+   ],
+   "anchor_shift_cm": 0.46
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 31,
+   "slot": 0,
+   "rot_deg": 177.96,
+   "axis_tilt_deg": 3.03,
+   "flip": true,
+   "quat_xyzw": [
+    0.011003,
+    0.010566,
+    0.999724,
+    0.017841
+   ],
+   "cand_anchor_cm": [
+    -0.139,
+    0.013,
+    -0.389
+   ],
+   "anchor_shift_cm": 0.41
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 19,
+   "slot": 0,
+   "rot_deg": 2.47,
+   "axis_tilt_deg": 1.61,
+   "flip": false,
+   "quat_xyzw": [
+    0.004385,
+    -0.013176,
+    -0.016479,
+    0.999768
+   ],
+   "cand_anchor_cm": [
+    -0.057,
+    -0.091,
+    -0.43
+   ],
+   "anchor_shift_cm": 0.44
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 30,
+   "slot": 0,
+   "rot_deg": 178.07,
+   "axis_tilt_deg": 3.23,
+   "flip": true,
+   "quat_xyzw": [
+    0.011072,
+    0.012696,
+    0.999716,
+    0.016865
+   ],
+   "cand_anchor_cm": [
+    -0.134,
+    0.031,
+    -0.416
+   ],
+   "anchor_shift_cm": 0.44
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 18,
+   "slot": 0,
+   "rot_deg": 3.09,
+   "axis_tilt_deg": 1.88,
+   "flip": false,
+   "quat_xyzw": [
+    0.009561,
+    -0.013228,
+    -0.021512,
+    0.999635
+   ],
+   "cand_anchor_cm": [
+    -0.08,
+    -0.128,
+    -0.421
+   ],
+   "anchor_shift_cm": 0.45
+  },
+  {
+   "lib": "library_v2",
+   "obj": "mini_sweeper",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 31,
+   "slot": 0,
+   "rot_deg": 2.47,
+   "axis_tilt_deg": 1.65,
+   "flip": false,
+   "quat_xyzw": [
+    0.00887,
+    -0.011289,
+    -0.016084,
+    0.999768
+   ],
+   "cand_anchor_cm": [
+    -0.059,
+    -0.1,
+    -0.416
+   ],
+   "anchor_shift_cm": 0.43
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 20,
+   "slot": 1,
+   "rot_deg": 3.11,
+   "axis_tilt_deg": 2.79,
+   "flip": false,
+   "quat_xyzw": [
+    -0.020243,
+    -0.012901,
+    0.012721,
+    0.999631
+   ],
+   "cand_anchor_cm": [
+    -0.29,
+    1.511,
+    1.943
+   ],
+   "anchor_shift_cm": 2.48
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 21,
+   "slot": 1,
+   "rot_deg": 6.19,
+   "axis_tilt_deg": 3.7,
+   "flip": false,
+   "quat_xyzw": [
+    -0.024891,
+    -0.018431,
+    0.044229,
+    0.998541
+   ],
+   "cand_anchor_cm": [
+    -0.245,
+    1.744,
+    2.733
+   ],
+   "anchor_shift_cm": 3.25
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 22,
+   "slot": 1,
+   "rot_deg": 8.47,
+   "axis_tilt_deg": 4.48,
+   "flip": false,
+   "quat_xyzw": [
+    -0.036134,
+    -0.010872,
+    0.063434,
+    0.997272
+   ],
+   "cand_anchor_cm": [
+    -0.005,
+    1.645,
+    3.374
+   ],
+   "anchor_shift_cm": 3.75
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 20,
+   "slot": 1,
+   "rot_deg": 2.99,
+   "axis_tilt_deg": 2.96,
+   "flip": false,
+   "quat_xyzw": [
+    -0.024536,
+    -0.008307,
+    -0.002736,
+    0.999661
+   ],
+   "cand_anchor_cm": [
+    -0.181,
+    1.625,
+    2.124
+   ],
+   "anchor_shift_cm": 2.68
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 21,
+   "slot": 1,
+   "rot_deg": 6.4,
+   "axis_tilt_deg": 3.74,
+   "flip": false,
+   "quat_xyzw": [
+    -0.024177,
+    -0.019781,
+    0.046252,
+    0.998441
+   ],
+   "cand_anchor_cm": [
+    -0.255,
+    1.619,
+    2.725
+   ],
+   "anchor_shift_cm": 3.18
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 22,
+   "slot": 1,
+   "rot_deg": 7.83,
+   "axis_tilt_deg": 3.83,
+   "flip": false,
+   "quat_xyzw": [
+    -0.029133,
+    -0.013011,
+    0.060351,
+    0.997667
+   ],
+   "cand_anchor_cm": [
+    -0.048,
+    1.588,
+    3.187
+   ],
+   "anchor_shift_cm": 3.56
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 20,
+   "slot": 1,
+   "rot_deg": 4.23,
+   "axis_tilt_deg": 3.21,
+   "flip": false,
+   "quat_xyzw": [
+    -0.028285,
+    -0.000334,
+    -0.023674,
+    0.999319
+   ],
+   "cand_anchor_cm": [
+    -0.133,
+    1.59,
+    2.01
+   ],
+   "anchor_shift_cm": 2.57
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 21,
+   "slot": 1,
+   "rot_deg": 6.65,
+   "axis_tilt_deg": 3.82,
+   "flip": false,
+   "quat_xyzw": [
+    -0.026246,
+    -0.018166,
+    0.048446,
+    0.998316
+   ],
+   "cand_anchor_cm": [
+    -0.262,
+    1.637,
+    2.681
+   ],
+   "anchor_shift_cm": 3.15
+  },
+  {
+   "lib": "library_v3p",
+   "obj": "water_pitcher",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 22,
+   "slot": 1,
+   "rot_deg": 8.04,
+   "axis_tilt_deg": 3.86,
+   "flip": false,
+   "quat_xyzw": [
+    -0.030353,
+    -0.010933,
+    0.062271,
+    0.997538
+   ],
+   "cand_anchor_cm": [
+    -0.001,
+    1.641,
+    3.278
+   ],
+   "anchor_shift_cm": 3.67
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 8,
+   "slot": 0,
+   "rot_deg": 125.85,
+   "axis_tilt_deg": 4.02,
+   "flip": false,
+   "quat_xyzw": [
+    -0.014115,
+    -0.015604,
+    0.890147,
+    0.455187
+   ],
+   "cand_anchor_cm": [
+    -0.188,
+    0.303,
+    -0.273
+   ],
+   "anchor_shift_cm": 0.45
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": "full",
+   "kind": "eval",
+   "ep": 10,
+   "slot": 1,
+   "rot_deg": 137.5,
+   "axis_tilt_deg": 3.82,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011542,
+    -0.017441,
+    0.931774,
+    0.362436
+   ],
+   "cand_anchor_cm": [
+    -0.196,
+    0.31,
+    -0.406
+   ],
+   "anchor_shift_cm": 0.55
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": "full",
+   "kind": "public",
+   "ep": 11,
+   "slot": 1,
+   "rot_deg": 131.66,
+   "axis_tilt_deg": 3.96,
+   "flip": false,
+   "quat_xyzw": [
+    -0.011977,
+    -0.014151,
+    0.912131,
+    0.409479
+   ],
+   "cand_anchor_cm": [
+    -0.238,
+    0.292,
+    -0.345
+   ],
+   "anchor_shift_cm": 0.51
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 8,
+   "slot": 0,
+   "rot_deg": 108.8,
+   "axis_tilt_deg": 4.28,
+   "flip": false,
+   "quat_xyzw": [
+    -0.015214,
+    -0.007487,
+    0.812921,
+    0.582127
+   ],
+   "cand_anchor_cm": [
+    -0.153,
+    0.218,
+    -0.238
+   ],
+   "anchor_shift_cm": 0.36
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": 20000,
+   "kind": "eval",
+   "ep": 10,
+   "slot": 1,
+   "rot_deg": 133.98,
+   "axis_tilt_deg": 3.79,
+   "flip": false,
+   "quat_xyzw": [
+    -0.010216,
+    -0.014664,
+    0.920278,
+    0.390857
+   ],
+   "cand_anchor_cm": [
+    -0.222,
+    0.3,
+    -0.371
+   ],
+   "anchor_shift_cm": 0.53
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": 20000,
+   "kind": "public",
+   "ep": 11,
+   "slot": 1,
+   "rot_deg": 125.71,
+   "axis_tilt_deg": 4.01,
+   "flip": false,
+   "quat_xyzw": [
+    -0.013994,
+    -0.015351,
+    0.88963,
+    0.456209
+   ],
+   "cand_anchor_cm": [
+    -0.215,
+    0.263,
+    -0.416
+   ],
+   "anchor_shift_cm": 0.54
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 8,
+   "slot": 0,
+   "rot_deg": 2.59,
+   "axis_tilt_deg": 2.03,
+   "flip": false,
+   "quat_xyzw": [
+    -0.016725,
+    0.007095,
+    -0.013376,
+    0.999745
+   ],
+   "cand_anchor_cm": [
+    0.252,
+    0.231,
+    -0.292
+   ],
+   "anchor_shift_cm": 0.45
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": 4096,
+   "kind": "eval",
+   "ep": 10,
+   "slot": 1,
+   "rot_deg": 30.15,
+   "axis_tilt_deg": 3.13,
+   "flip": false,
+   "quat_xyzw": [
+    -0.019655,
+    0.002631,
+    0.259346,
+    0.965581
+   ],
+   "cand_anchor_cm": [
+    0.18,
+    0.134,
+    -0.45
+   ],
+   "anchor_shift_cm": 0.5
+  },
+  {
+   "lib": "library_v3x",
+   "obj": "beige_cup",
+   "host_faces": 4096,
+   "kind": "public",
+   "ep": 11,
+   "slot": 1,
+   "rot_deg": 47.04,
+   "axis_tilt_deg": 3.6,
+   "flip": false,
+   "quat_xyzw": [
+    -0.01925,
+    0.00218,
+    0.398611,
+    0.916916
+   ],
+   "cand_anchor_cm": [
+    0.086,
+    0.099,
+    -0.476
+   ],
+   "anchor_shift_cm": 0.49
+  }
+ ],
+ "summary": {
+  "library_v3/beige_cup host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 1
+  },
+  "library_v3/beige_cup host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 1
+  },
+  "library_v3/beige_cup host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 1
+  },
+  "library_v3/blue_cup host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 5,
+   "n_public": 5
+  },
+  "library_v3/blue_cup host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 5,
+   "n_public": 5
+  },
+  "library_v3/blue_cup host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 5,
+   "n_public": 5
+  },
+  "library_v3/mini_dust_pan host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 3
+  },
+  "library_v3/mini_dust_pan host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 3
+  },
+  "library_v3/mini_dust_pan host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 3
+  },
+  "library_v3/mini_sweeper host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 2
+  },
+  "library_v3/mini_sweeper host=20000": {
+   "eval_flips": [],
+   "public_flips": [
+    31
+   ],
+   "n_eval": 2,
+   "n_public": 2
+  },
+  "library_v3/mini_sweeper host=4096": {
+   "eval_flips": [
+    30
+   ],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 2
+  },
+  "library_v3/plastic_dish_rack host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 5,
+   "n_public": 5
+  },
+  "library_v3/plastic_dish_rack host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 5,
+   "n_public": 5
+  },
+  "library_v3/plastic_dish_rack host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 5,
+   "n_public": 5
+  },
+  "library_v3/water_pitcher host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/water_pitcher host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/water_pitcher host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/white_pot host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 6,
+   "n_public": 9
+  },
+  "library_v3/white_pot host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 6,
+   "n_public": 9
+  },
+  "library_v3/white_pot host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 6,
+   "n_public": 9
+  },
+  "library_v3/white_pot_lid host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/white_pot_lid host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/white_pot_lid host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/wooden_piece_1 host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/wooden_piece_1 host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/wooden_piece_1 host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/wooden_piece_2 host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/wooden_piece_2 host=20000": {
+   "eval_flips": [],
+   "public_flips": [
+    24
+   ],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3/wooden_piece_2 host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v2/mini_sweeper host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 2
+  },
+  "library_v2/mini_sweeper host=20000": {
+   "eval_flips": [],
+   "public_flips": [
+    31
+   ],
+   "n_eval": 2,
+   "n_public": 2
+  },
+  "library_v2/mini_sweeper host=4096": {
+   "eval_flips": [
+    30
+   ],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 2
+  },
+  "library_v3p/water_pitcher host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3p/water_pitcher host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3p/water_pitcher host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 1,
+   "n_public": 2
+  },
+  "library_v3x/beige_cup host=full": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 1
+  },
+  "library_v3x/beige_cup host=20000": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 1
+  },
+  "library_v3x/beige_cup host=4096": {
+   "eval_flips": [],
+   "public_flips": [],
+   "n_eval": 2,
+   "n_public": 1
+  }
+ }
+}

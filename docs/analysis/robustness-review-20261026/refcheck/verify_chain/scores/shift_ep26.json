@@ -1,0 +1,167 @@
+{
+ "ep": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 158,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "s-2": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/verify_chain/shift/ep26_shift-2.npz",
+  "s-1": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/verify_chain/shift/ep26_shift-1.npz",
+  "s+0": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/verify_chain/shift/ep26_shift+0.npz",
+  "s+1": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/verify_chain/shift/ep26_shift+1.npz",
+  "s+2": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/verify_chain/shift/ep26_shift+2.npz"
+ },
+ "scores": {
+  "lib|s-2": {
+   "scene": 0.9324,
+   "per_obj": {
+    "plastic_dish_rack": 0.9968,
+    "white_pot": 0.8679
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.38,
+    "white_pot": 0.349
+   },
+   "n_frames": 158
+  },
+  "lib|s-1": {
+   "scene": 0.9565,
+   "per_obj": {
+    "plastic_dish_rack": 0.9976,
+    "white_pot": 0.9153
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.381,
+    "white_pot": 0.329
+   },
+   "n_frames": 158
+  },
+  "lib|s+0": {
+   "scene": 0.9723,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.9474
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.382,
+    "white_pot": 0.308
+   },
+   "n_frames": 158
+  },
+  "lib|s+1": {
+   "scene": 0.9702,
+   "per_obj": {
+    "plastic_dish_rack": 0.9921,
+    "white_pot": 0.9482
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.426,
+    "white_pot": 0.329
+   },
+   "n_frames": 158
+  },
+  "lib|s+2": {
+   "scene": 0.9581,
+   "per_obj": {
+    "plastic_dish_rack": 0.9956,
+    "white_pot": 0.9205
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.359,
+    "white_pot": 0.433
+   },
+   "n_frames": 158
+  },
+  "scan|s-2": {
+   "scene": 0.9151,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.8331
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.392,
+    "white_pot": 0.874
+   },
+   "n_frames": 158
+  },
+  "scan|s-1": {
+   "scene": 0.9355,
+   "per_obj": {
+    "plastic_dish_rack": 0.9976,
+    "white_pot": 0.8734
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.393,
+    "white_pot": 0.854
+   },
+   "n_frames": 158
+  },
+  "scan|s+0": {
+   "scene": 0.9551,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.913
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.395,
+    "white_pot": 0.834
+   },
+   "n_frames": 158
+  },
+  "scan|s+1": {
+   "scene": 0.9541,
+   "per_obj": {
+    "plastic_dish_rack": 0.9917,
+    "white_pot": 0.9165
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.438,
+    "white_pot": 0.854
+   },
+   "n_frames": 158
+  },
+  "scan|s+2": {
+   "scene": 0.9472,
+   "per_obj": {
+    "plastic_dish_rack": 0.9949,
+    "white_pot": 0.8995
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.369,
+    "white_pot": 0.961
+   },
+   "n_frames": 158
+  }
+ },
+ "registration": {
+  "lib": {
+   "plastic_dish_rack": {
+    "kind": "ours",
+    "rot_deg": 1.821,
+    "anchor_shift_cm": 0.568
+   },
+   "white_pot": {
+    "kind": "ours",
+    "rot_deg": 1.771,
+    "anchor_shift_cm": 0.682
+   }
+  },
+  "scan": {
+   "plastic_dish_rack": {
+    "kind": "scan",
+    "rot_deg": 0.11,
+    "anchor_shift_cm": 0.018
+   },
+   "white_pot": {
+    "kind": "scan",
+    "rot_deg": 0.412,
+    "anchor_shift_cm": 0.038
+   }
+  }
+ },
+ "sec": 11.8
+}

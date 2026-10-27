@@ -1,0 +1,43 @@
+{
+ "ep": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "sweep": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep18/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|sweep": {
+   "scene": 0.9643,
+   "per_obj": {
+    "mini_sweeper": 0.9952,
+    "mini_dust_pan": 0.9333
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.138,
+    "mini_dust_pan": 1.28
+   },
+   "n_frames": 353
+  }
+ },
+ "registration": {
+  "lib": {
+   "mini_sweeper": {
+    "kind": "ours",
+    "rot_deg": 3.104,
+    "anchor_shift_cm": 0.399
+   },
+   "mini_dust_pan": {
+    "kind": "ours",
+    "rot_deg": 2.444,
+    "anchor_shift_cm": 0.586
+   }
+  }
+ },
+ "sec": 6.4
+}

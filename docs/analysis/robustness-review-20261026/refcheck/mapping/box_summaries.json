@@ -16,6 +16,80 @@
  "sum_T_over_sum_S": 0.9891,
  "mean_T_over_S": 1.0082,
  "k_ls": 0.976,
+ "reproduction_attempts": {
+  "all": {
+   "n": 58,
+   "n_eps": 10,
+   "sum_ratio": 0.9891,
+   "k_ls": 0.976,
+   "mean_ratio": 1.0082,
+   "median_ratio": 0.9848
+  },
+  "without newest (20261025-twin21base-ee7ba8e)": {
+   "n": 57,
+   "n_eps": 10,
+   "sum_ratio": 0.9951,
+   "k_ls": 0.9827,
+   "mean_ratio": 1.0126,
+   "median_ratio": 0.9849
+  },
+  "S>=0.5": {
+   "n": 28,
+   "n_eps": 6,
+   "sum_ratio": 0.9666,
+   "k_ls": 0.9653,
+   "mean_ratio": 0.9679,
+   "median_ratio": 0.9815
+  },
+  "S>=0.5, without newest": {
+   "n": 27,
+   "n_eps": 6,
+   "sum_ratio": 0.9741,
+   "k_ls": 0.9727,
+   "mean_ratio": 0.9757,
+   "median_ratio": 0.9818
+  },
+  "S>=0.8": {
+   "n": 19,
+   "n_eps": 5,
+   "sum_ratio": 0.9574,
+   "k_ls": 0.9575,
+   "mean_ratio": 0.9573,
+   "median_ratio": 0.977
+  },
+  "S>=0.8, without newest": {
+   "n": 18,
+   "n_eps": 5,
+   "sum_ratio": 0.9676,
+   "k_ls": 0.9669,
+   "mean_ratio": 0.9683,
+   "median_ratio": 0.9794
+  },
+  "S>=0.9": {
+   "n": 13,
+   "n_eps": 5,
+   "sum_ratio": 0.9625,
+   "k_ls": 0.962,
+   "mean_ratio": 0.9629,
+   "median_ratio": 0.977
+  },
+  "S>=0.9, without newest": {
+   "n": 13,
+   "n_eps": 5,
+   "sum_ratio": 0.9625,
+   "k_ls": 0.962,
+   "mean_ratio": 0.9629,
+   "median_ratio": 0.977
+  },
+  "without ep21 (pitcher)": {
+   "n": 55,
+   "n_eps": 9,
+   "sum_ratio": 1.0011,
+   "k_ls": 0.9909,
+   "mean_ratio": 1.016,
+   "median_ratio": 0.9849
+  }
+ },
  "policies": [
   {
    "ep": 12,

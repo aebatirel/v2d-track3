@@ -1,0 +1,252 @@
+{
+ "0": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 2.3,
+   "base": 0.9641,
+   "tiltA": 0.9642,
+   "delta": 0.0001
+  }
+ },
+ "2": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 1.66,
+   "base": 0.9866,
+   "tiltA": 0.9767,
+   "delta": -0.0099
+  },
+  "ref": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 2.23,
+   "base": 0.9798,
+   "tiltA": 0.9867,
+   "delta": 0.0069
+  }
+ },
+ "11": {
+  "perc": {
+   "anchor": "blue_cup",
+   "tilt_removed_deg": 1.05,
+   "base": 0.8964,
+   "tiltA": 0.8905,
+   "delta": -0.0059
+  },
+  "ref": {
+   "anchor": "blue_cup",
+   "tilt_removed_deg": 0.76,
+   "base": 0.8844,
+   "tiltA": 0.8814,
+   "delta": -0.003
+  }
+ },
+ "12": {
+  "perc": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 3.15,
+   "base": 0.9662,
+   "tiltA": 0.9608,
+   "delta": -0.0054
+  },
+  "ref": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 3.15,
+   "base": 0.9354,
+   "tiltA": 0.9263,
+   "delta": -0.0091
+  }
+ },
+ "13": {
+  "perc": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 2.94,
+   "base": 0.9605,
+   "tiltA": 0.9676,
+   "delta": 0.0071
+  }
+ },
+ "18": {
+  "perc": {
+   "anchor": "mini_sweeper",
+   "tilt_removed_deg": 3.77,
+   "base": 0.938,
+   "tiltA": 0.9697,
+   "delta": 0.0317
+  },
+  "ref": {
+   "anchor": "mini_sweeper",
+   "tilt_removed_deg": 2.4,
+   "base": 0.9657,
+   "tiltA": 0.9876,
+   "delta": 0.0219
+  }
+ },
+ "21": {
+  "perc": {
+   "anchor": "water_pitcher",
+   "tilt_removed_deg": 5.99,
+   "base": 0.8372,
+   "tiltA": 0.9713,
+   "delta": 0.1341
+  },
+  "ref": {
+   "anchor": "water_pitcher",
+   "tilt_removed_deg": 5.99,
+   "base": 0.7776,
+   "tiltA": 0.9575,
+   "delta": 0.1799
+  }
+ },
+ "22": {
+  "perc": {
+   "anchor": "water_pitcher",
+   "tilt_removed_deg": 6.19,
+   "base": 0.871,
+   "tiltA": 0.9663,
+   "delta": 0.0953
+  }
+ },
+ "23": {
+  "perc": {
+   "anchor": "wooden_piece_1",
+   "tilt_removed_deg": 176.67,
+   "base": 0.0414,
+   "tiltA": 0.0415,
+   "delta": 0.0001
+  }
+ },
+ "24": {
+  "perc": {
+   "anchor": "wooden_piece_1",
+   "tilt_removed_deg": 1.64,
+   "base": 0.8117,
+   "tiltA": 0.8456,
+   "delta": 0.0339
+  },
+  "ref": {
+   "anchor": "wooden_piece_1",
+   "tilt_removed_deg": 1.64,
+   "base": 0.8163,
+   "tiltA": 0.852,
+   "delta": 0.0357
+  }
+ },
+ "26": {
+  "perc": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 2.67,
+   "base": 0.9723,
+   "tiltA": 0.9782,
+   "delta": 0.0059
+  },
+  "ref": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 2.43,
+   "base": 0.9229,
+   "tiltA": 0.9084,
+   "delta": -0.0145
+  }
+ },
+ "27": {
+  "perc": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 3.68,
+   "base": 0.9593,
+   "tiltA": 0.9844,
+   "delta": 0.0251
+  },
+  "ref": {
+   "anchor": "plastic_dish_rack",
+   "tilt_removed_deg": 3.68,
+   "base": 0.9621,
+   "tiltA": 0.9818,
+   "delta": 0.0197
+  }
+ },
+ "31": {
+  "perc": {
+   "anchor": "mini_sweeper",
+   "tilt_removed_deg": 4.59,
+   "base": 0.7998,
+   "tiltA": 0.8717,
+   "delta": 0.0719
+  },
+  "ref": {
+   "anchor": "mini_sweeper",
+   "tilt_removed_deg": 4.59,
+   "base": 0.8233,
+   "tiltA": 0.8594,
+   "delta": 0.0361
+  }
+ },
+ "39": {
+  "perc": {
+   "anchor": "mini_dust_pan",
+   "tilt_removed_deg": 0.78,
+   "base": 0.9602,
+   "tiltA": 0.9757,
+   "delta": 0.0155
+  },
+  "ref": {
+   "anchor": "mini_dust_pan",
+   "tilt_removed_deg": 1.02,
+   "base": 0.9559,
+   "tiltA": 0.9755,
+   "delta": 0.0196
+  }
+ },
+ "40": {
+  "perc": {
+   "anchor": "mini_dust_pan",
+   "tilt_removed_deg": 2.1,
+   "base": 0.957,
+   "tiltA": 0.9827,
+   "delta": 0.0257
+  }
+ },
+ "41": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 2.03,
+   "base": 0.991,
+   "tiltA": 0.9918,
+   "delta": 0.0008
+  }
+ },
+ "42": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 1.09,
+   "base": 0.9915,
+   "tiltA": 0.992,
+   "delta": 0.0005
+  }
+ },
+ "43": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 4.14,
+   "base": 0.9482,
+   "tiltA": 0.963,
+   "delta": 0.0148
+  }
+ },
+ "44": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 1.67,
+   "base": 0.9967,
+   "tiltA": 0.9975,
+   "delta": 0.0008
+  }
+ },
+ "45": {
+  "perc": {
+   "anchor": "white_pot",
+   "tilt_removed_deg": 2.53,
+   "base": 0.9795,
+   "tiltA": 0.9784,
+   "delta": -0.0011
+  }
+ }
+}

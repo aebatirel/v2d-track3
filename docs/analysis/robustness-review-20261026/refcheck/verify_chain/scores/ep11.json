@@ -1,0 +1,166 @@
+{
+ "ep": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "lib": "/home/user/v2d-track3/meshes/library_v3x",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin11v3x-0e8aebb/perc2/ep11/poses_world_vo.npz",
+  "e2s": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet",
+  "proc": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/9854992a55fd4856a79d8904788f2151-0.parquet",
+  "res": "res:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r1"
+ },
+ "scores": {
+  "lib|perc": {
+   "scene": 0.8964,
+   "per_obj": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9307
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.669,
+    "beige_cup": 1.004
+   },
+   "n_frames": 137
+  },
+  "lib|e2s": {
+   "scene": 0.885,
+   "per_obj": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9078
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.669,
+    "beige_cup": 1.319
+   },
+   "n_frames": 137
+  },
+  "lib|proc": {
+   "scene": 0.8843,
+   "per_obj": {
+    "blue_cup": 0.8636,
+    "beige_cup": 0.9051
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.631,
+    "beige_cup": 1.232
+   },
+   "n_frames": 137
+  },
+  "lib|res_sim": {
+   "scene": 0.5668,
+   "per_obj": {
+    "blue_cup": 0.9932,
+    "beige_cup": 0.1405
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.204,
+    "beige_cup": -5.75
+   },
+   "n_frames": 137
+  },
+  "lib|res_ref": {
+   "scene": 0.8843,
+   "per_obj": {
+    "blue_cup": 0.8636,
+    "beige_cup": 0.9051
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.631,
+    "beige_cup": 1.232
+   },
+   "n_frames": 137
+  },
+  "scan|perc": {
+   "scene": 0.9161,
+   "per_obj": {
+    "blue_cup": 0.8595,
+    "beige_cup": 0.9726
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.663,
+    "beige_cup": -0.298
+   },
+   "n_frames": 137
+  },
+  "scan|e2s": {
+   "scene": 0.922,
+   "per_obj": {
+    "blue_cup": 0.8595,
+    "beige_cup": 0.9845
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.663,
+    "beige_cup": 0.016
+   },
+   "n_frames": 137
+  },
+  "scan|proc": {
+   "scene": 0.9216,
+   "per_obj": {
+    "blue_cup": 0.8636,
+    "beige_cup": 0.9795
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.626,
+    "beige_cup": -0.067
+   },
+   "n_frames": 137
+  },
+  "scan|res_sim": {
+   "scene": 0.5668,
+   "per_obj": {
+    "blue_cup": 0.9932,
+    "beige_cup": 0.1405
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.208,
+    "beige_cup": -6.944
+   },
+   "n_frames": 137
+  },
+  "scan|res_ref": {
+   "scene": 0.9216,
+   "per_obj": {
+    "blue_cup": 0.8636,
+    "beige_cup": 0.9795
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.626,
+    "beige_cup": -0.067
+   },
+   "n_frames": 137
+  }
+ },
+ "registration": {
+  "lib": {
+   "blue_cup": {
+    "kind": "ours",
+    "rot_deg": 1.86,
+    "anchor_shift_cm": 0.982
+   },
+   "beige_cup": {
+    "kind": "ours",
+    "rot_deg": 131.656,
+    "anchor_shift_cm": 0.511
+   }
+  },
+  "scan": {
+   "blue_cup": {
+    "kind": "scan",
+    "rot_deg": 0.261,
+    "anchor_shift_cm": 0.025
+   },
+   "beige_cup": {
+    "kind": "scan",
+    "rot_deg": 0.983,
+    "anchor_shift_cm": 0.014
+   }
+  }
+ },
+ "sec": 80.2
+}

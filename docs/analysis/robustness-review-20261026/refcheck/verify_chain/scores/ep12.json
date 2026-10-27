@@ -1,0 +1,309 @@
+{
+ "ep": 12,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 181,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261021-auto18-966eb96/perc2m/ep12/poses_world_vo.npz",
+  "e2s": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/e2s_reference.parquet",
+  "proc": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet",
+  "res": "res:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r1"
+ },
+ "scores": {
+  "lib|perc": {
+   "scene": 0.9662,
+   "per_obj": {
+    "blue_cup": 0.9327,
+    "plastic_dish_rack": 0.9997
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.083,
+    "plastic_dish_rack": 0.431
+   },
+   "n_frames": 181
+  },
+  "lib|e2s": {
+   "scene": 0.9355,
+   "per_obj": {
+    "blue_cup": 0.9327,
+    "plastic_dish_rack": 0.9382
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.083,
+    "plastic_dish_rack": 1.426
+   },
+   "n_frames": 181
+  },
+  "lib|proc": {
+   "scene": 0.9355,
+   "per_obj": {
+    "blue_cup": 0.9327,
+    "plastic_dish_rack": 0.9382
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.083,
+    "plastic_dish_rack": 1.426
+   },
+   "n_frames": 181
+  },
+  "lib|res_sim": {
+   "scene": 0.9213,
+   "per_obj": {
+    "blue_cup": 0.8702,
+    "plastic_dish_rack": 0.9724
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.266,
+    "plastic_dish_rack": 0.609
+   },
+   "n_frames": 181
+  },
+  "lib|res_ref": {
+   "scene": 0.9355,
+   "per_obj": {
+    "blue_cup": 0.9327,
+    "plastic_dish_rack": 0.9382
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.083,
+    "plastic_dish_rack": 1.426
+   },
+   "n_frames": 181
+  },
+  "scan|perc": {
+   "scene": 0.9636,
+   "per_obj": {
+    "blue_cup": 0.9879,
+    "plastic_dish_rack": 0.9392
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.245,
+    "plastic_dish_rack": -0.968
+   },
+   "n_frames": 181
+  },
+  "scan|e2s": {
+   "scene": 0.9929,
+   "per_obj": {
+    "blue_cup": 0.9879,
+    "plastic_dish_rack": 0.9979
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.245,
+    "plastic_dish_rack": 0.026
+   },
+   "n_frames": 181
+  },
+  "scan|proc": {
+   "scene": 0.9929,
+   "per_obj": {
+    "blue_cup": 0.9879,
+    "plastic_dish_rack": 0.9979
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.245,
+    "plastic_dish_rack": 0.026
+   },
+   "n_frames": 181
+  },
+  "scan|res_sim": {
+   "scene": 0.9339,
+   "per_obj": {
+    "blue_cup": 0.9292,
+    "plastic_dish_rack": 0.9385
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.051,
+    "plastic_dish_rack": -0.783
+   },
+   "n_frames": 181
+  },
+  "scan|res_ref": {
+   "scene": 0.9929,
+   "per_obj": {
+    "blue_cup": 0.9879,
+    "plastic_dish_rack": 0.9979
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.245,
+    "plastic_dish_rack": 0.026
+   },
+   "n_frames": 181
+  },
+  "ours:blue_cup|perc": {
+   "scene": 0.9748,
+   "per_obj": {
+    "blue_cup": 0.9499,
+    "plastic_dish_rack": 0.9997
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.883,
+    "plastic_dish_rack": -0.103
+   },
+   "n_frames": 181
+  },
+  "ours:blue_cup|e2s": {
+   "scene": 0.9546,
+   "per_obj": {
+    "blue_cup": 0.9499,
+    "plastic_dish_rack": 0.9593
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.883,
+    "plastic_dish_rack": 0.891
+   },
+   "n_frames": 181
+  },
+  "ours:blue_cup|proc": {
+   "scene": 0.9546,
+   "per_obj": {
+    "blue_cup": 0.9499,
+    "plastic_dish_rack": 0.9593
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.883,
+    "plastic_dish_rack": 0.891
+   },
+   "n_frames": 181
+  },
+  "ours:blue_cup|res_sim": {
+   "scene": 0.9441,
+   "per_obj": {
+    "blue_cup": 0.8892,
+    "plastic_dish_rack": 0.999
+   },
+   "dz_err_cm": {
+    "blue_cup": 1.074,
+    "plastic_dish_rack": 0.076
+   },
+   "n_frames": 181
+  },
+  "ours:blue_cup|res_ref": {
+   "scene": 0.9546,
+   "per_obj": {
+    "blue_cup": 0.9499,
+    "plastic_dish_rack": 0.9593
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.883,
+    "plastic_dish_rack": 0.891
+   },
+   "n_frames": 181
+  },
+  "ours:plastic_dish_rack|perc": {
+   "scene": 0.9936,
+   "per_obj": {
+    "blue_cup": 0.9893,
+    "plastic_dish_rack": 0.9979
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.046,
+    "plastic_dish_rack": -0.437
+   },
+   "n_frames": 181
+  },
+  "ours:plastic_dish_rack|e2s": {
+   "scene": 0.9938,
+   "per_obj": {
+    "blue_cup": 0.9893,
+    "plastic_dish_rack": 0.9983
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.046,
+    "plastic_dish_rack": 0.557
+   },
+   "n_frames": 181
+  },
+  "ours:plastic_dish_rack|proc": {
+   "scene": 0.9938,
+   "per_obj": {
+    "blue_cup": 0.9893,
+    "plastic_dish_rack": 0.9983
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.046,
+    "plastic_dish_rack": 0.557
+   },
+   "n_frames": 181
+  },
+  "ours:plastic_dish_rack|res_sim": {
+   "scene": 0.953,
+   "per_obj": {
+    "blue_cup": 0.9278,
+    "plastic_dish_rack": 0.9782
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.14,
+    "plastic_dish_rack": -0.254
+   },
+   "n_frames": 181
+  },
+  "ours:plastic_dish_rack|res_ref": {
+   "scene": 0.9938,
+   "per_obj": {
+    "blue_cup": 0.9893,
+    "plastic_dish_rack": 0.9983
+   },
+   "dz_err_cm": {
+    "blue_cup": -0.046,
+    "plastic_dish_rack": 0.557
+   },
+   "n_frames": 181
+  }
+ },
+ "registration": {
+  "lib": {
+   "blue_cup": {
+    "kind": "ours",
+    "rot_deg": 0.819,
+    "anchor_shift_cm": 0.912
+   },
+   "plastic_dish_rack": {
+    "kind": "ours",
+    "rot_deg": 1.323,
+    "anchor_shift_cm": 0.573
+   }
+  },
+  "scan": {
+   "blue_cup": {
+    "kind": "scan",
+    "rot_deg": 0.805,
+    "anchor_shift_cm": 0.024
+   },
+   "plastic_dish_rack": {
+    "kind": "scan",
+    "rot_deg": 0.161,
+    "anchor_shift_cm": 0.034
+   }
+  },
+  "ours:blue_cup": {
+   "blue_cup": {
+    "kind": "ours",
+    "rot_deg": 0.819,
+    "anchor_shift_cm": 0.912
+   },
+   "plastic_dish_rack": {
+    "kind": "scan",
+    "rot_deg": 0.161,
+    "anchor_shift_cm": 0.034
+   }
+  },
+  "ours:plastic_dish_rack": {
+   "blue_cup": {
+    "kind": "scan",
+    "rot_deg": 0.805,
+    "anchor_shift_cm": 0.024
+   },
+   "plastic_dish_rack": {
+    "kind": "ours",
+    "rot_deg": 1.323,
+    "anchor_shift_cm": 0.573
+   }
+  }
+ },
+ "sec": 102.9
+}

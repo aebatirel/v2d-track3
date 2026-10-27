@@ -21,6 +21,17 @@
    "registration": {
     "blue_cup": {
      "rot_deg": 1.361,
+     "quat_xyzw": [
+      -0.011443,
+      0.000252,
+      -0.003174,
+      0.999929
+     ],
+     "cand_anchor_cm": [
+      -0.153,
+      0.167,
+      1.023
+     ],
      "anchor_cm": [
       0.0,
       0.0,
@@ -35,6 +46,17 @@
     },
     "water_pitcher": {
      "rot_deg": 2.653,
+     "quat_xyzw": [
+      -0.019071,
+      0.005452,
+      -0.011932,
+      0.999732
+     ],
+     "cand_anchor_cm": [
+      -0.373,
+      0.381,
+      0.38
+     ],
      "anchor_cm": [
       -0.0,
       0.0,
@@ -59,7 +81,7 @@
      "water_pitcher": 0.6203
     }
    },
-   "seconds": 42.7
+   "seconds": 16.9
   },
   "f0ref": {
    "config": {
@@ -74,6 +96,17 @@
    "registration": {
     "blue_cup": {
      "rot_deg": 1.361,
+     "quat_xyzw": [
+      -0.011443,
+      0.000252,
+      -0.003174,
+      0.999929
+     ],
+     "cand_anchor_cm": [
+      -0.153,
+      0.167,
+      1.023
+     ],
      "anchor_cm": [
       0.0,
       0.0,
@@ -88,6 +121,17 @@
     },
     "water_pitcher": {
      "rot_deg": 2.653,
+     "quat_xyzw": [
+      -0.019071,
+      0.005452,
+      -0.011932,
+      0.999732
+     ],
+     "cand_anchor_cm": [
+      -0.373,
+      0.381,
+      0.38
+     ],
      "anchor_cm": [
       -0.0,
       0.0,
@@ -102,17 +146,17 @@
     }
    },
    "sim": {
-    "AUC": 0.7903,
+    "AUC": 0.772,
     "SP_SR": 1.0,
     "MP_SR": 0.0,
-    "MPPE_cm": 2.5051,
-    "RPE_cm": 1.9814,
+    "MPPE_cm": 2.5748,
+    "RPE_cm": 1.9819,
     "per_obj_AUC": {
-     "blue_cup": 0.9603,
-     "water_pitcher": 0.6203
+     "blue_cup": 0.96,
+     "water_pitcher": 0.584
     }
    },
-   "seconds": 28.3
+   "seconds": 9.3
   }
  }
 }

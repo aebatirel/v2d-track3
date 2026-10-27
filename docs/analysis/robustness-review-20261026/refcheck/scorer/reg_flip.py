@@ -76,6 +76,8 @@ for lib, n in MESHES:
             flip = (tilt > 90) if n in ('blue_cup', 'beige_cup') else (ang > 90)
             out['results'].append(dict(lib=lib, obj=n, host_faces=k or 'full', kind=kind, ep=e, slot=s,
                                        rot_deg=round(ang, 2), axis_tilt_deg=round(tilt, 2), flip=flip,
+                                       quat_xyzw=np.round(Rot.from_matrix(R).as_quat(), 6).tolist(),
+                                       cand_anchor_cm=np.round(ca * 100, 3).tolist(),
                                        anchor_shift_cm=round(float(np.linalg.norm(ca - anchor) * 100), 2)))
             print(lib, n, k or 'full', kind, e, s, round(ang, 2), round(tilt, 2), f'{time.time() - t0:.1f}s', flush=True)
 json.dump(out, open(OUT, 'w'), indent=1)

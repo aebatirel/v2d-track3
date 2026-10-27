@@ -1,0 +1,312 @@
+{
+ "episode": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "meshes": "/home/user/v2d-track3/meshes/library_v2",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep18/poses_world_vo.npz",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.848,
+     "quat_xyzw": [
+      0.001569,
+      -0.011442,
+      -0.022007,
+      0.999691
+     ],
+     "cand_anchor_cm": [
+      -0.075,
+      -0.074,
+      -0.398
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "mini_dust_pan": {
+     "rot_deg": 2.444,
+     "quat_xyzw": [
+      0.001286,
+      0.020588,
+      0.005405,
+      0.999773
+     ],
+     "cand_anchor_cm": [
+      -0.517,
+      -0.028,
+      -0.276
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.938,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.1864,
+    "RPE_cm": 1.8374,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9947,
+     "mini_dust_pan": 0.8814
+    }
+   },
+   "seconds": 6.5
+  },
+  "h50000": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 50000,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.877,
+     "quat_xyzw": [
+      0.002667,
+      -0.012708,
+      -0.021484,
+      0.999685
+     ],
+     "cand_anchor_cm": [
+      -0.079,
+      -0.055,
+      -0.421
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "mini_dust_pan": {
+     "rot_deg": 2.45,
+     "quat_xyzw": [
+      0.003477,
+      0.021092,
+      0.000298,
+      0.999771
+     ],
+     "cand_anchor_cm": [
+      -0.519,
+      -0.057,
+      -0.264
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.9332,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.1979,
+    "RPE_cm": 1.8199,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9945,
+     "mini_dust_pan": 0.8718
+    }
+   },
+   "seconds": 7.2
+  },
+  "h20000": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 20000,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.911,
+     "quat_xyzw": [
+      -0.00239,
+      -0.013145,
+      -0.0216,
+      0.999677
+     ],
+     "cand_anchor_cm": [
+      -0.07,
+      -0.061,
+      -0.447
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "mini_dust_pan": {
+     "rot_deg": 2.561,
+     "quat_xyzw": [
+      0.002009,
+      0.022,
+      0.003364,
+      0.99975
+     ],
+     "cand_anchor_cm": [
+      -0.521,
+      -0.015,
+      -0.297
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.9214,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.272,
+    "RPE_cm": 1.9067,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9943,
+     "mini_dust_pan": 0.8484
+    }
+   },
+   "seconds": 7.5
+  },
+  "h4096": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 4096,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 3.095,
+     "quat_xyzw": [
+      0.009561,
+      -0.013228,
+      -0.021512,
+      0.999635
+     ],
+     "cand_anchor_cm": [
+      -0.08,
+      -0.128,
+      -0.421
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "mini_dust_pan": {
+     "rot_deg": 2.657,
+     "quat_xyzw": [
+      0.001861,
+      0.022816,
+      0.003697,
+      0.999731
+     ],
+     "cand_anchor_cm": [
+      -0.529,
+      0.003,
+      -0.276
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.9554,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.1424,
+    "RPE_cm": 1.746,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9947,
+     "mini_dust_pan": 0.9161
+    }
+   },
+   "seconds": 7.5
+  }
+ }
+}

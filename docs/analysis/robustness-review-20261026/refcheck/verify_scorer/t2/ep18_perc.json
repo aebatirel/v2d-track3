@@ -1,0 +1,146 @@
+{
+ "ep": 18,
+ "source": "runs/20261025-sweep-a894083/results/sweep/base/ep18/poses_world_vo.npz",
+ "lib": "library_v2",
+ "names": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "variants": {
+  "base": {
+   "cfg": {
+    "off": 0,
+    "faces": 0,
+    "dec": "fs",
+    "lag": 0,
+    "slot_lib": "",
+    "npts": 1000,
+    "anc": "centroid"
+   },
+   "host_faces": [
+    99838,
+    99560
+   ],
+   "reg_deg": [
+    2.85,
+    2.44
+   ],
+   "tilt_deg": [
+    null,
+    null
+   ],
+   "reg_quat": [
+    [
+     0.00157,
+     -0.01144,
+     -0.02201,
+     0.99969
+    ],
+    [
+     0.00129,
+     0.02059,
+     0.0054,
+     0.99977
+    ]
+   ],
+   "AUC": 0.938,
+   "per_obj": [
+    0.9947,
+    0.8814
+   ],
+   "SP": 1.0,
+   "MP": 1.0,
+   "seconds": 6.5
+  },
+  "n4000": {
+   "cfg": {
+    "off": 0,
+    "faces": 0,
+    "dec": "fs",
+    "lag": 0,
+    "slot_lib": "",
+    "npts": 4000,
+    "anc": "centroid"
+   },
+   "host_faces": [
+    99838,
+    99560
+   ],
+   "reg_deg": [
+    2.85,
+    2.44
+   ],
+   "tilt_deg": [
+    null,
+    null
+   ],
+   "reg_quat": [
+    [
+     0.00157,
+     -0.01144,
+     -0.02201,
+     0.99969
+    ],
+    [
+     0.00129,
+     0.02059,
+     0.0054,
+     0.99977
+    ]
+   ],
+   "AUC": 0.9401,
+   "per_obj": [
+    0.9949,
+    0.8853
+   ],
+   "SP": 1.0,
+   "MP": 1.0,
+   "seconds": 7.2
+  },
+  "bbox": {
+   "cfg": {
+    "off": 0,
+    "faces": 0,
+    "dec": "fs",
+    "lag": 0,
+    "slot_lib": "",
+    "npts": 1000,
+    "anc": "bbox"
+   },
+   "host_faces": [
+    99838,
+    99560
+   ],
+   "reg_deg": [
+    2.85,
+    2.44
+   ],
+   "tilt_deg": [
+    null,
+    null
+   ],
+   "reg_quat": [
+    [
+     0.00157,
+     -0.01144,
+     -0.02201,
+     0.99969
+    ],
+    [
+     0.00129,
+     0.02059,
+     0.0054,
+     0.99977
+    ]
+   ],
+   "AUC": 0.9373,
+   "per_obj": [
+    0.9947,
+    0.88
+   ],
+   "SP": 1.0,
+   "MP": 1.0,
+   "seconds": 6.4
+  }
+ }
+}
