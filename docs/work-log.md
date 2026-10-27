@@ -4423,3 +4423,5 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - **Choice rule (now, before results):** candidates = submitted gl10A2 (0.4539) and this run's chosen checkpoint
     (5-evaluation mean). The higher goes into the next pack, after the object-trajectory check. It is a trained
     policy (≥ 1M RL steps), chosen by the curve.
+- Launched 57914002 `20261027-e10Z-aa7b5f8` (RTX PRO 6000 Max-Q, $1.21/h; prices are back down), code aa7b5f8.
+  Expected ≈ 1.2 h, ≈ $1.5; self-destroys. Watcher b68tl79j7.
