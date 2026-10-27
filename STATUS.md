@@ -2,6 +2,25 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-27 ~13:30 UTC: building the A+B mesh engine (CPU, $0); research verdict: generic-only route failed
+- **Owner wants:** A (generic automatic engine) + B (agent-authored part programs per object), with minimal CD-O
+  against the public scans. Selection stays GT-free, and oracle numbers are reported separately.
+- **Research workflow `wf_c5cfe08d-5e2` (work log 13:20):** both generic-only probes were refuted (pot structure, dust
+  pan), and the GT-free gate was blind to a missing wall.
+- **Stage 1 running:** `wf_31952e44-35c` builds `docs/research/mesh-2026-10-26/autokit/`:
+  - loader;
+  - per-frame refinement;
+  - thin shell;
+  - part DSL;
+  - gates v2;
+  - integration, then audits.
+
+  Stage 2 follows: authoring, GT-free selection, one pre-registered scan round.
+- **Correction:** under the owner's 22 Oct decision (eval meshes re-fused per eval episode), new eval meshes need eval
+  depth (≈ $2–4 GPU, owner go-ahead). The 07:10 "no eval depth needed" holds only for a pack swap of public-built
+  meshes.
+- **Deadline:** leaderboard freeze 2026-11-04 17:00 EST.
+
 ## 2026-10-27 ~07:10 UTC: kit-of-parts meshes done (CPU, $0, branch `claude/bold-albattani-6qmxsv`)
 Report: `docs/research/mesh-2026-10-26/README.md` §9. Pre-registered rules and all results are in the work log.
 - **Passing objects:** white pot, lid and dish rack now beat library_v3 on the public scans [D].
