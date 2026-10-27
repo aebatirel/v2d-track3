@@ -4640,7 +4640,7 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
 - ~13:40 UTC owner: "don't worry about the deadline / leaderboard freeze, that's for me to worry". Planning ignores the
   freeze date from now on; quality first.
 
-### 2026-10-27 ~17:50 UTC: stage 1 engine workflow `wf_31952e44-35c` done (CPU, $0, ~4 h; 4-core VM runs 2 agents at a time)
+### 2026-10-27 ~17:20 UTC: stage 1 engine workflow `wf_31952e44-35c` done (CPU, $0, ~4 h; 4-core VM runs 2 agents at a time)
 Code: `docs/research/mesh-2026-10-26/autokit/`. Raw results: `results/autokit-stage1/workflow-result.json`, plus the
 research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free only; no scan was scored.
 - **Works [M]:**
