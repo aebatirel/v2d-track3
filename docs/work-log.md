@@ -4478,3 +4478,62 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
   | rack | 0.555 / 6.0 |
 - **Eval:** the same frozen code and selection rule, only after eval depth exists (owner go-ahead). Nothing is tuned
   on eval.
+
+### 2026-10-27 primitive-assembly round — RESULTS (CPU VM, $0; code as run: prim_potlid.py 784997fb, prim_boards.py 2643471f, prim_rack.py ca2aea0d)
+- **Run:** `wf_` workflow (builder plus independent auditor per family). The auditor re-ran the selection and the scan
+  scoring and read all fitting code for GT reads. Scratch outputs are in `prim/{potlid,boards,rack}` (session
+  scratchpad); the small results are copied to `docs/research/mesh-2026-10-26/results/prim/`.
+- **Selected by obs_fidelity (GT-free), then scored once against the public scans [D]:**
+
+  | Object | Selected | CD-O cm (lib) | ADD mm (lib) | Flips | Verdict |
+  |---|---|---|---|---|---|
+  | white pot | ep41 fit | 0.342 (0.437) | 3.05 (6.7) | 0/8 | PASS |
+  | white pot lid | ep2 fit | 0.219 (0.421) | 5.97 (8.1) | 0/6 | PASS*, see leak |
+  | rack | joint of eps 12, 13, 27 | 0.454 (0.555) | 6.41 (6.0; limit 7.0) | 0/7 | PASS*, narrow, see leak |
+  | board 1 | ep24 occ_d2 | 0.189 (0.222) | 3.31 (2.4) | 1/6 | FAIL |
+  | board 2 | ep23 occ_d2 | 0.229 (0.216) | 78.7 (3.6) | 3/6 | FAIL |
+
+  - Variants scored against a scan: pot 32, lid 4 (+2 dev), rack 12 (+2 dev), boards 16 (+2 dev). The auditors'
+    re-scores matched exactly.
+  - Pot: the selection margin is 0.009 mm of fidelity (ep41 fit 3.035 vs ep41 tsdf 3.044, CD-O 0.333). Spearman
+    of fidelity vs CD-O over the 32 pot candidates is 0.85. Oracle is ep43 tsdf, 0.309.
+  - Board 2: the ep23 track appears to be board 1 rotated 180° (marker layout and slot side match board 1). The slot
+    is invisible in our depth. The ep24 oracle (0.164 / 4.1 / 1 flip) also fails on flips.
+- **Leak, found by the rack auditor (my brief's fault):**
+  - My workflow brief passed the builders wall thicknesses measured on the scans. prim_rack `T_WALL = 2.5 mm` equals
+    the scan rack wall median; prim_potlid `T_LID = 2.5 mm` came from the same brief (scan lid 1.8 mm).
+  - prim_rack `CUP_LEAN=False` (upright cup holder) was adopted after a [D] diagnostic that printed the scan's
+    cup-holder extents.
+  - No code reads a scan; the pot wall is measured from our points (4.77 mm), so the pot is clean. The lid and rack
+    passes are **provisional** until the clean-up round below.
+- **Construction defects (audit):**
+  - lid arch strap is a floating body (0.19 mm gap);
+  - 4 of 5 pot marker balls float;
+  - one spurious mid-handle ball on the pot;
+  - the pot has no handle hole (not seen in our occupancy);
+  - board meshes have no slot.
+
+### 2026-10-27 primitive clean-up round — PRE-REGISTRATION (written before any of its results)
+- **Why:** remove the scan-informed priors above. GT-free measurement of the lid thickness was tried on our own points
+  and is not possible: the lid is only seen from above (median |view·axis| = 0.78 at the edge, no side-seen points),
+  and the rack floor is never seen. So thickness stays a prior, and this round tests whether the verdicts depend on it.
+- **Code changes (all GT-free, made before any new score):**
+  - `T_LID` (prim_potlid), `T_WALL` and `CUP_LEAN` (prim_rack) can be set from the environment (`PRIM_T_LID`,
+    `PRIM_T_WALL`, `PRIM_CUP_LEAN`). Defaults unchanged.
+  - Bug fix (from the audit's topology check, not from a score): lid arch strap ends go 2 mm into the sheet, at the
+    true radius of the strap end, so the arch is attached as the docstring says.
+  - Docstrings corrected.
+- **Grid:** thickness ∈ {1.5, 2.5, 4.0} mm, a generic thin-moulding range not taken from any scan. Rack also
+  `CUP_LEAN` ∈ {False, True}. True is the pre-scan design.
+- **Lid:** ep2 (ep0 cannot be fitted), variants fit and tsdf at each thickness, 6 candidates. At each thickness,
+  obs_fidelity picks between fit and tsdf. Thickness itself is not chosen by fidelity, because the unseen underside
+  makes fidelity prefer the thinnest sheet whatever the truth.
+- **Rack:** `prim_rack.py run` (12 candidates, its own GT-free selection) for each of the 6 (thickness × lean) configs.
+  At each thickness, fidelity picks the lean setting. Lean affects seen faces, so it is a fair judge there.
+- **Scoring [D]:** all 6 lid candidates and the 6 per-config rack selections are scored, 12 scorings in total.
+- **Verdict:**
+  - The unchanged pass rule (CD-O ≤ lib − 0.03, ADD ≤ lib + 1.0 mm, 0 flips) must hold for the fidelity selection at
+    **every** grid thickness. The clean reported number is the worst over the grid.
+  - If any grid point fails, the object's earlier pass is withdrawn and reported as thickness-dependent.
+  - The shipped default stays 2.5 mm (grid midpoint) only if all three pass.
+- **Pot and boards are unchanged:** the pot is clean, and the boards already fail.

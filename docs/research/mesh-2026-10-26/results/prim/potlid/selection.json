@@ -1,0 +1,36 @@
+{
+ "white_pot": {
+  "mesh": "white_pot_ep41_fit.glb",
+  "obs_to_mesh_mm": 2.133,
+  "mesh_to_obs_mm": 0.903,
+  "sum_mm": 3.035,
+  "object": "white_pot",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+  "obs_eps": [
+   "ep41",
+   "ep42",
+   "ep43",
+   "ep44",
+   "ep45",
+   "ep2",
+   "ep26",
+   "ep27"
+  ],
+  "episode": "ep41",
+  "variant": "fit"
+ },
+ "white_pot_lid": {
+  "mesh": "white_pot_lid_ep2_fit.glb",
+  "obs_to_mesh_mm": 0.87,
+  "mesh_to_obs_mm": 0.813,
+  "sum_mm": 1.683,
+  "object": "white_pot_lid",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb",
+  "obs_eps": [
+   "ep0",
+   "ep2"
+  ],
+  "episode": "ep2",
+  "variant": "fit"
+ }
+}
