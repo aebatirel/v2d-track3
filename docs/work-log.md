@@ -4425,3 +4425,9 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     policy (≥ 1M RL steps), chosen by the curve.
 - Launched 57914002 `20261027-e10Z-aa7b5f8` (RTX PRO 6000 Max-Q, $1.21/h; prices are back down), code aa7b5f8.
   Expected ≈ 1.2 h, ≈ $1.5; self-destroys. Watcher b68tl79j7.
+- 05:20 UTC (after a container restart of this session) **e10Z training failed at its start**: STEPS=30000128 is not
+  divisible by the 4096 worlds (my error; ≈ 22 min of reference building wasted).
+  - The box also restarted once (04:00 UTC) and its store push failed (no detail logged); it was waiting with a 60-min
+    destroy timer. HOLD placed at 05:18 UTC.
+  - Fix: glock_public.sh rounds STEPS down to a multiple of 4096.
+  - The box is reused: restart_job.sh with REUSE_REF=1 (keeps the finished plan) and STEPS=30003200.

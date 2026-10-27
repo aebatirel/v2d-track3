@@ -44,6 +44,9 @@
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
 SPLIT=${SPLIT:-public}; SETTLE=${SETTLE:-0}; SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
 GL_ARGS=${GL_ARGS:-"--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1"}
+# FlashCHORD requires total_environment_steps divisible by the world count (4096; 27 Oct: STEPS=30000128 failed at the
+# training start after 22 min of reference building)
+ST4=$(( STEPS / 4096 * 4096 )); [ "$ST4" != "$STEPS" ] && echo "[$(date -u +%FT%TZ)] STEPS $STEPS -> $ST4 (multiple of 4096)" >> ${J:-/content/job.log}; STEPS=$ST4
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
 log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, EVOLVE ${EVOLVE:-0} (worlds ${EV_POP:-256}, robust ${EV_ROBUST:-4}, gens ${EV_GENS:-20}), DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
