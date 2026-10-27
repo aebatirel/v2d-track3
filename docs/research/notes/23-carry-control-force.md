@@ -246,6 +246,42 @@ dominates, so I barely matters):
    modulation is second-order for these clips, but this is untested in simulation and the spoon (thin handle, 10 of
    20 eval episodes) is not modelled.
 
+### C2. PD vs PID vs feed-forward with no policy (added 2026-10-27, owner asked about PID) [C]
+`work/23/pid_model.py` → `pid_model.txt` simulates the wrist alone (zero residual) at 100 Hz, holding each target for
+the 50 ms control step, on the same 27 tracks:
+- hand 1.243 kg gravity-compensated, 0.3 kg object attached on moving frames;
+- effort limit 45 N;
+- the PID term is FlashCHORD's own `JointPositionIntegral` (integral force = kd·∫gain·e, clamped at 15 % of the effort
+  limit).
+
+The error is what the policy would have to remove.
+
+| controller (no policy) | config? | median carry RMS error | median p95 | upward jump in the 1 s after release (median / worst) |
+|---|---|---|---|---|
+| PD kp 25 / kd 6 (default) | — | 11.9 cm | 19.3 cm | 1.4 / 2.5 cm |
+| PD kp 100 / kd 12 | config | 3.7 cm | 7.0 cm | 0.5 / 1.3 cm |
+| PID kp 25, integral gain 5 s⁻² | code | 8.1 cm | 15.5 cm | 10.9 / 18.1 cm |
+| PID kp 25, integral gain 10 s⁻² | code | 9.2 cm | 16.4 cm | 13.9 / 24.3 cm |
+| PID kp 25, integral gain 20 s⁻² | code | unstable (limit cycle) | | |
+| PID kp 100, integral gain 20 s⁻² | code | 3.1 cm | 5.5 cm | 3.1 / 6.2 cm |
+| PD kp 25 + gravity feed-forward | code | 4.9 cm | 8.6 cm | 3.0 / 8.4 cm |
+| PD kp 25 + gravity + velocity feed-forward | code | 2.9 cm | 4.8 cm | 2.1 / 5.9 cm |
+| PD kp 25 + full feed-forward (m·a too) | code | 0.6 cm | 1.2 cm | 0.2 / 1.0 cm |
+
+Readings:
+1. [V code] FlashCHORD already has an integral term, `JointPositionIntegral` (`runtime/joint_drive.py`). It is wired
+   only to "arm" joints: NVIDIA's Dexmate/Vega recipe uses gain 0.02 s⁻² with a 15 % clamp. The Sharpa floating wrist
+   has no arm joints, so using it on the wrist needs code.
+2. [C] Routh-Hurwitz for m·s³ + kd·s² + kp·s + Ki: the loop is stable only if Ki < kd·kp/m. That is an integral gain
+   below 16 s⁻² at kp 25, or below 65 s⁻² at kp 100. At soft gains, a stable integral cancels the weight only slowly:
+   ≈ 1–2 s for the static-hold test, against 2–5 s carries.
+3. [C] An integral term is reactive. It keeps pushing after the object is put down, so the hand jumps up 11–14 cm
+   (median) at kp 25. The load in our clips comes and goes on a schedule we know from the reference, which favours
+   feed-forward (anticipatory, like human grip) over an integrator.
+4. [C] PD kp 100 (config) gets most of the gain, error 11.9 → 3.7 cm. Adding an integral at kp 100 gives a little more
+   (3.1 cm) at the cost of a 3 cm release jump and code. Full feed-forward is best (0.6 cm) but needs code. So PID is
+   not worth a GPU arm unless the organisers allow code changes, and then feed-forward is the better code change.
+
 ## D. Literature (corrected after verification)
 
 ### D1. Control theory and carry-aware tracking

@@ -306,3 +306,14 @@ kp 100 / stiff wrist) before any training; then train only where replay fails, a
 starts. Difference from the standard recipe: NVIDIA plays at motion_speed 0.5, where the soft wrist saturates on 0/27
 tracks (note 14). We must play at 1.0 (23/27), so only the controller gains change. Algorithm, network, rewards,
 steps and curriculum stay standard.
+2026-10-27: Owner asked about PID and which experiments are needed. Ran `docs/research/work/23/pid_model.py` (CPU,
+Claude cloud VM, public GT diagnostics; `python3 pid_model.py <public data dir> > pid_model.txt`). Zero-policy carry
+error, median RMS:
+- PD default 11.9 cm;
+- PD kp 100 3.7 cm;
+- PID kp 25 (stable integral gains) 8.1–9.2 cm, with an 11–14 cm upward jump after release; integral gain 20 s⁻² at
+  kp 25 is unstable (Routh bound 16 s⁻²);
+- PID kp 100 3.1 cm;
+- full feed-forward 0.6 cm (code).
+FlashCHORD's JointPositionIntegral exists but is wired only to arm joints, so it would need code for Sharpa.
+Conclusion: PD kp 100 (config) gets most of the benefit; PID is not worth a GPU arm. Note 23 §C2 added.

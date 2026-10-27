@@ -1,0 +1,16 @@
+Routh-Hurwitz (m s^3 + kd s^2 + kp s + Ki): kp 25 kd 6 stable only if Ki = kd*gain < kd*kp/m = 97 N/(m s), i.e. I gain < 16.2 s^-2
+Routh-Hurwitz (m s^3 + kd s^2 + kp s + Ki): kp 100 kd 12 stable only if Ki = kd*gain < kd*kp/m = 778 N/(m s), i.e. I gain < 64.8 s^-2
+Zero-residual controller tracking of 27 moving public object paths (wrist proxy), real speed.
+carry_* = 3-D wrist error on moving frames; release_up = max upward z overshoot in the 1 s after release.
+                                      median_carry_rms_cm  median_carry_p95_cm  worst_carry_p95_cm  median_release_up_cm  worst_release_up_cm  n_tracks
+variant                                                                                                                                                
+PD kp25 kd6 (default)                               11.93                19.34               26.15                  1.41                 2.53        27
+PD kp100 kd12                                        3.70                 7.04                9.21                  0.54                 1.28        27
+PID kp25 kd6, I gain 5 (stable)                      8.14                15.49               20.87                 10.93                18.06        27
+PID kp25 kd6, I gain 10 (stable)                     9.16                16.43               21.18                 13.88                24.26        27
+PID kp25 kd6, I gain 20 (UNSTABLE)                  15.53                24.31               38.65                 23.61                27.73        27
+PID kp100 kd12, I gain 20 (stable)                   3.09                 5.53                9.07                  3.08                 6.17        27
+PID kp100 kd12, I gain 40 (stable)                   3.35                 5.63               13.07                  4.09                 5.28        27
+PD kp25 + gravity FF (code)                          4.93                 8.55               13.82                  3.02                 8.40        27
+PD kp25 + gravity+velocity FF (code)                 2.91                 4.78                7.67                  2.14                 5.91        27
+PD kp25 + full FF (code)                             0.63                 1.16                1.68                  0.15                 1.00        27
