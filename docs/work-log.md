@@ -4444,3 +4444,37 @@ physics-based meshes, …), research methods in depth, test on public data. Outp
     10. board 2: no slot;
     11. spoon (10): good.
   - All visual, GT-free. Fix order agrees with the measured lathe gain (cups first).
+
+### 2026-10-27 primitive-assembly mesh round — PRE-REGISTRATION (written before any result; owner: "Okay do that")
+Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU, $0). Order: pot, boards, lid, rack.
+- **Families:**
+  - A = pot + lid: lathe body plus fitted parts (handle bar, lid handle, marker spheres);
+  - B = boards: extruded outline with slot and tabs, plus marker spheres;
+  - C = rack: tray, fin array and cup holder.
+- **Inputs (no GT):** `obs_points.py` points on store run `20261025-sweep-a894083` base tracks, with hands from G1 refs
+  where stored, for every listed public episode:
+  - pot: 41, 42, 43, 44, 45, 2, 26, 27;
+  - lid: 0, 2;
+  - boards: 23, 24;
+  - rack: 12, 13, 26, 27, 31.
+
+  Output: `scripts/prep_obs.sh` → `obs_all/`. The fitting code never reads scans, `*_align.npz`, mocap or parquet
+  poses.
+- **Selection (GT-free):** per object, among all (episode × variant) candidates, the lowest `obs_fidelity.py` sum over
+  the observed points of all that object's episodes.
+  - Parameters are shared across episodes and across objects of a family.
+  - At most 4 variants per family.
+  - Every variant scored against a scan is logged with a count.
+- **Scoring (after selection, [D]):** `mesh_metric.py`: CD-O at eval seeds, ADD static, flips over ≥ 6 seeds.
+  The best candidate by scan ("oracle") is reported separately and never used to decide.
+- **Pass, per object:** CD-O ≤ library_v3 − 0.03 cm AND ADD ≤ library_v3 + 1.0 mm AND 0 flips on all seeds.
+
+  | Object | library_v3 CD-O / ADD |
+  |---|---|
+  | pot | 0.437 / 6.7 |
+  | lid | 0.421 / 8.1 |
+  | board 1 | 0.222 / 2.4 |
+  | board 2 | 0.216 / 3.6 |
+  | rack | 0.555 / 6.0 |
+- **Eval:** the same frozen code and selection rule, only after eval depth exists (owner go-ahead). Nothing is tuned
+  on eval.
