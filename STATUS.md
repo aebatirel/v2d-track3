@@ -5,6 +5,8 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 ## 2026-10-27: eval-10 zero-start test running (last of the credit); top-up pending
 - `20261027-e10Z-aa7b5f8`: residual actor head with a zero-initialised mean (`zero_dense`), exploration 0.05,
   frozen-variant plan, carved cups. ≈ $1.5. Rule pre-registered (work log, 27 Oct).
+- 05:20 UTC: its first training failed at start (STEPS not divisible by 4096; fixed) and its push failed (store.sh bug
+  from 26 Oct; fixed). Training restarted on the same box with the finished plan (REUSE_REF=1); results ≈ 06:00 UTC.
 - Best leaderboard: 0.81391 (pack 6), 5th; DDD 0.827. Credit ≈ $6.8 before this box.
 
 ## 2026-10-26 ~17:15 UTC: SIXTH SUBMISSION — Track 3 AUC 0.81391 (our best); DDD 0.827 still 4th
