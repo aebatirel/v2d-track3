@@ -1,0 +1,14 @@
+{
+ "program": "sheet_strap_balls",
+ "version": 1,
+ "doc": "Domed lid seen only from above: thin sheet of revolution (underside = top - t, t from the prior grid), a strap (arched handle) over it whose ends run down into the sheet, marker balls. Strap = the largest residual cluster above the sheet that is longer than min_extent*s in the sheet plane. Reproduces hand kit A' (prim_potlid.build_lid, variant fit) with the default windows.",
+ "prior": {"t": "arg"},
+ "parts": [
+  {"name": "sheet", "type": "sheet_of_revolution", "assign": {"rule": "all"}},
+  {"name": "strap", "type": "strap",
+   "assign": {"rule": "largest_cluster_extent", "of": ["sheet"], "min_extent": 0.7846, "min_pts": 100},
+   "params": {"host": "sheet"}},
+  {"name": "markers", "type": "ball", "assign": {"rule": "residual", "of": ["sheet", "strap"]},
+   "params": {"of": ["sheet", "strap"]}}
+ ]
+}

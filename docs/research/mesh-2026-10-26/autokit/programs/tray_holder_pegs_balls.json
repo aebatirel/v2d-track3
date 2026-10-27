@@ -1,0 +1,20 @@
+{
+ "program": "tray_holder_pegs_balls",
+ "version": 1,
+ "doc": "Object standing on the table: a long shallow tray (rounded-rectangle tube with a thick lip and a sloped inner face, 'lip' wall) whose -x end is a tall thin-walled holder tube (the frame puts the tall end at -x), rows of tapered pegs standing in the tray cavity beyond the holder, marker balls on the outside. The holder clips the tray cavity at its +x outer face. Reproduces hand kit C (prim_rack.build, variant full, single episode) with the default windows.",
+ "prior": {"t": "arg"},
+ "frame": {"type": "support", "tall_end": true, "tall_frac": 0.65},
+ "parts": [
+  {"name": "tray", "type": "tube_rrect", "assign": {"rule": "all"},
+   "params": {"wall": "lip", "x_min_from": "tall_lo", "align_frame": true}},
+  {"name": "holder", "type": "tube_rrect",
+   "assign": {"rule": "slab", "axis": "x", "max_from": "tall_hi", "max_margin": 0.0771},
+   "params": {"wall": "thin", "above": "tray"},
+   "attach": {"mode": "clip_cavity", "to": "tray", "face": "+x"}},
+  {"name": "pegs", "type": "cone_array",
+   "assign": {"rule": "cavity", "of": "tray", "inset": 0.0643, "beyond_margin": 0.0386},
+   "params": {"host": "tray", "top_from": "holder"}},
+  {"name": "markers", "type": "ball", "assign": {"rule": "residual", "of": ["tray", "holder", "pegs"]},
+   "params": {"of": ["tray", "holder", "pegs"], "require_cap": true, "reject_inside": "tray"}}
+ ]
+}

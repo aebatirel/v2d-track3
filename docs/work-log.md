@@ -4639,3 +4639,34 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
   depth.
 - ~13:40 UTC owner: "don't worry about the deadline / leaderboard freeze, that's for me to worry". Planning ignores the
   freeze date from now on; quality first.
+
+### 2026-10-27 ~17:50 UTC: stage 1 engine workflow `wf_31952e44-35c` done (CPU, $0, ~4 h; 4-core VM runs 2 agents at a time)
+Code: `docs/research/mesh-2026-10-26/autokit/`. Raw results: `results/autokit-stage1/workflow-result.json`, plus the
+research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free only; no scan was scored.
+- **Works [M]:**
+  - The DSL reproduces the hand kits exactly: pot and cup at 0.000 mm median, lid 0.003 mm. The rack differs only in
+    its floor plate, because single-episode programs use the episode's own table.
+  - The same programs run unchanged on other episodes: pot ep42–45 ratio 0.98–1.02.
+  - The windows are scale-relative.
+  - Thin shells (route A) are watertight at full resolution and sit on our points. GT-free fidelity is far better
+    than library_v3, e.g. cup 1.4 vs 6.1 mm.
+  - The loader refuses forbidden paths.
+- **Refinement:** it recovers injected per-frame errors, but its pre-registered falsifier failed (the handle spread
+  roughly halves but stays above the within-frame width in one band per episode). It slides frames along cylinder
+  axes up to its 10 mm bound. Refined copies made the shells worse, so it is not used by default.
+- **Blockers (audits):**
+  1. The marker-ball prior MK_R0 = 7 mm (and the 5–9.5 mm free-fit window) traces to the scans: spoon template
+     `note 17` is the marker catalogue fitted on the public scans. It was wrongly labelled "our own stereo". It
+     shaped the balls of the pot (4 of 5), lid (2 of 3) and rack (1 of 2) hand kits that passed today's scan rounds.
+     Those passes are now provisional until rebuilt with a generic ball rule.
+  2. The GT-free selector always prefers route-A shells at the thinnest t: its rank only measures observed surface,
+     so an incomplete shell cannot lose.
+- **Major:**
+  - mesh paths bypass the loader guard;
+  - per-object S_REF constants sit in method code;
+  - gates v2 was revised after v1 rejected scan-validated incumbents (scan-derived labels);
+  - shells break under the kit's 4096-face budget_mesh (area −1 to −22 %, not watertight);
+  - plate_set does not split by plane;
+  - DSL.md documents 8 of 36 window names, and unknown keys are ignored;
+  - precision ignores mesh outside the observed silhouette.
+- **Next:** stage 1b fix round before any authoring or scan scoring.

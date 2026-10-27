@@ -173,6 +173,7 @@ def qa_image(ep, obj, meshes, labels, out_path):
 # ---------------------------------------------------------------------------------------------- real cases
 def real_case(ep, obj, ts, out, refined=False, kw=None, tag='', render=True):
     kw = kw or {}
+    os.makedirs(out, exist_ok=True)
     path = obs_path(obj, ep, refined=refined)
     obs = load_obs(path, keys=('pts', 'cam', 'frame'))
     rows, meshes = [], []
