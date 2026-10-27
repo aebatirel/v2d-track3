@@ -4670,3 +4670,14 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   - DSL.md documents 8 of 36 window names, and unknown keys are ignored;
   - precision ignores mesh outside the observed silhouette.
 - **Next:** stage 1b fix round before any authoring or scan scoring.
+- ~17:30 UTC: stage 1b fix workflow `wf_709e7da9-195` launched (CPU, $0):
+  - generic free-fit ball part (3–15 mm, no fixed radius) replacing the scan-derived prior;
+  - S_REF constants moved to the programs;
+  - DSL schema and validator;
+  - plate_set split by plane;
+  - shell_patch part (route A inside B programs);
+  - budget-safe shells;
+  - selector v3: standalone shells not selectable, t kept at 2.5 unless measured two-sided;
+  - free-space precision outside the silhouette;
+  - a pre-registered synthetic-edit gate validation on episodes not used for tuning;
+  - integration over every episode of pot, lid, rack and blue cup, then audits.
