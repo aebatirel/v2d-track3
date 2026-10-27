@@ -4431,3 +4431,8 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
     destroy timer. HOLD placed at 05:18 UTC.
   - Fix: glock_public.sh rounds STEPS down to a multiple of 4096.
   - The box is reused: restart_job.sh with REUSE_REF=1 (keeps the finished plan) and STEPS=30003200.
+- **Push bug (mine, 26 Oct f7a49a9):** store.sh's new NAMED line ran under `set -euo pipefail`. When no result json
+  names a checkpoint, grep exits 1 and push-run aborted silently, so e10Z pushed nothing.
+  - Fixed with `|| true`; tested: the old line aborts, the new one survives.
+  - Pushes of the 26 Oct runs worked because their results had matches.
+  - On the box only store.sh is replaced (the running job does not read it).
