@@ -4404,3 +4404,22 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Pack 5 → 6 changed only eval 20's submitted pitcher mesh, so the lathe pitcher cost 0.0045 AUC (measured).
   - Lesson: a registered-score gain on one public twin (+0.098) did not transfer. The kit's hidden anchor and points
     differ from our stand-in, so mesh swaps need ≥ 2 twins or a reference-free argument.
+
+### 27 Oct 2026
+
+- **Owner go-ahead for option 1 on the remaining credit ($6.80)**; a top-up will follow.
+  - **Eval-10 zero-start test.** Cause of yesterday's failure: our recipe uses FlashCHORD's default actor head
+    ("upstream", random mean init), so even the 1M checkpoint perturbs the plan and breaks the grip.
+  - FlashCHORD's own design for residual control is `actor_head_mode=residual`, `residual_mean_head=zero_dense`:
+    the mean head starts at 0, so training starts AT the plan. It is used in its g1_recon_body experiment.
+  - One box: eval 10, frozen variant (as e10B; plan zero action 0.54–0.66 on GPU), carved cups, seed 42, STEPS 30M,
+    a checkpoint every 1M.
+  - `TRAIN_ARGS += training.network.actor_head_mode=residual training.network.residual_mean_head=zero_dense
+    training.exploration.target_sigma=0.05 training.network.initial_normalized_std=0.05`. Config composes and
+    validates locally.
+  - ≈ $2.
+  - Hypothesis: the early checkpoints keep the plan (≥ 0.5) and later ones may improve on it. **Falsified if** no
+    curve checkpoint's 3-evaluation mean exceeds 0.47.
+  - **Choice rule (now, before results):** candidates = submitted gl10A2 (0.4539) and this run's chosen checkpoint
+    (5-evaluation mean). The higher goes into the next pack, after the object-trajectory check. It is a trained
+    policy (≥ 1M RL steps), chosen by the curve.
