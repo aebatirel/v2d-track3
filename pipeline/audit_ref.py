@@ -14,6 +14,11 @@ No ground truth. Flags reference problems that can force drops or penalise the g
   6. wrist demand: per-axis residual (M a + m g z + kd v) / kp along the reference WRIST path while the object moves,
      at the default kp 25 / kd 6 and at kp 100 / kd 12 (clip 0.20 m), as in docs/research/work/23/carry_model.py.
 
+Limits: frame-0 object-object gaps are unsigned point-cloud distances (overlap reads ~0, never negative); a one-frame
+spike counts as two jumps; the far-label check accepts any hand frame within CONTACT_FAR, not the labelled probe;
+wrist_turn_deg is a median (a short slip can hide), wrist_slide_cm an RMS.
+Reviewed 2026-10-27 against a synthetic two-object parquet with independently computed answers (note 23 §C3).
+
 Usage: python audit_ref.py REF.parquet [--table_z 0.60] [--mesh NAME=PATH ...] [--mesh_root DIR] [--out audit.json]
 """
 import argparse, glob, json, os, sys
@@ -31,7 +36,7 @@ CLIP, CONTACT_FAR, JUMP_POS, JUMP_ROT = 0.20, 0.03, 0.10, np.radians(30)
 def args():
     p = argparse.ArgumentParser()
     p.add_argument('parquet')
-    p.add_argument('--table_z', type=float, default=None, help='support top height (default: lowest object point at frame 0)')
+    p.add_argument('--table_z', type=float, default=0.60, help='support top height (mkref default 0.60; pass it for other refs)')
     p.add_argument('--mesh', action='append', default=[], help='NAME=PATH override for an object mesh')
     p.add_argument('--mesh_root', default=None, help='search this directory for <basename of object_mesh_paths>')
     p.add_argument('--out', default=None)
@@ -68,8 +73,9 @@ def mesh_points(name, path, a):
     sys.exit(f'mesh for {name} not found (tried {cand[:3]}); pass --mesh {name}=PATH or --mesh_root')
 
 
-def R_of(q):  # wxyz -> matrix
-    return Rot.from_quat(np.c_[q[..., 1:], q[..., :1]]).as_matrix()
+def R_of(q):  # wxyz -> matrix, any leading shape (flattened for scipy < 1.17)
+    f = np.asarray(q, float).reshape(-1, 4)
+    return Rot.from_quat(f[:, [1, 2, 3, 0]]).as_matrix().reshape(np.shape(q)[:-1] + (3, 3))
 
 
 def ang_vel(q, dt):
@@ -99,6 +105,8 @@ def segments(mask, gap=3, min_len=5):
 def main():
     a = args()
     ref = load(a.parquet)
+    if len(ref['obj_p']) < 2:
+        sys.exit('reference has fewer than 2 frames; nothing to audit')
     dt, names = 1.0 / ref['fps'], ref['names']
     T, B = ref['obj_p'].shape[:2]
     pts = [mesh_points(n, p, a) for n, p in zip(names, ref['mesh_paths'])]
@@ -108,7 +116,7 @@ def main():
     rep = dict(parquet=a.parquet, fps=ref['fps'], frames=T, objects=names, frame0={}, objects_audit={}, hands={})
 
     low0 = [world(b, 0)[:, 2].min() for b in range(B)]
-    table_z = a.table_z if a.table_z is not None else min(low0)
+    table_z = a.table_z
     rep['table_z'] = table_z
     for b, n in enumerate(names):
         others = {names[o]: round(100 * float(cKDTree(world(o, 0)).query(world(b, 0))[0].min()), 1)
@@ -120,7 +128,7 @@ def main():
         x, q = ref['obj_p'][:, b], ref['obj_q'][:, b]
         dpos = np.r_[0, np.linalg.norm(np.diff(x, axis=0), axis=1)]
         w_raw = ang_vel(q.copy(), dt)
-        drot = np.linalg.norm(w_raw, axis=1) * dt
+        drot = np.r_[0, np.linalg.norm(w_raw[1:], axis=1) * dt]   # row 0 of ang_vel duplicates row 1
         v = savgol_filter(x, win, 2, deriv=1, delta=dt, axis=0) if win else np.gradient(x, dt, axis=0)
         acc = savgol_filter(x, win, 2, deriv=2, delta=dt, axis=0) if win else np.gradient(v, dt, axis=0)
         w = savgol_filter(w_raw, win, 2, axis=0) if win else w_raw
@@ -150,9 +158,9 @@ def main():
         demand = {}
         for kp, kd in ((25.0, 6.0), (100.0, 12.0)):
             sat, z95 = 0, []
-            for t0, t1 in segs:
+            for t0, t1 in segments(mov, gap=1, min_len=1):           # exactly the moving frames
                 sl = slice(t0, t1 + 1)
-                side = max(set(near_side[sl]), key=list(near_side[sl]).count)
+                side = max(('right', 'left'), key=list(near_side[sl]).count)   # deterministic tie-break
                 wp = ref['hands'][side]['wrist_p']
                 wv = savgol_filter(wp, win, 2, deriv=1, delta=dt, axis=0) if win else np.gradient(wp, dt, axis=0)
                 wa = savgol_filter(wp, win, 2, deriv=2, delta=dt, axis=0) if win else np.gradient(wv, dt, axis=0)

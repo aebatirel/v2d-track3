@@ -323,7 +323,17 @@ Files: `work/23/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
    - It is a slow task: peak object speed 0.08 m/s, against a median v95 of 0.33 m/s for our public tracks (§C). Its
      wrist demand is mostly the 11.8 cm weight term (z p95 14.2 cm at kp 25, at its own fps).
    - [H] This is another reason the default soft wrist was adequate for NVIDIA's validation and is not for our clips.
-6. `pipeline/pipeline_ep.sh` now runs `audit_ref.py` after `mkref.py` (non-fatal; `ref_audit.txt/json` next to the
+6. An independent review tested `audit_ref.py` on a synthetic two-object reference with independently computed
+   answers and found six bugs, all fixed:
+   - the table height defaulted to the lowest object, which hid frame-0 hover and penetration (now 0.60, mkref's
+     table);
+   - wrist demand was computed over merged segments instead of the moving frames;
+   - it crashed on scipy < 1.17;
+   - it broke hash-dependent ties when choosing the nearest hand;
+   - it counted a first-step jump twice;
+   - it crashed when T < 2.
+   The fixed tool matches the reviewer's patch on 10 synthetic cases.
+7. `pipeline/pipeline_ep.sh` now runs `audit_ref.py` after `mkref.py` (non-fatal; `ref_audit.txt/json` next to the
    reference). So the full audit, including moving frames without contact, contact labels away from the hand and grasp
    rigidity, runs on day-1 references at no extra cost.
 

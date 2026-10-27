@@ -330,3 +330,13 @@ So this part measures what real data allows (note 23 §C3; files in docs/researc
   moving frames, hand frames within 2 mm; slow task, peak 0.08 m/s). Now run by pipeline_ep.sh after mkref
   (non-fatal).
 An independent bug review of audit_ref.py is running.
+2026-10-27: An independent review of pipeline/audit_ref.py (synthetic two-object parquet with independently computed
+answers) found 6 bugs. Fixed:
+- table_z defaulted to the lowest object, hiding frame-0 hover/penetration (now 0.60);
+- wrist demand was computed over merged segments, not the moving frames;
+- scipy < 1.17 crash;
+- hash-seed-dependent hand tie;
+- double-counted first-step jump;
+- T < 2 crash.
+Patched tool output equals the reviewer's patch on 10 synthetic cases and is hash-seed stable. The NVIDIA
+tissue_box audit is unchanged (with --table_z 1.0).
