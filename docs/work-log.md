@@ -4599,3 +4599,41 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
   per-episode eval fits; it is not required, because library_v3 itself is built from public episodes.
   Point extraction for objects not yet covered is CPU-only from the public depth in the HF store: last run ≈ 52 min
   for 17 episode-objects (40–300 s each).
+
+### 2026-10-27 ~13:20 UTC: automation research workflow `wf_c5cfe08d-5e2` done; owner asks for A + B, "minimal CD-O vs public scan"
+- **Results** (raw: scratchpad `tasks/wwg6p0xzh.output`; probe files in scratchpad `auto/probe_*`):
+  - **Audit:** about a third of the fitter code is object-specific. The template choice is manual. A fitter run on the
+    wrong object quietly returns a clean but wrong mesh (23 of 26 test runs).
+  - **Probe P1 (pot, name-blind peeling) REFUTED:**
+    - The lathe body was found, but with the hand kit's own `pot_axis`; the generic `fit_axis` was 5.9° off.
+    - The handle came out as a TSDF patch, with 3–5 extra appendages and 0–1 balls.
+  - **Probe P2 (dust pan, plate set) REFUTED:**
+    - The selected mesh is fragmented, mostly TSDF patches.
+    - The GT-free gate passed a mesh with its largest wall removed. `fs_frac` is one-sided, and the recall floor is
+      anchored to the thick library.
+  - **Critic:**
+    - Leaderboard freeze is 2026-11-04 (8 days).
+    - Track jitter: on ep41 the handle's between-frame plane-offset spread is 5.6–9.3 mm against a 3.7–5.5 mm
+      within-frame width [M]. Per-frame refinement is a generic fix to test.
+    - The thin-wall TSDF route (README P5) was never run.
+    - R0 = 7 mm came from eval-episode spoon stereo; re-estimate it from public data.
+    - Two expected gains were tainted (Design O dust pan, scan-picked sweeper episode).
+    - The owner's 22 Oct decision (eval meshes re-fused per eval episode from its own video) means eval meshes need
+      eval depth. My "no eval depth needed" (07:35 entry) was wrong under that decision; public development is
+      unaffected.
+- **Owner (13:15):** "I want a combination of A and B and want the minimal CD-O vs public scan."
+  - Interpretation: the public-scan CD-O is the development yardstick to minimise. Selection stays GT-free (CLAUDE.md:
+    inference never reads ground truth). The oracle (best by scan) is reported separately and never shipped.
+  - Per the 22 Oct decision, the method must work per single episode, so public results are reported per episode.
+- **Stage 1 (now): shared engine, GT-free only, no scan scoring:**
+  - allowlisted loader;
+  - per-frame pose refinement, with the critic's falsification test;
+  - thin-shell route from our points;
+  - part library and program DSL that reproduces the hand kits;
+  - gates v2 (two-sided depth-render consistency, connectivity, frame, flip);
+  - an integration run, then integrity and correctness audits.
+- **Stage 2 (after review):** agent-authored part programs per object (B) plus the engine's generic routes (A), GT-free
+  selection, then one pre-registered scan round.
+- Extraction of the uncovered objects is running (`obs_all/prep2.log`, CPU): beige 11, blue 11/12/13/21/22, pitcher
+  21/22, dust pan 18/39/40, sweeper 18/31, pot 0. All 20 public episodes have depth in the store; there is no eval
+  depth.
