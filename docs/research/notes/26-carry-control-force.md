@@ -1,7 +1,8 @@
-# 23 — Carry-aware control, force feedback and Kalman filtering for the policy stage (2026-10-26)
+# 26 — Carry-aware control, force feedback and Kalman filtering for the policy stage (2026-10-26)
 
-Status: COMPLETE (2026-10-26). Code study, carry model, three literature reviews, and an adversarial verification pass
-(six checkers + a critic; verdicts in `docs/research/work/23/verify/`). Nothing was run in the simulator: every
+Status: COMPLETE (2026-10-26); renumbered from 23 to 26 on 2026-10-27 (main-bsky37 already has notes 23-25);
+reconciled with the main branch in §H. Code study, carry model, three literature reviews, and an adversarial verification pass
+(six checkers + a critic; verdicts in `docs/research/work/26/verify/`). Nothing was run in the simulator: every
 policy-side effect below is a hypothesis until a GPU batch measures it.
 
 Owner's question: can Kalman filters, control theory, physics-based path following while carrying, carry-aware methods,
@@ -9,7 +10,7 @@ or force feedback from the hand (a heavy object pushes back on the hand) help po
 
 Labels: [V] read in source code or primary text, [C] computed here, [E] estimate, [H] hypothesis, [U] abstract or
 secondary source only. Code: nvidia-isaac/video_to_data @ 8c778f905cb3 (evaluator pin),
-`robotic_grounding/flash_chord/src/flash_chord/`. Model and reruns: `docs/research/work/23/` (README there).
+`robotic_grounding/flash_chord/src/flash_chord/`. Model and reruns: `docs/research/work/26/` (README there).
 
 ## Summary (read first)
 1. **The biggest lever is control theory, and it is config-only [C, H].** The floating wrist is a very soft spring
@@ -168,13 +169,13 @@ Everything else is replayed unchecked: embodiment, action, observation, objectiv
   - an exact-start reset mode.
 
 ## C. Carry model on the public GT paths [C]
-`work/23/carry_model.py` gives the per-axis residual the policy must hold so the wrist follows the object path exactly:
+`work/26/carry_model.py` gives the per-axis residual the policy must hold so the wrist follows the object path exactly:
 - the PD law is F = kp·e − kd·v;
 - the hand is 1.243 kg and gravity-compensated; a 0.3 kg object is added on moving frames;
 - the clip is 0.20 m per axis;
 - 27 moving object tracks, real speed (20 fps);
 - the gain sweep keeps the default damping ratio ζ = 0.48;
-- sensitivity reruns are in `work/23/verify/`:
+- sensitivity reruns are in `work/26/verify/`:
   - Savitzky-Golay smoothing window 5–13;
   - hand mass ±30 %;
   - usable clip 0.15–0.18 m;
@@ -247,7 +248,7 @@ dominates, so I barely matters):
    20 eval episodes) is not modelled.
 
 ### C2. PD vs PID vs feed-forward with no policy (added 2026-10-27, owner asked about PID) [C]
-`work/23/pid_model.py` → `pid_model.txt` simulates the wrist alone (zero residual) at 100 Hz, holding each target for
+`work/26/pid_model.py` → `pid_model.txt` simulates the wrist alone (zero residual) at 100 Hz, holding each target for
 the 50 ms control step, on the same 27 tracks:
 - hand 1.243 kg gravity-compensated, 0.3 kg object attached on moving frames;
 - effort limit 45 N;
@@ -285,7 +286,7 @@ Readings:
 ### C3. CPU audit, part 1: what can be measured before the GPU stage (2026-10-27, owner approved) [V measured]
 The full reference audit (§E lever 2) needs our references, and those need the GPU stage: FoundationStereo depth,
 perc2 camera and object poses. None of these outputs are in the repo. This part measures what real data allows on CPU.
-Files: `work/23/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
+Files: `work/26/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
 
 1. **Hand visibility during carries.** MediaPipe 0.10.14 on the colour video, with `hands_mp.py`'s exact detector
    settings, over all 20 public episodes. This reproduces the earlier Colab counts: ep 0 two hands 338/373, ep 12
@@ -297,7 +298,7 @@ Files: `work/23/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
      - ep 18 (dustpan + sweeper): 35 frames, both hands detected 100 %;
      - **ep 21 and ep 22 (pitcher + cup): 45 and 40 frames, both hands detected only 22 % / 25 %; one-hand runs of 34
        and 30 frames (1.5–1.7 s).**
-   - The visual check (`work/23/cpu_audit/ep21_pour_hand_out_of_view.jpg`) shows the hand holding the pitcher outside
+   - The visual check (`work/26/cpu_audit/ep21_pour_hand_out_of_view.jpg`) shows the hand holding the pitcher outside
      the colour camera's view during the pour (blurred at the edge in f45, off-frame f53–69). It is a camera-coverage
      problem, not a detector miss.
    - `hands_mp.py` interpolates gaps ≤ 15 frames only. Beyond that, `mkref.py --gap_fill attach` (default) lets the
@@ -317,7 +318,7 @@ Files: `work/23/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
    - The start-mismatch lever (6) therefore matters mainly for eval episodes with in-hand starts (eval 20, 32; note 15),
      which public episodes cannot test.
 5. **Audit tool tested on NVIDIA's own video reference** (`tissue_box_simple`, the egocentric sample in the
-   FlashCHORD repo; `work/23/cpu_audit/nvidia_tissue_box_audit.json`). It is a healthy baseline:
+   FlashCHORD repo; `work/26/cpu_audit/nvidia_tissue_box_audit.json`). It is a healthy baseline:
    - moving frames with contact 100 %; nearest hand frame ≤ 2 mm; no jumps;
    - wrist slide 1.3–1.7 cm / turn 5–6° over each bimanual hold.
    - It is a slow task: peak object speed 0.08 m/s, against a median v95 of 0.33 m/s for our public tracks (§C). Its
@@ -333,9 +334,9 @@ Files: `work/23/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
    - it counted a first-step jump twice;
    - it crashed when T < 2.
    The fixed tool matches the reviewer's patch on 10 synthetic cases.
-7. `pipeline/pipeline_ep.sh` now runs `audit_ref.py` after `mkref.py` (non-fatal; `ref_audit.txt/json` next to the
-   reference). So the full audit, including moving frames without contact, contact labels away from the hand and grasp
-   rigidity, runs on day-1 references at no extra cost.
+7. `audit_ref.py` runs standalone (`python3 pipeline/audit_ref.py <reference parquet> --mesh_root <mesh dir>`). A hook in
+   `pipeline_ep.sh` was written but removed on 2026-10-27, because the main branch's `pipeline_ep.sh` has changed
+   since this branch forked.
 
 ## D. Literature (corrected after verification)
 
@@ -452,7 +453,7 @@ Literature:
     (3.4° → 6.4°); a 1000-step history reached 6.1 mm / 1.8° [V].
   - The only offline evidence: Hasson 2021, where removing the temporal smoothness term raised HO-3D object ADD-S
     3.8 → 8.3 cm [V], plus a toy run (white noise + outliers: causal KF −25 % RMSE, offline RTS −55 %, Student-t
-    RTS −70 %; `work/23/toy/smooth_sim2.py`) [toy].
+    RTS −70 %; `work/26/toy/smooth_sim2.py`) [toy].
   - Since our clips are offline, a full-clip smoother is available; no published study compares it with causal
     filtering on egocentric clips.
 - **Smoothing removes jitter, not bias.** Over-smoothing lags fast lifts: 30–44 mm worst case on a 0.25 s lift with
@@ -559,8 +560,8 @@ hypothesis: the arm ranking may not carry over to the full schedule.
 ## G. Verification record (2026-10-26)
 - **Six checkers** (control literature, CHORD/SPIDER, touch, Kalman + MuJoCo docs, simulator code, carry model) each
   tried to refute the draft. A critic then reviewed the draft against all verdicts.
-  - Verdicts: `work/23/verify/verdicts.json`. Critic report: `work/23/verify/critic-report.md`.
-  - Reruns: `work/23/verify/*.py` and `*.txt`. The simulator code was checked at video_to_data 7eb9721, whose flash_chord
+  - Verdicts: `work/26/verify/verdicts.json`. Critic report: `work/26/verify/critic-report.md`.
+  - Reruns: `work/26/verify/*.py` and `*.txt`. The simulator code was checked at video_to_data 7eb9721, whose flash_chord
     tree is identical to the pin.
 - **Main corrections to the draft:**
   - the critic is asymmetric, not symmetric;
@@ -577,3 +578,34 @@ hypothesis: the arm ranking may not carry over to the full schedule.
 - **Not verified** (marked [U] above): Omnigrasp/InterMimic horizons, RMA details, DexMachina VOC gates, Khandate,
   Sievers, the slip reflex, the KF-on-FoundationPose paper, the 100DOH numbers, OmniRetarget, MaskedManipulator's
   10 cm rule, Wahlström & Skog, and whether TacBPM reports drop rates with vs without touch.
+
+## H. Reconciliation with the main branch (2026-10-27)
+This branch forked from 4d1d7ee (20 Oct). Since then, `main-bsky37` has made six submissions:
+- best AUC 0.81391, 5th; DDD 0.827, 3rd 0.865, 1st 0.932;
+- Vast credit $3.52.
+
+A read-only workflow mapped this note's levers onto that state. Its outputs, with an adversarial check, are in
+`work/26/next-steps-2026-10-27/`.
+
+**Already done or tested on main:**
+- stiffer wrist: 15 of 20 eval episodes run at kp 400 (`sharpa_hands_mid`, grasp lock). kp 400 hurt the standard
+  learner on ep18 and ep24 (one seed each);
+- feed-forward written into the reference (`grasp_lock.py`, `wrist_ilc.py`, note 23 on main);
+- zero-action replay screens;
+- grip-load and physics-aware grasp design (note 24 on main);
+- the main branch also measured that the simulator's contact-force readout is not calibrated (a resting spoon reads
+  1,477–2,045 N against a 2.9 N weight). This settles §D2: force magnitude is not usable as an observation.
+
+**Still new from this note:**
+- ball-wrist damping (kd 6 → ≈ 2). This is an embodiment change, so it waits for the organisers' answer;
+- the curriculum end stage (`CURR_SCALE`, never used on main);
+- `audit_ref.py`;
+- the pour-hand visibility finding. Main already bridges the gap; the pooled untracked-hand cost is ≈ 0.003 [D].
+
+**Dropped:**
+- batch G1. At today's $1.2–1.7/h it would be ≈ $45–60, and it is mostly answered by the kp-400 runs;
+- the reference time advance and gravity offset (superseded by main's grasp-lock references);
+- force-magnitude observations.
+
+The Kalman smoother remains a $0 side test with a low prior: main's measured reference errors are mostly bias
+(table snap −0.016, timing +0.003), not jitter.

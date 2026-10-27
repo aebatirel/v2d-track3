@@ -340,3 +340,13 @@ answers) found 6 bugs. Fixed:
 - T < 2 crash.
 Patched tool output equals the reviewer's patch on 10 synthetic cases and is hash-seed stable. The NVIDIA
 tissue_box audit is unchanged (with --table_z 1.0).
+2026-10-27: Found that other sessions advanced far on other branches. main-bsky37 has 6 submissions, best AUC 0.81391
+(5th), and Vast credit $3.52; bold-albattani builds the mesh engine. Read-only Vast/HF checks: API reachable,
+0 instances; HF store aebatirel/v2d-store exists.
+A read-only workflow (4 readers + synthesis + adversarial check) mapped this branch's levers onto that state. Output:
+docs/research/work/26/next-steps-2026-10-27/.
+Housekeeping on this branch:
+- note 23 renumbered to 26 and work/23 to work/26 (main already has notes 23–25);
+- the pipeline_ep.sh audit hook was removed (it conflicts with main's pipeline_ep.sh); audit_ref.py runs standalone;
+- note 26 §H records what main already did and what is still new.
+Earlier log entries mentioning "note 23" refer to this note.

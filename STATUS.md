@@ -67,13 +67,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   - HF write token and GitHub read-only token → Vast account env vars (narrow scope, expiring).
   - Owner checklist: runbook §3.
 
-## Policy-stage research (2026-10-26, note 23; nothing run in the simulator yet)
+## Policy-stage research (2026-10-26, note 26; nothing run in the simulator yet)
 - **Wrist control is the biggest policy lever, and it is config-only [computed, hypothesis for effect].**
   - The default floating wrist is a soft spring (kp 25 N/m). At real speed it spends its 0.2 m residual range on object
     weight (11.8 cm sag) and damping lag (0.24 s × speed), and saturates on 23 of 27 public moving tracks.
   - kp ≥ 100 removes saturation in every sensitivity rerun; kp 50 is marginal.
   - The ball wrist is over-damped (ζ ≈ 4–5.5); kd 1.5–3 removes rotation saturation.
-  - The verified Hydra recipe and its traps are in note 23 §B: list all five joint_overrides; set effort_limit,
+  - The verified Hydra recipe and its traps are in note 26 §B: list all five joint_overrides; set effort_limit,
     `action.wrist_kp` and `action.wrist_tau_max`.
 - **The hand already feels contact.** Live contact points and force directions are observed, and the PD error acts as a
   weight sensor. Force magnitude needs code (not for submission). The critic sees object velocity but the actor does not:
@@ -85,7 +85,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Train/eval start mismatch.** Training resets hold 1 s with full assist; the evaluator starts unassisted at frame 0.
 - **Physics knobs (cone, impratio, friction, object scale, delay) replay unchecked** into the scored rollout:
   off-limits. The sim uses pyramidal cone + impratio 20, which MuJoCo advises against.
-- **Plan (note 23 §E):**
+- **Plan (note 26 §E):**
   - CPU reference audit first;
   - smoother test on regenerated perc2 poses;
   - then GPU batch G1 on public eps 11, 23, 13, 42 (+27): wrist-gain arms, ball damping, a policy bundle and reference
@@ -192,7 +192,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
    - evaluate and `score_sim`.
 
    Then ep 22 and 27 from the snapshot.
-4. Policy-stage levers (note 23 §E): CPU reference feasibility and contact-label audit; then batch G1 (wrist gains,
+4. Policy-stage levers (note 26 §E): CPU reference feasibility and contact-label audit; then batch G1 (wrist gains,
    ball damping, actor object velocity, start alignment) on public episodes after the owner's go-ahead.
 5. Perception fixes, validated on public episodes:
    - detection check (perc4 verify);
@@ -200,7 +200,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
    - VO drift (room map or loop closure);
    - track recovery (re-registration, bidirectional tracking, full-resolution depth);
    - rest snap and table snap;
-   - robust offline object smoothing (note 23).
+   - robust offline object smoothing (note 26).
 6. Spoon: fit the template to the eval videos (`spoon/fit_spoon.py` skeleton), track it, decide the frame from
    evidence; ask the owner for visual checks of overlays.
 7. Eval run: perception on the 20 eval videos → references → 20 trainings in parallel → evaluator → kit

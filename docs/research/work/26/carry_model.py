@@ -1,5 +1,5 @@
 """Carry model: how much wrist-residual range the floating Sharpa wrist needs to carry each public GT object path,
-under the default controller and under the control-theory levers of note 23 (stiffer gains, a reference
+under the default controller and under the control-theory levers of note 26 (stiffer gains, a reference
 time-advance that acts as velocity feed-forward, a gravity pre-offset baked into the reference), plus the
 grip/load factor a held object sees. Object motion stands in for the holding wrist while the object moves
 (same proxy as note 14 kin.py). Ground truth is used for diagnostics on public episodes only. Research only.

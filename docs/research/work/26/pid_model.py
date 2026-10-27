@@ -1,6 +1,6 @@
 """Controller-only carry simulation: how far the floating Sharpa wrist strays from each public GT object path when
 the policy adds NOTHING (zero residual), under PD, PID (FlashCHORD-style position integral) and feed-forward.
-Object motion stands in for the holding wrist on moving frames (note 23 C). 100 Hz semi-implicit Euler per axis,
+Object motion stands in for the holding wrist on moving frames (note 26 C). 100 Hz semi-implicit Euler per axis,
 hand 1.243 kg gravity-compensated, 0.3 kg object attached on moving frames, effort limit per axis.
 Diagnostics on public GT only. Research only.
 

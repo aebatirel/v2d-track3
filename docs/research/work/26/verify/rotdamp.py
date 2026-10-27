@@ -2,7 +2,7 @@
 import glob, sys, importlib.util
 import numpy as np
 from scipy.signal import savgol_filter
-spec = importlib.util.spec_from_file_location("cm", "/home/user/v2d-track3/docs/research/work/23/carry_model.py")
+spec = importlib.util.spec_from_file_location("cm", "/home/user/v2d-track3/docs/research/work/26/carry_model.py")
 cm = importlib.util.module_from_spec(spec); spec.loader.exec_module(cm)
 data = sys.argv[1]
 tracks = []

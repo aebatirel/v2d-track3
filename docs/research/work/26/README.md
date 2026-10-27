@@ -1,4 +1,4 @@
-# Work for note 23 (carry-aware control, force feedback, Kalman filtering), 2026-10-26
+# Work for note 26 (carry-aware control, force feedback, Kalman filtering), 2026-10-26
 
 All runs: Claude cloud VM (CPU), on the 20 public Track 3 parquets (ground truth, diagnostics only), downloaded with
 `huggingface_hub.snapshot_download("nvidia/video_to_data_challenge", repo_type="dataset",

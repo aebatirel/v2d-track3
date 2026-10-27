@@ -1,4 +1,4 @@
-# CPU audit (note 23 §C3), 2026-10-27
+# CPU audit (note 26 §C3), 2026-10-27
 
 Machine: Claude cloud VM (4 vCPU, CPU only). Public episodes only. Ground truth is used for diagnostics (carry
 segments, frame-0 support) and never by the reference audit tool.

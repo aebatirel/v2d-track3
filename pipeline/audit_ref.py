@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Physics-feasibility and contact-label audit of one FlashCHORD reference parquet (CPU, note 23 §E lever 2).
+"""Physics-feasibility and contact-label audit of one FlashCHORD reference parquet (CPU, note 26 §E lever 2).
 
 Reads only the reference (our inference output, or any FlashCHORD ManoSharpa parquet) and the object meshes it names.
 No ground truth. Flags reference problems that can force drops or penalise the grip the carry needs:
@@ -12,12 +12,12 @@ No ground truth. Flags reference problems that can force drops or penalise the g
   5. grasp rigidity: wrist pose in the object frame over each contact segment (spread = hand reference sliding on
      the object while it is "held");
   6. wrist demand: per-axis residual (M a + m g z + kd v) / kp along the reference WRIST path while the object moves,
-     at the default kp 25 / kd 6 and at kp 100 / kd 12 (clip 0.20 m), as in docs/research/work/23/carry_model.py.
+     at the default kp 25 / kd 6 and at kp 100 / kd 12 (clip 0.20 m), as in docs/research/work/26/carry_model.py.
 
 Limits: frame-0 object-object gaps are unsigned point-cloud distances (overlap reads ~0, never negative); a one-frame
 spike counts as two jumps; the far-label check accepts any hand frame within CONTACT_FAR, not the labelled probe;
 wrist_turn_deg is a median (a short slip can hide), wrist_slide_cm an RMS.
-Reviewed 2026-10-27 against a synthetic two-object parquet with independently computed answers (note 23 §C3).
+Reviewed 2026-10-27 against a synthetic two-object parquet with independently computed answers (note 26 §C3).
 
 Usage: python audit_ref.py REF.parquet [--table_z 0.60] [--mesh NAME=PATH ...] [--mesh_root DIR] [--out audit.json]
 """
