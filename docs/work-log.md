@@ -4593,3 +4593,9 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
   - 3 automated designs, 2 judges, a synthesis;
   - 2 GT-free feasibility probes on our points (no scan reads, no scan scoring; outputs in scratchpad `auto/`);
   - a completeness critic.
+- ~07:35 UTC correction (GT-free check): the public-episode blue-cup lathes (ep21, ep22) also lie in the library_v3
+  frame (median 2.7–3.4 mm from library_v3 blue_cup, no registration). Like pot, lid and rack, they can replace the
+  library mesh for eval without eval depth. The earlier "cup lathes wait on eval depth" (README §8, page) assumed
+  per-episode eval fits; it is not required, because library_v3 itself is built from public episodes.
+  Point extraction for objects not yet covered is CPU-only from the public depth in the HF store: last run ≈ 52 min
+  for 17 episode-objects (40–300 s each).
