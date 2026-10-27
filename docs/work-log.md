@@ -4637,3 +4637,5 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
 - Extraction of the uncovered objects is running (`obs_all/prep2.log`, CPU): beige 11, blue 11/12/13/21/22, pitcher
   21/22, dust pan 18/39/40, sweeper 18/31, pot 0. All 20 public episodes have depth in the store; there is no eval
   depth.
+- ~13:40 UTC owner: "don't worry about the deadline / leaderboard freeze, that's for me to worry". Planning ignores the
+  freeze date from now on; quality first.

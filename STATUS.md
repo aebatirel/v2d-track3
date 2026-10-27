@@ -19,7 +19,7 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Correction:** under the owner's 22 Oct decision (eval meshes re-fused per eval episode), new eval meshes need eval
   depth (≈ $2–4 GPU, owner go-ahead). The 07:10 "no eval depth needed" holds only for a pack swap of public-built
   meshes.
-- **Deadline:** leaderboard freeze 2026-11-04 17:00 EST.
+- **Deadline:** the owner handles the leaderboard freeze (13:40); do not plan around it.
 
 ## 2026-10-27 ~07:10 UTC: kit-of-parts meshes done (CPU, $0, branch `claude/bold-albattani-6qmxsv`)
 Report: `docs/research/mesh-2026-10-26/README.md` §9. Pre-registered rules and all results are in the work log.
