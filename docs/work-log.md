@@ -4436,3 +4436,15 @@ retargeting with sampling + curriculum virtual contact guidance), ManipTrans (CV
   - Fixed with `|| true`; tested: the old line aborts, the new one survives.
   - Pushes of the 26 Oct runs worked because their results had matches.
   - On the box only store.sh is replaced (the running job does not read it).
+- 06:15 UTC **eval-10 zero-start test: hypothesis falsified.** `20261027-e10Z-aa7b5f8` (residual head, zero-init
+  mean, exploration 0.05, frozen plan; plan zero action 0.526):
+  - curve 1M–30M: 0.436–0.455 (1M already 0.452);
+  - chosen 25M, 5-eval mean 0.4459 < gl10A2 0.4539, so eval 10 stays gl10A2 (no pack);
+  - box destroyed by the agent after the summary was stored.
+- **Reading across 26–27 Oct:** whatever the start, RL on eval 10 moves away from the plan within the first ≈ 1M
+  steps and settles on not touching the cups. With exploration noise the stacking fails often enough that avoidance
+  is the higher-return policy for this reward. The next attempt would have to change the task:
+  - a reward that does not punish an attempted stack more than doing nothing (e.g. relaxed object termination in the
+    nest phase, as in the 23 Oct recovery training);
+  - or a geometry with more clearance.
+  - Not pursued now.
