@@ -38,3 +38,8 @@
 - **Arm C** should run as a pilot with a control on the same code, not as an adoption test.
 
 Scratch copy of the work log: /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/nextsteps/chk/wl.md
+---
+**Addendum 2026-10-27 (after the owner's question).** The "integrity" item above, which gated arm D (ball-wrist kd) and
+the stiffer wrist on an organiser answer, is withdrawn. NVIDIA's FAQ (v2d_challenge_2026_faqs.pdf, d9d6bf0,
+2026-10-19) says other embodiments are welcome, including floating hands, and wrist servo gains are embodiment config.
+Collision geometry that differs from the submitted mesh is still an open question for the organisers.

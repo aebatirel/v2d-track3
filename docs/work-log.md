@@ -350,3 +350,9 @@ Housekeeping on this branch:
 - the pipeline_ep.sh audit hook was removed (it conflicts with main's pipeline_ep.sh); audit_ref.py runs standalone;
 - note 26 §H records what main already did and what is still new.
 Earlier log entries mentioning "note 23" refer to this note.
+2026-10-27: The owner asked why stiffer wrists would not be allowed, given the FAQ. Read NVIDIA's FAQ PDF directly
+(docs/v2d_challenge/assets/v2d_challenge_2026_faqs.pdf, last changed 2026-10-19, d9d6bf0): "Sharpa Wave is the default
+embodiment. Other embodiments are welcome, including fixed-base arm-and-hand setups and floating hands."
+- Wrist servo gains and ball-wrist damping are embodiment config, so the gate on them is withdrawn (note 26 §F,
+  next-steps check addendum). Declare them in the technical report; the FAQ requires reproducible code.
+- The FAQ states no physics rule. Not changing world/simulator physics remains our own integrity line.

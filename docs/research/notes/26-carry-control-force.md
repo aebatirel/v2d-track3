@@ -542,9 +542,22 @@ compressed curriculum (all thresholds × 0.5, ≈ 1 h per run) could halve scree
 hypothesis: the arm ranking may not carry over to the full schedule.
 
 ## F. Rules and integrity
-- Gains, observation toggles, reward weights and terminations are training config that the evaluator replays from the
-  checkpoint. The stiff variant ships in the official repo; non-default gains are the same kind of choice. Ask the
-  organisers before submitting with them, and commit the embodiment yaml (provenance).
+- **Wrist gains are an embodiment choice, and the FAQ allows other embodiments** (corrected 2026-10-27 after the
+  owner's challenge). NVIDIA's FAQ (`docs/v2d_challenge/assets/v2d_challenge_2026_faqs.pdf`, last changed 2026-10-19,
+  d9d6bf0) says: "Which robot embodiment is required? Sharpa Wave is the default embodiment. Other embodiments are
+  welcome, including fixed-base arm-and-hand setups and floating hands."
+  - The wrist servo gains (translation kp/kd/effort, ball-wrist kp, damping, tau_max) are fields of the embodiment
+    config. The hand and fingers stay the default Sharpa Wave.
+  - NVIDIA ships a stiff variant (`sharpa_hands_stiff`).
+  - A fixed-base arm, which the FAQ explicitly welcomes, would hold the hand far stiffer than 25 N/m.
+  - Our submissions already use kp 400 on 15 eval episodes.
+  - So stiffer wrists and lower ball-wrist damping need no permission. Keep the embodiment YAML in the repository and
+    declare it in the technical report: the FAQ says top solutions must provide code that reproduces their results.
+  - Observation toggles, reward weights and terminations are training choices in the same sense.
+  - The FAQ text has no rule on physics changes. The line drawn below is ours (an integrity choice, not a quoted rule):
+    we do not change the world, i.e. the simulator settings, the objects' physical properties, or the evaluator.
+  - The organiser email remains useful only for the genuinely open points: collision geometry that differs from the
+    submitted mesh, completion of unseen regions, mesh bootstrapping, the spoon.
 - **Physics settings replay unchecked:** `sim` (cone, impratio, substeps), `scene.contact_friction`, object damping,
   object scale and `action.delay`. Treat them as off-limits. Never use object scale or delay as training domain
   randomisation: it would also apply to the scored rollout.
@@ -597,7 +610,7 @@ A read-only workflow mapped this note's levers onto that state. Its outputs, wit
   1,477–2,045 N against a 2.9 N weight). This settles §D2: force magnitude is not usable as an observation.
 
 **Still new from this note:**
-- ball-wrist damping (kd 6 → ≈ 2). This is an embodiment change, so it waits for the organisers' answer;
+- ball-wrist damping (kd 6 → ≈ 2). This is an embodiment setting, allowed under the FAQ (§F);
 - the curriculum end stage (`CURR_SCALE`, never used on main);
 - `audit_ref.py`;
 - the pour-hand visibility finding. Main already bridges the gap; the pooled untracked-hand cost is ≈ 0.003 [D].
