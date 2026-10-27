@@ -1,0 +1,343 @@
+{
+ "episode": 18,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep18_e2s.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep18_proc.npz",
+ "meshes_A": "/home/user/v2d-track3/meshes/library_v3",
+ "meshes_B": "/home/user/v2d-track3/meshes/library_v3",
+ "frames": 353,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "registration_A": {
+  "mini_sweeper": {
+   "rot_deg": 3.1,
+   "anchor_shift_cm": 0.4,
+   "anchor_shift_xyz_cm": [
+    -0.07,
+    -0.12,
+    -0.37
+   ]
+  },
+  "mini_dust_pan": {
+   "rot_deg": 2.44,
+   "anchor_shift_cm": 0.59,
+   "anchor_shift_xyz_cm": [
+    -0.52,
+    -0.03,
+    -0.28
+   ]
+  }
+ },
+ "registration_B": {
+  "mini_sweeper": {
+   "rot_deg": 3.1,
+   "anchor_shift_cm": 0.4,
+   "anchor_shift_xyz_cm": [
+    -0.07,
+    -0.12,
+    -0.37
+   ]
+  },
+  "mini_dust_pan": {
+   "rot_deg": 2.44,
+   "anchor_shift_cm": 0.59,
+   "anchor_shift_xyz_cm": [
+    -0.52,
+    -0.03,
+    -0.28
+   ]
+  }
+ },
+ "alignment_anchor": "mini_sweeper",
+ "per_object": {
+  "mini_sweeper": {
+   "AUC_A": 0.9952,
+   "AUC_B": 0.992,
+   "dAUC": -0.0032,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": -0.0032,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.0,
+    "add_cm_B": 0.0,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.2,
+    "dpos_cm_max": 0.35,
+    "dz_cm_mean": 0.19,
+    "drot_deg_mean": 1.54,
+    "drot_deg_max": 5.09
+   },
+   "error_A": {
+    "add_cm_mean": 0.46,
+    "dz_cm_mean": 0.14,
+    "dxy_cm_mean": 0.28,
+    "rot_deg_mean": 4.2
+   },
+   "error_B": {
+    "add_cm_mean": 0.54,
+    "dz_cm_mean": 0.33,
+    "dxy_cm_mean": 0.28,
+    "rot_deg_mean": 4.13
+   },
+   "frames_worse": 19,
+   "frames_better": 1,
+   "segments_worse": [
+    {
+     "frames": [
+      75,
+      89
+     ],
+     "n": 15,
+     "dAUC": -0.0014,
+     "add_cm_A": 0.88,
+     "add_cm_B": 1.11,
+     "dpos_cm": 0.33,
+     "dz_cm": 0.33,
+     "drot_deg": 0.23
+    },
+    {
+     "frames": [
+      97,
+      107
+     ],
+     "n": 11,
+     "dAUC": -0.0009,
+     "add_cm_A": 0.82,
+     "add_cm_B": 1.05,
+     "dpos_cm": 0.34,
+     "dz_cm": 0.34,
+     "drot_deg": 0.23
+    },
+    {
+     "frames": [
+      57,
+      67
+     ],
+     "n": 11,
+     "dAUC": -0.0005,
+     "add_cm_A": 0.9,
+     "add_cm_B": 1.04,
+     "dpos_cm": 0.33,
+     "dz_cm": 0.33,
+     "drot_deg": 0.23
+    },
+    {
+     "frames": [
+      118,
+      118
+     ],
+     "n": 1,
+     "dAUC": -0.0002,
+     "add_cm_A": 0.94,
+     "add_cm_B": 1.01,
+     "dpos_cm": 0.33,
+     "dz_cm": 0.33,
+     "drot_deg": 0.23
+    },
+    {
+     "frames": [
+      177,
+      177
+     ],
+     "n": 1,
+     "dAUC": -0.0002,
+     "add_cm_A": 0.95,
+     "add_cm_B": 1.22,
+     "dpos_cm": 0.35,
+     "dz_cm": 0.34,
+     "drot_deg": 0.22
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      64,
+      64
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.12,
+     "add_cm_B": 0.98,
+     "dpos_cm": 0.32,
+     "dz_cm": 0.32,
+     "drot_deg": 0.23
+    }
+   ]
+  },
+  "mini_dust_pan": {
+   "AUC_A": 0.9465,
+   "AUC_B": 0.9393,
+   "dAUC": -0.0073,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": -0.0019,
+   "dAUC_rotation_only": -0.0085,
+   "frame0": {
+    "add_cm_A": 1.36,
+    "add_cm_B": 1.44,
+    "dpos_cm": 0.12,
+    "dz_cm": 0.12,
+    "drot_deg": 1.09
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.33,
+    "dpos_cm_max": 2.9,
+    "dz_cm_mean": -0.18,
+    "drot_deg_mean": 2.43,
+    "drot_deg_max": 13.05
+   },
+   "error_A": {
+    "add_cm_mean": 1.32,
+    "dz_cm_mean": 0.96,
+    "dxy_cm_mean": 0.83,
+    "rot_deg_mean": 4.31
+   },
+   "error_B": {
+    "add_cm_mean": 1.36,
+    "dz_cm_mean": 0.78,
+    "dxy_cm_mean": 0.84,
+    "rot_deg_mean": 5.27
+   },
+   "frames_worse": 45,
+   "frames_better": 7,
+   "segments_worse": [
+    {
+     "frames": [
+      69,
+      105
+     ],
+     "n": 37,
+     "dAUC": -0.0057,
+     "add_cm_A": 0.9,
+     "add_cm_B": 1.16,
+     "dpos_cm": 1.11,
+     "dz_cm": -1.1,
+     "drot_deg": 11.27
+    },
+    {
+     "frames": [
+      142,
+      148
+     ],
+     "n": 7,
+     "dAUC": -0.0011,
+     "add_cm_A": 1.7,
+     "add_cm_B": 1.97,
+     "dpos_cm": 0.32,
+     "dz_cm": 0.31,
+     "drot_deg": 0.23
+    },
+    {
+     "frames": [
+      55,
+      59
+     ],
+     "n": 5,
+     "dAUC": -0.0009,
+     "add_cm_A": 0.87,
+     "add_cm_B": 1.07,
+     "dpos_cm": 1.05,
+     "dz_cm": -1.04,
+     "drot_deg": 12.07
+    },
+    {
+     "frames": [
+      128,
+      130
+     ],
+     "n": 3,
+     "dAUC": -0.0005,
+     "add_cm_A": 0.92,
+     "add_cm_B": 1.12,
+     "dpos_cm": 0.3,
+     "dz_cm": 0.3,
+     "drot_deg": 0.23
+    },
+    {
+     "frames": [
+      113,
+      114
+     ],
+     "n": 2,
+     "dAUC": -0.0004,
+     "add_cm_A": 0.96,
+     "add_cm_B": 1.11,
+     "dpos_cm": 0.21,
+     "dz_cm": 0.2,
+     "drot_deg": 0.95
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      47,
+      48
+     ],
+     "n": 2,
+     "dAUC": 0.0004,
+     "add_cm_A": 1.06,
+     "add_cm_B": 0.93,
+     "dpos_cm": 0.18,
+     "dz_cm": -0.17,
+     "drot_deg": 0.81
+    },
+    {
+     "frames": [
+      164,
+      166
+     ],
+     "n": 3,
+     "dAUC": 0.0004,
+     "add_cm_A": 1.56,
+     "add_cm_B": 0.96,
+     "dpos_cm": 1.5,
+     "dz_cm": -1.49,
+     "drot_deg": 2.35
+    },
+    {
+     "frames": [
+      63,
+      63
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.04,
+     "add_cm_B": 0.96,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.15,
+     "drot_deg": 4.3
+    },
+    {
+     "frames": [
+      119,
+      119
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.03,
+     "add_cm_B": 0.92,
+     "dpos_cm": 0.29,
+     "dz_cm": 0.29,
+     "drot_deg": 0.27
+    },
+    {
+     "frames": [
+      157,
+      157
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.49,
+     "add_cm_B": 0.74,
+     "dpos_cm": 1.17,
+     "dz_cm": -1.17,
+     "drot_deg": 1.76
+    }
+   ]
+  }
+ }
+}

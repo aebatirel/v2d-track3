@@ -1,0 +1,356 @@
+{
+ "episode": 2,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep2_e2s.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep2_proc.npz",
+ "meshes_A": "/home/user/v2d-track3/meshes/library_v3",
+ "meshes_B": "/home/user/v2d-track3/meshes/library_v3",
+ "frames": 343,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "registration_A": {
+  "white_pot": {
+   "rot_deg": 1.83,
+   "anchor_shift_cm": 0.63,
+   "anchor_shift_xyz_cm": [
+    0.36,
+    0.09,
+    -0.51
+   ]
+  },
+  "white_pot_lid": {
+   "rot_deg": 1.05,
+   "anchor_shift_cm": 0.79,
+   "anchor_shift_xyz_cm": [
+    -0.45,
+    -0.12,
+    0.63
+   ]
+  }
+ },
+ "registration_B": {
+  "white_pot": {
+   "rot_deg": 1.83,
+   "anchor_shift_cm": 0.63,
+   "anchor_shift_xyz_cm": [
+    0.36,
+    0.09,
+    -0.51
+   ]
+  },
+  "white_pot_lid": {
+   "rot_deg": 1.05,
+   "anchor_shift_cm": 0.79,
+   "anchor_shift_xyz_cm": [
+    -0.45,
+    -0.12,
+    0.63
+   ]
+  }
+ },
+ "alignment_anchor": "white_pot",
+ "per_object": {
+  "white_pot": {
+   "AUC_A": 0.9925,
+   "AUC_B": 0.9856,
+   "dAUC": -0.0069,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": -0.0073,
+   "dAUC_rotation_only": 0.0002,
+   "frame0": {
+    "add_cm_A": 0.0,
+    "add_cm_B": 0.0,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.27,
+    "dpos_cm_max": 3.09,
+    "dz_cm_mean": -0.08,
+    "drot_deg_mean": 2.31,
+    "drot_deg_max": 4.57
+   },
+   "error_A": {
+    "add_cm_mean": 0.51,
+    "dz_cm_mean": 0.06,
+    "dxy_cm_mean": 0.33,
+    "rot_deg_mean": 2.3
+   },
+   "error_B": {
+    "add_cm_mean": 0.53,
+    "dz_cm_mean": -0.03,
+    "dxy_cm_mean": 0.34,
+    "rot_deg_mean": 1.45
+   },
+   "frames_worse": 24,
+   "frames_better": 3,
+   "segments_worse": [
+    {
+     "frames": [
+      191,
+      205
+     ],
+     "n": 15,
+     "dAUC": -0.006,
+     "add_cm_A": 0.33,
+     "add_cm_B": 2.05,
+     "dpos_cm": 2.03,
+     "dz_cm": -2.03,
+     "drot_deg": 4.13
+    },
+    {
+     "frames": [
+      162,
+      166
+     ],
+     "n": 5,
+     "dAUC": -0.0007,
+     "add_cm_A": 0.9,
+     "add_cm_B": 1.24,
+     "dpos_cm": 0.53,
+     "dz_cm": 0.36,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      128,
+      132
+     ],
+     "n": 5,
+     "dAUC": -0.0005,
+     "add_cm_A": 0.93,
+     "add_cm_B": 1.18,
+     "dpos_cm": 0.34,
+     "dz_cm": 0.06,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      146,
+      148
+     ],
+     "n": 3,
+     "dAUC": -0.0004,
+     "add_cm_A": 1.09,
+     "add_cm_B": 1.31,
+     "dpos_cm": 0.37,
+     "dz_cm": 0.24,
+     "drot_deg": 2.19
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      161,
+      161
+     ],
+     "n": 1,
+     "dAUC": 0.0004,
+     "add_cm_A": 5.06,
+     "add_cm_B": 5.0,
+     "dpos_cm": 0.45,
+     "dz_cm": 0.18,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      155,
+      155
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.12,
+     "add_cm_B": 0.94,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.2,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      275,
+      275
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.26,
+     "add_cm_B": 0.91,
+     "dpos_cm": 0.43,
+     "dz_cm": -0.43,
+     "drot_deg": 2.79
+    }
+   ]
+  },
+  "white_pot_lid": {
+   "AUC_A": 0.9572,
+   "AUC_B": 0.9739,
+   "dAUC": 0.0168,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0175,
+   "dAUC_rotation_only": -0.0024,
+   "frame0": {
+    "add_cm_A": 1.14,
+    "add_cm_B": 1.07,
+    "dpos_cm": 0.21,
+    "dz_cm": 0.1,
+    "drot_deg": 2.19
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.35,
+    "dpos_cm_max": 1.29,
+    "dz_cm_mean": 0.15,
+    "drot_deg_mean": 2.99,
+    "drot_deg_max": 4.4
+   },
+   "error_A": {
+    "add_cm_mean": 1.08,
+    "dz_cm_mean": -0.81,
+    "dxy_cm_mean": 0.61,
+    "rot_deg_mean": 1.26
+   },
+   "error_B": {
+    "add_cm_mean": 0.97,
+    "dz_cm_mean": -0.67,
+    "dxy_cm_mean": 0.59,
+    "rot_deg_mean": 2.91
+   },
+   "frames_worse": 20,
+   "frames_better": 111,
+   "segments_worse": [
+    {
+     "frames": [
+      68,
+      89
+     ],
+     "n": 22,
+     "dAUC": -0.0029,
+     "add_cm_A": 0.91,
+     "add_cm_B": 1.36,
+     "dpos_cm": 0.78,
+     "dz_cm": -0.75,
+     "drot_deg": 3.0
+    },
+    {
+     "frames": [
+      251,
+      251
+     ],
+     "n": 1,
+     "dAUC": -0.0004,
+     "add_cm_A": 1.64,
+     "add_cm_B": 2.01,
+     "dpos_cm": 0.49,
+     "dz_cm": -0.48,
+     "drot_deg": 2.2
+    },
+    {
+     "frames": [
+      258,
+      258
+     ],
+     "n": 1,
+     "dAUC": -0.0004,
+     "add_cm_A": 1.59,
+     "add_cm_B": 2.03,
+     "dpos_cm": 0.5,
+     "dz_cm": -0.4,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      265,
+      268
+     ],
+     "n": 4,
+     "dAUC": -0.0004,
+     "add_cm_A": 0.94,
+     "add_cm_B": 1.13,
+     "dpos_cm": 0.32,
+     "dz_cm": 0.05,
+     "drot_deg": 2.19
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      313,
+      342
+     ],
+     "n": 30,
+     "dAUC": 0.0035,
+     "add_cm_A": 1.12,
+     "add_cm_B": 0.93,
+     "dpos_cm": 0.3,
+     "dz_cm": 0.23,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      193,
+      230
+     ],
+     "n": 38,
+     "dAUC": 0.0033,
+     "add_cm_A": 0.99,
+     "add_cm_B": 0.76,
+     "dpos_cm": 0.34,
+     "dz_cm": 0.31,
+     "drot_deg": 3.78
+    },
+    {
+     "frames": [
+      277,
+      300
+     ],
+     "n": 24,
+     "dAUC": 0.0031,
+     "add_cm_A": 1.06,
+     "add_cm_B": 0.89,
+     "dpos_cm": 0.32,
+     "dz_cm": 0.24,
+     "drot_deg": 2.19
+    },
+    {
+     "frames": [
+      136,
+      160
+     ],
+     "n": 25,
+     "dAUC": 0.0024,
+     "add_cm_A": 0.98,
+     "add_cm_B": 0.74,
+     "dpos_cm": 0.37,
+     "dz_cm": 0.34,
+     "drot_deg": 3.62
+    },
+    {
+     "frames": [
+      166,
+      187
+     ],
+     "n": 22,
+     "dAUC": 0.0024,
+     "add_cm_A": 0.99,
+     "add_cm_B": 0.75,
+     "dpos_cm": 0.38,
+     "dz_cm": 0.35,
+     "drot_deg": 3.67
+    },
+    {
+     "frames": [
+      92,
+      106
+     ],
+     "n": 15,
+     "dAUC": 0.0022,
+     "add_cm_A": 1.03,
+     "add_cm_B": 0.74,
+     "dpos_cm": 0.38,
+     "dz_cm": 0.35,
+     "drot_deg": 4.11
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,205 @@
+[
+ {
+  "ep": 2,
+  "canonical": "runs/20261024-e3-e49e83d/perc2/ep2",
+  "newest": "runs/20261025-sweep-a894083/results/sweep/base/ep2",
+  "objects": {
+   "white_pot": {
+    "raw_pos_max_mm": 1.36,
+    "raw_pos_med_mm": 0.27,
+    "raw_rot_max_deg": 0.88,
+    "frames_over_10mm": 0,
+    "frames": 343
+   },
+   "white_pot_lid": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 343
+   }
+  }
+ },
+ {
+  "ep": 11,
+  "canonical": "runs/20261025-twin11v3x-0e8aebb/perc2/ep11",
+  "newest": "runs/20261025-guard-fe3f407/results/sweep/guard/ep11",
+  "objects": {
+   "blue_cup": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 137
+   },
+   "beige_cup": {
+    "raw_pos_max_mm": 5.91,
+    "raw_pos_med_mm": 3.15,
+    "raw_rot_max_deg": 22.64,
+    "frames_over_10mm": 0,
+    "frames": 137
+   }
+  }
+ },
+ {
+  "ep": 12,
+  "canonical": "runs/20261021-auto18-966eb96/perc2m/ep12",
+  "newest": "runs/20261025-guard-fe3f407/results/sweep/guard/ep12",
+  "objects": {
+   "blue_cup": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 181
+   },
+   "plastic_dish_rack": {
+    "raw_pos_max_mm": 0.87,
+    "raw_pos_med_mm": 0.16,
+    "raw_rot_max_deg": 0.41,
+    "frames_over_10mm": 0,
+    "frames": 181
+   }
+  }
+ },
+ {
+  "ep": 18,
+  "canonical": "runs/20261021-auto18-966eb96/perc2m/ep18",
+  "newest": "runs/20261025-guard-fe3f407/results/sweep/guard/ep18",
+  "objects": {
+   "mini_sweeper": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 353
+   },
+   "mini_dust_pan": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 353
+   }
+  }
+ },
+ {
+  "ep": 21,
+  "canonical": "runs/20261025-twin21arc-ee7ba8e/perc2/ep21",
+  "newest": "runs/20261025-guard-fe3f407/results/sweep/guard/ep21",
+  "objects": {
+   "blue_cup": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 186
+   },
+   "water_pitcher": {
+    "raw_pos_max_mm": 1.34,
+    "raw_pos_med_mm": 0.31,
+    "raw_rot_max_deg": 0.54,
+    "frames_over_10mm": 0,
+    "frames": 186
+   }
+  }
+ },
+ {
+  "ep": 24,
+  "canonical": "runs/20261021-auto24-966eb96/perc2m/ep24",
+  "newest": "runs/20261025-guard-fe3f407/results/sweep/guard/ep24",
+  "objects": {
+   "wooden_piece_1": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 275
+   },
+   "wooden_piece_2": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 275
+   }
+  }
+ },
+ {
+  "ep": 26,
+  "canonical": "runs/20261024-w1-37cc551/perc2/ep26",
+  "newest": "runs/20261025-sweep-a894083/results/sweep/base/ep26",
+  "objects": {
+   "plastic_dish_rack": {
+    "raw_pos_max_mm": 1.52,
+    "raw_pos_med_mm": 0.52,
+    "raw_rot_max_deg": 0.69,
+    "frames_over_10mm": 0,
+    "frames": 158
+   },
+   "white_pot": {
+    "raw_pos_max_mm": 1.64,
+    "raw_pos_med_mm": 0.31,
+    "raw_rot_max_deg": 2.07,
+    "frames_over_10mm": 0,
+    "frames": 158
+   }
+  }
+ },
+ {
+  "ep": 27,
+  "canonical": "runs/20261021-auto18-966eb96/perc2m/ep27",
+  "newest": "runs/20261025-sweep-a894083/results/sweep/base/ep27",
+  "objects": {
+   "plastic_dish_rack": {
+    "raw_pos_max_mm": 2.31,
+    "raw_pos_med_mm": 0.4,
+    "raw_rot_max_deg": 0.6,
+    "frames_over_10mm": 0,
+    "frames": 246
+   },
+   "white_pot": {
+    "raw_pos_max_mm": 1.19,
+    "raw_pos_med_mm": 0.26,
+    "raw_rot_max_deg": 0.99,
+    "frames_over_10mm": 0,
+    "frames": 246
+   }
+  }
+ },
+ {
+  "ep": 31,
+  "canonical": "runs/20261024-ev30rp-07eef1a/perc2/ep31",
+  "newest": "runs/20261025-guard-fe3f407/results/sweep/guard/ep31",
+  "objects": {
+   "mini_sweeper": {
+    "raw_pos_max_mm": 3.35,
+    "raw_pos_med_mm": 0.35,
+    "raw_rot_max_deg": 4.69,
+    "frames_over_10mm": 0,
+    "frames": 290
+   },
+   "plastic_dish_rack": {
+    "raw_pos_max_mm": 2.22,
+    "raw_pos_med_mm": 0.35,
+    "raw_rot_max_deg": 0.49,
+    "frames_over_10mm": 0,
+    "frames": 290
+   }
+  }
+ },
+ {
+  "ep": 39,
+  "canonical": "runs/20261024-e3-e49e83d/perc2/ep39",
+  "newest": "runs/20261025-sweep-a894083/results/sweep/base/ep39",
+  "objects": {
+   "mini_dust_pan": {
+    "raw_pos_max_mm": 0.0,
+    "raw_pos_med_mm": 0.0,
+    "raw_rot_max_deg": 0.0,
+    "frames_over_10mm": 0,
+    "frames": 319
+   }
+  }
+ }
+]

@@ -1,0 +1,210 @@
+{
+ "episode": 31,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-ev30rp-07eef1a/perc2/ep31/poses_world_vo.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep31_e2s.npz",
+ "meshes_A": "/home/user/v2d-track3/meshes/library_v3",
+ "meshes_B": "/home/user/v2d-track3/meshes/library_v3",
+ "frames": 290,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "registration_A": {
+  "mini_sweeper": {
+   "rot_deg": 3.04,
+   "anchor_shift_cm": 0.43,
+   "anchor_shift_xyz_cm": [
+    -0.05,
+    -0.19,
+    -0.38
+   ]
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 1.56,
+   "anchor_shift_cm": 0.67,
+   "anchor_shift_xyz_cm": [
+    0.32,
+    -0.54,
+    -0.21
+   ]
+  }
+ },
+ "registration_B": {
+  "mini_sweeper": {
+   "rot_deg": 3.04,
+   "anchor_shift_cm": 0.43,
+   "anchor_shift_xyz_cm": [
+    -0.05,
+    -0.19,
+    -0.38
+   ]
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 1.56,
+   "anchor_shift_cm": 0.67,
+   "anchor_shift_xyz_cm": [
+    0.32,
+    -0.54,
+    -0.21
+   ]
+  }
+ },
+ "alignment_anchor": "mini_sweeper",
+ "per_object": {
+  "mini_sweeper": {
+   "AUC_A": 0.9121,
+   "AUC_B": 0.9121,
+   "dAUC": 0.0,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.0,
+    "add_cm_B": 0.0,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.0,
+    "dpos_cm_max": 0.0,
+    "dz_cm_mean": -0.0,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 1.6,
+    "dz_cm_mean": -0.21,
+    "dxy_cm_mean": 1.38,
+    "rot_deg_mean": 6.44
+   },
+   "error_B": {
+    "add_cm_mean": 1.6,
+    "dz_cm_mean": -0.21,
+    "dxy_cm_mean": 1.38,
+    "rot_deg_mean": 6.44
+   },
+   "frames_worse": 0,
+   "frames_better": 0,
+   "segments_worse": [],
+   "segments_better": []
+  },
+  "plastic_dish_rack": {
+   "AUC_A": 0.6875,
+   "AUC_B": 0.678,
+   "dAUC": -0.0095,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": -0.0095,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 3.1,
+    "add_cm_B": 3.59,
+    "dpos_cm": 1.03,
+    "dz_cm": 1.03,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 1.03,
+    "dpos_cm_max": 1.03,
+    "dz_cm_mean": 1.03,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 3.23,
+    "dz_cm_mean": 1.94,
+    "dxy_cm_mean": 1.36,
+    "rot_deg_mean": 10.58
+   },
+   "error_B": {
+    "add_cm_mean": 3.82,
+    "dz_cm_mean": 2.97,
+    "dxy_cm_mean": 1.36,
+    "rot_deg_mean": 10.58
+   },
+   "frames_worse": 22,
+   "frames_better": 0,
+   "segments_worse": [
+    {
+     "frames": [
+      156,
+      178
+     ],
+     "n": 23,
+     "dAUC": -0.0056,
+     "add_cm_A": 3.31,
+     "add_cm_B": 4.0,
+     "dpos_cm": 1.03,
+     "dz_cm": 1.03,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      57,
+      59
+     ],
+     "n": 3,
+     "dAUC": -0.0013,
+     "add_cm_A": 3.34,
+     "add_cm_B": 4.04,
+     "dpos_cm": 1.03,
+     "dz_cm": 1.03,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      37,
+      39
+     ],
+     "n": 3,
+     "dAUC": -0.0009,
+     "add_cm_A": 3.35,
+     "add_cm_B": 4.01,
+     "dpos_cm": 1.03,
+     "dz_cm": 1.03,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      45,
+      48
+     ],
+     "n": 4,
+     "dAUC": -0.0009,
+     "add_cm_A": 3.33,
+     "add_cm_B": 3.99,
+     "dpos_cm": 1.03,
+     "dz_cm": 1.03,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      144,
+      144
+     ],
+     "n": 1,
+     "dAUC": -0.0004,
+     "add_cm_A": 3.31,
+     "add_cm_B": 4.01,
+     "dpos_cm": 1.03,
+     "dz_cm": 1.03,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      209,
+      209
+     ],
+     "n": 1,
+     "dAUC": -0.0004,
+     "add_cm_A": 3.43,
+     "add_cm_B": 4.03,
+     "dpos_cm": 1.03,
+     "dz_cm": 1.03,
+     "drot_deg": 0.0
+    }
+   ],
+   "segments_better": []
+  }
+ }
+}

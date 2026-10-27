@@ -1,0 +1,667 @@
+[
+ {
+  "ep": 2,
+  "ref": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2",
+  "ref_file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep2/e2s_reference.parquet",
+  "perception": "runs/20261024-e3-e49e83d/perc2/ep2",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     343,
+     343
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "white_pot_lid": {
+    "frames": [
+     343,
+     343
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 39,
+  "ref": "runs/20261024-e3-e49e83d/refs/perc2mck/ep39",
+  "ref_file": "runs/20261024-e3-e49e83d/refs/perc2mck/ep39/e2s_reference.parquet",
+  "perception": "runs/20261024-e3-e49e83d/perc2/ep39",
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     319,
+     319
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 11,
+  "ref": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11",
+  "ref_file": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet",
+  "perception": "runs/20261025-twin11v3x-0e8aebb/perc2/ep11",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 11,
+  "ref": "runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11",
+  "ref_file": "runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet",
+  "perception": "runs/20261025-twin11v3-0e8aebb/perc2/ep11",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 11,
+  "ref": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11",
+  "ref_file": "runs/20261025-twin11v3x-0e8aebb/refs/perc2mck/ep11/e2s_reference.parquet",
+  "perception": "runs/20261025-twin11v3-0e8aebb/perc2/ep11",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "beige_cup": {
+    "frames": [
+     137,
+     137
+    ],
+    "pos_resid_max_mm": 99.077,
+    "pos_resid_med_mm": 28.773,
+    "rot_resid_max_deg": 28.9814
+   }
+  }
+ },
+ {
+  "ep": 12,
+  "ref": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12",
+  "ref_file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/e2s_reference.parquet",
+  "perception": "runs/20261021-auto18-966eb96/perc2m/ep12",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 12,
+  "ref": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12",
+  "ref_file": "runs/20261023-fdr43-715c9f7/refs/perc2mckd/ep12/e2s_reference.parquet",
+  "perception": "runs/20261025-sweep-a894083/results/sweep/base/ep12",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     181,
+     181
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     181,
+     181
+    ],
+    "pos_resid_max_mm": 4.133,
+    "pos_resid_med_mm": 1.077,
+    "rot_resid_max_deg": 0.3753
+   }
+  }
+ },
+ {
+  "ep": 18,
+  "ref": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18",
+  "ref_file": "runs/20261022-r4kfi-a30ac72/refs/perc2mckfi/ep18/e2s_reference.parquet",
+  "perception": "runs/20261021-auto18-966eb96/perc2m/ep18",
+  "objects": {
+   "mini_sweeper": {
+    "frames": [
+     353,
+     353
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "mini_dust_pan": {
+    "frames": [
+     353,
+     353
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 18,
+  "ref": "runs/20261021-auto18-966eb96/refs/perc2mc/ep18",
+  "ref_file": "runs/20261021-auto18-966eb96/refs/perc2mc/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet",
+  "perception": "runs/20261021-auto18-966eb96/perc2m/ep18",
+  "objects": {
+   "mini_sweeper": {
+    "frames": [
+     353,
+     353
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "mini_dust_pan": {
+    "frames": [
+     353,
+     353
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 21,
+  "ref": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21",
+  "ref_file": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet",
+  "perception": "runs/20261025-twin21arc-ee7ba8e/perc2/ep21",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 21,
+  "ref": "runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21",
+  "ref_file": "runs/20261025-twin21base-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet",
+  "perception": "runs/20261025-twin21base-ee7ba8e/perc2/ep21",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 21,
+  "ref": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21",
+  "ref_file": "runs/20261025-twin21arc-ee7ba8e/refs/perc2mck/ep21/e2s_reference.parquet",
+  "perception": "runs/20261025-twin21base-ee7ba8e/perc2/ep21",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     186,
+     186
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "water_pitcher": {
+    "frames": [
+     186,
+     186
+    ],
+    "pos_resid_max_mm": 3.056,
+    "pos_resid_med_mm": 1.102,
+    "rot_resid_max_deg": 0.5601
+   }
+  }
+ },
+ {
+  "ep": 24,
+  "ref": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24",
+  "ref_file": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/e2s_reference.parquet",
+  "perception": "runs/20261021-auto24-966eb96/perc2m/ep24",
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 24,
+  "ref": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24",
+  "ref_file": "runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/e2s_reference.parquet",
+  "perception": "runs/20261021-autohard-3c11668/perc2m/ep24",
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 24,
+  "ref": "runs/20261024-w1-37cc551/refs/perc2mck/ep24",
+  "ref_file": "runs/20261024-w1-37cc551/refs/perc2mck/ep24/e2s_reference.parquet",
+  "perception": "runs/20261024-w1-37cc551/perc2/ep24",
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     275,
+     275
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     275,
+     275
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 26,
+  "ref": "runs/20261024-w1-37cc551/refs/perc2mck/ep26",
+  "ref_file": "runs/20261024-w1-37cc551/refs/perc2mck/ep26/e2s_reference.parquet",
+  "perception": "runs/20261024-w1-37cc551/perc2/ep26",
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     158,
+     158
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "white_pot": {
+    "frames": [
+     158,
+     158
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 27,
+  "ref": "runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27",
+  "ref_file": "runs/20261022-r3kie-342d72c/refs/perc2mcki/ep27/e2s_reference.parquet",
+  "perception": "runs/20261021-auto18-966eb96/perc2m/ep27",
+  "objects": {
+   "plastic_dish_rack": {
+    "frames": [
+     246,
+     246
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "white_pot": {
+    "frames": [
+     246,
+     246
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 31,
+  "ref": "runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31",
+  "ref_file": "runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/e2s_reference.parquet",
+  "perception": "runs/20261024-ev30rp-07eef1a/perc2/ep31",
+  "objects": {
+   "mini_sweeper": {
+    "frames": [
+     290,
+     290
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     290,
+     290
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 0,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep0",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep0/processed/sequence_id=t3_ep000/robot_name=sharpa_wave/d885f9c13d184f8ebd7fcef519252461-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep0",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     373,
+     373
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "white_pot_lid": {
+    "frames": [
+     373,
+     373
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 13,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep13",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/3468521ff9bd48db93376f0dfae7d875-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep13",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     190,
+     190
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "plastic_dish_rack": {
+    "frames": [
+     190,
+     190
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 22,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep22",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep22/processed/sequence_id=t3_ep022/robot_name=sharpa_wave/700c0cf3cd854208bf26f6a41505285f-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep22",
+  "objects": {
+   "blue_cup": {
+    "frames": [
+     189,
+     189
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "water_pitcher": {
+    "frames": [
+     189,
+     189
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 23,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep23",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep23/processed/sequence_id=t3_ep023/robot_name=sharpa_wave/aa744602acb74229bf71519f9f1faa3b-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep23",
+  "objects": {
+   "wooden_piece_1": {
+    "frames": [
+     325,
+     325
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   },
+   "wooden_piece_2": {
+    "frames": [
+     325,
+     325
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 40,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep40",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep40/processed/sequence_id=t3_ep040/robot_name=sharpa_wave/5e84d546686d49c799b0f504e96f8659-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep40",
+  "objects": {
+   "mini_dust_pan": {
+    "frames": [
+     260,
+     260
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 41,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep41",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep41/processed/sequence_id=t3_ep041/robot_name=sharpa_wave/fa375392380f44989508de5101417073-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep41",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     299,
+     299
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 42,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep42",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep42/processed/sequence_id=t3_ep042/robot_name=sharpa_wave/7d8907953a794ea8afb8be075286dea2-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep42",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     257,
+     257
+    ],
+    "pos_resid_max_mm": 0.0,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 43,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep43",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep43/processed/sequence_id=t3_ep043/robot_name=sharpa_wave/68940fb6dbc14052adca2e3b775caf99-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep43",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     326,
+     326
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 44,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep44",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep44/processed/sequence_id=t3_ep044/robot_name=sharpa_wave/94fe16053d7141cba8fc55c964fbf5a5-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep44",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     249,
+     249
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ },
+ {
+  "ep": 45,
+  "ref": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep45",
+  "ref_file": "runs/20261020-refsweep-ea14fdf/refs/perc2/ep45/processed/sequence_id=t3_ep045/robot_name=sharpa_wave/fc87c551cc2e4db19ac30f188e8e686e-0.parquet",
+  "perception": "runs/20261020-refsweep-ea14fdf/perc2/ep45",
+  "objects": {
+   "white_pot": {
+    "frames": [
+     290,
+     290
+    ],
+    "pos_resid_max_mm": 0.001,
+    "pos_resid_med_mm": 0.0,
+    "rot_resid_max_deg": 0.0
+   }
+  }
+ }
+]

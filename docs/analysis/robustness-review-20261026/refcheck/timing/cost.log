@@ -1,0 +1,73 @@
+pooled perception onset lag 0.545 from 70 crossings
+0 perc {'base': 0.9641, 'shift_pool': 0.9672, 'shift_ep': 0.9671, 'shift_obj': 0.9656, 'rest_hold': 0.9644}
+2 perc {'base': 0.9866, 'shift_pool': 0.9911, 'shift_ep': 0.9912, 'shift_obj': 0.991, 'rest_hold': 0.9907}
+2 ref {'base': 0.9798, 'shift_pool': 0.9835, 'shift_ep': 0.9836, 'shift_obj': 0.9836, 'rest_hold': 0.9817}
+11 perc {'base': 0.8964, 'shift_pool': 0.9003, 'shift_ep': 0.9005, 'shift_obj': 0.8994, 'rest_hold': 0.9653}
+11 ref {'base': 0.8844, 'shift_pool': 0.8971, 'shift_ep': 0.8948, 'shift_obj': 0.8932, 'rest_hold': 0.9539}
+12 perc {'base': 0.9662, 'shift_pool': 0.9763, 'shift_ep': 0.9772, 'shift_obj': 0.9762, 'rest_hold': 0.967}
+12 ref {'base': 0.9354, 'shift_pool': 0.9463, 'shift_ep': 0.9473, 'shift_obj': 0.946, 'rest_hold': 0.9358}
+13 perc {'base': 0.9605, 'shift_pool': 0.9648, 'shift_ep': 0.965, 'shift_obj': 0.965, 'rest_hold': 0.9748}
+18 perc {'base': 0.938, 'shift_pool': 0.9596, 'shift_ep': 0.9611, 'shift_obj': 0.9594, 'rest_hold': 0.9271}
+18 ref {'base': 0.9657, 'shift_pool': 0.9681, 'shift_ep': 0.9682, 'shift_obj': 0.9672, 'rest_hold': 0.9657}
+21 perc {'base': 0.8372, 'shift_pool': 0.8407, 'shift_ep': 0.8407, 'shift_obj': 0.8399, 'rest_hold': 0.8372}
+21 ref {'base': 0.7776, 'shift_pool': 0.7807, 'shift_ep': 0.7801, 'shift_obj': 0.7797, 'rest_hold': 0.7772}
+22 perc {'base': 0.871, 'shift_pool': 0.8704, 'shift_ep': 0.8709, 'shift_obj': 0.8715, 'rest_hold': 0.8705}
+23 perc {'base': 0.0414, 'shift_pool': 0.0425, 'shift_obj': 0.0414, 'rest_hold': 0.043}
+24 perc {'base': 0.8117, 'shift_pool': 0.8091, 'shift_ep': 0.8089, 'shift_obj': 0.8098, 'rest_hold': 0.8252}
+24 ref {'base': 0.8163, 'shift_pool': 0.8127, 'shift_ep': 0.8123, 'shift_obj': 0.8118, 'rest_hold': 0.8277}
+26 perc {'base': 0.9723, 'shift_pool': 0.9745, 'shift_ep': 0.9733, 'shift_obj': 0.9782, 'rest_hold': 0.9765}
+26 ref {'base': 0.9229, 'shift_pool': 0.9237, 'shift_ep': 0.9221, 'shift_obj': 0.9242, 'rest_hold': 0.926}
+27 perc {'base': 0.9593, 'shift_pool': 0.9619, 'shift_ep': 0.9615, 'shift_obj': 0.9595, 'rest_hold': 0.9595}
+27 ref {'base': 0.9621, 'shift_pool': 0.9644, 'shift_ep': 0.964, 'shift_obj': 0.9637, 'rest_hold': 0.9639}
+31 perc {'base': 0.7998, 'shift_pool': 0.822, 'shift_ep': 0.8653, 'shift_obj': 0.8644, 'rest_hold': 0.806}
+31 ref {'base': 0.8233, 'shift_pool': 0.8447, 'shift_ep': 0.8502, 'shift_obj': 0.8502, 'rest_hold': 0.8067}
+39 perc {'base': 0.9602, 'shift_pool': 0.9759, 'shift_ep': 0.9759, 'shift_obj': 0.9759, 'rest_hold': 0.9614}
+39 ref {'base': 0.9559, 'shift_pool': 0.9706, 'shift_ep': 0.9706, 'shift_obj': 0.9706, 'rest_hold': 0.9559}
+40 perc {'base': 0.957, 'shift_pool': 0.9584, 'shift_ep': 0.9572, 'shift_obj': 0.9572, 'rest_hold': 0.957}
+41 perc {'base': 0.991, 'shift_pool': 0.9927, 'shift_ep': 0.9927, 'shift_obj': 0.9927, 'rest_hold': 0.991}
+42 perc {'base': 0.9915, 'shift_pool': 0.999, 'shift_ep': 0.9993, 'shift_obj': 0.9993, 'rest_hold': 0.9915}
+43 perc {'base': 0.9482, 'shift_pool': 0.9479, 'shift_ep': 0.9461, 'shift_obj': 0.9461, 'rest_hold': 0.9482}
+44 perc {'base': 0.9967, 'shift_pool': 0.997, 'shift_ep': 0.9972, 'shift_obj': 0.9972, 'rest_hold': 0.9967}
+45 perc {'base': 0.9795, 'shift_pool': 0.9823, 'shift_ep': 0.9823, 'shift_obj': 0.9823, 'rest_hold': 0.9795}
+{
+ "perc": {
+  "base": 0.9362,
+  "base_minus_base_mean": 0.0,
+  "base_improved": 0,
+  "shift_pool": 0.9416,
+  "shift_pool_minus_base_mean": 0.0055,
+  "shift_pool_improved": 16,
+  "shift_ep": 0.9439,
+  "shift_ep_minus_base_mean": 0.0077,
+  "shift_ep_improved": 16,
+  "shift_obj": 0.9437,
+  "shift_obj_minus_base_mean": 0.0075,
+  "shift_obj_improved": 17,
+  "rest_hold": 0.9416,
+  "rest_hold_minus_base_mean": 0.0054,
+  "rest_hold_improved": 10,
+  "episodes_excl_ep23": 19
+ },
+ "ref": {
+  "base": 0.9023,
+  "base_minus_base_mean": 0.0,
+  "base_improved": 0,
+  "shift_pool": 0.9092,
+  "shift_pool_minus_base_mean": 0.0068,
+  "shift_pool_improved": 9,
+  "shift_ep": 0.9093,
+  "shift_ep_minus_base_mean": 0.007,
+  "shift_ep_improved": 8,
+  "shift_obj": 0.909,
+  "shift_obj_minus_base_mean": 0.0067,
+  "shift_obj_improved": 9,
+  "rest_hold": 0.9094,
+  "rest_hold_minus_base_mean": 0.0071,
+  "rest_hold_improved": 6,
+  "episodes_excl_ep23": 10
+ }
+}
+
+real	11m41.612s
+user	11m25.712s
+sys	0m4.166s

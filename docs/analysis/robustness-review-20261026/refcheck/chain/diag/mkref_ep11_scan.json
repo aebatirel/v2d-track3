@@ -1,0 +1,211 @@
+{
+ "episode": 11,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin11v3x-0e8aebb/perc2/ep11/poses_world_vo.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep11_e2s.npz",
+ "meshes_A": "public scans",
+ "meshes_B": "public scans",
+ "frames": 137,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "registration_A": {
+  "blue_cup": {
+   "rot_deg": 0.26,
+   "anchor_shift_cm": 0.02,
+   "anchor_shift_xyz_cm": [
+    -0.01,
+    -0.01,
+    0.02
+   ]
+  },
+  "beige_cup": {
+   "rot_deg": 0.98,
+   "anchor_shift_cm": 0.01,
+   "anchor_shift_xyz_cm": [
+    -0.01,
+    0.01,
+    0.01
+   ]
+  }
+ },
+ "registration_B": {
+  "blue_cup": {
+   "rot_deg": 0.26,
+   "anchor_shift_cm": 0.02,
+   "anchor_shift_xyz_cm": [
+    -0.01,
+    -0.01,
+    0.02
+   ]
+  },
+  "beige_cup": {
+   "rot_deg": 0.98,
+   "anchor_shift_cm": 0.01,
+   "anchor_shift_xyz_cm": [
+    -0.01,
+    0.01,
+    0.01
+   ]
+  }
+ },
+ "alignment_anchor": "blue_cup axis + direction to beige_cup",
+ "per_object": {
+  "blue_cup": {
+   "AUC_A": 0.8595,
+   "AUC_B": 0.8595,
+   "dAUC": 0.0,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.01,
+    "add_cm_B": 0.01,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.03
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.0,
+    "dpos_cm_max": 0.0,
+    "dz_cm_mean": 0.0,
+    "drot_deg_mean": 0.03,
+    "drot_deg_max": 0.03
+   },
+   "error_A": {
+    "add_cm_mean": 1.84,
+    "dz_cm_mean": 1.66,
+    "dxy_cm_mean": 0.34,
+    "rot_deg_mean": 2.03
+   },
+   "error_B": {
+    "add_cm_mean": 1.84,
+    "dz_cm_mean": 1.66,
+    "dxy_cm_mean": 0.34,
+    "rot_deg_mean": 2.03
+   },
+   "frames_worse": 0,
+   "frames_better": 0,
+   "segments_worse": [],
+   "segments_better": []
+  },
+  "beige_cup": {
+   "AUC_A": 0.9726,
+   "AUC_B": 0.9845,
+   "dAUC": 0.0119,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0119,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.45,
+    "add_cm_B": 0.58,
+    "dpos_cm": 0.31,
+    "dz_cm": 0.31,
+    "drot_deg": 0.03
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.31,
+    "dpos_cm_max": 0.31,
+    "dz_cm_mean": 0.31,
+    "drot_deg_mean": 0.03,
+    "drot_deg_max": 0.03
+   },
+   "error_A": {
+    "add_cm_mean": 0.9,
+    "dz_cm_mean": -0.3,
+    "dxy_cm_mean": 0.7,
+    "rot_deg_mean": 2.33
+   },
+   "error_B": {
+    "add_cm_mean": 0.88,
+    "dz_cm_mean": 0.02,
+    "dxy_cm_mean": 0.7,
+    "rot_deg_mean": 2.33
+   },
+   "frames_worse": 9,
+   "frames_better": 34,
+   "segments_worse": [
+    {
+     "frames": [
+      63,
+      71
+     ],
+     "n": 9,
+     "dAUC": -0.0023,
+     "add_cm_A": 0.87,
+     "add_cm_B": 0.98,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.31,
+     "drot_deg": 0.03
+    },
+    {
+     "frames": [
+      54,
+      55
+     ],
+     "n": 2,
+     "dAUC": -0.0009,
+     "add_cm_A": 0.97,
+     "add_cm_B": 1.06,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.31,
+     "drot_deg": 0.03
+    },
+    {
+     "frames": [
+      80,
+      80
+     ],
+     "n": 1,
+     "dAUC": -0.0005,
+     "add_cm_A": 0.95,
+     "add_cm_B": 1.05,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.31,
+     "drot_deg": 0.03
+    },
+    {
+     "frames": [
+      86,
+      86
+     ],
+     "n": 1,
+     "dAUC": -0.0005,
+     "add_cm_A": 0.93,
+     "add_cm_B": 1.02,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.31,
+     "drot_deg": 0.03
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      104,
+      136
+     ],
+     "n": 33,
+     "dAUC": 0.0151,
+     "add_cm_A": 1.15,
+     "add_cm_B": 0.94,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.31,
+     "drot_deg": 0.03
+    },
+    {
+     "frames": [
+      36,
+      36
+     ],
+     "n": 1,
+     "dAUC": 0.0009,
+     "add_cm_A": 2.06,
+     "add_cm_B": 1.98,
+     "dpos_cm": 0.31,
+     "dz_cm": 0.31,
+     "drot_deg": 0.03
+    }
+   ]
+  }
+ }
+}
