@@ -87,18 +87,20 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">V2D Track 3 · object meshes · 26 Oct 2026</div>
+    <div class="eyebrow">V2D Track 3 · object meshes · 26–27 Oct 2026</div>
     <h1>Eval Mesh Inspector</h1>
     <p class="lede">The meshes we submit for the 20 eval episodes, what they look like against the eval videos, and what
       the new mesh methods produce on public episodes, where a scan lets us measure them. New-method meshes for the eval
-      episodes need one GPU step first (see the end of the page).</p>
+      episodes: the cup lathes need one GPU step first; the new kit-of-parts pot, lid and rack are built from public
+      episodes like the submitted library and are ready (see the end of the page).</p>
   </header>
 
   <div class="strip">
     <div class="stat"><span>CD-O on the board (lower is better)</span><b class="num">0.402 cm</b><span>leaders 0.112 – 0.154 cm</span></div>
     <div class="stat"><span>Blue cup, public episode 21 (scored against the scan)</span><b class="num">0.523 → 0.291 cm</b><span>submitted mesh → new thin-wall lathe</span></div>
     <div class="stat"><span>Registration offset, same cup</span><b class="num">10.0 → 4.1 mm</b><span>0 flips in 7 scorer seeds</span></div>
-    <div class="stat flag"><span>New meshes for eval</span><b>Waiting on eval depth</b><span>no depth cache for eval episodes; one GPU run</span></div>
+    <div class="stat"><span>Kit-of-parts meshes, public scans (pot · lid · rack)</span><b class="num">0.342 · 0.220 · 0.456 cm</b><span>submitted 0.437 · 0.421 · 0.555 cm; 0 flips</span></div>
+    <div class="stat flag"><span>New meshes for eval</span><b>Pot, lid, rack ready</b><span>cup lathes still wait on eval depth</span></div>
   </div>
 
   <section id="viewer">
@@ -122,6 +124,31 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
       </div>
     </div>
     <div class="legend"><span><i style="background:var(--sand)"></i>submitted for eval</span><span><i style="background:var(--accent)"></i>new method (public episode)</span><span><i style="background:var(--scan)"></i>public scan, diagnostic only</span></div>
+  </section>
+
+  <section id="parts">
+    <div class="eyebrow">Kit of parts · 27 Oct</div>
+    <h2>Meshes assembled from fitted parts</h2>
+    <p class="note">Each object is built from a few simple parts (a thin lathe body, a bar handle, a sheet and arch, a tray
+      with a cup holder and pegs, marker balls), each fitted to our own stereo points along our own tracks. No ground
+      truth goes in. The fitting picks among candidates by how well they explain our points. Only then was each pick
+      scored once against the public scan. Open them in the viewer above (groups Pot lid, Dish rack, Board 1, and the
+      kit-of-parts pot).</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Object</th><th>Eval pairs</th><th>CD-O, submitted → new</th><th>Registration offset (ADD)</th><th>Flips</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>White pot</td><td class="num">6</td><td class="num">0.437 → 0.342 cm</td><td class="num">6.7 → 3.1 mm</td><td class="num">0 / 8</td><td><span class="pill good">pass</span></td></tr>
+        <tr><td>Pot lid</td><td class="num">1</td><td class="num">0.421 → 0.220 cm</td><td class="num">8.1 → 4.5 mm</td><td class="num">0 / 6</td><td><span class="pill good">pass</span></td></tr>
+        <tr><td>Dish rack</td><td class="num">5</td><td class="num">0.555 → 0.456 cm</td><td class="num">6.0 → 5.4 mm</td><td class="num">0 / 7</td><td><span class="pill good">pass</span></td></tr>
+        <tr><td>Board 1</td><td class="num">1</td><td class="num">0.222 → 0.189 cm</td><td class="num">2.4 → 3.3 mm</td><td class="num">1 / 6</td><td><span class="pill bad">fail (flip)</span></td></tr>
+        <tr><td>Board 2</td><td class="num">1</td><td class="num">0.216 → 0.229 cm</td><td class="num">3.6 → 78.7 mm</td><td class="num">3 / 6</td><td><span class="pill bad">fail (other board's track)</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Pass rule, fixed before any result: CD-O at least 0.03 cm better than the submitted mesh, offset at
+      most 1 mm worse, and no flips. An audit found that the first lid and rack fits used wall thicknesses quoted from the
+      scans. A second, pre-registered run over 1.5, 2.5 and 4 mm passed at every value (lid 0.220–0.224 cm, rack
+      0.449–0.458 cm), so the result does not depend on that number. Known defects: one spurious ball on the pot handle,
+      no handle hole, a straight-walled rack cup holder, and no slots on the boards.</p>
   </section>
 
   <section id="eval">
@@ -159,7 +186,8 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
       <thead><tr><th>Step</th><th>Why</th><th>Cost</th><th>Status</th></tr></thead>
       <tbody>
         <tr><td>Recompute stereo depth for the eval videos and store it</td><td>The new methods need depth from many frames. Only frame 0 of each eval episode was kept; a single frame failed on public data (CD-O 1.1–1.3 cm, flips).</td><td class="num">≈ $2–4, 1 GPU, ≈ 1 h</td><td><span class="pill warn">needs go-ahead</span></td></tr>
-        <tr><td>Thin-wall lathe for cups, pot and lid (CPU here)</td><td>Blue cup 0.523 → 0.291 cm on public data; pot not better yet.</td><td class="num">$0</td><td><span class="pill">ready, waits on depth</span></td></tr>
+        <tr><td>Use the kit-of-parts pot, lid and rack for eval</td><td>Built from public episodes and in the same object frame as the submitted library (2–4 mm apart without registration), so no eval depth is needed. If the hidden scans match the public ones, CD-O 0.402 → about 0.367 cm (estimate). The open question is whether to swap only the packed mesh or the simulator copy too.</td><td class="num">$0 pack-only; GPU re-runs if the simulator copy changes</td><td><span class="pill warn">owner decision</span></td></tr>
+        <tr><td>Thin-wall lathe for cups (CPU here)</td><td>Blue cup 0.523 → 0.291 cm on public data. The cups have no public-library replacement yet, so they need eval depth.</td><td class="num">$0</td><td><span class="pill">ready, waits on depth</span></td></tr>
         <tr><td>Generative probe: SAM 3D, TRELLIS.2, Hunyuan3D-2.1 on our crops, then fit to our points</td><td>The only route in the literature to about 1 % of object size; never tried here.</td><td class="num">≈ $4–8, ceiling $12</td><td><span class="pill warn">needs permission + go-ahead</span></td></tr>
       </tbody>
     </table></div>
@@ -258,7 +286,8 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
   ['cut', 'wire', 'scan'].forEach(id => document.getElementById(id).addEventListener('change', () => current && show(current)));
   document.getElementById('cutpos').addEventListener('input', updateClip);
 
-  const GROUPS = [['submitted', 'Submitted for eval'], ['cmp_cup', 'Blue cup · public ep 21/22'], ['cmp_pot', 'White pot · public ep 41']];
+  const GROUPS = [['submitted', 'Submitted for eval'], ['cmp_cup', 'Blue cup · public ep 21/22'], ['cmp_pot', 'White pot · public ep 41'],
+    ['cmp_lid', 'Pot lid · public ep 2'], ['cmp_rack', 'Dish rack · public eps 12/13/27'], ['cmp_b1', 'Board 1 · public ep 24']];
   fetch('meshes.json').then(r => r.json()).then(list => {
     list.forEach(m => meshes[m.id] = m);
     const nav = document.getElementById('list');
