@@ -11,23 +11,31 @@ below is a sensor/resolution scale or a generic rule. Unseen thickness is the ca
 4.0 mm); a measured thickness replaces it only where both faces of a wall were observed.
 
 Method
- 1. Normals. Raw points -> VOXEL centroids; PCA over K_N nearest centroids gives each voxel's unsigned normal; every
-    raw point takes its voxel's normal, turned towards the camera that saw it. The two faces of a thin wall thus get
-    opposite normals even where their noisy layers overlap (measured cloud thickness ~1-1.8 mm std, so a 2-3 mm wall's
-    layers do overlap).
- 2. Directional fusion (Splietker & Behnke 2019, DTSDF). Six bins +-x, +-y, +-z with 60 deg cones (overlapping: every
-    normal falls in >= 1 bin; opposite faces never share one). Per bin, points -> VOXEL centroids (weight = count),
-    then each centroid is projected onto the bin's local mean surface by point-to-plane averaging (implicit MLS,
-    Kolluri 2008: phi(x) = sum w_i n_i.(x - p_i) / sum w_i, Gaussian SIGMA, cut at TRUNC = the TSDF band). The
-    projected samples of all bins are merged on a VOXEL/2 grid per bin: open surfaces, denoised, oriented.
+ 1. Normals, per frame. One depth map sees one side of a wall as ONE layer, so each frame's points -> VOX_N
+    centroids, PCA over K_N_FRAME of them; every raw point takes its centroid's normal, turned towards its own camera
+    (frames too small for that: pooled K_N fallback). Pooled clouds are thick (measured normal-direction std
+    ~1-1.8 mm on two dev clouds), so pooled PCA tilted normals; per-frame PCA fixed that on the synthetic
+    tube. Points whose own-frame neighbourhood is not planar (PLANAR_MIN) or that were seen at > 78 deg incidence
+    (COS_GRAZE) are dropped: their depth is the least reliable and their side ambiguous.
+ 2. Directional fusion (the DTSDF idea of Splietker & Behnke 2019 without bin edges). Points -> VOXEL centroids keyed
+    by voxel AND by the normal's dominant signed axis (6 bins), so the two faces of a thin wall never merge. Each
+    centroid is then projected onto the local mean surface of its own side: the weighted mean signed offset of the
+    centroids whose normal is within 45 deg of its own (COS_SIM), inside a tube around its normal line (tangential
+    Gaussian SIGMA, |offset| < TRUNC = the TSDF band) - the TSDF zero crossing along that line, MLS_ITERS times
+    (implicit-MLS style, Kolluri 2008). The projected samples are merged on a VOXEL/2 grid (keyed by side again):
+    open surfaces, denoised, oriented.
  3. Thickness. From each sample s_j, step along -n_j up to D_MAX; the first opposite-facing sample within R_TAN of
     that line is the other face of the wall: measured thickness T_j (median over the 8 nearest measured samples,
     floored at T_FLOOR). Elsewhere tau_j = t.
+    Optional free-space clamp (carve=True, oriented mode; default off): our own rays, moved onto their denoised
+    surface point, are free space in front of it; where such free space (>= 3 frames) lies behind a sample within
+    its slab, tau_j is cut back (floor T_FLOOR). Measured at t = 2.5 mm on three dev clouds: obs_fidelity
+    sum -0.004..-0.054 mm, fs_frac -1.0..+0.03 pp, runtime about 2x; clamps 9-41 % of samples to the floor.
  4. Closed solid. U(x) = min_j [dist(x, disc_j) - tau_j / 2], disc_j = disc of radius R_DISK, normal n_j, centred at
     s_j - (tau_j / 2) n_j ('oriented': the solid lies behind the observed surface, away from the cameras, the observed
     face is kept in place) or at s_j ('symmetric': a +-t/2 tube about the surface, the task's unsigned-distance
-    variant). U is evaluated in a narrow band of a grid of pitch min(VOXEL, 0.95 t / sqrt(3)) (a shell of thickness
-    t cannot fall between grid points) and is positive elsewhere, so marching cubes (Lewiner) at U = 0 is closed by
+    variant). U is evaluated in a narrow band of a grid of pitch min(VOXEL, 0.95 min(t, min tau) / sqrt(3)) (no slab
+    can fall between grid points) and is positive elsewhere, so marching cubes (Lewiner) at U = 0 is closed by
     construction, with sub-voxel accuracy (U is a distance, linear across each face).
  5. Islands. Connected components; one survives if it is the largest, or if it was seen in >= F_MIN_FRAC of the
     episode's frames (>= F_MIN_ABS), has area >= A_MIN and lies within NEAR of the largest. Marker balls next to the
@@ -41,7 +49,7 @@ Usage (library):
     mesh, rep = thin_shell(obs, t=0.0015, voxel=0.002, return_report=True)        # + report dict
 CLI:
     shell.py OBJ EP OUT.glb [--t 0.0025] [--voxel 0.002] [--mode oriented|symmetric] [--refined auto|1|0]
-             [--no_two_sided] [--max_faces 200000]
+             [--no_two_sided] [--carve] [--max_faces 200000]
     --refined auto uses autokit/refine.py's refined copy (io_gt.obs_path(refined=True)) when it exists.
 """
 import json, math, os, sys, time
@@ -52,21 +60,33 @@ from scipy import ndimage
 from scipy.spatial import cKDTree
 
 # ---------------------------------------------------------------------------------------------- declared constants
-K_N = 96                 # PCA normal neighbourhood (VOXEL centroids): ~7 mm radius at 2 mm voxels (clouds are thick)
-PLANAR_MIN = 0.2         # below this planarity (1 - l0/l1) a point's normal falls back to its view direction
+VOX_N = 0.0015           # per-frame normals: points of one frame -> 1.5 mm centroids ...
+K_N_FRAME = 24           # ... PCA over 24 of them (~4 mm radius on a single depth layer)
+K_N = 96                 # fallback for tiny frames: pooled VOXEL centroids, ~7 mm radius (pooled clouds are thick)
+PLANAR_MIN = 0.3         # points whose own-frame neighbourhood is not planar (edges, specks, depth junk) are dropped
 COS_GRAZE = 0.2          # points seen at > 78 deg incidence are dropped: their depth is the noisiest and their
-                         # normal's side is ambiguous (measured: they caused ~95 % of the 'two-sided' hits on lid ep2)
-COS_BIN = 0.5            # bin membership: n . axis > cos 60 deg (6 overlapping cones cover the sphere)
-SIGMA = 0.002            # MLS Gaussian (m): ~1.2-2 x the measured cloud thickness std
-TRUNC = 0.005            # MLS neighbour cut-off (m) = TSDF truncation band (P5: 4-5 mm)
-K_MLS = 48               # MLS neighbours per query
+                         # normal's side is ambiguous (measured with the earlier pooled normals: they caused ~95 % of
+                         # the spurious near-zero 'two-sided' hits on a dev cloud)
+COS_BIN = 0.5            # two-sided search: candidates for the other face have n . (-axis) > cos 60 deg
+SIGMA = 0.002            # MLS window: Gaussian in the TANGENTIAL distance (m), a tube around the query's normal line
+TRUNC = 0.005            # ... cut at +-TRUNC along the normal (m) = TSDF truncation band (P5: 4-5 mm). The window is
+                         # not isotropic on purpose: a 3-D Gaussian centred on a sample biases the average towards
+                         # that sample's own noise layer (measured on the synthetic tube: faces stuck 1-2 mm off)
+K_MLS = 128              # MLS neighbours per query (ball of TRUNC + SIGMA holds the tube segment)
 COS_SIM = 0.7            # MLS: neighbours whose normal is within 45 deg of the query's
-MLS_ITERS = 2
+MLS_ITERS = 3
 MIN_NB = 6               # a sample needs >= MIN_NB MLS neighbours (isolated specks are dropped)
 D_MAX = 0.010            # two-sided search depth (m) = 2 x TRUNC
 R_TAN = 0.0015           # two-sided: the other face must lie within this of the inward normal line (m)
 COS_OPP = 0.7            # two-sided: the other face's normal within 45 deg of -n
-T_FLOOR = 0.001          # floor of a measured thickness (m): below the fusion resolution
+T_FLOOR = 0.0015         # floor of a measured or carved thickness (m) = the smallest generic grid value; the
+                         # marching-cubes pitch follows the thinnest slab (a 1 mm floor at the t-based pitch tore the
+                         # thin slabs: measured on a dev cloud, area +18 %, fs_frac 11.6 -> 23 %)
+CARVE_RAYS = 1500000     # free-space clamp: at most this many rays (raw points, random subset)
+CARVE_EPS = 0.001        # ... a ray is free from CARVE_EPS in front of its (denoised) surface point ...
+CARVE_STEP = 0.0005      # ... sampled every CARVE_STEP ...
+CARVE_R = 0.0005         # ... a slab point is free if a free sample lies within CARVE_R ...
+CARVE_MIN_FRAMES = 3     # ... seen free in >= 3 distinct frames (one mis-tracked frame cannot carve)
 R_DISK_FRAC = 0.75       # disc radius as a fraction of VOXEL (samples merged on a VOXEL/2 grid; discs overlap)
 F_MIN_FRAC, F_MIN_ABS = 0.05, 5   # island support: frames that saw it
 A_MIN = 5e-5             # island area floor (m^2) = 0.5 cm^2 (a 7 mm ball cap shell is ~3-6 cm^2)
@@ -104,66 +124,94 @@ def _chunks(n, size):
 
 
 # ---------------------------------------------------------------------------------------------- 1. normals
-def point_normals(P, C, vox, k=K_N):
-    """Per raw point: unit normal (its voxel's PCA normal, oriented towards its own camera) and planarity."""
-    inv, nv = _voxel_groups(P, vox)
-    Cv, _ = _group_mean(inv, nv, P)
-    tree = cKDTree(Cv)
-    k = min(k, nv)
-    nrm = np.zeros((nv, 3)); pl = np.zeros(nv)
-    for s in _chunks(nv, 100000):
+def _pca_normals(Cv, k):
+    """Unsigned PCA normal and planarity (1 - l0/l1) of each point over its k nearest neighbours."""
+    tree = cKDTree(Cv); k = min(k, len(Cv))
+    nrm = np.zeros((len(Cv), 3)); pl = np.zeros(len(Cv))
+    for s in _chunks(len(Cv), 100000):
         _, nb = tree.query(Cv[s], k=k, workers=2)
         Q = Cv[nb] - Cv[nb].mean(1, keepdims=True)
         w, V = np.linalg.eigh(np.einsum('nki,nkj->nij', Q, Q) / k)
         nrm[s] = V[:, :, 0]; pl[s] = 1 - w[:, 0] / np.maximum(w[:, 1], 1e-12)
-    n = nrm[inv]; view = _unit(C - P)
+    return nrm, pl
+
+
+def point_normals(P, C, F, vox):
+    """Per raw point: unit normal oriented towards its own camera, and planarity.
+    Per frame (one depth map sees one side of a wall as ONE layer, so its local PCA is sharp): the frame's points ->
+    VOX_N centroids, PCA over K_N_FRAME neighbours. Frames too small for that use the pooled cloud (K_N centroids at
+    vox, which is thick where two faces overlap)."""
+    n = np.zeros_like(P); planar = np.zeros(len(P))
+    order = np.argsort(F, kind='stable'); Fs = F[order]
+    cuts = np.flatnonzero(np.diff(Fs)) + 1
+    small = []
+    for idx in np.split(order, cuts):
+        if len(idx) < 4 * K_N_FRAME:
+            small.append(idx); continue
+        inv, nv = _voxel_groups(P[idx], VOX_N)
+        if nv < 2 * K_N_FRAME:
+            small.append(idx); continue
+        Cv, _ = _group_mean(inv, nv, P[idx])
+        nrm, pl = _pca_normals(Cv, K_N_FRAME)
+        n[idx] = nrm[inv]; planar[idx] = pl[inv]
+    if small:
+        idx = np.concatenate(small)
+        inv, nv = _voxel_groups(P[idx], vox)
+        Cv, _ = _group_mean(inv, nv, P[idx])
+        nrm, pl = _pca_normals(Cv, K_N)
+        n[idx] = nrm[inv]; planar[idx] = pl[inv]
+    view = _unit(C - P)
     n[np.einsum('ni,ni->n', n, view) < 0] *= -1
-    planar = pl[inv]
-    weak = planar < PLANAR_MIN                        # rods, corners, specks: the view direction is the best guess
-    n[weak] = view[weak]
     return n, planar
 
 
 # ---------------------------------------------------------------------------------------------- 2. directional fusion
 def _mls_project(Cb, Nb, Wb, iters=MLS_ITERS):
-    """Project centroids of one bin onto the bin's local mean surface (point-to-plane MLS). Returns q, n, nb_count."""
+    """Project centroids of one bin onto the bin's local mean surface: per query, the weighted mean signed offset of
+    the same-side centroids in a tube (tangential Gaussian SIGMA, |offset| < TRUNC) around its normal line - the
+    TSDF zero crossing along that line. Returns projected positions, normals, neighbour counts."""
     tree = cKDTree(Cb)
     q = Cb.copy(); nq = Nb.copy(); cnt = np.zeros(len(Cb), int)
     k = min(K_MLS, len(Cb))
     for it in range(iters):
-        for s in _chunks(len(Cb), 100000):
-            d, nb = tree.query(q[s], k=k, distance_upper_bound=TRUNC, workers=2)
+        for s in _chunks(len(Cb), 40000):
+            d, nb = tree.query(q[s], k=k, distance_upper_bound=TRUNC + SIGMA, workers=2)
             ok = nb < len(Cb); nb = np.where(ok, nb, 0)
             sim = np.einsum('nkj,nj->nk', Nb[nb], nq[s]) > COS_SIM
-            g = np.where(ok & sim, Wb[nb] * np.exp(-0.5 * (d / SIGMA) ** 2), 0.0)
-            sg = g.sum(1)
+            v = q[s][:, None, :] - Cb[nb]
+            a = np.einsum('nkj,nj->nk', v, nq[s])                       # offset along the current normal
+            tan2 = np.maximum(np.einsum('nkj,nkj->nk', v, v) - a * a, 0)
+            g = np.where(ok & sim & (np.abs(a) < TRUNC), Wb[nb] * np.exp(-0.5 * tan2 / SIGMA ** 2), 0.0)
+            sg = g.sum(1); good = sg > 0
             nbar = _unit(np.einsum('nk,nkj->nj', g, Nb[nb]))
-            phi = np.einsum('nk,nk->n', g, np.einsum('nkj,nj->nk', q[s][:, None, :] - Cb[nb], nbar)) / np.maximum(sg, 1e-12)
-            good = sg > 0
-            q[s][good] -= (phi[good, None] * nbar[good])
+            a = np.einsum('nkj,nj->nk', v, nbar)
+            phi = np.einsum('nk,nk->n', g, a) / np.maximum(sg, 1e-12)
+            q[s][good] -= phi[good, None] * nbar[good]
             nq[s][good] = nbar[good]
             cnt[s] = (g > 0).sum(1)
     return q, nq, cnt
 
 
 def directional_samples(P, n, vox):
-    """Oriented, denoised surface samples from raw points + normals: dict s, n, w, bin (all bins merged)."""
-    out_s, out_n, out_w, out_b = [], [], [], []
-    for b, ax in enumerate(AXES):
-        m = n @ ax > COS_BIN
-        if m.sum() < 50:
-            continue
-        inv, ng = _voxel_groups(P[m], vox)
-        Cb, Wb = _group_mean(inv, ng, P[m])
-        Nb, _ = _group_mean(inv, ng, n[m]); Nb = _unit(Nb)
-        q, nq, cnt = _mls_project(Cb, Nb, Wb)
-        keep = (cnt >= MIN_NB) & (nq @ ax > COS_BIN * 0.8)
-        # merge the collapsed layers on a VOXEL/2 grid
-        inv2, n2 = _voxel_groups(q[keep], vox / 2)
-        s2, w2 = _group_mean(inv2, n2, q[keep], Wb[keep])
-        n2v, _ = _group_mean(inv2, n2, nq[keep], Wb[keep])
-        out_s.append(s2); out_n.append(_unit(n2v)); out_w.append(w2); out_b.append(np.full(n2, b))
-    return dict(s=np.concatenate(out_s), n=np.concatenate(out_n), w=np.concatenate(out_w), bin=np.concatenate(out_b))
+    """Oriented, denoised surface samples from raw points + normals: dict s, n, w, bin.
+    Centroids are keyed by voxel AND by the normal's dominant signed axis (6 bins), so the two faces of a thin wall
+    never merge into one centroid. The MLS projection then runs over all centroids at once, each query averaging only
+    neighbours whose normal is within 45 deg of its own (COS_SIM): a continuous directional window, so a face is not
+    truncated at a bin's cone edge (measured on the synthetic tube: overlapping per-bin fusion tilted the normals
+    there and bulged the face out by up to 1 mm)."""
+    b0 = np.argmax(n @ AXES.T, 1)
+    inv, ng = _voxel_groups(P, vox, extra_key=b0)
+    Cb, Wb = _group_mean(inv, ng, P)
+    Nb, _ = _group_mean(inv, ng, n); Nb = _unit(Nb)
+    q, nq, cnt = _mls_project(Cb, Nb, Wb)
+    keep = cnt >= MIN_NB
+    # merge the collapsed layers on a VOXEL/2 grid (again keyed by the dominant axis of the normal)
+    b1 = np.argmax(nq[keep] @ AXES.T, 1)
+    inv2, n2 = _voxel_groups(q[keep], vox / 2, extra_key=b1)
+    s2, w2 = _group_mean(inv2, n2, q[keep], Wb[keep])
+    n2v, _ = _group_mean(inv2, n2, nq[keep], Wb[keep])
+    n2v = _unit(n2v)
+    return dict(s=s2, n=n2v, w=w2, bin=np.argmax(n2v @ AXES.T, 1))
 
 
 # ---------------------------------------------------------------------------------------------- 3. two-sided thickness
@@ -196,6 +244,60 @@ def two_sided_thickness(S, N):
         T[meas] = np.median(T[meas][nb], 1)
     T[meas] = np.clip(T[meas], T_FLOOR, D_MAX)
     return T
+
+
+def free_space_clamp(P, C, F, n, S, N, tau, depth_max):
+    """Shrink each sample's slab where our own rays saw through the material behind it.
+    Every ray (raw point p, camera c) is moved along itself onto its own side's denoised surface (nearest sample with
+    a similar normal), then sampled from CARVE_EPS to depth_max + CARVE_EPS in front of that point: free space.
+    Free samples are kept where >= CARVE_MIN_FRAMES distinct frames agree. For each surface sample s_j, the first depth
+    d along -n_j with a free sample within CARVE_R caps its thickness: tau_j <= max(T_FLOOR, d - CARVE_R).
+    Returns (tau, info)."""
+    rng = np.random.default_rng(0)
+    sub = rng.choice(len(P), min(len(P), CARVE_RAYS), replace=False)
+    Pr, Cr, Fr, nr = P[sub], C[sub], F[sub], n[sub]
+    tree = cKDTree(S)
+    _, j = tree.query(Pr, k=4, workers=2)
+    sim = np.einsum('nkj,nj->nk', N[j], nr)
+    best = j[np.arange(len(j)), np.argmax(sim, 1)]
+    ok = sim.max(1) > COS_SIM
+    r = _unit(Cr - Pr); ns = N[best]
+    cosr = np.einsum('ij,ij->i', ns, r)
+    ok &= cosr > COS_GRAZE
+    lam = -np.einsum('ij,ij->i', ns, Pr - S[best]) / np.maximum(cosr, 1e-6)
+    ok &= np.abs(lam) < TRUNC
+    Ps = Pr[ok] + lam[ok, None] * r[ok]; r = r[ok]; Fr = Fr[ok]
+    steps = np.arange(CARVE_EPS, depth_max + CARVE_EPS + 1e-9, CARVE_STEP)
+    Q = (Ps[:, None, :] + steps[None, :, None] * r[:, None, :]).reshape(-1, 3)
+    Fq = np.repeat(Fr, len(steps))
+    # free voxels (CARVE_R cells) with >= CARVE_MIN_FRAMES distinct frames
+    lo = Q.min(0)
+    I = np.floor((Q - lo) / CARVE_R).astype(np.int64); dims = I.max(0) + 1
+    lin = (I[:, 0] * dims[1] + I[:, 1]) * dims[2] + I[:, 2]
+    pair = np.unique(np.stack([lin, Fq.astype(np.int64)], 1), axis=0)
+    vox, cnt = np.unique(pair[:, 0], return_counts=True)
+    vox = vox[cnt >= CARVE_MIN_FRAMES]
+    info = dict(carve_rays=int(ok.sum()), carve_free_cells=int(len(vox)))
+    if len(vox) == 0:
+        info['carve_clamped_frac'] = 0.0
+        return tau, info
+    iz = vox % dims[2]; iy = (vox // dims[2]) % dims[1]; ix = vox // (dims[1] * dims[2])
+    Xf = (np.stack([ix, iy, iz], 1) + 0.5) * CARVE_R + lo
+    tf = cKDTree(Xf)
+    tau = tau.copy(); todo = np.arange(len(S)); clamped = np.zeros(len(S), bool)
+    for d in np.arange(CARVE_STEP, depth_max + 1e-9, CARVE_STEP):
+        todo = todo[tau[todo] > d]
+        if len(todo) == 0:
+            break
+        dist, _ = tf.query(S[todo] - d * N[todo], k=1, distance_upper_bound=CARVE_R, workers=2)
+        hit = np.isfinite(dist)
+        tau[todo[hit]] = np.maximum(T_FLOOR, d - CARVE_R)
+        clamped[todo[hit]] = True
+        todo = todo[~hit]
+    info['carve_clamped_frac'] = round(float(clamped.mean()), 3)
+    if clamped.any():
+        info['carve_tau_mm_p10_50_90'] = np.round(np.percentile(tau[clamped], [10, 50, 90]) * 1e3, 2).tolist()
+    return tau, info
 
 
 # ---------------------------------------------------------------------------------------------- 4. solid field + MC
@@ -270,21 +372,23 @@ def decimate(m, max_faces):
 
 
 # ---------------------------------------------------------------------------------------------- driver
-def thin_shell(obs, t=0.0025, voxel=0.002, mode='oriented', two_sided=True, max_faces=MAX_FACES, pitch=None,
-               return_report=False, **kw):
+def thin_shell(obs, t=0.0025, voxel=0.002, mode='oriented', two_sided=True, carve=False, max_faces=MAX_FACES,
+               pitch=None, return_report=False, **kw):
     """obs dict (pts, cam, frame) -> watertight trimesh.Trimesh: a closed thin shell of thickness t on the observed
     surfaces. mode 'oriented' (solid behind the observed face) or 'symmetric' (+-t/2). With two_sided, walls whose
-    both faces were observed take their measured thickness. return_report=True -> (mesh, report)."""
-    t0 = time.time(); rep = dict(t_mm=t * 1e3, voxel_mm=voxel * 1e3, mode=mode, two_sided=bool(two_sided))
+    both faces were observed take their measured thickness. With carve (oriented mode), a slab is cut back where our
+    own rays saw through the material behind the surface. return_report=True -> (mesh, report)."""
+    t0 = time.time()
+    rep = dict(t_mm=t * 1e3, voxel_mm=voxel * 1e3, mode=mode, two_sided=bool(two_sided), carve=bool(carve))
     P = np.asarray(obs['pts'], np.float64); C = np.asarray(obs['cam'], np.float64)
     F = np.asarray(obs['frame']) if 'frame' in obs else np.zeros(len(P), int)
     ok = np.all(np.isfinite(P), 1) & np.all(np.isfinite(C), 1)
     P, C, F = P[ok], C[ok], F[ok]
     rep.update(points=int(len(P)), frames=int(len(np.unique(F))))
-    n, planar = point_normals(P, C, voxel)
+    n, planar = point_normals(P, C, F, voxel)
     rep['weak_normal_frac'] = round(float((planar < PLANAR_MIN).mean()), 3)
-    front = np.einsum('ij,ij->i', n, _unit(C - P)) >= COS_GRAZE
-    rep['grazing_dropped_frac'] = round(float(1 - front.mean()), 3)
+    front = (np.einsum('ij,ij->i', n, _unit(C - P)) >= COS_GRAZE) & (planar >= PLANAR_MIN)
+    rep['grazing_or_weak_dropped_frac'] = round(float(1 - front.mean()), 3)
     P, C, F, n = P[front], C[front], F[front], n[front]
     ts = time.time()
     smp = directional_samples(P, n, voxel)
@@ -299,7 +403,10 @@ def thin_shell(obs, t=0.0025, voxel=0.002, mode='oriented', two_sided=True, max_
     offset = tau / 2 if mode == 'oriented' else np.zeros(len(S))
     if mode == 'symmetric':
         tau = np.full(len(S), t)                          # symmetric tube: one thickness everywhere
-    pitch = pitch or min(voxel, 0.95 * t / math.sqrt(3))
+    elif carve:
+        tau, cinfo = free_space_clamp(P, C, F, n, S, N, tau, min(float(tau.max()), TRUNC))
+        offset = tau / 2; rep.update(cinfo)
+    pitch = pitch or min(voxel, 0.95 * min(t, float(tau.min())) / math.sqrt(3))   # no slab can tear
     rdisk = R_DISK_FRAC * voxel
     ts = time.time()
     U, lo, nband = shell_field(S, N, tau, offset, rdisk, pitch)
@@ -324,6 +431,7 @@ def main():
     p.add_argument('--t', type=float, default=0.0025); p.add_argument('--voxel', type=float, default=0.002)
     p.add_argument('--mode', default='oriented'); p.add_argument('--refined', default='auto')
     p.add_argument('--no_two_sided', action='store_true'); p.add_argument('--max_faces', type=int, default=MAX_FACES)
+    p.add_argument('--carve', action='store_true')
     a = p.parse_args()
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from autokit.io_gt import load_obs, obs_path
@@ -336,7 +444,7 @@ def main():
             path = None
     path = path or obs_path(a.obj, a.ep)
     m, rep = thin_shell(load_obs(path, keys=('pts', 'cam', 'frame')), t=a.t, voxel=a.voxel, mode=a.mode,
-                        two_sided=not a.no_two_sided, max_faces=a.max_faces, return_report=True)
+                        two_sided=not a.no_two_sided, carve=a.carve, max_faces=a.max_faces, return_report=True)
     m.export(a.out)
     rep.update(obs=path, out=a.out)
     print(json.dumps(rep))

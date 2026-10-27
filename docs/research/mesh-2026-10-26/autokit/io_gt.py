@@ -10,9 +10,9 @@ Object names appear only as file-name parts supplied by the caller.
 
 Usage (library):
     from autokit.io_gt import load_obs, obs_path, load_poses, load_calib
-    obs = load_obs(obs_path('white_pot', 41))              # dict pts, cam, frame, hits, free, lo, vox, args
-    obs = load_obs(obs_path('white_pot', 41, refined=True))  # refine.py output
-    P = load_poses(41)                                      # dict world_T_cam (T,4,4), cam_T_<obj> (T,4,4)
+    obs = load_obs(obs_path(OBJ, EP))                      # dict pts, cam, frame, hits, free, lo, vox, args
+    obs = load_obs(obs_path(OBJ, EP, refined=True))        # refine.py output
+    P = load_poses(EP)                                      # dict world_T_cam (T,4,4), cam_T_<obj> (T,4,4)
     K = load_calib()['K']                                   # 3x3 rectified-left intrinsics of the depth maps
 CLI check: python io_gt.py OBJ EP   (prints the keys, shapes and the resolved paths)
 """

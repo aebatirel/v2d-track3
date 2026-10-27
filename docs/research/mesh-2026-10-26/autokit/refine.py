@@ -2,8 +2,8 @@
 
 Why: obs_points.py moves each frame's stereo points into the object frame with OUR track (inv(cam_T_obj[t])). Small
 per-frame pose errors (a 1-2 deg tilt moves a point 0.2 m from the centre by 3-7 mm) smear thin parts over several
-millimetres although each single frame sees them sharply. Hypothesis [H] (critic, handle_smear.py): on the white
-pot the handle's between-frame spread exceeds its within-frame width.
+millimetres although each single frame sees them sharply. Hypothesis [H] (critic, handle_smear.py): on a thin
+appendage the between-frame spread exceeds the within-frame width (tested in test_refine.py).
 
 Method (generic: no object name, no part vocabulary, no per-object constant; every size is a sensor or voxel scale):
   1. Per frame: 1.5 mm voxel subsample of its points; PCA normals over KNN neighbours of the SAME frame (one frame sees
@@ -16,8 +16,11 @@ Method (generic: no object name, no part vocabulary, no per-object constant; eve
   3. Per frame: trimmed, Cauchy-weighted point-to-plane ICP of its subsampled points to the surfels (a correspondence
      must be seen from the same side: normal agreement > cos 60 deg; gate MAX_D), Gauss-Newton about the cloud
      centroid with a weak Gaussian prior on the TOTAL correction (sigma 2 deg / 5 mm; it holds directions the frame
-     cannot see, e.g. rotation about a symmetry axis) and hard bounds MAX_ROT_DEG / MAX_TRANS (bound hits are
-     reported). Frames with fewer than MIN_PTS matched points keep their current correction.
+     cannot see) and hard bounds MAX_ROT_DEG / MAX_TRANS (bound hits are reported). v2 (default): degeneracy-aware
+     steps, no update along Hessian directions holding < DEG_FRAC of the strongest direction's information
+     (e.g. rotation about a symmetry axis while the asymmetric parts are out of view; measured in test_refine.py:
+     a fit without the asymmetric part let that rotation wander with sd 2 deg). v1 = deg_frac 0. Frames with fewer than MIN_PTS
+     matched points keep their current correction.
   4. Gauge: the matched-count-weighted mean correction is removed after every pass, so the consensus cannot drift
      the object frame (the frame stays the one of our library meshes / tracks).
   5. ITERS passes of 2-4 with a shrinking gate (12 -> 8 -> 6 mm); then a last consensus is built for the report.
@@ -30,10 +33,11 @@ GT-free: reads only the observation dict it is given (pts, cam, frame; grids are
 Usage (library):
     from autokit.io_gt import load_obs, obs_path
     from autokit.refine import refine_frames, save_refined, patch_spread
-    obs = load_obs(obs_path('white_pot', 41))
+    obs = load_obs(obs_path(OBJ, EP))
     ref_obs, rep = refine_frames(obs)                      # rep: per-frame corrections and residuals, summary
     save_refined(ref_obs, rep, OUT.npz)                    # npz with the same keys + OUT.refine.json (+ .corr.npz)
     patch_spread(obs), patch_spread(ref_obs)               # object-agnostic between-/within-frame spread statistic
+    ball_scan(ref_obs)                                     # free-radius sphere fits on compact residual clusters
 Optional: ref = a trimesh.Trimesh in the same object frame (e.g. our library mesh) replaces the self-consensus;
 fit_mask = bool (N,) excludes points from fitting AND from the consensus (held-out validation).
 CLI: python refine.py IN.npz OUT.npz [--iters 3]
@@ -61,6 +65,8 @@ EVAL_GATE = 0.010       # gate of the before/after residual statistic (m)
 ICP_ITERS = 10
 SIG_R, SIG_ROT, SIG_T = 0.001, math.radians(2.0), 0.005     # residual scale and the prior on the total correction
 MAX_ROT_DEG, MAX_TRANS = 3.0, 0.010
+DEG_FRAC = 0.015        # v2: no update along Hessian directions with < DEG_FRAC of the strongest direction's
+                        # information (rotations scaled by the cloud's RMS radius); 0 = v1 (update everything)
 CAUCHY = 2.4            # Cauchy weight constant in units of the robust residual scale
 MIN_SCALE = 0.0007      # floor of the robust residual scale (m)
 
@@ -220,8 +226,12 @@ def _robust_w(r):
     return 1.0 / (1.0 + (r / (CAUCHY * s)) ** 2), s
 
 
-def icp_frame(Q, N, R, t, c0, tree, S, NS, gate, iters=ICP_ITERS):
-    """Point-to-plane Gauss-Newton with the prior on the total correction and hard bounds. Returns (R, t, info)."""
+def icp_frame(Q, N, R, t, c0, tree, S, NS, gate, iters=ICP_ITERS, rho=0.1, deg_frac=DEG_FRAC):
+    """Point-to-plane Gauss-Newton with the prior on the total correction and hard bounds. Returns (R, t, info).
+    Degeneracy-aware (v2, deg_frac > 0; Zhang, Kaess & Singh, ICRA 2016 'solution remapping'): the step is projected
+    onto the eigen-directions of the data Hessian (rotation scaled by rho) holding >= deg_frac of the largest
+    eigenvalue, so a direction the frame cannot observe (e.g. rotation about a symmetry axis when the asymmetric
+    parts are out of view) is left unchanged instead of being driven by noise."""
     D = np.r_[[SIG_R ** 2 / SIG_ROT ** 2] * 3, [SIG_R ** 2 / SIG_T ** 2] * 3]
     info = dict(n_fit=int(len(Q)))
     for it in range(iters):
@@ -239,6 +249,12 @@ def icp_frame(Q, N, R, t, c0, tree, S, NS, gate, iters=ICP_ITERS):
         xi = np.r_[Rotation.from_matrix(R).as_rotvec(), t]
         A = H + np.diag(D) + 1e-6 * np.diag(np.diag(H))
         delta = -np.linalg.solve(A, g + D * xi)
+        if deg_frac > 0:
+            Sx = np.r_[[rho] * 3, [1.0] * 3]
+            lam, V = np.linalg.eigh(H / np.outer(Sx, Sx))
+            keep = lam >= deg_frac * lam[-1]
+            delta = (V[:, keep] @ (V[:, keep].T @ (delta * Sx))) / Sx
+            info['frozen'] = int((~keep).sum())
         dR = Rotation.from_rotvec(delta[:3]).as_matrix()
         R = dR @ R; t = dR @ t + delta[3:]
         # hard bounds on the total correction
@@ -290,6 +306,8 @@ def refine_frames(obs, ref=None, iters=3, gauge=True, fit_mask=None, seed=0, ver
     min_frames = kw.get('min_frames', MIN_FRAMES); gates = tuple(kw.get('gates', GATES))
     P = np.asarray(obs['pts'], np.float64)
     c0 = np.median(P, 0)
+    rho = float(np.sqrt(((P[::max(1, len(P) // 200000)] - c0) ** 2).sum(1).mean()))   # RMS radius, rotation scale
+    deg_frac = kw.get('deg_frac', DEG_FRAC)
     frames = prepare_frames(obs, fit_mask=fit_mask, seed=seed)
     nF = len(frames)
     corr = [(np.eye(3), np.zeros(3)) for _ in range(nF)]
@@ -309,7 +327,8 @@ def refine_frames(obs, ref=None, iters=3, gauge=True, fit_mask=None, seed=0, ver
         for i, fr in enumerate(frames):
             if len(fr['fit']) < MIN_PTS:
                 infos[i] = dict(skipped='few_points', n_fit=int(len(fr['fit']))); continue
-            R, t, inf = icp_frame(fr['Q'][fr['fit']], fr['N'][fr['fit']], corr[i][0], corr[i][1], c0, tree, S, NS, gate)
+            R, t, inf = icp_frame(fr['Q'][fr['fit']], fr['N'][fr['fit']], corr[i][0], corr[i][1], c0, tree, S, NS, gate,
+                                  rho=rho, deg_frac=deg_frac)
             infos[i] = inf
             if 'skipped' not in inf:
                 corr[i] = (R, t); wts[i] = inf['n_match']
@@ -357,11 +376,13 @@ def refine_frames(obs, ref=None, iters=3, gauge=True, fit_mask=None, seed=0, ver
         rot_deg_p50=_r(np.median(rot[f])) if f.any() else None, rot_deg_p90=_r(np.percentile(rot[f], 90)) if f.any() else None,
         trans_mm_p50=_r(np.median(tr[f])) if f.any() else None, trans_mm_p90=_r(np.percentile(tr[f], 90)) if f.any() else None,
         bound_hits=int(sum(bool(inf.get('bound_rot') or inf.get('bound_trans')) for inf in infos)),
+        frames_with_frozen_dir=int(sum(inf.get('frozen', 0) > 0 for inf in infos)),
         lag1_autocorr_rot_t=[_r(a) for a in ac], surfels_final=int(len(S)), grids_stale=True,
         sec=round(time.time() - t0, 1), per_frame=per,
         params=dict(VOX=VOX, KNN=KNN, SURFEL_VOX=surfel_vox, SURFEL_R=surfel_r, MIN_FRAMES=min_frames, GATES=gates,
                     FIT_CAP=FIT_CAP, POOL_CAP=POOL_CAP, MIN_PTS=MIN_PTS, SIG_ROT_DEG=math.degrees(SIG_ROT),
                     SIG_T=SIG_T, MAX_ROT_DEG=MAX_ROT_DEG, MAX_TRANS=MAX_TRANS, iters=iters, gauge=gauge,
+                    DEG_FRAC=deg_frac, rho=rho,
                     fit_mask=fit_mask is not None))
     rep['corr'] = dict(frame=np.array([fr['fid'] for fr in frames]),
                        R=np.array([R for R, _ in corr]), t=np.array([t for _, t in corr]), c0=c0)
@@ -458,84 +479,108 @@ def _sphere_lsq(Q, c=None, r=None, iters=8):
     return c, float(r)
 
 
-def ball_scan(obs, r_range=(0.002, 0.016), seed_vox=0.004, nb_r=0.016, band=0.0012, min_inl=60, min_frames=10,
-              max_res=0.0007, min_convex=0.8, min_cover=0.12, min_iso=0.3, min_protrude=0.8, pool_cap=2500, seed=0,
-              frames=None):
-    """Free-radius sphere detector (no radius prior; the window is a generic 2-16 mm), used to MEASURE the marker
-    ball radius from public observations. Per 4 mm seed: same-frame-normal points within NB_R -> algebraic + geometric
-    sphere fit, inliers |d - r| <= BAND, refit. Accepted when (all generic): r in R_RANGE (not at its ends), >= MIN_INL
-    inliers from >= MIN_FRAMES frames, median |d - r| <= MAX_RES, convex towards the cameras (mean normal . radial
-    >= MIN_CONVEX), cap coverage 1 - |mean radial unit vector| >= MIN_COVER, isotropic normal spread (tangent-plane
-    eigenvalue ratio >= MIN_ISO, so a fillet or a rim (one curved direction) is rejected), protruding from the
-    surrounding surface (p90 height above the plane of the r+2..r+8 mm shell >= MIN_PROTRUDE r, or an empty shell:
-    a sphere-shaped patch OF a smooth surface is rejected). Non-maximum suppression on
-    centres within r. Returns a list of dict(c, r_mm, inliers, frames, res_mm, cover, iso, convex). No GT."""
+def merged_cloud(frames, vox=0.001, min_frames=3):
+    """All frames' subsampled points merged on VOX cells: mean position, mean normal, number of frames; cells seen in
+    fewer than MIN_FRAMES frames are dropped. Cells are keyed by side too (a thin wall's faces stay apart)."""
+    P = np.concatenate([fr['Q'] for fr in frames if len(fr['Q'])])
+    N = np.concatenate([fr['N'] for fr in frames if len(fr['Q'])])
+    F = np.concatenate([np.full(len(fr['Q']), i) for i, fr in enumerate(frames) if len(fr['Q'])])
+    key = _lin_key(np.floor(P / vox).astype(np.int64)) * 6 + _side_bin(N)
+    uk, inv = np.unique(key, return_inverse=True)
+    nfr = np.bincount(np.unique(inv * len(frames) + F) // len(frames), minlength=len(uk))
+    cnt = np.bincount(inv, minlength=len(uk)).astype(float)
+    M = np.stack([np.bincount(inv, P[:, j], len(uk)) for j in range(3)], 1) / cnt[:, None]
+    Nm = np.stack([np.bincount(inv, N[:, j], len(uk)) for j in range(3)], 1)
+    ok = (nfr >= min_frames) & (np.linalg.norm(Nm, axis=1) > 1e-9)
+    return M[ok], Nm[ok] / np.linalg.norm(Nm[ok], axis=1, keepdims=True), nfr[ok]
+
+
+def ball_scan(obs, r_range=(0.002, 0.016), seed_vox=0.008, surf_r=0.020, protrude=0.0025, link=0.0025,
+              diag=(0.005, 0.040), min_pts=40, max_res=0.0008, min_convex=0.7, min_cover=0.10, min_iso=0.25,
+              min_frames=4, seed=0, frames=None):
+    """Free-radius sphere fits on compact RESIDUAL clusters near the surfaces: the marker-ball radius MEASURED from
+    public observations (no radius prior; 2-16 mm is a generic window). Generic steps, no object knowledge:
+      1. merged cloud (1 mm cells seen by >= 3 frames, mean normals);
+      2. surface model: per 8 mm seed (and side), a robust quadric height field over the same-side cells within
+         SURF_R (Tukey IRLS in the seed's PCA frame); every cell takes the signed height from its nearest compatible
+         seed; cells more than PROTRUDE above the surface (camera side) are residual;
+      3. residual cells -> connected clusters (LINK); compact ones (bbox diagonal in DIAG, >= MIN_PTS cells) get a
+         free sphere fit (algebraic + geometric, inliers within 1.5 mm, refit);
+      4. accepted when r in R_RANGE, median |d - r| <= MAX_RES, convex towards the cameras (mean normal . radial >=
+         MIN_CONVEX), cap coverage 1 - |mean radial| >= MIN_COVER, isotropic normal spread (tangent eigenvalue ratio
+         >= MIN_ISO: rims, pegs and fillets curve in one direction only), median frames per 1 mm cell >= MIN_FRAMES.
+    Caveat [M] (one public episode, test_refine.py): the fitted radius moves with PROTRUDE (2.5 mm: 9.4 / 10.6 mm; 4 mm: caps too small to
+    fit), stereo smears a ball over a ~4 mm radial band; read the result as a coarse measurement.
+    Returns a list of dict(c, r_mm, n, res_mm, cover, iso, convex, frames_med, diag_mm). No GT."""
     frames = frames if frames is not None else prepare_frames(obs, seed=seed)
-    rng = np.random.default_rng(seed)
-    Ps, Ns, Fs = [], [], []
-    for i, fr in enumerate(frames):
-        if len(fr['Q']) == 0:
-            continue
-        k = np.arange(len(fr['Q'])) if len(fr['Q']) <= pool_cap else rng.choice(len(fr['Q']), pool_cap, replace=False)
-        Ps.append(fr['Q'][k]); Ns.append(fr['N'][k]); Fs.append(np.full(len(k), i))
-    P = np.concatenate(Ps); N = np.concatenate(Ns); F = np.concatenate(Fs)
+    P, N, NF = merged_cloud(frames)
     tree = cKDTree(P)
-    seeds = P[_voxel_first(P, seed_vox)]
-    found = []
-    for s in seeds:
-        nb = np.asarray(tree.query_ball_point(s, nb_r), np.int64)
-        if len(nb) < min_inl:
+    best_d = np.full(len(P), np.inf); height = np.zeros(len(P))
+    key = _lin_key(np.floor(P / seed_vox).astype(np.int64)) * 6 + _side_bin(N)
+    _, first = np.unique(key, return_index=True)
+    for si in first:
+        s, ns = P[si], N[si]
+        nb = np.asarray(tree.query_ball_point(s, surf_r), np.int64)
+        nb = nb[N[nb] @ ns > 0.0]
+        if len(nb) < 30:
             continue
-        if len(nb) > 3000:
-            nb = rng.choice(nb, 3000, replace=False)
-        c, r = _sphere_lsq(P[nb])
-        if c is None or not (r_range[0] < r < r_range[1]) or np.linalg.norm(c - s) > r + band:
+        X = P[nb] - P[nb].mean(0)
+        w_, V = np.linalg.eigh(X.T @ X)
+        z = V[:, 0] if V[:, 0] @ ns > 0 else -V[:, 0]; x, y = V[:, 2], V[:, 1]
+        u, v, h = X @ x, X @ y, X @ z
+        A = np.c_[u * u, u * v, v * v, u, v, np.ones(len(u))]
+        w = np.ones(len(u))
+        for _ in range(6):
+            coef = np.linalg.lstsq(A * w[:, None], h * w, rcond=None)[0]
+            res = h - A @ coef
+            sc = max(1.4826 * np.median(np.abs(res)), 0.0007)
+            w = np.clip(1 - (res / (4.685 * sc)) ** 2, 0, 1) ** 2
+        dd = np.linalg.norm(P[nb] - s, axis=1)
+        upd = dd < best_d[nb]
+        best_d[nb[upd]] = dd[upd]; height[nb[upd]] = res[upd]
+    resid = np.nonzero(np.isfinite(best_d) & (height > protrude))[0]
+    out = []
+    if len(resid) < min_pts:
+        return out
+    # connected components of residual cells
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import connected_components
+    pairs = cKDTree(P[resid]).query_pairs(link, output_type='ndarray')
+    G = coo_matrix((np.ones(len(pairs)), (pairs[:, 0], pairs[:, 1])), shape=(len(resid), len(resid)))
+    ncomp, lab = connected_components(G, directed=False)
+    for q in np.nonzero(np.bincount(lab) >= min_pts)[0]:
+        idx = resid[lab == q]
+        Q = P[idx]
+        dg = float(np.linalg.norm(np.percentile(Q, 97, 0) - np.percentile(Q, 3, 0)))
+        if not diag[0] <= dg <= diag[1]:
             continue
-        for _ in range(2):          # inliers of the current sphere -> refit
-            d = np.linalg.norm(P[nb] - c, axis=1); inl = nb[np.abs(d - r) <= band]
-            if len(inl) < min_inl:
+        c, r = _sphere_lsq(Q)
+        if c is None:
+            continue
+        for _ in range(2):
+            d = np.linalg.norm(Q - c, axis=1); inl = np.abs(d - r) <= 0.0015
+            if inl.sum() < min_pts:
                 break
-            c, r = _sphere_lsq(P[inl], c, r)
-            if c is None or not (r_range[0] < r < r_range[1]):
-                break
-        if c is None or len(inl) < min_inl or not (r_range[0] < r < r_range[1]):
+            c, r = _sphere_lsq(Q[inl], c, r)
+        if c is None or not (r_range[0] < r < r_range[1]):
             continue
-        # the whole ball, not only the seed's neighbourhood
-        inl = np.asarray(tree.query_ball_point(c, r + band), np.int64)
-        d = np.linalg.norm(P[inl] - c, axis=1); inl = inl[np.abs(d - r) <= band]
-        if len(inl) < min_inl:
+        d = np.linalg.norm(Q - c, axis=1); inl = np.abs(d - r) <= 0.0015
+        if inl.sum() < min_pts:
             continue
-        U = (P[inl] - c) / np.linalg.norm(P[inl] - c, axis=1, keepdims=True)
-        convex = float(np.mean(np.einsum('ni,ni->n', N[inl], U)))
+        U = (Q[inl] - c) / d[inl, None]
+        convex = float(np.mean(np.einsum('ni,ni->n', N[idx][inl], U)))
         m = U.mean(0); cover = 1 - float(np.linalg.norm(m))
-        e1, e2 = np.linalg.svd(np.eye(3) - np.outer(m, m) / max(m @ m, 1e-12))[0][:, :2].T
-        T2 = np.c_[U @ e1, U @ e2]; ev = np.linalg.eigvalsh(np.cov(T2.T))
-        iso = float(ev[0] / max(ev[1], 1e-12))
-        res = float(np.median(np.abs(np.linalg.norm(P[inl] - c, axis=1) - r)))
-        nfr = int(len(np.unique(F[inl])))
-        # protrusion: a ball stands out of the surface around it (shell r+2..r+8 mm); a patch of a smooth surface
-        # that happens to fit a sphere lies IN that surface. Height of the inliers above the shell's plane (oriented
-        # to the shell normals), p90 in units of r; an empty shell (ball on a stem) counts as protruding.
-        sh = np.asarray(tree.query_ball_point(c, r + 0.008), np.int64)
-        sh = sh[np.linalg.norm(P[sh] - c, axis=1) >= r + 0.002]
-        if len(sh) < 0.2 * len(inl):
-            protrude = 9.0
-        else:
-            p0 = P[sh].mean(0); nn = np.linalg.svd(P[sh] - p0, full_matrices=False)[2][2]
-            if nn @ N[sh].mean(0) < 0:
-                nn = -nn
-            protrude = float(np.percentile((P[inl] - p0) @ nn, 90) / r)
-        if (nfr >= min_frames and res <= max_res and convex >= min_convex and cover >= min_cover and iso >= min_iso
-                and protrude >= min_protrude):
-            found.append(dict(c=c.tolist(), r_mm=r * 1e3, inliers=int(len(inl)), frames=nfr, res_mm=res * 1e3,
-                              cover=cover, iso=iso, convex=convex, protrude=protrude, shell=int(len(sh))))
-    # non-maximum suppression: keep the best-supported sphere among centres closer than the larger radius
-    found.sort(key=lambda b: -b['inliers'])
-    keep = []
-    for b in found:
-        if all(np.linalg.norm(np.array(b['c']) - np.array(k['c'])) > max(b['r_mm'], k['r_mm']) * 1e-3 for k in keep):
-            keep.append(b)
-    return [{k: (_r(v) if not isinstance(v, list) else [round(x, 5) for x in v]) for k, v in b.items()} for b in keep]
+        e = np.linalg.svd(np.eye(3) - np.outer(m, m) / max(m @ m, 1e-12))[0][:, :2]
+        ev = np.linalg.eigvalsh(np.cov((U @ e).T)); iso = float(ev[0] / max(ev[1], 1e-12))
+        res = float(np.median(np.abs(d[inl] - r)))
+        fm = float(np.median(NF[idx]))
+        b = dict(c=c.tolist(), r_mm=r * 1e3, n=int(inl.sum()), n_cluster=int(len(idx)), res_mm=res * 1e3,
+                 cover=cover, iso=iso, convex=convex, frames_med=fm, diag_mm=dg * 1e3)
+        b['accepted'] = bool(res <= max_res and convex >= min_convex and cover >= min_cover and iso >= min_iso
+                             and fm >= min_frames)
+        out.append(b)
+    out.sort(key=lambda b: -b['n'])
+    return [{k: (_r(v) if not isinstance(v, list) else [round(x, 5) for x in v]) for k, v in b.items()} for b in out]
 
 
 if __name__ == '__main__':
