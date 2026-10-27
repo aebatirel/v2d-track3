@@ -2,6 +2,15 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-27 ~06:15 UTC: eval-10 zero-start test falsified; waiting for the owner's top-up
+- `20261027-e10Z-aa7b5f8`: 0.4459 (5-eval) < gl10A2 0.4539, so eval 10 is unchanged; box destroyed. Credit $3.52,
+  0 boxes.
+- Best leaderboard: 0.81391 (pack 6), 5th; DDD 0.827.
+- Eval 10 is parked: RL avoids the stack from ≈ 1M steps whatever the start (work log 27 Oct). A retry needs a
+  task-side change (relaxed termination in the nest phase, or more clearance).
+- After the top-up (owner): placement carves for 14 / 28 / 30 / 1; 10 evaluations of all 20 packed checkpoints
+  (robustness review H5, ≈ $2); spoon proxy measurement (CPU).
+
 ## 2026-10-27: eval-10 zero-start test running (last of the credit); top-up pending
 - `20261027-e10Z-aa7b5f8`: residual actor head with a zero-initialised mean (`zero_dense`), exploration 0.05,
   frozen-variant plan, carved cups. ≈ $1.5. Rule pre-registered (work log, 27 Oct).
