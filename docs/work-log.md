@@ -4580,3 +4580,16 @@ Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU
 - **Count:** 12 scan scorings this round, as pre-registered.
 - **Final verdicts:** pot PASS (0.342 / 3.05), lid PASS (0.220 / 4.46), rack PASS (0.456 / 5.37), boards FAIL.
 - Default-config rack run (CUP_LEAN default True, no env) reproduces the shipped joint mesh byte for byte.
+
+### 2026-10-27 ~07:25 UTC: "are these meshes case by case? is there an automated way?" (owner)
+- Short answer given: yes. Each kit-of-parts fitter (`prim_potlid.py`, `prim_rack.py`, `prim_boards.py`) encodes one
+  object type's part list, written by an agent after looking at our points and crops. It then runs automatically with
+  the GT-free selector. Generic today: `lathe_obs.py`, marker-ball detection, extrusion, `obs_fidelity.py`, the
+  manifold union.
+- Launched workflow `wf_c5cfe08d-5e2` (CPU, $0). Stages:
+  - code audit of generic vs object-specific code;
+  - research on classic, learned and LLM-agentic automated primitive/CAD reconstruction, each adversarially verified;
+  - in-repo lessons;
+  - 3 automated designs, 2 judges, a synthesis;
+  - 2 GT-free feasibility probes on our points (no scan reads, no scan scoring; outputs in scratchpad `auto/`);
+  - a completeness critic.
