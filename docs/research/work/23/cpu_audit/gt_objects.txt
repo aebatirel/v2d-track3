@@ -1,0 +1,21 @@
+ep | frame-0 support | carry segments (start-end, s, lift cm) | frames with both objects moving
+ 0 | white_pot: table (-0.1 cm); white_pot_lid: on white_pot (+8.7 cm) | white_pot: 109-203 (4.75 s, 17.0 cm); white_pot_lid: 53-82 (1.5 s, 5.4 cm), 239-259 (1.05 s, 14.4 cm) | 0
+ 2 | white_pot: table (-0.1 cm); white_pot_lid: on white_pot (+8.8 cm) | white_pot: 112-201 (4.5 s, 10.6 cm); white_pot_lid: 56-83 (1.4 s, 5.4 cm), 247-277 (1.55 s, 12.0 cm) | 0
+11 | beige_cup: table (+0.1 cm); blue_cup: table (-0.1 cm) | beige_cup: 22-69 (2.4 s, 20.6 cm) | 0
+12 | blue_cup: table (-0.0 cm); plastic_dish_rack: table (-0.2 cm) | blue_cup: 32-128 (4.85 s, 17.9 cm) | 0
+13 | blue_cup: table (-0.2 cm); plastic_dish_rack: table (-0.2 cm) | blue_cup: 21-45 (1.25 s, 13.7 cm), 54-107 (2.7 s, 5.7 cm), 135-145 (0.55 s, 0.0 cm) | 0
+18 | mini_dust_pan: table (-0.1 cm); mini_sweeper: table (+0.1 cm) | mini_dust_pan: 16-25 (0.5 s, 2.5 cm), 36-45 (0.5 s, 0.0 cm), 62-74 (0.65 s, 0.1 cm), 113-169 (2.85 s, 14.6 cm); mini_sweeper: 36-124 (4.45 s, 7.8 cm), 174-188 (0.75 s, 0.0 cm), 234-239 (0.3 s, 0.0 cm), 246-255 (0.5 s, 0.1 cm), 292-298 (0.35 s, 0.0 cm) | 31
+21 | blue_cup: table (-0.1 cm); water_pitcher: table (+0.1 cm) | blue_cup: 34-62 (1.45 s, 7.9 cm), 80-99 (1.0 s, 2.8 cm), 129-140 (0.6 s, 0.0 cm); water_pitcher: 38-69 (1.6 s, 31.4 cm), 80-109 (1.5 s, 0.1 cm) | 45
+22 | blue_cup: table (-0.1 cm); water_pitcher: table (+0.1 cm) | blue_cup: 42-60 (0.95 s, 8.0 cm), 76-93 (0.9 s, 1.2 cm), 108-116 (0.45 s, 0.0 cm); water_pitcher: 39-110 (3.6 s, 31.7 cm) | 36
+23 | wooden_piece_1: table (-0.3 cm); wooden_piece_2: table (-0.0 cm) | wooden_piece_1: 18-34 (0.85 s, 1.9 cm), 43-69 (1.35 s, 10.2 cm), 78-87 (0.5 s, 0.1 cm), 154-158 (0.25 s, 0.0 cm); wooden_piece_2: 124-166 (2.15 s, 22.3 cm), 238-242 (0.25 s, 0.0 cm) | 5
+24 | wooden_piece_1: table (-0.3 cm); wooden_piece_2: table (-0.0 cm) | wooden_piece_1: 8-40 (1.65 s, 20.3 cm), 49-89 (2.05 s, 3.5 cm); wooden_piece_2: 112-157 (2.3 s, 23.9 cm), 172-182 (0.55 s, 0.0 cm), 205-214 (0.5 s, 0.0 cm) | 2
+26 | plastic_dish_rack: table (-0.3 cm); white_pot: on plastic_dish_rack (+1.7 cm) | white_pot: 49-89 (2.05 s, 18.2 cm) | 0
+27 | plastic_dish_rack: table (-0.3 cm); white_pot: table (-0.0 cm) | white_pot: 21-36 (0.8 s, 0.0 cm), 45-166 (6.1 s, 29.1 cm) | 0
+31 | mini_sweeper: table (+0.4 cm); plastic_dish_rack: table (-0.3 cm) | mini_sweeper: 45-77 (1.65 s, 9.6 cm), 91-134 (2.2 s, 3.2 cm), 140-221 (4.1 s, 10.2 cm) | 0
+39 | mini_dust_pan: table (+0.1 cm) | mini_dust_pan: 48-229 (9.1 s, 26.2 cm), 236-267 (1.6 s, 0.6 cm) | 0
+40 | mini_dust_pan: table (+0.1 cm) | mini_dust_pan: 39-55 (0.85 s, 18.4 cm), 74-85 (0.6 s, 1.9 cm), 94-162 (3.45 s, 4.9 cm), 169-201 (1.65 s, 0.0 cm) | 0
+41 | white_pot: table (+0.0 cm) | white_pot: 30-43 (0.7 s, 10.1 cm), 50-72 (1.15 s, 5.9 cm), 84-99 (0.8 s, 3.0 cm), 107-143 (1.85 s, 3.6 cm), 153-165 (0.65 s, 0.0 cm), 178-209 (1.6 s, 2.2 cm), 225-229 (0.25 s, 0.0 cm) | 0
+42 | white_pot: table (+0.0 cm) | white_pot: 36-46 (0.55 s, 1.4 cm), 59-83 (1.25 s, 6.5 cm), 90-191 (5.1 s, 12.4 cm) | 0
+43 | white_pot: table (-0.0 cm) | white_pot: 26-34 (0.45 s, 2.5 cm), 48-110 (3.15 s, 14.3 cm), 116-140 (1.25 s, 17.2 cm), 147-219 (3.65 s, 0.0 cm), 230-243 (0.7 s, 0.0 cm) | 0
+44 | white_pot: table (-0.0 cm) | white_pot: 74-93 (1.0 s, 21.4 cm), 104-111 (0.4 s, 0.0 cm), 121-136 (0.8 s, 1.2 cm), 142-170 (1.45 s, 0.0 cm) | 0
+45 | white_pot: table (-0.0 cm) | white_pot: 48-99 (2.6 s, 28.5 cm), 109-132 (1.2 s, 0.0 cm), 142-191 (2.5 s, 1.4 cm), 201-232 (1.6 s, 0.0 cm) | 0

@@ -282,6 +282,51 @@ Readings:
    (3.1 cm) at the cost of a 3 cm release jump and code. Full feed-forward is best (0.6 cm) but needs code. So PID is
    not worth a GPU arm unless the organisers allow code changes, and then feed-forward is the better code change.
 
+### C3. CPU audit, part 1: what can be measured before the GPU stage (2026-10-27, owner approved) [V measured]
+The full reference audit (§E lever 2) needs our references, and those need the GPU stage: FoundationStereo depth,
+perc2 camera and object poses. None of these outputs are in the repo. This part measures what real data allows on CPU.
+Files: `work/23/cpu_audit/` (README there); tool `pipeline/audit_ref.py`.
+
+1. **Hand visibility during carries.** MediaPipe 0.10.14 on the colour video, with `hands_mp.py`'s exact detector
+   settings, over all 20 public episodes. This reproduces the earlier Colab counts: ep 0 two hands 338/373, ep 12
+   173/181. Joined with GT carry segments (75 segments):
+   - ≥ 1 hand is detected on **2610/2612 carry frames (99.9 %)**; the longest gap inside a carry is 1 frame;
+   - losing the hand during single-object carries is not a risk.
+2. **Bimanual pours lose the pouring hand.**
+   - Frames with two objects moving at once:
+     - ep 18 (dustpan + sweeper): 35 frames, both hands detected 100 %;
+     - **ep 21 and ep 22 (pitcher + cup): 45 and 40 frames, both hands detected only 22 % / 25 %; one-hand runs of 34
+       and 30 frames (1.5–1.7 s).**
+   - The visual check (`work/23/cpu_audit/ep21_pour_hand_out_of_view.jpg`) shows the hand holding the pitcher outside
+     the colour camera's view during the pour (blurred at the edge in f45, off-frame f53–69). It is a camera-coverage
+     problem, not a detector miss.
+   - `hands_mp.py` interpolates gaps ≤ 15 frames only. Beyond that, `mkref.py --gap_fill attach` (default) lets the
+     hand ride along with an object within 3 cm at the gap boundary; otherwise the hand is held still while the
+     pitcher moves.
+   - This is the heaviest, highest-lifted carry in these clips (pitcher lift 31 cm). Eval 20 (pitcher + cup, cup in mid
+     air at frame 0) and eval 8 (cup poured into the pot) are pours (note 15).
+   - [H] Their pitcher reference depends on the gap fill. Hand-object attachment (lever 4) is the direct fix; note 15
+     already suggests the mono pair, which sees the gripping hand.
+3. **Raw MediaPipe handedness labels are noisy.** Label order changes between consecutive two-hand frames 0–50 times
+   per episode (e.g. ep 39: 50/273). `hands_mp.py` relabels by image-x statistics and temporal linking. Check the
+   linked tracks on day-1 outputs.
+4. **Frame-0 states (GT, `gt_objects.txt`).**
+   - No public episode starts with an object in hand. Frame-0 stacks: lid on pot (eps 0, 2) and pot on rack (ep 26).
+   - Several motion segments have 0 cm lift (slides or in-place turns on the table).
+   - Two objects move at once in eps 18, 21, 22 and briefly in 23.
+   - The start-mismatch lever (6) therefore matters mainly for eval episodes with in-hand starts (eval 20, 32; note 15),
+     which public episodes cannot test.
+5. **Audit tool tested on NVIDIA's own video reference** (`tissue_box_simple`, the egocentric sample in the
+   FlashCHORD repo; `work/23/cpu_audit/nvidia_tissue_box_audit.json`). It is a healthy baseline:
+   - moving frames with contact 100 %; nearest hand frame ≤ 2 mm; no jumps;
+   - wrist slide 1.3–1.7 cm / turn 5–6° over each bimanual hold.
+   - It is a slow task: peak object speed 0.08 m/s, against a median v95 of 0.33 m/s for our public tracks (§C). Its
+     wrist demand is mostly the 11.8 cm weight term (z p95 14.2 cm at kp 25, at its own fps).
+   - [H] This is another reason the default soft wrist was adequate for NVIDIA's validation and is not for our clips.
+6. `pipeline/pipeline_ep.sh` now runs `audit_ref.py` after `mkref.py` (non-fatal; `ref_audit.txt/json` next to the
+   reference). So the full audit, including moving frames without contact, contact labels away from the hand and grasp
+   rigidity, runs on day-1 references at no extra cost.
+
 ## D. Literature (corrected after verification)
 
 ### D1. Control theory and carry-aware tracking

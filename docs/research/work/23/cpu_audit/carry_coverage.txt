@@ -1,0 +1,88 @@
+ep obj      seg        dur_s  lift_cm  >=1hand  longest_gap  gap>15
+ 0 white_pot      109-203  4.75    17.0     1.00            0  
+ 0 white_pot_lid   53-82    1.5     5.4     1.00            0  
+ 0 white_pot_lid  239-259  1.05    14.4     1.00            0  
+ 2 white_pot      112-201   4.5    10.6     1.00            0  
+ 2 white_pot_lid   56-83    1.4     5.4     1.00            0  
+ 2 white_pot_lid  247-277  1.55    12.0     1.00            0  
+11 beige_cup       22-69    2.4    20.6     1.00            0  
+12 blue_cup        32-128  4.85    17.9     1.00            0  
+13 blue_cup        21-45   1.25    13.7     1.00            0  
+13 blue_cup        54-107   2.7     5.7     1.00            0  
+13 blue_cup       135-145  0.55     0.0     1.00            0  
+18 mini_dust_pan   16-25    0.5     2.5     1.00            0  
+18 mini_dust_pan   36-45    0.5     0.0     1.00            0  
+18 mini_dust_pan   62-74   0.65     0.1     1.00            0  
+18 mini_dust_pan  113-169  2.85    14.6     1.00            0  
+18 mini_sweeper    36-124  4.45     7.8     1.00            0  
+18 mini_sweeper   174-188  0.75     0.0     1.00            0  
+18 mini_sweeper   234-239   0.3     0.0     1.00            0  
+18 mini_sweeper   246-255   0.5     0.1     1.00            0  
+18 mini_sweeper   292-298  0.35     0.0     1.00            0  
+21 blue_cup        34-62   1.45     7.9     1.00            0  
+21 blue_cup        80-99    1.0     2.8     1.00            0  
+21 blue_cup       129-140   0.6     0.0     1.00            0  
+21 water_pitcher   38-69    1.6    31.4     1.00            0  
+21 water_pitcher   80-109   1.5     0.1     1.00            0  
+22 blue_cup        42-60   0.95     8.0     1.00            0  
+22 blue_cup        76-93    0.9     1.2     1.00            0  
+22 blue_cup       108-116  0.45     0.0     1.00            0  
+22 water_pitcher   39-110   3.6    31.7     1.00            0  
+23 wooden_piece_1  18-34   0.85     1.9     1.00            0  
+23 wooden_piece_1  43-69   1.35    10.2     1.00            0  
+23 wooden_piece_1  78-87    0.5     0.1     1.00            0  
+23 wooden_piece_1 154-158  0.25     0.0     1.00            0  
+23 wooden_piece_2 124-166  2.15    22.3     1.00            0  
+23 wooden_piece_2 238-242  0.25     0.0     1.00            0  
+24 wooden_piece_1   8-40   1.65    20.3     1.00            0  
+24 wooden_piece_1  49-89   2.05     3.5     1.00            0  
+24 wooden_piece_2 112-157   2.3    23.9     1.00            0  
+24 wooden_piece_2 172-182  0.55     0.0     1.00            0  
+24 wooden_piece_2 205-214   0.5     0.0     1.00            0  
+26 white_pot       49-89   2.05    18.2     1.00            0  
+27 white_pot       21-36    0.8     0.0     1.00            0  
+27 white_pot       45-166   6.1    29.1     1.00            0  
+31 mini_sweeper    45-77   1.65     9.6     1.00            0  
+31 mini_sweeper    91-134   2.2     3.2     1.00            0  
+31 mini_sweeper   140-221   4.1    10.2     1.00            0  
+39 mini_dust_pan   48-229   9.1    26.2     1.00            0  
+39 mini_dust_pan  236-267   1.6     0.6     1.00            0  
+40 mini_dust_pan   39-55   0.85    18.4     1.00            0  
+40 mini_dust_pan   74-85    0.6     1.9     1.00            0  
+40 mini_dust_pan   94-162  3.45     4.9     1.00            0  
+40 mini_dust_pan  169-201  1.65     0.0     1.00            0  
+41 white_pot       30-43    0.7    10.1     1.00            0  
+41 white_pot       50-72   1.15     5.9     1.00            0  
+41 white_pot       84-99    0.8     3.0     1.00            0  
+41 white_pot      107-143  1.85     3.6     1.00            0  
+41 white_pot      153-165  0.65     0.0     1.00            0  
+41 white_pot      178-209   1.6     2.2     1.00            0  
+41 white_pot      225-229  0.25     0.0     1.00            0  
+42 white_pot       36-46   0.55     1.4     1.00            0  
+42 white_pot       59-83   1.25     6.5     1.00            0  
+42 white_pot       90-191   5.1    12.4     0.99            1  
+43 white_pot       26-34   0.45     2.5     1.00            0  
+43 white_pot       48-110  3.15    14.3     1.00            0  
+43 white_pot      116-140  1.25    17.2     1.00            0  
+43 white_pot      147-219  3.65     0.0     0.99            1  
+43 white_pot      230-243   0.7     0.0     1.00            0  
+44 white_pot       74-93    1.0    21.4     1.00            0  
+44 white_pot      104-111   0.4     0.0     1.00            0  
+44 white_pot      121-136   0.8     1.2     1.00            0  
+44 white_pot      142-170  1.45     0.0     1.00            0  
+45 white_pot       48-99    2.6    28.5     1.00            0  
+45 white_pot      109-132   1.2     0.0     1.00            0  
+45 white_pot      142-191   2.5     1.4     1.00            0  
+45 white_pot      201-232   1.6     0.0     1.00            0  
+
+carry frames with >= 1 detected hand: 2610/2612 = 0.999
+frames with two objects moving and 2 hands detected: 60/125
+carry segments with a detection gap > 15 frames: 0/75; longest gap 1 frames
+raw handedness label changes between consecutive 2-hand frames (left-to-right image order), per episode:
+  ep0: 15/337, ep2: 15/338, ep11: 0/129, ep12: 19/172, ep13: 8/182, ep18: 29/349, ep21: 21/110, ep22: 25/142, ep23: 12/259, ep24: 21/244, ep26: 18/156, ep27: 4/245, ep31: 4/289, ep39: 50/273, ep40: 34/252, ep41: 39/197, ep42: 46/193, ep43: 36/214, ep44: 30/248, ep45: 37/289
+
+two objects moving at once (bimanual): 2-hand detection per episode
+  ep18: 35 frames, both hands detected 1.00, longest 1-hand run 0 frames
+  ep21: 45 frames, both hands detected 0.22, longest 1-hand run 34 frames
+  ep22: 40 frames, both hands detected 0.25, longest 1-hand run 30 frames
+  ep23: 5 frames, both hands detected 1.00, longest 1-hand run 0 frames

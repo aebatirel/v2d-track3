@@ -317,3 +317,16 @@ error, median RMS:
 - full feed-forward 0.6 cm (code).
 FlashCHORD's JointPositionIntegral exists but is wired only to arm joints, so it would need code for Sharpa.
 Conclusion: PD kp 100 (config) gets most of the benefit; PID is not worth a GPU arm. Note 23 §C2 added.
+2026-10-27: CPU audit, part 1 (owner: "start with the CPU test"). Machine: Claude cloud VM. Code: this commit.
+Our references cannot be built on CPU: they need FoundationStereo depth and perc2 poses, which are not saved anywhere.
+So this part measures what real data allows (note 23 §C3; files in docs/research/work/23/cpu_audit/):
+- MediaPipe on the public colour videos, with hands_mp settings, reproduces the earlier Colab counts. Joined with GT
+  carry segments: ≥ 1 hand on 2610/2612 carry frames.
+- Bimanual pours (eps 21, 22) see both hands in only 22–25 % of frames, with 30–34-frame one-hand runs. The visual
+  check shows the pitcher hand outside the colour view during the pour; the reference depends on mkref's attach
+  gap-fill. Eval 20 and 8 are pours.
+- No public episode starts with an object in hand.
+- New tool `pipeline/audit_ref.py`, tested on NVIDIA's tissue_box_simple reference (healthy: contact on 100 % of
+  moving frames, hand frames within 2 mm; slow task, peak 0.08 m/s). Now run by pipeline_ep.sh after mkref
+  (non-fatal).
+An independent bug review of audit_ref.py is running.

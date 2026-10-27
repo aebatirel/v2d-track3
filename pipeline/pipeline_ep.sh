@@ -45,6 +45,9 @@ if ! ls $R/processed/sequence_id=$SEQ/robot_name=sharpa_wave/*.parquet > /dev/nu
 fi
 REFDIR=$R/processed/sequence_id=$SEQ/robot_name=sharpa_wave
 echo "[$(date +%T)] reference: $REFDIR"
+# 3b) CPU feasibility / contact-label audit of the reference (note 23 §E lever 2; reads no ground truth; non-fatal)
+/content/rtvenv/bin/python $S/audit_ref.py $(ls $REFDIR/*.parquet | head -1) --mesh_root /content/t3/mesh \
+  --out $R/ref_audit.json > $R/ref_audit.txt 2>&1 && cat $R/ref_audit.txt || echo "reference audit failed (non-fatal)"
 
 # 4) train (timing rule: fps 20 written in the parquet, motion_speed 1.0, sim=rl at 20 fps).
 #    Checkpoints every 5M env steps (policy_<step> + state_<step>); a rerun resumes from the newest state_ file
