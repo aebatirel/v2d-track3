@@ -19,8 +19,10 @@ $UV pip install -q $P "numpy<2" scipy pillow opencv-python-headless trimesh "tim
   "huggingface_hub<1.0" hydra-core omegaconf loguru roma seaborn matplotlib xatlas plyfile fast_simplification \
   spconv-cu124 "transformers<5" fvcore iopath igraph scikit-image lightning optree jsonlines pymeshfix \
   && step "C-BASIC-OK" || step "C-BASIC-FAIL"
-$UV pip install -q $P --no-deps git+https://github.com/microsoft/MoGe.git \
-  "git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8" && step "C-MOGE-OK" || step "C-MOGE-FAIL"
+# SAM 3D pins MoGe a8c3734 (requirements.txt), which pins utils3d 3913c65 (the newer MoGe 3.0 needs utils3d.pt;
+# the first run on the box failed on that, 2026-10-29 23:01)
+$UV pip install -q $P --no-deps "git+https://github.com/microsoft/MoGe.git@a8c37341bc0325ca99b9d57981cc3bb2bd3e255b" \
+  "git+https://github.com/EasternJournalist/utils3d.git@3913c65d81e05e47b9f367250cf8c0f7462a0900" && step "C-MOGE-OK" || step "C-MOGE-FAIL"
 CUDA_VISIBLE_DEVICES= FORCE_CUDA=0 MAX_JOBS=64 $UV pip install -q $P --no-build-isolation \
   "git+https://github.com/facebookresearch/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47" && step "C-P3D-OK" || step "C-P3D-FAIL"
 # found by iterating the import on the box (2026-10-29): extra modules, and a flash_attn 2 wheel that matches torch
