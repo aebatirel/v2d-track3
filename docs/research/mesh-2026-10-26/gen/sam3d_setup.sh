@@ -21,8 +21,14 @@ $UV pip install -q $P "numpy<2" scipy pillow opencv-python-headless trimesh "tim
   && step "C-BASIC-OK" || step "C-BASIC-FAIL"
 $UV pip install -q $P --no-deps git+https://github.com/microsoft/MoGe.git \
   "git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8" && step "C-MOGE-OK" || step "C-MOGE-FAIL"
-FORCE_CUDA=0 MAX_JOBS=64 $UV pip install -q $P --no-build-isolation \
+CUDA_VISIBLE_DEVICES= FORCE_CUDA=0 MAX_JOBS=64 $UV pip install -q $P --no-build-isolation \
   "git+https://github.com/facebookresearch/pytorch3d.git@75ebeeaea0908c5527e7b1e305fbc7681382db47" && step "C-P3D-OK" || step "C-P3D-FAIL"
+# found by iterating the import on the box (2026-10-29): extra modules, and a flash_attn 2 wheel that matches torch
+# 2.6's pre-cxx11 ABI (2.8.3's cxx11abiFALSE wheel failed with an undefined c10::Error symbol); the pipeline forces
+# flash_attn on A100/H100/H200
+$UV pip install -q $P open3d astor gsplat pyvista && $UV pip install -q $P --no-deps \
+  "https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl" \
+  && step "C-EXTRA-OK" || step "C-EXTRA-FAIL"
 SP=$(/content/genv3/bin/python -c "import site; print(site.getsitepackages()[0])")
 mkdir -p $SP/kaolin/utils
 printf '# stub (gen probe): SAM 3D flexicubes imports only check_tensor\n' > $SP/kaolin/__init__.py
@@ -36,6 +42,6 @@ mkdir -p /content/w/sam3d && cd /content/w/sam3d && for f in pipeline.yaml ss_ge
     --local-dir /content/w/sam3d > /dev/null 2>&1 || step "C-W-$f-FAIL"
 done
 ls -la /content/w/sam3d/runs/mesh-20261029-gen-f3fbeb0/weights/sam-3d-objects/checkpoints && step "C-WEIGHTS-DONE"
-cd /content/ext/sam-3d-objects && /content/genv3/bin/python -c "
+cd /content/ext/sam-3d-objects && LIDRA_SKIP_INIT=1 /content/genv3/bin/python -c "
 import sys; sys.path.insert(0, '.')
 from sam3d_objects.pipeline.inference_pipeline_pointmap import InferencePipelinePointMap; print('import ok')" && step "C-IMPORT-OK" || step "C-IMPORT-FAIL"

@@ -70,7 +70,7 @@ $UV pip install -q -p /content/genv/bin/python --no-deps $W2/natten-0.21.0+torch
 $UV venv -q -p $PY /content/genv2 && $UV pip install -q -p /content/genv2/bin/python $TORCH && step "B-TORCH-OK" || step "B-TORCH-FAIL"
 $UV pip install -q -p /content/genv2/bin/python setuptools wheel && $UV pip install -q -p /content/genv2/bin/python diffusers transformers einops "huggingface_hub<1.0" opencv-python-headless \
   trimesh omegaconf scikit-image "numpy<2" peft jaxtyping typeguard pymeshlab pyyaml accelerate safetensors tqdm \
-  pygltflib scipy ninja pybind11 fast_simplification && step "B-BASIC-OK" || step "B-BASIC-FAIL"
+  pygltflib scipy ninja pybind11 fast_simplification timm && step "B-BASIC-OK" || step "B-BASIC-FAIL"
 $UV pip install -q -p /content/genv2/bin/python --no-build-isolation diso && step "B-DISO-OK" || step "B-DISO-FAIL (TripoSG falls back to the skimage extractor)"
 /content/genv2/bin/python -c "import torch, diffusers, trimesh; print(torch.__version__)" && step "B-IMPORT-OK" || step "B-IMPORT-FAIL"
 wait

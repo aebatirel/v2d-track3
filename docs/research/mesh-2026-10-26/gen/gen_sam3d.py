@@ -10,6 +10,7 @@ Usage: gen_sam3d.py --ckpt DIR/pipeline.yaml --out DIR [--seeds 42,7] crop.png .
 import argparse, json, os, sys, time
 
 CODE = os.environ.get('SAM3D_CODE', '/content/ext/sam-3d-objects')
+os.environ.setdefault('LIDRA_SKIP_INIT', '1')         # the package's init hook is not in the public repo
 sys.path.insert(0, CODE)
 import numpy as np                                 # noqa: E402
 import torch                                       # noqa: E402

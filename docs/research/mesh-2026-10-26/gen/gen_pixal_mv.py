@@ -22,6 +22,7 @@ os.environ.setdefault('ATTN_BACKEND', 'flash_attn_3')
 CODE = os.environ.get('PIXAL3D_CODE', '/content/ext/Pixal3D')
 W = os.environ.get('PIXAL3D_W', '/content/w/Pixal3D')
 sys.path.insert(0, CODE)
+ORIG_CWD = os.getcwd()                             # view dirs on the command line are relative to this
 os.chdir(CODE)                                     # inference_mv keeps its flex_gemm autotune cache next to itself
 import numpy as np                                 # noqa: E402
 import torch                                       # noqa: E402
@@ -77,7 +78,7 @@ def main():
     print(f'[probe] pipeline ready in {time.time() - t0:.0f} s', flush=True)
     log = open(os.path.join(a.out, 'gen_log.jsonl'), 'a')
     for vd in a.views:
-        vd = os.path.abspath(vd)
+        vd = os.path.join(ORIG_CWD, vd)
         tag = os.path.basename(vd.rstrip('/')) + a.suffix
         views = im.load_views(vd, a.num_views, rembg=None)
         im.check_main_view(views)
