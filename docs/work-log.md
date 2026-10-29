@@ -4750,3 +4750,20 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
     - evdepth 58312542 (at eval ep6);
     - gen 58314388 (H100 NVL interruptible, $0.898/h, run `mesh-20261029-gen-f3fbeb0`, planned $6, cap $12);
     - the other session's H5 box.
+- ~22:50 UTC progress (box 58314388, all through `ops/vast.sh exec`):
+  - Setup (`box_setup.sh`): weights ~40 GB in ~2 min. Fixes on the way: MoGe needs trimesh >= 4.11 (installed
+    no-deps); uv venvs lack setuptools (triton import); the hf CLI drops the first `--include` pattern (json configs
+    fetched by name); env B needed timm (Hunyuan); diso does not build on the mini image (TripoSG uses its skimage
+    extractor through a stub).
+  - TRELLIS.2 1536 cascade: ~30-100 s per image, ~7 M raw faces (simplified to 400 k). Three jobs sharing the GPU
+    gave 8 OOM failures; rerun alone.
+  - Pixal3D-MV frame check (GT-free, `mv_check.py`): the output mapped back with probe_meta lands in our object
+    frame; silhouette IoU against our own masks 0.93 (pot, 2 views) and 0.98 (lid), library_v3 0.78 / 0.93.
+  - View sets (`assemble_views.py` rule, fixed before any scoring): at rest, plus held frames gated by a skin test
+    for non-skin-coloured objects; extra views with mask/silhouette IoU < 0.75 dropped. Result: 1 view for 8 of 10
+    objects, 2 for board 2, 3 for the dust pan. Egocentric at-rest viewpoints barely differ, and held frames have
+    hands on the object, so "multi-view" here is mostly posed single-view Pixal3D.
+  - SAM 3D access approved during the run (HTTP 200 from this session; the box token gets 403). Its 12.4 GB of
+    checkpoints were copied through the private store (`runs/mesh-20261029-gen-f3fbeb0/weights/sam-3d-objects/`).
+    Env C: torch 2.6/cu124, pytorch3d built CPU-only, kaolin stubbed, flash_attn 2.7.4.post1 wheel (the pipeline
+    forces flash_attn on H100; the 2.8.3 wheel has an ABI mismatch).
