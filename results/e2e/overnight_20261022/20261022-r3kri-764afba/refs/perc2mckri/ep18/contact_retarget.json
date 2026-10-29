@@ -1,0 +1,46 @@
+{
+ "left": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 180,
+  "optimised": 181,
+  "pen_p95_mm_before": 16.4,
+  "pen_p95_mm_after": 2.6,
+  "tip_to_target_mm_median": 4.0,
+  "tip_to_target_mm_p90": 13.4,
+  "frames_rigidly_attached": "66/67"
+ },
+ "right": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 326,
+  "optimised": 326,
+  "pen_p95_mm_before": 19.2,
+  "pen_p95_mm_after": 2.7,
+  "tip_to_target_mm_median": 3.1,
+  "tip_to_target_mm_p90": 10.2,
+  "frames_rigidly_attached": "66/67"
+ },
+ "rest_settle": {
+  "mini_sweeper": {
+   "free_frames": 191,
+   "median_gap_cm": 0.18,
+   "max_shift_cm": 0.54
+  },
+  "mini_dust_pan": {
+   "free_frames": 282,
+   "median_gap_cm": 0.23,
+   "max_shift_cm": 3.03
+  }
+ }
+}

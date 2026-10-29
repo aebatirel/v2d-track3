@@ -1,0 +1,115 @@
+{
+ "ep": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-e3-e49e83d/perc2/ep2/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|perc@-1": {
+   "scene": 0.9644,
+   "per_obj": {
+    "white_pot": 0.9685,
+    "white_pot_lid": 0.9603
+   },
+   "dz_err_cm": {
+    "white_pot": 0.058,
+    "white_pot_lid": -0.651
+   },
+   "n_frames": 343
+  },
+  "lib|perc@+0": {
+   "scene": 0.9866,
+   "per_obj": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.9807
+   },
+   "dz_err_cm": {
+    "white_pot": 0.057,
+    "white_pot_lid": -0.651
+   },
+   "n_frames": 343
+  },
+  "lib|perc@+1": {
+   "scene": 0.9849,
+   "per_obj": {
+    "white_pot": 0.9911,
+    "white_pot_lid": 0.9787
+   },
+   "dz_err_cm": {
+    "white_pot": 0.056,
+    "white_pot_lid": -0.651
+   },
+   "n_frames": 343
+  },
+  "scan|perc@-1": {
+   "scene": 0.9677,
+   "per_obj": {
+    "white_pot": 0.9694,
+    "white_pot_lid": 0.9659
+   },
+   "dz_err_cm": {
+    "white_pot": 0.009,
+    "white_pot_lid": 0.251
+   },
+   "n_frames": 343
+  },
+  "scan|perc@+0": {
+   "scene": 0.9894,
+   "per_obj": {
+    "white_pot": 0.9929,
+    "white_pot_lid": 0.986
+   },
+   "dz_err_cm": {
+    "white_pot": 0.008,
+    "white_pot_lid": 0.251
+   },
+   "n_frames": 343
+  },
+  "scan|perc@+1": {
+   "scene": 0.9895,
+   "per_obj": {
+    "white_pot": 0.99,
+    "white_pot_lid": 0.9891
+   },
+   "dz_err_cm": {
+    "white_pot": 0.007,
+    "white_pot_lid": 0.251
+   },
+   "n_frames": 343
+  }
+ },
+ "registration": {
+  "lib": {
+   "white_pot": {
+    "kind": "ours",
+    "rot_deg": 1.826,
+    "anchor_shift_cm": 0.629
+   },
+   "white_pot_lid": {
+    "kind": "ours",
+    "rot_deg": 1.052,
+    "anchor_shift_cm": 0.786
+   }
+  },
+  "scan": {
+   "white_pot": {
+    "kind": "scan",
+    "rot_deg": 0.267,
+    "anchor_shift_cm": 0.021
+   },
+   "white_pot_lid": {
+    "kind": "scan",
+    "rot_deg": 0.028,
+    "anchor_shift_cm": 0.023
+   }
+  }
+ },
+ "sec": 12.2
+}

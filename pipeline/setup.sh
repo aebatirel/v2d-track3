@@ -54,7 +54,9 @@ mkdir -p /content/ckpt
 mkdir -p /content/kit && cd /content/kit && [ -d v2d_submission_kit ] || (curl -sSL -o kit.zip https://nvidia-isaac.github.io/video_to_data/v2d_challenge/assets/v2d_submission_kit.zip && unzip -q -o kit.zip) ; cd /content && echo KIT-OK
 
 # --- perception python deps (Colab: system Python 3.13 + torch 2.11+cu130; Vast: same versions in /venv/main) ---
-pip install -q open3d trimesh omegaconf timm einops imageio gdown scikit-image ruamel.yaml imgaug albumentations joblib h5py transformations pyrender PyOpenGL kornia psutil pybind11 ninja pyarrow warp-lang && echo PYDEPS-OK
+# Colab preinstalls pandas, scipy, cv2, PIL, matplotlib, sklearn and yaml; the Vast mini image does not (box 1, 2026-10-20).
+pip install -q open3d trimesh omegaconf timm einops imageio gdown scikit-image ruamel.yaml imgaug albumentations joblib h5py transformations pyrender PyOpenGL kornia psutil pybind11 ninja pyarrow warp-lang \
+  pandas scipy opencv-python-headless pillow matplotlib scikit-learn pyyaml && echo PYDEPS-OK
 
 # SAM2 (+ DINOv2-L into the torch hub cache, so the perception run does not fetch it)
 SAM2_BUILD_CUDA=0 pip install -q 'git+https://github.com/facebookresearch/sam2.git' && echo SAM2-OK
@@ -63,7 +65,8 @@ python -c "import torch; torch.hub.load('facebookresearch/dinov2', 'dinov2_vitl1
 
 # FoundationStereo / FoundationPose weights: our HF mirror if available, else the authors' Google Drive folders
 if [ -n "${HF_STORE:-}" ]; then
-  hf download $HF_STORE --repo-type dataset --include 'weights/*' --local-dir /content/hfstore > /dev/null 2>&1 && echo WEIGHTS-MIRROR-OK
+  hf download $HF_STORE --repo-type dataset --include 'weights/*' --local-dir /content/hfstore > /dev/null 2>&1   # an empty match also exits 0
+  [ -n "$(ls -A /content/hfstore/weights 2> /dev/null)" ] && echo WEIGHTS-MIRROR-OK
 fi
 
 # FoundationStereo (ViT-L 23-51-11)
@@ -81,6 +84,11 @@ pip install -q --no-build-isolation 'git+https://github.com/facebookresearch/pyt
 [ -d /content/hfstore/weights/FoundationPose ] && mkdir -p FoundationPose/weights && cp -rn /content/hfstore/weights/FoundationPose/. FoundationPose/weights/
 [ -d FoundationPose/weights/2023-10-28-18-33-37 ] || (cd FoundationPose && gdown -q --folder https://drive.google.com/drive/folders/1DFezOAD0oD1BblsXVxqDsl8fj0qzB82i -O weights)
 ls FoundationPose/weights && echo FPOSE-OK
+
+# Import what perception really imports, so a missing package fails here and not in the job
+python -c 'import pandas, scipy, cv2, PIL, matplotlib, sklearn, yaml, torchvision, trimesh, pyarrow, omegaconf, sam2, open3d, kornia, warp, nvdiffrast.torch, pytorch3d' \
+  && (cd FoundationPose && python -c 'import estimater') && (cd FoundationStereo && python -c 'import core.foundation_stereo') \
+  && echo IMPORTS-OK || echo "IMPORTS-FAIL (see the traceback above)"
 
 wait
 for m in FLASHCHORD MPVENV RTVENV DATA; do grep -aq "$m-OK" /content/setup_*.log || echo "$m-FAIL (see /content/setup_*.log)"; done

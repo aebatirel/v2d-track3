@@ -1,0 +1,50 @@
+{
+ "left": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 180,
+  "optimised": 181,
+  "pen_p95_mm_before": 17.4,
+  "pen_p95_mm_after": 2.6,
+  "tip_to_target_mm_median": 4.9,
+  "tip_to_target_mm_p90": 17.7,
+  "frames_rigidly_attached": "66/67"
+ },
+ "right": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 326,
+  "optimised": 326,
+  "pen_p95_mm_before": 19.6,
+  "pen_p95_mm_after": 2.2,
+  "tip_to_target_mm_median": 3.2,
+  "tip_to_target_mm_p90": 10.8,
+  "frames_rigidly_attached": "66/67"
+ },
+ "rest_settle": {
+  "mini_sweeper": {
+   "free_frames": 191,
+   "median_gap_cm": 0.29,
+   "max_shift_cm": 0.55,
+   "median_turn_deg": 3.36,
+   "max_turn_deg": 6.8
+  },
+  "mini_dust_pan": {
+   "free_frames": 280,
+   "median_gap_cm": 0.29,
+   "max_shift_cm": 3.2,
+   "median_turn_deg": 1.05,
+   "max_turn_deg": 14.79
+  }
+ }
+}

@@ -1,0 +1,33 @@
+# refcheck/timing: commands run (26 Oct 2026, this cloud session's container, CPU only; repo HEAD 8724a24, these scripts
+# uncommitted new files in docs/analysis/robustness-review-20261026/refcheck/timing/). No GPU, no Vast, no Kaggle.
+# SP=/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck ; W=$SP/work/timing
+# env: source $SP/venv/bin/activate ; cwd = this directory
+# Registration cache: copied (read) from $SP/work/systematics/regcache to $W/regcache (same kit seeds); tload.py points
+# systematics.registration at $W.
+
+cp -n $SP/work/systematics/regcache/*.npz $W/regcache/
+python -I noise_floor.py noise_floor.json                                  # 9 s, exit 0
+python -I timing.py $W/timing_v1.json                                      # 63 s, exit 0 (first pass, integer crossings)
+python -I timing.py $W/timing_v2.json                                      # 61 s, exit 0 (+ sub-frame crossings, hand track flags); = timing.json here
+python -I verify_scorer.py 39 0    $W/ep39_ref_s0.npz                      # in-process kit AUC 0.9559 (chain/systematics: 0.956 / 0.9559)
+python -I verify_scorer.py 39 0.59 $W/ep39_ref_s059.npz                    # in-process 0.9702
+python -I /home/user/v2d-track3/pipeline/score_registered.py 39 $W/ep39_ref_s059.npz --meshes /home/user/v2d-track3/meshes/library_v3 \
+    --t3 $SP/t3 --kit $SP/kit/v2d_submission_kit --out $W/ep39_ref_s059_score.json   # official 0.9702 (identical), 9 s
+python -I verify_scorer.py 21 0.59 $W/ep21_ref_s059.npz                    # in-process 0.7812 (cup 0.9825, pitcher 0.5800), 16 s
+python -I /home/user/v2d-track3/pipeline/score_registered.py 21 $W/ep21_ref_s059.npz --meshes /home/user/v2d-track3/meshes/library_v3 \
+    --t3 $SP/t3 --kit $SP/kit/v2d_submission_kit --out $W/ep21_ref_s059_score.json   # official 0.7812 (identical), 44 s
+python -I cost.py $W/timing_v2.json $W/cost_v1.json                        # STOPPED after ep2/ep11 perc: variant 'warp' (onset+offset
+                                                                           #   piecewise warp) dropped: ep2 ref 0.9798 -> 0.9402, ep11 perc 0.8964 -> 0.8547
+python -I cost.py $W/timing_v2.json $W/cost_v2.json                        # STOPPED (rest_hold did not cover static objects)
+python -I cost.py $W/timing_v2.json $W/cost_v3.json                        # final cost run, 11 min 42 s, exit 0 (cost.json here)
+python -I creep.py $W/timing_v2.json creep.json                            # ~60 s, exit 0
+cp $W/timing_v2.json timing.json; cp $W/cost_v3.json cost.json; cp $W/cost_v3.log cost.log
+huggingface_hub.snapshot_download(allow_patterns=runs/20261025-sweep-a894083/results/sweep/{t4,t8}/*/{poses_world_vo.npz,result.json}, summary.json)  # 81 files, 2.6 MB
+python -I iters_lag.py iters_lag.json                                      # 24 s, exit 0
+python -I sim_shift.py cost.json sim_shift.json                            # 8 min 54 s, exit 0; 50 rollouts x 2 scorings; log $W/sim_shift.log
+python -I -B summarize.py timing.json cost.json . creep.json               # -> tables.md, summary.json (final)
+# Incident: an over-broad `pkill -f refcheck/timing/cost.py` did not match the running processes (they show a relative
+# path) and killed only its own shell, so the stopped runs kept going: for about 6 minutes (16:57-17:03 UTC) two to four
+# cost.py processes ran at once, against the one-heavy-process rule. Three were then killed by PID (v1, v2 and a
+# duplicate v3 resume); only the original v3 run continued.
+# Note: the imports of ../systematics/{sysload,systematics}.py rewrote that dir's gitignored __pycache__ at 16:46 UTC.

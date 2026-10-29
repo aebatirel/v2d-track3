@@ -1,0 +1,198 @@
+{
+ "label": "rp18 policy 50M (r1 ref)",
+ "trace": "data/hf/runs/20261023-rp18-a674fd7/results/glock_public/ep18/vid/policy_trace.npz",
+ "phases": [
+  {
+   "hand": "left",
+   "object": "mini_dust_pan",
+   "approach_from": 1,
+   "hold_from": 9,
+   "closed_at": 19,
+   "ref_move": 19,
+   "end": 187,
+   "grasp_frame": 28,
+   "grasp_type": "snapped human grasp",
+   "sim_at_hold_from": {
+    "err_cm": 0.5,
+    "disp_mm": 4.3,
+    "turn_deg": 2.8
+   },
+   "sim_at_closed": {
+    "err_cm": 1.8,
+    "disp_mm": 4.8,
+    "turn_deg": 2.5,
+    "contacts": "",
+    "palm_mm": 68.5,
+    "ref_contacts": "pinky_MP+index_MP+ring_MP+pinky_DP+ring_DP+middle_MP+index_DP",
+    "ref_palm_mm": 24.3
+   },
+   "ref_peak_lift": {
+    "frame": 149,
+    "ref_lift_cm": 16.1,
+    "sim_lift_cm": -0.4,
+    "err_cm": 19.9
+   },
+   "max_sim_lift_in_phase_cm": -0.2,
+   "frames_ref_lifted_gt2cm": 77,
+   "frames_sim_lifted_gt2cm": 0,
+   "frac_err_le3cm_in_phase": 0.169,
+   "mean_contacts_while_held": 0.0,
+   "mean_ref_contacts_while_held": 7.0,
+   "contact_share_sim": {},
+   "contact_share_ref": {
+    "pinky_MP": 1.0,
+    "index_MP": 1.0,
+    "ring_MP": 1.0,
+    "pinky_DP": 1.0,
+    "ring_DP": 1.0,
+    "middle_MP": 1.0,
+    "index_DP": 1.0
+   },
+   "slip_cm_p50_max": [
+    7.2,
+    16.5
+   ],
+   "slip_deg_p50_max": [
+    41.8,
+    59.9
+   ],
+   "first_slip_gt2cm_f": 21
+  },
+  {
+   "hand": "right",
+   "object": "mini_sweeper",
+   "approach_from": 45,
+   "hold_from": 53,
+   "closed_at": 63,
+   "ref_move": 63,
+   "end": 323,
+   "grasp_frame": 66,
+   "grasp_type": "snapped human grasp",
+   "sim_at_hold_from": {
+    "err_cm": 5.0,
+    "disp_mm": 84.1,
+    "turn_deg": 81.0
+   },
+   "sim_at_closed": {
+    "err_cm": 9.2,
+    "disp_mm": 84.1,
+    "turn_deg": 80.4,
+    "contacts": "thumb_MC",
+    "palm_mm": 22.6,
+    "ref_contacts": "thumb_PP+thumb_DP+index_MP",
+    "ref_palm_mm": 32.2
+   },
+   "ref_peak_lift": {
+    "frame": 119,
+    "ref_lift_cm": 8.1,
+    "sim_lift_cm": -5.2,
+    "err_cm": 13.5
+   },
+   "max_sim_lift_in_phase_cm": -4.6,
+   "frames_ref_lifted_gt2cm": 91,
+   "frames_sim_lifted_gt2cm": 0,
+   "frac_err_le3cm_in_phase": 0.0,
+   "mean_contacts_while_held": 0.0,
+   "mean_ref_contacts_while_held": 7.63,
+   "contact_share_sim": {
+    "thumb_MC": 0.0
+   },
+   "contact_share_ref": {
+    "index_MP": 0.97,
+    "thumb_DP": 0.97,
+    "thumb_PP": 0.95,
+    "index_DP": 0.95,
+    "ring_MP": 0.95,
+    "pinky_MP": 0.94,
+    "thumb_MC": 0.93,
+    "pinky_DP": 0.92,
+    "middle_MP": 0.03,
+    "middle_PP": 0.02,
+    "index_PP": 0.01
+   },
+   "slip_cm_p50_max": [
+    12.3,
+    20.1
+   ],
+   "slip_deg_p50_max": [
+    63.6,
+    105.3
+   ],
+   "first_slip_gt2cm_f": 64
+  }
+ ],
+ "events": {
+  "mini_sweeper": {
+   "first_departure_from_sim_rest_f": 1,
+   "first_err_gt3cm_f": 6,
+   "first_err_gt10cm_f": 41,
+   "mean_err_cm": 9.2,
+   "frac_within_3cm": 0.017,
+   "max_sim_lift_cm": 0.0,
+   "max_ref_lift_cm": 8.1,
+   "at_departure": {
+    "f": 1,
+    "obj": "mini_sweeper",
+    "ref_lift_cm": 0.2,
+    "sim_lift_cm": -0.4,
+    "err_cm": 0.7,
+    "err_deg": 3.4,
+    "sim_disp_mm": 5.6,
+    "sim_turn_deg": 3.8,
+    "ref_disp_mm": 1.6,
+    "left_min_mm": 289.4,
+    "left_contacts": "",
+    "left_ncontact": 0,
+    "left_palm_mm": 334.4,
+    "left_ref_contacts": "",
+    "left_ref_ncontact": 0,
+    "left_ref_min_mm": 316.2,
+    "left_ref_palm_mm": 372.9,
+    "right_min_mm": 126.3,
+    "right_contacts": "",
+    "right_ncontact": 0,
+    "right_palm_mm": 163.9,
+    "right_ref_contacts": "",
+    "right_ref_ncontact": 0,
+    "right_ref_min_mm": 147.4,
+    "right_ref_palm_mm": 171.9
+   }
+  },
+  "mini_dust_pan": {
+   "first_departure_from_sim_rest_f": 10,
+   "first_err_gt3cm_f": 22,
+   "first_err_gt10cm_f": 122,
+   "mean_err_cm": 4.19,
+   "frac_within_3cm": 0.581,
+   "max_sim_lift_cm": 0.0,
+   "max_ref_lift_cm": 16.1,
+   "at_departure": {
+    "f": 10,
+    "obj": "mini_dust_pan",
+    "ref_lift_cm": 0.2,
+    "sim_lift_cm": -0.4,
+    "err_cm": 0.6,
+    "err_deg": 3.2,
+    "sim_disp_mm": 4.3,
+    "sim_turn_deg": 3.1,
+    "ref_disp_mm": 2.2,
+    "left_min_mm": 79.4,
+    "left_contacts": "",
+    "left_ncontact": 0,
+    "left_palm_mm": 100.0,
+    "left_ref_contacts": "pinky_DP+ring_DP+pinky_MP+ring_MP",
+    "left_ref_ncontact": 4,
+    "left_ref_min_mm": -6.5,
+    "left_ref_palm_mm": 24.3,
+    "right_min_mm": 224.5,
+    "right_contacts": "",
+    "right_ncontact": 0,
+    "right_palm_mm": 295.1,
+    "right_ref_contacts": "",
+    "right_ref_ncontact": 0,
+    "right_ref_min_mm": 228.7,
+    "right_ref_palm_mm": 274.8
+   }
+  }
+ }
+}

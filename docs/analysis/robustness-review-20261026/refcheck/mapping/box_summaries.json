@@ -1,0 +1,559 @@
+{
+ "n_summary_files": 91,
+ "n_distinct_policy_means": 58,
+ "episodes": {
+  "2": 1,
+  "11": 2,
+  "12": 11,
+  "18": 17,
+  "21": 3,
+  "24": 11,
+  "26": 1,
+  "27": 7,
+  "31": 2,
+  "39": 3
+ },
+ "sum_T_over_sum_S": 0.9891,
+ "mean_T_over_S": 1.0082,
+ "k_ls": 0.976,
+ "reproduction_attempts": {
+  "all": {
+   "n": 58,
+   "n_eps": 10,
+   "sum_ratio": 0.9891,
+   "k_ls": 0.976,
+   "mean_ratio": 1.0082,
+   "median_ratio": 0.9848
+  },
+  "without newest (20261025-twin21base-ee7ba8e)": {
+   "n": 57,
+   "n_eps": 10,
+   "sum_ratio": 0.9951,
+   "k_ls": 0.9827,
+   "mean_ratio": 1.0126,
+   "median_ratio": 0.9849
+  },
+  "S>=0.5": {
+   "n": 28,
+   "n_eps": 6,
+   "sum_ratio": 0.9666,
+   "k_ls": 0.9653,
+   "mean_ratio": 0.9679,
+   "median_ratio": 0.9815
+  },
+  "S>=0.5, without newest": {
+   "n": 27,
+   "n_eps": 6,
+   "sum_ratio": 0.9741,
+   "k_ls": 0.9727,
+   "mean_ratio": 0.9757,
+   "median_ratio": 0.9818
+  },
+  "S>=0.8": {
+   "n": 19,
+   "n_eps": 5,
+   "sum_ratio": 0.9574,
+   "k_ls": 0.9575,
+   "mean_ratio": 0.9573,
+   "median_ratio": 0.977
+  },
+  "S>=0.8, without newest": {
+   "n": 18,
+   "n_eps": 5,
+   "sum_ratio": 0.9676,
+   "k_ls": 0.9669,
+   "mean_ratio": 0.9683,
+   "median_ratio": 0.9794
+  },
+  "S>=0.9": {
+   "n": 13,
+   "n_eps": 5,
+   "sum_ratio": 0.9625,
+   "k_ls": 0.962,
+   "mean_ratio": 0.9629,
+   "median_ratio": 0.977
+  },
+  "S>=0.9, without newest": {
+   "n": 13,
+   "n_eps": 5,
+   "sum_ratio": 0.9625,
+   "k_ls": 0.962,
+   "mean_ratio": 0.9629,
+   "median_ratio": 0.977
+  },
+  "without ep21 (pitcher)": {
+   "n": 55,
+   "n_eps": 9,
+   "sum_ratio": 1.0011,
+   "k_ls": 0.9909,
+   "mean_ratio": 1.016,
+   "median_ratio": 0.9849
+  }
+ },
+ "policies": [
+  {
+   "ep": 12,
+   "path": "runs/20261022-r1a-65c5a52/results/hard_ab/ep12/mc/summary.json",
+   "S": 0.7289,
+   "T": 0.7246,
+   "n": 6,
+   "checkpoint": "/content/results/final/ep12/policy.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261022-r1a-65c5a52/results/hard_ab/ep12/mck-s42/summary.json",
+   "S": 0.7909,
+   "T": 0.7902,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mck/ep12-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r1a-65c5a52/results/hard_ab/ep24/mcs/summary.json",
+   "S": 0.3143,
+   "T": 0.2975,
+   "n": 6,
+   "checkpoint": "/content/v2d-track3/policies/20261021-auto24-966eb96/perc2mcs/ep24_policy_250003456.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r1a-65c5a52/results/hard_ab/ep24/mcsk-s42/summary.json",
+   "S": 0.3143,
+   "T": 0.3071,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcsk/ep24-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r1b-65c5a52/results/hard_ab/ep18/mc/summary.json",
+   "S": 0.3078,
+   "T": 0.3445,
+   "n": 6,
+   "checkpoint": "/content/v2d-track3/policies/20261021-auto18-966eb96/perc2mc/ep18_policy_150007808.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r1b-65c5a52/results/hard_ab/ep18/mck-s42/summary.json",
+   "S": 0.302,
+   "T": 0.319,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mck/ep18-s42/policy_150007808.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261022-r1b-65c5a52/results/hard_ab/ep27/mc/summary.json",
+   "S": 0.9493,
+   "T": 0.9416,
+   "n": 6,
+   "checkpoint": "/content/results/final/ep27/policy.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261022-r1b-65c5a52/results/hard_ab/ep27/mck-s42/summary.json",
+   "S": 0.9324,
+   "T": 0.911,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mck/ep27-s42/policy_100003840.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r1c2-d4ac331/results/hard_ab/ep18/mck-s43/summary.json",
+   "S": 0.3204,
+   "T": 0.3611,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mck/ep18-s43/policy_150007808.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r1c2-d4ac331/results/hard_ab/ep24/mcsk-s43/summary.json",
+   "S": 0.3206,
+   "T": 0.3065,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcsk/ep24-s43/policy_200007680.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r2p-d4ac331/results/hard_ab/ep18/mcp-s42/summary.json",
+   "S": 0.336,
+   "T": 0.3766,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcp/ep18-s42/policy_150007808.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r2p-d4ac331/results/hard_ab/ep24/mcsp-s42/summary.json",
+   "S": 0.2691,
+   "T": 0.2821,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcsp/ep24-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r2q-d4ac331/results/hard_ab/ep18/mckq-s42/summary.json",
+   "S": 0.3345,
+   "T": 0.3805,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckq/ep18-s42/policy_100003840.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r2q-d4ac331/results/hard_ab/ep24/mcskq-s42/summary.json",
+   "S": 0.3292,
+   "T": 0.313,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcskq/ep24-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r3i-1fc3dc9/results/hard_ab/ep18/mci-s42/summary.json",
+   "S": 0.3086,
+   "T": 0.3508,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mci/ep18-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r3ki-342d72c/results/hard_ab/ep18/mcki-s42/summary.json",
+   "S": 0.3037,
+   "T": 0.3417,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcki/ep18-s42/policy_200007680.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r3ki-342d72c/results/hard_ab/ep24/mcski-s42/summary.json",
+   "S": 0.326,
+   "T": 0.318,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcski/ep24-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261022-r3kie-342d72c/results/hard_ab/ep12/mcki-s42/summary.json",
+   "S": 0.7693,
+   "T": 0.7629,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcki/ep12-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261022-r3kie-342d72c/results/hard_ab/ep27/mcki-s42/summary.json",
+   "S": 0.9251,
+   "T": 0.8973,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcki/ep27-s42/policy_200007680.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r3kri-764afba/results/hard_ab/ep18/mckri-s42/summary.json",
+   "S": 0.3292,
+   "T": 0.3684,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckri/ep18-s42/policy_200007680.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r3kri-764afba/results/hard_ab/ep24/mcskri-s42/summary.json",
+   "S": 0.3226,
+   "T": 0.3117,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcskri/ep24-s42/policy_200007680.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261022-r4kfi-a30ac72/results/hard_ab/ep18/mckfi-s42/summary.json",
+   "S": 0.7333,
+   "T": 0.7149,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckfi/ep18-s42/policy_200007680.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261022-r4kr-28e4883/results/hard_ab/ep12/mckr-s42/summary.json",
+   "S": 0.7627,
+   "T": 0.7401,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckr/ep12-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r5ks-72ecb2f/results/hard_ab/ep24/mcsks-s42/summary.json",
+   "S": 0.3851,
+   "T": 0.3892,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcsks/ep24-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261022-r5ks43-72ecb2f/results/hard_ab/ep24/mcsks-s43/summary.json",
+   "S": 0.2226,
+   "T": 0.2452,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mcsks/ep24-s43/policy_200007680.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261023-dr12-a674fd7/results/glock_public/ep12/best/summary.json",
+   "S": 0.8921,
+   "T": 0.8686,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep12-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261023-dr18-a674fd7/results/glock_public/ep18/best/summary.json",
+   "S": 0.2057,
+   "T": 0.2202,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261023-fdr42-715c9f7/results/hard_ab/ep12/mckd-s42/summary.json",
+   "S": 0.9051,
+   "T": 0.8912,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckd/ep12-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261023-fdr42-715c9f7/results/hard_ab/ep18/mckfid-s42/summary.json",
+   "S": 0.7912,
+   "T": 0.7764,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckfid/ep18-s42/policy_200007680.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261023-fdr43-715c9f7/results/hard_ab/ep12/mckd-s43/summary.json",
+   "S": 0.7742,
+   "T": 0.7616,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckd/ep12-s43/policy_250003456.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261023-fdr43-715c9f7/results/hard_ab/ep18/mckfid-s43/summary.json",
+   "S": 0.9217,
+   "T": 0.8891,
+   "n": 6,
+   "checkpoint": "/content/runs/perc2mckfid/ep18-s43/policy_250003456.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261023-glockpub-0f7e3a7/results/glock_public/ep12/best/summary.json",
+   "S": 0.9264,
+   "T": 0.9095,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep12-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261023-glockpub-0f7e3a7/results/glock_public/ep18/best/summary.json",
+   "S": 0.2901,
+   "T": 0.3198,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_30003200.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261023-glockpub-0f7e3a7/results/glock_public/ep24/best/summary.json",
+   "S": 0.1733,
+   "T": 0.2024,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep24-s42/policy_30003200.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261023-glockpub-0f7e3a7/results/glock_public/ep27/best/summary.json",
+   "S": 0.9786,
+   "T": 0.9721,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep27-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261023-kf18-a674fd7/results/glock_public/ep18/best/summary.json",
+   "S": 0.2477,
+   "T": 0.2192,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_50003968.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261023-rp18-a674fd7/results/glock_public/ep18/best/summary.json",
+   "S": 0.3533,
+   "T": 0.4047,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_50003968.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261023-sf1227-bfb973a/results/glock_public/ep12/best/summary.json",
+   "S": 0.8992,
+   "T": 0.8856,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep12-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261023-sf1227-bfb973a/results/glock_public/ep27/best/summary.json",
+   "S": 0.9777,
+   "T": 0.9628,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep27-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261024-e1-e49e83d/results/glock_public/ep18/best/summary.json",
+   "S": 0.3103,
+   "T": 0.3017,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_10002432.safetensors"
+  },
+  {
+   "ep": 21,
+   "path": "runs/20261024-e2-e49e83d/results/glock_public/ep21/best/summary.json",
+   "S": 0.2675,
+   "T": 0.281,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep21-s42/policy_30003200.safetensors"
+  },
+  {
+   "ep": 31,
+   "path": "runs/20261024-e2-e49e83d/results/glock_public/ep31/best/summary.json",
+   "S": 0.7307,
+   "T": 0.7666,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep31-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 2,
+   "path": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/summary.json",
+   "S": 0.3263,
+   "T": 0.3064,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep2-s42/policy_30003200.safetensors"
+  },
+  {
+   "ep": 39,
+   "path": "runs/20261024-e3-e49e83d/results/glock_public/ep39/best/summary.json",
+   "S": 0.1732,
+   "T": 0.1736,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep39-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/summary.json",
+   "S": 0.8806,
+   "T": 0.868,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep12-s42/policy_40001536.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/summary.json",
+   "S": 0.9734,
+   "T": 0.9489,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep27-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 18,
+   "path": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/summary.json",
+   "S": 0.9917,
+   "T": 0.9573,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep18-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 24,
+   "path": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/summary.json",
+   "S": 0.267,
+   "T": 0.2406,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep24-s42/policy_50003968.safetensors"
+  },
+  {
+   "ep": 39,
+   "path": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/summary.json",
+   "S": 0.9991,
+   "T": 0.9579,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep39-s42/policy_60002304.safetensors"
+  },
+  {
+   "ep": 31,
+   "path": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/summary.json",
+   "S": 0.7173,
+   "T": 0.6951,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep31-s42/policy_60002304.safetensors"
+  },
+  {
+   "ep": 39,
+   "path": "runs/20261024-std39-1f306be/results/hard_ab/ep39/mcks-s42/summary.json",
+   "S": 0.826,
+   "T": 0.8016,
+   "n": 5,
+   "checkpoint": "/content/runs/perc2mcks/ep39-s42/policy_250003456.safetensors"
+  },
+  {
+   "ep": 26,
+   "path": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/summary.json",
+   "S": 0.4264,
+   "T": 0.3827,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep26-s42/policy_10002432.safetensors"
+  },
+  {
+   "ep": 12,
+   "path": "runs/20261024-w2-37cc551/results/glock_public/ep12/best/summary.json",
+   "S": 0.8566,
+   "T": 0.8539,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep12-s43/policy_70004736.safetensors"
+  },
+  {
+   "ep": 27,
+   "path": "runs/20261024-w2-37cc551/results/glock_public/ep27/best/summary.json",
+   "S": 0.9715,
+   "T": 0.9571,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep27-s43/policy_70004736.safetensors"
+  },
+  {
+   "ep": 11,
+   "path": "runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/best/summary.json",
+   "S": 0.4445,
+   "T": 0.5249,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep11-s42/policy_40001536.safetensors"
+  },
+  {
+   "ep": 11,
+   "path": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/summary.json",
+   "S": 0.4802,
+   "T": 0.5696,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep11-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 21,
+   "path": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/summary.json",
+   "S": 0.983,
+   "T": 0.7723,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep21-s42/policy_70004736.safetensors"
+  },
+  {
+   "ep": 21,
+   "path": "runs/20261025-twin21base-ee7ba8e/results/glock_public/ep21/best/summary.json",
+   "S": 0.8645,
+   "T": 0.6565,
+   "n": 5,
+   "checkpoint": "/content/runs/glock/ep21-s42/policy_70004736.safetensors"
+  }
+ ]
+}

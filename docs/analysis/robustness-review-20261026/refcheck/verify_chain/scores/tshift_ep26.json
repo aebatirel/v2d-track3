@@ -1,0 +1,115 @@
+{
+ "ep": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 158,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-w1-37cc551/perc2/ep26/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|perc@-1": {
+   "scene": 0.9565,
+   "per_obj": {
+    "plastic_dish_rack": 0.9976,
+    "white_pot": 0.9153
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.381,
+    "white_pot": 0.329
+   },
+   "n_frames": 158
+  },
+  "lib|perc@+0": {
+   "scene": 0.9723,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.9474
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.382,
+    "white_pot": 0.308
+   },
+   "n_frames": 158
+  },
+  "lib|perc@+1": {
+   "scene": 0.9802,
+   "per_obj": {
+    "plastic_dish_rack": 0.9976,
+    "white_pot": 0.9628
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.384,
+    "white_pot": 0.287
+   },
+   "n_frames": 158
+  },
+  "scan|perc@-1": {
+   "scene": 0.9355,
+   "per_obj": {
+    "plastic_dish_rack": 0.9976,
+    "white_pot": 0.8734
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.393,
+    "white_pot": 0.854
+   },
+   "n_frames": 158
+  },
+  "scan|perc@+0": {
+   "scene": 0.9551,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.913
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.395,
+    "white_pot": 0.834
+   },
+   "n_frames": 158
+  },
+  "scan|perc@+1": {
+   "scene": 0.9657,
+   "per_obj": {
+    "plastic_dish_rack": 0.9976,
+    "white_pot": 0.9339
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.396,
+    "white_pot": 0.813
+   },
+   "n_frames": 158
+  }
+ },
+ "registration": {
+  "lib": {
+   "plastic_dish_rack": {
+    "kind": "ours",
+    "rot_deg": 1.821,
+    "anchor_shift_cm": 0.568
+   },
+   "white_pot": {
+    "kind": "ours",
+    "rot_deg": 1.771,
+    "anchor_shift_cm": 0.682
+   }
+  },
+  "scan": {
+   "plastic_dish_rack": {
+    "kind": "scan",
+    "rot_deg": 0.11,
+    "anchor_shift_cm": 0.018
+   },
+   "white_pot": {
+    "kind": "scan",
+    "rot_deg": 0.412,
+    "anchor_shift_cm": 0.038
+   }
+  }
+ },
+ "sec": 11.9
+}

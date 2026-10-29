@@ -1,0 +1,49 @@
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa/cma_ep39.json
+  object mini_dust_pan hold [70, 292] window [22, 122] dim 28 worlds/gen 16 robust K 1
+  generations 8  evaluations 128  world-steps 12800  wall-clock 136 s
+  unedited 0.3094  best 0.8100 (gen 2)  final sigma 0.884
+  generation best  [0.3255, 0.3236, 0.81, 0.6881, 0.4462, 0.7135, 0.5774, 0.7141]
+  generation mean  [0.3033, 0.3127, 0.3848, 0.36, 0.3377, 0.3687, 0.3405, 0.3828]
+  best edit: wrist [0.8, 3.2, -2.6] cm, rpy [0.28, -0.07, 0.03] rad, |finger| max 0.59 rad; coordinates at the +-4 sigma bound: 0 of 28
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa/cma2_ep39.json
+  object mini_dust_pan hold [70, 292] window [22, 312] dim 28 worlds/gen 8 robust K 1
+  generations 12  evaluations 96  world-steps 27840  wall-clock 720 s
+  unedited 0.1078  best 0.8647 (gen 3)  final sigma 0.823
+  generation best  [0.2816, 0.5084, 0.39, 0.8647, 0.7923, 0.3078, 0.3602, 0.5709, 0.6521, 0.7562, 0.2332, 0.172]
+  generation mean  [0.1405, 0.1396, 0.2377, 0.3398, 0.2887, 0.1759, 0.2463, 0.3187, 0.2241, 0.2046, 0.157, 0.112]
+  best edit: wrist [1.3, 2.9, -4.2] cm, rpy [0.28, 0.19, 0.06] rad, |finger| max 0.98 rad; coordinates at the +-4 sigma bound: 0 of 28
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa/robust_test.json
+  object mini_dust_pan hold [70, 292] window [22, 82] dim 28 worlds/gen 8 robust K 4
+  generations 1  evaluations 8  world-steps 480  wall-clock 8 s
+  unedited 0.5015  best 0.7856 (gen 0)  final sigma 0.947
+  generation best  [0.7856]
+  generation mean  [0.6436]
+  best edit: wrist [1.3, 2.9, -4.2] cm, rpy [0.28, 0.19, 0.06] rad, |finger| max 0.60 rad; coordinates at the +-4 sigma bound: 8 of 28
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa18/cma_p0.json
+  object mini_dust_pan hold [11, 187] window [0, 207] dim 28 worlds/gen 8 robust K 1
+  generations 10  evaluations 80  world-steps 16560  wall-clock 533 s
+  unedited 0.2108  best 0.4044 (gen 7)  final sigma 0.885
+  generation best  [0.381, 0.3929, 0.3953, 0.3797, 0.3914, 0.3932, 0.3914, 0.4044, 0.3974, 0.3962]
+  generation mean  [0.2164, 0.3073, 0.3489, 0.269, 0.3204, 0.3543, 0.3479, 0.3788, 0.3555, 0.357]
+  best edit: wrist [-2.1, 5.9, 9.7] cm, rpy [0.38, -0.45, 0.1] rad, |finger| max 1.18 rad; coordinates at the +-4 sigma bound: 0 of 28
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa18/cma_p1f.json
+  object mini_sweeper hold [61, 323] window [10, 343] dim 28 worlds/gen 8 robust K 1
+  generations 12  evaluations 96  world-steps 31968  wall-clock 476 s
+  unedited 0.3751  best 0.5843 (gen 7)  final sigma 0.82
+  generation best  [0.4124, 0.4307, 0.4715, 0.5109, 0.488, 0.4297, 0.49, 0.5843, 0.4277, 0.5807, 0.5069, 0.5238]
+  generation mean  [0.3683, 0.3634, 0.3945, 0.3931, 0.3944, 0.3782, 0.3638, 0.4092, 0.3356, 0.3995, 0.3949, 0.3722]
+  best edit: wrist [-1.8, 9.2, 0.2] cm, rpy [0.05, 0.31, 0.09] rad, |finger| max 1.20 rad; coordinates at the +-4 sigma bound: 2 of 28
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa24/cma_p0.json
+  object wooden_piece_1 hold [4, 240] window [0, 260] dim 28 worlds/gen 8 robust K 1
+  generations 10  evaluations 80  world-steps 20800  wall-clock 622 s
+  unedited 0.1943  best 0.5131 (gen 0)  final sigma 0.809
+  generation best  [0.5131, 0.5063, 0.4758, 0.2914, 0.4382, 0.2945, 0.3312, 0.3124, 0.4939, 0.4328]
+  generation mean  [0.2448, 0.2195, 0.2278, 0.2197, 0.2648, 0.2092, 0.2073, 0.2504, 0.2702, 0.2815]
+  best edit: wrist [-4.3, -0.6, 4.1] cm, rpy [0.32, 0.04, -0.12] rad, |finger| max 0.60 rad; coordinates at the +-4 sigma bound: 0 of 28
+/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/evo/oa24/cma_p1.json
+  object wooden_piece_2 hold [103, 244] window [12, 264] dim 28 worlds/gen 8 robust K 1
+  generations 4  evaluations 32  world-steps 8064  wall-clock 427 s
+  unedited 0.1926  best 0.2827 (gen 1)  final sigma 0.939
+  generation best  [0.2032, 0.2827, 0.1947, 0.195]
+  generation mean  [0.1807, 0.1647, 0.1366, 0.135]
+  best edit: wrist [3.0, -7.8, -6.5] cm, rpy [-0.26, -0.0, -0.23] rad, |finger| max 1.10 rad; coordinates at the +-4 sigma bound: 0 of 28

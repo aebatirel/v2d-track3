@@ -1,0 +1,21 @@
+{
+ "tool": "lathe_collision",
+ "profile": "<scratch>/approach2/out/lathe2/blue_cup_profile.npz",
+ "name": "blue_cup",
+ "hollow": true,
+ "wall_t_mm": 3.0,
+ "shrink_mm": 0.0,
+ "segments": 12,
+ "band_cm": 6.0,
+ "pieces": 53,
+ "volume_cm3": 152.9,
+ "height_cm": 16.2,
+ "r_out_cm": [
+  3.15,
+  4.73
+ ],
+ "base_end": "hi",
+ "wall_fitted_mm": 4.89,
+ "base_extended_mm": 0.0,
+ "max_piece_vertices": 76
+}

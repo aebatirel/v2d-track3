@@ -1,0 +1,116 @@
+{
+ "parquet": "hf:aebatirel/v2d-store/runs/20261024-e2-e49e83d/refs/perc2mck/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/f5cecb3272f2451a8744241239937e67-0.parquet",
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "slot_labels": [
+  "thumb_tip",
+  "index_tip",
+  "middle_tip",
+  "ring_tip",
+  "pinky_tip",
+  "thumb_DP",
+  "index_DP",
+  "middle_DP",
+  "ring_DP",
+  "pinky_DP",
+  "thumb_MCP",
+  "index_MP",
+  "middle_MP",
+  "ring_MP",
+  "pinky_MP",
+  "palm"
+ ],
+ "holds": [
+  {
+   "side": "right",
+   "object": "mini_sweeper",
+   "frames": [
+    25,
+    264
+   ],
+   "n": 240,
+   "slot_share": {
+    "index_tip": 0.7,
+    "middle_tip": 1.0,
+    "ring_tip": 0.97,
+    "index_DP": 0.1,
+    "middle_DP": 0.11,
+    "ring_DP": 0.66
+   },
+   "digit_share": {
+    "thumb": 0.03,
+    "index": 0.7,
+    "middle": 1.0,
+    "ring": 0.98,
+    "pinky": 0.04,
+    "palm": 0.0
+   },
+   "where": {
+    "thumb": {
+     "n": 7,
+     "pos_mean_cm": [
+      -6.8,
+      -2.2,
+      1.1
+     ],
+     "pos_p10_cm": [
+      -6.9,
+      -2.3,
+      1.0
+     ],
+     "pos_p90_cm": [
+      -6.8,
+      -2.1,
+      1.2
+     ],
+     "normal_mean": [
+      0.73,
+      0.66,
+      -0.19
+     ],
+     "thin_axis_normal_pos_share": 0.0
+    },
+    "fingers": {
+     "n": 882,
+     "pos_mean_cm": [
+      -7.0,
+      -1.1,
+      -0.3
+     ],
+     "pos_p10_cm": [
+      -8.0,
+      -2.0,
+      -1.2
+     ],
+     "pos_p90_cm": [
+      -5.1,
+      -0.2,
+      1.1
+     ],
+     "normal_mean": [
+      0.41,
+      0.23,
+      0.31
+     ],
+     "thin_axis_normal_pos_share": 0.69
+    }
+   },
+   "mesh_pca_extent_cm": [
+    14.4,
+    11.0,
+    3.3
+   ],
+   "grip_from_com_cm": 7.1,
+   "F_max_N": 3.22,
+   "acc_p95_ms2": 0.89,
+   "speed_max_ms": 0.31,
+   "tau_grip_max_Nm": 0.112,
+   "tau_grip_p50_Nm": 0.077,
+   "tilt_max_deg": 30.4,
+   "lift_max_cm": 10.5
+  }
+ ]
+}

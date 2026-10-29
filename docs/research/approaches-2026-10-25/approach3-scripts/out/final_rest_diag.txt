@@ -1,0 +1,11 @@
+== ep18
+mini_sweeper final rest ref 298 GT 297 | last hold end 323 | ref-GT 1 | hold_end-GT 26
+mini_dust_pan final rest ref 167 GT 157 | last hold end 187 | ref-GT 10 | hold_end-GT 30
+== ep24
+wooden_piece_1 final rest ref 229 GT 213 | last hold end 244 | ref-GT 16 | hold_end-GT 31
+wooden_piece_2 final rest ref 233 GT 86 | last hold end 202 | ref-GT 147 | hold_end-GT 116
+== ep39
+mini_dust_pan final rest ref 270 GT 266 | last hold end 292 | ref-GT 4 | hold_end-GT 26
+== ep31
+mini_sweeper final rest ref 268 GT 218 | last hold end 265 | ref-GT 50 | hold_end-GT 47
+plastic_dish_rack final rest ref None GT None | last hold end None | ref-GT None | hold_end-GT None

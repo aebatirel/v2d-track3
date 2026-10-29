@@ -1,0 +1,383 @@
+{
+ "episode": 24,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 275,
+ "meshes": "/home/user/v2d-track3/meshes/library_v2",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep24/poses_world_vo.npz",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 0.348,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 0.473,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8117,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.3599,
+    "RPE_cm": 0.9832,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.7764,
+     "wooden_piece_2": 0.847
+    }
+   },
+   "seconds": 11.3
+  },
+  "scan4096": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 4096,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 179.287,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 176.566,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.0568,
+    "SP_SR": 0.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 19.4166,
+    "RPE_cm": 21.0587,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.0655,
+     "wooden_piece_2": 0.0482
+    }
+   },
+   "seconds": 13.7
+  },
+  "scan20000": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 20000,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 179.335,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 179.54,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.0327,
+    "SP_SR": 0.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 19.418,
+    "RPE_cm": 21.003,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.0655,
+     "wooden_piece_2": 0.0
+    }
+   },
+   "seconds": 13.4
+  },
+  "seed3": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 3,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 0.316,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 0.768,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8105,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.3901,
+    "RPE_cm": 0.9447,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.7764,
+     "wooden_piece_2": 0.8445
+    }
+   },
+   "seconds": 9.5
+  },
+  "seed4": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 4,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 0.285,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 0.504,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8189,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.2967,
+    "RPE_cm": 0.9366,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.7905,
+     "wooden_piece_2": 0.8473
+    }
+   },
+   "seconds": 9.5
+  },
+  "seed5": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 5,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 0.711,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 0.789,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8048,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.4707,
+    "RPE_cm": 0.922,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.7716,
+     "wooden_piece_2": 0.838
+    }
+   },
+   "seconds": 9.3
+  },
+  "seed6": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 6,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "wooden_piece_1": {
+     "rot_deg": 1.22,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "wooden_piece_2": {
+     "rot_deg": 0.594,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8374,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.2304,
+    "RPE_cm": 1.0809,
+    "per_obj_AUC": {
+     "wooden_piece_1": 0.8198,
+     "wooden_piece_2": 0.855
+    }
+   },
+   "seconds": 9.3
+  }
+ }
+}

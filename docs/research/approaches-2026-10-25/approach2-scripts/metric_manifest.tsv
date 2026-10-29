@@ -1,0 +1,17 @@
+library_v3/blue_cup	blue_cup	/home/user/v2d-track3/meshes/library_v3/blue_cup.glb	base
+lathe2/blue_cup	blue_cup	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2/blue_cup.glb	lathe	library_v3/blue_cup
+lathe2_solid/blue_cup	blue_cup	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2_solid/blue_cup.glb	ablation	library_v3/blue_cup
+library_v3/beige_cup	beige_cup	/home/user/v2d-track3/meshes/library_v3/beige_cup.glb	base
+lathe2/beige_cup_v3	beige_cup	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2/beige_cup_v3.glb	lathe	library_v3/beige_cup
+library_v3x/beige_cup	beige_cup	/home/user/v2d-track3/meshes/library_v3x/beige_cup.glb	base
+lathe2/beige_cup_v3x	beige_cup	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2/beige_cup_v3x.glb	lathe	library_v3x/beige_cup
+lathe2_solid/beige_cup_v3x	beige_cup	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2_solid/beige_cup_v3x.glb	ablation	library_v3x/beige_cup
+library_v3/white_pot	white_pot	/home/user/v2d-track3/meshes/library_v3/white_pot.glb	base
+lathe2/white_pot	white_pot	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2/white_pot.glb	lathe	library_v3/white_pot
+lathe2_solid/white_pot	white_pot	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/lathe2_solid/white_pot.glb	ablation	library_v3/white_pot
+library_v3/wooden_piece_1	wooden_piece_1	/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb	base
+B1/wooden_piece_1_boxslot	wooden_piece_1	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/boards/wooden_piece_1_boxslot.glb	box	library_v3/wooden_piece_1
+B1/wooden_piece_1_box	wooden_piece_1	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/boards/wooden_piece_1_box.glb	ablation	library_v3/wooden_piece_1
+library_v3/wooden_piece_2	wooden_piece_2	/home/user/v2d-track3/meshes/library_v3/wooden_piece_2.glb	base
+B1/wooden_piece_2_boxslot	wooden_piece_2	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/boards/wooden_piece_2_boxslot.glb	box	library_v3/wooden_piece_2
+B1/wooden_piece_2_box	wooden_piece_2	/tmp/claude-0/-home-user-v2d-track3/8c892c5e-fd7c-57aa-abef-68d2af098e4f/scratchpad/approach2/out/boards/wooden_piece_2_box.glb	ablation	library_v3/wooden_piece_2

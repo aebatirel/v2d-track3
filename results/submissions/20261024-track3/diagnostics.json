@@ -1,0 +1,1980 @@
+{
+ "1": {
+  "ep": 1,
+  "sim_vs_ref": 0.2052,
+  "floor": 0.3964,
+  "det": {
+   "white_pot": [
+    5,
+    0.4439308832971667
+   ],
+   "white_pot_lid": [
+    15,
+    0.2509769607371441
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'white_pot': 0.11, 'white_pot_lid': 0.0}"
+  ],
+  "zero_action": [
+   "0.3506"
+  ],
+  "rest_check": {
+   "white_pot": {
+    "until_frame": 90,
+    "max_mm": 11.7,
+    "max_deg": 15.9,
+    "worst_frame": 88,
+    "ok": false
+   },
+   "white_pot_lid": {
+    "until_frame": 32,
+    "max_mm": 21.1,
+    "max_deg": 8.7,
+    "worst_frame": 19,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "white_pot",
+    "side": "left",
+    "hold": [
+     96,
+     309
+    ],
+    "unedited": 0.3943,
+    "best": 0.555,
+    "hold_add_cm": 2.2
+   },
+   {
+    "object": "white_pot_lid",
+    "side": "right",
+    "hold": [
+     38,
+     299
+    ],
+    "unedited": 0.2287,
+    "best": 0.446,
+    "hold_add_cm": 1.9
+   }
+  ],
+  "objects": {
+   "white_pot": {
+    "held_frames": 214,
+    "frames": 335,
+    "holds": [
+     [
+      96,
+      309,
+      "left"
+     ]
+    ],
+    "in3cm": 0.263,
+    "mean_err_cm": 10.6,
+    "max_err_cm": 26.7,
+    "final_err_cm": 11.1,
+    "mean_rot_err_deg": 74.3,
+    "first_lost5cm_frame": 96,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 18.0,
+    "ref_unheld_travel_cm": 5.0,
+    "ref_min_dz_cm": -0.3,
+    "ref_max_tilt_unheld_deg": 3.0,
+    "ref_max_step_cm": 2.7,
+    "ref_steps_over_3cm": 0
+   },
+   "white_pot_lid": {
+    "held_frames": 262,
+    "frames": 335,
+    "holds": [
+     [
+      38,
+      299,
+      "right"
+     ]
+    ],
+    "in3cm": 0.149,
+    "mean_err_cm": 12.3,
+    "max_err_cm": 22.5,
+    "final_err_cm": 15.1,
+    "mean_rot_err_deg": 64.9,
+    "first_lost5cm_frame": 50,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 22.8,
+    "ref_unheld_travel_cm": 5.2,
+    "ref_min_dz_cm": -8.6,
+    "ref_max_tilt_unheld_deg": 32.0,
+    "ref_max_step_cm": 3.1,
+    "ref_steps_over_3cm": 1
+   }
+  }
+ },
+ "3": {
+  "ep": 3,
+  "sim_vs_ref": 0.8747,
+  "floor": 0.457,
+  "det": {
+   "white_pot": [
+    2,
+    0.6161127681262226
+   ],
+   "wooden_spoon": [
+    5,
+    0.38506642776338734
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'white_pot': 0.18, 'wooden_spoon': 0.03}"
+  ],
+  "zero_action": [
+   "0.7078"
+  ],
+  "rest_check": {
+   "white_pot": {
+    "until_frame": 51,
+    "max_mm": 65.1,
+    "max_deg": 11.4,
+    "worst_frame": 50,
+    "ok": false
+   },
+   "wooden_spoon": {
+    "until_frame": 29,
+    "max_mm": 2.4,
+    "max_deg": 1.6,
+    "worst_frame": 6,
+    "ok": true
+   }
+  },
+  "evolve": [
+   {
+    "object": "white_pot",
+    "side": "left",
+    "hold": [
+     57,
+     271
+    ],
+    "unedited": 0.5594,
+    "best": 0.776,
+    "hold_add_cm": 3.9
+   },
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     35,
+     292
+    ],
+    "unedited": 0.751,
+    "best": 0.769,
+    "hold_add_cm": 4.0
+   }
+  ],
+  "objects": {
+   "white_pot": {
+    "held_frames": 215,
+    "frames": 313,
+    "holds": [
+     [
+      57,
+      271,
+      "left"
+     ]
+    ],
+    "in3cm": 0.716,
+    "mean_err_cm": 2.4,
+    "max_err_cm": 10.0,
+    "final_err_cm": 0.3,
+    "mean_rot_err_deg": 5.3,
+    "first_lost5cm_frame": 70,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 9.0,
+    "ref_unheld_travel_cm": 3.2,
+    "ref_min_dz_cm": -0.3,
+    "ref_max_tilt_unheld_deg": 4.0,
+    "ref_max_step_cm": 1.7,
+    "ref_steps_over_3cm": 0
+   },
+   "wooden_spoon": {
+    "held_frames": 258,
+    "frames": 313,
+    "holds": [
+     [
+      35,
+      292,
+      "right"
+     ]
+    ],
+    "in3cm": 0.987,
+    "mean_err_cm": 0.9,
+    "max_err_cm": 3.5,
+    "final_err_cm": 0.4,
+    "mean_rot_err_deg": 5.6,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 29.0,
+    "ref_unheld_travel_cm": 1.7,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 14.0,
+    "ref_max_step_cm": 3.3,
+    "ref_steps_over_3cm": 5
+   }
+  }
+ },
+ "5": {
+  "ep": 5,
+  "sim_vs_ref": 0.9741,
+  "floor": 0.3698,
+  "det": {
+   "white_pot": [
+    0,
+    0.5887761702056469
+   ],
+   "wooden_spoon": [
+    47,
+    0.4550357558919941
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'white_pot': 0.28, 'wooden_spoon': -0.05}"
+  ],
+  "zero_action": [
+   "0.2357"
+  ],
+  "rest_check": {
+   "white_pot": {
+    "until_frame": 21,
+    "max_mm": 25.7,
+    "max_deg": 9.1,
+    "worst_frame": 7,
+    "ok": false
+   },
+   "wooden_spoon": {
+    "until_frame": 26,
+    "max_mm": 4.3,
+    "max_deg": 4.8,
+    "worst_frame": 25,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "white_pot",
+    "side": "left",
+    "hold": [
+     27,
+     251
+    ],
+    "unedited": 0.4926,
+    "best": 0.684,
+    "hold_add_cm": 3.0
+   },
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     32,
+     271
+    ],
+    "unedited": 0.4244,
+    "best": 0.624,
+    "hold_add_cm": 3.6
+   }
+  ],
+  "objects": {
+   "white_pot": {
+    "held_frames": 225,
+    "frames": 288,
+    "holds": [
+     [
+      27,
+      251,
+      "left"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.8,
+    "max_err_cm": 2.2,
+    "final_err_cm": 0.5,
+    "mean_rot_err_deg": 3.9,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 24.3,
+    "ref_unheld_travel_cm": 2.2,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 2.0,
+    "ref_max_step_cm": 4.1,
+    "ref_steps_over_3cm": 19
+   },
+   "wooden_spoon": {
+    "held_frames": 240,
+    "frames": 288,
+    "holds": [
+     [
+      32,
+      271,
+      "right"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.8,
+    "max_err_cm": 2.6,
+    "final_err_cm": 0.4,
+    "mean_rot_err_deg": 4.5,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 31.5,
+    "ref_unheld_travel_cm": 1.6,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 5.0,
+    "ref_max_step_cm": 3.5,
+    "ref_steps_over_3cm": 7
+   }
+  }
+ },
+ "6": {
+  "ep": 6,
+  "sim_vs_ref": 0.9713,
+  "floor": 0.4884,
+  "det": {
+   "white_pot": [
+    51,
+    0.6254063285151519
+   ],
+   "wooden_spoon": [
+    9,
+    0.436317163885748
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'white_pot': 0.29, 'wooden_spoon': -0.11}"
+  ],
+  "zero_action": [
+   "0.6627"
+  ],
+  "rest_check": {
+   "white_pot": {
+    "until_frame": 26,
+    "max_mm": 17.5,
+    "max_deg": 3.1,
+    "worst_frame": 25,
+    "ok": false
+   },
+   "wooden_spoon": {
+    "until_frame": 21,
+    "max_mm": 12.2,
+    "max_deg": 8.0,
+    "worst_frame": 20,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "white_pot",
+    "side": "left",
+    "hold": [
+     32,
+     184
+    ],
+    "unedited": 0.5942,
+    "best": 0.792,
+    "hold_add_cm": 5.4
+   },
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     27,
+     200
+    ],
+    "unedited": 0.7074,
+    "best": 0.803,
+    "hold_add_cm": 4.2
+   }
+  ],
+  "objects": {
+   "white_pot": {
+    "held_frames": 153,
+    "frames": 243,
+    "holds": [
+     [
+      32,
+      184,
+      "left"
+     ]
+    ],
+    "in3cm": 0.996,
+    "mean_err_cm": 0.9,
+    "max_err_cm": 3.7,
+    "final_err_cm": 0.6,
+    "mean_rot_err_deg": 4.5,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 15.1,
+    "ref_unheld_travel_cm": 1.4,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 4.0,
+    "ref_max_step_cm": 3.3,
+    "ref_steps_over_3cm": 3
+   },
+   "wooden_spoon": {
+    "held_frames": 174,
+    "frames": 243,
+    "holds": [
+     [
+      27,
+      200,
+      "right"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.8,
+    "max_err_cm": 2.4,
+    "final_err_cm": 0.9,
+    "mean_rot_err_deg": 4.5,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 27.6,
+    "ref_unheld_travel_cm": 1.3,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 24.0,
+    "ref_max_step_cm": 3.3,
+    "ref_steps_over_3cm": 2
+   }
+  }
+ },
+ "8": {
+  "ep": 8,
+  "sim_vs_ref": 0.8233,
+  "floor": 0.6681,
+  "det": {
+   "beige_cup": [
+    47,
+    0.22260251291246666
+   ],
+   "white_pot": [
+    4,
+    0.6037109891068186
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": true,
+  "snap": [
+   "{'beige_cup': -0.0, 'white_pot': 0.55}"
+  ],
+  "zero_action": [
+   "0.3096"
+  ],
+  "rest_check": {
+   "beige_cup": {
+    "until_frame": 83,
+    "max_mm": 75.1,
+    "max_deg": 50.8,
+    "worst_frame": 82,
+    "ok": false
+   },
+   "white_pot": {
+    "until_frame": 83,
+    "max_mm": 35.1,
+    "max_deg": 40.0,
+    "worst_frame": 82,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "white_pot",
+    "side": "left",
+    "hold": [
+     89,
+     189
+    ],
+    "unedited": 0.36,
+    "best": 0.588,
+    "hold_add_cm": 4.0
+   }
+  ],
+  "objects": {
+   "beige_cup": {
+    "held_frames": 0,
+    "frames": 219,
+    "holds": [],
+    "in3cm": 0.795,
+    "mean_err_cm": 2.4,
+    "max_err_cm": 5.1,
+    "final_err_cm": 2.2,
+    "mean_rot_err_deg": 19.1,
+    "first_lost5cm_frame": 107,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 8.5,
+    "ref_unheld_travel_cm": 8.5,
+    "ref_min_dz_cm": -0.6,
+    "ref_max_tilt_unheld_deg": 44.0,
+    "ref_max_step_cm": 2.3,
+    "ref_steps_over_3cm": 0
+   },
+   "white_pot": {
+    "held_frames": 101,
+    "frames": 219,
+    "holds": [
+     [
+      89,
+      189,
+      "left"
+     ]
+    ],
+    "in3cm": 0.699,
+    "mean_err_cm": 2.1,
+    "max_err_cm": 5.7,
+    "final_err_cm": 3.3,
+    "mean_rot_err_deg": 13.0,
+    "first_lost5cm_frame": 101,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 9.6,
+    "ref_unheld_travel_cm": 4.4,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 14.0,
+    "ref_max_step_cm": 2.0,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ },
+ "10": {
+  "ep": 10,
+  "sim_vs_ref": 0.3424,
+  "floor": 0.4482,
+  "det": {
+   "blue_cup": [
+    1,
+    0.3384877579677671
+   ],
+   "beige_cup": [
+    2,
+    0.15749438657886095
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'blue_cup': -0.09, 'beige_cup': 0.22}"
+  ],
+  "zero_action": [
+   "0.4424"
+  ],
+  "rest_check": {
+   "blue_cup": {
+    "until_frame": 27,
+    "max_mm": 4.0,
+    "max_deg": 1.7,
+    "worst_frame": 9,
+    "ok": true
+   },
+   "beige_cup": {
+    "until_frame": 23,
+    "max_mm": 80.3,
+    "max_deg": 86.8,
+    "worst_frame": 6,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "beige_cup",
+    "side": "right",
+    "hold": [
+     29,
+     105
+    ],
+    "unedited": 0.4034,
+    "best": 0.705,
+    "hold_add_cm": 2.0
+   },
+   {
+    "object": "blue_cup",
+    "side": "left",
+    "hold": [
+     33,
+     123
+    ],
+    "unedited": 0.4241,
+    "best": 0.646,
+    "hold_add_cm": 1.7
+   }
+  ],
+  "objects": {
+   "blue_cup": {
+    "held_frames": 91,
+    "frames": 161,
+    "holds": [
+     [
+      33,
+      123,
+      "left"
+     ]
+    ],
+    "in3cm": 0.273,
+    "mean_err_cm": 3.4,
+    "max_err_cm": 5.6,
+    "final_err_cm": 3.9,
+    "mean_rot_err_deg": 13.6,
+    "first_lost5cm_frame": 98,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 5.6,
+    "ref_unheld_travel_cm": 4.9,
+    "ref_min_dz_cm": -0.6,
+    "ref_max_tilt_unheld_deg": 6.0,
+    "ref_max_step_cm": 1.1,
+    "ref_steps_over_3cm": 0
+   },
+   "beige_cup": {
+    "held_frames": 77,
+    "frames": 161,
+    "holds": [
+     [
+      29,
+      105,
+      "right"
+     ]
+    ],
+    "in3cm": 0.012,
+    "mean_err_cm": 21.3,
+    "max_err_cm": 32.6,
+    "final_err_cm": 23.4,
+    "mean_rot_err_deg": 87.4,
+    "first_lost5cm_frame": 3,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 25.4,
+    "ref_unheld_travel_cm": 15.7,
+    "ref_min_dz_cm": -0.3,
+    "ref_max_tilt_unheld_deg": 36.0,
+    "ref_max_step_cm": 4.0,
+    "ref_steps_over_3cm": 5
+   }
+  }
+ },
+ "14": {
+  "ep": 14,
+  "sim_vs_ref": 0.5568,
+  "floor": 0.5884,
+  "det": {
+   "blue_cup": [
+    3,
+    0.31136188269145193
+   ],
+   "plastic_dish_rack": [
+    0,
+    0.37967278156422063
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'blue_cup': 0.19, 'plastic_dish_rack': 1.02}"
+  ],
+  "zero_action": [
+   "0.5995"
+  ],
+  "rest_check": {
+   "blue_cup": {
+    "until_frame": 12,
+    "max_mm": 2.6,
+    "max_deg": 1.6,
+    "worst_frame": 11,
+    "ok": true
+   },
+   "plastic_dish_rack": {
+    "until_frame": 12,
+    "max_mm": 3.1,
+    "max_deg": 1.4,
+    "worst_frame": 3,
+    "ok": true
+   }
+  },
+  "evolve": [
+   {
+    "object": "blue_cup",
+    "side": "left",
+    "hold": [
+     18,
+     37
+    ],
+    "unedited": 0.7998,
+    "best": 0.875,
+    "hold_add_cm": 1.6
+   }
+  ],
+  "objects": {
+   "blue_cup": {
+    "held_frames": 20,
+    "frames": 158,
+    "holds": [
+     [
+      18,
+      37,
+      "left"
+     ]
+    ],
+    "in3cm": 0.278,
+    "mean_err_cm": 20.1,
+    "max_err_cm": 48.4,
+    "final_err_cm": 40.9,
+    "mean_rot_err_deg": 91.0,
+    "first_lost5cm_frame": 48,
+    "lost_where": "after a hold (placement / release / re-grasp gap)",
+    "ref_max_travel_cm": 25.8,
+    "ref_unheld_travel_cm": 25.8,
+    "ref_min_dz_cm": -13.9,
+    "ref_max_tilt_unheld_deg": 156.0,
+    "ref_max_step_cm": 4.8,
+    "ref_steps_over_3cm": 6
+   },
+   "plastic_dish_rack": {
+    "held_frames": 0,
+    "frames": 158,
+    "holds": [],
+    "in3cm": 0.943,
+    "mean_err_cm": 2.0,
+    "max_err_cm": 12.0,
+    "final_err_cm": 2.4,
+    "mean_rot_err_deg": 4.1,
+    "first_lost5cm_frame": 58,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 0.6,
+    "ref_unheld_travel_cm": 0.6,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 2.0,
+    "ref_max_step_cm": 0.4,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ },
+ "15": {
+  "ep": 15,
+  "sim_vs_ref": 0.9576,
+  "floor": 0.6028,
+  "det": {
+   "plastic_dish_rack": [
+    0,
+    0.35643108961196784
+   ],
+   "wooden_spoon": [
+    3,
+    0.4108169108926816
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'plastic_dish_rack': 1.08, 'wooden_spoon': 0.52}"
+  ],
+  "zero_action": [
+   "0.7487"
+  ],
+  "rest_check": {
+   "plastic_dish_rack": {
+    "until_frame": 28,
+    "max_mm": 3.1,
+    "max_deg": 0.4,
+    "worst_frame": 26,
+    "ok": true
+   },
+   "wooden_spoon": {
+    "until_frame": 28,
+    "max_mm": 5.4,
+    "max_deg": 12.7,
+    "worst_frame": 25,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "wooden_spoon",
+    "side": "left",
+    "hold": [
+     39,
+     107
+    ],
+    "unedited": 0.6079,
+    "best": 0.882,
+    "hold_add_cm": 0.3
+   }
+  ],
+  "objects": {
+   "plastic_dish_rack": {
+    "held_frames": 0,
+    "frames": 166,
+    "holds": [],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.4,
+    "max_err_cm": 1.0,
+    "final_err_cm": 1.0,
+    "mean_rot_err_deg": 0.8,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 0.5,
+    "ref_unheld_travel_cm": 0.5,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 1.0,
+    "ref_max_step_cm": 0.5,
+    "ref_steps_over_3cm": 0
+   },
+   "wooden_spoon": {
+    "held_frames": 69,
+    "frames": 166,
+    "holds": [
+     [
+      39,
+      107,
+      "left"
+     ]
+    ],
+    "in3cm": 0.952,
+    "mean_err_cm": 1.3,
+    "max_err_cm": 3.5,
+    "final_err_cm": 2.9,
+    "mean_rot_err_deg": 10.9,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 42.5,
+    "ref_unheld_travel_cm": 34.1,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 99.0,
+    "ref_max_step_cm": 3.7,
+    "ref_steps_over_3cm": 5
+   }
+  }
+ },
+ "16": {
+  "ep": 16,
+  "sim_vs_ref": 0.8499,
+  "floor": 0.5968,
+  "det": {
+   "plastic_dish_rack": [
+    0,
+    0.3666769935768416
+   ],
+   "wooden_spoon": [
+    1,
+    0.4130864102023625
+   ]
+  },
+  "qa_ref_reasons": [
+   "left wrist step 19.0 cm > 10"
+  ],
+  "qa_ref_pass": false,
+  "support_fallback": false,
+  "snap": [
+   "{'plastic_dish_rack': 1.12, 'wooden_spoon': 0.51}"
+  ],
+  "zero_action": [
+   "0.8188"
+  ],
+  "rest_check": {
+   "plastic_dish_rack": {
+    "until_frame": 24,
+    "max_mm": 2.5,
+    "max_deg": 1.9,
+    "worst_frame": 5,
+    "ok": true
+   },
+   "wooden_spoon": {
+    "until_frame": 24,
+    "max_mm": 4.9,
+    "max_deg": 24.2,
+    "worst_frame": 17,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     30,
+     107
+    ],
+    "unedited": 0.5096,
+    "best": 0.939,
+    "hold_add_cm": 0.5
+   }
+  ],
+  "objects": {
+   "plastic_dish_rack": {
+    "held_frames": 0,
+    "frames": 173,
+    "holds": [],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.8,
+    "max_err_cm": 1.9,
+    "final_err_cm": 1.9,
+    "mean_rot_err_deg": 1.9,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 0.8,
+    "ref_unheld_travel_cm": 0.8,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 1.0,
+    "ref_max_step_cm": 0.5,
+    "ref_steps_over_3cm": 0
+   },
+   "wooden_spoon": {
+    "held_frames": 78,
+    "frames": 173,
+    "holds": [
+     [
+      30,
+      107,
+      "right"
+     ]
+    ],
+    "in3cm": 0.734,
+    "mean_err_cm": 3.2,
+    "max_err_cm": 13.7,
+    "final_err_cm": 12.7,
+    "mean_rot_err_deg": 33.5,
+    "first_lost5cm_frame": 130,
+    "lost_where": "after a hold (placement / release / re-grasp gap)",
+    "ref_max_travel_cm": 38.0,
+    "ref_unheld_travel_cm": 33.3,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 104.0,
+    "ref_max_step_cm": 3.3,
+    "ref_steps_over_3cm": 1
+   }
+  }
+ },
+ "19": {
+  "ep": 19,
+  "sim_vs_ref": 0.6269,
+  "floor": 0.4588,
+  "det": {
+   "mini_sweeper": [
+    35,
+    0.30355675169130086
+   ],
+   "mini_dust_pan": [
+    2,
+    0.41248704748152076
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'mini_sweeper': 0.63, 'mini_dust_pan': 0.49}"
+  ],
+  "zero_action": [
+   "0.3015"
+  ],
+  "rest_check": {
+   "mini_sweeper": {
+    "until_frame": 22,
+    "max_mm": 82.0,
+    "max_deg": 79.4,
+    "worst_frame": 21,
+    "ok": false
+   },
+   "mini_dust_pan": {
+    "until_frame": 6,
+    "max_mm": 0.6,
+    "max_deg": 1.4,
+    "worst_frame": 5,
+    "ok": true
+   }
+  },
+  "evolve": [
+   {
+    "object": "mini_dust_pan",
+    "side": "left",
+    "hold": [
+     12,
+     194
+    ],
+    "unedited": 0.176,
+    "best": 0.363,
+    "hold_add_cm": 14.6
+   },
+   {
+    "object": "mini_sweeper",
+    "side": "right",
+    "hold": [
+     28,
+     235
+    ],
+    "unedited": 0.3237,
+    "best": 0.664,
+    "hold_add_cm": 3.0
+   }
+  ],
+  "objects": {
+   "mini_sweeper": {
+    "held_frames": 207,
+    "frames": 235,
+    "holds": [
+     [
+      28,
+      235,
+      "right"
+     ]
+    ],
+    "in3cm": 0.609,
+    "mean_err_cm": 2.7,
+    "max_err_cm": 5.8,
+    "final_err_cm": 4.6,
+    "mean_rot_err_deg": 21.6,
+    "first_lost5cm_frame": 53,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 10.8,
+    "ref_unheld_travel_cm": 0.6,
+    "ref_min_dz_cm": -1.2,
+    "ref_max_tilt_unheld_deg": 6.0,
+    "ref_max_step_cm": 3.3,
+    "ref_steps_over_3cm": 2
+   },
+   "mini_dust_pan": {
+    "held_frames": 183,
+    "frames": 235,
+    "holds": [
+     [
+      12,
+      194,
+      "left"
+     ]
+    ],
+    "in3cm": 0.438,
+    "mean_err_cm": 4.9,
+    "max_err_cm": 15.0,
+    "final_err_cm": 2.0,
+    "mean_rot_err_deg": 42.6,
+    "first_lost5cm_frame": 26,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 14.6,
+    "ref_unheld_travel_cm": 1.8,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 5.0,
+    "ref_max_step_cm": 3.9,
+    "ref_steps_over_3cm": 2
+   }
+  }
+ },
+ "20": {
+  "ep": 20,
+  "sim_vs_ref": 0.336,
+  "floor": 0.3651,
+  "det": {
+   "blue_cup": [
+    4,
+    0.3504902802686439
+   ],
+   "water_pitcher": [
+    0,
+    0.38980687033201683
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'blue_cup': 0.0, 'water_pitcher': 1.0}"
+  ],
+  "zero_action": [
+   "0.3342"
+  ],
+  "rest_check": {
+   "blue_cup": {
+    "until_frame": 1,
+    "max_mm": 0.0,
+    "max_deg": 0.0,
+    "worst_frame": 0,
+    "ok": true
+   },
+   "water_pitcher": {
+    "until_frame": 14,
+    "max_mm": 109.8,
+    "max_deg": 45.9,
+    "worst_frame": 11,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "blue_cup",
+    "side": "left",
+    "hold": [
+     0,
+     159
+    ],
+    "unedited": 0.2042,
+    "best": 0.281,
+    "hold_add_cm": 4.6
+   },
+   {
+    "object": "water_pitcher",
+    "side": "right",
+    "hold": [
+     20,
+     146
+    ],
+    "unedited": 0.2875,
+    "best": 0.354,
+    "hold_add_cm": 4.6
+   }
+  ],
+  "objects": {
+   "blue_cup": {
+    "held_frames": 160,
+    "frames": 202,
+    "holds": [
+     [
+      0,
+      159,
+      "left"
+     ]
+    ],
+    "in3cm": 0.347,
+    "mean_err_cm": 3.9,
+    "max_err_cm": 7.9,
+    "final_err_cm": 3.1,
+    "mean_rot_err_deg": 16.4,
+    "first_lost5cm_frame": 2,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 7.8,
+    "ref_unheld_travel_cm": 5.6,
+    "ref_min_dz_cm": -5.1,
+    "ref_max_tilt_unheld_deg": 4.0,
+    "ref_max_step_cm": 1.6,
+    "ref_steps_over_3cm": 0
+   },
+   "water_pitcher": {
+    "held_frames": 127,
+    "frames": 202,
+    "holds": [
+     [
+      20,
+      146,
+      "right"
+     ]
+    ],
+    "in3cm": 0.02,
+    "mean_err_cm": 19.9,
+    "max_err_cm": 46.1,
+    "final_err_cm": 9.0,
+    "mean_rot_err_deg": 92.1,
+    "first_lost5cm_frame": 5,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 36.5,
+    "ref_unheld_travel_cm": 9.5,
+    "ref_min_dz_cm": -0.4,
+    "ref_max_tilt_unheld_deg": 60.0,
+    "ref_max_step_cm": 3.3,
+    "ref_steps_over_3cm": 2
+   }
+  }
+ },
+ "25": {
+  "ep": 25,
+  "sim_vs_ref": 0.2323,
+  "floor": 0.2868,
+  "det": {
+   "wooden_piece_1": [
+    17,
+    0.4054575880293828
+   ],
+   "wooden_piece_2": [
+    0,
+    0.5407375070660406
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'wooden_piece_1': 1.32, 'wooden_piece_2': 1.56}"
+  ],
+  "zero_action": [
+   "0.3418"
+  ],
+  "rest_check": {
+   "wooden_piece_1": {
+    "until_frame": 138,
+    "max_mm": 77.2,
+    "max_deg": 53.1,
+    "worst_frame": 4,
+    "ok": false
+   },
+   "wooden_piece_2": {
+    "until_frame": 25,
+    "max_mm": 5.6,
+    "max_deg": 8.4,
+    "worst_frame": 14,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "wooden_piece_1",
+    "side": "right",
+    "hold": [
+     144,
+     331
+    ],
+    "unedited": 0.11,
+    "best": 0.322,
+    "hold_add_cm": 59.9
+   },
+   {
+    "object": "wooden_piece_2",
+    "side": "left",
+    "hold": [
+     31,
+     330
+    ],
+    "unedited": 0.1934,
+    "best": 0.538,
+    "hold_add_cm": 6.4
+   }
+  ],
+  "objects": {
+   "wooden_piece_1": {
+    "held_frames": 188,
+    "frames": 356,
+    "holds": [
+     [
+      144,
+      331,
+      "right"
+     ]
+    ],
+    "in3cm": 0.236,
+    "mean_err_cm": 11.7,
+    "max_err_cm": 24.5,
+    "final_err_cm": 18.7,
+    "mean_rot_err_deg": 44.2,
+    "first_lost5cm_frame": 173,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 23.5,
+    "ref_unheld_travel_cm": 14.6,
+    "ref_min_dz_cm": -0.4,
+    "ref_max_tilt_unheld_deg": 101.0,
+    "ref_max_step_cm": 3.4,
+    "ref_steps_over_3cm": 3
+   },
+   "wooden_piece_2": {
+    "held_frames": 300,
+    "frames": 356,
+    "holds": [
+     [
+      31,
+      330,
+      "left"
+     ]
+    ],
+    "in3cm": 0.112,
+    "mean_err_cm": 8.6,
+    "max_err_cm": 12.5,
+    "final_err_cm": 9.3,
+    "mean_rot_err_deg": 51.7,
+    "first_lost5cm_frame": 44,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 19.8,
+    "ref_unheld_travel_cm": 13.7,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 98.0,
+    "ref_max_step_cm": 2.4,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ },
+ "28": {
+  "ep": 28,
+  "sim_vs_ref": 0.7513,
+  "floor": 0.5501,
+  "det": {
+   "plastic_dish_rack": [
+    0,
+    0.36475016085838013
+   ],
+   "white_pot": [
+    2,
+    0.5622110904163784
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'plastic_dish_rack': 1.02, 'white_pot': 0.54}"
+  ],
+  "zero_action": [
+   "0.6669"
+  ],
+  "rest_check": {
+   "plastic_dish_rack": {
+    "until_frame": 4,
+    "max_mm": 3.3,
+    "max_deg": 2.6,
+    "worst_frame": 3,
+    "ok": false
+   },
+   "white_pot": {
+    "until_frame": 4,
+    "max_mm": 5.0,
+    "max_deg": 4.1,
+    "worst_frame": 3,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "white_pot",
+    "side": "right",
+    "hold": [
+     45,
+     205
+    ],
+    "unedited": 0.4995,
+    "best": 0.73,
+    "hold_add_cm": 1.6
+   }
+  ],
+  "objects": {
+   "plastic_dish_rack": {
+    "held_frames": 0,
+    "frames": 220,
+    "holds": [],
+    "in3cm": 0.986,
+    "mean_err_cm": 1.4,
+    "max_err_cm": 15.8,
+    "final_err_cm": 15.8,
+    "mean_rot_err_deg": 1.1,
+    "first_lost5cm_frame": 217,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 0.8,
+    "ref_unheld_travel_cm": 0.8,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 2.0,
+    "ref_max_step_cm": 0.5,
+    "ref_steps_over_3cm": 0
+   },
+   "white_pot": {
+    "held_frames": 161,
+    "frames": 220,
+    "holds": [
+     [
+      45,
+      205,
+      "right"
+     ]
+    ],
+    "in3cm": 0.373,
+    "mean_err_cm": 4.8,
+    "max_err_cm": 26.9,
+    "final_err_cm": 26.9,
+    "mean_rot_err_deg": 9.5,
+    "first_lost5cm_frame": 22,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 42.4,
+    "ref_unheld_travel_cm": 29.6,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 180.0,
+    "ref_max_step_cm": 3.0,
+    "ref_steps_over_3cm": 1
+   }
+  }
+ },
+ "30": {
+  "ep": 30,
+  "sim_vs_ref": 0.4717,
+  "floor": 0.5088,
+  "det": {
+   "mini_sweeper": [
+    57,
+    0.19816168159930322
+   ],
+   "plastic_dish_rack": [
+    5,
+    0.3019582179622706
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": true,
+  "snap": [
+   "{'mini_sweeper': -0.0, 'plastic_dish_rack': 0.88}"
+  ],
+  "zero_action": [
+   "0.5030"
+  ],
+  "rest_check": {
+   "mini_sweeper": {
+    "until_frame": 257,
+    "max_mm": 720.3,
+    "max_deg": 164.2,
+    "worst_frame": 244,
+    "ok": false
+   },
+   "plastic_dish_rack": {
+    "until_frame": 257,
+    "max_mm": 32.9,
+    "max_deg": 30.7,
+    "worst_frame": 33,
+    "ok": false
+   }
+  },
+  "evolve": [],
+  "objects": {
+   "mini_sweeper": {
+    "held_frames": 0,
+    "frames": 263,
+    "holds": [],
+    "in3cm": 0.008,
+    "mean_err_cm": 71.0,
+    "max_err_cm": 79.0,
+    "final_err_cm": 78.3,
+    "mean_rot_err_deg": 155.5,
+    "first_lost5cm_frame": 3,
+    "lost_where": "before its first hold (start / knocked / unsupported)",
+    "ref_max_travel_cm": 22.7,
+    "ref_unheld_travel_cm": 22.7,
+    "ref_min_dz_cm": -6.6,
+    "ref_max_tilt_unheld_deg": 143.0,
+    "ref_max_step_cm": 3.0,
+    "ref_steps_over_3cm": 1
+   },
+   "plastic_dish_rack": {
+    "held_frames": 0,
+    "frames": 263,
+    "holds": [],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.7,
+    "max_err_cm": 3.0,
+    "final_err_cm": 0.9,
+    "mean_rot_err_deg": 2.3,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 0.7,
+    "ref_unheld_travel_cm": 0.7,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 1.0,
+    "ref_max_step_cm": 0.4,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ },
+ "32": {
+  "ep": 32,
+  "sim_vs_ref": 0.8358,
+  "floor": 0.2244,
+  "det": {
+   "blue_cup": [
+    6,
+    0.34133369536864067
+   ],
+   "wooden_spoon": [
+    11,
+    0.45267481030452605
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'blue_cup': -0.18, 'wooden_spoon': -0.01}"
+  ],
+  "zero_action": [
+   "0.7308"
+  ],
+  "rest_check": {
+   "blue_cup": {
+    "until_frame": 1,
+    "max_mm": 0.0,
+    "max_deg": 0.0,
+    "worst_frame": 0,
+    "ok": true
+   },
+   "wooden_spoon": {
+    "until_frame": 40,
+    "max_mm": 4.4,
+    "max_deg": 4.3,
+    "worst_frame": 15,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "blue_cup",
+    "side": "left",
+    "hold": [
+     1,
+     250
+    ],
+    "unedited": 0.4681,
+    "best": 0.758,
+    "hold_add_cm": 2.8
+   },
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     46,
+     243
+    ],
+    "unedited": 0.6525,
+    "best": 0.77,
+    "hold_add_cm": 3.1
+   }
+  ],
+  "objects": {
+   "blue_cup": {
+    "held_frames": 250,
+    "frames": 259,
+    "holds": [
+     [
+      1,
+      250,
+      "left"
+     ]
+    ],
+    "in3cm": 0.776,
+    "mean_err_cm": 2.7,
+    "max_err_cm": 11.3,
+    "final_err_cm": 2.3,
+    "mean_rot_err_deg": 12.3,
+    "first_lost5cm_frame": 18,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 21.9,
+    "ref_unheld_travel_cm": 21.9,
+    "ref_min_dz_cm": -12.2,
+    "ref_max_tilt_unheld_deg": 100.0,
+    "ref_max_step_cm": 6.6,
+    "ref_steps_over_3cm": 12
+   },
+   "wooden_spoon": {
+    "held_frames": 198,
+    "frames": 259,
+    "holds": [
+     [
+      46,
+      243,
+      "right"
+     ]
+    ],
+    "in3cm": 0.907,
+    "mean_err_cm": 1.5,
+    "max_err_cm": 5.6,
+    "final_err_cm": 1.6,
+    "mean_rot_err_deg": 7.2,
+    "first_lost5cm_frame": 57,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 27.5,
+    "ref_unheld_travel_cm": 2.5,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 28.0,
+    "ref_max_step_cm": 9.2,
+    "ref_steps_over_3cm": 6
+   }
+  }
+ },
+ "33": {
+  "ep": 33,
+  "sim_vs_ref": 0.4211,
+  "floor": 0.2143,
+  "det": {
+   "blue_cup": [
+    0,
+    0.3345992701893289
+   ],
+   "wooden_spoon": [
+    6,
+    0.4514478483715619
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'blue_cup': -0.14, 'wooden_spoon': 0.38}"
+  ],
+  "zero_action": [
+   "0.1991"
+  ],
+  "rest_check": {
+   "blue_cup": {
+    "until_frame": 11,
+    "max_mm": 4.1,
+    "max_deg": 5.0,
+    "worst_frame": 6,
+    "ok": false
+   },
+   "wooden_spoon": {
+    "until_frame": 42,
+    "max_mm": 35.4,
+    "max_deg": 16.6,
+    "worst_frame": 28,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "blue_cup",
+    "side": "left",
+    "hold": [
+     17,
+     48
+    ],
+    "unedited": 0.5557,
+    "best": 0.794,
+    "hold_add_cm": 4.3
+   },
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     48,
+     325
+    ],
+    "unedited": 0.1065,
+    "best": 0.316,
+    "hold_add_cm": 19.0
+   }
+  ],
+  "objects": {
+   "blue_cup": {
+    "held_frames": 32,
+    "frames": 348,
+    "holds": [
+     [
+      17,
+      48,
+      "left"
+     ]
+    ],
+    "in3cm": 0.193,
+    "mean_err_cm": 14.2,
+    "max_err_cm": 60.2,
+    "final_err_cm": 59.5,
+    "mean_rot_err_deg": 54.4,
+    "first_lost5cm_frame": 78,
+    "lost_where": "after a hold (placement / release / re-grasp gap)",
+    "ref_max_travel_cm": 34.3,
+    "ref_unheld_travel_cm": 34.3,
+    "ref_min_dz_cm": -14.6,
+    "ref_max_tilt_unheld_deg": 144.0,
+    "ref_max_step_cm": 4.5,
+    "ref_steps_over_3cm": 9
+   },
+   "wooden_spoon": {
+    "held_frames": 278,
+    "frames": 348,
+    "holds": [
+     [
+      48,
+      325,
+      "right"
+     ]
+    ],
+    "in3cm": 0.474,
+    "mean_err_cm": 3.6,
+    "max_err_cm": 37.6,
+    "final_err_cm": 37.6,
+    "mean_rot_err_deg": 29.0,
+    "first_lost5cm_frame": 110,
+    "lost_where": "during a hold (grasp slip / drop / never acquired)",
+    "ref_max_travel_cm": 29.2,
+    "ref_unheld_travel_cm": 4.0,
+    "ref_min_dz_cm": -0.7,
+    "ref_max_tilt_unheld_deg": 7.0,
+    "ref_max_step_cm": 8.4,
+    "ref_steps_over_3cm": 12
+   }
+  }
+ },
+ "35": {
+  "ep": 35,
+  "sim_vs_ref": 0.9829,
+  "floor": 0.1134,
+  "det": {
+   "wooden_spoon": [
+    2,
+    0.4313953669831224
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'wooden_spoon': 0.29}"
+  ],
+  "zero_action": [
+   "0.9388"
+  ],
+  "rest_check": {
+   "wooden_spoon": {
+    "until_frame": 14,
+    "max_mm": 4.0,
+    "max_deg": 8.1,
+    "worst_frame": 12,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     20,
+     390
+    ],
+    "unedited": 0.5389,
+    "best": 0.929,
+    "hold_add_cm": 1.5
+   }
+  ],
+  "objects": {
+   "wooden_spoon": {
+    "held_frames": 371,
+    "frames": 421,
+    "holds": [
+     [
+      20,
+      390,
+      "right"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.4,
+    "max_err_cm": 1.7,
+    "final_err_cm": 0.4,
+    "mean_rot_err_deg": 4.6,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 23.9,
+    "ref_unheld_travel_cm": 5.5,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 67.0,
+    "ref_max_step_cm": 2.3,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ },
+ "36": {
+  "ep": 36,
+  "sim_vs_ref": 0.9912,
+  "floor": 0.0894,
+  "det": {
+   "wooden_spoon": [
+    1,
+    0.3812826102310727
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'wooden_spoon': 0.32}"
+  ],
+  "zero_action": [
+   "0.8856"
+  ],
+  "rest_check": {
+   "wooden_spoon": {
+    "until_frame": 20,
+    "max_mm": 3.8,
+    "max_deg": 2.5,
+    "worst_frame": 19,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     26,
+     372
+    ],
+    "unedited": 0.6388,
+    "best": 0.906,
+    "hold_add_cm": 1.3
+   }
+  ],
+  "objects": {
+   "wooden_spoon": {
+    "held_frames": 347,
+    "frames": 407,
+    "holds": [
+     [
+      26,
+      372,
+      "right"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.6,
+    "max_err_cm": 2.8,
+    "final_err_cm": 0.5,
+    "mean_rot_err_deg": 4.6,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 24.5,
+    "ref_unheld_travel_cm": 10.5,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 53.0,
+    "ref_max_step_cm": 6.2,
+    "ref_steps_over_3cm": 2
+   }
+  }
+ },
+ "37": {
+  "ep": 37,
+  "sim_vs_ref": 0.9979,
+  "floor": 0.743,
+  "det": {
+   "wooden_spoon": [
+    1,
+    0.4604622127620531
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'wooden_spoon': 0.45}"
+  ],
+  "zero_action": [
+   "0.9209"
+  ],
+  "rest_check": {
+   "wooden_spoon": {
+    "until_frame": 19,
+    "max_mm": 3.9,
+    "max_deg": 8.1,
+    "worst_frame": 18,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "wooden_spoon",
+    "side": "right",
+    "hold": [
+     25,
+     81
+    ],
+    "unedited": 0.8559,
+    "best": 0.964,
+    "hold_add_cm": 1.2
+   }
+  ],
+  "objects": {
+   "wooden_spoon": {
+    "held_frames": 57,
+    "frames": 151,
+    "holds": [
+     [
+      25,
+      81,
+      "right"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.3,
+    "max_err_cm": 0.8,
+    "final_err_cm": 0.3,
+    "mean_rot_err_deg": 2.7,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 31.6,
+    "ref_unheld_travel_cm": 0.6,
+    "ref_min_dz_cm": -0.1,
+    "ref_max_tilt_unheld_deg": 5.0,
+    "ref_max_step_cm": 2.8,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ },
+ "38": {
+  "ep": 38,
+  "sim_vs_ref": 0.9998,
+  "floor": 0.2937,
+  "det": {
+   "mini_dust_pan": [
+    1,
+    0.44885566626092877
+   ]
+  },
+  "qa_ref_reasons": [],
+  "qa_ref_pass": true,
+  "support_fallback": false,
+  "snap": [
+   "{'mini_dust_pan': 0.3}"
+  ],
+  "zero_action": [
+   "0.1856"
+  ],
+  "rest_check": {
+   "mini_dust_pan": {
+    "until_frame": 31,
+    "max_mm": 2.0,
+    "max_deg": 3.8,
+    "worst_frame": 20,
+    "ok": false
+   }
+  },
+  "evolve": [
+   {
+    "object": "mini_dust_pan",
+    "side": "right",
+    "hold": [
+     37,
+     232
+    ],
+    "unedited": 0.1559,
+    "best": 0.349,
+    "hold_add_cm": 10.4
+   }
+  ],
+  "objects": {
+   "mini_dust_pan": {
+    "held_frames": 196,
+    "frames": 263,
+    "holds": [
+     [
+      37,
+      232,
+      "right"
+     ]
+    ],
+    "in3cm": 1.0,
+    "mean_err_cm": 0.3,
+    "max_err_cm": 1.1,
+    "final_err_cm": 0.5,
+    "mean_rot_err_deg": 2.1,
+    "first_lost5cm_frame": null,
+    "lost_where": null,
+    "ref_max_travel_cm": 26.3,
+    "ref_unheld_travel_cm": 4.9,
+    "ref_min_dz_cm": -0.2,
+    "ref_max_tilt_unheld_deg": 65.0,
+    "ref_max_step_cm": 2.3,
+    "ref_steps_over_3cm": 0
+   }
+  }
+ }
+}

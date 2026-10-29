@@ -1,0 +1,162 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3x",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r1",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "quat_xyzw": [
+      -0.010373,
+      -0.001923,
+      0.012335,
+      0.999868
+     ],
+     "cand_anchor_cm": [
+      -0.139,
+      0.191,
+      0.953
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 131.656,
+     "quat_xyzw": [
+      -0.011977,
+      -0.014151,
+      0.912131,
+      0.409479
+     ],
+     "cand_anchor_cm": [
+      -0.238,
+      0.292,
+      -0.345
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "sim": {
+    "AUC": 0.5668,
+    "SP_SR": 1.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 9.1375,
+    "RPE_cm": 16.7194,
+    "per_obj_AUC": {
+     "blue_cup": 0.9932,
+     "beige_cup": 0.1405
+    }
+   },
+   "seconds": 20.4
+  },
+  "f0ref": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 1
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "quat_xyzw": [
+      -0.010373,
+      -0.001923,
+      0.012335,
+      0.999868
+     ],
+     "cand_anchor_cm": [
+      -0.139,
+      0.191,
+      0.953
+     ],
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 131.656,
+     "quat_xyzw": [
+      -0.011977,
+      -0.014151,
+      0.912131,
+      0.409479
+     ],
+     "cand_anchor_cm": [
+      -0.238,
+      0.292,
+      -0.345
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "sim": {
+    "AUC": 0.5652,
+    "SP_SR": 1.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 9.3303,
+    "RPE_cm": 16.7182,
+    "per_obj_AUC": {
+     "blue_cup": 0.9927,
+     "beige_cup": 0.1378
+    }
+   },
+   "seconds": 14.1
+  }
+ }
+}

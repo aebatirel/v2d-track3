@@ -1,0 +1,2 @@
+{"sim": {"AUC": 0.3689, "SP_SR": 0.0, "MP_SR": 0.0, "MPPE_cm": 6.8901, "RPE_cm": 29.8924, "per_obj_AUC": {"mini_sweeper": 0.0754, "mini_dust_pan": 0.6624}}, "static_floor": {"AUC": 0.6344, "SP_SR": 1.0, "MP_SR": 0.0, "MPPE_cm": 4.2476, "RPE_cm": 9.2445, "per_obj_AUC": {"mini_sweeper": 0.6006, "mini_dust_pan": 0.6682}}, "reference": {"AUC": 0.9633, "SP_SR": 1.0, "MP_SR": 1.0, "MPPE_cm": 1.0821, "RPE_cm": 1.8098, "per_obj_AUC": {"mini_sweeper": 0.9947, "mini_dust_pan": 0.9318}}}
+

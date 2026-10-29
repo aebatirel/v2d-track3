@@ -1,0 +1,43 @@
+{
+ "what": "Observation-first mesh prototype (Design O), 2026-10-22 08:38-10:05 UTC, CPU only, scratch; repo unchanged (recon_mesh.py imported, never edited). Method inputs: our loc/perc tracks (caveat: made with public scans as FoundationPose templates), our FoundationStereo depth (local caches ep2/18/27/39/40/41/44; ep23/24 every 2nd frame fetched from our HF store as float16), our MediaPipe hands, raw ego_cam_c video, our own library meshes (ROI, --others, colour sampling). Scan and mocap numbers are DIAGNOSTICS only (evalscan.py/evalscan2.py, slotgrid.py, slotmask.py, sinkdiag.py, planediag.py).",
+ "scripts": {"fusion": "obsfuse2.py (multi-truncation 4/6/12 mm, NF3/NFL3/NV free-space counters, surface moments, 2 mm ROI grid), obsfuse3.py (+ table band not applied inside the object's own eroded silhouette)",
+             "silhouette": "maskfuse.py (object colour model from our own mesh's visible samples; NMF/NMV per voxel; depth occlusion test)",
+             "post": "obspost2.py VAR = tau_close_gate_fsp_mesh (tau 4|6|12|4c12|6c12; close fill|near|adj|none; gate g0|g1|g2 [+m silhouette]; f0|f1; bin|cont)",
+             "residual_interaction": "resid.py (contested voxels at assembled frames removed from the side without fine evidence)",
+             "local_fallback": "localfb.py (today's 12 mm/fill solid only where our own 12 mm zero-crossing evidence is > 8 mm from the fine solid)",
+             "gates": "gate_ev.py (unexplained / unsupported evidence), axisrest.py, core.py, pairovl.py (overlap of OUR meshes at OUR poses), coacd_thr.py"},
+ "default_variant": "4c12_adj_g2[m]_f0_cont (+ resid for co-located pairs, + localfb when gate_ev unexplained8 > 0.05)",
+ "lid_ep2": {
+   "library_v2": {"excess": 231.8, "missing": 25.2, "iou": 0.179, "o2s_med_p90_mm": [3.3, 9.6], "s2o_med_p90_mm": [2.8, 5.9], "out_hull": 88.6, "closed_overlap_with_v2_pot_cm3": 23.49, "rim_pose_tip_deg": 68.1},
+   "today_rules_2mm_12_fill_bin": {"excess": 113.3, "missing": 34.2, "iou": 0.242, "o2s": [1.8, 5.9], "s2o": [2.2, 21.9], "closed_overlap_with_v2_pot": 8.59},
+   "O_4_adj_g2_cont": {"excess": 56.7, "missing": 47.0, "iou": 0.248, "o2s": [1.2, 3.6], "s2o": [1.9, 16.2], "out_hull": 1.2, "closed_overlap_with_v2_pot": 2.71, "with_O_pot_4c12": 1.43, "with_O_pot_localfb": 1.57, "rim_pose_tip_deg": 83.1},
+   "O_4c12_adj_g2_cont": {"excess": 70.6, "missing": 41.9, "iou": 0.259, "o2s": [1.4, 4.3], "s2o": [1.9, 16.5], "closed_overlap_with_v2_pot": 6.47, "with_O_pot_4c12": 4.1, "with_O_pot_localfb": 4.11},
+   "scan_rim_pose_tip_deg": 75.9},
+ "dust_pan_ep39_40_18": {
+   "library_v2": {"excess": 117.4, "missing": 24.4, "iou": 0.221, "o2s": [2.5, 7.4], "s2o": [2.6, 6.2], "out_hull": 37.2, "conc_40_90mm_fill": 0.38},
+   "today_rules_2mm": {"excess": 122.1, "missing": 20.8, "iou": 0.235, "o2s": [2.3, 6.8], "s2o": [2.4, 4.9]},
+   "O_4c12_adj_g2_cont": {"excess": 39.6, "missing": 29.8, "iou": 0.334, "o2s": [1.2, 2.8], "s2o": [1.8, 6.7], "out_hull": 7.6, "conc_40_90mm_fill": 0.10},
+   "O_with_localfb": {"excess": 54.0, "missing": 26.1, "iou": 0.325, "o2s": [1.4, 4.1], "s2o": [1.7, 4.9], "stable_tips_deg": [69.1, 58.2]},
+   "scan_stable_tips_deg": [68.3, 56.6], "v2_stable_tips_deg": [67.9, 42.4]},
+ "boards_ep23_ep24": {
+   "library_v4": {"wp1": {"excess": 50.4, "missing": 38.7, "iou": 0.638, "slot_fill": 0.97, "o2s": [0.8, 3.3], "s2o": [1.3, 5.1]}, "wp2": {"excess": 74.1, "missing": 9.2, "iou": 0.75, "slot_fill": 1.0, "o2s": [1.4, 3.2], "s2o": [1.7, 3.3]}, "assembled_overlap_cm3": {"ep24": 10.63, "ep23": 10.86}, "coacd_assembled_overlap_cm3": 16.94},
+   "today_rules_2mm_with_below_carve": {"wp1": {"excess": 32.8, "missing": 25.8, "iou": 0.744, "slot_fill": 0.95}, "wp2": {"excess": 10.6, "missing": 126.2, "iou": 0.492, "slot_fill": 0.54}, "assembled_overlap_ep24": 3.03},
+   "O_default_silhouette_resid_no_below_votes": {"wp1": {"excess": 4.6, "missing": 53.4, "iou": 0.711, "slot_fill": 0.0, "o2s": [0.9, 2.5], "s2o": [1.3, 2.8]}, "wp2": {"excess": 62.4, "missing": 18.9, "iou": 0.747, "slot_fill": 0.05, "o2s": [1.1, 4.0], "s2o": [1.5, 4.1], "out_hull_dome": 55.4},
+                                                  "assembled_overlap_cm3": {"ep24": 1.02, "ep23": 0.90}, "resid_removed_cm3": {"wp1": 0.58, "wp2": 4.88}, "resid_conflict_kept_cm3": {"wp1": 5.37, "wp2": 1.22},
+                                                  "coacd_assembled_overlap_cm3": {"thr0.05": 17.0, "thr0.02": 8.83, "thr0.01": 8.70}, "coacd_union_vs_mesh_cm3_wp1": [300.6, 164.1]},
+   "O_without_silhouette_4c12_nobc": {"wp1_slot_fill": 0.67, "wp2_slot_fill": 0.88, "assembled_overlap_ep24": 8.68},
+   "scan_floor_scans_in_our_poses_cm3": 1.4,
+   "slot_evidence_diag": {"wp1_depth": {"slot_NF3_med": 3, "control_NF3_med": 3, "slot_inside4": 0.66, "control_inside4": 0.71}, "wp1_silhouette": {"slot_free50": 0.89, "control_free50": 0.01},
+                          "wp2_depth": {"slot_NF3_ge1": 0.48, "control_NF3_ge1": 0.01}, "wp2_silhouette": {"slot_free50": 0.51, "control_free50": 0.0}},
+   "below_carve_damage_diag": {"wp2_control_mean4_with_bc": 0.9, "without": -0.7, "plane_c_range_single_frames_m": [0.518, 0.546], "scan_lowest_point_vs_our_plane_mm": [-15.6, 5.1]},
+   "one_sided_core_cm3": {"wp1": 16.4, "wp2": 206.9, "lid": 24.7}},
+ "pot_eps_41_44_2_27": {
+   "library_v2": {"excess": 412.9, "missing": 146.4, "iou": 0.274, "o2s": [2.6, 9.9], "s2o": [2.5, 8.7], "out_hull": 128.9, "upright_tip_deg": 49.8},
+   "today_rules_2mm": {"excess": 430.3, "missing": 136.7, "iou": 0.28, "o2s": [2.7, 9.8], "s2o": [2.5, 7.7]},
+   "O_4c12_adj_g2_cont": {"excess": 125.6, "missing": 277.2, "iou": 0.166, "o2s": [1.5, 4.9], "s2o": [2.6, 25.1], "scan_surface_gt8mm_from_ours": 0.267, "v2": 0.112, "gate_unexplained8": 0.234},
+   "O_silhouette_band": {"excess": 133.3, "missing": 271.6, "iou": 0.174, "o2s": [1.5, 5.1], "s2o": [2.4, 22.2]},
+   "O_localfb": {"excess": 245.4, "missing": 199.3, "iou": 0.262, "o2s": [1.8, 6.9], "s2o": [2.2, 6.6], "out_hull": 58.5, "upright_tip_deg": 16.8},
+   "scan_upright_tip_deg": 55.4},
+ "gate_unexplained8": {"pot_O": 0.234, "pot_today": 0.024, "dustpan_O": 0.024, "lid_O": 0.012, "wp1_O": 0.015},
+ "cost_s": {"obsfuse2_per_object_episode": {"board_0.9Mvox": [104, 146], "lid_1.2Mvox": 220, "dustpan_0.9Mvox": [92, 401], "pot_3.2Mvox": [291, 798]}, "maskfuse_per_board_episode": [95, 125], "post_variant": [1, 10], "resid": [10, 20], "recon_mesh_today": {"board_1ep": [487, 593], "dustpan_3ep": 2288, "lid_1ep": 535}}
+}

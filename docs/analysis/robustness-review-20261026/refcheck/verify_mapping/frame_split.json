@@ -1,0 +1,152 @@
+{
+ "n": 713,
+ "max_abs_check_vs_T_S_R": 0.0001,
+ "all": {
+  "n": 713,
+  "excess_T_minus_prod": 0.0352,
+  "from_rest": 0.0249,
+  "from_moved": 0.0103,
+  "rmse_prod": 0.0546,
+  "rmse_SR": 0.058
+ },
+ "R<0.95": {
+  "n": 392,
+  "excess_T_minus_prod": 0.0466,
+  "from_rest": 0.0429,
+  "from_moved": 0.0037,
+  "rmse_prod": 0.066,
+  "rmse_SR": 0.072
+ },
+ "S>=0.8": {
+  "n": 227,
+  "excess_T_minus_prod": 0.0203,
+  "from_rest": 0.0141,
+  "from_moved": 0.0063,
+  "rmse_prod": 0.0288,
+  "rmse_SR": 0.0301
+ },
+ "S>=0.8,R<0.95": {
+  "n": 89,
+  "excess_T_minus_prod": 0.0336,
+  "from_rest": 0.034,
+  "from_moved": -0.0004,
+  "rmse_prod": 0.0405,
+  "rmse_SR": 0.0421
+ },
+ "per_object": {
+  "ep11 beige_cup": {
+   "n": 52,
+   "rest_share": 0.19,
+   "ex_rest": 0.005,
+   "ex_moved": 0.0
+  },
+  "ep11 blue_cup": {
+   "n": 52,
+   "rest_share": 1.0,
+   "ex_rest": 0.254,
+   "ex_moved": 0.0
+  },
+  "ep12 blue_cup": {
+   "n": 122,
+   "rest_share": 0.193,
+   "ex_rest": 0.0,
+   "ex_moved": -0.01
+  },
+  "ep12 plastic_dish_rack": {
+   "n": 122,
+   "rest_share": 1.0,
+   "ex_rest": 0.088,
+   "ex_moved": 0.0
+  },
+  "ep18 mini_dust_pan": {
+   "n": 185,
+   "rest_share": 0.048,
+   "ex_rest": 0.0,
+   "ex_moved": 0.022
+  },
+  "ep18 mini_sweeper": {
+   "n": 185,
+   "rest_share": 0.11,
+   "ex_rest": 0.007,
+   "ex_moved": 0.028
+  },
+  "ep2 white_pot": {
+   "n": 9,
+   "rest_share": 0.335,
+   "ex_rest": -0.001,
+   "ex_moved": -0.033
+  },
+  "ep2 white_pot_lid": {
+   "n": 9,
+   "rest_share": 0.172,
+   "ex_rest": 0.017,
+   "ex_moved": -0.024
+  },
+  "ep21 blue_cup": {
+   "n": 61,
+   "rest_share": 0.199,
+   "ex_rest": -0.0,
+   "ex_moved": 0.004
+  },
+  "ep21 water_pitcher": {
+   "n": 61,
+   "rest_share": 0.215,
+   "ex_rest": 0.004,
+   "ex_moved": 0.008
+  },
+  "ep24 wooden_piece_1": {
+   "n": 113,
+   "rest_share": 0.04,
+   "ex_rest": -0.0,
+   "ex_moved": 0.002
+  },
+  "ep24 wooden_piece_2": {
+   "n": 113,
+   "rest_share": 0.418,
+   "ex_rest": 0.048,
+   "ex_moved": 0.004
+  },
+  "ep26 plastic_dish_rack": {
+   "n": 9,
+   "rest_share": 1.0,
+   "ex_rest": -0.03,
+   "ex_moved": 0.0
+  },
+  "ep26 white_pot": {
+   "n": 9,
+   "rest_share": 0.329,
+   "ex_rest": 0.042,
+   "ex_moved": -0.014
+  },
+  "ep27 plastic_dish_rack": {
+   "n": 83,
+   "rest_share": 1.0,
+   "ex_rest": 0.001,
+   "ex_moved": 0.0
+  },
+  "ep27 white_pot": {
+   "n": 83,
+   "rest_share": 0.089,
+   "ex_rest": 0.003,
+   "ex_moved": 0.033
+  },
+  "ep31 mini_sweeper": {
+   "n": 35,
+   "rest_share": 0.134,
+   "ex_rest": 0.004,
+   "ex_moved": 0.081
+  },
+  "ep31 plastic_dish_rack": {
+   "n": 35,
+   "rest_share": 1.0,
+   "ex_rest": 0.101,
+   "ex_moved": 0.0
+  },
+  "ep39 mini_dust_pan": {
+   "n": 44,
+   "rest_share": 0.154,
+   "ex_rest": 0.0,
+   "ex_moved": 0.003
+  }
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "W1 handle wrap (power, 3 stations x 4 sides, radius 2 cm)": {
+  "0.5": {
+   "max_normal_N": 5.31,
+   "total_normal_N": 51.02,
+   "infeasible_frames": 0,
+   "of": 122
+  },
+  "0.71": {
+   "max_normal_N": 4.19,
+   "total_normal_N": 42.38,
+   "infeasible_frames": 0,
+   "of": 122
+  },
+  "1.0": {
+   "max_normal_N": 3.27,
+   "total_normal_N": 32.62,
+   "infeasible_frames": 0,
+   "of": 122
+  }
+ },
+ "W2 handle hook (fingers on one inner side only, no thumb)": {
+  "0.5": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 122,
+   "of": 122
+  },
+  "0.71": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 122,
+   "of": 122
+  },
+  "1.0": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 122,
+   "of": 122
+  }
+ },
+ "W3 handle pinch, one station (thumb vs index)": {
+  "0.5": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 122,
+   "of": 122
+  },
+  "0.71": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 122,
+   "of": 122
+  },
+  "1.0": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 122,
+   "of": 122
+  }
+ }
+}

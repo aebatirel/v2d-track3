@@ -1,0 +1,3 @@
+# timed_zero.py on the evolved ep39 reference (scratchpad evo/oa/glockt_cma2/ep39/.../ref_gl_ilc.parquet), EMB=sharpa_hands_mid DEV=cpu, 1 world, 319 frames, 2026-10-24 10:01 UTC, load avg ~1.0-1.5 on 4 shared CPUs
+TIMING imports 6.4 s | setup_scene 4.1 s | RLEnv build 0.7 s | 318 steps 21.8 s = 0.0683 s/frame (median 0.0598, first 1.02 s, p95 0.0959) | total 33.2 s | bodies 54 | sim fps 20.0 substeps 5
+# tools/trace_score.py (sim_vs_ref, our reference only): floor 0.1763 | this replay 0.8770 | lead's earlier replay evo/oa/zero_cma2.npz 0.8770 | max |q diff| between the two traces 0.0 (bit-identical)

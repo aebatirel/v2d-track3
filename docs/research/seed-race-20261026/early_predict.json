@@ -1,0 +1,32 @@
+{
+ "n_curves": 31,
+ "episodes": {
+  "ep12": 4,
+  "ep18": 10,
+  "ep27": 3,
+  "ep24": 11,
+  "ep3": 1,
+  "ev25": 2
+ },
+ "pearson_40_final": 0.89,
+ "spearman_40_final": 0.824,
+ "r2_level40": 0.792,
+ "r2_slope40to60": 0.036,
+ "r2_level40_plus_slope": 0.818,
+ "r2_level60": 0.814,
+ "leader_at_40_keeps_lead_gap_gt_0.0": "76/110",
+ "leader_at_40_keeps_lead_gap_gt_0.05": "43/55",
+ "leader_at_40_keeps_lead_gap_gt_0.1": "30/36",
+ "late_jumps_gt_0.25": [
+  [
+   0.24,
+   0.82,
+   "ep18"
+  ],
+  [
+   0.5,
+   0.89,
+   "ev25"
+  ]
+ ]
+}

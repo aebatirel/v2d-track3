@@ -1,0 +1,121 @@
+{
+ "2": {
+  "perc": 0.9866,
+  "pre": 0.9749,
+  "ref": 0.9798,
+  "snap": -0.0117,
+  "contact_retarget": 0.0049,
+  "z_shift_mm": {
+   "white_pot": 1.6,
+   "white_pot_lid": 0.0
+  },
+  "lib": "library_v3"
+ },
+ "11": {
+  "perc": 0.8964,
+  "pre": 0.885,
+  "ref": 0.8844,
+  "snap": -0.0114,
+  "contact_retarget": -0.0006,
+  "z_shift_mm": {
+   "blue_cup": -0.4,
+   "beige_cup": 2.7
+  },
+  "lib": "library_v3x"
+ },
+ "12": {
+  "perc": 0.9662,
+  "pre": 0.9354,
+  "ref": 0.9354,
+  "snap": -0.0308,
+  "contact_retarget": 0.0,
+  "z_shift_mm": {
+   "blue_cup": 3.4,
+   "plastic_dish_rack": 13.4
+  },
+  "lib": "library_v2"
+ },
+ "18": {
+  "perc": 0.9642,
+  "pre": 0.9709,
+  "ref": 0.9657,
+  "snap": 0.0067,
+  "contact_retarget": -0.0052,
+  "z_shift_mm": {
+   "mini_sweeper": 9.7,
+   "mini_dust_pan": 6.5
+  },
+  "lib": "library_v3"
+ },
+ "21": {
+  "perc": 0.8372,
+  "pre": 0.7811,
+  "ref": 0.7776,
+  "snap": -0.0561,
+  "contact_retarget": -0.0035,
+  "z_shift_mm": {
+   "blue_cup": -0.0,
+   "water_pitcher": 9.3
+  },
+  "lib": "library_v3"
+ },
+ "24": {
+  "perc": 0.8117,
+  "pre": 0.8163,
+  "ref": 0.8163,
+  "snap": 0.0046,
+  "contact_retarget": 0.0,
+  "z_shift_mm": {
+   "wooden_piece_1": 12.9,
+   "wooden_piece_2": 11.0
+  },
+  "lib": "library_v2"
+ },
+ "26": {
+  "perc": 0.9723,
+  "pre": 0.9108,
+  "ref": 0.9229,
+  "snap": -0.0615,
+  "contact_retarget": 0.0121,
+  "z_shift_mm": {
+   "plastic_dish_rack": 10.5,
+   "white_pot": -15.4
+  },
+  "lib": "library_v4"
+ },
+ "27": {
+  "perc": 0.9593,
+  "pre": 0.9621,
+  "ref": 0.9621,
+  "snap": 0.0028,
+  "contact_retarget": 0.0,
+  "z_shift_mm": {
+   "plastic_dish_rack": 10.5,
+   "white_pot": 9.1
+  },
+  "lib": "library_v2"
+ },
+ "31": {
+  "perc": 0.7998,
+  "pre": 0.795,
+  "ref": 0.8233,
+  "snap": -0.0048,
+  "contact_retarget": 0.0283,
+  "z_shift_mm": {
+   "mini_sweeper": -0.8,
+   "plastic_dish_rack": 9.6
+  },
+  "lib": "library_v3"
+ },
+ "39": {
+  "perc": 0.9602,
+  "pre": 0.9602,
+  "ref": 0.9559,
+  "snap": 0.0,
+  "contact_retarget": -0.0043,
+  "z_shift_mm": {
+   "mini_dust_pan": 4.4
+  },
+  "lib": "library_v3"
+ }
+}

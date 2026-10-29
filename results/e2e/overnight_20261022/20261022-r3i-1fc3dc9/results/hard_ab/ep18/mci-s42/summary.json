@@ -1,0 +1,62 @@
+{
+ "checkpoint": "/content/runs/perc2mci/ep18-s42/policy_250003456.safetensors",
+ "n": 6,
+ "sim_vs_ref": {
+  "mean": 0.3086,
+  "std": 0.0522,
+  "min": 0.1978,
+  "max": 0.3435
+ },
+ "auc": {
+  "mean": 0.3508,
+  "std": 0.0562,
+  "min": 0.2315,
+  "max": 0.3985
+ },
+ "auc_of_best_sim_vs_ref": 0.3985,
+ "rollouts": [
+  {
+   "rollout": "r1",
+   "sim_vs_ref": 0.3376,
+   "auc": 0.3877,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r2",
+   "sim_vs_ref": 0.1978,
+   "auc": 0.2315,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r3",
+   "sim_vs_ref": 0.3397,
+   "auc": 0.3825,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r4",
+   "sim_vs_ref": 0.3435,
+   "auc": 0.3985,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r5",
+   "sim_vs_ref": 0.3381,
+   "auc": 0.3584,
+   "sp": 0.0,
+   "mp": 0.0
+  },
+  {
+   "rollout": "r6",
+   "sim_vs_ref": 0.295,
+   "auc": 0.346,
+   "sp": 0.0,
+   "mp": 0.0
+  }
+ ]
+}
+

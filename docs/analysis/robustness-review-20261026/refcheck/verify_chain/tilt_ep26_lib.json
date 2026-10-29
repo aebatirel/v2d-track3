@@ -1,0 +1,47 @@
+{
+ "ep": 26,
+ "names": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "mode": "lib",
+ "bottoms_cm": {
+  "plastic_dish_rack": {
+   "scan_at_perc_above_mkref_plane": -0.91,
+   "ours_at_perc_above_mkref_plane": -1.05,
+   "scan_at_mocap_above_table": -0.3
+  },
+  "white_pot": {
+   "scan_at_perc_above_mkref_plane": 1.33,
+   "ours_at_perc_above_mkref_plane": 1.54,
+   "scan_at_mocap_above_table": 1.74
+  }
+ },
+ "rotation_anchor": "plastic_dish_rack",
+ "tilt_deg": 2.674,
+ "lever_dz_cm": {
+  "plastic_dish_rack": 0.0,
+  "white_pot": 0.55
+ },
+ "aligned_dz_err_cm": {
+  "plastic_dish_rack": 0.0,
+  "white_pot": -0.35
+ },
+ "levelled_dz_err_cm": {
+  "plastic_dish_rack": -0.0,
+  "white_pot": -0.91
+ },
+ "dist_to_slot0_cm": {
+  "plastic_dish_rack": 0.0,
+  "white_pot": 13.4
+ },
+ "frame0_orientation_err_after_levelled_alignment_deg": {
+  "plastic_dish_rack": 2.67,
+  "white_pot": 6.05
+ },
+ "frame0_orientation_err_after_kit_alignment_deg": {
+  "plastic_dish_rack": 0.0,
+  "white_pot": 6.33
+ },
+ "mocap_axis_tilt_from_vertical_deg": {}
+}

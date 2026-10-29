@@ -1,0 +1,99 @@
+{
+ "per_object": {
+  "beige_cup": {
+   "soup_vertices": 295579,
+   "faces": 98563,
+   "welded_vertices": 49580,
+   "soup64": 9459408,
+   "weld64": 3555432,
+   "weld32": 1777716
+  },
+  "blue_cup": {
+   "soup_vertices": 298377,
+   "faces": 99487,
+   "welded_vertices": 49859,
+   "soup64": 9548736,
+   "weld64": 3584304,
+   "weld32": 1792152
+  },
+  "mini_dust_pan": {
+   "soup_vertices": 298618,
+   "faces": 99560,
+   "welded_vertices": 49780,
+   "soup64": 9556272,
+   "weld64": 3584160,
+   "weld32": 1792080
+  },
+  "mini_sweeper": {
+   "soup_vertices": 299442,
+   "faces": 99838,
+   "welded_vertices": 49950,
+   "soup64": 9582720,
+   "weld64": 3594912,
+   "weld32": 1797456
+  },
+  "plastic_dish_rack": {
+   "soup_vertices": 298326,
+   "faces": 99460,
+   "welded_vertices": 49905,
+   "soup64": 9546864,
+   "weld64": 3584760,
+   "weld32": 1792380
+  },
+  "water_pitcher": {
+   "soup_vertices": 292522,
+   "faces": 97540,
+   "welded_vertices": 48795,
+   "soup64": 9361488,
+   "weld64": 3512040,
+   "weld32": 1756020
+  },
+  "white_pot": {
+   "soup_vertices": 293329,
+   "faces": 97803,
+   "welded_vertices": 49227,
+   "soup64": 9387168,
+   "weld64": 3528720,
+   "weld32": 1764360
+  },
+  "white_pot_lid": {
+   "soup_vertices": 297615,
+   "faces": 99231,
+   "welded_vertices": 49738,
+   "soup64": 9524304,
+   "weld64": 3575256,
+   "weld32": 1787628
+  },
+  "wooden_piece_1": {
+   "soup_vertices": 281545,
+   "faces": 93912,
+   "welded_vertices": 47308,
+   "soup64": 9010968,
+   "weld64": 3389280,
+   "weld32": 1694640
+  },
+  "wooden_piece_2": {
+   "soup_vertices": 296002,
+   "faces": 98734,
+   "welded_vertices": 49371,
+   "soup64": 9473664,
+   "weld64": 3554520,
+   "weld32": 1777260
+  }
+ },
+ "totals_10_public": {
+  "soup64": 94451592,
+  "weld64": 35463384,
+  "weld32": 17731692,
+  "weld32_u16": 0
+ },
+ "extra_points_etc": 264616,
+ "spoon_estimate_weld32": 1773169,
+ "total_11_weld32": 19769477,
+ "total_11_weld64": 39274338,
+ "limit": 16000000,
+ "npz_weld32_10_public": {
+  "uncompressed": 17734252,
+  "b64_len": 14140392
+ }
+}

@@ -1,0 +1,2 @@
+{"sim": {"AUC": 0.7648, "SP_SR": 1.0, "MP_SR": 0.0, "MPPE_cm": 2.7242, "RPE_cm": 4.1067, "per_obj_AUC": {"blue_cup": 0.5297, "plastic_dish_rack": 1.0}}, "static_floor": {"AUC": 0.5905, "SP_SR": 0.0, "MP_SR": 0.0, "MPPE_cm": 7.7243, "RPE_cm": 11.0546, "per_obj_AUC": {"blue_cup": 0.2082, "plastic_dish_rack": 0.9727}}, "reference": {"AUC": 0.9315, "SP_SR": 1.0, "MP_SR": 1.0, "MPPE_cm": 1.3161, "RPE_cm": 0.9372, "per_obj_AUC": {"blue_cup": 0.9492, "plastic_dish_rack": 0.9137}}}
+

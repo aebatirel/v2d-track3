@@ -1,0 +1,6 @@
+[2026-10-21T23:57:33Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-21T23:57:37Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-22T01:44:34Z] ab ep24 mcski s42: pipeline rc=0 [23:58:52] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":131,"optimised":234,"pen_p95_mm_before":23.7,"pen_p95_mm_after":2.8,"tip_to_target_mm_median":5.0,"tip_to_target_mm_p90":20.6,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7, [01:43:53] qa_policy: {"kind":"policy","ep":24,"sim_vs_ref":0.3248,"floor_vs_ref":0.2199,"verdict":"weak"} 
+[2026-10-22T01:45:27Z] ab ep24 mcski-s42 (policy_250003456.safetensors): n 6 sim_vs_ref {'mean': 0.326, 'std': 0.0013, 'min': 0.3247, 'max': 0.3287} registered AUC {'mean': 0.318, 'std': 0.0008, 'min': 0.3166, 'max': 0.3192}
+[2026-10-22T03:23:02Z] ab ep18 mcki s42: pipeline rc=0 [00:01:36] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":180,"optimised":181,"pen_p95_mm_before":16.0,"pen_p95_mm_after":2.7,"tip_to_target_mm_median":3.9,"tip_to_target_mm_p90":16.2,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7, [03:22:47] qa_policy: {"kind":"policy","ep":18,"sim_vs_ref":0.3542,"floor_vs_ref":0.6185,"verdict":"harmful"} 
+

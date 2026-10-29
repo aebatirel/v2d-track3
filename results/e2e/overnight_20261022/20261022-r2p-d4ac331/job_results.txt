@@ -1,0 +1,5 @@
+[2026-10-21T22:30:04Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-21T22:30:08Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-21T23:45:20Z] ab ep24 mcsp s42: pipeline rc=0 [23:45:10] qa_policy: {"kind":"policy","ep":24,"sim_vs_ref":0.292,"floor_vs_ref":0.2199,"verdict":"weak"} 
+[2026-10-21T23:46:17Z] ab ep24 mcsp-s42 (policy_250003456.safetensors): n 6 sim_vs_ref {'mean': 0.2691, 'std': 0.0217, 'min': 0.2269, 'max': 0.2902} registered AUC {'mean': 0.2821, 'std': 0.0231, 'min': 0.2498, 'max': 0.3226}
+

@@ -1,0 +1,59 @@
+{
+ "ep": 31,
+ "rollout": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r1",
+ "lib": "library_v3",
+ "names": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "T_rollout": 290,
+ "T_gt": 290,
+ "steps_first_last": [
+  0,
+  289
+ ],
+ "reference_frame_equals_step": true,
+ "md_fps": "20.0",
+ "reg_deg": {
+  "mini_sweeper": 3.044,
+  "plastic_dish_rack": 1.56
+ },
+ "sim": {
+  "AUC": 0.76972,
+  "per_obj": [
+   0.7881,
+   0.7513
+  ],
+  "SP": 1.0,
+  "MP": 1.0
+ },
+ "sim_f0ref": {
+  "AUC": 0.82306,
+  "SP": 1.0,
+  "MP": 1.0,
+  "dAUC": 0.0533
+ },
+ "sim_vs_ref_pos_mm_by_lag": {
+  "-2": 15.14,
+  "-1": 14.116,
+  "0": 13.601,
+  "1": 14.169,
+  "2": 15.247
+ },
+ "frame0_gap": {
+  "mini_sweeper": {
+   "pos_mm": 9.199,
+   "rot_deg": 10.999
+  },
+  "plastic_dish_rack": {
+   "pos_mm": 1.343,
+   "rot_deg": 0.386
+  }
+ },
+ "ref_vs_gt_pos_mm_by_lag_unaligned": {
+  "-1": 158.094,
+  "0": 157.912,
+  "1": 158.09
+ },
+ "seconds": 5.6
+}

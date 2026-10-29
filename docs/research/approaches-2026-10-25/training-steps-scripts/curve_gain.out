@@ -1,0 +1,34 @@
+unique curves 29
+score@100M < 0.5 n 22 | median 100->250M +0.039 | ends >= 0.45: 1/22 | ends below its zero-action floor: 13/22
+score@100M >= 0.5 n 7 | median 100->250M +0.091 | ends >= 0.45: 7/7 | ends below its zero-action floor: 0/7
+rising 150->200M by > 0.03 n 8 | median 200->250M +0.000 | rises again 2/8
+flat or falling 150->200M n 21 | median 200->250M +0.016 | rises again 18/21
+perc2mcw    ep24-s42 floor 0.22  0.02 0.02 0.05 0.05
+perc2mc     ep24-s42 floor 0.22  0.02 0.06 0.05 0.06
+perc2mcw    ep18-s42 floor 0.62  0.19 0.14 0.12 0.19
+perc2mcsp   ep24-s42 floor 0.22  0.20 0.23 0.22 0.29
+perc2mcs    ep24-s42 floor 0.22  0.21 0.20 0.16 0.22
+perc2mcp    ep18-s42 floor 0.62  0.22 0.34 0.31 0.34
+perc2mcsks  ep24-s43 floor 0.22  0.22 0.22 0.22 0.22
+perc2mcsks  ep24-s42 floor 0.22  0.22 0.22 0.22 0.44
+perc2mcsk   ep24-s43 floor 0.22  0.23 0.23 0.37 0.37
+perc2mcskri ep24-s42 floor 0.23  0.23 0.32 0.32 0.32
+perc2mcskq  ep24-s42 floor 0.22  0.23 0.23 0.25 0.36
+perc2mckfi  ep18-s42 floor 0.62  0.24 0.41 0.82 0.82
+perc2mcsk   ep24-s42 floor 0.22  0.25 0.23 0.29 0.32
+perc2mck    ep18-s42 floor 0.62  0.28 0.35 0.33 0.35
+perc2mcski  ep24-s42 floor 0.22  0.28 0.31 0.31 0.32
+perc2mc     ep3-s42  floor 0.33  0.28 0.26 0.30 0.30
+perc2mck    ep18-s43 floor 0.62  0.34 0.34 0.20 0.34
+perc2mci    ep18-s42 floor 0.62  0.34 0.34 0.32 0.36
+perc2mcki   ep18-s42 floor 0.62  0.34 0.29 0.35 0.35
+perc2mc     ep18-s42 floor 0.62  0.34 0.35 0.34 0.35
+perc2mckq   ep18-s42 floor 0.62  0.34 0.30 0.32 0.34
+perc2mckri  ep18-s42 floor 0.62  0.36 0.27 0.38 0.38
+perc2mck    ep12-s42 floor 0.61  0.63 0.75 0.73 0.80
+perc2mcki   ep12-s42 floor 0.61  0.65 0.76 0.78 0.78
+perc2mc     ep12-s42 floor 0.61  0.65 0.70 0.75 0.78
+perc2mckr   ep12-s42 floor 0.60  0.69 0.74 0.77 0.78
+perc2mcki   ep27-s42 floor 0.58  0.90 0.94 0.94 0.94
+perc2mck    ep27-s42 floor 0.58  0.95 0.93 0.94 0.95
+perc2mc     ep27-s42 floor 0.58  0.96 0.94 0.96 0.96

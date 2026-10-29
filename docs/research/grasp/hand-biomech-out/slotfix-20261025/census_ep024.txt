@@ -1,0 +1,28 @@
+left wooden_piece_2 [0, 55] n 56 | F_max 3.39 acc95 1.7 tau_grip 0.134 / 0.154 | grip 4.6 cm | tilt 28.5 lift 21.6
+   slots {'thumb_tip': 0.75, 'index_tip': 0.62, 'middle_tip': 0.18, 'ring_tip': 0.11, 'pinky_tip': 0.11, 'thumb_DP': 0.61, 'index_DP': 0.7, 'middle_DP': 0.23, 'ring_DP': 0.12, 'pinky_DP': 0.16, 'thumb_MCP': 0.05, 'index_MP': 0.21, 'middle_MP': 0.21, 'ring_MP': 0.18, 'pinky_MP': 0.16, 'palm': 0.61}
+   digits {'thumb': 0.79, 'index': 0.71, 'middle': 0.34, 'ring': 0.23, 'pinky': 0.16, 'palm': 0.61}
+    palm n 34 pos [-3.1, 6.5, 0.1] p10 [-3.6, 6.5, 0.0] p90 [-3.1, 6.6, 0.5] nrm [-0.01, -0.39, 0.46] +thin 0.71
+    thumb n 79 pos [1.3, 3.2, 0.1] p10 [-0.7, -1.5, -0.6] p90 [3.2, 5.7, 0.6] nrm [0.02, -0.04, -0.05] +thin 0.48
+    fingers n 168 pos [3.0, 4.2, 0.3] p10 [-0.8, 1.5, -0.5] p90 [6.4, 6.3, 0.7] nrm [0.01, -0.2, -0.24] +thin 0.38
+left wooden_piece_2 [60, 201] n 142 | F_max 3.19 acc95 0.72 tau_grip 0.301 / 0.329 | grip 10.8 cm | tilt 66.4 lift 23.4
+   slots {'thumb_tip': 0.08, 'index_tip': 0.82, 'middle_tip': 0.44, 'ring_tip': 0.84, 'pinky_tip': 0.13, 'thumb_DP': 0.1, 'index_DP': 0.9, 'middle_DP': 0.89, 'ring_DP': 0.94, 'pinky_DP': 0.11, 'index_MP': 0.63, 'middle_MP': 0.85, 'ring_MP': 0.77}
+   digits {'thumb': 0.15, 'index': 0.92, 'middle': 0.95, 'ring': 0.96, 'pinky': 0.13, 'palm': 0.0}
+    thumb n 27 pos [-10.4, -5.4, -0.0] p10 [-11.3, -6.2, -0.6] p90 [-7.6, -4.5, 0.6] nrm [0.51, 0.08, 0.15] +thin 0.44
+    fingers n 1041 pos [-10.2, -3.4, -0.1] p10 [-11.1, -7.1, -0.9] p90 [-9.4, 0.7, 0.6] nrm [0.15, -0.01, 0.03] +thin 0.53
+right wooden_piece_1 [102, 243] n 142 | F_max 3.57 acc95 1.69 tau_grip 0.24 / 0.322 | grip 9.0 cm | tilt 100.5 lift 25.4
+   slots {'thumb_tip': 0.25, 'index_tip': 0.77, 'middle_tip': 0.76, 'ring_tip': 0.75, 'thumb_DP': 0.08, 'index_DP': 0.25, 'middle_DP': 0.78, 'ring_DP': 0.73, 'thumb_MCP': 0.08, 'index_MP': 0.09, 'middle_MP': 0.19, 'ring_MP': 0.13, 'palm': 0.08}
+   digits {'thumb': 0.35, 'index': 0.85, 'middle': 0.84, 'ring': 0.78, 'pinky': 0.05, 'palm': 0.08}
+    palm n 11 pos [-9.5, -3.3, -0.1] p10 [-9.6, -5.2, -1.3] p90 [-9.4, -1.1, 0.3] nrm [0.92, 0.03, 0.05] +thin 0.64
+    thumb n 57 pos [-6.4, -3.5, -0.8] p10 [-8.5, -5.2, -1.8] p90 [-4.2, -1.9, -0.4] nrm [-0.02, 0.09, 0.51] +thin 0.75
+    fingers n 645 pos [-8.0, -4.4, 0.1] p10 [-9.2, -8.4, -0.7] p90 [-6.5, -0.4, 1.0] nrm [0.1, 0.08, -0.18] +thin 0.36
+right wooden_piece_2 [8, 21] n 14 | F_max 3.39 acc95 1.96 tau_grip 0.069 / 0.078 | grip 2.3 cm | tilt 17.3 lift 3.8
+   slots {'index_tip': 0.57, 'middle_tip': 0.57, 'ring_tip': 0.21, 'index_DP': 0.14, 'middle_DP': 0.21, 'ring_DP': 0.14, 'pinky_DP': 0.14, 'middle_MP': 0.21, 'ring_MP': 0.21, 'palm': 0.21}
+   digits {'thumb': 0.0, 'index': 0.57, 'middle': 0.64, 'ring': 0.29, 'pinky': 0.14, 'palm': 0.21}
+    palm n 3 pos [-8.7, -1.4, -0.2] p10 [-9.8, -5.3, -0.6] p90 [-7.6, 3.0, 0.4] nrm [-0.01, 0.14, 0.3] +thin 0.67
+    fingers n 34 pos [0.5, 2.6, 0.2] p10 [-2.7, -4.2, -0.6] p90 [2.9, 6.5, 0.9] nrm [0.02, -0.23, -0.27] +thin 0.32
+right wooden_piece_2 [37, 78] n 42 | F_max 3.12 acc95 1.49 tau_grip 0.124 / 0.132 | grip 4.2 cm | tilt 76.9 lift 23.4
+   slots {'thumb_tip': 0.5, 'index_tip': 0.71, 'middle_tip': 0.57, 'ring_tip': 0.45, 'pinky_tip': 0.21, 'thumb_DP': 0.52, 'index_DP': 0.69, 'middle_DP': 0.48, 'ring_DP': 0.38, 'pinky_DP': 0.4, 'index_MP': 0.36, 'middle_MP': 0.17, 'ring_MP': 0.4, 'pinky_MP': 0.48, 'palm': 0.5}
+   digits {'thumb': 0.62, 'index': 0.83, 'middle': 0.57, 'ring': 0.55, 'pinky': 0.52, 'palm': 0.5}
+    palm n 21 pos [1.4, -5.6, -0.5] p10 [0.8, -5.9, -0.6] p90 [2.1, -5.5, -0.5] nrm [-0.05, 0.27, 0.95] +thin 1.0
+    thumb n 43 pos [6.2, -3.2, 0.1] p10 [4.2, -5.1, -1.3] p90 [7.7, -1.3, 0.9] nrm [-0.02, -0.0, -0.11] +thin 0.44
+    fingers n 223 pos [4.1, 0.6, -0.2] p10 [0.1, -3.8, -0.6] p90 [7.6, 5.2, 0.6] nrm [-0.01, -0.01, 0.4] +thin 0.71

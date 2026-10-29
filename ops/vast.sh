@@ -5,7 +5,8 @@
 # Auth: in a Claude Code cloud session the VAST_API_KEY network secret makes the proxy add
 # "Authorization: Bearer <key>" for console.vast.ai, so nothing is needed here. Elsewhere, export VAST_API_KEY.
 #
-#   ops/vast.sh offers [gpu_name|any] [on-demand|bid]   cheapest compliant offers (default "RTX PRO 6000 WS",
+#   ops/vast.sh offers [gpu_names|any] [on-demand|bid]  cheapest compliant offers (comma-separated names; default the
+#                                                   three 96 GB cards "RTX PRO 6000 WS,RTX PRO 6000 S,RTX PRO 6000 Max-Q",
 #                                                   on-demand); "any" = cheapest GPU of any kind (for the smoke box)
 #   ops/vast.sh create <offer_id> <run_id> '<job command>' [bid_price]
 #        optional env: V2D_COMMIT (default: origin/main), ENV_SNAPSHOT, HF_STORE, SETUP=none, RESUME_FROM, IMAGE, DISK
@@ -15,29 +16,36 @@
 #   ops/vast.sh destroy <instance_id>               irreversible: deletes the instance and its disk
 #   ops/vast.sh ssh-key <public_key_file>           add a key to the account (applies to new instances)
 #   ops/vast.sh attach-key <instance_id> <public_key_file>
+#   ops/vast.sh exec <run_id> '<bash command>' [timeout_s]   run a command on the box over HTTPS (SSH replacement:
+#                                                   rexec.py behind a Cloudflare tunnel; URL and token from the HF store)
+#   Settings can also lead the arguments, e.g. ops/vast.sh SETUP=none DISK=40 create ..., so that one permission rule
+#   "Bash(ops/vast.sh *)" in .claude/settings.json covers every call.
 set -euo pipefail
 API=https://console.vast.ai/api/v0
 HERE=$(cd "$(dirname "$0")" && pwd)
+while [[ ${1:-} =~ ^(V2D_COMMIT|ENV_SNAPSHOT|HF_STORE|SETUP|RESUME_FROM|IMAGE|DISK)=[^\ ]*$ ]]; do export "$1"; shift; done
 . "$HERE/config.env"
 AUTH=(); [ -n "${VAST_API_KEY:-}" ] && AUTH=(-H "Authorization: Bearer $VAST_API_KEY")
 req() { curl -sS ${AUTH[@]+"${AUTH[@]}"} -H 'Content-Type: application/json' "$@"; }   # bash 3.2-safe
 
 case ${1:-} in
 offers)
-  GPU=${2:-RTX PRO 6000 WS}; TYPE=${3:-on-demand}
+  GPU=${2:-RTX PRO 6000 WS,RTX PRO 6000 S,RTX PRO 6000 Max-Q}; TYPE=${3:-on-demand}
   Q=$(python3 -c 'import json,sys; q={"rentable":{"eq":True},"rented":{"eq":False},"num_gpus":{"eq":1},"type":sys.argv[2],
       "limit":500}
 if sys.argv[1] == "any": q.update(verified={"eq":True}, cuda_max_good={"gte":13.0}, order=[["dph_total","asc"]], limit=64)
-else: q["gpu_name"] = {"eq": sys.argv[1]}
+else: q["gpu_name"] = {"in": sys.argv[1].split(",")}   # comma-separated names (2026-10-22: all three 96 GB PRO 6000s)
 print(json.dumps(q))' "$GPU" "$TYPE")
-  OFFERS=$(curl -sS -X POST $API/bundles/ -H 'Content-Type: application/json' -d "$Q") python3 - "$TYPE" "$DISK" "$GPU" <<'EOF'
+  OF=$(mktemp); trap 'rm -f "$OF"' EXIT     # a file, not an env var: the market list can exceed ARG_MAX
+  curl -sS -X POST $API/bundles/ -H 'Content-Type: application/json' -d "$Q" > "$OF"
+  OFFERS_FILE=$OF python3 - "$TYPE" "$DISK" "$GPU" <<'EOF'
 import json, os, sys
 bid = sys.argv[1] == "bid"; disk = float(sys.argv[2]); small = sys.argv[3] == "any"
 ok = lambda o: (o.get("cuda_max_good") or 0) >= 13.0 and o.get("verification") == "verified" \
     and (o.get("inet_down") or 0) >= 300 and (o.get("reliability2") or 0) >= (0.97 if small else 0.98) and (small or (
     (o.get("cpu_cores_effective") or 0) >= 16 and (o.get("cpu_ram") or 0) >= 64000 and (o.get("disk_space") or 0) >= disk))
 rows = []
-for o in json.loads(os.environ["OFFERS"])["offers"]:
+for o in json.load(open(os.environ["OFFERS_FILE"]))["offers"]:
     if not ok(o): continue
     gpu = o["min_bid"] if bid else o["dph_total"]
     store = (o.get("storage_cost") or 0) * disk / 720          # $/GB/month -> $/h
@@ -52,7 +60,12 @@ EOF
   ;;
 create)
   OFFER=$2; RUN_ID=$3; JOB=$4; PRICE=${5:-}
-  COMMIT=${V2D_COMMIT:-$(git -C "$HERE/.." rev-parse origin/main)}
+  # default: the local HEAD (2026-10-26: the old default origin/main was the day-1 commit; a pack box started on it and
+  # was destroyed within a minute); it must already be on origin, since the box fetches it from GitHub
+  COMMIT=${V2D_COMMIT:-$(git -C "$HERE/.." rev-parse HEAD)}
+  # the box runs `git fetch origin <commit>`, which needs the full 40-char hash (a short one gave CHECKOUT-FAIL)
+  [ ${#COMMIT} -eq 40 ] || COMMIT=$(git -C "$HERE/.." rev-parse --verify "$COMMIT^{commit}") || { echo "unknown commit $COMMIT"; exit 1; }
+  [ -n "$(git -C "$HERE/.." branch -r --contains "$COMMIT" 2> /dev/null)" ] || { echo "commit ${COMMIT:0:7} is not pushed"; exit 1; }
   ONSTART="$HERE/box/onstart.sh"; [ $(wc -c < "$ONSTART") -le 4048 ] || { echo "onstart.sh > 4048 chars"; exit 1; }
   BODY=$(python3 - "$IMAGE" "$DISK" "$RUN_ID" "$JOB" "$COMMIT" "${ENV_SNAPSHOT:-}" "${HF_STORE:-}" "$PRICE" "$ONSTART" \
                    "${SETUP:-}" "${RESUME_FROM:-}" <<'EOF'
@@ -95,5 +108,14 @@ label)   req -X PUT "$API/instances/$2/" -d "$(python3 -c 'import json,sys; prin
 destroy) req -X DELETE "$API/instances/$2/"; echo ;;
 ssh-key) req -X POST "$API/ssh/" -d "$(python3 -c 'import json,sys; print(json.dumps({"ssh_key": open(sys.argv[1]).read().strip()}))' "$2")"; echo ;;
 attach-key) req -X POST "$API/instances/$2/ssh/" -d "$(python3 -c 'import json,sys; print(json.dumps({"ssh_key": open(sys.argv[1]).read().strip()}))' "$3")"; echo ;;
-*) sed -n '2,20p' "$0"; exit 1 ;;
+exec)
+  # The huggingface.co network secret (or HF_TOKEN) authorises the read of the private store.
+  HFA=(); [ -n "${HF_TOKEN:-}" ] && HFA=(-H "Authorization: Bearer $HF_TOKEN")
+  ACC=$(curl -sSfL ${HFA[@]+"${HFA[@]}"} "https://huggingface.co/datasets/$HF_STORE/resolve/main/access/$2.json") \
+    || { echo "no access record for $2 in $HF_STORE (tunnel not up yet?)"; exit 1; }
+  URL=$(echo "$ACC" | python3 -c 'import json,sys; print(json.load(sys.stdin)["url"])')
+  TOK=$(echo "$ACC" | python3 -c 'import json,sys; print(json.load(sys.stdin)["token"])')
+  curl -sSf -m $(( ${4:-120} + 30 )) -X POST -H "X-Token: $TOK" -H "X-Timeout: ${4:-120}" --data-binary "$3" "$URL/exec"
+  ;;
+*) sed -n '2,25p' "$0"; exit 1 ;;
 esac

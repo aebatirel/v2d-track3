@@ -1,0 +1,28 @@
+{
+ "obj": "mini_sweeper",
+ "episodes": 2,
+ "frames": 643,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.8981274074074074,
+ "inside_vox": 2033,
+ "solid_vox": 2048,
+ "closing": "fill",
+ "unknown_share": 0.009,
+ "components": 125,
+ "hand_dropped": 1745232,
+ "table_dropped": 16903905,
+ "other_dropped": 3686004,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  3.4,
+  11.0,
+  14.4
+ ],
+ "watertight": true,
+ "sec": 1171.9
+}

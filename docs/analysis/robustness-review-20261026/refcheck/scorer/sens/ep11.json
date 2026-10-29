@@ -1,0 +1,420 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "meshes": "/home/user/v2d-track3/meshes/library_v2",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep11/poses_world_vo.npz",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 145.257,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.8978,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6375,
+    "RPE_cm": 1.739,
+    "per_obj_AUC": {
+     "blue_cup": 0.8622,
+     "beige_cup": 0.9334
+    }
+   },
+   "seconds": 54.5
+  },
+  "n4000": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 4000,
+    "axis": "pca",
+    "reg_seed_offset": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 145.257,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.8974,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6375,
+    "RPE_cm": 1.739,
+    "per_obj_AUC": {
+     "blue_cup": 0.8622,
+     "beige_cup": 0.9325
+    }
+   },
+   "seconds": 167.1
+  },
+  "bbox": {
+   "config": {
+    "anchor": "bbox",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "anchor_cm": [
+      -0.289,
+      -0.291,
+      0.163
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 145.257,
+     "anchor_cm": [
+      0.327,
+      0.654,
+      0.272
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.8994,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.5851,
+    "RPE_cm": 1.8073,
+    "per_obj_AUC": {
+     "blue_cup": 0.8586,
+     "beige_cup": 0.9402
+    }
+   },
+   "seconds": 55.7
+  },
+  "vtx500": {
+   "config": {
+    "anchor": "centroid",
+    "points": "vertex",
+    "n_points": 500,
+    "axis": "pca",
+    "reg_seed_offset": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 145.257,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.896,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6375,
+    "RPE_cm": 1.739,
+    "per_obj_AUC": {
+     "blue_cup": 0.8622,
+     "beige_cup": 0.9297
+    }
+   },
+   "seconds": 22.6
+  },
+  "seed1": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 1
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 3.593,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 117.854,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.896,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6635,
+    "RPE_cm": 1.6953,
+    "per_obj_AUC": {
+     "blue_cup": 0.8622,
+     "beige_cup": 0.9297
+    }
+   },
+   "seconds": 54.5
+  },
+  "seed2": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 2
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 0.648,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0259,
+      0.0041,
+      0.9997
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 68.232,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.011,
+      0.0297,
+      0.9995
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.9053,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.5545,
+    "RPE_cm": 1.7005,
+    "per_obj_AUC": {
+     "blue_cup": 0.8627,
+     "beige_cup": 0.948
+    }
+   },
+   "seconds": 55.5
+  },
+  "axisz": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "z",
+    "reg_seed_offset": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 145.257,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.8958,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6412,
+    "RPE_cm": 1.7255,
+    "per_obj_AUC": {
+     "blue_cup": 0.8613,
+     "beige_cup": 0.9302
+    }
+   },
+   "seconds": 41.1
+  },
+  "axisfit": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "fit",
+    "reg_seed_offset": 0
+   },
+   "registration": {
+    "blue_cup": {
+     "rot_deg": 1.86,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      -0.0494,
+      -0.0064,
+      0.9988
+     ],
+     "order": 360
+    },
+    "beige_cup": {
+     "rot_deg": 145.257,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0127,
+      -0.007,
+      0.9999
+     ],
+     "order": 360
+    }
+   },
+   "perception": {
+    "AUC": 0.8996,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6303,
+    "RPE_cm": 1.7784,
+    "per_obj_AUC": {
+     "blue_cup": 0.8627,
+     "beige_cup": 0.9366
+    }
+   },
+   "seconds": 61.7
+  }
+ }
+}

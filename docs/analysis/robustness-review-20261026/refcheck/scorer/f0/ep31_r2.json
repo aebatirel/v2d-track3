@@ -1,0 +1,162 @@
+{
+ "episode": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r2",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 3.044,
+     "quat_xyzw": [
+      0.011969,
+      -0.012067,
+      -0.020413,
+      0.999647
+     ],
+     "cand_anchor_cm": [
+      -0.055,
+      -0.186,
+      -0.379
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.56,
+     "quat_xyzw": [
+      -0.002411,
+      0.002825,
+      0.013095,
+      0.999907
+     ],
+     "cand_anchor_cm": [
+      0.32,
+      -0.543,
+      -0.213
+     ],
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "sim": {
+    "AUC": 0.7359,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.4882,
+    "RPE_cm": 2.6627,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.7791,
+     "plastic_dish_rack": 0.6927
+    }
+   },
+   "seconds": 5.6
+  },
+  "f0ref": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 1
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 3.044,
+     "quat_xyzw": [
+      0.011969,
+      -0.012067,
+      -0.020413,
+      0.999647
+     ],
+     "cand_anchor_cm": [
+      -0.055,
+      -0.186,
+      -0.379
+     ],
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.56,
+     "quat_xyzw": [
+      -0.002411,
+      0.002825,
+      0.013095,
+      0.999907
+     ],
+     "cand_anchor_cm": [
+      0.32,
+      -0.543,
+      -0.213
+     ],
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "sim": {
+    "AUC": 0.8056,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.3164,
+    "RPE_cm": 2.6633,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.8289,
+     "plastic_dish_rack": 0.7823
+    }
+   },
+   "seconds": 0.3
+  }
+ }
+}

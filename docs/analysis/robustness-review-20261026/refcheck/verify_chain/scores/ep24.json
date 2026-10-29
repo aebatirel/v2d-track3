@@ -1,0 +1,166 @@
+{
+ "ep": 24,
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "frames": 275,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261021-auto24-966eb96/perc2m/ep24/poses_world_vo.npz",
+  "e2s": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/e2s_reference.parquet",
+  "proc": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261022-r5ks-72ecb2f/refs/perc2mcsks/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/a53cdb5b5f2c4c41987b6e1ff96bba60-0.parquet",
+  "res": "res:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r1"
+ },
+ "scores": {
+  "lib|perc": {
+   "scene": 0.8117,
+   "per_obj": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.847
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.191,
+    "wooden_piece_2": 1.771
+   },
+   "n_frames": 275
+  },
+  "lib|e2s": {
+   "scene": 0.8162,
+   "per_obj": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.8561
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.191,
+    "wooden_piece_2": 1.58
+   },
+   "n_frames": 275
+  },
+  "lib|proc": {
+   "scene": 0.8162,
+   "per_obj": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.8561
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.191,
+    "wooden_piece_2": 1.58
+   },
+   "n_frames": 275
+  },
+  "lib|res_sim": {
+   "scene": 0.3076,
+   "per_obj": {
+    "wooden_piece_1": 0.2655,
+    "wooden_piece_2": 0.3498
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 0.522,
+    "wooden_piece_2": -4.284
+   },
+   "n_frames": 275
+  },
+  "lib|res_ref": {
+   "scene": 0.8162,
+   "per_obj": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.8561
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.191,
+    "wooden_piece_2": 1.58
+   },
+   "n_frames": 275
+  },
+  "scan|perc": {
+   "scene": 0.7902,
+   "per_obj": {
+    "wooden_piece_1": 0.7575,
+    "wooden_piece_2": 0.823
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.339,
+    "wooden_piece_2": 2.037
+   },
+   "n_frames": 275
+  },
+  "scan|e2s": {
+   "scene": 0.7958,
+   "per_obj": {
+    "wooden_piece_1": 0.7575,
+    "wooden_piece_2": 0.8341
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.339,
+    "wooden_piece_2": 1.846
+   },
+   "n_frames": 275
+  },
+  "scan|proc": {
+   "scene": 0.7958,
+   "per_obj": {
+    "wooden_piece_1": 0.7575,
+    "wooden_piece_2": 0.8341
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.339,
+    "wooden_piece_2": 1.846
+   },
+   "n_frames": 275
+  },
+  "scan|res_sim": {
+   "scene": 0.3001,
+   "per_obj": {
+    "wooden_piece_1": 0.2502,
+    "wooden_piece_2": 0.35
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 0.642,
+    "wooden_piece_2": -3.936
+   },
+   "n_frames": 275
+  },
+  "scan|res_ref": {
+   "scene": 0.7958,
+   "per_obj": {
+    "wooden_piece_1": 0.7575,
+    "wooden_piece_2": 0.8341
+   },
+   "dz_err_cm": {
+    "wooden_piece_1": 2.339,
+    "wooden_piece_2": 1.846
+   },
+   "n_frames": 275
+  }
+ },
+ "registration": {
+  "lib": {
+   "wooden_piece_1": {
+    "kind": "ours",
+    "rot_deg": 0.348,
+    "anchor_shift_cm": 0.209
+   },
+   "wooden_piece_2": {
+    "kind": "ours",
+    "rot_deg": 0.473,
+    "anchor_shift_cm": 0.404
+   }
+  },
+  "scan": {
+   "wooden_piece_1": {
+    "kind": "scan",
+    "rot_deg": 0.186,
+    "anchor_shift_cm": 0.046
+   },
+   "wooden_piece_2": {
+    "kind": "scan",
+    "rot_deg": 0.263,
+    "anchor_shift_cm": 0.029
+   }
+  }
+ },
+ "sec": 9.4
+}

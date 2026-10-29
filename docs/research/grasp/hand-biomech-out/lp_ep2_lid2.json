@@ -1,0 +1,62 @@
+{
+ "L1 strap side pinch: thumb one side, index + middle other side, 2.4 cm apart": {
+  "0.5": {
+   "max_normal_N": 15.22,
+   "total_normal_N": 29.76,
+   "infeasible_frames": 0,
+   "of": 70
+  },
+  "0.71": {
+   "max_normal_N": 10.92,
+   "total_normal_N": 21.16,
+   "infeasible_frames": 0,
+   "of": 70
+  },
+  "1.0": {
+   "max_normal_N": 7.95,
+   "total_normal_N": 15.22,
+   "infeasible_frames": 0,
+   "of": 70
+  }
+ },
+ "L2 hook under strap (index+middle) + thumb on top": {
+  "0.5": {
+   "max_normal_N": 4.02,
+   "total_normal_N": 18.66,
+   "infeasible_frames": 0,
+   "of": 70
+  },
+  "0.71": {
+   "max_normal_N": 3.03,
+   "total_normal_N": 12.72,
+   "infeasible_frames": 0,
+   "of": 70
+  },
+  "1.0": {
+   "max_normal_N": 2.34,
+   "total_normal_N": 11.09,
+   "infeasible_frames": 0,
+   "of": 70
+  }
+ },
+ "L3 rim pinch at one side (thumb top / two fingers under rim, 8 cm from COM)": {
+  "0.5": {
+   "max_normal_N": 47.62,
+   "total_normal_N": 100.37,
+   "infeasible_frames": 0,
+   "of": 70
+  },
+  "0.71": {
+   "max_normal_N": 35.01,
+   "total_normal_N": 75.17,
+   "infeasible_frames": 0,
+   "of": 70
+  },
+  "1.0": {
+   "max_normal_N": 25.68,
+   "total_normal_N": 56.5,
+   "infeasible_frames": 0,
+   "of": 70
+  }
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "checkpoint": "/content/runs/perc2mck/ep27-s42/policy_100003840.safetensors",
+ "n": 6,
+ "sim_vs_ref": {
+  "mean": 0.9324,
+  "std": 0.0137,
+  "min": 0.9038,
+  "max": 0.9446
+ },
+ "auc": {
+  "mean": 0.911,
+  "std": 0.0172,
+  "min": 0.8744,
+  "max": 0.9224
+ },
+ "auc_of_best_sim_vs_ref": 0.9221,
+ "rollouts": [
+  {
+   "rollout": "r1",
+   "sim_vs_ref": 0.9446,
+   "auc": 0.9221,
+   "sp": 1.0,
+   "mp": 1.0
+  },
+  {
+   "rollout": "r2",
+   "sim_vs_ref": 0.9303,
+   "auc": 0.9069,
+   "sp": 1.0,
+   "mp": 1.0
+  },
+  {
+   "rollout": "r3",
+   "sim_vs_ref": 0.9038,
+   "auc": 0.8744,
+   "sp": 1.0,
+   "mp": 1.0
+  },
+  {
+   "rollout": "r4",
+   "sim_vs_ref": 0.937,
+   "auc": 0.9224,
+   "sp": 1.0,
+   "mp": 1.0
+  },
+  {
+   "rollout": "r5",
+   "sim_vs_ref": 0.9347,
+   "auc": 0.9176,
+   "sp": 1.0,
+   "mp": 1.0
+  },
+  {
+   "rollout": "r6",
+   "sim_vs_ref": 0.9439,
+   "auc": 0.9224,
+   "sp": 1.0,
+   "mp": 1.0
+  }
+ ]
+}
+

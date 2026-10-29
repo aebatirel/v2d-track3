@@ -1,0 +1,6421 @@
+{
+ "instances": 116,
+ "instances_f0": 29,
+ "variants": 1248,
+ "selection": "no regression, most hits, simplest among ties",
+ "key_variants": {
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.0_reachNone": {
+   "params": {
+    "lam_s": 0.0,
+    "dz": 1.0,
+    "ext_src": "full",
+    "gate": 0.3,
+    "merge": false,
+    "verify": false,
+    "lam_g": 0.0,
+    "reach": null
+   },
+   "hits": 78,
+   "hits_f0": 22,
+   "fixed": [],
+   "regressions": []
+  },
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach1.0": {
+   "params": {
+    "lam_s": 0.0,
+    "dz": 1.0,
+    "ext_src": "full",
+    "gate": 0.3,
+    "merge": false,
+    "verify": false,
+    "lam_g": 0.0,
+    "reach": 1.0
+   },
+   "hits": 90,
+   "hits_f0": 24,
+   "fixed": [
+    "ep21_f46 blue_cup",
+    "ep21_f46 water_pitcher",
+    "ep21_f93 blue_cup",
+    "ep21_f93 water_pitcher",
+    "ep22_f0 blue_cup",
+    "ep22_f0 water_pitcher",
+    "ep22_f141 blue_cup",
+    "ep22_f141 water_pitcher",
+    "ep23_f162 wooden_piece_2",
+    "ep23_f243 wooden_piece_2",
+    "ep39_f159 mini_dust_pan",
+    "ep41_f224 white_pot"
+   ],
+   "regressions": []
+  },
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": {
+   "params": {
+    "lam_s": 0.05,
+    "dz": 1.0,
+    "ext_src": "eroded",
+    "gate": 0.3,
+    "merge": false,
+    "verify": false,
+    "lam_g": 0.0,
+    "reach": 1.0
+   },
+   "hits": 92,
+   "hits_f0": 24,
+   "fixed": [
+    "ep13_f95 blue_cup",
+    "ep21_f46 water_pitcher",
+    "ep21_f93 blue_cup",
+    "ep21_f93 water_pitcher",
+    "ep22_f0 blue_cup",
+    "ep22_f0 water_pitcher",
+    "ep22_f141 blue_cup",
+    "ep22_f141 water_pitcher",
+    "ep23_f162 wooden_piece_2",
+    "ep23_f243 wooden_piece_2",
+    "ep24_f206 wooden_piece_1",
+    "ep24_f206 wooden_piece_2",
+    "ep39_f159 mini_dust_pan",
+    "ep41_f224 white_pot"
+   ],
+   "regressions": []
+  },
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": {
+   "params": {
+    "lam_s": 0.05,
+    "dz": 1.0,
+    "ext_src": "eroded",
+    "gate": 0.3,
+    "merge": false,
+    "verify": false,
+    "lam_g": 0.2,
+    "reach": 1.0
+   },
+   "hits": 93,
+   "hits_f0": 24,
+   "fixed": [
+    "ep11_f68 beige_cup",
+    "ep13_f95 blue_cup",
+    "ep21_f46 water_pitcher",
+    "ep21_f93 blue_cup",
+    "ep21_f93 water_pitcher",
+    "ep22_f0 blue_cup",
+    "ep22_f0 water_pitcher",
+    "ep22_f141 blue_cup",
+    "ep22_f141 water_pitcher",
+    "ep23_f162 wooden_piece_2",
+    "ep23_f243 wooden_piece_2",
+    "ep24_f206 wooden_piece_1",
+    "ep24_f206 wooden_piece_2",
+    "ep39_f159 mini_dust_pan",
+    "ep41_f224 white_pot"
+   ],
+   "regressions": []
+  },
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.0_reachNone": {
+   "params": {
+    "lam_s": 0.0,
+    "dz": 1.0,
+    "ext_src": "full",
+    "gate": 0.3,
+    "merge": false,
+    "verify": true,
+    "lam_g": 0.0,
+    "reach": null
+   },
+   "hits": 59,
+   "hits_f0": 15,
+   "fixed": [
+    "ep21_f93 water_pitcher",
+    "ep22_f141 water_pitcher",
+    "ep39_f159 mini_dust_pan",
+    "ep41_f224 white_pot"
+   ],
+   "regressions": [
+    "ep12_f0 blue_cup",
+    "ep12_f90 blue_cup",
+    "ep13_f0 blue_cup",
+    "ep13_f142 blue_cup",
+    "ep13_f47 blue_cup",
+    "ep18_f0 mini_sweeper",
+    "ep18_f176 mini_sweeper",
+    "ep18_f264 mini_sweeper",
+    "ep2_f171 white_pot_lid",
+    "ep2_f257 white_pot_lid",
+    "ep21_f0 blue_cup",
+    "ep21_f139 blue_cup",
+    "ep22_f47 blue_cup",
+    "ep22_f94 blue_cup",
+    "ep24_f0 wooden_piece_1",
+    "ep24_f0 wooden_piece_2",
+    "ep27_f123 white_pot",
+    "ep27_f184 white_pot",
+    "ep31_f0 mini_sweeper",
+    "ep31_f145 plastic_dish_rack",
+    "ep31_f72 plastic_dish_rack",
+    "ep42_f128 white_pot",
+    "ep42_f64 white_pot"
+   ]
+  },
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.0_reachNone": {
+   "params": {
+    "lam_s": 0.0,
+    "dz": 1.0,
+    "ext_src": "full",
+    "gate": 0.3,
+    "merge": true,
+    "verify": false,
+    "lam_g": 0.0,
+    "reach": null
+   },
+   "hits": 77,
+   "hits_f0": 21,
+   "fixed": [],
+   "regressions": [
+    "ep2_f0 white_pot_lid"
+   ]
+  }
+ },
+ "all_variants": {
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   78,
+   22,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   90,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   90,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   78,
+   22,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   90,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   90,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   78,
+   22,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   78,
+   22,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   3
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.0_reachNone": [
+   77,
+   21,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.1_reachNone": [
+   77,
+   21,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.2_reachNone": [
+   77,
+   21,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.4_reachNone": [
+   77,
+   21,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.0_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.1_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.2_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.4_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   63,
+   16,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   91,
+   25,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   91,
+   25,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   63,
+   16,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   63,
+   16,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   63,
+   16,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.0_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   86,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   86,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.1_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   87,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   87,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.2_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.4_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.0_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.1_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.2_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.4_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.0_dz1.0_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.0_reachNone": [
+   61,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.1_reachNone": [
+   61,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.2_reachNone": [
+   61,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.4_reachNone": [
+   61,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   83,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   83,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   65,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   65,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   65,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   65,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.0_reachNone": [
+   74,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.1_reachNone": [
+   74,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.2_reachNone": [
+   74,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.4_reachNone": [
+   74,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.0_reachNone": [
+   67,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.1_reachNone": [
+   67,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.2_reachNone": [
+   67,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.4_reachNone": [
+   67,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.0_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.1_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.2_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.4_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.0_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.1_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.2_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.4_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reachNone": [
+   79,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reachNone": [
+   79,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reachNone": [
+   79,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reachNone": [
+   79,
+   21,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.0_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.0_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.0_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.1_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.2_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.4_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.0_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.1_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.2_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.4_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.0_eroded_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.0_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.1_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.2_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.4_reachNone": [
+   59,
+   15,
+   23
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.0_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.1_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.2_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.4_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.0_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.1_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.2_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.4_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.0_reach1.0": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.0_reach0.8": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.1_reach1.0": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.1_reach0.8": [
+   88,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.2_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.2_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.4_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_noverify_G0.4_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.0_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.1_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.2_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.4_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   86,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   84,
+   23,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.0_reachNone": [
+   76,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.0_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.0_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.1_reachNone": [
+   76,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.1_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.1_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.2_reachNone": [
+   76,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.2_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.2_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.4_reachNone": [
+   76,
+   20,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.4_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_noverify_G0.4_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.0_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.1_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.2_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.4_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.05_dz1.5_eroded_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   91,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   91,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.0_reachNone": [
+   77,
+   20,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.1_reachNone": [
+   77,
+   20,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.2_reachNone": [
+   77,
+   20,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.4_reachNone": [
+   77,
+   20,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.0_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.0_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.0_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.1_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.1_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.1_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.2_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.2_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.2_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.4_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.4_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.3_merge_verify_G0.4_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   73,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   86,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   86,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   73,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   73,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   83,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   83,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   73,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   83,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   83,
+   23,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.0_reachNone": [
+   73,
+   19,
+   6
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.1_reachNone": [
+   73,
+   19,
+   6
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.2_reachNone": [
+   73,
+   19,
+   6
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.4_reachNone": [
+   73,
+   19,
+   6
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.0_reachNone": [
+   68,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.0_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.0_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.1_reachNone": [
+   68,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.2_reachNone": [
+   68,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.4_reachNone": [
+   68,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   90,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   90,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   90,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   90,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   91,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   91,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   91,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   91,
+   24,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reachNone": [
+   65,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reachNone": [
+   65,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reachNone": [
+   65,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reachNone": [
+   65,
+   15,
+   19
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.0_reachNone": [
+   80,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.0_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.0_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.1_reachNone": [
+   80,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.1_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.1_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.2_reachNone": [
+   80,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.2_reach1.0": [
+   91,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.2_reach0.8": [
+   91,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.4_reachNone": [
+   80,
+   21,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.4_reach1.0": [
+   91,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_noverify_G0.4_reach0.8": [
+   91,
+   23,
+   1
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.0_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.0_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.0_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.1_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.1_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.1_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.2_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.2_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.2_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.4_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.4_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.3_merge_verify_G0.4_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   85,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   85,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   85,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   85,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   83,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   83,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   83,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   83,
+   23,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reachNone": [
+   69,
+   16,
+   16
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reachNone": [
+   69,
+   16,
+   16
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reachNone": [
+   69,
+   16,
+   16
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reachNone": [
+   69,
+   16,
+   16
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.0_reachNone": [
+   78,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.0_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.0_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.1_reachNone": [
+   78,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.2_reachNone": [
+   78,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.4_reachNone": [
+   78,
+   20,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.0_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.0_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.0_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.1_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.2_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.4_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.0_eroded_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   81,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   61,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.0_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.1_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.2_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.4_reachNone": [
+   78,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.0_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.1_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.2_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.4_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.0_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.1_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.2_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.4_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.0_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.1_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.2_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.4_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reachNone": [
+   82,
+   22,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.0_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.1_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.2_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.4_reachNone": [
+   79,
+   21,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.0_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.1_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.2_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.4_reachNone": [
+   60,
+   15,
+   22
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reachNone": [
+   80,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reachNone": [
+   80,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reachNone": [
+   80,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reachNone": [
+   80,
+   21,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reachNone": [
+   66,
+   16,
+   18
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.0_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.0_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.0_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.1_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.2_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.4_reachNone": [
+   77,
+   20,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.0_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.1_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.2_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.4_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.1_dz1.5_eroded_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   90,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   90,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   90,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   90,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   91,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   91,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   91,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   91,
+   25,
+   1
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.0_reachNone": [
+   79,
+   21,
+   3
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.1_reachNone": [
+   79,
+   21,
+   3
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.2_reachNone": [
+   79,
+   21,
+   3
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.4_reachNone": [
+   79,
+   21,
+   3
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.0_reachNone": [
+   68,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.0_reach1.0": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.0_reach0.8": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.1_reachNone": [
+   68,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.1_reach1.0": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.1_reach0.8": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.2_reachNone": [
+   68,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.2_reach1.0": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.2_reach0.8": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.4_reachNone": [
+   68,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.4_reach1.0": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.3_merge_verify_G0.4_reach0.8": [
+   93,
+   26,
+   2
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   75,
+   21,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   86,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   86,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   75,
+   21,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   86,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   86,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   75,
+   21,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   84,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   84,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   75,
+   21,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   84,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   84,
+   24,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   68,
+   17,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   68,
+   17,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   68,
+   17,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   68,
+   17,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   26,
+   4
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.0_reachNone": [
+   75,
+   20,
+   6
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   85,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   85,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.1_reachNone": [
+   75,
+   20,
+   6
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.2_reachNone": [
+   75,
+   20,
+   6
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.4_reachNone": [
+   75,
+   20,
+   6
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.0_reachNone": [
+   71,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.0_reach1.0": [
+   90,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.0_reach0.8": [
+   90,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.1_reachNone": [
+   71,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.2_reachNone": [
+   71,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.4_reachNone": [
+   71,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   25,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   88,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   88,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reachNone": [
+   79,
+   22,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   89,
+   24,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reachNone": [
+   70,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.0_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reachNone": [
+   70,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.1_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reachNone": [
+   70,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.2_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reachNone": [
+   70,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reach1.0": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_nomerge_verify_G0.4_reach0.8": [
+   94,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.0_reachNone": [
+   79,
+   21,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.1_reachNone": [
+   79,
+   21,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.1_reach1.0": [
+   88,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.1_reach0.8": [
+   88,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.2_reachNone": [
+   79,
+   21,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.2_reach1.0": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.2_reach0.8": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.4_reachNone": [
+   79,
+   21,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.4_reach1.0": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_noverify_G0.4_reach0.8": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.0_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.1_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.2_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.2_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.2_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.4_reachNone": [
+   67,
+   15,
+   18
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.4_reach1.0": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.3_merge_verify_G0.4_reach0.8": [
+   92,
+   25,
+   2
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reachNone": [
+   80,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   84,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   84,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reachNone": [
+   80,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   84,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   84,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reachNone": [
+   80,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   82,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   82,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reachNone": [
+   80,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   82,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   82,
+   23,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reachNone": [
+   70,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.0_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reachNone": [
+   70,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.1_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reachNone": [
+   70,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reach1.0": [
+   90,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.2_reach0.8": [
+   90,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reachNone": [
+   70,
+   16,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reach1.0": [
+   90,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_nomerge_verify_G0.4_reach0.8": [
+   90,
+   25,
+   4
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.0_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.0_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.0_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.1_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.1_reach1.0": [
+   84,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.1_reach0.8": [
+   84,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.2_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.2_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.2_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.4_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.4_reach1.0": [
+   82,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_noverify_G0.4_reach0.8": [
+   82,
+   22,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.0_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.0_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.0_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.1_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.1_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.1_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.2_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.2_reach1.0": [
+   88,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.2_reach0.8": [
+   88,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.4_reachNone": [
+   70,
+   15,
+   17
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.4_reach1.0": [
+   88,
+   24,
+   5
+  ],
+  "s0.2_dz1.0_eroded_g0.5_merge_verify_G0.4_reach0.8": [
+   88,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.0_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   91,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   91,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.1_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   91,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   91,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.2_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   92,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   92,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.4_reachNone": [
+   80,
+   22,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   92,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   92,
+   24,
+   1
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.0_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.0_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.0_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.1_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.1_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.1_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.2_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.4_reachNone": [
+   63,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.0_reachNone": [
+   77,
+   21,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.0_reach1.0": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.0_reach0.8": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.1_reachNone": [
+   77,
+   21,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.1_reach1.0": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.1_reach0.8": [
+   89,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.2_reachNone": [
+   77,
+   21,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.2_reach1.0": [
+   90,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.2_reach0.8": [
+   90,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.4_reachNone": [
+   77,
+   21,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.4_reach1.0": [
+   90,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_noverify_G0.4_reach0.8": [
+   90,
+   23,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.0_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.0_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.0_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.1_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.1_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.1_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.2_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.2_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.2_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.4_reachNone": [
+   62,
+   15,
+   21
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.4_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.3_merge_verify_G0.4_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.0_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.1_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.2_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.4_reachNone": [
+   76,
+   21,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.0_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.1_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.2_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.4_reachNone": [
+   64,
+   16,
+   19
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.0_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.0_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.0_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.1_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.2_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.4_reachNone": [
+   75,
+   20,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.0_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.0_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.0_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.1_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.2_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.4_reachNone": [
+   66,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_full_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reachNone": [
+   84,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.0_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reachNone": [
+   84,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reach1.0": [
+   92,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.1_reach0.8": [
+   92,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reachNone": [
+   84,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.2_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reachNone": [
+   84,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reach1.0": [
+   93,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_noverify_G0.4_reach0.8": [
+   93,
+   24,
+   0
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.0_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.1_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.2_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reachNone": [
+   67,
+   15,
+   19
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reach1.0": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_nomerge_verify_G0.4_reach0.8": [
+   95,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.0_reachNone": [
+   82,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.0_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.0_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.1_reachNone": [
+   82,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.1_reach1.0": [
+   90,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.1_reach0.8": [
+   90,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.2_reachNone": [
+   82,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.2_reach1.0": [
+   91,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.2_reach0.8": [
+   91,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.4_reachNone": [
+   82,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.4_reach1.0": [
+   91,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_noverify_G0.4_reach0.8": [
+   91,
+   23,
+   1
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.0_reachNone": [
+   64,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.0_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.0_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.1_reachNone": [
+   64,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.1_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.1_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.2_reachNone": [
+   64,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.2_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.2_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.4_reachNone": [
+   64,
+   15,
+   20
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.4_reach1.0": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.3_merge_verify_G0.4_reach0.8": [
+   93,
+   25,
+   2
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reachNone": [
+   82,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.0_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reachNone": [
+   82,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reach1.0": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.1_reach0.8": [
+   87,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reachNone": [
+   82,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reach1.0": [
+   85,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.2_reach0.8": [
+   85,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reachNone": [
+   82,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reach1.0": [
+   84,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_noverify_G0.4_reach0.8": [
+   84,
+   23,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reachNone": [
+   68,
+   16,
+   17
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.0_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reachNone": [
+   68,
+   16,
+   17
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reach1.0": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.1_reach0.8": [
+   92,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reachNone": [
+   68,
+   16,
+   17
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.2_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reachNone": [
+   68,
+   16,
+   17
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reach1.0": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_nomerge_verify_G0.4_reach0.8": [
+   91,
+   25,
+   4
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.0_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.0_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.0_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.1_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.1_reach1.0": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.1_reach0.8": [
+   85,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.2_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.2_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.2_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.4_reachNone": [
+   80,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.4_reach1.0": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_noverify_G0.4_reach0.8": [
+   83,
+   22,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.0_reachNone": [
+   69,
+   15,
+   18
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.0_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.0_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.1_reachNone": [
+   69,
+   15,
+   18
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.1_reach1.0": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.1_reach0.8": [
+   90,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.2_reachNone": [
+   69,
+   15,
+   18
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.2_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.2_reach0.8": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.4_reachNone": [
+   69,
+   15,
+   18
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.4_reach1.0": [
+   89,
+   24,
+   5
+  ],
+  "s0.2_dz1.5_eroded_g0.5_merge_verify_G0.4_reach0.8": [
+   89,
+   24,
+   5
+  ]
+ }
+}

@@ -1,0 +1,652 @@
+{
+ "scans": {
+  "beige_cup": {
+   "file": "beige_cup.glb",
+   "n_vertices": 295579,
+   "n_faces": 98563,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    10.4,
+    11.1,
+    16.95
+   ],
+   "surface_centroid_cm": [
+    -0.0,
+    0.0,
+    0.0
+   ],
+   "radius_cm": 6.79,
+   "bbox_centre_cm": [
+    0.33,
+    0.65,
+    0.27
+   ],
+   "vertex_mean_cm": [
+    0.05,
+    -0.09,
+    -0.7
+   ],
+   "centroid_to_bbox_cm": 0.78,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    7.484,
+    7.868,
+    30.657
+   ],
+   "distinct_axis": [
+    0.0197,
+    -0.0345,
+    0.9992
+   ],
+   "distinct_axis_off_coord_deg": 2.28,
+   "thinnest_axis": [
+    0.9904,
+    0.1376,
+    -0.0147
+   ],
+   "thinnest_axis_off_coord_deg": 7.96
+  },
+  "blue_cup": {
+   "file": "blue_cup.glb",
+   "n_vertices": 298377,
+   "n_faces": 99487,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    10.29,
+    10.02,
+    17.18
+   ],
+   "surface_centroid_cm": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "radius_cm": 6.94,
+   "bbox_centre_cm": [
+    -0.29,
+    -0.29,
+    0.16
+   ],
+   "vertex_mean_cm": [
+    0.04,
+    -0.08,
+    -0.31
+   ],
+   "centroid_to_bbox_cm": 0.44,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    7.462,
+    7.505,
+    33.2
+   ],
+   "distinct_axis": [
+    -0.0259,
+    0.0041,
+    0.9997
+   ],
+   "distinct_axis_off_coord_deg": 1.5,
+   "thinnest_axis": [
+    -0.1526,
+    -0.9883,
+    0.0001
+   ],
+   "thinnest_axis_off_coord_deg": 8.78
+  },
+  "mini_dust_pan": {
+   "file": "mini_dust_pan.glb",
+   "n_vertices": 298618,
+   "n_faces": 99560,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    4.52,
+    16.99,
+    17.79
+   ],
+   "surface_centroid_cm": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "radius_cm": 6.37,
+   "bbox_centre_cm": [
+    0.18,
+    0.01,
+    1.7
+   ],
+   "vertex_mean_cm": [
+    0.27,
+    -0.07,
+    -0.12
+   ],
+   "centroid_to_bbox_cm": 1.71,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    0.789,
+    14.941,
+    24.416
+   ],
+   "distinct_axis": [
+    0.9999,
+    0.0094,
+    -0.0055
+   ],
+   "distinct_axis_off_coord_deg": 0.62,
+   "thinnest_axis": [
+    0.9999,
+    0.0094,
+    -0.0055
+   ],
+   "thinnest_axis_off_coord_deg": 0.62
+  },
+  "mini_sweeper": {
+   "file": "mini_sweeper_visual.glb",
+   "n_vertices": 299442,
+   "n_faces": 99838,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    4.76,
+    11.39,
+    14.16
+   ],
+   "surface_centroid_cm": [
+    -0.0,
+    0.0,
+    0.0
+   ],
+   "radius_cm": 4.77,
+   "bbox_centre_cm": [
+    -0.04,
+    0.07,
+    1.04
+   ],
+   "vertex_mean_cm": [
+    0.0,
+    -0.2,
+    -0.1
+   ],
+   "centroid_to_bbox_cm": 1.04,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    0.41,
+    6.009,
+    16.48
+   ],
+   "distinct_axis": [
+    -0.0057,
+    -0.01,
+    0.9999
+   ],
+   "distinct_axis_off_coord_deg": 0.66,
+   "thinnest_axis": [
+    1.0,
+    0.0002,
+    0.0057
+   ],
+   "thinnest_axis_off_coord_deg": 0.33
+  },
+  "plastic_dish_rack": {
+   "file": "plastic_dish_rack.glb",
+   "n_vertices": 298326,
+   "n_faces": 99460,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    11.7,
+    17.55,
+    50.96
+   ],
+   "surface_centroid_cm": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "radius_cm": 15.69,
+   "bbox_centre_cm": [
+    1.67,
+    0.16,
+    4.03
+   ],
+   "vertex_mean_cm": [
+    -0.16,
+    -0.04,
+    0.27
+   ],
+   "centroid_to_bbox_cm": 4.36,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    5.054,
+    21.176,
+    215.873
+   ],
+   "distinct_axis": [
+    0.0069,
+    0.0026,
+    1.0
+   ],
+   "distinct_axis_off_coord_deg": 0.42,
+   "thinnest_axis": [
+    0.9999,
+    0.0073,
+    -0.0069
+   ],
+   "thinnest_axis_off_coord_deg": 0.58
+  },
+  "water_pitcher": {
+   "file": "water_pitcher.glb",
+   "n_vertices": 292522,
+   "n_faces": 97540,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    14.11,
+    27.2,
+    41.5
+   ],
+   "surface_centroid_cm": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "radius_cm": 11.08,
+   "bbox_centre_cm": [
+    -0.18,
+    2.24,
+    6.18
+   ],
+   "vertex_mean_cm": [
+    0.02,
+    0.24,
+    -0.08
+   ],
+   "centroid_to_bbox_cm": 6.58,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    11.329,
+    39.486,
+    69.478
+   ],
+   "distinct_axis": [
+    0.0117,
+    0.0336,
+    0.9994
+   ],
+   "distinct_axis_off_coord_deg": 2.04,
+   "thinnest_axis": [
+    0.9996,
+    0.0261,
+    -0.0126
+   ],
+   "thinnest_axis_off_coord_deg": 1.66
+  },
+  "white_pot": {
+   "file": "white_pot.glb",
+   "n_vertices": 293329,
+   "n_faces": 97803,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    13.22,
+    18.89,
+    35.75
+   ],
+   "surface_centroid_cm": [
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "radius_cm": 9.81,
+   "bbox_centre_cm": [
+    1.16,
+    0.08,
+    6.44
+   ],
+   "vertex_mean_cm": [
+    1.37,
+    0.25,
+    0.14
+   ],
+   "centroid_to_bbox_cm": 6.55,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    12.023,
+    26.907,
+    55.998
+   ],
+   "distinct_axis": [
+    -0.0124,
+    -0.0254,
+    0.9996
+   ],
+   "distinct_axis_off_coord_deg": 1.62,
+   "thinnest_axis": [
+    0.9997,
+    0.0208,
+    0.013
+   ],
+   "thinnest_axis_off_coord_deg": 1.4
+  },
+  "white_pot_lid": {
+   "file": "white_pot_lid.glb",
+   "n_vertices": 297615,
+   "n_faces": 99231,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    4.72,
+    18.81,
+    19.01
+   ],
+   "surface_centroid_cm": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "radius_cm": 6.74,
+   "bbox_centre_cm": [
+    1.39,
+    0.02,
+    0.04
+   ],
+   "vertex_mean_cm": [
+    0.15,
+    -0.18,
+    -0.25
+   ],
+   "centroid_to_bbox_cm": 1.4,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    0.556,
+    20.769,
+    25.227
+   ],
+   "distinct_axis": [
+    1.0,
+    -0.0006,
+    0.0021
+   ],
+   "distinct_axis_off_coord_deg": 0.12,
+   "thinnest_axis": [
+    1.0,
+    -0.0006,
+    0.0021
+   ],
+   "thinnest_axis_off_coord_deg": 0.12
+  },
+  "wooden_piece_1": {
+   "file": "wooden_piece_1_visual.glb",
+   "n_vertices": 281545,
+   "n_faces": 93912,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    2.65,
+    13.87,
+    22.68
+   ],
+   "surface_centroid_cm": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "radius_cm": 7.89,
+   "bbox_centre_cm": [
+    0.71,
+    -0.02,
+    0.1
+   ],
+   "vertex_mean_cm": [
+    0.09,
+    -0.19,
+    -0.41
+   ],
+   "centroid_to_bbox_cm": 0.72,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    0.205,
+    13.487,
+    48.579
+   ],
+   "distinct_axis": [
+    0.0002,
+    0.0202,
+    0.9998
+   ],
+   "distinct_axis_off_coord_deg": 1.16,
+   "thinnest_axis": [
+    1.0,
+    -0.0007,
+    -0.0002
+   ],
+   "thinnest_axis_off_coord_deg": 0.04
+  },
+  "wooden_piece_2": {
+   "file": "wooden_piece_2_visual.glb",
+   "n_vertices": 296002,
+   "n_faces": 98734,
+   "n_geometries": 1,
+   "non_identity_nodes": [],
+   "extents_cm": [
+    2.61,
+    13.87,
+    22.67
+   ],
+   "surface_centroid_cm": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "radius_cm": 7.86,
+   "bbox_centre_cm": [
+    -0.76,
+    0.07,
+    -0.01
+   ],
+   "vertex_mean_cm": [
+    -0.03,
+    0.02,
+    -0.04
+   ],
+   "centroid_to_bbox_cm": 0.76,
+   "centroid_to_origin_cm": 0.0,
+   "pca_eig_cm2": [
+    0.243,
+    13.471,
+    48.911
+   ],
+   "distinct_axis": [
+    0.0014,
+    0.0202,
+    0.9998
+   ],
+   "distinct_axis_off_coord_deg": 1.16,
+   "thinnest_axis": [
+    1.0,
+    -0.0029,
+    -0.0014
+   ],
+   "thinnest_axis_off_coord_deg": 0.19
+  }
+ },
+ "library": {
+  "library_v2/beige_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/blue_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/mini_dust_pan.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/mini_sweeper.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/plastic_dish_rack.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/water_pitcher.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/white_pot.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/white_pot_lid.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/wooden_piece_1.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/wooden_piece_2.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v2/wooden_spoon.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/beige_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/blue_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/mini_dust_pan.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/mini_sweeper.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/plastic_dish_rack.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/water_pitcher.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/white_pot.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/white_pot_lid.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/wooden_piece_1.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/wooden_piece_2.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3/wooden_spoon.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/beige_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/blue_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/mini_dust_pan.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/mini_sweeper.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/plastic_dish_rack.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/water_pitcher.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/white_pot.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/white_pot_lid.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/wooden_piece_1.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/wooden_piece_2.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3x/wooden_spoon.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/beige_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/blue_cup.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/mini_dust_pan.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/mini_sweeper.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/plastic_dish_rack.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/water_pitcher.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/white_pot.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/white_pot_lid.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/wooden_piece_1.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/wooden_piece_2.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  },
+  "library_v3p/wooden_spoon.glb": {
+   "n_geometries": 1,
+   "non_identity_nodes": []
+  }
+ }
+}

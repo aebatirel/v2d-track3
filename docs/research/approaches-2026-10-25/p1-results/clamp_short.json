@@ -1,0 +1,93 @@
+{
+ "source": "grip_types.py clamp_short on ref_sf.parquet f12",
+ "templates": {
+  "wooden_piece_1": {
+   "side": "left",
+   "frame": 12,
+   "type": "clamp_short",
+   "wrist_pos_obj": [
+    -0.023613,
+    -0.028998,
+    -0.22105
+   ],
+   "wrist_quat_obj_xyzw": [
+    -0.027586,
+    -0.007334,
+    1.5e-05,
+    0.999593
+   ],
+   "finger_joint_names": [
+    "left_thumb_CMC_FE",
+    "left_thumb_CMC_AA",
+    "left_thumb_MCP_FE",
+    "left_thumb_MCP_AA",
+    "left_thumb_IP",
+    "left_index_MCP_FE",
+    "left_index_MCP_AA",
+    "left_index_PIP",
+    "left_index_DIP",
+    "left_middle_MCP_FE",
+    "left_middle_MCP_AA",
+    "left_middle_PIP",
+    "left_middle_DIP",
+    "left_ring_MCP_FE",
+    "left_ring_MCP_AA",
+    "left_ring_PIP",
+    "left_ring_DIP",
+    "left_pinky_CMC",
+    "left_pinky_MCP_FE",
+    "left_pinky_MCP_AA",
+    "left_pinky_PIP",
+    "left_pinky_DIP"
+   ],
+   "finger_joints": [
+    1.6207,
+    0.3491,
+    0.24436,
+    0.0,
+    0.58177,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "finger_joints_squeezed": [
+    1.72495,
+    0.3491,
+    0.40052,
+    -0.04108,
+    0.62538,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.1021,
+    0.25,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ }
+}

@@ -1,0 +1,284 @@
+{
+ "shift": {
+  "ep2 23c865 library_v3": {
+   "-2": 0.955,
+   "-1": 0.9778,
+   "0": 0.9798,
+   "1": 0.9596,
+   "2": 0.9321
+  },
+  "ep11 340cff library_v3x": {
+   "-2": 0.8862,
+   "-1": 0.8951,
+   "0": 0.8844,
+   "1": 0.8718,
+   "2": 0.8524
+  },
+  "ep11 d3ed99 library_v3": {
+   "-2": 0.8935,
+   "-1": 0.9028,
+   "0": 0.8994,
+   "1": 0.8793,
+   "2": 0.8634
+  },
+  "ep12 c73c82 library_v3": {
+   "-2": 0.9373,
+   "-1": 0.9448,
+   "0": 0.9354,
+   "1": 0.9204,
+   "2": 0.9028
+  },
+  "ep12 d554ae library_v3": {
+   "-2": 0.9265,
+   "-1": 0.9346,
+   "0": 0.9315,
+   "1": 0.9149,
+   "2": 0.8995
+  },
+  "ep18 50babb library_v3": {
+   "-2": 0.9411,
+   "-1": 0.9632,
+   "0": 0.9657,
+   "1": 0.9458,
+   "2": 0.9179
+  },
+  "ep18 5815ca library_v2": {
+   "-2": 0.9393,
+   "-1": 0.961,
+   "0": 0.9633,
+   "1": 0.941,
+   "2": 0.9147
+  },
+  "ep18 dee067 library_v2": {
+   "-2": 0.9394,
+   "-1": 0.9615,
+   "0": 0.9635,
+   "1": 0.9432,
+   "2": 0.9175
+  },
+  "ep21 377295 library_v3": {
+   "-2": 0.7708,
+   "-1": 0.7796,
+   "0": 0.7776,
+   "1": 0.7725,
+   "2": 0.7586
+  },
+  "ep21 4ec49b library_v3": {
+   "-2": 0.7665,
+   "-1": 0.7759,
+   "0": 0.7747,
+   "1": 0.7692,
+   "2": 0.7566
+  },
+  "ep21 597a2f library_v3": {
+   "-2": 0.7655,
+   "-1": 0.7755,
+   "0": 0.7742,
+   "1": 0.7681,
+   "2": 0.7566
+  },
+  "ep24 8dbf5e library_v3": {
+   "-2": 0.8118,
+   "-1": 0.82,
+   "0": 0.8163,
+   "1": 0.8003,
+   "2": 0.7777
+  },
+  "ep24 b13e04 library_v3": {
+   "-2": 0.8747,
+   "-1": 0.8876,
+   "0": 0.8819,
+   "1": 0.8683,
+   "2": 0.8425
+  },
+  "ep26 4df256 library_v3": {
+   "-2": 0.9136,
+   "-1": 0.9217,
+   "0": 0.9229,
+   "1": 0.9124,
+   "2": 0.897
+  },
+  "ep27 7a8886 library_v3": {
+   "-2": 0.9475,
+   "-1": 0.9607,
+   "0": 0.9621,
+   "1": 0.9559,
+   "2": 0.9427
+  },
+  "ep31 3e8489 library_v3": {
+   "-2": 0.818,
+   "-1": 0.8256,
+   "0": 0.8233,
+   "1": 0.8109,
+   "2": 0.798
+  },
+  "ep31 441bf2 library_v3": {
+   "-2": 0.8469,
+   "-1": 0.8542,
+   "0": 0.8525,
+   "1": 0.8419,
+   "2": 0.8258
+  },
+  "ep39 608f2f library_v3": {
+   "-2": 0.9018,
+   "-1": 0.9477,
+   "0": 0.9559,
+   "1": 0.9254,
+   "2": 0.8693
+  }
+ },
+ "quat": {
+  "2": {
+   "R_w_first": 0.9798,
+   "R_if_read_xyzw": 0.207
+  },
+  "11": {
+   "R_w_first": 0.8844,
+   "R_if_read_xyzw": 0.4309
+  },
+  "12": {
+   "R_w_first": 0.9354,
+   "R_if_read_xyzw": 0.0
+  },
+  "18": {
+   "R_w_first": 0.9657,
+   "R_if_read_xyzw": 0.1927
+  },
+  "21": {
+   "R_w_first": 0.7776,
+   "R_if_read_xyzw": 0.0072
+  },
+  "24": {
+   "R_w_first": 0.8163,
+   "R_if_read_xyzw": 0.0232
+  },
+  "26": {
+   "R_w_first": 0.9229,
+   "R_if_read_xyzw": 0.4988
+  },
+  "27": {
+   "R_w_first": 0.9621,
+   "R_if_read_xyzw": 0.5
+  },
+  "31": {
+   "R_w_first": 0.8233,
+   "R_if_read_xyzw": 0.0871
+  },
+  "39": {
+   "R_w_first": 0.9559,
+   "R_if_read_xyzw": 0.163
+  }
+ },
+ "rest": {
+  "ep11 blue_cup": {
+   "path": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/curve/policy_70004736/r2/episode_000011.parquet",
+   "S": 0.4902,
+   "T": 0.5703,
+   "T_obj": 1.0,
+   "R_obj": 0.8636,
+   "S_obj": 0.8403,
+   "truth_disp_cm_max": 0.49,
+   "truth_rot_deg_max": 4.7,
+   "ref_disp_cm_max": 5.39,
+   "ref_rot_deg_max": 32.7,
+   "sim_disp_cm_max": 0.36,
+   "sim_rot_deg_max": 1.6,
+   "e_sim_truth_cm": [
+    0.3,
+    0.54
+   ],
+   "e_ref_truth_cm": [
+    1.81,
+    5.31
+   ]
+  },
+  "ep12 plastic_dish_rack": {
+   "path": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/curve/policy_40001536/r2/episode_000012.parquet",
+   "S": 0.9593,
+   "T": 0.9494,
+   "T_obj": 0.9962,
+   "R_obj": 0.9382,
+   "S_obj": 0.9448,
+   "truth_disp_cm_max": 0.41,
+   "truth_rot_deg_max": 1.9,
+   "ref_disp_cm_max": 0.81,
+   "ref_rot_deg_max": 3.3,
+   "sim_disp_cm_max": 1.43,
+   "sim_rot_deg_max": 3.3,
+   "e_sim_truth_cm": [
+    0.83,
+    2.18
+   ],
+   "e_ref_truth_cm": [
+    1.46,
+    1.98
+   ]
+  },
+  "ep31 plastic_dish_rack": {
+   "path": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/curve/policy_60002304/episode_000031.parquet",
+   "S": 0.7648,
+   "T": 0.7607,
+   "T_obj": 0.7284,
+   "R_obj": 0.7345,
+   "S_obj": 0.7603,
+   "truth_disp_cm_max": 0.15,
+   "truth_rot_deg_max": 0.9,
+   "ref_disp_cm_max": 1.79,
+   "ref_rot_deg_max": 3.8,
+   "sim_disp_cm_max": 1.26,
+   "sim_rot_deg_max": 4.4,
+   "e_sim_truth_cm": [
+    3.13,
+    3.71
+   ],
+   "e_ref_truth_cm": [
+    3.22,
+    4.05
+   ]
+  },
+  "ep26 plastic_dish_rack": {
+   "path": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r1/episode_000026.parquet",
+   "S": 0.5508,
+   "T": 0.537,
+   "T_obj": 0.8687,
+   "R_obj": 0.9905,
+   "S_obj": 0.8691,
+   "truth_disp_cm_max": 0.43,
+   "truth_rot_deg_max": 1.0,
+   "ref_disp_cm_max": 1.16,
+   "ref_rot_deg_max": 2.8,
+   "sim_disp_cm_max": 2.27,
+   "sim_rot_deg_max": 8.4,
+   "e_sim_truth_cm": [
+    1.81,
+    2.42
+   ],
+   "e_ref_truth_cm": [
+    0.85,
+    1.46
+   ]
+  },
+  "ep21 water_pitcher": {
+   "path": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/curve/policy_70004736/r2/episode_000021.parquet",
+   "S": 0.9909,
+   "T": 0.7692,
+   "T_obj": 0.5739,
+   "R_obj": 0.5753,
+   "S_obj": 0.9845,
+   "truth_disp_cm_max": 32.0,
+   "truth_rot_deg_max": 91.1,
+   "ref_disp_cm_max": 32.71,
+   "ref_rot_deg_max": 90.6,
+   "sim_disp_cm_max": 32.81,
+   "sim_rot_deg_max": 89.6,
+   "e_sim_truth_cm": [
+    4.23,
+    7.25
+   ],
+   "e_ref_truth_cm": [
+    4.23,
+    6.45
+   ]
+  }
+ }
+}

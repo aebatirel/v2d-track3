@@ -1,0 +1,712 @@
+{
+ "0": {
+  "mocap_rows": 373,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0498,
+   0.1668,
+   0.2832
+  ],
+  "perception_frames": 373,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "2": {
+  "mocap_rows": 343,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0683,
+   0.1766,
+   0.2827
+  ],
+  "perception_frames": 343,
+  "reference_frames": 343,
+  "pre_cr_reference_frames": 343,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1/episode_000002.parquet",
+    "step_count": 343,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r2/episode_000002.parquet",
+    "step_count": 343,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r3/episode_000002.parquet",
+    "step_count": 343,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r4/episode_000002.parquet",
+    "step_count": 343,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r5/episode_000002.parquet",
+    "step_count": 343,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "11": {
+  "mocap_rows": 137,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0548,
+   0.0977,
+   0.1413
+  ],
+  "perception_frames": 137,
+  "reference_frames": 137,
+  "pre_cr_reference_frames": 137,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r1/episode_000011.parquet",
+    "step_count": 137,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r2/episode_000011.parquet",
+    "step_count": 137,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r3/episode_000011.parquet",
+    "step_count": 137,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r4/episode_000011.parquet",
+    "step_count": 137,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/best/r5/episode_000011.parquet",
+    "step_count": 137,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "12": {
+  "mocap_rows": 181,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0328,
+   0.0892,
+   0.146
+  ],
+  "perception_frames": 181,
+  "reference_frames": 181,
+  "pre_cr_reference_frames": 181,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r1/episode_000012.parquet",
+    "step_count": 181,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r2/episode_000012.parquet",
+    "step_count": 181,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r3/episode_000012.parquet",
+    "step_count": 181,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r4/episode_000012.parquet",
+    "step_count": 181,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/best/r5/episode_000012.parquet",
+    "step_count": 181,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "13": {
+  "mocap_rows": 190,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0654,
+   0.1234,
+   0.1946
+  ],
+  "perception_frames": 190,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "18": {
+  "mocap_rows": 353,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0236,
+   0.1341,
+   0.2455
+  ],
+  "perception_frames": 353,
+  "reference_frames": 353,
+  "pre_cr_reference_frames": 353,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r1/episode_000018.parquet",
+    "step_count": 353,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r2/episode_000018.parquet",
+    "step_count": 353,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r3/episode_000018.parquet",
+    "step_count": 353,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r4/episode_000018.parquet",
+    "step_count": 353,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/best/r5/episode_000018.parquet",
+    "step_count": 353,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "21": {
+  "mocap_rows": 186,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0647,
+   0.1224,
+   0.1806
+  ],
+  "perception_frames": 186,
+  "reference_frames": 186,
+  "pre_cr_reference_frames": 186,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1/episode_000021.parquet",
+    "step_count": 186,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r2/episode_000021.parquet",
+    "step_count": 186,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r3/episode_000021.parquet",
+    "step_count": 186,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r4/episode_000021.parquet",
+    "step_count": 186,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r5/episode_000021.parquet",
+    "step_count": 186,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "22": {
+  "mocap_rows": 189,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0529,
+   0.1192,
+   0.1766
+  ],
+  "perception_frames": 189,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "23": {
+  "mocap_rows": 325,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0574,
+   0.1597,
+   0.2611
+  ],
+  "perception_frames": 325,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "24": {
+  "mocap_rows": 275,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0628,
+   0.1498,
+   0.2348
+  ],
+  "perception_frames": 275,
+  "reference_frames": 275,
+  "pre_cr_reference_frames": 275,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r1/episode_000024.parquet",
+    "step_count": 275,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r2/episode_000024.parquet",
+    "step_count": 275,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r3/episode_000024.parquet",
+    "step_count": 275,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r4/episode_000024.parquet",
+    "step_count": 275,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r5/episode_000024.parquet",
+    "step_count": 275,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "26": {
+  "mocap_rows": 158,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0135,
+   0.0637,
+   0.1137
+  ],
+  "perception_frames": 158,
+  "reference_frames": 158,
+  "pre_cr_reference_frames": 158,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r1/episode_000026.parquet",
+    "step_count": 158,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r2/episode_000026.parquet",
+    "step_count": 158,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r3/episode_000026.parquet",
+    "step_count": 158,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r4/episode_000026.parquet",
+    "step_count": 158,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r5/episode_000026.parquet",
+    "step_count": 158,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "27": {
+  "mocap_rows": 246,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.044,
+   0.1214,
+   0.1984
+  ],
+  "perception_frames": 246,
+  "reference_frames": 246,
+  "pre_cr_reference_frames": 246,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r1/episode_000027.parquet",
+    "step_count": 246,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r2/episode_000027.parquet",
+    "step_count": 246,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r3/episode_000027.parquet",
+    "step_count": 246,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r4/episode_000027.parquet",
+    "step_count": 246,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev2-2c1e4dd/results/glock_public/ep27/best/r5/episode_000027.parquet",
+    "step_count": 246,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "31": {
+  "mocap_rows": 290,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0455,
+   0.1365,
+   0.2279
+  ],
+  "perception_frames": 290,
+  "reference_frames": 290,
+  "pre_cr_reference_frames": 290,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r1/episode_000031.parquet",
+    "step_count": 290,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r2/episode_000031.parquet",
+    "step_count": 290,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r3/episode_000031.parquet",
+    "step_count": 290,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r4/episode_000031.parquet",
+    "step_count": 290,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/best/r5/episode_000031.parquet",
+    "step_count": 290,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "39": {
+  "mocap_rows": 319,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0359,
+   0.1372,
+   0.2363
+  ],
+  "perception_frames": 319,
+  "reference_frames": 319,
+  "pre_cr_reference_frames": 319,
+  "reference_fps_column": [
+   "fps"
+  ],
+  "rollouts": [
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r1/episode_000039.parquet",
+    "step_count": 319,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r2/episode_000039.parquet",
+    "step_count": 319,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r3/episode_000039.parquet",
+    "step_count": 319,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r4/episode_000039.parquet",
+    "step_count": 319,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r5/episode_000039.parquet",
+    "step_count": 319,
+    "start_frame": 0,
+    "control_fps": 20.0,
+    "reference_frame_equals_step_0_to_T": true
+   }
+  ],
+  "all_equal": true
+ },
+ "40": {
+  "mocap_rows": 260,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0534,
+   0.1361,
+   0.2183
+  ],
+  "perception_frames": 260,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "41": {
+  "mocap_rows": 299,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0584,
+   0.1508,
+   0.2446
+  ],
+  "perception_frames": 299,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "42": {
+  "mocap_rows": 257,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0245,
+   0.1053,
+   0.1854
+  ],
+  "perception_frames": 257,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "43": {
+  "mocap_rows": 326,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0379,
+   0.141,
+   0.2437
+  ],
+  "perception_frames": 326,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "44": {
+  "mocap_rows": 249,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.0529,
+   0.1305,
+   0.2088
+  ],
+  "perception_frames": 249,
+  "rollouts": [],
+  "all_equal": true
+ },
+ "45": {
+  "mocap_rows": 290,
+  "frame_index_is_0_to_T": true,
+  "mocap_dt_s": 0.049373,
+  "mocap_fps": 20.254,
+  "mocap_dt_max_over_min": 1.0,
+  "capture_minus_timestamp_s": [
+   0.028,
+   0.1193,
+   0.2095
+  ],
+  "perception_frames": 290,
+  "rollouts": [],
+  "all_equal": true
+ }
+}

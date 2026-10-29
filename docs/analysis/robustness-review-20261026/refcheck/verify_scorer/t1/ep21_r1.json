@@ -1,0 +1,59 @@
+{
+ "ep": 21,
+ "rollout": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1",
+ "lib": "library_v3",
+ "names": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "T_rollout": 186,
+ "T_gt": 186,
+ "steps_first_last": [
+  0,
+  185
+ ],
+ "reference_frame_equals_step": true,
+ "md_fps": "20.0",
+ "reg_deg": {
+  "blue_cup": 1.361,
+  "water_pitcher": 2.653
+ },
+ "sim": {
+  "AUC": 0.790323,
+  "per_obj": [
+   0.9603,
+   0.6203
+  ],
+  "SP": 1.0,
+  "MP": 0.0
+ },
+ "sim_f0ref": {
+  "AUC": 0.772009,
+  "SP": 1.0,
+  "MP": 0.0,
+  "dAUC": -0.0183
+ },
+ "sim_vs_ref_pos_mm_by_lag": {
+  "-2": 10.007,
+  "-1": 7.574,
+  "0": 6.172,
+  "1": 7.283,
+  "2": 9.574
+ },
+ "frame0_gap": {
+  "blue_cup": {
+   "pos_mm": 0.733,
+   "rot_deg": 0.316
+  },
+  "water_pitcher": {
+   "pos_mm": 0.891,
+   "rot_deg": 0.314
+  }
+ },
+ "ref_vs_gt_pos_mm_by_lag_unaligned": {
+  "-1": 340.466,
+  "0": 340.474,
+  "1": 340.562
+ },
+ "seconds": 16.0
+}

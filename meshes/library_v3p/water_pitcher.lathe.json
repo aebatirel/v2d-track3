@@ -1,0 +1,54 @@
+{
+ "name": "water_pitcher",
+ "src": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+ "disc": false,
+ "pca_eig_cm2": [
+  12.47,
+  33.43,
+  69.79
+ ],
+ "axis_score": 0.0248,
+ "axis_span": 0.62,
+ "refined": false,
+ "axis_c_cm": [
+  2.597,
+  2.396,
+  4.368
+ ],
+ "axis_d": [
+  -0.6291,
+  0.572,
+  0.5262
+ ],
+ "body_h_cm": [
+  -1.92,
+  8.48
+ ],
+ "r_end_cm": [
+  6.28,
+  11.42
+ ],
+ "cap_frac": [
+  0.19,
+  0.2
+ ],
+ "base": "lo",
+ "rmax_cm": 11.74,
+ "bins_kept": 84,
+ "bins_body": 52,
+ "wall_t_raw_mm": null,
+ "wall_t_mm": 4.0,
+ "mouth_bins_used": 0,
+ "hollow": true,
+ "body_faces": 13568,
+ "body_watertight": true,
+ "body_volume_cm3": 286.8,
+ "appendage_faces": 18202,
+ "appendage_area_cm2": 991.9,
+ "M_sym_mean_mm": 11.21,
+ "M_ours_to_lathe_med_mm": 2.56,
+ "M_ours_to_lathe_p90_mm": 17.41,
+ "M_lathe_to_ours_med_mm": 5.8,
+ "M_lathe_to_ours_p90_mm": 52.79,
+ "M_circ_mad_mm": 14.23
+}

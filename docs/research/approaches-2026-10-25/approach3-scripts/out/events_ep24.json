@@ -1,0 +1,66 @@
+{
+ "wooden_piece_1": {
+  "onset": 49,
+  "liftoff": 114,
+  "settle": 155,
+  "hold_on": 105,
+  "hold_off": 244,
+  "holds": [
+   [
+    "right",
+    105,
+    244
+   ]
+  ],
+  "GT_DIAG": {
+   "onset": 10,
+   "liftoff": 20,
+   "settle": 38
+  },
+  "diff_ref_minus_gt": {
+   "onset": 39,
+   "liftoff": 94,
+   "settle": 117
+  },
+  "hold_on_minus_gt_onset": 95,
+  "hold_on_minus_gt_liftoff": 85,
+  "hold_off_minus_gt_settle": 206
+ },
+ "wooden_piece_2": {
+  "onset": 11,
+  "liftoff": 20,
+  "settle": 38,
+  "hold_on": 3,
+  "hold_off": 202,
+  "holds": [
+   [
+    "left",
+    3,
+    202
+   ],
+   [
+    "right",
+    8,
+    21
+   ],
+   [
+    "right",
+    37,
+    78
+   ]
+  ],
+  "GT_DIAG": {
+   "onset": 114,
+   "liftoff": 126,
+   "settle": 156
+  },
+  "diff_ref_minus_gt": {
+   "onset": -103,
+   "liftoff": -106,
+   "settle": -118
+  },
+  "hold_on_minus_gt_onset": -111,
+  "hold_on_minus_gt_liftoff": -123,
+  "hold_off_minus_gt_settle": 46
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "left": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 0,
+  "optimised": 0,
+  "pen_p95_mm_before": 0.0,
+  "pen_p95_mm_after": 0.0,
+  "tip_to_target_mm_median": null,
+  "tip_to_target_mm_p90": null,
+  "frames_rigidly_attached": "66/67"
+ },
+ "right": {
+  "tip_site_depth_mm": [
+   1.2,
+   1.7,
+   1.7,
+   1.7,
+   1.7
+  ],
+  "contact_frames": 206,
+  "optimised": 206,
+  "pen_p95_mm_before": 24.1,
+  "pen_p95_mm_after": 5.4,
+  "tip_to_target_mm_median": 6.1,
+  "tip_to_target_mm_p90": 25.5,
+  "frames_rigidly_attached": "66/67"
+ }
+}

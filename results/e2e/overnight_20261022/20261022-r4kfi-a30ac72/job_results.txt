@@ -1,0 +1,6 @@
+[2026-10-22T03:24:02Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-22T03:24:12Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-22T04:57:10Z] ab ep18 mckfi s42: pipeline rc=0 [03:28:16] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":180,"optimised":181,"pen_p95_mm_before":17.4,"pen_p95_mm_after":2.6,"tip_to_target_mm_median":4.9,"tip_to_target_mm_p90":17.7,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7, [04:56:02] qa_policy: {"kind":"policy","ep":18,"sim_vs_ref":0.8161,"floor_vs_ref":0.6192,"verdict":"ok"} 
+[2026-10-22T04:58:54Z] ab ep18 mckfi-s42 (policy_200007680.safetensors): n 6 sim_vs_ref {'mean': 0.7333, 'std': 0.247, 'min': 0.1818, 'max': 0.8604} registered AUC {'mean': 0.7149, 'std': 0.2405, 'min': 0.1789, 'max': 0.8416}
+[2026-10-22T04:58:54Z] hard_ab summary: {"ep18":{"mckfi-s42":{"checkpoint":"/content/runs/perc2mckfi/ep18-s42/policy_200007680.safetensors","n":6,"sim_vs_ref":{"mean":0.7333,"std":0.247,"min":0.1818,"max":0.8604},"auc":{"mean":0.7149,"std":0.2405,"min":0.1789,"max":0.8416},"auc_of_best_sim_vs_ref":0.8416}}}
+

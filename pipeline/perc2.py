@@ -9,7 +9,21 @@ as the kit provides them for eval episodes):
   camera: keyframe SIFT + depth PnP (world = rectified-left camera at frame 0)
 Scoring: official kit Track 3 metric functions vs mocap, for world variants
   'vo' (camera from PnP) and 'anchor:<obj>' (that object assumed static; analysis only).
-Env: EP, FS_SCALE (0.5), OUT. Outputs result.json, poses.npz, masks_f0.jpg, vo.json in OUT.
+Env: EP, FS_SCALE (0.5), OUT, SPLIT (public|eval), MESH_DIR (track with our meshes; score with
+score_registered.py then, this block's unregistered score assumes the scan frame). Outputs result.json, poses.npz, masks_f0.jpg, vo.json in OUT.
+Detection dump (2026-10-23): det_f<k>.npz in OUT with every SAM2 proposal of the detected frame (masks at half
+resolution, DINOv2 similarity per object before the size gate, intensity, 3-D extent raw and on an eroded mask, 3-D
+centroid) plus half-resolution depth and image, for offline replay of detection rules (tools/det_replay.py).
+DET_DUMP=0 turns it off. DET_VERIFY=N adds pipeline/perc.py's render-and-compare check on each object's top N
+proposals to the dump (off by default). DET_ONLY=1: detection only, on the frames DET_FRAMES (default "0"); no VO, no tracking,
+depth only for those frames (public episodes: rule replay; scoring reads mocap only in tools/det_score.py).
+TRACK_GUARD=1 (2026-10-25, default on after its public validation: 8 episodes, mean 0.724 -> 0.782, ep0 +0.468, no
+episode below -0.0023): physically implausible poses (below the table) trigger re-registration on other proposals /
+re-detection, else the last plausible pose is held (see the tracking loop). TRACK_GUARD=0 reproduces earlier runs.
+Detection rules (2026-10-23, pipeline/det_rules.py, chosen on public episodes): reach gate, size term, Grounding
+DINO term; DET_RULES=0 restores the earlier rule; DET_LAM_S / DET_REACH / DET_LAM_G override. 2026-10-25: gated
+re-proposal (DET_REPROP, now default 1) and the on-table rule (DET_TABLE, default 1), both replayed on the public dumps
+with no regression (docs/work-log.md).
 """
 import os, sys, json, time, importlib
 import numpy as np, cv2, torch, trimesh
@@ -30,13 +44,23 @@ PROMPT = {'white_pot': 'a cooking pot', 'white_pot_lid': 'a pot lid', 'blue_cup'
 t_all = time.time()
 def log(*a):
     print(f'[{time.time() - t_all:7.1f}s]', *a, flush=True)
-def mesh_path(n):
+MESH_DIR = os.environ.get('MESH_DIR')  # our own reconstructions (MESH_DIR/<obj>.glb) instead of the public scans
+def scan_path(n):
     p = f'{D}/mesh/{n}/{n}.glb'
     return p if os.path.exists(p) else f'{D}/mesh/{n}/{n}_visual.glb'
+def mesh_path(n):                      # the tracking template
+    return f'{MESH_DIR}/{n}.glb' if MESH_DIR else scan_path(n)
 
-tab = pq.read_table(f'{D}/ep{EP}.parquet').to_pandas()
-names = [o['name'] for o in tab['observation.objects'].iloc[0]]          # slot order only
-log('episode', EP, 'objects', names)
+# SPLIT=eval: eval videos in D/eval/v, object names (slot order) from the kit roster, no episode parquet, no scoring
+SPLIT = os.environ.get('SPLIT', 'public')
+ROSTER = '/content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json'
+if SPLIT == 'eval':
+    tab, VD = None, f'{D}/eval/v'
+    names = json.load(open(ROSTER))['episodes'][str(EP)]
+else:
+    tab, VD = pq.read_table(f'{D}/ep{EP}.parquet').to_pandas(), f'{D}/v'
+    names = [o['name'] for o in tab['observation.objects'].iloc[0]]      # slot order only
+log('episode', EP, SPLIT, 'objects', names)
 
 # ---------- calibration + rectification (left = ego_cam_c, right = ego_cam_b) ----------
 C = json.load(open(f'{D}/calib.json')); cam = C['cameras']
@@ -58,16 +82,24 @@ def frames(path):
         if not ok: break
         out.append(cv2.cvtColor(f, cv2.COLOR_BGR2GRAY))
     return out
-fc, fb = frames(f'{D}/v/ep{EP}_c.mp4'), frames(f'{D}/v/ep{EP}_b.mp4')
-N = min(len(fc), len(fb), len(tab))
+fc, fb = frames(f'{VD}/ep{EP}_c.mp4'), frames(f'{VD}/ep{EP}_b.mp4')
+NROWS = len(tab) if tab is not None else len(fc)          # eval: the kit's frame roster = the video frame count
+N = min(len(fc), len(fb), NROWS)
 rc = [cv2.remap(fc[i], MC[0], MC[1], cv2.INTER_LINEAR) for i in range(N)]
 rb = [cv2.remap(fb[i], MB[0], MB[1], cv2.INTER_LINEAR) for i in range(N)]
 rgb = lambda g: np.repeat(g[..., None], 3, 2)
-log('frames c/b/rows', len(fc), len(fb), len(tab), 'focal', round(FR, 1), 'baseline', round(BASE, 4))
+log('frames c/b/rows', len(fc), len(fb), NROWS, 'focal', round(FR, 1), 'baseline', round(BASE, 4))
+DET_ONLY = os.environ.get('DET_ONLY', '0') == '1'
+DET_FRAMES = [int(x) for x in os.environ.get('DET_FRAMES', '0').split(',')] if DET_ONLY else [0]
+DET_FRAMES = [k for k in DET_FRAMES if 0 <= k < N]
 
 # ---------- FoundationStereo depth (cached) ----------
 DCACHE = f'{OUT}/depths_fs{FS_SCALE}.npy'
-if os.path.exists(DCACHE):
+if DET_ONLY:
+    DCACHE = f'{OUT}/depths_fs{FS_SCALE}_det.npz'
+if DET_ONLY and os.path.exists(DCACHE):
+    depths = {int(k[1:]): v for k, v in np.load(DCACHE).items()}
+elif not DET_ONLY and os.path.exists(DCACHE):
     depths = list(np.load(DCACHE))
 else:
     sys.path.insert(0, '/content/FoundationStereo')
@@ -79,9 +111,9 @@ else:
     cfg['valid_iters'] = 32; cfg['hiera'] = 0
     cfg['vit_size'] = cfg.get('vit_size', 'vitl')
     fs = FoundationStereo(cfg); fs.load_state_dict(torch.load(CK, weights_only=False)['model']); fs.cuda().eval()
-    depths = []
+    depths = {} if DET_ONLY else []
     with torch.no_grad():
-        for i in range(N):
+        for i in (DET_FRAMES if DET_ONLY else range(N)):
             a = cv2.resize(rc[i], None, fx=FS_SCALE, fy=FS_SCALE); b = cv2.resize(rb[i], None, fx=FS_SCALE, fy=FS_SCALE)
             t0 = torch.as_tensor(rgb(a)).cuda().float()[None].permute(0, 3, 1, 2)
             t1 = torch.as_tensor(rgb(b)).cuda().float()[None].permute(0, 3, 1, 2)
@@ -92,8 +124,15 @@ else:
             disp = cv2.resize(disp, RSZ, interpolation=cv2.INTER_LINEAR) / FS_SCALE
             z = np.where(disp > 1, FR * BASE / np.maximum(disp, 1e-6), 0).astype(np.float32)
             z[(z < 0.15) | (z > 2.0)] = 0
-            depths.append(z)
-    np.save(DCACHE, np.stack(depths).astype(np.float32)); del fs; torch.cuda.empty_cache()
+            if DET_ONLY:
+                depths[i] = z
+            else:
+                depths.append(z)
+    if DET_ONLY:
+        np.savez(DCACHE, **{f'f{k}': v for k, v in depths.items()})
+    else:
+        np.save(DCACHE, np.stack(depths).astype(np.float32))
+    del fs; torch.cuda.empty_cache()
     for k in [k for k, m in list(sys.modules.items()) if (getattr(m, '__file__', None) or '').startswith('/content/FoundationStereo')]:
         del sys.modules[k]
     sys.path.remove('/content/FoundationStereo')
@@ -123,7 +162,7 @@ def pnp(kf, i):
     return M, len(inl)                                                     # cam_i <- cam_kf
 KF_MIN = int(os.environ.get('KF_MIN', 250))
 W_C = [np.eye(4)]; kf = 0; kfs = [0]; ninl = [0]; fails = 0
-for i in range(1, N):
+for i in range(1, 1 if DET_ONLY else N):                    # DET_ONLY: no camera track
     M, n = pnp(kf, i)
     if n < KF_MIN and i - 1 > kf:
         kf = i - 1; kfs.append(kf); M, n = pnp(kf, i)
@@ -131,8 +170,9 @@ for i in range(1, N):
         fails += 1; W_C.append(W_C[-1].copy()); ninl.append(0); continue
     W_C.append(W_C[kf] @ np.linalg.inv(M)); ninl.append(n)
 W_C = np.stack(W_C)
-log('vo keyframes', len(kfs), 'fails', fails, 'median inliers', int(np.median(ninl[1:])), 'min', int(np.min(ninl[1:])))
-json.dump({'keyframes': kfs, 'inliers': ninl, 'fails': fails}, open(f'{OUT}/vo.json', 'w'))
+if not DET_ONLY:
+    log('vo keyframes', len(kfs), 'fails', fails, 'median inliers', int(np.median(ninl[1:])), 'min', int(np.min(ninl[1:])))
+    json.dump({'keyframes': kfs, 'inliers': ninl, 'fails': fails}, open(f'{OUT}/vo.json', 'w'))
 
 # ---------- FoundationPose setup (gray textures: the ego stereo cameras are monochrome) ----------
 os.chdir('/content/FoundationPose'); sys.path.insert(0, '/content/FoundationPose')
@@ -156,12 +196,10 @@ from sam2.build_sam import build_sam2
 from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 gen = SAM2AutomaticMaskGenerator(build_sam2('configs/sam2.1/sam2.1_hiera_l.yaml', '/content/ckpt/sam2.1_hiera_large.pt', device='cuda'),
                                  points_per_side=32, pred_iou_thresh=0.7, stability_score_thresh=0.85)
-img0 = rgb(rc[0]); props = [m['segmentation'] for m in gen.generate(img0) if m['area'] >= 400]
-del gen; torch.cuda.empty_cache()
-def extent3d(m):
-    v, u = np.nonzero(m & (depths[0] > 0))
+def extent3d(m, dep):
+    v, u = np.nonzero(m & (dep > 0))
     if len(v) < 30: return 0.0
-    z = depths[0][v, u]; X = np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1)
+    z = dep[v, u]; X = np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1)
     X = X[::max(1, len(X) // 5000)]; X = X - np.median(X, 0)
     pr = X @ np.linalg.svd(X, full_matrices=False)[2].T
     return float((np.percentile(pr, 97, 0) - np.percentile(pr, 3, 0)).max())
@@ -193,16 +231,192 @@ def templates(n):
     col = (col.clamp(0, 1) * 255).cpu().numpy().astype(np.uint8); msk = dep.cpu().numpy() > 0
     ks = [k for k in range(len(col)) if msk[k].sum() > 50]
     return desc([crop(col[k], msk[k]) for k in ks]), float(np.mean([col[k][msk[k]].mean() for k in ks]))
-PD = desc([crop(img0, m) for m in props])
-pint = np.array([img0[m].mean() for m in props]); pext = np.array([extent3d(m) for m in props])
-S = np.full((len(names), len(props)), -10.0); LAM_I = float(os.environ.get('LAM_I', 0.3))
-for a, n in enumerate(names):
-    Tn, tint = templates(n); sim = (PD @ Tn.T).topk(min(5, len(Tn)), dim=1).values.mean(1).cpu().numpy()
-    ext = float(meshes[n].bounding_box_oriented.extents.max()); ok = (pext > 0.3 * ext) & (pext < 1.3 * ext)
-    S[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)
-    log('det', n, 'ext', round(ext, 3), 'tint', round(tint), [(int(k), round(S[a, k], 3), round(pext[k], 3), round(pint[k])) for k in np.argsort(-S[a])[:4]])
-del dino; torch.cuda.empty_cache()
-ri, ci = linear_sum_assignment(-S); MASK = {names[a]: props[k] for a, k in zip(ri, ci)}
+def centroid3d(m, dep):
+    v, u = np.nonzero(m & (dep > 0))
+    if len(v) < 30: return np.full(3, np.nan)
+    z = dep[v, u]; return np.median(np.stack([(u - cx) * z / fx, (v - cy) * z / fx, z], 1), 0)
+LAM_I = float(os.environ.get('LAM_I', 0.3))
+TPL = {n: templates(n) for n in names}                               # (DINOv2 descriptors, mean render intensity)
+EXT = {n: float(meshes[n].bounding_box_oriented.extents.max()) for n in names}
+DET_PRIOR = os.environ.get('DET_PRIOR', 'compact')
+K_, D0, LAM_D = int(os.environ.get('DET_K', 80)), float(os.environ.get('DET_D0', 0.45)), float(os.environ.get('DET_LAM', 0.5))
+DET_VERIFY = int(os.environ.get('DET_VERIFY', 0))                    # >0: geometric check on that many top proposals
+_VEST = {}
+def verify_scores(k, props, S):
+    """Render-and-compare check (as pipeline/perc.py, 2026-10-23 dumps only): FoundationPose registered on each
+    object's top DET_VERIFY proposals, its render compared with the depth: matched / (matched + free-space
+    violations) and the matched pixel count. Comparable across masks, unlike FoundationPose's own score."""
+    V = np.full(S.shape, np.nan); Vm = np.zeros(S.shape)
+    D0t = torch.as_tensor(depths[k]).cuda()
+    for a, n in enumerate(names):
+        if n not in _VEST:
+            _VEST[n] = (FoundationPose(model_pts=meshes[n].vertices, model_normals=meshes[n].vertex_normals, mesh=meshes[n],
+                                       scorer=scorer, refiner=refiner, debug_dir=f'{OUT}/dbg', debug=0, glctx=glctx),
+                        make_mesh_tensors(meshes[n]))
+        est, mt = _VEST[n]
+        for j in np.argsort(-S[a])[:DET_VERIFY]:
+            if S[a, j] <= -10: continue
+            try:
+                pose = est.register(K=KR, rgb=rgb(rc[k]), depth=depths[k], ob_mask=props[j], iteration=5)
+                _, dr_, _ = nvdiffrast_render(K=KR, H=RSZ[1], W=RSZ[0], ob_in_cams=torch.as_tensor(pose[None]).float().cuda(),
+                                              glctx=glctx, mesh_tensors=mt)
+                r = dr_[0]; vis = (r > 0) & (D0t > 0)
+                m = (vis & ((D0t - r).abs() < 0.015)).sum().item(); viol = (vis & (D0t > r + 0.015)).sum().item()
+                V[a, j] = m / (m + viol + 1.0); Vm[a, j] = m
+            except Exception as e:
+                log('verify failed', n, int(j), repr(e))
+    log('verify', f'f{k}', {f'{names[a]}#{int(j)}': [round(float(V[a, j]), 3), int(Vm[a, j])] for a in range(len(names)) for j in np.nonzero(np.isfinite(V[a]))[0]})
+    return V, Vm
+import det_rules                                                      # shared with tools/det_replay.py (2026-10-23)
+DET_RULES = os.environ.get('DET_RULES', '1') == '1'                 # 0: the rules before 2026-10-23 (reproduce old runs)
+R_LAM_S = float(os.environ.get('DET_LAM_S', det_rules.LAM_S)) if DET_RULES else 0.0
+R_REACH = (None if os.environ.get('DET_REACH', str(det_rules.REACH)) in ('none', '0') else float(os.environ.get('DET_REACH', det_rules.REACH))) if DET_RULES else None
+R_LAM_G = float(os.environ.get('DET_LAM_G', det_rules.LAM_G)) if DET_RULES else 0.0
+_GD = {}
+def color_frame(k):
+    """Camera-a (colour) frame paired with stereo frame k (k + A_OFFSET), RGB; None when missing."""
+    cap = cv2.VideoCapture(f'{VD}/ep{EP}_a.mp4'); f = None
+    for _ in range(k + det_rules.A_OFFSET + 1):
+        ok, f = cap.read()
+        if not ok: return None
+    return cv2.cvtColor(f, cv2.COLOR_BGR2RGB)
+def grounding(k, names_):
+    """Grounding DINO boxes per roster name on the colour frame of stereo frame k; None if unavailable."""
+    try:
+        if 'm' not in _GD:
+            _GD['m'] = det_rules.GroundingDino('cuda'); _GD['cam'] = det_rules.make_cam(f'{D}/calib.json', R1)
+        im = color_frame(k)
+        return None if im is None else _GD['m'](im, names_)
+    except Exception as e:
+        log('grounding unavailable (term off):', repr(e)); _GD['m'] = None; return None
+DET_REPROP = os.environ.get('DET_REPROP', '1') == '1'   # default on since 2026-10-25 (gated form validated on public)
+DET_TABLE = os.environ.get('DET_TABLE', '1') == '1' and DET_RULES  # on-table rule (2026-10-25, det_rules.on_table_ok)
+def reproposals(img, dep, props, gdet):
+    """DET_REPROP (2026-10-24): SAM2 box prompts (multimask) for the Grounding DINO boxes that no automatic proposal
+    covers (det_rules.uncovered_boxes), each box mapped into the rectified-left image through the frame's depth. The new
+    masks join the proposals and go through the same scores, gates and assignment. Eval 30: the sweeper standing in the
+    rack had no proposal of its own (it was inside the rack's mask)."""
+    try:
+        cam = _GD['cam']; dh = dep[::2, ::2]; Kh = KR.copy(); Kh[:2] *= 0.5
+        bb, _ = det_rules.boxes_in_a(np.stack([m[::2, ::2] for m in props]), dh, Kh, cam)
+        todo = det_rules.uncovered_boxes(gdet, names, bb); new = []
+        if todo:
+            pred = gen.predictor; pred.set_image(img)
+            for n, box, sc in todo:
+                rb = det_rules.box_to_rect(box, dh, Kh, cam)
+                if rb is None:
+                    log('reproposal', n, 'box', [round(v) for v in box], 'not visible in the rectified view'); continue
+                ms, ss, _ = pred.predict(box=rb * 2, multimask_output=True)
+                kept = 0
+                for m in np.asarray(ms).astype(bool):
+                    if m.sum() < 400 or any((m & q).sum() > 0.9 * (m | q).sum() for q in props + new): continue
+                    new.append(m); kept += 1
+                log('reproposal', n, 'score', round(sc, 3), 'box a', [round(v) for v in box], 'rect', np.round(rb * 2).astype(int).tolist(), 'masks kept', kept)
+        log('reproposals', len(todo), 'uncovered boxes ->', len(new), 'new proposals')
+        return new
+    except Exception as e:
+        log('reproposal failed (none added):', repr(e)); return []
+def detect(k):
+    """Proposals, scores and the object -> proposal choice on frame k (frame 0 in the pipeline)."""
+    img, dep = rgb(rc[k]), depths[k]
+    props = [m['segmentation'] for m in gen.generate(img) if m['area'] >= 400]
+    gdet = grounding(k, names) if ((R_LAM_G > 0 or DET_REPROP) and props) else None
+    n_auto = len(props)
+    if DET_REPROP and gdet is not None:
+        props = props + reproposals(img, dep, props, gdet)
+    reprop = np.arange(len(props)) >= n_auto
+    PD = desc([crop(img, m) for m in props])
+    pint = np.array([img[m].mean() for m in props]); pext = np.array([extent3d(m, dep) for m in props])
+    ero = np.ones((5, 5), np.uint8)
+    pext_e = np.array([extent3d(cv2.erode(m.astype(np.uint8), ero).astype(bool), dep) for m in props])
+    cen = np.stack([centroid3d(m, dep) for m in props]) if props else np.zeros((0, 3))
+    near = det_rules.reach_ok(cen, R_REACH)
+    S0 = np.full((len(names), len(props)), -10.0); S = S0.copy(); SIM = np.zeros((len(names), len(props))); oks = []
+    for a, n in enumerate(names):
+        Tn, tint = TPL[n]; sim = (PD @ Tn.T).topk(min(5, len(Tn)), dim=1).values.mean(1).cpu().numpy(); SIM[a] = sim
+        ext = EXT[n]; ok = (pext > 0.3 * ext) & (pext < 1.3 * ext)
+        S0[a] = np.where(ok, sim - LAM_I * np.abs(pint - tint) / 255, -10.0)               # the rule before 2026-10-23
+        oks.append(ok & near)
+        S[a] = np.where(oks[a], S0[a] - det_rules.size_penalty(pext_e, ext, R_LAM_S), -10.0)
+    mk = np.stack([m[::2, ::2] for m in props]) if props else np.zeros((0, 1, 1), bool)
+    dh = dep[::2, ::2].astype(np.float16).astype(np.float32); Kh = KR.copy(); Kh[:2] *= 0.5
+    G = None
+    if gdet is not None and R_LAM_G > 0:
+        G, inside = det_rules.ground_scores(mk, dh, Kh, names, gdet, _GD['cam'])
+        S = np.where(S > -10, S + det_rules.ground_term(G, inside, oks, R_LAM_G), S)
+    log('det rules', f'f{k}', dict(lam_s=R_LAM_S, reach=R_REACH, lam_g=R_LAM_G if gdet is not None else 0.0),
+        'barred by reach', int((~near).sum()), 'of', len(props))
+    for a, n in enumerate(names):
+        log('det', f'f{k}', n, 'ext', round(EXT[n], 3), 'tint', round(TPL[n][1]), [(int(j), round(S[a, j], 3), round(pext[j], 3), round(pint[j])) for j in np.argsort(-S[a])[:4]])
+    def assign(S):
+        ri, ci = linear_sum_assignment(-S)
+        # DET_PRIOR=compact (2026-10-20, ep26: the rack went to a floor-tape proposal ~1 m away while the pot sat in the
+        # rack): joint choice over each object's top-K proposals, penalising a spread of the chosen 3-D centroids beyond DET_D0.
+        if DET_PRIOR == 'compact' and len(names) > 1:   # default since the 20-episode A/B
+            import itertools
+            top = [list(np.argsort(-S[a])[:K_]) for a in range(len(names))]
+            PC = {int(j): centroid3d(props[j], dep) for t in top for j in t}
+            best = None
+            for combo in itertools.product(*top):
+                if len(set(combo)) < len(combo) or any(S[a, j] <= -10 for a, j in enumerate(combo)): continue
+                P_ = np.array([PC[int(j)] for j in combo]); spread = 0.0
+                if np.isfinite(P_).all():
+                    spread = max(np.linalg.norm(P_[i] - P_[j]) for i in range(len(P_)) for j in range(i + 1, len(P_)))
+                cost = -sum(S[a, j] for a, j in enumerate(combo)) + LAM_D * max(0.0, spread - D0)
+                if best is None or cost < best[0]: best = (cost, combo, spread)
+            if best is not None:
+                log('det prior compact: top', {names[a]: [(int(j), round(float(S[a, j]), 3), np.round(PC[int(j)], 2).tolist()) for j in top[a]] for a in range(len(names))},
+                    '-> chosen', [int(j) for j in best[1]], 'spread', round(best[2], 3), 'hungarian', [int(j) for j in ci])
+                ri, ci = np.arange(len(names)), np.array(best[1])
+        return ri, ci
+    table_ok = np.ones(len(props), bool)
+    if DET_TABLE and props:   # on-table rule (2026-10-25; public replay variant 2: ep11 f0 both cups fixed, no regression in
+        table_ok, tpl, th = det_rules.on_table_ok(mk, dh, Kh)   # 116 instances): barred after every score term
+        S[:, ~table_ok] = -10.0
+        log('on-table rule', f'f{k}', 'plane', None if tpl is None else (np.round(tpl[0], 3).tolist(), round(tpl[1], 3)),
+            'barred', int((~table_ok).sum()), 'of', len(props))
+    if reprop.any():   # DET_REPROP gate (2026-10-25; public replay: plain re-proposal broke 2 instances, gated none):
+        S_off = S.copy(); S_off[:, reprop] = -10.0         # re-proposed masks only for an object whose choice without them
+        ch0 = dict(zip(*assign(S_off)))                     # has grounding agreement G < REPROP_GMIN
+        allow = [a for a in range(len(names)) if a not in ch0 or G is None or G[a, ch0[a]] < det_rules.REPROP_GMIN]
+        for a in range(len(names)):
+            if a not in allow: S[a, reprop] = -10.0
+        log('reproposal gate', f'f{k}', {names[a]: (int(ch0[a]) if a in ch0 else None, round(float(G[a, ch0[a]]), 3) if G is not None and a in ch0 else None,
+                                         'allowed' if a in allow else 'barred') for a in range(len(names))})
+    ri, ci = assign(S)
+    if os.environ.get('DET_DUMP', '1') == '1' and props:     # all proposals + features for offline rule replay
+        try:
+            chosen = np.full(len(names), -1); chosen[ri] = ci
+            V, Vm = verify_scores(k, props, S) if DET_VERIFY > 0 else (np.full(S.shape, np.nan), np.zeros(S.shape))
+            np.savez_compressed(f'{OUT}/det_f{k}.npz', names=np.array(names), frame=k, masks=np.packbits(mk, axis=-1),
+                                mask_shape=np.array(mk.shape), sim=SIM, score=S0, score_rules=S, intensity=pint, extent=pext,
+                                extent_eroded=pext_e, centroid=cen, area=np.array([int(m.sum()) for m in props]),
+                                rules=np.array([R_LAM_S, R_REACH or 0.0, R_LAM_G if gdet is not None else 0.0]),
+                                gdino=json.dumps(gdet) if gdet is not None else '',
+                                template_intensity=np.array([TPL[n][1] for n in names]), template_extent=np.array([EXT[n] for n in names]),
+                                chosen=chosen, depth=dep[::2, ::2].astype(np.float16), image=rc[k][::2, ::2], K=KR,
+                                params=np.array([LAM_I, K_, D0, LAM_D, float(DET_PRIOR == 'compact')]), verify=V, verify_matched=Vm,
+                                reprop=reprop, table_ok=table_ok)
+            log('det dump', f'{OUT}/det_f{k}.npz', len(props), 'proposals')
+        except Exception as e:
+            log('det dump failed (detection unaffected):', repr(e))
+    return props, S, ri, ci
+if DET_ONLY:                                                          # detection rules replay: dumps only, then stop
+    for k in DET_FRAMES:
+        props_k, S_k, ri_k, ci_k = detect(k)
+        vis = rgb(rc[k]).copy(); cols = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (0, 255, 255)]
+        for a, j in zip(ri_k, ci_k):
+            m = props_k[j]; vis[m] = (0.5 * vis[m] + 0.5 * np.array(cols[a % 4])).astype(np.uint8)
+        cv2.imwrite(f'{OUT}/masks_f{k}.jpg', vis)
+    json.dump({'episode': EP, 'split': SPLIT, 'objects': names, 'det_frames': DET_FRAMES}, open(f'{OUT}/det_only.json', 'w'))
+    log('DONE (DET_ONLY)')
+    sys.exit(0)
+props, S, ri, ci = detect(0)
+TRACK_GUARD = os.environ.get('TRACK_GUARD', '1') == '1'   # default on since 2026-10-25 (public validation passed)
+if not TRACK_GUARD:                                                   # the guard re-detects on later frames
+    del gen, dino; torch.cuda.empty_cache()
+img0 = rgb(rc[0])
+MASK = {names[a]: props[k] for a, k in zip(ri, ci)}
 DET = {names[a]: [int(k), float(S[a, k])] for a, k in zip(ri, ci)}; log('proposals', len(props), 'assignment', DET)
 vis = img0.copy(); cols = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (0, 255, 255)]
 for j, n in enumerate(names):
@@ -211,13 +425,79 @@ cv2.imwrite(f'{OUT}/masks_f0.jpg', vis)
 ests = {n: FoundationPose(model_pts=meshes[n].vertices, model_normals=meshes[n].vertex_normals, mesh=meshes[n],
                           scorer=scorer, refiner=refiner, debug_dir=f'{OUT}/dbg', debug=0, glctx=glctx) for n in names}
 poses = {}
-for n in names:
-    t0 = time.time()
-    P = [ests[n].register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=5)]
+REG_ITERS, TRACK_ITERS = int(os.environ.get('REG_ITERS', 5)), int(os.environ.get('TRACK_ITERS', 2))   # FoundationPose refiner
+log('FoundationPose iterations: register', REG_ITERS, 'track', TRACK_ITERS)                         # steps (2026-10-25 sweep)
+# TRACK_GUARD (2026-10-25; pre-registered in docs/work-log.md): a pose is implausible when the lowest 5 % of the object's
+# surface lies more than GUARD_BELOW under the table plane (frame 0, from our own depth). GT-free, and on the 20 public
+# tracks it fired only on the three known failures (ep0 lid, ep11 beige cup, ep23 board 1), never on a good track.
+#   frame 0: an implausible registration is retried on the object's next proposals (up to GUARD_K; others' excluded);
+#   tracking: on an implausible frame the object is re-detected on that frame (detect(i), every GUARD_EVERY frames at
+#   most) and registered on its candidates in order; the first plausible pose restarts the track; if none, the last
+#   plausible pose is held and the tracker restarts from it.
+GUARD_BELOW, GUARD_K, GUARD_EVERY = float(os.environ.get('GUARD_BELOW', 0.02)), int(os.environ.get('GUARD_K', 4)), int(os.environ.get('GUARD_EVERY', 10))
+TPLANE = det_rules.table_plane(depths[0][::2, ::2].astype(np.float32), np.diag([0.5, 0.5, 1.0]) @ KR) if TRACK_GUARD else None
+if TRACK_GUARD:
+    log('track guard: table plane', None if TPLANE is None else (np.round(TPLANE[0], 3).tolist(), round(TPLANE[1], 3)))
+GPTS = {n: trimesh.sample.sample_surface(meshes[n], 400, seed=0)[0] for n in names}
+def low5(n, pose, i):
+    M = W_C[i] @ pose; X = GPTS[n] @ M[:3, :3].T + M[:3, 3]
+    return float(np.percentile(X @ TPLANE[0] + TPLANE[1], 5))
+def plausible(n, pose, i):
+    return TPLANE is None or low5(n, pose, i) >= -GUARD_BELOW
+def set_last(est, X):                                                  # restart FoundationPose's tracker from pose X
+    tf = est.get_tf_to_centered_mesh(); tf = tf.detach().cpu().numpy() if hasattr(tf, 'detach') else np.asarray(tf)
+    est.pose_last = torch.as_tensor(X @ np.linalg.inv(tf), dtype=torch.float32, device='cuda')
+_DETC = {}
+def candidates(i, a):
+    """Object a's proposals on frame i, best first: its assigned one, then the rest by score (others' excluded)."""
+    if i not in _DETC:
+        _DETC[i] = detect(i)
+    pr, Si, rii, cii = _DETC[i]; mine = dict(zip(rii, cii)).get(a); taken = {int(c) for r, c in zip(rii, cii) if r != a}
+    order = ([int(mine)] if mine is not None else []) + [int(j) for j in np.argsort(-Si[a]) if Si[a, j] > -10 and int(j) != mine and int(j) not in taken]
+    return [pr[j] for j in order[:GUARD_K]]
+GLOG = {}
+for a, n in enumerate(names):
+    t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
+    P = [est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
+    if TRACK_GUARD and not plausible(n, P[0], 0):
+        low0 = low5(n, P[0], 0)
+        for m in candidates(0, a)[1:]:
+            g['f0_retries'] += 1; q = est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=m, iteration=REG_ITERS)
+            if plausible(n, q, 0):
+                P[0] = q; break
+        else:
+            set_last(est, P[0])                                         # none plausible: keep the original choice
+        log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
+    last_ok, last_try = (0 if plausible(n, P[0], 0) else None), -10 ** 6
     for i in range(1, N):
-        P.append(ests[n].track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=2))
-    poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1))
+        X = est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
+        if TRACK_GUARD and not plausible(n, X, i):
+            g['implausible'] += 1; got = None
+            if i - last_try >= GUARD_EVERY:
+                last_try = i; g['redetect'] += 1
+                for m in candidates(i, a):
+                    q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
+                    if plausible(n, q, i):
+                        got = q; break
+            if got is not None:
+                X = got; g['reacquired'] += 1; log('track guard', n, f'f{i}: re-acquired')
+            elif last_ok is not None:
+                X = np.linalg.inv(W_C[i]) @ (W_C[last_ok] @ P[last_ok])        # hold the last plausible pose (world)
+                set_last(est, X); g['held'] += 1
+        if not TRACK_GUARD or plausible(n, X, i):
+            last_ok = i
+        P.append(X)
+    poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1), 'guard', g if TRACK_GUARD else 'off')
+if TRACK_GUARD:
+    json.dump(GLOG, open(f'{OUT}/track_guard.json', 'w'), indent=1)
 np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})
+if SPLIT == 'eval':                                                   # no ground truth exists: write outputs, stop
+    np.savez(f'{OUT}/poses_world_vo.npz', **{n: np.stack([W_C[i] @ poses[n][i] for i in range(N)]) for n in names})
+    json.dump({'episode': EP, 'split': SPLIT, 'objects': names, 'frames': N, 'fs_scale': FS_SCALE,
+               'vo_stats': {'keyframes': len(kfs), 'fails': fails, 'median_inliers': int(np.median(ninl[1:]))},
+               'det': DET, 'n_proposals': len(props)}, open(f'{OUT}/result.json', 'w'), indent=1)
+    log('DONE (eval: not scored)')
+    sys.exit(0)
 
 # ---------- scoring (GT read only here) ----------
 def T_of(p):  # [x,y,z,qw,qx,qy,qz] -> 4x4
@@ -232,7 +512,7 @@ sys.path.insert(0, '/content/kit/v2d_submission_kit/metric_code/track_3')
 A = importlib.import_module('AUC')
 VERTS = {}
 for n in names:
-    pts, _ = trimesh.sample.sample_surface(trimesh.load(mesh_path(n), force='mesh'), 500, seed=0); VERTS[n] = np.asarray(pts)
+    pts, _ = trimesh.sample.sample_surface(trimesh.load(scan_path(n), force='mesh'), 500, seed=0); VERTS[n] = np.asarray(pts)
 def score(pred, objs):
     ach = np.stack([[xyzw(pred[n][i]) for n in objs] for i in range(N)])[:, None]
     ref = np.stack([[xyzw(gt[n][i]) for n in objs] for i in range(N)])[:, None]

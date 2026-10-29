@@ -1,0 +1,105 @@
+{
+ "note": "eval-10 collision copy for the simulator only (26 Oct). blue_cup: FlashCHORD CoACD hulls of library_v3 clipped below the inner floor + lathe wall wedges (wall 3 mm); beige_cup: lathe pieces, ring base, base extended 7.1 mm (frame 0 clears the table), radius shrunk 8 mm so the reference nest fits. Built with pipeline/lathe_collision.py from approach-2 lathe profiles.",
+ "commands": [
+  "lathe_collision.py beige_cup_v3_profile.npz beige_cup_v3.json OUT/beige_cup --seg 12 --band 0.06 --shrink 0.008 --base_to_mesh meshes/library_v3/beige_cup.glb --ext_max 0.0071",
+  "lathe_collision.py blue_cup_profile.npz blue_cup.json OUT/blue_cup --seg 12 --band 0.06 --wall 0.003 --base_from_hulls meshes/library_v3/blue_cup.glb"
+ ],
+ "rest_robustness": {
+  "def": [
+   {
+    "start": 0,
+    "max_blue_deg": 12.8,
+    "max_beige_deg": 86.0
+   },
+   {
+    "start": 2,
+    "max_blue_deg": 8.7,
+    "max_beige_deg": 47.2
+   },
+   {
+    "start": 4,
+    "max_blue_deg": 9.9,
+    "max_beige_deg": 89.3
+   },
+   {
+    "start": 6,
+    "max_blue_deg": 9.5,
+    "max_beige_deg": 47.5
+   },
+   {
+    "start": 8,
+    "max_blue_deg": 12.5,
+    "max_beige_deg": 46.1
+   },
+   {
+    "start": 10,
+    "max_blue_deg": 11.9,
+    "max_beige_deg": 48.0
+   }
+  ],
+  "esh8": [
+   {
+    "start": 0,
+    "max_blue_deg": 14.2,
+    "max_beige_deg": 12.4
+   },
+   {
+    "start": 2,
+    "max_blue_deg": 8.7,
+    "max_beige_deg": 13.1
+   },
+   {
+    "start": 4,
+    "max_blue_deg": 10.2,
+    "max_beige_deg": 12.2
+   },
+   {
+    "start": 6,
+    "max_blue_deg": 9.1,
+    "max_beige_deg": 12.3
+   },
+   {
+    "start": 8,
+    "max_blue_deg": 12.2,
+    "max_beige_deg": 14.0
+   },
+   {
+    "start": 10,
+    "max_blue_deg": 12.6,
+    "max_beige_deg": 13.8
+   }
+  ],
+  "esh0": [
+   {
+    "start": 0,
+    "max_blue_deg": 15.3,
+    "max_beige_deg": 13.4
+   },
+   {
+    "start": 2,
+    "max_blue_deg": 8.6,
+    "max_beige_deg": 13.1
+   },
+   {
+    "start": 4,
+    "max_blue_deg": 10.2,
+    "max_beige_deg": 12.2
+   },
+   {
+    "start": 6,
+    "max_blue_deg": 9.1,
+    "max_beige_deg": 12.3
+   },
+   {
+    "start": 8,
+    "max_blue_deg": 11.6,
+    "max_beige_deg": 14.5
+   },
+   {
+    "start": 10,
+    "max_blue_deg": 13.2,
+    "max_beige_deg": 13.8
+   }
+  ]
+ }
+}

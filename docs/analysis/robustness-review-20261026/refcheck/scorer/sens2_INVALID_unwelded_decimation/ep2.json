@@ -1,0 +1,383 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "meshes": "/home/user/v2d-track3/meshes/library_v2",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep2/poses_world_vo.npz",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.826,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.052,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9823,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.7324,
+    "RPE_cm": 1.435,
+    "per_obj_AUC": {
+     "white_pot": 0.9923,
+     "white_pot_lid": 0.9723
+    }
+   },
+   "seconds": 12.0
+  },
+  "scan4096": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 4096,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 0.796,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.042,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9812,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.7416,
+    "RPE_cm": 1.2454,
+    "per_obj_AUC": {
+     "white_pot": 0.9923,
+     "white_pot_lid": 0.9701
+    }
+   },
+   "seconds": 15.6
+  },
+  "scan20000": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 20000,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 2.997,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.229,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9784,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.8619,
+    "RPE_cm": 1.5001,
+    "per_obj_AUC": {
+     "white_pot": 0.9911,
+     "white_pot_lid": 0.9657
+    }
+   },
+   "seconds": 13.1
+  },
+  "seed3": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 3,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.868,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.9,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9826,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.71,
+    "RPE_cm": 1.4032,
+    "per_obj_AUC": {
+     "white_pot": 0.9922,
+     "white_pot_lid": 0.973
+    }
+   },
+   "seconds": 12.4
+  },
+  "seed4": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 4,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.777,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.643,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9815,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.7375,
+    "RPE_cm": 1.4594,
+    "per_obj_AUC": {
+     "white_pot": 0.9923,
+     "white_pot_lid": 0.9707
+    }
+   },
+   "seconds": 12.0
+  },
+  "seed5": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 5,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.61,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.698,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9722,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.7723,
+    "RPE_cm": 1.2858,
+    "per_obj_AUC": {
+     "white_pot": 0.9922,
+     "white_pot_lid": 0.9523
+    }
+   },
+   "seconds": 13.2
+  },
+  "seed6": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 6,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "white_pot": {
+     "rot_deg": 1.861,
+     "anchor_cm": [
+      -0.0,
+      -0.0,
+      -0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "white_pot_lid": {
+     "rot_deg": 1.946,
+     "anchor_cm": [
+      0.0,
+      0.0,
+      -0.0
+     ],
+     "axis": [
+      1.0,
+      -0.0026,
+      0.0054
+     ],
+     "order": 2
+    }
+   },
+   "perception": {
+    "AUC": 0.9815,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 0.7373,
+    "RPE_cm": 1.464,
+    "per_obj_AUC": {
+     "white_pot": 0.992,
+     "white_pot_lid": 0.971
+    }
+   },
+   "seconds": 13.0
+  }
+ }
+}

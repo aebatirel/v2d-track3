@@ -1,0 +1,178 @@
+[
+ {
+  "ep": 2,
+  "path": "runs/20261024-e3-e49e83d/results/glock_public/ep2/curve/policy_70004736/episode_000002.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.2196,
+  "T_script": 0.2196,
+  "R_ours": 0.9798,
+  "R_script": 0.9798,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 2,
+  "path": "runs/20261020-day1b-cfbff6b/results/perc2vc/ep2-s42/episode_000002.parquet",
+  "lib": "scan",
+  "T_ours": 0.9247,
+  "T_script": 0.9247,
+  "R_ours": 0.9942,
+  "R_script": 0.9942,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 11,
+  "path": "runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/curve/policy_70004736/r3/episode_000011.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.4539,
+  "T_script": 0.4539,
+  "R_ours": 0.8994,
+  "R_script": 0.8994,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 11,
+  "path": "runs/20261025-twin11v3x-0e8aebb/results/glock_public/ep11/curve/policy_70004736/r3/episode_000011.parquet",
+  "lib": "library_v3x",
+  "T_ours": 0.5703,
+  "T_script": 0.5703,
+  "R_ours": 0.8844,
+  "R_script": 0.8844,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 12,
+  "path": "runs/20261024-w2-37cc551/results/glock_public/ep12/curve/policy_70004736/episode_000012.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.9175,
+  "T_script": 0.9175,
+  "R_ours": 0.9354,
+  "R_script": 0.9354,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 12,
+  "path": "runs/20261020-day1b-cfbff6b/results/oracle/ep12-s42/episode_000012.parquet",
+  "lib": "scan",
+  "T_ours": 0.857,
+  "T_script": 0.857,
+  "R_ours": 1.0,
+  "R_script": 1.0,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 18,
+  "path": "runs/20261023-rp18-a674fd7/results/glock_public/ep18/curve/policy_70004736/episode_000018.parquet",
+  "lib": "library_v2",
+  "T_ours": 0.1163,
+  "T_script": 0.1163,
+  "R_ours": 0.9633,
+  "R_script": 0.9633,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 18,
+  "path": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep18/curve/policy_70004736/r3/episode_000018.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.9557,
+  "T_script": 0.9557,
+  "R_ours": 0.9657,
+  "R_script": 0.9657,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 21,
+  "path": "runs/20261025-twin21base-ee7ba8e/results/glock_public/ep21/curve/policy_70004736/r3/episode_000021.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.6079,
+  "T_script": 0.6079,
+  "R_ours": 0.7742,
+  "R_script": 0.7742,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 24,
+  "path": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/curve/policy_70004736/r3/episode_000024.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.1335,
+  "T_script": 0.1335,
+  "R_ours": 0.8163,
+  "R_script": 0.8163,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 24,
+  "path": "runs/20261022-r5ks43-72ecb2f/results/perc2mcsks/ep24-s43/sweep/policy_150007808/episode_000024.parquet",
+  "lib": "scan",
+  "T_ours": 0.2431,
+  "T_script": 0.2431,
+  "R_ours": 0.7958,
+  "R_script": 0.7958,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 26,
+  "path": "runs/20261024-w1-37cc551/results/glock_public/ep26/curve/policy_70004736/episode_000026.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.4955,
+  "T_script": 0.4955,
+  "R_ours": 0.9229,
+  "R_script": 0.9229,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 27,
+  "path": "runs/20261024-w2-37cc551/results/glock_public/ep27/curve/policy_70004736/episode_000027.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.9643,
+  "T_script": 0.9643,
+  "R_ours": 0.9621,
+  "R_script": 0.9621,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 27,
+  "path": "runs/20261020-day1b-cfbff6b/results/perc2vc/ep27-s42/episode_000027.parquet",
+  "lib": "scan",
+  "T_ours": 0.9674,
+  "T_script": 0.9674,
+  "R_ours": 0.9971,
+  "R_script": 0.9971,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 31,
+  "path": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/curve/policy_70004736/r3/episode_000031.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.5845,
+  "T_script": 0.5845,
+  "R_ours": 0.8233,
+  "R_script": 0.8233,
+  "per_obj_match": true,
+  "match": true
+ },
+ {
+  "ep": 39,
+  "path": "runs/20261024-std39-1f306be/results/perc2mcks/ep39-s42/sweep/policy_200007680/episode_000039.parquet",
+  "lib": "library_v3",
+  "T_ours": 0.6315,
+  "T_script": 0.6315,
+  "R_ours": 0.9559,
+  "R_script": 0.9559,
+  "per_obj_match": true,
+  "match": true
+ }
+]

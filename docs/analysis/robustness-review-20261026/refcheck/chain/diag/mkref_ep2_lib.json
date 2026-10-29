@@ -1,0 +1,224 @@
+{
+ "episode": 2,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-e3-e49e83d/perc2/ep2/poses_world_vo.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep2_e2s.npz",
+ "meshes_A": "/home/user/v2d-track3/meshes/library_v3",
+ "meshes_B": "/home/user/v2d-track3/meshes/library_v3",
+ "frames": 343,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "registration_A": {
+  "white_pot": {
+   "rot_deg": 1.83,
+   "anchor_shift_cm": 0.63,
+   "anchor_shift_xyz_cm": [
+    0.36,
+    0.09,
+    -0.51
+   ]
+  },
+  "white_pot_lid": {
+   "rot_deg": 1.05,
+   "anchor_shift_cm": 0.79,
+   "anchor_shift_xyz_cm": [
+    -0.45,
+    -0.12,
+    0.63
+   ]
+  }
+ },
+ "registration_B": {
+  "white_pot": {
+   "rot_deg": 1.83,
+   "anchor_shift_cm": 0.63,
+   "anchor_shift_xyz_cm": [
+    0.36,
+    0.09,
+    -0.51
+   ]
+  },
+  "white_pot_lid": {
+   "rot_deg": 1.05,
+   "anchor_shift_cm": 0.79,
+   "anchor_shift_xyz_cm": [
+    -0.45,
+    -0.12,
+    0.63
+   ]
+  }
+ },
+ "alignment_anchor": "white_pot",
+ "per_object": {
+  "white_pot": {
+   "AUC_A": 0.9925,
+   "AUC_B": 0.9925,
+   "dAUC": 0.0,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.0,
+    "add_cm_B": 0.0,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.0,
+    "dpos_cm_max": 0.0,
+    "dz_cm_mean": 0.0,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 0.51,
+    "dz_cm_mean": 0.06,
+    "dxy_cm_mean": 0.33,
+    "rot_deg_mean": 2.3
+   },
+   "error_B": {
+    "add_cm_mean": 0.51,
+    "dz_cm_mean": 0.06,
+    "dxy_cm_mean": 0.33,
+    "rot_deg_mean": 2.3
+   },
+   "frames_worse": 0,
+   "frames_better": 0,
+   "segments_worse": [],
+   "segments_better": []
+  },
+  "white_pot_lid": {
+   "AUC_A": 0.9807,
+   "AUC_B": 0.9572,
+   "dAUC": -0.0235,
+   "dAUC_frame0": -0.0002,
+   "dAUC_translation_only": -0.0235,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.99,
+    "add_cm_B": 1.14,
+    "dpos_cm": 0.16,
+    "dz_cm": -0.16,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.16,
+    "dpos_cm_max": 0.16,
+    "dz_cm_mean": -0.16,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 0.97,
+    "dz_cm_mean": -0.65,
+    "dxy_cm_mean": 0.61,
+    "rot_deg_mean": 1.26
+   },
+   "error_B": {
+    "add_cm_mean": 1.08,
+    "dz_cm_mean": -0.81,
+    "dxy_cm_mean": 0.61,
+    "rot_deg_mean": 1.26
+   },
+   "frames_worse": 128,
+   "frames_better": 1,
+   "segments_worse": [
+    {
+     "frames": [
+      272,
+      300
+     ],
+     "n": 29,
+     "dAUC": -0.0038,
+     "add_cm_A": 0.91,
+     "add_cm_B": 1.06,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      315,
+      342
+     ],
+     "n": 28,
+     "dAUC": -0.0033,
+     "add_cm_A": 0.95,
+     "add_cm_B": 1.11,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      86,
+      106
+     ],
+     "n": 21,
+     "dAUC": -0.0027,
+     "add_cm_A": 0.91,
+     "add_cm_B": 1.02,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      136,
+      160
+     ],
+     "n": 25,
+     "dAUC": -0.0024,
+     "add_cm_A": 0.88,
+     "add_cm_B": 0.98,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      193,
+      217
+     ],
+     "n": 25,
+     "dAUC": -0.0022,
+     "add_cm_A": 0.89,
+     "add_cm_B": 0.99,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      166,
+      187
+     ],
+     "n": 22,
+     "dAUC": -0.002,
+     "add_cm_A": 0.89,
+     "add_cm_B": 0.99,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      255,
+      255
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.04,
+     "add_cm_B": 0.95,
+     "dpos_cm": 0.16,
+     "dz_cm": -0.16,
+     "drot_deg": 0.0
+    }
+   ]
+  }
+ }
+}

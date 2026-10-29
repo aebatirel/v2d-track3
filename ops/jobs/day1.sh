@@ -11,8 +11,10 @@
 EP=${EP:-12}; P=$REPO_DIR/pipeline
 SNAP=${SNAP_NAME:-pt2.11-cu130-py313-$(date -u +%Y%m%d)}
 
+skip() { [[ " ${DAY1_SKIP:-} " == *" $1 "* ]]; }   # e.g. DAY1_SKIP="mirror snapshot" when rerunning on a box
+
 label "day1: weights"
-if [ -n "${HF_STORE:-}" ] && ! grep -aq WEIGHTS-MIRROR-OK /content/setup.log; then
+if [ -n "${HF_STORE:-}" ] && ! skip mirror && ! grep -aq WEIGHTS-MIRROR-OK /content/setup.log; then
   bash $OPS/store.sh mirror-weights && log "weights mirrored to the store" || log "weight mirror FAILED"
 fi
 
@@ -22,7 +24,7 @@ cp /content/perc2/ep$EP/result.json /content/results/perc2_ep${EP}_result.json 2
 bash $OPS/store.sh push-depth $EP public && log "depth cache pushed"
 
 label "day1: snapshot + resume test"
-(bash $OPS/store.sh snapshot-env $SNAP > /content/snapshot.log 2>&1 && log "snapshot env/$SNAP uploaded" \
+skip snapshot || (bash $OPS/store.sh snapshot-env $SNAP > /content/snapshot.log 2>&1 && log "snapshot env/$SNAP uploaded" \
    || log "snapshot FAILED (see snapshot.log)") &
 
 # resume test: kill the first attempt once a checkpoint at >= 10M steps exists, then rerun the same command

@@ -1,0 +1,348 @@
+"""Evolutionary grasp refinement against the simulator (2026-10-24; owner: "lets test that", the DexEvolve / DemoGrasp
+question). One hold of a grasp-lock reference is edited by a constant grasp edit theta, applied through FlashCHORD's own
+residual hand-pose action (runtime/actions/hand_pose.py: wrist target = reference + offset in m, wrist orientation =
+reference * rpy residual, finger targets = reference + offset; raw input, EMA 0.3, clips 0.2 m / 1 rad / 1 rad):
+  theta = [wrist offset in the OBJECT frame (3, m), wrist rotation in the wrist frame (3, rpy rad), finger offsets (nf, rad)]
+ramped in over RAMP frames from the approach start, held through the hold, ramped out after the release. Every world of
+one batched simulation runs a different candidate (world_count = population), so a generation costs one rollout.
+Fitness (no ground truth): the kit's ADD AUC (1-9 cm, 500 points on a 5 cm sphere, as pipeline/qa.py) of the simulated
+object against OUR reference over the window [hold start - PRE, hold end + POST], for the held object (others too if
+--all_objects). The window starts from an explicit reset at its first frame (objects and hands on the reference).
+Search: CMA-ES (default; Hansen's (mu/mu_w, lambda) with rank-mu and rank-one updates, in units of --sigma per block) or
+--algo ga (DexEvolve-style: tournament selection, uniform crossover, Gaussian mutation, elitist archive). Generation 0
+evaluates theta = 0 (the unedited grasp) in world 0.
+Portfolio scoring (2026-10-25, docs/research/approaches-2026-10-25/approach3-grasp-taxonomy.md §11.2): --from0 starts the
+window at frame 0 as the official evaluation does (earlier holds' grasps already baked into REF), --f1 sets its end (e.g.
+through the release), --push_cm adds a smooth random-walk push to the edited wrist in the jittered copies, and --cvar Q
+scores a candidate by the mean of its worst Q share of copies instead of the mean (the evaluator gives one rollout).
+--rescore K evaluates OUT.json's best (or --theta_zero: the unedited grasp) as K copies in a fresh process and reports
+mean, CVaR and the held object's rise at --lift_frame.
+Writes OUT.json (per generation: best / mean / timing; the best theta in physical units) and, with --bake OUT.parquet,
+the reference with the best edit written into the hand's wrist pose and finger joints (check it with a plain zero-action
+replay: tools/trace_rollout.py zero + tools/trace_score.py).
+Usage (FlashCHORD venv, from the flash_chord dir; EMB = embodiment config, DEV = cpu | cuda):
+  grasp_evolve.py REF.parquet GRASP_LOCK.json OUT.json [--phase 0] [--pop 16] [--gens 10] [--algo cmaes|ga] [--bake OUT.parquet]
+"""
+import argparse, dataclasses, json, os, sys, time
+
+import numpy as np
+from scipy.spatial.transform import Rotation as R
+
+p = argparse.ArgumentParser()
+p.add_argument('ref'); p.add_argument('grasp_lock'); p.add_argument('out')
+p.add_argument('--phase', type=int, default=0); p.add_argument('--pop', type=int, default=16); p.add_argument('--gens', type=int, default=10)
+p.add_argument('--algo', default='cmaes', choices=['cmaes', 'ga']); p.add_argument('--seed', type=int, default=0)
+p.add_argument('--sigma_pos', type=float, default=0.02); p.add_argument('--sigma_rot', type=float, default=0.15)
+p.add_argument('--sigma_fin', type=float, default=0.15); p.add_argument('--no_fingers', action='store_true')
+p.add_argument('--pre', type=int, default=6); p.add_argument('--post', type=int, default=20); p.add_argument('--ramp', type=int, default=8)
+p.add_argument('--all_objects', action='store_true'); p.add_argument('--bake', default='')
+p.add_argument('--max_steps', type=int, default=0, help='debug: cap the rollout length')
+p.add_argument('--robust', type=int, default=1, help='K: each candidate runs as K copies (copy 0 exact, the others with '
+               '--jitter noise on theta); fitness = their mean (2026-10-24: ep18 is chaotic, 1e-5 changes 0.37 -> 0.18-0.44)')
+p.add_argument('--jitter', type=float, default=0.005, help='robust copies: Gaussian noise on theta (m / rad), all components')
+p.add_argument('--keep_env', action='store_true', help='reuse one environment for all generations (faster, not reproducible)')
+p.add_argument('--init', default='', help="a previous OUT.json: start from its best theta (the search mean / the GA's first parent)")
+p.add_argument('--from0', action='store_true', help='window from frame 0 (reset at frame 0, as the evaluator)')
+p.add_argument('--f1', type=int, default=-1, help='window end frame (default hold end + POST)')
+p.add_argument('--cvar', type=float, default=0.0, help='> 0: fitness = mean of the worst CVAR share of the K copies')
+p.add_argument('--push_cm', type=float, default=0.0, help='jittered copies: smooth random-walk wrist push (cm, typical size)')
+p.add_argument('--rescore', type=int, default=0, help='K: evaluate the best theta of --init (or 0 with --theta_zero) as K copies and exit')
+p.add_argument('--theta_zero', action='store_true'); p.add_argument('--lift_frame', type=int, default=30)
+p.add_argument('--repeat_best', default='', help="a previous OUT.json: evaluate its best theta in worlds 1..pop-1 (world 0 unedited) "
+               "and exit (repeatability of the fitness across worlds)")
+a = p.parse_args()
+rng = np.random.default_rng(a.seed)
+
+import pyarrow as pa  # noqa: E402
+import pyarrow.parquet as pq  # noqa: E402
+t = pq.read_table(a.ref); names = t.column('object_body_names')[0].as_py(); B = len(names)
+T = len(t.column('robot_left_wrist_position')[0].as_py())
+OP = np.array(t.column('object_body_position')[0].as_py(), float).reshape(T, B, 3)
+OQ = np.array(t.column('object_body_wxyz')[0].as_py(), float).reshape(T, B, 4)[..., [1, 2, 3, 0]]   # xyzw
+ph = json.load(open(a.grasp_lock))['phases'][a.phase]
+side, obj, hs, he = ph['hand'], ph['object'], int(ph['start']), int(ph['end'])
+j_obj = names.index(obj)
+a0 = int((ph.get('approach') or {}).get('from_frame', ph.get('hold_from', hs)))   # edit starts with the approach
+f0 = 0 if a.from0 else max(0, min(a0, hs) - a.pre); f1 = min(T - 1, a.f1 if a.f1 >= 0 else he + a.post)
+if a.max_steps:
+    f1 = min(f1, f0 + a.max_steps)
+win = np.arange(f0, f1 + 1)
+
+
+def weight(f):  # ramp in from the approach start, hold, ramp out after the release
+    w_in = np.clip((f - a0) / max(a.ramp, 1), 0.0, 1.0)
+    w_out = np.clip(1.0 - (f - he) / max(a.ramp, 1), 0.0, 1.0)
+    return float(min(w_in, w_out))
+
+
+import warp as wp  # noqa: E402
+from hydra import compose, initialize_config_dir  # noqa: E402
+from flash_chord.configuration import instantiate_typed  # noqa: E402
+from flash_chord.embodiments.base import Embodiment  # noqa: E402
+from flash_chord.envs.rl import RLEnv, RLEnvConfig  # noqa: E402
+from flash_chord.scene.collision import CollisionPolicy  # noqa: E402
+from flash_chord.scene.setup import setup_scene  # noqa: E402
+
+W = a.pop
+off = [f'termination.{k}.enabled=false' for k in ('wrist_position', 'object_position', 'object_orientation', 'reference_end')]
+with initialize_config_dir(version_base='1.3', config_dir=os.path.abspath('src/flash_chord/configs')):
+    cfg = compose(config_name='train_flash_sac', overrides=['experiment=sharpa_flash_sac', f"task.parquet='{a.ref}'"] + off
+                  + ([f"embodiment={os.environ['EMB']}"] if os.environ.get('EMB') else []))
+env_config = dataclasses.replace(instantiate_typed(cfg.env, RLEnvConfig), auto_reset=False, voc_scale=0.0)
+emb = instantiate_typed(cfg.embodiment, Embodiment); col = instantiate_typed(cfg.collision, CollisionPolicy)
+t_setup = time.time()
+dev = wp.get_device(os.environ.get('DEV', 'cuda')); wp.set_device(dev)
+def build_env():  # 2026-10-24: a fresh environment per generation; state that survives env.reset across generations made the
+    # search's scores irreproducible (ep18: an edit scored 0.584 in generation 7 and 0.374 in any fresh process)
+    st_ = setup_scene(parquet=a.ref, control_fps=env_config.sim.fps, motion_speed=1.0, embodiment=emb, collision=col,
+                      world_count=W, include_support=True, decompose_objects=True)
+    return st_, RLEnv(st_.scene, st_.reference, config=env_config)
+
+
+st, env = build_env()
+labels = list(getattr(st.scene.model, 'body_label', None) or getattr(st.scene.model, 'body_key', []))
+nb = len(labels) // W
+ob = [labels.index(f'track3_{n}/object') for n in names]                  # world 0 indices (labels repeat per world)
+buf = env.action.buffers; lay = buf.layout; A = lay.action_dim
+h = list(lay.sides).index(side); h0 = lay.hand_action_starts[h]; nf = lay.finger_counts[h]
+# physical residual p (steady state of the EMA) -> policy input, inverting runtime/residual.py map_residual_input:
+# identity: input = p / scale; linear: input = p / clip; rational: out = p / scale, input = out / (1 + |out| - |out| / s),
+# s = input_scale (the experiment's normalised 'rational' mapping)
+MODE = buf.input_mapping
+PSCALE, PCLIP, PIS = (np.array(x.numpy(), float)[:A] for x in (buf.scale, buf.clip, buf.input_scale))
+SCALE = PSCALE                                                                # for the log only
+
+
+def to_input(phys, sl):
+    ph_ = np.clip(phys, -0.98 * PCLIP[sl], 0.98 * PCLIP[sl])
+    if MODE == 'identity':
+        return ph_ / PSCALE[sl]
+    if MODE == 'linear':
+        return ph_ / PCLIP[sl]
+    out = ph_ / PSCALE[sl]; m = np.abs(out)
+    return out / (1.0 + m - m / PIS[sl])
+dim = 6 + (0 if a.no_fingers else nf)
+sig = np.concatenate([[a.sigma_pos] * 3, [a.sigma_rot] * 3, [a.sigma_fin] * (0 if a.no_fingers else nf)])
+print(f'action input mapping {MODE}, scale {PSCALE[h0:h0 + 7].round(3).tolist()}, clip {PCLIP[h0:h0 + 7].round(3).tolist()}', flush=True)
+print(f'setup {time.time() - t_setup:.1f} s: {W} worlds x {nb} bodies, action_dim {A}, {side} hand fingers {nf}, '
+      f'phase {a.phase} {obj} hold {hs}-{he} approach {a0}, window {f0}-{f1} ({len(win)} frames), dim {dim}', flush=True)
+
+# a constant (normalised) edit theta (W, dim) -> raw actions per frame (W, A); the action is in raw mode: physical = raw * scale
+R_obj = R.from_quat(OQ[:, j_obj])
+
+
+PUSH = np.zeros((W, T, 3))                                                    # per-world wrist push (m), set per evaluation
+
+
+def actions(theta_phys, f):
+    w = weight(f); act = np.zeros((W, A), np.float32)
+    if w <= 0.0 and not PUSH[:, f].any():
+        return act
+    dp_w = R_obj[f].apply(theta_phys[:, :3]) * w + PUSH[:, f]                     # object frame -> world frame, + push
+    act[:, h0:h0 + 3] = to_input(dp_w, slice(h0, h0 + 3))
+    act[:, h0 + 3:h0 + 6] = to_input(theta_phys[:, 3:6] * w, slice(h0 + 3, h0 + 6))
+    if not a.no_fingers:
+        act[:, h0 + 6:h0 + 6 + nf] = to_input(theta_phys[:, 6:6 + nf] * w, slice(h0 + 6, h0 + 6 + nf))
+    return act
+
+
+pts = rng.normal(size=(500, 3)); pts = 0.05 * pts / np.linalg.norm(pts, axis=1, keepdims=True)
+THR = np.arange(0.01, 0.10, 0.01); AX = np.linspace(0.0, 1.0, THR.size)
+trap = getattr(np, 'trapezoid', None) or np.trapz
+
+
+def add_auc(sim_p, sim_q, ref_p, ref_q):  # (F, 3), (F, 4 xyzw): kit ADD AUC on sphere points
+    a_ = R.from_quat(sim_q).as_matrix(); r_ = R.from_quat(ref_q).as_matrix()
+    off_ = np.einsum('fij,vj->fvi', a_ - r_, pts) + (sim_p - ref_p)[:, None, :]
+    add = np.linalg.norm(off_, axis=-1).mean(axis=-1)
+    return float(trap(np.array([np.mean(add < x) for x in THR]), x=AX)), add
+
+
+def find_solvers(obj, depth=0, seen=None):  # the MuJoCo-Warp solver(s) holding mjw_data (warm start lives there)
+    seen = set() if seen is None else seen
+    if id(obj) in seen or depth > 3:
+        return []
+    seen.add(id(obj)); out = [obj] if hasattr(obj, 'mjw_data') else []
+    for k in list(getattr(obj, '__dict__', {}).keys()):
+        v = getattr(obj, k, None)
+        if v is not None and not isinstance(v, (int, float, str, bool, np.ndarray)) and type(v).__module__.split('.')[0] in ('flash_chord', 'newton'):
+            out += find_solvers(v, depth + 1, seen)
+    return out
+
+
+SOLVERS = find_solvers(env)
+print(f'solvers with mjw_data: {len(SOLVERS)}', flush=True)
+
+
+def clear_warmstart():  # each candidate starts like a fresh official evaluation (warm start 0; 2026-10-24: the same edit
+    for sv in SOLVERS:  # scored 0.46-0.59 after another batch vs 0.508 fresh: qacc_warmstart carried over the reset)
+        d = sv.mjw_data
+        for f in ('qacc_warmstart', 'qacc', 'qfrc_constraint', 'efc_force'):
+            x = getattr(d, f, None) if not hasattr(d, 'efc') or f != 'efc_force' else getattr(d.efc, 'force', None)
+            if x is not None and hasattr(x, 'zero_'):
+                x.zero_()
+
+
+N_EVAL = [0]
+
+
+def evaluate(theta_phys):
+    global st, env, SOLVERS
+    if N_EVAL[0] > 0 and not a.keep_env:
+        st, env = build_env(); SOLVERS = find_solvers(env)
+    N_EVAL[0] += 1
+    clear_warmstart()
+    PUSH[:] = 0.0
+    if a.push_cm > 0 and len(push_worlds):                                    # smooth random walk, size ~push_cm
+        steps = rng.normal(size=(len(push_worlds), T, 3)); walk = np.cumsum(steps, 1)
+        walk -= walk[:, [a0], :] if a0 < T else 0.0
+        walk = np.array([np.convolve(walk[i, :, k], np.ones(9) / 9, 'same') for i in range(len(walk)) for k in range(3)]).reshape(len(walk), 3, T).transpose(0, 2, 1)
+        walk *= (a.push_cm / 100) / max(1e-9, np.sqrt(len(win)))
+        PUSH[push_worlds] = walk * np.array([weight(f) for f in range(T)])[None, :, None]
+    env.reset(frame_id=int(f0))
+    track, frames = [], []; nac = 0
+    for f in win:
+        if f > f0:
+            env.step(wp.array(actions(theta_phys, int(f)).reshape(-1), dtype=wp.float32, device=dev))
+            if SOLVERS and os.environ.get('GE_CONTACTS'):
+                nac = max(nac, int(SOLVERS[0].mjw_data.nacon.numpy().max()))
+        q = env.state_0.body_q.numpy().reshape(W, nb, 7); track.append(q[:, ob].copy()); frames.append(int(env.timestep.numpy()[0]))
+    if os.environ.get('GE_CONTACTS') and SOLVERS:
+        print(f'contacts: max nacon {nac} of naconmax {int(SOLVERS[0].mjw_data.naconmax)}', flush=True)
+    if frames != [int(x) for x in win]:
+        print('WARNING: env frames', frames[:3], '...', frames[-3:], 'vs window', int(win[0]), '...', int(win[-1]), flush=True)
+    track = np.array(track)                                                       # (F, W, B, 7)
+    objs = range(B) if a.all_objects else [j_obj]
+    fit = np.zeros(W); detail = []; z0 = track[0, :, j_obj, 2].copy()
+    kl = int(np.clip(a.lift_frame - f0, 0, len(win) - 1))
+    for w_ in range(W):
+        if not np.isfinite(track[:, w_]).all():                                  # this world's simulation diverged (NaN)
+            fit[w_] = 0.0; detail.append(dict(auc=0.0, diverged=True)); continue
+        s = [add_auc(track[:, w_, j, :3], track[:, w_, j, 3:7], OP[win, j], OQ[win, j]) for j in objs]
+        fit[w_] = np.mean([x[0] for x in s])
+        hold = (win >= hs) & (win <= he)
+        dz = track[hold, w_, j_obj, 2] - OP[win[hold], j_obj, 2]
+        detail.append(dict(auc=round(fit[w_], 4), rise_cm_at_lift_frame=round(100 * float(track[kl, w_, j_obj, 2] - z0[w_]), 1),
+                           hold_add_cm_median=round(100 * float(np.median(s[0][1][hold])), 1),
+                           lift_err_cm_median=round(100 * float(np.median(dz)), 1)))
+    if os.environ.get('GE_DEBUG'):
+        for k in (0, 1, 5, 10, len(win) - 1):
+            print('debug frame', int(win[k]), 'sim', track[k, 0, j_obj, :3].round(4).tolist(), 'ref', OP[win[k], j_obj].round(4).tolist(),
+                  'sim q', track[k, 0, j_obj, 3:7].round(3).tolist(), 'ref q', OQ[win[k], j_obj].round(3).tolist(), flush=True)
+    return fit, detail, track
+
+
+push_worlds = []
+
+
+def score(fk):                                                                # (K,) copy fitnesses -> candidate fitness
+    if a.cvar > 0:
+        return float(np.sort(fk)[:max(1, int(np.ceil(a.cvar * len(fk))))].mean())
+    return float(np.mean(fk))
+
+
+if a.rescore:                                                                 # the best (or unedited) grasp as K copies
+    K_ = min(a.rescore, W); thb = np.zeros(6 + nf) if a.theta_zero else np.array(json.load(open(a.init))['best']['theta'], float)
+    th = np.tile(thb, (W, 1)); jit = rng.normal(size=th.shape) * a.jitter; jit[0] = 0.0; jit[:, dim:] = 0.0; th = th + jit
+    push_worlds = list(range(1, K_))
+    fit, detail, _ = evaluate(th); fk = fit[:K_]
+    print(json.dumps(dict(rescore=a.init or 'unedited', K=K_, mean=round(float(fk.mean()), 4), cvar=round(score(fk), 4), cvar_q=a.cvar,
+                          exact=round(float(fk[0]), 4), copies=[round(float(x), 4) for x in fk],
+                          rise_cm_at_lift_frame=[d_.get('rise_cm_at_lift_frame') for d_ in detail[:K_]], window=[int(f0), int(f1)])), flush=True)
+    sys.exit(0)
+
+if a.repeat_best:                                                             # same edit in every world but 0
+    thb = np.array(json.load(open(a.repeat_best))['best']['theta'], float); th = np.tile(thb, (W, 1)); th[0] = 0.0
+    if os.environ.get('GE_JITTER'):                                           # test: tiny perturbations (chaos?)
+        th[2:] = th[2:] + rng.normal(size=th[2:].shape) * float(os.environ['GE_JITTER'])
+    if os.environ.get('GE_MIX'):                                              # test: other worlds random (batch coupling?)
+        th[2:] = np.clip(rng.normal(size=th[2:].shape), -3, 3) * np.r_[sig, np.zeros(th.shape[1] - dim)]
+    if os.environ.get('GE_PRIME'):                                            # test: a random batch first, same process
+        f_r, _, _ = evaluate(np.clip(rng.normal(size=th.shape), -3, 3) * np.r_[sig, np.zeros(th.shape[1] - dim)])
+        print('prime batch', f_r.round(4).tolist(), flush=True)
+    fit, detail, _ = evaluate(th)
+    print(json.dumps(dict(repeat_best=a.repeat_best, unedited=round(float(fit[0]), 4), edited=[round(float(x), 4) for x in fit[1:]],
+                          edited_mean=round(float(fit[1:].mean()), 4), edited_sd=round(float(fit[1:].std()), 4))), flush=True)
+    sys.exit(0)
+
+log = dict(args=vars(a), side=side, object=obj, hold=[hs, he], approach_from=a0, window=[int(f0), int(f1)], dim=dim,
+           sigma=sig.tolist(), generations=[])
+best = dict(fit=-1.0)
+mean, C, ps, pc, sigma = np.zeros(dim), np.eye(dim), np.zeros(dim), np.zeros(dim), 1.0          # CMA-ES state (normalised)
+if a.init:                                                                    # continue from an earlier search's best
+    th0 = np.array(json.load(open(a.init))['best']['theta'], float); mean = (th0[:dim] / sig).copy(); log['init'] = a.init
+K = max(1, a.robust); lam = W // K; mu = max(1, lam // 2); wts = np.log(mu + 0.5) - np.log(np.arange(1, mu + 1)); wts /= wts.sum(); mueff = 1.0 / (wts ** 2).sum()
+cc = (4 + mueff / dim) / (dim + 4 + 2 * mueff / dim); cs = (mueff + 2) / (dim + mueff + 5)
+c1 = 2 / ((dim + 1.3) ** 2 + mueff); cmu = min(1 - c1, 2 * (mueff - 2 + 1 / mueff) / ((dim + 2) ** 2 + mueff))
+damps = 1 + 2 * max(0, np.sqrt((mueff - 1) / (dim + 1)) - 1) + cs; chiN = np.sqrt(dim) * (1 - 1 / (4 * dim) + 1 / (21 * dim ** 2))
+archive = []                                                                  # GA: (fit, z)
+for g in range(a.gens):
+    t0 = time.time()
+    if a.algo == 'cmaes':
+        evals, evecs = np.linalg.eigh(C); evals = np.maximum(evals, 1e-12); Bm = evecs * np.sqrt(evals)
+        Z = rng.normal(size=(lam, dim)); Y = Z @ Bm.T; X = mean + sigma * Y
+    else:
+        if not archive:
+            X = mean + rng.normal(size=(lam, dim)) * 0.5
+        else:
+            par = sorted(archive, key=lambda x: -x[0])[:max(4, lam)]
+            X = []
+            for _ in range(lam):
+                i1, i2 = [int(min(rng.choice(len(par), min(3, len(par)), replace=False))) for _ in range(2)]   # tournaments of 3 (sorted)
+                m = rng.random(dim) < 0.5; c_ = np.where(m, par[i1][1], par[i2][1])
+                X.append(c_ + rng.normal(size=dim) * 0.3)
+            X = np.array(X)
+    if g == 0:
+        X[0] = 0.0                                                            # the unedited grasp, for reference
+        if a.init:
+            X[1] = mean                                                       # and the starting point
+    X = np.clip(X, -4, 4)
+    phys = X * sig
+    thc = np.zeros((lam, 6 + nf)); thc[:, :dim] = phys                           # one row per candidate
+    th = np.repeat(thc, K, axis=0)                                            # K copies per candidate, world-major
+    if K > 1:
+        jit = rng.normal(size=th.shape) * a.jitter; jit[::K] = 0.0; jit[:, dim:] = 0.0; th = th + jit
+        push_worlds = [i for i in range(len(th)) if i % K]
+    fit_w, detail_w, _ = evaluate(np.vstack([th, np.zeros((W - len(th), th.shape[1]))]) if len(th) < W else th)
+    fit_w = fit_w[:lam * K]; fit = np.array([score(r_) for r_ in fit_w.reshape(lam, K)]); spread = fit_w.reshape(lam, K).std(1)
+    detail = [dict(detail_w[i * K], robust_mean=round(float(fit[i]), 4), robust_sd=round(float(spread[i]), 4)) for i in range(lam)]
+    th = thc
+    order = np.argsort(-fit)
+    if fit[order[0]] > best['fit']:
+        best = dict(fit=float(fit[order[0]]), gen=g, theta=th[order[0]].tolist(), detail=detail[order[0]], robust=K)
+    if a.algo == 'cmaes':
+        sel = X[order[:mu]]; old = mean.copy(); mean = (wts[:, None] * sel).sum(0)
+        invsq = evecs @ np.diag(1 / np.sqrt(evals)) @ evecs.T
+        ps = (1 - cs) * ps + np.sqrt(cs * (2 - cs) * mueff) * invsq @ (mean - old) / sigma
+        hsig = np.linalg.norm(ps) / np.sqrt(1 - (1 - cs) ** (2 * (g + 1))) / chiN < 1.4 + 2 / (dim + 1)
+        pc = (1 - cc) * pc + hsig * np.sqrt(cc * (2 - cc) * mueff) * (mean - old) / sigma
+        art = (sel - old) / sigma
+        C = (1 - c1 - cmu) * C + c1 * (np.outer(pc, pc) + (1 - hsig) * cc * (2 - cc) * C) + cmu * (art.T * wts) @ art
+        sigma *= np.exp((cs / damps) * (np.linalg.norm(ps) / chiN - 1))
+    else:
+        archive += [(float(fit[i]), X[i]) for i in range(lam)]
+        archive = sorted(archive, key=lambda x: -x[0])[:64]
+    rec = dict(gen=g, best=round(float(fit[order[0]]), 4), mean=round(float(fit.mean()), 4), unedited=round(float(fit[0]), 4) if g == 0 else None,
+               sigma=round(float(sigma), 3), seconds=round(time.time() - t0, 1), top=[detail[i] for i in order[:3]])
+    log['generations'].append(rec); log['best'] = best
+    json.dump(log, open(a.out, 'w'), indent=1)
+    print(json.dumps({k: rec[k] for k in ('gen', 'best', 'mean', 'unedited', 'sigma', 'seconds')}), 'best so far', round(best['fit'], 4), flush=True)
+
+if a.bake and best.get('theta') is not None:                                   # write the best edit into the reference
+    th = np.array(best['theta']); cols = {}
+    wp_ = np.array(t.column(f'robot_{side}_wrist_position')[0].as_py(), float).reshape(T, 3)
+    wq = np.array(t.column(f'robot_{side}_wrist_wxyz')[0].as_py(), float).reshape(T, 4)
+    fj = np.array(t.column(f'robot_{side}_finger_joints')[0].as_py(), float).reshape(T, -1)
+    for f in range(T):
+        w = weight(f)
+        if w <= 0:
+            continue
+        wp_[f] += R_obj[f].apply(th[:3]) * w
+        rq = np.array(wp.quat_rpy(*(float(x) * w for x in th[3:6])))           # xyzw, the action's own rpy convention
+        q = R.from_quat(wq[f][[1, 2, 3, 0]]) * R.from_quat(rq); wq[f] = q.as_quat()[[3, 0, 1, 2]]
+        if fj.shape[1] == nf:
+            fj[f] += th[6:6 + nf] * w
+    for c, v in ((f'robot_{side}_wrist_position', wp_), (f'robot_{side}_wrist_wxyz', wq), (f'robot_{side}_finger_joints', fj)):
+        t = t.set_column(t.column_names.index(c), c, pa.array([v.tolist()], type=t.schema.field(c).type))
+    os.makedirs(os.path.dirname(os.path.abspath(a.bake)), exist_ok=True); pq.write_table(t, a.bake)
+    log['baked'] = a.bake; json.dump(log, open(a.out, 'w'), indent=1); print('baked ->', a.bake, flush=True)

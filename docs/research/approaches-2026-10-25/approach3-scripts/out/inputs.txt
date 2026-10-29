@@ -1,0 +1,14 @@
+ep12=$SCRATCH/sfcheck/runs/20261021-auto18-966eb96/refs/perc2mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet
+ep2=$SCRATCH/grasp_work/hand-biomech/hf/runs/20261024-e3-e49e83d/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet
+ep24=$SCRATCH/grasp_work/hand-biomech/hf/runs/20261024-w1-37cc551/refs/perc2mck/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/d40e4b952d7346229a448a055e5f9319-0.parquet
+ep18=$SCRATCH/grasp_work/hand-biomech/hf/runs/20261024-e1-e49e83d/refs/perc2mckfid/ep18/processed/sequence_id=t3_ep018/robot_name=sharpa_wave/3af5ffc5761c4b7e8231df7f8381de05-0.parquet
+ep39=$SCRATCH/grasp_work/hand-biomech/hf/runs/20261024-e3-e49e83d/refs/perc2mck/ep39/processed/sequence_id=t3_ep039/robot_name=sharpa_wave/39868b9e09254f1aaf4331a15b374c2b-0.parquet
+ep27gl=$SCRATCH/evo/sync/runs/20261024-w2-37cc551/refs/glock/ep27/processed/sequence_id=t3_ep027/robot_name=sharpa_wave/ref_gl.parquet
+ev1=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet
+ev3=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/9fd2e56f034f4c0699a760f1926cf530-0.parquet
+ev16=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/a1f8c27c659c4b579b6a77beff22d2a9-0.parquet
+ev19=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet
+ev25=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/1ad43b5ce0e34feeaee8f245b43a01b4-0.parquet
+ev28=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet
+ev33=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/868a25204b54431781b8f737a2abc263-0.parquet
+ev35=$SCRATCH/ovl/runs/20261024-pack-31ef267/refs/perc2mck/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/89a82da9100240e794623fec4d108647-0.parquet

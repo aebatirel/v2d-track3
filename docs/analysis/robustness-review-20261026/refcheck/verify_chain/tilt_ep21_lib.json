@@ -1,0 +1,49 @@
+{
+ "ep": 21,
+ "names": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "mode": "lib",
+ "bottoms_cm": {
+  "blue_cup": {
+   "scan_at_perc_above_mkref_plane": -0.87,
+   "ours_at_perc_above_mkref_plane": 0.0,
+   "scan_at_mocap_above_table": -0.1
+  },
+  "water_pitcher": {
+   "scan_at_perc_above_mkref_plane": -0.49,
+   "ours_at_perc_above_mkref_plane": -0.93,
+   "scan_at_mocap_above_table": 0.11
+  }
+ },
+ "rotation_anchor": "water_pitcher",
+ "tilt_deg": 5.987,
+ "lever_dz_cm": {
+  "blue_cup": 0.0,
+  "water_pitcher": 1.56
+ },
+ "aligned_dz_err_cm": {
+  "blue_cup": 0.0,
+  "water_pitcher": 1.98
+ },
+ "levelled_dz_err_cm": {
+  "blue_cup": 0.0,
+  "water_pitcher": 0.42
+ },
+ "dist_to_slot0_cm": {
+  "blue_cup": 0.0,
+  "water_pitcher": 33.7
+ },
+ "frame0_orientation_err_after_levelled_alignment_deg": {
+  "blue_cup": 1.73,
+  "water_pitcher": 5.99
+ },
+ "frame0_orientation_err_after_kit_alignment_deg": {
+  "blue_cup": 5.2,
+  "water_pitcher": 0.0
+ },
+ "mocap_axis_tilt_from_vertical_deg": {
+  "blue_cup": 0.75
+ }
+}

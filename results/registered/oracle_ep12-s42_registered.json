@@ -1,0 +1,64 @@
+{
+ "episode": 12,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 181,
+ "meshes": "public scans",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 0.8,
+   "anchor_shift_cm": 0.02,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 0.16,
+   "anchor_shift_cm": 0.03,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "sim": {
+  "AUC": 0.857,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 1.8322,
+  "RPE_cm": 2.4794,
+  "per_obj_AUC": {
+   "blue_cup": 0.7155,
+   "plastic_dish_rack": 0.9986
+  }
+ },
+ "reference": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.222,
+  "RPE_cm": 0.2952,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "plastic_dish_rack": 1.0
+  }
+ },
+ "static_floor": {
+  "AUC": 0.6041,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 7.4814,
+  "RPE_cm": 11.1316,
+  "per_obj_AUC": {
+   "blue_cup": 0.2082,
+   "plastic_dish_rack": 1.0
+  }
+ }
+}

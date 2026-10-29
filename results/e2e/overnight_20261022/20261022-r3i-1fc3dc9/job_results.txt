@@ -1,0 +1,6 @@
+[2026-10-22T01:09:40Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-22T01:09:49Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-22T01:11:10Z] ab ep27: auto base = mc (/content/results/final/ep27/policy.safetensors)
+[2026-10-22T02:52:34Z] ab ep18 mci s42: pipeline rc=0 [02:50:52] qa_policy: {"kind":"policy","ep":18,"sim_vs_ref":0.3607,"floor_vs_ref":0.6185,"verdict":"harmful"} 
+[2026-10-22T02:54:22Z] ab ep18 mci-s42 (policy_250003456.safetensors): n 6 sim_vs_ref {'mean': 0.3086, 'std': 0.0522, 'min': 0.1978, 'max': 0.3435} registered AUC {'mean': 0.3508, 'std': 0.0562, 'min': 0.2315, 'max': 0.3985}
+

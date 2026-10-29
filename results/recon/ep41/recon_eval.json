@@ -1,0 +1,25 @@
+{
+ "white_pot": {
+  "cd_o_cm": 0.564,
+  "reg_rot_deg": 1.12,
+  "reg_anchor_shift_cm": 0.58,
+  "extents_ours_cm": [
+   14.5,
+   18.7,
+   36.1
+  ],
+  "extents_scan_cm": [
+   13.2,
+   18.9,
+   35.5
+  ]
+ },
+ "AUC_with_scan": 0.9985,
+ "per_obj_with_scan": {
+  "white_pot": 0.9985
+ },
+ "AUC_with_ours": 0.9979,
+ "per_obj_with_ours": {
+  "white_pot": 0.9979
+ }
+}

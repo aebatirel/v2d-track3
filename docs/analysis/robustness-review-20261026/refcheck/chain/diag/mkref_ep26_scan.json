@@ -1,0 +1,159 @@
+{
+ "episode": 26,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-w1-37cc551/perc2/ep26/poses_world_vo.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep26_e2s.npz",
+ "meshes_A": "public scans",
+ "meshes_B": "public scans",
+ "frames": 158,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "registration_A": {
+  "plastic_dish_rack": {
+   "rot_deg": 0.11,
+   "anchor_shift_cm": 0.02,
+   "anchor_shift_xyz_cm": [
+    0.01,
+    -0.0,
+    -0.01
+   ]
+  },
+  "white_pot": {
+   "rot_deg": 0.41,
+   "anchor_shift_cm": 0.04,
+   "anchor_shift_xyz_cm": [
+    -0.03,
+    -0.02,
+    0.02
+   ]
+  }
+ },
+ "registration_B": {
+  "plastic_dish_rack": {
+   "rot_deg": 0.11,
+   "anchor_shift_cm": 0.02,
+   "anchor_shift_xyz_cm": [
+    0.01,
+    -0.0,
+    -0.01
+   ]
+  },
+  "white_pot": {
+   "rot_deg": 0.41,
+   "anchor_shift_cm": 0.04,
+   "anchor_shift_xyz_cm": [
+    -0.03,
+    -0.02,
+    0.02
+   ]
+  }
+ },
+ "alignment_anchor": "plastic_dish_rack",
+ "per_object": {
+  "plastic_dish_rack": {
+   "AUC_A": 0.9972,
+   "AUC_B": 0.9972,
+   "dAUC": 0.0,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.0,
+    "add_cm_B": 0.0,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.0,
+    "dpos_cm_max": 0.0,
+    "dz_cm_mean": 0.0,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 0.67,
+    "dz_cm_mean": -0.39,
+    "dxy_cm_mean": 0.39,
+    "rot_deg_mean": 1.83
+   },
+   "error_B": {
+    "add_cm_mean": 0.67,
+    "dz_cm_mean": -0.39,
+    "dxy_cm_mean": 0.39,
+    "rot_deg_mean": 1.83
+   },
+   "frames_worse": 0,
+   "frames_better": 0,
+   "segments_worse": [],
+   "segments_better": []
+  },
+  "white_pot": {
+   "AUC_A": 0.913,
+   "AUC_B": 0.8663,
+   "dAUC": -0.0467,
+   "dAUC_frame0": -0.0008,
+   "dAUC_translation_only": -0.0467,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 1.34,
+    "add_cm_B": 2.6,
+    "dpos_cm": 2.59,
+    "dz_cm": -2.59,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 2.59,
+    "dpos_cm_max": 2.59,
+    "dz_cm_mean": -2.59,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 1.72,
+    "dz_cm_mean": 0.83,
+    "dxy_cm_mean": 1.05,
+    "rot_deg_mean": 6.1
+   },
+   "error_B": {
+    "add_cm_mean": 2.15,
+    "dz_cm_mean": -1.76,
+    "dxy_cm_mean": 1.07,
+    "rot_deg_mean": 6.1
+   },
+   "frames_worse": 69,
+   "frames_better": 21,
+   "segments_worse": [
+    {
+     "frames": [
+      0,
+      69
+     ],
+     "n": 70,
+     "dAUC": -0.0633,
+     "add_cm_A": 1.56,
+     "add_cm_B": 2.86,
+     "dpos_cm": 2.59,
+     "dz_cm": -2.59,
+     "drot_deg": 0.0
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      71,
+      109
+     ],
+     "n": 39,
+     "dAUC": 0.0166,
+     "add_cm_A": 2.08,
+     "add_cm_B": 1.58,
+     "dpos_cm": 2.59,
+     "dz_cm": -2.59,
+     "drot_deg": 0.0
+    }
+   ]
+  }
+ }
+}

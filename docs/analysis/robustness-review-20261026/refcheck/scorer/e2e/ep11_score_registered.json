@@ -1,0 +1,64 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3x",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 1.86,
+   "anchor_shift_cm": 0.98,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "beige_cup": {
+   "rot_deg": 131.66,
+   "anchor_shift_cm": 0.51,
+   "axis": [
+    0.011,
+    0.03,
+    0.999
+   ],
+   "order": 360
+  }
+ },
+ "sim": {
+  "AUC": 0.5668,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 9.1375,
+  "RPE_cm": 16.7194,
+  "per_obj_AUC": {
+   "blue_cup": 0.9932,
+   "beige_cup": 0.1405
+  }
+ },
+ "reference": {
+  "AUC": 0.8844,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.7447,
+  "RPE_cm": 1.7297,
+  "per_obj_AUC": {
+   "blue_cup": 0.8636,
+   "beige_cup": 0.9051
+  }
+ },
+ "static_floor": {
+  "AUC": 0.5953,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 7.8822,
+  "RPE_cm": 14.9083,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "beige_cup": 0.1907
+  }
+ }
+}

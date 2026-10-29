@@ -1,0 +1,102 @@
+{
+ "B1 edge pinch, one point (thumb top / index under)": {
+  "0.5": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 56,
+   "of": 56
+  },
+  "0.71": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 56,
+   "of": 56
+  },
+  "1.0": {
+   "max_normal_N": 0.0,
+   "total_normal_N": null,
+   "infeasible_frames": 56,
+   "of": 56
+  }
+ },
+ "B2 parallel extension at long edge: thumb DP+PP on top, 3 fingertips under 4 cm in, PPs under at edge": {
+  "0.5": {
+   "max_normal_N": 2.69,
+   "total_normal_N": 11.09,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "0.71": {
+   "max_normal_N": 2.63,
+   "total_normal_N": 10.72,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "1.0": {
+   "max_normal_N": 2.56,
+   "total_normal_N": 10.28,
+   "infeasible_frames": 0,
+   "of": 56
+  }
+ },
+ "B3 short-edge grip (grip 10 cm from COM): thumb top at edge, fingers under 3.5 cm in, spread 4 cm": {
+  "0.5": {
+   "max_normal_N": 5.75,
+   "total_normal_N": 23.28,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "0.71": {
+   "max_normal_N": 5.55,
+   "total_normal_N": 22.66,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "1.0": {
+   "max_normal_N": 5.29,
+   "total_normal_N": 21.87,
+   "infeasible_frames": 0,
+   "of": 56
+  }
+ },
+ "B4 pad opposition: thumb DP opposite index/middle DPs 3 cm in, thumb PP at edge, fingers spread 4 cm": {
+  "0.5": {
+   "max_normal_N": 4.58,
+   "total_normal_N": 19.08,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "0.71": {
+   "max_normal_N": 4.29,
+   "total_normal_N": 14.54,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "1.0": {
+   "max_normal_N": 3.94,
+   "total_normal_N": 20.73,
+   "infeasible_frames": 0,
+   "of": 56
+  }
+ },
+ "B5 two pad pairs 6 cm apart along the edge (thumb vs index, palm-heel/thumbPP vs ring), 3 cm in": {
+  "0.5": {
+   "max_normal_N": 6.29,
+   "total_normal_N": 32.7,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "0.71": {
+   "max_normal_N": 5.69,
+   "total_normal_N": 29.08,
+   "infeasible_frames": 0,
+   "of": 56
+  },
+  "1.0": {
+   "max_normal_N": 5.07,
+   "total_normal_N": 25.39,
+   "infeasible_frames": 0,
+   "of": 56
+  }
+ }
+}

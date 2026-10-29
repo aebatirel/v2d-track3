@@ -1,0 +1,56 @@
+{
+ "ep": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 158,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 1,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-w1-37cc551/perc2/ep26/poses_world_vo.npz",
+  "e2s": "refpq:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261024-w1-37cc551/refs/perc2mck/ep26/e2s_reference.parquet"
+ },
+ "scores": {
+  "lib|perc": {
+   "scene": 0.9624,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.9276
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.383,
+    "white_pot": 0.402
+   },
+   "n_frames": 158
+  },
+  "lib|e2s": {
+   "scene": 0.9151,
+   "per_obj": {
+    "plastic_dish_rack": 0.9972,
+    "white_pot": 0.8331
+   },
+   "dz_err_cm": {
+    "plastic_dish_rack": -0.383,
+    "white_pot": -2.189
+   },
+   "n_frames": 158
+  }
+ },
+ "registration": {
+  "lib": {
+   "plastic_dish_rack": {
+    "kind": "ours",
+    "rot_deg": 1.261,
+    "anchor_shift_cm": 0.656
+   },
+   "white_pot": {
+    "kind": "ours",
+    "rot_deg": 1.738,
+    "anchor_shift_cm": 0.7
+   }
+  }
+ },
+ "sec": 5.9
+}

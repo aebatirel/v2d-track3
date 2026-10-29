@@ -1,0 +1,15 @@
+37:    d = n                                                                         # resting on this facet: its outward normal points down
+72:            ax = np.array([0, 0, 1.0]); od = A._SYMMETRY_ANGLES
+{"mesh": "wooden_spoon.glb", "extents_cm": [2.9, 5.2, 32.2], "stable_rests": [{"down": [1.0, 0.017, -0.016], "margin_mm": 2.3, "area_cm2": 11.6}, {"down": [0.971, -0.239, -0.012], "margin_mm": 0.6, "area_cm2": 11.7}, {"down": [0.962, 0.272, -0.013], "margin_mm": 0.3, "area_cm2": 12.0}]}
+3 white_pot onset 41 tilt f0/med 0.6 0.4 | roll(z) 10/20/30 aligned [1.0, 1.0, 1.0] tilt(x) 10/20/30 aligned [0.969, 0.906, 0.781] no-align [0.969, 0.906, 0.781] y aligned [0.969, 0.906, 0.781]
+5 white_pot onset 39 tilt f0/med 1.7 0.4 | roll(z) 10/20/30 aligned [1.0, 1.0, 1.0] tilt(x) 10/20/30 aligned [0.969, 0.906, 0.781] no-align [0.969, 0.906, 0.781] y aligned [0.969, 0.906, 0.781]
+6 white_pot onset 33 tilt f0/med 1.6 0.5 | roll(z) 10/20/30 aligned [1.0, 1.0, 1.0] tilt(x) 10/20/30 aligned [0.969, 0.906, 0.781] no-align [0.969, 0.906, 0.781] y aligned [0.969, 0.906, 0.781]
+15 plastic_dish_rack onset 32 tilt f0/med 3.4 0.7 | roll(z) 10/20/30 aligned [1.0, 1.0, 1.0] tilt(x) 10/20/30 aligned [0.969, 0.906, 0.781] no-align [0.969, 0.906, 0.781] y aligned [0.969, 0.906, 0.781]
+16 plastic_dish_rack onset 31 tilt f0/med 2.5 0.5 | roll(z) 10/20/30 aligned [1.0, 1.0, 1.0] tilt(x) 10/20/30 aligned [0.969, 0.906, 0.781] no-align [0.969, 0.906, 0.781] y aligned [0.969, 0.906, 0.781]
+32 wooden_spoon onset 49 tilt f0/med 4.1 0.3 | roll(z) 10/20/30 aligned [0.724, 0.336, 0.106] tilt(x) 10/20/30 aligned [0.73, 0.338, 0.113] no-align [0.969, 0.906, 0.781] y aligned [0.925, 0.742, 0.576]
+33 wooden_spoon onset 55 tilt f0/med 1.7 0.4 | roll(z) 10/20/30 aligned [0.746, 0.389, 0.192] tilt(x) 10/20/30 aligned [0.744, 0.409, 0.209] no-align [0.969, 0.906, 0.781] y aligned [0.845, 0.585, 0.382]
+35 wooden_spoon onset 27 tilt f0/med 5.1 0.6 | roll(z) 10/20/30 aligned [0.765, 0.434, 0.193] tilt(x) 10/20/30 aligned [0.946, 0.814, 0.668] no-align [0.938, 0.812, 0.562] y aligned [0.774, 0.446, 0.226]
+36 wooden_spoon onset 33 tilt f0/med 0.7 0.6 | roll(z) 10/20/30 aligned [0.825, 0.553, 0.311] tilt(x) 10/20/30 aligned [0.869, 0.612, 0.37] no-align [0.938, 0.812, 0.562] y aligned [0.76, 0.407, 0.181]
+37 wooden_spoon onset 33 tilt f0/med 1.9 0.7 | roll(z) 10/20/30 aligned [0.91, 0.812, 0.78] tilt(x) 10/20/30 aligned [0.991, 0.971, 0.939] no-align [0.938, 0.812, 0.562] y aligned [0.913, 0.812, 0.781]
+
+[exited with code 0]

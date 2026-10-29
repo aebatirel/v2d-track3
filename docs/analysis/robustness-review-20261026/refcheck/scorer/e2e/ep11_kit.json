@@ -1,0 +1,23 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "rows": 274,
+ "host_faces": "full scan",
+ "host_geometry_decoded_bytes": 19056328,
+ "host_limit_bytes": 16000000,
+ "packed_sha256": "d90805f431546482a5a7d511c06c049506be3e15ba944a0eb28e062ee64929fc",
+ "kaggle_metric": {
+  "AUC": 0.566834,
+  "SP-SR": 1.0,
+  "MP-SR": 0.0,
+  "RPE": 16.719368,
+  "MPPE": 9.137477
+ },
+ "packed_minus_rollout_maxabs": 0.0,
+ "packed_quat_norm_dev_max": 1.2319017983486447e-07,
+ "worlds_in_rollout": 1
+}

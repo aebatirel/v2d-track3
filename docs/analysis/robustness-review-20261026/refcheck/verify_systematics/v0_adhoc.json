@@ -1,0 +1,1111 @@
+{
+ "capture_jitter": {
+  "0": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.019,
+   "resid_max_frames": 0.075
+  },
+  "2": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.02,
+   "resid_max_frames": 0.078
+  },
+  "11": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.015,
+   "resid_max_frames": 0.055
+  },
+  "12": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.019,
+   "resid_max_frames": 0.085
+  },
+  "13": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.063,
+   "resid_max_frames": 0.82
+  },
+  "18": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.022,
+   "resid_max_frames": 0.152
+  },
+  "21": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.016,
+   "resid_max_frames": 0.054
+  },
+  "22": {
+   "mean_dt": 0.05003,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.057,
+   "resid_max_frames": 0.567
+  },
+  "23": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.019,
+   "resid_max_frames": 0.117
+  },
+  "24": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.021,
+   "resid_max_frames": 0.157
+  },
+  "26": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.016,
+   "resid_max_frames": 0.059
+  },
+  "27": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.018,
+   "resid_max_frames": 0.061
+  },
+  "31": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.018,
+   "resid_max_frames": 0.055
+  },
+  "39": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.02,
+   "resid_max_frames": 0.078
+  },
+  "40": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.019,
+   "resid_max_frames": 0.071
+  },
+  "41": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.052,
+   "resid_max_frames": 0.845
+  },
+  "42": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.019,
+   "resid_max_frames": 0.085
+  },
+  "43": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.02,
+   "resid_max_frames": 0.14
+  },
+  "44": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.018,
+   "resid_max_frames": 0.077
+  },
+  "45": {
+   "mean_dt": 0.05,
+   "timestamp_dt": 0.049373,
+   "resid_std_frames": 0.019,
+   "resid_max_frames": 0.068
+  }
+ },
+ "rollouts": {
+  "2": [
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1/episode_000002.parquet",
+    "obj": "white_pot",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r1/episode_000002.parquet",
+    "obj": "white_pot_lid",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r2/episode_000002.parquet",
+    "obj": "white_pot",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r2/episode_000002.parquet",
+    "obj": "white_pot_lid",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r3/episode_000002.parquet",
+    "obj": "white_pot",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r3/episode_000002.parquet",
+    "obj": "white_pot_lid",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r4/episode_000002.parquet",
+    "obj": "white_pot",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r4/episode_000002.parquet",
+    "obj": "white_pot_lid",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r5/episode_000002.parquet",
+    "obj": "white_pot",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-e3-e49e83d/results/glock_public/ep2/best/r5/episode_000002.parquet",
+    "obj": "white_pot_lid",
+    "T": 343,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "343",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   }
+  ],
+  "21": [
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1/episode_000021.parquet",
+    "obj": "blue_cup",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r1/episode_000021.parquet",
+    "obj": "water_pitcher",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r2/episode_000021.parquet",
+    "obj": "blue_cup",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r2/episode_000021.parquet",
+    "obj": "water_pitcher",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r3/episode_000021.parquet",
+    "obj": "blue_cup",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r3/episode_000021.parquet",
+    "obj": "water_pitcher",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r4/episode_000021.parquet",
+    "obj": "blue_cup",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r4/episode_000021.parquet",
+    "obj": "water_pitcher",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r5/episode_000021.parquet",
+    "obj": "blue_cup",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261025-twin21arc-ee7ba8e/results/glock_public/ep21/best/r5/episode_000021.parquet",
+    "obj": "water_pitcher",
+    "T": 186,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "186",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   }
+  ],
+  "24": [
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r1/episode_000024.parquet",
+    "obj": "wooden_piece_1",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r1/episode_000024.parquet",
+    "obj": "wooden_piece_2",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r2/episode_000024.parquet",
+    "obj": "wooden_piece_1",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r2/episode_000024.parquet",
+    "obj": "wooden_piece_2",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r3/episode_000024.parquet",
+    "obj": "wooden_piece_1",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r3/episode_000024.parquet",
+    "obj": "wooden_piece_2",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r4/episode_000024.parquet",
+    "obj": "wooden_piece_1",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r4/episode_000024.parquet",
+    "obj": "wooden_piece_2",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r5/episode_000024.parquet",
+    "obj": "wooden_piece_1",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/best/r5/episode_000024.parquet",
+    "obj": "wooden_piece_2",
+    "T": 275,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "275",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   }
+  ],
+  "26": [
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r1/episode_000026.parquet",
+    "obj": "plastic_dish_rack",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r1/episode_000026.parquet",
+    "obj": "white_pot",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r2/episode_000026.parquet",
+    "obj": "plastic_dish_rack",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r2/episode_000026.parquet",
+    "obj": "white_pot",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r3/episode_000026.parquet",
+    "obj": "plastic_dish_rack",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r3/episode_000026.parquet",
+    "obj": "white_pot",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r4/episode_000026.parquet",
+    "obj": "plastic_dish_rack",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r4/episode_000026.parquet",
+    "obj": "white_pot",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r5/episode_000026.parquet",
+    "obj": "plastic_dish_rack",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-w1-37cc551/results/glock_public/ep26/best/r5/episode_000026.parquet",
+    "obj": "white_pot",
+    "T": 158,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "158",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   }
+  ],
+  "39": [
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r1/episode_000039.parquet",
+    "obj": "mini_dust_pan",
+    "T": 319,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "319",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r2/episode_000039.parquet",
+    "obj": "mini_dust_pan",
+    "T": 319,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "319",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r3/episode_000039.parquet",
+    "obj": "mini_dust_pan",
+    "T": 319,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "319",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r4/episode_000039.parquet",
+    "obj": "mini_dust_pan",
+    "T": 319,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "319",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   },
+   {
+    "file": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep39/best/r5/episode_000039.parquet",
+    "obj": "mini_dust_pan",
+    "T": 319,
+    "step_eq_ref_frame": true,
+    "steps_0_to_T": true,
+    "start_frame": "0",
+    "fps": "20.0",
+    "step_count": "319",
+    "ref_cols_vs_canonical_mm": 0.0,
+    "ref_cols_vs_canonical_deg": 0.0
+   }
+  ]
+ },
+ "box_scores": {
+  "2": [
+   {
+    "run": "r1",
+    "reference_AUC": 0.9798,
+    "sim_AUC": 0.4513,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r2",
+    "reference_AUC": 0.9798,
+    "sim_AUC": 0.1686,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r3",
+    "reference_AUC": 0.9798,
+    "sim_AUC": 0.3139,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r4",
+    "reference_AUC": 0.9798,
+    "sim_AUC": 0.1859,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r5",
+    "reference_AUC": 0.9798,
+    "sim_AUC": 0.4121,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   }
+  ],
+  "21": [
+   {
+    "run": "r1",
+    "reference_AUC": 0.7776,
+    "sim_AUC": 0.7903,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r2",
+    "reference_AUC": 0.7776,
+    "sim_AUC": 0.7712,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r3",
+    "reference_AUC": 0.7776,
+    "sim_AUC": 0.768,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r4",
+    "reference_AUC": 0.7776,
+    "sim_AUC": 0.7655,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r5",
+    "reference_AUC": 0.7776,
+    "sim_AUC": 0.7666,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   }
+  ],
+  "24": [
+   {
+    "run": "r1",
+    "reference_AUC": 0.8163,
+    "sim_AUC": 0.3076,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r2",
+    "reference_AUC": 0.8163,
+    "sim_AUC": 0.0897,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r3",
+    "reference_AUC": 0.8163,
+    "sim_AUC": 0.3674,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r4",
+    "reference_AUC": 0.8163,
+    "sim_AUC": 0.3483,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r5",
+    "reference_AUC": 0.8163,
+    "sim_AUC": 0.0898,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   }
+  ],
+  "26": [
+   {
+    "run": "r1",
+    "reference_AUC": 0.9229,
+    "sim_AUC": 0.537,
+    "meshes": "/content/v2d-track3/meshes/library_v4"
+   },
+   {
+    "run": "r2",
+    "reference_AUC": 0.9229,
+    "sim_AUC": 0.5251,
+    "meshes": "/content/v2d-track3/meshes/library_v4"
+   },
+   {
+    "run": "r3",
+    "reference_AUC": 0.9229,
+    "sim_AUC": 0.3669,
+    "meshes": "/content/v2d-track3/meshes/library_v4"
+   },
+   {
+    "run": "r4",
+    "reference_AUC": 0.9229,
+    "sim_AUC": 0.2164,
+    "meshes": "/content/v2d-track3/meshes/library_v4"
+   },
+   {
+    "run": "r5",
+    "reference_AUC": 0.9229,
+    "sim_AUC": 0.2682,
+    "meshes": "/content/v2d-track3/meshes/library_v4"
+   }
+  ],
+  "39": [
+   {
+    "run": "r1",
+    "reference_AUC": 0.9559,
+    "sim_AUC": 0.9579,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r2",
+    "reference_AUC": 0.9559,
+    "sim_AUC": 0.9575,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r3",
+    "reference_AUC": 0.9559,
+    "sim_AUC": 0.9591,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r4",
+    "reference_AUC": 0.9559,
+    "sim_AUC": 0.9604,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   },
+   {
+    "run": "r5",
+    "reference_AUC": 0.9559,
+    "sim_AUC": 0.9547,
+    "meshes": "/content/v2d-track3/meshes/library_v3"
+   }
+  ]
+ },
+ "mocap_low_first10": {
+  "0": {
+   "white_pot": {
+    "z": 0.6003,
+    "xy": [
+     0.013,
+     -0.044
+    ]
+   },
+   "white_pot_lid": {
+    "z": 0.6876,
+    "xy": [
+     -0.003,
+     -0.044
+    ]
+   }
+  },
+  "2": {
+   "white_pot": {
+    "z": 0.6003,
+    "xy": [
+     0.001,
+     -0.051
+    ]
+   },
+   "white_pot_lid": {
+    "z": 0.6886,
+    "xy": [
+     -0.014,
+     -0.052
+    ]
+   }
+  },
+  "11": {
+   "blue_cup": {
+    "z": 0.6004,
+    "xy": [
+     -0.002,
+     -0.022
+    ]
+   },
+   "beige_cup": {
+    "z": 0.6022,
+    "xy": [
+     -0.002,
+     0.151
+    ]
+   }
+  },
+  "12": {
+   "blue_cup": {
+    "z": 0.6009,
+    "xy": [
+     0.128,
+     0.007
+    ]
+   },
+   "plastic_dish_rack": {
+    "z": 0.5985,
+    "xy": [
+     -0.038,
+     -0.062
+    ]
+   }
+  },
+  "13": {
+   "blue_cup": {
+    "z": 0.5996,
+    "xy": [
+     0.131,
+     -0.077
+    ]
+   },
+   "plastic_dish_rack": {
+    "z": 0.599,
+    "xy": [
+     -0.022,
+     -0.01
+    ]
+   }
+  },
+  "18": {
+   "mini_sweeper": {
+    "z": 0.6019,
+    "xy": [
+     0.001,
+     0.127
+    ]
+   },
+   "mini_dust_pan": {
+    "z": 0.6002,
+    "xy": [
+     0.005,
+     -0.093
+    ]
+   }
+  },
+  "21": {
+   "blue_cup": {
+    "z": 0.6,
+    "xy": [
+     0.042,
+     -0.183
+    ]
+   },
+   "water_pitcher": {
+    "z": 0.6021,
+    "xy": [
+     0.007,
+     0.14
+    ]
+   }
+  },
+  "22": {
+   "blue_cup": {
+    "z": 0.6005,
+    "xy": [
+     0.011,
+     -0.149
+    ]
+   },
+   "water_pitcher": {
+    "z": 0.6021,
+    "xy": [
+     -0.01,
+     0.136
+    ]
+   }
+  },
+  "23": {
+   "wooden_piece_1": {
+    "z": 0.598,
+    "xy": [
+     0.004,
+     -0.158
+    ]
+   },
+   "wooden_piece_2": {
+    "z": 0.6009,
+    "xy": [
+     -0.008,
+     0.12
+    ]
+   }
+  },
+  "24": {
+   "wooden_piece_1": {
+    "z": 0.5971,
+    "xy": [
+     0.004,
+     -0.17
+    ]
+   },
+   "wooden_piece_2": {
+    "z": 0.6012,
+    "xy": [
+     0.001,
+     0.135
+    ]
+   }
+  },
+  "26": {
+   "plastic_dish_rack": {
+    "z": 0.5984,
+    "xy": [
+     -0.057,
+     -0.052
+    ]
+   },
+   "white_pot": {
+    "z": 0.6182,
+    "xy": [
+     -0.053,
+     0.07
+    ]
+   }
+  },
+  "27": {
+   "plastic_dish_rack": {
+    "z": 0.5975,
+    "xy": [
+     -0.024,
+     -0.084
+    ]
+   },
+   "white_pot": {
+    "z": 0.6007,
+    "xy": [
+     0.16,
+     0.034
+    ]
+   }
+  },
+  "31": {
+   "mini_sweeper": {
+    "z": 0.6053,
+    "xy": [
+     -0.002,
+     0.04
+    ]
+   },
+   "plastic_dish_rack": {
+    "z": 0.5984,
+    "xy": [
+     0.001,
+     -0.067
+    ]
+   }
+  },
+  "39": {
+   "mini_dust_pan": {
+    "z": 0.6017,
+    "xy": [
+     -0.012,
+     -0.104
+    ]
+   }
+  },
+  "40": {
+   "mini_dust_pan": {
+    "z": 0.6018,
+    "xy": [
+     0.012,
+     0.003
+    ]
+   }
+  },
+  "41": {
+   "white_pot": {
+    "z": 0.6014,
+    "xy": [
+     -0.026,
+     0.002
+    ]
+   }
+  },
+  "42": {
+   "white_pot": {
+    "z": 0.6013,
+    "xy": [
+     -0.0,
+     0.014
+    ]
+   }
+  },
+  "43": {
+   "white_pot": {
+    "z": 0.601,
+    "xy": [
+     -0.01,
+     -0.037
+    ]
+   }
+  },
+  "44": {
+   "white_pot": {
+    "z": 0.6013,
+    "xy": [
+     0.018,
+     -0.003
+    ]
+   }
+  },
+  "45": {
+   "white_pot": {
+    "z": 0.6012,
+    "xy": [
+     0.008,
+     -0.001
+    ]
+   }
+  }
+ }
+}

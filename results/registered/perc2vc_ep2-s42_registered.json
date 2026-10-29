@@ -1,0 +1,64 @@
+{
+ "episode": 2,
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "frames": 343,
+ "meshes": "public scans",
+ "registration": {
+  "white_pot": {
+   "rot_deg": 0.27,
+   "anchor_shift_cm": 0.02,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "white_pot_lid": {
+   "rot_deg": 0.03,
+   "anchor_shift_cm": 0.02,
+   "axis": [
+    1.0,
+    -0.003,
+    0.005
+   ],
+   "order": 2
+  }
+ },
+ "sim": {
+  "AUC": 0.9247,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.3257,
+  "RPE_cm": 1.8981,
+  "per_obj_AUC": {
+   "white_pot": 0.9278,
+   "white_pot_lid": 0.9215
+  }
+ },
+ "reference": {
+  "AUC": 0.9942,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.5248,
+  "RPE_cm": 0.7721,
+  "per_obj_AUC": {
+   "white_pot": 0.9934,
+   "white_pot_lid": 0.9949
+  }
+ },
+ "static_floor": {
+  "AUC": 0.5033,
+  "SP_SR": 1.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 9.534,
+  "RPE_cm": 16.9478,
+  "per_obj_AUC": {
+   "white_pot": 0.6682,
+   "white_pot_lid": 0.3384
+  }
+ }
+}

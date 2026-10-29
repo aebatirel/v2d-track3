@@ -1,0 +1,10 @@
+ep2 (5 rollouts, 20261024-e3-e49e83d): white_pot: 1.02 mm (dz -0.90) 0.61 deg; white_pot_lid: 3.04 mm (dz +1.05) 0.72 deg
+ep11 (5 rollouts, 20261025-twin11v3x-0e8aebb): blue_cup: 2.51 mm (dz -2.41) 0.46 deg; beige_cup: 3.71 mm (dz -1.91) 2.05 deg
+ep12 (5 rollouts, 20261024-ev2-2c1e4dd): blue_cup: 0.60 mm (dz -0.60) 0.00 deg; plastic_dish_rack: 10.68 mm (dz -10.61) 2.22 deg
+ep18 (5 rollouts, 20261024-ev3-2c1e4dd): mini_sweeper: 0.09 mm (dz -0.01) 0.08 deg; mini_dust_pan: 0.03 mm (dz -0.01) 0.08 deg
+ep21 (5 rollouts, 20261025-twin21arc-ee7ba8e): blue_cup: 0.73 mm (dz -0.54) 0.32 deg; water_pitcher: 0.89 mm (dz -0.47) 0.31 deg
+ep24 (5 rollouts, 20261024-ev3-2c1e4dd): wooden_piece_1: 10.43 mm (dz -10.02) 3.65 deg; wooden_piece_2: 3.86 mm (dz -3.84) 2.34 deg
+ep26 (5 rollouts, 20261024-w1-37cc551): plastic_dish_rack: 9.00 mm (dz -8.69) 1.66 deg; white_pot: 4.06 mm (dz -3.60) 0.92 deg
+ep27 (5 rollouts, 20261024-ev2-2c1e4dd): plastic_dish_rack: 10.69 mm (dz -10.63) 2.61 deg; white_pot: 0.61 mm (dz -0.61) 0.05 deg
+ep31 (5 rollouts, 20261024-ev30rp-07eef1a): mini_sweeper: 9.20 mm (dz +1.46) 11.00 deg; plastic_dish_rack: 1.34 mm (dz -0.60) 0.39 deg
+ep39 (5 rollouts, 20261024-ev3-2c1e4dd): mini_dust_pan: 0.85 mm (dz -0.84) 0.19 deg

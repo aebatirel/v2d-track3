@@ -1,0 +1,50 @@
+{
+ "mini_sweeper": {
+  "onset": 23,
+  "liftoff": 49,
+  "settle": 75,
+  "hold_on": 25,
+  "hold_off": 265,
+  "holds": [
+   [
+    "right",
+    25,
+    265
+   ]
+  ],
+  "GT_DIAG": {
+   "onset": 41,
+   "liftoff": 49,
+   "settle": 75
+  },
+  "diff_ref_minus_gt": {
+   "onset": -18,
+   "liftoff": 0,
+   "settle": 0
+  },
+  "hold_on_minus_gt_onset": -16,
+  "hold_on_minus_gt_liftoff": -24,
+  "hold_off_minus_gt_settle": 190
+ },
+ "plastic_dish_rack": {
+  "onset": 83,
+  "liftoff": 87,
+  "settle": 114,
+  "hold_on": null,
+  "hold_off": null,
+  "holds": [],
+  "GT_DIAG": {
+   "onset": null,
+   "liftoff": null,
+   "settle": null
+  },
+  "diff_ref_minus_gt": {
+   "onset": null,
+   "liftoff": null,
+   "settle": null
+  },
+  "hold_on_minus_gt_onset": null,
+  "hold_on_minus_gt_liftoff": null,
+  "hold_off_minus_gt_settle": null
+ }
+}

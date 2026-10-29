@@ -1,0 +1,4 @@
+right mini_sweeper [25, 264] n 240 | F_max 3.22 acc95 0.89 tau_grip 0.077 / 0.112 | grip 7.1 cm | tilt 30.4 lift 10.5
+   links {'thumb1': 0.7, 'thumb2': 1.0, 'thumb3': 0.97, 'index3': 0.1, 'middle1': 0.11, 'middle2': 0.66}
+    thumb n 643 pos [-6.8, -1.3, -0.2] p10 [-8.0, -2.1, -1.2] p90 [-4.9, -0.4, 1.2] nrm [0.38, 0.27, 0.23] +thin 0.62
+    fingers n 246 pos [-7.3, -0.8, -0.7] p10 [-8.0, -1.7, -1.2] p90 [-6.4, 0.2, 0.3] nrm [0.5, 0.16, 0.53] +thin 0.85

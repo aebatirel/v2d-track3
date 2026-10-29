@@ -1,0 +1,42 @@
+{
+ "episode": 26,
+ "objects": [
+  "plastic_dish_rack",
+  "white_pot"
+ ],
+ "frames": 158,
+ "meshes": "/home/user/v2d-track3/meshes/library_v4",
+ "registration": {
+  "plastic_dish_rack": {
+   "rot_deg": 1.82,
+   "anchor_shift_cm": 0.57,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  },
+  "white_pot": {
+   "rot_deg": 1.77,
+   "anchor_shift_cm": 0.68,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.9229,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.3147,
+  "RPE_cm": 1.8189,
+  "per_obj_AUC": {
+   "plastic_dish_rack": 0.9905,
+   "white_pot": 0.8552
+  }
+ }
+}

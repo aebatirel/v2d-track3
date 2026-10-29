@@ -1,0 +1,66 @@
+{
+ "ep": 22,
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "frames": 189,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "sources": {
+  "sweep": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep22/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|sweep": {
+   "scene": 0.871,
+   "per_obj": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.7497
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.072,
+    "water_pitcher": 2.255
+   },
+   "n_frames": 189
+  },
+  "scan|sweep": {
+   "scene": 0.9822,
+   "per_obj": {
+    "blue_cup": 0.9997,
+    "water_pitcher": 0.9646
+   },
+   "dz_err_cm": {
+    "blue_cup": 0.106,
+    "water_pitcher": 0.656
+   },
+   "n_frames": 189
+  }
+ },
+ "registration": {
+  "lib": {
+   "blue_cup": {
+    "kind": "ours",
+    "rot_deg": 1.644,
+    "anchor_shift_cm": 1.006
+   },
+   "water_pitcher": {
+    "kind": "ours",
+    "rot_deg": 3.187,
+    "anchor_shift_cm": 0.662
+   }
+  },
+  "scan": {
+   "blue_cup": {
+    "kind": "scan",
+    "rot_deg": 1.639,
+    "anchor_shift_cm": 0.014
+   },
+   "water_pitcher": {
+    "kind": "scan",
+    "rot_deg": 0.215,
+    "anchor_shift_cm": 0.02
+   }
+  }
+ },
+ "sec": 22.4
+}

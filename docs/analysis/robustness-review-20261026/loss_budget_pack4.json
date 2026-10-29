@@ -1,0 +1,171 @@
+{
+ "leaderboard": 0.81056,
+ "mean_sim_vs_ref": 0.9121,
+ "implied_spoon_acc": 0.8,
+ "policy_loss": 0.0878,
+ "hidden_loss": 0.1013,
+ "hidden_spoon_eps": 0.0685,
+ "draw_luck": 0.0265,
+ "rows": [
+  {
+   "eval": 1,
+   "sim_vs_ref": 0.9196,
+   "policy_loss": 0.004,
+   "hidden_loss": 0.0015,
+   "acc": 0.968,
+   "draw_minus_mean5": 0.008
+  },
+  {
+   "eval": 3,
+   "sim_vs_ref": 0.9418,
+   "policy_loss": 0.0029,
+   "hidden_loss": 0.0054,
+   "acc": 0.885,
+   "draw_minus_mean5": 0.013
+  },
+  {
+   "eval": 5,
+   "sim_vs_ref": 0.9595,
+   "policy_loss": 0.002,
+   "hidden_loss": 0.0055,
+   "acc": 0.885,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 6,
+   "sim_vs_ref": 0.9713,
+   "policy_loss": 0.0014,
+   "hidden_loss": 0.0056,
+   "acc": 0.885,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 8,
+   "sim_vs_ref": 0.9783,
+   "policy_loss": 0.0011,
+   "hidden_loss": 0.0024,
+   "acc": 0.95,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 10,
+   "sim_vs_ref": 0.447,
+   "policy_loss": 0.0276,
+   "hidden_loss": 0.0013,
+   "acc": 0.94,
+   "draw_minus_mean5": -0.005
+  },
+  {
+   "eval": 14,
+   "sim_vs_ref": 0.9094,
+   "policy_loss": 0.0045,
+   "hidden_loss": 0.0023,
+   "acc": 0.95,
+   "draw_minus_mean5": 0.249
+  },
+  {
+   "eval": 15,
+   "sim_vs_ref": 0.9465,
+   "policy_loss": 0.0027,
+   "hidden_loss": 0.0059,
+   "acc": 0.875,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 16,
+   "sim_vs_ref": 0.9079,
+   "policy_loss": 0.0046,
+   "hidden_loss": 0.0057,
+   "acc": 0.875,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 19,
+   "sim_vs_ref": 0.9278,
+   "policy_loss": 0.0036,
+   "hidden_loss": 0.0021,
+   "acc": 0.955,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 20,
+   "sim_vs_ref": 0.8948,
+   "policy_loss": 0.0053,
+   "hidden_loss": 0.0087,
+   "acc": 0.805,
+   "draw_minus_mean5": 0.003
+  },
+  {
+   "eval": 25,
+   "sim_vs_ref": 0.8937,
+   "policy_loss": 0.0053,
+   "hidden_loss": 0.008,
+   "acc": 0.82,
+   "draw_minus_mean5": 0.102
+  },
+  {
+   "eval": 28,
+   "sim_vs_ref": 0.929,
+   "policy_loss": 0.0035,
+   "hidden_loss": 0.0019,
+   "acc": 0.96,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 30,
+   "sim_vs_ref": 0.9229,
+   "policy_loss": 0.0039,
+   "hidden_loss": 0.0021,
+   "acc": 0.955,
+   "draw_minus_mean5": 0.004
+  },
+  {
+   "eval": 32,
+   "sim_vs_ref": 0.7885,
+   "policy_loss": 0.0106,
+   "hidden_loss": 0.0049,
+   "acc": 0.875,
+   "draw_minus_mean5": 0.009
+  },
+  {
+   "eval": 33,
+   "sim_vs_ref": 0.9319,
+   "policy_loss": 0.0034,
+   "hidden_loss": 0.0058,
+   "acc": 0.875,
+   "draw_minus_mean5": 0.147
+  },
+  {
+   "eval": 35,
+   "sim_vs_ref": 0.9829,
+   "policy_loss": 0.0009,
+   "hidden_loss": 0.0098,
+   "acc": 0.8,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 36,
+   "sim_vs_ref": 0.9912,
+   "policy_loss": 0.0004,
+   "hidden_loss": 0.0099,
+   "acc": 0.8,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 37,
+   "sim_vs_ref": 0.9979,
+   "policy_loss": 0.0001,
+   "hidden_loss": 0.01,
+   "acc": 0.8,
+   "draw_minus_mean5": null
+  },
+  {
+   "eval": 38,
+   "sim_vs_ref": 0.9998,
+   "policy_loss": 0.0,
+   "hidden_loss": 0.0025,
+   "acc": 0.95,
+   "draw_minus_mean5": null
+  }
+ ]
+}

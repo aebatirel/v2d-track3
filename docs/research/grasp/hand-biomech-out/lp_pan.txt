@@ -1,0 +1,51 @@
+##### ep39 pan right carry 104-292
+P1 single pinch at ring end (thumb top / index under, one point)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 189/189 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 189/189 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 189/189 frames
+P2 key pinch across end band, spread 3 cm along band
+    mu 0.5: max normal per contact  57.46 N, total 224.97 N, infeasible 0/189 frames
+    mu 0.71: max normal per contact  41.11 N, total 159.56 N, infeasible 0/189 frames
+    mu 1.0: max normal per contact  29.89 N, total 114.7 N, infeasible 0/189 frames
+P3 hook through hole + thumb on end band + middle under end band
+    mu 0.5: max normal per contact   7.48 N, total 17.94 N, infeasible 0/189 frames
+    mu 0.71: max normal per contact   6.68 N, total 26.71 N, infeasible 0/189 frames
+    mu 1.0: max normal per contact   5.91 N, total 23.64 N, infeasible 0/189 frames
+P4 P3 + thumb spread (thumb DP + PP on band top, 3 cm apart)
+    mu 0.5: max normal per contact   6.84 N, total 41.1 N, infeasible 0/189 frames
+    mu 0.71: max normal per contact   5.88 N, total 34.26 N, infeasible 0/189 frames
+    mu 1.0: max normal per contact   5.01 N, total 27.69 N, infeasible 0/189 frames
+##### ep39 pan left pickup 35-102
+P1 single pinch at ring end (thumb top / index under, one point)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 68/68 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 68/68 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 68/68 frames
+P2 key pinch across end band, spread 3 cm along band
+    mu 0.5: max normal per contact  58.64 N, total 229.6 N, infeasible 0/68 frames
+    mu 0.71: max normal per contact  42.03 N, total 163.16 N, infeasible 0/68 frames
+    mu 1.0: max normal per contact  30.56 N, total 117.28 N, infeasible 0/68 frames
+P3 hook through hole + thumb on end band + middle under end band
+    mu 0.5: max normal per contact   7.51 N, total 30.06 N, infeasible 0/68 frames
+    mu 0.71: max normal per contact   6.81 N, total 27.24 N, infeasible 0/68 frames
+    mu 1.0: max normal per contact   6.03 N, total 24.11 N, infeasible 0/68 frames
+P4 P3 + thumb spread (thumb DP + PP on band top, 3 cm apart)
+    mu 0.5: max normal per contact   6.98 N, total 41.87 N, infeasible 0/68 frames
+    mu 0.71: max normal per contact   5.99 N, total 34.9 N, infeasible 0/68 frames
+    mu 1.0: max normal per contact   5.03 N, total 28.04 N, infeasible 0/68 frames
+##### ep18 pan left 9-186
+P1 single pinch at ring end (thumb top / index under, one point)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 178/178 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 178/178 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 178/178 frames
+P2 key pinch across end band, spread 3 cm along band
+    mu 0.5: max normal per contact  60.49 N, total 236.82 N, infeasible 0/178 frames
+    mu 0.71: max normal per contact  43.36 N, total 168.3 N, infeasible 0/178 frames
+    mu 1.0: max normal per contact  31.53 N, total 120.99 N, infeasible 0/178 frames
+P3 hook through hole + thumb on end band + middle under end band
+    mu 0.5: max normal per contact   7.78 N, total 31.12 N, infeasible 0/178 frames
+    mu 0.71: max normal per contact   7.05 N, total 28.19 N, infeasible 0/178 frames
+    mu 1.0: max normal per contact   6.24 N, total 24.96 N, infeasible 0/178 frames
+P4 P3 + thumb spread (thumb DP + PP on band top, 3 cm apart)
+    mu 0.5: max normal per contact   7.23 N, total 43.39 N, infeasible 0/178 frames
+    mu 0.71: max normal per contact   6.21 N, total 36.17 N, infeasible 0/178 frames
+    mu 1.0: max normal per contact   5.31 N, total 29.28 N, infeasible 0/178 frames

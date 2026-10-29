@@ -1,0 +1,74 @@
+{
+ "2": {
+  "white_pot": {
+   "minz_wfirst": 0.6003,
+   "minz_xfirst": 0.5495,
+   "scan_extent_z": 0.357
+  },
+  "white_pot_lid": {
+   "minz_wfirst": 0.6887,
+   "minz_xfirst": 0.6616,
+   "scan_extent_z": 0.19
+  }
+ },
+ "11": {
+  "blue_cup": {
+   "minz_wfirst": 0.6006,
+   "minz_xfirst": 0.5996,
+   "scan_extent_z": 0.172
+  },
+  "beige_cup": {
+   "minz_wfirst": 0.6022,
+   "minz_xfirst": 0.6072,
+   "scan_extent_z": 0.169
+  }
+ },
+ "18": {
+  "mini_sweeper": {
+   "minz_wfirst": 0.6019,
+   "minz_xfirst": 0.6144,
+   "scan_extent_z": 0.142
+  },
+  "mini_dust_pan": {
+   "minz_wfirst": 0.6,
+   "minz_xfirst": 0.5759,
+   "scan_extent_z": 0.178
+  }
+ },
+ "21": {
+  "blue_cup": {
+   "minz_wfirst": 0.6,
+   "minz_xfirst": 0.6174,
+   "scan_extent_z": 0.172
+  },
+  "water_pitcher": {
+   "minz_wfirst": 0.6021,
+   "minz_xfirst": 0.5966,
+   "scan_extent_z": 0.415
+  }
+ },
+ "24": {
+  "wooden_piece_1": {
+   "minz_wfirst": 0.5979,
+   "minz_xfirst": 0.5846,
+   "scan_extent_z": 0.227
+  },
+  "wooden_piece_2": {
+   "minz_wfirst": 0.6012,
+   "minz_xfirst": 0.5863,
+   "scan_extent_z": 0.227
+  }
+ },
+ "31": {
+  "mini_sweeper": {
+   "minz_wfirst": 0.6053,
+   "minz_xfirst": 0.6065,
+   "scan_extent_z": 0.142
+  },
+  "plastic_dish_rack": {
+   "minz_wfirst": 0.5983,
+   "minz_xfirst": 0.5521,
+   "scan_extent_z": 0.51
+  }
+ }
+}

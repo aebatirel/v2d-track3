@@ -1,0 +1,16 @@
+## zero action
+floor_vs_ref 0.2199
+zero_action: sim_vs_ref 0.2186
+## curve
+  10M  sim_vs_ref 0.095  |  wooden_piece: lift   8.0 (ref 23.1) in3cm 0.05 lost@22/275  wooden_piece: lift   1.5 (ref 26.1) in3cm 0.12 lost@115/275
+  30M  sim_vs_ref 0.165  |  wooden_piece: lift   2.1 (ref 23.1) in3cm 0.03 lost@24/275  wooden_piece: lift   0.7 (ref 26.1) in3cm 0.40 lost@124/275
+  50M  sim_vs_ref 0.072  |  wooden_piece: lift   4.7 (ref 23.1) in3cm 0.05 lost@21/275  wooden_piece: lift   1.4 (ref 26.1) in3cm 0.41 lost@126/275
+  70M  sim_vs_ref 0.078  |  wooden_piece: lift  14.2 (ref 23.1) in3cm 0.05 lost@24/275  wooden_piece: lift  16.5 (ref 26.1) in3cm 0.10 lost@115/275
+## chosen checkpoint, 5 official evaluations
+{'rollout': 'r1', 'sim_vs_ref': 0.1898, 'auc': 0.2218, 'sp': 0.0, 'mp': 0.0}
+{'rollout': 'r2', 'sim_vs_ref': 0.2548, 'auc': 0.2956, 'sp': 0.0, 'mp': 0.0}
+{'rollout': 'r3', 'sim_vs_ref': 0.1701, 'auc': 0.2058, 'sp': 0.0, 'mp': 0.0}
+{'rollout': 'r4', 'sim_vs_ref': 0.1766, 'auc': 0.2145, 'sp': 0.0, 'mp': 0.0}
+{'rollout': 'r5', 'sim_vs_ref': 0.0751, 'auc': 0.0743, 'sp': 0.0, 'mp': 0.0}
+{"checkpoint": "/content/runs/glock/ep24-s42/policy_30003200.safetensors", "n": 5, "sim_vs_ref": {"mean": 0.1733, "std": 0.0576, "min": 0.0751, "max": 0.2548}, "auc": {"mean": 0.2024, "std": 0.0716, "min": 0.0743, "max": 0.2956}}
+

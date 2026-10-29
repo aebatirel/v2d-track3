@@ -1,0 +1,3 @@
+Repeated official evaluations (evaluate_policy.py, reset_mode explicit, VOC 0), sim_vs_ref vs our reference, 2026-10-23 13:54 UTC
+ep3  kp400 seed 42 policy 70M (sha256 f889339d): 0.976 0.980 0.977 0.928 0.978  mean 0.968 sd 0.020 min 0.928
+ep35 kp400 seed 42 policy 40M (sha256 01a2a4d4): 0.976 0.977 0.981 0.980 0.977  mean 0.978 sd 0.002 min 0.976

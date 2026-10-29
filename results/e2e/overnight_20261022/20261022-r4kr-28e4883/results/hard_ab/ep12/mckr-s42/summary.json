@@ -1,0 +1,8 @@
+{
+ "checkpoint": "/content/runs/perc2mckr/ep12-s42/policy_250003456.safetensors",
+ "n": 6,
+ "sim_vs_ref": {"mean": 0.7627, "std": 0.0466, "min": 0.6626, "max": 0.7945},
+ "auc": {"mean": 0.7401, "std": 0.0319, "min": 0.6713, "max": 0.7623},
+ "auc_of_best_sim_vs_ref": 0.7567,
+ "note": "transcribed from the box job log line 'hard_ab summary' (2026-10-22T06:08:09Z); the box destroyed itself before the per-rollout summary.json was copied"
+}

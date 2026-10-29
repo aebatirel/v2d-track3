@@ -1,0 +1,28 @@
+{
+ "obj": "beige_cup",
+ "episodes": 1,
+ "frames": 137,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.6200281481481481,
+ "inside_vox": 3305,
+ "solid_vox": 5325,
+ "closing": "fill",
+ "unknown_share": 0.421,
+ "components": 268,
+ "hand_dropped": 350916,
+ "table_dropped": 2562978,
+ "other_dropped": 243833,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  5.1,
+  7.1,
+  16.5
+ ],
+ "watertight": false,
+ "sec": 138.3
+}

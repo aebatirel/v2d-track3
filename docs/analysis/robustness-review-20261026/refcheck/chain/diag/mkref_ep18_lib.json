@@ -1,0 +1,211 @@
+{
+ "episode": 18,
+ "A": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261021-auto18-966eb96/perc2m/ep18/poses_world_vo.npz",
+ "B": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/work/chain/npz/ep18_e2s.npz",
+ "meshes_A": "/home/user/v2d-track3/meshes/library_v3",
+ "meshes_B": "/home/user/v2d-track3/meshes/library_v3",
+ "frames": 353,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "registration_A": {
+  "mini_sweeper": {
+   "rot_deg": 3.1,
+   "anchor_shift_cm": 0.4,
+   "anchor_shift_xyz_cm": [
+    -0.07,
+    -0.12,
+    -0.37
+   ]
+  },
+  "mini_dust_pan": {
+   "rot_deg": 2.44,
+   "anchor_shift_cm": 0.59,
+   "anchor_shift_xyz_cm": [
+    -0.52,
+    -0.03,
+    -0.28
+   ]
+  }
+ },
+ "registration_B": {
+  "mini_sweeper": {
+   "rot_deg": 3.1,
+   "anchor_shift_cm": 0.4,
+   "anchor_shift_xyz_cm": [
+    -0.07,
+    -0.12,
+    -0.37
+   ]
+  },
+  "mini_dust_pan": {
+   "rot_deg": 2.44,
+   "anchor_shift_cm": 0.59,
+   "anchor_shift_xyz_cm": [
+    -0.52,
+    -0.03,
+    -0.28
+   ]
+  }
+ },
+ "alignment_anchor": "mini_sweeper",
+ "per_object": {
+  "mini_sweeper": {
+   "AUC_A": 0.9952,
+   "AUC_B": 0.9952,
+   "dAUC": 0.0,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 0.0,
+    "add_cm_B": 0.0,
+    "dpos_cm": 0.0,
+    "dz_cm": 0.0,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.0,
+    "dpos_cm_max": 0.0,
+    "dz_cm_mean": 0.0,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 0.46,
+    "dz_cm_mean": 0.14,
+    "dxy_cm_mean": 0.28,
+    "rot_deg_mean": 4.2
+   },
+   "error_B": {
+    "add_cm_mean": 0.46,
+    "dz_cm_mean": 0.14,
+    "dxy_cm_mean": 0.28,
+    "rot_deg_mean": 4.2
+   },
+   "frames_worse": 0,
+   "frames_better": 0,
+   "segments_worse": [],
+   "segments_better": []
+  },
+  "mini_dust_pan": {
+   "AUC_A": 0.9333,
+   "AUC_B": 0.9465,
+   "dAUC": 0.0133,
+   "dAUC_frame0": 0.0,
+   "dAUC_translation_only": 0.0133,
+   "dAUC_rotation_only": 0.0,
+   "frame0": {
+    "add_cm_A": 1.58,
+    "add_cm_B": 1.36,
+    "dpos_cm": 0.32,
+    "dz_cm": -0.32,
+    "drot_deg": 0.0
+   },
+   "change_B_minus_A": {
+    "dpos_cm_mean": 0.32,
+    "dpos_cm_max": 0.32,
+    "dz_cm_mean": -0.32,
+    "drot_deg_mean": 0.0,
+    "drot_deg_max": 0.0
+   },
+   "error_A": {
+    "add_cm_mean": 1.55,
+    "dz_cm_mean": 1.28,
+    "dxy_cm_mean": 0.82,
+    "rot_deg_mean": 4.31
+   },
+   "error_B": {
+    "add_cm_mean": 1.32,
+    "dz_cm_mean": 0.96,
+    "dxy_cm_mean": 0.83,
+    "rot_deg_mean": 4.31
+   },
+   "frames_worse": 1,
+   "frames_better": 68,
+   "segments_worse": [
+    {
+     "frames": [
+      119,
+      119
+     ],
+     "n": 1,
+     "dAUC": -0.0002,
+     "add_cm_A": 0.91,
+     "add_cm_B": 1.03,
+     "dpos_cm": 0.32,
+     "dz_cm": -0.32,
+     "drot_deg": 0.0
+    }
+   ],
+   "segments_better": [
+    {
+     "frames": [
+      49,
+      114
+     ],
+     "n": 66,
+     "dAUC": 0.0099,
+     "add_cm_A": 1.16,
+     "add_cm_B": 0.92,
+     "dpos_cm": 0.32,
+     "dz_cm": -0.32,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      138,
+      155
+     ],
+     "n": 18,
+     "dAUC": 0.0025,
+     "add_cm_A": 2.32,
+     "add_cm_B": 2.04,
+     "dpos_cm": 0.32,
+     "dz_cm": -0.32,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      128,
+      130
+     ],
+     "n": 3,
+     "dAUC": 0.0005,
+     "add_cm_A": 1.14,
+     "add_cm_B": 0.92,
+     "dpos_cm": 0.32,
+     "dz_cm": -0.32,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      164,
+      164
+     ],
+     "n": 1,
+     "dAUC": 0.0004,
+     "add_cm_A": 2.0,
+     "add_cm_B": 1.7,
+     "dpos_cm": 0.32,
+     "dz_cm": -0.32,
+     "drot_deg": 0.0
+    },
+    {
+     "frames": [
+      120,
+      120
+     ],
+     "n": 1,
+     "dAUC": 0.0002,
+     "add_cm_A": 1.01,
+     "add_cm_B": 0.9,
+     "dpos_cm": 0.32,
+     "dz_cm": -0.32,
+     "drot_deg": 0.0
+    }
+   ]
+  }
+ }
+}

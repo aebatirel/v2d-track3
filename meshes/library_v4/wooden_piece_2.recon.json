@@ -1,0 +1,28 @@
+{
+ "obj": "wooden_piece_2",
+ "episodes": 1,
+ "frames": 325,
+ "stride": 2,
+ "voxel": 0.004,
+ "trunc": 0.012,
+ "half": 0.3,
+ "grid": 150,
+ "known_frac": 0.7949161481481481,
+ "inside_vox": 5268,
+ "solid_vox": 5348,
+ "closing": "fill",
+ "unknown_share": 0.015,
+ "components": 200,
+ "hand_dropped": 1078656,
+ "table_dropped": 7605750,
+ "other_dropped": 438517,
+ "verts": 4096,
+ "faces": 4096,
+ "extents_cm": [
+  2.7,
+  13.8,
+  22.9
+ ],
+ "watertight": true,
+ "sec": 486.0
+}

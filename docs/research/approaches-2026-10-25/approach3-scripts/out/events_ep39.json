@@ -1,0 +1,34 @@
+{
+ "mini_dust_pan": {
+  "onset": 51,
+  "liftoff": 52,
+  "settle": 160,
+  "hold_on": 44,
+  "hold_off": 292,
+  "holds": [
+   [
+    "left",
+    44,
+    103
+   ],
+   [
+    "right",
+    70,
+    292
+   ]
+  ],
+  "GT_DIAG": {
+   "onset": 50,
+   "liftoff": 51,
+   "settle": 96
+  },
+  "diff_ref_minus_gt": {
+   "onset": 1,
+   "liftoff": 1,
+   "settle": 64
+  },
+  "hold_on_minus_gt_onset": -6,
+  "hold_on_minus_gt_liftoff": -7,
+  "hold_off_minus_gt_settle": 196
+ }
+}

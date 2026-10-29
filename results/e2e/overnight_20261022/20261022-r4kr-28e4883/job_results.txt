@@ -1,0 +1,5 @@
+[2026-10-22T03:47:14Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-22T03:47:23Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-22T03:47:24Z] ab ep12: auto base = mc (/content/results/final/ep12/policy.safetensors)
+[2026-10-22T06:04:01Z] ab ep12 mckr s42: pipeline rc=0 [03:51:22] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":28,"optimised":49,"pen_p95_mm_before":16.8,"pen_p95_mm_after":1.0,"tip_to_target_mm_median":3.6,"tip_to_target_mm_p90":10.9,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7,1. [06:03:01] qa_policy: {"kind":"policy","ep":12,"sim_vs_ref":0.7816,"floor_vs_ref":0.5977,"verdict":"ok"} 
+

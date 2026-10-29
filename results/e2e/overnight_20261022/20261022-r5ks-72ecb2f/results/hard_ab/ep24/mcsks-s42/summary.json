@@ -1,0 +1,73 @@
+{
+ "checkpoint": "/content/runs/perc2mcsks/ep24-s42/policy_250003456.safetensors",
+ "n": 6,
+ "sim_vs_ref": {
+  "mean": 0.3851,
+  "std": 0.0835,
+  "min": 0.2611,
+  "max": 0.4717
+ },
+ "auc": {
+  "mean": 0.3892,
+  "std": 0.0765,
+  "min": 0.2835,
+  "max": 0.4785
+ },
+ "auc_ours": {
+  "mean": 0.3914,
+  "std": 0.0784,
+  "min": 0.283,
+  "max": 0.4832
+ },
+ "auc_of_best_sim_vs_ref": 0.4785,
+ "rollouts": [
+  {
+   "rollout": "r1",
+   "sim_vs_ref": 0.3958,
+   "auc": 0.4058,
+   "sp": 0.0,
+   "mp": 0.0,
+   "auc_ours": 0.4105
+  },
+  {
+   "rollout": "r2",
+   "sim_vs_ref": 0.4361,
+   "auc": 0.4044,
+   "sp": 0.0,
+   "mp": 0.0,
+   "auc_ours": 0.4067
+  },
+  {
+   "rollout": "r3",
+   "sim_vs_ref": 0.4624,
+   "auc": 0.469,
+   "sp": 0.0,
+   "mp": 0.0,
+   "auc_ours": 0.4718
+  },
+  {
+   "rollout": "r4",
+   "sim_vs_ref": 0.2611,
+   "auc": 0.2835,
+   "sp": 0.0,
+   "mp": 0.0,
+   "auc_ours": 0.283
+  },
+  {
+   "rollout": "r5",
+   "sim_vs_ref": 0.4717,
+   "auc": 0.4785,
+   "sp": 0.0,
+   "mp": 0.0,
+   "auc_ours": 0.4832
+  },
+  {
+   "rollout": "r6",
+   "sim_vs_ref": 0.2836,
+   "auc": 0.2939,
+   "sp": 0.0,
+   "mp": 0.0,
+   "auc_ours": 0.2933
+  }
+ ]
+}

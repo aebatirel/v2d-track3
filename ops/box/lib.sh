@@ -31,3 +31,47 @@ self_destroy() {  # $1 = reason. Save what exists first (CLAUDE.md), then destro
   done
   label "DESTROY-FAILED: $1"; log "DESTROY FAILED: the agent must destroy instance ${CONTAINER_ID:-?}"
 }
+
+# FlashDexRetarget-style training rewards (2026-10-23 A/B, results/e2e/fdr_20261023: four-run mean 0.830 vs 0.753).
+# FDR=1 (the default since the owner's decision, 2026-10-23; FDR=0 for stock FlashCHORD) sets the reward flags and the
+# training overrides; fc_patches applies the opt-in FlashCHORD patches that the
+# environment asks for (ops/box/patch_flashchord.py, ops/box/patch_flashchord_fdr.py, ops/box/patch_flashchord_drop.py:
+# FC_DROP_START sets TRAIN_ENV, which the training command must pass with env ${TRAIN_ENV}) and the VOC inertia fix
+# (ops/box/patch_flashchord_voc.py, on unless FC_VOC_INERTIA=0). $1 = job log.
+FDR_TRAIN_ARGS="curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2"
+fc_patches() {
+  local J=$1 FCD=/content/v2d/robotic_grounding/flash_chord
+  if [ "${FDR:-1}" = 1 ]; then                              # default since 2026-10-23 (owner); FDR=0 = stock rewards
+    export FC_FDR_OBJ=${FC_FDR_OBJ:-1} FC_FDR_TIPS=${FC_FDR_TIPS:-1} TRAIN_ARGS="$FDR_TRAIN_ARGS ${TRAIN_ARGS:-}"
+  fi
+  # full-inertia virtual object controller (bug fix, default since 2026-10-23; FC_VOC_INERTIA=0 = stock): the stock
+  # scalar inertia makes the spoon explode in the VOC > 0.13 curriculum stages (ops/box/fc_v2d_voc.py)
+  export FC_VOC_INERTIA=${FC_VOC_INERTIA:-1}
+  if [ "$FC_VOC_INERTIA" != 0 ]; then
+    python $REPO_DIR/ops/box/patch_flashchord_voc.py $FCD >> $J 2>&1 || { log "FlashCHORD VOC patch FAILED" >> $J; return 1; }
+    log "patched FlashCHORD (VOC with the full inertia tensor)" >> $J
+  fi
+  if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ]; then
+    python $REPO_DIR/ops/box/patch_flashchord.py $FCD >> $J 2>&1 || { log "FlashCHORD patch FAILED" >> $J; return 1; }
+    log "patched FlashCHORD: object keypoints ${FC_OBJECT_KEYPOINT_SCALE:-1} m, deployment-exact starts p ${FC_IMMEDIATE_FIRST_FRAME:-0}" >> $J
+  fi
+  if [ -n "${FC_FDR_OBJ:-}${FC_FDR_TIPS:-}" ]; then
+    python $REPO_DIR/ops/box/patch_flashchord_fdr.py $FCD >> $J 2>&1 || { log "FlashCHORD FDR patch FAILED" >> $J; return 1; }
+    export FC_FDR_OBJ FC_FDR_TIPS TRAIN_ARGS
+    log "patched FlashCHORD (FDR rewards): object points ${FC_FDR_OBJ:-0}, fingertip bound ${FC_FDR_TIPS:-0}; TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
+  fi
+  if [ -n "${FC_DROP_START:-}" ]; then                         # recovery training (2026-10-23); after patch_flashchord.py
+    python $REPO_DIR/ops/box/patch_flashchord_drop.py $FCD >> $J 2>&1 || { log "FlashCHORD drop patch FAILED" >> $J; return 1; }
+    TRAIN_ENV="FC_DROP_START=$FC_DROP_START FC_DROP_SHIFT=${FC_DROP_SHIFT:-0.03,0.08} FC_DROP_RELAX=${FC_DROP_RELAX:-0.35,3.2,0.25} FC_DROP_VOC=${FC_DROP_VOC:-0.3}"
+    unset FC_DROP_START                                        # training process only (env ${TRAIN_ENV}); evaluations stay stock
+    log "patched FlashCHORD (recovery training: drop starts), training env [$TRAIN_ENV]" >> $J
+  fi
+}
+
+# Grounding DINO for perc2's detection rules (pipeline/det_rules.py, 2026-10-23): transformers as in the CPU study;
+# when it cannot be installed the grounding term is off (perc2 logs it) and perception still runs. $1 = job log.
+ensure_gdino() {
+  python -c "import transformers" 2> /dev/null && return 0
+  pip install -q "transformers==5.20.2" >> $1 2>&1 && log "installed transformers 5.20.2 (Grounding DINO)" >> $1 \
+    || log "transformers install FAILED: detection grounding term off" >> $1
+}

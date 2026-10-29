@@ -1,0 +1,41 @@
+{
+ "rows": {
+  "clamp_long": {
+   "cvar": 0.2965,
+   "mean": 0.4534,
+   "exact": 0.4886,
+   "rise_exact_cm": 32.4,
+   "rise_median_cm": 11.7
+  },
+  "clamp_short": {
+   "cvar": 0.4753,
+   "mean": 0.4917,
+   "exact": 0.5023,
+   "rise_exact_cm": 4.9,
+   "rise_median_cm": 4.9
+  },
+  "copy": {
+   "cvar": 0.3212,
+   "mean": 0.4297,
+   "exact": 0.4925,
+   "rise_exact_cm": 22.0,
+   "rise_median_cm": 21.05
+  },
+  "platform": {
+   "cvar": 0.3918,
+   "mean": 0.4718,
+   "exact": 0.5134,
+   "rise_exact_cm": 2.6,
+   "rise_median_cm": 2.45
+  }
+ },
+ "best_typed": "clamp_short",
+ "margin": 0.05,
+ "choice": "clamp_short",
+ "typed_beats_copy": true,
+ "lifted_by_lift_frame": [
+  "clamp_long",
+  "copy"
+ ],
+ "P1_falsified": false
+}

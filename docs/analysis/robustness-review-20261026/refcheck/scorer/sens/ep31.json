@@ -1,0 +1,330 @@
+{
+ "episode": 31,
+ "objects": [
+  "mini_sweeper",
+  "plastic_dish_rack"
+ ],
+ "frames": 290,
+ "meshes": "/home/user/v2d-track3/meshes/library_v2",
+ "source": "/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261025-sweep-a894083/results/sweep/base/ep31/poses_world_vo.npz",
+ "variants": {
+  "base": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.544,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.56,
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.805,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.011,
+    "RPE_cm": 1.8848,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9177,
+     "plastic_dish_rack": 0.6922
+    }
+   },
+   "seconds": 12.6
+  },
+  "n4000": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 4000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.544,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.56,
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8038,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.011,
+    "RPE_cm": 1.8848,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9179,
+     "plastic_dish_rack": 0.6897
+    }
+   },
+   "seconds": 2.7
+  },
+  "bbox": {
+   "config": {
+    "anchor": "bbox",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.544,
+     "anchor_cm": [
+      -0.041,
+      0.067,
+      1.037
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.56,
+     "anchor_cm": [
+      1.673,
+      0.161,
+      4.028
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8075,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.6403,
+    "RPE_cm": 1.5059,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9177,
+     "plastic_dish_rack": 0.6974
+    }
+   },
+   "seconds": 12.5
+  },
+  "vtx500": {
+   "config": {
+    "anchor": "centroid",
+    "points": "vertex",
+    "n_points": 500,
+    "axis": "pca",
+    "reg_seed_offset": 0,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.544,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.56,
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8068,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 2.011,
+    "RPE_cm": 1.8848,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9187,
+     "plastic_dish_rack": 0.6948
+    }
+   },
+   "seconds": 0.5
+  },
+  "seed1": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 1,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 2.602,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.156,
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.8222,
+    "SP_SR": 1.0,
+    "MP_SR": 1.0,
+    "MPPE_cm": 1.9744,
+    "RPE_cm": 1.8245,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.9134,
+     "plastic_dish_rack": 0.731
+    }
+   },
+   "seconds": 11.6
+  },
+  "seed2": {
+   "config": {
+    "anchor": "centroid",
+    "points": "surface",
+    "n_points": 1000,
+    "axis": "pca",
+    "reg_seed_offset": 2,
+    "scan_faces": 0,
+    "f0_from_ref": 0
+   },
+   "registration": {
+    "mini_sweeper": {
+     "rot_deg": 177.284,
+     "anchor_cm": [
+      -0.0,
+      0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    },
+    "plastic_dish_rack": {
+     "rot_deg": 1.304,
+     "anchor_cm": [
+      0.0,
+      -0.0,
+      0.0
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "order": 0
+    }
+   },
+   "perception": {
+    "AUC": 0.0959,
+    "SP_SR": 0.0,
+    "MP_SR": 0.0,
+    "MPPE_cm": 19.3832,
+    "RPE_cm": 24.2662,
+    "per_obj_AUC": {
+     "mini_sweeper": 0.1918,
+     "plastic_dish_rack": 0.0
+    }
+   },
+   "seconds": 11.9
+  }
+ }
+}

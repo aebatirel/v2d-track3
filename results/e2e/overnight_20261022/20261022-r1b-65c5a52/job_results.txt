@@ -1,0 +1,18 @@
+[2026-10-21T22:16:05Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-21T22:16:09Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-21T22:16:11Z] ab ep18 mck s42: pipeline rc=1 
+[2026-10-21T22:18:30Z] ab ep18 mc (ep18_policy_150007808.safetensors): n 6 sim_vs_ref {'mean': 0.3078, 'std': 0.0343, 'min': 0.2535, 'max': 0.3529} registered AUC {'mean': 0.3445, 'std': 0.0462, 'min': 0.2753, 'max': 0.4001}
+[2026-10-21T22:18:30Z] ab ep18 mck-s42: no checkpoint
+[2026-10-21T22:19:30Z] ab ep27: auto base = mc (/content/results/final/ep27/policy.safetensors)
+[2026-10-21T22:21:27Z] restart at d4ac331771e04cc18c6bc488b53ae9c54be5877f: PAIRS="18:20261021-auto18-966eb96:mc 27:20261021-auto18-966eb96:auto" bash ops/jobs/hard_ab.sh
+[2026-10-21T22:21:56Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-21T22:22:00Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-21T22:24:21Z] ab ep27: auto base = mc (/content/results/final/ep27/policy.safetensors)
+[2026-10-21T23:39:51Z] ab ep18 mck s42: pipeline rc=0 [22:23:10] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":180,"optimised":181,"pen_p95_mm_before":16.0,"pen_p95_mm_after":2.7,"tip_to_target_mm_median":3.9,"tip_to_target_mm_p90":16.2,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7, [23:39:08] qa_policy: {"kind":"policy","ep":18,"sim_vs_ref":0.3451,"floor_vs_ref":0.6185,"verdict":"harmful"} 
+[2026-10-21T23:39:56Z] ab ep18 mc: already evaluated
+[2026-10-21T23:40:49Z] ab ep18 mck-s42 (policy_150007808.safetensors): n 6 sim_vs_ref {'mean': 0.302, 'std': 0.055, 'min': 0.2107, 'max': 0.3729} registered AUC {'mean': 0.319, 'std': 0.0421, 'min': 0.2579, 'max': 0.3624}
+[2026-10-22T00:58:32Z] ab ep27 mck s42: pipeline rc=0 [22:25:57] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":0,"optimised":0,"pen_p95_mm_before":0.0,"pen_p95_mm_after":0.0,"tip_to_target_mm_median":null,"tip_to_target_mm_p90":null,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7, [00:58:18] qa_policy: {"kind":"policy","ep":27,"sim_vs_ref":0.9461,"floor_vs_ref":0.5785,"verdict":"ok"} 
+[2026-10-22T00:59:17Z] ab ep27 mc (policy.safetensors): n 6 sim_vs_ref {'mean': 0.9493, 'std': 0.0161, 'min': 0.9164, 'max': 0.9634} registered AUC {'mean': 0.9416, 'std': 0.017, 'min': 0.9084, 'max': 0.9563}
+[2026-10-22T00:59:57Z] ab ep27 mck-s42 (policy_100003840.safetensors): n 6 sim_vs_ref {'mean': 0.9324, 'std': 0.0137, 'min': 0.9038, 'max': 0.9446} registered AUC {'mean': 0.911, 'std': 0.0172, 'min': 0.8744, 'max': 0.9224}
+[2026-10-22T00:59:57Z] hard_ab summary: {"ep18":{"mc":{"checkpoint":"/content/v2d-track3/policies/20261021-auto18-966eb96/perc2mc/ep18_policy_150007808.safetensors","n":6,"sim_vs_ref":{"mean":0.3078,"std":0.0343,"min":0.2535,"max":0.3529},"auc":{"mean":0.3445,"std":0.0462,"min":0.2753,"max":0.4001},"auc_of_best_sim_vs_ref":0.4001},"mck-s42":{"checkpoint":"/content/runs/perc2mck/ep18-s42/policy_150007808.safetensors","n":6,"sim_vs_ref":{"mean":0.302,"std":0.055,"min":0.2107,"max":0.3729},"auc":{"mean":0.319,"std":0.0421,"min":0.2579,"max":0.3624},"auc_of_best_sim_vs_ref":0.3566}},"ep27":{"mc":{"checkpoint":"/content/results/final/ep27/policy.safetensors","n":6,"sim_vs_ref":{"mean":0.9493,"std":0.0161,"min":0.9164,"max":0.9634},"auc":{"mean":0.9416,"std":0.017,"min":0.9084,"max":0.9563},"auc_of_best_sim_vs_ref":0.9549},"mck-s42":{"checkpoint":"/content/runs/perc2mck/ep27-s42/policy_100003840.safetensors","n":6,"sim_vs_ref":{"mean":0.9324,"std":0.0137,"min":0.9038,"max":0.9446},"auc":{"mean":0.911,"std":0.0172,"min":0.8744,"max":0.9224},"auc_of_best_sim_vs_ref":0.9221}}}
+

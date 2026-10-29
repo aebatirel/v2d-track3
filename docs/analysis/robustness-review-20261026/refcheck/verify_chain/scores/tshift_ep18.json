@@ -1,0 +1,115 @@
+{
+ "ep": 18,
+ "objects": [
+  "mini_sweeper",
+  "mini_dust_pan"
+ ],
+ "frames": 353,
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "alt_points": 0,
+ "seed_offset": 0,
+ "sources": {
+  "perc": "npz:/tmp/claude-0/-home-user-v2d-track3/12630086-0942-582d-80bb-a9806af3e32b/scratchpad/refcheck/store/runs/20261021-auto18-966eb96/perc2m/ep18/poses_world_vo.npz"
+ },
+ "scores": {
+  "lib|perc@-1": {
+   "scene": 0.9431,
+   "per_obj": {
+    "mini_sweeper": 0.9648,
+    "mini_dust_pan": 0.9214
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.138,
+    "mini_dust_pan": 1.28
+   },
+   "n_frames": 353
+  },
+  "lib|perc@+0": {
+   "scene": 0.9643,
+   "per_obj": {
+    "mini_sweeper": 0.9952,
+    "mini_dust_pan": 0.9333
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.138,
+    "mini_dust_pan": 1.28
+   },
+   "n_frames": 353
+  },
+  "lib|perc@+1": {
+   "scene": 0.9622,
+   "per_obj": {
+    "mini_sweeper": 0.9913,
+    "mini_dust_pan": 0.9331
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.138,
+    "mini_dust_pan": 1.281
+   },
+   "n_frames": 353
+  },
+  "scan|perc@-1": {
+   "scene": 0.9495,
+   "per_obj": {
+    "mini_sweeper": 0.9662,
+    "mini_dust_pan": 0.9329
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.102,
+    "mini_dust_pan": 1.117
+   },
+   "n_frames": 353
+  },
+  "scan|perc@+0": {
+   "scene": 0.9707,
+   "per_obj": {
+    "mini_sweeper": 0.9956,
+    "mini_dust_pan": 0.9458
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.102,
+    "mini_dust_pan": 1.117
+   },
+   "n_frames": 353
+  },
+  "scan|perc@+1": {
+   "scene": 0.9682,
+   "per_obj": {
+    "mini_sweeper": 0.9913,
+    "mini_dust_pan": 0.9451
+   },
+   "dz_err_cm": {
+    "mini_sweeper": 0.102,
+    "mini_dust_pan": 1.118
+   },
+   "n_frames": 353
+  }
+ },
+ "registration": {
+  "lib": {
+   "mini_sweeper": {
+    "kind": "ours",
+    "rot_deg": 3.104,
+    "anchor_shift_cm": 0.399
+   },
+   "mini_dust_pan": {
+    "kind": "ours",
+    "rot_deg": 2.444,
+    "anchor_shift_cm": 0.586
+   }
+  },
+  "scan": {
+   "mini_sweeper": {
+    "kind": "scan",
+    "rot_deg": 0.141,
+    "anchor_shift_cm": 0.009
+   },
+   "mini_dust_pan": {
+    "kind": "scan",
+    "rot_deg": 0.161,
+    "anchor_shift_cm": 0.016
+   }
+  }
+ },
+ "sec": 14.0
+}

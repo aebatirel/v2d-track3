@@ -44,7 +44,10 @@ PROBE_SITES = ['thumb_tip_site', 'index_tip_site', 'middle_tip_site', 'ring_tip_
                'thumb_DP_site', 'index_DP_site', 'middle_DP_site', 'ring_DP_site', 'pinky_DP_site',
                'thumb_MCP_VL_site', 'index_MP_site', 'middle_MP_site', 'ring_MP_site', 'pinky_MP_site']
 PALM_FRAMES = ['hand_C_MC', 'index_MCP_VL_site', 'middle_MCP_VL_site', 'ring_MCP_VL_site', 'pinky_MC_site']
-N_SLOTS = 16                                                    # 15 site probes + 1 palm probe
+# Slot k of mano_<side>_object_contact_* belongs to CONTACT_SLOT_NAMES[k] ('palm' = mean of PALM_FRAMES); written as the
+# contact_slot_names column. mano_link_names keeps the kit's MANO link list, which does NOT describe these slots.
+CONTACT_SLOT_NAMES = PROBE_SITES + ['palm']
+N_SLOTS = len(CONTACT_SLOT_NAMES)                               # 15 site probes + 1 palm probe
 # Relaxed right hand in the MANO anatomical wrist frame (x proximal, y dorsal, z radial), metres, MediaPipe order.
 TEMPLATE_RIGHT = np.array([
     [0, 0, 0],
@@ -91,7 +94,13 @@ def install_compat(v2d):
 
     def build_from_mjcf(filename, root_joint=None, *args, **kwargs):
         # Kinematic model only: the IK never touches geometry, and the robot STL meshes may be LFS pointers.
-        model = pin.buildModelFromMJCF(filename, root_joint) if root_joint is not None else pin.buildModelFromMJCF(filename)
+        if root_joint is None:
+            model = pin.buildModelFromMJCF(filename)
+        else:
+            try:
+                model = pin.buildModelFromMJCF(filename, root_joint)
+            except TypeError:  # pin 4.1 (box 1, 2026-10-20) also wants the root joint's name
+                model = pin.buildModelFromMJCF(filename, root_joint, 'root_joint')
         if isinstance(model, tuple):
             model = model[0]
         try:
@@ -130,8 +139,10 @@ def sharpa_layout(pin, v2d):
     return dict(per_side=per, **{k: per['right'][k] for k in keys})
 
 
-def patch_logger(lay):
-    """Return ManoSharpaData; rebuild it if this pinocchio reports another frame / finger / task count."""
+def patch_logger(lay, slot_names=False):
+    """Return ManoSharpaData; rebuild it if this pinocchio reports another frame / finger / task count. slot_names=True
+    returns a subclass schema with the extra contact_slot_names column (main process only: E2S keeps the kit class,
+    whose from_parquet drops the column, and stage (e) writes it again)."""
     import pyarrow as pa
     import robotic_grounding.retarget.data_logger as dl
     F, NF, NT = lay['n_frames'], lay['n_fingers'], lay['n_tasks']
@@ -149,6 +160,9 @@ def patch_logger(lay):
         dl.SHARPA_NUM_FRAMES = F
         print(f'[compat] ManoSharpaData schema patched: frames {F} (repo 67), finger joints {NF} (22), tasks {NT} (11)',
               flush=True)
+    if slot_names:
+        return dl.create_data_logger_class('ManoSharpaData', list(dl.ManoSharpaData._field_specs)
+                                           + [('contact_slot_names', pa.list_(pa.string()), list[str], False)])
     return dl.ManoSharpaData
 
 
@@ -157,6 +171,15 @@ def e2s_entry(argv):
     v2d = argv[1]
     rest = argv[3:] if len(argv) > 2 and argv[2] == '--' else argv[2:]
     pin = install_compat(v2d)
+    if os.environ.get('E2S_WRIST_COST'):
+        # Retargeting weights are ours to choose (only the evaluator is fixed). NVIDIA's mapping weights the wrist
+        # (hand_C_MC) position at 0.2 vs 1.0 per fingertip, and the warm-started IK then drifts the wrist up to 33 cm
+        # to reach fingertips (2026-10-20, ep44). Patched in place, so E2S's own import sees it; E2S itself unchanged.
+        from robotic_grounding.retarget import params as rgp
+        k = '.*_hand_C_MC'
+        src, pos, ori = rgp.SHARPA_TO_MANO_MAPPING[k]
+        rgp.SHARPA_TO_MANO_MAPPING[k] = (src, float(os.environ['E2S_WRIST_COST']), float(os.environ.get('E2S_WRIST_ORI_COST', ori)))
+        print(f'E2S mapping patched: {k} {(src, pos, ori)} -> {rgp.SHARPA_TO_MANO_MAPPING[k]}', flush=True)
     patch_logger(sharpa_layout(pin, v2d))
     e2s = os.path.join(v2d, 'robotic_grounding', 'scripts', 'retarget', 'ego_recon_to_sharpa.py')
     sys.argv = [e2s] + rest
@@ -233,6 +256,23 @@ def hand_rotations(J, side):
     return R
 
 
+PARENT = [-1, 0, 1, 2, 3, 0, 5, 6, 7, 0, 9, 10, 11, 0, 13, 14, 15, 0, 17, 18, 19]   # MediaPipe order
+
+
+def normalize_bones(J, valid, scale=1.0):
+    """Rebuild the 21-joint skeleton with every bone at its median length over the valid frames (x scale), keeping
+    each bone's direction (2026-10-20: ep44's wrist->middle-MCP varied 5.6-9.0 cm within 20 frames, and the E2S IK
+    drifted up to 33 cm from the wrist and snapped back). Parents precede children in MediaPipe order."""
+    L = np.zeros(21)
+    for k in range(1, 21):
+        L[k] = np.median(np.linalg.norm(J[valid, k] - J[valid, PARENT[k]], axis=-1)) * scale
+    out = J.copy()
+    for k in range(1, 21):
+        d = J[:, k] - J[:, PARENT[k]]
+        out[:, k] = out[:, PARENT[k]] + d / np.maximum(np.linalg.norm(d, axis=-1, keepdims=True), 1e-9) * L[k]
+    return out, L
+
+
 def palmar_score(J, R):
     """Mean (MCPs -> tips) . palmar; > 0 means flexion goes palmar, i.e. the side label fits the chirality."""
     y = R[:, 0, :, 1]
@@ -254,7 +294,9 @@ def rectified_K(calib_path):
     return P1[:3, :3].copy()
 
 
-def load_names(t3, ep):
+def load_names(t3, ep, split='public', roster='/content/kit/v2d_submission_kit/data/track_3_evaluation_objects.json'):
+    if split == 'eval':                                                  # eval: the kit roster (no episode parquet)
+        return [str(n) for n in json.load(open(roster))['episodes'][str(ep)]]
     import pyarrow.parquet as pq
     tab = pq.read_table(f'{t3}/ep{ep}.parquet', columns=['observation.objects'])
     return [str(o['name']) for o in tab.column('observation.objects')[0].as_py()]   # slot order only
@@ -324,27 +366,54 @@ def fit_table(depth0, KR, W0, cam_T0, meshes, a):
     P = P @ W0[:3, :3].T + W0[:3, 3]
     if len(P) > 30000:
         P = P[rng.choice(len(P), 30000, replace=False)]
-    best, best_cnt = None, -1
-    for _ in range(a.plane_iters):
-        p0, p1, p2 = P[rng.choice(len(P), 3, replace=False)]
-        n = np.cross(p1 - p0, p2 - p0)
-        nn = np.linalg.norm(n)
-        if nn < 1e-9:
-            continue
-        n = n / nn
-        cnt = int((np.abs(P @ n - n @ p0) < a.plane_thr).sum())
-        if cnt > best_cnt:
-            best, best_cnt = (n, -n @ p0), cnt
-    n, d = best
-    inl = np.abs(P @ n + d) < a.plane_thr
-    for _ in range(3):
-        c = P[inl].mean(0)
-        n = np.linalg.svd(P[inl] - c, full_matrices=False)[2][2]
-        d = -n @ c
+    # Object vertices in world, to pick the plane the objects stand on. The ring can also hold the floor past the
+    # table edge, and the floor can win a plain RANSAC (box 1, ep12: the floor 60 cm under the objects won).
+    Vw = [np.asarray(m.vertices) @ (W0 @ cam_T0[n_])[:3, :3].T + (W0 @ cam_T0[n_])[:3, 3] for n_, m in meshes.items()]
+
+    def ransac(Q):
+        best, best_cnt = None, -1
+        for _ in range(a.plane_iters):
+            p0, p1, p2 = Q[rng.choice(len(Q), 3, replace=False)]
+            n = np.cross(p1 - p0, p2 - p0)
+            nn = np.linalg.norm(n)
+            if nn < 1e-9:
+                continue
+            n = n / nn
+            cnt = int((np.abs(Q @ n - n @ p0) < a.plane_thr).sum())
+            if cnt > best_cnt:
+                best, best_cnt = (n, -n @ p0), cnt
+        n, d = best
+        inl = np.abs(Q @ n + d) < a.plane_thr
+        for _ in range(3):
+            c = Q[inl].mean(0)
+            n = np.linalg.svd(Q[inl] - c, full_matrices=False)[2][2]
+            d = -n @ c
+            inl = np.abs(Q @ n + d) < a.plane_thr
+        if n @ W0[:3, 3] + d < 0:                  # camera on the positive side: n points up, toward the camera
+            n, d = -n, -d
+        return n, d
+
+    # Sequential RANSAC: up to 4 planes holding >= 3 % of the ring points each.
+    cands, rest = [], np.ones(len(P), bool)
+    for _ in range(4):
+        if rest.sum() < max(500, 0.03 * len(P)):
+            break
+        n, d = ransac(P[rest])
         inl = np.abs(P @ n + d) < a.plane_thr
-    if n @ W0[:3, 3] + d < 0:                      # camera on the positive side: n points up, toward the camera
-        n, d = -n, -d
-    return n, d, float(inl.mean()), len(P), float(np.sqrt(np.mean((P[inl] @ n + d) ** 2)))
+        if (inl & rest).sum() < 0.03 * len(P):
+            break
+        lowest = min(float((V @ n).min() + d) for V in Vw)          # lowest object point above this plane (m)
+        cands.append(dict(n=n, d=d, frac=float(inl.mean()), lowest=lowest,
+                          tilt=float(np.degrees(np.arccos(np.clip(abs(n @ cands[0]['n']), -1, 1)))) if cands else 0.0,
+                          rms=float(np.sqrt(np.mean((P[inl] @ n + d) ** 2)))))
+        rest &= ~inl
+    # The support plane: parallel to the dominant plane (within 25 deg) and closest under the lowest object point.
+    ok = [c for c in cands if c['tilt'] <= 25 and c['lowest'] > -a.support_tol]
+    pick = min(ok or cands, key=lambda c: abs(c['lowest']))
+    a._plane_cands = [{k: (round(v, 4) if isinstance(v, float) else None) for k, v in c.items() if k not in ('n', 'd')}
+                      for c in cands]
+    a._plane_full = cands
+    return pick['n'], pick['d'], pick['frac'], len(P), pick['rms']
 
 
 def table_frame(n, d, W0, centroid_w, table_z):
@@ -378,6 +447,194 @@ class BodyQuery:
         c, d, tri = self.q.on_surface(pts)
         inside = self.mesh.contains(pts) if self.watertight else np.zeros(len(pts), bool)
         return c, np.where(inside, 0.0, d), tri, inside
+
+
+def table_disc(depth0, KR, T_tab, table_z, band=0.008, cell=0.01):
+    """The real table's footprint in the table frame (2026-10-21: the simulated cylinder had radius 0.45 m around the
+    objects' centroid while the real round table measures ~0.22-0.25 m, so table edges that the person uses -- a board
+    slid until it overhangs, a dustpan held at the edge -- did not exist in sim). Frame-0 depth points within BAND of
+    the plane, a 1 cm occupancy grid, the connected region nearest the objects (origin), its minimum enclosing circle."""
+    import cv2
+    from scipy import ndimage
+    H, W = depth0.shape
+    v, u = np.mgrid[0:H:2, 0:W:2]; z = np.asarray(depth0)[v, u]
+    ok = np.isfinite(z) & (z > 0.2) & (z < 1.5)
+    X = np.stack([(u[ok] - KR[0, 2]) * z[ok] / KR[0, 0], (v[ok] - KR[1, 2]) * z[ok] / KR[1, 1], z[ok]], 1)
+    P = X @ T_tab[:3, :3].T + T_tab[:3, 3]
+    Q = P[np.abs(P[:, 2] - table_z) < band, :2]
+    Q = Q[np.abs(Q).max(1) < 1.0]
+    if len(Q) < 1000:
+        return None
+    n = int(2.0 / cell); ij = np.clip(((Q + 1.0) / cell).astype(int), 0, n - 1)
+    G = np.zeros((n, n), bool); G[ij[:, 0], ij[:, 1]] = True
+    G = ndimage.binary_closing(G, iterations=3)                    # holes under objects / sparse depth
+    lab, nl = ndimage.label(G)
+    if nl == 0:
+        return None
+    c0 = int(1.0 / cell); cand = np.argwhere(lab > 0)
+    k = lab[tuple(cand[np.argmin(np.linalg.norm(cand - c0, axis=1))])]
+    pts = (np.argwhere(lab == k) * cell - 1.0 + cell / 2).astype(np.float32)
+    (cx, cy), r = cv2.minEnclosingCircle(pts)
+    return float(cx), float(cy), float(r)
+
+
+def start_overlap_lift(OBJ, names, vis, con, cap, table_z, n_samp=3000, min_in=5, margin=0.0005, on_table=0.02):
+    """Objects that start inside one another (2026-10-24, eval 1: 243 of 3000 lid surface samples 7.6 mm inside the pot
+    solid at frame 0; the simulated lid was wedged and never lifted; public twin ep2 has the same failure). For each
+    frame-0 pair, surface samples of the object with the higher bottom (the one resting on the other: lid on pot, cup
+    in pot) are tested against the other's watertight solid; when >= MIN_IN are inside, the upper object is lifted along
+    the table normal, whole trajectory, as the table snap. The lift is the largest upward exit distance of the inside
+    samples (vertical rays) + MARGIN, checked by a containment test (< MIN_IN inside), then raised by half steps.
+    An upper object whose bottom is within ON_TABLE of the table stands on the table and is never lifted (eval 8: the
+    pot beside the beige cup). Not resolved within CAP: left unchanged and reported. Returns the per-object lifts (m)
+    and a log record."""
+    import trimesh
+    B = len(names); lift = np.zeros(B); rec = []
+    pts = [np.asarray(trimesh.sample.sample_surface(vis[nm], n_samp, seed=0)[0]) for nm in names]
+
+    def in_c(b, c, dz):                                                 # b's samples in c's mesh frame, inside mask
+        Rb, tb = OBJ[0, b, :3, :3], OBJ[0, b, :3, 3] + np.array([0.0, 0.0, lift[b] + dz])
+        Rc, tc = OBJ[0, c, :3, :3], OBJ[0, c, :3, 3] + np.array([0.0, 0.0, lift[c]])
+        P = (pts[b] @ Rb.T + tb - tc) @ Rc
+        return P, con[names[c]].contains(P)
+
+    bot = np.array([(np.asarray(vis[nm].vertices) @ OBJ[0, b, :3, :3].T + OBJ[0, b, :3, 3])[:, 2].min()
+                    for b, nm in enumerate(names)])
+    for b in range(B):
+        for c in range(B):
+            if b == c or bot[b] < bot[c] or not con[names[c]].is_watertight:   # b is the upper object of the pair
+                continue
+            if bot[b] - table_z < on_table:                             # b stands on the table, not on c
+                continue
+            P, ins = in_c(b, c, 0.0); n0 = int(ins.sum())
+            if n0 < min_in:
+                continue
+            up = OBJ[0, c, :3, :3].T @ np.array([0.0, 0.0, 1.0])            # table normal in c's mesh frame
+            loc, ri, _ = con[names[c]].ray.intersects_location(P[ins], np.repeat(up[None], n0, 0), multiple_hits=True)
+            ex = np.full(n0, np.inf)
+            if len(ri):
+                np.minimum.at(ex, ri, (loc - P[ins][ri]) @ up)               # first exit above each inside sample
+            dz = float(np.max(ex[np.isfinite(ex)], initial=0.0)) + margin
+            while dz <= cap and int(in_c(b, c, dz)[1].sum()) >= min_in:
+                dz += max(0.5 * dz, 0.001)
+            dz = None if dz > cap else dz
+            r = dict(upper=names[b], lower=names[c], samples_inside=n0, of=n_samp)
+            if dz is None:
+                r['lift_cm'] = None; r['note'] = f'not resolved within {cap * 100:.1f} cm: unchanged'
+            else:
+                lift[b] += dz; r['lift_cm'] = round(dz * 100, 2)
+            rec.append(r)
+    for b in range(B):
+        OBJ[:, b, 2, 3] += lift[b]
+    return lift, rec
+
+
+def separate_hands(J, valid, meas, gap, lead_in, lead_in_step=0.01):
+    """Rigid per-frame shifts that keep the two hands apart (table frame, z up). Returns ({side: (T, 3)}, stats).
+
+    1) lead-in: a hand first valid at t1 > 0 was held at its first pose from frame 0 (fill_invalid); it now starts
+       15 cm out (horizontally away from the other hand) and 10 cm up and arrives over the LEAD_IN frames before t1.
+       The approach moves at most LEAD_IN_STEP per frame (m): with few frames before t1 the start is nearer.
+       Evidence (2026-10-23, eval ep35): the right hand was first valid at t1 = 6, so 18 cm came in over 6 frames
+       (3 cm per frame = 60 cm/s); with zero policy action the simulated wrist fell 16 cm behind by step 10 (the
+       wrist termination is 15 cm) and the trained policy never moved its hands. 1 cm per frame = 20 cm/s at 20 fps.
+    2) separation: where the closest left/right joint pair is nearer than GAP, the hand that is not measured in that
+       frame moves (both half-way if both or neither are measured), away from the other hand and upward (free space).
+       Each round adds the needed shifts box-smoothed over 5 frames, up to 5 rounds (the last unsmoothed), so no
+       overlap is left and the shifts do not jump. Evidence: ep24 the right hand, unseen for frames 0-16, was held where it first appeared, 1-6 cm from the
+       left hand; the two robot hands overlapped by up to 14 mm at reset and the near board popped 15 deg.
+    """
+    from scipy.ndimage import uniform_filter1d
+    T = len(J['left']); z = np.array([0, 0, 1.0]); off = {s: np.zeros((T, 3)) for s in SIDES}; st = {}
+    other = {'left': 'right', 'right': 'left'}
+    for s in SIDES:                                              # 1) lead-in
+        v = np.nonzero(valid[s][:T])[0]; t1 = int(v[0]) if len(v) else 0; st[s] = dict(first_valid=t1, lead_in=0)
+        if t1 <= 0 or lead_in <= 0:
+            continue
+        u = (J[s][t1, 0] - J[other[s]][t1, 0]) * np.array([1, 1, 0.0])
+        u = u / np.linalg.norm(u) if np.linalg.norm(u) > 0.01 else np.array([0, -1.0 if s == 'right' else 1.0, 0])
+        n = min(lead_in, t1); o = 0.15 * u + 0.10 * z
+        if lead_in_step > 0 and np.linalg.norm(o) / n > lead_in_step:
+            o = o * (lead_in_step * n / np.linalg.norm(o))
+        w = np.clip((t1 - np.arange(T)) / n, 0, 1)
+        off[s] += w[:, None] * o[None]; st[s]['lead_in'] = t1; st[s]['lead_in_cm'] = round(float(np.linalg.norm(o)) * 100, 1)
+    def needs():                                                 # per-frame shifts that would clear every overlap
+        raw = {s: np.zeros((T, 3)) for s in SIDES}; n = 0; w = 0.0
+        for t in range(T):
+            A = J['left'][t] + off['left'][t]; B = J['right'][t] + off['right'][t]
+            for _ in range(6):
+                d = np.linalg.norm((A + raw['left'][t])[:, None] - (B + raw['right'][t])[None], axis=2).min()
+                if d >= gap:
+                    break
+                w = max(w, gap - d)
+                u = (B.mean(0) - A.mean(0)) * np.array([1, 1, 0.0]); u = u / max(np.linalg.norm(u), 1e-6)
+                share = ({'left': 0.0, 'right': 1.0} if meas['left'][t] and not meas['right'][t] else
+                         {'left': 1.0, 'right': 0.0} if meas['right'][t] and not meas['left'][t] else {'left': 0.5, 'right': 0.5})
+                for s, sgn in (('left', -1.0), ('right', 1.0)):
+                    dv = sgn * u + 0.7 * z; raw[s][t] += share[s] * (gap - d + 0.005) * dv / np.linalg.norm(dv)
+            n += bool(np.abs(raw['left'][t]).sum() + np.abs(raw['right'][t]).sum() > 0)
+        return raw, n, w
+    nfix = worst = None; moved = {s: np.zeros(T) for s in SIDES}
+    for rnd in range(5):                                         # correct, smooth (5 frames), repeat on what is left
+        raw, n, w = needs()
+        if nfix is None:
+            nfix, worst = n, w
+        if n == 0:
+            break
+        for s in SIDES:
+            sm = uniform_filter1d(raw[s], 5, axis=0, mode='nearest') if rnd < 4 else raw[s]
+            off[s] += sm; moved[s] = np.maximum(moved[s], np.linalg.norm(raw[s], axis=1))
+    for s in SIDES:
+        st[s].update(sep_frames=int((moved[s] > 0).sum()), sep_max_cm=round(float(moved[s].max() * 100), 1))
+    st['rounds'] = rnd + 1; st['left_overlap_frames'] = n
+    st['overlap_frames'] = nfix; st['worst_overlap_cm'] = round(worst * 100, 1)
+    return off, st
+
+
+def depenetrate(J, OBJ, queries, table_z, clear, disc=None):
+    """Physics-aware hand targets (2026-10-21; cf. ContactOpt, Grady et al. CVPR 2021, which tolerates ~2 mm of
+    interpenetration): every joint centre is kept at least CLEAR outside every object surface and above the table
+    (joint centres sit ~8 mm inside the skin, so CLEAR = 6 mm leaves ~2 mm of squeeze). A joint inside an object, or
+    closer than CLEAR, moves along the surface normal of its closest point; under the table it moves up. Inside
+    tests: mesh.contains for watertight meshes (our reconstructions), else the side of the closest face. The table
+    rule applies only over the measured table DISC (cx, cy, r): fingers under a board that overhangs the real edge stay.
+    A joint pinned between the table and an object goes to the object's top above it (highest surface sample within 1.5 cm in
+    x-y + CLEAR) instead of oscillating between the two rules."""
+    out = J.copy(); T = len(J); moved = 0; depth_max = 0.0
+    for t in range(T):
+        P = out[t].reshape(-1, 3)
+        for b, q in enumerate(queries):
+            M = OBJ[t, b]; Pl = (P - M[:3, 3]) @ M[:3, :3]
+            c, d, tri = q.q.on_surface(Pl)
+            n = q.fn[tri]
+            inside = q.mesh.contains(Pl) if q.watertight else (np.einsum('ij,ij->i', Pl - c, n) < 0) & (d < 0.03)
+            sd = np.where(inside, -d, d)                               # signed distance, negative inside
+            k = sd < clear
+            if k.any():
+                Pl[k] = c[k] + n[k] * clear
+                moved += int(k.sum()); depth_max = max(depth_max, float(-sd[k].min()))
+                P = Pl @ M[:3, :3].T + M[:3, 3]
+        low = P[:, 2] < table_z + clear
+        if disc is not None:
+            low &= np.linalg.norm(P[:, :2] - np.array(disc[:2]), axis=1) < disc[2]
+        if low.any():
+            depth_max = max(depth_max, float(table_z + clear - P[low, 2].min())); moved += int(low.sum())
+            P[low, 2] = table_z + clear
+            for b, q in enumerate(queries):                        # pinned between table and object -> object top
+                M = OBJ[t, b]; Pl = (P[low] - M[:3, 3]) @ M[:3, :3]
+                inside = q.mesh.contains(Pl) if q.watertight else np.zeros(len(Pl), bool)
+                if inside.any():
+                    if not hasattr(q, 'dense'):                    # surface samples (vertices are too sparse on flat faces)
+                        import trimesh
+                        q.dense = np.asarray(trimesh.sample.sample_surface(q.mesh, 20000, seed=0)[0])
+                    Vw = q.dense @ M[:3, :3].T + M[:3, 3]
+                    idx = np.nonzero(low)[0][inside]
+                    for i in idx:
+                        near = np.linalg.norm(Vw[:, :2] - P[i, :2], axis=1) < 0.015
+                        if near.any():
+                            P[i, 2] = Vw[near, 2].max() + clear
+        out[t] = P.reshape(out[t].shape)
+    return out, dict(joints_moved=moved, joint_frames=int(T * J.shape[1]), max_push_cm=round(depth_max * 100, 2))
 
 
 def anchor_body(Jt, t, OBJ, queries, a):
@@ -524,27 +781,59 @@ def parse_args():
     p.add_argument('--hands', default=None, help='default OUT/hands.npz')
     p.add_argument('--out', default=None, help='default /content/refs/epN')
     p.add_argument('--seq', default=None, help='sequence_id (default t3_epNNN)')
+    p.add_argument('--assets', default=os.environ.get('ASSETS') or None,
+                   help='object assets root (mesh/<obj>/<obj>.glb, urdf/<obj>_rigid.urdf); default --t3 = the public '
+                        'scans; route A uses our own (pipeline/make_assets.py; default from env ASSETS)')
+    p.add_argument('--split', choices=['public', 'eval'], default=os.environ.get('SPLIT', 'public'),
+                   help='eval: object names from the kit roster (default from env SPLIT)')
     p.add_argument('--v2d', default='/content/v2d')
     p.add_argument('--fc_python', default='/content/v2d/robotic_grounding/flash_chord/.venv/bin/python')
     p.add_argument('--fps', type=float, default=20.0)
     # table
     p.add_argument('--table_z', type=float, default=0.60)
-    p.add_argument('--table_radius', type=float, default=0.45)
+    p.add_argument('--table_radius', type=float, default=0.45, help='support disc radius when --table_fit fails or is off')
+    p.add_argument('--table_fit', type=int, default=1, help='1: support disc (centre, radius) measured from frame-0 depth')
     p.add_argument('--table_height', type=float, default=0.02)
     p.add_argument('--ring_in', type=int, default=10)
     p.add_argument('--ring_out', type=int, default=90)
     p.add_argument('--plane_thr', type=float, default=0.006)
     p.add_argument('--plane_iters', type=int, default=1000)
+    p.add_argument('--support_max', type=float, default=0.05,
+                   help='abort if the lowest frame-0 object bottom is more than this above the table (m)')
+    p.add_argument('--support_tol', type=float, default=0.03,
+                   help='abort if it is more than this below the table (m); also the plane-pick tolerance')
+    p.add_argument('--support_fallback', type=int, default=1,
+                   help='when no plane passes the support check: the candidate supporting most objects, objects that '
+                        'start inside the table lifted onto it (2026-10-24, eval 30)')
     p.add_argument('--snap', choices=['none', 'lowest', 'per_object'], default='per_object',
                    help='lowest: move the plane to the lowest object bottom at frame 0; per_object: lift/lower each '
                         'object whose frame-0 bottom is within SNAP_MAX of the plane onto it (whole trajectory)')
     p.add_argument('--snap_max', type=float, default=0.02)
+    p.add_argument('--start_overlap', type=float, default=0.0,
+                   help='lift an object that starts inside another (higher bottom = upper) by the least that clears it, '
+                        'at most this (m; 2026-10-24, eval 1 lid 7.6 mm inside the pot); 0 = off')
     # hands
     p.add_argument('--min_valid_frac', type=float, default=0.10, help='park a side with fewer valid frames')
     p.add_argument('--gap_fill', choices=['attach', 'hold'], default='attach')
+    p.add_argument('--hand_sep', type=float, default=0.04,
+                   help='minimum gap between any left and any right hand joint (m); the robot hands are larger than '
+                        'human hands and overlapped at reset in ep24 (2026-10-21); <= 0: off')
+    p.add_argument('--lead_in', type=int, default=10,
+                   help='a hand first seen at frame t1 > 0 comes in from 15 cm out and 10 cm up over the LEAD_IN frames '
+                        'before t1 instead of holding its first pose from frame 0')
+    p.add_argument('--lead_in_speed', type=float, default=0.2,
+                   help='largest lead-in approach speed (m/s); a hand first seen early starts nearer (2026-10-23, '
+                        'ep35: 18 cm in 6 frames left the simulated wrist 16 cm behind); <= 0: no limit')
     p.add_argument('--attach_dist', type=float, default=0.03)
     # retarget
     p.add_argument('--mano_to_robot_scale', type=float, default=1.2)
+    p.add_argument('--wrist_cost', type=float, default=None,
+                   help='E2S IK position cost of the wrist (hand_C_MC); NVIDIA default 0.2 (fingertips 1.0)')
+    p.add_argument('--wrist_ori_cost', type=float, default=None, help='E2S IK orientation cost of the wrist (default 0.2)')
+    p.add_argument('--depenetrate', type=float, default=0.006,
+                   help='keep hand joint centres this far outside objects and above the table (m; 0 = off)')
+    p.add_argument('--bone_norm', action='store_true', help='fix bone lengths to the episode median (normalize_bones)')
+    p.add_argument('--hand_scale', type=float, default=1.0, help='with --bone_norm: multiply the median bone lengths')
     p.add_argument('--warmup', type=int, default=10, help='copies of frame 0 prepended for the IK, dropped after')
     p.add_argument('--e2s_args', default='', help='extra ego_recon_to_sharpa.py flags, e.g. "--smooth_reference"')
     p.add_argument('--skip_e2s', action='store_true', help='reuse OUT/e2s_raw (redo contacts + validation only)')
@@ -578,14 +867,14 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     pin = install_compat(a.v2d)
     lay = sharpa_layout(pin, a.v2d)
-    MSD = patch_logger(lay)
+    MSD = patch_logger(lay, slot_names=True)
     from robotic_grounding.retarget.naming import make_usd_safe
     from robotic_grounding.retarget.params import MANO_HAND_LINKS
     log(f'Sharpa layout via pinocchio {pin.__version__}: frames {lay["n_frames"]}, fingers {lay["n_fingers"]}, tasks {lay["n_tasks"]}')
     summary = dict(ep=a.ep, seq=a.seq, fps=a.fps)
 
     # ---------------- objects
-    names = load_names(a.t3, a.ep)
+    names = load_names(a.t3, a.ep, a.split)
     B = len(names)
     P = np.load(a.poses)
     W_C = P['world_T_cam'].astype(np.float64)
@@ -597,9 +886,10 @@ def main():
         cam_T[nm] = P[f'cam_T_{nm}'].astype(np.float64)
         if len(cam_T[nm]) != T:
             raise SystemExit(f'cam_T_{nm} has {len(cam_T[nm])} frames, world_T_cam has {T}')
-    vis_p = {nm: visual_mesh_path(a.t3, nm) for nm in names}
-    con_p = {nm: contact_mesh_path(a.t3, nm) for nm in names}
-    urdf_p = {nm: f'{a.t3}/urdf/{nm}_rigid.urdf' for nm in names}
+    A = a.assets or a.t3                     # route A: our own meshes and URDFs (make_assets.py), same layout
+    vis_p = {nm: visual_mesh_path(A, nm) for nm in names}
+    con_p = {nm: contact_mesh_path(A, nm) for nm in names}
+    urdf_p = {nm: f'{A}/urdf/{nm}_rigid.urdf' for nm in names}
     for nm in names:
         for pth in (vis_p[nm], con_p[nm], urdf_p[nm]):
             if not os.path.exists(pth):
@@ -635,7 +925,36 @@ def main():
 
     OBJ = obj_in_table(T_tab)
     h = bottoms(OBJ)
+    log(f'table plane candidates (fraction of ring points, lowest object point above it in m, tilt vs the first): '
+        f'{a._plane_cands}')
     log(f'frame-0 object bottoms above the fitted table (cm): {dict(zip(names, np.round(h * 100, 2).tolist()))}')
+    lifted = np.zeros(B)
+    if not -a.support_tol <= h.min() <= a.support_max and a.support_fallback:
+        # Only on this failure path (eval 30, 2026-10-24: the dominant plane was the floor, 54 cm under the objects; the
+        # table candidate had the rack 1.7 cm and the sweeper 7.1 cm inside it): take the near-parallel candidate under
+        # which most objects start within the allowed band, then lift objects that start inside the table onto it
+        # (a body cannot start inside the table; whole trajectory shifted). Episodes that pass the check are unchanged.
+        alt = []
+        for c in a._plane_full:
+            if c['tilt'] > 25:
+                continue
+            Tt = table_frame(c['n'], c['d'], W_C[0], centroid, a.table_z); hh = bottoms(obj_in_table(Tt))
+            nin = int(((hh >= -a.support_tol) & (hh <= a.support_max)).sum())
+            alt.append((nin, -float(np.abs(hh).sum()), c, Tt, hh))
+        alt.sort(key=lambda x: x[:2], reverse=True)
+        if alt and alt[0][0] > 0:
+            _, _, c, T_tab, hh = alt[0]; n, d = c['n'], c['d']; OBJ = obj_in_table(T_tab)
+            for b in range(B):
+                if hh[b] < -a.support_tol:
+                    lifted[b] = -hh[b]; OBJ[:, b, 2, 3] += lifted[b]
+            h = bottoms(OBJ)
+            log(f'support fallback: plane {dict(frac=round(c["frac"], 4), tilt=round(c["tilt"], 2))} supports {alt[0][0]} of {B} '
+                f'objects; lifted onto the table (cm) {dict(zip(names, np.round(lifted * 100, 2).tolist()))}; bottoms now (cm) '
+                f'{dict(zip(names, np.round(h * 100, 2).tolist()))}')
+    if not -a.support_tol <= h.min() <= a.support_max:
+        raise SystemExit(f'no support plane under the objects: the lowest object bottom is {h.min() * 100:.1f} cm above '
+                         f'the fitted table (allowed {-a.support_tol * 100:.0f} to {a.support_max * 100:.0f} cm); '
+                         f'the simulated objects would fall or start inside the table')
     shifts = np.zeros(B)
     if a.snap == 'lowest' and abs(h.min()) <= a.snap_max:
         T_tab[2, 3] -= h.min()
@@ -649,14 +968,28 @@ def main():
         log(f'snap=per_object: z shifts (cm) {dict(zip(names, np.round(shifts * 100, 2).tolist()))}')
     elif a.snap != 'none':
         log(f'WARNING: snap={a.snap} skipped, bottom offset {h.min() * 100:.1f} cm > snap_max')
+    overlap = []
+    if a.start_overlap > 0 and B > 1:
+        olift, overlap = start_overlap_lift(OBJ, names, vis, con, a.start_overlap, a.table_z)
+        shifts = shifts + olift
+        log(f'start overlap (cap {a.start_overlap * 100:.0f} cm): {overlap if overlap else "none"}')
     h2 = bottoms(OBJ)
     obj_pos = OBJ[:, :, :3, 3]
     obj_wxyz = continuous(wxyz_from_R(OBJ[:, :, :3, :3]))
     log(f'object travel (cm): {dict(zip(names, np.round(np.linalg.norm(obj_pos - obj_pos[:1], axis=-1).max(0) * 100, 1).tolist()))}')
+    disc = (0.0, 0.0, a.table_radius)
+    if a.table_fit:
+        dm = table_disc(depth0, KR, T_tab, a.table_z)
+        if dm is not None:
+            reach = float((np.linalg.norm(obj_pos[0, :, :2] - dm[:2], axis=-1) + np.array(radius) * 0.5).max())
+            disc = (dm[0], dm[1], float(np.clip(max(dm[2], reach), 0.15, 0.6)))
+        log(f'table disc measured from frame-0 depth: centre ({disc[0]:.3f}, {disc[1]:.3f}) m, radius {disc[2]:.3f} m '
+            f'(was a {a.table_radius} m disc at the object centroid)')
     np.savez(f'{a.out}/table_frame.npz', T_table_from_world=T_tab, plane_n=n, plane_d=d, names=np.array(names),
-             object_z_shift=shifts, table_z=a.table_z)
+             object_z_shift=shifts + lifted, table_z=a.table_z, table_disc=np.array(disc))
     summary['table'] = dict(inlier_frac=inl_frac, rms_mm=rms * 1000, bottoms_cm=(h * 100).tolist(),
-                            bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist())
+                            bottoms_after_cm=(h2 * 100).tolist(), snap=a.snap, shifts_cm=(shifts * 100).tolist(), support_fallback_lift_cm=(lifted * 100).tolist(),
+                            start_overlap=overlap)
 
     # ---------------- (b) hands
     Hn = np.load(a.hands)
@@ -668,6 +1001,10 @@ def main():
         if len(Jw) != T:
             raise SystemExit(f'hands.npz joints_{s} has {len(Jw)} frames, poses have {T}')
         Js = Jw @ T_tab[:3, :3].T + T_tab[:3, 3]
+        if a.bone_norm and valid.sum() >= 5:
+            Js, Lb = normalize_bones(Js, valid, a.hand_scale)
+            log(f'{s}: bone lengths fixed to the episode median x {a.hand_scale} (wrist->middle MCP {Lb[9] * 100:.1f} cm, '
+                f'middle finger {Lb[10:13].sum() * 100:.1f} cm)')
         n_valid = int(valid.sum())
         if n_valid < max(10, a.min_valid_frac * T):
             c = obj_pos.reshape(-1, 3).mean(0)
@@ -687,6 +1024,10 @@ def main():
             log(f'{s}: {n_valid}/{T} valid frames; invalid runs (start, end, from, anchor body): {notes}')
         if not np.isfinite(Js).all():
             raise SystemExit(f'non-finite {s} joints')
+        if a.depenetrate > 0 and hinfo[s]['mode'] == 'tracked':
+            Js, pen = depenetrate(Js, OBJ, queries, a.table_z, a.depenetrate, disc)
+            hinfo[s]['depenetrate'] = pen
+            log(f'{s}: depenetrate (clearance {a.depenetrate * 1000:.0f} mm): {pen}')
         R = hand_rotations(Js, s)
         J[s] = Js
         Q[s] = continuous(wxyz_from_R(R))
@@ -700,6 +1041,16 @@ def main():
         log(f'{s}: palmar-flexion score median {np.median(ps) * 1000:+.1f} mm (negative => chirality/handedness '
             f'suspect; neg. frac {(ps < -0.005).mean():.2f}), joints below table {below:.2f}, '
             f'wrist->middle tip {np.median(hl) * 100:.1f} cm')
+    if a.hand_sep > 0 and all(hinfo[s]['mode'] == 'tracked' for s in SIDES):
+        off, sep = separate_hands(J, {s: Hn[f'valid_{s}'].astype(bool) for s in SIDES},
+                                  {s: Hn[f'measured_{s}'].astype(bool) for s in SIDES}, a.hand_sep, a.lead_in,
+                                  a.lead_in_speed / a.fps)
+        for s in SIDES:
+            J[s] = J[s] + off[s][:, None, :]                       # rigid shifts: the rotations Q are unchanged
+            if a.depenetrate > 0:
+                J[s], _ = depenetrate(J[s], OBJ, queries, a.table_z, a.depenetrate, disc)
+            hinfo[s]['separation'] = sep[s]
+        log(f'hand separation (min joint gap {a.hand_sep * 100:.1f} cm, lead-in {a.lead_in} frames): {sep}')
     summary['hands'] = hinfo
 
     # ---------------- write the loaded ManoSharpaData
@@ -717,7 +1068,7 @@ def main():
                    object_name=obj_name, safe_object_name=make_usd_safe(obj_name), object_body_names=list(names),
                    safe_object_body_names=[make_usd_safe(nm) for nm in names],
                    object_mesh_paths=[vis_p[nm] for nm in names], object_urdf_paths=[urdf_p[nm] for nm in names],
-                   object_mesh_radius=radius)
+                   object_mesh_radius=radius, contact_slot_names=list(CONTACT_SLOT_NAMES))
         z16 = np.zeros((N_SLOTS, 3)).tolist()
         i16 = [0] * N_SLOTS
         z45 = [0.0] * 45
@@ -766,14 +1117,15 @@ def Xform "support_surfaces"
         uniform token axis = "Z"
         double height = {hgt:.6f}
         color3f[] primvars:displayColor = [(0.6, 0.6, 0.6)]
-        double radius = {a.table_radius:.6f}
-        double3 xformOp:translate = (0, 0, {zc:.6f})
+        double radius = {disc[2]:.6f}
+        double3 xformOp:translate = ({disc[0]:.6f}, {disc[1]:.6f}, {zc:.6f})
         uniform token[] xformOpOrder = ["xformOp:translate"]
     }}
 }}
 ''')
-    far = float(np.linalg.norm(obj_pos[..., :2], axis=-1).max())
-    log(f'support USDA {usda} (objects reach {far:.3f} m from the table centre, radius {a.table_radius})')
+    far = float(np.linalg.norm(obj_pos[..., :2] - np.array(disc[:2]), axis=-1).max())
+    log(f'support USDA {usda} (objects reach {far:.3f} m from the table centre, radius {disc[2]:.3f})')
+    summary['table']['disc'] = list(disc)
     if far > a.table_radius - 0.05:
         log('WARNING: an object comes within 5 cm of the table edge; raise --table_radius')
 
@@ -784,6 +1136,10 @@ def Xform "support_surfaces"
                '--mano_to_robot_scale', str(a.mano_to_robot_scale), '--sequence_id', a.seq] + shlex.split(a.e2s_args)
         env = dict(os.environ)
         env['PYTHONPATH'] = rg_src(a.v2d) + (':' + env['PYTHONPATH'] if env.get('PYTHONPATH') else '')
+        if a.wrist_cost is not None:
+            env['E2S_WRIST_COST'] = str(a.wrist_cost)
+        if a.wrist_ori_cost is not None:
+            env['E2S_WRIST_ORI_COST'] = str(a.wrist_ori_cost)
         log('running E2S:', ' '.join(cmd))
         subprocess.run(cmd, check=True, env=env, cwd=os.path.join(a.v2d, 'robotic_grounding'))
 
@@ -825,6 +1181,7 @@ def Xform "support_surfaces"
         log(f'{s} contacts: frames with contact {act.any(1).mean():.2f}, mean active slots {act.sum(1).mean():.2f}, '
             f'per body {per_body}, local normal flips {np.round(flips, 3).tolist()}')
     summary['contacts'] = cstats
+    data.contact_slot_names = list(CONTACT_SLOT_NAMES)              # E2S's kit class dropped it from e2s_raw
     data.fps = float(a.fps)
     data.mano_to_robot_scale = float(a.mano_to_robot_scale)
     data.save_to_parquet(final_root, partition_cols=['sequence_id', 'robot_name'])
@@ -846,8 +1203,12 @@ def Xform "support_surfaces"
         for i, t_ in enumerate(tn):
             log(f'    {t_:28s} {np.median(E[:, i]):7.1f} {np.percentile(E[:, i], 95):7.1f} {E[:, i].max():7.1f} {E[0, i]:7.1f}')
         wr = np.asarray(getattr(data, f'robot_{s}_wrist_position'), float)
+        steps = np.linalg.norm(np.diff(wr, axis=0), axis=1) * 100
         log(f'    robot wrist travel {np.linalg.norm(wr - wr[0], axis=1).max():.3f} m, '
-            f'max step {np.linalg.norm(np.diff(wr, axis=0), axis=1).max() * 100:.1f} cm/frame')
+            f'max step {steps.max():.1f} cm/frame')
+        summary.setdefault('wrist', {})[s] = dict(travel_m=float(np.linalg.norm(wr - wr[0], axis=1).max()),
+                                                  max_step_cm=float(steps.max()), p99_step_cm=float(np.percentile(steps, 99)),
+                                                  steps_over_5cm=int((steps > 5).sum()))
     summary['ik'] = ik
 
     # ---------------- (f) FlashCHORD validation
@@ -871,6 +1232,8 @@ def Xform "support_surfaces"
     summary['task_parquet'] = task_dir
     summary['support_usda'] = usda
     json.dump(summary, open(os.path.join(a.out, 'ref_summary.json'), 'w'), indent=1, default=str)
+    if not summary.get('validation', {}).get('ok', True):
+        raise SystemExit('FlashCHORD validation failed: do not train on this reference')
     log(f'DONE. Train with task.parquet={task_dir} task.motion_speed=1.0')
 
 

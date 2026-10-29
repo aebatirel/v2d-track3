@@ -1,0 +1,258 @@
+[
+ {
+  "ep": 0,
+  "obj": "white_pot",
+  "gt_1cm": 201.61980298243435,
+  "gt_2cm": 199.41257232087537,
+  "perc_lag_1cm": -0.1,
+  "perc_lag_2cm": 0.26
+ },
+ {
+  "ep": 0,
+  "obj": "white_pot_lid",
+  "gt_1cm": 259.05463463228944,
+  "gt_2cm": 257.0221650541679,
+  "perc_lag_1cm": 1.26,
+  "perc_lag_2cm": 0.27
+ },
+ {
+  "ep": 2,
+  "obj": "white_pot",
+  "gt_1cm": 205.86526884504482,
+  "gt_2cm": 199.84887502532325,
+  "perc_lag_1cm": 1.04,
+  "perc_lag_2cm": 1.82,
+  "pre_lag_1cm": 1.04,
+  "pre_lag_2cm": 1.82,
+  "ref_lag_1cm": -7.67,
+  "ref_lag_2cm": -7.42
+ },
+ {
+  "ep": 2,
+  "obj": "white_pot_lid",
+  "gt_1cm": 284.822346965862,
+  "gt_2cm": 274.30486616938623,
+  "perc_lag_1cm": -0.31,
+  "perc_lag_2cm": 1.01,
+  "pre_lag_1cm": -0.31,
+  "pre_lag_2cm": 1.01,
+  "ref_lag_1cm": -0.31,
+  "ref_lag_2cm": 1.01
+ },
+ {
+  "ep": 11,
+  "obj": "beige_cup",
+  "gt_1cm": 69.81947505744171,
+  "gt_2cm": 66.54632732864876,
+  "perc_lag_1cm": 16.75,
+  "perc_lag_2cm": 3.29,
+  "pre_lag_1cm": 16.75,
+  "pre_lag_2cm": 3.29,
+  "ref_lag_1cm": 16.75,
+  "ref_lag_2cm": 3.29
+ },
+ {
+  "ep": 12,
+  "obj": "blue_cup",
+  "gt_1cm": 126.7435640206592,
+  "gt_2cm": 123.86022334498537,
+  "perc_lag_1cm": 1.4,
+  "perc_lag_2cm": 0.34,
+  "pre_lag_1cm": 1.4,
+  "pre_lag_2cm": 0.34,
+  "ref_lag_1cm": 1.4,
+  "ref_lag_2cm": 0.34
+ },
+ {
+  "ep": 13,
+  "obj": "blue_cup",
+  "gt_1cm": 137.58605327576993,
+  "gt_2cm": 121.127418400552,
+  "perc_lag_1cm": 27.52,
+  "perc_lag_2cm": 43.13
+ },
+ {
+  "ep": 18,
+  "obj": "mini_sweeper",
+  "gt_1cm": 266.85992485228945,
+  "gt_2cm": 185.7989957591875,
+  "perc_lag_1cm": 1.45,
+  "perc_lag_2cm": 0.62,
+  "pre_lag_1cm": 1.45,
+  "pre_lag_2cm": 0.62,
+  "ref_lag_1cm": 1.41,
+  "ref_lag_2cm": 0.73
+ },
+ {
+  "ep": 18,
+  "obj": "mini_dust_pan",
+  "gt_1cm": 169.48932258570852,
+  "gt_2cm": 165.72262861253517,
+  "perc_lag_1cm": 0.5,
+  "perc_lag_2cm": 0.78,
+  "pre_lag_1cm": 0.5,
+  "pre_lag_2cm": 0.78,
+  "ref_lag_1cm": -3.13,
+  "ref_lag_2cm": -7.27
+ },
+ {
+  "ep": 21,
+  "obj": "blue_cup",
+  "gt_1cm": 138.97825488813825,
+  "gt_2cm": 136.4272857792719,
+  "perc_lag_1cm": 1.51,
+  "perc_lag_2cm": 0.63,
+  "pre_lag_1cm": 1.51,
+  "pre_lag_2cm": 0.63,
+  "ref_lag_1cm": -0.75,
+  "ref_lag_2cm": 0.15
+ },
+ {
+  "ep": 21,
+  "obj": "water_pitcher",
+  "gt_1cm": 107.57809070183212,
+  "gt_2cm": 105.78723169383252,
+  "perc_lag_1cm": -0.13,
+  "perc_lag_2cm": -0.32,
+  "pre_lag_1cm": -0.13,
+  "pre_lag_2cm": -0.32,
+  "ref_lag_1cm": 0.12,
+  "ref_lag_2cm": 0.19
+ },
+ {
+  "ep": 22,
+  "obj": "blue_cup",
+  "gt_1cm": 118.55577158588885,
+  "gt_2cm": 113.90624586422213,
+  "perc_lag_1cm": 1.22,
+  "perc_lag_2cm": 1.46
+ },
+ {
+  "ep": 22,
+  "obj": "water_pitcher",
+  "gt_1cm": 110.57852759806283,
+  "gt_2cm": 100.92734991521581,
+  "perc_lag_1cm": 0.43,
+  "perc_lag_2cm": 0.74
+ },
+ {
+  "ep": 24,
+  "obj": "wooden_piece_1",
+  "gt_1cm": 131.74458402641736,
+  "gt_2cm": 129.01088501149073,
+  "perc_lag_1cm": 29.31,
+  "perc_lag_2cm": 0.15,
+  "pre_lag_1cm": 29.31,
+  "pre_lag_2cm": 0.15,
+  "ref_lag_1cm": 29.31,
+  "ref_lag_2cm": 0.15
+ },
+ {
+  "ep": 24,
+  "obj": "wooden_piece_2",
+  "gt_1cm": 213.77580540913942,
+  "gt_2cm": 210.98820455961166,
+  "perc_lag_1cm": 2.38,
+  "perc_lag_2cm": 0.73,
+  "pre_lag_1cm": 2.38,
+  "pre_lag_2cm": 0.73,
+  "ref_lag_1cm": 2.38,
+  "ref_lag_2cm": 0.73
+ },
+ {
+  "ep": 26,
+  "obj": "white_pot",
+  "gt_1cm": 94.35501321281203,
+  "gt_2cm": 89.4206944336134,
+  "perc_lag_1cm": 1.6,
+  "perc_lag_2cm": 1.26,
+  "pre_lag_1cm": 1.6,
+  "pre_lag_2cm": 1.26,
+  "ref_lag_1cm": -4.11,
+  "ref_lag_2cm": -4.07
+ },
+ {
+  "ep": 27,
+  "obj": "white_pot",
+  "gt_1cm": 188.6679209964406,
+  "gt_2cm": 180.73088427270773,
+  "perc_lag_1cm": 4.19,
+  "perc_lag_2cm": 2.23,
+  "pre_lag_1cm": 4.19,
+  "pre_lag_2cm": 2.23,
+  "ref_lag_1cm": 4.19,
+  "ref_lag_2cm": 2.23
+ },
+ {
+  "ep": 31,
+  "obj": "mini_sweeper",
+  "gt_1cm": 232.03542668460014,
+  "gt_2cm": 226.46128056258135,
+  "perc_lag_1cm": 33.11,
+  "perc_lag_2cm": 1.35,
+  "pre_lag_1cm": 33.11,
+  "pre_lag_2cm": 1.35,
+  "ref_lag_1cm": 33.18,
+  "ref_lag_2cm": 1.33
+ },
+ {
+  "ep": 39,
+  "obj": "mini_dust_pan",
+  "gt_1cm": 268.11210716955,
+  "gt_2cm": 264.6446678956194,
+  "perc_lag_1cm": 1.57,
+  "perc_lag_2cm": 1.52,
+  "pre_lag_1cm": 1.57,
+  "pre_lag_2cm": 1.52,
+  "ref_lag_1cm": -2.53,
+  "ref_lag_2cm": -0.81
+ },
+ {
+  "ep": 40,
+  "obj": "mini_dust_pan",
+  "gt_1cm": 202.73744966516597,
+  "gt_2cm": 198.58806622897467,
+  "perc_lag_1cm": 1.02,
+  "perc_lag_2cm": 0.55
+ },
+ {
+  "ep": 41,
+  "obj": "white_pot",
+  "gt_1cm": 232.53022032969966,
+  "gt_2cm": 228.07073572813968,
+  "perc_lag_1cm": -1.59,
+  "perc_lag_2cm": -0.46
+ },
+ {
+  "ep": 42,
+  "obj": "white_pot",
+  "gt_1cm": 204.181058292668,
+  "gt_2cm": 199.87461304499044,
+  "perc_lag_1cm": 2.6,
+  "perc_lag_2cm": 1.46
+ },
+ {
+  "ep": 43,
+  "obj": "white_pot",
+  "gt_1cm": 267.2650266535333,
+  "gt_2cm": 251.079375107759,
+  "perc_lag_1cm": 1.26,
+  "perc_lag_2cm": 1.18
+ },
+ {
+  "ep": 44,
+  "obj": "white_pot",
+  "gt_1cm": 178.25787514989298,
+  "gt_2cm": 170.7442895374428,
+  "perc_lag_1cm": -2.89,
+  "perc_lag_2cm": -1.12
+ },
+ {
+  "ep": 45,
+  "obj": "white_pot",
+  "gt_1cm": 234.5675926635621,
+  "gt_2cm": 230.48339373121473,
+  "perc_lag_1cm": -0.82,
+  "perc_lag_2cm": -0.49
+ }
+]

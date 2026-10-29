@@ -1,0 +1,11 @@
+{
+ "S_compared": 733,
+ "S_equal_own_value": 664,
+ "S_equal_one_of_rep": 69,
+ "S_mismatch": 0,
+ "S_mismatch_examples": [],
+ "T_compared_same_meshes": 216,
+ "T_equal": 216,
+ "T_mismatch": [],
+ "T_box_scored_with_other_meshes": 134
+}

@@ -1,0 +1,65 @@
+##### ep2 pot left 36-233
+T1 handle-end pinch (thumb top / index under at -22 cm)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 198/198 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 198/198 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 198/198 frames
+T2 medium wrap: 4 fingers under+side at -13..-19, palm side, thumb + palm heel on top
+    mu 0.5: max normal per contact   5.64 N, total 41.73 N, infeasible 0/198 frames
+    mu 0.71: max normal per contact   4.85 N, total 41.49 N, infeasible 0/198 frames
+    mu 1.0: max normal per contact   3.98 N, total 41.65 N, infeasible 0/198 frames
+T3 wrap far out (-19..-25 only, the human thumb zone)
+    mu 0.5: max normal per contact  13.29 N, total 88.78 N, infeasible 0/198 frames
+    mu 0.71: max normal per contact  11.30 N, total 80.02 N, infeasible 0/198 frames
+    mu 1.0: max normal per contact   9.55 N, total 64.74 N, infeasible 0/198 frames
+##### ep26 pot right 36-118 (flip 180 deg)
+T1 handle-end pinch (thumb top / index under at -22 cm)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 83/83 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 83/83 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 83/83 frames
+T2 medium wrap: 4 fingers under+side at -13..-19, palm side, thumb + palm heel on top
+    mu 0.5: max normal per contact  10.21 N, total 70.05 N, infeasible 0/83 frames
+    mu 0.71: max normal per contact   7.97 N, total 60.6 N, infeasible 0/83 frames
+    mu 1.0: max normal per contact   6.09 N, total 50.34 N, infeasible 0/83 frames
+T3 wrap far out (-19..-25 only, the human thumb zone)
+    mu 0.5: max normal per contact  21.22 N, total 100.62 N, infeasible 0/83 frames
+    mu 0.71: max normal per contact  17.31 N, total 98.41 N, infeasible 0/83 frames
+    mu 1.0: max normal per contact  13.06 N, total 89.74 N, infeasible 0/83 frames
+##### ep2 lid right 45-135
+L1 strap side pinch: thumb one side, index + middle other side, 2.4 cm apart
+    mu 0.5: max normal per contact  11.99 N, total 23.64 N, infeasible 0/91 frames
+    mu 0.71: max normal per contact   8.55 N, total 16.75 N, infeasible 0/91 frames
+    mu 1.0: max normal per contact   6.17 N, total 11.99 N, infeasible 0/91 frames
+L2 hook under strap (index+middle) + thumb on top
+    mu 0.5: max normal per contact   3.17 N, total 9.3 N, infeasible 0/91 frames
+    mu 0.71: max normal per contact   2.52 N, total 11.38 N, infeasible 0/91 frames
+    mu 1.0: max normal per contact   1.94 N, total 8.53 N, infeasible 0/91 frames
+L3 rim pinch at one side (thumb top / two fingers under rim, 8 cm from COM)
+    mu 0.5: max normal per contact  45.70 N, total 96.22 N, infeasible 0/91 frames
+    mu 0.71: max normal per contact  33.50 N, total 71.82 N, infeasible 0/91 frames
+    mu 1.0: max normal per contact  24.50 N, total 53.83 N, infeasible 0/91 frames
+##### ep2 lid right 234-303
+L1 strap side pinch: thumb one side, index + middle other side, 2.4 cm apart
+    mu 0.5: max normal per contact  15.22 N, total 29.76 N, infeasible 0/70 frames
+    mu 0.71: max normal per contact  10.92 N, total 21.16 N, infeasible 0/70 frames
+    mu 1.0: max normal per contact   7.95 N, total 15.22 N, infeasible 0/70 frames
+L2 hook under strap (index+middle) + thumb on top
+    mu 0.5: max normal per contact   4.02 N, total 18.66 N, infeasible 0/70 frames
+    mu 0.71: max normal per contact   3.03 N, total 12.72 N, infeasible 0/70 frames
+    mu 1.0: max normal per contact   2.34 N, total 11.09 N, infeasible 0/70 frames
+L3 rim pinch at one side (thumb top / two fingers under rim, 8 cm from COM)
+    mu 0.5: max normal per contact  47.62 N, total 100.37 N, infeasible 0/70 frames
+    mu 0.71: max normal per contact  35.01 N, total 75.17 N, infeasible 0/70 frames
+    mu 1.0: max normal per contact  25.68 N, total 56.5 N, infeasible 0/70 frames
+##### ep21 pitcher right 13-134
+W1 handle wrap (power, 3 stations x 4 sides, radius 2 cm)
+    mu 0.5: max normal per contact   5.31 N, total 51.02 N, infeasible 0/122 frames
+    mu 0.71: max normal per contact   4.19 N, total 42.38 N, infeasible 0/122 frames
+    mu 1.0: max normal per contact   3.27 N, total 32.62 N, infeasible 0/122 frames
+W2 handle hook (fingers on one inner side only, no thumb)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 122/122 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 122/122 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 122/122 frames
+W3 handle pinch, one station (thumb vs index)
+    mu 0.5: max normal per contact   0.00 N, total None N, infeasible 122/122 frames
+    mu 0.71: max normal per contact   0.00 N, total None N, infeasible 122/122 frames
+    mu 1.0: max normal per contact   0.00 N, total None N, infeasible 122/122 frames

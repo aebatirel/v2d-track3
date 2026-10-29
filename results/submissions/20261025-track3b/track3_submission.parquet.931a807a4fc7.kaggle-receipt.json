@@ -1,0 +1,52 @@
+{
+  "track": "track_3",
+  "file": "/home/user/v2d-track3/results/submissions/20261025-track3b/track3_submission.parquet",
+  "message": "25 Oct: eval 30 detection fix + seed-43 picks (commit 46b8389)",
+  "submissions": {
+    "add_auc": {
+      "slug": "v2d-challenge-track3-auc",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3b/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - AUC",
+      "ref": 57612195,
+      "public_score": "0.58252",
+      "error": ""
+    },
+    "spider_sr": {
+      "slug": "v2d-challenge-track3-sp-sr",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3b/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - SP-SR",
+      "ref": 57612196,
+      "public_score": "0.50000",
+      "error": ""
+    },
+    "maniptrans_sr": {
+      "slug": "v2d-challenge-track3-mp-sr",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3b/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MP-SR",
+      "ref": 57612198,
+      "public_score": "0.40000",
+      "error": ""
+    },
+    "rpe_cm": {
+      "slug": "v2d-challenge-track3-rpe",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3b/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - RPE (cm)",
+      "ref": 57612199,
+      "public_score": "8.81997",
+      "error": ""
+    },
+    "mppe_cm": {
+      "slug": "v2d-challenge-track3-mppe",
+      "state": "COMPLETE",
+      "file": "/home/user/v2d-track3/results/submissions/20261025-track3b/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MPPE (cm)",
+      "ref": 57612202,
+      "public_score": "6.69321",
+      "error": ""
+    }
+  }
+}

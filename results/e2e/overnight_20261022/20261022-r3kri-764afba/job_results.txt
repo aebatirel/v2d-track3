@@ -1,0 +1,5 @@
+[2026-10-22T00:18:35Z] control ep12: registered AUC 0.7566 SP 1.0 MP 0.0
+[2026-10-22T00:18:39Z] control ep27: registered AUC 0.9562 SP 1.0 MP 1.0
+[2026-10-22T02:07:49Z] ab ep24 mcskri s42: pipeline rc=0 [00:19:51] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":193,"optimised":235,"pen_p95_mm_before":23.7,"pen_p95_mm_after":3.5,"tip_to_target_mm_median":5.8,"tip_to_target_mm_p90":21.7,"frames_rigidly_attached":"66/67"},"right":{"tip_site_depth_mm":[1.2,1.7,1.7, [02:07:04] qa_policy: {"kind":"policy","ep":24,"sim_vs_ref":0.3217,"floor_vs_ref":0.2349,"verdict":"weak"} 
+[2026-10-22T02:08:44Z] ab ep24 mcskri-s42 (policy_200007680.safetensors): n 6 sim_vs_ref {'mean': 0.3226, 'std': 0.0065, 'min': 0.3177, 'max': 0.3361} registered AUC {'mean': 0.3117, 'std': 0.0029, 'min': 0.3088, 'max': 0.3173}
+
