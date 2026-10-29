@@ -14,7 +14,11 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
   - this session is the only GPU launcher tonight; the main-branch session (blocked on the top-up) stays paused;
   - the mesh session (`bold-albattani`) is CPU-only;
   - spend ledger: `ledger/spend.jsonl` in the HF store.
-- **Cap tonight: $60.** Keep $40 for after the owner reviews.
+- **Budget split** (owner, ~21:45 UTC: "give mesh session vast credits"):
+  - this session ≤ $45;
+  - mesh session (bold-albattani, session_01W8Softjo2xx7o6ofSiheuQ) ≤ $25, informed by message with the ledger
+    protocol;
+  - reserve ≥ $30 for the owner's review.
 - **Plan, in priority order:**
   1. H5: 10 more evaluations of all 20 packed checkpoints.
   2. Fixes for the verified reference defects, validated on public twins against GT (CPU), then retraining.

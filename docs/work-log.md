@@ -4580,3 +4580,7 @@ Advice given:
     - (c) A re-seed or retrain candidate has a mean ≤ packed − 0.05 and sd ≥ 0.08.
     - (d) No best-of-N draw is ever packed. Packs take a fresh draw of the checkpoint chosen by its mean.
     - (e) The second final-pick rule stays the owner's decision.
+- ~21:45 UTC: owner: give the mesh session Vast credits. Ledger allocation: this session ≤ $45, mesh session ≤ $25,
+  reserve ≥ $30. Message sent to the mesh session (session_01W8Softjo2xx7o6ofSiheuQ) with the owner's words, the ledger
+  protocol (`mesh-` run ids, planned/actual lines) and where meshes help AUC (collision copies for evals 14/28/30/1/10,
+  stability gate before AUC use).
