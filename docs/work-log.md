@@ -4714,3 +4714,14 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   - Instance 58312542, RTX PRO 6000 WS, Utah, $1.511/h all-in. All 20 eval episodes; self-destroys at the end.
   - Outputs: `cache/depth/eval/ep*/` and `runs/mesh-20261029-evdepth-92f3d86/results/evalperc/`.
 - **Batch 2 (generative probe):** to be prepared next. Mesh-session budget is ≤ $25 in total (relayed allocation).
+- ~22:05 UTC **Batch 2 (generative probe)** handed to a background agent under hard rules:
+  - $12 cap, one box at a time;
+  - A100/H100 class (the compiled extensions may not support Blackwell sm_120);
+  - bounded idle job driven through `ops/vast.sh exec`, destroyed on finish or block;
+  - ledger `planned`/`actual` lines with `mesh-*` run ids;
+  - generation inputs limited to our crops, poses, calib and points; no scan;
+  - scan scoring once per mesh, only after a frozen sha256 manifest, counted and diagnostic only.
+
+  Models in priority order: Pixal3D multi-view (posed, our object frame), TRELLIS.2, TripoSG, Hunyuan3D-2.1. SAM 3D
+  is skipped: its weights still return HTTP 403 (owner action: request access on HF and let the token read gated
+  repos).
