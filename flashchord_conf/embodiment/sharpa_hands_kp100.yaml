@@ -1,0 +1,15 @@
+# Arm D (recipe test, 2026-10-29): standard learner with the wrist servo at kp 100 (note 26 lever 1, arm A1): translation
+# kp 100 / kd 12 / 45 N (same damping ratio as the default 25 / 6), ball wrist kd 12. Train with
+# "embodiment=sharpa_hands_kp100 action.wrist_kp=100.0 action.wrist_tau_max=100.0": the ball's spring gain and torque
+# clamp live in the action config (the kp here is unused in effort mode); at the default tau_max 45 a k-100 ball clips at
+# 0.45 rad. The ball torque goes to qfrc_applied (Newton 1.2.0), so effort_limit 45 bounds only actuator-routed gravity
+# compensation on the ball, not the spring torque. All five entries are listed (the dict replaces the default).
+_target_: flash_chord.embodiments.sharpa_hands.SharpaHands
+config:
+  _target_: flash_chord.embodiments.sharpa_hands.SharpaHandsConfig
+  joint_overrides:
+    "wrist_[xyz]$": {kp: 100.0, kd: 12.0, effort_limit: 45.0}
+    "right_wrist_y": {default_pos: 0.25}
+    "left_wrist_y": {default_pos: -0.25}
+    "wrist_z$": {default_pos: 0.5}
+    "wrist_rotvec$": {mode: effort, kp: 100.0, kd: 12.0, effort_limit: 45.0}

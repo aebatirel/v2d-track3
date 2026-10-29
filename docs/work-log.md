@@ -4594,3 +4594,19 @@ Advice given:
   - **Ledger bug:** `ops/ledger.py` swallowed a failed read and overwrote the file, erasing two lines (budget $100,
     H5 planned). Fixed in 8be9e27: abort on read errors and append with `parent_commit` plus retry. Lines restored;
     the mesh session was told to re-fetch.
+- ~22:40 UTC **recipe arms A/B/C pre-registered (before any result).**
+  - Jobs: `ops/jobs/recipe_arms_launch.sh` (grasp-lock fine-tune, REUSE_REF on the stored references): ep12 public
+    (seed 42), eval 32 (seed 46), eval 33 (seed 43). NREP 5 evaluations each.
+    - A = control (packed recipe);
+    - B = CURR_SCALE 0.4;
+    - C = ball-wrist kd 2 (`flashchord_conf/embodiment/sharpa_hands_mid_bd2.yaml`; the duplicate embodiment override
+      was checked locally: Hydra 1.3.2's CLI takes the last value). C also runs zero-action replays under kd 6 and
+      kd 2.
+  - Choice rules:
+    - **B or C vs A, signal:** ep12 ≥ A − 0.03 (mocap AUC), and evals 32 and 33 each ≥ A + 0.03 (5-eval mean
+      sim_vs_ref) with sd ≤ A's sd + 0.02.
+    - **Falsified:** ≤ A − 0.03 on 2 of 3 episodes.
+    - A signal only buys a second seed, not adoption.
+    - C is confounded on any episode where kd 2 lowers the zero-action sim_vs_ref by > 0.05.
+  - Arm D (kp 100 standard learner) waits for budget. `tools/ckpt_meta.py` confirms each checkpoint's stored
+    embodiment, curriculum and assist.

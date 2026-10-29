@@ -1,0 +1,16 @@
+# Arm C (recipe test, 2026-10-29): sharpa_hands_mid (kp 400 wrist translation) with the ball-wrist passive damping
+# lowered 6 -> 2 N m s/rad (docs/research/notes/26-carry-control-force.md lever 5: at the spring gain 25 the default
+# kd 6 is over-damped, zeta ~ 3.8-5.5, lag d/k 0.24 s; kd 2 gives zeta ~ 1.3-1.8, lag 0.08 s).
+# Only the wrist_rotvec$ kd differs from sharpa_hands_mid.yaml. The ball spring gain and torque clamp are NOT set here:
+# they are action.wrist_kp (25) and action.wrist_tau_max (45) (runtime/control.py, configs/action/residual_hand_pose.yaml);
+# the kp in the wrist_rotvec$ entry is unused in effort mode (embodiments/sharpa_hands.py: target_ke = 0, kd -> passive
+# damping). The dict replaces the default one, so every entry is repeated.
+_target_: flash_chord.embodiments.sharpa_hands.SharpaHands
+config:
+  _target_: flash_chord.embodiments.sharpa_hands.SharpaHandsConfig
+  joint_overrides:
+    "wrist_[xyz]$": {kp: 400.0, kd: 20.0, effort_limit: 150.0}
+    "right_wrist_y": {default_pos: 0.25}
+    "left_wrist_y": {default_pos: -0.25}
+    "wrist_z$": {default_pos: 0.5}
+    "wrist_rotvec$": {mode: effort, kp: 25.0, kd: 2.0, effort_limit: 45.0}
