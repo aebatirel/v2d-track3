@@ -4725,3 +4725,8 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   Models in priority order: Pixal3D multi-view (posed, our object frame), TRELLIS.2, TripoSG, Hunyuan3D-2.1. SAM 3D
   is skipped: its weights still return HTTP 403 (owner action: request access on HF and let the token read gated
   repos).
+- ~22:15 UTC owner: "for sam I did get the access".
+  - Checked: the token has `canReadGatedRepos: true`.
+  - The download still returns 403: "Your request to access model facebook/sam-3d-objects is awaiting a review from
+    the repo authors" (gated: manual).
+  - Told the probe agent to re-check before finishing and to add SAM 3D only if it returns 200 and the $12 cap allows.
