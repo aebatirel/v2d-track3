@@ -4743,3 +4743,10 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
 - Pixal3D-MV views (`gen/mv_views.py`, local CPU): first pot test chose frames with hands on the pot (MediaPipe
   misses holding hands), so view frames are now restricted to at-rest frames (track speed < 1.5 mm/frame), as in
   crops.py. At rest the egocentric viewpoints span little: ep41 pot has 22 usable frames, all within 20 deg.
+- ~22:25 UTC focused-pascal session: the old `ledger.py` treated a failed read as an empty ledger and one write erased
+  two of its lines (restored). Switched to the fixed helper (commit 8be9e27 on its branch: abort on read errors,
+  `parent_commit` append) at scratchpad `ledger.py`, which is used by me and the probe agent.
+  - Boxes now:
+    - evdepth 58312542 (at eval ep6);
+    - gen 58314388 (H100 NVL interruptible, $0.898/h, run `mesh-20261029-gen-f3fbeb0`, planned $6, cap $12);
+    - the other session's H5 box.

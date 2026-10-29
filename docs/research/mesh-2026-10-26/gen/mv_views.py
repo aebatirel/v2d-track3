@@ -75,6 +75,28 @@ def grabcut_mask(img, ids):
     return mask, sil
 
 
+def skin(img):
+    """Skin-coloured pixels (YCrCb box rule); used only for objects whose own colour is not skin-like."""
+    ycc = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
+    return ((ycc[:, :, 1] >= 135) & (ycc[:, :, 1] <= 175) & (ycc[:, :, 2] >= 85) & (ycc[:, :, 2] <= 130)
+            & (ycc[:, :, 0] > 60)).astype(np.uint8)
+
+
+class Reader:
+    """Sequential colour-frame reader (seeking an mp4 per frame is slow)."""
+    def __init__(self, path):
+        self.cap = cv2.VideoCapture(path); self.i = -1; self.img = None
+
+    def get(self, j):
+        if j < self.i:
+            self.cap.set(cv2.CAP_PROP_POS_FRAMES, j); self.i = j - 1
+        while self.i < j:
+            ok, self.img = self.cap.read(); self.i += 1
+            if not ok:
+                return None
+        return self.img
+
+
 def virtual_cam(T_a_obj, c, verts, size, span):
     """Rotation R_v (colour cam -> virtual cam), intrinsics K_v and FOV for a recentred pinhole view of the object."""
     Xc = T_a_obj[:3, :3] @ c + T_a_obj[:3, 3]
@@ -100,6 +122,12 @@ def main():
     ap.add_argument('--span', type=float, default=0.75, help='object half-extent / image half-size (training ~0.75)')
     ap.add_argument('--fill', type=float, default=0.46, help='abs max of the mesh in the generation cube')
     ap.add_argument('--margin', type=int, default=20)
+    ap.add_argument('--held_speed_mm', type=float, default=0.0,
+                    help='also accept moving (held) frames up to this speed if skin covers < --skin_max of our '
+                         'eroded silhouette (needs --skin 1); 0 = at-rest frames only')
+    ap.add_argument('--skin', type=int, default=0, help='1: object colour is not skin-like; skin pixels are '
+                                                        'removed from masks and gate held frames')
+    ap.add_argument('--skin_max', type=float, default=0.01)
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     Ka, Da, T_a_rect = geometry(a.calib)
@@ -118,6 +146,7 @@ def main():
     cap = cv2.VideoCapture(a.video)
     W, H = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     nfa = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    rd = Reader(a.video)
     cands = []
     for k in range(0, len(T_o), a.step):
         if k + a_off >= nfa:
@@ -141,9 +170,18 @@ def main():
         R, t = Ts[0][:3, :3], Ts[0][:3, 3]
         o = -R.T @ t                                               # colour camera centre, object frame
         u = (o - c) / np.linalg.norm(o - c)
-        ok = inside and occl < a.occl and nhand == 0 and speed[k] < a.speed_mm * 1e-3
+        base = inside and occl < a.occl and nhand == 0
+        rest = speed[k] < a.speed_mm * 1e-3
+        skin_frac = None
+        if a.skin and base and (rest or speed[k] < a.held_speed_mm * 1e-3):
+            img = rd.get(k + a_off)
+            core = cv2.erode(vis.astype(np.uint8), np.ones((15, 15), np.uint8)) > 0
+            skin_frac = float(skin(img)[core].mean()) if img is not None and core.any() else 1.0
+        held_ok = (not rest) and skin_frac is not None and skin_frac < a.skin_max
+        ok = base and ((rest and (skin_frac is None or skin_frac < a.skin_max)) or held_ok)
         cands.append(dict(k=k, vis=int(vis.sum()), occl=round(occl, 4), inside=bool(inside), hand_joints=nhand,
-                          speed_mm=round(float(speed[k]) * 1e3, 2), ok=bool(ok), u=u.round(5).tolist()))
+                          speed_mm=round(float(speed[k]) * 1e3, 2), rest=bool(rest),
+                          skin=None if skin_frac is None else round(skin_frac, 4), ok=bool(ok), u=u.round(5).tolist()))
     good = [cd for cd in cands if cd['ok']]
     if not good:
         raise SystemExit(f'no usable frame for {a.obj}')
@@ -172,14 +210,18 @@ def main():
         k = cd['k']
         Ts = [T_a_rect @ P['cam_T_' + n][k] for n in order]
         R_v, K_v, fov, dist = virtual_cam(Ts[0], c, verts, a.size, a.span)
-        cap.set(cv2.CAP_PROP_POS_FRAMES, k + a_off); okr, img = cap.read()
-        if not okr:
+        img = rd.get(k + a_off)
+        if img is None:
             raise SystemExit(f'cannot read colour frame {k + a_off}')
         m1, m2 = cv2.initUndistortRectifyMap(Ka, Da, R_v, K_v, (a.size, a.size), cv2.CV_32FC1)
         vimg = cv2.remap(img, m1, m2, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)
         Tv = [np.block([[R_v @ T[:3, :3], (R_v @ T[:3, 3])[:, None]], [np.zeros((1, 3)), np.ones((1, 1))]]) for T in Ts]
         ids = zbuf_ids(pts, Tv, K_v, None, a.size, a.size, scale=1.0)
         mask, sil = grabcut_mask(vimg, ids)
+        if a.skin:                                                 # hand pixels never count as object
+            sk = cv2.dilate(skin(vimg), np.ones((7, 7), np.uint8))
+            cd['skin_removed_px'] = int((mask & sk).sum())
+            mask = mask & (1 - sk)
         rgba = np.dstack([vimg[:, :, ::-1], mask * 255]).astype(np.uint8)
         fn = f'view{i:02d}_k{k}.png'
         cv2.imwrite(os.path.join(a.out, fn), cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGRA))

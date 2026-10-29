@@ -52,10 +52,12 @@ clone Tencent-Hunyuan/Hunyuan3D-2.1 Hunyuan3D-2.1 82920d643c0dc2f7bfd7255f45f62d
 
 # ---- env A: Pixal3D + TRELLIS.2 ----
 $UV venv -q -p $PY /content/genv && $UV pip install -q -p /content/genv/bin/python $TORCH && step "A-TORCH-OK" || step "A-TORCH-FAIL"
-$UV pip install -q -p /content/genv/bin/python pillow==12.0.0 imageio==2.37.2 imageio-ffmpeg==0.6.0 tqdm==4.67.1 \
+$UV pip install -q -p /content/genv/bin/python setuptools wheel && $UV pip install -q -p /content/genv/bin/python pillow==12.0.0 imageio==2.37.2 imageio-ffmpeg==0.6.0 tqdm==4.67.1 \
   easydict==1.13 opencv-python-headless==4.12.0.88 trimesh==4.10.1 transformers==4.57.3 zstandard==0.25.0 \
   kornia==0.8.2 timm==1.0.22 diffusers==0.37.1 accelerate==1.13.0 plyfile==1.1.3 safetensors scipy ninja einops \
-  "huggingface_hub<1.0" git+https://github.com/microsoft/MoGe.git && step "A-BASIC-OK" || step "A-BASIC-FAIL"
+  "huggingface_hub<1.0" && step "A-BASIC-OK" || step "A-BASIC-FAIL"
+# MoGe (single-view camera estimation, unused by the multi-view path) needs trimesh>=4.11: no deps, after the pins
+$UV pip install -q -p /content/genv/bin/python --no-deps git+https://github.com/microsoft/MoGe.git && step "A-MOGE-OK" || step "A-MOGE-FAIL"
 $UV pip install -q -p /content/genv/bin/python --no-deps $W2/natten-0.21.0+torch2.6cu124-cp310-cp310-linux_x86_64.whl \
   $W1/flash_attn_3-3.0.0b1-cp39-abi3-linux_x86_64.whl $W1/cumesh-0.0.1-cp310-cp310-linux_x86_64.whl \
   $W1/flex_gemm-0.0.1-cp310-cp310-linux_x86_64.whl $W1/o_voxel-0.0.1-cp310-cp310-linux_x86_64.whl \
@@ -66,7 +68,7 @@ $UV pip install -q -p /content/genv/bin/python --no-deps $W2/natten-0.21.0+torch
 
 # ---- env B: TripoSG + Hunyuan3D-2.1 shape ----
 $UV venv -q -p $PY /content/genv2 && $UV pip install -q -p /content/genv2/bin/python $TORCH && step "B-TORCH-OK" || step "B-TORCH-FAIL"
-$UV pip install -q -p /content/genv2/bin/python diffusers transformers einops "huggingface_hub<1.0" opencv-python-headless \
+$UV pip install -q -p /content/genv2/bin/python setuptools wheel && $UV pip install -q -p /content/genv2/bin/python diffusers transformers einops "huggingface_hub<1.0" opencv-python-headless \
   trimesh omegaconf scikit-image "numpy<2" peft jaxtyping typeguard pymeshlab pyyaml accelerate safetensors tqdm \
   pygltflib scipy ninja pybind11 fast_simplification && step "B-BASIC-OK" || step "B-BASIC-FAIL"
 $UV pip install -q -p /content/genv2/bin/python --no-build-isolation diso && step "B-DISO-OK" || step "B-DISO-FAIL (TripoSG falls back to the skimage extractor)"
