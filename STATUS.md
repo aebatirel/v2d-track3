@@ -2,6 +2,14 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-29 ~23:15 UTC: H5 done. Pack 6 was lucky; true expected ≈ 0.78 on the leaderboard
+- **10 fresh draws per packed checkpoint:** mean of means **0.8755** vs packed 0.9164. A re-run of today's policies
+  ≈ 0.78 AUC on the leaderboard (estimate, transfer 0.74–0.78). Summary: `docs/analysis/h5-20261029/h5_summary.json`.
+- **High-variance episodes:** 1, 14, 25, 30, 33. Re-seed/retrain candidates by the pre-registered rule: **1, 14, 30,
+  33**. Three of them (1, 14, 30) have reference collision causes, so placement collision copies come next.
+- **Running:** recipe arms A/B/C (control, CURR_SCALE 0.4, ball kd 2) on ep12 / eval 32 / eval 33; refine-stage
+  build (CPU). Spend so far: $2.45 actual + $13.50 planned of this session's $45.
+
 ## 2026-10-29 ~21:30 UTC: owner topped up $100 (credit $103.51); this session owns GPU launches overnight
 - **Owner's instructions:**
   - full autonomy overnight to improve the algorithm and pipeline;

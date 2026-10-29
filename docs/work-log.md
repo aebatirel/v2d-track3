@@ -4619,3 +4619,20 @@ Advice given:
   `pipeline/refine.py` (S1 support-gated snap, S2 0.545-frame advance, S3 tilt-to-plane anchor, S4 pre-contact hold),
   then ablations against the plan's pre-registered gates and an adversarial verification. Plan and maps: session
   scratchpad `map/` (copied into the repo with the results).
+- 23:13 UTC **H5 result** (`docs/analysis/h5-20261029/h5_summary.json`; box 58310945 self-destroyed 22:52; actual $2.45).
+  10 fresh official draws per pack-6 checkpoint, sim_vs_ref:
+  - **mean of means 0.8755 vs packed 0.9164** (−0.041). (a) The "pack 6 is lucky" hypothesis is NOT falsified
+    (threshold 0.905).
+  - At the measured transfer of 0.74–0.78, a re-run of the current policies would score **≈ 0.782–0.784** on the
+    leaderboard, not 0.814.
+  - (b) High-variance (sd ≥ 0.08): **1 (0.822 ± 0.239), 14 (0.615 ± 0.199), 25 (0.850 ± 0.099), 30 (0.798 ± 0.255),
+    33 (0.854 ± 0.137)**. Near the threshold: 16 (0.813 ± 0.077), 3 (0.904 ± 0.072), 32 (0.838 ± 0.068).
+  - (c) Re-seed or retrain candidates: **1, 14, 30, 33**.
+  - Stable and near ceiling: 5, 6, 8, 15, 19, 20, 28, 35–38. Eval 10 stays 0.450 ± 0.007.
+  - Reading: three of the four candidates have a known collision cause in their references (main-branch forensics):
+    - eval 14: the reference pushes the cup into the rack (72 cm³);
+    - eval 30: the sweeper starts inside the rack mesh;
+    - eval 1: the lid sits inside the pot's hulls (51 cm³).
+    So placement collision copies (main's planned "placement carves") target exactly the episodes where the score is
+    lucky. Next: build and CPU-test them, then retrain with ≥ 2 seeds and choose by multi-draw means (rule (d): never
+    a best draw).
