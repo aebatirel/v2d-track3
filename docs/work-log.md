@@ -4566,3 +4566,17 @@ Advice given:
 - Fold finished meshes in later: pack swaps at $0 after the stability gate; simulator collision copies only for the
   placement episodes (evals 14, 28, 30, 1) at their final retrain.
 - Needs: a top-up ($20 minimum, $75 staged), the owner's go-ahead, and one session owning GPU launches.
+
+### 29 Oct 2026 (night; session focused-pascal owns GPU launches, owner asleep; nothing goes to Kaggle)
+- **Spend ledger:** `ledger/spend.jsonl` in the HF store, via `ops/ledger.py`. Budget line: owner top-up $100
+  (credit $103.51); tonight's cap $60.
+- **H5 pre-registered (before any result).**
+  - Job `ops/jobs/h5_reeval.sh` (N=10). It rebuilds pack 6's exact environment from pack 5's logged RUNS / PICK /
+    ASSET_PIECES (EP_LIB 8 only), with no KEEP_RESULTS. Then it runs 10 fresh official evaluations per checkpoint,
+    each scored sim_vs_ref (qa.py, no ground truth).
+  - Readings, fixed now:
+    - (a) **"Pack 6 is lucky" is falsified if the mean of the 20 episode means is ≥ 0.905** (packed 0.9164 − ~0.01).
+    - (b) An episode is high-variance if sd ≥ 0.08.
+    - (c) A re-seed or retrain candidate has a mean ≤ packed − 0.05 and sd ≥ 0.08.
+    - (d) No best-of-N draw is ever packed. Packs take a fresh draw of the checkpoint chosen by its mean.
+    - (e) The second final-pick rule stays the owner's decision.
