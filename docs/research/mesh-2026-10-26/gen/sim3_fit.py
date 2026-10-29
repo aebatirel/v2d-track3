@@ -39,7 +39,10 @@ def umeyama(src, dst):
 def pca(x):
     c = x.mean(0)
     w, V = np.linalg.eigh(np.cov((x - c).T))
-    return c, V[:, ::-1], np.sqrt(np.maximum(w[::-1], 1e-12))
+    V = V[:, ::-1].copy()
+    if np.linalg.det(V) < 0:                           # proper rotation, so the 24 starts are rotations too
+        V[:, 2] *= -1
+    return c, V, np.sqrt(np.maximum(w[::-1], 1e-12))
 
 
 def fit(M, O, iters=40, keep_o=0.9, keep_m=0.7):
