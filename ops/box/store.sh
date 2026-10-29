@@ -48,7 +48,8 @@ push-run)
   # (2026-10-21: 44 GB of state_ files). KEEP_EVERY 25 -> 10 after the HF PRO upgrade (1 TB; policies are 5 MB).
   # 2026-10-26: also keep every checkpoint that an evaluation result names (the sweep's choice can be an earlier
   # checkpoint: eval 10 carve s42 chose 150M, which was pruned, and the box was gone when the pack needed it)
-  NAMED=$(find /content/results -name '*.json' -exec grep -hoE 'runs/[^"]*/policy_[0-9]+\.safetensors' {} + 2> /dev/null | sort -u)
+  # || true (27 Oct): under set -euo pipefail a grep with no match aborted push-run silently (e10Z pushed nothing)
+  NAMED=$(find /content/results -name '*.json' -exec grep -hoE 'runs/[^"]*/policy_[0-9]+\.safetensors' {} + 2> /dev/null | sort -u || true)
   for r in $S/runs/*/*/; do
     [ -d "$r" ] || continue
     rel=runs/${r#$S/runs/}
