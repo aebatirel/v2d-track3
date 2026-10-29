@@ -356,3 +356,13 @@ embodiment. Other embodiments are welcome, including fixed-base arm-and-hand set
 - Wrist servo gains and ball-wrist damping are embodiment config, so the gate on them is withdrawn (note 26 §F,
   next-steps check addendum). Declare them in the technical report; the FAQ requires reproducible code.
 - The FAQ states no physics rule. Not changing world/simulator physics remains our own integrity line.
+2026-10-29: The owner asked what is needed to test the proposals and whether policy training should wait for better
+meshes. Fetched all branches:
+- main-bsky37 has had no change since 27 Oct 06:25 and no GPU runs. Vast credit $3.51, 0 instances.
+- The mesh engine (bold-albattani) is still in stage 1 (1b relaunched 29 Oct 21:06 after a usage-limit reset).
+Advice given:
+- Do not wait for meshes. Recipe tests (H5 re-evaluation, curriculum end stage, ball damping, kp-100 slice on the
+  standard-learner episodes), spoon perception and reference-bias fixes do not depend on the mesh engine.
+- Fold finished meshes in later: pack swaps at $0 after the stability gate; simulator collision copies only for the
+  placement episodes (evals 14, 28, 30, 1) at their final retrain.
+- Needs: a top-up ($20 minimum, $75 staged), the owner's go-ahead, and one session owning GPU launches.
