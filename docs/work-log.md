@@ -4730,3 +4730,16 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   - The download still returns 403: "Your request to access model facebook/sam-3d-objects is awaiting a review from
     the repo authors" (gated: manual).
   - Told the probe agent to re-check before finishing and to add SAM 3D only if it returns 200 and the $12 cap allows.
+
+### 2026-10-29 ~22:15 UTC: batch 2 (generative probe) box up
+- Code: `docs/research/mesh-2026-10-26/gen/` at f3fbeb0 (box job, setup, drivers for Pixal3D-MV, TRELLIS.2,
+  TripoSG, Hunyuan3D-2.1; all shape only). The Pixal3D HF Space wheels (cumesh, o_voxel) are compiled for
+  compute_90 only (checked with `strings` on the wheels), so the box must be H100-class.
+- Ledger `planned` line `mesh-20261029-gen-f3fbeb0` $6 (cap $12).
+- Launch: `SETUP=none DISK=120 IMAGE=vastai/pytorch:2.7.1-cu128-cuda-12.9-mini-py310-2026-10-23 V2D_COMMIT=f3fbeb0
+  ops/vast.sh create 31183486 mesh-20261029-gen-f3fbeb0 'IDLE_MIN=300 bash docs/research/mesh-2026-10-26/gen/box_job.sh' 0.80`
+  -> instance 58314388, H100 NVL 94 GB, Czechia, interruptible bid $0.80/h GPU ($0.898/h all-in), $37/TB download.
+  Created 22:09 UTC; tunnel up 22:12; `box_setup.sh` started 22:13.
+- Pixal3D-MV views (`gen/mv_views.py`, local CPU): first pot test chose frames with hands on the pot (MediaPipe
+  misses holding hands), so view frames are now restricted to at-rest frames (track speed < 1.5 mm/frame), as in
+  crops.py. At rest the egocentric viewpoints span little: ep41 pot has 22 usable frames, all within 20 deg.
