@@ -18,9 +18,17 @@
    lathe open floor).
 5. Cross-episode [M]: each example program unchanged on the object's other public episodes (cross_*).
 6. scale_all [M]: windows-mode scale test of the lid, pot and rack programs (balls removed, bands relative).
-No scan, *_align file, mocap or parquet pose is opened; obs files go through autokit.io_gt.load_obs.
+7. Stage 1b (s1b_<case>) [M]: each example program on its development episode over the matrix
+   {base, tprior (t_src = prior) variant} x t in {1.5, 2.5, 4.0} mm x balls {free, none} x shell_patch {no, yes},
+   plus a 'legacy cells' run (lathe cell_min_pts = 8, the stage-1 rule) at t = 2.5. Compared GT-free with the
+   stage-1 DSL mesh (scratchpad/auto/stage1/parts-dsl/final): obs fidelity on the episode's own points, symmetric
+   mesh-to-mesh distance, ball count / radii / stems, patch size, kit decode (budget_mesh 4096) area change.
+8. schema / pan (in dsl): every window the code reads is declared; DSL.md's generated block equals the schema; unknown
+   keys rejected; plate_set plane segmentation and keep_holes on the dust pan (ep39); shell_patch smoke.
+No scan, *_align file, mocap or parquet pose is opened; obs files go through autokit.io_gt.load_obs, meshes through
+the io_gt guard (parts.load_mesh_guarded).
 Usage: test_programs.py [--out DIR] [--only lid,pot,cup,rack,scale,scale_all,grid,dsl,cross_pot,cross_lid,
-       cross_cup,cross_rack] [--reuse 1]
+       cross_cup,cross_rack,s1b_lid,s1b_cup,s1b_pot,s1b_rack] [--reuse 1]
 """
 import argparse, json, os, re, subprocess, sys, time
 
@@ -31,9 +39,12 @@ from scipy.spatial import cKDTree
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 from autokit.io_gt import load_obs, obs_path, SCRATCH      # noqa: E402
-from autokit.program import run_program, load_program, jsonable   # noqa: E402
+from autokit.program import run_program, load_program, jsonable, variants, T_GRID   # noqa: E402
+from autokit import parts as PT                             # noqa: E402
 
-OUT = f'{SCRATCH}/auto/stage1/parts-dsl'
+OUT = f'{SCRATCH}/auto/stage1b/parts'
+STAGE1 = f'{SCRATCH}/auto/stage1/parts-dsl/final'          # stage-1 DSL meshes (reference for stage 1b)
+KIT = f'{SCRATCH}/kit/v2d_submission_kit'
 INC = '/home/user/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes'
 LIB = '/home/user/v2d-track3/meshes/library_v3'
 # driver input list: object names appear only here (and in the incumbents' file names)
@@ -82,8 +93,29 @@ def mesh_dist(a, b, n=20000):
                 sym_mean_mm=round(float(np.mean(both)) * 1e3, 3))
 
 
+def load_ref(path):
+    return PT.load_mesh_guarded(path)
+
+
+def budget_check(mesh, tmp):
+    """The mesh as the scorer decodes it (kit budget_mesh to 4096 faces / vertices): area change, watertight,
+    bodies, non-degenerate faces."""
+    if KIT not in sys.path:
+        sys.path.insert(0, KIT)
+    from v2dlb.mesh_budget import budget_mesh
+    mesh.export(tmp)
+    try:
+        v, f = budget_mesh(tmp, 4096, 4096)
+    except Exception as e:                                # report, do not hide
+        return dict(error=repr(e)[:200])
+    d = trimesh.Trimesh(v, f, process=True)
+    d.remove_degenerate_faces() if hasattr(d, 'remove_degenerate_faces') else None
+    return dict(faces=int(len(d.faces)), area_change=round(float(d.area / mesh.area - 1), 4),
+                watertight=bool(d.is_watertight), bodies=int(d.body_count))
+
+
 def compare(mesh, inc_path, P):
-    inc = trimesh.load(inc_path, force='mesh')
+    inc = load_ref(inc_path)
     fd, fi = fidelity(P, mesh), fidelity(P, inc)
     (A1, R1), (A0, R0) = area_rms(mesh), area_rms(inc)
     md = mesh_dist(mesh, inc)
@@ -101,7 +133,7 @@ def run_case(key, out, t=0.0025, reuse=False, tag=''):
     obs = load_obs(path)
     glb = f'{out}/{key}_ep{c["ep"]}{tag}.glb'
     if reuse and os.path.exists(glb) and os.path.exists(glb[:-4] + '.json'):
-        mesh = trimesh.load(glb, force='mesh'); rep = json.load(open(glb[:-4] + '.json'))
+        mesh = load_ref(glb); rep = json.load(open(glb[:-4] + '.json'))
     else:
         t0 = time.time()
         mesh, rep = run_program(load_program(f'{HERE}/programs/{c["program"]}'), obs, t=t, lib=f'{LIB}/{c["obj"]}.glb')
@@ -169,13 +201,12 @@ def test_scale_all(out, f=1.3, keys=('lid', 'pot', 'rack')):
     the ball parts are removed and every residual band is given relative (APP_D at the kit's reference s); the
     robust-loss scale F_SCALE stays absolute (tube_rrect, cone_array). Reported: scaled-back distance to the
     unscaled output; pass <= 0.25 mm median and area within 1 %."""
-    import autokit.parts as PT
-    sref = dict(lid=PT.S_REF_SHEET, pot=PT.S_REF_POLAR, rack=PT.S_REF_TUBE)
     rows = []
     for key in keys:
         c = CASES[key]
         obs = load_obs(c.get('obs') or obs_path(c['obj'], c['ep']))
         P = np.asarray(obs['pts'], np.float64); C = np.asarray(obs['cam'], np.float64)
+        sref = {key: PT.Ctx(obs, t=0.0025).s}           # this episode's own s (GT-free): APP_D as a fraction
         prog = load_program(f'{HERE}/programs/{c["program"]}')
         prog['parts'] = [p for p in prog['parts'] if p['type'] != 'ball']
         for p in prog['parts']:
@@ -266,7 +297,7 @@ def test_dsl(out):
     for bad, err in ((dict(program='x', parts=[dict(name='a', type='nope')]), 'unknown part type'),
                      (dict(program='x', parts=[dict(name='a', type='lathe', assign=dict(rule='nope'))]), 'unknown assignment rule')):
         try:
-            run_program(bad, obs)
+            run_program(bad, obs, t=0.0025)
             rows.append(dict(test='dsl_error', expect=err, ok=False))
         except ValueError as e:
             rows.append(dict(test='dsl_error', expect=err, ok=err in str(e)))
@@ -274,10 +305,47 @@ def test_dsl(out):
     for f in sorted(os.listdir(f'{HERE}/programs')):
         rows.append(dict(test='validate', program=f, problems=validate_program(load_program(f'{HERE}/programs/{f}')),
                          ok=not validate_program(load_program(f'{HERE}/programs/{f}'))))
-    bad = dict(program='x', parts=[dict(name='a', type='lathe'), dict(name='b', type='plate', params=dict(host='c')),
+    bad = dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='height')),
+                                   dict(name='b', type='plate', params=dict(host='c', outline='occupancy')),
                                    dict(name='a', type='ball')])
     pr = validate_program(bad)
     rows.append(dict(test='validate_bad', problems=pr, ok=len(pr) == 2))
+    # stage 1b schema checks: unknown keys, enum values, required windows, 'of' as a string
+    cases = [
+        (dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='height', bogus=1))]), 'unknown parameter'),
+        (dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='height'), assign=dict(rule='all', k=1))]), 'has no field'),
+        (dict(program='x', extra=1, parts=[dict(name='a', type='lathe', params=dict(method='height'))]), 'unknown key'),
+        (dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='height'), colour='red')]), 'unknown key'),
+        (dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='spline'))]), 'not in'),
+        (dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='polar'))]), "required window 'rim_w'"),
+        (dict(program='x', parts=[dict(name='a', type='lathe', params=dict(method='height', dh={'abs': 0.003, 'frac': 0.1}))]), 'window dict'),
+        (dict(program='x', frame=dict(type='support', cel=0.1), parts=[dict(name='a', type='rounded_box')]), "frame: unknown key"),
+    ]
+    for prog, expect in cases:
+        pr = validate_program(prog)
+        rows.append(dict(test='validate_schema', expect=expect, problems=pr, ok=any(expect in e for e in pr)))
+    ok_str = validate_program(dict(program='x', parts=[dict(name='a', type='rounded_box'),
+                                                        dict(name='b', type='ball', params=dict(of='a'),
+                                                             assign=dict(rule='residual', of='a'))]))
+    rows.append(dict(test='validate_of_string', problems=ok_str, ok=not ok_str))
+    # every window / param the code reads is declared in its part type's schema (static), DSL.md block in sync
+    import inspect
+    from autokit.program import schema_markdown
+    reads = {}
+    for name, ptp in PT.PART_TYPES.items():
+        fns = [ptp.fit] + {'lathe': [PT.lathe_polar, PT.lathe_height, PT.axis_search, PT.cell_threshold],
+                           'plate': [PT.fit_plate_bar, PT.plane_outline], 'plate_set': [PT.plane_outline],
+                           'tube_rrect': [PT.tube_fit_once]}.get(name, [])
+        code = '\n'.join(inspect.getsource(f) for f in fns)
+        used = set(re.findall(r"ctx\.[wp]\(spec, '(\w+)'", code)) | set(re.findall(r"\bW\('(\w+)'\)", code)) | \
+            set(re.findall(r"p\.get\('(\w+)'", code))
+        missing = sorted(u for u in used if u not in ptp.schema)
+        reads[name] = missing
+    rows.append(dict(test='schema_covers_code', missing=reads, ok=not any(reads.values())))
+    dsl = open(f'{HERE}/DSL.md').read()
+    blk = dsl[dsl.index('<!-- schema:begin'):dsl.index('<!-- schema:end -->') + len('<!-- schema:end -->')] \
+        if '<!-- schema:begin' in dsl else ''
+    rows.append(dict(test='dsl_md_in_sync', ok=blk == schema_markdown()))
     try:
         run_program(load_program(f'{HERE}/programs/sheet_strap_balls.json'), obs, t=0.0018)
         rows.append(dict(test='t_off_grid', ok=False))
@@ -293,22 +361,35 @@ def test_dsl(out):
         rows.append(dict(test='integrity_grep', file=f, object_names=names, file_access=loads, gt_path_literals=gt_paths,
                          ok=(not names) and (not gt_paths)))
     # smoke runs of the parts not used by the reproductions
+    lidp = load_program(f'{HERE}/programs/sheet_strap_balls.json')
+    SHEET = [p for p in lidp['parts'] if p['name'] == 'sheet'][0]['params']
+    STRAP = {k: v for k, v in [p for p in lidp['parts'] if p['name'] == 'strap'][0]['params'].items() if k != 'host'}
     smoke = [
         ('plate_set', 'wooden_piece_1', 24, dict(program='smoke_plate_set', parts=[
             dict(name='plates', type='plate_set', assign=dict(rule='all'), params=dict(max_plates=2, min_pts=2000))])),
         ('rounded_box', 'wooden_piece_1', 24, dict(program='smoke_box', parts=[
             dict(name='box', type='rounded_box', assign=dict(rule='all'))])),
         ('tsdf_patch', 'white_pot_lid', 2, dict(program='smoke_tsdf', parts=[
-            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all')),
+            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all'), params=SHEET),
             dict(name='rest', type='tsdf_patch', assign=dict(rule='all'), params={'of': ['sheet']})])),
         ('clusters_dir+splat_union', 'white_pot_lid', 2, dict(program='smoke_dir', parts=[
-            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all')),
+            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all'), params=SHEET),
             dict(name='above', type='splat', assign=dict(rule='clusters_dir', of=['sheet'], dir='+axis', min_pts=100),
                  params=dict(combine='union'))])),
         ('strap_no_host', 'white_pot_lid', 2, dict(program='smoke_strap', parts=[
-            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all')),
+            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all'), params=SHEET),
             dict(name='strap', type='strap', assign=dict(rule='largest_cluster_extent', of=['sheet'], min_extent=0.7846,
-                                                          min_pts=100))])),
+                                                          min_pts=100), params=STRAP)])),
+        ('ball_none', 'white_pot_lid', 2, dict(program='smoke_ball_none', parts=[
+            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all'), params=SHEET),
+            dict(name='balls', type='ball', assign=dict(rule='residual', of=['sheet']), params=dict(of=['sheet'], mode='none'))])),
+        ('shell_patch', 'white_pot_lid', 2, dict(program='smoke_patch', parts=[
+            dict(name='sheet', type='sheet_of_revolution', assign=dict(rule='all'), params=SHEET),
+            dict(name='rest', type='shell_patch', assign=dict(rule='residual'))])),
+        ('plate_set_plane_pan', 'mini_dust_pan', 39, dict(program='smoke_pan_planes', parts=[
+            dict(name='plates', type='plate_set', assign=dict(rule='all'), params=dict(max_plates=6, keep_holes=True))])),
+        ('plate_set_cluster_pan', 'mini_dust_pan', 39, dict(program='smoke_pan_cluster', parts=[
+            dict(name='plates', type='plate_set', assign=dict(rule='all'), params=dict(max_plates=6, segment='cluster'))])),
         ('lathe_open_floor', 'blue_cup', 21, dict(program='smoke_open', parts=[
             dict(name='body', type='lathe', assign=dict(rule='all'), params=dict(method='height', floor='open'))])),
         ('plate_occupancy', 'wooden_piece_1', 24, dict(program='smoke_plate', parts=[
@@ -321,12 +402,217 @@ def test_dsl(out):
             mesh.export(f'{out}/smoke_{name}.glb')
             fd = fidelity(np.asarray(o['pts'], np.float64), mesh)
             rows.append(dict(test='smoke', part=name, obj=obj, ep=ep, faces=int(len(mesh.faces)),
-                             watertight=bool(mesh.is_watertight), fid=fd, k=rep['k_total'],
-                             params=[p.get('params') for p in rep['parts']], ok=True))
+                             watertight=bool(mesh.is_watertight), bodies=int(mesh.body_count), fid=fd,
+                             k=rep['k_total'], params=[p.get('params') for p in rep['parts']],
+                             diag=[{k: v for k, v in (p.get('diag') or {}).items() if k in ('plates', 'segmentation', 'impl', 'note', 'faces', 'area_cm2', 'n_raw')}
+                                   for p in rep['parts']], ok=True))
         except Exception as e:                      # report, do not hide
             rows.append(dict(test='smoke', part=name, obj=obj, ep=ep, ok=False, error=repr(e)))
     for r in rows:
         print(json.dumps(jsonable(r), default=float), flush=True)
+    return rows
+
+
+# ------------------------------------------------------------------------------------------------ synthetic (stage 1b)
+def _synth_obs(pieces, seed=0, noise=0.0005, nfr=20):
+    """pieces: list of (points (N,3), outward-ish view hint) -> obs dict; every point is seen by the camera above it
+    (0.5 m up, small lateral offset per frame), frame ids random in [0, nfr)."""
+    rng = np.random.default_rng(seed)
+    P = np.concatenate(pieces) + rng.normal(0, noise, (sum(len(p) for p in pieces), 3))
+    F = rng.integers(0, nfr, len(P))
+    off = np.stack([np.cos(F * 0.7), np.sin(F * 0.7)], 1) * 0.15
+    C = np.c_[P[:, 0] + off[:, 0], P[:, 1] + off[:, 1], np.full(len(P), 0.5)]
+    return dict(pts=P, cam=C, frame=F)
+
+
+def _grid(x0, x1, y0, y1, step, z=0.0, keep=None):
+    xs, ys = np.meshgrid(np.arange(x0, x1, step), np.arange(y0, y1, step))
+    Q = np.c_[xs.ravel(), ys.ravel(), np.full(xs.size, z)]
+    return Q if keep is None else Q[keep(Q)]
+
+
+def _cap(c, r, step, upper=True):
+    """Points on the upper (visible from above) or lower hemisphere of a sphere, ~step spacing."""
+    n = int(2 * np.pi * r * r / step ** 2)
+    u = np.random.default_rng(1).normal(size=(4 * n, 3)); u /= np.linalg.norm(u, axis=1, keepdims=True)
+    u = u[u[:, 2] > 0.05] if upper else u[u[:, 2] < -0.05]
+    return np.asarray(c) + r * u[:n]
+
+
+def test_synth(out):
+    """GT-free synthetic checks of the stage-1b parts (known geometry, no observation file):
+    balls - a 6 mm sphere cap is kept with its free radius; a flat disc, a rod (one-way curvature), a concave bowl
+    and a 25 mm sphere cap are rejected; mode none gives none; keep_holes - a 30 mm hole in a plate survives;
+    plate_set - two perpendicular connected plates give 2 plates by plane, 1 by connectivity."""
+    rows = []
+    st = 0.0012
+    plane = _grid(-0.08, 0.08, -0.08, 0.08, st)
+    ball = _cap((0.04, 0.04, 0.020), 0.006, st * 0.7)
+    disc = _grid(-0.006, 0.006, -0.006, 0.006, st * 0.7, z=0.020, keep=lambda Q: np.hypot(Q[:, 0], Q[:, 1]) < 0.006)
+    disc[:, 0] -= 0.04; disc[:, 1] += 0.04
+    th = np.random.default_rng(2).uniform(0, np.pi, 3000); xx = np.random.default_rng(3).uniform(-0.02, 0.02, 3000)
+    rod = np.c_[xx, -0.04 + 0.005 * np.cos(th), 0.020 + 0.005 * np.sin(th)]
+    bowl = _cap((-0.04, -0.04, 0.030), 0.008, st * 0.7, upper=False)
+    big = _cap((0.0, 0.0, 0.060), 0.025, st)
+    big = big[big[:, 2] > 0.075]
+    obs = _synth_obs([plane, ball, disc, rod, bowl, big])
+    base = dict(name='base', type='plate', assign=dict(rule='all'), params=dict(outline='rect'))
+    for mode in ('free', 'none'):
+        prog = dict(program='synth_balls', parts=[base, dict(name='balls', type='ball', assign=dict(rule='residual', of=['base']),
+                                                            params=dict(of=['base'], mode=mode))])
+        try:
+            mesh, rep = run_program(prog, obs, t=0.0025)
+            b = [p for p in rep['parts'] if p['name'] == 'balls'][0]
+            mk = b['diag']['markers']
+            acc = [m for m in mk if not m.get('rejected')]
+            ok = (len(acc) == 1 and abs(acc[0]['r_mm'] - 6.0) < 0.6 and abs(acc[0]['centre'][0] - 0.04) < 0.002) if mode == 'free' else not acc
+            rows.append(dict(test='synth_balls', mode=mode, accepted=[{k: m.get(k) for k in ('r_mm', 'centre', 'res_mm', 'spread', 'convex', 'iso', 'frames')} for m in acc],
+                             rejected=[{k: m.get(k) for k in ('rejected', 'r_mm', 'centre', 'spread', 'convex', 'iso', 'diag_mm', 'n')} for m in mk if m.get('rejected')],
+                             ok=bool(ok)))
+        except Exception as e:
+            rows.append(dict(test='synth_balls', mode=mode, ok=False, error=repr(e)))
+    # keep_holes: 120 x 80 mm plate with a 30 mm hole
+    holed = _grid(-0.06, 0.06, -0.04, 0.04, st, keep=lambda Q: np.hypot(Q[:, 0] - 0.02, Q[:, 1]) > 0.015)
+    oh = _synth_obs([holed])
+    areas = {}
+    for kh in (False, True):
+        prog = dict(program='synth_holes', parts=[dict(name='p', type='plate', assign=dict(rule='all'),
+                                                         params=dict(outline='occupancy', keep_holes=kh))])
+        mesh, rep = run_program(prog, oh, t=0.0025)
+        d = rep['parts'][0]['diag']
+        areas[kh] = (d['area_cm2'], d.get('holes'))
+    rows.append(dict(test='synth_keep_holes', area_cm2_fill=areas[False][0], area_cm2_keep=areas[True][0],
+                     holes=areas[True][1], expected_hole_cm2=round(np.pi * 1.5 ** 2, 2),
+                     ok=bool(areas[True][1] == 1 and abs((areas[False][0] - areas[True][0]) - np.pi * 1.5 ** 2) < 2.0)))
+    # plate_set: an L of two perpendicular plates sharing an edge
+    p1 = _grid(-0.05, 0.05, -0.04, 0.04, st)
+    p2 = np.c_[np.full(4000, 0.05), np.random.default_rng(4).uniform(-0.04, 0.04, 4000),
+               np.random.default_rng(5).uniform(0.0, 0.05, 4000)]
+    oL = _synth_obs([p1, p2])
+    oL['cam'][len(p1):] = oL['pts'][len(p1):] + np.array([0.5, 0.0, 0.2])     # the wall is seen from its +x side
+    res = {}
+    for seg in ('plane', 'cluster'):
+        prog = dict(program='synth_L', parts=[dict(name='ps', type='plate_set', assign=dict(rule='all'),
+                                                      params=dict(segment=seg, min_pts=500))])
+        mesh, rep = run_program(prog, oL, t=0.0025)
+        res[seg] = rep['parts'][0]['params']['n_plates']
+    rows.append(dict(test='synth_plate_set', n_plates=res, ok=bool(res['plane'] == 2 and res['cluster'] == 1)))
+    for r in rows:
+        print(json.dumps(jsonable(r), default=float), flush=True)
+    return rows
+
+
+# ------------------------------------------------------------------------------------------------ stage 1b matrix
+def with_balls(prog, mode):
+    pr = json.loads(json.dumps(prog))
+    for p in pr['parts']:
+        if p['type'] == 'ball':
+            p.setdefault('params', {})['mode'] = mode
+    return pr
+
+
+def with_patch(prog):
+    """A + B: the program plus a shell_patch over the residual of every earlier part (rule 'residual', no 'of')."""
+    pr = json.loads(json.dumps(prog))
+    pr['parts'].append(dict(name='patch', type='shell_patch', assign=dict(rule='residual')))
+    return pr
+
+
+def with_legacy_cells(prog):
+    pr = json.loads(json.dumps(prog))
+    for p in pr['parts']:
+        if p['type'] == 'lathe':
+            p.setdefault('params', {})['cell_min_pts'] = 8
+    return pr
+
+
+def stage1_ref(key, t):
+    c = CASES[key]
+    alt = f'{STAGE1}/{key}_ep{c["ep"]}_t{t * 1e3:.1f}.glb'
+    if abs(t - 0.0025) > 1e-9 and os.path.exists(alt):
+        return alt, True
+    return f'{STAGE1}/{key}_ep{c["ep"]}.glb', abs(t - 0.0025) < 1e-9
+
+
+def part_summary(rep):
+    out = {}
+    for p in rep['parts']:
+        d = p.get('diag') or {}
+        s = dict(type=p['type'], n=p['n_assigned'], params=p.get('params'), skipped=p.get('skipped') or p.get('failed'),
+                 residual=p.get('residual'))
+        for k in ('t_src', 't_src_evidence', 'cell_min_pts', 'cell_median', 't_mm', 'T_src', 'impl', 'n_raw', 'note'):
+            if k in d:
+                s[k] = d[k]
+        if p['type'] == 'ball':
+            mk = d.get('markers', [])
+            s['rejected'] = {r: sum(1 for m in mk if m.get('rejected') == r) for r in sorted({m.get('rejected') for m in mk if m.get('rejected')})}
+            s['accepted'] = [{k: m.get(k) for k in ('r_mm', 'res_mm', 'gap_mm', 'frames', 'spread', 'convex', 'iso', 'stem', 'stem_r_mm', 'n')}
+                             for m in mk if not m.get('rejected')]
+        out[p['name']] = s
+    return out
+
+
+def test_s1b(out, key):
+    """Stage-1b matrix on the case's development episode (see module doc, item 7). GT-free."""
+    c = CASES[key]
+    path = c.get('obs') or obs_path(c['obj'], c['ep'])
+    obs = load_obs(path)
+    P = np.asarray(obs['pts'], np.float64)
+    prog0 = load_program(f'{HERE}/programs/{c["program"]}')
+    has_ball = any(p['type'] == 'ball' for p in prog0['parts'])
+    d = f'{out}/s1b/{key}'; os.makedirs(d, exist_ok=True)
+    s1rep = json.load(open(f'{STAGE1}/{key}_ep{c["ep"]}.json'))
+    s1par = {p['name']: p.get('params') for p in s1rep['parts']}
+    refs, rows = {}, []
+    combos = []
+    for vtag, vprog in variants(prog0):
+        for t in T_GRID:
+            for bm in (('free', 'none') if has_ball else ('-',)):
+                for patch in (False, True):
+                    combos.append((vtag, vprog, t, bm, patch, False))
+    if any(p['type'] == 'lathe' for p in prog0['parts']):
+        combos.append(('base', prog0, 0.0025, 'free' if has_ball else '-', False, True))
+    sh = os.path.join(HERE, 'shell.py')
+    for vtag, vprog, t, bm, patch, legacy in combos:
+        pr = vprog
+        if bm != '-':
+            pr = with_balls(pr, bm)
+        if patch:
+            pr = with_patch(pr)
+        if legacy:
+            pr = with_legacy_cells(pr)
+        tag = f'{vtag}_t{t * 1e3:.1f}_balls-{bm}_patch-{int(patch)}' + ('_legacycells' if legacy else '')
+        if os.environ.get('S1B_RESUME') == '1' and os.path.exists(f'{d}/{tag}.glb') and os.path.exists(f'{d}/{tag}.json'):
+            continue                                      # resumed run: the row is in the earlier run's log
+        row = dict(test='s1b', case=key, obj=c['obj'], ep=c['ep'], variant=vtag, t_mm=t * 1e3, balls=bm, patch=patch,
+                   legacy_cells=legacy, tag=tag)
+        try:
+            import hashlib
+            row['shell_sha'] = hashlib.sha256(open(sh, 'rb').read()).hexdigest()[:12]
+            t0 = time.time()
+            mesh, rep = run_program(pr, obs, t=t, lib=f'{LIB}/{c["obj"]}.glb')
+            row['sec'] = round(time.time() - t0, 1)
+            glb = f'{d}/{tag}.glb'; mesh.export(glb)
+            json.dump(jsonable(rep), open(glb[:-4] + '.json', 'w'), indent=1, default=float)
+            ref, same_t = stage1_ref(key, t)
+            if ref not in refs:
+                refs[ref] = load_ref(ref)
+            row.update(faces=rep['faces'], watertight=rep['watertight'], bodies=rep['bodies'], area_cm2=rep['area_cm2'],
+                       k_total=rep['k_total'], obs_to_model=rep['obs_to_model'], fid=fidelity(P, mesh),
+                       stage1_ref=os.path.basename(ref), stage1_ref_same_t=same_t, vs_stage1=mesh_dist(mesh, refs[ref]),
+                       area_ratio_vs_stage1=round(float(mesh.area / refs[ref].area), 4),
+                       budget=budget_check(mesh, f'{d}/_tmp_{key}.glb'), parts=part_summary(rep))
+            if abs(t - 0.0025) < 1e-9 and vtag == 'base':
+                row['params_equal_stage1'] = {n: (s['params'] == s1par.get(n)) for n, s in row['parts'].items()
+                                              if n in s1par and s['type'] != 'ball'}
+            row['ok'] = True
+        except Exception as e:                              # report every failure
+            import traceback
+            row.update(ok=False, error=repr(e)[:400], tb=traceback.format_exc()[-1500:])
+        print(json.dumps(jsonable(row), default=float), flush=True)
+        rows.append(row)
+    if os.path.exists(f'{d}/_tmp_{key}.glb'):
+        os.remove(f'{d}/_tmp_{key}.glb')
     return rows
 
 
@@ -353,6 +639,11 @@ def main():
         rows += test_grid(a.out)
     if 'dsl' in only:
         rows += test_dsl(a.out)
+    if 'synth' in only:
+        rows += test_synth(a.out)
+    for key in ('lid', 'cup', 'pot', 'rack'):
+        if f's1b_{key}' in only:
+            rows += test_s1b(a.out, key)
     with open(f'{a.out}/results_{"_".join(only)}.jsonl', 'w') as f:
         for r in rows:
             f.write(json.dumps(jsonable(r), default=float) + '\n')

@@ -1,14 +1,74 @@
 {
  "program": "sheet_strap_balls",
- "version": 1,
- "doc": "Domed lid seen only from above: thin sheet of revolution (underside = top - t, t from the prior grid), a strap (arched handle) over it whose ends run down into the sheet, marker balls. Strap = the largest residual cluster above the sheet that is longer than min_extent*s in the sheet plane. Reproduces hand kit A' (prim_potlid.build_lid, variant fit) with the default windows.",
- "prior": {"t": "arg"},
+ "version": 2,
+ "doc": "Domed lid seen only from above: thin sheet of revolution (underside = top - t, t from the prior grid), a strap (arched handle) over it whose ends run down into the sheet, small balls. Strap = the largest residual cluster above the sheet that is longer than min_extent*s in the sheet plane. Balls = generic free-fit balls. Reproduces hand kit A' (prim_potlid.build_lid, variant fit) apart from the balls. Windows: the hand kit's absolute windows divided by s of its development episode (GT-free); whether each hand-kit window was set before or after a scan scoring of that kit is not recorded (work-log: two dev scorings per family) - treat them as development choices, not as tuned-free.",
+ "prior": {
+  "t": "arg"
+ },
  "parts": [
-  {"name": "sheet", "type": "sheet_of_revolution", "assign": {"rule": "all"}},
-  {"name": "strap", "type": "strap",
-   "assign": {"rule": "largest_cluster_extent", "of": ["sheet"], "min_extent": 0.7846, "min_pts": 100},
-   "params": {"host": "sheet"}},
-  {"name": "markers", "type": "ball", "assign": {"rule": "residual", "of": ["sheet", "strap"]},
-   "params": {"of": ["sheet", "strap"]}}
+  {
+   "name": "sheet",
+   "type": "sheet_of_revolution",
+   "assign": {
+    "rule": "all"
+   },
+   "params": {
+    "edge_w": 0.047073591715047866,
+    "flange_r0": 0.6276478895339715,
+    "flange_r1": 1.255295779067943,
+    "flange_h": 0.09414718343009573,
+    "rbin": 0.03138239447669858,
+    "surf_band": 0.06276478895339715,
+    "tilt_rmin": 0.3138239447669858,
+    "tilt_rbin": 0.06276478895339715,
+    "prof_dr": 0.03138239447669858,
+    "dome_r0": 0.2353679585752393,
+    "dome_r1": 0.5491919033422251,
+    "resample": 0.047073591715047866,
+    "resid_edge": 0.2353679585752393
+   }
+  },
+  {
+   "name": "strap",
+   "type": "strap",
+   "assign": {
+    "rule": "largest_cluster_extent",
+    "of": [
+     "sheet"
+    ],
+    "min_extent": 0.7846,
+    "min_pts": 100
+   },
+   "params": {
+    "host": "sheet",
+    "len_bin": 0.047073591715047866,
+    "W_min": 0.1255295779067943,
+    "W_max": 0.4707359171504786,
+    "T_min": {
+     "frac": 0.047073591715047866,
+     "floor": 0.0015
+    },
+    "T_max": 0.1255295779067943,
+    "end_ext": 0.06276478895339715,
+    "resample": 0.03138239447669858
+   }
+  },
+  {
+   "name": "markers",
+   "type": "ball",
+   "assign": {
+    "rule": "residual",
+    "of": [
+     "sheet",
+     "strap"
+    ]
+   },
+   "params": {
+    "of": [
+     "sheet",
+     "strap"
+    ]
+   }
+  }
  ]
 }

@@ -1,11 +1,48 @@
 {
  "program": "lathe_splat",
- "version": 1,
- "doc": "Cup-like open container: thin-wall lathe ('height' profile, open top found from inner-wall evidence, cavity down to base + t) plus every large residual cluster (handle, markers) as a voxel splat. combine 'concat' keeps the splats as separate meshes as lathe_obs.py did (reproduction of the ep21 lathe incumbent); 'union' gives one watertight solid.",
- "prior": {"t": "arg"},
+ "version": 2,
+ "doc": "Cup-like open container: thin-wall lathe ('height' profile, open top found from inner-wall evidence, cavity down to base + t) plus every large residual cluster (handle, markers) as a voxel splat. combine 'concat' keeps the splats as separate meshes as lathe_obs.py did (reproduction of the ep21 lathe incumbent); 'union' gives one watertight solid. Windows: the hand kit's absolute windows divided by s of its development episode (GT-free); whether each hand-kit window was set before or after a scan scoring of that kit is not recorded (work-log: two dev scorings per family) - treat them as development choices, not as tuned-free.",
+ "prior": {
+  "t": "arg"
+ },
  "parts": [
-  {"name": "body", "type": "lathe", "assign": {"rule": "all"}, "params": {"method": "height", "floor": "base"}},
-  {"name": "appendages", "type": "splat", "assign": {"rule": "residual", "of": ["body"], "band": 0.07041},
-   "params": {"min_pts": 400, "combine": "concat"}}
+  {
+   "name": "body",
+   "type": "lathe",
+   "assign": {
+    "rule": "all"
+   },
+   "params": {
+    "method": "height",
+    "floor": "base",
+    "dh": {
+     "frac": 0.05280760429501848,
+     "floor": 0.001
+    },
+    "t_min": {
+     "frac": 0.02640380214750924,
+     "floor": 0.0015
+    },
+    "body_margin": 0.08801267382503081,
+    "cap_margin": 0.05280760429501848,
+    "floor_layer": 0.17602534765006161
+   }
+  },
+  {
+   "name": "appendages",
+   "type": "splat",
+   "assign": {
+    "rule": "residual",
+    "of": [
+     "body"
+    ],
+    "band": 0.07041
+   },
+   "params": {
+    "min_pts": 400,
+    "combine": "concat",
+    "vox": 0.035205069530012324
+   }
+  }
  ]
 }

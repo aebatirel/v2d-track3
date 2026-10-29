@@ -1,97 +1,120 @@
 """Generic thin-shell mesh from ONE episode's observed points (autokit route A, no part vocabulary).
 
-Observed surfaces -> denoised oriented surface samples (point-based directional TSDF) -> a closed thin solid of
-thickness t behind them -> marching cubes. README section 6, P5 ("thin-wall fusion": directional TSDF, 1.5-2 mm
-voxels, 4-5 mm truncation, sub-voxel marching cubes), done on the obs_points.py samples instead of depth images.
+Observed surfaces -> denoised oriented surface samples (point-based directional TSDF) -> ONE open surface sheet ->
+decimated to the face budget -> solidified into a closed thin shell of thickness t behind the observed face.
+README section 6, P5 ("thin-wall fusion": directional TSDF, 1.5-2 mm voxels, 4-5 mm truncation, sub-voxel marching
+cubes), done on the obs_points.py samples instead of depth images.
 
-GT-free. thin_shell() reads only the obs dict it is given: pts (N,3) object frame [m], cam (N,3) camera centre of
+GT-free. Every function reads only the obs dict it is given: pts (N,3) object frame [m], cam (N,3) camera centre of
 each point, frame (N,) frame index (scripts/obs_points.py output, loaded by autokit.io_gt, which refuses scan,
 *_align, parquet and mocap paths). No object name and no per-object constant appears in this file: every constant
 below is a sensor/resolution scale or a generic rule. Unseen thickness is the caller's t (generic grid 1.5 / 2.5 /
-4.0 mm); a measured thickness replaces it only where both faces of a wall were observed.
+4.0 mm, a REQUIRED argument); a measured thickness replaces it only where both faces of a wall were observed.
 
-Method
+Method (stage 1b; stage 1 marched a closed slab field at full resolution, which the kit's 4096-face budget_mesh then
+tore: 0/24 watertight after decoding, area -1 to -22 %)
  1. Normals, per frame. One depth map sees one side of a wall as ONE layer, so each frame's points -> VOX_N
     centroids, PCA over K_N_FRAME of them; every raw point takes its centroid's normal, turned towards its own camera
-    (frames too small for that: pooled K_N fallback). Pooled clouds are thick (measured normal-direction std
-    ~1-1.8 mm on two dev clouds), so pooled PCA tilted normals; per-frame PCA fixed that on the synthetic
-    tube. Points whose own-frame neighbourhood is not planar (PLANAR_MIN) or that were seen at > 78 deg incidence
-    (COS_GRAZE) are dropped: their depth is the least reliable and their side ambiguous.
- 2. Directional fusion (the DTSDF idea of Splietker & Behnke 2019 without bin edges). Points -> VOXEL centroids keyed
-    by voxel AND by the normal's dominant signed axis (6 bins), so the two faces of a thin wall never merge. Each
-    centroid is then projected onto the local mean surface of its own side: the weighted mean signed offset of the
-    centroids whose normal is within 45 deg of its own (COS_SIM), inside a tube around its normal line (tangential
-    Gaussian SIGMA, |offset| < TRUNC = the TSDF band) - the TSDF zero crossing along that line, MLS_ITERS times
-    (implicit-MLS style, Kolluri 2008). The projected samples are merged on a VOXEL/2 grid (keyed by side again):
-    open surfaces, denoised, oriented.
+    (frames too small for that: pooled K_N fallback). Points whose own-frame neighbourhood is not planar
+    (PLANAR_MIN) or that were seen at > 78 deg incidence (COS_GRAZE) are dropped.
+ 2. Directional fusion (DTSDF idea of Splietker & Behnke 2019 without bin edges): centroids keyed by voxel AND by the
+    normal's dominant signed axis, projected onto their own side's local mean surface (implicit MLS, Kolluri 2008),
+    merged on a VOXEL/2 grid: open, denoised, oriented samples.
  3. Thickness. From each sample s_j, step along -n_j up to D_MAX; the first opposite-facing sample within R_TAN of
-    that line is the other face of the wall: measured thickness T_j (median over the 8 nearest measured samples,
-    floored at T_FLOOR). Elsewhere tau_j = t.
-    Optional free-space clamp (carve=True, oriented mode; default off): our own rays, moved onto their denoised
-    surface point, are free space in front of it; where such free space (>= 3 frames) lies behind a sample within
-    its slab, tau_j is cut back (floor T_FLOOR). Measured at t = 2.5 mm on three dev clouds: obs_fidelity
-    sum -0.004..-0.054 mm, fs_frac -1.0..+0.03 pp, runtime about 2x; clamps 9-41 % of samples to the floor.
- 4. Closed solid. U(x) = min_j [dist(x, disc_j) - tau_j / 2], disc_j = disc of radius R_DISK, normal n_j, centred at
-    s_j - (tau_j / 2) n_j ('oriented': the solid lies behind the observed surface, away from the cameras, the observed
-    face is kept in place) or at s_j ('symmetric': a +-t/2 tube about the surface, the task's unsigned-distance
-    variant). U is evaluated in a narrow band of a grid of pitch min(VOXEL, 0.95 min(t, min tau) / sqrt(3)) (no slab
-    can fall between grid points) and is positive elsewhere, so marching cubes (Lewiner) at U = 0 is closed by
-    construction, with sub-voxel accuracy (U is a distance, linear across each face).
- 5. Islands. Connected components; one survives if it is the largest, or if it was seen in >= F_MIN_FRAC of the
-    episode's frames (>= F_MIN_ABS), has area >= A_MIN and lies within NEAR of the largest. Marker balls next to the
-    body stay; floaters from a few bad frames go.
- 6. Decimation (fast_simplification, quadric) to max_faces; a decimated mesh is kept only if still watertight.
+    that line is the other face of the wall (its partner): measured thickness T_j (median over 8 nearest measured
+    samples, floored at T_FLOOR). Elsewhere tau_j = t. Optional free-space clamp (carve=True, default off).
+ 4. One face per wall (resolve_sides). Where both faces were measured, the sheet keeps one of them (the master; patch
+    by patch, the heavier observed side) and drops the other (the slave), so the master's measured T reaches the other
+    face once instead of two coincident slabs.
+ 5. Open sheet (front_sheet). Every kept sample gets an internal slab of thickness T_FLOOR behind it; the union is
+    marched at pitch 0.95 T_FLOOR / sqrt 3 (stage 1's closed field, continuous, so its surface is clean); its faces
+    whose normal agrees with their own slab's normal and that lie in the slab's front half are the observed-side
+    faces: an open, oriented sheet whose border is the edge of the observed surface. Holes with a perimeter
+    <= HOLE_FILL_LEN are fan-filled (sampling gaps). (A one-sided signed field marched directly left closed bubbles.)
+ 6. Islands (island_filter). Components grouped when they come within TOUCH or belong to one body of the step-5
+    slab union (they touch through that solid; the front-face extraction itself leaves ~rim-wide gaps between
+    pieces of one surface); the group of the largest component is the body. Any other group survives only if it is ball-like (convex hull sphericity >= BALL_SPHER, hull diameter
+    <= BALL_D; the hull, because a single episode sees a ball as a cap) AND has frame support, area >= A_MIN and lies
+    within NEAR of the body. Groups smaller than A_MIN are dropped too. Dropped area is reported.
+ 7. Budget (decimate_sheet). The open sheet is decimated (fast_simplification quadrics) to the face budget with a
+    temporary SKIRT along its border: the skirt's faces act as boundary-constraint planes, so border vertices can only
+    slide along the border, and the skirt is removed afterwards (its faces are exactly those that touch the
+    decimator's border vertices). Collapsed fins, faces on non-manifold edges and around bow-tie vertices are removed
+    and the small holes this opens are fan-filled again. Coarse passes divide the face count by DEC_STEP, then a
+    bisection on the target lands within 5 % under the budget.
+ 8. Solidify (solidify). Back sheet = front sheet moved by tau along -vertex normal (even-thickness scaling), rim
+    quads on every border edge: closed and consistently wound by construction, with 2 * (faces + border edges) faces.
+    The total stays <= max_faces (default 4000 < 4096), so the kit's budget_mesh only welds it.
 
 Usage (library):
     from autokit.io_gt import load_obs, obs_path
-    from autokit.shell import thin_shell
-    mesh = thin_shell(load_obs(obs_path(OBJ, EP)), t=0.0025)                      # trimesh.Trimesh, watertight
-    mesh, rep = thin_shell(obs, t=0.0015, voxel=0.002, return_report=True)        # + report dict
+    from autokit.shell import thin_shell, shell_sheet, solidify_sheet, surface_patch
+    mesh = thin_shell(load_obs(obs_path(OBJ, EP)), t=0.0025)               # closed, <= 4000 faces
+    sh = shell_sheet(obs); meshes = [solidify_sheet(sh, t) for t in (0.0015, 0.0025, 0.004)]   # one sheet, t grid
+    patch = surface_patch(obs, idx, t=0.0025, max_faces=1500, host=union_of_parts)            # part-program use
 CLI:
-    shell.py OBJ EP OUT.glb [--t 0.0025] [--voxel 0.002] [--mode oriented|symmetric] [--refined auto|1|0]
-             [--no_two_sided] [--carve] [--max_faces 200000]
-    --refined auto uses autokit/refine.py's refined copy (io_gt.obs_path(refined=True)) when it exists.
+    shell.py OBJ EP OUT.glb --t 0.0025 [--voxel 0.002] [--mode oriented|symmetric] [--refined 0|1|auto]
+             [--no_two_sided] [--carve] [--max_faces 4000]
+    --refined defaults to 0 (raw points): refine.py's copies are not trusted yet (stage-1 audit).
 """
 import json, math, os, sys, time
 
 import numpy as np
 import trimesh
 from scipy import ndimage
-from scipy.spatial import cKDTree
+from scipy.sparse import coo_matrix
+from scipy.sparse.csgraph import connected_components
+from scipy.spatial import cKDTree, ConvexHull
 
 # ---------------------------------------------------------------------------------------------- declared constants
+VOXEL = 0.002            # fusion voxel (m); samples are merged on a VOXEL/2 grid
 VOX_N = 0.0015           # per-frame normals: points of one frame -> 1.5 mm centroids ...
 K_N_FRAME = 24           # ... PCA over 24 of them (~4 mm radius on a single depth layer)
 K_N = 96                 # fallback for tiny frames: pooled VOXEL centroids, ~7 mm radius (pooled clouds are thick)
 PLANAR_MIN = 0.3         # points whose own-frame neighbourhood is not planar (edges, specks, depth junk) are dropped
 COS_GRAZE = 0.2          # points seen at > 78 deg incidence are dropped: their depth is the noisiest and their
-                         # normal's side is ambiguous (measured with the earlier pooled normals: they caused ~95 % of
-                         # the spurious near-zero 'two-sided' hits on a dev cloud)
+                         # normal's side is ambiguous
 COS_BIN = 0.5            # two-sided search: candidates for the other face have n . (-axis) > cos 60 deg
 SIGMA = 0.002            # MLS window: Gaussian in the TANGENTIAL distance (m), a tube around the query's normal line
-TRUNC = 0.005            # ... cut at +-TRUNC along the normal (m) = TSDF truncation band (P5: 4-5 mm). The window is
-                         # not isotropic on purpose: a 3-D Gaussian centred on a sample biases the average towards
-                         # that sample's own noise layer (measured on the synthetic tube: faces stuck 1-2 mm off)
+TRUNC = 0.005            # ... cut at +-TRUNC along the normal (m) = TSDF truncation band (P5: 4-5 mm)
 K_MLS = 128              # MLS neighbours per query (ball of TRUNC + SIGMA holds the tube segment)
-COS_SIM = 0.7            # MLS: neighbours whose normal is within 45 deg of the query's
+COS_SIM = 0.7            # MLS / side patches: neighbours whose normal is within 45 deg of the query's
 MLS_ITERS = 3
 MIN_NB = 6               # a sample needs >= MIN_NB MLS neighbours (isolated specks are dropped)
 D_MAX = 0.010            # two-sided search depth (m) = 2 x TRUNC
 R_TAN = 0.0015           # two-sided: the other face must lie within this of the inward normal line (m)
 COS_OPP = 0.7            # two-sided: the other face's normal within 45 deg of -n
-T_FLOOR = 0.0015         # floor of a measured or carved thickness (m) = the smallest generic grid value; the
-                         # marching-cubes pitch follows the thinnest slab (a 1 mm floor at the t-based pitch tore the
-                         # thin slabs: measured on a dev cloud, area +18 %, fs_frac 11.6 -> 23 %)
+T_FLOOR = 0.0015         # floor of a measured or carved thickness (m) = the smallest generic grid value
 CARVE_RAYS = 1500000     # free-space clamp: at most this many rays (raw points, random subset)
 CARVE_EPS = 0.001        # ... a ray is free from CARVE_EPS in front of its (denoised) surface point ...
 CARVE_STEP = 0.0005      # ... sampled every CARVE_STEP ...
 CARVE_R = 0.0005         # ... a slab point is free if a free sample lies within CARVE_R ...
 CARVE_MIN_FRAMES = 3     # ... seen free in >= 3 distinct frames (one mis-tracked frame cannot carve)
 R_DISK_FRAC = 0.75       # disc radius as a fraction of VOXEL (samples merged on a VOXEL/2 grid; discs overlap)
+SIDE_LINK_FRAC = 1.5     # resolve_sides: two-sided samples within 1.5 VOXEL (and COS_SIM) form one patch
+COS_FRONT = 0.5          # front sheet: a slab-union face is on the observed side if its normal is within 60 deg
 F_MIN_FRAC, F_MIN_ABS = 0.05, 5   # island support: frames that saw it
-A_MIN = 5e-5             # island area floor (m^2) = 0.5 cm^2 (a 7 mm ball cap shell is ~3-6 cm^2)
-NEAR = 0.03              # islands farther than this from the main body are dropped (m)
-MAX_FACES = 200000
+A_MIN = 5e-5             # island area floor (m^2) = 0.5 cm^2: smaller groups are dropped (noise, generic)
+NEAR = 0.03              # a ball-like island farther than this from the body is dropped (m)
+TOUCH = 0.002            # components whose surfaces come within TOUCH form one group (m)
+BALL_SPHER = 0.8         # ball-like island: convex-hull sphericity pi^(1/3) (6V)^(2/3) / A >= BALL_SPHER ...
+BALL_D = 0.030           # ... and convex-hull diameter <= BALL_D (m): small compact separate rigid feature ...
+BALL_FIT_RMS = 0.2       # ... and curved like a ball: a least-squares sphere with radius <= the hull diameter and
+                         # rms residual <= 0.2 radius (a few-mm flat speck has a near-ball hull because the sheet's
+                         # rim rounding dominates it; measured on the synthetic island test: hull sphericity 0.85)
+SKIRT_H_FRAC = 2.0       # decimation skirt height = 2 VOXEL (only its orientation matters to the quadrics)
+DEC_AGG = 3              # fast_simplification aggressiveness (7 = default). Measured on two dev sheets with the
+                         # bisection target: 3 / 4 / 6 -> sheet area change -12.0 / -16.7 / -20.5 % and -1.8 / -2.0 /
+                         # -4.6 %; dense-to-decimated p95 3.30 / 5.16 / 5.66 mm and 0.44 / 0.43 / 0.68 mm
+DEC_STEP = 4             # coarse decimation passes divide the face count by this
+DEC_REFILL_EDGES = 12    # holes the decimation clean-up opens (<= 12 border edges) are fan-filled again
+HOLE_FILL_LEN = 0.02     # dense sheet: holes with a perimeter <= 20 mm (~6 mm across, a few voxels) are sampling
+                         # gaps of the fused surface, not openings of the object; they are fan-filled
+EVEN_COS_MIN = 0.5       # solidify: even-thickness scaling 1 / mean(n_v . n_f), capped at 2x
+HOST_TRIM_FRAC = 2.0     # surface_patch: keep sheet parts > 2 VOXEL outside the host
+PATCH_MIN_PTS = 200      # surface_patch: fewer residual points than this -> empty patch
+MERGE_TOL = 1e-6         # vertices closer than 1 um are merged (the decimator can leave sub-um clusters)
+MAX_FACES = 4000         # closed output face budget (< the kit's 4096, so budget_mesh only welds)
 AXES = np.array([[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]], float)
 
 
@@ -121,6 +144,10 @@ def _group_mean(inv, n, X, w=None):
 def _chunks(n, size):
     for a in range(0, n, size):
         yield slice(a, min(n, a + size))
+
+
+def _empty():
+    return trimesh.Trimesh(np.zeros((0, 3)), np.zeros((0, 3), np.int64), process=False)
 
 
 # ---------------------------------------------------------------------------------------------- 1. normals
@@ -156,10 +183,12 @@ def point_normals(P, C, F, vox):
         n[idx] = nrm[inv]; planar[idx] = pl[inv]
     if small:
         idx = np.concatenate(small)
-        inv, nv = _voxel_groups(P[idx], vox)
-        Cv, _ = _group_mean(inv, nv, P[idx])
-        nrm, pl = _pca_normals(Cv, K_N)
-        n[idx] = nrm[inv]; planar[idx] = pl[inv]
+        if len(idx) >= 4:
+            inv, nv = _voxel_groups(P[idx], vox)
+            Cv, _ = _group_mean(inv, nv, P[idx])
+            if nv >= 4:
+                nrm, pl = _pca_normals(Cv, K_N)
+                n[idx] = nrm[inv]; planar[idx] = pl[inv]
     view = _unit(C - P)
     n[np.einsum('ni,ni->n', n, view) < 0] *= -1
     return n, planar
@@ -167,15 +196,17 @@ def point_normals(P, C, F, vox):
 
 # ---------------------------------------------------------------------------------------------- 2. directional fusion
 def _mls_project(Cb, Nb, Wb, iters=MLS_ITERS):
-    """Project centroids of one bin onto the bin's local mean surface: per query, the weighted mean signed offset of
-    the same-side centroids in a tube (tangential Gaussian SIGMA, |offset| < TRUNC) around its normal line - the
-    TSDF zero crossing along that line. Returns projected positions, normals, neighbour counts."""
+    """Project centroids onto their local mean surface: per query, the weighted mean signed offset of the same-side
+    centroids in a tube (tangential Gaussian SIGMA, |offset| < TRUNC) around its normal line - the TSDF zero
+    crossing along that line. Returns projected positions, normals, neighbour counts."""
     tree = cKDTree(Cb)
     q = Cb.copy(); nq = Nb.copy(); cnt = np.zeros(len(Cb), int)
     k = min(K_MLS, len(Cb))
     for it in range(iters):
         for s in _chunks(len(Cb), 40000):
             d, nb = tree.query(q[s], k=k, distance_upper_bound=TRUNC + SIGMA, workers=2)
+            if nb.ndim == 1:
+                d, nb = d[:, None], nb[:, None]
             ok = nb < len(Cb); nb = np.where(ok, nb, 0)
             sim = np.einsum('nkj,nj->nk', Nb[nb], nq[s]) > COS_SIM
             v = q[s][:, None, :] - Cb[nb]
@@ -196,15 +227,15 @@ def directional_samples(P, n, vox):
     """Oriented, denoised surface samples from raw points + normals: dict s, n, w, bin.
     Centroids are keyed by voxel AND by the normal's dominant signed axis (6 bins), so the two faces of a thin wall
     never merge into one centroid. The MLS projection then runs over all centroids at once, each query averaging only
-    neighbours whose normal is within 45 deg of its own (COS_SIM): a continuous directional window, so a face is not
-    truncated at a bin's cone edge (measured on the synthetic tube: overlapping per-bin fusion tilted the normals
-    there and bulged the face out by up to 1 mm)."""
+    neighbours whose normal is within 45 deg of its own (COS_SIM)."""
     b0 = np.argmax(n @ AXES.T, 1)
     inv, ng = _voxel_groups(P, vox, extra_key=b0)
     Cb, Wb = _group_mean(inv, ng, P)
     Nb, _ = _group_mean(inv, ng, n); Nb = _unit(Nb)
     q, nq, cnt = _mls_project(Cb, Nb, Wb)
     keep = cnt >= MIN_NB
+    if keep.sum() == 0:
+        return dict(s=np.zeros((0, 3)), n=np.zeros((0, 3)), w=np.zeros(0), bin=np.zeros(0, int))
     # merge the collapsed layers on a VOXEL/2 grid (again keyed by the dominant axis of the normal)
     b1 = np.argmax(nq[keep] @ AXES.T, 1)
     inv2, n2 = _voxel_groups(q[keep], vox / 2, extra_key=b1)
@@ -215,9 +246,10 @@ def directional_samples(P, n, vox):
 
 
 # ---------------------------------------------------------------------------------------------- 3. two-sided thickness
-def two_sided_thickness(S, N):
-    """Measured wall thickness per sample (NaN where the other face was not observed)."""
-    T = np.full(len(S), np.nan)
+def two_sided_thickness(S, N, return_partner=False):
+    """Measured wall thickness per sample (NaN where the other face was not observed); with return_partner also the
+    index of the other-face sample that was hit (-1 where none)."""
+    T = np.full(len(S), np.nan); partner = np.full(len(S), -1, np.int64)
     prim = np.argmax(N @ AXES.T, 1)
     opp = {0: 1, 1: 0, 2: 3, 3: 2, 4: 5, 5: 4}
     for b in range(6):
@@ -236,14 +268,71 @@ def two_sided_thickness(S, N):
             hit &= np.einsum('ij,ij->i', N[jj], N[todo]) < -COS_OPP
             depth = np.einsum('ij,ij->i', S[todo] - S[jj], N[todo])
             hit &= depth > -R_TAN
-            T[todo[hit]] = depth[hit]
+            T[todo[hit]] = depth[hit]; partner[todo[hit]] = jj[hit]
             todo = todo[~hit]
     meas = np.nonzero(np.isfinite(T))[0]
     if len(meas) >= 8:                                  # median over the 8 nearest measured samples
         _, nb = cKDTree(S[meas]).query(S[meas], k=8, workers=2)
         T[meas] = np.median(T[meas][nb], 1)
     T[meas] = np.clip(T[meas], T_FLOOR, D_MAX)
-    return T
+    return (T, partner) if return_partner else T
+
+
+def resolve_sides(S, N, W, T, partner, vox):
+    """One face per measured wall. Two-sided samples form patches (within SIDE_LINK_FRAC * vox, normals within 45
+    deg); a patch's partner patch is the most common patch of its samples' partners. Patches are visited by
+    decreasing observed weight: a patch whose partner patch is already a master becomes a slave, otherwise it becomes
+    a master (and its partner patch a slave). Samples hit as the partner of a master sample are slaves too, unless
+    they are masters themselves. A slave whose own partner is not kept is restored (so no wall vanishes).
+    Returns (slave mask, info)."""
+    meas = np.flatnonzero(np.isfinite(T))
+    slave = np.zeros(len(S), bool)
+    info = dict(two_sided_samples=int(len(meas)))
+    if len(meas) < 2:
+        return slave, info
+    pairs = cKDTree(S[meas]).query_pairs(SIDE_LINK_FRAC * vox, output_type='ndarray')
+    if len(pairs):
+        pairs = pairs[np.einsum('ij,ij->i', N[meas[pairs[:, 0]]], N[meas[pairs[:, 1]]]) > COS_SIM]
+    G = coo_matrix((np.ones(len(pairs)), (pairs[:, 0], pairs[:, 1])), shape=(len(meas), len(meas))) if len(pairs) \
+        else coo_matrix((len(meas), len(meas)))
+    nc, lab = connected_components(G, directed=False)
+    comp = np.full(len(S), -1, np.int64); comp[meas] = lab
+    pc = np.where(partner[meas] >= 0, comp[np.maximum(partner[meas], 0)], -1)
+    Wc = np.bincount(lab, W[meas], minlength=nc)
+    ppatch = np.full(nc, -1, np.int64)
+    okp = pc >= 0
+    if okp.any():
+        key = lab[okp] * (nc + 1) + pc[okp]
+        u, cnt = np.unique(key, return_counts=True)
+        a, b = u // (nc + 1), u % (nc + 1)
+        order = np.lexsort((-cnt, a))                    # per patch a, the most common partner patch first
+        first = np.ones(len(order), bool); first[1:] = a[order][1:] != a[order][:-1]
+        ppatch[a[order][first]] = b[order][first]
+    role = np.zeros(nc, np.int8)                          # 0 undecided, 1 master, 2 slave
+    for c in np.argsort(-Wc):
+        if role[c]:
+            continue
+        p = ppatch[c]
+        if p >= 0 and p != c and role[p] == 1:
+            role[c] = 2
+        else:
+            role[c] = 1
+            if p >= 0 and p != c and role[p] == 0:
+                role[p] = 2
+    master = np.zeros(len(S), bool); master[meas] = role[lab] == 1
+    slave[meas] = role[lab] == 2
+    pm = partner[master]; pm = pm[pm >= 0]
+    slave[pm[~master[pm]]] = True
+    # a slave whose partner is not a kept sample would leave its wall unrepresented: restore it
+    sl = np.flatnonzero(slave)
+    lost = sl[(partner[sl] < 0) | slave[np.maximum(partner[sl], 0)]]
+    slave[lost] = False
+    kept_meas = meas[~slave[meas]]
+    dup = int(np.sum((partner[kept_meas] >= 0) & ~slave[np.maximum(partner[kept_meas], 0)]
+                     & np.isfinite(T[np.maximum(partner[kept_meas], 0)])))
+    info.update(side_patches=int(nc), master_samples=int(master.sum()), slave_samples=int(slave.sum()),
+                restored_samples=int(len(lost)), kept_pairs_both_sides=dup)
+    return slave, info
 
 
 def free_space_clamp(P, C, F, n, S, N, tau, depth_max):
@@ -270,7 +359,6 @@ def free_space_clamp(P, C, F, n, S, N, tau, depth_max):
     steps = np.arange(CARVE_EPS, depth_max + CARVE_EPS + 1e-9, CARVE_STEP)
     Q = (Ps[:, None, :] + steps[None, :, None] * r[:, None, :]).reshape(-1, 3)
     Fq = np.repeat(Fr, len(steps))
-    # free voxels (CARVE_R cells) with >= CARVE_MIN_FRAMES distinct frames
     lo = Q.min(0)
     I = np.floor((Q - lo) / CARVE_R).astype(np.int64); dims = I.max(0) + 1
     lin = (I[:, 0] * dims[1] + I[:, 1]) * dims[2] + I[:, 2]
@@ -300,9 +388,10 @@ def free_space_clamp(P, C, F, n, S, N, tau, depth_max):
     return tau, info
 
 
-# ---------------------------------------------------------------------------------------------- 4. solid field + MC
+# ---------------------------------------------------------------------------------------------- 5. front sheet
 def shell_field(S, N, tau, offset, rdisk, pitch):
-    """Narrow-band grid of U(x) = min_j [dist(x, disc_j) - tau_j/2]; +pitch*4 outside the band."""
+    """Narrow-band grid of U(x) = min_j [dist(x, disc_j) - tau_j/2], disc_j centred at s_j - offset_j n_j; +pitch*4
+    outside the band. Continuous (a minimum of distances), so its zero set is a clean closed surface."""
     Cc = S - offset[:, None] * N
     reach = float(tau.max()) / 2 + rdisk + 3 * pitch
     lo = Cc.min(0) - reach - 2 * pitch
@@ -317,6 +406,8 @@ def shell_field(S, N, tau, offset, rdisk, pitch):
     tree = cKDTree(Cc); k = min(8, len(Cc))
     for s in _chunks(len(band), 400000):
         d, j = tree.query(X[s], k=k, workers=2)
+        if j.ndim == 1:
+            j = j[:, None]
         v = X[s][:, None, :] - Cc[j]
         a = np.einsum('nkj,nkj->nk', v, N[j])
         tl = np.sqrt(np.maximum(np.einsum('nkj,nkj->nk', v, v) - a * a, 0))
@@ -334,102 +425,632 @@ def march(U, lo, pitch):
     return m
 
 
-# ---------------------------------------------------------------------------------------------- 5. islands, 6. decimate
-def clean_islands(m, P, F):
+def front_sheet(S, N, rdisk, voxel):
+    """Open oriented sheet = the observed-side faces of a closed union of thin slabs. Every sample gets an internal
+    slab of thickness T_FLOOR behind it (oriented, as stage 1's shell at t = 1.5 mm); the union is marched at pitch
+    0.95 T_FLOOR / sqrt 3 (no slab can tear); a face of it is FRONT when its normal is within COS_FRONT of its own
+    slab's normal (the sample whose slab defines U there) and it lies in the front half of that slab. Front faces
+    form the sheet; back faces, rims and the inside of thin tubes are dropped. (A one-sided signed field marched
+    directly left closed bubbles where the nearest disc switched between strongly curved, noisy samples:
+    measured on a dev cloud, 11 % of the sheet area > 2 mm from the slab-union surface.) Returns (sheet, info)."""
+    if len(S) < 4:
+        return _empty(), dict(sheet_faces_mc=0)
+    tau = np.full(len(S), T_FLOOR)
+    pitch = 0.95 * T_FLOOR / math.sqrt(3)
+    U, lo, nband = shell_field(S, N, tau, tau / 2, rdisk, pitch)
+    try:
+        closed = march(U, lo, pitch)
+    except (ValueError, RuntimeError):
+        return _empty(), dict(sheet_faces_mc=0, band_voxels=nband)
+    del U
+    X = closed.triangles_center
+    Cc = S - (tau / 2)[:, None] * N
+    tree = cKDTree(Cc); k = min(8, len(S))
+    jj = np.zeros(len(X), np.int64)
+    for s in _chunks(len(X), 300000):
+        _, j = tree.query(X[s], k=k, workers=2)
+        if j.ndim == 1:
+            j = j[:, None]
+        v = X[s][:, None, :] - Cc[j]
+        a = np.einsum('nkj,nkj->nk', v, N[j])
+        tl = np.sqrt(np.maximum(np.einsum('nkj,nkj->nk', v, v) - a * a, 0))
+        u = np.sqrt(a * a + np.maximum(tl - rdisk, 0) ** 2) - tau[j] / 2
+        jj[s] = j[np.arange(len(j)), np.argmin(u, 1)]
+    a = np.einsum('ij,ij->i', X - S[jj], N[jj])
+    al = np.einsum('ij,ij->i', closed.face_normals, N[jj])
+    front = (al > COS_FRONT) & (a > -tau[jj] / 2)
+    flab = trimesh.graph.connected_component_labels(closed.face_adjacency, node_count=len(closed.faces))
+    vlab = np.full(len(closed.vertices), -1, np.int64); vlab[closed.faces.ravel()] = np.repeat(flab, 3)
+    m = trimesh.Trimesh(closed.vertices, closed.faces[front], process=False)
+    m.remove_unreferenced_vertices()
+    m.metadata['union'] = (cKDTree(closed.vertices), vlab)      # which slab-union body each region belongs to
+    return m, dict(sheet_faces_mc=int(len(closed.faces)), sheet_faces=int(len(m.faces)), band_voxels=nband,
+                   sheet_pitch_mm=round(pitch * 1e3, 3), closed_area_cm2=round(closed.area * 1e4, 1),
+                   union_bodies=int(flab.max() + 1) if len(flab) else 0)
+
+
+def _boundary_halfedges(F):
+    """Directed border edges (a, b) as they run in their one face."""
+    E = np.concatenate([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]])
+    key = np.sort(E, 1)
+    _, inv, cnt = np.unique(key, axis=0, return_inverse=True, return_counts=True)
+    return E[cnt[inv.ravel()] == 1]
+
+
+def border_loops(F):
+    """Border loops of an edge-manifold sheet without bow-ties: list of vertex-index arrays in face order."""
+    be = _boundary_halfedges(np.asarray(F))
+    if len(be) == 0:
+        return []
+    nxt = dict(zip(be[:, 0].tolist(), be[:, 1].tolist()))
+    seen, loops = set(), []
+    for a in be[:, 0].tolist():
+        if a in seen:
+            continue
+        L = []
+        cur = a
+        while cur not in seen and cur in nxt:
+            seen.add(cur); L.append(cur); cur = nxt[cur]
+        if cur == a and len(L) >= 3:
+            loops.append(np.array(L, np.int64))
+    return loops
+
+
+def fill_holes(m, max_len=None, max_edges=None, need=None):
+    """Fan-fill border loops (new centre vertex) that are not the longest loop of their component and are short:
+    length <= max_len and/or <= max_edges edges; need(loop) -> bool narrows the choice further. Returns (mesh,
+    filled count, filled area m^2)."""
+    if len(m.faces) == 0:
+        return m, 0, 0.0
+    V, F = np.asarray(m.vertices), np.asarray(m.faces)
+    loops = border_loops(F)
+    if not loops:
+        return m, 0, 0.0
+    lab = trimesh.graph.connected_component_labels(m.face_adjacency, node_count=len(F))
+    vcomp = np.full(len(V), -1); vcomp[F.ravel()] = np.repeat(lab, 3)
+    lens = [float(np.linalg.norm(V[np.roll(L, -1)] - V[L], axis=1).sum()) for L in loops]
+    longest = {}
+    for i, L in enumerate(loops):
+        c = int(vcomp[L[0]])
+        if c not in longest or lens[i] > lens[longest[c]]:
+            longest[c] = i
+    newV, newF, area, cnt = [], [], 0.0, 0
+    for i, L in enumerate(loops):
+        if longest[int(vcomp[L[0]])] == i:
+            continue
+        if max_len is not None and lens[i] > max_len:
+            continue
+        if max_edges is not None and len(L) > max_edges:
+            continue
+        if need is not None and not need(L):
+            continue
+        c = len(V) + len(newV); ctr = V[L].mean(0); newV.append(ctr)
+        nb = np.roll(L, -1)
+        tri = np.stack([nb, L, np.full(len(L), c)], 1)          # border a->b lies in a face; the fill holds b->a
+        newF.append(tri); cnt += 1
+        area += float(0.5 * np.linalg.norm(np.cross(V[L] - ctr, V[nb] - ctr), axis=1).sum())
+    if not cnt:
+        return m, 0, 0.0
+    out = trimesh.Trimesh(np.vstack([V, np.array(newV)]), np.vstack([F] + newF), process=False)
+    return out, cnt, area
+
+
+def manifold_clean(m, max_iter=6):
+    """Remove duplicate/degenerate faces, faces on edges shared by > 2 faces, faces around bow-tie vertices (more
+    than one border fan through a vertex), then fix the winding. Returns (mesh, removed face count)."""
+    if len(m.faces) == 0:
+        return m, 0
+    n0 = len(m.faces)
+    V, F = np.asarray(m.vertices, np.float64), np.asarray(m.faces, np.int64)
+    pairs = cKDTree(V).query_pairs(MERGE_TOL, output_type='ndarray')   # micro-clusters the decimator leaves
+    if len(pairs):
+        _, lab = connected_components(coo_matrix((np.ones(len(pairs)), (pairs[:, 0], pairs[:, 1])),
+                                                 shape=(len(V), len(V))), directed=False)
+        rep_ = np.zeros(lab.max() + 1, np.int64); rep_[lab[::-1]] = np.arange(len(V))[::-1]
+        F = rep_[lab][F]
+        F = F[(F[:, 0] != F[:, 1]) & (F[:, 1] != F[:, 2]) & (F[:, 0] != F[:, 2])]
+    m = trimesh.Trimesh(V, F, process=True)
+    m.update_faces(m.nondegenerate_faces(height=MERGE_TOL / 10))
+    # duplicate faces (same three vertices): a pair of opposite orientation is a collapsed fin -> remove all copies;
+    # copies of one orientation -> keep one
+    F = np.asarray(m.faces)
+    if len(F):
+        srt = np.sort(F, 1)
+        _, inv, cnt = np.unique(srt, axis=0, return_inverse=True, return_counts=True)
+        inv = inv.ravel()
+        if (cnt > 1).any():
+            par = (F[:, 1] - F[:, 0]) * (F[:, 2] - F[:, 0]) * (F[:, 2] - F[:, 1])     # sign = cyclic order parity
+            par = np.sign(par).astype(int)
+            pos = np.bincount(inv, par > 0, minlength=len(cnt)); neg = np.bincount(inv, par < 0, minlength=len(cnt))
+            fin = (pos > 0) & (neg > 0)
+            first = np.zeros(len(F), bool); _, fi = np.unique(inv, return_index=True); first[fi] = True
+            m.update_faces(first & ~fin[inv])
+    for _ in range(max_iter):
+        F = m.faces
+        if len(F) == 0:
+            break
+        E = np.sort(np.concatenate([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]]), 1)
+        _, inv, cnt = np.unique(E, axis=0, return_inverse=True, return_counts=True)
+        ce = cnt[inv.ravel()].reshape(3, -1).T                       # per face, its 3 edges' use counts
+        bad = np.any(ce > 2, 1)
+        be = E[cnt[inv.ravel()] == 1]
+        nb = np.bincount(be.ravel(), minlength=len(m.vertices))       # border edges per vertex
+        bow = nb > 2
+        bad |= np.any(bow[F], 1)
+        if not bad.any():
+            break
+        m.update_faces(~bad); m.remove_unreferenced_vertices()
+    if len(m.faces):
+        trimesh.repair.fix_winding(m)
+    return m, int(n0 - len(m.faces))
+
+
+# ---------------------------------------------------------------------------------------------- 6. islands
+def _sphere_fit(V):
+    """Algebraic least-squares sphere through points V: (radius, rms radial residual); (inf, inf) if degenerate."""
+    if len(V) < 8:
+        return float('inf'), float('inf')
+    A = np.c_[2 * V, np.ones(len(V))]; b = (V * V).sum(1)
+    sol, *_ = np.linalg.lstsq(A, b, rcond=None)
+    c = sol[:3]; r2 = sol[3] + c @ c
+    if not np.isfinite(r2) or r2 <= 0:
+        return float('inf'), float('inf')
+    R = float(np.sqrt(r2))
+    return R, float(np.sqrt(np.mean((np.linalg.norm(V - c, axis=1) - R) ** 2)))
+
+
+def _hull_shape(V):
+    """Convex-hull sphericity and diameter of a vertex set (0, 0 when degenerate)."""
+    try:
+        h = ConvexHull(V)
+    except Exception:
+        return 0.0, 0.0
+    vol, area = float(h.volume), float(h.area)
+    sph = math.pi ** (1 / 3) * (6 * vol) ** (2 / 3) / area if area > 0 else 0.0
+    H = V[h.vertices]
+    diam = float(np.sqrt(((H[:, None, :] - H[None, :, :]) ** 2).sum(-1).max())) if len(H) <= 3000 else \
+        float(np.linalg.norm(H.max(0) - H.min(0)))
+    return sph, diam
+
+
+def island_filter(m, P, F, host_tree=None, host_touch=None, union=None):
+    """Island rule on an open sheet. Components are grouped when their vertices come within TOUCH (and, if a host is
+    given, components within host_touch of the host join the body group). The group holding the largest component is
+    the body. Any other group is kept only if it is ball-like (hull sphericity >= BALL_SPHER, hull diameter <= BALL_D)
+    with frame support (>= max(F_MIN_ABS, F_MIN_FRAC * frames)), area >= A_MIN and distance <= NEAR to the body.
+    Body-group components smaller than A_MIN are dropped as noise. Returns (mesh, report)."""
+    parts = m.split(only_watertight=False)
+    rep = dict(components=len(parts), dropped_area_cm2=0.0, dropped=[], kept_balls=0)
+    if len(parts) == 0:
+        return m, rep
+    parts = sorted(parts, key=lambda q: q.area, reverse=True)
+    n = len(parts)
+    trees = [cKDTree(np.vstack([q.vertices, q.triangles_center])) for q in parts]   # surface proxy (pitch/2)
+    bmin = np.array([q.bounds[0] for q in parts]); bmax = np.array([q.bounds[1] for q in parts])
+    parent = list(range(n))
+
+    def find(a):
+        while parent[a] != a:
+            parent[a] = parent[parent[a]]; a = parent[a]
+        return a
+    for i in range(n):
+        for j in range(i + 1, n):
+            if np.any(bmin[i] > bmax[j] + TOUCH) or np.any(bmin[j] > bmax[i] + TOUCH):
+                continue
+            if find(i) == find(j):
+                continue
+            small, big = (i, j) if len(parts[i].vertices) < len(parts[j].vertices) else (j, i)
+            if np.isfinite(trees[big].query(parts[small].vertices, k=1, distance_upper_bound=TOUCH)[0]).any() or \
+                    np.isfinite(trees[big].query(parts[small].triangles_center, k=1,
+                                                 distance_upper_bound=TOUCH)[0]).any():
+                parent[find(i)] = find(j)
+    if union is not None:                                  # pieces of one slab-union body touch through the solid
+        utree, vlab = union
+        first = {}
+        for i in range(n):
+            V = parts[i].vertices
+            sel = V[np.linspace(0, len(V) - 1, min(len(V), 64)).astype(int)]
+            for lb in set(vlab[utree.query(sel, k=1)[1]].tolist()):
+                if lb in first:
+                    if find(i) != find(first[lb]):
+                        parent[find(i)] = find(first[lb])
+                else:
+                    first[lb] = i
+    if host_tree is not None:
+        for i in range(n):
+            if np.isfinite(host_tree.query(parts[i].vertices, k=1, distance_upper_bound=host_touch)[0]).any():
+                parent[find(i)] = find(0)
+    body = find(0)
+    groups = {}
+    for i in range(n):
+        groups.setdefault(find(i), []).append(i)
+    body_v = np.vstack([np.vstack([parts[i].vertices, parts[i].triangles_center]) for i in groups[body]])
+    tbody = cKDTree(body_v)
+    nfr = len(np.unique(F)) if len(F) else 0
+    fmin = max(F_MIN_ABS, int(math.ceil(F_MIN_FRAC * nfr)))
+    rng = np.random.default_rng(0)
+    sub = rng.choice(len(P), min(len(P), 400000), replace=False) if len(P) else np.zeros(0, int)
+    Ps, Fs = P[sub], F[sub]
+    keep = []
+    for r, mem in groups.items():
+        area = float(sum(parts[i].area for i in mem))
+        if r == body:
+            for i in mem:
+                if i == 0 or parts[i].area >= A_MIN:
+                    keep.append(i)
+                else:
+                    rep['dropped'].append(dict(area_cm2=round(parts[i].area * 1e4, 3), why='body_flake'))
+                    rep['dropped_area_cm2'] += parts[i].area * 1e4
+            continue
+        V = np.vstack([parts[i].vertices for i in mem])
+        sph, diam = _hull_shape(V)
+        dist = float(tbody.query(V, k=1)[0].min())
+        tv = cKDTree(V)
+        frames = int(len(np.unique(Fs[tv.query(Ps, k=1, distance_upper_bound=0.003)[1] < len(V)]))) if len(Ps) else 0
+        R, rms = _sphere_fit(V)
+        ball = (sph >= BALL_SPHER) and (diam <= BALL_D) and (R <= diam) and (rms <= BALL_FIT_RMS * R)
+        ok = ball and frames >= fmin and area >= A_MIN and dist <= NEAR
+        why = 'kept_ball' if ok else ('not_ball' if not ball else 'frames' if frames < fmin else 'area' if area < A_MIN
+                                      else 'far')
+        d = dict(area_cm2=round(area * 1e4, 3), hull_sphericity=round(sph, 3), hull_diam_mm=round(diam * 1e3, 1),
+                 sphere_r_mm=round(R * 1e3, 1) if np.isfinite(R) else None,
+                 sphere_rms_mm=round(rms * 1e3, 2) if np.isfinite(rms) else None,
+                 dist_mm=round(dist * 1e3, 1), frames=frames, why=why)
+        if ok:
+            keep.extend(mem); rep['kept_balls'] += 1; rep.setdefault('balls', []).append(d)
+        else:
+            rep['dropped'].append(d); rep['dropped_area_cm2'] += area * 1e4
+    rep['dropped_area_cm2'] = round(rep['dropped_area_cm2'], 3)
+    rep['dropped'] = sorted(rep['dropped'], key=lambda d: -d['area_cm2'])[:12]
+    rep['dropped_n'] = int(n - len(keep))
+    out = trimesh.util.concatenate([parts[i] for i in sorted(keep)])
+    rep['kept_area_cm2'] = round(out.area * 1e4, 2)
+    return out, rep
+
+
+# ---------------------------------------------------------------------------------------------- 7. budget
+def _skirt(m, h):
+    """Sheet + a skirt of height h along -vertex normal on every border edge. Returns (V, F, n_sheet_vertices)."""
+    V, F = np.asarray(m.vertices), np.asarray(m.faces)
+    be = _boundary_halfedges(F)
+    if len(be) == 0:
+        return V, F, len(V)
+    bv = np.unique(be)
+    sk = np.full(len(V), -1, np.int64); sk[bv] = len(V) + np.arange(len(bv))
+    Vs = V[bv] - h * np.asarray(m.vertex_normals)[bv]
+    a, b = be[:, 0], be[:, 1]
+    Fs = np.concatenate([np.stack([b, a, sk[a]], 1), np.stack([b, sk[a], sk[b]], 1)])
+    return np.vstack([V, Vs]), np.vstack([F, Fs]), len(V)
+
+
+def _strip_border_faces(V, F):
+    """Remove every face that touches a border vertex of (V, F): after a skirted decimation, exactly the skirt."""
+    be = _boundary_halfedges(F)
+    if len(be) == 0:
+        return trimesh.Trimesh(V, F, process=False)
+    bv = np.zeros(len(V), bool); bv[be.ravel()] = True
+    m = trimesh.Trimesh(V, F[~np.any(bv[F], 1)], process=False)
+    m.remove_unreferenced_vertices()
+    return m
+
+
+def closed_faces(m):
+    """Face count of the solidified sheet: 2 * (faces + border edges)."""
+    return 2 * (len(m.faces) + len(_boundary_halfedges(np.asarray(m.faces)))) if len(m.faces) else 0
+
+
+def _dec_pass(m, target_count, h, agg):
+    """One skirted decimation pass to target_count faces (sheet + skirt), skirt stripped, manifold cleaned."""
+    import fast_simplification
+    V, F, nv = _skirt(m, h)
+    tc = int(min(len(F) - 1, max(16, target_count)))
+    v, f = fast_simplification.simplify(np.asarray(V, np.float64), np.asarray(F, np.int64), target_count=tc, agg=agg)
+    d = _strip_border_faces(np.asarray(v, np.float64), np.asarray(f, np.int64))
+    key0 = set(map(tuple, np.round(d.vertices[np.unique(_boundary_halfedges(d.faces))] * 1e6).astype(np.int64)
+                   .tolist())) if len(d.faces) else set()
+    d, rem = manifold_clean(d)
+    if rem and len(d.faces):                               # holes the clean-up opened (a border vertex that was not
+        Vd = d.vertices                                    # on the border before) are fan-filled again
+        def new_hole(L):
+            return any(tuple(q) not in key0 for q in np.round(Vd[L] * 1e6).astype(np.int64).tolist())
+        d, _, _ = fill_holes(d, max_edges=DEC_REFILL_EDGES, need=new_hole)
+        d, _ = manifold_clean(d)
+    return d, rem, tc
+
+
+def _drop_small(m):
+    """Drop sheet components smaller than A_MIN (fragments left by the decimation clean-up); returns (mesh, cm^2)."""
     parts = m.split(only_watertight=False)
     if len(parts) <= 1:
-        return m, [dict(area_cm2=round(m.area * 1e4, 2), kept=True, why='single')]
-    parts = sorted(parts, key=lambda q: q.area, reverse=True)
-    main = parts[0]; tmain = cKDTree(main.vertices)
-    nfr_all = len(np.unique(F)); fmin = max(F_MIN_ABS, int(math.ceil(F_MIN_FRAC * nfr_all)))
-    rng = np.random.default_rng(0); sub = rng.choice(len(P), min(len(P), 400000), replace=False)
-    Ps, Fs = P[sub], F[sub]
-    keep, rep = [main], [dict(area_cm2=round(main.area * 1e4, 2), kept=True, why='largest')]
-    for q in parts[1:]:
-        dist = float(tmain.query(q.vertices, k=1)[0].min())
-        near_pts = np.unique(Fs[cKDTree(q.vertices).query(Ps, k=1, distance_upper_bound=0.003)[1] < len(q.vertices)])
-        ok = (len(near_pts) >= fmin) and (q.area >= A_MIN) and (dist <= NEAR)
-        why = 'kept' if ok else ('frames' if len(near_pts) < fmin else 'area' if q.area < A_MIN else 'far')
-        rep.append(dict(area_cm2=round(q.area * 1e4, 2), frames=int(len(near_pts)), dist_mm=round(dist * 1e3, 1),
-                        kept=bool(ok), why=why))
-        if ok:
-            keep.append(q)
-    return trimesh.util.concatenate(keep), rep
+        return m, 0.0
+    keep = [q for q in parts if q.area >= A_MIN] or [max(parts, key=lambda q: q.area)]
+    out = trimesh.util.concatenate(keep)
+    return out, round((m.area - out.area) * 1e4, 3)
 
 
-def decimate(m, max_faces):
-    if len(m.faces) <= max_faces:
-        return m, False
-    import fast_simplification
-    for red in (1 - max_faces / len(m.faces), 1 - 2 * max_faces / len(m.faces)):
-        if red <= 0:
-            break
-        v, f = fast_simplification.simplify(np.asarray(m.vertices, np.float32), np.asarray(m.faces), target_reduction=red)
-        d = trimesh.Trimesh(v.astype(np.float64), f, process=True)
-        if d.is_watertight:
-            return d, True
-    return m, False
+def decimation_error(dense, dec, n=60000):
+    """Distances (mm) from the dense sheet to the decimated one: p50/p95/p99 and share > 3 mm (sample to sample)."""
+    if len(dense.faces) == 0 or len(dec.faces) == 0:
+        return dict()
+    A = trimesh.sample.sample_surface(dense, n, seed=0)[0]
+    B = trimesh.sample.sample_surface(dec, n, seed=1)[0]
+    d = cKDTree(B).query(A, workers=2)[0]
+    return dict(dense_to_dec_mm_p50_95_99=np.round(np.percentile(d, [50, 95, 99]) * 1e3, 2).tolist(),
+                dense_to_dec_frac_gt3mm=round(float(np.mean(d > 0.003)), 4))
+
+
+def decimate_sheet(m, max_closed, h, agg=None, iters=8):
+    """Decimate the open sheet so that its solidified version has <= max_closed faces. Coarse passes divide the
+    face count by DEC_STEP while the sheet is far above the budget; a final search on the target count then lands
+    within 5 % under the budget. Every pass constrains the border with a temporary skirt and cleans the result to an
+    edge-manifold, consistently wound sheet. Returns (sheet, info)."""
+    agg = DEC_AGG if agg is None else agg
+    info = dict(sheet_faces_in=int(len(m.faces)), border_edges_in=int(len(_boundary_halfedges(np.asarray(m.faces))))
+                if len(m.faces) else 0, agg=agg)
+    if len(m.faces) == 0 or closed_faces(m) <= max_closed:
+        m2, rem = manifold_clean(m)
+        info.update(decimated=False, clean_removed=rem)
+        return m2, info
+    cur, removed, passes = m, 0, []
+    while closed_faces(cur) > DEC_STEP * 1.5 * max_closed:
+        cur, rem, tc = _dec_pass(cur, max(len(cur.faces) // DEC_STEP, int(1.5 * max_closed)), h, agg)
+        removed += rem; passes.append(dict(target=tc, sheet_faces=int(len(cur.faces)), clean_removed=rem))
+    target = int(max_closed / 2)                            # sheet + skirt faces ~ sheet + 2 * border
+    tmax = len(cur.faces) + 2 * len(_boundary_halfedges(cur.faces)) - 1
+    best, lo_t, hi_t = None, None, None                     # bisection on the target (the output is not monotonic)
+    for it in range(iters):
+        d, rem, tc = _dec_pass(cur, target, h, agg)
+        cf = closed_faces(d)
+        passes.append(dict(target=tc, sheet_faces=int(len(d.faces)), closed_faces=int(cf), clean_removed=rem))
+        if cf <= max_closed:
+            if best is None or cf > closed_faces(best[0]):
+                best = (d, rem)
+            lo_t = tc if lo_t is None else max(lo_t, tc)
+            if cf >= 0.95 * max_closed or tc >= tmax:
+                break
+        else:
+            hi_t = tc if hi_t is None else min(hi_t, tc)
+        if lo_t is not None and hi_t is not None:
+            if hi_t - lo_t <= max(2, 0.01 * hi_t):
+                break
+            target = (lo_t + hi_t) // 2
+        else:
+            target = int(tc * 0.975 * max_closed / max(cf, 1))
+    if best is None:
+        raise RuntimeError(f'decimate_sheet: could not reach {max_closed} closed faces: {passes}')
+    d, rem = best
+    d, info['post_dropped_area_cm2'] = _drop_small(d)
+    d, rem2 = manifold_clean(d); rem += rem2
+    info.update(decimated=True, passes=passes, sheet_faces=int(len(d.faces)),
+                border_edges=int(len(_boundary_halfedges(d.faces))), clean_removed=int(removed + rem))
+    info.update(decimation_error(m, d))
+    return d, info
+
+
+# ---------------------------------------------------------------------------------------------- 8. solidify
+def solidify(m, tau_v, mode='oriented'):
+    """Closed thin shell from an open, oriented, edge-manifold sheet: back sheet at -tau_v along the vertex normal
+    (even-thickness scaling, mode 'oriented': front face stays; 'symmetric': +-tau_v/2), rim quads on every border
+    edge. Watertight and consistently wound by construction."""
+    V, F = np.asarray(m.vertices, np.float64), np.asarray(m.faces, np.int64)
+    if len(F) == 0:
+        return _empty()
+    fn = np.asarray(m.face_normals); af = np.asarray(m.area_faces)
+    acc = np.zeros((len(V), 3)); ff = np.zeros(len(V), np.int64)
+    for k in range(3):
+        np.add.at(acc, F[:, k], fn * af[:, None]); ff[F[:, k]] = np.arange(len(F))
+    nrm = np.linalg.norm(acc, axis=1)
+    vn = acc / np.maximum(nrm, 1e-30)[:, None]
+    bad = nrm < 1e-6 * max(float(af.max()), 1e-30)          # cancelling or degenerate fans: take one face's normal
+    vn[bad] = fn[ff[bad]]
+    # even thickness: mean cos between the vertex normal and its faces' normals
+    cs = np.zeros(len(V)); cn = np.zeros(len(V))
+    for k in range(3):
+        np.add.at(cs, F[:, k], np.einsum('ij,ij->i', vn[F[:, k]], fn)); np.add.at(cn, F[:, k], 1)
+    scale = 1.0 / np.clip(cs / np.maximum(cn, 1), EVEN_COS_MIN, 1.0)
+    off = (tau_v * scale)[:, None] * vn
+    if mode == 'symmetric':
+        Vf, Vb = V + off / 2, V - off / 2
+    else:
+        Vf, Vb = V, V - off
+    n = len(V)
+    be = _boundary_halfedges(F)
+    a, b = be[:, 0], be[:, 1]
+    rim = np.concatenate([np.stack([b, a, a + n], 1), np.stack([b, a + n, b + n], 1)]) if len(be) else \
+        np.zeros((0, 3), np.int64)
+    out = trimesh.Trimesh(np.vstack([Vf, Vb]), np.vstack([F, F[:, ::-1] + n, rim]), process=False)
+    if out.is_watertight and out.volume < 0:
+        out.invert()
+    return out
+
+
+def vertex_tau(V, S, tau, k=8):
+    """Per sheet vertex: median thickness of its k nearest samples."""
+    if len(S) == 0:
+        return np.zeros(len(V))
+    k = min(k, len(S))
+    _, j = cKDTree(S).query(V, k=k, workers=2)
+    if j.ndim == 1:
+        j = j[:, None]
+    return np.median(tau[j], 1)
 
 
 # ---------------------------------------------------------------------------------------------- driver
-def thin_shell(obs, t=0.0025, voxel=0.002, mode='oriented', two_sided=True, carve=False, max_faces=MAX_FACES,
-               pitch=None, return_report=False, **kw):
-    """obs dict (pts, cam, frame) -> watertight trimesh.Trimesh: a closed thin shell of thickness t on the observed
-    surfaces. mode 'oriented' (solid behind the observed face) or 'symmetric' (+-t/2). With two_sided, walls whose
-    both faces were observed take their measured thickness. With carve (oriented mode), a slab is cut back where our
-    own rays saw through the material behind the surface. return_report=True -> (mesh, report)."""
+def _host_trim(m, host, dist):
+    """Keep sheet faces whose centre lies more than dist outside the host (sampled signed distance, by the nearest
+    host sample's face normal). Returns (mesh, info)."""
+    n = int(np.clip(host.area * 4e6, 50000, 400000))           # ~4 samples per mm^2, capped
+    Sh, fi = trimesh.sample.sample_surface(host, n, seed=0)
+    Nh = np.asarray(host.face_normals)[fi]
+    th = cKDTree(Sh)
+    X = m.triangles_center
+    d, j = th.query(X, k=1, workers=2)
+    sd = np.where(np.einsum('ij,ij->i', X - Sh[j], Nh[j]) > 0, d, -d)
+    keep = sd > dist
+    out = trimesh.Trimesh(m.vertices, m.faces[keep], process=False); out.remove_unreferenced_vertices()
+    return out, dict(host_trim_mm=round(dist * 1e3, 2), host_trimmed_area_cm2=round((m.area - out.area) * 1e4, 2)), th
+
+
+def shell_sheet(obs, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, host=None, pitch=None):
+    """t-independent part of the route: oriented samples, measured thickness, one face per wall, the open sheet and
+    its islands. Returns a dict for solidify_sheet (several t and budgets reuse it)."""
     t0 = time.time()
-    rep = dict(t_mm=t * 1e3, voxel_mm=voxel * 1e3, mode=mode, two_sided=bool(two_sided), carve=bool(carve))
+    rep = dict(voxel_mm=voxel * 1e3, mode=mode, two_sided=bool(two_sided), carve=bool(carve), host=host is not None)
     P = np.asarray(obs['pts'], np.float64); C = np.asarray(obs['cam'], np.float64)
     F = np.asarray(obs['frame']) if 'frame' in obs else np.zeros(len(P), int)
     ok = np.all(np.isfinite(P), 1) & np.all(np.isfinite(C), 1)
     P, C, F = P[ok], C[ok], F[ok]
-    rep.update(points=int(len(P)), frames=int(len(np.unique(F))))
+    rep.update(points=int(len(P)), frames=int(len(np.unique(F))) if len(F) else 0)
+    sh = dict(rep=rep, sheet=_empty(), S=np.zeros((0, 3)), tau_meas=np.zeros(0), cap=np.zeros(0), dec={}, mode=mode,
+              voxel=voxel)
+    if len(P) < PATCH_MIN_PTS:
+        rep.update(empty='too few points', sec_sheet=round(time.time() - t0, 1))
+        return sh
     n, planar = point_normals(P, C, F, voxel)
     rep['weak_normal_frac'] = round(float((planar < PLANAR_MIN).mean()), 3)
     front = (np.einsum('ij,ij->i', n, _unit(C - P)) >= COS_GRAZE) & (planar >= PLANAR_MIN)
     rep['grazing_or_weak_dropped_frac'] = round(float(1 - front.mean()), 3)
     P, C, F, n = P[front], C[front], F[front], n[front]
     ts = time.time()
-    smp = directional_samples(P, n, voxel)
-    S, N = smp['s'], smp['n']
+    smp = directional_samples(P, n, voxel) if len(P) >= 16 else dict(s=np.zeros((0, 3)), n=np.zeros((0, 3)),
+                                                                        w=np.zeros(0))
+    S, N, W = smp['s'], smp['n'], smp['w']
     rep['samples'] = int(len(S)); rep['sec_fusion'] = round(time.time() - ts, 1)
-    T = two_sided_thickness(S, N) if two_sided else np.full(len(S), np.nan)
+    if len(S) < 16:
+        rep.update(empty='too few samples', sec_sheet=round(time.time() - t0, 1))
+        return sh
+    if two_sided:
+        T, partner = two_sided_thickness(S, N, return_partner=True)
+    else:
+        T, partner = np.full(len(S), np.nan), np.full(len(S), -1, np.int64)
     meas = np.isfinite(T)
     rep['two_sided_frac'] = round(float(meas.mean()), 3)
     if meas.any():
         rep['two_sided_T_mm_p10_50_90'] = np.round(np.percentile(T[meas], [10, 50, 90]) * 1e3, 2).tolist()
-    tau = np.where(meas, T, t)
-    offset = tau / 2 if mode == 'oriented' else np.zeros(len(S))
-    if mode == 'symmetric':
-        tau = np.full(len(S), t)                          # symmetric tube: one thickness everywhere
-    elif carve:
-        tau, cinfo = free_space_clamp(P, C, F, n, S, N, tau, min(float(tau.max()), TRUNC))
-        offset = tau / 2; rep.update(cinfo)
-    pitch = pitch or min(voxel, 0.95 * min(t, float(tau.min())) / math.sqrt(3))   # no slab can tear
+    cap = np.full(len(S), np.inf)
+    if carve and mode == 'oriented':
+        capv, cinfo = free_space_clamp(P, C, F, n, S, N, np.where(meas, T, TRUNC), TRUNC)
+        cap = np.where(capv < np.where(meas, T, TRUNC) - 1e-12, capv, np.inf); rep.update(cinfo)
+    if two_sided and mode == 'oriented':
+        slave, sinfo = resolve_sides(S, N, W, T, partner, voxel); rep.update(sinfo)
+    else:
+        slave = np.zeros(len(S), bool)
+    kept = ~slave
+    S, N, T, cap = S[kept], N[kept], T[kept], cap[kept]
+    rep['sheet_samples'] = int(len(S))
+    pitch = 0.95 * T_FLOOR / math.sqrt(3)              # the front sheet's marching-cubes pitch
     rdisk = R_DISK_FRAC * voxel
     ts = time.time()
-    U, lo, nband = shell_field(S, N, tau, offset, rdisk, pitch)
-    rep.update(pitch_mm=round(pitch * 1e3, 3), grid=list(U.shape), band_voxels=nband)
-    m = march(U, lo, pitch); del U
-    rep['sec_field_mc'] = round(time.time() - ts, 1); rep['faces_mc'] = int(len(m.faces))
-    m, isl = clean_islands(m, P, F)
-    rep['islands'] = isl[:12]; rep['islands_total'] = len(isl); rep['islands_dropped'] = int(sum(not r['kept'] for r in isl))
-    m, dec = decimate(m, max_faces)
-    rep.update(decimated=dec, faces=int(len(m.faces)), watertight=bool(m.is_watertight),
-               bodies=int(len(m.split(only_watertight=False))), area_cm2=round(m.area * 1e4, 1),
-               volume_cm3=round(float(m.volume) * 1e6, 2) if m.is_watertight else None,
-               extents_cm=np.round(m.extents * 100, 1).tolist(), sec=round(time.time() - t0, 1))
-    m.metadata['shell_report'] = rep
-    return (m, rep) if return_report else m
+    m, sinfo = front_sheet(S, N, rdisk, voxel); rep.update(sinfo)
+    union = m.metadata.get('union')
+    m, rem = manifold_clean(m); rep['sheet_clean_removed'] = rem
+    host_tree = None
+    if host is not None and len(m.faces) and len(getattr(host, 'faces', [])):
+        m, hinfo, host_tree = _host_trim(m, host, HOST_TRIM_FRAC * voxel); rep.update(hinfo)
+        m, rem = manifold_clean(m); rep['sheet_clean_removed'] += rem
+    if len(m.faces):
+        m, nh, ah = fill_holes(m, max_len=HOLE_FILL_LEN)
+        m, rem = manifold_clean(m); rep['sheet_clean_removed'] += rem
+        rep.update(holes_filled=int(nh), holes_filled_area_cm2=round(ah * 1e4, 2))
+    rep['sheet_area_raw_cm2'] = round(m.area * 1e4, 2) if len(m.faces) else 0.0
+    if len(m.faces):
+        m, isl = island_filter(m, P, F, host_tree=host_tree,
+                               host_touch=HOST_TRIM_FRAC * voxel + TOUCH + pitch if host_tree is not None else None,
+                               union=union)
+        rep['islands'] = isl
+        rep['islands_dropped'] = isl['dropped_n']; rep['islands_dropped_area_cm2'] = isl['dropped_area_cm2']
+    else:
+        rep['islands_dropped'] = 0; rep['islands_dropped_area_cm2'] = 0.0
+    rep['sheet_area_cm2'] = round(m.area * 1e4, 2) if len(m.faces) else 0.0
+    rep['sec_sheet_mc'] = round(time.time() - ts, 1); rep['sec_sheet'] = round(time.time() - t0, 1)
+    sh.update(sheet=m, S=S, tau_meas=T, cap=cap, pitch=pitch)
+    return sh
+
+
+def solidify_sheet(sh, t, max_faces=MAX_FACES, mode=None, return_report=False):
+    """Closed thin shell of unseen thickness t (m) from a shell_sheet() result: the sheet is decimated so the closed
+    shell has <= max_faces faces (None: no decimation), the per-vertex thickness is the measured two-sided thickness
+    where known, else t (capped by the free-space clamp), and the sheet is solidified."""
+    t0 = time.time()
+    mode = mode or sh['mode']
+    rep = dict(sh['rep']); rep.update(t_mm=t * 1e3, max_faces=max_faces)
+    m = sh['sheet']
+    if len(m.faces) == 0:
+        out = _empty()
+        rep.update(faces=0, vertices=0, watertight=False, bodies=0, area_cm2=0.0, volume_cm3=None, extents_cm=None,
+                   sec=round(time.time() - t0, 1), empty=rep.get('empty', 'no sheet'))
+        out.metadata['shell_report'] = rep
+        return (out, rep) if return_report else out
+    if max_faces is not None:
+        key = int(max_faces)
+        if key not in sh['dec']:
+            sh['dec'][key] = decimate_sheet(m, key, SKIRT_H_FRAC * sh['voxel'])
+        d, dinfo = sh['dec'][key]
+        rep['decimation'] = dinfo
+    else:
+        d, rem = manifold_clean(m); rep['decimation'] = dict(decimated=False, clean_removed=rem)
+    if mode == 'symmetric':
+        tau = np.full(len(sh['S']), t)
+    else:
+        tau = np.where(np.isfinite(sh['tau_meas']), sh['tau_meas'], t)
+        tau = np.minimum(tau, np.maximum(sh['cap'], T_FLOOR))
+    tv = vertex_tau(np.asarray(d.vertices), sh['S'], tau)
+    out = solidify(d, tv, mode)
+    retries = 0
+    while len(out.faces) and not out.is_watertight and retries < 3:   # safety net: should not trigger
+        d, _ = manifold_clean(d); retries += 1
+        tv = vertex_tau(np.asarray(d.vertices), sh['S'], tau); out = solidify(d, tv, mode)
+    rep['solidify_retries'] = retries
+    if len(out.vertices) >= 2:                              # > 0: the kit's weld cannot merge anything
+        rep['min_vertex_gap_um'] = round(float(cKDTree(out.vertices).query(out.vertices, k=2)[0][:, 1].min()) * 1e6, 2)
+    sheet_area = float(d.area); dense_area = float(m.area)
+    rep.update(faces=int(len(out.faces)), vertices=int(len(out.vertices)), watertight=bool(out.is_watertight),
+               winding_consistent=bool(out.is_winding_consistent),
+               bodies=int(len(out.split(only_watertight=False))), area_cm2=round(out.area * 1e4, 1),
+               sheet_dec_area_cm2=round(sheet_area * 1e4, 2),
+               sheet_dec_area_change_pct=round(100 * (sheet_area / max(dense_area, 1e-12) - 1), 2),
+               tau_v_mm_p10_50_90=np.round(np.percentile(tv, [10, 50, 90]) * 1e3, 2).tolist(),
+               volume_cm3=round(float(out.volume) * 1e6, 2) if out.is_watertight else None,
+               extents_cm=np.round(out.extents * 100, 1).tolist(),
+               sec_solidify=round(time.time() - t0, 1), sec=round(rep.get('sec_sheet', 0) + time.time() - t0, 1))
+    out.metadata['shell_report'] = rep
+    return (out, rep) if return_report else out
+
+
+def thin_shell(obs, t, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, max_faces=MAX_FACES, pitch=None,
+               return_report=False, **kw):
+    """obs dict (pts, cam, frame) -> closed thin shell (trimesh.Trimesh) of unseen thickness t (m) on the observed
+    surfaces, <= max_faces faces (default 4000, so the kit's 4096-face budget_mesh only welds it; None: full
+    resolution). mode 'oriented' (solid behind the observed face) or 'symmetric' (+-t/2). With two_sided, walls whose
+    both faces were observed are built once with their measured thickness. With carve (oriented mode), a slab is cut
+    back where our own rays saw through the material behind the surface. pitch is ignored (kept for API
+    compatibility; the sheet's pitch follows T_FLOOR). return_report=True -> (mesh, report)."""
+    sh = shell_sheet(obs, voxel=voxel, mode=mode, two_sided=two_sided, carve=carve, pitch=pitch)
+    return solidify_sheet(sh, t, max_faces=max_faces, mode=mode, return_report=return_report)
+
+
+def surface_patch(obs, idx=None, t=0.0025, max_faces=None, host=None, voxel=VOXEL, mode='oriented', two_sided=True,
+                  return_report=False):
+    """Closed thin shell over the observed points obs['pts'][idx] (all points if idx is None), for use as a part in
+    a program (parts type 'shell_patch'). With host (a trimesh, e.g. the union of the earlier parts), the sheet is
+    trimmed so it does not duplicate the host's surface: only sheet parts more than HOST_TRIM_FRAC * voxel outside the
+    host are kept, and sheet pieces within that distance + TOUCH of the host count as attached to the body (island
+    rule). max_faces=None: no decimation. Returns an empty Trimesh when no surface survives."""
+    if idx is not None:
+        idx = np.asarray(idx)
+        sub = {k: np.asarray(obs[k])[idx] for k in ('pts', 'cam', 'frame') if k in obs}
+    else:
+        sub = {k: obs[k] for k in ('pts', 'cam', 'frame') if k in obs}
+    sh = shell_sheet(sub, voxel=voxel, mode=mode, two_sided=two_sided, host=host)
+    return solidify_sheet(sh, t, max_faces=max_faces, mode=mode, return_report=return_report)
 
 
 def main():
     import argparse
     p = argparse.ArgumentParser()
     p.add_argument('obj'); p.add_argument('ep', type=int); p.add_argument('out')
-    p.add_argument('--t', type=float, default=0.0025); p.add_argument('--voxel', type=float, default=0.002)
-    p.add_argument('--mode', default='oriented'); p.add_argument('--refined', default='auto')
+    p.add_argument('--t', type=float, required=True); p.add_argument('--voxel', type=float, default=VOXEL)
+    p.add_argument('--mode', default='oriented'); p.add_argument('--refined', default='0')
     p.add_argument('--no_two_sided', action='store_true'); p.add_argument('--max_faces', type=int, default=MAX_FACES)
     p.add_argument('--carve', action='store_true')
     a = p.parse_args()
@@ -444,10 +1065,11 @@ def main():
             path = None
     path = path or obs_path(a.obj, a.ep)
     m, rep = thin_shell(load_obs(path, keys=('pts', 'cam', 'frame')), t=a.t, voxel=a.voxel, mode=a.mode,
-                        two_sided=not a.no_two_sided, carve=a.carve, max_faces=a.max_faces, return_report=True)
+                        two_sided=not a.no_two_sided, carve=a.carve, max_faces=a.max_faces or None,
+                        return_report=True)
     m.export(a.out)
     rep.update(obs=path, out=a.out)
-    print(json.dumps(rep))
+    print(json.dumps(rep, default=str))
 
 
 if __name__ == '__main__':

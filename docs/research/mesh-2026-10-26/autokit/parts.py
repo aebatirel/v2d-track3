@@ -1,18 +1,24 @@
 """Part library of the autokit part DSL: parametric parts fitted to OUR observed stereo points (obs_points.py).
 
 GT-free by construction. Every fitter here sees only the observed points of one episode (pts, cam, frame and the
-obs_points vote grids, through autokit.io_gt.load_obs), our own library mesh (tsdf_patch only) and the program's
-unseen-thickness prior t (generic grid {1.5, 2.5, 4.0} mm). No scan, *_align file, mocap or parquet pose is read, no
-number measured on a scan is used, and there are no object names or per-object constants in this file.
+obs_points vote grids, through autokit.io_gt.load_obs), our own library mesh (tsdf_patch only, loaded through the
+io_gt guard) and the program's unseen-thickness prior t (generic grid {1.5, 2.5, 4.0} mm). No scan, *_align file,
+mocap or parquet pose is read, no number measured on a scan is used, and there are no object names or per-object
+constants in this file (stage 1b: the per-object calibration constants S_REF_* and the scan-derived 7 mm marker-ball
+prior were removed; the example programs carry their windows explicitly, which is the per-object B side).
 
-Scale. Every window that depends on the object's size is RELATIVE: w = max(floor, frac * s), s = robust RMS radius
-of the object's observed points (Ctx.s). The default fractions are the hand kits' (scripts/prim_*.py, lathe_obs.py)
-absolute windows divided by s of the episode each kit was developed on, so a program that uses the defaults
-reproduces the hand kit there. Absolute numbers remain only for
-  - the sensor: voxel downsample VOX, robust-loss scale F_SCALE, residual noise band APP_D (our stereo points lie a
-    median 0.9-1.9 mm, p90 up to ~7 mm from the surface), view-class cosines;
-  - the marker-ball hardware (BALL: radius prior 7 mm from our own stereo, size / gap / stem tests), which is the same
-    on every object.
+Parameter schema. Every part type declares its parameters in PART_TYPES[type].schema (name -> Param: kind, default,
+class, meaning). program.validate_program rejects unknown keys, wrong enum values, references to parts that are not
+earlier in the list and missing REQUIRED windows; DSL.md's tables are generated from the schema (program.py
+--schema-md). Window classes:
+  - sensor : resolution / noise scales of OUR stereo points (bins, bands, grids). Generic default, ABSOLUTE metres,
+             derived from the sensor constants below (VOX, F_SCALE, APP_D), the same on every object.
+  - generic: a rule chosen without any object in mind (e.g. the ball radius window 3-15 mm = 'any small sphere',
+             the thickness floor 1.5 mm = the smallest grid value). Absolute default.
+  - shape  : depends on the object's shape (flange radii, peg slice heights, plausible extents). NO default: a
+             program that uses the window must give it (validation error otherwise). Write it relative to s.
+A window value in a program is a bare number (fraction of s), {"frac": f, "floor": m} or {"abs": m}; its value is
+max(floor, frac * s) or m, s = robust RMS radius of the object's observed points (Ctx.s).
 
 Part types (fit_<type>(ctx, idx, spec, done) -> Part). Each returns a manifold3d solid (or a mesh patch), its
 parameters, the number of free parameters k, the list of parameters that ended on a bound (bounds_hit) and
@@ -23,17 +29,22 @@ they reach beyond its extent (used by the assignment rules in program.py).
   sheet_of_revolution domed thin sheet seen from one side (prim_potlid.build_lid): edge circle, tilt, top profile,
                       underside = top - t (prior grid)
   plate               plate in its own fitted plane: outline 'bar' (straight bar with rounded tip, optional hole,
-                      inner end inside the host's wall), 'occupancy' or 'rect' (prim_boards outline)
-  plate_set           one 'occupancy' plate per large cluster of the assigned points
+                      inner end inside the host's wall), 'occupancy' (optionally keep_holes) or 'rect'
+  plate_set           sequential plane segmentation (one-point RANSAC on camera-oriented normals), one plate per
+                      plane-connected inlier set, each clipped to its own inliers
   tube_rrect          drafted, leaning rounded-rectangle tube in the program's support frame; wall 'thin' (thickness
                       t) or 'lip' (inner face inset s0 + s1 (top - h)); point classes by the side they were seen from
   strap               rectangle swept along a centreline fitted in the cluster's best plane (prim_potlid.arch_strap);
                       ends run down to the host surface
   cone_array          rows of tapered round pegs (shared template per row) on blobs of a horizontal slice
   rounded_box         box in the cluster's PCA frame, robust extents, rounded edges
-  ball                marker balls (one shared detector: prim_potlid.markers_from) on optional stems
+  ball                small spheres kept ONLY where a free sphere fit succeeds inside a generic radius window and
+                      passes support tests (frames, cap, residual, convexity, isotropy); stems only where points
+                      support them; no fixed-radius fallback; mode 'none' = no balls
   tsdf_patch          faces of our library mesh lying outside the listed parts (hybrid.py / tsdf_parts)
   splat               voxel splat + marching cubes of each assigned cluster (lathe_obs appendages)
+  shell_patch         route-A thin shell (shell.surface_patch) over the residual points, trimmed against the union of
+                      the earlier parts: observed surface the parts did not explain (A inside B)
 Usage: library only (see program.py and DSL.md).
 """
 import json, math, os, sys
@@ -49,35 +60,29 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SCRIPTS = os.path.join(os.path.dirname(HERE), 'scripts')
 if SCRIPTS not in sys.path:
     sys.path.insert(0, SCRIPTS)
+if os.path.dirname(HERE) not in sys.path:
+    sys.path.insert(0, os.path.dirname(HERE))
 import lathe_obs as L                                     # noqa: E402
-import prim_potlid as PL                                  # noqa: E402
-import prim_rack as PR                                    # noqa: E402
+import prim_potlid as PL                                  # noqa: E402  (geometry helpers only; not markers_from)
+import prim_rack as PR                                    # noqa: E402  (rrect / peg geometry helpers only)
 import prim_boards as PB                                  # noqa: E402
 import manifold3d as mf                                   # noqa: E402
+from autokit import io_gt                                 # noqa: E402
 
-# ------------------------------------------------------------------------------------------------ sensor / hardware
+# ------------------------------------------------------------------------------------------------ sensor
 VOX = 0.0015          # voxel downsample of the observed points (m), sensor
-F_SCALE = 0.002       # robust (soft_l1) loss scale (m), stereo noise
-APP_D = 0.008         # residual noise band: a point farther than this outside every part is unexplained (m)
+F_SCALE = 0.002       # robust (soft_l1) loss scale (m), stereo noise scale (our per-frame residual to the
+                      # self-consensus is ~0.7-0.8 mm median, refine.py on ep41/ep42, GT-free; 2 mm is generous)
+APP_D = 0.008         # residual noise band: a point farther than this outside every part is unexplained (m),
+                      # = 4 x F_SCALE
 VR = 0.25             # |in-plane view component| that decides outer- vs inner-seen (tube_rrect)
 NSEC = 24             # azimuth sectors of the body-of-revolution statistics
 MINSEC = 6            # sectors needed for a bin to belong to the body of revolution (handles fill 1-3)
-MIN_PTS = 8           # points per (bin, sector) cell
+MIN_PTS = 8           # legacy fixed points per (bin, sector) cell (lathe cell_min_pts override only)
+CELL_Q = 0.25         # density-normalised cell threshold: a (bin, sector) cell counts as seen when it holds
+                      # >= CELL_Q x the median count of the occupied cells (generic: a quarter of a typical cell)
+CELL_FLOOR = 3        # ... and at least this many points
 NSEG = 64             # revolve segments
-BALL = dict(r0=0.007, rmin=0.005, rmax=0.0095, diag=(0.006, 0.035), res=0.002, gap=(-0.003, 0.020),
-            stem_r=0.0035, stem_min=15, min_pts=60, free_r=(0.004, 0.012), spread=0.05)
-# Default windows are the hand kits' absolute windows divided by s of the development episode of each kit
-# (rel(value, S_REF_x)); a program on another object gets them scaled by its own s. Programs may override any
-# window by name (params: {name: fraction} or {name: {'frac': f, 'floor': m}} or {name: {'abs': m}}).
-S_REF_POLAR = 0.09114     # hand kit A, lathe 'polar' + bar plate (prim_potlid.build_pot development episode)
-S_REF_SHEET = 0.06373     # hand kit A', sheet + strap (prim_potlid.build_lid development episode)
-S_REF_TUBE = 0.15564      # hand kit C, tubes + cones (prim_rack development episode)
-S_REF_HEIGHT = 0.05681    # lathe_obs.py development episode (lathe 'height' + splat)
-
-
-def rel(m, s_ref, floor=0.0):
-    """Window default: absolute value m (metres) at the reference scale s_ref, as (fraction of s, floor)."""
-    return (m / s_ref, floor)
 
 
 def unit(v):
@@ -92,17 +97,74 @@ def robust_scale(P):
     return float(np.sqrt(np.mean(d[d <= q] ** 2))), c
 
 
+# ------------------------------------------------------------------------------------------------ parameter schema
+@dataclass
+class Param:
+    """One program parameter. kind: window (length, see module doc), int, float, bool, enum, ref (an earlier part's
+    name), refs (a name or a list of names). cls (windows): sensor / generic / shape. default None on a window =
+    REQUIRED (when `when` matches the spec's params); optional=True: may be omitted, no default (feature off)."""
+    kind: str
+    default: object = None
+    meaning: str = ''
+    cls: str = ''
+    choices: tuple = ()
+    when: dict = None
+    optional: bool = False
+
+    def required(self, params, schema):
+        if self.kind != 'window' or self.default is not None or self.optional:
+            return False
+        for k, v in (self.when or {}).items():
+            cur = params.get(k, schema[k].default if k in schema else None)
+            if (cur not in v) if isinstance(v, (list, tuple)) else (cur != v):
+                return False
+        return True
+
+
+def Ws(m, meaning, when=None):                 # sensor window, absolute generic default
+    return Param('window', {'abs': m}, meaning, 'sensor', when=when)
+
+
+def Wg(m, meaning, when=None):                 # generic rule window, absolute default
+    return Param('window', {'abs': m}, meaning, 'generic', when=when)
+
+
+def Wr(meaning, when=None):                    # shape window: required, no default
+    return Param('window', None, meaning, 'shape', when=when)
+
+
+def E(choices, default, meaning):
+    return Param('enum', default, meaning, choices=tuple(choices))
+
+
+class SchemaError(ValueError):
+    pass
+
+
+def window_value(v, s, name='?'):
+    """A program's window value -> metres. v: bare number = fraction of s; {'frac': f, 'floor': m}; {'abs': m}."""
+    if isinstance(v, dict):
+        if 'abs' in v:
+            return float(v['abs'])
+        return float(max(float(v.get('floor', 0.0)), float(v['frac']) * s))
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v) * s
+    raise SchemaError(f'window {name}: bad value {v!r} (number = fraction of s, {{"frac", "floor"}} or {{"abs"}})')
+
+
 class Ctx:
     """Per-object fitting context: voxel-downsampled points P, camera centres C, unit view directions V
-    (point -> camera), frame ids F, robust scale s, unseen-thickness prior t, the obs_points arguments (table band)
-    and its vote grids (obs), the optional library mesh path (tsdf_patch) and the program's support frame."""
+    (point -> camera), frame ids F, robust scale s, unseen-thickness prior t (required: one of the generic grid
+    values), the obs_points arguments (table band) and its vote grids (obs), raw -> downsampled index map inv, the
+    optional library mesh path (tsdf_patch) and the program's support frame."""
 
-    def __init__(self, obs, t=0.0025, lib=None, vox=VOX):
+    def __init__(self, obs, t, lib=None, vox=VOX):
         P = np.asarray(obs['pts'], np.float64); C = np.asarray(obs['cam'], np.float64)
         F = np.asarray(obs['frame']) if 'frame' in obs else np.zeros(len(P), int)
         key = np.floor(P / vox).astype(np.int64)
-        _, first = np.unique(key, axis=0, return_index=True)         # one point per voxel (voxel-key order)
+        _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)   # one point per voxel
         self.P, self.C, self.F = P[first], C[first], F[first]
+        self.inv = np.asarray(inv).reshape(-1)                         # raw point -> index into self.P
         self.V = unit(self.C - self.P)
         self.s, self.c0 = robust_scale(self.P)
         self.t = float(t)
@@ -118,18 +180,28 @@ class Ctx:
         self.frame = None
         self._n = None
 
-    def w(self, spec, name, default):
-        """Window `name`: spec params may give {'frac': f} (relative), a bare number (relative fraction) or
-        {'abs': m}; default is (frac, floor). Returns max(floor, frac * s) in metres."""
-        frac, floor = default
+    def w(self, spec, name, schema=None):
+        """Window `name` of a part spec (params[name]) or of the frame spec (spec[name]) in metres; the default comes
+        from the part type's schema; a missing REQUIRED window raises SchemaError."""
+        if schema is None:
+            schema = PART_TYPES[spec['type']].schema
+        pr = schema.get(name)
+        if pr is None or pr.kind != 'window':
+            raise SchemaError(f'{spec.get("type")}: {name!r} is not a declared window')
+        src = spec if schema is FRAME_SCHEMA else spec.get('params', {})
+        v = src.get(name)
+        if v is None:
+            v = pr.default
+        if v is None:
+            raise SchemaError(f'{spec.get("name", spec.get("type"))}: window {name!r} is required (class {pr.cls}: '
+                              f'{pr.meaning}); give it in params, relative to s')
+        return window_value(v, self.s, name)
+
+    def p(self, spec, name):
+        """Non-window parameter with its schema default."""
+        pr = PART_TYPES[spec['type']].schema[name]
         v = spec.get('params', {}).get(name)
-        if isinstance(v, dict):
-            if 'abs' in v:
-                return float(v['abs'])
-            frac = float(v.get('frac', frac)); floor = float(v.get('floor', floor))
-        elif v is not None:
-            frac = float(v)
-        return float(max(floor, frac * self.s))
+        return pr.default if v is None else v
 
     def normals(self):
         if self._n is None:
@@ -219,11 +291,23 @@ def clip_flag(name, v, lo, hi, hits):
 
 
 # ================================================================================================ lathe
+def cell_threshold(ctx, spec, keys):
+    """Count threshold of a (bin, sector) cell. params.cell_min_pts (int) fixes it (the hand kits used 8); else it is
+    density-normalised: max(CELL_FLOOR, cell_q x the median count of the occupied cells, pooled over the key
+    arrays given (outer- and inner-seen cells)), so the same object sampled more densely sees the same cells."""
+    fixed = ctx.p(spec, 'cell_min_pts')
+    if fixed is not None:
+        return int(fixed), None
+    cnt = np.concatenate([np.unique(k, return_counts=True)[1] for k in keys if len(k)] or [np.zeros(0, int)])
+    med = float(np.median(cnt)) if len(cnt) else 0.0
+    return max(CELL_FLOOR, int(round(float(ctx.p(spec, 'cell_q')) * med))), med
+
+
 def axis_search(ctx, P, C, spec, info, n_dirs=600):
     """prim_potlid.pot_axis with relative windows: line-complex placement per direction, score = rim flatness (MAD of
     the per-sector 98th-pct height in the rim window [0.6 R, R + rim_w]) + rotational self-consistency; hemisphere
     search, two local refinements around the three best; lathe_obs.fit_axis's direction is a candidate too."""
-    rim_w = ctx.w(spec, 'rim_w', rel(0.020, S_REF_POLAR))
+    rim_w = ctx.w(spec, 'rim_w')
     rng = np.random.default_rng(0)
     sub = rng.choice(len(P), min(20000, len(P)), replace=False)
     Ps, Cs = P[sub], C[sub]
@@ -276,10 +360,10 @@ def lathe_polar(ctx, P, C, spec, info, hits):
     view direction along the polar ray; median over >= MINSEC sectors; wall t measured where both sides were seen
     (else the prior ctx.t); mid-surface +- t/2 so the unseen floor underside = observed inner floor + t (closed)."""
     p = spec.get('params', {})
-    body_w = ctx.w(spec, 'body_w', rel(0.020, S_REF_POLAR))
-    tmin = ctx.w(spec, 't_min', rel(0.002, S_REF_POLAR, 0.0015)); tmax = ctx.w(spec, 't_max', rel(0.006, S_REF_POLAR, 0.003))
-    near_w = ctx.w(spec, 'rim_near', rel(0.008, S_REF_POLAR))
-    ds = ctx.w(spec, 'resample', rel(0.003, S_REF_POLAR, 0.001))
+    body_w = ctx.w(spec, 'body_w')
+    tmin = ctx.w(spec, 't_min'); tmax = ctx.w(spec, 't_max')
+    near_w = ctx.w(spec, 'rim_near')
+    ds = ctx.w(spec, 'resample')
     dphi = math.radians(float(p.get('dphi_deg', 2.0)))
     c, d = axis_search(ctx, P, C, spec, info)
     cost = L.rot_consistency(P[np.random.default_rng(1).choice(len(P), min(20000, len(P)), replace=False)], c, d) * 1e3
@@ -303,8 +387,12 @@ def lathe_polar(ctx, P, C, spec, info, hits):
     outer, inner = s_ > 0.3, s_ < -0.3
     p0 = -np.pi / 2; nb = int(math.ceil((np.pi / 2 - p0) / dphi))
     pc = p0 + (np.arange(nb) + 0.5) * dphi
-    ro, _ = PL.binned_sector_median(phi, rho, th, outer, p0, dphi, nb)
-    ri, _ = PL.binned_sector_median(phi, rho, th, inner, p0, dphi, nb)
+    xb_ = np.floor((phi - p0) / dphi).astype(int); sb_ = ((th + np.pi) / (2 * np.pi) * NSEC).astype(int) % NSEC
+    ok_ = (xb_ >= 0) & (xb_ < nb)
+    cmin, cmed = cell_threshold(ctx, spec, [(xb_ * NSEC + sb_)[ok_ & outer], (xb_ * NSEC + sb_)[ok_ & inner]])
+    info.update(cell_min_pts=cmin, cell_median=cmed)
+    ro, _ = PL.binned_sector_median(phi, rho, th, outer, p0, dphi, nb, min_pts=cmin)
+    ri, _ = PL.binned_sector_median(phi, rho, th, inner, p0, dphi, nb, min_pts=cmin)
     ro[ri >= ro] = np.nan
     have = np.isfinite(ro) | np.isfinite(ri)
     if have.sum() < 10:
@@ -318,11 +406,12 @@ def lathe_polar(ctx, P, C, spec, info, hits):
     Qo, Qi = curve(ro), curve(ri)
     No, Ni = PL.curve_normals(Qo), PL.curve_normals(Qi)
     both = np.isfinite(ro) & np.isfinite(ri)
-    if both.sum() >= 3:
+    if both.sum() >= 3 and ctx.p(spec, 't_src') != 'prior':
         Xin = np.stack([ri[both] * U[both, 0], hO + ri[both] * U[both, 1]], 1)
         t = float(np.median(PL.poly_dist(Qo[np.isfinite(ro)], Xin))); t_src = 'two_sided'
     else:
         t = ctx.t; t_src = 'prior'
+    info['t_src_evidence'] = bool(both.sum() >= 3)
     t_meas = t
     t = clip_flag('t', t, tmin, tmax, hits) * float(p.get('thick', 1.0))
     co = np.maximum(np.einsum('ij,ij->i', No, U), 0.3); ci = np.maximum(np.einsum('ij,ij->i', Ni, U), 0.3)
@@ -372,11 +461,11 @@ def lathe_height(ctx, P, C, spec, info, hits):
     evidence; t = median (r_out - r_in) (two-sided), else the prior; floor 'base' (cavity down to base + t, an
     observed thin floor layer if present), 'observed' (only as deep as the inner wall was seen), 'solid' (no cavity) or 'open' (bottomless ring)."""
     p = spec.get('params', {})
-    dh = ctx.w(spec, 'dh', rel(0.003, S_REF_HEIGHT, 0.001))
-    tmin = ctx.w(spec, 't_min', rel(0.0015, S_REF_HEIGHT, 0.0015))
-    body_m = ctx.w(spec, 'body_margin', rel(0.005, S_REF_HEIGHT))
-    cap_m = ctx.w(spec, 'cap_margin', rel(0.003, S_REF_HEIGHT))
-    layer = ctx.w(spec, 'floor_layer', rel(0.010, S_REF_HEIGHT))
+    dh = ctx.w(spec, 'dh')
+    tmin = ctx.w(spec, 't_min')
+    body_m = ctx.w(spec, 'body_margin')
+    cap_m = ctx.w(spec, 'cap_margin')
+    layer = ctx.w(spec, 'floor_layer')
     floor = p.get('floor', 'base')
     gap = int(p.get('gap_bins', 3))
     sub = np.random.default_rng(0).choice(len(P), min(60000, len(P)), replace=False)
@@ -387,6 +476,11 @@ def lathe_height(ctx, P, C, spec, info, hits):
     vr = (v @ e1) * radial[:, 0] + (v @ e2) * radial[:, 1]
     outer, inner = vr > 0.3, vr < -0.3
 
+    hb_ = np.floor((h - h.min()) / dh).astype(int)
+    sb_ = ((th + np.pi) / (2 * np.pi) * NSEC).astype(int) % NSEC
+    cmin, cmed = cell_threshold(ctx, spec, [(hb_ * NSEC + sb_)[outer], (hb_ * NSEC + sb_)[inner]])
+    info.update(cell_min_pts=cmin, cell_median=cmed)
+
     def sector_stat(sel):
         hb = np.floor((h - h.min()) / dh).astype(int); nbin = hb.max() + 1
         sb = ((th + np.pi) / (2 * np.pi) * NSEC).astype(int) % NSEC
@@ -395,7 +489,7 @@ def lathe_height(ctx, P, C, spec, info, hits):
         order = np.argsort(key); key, rr = key[order], rr[order]
         u, start, cnt = np.unique(key, return_index=True, return_counts=True)
         for kk, s0, n in zip(u, start, cnt):
-            if n >= MIN_PTS:
+            if n >= cmin:
                 out[kk // NSEC, kk % NSEC] = np.percentile(rr[s0:s0 + n], 50)
         return out
     Sout, Sin = sector_stat(outer), sector_stat(inner)
@@ -416,10 +510,11 @@ def lathe_height(ctx, P, C, spec, info, hits):
         d = -d; h = -h; hlo, hhi = -hhi, -hlo
         r_out, r_in, vo, vi, hc = r_out[::-1], r_in[::-1], vo[::-1], vi[::-1], -hc[::-1]
         e2 = np.cross(d, e1)
-    if vi.sum() >= 3:
+    if vi.sum() >= 3 and ctx.p(spec, 't_src') != 'prior':
         t = float(np.median((r_out - r_in)[vi])); t_src = 'two_sided'
     else:
         t = ctx.t; t_src = 'prior'
+    info['t_src_evidence'] = bool(vi.sum() >= 3)
     if t < tmin:
         hits.append('t'); t = tmin
     sel = (hc >= hlo) & (hc <= hhi)
@@ -536,14 +631,14 @@ def fit_sheet_of_revolution(ctx, idx, spec, done):
     top - t along the profile normal (t = the program's prior: the underside is never observed)."""
     P, C, v = P_(ctx, idx)
     p = spec.get('params', {})
-    edge_w = ctx.w(spec, 'edge_w', rel(0.003, S_REF_SHEET))
-    fl_r = (ctx.w(spec, 'flange_r0', rel(0.040, S_REF_SHEET)), ctx.w(spec, 'flange_r1', rel(0.080, S_REF_SHEET)))
-    fl_h = ctx.w(spec, 'flange_h', rel(0.006, S_REF_SHEET))
-    rb_w = ctx.w(spec, 'rbin', rel(0.002, S_REF_SHEET)); surf_w = ctx.w(spec, 'surf_band', rel(0.004, S_REF_SHEET))
-    r_in = ctx.w(spec, 'tilt_rmin', rel(0.020, S_REF_SHEET)); tb_w = ctx.w(spec, 'tilt_rbin', rel(0.004, S_REF_SHEET))
-    dr = ctx.w(spec, 'prof_dr', rel(0.002, S_REF_SHEET))
-    rc = (ctx.w(spec, 'dome_r0', rel(0.015, S_REF_SHEET)), ctx.w(spec, 'dome_r1', rel(0.035, S_REF_SHEET)))
-    ds = ctx.w(spec, 'resample', rel(0.003, S_REF_SHEET))
+    edge_w = ctx.w(spec, 'edge_w')
+    fl_r = (ctx.w(spec, 'flange_r0'), ctx.w(spec, 'flange_r1'))
+    fl_h = ctx.w(spec, 'flange_h')
+    rb_w = ctx.w(spec, 'rbin'); surf_w = ctx.w(spec, 'surf_band')
+    r_in = ctx.w(spec, 'tilt_rmin'); tb_w = ctx.w(spec, 'tilt_rbin')
+    dr = ctx.w(spec, 'prof_dr')
+    rc = (ctx.w(spec, 'dome_r0'), ctx.w(spec, 'dome_r1'))
+    ds = ctx.w(spec, 'resample')
     t = ctx.t * float(p.get('thick', 1.0))
     info, hits = {}, []
     m0 = P.mean(0)
@@ -631,7 +726,7 @@ def fit_sheet_of_revolution(ctx, idx, spec, done):
     info.update(t_mm=round(t * 1e3, 2), t_src='prior', r_edge_mm=round(r_edge * 1e3, 1),
                 dome_mm=round(float(top[0] - top.min()) * 1e3, 1), prof_bins=int(ok.sum()))
     geo = dict(c=c, d=d, e1=e1, e2=e2, rc=Tp[:, 0], top=Tp[:, 1], r_edge=r_edge, t=t, rmax=r_edge)
-    edge_out = ctx.w(spec, 'resid_edge', rel(0.015, S_REF_SHEET))
+    edge_out = ctx.w(spec, 'resid_edge')
 
     def resid(X):
         Q = X - c; hh = Q @ d; rr = np.linalg.norm(Q - hh[:, None] * d, axis=1)
@@ -650,11 +745,11 @@ def fit_plate_bar(ctx, P, V, spec, host, info, hits):
     points (2 x median depth below the top plane; else the prior t), straight bar from inside the host's wall to the
     99.5 % tip with a rounded tip, optional hole (closed gap of the top-surface occupancy near the tip)."""
     p = spec.get('params', {})
-    lb = ctx.w(spec, 'len_bin', rel(0.005, S_REF_POLAR))
-    Tlo = ctx.w(spec, 'T_min', rel(0.003, S_REF_POLAR, 0.0015)); Thi = ctx.w(spec, 'T_max', rel(0.008, S_REF_POLAR))
-    back = ctx.w(spec, 'inner_search', rel(0.060, S_REF_POLAR))
-    g = ctx.w(spec, 'hole_grid', rel(0.002, S_REF_POLAR)); hole_a = ctx.w(spec, 'hole_min_d', rel(40e-6 ** 0.5, S_REF_POLAR)) ** 2
-    hole_tip = ctx.w(spec, 'hole_tip', rel(0.060, S_REF_POLAR))
+    lb = ctx.w(spec, 'len_bin')
+    Tlo = ctx.w(spec, 'T_min'); Thi = ctx.w(spec, 'T_max')
+    back = ctx.w(spec, 'inner_search')
+    g = ctx.w(spec, 'hole_grid'); hole_a = ctx.w(spec, 'hole_min_d') ** 2
+    hole_tip = ctx.w(spec, 'hole_tip')
     if host is not None and 'd' in host.geo:
         c, d = host.geo['c'], host.geo['d']
     else:
@@ -692,10 +787,11 @@ def fit_plate_bar(ctx, P, V, spec, host, info, hits):
     s = (P - origin) @ u2; a = (P - origin) @ w2; b = (P - origin) @ n
     side = np.abs(V @ w2) > 0.5
     btop = float(np.median(b[top])) if top.sum() > 30 else 0.0
-    if side.sum() > 50:
+    if side.sum() > 50 and ctx.p(spec, 't_src') != 'prior':
         T = clip_flag('T', float(2 * np.median(btop - b[side])), Tlo, Thi, hits); t_src = 'side'
     else:
         T, t_src = ctx.t, 'prior'
+    info['t_src_evidence'] = bool(side.sum() > 50)
     s_tip = float(np.percentile(s, 99.5))
     ss = np.linspace(np.percentile(s, 0.5) - back, s_tip, 400)
     pts = origin + ss[:, None] * u2
@@ -749,18 +845,55 @@ def fit_plate_bar(ctx, P, V, spec, host, info, hits):
     return bar, fr, resid, 9 + (3 if hole else 0)
 
 
+def mask_polygons_holes(M, lo, grid, hole_min_cells):
+    """Outer contour of the largest component of a mask plus its holes (RETR_CCOMP children of at least
+    hole_min_cells cells), smoothed as prim_boards.mask_polygon, in (u, v) metres. Returns (outer, [holes])."""
+    import cv2
+    up = 4
+    g = cv2.resize(M.T.astype(np.float32), None, fx=up, fy=up, interpolation=cv2.INTER_NEAREST)
+    g = cv2.GaussianBlur(g, (0, 0), PB.SMOOTH_PX * up)
+    img = (g > 0.5).astype(np.uint8)
+    cs, hier = cv2.findContours(img, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
+    if not cs:
+        raise RuntimeError('plate: empty outline')
+    hier = hier[0]
+    outers = [i for i in range(len(cs)) if hier[i][3] < 0]
+    io = max(outers, key=lambda i: cv2.contourArea(cs[i]))
+
+    def to_m(c):
+        c = cv2.approxPolyDP(c, PB.EPS / grid * up, True)[:, 0, :].astype(float) / up
+        return np.stack([lo[0] + c[:, 0] * grid + 0.5 * grid / up, lo[1] + c[:, 1] * grid + 0.5 * grid / up], 1)
+    holes = [to_m(cs[i]) for i in range(len(cs)) if hier[i][3] == io and
+             cv2.contourArea(cs[i]) / (up * up) >= hole_min_cells]
+    return to_m(cs[io]), [hh for hh in holes if len(hh) >= 3]
+
+
+def clean_mask_holes(M0, close_px, open_px=3, min_frac=0.1):
+    """prim_boards.clean_mask without the hole filling: closing (gaps below ~close_px cells close), opening,
+    significant components (>= min_frac of the largest)."""
+    M = PB._close(M0, close_px)
+    M = ndimage.binary_opening(M, structure=PB.disk(open_px))
+    lab, nl = ndimage.label(M)
+    if nl == 0:
+        return M
+    sizes = ndimage.sum(np.ones_like(lab), lab, range(1, nl + 1))
+    return np.isin(lab, [i + 1 for i in range(nl) if sizes[i] >= min_frac * sizes.max()])
+
+
 def plane_outline(ctx, P, C, spec, info, hits, mode='occupancy'):
     """prim_boards: plane from camera-oriented PCA normals, thickness from two seen faces (else the prior t),
     occupancy outline (closing, hole fill, opening, significant components, smoothed contour) or its minimum-area
-    rectangle, extruded between the two face planes."""
-    grid = ctx.w(spec, 'grid', (0.0, PB.GRID))
-    close_mm = ctx.w(spec, 'close', (0.0, 0.003))
+    rectangle, extruded between the two face planes. params.keep_holes: the outline keeps its holes (no hole
+    filling; holes of at least hole_min_d diameter-equivalent survive), e.g. a ring handle."""
+    grid = ctx.w(spec, 'grid')
+    close_mm = ctx.w(spec, 'close')
     n, planar = L.normals(P, C, k=24)
     a, pinfo = PB.fit_plane(P, C, n, planar)
     op, om = pinfo['off_p'], pinfo['off_m']
     two = pinfo['n_face_p'] >= 200 and pinfo['n_face_m'] >= 200 and np.isfinite(op) and np.isfinite(om)
-    t_lo, t_hi = ctx.w(spec, 't_min', (0.0, 0.003)), ctx.w(spec, 't_max', (0.0, 0.025))
-    if two and t_lo <= op - om <= t_hi:
+    t_lo, t_hi = ctx.w(spec, 't_min'), ctx.w(spec, 't_max')
+    info['t_src_evidence'] = bool(two and t_lo <= op - om <= t_hi)
+    if two and t_lo <= op - om <= t_hi and ctx.p(spec, 't_src') != 'prior':
         t = op - om; t_src = 'two_sided'
     else:
         t = ctx.t; t_src = 'prior'
@@ -783,13 +916,23 @@ def plane_outline(ctx, P, C, spec, info, hits, mode='occupancy'):
         shape = (int(math.ceil((U[slab].max() - lo[0] + 0.02) / grid)) + 1,
                  int(math.ceil((Vv[slab].max() - lo[1] + 0.02) / grid)) + 1)
         img = PB.occupancy(U[slab], Vv[slab], lo, shape)
-        M, r_used = PB.clean_mask(img >= 1, max(1, int(round(close_mm / grid))))
-        if not M.any():
-            raise RuntimeError('plate: empty outline')
-        poly = PB.rect_polygon(M, lo) if mode == 'rect' else PB.mask_polygon(M, lo)
+        holes = []
+        if ctx.p(spec, 'keep_holes') and mode != 'rect':
+            M = clean_mask_holes(img >= 1, max(1, int(round(close_mm / grid))))
+            if not M.any():
+                raise RuntimeError('plate: empty outline')
+            hd = ctx.w(spec, 'hole_min_d')
+            poly, holes = mask_polygons_holes(M, lo, grid, math.pi / 4 * (hd / grid) ** 2)
+        else:
+            M, r_used = PB.clean_mask(img >= 1, max(1, int(round(close_mm / grid))))
+            if not M.any():
+                raise RuntimeError('plate: empty outline')
+            poly = PB.rect_polygon(M, lo) if mode == 'rect' else PB.mask_polygon(M, lo)
     finally:
         PB.GRID = old
-    cs = mf.CrossSection([poly.astype(np.float64)])
+    cs = mf.CrossSection([poly.astype(np.float64)] + [hh.astype(np.float64) for hh in holes],
+                         fillrule=mf.FillRule.EvenOdd)
+    info['holes'] = len(holes)
     slab_m = mf.Manifold.extrude(cs, float(op - om)).translate([0, 0, float(om)])
     R = np.stack([e1, e2, a], 1)
     T4 = np.eye(4); T4[:3, :3] = R; T4[:3, 3] = o - (o @ a) * a
@@ -818,22 +961,68 @@ def fit_plate(ctx, idx, spec, done):
                 k=k, bounds_hit=hits, diag=info, geo=geo, resid=resid, reach=bbox_reach(solid))
 
 
+def segment_planes(P, n, dist, cos_min, min_pts, max_planes, seeds, conn_vox, rng):
+    """Sequential plane segmentation: one-point RANSAC (a seed point and its camera-oriented normal define a plane;
+    inliers = points within dist of the plane whose normal is within acos(cos_min) of it, either sign, so both faces
+    of a thin plate join), the best seed's plane refitted by PCA of its inliers (2 passes), its inliers split into
+    voxel-connected components (conn_vox); every component of >= min_pts points is one plate, clipped to its own
+    inliers; the inliers are removed and the search repeats. Returns a list of index arrays (into P), largest first,
+    and per-plane info."""
+    rem = np.arange(len(P)); out, infos = [], []
+    while len(out) < max_planes and len(rem) >= min_pts:
+        Pr, nr = P[rem], n[rem]
+        best = None
+        for i in rng.choice(len(rem), min(seeds, len(rem)), replace=False):
+            a = nr[i]; d0 = Pr[i] @ a
+            m = (np.abs(Pr @ a - d0) < dist) & (np.abs(nr @ a) > cos_min)
+            if best is None or m.sum() > best[2].sum():
+                best = (a, d0, m)
+        a, d0, m = best
+        for _ in range(2):
+            Q = Pr[m]; c = Q.mean(0)
+            a2 = np.linalg.eigh(np.cov((Q - c).T))[1][:, 0]
+            a = a2 if a2 @ a >= 0 else -a2; d0 = float(np.median(Q @ a))
+            m = (np.abs(Pr @ a - d0) < dist) & (np.abs(nr @ a) > cos_min)
+        if m.sum() < min_pts:
+            break
+        inl = rem[m]
+        comps = [inl[q] for q in PL.clusters(P[inl], vox=conn_vox, min_pts=min_pts)]
+        for q in comps:
+            if len(out) < max_planes:
+                out.append(q); infos.append(dict(n=int(len(q)), normal=np.round(a, 4).tolist()))
+        rem = rem[~m]
+        if not comps:
+            infos.append(dict(n=int(m.sum()), dropped='no connected component >= min_pts'))
+    order = np.argsort([-len(q) for q in out])
+    return [out[i] for i in order], infos
+
+
 def fit_plate_set(ctx, idx, spec, done):
-    """One occupancy plate per cluster (largest first, up to max_plates) of the assigned points."""
-    p = spec.get('params', {})
-    vox = ctx.w(spec, 'cluster_vox', rel(0.003, S_REF_POLAR))
-    cl = PL.clusters(ctx.P[idx], vox=vox, min_pts=int(p.get('min_pts', 300)))[:int(p.get('max_plates', 4))]
+    """Several flat plates: the assigned points are segmented by plane (segment_planes; params.segment 'plane') -
+    or, legacy, split by voxel connectivity ('cluster') - and each plate is an occupancy (or rect) outline of ITS OWN
+    inlier points (plane_outline, optional keep_holes), extruded between its faces."""
+    seg = ctx.p(spec, 'segment')
+    min_pts = int(ctx.p(spec, 'min_pts')); maxp = int(ctx.p(spec, 'max_plates'))
+    P = ctx.P[idx]
+    if seg == 'plane':
+        n = ctx.normals()[0][idx]
+        cl, sinfo = segment_planes(P, n, ctx.w(spec, 'plane_dist'), math.cos(math.radians(float(ctx.p(spec, 'plane_deg')))),
+                                   min_pts, maxp, int(ctx.p(spec, 'seeds')), ctx.w(spec, 'conn_vox'),
+                                   np.random.default_rng(0))
+    else:
+        cl = PL.clusters(P, vox=ctx.w(spec, 'conn_vox'), min_pts=min_pts)[:maxp]; sinfo = []
     solids, infos, k = [], [], 0
     for q in cl:
         info, hits = {}, []
         try:
             s_, _, kk = plane_outline(ctx, ctx.P[idx[q]], ctx.C[idx[q]], spec, info, hits,
-                                      mode=p.get('outline', 'occupancy'))
+                                      mode=ctx.p(spec, 'outline'))
             solids.append(s_); k += kk; info['n'] = int(len(q)); infos.append(info)
         except RuntimeError as e:
             infos.append(dict(n=int(len(q)), error=str(e)))
     solid = mf_union(solids)
-    return Part(spec['name'], 'plate_set', solid=solid, params=dict(n_plates=len(solids)), k=k, diag=dict(plates=infos),
+    return Part(spec['name'], 'plate_set', solid=solid, params=dict(n_plates=len(solids), segment=seg), k=k,
+                diag=dict(plates=infos, segmentation=sinfo),
                 resid=generic_resid(solid) if solid is not None else None,
                 reach=bbox_reach(solid) if solid is not None else None)
 
@@ -848,10 +1037,10 @@ def fit_strap(ctx, idx, spec, done):
     P, C, Av = P_(ctx, idx)
     p = spec.get('params', {})
     host = done.get(p.get('host')) if p.get('host') else None
-    ds = ctx.w(spec, 'len_bin', rel(0.003, S_REF_SHEET))
-    Wlo, Whi = ctx.w(spec, 'W_min', rel(0.008, S_REF_SHEET)), ctx.w(spec, 'W_max', rel(0.030, S_REF_SHEET))
-    Tlo, Thi = ctx.w(spec, 'T_min', rel(0.003, S_REF_SHEET, 0.0015)), ctx.w(spec, 'T_max', rel(0.008, S_REF_SHEET))
-    ext = ctx.w(spec, 'end_ext', rel(0.004, S_REF_SHEET)); rs = ctx.w(spec, 'resample', rel(0.002, S_REF_SHEET))
+    ds = ctx.w(spec, 'len_bin')
+    Wlo, Whi = ctx.w(spec, 'W_min'), ctx.w(spec, 'W_max')
+    Tlo, Thi = ctx.w(spec, 'T_min'), ctx.w(spec, 'T_max')
+    ext = ctx.w(spec, 'end_ext'); rs = ctx.w(spec, 'resample')
     info, hits = {}, []
     if host is not None and 'd' in host.geo:
         c, d = host.geo['c'], host.geo['d']
@@ -880,10 +1069,11 @@ def fit_strap(ctx, idx, spec, done):
     Hs = np.interp(s, S, H)
     hi_part = hh > np.percentile(H, 50)
     sp = side & hi_part
-    if sp.sum() > 30:
+    if sp.sum() > 30 and ctx.p(spec, 't_src') != 'prior':
         T = clip_flag('T', float(2 * np.median(Hs[sp] - hh[sp])), Tlo, Thi, hits); t_src = 'side'
     else:
         T, t_src = ctx.t, 'prior'
+    info['t_src_evidence'] = bool(sp.sum() > 30)
     Hsm = ndimage.median_filter(H, size=3, mode='nearest'); Hsm = ndimage.uniform_filter1d(Hsm, 3, mode='nearest')
     if host is not None and 'rc' in host.geo:
         def base_h(sv):
@@ -926,62 +1116,153 @@ def fit_strap(ctx, idx, spec, done):
 
 
 # ================================================================================================ ball
+def sphere_fit_free(Q):
+    """Free sphere fit (no radius prior): algebraic fit, Gauss-Newton on |q - c| - r, then one refit on the inliers
+    (|d - r| < max(3 x median, VOX)). Returns (c, r, median |d - r| of the inliers, inlier mask) or None."""
+    A = np.c_[2 * Q, np.ones(len(Q))]; b = (Q ** 2).sum(1)
+    sol = np.linalg.lstsq(A, b, rcond=None)[0]
+    c = sol[:3]; r2 = sol[3] + c @ c
+    if not np.isfinite(r2) or r2 <= 0:
+        return None
+    r = math.sqrt(r2)
+    keep = np.ones(len(Q), bool)
+    for rnd in range(2):
+        for _ in range(10):
+            D = Q[keep] - c; dn = np.maximum(np.linalg.norm(D, axis=1), 1e-9)
+            J = np.c_[-D / dn[:, None], -np.ones(len(D))]
+            step = np.linalg.lstsq(J, -(dn - r), rcond=None)[0]
+            c = c + step[:3]; r = r + step[3]
+            if not (np.all(np.isfinite(c)) and np.isfinite(r)) or r <= 0:
+                return None
+        res = np.abs(np.linalg.norm(Q - c, axis=1) - r)
+        if rnd == 0:
+            keep = res < max(3 * float(np.median(res)), VOX)
+            if keep.sum() < 10:
+                return None
+    return c, float(r), float(np.median(res[keep])), keep
+
+
+def ball_support(Q, V, F, c, r):
+    """GT-free support statistics of a fitted sphere on its observed cap: frames, cap spread (1 - |mean radial
+    direction|; a cap of half-angle a gives (1 - cos a) / 2), convexity towards the cameras (share of points whose
+    fitted outward normal faces the camera that saw them: a convex cap is visible only from outside, a concave fit
+    (the inside of a bowl) faces away),
+    isotropy (smaller / larger eigenvalue of the radial directions' tangent spread: rims, pegs and fillets curve in
+    one direction only)."""
+    u = unit(Q - c); m = u.mean(0); mn = np.linalg.norm(m)
+    spread = float(1 - mn)
+    convex = float(np.mean(np.einsum('ij,ij->i', u, V) > 0))
+    a = m / max(mn, 1e-9)
+    T = u - np.outer(u @ a, a)
+    ev = np.linalg.eigvalsh(np.cov(T.T))[1:]                  # two tangent eigenvalues (the third ~ 0)
+    iso = float(ev[0] / max(ev[1], 1e-12))
+    return dict(frames=int(len(np.unique(F))), spread=round(spread, 3), convex=round(convex, 3), iso=round(iso, 3))
+
+
 def fit_ball(ctx, idx, spec, done):
-    """Marker balls: prim_potlid.markers_from (one shared detector, BALL hardware constants) on the compact
-    clusters of the assigned residual points; host surface = union of the parts in params.of. Options:
-    require_cap (prim_rack.marker_parts: keep only a free-fit radius in BALL.free_r or a curved cap), reject_inside
-    (part name whose cavity footprint must not contain a ball centre), stems (default True)."""
+    """Small spheres on compact residual clusters (no radius prior, no fixed-radius fallback). params.mode 'none'
+    gives no balls. Each voxel-connected cluster (>= min_pts, 3..97 % bbox diagonal within [r_min, 3 r_max]; a
+    larger cluster is re-clustered once on its points standing more than band + r_min outside the host) gets a FREE
+    sphere fit (sphere_fit_free); the ball is kept only if
+      r_min <= r <= r_max (generic window 'any small sphere'), median residual <= res_max,
+      seen in >= min_frames frames, cap spread >= cap_min, convex (>= convex_min of the points face their camera),
+      isotropic (>= iso_min), centre not inside the host (gap >= -r) and ball surface within gap_max of it,
+      centre not over a reject_inside part's cavity.
+    Stem: a cylinder from the ball to the nearest host surface only where >= stem_min observed points lie in the
+    gap within 0.6 r of the stem axis and at least twice as many as in either control cylinder one ball diameter to
+    the side; its radius = median distance of those points to the axis, clipped to [VOX, 0.6 r]."""
     p = spec.get('params', {})
-    of = [done[n] for n in p.get('of', []) if n in done]
-    info = {}
+    of_names = p.get('of', [])
+    of_names = [of_names] if isinstance(of_names, str) else list(of_names)
+    of = [done[n] for n in of_names if n in done]
+    mode = ctx.p(spec, 'mode')
+    if mode == 'none':
+        return Part(spec['name'], 'ball', params=dict(n=0, mode='none'), diag=dict(markers=[], note='mode none'))
+    min_pts = int(ctx.p(spec, 'min_pts'))
     solids = [q.solid for q in of if q.solid is not None]
-    if not solids or len(idx) < BALL['min_pts']:
-        return Part(spec['name'], 'ball', params=dict(n=0), diag=dict(markers=[], note='no residual'))
+    if not solids or len(idx) < min_pts:
+        return Part(spec['name'], 'ball', params=dict(n=0, mode=mode), diag=dict(markers=[], note='no residual'))
+    rmin, rmax = ctx.w(spec, 'r_min'), ctx.w(spec, 'r_max')
+    res_max, gap_max = ctx.w(spec, 'res_max'), ctx.w(spec, 'gap_max')
+    cvox = ctx.w(spec, 'cluster_vox')
+    band = spec.get('_band', APP_D)
     surf_tm = from_mf(mf_union(solids))
-    Rp, Rv = ctx.P[idx], ctx.V[idx]
-    Rz = of[0].resid(Rp) if of[0].resid is not None else np.full(len(Rp), APP_D + 0.01)
-    old = PL.APP_D
-    PL.APP_D = spec.get('_band', APP_D)                # markers_from's re-cluster height test
-    try:
-        parts, minfo = PL.markers_from(Rp, Rv, Rz, ctx.P, surf_tm, 'nostem' if p.get('stems') is False else 'fit')
-    finally:
-        PL.APP_D = old
-    if p.get('require_cap') or p.get('reject_inside'):
-        keep_parts, out = [], []
-        host_sd = None
-        if p.get('reject_inside') and p['reject_inside'] in done:
-            host_sd = done[p['reject_inside']].geo.get('inside_cavity')
-        for m in minfo:
-            m = dict(m)
-            if 'rejected' not in m and host_sd is not None and host_sd(np.asarray(m['centre'])[None])[0]:
-                m['rejected'] = 'in_cavity'
-            if 'rejected' not in m and p.get('require_cap'):
-                fr_ok = ('free_r_mm' in m and BALL['free_r'][0] * 1e3 <= m['free_r_mm'] <= BALL['free_r'][1] * 1e3
-                         and m['free_res_mm'] <= 1.2)
-                if not (fr_ok or m.get('spread', 0) >= BALL['spread']):
-                    m['rejected'] = 'flat'
-            out.append(m)
-        minfo = out
-        parts = []
-        pq = trimesh.proximity.ProximityQuery(surf_tm)
-        for m in minfo:
-            if 'rejected' in m:
-                continue
-            cc = np.asarray(m['centre']); r = m['r_mm'] * 1e-3
-            parts.append(PL.mf_sphere(cc, r, seg=20 if p.get('require_cap') else 24))
-            if m.get('stem'):
-                sp = pq.on_surface(cc[None])[0][0]
-                ax = (sp - cc) / max(np.linalg.norm(sp - cc), 1e-9)
-                parts.append(PL.mf_cylinder(cc, sp + 0.002 * ax, PL.STEM_R))
-    acc = [m for m in minfo if 'rejected' not in m]
+    host_sd = Surf(surf_tm).signed
+    pq = trimesh.proximity.ProximityQuery(surf_tm)
+    Rp, Rv, Rf = ctx.P[idx], ctx.V[idx], ctx.F[idx]
+    rz = [q.resid(Rp) for q in of if q.resid is not None]
+    Rz = np.min(rz, axis=0) if rz else np.full(len(Rp), band + 1.0)
+    tree = cKDTree(ctx.P)
+    cav = done[p['reject_inside']].geo.get('inside_cavity') if p.get('reject_inside') in done else None
+    stems_on = bool(ctx.p(spec, 'stems'))
+    stem_min = int(ctx.p(spec, 'stem_min'))
+    infos, parts, acc = [], [], []
+    queue = [(q, 0) for q in PL.clusters(Rp, vox=cvox, min_pts=min_pts)]
+    while queue:
+        q, level = queue.pop(0)
+        Q, V, Fq = Rp[q], Rv[q], Rf[q]
+        diag = float(np.linalg.norm(np.percentile(Q, 97, 0) - np.percentile(Q, 3, 0)))
+        info = dict(n=int(len(q)), diag_mm=round(diag * 1e3, 1), level=level)
+        if not rmin <= diag <= 3 * rmax:
+            info['rejected'] = 'size'
+            if diag > 3 * rmax and level == 0:
+                hi = q[Rz[q] > band + rmin]
+                queue += [(hi[j], 1) for j in PL.clusters(Rp[hi], vox=cvox, min_pts=min_pts)] if len(hi) >= min_pts else []
+            infos.append(info); continue
+        fit = sphere_fit_free(Q)
+        if fit is None:
+            info['rejected'] = 'no_fit'; infos.append(info); continue
+        c, r, res, keep = fit
+        sup = ball_support(Q[keep], V[keep], Fq[keep], c, r)
+        gap = float(host_sd(c[None])[0]) - r
+        info.update(centre=[round(float(x), 4) for x in c], r_mm=round(r * 1e3, 2), res_mm=round(res * 1e3, 2),
+                    gap_mm=round(gap * 1e3, 1), **sup)
+        why = None
+        if not rmin <= r <= rmax:
+            why = 'radius'
+        elif res > res_max:
+            why = 'residual'
+        elif sup['frames'] < int(ctx.p(spec, 'min_frames')):
+            why = 'frames'
+        elif sup['spread'] < float(ctx.p(spec, 'cap_min')):
+            why = 'flat_cap'
+        elif sup['convex'] < float(ctx.p(spec, 'convex_min')):
+            why = 'not_convex'
+        elif sup['iso'] < float(ctx.p(spec, 'iso_min')):
+            why = 'anisotropic'
+        elif not (-r <= gap <= gap_max):
+            why = 'gap'
+        elif cav is not None and cav(np.asarray(c)[None])[0]:
+            why = 'in_cavity'
+        if why:
+            info['rejected'] = why; infos.append(info); continue
+        parts.append(PL.mf_sphere(c, r, seg=24))
+        if stems_on and gap > 2 * VOX:
+            sp = pq.on_surface(c[None])[0][0]
+            ax = unit(sp - c); L_ = float(np.linalg.norm(sp - c)); rs = 0.6 * r
+
+            def stem_pts(a0):
+                X = ctx.P[tree.query_ball_point(a0 + 0.5 * L_ * ax, 0.5 * L_ + rs)] - a0
+                if len(X) == 0:
+                    return np.zeros(0)
+                tp = X @ ax; pp = np.linalg.norm(X - tp[:, None] * ax, axis=1)
+                return pp[(pp < rs) & (tp > r + 0.5 * VOX) & (tp < L_ - 2 * VOX)]
+            pin = stem_pts(c)
+            side = unit(np.cross(ax, L.frame_from(ax)[0]))
+            n_ctl = max(len(stem_pts(c + (2 * r + rs) * side)), len(stem_pts(c - (2 * r + rs) * side)))
+            info.update(stem_pts=int(len(pin)), stem_ctl=int(n_ctl))
+            if len(pin) >= stem_min and len(pin) >= 2 * n_ctl:
+                sr = float(np.clip(np.median(pin), VOX, rs))
+                parts.append(PL.mf_cylinder(c, sp + sr * ax, sr))
+                info.update(stem=True, stem_r_mm=round(sr * 1e3, 2))
+        infos.append(info); acc.append(info)
     solid = mf_union(parts)
-    info['markers'] = minfo
     geo = dict(balls=[(np.asarray(m['centre']), m['r_mm'] * 1e-3) for m in acc])
-    hits = [f'r{j}' for j, m in enumerate(acc) if m.get('mode') == 'prior']
-    return Part(spec['name'], 'ball', solid=solid, params=dict(n=len(acc), r_mm=[m['r_mm'] for m in acc],
-                                                                stems=int(sum(1 for m in acc if m.get('stem')))),
-                k=4 * len(acc), bounds_hit=hits, diag=info, geo=geo,
-                resid=generic_resid(solid) if solid is not None else None)
+    return Part(spec['name'], 'ball', solid=solid,
+                params=dict(n=len(acc), mode=mode, r_mm=[m['r_mm'] for m in acc],
+                            stems=int(sum(1 for m in acc if m.get('stem')))),
+                k=4 * len(acc) + int(sum(1 for m in acc if m.get('stem'))), bounds_hit=[], diag=dict(markers=infos),
+                geo=geo, resid=generic_resid(solid) if solid is not None else None)
 
 
 # ================================================================================================ splat / tsdf_patch
@@ -991,7 +1272,7 @@ def fit_splat(ctx, idx, spec, done):
     or 'concat' (kept as a separate mesh, as lathe_obs.py did)."""
     from skimage.measure import marching_cubes
     p = spec.get('params', {})
-    vox = ctx.w(spec, 'vox', rel(0.002, S_REF_HEIGHT))
+    vox = ctx.w(spec, 'vox')
     min_pts = int(p.get('min_pts', 400))
     A = ctx.P[idx]
     info = dict(n=int(len(A)))
@@ -1028,6 +1309,16 @@ def fit_splat(ctx, idx, spec, done):
                 resid=generic_resid(solid) if solid is not None else None)
 
 
+def load_mesh_guarded(path):
+    """Mesh input through the io_gt guard: io_gt.load_mesh (deny-list + allow-listed roots) when it exists; until
+    then (stage-1b stand-in) io_gt.check_path (deny-list) before trimesh.load."""
+    fn = getattr(io_gt, 'load_mesh', None)
+    if fn is not None:
+        return fn(path)
+    io_gt.check_path(path)
+    return trimesh.load(path, force='mesh')
+
+
 def fit_tsdf_patch(ctx, idx, spec, done):
     """Faces of our own library mesh (ctx.lib, same object frame) whose centres lie outside every part in
     params.of by more than params.margin (default APP_D): the hand kits' 'tsdf' variant. Not watertight; the
@@ -1035,14 +1326,77 @@ def fit_tsdf_patch(ctx, idx, spec, done):
     p = spec.get('params', {})
     if not ctx.lib:
         raise RuntimeError('tsdf_patch needs the library mesh path (run_program(..., lib=...))')
-    src = trimesh.load(ctx.lib, force='mesh')
-    margin = float(p.get('margin', APP_D)) if not isinstance(p.get('margin'), dict) else ctx.w(spec, 'margin', (0, APP_D))
-    of = [done[n] for n in p.get('of', []) if n in done]
+    src = load_mesh_guarded(ctx.lib)
+    margin = ctx.w(spec, 'margin')
+    of = p.get('of', [])
+    of = [done[n] for n in ([of] if isinstance(of, str) else of) if n in done]
     X = src.triangles_center
     dist = np.min([q.resid(X) for q in of if q.resid is not None], axis=0) if of else np.full(len(X), np.inf)
     keep = dist > margin
     app = src.submesh([np.nonzero(keep)[0]], append=True) if keep.any() else None
     return Part(spec['name'], 'tsdf_patch', mesh=app, params=dict(faces=int(keep.sum())), diag=dict(faces=int(keep.sum())))
+
+
+# ================================================================================================ shell_patch
+def surface_patch_standin(obs, idx=None, t=0.0025, max_faces=None, host=None, voxel=0.002):
+    """LOCAL STAND-IN for shell.surface_patch (stage-1b API contract) while the shell fixer's version does not exist:
+    shell.thin_shell over obs['pts'][idx]; with a host mesh, every body of the shell whose surface lies mostly
+    (>= 50 % of 2000 samples) within 2 voxels outside the host, or inside it, is dropped (it would duplicate the
+    host's surface). Same signature and return type as the contract."""
+    from autokit import shell as SH
+    idx = np.arange(len(obs['pts'])) if idx is None else np.asarray(idx)
+    sub = dict(pts=np.asarray(obs['pts'])[idx], cam=np.asarray(obs['cam'])[idx],
+               frame=np.asarray(obs['frame'])[idx] if 'frame' in obs else np.zeros(len(idx), int))
+    m = SH.thin_shell(sub, t=t, voxel=voxel, max_faces=max_faces or SH.MAX_FACES)
+    if host is not None and len(m.faces):
+        sd = Surf(host, n=100000).signed
+        keep = [b for b in m.split(only_watertight=False)
+                if np.mean(sd(trimesh.sample.sample_surface(b, 2000, seed=0)[0]) > 2 * voxel) >= 0.5]
+        m = trimesh.util.concatenate(keep) if keep else trimesh.Trimesh()
+    return m
+
+
+def fit_shell_patch(ctx, idx, spec, done):
+    """Observed surface the earlier parts did not explain (route A inside a part program): the assigned points
+    (default rule: the residual of every earlier part), reduced to their voxel-connected clusters of >= min_pts,
+    mapped back to the raw observed points, go to shell.surface_patch (a closed thin shell of thickness t over them,
+    trimmed so it does not duplicate the host = union of the parts in params.of, default all earlier parts).
+    Until shell.surface_patch exists, surface_patch_standin is used (reported as diag.impl)."""
+    p = spec.get('params', {})
+    of = p.get('of') or list(done)
+    of = [of] if isinstance(of, str) else list(of)
+    hp = [done[n] for n in of if n in done]
+    sol = mf_union([q.solid for q in hp if q.solid is not None])
+    hm = [from_mf(sol)] if sol is not None else []
+    hm += [q.mesh for q in hp if q.mesh is not None and len(q.mesh.faces)]
+    host = trimesh.util.concatenate(hm) if hm else None
+    cl = PL.clusters(ctx.P[idx], vox=ctx.w(spec, 'cluster_vox'), min_pts=int(ctx.p(spec, 'min_pts'))) if len(idx) else []
+    info = dict(n_assigned=int(len(idx)), clusters=len(cl))
+    if not cl:
+        return Part(spec['name'], 'shell_patch', params=dict(n_pts=0), diag=dict(info, note='no residual cluster'))
+    keep = np.zeros(len(ctx.P), bool); keep[idx[np.concatenate(cl)]] = True
+    raw = np.nonzero(keep[ctx.inv])[0]
+    try:
+        from autokit import shell as SH
+        fn = getattr(SH, 'surface_patch', None)
+    except ImportError:
+        fn = None
+    info['impl'] = 'shell.surface_patch' if fn is not None else 'parts.surface_patch_standin'
+    mf_ = ctx.p(spec, 'max_faces')
+    mesh = (fn or surface_patch_standin)(ctx.obs, idx=raw, t=ctx.t, max_faces=int(mf_) if mf_ else None, host=host)
+    info.update(n_raw=int(len(raw)), n_vox=int(keep.sum()))
+    if mesh is None or len(mesh.faces) == 0:
+        return Part(spec['name'], 'shell_patch', params=dict(n_pts=int(keep.sum()), faces=0), diag=dict(info, note='empty patch'))
+    info.update(faces=int(len(mesh.faces)), area_cm2=round(float(mesh.area) * 1e4, 2), watertight=bool(mesh.is_watertight))
+    solid = None
+    if mesh.is_watertight:
+        try:
+            solid = to_mf(mesh)
+        except RuntimeError as e:
+            info['mf_error'] = str(e)
+    return Part(spec['name'], 'shell_patch', solid=solid, mesh=None if solid is not None else mesh,
+                params=dict(n_pts=int(keep.sum()), faces=int(len(mesh.faces)), area_cm2=info['area_cm2']),
+                k=0, diag=info, resid=Surf(mesh).signed, reach=None)
 
 
 # ================================================================================================ rounded box
@@ -1100,7 +1454,7 @@ def support_frame(ctx, spec):
     the cut plane. 'tall_end' (default on): x is flipped so the end holding the tall points (h > tall_frac x the
     99.8 % height) is at -x; its x range is stored as frame['tall'] = (lo, hi)."""
     P, C = ctx.P, ctx.C
-    cell = ctx.w(spec, 'cell', rel(0.010, S_REF_TUBE)); band = ctx.w(spec, 'band', rel(0.003, S_REF_TUBE))
+    cell = ctx.w(spec, 'cell', FRAME_SCHEMA); band = ctx.w(spec, 'band', FRAME_SCHEMA)
     X = P - P.mean(0)
     up = np.linalg.eigh(np.cov(X.T))[1][:, 0]
     if np.mean((C - P) @ up) < 0:
@@ -1220,7 +1574,7 @@ def fit_tube_rrect(ctx, idx, spec, done):
     if p.get('floor_depth') is not None:
         # floor plate top at depth below the robust top (instead of on the table): a development-only option for
         # depths known from other episodes; the table plate lies t below it
-        h_ft = H_med - ctx.w(spec, 'floor_depth', (0.0, 0.0)); table = h_ft - t
+        h_ft = H_med - ctx.w(spec, 'floor_depth'); table = h_ft - t
         info['floor_depth_mm'] = round((H_med - h_ft) * 1e3, 2)
     elif host is not None and 'h_ft' in host.geo:
         table, h_ft = host.geo['h_tab'], host.geo['h_ft']
@@ -1228,7 +1582,7 @@ def fit_tube_rrect(ctx, idx, spec, done):
     if wall == 'thin':
         sd = rr_sd(q, x, y, *tube_section(q, wall, h, None)[2:], *tube_section(q, wall, h, None)[:2])[0]
         below = host.geo['H_med'] if host is not None else top_c[0]
-        fl = (sd < -t - ctx.w(spec, 'floor_in', rel(0.004, S_REF_TUBE))) & (nup > 0.85) & (h < below) & (h > h_ft)
+        fl = (sd < -t - ctx.w(spec, 'floor_in')) & (nup > 0.85) & (h < below) & (h > h_ft)
         h_cf = float(np.median(h[fl])) if fl.sum() >= 50 else h_ft
         info.update(h_floor_mm=round(h_cf * 1e3, 2), n_floor=int(fl.sum()))
     else:
@@ -1268,7 +1622,7 @@ def tube_fit_once(ctx, idx, spec, fr, wall, host, t, info):
     x, y, h = frame_xyh(P, fr)
     vx, vy = V @ fr['L'], V @ fr['w']
     nup = ctx.normals()[0][idx] @ fr['up']
-    W = lambda name, mm: ctx.w(spec, name, rel(mm, S_REF_TUBE))
+    W = lambda name: ctx.w(spec, name)
     table = fr['table']; h_ft = table + t
     if host is not None and 'h_ft' in host.geo:                # stand on the host's floor plate
         table, h_ft = host.geo['h_tab'], host.geo['h_ft']
@@ -1276,12 +1630,12 @@ def tube_fit_once(ctx, idx, spec, fr, wall, host, t, info):
     x_min_fix = (fr['tall'][0] - t) if (p.get('x_min_from') == 'tall_lo' and fr.get('tall')) else None
     use = np.ones(len(P), bool)
     if x_min_fix is not None:
-        use = x > fr['tall'][1] + W('skip_end', 0.040)
+        use = x > fr['tall'][1] + W('skip_end')
     if wall == 'lip':
         # ---- top plane through lip-top samples along the outline edges (not the fixed end)
-        tl = x > fr['tall'][1] + W('skip_lip', 0.015) if x_min_fix is not None else np.ones(len(P), bool)
+        tl = x > fr['tall'][1] + W('skip_lip') if x_min_fix is not None else np.ones(len(P), bool)
         ylo, yhi = np.percentile(y[tl], [1, 99]); xhi = np.percentile(x[tl], 99)
-        eb, sg_w = W('edge_band', 0.012), W('top_seg', 0.010)
+        eb, sg_w = W('edge_band'), W('top_seg')
         T_ = []
         for m, coord in (((y < ylo + eb) & tl, x), ((y > yhi - eb) & tl, x), ((x > xhi - eb) & tl, y)):
             if m.sum() < 50:
@@ -1299,40 +1653,40 @@ def tube_fit_once(ctx, idx, spec, fr, wall, host, t, info):
         for _ in range(5):
             top_c = np.linalg.lstsq(A[m], T_[m, 2], rcond=None)[0]
             rr = T_[:, 2] - A @ top_c
-            m = np.abs(rr - np.median(rr[m])) < W('top_robust', 0.003)
+            m = np.abs(rr - np.median(rr[m])) < W('top_robust')
         info['top_plane'] = dict(a_mm=round(top_c[0] * 1e3, 2), slope_x=round(top_c[1], 4), slope_y=round(top_c[2], 4),
                                  n=int(m.sum()))
         xs0 = x[use]; ys0 = y[use]
         ylo, yhi = np.percentile(ys0, [1, 99]); xhi = np.percentile(xs0, 99.5)
         xa = x_min_fix if x_min_fix is not None else np.percentile(xs0, 0.5)
         q = dict(cx=0.5 * (xa + xhi), cy=0.5 * (ylo + yhi), ux=0.0, uy=0.0, ex=0.5 * (xhi - xa), ey=0.5 * (yhi - ylo),
-                 fx=0.0, fy=0.0, r=W('r0', 0.015), theta=0.0, s0=W('s0_init', 0.008), s1=0.3, dout=0.0)
+                 fx=0.0, fy=0.0, r=W('r0'), theta=0.0, s0=W('s0_init'), s1=0.3, dout=0.0)
         free = ['cx', 'cy', 'theta', 'dout', 'ey', 'r', 's0', 's1']
         if x_min_fix is None:
             free.insert(4, 'ex')
         else:
             free.insert(4, 'ex')                          # ex free, cx tied so the -x end stays at x_min_fix
-        lo = dict(cx=-np.inf, cy=-np.inf, theta=-0.2, dout=-0.3, ex=W('e_min', 0.030), ey=W('e_min', 0.030),
-                  r=W('r_min', 0.002), s0=W('s0_min', 0.004), s1=0.0)
-        hi = dict(cx=np.inf, cy=np.inf, theta=0.2, dout=1.0, ex=W('e_max', 0.150) * 10, ey=W('e_max', 0.150),
-                  r=W('r_max', 0.060), s0=W('s0_max', 0.030), s1=1.5)
+        lo = dict(cx=-np.inf, cy=-np.inf, theta=-0.2, dout=-0.3, ex=W('e_min'), ey=W('e_min'),
+                  r=W('r_min'), s0=W('s0_min'), s1=0.0)
+        hi = dict(cx=np.inf, cy=np.inf, theta=0.2, dout=1.0, ex=W('e_max') * 10, ey=W('e_max'),
+                  r=W('r_max'), s0=W('s0_max'), s1=1.5)
     else:
         H_host = host.geo['H_med'] if host is not None else -np.inf
-        bw = W('flat_band', 0.020)
+        bw = W('flat_band')
         tops = [np.percentile(h[(y >= a) & (y < a + bw)], 99) for a in np.arange(np.percentile(y, 2), np.percentile(y, 98), bw)
                 if ((y >= a) & (y < a + bw) & (h > H_host)).sum() > 30]
         H_med = float(np.median(tops))
         top_c = np.array([H_med, 0.0, 0.0])
-        tall = h > (H_host + W('init_above', 0.010) if host is not None else np.percentile(h, 50))
+        tall = h > (H_host + W('init_above') if host is not None else np.percentile(h, 50))
         xl, xh = np.percentile(x[tall], [1, 99]); yl, yh = np.percentile(y[tall], [1, 99])
         q = dict(cx=0.5 * (xl + xh), cy=0.5 * (yl + yh), ux=0.0, uy=0.0, ex=0.5 * (xh - xl), ey=0.5 * (yh - yl),
-                 fx=0.0, fy=0.0, r=W('r0', 0.020), theta=0.0, s0=t, s1=0.0, dout=0.0)
+                 fx=0.0, fy=0.0, r=W('r0'), theta=0.0, s0=t, s1=0.0, dout=0.0)
         lean = float(p.get('lean_max', 0.25)) if p.get('lean', True) else 1e-6
         free = ['cx', 'cy', 'ux', 'uy', 'ex', 'ey', 'fx', 'fy', 'r']
-        lo = dict(cx=-np.inf, cy=-np.inf, ux=-lean, uy=-lean, ex=W('ex_min', 0.010), ey=W('ey_min', 0.010),
-                  fx=-lean, fy=-lean, r=W('r_min', 0.004))
-        hi = dict(cx=np.inf, cy=np.inf, ux=lean, uy=lean, ex=W('ex_max', 0.080), ey=W('ey_max', 0.120),
-                  fx=lean, fy=lean, r=W('r_max', 0.050))
+        lo = dict(cx=-np.inf, cy=-np.inf, ux=-lean, uy=-lean, ex=W('ex_min'), ey=W('ey_min'),
+                  fx=-lean, fy=-lean, r=W('r_min'))
+        hi = dict(cx=np.inf, cy=np.inf, ux=lean, uy=lean, ex=W('ex_max'), ey=W('ey_max'),
+                  fx=lean, fy=lean, r=W('r_max'))
     lo_v = np.array([lo[n] for n in free]); hi_v = np.array([hi[n] for n in free])
 
     def unpack(z):
@@ -1341,7 +1695,7 @@ def tube_fit_once(ctx, idx, spec, fr, wall, host, t, info):
             qq['cx'] = x_min_fix + qq['ex']
         return qq
     Ht = top_c[0] + top_c[1] * x + top_c[2] * y
-    gate = W('class_gate', 0.008)
+    gate = W('class_gate')
     n_it = int(p.get('iters', 4 if wall == 'lip' else 5))
     for it in range(n_it):
         cx, cy, ex, ey = tube_section(q, wall, h, Ht)
@@ -1349,23 +1703,23 @@ def tube_fit_once(ctx, idx, spec, fr, wall, host, t, info):
         vr = vx * gx + vy * gy
         if wall == 'lip':
             s_h = q['s0'] + q['s1'] * (Ht - h)
-            near = use & (sd > -W('near_in', 0.035)) & (sd < W('near_out', 0.015))
-            outer = near & (h > W('low', 0.003)) & (h < Ht - W('below_top', 0.006)) & (vr > VR) & \
+            near = use & (sd > -W('near_in')) & (sd < W('near_out'))
+            outer = near & (h > W('low')) & (h < Ht - W('below_top')) & (vr > VR) & \
                 (np.abs(sd - q['dout'] * (Ht - h)) < gate)
-            inner = near & (h > W('low_in', 0.006)) & (h < Ht - W('below_top', 0.006)) & (vr < -VR) & \
+            inner = near & (h > W('low_in')) & (h < Ht - W('below_top')) & (vr < -VR) & \
                 (np.abs(sd + s_h) < gate)
-            rim = near & (h > Ht - W('lip_below', 0.003)) & (h < Ht + W('lip_above', 0.004)) & \
-                (sd > -W('lip_in', 0.020)) & (sd < W('lip_out', 0.006))
+            rim = near & (h > Ht - W('lip_below')) & (h < Ht + W('lip_above')) & \
+                (sd > -W('lip_in')) & (sd < W('lip_out'))
         else:
-            near = (np.abs(sd) < W('near', 0.012)) & (h < H_med + W('top_above', 0.004))
-            upper = h > H_host + W('host_band', 0.004)
+            near = (np.abs(sd) < W('near')) & (h < H_med + W('top_above'))
+            upper = h > H_host + W('host_band')
             vert = np.abs(nup) < 0.7
-            outer = near & upper & (vr > VR) & (sd > -W('out_in', 0.006)) & (h < H_med - W('rim_band', 0.003))
-            inner = near & upper & (vr < -VR) & (sd < W('in_out', 0.003)) & (h < H_med - W('rim_band', 0.003)) & vert
+            outer = near & upper & (vr > VR) & (sd > -W('out_in')) & (h < H_med - W('rim_band'))
+            inner = near & upper & (vr < -VR) & (sd < W('in_out')) & (h < H_med - W('rim_band')) & vert
             if it >= 2 and host is not None:
-                inner |= (near & ~upper & (h > h_ft + W('host_band', 0.004)) & (vr < -VR) & vert &
-                          (sd < -t + W('in_out', 0.003)) & (sd > -t - gate))
-            rim = near & (h >= H_med - W('rim_band', 0.003))
+                inner |= (near & ~upper & (h > h_ft + W('host_band')) & (vr < -VR) & vert &
+                          (sd < -t + W('in_out')) & (sd > -t - gate))
+            rim = near & (h >= H_med - W('rim_band'))
         cls = np.r_[np.zeros(outer.sum()), np.ones(inner.sum()), 2 * np.ones(rim.sum())].astype(int)
         ii = np.r_[np.nonzero(outer)[0], np.nonzero(inner)[0], np.nonzero(rim)[0]]
         if len(ii) > 60000:
@@ -1468,14 +1822,14 @@ def fit_cone_array(ctx, idx, spec, done):
     P = ctx.P
     x, y, h = frame_xyh(P, fr)
     inside = np.zeros(len(P), bool); inside[idx] = True
-    W = lambda name, mm, floor=0.0: ctx.w(spec, name, rel(mm, S_REF_TUBE, floor))
-    sl = (W('slice0', 0.012), W('slice1', 0.035))
-    g = W('grid', 0.002)
-    row_dy = W('row_dy', 0.012)
-    peg_r = W('peg_r', 0.014); h0 = W('h0', 0.002)
-    dh = W('dh', 0.006); a0 = W('a0', 0.006)
-    a_lo, a_hi = W('a_min', 0.001, 0.0008), W('a_max', 0.020)
-    c_m = W('centre_move', 0.008); min_top = W('min_above_host', 0.008); above = W('above_host', 0.002)
+    W = lambda name: ctx.w(spec, name)
+    sl = (W('slice0'), W('slice1'))
+    g = W('grid')
+    row_dy = W('row_dy')
+    peg_r = W('peg_r'); h0 = W('h0')
+    dh = W('dh'); a0 = W('a0')
+    a_lo, a_hi = W('a_min'), W('a_max')
+    c_m = W('centre_move'); min_top = W('min_above_host'); above = W('above_host')
     info = {}
     old = dict(PEG_SLICE=PR.PEG_SLICE, PEG_R=PR.PEG_R, PEG_H0=PR.PEG_H0, F_SCALE=PR.F_SCALE)
     PR.PEG_SLICE, PR.PEG_R, PR.PEG_H0, PR.F_SCALE = sl, peg_r, h0, F_SCALE
@@ -1587,6 +1941,198 @@ def fit_peg_row_rel(x, y, h, cents, ok, top_lim, dh, a0, a_lo, a_hi, c_m):
     return q
 
 
-PART_TYPES = dict(lathe=fit_lathe, sheet_of_revolution=fit_sheet_of_revolution, plate=fit_plate,
-                  plate_set=fit_plate_set, tube_rrect=fit_tube_rrect, strap=fit_strap, cone_array=fit_cone_array,
-                  rounded_box=fit_rounded_box, ball=fit_ball, tsdf_patch=fit_tsdf_patch, splat=fit_splat)
+# ================================================================================================ schema
+T_SRC = E(('auto', 'prior'), 'auto', "thickness source: 'auto' = measured where both faces (or the side) were seen, "
+          "else the prior t; 'prior' = always the prior t (program.variants() emits this as the t-grid variant)")
+REFS_OF = Param('refs', None, 'earlier part(s) whose surface is the host (a name or a list)')
+PLATE_OUTLINE = dict(
+    grid=Ws(0.0015, 'occupancy cell of the outline (= VOX)', when={'outline': ('occupancy', 'rect')}),
+    close=Ws(0.003, 'closing scale of the occupancy mask (2 x VOX)', when={'outline': ('occupancy', 'rect')}),
+    t_min=Wg(0.003, 'smallest two-face thickness accepted as measured (carried from prim_boards)', when={'outline': ('occupancy', 'rect')}),
+    t_max=Wg(0.025, 'largest two-face thickness accepted as measured (carried from prim_boards)', when={'outline': ('occupancy', 'rect')}),
+    keep_holes=Param('bool', False, 'occupancy outline keeps its holes (no hole filling): rings, handles with a hole'),
+    hole_min_d=Ws(0.006, 'smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole'),
+    t_src=T_SRC)
+
+
+@dataclass
+class PartType:
+    fit: object
+    schema: dict
+    models: str = ''
+    see: str = ''
+    k: str = ''
+
+    def __call__(self, ctx, idx, spec, done):
+        return self.fit(ctx, idx, spec, done)
+
+
+PART_TYPES = dict(
+    lathe=PartType(fit_lathe, dict(
+        method=E(('polar', 'height'), 'polar', "'polar': closed floor, profile in polar coordinates about an interior "
+                 "point, robust hemisphere axis search; 'height': per-height-bin profile, open end from inner-wall evidence"),
+        floor=E(('base', 'observed', 'solid', 'open'), 'base', "height method: 'base' closed (cavity to base + t), "
+                "'observed' cavity only as deep as the inner wall was seen (GLOBAL RULE ONLY, never a per-object pick "
+                "motivated by scan coverage), 'solid' no cavity, 'open' bottomless ring"),
+        thick=Param('float', 1.0, 'polar: multiplier on the wall thickness (sensitivity runs only)'),
+        dphi_deg=Param('float', 2.0, 'polar: angular profile bin (deg)'),
+        gap_bins=Param('int', 3, "height, floor 'observed': bins of missing inner wall tolerated"),
+        nseg=Param('int', 96, 'height: revolve segments'),
+        t_src=T_SRC,
+        cell_q=Param('float', CELL_Q, 'density-normalised cell threshold: fraction of the median occupied-cell count'),
+        cell_min_pts=Param('int', None, 'fixed (bin, sector) cell threshold instead (hand kits: 8); omit = density-normalised', optional=True),
+        rim_w=Wr('axis search: rim window beyond the body radius', when={'method': 'polar'}),
+        body_w=Wr('profile: body points within the 60th-pct radius + body_w', when={'method': 'polar'}),
+        t_min=Wg(0.0015, 'smallest wall thickness (= smallest grid value)'),
+        t_max=Wr('largest measured wall thickness accepted (clip)', when={'method': 'polar'}),
+        rim_near=Ws(APP_D, 'points within this of the mid-surface define the rim height', when={'method': 'polar'}),
+        resample=Ws(0.003, 'profile resampling step', when={'method': 'polar'}),
+        dh=Ws(0.003, 'height bin', when={'method': 'height'}),
+        body_margin=Ws(0.005, 'body points: radius below the outer profile max + margin', when={'method': 'height'}),
+        cap_margin=Ws(0.003, 'floor points lie inside the inner radius by this', when={'method': 'height'}),
+        floor_layer=Ws(0.010, 'spread (q10-q90) below which floor points form one observed layer', when={'method': 'height'})),
+        'thin-walled body of revolution (open containers, bowls, bottles)', 'round in every view, rim or opening',
+        '5 + profile knots'),
+    sheet_of_revolution=PartType(fit_sheet_of_revolution, dict(
+        thick=Param('float', 1.0, 'multiplier on the prior t of the unseen underside'),
+        edge_w=Ws(0.003, 'per-sector edge band (98th-pct radius minus edge_w)'),
+        flange_r0=Wr('inner radius of the flat annulus used to refit the normal'),
+        flange_r1=Wr('outer radius of that annulus'),
+        flange_h=Ws(0.006, 'height band of the annulus points'),
+        rbin=Ws(0.002, 'radius bin of the first-pass surface'),
+        surf_band=Ws(0.004, 'points within this of the surface are surface points'),
+        tilt_rmin=Wr('tilt refinement uses radii above this'),
+        tilt_rbin=Ws(0.004, 'radius bin of the tilt refinement'),
+        prof_dr=Ws(0.002, 'radius bin of the top profile'),
+        dome_r0=Wr('inner radius of the ring the near-axis quadratic dome is fitted on'),
+        dome_r1=Wr('outer radius of that ring'),
+        resample=Ws(0.003, 'profile resampling step'),
+        resid_edge=Wr('band beyond the edge radius in which points are this part\'s business')),
+        'domed cover or dish seen from one side', 'flat round thing, underside never seen', '5 + knots'),
+    plate=PartType(fit_plate, dict(
+        outline=E(('bar', 'occupancy', 'rect'), 'bar', "'bar' straight bar with rounded tip and optional hole; "
+                  "'occupancy' traced outline; 'rect' minimum-area rectangle"),
+        host=Param('ref', None, "bar: the body whose wall the bar starts inside"),
+        hole=Param('bool', True, 'bar: look for a hole near the tip'),
+        len_bin=Ws(0.005, 'bar: length bin of the width profile', when={'outline': 'bar'}),
+        T_min=Wg(0.0015, 'bar: smallest measured thickness (= smallest grid value)', when={'outline': 'bar'}),
+        T_max=Wr('bar: largest measured thickness accepted (clip)', when={'outline': 'bar'}),
+        inner_search=Wr('bar: how far behind the inner end the host wall is searched', when={'outline': 'bar'}),
+        hole_grid=Ws(0.002, 'bar: occupancy cell of the hole search', when={'outline': 'bar'}),
+        hole_tip=Wr('bar: a hole must lie within this of the tip', when={'outline': 'bar'}),
+        **PLATE_OUTLINE),
+        'flat piece in its own plane', 'handles, fins, flat slabs', '9 (bar), 5 + 2 x vertices'),
+    plate_set=PartType(fit_plate_set, dict(
+        segment=E(('plane', 'cluster'), 'plane', "'plane': sequential plane segmentation; 'cluster': voxel connectivity (legacy)"),
+        outline=E(('occupancy', 'rect'), 'occupancy', 'outline of each plate'),
+        min_pts=Param('int', 300, 'points of a plate'),
+        max_plates=Param('int', 4, 'largest number of plates'),
+        seeds=Param('int', 200, 'RANSAC seeds per plane'),
+        plane_deg=Param('float', 30.0, 'normal tolerance of a plane inlier (deg, either sign)'),
+        plane_dist=Ws(0.003, 'distance tolerance of a plane inlier (2 x VOX)'),
+        conn_vox=Ws(0.003, 'voxel connectivity of a plate\'s inliers'),
+        **{k: (Param(v.kind, v.default, v.meaning, v.cls) if k in ('grid', 'close', 't_min', 't_max') else v)
+           for k, v in PLATE_OUTLINE.items()}),
+        'several flat plates (sides of a box, a scoop)', 'flat sheets meeting at edges', 'sum of plates'),
+    strap=PartType(fit_strap, dict(
+        host=Param('ref', None, 'the sheet / body the strap ends run down into'),
+        t_src=T_SRC,
+        len_bin=Ws(0.003, 'length bin of the top curve'),
+        W_min=Wr('smallest strap width (clip)'), W_max=Wr('largest strap width (clip)'),
+        T_min=Wg(0.0015, 'smallest measured thickness (= smallest grid value)'), T_max=Wr('largest measured thickness (clip)'),
+        end_ext=Ws(0.004, 'extension of the ends beyond the last top-seen bin'),
+        resample=Ws(0.002, 'centreline resampling step')),
+        'rectangle swept along a fitted centreline', 'arched handle over a cover, bucket handle', '2 + knots'),
+    tube_rrect=PartType(fit_tube_rrect, dict(
+        wall=E(('thin', 'lip'), 'thin', "'thin': wall thickness t, lean / draft / corner free; 'lip': thick rim s0, "
+               "inner face sloping by s1, outer face leaning by dout, top = robust plane"),
+        above=Param('ref', None, 'thin: host tube whose top hides this tube\'s lower outer face'),
+        x_min_from=E((None, 'tall_lo'), None, "'tall_lo': the -x end is fixed at the frame's tall region"),
+        align_frame=Param('bool', True, 'lip: re-express the program frame in the fitted outline frame'),
+        carve=E((None, 'self', 'all'), None, "'self' (default for lip) or 'all' (default for thin)"),
+        lean=Param('bool', True, 'thin: lean and draft free'), lean_max=Param('float', 0.25, 'thin: lean / draft bound'),
+        iters=Param('int', None, 'robust-fit rounds (default 4 lip, 5 thin)', optional=True),
+        floor_depth=Param('window', None, 'development only: floor plate at this depth below the top', 'shape', optional=True),
+        r0=Wr('initial corner radius'), r_min=Wr('corner radius lower bound'), r_max=Wr('corner radius upper bound'),
+        class_gate=Ws(APP_D, 'point-class gate around the current surface'),
+        skip_end=Wr('points within this beyond the tall region are not used (x_min_from)', when={'x_min_from': 'tall_lo'}),
+        skip_lip=Wr('lip-top samples start this far beyond the tall region', when={'wall': 'lip', 'x_min_from': 'tall_lo'}),
+        edge_band=Wr('lip: band along the outline edges for top samples', when={'wall': 'lip'}),
+        top_seg=Ws(0.010, 'lip: segment length of the top samples', when={'wall': 'lip'}),
+        top_robust=Ws(0.003, 'lip: inlier band of the top plane', when={'wall': 'lip'}),
+        s0_init=Wr('lip: initial rim width', when={'wall': 'lip'}),
+        e_min=Wr('lip: smallest half extent', when={'wall': 'lip'}), e_max=Wr('lip: largest half extent (y; x: 10x)', when={'wall': 'lip'}),
+        s0_min=Wr('lip: smallest rim width', when={'wall': 'lip'}), s0_max=Wr('lip: largest rim width', when={'wall': 'lip'}),
+        near_in=Wr('lip: points this far inside the outline are near', when={'wall': 'lip'}),
+        near_out=Wr('lip: points this far outside the outline are near', when={'wall': 'lip'}),
+        low=Ws(0.003, 'lip: outer-class points above this height', when={'wall': 'lip'}),
+        below_top=Ws(0.006, 'lip: wall classes end this far below the top', when={'wall': 'lip'}),
+        low_in=Ws(0.006, 'lip: inner-class points above this height', when={'wall': 'lip'}),
+        lip_below=Ws(0.003, 'lip: top class from this far below the top', when={'wall': 'lip'}),
+        lip_above=Ws(0.004, 'lip: ... to this far above it', when={'wall': 'lip'}),
+        lip_in=Wr('lip: top class reaches this far inside the outline', when={'wall': 'lip'}),
+        lip_out=Ws(0.006, 'lip: ... and this far outside it', when={'wall': 'lip'}),
+        flat_band=Wr('thin: y band of the robust top height', when={'wall': 'thin'}),
+        init_above=Wr('thin: initial outline from points this far above the host top', when={'wall': 'thin'}),
+        ex_min=Wr('thin: smallest half extent x', when={'wall': 'thin'}), ex_max=Wr('thin: largest half extent x', when={'wall': 'thin'}),
+        ey_min=Wr('thin: smallest half extent y', when={'wall': 'thin'}), ey_max=Wr('thin: largest half extent y', when={'wall': 'thin'}),
+        near=Wr('thin: points within this of the surface are near', when={'wall': 'thin'}),
+        top_above=Ws(0.004, 'thin: near points up to this above the top', when={'wall': 'thin'}),
+        host_band=Ws(0.004, 'thin: band above the host top', when={'wall': 'thin'}),
+        out_in=Ws(0.006, 'thin: outer class reaches this far inside', when={'wall': 'thin'}),
+        in_out=Ws(0.003, 'thin: inner class reaches this far outside', when={'wall': 'thin'}),
+        rim_band=Ws(0.003, 'thin: rim class within this below the top', when={'wall': 'thin'}),
+        floor_in=Ws(0.004, 'thin: raised-floor points lie inside the inner face by this', when={'wall': 'thin'})),
+        'rounded-rectangle tube in the support frame', 'trays, holders, open boxes standing on the table', '9-13'),
+    cone_array=PartType(fit_cone_array, dict(
+        host=Param('ref', None, 'the tray (tube_rrect) whose floor the pegs stand on'),
+        top_from=Param('ref', None, 'part whose top height limits the pegs'),
+        slice0=Wr('lower height of the detection slice'), slice1=Wr('upper height of the detection slice'),
+        grid=Ws(0.002, 'occupancy cell of the slice'), row_dy=Wr('pegs within this in y form a row'),
+        peg_r=Wr('point radius around a peg centre'), h0=Ws(0.002, 'lowest knot height'),
+        dh=Ws(0.006, 'knot spacing of the row template'), a0=Wr('initial peg radius'),
+        a_min=Wr('smallest peg radius'), a_max=Wr('largest peg radius'),
+        centre_move=Wr('largest peg-centre move'), min_above_host=Wr('rows must rise this far above the host top'),
+        above_host=Ws(0.002, 'points this far above the host top count for the pegs')),
+        'rows of tapered round pegs, one template per row', 'peg rows standing in a tray', 'knots + 2 x pegs'),
+    rounded_box=PartType(fit_rounded_box, dict(
+        pct=Param('float', 1.0, 'robust extent percentile'), r_frac=Param('float', 0.2, 'edge radius / smallest half extent')),
+        'box with rounded edges in the PCA frame', 'blocks, bricks', '10'),
+    ball=PartType(fit_ball, dict(
+        mode=E(('free', 'none'), 'free', "'free': balls only where a free sphere fit passes every test; 'none': no balls"),
+        of=REFS_OF, reject_inside=Param('ref', None, 'tube whose cavity footprint must not hold a ball centre'),
+        stems=Param('bool', True, 'stems where points support them'),
+        min_pts=Param('int', 25, 'points of a cluster (a 3 mm hemisphere cap holds ~25 voxels of 1.5 mm)'),
+        min_frames=Param('int', 3, 'frames a ball must be seen in (one mis-tracked frame cannot make a ball)'),
+        cap_min=Param('float', 0.08, 'cap spread 1 - |mean radial| (half-angle >= ~33 deg)'),
+        convex_min=Param('float', 0.8, 'share of cap points whose fitted outward normal faces their camera'),
+        iso_min=Param('float', 0.25, 'tangent spread isotropy (rims, pegs, fillets curve one way only)'),
+        stem_min=Param('int', 15, 'observed points in the stem cylinder'),
+        r_min=Wg(0.003, "smallest radius ('any small sphere'; generic, not from any scan)"),
+        r_max=Wg(0.015, "largest radius ('any small sphere'; generic, not from any scan)"),
+        res_max=Ws(0.0015, 'largest median |d - r| of the fit (= VOX)'),
+        gap_max=Wg(0.030, 'largest ball-surface to host-surface gap (= 2 r_max)'),
+        cluster_vox=Ws(0.003, 'voxel connectivity of the residual clusters')),
+        'small spheres (markers) on optional stems', 'small round knobs / grey spheres on short stems', '4 per ball (+1 per stem)'),
+    tsdf_patch=PartType(fit_tsdf_patch, dict(
+        of=REFS_OF, margin=Ws(APP_D, 'library faces farther than this outside every listed part are kept')),
+        'faces of OUR library TSDF mesh outside the listed parts', 'fallback for parts we cannot model', '0'),
+    splat=PartType(fit_splat, dict(
+        vox=Ws(0.002, 'splat voxel'), min_pts=Param('int', 400, 'points of a splatted cluster'),
+        combine=E(('union', 'concat'), 'union', "'union' (watertight) or 'concat' (separate mesh)")),
+        'voxel splat + marching cubes of each large cluster', 'anything irregular the vocabulary lacks', '0'),
+    shell_patch=PartType(fit_shell_patch, dict(
+        of=Param('refs', None, 'host parts the patch must not duplicate (default: every earlier part)'),
+        min_pts=Param('int', 100, 'points of a residual cluster that gets a patch'),
+        cluster_vox=Ws(0.003, 'voxel connectivity of the residual clusters'),
+        max_faces=Param('int', None, 'face cap of the patch (shell default)', optional=True)),
+        'route-A thin shell over observed surface the parts did not explain', 'leftover observed pieces after the parts',
+        '0'),
+)
+
+FRAME_SCHEMA = dict(
+    type=E(('support',), 'support', 'the only frame type: table support frame'),
+    tall_end=Param('bool', True, 'flip x so the end holding the tall points lies at -x'),
+    tall_frac=Param('float', 0.65, 'tall points: h > tall_frac x the 99.8 % height'),
+    cell=Ws(0.010, 'cell of the lower supporting plane fit'),
+    band=Ws(0.003, 'inlier band of the lower supporting plane'))

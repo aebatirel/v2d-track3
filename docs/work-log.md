@@ -4681,3 +4681,9 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   - free-space precision outside the silhouette;
   - a pre-registered synthetic-edit gate validation on episodes not used for tuning;
   - integration over every episode of pot, lid, rack and blue cup, then audits.
+- 2026-10-29 21:05 UTC: stage 1b workflow `wf_709e7da9-195` failed. All 6 agents stopped on the account's weekly usage
+  limit (reset Oct 29 21:00 UTC), with 0 results. The parts and shell fixers had made large partial edits: parts.py,
+  program.py, DSL.md, programs/*.json, shell.py, tests, and a provenance comment on prim_potlid MK_R0. The gates fixer
+  changed nothing. All files compile. The partial edits are committed as an unreviewed WIP snapshot; scratch outputs are
+  in `auto/stage1b/{parts,shell}`. Owner: "Tekrar deneyin" (try again). Relaunching with instructions to review and
+  finish the partial work.

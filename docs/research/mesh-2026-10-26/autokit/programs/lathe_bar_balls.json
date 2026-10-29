@@ -1,14 +1,78 @@
 {
  "program": "lathe_bar_balls",
- "version": 1,
- "doc": "Open container with a closed floor, one flat bar handle reaching far beyond the body, marker balls. Body = thin-wall lathe ('polar' profile: wall thickness measured where inner and outer faces were both seen, closed floor = observed inner floor + t). Handle = the largest residual cluster that reaches beyond the body by more than k*s, fitted as a straight bar in its own plane whose inner end sits inside the body wall. Balls = compact residual clusters on the body or handle. Reproduces hand kit A (prim_potlid.build_pot, variant fit) with the default windows.",
- "prior": {"t": "arg"},
+ "version": 2,
+ "doc": "Open container with a closed floor, one flat bar handle reaching far beyond the body, small balls. Body = thin-wall lathe ('polar' profile: wall thickness measured where inner and outer faces were both seen, closed floor = observed inner floor + t). Handle = the largest residual cluster that reaches beyond the body by more than k*s, fitted as a straight bar in its own plane whose inner end sits inside the body wall. Balls = generic free-fit balls on compact residual clusters (no radius prior). Reproduces hand kit A (prim_potlid.build_pot, variant fit) apart from the balls. Windows: the hand kit's absolute windows divided by s of its development episode (GT-free); whether each hand-kit window was set before or after a scan scoring of that kit is not recorded (work-log: two dev scorings per family) - treat them as development choices, not as tuned-free.",
+ "prior": {
+  "t": "arg"
+ },
  "parts": [
-  {"name": "body", "type": "lathe", "assign": {"rule": "all"}, "params": {"method": "polar"}},
-  {"name": "handle", "type": "plate",
-   "assign": {"rule": "largest_cluster_beyond", "of": ["body"], "k": 0.6583, "min_pts": 200},
-   "params": {"outline": "bar", "host": "body"}},
-  {"name": "markers", "type": "ball", "assign": {"rule": "residual", "of": ["body", "handle"]},
-   "params": {"of": ["body", "handle"]}}
+  {
+   "name": "body",
+   "type": "lathe",
+   "assign": {
+    "rule": "all"
+   },
+   "params": {
+    "method": "polar",
+    "rim_w": 0.21944261575597981,
+    "body_w": 0.21944261575597981,
+    "t_min": {
+     "frac": 0.021944261575597982,
+     "floor": 0.0015
+    },
+    "t_max": {
+     "frac": 0.06583278472679395,
+     "floor": 0.003
+    },
+    "rim_near": 0.08777704630239193,
+    "resample": {
+     "frac": 0.032916392363396975,
+     "floor": 0.001
+    }
+   }
+  },
+  {
+   "name": "handle",
+   "type": "plate",
+   "assign": {
+    "rule": "largest_cluster_beyond",
+    "of": [
+     "body"
+    ],
+    "k": 0.6583,
+    "min_pts": 200
+   },
+   "params": {
+    "outline": "bar",
+    "host": "body",
+    "len_bin": 0.054860653938994954,
+    "T_min": {
+     "frac": 0.032916392363396975,
+     "floor": 0.0015
+    },
+    "T_max": 0.08777704630239193,
+    "inner_search": 0.6583278472679395,
+    "hole_grid": 0.021944261575597982,
+    "hole_min_d": 0.06939384814940486,
+    "hole_tip": 0.6583278472679395
+   }
+  },
+  {
+   "name": "markers",
+   "type": "ball",
+   "assign": {
+    "rule": "residual",
+    "of": [
+     "body",
+     "handle"
+    ]
+   },
+   "params": {
+    "of": [
+     "body",
+     "handle"
+    ]
+   }
+  }
  ]
 }

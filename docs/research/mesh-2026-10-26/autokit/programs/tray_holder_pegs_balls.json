@@ -1,20 +1,138 @@
 {
  "program": "tray_holder_pegs_balls",
- "version": 1,
- "doc": "Object standing on the table: a long shallow tray (rounded-rectangle tube with a thick lip and a sloped inner face, 'lip' wall) whose -x end is a tall thin-walled holder tube (the frame puts the tall end at -x), rows of tapered pegs standing in the tray cavity beyond the holder, marker balls on the outside. The holder clips the tray cavity at its +x outer face. Reproduces hand kit C (prim_rack.build, variant full, single episode) with the default windows.",
- "prior": {"t": "arg"},
- "frame": {"type": "support", "tall_end": true, "tall_frac": 0.65},
+ "version": 2,
+ "doc": "Object standing on the table: a long shallow tray (rounded-rectangle tube with a thick lip and a sloped inner face, 'lip' wall) whose -x end is a tall thin-walled holder tube (the frame puts the tall end at -x), rows of tapered pegs standing in the tray cavity beyond the holder, small balls on the outside (generic free-fit rule; none over the tray cavity). The holder clips the tray cavity at its +x outer face. Reproduces hand kit C (prim_rack.build, variant full, single episode) apart from the balls. Windows: the hand kit's absolute windows divided by s of its development episode (GT-free); whether each hand-kit window was set before or after a scan scoring of that kit is not recorded (work-log: two dev scorings per family) - treat them as development choices, not as tuned-free.",
+ "prior": {
+  "t": "arg"
+ },
+ "frame": {
+  "type": "support",
+  "tall_end": true,
+  "tall_frac": 0.65,
+  "cell": 0.0642508352608584,
+  "band": 0.01927525057825752
+ },
  "parts": [
-  {"name": "tray", "type": "tube_rrect", "assign": {"rule": "all"},
-   "params": {"wall": "lip", "x_min_from": "tall_lo", "align_frame": true}},
-  {"name": "holder", "type": "tube_rrect",
-   "assign": {"rule": "slab", "axis": "x", "max_from": "tall_hi", "max_margin": 0.0771},
-   "params": {"wall": "thin", "above": "tray"},
-   "attach": {"mode": "clip_cavity", "to": "tray", "face": "+x"}},
-  {"name": "pegs", "type": "cone_array",
-   "assign": {"rule": "cavity", "of": "tray", "inset": 0.0643, "beyond_margin": 0.0386},
-   "params": {"host": "tray", "top_from": "holder"}},
-  {"name": "markers", "type": "ball", "assign": {"rule": "residual", "of": ["tray", "holder", "pegs"]},
-   "params": {"of": ["tray", "holder", "pegs"], "require_cap": true, "reject_inside": "tray"}}
+  {
+   "name": "tray",
+   "type": "tube_rrect",
+   "assign": {
+    "rule": "all"
+   },
+   "params": {
+    "wall": "lip",
+    "x_min_from": "tall_lo",
+    "align_frame": true,
+    "skip_end": 0.2570033410434336,
+    "skip_lip": 0.09637625289128758,
+    "edge_band": 0.07710100231303008,
+    "top_seg": 0.0642508352608584,
+    "top_robust": 0.01927525057825752,
+    "r0": 0.09637625289128758,
+    "s0_init": 0.05140066820868672,
+    "e_min": 0.19275250578257516,
+    "e_max": 0.9637625289128758,
+    "r_min": 0.01285016705217168,
+    "r_max": 0.3855050115651503,
+    "s0_min": 0.02570033410434336,
+    "s0_max": 0.19275250578257516,
+    "class_gate": 0.05140066820868672,
+    "near_in": 0.2248779234130044,
+    "near_out": 0.09637625289128758,
+    "low": 0.01927525057825752,
+    "below_top": 0.03855050115651504,
+    "low_in": 0.03855050115651504,
+    "lip_below": 0.01927525057825752,
+    "lip_above": 0.02570033410434336,
+    "lip_in": 0.1285016705217168,
+    "lip_out": 0.03855050115651504
+   }
+  },
+  {
+   "name": "holder",
+   "type": "tube_rrect",
+   "assign": {
+    "rule": "slab",
+    "axis": "x",
+    "max_from": "tall_hi",
+    "max_margin": 0.0771
+   },
+   "params": {
+    "wall": "thin",
+    "above": "tray",
+    "flat_band": 0.1285016705217168,
+    "init_above": 0.0642508352608584,
+    "r0": 0.1285016705217168,
+    "ex_min": 0.0642508352608584,
+    "ey_min": 0.0642508352608584,
+    "ex_max": 0.5140066820868672,
+    "ey_max": 0.7710100231303006,
+    "r_min": 0.02570033410434336,
+    "r_max": 0.321254176304292,
+    "class_gate": 0.05140066820868672,
+    "near": 0.07710100231303008,
+    "top_above": 0.02570033410434336,
+    "host_band": 0.02570033410434336,
+    "out_in": 0.03855050115651504,
+    "in_out": 0.01927525057825752,
+    "rim_band": 0.01927525057825752,
+    "floor_in": 0.02570033410434336
+   },
+   "attach": {
+    "mode": "clip_cavity",
+    "to": "tray",
+    "face": "+x"
+   }
+  },
+  {
+   "name": "pegs",
+   "type": "cone_array",
+   "assign": {
+    "rule": "cavity",
+    "of": "tray",
+    "inset": 0.0643,
+    "beyond_margin": 0.0386
+   },
+   "params": {
+    "host": "tray",
+    "top_from": "holder",
+    "slice0": 0.07710100231303008,
+    "slice1": 0.2248779234130044,
+    "grid": 0.01285016705217168,
+    "row_dy": 0.07710100231303008,
+    "peg_r": 0.08995116936520176,
+    "h0": 0.01285016705217168,
+    "dh": 0.03855050115651504,
+    "a0": 0.03855050115651504,
+    "a_min": {
+     "frac": 0.00642508352608584,
+     "floor": 0.0008
+    },
+    "a_max": 0.1285016705217168,
+    "centre_move": 0.05140066820868672,
+    "min_above_host": 0.05140066820868672,
+    "above_host": 0.01285016705217168
+   }
+  },
+  {
+   "name": "markers",
+   "type": "ball",
+   "assign": {
+    "rule": "residual",
+    "of": [
+     "tray",
+     "holder",
+     "pegs"
+    ]
+   },
+   "params": {
+    "of": [
+     "tray",
+     "holder",
+     "pegs"
+    ],
+    "reject_inside": "tray"
+   }
+  }
  ]
 }

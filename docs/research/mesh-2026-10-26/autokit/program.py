@@ -9,13 +9,18 @@ file, mocap or parquet pose is read; there are no object names or per-object con
 per-object part; object names appear only in the CLI arguments that locate the observation file).
 The DSL is documented in DSL.md; example programs are in programs/.
 
+Stage 1b: every part type, assignment rule and the frame have a parameter schema (parts.PART_TYPES, ASSIGN_SCHEMA,
+parts.FRAME_SCHEMA); validate_program rejects unknown keys, bad enum values and missing REQUIRED windows; t is a
+required argument (no default); variants() adds the thickness-prior variant of programs whose parts can measure t.
+
 Usage (library):
-    from autokit.program import run_program, load_program, validate_program
+    from autokit.program import run_program, load_program, validate_program, variants
     from autokit.io_gt import load_obs, obs_path
     mesh, report = run_program(load_program('programs/lathe_bar_balls.json'), load_obs(obs_path(OBJ, EP)), t=0.0025)
 CLI:
-    program.py PROGRAM.json OBJ EP OUT.glb [--t 0.0025] [--refined 0] [--obs PATH] [--lib LIB.glb]
+    program.py PROGRAM.json OBJ EP OUT.glb --t {0.0015,0.0025,0.004} [--refined 0] [--obs PATH] [--lib LIB.glb]
     (writes OUT.glb and OUT.json, the report)
+    program.py --schema-md [--write DSL.md]     (print the schema tables; --write replaces them in DSL.md)
 """
 import argparse, json, math, os, sys, time
 
@@ -39,41 +44,162 @@ def load_program(path):
         return json.load(f)
 
 
-PART_REFS = ('host', 'above', 'top_from', 'reject_inside')       # params naming an earlier part
+PROGRAM_KEYS = ('program', 'version', 'doc', 'prior', 'frame', 'parts', 'preprocess')
+PART_KEYS = ('name', 'type', 'assign', 'params', 'attach', 'optional', 'doc')
+ATTACH_KEYS = ('mode', 'to', 'face')
+P_ = PT.Param
+_OF = P_('refs', None, 'earlier part(s); default: every earlier part')
+_BAND = P_('band', None, 'unexplained = more than band outside every part in of (fraction of s or {"abs": m}; default APP_D = 8 mm)')
+_CV = P_('float', CL_VOX, 'cluster connectivity voxel (ABSOLUTE metres)')
+ASSIGN_SCHEMA = {
+    'all': {},
+    'residual': dict(of=_OF, band=_BAND),
+    'largest_cluster_beyond': dict(of=_OF, band=_BAND, reach_of=P_('ref', None, 'part whose reach is measured (default of[0])'),
+                                   k=P_('float', 0.5, 'the cluster\'s 99th-pct reach must exceed k x s'),
+                                   min_pts=P_('int', 200, 'points of a cluster'), cluster_vox=_CV),
+    'largest_cluster_extent': dict(of=_OF, band=_BAND, frame_of=P_('ref', None, 'part whose plane (e1, e2) measures the length (default of[0])'),
+                                   min_extent=P_('float', 0.5, 'the cluster must be longer than min_extent x s'),
+                                   min_pts=P_('int', 200, 'points of a cluster'), cluster_vox=_CV),
+    'clusters_dir': dict(of=_OF, band=_BAND, host=P_('ref', None, 'part whose centre / axis is the origin (default of[0])'),
+                         dir=P_('enum', '+axis', 'direction', choices=('+axis', '-axis', '+up', '-up', '+x', '-x', '+y', '-y')),
+                         min_offset=P_('float', 0.0, 'centroid beyond the host centre by > min_offset x s'),
+                         min_pts=P_('int', 60, 'points of a cluster'), cluster_vox=_CV),
+    'slab': dict(axis=P_('enum', 'x', 'support-frame axis', choices=('x', 'y', 'h')),
+                 min_from=P_('slab', None, "'tall_lo', 'tall_hi' or a fraction of s"),
+                 max_from=P_('slab', None, "'tall_lo', 'tall_hi' or a fraction of s"),
+                 min_margin=P_('float', 0.0, 'fraction of s added to min_from'),
+                 max_margin=P_('float', 0.0, 'fraction of s added to max_from')),
+    'cavity': dict(of=P_('ref', None, 'a tube_rrect'), inset=P_('float', 0.0, 'inside the inner face by > inset x s'),
+                   beyond_margin=P_('float', None, 'only points past the host cavity clip by this x s', optional=True)),
+}
+RULES = tuple(ASSIGN_SCHEMA)
+
+
+def _names(v):
+    return [] if v is None else ([v] if isinstance(v, str) else list(v))
+
+
+def check_value(where, key, pr, v):
+    """Type / form check of one value against its schema Param. Returns a problem string or None."""
+    k = pr.kind
+    if v is None:
+        return None
+    if k == 'window':
+        if isinstance(v, bool):
+            return f'{where}: {key} must be a number (fraction of s), {{"frac", "floor"}} or {{"abs"}}'
+        if isinstance(v, dict):
+            ks = set(v)
+            if not (ks == {'abs'} or (ks and ks <= {'frac', 'floor'} and 'frac' in ks)):
+                return f'{where}: {key} window dict must be {{"abs": m}} or {{"frac": f[, "floor": m]}}, got {sorted(ks)}'
+            return None
+        return None if isinstance(v, (int, float)) else f'{where}: {key} must be a window value, got {v!r}'
+    if k == 'band':
+        return None if (isinstance(v, (int, float)) and not isinstance(v, bool)) or (isinstance(v, dict) and set(v) <= {'abs', 'frac', 'floor'}) \
+            else f'{where}: {key} bad band {v!r}'
+    if k == 'enum' and v not in pr.choices:
+        return f'{where}: {key}={v!r} not in {list(pr.choices)}'
+    if k == 'bool' and not isinstance(v, bool):
+        return f'{where}: {key} must be true/false'
+    if k == 'int' and (isinstance(v, bool) or not isinstance(v, int)):
+        return f'{where}: {key} must be an integer'
+    if k == 'float' and (isinstance(v, bool) or not isinstance(v, (int, float))):
+        return f'{where}: {key} must be a number'
+    if k == 'ref' and not isinstance(v, str):
+        return f'{where}: {key} must be a part name'
+    if k == 'refs' and not (isinstance(v, str) or (isinstance(v, list) and all(isinstance(x, str) for x in v))):
+        return f'{where}: {key} must be a part name or a list of names'
+    if k == 'slab' and not (isinstance(v, str) and v in ('tall_lo', 'tall_hi') or isinstance(v, (int, float))):
+        return f'{where}: {key} must be "tall_lo", "tall_hi" or a number'
+    return None
 
 
 def validate_program(program):
-    """Static checks before any fitting: unique part names, known part types and assignment rules, every referenced
-    part defined EARLIER in the list, the prior on the grid. Returns a list of problems (empty = valid)."""
+    """Static checks before any fitting: known program / part / assign / attach keys (unknown keys are errors), unique
+    part names, known part types and assignment rules, every params key declared in the part type's schema with a
+    value of the right kind, every REQUIRED window present, every referenced part defined EARLIER in the list, the
+    prior on the grid, a support frame where needed. Returns a list of problems (empty = valid)."""
     errs, seen = [], []
+    errs += [f'program: unknown key {k!r} (known: {list(PROGRAM_KEYS)})' for k in program if k not in PROGRAM_KEYS]
     if not program.get('parts'):
-        return ['program has no parts']
+        return errs + ['program has no parts']
     tp = program.get('prior', {}).get('t')
+    errs += [f'prior: unknown key {k!r}' for k in program.get('prior', {}) if k != 't']
     if tp not in (None, 'arg') and not any(abs(float(tp) - g) < 1e-9 for g in T_GRID):
         errs.append(f'prior t={tp} is not on the grid {T_GRID}')
+    errs += [f'preprocess: unknown key {k!r}' for k in program.get('preprocess', {}) if k != 'vox']
+    fr = program.get('frame')
+    if fr:
+        for k, v in fr.items():
+            if k not in PT.FRAME_SCHEMA:
+                errs.append(f'frame: unknown key {k!r} (known: {list(PT.FRAME_SCHEMA)})')
+            else:
+                e = check_value('frame', k, PT.FRAME_SCHEMA[k], v)
+                errs += [e] if e else []
     for i, sp in enumerate(program['parts']):
         nm = sp.get('name')
         if not nm or nm in seen:
             errs.append(f'part {i}: missing or duplicate name {nm!r}')
-        if sp.get('type') not in PT.PART_TYPES:
-            errs.append(f'part {nm}: unknown part type {sp.get("type")!r}')
+        errs += [f'part {nm}: unknown key {k!r} (known: {list(PART_KEYS)})' for k in sp if k not in PART_KEYS]
+        typ = sp.get('type')
+        if typ not in PT.PART_TYPES:
+            errs.append(f'part {nm}: unknown part type {typ!r}')
+            seen.append(nm); continue
+        schema = PT.PART_TYPES[typ].schema
         a = sp.get('assign', {'rule': 'all'})
-        if a.get('rule', 'all') not in RULES:
-            errs.append(f'part {nm}: unknown assignment rule {a.get("rule")!r}')
-        refs = list(a.get('of', [])) if isinstance(a.get('of', []), list) else [a.get('of')]
-        refs += [a[k] for k in ('reach_of', 'frame_of', 'host') if k in a]
+        rule = a.get('rule', 'all')
+        refs = []
+        if rule not in ASSIGN_SCHEMA:
+            errs.append(f'part {nm}: unknown assignment rule {rule!r}')
+        else:
+            asch = ASSIGN_SCHEMA[rule]
+            for k, v in a.items():
+                if k == 'rule':
+                    continue
+                if k not in asch:
+                    errs.append(f'part {nm}: assign rule {rule!r} has no field {k!r} (known: {list(asch)})')
+                    continue
+                e = check_value(f'part {nm} assign', k, asch[k], v)
+                errs += [e] if e else []
+                if asch[k].kind in ('ref', 'refs'):
+                    refs += _names(v)
         p = sp.get('params', {})
-        refs += [p[k] for k in PART_REFS if k in p] + list(p.get('of', []))
+        for k, v in p.items():
+            if k not in schema:
+                errs.append(f'part {nm} ({typ}): unknown parameter {k!r} (known: {sorted(schema)})')
+                continue
+            e = check_value(f'part {nm}', k, schema[k], v)
+            errs += [e] if e else []
+            if schema[k].kind in ('ref', 'refs'):
+                refs += _names(v)
+        for k, pr in schema.items():
+            if pr.required(p, schema) and k not in p:
+                errs.append(f'part {nm} ({typ}): required window {k!r} missing ({pr.cls}: {pr.meaning})')
         at = sp.get('attach')
-        refs += [r.get('to') for r in (at if isinstance(at, list) else [at])] if at else []
+        for r in (at if isinstance(at, list) else [at]) if at else []:
+            errs += [f'part {nm}: attach has unknown key {k!r}' for k in r if k not in ATTACH_KEYS]
+            refs.append(r.get('to'))
         for r in refs:
             if r not in seen:
                 errs.append(f'part {nm}: refers to {r!r}, which is not an earlier part')
-        if sp.get('type') in ('tube_rrect', 'cone_array') or a.get('rule') == 'slab':
-            if not program.get('frame'):
+        if typ in ('tube_rrect', 'cone_array') or rule == 'slab':
+            if not fr:
                 errs.append(f'part {nm}: needs "frame": {{"type": "support"}}')
         seen.append(nm)
     return errs
+
+
+def variants(program):
+    """GT-free build variants of one program: [('base', program)] plus ('tprior', copy) when some part declares a
+    t_src parameter (its thickness can come from two-sided / side evidence): in the copy every such part takes
+    t_src = 'prior', so the generic t grid {1.5, 2.5, 4.0} mm is exercised even where a thickness was measured."""
+    out = [('base', program)]
+    pr = json.loads(json.dumps(program)); hit = False
+    for sp in pr['parts']:
+        if 't_src' in PT.PART_TYPES.get(sp.get('type'), PT.PartType(None, {})).schema:
+            sp.setdefault('params', {})['t_src'] = 'prior'; hit = True
+    if hit:
+        out.append(('tprior', pr))
+    return out
 
 
 # ------------------------------------------------------------------------------------------------ assignment
@@ -105,12 +231,13 @@ def assign(ctx, spec, done):
         idx = np.arange(N)
     elif rule in ('residual', 'clusters_dir') or rule.startswith('largest_cluster'):
         band = band_of(ctx, a)
-        res = resid_min(done, a.get('of', []), ctx.P) > band
+        of = _names(a['of']) if 'of' in a else list(done)            # default: every earlier part
+        res = resid_min(done, of, ctx.P) > band
         idx = np.nonzero(res)[0]
         if rule == 'clusters_dir':
             # every residual cluster whose centroid lies beyond the host's centre along a direction by > min_offset*s
             # (dir: '+axis' / '-axis' = the host's axis d, '+up' / '-up' / '+x' / '-x' / '+y' / '-y' = support frame)
-            host = done[a.get('host', a['of'][0])]
+            host = done[a.get('host', of[0])]
             dname = a.get('dir', '+axis')
             sign = -1.0 if dname.startswith('-') else 1.0
             key = dname.lstrip('+-')
@@ -129,11 +256,11 @@ def assign(ctx, spec, done):
             for q in cl:                                     # largest first
                 X = ctx.P[idx[q]]
                 if rule == 'largest_cluster_beyond':
-                    host = done[a.get('reach_of', a['of'][0])]
+                    host = done[a.get('reach_of', of[0])]
                     if np.percentile(host.reach(X), 99) > float(a.get('k', 0.5)) * ctx.s:
                         pick = q; break
                 else:
-                    host = done.get(a.get('frame_of', a['of'][0] if a.get('of') else None))
+                    host = done.get(a.get('frame_of', of[0] if of else None))
                     if host is not None and 'e1' in host.geo:
                         Y = X - host.geo['c']
                         ext = max(np.ptp(Y @ host.geo['e1']), np.ptp(Y @ host.geo['e2']))
@@ -214,7 +341,7 @@ def owned_residuals(ctx, done, n=200000):
     return per, dict(med_mm=round(float(np.median(dmin)) * 1e3, 3), p90_mm=round(float(np.percentile(dmin, 90)) * 1e3, 3))
 
 
-def run_program(program, obs, t=0.0025, lib=None, verbose=False):
+def run_program(program, obs, *, t, lib=None, verbose=False):
     """Fit a part program to one episode's observed points. program: dict (DSL.md); obs: dict from io_gt.load_obs;
     t: unseen-thickness prior (m, from T_GRID unless the program says 'two_sided' evidence decides); lib: our
     library mesh path for tsdf_patch. Returns (watertight-if-possible trimesh, report dict)."""
@@ -299,12 +426,71 @@ def jsonable(o):
     return o
 
 
+def _fmt_default(pr):
+    if pr.kind == 'window':
+        if pr.default is None:
+            if pr.optional:
+                return 'optional (off)'
+            w = ', '.join(f'{k}={v}' for k, v in (pr.when or {}).items())
+            return '**required**' + (f' when {w}' if w else '')
+        d = pr.default
+        return f"{d['abs'] * 1e3:g} mm" if 'abs' in d else f"{d['frac']:g} s (floor {d.get('floor', 0) * 1e3:g} mm)"
+    if pr.default is None:
+        return 'none' if not pr.optional else 'optional (off)'
+    return f'`{json.dumps(pr.default)}`'
+
+
+def _fmt_kind(pr):
+    if pr.kind == 'window':
+        return f'window ({pr.cls})'
+    if pr.kind == 'enum':
+        return 'enum: ' + ' / '.join(f'`{json.dumps(c)}`' for c in pr.choices)
+    return pr.kind
+
+
+def schema_markdown():
+    """Markdown tables of every part type's, assignment rule's and the frame's parameter schema (DSL.md section 5)."""
+    out = ['<!-- schema:begin (generated by `program.py --schema-md --write DSL.md`; do not edit by hand) -->', '']
+    out += ['### 5.1 Part types', '', '| type | models | when you see in crops / point renders | k |', '|---|---|---|---|']
+    for name, ptp in PT.PART_TYPES.items():
+        out.append(f'| `{name}` | {ptp.models} | {ptp.see} | {ptp.k} |')
+    for name, ptp in PT.PART_TYPES.items():
+        out += ['', f'#### `{name}` parameters', '', '| name | kind | default | meaning |', '|---|---|---|---|']
+        for k, pr in ptp.schema.items():
+            out.append(f'| `{k}` | {_fmt_kind(pr)} | {_fmt_default(pr)} | {pr.meaning} |')
+    out += ['', '### 5.2 Assignment rules (`assign`)', '', '| rule | field | kind | default | meaning |', '|---|---|---|---|---|']
+    for rule, sch in ASSIGN_SCHEMA.items():
+        if not sch:
+            out.append(f'| `{rule}` | (none) | | | every observed point |')
+        for k, pr in sch.items():
+            out.append(f'| `{rule}` | `{k}` | {_fmt_kind(pr)} | {_fmt_default(pr)} | {pr.meaning} |')
+    out += ['', '### 5.3 Frame (`frame`)', '', '| name | kind | default | meaning |', '|---|---|---|---|']
+    for k, pr in PT.FRAME_SCHEMA.items():
+        out.append(f'| `{k}` | {_fmt_kind(pr)} | {_fmt_default(pr)} | {pr.meaning} |')
+    out += ['', '<!-- schema:end -->']
+    return '\n'.join(out)
+
+
+def write_schema_md(path):
+    """Replace the generated block of DSL.md (between the schema markers) with schema_markdown()."""
+    txt = open(path).read()
+    a = txt.index('<!-- schema:begin'); b = txt.index('<!-- schema:end -->') + len('<!-- schema:end -->')
+    open(path, 'w').write(txt[:a] + schema_markdown() + txt[b:])
+
+
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == '--schema-md':
+        if len(sys.argv) > 3 and sys.argv[2] == '--write':
+            write_schema_md(sys.argv[3])
+        else:
+            print(schema_markdown())
+        return
     ap = argparse.ArgumentParser()
     ap.add_argument('program'); ap.add_argument('obj'); ap.add_argument('ep', type=int); ap.add_argument('out')
-    ap.add_argument('--t', type=float, default=0.0025); ap.add_argument('--refined', type=int, default=0)
+    ap.add_argument('--t', type=float, required=True, help='unseen-thickness prior, one of T_GRID (no default)')
+    ap.add_argument('--refined', type=int, default=0)
     ap.add_argument('--obs', default=None, help='explicit observation file (checked by io_gt like any other)')
-    ap.add_argument('--lib', default=None)
+    ap.add_argument('--lib', default=None, help='our library mesh (tsdf_patch); loaded through the io_gt guard')
     a = ap.parse_args()
     path = a.obs or obs_path(a.obj, a.ep, refined=bool(a.refined))
     obs = load_obs(path)
