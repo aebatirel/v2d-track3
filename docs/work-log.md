@@ -4703,3 +4703,14 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
     - CD-O kept separate.
   - Decision: CLAUDE.md requires the owner's own go-ahead on a stated plan before each rental. A relayed message is not
     that, so no Vast launch tonight; a costed plan goes to the owner. Replied to that session to say so.
+
+### 2026-10-29 ~21:50 UTC: owner go-ahead for GPU batches 1 and 2 ("I give you go ahead for these when you need it")
+- **Batch 1, eval depth cache.** New job `ops/jobs/eval_depth.sh` = `eval_perc_check.sh` plus a `store.sh push-depth`
+  of each episode's `depths_fs0.5.npy` to `cache/depth/eval/ep<N>/` before the local copy is deleted.
+  - Ported the `store.sh push-run` pipefail fix from `claude/focused-pascal-2nz9s1`.
+  - Commit 92f3d86. Ledger `planned` line: `mesh-20261029-evdepth-92f3d86`, est. $4 (`LEDGER_SESSION=mesh-bold`).
+  - Launch: `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 50295908 mesh-20261029-evdepth-92f3d86
+    'bash ops/jobs/eval_depth.sh'`. The first offer 54578567 had gone (404).
+  - Instance 58312542, RTX PRO 6000 WS, Utah, $1.511/h all-in. All 20 eval episodes; self-destroys at the end.
+  - Outputs: `cache/depth/eval/ep*/` and `runs/mesh-20261029-evdepth-92f3d86/results/evalperc/`.
+- **Batch 2 (generative probe):** to be prepared next. Mesh-session budget is ≤ $25 in total (relayed allocation).
