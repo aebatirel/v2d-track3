@@ -4775,3 +4775,7 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   it equals the raw CD-O), crops.py's first-ranked crop x seeds 42/7. The second crop (an adjacent frame of the same
   view) is generated but not scored. All scores [D], never used to pick anything for submission.
   TRELLIS.2 crops that OOM at 1536 even alone (blue cup) are rerun at 1024 and labelled so.
+- ~22:52 UTC: the interruptible box was **outbid and stopped** (another bid at $0.95, then $1.16, on the same
+  machine). Bid raised to $1.30/h GPU ($1.398/h all-in) and the instance restarted 22:53; /content survived (envs,
+  weights, finished meshes), running jobs were lost. `gen/box_resume.sh` reruns whatever is missing, one large model
+  on the GPU at a time. Cost so far from the Vast record: 43 min at $0.898/h + 58.3 GB download at $37.3/TB.
