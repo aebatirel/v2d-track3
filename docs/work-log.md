@@ -4767,3 +4767,11 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
     checkpoints were copied through the private store (`runs/mesh-20261029-gen-f3fbeb0/weights/sam-3d-objects/`).
     Env C: torch 2.6/cu124, pytorch3d built CPU-only, kaolin stubbed, flash_attn 2.7.4.post1 wheel (the pipeline
     forces flash_attn on H100; the 2.8.3 wheel has an ABI mismatch).
+- ~22:55 UTC **pre-registration of the one-shot scan scoring** (written before any scan read for these meshes;
+  `gen/gen_manifest.py`): every generated file gets a sha256 line (SHA256SUMS) first; then each scored mesh is scored
+  ONCE with `mesh_metric.py run --workers 1`. Scored set: Pixal3D-MV, all view sets x seeds 42/7 in our object
+  frame, plus the view-0-only runs (board 2, dust pan); single-image models (TRELLIS.2, TripoSG, Hunyuan3D-2.1,
+  SAM 3D): the Sim(3) copy fitted to our observed points (`sim3_fit.py`, GT-free; CD-O is similarity-invariant, so
+  it equals the raw CD-O), crops.py's first-ranked crop x seeds 42/7. The second crop (an adjacent frame of the same
+  view) is generated but not scored. All scores [D], never used to pick anything for submission.
+  TRELLIS.2 crops that OOM at 1536 even alone (blue cup) are rerun at 1024 and labelled so.
