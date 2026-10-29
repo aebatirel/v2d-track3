@@ -40,12 +40,21 @@ def main():
         return outputs
     pipe.postprocess_slat_output = no_post
     print(f'[probe] SAM 3D ready in {time.time() - t0:.0f} s', flush=True)
-    log = open(os.path.join(a.out, 'gen_log.jsonl'), 'a')
+    done = set()                                       # (tag, seed) already generated: skipped (resume/queues)
+    lp = os.path.join(a.out, 'gen_log.jsonl')
+    if os.path.exists(lp):
+        for l in open(lp):
+            r = json.loads(l)
+            if r.get('ok'):
+                done.add((r['tag'], r['seed']))
+    log = open(lp, 'a')
     for crop in a.crops:
         tag = os.path.splitext(os.path.basename(crop))[0]
         rgba = np.array(Image.open(crop).convert('RGBA'))
         img, mask = rgba[..., :3], rgba[..., 3] > 127
         for seed in [int(x) for x in a.seeds.split(',')]:
+            if (tag, seed) in done:
+                continue
             t1 = time.time()
             rec = dict(model='sam3d', tag=tag, seed=seed, crop=crop)
             try:
