@@ -24,6 +24,8 @@ Stage 1b (2026-10-27) changed the DSL; programs written for stage 1 need updatin
 python program.py programs/lathe_bar_balls.json white_pot 41 OUT.glb --t 0.0025      # writes OUT.glb + OUT.json
 python program.py PROGRAM.json OBJ EP OUT.glb --t 0.0015 --refined 1                # refine.py's corrected points
 python program.py --schema-md [--write DSL.md]                                      # the schema tables of section 5
+python program.py --render-points OBJ EP OUT.png                                     # the episode's points (authoring)
+python program.py PROGRAM.json OBJ EP OUT.glb --t 0.0025 --budget 4000 --render OUT.png   # mesh over the points
 ```
 From Python:
 ```python
@@ -33,6 +35,7 @@ prog = load_program('programs/x.json')
 for tag, pr in variants(prog):                       # 'base' and, if a part can measure t, 'tprior'
     for t in (0.0015, 0.0025, 0.004):
         mesh, report = run_program(pr, load_obs(obs_path(OBJ, EP)), t=t, lib=LIB_GLB)
+        # with a shell_patch part: run_program(..., budget=4000) so the kit's 4096-face decode only welds (section 9)
 ```
 - `t` is required (no default). Run every program at the three grid values, and every variant `variants()` returns.
 - Selection between programs, variants or thicknesses is GT-free (gates.py, obs fidelity). Never use a scan score.
@@ -163,6 +166,7 @@ The tables below are generated from `parts.PART_TYPES` (do not edit them by hand
 | `dphi_deg` | float | `2.0` | polar: angular profile bin (deg) |
 | `gap_bins` | int | `3` | height, floor 'observed': bins of missing inner wall tolerated |
 | `nseg` | int | `96` | height: revolve segments |
+| `axis_refine` | bool | `false` | height: refine lathe_obs.fit_axis's direction by a local rotational-consistency search (stabilises the two-sided t across point densities; off = reproduces lathe_obs) |
 | `t_src` | enum: `"auto"` / `"prior"` | `"auto"` | thickness source: 'auto' = measured where both faces (or the side) were seen, else the prior t; 'prior' = always the prior t (program.variants() emits this as the t-grid variant) |
 | `cell_q` | float | `0.25` | density-normalised cell threshold: fraction of the median occupied-cell count |
 | `cell_min_pts` | int | optional (off) | fixed (bin, sector) cell threshold instead (hand kits: 8); omit = density-normalised |
@@ -214,7 +218,7 @@ The tables below are generated from `parts.PART_TYPES` (do not edit them by hand
 | `t_min` | window (generic) | 3 mm | smallest two-face thickness accepted as measured (carried from prim_boards) |
 | `t_max` | window (generic) | 25 mm | largest two-face thickness accepted as measured (carried from prim_boards) |
 | `keep_holes` | bool | `false` | occupancy outline keeps its holes (no hole filling): rings, handles with a hole |
-| `hole_min_d` | window (sensor) | 6 mm | smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole |
+| `hole_min_d` | window (sensor) | 6 mm | smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole, as the side of a square of equal area (area >= hole_min_d^2, as the hand kit) |
 | `t_src` | enum: `"auto"` / `"prior"` | `"auto"` | thickness source: 'auto' = measured where both faces (or the side) were seen, else the prior t; 'prior' = always the prior t (program.variants() emits this as the t-grid variant) |
 
 #### `plate_set` parameters
@@ -234,7 +238,7 @@ The tables below are generated from `parts.PART_TYPES` (do not edit them by hand
 | `t_min` | window (generic) | 3 mm | smallest two-face thickness accepted as measured (carried from prim_boards) |
 | `t_max` | window (generic) | 25 mm | largest two-face thickness accepted as measured (carried from prim_boards) |
 | `keep_holes` | bool | `false` | occupancy outline keeps its holes (no hole filling): rings, handles with a hole |
-| `hole_min_d` | window (sensor) | 6 mm | smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole |
+| `hole_min_d` | window (sensor) | 6 mm | smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole, as the side of a square of equal area (area >= hole_min_d^2, as the hand kit) |
 | `t_src` | enum: `"auto"` / `"prior"` | `"auto"` | thickness source: 'auto' = measured where both faces (or the side) were seen, else the prior t; 'prior' = always the prior t (program.variants() emits this as the t-grid variant) |
 
 #### `strap` parameters
@@ -333,18 +337,20 @@ The tables below are generated from `parts.PART_TYPES` (do not edit them by hand
 | name | kind | default | meaning |
 |---|---|---|---|
 | `mode` | enum: `"free"` / `"none"` | `"free"` | 'free': balls only where a free sphere fit passes every test; 'none': no balls |
+| `fit` | enum: `"lsq"` / `"ransac"` | `"lsq"` | 'lsq': least squares on the whole cluster + one inlier refit; 'ransac': MSAC over 4-point sphere hypotheses inside the radius window, support = points near the sphere that face their camera (stage-1b experiment: radii biased to the top of the window on the 3 dev episodes; kept as an option, not the default) |
+| `ransac_tol` | window (sensor) | 2 mm | ransac: support band around the sphere (= the stereo noise scale F_SCALE) |
 | `of` | refs | none | earlier part(s) whose surface is the host (a name or a list) |
 | `reject_inside` | ref | none | tube whose cavity footprint must not hold a ball centre |
 | `stems` | bool | `true` | stems where points support them |
 | `min_pts` | int | `25` | points of a cluster (a 3 mm hemisphere cap holds ~25 voxels of 1.5 mm) |
 | `min_frames` | int | `3` | frames a ball must be seen in (one mis-tracked frame cannot make a ball) |
-| `cap_min` | float | `0.08` | cap spread 1 - |mean radial| (half-angle >= ~33 deg) |
+| `cap_min` | float | `0.08` | cap spread 1 - \|mean radial\| (half-angle >= ~33 deg) |
 | `convex_min` | float | `0.8` | share of cap points whose fitted outward normal faces their camera |
 | `iso_min` | float | `0.25` | tangent spread isotropy (rims, pegs, fillets curve one way only) |
 | `stem_min` | int | `15` | observed points in the stem cylinder |
 | `r_min` | window (generic) | 3 mm | smallest radius ('any small sphere'; generic, not from any scan) |
 | `r_max` | window (generic) | 15 mm | largest radius ('any small sphere'; generic, not from any scan) |
-| `res_max` | window (sensor) | 1.5 mm | largest median |d - r| of the fit (= VOX) |
+| `res_max` | window (sensor) | 1.5 mm | largest median \|d - r\| of the fit (= VOX) |
 | `gap_max` | window (generic) | 30 mm | largest ball-surface to host-surface gap (= 2 r_max) |
 | `cluster_vox` | window (sensor) | 3 mm | voxel connectivity of the residual clusters |
 
@@ -370,7 +376,8 @@ The tables below are generated from `parts.PART_TYPES` (do not edit them by hand
 | `of` | refs | none | host parts the patch must not duplicate (default: every earlier part) |
 | `min_pts` | int | `100` | points of a residual cluster that gets a patch |
 | `cluster_vox` | window (sensor) | 3 mm | voxel connectivity of the residual clusters |
-| `max_faces` | int | optional (off) | face cap of the patch (shell default) |
+| `max_faces` | int | optional (off) | face cap of the patch (default: none, or budget_share x the program budget) |
+| `budget_share` | float | `0.4` | budget mode (run_program budget=...): share of the face budget the patch may use |
 
 ### 5.2 Assignment rules (`assign`)
 
@@ -450,13 +457,27 @@ The tables below are generated from `parts.PART_TYPES` (do not edit them by hand
 ## 8. Balls (generic rule, no radius prior)
 
 `ball` keeps a sphere only where the observed points themselves show one. Each compact residual cluster gets a FREE
-sphere fit (algebraic, then Gauss-Newton, then an inlier refit); the ball is kept only if every test passes:
+sphere fit, `fit: "lsq"` (default) or `"ransac"`:
+- `lsq`: algebraic fit, Gauss-Newton, one inlier refit (|d − r| < 3 × median) on the whole cluster.
+- `ransac` (option, stage-1b experiment): 400 hypotheses, each the sphere through 4 points of one 2 `r_max`
+  neighbourhood with a radius inside the window, scored by the MSAC cost over the points that face their camera
+  (support band `ransac_tol` = 2 mm, the stereo noise scale); the 5 best get one Gauss-Newton pass on their own
+  inliers. Hypothesis: robust to the mount or strip of host wall that shares a ball's cluster, so more visible balls
+  would be kept. Not supported on the three development episodes [M] (`lsq` → `ransac`): lid 2 → 2 balls (r 7.3/8.7
+  → 10.6/8.7 mm), rack 1 → 1 (7.7 → 9.7 mm), pot 1 → 2 (11.3 → 12.0 mm floating 7.8 mm off the host, and 4.5 mm),
+  and 10 of the 12 pot fits ran to 12–15 mm, the top of the window: a bias towards a larger sphere that also
+  explains points around a ball's base. On the synthetic scene of `test_programs.py --only synth` (4.5 and 11 mm
+  caps, flat disc, rod, concave bowl, 25 mm cap) `lsq` keeps exactly the two balls (4.8, 11.0 mm) while `ransac`
+  overestimates them (5.5, 11.4 mm) and accepts a false 14.6 mm ball on the rod. Not the default.
+
+The ball is kept only if every test passes:
 - radius within [`r_min`, `r_max`] = [3, 15] mm, a generic "any small sphere" window (not taken from any scan;
   there is no fixed-radius fallback: a cluster whose free fit leaves the window is rejected, not snapped to a size);
-- median fit residual ≤ `res_max` (1.5 mm = the voxel);
+- support (inliers) ≥ `min_pts` points, median fit residual ≤ `res_max` (1.5 mm = the voxel);
 - seen in ≥ `min_frames` (3) frames;
 - cap spread 1 − |mean radial direction| ≥ `cap_min` (0.08: half-angle ≥ ~33°; flat patches fail);
-- convex: ≥ `convex_min` (80 %) of the cap points have a fitted outward normal facing their camera (concave fits fail);
+- convex: ≥ `convex_min` (80 %) of the cap points (`ransac`: of all points within `ransac_tol` of the sphere) have a
+  fitted outward normal facing their camera (concave fits fail);
 - isotropic: tangent spread ratio ≥ `iso_min` (0.25; rims, pegs and fillets curve one way only);
 - centre not inside the host and ball surface within `gap_max` (30 mm) of it; not over a `reject_inside` cavity.
 
@@ -470,9 +491,15 @@ twice as many as in either control cylinder one ball diameter to the side; its r
 `{"name": "patch", "type": "shell_patch", "assign": {"rule": "residual"}}` as the LAST part adds observed surface the
 parts did not explain: the residual of every earlier part (voxel clusters of ≥ `min_pts`) goes, as raw points, to
 `shell.surface_patch` (route A: a closed thin shell of thickness t over them, trimmed where it would duplicate the
-host = union of the earlier parts). The report's `diag.impl` says which implementation ran (stage 1b: a local
-stand-in, `parts.surface_patch_standin`, until `shell.surface_patch` exists). Patches add surface; compare with and
-without by the GT-free gate, never by scan score.
+host = union of the earlier parts). The report's `diag.impl` says which implementation ran (`shell.surface_patch`;
+`parts.surface_patch_standin` only if shell.py lacks it).
+
+**Face budget.** The kit decodes every mesh to 4096 faces with one global decimation, which thins closed thin-shell
+patches (measured: decode area −2 to −11 % on the stage-1b patch rows built without a budget). Run programs that
+contain a patch with `run_program(..., budget=4000)`: the patch is built within `budget_share` (40 %) of the budget
+and kept as a separate closed mesh, and only the solid union is decimated (the kit's own decimator,
+fast_simplification) to the rest, so the kit's `budget_mesh` only welds (`report.budget`). Patches add surface;
+compare with and without by the GT-free gate, never by scan score.
 
 ## 10. Report (OUT.json)
 
@@ -504,6 +531,10 @@ program's mesh over them), the object name and slot from the episode, the report
 Inputs you may not use: scans, scan-derived numbers (sizes, thicknesses, marker radii, coverage), mocap,
 `*_align.npz`, parquet poses, any CD-O or other scan score. Validation labels must not come from scan scores either.
 
+0. **Render the points**: `program.py --render-points OBJ EP OUT.png` draws the episode's observed points from the
+   mean camera direction (as the crops see the object) and from ±60°. After each run, `--render OUT.png` draws the
+   program's mesh (grey) over the points (blue): blue blobs standing in front of the mesh are observed surface no
+   part explains (e.g. balls the ball rule rejected, a missing appendage).
 1. **List the visible pieces** in the crops and point renders. For each: which part type (section 5.1)? Is it a body
    (rule `all`) or an appendage (a residual rule)? Which side is never seen (there the shape comes from t; keep that
    surface small)? Prefer the fewest parts that explain the points.
@@ -518,19 +549,28 @@ Inputs you may not use: scans, scan-derived numbers (sizes, thicknesses, marker 
    hits, sensible bodies, ball clusters rejected for the right reasons.
 5. **Choose GT-free**: compare candidates with the shell route (shell.py) and the library mesh by the gate (gates.py)
    and obs fidelity, never by scan score. Pre-register the choice rule before any scan round.
-6. **Global rules only for coverage switches.** Options that change how much unobserved surface a part invents -
-   `lathe` `floor: "observed"` (cavity only as deep as the inner wall was seen), `floor: "open"`, `solid`, `carve`,
-   `keep_holes`, `ball` `mode`, a `shell_patch` - may be set per object only from what the crops and point renders
-   show (e.g. the crop shows a bottomless ring). They must never be picked because the scan of the object is partial
-   or because a scan score improved. If such a switch is wanted for scorer reasons, it must be one rule applied to
-   every object, decided in advance.
+6. **Coverage switches are global rules, never per-object picks.** A coverage switch changes how much UNOBSERVED
+   surface a part invents or drops: `lathe` `floor: "observed"` (cavity only as deep as the inner wall was seen),
+   `ball` `mode: "none"`, adding or leaving out a `shell_patch` or `tsdf_patch`, `t_src: "prior"`. Such a switch may
+   only be (a) one rule applied to every object, written down before any scan round, or (b) a choice the GT-free
+   gate makes between variants that are all built (run both, let the gate pick). An author must never set it for
+   one object because that object's scan is partial, because "a scanner sees about as far in", or because a scan
+   score improved. Shape switches are different: `floor: "open"` (a bottomless ring), `floor: "solid"`, `keep_holes`
+   (a hole you can see), `carve` describe the object's shape and are set from what the crops and point renders
+   SHOW; write the evidence in `doc`.
 7. **Mind the scorer**: CD-O normalises scale by the area-weighted RMS radius. Extra hidden surface (thick slabs,
    internal faces, splats inside the body) and missing surface both shift it. Prefer `union` over `concat`; keep
    unseen faces at the prior thickness.
 
-## 13. Stage-1b measurements
+## 13. Stage-1b measurements (2026-10-29, GT-free, CPU)
 
-(filled from `scratchpad/auto/stage1b/parts/`; see the end of this file)
+All numbers are [M] on our own points; no scan was opened or scored. Outputs: `scratchpad/auto/stage1b/parts/`
+(`final/` = matrix from the frozen snapshot `snap/` (SHA256SUMS), `final2/` = budget-mode patch rows after the
+fixes below, `balls*/`, `tdiag/`, `synth_final/`, `render/`, `PROGRESS.md`).
+
+<!-- s1b-results:begin -->
+(results table filled at the end of the stage-1b run)
+<!-- s1b-results:end -->
 
 ## 14. Limits (open)
 
@@ -538,7 +578,11 @@ Inputs you may not use: scans, scan-derived numbers (sizes, thicknesses, marker 
   sheet; `splat`, `tsdf_patch` or `shell_patch` fill gaps.
 - **`tube_rrect` assumes a support frame** (table cut) and one tall end.
 - **Example windows are development choices** on four episodes (hand kits); whether each hand-kit window was set
-  before or after a scan scoring of its kit is not recorded.
+  before or after a scan scoring of its kit is not recorded. The work log (2026-10-27 primitive-assembly round)
+  records 2 development scan scorings each for the lid and rack families (the pot's 32 scored variants were scored
+  at selection time) and two leaks that were removed then (scan wall thickness as the rack / lid t; the upright cup
+  holder). Treat the example windows as possibly scan-informed development choices: a NEW object's windows must come
+  from its crops and point renders only (section 12).
 - **Other count thresholds are still absolute** (cluster minimum sizes, the floor-layer 200 points, ball `min_pts`
   and `stem_min`); only the lathe cell threshold is density-normalised.
 - **Hidden geometric constants of the hand kits remain** (2 mm corner-radius floors in tube sections, the 10 mm

@@ -21,8 +21,10 @@
 7. Stage 1b (s1b_<case>) [M]: each example program on its development episode over the matrix
    {base, tprior (t_src = prior) variant} x t in {1.5, 2.5, 4.0} mm x balls {free, none} x shell_patch {no, yes},
    plus a 'legacy cells' run (lathe cell_min_pts = 8, the stage-1 rule) at t = 2.5. Compared GT-free with the
-   stage-1 DSL mesh (scratchpad/auto/stage1/parts-dsl/final): obs fidelity on the episode's own points, symmetric
-   mesh-to-mesh distance, ball count / radii / stems, patch size, kit decode (budget_mesh 4096) area change.
+   stage-1 DSL mesh (scratchpad/auto/stage1/parts-dsl/final): obs fidelity on the episode's own points (raw mesh and
+   as the kit decodes it), symmetric mesh-to-mesh distance, ball count / radii / stems, patch size, kit decode
+   (budget_mesh 4096) area change / watertight / weld-only. Rows with a shell_patch run in budget mode
+   (run_program budget=BUDGET=4000: patch within its share, solid union decimated, so the decode only welds).
 8. schema / pan (in dsl): every window the code reads is declared; DSL.md's generated block equals the schema; unknown
    keys rejected; plate_set plane segmentation and keep_holes on the dust pan (ep39); shell_patch smoke.
 No scan, *_align file, mocap or parquet pose is opened; obs files go through autokit.io_gt.load_obs, meshes through
@@ -43,6 +45,7 @@ from autokit.program import run_program, load_program, jsonable, variants, T_GRI
 from autokit import parts as PT                             # noqa: E402
 
 OUT = f'{SCRATCH}/auto/stage1b/parts'
+BUDGET = 4000                                               # shipped face budget of A-inside-B (patch) rows
 STAGE1 = f'{SCRATCH}/auto/stage1/parts-dsl/final'          # stage-1 DSL meshes (reference for stage 1b)
 KIT = f'{SCRATCH}/kit/v2d_submission_kit'
 INC = '/home/user/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes'
@@ -97,9 +100,10 @@ def load_ref(path):
     return PT.load_mesh_guarded(path)
 
 
-def budget_check(mesh, tmp):
+def budget_check(mesh, tmp, return_mesh=False):
     """The mesh as the scorer decodes it (kit budget_mesh to 4096 faces / vertices): area change, watertight,
-    bodies, non-degenerate faces."""
+    bodies, non-degenerate faces, and whether budget_mesh only welded (input already within 4096 faces and
+    vertices after welding). return_mesh: also the decoded trimesh."""
     if KIT not in sys.path:
         sys.path.insert(0, KIT)
     from v2dlb.mesh_budget import budget_mesh
@@ -107,11 +111,17 @@ def budget_check(mesh, tmp):
     try:
         v, f = budget_mesh(tmp, 4096, 4096)
     except Exception as e:                                # report, do not hide
-        return dict(error=repr(e)[:200])
+        return (dict(error=repr(e)[:200]), None) if return_mesh else dict(error=repr(e)[:200])
     d = trimesh.Trimesh(v, f, process=True)
-    d.remove_degenerate_faces() if hasattr(d, 'remove_degenerate_faces') else None
-    return dict(faces=int(len(d.faces)), area_change=round(float(d.area / mesh.area - 1), 4),
-                watertight=bool(d.is_watertight), bodies=int(d.body_count))
+    if hasattr(d, 'nondegenerate_faces'):
+        d.update_faces(d.nondegenerate_faces())
+    elif hasattr(d, 'remove_degenerate_faces'):
+        d.remove_degenerate_faces()
+    w = trimesh.Trimesh(mesh.vertices, mesh.faces, process=True)
+    r = dict(faces=int(len(d.faces)), area_change=round(float(d.area / mesh.area - 1), 4),
+             watertight=bool(d.is_watertight), bodies=int(d.body_count),
+             weld_only=bool(len(w.faces) <= 4096 and len(w.vertices) <= 4096))
+    return (r, d) if return_mesh else r
 
 
 def compare(mesh, inc_path, P):
@@ -441,13 +451,16 @@ def _cap(c, r, step, upper=True):
 
 def test_synth(out):
     """GT-free synthetic checks of the stage-1b parts (known geometry, no observation file):
-    balls - a 6 mm sphere cap is kept with its free radius; a flat disc, a rod (one-way curvature), a concave bowl
-    and a 25 mm sphere cap are rejected; mode none gives none; keep_holes - a 30 mm hole in a plate survives;
+    balls - a 4.5 mm and an 11 mm sphere cap (two arbitrary radii inside the generic 3-15 mm window, chosen to test
+    the window, not any object's balls) are kept with their free radii; a flat disc, a rod (one-way curvature), a
+    concave bowl and a 25 mm sphere cap are rejected; mode none gives none; both fits ('lsq', 'ransac') are run;
+    keep_holes - a 30 mm hole in a plate survives;
     plate_set - two perpendicular connected plates give 2 plates by plane, 1 by connectivity."""
     rows = []
     st = 0.0012
     plane = _grid(-0.08, 0.08, -0.08, 0.08, st)
-    ball = _cap((0.04, 0.04, 0.020), 0.006, st * 0.7)
+    ball = _cap((0.04, 0.04, 0.020), 0.0045, st * 0.6)
+    ball2 = _cap((0.04, -0.01, 0.020), 0.011, st * 0.8)
     disc = _grid(-0.006, 0.006, -0.006, 0.006, st * 0.7, z=0.020, keep=lambda Q: np.hypot(Q[:, 0], Q[:, 1]) < 0.006)
     disc[:, 0] -= 0.04; disc[:, 1] += 0.04
     th = np.random.default_rng(2).uniform(0, np.pi, 3000); xx = np.random.default_rng(3).uniform(-0.02, 0.02, 3000)
@@ -455,18 +468,19 @@ def test_synth(out):
     bowl = _cap((-0.04, -0.04, 0.030), 0.008, st * 0.7, upper=False)
     big = _cap((0.0, 0.0, 0.060), 0.025, st)
     big = big[big[:, 2] > 0.075]
-    obs = _synth_obs([plane, ball, disc, rod, bowl, big])
+    obs = _synth_obs([plane, ball, ball2, disc, rod, bowl, big])
     base = dict(name='base', type='plate', assign=dict(rule='all'), params=dict(outline='rect'))
-    for mode in ('free', 'none'):
+    for mode, fit in (('free', 'lsq'), ('free', 'ransac'), ('none', 'lsq')):
         prog = dict(program='synth_balls', parts=[base, dict(name='balls', type='ball', assign=dict(rule='residual', of=['base']),
-                                                            params=dict(of=['base'], mode=mode))])
+                                                            params=dict(of=['base'], mode=mode, fit=fit))])
         try:
             mesh, rep = run_program(prog, obs, t=0.0025)
             b = [p for p in rep['parts'] if p['name'] == 'balls'][0]
             mk = b['diag']['markers']
-            acc = [m for m in mk if not m.get('rejected')]
-            ok = (len(acc) == 1 and abs(acc[0]['r_mm'] - 6.0) < 0.6 and abs(acc[0]['centre'][0] - 0.04) < 0.002) if mode == 'free' else not acc
-            rows.append(dict(test='synth_balls', mode=mode, accepted=[{k: m.get(k) for k in ('r_mm', 'centre', 'res_mm', 'spread', 'convex', 'iso', 'frames')} for m in acc],
+            acc = sorted([m for m in mk if not m.get('rejected')], key=lambda m: m['r_mm'])
+            ok = (len(acc) == 2 and abs(acc[0]['r_mm'] - 4.5) < 0.5 and abs(acc[1]['r_mm'] - 11.0) < 1.0
+                  and abs(acc[0]['centre'][1] - 0.04) < 0.002 and abs(acc[1]['centre'][1] + 0.01) < 0.002) if mode == 'free' else not acc
+            rows.append(dict(test='synth_balls', mode=mode, fit=fit, accepted=[{k: m.get(k) for k in ('r_mm', 'centre', 'res_mm', 'spread', 'convex', 'iso', 'frames')} for m in acc],
                              rejected=[{k: m.get(k) for k in ('rejected', 'r_mm', 'centre', 'spread', 'convex', 'iso', 'diag_mm', 'n')} for m in mk if m.get('rejected')],
                              ok=bool(ok)))
         except Exception as e:
@@ -552,7 +566,7 @@ def part_summary(rep):
     return out
 
 
-def test_s1b(out, key):
+def test_s1b(out, key, balls=('free', 'none'), budget_all=False, legacy=True):
     """Stage-1b matrix on the case's development episode (see module doc, item 7). GT-free."""
     c = CASES[key]
     path = c.get('obs') or obs_path(c['obj'], c['ep'])
@@ -567,10 +581,10 @@ def test_s1b(out, key):
     combos = []
     for vtag, vprog in variants(prog0):
         for t in T_GRID:
-            for bm in (('free', 'none') if has_ball else ('-',)):
+            for bm in (tuple(balls) if has_ball else ('-',)):
                 for patch in (False, True):
                     combos.append((vtag, vprog, t, bm, patch, False))
-    if any(p['type'] == 'lathe' for p in prog0['parts']):
+    if legacy and any(p['type'] == 'lathe' for p in prog0['parts']):
         combos.append(('base', prog0, 0.0025, 'free' if has_ball else '-', False, True))
     sh = os.path.join(HERE, 'shell.py')
     for vtag, vprog, t, bm, patch, legacy in combos:
@@ -590,7 +604,7 @@ def test_s1b(out, key):
             import hashlib
             row['shell_sha'] = hashlib.sha256(open(sh, 'rb').read()).hexdigest()[:12]
             t0 = time.time()
-            mesh, rep = run_program(pr, obs, t=t, lib=f'{LIB}/{c["obj"]}.glb')
+            mesh, rep = run_program(pr, obs, t=t, lib=f'{LIB}/{c["obj"]}.glb', budget=BUDGET if (patch or budget_all) else None)
             row['sec'] = round(time.time() - t0, 1)
             glb = f'{d}/{tag}.glb'; mesh.export(glb)
             json.dump(jsonable(rep), open(glb[:-4] + '.json', 'w'), indent=1, default=float)
@@ -600,8 +614,11 @@ def test_s1b(out, key):
             row.update(faces=rep['faces'], watertight=rep['watertight'], bodies=rep['bodies'], area_cm2=rep['area_cm2'],
                        k_total=rep['k_total'], obs_to_model=rep['obs_to_model'], fid=fidelity(P, mesh),
                        stage1_ref=os.path.basename(ref), stage1_ref_same_t=same_t, vs_stage1=mesh_dist(mesh, refs[ref]),
-                       area_ratio_vs_stage1=round(float(mesh.area / refs[ref].area), 4),
-                       budget=budget_check(mesh, f'{d}/_tmp_{key}.glb'), parts=part_summary(rep))
+                       area_ratio_vs_stage1=round(float(mesh.area / refs[ref].area), 4), parts=part_summary(rep),
+                       program_budget=rep.get('budget'))
+            row['budget'], dec = budget_check(mesh, f'{d}/_tmp_{key}.glb', return_mesh=True)
+            if dec is not None:
+                row['fid_decoded'] = fidelity(P, dec)       # what the scorer sees (kit decode to 4096 faces)
             if abs(t - 0.0025) < 1e-9 and vtag == 'base':
                 row['params_equal_stage1'] = {n: (s['params'] == s1par.get(n)) for n, s in row['parts'].items()
                                               if n in s1par and s['type'] != 'ball'}
@@ -621,6 +638,9 @@ def main():
     ap.add_argument('--out', default=OUT)
     ap.add_argument('--only', default='lid,pot,cup,rack,scale,grid,dsl')
     ap.add_argument('--reuse', type=int, default=0)
+    ap.add_argument('--balls', default='free,none', help='s1b: ball modes of the matrix')
+    ap.add_argument('--budget_all', type=int, default=0, help='s1b: every row in budget mode (not only patch rows)')
+    ap.add_argument('--legacy', type=int, default=1, help='s1b: include the legacy-cells row')
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     only = a.only.split(',')
@@ -643,7 +663,7 @@ def main():
         rows += test_synth(a.out)
     for key in ('lid', 'cup', 'pot', 'rack'):
         if f's1b_{key}' in only:
-            rows += test_s1b(a.out, key)
+            rows += test_s1b(a.out, key, balls=a.balls.split(','), budget_all=bool(a.budget_all), legacy=bool(a.legacy))
     with open(f'{a.out}/results_{"_".join(only)}.jsonl', 'w') as f:
         for r in rows:
             f.write(json.dumps(jsonable(r), default=float) + '\n')

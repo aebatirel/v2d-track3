@@ -455,6 +455,43 @@ def lathe_polar(ctx, P, C, spec, info, hits):
                       prof=np.asarray(prof)), 2 + 2 + 1 + int(len(M))
 
 
+def refine_axis_rot(P, C, c, d, info, spans=((6.0, 2.0), (2.0, 0.7)), n_sub=20000):
+    """Local refinement of a body-of-revolution axis: lathe_obs.fit_axis only picks the best of a few candidate
+    directions, so its axis moves by 2-7 deg between samplings of the same object (stage-1b diagnosis on one development episode),
+    and a tilted axis inflates the two-sided wall r_out - r_in. Grid search of the direction around d (tilts in two
+    perpendicular planes, two passes as axis_search), each direction placed by the line-complex least squares
+    (lathe_obs._place) and scored by rotational self-consistency (lathe_obs.rot_consistency) on one fixed
+    subsample. GT-free. Returns (cost_mm, c, d)."""
+    rng = np.random.default_rng(1)
+    sub = rng.choice(len(P), min(n_sub, len(P)), replace=False)
+    Ps, Cs = P[sub], C[sub]
+    c0 = Ps.mean(0); X = Ps - c0
+    n, planar = L.normals(X, Cs - c0)
+    nb = np.cross(X, n)
+
+    def J(a):
+        a = a / np.linalg.norm(a)
+        abar = L._place(n, nb, planar, a)
+        cc = c0 + np.cross(a, abar)
+        cc = cc + a * ((Ps - cc) @ a).mean()
+        return L.rot_consistency(Ps, cc, a), cc, a
+    j0, c_, d_ = J(d)
+    cur = (j0, c_, d_)
+    for span, step in spans:
+        e1, e2, _ = L.frame_from(cur[2])
+        base = cur[2]
+        for i in np.arange(-span, span + 1e-9, step):
+            for k_ in np.arange(-span, span + 1e-9, step):
+                if i == 0 and k_ == 0:
+                    continue
+                cand = J(base + math.tan(math.radians(i)) * e1 + math.tan(math.radians(k_)) * e2)
+                if cand[0] < cur[0]:
+                    cur = cand
+    ang = math.degrees(math.acos(min(1.0, abs(float(cur[2] @ (d / np.linalg.norm(d)))))))
+    info.update(axis_refine_deg=round(ang, 2), axis_refine_cost_mm=[round(j0 * 1e3, 3), round(cur[0] * 1e3, 3)])
+    return cur[0] * 1e3, cur[1], cur[2]
+
+
 def lathe_height(ctx, P, C, spec, info, hits):
     """lathe_obs.py with relative windows: line-complex axis candidates scored by rotational self-consistency;
     per height bin the sector-median outer and inner radius (>= MINSEC sectors); open end = the end with inner-wall
@@ -470,6 +507,8 @@ def lathe_height(ctx, P, C, spec, info, hits):
     gap = int(p.get('gap_bins', 3))
     sub = np.random.default_rng(0).choice(len(P), min(60000, len(P)), replace=False)
     cost, c, d, k = L.fit_axis(P[sub], C[sub], knn=24)
+    if ctx.p(spec, 'axis_refine'):
+        cost, c, d = refine_axis_rot(P, C, c, d, info)
     h, r, th, (e1, e2, d) = L.cyl(P, c, d)
     v = unit(C - P)
     radial = np.stack([np.cos(th), np.sin(th)], 1)
@@ -1142,6 +1181,82 @@ def sphere_fit_free(Q):
     return c, float(r), float(np.median(res[keep])), keep
 
 
+def _gn_sphere(X, c, r, iters=10):
+    """Gauss-Newton on |x - c| - r over X (free radius). Returns (c, r) or None."""
+    for _ in range(iters):
+        D = X - c; dn = np.maximum(np.linalg.norm(D, axis=1), 1e-9)
+        J = np.c_[-D / dn[:, None], -np.ones(len(D))]
+        step = np.linalg.lstsq(J, -(dn - r), rcond=None)[0]
+        c = c + step[:3]; r = r + step[3]
+        if not (np.all(np.isfinite(c)) and np.isfinite(r)) or r <= 0:
+            return None
+    return c, float(r)
+
+
+def sphere_fit_ransac(Q, V, rmin, rmax, tol, n_hyp=400, top=5, rng=None):
+    """Robust FREE sphere fit (no radius prior) for a cluster that may also hold the surface a ball sits on (a mount,
+    a rivet, a strip of host wall): RANSAC hypotheses (Schnabel et al. 2007, 'Efficient RANSAC for point-cloud shape
+    detection') scored by the MSAC cost (Torr and Zisserman 2000: sum of min(e^2, tol^2), so a tighter fit beats a
+    looser one with the same count). Each hypothesis is the algebraic sphere through 4 points of one 2 r_max
+    neighbourhood, kept only if r_min <= r <= r_max; e = |d - r| for points that FACE their camera ((x - c) . v > 0:
+    a ball's cap is seen from outside), e = tol for the others. The `top` best hypotheses get ONE Gauss-Newton pass
+    on their own inliers (no re-selection loop, which drifts towards a flatter sphere through the host points around
+    the ball's base); the refined sphere replaces the hypothesis only if it stays in the window and lowers the cost.
+    Returns (c, r, median |d - r| of the inliers, inlier mask) or None. The radius window only bounds the search;
+    nothing snaps to a size."""
+    rng = np.random.default_rng(0) if rng is None else rng
+    N = len(Q)
+    if N < 10:
+        return None
+    tree = cKDTree(Q)
+    t2 = tol * tol
+
+    def cost(c, r):
+        D = Q - c; d = np.linalg.norm(D, axis=1)
+        e = np.abs(d - r); face = np.einsum('ij,ij->i', D, V) > 0
+        inl = (e < tol) & face
+        return float(np.sum(np.where(inl, e * e, t2))), inl, e
+    hyps = []
+    for _ in range(n_hyp):
+        i0 = int(rng.integers(N))
+        nb = tree.query_ball_point(Q[i0], 2 * rmax)
+        nb = [j for j in nb if j != i0]
+        if len(nb) < 3:
+            continue
+        sel = np.r_[i0, rng.choice(nb, 3, replace=False)]
+        X = Q[sel]
+        A = np.c_[2 * X, np.ones(4)]
+        if abs(np.linalg.det(A)) < 1e-12:
+            continue
+        sol = np.linalg.solve(A, (X ** 2).sum(1))
+        c = sol[:3]; r2 = sol[3] + c @ c
+        if not np.isfinite(r2) or r2 <= 0:
+            continue
+        r = math.sqrt(r2)
+        if not rmin <= r <= rmax:
+            continue
+        hyps.append((cost(c, r)[0], c, r))
+    if not hyps:
+        return None
+    hyps.sort(key=lambda h: h[0])
+    best = None
+    for J, c, r in hyps[:top]:
+        _, inl, _ = cost(c, r)
+        if inl.sum() >= 10:
+            g = _gn_sphere(Q[inl], c, r)
+            if g is not None and rmin <= g[1] <= rmax:
+                J2 = cost(*g)[0]
+                if J2 <= J:
+                    J, c, r = J2, g[0], g[1]
+        if best is None or J < best[0]:
+            best = (J, c, r)
+    J, c, r = best
+    _, inl, e = cost(c, r)
+    if inl.sum() < 10:
+        return None
+    return c, float(r), float(np.median(e[inl])), inl
+
+
 def ball_support(Q, V, F, c, r):
     """GT-free support statistics of a fitted sphere on its observed cap: frames, cap spread (1 - |mean radial
     direction|; a cap of half-angle a gives (1 - cos a) / 2), convexity towards the cameras (share of points whose
@@ -1196,6 +1311,8 @@ def fit_ball(ctx, idx, spec, done):
     cav = done[p['reject_inside']].geo.get('inside_cavity') if p.get('reject_inside') in done else None
     stems_on = bool(ctx.p(spec, 'stems'))
     stem_min = int(ctx.p(spec, 'stem_min'))
+    fit_m = ctx.p(spec, 'fit')
+    tol = ctx.w(spec, 'ransac_tol')
     infos, parts, acc = [], [], []
     queue = [(q, 0) for q in PL.clusters(Rp, vox=cvox, min_pts=min_pts)]
     while queue:
@@ -1209,17 +1326,26 @@ def fit_ball(ctx, idx, spec, done):
                 hi = q[Rz[q] > band + rmin]
                 queue += [(hi[j], 1) for j in PL.clusters(Rp[hi], vox=cvox, min_pts=min_pts)] if len(hi) >= min_pts else []
             infos.append(info); continue
-        fit = sphere_fit_free(Q)
+        if fit_m == 'ransac':
+            fit = sphere_fit_ransac(Q, V, rmin, rmax, tol, rng=np.random.default_rng(len(q)))
+        else:
+            fit = sphere_fit_free(Q)
         if fit is None:
             info['rejected'] = 'no_fit'; infos.append(info); continue
         c, r, res, keep = fit
         sup = ball_support(Q[keep], V[keep], Fq[keep], c, r)
+        if fit_m == 'ransac':                 # the support faces its cameras by construction: convexity is judged on
+            near = np.abs(np.linalg.norm(Q - c, axis=1) - r) < tol     # every point near the sphere, facing or not
+            sup['convex'] = round(float(np.mean(np.einsum('ij,ij->i', Q[near] - c, V[near]) > 0)), 3)
+            sup['support'] = int(keep.sum())
         gap = float(host_sd(c[None])[0]) - r
         info.update(centre=[round(float(x), 4) for x in c], r_mm=round(r * 1e3, 2), res_mm=round(res * 1e3, 2),
-                    gap_mm=round(gap * 1e3, 1), **sup)
+                    gap_mm=round(gap * 1e3, 1), fit=fit_m, **sup)
         why = None
         if not rmin <= r <= rmax:
             why = 'radius'
+        elif int(keep.sum()) < min_pts:
+            why = 'support'
         elif res > res_max:
             why = 'residual'
         elif sup['frames'] < int(ctx.p(spec, 'min_frames')):
@@ -1361,7 +1487,10 @@ def fit_shell_patch(ctx, idx, spec, done):
     (default rule: the residual of every earlier part), reduced to their voxel-connected clusters of >= min_pts,
     mapped back to the raw observed points, go to shell.surface_patch (a closed thin shell of thickness t over them,
     trimmed so it does not duplicate the host = union of the parts in params.of, default all earlier parts).
-    Until shell.surface_patch exists, surface_patch_standin is used (reported as diag.impl)."""
+    shell.surface_patch (the shell fixer's, API contract of stage 1b) is used when it exists, else the local stand-in
+    surface_patch_standin (reported as diag.impl). Budget mode (run_program budget=B): the patch is asked for at
+    most budget_share x B faces and stays a separate mesh (not unioned), so program.fit_budget can decimate only the
+    solid union and the kit's budget_mesh only welds."""
     p = spec.get('params', {})
     of = p.get('of') or list(done)
     of = [of] if isinstance(of, str) else list(of)
@@ -1383,13 +1512,17 @@ def fit_shell_patch(ctx, idx, spec, done):
         fn = None
     info['impl'] = 'shell.surface_patch' if fn is not None else 'parts.surface_patch_standin'
     mf_ = ctx.p(spec, 'max_faces')
+    budget = getattr(ctx, 'budget', None)
+    if not mf_ and budget:                              # budget mode: the patch gets its share of the face budget
+        mf_ = int(float(ctx.p(spec, 'budget_share')) * budget)
+    info['max_faces'] = int(mf_) if mf_ else None
     mesh = (fn or surface_patch_standin)(ctx.obs, idx=raw, t=ctx.t, max_faces=int(mf_) if mf_ else None, host=host)
     info.update(n_raw=int(len(raw)), n_vox=int(keep.sum()))
     if mesh is None or len(mesh.faces) == 0:
         return Part(spec['name'], 'shell_patch', params=dict(n_pts=int(keep.sum()), faces=0), diag=dict(info, note='empty patch'))
     info.update(faces=int(len(mesh.faces)), area_cm2=round(float(mesh.area) * 1e4, 2), watertight=bool(mesh.is_watertight))
     solid = None
-    if mesh.is_watertight:
+    if mesh.is_watertight and not budget:               # budget mode keeps the patch separate (program.fit_budget)
         try:
             solid = to_mf(mesh)
         except RuntimeError as e:
@@ -1951,7 +2084,7 @@ PLATE_OUTLINE = dict(
     t_min=Wg(0.003, 'smallest two-face thickness accepted as measured (carried from prim_boards)', when={'outline': ('occupancy', 'rect')}),
     t_max=Wg(0.025, 'largest two-face thickness accepted as measured (carried from prim_boards)', when={'outline': ('occupancy', 'rect')}),
     keep_holes=Param('bool', False, 'occupancy outline keeps its holes (no hole filling): rings, handles with a hole'),
-    hole_min_d=Ws(0.006, 'smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole'),
+    hole_min_d=Ws(0.006, 'smallest hole kept (equivalent diameter; 2 x the closing scale); bar: smallest tip hole, as the side of a square of equal area (area >= hole_min_d^2, as the hand kit)'),
     t_src=T_SRC)
 
 
@@ -1978,6 +2111,8 @@ PART_TYPES = dict(
         dphi_deg=Param('float', 2.0, 'polar: angular profile bin (deg)'),
         gap_bins=Param('int', 3, "height, floor 'observed': bins of missing inner wall tolerated"),
         nseg=Param('int', 96, 'height: revolve segments'),
+        axis_refine=Param('bool', False, "height: refine lathe_obs.fit_axis's direction by a local rotational-consistency "
+                          "search (stabilises the two-sided t across point densities; off = reproduces lathe_obs)"),
         t_src=T_SRC,
         cell_q=Param('float', CELL_Q, 'density-normalised cell threshold: fraction of the median occupied-cell count'),
         cell_min_pts=Param('int', None, 'fixed (bin, sector) cell threshold instead (hand kits: 8); omit = density-normalised', optional=True),
@@ -2100,6 +2235,11 @@ PART_TYPES = dict(
         'box with rounded edges in the PCA frame', 'blocks, bricks', '10'),
     ball=PartType(fit_ball, dict(
         mode=E(('free', 'none'), 'free', "'free': balls only where a free sphere fit passes every test; 'none': no balls"),
+        fit=E(('lsq', 'ransac'), 'lsq', "'lsq': least squares on the whole cluster + one inlier refit; 'ransac': "
+              "MSAC over 4-point sphere hypotheses inside the radius window, support = points near the sphere that "
+              "face their camera (stage-1b experiment: radii biased to the top of the window on the 3 dev "
+              "episodes; kept as an option, not the default)"),
+        ransac_tol=Ws(F_SCALE, 'ransac: support band around the sphere (= the stereo noise scale F_SCALE)'),
         of=REFS_OF, reject_inside=Param('ref', None, 'tube whose cavity footprint must not hold a ball centre'),
         stems=Param('bool', True, 'stems where points support them'),
         min_pts=Param('int', 25, 'points of a cluster (a 3 mm hemisphere cap holds ~25 voxels of 1.5 mm)'),
@@ -2125,7 +2265,8 @@ PART_TYPES = dict(
         of=Param('refs', None, 'host parts the patch must not duplicate (default: every earlier part)'),
         min_pts=Param('int', 100, 'points of a residual cluster that gets a patch'),
         cluster_vox=Ws(0.003, 'voxel connectivity of the residual clusters'),
-        max_faces=Param('int', None, 'face cap of the patch (shell default)', optional=True)),
+        max_faces=Param('int', None, 'face cap of the patch (default: none, or budget_share x the program budget)', optional=True),
+        budget_share=Param('float', 0.4, 'budget mode (run_program budget=...): share of the face budget the patch may use')),
         'route-A thin shell over observed surface the parts did not explain', 'leftover observed pieces after the parts',
         '0'),
 )

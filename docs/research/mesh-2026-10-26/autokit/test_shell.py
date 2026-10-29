@@ -11,12 +11,17 @@ Synthetic (no data):
     of 0.2 cm^2 (dropped). Checks the kept/dropped verdicts and the dropped-area report.
   - patch: surface_patch on a host cylinder with a fin sticking out, host = the cylinder: the patch must hold the
     fin and nothing within 2 voxels of the host surface.
+  - split: manifold_split on a bow-tie, a 3-face edge and a closed sphere (no face lost, edge-manifold, nothing
+    to split on the sphere); solidify with rim 'quad' and 'taper' on a one-triangle-wide strip and on an annulus
+    (watertight, consistently wound, positive volume); a mesh under a /scan/ path is refused by the mesh loader.
 Real (one episode each, obs_points.py files through autokit.io_gt): per case ONE sheet (shell_sheet), then for t in
 {1.5, 2.5, 4.0} mm the closed shell (solidify_sheet, <= 4000 faces) to OUT/ep<N>_<obj>_t<t>.glb, and
   - the kit's budget_mesh decode (OUT/budget/*_b4096.glb): faces in vs out (weld only?), watertight, area change;
   - obs_fidelity (scripts/obs_fidelity.py, same obs file) of the shell, its decode and library_v3/<obj>.glb;
   - fs_frac (autoloop_probe/fs_fidelity.py: share of mesh area in voxels our own depth saw as empty);
-  - bodies, islands kept/dropped (area), decimation error (dense sheet -> decimated sheet), runtime.
+  - bodies, islands kept/dropped (area, per reason), decimation error (dense sheet -> decimated sheet), runtime;
+  - ok = watertight, <= 4096 faces and vertices, and budget_mesh only welds (same face count), stays watertight and
+    changes the area by <= 2 %.
 QA image per object: colour crop (scratchpad/crops) next to the shells and library_v3 from the same camera.
 No ground truth anywhere: no scan, mocap, *_align file or parquet pose is opened, and mesh_metric.py is not run.
 Meshes are opened through io_gt.load_mesh when it exists (allow-listed roots), else through the local stand-in
@@ -259,6 +264,48 @@ def synthetic_patch(out, t=0.0025, seed=2):
     return rows
 
 
+def synthetic_split(out):
+    """manifold_split / tapered rim unit checks and the mesh-loader refusal (no data)."""
+    rows = []
+    V = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [-1, 0, 0], [0, -1, 0]], float) * 0.01
+    V2, F2, n = SH.manifold_split(V, np.array([[0, 1, 2], [0, 3, 4]]))
+    bow_ok = bool(n == 1 and len(F2) == 2 and len(set(F2.ravel())) == 6 and
+                  0 < np.linalg.norm(V2[5] - V2[0]) <= 2 * SH.SPLIT_NUDGE)
+    V = np.array([[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, -1, 0], [0.5, 0, 1]], float) * 0.01
+    V2, F2, n = SH.manifold_split(V, np.array([[0, 1, 2], [1, 0, 3], [0, 1, 4]]))
+    E = np.sort(np.concatenate([F2[:, [0, 1]], F2[:, [1, 2]], F2[:, [2, 0]]]), 1)
+    nm_ok = bool(len(F2) == 3 and np.unique(E, axis=0, return_counts=True)[1].max() <= 2)
+    s = trimesh.creation.icosphere(3, radius=0.02)
+    V2, F2, n = SH.manifold_split(s.vertices, s.faces)
+    sph_ok = bool(n == 0 and trimesh.Trimesh(V2, F2, process=False).is_watertight)
+    xs = np.arange(11)
+    Vs = np.array([[x, y, 0] for y in (0, 1) for x in xs], float) * 0.003
+    Fs = np.array([f for x in range(10) for f in ([x, x + 1, 12 + x], [x, 12 + x, 11 + x])])
+    strip = trimesh.Trimesh(Vs, Fs, process=False)
+    p = trimesh.creation.annulus(0.01, 0.03, height=0.001, sections=32)
+    ann = trimesh.Trimesh(p.vertices, p.faces[p.face_normals[:, 2] > 0.9]); ann.remove_unreferenced_vertices()
+    solid = {}
+    for name, m in (('strip', strip), ('annulus', ann)):
+        for rim in ('quad', 'taper'):
+            o = SH.solidify(m, 0.0025, 'oriented', rim)
+            solid[f'{name}_{rim}'] = dict(faces=int(len(o.faces)), watertight=bool(o.is_watertight),
+                                          winding=bool(o.is_winding_consistent),
+                                          volume_mm3=round(float(o.volume) * 1e9, 1),
+                                          closed_faces_pred=int(SH.closed_faces(m, rim)))
+    sol_ok = all(d['watertight'] and d['winding'] and d['volume_mm3'] > 0 and d['faces'] == d['closed_faces_pred']
+                 for d in solid.values())
+    fake = f'{out}/synthetic/scan/fake_scan.glb'              # never created: the refusal must come from the path
+    try:
+        _load_mesh(fake); refused = False
+    except ValueError:
+        refused = True
+    rows.append(dict(case='synthetic_split', bowtie_ok=bow_ok, nonmanifold_edge_ok=nm_ok, sphere_untouched=sph_ok,
+                     solidify=solid, loader_refuses_scan_path=refused, load_mesh=LOAD_MESH,
+                     ok=bool(bow_ok and nm_ok and sph_ok and sol_ok and refused)))
+    print(json.dumps(rows[-1]), flush=True)
+    return rows
+
+
 # ---------------------------------------------------------------------------------------------- metrics
 def run_json(cmd):
     r = subprocess.run(cmd, capture_output=True, text=True)
@@ -367,11 +414,13 @@ def real_case(ep, obj, ts, out, kw=None, tag='', render=True):
                          sec_total=round(sec_sheet + sec, 1), **{k: rep.get(k) for k in REP_KEYS},
                          sheet={k: sh['rep'].get(k) for k in SHEET_KEYS},
                          islands={k: isl.get(k) for k in ('components', 'kept_balls', 'balls', 'dropped_n',
-                                                          'dropped_area_cm2', 'kept_area_cm2')},
+                                                          'dropped_area_cm2', 'kept_area_cm2',
+                                                          'dropped_by_reason_cm2', 'dropped_by_reason_n')},
                          islands_dropped_top=isl.get('dropped', [])[:5],
-                         decimation={k: dec.get(k) for k in ('sheet_faces_in', 'border_edges_in', 'sheet_faces',
-                                                             'border_edges', 'clean_removed', 'post_dropped_area_cm2',
-                                                             'dense_to_dec_mm_p50_95_99', 'dense_to_dec_frac_gt3mm')},
+                         decimation={k: dec.get(k) for k in ('rim', 'sheet_faces_in', 'border_edges_in',
+                                                             'sheet_faces', 'border_edges', 'clean_removed',
+                                                             'post_dropped_area_cm2', 'dense_to_dec_mm_p50_95_99',
+                                                             'dense_to_dec_frac_gt3mm')},
                          budget=b, mesh=mp, budget_mesh=bp))
         meshes.append(mp)
     raw = obs_path(obj, ep)
@@ -386,6 +435,9 @@ def real_case(ep, obj, ts, out, kw=None, tag='', render=True):
         r['fid'] = {k: fid[bn][k] for k in ('obs_to_mesh_mm', 'mesh_to_obs_mm', 'sum_mm')}
         r['fid_budget'] = {k: fid[bb][k] for k in ('obs_to_mesh_mm', 'mesh_to_obs_mm', 'sum_mm')}
         r['fs_frac_pct'] = fs[bn]['fs_frac_pct']; r['fs_frac_pct_budget'] = fs[bb]['fs_frac_pct']
+        b = r['budget']
+        r['ok'] = bool(r['watertight'] and r['faces'] <= 4096 and r['vertices'] <= 4096 and b['weld_only']
+                       and b['watertight'] and abs(b['area_change_pct']) <= 2)
     lb = f'{obj}.glb'
     rows.append(dict(case=f'ep{ep}_{obj}_library_v3', mesh=lib, fid={k: fid[lb][k] for k in
                      ('obs_to_mesh_mm', 'mesh_to_obs_mm', 'sum_mm')}, fs_frac_pct=fs[lb]['fs_frac_pct'],
@@ -421,6 +473,7 @@ def main():
                              {'b_weld_only': b.get('weld_only'), 'b_watertight': b.get('watertight'),
                               'b_area_chg': b.get('area_change_pct')}, default=str), flush=True)
     if not a.no_synthetic:
+        emit(synthetic_split(a.out))
         emit(synthetic_tube(a.out)); emit(synthetic_islands(a.out)); emit(synthetic_patch(a.out))
     if a.synthetic_only:
         return

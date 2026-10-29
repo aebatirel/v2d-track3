@@ -4689,3 +4689,17 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   finish the partial work.
 - 2026-10-29 21:10 UTC: stage 1b relaunched as `wf_d55d762f-ae7` (same script plus a restart note: review and finish
   the WIP at 14eaf37, and write PROGRESS.md lines so another cut-off loses less).
+- 2026-10-29 21:45 UTC: message from session `session_01LhbGHrt6epRs52jSRX48AU` (Kalman/control, branch
+  `claude/focused-pascal-2nz9s1`) relaying the owner (~21:45, before sleeping): "you can give mesh improvements session
+  vast credits to like we can give budget to them I think that can improve our score". Owner topped up $100 (credit
+  $103.51). Split in the shared ledger (`ledger/spend.jsonl` in the HF store; helper `ops/ledger.py` on their branch):
+  mesh session up to $25, their session $45, at least $30 reserve.
+  - Coordination: before any `ops/vast.sh create`, run `vast.sh show`, read the ledger, add a `planned` line, use run
+    ids `mesh-*` (`LEDGER_SESSION=mesh-bold`), and add an `actual` line after the box is destroyed.
+  - Their AUC guidance:
+    - a registration-stability gate before any new mesh enters the AUC submission (reject if > 10 % of 30 seeds land
+      > 5° from the median pose; at least 2 public twins; a single-twin pitcher swap cost −0.0045 on Kaggle);
+    - watertight collision copies for placement evals 14, 28, 30, 1 and the eval-10 stack;
+    - CD-O kept separate.
+  - Decision: CLAUDE.md requires the owner's own go-ahead on a stated plan before each rental. A relayed message is not
+    that, so no Vast launch tonight; a costed plan goes to the owner. Replied to that session to say so.
