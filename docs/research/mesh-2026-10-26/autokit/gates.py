@@ -10,10 +10,13 @@ v3 fixes the stage-1 audit findings on v2 (results/autokit-stage1/workflow-resul
   - precision outside the observed silhouette: per frame, a first-surface mesh cell with NO observed point within the
     precision reach is judged against the episode's vote grid: a violation when its voxel was seen through
     (free >= FS_FMIN, hits <= FS_RHO free: our rays passed it and met a surface >= 1 cm behind). dr_fsv = violating
-    cells / all first-surface mesh cells; G_PREC = dr_viol <= VIOL_MAX AND dr_fsv <= FSV_MAX; the rank adds
-    CAP x dr_fsv;
+    cells / all first-surface mesh cells; dr_fsv_blob_p75_cm2 = p75 over frames of the largest 8-connected group of
+    violating cells as a surface area; G_PREC = dr_viol <= VIOL_MAX AND dr_fsv <= FSV_MAX AND blob <= FSV_BLOB_MAX;
+    the rank adds CAP x dr_fsv;
   - frame / shift: G_FRAME adds an alignment test, a trimmed point-to-plane ICP of the observed points onto the
-    mesh (align_t_mm = translation of the observed centroid; a mesh fitted to these points needs ~0);
+    mesh, each point paired with a mesh sample facing its camera (align_t_mm = translation of the observed centroid;
+    a mesh fitted to these points needs ~0, a mesh that disagrees with them in a rigid way does not). It cannot tell a
+    rigid offset from a systematic misfit under one-sided coverage: both fail it;
   - projection: cell index floor((u + 0.5) / CELL_PX) (observed points are back-projected at integer pixel centres,
     obs_points.py; v2's floor(u / CELL_PX) put the mesh footprint half a pixel off);
   - observations: RAW obs files are the default (evaluate(obs='raw')); refine.py copies only on request
@@ -63,8 +66,15 @@ as validated; v3 is re-validated on held-out episodes with synthetic GT-free lab
     lies >= 10 mm (obs_points.py --free) in front of a surface our rays met, in >= 3 frames, so depth noise and track
     jitter of a few mm cannot make a correct surface violate; mesh cells within LAT_PREC of observed cells are left out
     (depth-edge filter band).
+  FSV_BLOB_MAX = 10 cm^2 (v3, set on the DEVELOPMENT check test_gates.py dev, before the pre-registration): the share
+    alone sat just above 0.05 for an attached fin of 12 % of the area (dev 0.056 / 0.059); the coherent-region
+    statistic separated dev bases (p75 0.4-5.2 cm^2) from the dev fins (17-45 cm^2); 10 cm^2 ~ geometric middle.
   ALIGN_MAX_MM = 2.0 (v3, declared): the registration-move level of pipeline/mesh_gates.registration_move (2 mm),
-    a project-level GT-free level set earlier for another purpose. ALIGN_TRIM 10 mm, 90 % trim: generic.
+    a project-level GT-free level set earlier for another purpose. ALIGN_TRIM 10 mm, 90 % trim: generic. ALIGN_K
+    8 -> 32 on the development check (with 8 nearest samples 25-45 % of the points found no camera-facing partner on
+    thin walls, which biased the estimate; 32 covers both faces of a 2.5 mm wall at the sampling density).
+  frame_t_mm (report only): the same alignment of the mesh onto library_v3. Dev check: 1.4-6.7 mm for unmodified
+    meshes (shape differences dominate), not sensitive to a 5 mm shift, so it is not gated.
   AREA_TOL = 0.02: the stage-1b brief (decoded area within 2 %).
   BALL_D_MAX 30 mm / BALL_SPHER_MIN 0.85: generic 'small compact body' rule (a sphere of 3 cm diameter is the upper
     end of a hand-held attachment; no object-specific value).
@@ -125,7 +135,8 @@ ALIGN_NSAMP = 200_000
 ALIGN_TRIM = 0.010      # m: correspondence reach
 ALIGN_KEEP = 0.9        # closest share of the pairs kept per iteration
 ALIGN_ITERS = 15
-ALIGN_K = 8             # nearest mesh samples searched for one facing the point's camera
+ALIGN_K = 32            # nearest mesh samples searched for one facing the point's camera (both faces of a thin wall)
+FRAME_NSAMP = 60_000    # decoded-mesh samples of the library alignment
 # connectivity
 TOUCH = 0.002           # m: components whose surfaces come this close form one group (unioned or overlapping parts)
 BALL_D_MAX = 0.030      # m: equivalent diameter of a small compact body
@@ -136,6 +147,7 @@ COMP_MIN = 0.80
 HOLE_MAX = 0.04
 VIOL_MAX = 0.05
 FSV_MAX = 0.05
+FSV_BLOB_MAX = 10.0     # cm^2: p75 over frames of the largest coherent outside-silhouette free-space region
 FS_MAX = 0.15
 CONN_MIN = 0.98
 FRAME_MM = 5.0
@@ -149,7 +161,7 @@ THRESHOLDS = dict(VERSION=VERSION, N_FRAMES=N_FRAMES, CELL_PX=CELL_PX, M_PREC=M_
                   HOLE_UNEXP=HOLE_UNEXP, FS_FMIN=FS_FMIN, FS_RHO=FS_RHO, TOUCH=TOUCH, BALL_D_MAX=BALL_D_MAX,
                   BALL_SPHER_MIN=BALL_SPHER_MIN, BALL_LINK=BALL_LINK, ALIGN_NPTS=ALIGN_NPTS, ALIGN_TRIM=ALIGN_TRIM,
                   ALIGN_KEEP=ALIGN_KEEP, ALIGN_ITERS=ALIGN_ITERS, ALIGN_K=ALIGN_K, COMP_MIN=COMP_MIN, HOLE_MAX=HOLE_MAX,
-                  VIOL_MAX=VIOL_MAX, FSV_MAX=FSV_MAX, FS_MAX=FS_MAX, CONN_MIN=CONN_MIN, FRAME_MM=FRAME_MM,
+                  VIOL_MAX=VIOL_MAX, FSV_MAX=FSV_MAX, FSV_BLOB_MAX=FSV_BLOB_MAX, FS_MAX=FS_MAX, CONN_MIN=CONN_MIN, FRAME_MM=FRAME_MM,
                   ALIGN_MAX_MM=ALIGN_MAX_MM, AREA_TOL=AREA_TOL, BUDGET=BUDGET, T_MID=T_MID)
 GATE_NAMES = ('G_COMP', 'G_HOLE', 'G_PREC', 'G_FS', 'G_CONN', 'G_TOPO', 'G_FRAME', 'G_FLIP')
 FLIP_KEYS = ('flip_n', 'flips', 'flip_xadd_med_mm', 'flip_rot', 'flip_sec')
@@ -490,6 +502,32 @@ def obs_alignment(geo, P, C, seed=0):
                 align_rot_deg=ang, align_res_mm=res * 1e3, align_n=n_used, align_tcond=eig_t[0], align_facing=facing)
 
 
+def frame_alignment(geo, lib, seed=0):
+    """Translation-only trimmed point-to-plane ICP of decoded-mesh samples onto the library_v3 surface (our own TSDF
+    mesh of the object, the frame reference of G_FLIP): both are closed surfaces of the same object, so wall
+    thickness and observation coverage do not bias it the way one-sided observed points do. Returns frame_t_mm."""
+    rng = np.random.default_rng(seed)
+    X0 = trimesh.sample.sample_surface(geo, FRAME_NSAMP, seed=seed)[0]
+    t = np.zeros(3); n_used = 0
+    for _ in range(ALIGN_ITERS):
+        X = X0 + t
+        d, j = lib['tree'].query(X, distance_upper_bound=ALIGN_TRIM)
+        ok = np.isfinite(d)
+        if ok.sum() < 100:
+            break
+        ok &= d <= np.quantile(d[ok], ALIGN_KEEP)
+        n = lib['normals'][j[ok]]
+        r = ((X[ok] - lib['pts'][j[ok]]) * n).sum(1)
+        H = n.T @ n
+        H += np.eye(3) * 1e-3 * np.trace(H) / 3
+        dt = np.linalg.solve(H, -n.T @ r)
+        t = t + dt; n_used = int(ok.sum())
+        if np.linalg.norm(dt) < 1e-6:
+            break
+    return dict(frame_t_mm=float(np.linalg.norm(t) * 1e3), frame_t_vec_mm=[round(float(x) * 1e3, 3) for x in t],
+                frame_t_n=n_used)
+
+
 def _tmean(d):
     d = np.sort(d)
     return float(d[:int(FID_TRIM * len(d))].mean() * 1000)
@@ -603,7 +641,8 @@ def library_ref(obj):
     if key not in _CACHE:
         lm = load_budget(lib_path(obj))
         a, r = _area_rms(lm)
-        _CACHE[key] = dict(tree=cKDTree(trimesh.sample.sample_surface(lm, 400_000, seed=3)[0]), area=a, rms=r)
+        pts, fi = trimesh.sample.sample_surface(lm, 400_000, seed=3)
+        _CACHE[key] = dict(tree=cKDTree(pts), pts=pts, normals=lm.face_normals[fi], area=a, rms=r)
     return _CACHE[key]
 
 
@@ -659,6 +698,7 @@ def evaluate(mesh_path, obs_paths=None, obj=None, ep=None, flip=True, obs='raw',
     a, r = _area_rms(geo)
     m.update(frame_med_mm=float(np.median(lib['tree'].query(S[np.random.default_rng(0).choice(len(S), min(50_000, len(S)), replace=False)])[0]) * 1e3),
              drift_area=a / lib['area'], drift_rms=r / lib['rms'], area_cm2=a * 1e4, rms_mm=r * 1e3)
+    m.update(frame_alignment(geo, lib))
     if flip_metrics is not None:
         m.update({k: flip_metrics.get(k) for k in FLIP_KEYS}); m['flip_reused'] = True
     elif flip:
@@ -686,7 +726,7 @@ def gates_of(m):
     return dict(
         G_COMP=bool(ok(m.get('dr_comp')) and m['dr_comp'] >= COMP_MIN),
         G_HOLE=le('dr_hole3d', HOLE_MAX),
-        G_PREC=le('dr_viol', VIOL_MAX) and le('dr_fsv', FSV_MAX),
+        G_PREC=le('dr_viol', VIOL_MAX) and le('dr_fsv', FSV_MAX) and le('dr_fsv_blob_p75_cm2', FSV_BLOB_MAX),
         G_FS=le('fs_frac', FS_MAX),
         G_CONN=bool(ok(m.get('conn_share')) and m['conn_share'] >= CONN_MIN),
         G_TOPO=bool(m.get('topo_decode_error') is None and le('topo_budget_faces', BUDGET)

@@ -345,6 +345,34 @@ def owned_residuals(ctx, done, n=200000):
     return per, dict(med_mm=round(float(np.median(dmin)) * 1e3, 3), p90_mm=round(float(np.percentile(dmin, 90)) * 1e3, 3))
 
 
+def _excise_refill(m, max_edges=64, rounds=8):
+    """Repair of a decimated closed mesh (stage-1b integration): faces touching a vertex of a non-manifold edge are
+    removed, the rest is cut edge-manifold without bow-ties (shell.manifold_split, no face removed), and every border
+    loop of 3..max_edges edges is fan-filled (centre vertex); repeated up to `rounds` times. Generic: no object
+    knowledge; measured on two public dev episodes' voxel-splat meshes (watertight after the kit decode)."""
+    from autokit import shell as SH
+    V, F = np.asarray(m.vertices, np.float64), np.asarray(m.faces, np.int64)
+    for _ in range(rounds):
+        e = np.sort(np.vstack([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]]), 1)
+        u, c = np.unique(e, axis=0, return_counts=True)
+        if not (c > 2).any() and not (c == 1).any():
+            break
+        vb = np.unique(u[c > 2].ravel())
+        if len(vb):
+            F = F[~np.isin(F, vb).any(1)]
+        mm = trimesh.Trimesh(V, F, process=True)
+        mm.remove_unreferenced_vertices()
+        V, F, _ = SH.manifold_split(np.asarray(mm.vertices), np.asarray(mm.faces))
+        newV, newF = [], []
+        for L in SH.border_loops(F):
+            if 3 <= len(L) <= max_edges:
+                cc = len(V) + len(newV); newV.append(V[L].mean(0))
+                newF.append(np.stack([np.roll(L, -1), L, np.full(len(L), cc)], 1))
+        if newF:
+            V = np.vstack([V, np.array(newV)]); F = np.vstack([F] + newF)
+    return trimesh.Trimesh(V, F, process=True)
+
+
 def fit_budget(solid_mesh, patches, budget):
     """Face budget of the shipped mesh (budget mode): the kit's budget_mesh decimates the WHOLE mesh to 4096 faces,
     which thins the closed thin-shell patches (area loss) while a solid only loses small detail. Here the solid
@@ -358,19 +386,31 @@ def fit_budget(solid_mesh, patches, budget):
     if len(sm.faces) > target:
         # fast_simplification's default aggressiveness (agg 7, the kit's) left a non-manifold edge on one example union
         # (stage-1b test: agg 7 -> 1 non-manifold edge, area -0.55 %; agg 3 / 1 -> watertight, area -0.01 / +0.01 %);
-        # take the first of agg 3, 1, 7 that keeps a watertight input watertight, else the smallest area change
+        # take the first of agg 3, 1, 7 that is watertight AND reaches the target face count
+        # (stage-1b integration fix: agg 1 stops early, e.g. 36484 -> 14884 faces on a voxel-splat mesh, and was
+        # accepted over budget); else agg 3 at 97 / 94 / 91 % of the target with the non-manifold edges excised and
+        # refilled (_excise_refill); else the within-budget try with the smallest area change
         import fast_simplification
         V0, F0 = np.asarray(sm.vertices, np.float64), np.asarray(sm.faces, np.int64)
         tries = []
+        ok = lambda m_: m_.is_watertight and len(m_.faces) <= target    # also tried when the input is not watertight
         for agg in (3, 1, 7):
             v, f = fast_simplification.simplify(V0, F0, target_count=target, agg=agg)
             sm2 = trimesh.Trimesh(v, f, process=True)
             tries.append((agg, sm2))
-            if sm2.is_watertight or not sm.is_watertight:
+            if ok(sm2):
                 break
-        agg, sm2 = next(((a, m) for a, m in tries if m.is_watertight), min(tries, key=lambda am: abs(am[1].area / sm.area - 1)))
+        if not any(ok(m_) for _, m_ in tries):
+            for frac in (0.97, 0.94, 0.91):
+                v, f = fast_simplification.simplify(V0, F0, target_count=int(frac * target), agg=3)
+                sm2 = _excise_refill(trimesh.Trimesh(v, f, process=True))
+                tries.append((f'3+refill@{frac}', sm2))
+                if ok(sm2):
+                    break
+        inb = [am for am in tries if len(am[1].faces) <= target] or tries
+        agg, sm2 = next(((a, m_) for a, m_ in tries if ok(m_)), min(inb, key=lambda am: abs(am[1].area / sm.area - 1)))
         info.update(solid_area_change=round(float(sm2.area / sm.area - 1), 4), solid_watertight=bool(sm2.is_watertight),
-                    agg=int(agg))
+                    agg=agg, tries=[(a, int(len(m_.faces)), bool(m_.is_watertight)) for a, m_ in tries])
         sm = sm2
     info['solid_faces_out'] = int(len(sm.faces))
     mesh = trimesh.util.concatenate([sm] + list(patches)) if patches else sm

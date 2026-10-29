@@ -1,28 +1,39 @@
 #!/usr/bin/env python
-"""Integration driver of the autokit engine (stage 1 builder "integ" 2026-10-27; stage 1b fixer "gates" 2026-10-29):
-one (object, episode) -> every candidate the engine can make -> GT-free gates v3 on that episode's own RAW points (and
-on held-out episodes of the same object when they exist) -> one pick by selector v3, rendered next to a colour crop.
+"""Integration driver of the autokit engine (stage 1 builder "integ" 2026-10-27; stage 1b fixer "gates" 2026-10-29;
+stage 1b integration v3 2026-10-30): one (object, episode) -> every candidate the engine can make -> GT-free gates v3
+on that episode's own RAW points -> one pick by selector v3 from that episode alone (eval-like: an eval episode has no
+second episode of its own), rendered next to a colour crop; plus a hold-out view on other episodes (report only).
 
 Candidates (all built from ONE episode's observed points, as the owner's 22 Oct per-episode rule requires):
-  prog_<program>[+variant]_t{1.5,2.5,4.0}   route B, autokit.program.run_program(..., budget=BUDGET_SHIP) for every
-                             part program listed for the object below (raw points). kind 'program': selector v3 takes
-                             the 2.5 mm build of each program family as the candidate; the other t builds are diagnostic
-                             (t is not chosen by the rank)
-  prog_<program>+tprior_t*   the program with every measured thickness forced to the prior (program.variants):
-                             t-grid robustness, kind 'program_tprior' (diagnostic only)
-  shell_raw_t{1.5,2.5,4.0}   route A, autokit.shell.thin_shell on the raw points: kind 'shell', DIAGNOSTIC ONLY (its
-                             rank cannot see unobserved surface, so it would always win: stage-1 audit blocker)
+  prog_<family>_t{1.5,2.5,4.0}  route B, autokit.program.run_program(..., budget=BUDGET_SHIP) for every part program
+                             listed for the object below (raw points). Families = program [+ variant] x balls
+                             {free, none} (programs with a ball part; '+bnone' = ball mode 'none') x shell_patch
+                             {no, yes} ('+patch' = a shell_patch part over the residual of every earlier part, A inside
+                             B). kind 'program': selector v3 takes the 2.5 mm build of each family as the candidate (a
+                             family whose every thickness was measured two-sided builds the same mesh at every t);
+                             the other t builds are diagnostic (t is not chosen by the rank)
+  prog_<program>+tprior_t*   the plain family (balls free, no patch) with every measured thickness forced to the prior
+                             (program.variants): t-grid robustness, kind 'program_tprior' (diagnostic only)
+  shell_raw_t{1.5,2.5,4.0}   route A, autokit.shell on the raw points (one sheet, solidified per t): kind 'shell',
+                             DIAGNOSTIC ONLY (its rank cannot see unobserved surface: stage-1 audit blocker)
   shell_ref_t*               route A on refine.py's copy, only with --refined (diagnostic)
   library_v3                 our TSDF library mesh (selector fallback: always eligible, never gated)
   incumbent_<tag>            the hand-kit / lathe mesh of an earlier GT-free round (kind 'incumbent', diagnostic)
-Evaluation: gates.evaluate(mesh, [obs], obj, ep) per (candidate, episode) on RAW observations (gates v3 default).
-  role 'own'      the build episode, flip check included;
-  role 'holdout'  every held-out episode, flip check reused from the 'own' row (flip_check compares the mesh with
-                  library_v3 and does not depend on the episode), gates recomputed with gates.gates_of;
+Identical meshes (same vertices and faces, e.g. balls 'none' where the free fit keeps no ball, or a patch with no
+residual) are evaluated once; the copy's rows carry dup_of.
+Evaluation: gates.evaluate(mesh, [obs], obj, ep) on RAW observations (gates v3 default).
+  role 'own'      the build episode; flip check on the selectable rows (2.5 mm family builds, library_v3) and, with
+                  --diag-flip, on the diagnostic rows (otherwise their G_FLIP is 'not run': pass_ex_flip is reported);
+  role 'holdout'  selectable rows only, on the hold-out episodes (default: the next N_HOLDOUT public episodes of the
+                  object in EPISODES, cyclic), flip reused from the 'own' row (flip_check compares the mesh with
+                  library_v3 and does not depend on the episode). REPORT ONLY: never used to select;
   role 'refobs'   report only, with --refined: the build episode on refine.py's copy (obs='refined').
-Selection: gates.select (v3) over the 'own' + 'holdout' rows (a mesh must pass on every episode; rank = mean rank
-  score). Also reported: pick_own_only = gates.select over the 'own' rows alone, which is what eval-time selection can
-  see (an eval episode has no second episode of its own).
+Selection: selection.json 'pick' = gates.select (v3) over the 'own' rows alone (what eval-time selection can see).
+  'holdout_view' = gates.select over own + holdout rows of the selectable meshes (a mesh must pass on every episode),
+  plus the own pick's verdict on each hold-out episode (report only).
+Performance only: within one run, a part fit is memoised on (observations, t, part spec, assigned points, earlier
+  parts, frame, budget) so families that share a program prefix reuse its fitted parts (PartMemo; results identical,
+  checked on public dev episodes; --no-memo turns it off).
 Outputs under OUT/<obj>_ep<N>/: cand/*.glb + *.json (build reports), candidates.jsonl (one row per candidate x
   episode x role, GT-free metrics only), per_frame.jsonl, selection.json, summary.tsv, qa_pick.jpg, run_meta.json
   (code sha256, and the sha256 of every input file opened through io_gt).
@@ -31,11 +42,12 @@ GT-free: observed points, tracks and calibration only through autokit.io_gt (den
 mocap, hard links; allow-listed roots); meshes only through io_gt.load_mesh / io_gt.mesh_input (allow-listed roots
 auto/**, meshes/library_v3, results/prim/meshes, prim/**, lathe/**). No scan is opened or scored here and
 mesh_metric.py is not run. Object names appear only in the driver input tables below (they select programs,
-incumbent files and default hold-out episodes); the method modules carry none.
+incumbent files and the episode lists); the method modules carry none.
 
 Usage:
   run_object.py run OBJ EP [--holdout 22,40] [--out DIR] [--ts 1.5,2.5,4.0] [--reuse] [--no-render] [--refined]
-                  [--no-shells] [--no-tprior] [--main-variant]   (post hoc: also '<shell>+main', see main_group)
+                  [--no-shells] [--no-tprior] [--no-balls-none] [--no-patch] [--diag-flip] [--no-memo]
+                  [--main-variant]   (post hoc: also '<shell>+main', see main_group)
   run_object.py audit STRACE.log [STRACE2.log ...]     (counts opens of GT-pattern paths in strace logs)
 """
 import argparse, copy, hashlib, json, os, re, subprocess, sys, time, traceback
@@ -81,16 +93,29 @@ INCUMBENTS = {
     ('white_pot_lid', 2): [('handkit_clean_t2.5', f'{S}/prim/clean/lid/t2.5_fit.glb')],
     ('blue_cup', 21): [('lathe_obs_g1', f'{S}/lathe/ep21_blue_cup_g1.glb')],
 }
-# Default held-out episodes (public episodes of the same object with observed points). white_pot_lid ep0 is left out
-# on GT-free evidence only: refine.py skipped all 24 of its frames, and the part program gets 396 points there and
-# raises.
-HOLDOUTS = {
-    ('white_pot_lid', 2): [],
-    ('blue_cup', 21): [22],
-    ('mini_dust_pan', 39): [18, 40],
-    ('water_pitcher', 22): [21],
-    ('mini_sweeper', 31): [18],
+# Public episodes with observed points per object (obs_all). Hold-out view of a build episode: the next N_HOLDOUT
+# episodes of its object in this list (cyclic). white_pot_lid ep0 is kept: its track is suspect on GT-free evidence
+# (refine.py skipped all 24 of its frames; the lid program's sheet finds 0 of 36 edge sectors there), and the frame /
+# track gates are expected to reject what it builds; it is the lid's only hold-out episode for ep2.
+EPISODES = {
+    'white_pot': [0, 2, 26, 27, 41, 42, 43, 44, 45],
+    'white_pot_lid': [0, 2],
+    'plastic_dish_rack': [12, 13, 26, 27, 31],
+    'blue_cup': [11, 12, 13, 21, 22],
+    'mini_dust_pan': [18, 39, 40],
+    'water_pitcher': [21, 22],
+    'mini_sweeper': [18, 31],
 }
+N_HOLDOUT = 2
+
+
+def holdouts_of(obj, ep, n=N_HOLDOUT):
+    eps = EPISODES.get(obj, [])
+    if ep not in eps:
+        return []
+    i = eps.index(ep)
+    return [eps[(i + k) % len(eps)] for k in range(1, min(n, len(eps) - 1) + 1)]
+
 
 # ---------------------------------------------------------------------------------------- helpers
 FLIP_KEYS = G.FLIP_KEYS
@@ -139,6 +164,90 @@ def t_rule_of(report):
     if not any(s_ in MEASURED_SRC for s_ in src):
         return 'prior'
     return 'mixed'
+
+
+def with_balls(prog, mode):
+    """Generic program edit: every ball part takes params.mode = mode ('free' / 'none')."""
+    pr = copy.deepcopy(prog)
+    for q in pr['parts']:
+        if q['type'] == 'ball':
+            q.setdefault('params', {})['mode'] = mode
+    return pr
+
+
+def with_patch(prog):
+    """Generic program edit (A inside B): a shell_patch part over the residual of every earlier part."""
+    pr = copy.deepcopy(prog)
+    pr['parts'].append(dict(name='patch', type='shell_patch', assign=dict(rule='residual')))
+    return pr
+
+
+def geo_hash(m):
+    """sha256 of a mesh's vertex and face arrays (identical meshes are evaluated once)."""
+    h = hashlib.sha256()
+    h.update(np.ascontiguousarray(np.asarray(m.vertices, np.float64)).tobytes())
+    h.update(np.ascontiguousarray(np.asarray(m.faces, np.int64)).tobytes())
+    return h.hexdigest()[:24]
+
+
+class PartMemo:
+    """PERFORMANCE ONLY. Memoises part fits within one run: key = (observation dict, t, library path, budget, part
+    spec, assigned point indices, earlier parts (by identity), program frame); a hit returns the same Part object and
+    replays the fit's only context side effect (ctx.frame, set by tube_rrect align_frame). Valid because every family
+    of one program runs the same prefix in the same order and later parts only read earlier ones (attach re-applies
+    the same clip). Exceptions are memoised too. Checked bit-identical against fresh builds (integ/memo_check)."""
+
+    def __init__(self):
+        self.cache, self.hits, self.misses, self.on = {}, 0, 0, False
+        self._orig = {}
+
+    def install(self):
+        from autokit import parts as PT
+        for name, pt in PT.PART_TYPES.items():
+            if name not in self._orig:
+                self._orig[name] = pt.fit
+                pt.fit = self._wrap(pt.fit)
+        return self
+
+    def reset(self):
+        self.cache.clear(); self.hits = self.misses = 0
+
+    @staticmethod
+    def _fkey(fr):
+        if fr is None:
+            return None
+        return hashlib.sha256(json.dumps(jsonable(fr), sort_keys=True, default=str).encode()).hexdigest()[:24]
+
+    def _wrap(self, fn):
+        def fit(ctx, idx, spec, done):
+            if not self.on:
+                return fn(ctx, idx, spec, done)
+            key = (id(ctx.obs), round(float(ctx.t), 9), ctx.lib, getattr(ctx, 'budget', None),
+                   json.dumps(jsonable(spec), sort_keys=True, default=str),
+                   hashlib.sha256(np.ascontiguousarray(np.asarray(idx, np.int64)).tobytes()).hexdigest()[:24],
+                   tuple((n, id(q)) for n, q in done.items()), self._fkey(ctx.frame))
+            if key in self.cache:
+                self.hits += 1
+                kind, val, fr_after, changed = self.cache[key]
+                if changed:
+                    ctx.frame = fr_after
+                if kind == 'exc':
+                    raise val
+                return val
+            fr0 = ctx.frame
+            try:
+                part = fn(ctx, idx, spec, done)
+            except Exception as e:  # noqa: BLE001 - re-raised, memoised as the fit's result
+                self.misses += 1
+                self.cache[key] = ('exc', e, ctx.frame, ctx.frame is not fr0)
+                raise
+            self.misses += 1
+            self.cache[key] = ('ok', part, ctx.frame, ctx.frame is not fr0)
+            return part
+        return fit
+
+
+MEMO = PartMemo()
 
 
 # ---------------------------------------------------------------------------------------- candidates
@@ -204,27 +313,49 @@ def main_group(m):
                      dropped_share=round(float(1 - areas[sorted(keep)].sum() / areas.sum()), 4))
 
 
-def build_candidates(obj, ep, cdir, ts=T_MM, reuse=False, main_variant=False, refined=False, shells=True, tprior=True):
+def program_families(pf, base):
+    """(family name, program dict, plain) of one program file: [+variant] x balls {free, none} x patch {no, yes}."""
+    out = []
+    vlist = [('', None)] + VARIANTS.get(pf, [])
+    has_ball = any(q['type'] == 'ball' for q in base['parts'])
+    for vtag, patch_fn in vlist:
+        prog = copy.deepcopy(base)
+        if patch_fn:
+            patch_fn(prog)
+        for bm in (('free', 'none') if has_ball else ('-',)):
+            for sp in (False, True):
+                pr = with_balls(prog, bm) if bm != '-' else copy.deepcopy(prog)
+                if sp:
+                    pr = with_patch(pr)
+                name = pf[:-5] + (f'+{vtag}' if vtag else '') + ('+bnone' if bm == 'none' else '') + ('+patch' if sp else '')
+                out.append(dict(family=name, program=pr, plain=(bm != 'none' and not sp), vtag=vtag, balls=bm, patch=sp))
+    return out
+
+
+def build_candidates(obj, ep, cdir, ts=T_MM, reuse=False, main_variant=False, refined=False, shells=True, tprior=True,
+                     balls_none=True, patch=True, memo=True):
     """Build every candidate of (obj, ep) into cdir. Returns a list of candidate dicts (name, kind, route, t_mm,
-    family, t_rule, mesh, src, build) - failures included, with build['error'] set and mesh None."""
+    family, t_rule, mesh, src, build, geo_hash, dup_of) - failures included, with build['error'] set and mesh None."""
     os.makedirs(cdir, exist_ok=True)
     raw, ref = obs_paths(obj, ep)
-    cands = []
+    cands, seen = [], {}
 
-    def done(name, kind, route, t_mm, src, fn, family=None):
+    def done(name, kind, route, t_mm, src, fn, family=None, extra=None):
         mp, jp = f'{cdir}/{name}.glb', f'{cdir}/{name}.json'
-        c = dict(name=name, kind=kind, route=route, t_mm=t_mm, family=family, src=src, mesh=None, t_rule=None)
+        c = dict(name=name, kind=kind, route=route, t_mm=t_mm, family=family, src=src, mesh=None, t_rule=None,
+                 geo_hash=None, dup_of=None, **(extra or {}))
         if reuse and os.path.isfile(mp) and os.path.isfile(jp):
             c.update(mesh=mp, build=json.load(open(jp)), reused=True)
+            c['geo_hash'] = c['build'].get('geo_hash')
         else:
             t0 = time.time()
             try:
                 m, rep = fn()
                 m.metadata.pop('shell_report', None)
                 m.export(mp)
-                b = dict(sec=round(time.time() - t0, 1), **mesh_summary(m), report=rep)
+                b = dict(sec=round(time.time() - t0, 1), **mesh_summary(m), geo_hash=geo_hash(m), report=rep)
                 json.dump(jsonable(b), open(jp, 'w'), indent=1, default=str)
-                c.update(mesh=mp, build=b)
+                c.update(mesh=mp, build=b, geo_hash=b['geo_hash'])
                 log('built', name, json.dumps({k: b[k] for k in ('sec', 'faces', 'watertight', 'bodies', 'area_cm2')}))
             except Exception as e:  # noqa: BLE001 - a failed candidate is a result, not a crash
                 c.update(build=dict(sec=round(time.time() - t0, 1), error=f'{type(e).__name__}: {e}'[:500],
@@ -235,40 +366,62 @@ def build_candidates(obj, ep, cdir, ts=T_MM, reuse=False, main_variant=False, re
             c['t_rule'] = t_rule_of(rep)
             if rep.get('t_mm') is not None:                 # the t the program actually used (a program may fix it)
                 c['t_mm'] = float(rep['t_mm'])
+        if c['geo_hash']:
+            first = seen.setdefault(c['geo_hash'], name)
+            c['dup_of'] = first if first != name else None
         cands.append(c)
 
     # route B: part programs listed for the object (raw points), shipped within the face budget
     progs = PROGRAMS.get(obj, [])
     if progs:
         o = io_gt.load_obs(raw)
-        for pf in progs:
-            base = load_program(f'{PROG_DIR}/{pf}')
-            vlist = [('', None)] + VARIANTS.get(pf, [])
-            for vtag, patch in vlist:
-                prog = copy.deepcopy(base)
-                if patch:
-                    patch(prog)
-                fam = pf[:-5] + (f'+{vtag}' if vtag else '')
-                for vname, vprog in variants(prog):
-                    if vname != 'base' and not tprior:
+        MEMO.install(); MEMO.reset(); MEMO.on = bool(memo)
+        try:
+            for pf in progs:
+                base = load_program(f'{PROG_DIR}/{pf}')
+                for fam in program_families(pf, base):
+                    if (fam['balls'] == 'none' and not balls_none) or (fam['patch'] and not patch):
                         continue
-                    kind = 'program' if vname == 'base' else f'program_{vname}'
-                    pname = fam + ('' if vname == 'base' else f'+{vname}')
-                    for t in ts:
-                        done(f'prog_{pname}_t{t:.1f}', kind, 'B', t, raw,
-                             lambda vprog=vprog, t=t: run_program(vprog, o, t=t * 1e-3, lib=G.lib_path(obj),
-                                                                  budget=BUDGET_SHIP), family=pname)
+                    vlist = variants(fam['program']) if (fam['plain'] and tprior) else [('base', fam['program'])]
+                    for vname, vprog in vlist:
+                        kind = 'program' if vname == 'base' else f'program_{vname}'
+                        pname = fam['family'] + ('' if vname == 'base' else f'+{vname}')
+                        for t in ts:
+                            done(f'prog_{pname}_t{t:.1f}', kind, 'B', t, raw,
+                                 lambda vprog=vprog, t=t: run_program(vprog, o, t=t * 1e-3, lib=G.lib_path(obj),
+                                                                      budget=BUDGET_SHIP), family=pname,
+                                 extra=dict(balls=fam['balls'], patch=fam['patch'], variant=vname))
+        finally:
+            MEMO.on = False
+            memo_stats = dict(hits=MEMO.hits, misses=MEMO.misses, on=bool(memo))
+            MEMO.reset()
+        log('part memo', json.dumps(memo_stats))
         del o
-    # route A: thin shells, diagnostic rows only (raw points; refined copy only on request)
+    else:
+        memo_stats = None
+    # route A: thin shells, diagnostic rows only (raw points; refined copy only on request); one sheet per obs file
     if shells:
+        from autokit import shell as SH
         for tag, path in (('raw', raw), ('ref', ref if refined else None)):
             if path is None:
                 continue
             o = io_gt.load_obs(path, keys=('pts', 'cam', 'frame'))
+            t0 = time.time()
+            try:
+                sheet = SH.shell_sheet(o)
+                sheet_err = None
+            except Exception as e:  # noqa: BLE001
+                sheet, sheet_err = None, e
+            sec_sheet = round(time.time() - t0, 1)
             for t in ts:
-                done(f'shell_{tag}_t{t:.1f}', 'shell', 'A', t, path,
-                     lambda o=o, t=t: thin_shell(o, t=t * 1e-3, return_report=True))
-            del o
+                def mk(t=t):
+                    if sheet is None:
+                        raise sheet_err
+                    m, rep = SH.solidify_sheet(sheet, t * 1e-3, return_report=True)
+                    rep['sec_sheet_shared'] = sec_sheet
+                    return m, rep
+                done(f'shell_{tag}_t{t:.1f}', 'shell', 'A', t, path, mk)
+            del o, sheet
         if main_variant:                                    # post hoc: G_CONN-consistent island policy
             for c in [c for c in cands if c['kind'] == 'shell' and c['mesh'] and c['build'].get('bodies', 1) > 1]:
                 src_mesh = c['mesh']
@@ -282,23 +435,25 @@ def build_candidates(obj, ep, cdir, ts=T_MM, reuse=False, main_variant=False, re
     # library_v3 (fallback) and incumbents: existing meshes, referenced in place, loaded through the io_gt guard
     lp = G.lib_path(obj)
     cands.append(dict(name='library_v3', kind='library', route='fallback', t_mm=None, family=None, t_rule=None, src=None,
-                      mesh=lp, build=dict(sec=0.0, **mesh_summary_of(lp))))
+                      mesh=lp, build=dict(sec=0.0, **mesh_summary_of(lp)), geo_hash=None, dup_of=None))
     for tag, mp in INCUMBENTS.get((obj, ep), []):
         if os.path.isfile(mp):
             cands.append(dict(name=f'incumbent_{tag}', kind='incumbent', route='earlier', t_mm=None, family=None,
-                              t_rule=None, src=None, mesh=mp, build=dict(sec=None, **mesh_summary_of(mp))))
+                              t_rule=None, src=None, mesh=mp, build=dict(sec=None, **mesh_summary_of(mp)),
+                              geo_hash=None, dup_of=None))
         else:
             log('incumbent missing', mp)
-    return cands
+    return cands, memo_stats
 
 
 # ---------------------------------------------------------------------------------------- evaluation
-def evaluate_candidate(c, obj, ep, holdouts, refined=False):
-    """gates.evaluate rows of one candidate: own (raw, flip), holdouts (raw, flip reused), refobs (report only)."""
+def evaluate_candidate(c, obj, ep, holdouts, refined=False, flip=True):
+    """gates.evaluate rows of one candidate: own (raw; flip check unless flip=False), holdouts (raw, flip reused;
+    report only), refobs (report only)."""
     rows, per = [], []
-    r = G.evaluate(c['mesh'], None, obj, ep, flip=True, obs='raw')
+    r = G.evaluate(c['mesh'], None, obj, ep, flip=flip, obs='raw')
     per.append(dict(cand=c['name'], ep=ep, role='own', per_frame=r.pop('per_frame')))
-    r.update(role='own')
+    r.update(role='own', flip_run=bool(flip))
     rows.append(r)
     flipm = {k: r['metrics'].get(k) for k in FLIP_KEYS}
     extra = [(h, 'holdout', 'raw') for h in holdouts]
@@ -308,13 +463,31 @@ def evaluate_candidate(c, obj, ep, holdouts, refined=False):
         r2 = G.evaluate(c['mesh'], None, obj, e2, obs=kind, flip_metrics=flipm)
         per.append(dict(cand=c['name'], ep=e2, role=role, per_frame=r2.pop('per_frame')))
         r2['metrics']['flip_reused_from_ep'] = ep
-        r2.update(role=role)
+        r2.update(role=role, flip_run=bool(flip))
         rows.append(r2)
     for r_ in rows:
         r_.pop('thresholds', None)
         r_.update(cand=c['name'], kind=c['kind'], route=c['route'], t_mm=c['t_mm'], family=c.get('family'),
-                  t_rule=c.get('t_rule'), build_ep=ep, fallback=(c['kind'] == 'library'))
+                  t_rule=c.get('t_rule'), build_ep=ep, fallback=(c['kind'] == 'library'), balls=c.get('balls'),
+                  patch=c.get('patch'), dup_of=c.get('dup_of'), geo_hash=c.get('geo_hash'),
+                  pass_ex_flip=all(v for k, v in r_['gates'].items() if k != 'G_FLIP'))
     return rows, per
+
+
+def copy_rows(rows, c, src_name, roles_keep):
+    """Rows of an identical mesh evaluated earlier (src_name), re-labelled for candidate c (same gates and metrics);
+    only the roles in roles_keep ('own', or ('holdout', ep)) are kept."""
+    out = []
+    for r in rows:
+        if r['role'] != 'own' and ('holdout', r['ep']) not in roles_keep:
+            continue
+        r2 = copy.deepcopy(r)
+        r2.update(cand=c['name'], mesh=os.path.abspath(c['mesh']), kind=c['kind'], route=c['route'], t_mm=c['t_mm'],
+                  family=c.get('family'), t_rule=c.get('t_rule'), balls=c.get('balls'), patch=c.get('patch'),
+                  dup_of=c.get('dup_of'), geo_hash=c.get('geo_hash'), eval_copied_from=src_name,
+                  fallback=(c['kind'] == 'library'))
+        out.append(r2)
+    return out
 
 
 def short_reasons(sel, name_of):
@@ -327,11 +500,13 @@ def short_reasons(sel, name_of):
 
 # ---------------------------------------------------------------------------------------- render
 def render_pick(obj, ep, holdouts, meshes, labels, out_path):
-    """QA image [colour crop | meshes] from the crop's frame (our track). Uses the build episode's crop, else the
-    first held-out episode's (the object frame is shared), else the build episode's frame with most points."""
+    """QA image [colour crop | meshes] from the crop's frame (our track). Uses the build episode's crop, else a
+    held-out episode's, else any public episode's of the object (the object frame is shared), else the build
+    episode's frame with most points."""
     import cv2
     from autokit import test_shell as TS
-    ep_c = next((e for e in [ep] + list(holdouts) if os.path.isfile(f'{TS.CROPS}/ep{e}/{obj}_crops.json')), ep)
+    ep_c = next((e for e in [ep] + list(holdouts) + EPISODES.get(obj, [])
+                 if os.path.isfile(f'{TS.CROPS}/ep{e}/{obj}_crops.json')), ep)
     k = TS.qa_image(ep_c, obj, meshes, labels, out_path)
     img = cv2.imread(out_path)
     if img is not None:
@@ -342,14 +517,22 @@ def render_pick(obj, ep, holdouts, meshes, labels, out_path):
 
 
 # ---------------------------------------------------------------------------------------- main run
-SUM_KEYS = ('dr_comp', 'dr_hole3d', 'dr_viol', 'dr_fsv', 'fs_frac', 'conn_share', 'topo_budget_watertight',
-            'topo_area_change', 'topo_budget_faces', 'frame_med_mm', 'align_t_mm', 'flips', 'dr_cdist_mm', 'dr_pdist_mm',
-            'fid_sum_mm', 'area_cm2', 'drift_area', 'drift_rms')
+SUM_KEYS = ('dr_comp', 'dr_hole3d', 'dr_viol', 'dr_fsv', 'dr_fsv_blob_p75_cm2', 'fs_frac', 'conn_share',
+            'topo_budget_watertight', 'topo_area_change', 'topo_budget_faces', 'topo_weld_only', 'frame_med_mm',
+            'align_t_mm', 'frame_t_mm', 'flips', 'flip_xadd_med_mm', 'dr_cdist_mm', 'dr_pdist_mm', 'fid_sum_mm',
+            'area_cm2', 'drift_area', 'drift_rms')
 CODE_FILES = ('run_object.py', 'io_gt.py', 'refine.py', 'shell.py', 'parts.py', 'program.py', 'gates.py')
 
 
+def pre_roles(cands):
+    """Selector-v3 roles of the built candidates before evaluation (gates.roles on their kind / family / t)."""
+    by = {c['mesh']: [dict(mesh=c['mesh'], kind=c['kind'], family=c.get('family'), t_mm=c['t_mm'],
+                           t_rule=c.get('t_rule'), fallback=(c['kind'] == 'library'))] for c in cands if c['mesh']}
+    return G.roles(by)
+
+
 def run(obj, ep, holdouts, out, ts=T_MM, reuse=False, render=True, refined=False, main_variant=False, shells=True,
-        tprior=True):
+        tprior=True, balls_none=True, patch=True, diag_flip=False, memo=True):
     t_all = time.time()
     odir = f'{out}/{obj}_ep{ep}'
     os.makedirs(odir, exist_ok=True)
@@ -359,92 +542,134 @@ def run(obj, ep, holdouts, out, ts=T_MM, reuse=False, render=True, refined=False
     meta = dict(obj=obj, ep=ep, holdouts=holdouts, ts=list(ts), start=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
                 repo_head=head, autokit_dirty=dirty, argv=sys.argv, host=os.uname().nodename,
                 code_sha256={f: sha(f'{HERE}/{f}') for f in CODE_FILES}, obs_kind='raw', refined_report=refined,
-                main_variant=main_variant, budget_ship=BUDGET_SHIP, gates_version=G.VERSION, thresholds=G.THRESHOLDS)
+                main_variant=main_variant, budget_ship=BUDGET_SHIP, gates_version=G.VERSION, thresholds=G.THRESHOLDS,
+                diag_flip=diag_flip, memo=memo, balls_none=balls_none, patch=patch, tprior=tprior, shells=shells)
     json.dump(jsonable(meta), open(f'{odir}/run_meta.json', 'w'), indent=1, default=str)
     log('meta', json.dumps(jsonable(meta), default=str)[:600])
     # ---- build
     t_b = time.time()
-    cands = build_candidates(obj, ep, f'{odir}/cand', ts=ts, reuse=reuse, main_variant=main_variant, refined=refined,
-                             shells=shells, tprior=tprior)
+    cands, memo_stats = build_candidates(obj, ep, f'{odir}/cand', ts=ts, reuse=reuse, main_variant=main_variant,
+                                         refined=refined, shells=shells, tprior=tprior, balls_none=balls_none,
+                                         patch=patch, memo=memo)
     sec_build = time.time() - t_b
-    # ---- evaluate
+    meta['part_memo'] = memo_stats
+    role = pre_roles(cands)
+    # ---- evaluate: selectable rows first (own with flip + hold-outs), then diagnostics (own only)
     cpath, ppath = f'{odir}/candidates.jsonl', f'{odir}/per_frame.jsonl'
     for p in (cpath, ppath):
         if os.path.exists(p):
             os.replace(p, p + f'.prev{int(time.time())}')
     t_e = time.time()
-    rows, inputs = [], {}
-    for c in cands:
-        if c['mesh'] is None:
-            jl(cpath, dict(cand=c['name'], kind=c['kind'], route=c['route'], t_mm=c['t_mm'], build_ep=ep,
-                           build=c['build'], role='build_failed'))
-            continue
-        try:
-            rs, per = evaluate_candidate(c, obj, ep, holdouts, refined=refined)
-        except Exception as e:  # noqa: BLE001
-            err = f'{type(e).__name__}: {e}'[:500]
-            log('EVAL FAILED', c['name'], err)
-            jl(cpath, dict(cand=c['name'], kind=c['kind'], build_ep=ep, role='eval_failed', error=err,
-                           trace=traceback.format_exc()[-1500:]))
-            continue
+    rows, inputs, evals = [], {}, {}           # evals: geo_hash -> (cand name, rows, flip_run, hold-out set)
+    order = sorted([c for c in cands if c['mesh']], key=lambda c: role[c['mesh']][0] == 'diagnostic')
+    for c in [c for c in cands if c['mesh'] is None]:
+        jl(cpath, dict(cand=c['name'], kind=c['kind'], route=c['route'], t_mm=c['t_mm'], family=c.get('family'),
+                       build_ep=ep, build=c['build'], role='build_failed'))
+    for c in order:
+        rl = role[c['mesh']][0]
+        sel_ = rl in ('candidate', 'fallback')
+        need_flip, need_h = (True if sel_ else diag_flip), (list(holdouts) if sel_ else [])
+        keep = {('holdout', h) for h in need_h}
+        hit = evals.get(c['geo_hash']) if c.get('geo_hash') else None
+        if hit and (hit[2] or not need_flip) and set(need_h) <= hit[3]:
+            rs = copy_rows(hit[1], c, hit[0], keep); per = []
+            log('eval', c['name'], 'copied from identical mesh', hit[0])
+        else:
+            try:
+                rs, per = evaluate_candidate(c, obj, ep, need_h, refined=refined, flip=need_flip)
+            except Exception as e:  # noqa: BLE001
+                err = f'{type(e).__name__}: {e}'[:500]
+                log('EVAL FAILED', c['name'], err)
+                jl(cpath, dict(cand=c['name'], kind=c['kind'], build_ep=ep, role='eval_failed', error=err,
+                               trace=traceback.format_exc()[-1500:]))
+                continue
+            if c.get('geo_hash'):
+                evals[c['geo_hash']] = (c['name'], rs, need_flip, set(need_h))
         bsum = {k: v for k, v in c['build'].items() if k != 'report'}
         for r in rs:
             r['build'] = bsum
+            r['selector_role'] = rl
             for x in r.get('inputs', []):
                 inputs[x['path']] = dict(kind=x['kind'], sha256=x['sha256'], bytes=x['bytes'])
             jl(cpath, r)
-        for p in per:
-            jl(ppath, p)
+        for p_ in per:
+            jl(ppath, p_)
         rows += rs
         for r in rs:
             m = r['metrics']
-            log('eval', c['name'], f"ep{r['ep']}", r['role'], 'PASS' if r['pass'] else 'fail',
+            log('eval', c['name'], f"ep{r['ep']}", r['role'], rl, 'PASS' if r['pass'] else 'fail',
                 [g for g, v in r['gates'].items() if not v], 'rank', r['rank_score'], 'sec', r['sec'],
                 json.dumps({k: m.get(k) for k in ('dr_comp', 'dr_viol', 'dr_fsv', 'dr_hole3d', 'align_t_mm', 'conn_share')}))
     sec_eval = time.time() - t_e
     meta['inputs_sha256'] = inputs
     json.dump(jsonable(meta), open(f'{odir}/run_meta.json', 'w'), indent=1, default=str)
-    # ---- select
+    # ---- select: own rows only (eval-like); hold-out view report only
     name_of = {r['mesh']: r['cand'] for r in rows}
-    sel_rows = [r for r in rows if r['role'] in ('own', 'holdout')]
-    sel = short_reasons(G.select(sel_rows), name_of)
-    sel_own = short_reasons(G.select([r for r in rows if r['role'] == 'own']), name_of)
+    own = [r for r in rows if r['role'] == 'own']
+    sel = short_reasons(G.select(own), name_of)
+    hv_rows = [r for r in rows if r['role'] in ('own', 'holdout') and r.get('selector_role') in ('candidate', 'fallback')]
+    hv = short_reasons(G.select(hv_rows), name_of) if holdouts else None
+    pick_h = {}
+    if sel['pick_mesh']:
+        for r in rows:
+            if r['mesh'] == sel['pick_mesh'] and r['role'] == 'holdout':
+                pick_h[f"ep{r['ep']}"] = dict(passed=r['pass'], failed=[g for g, v in r['gates'].items() if not v],
+                                              rank_score=r['rank_score'])
     ref_rows = [r for r in rows if r['role'] == 'refobs']
     sel_ref = short_reasons(G.select(ref_rows), name_of) if ref_rows else None
+    diag_best = None
+    dg = [r for r in own if r.get('selector_role') == 'diagnostic' and r.get('pass_ex_flip')]
+    if dg:
+        b_ = min(dg, key=lambda r: r['rank_score'])
+        diag_best = dict(cand=b_['cand'], kind=b_['kind'], rank_score=b_['rank_score'], flip_run=b_.get('flip_run'))
     selection = dict(obj=obj, build_ep=ep, holdouts=holdouts,
-                     rule='gates.select v3 over own + holdout rows (raw obs); shells / incumbents / off-middle t are '
-                          'diagnostic', **sel, pick_own_only=sel_own['pick'], ranking_own_only=sel_own['ranking'],
-                     reasons_own_only=sel_own['reasons'],
+                     rule='gates.select v3 over the OWN rows (raw obs) = eval-like; shells / incumbents / tprior / '
+                          'off-middle t are diagnostic; hold-out view is report only', **sel,
+                     holdout_view=(dict(rule='gates.select v3 over own + holdout rows of the selectable meshes '
+                                             '(report only)', pick=hv['pick'], ranking=hv['ranking'],
+                                        reasons=hv['reasons'], pick_own_on_holdouts=pick_h,
+                                        agrees_with_pick=(hv['pick'] == sel['pick'])) if hv else None),
+                     best_diagnostic_passing_ex_flip=diag_best,
                      pick_refobs_report_only=sel_ref['pick'] if sel_ref else None,
                      n_candidates=len(cands), n_built=sum(c['mesh'] is not None for c in cands),
-                     build_failed=[c['name'] for c in cands if c['mesh'] is None],
+                     build_failed={c['name']: c['build'].get('error') for c in cands if c['mesh'] is None},
+                     n_identical_copies=sum(1 for c in cands if c.get('dup_of')), part_memo=memo_stats,
                      sec_build=round(sec_build, 1), sec_eval=round(sec_eval, 1))
     # ---- summary table (GT-free metrics only)
     with open(f'{odir}/summary.tsv', 'w') as f:
-        f.write('\t'.join(['cand', 'kind', 'ep', 'role', 'pass', 'failed', 'rank_score', *SUM_KEYS, 'build_sec', 'eval_sec']) + '\n')
+        f.write('\t'.join(['cand', 'kind', 'selector_role', 'family', 't_mm', 'ep', 'role', 'pass', 'pass_ex_flip',
+                           'flip_run', 'failed', 'rank_score', *SUM_KEYS, 'dup_of', 'build_sec', 'eval_sec']) + '\n')
         for r in rows:
             m = r['metrics']
-            f.write('\t'.join(str(x) for x in [r['cand'], r['kind'], r['ep'], r['role'], r['pass'],
+            f.write('\t'.join(str(x) for x in [r['cand'], r['kind'], r.get('selector_role'), r.get('family'), r['t_mm'],
+                                                r['ep'], r['role'], r['pass'], r.get('pass_ex_flip'), r.get('flip_run'),
                                                 ','.join(g for g, v in r['gates'].items() if not v), r['rank_score'],
-                                                *[m.get(k) for k in SUM_KEYS], r['build'].get('sec'), r['sec']]) + '\n')
+                                                *[m.get(k) for k in SUM_KEYS], r.get('dup_of'), r['build'].get('sec'),
+                                                r['sec']]) + '\n')
     # ---- render the pick next to a crop (as built and as the scorer decodes it), with library_v3
     if render and sel['pick_mesh']:
         try:
             bp = f'{odir}/pick_b4096.glb'
             G.load_budget(sel['pick_mesh']).export(bp)
-            ms, labs = [sel['pick_mesh'], bp], [f"pick {sel['pick']}", 'pick, budget 4096']
-            if sel_own['pick'] != sel['pick'] and sel_own['pick_mesh']:
-                ms.append(sel_own['pick_mesh']); labs.append(f"own-only {sel_own['pick']}")
-            if sel['pick'] != 'library_v3':
+            ms, labs = [sel['pick_mesh'], bp], [f"pick {sel['pick']}", 'pick, kit decode']
+            if hv and hv['pick'] != sel['pick'] and hv['pick_mesh']:
+                ms.append(hv['pick_mesh']); labs.append(f"hold-out view {hv['pick']}")
+            best_prog = next((name_of.get(mm) for mm in sel['ranking'] if mm != sel['pick_mesh']
+                              and sel['reasons'].get(name_of.get(mm), {}).get('role') == 'candidate'), None)
+            if sel['pick'] == 'library_v3':
+                fam25 = sorted((r for r in own if r.get('selector_role') == 'candidate'), key=lambda r: r['rank_score'])
+                if fam25:
+                    ms.append(fam25[0]['mesh']); labs.append(f"best program {fam25[0]['cand']} ({'pass' if fam25[0]['pass'] else 'FAIL'})")
+            else:
                 ms.append(G.lib_path(obj)); labs.append('library_v3')
             selection['render'] = render_pick(obj, ep, holdouts, ms, labs, f'{odir}/qa_pick.jpg')
+            selection['render']['best_other_eligible'] = best_prog
         except Exception as e:  # noqa: BLE001
             selection['render'] = dict(error=f'{type(e).__name__}: {e}'[:300])
             log('RENDER FAILED', selection['render']['error'])
     selection['sec_total'] = round(time.time() - t_all, 1)
     json.dump(jsonable(selection), open(f'{odir}/selection.json', 'w'), indent=1, default=str)
-    log('PICK', sel['pick'], '| own-only', sel_own['pick'], '| refobs', selection['pick_refobs_report_only'],
-        '| sec', selection['sec_total'])
+    log('PICK', sel['pick'], '| hold-out view', hv['pick'] if hv else None, '| sec', selection['sec_total'])
     return selection
 
 
@@ -492,21 +717,27 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     sub = ap.add_subparsers(dest='cmd', required=True)
     r = sub.add_parser('run'); r.add_argument('obj'); r.add_argument('ep', type=int)
-    r.add_argument('--holdout', default=None, help='comma list of held-out episodes (default: driver table; "" = none)')
+    r.add_argument('--holdout', default=None, help=f'comma list of hold-out episodes (default: the next {N_HOLDOUT} '
+                                                   'public episodes of the object; "" = none)')
     r.add_argument('--out', default=OUT_ROOT); r.add_argument('--ts', default=','.join(str(t) for t in T_MM))
     r.add_argument('--reuse', action='store_true'); r.add_argument('--no-render', action='store_true')
     r.add_argument('--refined', action='store_true', help='also refine.py-copy rows / shells (report only)')
     r.add_argument('--no-shells', action='store_true', help='skip the route-A diagnostic shells')
     r.add_argument('--no-tprior', action='store_true', help='skip the t-prior program variants (diagnostic)')
+    r.add_argument('--no-balls-none', action='store_true', help="skip the ball mode 'none' families")
+    r.add_argument('--no-patch', action='store_true', help='skip the shell_patch families')
+    r.add_argument('--diag-flip', action='store_true', help='run the flip check on diagnostic rows too')
+    r.add_argument('--no-memo', action='store_true', help='fit every part afresh (no part memo)')
     r.add_argument('--main-variant', action='store_true', help='post hoc: add <shell>+main (G_CONN-consistent islands)')
     a_ = sub.add_parser('audit'); a_.add_argument('logs', nargs='+')
     a = ap.parse_args()
     if a.cmd == 'audit':
         audit(a.logs); return
-    hold = HOLDOUTS.get((a.obj, a.ep), []) if a.holdout is None else [int(x) for x in a.holdout.split(',') if x]
+    hold = holdouts_of(a.obj, a.ep) if a.holdout is None else [int(x) for x in a.holdout.split(',') if x]
     ts = tuple(float(x) for x in a.ts.split(','))
     run(a.obj, a.ep, hold, a.out, ts=ts, reuse=a.reuse, render=not a.no_render, refined=a.refined,
-        main_variant=a.main_variant, shells=not a.no_shells, tprior=not a.no_tprior)
+        main_variant=a.main_variant, shells=not a.no_shells, tprior=not a.no_tprior, balls_none=not a.no_balls_none,
+        patch=not a.no_patch, diag_flip=a.diag_flip, memo=not a.no_memo)
 
 
 if __name__ == '__main__':

@@ -569,10 +569,80 @@ All numbers are [M] on our own points; no scan was opened or scored. Outputs: `s
 fixes below, `balls*/`, `tdiag/`, `synth_final/`, `render/`, `PROGRESS.md`).
 
 <!-- s1b-results:begin -->
-(results table filled at the end of the stage-1b run)
+**Reproduction** (t = 2.5 mm, generic balls, full resolution) against the hand-kit incumbent meshes (`--only
+lid,pot,cup,rack`): obs fidelity sum (mm, lower is better) program / incumbent, and symmetric mesh-to-mesh distance
+median / p90 (mm).
+
+| program on episode | fidelity | distance to incumbent | note |
+|---|---|---|---|
+| sheet_strap_balls, lid ep2 | 1.701 / 1.683 | 0.003 / 0.017 | 2 generic balls instead of 3 (2 at the old 7 mm prior) |
+| lathe_bar_balls, pot ep41 | 2.908 / 2.907 | 0.391 / 0.814 | density-normalised cells: two-sided wall 3.96 mm (fixed 8-point cells: 4.77 mm, distance 0.0 / 0.0) |
+| lathe_splat, cup ep21 | 4.081 / 4.104 | 0.009 / 0.244 | |
+| tray_holder_pegs_balls, rack ep13 | 7.448 / 8.511 | 0.013 / 4.831 | single-episode floor plate, as in stage 1 |
+
+**Generic balls** (`fit: lsq`, no radius prior) against the stage-1 rule (7 mm scan-derived prior):
+
+| episode | stage 1 | stage 1b | balls visible in our colour crops |
+|---|---|---|---|
+| lid ep2 | 3 (7.35; 7.0 and 7.0 at the prior) | 2 (7.3, 8.7 mm) | 5 (on black mounts) |
+| pot ep41 | 5 (4 at the prior) | 1 (11.3 mm, at the handle base; radius looks inflated, the fit probably includes the mount) | about 4-5 |
+| rack ep13 | 2 (8.0 mm with stem; 7.0 at the prior) | 1 (7.7 mm, no stem) | not counted |
+
+No stem was kept anywhere. Fidelity with / without balls (as decoded by the kit, base, t 2.5): lid 1.693 / 1.800,
+pot 2.893 / 2.922, rack 7.448 / 7.479. The remaining visible balls are rejected because the small caps share their
+cluster with the black mount and the surface around it (free fits of 13-53 mm, concave or flat); a smaller residual
+band (4 or 3 mm instead of 8) keeps the same 2 lid balls and finds no new one; the `ransac` fit is not better
+(section 8). On the other public episodes (programs unchanged, t = 2.5 mm) the generic rule keeps pot ep42 1 ball
+(10.3 mm), ep43 1 (10.0 mm), ep44 0, ep45 0, and rack ep12, 26, 27, 31 none; the stage-1 rule had kept 2-3 balls on
+each of these pot and rack episodes, every one at the 7 mm prior except a single 5.4 mm free fit (rack ep27).
+Fidelity there against the stage-1 cross meshes: pot 2.737 / 2.706, 2.886 / 2.881, 5.177 / 4.727, 5.662 / 5.327 mm;
+racks within 0.05 mm (balls and the cell rule both differ; their shares are not separated). The lid program fails
+on lid ep0 (the sheet's edge circle finds 0 of 36 sectors). **Ball recall is the main open issue of route B.**
+
+**t grid.** `base` measures the wall where both faces were seen, so its mesh does not move with t (pot: wall
+3.96 mm at every t; cup: 1.75 mm). The `tprior` variant exercises the grid [M, decoded fidelity at t = 1.5 / 2.5 /
+4.0 mm]: pot 2.971 / 2.909 / 2.859 (balls free; the program's `t_min` window clips 1.5 to 2.0 mm), cup 4.105 /
+4.086 / 4.067 (budget mode), lid (always the prior) 1.446 / 1.699 / 2.269. The cup's measured two-sided wall is
+density-dependent: 1.68 / 1.75 / 4.44 mm at voxel 2.0 / 1.5 / 1.0 mm and 6.56 / 2.84 mm after 25 % / 50 % raw
+thinning, mostly through the axis (lathe_obs.fit_axis moves 2.4-7.1 deg between samplings; with the axis fixed t =
+1.75-2.69 mm). `lathe` `axis_refine: true` (local rotational-consistency search, off by default) brings the same 7
+samplings to 1.50-2.36 mm (spread 0.86 mm; pre-stated falsifier "> 1 mm" not met). Density-normalised cells alone
+do not stabilise it.
+
+**A inside B (`shell_patch`, budget mode, decoded fidelity base t = 2.5 mm, without / with patch):** lid 1.699 /
+1.656 (patch 40 cm², 3 bodies), rack 7.448 / 7.222 (74 cm², 16 bodies), pot 2.906 / 2.965 (240 cm², 20 bodies:
+worse), cup 4.073 / 4.073 (the splats leave no residual). Every budget-mode mesh is decoded by the kit's budget_mesh
+with welding only (area change 0.00 %); lid and cup stay watertight, the rack union is not watertight even without a
+patch (as in stage 1). Without the budget, the decode changed area by −2 to −11 % on patch rows (first stage-1b run).
+
+**plate_set** on the dust pan (ep39, all points): plane segmentation 6 plates, fidelity 2.54 mm; voxel connectivity
+1 plate, 6.83 mm. `keep_holes` kept no hole on the pan (its ring is not one of the plates); on the synthetic plate the
+30 mm hole survives (area 95.7 → 89.1 cm², expected −7.1).
+
+**Synthetic scene** (`--only synth`): `lsq` keeps exactly the 4.5 and 11 mm caps (4.79, 11.03 mm) and rejects the
+disc, rod, concave bowl and 25 mm cap; `ransac` fails (5.51, 11.43 and a false 14.58 mm ball on the rod);
+plate_set by plane 2 plates, by connectivity 1.
+
+**Scale** (`--only scale,scale_all`, points × 1.3, windows mode): output scaled back equals the original (median
+0.0 mm for cup, lid, pot; 0.053 mm rack; area within 0.7 %). Physical mode (same 1.5 mm voxel): cup wall 1.75 →
+4.94 mm, the density effect above.
+
+**Integrity.** Every production command ran under `strace -f -e trace=openat,open,openat2,execve`: 0 forbidden
+opens (`final/strace_audit.json`; the only pattern hit is Python's json/scanner.pyc).
 <!-- s1b-results:end -->
 
 ## 14. Limits (open)
+
+- **Ball recall**: the generic rule keeps 2 of 5 crop-visible lid balls and 1 of about 4-5 pot balls (section 13);
+  small caps that share a cluster with their mount are not separated. No stems are found.
+- **`shell_patch` is not a free win**: it lowers the fidelity sum on the lid and rack but raises it on the pot at
+  every t and variant (+0.03 to +0.10 mm), and it adds many small bodies (lid 3, rack 11-17, pot 20-49). Use it only
+  as a variant the GT-free gate chooses.
+- **The rack program's union is not watertight** (tube carving), with or without budget mode.
+- **Example `t_min` windows can clip the grid**: the pot program's `t_min` (max(1.5 mm, 0.022 s) = 2.0 mm) turns the
+  1.5 mm grid value into 2.0 mm.
+- **Two-sided walls depend on the axis**: use `axis_refine` (height method) or the `tprior` variant; the polar
+  method's axis search is already local-refined.
 
 - **The vocabulary is small**: no swept tubes of arbitrary section, no lofts, no ring/torus part, no free-form curved
   sheet; `splat`, `tsdf_patch` or `shell_patch` fill gaps.

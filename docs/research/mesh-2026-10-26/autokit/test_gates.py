@@ -337,10 +337,7 @@ def dev():
             m = ev['metrics']
             row = dict(case=case, base_kind=kind, edit=nm, mesh=p, failed=[g for g, v in ev['gates'].items() if not v and g != 'G_FLIP'],
                        rank=ev['rank_score'], edit_info=info if nm == 'base' else None,
-                       **{k: m.get(k) for k in ('dr_comp', 'dr_hole3d', 'dr_viol', 'dr_fsv', 'dr_out_share', 'dr_fsv_of_out',
-                                                'fs_frac', 'align_t_mm', 'align_rot_deg', 'align_res_mm', 'frame_med_mm',
-                                                'conn_share', 'topo_budget_watertight', 'topo_area_change',
-                                                'topo_budget_bodies', 'topo_raw_bodies', 'topo_budget_faces')},
+                       **{k: v for k, v in m.items() if k not in ('flip_rot',)},
                        sec=ev['sec'])
             jl(out, row); log(json.dumps(row, default=str))
 
@@ -382,7 +379,14 @@ def prereg():
                  'and their edits carry kind shell (diagnostic)',
         verdict_rule='each row met / not met as stated; reported in full, expected vs observed; thresholds and code '
                      'are NOT changed after the run (a mismatch of gates.py sha256 aborts the run)',
-        labels='synthetic, GT-free; no label from any scan score', cases=cases)
+        labels='synthetic, GT-free; no label from any scan score',
+        development='v3 terms were checked BEFORE this pre-registration on development episodes only (test_gates.py dev:'
+                    ' lid 2, pot 41, cup 21, rack 13, all used for v1 / v2; dev_rows.jsonl); that check set ALIGN_K 32 and'
+                    ' FSV_BLOB_MAX 10 cm^2 and showed that some unmodified program builds on dev episodes fail (pot 41'
+                    ' G_HOLE 0.050 and alignment 4-6 mm, rack 13 G_PREC 0.0501): the MUST_PASS expectations below are the'
+                    ' owner\'s stated expectations, kept as stated',
+        builds='the base meshes are gate-independent; their build (heldout --part build) started before this file was '
+               'written; no held-out mesh was evaluated before it', cases=cases)
     os.makedirs(OUT, exist_ok=True)
     json.dump(doc, open(PREREG, 'w'), indent=1)
     print(json.dumps(dict(prereg=PREREG, gates_py_sha256=doc['gates_py_sha256'], n_cases=len(cases))))
@@ -422,10 +426,13 @@ def build_base(case, obj, ep, base, prog, split, bdir):
 
 
 def heldout(stage='all', shard='0/1'):
-    pre = json.load(open(PREREG))
+    """stage 'build' (base meshes; gate-independent, may run before the pre-registration is written, no evaluation),
+    'eval' (requires prereg_gates_v3.json and gates.py at its frozen sha256), or 'all'."""
     cur = sha(f'{HERE}/gates.py')
-    if cur != pre['gates_py_sha256']:
-        raise SystemExit(f'gates.py sha256 {cur} != pre-registered {pre["gates_py_sha256"]}: aborting')
+    if stage in ('all', 'eval'):
+        pre = json.load(open(PREREG))
+        if cur != pre['gates_py_sha256']:
+            raise SystemExit(f'gates.py sha256 {cur} != pre-registered {pre["gates_py_sha256"]}: aborting')
     i_sh, n_sh = map(int, shard.split('/'))
     bdir, edir = f'{OUT}/heldout/base', f'{OUT}/heldout/edits'
     os.makedirs(bdir, exist_ok=True)
@@ -450,9 +457,9 @@ def heldout(stage='all', shard='0/1'):
             eval_case(case, obj, ep, base, prog, split, bdir, edir)
 
 
-def eval_case(case, obj, ep, base, prog, split, bdir, edir):
+def eval_case(case, obj, ep, base, prog, split, bdir, edir, prefix='heldout'):
     bp = f'{bdir}/{case}_base.glb'
-    rows_path = f'{OUT}/heldout_rows.jsonl'
+    rows_path = f'{OUT}/{prefix}_rows.jsonl'
     if not os.path.isfile(bp):
         jl(rows_path, dict(case=case, row='base', error='no base mesh (build failed)')); return
     o = io_gt.load_obs(io_gt.obs_path(obj, ep), keys=('pts', 'cam', 'frame'))
@@ -488,7 +495,7 @@ def eval_case(case, obj, ep, base, prog, split, bdir, edir):
     ev_row('library', G.lib_path(obj), rkind='library')
     sel = G.select(rows)
     name_of = {r['mesh']: r['row'] for r in rows}
-    jl(f'{OUT}/heldout_select.jsonl', dict(case=case, edit_info=info, pick=name_of.get(sel['pick']),
+    jl(f'{OUT}/{prefix}_select.jsonl', dict(case=case, edit_info=info, pick=name_of.get(sel['pick']),
                                            ranking=[name_of.get(x) for x in sel['ranking']],
                                            reasons={name_of[k]: v for k, v in sel['reasons'].items()}))
     log(case, 'PICK', name_of.get(sel['pick']), [name_of.get(x) for x in sel['ranking']])
@@ -554,6 +561,17 @@ def verdicts():
     summ = dict(n_expectations=n, met=k, not_met=[(v['case'], v['row'], v['expect']) for v in out if not v['met']])
     json.dump(summ, open(f'{OUT}/heldout_summary.json', 'w'), indent=1)
     print(json.dumps(summ, indent=1))
+
+
+def devcase():
+    """Code-path check of eval_case on a DEVELOPMENT case (lid ep2, stage-1 program mesh as the base, split even/odd)
+    before the pre-registration is frozen; outputs devcase_*."""
+    import shutil
+    bdir, edir = f'{OUT}/devcase/base', f'{OUT}/devcase/edits'
+    os.makedirs(bdir, exist_ok=True)
+    src = f'{S}/auto/stage1/integ/white_pot_lid_ep2/cand/dsl_sheet_strap_balls_t2.5.glb'
+    shutil.copyfile(src, f'{bdir}/lid2dev_base.glb')
+    eval_case('lid2dev', 'white_pot_lid', 2, 'program', 'sheet_strap_balls.json', 'even/odd', bdir, edir, prefix='devcase')
 
 
 # ---------------------------------------------------------------------------------------- noise (v2, kept)
@@ -630,9 +648,10 @@ def legacy_validate():
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['unit', 'dev', 'prereg', 'heldout', 'verdicts', 'noise', 'audit', 'legacy_validate'])
+    ap.add_argument('stage', choices=['unit', 'dev', 'devcase', 'prereg', 'heldout', 'verdicts', 'noise', 'audit',
+                                      'legacy_validate'])
     ap.add_argument('--shard', default='0/1'); ap.add_argument('--part', default='all', choices=['all', 'build', 'eval'])
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
-    dict(unit=unit, dev=dev, prereg=prereg, heldout=lambda: heldout(a.part, a.shard), verdicts=verdicts, noise=noise,
+    dict(unit=unit, dev=dev, devcase=devcase, prereg=prereg, heldout=lambda: heldout(a.part, a.shard), verdicts=verdicts, noise=noise,
          audit=audit, legacy_validate=legacy_validate)[a.stage]()
