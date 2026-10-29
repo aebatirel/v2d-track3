@@ -6,9 +6,9 @@
 set -u
 exec >> /content/results/gen/queue.log 2>&1
 step() { echo "[$(date -u +%FT%TZ)] $*"; }
-unset HF_TOKEN GH_TOKEN CONTAINER_API_KEY; export HF_HOME=/content/hfcache
 G=/content/v2d-track3/docs/research/mesh-2026-10-26/gen; R=/content/results/gen; cd /content/gin
 hf download $HF_STORE runs/mesh-20261029-gen-f3fbeb0/inputs/views_final.tar --repo-type dataset --local-dir /content/gin > /dev/null 2>&1
+unset HF_TOKEN GH_TOKEN CONTAINER_API_KEY; export HF_HOME=/content/hfcache       # the store read above needs the token
 tar xf runs/mesh-20261029-gen-f3fbeb0/inputs/views_final.tar && cp -r inputs2/crops/ep11 crops/ && step "INPUTS-OK $(sha256sum runs/mesh-20261029-gen-f3fbeb0/inputs/views_final.tar | cut -c1-16)"
 BEIGE="crops/ep11/beige_cup_k0.png crops/ep11/beige_cup_k6.png"
 (
