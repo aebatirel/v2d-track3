@@ -34,8 +34,11 @@ for o, e in EPS.items():
     for m in ('trellis2', 'triposg', 'hy21', 'sam3d'):
         for s in (42, 7):
             p = os.path.join(G, f'{m}_sim3', f'{o}_k{first[o]}_s{s}.ply')
+            p2 = os.path.join(G, f'{m}_1024_sim3', f'{o}_k{first[o]}_s{s}.ply')   # TRELLIS.2 crops that OOM at 1536
             if os.path.exists(p):
                 rows.append((f'gen/{m}/ep{e}_{o}_k{first[o]}_s{s}', o, p, m))
+            elif os.path.exists(p2):
+                rows.append((f'gen/{m}_1024/ep{e}_{o}_k{first[o]}_s{s}', o, p2, m))
             else:
                 print('missing', m, o, s, file=sys.stderr)
 open(out, 'w').write(''.join('\t'.join(map(str, r)) + '\n' for r in rows))

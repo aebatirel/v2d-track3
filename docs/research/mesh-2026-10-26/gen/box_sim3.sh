@@ -13,6 +13,6 @@ for m in "$@"; do
     b=$(basename $f .ply); obj=${b%_k*}
     [ -s $R/${m}_sim3/$b.ply ] && continue
     echo "$f /content/gin/obs_sub/ep${EP[$obj]}_$obj.npz $R/${m}_sim3/$b.ply"
-  done | xargs -P 48 -L 1 sh -c 'OMP_NUM_THREADS=1 /content/genv/bin/python '$G'/sim3_fit.py --obs $1 --out $2 $0' >> $R/${m}_sim3/fits.jsonl 2>> $R/${m}_sim3/errors.log
+  done | xargs -P 20 -L 1 sh -c 'OMP_NUM_THREADS=1 /content/genv/bin/python '$G'/sim3_fit.py --obs $1 --out $2 $0' >> $R/${m}_sim3/fits.jsonl 2>> $R/${m}_sim3/errors.log
   echo "$m: $(grep -c . $R/${m}_sim3/fits.jsonl) fits"
 done
