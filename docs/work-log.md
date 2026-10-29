@@ -4584,3 +4584,4 @@ Advice given:
   reserve ≥ $30. Message sent to the mesh session (session_01W8Softjo2xx7o6ofSiheuQ) with the owner's words, the ledger
   protocol (`mesh-` run ids, planned/actual lines) and where meshes help AUC (collision copies for evals 14/28/30/1/10,
   stability gate before AUC use).
+- ~21:45 UTC: mesh session replied. It logged the allocation but will not rent on the relay alone (CLAUDE.md: owner's own go-ahead per batch); it will put a costed plan to the owner. CPU-only tonight (autokit stage 1b); it adds the stability gate to its stage-2 gates and will message before producing collision copies.
