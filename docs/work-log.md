@@ -4687,3 +4687,5 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   changed nothing. All files compile. The partial edits are committed as an unreviewed WIP snapshot; scratch outputs are
   in `auto/stage1b/{parts,shell}`. Owner: "Tekrar deneyin" (try again). Relaunching with instructions to review and
   finish the partial work.
+- 2026-10-29 21:10 UTC: stage 1b relaunched as `wf_d55d762f-ae7` (same script plus a restart note: review and finish
+  the WIP at 14eaf37, and write PROGRESS.md lines so another cut-off loses less).
