@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-29 ~23:00 UTC: batch 2 generative probe running (box 58314388, H100 NVL bid $0.80/h, cap $12)
+- Models: Pixal3D multi-view (posed, our object frame), TRELLIS.2, TripoSG, Hunyuan3D-2.1 (shape), and SAM 3D
+  Objects (access approved during the run; weights copied through the private store). Code and runs:
+  `docs/research/mesh-2026-10-26/gen/`; work log 22:15-22:55 entries.
+- Scan scoring pre-registered (work log ~22:55): one scoring per mesh after a sha256 freeze; diagnostic [D] only.
+
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
 ## 2026-10-27 ~13:30 UTC: building the A+B mesh engine (CPU, $0); research verdict: generic-only route failed
