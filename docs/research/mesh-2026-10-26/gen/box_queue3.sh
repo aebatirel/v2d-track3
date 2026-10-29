@@ -5,7 +5,9 @@ set -u
 exec >> /content/results/gen/queue3.log 2>&1
 step() { echo "[$(date -u +%FT%TZ)] $*"; }
 G=/content/v2d-track3/docs/research/mesh-2026-10-26/gen; R=/content/results/gen; cd /content/gin
-while pgrep -f "^bash /content/v2d-track3/docs/research/mesh-2026-10-26/gen/box_queue.sh" > /dev/null; do sleep 10; done
+# one large model on the GPU at a time: after queue 1 and after queue 2 (Pixal3D-MV, SAM 3D)
+while pgrep -f "^bash /content/v2d-track3/docs/research/mesh-2026-10-26/gen/box_queue.sh" > /dev/null \
+   || ! grep -q QUEUE2-DONE $R/queue2.log 2> /dev/null; do sleep 10; done
 unset HF_TOKEN GH_TOKEN CONTAINER_API_KEY; export HF_HOME=/content/hfcache
 for s in 42 7; do
   MISSING=$(/content/genv/bin/python - $R/trellis2/gen_log.jsonl $s <<'PY'
@@ -21,7 +23,6 @@ PY
   step "trellis2 1024 seed $s: $MISSING"
   [ -n "$MISSING" ] && /content/genv/bin/python $G/gen_trellis2.py --out $R/trellis2_1024 --res 1024 --seeds $s $MISSING >> $R/trellis2_1024.log 2>&1
 done
-step "sim3 trellis2 hy21 trellis2_1024"
-sed -i 's/xargs -P 48/xargs -P 20/' $G/box_sim3.sh
-bash $G/box_sim3.sh trellis2 hy21 trellis2_1024 >> $R/sim3_more.log 2>&1
+step "sim3 trellis2 hy21 trellis2_1024 sam3d (fills the gaps of the early batch)"
+bash $G/box_sim3.sh triposg trellis2 hy21 trellis2_1024 sam3d >> $R/sim3_more.log 2>&1
 step "QUEUE3-DONE"
