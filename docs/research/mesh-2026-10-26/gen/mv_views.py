@@ -173,12 +173,12 @@ def main():
         base = inside and occl < a.occl and nhand == 0
         rest = speed[k] < a.speed_mm * 1e-3
         skin_frac = None
-        if a.skin and base and (rest or speed[k] < a.held_speed_mm * 1e-3):
+        if a.skin and base and not rest and speed[k] < a.held_speed_mm * 1e-3:
             img = rd.get(k + a_off)
             core = cv2.erode(vis.astype(np.uint8), np.ones((15, 15), np.uint8)) > 0
             skin_frac = float(skin(img)[core].mean()) if img is not None and core.any() else 1.0
         held_ok = (not rest) and skin_frac is not None and skin_frac < a.skin_max
-        ok = base and ((rest and (skin_frac is None or skin_frac < a.skin_max)) or held_ok)
+        ok = base and (rest or held_ok)                            # the skin gate applies to held frames only
         cands.append(dict(k=k, vis=int(vis.sum()), occl=round(occl, 4), inside=bool(inside), hand_joints=nhand,
                           speed_mm=round(float(speed[k]) * 1e3, 2), rest=bool(rest),
                           skin=None if skin_frac is None else round(skin_frac, 4), ok=bool(ok), u=u.round(5).tolist()))
@@ -187,7 +187,8 @@ def main():
         raise SystemExit(f'no usable frame for {a.obj}')
     vmax = max(cd['vis'] for cd in good)
     good = [cd for cd in good if cd['vis'] >= 0.4 * vmax]
-    chosen = [max(good, key=lambda cd: cd['vis'])]
+    rest_good = [cd for cd in good if cd['rest']]                 # view 0: a clean at-rest frame when one exists
+    chosen = [max(rest_good or good, key=lambda cd: cd['vis'])]
     while len(chosen) < a.n:
         U = np.array([cd['u'] for cd in chosen])
         best, bd = None, -1

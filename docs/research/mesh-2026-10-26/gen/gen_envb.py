@@ -21,6 +21,14 @@ def load_triposg():
         flash = True
     except Exception:
         flash = False                                   # DiffDMC unavailable: hierarchical skimage extractor
+        import types                                    # inference_utils imports diso unconditionally: stub it
+        stub = types.ModuleType('diso')
+
+        class DiffDMC:                                  # noqa: N801  only the flash decoder would call it
+            def __init__(self, *a, **k):
+                raise RuntimeError('diso is not installed')
+        stub.DiffDMC = DiffDMC
+        sys.modules['diso'] = stub
     from triposg.pipelines.pipeline_triposg import TripoSGPipeline
     from image_process import prepare_image
     pipe = TripoSGPipeline.from_pretrained(os.environ.get('TRIPOSG_W', '/content/w/TripoSG')).to('cuda', torch.float16)
