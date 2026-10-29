@@ -4779,3 +4779,30 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
   machine). Bid raised to $1.30/h GPU ($1.398/h all-in) and the instance restarted 22:53; /content survived (envs,
   weights, finished meshes), running jobs were lost. `gen/box_resume.sh` reruns whatever is missing, one large model
   on the GPU at a time. Cost so far from the Vast record: 43 min at $0.898/h + 58.3 GB download at $37.3/TB.
+
+### 2026-10-29 ~23:40 UTC: batch 2 generation finished, box destroyed, one-shot scoring started
+- **Box 58314388 destroyed 23:35:15 UTC** (`ops/vast.sh destroy`, confirmed absent in `ops/vast.sh show`).
+  Measured from the Vast instance record: 84.3 min running (43 min at $0.898/h, outbid 22:52, 41 min at
+  $1.398/h) + 71.6 GB download at $37.3/TB ($2.61) + upload/storage = **$4.36** (cap $12). A second container
+  restart at 23:22 (cause unknown) killed a Sim(3) batch; rerun.
+- **Generated (all in the HF store `runs/mesh-20261029-gen-f3fbeb0/results/results_gen.tar`, 2.19 GB, sha256
+  56986e13...; copied to scratchpad `gen/mesh-20261029-gen-f3fbeb0/results/gen/`):**
+  - Pixal3D-MV (posed, our object frame): 10 objects x 2 seeds, all ok, ~22 s each at 1536; view-0-only for
+    board 2 and dust pan (4).
+  - TRELLIS.2 1536: 37 of 40 (crop, seed) ok; 17 OOM records in total (three jobs sharing the GPU; the blue-cup
+    crops need ~85 GB even alone); 3 blue-cup pairs at 1024 (`trellis2_1024`).
+  - TripoSG 40/40 (no diso: skimage extractor), Hunyuan3D-2.1 shape 40/40, SAM 3D 20/20 (first-ranked crops;
+    a first attempt failed 20/20 on the MoGe/utils3d version, fixed by the repo's pins).
+  - Sim(3) fits to our observed points for 120 single-image meshes (all scored ones included).
+- **Frozen:** 312 mesh files hashed (`results/gen-probe/SHA256SUMS`, committed 243b854) before any scan read;
+  scoring manifest 104 meshes (`results/gen-probe/score_manifest.tsv`).
+- **GT-free checks (our masks and points only):**
+  - Pixal3D outputs reproject onto our view masks at IoU 0.91-0.99 (library_v3 0.68-0.93). The multi-view
+    conditioning is real: the view-0-only runs score 0.44-0.67 on the views they did not see, the 2-3-view runs
+    0.88-0.97.
+  - Distance to our observed points (median obs->mesh, mm): Pixal3D better than library_v3 only for the blue cup
+    (1.3 vs 1.7) and similar for the dust pan (2.2 vs 2.0); much worse for pitcher (6-16 vs 2.4), rack (16-18 vs
+    2.4), pot (3.9-6.9 vs 2.2). Single-view depth ambiguity: the shape stretches along the viewing ray.
+- Scoring: `MESH_SCR=<scratchpad> mesh_metric.py run --workers 1 --manifest score_manifest.tsv --out scores.jsonl`,
+  started 23:37:51 UTC (104 scorings, one per mesh).
+- SAM 3D access re-checked at 23:17: HTTP 200 (approved).
