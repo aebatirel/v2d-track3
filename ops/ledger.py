@@ -8,9 +8,10 @@ read this ledger, and add a `planned` line; after the box is destroyed, add an `
   python3 ops/ledger.py add actual  <run_id> <usd>     "<note>"
   python3 ops/ledger.py budget <usd> "<note>"          record an owner top-up / cap
 """
-import datetime, json, os, sys, tempfile
+import datetime, json, os, sys, tempfile, time
 
 from huggingface_hub import HfApi, hf_hub_download
+from huggingface_hub.utils import EntryNotFoundError
 
 STORE = os.environ.get('HF_STORE', 'aebatirel/v2d-store')
 PATH = 'ledger/spend.jsonl'
@@ -18,23 +19,36 @@ SESSION = os.environ.get('LEDGER_SESSION', 'unknown-session')
 
 
 def read():
+    """(rows, head commit). Only a missing ledger reads as empty; any other failure aborts, so a failed read can never
+    turn into an overwrite (2026-10-29: a swallowed download error erased two lines)."""
+    head = HfApi().repo_info(STORE, repo_type='dataset').sha
     try:
-        p = hf_hub_download(STORE, PATH, repo_type='dataset', force_download=True)
-        return [json.loads(l) for l in open(p) if l.strip()]
-    except Exception:
-        return []
+        p = hf_hub_download(STORE, PATH, repo_type='dataset', revision=head, force_download=True)
+    except EntryNotFoundError:
+        return [], head
+    return [json.loads(l) for l in open(p) if l.strip()], head
 
 
-def write(rows, msg):
-    with tempfile.NamedTemporaryFile('w', suffix='.jsonl', delete=False) as f:
-        f.write(''.join(json.dumps(r) + '\n' for r in rows))
-    HfApi().upload_file(path_or_fileobj=f.name, path_in_repo=PATH, repo_id=STORE, repo_type='dataset',
-                        commit_message=msg)
+def append(row, msg, tries=5):
+    """Append one row with optimistic concurrency: the upload names the commit it read (parent_commit), so a
+    concurrent writer makes it fail and we re-read and retry instead of overwriting."""
+    for i in range(tries):
+        rows, head = read()
+        with tempfile.NamedTemporaryFile('w', suffix='.jsonl', delete=False) as f:
+            f.write(''.join(json.dumps(r) + '\n' for r in rows + [row]))
+        try:
+            HfApi().upload_file(path_or_fileobj=f.name, path_in_repo=PATH, repo_id=STORE, repo_type='dataset',
+                                commit_message=msg, parent_commit=head)
+            return
+        except Exception as e:  # conflict with a concurrent commit (or a transient error): re-read and retry
+            if i == tries - 1:
+                raise
+            time.sleep(2 + 3 * i)
 
 
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'show'
-    rows = read()
+    rows, _ = read()
     now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
     if cmd == 'show':
         planned = {r['run']: r['usd'] for r in rows if r['kind'] == 'planned'}
@@ -51,11 +65,11 @@ def main():
         r = dict(time=now, kind=kind, run=run, usd=usd, session=SESSION, note=note)
         if len(sys.argv) > 6:
             r['approval'] = sys.argv[6]
-        write(rows + [r], f'ledger: {kind} {run} ${usd:.2f}')
+        append(r, f'ledger: {kind} {run} ${usd:.2f}')
         print(json.dumps(r))
     elif cmd == 'budget':
         r = dict(time=now, kind='budget', run='-', usd=float(sys.argv[2]), session=SESSION, note=sys.argv[3])
-        write(rows + [r], f'ledger: budget ${r["usd"]:.2f}')
+        append(r, f'ledger: budget ${r["usd"]:.2f}')
         print(json.dumps(r))
 
 
