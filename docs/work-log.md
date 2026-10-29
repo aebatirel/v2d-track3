@@ -4610,3 +4610,12 @@ Advice given:
     - C is confounded on any episode where kd 2 lowers the zero-action sim_vs_ref by > 0.05.
   - Arm D (kp 100 standard learner) waits for budget. `tools/ckpt_meta.py` confirms each checkpoint's stored
     embodiment, curriculum and assist.
+- ~22:45 UTC: launched recipe arms (on demand, commit 34bf6ae; $4.50 planned each in the ledger):
+  - A 58317885 (Thailand, $1.38/h);
+  - B 58317901 (Japan, $1.51/h);
+  - C 58317920 (New York, $1.56/h).
+  Planned spend this session: $16 of $45.
+- Refine-stage build workflow `wf_ab20aa07-322`, CPU: pulls the public inputs, reproduces the 0.892 baseline, builds
+  `pipeline/refine.py` (S1 support-gated snap, S2 0.545-frame advance, S3 tilt-to-plane anchor, S4 pre-contact hold),
+  then ablations against the plan's pre-registered gates and an adversarial verification. Plan and maps: session
+  scratchpad `map/` (copied into the repo with the results).
