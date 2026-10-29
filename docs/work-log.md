@@ -4585,3 +4585,12 @@ Advice given:
   protocol (`mesh-` run ids, planned/actual lines) and where meshes help AUC (collision copies for evals 14/28/30/1/10,
   stability gate before AUC use).
 - ~21:45 UTC: mesh session replied. It logged the allocation but will not rent on the relay alone (CLAUDE.md: owner's own go-ahead per batch); it will put a costed plan to the owner. CPU-only tonight (autokit stage 1b); it adds the stability gate to its stage-2 gates and will message before producing collision copies.
+- 22:18 UTC check-in.
+  - **H5 draw 1** (fresh evaluation in pack 6's exact environment): mean sim_vs_ref **0.8878** vs packed 0.9164.
+    Large drops: eval 14 0.446 (packed 0.909), eval 16 0.777 (0.908), eval 28 0.872 (0.929). Draws 2–3 are done;
+    10 in total.
+  - Mesh session launched two boxes under its allocation, both with ledger lines: mesh-evdepth $4 and mesh-gen $6
+    (cap $12). The account has 3 boxes.
+  - **Ledger bug:** `ops/ledger.py` swallowed a failed read and overwrote the file, erasing two lines (budget $100,
+    H5 planned). Fixed in 8be9e27: abort on read errors and append with `parent_commit` plus retry. Lines restored;
+    the mesh session was told to re-fetch.
