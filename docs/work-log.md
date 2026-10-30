@@ -4842,3 +4842,13 @@ Advice given:
   RUNS done) under HF store rate limiting (HTTP 429, ~2 min waits). Cause [H]: concurrent store traffic tonight (the
   depth-audit downloads, two workflows' listings, the eval-1 box). Left running; the store traffic from this session is
   kept minimal until it finishes.
+- 08:50 UTC **eval-1 official confirmation: PASSED** (`20261030-e1conf2-d41382e`, box 58370419 self-destroyed after
+  08:12; ledger actual $0.90, estimate). 20 fresh official draws of the carved s43 policy: **0.9241 ± 0.017** (min
+  0.884, 0/20 below 0.70) vs the packed policy's H5 0.822 ± 0.239. Rule of 06:20: passes; mean ≥ 0.9196, so a
+  leaderboard gain in expectation (≈ +0.0002 AUC as scored [estimate]). The training-box falsifier did not fire
+  (training box 0.931 ± 0.006 vs official 0.924 ± 0.017).
+  - **Pack-8 candidate** `results/submissions/20261030-track3h-candidate/` (pack 7 + the fresh eval-1 draw 1, 0.9232;
+    built on the box; CPU check vs pack 7: only eval 1's 670 pose rows and its checkpoint hash differ, plus the commit
+    URL; meshes and script hashes identical). **Not uploaded; the owner decides.**
+  - First carve adopted under a pre-registered rule: placement carves work for eval 1 (pot/lid overlap), not for
+    eval 14 (cup into rack).

@@ -2,6 +2,13 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~08:50 UTC: eval-1 carve CONFIRMED on the official evaluator; pack-8 candidate ready (NOT uploaded)
+- Eval 1 (placement carve, seed 43): 20 official draws 0.924 ± 0.017 (min 0.884) vs packed policy 0.822 ± 0.239.
+- Pack 8 = pack 7 + fresh eval-1 rollout (0.9232): `results/submissions/20261030-track3h-candidate/`. Expected
+  ≈ +0.0002 AUC as scored [estimate]; mainly robustness if checkpoints are re-run. **Owner decides the upload.**
+- Depth audit falsified (no GT-free reference-error detector). Videos of the worst 5 still rendering (HF 429s).
+- Spend this session ≈ $28.2 actual + video box running (≈ $2) of $45.
+
 ## 2026-10-30 ~06:45 UTC: PACK 7 UPLOADED (owner-approved) — AUC 0.81460, our best, but 7th: the field moved
 - Pack 7 = pack 6 + eval 33 from arm B. AUC 0.81460 (+0.0007), RPE 3.932, MPPE 2.921, SP-SR 0.85, MP-SR 0.65.
 - AUC board: 0.940 / 0.931 (DDD) / 0.883 / 0.870 / 0.860 / 0.856 / **0.8146 us** / 0.773. 5th needs ≈ +0.046.
