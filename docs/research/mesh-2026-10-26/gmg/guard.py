@@ -1,22 +1,25 @@
-"""gmg input guard (module M0 of SPEC v1 rev 1, sections 2, 3 and 7; build step B0).
+"""gmg input guard (module M0 of SPEC v1 rev 1, sections 2, 3 and 7; build step B0, round 2).
 
 Every gmg input goes through this module. It decides, before a file is opened, whether the file may be read, and it
 records every input that passes with its sha256, so a run's manifest lists exactly what the run read.
 
-  open_input(path, role) -> realpath     check a file for a role and record it (sha256, tier)
-  load_npz(path, role, keys=None)        open_input + key filter (det_f0.npz: mask keys only; tracks: poses only)
+  open_input(path, role) -> realpath     check a file for a role and record it (sha256, tier). A det file (below) is
+                                         refused here: it is read through load_npz only.
+  load_npz(path, role, keys=None)        open_input + key filter (det files: mask keys only, under ANY role; tracks:
+                                         poses only)
   load_json(path, role)                  open_input + json.load
   mode() -> 'clean' | 'dev'              env GMG_MODE, read once at import (default 'clean')
-  constant(name, value, origin)          constant registry with origins (sensor, generic, kit, informed,
+  constant(name, value, origin)          constant registry with origins (sensor, generic, kit, informed:<A.6 row>,
                                          fitted:<what>, fallback:<what>; PREREG A.6)
   manifest() / write_manifest(path)      mode, tier, commit, roots, every input with sha256, constants, refusals
-  set_run(path) / run_dir()              the run folder RUN = <data>/gmg/runs/<yyyymmdd>-<tag>-<commit7>/ (role own)
+  set_run(path) / run_dir()              the run folder (role own): clean DATA/gmg/runs/<yyyymmdd>-<tag>-<commit7>/,
+                                         dev DATA/gmg/runs-dev/<...>/, each with the marker RUN/run_tier.json
   check_io_gt(path, kind)                bridge for autokit/io_gt.py: an io_gt input inside a gmg process must also
                                          pass this guard (an io_gt root that is not on the gmg allow-list is refused)
   io_gt_roots_report()                   which io_gt roots this guard admits in the current mode
 
 Checks of open_input, in this order (a path is refused before the file is opened; only a file that passed every path
-check is hashed):
+check is hashed, which reads its bytes but decodes nothing):
   1. the role exists, and a dev-only role (obs_all, x0_pool, fixture) is refused in clean mode;
   2. path substrings /scan, /loc/, _align, .parquet, mocap (case-insensitive; as given and resolved through links);
   3. the deny-list globs (ops/provenance/denylist.json through pipeline/provenance.py, plus the repo file itself, plus
@@ -24,21 +27,32 @@ check is hashed):
   4. the revision-1 refusals (library_v1..v4 and v3x, results/prim, scratchpad prim/, lathe/, auto/, gen/mesh-*,
      crops/, evalcrops/, diag/, gmg/design/, obs_all/, obs/). In dev mode a dev role named in REFUSED may pass its
      own folder; in clean mode nothing does, and that holds even if a later allow-list change would admit the folder;
-  5. the allow-list of the role (ROLE_PATTERNS, on the resolved path; the kit role excludes the scorer);
+  5. the allow-list of the role (ROLE_PATTERNS, on the resolved path; the kit role excludes the scorer); files in the
+     run folder need a valid run marker (clean mode: a clean marker, never DEV, never missing);
   6. the file exists, is a regular file and has exactly one hard link;
-  7. its sha256 is not on the deny-list (renamed copies), and matches expect_sha256 if one is given.
-A Python audit hook (installed at import) also refuses, in-process, any open() / os.open() of a path that fails checks
-2-4 (code files are exempt from check 2 only, since e.g. json/scanner.py contains '/scan'). Opens from C code are not
-seen by the hook; the strace audit (tools/strace_audit.py) covers them.
+  7. its sha256 is not on the deny-list (renamed copies), and matches expect_sha256 if one is given (and the frozen
+     eval-track registry for data/eval/ep*/poses.npz once gmg/frozen_eval_tracks.json exists, SPEC section 17);
+  8. det identity (by the file, not by the role): a file named det_f<N>.npz, any .npz under DATA/data/store/ep*/, a
+     file whose sha256 is in the det registry (gmg/det_registry.json plus every det file hashed in this process), or a
+     zip whose member names carry the det signature keys (sim, chosen, gdino, template_*, ...). Such a file is read
+     only through load_npz and only its mask keys, whatever the role.
+A Python audit hook (installed at import) also refuses, in-process, any open() / os.open() (dir_fd resolved) of a path
+that fails checks 2-4 (files with a code suffix are exempt from check 2 only, since e.g. json/scanner.py contains
+'/scan'), any open of a det file outside load_npz (so shutil.copy, np.load or open of a det file fail), and any write
+under the run roots outside the current run folder. Opens from C code are not seen by the hook; the strace audit
+(tools/strace_audit.py) covers them and reconciles every det-file open against the guard's own count.
 
 Roots: DATA = env GMG_DATA_ROOT (default: this session's scratchpad), KIT = env GMG_KIT_ROOT (default
-DATA/kit/v2d_submission_kit), WEIGHTS = env GMG_WEIGHTS_ROOT (default DATA/weights), RUN = env GMG_RUN or set_run(),
-which must be DATA/gmg/runs/<yyyymmdd>-<tag>-<commit7>. All are read once at import and recorded in the manifest.
-Tiers (SPEC section 3): P0 raw inputs; P1 Phase-1 tracks (library-templated); own files carry RUN/run_tier.json
-(default P1); dev roles and every dev-mode run are DEV. The worst tier wins.
+DATA/kit/v2d_submission_kit), WEIGHTS = env GMG_WEIGHTS_ROOT (default DATA/weights). KIT and WEIGHTS may not contain
+or lie inside DATA/data, DATA/cache, the run roots, the repository or a refused folder (import fails otherwise).
+RUN = env GMG_RUN or set_run(). All are read once at import and recorded in the manifest.
+Tiers (SPEC section 3): P0 raw inputs; P1 Phase-1 tracks (library-templated); own files carry the run marker's tier
+(clean runs start at P1; a missing or unreadable marker means DEV, never P1); dev roles and every dev-mode run are DEV.
+The worst tier wins.
 """
 from __future__ import annotations
 
+import contextlib
 import datetime
 import fnmatch
 import hashlib
@@ -47,9 +61,11 @@ import json
 import os
 import re
 import socket
+import stat
 import subprocess
 import sys
 import threading
+import zipfile
 
 GMG_DIR = os.path.dirname(os.path.abspath(__file__))
 MESH_RESEARCH = os.path.dirname(GMG_DIR)                                   # docs/research/mesh-2026-10-26
@@ -57,6 +73,8 @@ REPO = os.path.abspath(os.path.join(MESH_RESEARCH, '..', '..', '..'))
 SCRATCH_DEFAULT = '/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad'
 DENYLIST_REPO = os.path.join(REPO, 'ops', 'provenance', 'denylist.json')
 PROVENANCE_PY = os.path.join(REPO, 'pipeline', 'provenance.py')
+DET_REGISTRY = os.path.join(GMG_DIR, 'det_registry.json')           # sha256 + member names of the det dumps
+FROZEN_EVAL_TRACKS = os.path.join(GMG_DIR, 'frozen_eval_tracks.json')  # SPEC section 17 (written by B19)
 
 MODES = ('clean', 'dev')
 SUBSTRINGS = ('/scan', '/loc/', '_align', '.parquet', 'mocap')
@@ -64,14 +82,26 @@ CLEAN_ROLES = ('calib', 'tracks', 'depth', 'video', 'det', 'roster', 'kit', 'wei
 DEV_ROLES = ('obs_all', 'x0_pool', 'fixture')
 ROLES = CLEAN_ROLES + DEV_ROLES
 # npz key filters (fnmatch patterns). det_f0.npz also holds library-derived fields (sim, template_*, chosen, score*,
-# verify*, rules, params, ...) and the Grounding DINO boxes (gdino): all refused (SPEC section 2).
+# verify*, rules, params, ...) and the Grounding DINO boxes (gdino): all refused (SPEC section 2). NPZ_KEYS['det']
+# applies to every det file (det identity, check 8) whatever the role it is opened under.
 NPZ_KEYS = dict(det=('masks', 'mask_shape', 'frame', 'K', 'image', 'depth', 'names'),
                 tracks=('world_T_cam', 'cam_T_*'))
+DET_NAME = re.compile(r'^det_f\d+\.npz$', re.I)
+DET_DIRS = ('{DATA}/data/store/ep*/**',)
+# member names that mark a det dump (distinctive library-derived fields; generic names such as area, score, params are
+# left out so an own bundle is not mistaken for one). A zip with at least DET_SIGNATURE_MIN of them is a det file.
+DET_SIGNATURE = ('sim', 'chosen', 'gdino', 'template_extent', 'template_intensity', 'verify', 'verify_matched',
+                 'score_rules', 'reprop')
+DET_SIGNATURE_MIN = 2
 # kit files that score (or read reference data); refused for role kit
 KIT_SCORER = ('metric_code/**', 'v2dlb/object_mesh.py', 'v2dlb/object_pose.py', 'v2dlb/track3_pose.py',
               'v2dlb/mhr_metrics.py', 'v2dlb/vertices.py', 'v2dlb/trajectory.py', 'v2dlb/dataset.py')
-# named test fixtures (dev role fixture) with their sha256 prefix: PREREG B.14 T-V2d, the hand-kit lid potlid/fit/ep2
-FIXTURE_FILES = {'{DATA}/prim/potlid/cand/white_pot_lid_ep2_fit.glb': 'e1be3218a8608793'}
+# named test fixtures (dev role fixture) with the sha256 prefix of the raw file. PREREG B.14 T-V2d names the hand-kit lid
+# potlid/fit/ep2 by its LABEL sha prefix e1be3218a8608793, which is the sha of the budgeted mesh the label scored
+# (FIXTURE_LABEL_SHA; B1 checks it after fit_budget); the raw file hashes to 4bd1751e84052f05 [M] (DEVIATIONS 18).
+FIXTURE_FILES = {'{DATA}/prim/potlid/cand/white_pot_lid_ep2_fit.glb': '4bd1751e84052f05'}
+FIXTURE_LABEL_SHA = {'{DATA}/prim/potlid/cand/white_pot_lid_ep2_fit.glb': 'e1be3218a8608793'}
+RUNS = dict(clean='{DATA}/gmg/runs', dev='{DATA}/gmg/runs-dev')
 ROLE_PATTERNS = dict(
     calib=('{DATA}/data/calib.json',),
     tracks=('{DATA}/data/sweep/ep*/poses.npz', '{DATA}/data/eval/ep*/poses.npz', '{RUN}/tracks/**'),
@@ -90,6 +120,7 @@ ROLE_PATTERNS = dict(
              '{DATA}/gen/mesh-*/**', '{DATA}/prim/**', '{DATA}/lathe/**'),
     fixture=('{GMG}/tests/fixtures/**',),
 )
+EVAL_TRACKS = '{DATA}/data/eval/ep*/poses.npz'
 # revision-1 refusals: (name, patterns, dev roles that may pass this folder in dev mode only)
 REFUSED = (
     ('meshes/library_v1..v4, library_v3x', ('**/meshes/library_v[1-4]/**', '**/meshes/library_v3x/**'), ()),
@@ -98,7 +129,8 @@ REFUSED = (
     ('scratchpad/lathe', ('{DATA}/lathe/**', '**/scratchpad/lathe/**'), ('x0_pool',)),
     ('scratchpad/auto (stage-1b outputs)', ('{DATA}/auto/**', '**/scratchpad/auto/**'), ()),
     ('scratchpad/gen/mesh-* (generator outputs seeded with library_v3)',
-     ('{DATA}/gen/mesh-*', '{DATA}/gen/mesh-*/**', '**/scratchpad/gen/mesh-*'), ('x0_pool',)),
+     ('{DATA}/gen/mesh-*', '{DATA}/gen/mesh-*/**', '**/scratchpad/gen/mesh-*', '**/scratchpad/gen/mesh-*/**'),
+     ('x0_pool',)),
     ('scratchpad/crops (library_v3 seeds)', ('{DATA}/crops/**', '**/scratchpad/crops/**'), ()),
     ('scratchpad/evalcrops (library_v3 seeds)', ('{DATA}/evalcrops/**', '**/scratchpad/evalcrops/**'), ()),
     ('scratchpad/diag (scan placements, load_scan)', ('{DATA}/diag/**', '**/scratchpad/diag/**'), ()),
@@ -107,15 +139,23 @@ REFUSED = (
      ('obs_all',)),
     ('scratchpad/obs (library ROI)', ('{DATA}/obs/**', '**/scratchpad/obs/**'), ()),
 )
+# the folders of REFUSED as concrete paths (for the KIT/WEIGHTS root check)
+REFUSED_DIRS = ('{REPO}/meshes', '{MR}/results/prim', '{DATA}/prim', '{DATA}/lathe', '{DATA}/auto', '{DATA}/gen',
+                '{DATA}/crops', '{DATA}/evalcrops', '{DATA}/diag', '{DATA}/gmg/design', '{DATA}/obs_all', '{DATA}/obs')
 ORIGIN_HEADS = ('sensor', 'generic', 'kit', 'informed', 'fitted', 'fallback')
+# PREREG A.6 rows whose origin is 'informed' (an informed constant must name one; tests check this list against A.6)
+INFORMED_A6 = ('V5', 'ball detector', 'class order', 'grammar', 'slab two-face thickness', 'track sanity',
+               'identity tests', 'K-a / K-b FSV difference')
 TIER_ORDER = {'P0': 0, 'P1': 1, 'DEV': 2}
 RUN_NAME = re.compile(r'^\d{8}-[a-z0-9][a-z0-9._-]*-[0-9a-f]{7}$')
 CODE_SUFFIX = ('.py', '.pyc', '.pyi', '.so', '.pyd', '.pth')
+WRITE_FLAGS = os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
 # constants SPEC section 2 says are not used (scan-informed): refused unless their origin says fitted (or fallback for
-# the pre-registered t0 fallback, PREREG A.6)
-BANNED = ((re.compile(r'(ball|marker).*(radius|rad\b|_r$|_r_)', re.I), (7.0, 0.007), ('fitted',)),
-          (re.compile(r'thick|^t0|wall', re.I), (2.5, 0.0025), ('fitted', 'fallback')),
-          (re.compile(r'tau', re.I), (0.2,), ('fitted',)))
+# the pre-registered t0 fallback, PREREG A.6). Names are matched loosely; values exactly.
+BANNED = ((re.compile(r'radius|(^|[_.])(r|rad)([_.]|$)|ball|marker|sphere|bead', re.I), (7.0, 0.007), ('fitted',)),
+          (re.compile(r'diam', re.I), (14.0, 0.014), ('fitted',)),
+          (re.compile(r'thick|wall|shell|(^|[_.])t0?([_.]|$)', re.I), (2.5, 0.0025), ('fitted', 'fallback')),
+          (re.compile(r'tau|v3|thresh|veto', re.I), (0.2,), ('fitted',)))
 
 
 class GuardError(PermissionError, ValueError):
@@ -132,6 +172,8 @@ def _load_cfg():
     if m not in MODES:
         raise GuardError(f'gmg guard: GMG_MODE={m!r} is not one of {MODES}')
     data = _real(os.environ.get('GMG_DATA_ROOT', SCRATCH_DEFAULT))
+    if data == '/':
+        raise GuardError('gmg guard: GMG_DATA_ROOT may not be /')
     return dict(mode=m, data=data, repo=_real(REPO), gmg=_real(GMG_DIR), mr=_real(MESH_RESEARCH),
                 kit=_real(os.environ.get('GMG_KIT_ROOT', os.path.join(data, 'kit', 'v2d_submission_kit'))),
                 weights=_real(os.environ.get('GMG_WEIGHTS_ROOT', os.path.join(data, 'weights'))),
@@ -143,7 +185,9 @@ _INPUTS = {}            # realpath -> record
 _REFUSALS = []          # every refusal (open_input, load_npz keys, hook)
 _CONSTANTS = {}         # name -> record
 _SHA = {}               # (realpath, size, mtime_ns, ino) -> sha256
+_IDENT = {}             # (realpath, size, mtime_ns, ino) -> det identity reason or ''
 _ADMITTED = set()       # realpaths admitted by open_input (the hook lets these through in dev mode)
+_GUARDED_OPENS = {}     # realpath -> opens the hook let through inside load_npz / guard internals (det reconciliation)
 _RX = {}                # compiled pattern cache
 _TLS = threading.local()
 _HOOK = dict(installed=False, blocked=0)
@@ -152,21 +196,6 @@ _HOOK = dict(installed=False, blocked=0)
 def mode():
     """'clean' or 'dev' (env GMG_MODE, read once at import; default 'clean')."""
     return CFG['mode']
-
-
-def set_run(path):
-    """Set the run folder (role own) once: it must be DATA/gmg/runs/<yyyymmdd>-<tag>-<commit7>. Creates it."""
-    rp = _real(path)
-    if CFG['run'] is not None and CFG['run'] != rp:
-        raise GuardError(f'gmg guard: the run folder is already {CFG["run"]}')
-    parent = os.path.join(CFG['data'], 'gmg', 'runs')
-    if os.path.dirname(rp) != parent or not RUN_NAME.match(os.path.basename(rp)):
-        raise GuardError(f'gmg guard: run folder {rp} must be {parent}/<yyyymmdd>-<tag>-<commit7>')
-    _check_patterns(rp + '/x', 'own', run_check=False)        # a run folder inside a refused folder is refused
-    os.makedirs(rp, exist_ok=True)
-    CFG['run'] = rp
-    _RX.clear()
-    return rp
 
 
 def run_dir():
@@ -207,7 +236,11 @@ def _glob_re(pat):
     return re.compile('^' + ''.join(out) + '$')
 
 
-def _sub(pat):
+def _esc(v):
+    return v.replace('[', '[[]').replace('{', '[{]').replace('*', '[*]')
+
+
+def _sub(pat, raw=False):
     """Pattern with roots substituted, or None if it names an unset root (RUN before set_run)."""
     keys = dict(DATA=CFG['data'], REPO=CFG['repo'], GMG=CFG['gmg'], MR=CFG['mr'], KIT=CFG['kit'],
                 WEIGHTS=CFG['weights'], RUN=CFG['run'])
@@ -216,7 +249,7 @@ def _sub(pat):
         if tok in pat:
             if v is None:
                 return None
-            pat = pat.replace(tok, v.replace('[', '[[]').replace('{', '[{]').replace('*', '[*]'))
+            pat = pat.replace(tok, v if raw else _esc(v))
     return pat
 
 
@@ -235,6 +268,15 @@ def _match(path, pats):
     return None
 
 
+def _under(p, root):
+    return p == root or p.startswith(root.rstrip('/') + '/')
+
+
+def runs_root(m=None):
+    """The run root of mode M (default: the current mode)."""
+    return _sub(RUNS[m or mode()], raw=True)
+
+
 # ------------------------------------------------------------------------------------------------ deny-list
 def _load_provenance():
     try:
@@ -250,8 +292,30 @@ PROV = _load_provenance()
 
 
 def _read_deny(path):
-    d = json.load(open(path))
+    with open(path) as f:
+        d = json.load(f)
     return list(d.get('globs', [])), dict(d.get('sha256', {}))
+
+
+def _sha_file(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as f:
+        for b in iter(lambda: f.read(1 << 22), b''):
+            h.update(b)
+    return h.hexdigest()
+
+
+def _stkey(rp, st=None):
+    st = st or os.stat(rp)
+    return (rp, st.st_size, st.st_mtime_ns, st.st_ino)
+
+
+def _sha256(rp):
+    """sha256 of a file (reads the bytes, decodes nothing; cached on path, size, mtime and inode)."""
+    key = _stkey(rp)
+    if key not in _SHA:
+        _SHA[key] = _sha_file(rp)
+    return _SHA[key]
 
 
 def _load_deny():
@@ -271,22 +335,6 @@ def _load_deny():
     return dict(globs=globs, sha256=sha, sources=src)
 
 
-def _sha_file(path):
-    h = hashlib.sha256()
-    with open(path, 'rb') as f:
-        for b in iter(lambda: f.read(1 << 22), b''):
-            h.update(b)
-    return h.hexdigest()
-
-
-def _sha256(rp):
-    st = os.stat(rp)
-    key = (rp, st.st_size, st.st_mtime_ns, st.st_ino)
-    if key not in _SHA:
-        _SHA[key] = _sha_file(rp)
-    return _SHA[key]
-
-
 DENY = _load_deny()
 
 
@@ -300,6 +348,27 @@ def _deny_glob(path):
     return r
 
 
+# ------------------------------------------------------------------------------------------------ roots
+def _root_problem(name, root):
+    """Why a KIT or WEIGHTS root is unsafe, or None: it may not contain (or equal) DATA, DATA/data, DATA/cache, the
+    run roots, the repository or a refused folder, and may not lie inside DATA/data, DATA/cache, DATA/gmg, the
+    repository or a refused folder."""
+    D = CFG['data']
+    keep_out = [D, os.path.join(D, 'data'), os.path.join(D, 'cache'), os.path.join(D, 'gmg'), runs_root('clean'),
+                runs_root('dev'), CFG['repo'], CFG['gmg']] + [_sub(x, raw=True) for x in REFUSED_DIRS]
+    for p in keep_out:
+        if _under(p, root):
+            return f'{name} root {root} contains {p}'
+    for p in [os.path.join(D, 'data'), os.path.join(D, 'cache'), os.path.join(D, 'gmg'), CFG['repo']] + \
+             [_sub(x, raw=True) for x in REFUSED_DIRS]:
+        if _under(root, p):
+            return f'{name} root {root} lies inside {p}'
+    r = _path_reason(root + '/x', '*root*')
+    if r:
+        return f'{name} root {root}: {r}'
+    return None
+
+
 # ------------------------------------------------------------------------------------------------ checks
 def _record_refusal(path, role, reason, via='open_input'):
     _REFUSALS.append(dict(path=str(path), role=role, reason=reason, via=via,
@@ -307,7 +376,8 @@ def _record_refusal(path, role, reason, via='open_input'):
 
 
 def _path_reason(q, role, *, code=False, rp=None):
-    """Reason a path (absolute) fails checks 2-4 for ROLE, or None. code=True skips the substrings (hook only)."""
+    """Reason a path (absolute) fails checks 2-4 for ROLE, or None. code=True skips the substrings (a file with a code
+    suffix, in the hook and the audit only)."""
     low = q.lower()
     if not code:
         for s in SUBSTRINGS:
@@ -331,14 +401,90 @@ def _path_reason(q, role, *, code=False, rp=None):
 
 def _named_fixture(rp):
     for pat in FIXTURE_FILES:
-        s = _sub(pat)
+        s = _sub(pat, raw=True)
         if s is not None and _real(s) == rp:
             return pat
     return None
 
 
+# ---- run folder and its marker
+def _marker_path(rp):
+    return os.path.join(rp, 'run_tier.json')
+
+
+def _read_marker(rp):
+    """The run marker dict, None if missing, or {'invalid': reason}."""
+    p = _marker_path(rp)
+    if not os.path.lexists(p):
+        return None
+    try:
+        with open(p) as f:
+            d = json.load(f)
+    except (OSError, ValueError) as e:
+        return dict(invalid=f'unreadable marker: {e}')
+    if not isinstance(d, dict) or d.get('mode') not in MODES or d.get('tier') not in TIER_ORDER:
+        return dict(invalid=f'bad marker {d!r}')
+    if d['mode'] == 'dev' and d['tier'] != 'DEV':
+        return dict(invalid=f'dev marker with tier {d["tier"]!r}')
+    return d
+
+
+def set_run(path):
+    """Set the run folder (role own) once. Clean mode: DATA/gmg/runs/<yyyymmdd>-<tag>-<commit7>; dev mode:
+    DATA/gmg/runs-dev/<...>. A new (or empty) folder is created with the marker run_tier.json (clean: mode clean,
+    tier P1; dev: mode dev, tier DEV). An existing folder needs a marker of the same mode; clean mode refuses a folder
+    whose marker is missing, invalid or DEV (a missing marker never means P1)."""
+    rp = _real(path)
+    if CFG['run'] is not None and CFG['run'] != rp:
+        raise GuardError(f'gmg guard: the run folder is already {CFG["run"]}')
+    parent = runs_root()
+    if os.path.dirname(rp) != parent or not RUN_NAME.match(os.path.basename(rp)):
+        other = runs_root('dev' if mode() == 'clean' else 'clean')
+        raise GuardError(f'gmg guard: run folder {rp} must be {parent}/<yyyymmdd>-<tag>-<commit7> in {mode()} mode '
+                         f'({other} is the other mode\'s run root)')
+    _check_patterns(rp + '/x', 'own', run_check=False)        # a run folder inside a refused folder is refused
+    exists = os.path.isdir(rp) and bool(os.listdir(rp))
+    mk = _read_marker(rp)
+    if exists or mk is not None:
+        if mk is None:
+            raise GuardError(f'gmg guard: run folder {rp} exists without run_tier.json; a missing marker is never P1 '
+                             f'(refused in {mode()} mode)')
+        if 'invalid' in mk:
+            raise GuardError(f'gmg guard: run folder {rp}: {mk["invalid"]}')
+        if mk['mode'] != mode():
+            raise GuardError(f'gmg guard: run folder {rp} is a {mk["mode"]}-mode run (marker), not {mode()}')
+        if mode() == 'clean' and mk['tier'] == 'DEV':
+            raise GuardError(f'gmg guard: run folder {rp} is tier DEV (marker); a clean run never uses it')
+        CFG['run'] = rp
+    else:
+        os.makedirs(rp, exist_ok=True)
+        CFG['run'] = rp
+        try:
+            with open(_marker_path(rp), 'x') as f:
+                json.dump(dict(mode=mode(), tier='DEV' if mode() == 'dev' else 'P1', pid=os.getpid(),
+                               created_utc=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')),
+                          f)
+        except BaseException:
+            CFG['run'] = None
+            raise
+    _RX.clear()
+    return rp
+
+
+def _own_tier():
+    """Tier of the files in the run folder: the marker's tier; DEV in dev mode, and DEV when the marker is missing or
+    invalid (fail closed, never P1)."""
+    if not CFG['run']:
+        return 'DEV'
+    mk = _read_marker(CFG['run'])
+    if mk is None or 'invalid' in mk or mk['mode'] != mode():
+        return 'DEV'
+    return 'DEV' if mode() == 'dev' else mk['tier']
+
+
 def _check_patterns(path, role, *, run_check=True):
-    """Checks 1-5 (no file access beyond realpath). Returns (abs path, realpath). Raises GuardError."""
+    """Checks 1-5 (no file access beyond realpath and the run marker). Returns (abs path, realpath). Raises
+    GuardError."""
     if role not in ROLES:
         raise GuardError(f'gmg guard: unknown role {role!r} (roles: {ROLES})')
     if role in DEV_ROLES and mode() != 'dev':
@@ -354,14 +500,14 @@ def _check_patterns(path, role, *, run_check=True):
         if role == 'fixture' and not allowed and mode() == 'dev':
             allowed = _named_fixture(rp) or _match(rp, tuple(_FIXTURE_ROOTS))
         if not allowed:
-            pats = [p for p in (_sub(x) for x in ROLE_PATTERNS[role]) if p]
+            pats = [p for p in (_sub(x, raw=True) for x in ROLE_PATTERNS[role]) if p]
             why = f'not on the {role} allow-list {pats}' if pats else f'no run folder is set (role {role})'
             raise GuardError(f'gmg guard: refused {role} input {rp}: {why}')
         if role == 'kit' and _match(rp, tuple('{KIT}/' + s for s in KIT_SCORER)):
             raise GuardError(f'gmg guard: refused kit input {rp}: the kit scorer is excluded')
-        if role in ('own', 'tracks') and CFG['run'] and rp.startswith(CFG['run'] + '/') and mode() == 'clean' \
-                and _own_tier() == 'DEV':
-            raise GuardError(f'gmg guard: refused {role} input {rp}: the run folder is tier DEV (clean mode)')
+        if CFG['run'] and _under(rp, CFG['run']) and mode() == 'clean' and _own_tier() == 'DEV':
+            raise GuardError(f'gmg guard: refused {role} input {rp}: the run folder marker is missing, invalid or '
+                             f'DEV (clean mode)')
     return a, rp
 
 
@@ -376,29 +522,111 @@ def register_fixture_root(path):
     r = _path_reason(rp + '/x', 'fixture')
     if r:
         raise GuardError(f'gmg guard: refused fixture root {rp}: {r}')
-    _FIXTURE_ROOTS.append(rp.replace('[', '[[]').replace('{', '[{]').replace('*', '[*]') + '/**')
+    _FIXTURE_ROOTS.append(_esc(rp) + '/**')
     return rp
-
-
-def _own_tier():
-    if not CFG['run']:
-        return 'P1'
-    p = os.path.join(CFG['run'], 'run_tier.json')
-    try:
-        t = json.load(open(p)).get('tier')
-    except (OSError, ValueError):
-        return 'P1'
-    return t if t in TIER_ORDER else 'P1'
 
 
 def _tier(role, rp):
     if role in DEV_ROLES:
         return 'DEV'
-    if role in ('own', 'tracks') and CFG['run'] and rp.startswith(CFG['run'] + '/'):
+    if CFG['run'] and _under(rp, CFG['run']):
         return _own_tier()
     if role in ('tracks', 'frozen'):
         return 'P1'
     return 'P0'
+
+
+# ---- det identity (check 8)
+def _load_det_registry():
+    """{sha256: label} and {size} of the det dumps (gmg/det_registry.json, written by tools/det_registry.py), and the
+    signature keys it lists. Missing file: empty registry (in-process hashes and the names still apply)."""
+    sha, sizes, sig = {}, set(), set(DET_SIGNATURE)
+    src = dict(path=DET_REGISTRY, present=os.path.isfile(DET_REGISTRY))
+    if src['present']:
+        with open(DET_REGISTRY) as f:
+            d = json.load(f)
+        for e in d.get('files', []):
+            sha[e['sha256']] = f'det registry: {e.get("path")}'
+            sizes.add(int(e['bytes']))
+        sig |= set(d.get('signature_keys', []))
+        src.update(sha256=_sha_file(DET_REGISTRY), files=len(d.get('files', [])))
+    sig -= set(NPZ_KEYS['det'])
+    return dict(sha=sha, sizes=sizes, signature=frozenset(sig), source=src)
+
+
+DETREG = _load_det_registry()
+
+
+def _npz_names(rp):
+    """Member names of a zip/npz (the central directory only; no member is decompressed), or None if not a zip."""
+    try:
+        with open(rp, 'rb') as f:
+            if f.read(4) != b'PK\x03\x04':
+                return None
+        with zipfile.ZipFile(rp) as z:
+            return {n[:-4] if n.endswith('.npy') else n for n in z.namelist()}
+    except GuardError:
+        raise
+    except (OSError, zipfile.BadZipFile, ValueError):
+        return None
+
+
+def _det_name_reason(*paths):
+    """Cheap det identity: the file name or the det store folder."""
+    for q in paths:
+        if q and DET_NAME.match(os.path.basename(q)):
+            return f'det file name {os.path.basename(q)!r}'
+    for q in paths:
+        if q and q.lower().endswith('.npz') and _match(q, DET_DIRS):
+            return 'npz under data/store/ep*/ (det store folder)'
+    return None
+
+
+def _det_identity(a, rp, *, deep=True):
+    """Why a file is a det file (check 8), or None. deep=True also checks the sha256 registry (only for a file whose
+    size equals a registered det file) and the zip member names (signature keys)."""
+    r = _det_name_reason(a, rp)
+    if r or not deep or rp.startswith(('/proc/', '/sys/', '/dev/')):
+        return r
+    try:
+        st = os.stat(rp)
+    except OSError:
+        return None
+    if not stat.S_ISREG(st.st_mode):
+        return None
+    key = _stkey(rp, st)
+    if key in _IDENT:
+        return _IDENT[key] or None
+    why = ''
+    if st.st_size in DETREG['sizes']:
+        s = _sha256(rp)
+        if s in DETREG['sha']:
+            why = f'copy of a det file (sha256 {s[:16]}, {DETREG["sha"][s]})'
+    if not why:
+        names = _npz_names(rp)
+        hit = sorted(names & DETREG['signature']) if names else []
+        if len(hit) >= DET_SIGNATURE_MIN:
+            why = f'det signature keys {hit[:6]}'
+    _IDENT[key] = why
+    return why or None
+
+
+def _register_det(rp, sha, why):
+    """A det file hashed in this process: its sha256 and size join the registry (so a later copy is caught)."""
+    DETREG['sha'].setdefault(sha, f'hashed in process: {rp} ({why})')
+    DETREG['sizes'].add(os.stat(rp).st_size)
+
+
+@contextlib.contextmanager
+def _internal():
+    """Guard-internal file access (registry hashing, the strace auditor's own hashing): the det rule of the hook lets
+    these opens through and counts them (path rules still apply)."""
+    old = getattr(_TLS, 'internal', False)
+    _TLS.internal = True
+    try:
+        yield
+    finally:
+        _TLS.internal = old
 
 
 def check(path, role):
@@ -406,12 +634,32 @@ def check(path, role):
     return _check_patterns(path, role)[1]
 
 
+def _frozen_eval_sha(rp):
+    """(expected sha256 or None, status) for an eval track file (SPEC section 17)."""
+    if not _match(rp, (EVAL_TRACKS,)):
+        return None, None
+    if not os.path.isfile(FROZEN_EVAL_TRACKS):
+        return None, 'registry absent (gmg/frozen_eval_tracks.json, B19)'
+    with open(FROZEN_EVAL_TRACKS) as f:
+        reg = json.load(f)
+    ep = os.path.basename(os.path.dirname(rp))
+    exp = (reg.get('files') or {}).get(ep)
+    if not exp:
+        raise GuardError(f'gmg guard: refused tracks input {rp}: {ep} is not in {FROZEN_EVAL_TRACKS}')
+    return exp, 'checked against gmg/frozen_eval_tracks.json'
+
+
 def open_input(path, role, *, expect_sha256=None, keys=None):
-    """Check PATH for ROLE (module docstring, checks 1-7), record it with its sha256 and tier, return its realpath.
-    Raises GuardError (refused) or FileNotFoundError (missing)."""
+    """Check PATH for ROLE (module docstring, checks 1-8), record it with its sha256 and tier, return its realpath.
+    A det file (check 8) is refused here unless load_npz is reading it. Raises GuardError (refused) or
+    FileNotFoundError (missing)."""
     rp = None
     try:
         a, rp = _check_patterns(path, role)
+        via_npz = getattr(_TLS, 'det_ok', None) == rp
+        if (role == 'det' or _det_name_reason(a, rp)) and not via_npz:
+            raise GuardError(f'gmg guard: refused {role} input {rp}: a det file is read through guard.load_npz only '
+                             f'(mask keys)')
         _ADMITTED.add(rp)                    # the path checks passed: let the hook pass the hashing open (dev mode)
         if not os.path.exists(rp):
             raise FileNotFoundError(rp)
@@ -426,9 +674,18 @@ def open_input(path, role, *, expect_sha256=None, keys=None):
                              f'({DENY["sha256"][sha]})')
         if expect_sha256 and sha != expect_sha256.lower():
             raise GuardError(f'gmg guard: refused {role} input {rp}: sha256 {sha} != expected {expect_sha256}')
+        frozen, frozen_status = _frozen_eval_sha(rp) if role == 'tracks' else (None, None)
+        if frozen and sha != frozen:
+            raise GuardError(f'gmg guard: refused tracks input {rp}: sha256 {sha[:16]} != frozen {frozen[:16]}')
         nf = _named_fixture(rp) if role == 'fixture' else None
         if nf and not sha.startswith(FIXTURE_FILES[nf]):
             raise GuardError(f'gmg guard: refused fixture {rp}: sha256 {sha[:16]} != {FIXTURE_FILES[nf]}')
+        det = _det_identity(a, rp)
+        if det and not via_npz:
+            raise GuardError(f'gmg guard: refused {role} input {rp}: {det}; a det file is read through '
+                             f'guard.load_npz only (mask keys)')
+        if det:
+            _register_det(rp, sha, det)
     except (GuardError, OSError) as e:
         if rp is not None and rp not in _INPUTS:
             _ADMITTED.discard(rp)
@@ -438,6 +695,10 @@ def open_input(path, role, *, expect_sha256=None, keys=None):
     rec = _INPUTS.get(rp)
     if rec is None or rec['sha256'] != sha or rec['role'] != role:
         rec = dict(role=role, path=a, realpath=rp, sha256=sha, bytes=int(st.st_size), tier=_tier(role, rp))
+        if det:
+            rec['det_identity'] = det
+        if frozen_status:
+            rec['frozen_sha'] = frozen_status
         _INPUTS[rp] = rec
     if keys is not None:
         rec['keys'] = sorted(set(rec.get('keys', [])) | set(keys))
@@ -449,29 +710,56 @@ def _key_ok(k, pats):
     return any(fnmatch.fnmatchcase(k, p) for p in pats)
 
 
+def _refuse_keys(path, role, keys, pats, why):
+    bad = [k for k in keys if pats is not None and not _key_ok(k, pats)]
+    if bad:
+        msg = f'gmg guard: refused {role} keys {bad} of {path}: allowed {pats} ({why})'
+        _record_refusal(path, role, msg, via='load_npz')
+        raise GuardError(msg)
+
+
 def load_npz(path, role, keys=None):
-    """open_input + np.load(allow_pickle=False) of the allowed keys only. For det and tracks a requested key outside
-    NPZ_KEYS[role] raises GuardError; keys=None reads every allowed key present (refused keys are never read)."""
+    """open_input + np.load(allow_pickle=False) of the allowed keys only. A det file (check 8: by name, store folder,
+    sha256 registry or signature keys, whatever ROLE is) gets NPZ_KEYS['det']; role tracks gets NPZ_KEYS['tracks'].
+    A requested key outside the filter raises GuardError before any member is decompressed; keys=None reads every
+    allowed key present (refused keys are never read)."""
     import numpy as np
-    pats = NPZ_KEYS.get(role)
+    a = os.path.abspath(os.fspath(path))
+    rp = os.path.realpath(a)
+    det = 'role det' if role == 'det' else _det_name_reason(a, rp)
+    pats = NPZ_KEYS['det'] if det else NPZ_KEYS.get(role)
     if keys is not None:
         keys = list(keys)
-        bad = [k for k in keys if pats is not None and not _key_ok(k, pats)]
-        if bad:
-            msg = f'gmg guard: refused {role} keys {bad} of {path}: allowed {pats}'
-            _record_refusal(path, role, msg, via='load_npz')
-            raise GuardError(msg)
-    rp = open_input(path, role)
-    with np.load(rp, allow_pickle=False) as Z:
-        names = list(Z.files)
-        sel = keys if keys is not None else [k for k in names if pats is None or _key_ok(k, pats)]
-        miss = [k for k in sel if k not in names]
-        if miss:
-            raise KeyError(f'{rp}: no keys {miss}')
-        out = {k: Z[k] for k in sel}
-    rec = _INPUTS[rp]
+        _refuse_keys(path, role, keys, pats, det or f'role {role}')
+    old = getattr(_TLS, 'det_ok', None)
+    _TLS.det_ok = rp
+    try:
+        rp = open_input(path, role)
+        rec = _INPUTS[rp]
+        if rec.get('det_identity') and not det:
+            det, pats = rec['det_identity'], NPZ_KEYS['det']
+            if keys is not None:
+                _refuse_keys(path, role, keys, pats, det)
+        with np.load(rp, allow_pickle=False) as Z:
+            names = list(Z.files)
+            sig = sorted(set(names) & DETREG['signature'])
+            if len(sig) >= DET_SIGNATURE_MIN and pats is not NPZ_KEYS['det']:
+                det, pats = f'det signature keys {sig[:6]}', NPZ_KEYS['det']
+                rec['det_identity'] = det
+                _register_det(rp, rec['sha256'], det)
+                if keys is not None:
+                    _refuse_keys(path, role, keys, pats, det)
+            sel = keys if keys is not None else [k for k in names if pats is None or _key_ok(k, pats)]
+            miss = [k for k in sel if k not in names]
+            if miss:
+                raise KeyError(f'{rp}: no keys {miss}')
+            out = {k: Z[k] for k in sel}
+    finally:
+        _TLS.det_ok = old
     rec['keys'] = sorted(set(rec.get('keys', [])) | set(sel))
     rec['keys_not_read'] = sorted(set(names) - set(rec['keys']))
+    if det:
+        rec['key_filter'] = 'det'
     return out
 
 
@@ -534,9 +822,10 @@ def io_gt_roots_report():
 
 # ------------------------------------------------------------------------------------------------ constants
 def constant(name, value, origin):
-    """Register a constant with its origin (PREREG A.6) and return VALUE. origin: 'sensor', 'generic', 'kit' or
-    'informed' (optionally ':<note>'), 'fitted:<what>' or 'fallback:<what>'. A name keeps one value and origin per
-    run; the scan-informed values of SPEC section 2 (7 mm ball radius, 2.5 mm thickness, V3 tau 0.20) are refused
+    """Register a constant with its origin (PREREG A.6) and return VALUE. origin: 'sensor', 'generic' or 'kit'
+    (optionally ':<note>'), 'informed:<A.6 row>' (the note must name a PREREG A.6 row whose origin is informed,
+    INFORMED_A6), 'fitted:<what>' or 'fallback:<what>'. A name keeps one value and origin per run; the scan-informed
+    values of SPEC section 2 (7 mm ball radius, 2.5 mm thickness, V3 tau 0.20) are refused under loosely matched names
     unless fitted (or, for the thickness, the pre-registered fallback)."""
     if not isinstance(name, str) or not re.match(r'^[A-Za-z][\w.\-]*$', name):
         raise ValueError(f'gmg constant: bad name {name!r}')
@@ -548,6 +837,9 @@ def constant(name, value, origin):
         raise ValueError(f'gmg constant {name}: origin {origin!r} must start with one of {ORIGIN_HEADS}')
     if head in ('fitted', 'fallback') and not what.strip():
         raise ValueError(f'gmg constant {name}: origin {head!r} needs ":<what>"')
+    if head == 'informed' and not any(r.lower() in what.lower() for r in INFORMED_A6):
+        raise GuardError(f'gmg constant {name}: origin {origin!r}: an informed constant must name its PREREG A.6 row '
+                         f'(one of {INFORMED_A6})')
     if head == 'fitted' and re.search(r'scan|mocap|gt\b|ground.?truth|library|cdo|cd-o|add\b', what, re.I):
         raise GuardError(f'gmg constant {name}: fitted to {what!r}: constants are never fitted to scans or GT')
     try:
@@ -595,19 +887,27 @@ def _git(*args):
         return None
 
 
+CODE_DIRS = (os.path.join(MESH_RESEARCH, 'gmg'), os.path.join(MESH_RESEARCH, 'autokit'),
+             os.path.join(MESH_RESEARCH, 'scripts'), os.path.join(REPO, 'pipeline'))
+
+
 def manifest(extra=None):
     """Everything a run must report about its inputs (SPEC sections 2, 6): mode, tier, code commit, roots, deny-list
     sources, every input with role, realpath, sha256, bytes and tier, the constants with origins, and every
-    refusal."""
-    gm = os.path.relpath(GMG_DIR, CFG['repo'])
-    dirty = _git('status', '--porcelain', '--', gm, os.path.relpath(os.path.join(MESH_RESEARCH, 'autokit'),
-                                                                     CFG['repo']), 'pipeline/provenance.py')
-    m = dict(schema='gmg-manifest/1', spec='SPEC v1 rev 1 (freeze fd814f6)', mode=mode(), tier=tier(),
+    refusal. code_dirty covers gmg/, autokit/, scripts/ and pipeline/."""
+    dirty = _git('status', '--porcelain', '--', *[os.path.relpath(d, CFG['repo']) for d in CODE_DIRS])
+    m = dict(schema='gmg-manifest/2', spec='SPEC v1 rev 1 (freeze fd814f6)', mode=mode(), tier=tier(),
              created_utc=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
              commit=_git('rev-parse', 'HEAD'), code_dirty=bool(dirty), code_dirty_files=(dirty or '').splitlines(),
+             code_dirs=[os.path.relpath(d, CFG['repo']) for d in CODE_DIRS],
              host=socket.gethostname(), python=sys.version.split()[0], argv=list(sys.argv), cwd=os.getcwd(),
-             pid=os.getpid(), roots=roots(), fixture_roots=list(_FIXTURE_ROOTS),
+             pid=os.getpid(), roots=roots(), runs_root=runs_root(),
+             run_marker=_read_marker(CFG['run']) if CFG['run'] else None, own_tier=_own_tier() if CFG['run'] else None,
+             fixture_roots=list(_FIXTURE_ROOTS),
              denylist=dict(sources=DENY['sources'], globs=len(DENY['globs']), sha256=len(DENY['sha256'])),
+             det_registry=dict(DETREG['source'], sha256_known=len(DETREG['sha']),
+                               signature_keys=sorted(DETREG['signature'])),
+             guarded_opens=dict(sorted(_GUARDED_OPENS.items())),
              hook=dict(_HOOK), inputs=inputs(), constants=constants(), refusals=refusals())
     if extra:
         m['extra'] = extra
@@ -627,22 +927,37 @@ def write_manifest(path, extra=None):
 
 
 # ------------------------------------------------------------------------------------------------ open hook
-def _is_code(rp):
-    b = os.path.basename(rp)
-    if b.endswith(CODE_SUFFIX) or '.so.' in b or '/__pycache__/' in rp:
-        return True
-    return any(rp.startswith(p.rstrip('/') + '/') for p in
-               {sys.prefix, sys.base_prefix, sys.exec_prefix, '/usr/lib', '/usr/local/lib', '/usr/share'} if p)
+def _is_code(p):
+    """A file with a code suffix (exempt from the GT substrings only, in the hook and the audit)."""
+    b = os.path.basename(p)
+    return b.endswith(CODE_SUFFIX) or '.so.' in b
 
 
-def _hook_reason(path):
-    a = os.path.abspath(os.fsdecode(path))
+def _hook_reason(path, flags=0, dir_fd=None):
+    """(path, reason) if the hook refuses this open, else None."""
+    s = os.fsdecode(path)
+    if dir_fd is not None and not os.path.isabs(s):
+        s = os.path.join(os.readlink(f'/proc/self/fd/{dir_fd}'), s)
+    a = os.path.abspath(s)
     rp = os.path.realpath(a)
     code = _is_code(rp)
     for q in dict.fromkeys((a, rp)):
         r = _path_reason(q, '*hook*', code=code, rp=rp)
         if r:
             return q, r
+    if flags & WRITE_FLAGS:
+        for m in MODES:
+            root = runs_root(m)
+            if _under(rp, root) and rp != root and not (CFG['run'] and _under(rp, CFG['run'])):
+                return rp, f'write under the {m} run root outside the current run folder ({CFG["run"]})'
+    if getattr(_TLS, 'det_ok', None) == rp or getattr(_TLS, 'internal', False):
+        _GUARDED_OPENS[rp] = _GUARDED_OPENS.get(rp, 0) + 1
+        return None
+    if code and not _det_name_reason(a, rp):
+        return None
+    det = _det_identity(a, rp, deep=not (flags & (os.O_WRONLY | os.O_CREAT | os.O_TRUNC)))
+    if det:
+        return rp, f'{det}: a det file is opened only inside guard.load_npz'
     return None
 
 
@@ -652,9 +967,10 @@ def _audit(event, args):
     path = args[0] if args else None
     if path is None or isinstance(path, int):
         return
+    flags = args[2] if len(args) > 2 and isinstance(args[2], int) else 0
     _TLS.busy = True
     try:
-        hit = _hook_reason(path)
+        hit = _hook_reason(path, flags, getattr(_TLS, 'dir_fd', None))
     except Exception:                                               # fail open on an internal error, but count it
         hit = None
         _HOOK['errors'] = _HOOK.get('errors', 0) + 1
@@ -666,14 +982,38 @@ def _audit(event, args):
         raise GuardError(f'gmg guard: refused open of {hit[0]}: {hit[1]}')
 
 
+_OS_OPEN = os.open
+
+
+def _os_open(path, flags, mode=0o777, *, dir_fd=None):
+    """os.open with dir_fd: the audit event carries only the relative path, so the hook is told the directory."""
+    if dir_fd is None:
+        return _OS_OPEN(path, flags, mode)
+    old = getattr(_TLS, 'dir_fd', None)
+    _TLS.dir_fd = dir_fd
+    try:
+        return _OS_OPEN(path, flags, mode, dir_fd=dir_fd)
+    finally:
+        _TLS.dir_fd = old
+
+
 def install_hook():
     """Install the in-process open() guard (permanent for the interpreter; done at import)."""
     if not _HOOK['installed']:
         sys.addaudithook(_audit)
+        os.open = _os_open
         _HOOK['installed'] = True
 
 
+def _check_roots():
+    for name in ('kit', 'weights'):
+        r = _root_problem(name, CFG[name])
+        if r:
+            raise GuardError(f'gmg guard: refused GMG_{name.upper()}_ROOT: {r}')
+
+
 sys.modules.setdefault('gmg.guard', sys.modules[__name__])
+_check_roots()
+install_hook()
 if os.environ.get('GMG_RUN'):
     set_run(os.environ['GMG_RUN'])
-install_hook()

@@ -49,6 +49,7 @@ SWEEP_RUN = 'runs/20261025-sweep-a894083/results/sweep/base'
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..'))
 PIPELINE = f'{REPO}/pipeline'
 GMG_RUNS = os.path.join(os.path.realpath(os.environ.get('GMG_DATA_ROOT', SCRATCH)), 'gmg', 'runs')   # gmg run folders
+GMG_RUNS_DEV = GMG_RUNS + '-dev'          # gmg dev-mode run folders (B0 round 2); the gmg guard admits them in dev only
 
 ALLOWED_KEYS = ('pts', 'cam', 'frame', 'hits', 'free', 'lo', 'vox', 'args')
 FORBIDDEN = ('/loc/', '/scan', '_align', '.parquet', 'mocap')   # substrings of a path that hold or derive from GT
@@ -56,11 +57,11 @@ FORBIDDEN = ('/loc/', '/scan', '_align', '.parquet', 'mocap')   # substrings of 
 # B0 (2026-10-30): the five mesh roots (scratchpad/auto, meshes/library_v3, results/prim/meshes, scratchpad/prim,
 # scratchpad/lathe) are dropped; meshes come only from gmg run folders. obs gains the gmg run folders (bundles).
 ROOTS = dict(
-    obs=(f'{SCRATCH}/obs_all', f'{SCRATCH}/obs', REFINED_DIR, GMG_RUNS),
+    obs=(f'{SCRATCH}/obs_all', f'{SCRATCH}/obs', REFINED_DIR, GMG_RUNS, GMG_RUNS_DEV),
     corr=(REFINED_DIR,),
     poses=(SWEEP_DIR,),
     calib=(CALIB,),
-    mesh=(GMG_RUNS,),
+    mesh=(GMG_RUNS, GMG_RUNS_DEV),
 )
 DROPPED_MESH_ROOTS = (f'{SCRATCH}/auto', f'{REPO}/meshes/library_v3',
                       f'{REPO}/docs/research/mesh-2026-10-26/results/prim/meshes', f'{SCRATCH}/prim', f'{SCRATCH}/lathe')

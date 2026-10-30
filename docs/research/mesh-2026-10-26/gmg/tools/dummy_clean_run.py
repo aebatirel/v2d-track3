@@ -15,6 +15,7 @@ import argparse
 import datetime
 import json
 import os
+import shutil
 import sys
 
 MR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -156,6 +157,29 @@ def main():
        f'{R}/meshes/library_v3/white_pot.glb')
     no('open() of diag code (hook)', lambda: open(f'{S}/diag/sam-placement/common.py'),
        f'{S}/diag/sam-placement/common.py')
+
+    # det key filter by file identity (verification round 1, bypasses a-c; d is an import-time root check, see tests)
+    det = f'{D}/data/store/ep2/det_f0.npz'
+    no('(a) open_input of det_f0.npz outside load_npz', lambda: guard.open_input(det, 'det'), det)
+    no('(a) np.load of det_f0.npz (hook)', lambda: np.load(det), det)
+    no('(a) open() of det_f0.npz (hook)', lambda: open(det, 'rb'), det)
+    no('(b) shutil.copyfile det_f0.npz -> RUN (hook)',
+       lambda: shutil.copyfile(det, os.path.join(run, 'bundle', 'det_copy.npz')), det)
+    no('(c) load_npz det_f0.npz as weights with sim, chosen',
+       lambda: guard.load_npz(det, 'weights', ['masks', 'sim', 'chosen']), det)
+    no('(c) load_npz det_f0.npz as own, all keys', lambda: guard.load_npz(det, 'own'), det)
+
+    def dirfd_auto():
+        fd = os.open(f'{S}/auto', os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            return os.open('roster/ep0.npz', os.O_RDONLY, dir_fd=fd)
+        finally:
+            os.close(fd)
+    no('os.open with dir_fd into auto/ (hook)', dirfd_auto, f'{S}/auto/roster/ep0.npz')
+    no('write into another run folder (hook)',
+       lambda: open(os.path.join(guard.runs_root(), '20200101-other-0000000', 'x.json'), 'w'))
+    no('write into the dev run root (hook)',
+       lambda: open(os.path.join(guard.runs_root('dev'), '20200101-other-0000000', 'x.json'), 'w'))
 
     def io_gt_obs():
         from autokit import io_gt
