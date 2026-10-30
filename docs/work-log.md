@@ -4946,3 +4946,15 @@ Advice given:
     PAR=2. All applied in 38234d1 BEFORE launch (PREREG §10). Synthetic checks of the classes pass.
   - Expected ≈ 4–5.5 h (3 waves of 2 trainings) plus setup under HF 429s.
   - Note: the physics session's box 58386066 (physS0) also shows PUSH-FAILED (HF 429); it retries once after 60 min.
+- ~14:35 UTC **leak-decomposition plan committed** (c51265d, `docs/research/work/leak-decomp-20261030/PLAN.md`;
+  workflow wf_935444e9-2c5: facts → ladder / factorial / decision designs → judge, scores 41 / 37 / 45; synthesis).
+  - Facts: the public data's only ground truth is the object motion (mocap) and the organiser scans; there is NO hand,
+    camera, contact, force or mass ground truth, and no spoon scan or mocap. Hands, physics and the learner are bounded,
+    not measured.
+  - Plan: Tier A CPU audits on all 20 public episodes ($0: registration, tracker phase split, mkref stages on O and P,
+    hand timing vs true motion, settle gates); Phase 1 GPU perception with scan templates (+ repeat, + blind spoon-proxy
+    meshes) ≈ $15; Phase 2 6-cell rollout blocks (template × motion × sim geometry) on 10 twins × 2–3 seeds × 10 evals
+    ≈ $130–200; optional hand-timing cells and a standard-learner check. Core ≈ $215, full ≈ $345 [E]; readings by
+    ≈ 1 Nov 06:00. Needs a credit top-up (ledger 14:35: $51.78 actual + $17.50 open of the $100 top-up) and the
+    owner's go-ahead per batch.
+  - Started now ($0): CPU foundations + Tier A (workflow leak-tierA-cpu, wf_791944d0-b72).
