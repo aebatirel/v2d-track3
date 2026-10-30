@@ -194,3 +194,64 @@ results. None of the entries changes a pre-registered test, threshold or constan
     content check for the --src parquets explicitly (the roster tool records each parquet's sha256 itself; no
     deny-list entry is a parquet). The auditor launches strace through `guard.audit_spawn` (a call-stack door), since
     the hook's new process-argument check (entry 29h) would refuse an audited command line that names a parquet.
+
+## B1 (2026-10-30, walking skeleton; dev mode only)
+
+No scan, eval output, label value or scan-derived number was seen or used for any entry below. None changes a
+pre-registered test, threshold or constant, so none goes in PREREG F. Entries 34-50 are interpretations where SPEC or
+PREREG leave a detail open, or B1 limits (the full forms come in the steps named).
+
+34. **Dev-only guard role `dev_frozen`** (`gmg/dev_constants.json`, tier DEV, refused in clean mode like every dev
+    role). PREREG A.1 says dev runs use t0_dev ("the same statistic on obs_all") but SPEC section 2 names no role for
+    it. `tools/t0_dev.py` computes it in an audited dev run over the 25 obs_all object-episodes of the roster (obs_all
+    holds 25 files, not 33) and writes the committed copy with the run name, commit and input sha256.
+35. **T-V2d fixture identity, corrected.** DEVIATIONS 18 assumed the PREREG label sha `e1be3218a8608793` is the sha
+    of a budgeted mesh. It is `scripts/mesh_metric.sha()`, i.e. sha1[:16] of the file the label row scored, and the
+    raw fixture `prim/potlid/cand/white_pot_lid_ep2_fit.glb` has exactly that sha1 prefix (hashed in B1; its sha256
+    prefix is the guard's `4bd1751e84052f05`). The B.14 test checks the raw file's sha1 against `FIXTURE_LABEL_SHA`
+    before T-V2d counts. No label file was opened.
+36. **Contact frame, 2-D clause** (PREREG A.6 "masks, dilated by 10 px, overlap"): read as a mask gap of at most
+    10 px (one dilation of 10 px), so a contact frame (gap <= 10 px) can never also be separated (gap > 16 px), as SPEC
+    section 4 intends ("cannot flicker"). Masks are the projected footprints, on the 1600 x 1000 rectified image, of
+    the owned points reduced to 2 mm centroids, dilated by the centroid spacing at their median depth and closed
+    (3 x 3). The 3-D gap uses the same 2 mm centroids (error at most about 1.7 mm against the raw points).
+37. **V4 rest frames.** "The lowest owned points within 5 mm of the table plane" cannot hold literally: the 8 mm table
+    band (obs_points.py, SPEC M2) removes every point within 8 mm of the plane. B1 measures the 1st percentile of the
+    frame's owned-point heights and requires it within 5 mm of the band's top (<= 13 mm). Speed = world displacement
+    of the object origin between consecutive track frames. The at-rest table plane (episode.json `rest.n_obj`,
+    `d_obj`) is the normalised mean normal and the median offset over the rest frames, in the object frame.
+38. **Dev table plane** from the frame-0 depth of the det dump (keys `depth`, `K` only; half resolution with the
+    half-resolution camera matrix) by `recon_mesh.table_plane`, moved to each frame by VO, with no per-frame refit
+    (obs_points.py refits within 10 degrees). Dev only; B4 uses the depth cache.
+39. **sigma even/odd** (A.2): parity of the frame's index in the stride-2 extraction sequence (every extracted track
+    frame index is even). The median distance uses 50,000 odd-frame points (seed 0), exact point-triangle distances
+    to the even-frame sheet.
+40. **V3 is reported, not applied, in B1.** tau is fitted on the public clean CPU batch at B13 (A.3). B1 reports
+    fsv_far(c) - fsv_far(s) with s the SHELL; no dev tau is invented (tau_X0 of B.1 needs the B5 fold rebuilds).
+41. **V2 (a) inside test.** For a watertight candidate, ray parity (equal to winding number >= 0.5 for a closed mesh
+    without self-intersection) is checked against the exact winding number on 2,000 random queries per call; on any
+    disagreement, and for any non-watertight candidate, the exact winding number is computed for every query. Partner
+    samples outside the candidate's bounding box grown by b can satisfy neither clause and are not evaluated.
+42. **Partner sample normals** (A.2 "oriented towards the cameras that saw it"): PCA over the 12 nearest
+    OBSERVED-voxel samples, turned towards the mean unit viewing direction of the voxel's own points.
+43. **HULL in B1.** Seeded component = the 6-connected component of kept voxels with the most OBSERVED voxels (dev
+    bundles carry no seeds; the grid is the old obs_all box, SPEC M2d). Above the table = the at-rest plane (no cut if
+    the object has no rest plane, flag). Partner clip = non-OBSERVED voxels with pocc > 0, grown by one voxel at a
+    time, at most twice, while the construction-time V2 (a) check still finds partner samples deeper than b; the
+    target's OBSERVED voxels are its own evidence and are never clipped. Fold rebuilds raise (B5).
+44. **SHELL in B1** is the plain route-A thin shell at t0_dev; the support-plane closing of SPEC section 8 is B8.
+45. **Features are computed on the packed mesh.** In B1 every candidate's E, fsv_far, V2 and V4 are computed on its
+    packed (fit_budget <= 4000 faces) mesh, i.e. the mesh that would ship; V1 on its kit decode (A.3).
+46. **Selection skeleton** (in run_episode.py; select.py is B5): vetoes V1, V2, V4; tie set E(c) - E(best) <= b_tie x
+    SE_diff(c) with the paired moving-block bootstrap of A.4; then class order and lower E. V5, the marker and
+    parameter-prior keys are not in B1. No feasible candidate: ABSTAIN_HULL only.
+47. **Blocks over all extraction frames** with owned points (track sanity is B4); E is the all-frames form (no fold
+    rebuilds; B5).
+48. **B.14 wording.** "United" = the two closed meshes concatenated; "route-A shell" = producers/shell at t0_dev;
+    "median contact-frame relative pose" = the medoid contact frame of T_{o<-p} under the A.2 jitter metric (mean
+    displacement of 600 partner samples, seed 0).
+49. **Bundle format.** `hits`/`free` stored as uint16 (clipped); `hi` added (obs_all compatibility); `args` is a JSON
+    string holding the obs_all args; episode.json adds `K`, `table_band_m`, `sigma_info` and `flags`.
+50. **t0 measurements** (A.1 "the finite two-sided thicknesses that shell_sheet measures"): `thickness.py` repeats
+    shell_sheet steps 1-3 with the same calls and stops before resolve_sides, so each sample's measurement counts once
+    (shell_sheet's report rounds the share and the median).
