@@ -68,6 +68,10 @@ def consts():
         arm_len=guard.constant('forearm_capsule_len_m', 0.15, 'generic:obs_points.py forearm length 0.15 m'),
         zmax=guard.constant('depth_valid_zmax_m', 1.5, 'generic:obs_points.py zmax'),
         edge=guard.constant('depth_edge_thr_m', 0.02, 'generic:obs_points.py edge filter (5x5 range > 2 cm)'),
+        occl=guard.constant('genmask_occluder_gap_m', 0.020, 'generic:PREREG A.6 separated-frame 3-D gap 20 mm (a '
+                                                             'surface farther than it in front of the target is not '
+                                                             'the target); chosen over the 10 mm contact gap after a '
+                                                             'GT-free dev check (DEVIATIONS 56)'),
     )
     return c
 
@@ -279,6 +283,7 @@ class Layers:
     valid: np.ndarray               # valid reprojected depth (HxW bool) or None
     depth_z: np.ndarray             # its z-buffer or None
     partner_px: int                 # partner dilation in cam_a pixels
+    f_ratio: float = 1.0            # f_a / f_rect
 
 
 def partner_dilate_px(geo, c=None):
@@ -336,7 +341,7 @@ def frame_layers(bundle, k, geo, hands=None, depth=None, c=None):
         if roi is not None:
             valid, dz = depth_layer(depth[k], geo, roi, c)
     return Layers(k=k, fp=fp, zf=zf, n_in=n_in, n_all=n_all, hand=hm, hand_z=hz, valid=valid, depth_z=dz,
-                  partner_px=partner_dilate_px(geo, c))
+                  partner_px=partner_dilate_px(geo, c), f_ratio=geo.f_ratio)
 
 
 def _dilate(m, px):
@@ -361,16 +366,33 @@ def partner_union(layers, obj, dilate=True):
     return _dilate(P, layers.partner_px) if dilate else P
 
 
-def exclusive(layers, obj):
-    """Exclusive mask of OBJ: its footprint minus every partner's footprint dilated by the partner margin minus hand
-    pixels in front of it (capsule near depth <= the target's front depth; where the target has no front depth, a
-    hand pixel always counts). Returns (mask, parts)."""
+def occluders(layers, obj, c=None):
+    """Pixels of OBJ's footprint where our reprojected depth lies more than the occluder gap (20 mm) in front of the
+    target's projected front surface: something else (a hand MediaPipe missed, an arm, an untracked object) is seen
+    there. Grown by the depth edge-filter band (the 5x5 rectified window = 2 px, x f_a / f_rect on cam_a), because the
+    edge filter leaves the occluder's rim without valid depth. None if the frame has no depth."""
+    if layers.valid is None:
+        return None
+    c = c or consts()
+    zf = layers.zf[obj]
+    O = layers.fp[obj] & layers.valid & np.isfinite(zf) & (layers.depth_z < zf - c['occl'])
+    return _dilate(O, int(math.ceil(2 * layers.f_ratio))) if O.any() else O
+
+
+def exclusive(layers, obj, c=None):
+    """Exclusive mask of OBJ: its footprint S minus every partner's footprint dilated by the partner margin (Pd) minus
+    hand pixels: MediaPipe capsules in front of it (capsule near depth <= the target's front depth; where the target
+    has no front depth, a hand pixel always counts) and depth occluders (occluders()). Returns (mask, parts); parts
+    H = all hand pixels removed, Hc = capsule part, Oc = depth-occluder part (all within S - Pd)."""
     S = layers.fp[obj]
     Pd = partner_union(layers, obj, dilate=True)
     Sp = S & ~Pd
-    Hf = layers.hand & (layers.hand_z <= layers.zf[obj]) & Sp
-    M = Sp & ~Hf
-    return M, dict(S=S, Pd=Pd, Sp=Sp, H=Hf)
+    Hc = layers.hand & (layers.hand_z <= layers.zf[obj]) & Sp
+    O = occluders(layers, obj, c)
+    Oc = (O & Sp) if O is not None else np.zeros_like(S)
+    H = Hc | Oc
+    M = Sp & ~H
+    return M, dict(S=S, Pd=Pd, Sp=Sp, H=H, Hc=Hc, Oc=Oc)
 
 
 def frame_row(layers, bundle, obj, geo):
@@ -379,6 +401,8 @@ def frame_row(layers, bundle, obj, geo):
     row = dict(k=int(layers.k), j=int(layers.k) + int(geo.a_offset), area=nM, area_fp=nS,
                partner_share=round(float((q['S'] & q['Pd']).sum()) / max(nS, 1), 4),
                hand_share=round(float(q['H'].sum()) / max(nSp, 1), 4),
+               hand_capsule_share=round(float(q['Hc'].sum()) / max(nSp, 1), 4),
+               occluder_share=round(float(q['Oc'].sum()) / max(nSp, 1), 4),
                in_image=round(layers.n_in[obj] / max(layers.n_all[obj], 1), 4))
     if layers.valid is not None:
         row['depth_share'] = round(float((M & layers.valid).sum()) / max(nM, 1), 4)
@@ -458,12 +482,15 @@ def choose_views(bundle, obj, census, n_max=6, *, table, c=None):
 
     Separated mode (some frame is separated from every partner, or OBJ has no partner): a frame qualifies if it is
     separated, hands cover <= 25 % of its mask, its visible area (exclusive mask) is >= 0.6 x the episode maximum and
-    >= 0.6 of its mask has valid depth. The first view is the qualifying frame with the largest visible area (ties:
-    smaller hand share, then earlier frame); then farthest-point sampling on the view direction: the qualifying frame
+    >= 0.6 of its mask has valid depth. The first view is the hand-free qualifying frame (no hand pixel on the target)
+    with the largest visible area, or, if no qualifying frame is hand-free, the qualifying frame with the largest
+    visible area (ties: smaller hand share, then earlier frame); then farthest-point sampling on the view direction:
+    the qualifying frame
     farthest (in angle) from the views chosen so far, while that angle is >= 8 deg, up to N_MAX views. One view means
     the generator gets that view times several seeds; fewer than 3 views mean Pixal3D-MV is skipped.
     Contact mode (no frame is separated): the same filters without separation; frames in order of least partner
-    overlap (share of the target footprint under the dilated partner pixels; ties: larger area, earlier frame); a
+    overlap (share of the target footprint under the dilated partner pixels; ties: hand-free first, then larger area,
+    then earlier frame); a
     frame is taken if it is >= 8 deg from every view taken so far, up to N_MAX views.
     No qualifying frame: no view (flag no_qualifying_view; the generator is not run for this object)."""
     c = c or consts()
@@ -488,7 +515,8 @@ def choose_views(bundle, obj, census, n_max=6, *, table, c=None):
     chosen = []
     if pool:
         if not contact_mode:
-            first = min(range(len(pool)), key=lambda i: (-pool[i]['area'], pool[i]['hand_share'], pool[i]['k']))
+            first = min(range(len(pool)), key=lambda i: (pool[i]['hand_share'] > 0, -pool[i]['area'],
+                                                         pool[i]['hand_share'], pool[i]['k']))
             chosen.append((first, None))
             while len(chosen) < n_max:
                 C = D[[i for i, _ in chosen]]
@@ -502,8 +530,8 @@ def choose_views(bundle, obj, census, n_max=6, *, table, c=None):
                 i = min(cand, key=lambda i: (-pool[i]['area'], pool[i]['k']))
                 chosen.append((int(i), best))
         else:
-            order = sorted(range(len(pool)), key=lambda i: (pool[i]['partner_share'], -pool[i]['area'],
-                                                            pool[i]['k']))
+            order = sorted(range(len(pool)), key=lambda i: (pool[i]['partner_share'], pool[i]['hand_share'] > 0,
+                                                            -pool[i]['area'], pool[i]['k']))
             for i in order:
                 if len(chosen) >= n_max:
                     break
@@ -572,43 +600,53 @@ def _sample_in(mask, n, rng, erode_px=0):
     return P[pts].astype(int)
 
 
-def prompts(layers, obj, M, n_pos=5, n_neg=5, seed=0):
+def prompts(layers, obj, M, H=None, n_pos=5, n_neg=5, seed=0):
     """SPEC section 4: point prompts on the target (N_POS spread over its exclusive mask, eroded) and the partner's
-    pixels as negatives (PREREG A.6: 5 points per partner, spread over its footprint)."""
+    pixels as negatives (PREREG A.6: 5 points per partner, spread over its footprint); also N_NEG negatives on the
+    hand pixels H removed from the target (DEVIATIONS 57)."""
     rng = np.random.default_rng(seed)
     pos = _sample_in(M, n_pos, rng, erode_px=6)
     neg = []
     for p, m in layers.fp.items():
         if p == obj:
             continue
-        ys, xs = np.nonzero(m)
-        if len(xs):
+        if m.any():
             neg.append(_sample_in(m, n_neg, rng, erode_px=6))
+    if H is not None and H.any():
+        neg.append(_sample_in(H, n_neg, rng, erode_px=3))
     neg = np.concatenate(neg) if neg else np.zeros((0, 2), int)
     return pos, neg
 
 
 def masks(view, bundle, image=None, *, geo, hands=None, depth=None, refine=None, c=None):
     """Exclusive mask of VIEW (HxW bool) and info. REFINE: optional callable (image, pos_points, neg_points,
-    projected_mask) -> refined HxW bool mask (SAM2). The refined mask is used only if it gains no partner pixel
-    (dilated partner footprint); else it is cut back to the projected mask (flag refine_cut_back). Hand pixels and
-    the dilated partner pixels are removed from the result in every case."""
+    projected_mask) -> refined HxW bool mask (SAM2). SPEC section 4: a refined mask that gains any partner pixel
+    (dilated partner footprint) is cut back to the projected mask (flag refine_cut_back); otherwise the refinement
+    only trims: the final mask is the refined mask (holes filled) inside the projected exclusive mask (DEVIATIONS 57),
+    so hand and partner pixels stay removed in every case; a refinement that keeps less than 0.6 of the projected
+    mask (the A.6 visible-area share) is rejected (flag refine_rejected) and the projected mask is used."""
     c = c or consts()
     L = frame_layers(bundle, view.k, geo, hands, depth, c)
-    M, q = exclusive(L, view.obj)
+    M, q = exclusive(L, view.obj, c)
     info = dict(k=view.k, j=colour_frame(view, geo), projected_area=int(M.sum()), refined=False, flags=[])
     F = M
     if refine is not None and image is not None:
-        pos, neg = prompts(L, view.obj, M)
-        R = np.asarray(refine(image, pos, neg, M), bool)
-        info.update(refined=True, pos=pos.tolist(), neg=neg.tolist(), refined_area=int(R.sum()),
+        pos, neg = prompts(L, view.obj, M, H=q['H'])
+        from scipy.ndimage import binary_fill_holes
+        R = binary_fill_holes(np.asarray(refine(image, pos, neg, M), bool))      # closed and filled, as the projection
+        info.update(refined=True, pos=pos.tolist(), neg=neg.tolist(), refine=getattr(refine, 'last', None),
+                    refined_area=int(R.sum()),
                     refined_gain_partner=int((R & q['Pd']).sum()),
                     refined_iou_projected=round(float((R & M).sum()) / max(float((R | M).sum()), 1), 4))
+        info['refined_gain_outside'] = int((R & ~M).sum())
         if (R & q['Pd']).any():
             info['flags'].append('refine_cut_back')
             F = M
+        elif (R & M).sum() < c['vis_min'] * M.sum():
+            info['flags'].append('refine_rejected')                              # SAM2 segmented something else
+            F = M
         else:
-            F = R & ~q['Pd'] & ~(L.hand & (L.hand_z <= L.zf[view.obj]))
+            F = R & M
         info['final_area'] = int(F.sum())
     else:
         info['final_area'] = int(F.sum())
@@ -665,3 +703,50 @@ def crop_box(mask, geo, pad=0.25, min_side=64):
     x0, y0 = int(max(cx - s / 2, 0)), int(max(cy - s / 2, 0))
     x1, y1 = int(min(cx + s / 2, geo.W)), int(min(cy + s / 2, geo.H))
     return x0, y0, x1, y1
+
+
+# ------------------------------------------------------------------------------------------------ SAM2 refinement
+class Sam2Refiner:
+    """SAM2 image predictor on the CPU (transformers Sam2Model, checkpoint facebook/sam2.1-hiera-tiny in the weights
+    root, role weights): point prompts only (SPEC section 4: target positives, partner negatives), on a square crop
+    around the projected mask (crop_box), multimask output; the candidate with the highest IoU against the projected
+    mask is returned (a GT-free choice; the projected mask is our own geometry)."""
+    FILES = ('config.json', 'model.safetensors', 'preprocessor_config.json', 'processor_config.json',
+             'video_preprocessor_config.json')
+
+    def __init__(self, wdir, geo):
+        import os
+        import torch
+        from transformers import Sam2Model, Sam2Processor
+        self.files = {}
+        for f in self.FILES:
+            p = os.path.join(wdir, f)
+            if os.path.exists(p):
+                self.files[f] = guard.open_input(p, 'weights')
+        torch.set_num_threads(max(1, min(4, os.cpu_count() or 1)))
+        self.model = Sam2Model.from_pretrained(wdir).eval()
+        self.proc = Sam2Processor.from_pretrained(wdir)
+        self.geo = geo
+        self.name = os.path.basename(os.path.normpath(wdir))
+        self.last = None
+
+    def __call__(self, image_bgr, pos, neg, M):
+        import torch
+        x0, y0, x1, y1 = crop_box(M, self.geo, pad=0.25)
+        rgb = np.ascontiguousarray(image_bgr[y0:y1, x0:x1, ::-1])
+        pts = [[float(x - x0), float(y - y0)] for x, y in pos] + [[float(x - x0), float(y - y0)] for x, y in neg
+                                                                   if x0 <= x < x1 and y0 <= y < y1]
+        lab = [1] * len(pos) + [0] * (len(pts) - len(pos))
+        inp = self.proc(images=rgb, input_points=[[pts]], input_labels=[[lab]], return_tensors='pt')
+        with torch.no_grad():
+            out = self.model(**inp, multimask_output=True)
+        cands = self.proc.post_process_masks(out.pred_masks, inp['original_sizes'])[0][0].numpy().astype(bool)
+        Mc = M[y0:y1, x0:x1]
+        ious = [float((m & Mc).sum()) / max(float((m | Mc).sum()), 1.0) for m in cands]
+        i = int(np.argmax(ious))
+        R = np.zeros_like(M)
+        R[y0:y1, x0:x1] = cands[i]
+        self.last = dict(box=[x0, y0, x1, y1], ious=[round(v, 4) for v in ious], pick=i,
+                         sam_scores=[round(float(s), 4) for s in out.iou_scores[0, 0].tolist()],
+                         n_pos=len(pos), n_neg=len(pts) - len(pos))
+        return R
