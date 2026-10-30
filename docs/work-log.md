@@ -4958,3 +4958,7 @@ Advice given:
     ≈ 1 Nov 06:00. Needs a credit top-up (ledger 14:35: $51.78 actual + $17.50 open of the $100 top-up) and the
     owner's go-ahead per batch.
   - Started now ($0): CPU foundations + Tier A (workflow leak-tierA-cpu, wf_791944d0-b72).
+- ~14:50 UTC owner: "Also go ahead with phase" → Phase 1 (GPU perception, P_o / P_s / P_o-repeat on the 20 public
+  episodes, ≈ $11–15 on 3 boxes) approved. Build + CPU mock + two reviews first (workflow leak-phase1-build); launch
+  after GO and a credit check: Vast credit $44.21 at 14:50 with 4 boxes running (≈ $6/h, orcB mine, p2s0/p2s1/p2hu the
+  Embodiment session's). Instance end dates checked (owner asked): earliest 31 Oct 18:00 (p2hu), no job affected.
