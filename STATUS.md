@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~13:55 UTC: "how far ahead of NVIDIA's method?" No head-to-head number exists; one ceiling measured
+Report: `docs/analysis/nvidia-default-timing-20261030/README.md`.
+- NVIDIA posts no Track 3 baseline (Tracks 1 and 2 have one). We never ran their stock Track 3 chain.
+- **[measured, public, CPU, $0]** NVIDIA's default timing (motion_speed 0.5), with perfect perception and robot:
+  **AUC 0.415**, SP-SR 0.30, MP-SR 0.00. The "nothing moves" floor is 0.446. Our board score: 0.8146.
+- Indicative only: NVIDIA's Track 2 CHORD baselines are 0.510 (Tier 1) and 0.002 (Tier 3, own reconstruction).
+- A real number needs a fixed-NVIDIA-chain GPU run on public episodes (≈ $15–20 for 7 episodes, ≈ $60–70 for 20
+  [estimate]) or the organisers' answer. Not started; the owner decides.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:

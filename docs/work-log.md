@@ -5389,3 +5389,20 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 30 Oct ~13:55 UTC — "how much are we outperforming NVIDIA's methodology?" (branch `claude/funny-shannon-6863f9`)
+- Searched the repo and the live leaderboard (`MVerghese/v2d-leaderboard-data`, generated 08:51 UTC). Track 3 has no
+  NVIDIA baseline row, while Tracks 1 and 2 do (CARI4D, CHORD). The FAQ calls the tissue-box example "not necessarily an
+  optimized baseline". We have never run NVIDIA's stock Track 3 chain (single object, 30 fps; note 01).
+- New CPU diagnostic `docs/analysis/nvidia-default-timing-20261030/timing_ceiling.py`, run on this cloud VM ($0),
+  with the kit zip downloaded today and HF `track_3/public/{data,mesh}`. Command:
+  `python -I timing_ceiling.py <kit>/v2d_submission_kit <hf>/track_3/public`.
+  - Setup: perfect perception and a perfect policy, with only NVIDIA's default timing (note 06 case A: frame f gets
+    source ≈ 0.508 f).
+  - Result over the 20 public episodes: **AUC 0.415**, SP-SR 0.30, MP-SR 0.00, MPPE 9.5 cm. The "nothing moves" floor
+    is 0.446 / 0.45 / 0.00 / 9.3 cm, which matches the 12 Oct value, so the scoring checks out.
+  - Raw results: `timing_ceiling.json`.
+- Indicative only (different episodes and inputs): NVIDIA's Track 2 CHORD baselines are AUC 0.510 (Tier 1) and 0.002
+  (Tier 3, CARI4D reconstruction). Us on Track 3: 0.8146.
+- Not run: a minimally fixed NVIDIA chain on public episodes (≈ $15–20 for 7 single-object episodes, ≈ $60–70 for 20
+  [estimate]); the organiser question. Both are the owner's call.
