@@ -11,7 +11,7 @@
   objects leave the reference by frames 11–61 in every arm (grips, contact overlaps), mass is second order.
 - Running: GPU boxes S0 58386066 and S1 58386069 (≈ $6.50 each
   planned, ledger lines added). Credit before launch $63.49. Nothing goes to Kaggle.
-- **Results (30 Oct ~14:30 UTC):** GPU mass arms = **harm** by the pre-registered rule (ep2 S1 training collapse;
+- **Results (30 Oct ~13:40 UTC):** GPU mass arms = **harm** by the pre-registered rule (ep2 S1 training collapse;
   ep12/18/24 +0.02–0.05) → not adopted. Human hand: plain copy, +squeeze and +grasp lock all fail to carry the objects
   at zero action (H-squeeze, H-lock falsified). Summary: `docs/research/physics-2026-10-30/README.md` (end).
 - Human hand: own capsule hand built (`pipeline/human_hand.py`, review in `physics-2026-10-30/human-hand-models.md`).

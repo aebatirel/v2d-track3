@@ -5469,7 +5469,7 @@ arm and a no-policy replay floor to stage B.
   squeezing. [H-size] falsified in this test (P ≥ A). Next: [H-squeeze] (pre-registered in the README).
 - GPU arms: both boxes building references since 10:08 UTC (masses confirmed in their job logs).
 
-### 30 Oct ~12:00–14:30 UTC — GPU mass arms done; human-hand squeeze and grasp-lock falsified
+### 30 Oct ~12:00–13:45 UTC — GPU mass arms done; human-hand squeeze and grasp-lock falsified
 - Worker restart ~12:05 (owner: "Tekrar deneyin"); nothing lost (all pushed through 0ad5c7e).
 - GPU (registered AUC vs mocap, 5 evals): S0 0.944 / 0.862 / 0.573 / 0.207, S1 0.736 / 0.885 / 0.625 / 0.232 (ep2/12/18/24);
   harm by the rule (ep2 −0.208: S1 training collapsed after 20M). S1 box self-destroyed 12:36 (ledger actual $3.31);

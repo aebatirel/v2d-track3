@@ -137,7 +137,7 @@ object. Grip force cannot fix a grip that is not geometrically there.
   mean gap 79.4 mm"). Fixed with `GL_EMB` (default unchanged). The `contact_retarget.hand_geometry` primitive-shape
   sampling (103e1ba) is needed too: the human hand has no mesh shapes. Rerun with the rule unchanged.
 
-### Step 3 result (GPU, 30 Oct; S1 box self-destroyed 12:36 UTC, S0 finished ~13:30 UTC with its push to the store
+### Step 3 result (GPU, 30 Oct; S1 box self-destroyed 12:36 UTC, S0 finished before 13:40 UTC with its push to the store
 ### failing on HF 429s — summaries copied off the box: `gpu/S0_summary.json`, `gpu/S1_summary.json`) [M]
 
 | episode | S0 AUC vs mocap (5 evals) | S1 AUC vs mocap | Δ | S0 / S1 chosen checkpoint |
@@ -153,7 +153,7 @@ is no longer lifted from 30M) while S0 climbed to 0.977 at 60M; the other three 
 one seed per arm the ep2 collapse cannot be separated from seed noise; telling them apart needs ≥ 2 more seeds per arm
 on ep2 (not run). Zero-action sim_vs_ref on the box (with EVOLVE) S1: 0.601 / 0.604 / 0.542 / 0.194.
 
-### [H-lock] result (30 Oct ~14:30 UTC, CPU, code 9731c7b + 103e1ba) [M] — falsified
+### [H-lock] result (30 Oct ~13:40 UTC, CPU, code 9731c7b + 103e1ba) [M] — falsified
 Human hand P + `grasp_lock.py` (GL_EMB = the human hand, frozen GL_ARGS, no ILC, no EVOLVE), zero action, S1 physics:
 | episode | plain P copy | P + grasp lock | Δ | grasps found |
 |---|---|---|---|---|
