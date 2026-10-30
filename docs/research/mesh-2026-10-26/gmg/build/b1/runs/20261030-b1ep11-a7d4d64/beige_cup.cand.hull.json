@@ -1,0 +1,64 @@
+{
+ "cid": "hull",
+ "producer": "P-HULL",
+ "cls": "HULL",
+ "params": {
+  "grow": 2,
+  "coarsen_k": 2
+ },
+ "n_params": 0,
+ "t_mm": null,
+ "balls": 0,
+ "built_on_frames": "all",
+ "flags": [
+  "surface_coarsened_x2",
+  "partner_deep_samples"
+ ],
+ "report": {
+  "voxels_not_free": 24721,
+  "observed": 3431,
+  "table_cut": 7,
+  "components": 51,
+  "kept_voxels": 7169,
+  "kept_observed": 3408,
+  "partner_clip_grow": 2,
+  "partner_clip": {
+   "deep_total": 56,
+   "deep_max_frame": 6,
+   "partners": {
+    "blue_cup": {
+     "contact_frames": 51,
+     "band_mm": 8.0,
+     "deep": 56,
+     "deep_max_frame": 6
+    }
+   },
+   "method": "voxel depth (distance transform)"
+  },
+  "faces_dense": 17016,
+  "watertight_dense": true,
+  "coarsen_k": 2,
+  "surface_vox_mm": 8.0,
+  "coarsen_tries": [
+   {
+    "k": 1,
+    "faces_dense": 17016,
+    "euler": -134,
+    "watertight_dense": true,
+    "packed_faces": 3998,
+    "packed_watertight": false
+   },
+   {
+    "k": 2,
+    "faces_dense": 1566,
+    "euler": -16,
+    "watertight_dense": true,
+    "packed_faces": 1566,
+    "packed_watertight": true
+   }
+  ]
+ },
+ "sha256": "190a59ba7d5754798b8a353cead8c4af65a7df93a9fbeac2bdc6ac96b02bf191",
+ "faces": 1566,
+ "watertight_after_decode": true
+}
