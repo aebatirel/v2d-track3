@@ -118,3 +118,29 @@ the public rule above fails.
   - the eval-10 cup nesting, a 6–7 mm rim misalignment that RL learns to avoid;
   - a GT-free sign that a thin spoon's pose is wrong;
   - training for worst-case rather than mean behaviour on a non-deterministic evaluator.
+
+## 9. Follow-up (owner, ~13:30 UTC): "if the simulation's physics is the real world's, it should copy the video"
+- **Later results from the determined-wright session:**
+  - [H-squeeze] is falsified (12:35 UTC; no episode gains ≥ 0.05).
+  - Cause, ep12: around the occluding cup the perceived grip dissolves during the carry. Thumb–finger opposition goes
+    145° → 83° → −86° from f36 to f48, and the index tip sits inside the cup wall. In that session's words, "grip force
+    cannot fix a grip that is not geometrically there".
+  - [H-lock] is running: the human hand with the grip snapped to the surface and locked to the object during holds.
+    The first run was void (a URDF naming bug), and the rule is unchanged for the rerun.
+  - Oracle twins: the owner chose option B (ep11/13/31, perceived vs mocap-object references, grasp lock, ≈ $5–6).
+- **A copy needs every input of the physics, not only the visible motion:**
+  - the same shapes: our meshes are ≈ 4 mm off (CD-O 0.40 cm), and nesting clearances are a few mm;
+  - the same masses and friction;
+  - the same start state: our references are 2–3 cm off;
+  - the same forces, which the video does not show.
+  Also, the person acts with feedback (touch, vision), and an open-loop copy of a closed-loop act diverges at sensitive
+  events. The same checkpoint scores 0.26–0.92 across official draws [M].
+- **Proposed "all inputs true" rung** (diagnostic, public episodes only, CPU zero-action, $0):
+  - public scans (true shapes);
+  - mocap object motion (the oracle-twin reference);
+  - plausible masses;
+  - the H-lock grip;
+  - on one episode both studies can use (ep12 or ep13: cup into rack).
+  Reading: if this copy carries the objects, the simulator is good enough and the remaining loss is perception. If it
+  fails, the limit is the simulated contact or hand model, which only RL feedback or hand-side contact geometry can
+  address. Not started; needs coordination between the two sessions.

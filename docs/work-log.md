@@ -5415,3 +5415,8 @@ arm and a no-policy replay floor to stage B.
   - a human-hand RL A/B against the S1 Sharpa arm, ≈ $6.5, only if H-squeeze passes. Rule: Δ ≥ +0.05 mean, no twin
     ≤ −0.05.
   - The Sharpa stays in submissions unless that A/B passes.
+- ~13:30 UTC (same analysis, follow-up question from the owner on copying the video exactly):
+  - noted the determined-wright results: H-squeeze falsified (the perceived grip dissolves around the cup); H-lock rerun
+    pending;
+  - proposed an "all inputs true" zero-action rung (scans + mocap object motion + plausible mass + H-lock grip) on a
+    shared public episode, to separate simulator limits from perception limits. Not started. Detail: analysis §9.
