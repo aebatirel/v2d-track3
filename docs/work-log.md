@@ -4880,3 +4880,8 @@ Advice given:
   - Oracle-twin prep: design done (ep11 / eval 10, ep13 / eval 14, ep31 / eval 30; ep24 optional), build and verify
     were cut by the usage limit. The partial build is committed as WIP be2b2a9; workflow resumed with two launch
     options for the owner: full (≈ $9–10) or single-box grasp-lock (≈ $5–6).
+- 12:07 UTC reply from session determined-wright (physics study, commit 6a814df, `ops/jobs/physics_arms.sh`): public
+  scans as object meshes, SF=0, REUSE_REF=0, frozen recipe-arm GL_ARGS, 70M steps, seed 42, NREP 5; S0 0.3 kg, S1
+  plausible mass/COM/inertia. Partial registered AUC vs mocap: ep12 S0 0.862 ± 0.021, S1 0.885 ± 0.030; ep18 S0
+  0.573 ± 0.060, S1 0.625 ± 0.001 (not final). Results: store runs/20261030-physS{0,1}-6a814df/results/glock_public/.
+  Not directly comparable with our library_v3 runs (meshes differ); usable as an extra point for ep12/ep24.
