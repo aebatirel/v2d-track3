@@ -23,7 +23,7 @@ records every input that passes with its sha256, so a run's manifest lists exact
 
 Checks of open_input, in this order (a path is refused before the file is opened; only a file that passed every path
 check is hashed, which reads its bytes but decodes nothing):
-  1. the role exists, and a dev-only role (obs_all, x0_pool, fixture) is refused in clean mode;
+  1. the role exists, and a dev-only role (obs_all, x0_pool, fixture, dev_frozen) is refused in clean mode;
   2. path substrings /scan, /loc/, _align, .parquet, mocap (case-insensitive; as given and resolved through links);
   3. the deny-list globs (ops/provenance/denylist.json through pipeline/provenance.py, plus the repo file itself, plus
      GMG_EXTRA_DENYLIST, which can only add entries);
@@ -100,7 +100,7 @@ FROZEN_EVAL_TRACKS = os.path.join(GMG_DIR, 'frozen_eval_tracks.json')  # SPEC se
 MODES = ('clean', 'dev')
 SUBSTRINGS = ('/scan', '/loc/', '_align', '.parquet', 'mocap')
 CLEAN_ROLES = ('calib', 'tracks', 'depth', 'video', 'det', 'roster', 'kit', 'weights', 'own', 'frozen')
-DEV_ROLES = ('obs_all', 'x0_pool', 'fixture')
+DEV_ROLES = ('obs_all', 'x0_pool', 'fixture', 'dev_frozen')
 ROLES = CLEAN_ROLES + DEV_ROLES
 # npz key filters (fnmatch patterns). det_f0.npz also holds library-derived fields (sim, template_*, chosen, score*,
 # verify*, rules, params, ...) and the Grounding DINO boxes (gdino): all refused (SPEC section 2). NPZ_KEYS['det']
@@ -146,6 +146,7 @@ ROLE_PATTERNS = dict(
     x0_pool=('{MR}/results/gen-probe/**', '{MR}/results/prim/**', '{MR}/results/lathe_obs.jsonl',
              '{DATA}/gen/mesh-*/**', '{DATA}/prim/**', '{DATA}/lathe/**'),
     fixture=('{GMG}/tests/fixtures/**',),
+    dev_frozen=('{GMG}/dev_constants.json',),      # B1: t0_dev (PREREG A.1 on obs_all), dev runs only
 )
 EVAL_TRACKS = '{DATA}/data/eval/ep*/poses.npz'
 # revision-1 refusals: (name, patterns, dev roles that may pass this folder in dev mode only)
