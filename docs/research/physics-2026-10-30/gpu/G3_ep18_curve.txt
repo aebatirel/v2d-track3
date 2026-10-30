@@ -1,0 +1,7 @@
+  10M  sim_vs_ref 0.579  |  mini_sweeper: lift   0.2 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.57 lost@122/353
+  20M  sim_vs_ref 0.593  |  mini_sweeper: lift   0.1 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.55 lost@122/353
+  30M  sim_vs_ref 0.523  |  mini_sweeper: lift   5.7 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.0 (ref 16.1) in3cm 0.47 lost@122/353
+  40M  sim_vs_ref 0.421  |  mini_sweeper: lift   3.7 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   1.5 (ref 16.1) in3cm 0.05 lost@122/353
+  50M  sim_vs_ref 0.492  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   3.1 (ref 16.1) in3cm 0.05 lost@25/353
+  60M  sim_vs_ref 0.472  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   0.5 (ref 16.1) in3cm 0.06 lost@122/353
+  70M  sim_vs_ref 0.355  |  mini_sweeper: lift   0.0 (ref  8.1) in3cm 0.14 lost@59/353  mini_dust_pa: lift   5.6 (ref 16.1) in3cm 0.07 lost@46/353

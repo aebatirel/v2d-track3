@@ -5586,3 +5586,7 @@ Background agent, CPU only, $0, no ground truth read.
   `bash ops/jobs/physics_solve_rl.sh` (default G3_PICK: G2's reference for ep2/ep12 only if its jittered mean ≥ G1's —
   GT-free; accepted), commit 04301a2; ledger planned $6.80; readings pre-registered in physics-solver.md §5.2.
   Credit before launch $32.67. Expected ≈ 3.7–4.5 h.
+- 23:05 UTC psolverl box done (job exit 0 after 259 min; ledger actual $6.48). G2 "scale helps" (jittered ep2 0.763,
+  ep12 0.832 vs GL+ILC 0.524 / 0.578). G3: RL from solved references much faster (30M: 0.965 / 0.761 / 0.523 / 0.191 vs
+  0.483 / 0.549 / 0.529 / 0.112) but final AUC harm by the rule (0.584 / 0.892 / 0.622 / 0.244 vs 0.736 / 0.885 / 0.625 /
+  0.232; ep2 collapse after 30M, as round-1 seed 42).

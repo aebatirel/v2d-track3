@@ -1,5 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~23:10 UTC: solver G2 strong at zero action; G3 RL learns faster but final scores not better
+- G2 (full-scale search, ep2/ep12): jittered zero-action 0.763 / 0.832 vs current recipe 0.524 / 0.578.
+- G3 (RL from solved refs): at 30M far ahead (0.965 / 0.761 / 0.523 / 0.191 vs 0.483 / 0.549 / 0.529 / 0.112) but final AUC
+  vs mocap 0.584 / 0.892 / 0.622 / 0.244 vs 0.736 / 0.885 / 0.625 / 0.232 → harm by the rule (ep2 collapse after 30M).
+- Owner's queue: realistic-mass seed round, then option 3 (solver↔RL loop), physics fit v2 if promising.
+
 ## 2026-10-30 ~18:25 UTC: physics solver G1 PASS; owner approved G2 + G3 (≈ $14.5); physics fit v1 under a frame-0 check
 - **Solver G1** (sampling MPC inside FlashCHORD, `tools/physics_solve/`, box $1.29): jittered sim_vs_ref vs grasp lock +
   ILC: ep2 +0.080, ep12 +0.063, ep18 −0.004, ep24 +0.005 → PASS (2 of 4 ≥ 0.03). Owner approved G2 (full-scale search on

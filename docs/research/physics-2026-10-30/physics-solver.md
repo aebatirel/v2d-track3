@@ -565,3 +565,22 @@ does not reproduce the solver's own trajectory (ep2 truth 0.948 vs replay 0.558;
 GPU non-determinism, which is why the jittered means are the measure. Summary: `gpu/psolve_G1_summary.json`.
 By §5.1, PASS means proposing G2 (full Do as I Do scale, ≈ $8) and RL from the solved references (≈ $6.5), each with the
 owner's go-ahead.
+
+## G2 + G3 results (box `20261030-psolverl-04301a2`, commit 04301a2, 18:40–23:05 UTC, ≈ $6.48) [M]
+**G2** (jittered sim_vs_ref, 64 copies): ep2 GL+ILC 0.524 / G1 0.600 / **G2 0.763**; ep12 0.578 / 0.656 / **0.832**.
+G2 − G1 mean +0.170 → **"scale helps"**; G2 − GL+ILC +0.239 / +0.254. Solve wall 3,952 s (ep2) and 2,471 s (ep12) run
+together on one GPU (≈ 7.6 s of box time per frame), no deadline hit; mean iterations 7.0 / 10.8 (early stop).
+**G3** (frozen S1 recipe from the solved references: G2 for ep2/ep12, G1 for ep18/ep24; seed 42; AUC vs mocap, 5 evals):
+| episode | round 1 (GL+ILC) | G3 (solved) | Δ | sim_vs_ref at 30M: round 1 → G3 |
+|---|---|---|---|---|
+| ep2 | 0.736 | 0.584 ± 0.339 (30M ckpt) | −0.152 | 0.483 → **0.965** |
+| ep12 | 0.885 | 0.892 ± 0.037 (60M) | +0.007 | 0.549 → **0.761** |
+| ep18 | 0.625 | 0.622 ± 0.004 (20M) | −0.003 | 0.529 → 0.523 |
+| ep24 | 0.232 | 0.244 ± 0.025 (10M) | +0.012 | 0.112 → **0.191** |
+- **[H-RL] not falsified:** at 30M the solved-reference runs are ≥ 0.03 higher on 3 of 4 → RL learns much faster.
+- **Final readout: harm** by the pre-registered rule (mean −0.034; ep2 −0.152 ≤ −0.10). ep2 collapsed after 30M (curve
+  0.884 / 0.610 / 0.965 / 0.495 / 0.478 / 0.469 / 0.474; pot no longer lifted), the same pattern as round-1 S1 seed 42;
+  its chosen 30M policy is unstable (5 evals 0.197–0.968). Round-2 seeds 43/44 on the GL+ILC reference reached 0.979.
+- Reading [H]: the solved plan gives RL a large head start that the frozen schedule (assist decay to 0 by 123M of the
+  scaled curriculum, mixed resets) does not preserve. Testable: early stopping / shorter curriculum from the solved
+  reference, and seeds 43/44 on ep2 (seed 42 collapsed in both reference types).
