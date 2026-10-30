@@ -131,6 +131,9 @@ ISLAND_UNION = False     # island rule: False = literal rule (a piece joins the 
                          # Measured kept area with True on six public dev episodes: +0.0 on four, +0.4 % and +1.6 %
                          # on the two largest sheets (stage-1b shell report)
 HOST_TRIM_FRAC = 2.0     # surface_patch: keep sheet parts > 2 VOXEL outside the host
+HOST_ATTACH = True       # surface_patch (stage-1b integration): border vertices of the trimmed sheet within the island
+                         # rule's host reach move onto the host surface, so an attached patch touches its host (the
+                         # 2-voxel trim otherwise leaves a 2-4 mm gap > the gates' TOUCH 2 mm: G_CONN saw a separate body)
 PATCH_MIN_PTS = 200      # surface_patch: fewer residual points than this -> empty patch
 MERGE_TOL = 1e-6         # vertices closer than 1 um are merged (the decimator can leave sub-um clusters)
 SPLIT_NUDGE = 2e-5       # manifold_split: copies of a split vertex move 20 um into their own fan (>> float32 GLB
@@ -1054,6 +1057,32 @@ def _host_trim(m, host, dist):
     return out, dict(host_trim_mm=round(dist * 1e3, 2), host_trimmed_area_cm2=round((m.area - out.area) * 1e4, 2)), th
 
 
+def _host_attach(m, host, reach):
+    """Stage-1b integration (A inside B): move every BORDER vertex of the trimmed sheet that lies within `reach` of
+    the host (the island rule's host_touch: the pieces it already counts as attached) to its closest point on the host
+    surface; interior vertices are unchanged. Measured on a public dev episode (lid program + shell_patch): the main
+    patch piece sat 3.8 mm (t 2.5) / 2.1 mm (t 4.0) from the host after the trim, beyond the gates' TOUCH (2 mm), so
+    gates.connectivity counted it as a separate body. Generic, no object knowledge. Returns (mesh, info)."""
+    F = np.asarray(m.faces, np.int64)
+    info = dict(attach_reach_mm=round(reach * 1e3, 2), border_verts=0, attached_border_verts=0)
+    if not len(F):
+        return m, info
+    e = np.sort(np.vstack([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]]), 1)
+    u, c = np.unique(e, axis=0, return_counts=True)
+    bv = np.unique(u[c == 1].ravel())
+    info['border_verts'] = int(len(bv))
+    if not len(bv):
+        return m, info
+    V = np.array(m.vertices, np.float64)
+    cp, d, _ = trimesh.proximity.closest_point(host, V[bv])
+    sel = np.asarray(d) <= reach
+    if sel.any():
+        V[bv[sel]] = cp[sel]
+        info.update(attached_border_verts=int(sel.sum()),
+                    attach_move_mm_p50_90=np.round(np.percentile(d[sel], [50, 90]) * 1e3, 2).tolist())
+    return trimesh.Trimesh(V, F, process=False), info
+
+
 def shell_sheet(obs, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, host=None, pitch=None):
     """t-independent part of the route: oriented samples, measured thickness, one face per wall, the open sheet and
     its islands. Returns a dict for solidify_sheet (several t and budgets reuse it)."""
@@ -1122,6 +1151,8 @@ def shell_sheet(obs, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, 
                                union=union if ISLAND_UNION else None)
         rep['islands'] = isl
         rep['islands_dropped'] = isl['dropped_n']; rep['islands_dropped_area_cm2'] = isl['dropped_area_cm2']
+        if host_tree is not None and HOST_ATTACH and len(m.faces):
+            m, ainfo = _host_attach(m, host, HOST_TRIM_FRAC * voxel + TOUCH + pitch); rep['host_attach'] = ainfo
     else:
         rep['islands_dropped'] = 0; rep['islands_dropped_area_cm2'] = 0.0
     rep['sheet_area_cm2'] = round(m.area * 1e4, 2) if len(m.faces) else 0.0
