@@ -1,0 +1,18 @@
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+      <mass value="0.3"/>
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+      <mass value="0.3"/>
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+      <mass value="0.3"/>
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+      <mass value="0.3"/>
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+      <mass value="0.3"/>
+  <!-- Our reconstruction (pipeline/recon_mesh.py). Placeholder mass 0.3 kg as in the public assets; COM/inertia are a uniform triangle-surface estimate over this mesh. -->
+      <mass value="0.3"/>
+[2026-10-30T11:26:51Z] glock ep12 RESULT (policy_70004736.safetensors): n 5 sim_vs_ref {'mean': 0.8886, 'std': 0.0216, '
+[2026-10-30T11:35:26Z] glock ep18 RESULT (policy_30003200.safetensors): n 5 sim_vs_ref {'mean': 0.5493, 'std': 0.0648, '
+[2026-10-30T12:15:47Z] glock ep2 RESULT (policy_60002304.safetensors): n 5 sim_vs_ref {'mean': 0.9475, 'std': 0.0361, 'm
+[2026-10-30T12:45:54Z] glock ep24 RESULT (policy_60002304.safetensors): n 5 sim_vs_ref {'mean': 0.2107, 'std': 0.0299, '
+
+[exit 0]

@@ -136,3 +136,19 @@ object. Grip force cannot fix a grip that is not geometrically there.
   hand config, so it computed the grasps on a Sharpa posed with the human hand's joint angles (constant "0 fingers on,
   mean gap 79.4 mm"). Fixed with `GL_EMB` (default unchanged). The `contact_retarget.hand_geometry` primitive-shape
   sampling (103e1ba) is needed too: the human hand has no mesh shapes. Rerun with the rule unchanged.
+
+### Step 3 result (GPU, 30 Oct; S1 box self-destroyed 12:36 UTC, S0 finished ~13:30 UTC with its push to the store
+### failing on HF 429s — summaries copied off the box: `gpu/S0_summary.json`, `gpu/S1_summary.json`) [M]
+
+| episode | S0 AUC vs mocap (5 evals) | S1 AUC vs mocap | Δ | S0 / S1 chosen checkpoint |
+|---|---|---|---|---|
+| ep2 pot + lid | 0.944 ± 0.036 | 0.736 ± 0.228 | **−0.208** | 60M / 20M |
+| ep12 cup → rack | 0.862 ± 0.021 | 0.885 ± 0.030 | +0.022 | 70M / 70M |
+| ep18 sweeper + dust pan | 0.573 ± 0.060 | 0.625 ± 0.001 | +0.051 | 30M / 10M |
+| ep24 boards | 0.207 ± 0.025 | 0.232 ± 0.002 | +0.025 | 60M / 40M |
+
+Mean Δ −0.027; ep2 Δ ≤ −0.10 → **harm** by the pre-registered rule: plausible masses are not adopted.
+Reading [H]: S1's ep2 training collapsed after 20M (curve 0.487 / 0.862 / 0.483 / 0.495 / 0.497 / 0.468 / 0.467; the pot
+is no longer lifted from 30M) while S0 climbed to 0.977 at 60M; the other three episodes lean S1 (+0.02 to +0.05). With
+one seed per arm the ep2 collapse cannot be separated from seed noise; telling them apart needs ≥ 2 more seeds per arm
+on ep2 (not run). Zero-action sim_vs_ref on the box (with EVOLVE) S1: 0.601 / 0.604 / 0.542 / 0.194.

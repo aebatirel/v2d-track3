@@ -1,0 +1,7 @@
+  10M  sim_vs_ref 0.148  |  wooden_piece: lift   8.9 (ref 23.1) in3cm 0.01 lost@20/275  wooden_piece: lift   5.8 (ref 26.1) in3cm 0.23 lost@124/275
+  20M  sim_vs_ref 0.219  |  wooden_piece: lift   4.2 (ref 23.1) in3cm 0.07 lost@25/275  wooden_piece: lift   0.1 (ref 26.1) in3cm 0.20 lost@121/275
+  30M  sim_vs_ref 0.112  |  wooden_piece: lift   6.2 (ref 23.1) in3cm 0.03 lost@23/275  wooden_piece: lift  10.5 (ref 26.1) in3cm 0.24 lost@124/275
+  40M  sim_vs_ref 0.236  |  wooden_piece: lift  10.1 (ref 23.1) in3cm 0.06 lost@24/275  wooden_piece: lift   1.7 (ref 26.1) in3cm 0.23 lost@124/275
+  50M  sim_vs_ref 0.205  |  wooden_piece: lift   6.1 (ref 23.1) in3cm 0.06 lost@23/275  wooden_piece: lift   0.4 (ref 26.1) in3cm 0.18 lost@122/275
+  60M  sim_vs_ref 0.203  |  wooden_piece: lift   4.4 (ref 23.1) in3cm 0.06 lost@22/275  wooden_piece: lift   0.2 (ref 26.1) in3cm 0.20 lost@123/275
+  70M  sim_vs_ref 0.213  |  wooden_piece: lift  22.0 (ref 23.1) in3cm 0.44 lost@258/275  wooden_piece: lift   4.1 (ref 26.1) in3cm 0.20 lost@123/275
