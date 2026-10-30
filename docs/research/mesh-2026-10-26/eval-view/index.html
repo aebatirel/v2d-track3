@@ -100,7 +100,7 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
     <div class="stat"><span>Blue cup, public episode 21 (scored against the scan)</span><b class="num">0.523 → 0.291 cm</b><span>submitted mesh → new thin-wall lathe</span></div>
     <div class="stat"><span>Registration offset, same cup</span><b class="num">10.0 → 4.1 mm</b><span>0 flips in 7 scorer seeds</span></div>
     <div class="stat"><span>Kit-of-parts meshes, public scans (pot · lid · rack)</span><b class="num">0.342 · 0.220 · 0.456 cm</b><span>submitted 0.437 · 0.421 · 0.555 cm; 0 flips</span></div>
-    <div class="stat"><span>Image-to-3D generators, best run (public scans)</span><b class="num">beige cup 0.856 → 0.274 cm</b><span>pitcher 0.894 → 0.378 · dust pan 0.331 → 0.231</span></div>
+    <div class="stat"><span>Image-to-3D generators, mean over 10 objects (public scans)</span><b class="num">0.490 / 0.501 vs 0.477 cm</b><span>Pixal3D / SAM 3D vs submitted; best runs help on some objects only</span></div>
     <div class="stat flag"><span>Eval depth for all 20 eval episodes</span><b>Done (30 Oct)</b><span>new meshes can now be built per eval episode</span></div>
   </div>
 
@@ -169,6 +169,13 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
       Registration offset matters too, because the same registration sets the frame for the pose boards: single-image
       fits often sit 2–3 cm off (pitcher 34 mm, blue cup 19 mm), while Pixal3D's posed meshes stay close (beige cup 6 mm,
       dust pan 5 mm). The viewer shows each mesh's offset.</p>
+    <p class="note"><b>Bottom line so far.</b> Taken one model at a time, no generator beats our submitted meshes on
+      average: Pixal3D 0.490, SAM 3D 0.501, Hunyuan3D-2.1 0.602, TRELLIS.2 0.594 and TripoSG 0.984 cm, against 0.477.
+      Results also swing a lot between seeds (Hunyuan on the blue cup: 0.298 vs 1.252). A check that never sees the scan
+      (distance between the mesh and our own stereo points) picks the best generator mesh on only 2 of 10 objects. Used
+      that way, it would lower the mean to 0.429, but it would also make three objects worse and every registration offset
+      larger. So nothing here goes into a submission yet. Generators are worth keeping as candidates for the beige cup,
+      pitcher and dust pan, provided a stronger scan-free check and a tighter fit to our points close the gap.</p>
   </section>
 
   <section id="eval">
@@ -208,7 +215,7 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
         <tr><td>Recompute stereo depth for the eval videos and store it</td><td>The new methods need depth from many frames. Only frame 0 of each eval episode was kept; a single frame failed on public data (CD-O 1.1–1.3 cm, flips).</td><td class="num">≈ $2–4, 1 GPU, ≈ 1 h</td><td><span class="pill warn">needs go-ahead</span></td></tr>
         <tr><td>Use the kit-of-parts pot, lid and rack for eval</td><td>Built from public episodes and in the same object frame as the submitted library (2–4 mm apart without registration), so no eval depth is needed. If the hidden scans match the public ones, CD-O 0.402 → about 0.367 cm (estimate). The open question is whether to swap only the packed mesh or the simulator copy too.</td><td class="num">$0 pack-only; GPU re-runs if the simulator copy changes</td><td><span class="pill warn">owner decision</span></td></tr>
         <tr><td>Thin-wall lathe for cups (CPU here)</td><td>Blue cup 0.523 → 0.291 cm on public data. The cups have no public-library replacement yet, so they need eval depth.</td><td class="num">$0</td><td><span class="pill">ready, waits on depth</span></td></tr>
-        <tr><td>Generative probe: Pixal3D, SAM 3D, TRELLIS.2, TripoSG, Hunyuan3D-2.1 on our crops, fitted to our points</td><td>Done 29 Oct: large gains on the beige cup, pitcher and dust pan; not on the rack, sweeper or boards (see above).</td><td class="num">$4.36</td><td><span class="pill good">done</span></td></tr>
+        <tr><td>Generative probe: Pixal3D, SAM 3D, TRELLIS.2, TripoSG, Hunyuan3D-2.1 on our crops, fitted to our points</td><td>Done 29 Oct. The best run beats the submitted mesh on 8 of 10 objects, but no single model does on average, the scan-free choice is weak, and registration offsets grow (see above).</td><td class="num">$4.36</td><td><span class="pill good">done</span></td></tr>
         <tr><td>Eval depth for all 20 eval episodes</td><td>Lets every route build each eval mesh from that episode's own video (owner decision 22 Oct).</td><td class="num">≈ $2.95</td><td><span class="pill good">done</span></td></tr>
         <tr><td>Combine: part programs + generator meshes + GT-free selection, then one pre-registered scan round</td><td>Ship only what a check that never sees the scan can pick.</td><td class="num">$0 (CPU)</td><td><span class="pill">next</span></td></tr>
       </tbody>

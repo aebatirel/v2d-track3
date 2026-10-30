@@ -4857,3 +4857,10 @@ diagnostic; nothing is picked for submission.
   - a pose-safe registration of generated meshes into our tracked frame;
   - a stronger GT-free selector (held-out-view silhouettes, free-space violations) before any generated mesh is
     considered.
+- ~07:00 UTC: the probe agent's full report corrects the first look.
+  - **Per model:** no generator beats library_v3 on mean CD-O over 10 objects. Pixal3D 0.490, SAM 3D 0.501,
+    Hunyuan 0.602, TRELLIS.2 0.594, TripoSG 0.984, against 0.477. The best-of-all oracle is 0.315.
+  - **Scan-free metric:** Spearman 0.46; it picks the CD-O best on 2 of 10 objects.
+  - **Registration:** worse for the generators (Sim(3)-fitted median ADD 26–29 mm; Pixal3D 10.3 mm with 6 of 20 flips).
+  - Page v5 rewords the generator section, stat and plan row: oracle best-of-runs is not a method; nothing goes into a
+    submission.
