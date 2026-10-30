@@ -200,6 +200,9 @@ def run(op):
         guard.ROLE_PATTERNS[op[1]] = tuple(guard.ROLE_PATTERNS[op[1]]) + (op[2],)
         guard._RX.clear()
         return True
+    if k == 'patch_frozen':                 # simulate an absent frozen eval-track registry
+        guard.FROZEN_EVAL_TRACKS = op[1]
+        return True
     if k == 'tier':
         return guard.tier()
     if k == 'deny_sizes':

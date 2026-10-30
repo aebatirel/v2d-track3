@@ -38,6 +38,7 @@ AUDIT = os.path.join(GMG, 'tools', 'strace_audit.py')
 DUMMY = os.path.join(GMG, 'tools', 'dummy_clean_run.py')
 RUN_NAME = '20261030-test-0000000'
 REAL_DET = os.path.join(SCRATCH, 'data', 'store', 'ep2', 'det_f0.npz')
+REAL_EVAL1 = os.path.join(SCRATCH, 'data', 'eval', 'ep1', 'poses.npz')
 T = {}                                                   # the synthetic tree
 REFUSAL_REASONS = ('deny-list glob', 'path contains', 'refused folder')
 
@@ -99,7 +100,14 @@ def setUpModule():
     I4 = np.tile(np.eye(4), (3, 1, 1))
     T['calib'] = _w(f'{D}/data/calib.json', json.dumps(dict(stereo_pairs=[dict(camera='ego')])))
     T['tracks_pub'] = _npz(f'{D}/data/sweep/ep2/poses.npz', world_T_cam=I4, cam_T_white_pot=I4, template_score=np.ones(3))
-    T['tracks_eval'] = _npz(f'{D}/data/eval/ep1/poses.npz', world_T_cam=I4, cam_T_white_pot=I4)
+    T['tracks_eval'] = f'{D}/data/eval/ep1/poses.npz'      # a byte copy of the frozen eval ep1 track (SPEC 17)
+    if os.path.isfile(REAL_EVAL1):
+        os.makedirs(os.path.dirname(T['tracks_eval']), exist_ok=True)
+        shutil.copyfile(REAL_EVAL1, T['tracks_eval'])
+    else:
+        _npz(T['tracks_eval'], world_T_cam=I4, cam_T_white_pot=I4)
+    T['tracks_eval_bad'] = _npz(f'{D}/data/eval/ep3/poses.npz', world_T_cam=I4, cam_T_white_pot=I4)
+    T['tracks_eval_unknown'] = _npz(f'{D}/data/eval/ep99/poses.npz', world_T_cam=I4, cam_T_white_pot=I4)
     T['tracks_run'] = _npz(f'{T["RUN"]}/tracks/ep2/poses.npz', world_T_cam=I4, cam_T_white_pot=I4)
     T['det_keys_ok'] = ['K', 'depth', 'frame', 'image', 'mask_shape', 'masks', 'names']
     T['det_keys_bad'] = ['sim', 'score', 'score_rules', 'gdino', 'template_extent', 'template_intensity', 'chosen',
@@ -343,6 +351,24 @@ class TestRefusals(Base):
                      ['open', T['calib'], 'tracks'], ['open', f'{T["D"]}/data/sweep/ep2/hands.npz', 'tracks']])
         self.assertStatus(res, 'refused')
 
+    @unittest.skipUnless(os.path.isfile(REAL_EVAL1), 'no local eval track')
+    def test_frozen_eval_tracks(self):
+        """SPEC section 17: eval tracks must equal the frozen store run (gmg/frozen_eval_tracks.json); with the
+        registry absent a clean run refuses them (fail closed), a dev run notes it."""
+        res = probe([['npz', T['tracks_eval'], 'tracks'], ['npz', T['tracks_eval_bad'], 'tracks'],
+                     ['open', T['tracks_eval_unknown'], 'tracks'], ['manifest']])
+        self.assertEqual([x['status'] for x in res], ['ok', 'refused', 'refused', 'ok'], json.dumps(res)[:2000])
+        self.assertIn('!= frozen', res[1]['msg'])
+        self.assertIn('is not in', res[2]['msg'])
+        res = probe([['patch_frozen', '/nonexistent/frozen_eval_tracks.json'], ['open', T['tracks_eval'], 'tracks']])
+        self.assertReason(res[1:], ('registry',))
+        res = probe([['patch_frozen', '/nonexistent/frozen_eval_tracks.json'], ['open', T['tracks_eval'], 'tracks'],
+                     ['manifest']], mode='dev')
+        self.assertStatus(res, 'ok')
+        reg = _json(os.path.join(GMG, 'frozen_eval_tracks.json'))
+        self.assertEqual(len(reg['files']), 20)
+        self.assertEqual(set(reg['local_check'].values()), {'match'})
+
     def test_expect_sha256(self):
         sha = hashlib.sha256(_bytes(T['calib'])).hexdigest()
         res = probe([['open', T['calib'], 'calib', {'expect_sha256': sha}],
@@ -466,7 +492,7 @@ class TestAllowed(Base):
         self.assertEqual(m['refusals'], [])
         self.assertEqual(m['run_marker']['mode'], 'clean')
         ev = [i for i in m['inputs'] if i['realpath'] == os.path.realpath(T['tracks_eval'])][0]
-        self.assertIn('registry absent', ev['frozen_sha'])     # SPEC section 17 check is B19's (DEVIATIONS)
+        self.assertIn('checked against', ev['frozen_sha'])     # the synthetic ep1 track equals the frozen sha256
         self.assertIn('docs/research/mesh-2026-10-26/scripts', m['code_dirs'])
 
     def test_roster_public_json_allowed(self):
@@ -984,7 +1010,30 @@ for op in json.loads(sys.argv[1]):
         os.close(d)
     elif k == 'copy':
         shutil.copyfile(op[1], op[2])
+    elif k == 'rename':
+        os.rename(op[1], op[2])
+    elif k == 'link':
+        os.link(op[1], op[2])
+    elif k == 'symlink':
+        os.symlink(op[1], op[2])
+    elif k == 'chdir':
+        os.chdir(op[1])
+    elif k == 'connect':
+        import socket
+        s = socket.socket()
+        s.settimeout(0.5)
+        try:
+            s.connect(('127.0.0.1', 9))
+        except OSError:
+            pass
+        s.close()
+    elif k == 'execv':
+        os.execv(op[1], op[2])
 '''
+
+
+def _is_git_exe(exe):
+    return bool(exe) and os.path.basename(exe).startswith('git')
 
 
 @unittest.skipUnless(shutil.which('strace'), 'strace not installed')
@@ -1071,6 +1120,119 @@ class TestStrace(Base):
             shutil.rmtree(opt, ignore_errors=True)
             if os.path.exists(f'{T["RUN"]}/bundle/neg_copy.npz'):
                 os.remove(f'{T["RUN"]}/bundle/neg_copy.npz')
+
+    def _hits(self, rep):
+        return {f.get('rpath') or f['path'] for k in ('forbidden', 'unlisted', 'writes_outside_run') for f in rep[k]}
+
+    @unittest.skipUnless(shutil.which('git'), 'git not installed')
+    def test_audit_git_attribution(self):
+        """Verification round 2, blocking item 2: opens a pid made before it execs git are checked like any other
+        (the image current at each call decides), and git's own exemption covers its .git/ reads only."""
+        tag = os.path.basename(T['D'])
+        git = shutil.which('git')
+        script = _w(os.path.join(os.path.dirname(T['D']), f'gitattr_{tag}.py'), UNGUARDED)
+        log = os.path.join(os.path.dirname(T['D']), f'gitattr_{tag}.strace')
+        copy = f'{T["D"]}/misc/innocent.bin'
+        shutil.copyfile(T['det'], copy)
+        outside = f'{T["D"]}/misc/written_by_git_case.txt'
+        reads = [T['det'], copy, T['other']]
+        ops = [['read', p] for p in reads] + [['write', outside]]
+        try:
+            r, rep = self._audit([sys.executable, '-I', script, json.dumps(ops)], log)            # control
+            control = rep['forbidden_opens']
+            self.assertGreaterEqual(control, 4, json.dumps(rep, default=str)[:2000])
+            for p in reads + [outside]:
+                self.assertIn(os.path.realpath(p), self._hits(rep))
+            r, rep = self._audit([sys.executable, '-I', script,
+                                  json.dumps(ops + [['execv', git, ['git', '--version']]])], log)
+            self.assertEqual(rep['forbidden_opens'], control, json.dumps(rep['forbidden'], default=str)[:2000])
+            for p in reads + [outside]:
+                self.assertIn(os.path.realpath(p), self._hits(rep))
+            r, rep = self._audit([git, 'hash-object', copy, T['other']], log)
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn(os.path.realpath(copy), self._hits(rep))
+            self.assertIn(os.path.realpath(T['other']), self._hits(rep))
+            self.assertTrue([f for f in rep['forbidden'] if 'by guard.load_npz' in f['reason']])
+            r, rep = self._audit(['sh', '-c', f'exec git hash-object --stdin < {copy}'], log)
+            self.assertNotEqual(r.returncode, 0)
+            self.assertTrue([f for f in rep['forbidden'] if 'by guard.load_npz' in f['reason']],
+                            json.dumps(rep, default=str)[:2000])
+            self.assertTrue([f for f in rep['forbidden'] + rep['unlisted']
+                             if f.get('rpath') == os.path.realpath(copy) and not _is_git_exe(f.get('exe'))])
+        finally:
+            for p in (script, log, log + '.audit.json', copy, outside):
+                if os.path.exists(p):
+                    os.remove(p)
+
+    def test_audit_moves_links_symlinks_network(self):
+        """rename*, link*, symlink* and connect are traced: a file moved into the run from outside, a hard link into
+        the run, a symlink to a refused folder, a read of a run file nobody wrote, a relative rename after chdir and a
+        network connection are caught; a rename inside the run is not."""
+        tag = os.path.basename(T['D'])
+        script = _w(os.path.join(os.path.dirname(T['D']), f'moves_{tag}.py'), UNGUARDED)
+        log = os.path.join(os.path.dirname(T['D']), f'moves_{tag}.strace')
+        R, M = T['RUN'], f'{T["D"]}/misc'
+        _w(f'{M}/mv_src.bin', b'moved in')
+        _w(f'{M}/ln_src.bin', b'linked in')
+        _w(f'{M}/rel_src.bin', b'relative')
+        _w(f'{R}/bundle/nobody.bin', b'placed here by nobody')
+        made = [f'{R}/bundle/mv_dst.bin', f'{R}/bundle/ln_dst.bin', f'{R}/bundle/sym_auto.npz', f'{R}/bundle/rel.bin',
+                f'{R}/bundle/in_run_b.bin']
+        ops = [['rename', f'{M}/mv_src.bin', made[0]], ['link', f'{M}/ln_src.bin', made[1]],
+               ['symlink', T['refused']['auto'], made[2]], ['read', f'{R}/bundle/nobody.bin'],
+               ['chdir', M], ['rename', 'rel_src.bin', made[3]],
+               ['write', f'{R}/bundle/in_run_a.bin'], ['rename', f'{R}/bundle/in_run_a.bin', made[4]],
+               ['read', made[4]], ['connect']]
+        try:
+            r, rep = self._audit([sys.executable, '-I', script, json.dumps(ops)], log)
+            self.assertNotEqual(r.returncode, 0)
+            wo = {f['path']: f['reason'] for f in rep['writes_outside_run']}
+            self.assertIn('rename source outside', wo.get(f'{M}/mv_src.bin', ''))
+            self.assertIn('rename source outside', wo.get(f'{M}/rel_src.bin', ''))       # relative path via cwd
+            reasons = [f['reason'] for f in rep['forbidden']]
+            self.assertTrue([x for x in reasons if 'hard link created in the run folder' in x])
+            self.assertTrue([f for f in rep['forbidden'] if f['path'] == T['refused']['auto']
+                             and f['kind'] == 'symlink_target'])
+            self.assertTrue([f for f in rep['forbidden'] if f['path'] == f'{R}/bundle/nobody.bin'
+                             and 'run provenance' in f['reason']])
+            self.assertTrue([x for x in reasons if 'network connection' in x])
+            self.assertIn(f'{M}/ln_src.bin', self._hits(rep))           # link source: read checks (2 links now)
+            clean = [f for k in ('forbidden', 'unlisted', 'writes_outside_run') for f in rep[k]
+                     if f['path'] in (f'{R}/bundle/in_run_a.bin', made[4])]
+            self.assertEqual(clean, [], json.dumps(clean)[:2000])
+            self.assertGreaterEqual(rep['moves'], 3)
+            r, rep = self._audit(['sh', '-c', f'{sys.executable} -I {script} \'{json.dumps([["connect"]])}\''], log)
+            self.assertEqual(len(rep['network']), 1)
+            args = [sys.executable, AUDIT, 'analyze', log, '--allow-net']
+            rr = subprocess.run(args, capture_output=True, text=True, env=env(), cwd='/tmp')
+            self.assertEqual(rr.returncode, 0, rr.stdout[-2000:])
+        finally:
+            for p in [script, log, log + '.audit.json', f'{R}/bundle/nobody.bin'] + made:
+                if os.path.lexists(p):
+                    os.remove(p)
+            for p in (f'{M}/mv_src.bin', f'{M}/ln_src.bin', f'{M}/rel_src.bin', f'{R}/bundle/in_run_a.bin'):
+                if os.path.lexists(p):
+                    os.remove(p)
+
+    def test_audit_manifest_outputs_written_by_the_command(self):
+        """register_output of a file the audited command did not write is caught by the audit."""
+        run = f'{T["D"]}/gmg/runs/20261030-regaudit-0000000'
+        _marker(run)
+        pre = _w(f'{run}/bundle/pre.bin', b'placed before the audited command started')
+        man = f'{run}/manifest.json'
+        log = os.path.join(os.path.dirname(T['D']), f'regaudit_{os.path.basename(T["D"])}.strace')
+        ops = json.dumps([['register_output', pre], ['savez', f'{run}/bundle/own.npz'], ['write_manifest', man]])
+        sh = f'{sys.executable} {PROBE} <<\'EOF\'\n{ops}\nEOF\n'
+        try:
+            r, rep = self._audit(['sh', '-c', sh], log, man, GMG_RUN=run)
+            reasons = {f['path']: f['reason'] for f in rep['forbidden']}
+            self.assertIn('not written by the audited command', reasons.get(pre, ''), json.dumps(rep['forbidden'])[:2000])
+            self.assertNotIn(f'{run}/bundle/own.npz', reasons)
+        finally:
+            shutil.rmtree(run, ignore_errors=True)
+            for p in (log, log + '.audit.json'):
+                if os.path.exists(p):
+                    os.remove(p)
 
     def test_audit_reconciles_det_opens(self):
         """A guarded process loads the det dump through load_npz and writes its manifest; a child `cat` of the same

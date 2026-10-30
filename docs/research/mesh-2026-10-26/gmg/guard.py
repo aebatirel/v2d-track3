@@ -779,7 +779,10 @@ def _frozen_eval_sha(rp):
     if not _match(rp, (EVAL_TRACKS,)):
         return None, None
     if not os.path.isfile(FROZEN_EVAL_TRACKS):
-        return None, 'registry absent (gmg/frozen_eval_tracks.json, B19)'
+        if mode() == 'clean':                       # fail closed: an unchecked eval track never enters a clean run
+            raise GuardError(f'gmg guard: refused tracks input {rp}: the frozen eval-track registry '
+                             f'{FROZEN_EVAL_TRACKS} is absent (SPEC section 17; tools/frozen_eval_tracks.py writes it)')
+        return None, 'registry absent (dev mode)'
     with open(FROZEN_EVAL_TRACKS) as f:
         reg = json.load(f)
     ep = os.path.basename(os.path.dirname(rp))
