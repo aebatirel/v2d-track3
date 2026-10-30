@@ -208,3 +208,9 @@ blue cup 1.9, sweeper 2.4); a solid voxel fill is worse (median 12.7 mm). So the
   placeholder 0.3 kg, our shell inertia) in two arms that differ only in the COM: **O0** our shell COM, **Oc** the scan's
   COM transplanted into our mesh frame (diagnostic oracle). Falsified if |sim_vs_ref(Oc) − sim_vs_ref(O0)| < 0.03 on all
   four episodes.
+- **[H-com] result [M]:** zero-action sim_vs_ref O0 / Oc: ep2 0.150 / 0.365 (+0.215), ep12 0.542 / 0.518 (−0.024),
+  ep18 0.230 / 0.171 (−0.060), ep24 0.188 / 0.209 (+0.021) → two episodes move ≥ 0.03: **not falsified** — a 1–2 cm COM
+  change changes the outcome, but in both directions (ep2: the pot holds better, the lid leaves at f7 instead of f43).
+- **Chaos control (pre-registered 14:15 UTC, before running):** arm **Op** = O0 with each object's COM moved 2 mm in a
+  random direction (seed 0). If |Op − O0| ≥ 0.10 on ep2, the [H-com] effect is attributed to chaotic sensitivity of the
+  zero-action replay, not to COM accuracy.
