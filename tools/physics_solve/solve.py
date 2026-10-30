@@ -13,7 +13,11 @@ MuJoCo model (FlashCHORD's own worlds are the rollouts, so there is no sim-to-si
 FlashCHORD's own residual channels (wrist position m, wrist rotation rpy rad, finger targets rad), the cost is the
 kit's ADD point distance on a 5 cm sphere (clipped at 10 cm, like the 1-9 cm AUC), and the committed window is the
 lowest-cost evaluated sequence (sample 0 of iteration 0 is the warm start, so a commit never predicts worse than it).
-No contact guidance, no penetration term, no perturbations (CPU budget).
+Options: --robust K scores each candidate on K copies (copy 0 nominal, the others with per-frame target noise; cf. Do as
+I Do's perturbed copies); --retries N rolls the truth back BACK chunks when a moving object is lost and re-plans with
+more iterations and noise (cf. SPIDER's difficulty boosting). No contact guidance, no penetration term.
+Finding (2026-10-30, docs/research/physics-2026-10-30/physics-solver.md): at CPU budgets the nominal gains do not
+survive 0.5 mm target noise (tools/physics_solve/jitter_check.py) - judge outputs by the jittered mean, not copy 0.
 
 Inputs: the reference parquet only (object poses = our perception; NO ground truth is read). Object names / order,
 URDFs and the support come from the parquet's reference tree, as for any replay.
@@ -253,6 +257,7 @@ def main():
     truth, labels = build_env(os.path.abspath(a.inp), 1, planner=False)
     buf = truth.action.buffers; lay = buf.layout; A = lay.action_dim; sides = lay.sides; starts = lay.hand_action_starts
     nf = lay.finger_counts; nh = len(sides)
+    rclip = buf.clip.numpy()[:A].astype(np.float64)                      # residual clips per action dim
     model = truth.model; fd = np.array(lay.finger_dof_ids)
     lo_all, hi_all = model.joint_limit_lower.numpy()[fd].astype(float), model.joint_limit_upper.numpy()[fd].astype(float)
     lo = [lo_all[lay.hand_finger_starts[h]:lay.hand_finger_starts[h] + nf[h]] for h in range(nh)]
@@ -313,9 +318,11 @@ def main():
                 U = mean[None] + noise
                 if t == 0:
                     U[:, 0] = 0.0                              # frame 0 is the reset pose: never edited
-                def clipf(X):                                  # finger targets: no further outside the joint limits
-                    for h in active:                           # than the reference itself (zero offset stays zero)
-                        s = sides[h]; s0 = starts[h] + 6; fr = ref.fing[s][t:t + H]
+                def clipf(X):                                  # offsets inside FlashCHORD's residual clips (0.2 m, 1 rad,
+                    X = np.clip(X, -rclip[None, None], rclip[None, None])   # 1 rad: the planner's action path clips
+                    for h in active:                           # there; v3 did not, see the doc); finger targets no
+                        s = sides[h]; s0 = starts[h] + 6; fr = ref.fing[s][t:t + H]   # further outside the joint limits
+                        # than the reference itself (zero offset stays zero)
                         lo_, hi_ = np.minimum(lo[h], fr), np.maximum(hi[h], fr)
                         X[:, :, s0:s0 + nf[h]] = np.clip(fr[None] + X[:, :, s0:s0 + nf[h]], lo_[None], hi_[None]) - fr[None]
                     return X

@@ -5494,3 +5494,32 @@ arm and a no-policy replay floor to stage B.
 - ~14:40 UTC (1) COM on our meshes: shell centroid median 8.3 mm from the scans (kept); [H-com] O0 vs Oc not falsified
   (+0.215 / −0.024 / −0.060 / +0.021) but the 2 mm chaos control moves as much (+0.109 / −0.005 / −0.116 / +0.151) →
   zero-action replays are chaotic in object parameters; the COM effect is sensitivity, not accuracy.
+
+### 30 Oct ~13:50–15:05 UTC — option 3 (physics solver): Do as I Do / SPIDER read; FlashCHORD-native sampling MPC on CPU
+Write-up: `docs/research/physics-2026-10-30/physics-solver.md`. Code: `tools/physics_solve/{solve.py,jitter_check.py}`.
+Background agent, CPU only, $0, no ground truth read.
+- Clones (scratchpad `src/`):
+  - Do as I Do `824591b` (MIT; MuJoCo Warp `5d5a645`, mujoco 3.4.0, warp 1.10.1, torch; CUDA required; Sharpa MJCF);
+  - SPIDER `4471700` (CC BY-NC 4.0; mujoco-warp 3.7.0.1; no Sharpa MJCF).
+  - Their simulator differs from FlashCHORD: condim 6 vs 3, finger kp 300 vs 1.7, wrist kp 1000 vs 400 + ball effort
+    25, 5 ms vs 10 ms, one free object per hand.
+- `solve.py`: annealed sampling MPC whose rollouts are FlashCHORD worlds (`sharpa_hands_mid`, VOC 0). It works on
+  FlashCHORD's residual channels, keeps a 1-world truth env and 4 worker processes, and supports rollback and K robust
+  copies. Exactness:
+  - the truth trajectory is bit-identical to `trace_rollout.py zero` of the written parquet;
+  - worlds are independent;
+  - three bugs found and fixed: quaternion ulp in the loader FK path, finger-limit clip, never-reset VOC hold.
+- ep12 (input: S1 GL+ILC, zero action 0.600, floor 0.605), nominal zero-action sim_vs_ref:
+  - v1 0.6485 (64 samples × 4 iterations, 695 s);
+  - v2 stopped after t=40 (superseded);
+  - v3 0.6899 (24 candidates × 4 robust copies, 4 rollbacks, 1,203 s): the cup is carried to f84 instead of being
+    lost at f37.
+- **Not robust:** `jitter_check.py`, 8 copies at 0.5 mm / 0.005 rad: GL 0.556 ± 0.031, v1 0.559 ± 0.025, v3 0.564 ±
+  0.039. The pre-registered bar of 0.586 is not met: [H-robust] falsified at CPU scale. At 10 µm / 1e-4 rad: 0.570 /
+  0.574 / 0.564.
+- Side result: single zero-action replays are noisy estimates. Jittered GL+ILC: ep2 0.260 ± 0.071 (nominal 0.141),
+  ep18 0.219 ± 0.075 (0.279), ep24 0.200 ± 0.006 (0.203).
+- After v3: the sampler clips offsets to the residual clips. v3 had reached 1.29 rad on the fingers, so the planner
+  was inaccurate on 9 of 54 replans; the truth and the scores are unaffected. Fixed, solve.py md5 `c41881ae` (`ad6a7525` after a docstring update).
+- Proposed next step (owner's go-ahead needed): CUDA port, then G1 on ep2/12/18/24 (~1 h, ~$1–1.5) with a 32-copy
+  jitter gate. Plan and costs in the write-up §5.

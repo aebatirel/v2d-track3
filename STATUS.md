@@ -3,7 +3,9 @@
 ## 2026-10-30 ~13:50 UTC: physics study round 2 running (owner: "go nuts with all")
 - GPU: ep2 seeds 43+44 for S0 (58409544) and S1 (58409510); human capsule hand RL on 4 public episodes (58409512).
   Rules pre-registered in `docs/research/physics-2026-10-30/README.md` (round 2). Ledger planned $10.50.
-- CPU: centre of gravity on our generated meshes; background agent on physics-based motion solving (Do as I Do / SPIDER).
+- CPU done: (1) COM — our shell COM median 8.3 mm from the scans; zero-action replays are chaotic (a 2 mm COM nudge moves
+  them as much as the correction). (3) Physics solver prototype (`tools/physics_solve/`): ep12 0.690 single replay vs
+  grasp lock 0.600, but 0.564 vs 0.556 under 0.5 mm noise → no robust gain at CPU scale; next = CUDA port + ~$1.5 box.
 - Round 1 (done): mass arms harm by the rule (ep2 S1 collapse), human-hand copy / squeeze / grasp lock falsified.
 
 ## 2026-10-30 ~09:50 UTC: object physics study running (public scans; S0 placeholder vs S1 plausible)

@@ -14,7 +14,39 @@ Labels:
 No ground truth was read. The solver and its scoring use only our reference parquet: our perceived object poses, the
 retargeted Sharpa targets, object names and URDFs, and the support. No GPU was rented. Cost: $0.
 
-RESULTS_PLACEHOLDER
+## 0. Answer
+
+1. **Code.**
+   - Do as I Do (MIT, github.com/malik-group/do-as-i-do @ 824591b) and SPIDER (CC BY-NC 4.0, facebookresearch/spider
+     @ 4471700) are cloned and read.
+   - Both are GPU-only MuJoCo-Warp annealed-sampling MPCs.
+   - Do as I Do ships a Sharpa MJCF. Its simulator differs from FlashCHORD in timestep, contact dimension (condim 6 vs
+     3), finger stiffness (kp 300 vs 1.7) and wrist control. Plans made there would not transfer as they are (§1–3).
+2. **Prototype.** I built the same idea **inside FlashCHORD** (`tools/physics_solve/solve.py`, Apache-2.0-compatible:
+   no code copied).
+   - The rollouts are FlashCHORD worlds. The output is a reference parquet.
+   - Its zero-action replay is **bit-identical** to the solver's committed trajectory (checked over all 181 frames).
+3. **Results on public ep12, CPU, < 21 min per run** [M].
+   - **Nominal zero-action sim_vs_ref** (our reference, no ground truth): 0.600 (grasp lock + ILC) → **0.6485**
+     (solver v1) → **0.6899** (v3: robust copies + rollback). The floor is 0.605. The cup is now carried in-hand to
+     ~f84 instead of being lost at f37.
+   - **These gains are not robust.** Under 0.5 mm / 0.005 rad target noise, all three references score the same
+     (0.556 ± 0.031 / 0.559 ± 0.025 / 0.564 ± 0.039, 8 copies). Under 10 µm / 1e-4 rad noise they also score the
+     same (0.570 / 0.574 / 0.564).
+   - The pre-registered robust-gain bar (jittered ≥ 0.586) is **not met**: [H-robust] is falsified at this budget.
+   - So at ~1/500 of Do as I Do's sample budget, the solver finds lucky trajectories of a chaotic system, not
+     grasps that hold. A GPU evaluator or an RL residual would not reproduce them.
+4. **Side result.** A single zero-action replay is a noisy estimate of a reference's quality.
+   - Jittered GL+ILC: ep2 0.260 ± 0.071 (nominal 0.141), ep12 0.556 ± 0.031 (nominal 0.600), ep18 0.219 ± 0.075
+     (nominal 0.279), ep24 0.200 ± 0.006 (nominal 0.203).
+   - CPU gates that compare single replays (step 2 of the physics study, `cpu_glock_zero.sh`) should use
+     `jitter_check.py` means instead [I].
+5. **Next step: GPU G1** (§5). The method needs a ~100–1,000× larger search than the CPU allows, with ≥ 4 robust copies.
+   - Cost: one RTX PRO 6000 box, ~1 h, **~$1–1.5**.
+   - Runs: G1 scale on ep2/12/18/24, then a 32-copy jitter check.
+   - Pre-registered bar: jittered mean ≥ GL+ILC jittered + 0.03 on ≥ 2 of 4 episodes.
+   - Only if G1 passes: Do as I Do scale (~5 h, ~$6–8), then RL from the solved references (~$6.5).
+   - Before G1: the CUDA port of `solve.py` (§5 step 1, ~half a day, testable on CPU).
 
 ## 1. The two codebases [M]
 
@@ -227,13 +259,14 @@ Machine: this cloud container (4 CPUs, no GPU), FlashCHORD at the evaluator pin,
 | grasp lock + ILC (baseline) | recipe, CPU | 567 s | **0.600** | **0.556 ± 0.031** [0.516, 0.614] | 21 % / f38 |
 | solver v1 | 64 samples × 4 iterations, H 16, commit 4, no rollback, no robustness | 695 s | **0.6485** (+0.049) | **0.559 ± 0.025** [0.510, 0.589] | 28 % / f37 (held at 2–4 cm until f56, lost at the fast carry f57–60) |
 | solver v2 | v1 + H 20 + rollback (6, back 3) | stopped after t=40 (superseded by the jitter result) | — | — | — |
-| solver v3 | 24 candidates × 4 robust copies × 4 iterations, H 16, rollback 4 | V3_WALL | V3_NOM | V3_JIT | V3_CUP |
+| solver v3 | 24 candidates × 4 robust copies × 4 iterations, H 16, rollback 4 | 1,203 s (+26 s replay and score) | **0.6899** (+0.090) | **0.564 ± 0.039** [0.514, 0.622] | 33 % / f37. It slips to 2–5 cm at f37–56, then is carried at 1–4 cm through f84 after all 4 rollbacks (at f52, f52, f64, f68). Lost at f86–92, then 25–28 cm off to the end |
 
 Readings:
 - **v1 beats the grasp lock on the exact replay (+0.049, above the floor), but not under 0.5 mm of noise.** Jittered,
   v1 scores 0.559 ± 0.025 and the grasp lock 0.556 ± 0.031: the same. The sampler optimised one exact chaotic
   trajectory. The gain does not survive the perturbations that a GPU evaluator, a different machine or an RL residual
-  will add.
+  will add. Even 10 µm / 1e-4 rad noise (`--sig_pos 1e-5 --sig_fin 1e-4 --seed 1`) evens them out: grasp lock
+  0.570 ± 0.016, v1 0.574 ± 0.015.
 - This matches the parent's finding today (commit 86f15fe, "zero-action replays are chaotic"). It is also why Do as I
   Do scores every sample on 4 perturbed copies. A nominal-only solver is not worth porting.
 - v1 offsets reached 5.1 cm on the wrist, 0.19 rad wrist rotation and 1.0 rad on the fingers (at the residual clip),
@@ -242,7 +275,17 @@ Readings:
   saved the cup, and once lost it is never recovered.
 - Predicted and realised commit costs agree exactly in 38 of 42 replans. The 4 exceptions are rounding differences
   between the action path and the folded parquet on contact-sensitive frames; the truth is exact either way.
-- v3: V3_READING
+- **v3** (robust copies + rollback) carries the cup further in the nominal replay: 0.6899, the cup within 3 cm on 33 %
+  of frames, in-hand to f84. The pre-registered jitter reading is **0.564 ± 0.039 < 0.586: no robust gain**. Its 3
+  noisy copies per candidate (24 candidates) were too few to make the selection robust. Tiny (10 µm / 1e-4 rad) noise
+  gives 0.564 ± 0.040 for v3 vs 0.570 ± 0.016 for the grasp lock.
+- v3's offsets reached 11.8 cm on the wrist, 0.42 rad rotation and **1.29 rad on the fingers, beyond FlashCHORD's
+  1.0 rad residual clip**. The planner's action path clipped those samples while the folded parquet did not, so 9 of
+  54 v3 replans had predicted ≠ realised commit cost. The truth and the scores are unaffected; the planner was simply
+  less accurate on those frames. Fixed after v3: the sampler now clips offsets to the residual clips (solve.py md5
+  `c41881ae`, smoke-tested, not re-run on the full episode).
+- Rollbacks re-planned the lift and early carry 4 times. Each boosted re-plan took 31–50 s. The rollback budget ran
+  out at f68, and the cup was lost at f86–92 with no budget left.
 
 ### 4.4 Cost of the CPU prototype [M]
 
@@ -287,8 +330,9 @@ Steps:
    - G1 scale on ep2, ep12, ep18, ep24;
    - then `jitter_check.py` with 32 copies per output, on the box (GPU) and on CPU here;
    - pre-registered reading: **robust gain** if the jittered mean beats the GL+ILC jittered mean by ≥ 0.03 on ≥ 2 of 4
-     episodes, with no episode ≤ −0.05. The GL+ILC jittered means for ep2/18/24 must be measured first ($0, CPU,
-     ~1 min each);
+     episodes, with no episode ≤ −0.05. GL+ILC jittered baselines (8 copies, 0.5 mm / 0.005 rad, seed 0; measured
+     here): ep2 0.260 ± 0.071, ep12 0.556 ± 0.031, ep18 0.219 ± 0.075, ep24 0.200 ± 0.006. Re-measure with 32 copies
+     on the box;
    - outputs to the HF store, summaries to git.
 3. **G2** (only after a G1 robust gain): Do as I Do scale on the episodes that gained (≤ ~5 h, ≤ ~$8).
 4. **G3, the use that matters:** RL (the frozen recipe, 70M steps; ≈ $6.5 per 4-episode box today) from the solved
@@ -308,7 +352,7 @@ Not recommended: running Do as I Do or SPIDER themselves.
 
 - [H-robust] (v3, CPU): with 4 robust copies per candidate, the solver's gain survives 0.5 mm / 0.005 rad noise.
   Falsified if the v3 jittered mean is < 0.586. Pre-registered in `phys/solve/ep12_v3/prereg.txt` before the run.
-  Result: V3_HROBUST.
+  Result: **falsified at the CPU budget** (0.564 ± 0.039). It remains open at GPU scale (G1).
 - [H-scale]: the search budget, not the method, limits the carry (v1 found no sample in 64 that kept the cup at f57).
   Test: G1 on ep12. Falsified if the cup is still lost before f70 in most jittered copies at G1 scale.
 - [H-gpu] and [H-RL]: §5.
@@ -326,7 +370,8 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/facebookresearch/spider.git  
 python tools/physics_solve/solve.py REF_IN.parquet REF_PS.parquet <args>
 DEV=cpu python tools/trace_rollout.py zero zero_ps.npz REF_PS.parquet 181
 KIT=scratchpad/dl/kit/x/v2d_submission_kit scratchpad/venv/bin/python tools/trace_score.py REF_PS.parquet zero_ps.npz:zero_ps REF_PS_solve.npz:truth
-KIT=... python tools/physics_solve/jitter_check.py REF.parquet --k 9
+KIT=... python tools/physics_solve/jitter_check.py REF.parquet --k 9                                          # 0.5 mm / 0.005 rad, seed 0
+KIT=... python tools/physics_solve/jitter_check.py REF.parquet --k 9 --sig_pos 1e-5 --sig_fin 1e-4 --seed 1     # float-level
 # v1
 solve.py ... --workers 4 --worlds 16 --horizon 16 --knot 4 --ctrl 4 --iters 4 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.6
 # v2 (stopped after t=40)
@@ -336,5 +381,5 @@ solve.py ... --workers 4 --worlds 24 --robust 4 --horizon 16 --knot 4 --ctrl 4 -
 ```
 
 The code versions are in each `run.log` (repo HEAD + `solve.py` md5): v1 `ce3ff4e`+wip md5 `b83827cb`; v2 `d42ae60`+wip
-`d9b19f99`; v3 V3_CODE. The diagnostic scripts used are in the scratchpad `ps/`: `bench.py`, `det_test.py`,
+`d9b19f99`; v3 `d42ae60`+wip `daefc58e`; after the clip fix `c41881ae`, and `ad6a7525` with only the docstring updated (the version in the repo now). The runner is `tools/physics_solve/run_solve.sh` (needs `S=` the scratchpad). The diagnostic scripts used are in the scratchpad `ps/`: `bench.py`, `det_test.py`,
 `couple_test.py`, `exact_*.py`, `objdiag.py`.

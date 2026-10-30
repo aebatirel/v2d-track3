@@ -220,3 +220,14 @@ blue cup 1.9, sweeper 2.4); a solid voxel fill is worse (median 12.7 mm). So the
   the scans' COM. Reading: without feedback (zero action) the replay is chaotic in the objects' parameters, so "tune the
   physics until the simulation matches the video" cannot work by adjusting parameters; closed-loop control (RL, MPC)
   is what makes outcomes stable. COM accuracy at the cm level may still matter for RL policies; that needs RL arms.
+
+### (3) Physics-based motion solving, CPU prototype (30 Oct, background agent) — details in `physics-solver.md` [M]
+Sampling MPC inside FlashCHORD's own worlds (`tools/physics_solve/solve.py`; independent re-implementation; Do as I Do
+is MIT, SPIDER CC BY-NC: no code copied). ep12, our reference: grasp lock + ILC 0.600 (floor 0.605); solver v3 0.690 on
+the exact replay (cup carried to f84 instead of lost at f37) but **0.564 ± 0.039 under 0.5 mm / 0.005 rad target
+noise** vs grasp lock 0.556 ± 0.031 → the robust-gain hypothesis is falsified at CPU scale (search ~500× smaller than
+Do as I Do's). Side finding: a single zero-action replay is a noisy measure (ep2 grasp lock 0.141 single vs 0.260 ±
+0.071 jittered); `tools/physics_solve/jitter_check.py` gives the mean. **Consequence for today's CPU gates** (mass
+test, H-squeeze, H-lock, H-com): they compare single replays of a chaotic system, so read their verdicts as "no robust
+effect detected", not as effect sizes. Proposed next step (agent): CUDA port + one ~1 h GPU box on ep2/12/18/24
+(≈ $1–1.5), pass bar = jittered mean beats grasp lock + ILC by ≥ 0.03 on 2 of 4 episodes.
