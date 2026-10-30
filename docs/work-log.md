@@ -5406,3 +5406,12 @@ arm and a no-policy replay floor to stage B.
   to the owner.
 - Draft: `docs/registration-form-draft-2026-10-30.md`. Member details are placeholders, because the agent does not
   know them.
+
+### 30 Oct ~19:00 UTC — Kaggle team rename to "imitation.tech" (owner asked): agent attempt failed, owner action
+- Owner chose the team name **imitation.tech** and asked the agent to rename the Kaggle team.
+- The public API (kagglesdk 0.1.38) has no team-rename call. The site's `POST /api/i/competitions.TeamService/UpdateTeam`
+  `{"teamId":17196705,"teamName":"imitation.tech"}` returned HTTP 401 UNAUTHENTICATED with the proxy-injected API
+  token; it needs a browser session. GetTeam (public data) still reads "Ahmet Ercan Batirel": nothing changed.
+- Our six Track 3 team IDs: AUC 17196705, SP-SR 17196772, MP-SR 17196773, RPE 17196774, MPPE 17196776,
+  CD-O 17196777. The AUC team has one member (ahmetercanbatirel, the leader).
+- Owner renames in the browser (Team tab on each competition). The registration draft now uses the new name.
