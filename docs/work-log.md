@@ -4800,3 +4800,10 @@ Advice given:
   0.8146, DSAIL 0.773. The field moved +0.03 to +0.10 since our last read; 5th needs ≈ +0.046, 3rd ≈ +0.068.
   Reading: insurance swaps (≈ +0.0005 each) cannot close that gap. Only large levers can: the reference side
   (perception, spoon, templates) and eval 10. The depth audit (workflow wf_1de955f1-fb0) decides where.
+- ~07:05 UTC owner asked for videos (real video | video with sim overlay | sim with robot hands) of the worst 5 by
+  submitted sim_vs_ref: evals 10, 32, 25, 20, 16. The submitted rollout files hold no robot state, so the hands need a
+  GPU replay: launched 58363797 `20261030-vid5-817b135` (RTX PRO 6000 Max-Q California $1.30/h; ledger planned $1.20):
+  `ops/jobs/sub_videos.sh` with PACK_RUN=20261030-c33B-0202139 (its checkpoints.json = pack 7's checkpoints; every
+  replayed checkpoint is sha256-checked against the submitted rollout), pack 6's RUNS/PICK (+ 33:rcB) read from
+  h5_reeval.sh, ASSET_PIECES ev25 + ev10 merged per object as in pack_eval.sh (fix in 817b135). A replay is a fresh
+  rollout, so it can differ from the submitted one; reporting only, nothing is chosen from it.
