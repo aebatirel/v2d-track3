@@ -4885,3 +4885,7 @@ Advice given:
   plausible mass/COM/inertia. Partial registered AUC vs mocap: ep12 S0 0.862 ± 0.021, S1 0.885 ± 0.030; ep18 S0
   0.573 ± 0.060, S1 0.625 ± 0.001 (not final). Results: store runs/20261030-physS{0,1}-6a814df/results/glock_public/.
   Not directly comparable with our library_v3 runs (meshes differ); usable as an extra point for ep12/ep24.
+- 12:10 UTC **owner chose option B** for the oracle-twin test ("okay go with b then"): one box, grasp-lock learner,
+  ep11 (eval 10) + ep13 (eval 14) + ep31 (eval 30, learner labelled as differing from eval 30's packed standard
+  learner), each trained on our perceived reference (P) and on the mocap-object reference (O), scored vs mocap; ≈ $5–6.
+  Launch only after the CPU build and both reviews return GO (workflow wf_4f80bdc9-7d2).
