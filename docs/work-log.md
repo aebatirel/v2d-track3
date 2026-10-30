@@ -5389,3 +5389,24 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 30 Oct ~09:30 UTC — owner: embodiment options; a human-shaped (MANO-like) hand; "simulate the episode physically first"
+- Listed every embodiment option (Sharpa variants in `flashchord_conf/embodiment/`, NVIDIA's `_primitive` / `_stiff`,
+  `dexmate_sharpa`, `g1_dex3`, new builds: gripper, other hands, human-shaped hand). Sharpa Wave is the closest shipped
+  hand to the human hand; measured size gap: Sharpa index finger 10.45 cm vs our perceived hand 6.25–6.45 cm (1.6×).
+- **Correction:** the FAQ ("Other embodiments are welcome, including ...") does not forbid a human-shaped hand. Note 04
+  §9.4's "ask organizers before any custom embodiment" was caution, not a rule (as note 26 §F found for wrist gains).
+  Remaining practical issue [I]: MANO's own model files are non-commercial/no-redistribution, while winners release
+  Apache-2.0, so a human-shaped hand would be built from our own perceived hand proportions, not MANO's files.
+- Owner's idea: a perfect human-hand copy makes the simulated episode match the video, and physics/policy are corrected
+  where it does not. Answer: zero action already replays the reference exactly and RL learns the correction, so the
+  idea is our current pipeline with a better-matched hand. A copy alone does not hold objects: video gives positions,
+  not grip forces; our reference is 2–3 cm off mocap and contact needs mm; simulated contact is rigid with no
+  torsional friction. Literature: SPIDER kinematic replay 11.0 vs physics-optimised 48.8 ADD-AUC (5 hands); V2P-Manip
+  human-hand model 82.4 % after RL. "Simulate the episode physically first" = forensics idea D (SPIDER / Do as I Do,
+  est. $7–35 + 1.5–2 days, works with Sharpa too). Changing object mass/friction to fit the video = system
+  identification; it crosses our own "do not change the world" line (note 26 §F), so it is the owner's decision.
+- Proposed falsification tests (not run): (1) Do as I Do-style physics pass with Sharpa on ep24/ep18, falsified if
+  it does not beat the grasp-lock zero-action replay against our reference; (2) human-proportioned hand, zero-action
+  CPU replay on ep24/ep18, falsified if reset overlaps and early drift do not drop and sim_vs_ref does not beat
+  Sharpa. Awaiting the owner's choice; nothing launched.
