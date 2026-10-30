@@ -1,0 +1,2785 @@
+{
+ "note": "ORACLE SIDE (mocap + scans), public episodes; tests (a)/(b) of leak-decomp PLAN.md \u00a77",
+ "xgeom": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+ "xgeom_md5": "919ea341f045d566404cf3951b0056cc",
+ "xtrk": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+ "xtrk_md5": "bd8432f14b90dba6fa4169f1586dee99",
+ "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "summary": {
+  "a1_min": 1.0,
+  "a2_min": 1.0,
+  "a3_mean": 0.9795,
+  "a3_min": 0.906086,
+  "a4_round_trip_max_abs": 5.960464477539063e-08,
+  "a4_world_T_cam_identical": true,
+  "b1_max_abs_delta": 0.0,
+  "b1_full_scan_self_registration_max_abs": 8.881784197001252e-16,
+  "b1b_budget_scan_max_abs_delta": 0.0248,
+  "b1b_budget_scan_mean_delta": -0.0002,
+  "b0_max_abs_delta": 0.0,
+  "b2_max_abs_delta": 0.0018,
+  "a3_inprocess_max_abs_delta": 0.0,
+  "b3_rivals": {
+   "white_pot#1": {
+    "n_eps": 9,
+    "mean_delta_obj": -0.0545,
+    "min": -0.1326,
+    "max": -0.0067
+   },
+   "white_pot_lid#1": {
+    "n_eps": 2,
+    "mean_delta_obj": -0.1928,
+    "min": -0.2286,
+    "max": -0.1571
+   },
+   "mini_sweeper#1": {
+    "n_eps": 2,
+    "mean_delta_obj": -0.6389,
+    "min": -0.7323,
+    "max": -0.5455
+   },
+   "wooden_piece_1#1": {
+    "n_eps": 2,
+    "mean_delta_obj": -0.3655,
+    "min": -0.7272,
+    "max": -0.0039
+   },
+   "wooden_piece_2#1": {
+    "n_eps": 2,
+    "mean_delta_obj": -0.3787,
+    "min": -0.8473,
+    "max": 0.09
+   },
+   "wooden_piece_2#2": {
+    "n_eps": 2,
+    "mean_delta_obj": -0.4159,
+    "min": -0.8473,
+    "max": 0.0156
+   },
+   "wooden_piece_2#3": {
+    "n_eps": 2,
+    "mean_delta_obj": -0.2867,
+    "min": -0.5734,
+    "max": 0.0
+   }
+  },
+  "means": {
+   "lib": 0.8921,
+   "star": 0.8892,
+   "star_budget_scan": 0.889
+  },
+  "pass": {
+   "a1": true,
+   "a2": true,
+   "a4": true,
+   "a3_inprocess": true,
+   "b1": true,
+   "b2": true,
+   "b0": true,
+   "b4": true,
+   "a4_trk": true
+  },
+  "b4_max_abs_delta": 0.0,
+  "b4_max_abs_delta_recorded": 0.0,
+  "b4_round_trip_max_abs": 5.960464477539063e-08
+ },
+ "episodes": {
+  "0": {
+   "episode": 0,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames_mocap": 373,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.985841
+   },
+   "a3_inprocess": {
+    "AUC": 0.9858,
+    "per_obj_AUC": {
+     "white_pot": 1.0,
+     "white_pot_lid": 0.9717
+    },
+    "delta": -0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9612,
+     "per_obj_AUC": {
+      "white_pot": 0.9926,
+      "white_pot_lid": 0.9298
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.440892098500626e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9612,
+     "per_obj_AUC": {
+      "white_pot": 0.9926,
+      "white_pot_lid": 0.9298
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9603,
+     "per_obj_AUC": {
+      "white_pot": 0.9928,
+      "white_pot_lid": 0.9278
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.3,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 0.23,
+       "anchor_shift_cm": 0.04,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     }
+    },
+    "delta_budget": -0.0009,
+    "delta_budget_per_obj": {
+     "white_pot": 0.0002,
+     "white_pot_lid": -0.002
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9641,
+     "per_obj_AUC": {
+      "white_pot": 0.9918,
+      "white_pot_lid": 0.9363
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9641,
+     "per_obj_AUC": {
+      "white_pot": 0.9918,
+      "white_pot_lid": 0.9363
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.9816,
+     "delta_obj": -0.011
+    },
+    "white_pot_lid#1": {
+     "ratio_to_best": 1.062,
+     "rot_from_best_deg": 157.4,
+     "add_from_best_cm": 2.516,
+     "AUC": 0.7012,
+     "delta_obj": -0.2286
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9959,
+     "per_obj_AUC": {
+      "white_pot": 0.9955,
+      "white_pot_lid": 0.9963
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9959,
+     "per_obj_AUC": {
+      "white_pot": 0.9955,
+      "white_pot_lid": 0.9963
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": 0.0
+    },
+    "recorded_in_xtrk": 0.9959,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 70.2
+  },
+  "2": {
+   "episode": 2,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames_mocap": 343,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "white_pot": 1.0,
+     "white_pot_lid": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9792,
+     "per_obj_AUC": {
+      "white_pot": 0.9929,
+      "white_pot_lid": 0.9656
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.440892098500626e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9792,
+     "per_obj_AUC": {
+      "white_pot": 0.9929,
+      "white_pot_lid": 0.9656
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9785,
+     "per_obj_AUC": {
+      "white_pot": 0.9929,
+      "white_pot_lid": 0.9641
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.27,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot_lid": {
+       "rot_deg": 0.03,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        1.0,
+        -0.003,
+        0.005
+       ],
+       "order": 2
+      }
+     }
+    },
+    "delta_budget": -0.0007,
+    "delta_budget_per_obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": -0.0015
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9823,
+     "per_obj_AUC": {
+      "white_pot": 0.9923,
+      "white_pot_lid": 0.9723
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9823,
+     "per_obj_AUC": {
+      "white_pot": 0.9923,
+      "white_pot_lid": 0.9723
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.9862,
+     "delta_obj": -0.0067
+    },
+    "white_pot_lid#1": {
+     "ratio_to_best": 1.062,
+     "rot_from_best_deg": 157.4,
+     "add_from_best_cm": 2.516,
+     "AUC": 0.8085,
+     "delta_obj": -0.1571
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9955,
+     "per_obj_AUC": {
+      "white_pot": 0.9938,
+      "white_pot_lid": 0.9973
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9955,
+     "per_obj_AUC": {
+      "white_pot": 0.9938,
+      "white_pot_lid": 0.9973
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0,
+     "white_pot_lid": 0.0
+    },
+    "recorded_in_xtrk": 0.9955,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 69.9
+  },
+  "11": {
+   "episode": 11,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "frames_mocap": 137,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.997263
+   },
+   "a3_inprocess": {
+    "AUC": 0.9973,
+    "per_obj_AUC": {
+     "blue_cup": 1.0,
+     "beige_cup": 0.9945
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.8739,
+     "per_obj_AUC": {
+      "blue_cup": 0.8618,
+      "beige_cup": 0.8859
+     }
+    },
+    "full_scan_self_registration_max_abs": 5.551115123125783e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.8739,
+     "per_obj_AUC": {
+      "blue_cup": 0.8618,
+      "beige_cup": 0.8859
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "beige_cup": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.8723,
+     "per_obj_AUC": {
+      "blue_cup": 0.8613,
+      "beige_cup": 0.8832
+     },
+     "registration": {
+      "blue_cup": {
+       "rot_deg": 0.26,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "beige_cup": {
+       "rot_deg": 0.98,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        0.011,
+        0.03,
+        0.999
+       ],
+       "order": 360
+      }
+     }
+    },
+    "delta_budget": -0.0016,
+    "delta_budget_per_obj": {
+     "blue_cup": -0.0005,
+     "beige_cup": -0.0027
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.8978,
+     "per_obj_AUC": {
+      "blue_cup": 0.8622,
+      "beige_cup": 0.9334
+     }
+    },
+    "inprocess": {
+     "AUC": 0.8978,
+     "per_obj_AUC": {
+      "blue_cup": 0.8622,
+      "beige_cup": 0.9334
+     }
+    },
+    "delta": 0.0
+   },
+   "b2_spin": {
+    "45": {
+     "AUC": 0.8729,
+     "delta": -0.001,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "beige_cup": -0.0018
+     }
+    },
+    "90": {
+     "AUC": 0.8729,
+     "delta": -0.001,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "beige_cup": -0.0018
+     }
+    },
+    "145": {
+     "AUC": 0.8727,
+     "delta": -0.0012,
+     "delta_per_obj": {
+      "blue_cup": -0.0005,
+      "beige_cup": -0.0018
+     }
+    },
+    "180": {
+     "AUC": 0.8727,
+     "delta": -0.0012,
+     "delta_per_obj": {
+      "blue_cup": -0.0005,
+      "beige_cup": -0.0018
+     }
+    }
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9302,
+     "per_obj_AUC": {
+      "blue_cup": 0.8636,
+      "beige_cup": 0.9968
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9302,
+     "per_obj_AUC": {
+      "blue_cup": 0.8636,
+      "beige_cup": 0.9968
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "beige_cup": 0.0
+    },
+    "recorded_in_xtrk": 0.9302,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 303.1
+  },
+  "12": {
+   "episode": 12,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames_mocap": 181,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.947686
+   },
+   "a3_inprocess": {
+    "AUC": 0.9477,
+    "per_obj_AUC": {
+     "blue_cup": 0.9579,
+     "plastic_dish_rack": 0.9375
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9738,
+     "per_obj_AUC": {
+      "blue_cup": 0.991,
+      "plastic_dish_rack": 0.9565
+     }
+    },
+    "full_scan_self_registration_max_abs": 8.881784197001252e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9738,
+     "per_obj_AUC": {
+      "blue_cup": 0.991,
+      "plastic_dish_rack": 0.9565
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9741,
+     "per_obj_AUC": {
+      "blue_cup": 0.9903,
+      "plastic_dish_rack": 0.9579
+     },
+     "registration": {
+      "blue_cup": {
+       "rot_deg": 0.8,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 0.16,
+       "anchor_shift_cm": 0.03,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0003,
+    "delta_budget_per_obj": {
+     "blue_cup": -0.0007,
+     "plastic_dish_rack": 0.0014
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9662,
+     "per_obj_AUC": {
+      "blue_cup": 0.9327,
+      "plastic_dish_rack": 0.9997
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9662,
+     "per_obj_AUC": {
+      "blue_cup": 0.9327,
+      "plastic_dish_rack": 0.9997
+     }
+    },
+    "delta": 0.0
+   },
+   "b2_spin": {
+    "45": {
+     "AUC": 0.9738,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "plastic_dish_rack": 0.0
+     }
+    },
+    "90": {
+     "AUC": 0.9738,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "plastic_dish_rack": 0.0
+     }
+    },
+    "145": {
+     "AUC": 0.9736,
+     "delta": -0.0002,
+     "delta_per_obj": {
+      "blue_cup": -0.0003,
+      "plastic_dish_rack": 0.0
+     }
+    },
+    "180": {
+     "AUC": 0.9736,
+     "delta": -0.0002,
+     "delta_per_obj": {
+      "blue_cup": -0.0003,
+      "plastic_dish_rack": 0.0
+     }
+    }
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9991,
+     "per_obj_AUC": {
+      "blue_cup": 0.9983,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9991,
+     "per_obj_AUC": {
+      "blue_cup": 0.9983,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.0
+    },
+    "recorded_in_xtrk": 0.9991,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 222.7
+  },
+  "13": {
+   "episode": 13,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames_mocap": 190,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.906086
+   },
+   "a3_inprocess": {
+    "AUC": 0.9061,
+    "per_obj_AUC": {
+     "blue_cup": 0.8747,
+     "plastic_dish_rack": 0.9375
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9036,
+     "per_obj_AUC": {
+      "blue_cup": 0.8697,
+      "plastic_dish_rack": 0.9375
+     }
+    },
+    "full_scan_self_registration_max_abs": 7.771561172376096e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9036,
+     "per_obj_AUC": {
+      "blue_cup": 0.8697,
+      "plastic_dish_rack": 0.9375
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9097,
+     "per_obj_AUC": {
+      "blue_cup": 0.8819,
+      "plastic_dish_rack": 0.9375
+     },
+     "registration": {
+      "blue_cup": {
+       "rot_deg": 0.18,
+       "anchor_shift_cm": 0.06,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 0.3,
+       "anchor_shift_cm": 0.03,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0061,
+    "delta_budget_per_obj": {
+     "blue_cup": 0.0122,
+     "plastic_dish_rack": 0.0
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9605,
+     "per_obj_AUC": {
+      "blue_cup": 0.9329,
+      "plastic_dish_rack": 0.9882
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9605,
+     "per_obj_AUC": {
+      "blue_cup": 0.9329,
+      "plastic_dish_rack": 0.9882
+     }
+    },
+    "delta": 0.0
+   },
+   "b2_spin": {
+    "45": {
+     "AUC": 0.9039,
+     "delta": 0.0003,
+     "delta_per_obj": {
+      "blue_cup": 0.0007,
+      "plastic_dish_rack": 0.0
+     }
+    },
+    "90": {
+     "AUC": 0.9033,
+     "delta": -0.0003,
+     "delta_per_obj": {
+      "blue_cup": -0.0006,
+      "plastic_dish_rack": 0.0
+     }
+    },
+    "145": {
+     "AUC": 0.9031,
+     "delta": -0.0005,
+     "delta_per_obj": {
+      "blue_cup": -0.0009,
+      "plastic_dish_rack": 0.0
+     }
+    },
+    "180": {
+     "AUC": 0.9031,
+     "delta": -0.0005,
+     "delta_per_obj": {
+      "blue_cup": -0.0009,
+      "plastic_dish_rack": 0.0
+     }
+    }
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9748,
+     "per_obj_AUC": {
+      "blue_cup": 0.9497,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9748,
+     "per_obj_AUC": {
+      "blue_cup": 0.9497,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "plastic_dish_rack": 0.0
+    },
+    "recorded_in_xtrk": 0.9748,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 229.6
+  },
+  "18": {
+   "episode": 18,
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "frames_mocap": 353,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "mini_sweeper": 1.0,
+     "mini_dust_pan": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.968,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9956,
+      "mini_dust_pan": 0.9403
+     }
+    },
+    "full_scan_self_registration_max_abs": 3.3306690738754696e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.968,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9956,
+      "mini_dust_pan": 0.9403
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_sweeper": 0.0,
+     "mini_dust_pan": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9672,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9954,
+      "mini_dust_pan": 0.9389
+     },
+     "registration": {
+      "mini_sweeper": {
+       "rot_deg": 0.14,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "mini_dust_pan": {
+       "rot_deg": 0.16,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0008,
+    "delta_budget_per_obj": {
+     "mini_sweeper": -0.0002,
+     "mini_dust_pan": -0.0014
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9642,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9952,
+      "mini_dust_pan": 0.9333
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9642,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9952,
+      "mini_dust_pan": 0.9333
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "mini_sweeper#1": {
+     "ratio_to_best": 1.015,
+     "rot_from_best_deg": 179.8,
+     "add_from_best_cm": 4.479,
+     "AUC": 0.4501,
+     "delta_obj": -0.5455
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9971,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9965,
+      "mini_dust_pan": 0.9977
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9971,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9965,
+      "mini_dust_pan": 0.9977
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_sweeper": 0.0,
+     "mini_dust_pan": 0.0
+    },
+    "recorded_in_xtrk": 0.9971,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 79.9
+  },
+  "21": {
+   "episode": 21,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames_mocap": 186,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.970766
+   },
+   "a3_inprocess": {
+    "AUC": 0.9708,
+    "per_obj_AUC": {
+     "blue_cup": 1.0,
+     "water_pitcher": 0.9415
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.8313,
+     "per_obj_AUC": {
+      "blue_cup": 0.9926,
+      "water_pitcher": 0.67
+     }
+    },
+    "full_scan_self_registration_max_abs": 6.661338147750939e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.8313,
+     "per_obj_AUC": {
+      "blue_cup": 0.9926,
+      "water_pitcher": 0.67
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.8184,
+     "per_obj_AUC": {
+      "blue_cup": 0.9916,
+      "water_pitcher": 0.6452
+     },
+     "registration": {
+      "blue_cup": {
+       "rot_deg": 0.32,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "water_pitcher": {
+       "rot_deg": 0.14,
+       "anchor_shift_cm": 0.04,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0129,
+    "delta_budget_per_obj": {
+     "blue_cup": -0.001,
+     "water_pitcher": -0.0248
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.8325,
+     "per_obj_AUC": {
+      "blue_cup": 0.9815,
+      "water_pitcher": 0.6835
+     }
+    },
+    "inprocess": {
+     "AUC": 0.8325,
+     "per_obj_AUC": {
+      "blue_cup": 0.9815,
+      "water_pitcher": 0.6835
+     }
+    },
+    "delta": 0.0
+   },
+   "b2_spin": {
+    "45": {
+     "AUC": 0.8313,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "water_pitcher": 0.0
+     }
+    },
+    "90": {
+     "AUC": 0.8313,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "water_pitcher": 0.0
+     }
+    },
+    "145": {
+     "AUC": 0.8311,
+     "delta": -0.0002,
+     "delta_per_obj": {
+      "blue_cup": -0.0003,
+      "water_pitcher": 0.0
+     }
+    },
+    "180": {
+     "AUC": 0.8311,
+     "delta": -0.0002,
+     "delta_per_obj": {
+      "blue_cup": -0.0003,
+      "water_pitcher": 0.0
+     }
+    }
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9945,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9889
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9945,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9889
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    },
+    "recorded_in_xtrk": 0.9945,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 236.2
+  },
+  "22": {
+   "episode": 22,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames_mocap": 189,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.95916
+   },
+   "a3_inprocess": {
+    "AUC": 0.9592,
+    "per_obj_AUC": {
+     "blue_cup": 1.0,
+     "water_pitcher": 0.9183
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.871,
+     "per_obj_AUC": {
+      "blue_cup": 0.9997,
+      "water_pitcher": 0.7424
+     }
+    },
+    "full_scan_self_registration_max_abs": 6.661338147750939e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.871,
+     "per_obj_AUC": {
+      "blue_cup": 0.9997,
+      "water_pitcher": 0.7424
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.8707,
+     "per_obj_AUC": {
+      "blue_cup": 0.9997,
+      "water_pitcher": 0.7417
+     },
+     "registration": {
+      "blue_cup": {
+       "rot_deg": 1.64,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        -0.026,
+        0.004,
+        1.0
+       ],
+       "order": 360
+      },
+      "water_pitcher": {
+       "rot_deg": 0.21,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0003,
+    "delta_budget_per_obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": -0.0007
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.871,
+     "per_obj_AUC": {
+      "blue_cup": 0.9924,
+      "water_pitcher": 0.7497
+     }
+    },
+    "inprocess": {
+     "AUC": 0.871,
+     "per_obj_AUC": {
+      "blue_cup": 0.9924,
+      "water_pitcher": 0.7497
+     }
+    },
+    "delta": 0.0
+   },
+   "b2_spin": {
+    "45": {
+     "AUC": 0.871,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "water_pitcher": 0.0
+     }
+    },
+    "90": {
+     "AUC": 0.871,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "water_pitcher": 0.0
+     }
+    },
+    "145": {
+     "AUC": 0.871,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "water_pitcher": 0.0
+     }
+    },
+    "180": {
+     "AUC": 0.871,
+     "delta": 0.0,
+     "delta_per_obj": {
+      "blue_cup": 0.0,
+      "water_pitcher": 0.0
+     }
+    }
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.995,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9901
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.995,
+     "per_obj_AUC": {
+      "blue_cup": 1.0,
+      "water_pitcher": 0.9901
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "blue_cup": 0.0,
+     "water_pitcher": 0.0
+    },
+    "recorded_in_xtrk": 0.995,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 241.3
+  },
+  "23": {
+   "episode": 23,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames_mocap": 325,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "wooden_piece_1": 1.0,
+     "wooden_piece_2": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float64",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "full_scan_self_registration_max_abs": 8.335417635943705e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     },
+     "registration": {
+      "wooden_piece_1": {
+       "rot_deg": 0.15,
+       "anchor_shift_cm": 0.06,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "wooden_piece_2": {
+       "rot_deg": 0.39,
+       "anchor_shift_cm": 0.06,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0,
+    "delta_budget_per_obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.0414,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0829,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "inprocess": {
+     "AUC": 0.0414,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0829,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "wooden_piece_1#1": {
+     "ratio_to_best": 1.079,
+     "rot_from_best_deg": 179.9,
+     "add_from_best_cm": 6.473,
+     "AUC": 0.0798,
+     "delta_obj": -0.0039
+    },
+    "wooden_piece_2#1": {
+     "ratio_to_best": 1.038,
+     "rot_from_best_deg": 180.0,
+     "add_from_best_cm": 14.634,
+     "AUC": 0.09,
+     "delta_obj": 0.09
+    },
+    "wooden_piece_2#2": {
+     "ratio_to_best": 1.068,
+     "rot_from_best_deg": 180.0,
+     "add_from_best_cm": 12.296,
+     "AUC": 0.0156,
+     "delta_obj": 0.0156
+    },
+    "wooden_piece_2#3": {
+     "ratio_to_best": 1.068,
+     "rot_from_best_deg": 180.0,
+     "add_from_best_cm": 6.501,
+     "AUC": 0.0,
+     "delta_obj": 0.0
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.0418,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.0837,
+      "wooden_piece_2": 0.0
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    },
+    "recorded_in_xtrk": 0.0418,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 56.3
+  },
+  "24": {
+   "episode": 24,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames_mocap": 275,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "wooden_piece_1": 1.0,
+     "wooden_piece_2": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.8105,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7736,
+      "wooden_piece_2": 0.8473
+     }
+    },
+    "full_scan_self_registration_max_abs": 8.675960034403366e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.8105,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7736,
+      "wooden_piece_2": 0.8473
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.8089,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7714,
+      "wooden_piece_2": 0.8464
+     },
+     "registration": {
+      "wooden_piece_1": {
+       "rot_deg": 0.19,
+       "anchor_shift_cm": 0.05,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "wooden_piece_2": {
+       "rot_deg": 0.26,
+       "anchor_shift_cm": 0.03,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0016,
+    "delta_budget_per_obj": {
+     "wooden_piece_1": -0.0022,
+     "wooden_piece_2": -0.0009
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.8117,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7764,
+      "wooden_piece_2": 0.847
+     }
+    },
+    "inprocess": {
+     "AUC": 0.8117,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.7764,
+      "wooden_piece_2": 0.847
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "wooden_piece_1#1": {
+     "ratio_to_best": 1.079,
+     "rot_from_best_deg": 179.9,
+     "add_from_best_cm": 6.473,
+     "AUC": 0.0464,
+     "delta_obj": -0.7272
+    },
+    "wooden_piece_2#1": {
+     "ratio_to_best": 1.038,
+     "rot_from_best_deg": 180.0,
+     "add_from_best_cm": 14.634,
+     "AUC": 0.0,
+     "delta_obj": -0.8473
+    },
+    "wooden_piece_2#2": {
+     "ratio_to_best": 1.068,
+     "rot_from_best_deg": 180.0,
+     "add_from_best_cm": 12.296,
+     "AUC": 0.0,
+     "delta_obj": -0.8473
+    },
+    "wooden_piece_2#3": {
+     "ratio_to_best": 1.068,
+     "rot_from_best_deg": 180.0,
+     "add_from_best_cm": 6.501,
+     "AUC": 0.2739,
+     "delta_obj": -0.5734
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9859,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.9857,
+      "wooden_piece_2": 0.9861
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9859,
+     "per_obj_AUC": {
+      "wooden_piece_1": 0.9857,
+      "wooden_piece_2": 0.9861
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    },
+    "recorded_in_xtrk": 0.9859,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 52.8
+  },
+  "26": {
+   "episode": 26,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames_mocap": 158,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.987737
+   },
+   "a3_inprocess": {
+    "AUC": 0.9877,
+    "per_obj_AUC": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9755
+    },
+    "delta": -0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9565,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9945,
+      "white_pot": 0.9185
+     }
+    },
+    "full_scan_self_registration_max_abs": 6.661338147750939e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9565,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9945,
+      "white_pot": 0.9185
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9573,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9945,
+      "white_pot": 0.9201
+     },
+     "registration": {
+      "plastic_dish_rack": {
+       "rot_deg": 0.11,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 0.41,
+       "anchor_shift_cm": 0.04,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0008,
+    "delta_budget_per_obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0016
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9652,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9367
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9652,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9937,
+      "white_pot": 0.9367
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.8703,
+     "delta_obj": -0.0482
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9947,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9941,
+      "white_pot": 0.9953
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9947,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 0.9941,
+      "white_pot": 0.9953
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9947,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 71.6
+  },
+  "27": {
+   "episode": 27,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames_mocap": 246,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.978913
+   },
+   "a3_inprocess": {
+    "AUC": 0.9789,
+    "per_obj_AUC": {
+     "plastic_dish_rack": 1.0,
+     "white_pot": 0.9578
+    },
+    "delta": -0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9376,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.8753
+     }
+    },
+    "full_scan_self_registration_max_abs": 6.494179856349451e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9376,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.8753
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9421,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.8841
+     },
+     "registration": {
+      "plastic_dish_rack": {
+       "rot_deg": 0.31,
+       "anchor_shift_cm": 0.03,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "white_pot": {
+       "rot_deg": 0.26,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0045,
+    "delta_budget_per_obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0088
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9611,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9223
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9611,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9223
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.8308,
+     "delta_obj": -0.0445
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9971,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9942
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9971,
+     "per_obj_AUC": {
+      "plastic_dish_rack": 1.0,
+      "white_pot": 0.9942
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "plastic_dish_rack": 0.0,
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9971,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 70.2
+  },
+  "31": {
+   "episode": 31,
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "frames_mocap": 290,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.96875
+   },
+   "a3_inprocess": {
+    "AUC": 0.9688,
+    "per_obj_AUC": {
+     "mini_sweeper": 1.0,
+     "plastic_dish_rack": 0.9375
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.8391,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9248,
+      "plastic_dish_rack": 0.7534
+     }
+    },
+    "full_scan_self_registration_max_abs": 6.661338147750939e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.8391,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9248,
+      "plastic_dish_rack": 0.7534
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_sweeper": 0.0,
+     "plastic_dish_rack": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.8426,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9252,
+      "plastic_dish_rack": 0.7599
+     },
+     "registration": {
+      "mini_sweeper": {
+       "rot_deg": 0.08,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      },
+      "plastic_dish_rack": {
+       "rot_deg": 0.29,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0035,
+    "delta_budget_per_obj": {
+     "mini_sweeper": 0.0004,
+     "plastic_dish_rack": 0.0065
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.7999,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9119,
+      "plastic_dish_rack": 0.6879
+     }
+    },
+    "inprocess": {
+     "AUC": 0.7999,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9119,
+      "plastic_dish_rack": 0.6879
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "mini_sweeper#1": {
+     "ratio_to_best": 1.015,
+     "rot_from_best_deg": 179.8,
+     "add_from_best_cm": 4.479,
+     "AUC": 0.1925,
+     "delta_obj": -0.7323
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9976,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9953,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9976,
+     "per_obj_AUC": {
+      "mini_sweeper": 0.9953,
+      "plastic_dish_rack": 1.0
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_sweeper": 0.0,
+     "plastic_dish_rack": 0.0
+    },
+    "recorded_in_xtrk": 0.9976,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 70.5
+  },
+  "39": {
+   "episode": 39,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames_mocap": 319,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "mini_dust_pan": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9804,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9804
+     }
+    },
+    "full_scan_self_registration_max_abs": 5.551115123125783e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9804,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9804
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_dust_pan": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9767,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9767
+     },
+     "registration": {
+      "mini_dust_pan": {
+       "rot_deg": 0.26,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0037,
+    "delta_budget_per_obj": {
+     "mini_dust_pan": -0.0037
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9602,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9602
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9602,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9602
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9961,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9961
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9961,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9961
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_dust_pan": 0.0
+    },
+    "recorded_in_xtrk": 0.9961,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 41.5
+  },
+  "40": {
+   "episode": 40,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames_mocap": 260,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "mini_dust_pan": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.974,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.974
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.193685880394565e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.974,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.974
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_dust_pan": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9738,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9738
+     },
+     "registration": {
+      "mini_dust_pan": {
+       "rot_deg": 0.05,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0002,
+    "delta_budget_per_obj": {
+     "mini_dust_pan": -0.0002
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.957,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.957
+     }
+    },
+    "inprocess": {
+     "AUC": 0.957,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.957
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {},
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9853,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9853
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9853,
+     "per_obj_AUC": {
+      "mini_dust_pan": 0.9853
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "mini_dust_pan": 0.0
+    },
+    "recorded_in_xtrk": 0.9853,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 39.7
+  },
+  "41": {
+   "episode": 41,
+   "objects": [
+    "white_pot"
+   ],
+   "frames_mocap": 299,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.996656
+   },
+   "a3_inprocess": {
+    "AUC": 0.9967,
+    "per_obj_AUC": {
+     "white_pot": 0.9967
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9881,
+     "per_obj_AUC": {
+      "white_pot": 0.9881
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.440892098500626e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9881,
+     "per_obj_AUC": {
+      "white_pot": 0.9881
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9881,
+     "per_obj_AUC": {
+      "white_pot": 0.9881
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.17,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0,
+    "delta_budget_per_obj": {
+     "white_pot": 0.0
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.991,
+     "per_obj_AUC": {
+      "white_pot": 0.991
+     }
+    },
+    "inprocess": {
+     "AUC": 0.991,
+     "per_obj_AUC": {
+      "white_pot": 0.991
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.9314,
+     "delta_obj": -0.0567
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9941,
+     "per_obj_AUC": {
+      "white_pot": 0.9941
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9941,
+     "per_obj_AUC": {
+      "white_pot": 0.9941
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9941,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 38.5
+  },
+  "42": {
+   "episode": 42,
+   "objects": [
+    "white_pot"
+   ],
+   "frames_mocap": 257,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.95501
+   },
+   "a3_inprocess": {
+    "AUC": 0.955,
+    "per_obj_AUC": {
+     "white_pot": 0.955
+    },
+    "delta": -0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.974,
+     "per_obj_AUC": {
+      "white_pot": 0.974
+     }
+    },
+    "full_scan_self_registration_max_abs": 5.551115123125783e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.974,
+     "per_obj_AUC": {
+      "white_pot": 0.974
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9759,
+     "per_obj_AUC": {
+      "white_pot": 0.9759
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.19,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0019,
+    "delta_budget_per_obj": {
+     "white_pot": 0.0019
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9915,
+     "per_obj_AUC": {
+      "white_pot": 0.9915
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9915,
+     "per_obj_AUC": {
+      "white_pot": 0.9915
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.9356,
+     "delta_obj": -0.0384
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9966,
+     "per_obj_AUC": {
+      "white_pot": 0.9966
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9966,
+     "per_obj_AUC": {
+      "white_pot": 0.9966
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9966,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 37.2
+  },
+  "43": {
+   "episode": 43,
+   "objects": [
+    "white_pot"
+   ],
+   "frames_mocap": 326,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.950345
+   },
+   "a3_inprocess": {
+    "AUC": 0.9503,
+    "per_obj_AUC": {
+     "white_pot": 0.9503
+    },
+    "delta": -0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9429,
+     "per_obj_AUC": {
+      "white_pot": 0.9429
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.440892098500626e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9429,
+     "per_obj_AUC": {
+      "white_pot": 0.9429
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9446,
+     "per_obj_AUC": {
+      "white_pot": 0.9446
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.29,
+       "anchor_shift_cm": 0.02,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0017,
+    "delta_budget_per_obj": {
+     "white_pot": 0.0017
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9482,
+     "per_obj_AUC": {
+      "white_pot": 0.9482
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9482,
+     "per_obj_AUC": {
+      "white_pot": 0.9482
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.8461,
+     "delta_obj": -0.0968
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9952,
+     "per_obj_AUC": {
+      "white_pot": 0.9952
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9952,
+     "per_obj_AUC": {
+      "white_pot": 0.9952
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9952,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 38.5
+  },
+  "44": {
+   "episode": 44,
+   "objects": [
+    "white_pot"
+   ],
+   "frames_mocap": 249,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 1.0
+   },
+   "a3_inprocess": {
+    "AUC": 1.0,
+    "per_obj_AUC": {
+     "white_pot": 1.0
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 2.9802322387695312e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 2.220446049250313e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9982,
+     "per_obj_AUC": {
+      "white_pot": 0.9982
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.440892098500626e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9982,
+     "per_obj_AUC": {
+      "white_pot": 0.9982
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9982,
+     "per_obj_AUC": {
+      "white_pot": 0.9982
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.33,
+       "anchor_shift_cm": 0.03,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": 0.0,
+    "delta_budget_per_obj": {
+     "white_pot": 0.0
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9967,
+     "per_obj_AUC": {
+      "white_pot": 0.9967
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9967,
+     "per_obj_AUC": {
+      "white_pot": 0.9967
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.943,
+     "delta_obj": -0.0552
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9987,
+     "per_obj_AUC": {
+      "white_pot": 0.9987
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9987,
+     "per_obj_AUC": {
+      "white_pot": 0.9987
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9987,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 5.960464477539063e-08
+   },
+   "seconds": 39.1
+  },
+  "45": {
+   "episode": 45,
+   "objects": [
+    "white_pot"
+   ],
+   "frames_mocap": 290,
+   "a_official_AUC": {
+    "a1_mocap_scan_mesh": 1.0,
+    "a2_mocap_at_Xkit_lib_mesh": 1.0,
+    "a3_mocap_at_Xgeom_lib_mesh": 0.985776
+   },
+   "a3_inprocess": {
+    "AUC": 0.9858,
+    "per_obj_AUC": {
+     "white_pot": 0.9858
+    },
+    "delta": 0.0
+   },
+   "a4_round_trip": {
+    "poses_npz_max_abs": 5.960464477539063e-08,
+    "poses_npz_dtype": "float32",
+    "world_vo_max_abs": 3.3306690738754696e-16,
+    "world_T_cam_identical": true
+   },
+   "b1_star": {
+    "way1_file_full_scan": {
+     "AUC": 0.9789,
+     "per_obj_AUC": {
+      "white_pot": 0.9789
+     }
+    },
+    "full_scan_self_registration_max_abs": 4.440892098500626e-16,
+    "way2_inprocess_X": {
+     "AUC": 0.9789,
+     "per_obj_AUC": {
+      "white_pot": 0.9789
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "way1b_score_registered_budget_scan": {
+     "AUC": 0.9787,
+     "per_obj_AUC": {
+      "white_pot": 0.9787
+     },
+     "registration": {
+      "white_pot": {
+       "rot_deg": 0.13,
+       "anchor_shift_cm": 0.01,
+       "axis": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "order": 0
+      }
+     }
+    },
+    "delta_budget": -0.0002,
+    "delta_budget_per_obj": {
+     "white_pot": -0.0002
+    }
+   },
+   "b0_lib": {
+    "score_registered": {
+     "AUC": 0.9795,
+     "per_obj_AUC": {
+      "white_pot": 0.9795
+     }
+    },
+    "inprocess": {
+     "AUC": 0.9795,
+     "per_obj_AUC": {
+      "white_pot": 0.9795
+     }
+    },
+    "delta": 0.0
+   },
+   "b3_rivals": {
+    "white_pot#1": {
+     "ratio_to_best": 1.08,
+     "rot_from_best_deg": 7.4,
+     "add_from_best_cm": 0.842,
+     "AUC": 0.8463,
+     "delta_obj": -0.1326
+    }
+   },
+   "b4_trk": {
+    "way1_file_full_scan": {
+     "AUC": 0.9903,
+     "per_obj_AUC": {
+      "white_pot": 0.9903
+     }
+    },
+    "way2_inprocess_X": {
+     "AUC": 0.9903,
+     "per_obj_AUC": {
+      "white_pot": 0.9903
+     }
+    },
+    "delta": 0.0,
+    "delta_per_obj": {
+     "white_pot": 0.0
+    },
+    "recorded_in_xtrk": 0.9903,
+    "delta_recorded": 0.0,
+    "round_trip_max_abs": 2.9802322387695312e-08
+   },
+   "seconds": 38.3
+  }
+ }
+}

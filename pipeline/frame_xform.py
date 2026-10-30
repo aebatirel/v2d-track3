@@ -70,25 +70,22 @@ def main():
         sys.exit(f'{a.perc_dir} has neither {FILES[0]} nor {FILES[1]}')
     if os.path.realpath(a.perc_dir) == os.path.realpath(a.out_dir):
         sys.exit('OUT_DIR must differ from PERC_DIR')
-    os.makedirs(a.out_dir, exist_ok=True)
     rec = dict(episode=a.ep, to=a.to, xform=os.path.abspath(a.xform), xform_md5=md5(a.xform), perc_dir=os.path.abspath(a.perc_dir),
                inputs={f: md5(q) for f, q in src.items()}, note='ORACLE-SIDE frame conversion (scan frames); public episodes only')
-    names = None
-    if 'poses.npz' in src:
-        P = np.load(src['poses.npz'])
-        names = [k[len('cam_T_'):] for k in P.files if k.startswith('cam_T_')]
-        X, kind = load_xform(a.xform, a.ep, names)
+    P = np.load(src['poses.npz']) if 'poses.npz' in src else None                 # names and X first: a refusal writes nothing
+    V = np.load(src['poses_world_vo.npz']) if 'poses_world_vo.npz' in src else None
+    names = [k[len('cam_T_'):] for k in P.files if k.startswith('cam_T_')] if P is not None else list(V.files)
+    if P is not None and V is not None and sorted(names) != sorted(V.files):
+        sys.exit(f'poses.npz names {names} != poses_world_vo.npz names {V.files}')
+    X, kind = load_xform(a.xform, a.ep, names)
+    os.makedirs(a.out_dir, exist_ok=True)
+    if P is not None:
         out = {k: P[k] for k in P.files}
         for n in names:
             out[f'cam_T_{n}'] = convert(P[f'cam_T_{n}'], X[n], a.to).astype(P[f'cam_T_{n}'].dtype)
         np.savez(f'{a.out_dir}/poses.npz', **out)
-    if 'poses_world_vo.npz' in src:
-        V = np.load(src['poses_world_vo.npz'])
-        if names is not None and sorted(names) != sorted(V.files):
-            sys.exit(f'poses.npz names {names} != poses_world_vo.npz names {V.files}')
-        names = list(V.files)
-        X, kind = load_xform(a.xform, a.ep, names)
-        np.savez(f'{a.out_dir}/poses_world_vo.npz', **{n: convert(V[n], X[n], a.to).astype(V[n].dtype) for n in names})
+    if V is not None:
+        np.savez(f'{a.out_dir}/poses_world_vo.npz', **{n: convert(V[n], X[n], a.to).astype(V[n].dtype) for n in V.files})
     rec.update(kind=kind, objects=names, X_scan_T_lib={n: np.round(X[n], 9).tolist() for n in names}, linked=[])
     for f in sorted(os.listdir(a.perc_dir)):                       # frame-independent inputs, linked unchanged
         q = os.path.realpath(f'{a.perc_dir}/{f}')

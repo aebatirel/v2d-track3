@@ -15,7 +15,7 @@ KIT=/content/kit/v2d_submission_kit; OUT=${OUT:-/content/results/submission}; J=
 LIB=${LIB:-$REPO_DIR/meshes/library_v3}; CLEAN=/content/v2d_clean; FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python
 [ -s "${CHECKPOINTS:-}" ] || { log "submit_pack: CHECKPOINTS json missing" >> $J; exit 1; }
 [ -n "${COMMIT_URL:-}" ] || { log "submit_pack: COMMIT_URL missing" >> $J; exit 1; }
-python $REPO_DIR/tools/no_oracle.py $CHECKPOINTS ${KEPT_DIR:-} >> $J 2>&1 \
+python $REPO_DIR/tools/no_oracle.py $CHECKPOINTS ${KEPT_DIR:-} $LIB >> $J 2>&1 \
   || { log "submit_pack: REFUSED: a checkpoint is an oracle twin (mocap-derived; tools/no_oracle.py)" >> $J; exit 1; }
 mkdir -p $OUT/results $OUT/meshes
 [ -d $CLEAN ] || git -C /content/v2d worktree add --detach $CLEAN HEAD >> $J 2>&1 || { log "submit_pack: clean worktree FAILED" >> $J; exit 1; }

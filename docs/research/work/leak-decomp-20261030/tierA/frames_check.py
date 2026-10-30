@@ -17,9 +17,15 @@ pipeline/frame_xform.py). ORACLE SIDE: reads mocap and the public scans; public 
        registration noise is included. Also (0): the in-process chain with the kit registration ==
        score_registered.py --meshes LIB (the lib column).
     2. cup spin: (ii) with X*_geom spun by 45/90/145/180 deg about the scan axis: |delta T*| <= 0.002.
+    3. ambiguity, no rule: T* with an object's X*_geom replaced by each rival surface-fit minimum within xstar_fit.AMBIG
+       of the best. X*_geom keeps the best whatever this says (a choice made from mocap would be X*_trk, not X*_geom).
+    4. with --xtrk: the same two ways for T_trk (frame_xform.py on xstar_trk.json vs in process), |delta| <= 0.002, and
+       equal to the trk score recorded in xstar_trk.json; plus the round trip of (a) 4 through the trk file.
+(a) 3 is also recomputed in process (the lib chain of xstar_fit.score_track on the full mocap): must equal the official.
 Usage: python -I frames_check.py --xgeom xstar_geom.json --perc REFINE_IN --lib LIB --t3 T3 --kit KIT --work DIR
-       --out frames_check.json [--episodes 0,2,...] [--jobs 4]       (DIR must contain 'oracle', see frame_xform.py)
-(2026-10-30)
+       --out frames_check.json [--xtrk xstar_trk.json] [--episodes 0,2,...] [--jobs 4]
+       (DIR must contain 'oracle', see frame_xform.py)
+(2026-10-30; (a) 3 in process, (b) 3-4 and --xtrk added 2026-10-30 evening)
 """
 import argparse, importlib.util, json, os, subprocess, sys, time
 from concurrent.futures import ProcessPoolExecutor
@@ -40,6 +46,7 @@ p.add_argument('--xgeom', required=True); p.add_argument('--perc', required=True
 p.add_argument('--t3', required=True); p.add_argument('--kit', required=True); p.add_argument('--work', required=True)
 p.add_argument('--out', required=True); p.add_argument('--episodes', default=','.join(map(str, PUBLIC)))
 p.add_argument('--jobs', type=int, default=4)
+p.add_argument('--xtrk', default=None, help='xstar_trk.json: also check the trk path (b) 4')
 a = p.parse_args()
 if 'oracle' not in os.path.abspath(a.work):
     sys.exit('--work must contain "oracle" (frame_xform.py writes there)')
@@ -117,6 +124,9 @@ def episode(ep):
         with contextlib.redirect_stdout(io.StringIO()):
             sub = submission(ep, names, tr, roots[mesh])
         r['a_official_AUC'][k] = round(float(mod.score(sol.copy(), sub, 'row_id')), 6)
+    a3i = XF.score_track(names, arms['a3_mocap_at_Xgeom_lib_mesh'][0], gt_full, H,
+                         [XF.kit_X(f'{a.lib}/{n}.glb', H[s], ep, s)[1] for s, n in enumerate(names)])
+    r['a3_inprocess'] = dict(a3i, delta=round(a3i['AUC'] - r['a_official_AUC']['a3_mocap_at_Xgeom_lib_mesh'], 4))
     # (a) 4: round trip through frame_xform.py (both files)
     fx = [sys.executable, '-I', f'{REPO}/pipeline/frame_xform.py', str(ep)]
     run(fx + [f'{a.perc}/ep{ep}', f'{W}/scan', '--xform', a.xgeom, '--to', 'scan'])
@@ -156,10 +166,43 @@ def episode(ep):
             sc = XF.score_track(names, Tp, gt, H, [XF.reg_of_X(Xs[n], H[s]['anchor']) for s, n in enumerate(names)])
             r['b2_spin'][str(deg)] = dict(AUC=sc['AUC'], delta=round(sc['AUC'] - star['AUC'], 4),
                                           delta_per_obj={n: round(sc['per_obj_AUC'][n] - star['per_obj_AUC'][n], 4) for n in names})
+    # (b) 3: rival surface-fit minima (no rule; X*_geom keeps the best)
+    G = json.load(open(a.xgeom))['objects']; r['b3_rivals'] = {}
+    for s, n in enumerate(names):
+        for k, m in enumerate(G[n]['minima'][1:], 1):
+            if m['ratio_to_best'] > XF.AMBIG:
+                continue
+            Xr = dict(Xg); Xr[n] = np.asarray(m['X_scan_T_lib'])
+            sc = XF.score_track(names, Tp, gt, H, [XF.reg_of_X(Xr[q], H[i]['anchor']) for i, q in enumerate(names)])
+            r['b3_rivals'][f'{n}#{k}'] = dict(ratio_to_best=m['ratio_to_best'], rot_from_best_deg=m['rot_from_best_deg'],
+                                              add_from_best_cm=m['add_from_best_cm'], AUC=sc['per_obj_AUC'][n],
+                                              delta_obj=round(sc['per_obj_AUC'][n] - star['per_obj_AUC'][n], 4))
+    # (b) 4: the trk path, two ways, and against the score xstar_trk.json recorded
+    if a.xtrk:
+        Xt, _ = FX.load_xform(a.xtrk, ep, names)
+        run(fx + [f'{a.perc}/ep{ep}', f'{W}/scan_trk', '--xform', a.xtrk, '--to', 'scan'])
+        run(fx + [f'{W}/scan_trk', f'{W}/back_trk', '--xform', a.xtrk, '--to', 'lib'])
+        Pt, Vt = np.load(f'{W}/back_trk/poses.npz'), np.load(f'{W}/back_trk/poses_world_vo.npz')
+        Vst = np.load(f'{W}/scan_trk/poses_world_vo.npz')
+        t1 = XF.score_track(names, {n: Vst[n].astype(np.float64) for n in names}, gt, H, REGf)
+        t2 = XF.score_track(names, Tp, gt, H, [XF.reg_of_X(Xt[n], H[s]['anchor']) for s, n in enumerate(names)])
+        rec = json.load(open(a.xtrk))['episodes'][str(ep)]['scores']['trk']['AUC']
+        r['b4_trk'] = dict(way1_file_full_scan=t1, way2_inprocess_X=t2, delta=round(t1['AUC'] - t2['AUC'], 4),
+                           delta_per_obj={n: round(t1['per_obj_AUC'][n] - t2['per_obj_AUC'][n], 4) for n in names},
+                           recorded_in_xtrk=rec, delta_recorded=round(t2['AUC'] - rec, 4),
+                           round_trip_max_abs=float(max(max(np.abs(Pt[f'cam_T_{n}'].astype(np.float64) - P0[f'cam_T_{n}']).max(),
+                                                            np.abs(Vt[n] - V[n]).max()) for n in names)))
     r['seconds'] = round(time.time() - t0, 1)
     print(f'ep{ep}: a {r["a_official_AUC"]}  rt {r["a4_round_trip"]["poses_npz_max_abs"]:.1e}/{r["a4_round_trip"]["world_vo_max_abs"]:.1e}  '
           f'T* {w1f["AUC"]:.4f} vs {star["AUC"]:.4f} (budget {w1["AUC"]:.4f})  lib {lf["AUC"]:.4f} vs {libp["AUC"]:.4f}  ({r["seconds"]} s)', flush=True)
     return r
+
+
+def _group(pairs):  # 'name#k' -> per-name list (rivals of one object pooled over episodes)
+    out = {}
+    for q, x in pairs:
+        out.setdefault(q, []).append(x)
+    return out
 
 
 eps = [int(e) for e in a.episodes.split(',') if e]
@@ -180,12 +223,22 @@ summary = dict(
     b0_max_abs_delta=max(abs(r['b0_lib']['delta']) for r in res),
     b2_max_abs_delta=max([abs(v['delta']) for r in res for v in r.get('b2_spin', {}).values()] +
                          [abs(x) for r in res for v in r.get('b2_spin', {}).values() for x in v['delta_per_obj'].values()] or [0.0]),
+    a3_inprocess_max_abs_delta=max(abs(r['a3_inprocess']['delta']) for r in res),
+    b3_rivals={k: dict(n_eps=len(v), mean_delta_obj=round(float(np.mean(v)), 4), min=min(v), max=max(v))
+               for k, v in _group([(q, x['delta_obj']) for r in res for q, x in r['b3_rivals'].items()]).items()},
     means=dict(lib=round(float(np.mean([r['b0_lib']['score_registered']['AUC'] for r in res])), 4),
                star=round(float(np.mean([r['b1_star']['way2_inprocess_X']['AUC'] for r in res])), 4),
                star_budget_scan=round(float(np.mean([r['b1_star']['way1b_score_registered_budget_scan']['AUC'] for r in res])), 4)))
 summary['pass'] = dict(a1=summary['a1_min'] >= 0.9995, a2=summary['a2_min'] >= 0.9995, a4=rt < 1e-6 and summary['a4_world_T_cam_identical'],
+                       a3_inprocess=summary['a3_inprocess_max_abs_delta'] <= 0.0001,
                        b1=summary['b1_max_abs_delta'] <= 0.002, b2=summary['b2_max_abs_delta'] <= 0.002, b0=summary['b0_max_abs_delta'] == 0)
+if a.xtrk:
+    summary.update(b4_max_abs_delta=max(max([abs(r['b4_trk']['delta'])] + [abs(v) for v in r['b4_trk']['delta_per_obj'].values()]) for r in res),
+                   b4_max_abs_delta_recorded=max(abs(r['b4_trk']['delta_recorded']) for r in res),
+                   b4_round_trip_max_abs=max(r['b4_trk']['round_trip_max_abs'] for r in res))
+    summary['pass'].update(b4=summary['b4_max_abs_delta'] <= 0.002 and summary['b4_max_abs_delta_recorded'] == 0,
+                           a4_trk=summary['b4_round_trip_max_abs'] < 1e-6)
 out = dict(note='ORACLE SIDE (mocap + scans), public episodes; tests (a)/(b) of leak-decomp PLAN.md §7', xgeom=os.path.abspath(a.xgeom),
-           xgeom_md5=XF.md5(a.xgeom), perc=os.path.abspath(a.perc), lib=os.path.abspath(a.lib), summary=summary, episodes=R)
+           xgeom_md5=XF.md5(a.xgeom), xtrk=a.xtrk and os.path.abspath(a.xtrk), xtrk_md5=a.xtrk and XF.md5(a.xtrk), perc=os.path.abspath(a.perc), lib=os.path.abspath(a.lib), summary=summary, episodes=R)
 json.dump(out, open(a.out, 'w'), indent=1)
 print(json.dumps(summary, indent=1))

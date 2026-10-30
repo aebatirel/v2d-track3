@@ -1,0 +1,35 @@
+== perc2.py copy vs repo: 10 changed lines, all /content -> /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/p1/realcheck/content: 0 other
+== MESH_DIR uses in perc2.py:
+12:Env: EP, FS_SCALE (0.5), OUT, SPLIT (public|eval), MESH_DIR (track with our meshes; score with
+47:MESH_DIR = os.environ.get('MESH_DIR')  # our own reconstructions (MESH_DIR/<obj>.glb) instead of the public scans
+48:def scan_path(n):
+51:def mesh_path(n):                      # the tracking template
+52:    return f'{MESH_DIR}/{n}.glb' if MESH_DIR else scan_path(n)
+184:    m = trimesh.load(mesh_path(n), force='mesh')
+515:    pts, _ = trimesh.sample.sample_surface(trimesh.load(scan_path(n), force='mesh'), 500, seed=0); VERTS[n] = np.asarray(pts)
+
+== (1) template switch
+perc2 D = /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/p1/realcheck/content/t3
+white_pot          unset -> <D>/mesh/white_pot/white_pot.glb           md5 8604f60411 V  293329 F   97803 ext [13.2, 18.9, 35.7] cm | empty -> same: True | lib -> <lib>/white_pot.glb          md5 b97d460ae2 V  11859 F  23734 ext [13.1, 19.0, 36.2] cm | OK
+white_pot_lid      unset -> <D>/mesh/white_pot_lid/white_pot_lid.glb   md5 14e2d6ef42 V  297615 F   99231 ext [4.7, 18.8, 19.0] cm | empty -> same: True | lib -> <lib>/white_pot_lid.glb      md5 a1e89f0ba0 V   4862 F   9732 ext [5.2, 18.9, 18.5] cm | OK
+blue_cup           unset -> <D>/mesh/blue_cup/blue_cup.glb             md5 7a080a80ac V  298377 F   99487 ext [10.3, 10.0, 17.2] cm | empty -> same: True | lib -> <lib>/blue_cup.glb           md5 7542631493 V   5991 F  11986 ext [9.5, 9.6, 16.7] cm | OK
+beige_cup          unset -> <D>/mesh/beige_cup/beige_cup.glb           md5 9c5d23d767 V  295579 F   98563 ext [10.4, 11.1, 16.9] cm | empty -> same: True | lib -> <lib>/beige_cup.glb          md5 6226281f12 V   3767 F   7526 ext [9.9, 11.0, 17.4] cm | OK
+plastic_dish_rack  unset -> <D>/mesh/plastic_dish_rack/plastic_dish_rack.glb md5 ee7e59b41d V  298326 F   99460 ext [11.7, 17.5, 51.0] cm | empty -> same: True | lib -> <lib>/plastic_dish_rack.glb  md5 e683561489 V  16438 F  32912 ext [10.9, 15.9, 49.6] cm | OK
+water_pitcher      unset -> <D>/mesh/water_pitcher/water_pitcher.glb   md5 11f0e687f6 V  292522 F   97540 ext [14.1, 27.2, 41.5] cm | empty -> same: True | lib -> <lib>/water_pitcher.glb      md5 fc824fc5b0 V  15914 F  31832 ext [14.8, 26.1, 41.2] cm | OK
+mini_sweeper       unset -> <D>/mesh/mini_sweeper/mini_sweeper_visual.glb md5 a92b88fc15 V  299442 F   99838 ext [4.8, 11.4, 14.2] cm | empty -> same: True | lib -> <lib>/mini_sweeper.glb       md5 c126a8ff33 V   2196 F   4396 ext [3.4, 11.0, 14.7] cm | OK
+mini_dust_pan      unset -> <D>/mesh/mini_dust_pan/mini_dust_pan.glb   md5 ef3547c6d5 V  298618 F   99560 ext [4.5, 17.0, 17.8] cm | empty -> same: True | lib -> <lib>/mini_dust_pan.glb      md5 c33fa41118 V   3332 F   6664 ext [3.9, 15.9, 16.9] cm | OK
+wooden_piece_1     unset -> <D>/mesh/wooden_piece_1/wooden_piece_1_visual.glb md5 1fb2806514 V  281545 F   93912 ext [2.7, 13.9, 22.7] cm | empty -> same: True | lib -> <lib>/wooden_piece_1.glb     md5 d152b2b5e6 V   4098 F   8208 ext [3.1, 13.3, 22.9] cm | OK
+wooden_piece_2     unset -> <D>/mesh/wooden_piece_2/wooden_piece_2_visual.glb md5 5dc06597aa V  296002 F   98734 ext [2.6, 13.9, 22.7] cm | empty -> same: True | lib -> <lib>/wooden_piece_2.glb     md5 825a7fe364 V   4324 F   8644 ext [2.7, 13.8, 22.9] cm | OK
+template switch: as expected for all objects
+
+== (2) depth cache reuse (real perc2.py, ep11)
+cache (137, 1000, 1600) 876800128 bytes; frame-0 sha256 070547135e460052c1c2cf15862068feaf6225076b2bf614fef9a63494680588
+expected (inputs.tsv): 876800128 bytes; frame-0 sha256 070547135e460052c1c2cf15862068feaf6225076b2bf614fef9a63494680588
+rc=1 (perc2 stops after the depth stage here: no stereo videos / GPU)
+[    0.2s] episode 11 public objects ['blue_cup', 'beige_cup']
+[    1.1s] frames c/b/rows 0 0 137 focal 600.2 baseline 0.0755
+[    4.5s] depth ready 137
+last error: ValueError: cannot convert float NaN to integer
+FoundationStereo branch entered: 0 traceback lines
+cache stat before [1229187 876800128 1793381275] after [1229187 876800128 1793381275]; md5 before c2e299c0f564 after c2e299c0f564
+control without a cache: rc=1; 'depth ready' lines 0; ModuleNotFoundError: No module named 'omegaconf'; traceback through the FoundationStereo branch:   File "<W>/repo/pipeline/perc2.py", line 106, in <module>

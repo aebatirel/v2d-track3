@@ -8,9 +8,10 @@ convention of pipeline/oracle_poses.py and pipeline/frame_xform.py).
         starts: identity, the kit's 24 PCA mappings, 48 seeded random rotations, and 12 spins about the scan axis (cups)
         or the 180 deg flip about the normal (lid); the best by the kit's symmetric mean surface distance on 10000 fresh
         samples a side. Reports the residuals, the RMS-radius ratio (the kit's registration rescales by it before its
-        ICP), the distinct minima (symmetry-aware: a cup spin or a lid flip is the same minimum) and how close they come
-        to the best (ambiguity), the cup spin profile, and per public episode and slot the kit's own registration X_kit
-        (seed 1_000_003 ep + 101 slot) with the error E = X*_geom inv(X_kit) it puts on a perfect lib track.
+        ICP), the distinct minima (symmetry-aware: a cup spin or a lid flip is the same minimum; each with its X) and how
+        close they come to the best (ambiguity; the best is kept whatever the tracks say, tierA/frames_check.py scores
+        the rivals), the cup spin profile, and per public episode and slot the kit's own registration X_kit (seed
+        1_000_003 ep + 101 slot) with the error E = X*_geom inv(X_kit) it puts on a perfect lib track.
   trk   X*_trk per (episode, object): the constant body offset fitted to MOCAP for one perception track (lib frames):
         robust least squares (soft-L1, 2 cm) of G T_perc(t) inv(X) p = T_mocap(t) p over host points p (<= 200 frames),
         one free world transform G per episode, a weak prior towards X*_geom for directions the motion leaves unseen.
@@ -190,7 +191,8 @@ def fit_geom(n, lib, t3):
                minima=[dict(sym_mm=round(sc * 1000, 3), ratio_to_best=round(sc / minima[0][0], 3),
                             add_from_best_cm=round(sym_add_cm(X @ np.linalg.inv(best), H), 3),
                             rot_from_best_deg=round(rot_deg(X[:3, :3] @ best[:3, :3].T), 1),
-                            hits=int(sum(sym_add_cm(Y @ np.linalg.inv(X), H, 72) <= DISTINCT_CM for _, Y in sols)))
+                            hits=int(sum(sym_add_cm(Y @ np.linalg.inv(X), H, 72) <= DISTINCT_CM for _, Y in sols)),
+                            X_scan_T_lib=np.round(X, 9).tolist())          # rivals kept so a check can score them
                        for sc, X in minima[:5]])
     rival = [m for m in out['minima'][1:] if m['ratio_to_best'] <= AMBIG]
     out['ambiguous'] = bool(rival)

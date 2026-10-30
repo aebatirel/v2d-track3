@@ -12,6 +12,7 @@
 #   store.sh pull-depth <ep> [public|eval]
 #   store.sh pull-run <run_id>         put an earlier run's outputs back under /content (stages skip, training resumes)
 #                                      (PULL_SUB="sub/dir ..." limits it to those sub-folders of the run)
+#   store.sh pull-files <path> ...     explicit store files -> /content/hfstore/<path>, one download each, no listing
 #   store.sh mirror-weights            upload FoundationStereo/FoundationPose weights after a Google Drive setup
 #   store.sh snapshot-env <name>       tar + zstd + upload the built environment (same image tag required to restore)
 #   store.sh restore-env <name>
@@ -89,6 +90,18 @@ pull-run)
     [ -d /content/hfstore/runs/$2/$d ] && mkdir -p /content/$d && cp -rn /content/hfstore/runs/$2/$d/. /content/$d/
   done
   echo "pulled runs/$2"
+  ;;
+pull-files)   # 2026-10-30 (HF 429): a single-file `hf download` is one hf_hub_download and lists nothing; --include
+  shift       # or several files at once (down, pull-depth, pull-run) list the whole store (135k files) first. Retried.
+  for f in "$@"; do
+    for i in 1 2 3 4 5; do
+      [ -s /content/hfstore/$f ] && break
+      hf download "$HF_STORE" "$f" --repo-type dataset --local-dir /content/hfstore > /dev/null 2>&1 && [ -s /content/hfstore/$f ] && break
+      [ $i -lt 5 ] || { echo "pull-files: $f FAILED after 5 tries" >&2; exit 1; }
+      echo "pull-files: $f try $i failed; retrying in $(( ${PULL_RETRY_S:-60} * i )) s" >&2; sleep $(( ${PULL_RETRY_S:-60} * i ))
+    done
+    echo "pulled $f"
+  done
   ;;
 mirror-weights)
   up /content/FoundationStereo/pretrained_models/23-51-11 weights/FoundationStereo/23-51-11 "FoundationStereo weights"

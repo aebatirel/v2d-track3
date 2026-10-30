@@ -1,0 +1,8 @@
+== B8 candidate guard on box a's push list: BAD = re.compile(r'perc2scan|perc2gf|oracle|\d{8}-orc[A-Za-z0-9]*-')
+[2026-10-30T17:40:01Z] perc_leak RESULT ep41: OK o ok rc 0 0 s library | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.828
+[2026-10-30T17:40:01Z] perc_leak RESULT ep0: OK o ok rc 0 0 s library | s ok rc 0 0 s scan | P_s vo AUC (scan frame, unregistered) 0.883
+[2026-10-30T17:40:01Z] perc_leak RESULT all bundles ok: True (7/7); every arm ran (rc 0, tracks written): True
+[2026-10-30T17:40:01Z] perc_leak: guard refuses runs/20261030-orcP1a-mocksha/results/leak_p1/... (run id)
+[2026-10-30T17:40:02Z] perc_leak: guard does not yet refuse the bare perc2scan folder name (B8 pending)
+guard (<MR>/no_oracle_b8.py): refuses 200/200 pushed files by store path runs/20261030-orcP1a-mocksha/...; bare paths refused: perc2scan 64/64, perc2 0/64, perc2rep 0/18, bundle tar 7/7
+RESULT: ALL CHECKS PASS

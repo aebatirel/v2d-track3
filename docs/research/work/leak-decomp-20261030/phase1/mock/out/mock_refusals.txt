@@ -1,0 +1,5 @@
+run id 20261030-p1a-mocksha, job [EPS="11" LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh]: rc 1, perc2 runs 0, downloads 0:  perc_leak: RUN_ID '20261030-p1a-mocksha' must contain -orc (eval packs refuse such runs)
+run id 20261030-orcP1x-mocksha, job [EPS="11" ARMS=o,gf LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh]: rc 1, perc2 runs 0, downloads 0:  perc_leak: unknown arm gf (o, s, o2; P_gf is Phase 1b)
+run id 20261030-orcP1x-mocksha, job [EPS="11" REPEAT="12" LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh]: rc 1, perc2 runs 0, downloads 0:  perc_leak: REPEAT ep12 is not in EPS
+run id 20261030-orcP1x-mocksha, job [EPS="5" LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/perc_leak.sh]: rc 1, perc2 runs 0, downloads 0:  perc_leak: ep5 is not one of the public episodes in <MR>/content/v2d-track3/docs/research/wo
+relative LIB=meshes/library_v3: rc 0; MESH_DIR seen by perc2:  "mesh_dir": "<MR>/content/v2d-track3/meshes/library_v3"  "mesh_dir": "<unset>" 
