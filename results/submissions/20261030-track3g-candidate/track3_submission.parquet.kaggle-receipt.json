@@ -1,0 +1,42 @@
+{
+  "track": "track_3",
+  "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
+  "message": "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b",
+  "submissions": {
+    "add_auc": {
+      "slug": "v2d-challenge-track3-auc",
+      "state": "PENDING",
+      "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - AUC",
+      "ref": 57795535
+    },
+    "spider_sr": {
+      "slug": "v2d-challenge-track3-sp-sr",
+      "state": "PENDING",
+      "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - SP-SR",
+      "ref": 57795537
+    },
+    "maniptrans_sr": {
+      "slug": "v2d-challenge-track3-mp-sr",
+      "state": "PENDING",
+      "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MP-SR",
+      "ref": 57795538
+    },
+    "rpe_cm": {
+      "slug": "v2d-challenge-track3-rpe",
+      "state": "PENDING",
+      "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - RPE (cm)",
+      "ref": 57795540
+    },
+    "mppe_cm": {
+      "slug": "v2d-challenge-track3-mppe",
+      "state": "PENDING",
+      "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MPPE (cm)",
+      "ref": 57795541
+    }
+  }
+}
