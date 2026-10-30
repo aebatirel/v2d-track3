@@ -299,7 +299,7 @@ Readings:
   - but only at a sample budget ~500× below Do as I Do's (64 × 4 × 16 vs 4,096 × 32 × 60 world-frames per replan).
 - **CPU is enough to develop and verify the solver, not to search at the scale the method needs.**
 
-## 5. GPU plan (G1 approved 30 Oct; pre-registered in §5.1) [E]
+## 5. GPU plan (G1 pre-registered in §5.1 and passed; G2 + G3 pre-registered in §5.2) [E]
 
 Throughput assumption: **~50k world-frames/s** on an RTX PRO 6000 at ≥ 1,024 worlds [E]. That is below our measured
 RL training rate of 55–63k env steps/s at 4,096 worlds (work log, 23–26 Oct), which includes the learner.
@@ -415,6 +415,98 @@ CPU checks of the port [M]:
 - Box setup ~10–20 min. Total ~40–55 min ≈ **$0.8–1.4** at $1.2–1.5/h. The deadline bounds the solve whatever the
   throughput.
 
+### 5.2 G2 + G3 pre-registration (written 30 Oct 2026 ~18:40 UTC, before any G2 or G3 result)
+
+G1 passed (§5.1; `gpu/psolve_G1_summary.json`). Jittered Δ vs GL+ILC: ep2 +0.080, ep12 +0.063, ep18 −0.004,
+ep24 +0.005. The owner approved G2 and G3 together (cap ≈ $14.5). Both run in one box job,
+`ops/jobs/physics_solve_rl.sh`: G2 first, then G3. They are not overlapped: two 4,096-world solvers (~8 GB each [E],
+from ~1.9 MB per world measured on CPU) plus two FlashSAC trainings (40 GB each) would crowd the 96 GB card, and
+training would take GPU time from G2. Nothing below is changed after a result.
+
+**Code** (working tree on `a434363`; the coordinator commits it):
+- `tools/physics_solve/solve.py` md5 `be1dabb1`. New since G1:
+  - `--early_rel/--early_n/--min_iters`: Do as I Do's early stop. Stop a replan's iterations once the best sample beats
+    sample 0 by less than 2 % of J0 in 2 consecutive iterations, after at least 6 iterations;
+  - `--pace_s`: behind schedule, a replan runs only `min_iters` iterations and no boosted iterations;
+  - knot interpolation as one matrix product (equal to the old loop to 4e-16).
+- `jitter_check.py` `3522b860` (unchanged since G1).
+- `ops/jobs/physics_solve_rl.sh` `179ac592`.
+- `ops/jobs/glock_public.sh` `a2733085`, unchanged and used as is.
+
+CPU checks [M]:
+- early stop fired as designed (3–5 iterations of 8);
+- pacing cut replans to `min_iters`;
+- truth vs official replay 0.0 after rollbacks;
+- dry run of the whole job in a scratch root with a fake store and a stub `glock_public.sh`:
+  - G2 ran;
+  - the G3 reference choice worked;
+  - each G3 task directory held exactly one parquet, plus `rest_check.json` and the support stage;
+  - the stub received exactly round 1's recipe environment;
+  - the summary verdicts evaluated.
+
+**G2 (episodes ep2, ep12; run concurrently).**
+- Input: the same S1 GL+ILC(+EVOLVE) references as G1. Fallbacks as in G1.
+- Settings: `--worlds 4096 --robust 4 --horizon 60 --knot 4 --ctrl 10 --iters 32 --ramp 1 4 --sig_pos 0.01 --sig_rot
+  0.05 --sig_fin 0.15 --anneal 0.9518 --retries 3 --retry 0.05 --back 1 --rob_pos 0.0005 --rob_fin 0.005 --early_rel
+  0.02 --early_n 2 --min_iters 6 --seed 0`. That is:
+  - 1,024 candidates × 4 robust copies;
+  - 3 s horizon, 0.2 s knots, 0.5 s commits;
+  - up to 32 iterations. The annealing is rescaled so that iteration 32 has G1's final noise factor (0.6³ = 0.216 =
+    0.9518³¹);
+  - at most 3 rollbacks of one commit (0.5 s) each.
+- Pace 14.4 s per committed frame; hard deadline 18 s × frames (ep2 6,174 s = 1.7 h; ep12 3,258 s).
+- Jitter checks on this box: 64 copies, seed 0, the same noise draws for each of the GL+ILC input, G1's solved
+  reference (store run `20261030-psolve-eecd18a`) and G2's output.
+- **G2 reading** (primary): Δ_scale,e = jittered mean(G2) − jittered mean(G1), both measured on this box.
+  - **scale helps** iff the mean of Δ_scale over ep2 and ep12 is ≥ +0.03 and neither is ≤ −0.05;
+  - **scale hurts** iff the mean is ≤ −0.03 or either is ≤ −0.10;
+  - otherwise **no scale effect**;
+  - an episode without a G2 output is left out and flagged.
+- Secondary (reported only): G2 − GL+ILC per episode, i.e. whether G2 keeps G1's +0.03 bar; nominal replays; solve
+  wall time, deadline, pacing, mean iterations and rollbacks.
+
+**G3 (RL, all four episodes, seed 42).** The frozen round-1 recipe through `glock_public.sh` with `REUSE_REF=1`:
+- settings as `physics_arms.sh ARM=S1`: `LIB=/content/scanlib`, S1 props, `SF=0`, FDR + VOC fix, 70M steps,
+  `CURVE_REP 3`, `NREP 5`, the same PAIRS base runs;
+- the scoring is round 1's: the checkpoint is chosen by sim_vs_ref only; NREP official evaluations scored by
+  sim_vs_ref and by registered AUC vs mocap (evaluation only).
+
+References (no ground truth in the choice):
+- **ep2, ep12:** G2's output if its jittered mean ≥ G1's on this box, else G1's (`G3_PICK=best`). `G3_PICK=g2` uses
+  G2's output whenever it exists (the coordinator's literal wording; it is not the default because it would train on a
+  reference our own metric ranks lower).
+- **ep18, ep24:** G1's output.
+- Each reference is placed as the only parquet in `refs/glockt/ep<N>/<hive>/`. Its `rest_check.json` comes from its own
+  zero-action replay on the box.
+- `robot_<side>_frames`, the RL hand-tracking target, stay the **intended** hand: the solver edits only the wrist and
+  finger targets (the `wrist_ilc.py` convention). Decided, 30 Oct.
+
+Readings:
+- **[H-RL] (learning speed):** the curve's sim_vs_ref at the 30M checkpoint (3 official evaluations) vs round-1 S1
+  seed 42 at 30M (ep2 0.483, ep12 0.549, ep18 0.529, ep24 0.112).
+  - **Supported** iff ≥ +0.03 on ≥ 2 of 4 episodes; otherwise **falsified**. No 30M result counts as not.
+  - The comparison is fair: the solved references keep the input's object trajectory, so sim_vs_ref is against the
+    same object reference.
+- **Final** (registered AUC vs mocap, NREP 5, the checkpoint chosen by sim_vs_ref) vs round-1 S1 seed 42 (ep2 0.736,
+  ep12 0.885, ep18 0.625, ep24 0.232):
+  - **signal** iff mean Δ ≥ +0.03 and no episode ≤ −0.05;
+  - **harm** iff mean Δ ≤ −0.03 or any ≤ −0.10;
+  - otherwise **inconclusive**.
+  - One seed: a signal buys a second seed, not adoption.
+- Reported only: ep2 against round 2's S1 seeds 43 / 44 (0.979 / 0.980; same recipe, reference rebuilt on that box),
+  which bound seed noise on ep2.
+
+**Expected time and cost** [E]:
+
+| stage | time |
+|---|---|
+| setup | ~15 min |
+| prep (assets, pulls, CUDA kernel compile, 4 jitter checks) | ~10 min |
+| **G2** | ≤ 1.7 h by construction (deadline); expected ~1.2–1.7 h. In G1, 4 processes at 1,024 worlds ran ~0.13 s per planner frame each; at 4,096 worlds × 2 processes the pace allows ~10 iterations per replan on average |
+| G3 references | ~7 min |
+| **G3** | ~2–2.3 h (round 1: about 1 h per pair of episodes for training, curves and NREP evaluations, two at a time) |
+| **total box** | **~3.7–4.5 h ≈ $4.5–6.8** at $1.2–1.5/h, within the ≈ $14.5 cap |
+
 Not recommended: running Do as I Do or SPIDER themselves.
 - They plan in a different contact model (condim 6, finger kp 300) and their data model allows one object per hand.
 - SPIDER's code is non-commercial.
@@ -448,6 +540,8 @@ KIT=... python tools/physics_solve/jitter_check.py REF.parquet --k 9 --sig_pos 1
 solve.py ... --workers 4 --worlds 16 --horizon 16 --knot 4 --ctrl 4 --iters 4 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.6
 # v2 (stopped after t=40)
 solve.py ... v1 args with --horizon 20 --retries 6 --retry 0.05 --back 3
+# G2 + G3 on one GPU box (pre-registered in section 5.2)
+ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'bash ops/jobs/physics_solve_rl.sh'
 # G1 on a GPU box (pre-registered in section 5.1; the coordinator launches it)
 ops/vast.sh V2D_COMMIT=<commit with 09e59d2's job> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'bash ops/jobs/physics_solve.sh'
 # v3

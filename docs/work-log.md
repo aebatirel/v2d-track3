@@ -5559,3 +5559,26 @@ Background agent, CPU only, $0, no ground truth read.
 - ~18:15 UTC physics solver G1 **PASS** (jittered Δ +0.080 / +0.063 / −0.004 / +0.005 on ep2/12/18/24; 2 of 4 ≥ 0.03);
   box job exit 0 after 45 min, ledger actual $1.29. Physics fit v1 passed its gate (+0.0070 mean) but with a frame-0
   alignment confound; the frame-0-held control is running.
+
+### 30 Oct ~18:25–18:45 UTC — physics solver G2 + G3: one box job, pre-registered (no GPU run yet)
+- Owner approved G2 and G3 (cap ≈ $14.5).
+- `solve.py` (md5 `be1dabb1`) gains Do as I Do's early stop (`--early_rel/--early_n/--min_iters`), pacing
+  (`--pace_s`) and matrix knot interpolation. CPU-tested: early stop fired; pacing cut iterations; truth vs official
+  replay 0.0.
+- New `ops/jobs/physics_solve_rl.sh` (`179ac592`):
+  - **G2**, ep2 + ep12:
+    - 4,096 worlds = 1,024 × 4 robust copies; 3 s horizon, 0.5 s commits, ≤ 32 iterations (anneal 0.9518 → G1's
+      final noise), early stop, 3 rollbacks;
+    - pace 14.4 s/frame, deadline 18 s/frame (ep2 ≤ 1.7 h);
+    - 64-copy jitter of the GL+ILC input, of G1's output and of G2's output on the same box.
+  - **G3**, all four episodes:
+    - the frozen round-1 S1 recipe through `glock_public.sh` REUSE_REF on the solved references (G2's if its
+      jittered mean ≥ G1's, else G1's; G1's for ep18/24);
+    - `robot_<side>_frames` stay the intended hand.
+  - CPU dry run in a scratch root with a fake store and a stub `glock_public.sh`: passes.
+- Readings pre-registered in `physics-solver.md` §5.2:
+  - G2 scale vs G1;
+  - [H-RL] at 30M vs round-1 S1 seed 42;
+  - final registered AUC vs round-1 S1 seed 42 (signal / harm / inconclusive);
+  - ep2 vs round-2 seeds reported.
+- Expected ~3.7–4.5 h box, ≈ $4.5–6.8. Nothing rented by the agent.

@@ -299,6 +299,12 @@ def main():
     p.add_argument('--truth_device', default='', help='truth env device (default: --device)')
     p.add_argument('--deadline_s', type=float, default=0.0, help='> 0: past this wall time, commit the rest without '
                    'optimisation and without rollbacks (bounded box time)')
+    p.add_argument('--early_rel', type=float, default=0.0, help='> 0: early stop of a replan\'s iterations (Do as I Do: '
+                   'improvement < 0.01 for 2 checks): stop once the best sample beats sample 0 (the current mean) by less '
+                   'than EARLY_REL x J0 in EARLY_N consecutive iterations, after at least MIN_ITERS')
+    p.add_argument('--early_n', type=int, default=2); p.add_argument('--min_iters', type=int, default=4)
+    p.add_argument('--pace_s', type=float, default=0.0, help='> 0: pacing; when the solve loop is behind PACE_S seconds per '
+                   'committed frame, a replan runs only MIN_ITERS iterations and no boosted (rollback) iterations')
     p.add_argument('--seed', type=int, default=0)
     a = p.parse_args(); t_start = time.time(); rng = np.random.default_rng(a.seed)
     a.truth_device = a.truth_device or a.device
@@ -362,6 +368,7 @@ def main():
         truth.reset(frame_id=0)
     Q = [truth.state_0.body_q.numpy().copy()]; FR = [0]
     replans = []; t = 0; chunks = []; boost, boost_until, retries = 0, -1, 0; deadline_t = None
+    t_loop0 = time.time(); n_paced = 0
     nk = a.horizon // a.knot + 1
     while t < stop:
         H = min(a.horizon, T - 1 - t); C = min(a.ctrl, H)
@@ -378,14 +385,18 @@ def main():
             mean = plan[:H].copy(); mean[:, np.setdiff1d(np.arange(A), dims)] = 0.0
             ramp = np.logspace(np.log10(a.ramp[0]), np.log10(a.ramp[1]), nk)
             kpos = np.linspace(0, a.horizon - 1, nk)
+            Mint = np.stack([np.interp(np.arange(H), kpos, np.eye(nk)[k]) for k in range(nk)], 1)   # (H, nk)
             K = max(1, a.robust); N = NW // K; best = (np.inf, None, None); hist = []
-            bst = boost if t < boost_until else 0; row['boost'] = bst
-            for it in range(a.iters * (1 + bst)):
+            bst = boost if t < boost_until else 0
+            n_it = a.iters * (1 + bst)
+            if a.pace_s > 0 and time.time() - t_loop0 > a.pace_s * (t + C):   # behind schedule: cheapest replan
+                n_it, bst = min(a.min_iters, a.iters), 0; n_paced += 1; row['paced'] = True
+            row['boost'] = bst; small = 0
+            for it in range(n_it):
                 eps = rng.normal(size=(N, nk, len(dims))) * (sig[dims] * (np.sqrt(2.0) ** bst) * (a.anneal ** (it % a.iters)))[None, None] * ramp[None, :, None]
                 eps[0] = 0.0
-                noise = np.zeros((N, H, A))
-                for j in range(len(dims)):
-                    noise[:, :, dims[j]] = np.array([np.interp(np.arange(H), kpos, eps[i, :, j]) for i in range(N)])
+                noise = np.zeros((N, H, A))                    # knots -> frames: linear interpolation as a matrix
+                noise[:, :, dims] = np.einsum('hk,nkd->nhd', Mint, eps)
                 U = mean[None] + noise
                 if t == 0:
                     U[:, 0] = 0.0                              # frame 0 is the reset pose: never edited
@@ -420,6 +431,10 @@ def main():
                 if J[i_best] < best[0]:
                     best = (float(J[i_best]), U[i_best].copy(), cost_obj[i_best].copy()); best_from = (it, i_best)
                 hist.append(dict(it=it, J0=round(float(J[0]), 5), Jbest=round(float(J[i_best]), 5), Jmed=round(float(np.median(J)), 5)))
+                if a.early_rel > 0:                            # Do as I Do's early stop (improvement of the best over sample 0)
+                    small = small + 1 if float(J[0] - J[i_best]) < a.early_rel * max(float(J[0]), 1e-9) else 0
+                    if small >= a.early_n and it + 1 >= a.min_iters:
+                        row['early_stop_it'] = it + 1; break
                 k = max(2, int(round(a.top * N))); top = np.argsort(J)[:k]
                 r = -J[top]; r = (r - r.mean()) / (r.std() + 1e-2); w = np.exp(r / a.temperature); w /= w.sum()
                 mean = np.einsum('i,iha->ha', w, U[top])
@@ -493,8 +508,10 @@ def main():
     pq.write_table(out, a.out)
     np.savez_compressed(os.path.splitext(a.out)[0] + '_solve.npz', offsets=offsets, q=np.array(Q, np.float32),
                         frame=np.array(FR), labels=np.array(labels))
+    n_iters = [len(r['iters']) for r in replans if 'iters' in r]
     json.dump(dict(args=vars(a), T=T, objects=ref.names, moving=moving.tolist(), replans=replans, deadline_t=deadline_t,
-                   rollbacks=retries, wall_s=round(time.time() - t_start, 1)), open(os.path.splitext(a.out)[0] + '_solve.json', 'w'), indent=1)
+                   rollbacks=retries, paced_replans=n_paced, mean_iters=round(float(np.mean(n_iters)), 2) if n_iters else None,
+                   wall_s=round(time.time() - t_start, 1)), open(os.path.splitext(a.out)[0] + '_solve.json', 'w'), indent=1)
     log(f'[{time.time() - t_start:.0f}s] wrote {a.out} (+ _solve.json/.npz); truth trajectory {len(Q)} frames')
     # check: a fresh load of the written parquet gives bit-identical target buffers to the patched truth env
     fresh, _ = build_env(os.path.abspath(a.out), 1, planner=False, device=a.truth_device); FB = fresh.action.buffers.reference
