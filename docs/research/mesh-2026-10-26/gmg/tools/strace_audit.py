@@ -415,6 +415,7 @@ def analyze(log, manifest=None, policy='gmg', src=None, out=None, allow=(), allo
                 rec = man_inputs.get(p)
                 if rec and rec['role'] in guard.DEV_ROLES:
                     r = None
+                    guard._ADMITTED.add(p)                   # B1: let the auditor's own hook pass its hashing open
             if not r and guard._match(q, guard.KIT_SCORER_HOOK):
                 r = 'the kit scorer'
             if r:

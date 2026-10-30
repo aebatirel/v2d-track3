@@ -203,8 +203,8 @@ PREREG leave a detail open, or B1 limits (the full forms come in the steps named
 
 34. **Dev-only guard role `dev_frozen`** (`gmg/dev_constants.json`, tier DEV, refused in clean mode like every dev
     role). PREREG A.1 says dev runs use t0_dev ("the same statistic on obs_all") but SPEC section 2 names no role for
-    it. `tools/t0_dev.py` computes it in an audited dev run over the 25 obs_all object-episodes of the roster (obs_all
-    holds 25 files, not 33) and writes the committed copy with the run name, commit and input sha256.
+    it. `tools/t0_dev.py` computes it in an audited dev run over the 33 obs_all object-episodes of the roster and
+    writes the committed copy with the run name, commit and input sha256.
 35. **T-V2d fixture identity, corrected.** DEVIATIONS 18 assumed the PREREG label sha `e1be3218a8608793` is the sha
     of a budgeted mesh. It is `scripts/mesh_metric.sha()`, i.e. sha1[:16] of the file the label row scored, and the
     raw fixture `prim/potlid/cand/white_pot_lid_ep2_fit.glb` has exactly that sha1 prefix (hashed in B1; its sha256
@@ -255,3 +255,8 @@ PREREG leave a detail open, or B1 limits (the full forms come in the steps named
 50. **t0 measurements** (A.1 "the finite two-sided thicknesses that shell_sheet measures"): `thickness.py` repeats
     shell_sheet steps 1-3 with the same calls and stops before resolve_sides, so each sample's measurement counts once
     (shell_sheet's report rounds the share and the median).
+51. **strace auditor, dev mode.** In dev mode the auditor exempts files the manifest lists under a dev role from the
+    refused-folder rule, but its own content hashing (deny sha256, det identity) then opened them through its own
+    guard hook, which refused them (`obs_all/`), and the analysis crashed (found on the t0_dev run; B0 audited clean
+    runs only). Fix: such a file is admitted in the auditor's guard (`_ADMITTED`) before it is hashed. Clean mode is
+    unchanged. The t0_dev log was re-analysed with the fixed auditor (0 forbidden opens).
