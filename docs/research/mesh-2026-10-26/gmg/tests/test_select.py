@@ -71,6 +71,7 @@ class VetoTests(unittest.TestCase):
         self.assertEqual(p['cid'], 'b')
         v5 = [t for t in p['trace'] if t['step'] == 'V5'][0]
         self.assertTrue(v5['applied']); self.assertEqual(v5['removed'], ['a'])
+        self.assertEqual(p['trace'][0]['removed'], {})                  # the V1-V4 trace does not list V5
         self.assertNotIn('flip_risk', p['flags'])
         rows = [row('a', 'STRUCT', 1.0, risk=True, units=0), row('b', 'SHELL', 1.0, risk=True, units=-1)]
         p = S.pick(rows)

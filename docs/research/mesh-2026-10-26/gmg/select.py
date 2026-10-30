@@ -181,7 +181,7 @@ def pick(cands, feats=None, variant=None, *, kit_symmetric=False, gen_view_overl
     # 1. vetoes V1-V4, then V5
     removed = {r['cid']: vetoes_v1_v4(r) for r in rows if vetoes_v1_v4(r)}
     feas = [r for r in rows if r['cid'] not in removed]
-    trace.append(dict(step='vetoes V1-V4', removed=removed,
+    trace.append(dict(step='vetoes V1-V4', removed=dict(removed),
                       not_applied=['V3 (tau not set)'] if any(isinstance(r.get('v3'), dict) and not
                                                              r['v3'].get('applied', True) for r in rows) else []))
     if kit_symmetric:

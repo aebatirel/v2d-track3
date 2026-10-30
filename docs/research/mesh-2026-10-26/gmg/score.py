@@ -27,6 +27,7 @@ Vetoes and features
   fsv_far(mesh, obs)                    PREREG A.3 (20,000 area-weighted samples, seed 0; FREE and no OBSERVED voxel
                                         within 2 voxels, Chebyshev)
   v2(mesh, bundle, obj), v3(fsv_c, fsv_s, tau), below_table(mesh, bundle, obj)   PREREG A.3 V2, V3, V4
+  fold_fsv_diffs(folds_c, folds_s, obs) PREREG A.3 fold null D(c, k) = fsv_far(c_k) - fsv_far(s_k) (all-frames grid)
   tau_q99(diffs)                        PREREG A.3 tau: the 99th percentile of the fold null D(c, k)
   ambiguity(v, f, kind)                 own copy of scripts/mesh_metric.ambiguity with own copies of the kit AUC
                                         helpers it calls (_pca_basis, _initial_rotations, _kabsch,
@@ -176,6 +177,20 @@ def fsv_far(mesh, obs, far=None):
     hit = np.zeros(len(P), bool)
     hit[ins] = far[tuple(vi[ins].T)]
     return dict(fsv_far=float(hit.mean()), outside_grid=float(1 - ins.mean()))
+
+
+def fold_fsv_diffs(folds_c, folds_s, obs):
+    """PREREG A.3 null for tau: D(c, k) = fsv_far(c_k) - fsv_far(s_k) for every fold k, both measured against the
+    all-frames grid of OBS (the bundle's grid). folds_c, folds_s: [c_1..c_K], [s_1..s_K] (fold rebuilds; a None fold
+    gives None)."""
+    far = far_free_grid(obs)
+    out = []
+    for ck, sk in zip(folds_c, folds_s):
+        if ck is None or sk is None:
+            out.append(None); continue
+        a, b = fsv_far(ck, obs, far)['fsv_far'], fsv_far(sk, obs, far)['fsv_far']
+        out.append(None if a is None or b is None else float(a - b))
+    return out
 
 
 def tau_q99(diffs):
@@ -798,6 +813,7 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
     kind = kit_symmetry(obj) if kind == 'kit' else kind
     gen = [x for x in cands if _get(x, 'cls') in ('GEN', 'FUSE')]
     gviews = sorted({int(f) for x in gen for f in (_get(x, 'gen_input_frames') or [])})
+    pool_flags = ['gen_input_frames_missing'] if any(not _get(x, 'gen_input_frames') for x in gen) else []
     pl = plan(bundle, obj, K, gen_views=gviews if gen else None)
     reps = bootstrap_reps(pl['blocks'])
     obs = bundle.obs(obj)
@@ -839,4 +855,4 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
                 gen_view_overlap=pl['gen_view_overlap'], holdout=pl['holdout'], removed_frames=pl['removed'],
                 blocks=[dict(frames=len(b['frames']), kept=len(b['kept']), points=int(len(b['idx'])),
                              L=block_length(len(b['kept'])) if b['kept'] else None) for b in pl['blocks']],
-                shell_cid=scid, tau=tau, rows=rows, plan=pl)
+                shell_cid=scid, tau=tau, rows=rows, plan=pl, flags=pool_flags)

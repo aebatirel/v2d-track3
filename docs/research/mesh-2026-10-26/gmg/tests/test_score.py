@@ -572,18 +572,25 @@ class B5Synthetic(unittest.TestCase):
         self.assertGreaterEqual(fp, 0.3)
         # V3 with a tau from a fold null of honest candidates (here: the disc and a slightly thicker disc rebuilt per
         # fold are identical meshes, so the null is zero and tau = 0); the phantom is vetoed, the disc is not
-        pl = SC.plan(b, 'disc', 3)
-        null = [SC.fsv_far(SY.disc(t=0.012), obs)['fsv_far'] - fd for _ in range(pl['K'])]
+        null = SC.fold_fsv_diffs([SY.disc(t=0.012)] * 3, [d] * 3, obs)          # D(c, k), all-frames grid
+        self.assertEqual(SC.fold_fsv_diffs([ph, None], [d, d], obs)[1], None)
+        self.assertAlmostEqual(SC.fold_fsv_diffs([ph], [d], obs)[0], fp - fd, places=12)
         tau = SC.tau_q99(null)
+        self.assertEqual(tau, 0.0)
+        self.assertAlmostEqual(SC.tau_q99(list(np.arange(101) / 100.0) + [None, float('nan')]), 0.99, places=12)
         cands = [dict(cid='disc_shell', cls='SHELL', mesh=d, n_params=0),
                  dict(cid='disc_phantom', cls='GEN', mesh=ph, n_params=0, gen_input_frames=[0])]
         pool = SC.score_pool(cands, b, 'disc', kind=None, tau=tau, amb=False)
+        self.assertEqual(pool['flags'], [])
         r = {x['cid']: x for x in pool['rows']}
         self.assertTrue(r['disc_phantom']['v3']['veto']); self.assertFalse(r['disc_shell']['v3']['veto'])
         self.assertAlmostEqual(r['disc_phantom']['v3']['diff'], fp - fd, places=9)
         p = SEL.pick(pool['rows'], gen_view_overlap=pool['gen_view_overlap'])
         self.assertEqual(p['cid'], 'disc_shell')
         self.assertEqual(p['trace'][0]['removed'], {'disc_phantom': ['V3']})
+        nogv = [dict(c) for c in cands]
+        nogv[1].pop('gen_input_frames')
+        self.assertEqual(SC.score_pool(nogv, b, 'disc', kind=None, amb=False)['flags'], ['gen_input_frames_missing'])
         pool0 = SC.score_pool(cands, b, 'disc', kind=None, tau=None, amb=False)    # before B13: reported only
         r0 = {x['cid']: x for x in pool0['rows']}
         self.assertFalse(r0['disc_phantom']['v3']['applied'])
