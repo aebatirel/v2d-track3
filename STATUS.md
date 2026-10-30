@@ -4,8 +4,8 @@
 - **Solver G1** (sampling MPC inside FlashCHORD, `tools/physics_solve/`, box $1.29): jittered sim_vs_ref vs grasp lock +
   ILC: ep2 +0.080, ep12 +0.063, ep18 −0.004, ep24 +0.005 → PASS (2 of 4 ≥ 0.03). Owner approved G2 (full-scale search on
   ep2/ep12) and G3 (RL from the solved references); one combined box job being written (physics_solve_rl.sh).
-- **Physics fit v1** (`pipeline/phys_fit.py`): mean +0.0070 vs mocap (gate +0.005) but corrections concentrate at frame 0,
-  where the scorer aligns; the frame-0-held control is running (adopt only if it keeps ≥ +0.005).
+- **Physics fit v1** (`pipeline/phys_fit.py`): **not adopted** — its +0.0070 vs mocap was frame-0 alignment (frame 0 held:
+  −0.0063). v2 (honest contacts, FlashCHORD contact physics) is the next version, judged on robot executability.
 - Credit $33.36 (before G2/G3).
 
 ## 2026-10-30 ~17:20 UTC: physics round 2 results; physics fit (inverse dynamics) v1 being built

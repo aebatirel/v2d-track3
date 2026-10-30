@@ -285,3 +285,11 @@ while every object is on its reference gets no targets. CPU test on ep12's S1 gr
 replaced, 26 kept (cup lost at f37 in this replay), left (parked) hand 7 frames cleared; FlashCHORD loads it; the
 zero-action replay is unchanged (0.600, as expected: contact targets only enter the reward). Intended use: on the
 solver's references in a G4 RL box (only if G3 shows a gain), with option 1 (shorter assist curriculum).
+
+### Physics fit v1 — frame-0 control result [M]: **not adopted**
+Frame 0 held: ep2 0.9828 (+0.0005), ep12 0.9444 (−0.0218), ep18 0.9618 (−0.0024), ep24 0.8100 (−0.0017); mean −0.0063 <
++0.005 → by the pre-registered rule the v1 gain is attributed to frame-0 alignment (the scorer registers on frame 0 of
+slot 0). The cup / dust pan / board gains vanish with frame 0 held (cup 0.9327 = baseline); the rack loss remains (the
+penetration term pushes it against an imprecise table plane). Reading: with permissive contacts (hands within 6 cm) the
+physics barely constrains the object paths; the literature's v2 (honest contacts, FlashCHORD-matched contact physics)
+is the version worth testing, judged on robot executability rather than mocap AUC.
