@@ -51,10 +51,11 @@ export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
 log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, EVOLVE ${EVOLVE:-0} (worlds ${EV_POP:-256}, robust ${EV_ROBUST:-4}, gens ${EV_GENS:-20}), DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
+# MA_ARGS (2026-10-30): extra make_assets.py arguments, e.g. --physics <props.json> (object physics study).
 # PIECES (2026-10-26): collision-copy pieces (e.g. meshes/carve/ev10, the hybrid cups) for the simulator copy, as in
 # hard_ab.sh; use with SF=0 (support_fill would rebuild those objects' collision from the library mesh). References
 # without SF name /content/assets (fix_assets), so they train and evaluate on the pieces.
-python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
+python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 [ -n "${PIECES:-}" ] && log "glock_public: collision pieces from $PIECES ($(ls $PIECES | tr '\n' ' '))" >> $J
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
 case " $PAIRS" in *:new:*) ensure_gdino $J ;; esac              # perception runs here: detection grounding term (2026-10-24:
