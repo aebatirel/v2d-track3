@@ -5553,3 +5553,6 @@ Background agent, CPU only, $0, no ground truth read.
 - Pre-registered in `physics-solver.md` §5.1: PASS iff the solved jittered mean beats GL+ILC by ≥ 0.03 on ≥ 2 of 4
   episodes; harm flag at ≤ −0.05.
 - Expected ~40–55 min box time, ≈ $0.8–1.4. Nothing rented by the agent.
+- ~17:20 UTC physics solver G1 launched: `20261030-psolve-eecd18a` (58429953, TX, $1.519/h), `bash ops/jobs/physics_solve.sh`,
+  commit eecd18a, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $1.50; gate pre-registered in
+  `physics-solver.md` §5.1. Credit before launch $35.82.
