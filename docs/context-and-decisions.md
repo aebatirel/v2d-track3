@@ -106,3 +106,7 @@ the answers that matter for future work. Dates are 2026.
 
 - 2026-10-27: the owner manages the leaderboard-freeze deadline; agents should not trade quality for the date or raise
   it as a planning constraint.
+- 2026-10-30 ~12:20 UTC: the owner gave a standing spending go-ahead for the mesh work: "you can spend money and go
+  ahead in all". Agents no longer wait for approval before each rental batch. They still state the plan and its
+  expected cost in the work log before renting, use the shared Vast spend ledger, make every machine self-destroy, and
+  log the actual cost and results afterwards.

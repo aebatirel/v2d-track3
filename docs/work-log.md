@@ -4924,3 +4924,8 @@ diagnostic; nothing is picked for submission.
 - Stage-1b `wf_d55d762f-ae7` closed: integration done for lid2, lid0, pot41/43/45/0/2/26, rack13/27, cup21/12 (12 of
   21), every pick library_v3; remaining 9 episodes and the two audits not run (superseded by the gmg). Per-episode
   logs: scratchpad auto/stage1b/integ/.
+
+## 2026-10-30 ~12:20 UTC: owner gives a standing spending go-ahead
+- Owner: "you can spend money and go ahead in all btw". Recorded in `docs/context-and-decisions.md`. GPU batches from
+  the gmg design will be run without asking first; each is still stated with cost here before renting and logged
+  after.
