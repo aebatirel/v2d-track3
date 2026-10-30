@@ -8,6 +8,10 @@
 #   ARM=S1  plausible (docs/research/physics-2026-10-30/props_public_scans.json)
 # Scored after inference: sim_vs_ref (our reference) and registered AUC vs mocap (public episodes), NREP evaluations.
 #   ops/vast.sh create <offer> <run> 'ARM=S1 bash ops/jobs/physics_arms.sh'
+# 2026-10-30 (owner: "go nuts with all"): PAIRS can be overridden (e.g. ep2 only); SEEDS="43 44" trains the seeds one
+# after another, the first building the reference, the next reusing it (REUSE_REF=1); per-seed summaries are kept as
+# results/glock_public/summary_s<seed>.json. HUMAN=1 runs the arm on the perceived-size human capsule hand
+# (glock_public.sh HUMAN mode).
 ARM=${ARM:?ARM=S0 or S1}
 R=/content/v2d-track3
 mkdir -p /content/scanlib
@@ -21,11 +25,19 @@ case $ARM in
   S1) export MA_ARGS="--physics $R/docs/research/physics-2026-10-30/props_public_scans.json" ;;
   *) echo "unknown ARM $ARM" >> /content/job.log; exit 1 ;;
 esac
-export LIB=/content/scanlib SF=0 REUSE_REF=0 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=${NREP:-5} SEED=${SEED:-42}
+export LIB=/content/scanlib SF=0 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=${NREP:-5} SEED=${SEED:-42}
 export GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1"
 export PULL_SUB="refs/perc2mck/ep2 refs/perc2mc/ep12 refs/perc2mc/ep18 refs/perc2mc/ep24"
-export PAIRS="2:20261024-ev3-2c1e4dd:mck 12:20261024-ev2-2c1e4dd:mc 18:20261024-ev3-2c1e4dd:mc 24:20261024-ev3-2c1e4dd:mc"
-bash $R/ops/jobs/glock_public.sh
+export PAIRS=${PAIRS:-"2:20261024-ev3-2c1e4dd:mck 12:20261024-ev2-2c1e4dd:mc 18:20261024-ev3-2c1e4dd:mc 24:20261024-ev3-2c1e4dd:mc"}
+export HUMAN=${HUMAN:-0}
+first=1
+for s in ${SEEDS:-$SEED}; do
+  if [ $first = 1 ]; then REUSE_REF=0; else REUSE_REF=1; fi
+  echo "[$(date -u +%FT%TZ)] physics_arms ARM $ARM HUMAN $HUMAN seed $s REUSE_REF $REUSE_REF pairs [$PAIRS]" >> /content/job.log
+  SEED=$s REUSE_REF=$REUSE_REF bash $R/ops/jobs/glock_public.sh
+  cp /content/results/glock_public/summary.json /content/results/glock_public/summary_s$s.json 2> /dev/null
+  first=0
+done
 for c in /content/results/glock_public/ep*/best/policy.safetensors; do
   /content/v2d/robotic_grounding/flash_chord/.venv/bin/python $R/tools/ckpt_meta.py $c
 done > /content/results/glock_public/ckpt_meta.txt 2>&1

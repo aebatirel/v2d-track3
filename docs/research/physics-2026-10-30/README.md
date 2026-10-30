@@ -177,3 +177,23 @@ grasp-lock reference behaves the same at zero action (CPU S1: cup lost f37) and 
   recipe does), a sampling optimiser (SPIDER / Do as I Do) or ILC.
 - Not run (would need decisions/budget): second and third seeds on ep2 for the mass question; RL with the human hand
   (GPU); the MANO-vs-capsule head-to-head (needs the owner's MANO download).
+
+## Round 2 (owner 30 Oct ~13:50 UTC: "go nuts with all") — pre-registered before any result
+**(2) ep2 seeds for the mass question.** Boxes S0 and S1 (`ARM=S0|S1 PAIRS=2:20261024-ev3-2c1e4dd:mck SEEDS="43 44"`,
+`ops/jobs/physics_arms.sh`): each builds its ep2 reference once (seed 43), then seed 44 reuses it. Readout: registered
+AUC vs mocap, 5 evaluations per seed. With seed 42 from round 1, 3 seeds per arm. Δ2 = mean over S1's 3 seeds − mean
+over S0's 3 seeds on ep2.
+- Δ2 ≤ −0.10: the ep2 harm is **confirmed**;
+- Δ2 > −0.05: the round-1 ep2 drop is attributed to seed noise, and the round-1 rule is recomputed with ep2's
+  3-seed means (other episodes one seed);
+- otherwise **inconclusive**.
+
+**(4) Human hand with RL.** Box `ARM=S0 HUMAN=1` (all four episodes, seed 42): the perceived-size human capsule hand
+(`glock_public.sh` HUMAN mode: `human_hand.py` P hand and reference, grasp lock with GL_EMB, ILC, EVOLVE, FlashSAC with
+embodiment human_P<ep>), placeholder physics, scans, frozen recipe. Compared with the Sharpa S0 seed-42 results
+(0.944 / 0.862 / 0.573 / 0.207). Δh = human − Sharpa per episode (AUC vs mocap, 5 evaluations).
+- **human better:** mean Δh ≥ +0.03 and no episode ≤ −0.05;
+- **human worse:** mean Δh ≤ −0.03 or any episode ≤ −0.10;
+- otherwise **inconclusive**. One seed; FlashSAC's recipe is tuned for the Sharpa.
+
+**(1) Centre of gravity on our meshes** and **(3) physics-based motion solving**: separate entries below when they run.
