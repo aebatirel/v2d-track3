@@ -57,6 +57,8 @@ class Obj:
     def __init__(self, name, mesh_path, props):
         self.name = name
         self.mesh = trimesh.load(mesh_path, force='mesh')
+        if len(self.mesh.faces) > 6000:                                    # proximity on a 5k-face copy (speed; mm-level)
+            self.mesh = self.mesh.simplify_quadric_decimation(face_count=5000)
         self.pq = trimesh.proximity.ProximityQuery(self.mesh)
         self.S = trimesh.sample.sample_surface_even(self.mesh, 400, seed=0)[0]
         ph = props[name]['physics']
