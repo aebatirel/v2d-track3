@@ -173,10 +173,16 @@ for e in eps:
         row['R1'] = 'yes (>= 0.90)' if po >= 0.90 else 'no (<= 0.75)' if po <= 0.75 else 'partial (0.75-0.90)'
     if po is not None and pp is not None:
         dl = round(po - pp, 4); row['delta_O_minus_P'] = dl
-        row['R2'] = 'reference is the main loss (>= +0.12)' if dl >= 0.12 else 'not the reference (|d| <= 0.05)' if abs(dl) <= 0.05 \
-            else 'oracle worse than perception (<= -0.05): check the construction' if dl <= -0.05 else 'inconclusive at one seed'
-        row['class'] = 'C1 physics/learner-limited' if po <= 0.75 else 'C2 perception-limited' if dl >= 0.12 and po >= 0.90 \
-            else 'C3 both' if dl >= 0.12 else 'C4 not the reference' if abs(dl) <= 0.05 else 'C5 inconclusive'
+        nO, nP, sO, sP = row['O']['n'], row['P']['n'], row['O']['auc']['sd'], row['P']['auc']['sd']
+        se = round(float(np.sqrt(sO ** 2 / nO + sP ** 2 / nP)), 4) if min(nO, nP) > 1 else float('inf')
+        row['se_delta'] = se                                       # review F1/F2 (30 Oct): the readings need the noise
+        big = dl >= 0.12 and dl - 1.64 * se > 0
+        same = abs(dl) <= 0.05 and abs(dl) + 1.64 * se <= 0.12
+        row['R2'] = 'reference is the main loss (>= +0.12)' if big else 'not the reference (|d| <= 0.05)' if same \
+            else 'oracle worse than perception (< -0.05): check the construction' if dl < -0.05 else 'inconclusive at one seed'
+        row['class'] = ('C3b both, copy ceiling <= 0.75' if big else 'C1 physics/learner-limited' if dl < 0.12 else 'C5 inconclusive') \
+            if po <= 0.75 else 'C2 perception-limited' if big and po >= 0.90 else 'C3 both' if big \
+            else 'C4 not the reference' if same else 'C5 inconclusive'
         so, sp = [(row[a].get('sim_vs_ref') or {}).get('mean') for a in 'OP']
         if so is not None and sp is not None:                       # R3 (secondary): how copyable each reference is
             d3 = round(so - sp, 4); row['sim_vs_ref_O_minus_P'] = d3

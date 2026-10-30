@@ -18,7 +18,7 @@ Common grasp-lock settings (= gl10A2 / evb1420 grasp-lock legs):
 OPTION A (full design, 2 boxes in parallel, ≈ $7.9-12.0, central ≈ $9.8)
 ----------------------------------------------------------------------------------------------------------------------
 Box G  run 20261030-orcG-$S7  (grasp-lock, eps 11 + 13, arms P + O = 4 trainings, 2 waves; ≈ 2.8-4.1 h, ≈ $3.6-5.9)
-ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcG-$S7 'LEARNER=glock EPS="11 13" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1" LIB=/content/v2d-track3/meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=6 SEED=42 STEPS=70004736 TRAIN_SLOTS=2 GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15" bash ops/jobs/oracle_twins.sh'
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcG-$S7 'LEARNER=glock EPS="11 13" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1" LIB=/content/v2d-track3/meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 SEED=42 STEPS=70004736 TRAIN_SLOTS=2 GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15" bash ops/jobs/oracle_twins.sh'
 
 Box S  run 20261030-orcS-$S7  (standard learner = std30's recipe, ep31, arms P then O = 2 trainings; ≈ 3.3-4.2 h, ≈ $4.3-6.1)
 ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcS-$S7 'LEARNER=std EPS="31" LIB=/content/v2d-track3/meshes/library_v3 NREP=6 SEED=42 STEPS=250003456 bash ops/jobs/oracle_twins.sh'
@@ -28,7 +28,7 @@ OPTION B (single box, ≈ $5.2-8.0, central ≈ $6.3)
 ----------------------------------------------------------------------------------------------------------------------
 Box B  run 20261030-orcB-$S7  (grasp-lock, eps 11 + 13 + 31, arms P + O = 6 trainings, 3 waves of 2; ≈ 4.0-5.5 h)
   ep31 is LABELLED "learner differs from eval 30's packed standard-learner policy" (PREREG §5).
-ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcB-$S7 'LEARNER=glock EPS="11 13 31" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1" ENV_EP31="SF=1" LIB=/content/v2d-track3/meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=6 SEED=42 STEPS=70004736 TRAIN_SLOTS=2 GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15" bash ops/jobs/oracle_twins.sh'
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcB-$S7 'LEARNER=glock EPS="11 13 31" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1" ENV_EP31="SF=1" LIB=/content/v2d-track3/meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 SEED=42 STEPS=70004736 TRAIN_SLOTS=2 GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15" bash ops/jobs/oracle_twins.sh'
 
 ======================================================================================================================
 EXPECTED COST [estimates]. Basis [M], from the runs' job logs:

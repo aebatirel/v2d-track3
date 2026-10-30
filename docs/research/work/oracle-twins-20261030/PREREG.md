@@ -20,7 +20,7 @@ read. No Kaggle call. Design: `DESIGN.md` (this folder). CPU checks: `cpu/`.
 
 Common to all grasp-lock arms: `LIB=meshes/library_v3`, `GL_ARGS="--single_hand 1 --mcp_first 1 --close 10
 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"`, kp-400 wrist, FDR + VOC, 70,004,736 steps,
-`CURVE_REP=3`, checkpoint chosen by sim_vs_ref against the arm's own reference, `NREP=6`, seed 42.
+`CURVE_REP=3`, checkpoint chosen by sim_vs_ref against the arm's own reference, `NREP=10` (review F3; was 6), seed 42.
 
 Two arms per twin, on the same box, at the same commit and seed, with the same learner:
 - **P (perceived):** the reference built as for an eval episode: perc2 (library_v3) → hands → mkref `--wrist_cost 3.0` →
@@ -105,8 +105,9 @@ lock, ILC and re-plan. It is scored vs mocap as `trained_ref_vs_mocap` in `summa
 
 ## 4. Primary metric and readings (fixed now)
 
-**Primary metric** per arm: the mean registered ADD-AUC vs mocap over the 6 official evaluations of the arm's chosen
+**Primary metric** per arm: the mean registered ADD-AUC vs mocap over the 10 official evaluations of the arm's chosen
 checkpoint. Also reported: sd (ddof 1), min, and the number of rollouts below 0.70 (evals 14 and 30 are bimodal).
+- SE(Δ) = sqrt(sd_O²/n_O + sd_P²/n_P), sd with ddof 1 (review F2, 30 Oct, before any result).
 
 Notation: O and P are those means; Δ = O − P.
 
@@ -116,10 +117,10 @@ Notation: O and P are those means; Δ = O − P.
 - Otherwise: **partial**.
 
 **R2. Perception's share.**
-- Δ ≥ +0.12: our reference is **the main loss** on this twin.
-- |Δ| ≤ 0.05: **not the reference**.
-- 0.05 < Δ < 0.12: **inconclusive** at one seed.
-- Δ ≤ −0.05: **oracle worse than perception.** This is read as a construction or selection problem: check
+- Δ ≥ +0.12 **and** Δ − 1.64·SE > 0: our reference is **the main loss** on this twin.
+- |Δ| ≤ 0.05 **and** |Δ| + 1.64·SE ≤ 0.12: **not the reference**.
+- Δ < −0.05: **oracle worse than perception.**
+- Anything else: **inconclusive** at one seed. This is read as a construction or selection problem: check
   `trained_ref_vs_mocap`, the re-plan log and the curve. It says nothing about perception.
 
 The bands are not "Δ ≥ +0.05 means perception-limited" because measured one-seed spreads of these recipes exceed 0.05:
@@ -130,10 +131,11 @@ The bands are not "Δ ≥ +0.05 means perception-limited" because measured one-s
 
 | Class | Condition | Meaning |
 |---|---|---|
-| **C1 physics/learner-limited** | O ≤ 0.75 | Even the true motion is not copied: the robot cannot copy the task. |
-| **C2 perception-limited** | Δ ≥ +0.12 and O ≥ 0.90 | The recipe copies the truth and loses mainly through our reference. |
-| **C3 both** | Δ ≥ +0.12 and 0.75 < O < 0.90 | The reference is the main loss, and the copy also caps. |
-| **C4 not the reference** | \|Δ\| ≤ 0.05 and O > 0.75 | Reference work does not pay at this recipe. P sits near the copy ceiling. |
+| **C3b both, copy ceiling ≤ 0.75** | O ≤ 0.75 and R2 "main loss" (Δ ≥ +0.12, Δ − 1.64·SE > 0) | The reference is a large loss AND the copy caps low. |
+| **C1 physics/learner-limited** | O ≤ 0.75 and Δ < +0.12 | Even the true motion is not copied: the robot cannot copy the task. |
+| **C2 perception-limited** | R2 "main loss" and O ≥ 0.90 | The recipe copies the truth and loses mainly through our reference. |
+| **C3 both** | R2 "main loss" and 0.75 < O < 0.90 | The reference is the main loss, and the copy also caps. |
+| **C4 not the reference** | R2 "not the reference" and O > 0.75 | Reference work does not pay at this recipe. P sits near the copy ceiling. |
 | **C5 inconclusive** | anything else | No decision at one seed. |
 
 **Secondary readings.** These are reported, but no decision rests on them alone:
@@ -273,3 +275,14 @@ All three mocks finished with rc 0.
   - Identical: every reference-stage, training and evaluation call (arguments and paths), every file written, and
     every job-log line.
   - The one exception: the final summary line, which gains the additive `ref_auc` / `floor_auc` keys.
+
+## 10. Review amendments (30 Oct ~13:40 UTC, before launch and before any GPU result)
+- Integrity review (workflow wf_4f80bdc9-7d2): NO-GO as built, GO after F1 + F2. Applied:
+  - **F1:** C1 no longer hides a large reference loss: O ≤ 0.75 with R2 "main loss" is the new class **C3b**, which maps
+    to BOTH levers in §5 (reference spend ≤ Δ/20 and the C1 robot-side levers).
+  - **F2:** R2 and the classes require the noise margin (Δ − 1.64·SE > 0 for "main loss"; |Δ| + 1.64·SE ≤ 0.12 for
+    "not the reference"); the last band is Δ < −0.05. Code: `ops/jobs/oracle_twins.sh` summary block (`se_delta`).
+  - **F3 (recommended, adopted):** NREP 10 per arm instead of 6 (SE of Δ about −23 %).
+- Mechanics review: GO; recommended PAR=2 (adopted). Its CPU rest-settle check predicts the O references stay above the
+  G0 gate (0.95) after contact retargeting: ep11 0.969, ep13 0.977, ep31 0.993 [E]; the ep11 margin is thin.
+- §5 mapping: C3b = the C2/C3 column (reference spend) plus the C1 column (robot-side levers) for that twin.
