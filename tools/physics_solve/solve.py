@@ -22,12 +22,17 @@ survive 0.5 mm target noise (tools/physics_solve/jitter_check.py) - judge output
 Inputs: the reference parquet only (object poses = our perception; NO ground truth is read). Object names / order,
 URDFs and the support come from the parquet's reference tree, as for any replay.
 Processes: the master holds a 1-world "truth" env = the zero-action replay of the reference with the committed offsets
-patched into its target buffers; N workers hold W-world planner envs (raw residual input, EMA 0) whose worlds are
-reset to the truth state (joint_q/qd, body_q/qd, MuJoCo warm start) before every rollout batch.
+patched into its target buffers; the planner worlds (raw residual input, EMA 0) are set to the truth state (joint_q/qd,
+body_q/qd, MuJoCo warm start) before every rollout batch. CPU (--device cpu): WORKERS processes x WORLDS worlds (Warp's
+CPU kernels are single-threaded). CUDA (--device cuda, 2026-10-30 port): one in-process planner env with WORLDS worlds
+(WORKERS is ignored); the truth env runs on --truth_device (default: the same device).
+--deadline_s bounds the wall time: past it, the remaining frames are committed without optimisation (warm-start plan
+decaying to the reference) and no further rollbacks happen; the output is still a complete reference.
 
-Usage (FlashCHORD python, run from the flash_chord dir, CPU):
-  EMB=sharpa_hands_mid python solve.py IN.parquet OUT.parquet [--workers 4 --worlds 12 --horizon 16 --knot 4
-        --ctrl 4 --iters 3] [--f0 0 --f1 -1]
+Usage (FlashCHORD python, run from the flash_chord dir):
+  CPU:  EMB=sharpa_hands_mid python solve.py IN.parquet OUT.parquet [--workers 4 --worlds 24 --robust 4 --horizon 16
+        --knot 4 --ctrl 4 --iters 4 --retries 4 --back 3]
+  CUDA: EMB=sharpa_hands_mid python solve.py IN.parquet OUT.parquet --device cuda --worlds 1024 --robust 4 ...
 Writes OUT.parquet, OUT_solve.json (args, per-replan log, timing), OUT_solve.npz (offsets, truth trajectory in the
 tools/trace_rollout.py npz layout: q, frame, labels).
 """
@@ -45,7 +50,7 @@ import numpy as np
 OFF = [f'termination.{k}.enabled=false' for k in ('wrist_position', 'object_position', 'object_orientation', 'reference_end')]
 
 
-def build_env(parquet, world_count, planner):
+def build_env(parquet, world_count, planner, device='cpu'):
     """FlashCHORD RLEnv as tools/trace_rollout.py zero builds it (VOC 0, no termination, no auto-reset). planner=True:
     raw residual input with EMA 0, so action = offset / scale exactly (zero action is identical either way)."""
     import warp as wp
@@ -61,13 +66,14 @@ def build_env(parquet, world_count, planner):
     with initialize_config_dir(version_base='1.3', config_dir=os.path.abspath('src/flash_chord/configs')):
         cfg = compose(config_name='train_flash_sac', overrides=ov)
     env_config = dataclasses.replace(instantiate_typed(cfg.env, RLEnvConfig), auto_reset=False, voc_scale=0.0)
-    wp.set_device('cpu')
     emb = instantiate_typed(cfg.embodiment, Embodiment)
-    st = setup_scene(parquet=parquet, control_fps=env_config.sim.fps, motion_speed=1.0,
-                     embodiment=emb,
-                     collision=instantiate_typed(cfg.collision, CollisionPolicy), world_count=world_count,
-                     include_support=True, decompose_objects=True)
-    env = RLEnv(st.scene, st.reference, config=env_config); env.ps_embodiment = emb
+    with wp.ScopedDevice(device):                       # every later call on this env runs under on(env)
+        st = setup_scene(parquet=parquet, control_fps=env_config.sim.fps, motion_speed=1.0,
+                         embodiment=emb,
+                         collision=instantiate_typed(cfg.collision, CollisionPolicy), world_count=world_count,
+                         include_support=True, decompose_objects=True)
+        env = RLEnv(st.scene, st.reference, config=env_config)
+    env.ps_embodiment = emb; env.ps_device = device
     labels = list(getattr(st.scene.model, 'body_label', None) or getattr(st.scene.model, 'body_key', []))
     return env, labels
 
@@ -114,7 +120,14 @@ def add_dist(sim_q, ref_p, ref_q, pts):
 STATE_FIELDS = ('joint_q', 'joint_qd', 'body_q', 'body_qd')
 
 
+def on(env):
+    """Run calls on env's device (the truth and planner envs may live on different devices in one process)."""
+    import warp as wp
+    return wp.ScopedDevice(env.ps_device)
+
+
 def snapshot(env, world=0):
+    """World `world`'s simulation state as host arrays (state, MuJoCo warm start, reference counters)."""
     W = env.world_count; s = env.state_0
     snap = {f: getattr(s, f).numpy().reshape(W, -1)[world].copy() for f in STATE_FIELDS}
     snap['qacc_warmstart'] = env.solver.mjw_data.qacc_warmstart.numpy()[world].copy()
@@ -122,13 +135,22 @@ def snapshot(env, world=0):
     return snap
 
 
+def _fill(arr, row, W):
+    """arr (a per-world warp array: W x row) <- row in every world, with one host-to-device copy (any device)."""
+    import warp as wp
+    L = getattr(arr.dtype, '_length_', 1) or 1
+    row = np.asarray(row); host = np.broadcast_to(row[None], (W,) + row.shape)
+    host = np.ascontiguousarray(host, dtype=np.int32 if arr.dtype == wp.int32 else np.float32)
+    arr.assign(host.reshape(tuple(arr.shape) + ((L,) if L > 1 else ())))
+
+
 def restore(env, snap):
-    """Every world <- the snapshot (CPU warp arrays: numpy() is a view, so writes go to the simulator)."""
+    """Every world <- the snapshot (exact on CPU: checked bit-identical against a 1-world replay)."""
     W = env.world_count; s = env.state_0
     for f in STATE_FIELDS:
-        getattr(s, f).numpy().reshape(W, -1)[:] = snap[f][None]
-    env.solver.mjw_data.qacc_warmstart.numpy()[:] = snap['qacc_warmstart'][None]
-    env.timestep.numpy()[:] = snap['timestep']; env.episode_step.numpy()[:] = snap['episode_step']
+        _fill(getattr(s, f), snap[f], W)
+    _fill(env.solver.mjw_data.qacc_warmstart, snap['qacc_warmstart'], W)
+    _fill(env.timestep, np.int32(snap['timestep']), W); _fill(env.episode_step, np.int32(snap['episode_step']), W)
 
 
 class ExactTargets:
@@ -148,6 +170,7 @@ class ExactTargets:
         self.state = self.model.state(); self.state.joint_qd.zero_()
 
     def __call__(self, side, pos64, wxyz64, fing64):
+        import warp as wp
         from flash_chord.embodiments.binding import _bind_hand
         hand = self.layout.hand(side)
         st = lambda x: np.asarray(np.asarray(x, dtype=np.float32), dtype=np.float64)   # noqa: E731  parquet round trip
@@ -158,45 +181,83 @@ class ExactTargets:
         JQ[:, hand.wrist_orient_q_id:hand.wrist_orient_q_id + 4] = q.astype(np.float32)[:, [1, 2, 3, 0]]
         JQ[:, list(hand.finger_q_ids)] = fing.astype(np.float32)
         bq = np.empty((n, self.model.body_count, 7), np.float32)
-        for i in range(n):
-            self.state.joint_q.assign(JQ[i])
-            self.newton.eval_fk(self.model, self.state.joint_q, self.state.joint_qd, self.state)
-            bq[i] = np.asarray(self.state.body_q.numpy(), dtype=np.float32).reshape(-1, 7)
+        with wp.ScopedDevice('cpu'):                      # the loader binds on the CPU whatever the simulation device
+            for i in range(n):
+                self.state.joint_q.assign(JQ[i])
+                self.newton.eval_fk(self.model, self.state.joint_q, self.state.joint_qd, self.state)
+                bq[i] = np.asarray(self.state.body_q.numpy(), dtype=np.float32).reshape(-1, 7)
         b = _bind_hand(bq, hand, JQ)                     # BoundHandReference: float32 re-normalised quaternion
         return np.asarray(b.wrist_pos_w), np.asarray(b.wrist_quat_w)[:, [1, 2, 3, 0]], np.asarray(b.finger_joint_pos)
 
 
-# ---------------------------------------------------------------------------------------------- worker
+# ---------------------------------------------------------------------------------------------- planner
+class Planner:
+    """W planner worlds of one env on one device. rollout(snap, U): every world <- snap, then world w plays the
+    offsets U[w] (H frames) through FlashCHORD's residual action; returns the per-frame object cost (W, H)."""
+
+    def __init__(self, parquet, W, cfg, device):
+        import warp as wp
+        self.wp = wp; self.W = W; self.cfg = cfg
+        self.env, labels = build_env(parquet, W, planner=True, device=device)
+        with on(self.env):
+            self.env.reset(frame_id=0)   # required: an explicit reset sets the reset policy's VOC assist to the config's 0
+        # and ends its reset hold; a never-reset env starts with VOC 1 and holds the reference frame (v1 bug)
+        self.ref = Ref(parquet); self.nb = len(labels) // W
+        self.ob = [labels.index(f'track3_{n}/object') for n in self.ref.names]
+        buf = self.env.action.buffers; self.A = buf.layout.action_dim
+        self.scale = buf.scale.numpy()[:self.A].astype(np.float64)
+        self.pts = sphere_points(cfg['npts'])
+
+    def rollout(self, snap, U):
+        wp, env, ref, W = self.wp, self.env, self.ref, self.W
+        H = U.shape[1]; t0 = snap['timestep']; cost = np.zeros((W, H))
+        with on(env):
+            restore(env, snap)
+            for h in range(H):
+                act = (U[:, h] / self.scale).astype(np.float32).reshape(-1)
+                env.step(wp.array(act, dtype=wp.float32, device=env.ps_device))
+                q = env.state_0.body_q.numpy().reshape(W, self.nb, 7)[:, self.ob].astype(np.float64)
+                k = min(t0 + h + 1, ref.T - 1)
+                d = add_dist(q, ref.OP[k], ref.OQ[k], self.pts)   # (W, B)
+                c = np.minimum(d, self.cfg['clip']).sum(-1)
+                c[~np.isfinite(c)] = 10.0
+                cost[:, h] = c
+        return cost
+
+
 def worker_main(conn, parquet, W, cfg):
     os.environ.setdefault('OMP_NUM_THREADS', '1')
     import warp as wp
     wp.config.log_level = wp.LOG_WARNING
-    env, labels = build_env(parquet, W, planner=True)
-    env.reset(frame_id=0)   # required: an explicit reset sets the reset policy's VOC assist to the config's 0 and ends its
-    # reset hold; a never-reset env starts with VOC 1 and holds the reference frame for voc_decay_steps (v1 bug)
-    ref = Ref(parquet); nb = len(labels) // W
-    ob = [labels.index(f'track3_{n}/object') for n in ref.names]
-    buf = env.action.buffers; A = buf.layout.action_dim
-    scale = buf.scale.numpy()[:A].astype(np.float64)
-    pts = sphere_points(cfg['npts'])
-    conn.send(dict(ready=True, A=A, nb=nb))
+    pl = Planner(parquet, W, cfg, 'cpu')
+    conn.send(dict(ready=True, A=pl.A, nb=pl.nb))
     while True:
         msg = conn.recv()
         if msg[0] == 'quit':
             break
         _, snap, U = msg                                    # U: (W, H, A) physical offsets
-        restore(env, snap); t0 = snap['timestep']; H = U.shape[1]
-        cost = np.zeros((W, H))
-        for h in range(H):
-            act = (U[:, h] / scale).astype(np.float32).reshape(-1)
-            env.step(wp.array(act, dtype=wp.float32, device='cpu'))
-            q = env.state_0.body_q.numpy().reshape(W, nb, 7)[:, ob].astype(np.float64)
-            k = min(t0 + h + 1, ref.T - 1)
-            d = add_dist(q, ref.OP[k], ref.OQ[k], pts)       # (W, B)
-            c = np.minimum(d, cfg['clip']).sum(-1)
-            c[~np.isfinite(c)] = 10.0
-            cost[:, h] = c
-        conn.send(cost)
+        conn.send(pl.rollout(snap, U))
+
+
+class Workers:
+    """CPU: the planner worlds split over worker processes (same interface as Planner)."""
+
+    def __init__(self, parquet, n, W, cfg):
+        import multiprocessing as mp
+        ctx = mp.get_context('spawn'); self.conns = []; self.W = W
+        for _ in range(n):
+            c1, c2 = ctx.Pipe(); ctx.Process(target=worker_main, args=(c2, parquet, W, cfg), daemon=True).start()
+            self.conns.append(c1)
+        self.A = [c.recv() for c in self.conns][0]['A']
+
+    def rollout(self, snap, UW):
+        for i, c in enumerate(self.conns):
+            c.send(('rollout', snap, UW[i * self.W:(i + 1) * self.W]))
+        return np.concatenate([c.recv() for c in self.conns], 0)
+
+    def close(self):
+        for c in self.conns:
+            c.send(('quit',))
 
 
 # ---------------------------------------------------------------------------------------------- master
@@ -234,9 +295,13 @@ def main():
                    'with fresh per-frame target noise (common to all candidates of an iteration); J = mean over copies '
                    '(Do as I Do evaluates 4 perturbed copies per sample; here target noise like tools/physics_solve/jitter_check.py)')
     p.add_argument('--rob_pos', type=float, default=0.0005); p.add_argument('--rob_fin', type=float, default=0.005)
+    p.add_argument('--device', default=os.environ.get('DEV', 'cpu'), help='planner device: cpu (worker processes) or cuda')
+    p.add_argument('--truth_device', default='', help='truth env device (default: --device)')
+    p.add_argument('--deadline_s', type=float, default=0.0, help='> 0: past this wall time, commit the rest without '
+                   'optimisation and without rollbacks (bounded box time)')
     p.add_argument('--seed', type=int, default=0)
     a = p.parse_args(); t_start = time.time(); rng = np.random.default_rng(a.seed)
-    import multiprocessing as mp
+    a.truth_device = a.truth_device or a.device
     import pyarrow as pa
     import pyarrow.parquet as pq
     import warp as wp
@@ -249,12 +314,13 @@ def main():
         s = ' '.join(str(v) for v in x); print(s, flush=True); LOG.write(s + '\n'); LOG.flush()
     log(f'{time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} solve {a.inp} -> {a.out} T={T} objects={ref.names} args={vars(a)}')
 
-    ctx = mp.get_context('spawn'); conns, procs = [], []
     cfgw = dict(clip=a.clip, npts=a.npts)
-    for i in range(a.workers):
-        c1, c2 = ctx.Pipe(); pr = ctx.Process(target=worker_main, args=(c2, os.path.abspath(a.inp), a.worlds, cfgw), daemon=True)
-        pr.start(); conns.append(c1); procs.append(pr)
-    truth, labels = build_env(os.path.abspath(a.inp), 1, planner=False)
+    if a.device == 'cpu' and a.workers > 0:            # Warp CPU kernels are single-threaded: one process per core
+        planner = Workers(os.path.abspath(a.inp), a.workers, a.worlds, cfgw); NW = a.workers * a.worlds
+    else:                                              # one in-process env with all planner worlds (CUDA; or
+        # --workers 0 on CPU, which runs the CUDA code path on the CPU for testing)
+        planner = Planner(os.path.abspath(a.inp), a.worlds, cfgw, a.device); NW = a.worlds
+    truth, labels = build_env(os.path.abspath(a.inp), 1, planner=False, device=a.truth_device)
     buf = truth.action.buffers; lay = buf.layout; A = lay.action_dim; sides = lay.sides; starts = lay.hand_action_starts
     nf = lay.finger_counts; nh = len(sides)
     rclip = buf.clip.numpy()[:A].astype(np.float64)                      # residual clips per action dim
@@ -262,15 +328,15 @@ def main():
     lo_all, hi_all = model.joint_limit_lower.numpy()[fd].astype(float), model.joint_limit_upper.numpy()[fd].astype(float)
     lo = [lo_all[lay.hand_finger_starts[h]:lay.hand_finger_starts[h] + nf[h]] for h in range(nh)]
     hi = [hi_all[lay.hand_finger_starts[h]:lay.hand_finger_starts[h] + nf[h]] for h in range(nh)]
-    for c in conns:
-        info = c.recv(); assert info['A'] == A
-    log(f'[{time.time() - t_start:.0f}s] {a.workers} workers x {a.worlds} worlds ready; action dim {A}, sides {sides}')
+    assert planner.A == A
+    log(f'[{time.time() - t_start:.0f}s] planner {a.device}: {NW} worlds' + (f' ({a.workers} workers x {a.worlds})' if isinstance(planner, Workers) else ' (in-process)')
+        + f', truth on {a.truth_device}; action dim {A}, sides {sides}')
     nb = len(labels); ob = [labels.index(f'track3_{n}/object') for n in ref.names]
     pts = sphere_points(a.npts)
     # truth reference buffers (views): patched with the committed offsets frame by frame
-    RB = buf.reference
-    rb_pos = RB.wrist_pos_w.numpy().reshape(T, nh, 3); rb_q = RB.wrist_quat_w.numpy().reshape(T, nh, 4)
-    rb_f = RB.finger_joint_pos.numpy().reshape(T, -1)
+    RB = buf.reference                                   # host copies, written back with assign (any device)
+    rb_pos = RB.wrist_pos_w.numpy().reshape(T, nh, 3).copy(); rb_q = RB.wrist_quat_w.numpy().reshape(T, nh, 4).copy()
+    rb_f = RB.finger_joint_pos.numpy().reshape(T, -1).copy()
     rb0 = (rb_pos.copy(), rb_q.copy(), rb_f.copy())                       # the loader's own values (zero offset)
     exact = ExactTargets(truth)
 
@@ -292,14 +358,19 @@ def main():
 
     f1 = T - 1 if a.f1 < 0 else min(a.f1, T - 1); stop = T - 1 if a.stop < 0 else min(a.stop, T - 1)
     offsets = np.zeros((T, A)); plan = np.zeros((a.horizon, A))
-    truth.reset(frame_id=0)
+    with on(truth):
+        truth.reset(frame_id=0)
     Q = [truth.state_0.body_q.numpy().copy()]; FR = [0]
-    replans = []; t = 0; chunks = []; boost, boost_until, retries = 0, -1, 0
+    replans = []; t = 0; chunks = []; boost, boost_until, retries = 0, -1, 0; deadline_t = None
     nk = a.horizon // a.knot + 1
     while t < stop:
         H = min(a.horizon, T - 1 - t); C = min(a.ctrl, H)
         win = np.arange(t, t + H + 1)
         active = [h for h in range(nh) if near[win, h].any()] if a.f0 <= t <= f1 else []
+        if a.deadline_s > 0 and time.time() - t_start > a.deadline_s:
+            if deadline_t is None:
+                deadline_t = t; log(f'[{time.time() - t_start:.0f}s] deadline {a.deadline_s:.0f} s reached at t={t}: the rest is committed without optimisation')
+            active = []
         row = dict(t=t, H=H, active=[sides[h] for h in active]); t_rep = time.time()
         if active:
             snap = snapshot(truth)
@@ -307,7 +378,7 @@ def main():
             mean = plan[:H].copy(); mean[:, np.setdiff1d(np.arange(A), dims)] = 0.0
             ramp = np.logspace(np.log10(a.ramp[0]), np.log10(a.ramp[1]), nk)
             kpos = np.linspace(0, a.horizon - 1, nk)
-            NW = a.workers * a.worlds; K = max(1, a.robust); N = NW // K; best = (np.inf, None, None); hist = []
+            K = max(1, a.robust); N = NW // K; best = (np.inf, None, None); hist = []
             bst = boost if t < boost_until else 0; row['boost'] = bst
             for it in range(a.iters * (1 + bst)):
                 eps = rng.normal(size=(N, nk, len(dims))) * (sig[dims] * (np.sqrt(2.0) ** bst) * (a.anneal ** (it % a.iters)))[None, None] * ramp[None, :, None]
@@ -336,9 +407,7 @@ def main():
                         jit[1:, :, s0 + 6:s0 + 6 + nf[h]] = rng.normal(size=(K - 1, H, nf[h])) * a.rob_fin
                     UW = clipf(UW + np.tile(jit, (N, 1, 1)))
                 UW = np.concatenate([UW, np.repeat(UW[:1], NW - len(UW), 0)], 0) if len(UW) < NW else UW
-                for i, c in enumerate(conns):
-                    c.send(('rollout', snap, UW[i * a.worlds:(i + 1) * a.worlds].astype(np.float64)))
-                cost_w = np.concatenate([c.recv() for c in conns], 0)[:N * K].reshape(N, K, -1)   # (N, K, H)
+                cost_w = planner.rollout(snap, UW.astype(np.float64))[:N * K].reshape(N, K, -1)   # (N, K, H)
                 cost_obj = cost_w[:, 0]                                                 # nominal copy
                 reg = np.zeros((N, H))
                 for h in active:
@@ -369,9 +438,13 @@ def main():
                 P32, Q32, F32 = exact(s, *fold_slice(ref, s, offsets[sl], starts[h], nf[h], lo[h], hi[h], sl))
                 rb_pos[sl, h][nz], rb_q[sl, h][nz] = P32[nz], Q32[nz]
                 rb_f[sl, fs[h]][nz] = F32[nz]
+        with on(truth):
+            RB.wrist_pos_w.assign(rb_pos.reshape(-1, 3)); RB.wrist_quat_w.assign(rb_q.reshape(-1, 4))
+            RB.finger_joint_pos.assign(rb_f.reshape(-1))
         real = []
         for k in range(C):
-            truth.step(None)
+            with on(truth):
+                truth.step(None)
             q = truth.state_0.body_q.numpy().copy(); Q.append(q); FR.append(int(truth.timestep.numpy()[0]))
             kk = min(t + k + 1, T - 1)
             real.append(float(np.minimum(add_dist(q[ob].astype(np.float64), ref.OP[kk], ref.OQ[kk], pts), a.clip).sum()))
@@ -392,9 +465,11 @@ def main():
         # was within RETRY of the reference at the chunk start and is beyond it at the chunk end was just lost ->
         # go back BACK chunks and re-plan them with (1 + boost) x iterations and sqrt(2)^boost x noise
         lost = [j for j in range(B) if moving[j] and chunks[-1]['add'][j] <= a.retry and add_now[j] > a.retry]
-        if lost and a.retries > 0 and retries < a.retries:
+        if lost and a.retries > 0 and retries < a.retries and deadline_t is None:
             e = chunks[max(0, len(chunks) - a.back)]; ib = chunks.index(e)
-            restore(truth, e['snap']); del Q[e['nQ']:]; del FR[e['nQ']:]; offsets[e['t']:] = 0.0; plan = e['plan'].copy()
+            with on(truth):
+                restore(truth, e['snap'])
+            del Q[e['nQ']:]; del FR[e['nQ']:]; offsets[e['t']:] = 0.0; plan = e['plan'].copy()
             boost = boost + 1 if t - C < boost_until else 1; boost_until = t; retries += 1
             log(f'  rollback {retries}/{a.retries}: {[ref.names[j] for j in lost]} lost at frame {t}; back to t={e["t"]}, boost {boost}')
             replans[-1]['rollback_to'] = e['t']; t = e['t']; del chunks[ib:]
@@ -402,8 +477,8 @@ def main():
             boost = 0
         if len(replans) % 5 == 0:
             np.savez_compressed(os.path.splitext(a.out)[0] + '_solve_partial.npz', offsets=offsets, t=t)
-    for c in conns:
-        c.send(('quit',))
+    if isinstance(planner, Workers):
+        planner.close()
     # the rest (debug --stop): zero offsets; last frame keeps the previous frame's offset (never used in a replay)
     if stop == T - 1:
         offsets[T - 1] = offsets[T - 2]
@@ -418,11 +493,11 @@ def main():
     pq.write_table(out, a.out)
     np.savez_compressed(os.path.splitext(a.out)[0] + '_solve.npz', offsets=offsets, q=np.array(Q, np.float32),
                         frame=np.array(FR), labels=np.array(labels))
-    json.dump(dict(args=vars(a), T=T, objects=ref.names, moving=moving.tolist(), replans=replans,
-                   wall_s=round(time.time() - t_start, 1)), open(os.path.splitext(a.out)[0] + '_solve.json', 'w'), indent=1)
+    json.dump(dict(args=vars(a), T=T, objects=ref.names, moving=moving.tolist(), replans=replans, deadline_t=deadline_t,
+                   rollbacks=retries, wall_s=round(time.time() - t_start, 1)), open(os.path.splitext(a.out)[0] + '_solve.json', 'w'), indent=1)
     log(f'[{time.time() - t_start:.0f}s] wrote {a.out} (+ _solve.json/.npz); truth trajectory {len(Q)} frames')
     # check: a fresh load of the written parquet gives bit-identical target buffers to the patched truth env
-    fresh, _ = build_env(os.path.abspath(a.out), 1, planner=False); FB = fresh.action.buffers.reference
+    fresh, _ = build_env(os.path.abspath(a.out), 1, planner=False, device=a.truth_device); FB = fresh.action.buffers.reference
     same = {k: bool(np.array_equal(getattr(FB, k).numpy(), getattr(RB, k).numpy())) for k in ('wrist_pos_w', 'wrist_quat_w', 'finger_joint_pos')}
     log(f'[{time.time() - t_start:.0f}s] fresh load of {os.path.basename(a.out)}: target buffers bit-identical to the truth env: {same}')
 
