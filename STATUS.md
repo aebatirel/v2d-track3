@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~18:40 UTC: team registration form drafted (owner action; not submitted)
+- Draft answers: `docs/registration-form-draft-2026-10-30.md`. Owner fills in member names, emails and affiliations,
+  then submits the Google Form (the agent cannot sign in).
+- No registration deadline is published. The FAQ says "Teams may register after launch". The Kaggle entry and
+  merger deadline is the freeze: 2026-11-04 22:00 UTC.
+- **Found:** the repo is private and `Nvidia-V2D-Challenge` is not a collaborator (a pending invite would not
+  show). The organisers may be unable to open the commit URLs on our submission rows. Owner: add the account.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:

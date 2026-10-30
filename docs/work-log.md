@@ -5389,3 +5389,20 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 30 Oct ~18:40 UTC — team registration form drafted (owner asked; owner submits)
+- Owner has not registered the team yet. Asked about the deadline and for the form to be filled in.
+- Deadline check:
+  - Challenge page: the timeline shows registration from 21 Sep with no end date. `regNote` = "Teams may enter any
+    subset of the three tracks."
+  - FAQ (`docs/research/work/14/c2/faqs.txt`): "Teams may register after launch".
+  - Kaggle API `competitions/list?search=v2d`: every Track 3 competition has deadline = mergerDeadline =
+    2026-11-04T22:00Z, `newEntrantDeadline` null, maxTeamSize 10.
+- Kaggle Track 3 AUC leaderboard (API, ~18:30 UTC): our team name is "Ahmet Ercan Batirel", 0.81460, 7th. The top
+  six are richchentw 0.940, DDD 0.932, Zihao Guo 0.883, rlwrld 0.883, Purple 0.870 and SRL 0.856.
+- GitHub API: `aebatirel/v2d-track3` is private. Its collaborators are aebatirel (admin), ardai (write) and
+  BortuceKhan (write). `Nvidia-V2D-Challenge` is not listed; the collaborator list does not show pending
+  invitations. Earlier STATUS text (step 5, 21 Oct plan) said the repo was shared; that is not confirmed. Flagged
+  to the owner.
+- Draft: `docs/registration-form-draft-2026-10-30.md`. Member details are placeholders, because the agent does not
+  know them.
