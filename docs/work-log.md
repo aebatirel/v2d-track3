@@ -5389,3 +5389,29 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 30 Oct ~12:20 UTC — meeting with Roman Klis (31 min, owner's Fathom transcript) analysed; no spend, nothing run
+- Output: `docs/analysis/roman-meeting-20261030.md` (branch `claude/keen-heisenberg-engcwz`). Read: STATUS, the 30 Oct
+  briefing and plan, and the live branches determined-wright / focused-pascal / bold-albattani at 12:10 UTC.
+- **Roman's advice:**
+  - decompose, one problem at a time;
+  - hands first: accurate finger and contact placement, with the wireframe following the video one-to-one;
+  - a human-sized hand (custom embodiments are allowed);
+  - two models: a human twin, then the robot follows it with a correcting policy;
+  - an easy simulation first (light pot);
+  - avoid two-hand hand-overs;
+  - IP caution;
+  - offers daily idea ping-pong.
+- **Findings:**
+  - The video he judged (`sim_vs_real_video.py`) shows the robot rollout, not the hand tracker. Its filled-vs-outline
+    gap is the policy loss (0.083 [M]); the outline-vs-video gap is the reference loss (≈ 0.10 [E]). The
+    grasp- or hand-related part, from the forensics labels, is ≈ 0.017 [E].
+  - The 3-D hand lift is undersized and collapses while gripping [M]. The Sharpa is ≈ 1.1× an adult hand, but 1.6×
+    our perceived hand [M/L].
+  - Today's pure-copy human-hand replay does not carry the objects [M, determined-wright].
+- **Proposed, not started:**
+  - perception-overlay videos for Roman ($0);
+  - [H-spoon] hand-anchored spoon pose during holds, on public held objects, under the next-steps plan's rule ($0);
+  - a human-hand RL A/B against the S1 Sharpa arm, ≈ $6.5, only if H-squeeze passes. Rule: Δ ≥ +0.05 mean, no twin
+    ≤ −0.05.
+  - The Sharpa stays in submissions unless that A/B passes.

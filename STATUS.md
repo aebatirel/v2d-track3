@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~12:20 UTC: meeting with Roman Klis analysed (no spend, nothing run)
+Analysis: `docs/analysis/roman-meeting-20261030.md`.
+- **Roman's advice:** decompose; hands first; a human-sized hand; a human twin, then the robot follows it; make the
+  simulation easy first; avoid hand-overs; IP caution.
+- **The video he judged shows the robot rollout, not the hand tracker.** Hands are not scored.
+- **Loss split:** policy 0.083 [M], reference ≈ 0.10 [E]. The grasp- or hand-related part is ≈ 0.017 [E].
+- **Already tested today** (determined-wright session): a pure-copy human hand does not carry the objects.
+- **Where he is right:** our 3-D hand lift is undersized and collapses while gripping [M].
+- **Proposed next steps, none started:**
+  - $0 CPU: perception-overlay videos for Roman;
+  - $0 CPU: a hand-anchored spoon test on public held objects;
+  - ≈ $6.5: a human-hand RL A/B, only if H-squeeze passes.
+  - The Sharpa stays in submissions.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
