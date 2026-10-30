@@ -1,0 +1,612 @@
+{
+ "beige_cup": {
+  "extents_cm": [
+   10.4,
+   11.1,
+   16.95
+  ],
+  "watertight": false,
+  "area_cm2": 759.4,
+  "filled_volume_cm3": 182.9,
+  "hull_volume_cm3": 991.3,
+  "fill_ratio": 0.184,
+  "shell_com_m": [
+   -0.0,
+   2e-05,
+   -0.00041
+  ],
+  "solid_com_m": [
+   0.0004,
+   0.00025,
+   -0.00286
+  ],
+  "com_shift_mm": 2.5,
+  "shell_gyration_cm": [
+   3.87,
+   6.18,
+   6.21
+  ],
+  "solid_gyration_cm": [
+   3.94,
+   6.11,
+   6.14
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.0 mm",
+   "mass_kg": 0.1367,
+   "com_m": [
+    -0.0,
+    2e-05,
+    -0.00041
+   ],
+   "inertia_kgm2": [
+    [
+     0.000527111,
+     -7e-08,
+     -2.33e-07
+    ],
+    [
+     -7e-08,
+     0.000522853,
+     2.36e-07
+    ],
+    [
+     -2.33e-07,
+     2.36e-07,
+     0.000205224
+    ]
+   ],
+   "note": null
+  }
+ },
+ "blue_cup": {
+  "extents_cm": [
+   10.29,
+   10.02,
+   17.18
+  ],
+  "watertight": false,
+  "area_cm2": 711.0,
+  "filled_volume_cm3": 187.6,
+  "hull_volume_cm3": 1068.0,
+  "fill_ratio": 0.176,
+  "shell_com_m": [
+   -0.0,
+   -5e-05,
+   -1e-05
+  ],
+  "solid_com_m": [
+   0.00017,
+   -0.00025,
+   0.00204
+  ],
+  "com_shift_mm": 2.1,
+  "shell_gyration_cm": [
+   3.87,
+   6.36,
+   6.39
+  ],
+  "solid_gyration_cm": [
+   3.85,
+   6.43,
+   6.46
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.0 mm",
+   "mass_kg": 0.128,
+   "com_m": [
+    -0.0,
+    -5e-05,
+    -1e-05
+   ],
+   "inertia_kgm2": [
+    [
+     0.000522062,
+     2.4e-08,
+     1.41e-07
+    ],
+    [
+     2.4e-08,
+     0.000517832,
+     -1.53e-07
+    ],
+    [
+     1.41e-07,
+     -1.53e-07,
+     0.000191885
+    ]
+   ],
+   "note": null
+  }
+ },
+ "mini_dust_pan": {
+  "extents_cm": [
+   4.52,
+   16.99,
+   17.79
+  ],
+  "watertight": false,
+  "area_cm2": 490.7,
+  "filled_volume_cm3": 128.8,
+  "hull_volume_cm3": 542.2,
+  "fill_ratio": 0.238,
+  "shell_com_m": [
+   -1e-05,
+   -1e-05,
+   -3e-05
+  ],
+  "solid_com_m": [
+   0.00026,
+   0.00111,
+   -0.00083
+  ],
+  "com_shift_mm": 1.4,
+  "shell_gyration_cm": [
+   4.06,
+   4.99,
+   6.3
+  ],
+  "solid_gyration_cm": [
+   4.11,
+   4.91,
+   6.27
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.0 mm, both faces scanned",
+   "mass_kg": 0.0442,
+   "com_m": [
+    -1e-05,
+    -1e-05,
+    -3e-05
+   ],
+   "inertia_kgm2": [
+    [
+     0.000175402,
+     2e-09,
+     -2.7e-08
+    ],
+    [
+     2e-09,
+     0.000109906,
+     4.5e-08
+    ],
+    [
+     -2.7e-08,
+     4.5e-08,
+     7.2664e-05
+    ]
+   ],
+   "note": null
+  }
+ },
+ "mini_sweeper": {
+  "extents_cm": [
+   4.76,
+   11.25,
+   14.35
+  ],
+  "watertight": false,
+  "area_cm2": 273.1,
+  "filled_volume_cm3": 121.4,
+  "hull_volume_cm3": 305.7,
+  "fill_ratio": 0.397,
+  "shell_com_m": [
+   0.0,
+   -0.00045,
+   -0.00188
+  ],
+  "solid_com_m": [
+   -9e-05,
+   -0.00049,
+   0.00809
+  ],
+  "com_shift_mm": 10.0,
+  "shell_gyration_cm": [
+   2.53,
+   4.17,
+   4.78
+  ],
+  "solid_gyration_cm": [
+   2.34,
+   3.97,
+   4.52
+  ],
+  "physics": {
+   "model": "prior",
+   "material": "small brush, wood/plastic block + bristles; stated prior 45 g",
+   "mass_kg": 0.045,
+   "com_m": [
+    0.0,
+    -0.00045,
+    -0.00188
+   ],
+   "inertia_kgm2": [
+    [
+     0.000102955,
+     3.2e-08,
+     6e-09
+    ],
+    [
+     3.2e-08,
+     7.814e-05,
+     -1.221e-06
+    ],
+    [
+     6e-09,
+     -1.221e-06,
+     2.8755e-05
+    ]
+   ],
+   "note": null
+  }
+ },
+ "plastic_dish_rack": {
+  "extents_cm": [
+   11.7,
+   17.55,
+   50.96
+  ],
+  "watertight": false,
+  "area_cm2": 3435.4,
+  "filled_volume_cm3": 1169.1,
+  "hull_volume_cm3": 5640.4,
+  "fill_ratio": 0.207,
+  "shell_com_m": [
+   -1e-05,
+   -0.00012,
+   4e-05
+  ],
+  "solid_com_m": [
+   0.00719,
+   0.00064,
+   -0.04586
+  ],
+  "com_shift_mm": 46.5,
+  "shell_gyration_cm": [
+   5.23,
+   14.95,
+   15.5
+  ],
+  "solid_gyration_cm": [
+   5.06,
+   14.5,
+   14.94
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned",
+   "mass_kg": 0.3865,
+   "com_m": [
+    -1e-05,
+    -0.00012,
+    4e-05
+   ],
+   "inertia_kgm2": [
+    [
+     0.009290732,
+     -5.48e-07,
+     5.49e-07
+    ],
+    [
+     -5.48e-07,
+     0.008641021,
+     4.091e-06
+    ],
+    [
+     5.49e-07,
+     4.091e-06,
+     0.001055699
+    ]
+   ],
+   "note": null
+  }
+ },
+ "water_pitcher": {
+  "extents_cm": [
+   14.11,
+   27.2,
+   41.5
+  ],
+  "watertight": false,
+  "area_cm2": 2235.9,
+  "filled_volume_cm3": 584.9,
+  "hull_volume_cm3": 5042.2,
+  "fill_ratio": 0.116,
+  "shell_com_m": [
+   2e-05,
+   4e-05,
+   -2e-05
+  ],
+  "solid_com_m": [
+   0.00072,
+   0.00428,
+   -0.00761
+  ],
+  "com_shift_mm": 8.7,
+  "shell_gyration_cm": [
+   7.2,
+   9.07,
+   10.56
+  ],
+  "solid_gyration_cm": [
+   7.32,
+   9.05,
+   10.69
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, empty",
+   "mass_kg": 0.5031,
+   "com_m": [
+    2e-05,
+    4e-05,
+    -2e-05
+   ],
+   "inertia_kgm2": [
+    [
+     0.005610402,
+     -1.22e-07,
+     -8.79e-07
+    ],
+    [
+     -1.22e-07,
+     0.004138998,
+     1.481e-06
+    ],
+    [
+     -8.79e-07,
+     1.481e-06,
+     0.002608778
+    ]
+   ],
+   "note": null
+  }
+ },
+ "white_pot": {
+  "extents_cm": [
+   13.22,
+   18.89,
+   35.75
+  ],
+  "watertight": false,
+  "area_cm2": 1231.5,
+  "filled_volume_cm3": 330.0,
+  "hull_volume_cm3": 3516.2,
+  "fill_ratio": 0.094,
+  "shell_com_m": [
+   -1e-05,
+   -3e-05,
+   5e-05
+  ],
+  "solid_com_m": [
+   -0.00302,
+   -0.00039,
+   -0.00183
+  ],
+  "com_shift_mm": 3.6,
+  "shell_gyration_cm": [
+   6.28,
+   8.32,
+   9.16
+  ],
+  "solid_gyration_cm": [
+   6.17,
+   8.19,
+   9.0
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm",
+   "mass_kg": 0.2771,
+   "com_m": [
+    -1e-05,
+    -3e-05,
+    5e-05
+   ],
+   "inertia_kgm2": [
+    [
+     0.002323906,
+     5.63e-07,
+     -3.68e-07
+    ],
+    [
+     5.63e-07,
+     0.001916604,
+     1.62e-07
+    ],
+    [
+     -3.68e-07,
+     1.62e-07,
+     0.001092651
+    ]
+   ],
+   "note": null
+  }
+ },
+ "white_pot_lid": {
+  "extents_cm": [
+   4.72,
+   18.81,
+   19.01
+  ],
+  "watertight": false,
+  "area_cm2": 783.7,
+  "filled_volume_cm3": 178.3,
+  "hull_volume_cm3": 649.4,
+  "fill_ratio": 0.275,
+  "shell_com_m": [
+   0.0,
+   6e-05,
+   -0.00035
+  ],
+  "solid_com_m": [
+   0.00179,
+   -0.00072,
+   -0.00071
+  ],
+  "com_shift_mm": 2.0,
+  "shell_gyration_cm": [
+   4.65,
+   4.92,
+   6.69
+  ],
+  "solid_gyration_cm": [
+   4.54,
+   4.97,
+   6.59
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "plastic (PP) 900 kg/m3, wall 2.5 mm, both faces scanned",
+   "mass_kg": 0.0882,
+   "com_m": [
+    0.0,
+    6e-05,
+    -0.00035
+   ],
+   "inertia_kgm2": [
+    [
+     0.000394175,
+     -6e-09,
+     -1.02e-07
+    ],
+    [
+     -6e-09,
+     0.000213728,
+     -1.7e-07
+    ],
+    [
+     -1.02e-07,
+     -1.7e-07,
+     0.000190321
+    ]
+   ],
+   "note": null
+  }
+ },
+ "wooden_piece_1": {
+  "extents_cm": [
+   2.57,
+   13.85,
+   22.68
+  ],
+  "watertight": false,
+  "area_cm2": 594.2,
+  "filled_volume_cm3": 254.1,
+  "hull_volume_cm3": 656.1,
+  "fill_ratio": 0.387,
+  "shell_com_m": [
+   -3e-05,
+   -0.00063,
+   0.00033
+  ],
+  "solid_com_m": [
+   0.00013,
+   -0.00159,
+   -0.00438
+  ],
+  "com_shift_mm": 4.8,
+  "shell_gyration_cm": [
+   3.72,
+   7.06,
+   7.95
+  ],
+  "solid_gyration_cm": [
+   3.6,
+   6.95,
+   7.81
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned",
+   "mass_kg": 0.1389,
+   "com_m": [
+    -3e-05,
+    -0.00063,
+    0.00033
+   ],
+   "inertia_kgm2": [
+    [
+     0.000877907,
+     -2.4e-08,
+     9.1e-08
+    ],
+    [
+     -2.4e-08,
+     0.00069133,
+     -7.79e-07
+    ],
+    [
+     9.1e-08,
+     -7.79e-07,
+     0.000191993
+    ]
+   ],
+   "note": null
+  }
+ },
+ "wooden_piece_2": {
+  "extents_cm": [
+   2.6,
+   13.84,
+   22.62
+  ],
+  "watertight": false,
+  "area_cm2": 602.6,
+  "filled_volume_cm3": 298.5,
+  "hull_volume_cm3": 599.7,
+  "fill_ratio": 0.498,
+  "shell_com_m": [
+   2e-05,
+   -0.00107,
+   9e-05
+  ],
+  "solid_com_m": [
+   0.00022,
+   -0.00408,
+   0.00104
+  ],
+  "com_shift_mm": 3.2,
+  "shell_gyration_cm": [
+   3.71,
+   7.03,
+   7.92
+  ],
+  "solid_gyration_cm": [
+   3.54,
+   6.9,
+   7.74
+  ],
+  "physics": {
+   "model": "shell",
+   "material": "pine/plywood 550 kg/m3, plate 8.5 mm, both faces scanned",
+   "mass_kg": 0.1409,
+   "com_m": [
+    2e-05,
+    -0.00107,
+    9e-05
+   ],
+   "inertia_kgm2": [
+    [
+     0.00088334,
+     -4e-08,
+     -2.1e-07
+    ],
+    [
+     -4e-08,
+     0.000695825,
+     -1.423e-06
+    ],
+    [
+     -2.1e-07,
+     -1.423e-06,
+     0.000194315
+    ]
+   ],
+   "note": null
+  }
+ }
+}
