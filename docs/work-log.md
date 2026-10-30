@@ -4819,3 +4819,11 @@ Advice given:
     pack 6. Rule: work log 06:20.
   - Note: the shared /content/assets with ev01 is safe only under EVAL_ONLY; a pack that also evaluates evals
     3/5/6/8/28 with ev01 still needs a per-episode asset root (not built).
+- 07:40 UTC launch trouble:
+  - eval-1 box 58364606 (`20261030-e1conf-5ec130d`, Spain) vanished before its container started: no logs in the
+    store, unknown to the Vast API (most likely `cancel_unavail` on a host that became unavailable). Ledger actual $0
+    (estimate). Relaunched as 58370419 `20261030-e1conf2-d41382e` (RTX PRO 6000 WS Ontario $1.45/h; the first two
+    offers were gone: no_such_ask), same job string.
+  - video box 58363797 has been in run_job.sh setup (snapshot restore / data fetch) since 06:53, 45 min (normal ≈ 15);
+    its HTTPS exec tunnel answers 502 and its SSH tunnel times out, so it cannot be inspected. The stall watchdog
+    (30 min without file progress) protects the spend. Waiting until ≈ 07:55 before replacing it.
