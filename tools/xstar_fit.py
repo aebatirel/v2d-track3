@@ -15,9 +15,14 @@ convention of pipeline/oracle_poses.py and pipeline/frame_xform.py).
         robust least squares (soft-L1, 2 cm) of G T_perc(t) inv(X) p = T_mocap(t) p over host points p (<= 200 frames),
         one free world transform G per episode, a weak prior towards X*_geom for directions the motion leaves unseen.
         Cups use 3 points on the scan axis (spin is neither scored nor observable), so their spin stays X*_geom's; the
-        lid's 180 deg flip is chosen per frame. Then scores the track with the kit's chain three ways: lib (X_kit, our
-        mesh, the leaderboard convention), * (X*_geom), trk (X*_trk). READS GROUND TRUTH: an oracle diagnostic only,
-        never a default anywhere, never an input of eval inference.
+        lid's 180 deg flip is chosen per frame. The scorer pins the world on frame 0 (_align_registered_scene), so the
+        geometric optimum is not the scorer's: from the LS fit and from X*_geom, Powell then maximises a soft AUC (each
+        threshold step a 1 cm ramp) under the kit's own conversion and alignment. X*_trk is the candidate (X*_geom, LS,
+        the two refits) with the highest exact AUC among those within 5 cm (symmetry-aware ADD) of X*_geom, so
+        T_trk >= T*: the most a constant per-episode body offset can recover (an upper bound; T_trk_ls, the geometric
+        fit, is reported beside it). Then scores the track with the kit's chain: lib (X_kit, our mesh, the leaderboard
+        convention), * (X*_geom), trk (X*_trk), trk_ls. READS GROUND TRUTH: an oracle diagnostic only, never a default
+        anywhere, never an input of eval inference.
 Usage: python -I xstar_fit.py geom --lib LIB --t3 T3 --kit KIT --out xstar_geom.json [--episodes 0,2,11]
        python -I xstar_fit.py trk --perc ROOT --geom xstar_geom.json --lib LIB --t3 T3 --kit KIT --out xstar_trk.json
               [--episodes ...]         (ROOT/ep<N>/poses_world_vo.npz: the track to fit, lib frames)
@@ -35,6 +40,7 @@ SYM = {'beige_cup': 'axis', 'blue_cup': 'axis', 'white_pot_lid': 'half'}        
 N_FIT, N_EVAL, N_RANDOM, ITERS, TRIM = 6000, 10000, 48, 80, 0.9
 AMBIG = 1.10        # a distinct minimum within 10 % of the best residual is reported as an ambiguity [H: threshold]
 DISTINCT_CM = 0.5   # minima closer than this (symmetry-aware mean point displacement) are the same minimum
+TRK_MAX_CM = 5.0    # an X*_trk candidate further than this from X*_geom (symmetry-aware ADD) is a failure, not a bias [H]
 K = None            # the kit's modules (kit())
 
 
@@ -379,9 +385,13 @@ def trk_episode(ep, a, Xg_all):
     REG = {k: [reg_of_X(X[n], H[s]['anchor']) for s, n in enumerate(names)] for k, X in cand.items()}
     REG['lib'] = [kit_X(f'{a.lib}/{n}.glb', H[s], ep, s)[1] for s, n in enumerate(names)]
     sc = {k: score_track(names, Tp, gt, H, R) for k, R in REG.items()}
-    pick = max(['geom', 'ls', 'opt_from_ls', 'opt_from_geom'], key=lambda k: sc[k]['AUC'])   # geom first: ties keep X*_geom
+    far = {k: max(sym_add_cm(X[n] @ np.linalg.inv(Xg[n]), H[s]) for s, n in enumerate(names)) for k, X in cand.items()}
+    ok = [k for k in ('geom', 'ls', 'opt_from_ls', 'opt_from_geom') if far[k] <= TRK_MAX_CM]   # geom first: ties keep it
+    pick = max(ok, key=lambda k: sc[k]['AUC'])
     Xt = cand[pick]
-    fit.update(scorer_fit={'from_ls': opt[0][1], 'from_geom': opt[1][1]}, candidates_AUC={k: sc[k]['AUC'] for k in cand}, picked=pick)
+    fit.update(scorer_fit={'from_ls': opt[0][1], 'from_geom': opt[1][1]}, candidates_AUC={k: sc[k]['AUC'] for k in cand},
+               candidates_max_offset_cm={k: round(v, 3) for k, v in far.items()}, rejected_over_cap=[k for k in cand if k not in ok],
+               picked=pick)
     r = dict(track=os.path.abspath(f), track_md5=md5(f), frames=len(Tp[names[0]]), fit=fit,
              scores={'lib': sc['lib'], 'star': sc['geom'], 'trk': sc[pick], 'trk_ls': sc['ls']},
              objects={n: dict(slot=s, X_scan_T_lib=np.round(Xt[n], 9).tolist(), trk_vs_geom=compare(Xt[n] @ np.linalg.inv(Xg[n]), H[s]),
