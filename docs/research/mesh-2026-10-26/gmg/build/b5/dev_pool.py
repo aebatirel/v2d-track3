@@ -4,7 +4,7 @@
   (cwd docs/research/mesh-2026-10-26; run under gmg/tools/strace_audit.py run)
 
 Per object: the B1 producers (SHELL at t0_dev, HULL), packed as run_episode packs them; the SHELL rebuilt on the K = 3
-fold training frames (score.build_folds, then packed), the HULL scored 'fixed' (no fold build yet, DEVIATIONS B5 N3);
+fold training frames (score.build_folds, then packed), the HULL scored 'fixed' (no fold build yet, DEVIATIONS 56);
 score.score_pool with the folds (kit symmetry, untrusted balls: no markers before B7, tau None before B13,
 obs_flip_margin on) and, for comparison, the all-frames form; select.pick (V0). Writes RUN/b5pool/ep<N>/<obj>.json
 and RUN/manifest.json. Reads only what run_episode reads in dev mode (obs_all, tracks, calib, det keys depth/K,
