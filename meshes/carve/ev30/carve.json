@@ -1,0 +1,276 @@
+{
+ "tool": "placement_carve place",
+ "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/carve/assets/v3_def",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/carve/refs/store/runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+ "host": "plastic_dish_rack",
+ "guest": "mini_sweeper",
+ "frames": 263,
+ "margin_mm": 1.5,
+ "pitch_mm": 1.5,
+ "rest_cm": 0.25,
+ "rest_deg": 3.0,
+ "rest_contact_segments": [
+  [
+   0,
+   29
+  ],
+  [
+   44,
+   48
+  ],
+  [
+   156,
+   160
+  ],
+  [
+   163,
+   168
+  ],
+  [
+   204,
+   234
+  ],
+  [
+   242,
+   262
+  ]
+ ],
+ "coarse_overlap_cm3_max": 35.48,
+ "coarse_overlap_argmax": 226,
+ "hulls_default": {
+  "plastic_dish_rack": 43,
+  "mini_sweeper": 19
+ },
+ "hull_cm3_default": {
+  "plastic_dish_rack": 1210.6,
+  "mini_sweeper": 150.4
+ },
+ "placed_frame": 242,
+ "initial_rest_frame": 0,
+ "claim_frames": [
+  0,
+  2,
+  5,
+  7,
+  10,
+  12,
+  15,
+  17,
+  20,
+  22,
+  25,
+  27,
+  44,
+  46,
+  156,
+  158,
+  163,
+  165,
+  168,
+  205,
+  208,
+  210,
+  213,
+  215,
+  218,
+  220,
+  223,
+  225,
+  228,
+  230,
+  233,
+  242,
+  245,
+  247,
+  250,
+  252,
+  255,
+  257,
+  260,
+  262
+ ],
+ "claim_cm3": {
+  "guest_solid": 80.45,
+  "fill_fill": 25.04,
+  "host_material_in_guest_fill": 42.56,
+  "guest_side_mutual": 9.75
+ },
+ "mutual": true,
+ "overlap_cm3": {
+  "placed": [
+   13.93,
+   0.0
+  ],
+  "frame0": [
+   12.53,
+   0.0
+  ],
+  "last": [
+   17.7,
+   0.0
+  ],
+  "rest_max": [
+   34.83,
+   0.0
+  ],
+  "rest_mean": [
+   20.75,
+   0.0
+  ],
+  "all_max": [
+   34.83,
+   0.15
+  ],
+  "all_argmax": 226,
+  "max_increase": 0.0,
+  "checked_frames": 137,
+  "note": "[default, carved]",
+  "placed_reduction_pct": 100.0
+ },
+ "carve_plastic_dish_rack": {
+  "hulls_before": 43,
+  "hulls_touched": 9,
+  "pieces": 85,
+  "hull_cm3_before": 1210.6,
+  "hull_cm3_after": 1100.2,
+  "min_piece_m3": 2.0988278448729466e-08,
+  "dropped": {
+   "n": 4,
+   "cm3": 0.0462
+  },
+  "touched": [
+   {
+    "hull": 1,
+    "claim_cm3": 3.43,
+    "boxes": 2,
+    "parts": 15,
+    "hull_cm3": 58.73,
+    "kept_cm3": 51.13
+   },
+   {
+    "hull": 3,
+    "claim_cm3": 0.07,
+    "boxes": 1,
+    "parts": 5,
+    "hull_cm3": 117.49,
+    "kept_cm3": 117.09
+   },
+   {
+    "hull": 7,
+    "claim_cm3": 22.76,
+    "boxes": 1,
+    "parts": 2,
+    "hull_cm3": 82.7,
+    "kept_cm3": 49.26
+   },
+   {
+    "hull": 17,
+    "claim_cm3": 2.05,
+    "boxes": 1,
+    "parts": 1,
+    "hull_cm3": 4.41,
+    "kept_cm3": 1.63
+   },
+   {
+    "hull": 18,
+    "claim_cm3": 2.37,
+    "boxes": 2,
+    "parts": 14,
+    "hull_cm3": 63.98,
+    "kept_cm3": 58.05
+   },
+   {
+    "hull": 29,
+    "claim_cm3": 16.54,
+    "boxes": 1,
+    "parts": 0,
+    "hull_cm3": 13.91,
+    "kept_cm3": 0.0
+   },
+   {
+    "hull": 33,
+    "claim_cm3": 13.95,
+    "boxes": 2,
+    "parts": 4,
+    "hull_cm3": 20.94,
+    "kept_cm3": 6.03
+   },
+   {
+    "hull": 35,
+    "claim_cm3": 31.42,
+    "boxes": 1,
+    "parts": 2,
+    "hull_cm3": 27.84,
+    "kept_cm3": 1.68
+   },
+   {
+    "hull": 42,
+    "claim_cm3": 3.14,
+    "boxes": 2,
+    "parts": 8,
+    "hull_cm3": 10.45,
+    "kept_cm3": 5.18
+   }
+  ]
+ },
+ "carve_mini_sweeper": {
+  "hulls_before": 19,
+  "hulls_touched": 5,
+  "pieces": 32,
+  "hull_cm3_before": 150.4,
+  "hull_cm3_after": 98.4,
+  "min_piece_m3": 2.8811720541355535e-08,
+  "dropped": {
+   "n": 3,
+   "cm3": 0.0141
+  },
+  "touched": [
+   {
+    "hull": 0,
+    "claim_cm3": 4.79,
+    "boxes": 2,
+    "parts": 3,
+    "hull_cm3": 26.79,
+    "kept_cm3": 0.87
+   },
+   {
+    "hull": 7,
+    "claim_cm3": 1.72,
+    "boxes": 2,
+    "parts": 6,
+    "hull_cm3": 15.06,
+    "kept_cm3": 6.1
+   },
+   {
+    "hull": 9,
+    "claim_cm3": 3.14,
+    "boxes": 2,
+    "parts": 1,
+    "hull_cm3": 16.79,
+    "kept_cm3": 0.09
+   },
+   {
+    "hull": 12,
+    "claim_cm3": 0.08,
+    "boxes": 1,
+    "parts": 5,
+    "hull_cm3": 2.37,
+    "kept_cm3": 2.04
+   },
+   {
+    "hull": 14,
+    "claim_cm3": 0.02,
+    "boxes": 1,
+    "parts": 3,
+    "hull_cm3": 2.32,
+    "kept_cm3": 2.29
+   }
+  ]
+ },
+ "carved": true,
+ "carved_objects": [
+  "plastic_dish_rack",
+  "mini_sweeper"
+ ],
+ "sec": 54.9
+}

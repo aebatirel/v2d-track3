@@ -1,0 +1,370 @@
+{
+ "tool": "placement_carve place",
+ "assets": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/carve/assets/v3_def",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/carve/refs/store/runs/20261025-std0116-ee7ba8e/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+ "host": "white_pot",
+ "guest": "white_pot_lid",
+ "frames": 335,
+ "margin_mm": 1.5,
+ "pitch_mm": 1.5,
+ "rest_contact_segments": [
+  [
+   0,
+   28
+  ],
+  [
+   31,
+   43
+  ],
+  [
+   275,
+   298
+  ],
+  [
+   305,
+   334
+  ]
+ ],
+ "coarse_overlap_cm3_max": 56.05,
+ "coarse_overlap_argmax": 298,
+ "hulls_default": {
+  "white_pot": 31,
+  "white_pot_lid": 41
+ },
+ "hull_cm3_default": {
+  "white_pot": 890.6,
+  "white_pot_lid": 325.7
+ },
+ "placed_frame": 305,
+ "initial_rest_frame": 0,
+ "claim_frames": [
+  0,
+  2,
+  5,
+  7,
+  10,
+  12,
+  15,
+  17,
+  19,
+  22,
+  24,
+  27,
+  31,
+  34,
+  36,
+  39,
+  41,
+  43,
+  277,
+  279,
+  282,
+  284,
+  287,
+  289,
+  291,
+  294,
+  296,
+  305,
+  307,
+  310,
+  312,
+  315,
+  317,
+  319,
+  322,
+  324,
+  327,
+  329,
+  332,
+  334
+ ],
+ "claim_cm3": {
+  "guest_solid": 101.35,
+  "fill_fill": 10.94,
+  "host_material_in_guest_fill": 16.24,
+  "guest_side_mutual": 4.84
+ },
+ "mutual": true,
+ "overlap_cm3": {
+  "placed": [
+   50.09,
+   0.0
+  ],
+  "frame0": [
+   44.24,
+   0.0
+  ],
+  "last": [
+   50.14,
+   0.0
+  ],
+  "rest_max": [
+   57.21,
+   0.0
+  ],
+  "rest_mean": [
+   46.8,
+   0.0
+  ],
+  "all_max": [
+   57.21,
+   0.2
+  ],
+  "all_argmax": 298,
+  "max_increase": 0.0,
+  "checked_frames": 156,
+  "note": "[default, carved]",
+  "placed_reduction_pct": 100.0
+ },
+ "carve_white_pot": {
+  "hulls_before": 31,
+  "hulls_touched": 10,
+  "pieces": 53,
+  "hull_cm3_before": 890.6,
+  "hull_cm3_after": 769.9,
+  "min_piece_m3": 2.7457598314651638e-08,
+  "dropped": {
+   "n": 8,
+   "cm3": 0.0826
+  },
+  "touched": [
+   {
+    "hull": 1,
+    "claim_cm3": 9.29,
+    "boxes": 2,
+    "parts": 7,
+    "hull_cm3": 59.26,
+    "kept_cm3": 45.85
+   },
+   {
+    "hull": 2,
+    "claim_cm3": 6.44,
+    "boxes": 1,
+    "parts": 2,
+    "hull_cm3": 19.33,
+    "kept_cm3": 10.52
+   },
+   {
+    "hull": 5,
+    "claim_cm3": 23.77,
+    "boxes": 1,
+    "parts": 2,
+    "hull_cm3": 61.11,
+    "kept_cm3": 35.05
+   },
+   {
+    "hull": 8,
+    "claim_cm3": 16.69,
+    "boxes": 1,
+    "parts": 1,
+    "hull_cm3": 55.2,
+    "kept_cm3": 36.26
+   },
+   {
+    "hull": 9,
+    "claim_cm3": 20.69,
+    "boxes": 1,
+    "parts": 2,
+    "hull_cm3": 71.27,
+    "kept_cm3": 44.99
+   },
+   {
+    "hull": 11,
+    "claim_cm3": 14.03,
+    "boxes": 1,
+    "parts": 3,
+    "hull_cm3": 51.81,
+    "kept_cm3": 34.48
+   },
+   {
+    "hull": 13,
+    "claim_cm3": 1.65,
+    "boxes": 1,
+    "parts": 0,
+    "hull_cm3": 1.48,
+    "kept_cm3": 0.0
+   },
+   {
+    "hull": 14,
+    "claim_cm3": 2.35,
+    "boxes": 2,
+    "parts": 7,
+    "hull_cm3": 20.22,
+    "kept_cm3": 16.02
+   },
+   {
+    "hull": 16,
+    "claim_cm3": 3.46,
+    "boxes": 1,
+    "parts": 1,
+    "hull_cm3": 4.04,
+    "kept_cm3": 0.31
+   },
+   {
+    "hull": 18,
+    "claim_cm3": 0.19,
+    "boxes": 2,
+    "parts": 7,
+    "hull_cm3": 23.09,
+    "kept_cm3": 22.61
+   }
+  ]
+ },
+ "carve_white_pot_lid": {
+  "hulls_before": 41,
+  "hulls_touched": 17,
+  "pieces": 107,
+  "hull_cm3_before": 325.7,
+  "hull_cm3_after": 263.2,
+  "min_piece_m3": 1.8527647009682076e-11,
+  "dropped": {
+   "n": 23,
+   "cm3": 0.1551
+  },
+  "touched": [
+   {
+    "hull": 6,
+    "claim_cm3": 0.56,
+    "boxes": 2,
+    "parts": 7,
+    "hull_cm3": 8.31,
+    "kept_cm3": 4.97
+   },
+   {
+    "hull": 7,
+    "claim_cm3": 1.23,
+    "boxes": 2,
+    "parts": 3,
+    "hull_cm3": 14.86,
+    "kept_cm3": 0.97
+   },
+   {
+    "hull": 8,
+    "claim_cm3": 0.68,
+    "boxes": 2,
+    "parts": 5,
+    "hull_cm3": 13.51,
+    "kept_cm3": 3.24
+   },
+   {
+    "hull": 9,
+    "claim_cm3": 0.27,
+    "boxes": 2,
+    "parts": 8,
+    "hull_cm3": 10.92,
+    "kept_cm3": 8.11
+   },
+   {
+    "hull": 11,
+    "claim_cm3": 0.08,
+    "boxes": 1,
+    "parts": 3,
+    "hull_cm3": 3.43,
+    "kept_cm3": 2.27
+   },
+   {
+    "hull": 13,
+    "claim_cm3": 0.37,
+    "boxes": 2,
+    "parts": 8,
+    "hull_cm3": 12.59,
+    "kept_cm3": 5.98
+   },
+   {
+    "hull": 15,
+    "claim_cm3": 0.18,
+    "boxes": 2,
+    "parts": 8,
+    "hull_cm3": 11.45,
+    "kept_cm3": 8.75
+   },
+   {
+    "hull": 18,
+    "claim_cm3": 0.19,
+    "boxes": 2,
+    "parts": 4,
+    "hull_cm3": 4.93,
+    "kept_cm3": 0.61
+   },
+   {
+    "hull": 20,
+    "claim_cm3": 0.31,
+    "boxes": 2,
+    "parts": 6,
+    "hull_cm3": 10.11,
+    "kept_cm3": 5.67
+   },
+   {
+    "hull": 24,
+    "claim_cm3": 0.28,
+    "boxes": 2,
+    "parts": 6,
+    "hull_cm3": 5.28,
+    "kept_cm3": 3.52
+   },
+   {
+    "hull": 25,
+    "claim_cm3": 0.1,
+    "boxes": 1,
+    "parts": 3,
+    "hull_cm3": 0.67,
+    "kept_cm3": 0.11
+   },
+   {
+    "hull": 26,
+    "claim_cm3": 0.12,
+    "boxes": 1,
+    "parts": 1,
+    "hull_cm3": 2.78,
+    "kept_cm3": 0.95
+   },
+   {
+    "hull": 27,
+    "claim_cm3": 0.05,
+    "boxes": 1,
+    "parts": 5,
+    "hull_cm3": 16.29,
+    "kept_cm3": 15.58
+   },
+   {
+    "hull": 29,
+    "claim_cm3": 0.19,
+    "boxes": 2,
+    "parts": 7,
+    "hull_cm3": 5.99,
+    "kept_cm3": 5.37
+   },
+   {
+    "hull": 35,
+    "claim_cm3": 0.16,
+    "boxes": 1,
+    "parts": 3,
+    "hull_cm3": 8.5,
+    "kept_cm3": 1.19
+   },
+   {
+    "hull": 37,
+    "claim_cm3": 0.02,
+    "boxes": 1,
+    "parts": 5,
+    "hull_cm3": 1.75,
+    "kept_cm3": 1.69
+   },
+   {
+    "hull": 40,
+    "claim_cm3": 0.06,
+    "boxes": 1,
+    "parts": 1,
+    "hull_cm3": 0.37,
+    "kept_cm3": 0.21
+   }
+  ]
+ },
+ "carved": true,
+ "carved_objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "sec": 126.7
+}

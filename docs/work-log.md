@@ -4670,3 +4670,21 @@ Advice given:
   - It passes the replacement rule written at ~23:15 UTC, before the arm results: mean ≥ H5 mean + 0.03 and sd ≤ H5 sd.
   - Arm C's eval 33 (0.883 ± 0.014) misses the mean bar by 0.001.
   - Before any pack: confirm with 10 fresh draws (H5 protocol). The owner decides any upload.
+- **Placement carves** (`pipeline/placement_carve.py`; `docs/research/work/carve-20261030/`; CPU, FlashCHORD physics
+  proxy):
+  - Every eval carve removes the placed-frame overlap (100 %), but none met the pre-registered single-draw settle
+    criterion.
+  - Verification showed that the criterion is a coin flip near 1 cm / 5° (repeat runs swing). Over 6 draws the carve
+    beats default: eval 28 5/6 vs 2/6, eval 1 3/6 vs 0/6.
+  - Public twins against mocap: ep2 (twin of eval 1) lid-in-pot error 6.83 → 1.71 cm, passes; ep26 (twin of eval 28)
+    passes.
+  - Eval 30's carve makes the sweeper fall through: dropped.
+  - **Deviation, stated openly:** the CPU criterion is replaced, for evals 1 and 14, by the GPU outcome rule written
+    before any carve result (~23:15 UTC, carve workflow brief), with 10 evaluations instead of 5:
+    - adopt a carved policy only if its mean sim_vs_ref ≥ H5 mean + 0.03 and sd ≤ H5 sd (eval 1: ≥ 0.852, sd ≤ 0.239;
+      eval 14: ≥ 0.645, sd ≤ 0.199);
+    - never pack a best draw.
+  - Known confound: recipe drift between the stored runs' commits and today's SHA is mixed with the carve.
+  - Pack blocker for later: pack_eval builds one shared /content/assets for evals 1/10/19/25/28/30 and merges pieces by
+    object name, so a carved eval-1 pot would leak into eval 28. Per-episode asset folders are needed before any pack
+    that uses ev01.
