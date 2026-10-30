@@ -1,0 +1,845 @@
+<title>Track 3 Learner Notebook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a long single reading column (~880px) with a contents block up top; tables, charts and code scroll in their own boxes. */
+:root {
+  --bg: #f4f6f7; --surface: #ffffff; --ink: #13212b; --muted: #566873; --rule: #d6dee3;
+  --accent: #0b6e69; --accent-soft: #dcefed; --violet: #5b4bb7; --violet-soft: #e9e6f8;
+  --warn: #a85a06; --warn-soft: #fbefdf; --bad: #b42323; --bad-soft: #f9e3e3; --good: #18794a; --good-soft: #e0f2e8;
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1418; --surface: #141e24; --ink: #e2eaee; --muted: #93a5af; --rule: #263540;
+  --accent: #45b8ad; --accent-soft: #11312f; --violet: #a597f0; --violet-soft: #241f3f;
+  --warn: #f0a33a; --warn-soft: #33260f; --bad: #f27b7b; --bad-soft: #3a1818; --good: #5fd08e; --good-soft: #12301f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d1418; --surface: #141e24; --ink: #e2eaee; --muted: #93a5af; --rule: #263540;
+  --accent: #45b8ad; --accent-soft: #11312f; --violet: #a597f0; --violet-soft: #241f3f;
+  --warn: #f0a33a; --warn-soft: #33260f; --bad: #f27b7b; --bad-soft: #3a1818; --good: #5fd08e; --good-soft: #12301f; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16.5px; line-height: 1.58; }
+.wrap { max-width: 880px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 80px; display: grid; gap: 52px; }
+h1, h2, h3, h4 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(30px, 5vw, 42px); line-height: 1.08; font-weight: 700; }
+h2 { font-size: 27px; line-height: 1.2; font-weight: 700; }
+h3 { font-size: 19px; font-weight: 600; margin-top: 10px; }
+h4 { font-size: 16px; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+section, .sub { display: grid; gap: 15px; min-width: 0; }
+.part { display: grid; gap: 22px; min-width: 0; padding-top: 6px; border-top: 2px solid var(--ink); }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 18.5px; max-width: 66ch; }
+.meta { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); }
+.muted { color: var(--muted); }
+code, .mono { font-family: var(--f-mono); font-size: 0.85em; overflow-wrap: anywhere; }
+a { color: var(--accent); }
+ul, ol { margin: 0; padding-left: 22px; display: grid; gap: 7px; max-width: 72ch; }
+strong { font-weight: 600; }
+
+.chip { display: inline-block; font-family: var(--f-mono); font-size: 10.5px; font-weight: 500; padding: 1px 5px;
+  border-radius: 3px; vertical-align: 1px; letter-spacing: 0.02em; white-space: nowrap; }
+.chip.m { background: var(--good-soft); color: var(--good); }
+.chip.e { background: var(--warn-soft); color: var(--warn); }
+.chip.h { background: var(--accent-soft); color: var(--accent); }
+.chip.x { background: var(--bad-soft); color: var(--bad); }
+.chip.ok { background: var(--good-soft); color: var(--good); }
+
+nav.toc { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 20px; display: grid; gap: 8px; }
+nav.toc ol { columns: 2 260px; column-gap: 28px; display: block; padding-left: 20px; }
+nav.toc li { break-inside: avoid; margin-bottom: 4px; }
+
+.gloss { display: grid; grid-template-columns: minmax(130px, 190px) 1fr; gap: 8px 18px; margin: 0; font-size: 15px; }
+.gloss dt { font-family: var(--f-mono); font-size: 13px; font-weight: 500; color: var(--accent); padding-top: 2px; }
+.gloss dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .gloss { grid-template-columns: 1fr; gap: 2px; } .gloss dd { margin-bottom: 8px; } }
+
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; max-width: 72ch; display: grid; gap: 8px; }
+.callout.warn { border-color: var(--warn); }
+.callout.violet { border-color: var(--violet); }
+
+.tbl { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); background: var(--bg); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--f-mono); font-size: 13px; white-space: nowrap; }
+td.rowh { font-weight: 600; white-space: nowrap; }
+td code { white-space: nowrap; }
+.win { color: var(--good); font-weight: 600; }
+.lose { color: var(--bad); }
+
+/* the phase timeline: a real chronological sequence */
+.tl { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; max-width: none; }
+.tl li { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--rule); }
+.tl li:last-child { border-bottom: 0; }
+.tl .d { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); padding-top: 3px; }
+.tl .b { display: grid; gap: 3px; min-width: 0; }
+.tl b { font-family: var(--f-display); font-weight: 600; }
+.tl .s { font-family: var(--f-mono); font-size: 12px; color: var(--accent); }
+@media (max-width: 520px) { .tl li { grid-template-columns: 1fr; gap: 4px; } }
+
+/* recipe stages */
+.stages { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; counter-reset: st; max-width: none; }
+.stages > li { counter-increment: st; display: grid; grid-template-columns: 34px 1fr; gap: 12px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+.stages > li::before { content: counter(st); font-family: var(--f-display); font-weight: 700; font-size: 20px; color: var(--violet); line-height: 1.2; }
+.stages .body { display: grid; gap: 5px; min-width: 0; }
+.stages h4 { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.stages .body p, .stages .body li { font-size: 15px; }
+.stages ul { gap: 4px; }
+
+figure { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 14px 10px; display: grid; gap: 8px; min-width: 0; }
+figure .scroll { overflow-x: auto; }
+figure svg { display: block; width: 100%; min-width: 560px; height: auto; }
+figcaption { font-size: 13.5px; color: var(--muted); max-width: 80ch; }
+svg text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+svg .ink { fill: var(--ink); }
+svg .head { font-family: var(--f-display); font-size: 13px; font-weight: 600; }
+svg .grid { stroke: var(--rule); stroke-width: 1; }
+svg .mark { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+svg .line { stroke: var(--accent); stroke-width: 2.5; fill: none; }
+svg .line2 { stroke: var(--warn); stroke-width: 2.25; fill: none; }
+svg .line3 { stroke: var(--violet); stroke-width: 2.25; fill: none; }
+svg .pt { fill: var(--accent); } svg .pt2 { fill: var(--warn); }
+svg .band-bad { fill: var(--bad-soft); } svg .lab-bad { fill: var(--bad); }
+svg .b-good { fill: var(--accent); } svg .b-mid { fill: var(--warn); } svg .b-bad { fill: var(--bad); } svg .b-mute { fill: var(--muted); opacity: .55; }
+svg .b-vio { fill: var(--violet); }
+svg .whisk { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; opacity: .35; }
+svg .meanmk { fill: var(--accent); }
+svg .minline { stroke: var(--bad); stroke-width: 2; }
+svg .packed { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend i.ring { border-radius: 50%; border: 2px solid var(--ink); background: var(--surface); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.two > * { min-width: 0; }
+.panel.good { border-top: 3px solid var(--good); } .panel.bad { border-top: 3px solid var(--bad); }
+.panel.vio { border-top: 3px solid var(--violet); } .panel.acc { border-top: 3px solid var(--accent); }
+.panel ul { font-size: 14.5px; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+footer { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+@media (max-width: 520px) { body { font-size: 15.5px; } th, td { padding: 7px 9px; } }
+</style>
+
+<div class="wrap">
+
+<header style="display:grid; gap:14px">
+  <div class="eyebrow">NVIDIA V2D Challenge · Track 3 · learner explainer</div>
+  <h1>Track 3 Learner Notebook</h1>
+  <p class="lede">Every eval episode gets its own robot policy, trained from a single video. This notebook covers how those policies are trained, the two learners we ended up with, and the ten days of experiments that shaped them. For each change it gives what we changed, why, what we measured and what we decided. It also lists what we still don't know.</p>
+  <p class="meta">As of 30 Oct 2026, ~09:00 UTC · sources: repository <code>main</code> (all session branches merged today), the 4,840-line work log, the learner code and the research notes · companion to the <a href="https://claude.ai/artifact/911z6oyUW6YRcKCnntZ6cb">V2D Track 3 Briefing</a></p>
+  <p class="meta">Evidence labels: <span class="chip m">M</span> measured · <span class="chip e">E</span> estimate or derived · <span class="chip h">H</span> hypothesis, untested. Scores on public episodes are registered AUC against mocap unless marked sim_vs_ref; scores on eval episodes are always sim_vs_ref, since eval ground truth is never read.</p>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <div class="eyebrow">Contents</div>
+  <ol>
+    <li><a href="#words">Words this notebook uses</a></li>
+    <li><a href="#machine">What a learner trains in</a></li>
+    <li><a href="#journey">Ten days at a glance</a></li>
+    <li><a href="#card">The two recipes side by side</a></li>
+    <li><a href="#standard">Learner 1: the standard learner</a></li>
+    <li><a href="#grasplock">Learner 2: the grasp lock</a></li>
+    <li><a href="#choice">Two learners, one choice</a></li>
+    <li><a href="#campaign">The eval campaign: carves, eval 10, seeds, recipe arms</a></li>
+    <li><a href="#variance">Variance: the hidden variable</a></li>
+    <li><a href="#lessons">What we learned about learning here</a></li>
+    <li><a href="#open">Open hypotheses and the tests that would settle them</a></li>
+    <li><a href="#appendix">Appendix: files, videos, disagreements</a></li>
+  </ol>
+</nav>
+
+<!-- ============================================================ -->
+<section id="words">
+  <div class="eyebrow">Before you start</div>
+  <h2>Words this notebook uses</h2>
+  <dl class="gloss">
+    <dt>reference</dt><dd>The motion the robot should reproduce, built per episode from the video. It holds two robot-hand trajectories retargeted from the person's hands, plus each object's path from our perception, plus contact labels.</dd>
+    <dt>residual action</dt><dd>The policy outputs a correction on top of the reference's hand targets. <strong>Zero action</strong> means "follow the reference exactly" through the robot's PD servos.</dd>
+    <dt>zero-action replay</dt><dd>Running the reference with zero action through the evaluator's physics. It shows whether the plan alone moves the objects correctly, before any training. Our cheapest test.</dd>
+    <dt>sim_vs_ref</dt><dd>The kit's ADD-AUC of a simulated rollout against <em>our</em> reference. It is our only score on eval episodes. Across 27 public policies it correlates 0.997 with the true score <span class="chip m">M</span>, but it cannot see errors in the reference itself.</dd>
+    <dt>floor</dt><dd>sim_vs_ref of leaving every object where it starts. A policy below its floor is doing harm.</dd>
+    <dt>draw</dt><dd>One official-evaluator rollout of a checkpoint. The evaluator is not reproducible, so draws of one checkpoint can differ by up to 0.7 on some episodes.</dd>
+    <dt>twin</dt><dd>A public episode with the same kind of objects as an eval episode. Changes are tested there against mocap before they touch eval episodes.</dd>
+    <dt>VOC</dt><dd>Virtual object controller: a training-only force that pushes each object along its reference path. A curriculum fades it to zero. The evaluator never uses it.</dd>
+    <dt>seed</dt><dd>The training random seed: 42 by default, 43–46 for second tries.</dd>
+    <dt>carve</dt><dd>A change to an object's <em>simulator</em> collision shape only, such as cutting a board's slot or emptying a cup's cavity. The submitted mesh is unchanged.</dd>
+    <dt>pre-registered</dt><dd>The rule for choosing between candidates is written into the work log before any result exists. Every eval batch since 24 Oct has one.</dd>
+  </dl>
+</section>
+
+<!-- ============================================================ -->
+<section id="machine" class="part">
+  <div class="eyebrow">Part 1</div>
+  <h2>What a learner trains in</h2>
+  <p>Every policy is trained in NVIDIA FlashCHORD, at the evaluator's pinned commit <code>8c778f9</code>. We never modify the evaluator. A checkpoint stores its fully resolved configuration, and the official evaluator rebuilds the simulation from it. So an embodiment or reward change we train with travels inside the checkpoint, and the evaluator honours it.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>During training</th><th>Official evaluation (what is scored)</th></tr></thead>
+    <tbody>
+      <tr><td class="rowh">Parallel worlds</td><td>4,096</td><td>1</td></tr>
+      <tr><td class="rowh">Object assist (VOC)</td><td>1.0, faded to 0 by a curriculum</td><td>off</td></tr>
+      <tr><td class="rowh">Start</td><td>a random frame of the clip; frame 0 for 10 % of resets from 78.6M steps, 50 % from 200M; fingers scaled by U(0, 0.7); assist held at 1.0 for the first second</td><td>frame 0, exact fingers, no hold</td></tr>
+      <tr><td class="rowh">Episode ends early when</td><td>palm > 15 cm, object > 10 cm or > 0.5 rad off the reference</td><td>never; the rollout runs to the end</td></tr>
+      <tr><td class="rowh">Actions</td><td>sampled, for exploration</td><td>deterministic mean</td></tr>
+      <tr><td class="rowh">Randomisation</td><td>none (no domain randomisation, no observation noise)</td><td>seed 42</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="two">
+    <div class="panel">
+      <h4>Physics and robot</h4>
+      <ul>
+        <li>The policy runs at 20 Hz. Physics runs at 100 Hz (5 substeps) on MuJoCo via Newton, with a pyramidal friction cone, friction 1.0 and a 512-constraint cap. The cap overflows on cluttered scenes.</li>
+        <li>Two floating Sharpa Wave hands with 22 finger joints each. <strong>The wrist is a soft spring</strong>: kp 25 N/m, kd 6, 45 N maximum. The ball joint for rotation has 25 N·m/rad. Fingers have kp 1.7.</li>
+        <li>The hands' own weight is compensated; a held object's is not. Every object is a 0.3 kg placeholder, so carrying one sags the soft wrist 11.8 cm, more than half of its 20 cm action range <span class="chip m">M</span>.</li>
+        <li>Hands pass through the table (robot–support collision is off), so fingers can get under a flat object.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4>Policy and learner</h4>
+      <ul>
+        <li><strong>Action:</strong> 56 numbers, 2 hands × (3 wrist position + 3 wrist rotation + 22 fingers), as a residual on the reference. The actor's ±1 stretches to at most ±0.2 m and ±1.0 rad. The gain near zero is 0.05 m and 0.15 rad. Actions are smoothed with an EMA of 0.3.</li>
+        <li><strong>Observation</strong> (about 504 numbers for one object): wrist pose and velocity, finger angles, object poses, the next frame's command deltas, recent actions, and each link's contact point and force direction. It has no look-ahead beyond one frame and no object velocity; the critic additionally sees both.</li>
+        <li><strong>Learner:</strong> FlashSAC, an off-policy actor-critic with two distributional critics (101 atoms). Hidden sizes are 256 (actor) and 512 (critic). Batch 2,048, n-step 3, γ 0.99, learning rate 3e-4 → 1.5e-4, replay 4.19M. Checkpoints every 10,000,384 steps.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>The stock reward</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Term</th><th class="num">Weight</th><th>What it rewards</th></tr></thead>
+    <tbody>
+      <tr><td><code>object_keypoints</code></td><td class="num">20</td><td>6 points on the object's axes at ±1 m, exp(−d/0.1). This term dominates.</td></tr>
+      <tr><td><code>contact_wrench_support</code></td><td class="num">10</td><td>Contacts that can produce the wrench the reference needs (512 directions, friction-cone model)</td></tr>
+      <tr><td><code>hand_keypoints</code>, <code>hand_joint_pos</code></td><td class="num">0.25 each</td><td>Looking like the human hand: a weak prior</td></tr>
+      <tr><td><code>unintended_contact</code> / <code>missed_contact</code></td><td class="num">−10 / −1</td><td>Touching where the reference does not, or failing to touch where it does</td></tr>
+      <tr><td><code>termination</code></td><td class="num">−100</td><td>Ending the episode early</td></tr>
+      <tr><td><code>action_rate</code>, <code>action_l2</code></td><td class="num">−0.005, −0.002</td><td>Smoothness</td></tr>
+      <tr><td><code>force_closure</code>, <code>contact_force_l2</code></td><td class="num">0</td><td>Present but disabled</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The curriculum</h3>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 680 270" role="img" aria-label="Object-assist (VOC) scale against training steps"><rect class="band-bad" x="60.0" y="30" width="150.8" height="180"/><text class="lab-bad" x="64.7" y="188">stock assist torque:</text><text class="lab-bad" x="64.7" y="201">spoon explodes here</text><line class="grid" x1="60" y1="210.0" x2="650" y2="210.0"/><text x="52" y="214.0" text-anchor="end">0</text><line class="grid" x1="60" y1="165.0" x2="650" y2="165.0"/><text x="52" y="169.0" text-anchor="end">0.25</text><line class="grid" x1="60" y1="120.0" x2="650" y2="120.0"/><text x="52" y="124.0" text-anchor="end">0.5</text><line class="grid" x1="60" y1="75.0" x2="650" y2="75.0"/><text x="52" y="79.0" text-anchor="end">0.75</text><line class="grid" x1="60" y1="30.0" x2="650" y2="30.0"/><text x="52" y="34.0" text-anchor="end">1</text><text x="60.0" y="228" text-anchor="middle">0M</text><text x="178.0" y="228" text-anchor="middle">50M</text><text x="296.0" y="228" text-anchor="middle">100M</text><text x="414.0" y="228" text-anchor="middle">150M</text><text x="532.0" y="228" text-anchor="middle">200M</text><text x="650.0" y="228" text-anchor="middle">250M</text><polyline class="line" points="60.0,30.0 106.5,30.0 106.5,75.0 141.2,75.0 141.2,120.0 176.1,120.0 176.1,165.0 210.8,165.0 210.8,192.0 245.5,192.0 245.5,201.0 280.4,201.0 280.4,205.5 315.1,205.5 315.1,208.2 350.0,208.2 350.0,210.0 650.0,210.0"/><line class="mark" x1="225.2" y1="30" x2="225.2" y2="210"/><text class="ink" x="230.2" y="90" text-anchor="start">grasp-lock training ends (70M)</text><line class="mark" x1="350.0" y1="30" x2="350.0" y2="210"/><text class="ink" x="355.0" y="128" text-anchor="start">assist off (122.9M)</text><line class="mark" x1="532.0" y1="30" x2="532.0" y2="210"/><text class="ink" x="527.0" y="166" text-anchor="end">half of resets from frame 0</text><text x="355.0" y="264" text-anchor="middle">training steps (millions)</text></svg></div>
+    <figcaption>Object-assist scale over the 250M-step schedule (<code>tracking_250m_mixed_reset</code>), read from the pinned code. It is NVIDIA's 20k-iteration PPO schedule divided by 10, plus a 50M frame-0 stage. Red shading: the stages where the stock assist torque made our spoon explode (Part 4). Our grasp-lock training stops at 70M, so it never trains with the assist fully off.</figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <p><strong>Four properties of this machine drove most of our work:</strong></p>
+    <ol>
+      <li>The soft wrist cannot both carry a 0.3 kg object and follow fast human motion. At real playback speed it saturates on 23 of 27 moving public object tracks <span class="chip e">E</span>, from the carry-control study.</li>
+      <li>The object reward measures points 1 m from the centre, so it saturates quickly with rotation error. Past about 0.5 rad it gives almost no gradient (Part 4).</li>
+      <li>The assist torque uses one scalar inertia per object, which is unstable for long thin objects such as the spoon.</li>
+      <li>The evaluator's conditions (frame-0 start, no assist, no terminations) appear in training only late, and never in a 70M run.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="journey" class="part">
+  <div class="eyebrow">Part 2</div>
+  <h2>Ten days at a glance</h2>
+  <ol class="tl">
+    <li><span class="d">20 Oct</span><span class="b"><b>Bring-up on public episodes.</b><span>First end-to-end score 0.009: the reference builder had fitted the floor instead of the table, and objects fell 60 cm. After the fix, ep12 scored 0.890 and an oracle with mocap objects scored 0.858, so the robot, not perception, limited that episode.</span><span class="s">stock learner · ep12 0.890</span></span></li>
+    <li><span class="d">21 Oct</span><span class="b"><b>Hard episodes fail.</b><span>The boards (ep24) and the sweeper with dust pan (ep18) score at or below "do nothing". The robot hands sit 16–20 mm inside objects on most frames, and the two hands overlap at reset.</span><span class="s">ep24 0.08–0.24 · ep18 0.13–0.40</span></span></li>
+    <li><span class="d">22 Oct night</span><span class="b"><b>Contact-anchored retargeting</b>, 13 machines in 5 rounds. It makes rollouts consistent rather than better on average. Root causes found: a sweeper mesh that cannot stand, and objects floating 1–4 cm above the table.</span><span class="s">ep18 0.345 → 0.715 with a stable sweeper</span></span></li>
+    <li><span class="d">23 Oct night</span><span class="b"><b>FlashDexRetarget-style rewards</b> ported into FlashCHORD's reward slots. Adopted as the default.</span><span class="s">ep12 + ep18 mean 0.753 → 0.830</span></span></li>
+    <li><span class="d">23 Oct day</span><span class="b"><b>The spoon crisis.</b> Spoon policies score below "do nothing". Root cause: the assist explodes thin objects. After the fix, RL picks the spoon up but always drops it. The owner turns to a designed grasp: <strong>the grasp lock is born</strong>, and by evening it scores 0.97–0.98 on two eval spoon episodes.</span><span class="s">eval 3: 0.41 → 0.968 · eval 35: 0.11 → 0.978</span></span></li>
+    <li><span class="d">23–24 Oct</span><span class="b"><b>The grasp lock matures:</b> stable starts, early approach, re-planning, then an evolutionary grasp search and motion-onset anchoring that rescue the plates. The recipe is <strong>frozen</strong> on 24 Oct, 11:40 UTC.</span><span class="s">ep39 0.174 → 0.958 · ep18 0.32 → 0.957</span></span></li>
+    <li><span class="d">24 Oct</span><span class="b"><b>First eval run, grasp lock only.</b> It is strong on the spoon and weak on the lid, boards, tools and stacked cups.</span><span class="s">Kaggle 0.575 · 9th</span></span></li>
+    <li><span class="d">25 Oct</span><span class="b"><b>"Use both."</b> The standard learner is trained wherever the grasp lock is below 0.9, and a ground-truth-free rule picks one per episode. The standard learner wins 5 episodes.</span><span class="s">Kaggle 0.789 · 4th</span></span></li>
+    <li><span class="d">26–27 Oct</span><span class="b"><b>Carves and the eval-10 saga.</b> Simulator collision copies are cut for the board slot and the cups. Eval 10 resists 7+ attempts because RL learns to avoid the stack.</span><span class="s">Kaggle 0.811 → 0.814 · 5th</span></span></li>
+    <li><span class="d">29–30 Oct</span><span class="b"><b>Variance.</b> Ten fresh draws per packed policy show our 0.814 rests on lucky draws. Recipe arms are inconclusive. One retrain (eval 33) is confirmed over 10 draws and shipped.</span><span class="s">Kaggle 0.8146 · 7th</span></span></li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<section id="card" class="part">
+  <div class="eyebrow">Part 3</div>
+  <h2>The two recipes side by side</h2>
+  <p>Both learners use the same perception and the same base reference. They differ in what the reference asks the hands to do, in the wrist, and in how long and how they train.</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Stock FlashCHORD</th><th>Standard learner</th><th>Grasp lock</th></tr></thead>
+    <tbody>
+      <tr><td class="rowh">Reference</td><td>NVIDIA's retargeter (E2S) on the human hands</td><td>E2S + wrist cost 3.0, hands 4 cm apart at reset, 10-frame lead-in at ≤ 0.2 m/s, contact-anchored retargeting with rest settling (variant "mck")</td><td>The mck reference, rewritten: a designed grasp per hold, locked to the object, corrected by wrist ILC and edited by an evolutionary search</td></tr>
+      <tr><td class="rowh">Wrist</td><td>kp 25 N/m, kd 6, 45 N</td><td>same</td><td><strong>kp 400 N/m, kd 20, 150 N</strong> (<code>sharpa_hands_mid</code>)</td></tr>
+      <tr><td class="rowh">Object reward</td><td>6 points at ±1 m</td><td>128 surface points, top-3 error, exp(−10e), weight 20</td><td>same as standard</td></tr>
+      <tr><td class="rowh">Fingertip term</td><td>off</td><td>one-sided distance bound, weight 6</td><td>same</td></tr>
+      <tr><td class="rowh">Contact wrench / unintended contact</td><td>10 / −10</td><td>3 / −2</td><td>3 / −2</td></tr>
+      <tr><td class="rowh">Assist torque</td><td>scalar mean inertia</td><td>full inertia tensor</td><td>full inertia tensor</td></tr>
+      <tr><td class="rowh">Starts</td><td>stock</td><td>+ 25 % "deployment-exact" starts</td><td>stock</td></tr>
+      <tr><td class="rowh">Sim meshes</td><td>organisers' scans</td><td>our library_v3, plus slot / placement carves on evals 25 and 1</td><td>library_v3 + support fill / arc foot, plus carved cups on eval 10</td></tr>
+      <tr><td class="rowh">Training</td><td>250M steps</td><td>250M steps, fresh weights</td><td>70M steps, fresh weights, on a reference whose zero action already carries the object (40M in arm B)</td></tr>
+      <tr><td class="rowh">Checkpoint choice</td><td>—</td><td>checkpoints at 40 / 60 / 80 % + final, one draw each; then 5 draws of the best</td><td>every 10M checkpoint × 3 draws, best mean; then 5 (later 10) draws</td></tr>
+      <tr><td class="rowh">Time per policy</td><td>1.2–2 h alone on an RTX PRO 6000</td><td>≈ 2 h alone, ≈ 3.3 h two per GPU</td><td>≈ 20 min of training plus grasp design, search and evaluations</td></tr>
+      <tr><td class="rowh">Episodes in pack 7</td><td class="num">0</td><td>5: evals 1, 19, 25, 28, 30</td><td>15: evals 3, 5, 6, 8, 10, 14, 15, 16, 20, 32, 33, 35, 36, 37, 38</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">"Fine-tune" in our logs means a short training run on the designed reference, not continuing earlier weights: <code>glock_public.sh</code> starts <code>train_flash_sac.py</code> fresh with the kp 400 embodiment. It gets its name because the designed reference already does most of the work.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="standard" class="part">
+  <div class="eyebrow">Part 4</div>
+  <h2>Learner 1: the standard learner</h2>
+  <p>Plain RL from scratch for 250M steps on the human-derived reference, with four changes of ours: a cleaned reference, contact-anchored retargeting, FlashDexRetarget-style rewards and a fixed object assist. It wins where the task is contact-rich and the human's own motion is the best plan: sweeping, slotting boards, lifting a lid, placing into a rack.</p>
+
+  <div class="sub">
+    <h3>4.1 Bring-up: the reference was the first enemy (20 Oct)</h3>
+    <ul>
+      <li><strong>Floor bug.</strong> ep12's first 250M policy scored AUC 0.009 <span class="chip m">M</span>. The table fit chose the floor (55 % of points vs 39 % for the table), so both objects dropped 55–60 cm at the start. Fixed with a sequential RANSAC and a support check, then retrained.</li>
+      <li><strong>Wrist jumps.</strong> The robot wrist jumped up to 30.9 cm per frame while the human palm moved at most 2.6 cm (ep44). The cause is in NVIDIA's retargeting IK, which weights the wrist position 0.2 against 1.0 per fingertip. <code>--wrist_cost 3.0</code> cut the jumps to 4.6 cm at a cost of 1–2 cm of fingertip error. Bone normalisation and a scale change did not help.</li>
+      <li><strong>First valid score:</strong> ep12 0.890 (sim_vs_ref 0.863). An oracle run with mocap object paths scored 0.858, so on this episode the robot sets the score, not perception <span class="chip m">M</span>.</li>
+      <li><strong>Single-seed results mislead.</strong> With wrist cost 3.0, ep12 scored 0.604 (a failure) while ep27 scored 0.965 and ep2 0.926. Rule adopted: never adopt a change on one seed.</li>
+      <li><strong>Rejected:</strong> the Viterbi hand-identity linker (fixed one hand-over, added jumps elsewhere) and the kp 400 wrist for plain RL (ep12 0.860 vs 0.890).</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>4.2 Hard episodes and the penetration problem (21 Oct)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Episode</th><th class="num">Default</th><th class="num">Wrist cost 3.0</th><th class="num">Do nothing</th><th>What happened</th></tr></thead>
+      <tbody>
+        <tr><td>ep21 cup + pitcher</td><td class="num">0.826</td><td class="num">0.793</td><td class="num">–</td><td>Pouring works</td></tr>
+        <tr><td>ep24 two boards</td><td class="num">0.235</td><td class="num">0.167</td><td class="num">0.235</td><td>Boards never lifted</td></tr>
+        <tr><td>ep18 sweeper + dust pan</td><td class="num">0.127</td><td class="num">0.337</td><td class="num">0.610</td><td>The sweeper falls over by itself</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Evaluation noise appears.</strong> One ep24 policy scored 0.131–0.410 over 8 evaluations, and the same checkpoint scored 0.308 and 0.192 in two single runs. sim_vs_ref still correlated 0.98 with the true score <span class="chip m">M</span>.</li>
+      <li><strong>Engine trap.</strong> Newton splits a vertex-coloured mesh into one shape per colour (174 per board), and each goes through convex decomposition × 4,096 worlds, so the ep24 trainings were killed for memory. Fixed with colourless simulator copies.</li>
+      <li><strong>Hands overlapping at reset.</strong> On ep24 the two robot hands interpenetrated by 6–14 mm and a finger sat 12.7 mm inside a board. Board 1 popped 15–20° on the first step, so every frame-0 episode terminated immediately. Fixed with <code>--hand_sep 0.04 --lead_in 10</code>: 0.080 → 0.232, still at the floor.</li>
+      <li><strong>Penetration everywhere.</strong> The robot hand sat more than 2 mm inside something on 63–88 % of frames (p95 16–20 mm) on easy and hard episodes alike; the human fingertips, 0 %. The evaluation starts without the training's assist, so these overlaps become pops and drops.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>4.3 Contact-anchored retargeting (21–22 Oct)</h3>
+    <p>The owner's idea: "snap the fingertips, let the wrist follow". <code>pipeline/contact_retarget.py</code> rebuilds each robot-hand frame so the pads touch where the human touched and nothing penetrates:</p>
+    <ol>
+      <li>Human fingertips within 2.5 cm of an object surface become contact targets, projected onto the surface. Runs shorter than 3 frames are dropped; longer ones are smoothed over 5 frames in the object's frame.</li>
+      <li>The wrist and 22 finger joints are solved per frame by a hand-written Levenberg–Marquardt. The residual terms are fingertip-to-target distance, penetration (from CPU MuJoCo on the scene's own convex pieces, including the table and the other hand), closeness to the original retarget, and continuity with the previous frame.</li>
+      <li>The wrist may move at most ±6 cm / ±0.5 rad from the original. Frames without contact relax back toward it. With <code>--rest_settle 1</code>, resting objects are seated on the table in their nearest stable pose.</li>
+    </ol>
+    <div class="tbl"><table>
+      <thead><tr><th>Measure</th><th class="num">ep24 before</th><th class="num">ep24 after</th><th class="num">ep18 before</th><th class="num">ep18 after</th></tr></thead>
+      <tbody>
+        <tr><td>Frames with the hand > 2 mm inside</td><td class="num">242 / 275</td><td class="num">62</td><td class="num">≈ 77 %</td><td class="num">41 / 361</td></tr>
+        <tr><td>Penetration p95</td><td class="num">20.1 mm</td><td class="num">6.0 mm</td><td class="num">16 mm</td><td class="num">2.7 mm</td></tr>
+        <tr><td>Object pop at frame 0</td><td class="num">6.2°</td><td class="num">0.8°</td><td class="num">–</td><td class="num">–</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>The overnight test (22 Oct, 13 machines, $49.76)</strong>, registered AUC, mean of 6 evaluations <span class="chip m">M</span>:</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Variant</th><th class="num">ep12</th><th class="num">ep27</th><th class="num">ep18</th><th class="num">ep24</th></tr></thead>
+      <tbody>
+        <tr><td>base</td><td class="num">0.725 ± 0.067</td><td class="num">0.942 ± 0.017</td><td class="num">0.345 ± 0.046</td><td class="num">0.297 ± 0.055</td></tr>
+        <tr><td>k: contact retargeting</td><td class="num">0.790 ± 0.023</td><td class="num">0.911</td><td class="num">0.319 / 0.361</td><td class="num">0.307 / 0.306</td></tr>
+        <tr><td>kq: object keypoints at 0.15 m</td><td class="num"></td><td class="num"></td><td class="num">0.381</td><td class="num">0.313</td></tr>
+        <tr><td>p: NVIDIA's primitive hand</td><td class="num"></td><td class="num"></td><td class="num">0.377</td><td class="num">0.282</td></tr>
+        <tr><td>ki: k + exact-start fix</td><td class="num">0.763</td><td class="num">0.897</td><td class="num">0.342</td><td class="num">0.318</td></tr>
+        <tr><td>kr: k + rest settling</td><td class="num">0.740</td><td class="num"></td><td class="num"></td><td class="num"></td></tr>
+        <tr><td><strong>kfi: flattened sweeper that can stand</strong></td><td class="num"></td><td class="num"></td><td class="num"><strong>0.715 ± 0.240</strong></td><td class="num"></td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Reading:</strong> retargeting did not raise the average much, but it made rollouts 3–25× more consistent. No variant lifted ep18 above 0.38 or ep24 above 0.32 until the sweeper could stand on its own. The reconstructed sweeper had a rounded underside and fell with no hand near it once the assist was off.</li>
+      <li><strong>Objects float.</strong> In our references, objects rested 1–4 cm above the table (ep12, ep24, ep27). That led to <code>flatten_base.py</code>, library_v3 and later the support fill.</li>
+      <li><strong>Is it the mesh?</strong> ep24 trained with the organisers' scans scored 0.389 (seed 42) and 0.245 (seed 43) against 0.307 with ours. Board 2 was never lifted, so the mesh is not ep24's limit. Boards are only 5 % of the score, so ep24-specific spending stopped.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>4.4 FlashDexRetarget-style rewards (23 Oct, 00:50–04:40 TRT)</h3>
+    <p>We ported the reward ideas of FlashDexRetarget (FDR) into FlashCHORD's own term slots. Because the term names stay the same, the unpatched official evaluator still loads the checkpoint (<code>ops/box/fc_v2d_fdr.py</code>, switched on in <code>ops/box/lib.sh</code>):</p>
+    <ul>
+      <li><strong>Object term</strong> (weight 20 kept): 128 area-weighted points on the object's own mesh at its true size. The error is the mean of the 3 worst point distances, rewarded as exp(−10e). FDR rescales objects to 5.8 cm; we keep true size, because the score is ADD in metres.</li>
+      <li><strong>Fingertip term</strong> in the disabled <code>force_closure</code> slot (weight 6): each fingertip is rewarded exp(−max(0, d_sim − d_ref)/1 cm). It penalises a tip only for being farther from the object than in our reference.</li>
+      <li><strong>Re-weighting:</strong> contact wrench support 10 → 3; unintended contact −10 → −2.</li>
+      <li><strong>Not ported:</strong> FDR's 10-frame look-ahead encoder, per-hand actor-critic, larger critic and replay, adaptive assist, its terminations and its 400M steps.</li>
+    </ul>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 680 250" role="img" aria-label="Object reward against rotation error, stock vs FDR port"><line class="grid" x1="60" y1="200.0" x2="650" y2="200.0"/><text x="52" y="204.0" text-anchor="end">0</text><line class="grid" x1="60" y1="155.0" x2="650" y2="155.0"/><text x="52" y="159.0" text-anchor="end">0.25</text><line class="grid" x1="60" y1="110.0" x2="650" y2="110.0"/><text x="52" y="114.0" text-anchor="end">0.5</text><line class="grid" x1="60" y1="65.0" x2="650" y2="65.0"/><text x="52" y="69.0" text-anchor="end">0.75</text><line class="grid" x1="60" y1="20.0" x2="650" y2="20.0"/><text x="52" y="24.0" text-anchor="end">1</text><text x="60.0" y="218" text-anchor="middle">0</text><text x="207.5" y="218" text-anchor="middle">0.4</text><text x="355.0" y="218" text-anchor="middle">0.8</text><text x="502.5" y="218" text-anchor="middle">1.2</text><text x="650.0" y="218" text-anchor="middle">1.6</text><polyline class="line" points="96.9,43.4 170.6,81.2 281.2,120.8 428.8,153.2 613.1,173.0"/><circle class="pt" cx="96.9" cy="43.4" r="3.5"/><text class="ink" x="96.9" y="35.4" text-anchor="middle">0.87</text><circle class="pt" cx="170.6" cy="81.2" r="3.5"/><text class="ink" x="170.6" y="73.2" text-anchor="middle">0.66</text><circle class="pt" cx="281.2" cy="120.8" r="3.5"/><text class="ink" x="281.2" y="112.8" text-anchor="middle">0.44</text><circle class="pt" cx="428.8" cy="153.2" r="3.5"/><text class="ink" x="428.8" y="145.2" text-anchor="middle">0.26</text><circle class="pt" cx="613.1" cy="173.0" r="3.5"/><text class="ink" x="613.1" y="165.0" text-anchor="middle">0.15</text><polyline class="line2" points="96.9,117.2 170.6,180.2 281.2,196.4 428.8,199.8 613.1,200.0"/><circle class="pt2" cx="96.9" cy="117.2" r="3.5"/><text class="ink" x="96.9" y="109.2" text-anchor="middle">0.46</text><circle class="pt2" cx="170.6" cy="180.2" r="3.5"/><text class="ink" x="170.6" y="172.2" text-anchor="middle">0.11</text><circle class="pt2" cx="281.2" cy="196.4" r="3.5"/><text class="ink" x="281.2" y="188.4" text-anchor="middle">0.02</text><circle class="pt2" cx="428.8" cy="199.8" r="3.5"/><text class="ink" x="428.8" y="191.8" text-anchor="middle">0.001</text><circle class="pt2" cx="613.1" cy="200.0" r="3.5"/><text class="ink" x="613.1" y="192.0" text-anchor="middle">0</text><text x="355.0" y="244" text-anchor="middle">object rotation error (rad)</text></svg></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>our port (FDR-style, true-size surface points)</span><span><i style="background:var(--warn)"></i>stock FlashCHORD (points at ±1 m)</span></div>
+      <figcaption>Object reward against a pure rotation error, computed on CPU for the eval-35 spoon <span class="chip m">M</span>. Past about 0.5 rad the stock term is almost flat, so a policy that has turned the spoon too far gets no signal pointing back. The port keeps a usable slope to 1.5 rad.</figcaption>
+    </figure>
+    <div class="tbl"><table>
+      <thead><tr><th>A/B, 6 evaluations each</th><th class="num">ep12</th><th class="num">ep18</th><th class="num">Mean</th></tr></thead>
+      <tbody>
+        <tr><td>without FDR, seed 42</td><td class="num">0.790 ± 0.023</td><td class="num">0.715 ± 0.240</td><td class="num">0.753</td></tr>
+        <tr><td>FDR, seed 42</td><td class="num win">0.891 ± 0.015</td><td class="num win">0.776 ± 0.229</td><td class="num">0.834</td></tr>
+        <tr><td>FDR, seed 43</td><td class="num">0.762 ± 0.077</td><td class="num win">0.889 ± 0.011</td><td class="num">0.826</td></tr>
+      </tbody>
+    </table></div>
+    <p>The rule, fixed beforehand: adopt if both episodes gain on both seeds, or if one gains ≥ 0.05 while the other loses ≤ 0.02. Three of four runs gained (+0.10, +0.06, +0.17); there was no seed-43 baseline to compare against. The owner made FDR the default at 04:40 TRT <span class="chip m">M</span>.</p>
+  </div>
+
+  <div class="sub">
+    <h3>4.5 The assist that exploded the spoon (23 Oct)</h3>
+    <p>The first spoon policies scored <em>below</em> doing nothing (eval 3 0.410 against a floor of 0.439; eval 35 0.105 against 0.112), and no object moved in any rollout. A zero-action replay in the training environment found the cause <span class="chip m">M</span>:</p>
+    <ul>
+      <li>FlashCHORD's assist turns the desired angular acceleration into torque with <strong>one scalar: the mean of the inertia diagonal</strong>.</li>
+      <li>Our spoon mesh with the 0.3 kg placeholder mass has principal inertias of 0.46 / 25.8 / 26.0 × 10⁻⁴ kg·m², a mean-to-minimum ratio of 38. The long axis therefore gets 38× the intended gain, an effective damping of 1,530 s⁻¹.</li>
+      <li>At a 10 ms substep that explicit damping diverges above an assist of about 0.13. So the first four curriculum stages (assist 1.0 → 0.25, about 64M steps) trained on exploding spoons: 1.9 m off by frame 3 on CPU, 10⁸ m by frame 30 on GPU, flinging the right hand 1.5 m and the pot 46 cm.</li>
+      <li>Other objects have ratios of 1.4–2.9 (fine); the dish rack's is 6.4 (marginal).</li>
+    </ul>
+    <p><strong>Fix:</strong> torque = R I Rᵀ α with the full inertia tensor (<code>ops/box/fc_v2d_voc.py</code>), training only, on by default. A side effect: training ran 1.9–2× faster (27.5k → 54.7k steps/s on eval 35), because exploding worlds had been eating solver time.</p>
+    <div class="callout"><p>Policies trained before the fix had <strong>learned avoidance</strong>. Their wrists stayed 26–43 cm from the spoon, since every touch in early training was violent. This pattern returns on eval 10 (Part 7).</p></div>
+  </div>
+
+  <div class="sub">
+    <h3>4.6 Starts, lead-ins and recovery</h3>
+    <ul>
+      <li><strong>Lead-in speed</strong> (eval 35): the right hand is first seen at frame 6, so the lead-in rushed it in from 18 cm away at 60 cm/s and the simulated wrist fell 16 cm behind. <code>--lead_in_speed 0.2</code> became a generic default. The retrain only moved 0.127 → 0.147, so the start was not the main limit.</li>
+      <li><strong>Deployment-exact starts</strong> (<code>FC_IMMEDIATE_FIRST_FRAME=0.25</code>: a quarter of late resets start exactly like the evaluator). Falsified as a standalone fix on ep18, but it stayed in the lineage of the best ep18 run and so in the standard learner's recipe. The overnight summary and the recipe disagree on whether it was adopted.</li>
+      <li><strong>Recovery training</strong> (drop starts that begin with the object off the reference): tested inside grasp-lock runs, ep18 0.220 vs 0.320 and ep12 0.869 vs 0.886. Dropped.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>4.7 Where it wins and where it cannot</h3>
+    <ul>
+      <li><strong>Wins on tools.</strong> On the ep39 dust pan the standard learner scored 0.802 ± 0.280, four of five rollouts ≈ 0.94; the early grasp lock scored 0.174. On ep18, 0.776 and 0.889 (two seeds).</li>
+      <li><strong>Cannot hold the spoon.</strong> With the assist fixed, the pick-up is learned at 70–90M steps as the assist fades. The drop point then does not move from 90M to 250M (eval 3 frames 105–109, eval 35 frames 141–147). Final scores were 0.29–0.41.</li>
+      <li><strong>Pack 7 episodes:</strong> evals 1 (pot + lid), 19 (sweeper + dust pan), 25 (boards, slot carve), 28 (rack + pot) and 30 (sweeper + rack). Packed draws are 0.89–0.93; 10-draw means 0.80–0.93. Evals 1 and 30 are bimodal, with worst draws of 0.15 and 0.26.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>4.8 How long to train</h3>
+    <ul>
+      <li>Of 111 stored checkpoint sweeps, the best checkpoint was the final 250M one in 48 and earlier in 63 <span class="chip m">M</span>. Easy episodes keep rising to 250M (ep12 0.647 → 0.775 from 100M); hard ones swing.</li>
+      <li><strong>More steps rarely rescue a bad start.</strong> Of 22 curves below 0.5 at 100M, the median gain by 250M was +0.04; only 1 ended at or above 0.45 and 13 ended below "do nothing".</li>
+      <li><strong>Early ranking predicts the final.</strong> On 31 standard-learner curves, the score at 40 % of training predicts the final with R² 0.79. The leader of a pair at 40 % finished ahead 30 times in 36. Late jumps happened twice (ep18 0.24 → 0.82; eval 25 0.50 → 0.89).</li>
+      <li><strong>Nobody has shown 250M is needed.</strong> It is NVIDIA's PPO schedule divided by 10, and our references play at twice NVIDIA's speed. A rescaled 125M schedule was written but never run. Early stopping saves nothing as long as the assist schedule follows the step count.</li>
+      <li>Training metrics were never logged (<code>logging.mode=disabled</code>), so we cannot see why episodes terminate at each stage.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="grasplock" class="part">
+  <div class="eyebrow">Part 5</div>
+  <h2>Learner 2: the grasp lock</h2>
+  <p>The idea: instead of asking RL to discover a grip, <strong>write a designed, physically sound grasp into the reference</strong>, so that zero action already carries the object. Then a short RL run only has to finish it. "Secure grasp is more important than replicating it" (the owner, 23 Oct). It now covers 15 of 20 eval episodes, including all ten spoon episodes.</p>
+
+  <div class="sub">
+    <h3>5.1 Birth: the spoon, step by step (23 Oct)</h3>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 680 420" role="img" aria-label="Spoon episodes: every approach tried, sim_vs_ref"><line class="grid" x1="300.0" y1="16" x2="300.0" y2="390"/><text x="300.0" y="406" text-anchor="middle">0</text><line class="grid" x1="385.0" y1="16" x2="385.0" y2="390"/><text x="385.0" y="406" text-anchor="middle">0.25</text><line class="grid" x1="470.0" y1="16" x2="470.0" y2="390"/><text x="470.0" y="406" text-anchor="middle">0.5</text><line class="grid" x1="555.0" y1="16" x2="555.0" y2="390"/><text x="555.0" y="406" text-anchor="middle">0.75</text><line class="grid" x1="640.0" y1="16" x2="640.0" y2="390"/><text x="640.0" y="406" text-anchor="middle">1</text><text class="ink head" x="8" y="38">Eval 3: pot + spoon</text><text x="292" y="61.0" text-anchor="end">do nothing (floor)</text><rect class="b-mute" x="300" y="50.0" width="149.3" height="14" rx="2"/><text class="ink" x="454.3" y="61.0">0.439</text><text x="292" y="83.0" text-anchor="end">RL 250M, stock assist</text><rect class="b-bad" x="300" y="72.0" width="139.4" height="14" rx="2"/><text class="ink" x="444.4" y="83.0">0.410</text><text x="292" y="105.0" text-anchor="end">RL 250M, assist fixed</text><rect class="b-bad" x="300" y="94.0" width="129.2" height="14" rx="2"/><text class="ink" x="434.2" y="105.0">0.380</text><text x="292" y="127.0" text-anchor="end">wrap + ILC, kp 25, zero action</text><rect class="b-mid" x="300" y="116.0" width="157.1" height="14" rx="2"/><text class="ink" x="462.1" y="127.0">0.462</text><text x="292" y="149.0" text-anchor="end">wrap + ILC, kp 400, zero action</text><rect class="b-mid" x="300" y="138.0" width="223.7" height="14" rx="2"/><text class="ink" x="528.7" y="149.0">0.658</text><text x="292" y="171.0" text-anchor="end">+ 70M training, mean of 5 draws</text><rect class="b-good" x="300" y="160.0" width="329.1" height="14" rx="2"/><text class="ink" x="634.1" y="171.0">0.968</text><text class="ink head" x="8" y="200">Eval 35: spoon alone</text><text x="292" y="223.0" text-anchor="end">do nothing (floor)</text><rect class="b-mute" x="300" y="212.0" width="38.1" height="14" rx="2"/><text class="ink" x="343.1" y="223.0">0.112</text><text x="292" y="245.0" text-anchor="end">RL 250M, stock assist</text><rect class="b-bad" x="300" y="234.0" width="35.7" height="14" rx="2"/><text class="ink" x="340.7" y="245.0">0.105</text><text x="292" y="267.0" text-anchor="end">RL 250M, assist fixed</text><rect class="b-bad" x="300" y="256.0" width="98.3" height="14" rx="2"/><text class="ink" x="403.3" y="267.0">0.289</text><text x="292" y="289.0" text-anchor="end">single-hand wrap, zero action</text><rect class="b-mid" x="300" y="278.0" width="69.7" height="14" rx="2"/><text class="ink" x="374.7" y="289.0">0.205</text><text x="292" y="311.0" text-anchor="end">+ relax-then-slide release</text><rect class="b-mid" x="300" y="300.0" width="90.8" height="14" rx="2"/><text class="ink" x="395.8" y="311.0">0.267</text><text x="292" y="333.0" text-anchor="end">+ knuckles-first closing, kp 25</text><rect class="b-mid" x="300" y="322.0" width="177.1" height="14" rx="2"/><text class="ink" x="482.1" y="333.0">0.521</text><text x="292" y="355.0" text-anchor="end">kp 400 reference, zero action</text><rect class="b-mid" x="300" y="344.0" width="140.1" height="14" rx="2"/><text class="ink" x="445.1" y="355.0">0.412</text><text x="292" y="377.0" text-anchor="end">+ 40M training, mean of 5 draws</text><rect class="b-good" x="300" y="366.0" width="332.5" height="14" rx="2"/><text class="ink" x="637.5" y="377.0">0.978</text></svg></div>
+      <figcaption>Every attempt on the two eval spoon episodes used to develop the recipe. sim_vs_ref against our reference: mean of 5 draws where stated, otherwise one draw. Grey bar: "do nothing". Policies trained before the assist fix learned to keep away from the spoon.</figcaption>
+    </figure>
+    <ul>
+      <li><strong>Pinch grasps failed.</strong> Three pinch versions on eval 3 lifted the spoon 0–1.7 cm. There was no thumb under the handle, and the hand target sat 2 cm below the table top.</li>
+      <li><strong>"Wrap the hand around the handle"</strong> (owner). A built power grasp lifted the spoon 24.2 cm against the reference's 27.5 cm. With wrist ILC, zero action reached 0.462, the first result above the floor.</li>
+      <li><strong>Releases.</strong> On eval 35, opening all fingers at once flicked the spoon upright (0.218). Relax-then-slide dragged it (0.267). Unrolling the fingertips first fixed the release, but withdrawing still dragged it (0.150). Identical runs differed by 0.150–0.185.</li>
+      <li><strong>Stiff wrist.</strong> With kp 400 instead of 25, eval 3's zero action jumped 0.462 → 0.658, and the spoon stayed within 3 cm on 87.5 % of frames instead of 16.9 %.</li>
+      <li><strong>Physics-aware design</strong> (note 24). The spoon rolls about its own handle inside the grasp, up to 72°. Minimal-force squeezes designed by linear programming made it worse (0.309, 0.175). The real culprit: fingers closing up through the table rolled the handle about 90° during the pick-up. Closing the knuckles first and the thumb last, with the palm pressed 1 mm into the handle, fixed eval 35 (0.150 → 0.521). The same rule cost eval 3 about 0.2.</li>
+      <li><strong>Copying the human's hand-over failed.</strong> Passing the spoon to the left hand's bowl grasp lost it at the switch every time (0.07–0.18), so one hand carries each object from pick-up to release (<code>--single_hand</code>).</li>
+      <li><strong>Training on the designed reference</strong> with kp 400: eval 3 reached 0.981 at 70M (0.968 ± 0.020 over 5 draws) and eval 35 0.979 at 40M (0.978 ± 0.002), in about 19 minutes of training. Seed 43 reproduced eval 35 (0.973). On eval 3 it reached only 0.843, because the pot, held by a copied human grasp, slipped.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>5.2 The recipe, stage by stage</h3>
+    <p>What <code>ops/jobs/glock_public.sh</code> runs for each episode. Despite the name, the same script runs eval episodes with <code>SPLIT=eval</code>. Only our own reference is read: object path, contact labels and object names.</p>
+    <ol class="stages">
+      <li><div class="body"><h4>Build the reference <span class="chip ok">on</span></h4><p>Perception, hands, then the reference builder with wrist cost 3.0 and a capped lead-in, then contact retargeting with rest settling (variant "mck"). Simulator meshes from library_v3.</p></div></li>
+      <li><div class="body"><h4>Support fill <span class="chip ok">on</span></h4><p>Every resting pose (frame 0, the last frame, any still window of ≥ 10 frames) must pass a stability certificate: the centre of mass lies over the support polygon with margin d ≥ 3 mm and tip angle atan(d/h) ≥ 3°, after up to 3° of rocking. Otherwise the smallest certified underside fill of 0.5–2 cm is added to the simulator copy, as long as it stays in free space along the reference. Since 25 Oct an 8-sector "arc foot" can complete an unseen round base.</p></div></li>
+      <li><div class="body"><h4>Find the holds <span class="chip ok">on</span></h4><p>A hand holds an object when it has ≥ 2 contacts on it and the object is carried (> 1.5 cm off its rest, or within 8 frames before or 4 after a move). Gaps ≤ 12 frames are bridged.</p></div></li>
+      <li><div class="body"><h4>Design and lock each grasp <span class="chip ok">on</span></h4>
+        <ul>
+          <li><strong>Grasp frame:</strong> the frame near the hold start with the most fingertips within 5 mm of the object.</li>
+          <li><strong>Lock:</strong> the wrist pose in the object's frame is held from the hold start to its end, so the wrist rides the object's reference path.</li>
+          <li><strong>Squeeze:</strong> +0.4 rad on flexion joints.</li>
+          <li><strong>Lift feed-forward:</strong> m·g/kp is added to the wrist target while the object is lifted (0.74 cm at kp 400; it was 11.8 cm at kp 25).</li>
+          <li><strong>Release:</strong> relax over 6 frames, unroll fingertips before knuckles, withdraw along the palm normal, then blend back to the human motion over 24 frames. An idle hand is parked at its frame-0 pose.</li>
+        </ul></div></li>
+      <li><div class="body"><h4>Wrist ILC <span class="chip ok">on</span></h4><p>Four iterations of iterative learning control. Replay at zero action under evaluator conditions, measure where the simulated wrist lags the intended one, and move the wrist <em>targets</em> by 0.8 × the error 2 frames ahead (smoothed over 5 frames, capped at 12 cm / 0.6 rad). A guard keeps the last finite iteration.</p></div></li>
+      <li><div class="body"><h4>Evolutionary grasp search <span class="chip ok">on</span></h4><p>For each hold in turn, CMA-ES searches a wrist offset and rotation in the object's frame plus 22 finger offsets, applied through FlashCHORD's own residual action. Each generation runs 256 worlds: 64 candidates × 4 copies (one exact, three jittered by 5 mm / 0.005 rad), for 20 generations. Fitness is the mean ADD-AUC of all objects against <em>our</em> reference over the hold window; no ground truth. The best edit is baked into the reference before the next hold.</p></div></li>
+      <li><div class="body"><h4>Zero-action gate <span class="chip x">logged only</span></h4><p>A replay from frame 0 with zero action, scored by sim_vs_ref, plus a rest check (every object stays within 5 mm / 2° until a hand comes for it). In the frozen recipe it is logged, not enforced.</p></div></li>
+      <li><div class="body"><h4>Re-plan in the simulated world <span class="chip x">off in frozen</span></h4><p>If a simulated object is more than 20 mm / 10° off its reference before its grasp, grasp it where it lies and carry it back over 20 frames. A version is kept only if zero action does not get worse. Used by the "eval_both" variant.</p></div></li>
+      <li><div class="body"><h4>Train <span class="chip ok">on</span></h4><p>FlashSAC from fresh weights, kp 400 embodiment, FDR rewards and assist fix, 70,004,736 steps, seed 42. At most two trainings share a GPU. With the unscaled curriculum the assist is still at 0.1 when training ends, so the policy never trains with it fully off or from exact starts. Arm B's <code>CURR_SCALE=0.4</code> changed that.</p></div></li>
+      <li><div class="body"><h4>Choose the checkpoint <span class="chip ok">on</span></h4><p>Every 10M checkpoint gets 3 official evaluations and the best mean wins. A single evaluation per checkpoint had been optimistic by about 0.05 (ep21's 30M scored 0.831 once but 0.27 over 5). The winner then gets 5 more evaluations (10 from 30 Oct) and is copied to <code>best/</code> so store pruning keeps it.</p></div></li>
+    </ol>
+  </div>
+
+  <div class="sub">
+    <h3>5.3 The frozen recipe, flag by flag (24 Oct, 11:40 UTC)</h3>
+    <p><code>SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=5</code>, library_v3, seed 42, and these grasp-design flags. Each one exists because a specific episode failed without it.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Flag</th><th>What it does</th><th>Added because</th></tr></thead>
+      <tbody>
+        <tr><td><code>--single_hand 1</code></td><td>Per object, the hand with the most hold frames carries it from first grasp to last release; the other hand's holds on it are dropped</td><td>Eval 35's copied hand-overs flung the spoon at frame 230</td></tr>
+        <tr><td><code>--mcp_first 1</code></td><td>Knuckles close in the first half of the close window; finger tips and the whole thumb in the second</td><td>Fingers closing through the table rolled the spoon handle about 90°</td></tr>
+        <tr><td><code>--close 10</code></td><td>A 10-frame finger ramp; the lock starts 10 frames before the object moves</td><td>Faster closing flicked thin objects</td></tr>
+        <tr><td><code>--palm_clear -0.001</code></td><td>A wrap puts the palm 1 mm <em>into</em> the handle</td><td>The palm is the opposing surface in a power grip</td></tr>
+        <tr><td><code>--wrap_where_held 1</code></td><td>A built wrap is used only on long objects (axis ratio ≥ 3) where the human actually held a narrow part; otherwise the copied human grasp is kept</td><td>On eval 35 the left hand held the spoon's bowl, 17–21 cm from the handle</td></tr>
+        <tr><td><code>--snap 1</code></td><td>Copied grasps open 0.3 rad, then each digit curls until it touches, then squeezes</td><td>Eval 35's copied bowl grasp was 11.5 mm off the surface</td></tr>
+        <tr><td><code>--approach_cm 15</code></td><td>From 15 cm away, the hand follows an open pre-grasp 4 cm back from the target, moving with the object, and slides in over the last 4 frames</td><td>On ep18 the passing hand knocked the standing brush over; a 6 cm approach fired too late</td></tr>
+        <tr><td><code>--onset_anchor 1</code></td><td>Starts the lock at the object's motion onset (> 1 cm or 8° from rest) minus 10 frames, even if the human hand track is late</td><td>ep39's pan rose 18 cm while the retargeted wrist was still 48–51 cm away; the same pattern appeared on ep18 (+21 frames) and ep24 (+63)</td></tr>
+      </tbody>
+    </table></div>
+    <h4>How the wrap is built</h4>
+    <p>Find the handle axis by PCA of the collision hulls, and the radius from the 90th percentile within ±1.5 cm. The grip point is the human's knuckle centre projected onto the axis, kept 4.5 cm from the ends. The hand's y axis runs along the handle, with the palm normal closest to the human's. Each finger and the thumb then curls until a link is within 1 mm of the hull, plus 0.4 rad of squeeze. The approach backs off 4 cm along the palm normal.</p>
+  </div>
+
+  <div class="sub">
+    <h3>5.4 The stiff wrist</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Wrist translation</th><th class="num">Stock</th><th class="num"><code>sharpa_hands_mid</code></th></tr></thead>
+      <tbody>
+        <tr><td>Stiffness kp</td><td class="num">25 N/m</td><td class="num">400 N/m</td></tr>
+        <tr><td>Damping kd</td><td class="num">6</td><td class="num">20</td></tr>
+        <tr><td>Force limit</td><td class="num">45 N</td><td class="num">150 N</td></tr>
+        <tr><td>Sag under 0.3 kg</td><td class="num">≈ 11.8 cm</td><td class="num">≈ 0.7 cm</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Essential for the spoon.</strong> On eval 3 the same recipe trained with kp 25 stayed at 0.23–0.42 from 10M to 110M without lifting the spoon. With kp 400 it reached 0.965–0.981 <span class="chip m">M</span>.</li>
+      <li><strong>Not universally better.</strong> At zero action kp 400 was worse on eval 35 (0.412 vs 0.521). For plain pre-FDR RL it hurt ep18 (0.193 vs 0.381) and ep24 (0.050 vs 0.096). Wrist rotation and fingers keep their stock gains.</li>
+      <li><strong>Rules:</strong> the FAQ says "Other embodiments are welcome" (read 27 Oct). Comparable systems run 300–350 N/m (DexMachina). The carry-control study suggests kp 100 might suit the standard learner too; that test (arm D) was written but never run.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>5.5 Training curves on the designed reference</h3>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 680 260" role="img" aria-label="Grasp-lock training curves"><line class="grid" x1="60" y1="210.0" x2="650" y2="210.0"/><text x="52" y="214.0" text-anchor="end">0</text><line class="grid" x1="60" y1="162.5" x2="650" y2="162.5"/><text x="52" y="166.5" text-anchor="end">0.25</text><line class="grid" x1="60" y1="115.0" x2="650" y2="115.0"/><text x="52" y="119.0" text-anchor="end">0.5</text><line class="grid" x1="60" y1="67.5" x2="650" y2="67.5"/><text x="52" y="71.5" text-anchor="end">0.75</text><line class="grid" x1="60" y1="20.0" x2="650" y2="20.0"/><text x="52" y="24.0" text-anchor="end">1</text><text x="60.0" y="228" text-anchor="middle">10M</text><text x="158.3" y="228" text-anchor="middle">20M</text><text x="256.7" y="228" text-anchor="middle">30M</text><text x="355.0" y="228" text-anchor="middle">40M</text><text x="453.3" y="228" text-anchor="middle">50M</text><text x="551.7" y="228" text-anchor="middle">60M</text><text x="650.0" y="228" text-anchor="middle">70M</text><polyline class="line" points="60.0,68.1 158.3,174.3 256.7,112.5 355.0,26.7 453.3,30.3 551.7,23.8 650.0,23.6"/><polyline class="line2" points="60.0,41.8 158.3,37.7 256.7,20.4 355.0,22.5 453.3,20.2 551.7,20.2 650.0,20.6"/><polyline class="line3" points="60.0,118.4 158.3,116.5 256.7,108.2 355.0,47.7 453.3,69.4 551.7,24.0 650.0,21.9"/><text x="355.0" y="256" text-anchor="middle">checkpoint (env steps)</text></svg></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>eval 3, spoon + pot</span><span><i style="background:var(--warn)"></i>ep39, dust pan (public)</span><span><i style="background:var(--violet)"></i>ep18, sweeper + dust pan (public)</span></div>
+      <figcaption>sim_vs_ref of each 10M checkpoint, one official evaluation each, from the 23–24 Oct runs <span class="chip m">M</span>. Curves are not monotonic (eval 3 drops to 0.188 at 20M), which is why every checkpoint gets 3 evaluations and the best mean is kept. Registered AUC against mocap for the public ones: ep39 0.958 ± 0.002 (chosen 60M), ep18 0.957 ± 0.002 (chosen 70M).</figcaption>
+    </figure>
+  </div>
+
+  <div class="sub">
+    <h3>5.6 Maturing the recipe on public episodes (23–24 Oct)</h3>
+    <p><strong>First public check</strong> of the spoon recipe (no approach, no onset anchor), registered AUC over 5 evaluations <span class="chip m">M</span>:</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Episode</th><th class="num">Grasp lock</th><th class="num">Previous best</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>ep27 pot into rack</td><td class="num win">0.972 ± 0.004</td><td class="num">0.942–0.956</td><td>Better, with 3.5× fewer steps</td></tr>
+        <tr><td>ep12 cup into rack</td><td class="num win">0.910 ± 0.023</td><td class="num">0.891</td><td>Better</td></tr>
+        <tr><td>ep18 sweeper + pan</td><td class="num lose">0.320 ± 0.072</td><td class="num">0.889</td><td>Plates fail</td></tr>
+        <tr><td>ep24 boards</td><td class="num lose">0.202 ± 0.072</td><td class="num">0.307</td><td>Boards fail</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Unstable starts</strong> (overnight 23–24 Oct): ep26 0.383 (pot ejected from the rack), ep31 0.767, ep21 0.281 (pitcher falls), ep2 0.306 (lid flicked at lift-off in 5 of 5 variants), ep39 0.174 (pan never lifted). Support fill, re-plan and drop starts were tried; only the fill survived.</li>
+      <li><strong>ep39's root cause</strong> (24 Oct, 08:15 UTC): the perceived pan rises 18 cm from frame 51 while the retargeted wrist is still about 50 cm away. The human hand track is simply late. The onset anchor alone gave 0.164. The CMA-ES search then took the hold window from 0.309 to 0.810 and the full zero-action replay to <strong>0.877</strong>, against the standard learner's 0.826 sim_vs_ref.</li>
+      <li><strong>Search reproducibility.</strong> Two bugs leaked state between generations (a warm start, leftover process state); both were fixed. ep18 turned out to be chaotic: a 10⁻⁵ jitter changes its zero-action score from 0.18 to 0.44. ep39's grasp survives 10⁻³ jitter but not 10⁻². Hence the 4-copy robust fitness.</li>
+      <li><strong>GPU validation, 24 Oct 11:08–11:34 UTC</strong> (registered AUC over 5 evaluations): ep39 <strong>0.958</strong>, ep18 <strong>0.957</strong>, ep27 0.949, ep12 0.868 (one bad rollout), ep24 0.241. Eval 38 from its own video: sim_vs_ref 0.9997. On ep18 the best search edits came from generations 0–1, so the search acted as a broad sampler and training finished holds that started at 0.50–0.58.</li>
+      <li>The EA-vs-RL report's proposed gate (zero action &lt; 0.36 predicts a final ≤ 0.43) was contradicted by ep18. It was kept as a warning, not a gate.</li>
+      <li><strong>Frozen</strong> at 11:40 UTC (code 38877d0) and run on all 20 eval episodes.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>5.7 The design reasoning</h3>
+    <div class="two">
+      <div class="panel vio">
+        <h4>Why design the grasp instead of learning it</h4>
+        <ul>
+          <li>Pure RL plateaued on the spoon (160M steps after the pick-up did not move the drop point) or learned avoidance.</li>
+          <li>Training finishes a working reference but does not rescue a broken one: zero action vs trained, Spearman ρ 0.73 over 18 runs.</li>
+          <li>The EA-vs-RL review concluded that evolution suits the small, deceptive, ground-truth-free search for the reference, and RL suits the policy ("Baldwinian split").</li>
+          <li>No learned grasp model supports the Sharpa hand. DemoGrasp ("edit one demonstration") and DexEvolve (evolutionary refinement) were the methods to copy.</li>
+        </ul>
+      </div>
+      <div class="panel vio">
+        <h4>Physics and anatomy behind the rules</h4>
+        <ul>
+          <li>Friction μ 1.0 with pyramidal cones and no torsional friction, so a single opposing pair cannot hold any observed grasp. Torque must come from contacts spread 2–4 cm apart or from form closure.</li>
+          <li>Finger kp 1.7: a uniform squeeze puts 26 N at the fingertip joint against 6.5 N at the knuckle, so fingertips curl off flat objects.</li>
+          <li><strong>The Sharpa thumb cannot oppose the fingertips</strong>, only the finger bases: its tip reaches about 15 cm in the hand frame, the fingertips 19–20 cm. Flat objects must go deep into the hand, thumb on top.</li>
+          <li>The successful designed holds have opposition (pot 160°, cup 124°); 7–8 of the 9 failing ones lack the thumb or have under 100°.</li>
+          <li>The 0.889 RL policy on ep18 holds the pan with a key pinch and clamps the sweeper at its neck, not where the human held it. Lesson: copy contact roles and timing, not the human wrist path.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3>5.8 Where the grasp lock fails</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Situation</th><th>Measured</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>Plates and tools</td><td class="num">ep18 0.32, ep39 0.17 → 0.96 with search; eval 19 0.65</td><td>No opposition. Closing from below flicks the pan. Fixed by the search on public episodes but not on eval 19, which went to the standard learner (0.935).</td></tr>
+        <tr><td>Boards</td><td class="num">ep24 0.20–0.24; eval 25 0.30</td><td>Neither board is acquired. The standard learner reached 0.71–0.79.</td></tr>
+        <tr><td>Stacked or unsupported starts</td><td class="num">ep2 0.31, ep26 0.38, eval 1 0.30</td><td>The lid flicks out at lift-off; the pot is ejected from the rack. The standard learner took eval 1 (0.912).</td></tr>
+        <tr><td>Stacking cups (eval 10)</td><td class="num">0.33–0.45</td><td>The plan carries the cup into the other cup's rim, where it is flung (Part 7).</td></tr>
+        <tr><td>Two-handed holds (32, 33)</td><td class="num">0.78–0.85 means, sd up to 0.14</td><td>Cup in one hand, spoon in the other for about 270 frames; both drift 4–10 cm. Eval 32 loses the cup during the lift.</td></tr>
+        <tr><td>Release into a holder (15, 16)</td><td class="num">eval 16 0.81 ± 0.08</td><td>The spoon flips (13 cm, 128°) or rotates 46° when let go; a chance outcome.</td></tr>
+        <tr><td>Training degrades unacquired objects</td><td class="num">ep18 0.446 → 0.060</td><td>If the grasp never takes, RL learns avoidance or flinging, and later checkpoints get worse.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="choice" class="part">
+  <div class="eyebrow">Part 6</div>
+  <h2>Two learners, one choice</h2>
+
+  <div class="sub">
+    <h3>6.1 The first eval run: grasp lock only (24 Oct)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Eval</th><th class="num">sim_vs_ref</th><th>Eval</th><th class="num">sim_vs_ref</th><th>Eval</th><th class="num">sim_vs_ref</th><th>Eval</th><th class="num">sim_vs_ref</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="num lose">0.297</td><td>3</td><td class="num">0.851</td><td>5</td><td class="num">0.855</td><td>6</td><td class="num">0.982</td></tr>
+        <tr><td>8</td><td class="num">0.777</td><td>10</td><td class="num lose">0.334</td><td>14</td><td class="num">0.506</td><td>15</td><td class="num">0.901</td></tr>
+        <tr><td>16</td><td class="num">0.795</td><td>19</td><td class="num">0.647</td><td>20</td><td class="num lose">0.287</td><td>25</td><td class="num lose">0.243</td></tr>
+        <tr><td>28</td><td class="num">0.694</td><td>30</td><td class="num">0.469</td><td>32</td><td class="num">0.838</td><td>33</td><td class="num lose">0.391</td></tr>
+        <tr><td>35</td><td class="num win">0.9915</td><td>36</td><td class="num win">0.9935</td><td>37</td><td class="num win">0.9982</td><td>38</td><td class="num win">0.9997</td></tr>
+      </tbody>
+    </table></div>
+    <p>Mean 0.692 (spoon episodes 0.860, the rest 0.525). Kaggle: <strong>0.575, 9th</strong>. Some of the low scores were not the learner's fault: eval 25's two boards were swapped in perception, eval 30's sweeper was tracked onto the person's wrist, and the pitcher and beige-cup meshes were broken shells. The learner losses were the lid (1), the boards (25), the tools (19, 30) and the stacked cups (10).</p>
+    <p>A second seed (43) on the same references the same night (rule: higher 5-draw mean wins) improved evals 3 (0.851 → 0.929), 5 (0.855 → 0.966), 15 (0.901 → 0.941) and 16 (0.795 → 0.805). It also slightly beat seed 42 on eval 19 (0.653 vs 0.647), but eval 28 kept seed 42 (0.694 vs 0.668).</p>
+  </div>
+
+  <div class="sub">
+    <h3>6.2 "Use both" (25 Oct, owner)</h3>
+    <ul>
+      <li><strong>Gate:</strong> the grasp lock runs first. The standard learner runs only where the grasp lock's mean sim_vs_ref is below 0.9. On public twins, every episode the standard learner won had the grasp lock below 0.9.</li>
+      <li><strong>Choice</strong> (<code>tools/choose_learner.py</code>): every candidate's rollouts are scored against <em>one</em> yardstick reference, so a re-planned grasp-lock reference cannot grade itself. The highest mean sim_vs_ref wins. On the three public pairs the rule picked the better learner each time (ep12, ep18, ep39).</li>
+      <li><strong>Three-way choice.</strong> We then discovered that <code>eval_both.sh</code>'s grasp lock is not the frozen recipe: it has re-planning on and no search or onset anchor. So a frozen-recipe candidate was added on the same rebuilt references.</li>
+    </ul>
+    <div class="tbl"><table>
+      <thead><tr><th>Eval</th><th class="num">Grasp lock (eval_both)</th><th class="num">Grasp lock (frozen)</th><th class="num">Standard</th><th>Chosen</th></tr></thead>
+      <tbody>
+        <tr><td>1 pot + lid</td><td class="num">0.297</td><td class="num">–</td><td class="num win">0.912</td><td>standard</td></tr>
+        <tr><td>8 beige cup + pot</td><td class="num win">0.971</td><td class="num">0.762</td><td class="num">not run (above gate)</td><td>eval_both</td></tr>
+        <tr><td>14 cup + rack</td><td class="num win">0.660</td><td class="num">0.629</td><td class="num">0.619</td><td>eval_both</td></tr>
+        <tr><td>16 rack + spoon</td><td class="num win">0.805 (seed 43)</td><td class="num">–</td><td class="num">0.769</td><td>grasp lock</td></tr>
+        <tr><td>19 sweeper + pan</td><td class="num">0.653</td><td class="num">–</td><td class="num win">0.935</td><td>standard</td></tr>
+        <tr><td>20 cup + pitcher</td><td class="num win">0.892</td><td class="num">0.889</td><td class="num">0.146</td><td>eval_both</td></tr>
+        <tr><td>25 boards</td><td class="num">0.376</td><td class="num">0.297</td><td class="num win">0.712</td><td>standard</td></tr>
+        <tr><td>28 rack + pot</td><td class="num">0.694</td><td class="num">–</td><td class="num win">0.935</td><td>standard</td></tr>
+        <tr><td>30 sweeper + rack</td><td class="num">0.722</td><td class="num">–</td><td class="num win">0.919</td><td>standard</td></tr>
+        <tr><td>32 cup + spoon</td><td class="num">0.497</td><td class="num win">0.779</td><td class="num">0.299</td><td>frozen</td></tr>
+        <tr><td>33 cup + spoon</td><td class="num">0.486</td><td class="num win">0.773</td><td class="num">0.249</td><td>frozen</td></tr>
+      </tbody>
+    </table></div>
+    <p>The pattern is clear. The standard learner wins on tools, boards, lids and rack placements, where the human's own contact-rich motion is the best plan. The grasp lock wins wherever one hand carries a graspable object, and it is the only learner that holds the spoon. Kaggle after this round: <strong>0.789, 4th</strong>.</p>
+  </div>
+
+  <div class="sub">
+    <h3>6.3 What shipped in pack 7</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Learner and variant</th><th>Eval episodes</th></tr></thead>
+      <tbody>
+        <tr><td>Grasp lock, frozen recipe, seed 42</td><td>6, 35, 36, 37, 38</td></tr>
+        <tr><td>Grasp lock, frozen recipe, seed 43</td><td>3, 5, 15, 16</td></tr>
+        <tr><td>Grasp lock, frozen recipe, seed 46</td><td>32</td></tr>
+        <tr><td>Grasp lock, arm B (<code>CURR_SCALE 0.4</code>), seed 43</td><td>33</td></tr>
+        <tr><td>Grasp lock, eval_both variant</td><td>8, 14, 20</td></tr>
+        <tr><td>Grasp lock, eval_both variant on carved cups</td><td>10</td></tr>
+        <tr><td>Standard learner</td><td>1, 19, 28, 30</td></tr>
+        <tr><td>Standard learner on the board-slot carve, seed 42</td><td>25</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="campaign" class="part">
+  <div class="eyebrow">Part 7</div>
+  <h2>The eval campaign: carves, eval 10, seeds, recipe arms</h2>
+
+  <div class="sub">
+    <h3>7.1 Carving the simulator's collision copies</h3>
+    <p>FlashCHORD builds convex hulls (CoACD) from each mesh, and hulls fill cavities, slots and holders. Our references sometimes ask an object to go where the hulls forbid. A census of our references against the hulls found conflicts on eval 10 (stacked cups, 112 cm³), 14 (cup into rack, 72 cm³), 1 (lid on pot, 51 cm³), 28 (pot into rack, 39 cm³), 30 (sweeper starts inside the rack) and 25 (boards, 12 cm³). A carve cuts only the simulator copy; the submitted mesh is untouched.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Carve</th><th>CPU physics test</th><th>GPU retrain</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Eval 25 board slot (planar half-cut at the shared plane)</td><td>Board 2 at assembly 7.47 cm / 47.9° → 0.12 cm / 0.4° in FlashCHORD's own physics</td><td>Standard learner: seed 42 0.792 ± 0.103, seed 43 0.474</td><td><span class="chip ok">shipped</span> seed 42</td></tr>
+        <tr><td>Eval 10 hybrid cups (beige cup gets a base; blue cup's cavity emptied)</td><td>Beige cup falls 6/6 → 0/6; nesting error 4.45 → 0.44 cm</td><td>Standard 0.452; grasp lock 0.454</td><td><span class="chip ok">shipped</span>, +0.12 over the original but far from solved</td></tr>
+        <tr><td>Placement carves for evals 1, 14, 28, 30 (29–30 Oct)</td><td>Overlap removed. The settle is chaotic: over 6 draws, eval 28 5/6 vs 2/6, eval 1 3/6 vs 0/6. Eval 30's sweeper fell through, so it was dropped.</td><td>Eval 1 (standard): seed 43 0.931 ± 0.006 on the training box. Eval 14 (grasp lock): 0.617 / 0.579, below the 0.645 bar.</td><td>Eval 1 awaits the official 20-draw check; eval 14 <span class="chip x">fail</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sub" id="eval10">
+    <h3>7.2 The eval-10 saga: two cups that RL refuses to stack</h3>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 680 214" role="img" aria-label="Eval 10 attempts"><line class="grid" x1="300.0" y1="16" x2="300.0" y2="184"/><text x="300.0" y="200" text-anchor="middle">0</text><line class="grid" x1="385.0" y1="16" x2="385.0" y2="184"/><text x="385.0" y="200" text-anchor="middle">0.25</text><line class="grid" x1="470.0" y1="16" x2="470.0" y2="184"/><text x="470.0" y="200" text-anchor="middle">0.5</text><line class="grid" x1="555.0" y1="16" x2="555.0" y2="184"/><text x="555.0" y="200" text-anchor="middle">0.75</text><line class="grid" x1="640.0" y1="16" x2="640.0" y2="184"/><text x="640.0" y="200" text-anchor="middle">1</text><text class="ink head" x="8" y="38">Eval 10: blue cup + beige cup</text><text x="292" y="61.0" text-anchor="end">grasp lock, original meshes</text><rect class="b-bad" x="300" y="50.0" width="113.6" height="14" rx="2"/><text class="ink" x="418.6" y="61.0">0.334</text><text x="292" y="83.0" text-anchor="end">standard learner, hybrid cups</text><rect class="b-mid" x="300" y="72.0" width="153.7" height="14" rx="2"/><text class="ink" x="458.7" y="83.0">0.452</text><text x="292" y="105.0" text-anchor="end">grasp lock, carved cups (A)</text><rect class="b-mid" x="300" y="94.0" width="154.3" height="14" rx="2"/><text class="ink" x="459.3" y="105.0">0.454</text><text x="292" y="127.0" text-anchor="end">grasp lock, carved cups (B)</text><rect class="b-mid" x="300" y="116.0" width="148.8" height="14" rx="2"/><text class="ink" x="453.8" y="127.0">0.438</text><text x="292" y="149.0" text-anchor="end">early checkpoints, 1-70M</text><rect class="b-mid" x="300" y="138.0" width="154.0" height="14" rx="2"/><text class="ink" x="459.0" y="149.0">0.453</text><text x="292" y="171.0" text-anchor="end">zero-initialised residual head</text><rect class="b-mid" x="300" y="160.0" width="151.6" height="14" rx="2"/><text class="ink" x="456.6" y="171.0">0.446</text><line class="mark" x1="452.3" y1="16" x2="452.3" y2="184"/><text class="ink" x="456.3" y="26">do nothing</text><line class="mark" x1="525.4" y1="16" x2="525.4" y2="184"/><text class="ink" x="529.4" y="39">plan, zero action</text></svg></div>
+      <figcaption>Every attempt on eval 10 (blue cup + beige cup; the person stacks one into the other), sim_vs_ref over 5 draws <span class="chip m">M</span>. Dashed lines: "do nothing" (0.448) and the designed plan replayed with zero action (0.663, frozen variant). Every trained policy ends at or just above "do nothing".</figcaption>
+    </figure>
+    <ol>
+      <li><strong>Original grasp lock</strong> (pack 1): 0.334. The beige cup was an open shell with no base and fell over at frame 2.</li>
+      <li><strong>Hybrid cup collision copy + standard learner:</strong> 0.452 / 0.453 (two seeds). The winner's chosen checkpoint had been pruned from the store, so the loser was packed. The store now keeps checkpoints named by an evaluation file.</li>
+      <li><strong>Grasp lock on the carved cups</strong> (two variants): 0.454 and 0.438. Every checkpoint shows "lift 0": the cup is never lifted. Falsified.</li>
+      <li><strong>CPU diagnosis.</strong> Trained policies never touch the cups. The zero-action plan does carry the beige cup (0.579 / 0.663), but it hits the blue cup's rim with up to 9,650 N of contact force and is flung, because the simulated grip sits 3–6 cm low. Object-level ILC got a replay to 0.632, but 0.42–0.54 under ±3–6 mm jitter. Across our runs, zero action beat the trained policy in 15 of 64 results.</li>
+      <li><strong>Early checkpoints</strong> (every 1M steps, to catch a policy before it drifts from the plan): all 0.446–0.465. Falsified.</li>
+      <li><strong>Zero-initialised residual head</strong> (27 Oct: the policy starts at exactly the plan, with exploration 0.05): 0.436–0.455 from 1M to 30M; chosen 0.4459. Falsified.</li>
+    </ol>
+    <div class="callout warn"><p><strong>Diagnosis:</strong> whatever the start, RL on eval 10 moves away from the plan within about 1M steps and settles on not touching the cups. The rim collision makes every contact attempt expensive (terminations, unintended-contact penalties), so avoidance is the reward-maximising answer. We don't submit the zero-action plan itself (0.663), because the kit asks for a trained policy. The next attempt needs a <em>task-side</em> change: relaxed termination in the nesting phase, or more clearance. Gate: the public twin ep11 must gain ≥ +0.05 on 2 seeds first. Solving it would be worth about +0.017 on the leaderboard <span class="chip e">E</span>.</p></div>
+  </div>
+
+  <div class="sub">
+    <h3>7.3 Seeds as a lever</h3>
+    <ul>
+      <li><strong>Eval 32</strong> (frozen recipe): seed 42 0.779, 43 0.702, 44 0.397, 45 0.634, 46 <strong>0.803 ± 0.105</strong>, shipped. A spread of 0.40 between seeds of one recipe on one reference.</li>
+      <li><strong>Eval 33:</strong> seed 43 0.785 ± 0.255 (one draw 0.277) over seed 42 0.773.</li>
+      <li><strong>A seed race was designed but not used.</strong> The plan was successive halving, cutting at 40 % of training, about $12–13 for 8 seeds per episode. It works for the standard learner. For the grasp lock the 40 % leader finishes ahead only 22 times in 38, because checkpoints jump about 0.10 apart and the median best sits at 86 % of training. Interruptible machines, the cheap way to run many seeds, were paused by Vast within about 10 minutes.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>7.4 Recipe arms (29–30 Oct)</h3>
+    <p>Two config-only changes suggested by the carry-control study were tested against a same-code control on grasp-lock training (5-draw means; rule fixed beforehand):</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Arm</th><th class="num">ep12 (mocap AUC)</th><th class="num">Eval 32</th><th class="num">Eval 33</th><th class="num">Cost</th></tr></thead>
+      <tbody>
+        <tr><td>A control (frozen recipe, fresh retrain)</td><td class="num">0.912</td><td class="num">0.631 ± 0.166</td><td class="num">0.906 ± 0.058</td><td class="num">$6.37</td></tr>
+        <tr><td>B <code>CURR_SCALE 0.4</code>: assist reaches 0 at 49M instead of 123M</td><td class="num">0.892</td><td class="num">0.743 ± 0.138</td><td class="num win">0.923 ± 0.013</td><td class="num">$3.82</td></tr>
+        <tr><td>C ball-wrist damping 2 instead of 6</td><td class="num">0.909</td><td class="num">0.702 ± 0.200</td><td class="num">0.883 ± 0.014</td><td class="num">$4.26</td></tr>
+      </tbody>
+    </table></div>
+    <p>The arms were inconclusive by the rule, so the packed recipe stays. Arm B's eval-33 checkpoint was then confirmed over 10 fresh draws, <strong>0.934 ± 0.008</strong> against the packed policy's 0.854 ± 0.137, and shipped in pack 7. The control's own retrain (0.906) also beat the packed policy, so most of B's gain is a fresh retrain rather than the curriculum change.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="variance" class="part">
+  <div class="eyebrow">Part 8</div>
+  <h2>Variance: the hidden variable</h2>
+  <p>The official evaluator is not reproducible: the same checkpoint gives different rollouts on different runs. Kaggle scores the one rollout we submit, as it is. So a policy's <em>mean</em> and its <em>packed draw</em> are different things, and we had been comparing policies on 5 draws and packing 1.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 680 438" role="img" aria-label="Ten fresh draws per packed checkpoint against the packed draw"><line class="grid" x1="70.0" y1="18" x2="70.0" y2="410"/><text x="70.0" y="426" text-anchor="middle">0</text><line class="grid" x1="212.5" y1="18" x2="212.5" y2="410"/><text x="212.5" y="426" text-anchor="middle">0.25</text><line class="grid" x1="355.0" y1="18" x2="355.0" y2="410"/><text x="355.0" y="426" text-anchor="middle">0.5</text><line class="grid" x1="497.5" y1="18" x2="497.5" y2="410"/><text x="497.5" y="426" text-anchor="middle">0.75</text><line class="grid" x1="640.0" y1="18" x2="640.0" y2="410"/><text x="640.0" y="426" text-anchor="middle">1</text><text x="60" y="37.5" text-anchor="end">eval 1</text><line class="whisk" x1="402.4" y1="33.5" x2="640.0" y2="33.5"/><line class="minline" x1="155.4" y1="29.5" x2="155.4" y2="37.5"/><rect class="meanmk" x="537.0" y="27.5" width="3" height="12"/><circle class="packed" cx="594.2" cy="33.5" r="4"/><text x="60" y="56.5" text-anchor="end">eval 3</text><line class="whisk" x1="544.4" y1="52.5" x2="626.1" y2="52.5"/><line class="minline" x1="470.0" y1="48.5" x2="470.0" y2="56.5"/><rect class="meanmk" x="583.7" y="46.5" width="3" height="12"/><circle class="packed" cx="606.8" cy="52.5" r="4"/><text x="60" y="75.5" text-anchor="end">eval 5</text><line class="whisk" x1="617.1" y1="71.5" x2="624.2" y2="71.5"/><line class="minline" x1="613.6" y1="67.5" x2="613.6" y2="75.5"/><rect class="meanmk" x="619.2" y="65.5" width="3" height="12"/><circle class="packed" cx="616.9" cy="71.5" r="4"/><text x="60" y="94.5" text-anchor="end">eval 6</text><line class="whisk" x1="602.7" y1="90.5" x2="627.1" y2="90.5"/><line class="minline" x1="595.9" y1="86.5" x2="595.9" y2="94.5"/><rect class="meanmk" x="613.4" y="84.5" width="3" height="12"/><circle class="packed" cx="623.6" cy="90.5" r="4"/><text x="60" y="113.5" text-anchor="end">eval 8</text><line class="whisk" x1="608.6" y1="109.5" x2="635.9" y2="109.5"/><line class="minline" x1="585.2" y1="105.5" x2="585.2" y2="113.5"/><rect class="meanmk" x="620.8" y="103.5" width="3" height="12"/><circle class="packed" cx="627.6" cy="109.5" r="4"/><text x="60" y="132.5" text-anchor="end">eval 10</text><line class="whisk" x1="322.2" y1="128.5" x2="330.3" y2="128.5"/><line class="minline" x1="315.7" y1="124.5" x2="315.7" y2="132.5"/><rect class="meanmk" x="324.7" y="122.5" width="3" height="12"/><circle class="packed" cx="330.1" cy="128.5" r="4"/><text x="60" y="151.5" text-anchor="end">eval 14</text><line class="whisk" x1="307.3" y1="147.5" x2="534.0" y2="147.5"/><line class="minline" x1="267.5" y1="143.5" x2="267.5" y2="151.5"/><rect class="meanmk" x="419.2" y="141.5" width="3" height="12"/><circle class="packed" cx="588.4" cy="147.5" r="4"/><text x="60" y="170.5" text-anchor="end">eval 15</text><line class="whisk" x1="612.7" y1="166.5" x2="621.4" y2="166.5"/><line class="minline" x1="612.2" y1="162.5" x2="612.2" y2="170.5"/><rect class="meanmk" x="615.5" y="160.5" width="3" height="12"/><circle class="packed" cx="609.5" cy="166.5" r="4"/><text x="60" y="189.5" text-anchor="end">eval 16</text><line class="whisk" x1="489.6" y1="185.5" x2="577.1" y2="185.5"/><line class="minline" x1="460.6" y1="181.5" x2="460.6" y2="189.5"/><rect class="meanmk" x="531.9" y="179.5" width="3" height="12"/><circle class="packed" cx="587.5" cy="185.5" r="4"/><text x="60" y="208.5" text-anchor="end">eval 19</text><line class="whisk" x1="575.4" y1="204.5" x2="614.6" y2="204.5"/><line class="minline" x1="543.0" y1="200.5" x2="543.0" y2="208.5"/><rect class="meanmk" x="593.5" y="198.5" width="3" height="12"/><circle class="packed" cx="598.8" cy="204.5" r="4"/><text x="60" y="227.5" text-anchor="end">eval 20</text><line class="whisk" x1="551.7" y1="223.5" x2="601.1" y2="223.5"/><line class="minline" x1="507.5" y1="219.5" x2="507.5" y2="227.5"/><rect class="meanmk" x="574.9" y="217.5" width="3" height="12"/><circle class="packed" cx="580.0" cy="223.5" r="4"/><text x="60" y="246.5" text-anchor="end">eval 25</text><line class="whisk" x1="498.2" y1="242.5" x2="610.9" y2="242.5"/><line class="minline" x1="402.1" y1="238.5" x2="402.1" y2="246.5"/><rect class="meanmk" x="553.1" y="236.5" width="3" height="12"/><circle class="packed" cx="579.4" cy="242.5" r="4"/><text x="60" y="265.5" text-anchor="end">eval 28</text><line class="whisk" x1="581.8" y1="261.5" x2="619.8" y2="261.5"/><line class="minline" x1="567.0" y1="257.5" x2="567.0" y2="265.5"/><rect class="meanmk" x="599.3" y="255.5" width="3" height="12"/><circle class="packed" cx="599.5" cy="261.5" r="4"/><text x="60" y="284.5" text-anchor="end">eval 30</text><line class="whisk" x1="379.6" y1="280.5" x2="640.0" y2="280.5"/><line class="minline" x1="219.2" y1="276.5" x2="219.2" y2="284.5"/><rect class="meanmk" x="523.6" y="274.5" width="3" height="12"/><circle class="packed" cx="596.1" cy="280.5" r="4"/><text x="60" y="303.5" text-anchor="end">eval 32</text><line class="whisk" x1="508.9" y1="299.5" x2="586.3" y2="299.5"/><line class="minline" x1="443.2" y1="295.5" x2="443.2" y2="303.5"/><rect class="meanmk" x="546.1" y="293.5" width="3" height="12"/><circle class="packed" cx="563.4" cy="299.5" r="4"/><text x="60" y="322.5" text-anchor="end">eval 33</text><line class="whisk" x1="479.2" y1="318.5" x2="634.8" y2="318.5"/><line class="minline" x1="398.3" y1="314.5" x2="398.3" y2="322.5"/><rect class="meanmk" x="555.5" y="312.5" width="3" height="12"/><circle class="packed" cx="601.2" cy="318.5" r="4"/><text x="60" y="341.5" text-anchor="end">eval 35</text><line class="whisk" x1="628.8" y1="337.5" x2="635.7" y2="337.5"/><line class="minline" x1="623.0" y1="333.5" x2="623.0" y2="341.5"/><rect class="meanmk" x="630.7" y="331.5" width="3" height="12"/><circle class="packed" cx="630.3" cy="337.5" r="4"/><text x="60" y="360.5" text-anchor="end">eval 36</text><line class="whisk" x1="630.1" y1="356.5" x2="638.4" y2="356.5"/><line class="minline" x1="622.5" y1="352.5" x2="622.5" y2="360.5"/><rect class="meanmk" x="632.7" y="350.5" width="3" height="12"/><circle class="packed" cx="635.0" cy="356.5" r="4"/><text x="60" y="379.5" text-anchor="end">eval 37</text><line class="whisk" x1="638.1" y1="375.5" x2="639.8" y2="375.5"/><line class="minline" x1="636.9" y1="371.5" x2="636.9" y2="379.5"/><rect class="meanmk" x="637.4" y="369.5" width="3" height="12"/><circle class="packed" cx="638.8" cy="375.5" r="4"/><text x="60" y="398.5" text-anchor="end">eval 38</text><line class="whisk" x1="639.4" y1="394.5" x2="640.0" y2="394.5"/><line class="minline" x1="638.6" y1="390.5" x2="638.6" y2="398.5"/><rect class="meanmk" x="638.3" y="388.5" width="3" height="12"/><circle class="packed" cx="639.9" cy="394.5" r="4"/></svg></div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>mean of 10 fresh draws (band: ± 1 sd)</span><span><i class="ring"></i>the draw we packed</span><span><i style="background:var(--bad)"></i>worst of the 10</span></div>
+    <figcaption>The H5 study (29 Oct, $2.45): 10 fresh official draws of each of pack 6's 20 checkpoints, scored by sim_vs_ref <span class="chip m">M</span>. Mean of means 0.8755 against the packed 0.9164. Eval 33's policy was replaced in pack 7 by one at 0.934 ± 0.008.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Our board score sits on lucky draws.</strong> Ranked within their 10 fresh draws, the packed draws sit far higher than chance (rank sums 69 of 80 against an expected 40, z ≈ 3.2). The luck is concentrated in the high-variance episodes 1, 14, 25, 30 and 33. If the organisers re-run our checkpoints, expect about 0.78 rather than 0.81 <span class="chip e">E</span>.</li>
+    <li><strong>The training machine is not the official evaluator.</strong> On the training box the packed eval-1 and eval-30 policies showed 0 bad draws in 10. The official evaluator gave them 5 bad draws in 22. So every training-box confirmation now needs an official re-check, which is what tonight's eval-1 test is.</li>
+    <li><strong>Single evaluations are optimistic.</strong> Picking a checkpoint by one draw overstated it by about 0.026–0.05. That is why grasp-lock checkpoints get 3 draws and finalists 5–10.</li>
+    <li><strong>Packing rules that follow from this:</strong>
+      <ul>
+        <li>pack one fresh official rollout per changed checkpoint, never the best of several ("we cannot pick and choose");</li>
+        <li>an unchanged checkpoint keeps its earlier rollout, matched by checksum;</li>
+        <li>a replacement counts as a board gain only if its multi-draw mean beats the draw it replaces.</li>
+      </ul></li>
+    <li><strong>What it means for the learners:</strong> more seeds and more draws cannot raise the board much, because the luck is already banked. Gains must come from policies whose draws agree, or from the reference side. A lower-variance learner is worth more than a higher-mean one if the organisers re-run checkpoints.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="lessons" class="part">
+  <div class="eyebrow">Part 9</div>
+  <h2>What we learned about learning here</h2>
+  <div class="two">
+    <div class="panel acc">
+      <h4>Fix the plan before training it</h4>
+      <p>Most early failures were in the reference or the geometry, not the learner: the floor fit, overlapping hands, penetrating fingers, objects that cannot stand, floating objects, missing slots, swapped boards. A zero-action replay finds these in minutes for cents.</p>
+    </div>
+    <div class="panel acc">
+      <h4>RL learns avoidance when contact is punished</h4>
+      <p>Exploding spoons and eval 10's rim collisions both taught policies to keep their hands away. Avoidance appears within about 1M steps and does not unlearn with more steps, a different start or a zero-initialised head.</p>
+    </div>
+    <div class="panel acc">
+      <h4>A good plan predicts a good policy</h4>
+      <p>Training finishes a working reference; it rarely rescues a broken one (ρ 0.73). ep18 is the exception: holds starting at 0.50–0.58 were finished. More steps rarely rescue a bad start either.</p>
+    </div>
+    <div class="panel acc">
+      <h4>Stiffness is task-dependent</h4>
+      <p>kp 400 is the difference between 0.4 and 0.98 on the spoon, yet it hurt plain RL on ep18 and ep24 and zero action on eval 35. One wrist for every task is the wrong question.</p>
+    </div>
+    <div class="panel acc">
+      <h4>One draw is not a measurement</h4>
+      <p>Draws of one checkpoint range up to 0.15–0.92 (eval 1). Seeds of one recipe range 0.40–0.80 (eval 32). Compare on means of ≥ 5 draws, confirm finalists on 10–20 draws, and check on the official evaluator.</p>
+    </div>
+    <div class="panel acc">
+      <h4>Twins can mislead</h4>
+      <p>The lathe pitcher improved its public twin from 0.776 to 0.874 and cost 0.0045 on the board. Changes now need two twins or a reason that doesn't depend on the reference.</p>
+    </div>
+    <div class="panel acc">
+      <h4>Ground-truth-free selection works within its reach</h4>
+      <p>sim_vs_ref ranked 63 of 63 public policy pairs correctly (r 0.997). But it is blind to reference error, which we estimate at about 0.10 of the board, as large as all policy loss combined.</p>
+    </div>
+    <div class="panel acc">
+      <h4>Hand-applied fixes don't generalise by themselves</h4>
+      <p>Re-detection, track guard, identity rule, arc foot and carves were switched on where forensics looked. A held-out evaluation after the close runs only defaults, so each fix needs an automatic trigger.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="open" class="part">
+  <div class="eyebrow">Part 10</div>
+  <h2>Open hypotheses and the tests that would settle them</h2>
+  <p>None of these has been run. Each is labelled <span class="chip h">H</span> until its test runs.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Idea</th><th>Why we think it might help</th><th>Test and falsifier</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Task-side change for eval 10</strong>: relaxed termination in the nest phase, or more clearance</td><td>RL avoids the stack from about 1M steps; the plan alone scores 0.663</td><td>Public twin ep11 must gain ≥ +0.05 on 2 seeds; adopt if the 10-draw mean ≥ 0.506 with sd ≤ 0.05</td></tr>
+      <tr><td><strong>Wrist kp 100 for the standard learner</strong> (arm D)</td><td>The carry model finds 0 of 27 saturated tracks at kp 100, against 23 at kp 25</td><td>kp 25 vs kp 100 on the same references, 5 evaluations each; falsified if kp 100 fails to win on ≥ 3 of 4 episodes. Written, never run.</td></tr>
+      <tr><td><strong>Object velocity to the actor</strong></td><td>A free slip signal: the critic already sees it, the actor does not</td><td>A one-line config A/B on carry-heavy twins</td></tr>
+      <tr><td><strong>Designed second-hand grasp</strong> for two-handed holds and hand-overs</td><td>Evals 32 and 33 drift 4–10 cm in two-handed carries; copied bowl grasps drop the spoon</td><td>Public twins with a built rim or bowl grasp; falsified if the object is still lost at the switch</td></tr>
+      <tr><td><strong>Placement and release rule</strong> (place, unload, then release along a separating direction)</td><td>Eval 16 flips the spoon on release; eval 15 rotates it 46°</td><td>Public rack episodes; falsified if the release flips the object in ≥ 2 of 5 rollouts</td></tr>
+      <tr><td><strong>Train the grasp lock with the assist fully off</strong> (CURR_SCALE, more seeds)</td><td>A 70M run never trains at assist 0 or from exact starts</td><td>≥ 2 more seeds per arm on evals 32 and 14 under the same rule</td></tr>
+      <tr><td><strong>Fresh-environment, frame-0 search</strong></td><td>The GPU job reuses one environment (<code>--keep_env</code>), and the search window resets at its own first frame, not frame 0</td><td>Re-score about 10 baked edits in fresh single-world runs (≥ 8 repeats); check which fitness predicts the zero-action mean</td></tr>
+      <tr><td><strong>Grip portfolio</strong>: try every grip type, keep the most robust</td><td>On CPU, a short-end clamp scored 0.475 in its worst quartile vs 0.321 for the copied grasp on ep24</td><td>GPU A/B after training on ep24, about $8–12</td></tr>
+      <tr><td><strong>Board clamp</strong> with the thumb opposite the fingertips at the edge</td><td>The Sharpa thumb opposes only the finger bases</td><td>ep24, kp 400 + ILC; falsified if the board lifts &lt; 5 cm or slips > 2 cm</td></tr>
+      <tr><td><strong>Wrap by local geometry</strong> for pot handles</td><td>The whole pot's axis ratio is 1.63, so the wrap never fires on its handle</td><td>ep2 and ep26 with a handle-segment rule</td></tr>
+      <tr><td><strong>Both learners everywhere</strong> (drop the 0.9 gate)</td><td>The gate was set on three public pairs</td><td>Falsified if the public mean drops by more than 0.01</td></tr>
+      <tr><td><strong>The rest of FlashDexRetarget</strong>: 10-frame look-ahead, larger critic and replay, sustained-error termination</td><td>Our port took only the reward; FDR's other parts target the same tracking problem</td><td>One at a time on ep12 / ep18 / ep39, 2 seeds</td></tr>
+      <tr><td><strong>A 125M schedule</strong></td><td>250M is inherited, not measured; the curves still rise at 250M on easy episodes</td><td>{250M, 125M} × 2 seeds on eps 12, 22, 27; equal mocap AUC means half the cost per policy</td></tr>
+      <tr><td><strong>Log training metrics</strong></td><td>Termination causes per curriculum stage are invisible today</td><td>Turn logging on in the next batch; no score change expected, only diagnosis</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="appendix" class="part">
+  <div class="eyebrow">Appendix</div>
+  <h2>Files, videos and where sources disagree</h2>
+  <div class="two">
+    <div class="panel">
+      <h4>Where the learners live in the repo</h4>
+      <ul>
+        <li><strong>Standard learner:</strong> <code>ops/jobs/hard_ab.sh</code> (training, checkpoint sweep, evaluations); <code>ops/jobs/std_learner.sh</code> (eval wrapper).</li>
+        <li><strong>Our FlashCHORD patches:</strong> <code>ops/box/fc_v2d_fdr.py</code>, <code>fc_v2d_voc.py</code>, <code>patch_flashchord*.py</code>, switched on in <code>ops/box/lib.sh</code>.</li>
+        <li><strong>References:</strong> <code>pipeline/mkref.py</code>, <code>pipeline/contact_retarget.py</code>.</li>
+        <li><strong>Grasp lock:</strong> <code>ops/jobs/glock_public.sh</code> (the whole recipe); <code>pipeline/grasp_lock.py</code>, <code>wrap_grasp.py</code>, <code>wrist_ilc.py</code>, <code>support_fill.py</code>, <code>hold_phases.py</code>; <code>tools/grasp_evolve.py</code>, <code>trace_rollout.py</code>, <code>rest_check.py</code>, <code>ckpt_curve.sh</code>.</li>
+        <li><strong>Wrist configs:</strong> <code>flashchord_conf/embodiment/</code>.</li>
+        <li><strong>Choice and packing:</strong> <code>ops/jobs/eval_both.sh</code>, <code>tools/choose_learner.py</code>, <code>ops/jobs/pack_eval.sh</code>, <code>ops/jobs/h5_reeval.sh</code>.</li>
+        <li>FlashSAC itself is NVIDIA's code, cloned at the evaluator pin by <code>pipeline/setup.sh</code>.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4>Videos (private HF store <code>aebatirel/v2d-store</code>)</h4>
+      <ul>
+        <li><strong>Spoon development</strong>, eval 3 and 35, simulation next to the real video: <code>runs/20261023-spoon3R-4c31271/glock/</code>.</li>
+        <li><strong>The 22 Oct overnight rounds</strong> on ep12/18/24/27: <code>runs/20261022-r1a…r5ks43/</code>.</li>
+        <li><strong>All 20 eval episodes with robot hands</strong>, pack 3 policies (25 Oct): <code>runs/20261026-subvid2-d9c3f7d/results/sub_videos/</code>. These are fresh replays, illustrative only. 12 of the 20 policies are the same in pack 7.</li>
+        <li><strong>The worst 5 of pack 7</strong> (evals 10, 32, 25, 20, 16): run <code>20261030-vid5-817b135</code>, being rendered now.</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Where the sources disagree</h3>
+  <ul>
+    <li><strong>Actor head initialisation:</strong> one report says FlashSAC's fresh actor outputs zero; the 27 Oct log says our recipe used the upstream head with a random mean. That log is why the zero-initialised head was tested on eval 10.</li>
+    <li><strong>Checkpoint cadence:</strong> every 10,000,384 steps per the code and note 23; older comments said 5M (corrected in the merged repo).</li>
+    <li><strong>Assist reaching zero:</strong> 122.9M per note 01 and note 23; one reading of note 04 gives 137.6M.</li>
+    <li><strong>Deployment-exact starts:</strong> the overnight summary did not adopt them, but they are in the standard learner's recipe through the ep18 lineage.</li>
+    <li><strong>The 23 Oct pinch grid search</strong> perturbed the wrong hand (an index bug), so its "hold rate 0" results are not evidence against pinches.</li>
+    <li><strong>ep39's primary cause:</strong> "hand late in the reference" (work log) vs <code>--single_hand</code> deleting the left-hand pick-up (plates audit). The frozen recipe still uses <code>--single_hand 1</code>.</li>
+    <li><strong>Contact-slot labels</strong> were mislabelled in references until 25 Oct. The early "thumb-vs-fingers clamp" readings now rest on mechanics only.</li>
+  </ul>
+</section>
+
+<hr>
+<footer>
+  <span>Built from the work log, the code and research notes on <code>main</code> (all session branches merged 30 Oct), the submission folders and the H5 summary. The team's own numbers are quoted as recorded. Numbers were spot-checked against the work log where three independent readers' digests overlapped.</span>
+  <span>Still running at the time of writing: the official 20-draw check of the carved eval-1 policy, and the worst-5 videos.</span>
+</footer>
+
+</div>
