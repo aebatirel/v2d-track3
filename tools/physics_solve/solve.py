@@ -223,6 +223,13 @@ def main():
     p.add_argument('--f0', type=int, default=0); p.add_argument('--f1', type=int, default=-1,
                    help='optimise only frames f0..f1 (the rest is played with zero offset); -1 = to the end')
     p.add_argument('--stop', type=int, default=-1, help='debug: stop the solve at this frame and write what exists')
+    p.add_argument('--retry', type=float, default=0.05, help='rollback trigger: a moving object\'s ADD crosses this (m)')
+    p.add_argument('--retries', type=int, default=0, help='total rollbacks allowed in the episode (0 = off, as v1)')
+    p.add_argument('--back', type=int, default=2, help='chunks to go back on a rollback')
+    p.add_argument('--robust', type=int, default=1, help='K: each candidate runs as K worlds, copy 0 nominal, copies 1..K-1 '
+                   'with fresh per-frame target noise (common to all candidates of an iteration); J = mean over copies '
+                   '(Do as I Do evaluates 4 perturbed copies per sample; here target noise like tools/physics_solve/jitter_check.py)')
+    p.add_argument('--rob_pos', type=float, default=0.0005); p.add_argument('--rob_fin', type=float, default=0.005)
     p.add_argument('--seed', type=int, default=0)
     a = p.parse_args(); t_start = time.time(); rng = np.random.default_rng(a.seed)
     import multiprocessing as mp
@@ -259,6 +266,7 @@ def main():
     RB = buf.reference
     rb_pos = RB.wrist_pos_w.numpy().reshape(T, nh, 3); rb_q = RB.wrist_quat_w.numpy().reshape(T, nh, 4)
     rb_f = RB.finger_joint_pos.numpy().reshape(T, -1)
+    rb0 = (rb_pos.copy(), rb_q.copy(), rb_f.copy())                       # the loader's own values (zero offset)
     exact = ExactTargets(truth)
 
     # per-dimension noise scale and hand masks
@@ -281,7 +289,7 @@ def main():
     offsets = np.zeros((T, A)); plan = np.zeros((a.horizon, A))
     truth.reset(frame_id=0)
     Q = [truth.state_0.body_q.numpy().copy()]; FR = [0]
-    replans = []; t = 0
+    replans = []; t = 0; chunks = []; boost, boost_until, retries = 0, -1, 0
     nk = a.horizon // a.knot + 1
     while t < stop:
         H = min(a.horizon, T - 1 - t); C = min(a.ctrl, H)
@@ -294,9 +302,10 @@ def main():
             mean = plan[:H].copy(); mean[:, np.setdiff1d(np.arange(A), dims)] = 0.0
             ramp = np.logspace(np.log10(a.ramp[0]), np.log10(a.ramp[1]), nk)
             kpos = np.linspace(0, a.horizon - 1, nk)
-            N = a.workers * a.worlds; best = (np.inf, None, None); hist = []
-            for it in range(a.iters):
-                eps = rng.normal(size=(N, nk, len(dims))) * (sig[dims] * (a.anneal ** it))[None, None] * ramp[None, :, None]
+            NW = a.workers * a.worlds; K = max(1, a.robust); N = NW // K; best = (np.inf, None, None); hist = []
+            bst = boost if t < boost_until else 0; row['boost'] = bst
+            for it in range(a.iters * (1 + bst)):
+                eps = rng.normal(size=(N, nk, len(dims))) * (sig[dims] * (np.sqrt(2.0) ** bst) * (a.anneal ** (it % a.iters)))[None, None] * ramp[None, :, None]
                 eps[0] = 0.0
                 noise = np.zeros((N, H, A))
                 for j in range(len(dims)):
@@ -304,20 +313,33 @@ def main():
                 U = mean[None] + noise
                 if t == 0:
                     U[:, 0] = 0.0                              # frame 0 is the reset pose: never edited
-                for h in active:                               # finger targets: no further outside the joint limits
-                    s = sides[h]; s0 = starts[h] + 6; fr = ref.fing[s][t:t + H]   # than the reference itself (zero
-                    lo_, hi_ = np.minimum(lo[h], fr), np.maximum(hi[h], fr)        # offset stays exactly zero)
-                    U[:, :, s0:s0 + nf[h]] = np.clip(fr[None] + U[:, :, s0:s0 + nf[h]], lo_[None], hi_[None]) - fr[None]
+                def clipf(X):                                  # finger targets: no further outside the joint limits
+                    for h in active:                           # than the reference itself (zero offset stays zero)
+                        s = sides[h]; s0 = starts[h] + 6; fr = ref.fing[s][t:t + H]
+                        lo_, hi_ = np.minimum(lo[h], fr), np.maximum(hi[h], fr)
+                        X[:, :, s0:s0 + nf[h]] = np.clip(fr[None] + X[:, :, s0:s0 + nf[h]], lo_[None], hi_[None]) - fr[None]
+                    return X
+                U = clipf(U)
+                UW = np.repeat(U, K, axis=0)                   # world c*K + k runs candidate c, copy k
+                if K > 1:
+                    jit = np.zeros((K, H, A))
+                    for h in active:
+                        s0 = starts[h]
+                        jit[1:, :, s0:s0 + 3] = rng.normal(size=(K - 1, H, 3)) * a.rob_pos
+                        jit[1:, :, s0 + 6:s0 + 6 + nf[h]] = rng.normal(size=(K - 1, H, nf[h])) * a.rob_fin
+                    UW = clipf(UW + np.tile(jit, (N, 1, 1)))
+                UW = np.concatenate([UW, np.repeat(UW[:1], NW - len(UW), 0)], 0) if len(UW) < NW else UW
                 for i, c in enumerate(conns):
-                    c.send(('rollout', snap, U[i * a.worlds:(i + 1) * a.worlds].astype(np.float64)))
-                cost_obj = np.concatenate([c.recv() for c in conns], 0)                  # (N, H)
+                    c.send(('rollout', snap, UW[i * a.worlds:(i + 1) * a.worlds].astype(np.float64)))
+                cost_w = np.concatenate([c.recv() for c in conns], 0)[:N * K].reshape(N, K, -1)   # (N, K, H)
+                cost_obj = cost_w[:, 0]                                                 # nominal copy
                 reg = np.zeros((N, H))
                 for h in active:
                     s0 = starts[h]
                     reg += (a.w_pos * np.linalg.norm(U[:, :, s0:s0 + 3], axis=-1) + a.w_rot * np.linalg.norm(U[:, :, s0 + 3:s0 + 6], axis=-1)
                             + a.w_fin * np.linalg.norm(U[:, :, s0 + 6:s0 + 6 + nf[h]], axis=-1))
-                tot = cost_obj + reg; wts = np.ones(H); wts[-1] = a.terminal
-                J = (tot * wts).sum(1) / wts.sum()
+                wts = np.ones(H); wts[-1] = a.terminal
+                J = ((cost_w + reg[:, None]) * wts).sum(-1).mean(1) / wts.sum()        # mean over the K copies
                 i_best = int(np.argmin(J))
                 if J[i_best] < best[0]:
                     best = (float(J[i_best]), U[i_best].copy(), cost_obj[i_best].copy()); best_from = (it, i_best)
@@ -331,13 +353,15 @@ def main():
             chosen = plan[:H].copy()
         # commit C frames on the truth env (reference buffers patched with the folded offsets; zero action)
         offsets[t:t + C] = chosen[:C]
-        sl = slice(t, t + C)
-        for h, s in enumerate(sides):
-            if not np.any(offsets[sl][:, hand_dims[h]]):
-                continue                                       # untouched frames keep the loader's own values
-            P32, Q32, F32 = exact(s, *fold_slice(ref, s, offsets[sl], starts[h], nf[h], lo[h], hi[h], sl))
-            rb_pos[sl, h] = P32; rb_q[sl, h] = Q32
-            rb_f[sl, lay.hand_finger_starts[h]:lay.hand_finger_starts[h] + nf[h]] = F32
+        sl = slice(t, t + C); fs = [slice(lay.hand_finger_starts[h], lay.hand_finger_starts[h] + nf[h]) for h in range(nh)]
+        chunks.append(dict(t=t, snap=snapshot(truth), plan=plan.copy(), nQ=len(Q), add=add_dist(Q[-1][ob].astype(np.float64), ref.OP[t], ref.OQ[t], pts)))
+        for h, s in enumerate(sides):                          # every committed frame is (re)written: rollback-safe
+            rb_pos[sl, h], rb_q[sl, h], rb_f[sl, fs[h]] = rb0[0][sl, h], rb0[1][sl, h], rb0[2][sl, fs[h]]
+            nz = np.any(offsets[sl][:, hand_dims[h]] != 0, axis=1)   # zero-offset frames keep the loader's values,
+            if nz.any():                                       # as in the written parquet
+                P32, Q32, F32 = exact(s, *fold_slice(ref, s, offsets[sl], starts[h], nf[h], lo[h], hi[h], sl))
+                rb_pos[sl, h][nz], rb_q[sl, h][nz] = P32[nz], Q32[nz]
+                rb_f[sl, fs[h]][nz] = F32[nz]
         real = []
         for k in range(C):
             truth.step(None)
@@ -357,6 +381,18 @@ def main():
         app = tail[-1:] * np.linspace(1.0, 0.0, a.horizon - len(tail) + 1)[1:, None]
         plan = np.concatenate([tail, app], 0)[:a.horizon]
         t += C
+        # rollback (SPIDER's "difficulty boosting", here with an exact restore of the truth env): a moving object that
+        # was within RETRY of the reference at the chunk start and is beyond it at the chunk end was just lost ->
+        # go back BACK chunks and re-plan them with (1 + boost) x iterations and sqrt(2)^boost x noise
+        lost = [j for j in range(B) if moving[j] and chunks[-1]['add'][j] <= a.retry and add_now[j] > a.retry]
+        if lost and a.retries > 0 and retries < a.retries:
+            e = chunks[max(0, len(chunks) - a.back)]; ib = chunks.index(e)
+            restore(truth, e['snap']); del Q[e['nQ']:]; del FR[e['nQ']:]; offsets[e['t']:] = 0.0; plan = e['plan'].copy()
+            boost = boost + 1 if t - C < boost_until else 1; boost_until = t; retries += 1
+            log(f'  rollback {retries}/{a.retries}: {[ref.names[j] for j in lost]} lost at frame {t}; back to t={e["t"]}, boost {boost}')
+            replans[-1]['rollback_to'] = e['t']; t = e['t']; del chunks[ib:]
+        elif not lost and t >= boost_until:
+            boost = 0
         if len(replans) % 5 == 0:
             np.savez_compressed(os.path.splitext(a.out)[0] + '_solve_partial.npz', offsets=offsets, t=t)
     for c in conns:
