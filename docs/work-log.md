@@ -5380,3 +5380,12 @@ Shadow/Allegro cube curves (repo CSV) still rise at 50M. The review's absolute F
 the note uses the CSV. Other paper figures are marked [R] (from the review, not re-checked). Added an optional 62.5M
 arm and a no-policy replay floor to stage B.
 
+
+### 30 Oct ~08:20 UTC — `main` brought up to date (owner: "merge the repos that we shipped")
+- `main` was still at 4d1d7ee (20 Oct), so GitHub's default view showed none of the work since. It now holds every
+  branch: `claude/focused-pascal-2nz9s1` (8dfc161, which already contained `main-bsky37` and
+  `claude/inspiring-mendel-lbgp9e`), `claude/bold-albattani-6qmxsv` (6b9a470, mesh session), `claude/modest-davinci-vltejz`
+  (15ed173, training-budget note 23) and `claude/magical-mccarthy-v8tmyi` (briefing). Fast-forward push 4d1d7ee → bfa25d6.
+- Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
+- Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
+- Sessions still running push to their own branches; merge them into `main` again when they finish.
