@@ -5556,3 +5556,6 @@ Background agent, CPU only, $0, no ground truth read.
 - ~17:20 UTC physics solver G1 launched: `20261030-psolve-eecd18a` (58429953, TX, $1.519/h), `bash ops/jobs/physics_solve.sh`,
   commit eecd18a, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $1.50; gate pre-registered in
   `physics-solver.md` §5.1. Credit before launch $35.82.
+- ~18:15 UTC physics solver G1 **PASS** (jittered Δ +0.080 / +0.063 / −0.004 / +0.005 on ep2/12/18/24; 2 of 4 ≥ 0.03);
+  box job exit 0 after 45 min, ledger actual $1.29. Physics fit v1 passed its gate (+0.0070 mean) but with a frame-0
+  alignment confound; the frame-0-held control is running.

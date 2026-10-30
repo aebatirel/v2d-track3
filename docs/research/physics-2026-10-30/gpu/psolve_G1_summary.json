@@ -1,0 +1,128 @@
+{
+ "ep2": {
+  "input": "20261030-physS1-6a814df",
+  "glock": {
+   "nominal": 0.7395,
+   "mean": 0.5284,
+   "sd": 0.0805,
+   "min": 0.2328,
+   "max": 0.6931,
+   "k": 64
+  },
+  "solved": {
+   "nominal": 0.6665,
+   "mean": 0.6079,
+   "sd": 0.095,
+   "min": 0.3689,
+   "max": 0.8806,
+   "k": 64
+  },
+  "solve": {
+   "wall_s": 1294.2,
+   "deadline_t": null,
+   "rollbacks": 4
+  },
+  "zero_score": [
+   "floor_vs_ref 0.5060",
+   "zero_ps: sim_vs_ref 0.5579",
+   "truth: sim_vs_ref 0.9479"
+  ],
+  "delta": 0.0795
+ },
+ "ep12": {
+  "input": "20261030-physS1-6a814df",
+  "glock": {
+   "nominal": 0.5523,
+   "mean": 0.5806,
+   "sd": 0.021,
+   "min": 0.5397,
+   "max": 0.6183,
+   "k": 64
+  },
+  "solved": {
+   "nominal": 0.592,
+   "mean": 0.6434,
+   "sd": 0.0872,
+   "min": 0.5478,
+   "max": 0.8741,
+   "k": 64
+  },
+  "solve": {
+   "wall_s": 756.9,
+   "deadline_t": 152,
+   "rollbacks": 4
+  },
+  "zero_score": [
+   "floor_vs_ref 0.6051",
+   "zero_ps: sim_vs_ref 0.8475",
+   "truth: sim_vs_ref 0.8885"
+  ],
+  "delta": 0.0628
+ },
+ "ep18": {
+  "input": "20261030-physS1-6a814df",
+  "glock": {
+   "nominal": 0.584,
+   "mean": 0.553,
+   "sd": 0.0419,
+   "min": 0.3413,
+   "max": 0.5727,
+   "k": 64
+  },
+  "solved": {
+   "nominal": 0.5651,
+   "mean": 0.5491,
+   "sd": 0.0466,
+   "min": 0.3659,
+   "max": 0.5937,
+   "k": 64
+  },
+  "solve": {
+   "wall_s": 1418.3,
+   "deadline_t": 288,
+   "rollbacks": 6
+  },
+  "zero_score": [
+   "floor_vs_ref 0.6185",
+   "zero_ps: sim_vs_ref 0.5721",
+   "truth: sim_vs_ref 0.5320"
+  ],
+  "delta": -0.0039
+ },
+ "ep24": {
+  "input": "20261030-physS1-6a814df",
+  "glock": {
+   "nominal": 0.2002,
+   "mean": 0.1881,
+   "sd": 0.0174,
+   "min": 0.1277,
+   "max": 0.2164,
+   "k": 64
+  },
+  "solved": {
+   "nominal": 0.1728,
+   "mean": 0.1933,
+   "sd": 0.0135,
+   "min": 0.1555,
+   "max": 0.2297,
+   "k": 64
+  },
+  "solve": {
+   "wall_s": 1113.1,
+   "deadline_t": 92,
+   "rollbacks": 6
+  },
+  "zero_score": [
+   "floor_vs_ref 0.2199",
+   "zero_ps: sim_vs_ref 0.1888",
+   "truth: sim_vs_ref 0.2027"
+  ],
+  "delta": 0.0052
+ },
+ "verdict": {
+  "rule": "PASS iff solved jittered mean - grasp lock + ILC jittered mean >= 0.03 on >= 2 of 4 episodes",
+  "episodes_beating": 2,
+  "PASS": true,
+  "harm_flag_episodes": []
+ }
+}

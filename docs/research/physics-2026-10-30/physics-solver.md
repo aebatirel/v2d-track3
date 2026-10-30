@@ -457,3 +457,17 @@ solve.py ... --workers 4 --worlds 24 --robust 4 --horizon 16 --knot 4 --ctrl 4 -
 The code versions are in each `run.log` (repo HEAD + `solve.py` md5): v1 `ce3ff4e`+wip md5 `b83827cb`; v2 `d42ae60`+wip
 `d9b19f99`; v3 `d42ae60`+wip `daefc58e`; after the clip fix `c41881ae`, and `ad6a7525` with only the docstring updated (the version in the repo now). The runner is `tools/physics_solve/run_solve.sh` (needs `S=` the scratchpad). The diagnostic scripts used are in the scratchpad `ps/`: `bench.py`, `det_test.py`,
 `couple_test.py`, `exact_*.py`, `objdiag.py`.
+
+## G1 result (box `20261030-psolve-eecd18a`, commit eecd18a, 30 Oct 17:20–18:10 UTC, ≈ $1.29) [M]
+Jittered sim_vs_ref (64 copies, 0.5 mm / 0.005 rad target noise, common random numbers), our reference, no ground truth:
+| episode | grasp lock + ILC | solved | Δ | solve wall / deadline / rollbacks |
+|---|---|---|---|---|
+| ep2 | 0.528 ± 0.081 | 0.608 ± 0.095 | **+0.080** | 1294 s / none / 4 |
+| ep12 | 0.581 ± 0.021 | 0.643 ± 0.087 | **+0.063** | 757 s / hit at f152 / 4 |
+| ep18 | 0.553 ± 0.042 | 0.549 ± 0.047 | −0.004 | 1418 s / hit at f288 / 6 |
+| ep24 | 0.188 ± 0.017 | 0.193 ± 0.014 | +0.005 | 1113 s / hit at f92 / 6 |
+2 of 4 episodes ≥ +0.03 → **PASS** by the pre-registered rule (§5.1); no harm flag. On CUDA a fresh zero-action replay
+does not reproduce the solver's own trajectory (ep2 truth 0.948 vs replay 0.558; ep12 0.889 vs 0.848): chaos plus
+GPU non-determinism, which is why the jittered means are the measure. Summary: `gpu/psolve_G1_summary.json`.
+By §5.1, PASS means proposing G2 (full Do as I Do scale, ≈ $8) and RL from the solved references (≈ $6.5), each with the
+owner's go-ahead.
