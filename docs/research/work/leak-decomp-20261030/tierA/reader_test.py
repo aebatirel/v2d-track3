@@ -183,7 +183,7 @@ for tw, cls in L.TWINS.items():
 rc, out, errs = run('read', f'{W}/noisy', '--out', f'{W}/noisy.json')
 print(out)
 Rn = json.load(open(f'{W}/noisy.json'))['contrasts']
-z = {n: (Rn[n]['dT'] - np.mean([truth[t][n] for t in L.TWINS])) / Rn[n]['se_paired'] for n in ('phi_T', 'phi_K', 'phi_G', 'L2_AOI', 'L5_AOI')}
+z = {n: float((Rn[n]['dT'] - np.mean([truth[t][n] for t in L.TWINS])) / Rn[n]['se_paired']) for n in ('phi_T', 'phi_K', 'phi_G', 'L2_AOI', 'L5_AOI')}
 need(rc == 0 and all(abs(v) < 3 for v in z.values()), f'noisy: estimates within 3 SE of the truth: { {k: round(v, 2) for k, v in z.items()} }')
 res['noisy'] = {n: dict(dT=Rn[n]['dT'], ci90=Rn[n]['ci90'], verdict=Rn[n]['verdict']) for n in Rn}
 

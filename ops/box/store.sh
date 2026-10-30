@@ -93,10 +93,11 @@ pull-run)
   ;;
 pull-files)   # 2026-10-30 (HF 429): a single-file `hf download` is one hf_hub_download and lists nothing; --include
   shift       # or several files at once (down, pull-depth, pull-run) list the whole store (135k files) first. Retried.
-  for f in "$@"; do
+  for f in "$@"; do  # each try is cut after PULL_TIMEOUT_S (the hub's own 429 waits are silent; the watchdog stalls at 30 min)
     for i in 1 2 3 4 5; do
       [ -s /content/hfstore/$f ] && break
-      hf download "$HF_STORE" "$f" --repo-type dataset --local-dir /content/hfstore > /dev/null 2>&1 && [ -s /content/hfstore/$f ] && break
+      timeout ${PULL_TIMEOUT_S:-1200} hf download "$HF_STORE" "$f" --repo-type dataset --local-dir /content/hfstore > /dev/null 2>&1 \
+        && [ -s /content/hfstore/$f ] && break
       [ $i -lt 5 ] || { echo "pull-files: $f FAILED after 5 tries" >&2; exit 1; }
       echo "pull-files: $f try $i failed; retrying in $(( ${PULL_RETRY_S:-60} * i )) s" >&2; sleep $(( ${PULL_RETRY_S:-60} * i ))
     done

@@ -1,0 +1,2679 @@
+{
+ "design": {
+  "twins": {
+   "ep11": "stable",
+   "ep39": "stable",
+   "ep12": "typical",
+   "ep21": "typical",
+   "ep27": "typical",
+   "ep2": "hard",
+   "ep13": "hard",
+   "ep18": "hard",
+   "ep24": "hard",
+   "ep31": "hard"
+  },
+  "seeds": {
+   "ep11": [
+    42,
+    43
+   ],
+   "ep39": [
+    42,
+    43
+   ],
+   "ep12": [
+    42,
+    43
+   ],
+   "ep21": [
+    42,
+    43
+   ],
+   "ep27": [
+    42,
+    43
+   ],
+   "ep2": [
+    42,
+    43,
+    44
+   ],
+   "ep13": [
+    42,
+    43,
+    44
+   ],
+   "ep18": [
+    42,
+    43,
+    44
+   ],
+   "ep24": [
+    42,
+    43,
+    44
+   ],
+   "ep31": [
+    42,
+    43,
+    44
+   ]
+  },
+  "draws": 10,
+  "reps": 2000,
+  "generator": "scratchpad/noise/sim.py classes",
+  "failure_drops": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/noise/h5_draws.json",
+  "n_drops": 16,
+  "floors": {
+   "stable": [
+    0.01,
+    0.008
+   ],
+   "typical": [
+    0.03,
+    0.035
+   ],
+   "hard": [
+    0.1,
+    0.15
+   ]
+  },
+  "g_noise": [
+   0.01,
+   0.017
+  ],
+  "primaries": [
+   "phi_T",
+   "phi_K",
+   "phi_G"
+  ]
+ },
+ "scenarios": {
+  "null": {
+   "params": {
+    "a": 0,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 0.026,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": -0.0,
+     "bias": -0.0,
+     "rmse": 0.0074,
+     "cover90": 0.908,
+     "reject_up": 0.009,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.049,
+     "reject_perm_unadj": 0.052,
+     "per_twin_reject_up": {
+      "stable": 0.004,
+      "typical": 0.004,
+      "hard": 0.01
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.989,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.011
+    },
+    "phi_K": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0125,
+     "cover90": 0.908,
+     "reject_up": 0.011,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.01,
+      "typical": 0.008,
+      "hard": 0.015
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.784,
+     "P_truth worse": 0.003,
+     "P_inconclusive": 0.213
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0123,
+     "cover90": 0.911,
+     "reject_up": 0.006,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.042,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.009,
+      "typical": 0.009,
+      "hard": 0.012
+     },
+     "P_leaks": 0.001,
+     "P_no leak": 0.782,
+     "P_truth worse": 0.003,
+     "P_inconclusive": 0.214
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": -0.0003,
+     "bias": -0.0003,
+     "rmse": 0.0199,
+     "cover90": 0.909,
+     "reject_up": 0.043,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.047,
+     "reject_perm_unadj": 0.047,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.304,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.667
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0202,
+     "cover90": 0.912,
+     "reject_up": 0.042,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.043,
+     "reject_perm_unadj": 0.049,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.302,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.668
+    },
+    "K_AOI": {
+     "true": 0.0,
+     "mean": -0.0004,
+     "bias": -0.0004,
+     "rmse": 0.0196,
+     "cover90": 0.909,
+     "reject_up": 0.044,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.05,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.0,
+      "hard": 0.006
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.29,
+     "P_truth worse": 0.033,
+     "P_inconclusive": 0.677
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": -0.0005,
+     "bias": -0.0005,
+     "rmse": 0.0199,
+     "cover90": 0.904,
+     "reject_up": 0.046,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.002,
+      "hard": 0.008
+     },
+     "P_leaks": 0.029,
+     "P_no leak": 0.299,
+     "P_truth worse": 0.033,
+     "P_inconclusive": 0.639
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.02,
+     "cover90": 0.901,
+     "reject_up": 0.054,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.055,
+     "reject_perm_unadj": 0.059,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.002,
+      "hard": 0.007
+     },
+     "P_leaks": 0.038,
+     "P_no leak": 0.291,
+     "P_truth worse": 0.03,
+     "P_inconclusive": 0.641
+    },
+    "total": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0197,
+     "cover90": 0.905,
+     "reject_up": 0.044,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.048,
+     "per_twin_reject_up": {
+      "stable": 0.0,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.028,
+     "P_no leak": 0.304,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.639
+    }
+   }
+  },
+  "d=0.15 a=d": {
+   "params": {
+    "a": 0.15,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.075,
+     "mean": 0.0748,
+     "bias": -0.0002,
+     "rmse": 0.0074,
+     "cover90": 0.898,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.964,
+      "hard": 0.522
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_K": {
+     "true": 0.075,
+     "mean": 0.0748,
+     "bias": -0.0002,
+     "rmse": 0.0119,
+     "cover90": 0.919,
+     "reject_up": 0.996,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.999,
+     "reject_perm_unadj": 0.999,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.803,
+      "hard": 0.237
+     },
+     "P_leaks": 0.996,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.004
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0125,
+     "cover90": 0.911,
+     "reject_up": 0.044,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.049,
+     "reject_perm_unadj": 0.05,
+     "per_twin_reject_up": {
+      "stable": 0.007,
+      "typical": 0.006,
+      "hard": 0.013
+     },
+     "P_leaks": 0.007,
+     "P_no leak": 0.77,
+     "P_truth worse": 0.001,
+     "P_inconclusive": 0.221
+    },
+    "L2_AOI": {
+     "true": 0.15,
+     "mean": 0.1497,
+     "bias": -0.0003,
+     "rmse": 0.0194,
+     "cover90": 0.917,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.769,
+      "hard": 0.223
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0002,
+     "bias": 0.0002,
+     "rmse": 0.0191,
+     "cover90": 0.921,
+     "reject_up": 0.037,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.038,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.0,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.293,
+     "P_truth worse": 0.025,
+     "P_inconclusive": 0.681
+    },
+    "K_AOI": {
+     "true": 0.15,
+     "mean": 0.1498,
+     "bias": -0.0002,
+     "rmse": 0.0196,
+     "cover90": 0.903,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.767,
+      "hard": 0.226
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.0191,
+     "cover90": 0.91,
+     "reject_up": 0.045,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.047,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.026,
+     "P_no leak": 0.304,
+     "P_truth worse": 0.028,
+     "P_inconclusive": 0.641
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0204,
+     "cover90": 0.897,
+     "reject_up": 0.052,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.052,
+     "reject_perm_unadj": 0.059,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.009
+     },
+     "P_leaks": 0.037,
+     "P_no leak": 0.284,
+     "P_truth worse": 0.033,
+     "P_inconclusive": 0.645
+    },
+    "total": {
+     "true": 0.15,
+     "mean": 0.1497,
+     "bias": -0.0003,
+     "rmse": 0.0194,
+     "cover90": 0.921,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.762,
+      "hard": 0.225
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.15 a=2d": {
+   "params": {
+    "a": 0.3,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.15,
+     "mean": 0.1493,
+     "bias": -0.0007,
+     "rmse": 0.0073,
+     "cover90": 0.896,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.981
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_K": {
+     "true": 0.15,
+     "mean": 0.1487,
+     "bias": -0.0013,
+     "rmse": 0.0124,
+     "cover90": 0.909,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.997,
+      "hard": 0.676
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": -0.0003,
+     "bias": -0.0003,
+     "rmse": 0.0124,
+     "cover90": 0.902,
+     "reject_up": 0.049,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.007,
+      "typical": 0.007,
+      "hard": 0.013
+     },
+     "P_leaks": 0.005,
+     "P_no leak": 0.778,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.214
+    },
+    "L2_AOI": {
+     "true": 0.3,
+     "mean": 0.2986,
+     "bias": -0.0014,
+     "rmse": 0.0197,
+     "cover90": 0.897,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.989,
+      "hard": 0.792
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": -0.0009,
+     "bias": -0.0009,
+     "rmse": 0.0203,
+     "cover90": 0.895,
+     "reject_up": 0.046,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.05,
+     "reject_perm_unadj": 0.048,
+     "per_twin_reject_up": {
+      "stable": 0.0,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.303,
+     "P_truth worse": 0.041,
+     "P_inconclusive": 0.656
+    },
+    "K_AOI": {
+     "true": 0.3,
+     "mean": 0.2977,
+     "bias": -0.0023,
+     "rmse": 0.0198,
+     "cover90": 0.902,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.988,
+      "hard": 0.785
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": -0.0006,
+     "bias": -0.0006,
+     "rmse": 0.0193,
+     "cover90": 0.911,
+     "reject_up": 0.043,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.046,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.032,
+     "P_no leak": 0.322,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.618
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0203,
+     "cover90": 0.897,
+     "reject_up": 0.05,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.054,
+     "reject_perm_unadj": 0.054,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.041,
+     "P_no leak": 0.278,
+     "P_truth worse": 0.031,
+     "P_inconclusive": 0.65
+    },
+    "total": {
+     "true": 0.3,
+     "mean": 0.2977,
+     "bias": -0.0023,
+     "rmse": 0.0199,
+     "cover90": 0.903,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.989,
+      "hard": 0.788
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.15 b=d": {
+   "params": {
+    "a": 0,
+    "b": 0.15,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": 0.0002,
+     "bias": 0.0002,
+     "rmse": 0.0074,
+     "cover90": 0.901,
+     "reject_up": 0.023,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.054,
+     "reject_perm_unadj": 0.055,
+     "per_twin_reject_up": {
+      "stable": 0.006,
+      "typical": 0.005,
+      "hard": 0.01
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.991,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.009
+    },
+    "phi_K": {
+     "true": 0.15,
+     "mean": 0.149,
+     "bias": -0.001,
+     "rmse": 0.012,
+     "cover90": 0.909,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.996,
+      "hard": 0.68
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0126,
+     "cover90": 0.898,
+     "reject_up": 0.019,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.053,
+     "per_twin_reject_up": {
+      "stable": 0.007,
+      "typical": 0.008,
+      "hard": 0.012
+     },
+     "P_leaks": 0.003,
+     "P_no leak": 0.773,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.223
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": 0.0006,
+     "bias": 0.0006,
+     "rmse": 0.0199,
+     "cover90": 0.898,
+     "reject_up": 0.054,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.055,
+     "reject_perm_unadj": 0.058,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.307,
+     "P_truth worse": 0.033,
+     "P_inconclusive": 0.66
+    },
+    "L3_AOI": {
+     "true": 0.15,
+     "mean": 0.149,
+     "bias": -0.001,
+     "rmse": 0.0199,
+     "cover90": 0.904,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.767,
+      "hard": 0.223
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "K_AOI": {
+     "true": 0.15,
+     "mean": 0.1496,
+     "bias": -0.0004,
+     "rmse": 0.0197,
+     "cover90": 0.909,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.763,
+      "hard": 0.231
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": 0.0005,
+     "bias": 0.0005,
+     "rmse": 0.02,
+     "cover90": 0.91,
+     "reject_up": 0.05,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.052,
+     "reject_perm_unadj": 0.056,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.002,
+      "hard": 0.009
+     },
+     "P_leaks": 0.036,
+     "P_no leak": 0.299,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.636
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0003,
+     "bias": -0.0003,
+     "rmse": 0.0203,
+     "cover90": 0.9,
+     "reject_up": 0.047,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.05,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.0,
+      "hard": 0.008
+     },
+     "P_leaks": 0.03,
+     "P_no leak": 0.277,
+     "P_truth worse": 0.035,
+     "P_inconclusive": 0.658
+    },
+    "total": {
+     "true": 0.15,
+     "mean": 0.1493,
+     "bias": -0.0007,
+     "rmse": 0.0196,
+     "cover90": 0.906,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.768,
+      "hard": 0.226
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.15 gamma=d": {
+   "params": {
+    "a": 0,
+    "b": 0,
+    "gamma": 0.15
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0074,
+     "cover90": 0.899,
+     "reject_up": 0.021,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.046,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.004,
+      "typical": 0.005,
+      "hard": 0.01
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.989,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.011
+    },
+    "phi_K": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0127,
+     "cover90": 0.899,
+     "reject_up": 0.019,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.056,
+     "reject_perm_unadj": 0.058,
+     "per_twin_reject_up": {
+      "stable": 0.009,
+      "typical": 0.009,
+      "hard": 0.015
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.769,
+     "P_truth worse": 0.003,
+     "P_inconclusive": 0.228
+    },
+    "phi_G": {
+     "true": 0.15,
+     "mean": 0.1501,
+     "bias": 0.0001,
+     "rmse": 0.0125,
+     "cover90": 0.898,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.996,
+      "hard": 0.709
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.0195,
+     "cover90": 0.91,
+     "reject_up": 0.046,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.305,
+     "P_truth worse": 0.028,
+     "P_inconclusive": 0.667
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0196,
+     "cover90": 0.905,
+     "reject_up": 0.049,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.053,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.325,
+     "P_truth worse": 0.031,
+     "P_inconclusive": 0.644
+    },
+    "K_AOI": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0204,
+     "cover90": 0.895,
+     "reject_up": 0.048,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.306,
+     "P_truth worse": 0.032,
+     "P_inconclusive": 0.662
+    },
+    "L5_AOI": {
+     "true": 0.15,
+     "mean": 0.1504,
+     "bias": 0.0004,
+     "rmse": 0.02,
+     "cover90": 0.906,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.773,
+      "hard": 0.229
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_LOO": {
+     "true": 0.15,
+     "mean": 0.15,
+     "bias": 0.0,
+     "rmse": 0.0198,
+     "cover90": 0.904,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.763,
+      "hard": 0.226
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "total": {
+     "true": 0.15,
+     "mean": 0.1502,
+     "bias": 0.0002,
+     "rmse": 0.0203,
+     "cover90": 0.895,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.768,
+      "hard": 0.232
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.2 a=d": {
+   "params": {
+    "a": 0.2,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.1,
+     "mean": 0.0995,
+     "bias": -0.0005,
+     "rmse": 0.0073,
+     "cover90": 0.899,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.994,
+      "hard": 0.763
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_K": {
+     "true": 0.1,
+     "mean": 0.0996,
+     "bias": -0.0004,
+     "rmse": 0.0121,
+     "cover90": 0.908,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.948,
+      "hard": 0.379
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.0123,
+     "cover90": 0.91,
+     "reject_up": 0.044,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.007,
+      "typical": 0.009,
+      "hard": 0.014
+     },
+     "P_leaks": 0.004,
+     "P_no leak": 0.778,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.216
+    },
+    "L2_AOI": {
+     "true": 0.2,
+     "mean": 0.1993,
+     "bias": -0.0007,
+     "rmse": 0.0202,
+     "cover90": 0.901,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.917,
+      "hard": 0.444
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0203,
+     "cover90": 0.894,
+     "reject_up": 0.051,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.054,
+     "reject_perm_unadj": 0.055,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.3,
+     "P_truth worse": 0.035,
+     "P_inconclusive": 0.664
+    },
+    "K_AOI": {
+     "true": 0.2,
+     "mean": 0.1993,
+     "bias": -0.0007,
+     "rmse": 0.0196,
+     "cover90": 0.918,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.914,
+      "hard": 0.444
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": 0.0007,
+     "bias": 0.0007,
+     "rmse": 0.02,
+     "cover90": 0.899,
+     "reject_up": 0.052,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.055,
+     "reject_perm_unadj": 0.057,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.041,
+     "P_no leak": 0.315,
+     "P_truth worse": 0.031,
+     "P_inconclusive": 0.614
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.02,
+     "cover90": 0.905,
+     "reject_up": 0.042,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.046,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.0,
+      "hard": 0.007
+     },
+     "P_leaks": 0.029,
+     "P_no leak": 0.288,
+     "P_truth worse": 0.032,
+     "P_inconclusive": 0.651
+    },
+    "total": {
+     "true": 0.2,
+     "mean": 0.1993,
+     "bias": -0.0007,
+     "rmse": 0.0193,
+     "cover90": 0.914,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.915,
+      "hard": 0.444
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.2 a=2d": {
+   "params": {
+    "a": 0.4,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.2,
+     "mean": 0.1983,
+     "bias": -0.0017,
+     "rmse": 0.0072,
+     "cover90": 0.909,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 1.0
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_K": {
+     "true": 0.2,
+     "mean": 0.1984,
+     "bias": -0.0016,
+     "rmse": 0.0124,
+     "cover90": 0.898,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.999,
+      "hard": 0.884
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": -0.0004,
+     "bias": -0.0004,
+     "rmse": 0.0121,
+     "cover90": 0.907,
+     "reject_up": 0.041,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.044,
+     "per_twin_reject_up": {
+      "stable": 0.01,
+      "typical": 0.007,
+      "hard": 0.013
+     },
+     "P_leaks": 0.005,
+     "P_no leak": 0.797,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.196
+    },
+    "L2_AOI": {
+     "true": 0.4,
+     "mean": 0.3968,
+     "bias": -0.0032,
+     "rmse": 0.019,
+     "cover90": 0.91,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.999,
+      "hard": 0.955
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0196,
+     "cover90": 0.903,
+     "reject_up": 0.046,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.05,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.002,
+      "hard": 0.005
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.286,
+     "P_truth worse": 0.026,
+     "P_inconclusive": 0.688
+    },
+    "K_AOI": {
+     "true": 0.4,
+     "mean": 0.3967,
+     "bias": -0.0033,
+     "rmse": 0.0198,
+     "cover90": 0.897,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.999,
+      "hard": 0.954
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0188,
+     "cover90": 0.915,
+     "reject_up": 0.036,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.038,
+     "reject_perm_unadj": 0.04,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.024,
+     "P_no leak": 0.347,
+     "P_truth worse": 0.032,
+     "P_inconclusive": 0.597
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0005,
+     "bias": -0.0005,
+     "rmse": 0.0198,
+     "cover90": 0.91,
+     "reject_up": 0.036,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.039,
+     "reject_perm_unadj": 0.042,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.0,
+      "hard": 0.008
+     },
+     "P_leaks": 0.024,
+     "P_no leak": 0.29,
+     "P_truth worse": 0.033,
+     "P_inconclusive": 0.654
+    },
+    "total": {
+     "true": 0.4,
+     "mean": 0.3963,
+     "bias": -0.0037,
+     "rmse": 0.0193,
+     "cover90": 0.902,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.998,
+      "hard": 0.953
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.2 b=d": {
+   "params": {
+    "a": 0,
+    "b": 0.2,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0074,
+     "cover90": 0.892,
+     "reject_up": 0.022,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.059,
+     "reject_perm_unadj": 0.063,
+     "per_twin_reject_up": {
+      "stable": 0.004,
+      "typical": 0.005,
+      "hard": 0.011
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.993,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.007
+    },
+    "phi_K": {
+     "true": 0.2,
+     "mean": 0.1993,
+     "bias": -0.0007,
+     "rmse": 0.0124,
+     "cover90": 0.9,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.894
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": -0.0004,
+     "bias": -0.0004,
+     "rmse": 0.0124,
+     "cover90": 0.907,
+     "reject_up": 0.019,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.043,
+     "reject_perm_unadj": 0.043,
+     "per_twin_reject_up": {
+      "stable": 0.009,
+      "typical": 0.009,
+      "hard": 0.011
+     },
+     "P_leaks": 0.002,
+     "P_no leak": 0.795,
+     "P_truth worse": 0.003,
+     "P_inconclusive": 0.2
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": -0.0002,
+     "bias": -0.0002,
+     "rmse": 0.0194,
+     "cover90": 0.9,
+     "reject_up": 0.048,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.053,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.326,
+     "P_truth worse": 0.03,
+     "P_inconclusive": 0.644
+    },
+    "L3_AOI": {
+     "true": 0.2,
+     "mean": 0.1993,
+     "bias": -0.0007,
+     "rmse": 0.0199,
+     "cover90": 0.888,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.906,
+      "hard": 0.454
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "K_AOI": {
+     "true": 0.2,
+     "mean": 0.1991,
+     "bias": -0.0009,
+     "rmse": 0.0197,
+     "cover90": 0.906,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.915,
+      "hard": 0.456
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": -0.0006,
+     "bias": -0.0006,
+     "rmse": 0.0195,
+     "cover90": 0.907,
+     "reject_up": 0.043,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.027,
+     "P_no leak": 0.321,
+     "P_truth worse": 0.03,
+     "P_inconclusive": 0.622
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0003,
+     "bias": -0.0003,
+     "rmse": 0.0196,
+     "cover90": 0.906,
+     "reject_up": 0.043,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.047,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.026,
+     "P_no leak": 0.322,
+     "P_truth worse": 0.03,
+     "P_inconclusive": 0.622
+    },
+    "total": {
+     "true": 0.2,
+     "mean": 0.1988,
+     "bias": -0.0012,
+     "rmse": 0.0195,
+     "cover90": 0.899,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.919,
+      "hard": 0.448
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.2 gamma=d": {
+   "params": {
+    "a": 0,
+    "b": 0,
+    "gamma": 0.2
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": 0.0002,
+     "bias": 0.0002,
+     "rmse": 0.0072,
+     "cover90": 0.907,
+     "reject_up": 0.017,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.05,
+     "reject_perm_unadj": 0.048,
+     "per_twin_reject_up": {
+      "stable": 0.006,
+      "typical": 0.005,
+      "hard": 0.011
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.993,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.007
+    },
+    "phi_K": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.0122,
+     "cover90": 0.913,
+     "reject_up": 0.022,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.054,
+     "reject_perm_unadj": 0.057,
+     "per_twin_reject_up": {
+      "stable": 0.01,
+      "typical": 0.008,
+      "hard": 0.015
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.786,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.212
+    },
+    "phi_G": {
+     "true": 0.2,
+     "mean": 0.1992,
+     "bias": -0.0008,
+     "rmse": 0.0119,
+     "cover90": 0.913,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.916
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": 0.0006,
+     "bias": 0.0006,
+     "rmse": 0.0189,
+     "cover90": 0.912,
+     "reject_up": 0.044,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.047,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.002,
+      "hard": 0.009
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.322,
+     "P_truth worse": 0.024,
+     "P_inconclusive": 0.655
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0189,
+     "cover90": 0.913,
+     "reject_up": 0.04,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.042,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.318,
+     "P_truth worse": 0.026,
+     "P_inconclusive": 0.656
+    },
+    "K_AOI": {
+     "true": 0.0,
+     "mean": 0.0007,
+     "bias": 0.0007,
+     "rmse": 0.0188,
+     "cover90": 0.913,
+     "reject_up": 0.041,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.044,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.003,
+      "typical": 0.001,
+      "hard": 0.009
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.31,
+     "P_truth worse": 0.024,
+     "P_inconclusive": 0.666
+    },
+    "L5_AOI": {
+     "true": 0.2,
+     "mean": 0.1995,
+     "bias": -0.0005,
+     "rmse": 0.0187,
+     "cover90": 0.922,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.915,
+      "hard": 0.454
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_LOO": {
+     "true": 0.2,
+     "mean": 0.199,
+     "bias": -0.001,
+     "rmse": 0.0192,
+     "cover90": 0.901,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.908,
+      "hard": 0.456
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "total": {
+     "true": 0.2,
+     "mean": 0.1997,
+     "bias": -0.0003,
+     "rmse": 0.019,
+     "cover90": 0.915,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.908,
+      "hard": 0.463
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.3 a=d": {
+   "params": {
+    "a": 0.3,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.15,
+     "mean": 0.149,
+     "bias": -0.001,
+     "rmse": 0.0073,
+     "cover90": 0.896,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.979
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_K": {
+     "true": 0.15,
+     "mean": 0.1491,
+     "bias": -0.0009,
+     "rmse": 0.0121,
+     "cover90": 0.907,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.996,
+      "hard": 0.687
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": -0.0001,
+     "bias": -0.0001,
+     "rmse": 0.0124,
+     "cover90": 0.9,
+     "reject_up": 0.05,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.053,
+     "reject_perm_unadj": 0.054,
+     "per_twin_reject_up": {
+      "stable": 0.007,
+      "typical": 0.009,
+      "hard": 0.013
+     },
+     "P_leaks": 0.007,
+     "P_no leak": 0.786,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.205
+    },
+    "L2_AOI": {
+     "true": 0.3,
+     "mean": 0.2982,
+     "bias": -0.0018,
+     "rmse": 0.0194,
+     "cover90": 0.909,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.987,
+      "hard": 0.785
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.0194,
+     "cover90": 0.914,
+     "reject_up": 0.04,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.042,
+     "reject_perm_unadj": 0.043,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.305,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.666
+    },
+    "K_AOI": {
+     "true": 0.3,
+     "mean": 0.2985,
+     "bias": -0.0015,
+     "rmse": 0.0188,
+     "cover90": 0.912,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.986,
+      "hard": 0.795
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": 0.0004,
+     "bias": 0.0004,
+     "rmse": 0.0192,
+     "cover90": 0.895,
+     "reject_up": 0.05,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.052,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.029,
+     "P_no leak": 0.337,
+     "P_truth worse": 0.035,
+     "P_inconclusive": 0.6
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0005,
+     "bias": -0.0005,
+     "rmse": 0.0199,
+     "cover90": 0.904,
+     "reject_up": 0.045,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.05,
+     "per_twin_reject_up": {
+      "stable": 0.002,
+      "typical": 0.001,
+      "hard": 0.006
+     },
+     "P_leaks": 0.03,
+     "P_no leak": 0.287,
+     "P_truth worse": 0.034,
+     "P_inconclusive": 0.648
+    },
+    "total": {
+     "true": 0.3,
+     "mean": 0.2979,
+     "bias": -0.0021,
+     "rmse": 0.0195,
+     "cover90": 0.906,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.985,
+      "hard": 0.789
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.3 a=2d": {
+   "params": {
+    "a": 0.6,
+    "b": 0,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.3,
+     "mean": 0.2951,
+     "bias": -0.0049,
+     "rmse": 0.0082,
+     "cover90": 0.866,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 1.0
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_K": {
+     "true": 0.3,
+     "mean": 0.2949,
+     "bias": -0.0051,
+     "rmse": 0.0131,
+     "cover90": 0.889,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.996
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": -0.0002,
+     "bias": -0.0002,
+     "rmse": 0.012,
+     "cover90": 0.899,
+     "reject_up": 0.046,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.008,
+      "typical": 0.01,
+      "hard": 0.012
+     },
+     "P_leaks": 0.006,
+     "P_no leak": 0.812,
+     "P_truth worse": 0.003,
+     "P_inconclusive": 0.179
+    },
+    "L2_AOI": {
+     "true": 0.6,
+     "mean": 0.59,
+     "bias": -0.01,
+     "rmse": 0.0204,
+     "cover90": 0.889,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 1.0
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0195,
+     "cover90": 0.912,
+     "reject_up": 0.046,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.047,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.284,
+     "P_truth worse": 0.029,
+     "P_inconclusive": 0.688
+    },
+    "K_AOI": {
+     "true": 0.6,
+     "mean": 0.5901,
+     "bias": -0.0099,
+     "rmse": 0.0207,
+     "cover90": 0.873,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 1.0
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": -0.0005,
+     "bias": -0.0005,
+     "rmse": 0.0165,
+     "cover90": 0.901,
+     "reject_up": 0.044,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.046,
+     "reject_perm_unadj": 0.049,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.004
+     },
+     "P_leaks": 0.018,
+     "P_no leak": 0.488,
+     "P_truth worse": 0.024,
+     "P_inconclusive": 0.469
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0003,
+     "bias": -0.0003,
+     "rmse": 0.0197,
+     "cover90": 0.909,
+     "reject_up": 0.042,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.045,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.029,
+     "P_no leak": 0.29,
+     "P_truth worse": 0.026,
+     "P_inconclusive": 0.653
+    },
+    "total": {
+     "true": 0.6,
+     "mean": 0.5898,
+     "bias": -0.0102,
+     "rmse": 0.0211,
+     "cover90": 0.872,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 1.0
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.3 b=d": {
+   "params": {
+    "a": 0,
+    "b": 0.3,
+    "gamma": 0
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0073,
+     "cover90": 0.901,
+     "reject_up": 0.018,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.051,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.004,
+      "typical": 0.007,
+      "hard": 0.009
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.992,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.009
+    },
+    "phi_K": {
+     "true": 0.3,
+     "mean": 0.2982,
+     "bias": -0.0018,
+     "rmse": 0.0124,
+     "cover90": 0.905,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.996
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "phi_G": {
+     "true": 0.0,
+     "mean": 0.0004,
+     "bias": 0.0004,
+     "rmse": 0.0122,
+     "cover90": 0.914,
+     "reject_up": 0.014,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.045,
+     "reject_perm_unadj": 0.046,
+     "per_twin_reject_up": {
+      "stable": 0.007,
+      "typical": 0.008,
+      "hard": 0.013
+     },
+     "P_leaks": 0.003,
+     "P_no leak": 0.803,
+     "P_truth worse": 0.002,
+     "P_inconclusive": 0.192
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": 0.0005,
+     "bias": 0.0005,
+     "rmse": 0.0196,
+     "cover90": 0.906,
+     "reject_up": 0.053,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.055,
+     "reject_perm_unadj": 0.059,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.002,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.349,
+     "P_truth worse": 0.026,
+     "P_inconclusive": 0.625
+    },
+    "L3_AOI": {
+     "true": 0.3,
+     "mean": 0.2984,
+     "bias": -0.0016,
+     "rmse": 0.02,
+     "cover90": 0.901,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.986,
+      "hard": 0.796
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "K_AOI": {
+     "true": 0.3,
+     "mean": 0.2989,
+     "bias": -0.0011,
+     "rmse": 0.0198,
+     "cover90": 0.906,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.987,
+      "hard": 0.796
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_AOI": {
+     "true": 0.0,
+     "mean": 0.0011,
+     "bias": 0.0011,
+     "rmse": 0.019,
+     "cover90": 0.914,
+     "reject_up": 0.046,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.05,
+     "per_twin_reject_up": {
+      "stable": 0.0,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.032,
+     "P_no leak": 0.341,
+     "P_truth worse": 0.02,
+     "P_inconclusive": 0.608
+    },
+    "L5_LOO": {
+     "true": 0.0,
+     "mean": -0.0002,
+     "bias": -0.0002,
+     "rmse": 0.0199,
+     "cover90": 0.908,
+     "reject_up": 0.04,
+     "g_rule": 1.0,
+     "reject_t_unadj": 0.042,
+     "reject_perm_unadj": 0.043,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.007
+     },
+     "P_leaks": 0.026,
+     "P_no leak": 0.33,
+     "P_truth worse": 0.034,
+     "P_inconclusive": 0.61
+    },
+    "total": {
+     "true": 0.3,
+     "mean": 0.2987,
+     "bias": -0.0013,
+     "rmse": 0.0196,
+     "cover90": 0.911,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.989,
+      "hard": 0.796
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  },
+  "d=0.3 gamma=d": {
+   "params": {
+    "a": 0,
+    "b": 0,
+    "gamma": 0.3
+   },
+   "familywise_reject_up": 1.0,
+   "tests": {
+    "phi_T": {
+     "true": 0.0,
+     "mean": 0.0001,
+     "bias": 0.0001,
+     "rmse": 0.0072,
+     "cover90": 0.907,
+     "reject_up": 0.023,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.052,
+     "reject_perm_unadj": 0.056,
+     "per_twin_reject_up": {
+      "stable": 0.004,
+      "typical": 0.004,
+      "hard": 0.013
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.991,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.009
+    },
+    "phi_K": {
+     "true": 0.0,
+     "mean": 0.0,
+     "bias": 0.0,
+     "rmse": 0.0123,
+     "cover90": 0.904,
+     "reject_up": 0.029,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.056,
+     "reject_perm_unadj": 0.059,
+     "per_twin_reject_up": {
+      "stable": 0.008,
+      "typical": 0.009,
+      "hard": 0.013
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.802,
+     "P_truth worse": 0.004,
+     "P_inconclusive": 0.195
+    },
+    "phi_G": {
+     "true": 0.3,
+     "mean": 0.2975,
+     "bias": -0.0025,
+     "rmse": 0.0124,
+     "cover90": 0.899,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 1.0,
+      "hard": 0.998
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L2_AOI": {
+     "true": 0.0,
+     "mean": -0.0002,
+     "bias": -0.0002,
+     "rmse": 0.0191,
+     "cover90": 0.907,
+     "reject_up": 0.05,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.052,
+     "reject_perm_unadj": 0.055,
+     "per_twin_reject_up": {
+      "stable": 0.0,
+      "typical": 0.0,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.317,
+     "P_truth worse": 0.025,
+     "P_inconclusive": 0.658
+    },
+    "L3_AOI": {
+     "true": 0.0,
+     "mean": 0.0004,
+     "bias": 0.0004,
+     "rmse": 0.0192,
+     "cover90": 0.906,
+     "reject_up": 0.046,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.051,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.009
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.327,
+     "P_truth worse": 0.028,
+     "P_inconclusive": 0.645
+    },
+    "K_AOI": {
+     "true": 0.0,
+     "mean": 0.0003,
+     "bias": 0.0003,
+     "rmse": 0.0193,
+     "cover90": 0.91,
+     "reject_up": 0.047,
+     "g_rule": 0.0,
+     "reject_t_unadj": 0.048,
+     "reject_perm_unadj": 0.054,
+     "per_twin_reject_up": {
+      "stable": 0.001,
+      "typical": 0.001,
+      "hard": 0.008
+     },
+     "P_leaks": 0.0,
+     "P_no leak": 0.328,
+     "P_truth worse": 0.023,
+     "P_inconclusive": 0.649
+    },
+    "L5_AOI": {
+     "true": 0.3,
+     "mean": 0.2972,
+     "bias": -0.0028,
+     "rmse": 0.0202,
+     "cover90": 0.901,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.987,
+      "hard": 0.781
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "L5_LOO": {
+     "true": 0.3,
+     "mean": 0.2974,
+     "bias": -0.0026,
+     "rmse": 0.0194,
+     "cover90": 0.906,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.988,
+      "hard": 0.788
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    },
+    "total": {
+     "true": 0.3,
+     "mean": 0.2977,
+     "bias": -0.0023,
+     "rmse": 0.0198,
+     "cover90": 0.905,
+     "reject_up": 1.0,
+     "g_rule": 1.0,
+     "reject_t_unadj": 1.0,
+     "reject_perm_unadj": 1.0,
+     "per_twin_reject_up": {
+      "stable": 1.0,
+      "typical": 0.989,
+      "hard": 0.786
+     },
+     "P_leaks": 1.0,
+     "P_no leak": 0.0,
+     "P_truth worse": 0.0,
+     "P_inconclusive": 0.0
+    }
+   }
+  }
+ },
+ "power": {
+  "0.15": {
+   "phi_T": {
+    "scenario": "a=2d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.15
+   },
+   "phi_K": {
+    "scenario": "b=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.15
+   },
+   "phi_G": {
+    "scenario": "gamma=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.15
+   },
+   "L2_AOI": {
+    "scenario": "a=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.15
+   },
+   "L3_AOI": {
+    "scenario": "b=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.15
+   },
+   "L5_AOI": {
+    "scenario": "gamma=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.15
+   }
+  },
+  "0.2": {
+   "phi_T": {
+    "scenario": "a=2d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.2
+   },
+   "phi_K": {
+    "scenario": "b=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.2
+   },
+   "phi_G": {
+    "scenario": "gamma=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.2
+   },
+   "L2_AOI": {
+    "scenario": "a=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.2
+   },
+   "L3_AOI": {
+    "scenario": "b=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.2
+   },
+   "L5_AOI": {
+    "scenario": "gamma=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.2
+   }
+  },
+  "0.3": {
+   "phi_T": {
+    "scenario": "a=2d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.3
+   },
+   "phi_K": {
+    "scenario": "b=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.3
+   },
+   "phi_G": {
+    "scenario": "gamma=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.3
+   },
+   "L2_AOI": {
+    "scenario": "a=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.3
+   },
+   "L3_AOI": {
+    "scenario": "b=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.3
+   },
+   "L5_AOI": {
+    "scenario": "gamma=d",
+    "reject": 1.0,
+    "leaks": 1.0,
+    "true": 0.3
+   }
+  }
+ }
+}

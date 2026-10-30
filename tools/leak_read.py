@@ -25,6 +25,7 @@ phi_K, phi_G, + L6 AOI if c7 ran); verdicts leaks / no leak / truth worse / inco
 AOI and LOO over {template T, motion K, geometry G} from c1-c6 (v(T,K,.) = v(K,.)); copy ceiling; LB with the twin
 map and c in [0.74, 1.0]; explained total vs 0.185.
   read INPUT... [--metric M] [--crash drop|zero] [--class-noise F] [--drop-refused] [--no-config-check] [--out F]
+                    (--class-noise: {"stable": [sigma_s, sigma_d], ...} replaces FLOOR; a twin outside PLAN §3 is 'hard')
   mc [--reps N] [--draws K] [--noise DIR] [--rng N] [--out F]   Monte Carlo of the plan's design (10 twins, 2-3 seeds,
                     k draws, classes as PLAN §3) through the same estimators: recovery, type I, power at d 0.03/0.05/0.10
   refrule F.json    reference-level rule (Tier A): {"dR": {ep: x}, "noise": x (P_o-repeat, tracking arms only)}
@@ -249,6 +250,8 @@ def load(e, base, metric, crash):
                  if any('auc_trk' in x for x in s['rollouts']) else None)
     elif 'episodes' in s:                                       # ops/jobs/oracle_twins.sh: one seed, aggregates only
         a = s['episodes'][e.get('episode', twin)][e['arm']]
+        if metric not in a:
+            sys.exit(f"{f}: arm {e['arm']} has no {metric} (oracle_twins summaries carry the lib score auc: --metric auc)")
         t, sv, n = a[metric], a['sim_vs_ref'], a['n']
         sdT = t.get('sd', t.get('std', 0) * math.sqrt(n / max(n - 1, 1)) if 'std' in t else float('nan'))
         r.update(k=n, T=t['mean'], S=sv['mean'], g=t['mean'] - sv['mean'], vT=sdT ** 2,
@@ -537,6 +540,8 @@ def mc(a):
                           rmse=round(float(np.sqrt(((P[n]['d'] - true[n]) ** 2).mean())), 4),
                           cover90=round(float(((lo <= true[n]) & (true[n] <= hi)).mean()), 3),
                           reject_up=round(float(up.mean()), 3), g_rule=round(float(np.mean(gok)), 3),
+                          reject_t_unadj=round(float((P[n]['p_up'] <= ALPHA).mean()), 3),
+                          reject_perm_unadj=round(float((P[n]['q_up'] <= ALPHA).mean()), 3),
                           per_twin_reject_up={c: round(float(np.mean(v)), 3) for c, v in pr[n].items()},
                           **{f'P_{x}': round(float((v == x).mean()), 3) for x in VERDICTS})
         fw = np.zeros(R, bool)

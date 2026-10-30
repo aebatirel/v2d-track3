@@ -2,13 +2,16 @@
 Prints a report and exits 1 if any expectation fails:
   - job exit code 0 (the clean run); every episode's bundle ok; every arm's template kind (scan only for perc2scan),
     MESH_DIR as perc2 saw it (MR/perc2_audit.log: unset for perc2scan, the library for perc2 / perc2rep), KF_MIN 120,
-    SPLIT public, depth cache existed (reused) and its stat unchanged; o2 only for REPEAT episodes;
+    SPLIT public, HF_HUB_OFFLINE=1, depth cache existed (reused) and its stat unchanged; o2 only for REPEAT episodes;
+  - Grounding DINO loaded once, before perc2, online (MR/gdino_tries.txt); every arm's bundle records gdino True;
   - hands md5 = inputs.tsv, depth frame-0 sha256 = inputs.tsv, cameras of the arms identical;
   - store traffic (MR/hf.log): single-file downloads only (no listing), exactly 3 per episode (depth + 2 hands files),
     one upload (the final push-run);
-  - push list (MR/content/push/RUN_ID): no depth cache, no symlink, every bundle file present; sizes;
+  - push list (MR/content/push/RUN_ID): no depth cache, no symlink, every bundle file present, the download log under
+    results/leak_p1/; each bundle tar = its episode folder without result.json / log.txt (mocap scores); sizes;
   - guard: tools/no_oracle.py (run as a script per word) refuses every pushed file by its store path
-    runs/RUN_ID/<file>; the bare folder names (results/leak_p1/ep<N>/perc2scan/...) are reported, refused or not."""
+    runs/RUN_ID/<file>, every bare bundle tar name and every bare P_s path as a tar member has it (ep<N>/perc2scan/...,
+    B8); the bare P_o paths (ep<N>/perc2/..., perc2rep/...) are reported."""
 import json, os, runpy, sys, io, contextlib
 MR, RID, EPS, REP = sys.argv[1], sys.argv[2], [int(x) for x in sys.argv[3].split()], {int(x) for x in sys.argv[4].split()}
 ARMS = (sys.argv[5] if len(sys.argv) > 5 else 'o,s,o2').split(',')
@@ -42,6 +45,8 @@ for e in EPS:
         need(au.get('mesh_dir') == ('<unset>' if f == 'perc2scan' else LIB), f'ep{e} {f} MESH_DIR seen by perc2 {au.get("mesh_dir")}')
         need({n: v['path'] for n, v in a['templates'].items()} == au.get('templates'), f'ep{e} {f} bundle templates != perc2 audit')
         need(au.get('kf_min') == '120' and au.get('split') == 'public', f'ep{e} {f} KF_MIN/SPLIT {au.get("kf_min")}/{au.get("split")}')
+        need(au.get('hf_hub_offline') == '1', f'ep{e} {f} HF_HUB_OFFLINE seen by perc2 {au.get("hf_hub_offline")}')
+        need(a.get('gdino') is True, f'ep{e} {f} gdino {a.get("gdino")}')
         need(au.get('depth_cache_existed') is True and a['depth_reused'], f'ep{e} {f} depth not reused')
         need(a.get('camera_maxdiff_vs_perc2', 0.0) == 0.0, f'ep{e} {f} camera differs')
         need(os.path.isfile(f'{B}/ep{e}/{f}/perc_log_inference.txt') and
@@ -59,6 +64,13 @@ need(kinds.count('upload') == 1, f'{kinds.count("upload")} uploads')
 print(f'store traffic: {len(dl)} single-file downloads ({sum(x["result"] == "429" for x in dl)} answered 429 and retried), '
       f'{kinds.count("LISTING")} listings, {kinds.count("upload")} upload(s): ' +
       '; '.join(f'{x["src"]} -> {x["dst"]}' for x in hf if x['kind'] == 'upload'))
+gt = open(f'{MR}/gdino_tries.txt').read().splitlines() if os.path.exists(f'{MR}/gdino_tries.txt') else []
+jl = open(f'{C}/job.log').read()
+need(gt and all(' offline=None ' in x for x in gt) and gt[-1].endswith(' ok'), f'Grounding DINO load: {gt}')
+need(jl.count('Grounding DINO cached (try ') == 1, 'Grounding DINO not cached exactly once before perc2')
+need(not aud or all(x.get('hf_hub_offline') == '1' for x in aud), 'a perc2 run without HF_HUB_OFFLINE=1')
+print(f'Grounding DINO: {len(gt)} from_pretrained calls before perc2 ({"; ".join(gt)}); '
+      f'perc2 runs with HF_HUB_OFFLINE=1: {sum(x.get("hf_hub_offline") == "1" for x in aud)}/{len(aud)}')
 S = f'{C}/push/{RID}'; files = []
 for r, ds, fs in os.walk(S):
     for f in fs:
@@ -77,7 +89,10 @@ for e in EPS:
         import tarfile
         with tarfile.open(f'{S}/{tf}') as t:
             n = sorted(m.name for m in t.getmembers() if m.isfile())
-        need(n == sorted(f[len('results/leak_p1/'):] for f in p1 if f.startswith(f'results/leak_p1/ep{e}/')), f'{tf} != ep{e}/')
+        need(n == sorted(f[len('results/leak_p1/'):] for f in p1 if f.startswith(f'results/leak_p1/ep{e}/')
+                         and os.path.basename(f) not in ('result.json', 'log.txt')), f'{tf} != ep{e}/ without result.json, log.txt')
+        need(not [m for m in n if os.path.basename(m) in ('result.json', 'log.txt')], f'{tf} holds mocap-score files')
+need('results/leak_p1/leak_pull.log' in p1, 'push lacks results/leak_p1/leak_pull.log')
 print(f'push list: {len(files)} files, {size / 1e6:.1f} MB; results/leak_p1: {len(p1)} files; other: '
       + ', '.join(sorted(f for f in files if not f.startswith('results/leak_p1/'))))
 print('  per episode (first): ' + ', '.join(f[len(f"results/leak_p1/ep{EPS[0]}/"):] for f in p1 if f.startswith(f'results/leak_p1/ep{EPS[0]}/')))
@@ -96,10 +111,12 @@ def refused(word):
 
 by_store = [refused(f'runs/{RID}/{f}') for f in files]
 need(all(by_store), f'guard accepts {sum(not x for x in by_store)} pushed files by store path')
-bare = {k: [refused(f) for f in p1 if f'/{k}/' in f] for k in ('perc2scan', 'perc2', 'perc2rep')}
-bare['bundle tar'] = [refused(f) for f in p1 if f.endswith('_oracle.tar')]
+mem = [f[len('results/leak_p1/'):] for f in p1 if f.startswith('results/leak_p1/ep')]     # as tar members: ep<N>/...
+bare = {k: [refused(f) for f in mem if f'/{k}/' in f] for k in ('perc2scan', 'perc2', 'perc2rep')}
+bare['bundle tar'] = [refused(os.path.basename(f)) for f in p1 if f.endswith('_oracle.tar')]
 need(all(bare['bundle tar']), 'guard accepts a bare bundle tar name')
+need(bare['perc2scan'] and all(bare['perc2scan']), 'guard accepts a bare perc2scan path (B8)')
 print(f'guard ({G.replace(MR, "<MR>")}): refuses {sum(by_store)}/{len(files)} pushed files by store path runs/{RID}/...; bare paths '
-      'refused: ' + ', '.join(f'{k} {sum(v)}/{len(v)}' for k, v in bare.items()))
+      '(ep<N>/<arm>/..., tar names) refused: ' + ', '.join(f'{k} {sum(v)}/{len(v)}' for k, v in bare.items()))
 print('RESULT:', 'ALL CHECKS PASS' if not fails else f'{len(fails)} FAILED: {fails[:12]}')
 sys.exit(1 if fails else 0)

@@ -12,7 +12,8 @@ after all inference, quotes the scan-template arm's own vo score for the record.
                                       perc_log_inference.txt, poses_world_vo.npz when perc2 stopped before writing it,
                                       the template files perc2 resolves for the arm's MESH_DIR (perc2.py's own D /
                                       MESH_DIR / scan_path / mesh_path, taken from its source), camera agreement, depth
-                                      reuse; -> OUT/bundle.json
+                                      reuse, Grounding DINO loaded (gdino: no 'grounding unavailable' line; an arm
+                                      without it is not ok, NO-GDINO in the summary); -> OUT/bundle.json
   summary ROOT EP...                  ROOT/summary.json; one line per episode on stdout; exit 3 unless every arm
                                       ran (rc 0, tracks written), so run_job.sh holds a failed box for debugging
   templates PERC2_PY MESH_DIR|- OBJ... the template file perc2 would track for each object ('-' = MESH_DIR unset)
@@ -130,6 +131,7 @@ def arm_check(ep, out, folder, names, T, perc2_py, depth_stat):
             keep.append(ln)
     open(f'{A}/perc_log_inference.txt', 'w').write('\n'.join(keep) + '\n')
     dr = [float(STAMP.match(ln).group(1)) for ln in keep if ' depth ready ' in ln]
+    c['gdino'] = not any('grounding unavailable' in ln for ln in lines)  # Grounding DINO loaded (eval-pipeline parity)
     c['depth_ready_s'] = dr[0] if dr else None
     c['depth_stat_unchanged'] = run.get('depth_stat_before') == run.get('depth_stat_after') == depth_stat
     c['depth_reused'] = bool(c['depth_stat_unchanged'] and dr and dr[0] < 60)   # computing it takes minutes on the GPU
@@ -147,7 +149,7 @@ def arm_check(ep, out, folder, names, T, perc2_py, depth_stat):
         c['world_vo_maxdiff'] = float(max(np.abs(w[n] - vo[n]).max() for n in names))
     except Exception as x:
         c['poses_ok'] = False; c['error'] = repr(x)
-    c['ok'] = bool(c['rc'] == 0 and c['poses_ok'] and c['depth_reused'] and c.get('world_vo_maxdiff', 1) <= 1e-6
+    c['ok'] = bool(c['rc'] == 0 and c['poses_ok'] and c['depth_reused'] and c['gdino'] and c.get('world_vo_maxdiff', 1) <= 1e-6
                    and c['template_kind'] == ('scan' if folder == 'perc2scan' else 'library'))
     return c, W
 
@@ -165,11 +167,13 @@ def bundle(ep, out, perc2_py):
     b = dict(episode=ep, objects=names, T=T, run_id=os.environ.get('RUN_ID'), commit=os.environ.get('COMMIT'),
              oracle=['perc2scan (scan templates = ground-truth geometry)'], inputs=inp, arms=arms,
              gt_files='result.json and log.txt of every arm hold mocap scores (perc2 scoring block); poses.npz, '
-                      'poses_world_vo.npz, vo.json, perc_log_inference.txt do not',
+                      'poses_world_vo.npz, vo.json, perc_log_inference.txt do not; bundle_ep<N>_oracle.tar leaves '
+                      'both out (they stay in the folder push for diagnostics)',
              ok=bool(inp.get('ok') and arms and all(a['ok'] for a in arms.values())))
     json.dump(b, open(f'{out}/bundle.json', 'w'), indent=1)
     print(f'[leak_p1] ep{ep} bundle {"OK" if b["ok"] else "NOT OK"}: ' + '; '.join(
-        f'{a["arm"]} rc {a["rc"]} {a["seconds"]} s {a["template_kind"]} depth reused {a["depth_reused"]} poses {a["poses_ok"]}'
+        f'{a["arm"]} rc {a["rc"]} {a["seconds"]} s {a["template_kind"]}{"" if a["gdino"] else " NO-GDINO"} depth reused '
+        f'{a["depth_reused"]} poses {a["poses_ok"]}'
         + (f' cam {a["camera_maxdiff_vs_perc2"]:.1e}' if 'camera_maxdiff_vs_perc2' in a else '') for a in arms.values()))
 
 
@@ -181,11 +185,12 @@ def summary(root, eps):
             p = (js(f'{root}/ep{e}/inputs.json') or {}).get('problems') or ['inputs not downloaded']
             out['episodes'][f'ep{e}'] = dict(ok=False, problems=p); print(f'ep{e}: NO BUNDLE (perception not run): {p}'); continue
         s = dict(ok=b['ok'], problems=b['inputs'].get('problems'), arms={a['arm']: {k: a.get(k) for k in (
-            'ok', 'rc', 'seconds', 'template_kind', 'depth_reused', 'depth_ready_s', 'poses_ok', 'camera_maxdiff_vs_perc2')}
+            'ok', 'rc', 'seconds', 'template_kind', 'gdino', 'depth_reused', 'depth_ready_s', 'poses_ok', 'camera_maxdiff_vs_perc2')}
             for a in b['arms'].values()}, s_vo_auc_scan_frame=(r.get('vo') or {}).get('AUC'))
         out['episodes'][f'ep{e}'] = s
         print(f'ep{e}: {"OK" if s["ok"] else "NOT OK"} ' + ' | '.join(
-            f'{k} {"ok" if v["ok"] else "FAIL"} rc {v["rc"]} {v["seconds"]} s {v["template_kind"]}' for k, v in s['arms'].items())
+            f'{k} {"ok" if v["ok"] else "FAIL"} rc {v["rc"]} {v["seconds"]} s {v["template_kind"]}{"" if v["gdino"] else " NO-GDINO"}'
+            for k, v in s['arms'].items())
             + f' | P_s vo AUC (scan frame, unregistered) {s["s_vo_auc_scan_frame"]}' + (f' | {s["problems"]}' if s['problems'] else ''))
     out['all_ok'] = all(v['ok'] for v in out['episodes'].values())
     out['all_ran'] = all(v.get('arms') and all(x['rc'] == 0 and x['poses_ok'] for x in v['arms'].values()) for v in out['episodes'].values())

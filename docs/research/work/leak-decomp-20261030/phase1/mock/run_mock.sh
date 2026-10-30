@@ -6,7 +6,7 @@
 MR=$1; RID=$2; JOB=${3//\/content/$MR\/content}; shift 3
 . $MR/env.sh; for v in "$@"; do export "$v"; done
 rm -rf $MR/content/results $MR/content/hfstore $MR/content/run_state $MR/content/push $MR/content/*.log $MR/hf.log \
-       $MR/hf_429_seen.txt $MR/perc2_audit.log
+       $MR/hf_429_seen.txt $MR/perc2_audit.log $MR/gdino_tries.txt $MR/gdino_cached
 export RUN_ID=$RID
 (cd $MR/content/v2d-track3 && eval "$JOB") > $MR/content/job.log 2>&1; echo $? > $MR/rc.txt
 bash $MR/content/v2d-track3/ops/box/store.sh push-run > $MR/push.out 2>&1; echo "push rc=$?" >> $MR/push.out

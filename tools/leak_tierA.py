@@ -318,10 +318,13 @@ def a2_episode(a, ep):
     Mw = {n: np.einsum('ij,tjk->tik', Gi, D.gt[n]) for n in names}                                  # mocap in the perception world
     A = {n: np.einsum('tij,jk->tik', D.Tp[n], np.linalg.inv(D.Xg[n])) for n in names}               # track, scan frames
     tracks = {'body': {}, 'world': {}}
-    for n in names:
-        C = np.linalg.inv(A[n][0]) @ Mw[n][0]
+    for s, n in enumerate(names):
+        # the mocap frame-0 pose, taken modulo the scorer's symmetry (cup spin, lid flip) to the one nearest our frame 0:
+        # an arbitrary spin would otherwise turn the whole world-form trajectory about the cup
+        M0 = min((Mw[n][0] @ S_ for S_ in XF.sym_group(D.H[s])), key=lambda M: XF.rot_deg(np.linalg.inv(A[n][0])[:3, :3] @ M[:3, :3]))
+        C = np.linalg.inv(A[n][0]) @ M0
         tracks['body'][n] = np.einsum('tij,jk->tik', A[n], C @ D.Xg[n])                             # back to lib frames
-        tracks['world'][n] = np.einsum('ij,tjk->tik', Mw[n][0] @ np.linalg.inv(A[n][0]), D.Tp[n])
+        tracks['world'][n] = np.einsum('ij,tjk->tik', M0 @ np.linalg.inv(A[n][0]), D.Tp[n])
     re = {}
     for k, tr in tracks.items():
         Ek = frame_err(names, tr, D.gt, D.H, D.REGg)
@@ -470,7 +473,335 @@ def a4_summary(res):
                 gap_true_cm_median_over_objects=q(gaps), gap_perc_cm_median_over_objects=q(gp))
 
 
-a3prep_episode = a3_episode = a3_summary = a6_check = a7_read = a3_stored = None  # STUBS
+# ---------------- a3: reference construction stages
+MKA = dict(table_z=0.60, ring_in=10, ring_out=90, plane_thr=0.006, plane_iters=1000, support_tol=0.03, support_max=0.05,
+           support_fallback=1, snap='per_object', snap_max=0.02, start_overlap=0.0, table_fit=1, table_radius=0.45,
+           min_valid_frac=0.10, gap_fill='attach', attach_dist=0.03, depenetrate=0.006, hand_sep=0.04, lead_in=10,
+           lead_in_speed=0.2, fps=20.0, bone_norm=False)       # mkref.py defaults (the pipeline adds only --wrist_cost: IK)
+
+
+def mkref_ab(W_C, camT, names, depth0, KR, lib, Hn):
+    """mkref.py stages (a) and (b) on poses (world_T_cam, cam_T_<obj>), with mkref's own functions and defaults:
+    table frame, support check (+ its fallback), per-object snap; then the hand joints as mkref writes them (table
+    frame, invalid runs filled, parked sides, depenetration, hand separation). Returns OBJ (T,B,4,4) table frame,
+    {side: (T,21,3)}, info. Stage (b) does not move objects; its joints feed contact_retarget.rest_settle."""
+    import trimesh, mkref as MK
+    a = types.SimpleNamespace(**MKA); T = len(W_C); B = len(names)
+    vis = {n: trimesh.load(f'{lib}/{n}.glb', force='mesh') for n in names}
+    n_, d_, frac, npts, rms = MK.fit_table(depth0, KR, W_C[0], {n: camT[n][0] for n in names}, vis, a)
+    OBJw = np.stack([np.einsum('tij,tjk->tik', W_C, camT[n]) for n in names], 1)
+    centroid = np.mean([OBJw[0, b, :3, :3] @ np.asarray(vis[n].vertices).mean(0) + OBJw[0, b, :3, 3] for b, n in enumerate(names)], 0)
+    T_tab = MK.table_frame(n_, d_, W_C[0], centroid, a.table_z)
+    obj_in = lambda Tt: np.einsum('ij,tbjk->tbik', Tt, OBJw)                       # noqa: E731
+    bottoms = lambda O: np.array([(np.asarray(vis[n].vertices) @ O[0, b, :3, :3].T + O[0, b, :3, 3])[:, 2].min() - a.table_z
+                                  for b, n in enumerate(names)])                   # noqa: E731
+    OBJ = obj_in(T_tab); h = bottoms(OBJ); lifted = np.zeros(B); fallback = False
+    if not -a.support_tol <= h.min() <= a.support_max and a.support_fallback:      # mkref's failure path, verbatim logic
+        alt = []
+        for c in a._plane_full:
+            if c['tilt'] > 25:
+                continue
+            Tt = MK.table_frame(c['n'], c['d'], W_C[0], centroid, a.table_z); hh = bottoms(obj_in(Tt))
+            alt.append((int(((hh >= -a.support_tol) & (hh <= a.support_max)).sum()), -float(np.abs(hh).sum()), c, Tt, hh))
+        alt.sort(key=lambda x: x[:2], reverse=True)
+        if alt and alt[0][0] > 0:
+            _, _, c, T_tab, hh = alt[0]; n_, d_ = c['n'], c['d']; OBJ = obj_in(T_tab); fallback = True
+            for b in range(B):
+                if hh[b] < -a.support_tol:
+                    lifted[b] = -hh[b]; OBJ[:, b, 2, 3] += lifted[b]
+            h = bottoms(OBJ)
+    support_ok = bool(-a.support_tol <= h.min() <= a.support_max)
+    shifts = np.zeros(B)
+    for b in range(B):
+        if abs(h[b]) <= a.snap_max:
+            shifts[b] = -h[b]; OBJ[:, b, 2, 3] += shifts[b]
+    dm = MK.table_disc(depth0, KR, T_tab, a.table_z); disc = (0.0, 0.0, a.table_radius)
+    if dm is not None:
+        radius = [float(np.linalg.norm(np.asarray(vis[n].vertices) - np.asarray(vis[n].vertices).mean(0), axis=1).max()) for n in names]
+        reach = float((np.linalg.norm(OBJ[0, :, :2, 3] - dm[:2], axis=-1) + np.array(radius) * 0.5).max())
+        disc = (dm[0], dm[1], float(np.clip(max(dm[2], reach), 0.15, 0.6)))
+    # stage (b): hand joints exactly as mkref writes them (only what rest_settle reads: the joint positions)
+    queries = [MK.BodyQuery(vis[n]) for n in names]; J, hinfo = {}, {}
+    obj_pos = OBJ[:, :, :3, 3]
+    for sd in MK.SIDES:
+        Js = Hn[f'joints_{sd}'].astype(np.float64) @ T_tab[:3, :3].T + T_tab[:3, 3]
+        valid = Hn[f'valid_{sd}'].astype(bool); n_valid = int(valid.sum())
+        if n_valid < max(10, a.min_valid_frac * T):
+            c = obj_pos.reshape(-1, 3).mean(0); sgn = -1.0 if sd == 'right' else 1.0
+            for extra in np.arange(0.0, 0.61, 0.1):
+                pw = np.array([c[0] - 0.30, c[1] + sgn * (0.35 + extra), a.table_z + 0.25])
+                if np.linalg.norm(obj_pos - pw, axis=-1).min() > 0.30:
+                    break
+            Rpark = np.column_stack([[-1.0, 0, 0], [0, 0, 1.0], [0, 1.0, 0]])
+            Js = np.repeat((pw + (MK.TEMPLATE_RIGHT * (np.array([1, 1, -1.0]) if sd == 'left' else 1.0)) @ Rpark.T)[None], T, 0)
+            hinfo[sd] = 'parked'
+        else:
+            Js, _ = MK.fill_invalid(Js, valid, OBJ, queries, a); hinfo[sd] = 'tracked'
+            if a.depenetrate > 0:
+                Js, _ = MK.depenetrate(Js, OBJ, queries, a.table_z, a.depenetrate, disc)
+        J[sd] = Js
+    if a.hand_sep > 0 and all(v == 'tracked' for v in hinfo.values()):
+        off, _ = MK.separate_hands(J, {sd: Hn[f'valid_{sd}'].astype(bool) for sd in MK.SIDES},
+                                   {sd: Hn[f'measured_{sd}'].astype(bool) for sd in MK.SIDES}, a.hand_sep, a.lead_in, a.lead_in_speed / a.fps)
+        for sd in MK.SIDES:
+            J[sd] = J[sd] + off[sd][:, None, :]
+            if a.depenetrate > 0:
+                J[sd], _ = MK.depenetrate(J[sd], OBJ, queries, a.table_z, a.depenetrate, disc)
+    info = dict(plane_inlier_frac=round(float(frac), 3), plane_rms_mm=round(float(rms) * 1000, 2), support_ok=support_ok,
+                support_fallback=fallback, fallback_lift_cm=np.round(lifted * 100, 2).tolist(), bottoms_cm=np.round(h * 100, 2).tolist(),
+                snap_cm=np.round(shifts * 100, 2).tolist(), hands=hinfo, disc=np.round(disc, 3).tolist())
+    return OBJ, J, T_tab, info
+
+
+def a3prep_episode(a, ep):
+    """O (oracle_poses.py --xform X*_geom) and P, each without and with S2: stage (a)+(b) -> npz for leak_settle.py."""
+    import refine
+    XF.kit(a.kit); t0 = time.time(); W = f'{a.work}/a3/ep{ep}'; os.makedirs(W, exist_ok=True)
+    pd = f'{a.perc}/ep{ep}'; ot3 = a.oracle_t3 or a.t3
+    if not os.path.exists(f'{W}/O_raw/poses.npz'):
+        cmd = [sys.executable, '-I', f'{REPO}/pipeline/oracle_poses.py', str(ep), pd, f'{W}/O_raw', '--meshes', a.lib, '--xform', a.xgeom,
+               '--t3', ot3, '--kit', a.kit, '--depth', f'{pd}/depth0.npy']
+        rr = subprocess.run(cmd, capture_output=True, text=True)
+        open(f'{W}/O_raw.log', 'w').write(' '.join(cmd) + '\n' + rr.stdout[-20000:] + rr.stderr[-5000:])
+        if rr.returncode:
+            raise RuntimeError(f'oracle_poses ep{ep}: {rr.stderr[-800:]}')
+    import mkref as MK
+    KR = MK.rectified_K(f'{ot3}/calib.json'); depth0 = np.load(f'{pd}/depth0.npy')
+    hf, _, KRh = hands(pd); Hn = np.load(hf)
+    out = dict(episode=ep, KR_vs_hands_max=float(np.abs(KR - KRh).max()), hands_file=os.path.basename(hf), arms={})
+    s2 = types.SimpleNamespace(s2_advance=0.545, s2_interp='se3', s2_hold_f0=False)
+    for arm, src in (('P', pd), ('O', f'{W}/O_raw')):
+        Pz = np.load(f'{src}/poses.npz'); W_C = Pz['world_T_cam'].astype(np.float64)
+        names = [k[len('cam_T_'):] for k in Pz.files if k.startswith('cam_T_')]
+        names = XF.names_of(a.t3, ep) if sorted(names) == sorted(XF.names_of(a.t3, ep)) else sys.exit(f'ep{ep}: names {names}')
+        camT = {n: Pz[f'cam_T_{n}'].astype(np.float64) for n in names}
+        for var in ('base', 'S2'):
+            if var == 'S2':
+                Ow, _ = refine.step_S2(s2, [np.einsum('tij,tjk->tik', W_C, camT[n]) for n in names])
+                cT = {n: np.einsum('tij,tjk->tik', np.linalg.inv(W_C), Ow[b]) for b, n in enumerate(names)}
+            else:
+                cT = camT
+            OBJ, J, T_tab, info = mkref_ab(W_C, cT, names, depth0, KR, a.lib, Hn)
+            raw = np.stack([np.einsum('tij,tjk->tik', W_C, cT[n]) for n in names], 1)
+            np.savez(f'{W}/{arm}_{var}.npz', names=np.array(names), raw_world=raw, OBJ_a=OBJ, J_left=J['left'], J_right=J['right'],
+                     T_tab=T_tab, table_z=MKA['table_z'])
+            out['arms'][f'{arm}_{var}'] = info
+    out['seconds'] = round(time.time() - t0, 1)
+    print(f'ep{ep}: a3prep ' + ', '.join(f'{k} snap {v["snap_cm"]} ok {v["support_ok"]}' for k, v in out['arms'].items()) + f' ({out["seconds"]} s)', flush=True)
+    return out
+
+
+def scored(names, M, gt, H, REGk, REGg):  # M (T,B,4,4) lib frames, any world -> lib and * scores
+    tr = {n: M[:, b] for b, n in enumerate(names)}
+    return dict(lib=XF.score_track(names, tr, gt, H, REGk), star=XF.score_track(names, tr, gt, H, REGg))
+
+
+A3_STAGES = ('raw', 'a', 'ik', 'settle')
+
+
+def a3_episode(a, ep):
+    D = load(a, ep); W = f'{a.work}/a3/ep{ep}'; t0 = time.time()
+    prep = json.load(open(f'{a.work}/a3prep.json'))['episodes'][str(ep)]
+    r = dict(episode=ep, objects=D.names, arms={}, prep=prep['arms'])
+    for arm in ('P', 'O'):
+        for var in ('base', 'S2'):
+            Z = np.load(f'{W}/{arm}_{var}.npz'); names = [str(x) for x in Z['names']]; assert names == D.names
+            Zs = np.load(f'{W}/{arm}_{var}_settle.npz')
+            st = {'raw': scored(names, Z['raw_world'], D.gt, D.H, D.REGk, D.REGg), 'a': scored(names, Z['OBJ_a'], D.gt, D.H, D.REGk, D.REGg)}
+            st['ik'] = dict(st['a'], note='E2S + contacts leave object poses unchanged (checked on stored references, a3 stored)')
+            st['settle'] = scored(names, Zs['OBJ_settle'], D.gt, D.H, D.REGk, D.REGg)
+            st['settle_stats'] = json.loads(str(Zs['stats']))
+            r['arms'][f'{arm}_{var}'] = st
+    def g(k, stg, conv='star'):
+        return r['arms'][k][stg][conv]['AUC']
+    r['delta_star'] = {arm: dict(a=round(g(f'{arm}_base', 'a') - g(f'{arm}_base', 'raw'), 4),
+                                 settle=round(g(f'{arm}_base', 'settle') - g(f'{arm}_base', 'a'), 4),
+                                 S2=round(g(f'{arm}_S2', 'settle') - g(f'{arm}_base', 'settle'), 4),
+                                 chain=round(g(f'{arm}_S2', 'settle') - g(f'{arm}_base', 'raw'), 4)) for arm in ('P', 'O')}
+    r['delta_star_obj'] = {arm: {n: dict(a=round(r['arms'][f'{arm}_base']['a']['star']['per_obj_AUC'][n] - r['arms'][f'{arm}_base']['raw']['star']['per_obj_AUC'][n], 4),
+                                        settle=round(r['arms'][f'{arm}_base']['settle']['star']['per_obj_AUC'][n] - r['arms'][f'{arm}_base']['a']['star']['per_obj_AUC'][n], 4),
+                                        S2=round(r['arms'][f'{arm}_S2']['settle']['star']['per_obj_AUC'][n] - r['arms'][f'{arm}_base']['settle']['star']['per_obj_AUC'][n], 4))
+                                 for n in D.names} for arm in ('P', 'O')}
+    r['seconds'] = round(time.time() - t0, 1)
+    print(f'ep{ep}: * O raw {g("O_base", "raw"):.4f} a {g("O_base", "a"):.4f} settle {g("O_base", "settle"):.4f} S2 {g("O_S2", "settle"):.4f} | '
+          f'P raw {g("P_base", "raw"):.4f} a {g("P_base", "a"):.4f} settle {g("P_base", "settle"):.4f} S2 {g("P_S2", "settle"):.4f}', flush=True)
+    return r
+
+
+def verdict(d, n_total=None):
+    """PLAN §4 reference-level rule on per-episode deltas: leaks (mean >= +0.01, >= 12/20 positive), truth worse (the
+    same, negative), no leak (|mean| < 0.005), else inconclusive. 12/20 scales to 0.6 n for fewer episodes."""
+    d = np.asarray(d, float); n = len(d); need = int(np.ceil(0.6 * n)); m = float(d.mean())
+    pos, neg = int((d > 0).sum()), int((d < 0).sum())
+    v = ('leaks' if m >= 0.01 and pos >= need else 'truth worse / construction defect' if m <= -0.01 and neg >= need
+         else 'no leak' if abs(m) < 0.005 else 'inconclusive')
+    return dict(n=n, mean=round(m, 4), pos=pos, neg=neg, zero=int(n - pos - neg), min=round(float(d.min()), 4), max=round(float(d.max()), 4), verdict=v)
+
+
+def a3_summary(res):
+    out = {}
+    for arm in ('P', 'O'):
+        out[arm] = {k: verdict([r['delta_star'][arm][k] for r in res]) for k in ('a', 'settle', 'S2', 'chain')}
+        out[arm]['R_star_mean'] = {f'{var}:{stg}': round(float(np.mean([r['arms'][f'{arm}_{var}'][stg]['star']['AUC'] for r in res])), 4)
+                                   for var in ('base', 'S2') for stg in A3_STAGES}
+        out[arm]['R_lib_mean'] = {f'{var}:{stg}': round(float(np.mean([r['arms'][f'{arm}_{var}'][stg]['lib']['AUC'] for r in res])), 4)
+                                  for var in ('base', 'S2') for stg in A3_STAGES}
+    # PLAN §4 action rule for L4: a stage that costs >= 0.02 on O (per object) in >= 3 episodes
+    out['O_stage_costs_ge_0p02'] = {k: [(r['episode'], n) for r in res for n, d in r['delta_star_obj']['O'].items() if d[k] <= -0.02]
+                                    for k in ('a', 'settle', 'S2')}
+    return out
+
+
+def ref_track(parquet, warm=0):
+    import pyarrow.parquet as pq
+    t = pq.read_table(parquet, columns=['object_body_names', 'object_body_position', 'object_body_wxyz'])
+    names = [str(x) for x in t.column('object_body_names')[0].as_py()]
+    pos = np.array(t.column('object_body_position')[0].as_py(), float)[warm:]; q = np.array(t.column('object_body_wxyz')[0].as_py(), float)[warm:]
+    M = np.repeat(np.eye(4)[None, None], len(pos), 0).repeat(len(names), 1)
+    M[..., :3, :3] = Rot.from_quat(q[..., [1, 2, 3, 0]].reshape(-1, 4)).as_matrix().reshape(len(pos), len(names), 3, 3); M[..., :3, 3] = pos
+    return names, M
+
+
+def a3_stored(a):
+    """Stored real references (older perception and code) where local: loaded (mkref a+b) / E2S (IK + contacts) /
+    processed (contact retarget, rest_settle when the run set it) / grasp lock (the trained reference). P only."""
+    import glob
+    XF.kit(a.kit); out = []
+    for e in json.load(open(a.stored)):
+        ep = int(e['ep']); D = load(a, ep); rows = {}
+        for stage, pat, warm in (('loaded', f'{e["tree"]}/loaded/*/*/*.parquet', 10), ('e2s', f'{e["tree"]}/e2s_reference.parquet', 0),
+                                 ('processed', f'{e["tree"]}/processed/*/*/*.parquet', 0), ('glock', f'{e.get("glock", "-")}/processed/*/*/*.parquet', 0)):
+            fs = sorted(glob.glob(pat))
+            if stage == 'glock':
+                fs = [f for f in fs if f.endswith('ref_gl_ilc.parquet')] or fs
+            if not fs:
+                continue
+            names, M = ref_track(fs[0], warm)
+            assert names == D.names, (names, D.names)
+            N = min(len(M), D.N)
+            if len(M) != D.N:
+                rows[f'{stage}_frames'] = int(len(M))
+            gt = {n: D.gt[n][:N] for n in names}
+            rows[stage] = scored(names, M[:N], gt, D.H, D.REGk, D.REGg); rows[stage]['file'] = fs[0]; rows[f'_{stage}'] = M[:N]
+        if '_loaded' in rows and '_e2s' in rows:
+            rows['loaded_vs_e2s_max_cm'] = round(float(np.abs(rows['_loaded'][..., :3, 3] - rows['_e2s'][..., :3, 3]).max() * 100), 4)
+        if '_loaded' in rows and '_processed' in rows:
+            rows['loaded_vs_processed_max_cm'] = round(float(np.abs(rows['_loaded'][..., :3, 3] - rows['_processed'][..., :3, 3]).max() * 100), 4)
+        out.append(dict(ep=ep, run=e['run'], **{k: v for k, v in rows.items() if not k.startswith('_')}))
+        print(f'stored ep{ep} {e["run"]}: ' + ', '.join(f'{k} {v["star"]["AUC"]:.4f}' for k, v in rows.items() if isinstance(v, dict) and 'star' in v), flush=True)
+    return out
+
+
+def a6_check(a):
+    F = json.load(open(a.frames_check)); s = F['summary']
+    return dict(source=os.path.abspath(a.frames_check), source_md5=md5(a.frames_check), pass_flags=s['pass'], all_pass=all(s['pass'].values()),
+                a1_mocap_scan_min=s['a1_min'], a2_mocap_Xkit_min=s['a2_min'], a3_mocap_Xgeom_lib_mean=s['a3_mean'], a3_min=s['a3_min'],
+                a4_round_trip_max_abs=s['a4_round_trip_max_abs'], b1_two_ways_max_abs=s['b1_max_abs_delta'], b2_cup_spin_max_abs=s['b2_max_abs_delta'],
+                b1b_budget_scan_max_abs=s['b1b_budget_scan_max_abs_delta'], rule=dict(a1_a2='>= 0.9995 (1.000)', b1_b2='<= 0.002'))
+
+
+# ---------------- a7: hands-free settle of the mocap rest configurations (prep here, physics in leak_settle.py)
+CARVES = {2: 'ev01', 11: 'ev10', 12: 'ev14', 13: 'ev14', 24: 'ev25', 27: 'ev28', 31: 'ev30'}   # meshes/carve/<eval twin>
+SNAP_MAX, REST_MIN = 0.02, 10
+
+
+def a7_assets(a):
+    """Simulator assets (make_assets.py, placeholder 0.3 kg): lib = library_v3; lib+carve = library_v3 with the eval
+    twin's placement-carve pieces (meshes/carve/ev*); scan = the public scans (boards and sweeper: their
+    _collision.glb), the scanlib recipe of ops/jobs/physics_arms.sh."""
+    A = f'{a.work}/a7/assets'; os.makedirs(A, exist_ok=True); mk = f'{REPO}/pipeline/make_assets.py'; out = {}
+
+    def make(tag, lib, extra=()):
+        d = f'{A}/{tag}'
+        if not os.path.exists(f'{d}/urdf'):
+            subprocess.run([sys.executable, '-I', mk, lib, d, *extra], check=True, capture_output=True)
+        out[tag] = d
+    make('lib', a.lib)
+    for c in sorted(set(CARVES.values())):
+        make(f'lib_{c}', a.lib, ('--pieces', f'{REPO}/meshes/carve/{c}'))
+    sl = f'{A}/scanlib_src'; os.makedirs(sl, exist_ok=True)
+    for n in sorted(os.listdir(f'{a.t3}/mesh')):
+        f = f'{a.t3}/mesh/{n}/{n}.glb'
+        f = f if os.path.exists(f) else f'{a.t3}/mesh/{n}/{n}_collision.glb'
+        if os.path.exists(f) and n != 'wooden_spoon' and not os.path.lexists(f'{sl}/{n}.glb'):
+            os.symlink(os.path.realpath(f), f'{sl}/{n}.glb')
+    make('scan', sl)
+    return out
+
+
+def rest_configs(D):
+    """Mocap frames where every object rests (no true motion, refine thresholds) for >= REST_MIN frames: frame 0, then the
+    middle of each such segment that differs from the last kept one (> 1 cm or > 5 deg for some object). A
+    configuration with an object > 2 cm above the table and not on another object (held in the air) is dropped."""
+    from scipy.spatial import cKDTree
+    N = D.N; mv = np.zeros(N, bool)
+    for s, n in enumerate(D.names):
+        mv |= true_motion(D.gt[n], D.H[s]['anchor'])[0]
+    import refine
+    cand = [0] + [int((s0 + e0 - 1) // 2) for s0, e0 in refine.runs(~mv) if e0 - s0 >= REST_MIN and (s0 + e0 - 1) // 2 > 0]
+    V = {n: D.H[s]['mesh'][0][::5] for s, n in enumerate(D.names)}
+    world = lambda n, t: V[n] @ D.gt[n][t][:3, :3].T + D.gt[n][t][:3, 3]           # noqa: E731
+    z_t = min(world(n, 0)[:, 2].min() for n in D.names)                            # the table: lowest frame-0 bottom
+    keep, dropped = [], []
+    for t in cand:
+        if keep and all(np.linalg.norm(D.gt[n][t][:3, 3] - D.gt[n][keep[-1]][:3, 3]) < 0.01 and
+                        XF.rot_deg(D.gt[n][t][:3, :3] @ D.gt[n][keep[-1]][:3, :3].T) < 5 for n in D.names):
+            continue
+        ok = True
+        for n in D.names:
+            P = world(n, t); low = P[P[:, 2] < P[:, 2].min() + 0.005]
+            if P[:, 2].min() - z_t <= SNAP_MAX:
+                continue
+            if not any(cKDTree(world(m, t)).query(low)[0].min() < 0.01 for m in D.names if m != n):
+                ok = False
+        (keep if ok else dropped).append(t)
+    return keep, dropped, z_t
+
+
+def a7prep_episode(a, ep):
+    D = load(a, ep); W = f'{a.work}/a7/ep{ep}'; os.makedirs(W, exist_ok=True)
+    assets = json.load(open(f'{a.work}/a7/assets.json'))
+    keep, dropped, z_t = rest_configs(D)
+    c = np.mean([D.gt[n][0][:3, 3] for n in D.names], 0)
+    T_tab = np.eye(4); T_tab[:3, 3] = [-c[0], -c[1], MKA['table_z'] - z_t]           # mocap z is up (gravity)
+    geoms = {'lib': assets['lib'], 'scan': assets['scan']}
+    if ep in CARVES:
+        geoms['lib_carve'] = assets[f'lib_{CARVES[ep]}']
+    r = dict(episode=ep, objects=D.names, frames=keep, dropped_held=dropped, table_mocap_z=round(float(z_t), 4), geoms={})
+    import trimesh
+    for g, A in geoms.items():
+        Xr = {n: (np.eye(4) if g == 'scan' else D.Xg[n]) for n in D.names}           # scan frames, or lib frames by X*_geom
+        Cf = np.stack([np.stack([T_tab @ D.gt[n][t] @ Xr[n] for n in D.names]) for t in keep])
+        vis = {n: np.asarray(trimesh.load(f'{A}/mesh/{n}/{n}.glb', force='mesh').vertices) for n in D.names}
+        h = np.array([(vis[n] @ Cf[0, b, :3, :3].T + Cf[0, b, :3, 3])[:, 2].min() - MKA['table_z'] for b, n in enumerate(D.names)])
+        snap = np.where(np.abs(h) <= SNAP_MAX, -h, 0.0); Cf[:, :, 2, 3] += snap[None]  # mkref's per-object snap (frame 0)
+        f = f'{W}/{g}.npz'
+        np.savez(f, names=np.array(D.names), configs=Cf, frames=np.array(keep), assets=A)
+        r['geoms'][g] = dict(npz=f, assets=A, f0_bottom_cm=np.round(h * 100, 2).tolist(), snap_cm=np.round(snap * 100, 2).tolist())
+    print(f'ep{ep}: rest configs {keep} (dropped as held {dropped}); geoms {list(geoms)}', flush=True)
+    return r
+
+
+def a7_read(a, eps):
+    prep = json.load(open(f'{a.work}/a7prep.json'))['episodes']; out = {}
+    for ep in eps:
+        P = prep[str(ep)]; out[str(ep)] = dict(objects=P['objects'], frames=P['frames'], dropped_held=P['dropped_held'], geoms={})
+        for g, d in P['geoms'].items():
+            f = d['npz'][:-4] + '_settle.json'
+            if not os.path.exists(f):
+                out[str(ep)]['geoms'][g] = dict(missing=f); continue
+            S = json.load(open(f)); rows = {}
+            for F, c in S['configs'].items():
+                drift = {n: c[n]['at_2s'] for n in P['objects'] if n in c}
+                ok = c['nan_at_step'] is None and len(drift) == len(P['objects']) and all(v[0] <= 1.0 and v[1] <= 5.0 for v in drift.values())
+                rows[F] = dict(at_2s=drift, peak={n: c[n]['peak'] for n in P['objects'] if n in c}, nan=c['nan_at_step'], pass_=bool(ok))
+            out[str(ep)]['geoms'][g] = dict(configs=rows, n=len(rows), n_pass=int(sum(x['pass_'] for x in rows.values())),
+                                            gate_pass=bool(rows) and all(x['pass_'] for x in rows.values()),
+                                            snap_cm=d['snap_cm'], build_sec=S.get('build_sec'), collide_shapes=S.get('collide_shapes'))
+    summ = {g: dict(eps=sum(g in v['geoms'] for v in out.values()), gate_pass=[int(e) for e, v in out.items() if v['geoms'].get(g, {}).get('gate_pass')],
+                    gate_fail=[int(e) for e, v in out.items() if g in v['geoms'] and not v['geoms'][g].get('gate_pass')])
+            for g in ('lib', 'lib_carve', 'scan')}
+    return dict(a7=out, summary=summ)
 
 
 # ---------------- driver
@@ -481,7 +812,7 @@ def _run(args):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('mode', choices=['a1', 'a2', 'a3prep', 'a3', 'a4', 'a6', 'a7'])
+    p.add_argument('mode', choices=['a1', 'a2', 'a3prep', 'a3', 'a4', 'a6', 'a7prep', 'a7'])
     p.add_argument('--perc', required=True); p.add_argument('--xgeom', required=True); p.add_argument('--xtrk', required=True)
     p.add_argument('--lib', required=True); p.add_argument('--t3', required=True); p.add_argument('--kit', required=True)
     p.add_argument('--work', required=True, help='scratch dir (must contain "oracle")'); p.add_argument('--out', required=True)
@@ -494,7 +825,9 @@ def main():
     a = p.parse_args()
     eps = guard(a)
     os.makedirs(a.work, exist_ok=True); t0 = time.time()
-    fn = dict(a1=a1_episode, a2=a2_episode, a3prep=a3prep_episode, a3=a3_episode, a4=a4_episode).get(a.mode)
+    fn = dict(a1=a1_episode, a2=a2_episode, a3prep=a3prep_episode, a3=a3_episode, a4=a4_episode, a7prep=a7prep_episode).get(a.mode)
+    if a.mode == 'a7prep':
+        json.dump(a7_assets(a), open(f'{a.work}/a7/assets.json', 'w'), indent=1)
     res = []
     if fn is not None:
         with ProcessPoolExecutor(a.jobs) as ex:
