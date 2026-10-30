@@ -282,3 +282,71 @@ PREREG leave a detail open, or B1 limits (the full forms come in the steps named
     Likely causes [H]: the dev table plane (DEVIATIONS 38: frame-0 det depth moved by VO, no per-frame refit) and the
     8 mm table band of obs_all (DEVIATIONS 37). Falsifying check: B4's clean bundle (depth-cache table plane with the
     per-frame refit) gives the same lid shell a V4 share <= 1 %. V4 is applied as pre-registered; nothing is tuned.
+
+## B5 (2026-10-30, score.py full and select.py; synthetic tests)
+
+No scan, eval output, label value or scan-derived number was seen or used for any entry below (the only reference run
+was the original `mesh_metric.ambiguity` on synthetic primitives, GT-free, strace-checked). None changes a
+pre-registered test, threshold or constant, so none goes in PREREG F. They are interpretations where SPEC or PREREG
+leave a detail open.
+
+54. **Interfaces take the Bundle.** SPEC M13 lists `evidence(mesh, obs, heldout_frames, state, sigma,
+    exclude_views=())`; the gmg form is `plan(bundle, obj, K, gen_views)` + `evidence(meshes, bundle, obj, blocks,
+    fsv)`: the same information (owned points, grids, sigma, poses) read from the bundle; `exclude_views` is the plan's
+    generator hold-out. `score_pool(...)` assembles every feature of one pool for `select.pick`.
+55. **View direction** (A.2 "frames whose view direction (object frame) lies within 8 degrees of any generator input
+    view"): the unit vector from the object's centre (median of its owned points over all frames) to the camera
+    centre inv(cam_T_obj[f]) . 0, in the object frame. Generator input views are the GEN / FUSE candidates'
+    `gen_input_frames` (or directions). The removal share is taken over the object's good frames; removed frames
+    leave the held-out sets only (fold rebuilds still train on them). The hold-out runs only when the pool holds a GEN
+    or FUSE candidate.
+56. **Fold bookkeeping.** Fold candidates are matched to the all-frames candidate by cid (cid stability across folds
+    is a producer duty: B8 / B11 name STRUCT candidates by structure, not by fitted values). A fold in which the
+    producer yields no such candidate is scored on an empty mesh: every held-out ray of that block costs 10 sigma (the
+    candidate did not exist on those training frames). A producer that cannot rebuild on a frame subset
+    (NotImplementedError) is scored in the all-frames form (`fold: fixed` on the row). Today this is the B1 HULL: its
+    fold grid needs per-frame-block hit/free votes, which obs_all and the B1 dev bundle do not hold (obs_points votes
+    per frame from the depth maps); handed to B4 (extract_joint keeps per-block votes) and B8
+    (`hull.produce(frames=...)`). [H] A fixed candidate's E is optimistic (its mesh saw the held-out block); the HULL
+    is last in the class order, so the main exposure is the tau null of A.3, which needs the HULL folds at B13.
+57. **Bootstrap frames.** Unchanged from B1 except that a block's frames are those left after the generator hold-out
+    (`kept`). A block with no held-out point is left out of R_k (nanmean) and of the replicates; a candidate with no
+    held-out point in any block has an undefined E (select ranks it +inf, flag `E_undefined`). SE_diff is the
+    population SD (ddof 0) over the 200 replicates.
+58. **Self-ambiguity copy.** `score.ambiguity` and the kit AUC helpers it calls are copied line for line (constants
+    registered with origin `kit`); `tests/test_score.py` checks the copy equals the original `mesh_metric.ambiguity` to
+    1e-9 on six synthetic meshes (`build/b5/amb_reference.py`, fixture `tests/fixtures/amb_reference.json`). It is
+    computed on the mesh as passed: callers pass the packed mesh (<= 4000 faces), which the kit decode only welds,
+    where mesh_metric used the decoded one. "Trusted balls only" (A.3 V5): the caller supplies the ball-free
+    `base_mesh` with each candidate; the ambiguity uses the mesh with balls only if the object's balls are trusted
+    (B.4), else the base mesh (flag `amb_includes_untrusted_balls` if no base mesh was supplied). No start that stays a
+    flip (amb infinite): flip_units 10^6 (safest), not flip-risk. The kit symmetry is read from the kit's
+    `config/tracks.json` (role kit; kit metadata).
+59. **obs_flip_margin** (diagnostic, SPEC section 10; not used by S1): ICP moves 3000 owned points (seed 0) onto 3000
+    surface samples of the candidate (seed 101) from the identity start and the kit's 24 PCA starts; the residual is
+    the mean observed-to-model distance (the owned points cover one side, so a model-to-observed term would charge
+    unseen surface alike for every start); margin = best flipped (> 90 deg, symmetry-aware) minus the identity-start
+    residual, mm.
+60. **select.pick details.** (i) A.5 leaves full ties (equal on all five keys) unordered: best = min (E, cid) and a
+    sixth key, the cid string, make the result independent of the input order (the B5 pass condition "the tie order
+    is deterministic"). (ii) V5 "feasible" = passing V1-V4; a candidate without an ambiguity counts as neither risky
+    nor safe for V5 and ranks last on the flip key. (iii) V3 counts only when applied (tau set; before B13 it is
+    reported, `not_applied`). (iv) TRACK_FAIL and IDENTITY_SWAP go straight to the ladder's PRIOR_GEN / PRIOR_PUBLIC
+    (SPEC 13 names them in rungs 3-4; no S1 pick on a broken track). (v) ABSTAIN_HULL and PRIOR_GEN need a mesh that
+    passes V1 (it is shipped); PRIOR_GEN = the lowest-E GEN candidate (ties by cid); PRIOR_PUBLIC returns no cid (the
+    caller resolves it under owner decision O2). (vi) Low coverage with a feasible candidate: the Normal pick (the
+    ladder is in order), flagged `low_coverage`. (vii) A variant outside the 8-entry A.7 menu is refused.
+61. **tau_q99** (A.3): numpy's percentile with linear interpolation between order statistics (A.3 names no
+    estimator); differences that are None or not finite are dropped.
+62. **Constants added** (all generic, kit or informed as in A.6): `variant_menu_K`, `variant_menu_b_tie`,
+    `variant_v0`, `gen_view_holdout_deg` 8, `gen_view_holdout_skip_frac` 0.8, `bootstrap_block_rate` 1/3,
+    `v3_tau_percentile` 99, `amb_samples` 3000, `amb_icp_iterations` 40, `amb_icp_trim` 0.9 (kit), `amb_flip_deg` 90,
+    `class_order` and `class_order_gen_view_overlap` (informed: class order), `v5_flip_rule` (informed: V5). B1's
+    `blocks_K` = 3 stays (the A.6 default); a run's K is its variant's, recorded with the variant.
+63. **Synthetic test fixtures** (`tests/synth.py`, `tests/amb_meshes.py`): geometry chosen for the tests, not
+    constants of the gmg. The marker fixture uses balls of radius 10 mm on 25-35 mm posts; with 8 mm balls on 18-25 mm
+    posts the slab stays flip-risk [M, synthetic] (B5 notes), an early sign [H] that few small markers near the
+    surface may not lift real candidates out of V5's flip-risk; checked at B7 / B13.
+64. **Module name `select`.** It shadows the standard-library `select` if the gmg folder itself is put on sys.path
+    (running `python gmg/run_episode.py` instead of `python -m gmg.run_episode`). The gmg is always imported as a
+    package (SPEC section 7); `tests/test_select.py` checks the standard module is intact under the test invocation.
