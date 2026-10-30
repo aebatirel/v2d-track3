@@ -1,0 +1,243 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_depth_pub_ep13/cache/depth/public/ep13/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/home/user/v2d-track3/docs/research/work/depth-audit-20261030/audit/public/ep13",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/pylib",
+  "--selftest",
+  "0",
+  "--force"
+ ],
+ "time_utc": "2026-10-30T07:10:42Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "221fdb73ac1e43e3d40c0398514316f2bae9cd9e263b1ca2603ff2202c9ae7f3",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "d41382e8b5fe8982ba06173231ddee29ae7059ba",
+  "depth_audit_sha256": "e337ac7fac2a3241281514c79c57abccc2f15f53cec9d454748b50233e788bd8"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/poses.npz",
+   "sha256": "db6d9e1c5654b0bceb7b287e095be71081dd91cd81520ff6d11380e43afe8a3d"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_depth_pub_ep13/cache/depth/public/ep13/depths_fs0.5.npy",
+   "sha256": "000e5edc2f2cec2e9a88ecdfa3dc62035f78f7823dcef0076a688fabedab5e4b"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/hands_refined.npz",
+   "sha256": "537edd9a952a83a96d61a7e7f4410d6721957fa7dee28d966e494bffa690ea1b"
+  },
+  "meshes": {
+   "blue_cup": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+    "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   },
+   "plastic_dish_rack": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+    "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   }
+  }
+ },
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "T": 190,
+ "frames_audited": 190,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  190,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": {
+  "source": "mkref.fit_table on frame-0 depth",
+  "inlier_frac": 0.3942,
+  "ring_points": 30000,
+  "rms_mm": 0.8,
+  "candidates": [
+   {
+    "frac": 0.5246,
+    "lowest": 0.5915,
+    "tilt": 0.0,
+    "rms": 0.002
+   },
+   {
+    "frac": 0.3942,
+    "lowest": -0.0127,
+    "tilt": 1.2175,
+    "rms": 0.0008
+   }
+  ],
+  "n": [
+   -0.12453,
+   -0.77031,
+   -0.62539
+  ],
+  "d": 0.53248
+ },
+ "selftest": {
+  "frame": 0,
+  "identity": {
+   "blue_cup": {
+    "behind": 0.0,
+    "front": 0.0,
+    "med_r_cm": -1.7133405805225266e-08
+   },
+   "plastic_dish_rack": {
+    "behind": 0.0,
+    "front": 0.0,
+    "med_r_cm": -2.256995701443998e-08
+   }
+  },
+  "planted": {
+   "blue_cup:away_z+3cm": {
+    "behind": 0.1991203043271517,
+    "front": 0.7737161198288159,
+    "med_r_cm": -3.7241073126501294
+   },
+   "blue_cup:toward_z-3cm": {
+    "behind": 0.8353381448810479,
+    "front": 0.13383230865187562,
+    "med_r_cm": 3.9923676045499095
+   },
+   "blue_cup:side_x+3cm": {
+    "behind": 0.5775125961283479,
+    "front": 0.15932113497745956,
+    "med_r_cm": 2.3990376203537833
+   },
+   "plastic_dish_rack:away_z+3cm": {
+    "behind": 0.010832337714058143,
+    "front": 0.8013009425195805,
+    "med_r_cm": -2.3887076212025016
+   },
+   "plastic_dish_rack:toward_z-3cm": {
+    "behind": 0.8710663699328189,
+    "front": 0.010461948043844507,
+    "med_r_cm": 2.766689635267028
+   },
+   "plastic_dish_rack:side_x+3cm": {
+    "behind": 0.276630515525182,
+    "front": 0.14648640618035952,
+    "med_r_cm": -0.04766968294591667
+   }
+  }
+ },
+ "summary": {
+  "blue_cup": {
+   "frames": 190,
+   "valid": 190,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0006,
+    0.0163,
+    0.0873
+   ],
+   "behind_mean": 0.0291,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0083,
+    0.0754,
+    0.5782
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -2.8495,
+    -0.2122,
+    0.1184
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.3914,
+    0.882,
+    0.9601
+   ],
+   "hand_frac_mean": 0.1653,
+   "rest_frames": 5,
+   "rest_h_measured": 5,
+   "rest_h_cm_p10_p50_p90": [
+    -1.7573,
+    -1.5356,
+    -1.4295
+   ],
+   "moving_frames": 152
+  },
+  "plastic_dish_rack": {
+   "frames": 190,
+   "valid": 190,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0015,
+    0.0054,
+    0.0208
+   ],
+   "behind_mean": 0.0095,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0121,
+    0.0391,
+    0.3254
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.2035,
+    0.0721,
+    0.2306
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.6235,
+    0.7747,
+    0.9054
+   ],
+   "hand_frac_mean": 0.0246,
+   "rest_frames": 173,
+   "rest_h_measured": 70,
+   "rest_h_cm_p10_p50_p90": [
+    -1.5159,
+    -1.2377,
+    -0.8745
+   ],
+   "moving_frames": 0
+  }
+ },
+ "seconds": 25.4
+}

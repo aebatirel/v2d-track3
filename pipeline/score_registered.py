@@ -30,7 +30,8 @@ p.add_argument('--t3', default='/content/t3')
 p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
 p.add_argument('--out', default=None)
 p.add_argument('--n_points', type=int, default=1000)
-p.add_argument('--per_frame', help='also save per-frame, per-object position error (cm) and ADD (cm) after the alignment')
+p.add_argument('--per_frame', help='also save per-frame, per-object position error (cm), plain ADD (cm) and the '
+               'symmetric ADD used by the AUC (<src>_adds_cm: cups any spin, lid 180 deg) after the alignment')
 a = p.parse_args()
 sys.path.insert(0, a.kit)
 from v2dlb import track3_pose as T3
@@ -137,6 +138,9 @@ def score(ach):
                    add_cm=np.stack([np.linalg.norm((pts[s] @ T3._rotation_matrix(ach[:, 0, s, 3:]).transpose(0, 2, 1) + ach[:, 0, s, None, :3])
                                                    - (pts[s] @ T3._rotation_matrix(ref[:, 0, s, 3:]).transpose(0, 2, 1) + ref[:, 0, s, None, :3]),
                                                    axis=-1).mean(-1) for s in range(B)], 1) * 100))
+    if a.per_frame:                                                    # symmetric ADD (the AUC's errors), per frame
+        PF[-1]['adds_cm'] = np.stack([T3._symmetry_point_errors(ach[:, :, s], ref[:, :, s], pts[s], axes[s], orders[s])[:, 0]
+                                      for s in range(B)], 1) * 100
     return out
 
 

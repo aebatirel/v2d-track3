@@ -1,0 +1,243 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_depth_pub_ep24/cache/depth/public/ep24/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/home/user/v2d-track3/docs/research/work/depth-audit-20261030/audit/public/ep24",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/pylib",
+  "--selftest",
+  "0",
+  "--force"
+ ],
+ "time_utc": "2026-10-30T07:12:47Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "221fdb73ac1e43e3d40c0398514316f2bae9cd9e263b1ca2603ff2202c9ae7f3",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "d41382e8b5fe8982ba06173231ddee29ae7059ba",
+  "depth_audit_sha256": "e337ac7fac2a3241281514c79c57abccc2f15f53cec9d454748b50233e788bd8"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_depth_pub_ep24/cache/depth/public/ep24/depths_fs0.5.npy",
+   "sha256": "cc4b2804f6a373e46dc1f03014c9b01010a96fef954117a2adbb596ed2fe01ca"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/hands_refined.npz",
+   "sha256": "6b52a50aa3b855d4ee207cfdf603884932f0ccdb3143f7b74cd7aa55d3d5938c"
+  },
+  "meshes": {
+   "wooden_piece_1": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb",
+    "sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79"
+   },
+   "wooden_piece_2": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_2.glb",
+    "sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+   }
+  }
+ },
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "T": 275,
+ "frames_audited": 275,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  275,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": {
+  "source": "mkref.fit_table on frame-0 depth",
+  "inlier_frac": 0.4892,
+  "ring_points": 30000,
+  "rms_mm": 0.38,
+  "candidates": [
+   {
+    "frac": 0.4892,
+    "lowest": -0.0129,
+    "tilt": 0.0,
+    "rms": 0.0004
+   },
+   {
+    "frac": 0.4274,
+    "lowest": 0.5973,
+    "tilt": 0.9206,
+    "rms": 0.0022
+   }
+  ],
+  "n": [
+   -0.10667,
+   -0.72366,
+   -0.68187
+  ],
+  "d": 0.52921
+ },
+ "selftest": {
+  "frame": 0,
+  "identity": {
+   "wooden_piece_1": {
+    "behind": 0.0,
+    "front": 0.0,
+    "med_r_cm": -1.8276458124688588e-08
+   },
+   "wooden_piece_2": {
+    "behind": 0.0,
+    "front": 0.0,
+    "med_r_cm": -1.568123408901556e-08
+   }
+  },
+  "planted": {
+   "wooden_piece_1:away_z+3cm": {
+    "behind": NaN,
+    "front": NaN,
+    "med_r_cm": NaN
+   },
+   "wooden_piece_1:toward_z-3cm": {
+    "behind": 0.9539781932828305,
+    "front": 0.0,
+    "med_r_cm": 2.2890523150957076
+   },
+   "wooden_piece_1:side_x+3cm": {
+    "behind": 0.0003961180431768667,
+    "front": 0.00267379679144385,
+    "med_r_cm": -0.2478592558357806
+   },
+   "wooden_piece_2:away_z+3cm": {
+    "behind": NaN,
+    "front": NaN,
+    "med_r_cm": NaN
+   },
+   "wooden_piece_2:toward_z-3cm": {
+    "behind": 0.9777352472089315,
+    "front": 0.0,
+    "med_r_cm": 2.1800294672242035
+   },
+   "wooden_piece_2:side_x+3cm": {
+    "behind": 0.13249348392701998,
+    "front": 0.00047060527077903274,
+    "med_r_cm": -0.29076605768325603
+   }
+  }
+ },
+ "summary": {
+  "wooden_piece_1": {
+   "frames": 275,
+   "valid": 275,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0,
+    0.0035,
+    0.0231
+   ],
+   "behind_mean": 0.0099,
+   "share_behind_gt_0p2": 0.0073,
+   "front_p10_p50_p90": [
+    0.0,
+    0.0,
+    0.0043
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.0958,
+    0.199,
+    0.3627
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.6569,
+    0.8895,
+    0.9848
+   ],
+   "hand_frac_mean": 0.1842,
+   "rest_frames": 160,
+   "rest_h_measured": 138,
+   "rest_h_cm_p10_p50_p90": [
+    0.2223,
+    0.5112,
+    0.801
+   ],
+   "moving_frames": 53
+  },
+  "wooden_piece_2": {
+   "frames": 275,
+   "valid": 275,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0,
+    0.0002,
+    0.0135
+   ],
+   "behind_mean": 0.0036,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0,
+    0.0076,
+    0.6148
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -16.6031,
+    -0.0041,
+    0.1753
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.3818,
+    0.9254,
+    0.9998
+   ],
+   "hand_frac_mean": 0.0928,
+   "rest_frames": 172,
+   "rest_h_measured": 134,
+   "rest_h_cm_p10_p50_p90": [
+    -1.1576,
+    -0.8883,
+    -0.2823
+   ],
+   "moving_frames": 44
+  }
+ },
+ "seconds": 28.4
+}

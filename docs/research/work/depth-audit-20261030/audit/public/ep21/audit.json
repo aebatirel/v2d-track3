@@ -1,0 +1,239 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep21/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_depth_pub_ep21/cache/depth/public/ep21/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep21/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/home/user/v2d-track3/docs/research/work/depth-audit-20261030/audit/public/ep21",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/pylib",
+  "--selftest",
+  "0",
+  "--force"
+ ],
+ "time_utc": "2026-10-30T07:11:34Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "221fdb73ac1e43e3d40c0398514316f2bae9cd9e263b1ca2603ff2202c9ae7f3",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "d41382e8b5fe8982ba06173231ddee29ae7059ba",
+  "depth_audit_sha256": "e337ac7fac2a3241281514c79c57abccc2f15f53cec9d454748b50233e788bd8"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep21/poses.npz",
+   "sha256": "7e4dae9cc06e613f64ce3788736225a046c991ef359fd745d31225ebd8e18a8c"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_depth_pub_ep21/cache/depth/public/ep21/depths_fs0.5.npy",
+   "sha256": "f2aa07b7bbf6bd38054a45a31cabf1575da8cd3fd6756767f9f455da832a53e6"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep21/hands_refined.npz",
+   "sha256": "80d5c3fc2d1c03203f7ecc53a9c77b2915aadac448559541723638686143de39"
+  },
+  "meshes": {
+   "blue_cup": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+    "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   },
+   "water_pitcher": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+    "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2"
+   }
+  }
+ },
+ "objects": [
+  "blue_cup",
+  "water_pitcher"
+ ],
+ "T": 186,
+ "frames_audited": 186,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  186,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": {
+  "source": "mkref.fit_table on frame-0 depth",
+  "inlier_frac": 0.3591,
+  "ring_points": 30000,
+  "rms_mm": 0.36,
+  "candidates": [
+   {
+    "frac": 0.5412,
+    "lowest": 0.5943,
+    "tilt": 0.0,
+    "rms": 0.0012
+   },
+   {
+    "frac": 0.3591,
+    "lowest": -0.0093,
+    "tilt": 1.2625,
+    "rms": 0.0004
+   }
+  ],
+  "n": [
+   -0.07571,
+   -0.70489,
+   -0.70527
+  ],
+  "d": 0.53285
+ },
+ "selftest": {
+  "frame": 0,
+  "identity": {
+   "blue_cup": {
+    "behind": 0.0,
+    "front": 0.0,
+    "med_r_cm": 8.382317062682887e-09
+   },
+   "water_pitcher": {
+    "behind": 0.0,
+    "front": 0.0,
+    "med_r_cm": -1.5015821919206473e-08
+   }
+  },
+  "planted": {
+   "blue_cup:away_z+3cm": {
+    "behind": NaN,
+    "front": NaN,
+    "med_r_cm": NaN
+   },
+   "blue_cup:toward_z-3cm": {
+    "behind": 0.9486229762829321,
+    "front": 0.036860027480733616,
+    "med_r_cm": 3.3250927971677724
+   },
+   "blue_cup:side_x+3cm": {
+    "behind": 0.6379732661487858,
+    "front": 0.12485128420463293,
+    "med_r_cm": 2.6891583179364797
+   },
+   "water_pitcher:away_z+3cm": {
+    "behind": 0.07214489113709122,
+    "front": 0.7287182298944092,
+    "med_r_cm": -2.194509219291174
+   },
+   "water_pitcher:toward_z-3cm": {
+    "behind": 0.8209094297428252,
+    "front": 0.00657579468611895,
+    "med_r_cm": 2.495330347078278
+   },
+   "water_pitcher:side_x+3cm": {
+    "behind": 0.3268562644119908,
+    "front": 0.45076095311299,
+    "med_r_cm": -1.243970814814882
+   }
+  }
+ },
+ "summary": {
+  "blue_cup": {
+   "frames": 186,
+   "valid": 186,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.009,
+    0.0197,
+    0.0628
+   ],
+   "behind_mean": 0.0283,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0122,
+    0.036,
+    0.0847
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.0239,
+    0.1486,
+    0.3147
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.8327,
+    0.9109,
+    0.9828
+   ],
+   "hand_frac_mean": 0.1362,
+   "rest_frames": 149,
+   "rest_h_measured": 98,
+   "rest_h_cm_p10_p50_p90": [
+    -0.2241,
+    0.0232,
+    5.3033
+   ],
+   "moving_frames": 33
+  },
+  "water_pitcher": {
+   "frames": 186,
+   "valid": 186,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0228,
+    0.0355,
+    0.0647
+   ],
+   "behind_mean": 0.0423,
+   "share_behind_gt_0p2": 0.0054,
+   "front_p10_p50_p90": [
+    0.0168,
+    0.0387,
+    0.113
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.1666,
+    -0.0644,
+    0.2702
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.8641,
+    0.9317,
+    0.9611
+   ],
+   "hand_frac_mean": 0.0367,
+   "rest_frames": 130,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 56
+  }
+ },
+ "seconds": 38.7
+}
