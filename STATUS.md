@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~18:25 UTC: physics solver G1 PASS; owner approved G2 + G3 (≈ $14.5); physics fit v1 under a frame-0 check
+- **Solver G1** (sampling MPC inside FlashCHORD, `tools/physics_solve/`, box $1.29): jittered sim_vs_ref vs grasp lock +
+  ILC: ep2 +0.080, ep12 +0.063, ep18 −0.004, ep24 +0.005 → PASS (2 of 4 ≥ 0.03). Owner approved G2 (full-scale search on
+  ep2/ep12) and G3 (RL from the solved references); one combined box job being written (physics_solve_rl.sh).
+- **Physics fit v1** (`pipeline/phys_fit.py`): mean +0.0070 vs mocap (gate +0.005) but corrections concentrate at frame 0,
+  where the scorer aligns; the frame-0-held control is running (adopt only if it keeps ≥ +0.005).
+- Credit $33.36 (before G2/G3).
+
 ## 2026-10-30 ~17:20 UTC: physics round 2 results; physics fit (inverse dynamics) v1 being built
 - **Mass (ep2, 3 seeds):** S0 0.738 vs S1 0.898 (seed 42 was the outlier) → the mass question is now a **signal** for
   plausible masses (+0.065 mean over 4 episodes). Seeds sharing one reference agree to 0.001; references built on
