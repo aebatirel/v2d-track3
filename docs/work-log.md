@@ -4986,3 +4986,12 @@ Advice given:
     Phase 2), mechanics GO with F1 (Grounding DINO preload + HF_HUB_OFFLINE so no arm silently runs without grounding)
     and F2 (check the public data before any download). Fix + re-verify workflow wf_db1451a5-6c1 running; launch after
     its GO.
+- ~18:45 UTC **Phase 1 launched** after the fix workflow's GO (wf_db1451a5-6c1; fixes verified byte for byte in
+  87fc869): integrity F1 (run id must be refused by the guard), F3 (no mocap-score files in the bundle tars), B8
+  guard (perc2scan / perc2gf refused), mechanics F1 (Grounding DINO loaded once with retries, all arms HF_HUB_OFFLINE;
+  NO-GDINO flagged per arm), F2 (public data checked before any download), F4 (pull timeouts, pull log watched).
+  - 58438328 `20261030-orcP1a-87fc869` (Texas), 58438333 `-orcP1b-` (Netherlands), 58438345 `-orcP1c-` (New York),
+    RTX PRO 6000, ledger planned $2.50 each; job strings from `phase1/JOBS.txt` (episodes balanced by frames; P_o
+    repeat on the 10 twins).
+  - Credit before launch $32.58; burn now ≈ $7.6/h with orcB and the Embodiment session's psolverl box.
+  - After the run: check RESULT lines for NO-GDINO (it does not hold the box), and that tars hold no score files.
