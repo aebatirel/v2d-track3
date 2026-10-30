@@ -2,6 +2,20 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~06:20 UTC: eval-1 carve passes on the training box; pack-7 candidate built (NOT uploaded); plan written
+- **Eval 1 (placement carve, standard learner):** seed 43 0.931 ± 0.006 (10 draws, training box), seed 42 0.885 ± 0.050;
+  rule mean ≥ 0.852, sd ≤ 0.239: pass. Needs an official-evaluator confirmation (N = 20, ≈ $1.6, rule pre-registered
+  in the work log 06:20), because the training box showed 0/10 bad draws for policies the official evaluator fails
+  5/22 times. Job prepared and verified on CPU first (workflow wf_02052244-fe2).
+- **Leaderboard scoring (kit `AUC.py`):** the submitted trajectories are scored as they are, nothing is re-run. So
+  pack 6's lucky draws are banked; swaps (eval 33, eval 1) add ≈ +0.0003 to +0.0007 [estimate]. Their larger value
+  (≈ +0.007 [estimate]) appears only if the organisers re-run checkpoints at validation (unknown).
+- **Pack-7 candidate** `results/submissions/20261030-track3g-candidate/` (pack 6 + eval 33 from arm B; sha 137c8687…;
+  integrity and provenance verified). **Not uploaded; the owner decides.**
+- **Plan:** `docs/research/work/next-steps-2026-10-30/PLAN.md` (owner decisions: ask organisers about re-runs; one
+  upload, pack 8 or 7; insurance retrains only if re-runs count).
+- Spend this session: $27.27 actual of $45. 0 boxes running.
+
 ## 2026-10-30 ~04:50 UTC: eval-33 candidate CONFIRMED (0.934 ± 0.008, 10 draws); eval-14 carve failed
 - **Eval 33:** arm B's checkpoint passes the pre-registered rule (needs ≥ 0.884, sd ≤ 0.137) against the packed
   policy's H5 0.854 ± 0.137. Candidate for the next pack; **the owner decides any upload** (nothing sent).
