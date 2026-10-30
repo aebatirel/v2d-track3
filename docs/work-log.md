@@ -4852,3 +4852,15 @@ Advice given:
     URL; meshes and script hashes identical). **Not uploaded; the owner decides.**
   - First carve adopted under a pre-registered rule: placement carves work for eval 1 (pot/lid overlap), not for
     eval 14 (cup into rack).
+- ~09:40 UTC owner: "how many upload limits do we have and when does it renew? Also maybe we can try the public episode
+  real refs to see if we can really copy them. intentionally go for the hard ones. go test in 3-4 ones that are similar
+  to the hardest eval episodes."
+  - Upload allowance (kit dry run, 09:38): 4 left today on AUC / SP-SR / MP-SR / RPE / MPPE, 5 on CD-O; Kaggle's
+    daily cap is 5 per board, reset at 00:00 UTC. Written policy (kit `config/tracks.json`): 5 per week, unlimited in
+    the final 3 days (freeze 4 Nov 2026 5 p.m. EST); 2 final picks. Our AUC uploads in the last 7 days: 7 (24 Oct 1,
+    25 Oct 2, 26 Oct 3, 30 Oct 1), already above the written weekly figure; Kaggle did not block them.
+  - Oracle-twin experiment (diagnostic, public only): workflow wf_4f80bdc9-7d2 designs, builds and reviews on CPU a job
+    that trains the current recipe on references built from the mocap object motion for 3-4 public twins of the hardest
+    eval episodes (candidates ep11/eval 10, ep12/eval 14, ep31/eval 30, ep24/eval 25), in their own refs/<oracle> paths,
+    and compares rollout-vs-mocap AUC with the same recipe on our perceived references. Readings pre-registered before
+    any GPU result; GPU ≤ ≈ $10 on the owner's request.
