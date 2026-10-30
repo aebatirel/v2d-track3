@@ -267,5 +267,9 @@ All three mocks finished with rc 0.
   - Results are in `results/hard_ab/ep31/{mcks-s42,oracle_mcks-s42}`.
   - The first std mock run caught a bug, fixed before this record: `PAIRS` was not passed to `hard_ab.sh`, which would
     have trained its default ep24 / ep18 pairs.
-- **Existing callers** (3-field PAIRS, no PERC field): `cpu/mock/equiv.sh` ran the old (HEAD) and the new
-  `glock_public.sh` / `hard_ab.sh` in the same mock. The result is in the work log entry of 30 Oct ~13:00 UTC.
+- **Existing callers** (3-field PAIRS, no PERC field): `cpu/mock/equiv.sh` ran `glock_public.sh` and `hard_ab.sh`
+  from be2b2a9 (before these hooks) and from the working tree, in the same mock (grasp-lock eps 11 + 13; standard
+  learner ep11).
+  - Identical: every reference-stage, training and evaluation call (arguments and paths), every file written, and
+    every job-log line.
+  - The one exception: the final summary line, which gains the additive `ref_auc` / `floor_auc` keys.
