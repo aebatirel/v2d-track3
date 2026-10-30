@@ -112,3 +112,18 @@ Readings:
   holds = each episode's S1 CPU grasp-lock JSON (hand, hold_from..end); primary squeeze **0.3 rad** on finger MCP_FE /
   PIP / DIP and thumb MCP_FE / IP of the holding hand, ramped over 5 frames; 0.15 rad is run as a secondary readout and
   not used for the rule. Baseline = the plain P copy above (0.323 / 0.617 / 0.331 / 0.194).
+
+### [H-squeeze] result (30 Oct ~12:35 UTC, CPU) [M] — falsified
+Squeeze 0.3 rad vs the plain P copy: ep2 0.332 vs 0.323 (+0.009), ep12 0.597 vs 0.617 (−0.019), ep18 0.351 vs 0.331
+(+0.019), ep24 0.196 vs 0.194 (+0.002) → no episode gains ≥ 0.05: **falsified**. Secondary 0.15 rad: 0.312 / 0.619 /
+0.180 / 0.201. Objects still leave at the same frames. Why (ep12, `mano_right_joints` around the cup axis, our
+reference): at f30–36 the perceived thumb is ~145–148° from the fingers around the cup (opposition) with the tips at the
+cup's 5 cm radius, but during the carry the perceived grip dissolves (f39 117°, f42 83°, f48 −86°; ring/pinky tips 7–8
+cm from the axis) and the index tip sits inside the cup's wall radius: hand-tracking error around an occluding
+object. Grip force cannot fix a grip that is not geometrically there.
+
+- [H-lock] (pre-registered 12:40 UTC, before running): the same P human hand with `pipeline/grasp_lock.py` (EMB = the
+  human hand; frozen GL_ARGS of the recipe arms; the copied human grasp snapped to the surface and held rigidly in the
+  object frame during each hold; no ILC) carries the objects: falsified unless zero-action sim_vs_ref beats the plain P
+  copy by ≥ 0.05 on at least 3 of 4 episodes. Also compared (no rule) with the Sharpa grasp-lock S1 CPU numbers
+  (0.141 / 0.600 / 0.279 / 0.203).
