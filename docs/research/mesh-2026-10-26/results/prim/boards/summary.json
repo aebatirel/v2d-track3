@@ -1,0 +1,192 @@
+{
+ "code": "docs/research/mesh-2026-10-26/scripts/prim_boards.py",
+ "code_sha1": "2643471f41559373efaf81413d7857d9e58cc8f9",
+ "command": "prim_boards.py run --obs_dir obs_all --out prim/boards/final (variants occ,occ_d2,rect,occ_nm); mesh_metric.py run --workers 1 --manifest final/manifest_score.tsv",
+ "selection": {
+  "t_default_mm": 8.797727729121917,
+  "selection": {
+   "wooden_piece_1": {
+    "episode": "24",
+    "variant": "occ_d2",
+    "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_1/ep24_occ_d2.glb",
+    "fid_sum_mm": 1.835,
+    "obs": "obs_all/ep23_wooden_piece_1.npz,obs_all/ep24_wooden_piece_1.npz"
+   },
+   "wooden_piece_2": {
+    "episode": "23",
+    "variant": "occ_d2",
+    "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/boards/final/wooden_piece_2/ep23_occ_d2.glb",
+    "fid_sum_mm": 1.968,
+    "obs": "obs_all/ep23_wooden_piece_2.npz,obs_all/ep24_wooden_piece_2.npz"
+   }
+  }
+ },
+ "scores": {
+  "boards/wooden_piece_1/ep24_occ_d2": {
+   "cdo_eval": 0.1893,
+   "add_eval": 3.31,
+   "flips_all": 1,
+   "n_seeds": 6,
+   "cdo_all": 0.18988333333333332,
+   "add_all": 30.959999999999997,
+   "amb_mm": 2.5215055919911395
+  },
+  "boards/wooden_piece_2/ep23_occ_d2": {
+   "cdo_eval": 0.2291,
+   "add_eval": 78.69,
+   "flips_all": 3,
+   "n_seeds": 6,
+   "cdo_all": 0.2275166666666667,
+   "add_all": 56.61833333333334,
+   "amb_mm": 2.611422194551979
+  },
+  "boards/wooden_piece_1/ep23_occ": {
+   "cdo_eval": 0.7914,
+   "add_eval": 148.2,
+   "flips_all": 6,
+   "n_seeds": 6,
+   "cdo_all": 0.76995,
+   "add_all": 151.975,
+   "amb_mm": 1.707990485595282
+  },
+  "boards/wooden_piece_1/ep23_occ_d2": {
+   "cdo_eval": 0.7857,
+   "add_eval": 147.65,
+   "flips_all": 6,
+   "n_seeds": 6,
+   "cdo_all": 0.7653500000000001,
+   "add_all": 147.76166666666668,
+   "amb_mm": 1.6960281999968658
+  },
+  "boards/wooden_piece_1/ep23_rect": {
+   "cdo_eval": 0.4225,
+   "add_eval": 164.76,
+   "flips_all": 5,
+   "n_seeds": 6,
+   "cdo_all": 0.41606666666666664,
+   "add_all": 110.88,
+   "amb_mm": 1.7264327359581837
+  },
+  "boards/wooden_piece_1/ep23_occ_nm": {
+   "cdo_eval": 0.7914,
+   "add_eval": 148.2,
+   "flips_all": 6,
+   "n_seeds": 6,
+   "cdo_all": 0.76995,
+   "add_all": 151.975,
+   "amb_mm": 1.707990485595282
+  },
+  "boards/wooden_piece_1/ep24_occ": {
+   "cdo_eval": 0.1901,
+   "add_eval": 3.1,
+   "flips_all": 1,
+   "n_seeds": 6,
+   "cdo_all": 0.19101666666666664,
+   "add_all": 30.776666666666667,
+   "amb_mm": 2.6331441740224846
+  },
+  "boards/wooden_piece_1/ep24_rect": {
+   "cdo_eval": 0.212,
+   "add_eval": 5.98,
+   "flips_all": 1,
+   "n_seeds": 6,
+   "cdo_all": 0.21061666666666667,
+   "add_all": 32.41,
+   "amb_mm": 2.4945283758656207
+  },
+  "boards/wooden_piece_1/ep24_occ_nm": {
+   "cdo_eval": 0.1922,
+   "add_eval": 2.48,
+   "flips_all": 1,
+   "n_seeds": 6,
+   "cdo_all": 0.19578333333333334,
+   "add_all": 24.899999999999995,
+   "amb_mm": 2.5054002349761397
+  },
+  "boards/wooden_piece_2/ep23_occ": {
+   "cdo_eval": 0.2306,
+   "add_eval": 78.74,
+   "flips_all": 5,
+   "n_seeds": 6,
+   "cdo_all": 0.22885,
+   "add_all": 105.76499999999999,
+   "amb_mm": 2.6061412606251753
+  },
+  "boards/wooden_piece_2/ep23_rect": {
+   "cdo_eval": 0.2359,
+   "add_eval": 78.97,
+   "flips_all": 6,
+   "n_seeds": 6,
+   "cdo_all": 0.23458333333333334,
+   "add_all": 104.78833333333334,
+   "amb_mm": 2.55202054163182
+  },
+  "boards/wooden_piece_2/ep23_occ_nm": {
+   "cdo_eval": 0.2237,
+   "add_eval": 157.03,
+   "flips_all": 4,
+   "n_seeds": 6,
+   "cdo_all": 0.22508333333333339,
+   "add_all": 94.51166666666666,
+   "amb_mm": 2.5255075273151246
+  },
+  "boards/wooden_piece_2/ep24_occ": {
+   "cdo_eval": 0.1642,
+   "add_eval": 4.13,
+   "flips_all": 1,
+   "n_seeds": 6,
+   "cdo_all": 0.16584999999999997,
+   "add_all": 28.959999999999997,
+   "amb_mm": 2.5788506048095434
+  },
+  "boards/wooden_piece_2/ep24_occ_d2": {
+   "cdo_eval": 0.1651,
+   "add_eval": 3.8,
+   "flips_all": 1,
+   "n_seeds": 6,
+   "cdo_all": 0.16235000000000002,
+   "add_all": 28.956666666666667,
+   "amb_mm": 2.587500131834651
+  },
+  "boards/wooden_piece_2/ep24_rect": {
+   "cdo_eval": 0.1801,
+   "add_eval": 5.86,
+   "flips_all": 4,
+   "n_seeds": 6,
+   "cdo_all": 0.17875,
+   "add_all": 96.13666666666667,
+   "amb_mm": 2.491652903209059
+  },
+  "boards/wooden_piece_2/ep24_occ_nm": {
+   "cdo_eval": 0.1653,
+   "add_eval": 125.75,
+   "flips_all": 4,
+   "n_seeds": 6,
+   "cdo_all": 0.16746666666666665,
+   "add_all": 82.02166666666666,
+   "amb_mm": 2.5500051527684278
+  },
+  "library_v3/wooden_piece_1": {
+   "cdo_eval": 0.2219,
+   "add_eval": 2.39,
+   "flips_all": 0,
+   "n_seeds": 6,
+   "cdo_all": 0.22325000000000003,
+   "add_all": 2.8383333333333334,
+   "amb_mm": 3.2689658429737127
+  },
+  "library_v3/wooden_piece_2": {
+   "cdo_eval": 0.2158,
+   "add_eval": 3.56,
+   "flips_all": 0,
+   "n_seeds": 6,
+   "cdo_all": 0.2164666666666667,
+   "add_all": 3.3616666666666664,
+   "amb_mm": 2.5727757044293
+  }
+ },
+ "verdict": {
+  "wooden_piece_1": "FAIL (1/6 flips; CD-O 0.189 and ADD 3.3 within limits)",
+  "wooden_piece_2": "FAIL (CD-O 0.229 > 0.186, ADD 78.7, 3/6 flips)"
+ }
+}

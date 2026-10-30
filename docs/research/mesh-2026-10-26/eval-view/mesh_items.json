@@ -1,0 +1,178 @@
+[
+ {
+  "id": "sub_white_pot",
+  "label": "White pot",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+  "cdo": 0.437,
+  "add": 6.7,
+  "note": "library_v3 \u00b7 6 eval pair(s)"
+ },
+ {
+  "id": "sub_blue_cup",
+  "label": "Blue cup",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+  "cdo": 0.523,
+  "add": 10.0,
+  "note": "library_v3 \u00b7 5 eval pair(s)"
+ },
+ {
+  "id": "sub_plastic_dish_rack",
+  "label": "Dish rack",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+  "cdo": 0.555,
+  "add": 6.0,
+  "note": "library_v3 \u00b7 5 eval pair(s)"
+ },
+ {
+  "id": "sub_beige_cup",
+  "label": "Beige cup (eval 10)",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+  "cdo": 0.856,
+  "add": 6.5,
+  "note": "library_v3 \u00b7 1 eval pair(s)"
+ },
+ {
+  "id": "sub_mini_sweeper",
+  "label": "Mini sweeper",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb",
+  "cdo": 0.317,
+  "add": 25.6,
+  "note": "library_v3 \u00b7 2 eval pair(s)"
+ },
+ {
+  "id": "sub_mini_dust_pan",
+  "label": "Mini dust pan",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/mini_dust_pan.glb",
+  "cdo": 0.331,
+  "add": 5.6,
+  "note": "library_v3 \u00b7 2 eval pair(s)"
+ },
+ {
+  "id": "sub_white_pot_lid",
+  "label": "Pot lid",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+  "cdo": 0.421,
+  "add": 8.1,
+  "note": "library_v3 \u00b7 1 eval pair(s)"
+ },
+ {
+  "id": "sub_water_pitcher",
+  "label": "Water pitcher",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+  "cdo": 0.894,
+  "add": 7.6,
+  "note": "library_v3 \u00b7 1 eval pair(s)"
+ },
+ {
+  "id": "sub_wooden_piece_1",
+  "label": "Board 1",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb",
+  "cdo": 0.222,
+  "add": 2.4,
+  "note": "library_v3 \u00b7 1 eval pair(s)"
+ },
+ {
+  "id": "sub_wooden_piece_2",
+  "label": "Board 2",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_2.glb",
+  "cdo": 0.216,
+  "add": 3.6,
+  "note": "library_v3 \u00b7 1 eval pair(s)"
+ },
+ {
+  "id": "sub_beige_cup_v3x",
+  "label": "Beige cup (eval 8)",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/meshes/library_v3x/beige_cup.glb",
+  "cdo": 0.73,
+  "add": 5.4,
+  "note": "library_v3x (v5 rebuild) \u00b7 1 eval pair"
+ },
+ {
+  "id": "sub_wooden_spoon",
+  "label": "Wooden spoon",
+  "group": "submitted",
+  "path": "/home/user/v2d-track3/spoon/wooden_spoon.glb",
+  "note": "parametric template \u00b7 10 eval pairs \u00b7 no scan, CD-O unmeasurable (\u22480.18 inferred)"
+ },
+ {
+  "id": "cup_scan",
+  "label": "Scan (public, diagnostic)",
+  "group": "cmp_cup",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/loc/t3/mesh/blue_cup/blue_cup.glb",
+  "align": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs/ep21_blue_cup_align.npz"
+ },
+ {
+  "id": "cup_lib",
+  "label": "Submitted mesh (library_v3)",
+  "group": "cmp_cup",
+  "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+  "cdo": 0.523,
+  "add": 10.0
+ },
+ {
+  "id": "cup_lathe21",
+  "label": "New: thin-wall lathe from ep21 points",
+  "group": "cmp_cup",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+  "cdo": 0.291,
+  "add": 4.1
+ },
+ {
+  "id": "cup_lathe22",
+  "label": "New: thin-wall lathe from ep22 points",
+  "group": "cmp_cup",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep22_blue_cup_g1.glb",
+  "cdo": 0.364,
+  "add": 4.7
+ },
+ {
+  "id": "cup_solid",
+  "label": "Same lathe, solid (no cavity)",
+  "group": "cmp_cup",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep22_blue_cup_solid.glb",
+  "cdo": 0.493,
+  "add": 4.0
+ },
+ {
+  "id": "pot_scan",
+  "label": "Scan (public, diagnostic)",
+  "group": "cmp_pot",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/loc/t3/mesh/white_pot/white_pot.glb",
+  "align": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs/ep41_white_pot_align.npz"
+ },
+ {
+  "id": "pot_lib",
+  "label": "Submitted mesh (library_v3)",
+  "group": "cmp_pot",
+  "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+  "cdo": 0.437,
+  "add": 6.7
+ },
+ {
+  "id": "pot_hyb",
+  "label": "New: lathe body + TSDF handle",
+  "group": "cmp_pot",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep41_white_pot_hyb.glb",
+  "cdo": 0.413,
+  "add": 4.7
+ },
+ {
+  "id": "pot_splat",
+  "label": "New: lathe body + observed handle",
+  "group": "cmp_pot",
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep41_white_pot_g1.glb",
+  "cdo": 0.468,
+  "add": 5.4
+ }
+]

@@ -1,0 +1,3 @@
+2643471f41559373efaf81413d7857d9e58cc8f9  /home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_boards.py
+53d90e5dd336dcd690e9ee44962b1fbe19c98d28  /home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/obs_fidelity.py
+ca8add36c44879b0c8386f4f8232bd1a99f575b9  /home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/lathe_obs.py

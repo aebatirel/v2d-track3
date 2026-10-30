@@ -1,0 +1,11 @@
+{
+ "selection": {
+  "plastic_dish_rack": {
+   "episode": "all",
+   "variant": "joint",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/rack/final/plastic_dish_rack/joint_joint.glb",
+   "fid_sum_mm": 6.116,
+   "obs": "obs_all/ep12_plastic_dish_rack.npz,obs_all/ep13_plastic_dish_rack.npz,obs_all/ep26_plastic_dish_rack.npz,obs_all/ep27_plastic_dish_rack.npz,obs_all/ep31_plastic_dish_rack.npz"
+  }
+ }
+}

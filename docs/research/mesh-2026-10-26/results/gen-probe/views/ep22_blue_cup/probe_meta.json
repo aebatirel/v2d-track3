@@ -1,0 +1,84 @@
+{
+ "obj": "blue_cup",
+ "video": "ep22_a.mp4",
+ "s": 5.106799372601754,
+ "c": [
+  0.0001554880291223526,
+  0.003758499398827553,
+  0.005216460675001144
+ ],
+ "A": [
+  [
+   -0.9673826819270991,
+   0.005802895192172357,
+   0.2532524562925086
+  ],
+  [
+   0.21389842782301635,
+   0.5543088315334136,
+   0.8043564139309956
+  ],
+  [
+   -0.1357122806107376,
+   0.8322900854071782,
+   -0.5374700659832816
+  ]
+ ],
+ "front_check": {
+  "rot_err": 1.3187962712990497e-06,
+  "pos": [
+   -0.0,
+   -2.78658,
+   0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 154,
+   "vis": 53640,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.2,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    -0.2139,
+    -0.55431,
+    -0.80436
+   ],
+   "skin_removed_px": 9322,
+   "file": "view00_k154.png",
+   "fov_deg": 23.812,
+   "dist_m": 0.5457,
+   "mask_px": 236247,
+   "sil_px": 224211,
+   "iou_sil_mask": 0.8416
+  }
+ ],
+ "n_candidates": 94,
+ "n_good": 19,
+ "args": {
+  "video": "data/store/ep22_a.mp4",
+  "poses": "data/sweep/ep22/poses.npz",
+  "hands": "data/sweep/ep22/hands.npz",
+  "calib": "data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "blue_cup",
+  "out": "gen/views_v3/ep22_blue_cup",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 15.0,
+  "occl": 0.02,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 8.0,
+  "skin": 1,
+  "skin_max": 0.01
+ },
+ "source": "views_v3"
+}

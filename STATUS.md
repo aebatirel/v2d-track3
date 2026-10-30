@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
+Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
+- Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
+  - SAM 3D 0.501 and Pixal3D-MV 0.490 (each beats library_v3 on about half the objects);
+  - Hunyuan3D-2.1 0.602, TRELLIS.2 0.594, TripoSG 0.984;
+  - library_v3: 0.477.
+- Oracle best-of-generated per object: 0.315; beats our best hand-built only on the pot and the blue cup.
+- Pose side is worse (generated meshes ADD 10-29 mm vs library ~6 mm).
+- The GT-free selector is too weak (Spearman 0.46).
+- No submission change. SAM 3D access is approved. Its 12.4 GB of checkpoints sit in the HF store under the run
+  folder and can be deleted.
+
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
 ## 2026-10-30 ~06:45 UTC: PACK 7 UPLOADED (owner-approved) — AUC 0.81460, our best, but 7th: the field moved
@@ -111,6 +123,84 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - **Eval-10 early-checkpoint test** B′ / C′ (`20261026-e10B/e10C-6762f80`), results ≈ 16:30 UTC; a pack 6 if one
   wins.
 - Mesh-swap tests: only the pitcher gains (`docs/analysis/meshswap-20261026/`).
+
+## Mesh session status entries (branch `claude/bold-albattani-6qmxsv`, merged into main 2026-10-30)
+
+## 2026-10-27 ~13:30 UTC: building the A+B mesh engine (CPU, $0); research verdict: generic-only route failed
+- **Owner wants:** A (generic automatic engine) + B (agent-authored part programs per object), with minimal CD-O
+  against the public scans. Selection stays GT-free, and oracle numbers are reported separately.
+- **Research workflow `wf_c5cfe08d-5e2` (work log 13:20):** both generic-only probes were refuted (pot structure, dust
+  pan), and the GT-free gate was blind to a missing wall.
+- **Stage 1 running:** `wf_31952e44-35c` builds `docs/research/mesh-2026-10-26/autokit/`:
+  - loader;
+  - per-frame refinement;
+  - thin shell;
+  - part DSL;
+  - gates v2;
+  - integration, then audits.
+
+  Stage 2 follows: authoring, GT-free selection, one pre-registered scan round.
+- **Correction:** under the owner's 22 Oct decision (eval meshes re-fused per eval episode), new eval meshes need eval
+  depth (≈ $2–4 GPU, owner go-ahead). The 07:10 "no eval depth needed" holds only for a pack swap of public-built
+  meshes.
+- **Deadline:** the owner handles the leaderboard freeze (13:40); do not plan around it.
+
+## 2026-10-27 ~07:10 UTC: kit-of-parts meshes done (CPU, $0, branch `claude/bold-albattani-6qmxsv`)
+Report: `docs/research/mesh-2026-10-26/README.md` §9. Pre-registered rules and all results are in the work log.
+- **Passing objects:** white pot, lid and dish rack now beat library_v3 on the public scans [D].
+
+  | Object | CD-O (cm) | ADD (mm) | Flips |
+  |---|---|---|---|
+  | Pot | 0.437 → **0.342** | 6.7 → 3.05 | 0/8 |
+  | Lid | 0.421 → **0.220** | 8.1 → 4.46 | 0/6 |
+  | Rack | 0.555 → **0.456** | 6.0 → 5.37 | 0/7 |
+
+- **Boards fail.**
+  - Board 1 flips on 1 of 6 seeds.
+  - Board 2's ep23 track looks like board 1.
+- **Leak found and removed.** My brief gave the builders scan-measured thicknesses. A pre-registered clean-up re-ran
+  the lid and rack over 1.5 / 2.5 / 4.0 mm. Both pass at every value. Fidelity, which uses no ground truth, also
+  dropped the scan-informed upright cup holder.
+- **Eval:** the meshes come from public episodes like library_v3 and share its frame, so they need no eval depth.
+  Swapping pot, lid and rack ≈ CD-O 0.402 → 0.367 [E].
+- **Owner decision:** swap only the packed mesh ($0, frames match), or also the simulator copy (GPU re-run of the
+  affected eval episodes)?
+- **Still pending (owner):**
+  - eval depth run (≈ $2–4, for cup lathes on eval);
+  - WeVisOne test (≈ $1–1.5);
+  - generative probe (≈ $4–8, plus code permission).
+
+## 2026-10-26 ~16:40 UTC: mesh accuracy research round (branch `claude/bold-albattani-6qmxsv`, CPU only, $0)
+Report: `docs/research/mesh-2026-10-26/README.md`. Also there: ledger of all past mesh work, three literature
+reviews, scripts and results.
+- **Why it matters:** CD-O ours 0.402 cm against leaders 0.112–0.154. The same mesh registration sets the body frames
+  of all five pose boards.
+- **Measured [D]:**
+  - Our stereo points along our own tracks lie a median 0.85–1.9 mm from the scans and cover 60–90 % of most objects
+    (rack 28 %). The 4 mm binary-blur mesher discards that accuracy (walls 12–20 mm against real 2–4 mm).
+  - The scans are thin double walls and **partial** (no deep inner cup wall). CD-O's RMS-radius scale fix punishes a
+    wrong area distribution: blue-cup lathe 0.382 as scored vs 0.316 at true scale.
+- **New method (GT-free), `lathe_obs.py`:** a thin-walled lathe fitted to observed points.
+  - Blue cup 0.523 → **0.291** (ep21; ADD 10.0 → 4.1 mm, 0/7 flips). Ep22: 0.364. Merged: 0.396 (fusion hurts again).
+  - `obs_fidelity.py` (GT-free) picks the right episode.
+  - Pot not yet: 0.413–0.468 vs 0.437 (inflated handle).
+  - Screened Poisson on raw points fails (≈ 1.0).
+- **Generative models (SAM 3D, TRELLIS.2, Hunyuan3D) were never tried.** Crops are ready (`crops.py`).
+  - The sandbox blocked running third-party model code here.
+  - SAM 3D gives HF 403 (token lacks the gate).
+- **Owner decisions needed:**
+  - (1) permission to run third-party generative model code;
+  - (2) request SAM 3D access and give the token gated read;
+  - (3) GPU probe P1, ≈ $4–8 (ceiling $12), on a box separate from the eval-10 boxes;
+  - (4) licence choice (Hunyuan excludes EU/UK/KR).
+- Nothing in the submission pipeline was changed.
+- **~18:30 UTC eval meshes:**
+  - Page: https://claude.ai/artifact/TSEF4dCCSRdErBcfCPR2Ex (submitted eval meshes in 3-D, overlays on the eval
+    videos, public comparisons).
+  - New-method eval meshes need eval depth, which was never cached: `ops/jobs/eval_perc.sh`, ≈ $2–4, owner
+    go-ahead. Single-frame (frame-0) lathes fail on public data (1.1–1.3 cm, flips), so they are not used.
+  - **Found:** the submitted white-pot mesh (6 eval pairs) has an open base, a ≈ 4–5 cm hole; the eval-10 beige cup
+    has an open base; the pitcher is see-through. Simulator impact not checked.
 
 ## 2026-10-26 ~15:25 UTC: eval-10 check done (CPU); one small GPU test proposed
 - Cause: every learner learns to avoid the beige cup. The open-loop plan carries it, but the cup hits the blue cup's

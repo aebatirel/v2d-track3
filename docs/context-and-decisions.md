@@ -103,3 +103,6 @@ the answers that matter for future work. Dates are 2026.
 - The owner asked whether hand-overs, flips, twirls and sliding were researched. A dedicated research round on those
   manipulation risks was offered but not run.
 - Registration, accepting the Kaggle rules and sharing a repo with the organisers' GitHub account are still open.
+
+- 2026-10-27: the owner manages the leaderboard-freeze deadline; agents should not trade quality for the date or raise
+  it as a planning constraint.

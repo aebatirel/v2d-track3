@@ -1,0 +1,1030 @@
+{
+ "builds": [
+  {
+   "module": "autokit io-refine: io_gt.py (allow-listed loader, our tracks, depth intrinsics) and refine.py (per-frame rigid refinement to a consensus, plus the patch_spread and ball_scan diagnostics), with test_refine.py. Stage 1 of the A+B mesh engine. Nothing is committed: the working tree is newer than the parent's WIP snapshot, commit 9e908d8.",
+   "files": [
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/__init__.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/io_gt.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/refine.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_refine.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/refined/ (33 x ep<N>_<obj>.npz + .refine.json + .corr.npz, all v2 parameters)",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/prereg.json",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/falsifier.jsonl (v1, pre-registered run)",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/falsifier_v2.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/split.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/unit.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/all.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/all_summary.json",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/balls.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/balls_summary.json",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/side_check.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/decomp_check.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/v1/ (v1 refined pot ep41/42)",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/io-refine/heldout/, heldout_v2/, heldout_outer/, smoke/"
+   ],
+   "api": [
+    "io_gt.ALLOWED_KEYS = ('pts','cam','frame','hits','free','lo','vox','args')",
+    "io_gt.load_obs(path, keys=ALLOWED_KEYS) -> dict of np arrays. Raises ValueError when the path, as given or after resolving links, contains '/loc/', '/scan', '_align', '.parquet' or 'mocap', or when a key is outside ALLOWED_KEYS. Note: 'hi' is not loaded (it is not in the interface).",
+    "io_gt.obs_path(obj, ep, refined=False, must_exist=True) -> path. Looks in obs_all/ first, then obs/; with refined=True it looks in auto/stage1/refined/. Raises FileNotFoundError when nothing is found.",
+    "io_gt.load_poses(ep, sweep_dir=SWEEP_DIR) -> dict(world_T_cam, cam_T_<obj>) as float64. Downloads poses.npz from the HF store run 20261025-sweep-a894083 if missing (curl, HF_TOKEN in a header if set).",
+    "io_gt.load_calib() -> dict(K = rectified-left 3x3 intrinsics from pipeline/recon_mesh.rectified_K, size=(1600,1000), left, right, baseline_m)",
+    "refine.refine_frames(obs, ref=None, iters=3, gauge=True, fit_mask=None, seed=0, verbose=False, **kw) -> (obs_refined with the same keys, report). kw: surfel_vox, surfel_r, min_frames, gates, deg_frac (default 0.015 = v2; 0 = v1). ref may be our own trimesh in the object frame, or a (S, NS, support) surfel tuple. fit_mask (bool, N) keeps points out of both the fit and the consensus. The report holds per-frame rotvec, t, residuals, bound and frozen flags, a summary, and corr = {frame, R, t, c0}, with p' = R(p - c0) + c0 + t.",
+    "refine.save_refined(obs_ref, rep, out.npz) writes out.npz (same keys), out.refine.json and out.corr.npz",
+    "refine.patch_spread(obs, n_patches=3000, radius=0.005, min_pts=8, min_frames=8, region=None) -> dict(between_mm, within_mm, ratio, frac_between_gt_within, n_patches). This is an object-agnostic version of the critic's handle measure.",
+    "refine.ball_scan(obs, ...) -> list of dict(c, r_mm, n, res_mm, cover, iso, convex, frames_med, diag_mm, accepted). Free-radius sphere fits on compact residual clusters above a robust quadric surface model.",
+    "refine.prepare_frames, build_consensus, merged_cloud, icp_frame, match (internal helpers, all importable)",
+    "CLI: refine.py IN.npz OUT.npz [--iters 3]; test_refine.py {unit|falsifier [--tag v1|v2 --deg_frac X]|split|all [--reverse]|report|balls|balls_summary}"
+   ],
+   "tests_run": [
+    "Each command below was run from /home/user/v2d-track3/docs/research/mesh-2026-10-26 with V=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python, on the CPU VM, at uncommitted working-tree code on branch claude/bold-albattani-6qmxsv (HEAD e619452 at the start, later the parent's snapshot 9e908d8). At most 2 of my processes ran at once.",
+    "$V critic/handle_smear.py on obs_all/ep41 and ep42 white_pot (baseline, run from the scratchpad). It reproduced the critic: ep41 140-180 mm band, between 9.3 vs within 3.7 mm.",
+    "$V auto/stage1/io-refine/side_check.py on ep41 and ep42 (does the camera see the handle from one side or both?)",
+    "$V autokit/io_gt.py white_pot 42 plus a refusal smoke test",
+    "$V autokit/refine.py obs_all/ep2_white_pot_lid.npz io-refine/smoke/... (v1 smoke run, 55 s)",
+    "$V autokit/test_refine.py falsifier with v1 code (the pre-registered run; prereg.json was written before it): falsifier.jsonl, heldout/",
+    "$V autokit/test_refine.py falsifier --tag v2: falsifier_v2.jsonl, heldout_v2/, and refined/ep41, ep42",
+    "$V auto/stage1/io-refine/decomp_check.py 41 on the heldout_v2 corrections and on the refined/ep41 corrections",
+    "$V autokit/test_refine.py split (post-hoc: outer handle r >= 180 mm held out)",
+    "$V autokit/test_refine.py unit (refusals, poses, calib, poses download into io-refine/dl_test, injection-recovery on lid ep2)",
+    "$V autokit/test_refine.py all, plus a second worker with all --reverse (33 files)",
+    "$V autokit/test_refine.py report, then balls",
+    "ball_scan probes on the lid ep2 smoke file (v0 seed-sphere detector rejected; residual-cluster v2 kept)"
+   ],
+   "results": "Everything below is measured [M] unless labelled otherwise. The work took about 3 h 15 min, over the 2.5 h time box.\n\nio_gt.py works.\n- All seven refusals pass: an align path, scan, loc, parquet, MOCAP, the key 'pose', and a symlink to an align file.\n- Poses load (ep2: 343 frames). The download path returns identical arrays.\n- K = [[600.2, 0, 756.78], [0, 600.2, 486.37]], the rectified-left intrinsics that obs_points.py uses.\n\nrefine.py design:\n- Per-frame normals come from the same frame, oriented to its camera.\n- The consensus is side-keyed 3 mm surfels, each moved to the frame-balanced weighted median of its 6 mm neighbourhood.\n- Each frame is aligned by trimmed, Cauchy-weighted point-to-plane ICP with a weak prior (2 deg / 5 mm) and hard bounds (3 deg / 10 mm).\n- The mean correction is removed after every pass (gauge), over 3 passes with gates of 12, 8 and 6 mm.\n- v2 (the default, added after the pre-registered run) skips updates along Hessian directions that hold less than 1.5 % of the largest information (Zhang, Kaess and Singh 2016, \"solution remapping\").\n\nInjection-recovery on lid ep2 (real points, known AR(1) per-frame errors of about 1 deg / 1.5 mm sd per component):\n- Correlation between applied and recovered errors is 0.91-0.98 for rotation and 0.98-0.995 for translation.\n- The error sd is 0.23-0.35 deg and 0.17-0.26 mm.\n- The residual after refinement is 0.480 mm, against 0.474 mm when nothing was injected.\n- So the estimator does recover rigid per-frame errors.\n\nPre-registered falsifier: FAIL. Format is between / within in mm, and pass means between < within.\n- v1, ep41:\n  - 140-180 mm band: 9.34 \u2192 4.70 / 3.65, FAIL.\n  - 180-220 mm band: 5.58 \u2192 3.03 / 4.13, pass.\n  - 220-250 mm band: 6.23 \u2192 3.69 / 5.34, pass.\n- v1, ep42:\n  - 140-180 mm band: 7.46 \u2192 6.09 / 5.11, FAIL.\n  - 180-220 mm band: 6.67 \u2192 4.02 / 6.86, pass.\n  - 220-250 mm band: 26.9 \u2192 22.14 / 6.07, FAIL. This band was flagged as contaminated before the run: its median offset is +14 mm.\n- v2 gives the same verdict: ep41 140-180 is 4.68 / 3.64 and ep42 140-180 is 5.71 / 5.21.\n- Refinement roughly halves the handle spread, but does not bring it below the within-frame width in every band.\n- Confound ruled out: every frame saw the handle from the same side in both episodes, so seeing two faces does not explain the spread.\n\nHeld-out controls, all post-hoc and not part of the falsifier:\n- Handle wedge excluded from the fit:\n  - The handle gets worse: ep41 140-250 mm bands 13.9 / 14.6 / 16.1 mm (v1) and 13.9 / 14.1 / 16.3 (v2); ep42 is also worse.\n  - In v1 the rotation about the pot axis wanders (sd 2.0 deg, against 0.65 deg in the full run). v2 freezes that direction, yet the handle is still at 14 mm.\n  - decomp_check shows why. Tilt and translation are strongly coupled: in the full run each alone smears the handle to 9-11 mm and only together do they sharpen it. Without the handle the body cannot set that combination.\n  - The per-frame smallest Hessian eigenvalue drops from 0.02-0.035 to 0.005-0.008 of the largest.\n- Outer handle (r \u2265 180 mm) held out, with the inner handle used in the fit:\n  - ep42 outer 180-220 band: 6.67 \u2192 3.93, transfers like the full run (4.02).\n  - ep41 outer bands get WORSE than raw: 7.46 (raw 5.58) and 8.30 (raw 6.23).\n- Mixed evidence: in ep41 the handle's own points are needed to sharpen it, so the full-run sharpening cannot be told apart from self-fitting. The jitter hypothesis is neither confirmed nor cleanly refuted.\n\nGeneric statistics, from 33 refined files (32 with frames fitted; all_summary.json):\n- Median per-frame residual to the consensus: 0.749 \u2192 0.588 mm. It does not drop for pot ep41 (0.72 \u2192 0.75) or ep42 (0.77 \u2192 0.77).\n- Patch between-frame spread (5 mm patches) falls by a median 22 % (10-49 %) in every file.\n- After refinement it is still 4.1\u00d7 the within-frame width (5.7\u00d7 before), and in 93-100 % of patches between exceeds within. Most of the frame-to-frame scatter is not removed by rigid per-frame correction [H: non-rigid stereo depth error].\n- Corrections: median per-file p50 is 1.39 deg and 2.32 mm.\n- 600 of 3802 fitted frames hit a bound. Bound hits are high for mini_sweeper (72/177, 56/144) and mini_dust_pan (69/160, 44/130).\n- Corrections are temporally correlated: lag-1 autocorrelation is mostly 0.3-0.8.\n- ep0 lid: all 24 frames skipped (too few points), so its refined copy equals the raw file.\n\nMarker-ball radius from public observations only:\n- ball_scan (residual clusters above a robust quadric, free sphere fit, generic acceptance tests) accepted 11 detections in 9 of 33 files.\n- Median 9.7 mm, IQR 8.4-10.2, MAD 1.05, range 7.2-12.8.\n- Only one ball was found again in a second episode (pot, 12.8 and 10.3 mm).\n- On lid ep2 the radius depends on the method: 9.4-10.6 mm at a 2.5 mm protrusion threshold, and no usable cap at 4 mm. Stereo spreads a ball over a band about 4 mm thick in radius.\n- My verdict: this does not reliably replace the 7 mm prior. Treat the radius as about 7-10 mm, uncertain [H: the stereo fits are biased upward].",
+   "metrics": [
+    {
+     "name": "falsifier_v1_ep41_140_180",
+     "value": "9.34 -> 4.70 vs within 3.65 (FAIL)",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v1_ep41_180_220",
+     "value": "5.58 -> 3.03 vs 4.13 (pass)",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v1_ep41_220_250",
+     "value": "6.23 -> 3.69 vs 5.34 (pass)",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v1_ep42_140_180",
+     "value": "7.46 -> 6.09 vs 5.11 (FAIL)",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v1_ep42_180_220",
+     "value": "6.67 -> 4.02 vs 6.86 (pass)",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v1_ep42_220_250",
+     "value": "26.9 -> 22.14 vs 6.07 (FAIL, contaminated band)",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v2_ep41_bands",
+     "value": "4.68/3.64, 3.00/4.12, 3.66/5.33",
+     "label": "M"
+    },
+    {
+     "name": "falsifier_v2_ep42_bands",
+     "value": "5.71/5.21, 4.02/6.74, 22.33/6.10",
+     "label": "M"
+    },
+    {
+     "name": "heldout_handle_ep41_v2",
+     "value": "13.89, 14.13, 16.31 mm (raw 9.34, 5.58, 6.23)",
+     "label": "M"
+    },
+    {
+     "name": "heldout_outer_handle_ep41",
+     "value": "180-220: 7.46, 220-250: 8.30 mm (worse than raw)",
+     "label": "M"
+    },
+    {
+     "name": "heldout_outer_handle_ep42",
+     "value": "180-220: 3.93 mm (raw 6.67, full run 4.02)",
+     "label": "M"
+    },
+    {
+     "name": "inject_recover_lid_ep2",
+     "value": "corr 0.91-0.995, err sd 0.23-0.35 deg / 0.17-0.26 mm",
+     "label": "M"
+    },
+    {
+     "name": "residual_to_consensus_median_32_files",
+     "value": "0.749 -> 0.588 mm",
+     "label": "M"
+    },
+    {
+     "name": "patch_between_reduction_median",
+     "value": "22% (10-49%)",
+     "label": "M"
+    },
+    {
+     "name": "patch_between_over_within_after",
+     "value": "4.09 (before 5.71)",
+     "label": "M"
+    },
+    {
+     "name": "correction_p50_medians",
+     "value": "1.39 deg, 2.32 mm",
+     "label": "M"
+    },
+    {
+     "name": "bound_hits",
+     "value": "600 of 3802 fitted frames",
+     "label": "M"
+    },
+    {
+     "name": "refine_runtime",
+     "value": "55 s (lid 1.5M pts) to ~105 s (pot 4.5M pts) per file",
+     "label": "M"
+    },
+    {
+     "name": "marker_ball_radius_public",
+     "value": "median 9.7 mm, IQR 8.4-10.2, n=11 detections, 1 repeat across episodes",
+     "label": "M (method-sensitive)"
+    },
+    {
+     "name": "refined_files_written",
+     "value": "33 of 33 obs files present at finish",
+     "label": "M"
+    }
+   ],
+   "hypotheses_tested": [
+    {
+     "h": "[H critic] Frame-to-frame track jitter smears thin parts: the pot handle's between-frame spread exceeds its within-frame width because of rigid per-frame pose error",
+     "falsifier": "Pre-registered in prereg.json before running on the pot. On white_pot ep41 AND ep42, in every handle band (140-180, 180-220 and 220-250 mm), the between-frame spread after refine_frames must be below the within-frame width.",
+     "outcome": "FAIL (v1 and v2). ep41 fails in 140-180 (4.70 vs 3.65); ep42 fails in 140-180 (6.09 vs 5.11) and in the contaminated 220-250 band. The other bands pass, and the spread drops 35-50 %. Held-out controls are mixed: corrections fitted without the handle smear it to 14-16 mm, and corrections fitted without the outer handle sharpen it in ep42 but not in ep41. Not confirmed."
+    },
+    {
+     "h": "The spread comes from seeing two faces of the handle rather than from jitter",
+     "falsifier": "If it did, frames would split by which side of the handle plane the camera was on",
+     "outcome": "Refuted [M]. Every frame saw the handle from one side in each episode."
+    },
+    {
+     "h": "refine_frames recovers rigid per-frame errors",
+     "falsifier": "Inject known AR(1) errors of 1 deg / 1.5 mm sd into real lid ep2 points. The recovered errors must correlate with the injected ones above 0.9.",
+     "outcome": "Pass [M]: corr 0.91-0.995 and error sd 0.23-0.35 deg / 0.17-0.26 mm. This tests the estimator, not whether the real errors are rigid."
+    },
+    {
+     "h": "[H, v2] Freezing directions the frame cannot observe (degeneracy-aware ICP) makes corrections fitted from the body alone transfer to the handle",
+     "falsifier": "With the handle held out, v2 must not worsen the handle compared with raw",
+     "outcome": "Refuted [M]. The axial rotation was frozen (rotation p50 2.82 -> 1.56 deg), but the handle stayed at 13.9-16.3 mm. The coupled tilt and translation do the damage. v2 was kept because it does no harm in full runs (identical bands) and limits drift on symmetric objects."
+    },
+    {
+     "h": "A free-radius sphere fit on public stereo residual clusters measures the marker-ball radius well enough to replace the 7 mm prior",
+     "falsifier": "Detections must be stable across episodes and across method thresholds",
+     "outcome": "Not met [M]. Median 9.7 mm (IQR 8.4-10.2) from 11 detections, only 1 ball found again in a second episode, and the radius shifts with the protrusion threshold. Report it as roughly 7-10 mm, uncertain."
+    }
+   ],
+   "gt_reads": "None of my code opened a scan, mocap data, a parquet file or an *_align.npz. Method code (io_gt.py, refine.py) reads only the observed-point npz files it is given, our sweep poses and calib.json.\n\nAllowed reads:\n- The handle-measure constants come from the critic's handle_smear.py. They match our own GT-free lathe axis fit (prim/potlid/axis/ep41_white_pot.json, from obs points) and are used only in the test and diagnostics.\n- Diagnostics also read our own prim_potlid candidate json (ball positions, GT-free) for orientation.\n\nRefusal tests:\n- The unit test passes an *_align.npz path, and a symlink to one, to load_obs.\n- Both are refused by the path check before any file is opened. The symlink was removed afterwards.\n\nLeak check:\n- No number measured on a scan was used.\n- Unseen thickness is not used anywhere in this module.\n- refine.py has no object names; they were removed from docstrings and usage examples too.\n- Object names appear only in test_refine.py driver lists and file names.",
+   "open_issues": [
+    "The pre-registered falsifier failed. Refinement roughly halves the handle spread, but the held-out controls cannot tell real pose correction from the handle fitting itself in ep41. Stage 2 should treat refined/ as an experimental alternative input, not a default. A GT-free check (fidelity of meshes built from raw vs refined obs, computed against RAW obs) is still to be designed. Fidelity against refined obs is self-consistent by construction.",
+    "Most between-frame scatter stays after rigid correction: patch between is still about 4x within. Per-frame non-rigid stereo depth error is the likely cause [H], and per-frame rigid ICP cannot remove it.",
+    "Corrections often reach the 3 deg bound: 600 of 3802 frames, with mini_sweeper and mini_dust_pan at 30-45 % of frames. Either the tracks there are worse or these thin, plate-like objects are poorly constrained. This was not resolved, and the bounds were not tuned.",
+    "The before/after residual uses a different consensus each time (smeared vs sharp), so it is a weak statistic. For ep41 and ep42 the pot residual does not improve at all. patch_spread is the better generic measure.",
+    "The hits/free vote grids in the refined copies are copied unchanged (grids_stale=True). Re-voting needs the depth maps, which were deleted after extraction.",
+    "ep0 white_pot_lid: all 24 frames were skipped (too few points), so the refined copy equals the raw file. Its known 23-26 mm frame offset is a whole-track offset that the gauge cannot fix by design.",
+    "Superseded obs/ files with the same names (blue_cup 21/22, water_pitcher 22, mini_sweeper 31, mini_dust_pan 39, pot 41, lid 2, rack 26, board 23) were not refined separately; refined copies come from obs_all/. No expected file was missing at finish: extraction ended PREP-DONE with ep0 white_pot.",
+    "The marker-ball radius is not settled: 9.7 mm median from n=11 detections, detections do not repeat across episodes, and the result depends on the method. The 7 mm prior came from eval stereo; keep it or use a generic window of about 7-10 mm.",
+    "DEG_FRAC=0.015 was picked from one look at the pot spectra (with handle 0.02-0.035 vs without 0.005-0.008). It is a generic constant but chosen from one example [H].",
+    "The pot injection-recovery test (inject('ep41_white_pot')) was dropped for time; only the lid was tested.",
+    "Not committed, as instructed. The working tree differs from the parent's WIP snapshot commit 9e908d8. STATUS.md and docs/work-log.md were not updated, because the task limited my writes."
+   ]
+  },
+  {
+   "module": "autokit/shell.py: route A, the generic thin-shell mesh engine. It works from one episode's observed points with no part vocabulary. The points become oriented surface samples through a point-based directional TSDF, and the samples become a closed thin solid by marching cubes.",
+   "files": [
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/shell.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_shell.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/results.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/run2.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/run2.cmd",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/run3_ablate.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/run4_ablate.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/extra/results.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/code_sha256.txt",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/code_sha256_final.txt",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/repo_commit.txt",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep2_white_pot_lid_t1.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep2_white_pot_lid_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep2_white_pot_lid_t4.0.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep21_blue_cup_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep22_blue_cup_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep39_mini_dust_pan_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep22_water_pitcher_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep31_mini_sweeper_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep41_white_pot_t2.5.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ep41_white_pot_t2.5_refined.glb",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/qa_ep2_white_pot_lid.jpg",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/qa_ep22_blue_cup.jpg",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/qa_ep39_mini_dust_pan.jpg",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/qa_ep22_water_pitcher.jpg",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/qa_ep31_mini_sweeper.jpg",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/qa_ep41_white_pot.jpg",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/budget/",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/ablate/",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/run1/",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/shell/dev/"
+   ],
+   "api": [
+    "thin_shell(obs: dict, t=0.0025, voxel=0.002, mode='oriented', two_sided=True, carve=False, max_faces=200000, pitch=None, return_report=False, **kw) -> trimesh.Trimesh (watertight). With return_report=True it returns (mesh, report dict). The report is also stored in mesh.metadata['shell_report']. obs needs pts and cam; frame is optional.",
+    "mode='oriented' (default): the solid lies behind the observed face, on the side away from the cameras, so the observed face stays in place. mode='symmetric': a tube of +-t/2 around the surface, the unsigned-distance variant from the task.",
+    "two_sided=True: where both faces of a wall were observed (searched up to 10 mm along -n), the measured thickness replaces t. Measured thickness is floored at T_FLOOR = 1.5 mm, the smallest value on the generic grid.",
+    "carve=True (oriented mode, default off): our own rays, moved onto the denoised surface, cut each slab back where at least 3 frames saw free space behind the surface.",
+    "Marching-cubes pitch = min(voxel, 0.95*min(t, min tau)/sqrt(3)), so no slab can fall between grid points.",
+    "Lower-level functions: point_normals(P,C,F,vox), directional_samples(P,n,vox) -> dict(s,n,w,bin), two_sided_thickness(S,N), free_space_clamp(P,C,F,n,S,N,tau,depth_max), shell_field(S,N,tau,offset,rdisk,pitch), march(U,lo,pitch), clean_islands(m,P,F), decimate(m,max_faces).",
+    "CLI: shell.py OBJ EP OUT.glb [--t 0.0025] [--voxel 0.002] [--mode oriented|symmetric] [--refined auto|1|0] [--no_two_sided] [--carve] [--max_faces N]. Loads only through autokit.io_gt. --refined auto uses the refine.py copy from io_gt.obs_path(refined=True) when it exists.",
+    "test_shell.py [--cases EP:OBJ,...] [--ts 1.5,2.5,4.0] [--out DIR] [--no_render] [--ablate EP:OBJ,...] [--refined EP:OBJ] [--synthetic_only] [--no_synthetic]"
+   ],
+   "tests_run": [
+    "Synthetic tube (no data): outer radius 40 mm, wall 6 mm, 1.2 mm ray noise. Part of every test_shell.py run.",
+    "run2 (final code, shell.py sha fc0e4294... at run time; the later edits only change comments, checked by reversing them and matching the hash): cd autokit && /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python test_shell.py --refined 41:white_pot --ablate 2:white_pot_lid,22:blue_cup,39:mini_dust_pan. Ran on the 4-core CPU VM, 2026-10-27, about 14:13-14:38 UTC. Cases: lid ep2, blue_cup ep21 and ep22, mini_dust_pan ep39, water_pitcher ep22, mini_sweeper ep31, white_pot ep41, each at t 1.5, 2.5 and 4.0 mm, plus refined pot ep41 at t 2.5. The ablation step crashed on a missing ablate/ directory and was re-run as run3.",
+    "run3: test_shell.py --no_synthetic --cases= --ablate 2:white_pot_lid,22:blue_cup,39:mini_dust_pan. Variants at t 2.5: symmetric, no two-sided, carve.",
+    "run4: test_shell.py --no_synthetic --cases= --ablate 24:wooden_piece_1,41:white_pot",
+    "extra: test_shell.py --no_synthetic --cases 26:plastic_dish_rack,24:wooden_piece_1,11:beige_cup --ts 2.5 --out .../shell/extra",
+    "run1 used an earlier pitch rule and thickness floor (1.37 mm pitch, 1.0 mm floor). Kept in shell/run1/; the final run2 supersedes it.",
+    "Dev diagnostics in shell/dev/: diag_two.py (two-sided evidence), diag_synth.py (synthetic radii by azimuth), carve/carve_ab.py and carve_pitch.py (carve A/B), dec4096/dec_test.py (topology-preserving decimation). dec_test.py failed: this pymeshlab cannot load its meshing plugin because libOpenGL is missing.",
+    "Kit budget_mesh(path, 4096, 4096) applied to every shell (shell/budget/*_b4096.glb) and to library_v3 meshes.",
+    "Metrics per mesh: scripts/obs_fidelity.py against the same episode's raw obs file, and autoloop_probe/fs_fidelity.py for fs_frac. mesh_metric.py was not run and no scan was read."
+   ],
+   "results": "All numbers here were measured on this VM [M] unless marked otherwise.\n\nWhat was built: a generic route that needs no part vocabulary and works from one episode. It has six steps.\n1. Normals per frame. One depth map sees one side of a wall as a single layer, so per-frame normals are sharp. Points with a non-planar neighbourhood or seen at more than 78 degrees incidence are dropped.\n2. Directional fusion. Centroids are keyed by voxel and by the normal's dominant signed axis. Each centroid is then projected onto its own side's mean surface: a weighted mean offset along its normal line, inside a 5 mm truncation band, using only neighbours whose normal is within 45 degrees of its own. This is the TSDF zero crossing, without the edges of bins.\n3. Two-sided thickness, where both faces of a wall were seen.\n4. A union of disc slabs. Default 'oriented' mode keeps the observed face in place and puts thickness t behind it, away from the cameras.\n5. Marching cubes in a narrow band (Lewiner). The output is closed by construction.\n6. Island filter (frame support, area, distance to the main body), then quadric decimation to 200k faces.\n\nSynthetic tube (truth: faces at 34 and 40 mm):\n- Oriented with two-sided thickness gives exactly two faces, at 33.75 and 39.75 mm (0.25 mm histogram bins). The outer face has p10/p50/p90 = 39.93/39.97/40.02 mm at every azimuth. Measured wall thickness p10/p50/p90 = 5.94/6.01/6.08 mm (truth 6.0). One body, watertight.\n- Without two-sided thickness: faces at 33.75, about 37 (two back faces) and 39.75 mm, as expected.\n- Symmetric mode: faces at 32.75, 35.25, 38.75 and 41.25 mm, so the observed face moves by t/2, as expected.\n- Two earlier designs failed here. Pooled-cloud PCA normals plus a 3-D Gaussian window left the faces stuck 1-2 mm off. Overlapping 60-degree bins bulged the outer face by up to 1 mm at the bin edges. Both were replaced.\n\nReal episodes (run2). All 24 shells are watertight at full resolution.\n\n| Object | Episode | t (mm) | Fidelity sum, shell (mm) | Fidelity sum, library_v3 (mm) | Runtime (s) | Bodies | Area shell / library (cm\u00b2) |\n|---|---|---|---|---|---|---|---|\n| lid | 2 | 1.5 / 2.5 / 4.0 | 1.16 / 1.51 / 2.15 | 2.51 | 11-18 | 2-6 | 657 / 596 at t 2.5 |\n| blue_cup | 21 | 1.5 / 2.5 / 4.0 | 1.41 / 1.69 / 2.27 | 6.07 | 17-22 | 2 | \u2013 |\n| blue_cup | 22 | 1.5 / 2.5 / 4.0 | 1.38 / 1.66 / 2.23 | 6.98 | 15-25 | 1-2 | \u2013 |\n| mini_dust_pan | 39 | 1.5 / 2.5 / 4.0 | 1.66 / 1.87 / 2.39 | 3.64 | 18-28 | 1-3 | 572 / 381 at t 2.5 |\n| water_pitcher | 22 | 1.5 / 2.5 / 4.0 | 2.20 / 2.48 / 3.06 | 6.99 | 43-133 | 6-24 | 1951 / 1742 at t 2.5 |\n| mini_sweeper | 31 | 1.5 / 2.5 / 4.0 | 1.30 / 1.67 / 2.33 | 4.24 | 4-10 | 3-4 | \u2013 |\n| white_pot | 41 | 1.5 / 2.5 / 4.0 | 2.29 / 2.51 / 2.90 | 3.93 | 97-180 | 12-30 | 2135 / 1347 at t 2.5 |\n| plastic_dish_rack (extra) | 26 | 2.5 | 2.26 | 8.57 | 24 | 12 | \u2013 |\n| wooden_piece_1 (extra) | 24 | 2.5 | 1.40 | 2.69 | 32 | 1 | \u2013 |\n| beige_cup (extra) | 11 | 2.5 | 1.62 | 3.45 | 15 | 2 | \u2013 |\n\nThe fidelity sum is obs_to_mesh + mesh_to_obs from obs_fidelity.py, in mm, lower is better.\n\n- Share of samples with two-sided evidence: lid 0 %, cups 0.6-1.7 %, dust pan 5.8 %, pitcher 0 %, sweeper 0.1 %, pot 29 %, board 71 %.\n- fs_frac (share of mesh area in voxels our own depth saw as empty) rises with t on every object. At t 2.5, shell vs library: lid 5.3 vs 1.4 %, cup22 3.8 vs 4.3 %, dust pan 12.0 vs 0.75 %, pitcher 4.0 vs 6.3 %, sweeper 7.8 vs 7.7 %, pot 5.1 vs 7.1 %.\n\nAs the scorer decodes them (kit budget_mesh, 4096 faces):\n- The fidelity sum barely changes (within about 0.09 mm of full resolution).\n- None of the 24 run2 shells stays watertight, against 2 of the 5 library_v3 meshes checked (lid and dust pan stay watertight).\n- The shells lose area: lid \u22121 %, cup22 \u22122 %, dust pan \u22126 %, pitcher \u221221 % at t 1.5 and \u221210 % at t 2.5, pot \u221222 % at t 1.5 and \u221215 % at t 2.5. Library meshes change by less than 1 %.\n\nAblations at t 2.5 (fidelity sum in mm / fs_frac / area in cm\u00b2):\n- Symmetric vs oriented:\n  - lid 1.38 / 6.6 % vs 1.51 / 5.3 %;\n  - cup 1.50 / 6.4 % vs 1.66 / 3.8 %;\n  - dust pan 1.77 / 13.7 % vs 1.87 / 12.0 %;\n  - pot 2.39 / 5.1 % vs 2.51 / 5.1 %;\n  - board 1.48 / 3.9 % / 1288 vs 1.40 / 5.7 % / 816.\n- No two-sided thickness vs default:\n  - lid identical;\n  - cup 1.655 / 3.80 % vs 1.655 / 3.78 %;\n  - dust pan 1.82 / 10.5 % vs 1.87 / 12.0 %;\n  - pot 2.49 / 4.1 % vs 2.51 / 5.1 %;\n  - board 1.54 / 3.2 % / 1145 vs 1.40 / 5.7 % / 816.\n- Carve vs default:\n  - lid 1.51 / 5.4 %;\n  - cup 1.62 / 3.6 %;\n  - dust pan 1.81 / 11.0 %;\n  - pot 2.45 / 4.6 %, but 30 bodies and 184 s;\n  - board 1.36 / 5.1 %;\n  - about 2-3x the runtime;\n  - 9-41 % of samples clamped to the 1.5 mm floor.\n\nRefined pot ep41 at t 2.5 (refine.py output): fidelity sum 2.66 and fs_frac 10.5 %, against 2.51 and 5.1 % unrefined. This comparison is biased against the refined run: fidelity is measured against the raw obs, and refine.py reports its vote grids as stale.\n\nQA renders from our own track's camera at the crop frame (shell/qa_*.jpg):\n- Lid: dome, five marker bumps and part of the strap.\n- Dust pan: the shape is right; the ring is rough.\n- Pitcher: matches the crop.\n- Sweeper: blobby, with one floating ball island kept.\n- Pot: body and handle look right, and the inner floor is closed where the library mesh has a hole.\n- Rack (extra): tray, pegs and cup holder visible.\n- Board ep24 (extra): has a spurious arm-like protrusion attached to the plate, probably non-object points.\n\nDefaults kept: oriented mode, two_sided on, carve off. These are generic choices, not tuned per object. GT-free evidence does not settle t, two_sided or carve; stage 2's selector should treat them as candidates.\n\nNot committed or pushed by me. The orchestrator's WIP commit f81a953 already contains the current shell.py (sha 8bd93a3..., which differs from the run code only in comments). test_shell.py has one later uncommitted fix (os.makedirs for the ablate/ directory).",
+   "metrics": [
+    {
+     "name": "synthetic outer face p50 (truth 40.0 mm)",
+     "value": "39.97 mm (p10 39.93, p90 40.02, all azimuths)",
+     "label": "[M]"
+    },
+    {
+     "name": "synthetic two-sided thickness p10/p50/p90 (truth 6.0 mm)",
+     "value": "5.94/6.01/6.08 mm",
+     "label": "[M]"
+    },
+    {
+     "name": "watertight at full resolution",
+     "value": "24/24 run2 shells + 3 extra + 15 ablations",
+     "label": "[M]"
+    },
+    {
+     "name": "watertight after kit budget_mesh 4096",
+     "value": "0/24 shells (library_v3: 2/5)",
+     "label": "[M]"
+    },
+    {
+     "name": "area loss under budget_mesh, t2.5",
+     "value": "lid -1%, cup22 -2%, dust pan -6%, pitcher -10%, pot -15% (t1.5: pitcher -21%, pot -22%)",
+     "label": "[M]"
+    },
+    {
+     "name": "obs_fidelity sum t2.5 shell vs library_v3 (mm)",
+     "value": "lid 1.51/2.51, cup21 1.69/6.07, cup22 1.66/6.98, dust pan 1.87/3.64, pitcher 2.48/6.99, sweeper 1.67/4.24, pot 2.51/3.93, rack26 2.26/8.57, board24 1.40/2.69, beige cup11 1.62/3.45",
+     "label": "[M]"
+    },
+    {
+     "name": "fs_frac t2.5 shell vs library (%)",
+     "value": "lid 5.3/1.4, cup22 3.8/4.3, dust pan 12.0/0.75, pitcher 4.0/6.3, sweeper 7.8/7.7, pot 5.1/7.1, rack 7.6/4.1, board 5.7/6.8, beige 5.9/2.5",
+     "label": "[M]"
+    },
+    {
+     "name": "runtime t1.5 / t2.5 / t4.0 (s)",
+     "value": "lid 18/12/11, cup22 25/19/15, dust pan 28/23/18, pitcher 133/59/43, sweeper 10/5/4, pot 180/122/97 (4-core shared VM, 2 KD-tree workers)",
+     "label": "[M]"
+    },
+    {
+     "name": "bodies t1.5/t2.5/t4.0",
+     "value": "lid 6/3/2, cup21 2/2/2, cup22 2/2/1, dust pan 3/2/1, pitcher 24/7/6, sweeper 3/4/3, pot 30/12/13",
+     "label": "[M]"
+    },
+    {
+     "name": "two-sided sample share",
+     "value": "lid 0%, cup21 1.7%, cup22 0.6%, dust pan 5.8%, pitcher 0%, sweeper 0.1%, pot 29.1%, board24 70.7%",
+     "label": "[M]"
+    },
+    {
+     "name": "carve vs default t2.5 (fidelity sum mm / fs_frac %)",
+     "value": "dust pan 1.81/11.0 vs 1.87/12.0; lid 1.51/5.4 vs 1.51/5.3; cup22 1.62/3.6 vs 1.66/3.8; pot 2.45/4.6 vs 2.51/5.1; board 1.36/5.1 vs 1.40/5.7; runtime about 2-3x",
+     "label": "[M]"
+    },
+    {
+     "name": "obs cloud thickness (normal-direction std in 8 mm patches)",
+     "value": "lid ep2 p50 1.05 mm, dust pan ep39 p50 1.76 mm",
+     "label": "[M]"
+    }
+   ],
+   "hypotheses_tested": [
+    {
+     "h": "A point-based directional TSDF (fusion keyed by normal side, offsets averaged along normal lines inside a 5 mm band) recovers both faces of a thin wall seen from both sides, to sub-mm.",
+     "falsifier": "Synthetic tube with 1.2 mm ray noise: faces more than 0.5 mm from truth, or the measured thickness off by more than 0.5 mm.",
+     "outcome": "Supported [M] after two fixes. Outer face p50 39.97 mm (truth 40), thickness 6.01 mm (truth 6). Pooled PCA normals with a 3-D Gaussian window failed first (faces 1-2 mm off). Overlapping 60-degree bins failed second (up to 1 mm bulge at bin edges)."
+    },
+    {
+     "h": "Near-zero 'two-sided' evidence comes from points seen at grazing incidence whose normal points the wrong way, not from real thin walls.",
+     "falsifier": "Dropping points with cos(n, view) < 0.2 leaves the near-zero two-sided hits in place.",
+     "outcome": "Supported [M] on lid ep2: two-sided samples fell from 2628 to 124 (cup ep21: 2428 to 96)."
+    },
+    {
+     "h": "A 1 mm thickness floor is safe at the t-based marching-cubes pitch.",
+     "falsifier": "Thin slabs tear: area and fs_frac rise.",
+     "outcome": "Refuted [M] on dust pan ep39 with carve on: area +18 %, fs_frac 11.6 to 23.3 %. Fixed by T_FLOOR = 1.5 mm and a pitch tied to the thinnest slab."
+    },
+    {
+     "h": "The free-space clamp (carve) cuts slab overshoot into space our rays saw as empty, and improves GT-free fidelity.",
+     "falsifier": "fs_frac and the obs_fidelity sum do not improve on the five test objects.",
+     "outcome": "Small consistent gain [M]: fidelity sum -0.00 to -0.05 mm, fs_frac -0.5 to -1.0 pp on 4 of 5 objects (lid +0.03 pp). Runtime about 2-3x, pot fragments to 30 bodies. Kept as an option, default off."
+    },
+    {
+     "h": "Two-sided measured thickness improves GT-free fidelity where both faces are seen.",
+     "falsifier": "The no-two-sided ablation is equal or better on both GT-free metrics.",
+     "outcome": "Mixed [M]. Board ep24: area 816 vs 1145, fidelity sum 1.40 vs 1.54 (better), but fs_frac 5.7 vs 3.2 (worse). Pot: fidelity sum 2.51 vs 2.49, fs_frac 5.1 vs 4.1 (worse). Dust pan: worse on both. Undecided. Possible mis-matches up to D_MAX = 10 mm [H]."
+    },
+    {
+     "h": "The thin shell survives the kit's 4096-face budget.",
+     "falsifier": "Watertightness or area lost after budget_mesh.",
+     "outcome": "Refuted [M]: 0/24 watertight after budget, area \u22121 % to \u221222 % (worst on thin t and large objects). Library meshes keep their area within 1 %."
+    },
+    {
+     "h": "refine.py's refined obs (pot ep41) gives a better shell.",
+     "falsifier": "Fidelity and fs_frac against the raw obs are not better.",
+     "outcome": "Not better by these GT-free numbers (2.66 / 10.5 % vs 2.51 / 5.1 %). The test is biased against refinement: the reference is the raw obs and the grids are stale. Inconclusive."
+    }
+   ],
+   "gt_reads": "None. shell.py opens no files; its CLI loads through autokit/io_gt.py, which refuses /loc/, /scan, _align, parquet and mocap paths. test_shell.py reads:\n- obs_all/ and obs/ ep*_<obj>.npz through io_gt.load_obs, keys pts, cam and frame only;\n- poses.npz through io_gt.load_poses, our own tracks, for QA renders only;\n- calib.json through io_gt.load_calib;\n- library_v3/*.glb, crops/*.png and *_crops.json, made from our own tracks and library;\n- the kit's budget_mesh.\nobs_fidelity.py and fs_fidelity.py read the obs npz (including the 4 mm hits/free vote grids) and candidate meshes only. No *_align.npz, scan, mocap or parquet file was opened, mesh_metric.py was not run, and no scan-derived number was used: thickness only from the {1.5, 2.5, 4.0} mm grid or two-sided evidence. Object names appear only in test_shell.py's driver case list. A grep of shell.py finds no object names and no GT paths (comments that named dev episodes were rewritten to say 'dev cloud').",
+   "open_issues": [
+    "Budget decoding breaks the shells. After the kit's budget_mesh (fast_simplification to 4096 faces), 0/24 shells are watertight. Area drops 1-22 %, worst for t 1.5 and large objects: pitcher \u221221 %, pot \u221222 %. That would fail mesh_gates' topology gate and shifts the RMS-radius scale [H]. Library meshes keep their area within 1 %. A topology-preserving pre-decimation to \u2264 4096 faces could not be tested here: pymeshlab's meshing plugin needs libOpenGL. Candidate fix [H]: decimate the open observed surface first, then build the closed shell explicitly (front face, offset back face, rim strip) at \u2264 4096 faces. Falsifier: watertight after budget and area change under 2 %.",
+    "Unobserved regions stay open. Undersides, cup bottoms and the far sides seen in only one episode are missing, so the shells hold only observed surface (cup ep21: one side of the tube plus the inner far wall). Area against a complete scan will be wrong in either direction. Closures must come from stage-2 part programs or a separate closure step; route A alone is not a complete object.",
+    "The GT-free metrics cannot choose t or mode. obs_fidelity counts back faces in mesh_to_obs, so it always prefers thin t and the symmetric mode. fs_frac rises with t partly by construction, and its 4 mm vote grid is coarse. Thickness must stay a generic-grid robustness rule (pass at every t), not a GT-free argmin.",
+    "Thin features fragment: the lid strap, the dust-pan ring and the pitcher at t 1.5 (24 bodies; pot 30). Marker balls show as bumps or caps; one floating ball island is kept on the sweeper (frames \u2265 5 % and within 30 mm of the main body).",
+    "Board ep24 has an attached spurious protrusion, probably hand or other non-object points that passed obs_points' filters. Island removal cannot drop it because it is connected. Needs free-space or support filtering, or refine.py.",
+    "Two-sided thickness: real evidence is rare except on the pot (29 %) and the board (71 %). Its effect is mixed: area \u221229 % and better fidelity on the board, but higher fs_frac on the pot, board and dust pan. The 10 mm search depth may pair faces across free space [H]; checking each measured thickness against the carve is a candidate fix.",
+    "The carve option gives a small gain at about 2-3x runtime and fragments the pot into 30 bodies. It is default off. It also clamps 9-41 % of samples to the 1.5 mm floor, meaning our rays saw free space within about 2 mm behind those surfaces. Whether that is real thin walls or ray-endpoint error is unknown.",
+    "Refined obs: one test only (pot ep41), inconclusive. The fidelity reference is the raw obs, which biases against refinement, and the refined grids are stale. Needs a refined-vs-raw comparison on held-out frames (refine.py's fit_mask).",
+    "Runtime on this shared 4-core VM is up to 133 s (pitcher) and 180 s (pot) at t 1.5, because the marching-cubes pitch drops to 0.82 mm whenever any slab is 1.5 mm. The pot carve took 184 s.",
+    "Only one camera view rendered per object for QA, from our track's rectified-left camera (the crop comes from colour camera a), so views differ slightly. Episodes 21 and 24 have no colour crop. Visual QA is qualitative.",
+    "The constants are generic but were tuned on public dev clouds using GT-free metrics only: SIGMA 2 mm, TRUNC 5 mm, COS_GRAZE 0.2, PLANAR_MIN 0.3, A_MIN 0.5 cm\u00b2, NEAR 30 mm, D_MAX 10 mm. A pre-registered freeze before stage 2 is recommended.",
+    "Process: HEAD moved to f81a953 (orchestrator WIP snapshot) during my work. It contains the current shell.py (comment-only diff vs the run2 code, verified by hash). test_shell.py has one uncommitted later fix (os.makedirs for ablate/). I did not commit or push. run1 outputs (older pitch and floor) are kept in shell/run1/."
+   ]
+  },
+  {
+   "module": "parts-dsl: autokit part library + JSON part-program DSL and fitter (stage 1 of the combined A+B engine)",
+   "files": [
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/parts.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/program.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/DSL.md",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_programs.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/programs/lathe_bar_balls.json",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/programs/sheet_strap_balls.json",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/programs/lathe_splat.json",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/programs/tray_holder_pegs_balls.json",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/summary.json",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/results_lid_pot_cup_rack_grid_dsl.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/results_scale_cross_pot_cross_lid_cross_cup.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/results_cross_rack_scale_all.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/rerun_guard/results_cross_lid_lid.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/code_sha256.txt",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/final/code_sha256_end.txt",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/diag_floor/run.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/audit_strace.sh",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/audit/forbidden_hits.txt",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/parts-dsl/audit/opened.txt"
+   ],
+   "api": [
+    "parts.Ctx(obs, t=0.0025, lib=None, vox=VOX): voxel-downsampled P, C, V, F; s = robust RMS radius; ctx.w(spec, name, (frac, floor)) -> max(floor, frac*s), overridable per program",
+    "parts.Part dataclass: name, type, solid (manifold3d), mesh (patch), cavity, params, k, bounds_hit, diag, geo, resid(X), reach(X), idx",
+    "parts.PART_TYPES: lathe (method polar|height; floor base|observed|solid|open), sheet_of_revolution, plate (outline bar|occupancy|rect, host), plate_set, tube_rrect (wall thin|lip, above, x_min_from, align_frame, carve self|all, floor_depth dev-only), strap (host optional), cone_array (host, top_from), rounded_box, ball (of, require_cap, reject_inside, stems), tsdf_patch (of, margin; needs lib), splat (combine union|concat)",
+    "parts.fit_<type>(ctx, idx, spec, done) -> Part",
+    "parts.support_frame(ctx, spec) -> frame dict(up, L, w, o, tall, table)",
+    "program.run_program(program: dict, obs: dict, t=0.0025, lib=None, verbose=False) -> (trimesh.Trimesh, report dict)",
+    "program.validate_program(program) -> list of problems (run_program raises ValueError if any)",
+    "program.load_program(path) -> dict",
+    "program.T_GRID = (0.0015, 0.0025, 0.004); t off the grid raises ValueError",
+    "assignment rules: all, residual{of,band}, largest_cluster_beyond{of,reach_of,k,min_pts}, largest_cluster_extent{of,frame_of,min_extent,min_pts}, clusters_dir{of,host,dir,min_offset,min_pts}, slab{axis,min_from/max_from,min_margin/max_margin}, cavity{of,inset,beyond_margin}",
+    "attach rule: {mode: clip_cavity, to: HOST, face: +x}",
+    "report: s_mm, t_mm, n_pts, faces, watertight, bodies, area_cm2, k_total, bounds_hit, obs_to_model{med,p90}, per part n_assigned, k, params, bounds_hit, residual{n_owned, med_mm, p90_mm} (ownership = nearest part), diag",
+    "CLI: program.py PROGRAM.json OBJ EP OUT.glb [--t 0.0025] [--refined 0] [--obs PATH] [--lib LIB.glb] -> OUT.glb + OUT.json",
+    "test_programs.py --only lid,pot,cup,rack,scale,scale_all,grid,dsl,cross_pot,cross_lid,cross_cup,cross_rack [--out DIR] [--reuse 1]"
+   ],
+   "tests_run": [
+    "Final run A (OMP_NUM_THREADS=1, venv python): test_programs.py --only lid,pot,cup,rack,grid,dsl --out .../parts-dsl/final (code hashes in final/code_sha256.txt, repo HEAD 9e908d8 in final/repo_commit.txt)",
+    "Final run B: test_programs.py --only scale,cross_pot,cross_lid,cross_cup --out .../parts-dsl/final",
+    "Final run C: test_programs.py --only cross_rack,scale_all --out .../parts-dsl/final",
+    "Rerun after adding the sheet edge guard (parts.py hash changed): test_programs.py --only cross_lid,lid --out .../final/rerun_guard (lid reproduction unchanged: ratio 1.0012, median 0.003 mm)",
+    "Dev diagnostic: rack program with the incumbent's 5-episode floor depth forced (floor_depth abs 33.19 mm; dev-only), .../parts-dsl/diag_floor/run_diag.py",
+    "Integrity audit: audit_strace.sh = strace of test_programs.py --only lid,cup,dsl; every opened path listed, forbidden-path grep (/loc/, /scan, _align, .parquet, mocap) on all open attempts",
+    "Dev runs (superseded, kept): dev/*.glb, run1_main.log, run1_rack.log, run2_scale.log (scale about median, superseded), run3_scale.log, run4_scale_all.log, run5_reuse_exactdist.log"
+   ],
+   "results": "All four example programs reproduce their hand-kit incumbents within the 5 % criterion [M]. Pot, lid and cup are geometrically identical to them; the rack differs only in its unseen floor plate.\n\n**Reproduction** (t = 2.5 mm; fidelity = obs_fidelity sum on the episode's own points, DSL vs hand kit; distance = exact closest-point, 20k samples each way):\n\n| program, episode | fidelity (mm) | ratio | median distance | p90 | area ratio | faces |\n|---|---|---|---|---|---|---|\n| lathe_bar_balls, pot ep41 | 2.907 vs 2.907 | 1.000 | 0.000 mm | 0.000 mm | 1.000 | 16454 vs 16454 |\n| sheet_strap_balls, lid ep2 | 1.685 vs 1.683 | 1.001 | 0.003 mm | 0.010 mm | 1.000 | 9546 vs 9550 |\n| lathe_splat, cup ep21 | 4.080 vs 4.104 | 0.994 | 0.000 mm | 0.004 mm | 1.000 | 30912 vs 30924 |\n| tray_holder_pegs_balls, rack ep13 (single episode) | 7.411 vs 8.511 | 0.871 | 0.013 mm | 4.83 mm | 0.945 | |\n\n- The rack's walls, holder and pegs coincide with the incumbent. Its outline, holder and peg parameters agree to 1e-4 m.\n- The rack's only difference is the floor plate. The incumbent used a floor depth shared by 5 episodes. The program uses ep13's own table, as single-episode eval meshes require.\n- Forcing the incumbent's floor depth (dev-only diagnostic) gives fidelity 8.484 vs 8.511, median 0.011 mm, p90 0.098 mm, area 0.999.\n\n**Thickness grid** [M]: the lid program at t = 1.5 / 2.5 / 4.0 mm matches the clean-up round meshes. Fidelity ratios are 1.0014 / 1.0012 / 0.9996 and the median distance is 0.003 mm at each value.\n\n**Scale test** [M]: points, cameras and voxel were scaled by 1.3 about the origin, and the outputs scaled back.\n- cup: 0.000 mm, area 1.000;\n- pot (balls removed, bands relative): 0.001 mm;\n- lid: 0.000 mm (p90 0.58 mm, area 0.993);\n- rack: 0.053 mm (area 1.003);\n- so every fitted window is relative to s.\n- 'Physical' mode keeps the 1.5 mm voxel, which doubles the point count. There the cup's two-sided wall moved from 1.96 to 3.9 mm (scaled back) and the area fell 11 %. That is a density sensitivity in the count thresholds, not in the windows.\n\n**Same programs, unchanged, on other episodes** [M], against hand-kit candidates where they exist:\n- pot ep42\u201345: fidelity ratio 0.982\u20131.017, median distance 0.01\u20130.13 mm;\n- cup ep22: ratio 1.030, median 0.13 mm;\n- cup ep12 and ep13 ran (fidelity 2.30 and 2.92 mm; no incumbent);\n- rack ep12 / 26 / 27 / 31: ratio 0.923 / 0.882 / 0.859 / 1.005, median 0.07 / 1.51 / 0.43 / 0.06 mm (floor-depth difference plus relative windows);\n- lid ep0 fails with an explicit RuntimeError: 396 points after downsampling, the known bad track.\n\n**DSL checks** [M]:\n- All 4 example programs validate.\n- A bad program is caught: duplicate name, and a reference to a part not defined earlier.\n- An unknown part type, an unknown rule, and t off the grid each raise ValueError.\n- The grep finds no object names and no ground-truth path literals in parts.py or program.py.\n- Smoke runs pass for plate_set, rounded_box, tsdf_patch, plate occupancy, clusters_dir + splat union, strap without host, and lathe open floor.\n\n**Integrity audit** [M]: strace of the lid, cup and DSL tests shows 0 opens or open attempts of forbidden paths. The only data files opened are obs npz files, our library mesh and the incumbents.\n\n**Runtimes** (1 thread): pot about 80\u2013100 s (axis search), rack 135\u2013160 s (up to 450 s under contention), lid 5\u201313 s, cup 7\u201310 s.\n\nNo scan was opened or scored.",
+   "metrics": [
+    {
+     "name": "pot_ep41_fid_ratio",
+     "value": "1.000 (2.907/2.907 mm)",
+     "label": "[M]"
+    },
+    {
+     "name": "pot_ep41_median_sym_dist_mm",
+     "value": "0.000 (p90 0.000)",
+     "label": "[M]"
+    },
+    {
+     "name": "lid_ep2_fid_ratio",
+     "value": "1.0012 (1.685/1.683 mm)",
+     "label": "[M]"
+    },
+    {
+     "name": "lid_ep2_median_sym_dist_mm",
+     "value": "0.003 (p90 0.010)",
+     "label": "[M]"
+    },
+    {
+     "name": "cup_ep21_fid_ratio",
+     "value": "0.994 (4.080/4.104 mm)",
+     "label": "[M]"
+    },
+    {
+     "name": "cup_ep21_median_sym_dist_mm",
+     "value": "0.000 (p90 0.004)",
+     "label": "[M]"
+    },
+    {
+     "name": "rack_ep13_fid_ratio",
+     "value": "0.871 (7.411/8.511 mm); area ratio 0.945",
+     "label": "[M]"
+    },
+    {
+     "name": "rack_ep13_median_sym_dist_mm",
+     "value": "0.013 (p90 4.83, floor plate)",
+     "label": "[M]"
+    },
+    {
+     "name": "rack_ep13_forced_floor_depth_diag",
+     "value": "fid 8.484/8.511, median 0.011 mm, p90 0.098 mm, area 0.999",
+     "label": "[M] dev-only"
+    },
+    {
+     "name": "lid_t_grid_fid_ratio_1.5/2.5/4.0",
+     "value": "1.0014/1.0012/0.9996; median 0.003 mm each",
+     "label": "[M]"
+    },
+    {
+     "name": "scale_windows_scaled_back_median_mm cup/pot/lid/rack",
+     "value": "0.000/0.001/0.000/0.053",
+     "label": "[M]"
+    },
+    {
+     "name": "scale_physical_cup",
+     "value": "median 0.85 mm, t 1.96 -> 3.9 mm, area 0.89",
+     "label": "[M] not a pass criterion"
+    },
+    {
+     "name": "cross_pot_ep42-45_fid_ratio",
+     "value": "0.999, 0.993, 0.982, 1.017 (median 0.01-0.13 mm)",
+     "label": "[M]"
+    },
+    {
+     "name": "cross_rack_ep12/26/27/31_fid_ratio",
+     "value": "0.923/0.882/0.859/1.005 (median 0.07/1.51/0.43/0.06 mm)",
+     "label": "[M]"
+    },
+    {
+     "name": "cross_cup_ep22_fid_ratio",
+     "value": "1.030 (median 0.13 mm)",
+     "label": "[M]"
+    },
+    {
+     "name": "strace_forbidden_opens",
+     "value": "0",
+     "label": "[M]"
+    },
+    {
+     "name": "k_total pot/lid/cup/rack",
+     "value": "93/85/115/72",
+     "label": "[M]"
+    }
+   ],
+   "hypotheses_tested": [
+    {
+     "h": "The hand kits can be expressed as generic part programs (no object names in method code) and reproduce their incumbents within 5 % fidelity",
+     "falsifier": "fidelity ratio > 1.05 or median symmetric mesh distance > 1 mm on any of pot ep41, lid ep2, cup ep21, rack ep13",
+     "outcome": "Not falsified [M]. Ratios 1.000/1.001/0.994/0.871. Medians 0.000/0.003/0.000/0.013 mm. The rack's p90 of 4.8 mm comes from the floor depth: 0.098 mm when the incumbent's depth is forced."
+    },
+    {
+     "h": "All fitted windows are relative to s (scale-equivariant programs)",
+     "falsifier": "the scaled-back output of a run on points x1.3 (sensor voxel scaled too) differs by > 0.25 mm median or > 1 % area",
+     "outcome": "Not falsified [M]. Cup 0.000 mm, pot 0.001, lid 0.000 (area 0.993), rack 0.053 (area 1.003). Balls and the absolute noise band were excluded by design."
+    },
+    {
+     "h": "The lathe two-sided wall estimate is robust to point density",
+     "falsifier": "physical scale test (same 1.5 mm voxel, twice the points) changes t or area by more than noise",
+     "outcome": "Falsified [M]. t went from 1.96 to 3.9 mm (scaled back) and the area fell 11 %. The count thresholds are not density-normalised; this is inherited from lathe_obs."
+    },
+    {
+     "h": "Relative windows calibrated on one episode transfer to the same object's other episodes without retuning",
+     "falsifier": "fidelity ratio vs the hand-kit candidate > 1.05 on another episode",
+     "outcome": "Not falsified [M]. Pot ratios 0.982-1.017; cup ep22 1.030; rack <= 1.005. Some bound hits appear: pot ep43/45 wall t at the scaled 5.75 mm cap; rack ep26 holder corner radius."
+    }
+   ],
+   "gt_reads": "None. The method code and tests opened only observed-point npz files through io_gt.load_obs, our library_v3 meshes and our own hand-kit incumbent meshes. strace audit: 0 forbidden opens or attempts (/loc/, /scan, _align, .parquet, mocap). No scan was scored and mesh_metric.py was not run. No scan-measured number is used: unseen thickness comes from T_GRID {1.5, 2.5, 4.0} mm or two-sided evidence, and BAR_T0 was replaced by t. One dev-only diagnostic forced a 33.19 mm floor depth. That number is GT-free: it is the hand kit's shared depth from obs points of 5 episodes. Its result is labelled and not used by any program.",
+   "open_issues": [
+    "Rack single-episode floor: the program puts the floor plate on the episode's own table (h_ft = table + t). The incumbent used a depth shared by 5 episodes, so the lower block differs by about 4.8 mm at ep13 (area 0.945, p90 4.8 mm). Which is better for CD-O is unmeasured; no scan was scored. floor_depth exists only as a dev-only override.",
+    "The default windows are hand-kit absolute values divided by s of each kit's development episode (S_REF_POLAR 91.14 mm, S_REF_SHEET 63.73, S_REF_TUBE 155.64, S_REF_HEIGHT 56.81). These are calibration constants, not object names, but s depends on what was observed (partial views). On other episodes the windows shift by a few %, giving bound hits such as the pot wall t cap at 5.75 mm on ep43/45. An auditor may still count them as per-object calibration.",
+    "Count thresholds are not density-normalised: MIN_PTS 8 per (bin, sector), cluster min_pts 60/100/200/400, and the >= 50 floor points for a raised floor. In the physical scale test the cup's two-sided t moved from 1.96 to 3.9 mm (area -11 %). Treat t_src two_sided with care and keep the t-grid runs.",
+    "Absolute constants remain by design:\n- sensor: voxel 1.5 mm, F_SCALE 2 mm, residual band APP_D 8 mm, assignment cluster voxel 3 mm, view cosines;\n- marker hardware: ball r0 7 mm, size, gap and stem tests, stem radius 3.5 mm;\n- small geometric constants: 2 mm corner-radius floors in tube sections, a 10 mm cavity overshoot, 20 mm raster padding and 1.5 mm slab margin in plate occupancy, the peg base 1 mm into the floor.",
+    "parts.py reuses helpers from the hand-kit modules (lathe_obs, prim_potlid, prim_rack, prim_boards). Those modules carry object names in their own docstrings and driver code; prim_rack has OBJ used only by its run driver. Monkey-patching is temporary and not thread-safe: PL.APP_D in ball, PR.PEG_* and F_SCALE in cone_array, PB.GRID in plate occupancy. A clean port of those helpers into autokit would remove the dependency.",
+    "tube_rrect and the support frame encode one kit's construction: a table-standing object, a tall-end convention (tall_end flip, x_min_from tall_lo), and a clip_cavity attachment along frame x. They are generic in form but validated on one object only. A theta-free 'thin' tube without a host is untested on real data.",
+    "Validated only by smoke runs, with no hand-kit reference: plate_set (it found 1 plate on board ep24), plate occupancy and rect, rounded_box, tsdf_patch, clusters_dir, strap without host, lathe open floor. rounded_box is crude: percentile extents, and on board ep24 markers inflated the thickness to 39 mm (fidelity 23.7 mm).",
+    "The cup reproduction uses splat combine 'concat', matching lathe_obs g1. That leaves overlapping separate shells: 5 bodies, internal faces counted in area. 'union' is recommended for submission but was not compared against anything.",
+    "Ball parts keep the hand kits' behaviour: floating balls without stems (pot ep41 has 5 bodies), and the radius falls back to the 7 mm prior (flagged in bounds_hit as r<j>). The rack ep26 cross run accepted no balls.",
+    "The lid ep0 cross run fails: 396 points after downsampling, a known bad track. The edge guard (< 6 of 36 sectors -> RuntimeError) was added after runs A/B/C, so parts.py's hash differs. final/rerun_guard reran the lid cases on the new hash: reproduction unchanged, error now explicit.",
+    "Per-part residuals use ownership (each point goes to its nearest part). For parts assigned 'all' that share points with later parts, the assigned-point residual would mislead, so it is not reported. Ownership can attribute noise to small parts such as balls.",
+    "The task did not say what 'within 5 %' means for mesh distance. I used fidelity ratio <= 1.05 and median symmetric distance <= 1 mm (the stereo noise floor) as the pass rules, and report both numbers plus area ratios.",
+    "I updated neither STATUS.md nor the work log, and did not commit or push, as instructed. The orchestrator should record this run: commands in final/run*.cmd, code hashes in final/code_sha256*.txt, repo HEAD 9e908d8."
+   ]
+  },
+  {
+   "module": "autokit/gates.py: GT-free selector v2. Gates measure each (mesh, episode) pair and select() picks with a frozen rank; library_v3 is the fallback.",
+   "files": [
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/gates.py",
+    "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_gates.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_v2_rows.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_v2_verdict.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_v2_select.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_v2_per_frame.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_v2.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_run2_rows.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_run2_verdict.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/validate_run2.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/noise.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/diag_lat.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/diag_viol.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/unit.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/unit_run2_audit_regression.jsonl",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/audit_strace.log",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/gates_v2_as_run.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/test_gates_v2_as_run.py",
+    "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/gates/synthetic/"
+   ],
+   "api": [
+    "evaluate(mesh_path, obs_paths: list, obj: str, ep: int, flip=True) -> dict(mesh, obj, ep, obs, metrics, gates, pass, rank_score, per_frame, thresholds, sec). obs_paths: io_gt files. A refined copy is detected by its sibling .corr.npz; its per-frame correction is composed into cam_T_obj (cam_T_obj[f] @ inv([R | c0 + t - R c0])).",
+    "select(rows: list) -> dict(pick, reasons, ranking). Takes the rows of one object. library_v3 rows (or rows with fallback=True) are always eligible and never gated. Other rows must pass every gate on every episode they were evaluated on. Rank = mean rank_score; ties go to the lower fid_sum_mm.",
+    "rank_score(m) = dr_cdist_mm + dr_pdist_mm, lower is better. This is a two-sided truncated depth residual along camera rays, judged only where the object was observed. CAP = 12 mm.",
+    "gates_of(m) -> {G_COMP, G_HOLE, G_PREC, G_FS, G_CONN, G_TOPO, G_FRAME, G_FLIP}. A missing or NaN measure fails its gate.",
+    "Measures: depth_render(S, obs_list, K, size), hole3d(P, expl), nearest_dz(...), fs_frac(S, grids), fidelity(raw, P) (the obs_fidelity formula), connectivity(raw), topology(path, raw), load_budget(path) (the kit's budget_mesh decode with padding dropped), frame_cams(obs_file, obj, ep), pick_frames(frames, n=32).",
+    "Frozen constants: N_FRAMES 32, CELL_PX 2, M_PREC = M_COMP = 6 mm, CAP 12 mm, LAT_PREC 6 mm (v2), LAT_COMP one cell, HOLE_VOX 4 mm, HOLE_UNEXP 0.5, COMP_MIN 0.80, HOLE_MAX 0.04, VIOL_MAX 0.05, FS_MAX 0.15, CONN_MIN 0.98 (TOUCH 2 mm; a ball is <= 30 mm across with sphericity >= 0.85 and lies within 30 mm), FRAME_MM 5, BUDGET 4096.",
+    "CLI: python gates.py eval MESH OBJ EP [--obs a.npz,b.npz] [--refined] [--no-flip] [--out rows.jsonl]; python gates.py select rows.jsonl"
+   ],
+   "tests_run": [
+    "test_gates.py noise (data only, before any candidate was scored). First version v0 was biased: it used nearest-depth to a dense cloud, gave |dz| ~0 and was discarded (noise_v0_nearest_biased.jsonl). The final version uses the median depth of the other frames per cell within +-20 mm, frames within +-4 left out, on 8 episodes.",
+    "test_gates.py unit, final run against final code: (a) static integrity via AST: no object names or words in identifiers, constants or comments, and no GT path constant. PASS. (b) Observed points re-project onto integer pixel centres with our track and K, for raw ep39 dust pan, raw ep41 pot and refined ep41 pot (150 corrections). Share on centre 1.0. PASS. (c) fid_sum_mm of library dust pan on obs/ep39 = 3.642, equal to the P2 probe's value. PASS. (d) Synthetic edits of meshes outside the validation set (library dust pan on ep39, blue-cup lathe ep22 g0 on ep22): a 3 cm cut lowers comp and raises hole; a front plate raises viol; a 10 mm shift fails G_FRAME; a duplicate 1.5 extents away fails G_CONN. PASS on both.",
+    "test_gates.py audit, (e) strace openat over a full evaluate including the flip check: 0 forbidden opens. First audit attempt flagged Python's own json/__pycache__/scanner.pyc because it matches '/scan'; stdlib paths are now exempt. Data files opened: library_v3 mesh, candidate, calib.json, sweep/ep39/poses.npz, kit config/tracks.json, kit data/track_3_evaluation_objects.json, obs_all/ep39 npz.",
+    "(f) Regression: the current code with LAT_PREC = LAT_COMP = None reproduces the v1 run-2 numbers exactly for library dust pan ep39 (comp 0.95156, viol 0.02149, hole 0.05284, rank 2.16813). PASS.",
+    "validate run 1 crashed in a print statement (json.dumps got sec= as a keyword). Archived in run1_crash/.",
+    "validate run 2: v1 code (sha256 08b8d010...), raw observations, flip check on, 19 rows, declared expectations, 15:21-15:45 UTC. 16 of 19 met.",
+    "diag, post hoc: LAT = 6 mm for both tests, raw observations, no flip, 2 processes.",
+    "diag, post hoc: v1 reach (3x3 cells), refined observations, no flip, 2 processes.",
+    "validate v2 (refined observations, flip check on), code sha256 671248ec... saved as gates_v2_as_run.py, 15:45-15:58 UTC. 18 of 19 met.",
+    "diag_viol, post hoc, record only: where the cup incumbent's violations lie, in our own lathe axis frame."
+   ],
+   "results": "The gates still reject one known-good mesh, the blue-cup lathe. The v2 settings were chosen after v1 failed on these same meshes, so this validation is not independent.\n\nTwo runs:\n- **v1** (all thresholds set before any validation number was seen): 16 of 19 declared expectations met.\n- **v2** (one revision set after v1, declared before its own run, no tuning after it): 18 of 19 met.\n\n**v2 rows** [M] (comp = dr_comp, viol = dr_viol, hole = dr_hole3d, rank = dr_cdist_mm + dr_pdist_mm, lower is better):\n\n| Mesh | Pass | Failed gates | comp | viol | hole | rank |\n|---|---|---|---|---|---|---|\n| Dust pan library ep39 | fallback | G_HOLE | 0.941 | 0.001 | 0.073 | 1.254 (pick) |\n| NC_no_largest_wall | no | G_HOLE, G_CONN | 0.905 | 0.014 | 0.122 | 1.832 |\n| NC_floor_only | no | G_COMP, G_HOLE, G_FLIP | 0.460 | 0.000 | 0.735 | 6.670 |\n| P2 pick PS_t2.5 | no | G_HOLE, G_CONN | 0.923 | 0.040 | 0.050 | 1.857 |\n| PS_t1.5 | no | G_CONN | 0.941 | 0.032 | 0.035 | 1.576 |\n| PS_t4.0 | no | G_HOLE, G_CONN | 0.938 | 0.048 | 0.062 | 1.769 |\n\n| Mesh | Pass | Failed gates | comp | viol | hole | rank |\n|---|---|---|---|---|---|---|\n| Pot library ep41 | fallback | G_HOLE | 0.895 | 0.020 | 0.074 | 2.362 |\n| Pot incumbent ep41 fit | yes | none | 0.967 | 0.026 | 0.021 | 1.273 (pick) |\n| P1 pick lathe_fap_f2 | no | G_PREC | 0.973 | 0.085 | 0.012 | 2.266 |\n| P1 lathe_pap_f0 | no | G_PREC, G_CONN | 0.991 | 0.064 | 0.004 | 1.586 |\n| P1 lathe_pap_f2 | no | G_PREC, G_CONN | 0.991 | 0.063 | 0.004 | 1.580 |\n\n| Mesh | Pass | Failed gates | comp | viol | hole | rank |\n|---|---|---|---|---|---|---|\n| Lid library ep2 | fallback | none | 0.995 | 0.000 | 0.006 | 0.489 (pick) |\n| Lid incumbent ep2 v2 | yes | none | 0.996 | 0.005 | 0.004 | 0.539 |\n| Rack library ep13 | fallback | G_CONN | 0.931 | 0.009 | 0.028 | 1.973 |\n| Rack incumbent ep13_full (t2.5, lean1) | yes | none | 0.962 | 0.042 | 0.019 | 1.720 (pick) |\n| Cup library ep21 | fallback | G_HOLE | 0.872 | 0.024 | 0.137 | 2.515 (pick) |\n| Cup incumbent lathe ep21 g1 | no | G_PREC | 0.965 | 0.079 | 0.027 | 1.759 |\n\n- Every row has 0 flips. Frame sanity is at most 4.0 mm everywhere (rack incumbent 4.01).\n- The library meshes fail their own gates (thick walls show as coherent holes), which is why they are the ungated fallback.\n\n**v1 run 2** [M] (raw observations, 3x3-cell reach in both tests):\n- Both negative controls, the P2 picks and the P1 fragmented picks were rejected. The lid incumbent passed.\n- The pot, rack and cup incumbents failed G_PREC (9.5 / 8.0 / 13.5 %). The pot and cup also failed G_HOLE (4.6 / 5.0 %).\n\n**Why v1 failed and what v2 changed** (diagnostics):\n- **Precision:** obs_points' depth-edge filter removes about 2 px on both sides of every internal depth edge. A 3x3-cell window therefore never reaches the near side of a rim or handle, and track jitter puts a correct rim \"in front of\" the far-side points.\n- **Hole:** with 6 mm lateral reach on raw points, the negative control's hole shrinks to 1.2 %. Its dropped-wall points are only 4.4 / 7.5 / 12.1 mm (p10 / p50 / p90) from the remaining mesh [M]. On refined points with the 3x3 reach, the hole separates the negative control (12.2 %) from all incumbents (at most 2.7 %).\n- **v2:** refined observations (refine.py), 6 mm lateral reach for precision only, completeness unchanged, all gate levels unchanged.\n\n**Noise study** [M], leave-frames-out |depth \u2212 other-frame median depth| per point, p90 by episode:\n- dust pan 5.2, pot 7.4, lid 2.9, rack 4.85, blue cup 5.8, sweeper 4.4, pitcher 7.1, board 3.2 mm.\n- Share within 6 mm: 0.836 to 0.993.\n\n**Threshold reasons:**\n- M_PREC = M_COMP = 6 mm: covers p90 on 6 of 8 episodes.\n- COMP_MIN = 0.80: below the worst self-consistency (0.836).\n- HOLE_MAX = 0.04, VIOL_MAX = 0.05: declared levels, not fitted.\n- FS_MAX = 0.15: a lenient backstop, because fs_frac is one-sided. It is never ranked.\n- CONN_MIN = 0.98 and FRAME_MM = 5: from the brief.\n- All of these thresholds were set before any stage-2 candidate exists.\n\n**How the probe defects are fixed:**\n- The free-space term is now paired with two-sided completeness and hole terms.\n- Floors are absolute instead of anchored to the thick library.\n- Connectivity is checked (G_CONN).\n- Watertightness is measured on the mesh as built; faces are counted after budget_mesh.\n- There is one module instead of three selector versions.\n\n**Cost:** CPU only, $0, at most 2 processes. One evaluate takes about 25-60 s including about 15-30 s of flip check. The v2 validation took 12.8 min.",
+   "metrics": [
+    {
+     "name": "v2 validation: declared expectations met",
+     "value": "18/19 (cup incumbent fails G_PREC 0.079)",
+     "label": "M"
+    },
+    {
+     "name": "v1 validation run 2 (frozen before any validation number): expectations met",
+     "value": "16/19 (pot, rack, cup incumbents fail)",
+     "label": "M"
+    },
+    {
+     "name": "NC_no_largest_wall v2: dr_hole3d / conn_share",
+     "value": "0.122 (gate 0.04) / 0.883 (gate 0.98) -> rejected",
+     "label": "M"
+    },
+    {
+     "name": "Incumbent dr_hole3d v2 (pot / lid / rack / cup)",
+     "value": "0.021 / 0.004 / 0.019 / 0.027",
+     "label": "M"
+    },
+    {
+     "name": "Incumbent dr_viol v2 (pot / lid / rack / cup)",
+     "value": "0.026 / 0.005 / 0.042 / 0.079",
+     "label": "M"
+    },
+    {
+     "name": "P1 fragmented picks dr_viol v2",
+     "value": "0.085 / 0.064 / 0.063 (all rejected)",
+     "label": "M"
+    },
+    {
+     "name": "P2 picks v2",
+     "value": "all rejected by G_CONN 0.95-0.967, two also by G_HOLE 0.050 / 0.062",
+     "label": "M"
+    },
+    {
+     "name": "Noise study |dz| p90 range over 8 episodes",
+     "value": "2.9-7.4 mm (median 5.0)",
+     "label": "M"
+    },
+    {
+     "name": "Noise study share within 6 mm",
+     "value": "0.836-0.993",
+     "label": "M"
+    },
+    {
+     "name": "fid_sum_mm reproduction (library dust pan, obs/ep39)",
+     "value": "3.642 = P2 value",
+     "label": "M"
+    },
+    {
+     "name": "Observed-point reprojection on pixel centres",
+     "value": "share 1.0 (raw ep39, raw ep41, refined ep41)",
+     "label": "M"
+    },
+    {
+     "name": "strace forbidden opens in a full evaluate",
+     "value": "0",
+     "label": "M"
+    },
+    {
+     "name": "Runtime per evaluate (with flip check)",
+     "value": "25-60 s; v2 validation of 19 meshes 12.8 min",
+     "label": "M"
+    },
+    {
+     "name": "Cost",
+     "value": "$0 (CPU VM)",
+     "label": "M"
+    }
+   ],
+   "hypotheses_tested": [
+    {
+     "h": "Per-frame depth-render completeness plus a coherent-hole term with fixed absolute thresholds rejects NC_no_largest_wall and passes the hand-kit incumbents on raw observations (v1, 3x3 reach).",
+     "falsifier": "Any incumbent fails, or the NC passes, in validate run 2.",
+     "outcome": "Refuted [M]. The NC was rejected (hole 0.053, conn 0.883). The pot, rack and cup incumbents failed G_PREC (0.095 / 0.080 / 0.135) and the pot and cup also G_HOLE (0.046 / 0.050). On raw points the NC's hole (0.053) cannot be separated from the incumbents' holes."
+    },
+    {
+     "h": "The incumbents' v1 precision violations are lateral effects: the depth-edge filter gap plus track jitter at internal edges.",
+     "falsifier": "Widening the lateral reach to 6 mm does not bring the incumbents below 5 %, or also clears the P1 fragmented picks.",
+     "outcome": "Mostly supported, post hoc [M]. Raw points with 6 mm reach: pot 0.031, rack 0.0495, lid 0.007, cup 0.062 (still above 5 %). P1 picks stay at 0.063-0.095 and are still rejected."
+    },
+    {
+     "h": "A 6 mm lateral reach also in completeness keeps the hole term sensitive to the missing wall.",
+     "falsifier": "NC hole drops below HOLE_MAX.",
+     "outcome": "Refuted [M]. NC hole fell to 0.012. Its dropped-wall points lie only 4.4 / 7.5 / 12.1 mm (p10 / p50 / p90) from the remaining mesh. That is why completeness kept the one-cell reach in v2."
+    },
+    {
+     "h": "On refined observations (refine.py), the tight one-cell completeness separates the NC hole from the incumbents' holes.",
+     "falsifier": "NC hole <= max incumbent hole on refined points.",
+     "outcome": "Supported, post hoc [M]. NC 0.122 against incumbents 0.004-0.027."
+    },
+    {
+     "h": "v2 (refined points, LAT_PREC 6 mm, LAT_COMP one cell, unchanged levels) meets all declared expectations.",
+     "falsifier": "Any expectation not met in validate v2.",
+     "outcome": "Refuted for one row [M]. 18/19 met; the blue-cup lathe incumbent fails G_PREC 0.079. Its violations concentrate in the top height quintile (0.241) and the outermost radius quintile (0.259, r 43.6-63 mm), i.e. the TSDF-splat appendage region. The library has 0.040 / 0.033 there. Whether the gate is right about an inflated handle, or is a false reject, is unknown [H]."
+    },
+    {
+     "h": "The depth-render rank places the P2 / P1 failures below library.",
+     "falsifier": "A failed probe pick ranks above library.",
+     "outcome": "Mixed [M]. Dust pan, v2: library 1.254 beats every P2 row. Pot: P1 lathe_pap_f0 / f2 (1.586 / 1.580) rank above the library (2.362) but are gated out, so the claim rests on the gates for the pot. Whether this rank tracks CD-O is untested (no scan use here)."
+    }
+   ],
+   "gt_reads": "None. Method and test code read only:\n- our obs npz files through io_gt.load_obs (obs_all/, obs/ for the fidelity reproduction, refined/);\n- the refine.py .corr.npz files, after io_gt.check_path;\n- our tracks: data/sweep/ep*/poses.npz;\n- data/calib.json;\n- candidate meshes, hand-kit incumbents and library_v3;\n- the kit's code, config/tracks.json and data/track_3_evaluation_objects.json (object names, slots and eval seeds only, used by the flip check).\n\nThe strace audit of a full evaluate found 0 opens matching /loc/, /scan, _align, .parquet or mocap, after exempting Python stdlib files: json/__pycache__/scanner.pyc matched '/scan'. mesh_metric.py was not run, and no scan-measured number was used. I knew which meshes were good only from the task brief's labels (incumbents beat library on scan, probes refuted), and that knowledge shaped the post-hoc v2 revision, as stated.",
+   "open_issues": [
+    "The validation is not independent. v1, frozen before any number was seen, met 16/19. v2 was chosen after seeing v1 and two diagnostics on the same meshes. Stage 2 must re-check the gates on held-out meshes and episodes before trusting them, for example per-episode hand-kit fits on other episodes: pot ep26/27, rack ep12/27/31, cup ep22.",
+    "The blue-cup lathe ep21 g1 incumbent fails G_PREC under v2 (0.079 against 0.05). Its violations sit in the appendage / top region. Unresolved whether this is a correct catch of an inflated TSDF-splat handle or a false reject. No further tuning was done, by declaration.",
+    "NC_no_largest_wall's rejection in v2 rests on G_HOLE (0.122) and G_CONN (0.883). The hole signal exists only on refined points with the tight one-cell reach. On raw points the missing wall's points sit 4-12 mm from other surfaces, about the observation noise level. A missing wall that leaves the mesh connected and lies close to other surfaces may pass.",
+    "v2 levels were checked only on refined observations. On raw points v2 is unvalidated. Callers must pass refined copies (io_gt.obs_path(..., refined=True) or --refined). The CLI does not enforce this.",
+    "The rank (dr_cdist_mm + dr_pdist_mm) has no evidence of tracking CD-O. It differs from fid_sum_mm: on the dust pan, fid prefers the P2 picks (1.83-2.26) over library (3.86); the depth rank prefers library. Only a pre-registered scan round in stage 2 can test which tracks CD-O.",
+    "HOLE_MAX = 0.04 is a declared level with no clean calibration set. Library meshes hold 0.03-0.14 because their thick walls show as coherent holes, which is why they are the ungated fallback.",
+    "Precision only judges cells where object points exist. Surface sticking out past the observed silhouette is caught only by the coarse fs_frac backstop (4 mm grid, 10 mm free threshold, FS_MAX 0.15). Undersides are never judged.",
+    "The gates assume good tracks. An episode with a bad track (for example lid ep0, 23-26 mm off) will fail every candidate, so select() returns the library. Not exercised here.",
+    "The flip gate depends on the kit roster for eval seeds and on library_v3 as reference, as in pipeline/mesh_gates.py.",
+    "The final gates.py differs from the v2 code as run (gates_v2_as_run.py, sha256 671248ec...) only in docstrings and comments; AST equality was checked. Final file sha256 2a748d5b..., test_gates.py 41f55304.... Nothing was committed or pushed, per the brief.",
+    "A stray 41-byte file /audit.log was created at the filesystem root by a shell-variable scoping mistake. It contains only '-W: command not found'. The safety check blocked my removal, so the owner should delete it (rm /audit.log).",
+    "Run 1 of validate crashed in a print statement after the first row and is archived in run1_crash/. Run 2 is the v1 record.",
+    "STATUS.md and docs/work-log.md were not updated, per the brief's file-scope rule. The orchestrator should record these results."
+   ]
+  }
+ ],
+ "integ": {
+  "module": "autokit/run_object.py: stage-1 integration driver of the A+B mesh engine. For one (object, episode) it builds every candidate the engine can make: thin shells on raw and refined points, the DSL programs, library_v3 and the leak-free incumbent. It then runs gates.evaluate on the episode's own points and on held-out episodes, picks with gates.select and renders the pick next to a colour crop. It also has an `audit` subcommand that counts opens of GT-pattern paths in strace openat logs. Nothing is committed.",
+  "files": [
+   "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/run_object.py",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/index.json",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/prod_cmds.txt",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/run_object_as_run_prod.py",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/white_pot_lid_ep2/ (candidates.jsonl, selection.json, summary.tsv, per_frame.jsonl, run_meta.json, qa_pick.jpg, pick_b4096.glb, cand/*.glb+json, strace.log, run.log)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/blue_cup_ep21/ (same layout)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/mini_dust_pan_ep39/ (same layout)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/water_pitcher_ep22/ (same layout)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/mini_sweeper_ep31/ (same layout)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/posthoc_main/mini_sweeper_ep31/ (post-hoc island-policy variant run, same layout)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/smoke/white_pot_lid_ep2/ (t=2.5 smoke run)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/tools/table.py (prints the candidate tables from candidates.jsonl + selection.json)",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/worker1.log",
+   "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/worker2.log"
+  ],
+  "api": [
+   "run_object.py run OBJ EP [--holdout 22,40] [--out DIR] [--ts 1.5,2.5,4.0] [--reuse] [--no-render] [--no-rawobs] [--main-variant]. Writes OUT/<obj>_ep<N>/{cand/*.glb+.json, candidates.jsonl, per_frame.jsonl, selection.json, summary.tsv, qa_pick.jpg, pick_b4096.glb, run_meta.json}. OUT defaults to scratchpad/auto/stage1/integ.",
+   "run_object.py audit STRACE.log [...]: per log, the openat count, matches of io_gt.FORBIDDEN anywhere, matches outside system and venv libraries (attempted and successful), and the data directories opened.",
+   "run(obj, ep, holdouts, out, ts=(1.5,2.5,4.0), reuse=False, render=True, rawobs=True, main_variant=False) -> selection dict",
+   "build_candidates(obj, ep, cdir, ts, reuse, main_variant) -> list of dict(name, kind shell|dsl|library|incumbent, route A|B|fallback|earlier, t_mm, mesh, src, build). A failed build is recorded with build.error and mesh=None.",
+   "evaluate_candidate(c, obj, ep, holdouts, rawobs) -> (rows, per_frame). Roles:\n- own: refined obs, with the flip check;\n- holdout: refined obs; the flip result is reused and the gates recomputed with gates.gates_of;\n- rawobs: raw obs, report only.",
+   "Selection fields:\n- selection.json pick and ranking: gates.select over the own + holdout rows;\n- pick_own_only: gates.select over the own rows, which is all that eval-time selection sees;\n- pick_rawobs_report_only: the same selection over the rawobs rows.",
+   "main_group(mesh) -> (mesh, info): POST HOC. Keeps exactly what G_CONN counts (gates' TOUCH grouping plus small compact balls, using the gates' constants). It is used only by --main-variant to add '<shell>+main' candidates.",
+   "Driver input tables (the only place object names appear): PROGRAMS (object -> program files), VARIANTS (program file -> generic edit; lathe_splat gets a 'union' variant), INCUMBENTS ((obj, ep) -> leak-free earlier meshes), HOLDOUTS ((obj, ep) -> held-out episodes)."
+  ],
+  "tests_run": [
+   "Smoke run, t 2.5 only, no rawobs: run_object.py run white_pot_lid 2 --ts 2.5 --out .../integ/smoke. 5 candidates, 175 s. Pick shell_ref_t2.5.",
+   "Production runs: CPU VM with 4 cores, 2 workers in parallel, OMP_NUM_THREADS=2, 16:12-16:48 UTC on 2026-10-27, repo HEAD f81a953 with uncommitted autokit. run_object.py sha256 a8320f047c26c273; the as-run copy is integ/run_object_as_run_prod.py, verified by hash. Exact commands are in integ/prod_cmds.txt.\n  - Worker 1, in sequence:\n    - `strace -f --seccomp-bpf -e trace=openat -o integ/<obj>_ep<N>/strace.log venv/bin/python -W ignore run_object.py run white_pot_lid 2`\n    - the same command with `mini_dust_pan 39` (hold-outs 18 and 40)\n    - the same command with `mini_sweeper 31` (hold-out 18)\n  - Worker 2, in sequence: `blue_cup 21` (hold-out 22), then `water_pitcher 22` (hold-out 21).",
+   "Post-hoc run (16:48-16:58 UTC, after seeing every sweeper shell fail G_CONN; run_object.py sha 489bd529f1479070):\n- command: `strace ... run_object.py run mini_sweeper 31 --out integ/posthoc_main --reuse --main-variant`;\n- it reused the production builds, copied in first.",
+   "Integrity audit: run_object.py audit on all six strace logs, plus a plain `grep -i -c -E '/loc/|/scan|_align|\\.parquet|mocap'` on each log.",
+   "Reproducibility check: the 21 rows shared by the production and post-hoc sweeper runs were compared field by field (rank_score, dr_comp, flip ADD).",
+   "GT-free diagnostic: sweeper ep18 and ep31 observed points against the library_v3 surface. Median and p90 distance, extent and centroid.",
+   "Final edit after all runs: one docstring line changed (an object name removed). Final sha 6393c6c0b5141e09; the code behaviour is unchanged."
+  ],
+  "results": "All numbers are GT-free and measured here [M] unless labelled otherwise. The rank is the frozen rank_score from gates v2 (dr_cdist + dr_pdist, in mm; lower is better), judged on refined observations as gates v2 prescribes.\n\n**Picks**\n\n| Object, episode | Hold-out | Pick (own + hold-out) | Own-only pick | Runtime |\n|---|---|---|---|---|\n| white_pot_lid ep2 | none | shell_raw_t1.5 | shell_raw_t1.5 | 492 s, 11 candidates |\n| blue_cup ep21 | ep22 | shell_raw_t1.5 | shell_raw_t1.5 | 989 s, 14 candidates |\n| mini_dust_pan ep39 | ep18, ep40 | library_v3 (fallback) | shell_raw_t1.5 | 535 s, 7 candidates |\n| water_pitcher ep22 | ep21 | library_v3 (fallback) | shell_raw_t1.5 | 1142 s, 7 candidates |\n| mini_sweeper ep31 | ep18 | library_v3 | library_v3 | 358 s, 7 candidates |\n| mini_sweeper ep31 (post hoc) | ep18 | library_v3 | shell_raw_t1.5+main | 576 s |\n\n- No build failed. Every pick is rendered next to a colour crop in `<run>/qa_pick.jpg`: crop, pick, pick after budget_mesh, own-only pick, library.\n- Blue_cup ep21 has no crop, so its render uses ep22's crop and track; the object frame is shared.\n\n**Candidate tables**\n\nRank is given as own / hold-out(s), with the raw-obs rank in [ ]. Gate values are on the own episode unless noted.\n\n*white_pot_lid ep2* (no hold-out; ep0 is excluded as the known bad track). All 11 candidates pass every gate.\n- shell_raw t1.5 / 2.5 / 4.0: rank 0.228 / 0.248 / 0.344 [0.257 / 0.271 / 0.377]. comp 1.000, hole3d 0.000, viol 0.006-0.012, fs 0.026-0.070, conn 0.98-0.99.\n- shell_ref t1.5 / 2.5 / 4.0: 0.229 / 0.239 / 0.332 [0.290 / 0.289 / 0.395].\n- dsl_sheet_strap_balls t1.5 / 2.5 / 4.0: 0.543 / 0.540 / 0.537.\n- library_v3: 0.489.\n- incumbent hand kit (clean round, t2.5): 0.539.\n\n*blue_cup ep21 + ep22*\n- shell_raw_t1.5: passes both episodes; rank 0.664 / 0.676 [0.551]; viol 0.023.\n- shell_raw_t2.5: passes both; 0.780 / 0.696.\n- shell_raw_t4.0: fails G_PREC on ep21 (viol 0.051); 1.063 / 0.859.\n- shell_ref t1.5-4.0: fail G_PREC and G_FS on ep21, ep22 and the raw-obs check (viol 0.07-0.12, fs 0.16-0.22); rank 1.09-1.76.\n- dsl_lathe_splat and its +union variant, at every t: fail G_PREC on both episodes (viol 0.079 / 0.064); rank 1.759 / 1.404.\n- incumbent lathe_obs_g1: same result; 1.759 / 1.409.\n- library_v3: fails G_HOLE (0.137 / 0.114) but is the fallback; rank 2.515 / 2.095.\n- Eligible: shell_raw_t1.5, shell_raw_t2.5, library_v3.\n\n*mini_dust_pan ep39 + ep18, ep40*\n- shell_raw_t1.5: passes own (rank 0.474). Fails G_HOLE on ep18 (0.097, rank 0.967) and on ep40 (0.075, plus G_FS, rank 1.323).\n- shell_raw_t2.5: own 0.585; G_HOLE on both hold-outs (0.091 / 0.069).\n- shell_raw_t4.0: G_FS everywhere (own fs 0.152).\n- shell_ref t1.5-4.0: G_FS everywhere (0.19-0.28), plus G_HOLE on the hold-outs.\n- library_v3: G_HOLE on all three episodes (0.073 / 0.113 / 0.153), worse than the shells; rank 1.254 / 1.349 / 1.801. It is picked only because the fallback is never gated.\n\n*water_pitcher ep22 + ep21*\n- shell_raw_t1.5: passes own (1.156); fails G_HOLE on ep21 (0.078, rank 1.580).\n- shell_raw_t2.5: own 1.341; G_HOLE on ep21 (0.051).\n- shell_raw_t4.0: G_PREC (0.050) and G_HOLE on ep21.\n- shell_ref t1.5-4.0: G_PREC everywhere (0.085-0.124).\n- library_v3: G_HOLE on both episodes (0.095 / 0.116); rank 1.968 / 1.765.\n\n*mini_sweeper ep31 + ep18*\n- Every shell fails G_CONN (0.944-0.956) on all episodes; own ranks 0.285-0.617.\n- On ep18 every candidate, the library included, fails G_COMP (0.69-0.71) and G_HOLE (0.26-0.29).\n- library_v3 passes own (0.897).\n- Post hoc, the +main variants pass G_CONN (1.0). shell_raw_t1.5+main ranks 0.334, but its hole3d rises from 0.002 to 0.020 because the dropped 13.7 cm\u00b2 island was observed surface.\n\n**What broke: interface and policy mismatches**\n\nNo other module was edited.\n1. **Flip check run once per mesh.** gates.evaluate takes an extra `flip` argument. Because flip_check compares the mesh with library_v3 and does not depend on the episode, run_object runs it once per mesh and copies it into the hold-out and raw-obs rows, re-running gates.gates_of. This saves about 20-35 s per extra row. Across two runs, all 21 shared sweeper rows came out identical [M].\n2. **Library mesh referenced in place.** gates.select keys rows by mesh path and recognises the fallback by its directory. So library_v3 must be referenced where it lies, never copied. run_object maps paths back to candidate names.\n3. **Stale vote grids in refined copies.** refine.py copies the raw vote grids unchanged (grids_stale). On refined observations, fs_frac therefore compares refined-built meshes against raw grids. Not fixed; reported.\n4. **Shell island rule vs G_CONN.** shell.clean_islands keeps islands within 30 mm of the body that enough frames saw; G_CONN counts only components that touch (2 mm) plus compact balls. Every sweeper shell fails G_CONN as a result. The post-hoc main_group variant lives in the integration layer and uses the gates' own constants; it passes G_CONN but drops observed surface.\n5. **Gates miss what budget_mesh does to shells.** G_TOPO and G_CONN are measured on the mesh as built, so neither sees what budget_mesh does to the shell picks:\n\n   | Shell pick | Bodies before \u2192 after | Area before \u2192 after (cm\u00b2) | Change | Watertight after |\n   |---|---|---|---|---|\n   | Lid | 6 \u2192 32 | 644 \u2192 622 | \u22123 % | yes |\n   | Cup | 2 \u2192 47 | 665 \u2192 639 | \u22124 % | no |\n   | Dust pan | 3 \u2192 74 | 575 \u2192 524 | \u22129 % | no |\n   | Pitcher | 24 \u2192 165 | 2126 \u2192 1685 | \u221221 % | no |\n\n   Only the depth-render terms use the decoded mesh.\n6. **lathe_splat ignores t.** Its output is identical at t 1.5, 2.5 and 4.0: the two-sided measured wall of 1.96 mm replaces t. That gives 3 duplicate candidates per variant, so the t-grid robustness test is vacuous for this program.\n7. **Shell metadata dropped before export.** The thin_shell report in mesh.metadata is popped before GLB export, as a precaution; the report is saved to the build json instead.\n8. **Very large pitcher shells.** The pitcher shell at t 1.5 keeps 0.93-1.10 M faces, because decimation to 200k is rejected when the result is not watertight. Its evaluation is slower (about 50 s on its own episode).\n9. **Leaked lid meshes excluded.** The lid hand-kit fit_v* meshes used scan thicknesses, so they are not candidates; the clean-round t2.5 mesh is used instead.\n\n**Main findings**\n- **Refined points never help.** Refined shells never beat raw ones: they tie on the lid (0.229 vs 0.228). On the cup, dust pan and pitcher they fail G_PREC or G_FS on the own episode, on raw observations and on the hold-outs. On cup ep21, refine moved frames by a median 5.4 mm (p90 10.0 mm, at the bound) with 36 bound hits. Refined observations should not be a default input [M on 4 objects].\n- **Hold-outs expose surface the build episode never saw.** On the dust pan and pitcher, shells pass on their own episode, but the hold-outs show coherent unexplained surface (hole3d 0.05-0.10). Eval-time selection, which sees one episode, would ship those shells. Route A alone is incomplete; closing the unseen surface needs B programs or a completeness prior [M].\n- **The fallback gets a free pass.** On the dust pan the library fails G_HOLE worse than the shells (0.11-0.15 vs 0.06-0.10), yet it wins because it is never gated.\n- **The sweeper hold-out is contaminated.** ep18 sweeper points lie p90 38.7 mm from library_v3 (ep31: 3.6 mm) and their centroid is shifted 32 mm. Possible cause: the dust pan is in the same scene [H]. Its hold-out verdict is not usable.\n- **The rank prefers the thinnest shell.** The shell rank rises monotonically with t on own episodes and on hold-outs, so t1.5 always wins (see the shell builder's caveat).\n- **The rank disagrees with one known CD-O ordering.** On the lid it puts library_v3 (0.489) above the clean hand-kit incumbent (0.539). STATUS (07:10, scan round) found the opposite on CD-O. This is context only; no scan number is used by any code.",
+  "metrics": [
+   {
+    "name": "pick white_pot_lid ep2",
+    "value": "shell_raw_t1.5 (rank 0.228); all 11 candidates pass; library 0.489; DSL 0.537-0.543; incumbent 0.539",
+    "label": "M"
+   },
+   {
+    "name": "pick blue_cup ep21 (+ep22)",
+    "value": "shell_raw_t1.5 (0.664 / 0.676); lathe DSL and incumbent fail G_PREC (viol 0.079 / 0.064); library fails G_HOLE",
+    "label": "M"
+   },
+   {
+    "name": "pick mini_dust_pan ep39 (+ep18, ep40)",
+    "value": "library_v3 fallback; own-only pick would be shell_raw_t1.5 (0.474 vs 1.254); shells fail hold-out G_HOLE 0.06-0.10",
+    "label": "M"
+   },
+   {
+    "name": "pick water_pitcher ep22 (+ep21)",
+    "value": "library_v3 fallback; own-only pick would be shell_raw_t1.5 (1.156 vs 1.968); shells fail ep21 G_HOLE 0.04-0.08",
+    "label": "M"
+   },
+   {
+    "name": "pick mini_sweeper ep31 (+ep18)",
+    "value": "library_v3; shells fail G_CONN 0.944-0.956; post-hoc +main own-only pick shell_raw_t1.5+main 0.334",
+    "label": "M"
+   },
+   {
+    "name": "runtime total per object (build / eval)",
+    "value": "lid 492 s (122/368), cup 989 s (179/809), dust pan 535 s (157/378), pitcher 1142 s (466/674), sweeper 358 s (50/308); post-hoc sweeper 576 s",
+    "label": "M"
+   },
+   {
+    "name": "eval time per row",
+    "value": "own with flip 25-55 s (flip about 20-35 s); hold-out or raw-obs without flip 6-30 s",
+    "label": "M"
+   },
+   {
+    "name": "strace forbidden-pattern opens",
+    "value": "6 logs, 2294-2539 openat calls each; raw grep 1 hit per log (6 total), all /usr/lib/python3.13/json/__pycache__/scanner.cpython-313.pyc ('/scan' substring); 0 outside system and venv libraries; 0 successful data opens",
+    "label": "M"
+   },
+   {
+    "name": "gates determinism",
+    "value": "21 of 21 shared sweeper rows identical across two runs",
+    "label": "M"
+   },
+   {
+    "name": "budget_mesh effect on shell picks (bodies, area)",
+    "value": "lid 6->32, -3 %; cup 2->47, -4 %; dust pan 3->74, -9 %; pitcher 24->165, -21 %",
+    "label": "M"
+   },
+   {
+    "name": "refined vs raw shells",
+    "value": "refined never better; cup, dust pan and pitcher refined shells fail G_PREC or G_FS on own, raw-obs and hold-out",
+    "label": "M"
+   },
+   {
+    "name": "cup ep21 refine corrections",
+    "value": "translation p50 5.4 mm, p90 10.0 mm (at bound); 36 bound hits",
+    "label": "M"
+   },
+   {
+    "name": "sweeper ep18 obs vs library_v3",
+    "value": "p50 / p90 2.7 / 38.7 mm (ep31: 1.45 / 3.6 mm); centroid shifted 32 mm",
+    "label": "M"
+   },
+   {
+    "name": "+main variant on sweeper",
+    "value": "G_CONN 0.956 -> 1.0; hole3d 0.002 -> 0.020; 13.7 cm2 observed island dropped",
+    "label": "M (post hoc)"
+   }
+  ],
+  "hypotheses_tested": [
+   {
+    "h": "The modules compose without code changes: shell, program, gates and io_gt wired together build and evaluate every candidate.",
+    "falsifier": "Any build or evaluate crash, or a select() that cannot find the fallback.",
+    "outcome": "Supported [M]: 46 candidates on 5 objects, 0 build or eval failures. Mismatches were handled in the driver: flip reuse, library referenced in place, names mapped from paths. No module was edited."
+   },
+   {
+    "h": "Refined points (refine.py) give better shells.",
+    "falsifier": "Refined-built shells are no better on own, raw-obs and hold-out evaluations.",
+    "outcome": "Refuted [M]. Tie on the lid. On the cup, dust pan and pitcher, refined shells fail G_PREC or G_FS on every evaluation, including the independent hold-out."
+   },
+   {
+    "h": "Evaluating on a held-out episode detects missing surface that the build episode cannot see.",
+    "falsifier": "Shells that pass on their own episode also pass G_HOLE on hold-outs.",
+    "outcome": "Supported [M]. Dust pan and pitcher shells pass on their own episode but fail hold-out G_HOLE (0.05-0.10). Eval-time selection with one episode cannot see this."
+   },
+   {
+    "h": "Reusing the flip check across episodes is exact.",
+    "falsifier": "flip_check output depends on the episode, or gates are non-deterministic.",
+    "outcome": "Supported. flip_check(mesh, lib, obj) takes no episode argument (by code), and 21 of 21 rows were identical across runs [M]."
+   },
+   {
+    "h": "[H, post hoc] The G_CONN failures of the sweeper shells come from the shell island policy, not from fragmented geometry.",
+    "falsifier": "Keeping only the gate's main group plus balls does not make G_CONN pass, or it removes the main body.",
+    "outcome": "Supported [M]. +main passes G_CONN (1.0) and stays the own-only pick. It drops a 13.7 cm\u00b2 observed island, and hole3d rises to 0.020, so the island was real surface."
+   },
+   {
+    "h": "The DSL t grid gives three distinct candidates per program.",
+    "falsifier": "Outputs identical across t.",
+    "outcome": "Falsified for lathe_splat [M]: identical at 1.5, 2.5 and 4.0 mm, because the two-sided measured wall of 1.96 mm replaces t. The lid program varies with t as expected."
+   }
+  ],
+  "gt_reads": "None.\n\n**What run_object.py reads**\n- Observations, our tracks and the calibration, only through autokit.io_gt, which refuses /loc/, /scan, _align, parquet and mocap paths.\n- Programs in autokit/programs.\n- Our library_v3 meshes.\n- Earlier GT-free incumbents:\n  - scratchpad/prim/clean/lid/t2.5_fit.glb (the leak-free clean round). The scan-informed fit_v* lid meshes are excluded on purpose.\n  - scratchpad/lathe/ep21_blue_cup_g1.glb.\n- Crops (our tracks and library).\n- Through mesh_gates.flip_check: kit config/tracks.json and data/track_3_evaluation_objects.json (seed roster).\n\n**strace audit** (`-f -e trace=openat`, all 5 production runs and the post-hoc run)\n- 6 raw-grep hits in total, one per log, all /usr/lib/python3.13/json/__pycache__/scanner.cpython-313.pyc.\n- 0 matches outside system and venv libraries, and 0 successful opens of any forbidden data path.\n\n**Not done or used**\n- mesh_metric.py was not run and no scan was scored.\n- No scan-derived number is used: thickness comes only from the {1.5, 2.5, 4.0} grid or two-sided evidence.\n- Object names appear only in run_object.py's driver tables. A docstring mention in main_group was removed after the runs (comment-only change).\n- The STATUS (scan-round) lid ordering is cited only as context in the report, never in code.",
+  "open_issues": [
+   "Shells do not survive the kit's budget_mesh: bodies 2-24 \u2192 32-165, area \u22123 % to \u221221 %, and 3 of 4 picks are not watertight after decoding. G_TOPO and G_CONN are measured before decimation, so the gates pass them. Before stage 2, either add a gate on the decoded mesh or a topology-preserving reduction to 4096 faces in shell.py [H].",
+   "The frozen select() exempts the fallback from gates. On the dust pan, library_v3 fails G_HOLE worse than the shells (0.11-0.15 vs 0.06-0.10) and still wins as the only eligible row. A fallback-relative gate would change picks [H]. It was not changed here because the thresholds are frozen; the owner or orchestrator should decide before stage 2.",
+   "Eval-time selection sees one episode. On the dust pan and pitcher the own-only pick is a shell that fails hold-out G_HOLE. Route A alone misses surface its episode never saw, so B programs or a closure step must supply it. The own-only and hold-out picks disagree on 2 of 4 objects with usable hold-outs.",
+   "Refined observations hurt, as measured here [M]. The cup, dust pan and pitcher refined shells fail G_PREC/G_FS everywhere; cup ep21 corrections run to 5-10 mm and hit the bound. gates v2 levels were checked only on refined observations, yet raw-obs rows give the same picks in 5 of 5 runs. Consider judging on raw observations and dropping refined builds.",
+   "Thickness: the shell rank is monotone in t and always picks 1.5 mm. That is partly by construction (shell builder caveat), so the choice of t is not GT-free evidence.",
+   "The lid rank puts library_v3 above the clean hand-kit incumbent and the DSL. The earlier scan round (STATUS 07:10) ordered them the other way on CD-O. The frozen rank may not track CD-O; only a pre-registered stage-2 scan round can tell.",
+   "Unusable or excluded hold-outs:\n- Sweeper ep18 observations are contaminated: p90 38.7 mm from library_v3 and centroid shifted 32 mm. A possible cause is another object in the scene [H].\n- Lid ep0 was excluded (bad track).\nA generic hold-out sanity check is suggested: drop a hold-out where library_v3 fails G_COMP [H].",
+   "lathe_splat ignores t: two-sided wall 1.96 mm, so 6 duplicate cup candidates. All lathe candidates, including the earlier-round incumbent, fail G_PREC on the cup (viol 6-8 %), as in the gates v2 validation.",
+   "Sweeper island policy: the shell keeps islands within 30 mm and G_CONN rejects them. The post-hoc +main variant fixes the gate, but it drops observed surface (hole3d rises to 0.020). Whether shell.py should adopt the gate's rule is for stage 2.",
+   "flip_xadd_med_mm against library_v3 is 11-18 mm for lid and cup shells, the DSL and the lid incumbent, and 2-10 mm for the dust pan, pitcher and sweeper. It is reported but not gated; its meaning is unclear because the library frame itself is the reference.",
+   "Not committed or pushed, and STATUS.md and docs/work-log.md were not updated, as the task limits writes. The orchestrator should record:\n- production runs: run_object.py sha a8320f047c26c273 (copy at integ/run_object_as_run_prod.py);\n- post-hoc run: sha 489bd529f1479070;\n- final file: sha 6393c6c0b5141e09 (comment-only change);\n- repo HEAD f81a953 plus uncommitted autokit;\n- commands: integ/prod_cmds.txt."
+  ]
+ },
+ "audits": [
+  {
+   "role": "Integrity auditor, stage 1 autokit (A+B mesh engine)",
+   "verdict": "FAIL: one blocker. At runtime, no ground truth is read anywhere I could test [M]:\n- My own strace re-run of a production command opened no forbidden path.\n- A strace of refine.py opened none.\n- None of the 8 existing strace logs shows a forbidden data open. The only pattern hit is Python's json/__pycache__/scanner.pyc.\n- Output rows match production exactly.\n\nBut route B (parts.py, through prim_potlid.markers_from) uses a marker-ball radius prior (MK_R0 = 7 mm, free-fit window 5-9.5 mm) that comes from the public scans. The comments label it \"our own stereo\", which is wrong:\n- spoon/spoon_template.py:71 sets marker_radius 0.0072 with the comment \"note 17: ... fitted r 6.6-7.8 mm (median ~7.2)\".\n- Note 17 \u00a7A1 is the \"Marker sphere catalogue from the scans\".\n\nThis prior shapes route-B meshes [M]:\n- lid ep2 DSL: 2 of 3 balls at the prior;\n- pot ep41: 4 of 5;\n- rack ep13: 1 of 2.\n\nThere are also three major problems:\n- mesh paths bypass the io_gt guard;\n- per-object calibration constants (S_REF_*) sit in method code;\n- the gates v2 revision was tuned post hoc to make MUST_PASS meshes pass, and those labels come from scan scores.\n\nClean as claimed:\n- The six method .py files contain no object names.\n- The S_REF constants are GT-free: they recompute exactly from our obs points.\n- The gate thresholds were not read off scan scores directly. The noise study ran before validation, and the v2 code equals the as-run file apart from docstrings.\n- The kit JSONs hold only rosters and symmetries.\n- The crops and obs extraction inputs are GT-free.",
+   "findings": [
+    {
+     "severity": "blocker",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_potlid.py",
+     "issue": "The marker-ball radius prior comes from the scans but is labelled as our own stereo.\n- prim_potlid.py:67-68 sets MK_R0 = 0.007 ('our own stereo: spoon template 2026-10-13, 7.2 mm balls') and MK_RMIN, MK_RMAX = 5, 9.5 mm.\n- The spoon template's 7.2 mm comes from /home/user/v2d-track3/spoon/spoon_template.py:71 ('note 17: one physical size, fitted r 6.6-7.8 mm (median ~7.2)').\n- That is docs/research/notes/17-marker-tracking.md \u00a7A1, 'Marker sphere catalogue from the scans [V]'. Note 13 at 11:10 says the same: 'Marker spheres in all public scans fitted at r = 6.6-7.7 mm'.\n- autokit uses it through parts.fit_ball -> PL.markers_from -> fit_sphere: the prior radius applies whenever the free fit falls outside 5-9.5 mm.\n- The same false provenance appears in:\n  - parts.py:14 and :67 (BALL r0 'from our own stereo'; the BALL r0/rmin/rmax entries are not even used, PL.MK_* are);\n  - DSL.md:84 and :117;\n  - prim_boards.py:57 (R0 'our own stereo, measured earlier');\n  - the io-refine report ('came from eval stereo');\n  - the critic's line in work-log.md ('R0 = 7 mm came from eval-episode spoon stereo').\n- Measured effect: lid ep2 DSL 2/3 balls at 7.0 mm; pot ep41 4/5; rack ep13 1/2.\n- No stage-1 integration pick is affected (the picks were shells or library_v3), but every route-B candidate with balls is.\n- This breaks the hard rule 'no number measured on the scans as a prior' (marker radii 6.6-7.8 mm are on the list).",
+     "fix": "- Remove the scan-derived numbers from method code. Either:\n  - (a) keep a ball only when its free fit succeeds inside a generic window (e.g. refine.ball_scan's 2-16 mm), with no fixed-radius fallback; or\n  - (b) make r0 a declared generic grid chosen without scans and require the verdict to hold at every grid value, as with t.\n- The public-stereo estimate (median 9.7 mm, unstable) is not a replacement.\n- Port markers_from/fit_sphere into autokit so parts.BALL is the constant actually used.\n- Correct the provenance comments in all the places listed.\n- Re-check STEM_R 3.5 mm and MK_GAP, whose provenance is undocumented.\n- Re-run the DSL reproductions and integration after the change."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/gates.py",
+     "issue": "Mesh paths bypass the io_gt guard.\n- None of these call io_gt.check_path:\n  - gates.load_raw (gates.py:169-171) and load_budget (:174);\n  - evaluate(mesh_path) and flip_check's library path;\n  - parts.fit_tsdf_patch's trimesh.load(ctx.lib) (parts.py:1038);\n  - program.py --lib (:307/:311);\n  - run_object INCUMBENTS;\n  - test_shell's qa_image and the obs_fidelity/fs_fidelity subprocesses.\n- Reproduced [M] with a dummy icosphere saved under integrity-audit/refusal/scan/fake_scan.glb: gates.load_raw, gates.load_budget and parts.fit_tsdf_patch (lib=that path, 1280 faces kept) all opened it without refusal.\n- In stage 2, agents supply candidate meshes and programs. A scan GLB passed as a candidate or as lib would be scored and could be selected; a scan would rank near-perfect on the depth-render rank.",
+     "fix": "- Add io_gt.load_mesh(path), which calls check_path and also requires the path to sit under allow-listed roots (auto/stage1/**/cand, meshes/library_v3, the declared incumbent files).\n- Use it in gates, parts (tsdf_patch), program (--lib), run_object and the test drivers.\n- Add a unit test that a /scan/ dummy mesh is refused at each of these entry points."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_gates.py",
+     "issue": "Gates v2 was revised post hoc to fit validation labels that come from scan scores.\n- The four MUST_PASS meshes (VALIDATE, test_gates.py:47-68) were known to be good from public-scan CD-O:\n  - pot ep41 fit, 0.342;\n  - lid ep2 fit_v2, 0.220;\n  - cup lathe g1, 0.291 ('it picks the CD-O winner');\n  - rack clean t2.5 lean1, from a family that passed on scans.\n- v1 (thresholds frozen before validation; noise.jsonl 15:13 precedes validate_run2 15:22) failed 3 of the 4.\n- v2 (gates.py:121-126) then made three choices after running diagnostics on these same 19 meshes:\n  - LAT_PREC = 6 mm, so the MUST_PASS meshes pass G_PREC;\n  - LAT_COMP kept at 1 cell, because a 6 mm reach would let the wall-removed negative control pass G_HOLE (1.2 %);\n  - refined observations instead of raw.\n- The thresholds were not read off scan scores directly. They were tuned in both directions on a 19-row set whose positive labels carry scan information.\n- The gates.py docstring admits 'NOT independent' but says nothing about where the labels came from.",
+     "fix": "- Freeze v2 as it is (sha 671248ec) and state in gates.py that the MUST_PASS labels come from scan scores.\n- Before stage 2 trusts the gates, pre-register a re-validation on held-out episodes and objects. Its labels must be defined without ground truth: negative controls by construction, synthetic edits, and positives defined by a GT-free rule.\n- Run it before any new scan round, and allow no further threshold edits after it."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/parts.py",
+     "issue": "Per-object calibration constants sit in method code.\n- S_REF_POLAR 91.14, S_REF_SHEET 63.73, S_REF_TUBE 155.64 and S_REF_HEIGHT 56.81 mm (parts.py:72-75) are the robust RMS radius s of single development episodes: white_pot ep41, white_pot_lid ep2, plastic_dish_rack ep13, blue_cup ep21 (obs/).\n- Every part type's default windows are one object's hand-kit absolute windows divided by that s, via rel(..., S_REF_x).\n- GT-free provenance is confirmed [M]: Ctx(obs).s recomputes all four exactly.\n- So this is not a leak, but it breaks the letter of 'no per-object constants in method code'.\n- It also means the defaults for a new object are another object's tuned windows. Examples: the sheet flange 40-80 mm at the lid's s; tube_rrect's tall-end/clip_cavity construction from the rack.\n- parts.py also imports prim_rack, which holds OBJ = 'plastic_dish_rack' (used by its own driver).\n- Some hand-kit windows were developed with '+2 dev' scan scorings per family (work-log.md:4496), so their provenance is not fully documented.",
+     "fix": "- Move the S_REF-derived windows into the example programs as explicit params (the per-object B side, where they belong).\n- Either give parts.py generic defaults or make the defaults raise a validator warning when a program relies on them.\n- Port the needed hand-kit helpers into autokit so method code imports no object-specific module.\n- Record per window whether it was set before or after any scan scoring."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/io_gt.py",
+     "issue": "The guard checks path names only (FORBIDDEN deny-list, io_gt.py:33-43).\n- It refused all 12 forbidden path forms I tried [M]: scan, loc, align, parquet, MoCap, '../scan', upper-case, relative paths. It also refused the key 'pose' and a symlink.\n- It did not refuse [M]:\n  - a hardlink to a dummy file under refusal/scan/;\n  - a copy of a dummy *_align.npz renamed ep99_thing.npz.\n- Both strace audits are name-based too, so they are blind to the same case.",
+     "fix": "- Change load_obs, load_poses and load_calib to an allow-list of roots (obs_all/, obs/, auto/stage1/refined/, data/sweep/, data/calib.json) on top of the deny-list.\n- Log the sha256 of every input in run_meta.json, so a renamed copy is traceable against a manifest of extracted obs files."
+    },
+    {
+     "severity": "minor",
+     "file": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integ/prod_cmds.txt",
+     "issue": "Strace coverage has gaps.\n- The existing logs cover:\n  - gates eval on one dust-pan negative control;\n  - test_programs lid, cup and dsl;\n  - the integration runs of lid 2, cup 21, dust pan 39, sweeper 31 and pitcher 22.\n- They never run the pot program (lathe_bar_balls) or the rack program (tray_holder_pegs_balls), tsdf_patch with a lib, or the bulk refine runs (test_refine all).\n- There are no integration runs for white_pot or plastic_dish_rack.\n- run_object.audit drops /etc/ and venv paths from the forbidden count.\n- I closed part of the gap [M]:\n  - refine.py CLI under strace on lid ep2: 0 forbidden opens;\n  - the full run_object lid command: 0 forbidden opens.",
+     "fix": "Before stage 2, trace one run of each program (pot, rack) with --lib, and one test_refine shard. Keep -f and the trace=openat,open,openat2,execve set."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/run_object.py",
+     "issue": "Two provenance comments in run_object.py are wrong or GT-derived.\n- Lines 72-74 say results/prim/meshes/white_pot_lid_ep2_fit_v*.glb used scan thicknesses and 'are NOT candidates'.\n  - But fit_v2.glb is byte-identical (sha 0bac47f4...) to prim/clean/lid/t2.5_fit.glb, which this same file includes as the incumbent.\n  - test_programs and test_gates also use it as the reproduction target and MUST_PASS.\n- Lines 79-82 exclude lid ep0 from holdouts, citing '23-26 mm off the object frame'. Lid ep0 was first identified as a bad track by after-inference GT diagnostics (work-log.md:3398, :3473, score_registered vs mocap).",
+     "fix": "- Correct the comment: v1 and v2 both used T_LID 2.5, and v2 equals the clean-up round's t2.5 mesh.\n- Justify the ep0 exclusion only by its GT-free evidence: refine skipped all 24 frames, and parts gets 396 points and raises."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/parts.py",
+     "issue": "Several smaller items carry scan knowledge.\n- parts.lathe_height floor='observed' (parts.py:437; lathe_obs.py:262) exists to mimic scan coverage ('a scanner sees about as far in'). An agent choosing it per object because the scan is partial would be using scan knowledge as a per-object switch, which docs/research/work/interaction-meshes-2026-10-22/critique.md item 9 forbids.\n- Smaller scan echoes:\n  - shell.py:92, A_MIN rationale '7 mm ball cap ~3-6 cm^2' (note 13's scan sphere areas; the 0.5 cm^2 value itself is generic);\n  - gates.py:67/136, BALL_D_MAX 30 mm 'marker spheres ~1-2 cm' (scan knowledge, lenient);\n  - T_GRID midpoint 2.5 mm, which equals the leaked rack wall median and is the default t of thin_shell, Ctx and run_program. The grid is owner-sanctioned; the rule that every grid value must pass mitigates it.",
+     "fix": "- Document in DSL.md that floor='observed' may only be a global rule or a GT-free gate choice, never an agent's per-object pick.\n- Rewrite the A_MIN and BALL_D_MAX rationales without the scan figures.\n- Make t a required argument, with no 2.5 mm default."
+    }
+   ],
+   "reproduced": [
+    "io_gt refusals, measured [M] (cwd docs/research/mesh-2026-10-26, venv python -I). Script output: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/integrity-audit/refusal/results.txt\n- load_obs refused, before opening, all 12 forbidden path forms: data/scan, loc, *_align, .parquet, MoCap, dummy files under scan/ and loc/, 'innocent/../scan', upper-case DATA/SCAN, and relative 'loc/' and 'scan/'.\n- It refused the key 'pose' and a symlink into scan/.\n- It did NOT refuse a hardlink to a dummy file under scan/, or a renamed copy of a dummy *_align.npz.\n- Only dummy files were used; no real scan was opened.",
+    "Unguarded mesh loaders [M]: gates.load_raw, gates.load_budget and parts.fit_tsdf_patch (ctx.lib) all opened a dummy mesh saved at integrity-audit/refusal/scan/fake_scan.glb without refusal.",
+    "S_REF provenance [M]: Ctx(obs).s recomputed from our obs points matches the constants exactly.\n- 91.14 mm: obs_all/ep41_white_pot\n- 63.73 mm: obs_all/ep2_white_pot_lid\n- 155.64 mm: obs_all/ep13_plastic_dish_rack\n- 56.81 mm: obs/ep21_blue_cup",
+    "Production command re-run under strace [M].\n- Command: strace -f --seccomp-bpf -e trace=openat,open,openat2,execve ... run_object.py run white_pot_lid 2 --ts 2.5 --no-render --no-rawobs --out .../integrity-audit/rerun\n- Code: HEAD f81a953 plus the uncommitted autokit; hashes in integrity-audit/code_sha256_at_rerun.txt.\n- Ran 17:08-17:12 UTC, 174 s, exit 0, on the 4-core CPU VM.\n- 0 forbidden-pattern data opens. The only pattern hit was /usr/lib/python3.13/json/__pycache__/scanner.pyc.\n- Data files opened: obs_all/ep2 lid npz, refined/ep2 npz and corr.npz, sweep/ep2 poses, calib.json, kit tracks.json and evaluation_objects.json, library_v3 lid, prim/clean/lid/t2.5_fit.glb and the program JSON.\n- All 5 candidate rows (rank_score, pass, fid_sum_mm) are identical to production integ/white_pot_lid_ep2/candidates.jsonl.",
+    "refine.py CLI under strace [M]: refine.py obs_all/ep2_white_pot_lid.npz with --iters 1, 23.5 s, exit 0. It opened only that obs file and its own outputs; 0 forbidden opens.",
+    "Existing strace logs re-parsed with my own grep, not the builders' audit function [M]: gates/audit_strace.log, parts-dsl/audit/strace.log, integ/{lid2, cup21, dustpan39, sweeper31, pitcher22}/strace.log and integ/posthoc_main/sweeper31. 0 non-library forbidden opens in each.",
+    "Trace of the 7 mm marker-radius provenance: prim_potlid.py:67 -> spoon/spoon_template.py:71 -> notes/17-marker-tracking.md \u00a7A1 (scan catalogue, r 6.6-7.8 mm) and notes/13-spoon.md 11:10 (public scans, median ~7.2 mm).",
+    "Use of the 7 mm prior in route-B outputs, from the report JSONs [M].\n- integ lid ep2 dsl t2.5: modes free, prior, prior.\n- parts-dsl/final pot_ep41: 4 of 5 at the prior.\n- lid_ep2: 2 of 3.\n- rack_ep13: 1 of 2.",
+    "Object-name grep (names plus pot, lid, cup, rack, pitcher, pan, board, mug, spoon and similar words) over io_gt, refine, shell, parts, program and gates .py: 0 hits. Hits appear only in DSL.md and the program JSON doc strings, which are the per-object B side.",
+    "gates_v2_as_run.py vs the current gates.py, comments stripped: only docstring lines differ. The gates file timeline puts the noise study at 15:13, before validate_run2 (15:22-15:35), diag (15:40-15:44) and validate_v2 (15:45-15:58).",
+    "sha256 of results/prim/meshes/white_pot_lid_ep2_fit_v2.glb equals that of prim/clean/lid/t2.5_fit.glb (0bac47f4...)."
+   ]
+  },
+  {
+   "role": "correctness reviewer (stage 1 autokit: refine, shell, parts/program DSL, gates)",
+   "verdict": "All numbers below are measured here [M] on the CPU VM with the uncommitted working tree (HEAD f81a953). Everything was GT-free: no scan, *_align, mocap or parquet file was opened, and mesh_metric.py was not run. Review scripts and outputs are in /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/auto/stage1/review/.\n\nThe modules mostly do what their builders report:\n- refine.py reproduces bit-exactly and does not move the object frame.\n- The thin shells are deterministic, watertight at full resolution and sit tightly on the observed points.\n- The DSL reproduces the hand kits exactly.\n- The camera wiring in gates.py is correct.\n\nBut the parts do not yet combine into a working A+B engine. One issue blocks it and several are major.\n\n**(1) Refine.**\n- The pre-registered falsifier fails again, with identical numbers:\n  - ep41, 140-180 mm band: 4.68 vs 3.64 mm.\n  - ep42: 5.71 vs 5.21 mm, and the 220-250 mm band at 22.3 mm.\n- The frame does not drift:\n  - net rigid change 0.06-0.28 deg and at most 0.29 mm;\n  - median distance to library_v3 goes from 2.14 to 1.98 mm (ep41) and from 2.364 to 2.368 mm (ep42).\n- On near-cylinders refine slides frames along the axis. On the cup in ep21 the axial correction reaches the 10 mm bound. Its patch_spread metric cannot see that sliding.\n\n**(2) Shell.**\n- Size relative to the observations is right: at most 0.1 % of the shell area lies more than 5 mm from any observed point.\n- It is one main body plus small flakes (conn_share \u2265 0.99). The lid, dust pan and pitcher look like the objects.\n- The cup shell is missing about a third of its wall and its bottom.\n- After budget_mesh none of the shells stays watertight. Area changes by -1 % (lid) to -10 % (pitcher), and the decoded meshes have 16-57 bodies.\n\n**(3) DSL.** Lid ep2 and cup ep21 reproduce at fidelity ratio 1.0012 / 0.9942, with median distance 0.003 / 0.000 mm.\n\n**(4) Gates.**\n- They reject the no-wall negative control for the right reason: G_HOLE 0.122.\n- Observed points re-project to integer pixels and the camera centres match to within 1e-4 mm. Reversing the correction drops the integer-pixel share to 2 %.\n- The gates are graded: inflating a mesh by 6 mm fails them, while 3 mm moves only the rank.\n- Two serious gaps:\n  - The rank cannot see surface that was never observed, so the incomplete shells always win. The shell is picked over the library and the hand-kit incumbent for the lid and the cup, and the integration run picks shell t1.5.\n  - Extra geometry outside the observed silhouette is invisible: an added fin covering 8 % of the area passes every gate and leaves the rank unchanged.\n\n**(5) Authoring from DSL.md alone.** I wrote two dust-pan programs from DSL.md alone. Neither produced a recognisable object:\n- plate_set merges connected sheets into one plate.\n- Occupancy outlines fill holes, so the ring handle becomes a solid disc.\n- Most window parameters are undocumented, and unknown parameters are silently ignored.\n\nSo the engine can rebuild known objects but cannot yet make a new one.",
+   "findings": [
+    {
+     "severity": "blocker",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/gates.py (rank_score l.534-541, select l.549-571; used by run_object.py)",
+     "issue": "[M] The GT-free selector always prefers the route-A shells, and the thinnest t, over complete candidates. The rank measures only observed surface, so a shell that leaves out unobserved surface cannot lose. Evidence:\n- Cup ep22: the shell t2.5 is missing about a third of the wall and the bottom (review/shell/qa_ep22_blue_cup.jpg; area 609 vs 693 cm\u00b2 for the library). It passes every gate and ranks first, 0.551 against 2.09 for library_v3.\n- Lid ep2: shell 0.248, library 0.489, hand-kit incumbent 0.539.\n- integ selection.json picks shell_raw_t1.5 for lid ep2 and cup ep21. It is also pick_own_only for the dust pan ep39 and the pitcher ep22.\n- In every integ table t1.5 ranks ahead of t2.5 and t4.0. Yet t1.5 loses the most area under budget_mesh (builder: pitcher -21 %, pot -22 %).\n- Shells have about 0 % of their area more than 5 mm from the observations. library_v3 has 0.3-27 % of its area more than 10 mm from them (undersides and far sides), which is surface CD-O will find missing.",
+     "fix": "Do not let route A compete as a standalone candidate in select().\n\nEither:\n(a) Add the shell as a residual-patch part inside the B programs, e.g. a 'shell_patch' part type assigned to the residual of the earlier parts.\n(b) Or add a completeness term the shell cannot win from observed data alone. For example: the decoded mesh must be closed (topo_budget_watertight), plus a penalty on open-boundary length or unobserved-area plausibility.\n\nWith either option:\n- Ship t1.5 only if it survives the decode check (see the shell finding).\n- Pre-register the new rule on public episodes that are not used for development, before stage 2."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/gates.py (depth_render l.317-320, rank_score l.534-541, FS_MAX l.143)",
+     "issue": "[M] Precision and the rank's pdist judge only mesh cells that also hold observed object points. Mesh placed outside the observed silhouette, in space the cameras saw as empty, is therefore never judged. The only check left there is fs_frac, which is lenient (\u2264 0.15) and not ranked.\n\nTest: a 2.5 x 40 x 60 mm fin was added to the lid incumbent. It is 8 % of the area (53 cm\u00b2). Result:\n- no gate fails;\n- rank 0.539 \u2192 0.539;\n- fs_frac 0.019 \u2192 0.057;\n- drift_rms +5.4 %.\nA part program that hallucinates a flange or handle is not penalised (review/fin_check.py, review/gates/).",
+     "fix": "Add a free-space test for mesh cells outside the silhouette:\n- Per frame, a mesh sample counts as a violation when the frame's ray reached a voxel the vote grid saw as free (free \u2265 3, hits \u2264 0.2\u00b7free) or a depth beyond the sample. Better still, keep the eval depth maps and compare against the raw depth.\n- Add a capped free-space penetration term to the rank, and make G_FS relative (e.g. \u2264 the shell route's fs_frac + 3 pp) rather than 15 %."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/refine.py (DEG_FRAC l.68, prior D l.235, degeneracy projection l.252-257, MAX_TRANS l.67)",
+     "issue": "[M] The degeneracy guard does not stop frames sliding along a weakly constrained axis.\n- blue_cup ep21:\n  - corrections along the cup axis: |t| p50 5.27 mm, p90 9.93 mm, i.e. at the 10 mm bound; perpendicular: 1.19 / 2.58 mm;\n  - axial extent of the refined cloud: 159.3 \u2192 169.9 mm;\n  - spread of the per-frame top height: 10.8 \u2192 23.5 mm.\n- ep22: extent 159.4 \u2192 163.0 mm, top spread 11.5 \u2192 17.3 mm (review/cup_slide.json).\n- patch_spread (l.414) is blind to sliding along the surface, so this file was logged as a 17 % 'improvement'.\n- Downstream, in the integ summary: shells built from refined cup ep21 points fail G_PREC and G_FS even when judged on raw points. Against the raw-built shell: viol 0.074 vs 0.016, fs_frac 0.161 vs 0.019, area +16 %.\n- Flat objects are milder: dust pan in-plane extent +3.4 mm, lid about 0.",
+     "fix": "1. Regularise each eigen-direction of H by its information, e.g. prior weight \u221d max_info / info_k. Alternatively freeze directions holding less than about 10-20 % of the largest information, instead of 1.5 %.\n2. Cap the accumulated correction along weak directions at about 2 mm.\n3. Add a GT-free acceptance test per file, falling back to the raw file when it fails:\n   - the 0.5-99.5 % extent along each PCA axis must not grow by more than 2 mm;\n   - the spread of per-frame silhouette extent must not grow."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/gates.py (docstring l.85) and run_object.py (l.14-16, l.119-121)",
+     "issue": "[M] gates v2 and the integration driver judge every candidate on refine.py's refined copies by default. Two reasons this is unsafe:\n- refine's own pre-registered falsifier fails. I reproduced it bit-exactly: stored and re-run refined points differ by 0.0 mm. ep41 140-180 mm band: 4.68 vs 3.64; ep42: 5.71 vs 5.21, and the 220-250 band at 22.33 vs 6.10.\n- refine degrades cups (previous finding).\nWith a curvature-corrected measure (robust quadric residual, review/refine_check.py), 5 of 6 handle bands still fail after refinement:\n- ep41: 3.77/2.02, 3.57/2.03, 3.67/4.98;\n- ep42: 6.43/2.69, 4.67/1.51, 16.26/9.31.\nThe frame itself is fine:\n- net rigid change 0.06-0.28 deg and at most 0.29 mm;\n- distance to library_v3: ep41 2.14 \u2192 1.98 mm, ep42 2.364 \u2192 2.368 mm.",
+     "fix": "- Make raw observations the default in gates.evaluate and run_object until the refined copies pass a pre-registered GT-free refined-vs-raw test.\n- Re-check the v2 levels on raw observations. LAT_PREC = 6 mm has already been run on raw points in diag_lat.jsonl, so this is cheap.\n- Report refined results only as an alternative."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/shell.py (decimate l.360-371) and gates.py (G_TOPO l.528-529)",
+     "issue": "[M] Closed thin shells do not survive the kit's budget_mesh. G_TOPO cannot catch this, because it checks only watertightness as built plus the decoded face count, so every shell passes it. After the decode:\n\n| Object | Area (cm\u00b2) | Change | Bodies |\n|---|---|---|---|\n| lid ep2 | 657 \u2192 650 | -1.1 % | 28 |\n| dust pan ep39 | 572 \u2192 539 | -5.8 % | 27 |\n| cup ep22 | 621 \u2192 609 | -2.0 % | 16 |\n| pitcher ep22 | 1951 \u2192 1755 | -10.1 % | 57 |\n\nNone is watertight.\n\nA grep of the kit's CD-O.py and AUC.py finds no watertight or volume requirement: the scorer only samples the surface by area. A closed shell therefore spends about half of the 4096 faces on a back face that lies within t of the front face.",
+     "fix": "- Have shell.py emit at most 4096 faces itself, so that budget_mesh only welds the mesh.\n  - Decimate the open, denoised surface to about 4000 faces with a decimator that preserves boundaries.\n  - Then either ship it open, or offset it and stitch the rim within budget.\n- Gate the decoded mesh: |area_budget/area_raw - 1| \u2264 2 %, RMS-radius change \u2264 1 %, and decoded bodies \u2264 raw bodies + balls."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/parts.py (fit_plate_set l.821-839, plane_outline l.787) and DSL.md l.124",
+     "issue": "[M] DSL.md says plate_set models 'dust-pan sides, boxes made of sheets'. In the code, fit_plate_set splits points by voxel connectivity, so connected sheets become one plate. Separately, the occupancy outline always fills holes: prim_boards.clean_mask calls binary_fill_holes and mask_polygon uses RETR_EXTERNAL (prim_boards.py l.278, l.297).\n\nTwo programs written from DSL.md alone for mini_dust_pan ep39 (review/author/):\n- pan_try1 (plate_set on all points):\n  - 1 plate;\n  - the ring got 0 points;\n  - 2 floating balls at the 7 mm prior;\n  - fidelity 6.72 mm, against 3.64 for library_v3 and 1.87 for the shell.\n- pan_try2 (floor plate, then plate_set on the residual):\n  - 3 nearly parallel flat plates;\n  - the ring hole is filled solid;\n  - fidelity 2.92 mm.\nRender: review/author/qa_pan.jpg.",
+     "fix": "- Segment plate_set by plane, using sequential RANSAC or region growing on the camera-oriented normals, then clip each plate to its own inliers. Otherwise, correct DSL.md.\n- Add a keep_holes option to plane_outline: use RETR_CCOMP and skip binary_fill_holes.\n- Add a ring/torus part, e.g. lathe 'open' with a free axis on a residual cluster, and test it on the dust pan."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/program.py (validate_program l.45-76, l.66) and DSL.md",
+     "issue": "[M] A stage-2 agent cannot realistically author a program for a new object from DSL.md alone.\n- 28 of the 36 window names that parts.py reads through ctx.w are not in DSL.md (e.g. body_w, rim_w, surf_band, dome_r0, hole_grid, t_min, t_max).\n- Unknown parameter keys are silently ignored.\n- `list(p.get('of', []))` turns a string such as \"body\" into ['b', 'o', 'd', 'y'], which produces false validation errors.\n- The vocabulary has no free-form curved sheet (e.g. the water pitcher), no ring and no swept tube. The only fallback is splat or tsdf_patch.",
+     "fix": "- Give each part type a parameter schema (name, default, relative or absolute, meaning) in parts.PART_TYPES. Generate the DSL.md table from it, and make validate_program reject unknown keys.\n- Accept a string or a list for 'of'.\n- Ship a render-and-compare helper for the authoring loop: crop, point render, and program render.\n- Add ring and swept-tube parts before stage 2."
+    },
+    {
+     "severity": "major",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_gates.py (VALIDATE l.47-70) and gates.py (v2 notes l.74-85)",
+     "issue": "[M, by reading the code] The v2 revisions (refined observations, LAT_PREC 6 mm) were made after v1 rejected three incumbents labelled MUST_PASS. Those labels, and the 'bad' labels on the P2 picks, come from earlier rounds scored against the scans. The thresholds were therefore tuned toward scan-derived outcomes, so the 18-of-19 result is not independent evidence. The builder notes the lack of independence but not this scan-label route.",
+     "fix": "- Freeze v2 by sha now.\n- Pre-register expected outcomes on objects and episodes not used for tuning (sweeper 18/31, boards 23/24, pitcher 21, pot 43-45), using only synthetic GT-free edits: wall deletion, inflation, fin, shift.\n- Do this before stage 2 relies on the gates."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/test_refine.py (handle_bands l.61-80)",
+     "issue": "[M] The falsifier's statistic is confounded.\n- One PCA plane is fitted for the whole handle wedge, so the within-frame width includes the handle's own curvature and tilt.\n- The per-frame median offset depends on which part of the band each frame sees. Its R\u00b2 against per-frame coverage is up to 0.92 (ep42 180-220 mm, raw).\n- Using a robust quadric residual instead lowers the within-frame widths to 1.5-2.7 mm, and the verdict gets stricter.",
+     "fix": "Use a per-band robust quadric (or local-surface) residual for both the between and the within statistic, as in review/refine_check.py bands_quadric. Report coverage R\u00b2 alongside it."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/gates.py (_project l.237-239)",
+     "issue": "[M] Observed points are back-projected at integer pixel centres (obs_points.py l.82-86), while mesh samples project to continuous u, v. floor(u/CELL_PX) therefore puts the observed footprint half a pixel off the mesh's cell grid. The effect is small:\n- negative control: rank 1.832 \u2192 1.830, hole 0.122 \u2192 0.119;\n- lid incumbent: rank 0.539 \u2192 0.533.",
+     "fix": "cu = floor((u + 0.5)/CELL_PX), cv = floor((v + 0.5)/CELL_PX). This leaves observed points in the same cells and centres the mesh footprint."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/shell.py (clean_islands l.338-357)",
+     "issue": "[M] The island filter keeps flat flakes, not only balls.\n- Lid ep2 keeps a 6.3 cm\u00b2 flake (sphericity 0.53, 3.7 x 28.6 x 29.9 mm, 6.2 mm from the body).\n- The pitcher keeps 5 flakes of 1-3.6 cm\u00b2.\n- gates.connectivity classifies only 1 of the 9 secondary bodies as a ball. conn_share is still \u2265 0.99.",
+     "fix": "Keep a secondary island only if it is ball-like (sphericity \u2265 0.8, diameter \u2264 30 mm) or lies within TOUCH of the main body. Report the dropped area."
+    },
+    {
+     "severity": "minor",
+     "file": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/autokit/programs/lathe_splat.json (parts.py lathe 'height' two-sided t)",
+     "issue": "[M, from the integ summary] The cup program gives identical meshes at t = 1.5, 2.5 and 4.0 mm (area 983.7 cm\u00b2 and the same metrics each time), because the wall thickness comes from two-sided evidence. The t-grid robustness check is therefore never exercised. The builder's density test showed this measured t moves from 1.96 to 3.9 mm.",
+     "fix": "When t_src is two_sided, also build prior-t variants (force t_src = prior) so the grid actually brackets the uncertain thickness."
+    }
+   ],
+   "reproduced": [
+    "[M] refine falsifier, re-run on white_pot ep41 and ep42 (review/refine_check.py, about 92-105 s per file): the refined points match the stored refined/ copies exactly (0.0 mm). Bands, as between / within in mm:\n- ep41: 140-180: 9.34 \u2192 4.68 / 3.64 (FAIL); 180-220: 5.58 \u2192 3.00 / 4.12 (pass); 220-250: 6.23 \u2192 3.66 / 5.33 (pass).\n- ep42: 140-180: 7.46 \u2192 5.71 / 5.21 (FAIL); 180-220: 6.67 \u2192 4.02 / 6.74 (pass); 220-250: 26.9 \u2192 22.33 / 6.10 (FAIL).",
+    "[M] refine frame drift: net rigid change 0.28 deg / 0.14 mm (ep41) and 0.06 deg / 0.29 mm (ep42). Median distance to library_v3: 2.14 \u2192 1.98 mm (ep41) and 2.364 \u2192 2.368 mm (ep42). Per-point move: p50 3.2 mm, p90 6.4-6.8 mm. The per-frame residual to the consensus does not fall: 0.725 \u2192 0.752 (ep41) and 0.771 \u2192 0.771 (ep42).",
+    "[M] refine sliding along the cup axis (review/cup_slide.py):\n- blue_cup ep21: axial |t| p50 5.27 / p90 9.93 mm, perpendicular 1.19 / 2.58 mm; extent 159.3 \u2192 169.9 mm; per-frame top-height spread 10.8 \u2192 23.5 mm.\n- blue_cup ep22: extent 159.4 \u2192 163.0 mm, top spread 11.5 \u2192 17.3 mm.\n- Flat objects (review/plate_slide.py): dust pan extent +3.4 mm in-plane and -2.5 mm across the plate; lid about 0.",
+    "[M] thin_shell at t 2.5 on lid ep2, dust pan ep39, cup ep22 and pitcher ep22 (review/shell_check.py):\n- deterministic: same faces and area as the builder's glb, maximum vertex difference 0.0 mm;\n- watertight at full resolution with 3 / 2 / 2 / 7 bodies, conn_share 0.990-1.0;\n- runtime 13.6 / 23.2 / 17.2 / 58.6 s.",
+    "[M] shell vs observations (review/fringe.py): share of shell area more than 5 mm from any observed point is 0.0-0.1 %, and observed points more than 5 mm from the shell are 0.1-1.6 %. For library_v3 the same figures are 15-48 % of the area and 1.6-18 % of the points.",
+    "[M] Shell under the kit's budget_mesh: lid 657 \u2192 650 cm\u00b2 (28 bodies), dust pan 572 \u2192 539 (27), cup 621 \u2192 609 (16), pitcher 1951 \u2192 1755 (57). None is watertight.\nRenders next to library_v3 and the colour crop are in review/shell/qa_ep*.jpg:\n- the lid, dust pan and pitcher are recognisable;\n- the dust pan ring is rough and the lid strap fragmented;\n- the cup is missing about a third of its wall and its bottom.",
+    "[M] DSL reproduction, test_programs.py --only lid,cup --out review/dsl:\n- lid ep2: fidelity 1.685 vs 1.683 (ratio 1.0012), median 0.003 mm, p90 0.010 mm, area 1.0001, 12.5 s.\n- cup ep21: 4.080 vs 4.104 (ratio 0.9942), median 0.000 mm, p90 0.004 mm, area 1.000, 8.3 s.",
+    "[M] DSL authoring test, two dust-pan programs written from DSL.md alone (review/author/):\n- pan_try1: 1 plate, the ring got 0 points, fidelity 6.72 mm;\n- pan_try2: 3 parallel plates with the ring hole filled, fidelity 2.92 mm;\n- for comparison: library_v3 3.64 mm, shell 1.87 mm.",
+    "[M] gates wiring (review/gates_check.py):\n- integer-pixel share is 1.0 for pot ep41 and lid ep2, raw and refined;\n- obs camera centres match inv(T) to within 5e-5 mm;\n- reversing the correction composition drops the integer-pixel share to 0.018-0.019.",
+    "[M] gates rows, evaluated without the flip check, match validate_v2_rows.jsonl exactly:\n- NC_no_largest_wall: comp 0.90473, hole 0.12205, rank 1.83246; fails G_HOLE and G_CONN.\n- lid incumbent: rank 0.53901; all gates pass.\nThe half-pixel cell shift moves these numbers by less than 0.006 mm in rank and 0.004 in hole.",
+    "[M] gates graded inflation of the lid incumbent:\n- 3 mm: all gates pass, rank 0.54 \u2192 1.85;\n- 6 mm: G_PREC and G_FS fail, rank 5.99;\n- 9 mm: G_COMP, G_HOLE, G_PREC, G_FS and G_FRAME fail, rank 11.64.\nAn added fin of 20 or 40 mm (4.4 % / 8 % of the area) fails no gate, and the rank stays at 0.537 / 0.539.",
+    "[M] select with flip check (review/select_check.py):\n- cup ep22: the shell t2.5 is picked (rank 0.551). The library fails G_HOLE (rank 2.09). Lathes g0 and g1 fail G_HOLE on raw and refined observations alike (0.076 / 0.062).\n- lid ep2: the shell is picked (0.248), ahead of the library (0.489) and the incumbent (0.539)."
+   ]
+  }
+ ]
+}

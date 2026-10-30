@@ -1,0 +1,34 @@
+{"mesh": "ep11_beige_cup_s42.ply", "views": ["view00_k6.png"], "iou": [0.986], "mean_iou": 0.986}
+{"mesh": "ep11_beige_cup_s7.ply", "views": ["view00_k6.png"], "iou": [0.94], "mean_iou": 0.94}
+{"mesh": "beige_cup.glb", "views": ["view00_k6.png"], "iou": [0.876], "mean_iou": 0.876}
+{"mesh": "ep22_blue_cup_s42.ply", "views": ["view00_k154.png"], "iou": [0.932], "mean_iou": 0.932}
+{"mesh": "ep22_blue_cup_s7.ply", "views": ["view00_k154.png"], "iou": [0.932], "mean_iou": 0.932}
+{"mesh": "blue_cup.glb", "views": ["view00_k154.png"], "iou": [0.845], "mean_iou": 0.845}
+{"mesh": "ep22_water_pitcher_s42.ply", "views": ["view00_k34.png"], "iou": [0.958], "mean_iou": 0.958}
+{"mesh": "ep22_water_pitcher_s7.ply", "views": ["view00_k34.png"], "iou": [0.958], "mean_iou": 0.958}
+{"mesh": "water_pitcher.glb", "views": ["view00_k34.png"], "iou": [0.812], "mean_iou": 0.812}
+{"mesh": "ep23_wooden_piece_1_s42.ply", "views": ["view00_k28.png"], "iou": [0.985], "mean_iou": 0.985}
+{"mesh": "ep23_wooden_piece_1_s7.ply", "views": ["view00_k28.png"], "iou": [0.983], "mean_iou": 0.983}
+{"mesh": "wooden_piece_1.glb", "views": ["view00_k28.png"], "iou": [0.883], "mean_iou": 0.883}
+{"mesh": "ep23_wooden_piece_2_s42.ply", "views": ["view00_k6.png", "view01_k298.png"], "iou": [0.983, 0.963], "mean_iou": 0.973}
+{"mesh": "ep23_wooden_piece_2_s7.ply", "views": ["view00_k6.png", "view01_k298.png"], "iou": [0.979, 0.972], "mean_iou": 0.976}
+{"mesh": "ep23_wooden_piece_2_v1_s42.ply", "views": ["view00_k6.png", "view01_k298.png"], "iou": [0.981, 0.441], "mean_iou": 0.711}
+{"mesh": "ep23_wooden_piece_2_v1_s7.ply", "views": ["view00_k6.png", "view01_k298.png"], "iou": [0.98, 0.559], "mean_iou": 0.77}
+{"mesh": "wooden_piece_2.glb", "views": ["view00_k6.png", "view01_k298.png"], "iou": [0.932, 0.876], "mean_iou": 0.904}
+{"mesh": "ep26_plastic_dish_rack_s42.ply", "views": ["view00_k138.png"], "iou": [0.958], "mean_iou": 0.958}
+{"mesh": "ep26_plastic_dish_rack_s7.ply", "views": ["view00_k138.png"], "iou": [0.927], "mean_iou": 0.927}
+{"mesh": "plastic_dish_rack.glb", "views": ["view00_k138.png"], "iou": [0.681], "mean_iou": 0.681}
+{"mesh": "ep2_white_pot_lid_s42.ply", "views": ["view00_k324.png"], "iou": [0.982], "mean_iou": 0.982}
+{"mesh": "ep2_white_pot_lid_s7.ply", "views": ["view00_k324.png"], "iou": [0.987], "mean_iou": 0.987}
+{"mesh": "white_pot_lid.glb", "views": ["view00_k324.png"], "iou": [0.931], "mean_iou": 0.931}
+{"mesh": "ep31_mini_sweeper_s42.ply", "views": ["view00_k270.png"], "iou": [0.982], "mean_iou": 0.982}
+{"mesh": "ep31_mini_sweeper_s7.ply", "views": ["view00_k270.png"], "iou": [0.974], "mean_iou": 0.974}
+{"mesh": "mini_sweeper.glb", "views": ["view00_k270.png"], "iou": [0.857], "mean_iou": 0.857}
+{"mesh": "ep39_mini_dust_pan_s42.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.937, 0.904, 0.884], "mean_iou": 0.908}
+{"mesh": "ep39_mini_dust_pan_s7.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.928, 0.911, 0.894], "mean_iou": 0.911}
+{"mesh": "ep39_mini_dust_pan_v1_s42.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.974, 0.6, 0.638], "mean_iou": 0.737}
+{"mesh": "ep39_mini_dust_pan_v1_s7.ply", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.972, 0.674, 0.606], "mean_iou": 0.751}
+{"mesh": "mini_dust_pan.glb", "views": ["view00_k316.png", "view01_k220.png", "view02_k0.png"], "iou": [0.872, 0.833, 0.828], "mean_iou": 0.844}
+{"mesh": "ep41_white_pot_s42.ply", "views": ["view00_k278.png"], "iou": [0.978], "mean_iou": 0.978}
+{"mesh": "ep41_white_pot_s7.ply", "views": ["view00_k278.png"], "iou": [0.98], "mean_iou": 0.98}
+{"mesh": "white_pot.glb", "views": ["view00_k278.png"], "iou": [0.831], "mean_iou": 0.831}

@@ -4838,3 +4838,526 @@ Advice given:
     run. Depth sees large track-level offsets (ep31's rack ≈ 0.8 cm proud) but not the typical 2–3 cm errors.
   - Integrity: the map stage read 4 frames of eval-3 depth before PREREG was written (disclosed in PREREG note 2;
     eval 3 excluded from any future spoon test). The GT input guard of refine.py / depth_audit.py was tightened.
+
+
+### 2026-10-26 (mesh research session, branch `claude/bold-albattani-6qmxsv`, CPU only, $0)
+Owner asked: work on 3D mesh generation and make it accurate; review everything tried (video generation, primitives,
+physics-based meshes, …), research methods in depth, test on public data. Outputs: `docs/research/mesh-2026-10-26/`.
+- Branch fast-forwarded to `main-bsky37` 6762f80 (it was at 4d1d7ee, before all submissions). Work in new files only.
+- Kit check: CD-O = kit Chamfer after Sim(3) (scale = ratio of area-weighted RMS radii, PCA-start trimmed ICP); the
+  same registration sets body frames for all five pose boards (already known since 21 Oct).
+- Leaderboard JSON 26 Oct 08:50 UTC: CD-O richchentw 0.154, Panav Raaj 0.112, NVSimranPatil 0.170, ours 0.402.
+- Ledger of all past mesh work (`ledger-of-past-mesh-work.md`): generative models never run; lathe meshes never
+  submitted; submitted meshes are mostly 21 Oct v1 TSDF files fused along scan-templated tracks.
+- Literature (`lit/`): generative (image-to-3D alone ≈ 2 % of size on real images; generate-then-fit works:
+  AGILE, MagicHOI, RecGen3D); video/physics (directional TSDF, envelope Poisson, contact priors, pose refinement);
+  primitives/CAD (closed-profile lathe, extrusions, generalized cylinders; learned CAD not accurate on real objects).
+- Benchmark rebuilt here: `scripts/mesh_metric.py` (copy of the 22 Oct metric, path via MESH_SCR); library_v3
+  reproduces exactly (blue 0.523, pot 0.437, rack 0.555, pitcher 0.894, beige 0.856 / v3x 0.730, lid 0.421, sweeper
+  0.317, dust pan 0.331, boards 0.222 / 0.216) [D].
+- [D] Scans are thin double-walled shells (cups 2.4–3.2 mm, pot 3.9, lid 1.8, pitcher 2.2, rack fins ≈ 2.5), but
+  PARTIAL: the blue-cup scan has no inner wall in its lower half (scanner never saw it) and a recessed foot.
+- [D] Observed stereo points (new `obs_points.py`: depth in the object frame along our perc2m track; table, hands,
+  other objects removed; free-space vote) lie close to the scan: blue cup ep22 median 0.89 mm, p90 3.4 mm, 59 % of
+  the scan within 3 mm; pot ep41 median 1.9 mm, p90 6.6 mm, 88 % covered. The information is in the depth; the
+  4 mm binary-blur mesher discards it.
+- Closed-profile lathe from observed points (`lathe_obs.py`, axis: line-complex candidates scored by rotational
+  self-consistency, opening-direction tie-break; profile from camera-side classified outer/inner points):
+  blue cup 0.523 → **0.364** (ADD 10.0 → 4.7 mm, 0/7 flips; wall 3.06 mm vs scan 3.2); solid version 0.493 (thin
+  walls matter); pot 0.437 → 0.468 with splatted handle (0.413 with library handle; body alone 1.17, 2/8 flips).
+  Earlier library-based lathe (approach 2) was better: cup 0.307, pot 0.319 (multi-episode input).
+- CD-O decomposition (`cdo_decomp.py`): the RMS-radius scale fix punishes wrong surface-area distribution: blue lathe
+  ratio 0.92 → kit 0.382 vs 0.316 at true metric scale. Which surfaces exist matters as much as their shape.
+- Negative: screened Poisson on oriented raw points 0.96–1.11 (noise → crumpled multi-layer surface, 1.6× area).
+- Generative probe prepared (`crops.py`: GT-free colour crops at resting, hand-free frames; 9/10 objects clean;
+  beige cup fails: ep11 frame-0 track wrong). Running Hunyuan3D-2mini on CPU was **blocked by the sandbox (third-party
+  code)**; SAM 3D Objects returns 403 (owner's HF token lacks the gate). Needs the owner's permission.
+- ~16:40 UTC (same session) more results [D]:
+  - Observed-point accuracy and coverage for all 10 objects (`results/obs_diag.txt`):
+    - median: lid 0.85, cups 0.9, dust pan 1.07, board 2 1.29, pitcher 1.30, sweeper 1.37, rack 1.88, pot 1.89 mm;
+    - coverage within 3 mm: 59–90 %, except the rack (28 %) and board 1 (16 %, ep23 track problem).
+  - Lathe on ep21 cup points: **0.291** (ADD 4.1 mm, 0/7 flips); ep22 0.364; ep21 + 22 merged 0.396. Same pattern as
+    22 Oct: single episode > fusion.
+  - New GT-free selector `obs_fidelity.py` (observed→mesh + mesh→observed trimmed means, both episodes' points):
+    ep21 4.08 < merged 4.23 < ep22 5.79 < library 5.86 < ep22-no-markers 6.63 mm. It picks the CD-O winner;
+    Spearman 0.5 (n = 5).
+  - Pot: axis needed candidate selection by rotational self-consistency plus an opening-direction tie-break (the
+    line complex locks onto the handle; a bowl fits any axis through its centre). Body-only lathe 1.168 with 2/8 flips;
+    with splatted handle 0.468; with library appendages 0.413 (library 0.437, approach-2 lathe 0.319).
+  - Vast market check (read-only, 16:20 UTC): PRO 6000 $1.69/h, A100 $0.70–0.79/h, RTX 6000 Ada $0.76/h.
+  - Report: `docs/research/mesh-2026-10-26/README.md`. STATUS updated. No GPU rented.
+- ~17:40 UTC (same session) owner: "show me the meshes we generate for eval with these methods".
+  - **Eval depth was never cached** (store has `cache/depth/public` only; work log 3913), so the multi-frame methods
+    cannot run on eval without a GPU FoundationStereo pass.
+  - Single-frame fallback from the frame-0 perception dump (`scripts/obs_f0.py`), validated on public data first [D]:
+    - points are accurate (median 0.7–1.5 mm) but cover only 24–30 % of a cup or pot, 51 % of the lid;
+    - lathes from them fail: blue cup ep21 1.279 and ep22 1.284 with **7/7 flips**, lid ep2 1.095; pot axis locks
+      onto the handle.
+    - Rejected, not run on eval.
+  - Built instead, GT-free on eval:
+    - colour crops and mesh overlays for all 36 eval pairs (`crops.py`, our evperc tracks `20261025-evperc-4f596df`,
+      at-rest frames, every 8th frame a candidate; eval 8 beige = v3x as submitted);
+    - multi-view renders of the 12 submitted meshes (`scripts/render_views.py`);
+    - an interactive page (`eval-view/index.html`: three.js viewer of the kit-decimated submitted meshes plus the
+      public comparisons, section cut, eval gallery).
+  - Visual review panel running (workflow `wf_c69f9d10-f06`): reviewer per pair, then skeptic verification of
+    flagged issues, then per-object synthesis.
+  - Vast market read-only; no GPU rented.
+- ~19:30 UTC (same session) owner: "check out WeVisOne-VL for object detection". Research workflow `wf_de751fdc-d81`
+  plus skeptic verification `wf_5af07702-6da`; `docs/research/wevisone-2026-10-26/README.md`.
+  - Model: Tencent, released 22 Oct 2026; Apache-2.0 code and weights.
+  - Beats our Grounding DINO-T helper in the authors' tables: LVIS 55.3 vs 38.8; RefCOCOg 80.8 vs 45.9; rejection
+    67.4 vs 0 %.
+  - Limits: no exemplar prompt, no scores, no grayscale evidence, 4 days old.
+  - **Verdict: test first.** Pre-registered public replay swapping the grounding term:
+    - pass = at least 99/116 with 0 of the shipped 97 lost (97 = the current rule, CPU replay);
+    - cost ≈ $1–1.5;
+    - needs the owner's go-ahead.
+  - Not run; no GPU rented.
+- ~20:00 UTC eval-mesh review panel done (workflow `wf_c69f9d10-f06`: 36 reviewers + skeptics + synthesis, 68
+  agents, 0 errors); results in `docs/research/mesh-2026-10-26/results/eval_review.json`; page v2 with per-pair notes
+  and a priority table.
+  - Tracking is good: all 36 meshes land on the right object, place and size. Small possible pose offsets on
+    eval 10 and 32 (blue cup) and eval 30 (sweeper).
+  - Mesh problems, in priority order:
+    1. blue cup (5 pairs): poor; side-wall hole near the open end, not round;
+    2. white pot (6): floor mostly missing, wall hole near the rim, filled handle hole;
+    3. dish rack (5): poor; tray floor mostly missing, fused pegs;
+    4. beige cup (2): poor; both versions broken, two pieces, no opening;
+    5. pitcher: wall holes;
+    6. dust pan: terraced scoop;
+    7. sweeper: lumpy ring;
+    8. board 1: spurious hole, no slot;
+    9. lid: rim notch, plate hole;
+    10. board 2: no slot;
+    11. spoon (10): good.
+  - All visual, GT-free. Fix order agrees with the measured lathe gain (cups first).
+
+### 2026-10-27 primitive-assembly mesh round — PRE-REGISTRATION (written before any result; owner: "Okay do that")
+Goal: per-object "kit of parts" meshes fitted to OUR observed stereo points (CPU, $0). Order: pot, boards, lid, rack.
+- **Families:**
+  - A = pot + lid: lathe body plus fitted parts (handle bar, lid handle, marker spheres);
+  - B = boards: extruded outline with slot and tabs, plus marker spheres;
+  - C = rack: tray, fin array and cup holder.
+- **Inputs (no GT):** `obs_points.py` points on store run `20261025-sweep-a894083` base tracks, with hands from G1 refs
+  where stored, for every listed public episode:
+  - pot: 41, 42, 43, 44, 45, 2, 26, 27;
+  - lid: 0, 2;
+  - boards: 23, 24;
+  - rack: 12, 13, 26, 27, 31.
+
+  Output: `scripts/prep_obs.sh` → `obs_all/`. The fitting code never reads scans, `*_align.npz`, mocap or parquet
+  poses.
+- **Selection (GT-free):** per object, among all (episode × variant) candidates, the lowest `obs_fidelity.py` sum over
+  the observed points of all that object's episodes.
+  - Parameters are shared across episodes and across objects of a family.
+  - At most 4 variants per family.
+  - Every variant scored against a scan is logged with a count.
+- **Scoring (after selection, [D]):** `mesh_metric.py`: CD-O at eval seeds, ADD static, flips over ≥ 6 seeds.
+  The best candidate by scan ("oracle") is reported separately and never used to decide.
+- **Pass, per object:** CD-O ≤ library_v3 − 0.03 cm AND ADD ≤ library_v3 + 1.0 mm AND 0 flips on all seeds.
+
+  | Object | library_v3 CD-O / ADD |
+  |---|---|
+  | pot | 0.437 / 6.7 |
+  | lid | 0.421 / 8.1 |
+  | board 1 | 0.222 / 2.4 |
+  | board 2 | 0.216 / 3.6 |
+  | rack | 0.555 / 6.0 |
+- **Eval:** the same frozen code and selection rule, only after eval depth exists (owner go-ahead). Nothing is tuned
+  on eval.
+
+### 2026-10-27 primitive-assembly round — RESULTS (CPU VM, $0; code as run: prim_potlid.py 784997fb, prim_boards.py 2643471f, prim_rack.py ca2aea0d)
+- **Run:** `wf_` workflow (builder plus independent auditor per family). The auditor re-ran the selection and the scan
+  scoring and read all fitting code for GT reads. Scratch outputs are in `prim/{potlid,boards,rack}` (session
+  scratchpad); the small results are copied to `docs/research/mesh-2026-10-26/results/prim/`.
+- **Selected by obs_fidelity (GT-free), then scored once against the public scans [D]:**
+
+  | Object | Selected | CD-O cm (lib) | ADD mm (lib) | Flips | Verdict |
+  |---|---|---|---|---|---|
+  | white pot | ep41 fit | 0.342 (0.437) | 3.05 (6.7) | 0/8 | PASS |
+  | white pot lid | ep2 fit | 0.219 (0.421) | 5.97 (8.1) | 0/6 | PASS*, see leak |
+  | rack | joint of eps 12, 13, 27 | 0.454 (0.555) | 6.41 (6.0; limit 7.0) | 0/7 | PASS*, narrow, see leak |
+  | board 1 | ep24 occ_d2 | 0.189 (0.222) | 3.31 (2.4) | 1/6 | FAIL |
+  | board 2 | ep23 occ_d2 | 0.229 (0.216) | 78.7 (3.6) | 3/6 | FAIL |
+
+  - Variants scored against a scan: pot 32, lid 4 (+2 dev), rack 12 (+2 dev), boards 16 (+2 dev). The auditors'
+    re-scores matched exactly.
+  - Pot: the selection margin is 0.009 mm of fidelity (ep41 fit 3.035 vs ep41 tsdf 3.044, CD-O 0.333). Spearman
+    of fidelity vs CD-O over the 32 pot candidates is 0.85. Oracle is ep43 tsdf, 0.309.
+  - Board 2: the ep23 track appears to be board 1 rotated 180° (marker layout and slot side match board 1). The slot
+    is invisible in our depth. The ep24 oracle (0.164 / 4.1 / 1 flip) also fails on flips.
+- **Leak, found by the rack auditor (my brief's fault):**
+  - My workflow brief passed the builders wall thicknesses measured on the scans. prim_rack `T_WALL = 2.5 mm` equals
+    the scan rack wall median; prim_potlid `T_LID = 2.5 mm` came from the same brief (scan lid 1.8 mm).
+  - prim_rack `CUP_LEAN=False` (upright cup holder) was adopted after a [D] diagnostic that printed the scan's
+    cup-holder extents.
+  - No code reads a scan; the pot wall is measured from our points (4.77 mm), so the pot is clean. The lid and rack
+    passes are **provisional** until the clean-up round below.
+- **Construction defects (audit):**
+  - lid arch strap is a floating body (0.19 mm gap);
+  - 4 of 5 pot marker balls float;
+  - one spurious mid-handle ball on the pot;
+  - the pot has no handle hole (not seen in our occupancy);
+  - board meshes have no slot.
+
+### 2026-10-27 primitive clean-up round — PRE-REGISTRATION (written before any of its results)
+- **Why:** remove the scan-informed priors above. GT-free measurement of the lid thickness was tried on our own points
+  and is not possible: the lid is only seen from above (median |view·axis| = 0.78 at the edge, no side-seen points),
+  and the rack floor is never seen. So thickness stays a prior, and this round tests whether the verdicts depend on it.
+- **Code changes (all GT-free, made before any new score):**
+  - `T_LID` (prim_potlid), `T_WALL` and `CUP_LEAN` (prim_rack) can be set from the environment (`PRIM_T_LID`,
+    `PRIM_T_WALL`, `PRIM_CUP_LEAN`). Defaults unchanged.
+  - Bug fix (from the audit's topology check, not from a score): lid arch strap ends go 2 mm into the sheet, at the
+    true radius of the strap end, so the arch is attached as the docstring says.
+  - Docstrings corrected.
+- **Grid:** thickness ∈ {1.5, 2.5, 4.0} mm, a generic thin-moulding range not taken from any scan. Rack also
+  `CUP_LEAN` ∈ {False, True}. True is the pre-scan design.
+- **Lid:** ep2 (ep0 cannot be fitted), variants fit and tsdf at each thickness, 6 candidates. At each thickness,
+  obs_fidelity picks between fit and tsdf. Thickness itself is not chosen by fidelity, because the unseen underside
+  makes fidelity prefer the thinnest sheet whatever the truth.
+- **Rack:** `prim_rack.py run` (12 candidates, its own GT-free selection) for each of the 6 (thickness × lean) configs.
+  At each thickness, fidelity picks the lean setting. Lean affects seen faces, so it is a fair judge there.
+- **Scoring [D]:** all 6 lid candidates and the 6 per-config rack selections are scored, 12 scorings in total.
+- **Verdict:**
+  - The unchanged pass rule (CD-O ≤ lib − 0.03, ADD ≤ lib + 1.0 mm, 0 flips) must hold for the fidelity selection at
+    **every** grid thickness. The clean reported number is the worst over the grid.
+  - If any grid point fails, the object's earlier pass is withdrawn and reported as thickness-dependent.
+  - The shipped default stays 2.5 mm (grid midpoint) only if all three pass.
+- **Pot and boards are unchanged:** the pot is clean, and the boards already fail.
+
+### 2026-10-27 primitive clean-up round — RESULTS (CPU VM, $0; code: this commit's prim_potlid.py / prim_rack.py)
+- **Commands** (scratchpad `prim/clean/`, scripts in `results/prim/clean/`):
+  - lid: `PRIM_T_LID=<t> prim_potlid.py lid obs_all/ep2_white_pot_lid.npz t<t>_<v>.glb --variant <v> --lib
+    meshes/library_v3/white_pot_lid.glb`;
+  - rack: `PRIM_T_WALL=<t> PRIM_CUP_LEAN=<0|1> prim_rack.py run --obs_dir obs_all --out t<t>_lean<l>` (`run_rack.sh`);
+  - scoring: `MESH_SCR=<scratch> mesh_metric.py run --manifest ...`.
+- **Regression checks:**
+  - With the defaults of the first run, prim_rack reproduces all 12 first-run meshes byte for byte.
+  - The pot ep41 fit rebuilds byte-identical.
+- **Lid** (6 scorings [D]; limit CD-O ≤ 0.391, ADD ≤ 9.1, 0 flips). Fidelity, sum mm: fit 1.436 / 1.686 / 2.259,
+  tsdf 1.650 / 1.913 / 2.510, so it prefers the thinner sheet as expected and picks fit at every thickness.
+
+  | T_LID | fit CD-O / ADD / flips | tsdf CD-O / ADD / flips |
+  |---|---|---|
+  | 1.5 mm | **0.224 / 4.56 / 0** | 0.225 / 4.30 / 0 |
+  | 2.5 mm | **0.220 / 4.46 / 0** | 0.216 / 3.47 / 0 |
+  | 4.0 mm | **0.221 / 5.06 / 0** | 0.216 / 4.30 / 0 |
+
+  - **PASS at every thickness.** Clean worst case: 0.224 cm / 5.06 mm (lib 0.421 / 8.1).
+  - The arch fix makes the fit mesh 2 bodies (sheet with arch, plus one floating ball), not 3.
+  - Shipped: T_LID 2.5 mm fit (`results/prim/meshes/white_pot_lid_ep2_fit_v2.glb`).
+- **Rack** (6 scorings [D]; limit CD-O ≤ 0.525, ADD ≤ 7.0, 0 flips). Each config's own selection is the joint mesh.
+  Fidelity sum mm, lean vs upright: 6.044 vs 6.242 (1.5 mm), 5.935 vs 6.116 (2.5 mm), 5.921 vs 6.138 (4.0 mm). So
+  the GT-free choice is the **free lean (pre-scan design)** at every thickness.
+
+  | T_WALL | lean (selected) CD-O / ADD / add_max / flips | upright (first run's choice) |
+  |---|---|---|
+  | 1.5 mm | **0.458 / 6.06 / 7.96 / 0** | 0.454 / 7.22 / 7.81 / 0 (fails ADD) |
+  | 2.5 mm | **0.456 / 5.37 / 6.08 / 0** | 0.454 / 6.41 / 7.70 / 0 |
+  | 4.0 mm | **0.449 / 6.23 / 8.62 / 0** | 0.461 / 6.59 / 7.48 / 0 |
+
+  - **PASS at every thickness.** Clean worst case: 0.458 cm / 6.23 mm (lib 0.555 / 6.0).
+  - The scan-informed upright cup was worse by the GT-free fidelity score and on ADD. Removing it helps.
+  - The ADD margin is still modest: worst 6.23 against 7.0, and single seeds reach 8.6 mm.
+  - prim_rack default `CUP_LEAN` is now True. Shipped: T_WALL 2.5 mm, lean, joint of eps 12/13/27
+    (`results/prim/meshes/plastic_dish_rack_joint_v2.glb`).
+- **Frame check (GT-free, no registration):** the shipped pot, lid and rack meshes lie a median 2–4 mm from the
+  library_v3 meshes of the same objects. They are in the library's object frame, as the method implies (points in the
+  track frame of tracks that follow the library meshes).
+- **Count:** 12 scan scorings this round, as pre-registered.
+- **Final verdicts:** pot PASS (0.342 / 3.05), lid PASS (0.220 / 4.46), rack PASS (0.456 / 5.37), boards FAIL.
+- Default-config rack run (CUP_LEAN default True, no env) reproduces the shipped joint mesh byte for byte.
+
+### 2026-10-27 ~07:25 UTC: "are these meshes case by case? is there an automated way?" (owner)
+- Short answer given: yes. Each kit-of-parts fitter (`prim_potlid.py`, `prim_rack.py`, `prim_boards.py`) encodes one
+  object type's part list, written by an agent after looking at our points and crops. It then runs automatically with
+  the GT-free selector. Generic today: `lathe_obs.py`, marker-ball detection, extrusion, `obs_fidelity.py`, the
+  manifold union.
+- Launched workflow `wf_c5cfe08d-5e2` (CPU, $0). Stages:
+  - code audit of generic vs object-specific code;
+  - research on classic, learned and LLM-agentic automated primitive/CAD reconstruction, each adversarially verified;
+  - in-repo lessons;
+  - 3 automated designs, 2 judges, a synthesis;
+  - 2 GT-free feasibility probes on our points (no scan reads, no scan scoring; outputs in scratchpad `auto/`);
+  - a completeness critic.
+- ~07:35 UTC correction (GT-free check): the public-episode blue-cup lathes (ep21, ep22) also lie in the library_v3
+  frame (median 2.7–3.4 mm from library_v3 blue_cup, no registration). Like pot, lid and rack, they can replace the
+  library mesh for eval without eval depth. The earlier "cup lathes wait on eval depth" (README §8, page) assumed
+  per-episode eval fits; it is not required, because library_v3 itself is built from public episodes.
+  Point extraction for objects not yet covered is CPU-only from the public depth in the HF store: last run ≈ 52 min
+  for 17 episode-objects (40–300 s each).
+
+### 2026-10-27 ~13:20 UTC: automation research workflow `wf_c5cfe08d-5e2` done; owner asks for A + B, "minimal CD-O vs public scan"
+- **Results** (raw: scratchpad `tasks/wwg6p0xzh.output`; probe files in scratchpad `auto/probe_*`):
+  - **Audit:** about a third of the fitter code is object-specific. The template choice is manual. A fitter run on the
+    wrong object quietly returns a clean but wrong mesh (23 of 26 test runs).
+  - **Probe P1 (pot, name-blind peeling) REFUTED:**
+    - The lathe body was found, but with the hand kit's own `pot_axis`; the generic `fit_axis` was 5.9° off.
+    - The handle came out as a TSDF patch, with 3–5 extra appendages and 0–1 balls.
+  - **Probe P2 (dust pan, plate set) REFUTED:**
+    - The selected mesh is fragmented, mostly TSDF patches.
+    - The GT-free gate passed a mesh with its largest wall removed. `fs_frac` is one-sided, and the recall floor is
+      anchored to the thick library.
+  - **Critic:**
+    - Leaderboard freeze is 2026-11-04 (8 days).
+    - Track jitter: on ep41 the handle's between-frame plane-offset spread is 5.6–9.3 mm against a 3.7–5.5 mm
+      within-frame width [M]. Per-frame refinement is a generic fix to test.
+    - The thin-wall TSDF route (README P5) was never run.
+    - R0 = 7 mm came from eval-episode spoon stereo; re-estimate it from public data.
+    - Two expected gains were tainted (Design O dust pan, scan-picked sweeper episode).
+    - The owner's 22 Oct decision (eval meshes re-fused per eval episode from its own video) means eval meshes need
+      eval depth. My "no eval depth needed" (07:35 entry) was wrong under that decision; public development is
+      unaffected.
+- **Owner (13:15):** "I want a combination of A and B and want the minimal CD-O vs public scan."
+  - Interpretation: the public-scan CD-O is the development yardstick to minimise. Selection stays GT-free (CLAUDE.md:
+    inference never reads ground truth). The oracle (best by scan) is reported separately and never shipped.
+  - Per the 22 Oct decision, the method must work per single episode, so public results are reported per episode.
+- **Stage 1 (now): shared engine, GT-free only, no scan scoring:**
+  - allowlisted loader;
+  - per-frame pose refinement, with the critic's falsification test;
+  - thin-shell route from our points;
+  - part library and program DSL that reproduces the hand kits;
+  - gates v2 (two-sided depth-render consistency, connectivity, frame, flip);
+  - an integration run, then integrity and correctness audits.
+- **Stage 2 (after review):** agent-authored part programs per object (B) plus the engine's generic routes (A), GT-free
+  selection, then one pre-registered scan round.
+- Extraction of the uncovered objects is running (`obs_all/prep2.log`, CPU): beige 11, blue 11/12/13/21/22, pitcher
+  21/22, dust pan 18/39/40, sweeper 18/31, pot 0. All 20 public episodes have depth in the store; there is no eval
+  depth.
+- ~13:40 UTC owner: "don't worry about the deadline / leaderboard freeze, that's for me to worry". Planning ignores the
+  freeze date from now on; quality first.
+
+### 2026-10-27 ~17:20 UTC: stage 1 engine workflow `wf_31952e44-35c` done (CPU, $0, ~4 h; 4-core VM runs 2 agents at a time)
+Code: `docs/research/mesh-2026-10-26/autokit/`. Raw results: `results/autokit-stage1/workflow-result.json`, plus the
+research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free only; no scan was scored.
+- **Works [M]:**
+  - The DSL reproduces the hand kits exactly: pot and cup at 0.000 mm median, lid 0.003 mm. The rack differs only in
+    its floor plate, because single-episode programs use the episode's own table.
+  - The same programs run unchanged on other episodes: pot ep42–45 ratio 0.98–1.02.
+  - The windows are scale-relative.
+  - Thin shells (route A) are watertight at full resolution and sit on our points. GT-free fidelity is far better
+    than library_v3, e.g. cup 1.4 vs 6.1 mm.
+  - The loader refuses forbidden paths.
+- **Refinement:** it recovers injected per-frame errors, but its pre-registered falsifier failed (the handle spread
+  roughly halves but stays above the within-frame width in one band per episode). It slides frames along cylinder
+  axes up to its 10 mm bound. Refined copies made the shells worse, so it is not used by default.
+- **Blockers (audits):**
+  1. The marker-ball prior MK_R0 = 7 mm (and the 5–9.5 mm free-fit window) traces to the scans: spoon template
+     `note 17` is the marker catalogue fitted on the public scans. It was wrongly labelled "our own stereo". It
+     shaped the balls of the pot (4 of 5), lid (2 of 3) and rack (1 of 2) hand kits that passed today's scan rounds.
+     Those passes are now provisional until rebuilt with a generic ball rule.
+  2. The GT-free selector always prefers route-A shells at the thinnest t: its rank only measures observed surface,
+     so an incomplete shell cannot lose.
+- **Major:**
+  - mesh paths bypass the loader guard;
+  - per-object S_REF constants sit in method code;
+  - gates v2 was revised after v1 rejected scan-validated incumbents (scan-derived labels);
+  - shells break under the kit's 4096-face budget_mesh (area −1 to −22 %, not watertight);
+  - plate_set does not split by plane;
+  - DSL.md documents 8 of 36 window names, and unknown keys are ignored;
+  - precision ignores mesh outside the observed silhouette.
+- **Next:** stage 1b fix round before any authoring or scan scoring.
+- ~17:30 UTC: stage 1b fix workflow `wf_709e7da9-195` launched (CPU, $0):
+  - generic free-fit ball part (3–15 mm, no fixed radius) replacing the scan-derived prior;
+  - S_REF constants moved to the programs;
+  - DSL schema and validator;
+  - plate_set split by plane;
+  - shell_patch part (route A inside B programs);
+  - budget-safe shells;
+  - selector v3: standalone shells not selectable, t kept at 2.5 unless measured two-sided;
+  - free-space precision outside the silhouette;
+  - a pre-registered synthetic-edit gate validation on episodes not used for tuning;
+  - integration over every episode of pot, lid, rack and blue cup, then audits.
+- 2026-10-29 21:05 UTC: stage 1b workflow `wf_709e7da9-195` failed. All 6 agents stopped on the account's weekly usage
+  limit (reset Oct 29 21:00 UTC), with 0 results. The parts and shell fixers had made large partial edits: parts.py,
+  program.py, DSL.md, programs/*.json, shell.py, tests, and a provenance comment on prim_potlid MK_R0. The gates fixer
+  changed nothing. All files compile. The partial edits are committed as an unreviewed WIP snapshot; scratch outputs are
+  in `auto/stage1b/{parts,shell}`. Owner: "Tekrar deneyin" (try again). Relaunching with instructions to review and
+  finish the partial work.
+- 2026-10-29 21:10 UTC: stage 1b relaunched as `wf_d55d762f-ae7` (same script plus a restart note: review and finish
+  the WIP at 14eaf37, and write PROGRESS.md lines so another cut-off loses less).
+- 2026-10-29 21:45 UTC: message from session `session_01LhbGHrt6epRs52jSRX48AU` (Kalman/control, branch
+  `claude/focused-pascal-2nz9s1`) relaying the owner (~21:45, before sleeping): "you can give mesh improvements session
+  vast credits to like we can give budget to them I think that can improve our score". Owner topped up $100 (credit
+  $103.51). Split in the shared ledger (`ledger/spend.jsonl` in the HF store; helper `ops/ledger.py` on their branch):
+  mesh session up to $25, their session $45, at least $30 reserve.
+  - Coordination: before any `ops/vast.sh create`, run `vast.sh show`, read the ledger, add a `planned` line, use run
+    ids `mesh-*` (`LEDGER_SESSION=mesh-bold`), and add an `actual` line after the box is destroyed.
+  - Their AUC guidance:
+    - a registration-stability gate before any new mesh enters the AUC submission (reject if > 10 % of 30 seeds land
+      > 5° from the median pose; at least 2 public twins; a single-twin pitcher swap cost −0.0045 on Kaggle);
+    - watertight collision copies for placement evals 14, 28, 30, 1 and the eval-10 stack;
+    - CD-O kept separate.
+  - Decision: CLAUDE.md requires the owner's own go-ahead on a stated plan before each rental. A relayed message is not
+    that, so no Vast launch tonight; a costed plan goes to the owner. Replied to that session to say so.
+
+### 2026-10-29 ~21:50 UTC: owner go-ahead for GPU batches 1 and 2 ("I give you go ahead for these when you need it")
+- **Batch 1, eval depth cache.** New job `ops/jobs/eval_depth.sh` = `eval_perc_check.sh` plus a `store.sh push-depth`
+  of each episode's `depths_fs0.5.npy` to `cache/depth/eval/ep<N>/` before the local copy is deleted.
+  - Ported the `store.sh push-run` pipefail fix from `claude/focused-pascal-2nz9s1`.
+  - Commit 92f3d86. Ledger `planned` line: `mesh-20261029-evdepth-92f3d86`, est. $4 (`LEDGER_SESSION=mesh-bold`).
+  - Launch: `ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 ops/vast.sh create 50295908 mesh-20261029-evdepth-92f3d86
+    'bash ops/jobs/eval_depth.sh'`. The first offer 54578567 had gone (404).
+  - Instance 58312542, RTX PRO 6000 WS, Utah, $1.511/h all-in. All 20 eval episodes; self-destroys at the end.
+  - Outputs: `cache/depth/eval/ep*/` and `runs/mesh-20261029-evdepth-92f3d86/results/evalperc/`.
+- **Batch 2 (generative probe):** to be prepared next. Mesh-session budget is ≤ $25 in total (relayed allocation).
+- ~22:05 UTC **Batch 2 (generative probe)** handed to a background agent under hard rules:
+  - $12 cap, one box at a time;
+  - A100/H100 class (the compiled extensions may not support Blackwell sm_120);
+  - bounded idle job driven through `ops/vast.sh exec`, destroyed on finish or block;
+  - ledger `planned`/`actual` lines with `mesh-*` run ids;
+  - generation inputs limited to our crops, poses, calib and points; no scan;
+  - scan scoring once per mesh, only after a frozen sha256 manifest, counted and diagnostic only.
+
+  Models in priority order: Pixal3D multi-view (posed, our object frame), TRELLIS.2, TripoSG, Hunyuan3D-2.1. SAM 3D
+  is skipped: its weights still return HTTP 403 (owner action: request access on HF and let the token read gated
+  repos).
+- ~22:15 UTC owner: "for sam I did get the access".
+  - Checked: the token has `canReadGatedRepos: true`.
+  - The download still returns 403: "Your request to access model facebook/sam-3d-objects is awaiting a review from
+    the repo authors" (gated: manual).
+  - Told the probe agent to re-check before finishing and to add SAM 3D only if it returns 200 and the $12 cap allows.
+
+### 2026-10-29 ~22:15 UTC: batch 2 (generative probe) box up
+- Code: `docs/research/mesh-2026-10-26/gen/` at f3fbeb0 (box job, setup, drivers for Pixal3D-MV, TRELLIS.2,
+  TripoSG, Hunyuan3D-2.1; all shape only). The Pixal3D HF Space wheels (cumesh, o_voxel) are compiled for
+  compute_90 only (checked with `strings` on the wheels), so the box must be H100-class.
+- Ledger `planned` line `mesh-20261029-gen-f3fbeb0` $6 (cap $12).
+- Launch: `SETUP=none DISK=120 IMAGE=vastai/pytorch:2.7.1-cu128-cuda-12.9-mini-py310-2026-10-23 V2D_COMMIT=f3fbeb0
+  ops/vast.sh create 31183486 mesh-20261029-gen-f3fbeb0 'IDLE_MIN=300 bash docs/research/mesh-2026-10-26/gen/box_job.sh' 0.80`
+  -> instance 58314388, H100 NVL 94 GB, Czechia, interruptible bid $0.80/h GPU ($0.898/h all-in), $37/TB download.
+  Created 22:09 UTC; tunnel up 22:12; `box_setup.sh` started 22:13.
+- Pixal3D-MV views (`gen/mv_views.py`, local CPU): first pot test chose frames with hands on the pot (MediaPipe
+  misses holding hands), so view frames are now restricted to at-rest frames (track speed < 1.5 mm/frame), as in
+  crops.py. At rest the egocentric viewpoints span little: ep41 pot has 22 usable frames, all within 20 deg.
+- ~22:25 UTC focused-pascal session: the old `ledger.py` treated a failed read as an empty ledger and one write erased
+  two of its lines (restored). Switched to the fixed helper (commit 8be9e27 on its branch: abort on read errors,
+  `parent_commit` append) at scratchpad `ledger.py`, which is used by me and the probe agent.
+  - Boxes now:
+    - evdepth 58312542 (at eval ep6);
+    - gen 58314388 (H100 NVL interruptible, $0.898/h, run `mesh-20261029-gen-f3fbeb0`, planned $6, cap $12);
+    - the other session's H5 box.
+- ~22:50 UTC progress (box 58314388, all through `ops/vast.sh exec`):
+  - Setup (`box_setup.sh`): weights ~40 GB in ~2 min. Fixes on the way: MoGe needs trimesh >= 4.11 (installed
+    no-deps); uv venvs lack setuptools (triton import); the hf CLI drops the first `--include` pattern (json configs
+    fetched by name); env B needed timm (Hunyuan); diso does not build on the mini image (TripoSG uses its skimage
+    extractor through a stub).
+  - TRELLIS.2 1536 cascade: ~30-100 s per image, ~7 M raw faces (simplified to 400 k). Three jobs sharing the GPU
+    gave 8 OOM failures; rerun alone.
+  - Pixal3D-MV frame check (GT-free, `mv_check.py`): the output mapped back with probe_meta lands in our object
+    frame; silhouette IoU against our own masks 0.93 (pot, 2 views) and 0.98 (lid), library_v3 0.78 / 0.93.
+  - View sets (`assemble_views.py` rule, fixed before any scoring): at rest, plus held frames gated by a skin test
+    for non-skin-coloured objects; extra views with mask/silhouette IoU < 0.75 dropped. Result: 1 view for 8 of 10
+    objects, 2 for board 2, 3 for the dust pan. Egocentric at-rest viewpoints barely differ, and held frames have
+    hands on the object, so "multi-view" here is mostly posed single-view Pixal3D.
+  - SAM 3D access approved during the run (HTTP 200 from this session; the box token gets 403). Its 12.4 GB of
+    checkpoints were copied through the private store (`runs/mesh-20261029-gen-f3fbeb0/weights/sam-3d-objects/`).
+    Env C: torch 2.6/cu124, pytorch3d built CPU-only, kaolin stubbed, flash_attn 2.7.4.post1 wheel (the pipeline
+    forces flash_attn on H100; the 2.8.3 wheel has an ABI mismatch).
+- ~22:55 UTC **pre-registration of the one-shot scan scoring** (written before any scan read for these meshes;
+  `gen/gen_manifest.py`): every generated file gets a sha256 line (SHA256SUMS) first; then each scored mesh is scored
+  ONCE with `mesh_metric.py run --workers 1`. Scored set: Pixal3D-MV, all view sets x seeds 42/7 in our object
+  frame, plus the view-0-only runs (board 2, dust pan); single-image models (TRELLIS.2, TripoSG, Hunyuan3D-2.1,
+  SAM 3D): the Sim(3) copy fitted to our observed points (`sim3_fit.py`, GT-free; CD-O is similarity-invariant, so
+  it equals the raw CD-O), crops.py's first-ranked crop x seeds 42/7. The second crop (an adjacent frame of the same
+  view) is generated but not scored. All scores [D], never used to pick anything for submission.
+  TRELLIS.2 crops that OOM at 1536 even alone (blue cup) are rerun at 1024 and labelled so.
+- ~22:52 UTC: the interruptible box was **outbid and stopped** (another bid at $0.95, then $1.16, on the same
+  machine). Bid raised to $1.30/h GPU ($1.398/h all-in) and the instance restarted 22:53; /content survived (envs,
+  weights, finished meshes), running jobs were lost. `gen/box_resume.sh` reruns whatever is missing, one large model
+  on the GPU at a time. Cost so far from the Vast record: 43 min at $0.898/h + 58.3 GB download at $37.3/TB.
+
+### 2026-10-29 ~23:40 UTC: batch 2 generation finished, box destroyed, one-shot scoring started
+- **Box 58314388 destroyed 23:35:15 UTC** (`ops/vast.sh destroy`, confirmed absent in `ops/vast.sh show`).
+  Measured from the Vast instance record: 84.3 min running (43 min at $0.898/h, outbid 22:52, 41 min at
+  $1.398/h) + 71.6 GB download at $37.3/TB ($2.61) + upload/storage = **$4.36** (cap $12). A second container
+  restart at 23:22 (cause unknown) killed a Sim(3) batch; rerun.
+- **Generated (all in the HF store `runs/mesh-20261029-gen-f3fbeb0/results/results_gen.tar`, 2.19 GB, sha256
+  56986e13...; copied to scratchpad `gen/mesh-20261029-gen-f3fbeb0/results/gen/`):**
+  - Pixal3D-MV (posed, our object frame): 10 objects x 2 seeds, all ok, ~22 s each at 1536; view-0-only for
+    board 2 and dust pan (4).
+  - TRELLIS.2 1536: 37 of 40 (crop, seed) ok; 17 OOM records in total (three jobs sharing the GPU; the blue-cup
+    crops need ~85 GB even alone); 3 blue-cup pairs at 1024 (`trellis2_1024`).
+  - TripoSG 40/40 (no diso: skimage extractor), Hunyuan3D-2.1 shape 40/40, SAM 3D 20/20 (first-ranked crops;
+    a first attempt failed 20/20 on the MoGe/utils3d version, fixed by the repo's pins).
+  - Sim(3) fits to our observed points for 120 single-image meshes (all scored ones included).
+- **Frozen:** 312 mesh files hashed (`results/gen-probe/SHA256SUMS`, committed 243b854) before any scan read;
+  scoring manifest 104 meshes (`results/gen-probe/score_manifest.tsv`).
+- **GT-free checks (our masks and points only):**
+  - Pixal3D outputs reproject onto our view masks at IoU 0.91-0.99 (library_v3 0.68-0.93). The multi-view
+    conditioning is real: the view-0-only runs score 0.44-0.67 on the views they did not see, the 2-3-view runs
+    0.88-0.97.
+  - Distance to our observed points (median obs->mesh, mm): Pixal3D better than library_v3 only for the blue cup
+    (1.3 vs 1.7) and similar for the dust pan (2.2 vs 2.0); much worse for pitcher (6-16 vs 2.4), rack (16-18 vs
+    2.4), pot (3.9-6.9 vs 2.2). Single-view depth ambiguity: the shape stretches along the viewing ray.
+- Scoring: `MESH_SCR=<scratchpad> mesh_metric.py run --workers 1 --manifest score_manifest.tsv --out scores.jsonl`,
+  started 23:37:51 UTC (104 scorings, one per mesh).
+- SAM 3D access re-checked at 23:17: HTTP 200 (approved).
+
+### 2026-10-30 ~06:50 UTC: GPU batches closed; page v4 with generator meshes
+- **Eval depth box** (`mesh-20261029-evdepth-92f3d86`, instance 58312542): 20 of 20 eval depth caches pushed
+  (`cache/depth/eval/ep*/depths_fs0.5.npy`). Job exit 0 after 111 min; self-destroyed 23:43:41 UTC. Ledger `actual`
+  $2.95, computed from the box timestamps at $1.508/h plus bandwidth, because the API no longer returns destroyed
+  instances.
+- **Mesh-session GPU spend:** $7.31 of the $25 allocation (gen $4.36 + evdepth $2.95). Vast credit is $68.59 after all
+  sessions' boxes.
+- **Overnight interruptions:**
+  - The account's 5-hour usage limit (reset 02:00 UTC) stopped the generative-probe agent before its report, and
+    stopped stage 1b's integration and audits. The fixers had finished.
+  - At 06:25 both were resumed: the agent by message, the workflow from cache (`wf_d55d762f-ae7`).
+- **Owner asked whether the generator results are on the page.** Page v4
+  (https://claude.ai/artifact/TSEF4dCCSRdErBcfCPR2Ex):
+  - five new comparison groups: beige cup, pitcher, dust pan, sweeper, board 2;
+  - per object, the best generator meshes in purple, at most 3: the overall best plus the best Pixal3D and the best
+    SAM 3D;
+  - a "What the generators made" table: best CD-O per model, labelled best of 2–4 runs chosen by scan score, i.e.
+    optimistic;
+  - a registration-offset caveat.
+
+  The beige-cup scan display uses a display-only ICP alignment `[D]` (scratchpad `page/align/`, kept out of `obs_all`).
+  Page source is in `eval-view/`.
+
+### 2026-10-30 ~06:40 UTC: batch 2 generative probe results [D] (104 one-shot scan scorings, finished overnight)
+Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`, tables in `table.md`. All scan numbers are
+diagnostic; nothing is picked for submission.
+- **Mean CD-O over the 10 objects** (seed mean; library_v3 0.477, median 0.429):
+  - SAM 3D 0.501 (median 0.383; beats library on 6/10);
+  - Pixal3D-MV 0.490 (median 0.399; 5/10);
+  - Hunyuan3D-2.1 0.602 (5/10);
+  - TRELLIS.2 0.594 (3/10);
+  - TripoSG 0.984 (0/10).
+- **Seed variance is large.** The oracle best-of-all-generated per object averages 0.315 and beats library on 8/10.
+  It beats our best hand-built on the pot (0.318 vs 0.342) and the blue cup (0.268 vs 0.291), not on the lid or
+  rack.
+- **Pose side:**
+  - Pixal3D-MV in our frame: median ADD 10.3 mm, flips on boards and sweeper.
+  - Single-image models after the GT-free Sim(3) fit: median ADD 26-29 mm (library ~6 mm).
+- **GT-free selection** (observed-point distances):
+  - Spearman with CD-O 0.46 pooled, median 0.58 per object;
+  - picks the CD-O best on 2/10 objects, mean regret 0.12 cm;
+  - library-vs-generated choice: mean CD-O 0.429 [D], better on 6, worse on 3 (boards, sweeper), and much
+    larger ADD.
+- **Verdicts:**
+  - P1 met only at the edge (SAM 3D <= 0.35 on 5/10);
+  - Pixal3D's pre-stated falsifier (median >= 0.08 below 0.40) is FALSIFIED (0.399).
+- **Next, if pursued:**
+  - a pose-safe registration of generated meshes into our tracked frame;
+  - a stronger GT-free selector (held-out-view silhouettes, free-space violations) before any generated mesh is
+    considered.
+- ~07:00 UTC: the probe agent's full report corrects the first look.
+  - **Per model:** no generator beats library_v3 on mean CD-O over 10 objects. Pixal3D 0.490, SAM 3D 0.501,
+    Hunyuan 0.602, TRELLIS.2 0.594, TripoSG 0.984, against 0.477. The best-of-all oracle is 0.315.
+  - **Scan-free metric:** Spearman 0.46; it picks the CD-O best on 2 of 10 objects.
+  - **Registration:** worse for the generators (Sim(3)-fitted median ADD 26–29 mm; Pixal3D 10.3 mm with 6 of 20 flips).
+  - Page v5 rewords the generator section, stat and plan row: oracle best-of-runs is not a method; nothing goes into a
+    submission.
+- ~07:15 UTC owner: "SAM seems to do a great job but the orientation and the size seem off (overlay with the scan looks
+  weird); also we messed up the mini sweeper again". First read:
+  - single-image meshes were placed by `gen/sim3_fit.py`, a scale-free Sim(3) ICP to one-sided partial observed points,
+    which is ill-posed for scale and roll;
+  - CD-O normalises scale and re-registers, so it is blind to our placement, while ADD shows it (18–34 mm);
+  - mesh extents vs scan, e.g. lid SAM 3D 6.6 × 12.9 × 13.6 cm vs 4.8 × 18.8 × 18.8.
+
+  Launched diagnosis workflow `wf_f944d682-4b3`: SAM 3D placement decomposition (scale, rotation, translation vs shape)
+  with GT-free fix tests (≤ 12 scorings, all listed); sweeper failure analysis; each adversarially verified.
