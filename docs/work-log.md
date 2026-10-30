@@ -4773,3 +4773,15 @@ Advice given:
   per-episode asset blocker (the carved eval-1 pot must not leak into eval 28), then an official 20-draw confirmation
   of eval-1 seed 43 (≈ $1.6). Morning: the owner asks the organisers whether checkpoints are re-run, and decides one
   upload (pack 8 if eval 1 confirms, else pack 7).
+- 06:20 UTC **eval-1 official confirmation pre-registered (before any result).** Job being prepared and verified on
+  CPU (workflow wf_02052244-fe2) before any spend. Design: `ops/jobs/h5_reeval.sh` with KEEP_RESULTS = pack 6 then
+  c33B (unchanged episodes keep their packed rollouts; eval 33 keeps c33B draw 1), PICK_EXTRA = arm B's eval 33 and the
+  carved eval-1 seed-43 checkpoint (policy_250003456, sha 5625b86a…), ev01 collision pieces, only eval 1 evaluated,
+  N = 20. Draw 1 is then the pack-8 candidate (pack 7 + a fresh official eval-1 rollout).
+  - Rule: pack draw 1's eval-1 rollout, chosen by position, iff the 20-draw mean sim_vs_ref ≥ 0.8519, sd (ddof 1)
+    ≤ 0.2387, and at most 1 of 20 draws < 0.70. Call it a leaderboard gain only if the mean ≥ 0.9196 (pack 6's packed
+    eval-1 draw); between 0.852 and 0.9196 it is an insurance trade for the owner.
+  - Falsifier for "the training box stands in for the official evaluator": mean < 0.90 or ≥ 2/20 draws < 0.70. If
+    falsified, the training-box numbers behind tonight's eval-14 verdict, the recipe arms and arm A's eval-33 0.906 are
+    marked "basis unverified".
+  - Expected cost ≈ $1.6 (≈ 1.05 h). Nothing goes to Kaggle; any upload is the owner's.
