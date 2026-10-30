@@ -5440,3 +5440,19 @@ arm and a no-policy replay floor to stage B.
   planned $6.50 each. Credit $63.49 before launch; the other session's videos box 58363797 was running.
 - ~10:00 UTC owner: "I approve for gpu too" — explicit confirmation of the GPU arms already launched (S0 58386066
   loading, S1 58386069 in setup).
+
+### 30 Oct ~10:35 UTC — hand representation chosen: own capsule hand (review `physics-2026-10-30/human-hand-models.md`)
+- Background literature/open-source review (D-Grasp, ArtiGrasp, DeepSimHO use mean-shape MANO split per bone; HUG,
+  HOIC, PhysHOI use capsules; MyoHand measured locally). Recommendation adopted (owner left the choice to us):
+  **(b) our own Apache-2.0 capsule hand on the MediaPipe 21-keypoint tree, 22 finger DoF (Arti-MANO's set), kit
+  floating wrist**; MANO-derived files cannot ship under Apache-2.0, and no physics paper simulates a fitted MANO
+  surface; MyoHand (Apache-2.0) only as a source of numbers (Newton skips its muscles; fixed size; 1-DoF thumb MCP).
+- Proposed parameters [L/I]: capsule radii 6–9.5 mm + 2 pad spheres per tip (FlashCHORD/MJWarp makes one contact per
+  geom pair); index MCP/PIP/DIP effort 2.5/1.5/0.6 N m (Valero-Cuevas 1998; MyoHand capacity 3.65–4.85/2.12–2.74/
+  0.85–0.89 N m); graded PD MCP:PIP:DIP ≈ 2.0:1.2:0.5 N m/rad; hand ≈ 0.4 kg, gravity-compensated.
+- **[H-size]** (review, from earlier measurements): perceived index MCP→tip 6.25–6.45 cm vs palm 5.0–5.2 cm, ratio
+  1.2–1.3 against 1.7–2.1 expected (MyoHand 94.8/45.2 mm) → perception likely shortens fingers 25–40 %. Consequence: the
+  earlier "Sharpa fingers 1.6× ours" compares against an undersized perceived hand; against MyoHand's index (94.8 mm)
+  the Sharpa's 104.5 mm is ≈ 1.1× [I]. Build two variants: P (perceived bone lengths) and A (anthropometric
+  proportions scaled by palm). Falsified if the 10 best frames per public episode still give index < 7.5 cm, or A ≤ P.
+- MANO-vs-capsule head-to-head (§6.9) needs MANO files downloaded locally by the owner (registration); not run.

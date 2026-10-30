@@ -4,7 +4,7 @@
 set -euo pipefail
 W=$1; PY=$2; H=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$W/myo" "$W/third"
-"$PY" -m pip download myo-sim==0.2.3 --no-deps -d "$W/myo"
+python3 -m pip download myo-sim==0.2.3 --no-deps -d "$W/myo"   # any pip; PY itself may lack pip (uv venv)
 (cd "$W/myo" && unzip -q -o myo_sim-0.2.3-py3-none-any.whl)
 A="$W/myo/myo_sim/models/arm"
 "$PY" -I "$H/filter_hand.py" "$A"
