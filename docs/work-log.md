@@ -5590,3 +5590,7 @@ Background agent, CPU only, $0, no ground truth read.
   ep12 0.832 vs GL+ILC 0.524 / 0.578). G3: RL from solved references much faster (30M: 0.965 / 0.761 / 0.523 / 0.191 vs
   0.483 / 0.549 / 0.529 / 0.112) but final AUC harm by the rule (0.584 / 0.892 / 0.622 / 0.244 vs 0.736 / 0.885 / 0.625 /
   0.232; ep2 collapse after 30M, as round-1 seed 42).
+- ~23:15 UTC round 3 (realistic-mass seed round) launched: `20261030-p3ms1-2298cd3` (58463509, UT, $1.482/h) and
+  `20261030-p3ms0-2298cd3` (TX offer 31194553; the first S0 offer had vanished, nothing rented), `ARM=S0|S1
+  PAIRS=ep12/18/24 SEEDS=43 bash ops/jobs/physics_arms.sh`, commit 2298cd3; ledger planned $3.60 each (the p3ms0 planned
+  line was written 4× by ledger retries on the slow store; one actual line closes it). Credit $23.35 before launch.
