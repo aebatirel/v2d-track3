@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~12:15 UTC: generalized mesh generator (gmg) design running; stage 1b closed
+- **Owner asks for a generalized mesh generator.** Design workflow `wf_cb2e792a-f27`: evidence and literature done
+  (`docs/research/mesh-2026-10-26/gmg/evidence.md`, `lit/gmg-2026-10-30.md`). Four designs, judges, spec and
+  pre-registration were cut by the 5-hour usage limit at ~10:20 UTC and resumed at 12:12 UTC.
+- **Owner insight (12:00):** SAM needs to know the pot and lid are separate. Verified: SAM 3D's "lid" was generated
+  from a frame where the lid sits on the pot, so it produced a whole pot with a lid on top (this, not a ray stretch,
+  is the lid's x0.7 / x1.6 error). Added to the design as a general rule for objects in contact.
+- **Stage 1b closed early:** fixers done (generic balls, schema, plate_set by plane, budget-safe shells, gates v3).
+  Integration finished 12 of 21 episodes before the usage limit and a machine restart; all 12 fell back to
+  library_v3 (gates reject every program fit, mostly FRAME align 3.7-4.1 mm). Not resumed: the outcome is clear and
+  the gmg supersedes it. Audits not run.
+
 ## 2026-10-30 ~09:20 UTC: SAM 3D placement and sweeper diagnosed (CPU, $0; no submission change)
 Report: `docs/research/mesh-2026-10-26/diag-2026-10-30/README.md`.
 - **SAM 3D overlay:** shapes mostly fine; our placement step (`gen/sim3_fit.py`, scale-free Sim(3) to one-sided

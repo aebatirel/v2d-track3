@@ -4906,3 +4906,21 @@ diagnostic; nothing is picked for submission.
 - Constraints carried in: no library_v1-v4 at inference (denylist), no scan-derived constants, eval meshes rebuilt per
   eval episode.
 - Stage-1b integration `wf_d55d762f-ae7` keeps running (2 cores, ETA ~13:30 UTC).
+
+## 2026-10-30 ~12:15 UTC: usage limit + machine restart; owner's pot/lid insight; design resumed
+- ~10:20 UTC both workflows hit the 5-hour usage limit (reset 12:00 UTC); the worker machine restarted ~12:05 UTC
+  (scratchpad and repo intact; integration worker processes gone).
+- gmg design `wf_cb2e792a-f27`: evidence agent and literature agent finished before the limit. Copied to
+  `docs/research/mesh-2026-10-26/gmg/evidence.md` (+ `obs_census2.py`, `obs_census.jsonl`, GT-free census of the 33
+  obs files) and `docs/research/mesh-2026-10-26/lit/gmg-2026-10-30.md`. Designs, judges, synthesis and critic failed
+  on the limit.
+- Owner (12:00): "for sam to perform better on the pots we need to know they are 2 separate meshes and feed that
+  accordingly". Checked the inputs: the SAM 3D lid crop (ep2 k321) shows the lid resting on the pot (mask = lid
+  top), and the SAM 3D lid mesh is a whole pot with a lid on top. Corrected the diagnosis README (the lid error was
+  called a ray stretch). The pot crop (ep41 k279) has no lid, so the pot's SAM result is not affected there.
+- Added an OWNER block to the design, judge, synthesis and critic prompts (object-contact handling: frame choice with
+  other objects' masks, joint multi-object generation, exclusion of space observed as another object), keeping the
+  evidence/literature prompts unchanged so they replay from cache. Resumed at 12:12 UTC (task w3trooj9n).
+- Stage-1b `wf_d55d762f-ae7` closed: integration done for lid2, lid0, pot41/43/45/0/2/26, rack13/27, cup21/12 (12 of
+  21), every pick library_v3; remaining 9 episodes and the two audits not run (superseded by the gmg). Per-episode
+  logs: scratchpad auto/stage1b/integ/.

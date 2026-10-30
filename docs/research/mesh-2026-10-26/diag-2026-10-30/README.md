@@ -19,7 +19,11 @@ Labels: [D] measured against the public scan (diagnostic), [M] measured without 
     16 % coverage), not from the objective: refitting with ep24 points gives +4.5/+0.6 % and <= 1.7 deg [D].
   - Flips: boards and sweeper are near-symmetric under a 180-deg turn about their long axis; flip calls are coin
     tosses (scan-registration gap 0.004-0.017 mm). Cup roll is unobservable and costs nothing in the kit.
-  - Lid and sweeper s42 "size" is SHAPE: single-view stretch along the camera ray (lid diameter x0.7, thickness x1.6).
+  - Lid and sweeper s42 "size" is SHAPE. **Correction (12:10 UTC, owner's point):** the lid's error is not a
+    single-view stretch. SAM 3D was given ep2 k321, where the lid rests on the pot, and it generated a whole pot with
+    a lid on top (render `white_pot_lid_s42.png` in the scratchpad diag folder). The pot body under the lid explains
+    diameter x0.7 and thickness x1.6. Generation must know the pot and lid are separate objects (frame choice, joint
+    masks, exclusion of the other object's observed space). The sweeper s42 stretch (edge-on crop) stands.
 - SAM 3D's own layout (rotation/translation) was never saved (`with_layout_postprocess=False`); its saved scale is in
   MoGe-on-crop units (2.1-6.5x metric), unusable as metric scale.
 - Fixes tried (GT-free in the sense that no scan is read at fit time):
