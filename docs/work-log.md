@@ -4932,3 +4932,7 @@ Advice given:
     (proposed an "everything true" CPU replay; waiting on the owner), mesh session (generalized mesh generator design).
   - Option B (oracle twins, P vs mocap-object arms on ep11/13/31) stays the first two rungs; it launches on the reviews'
     GO.
+- ~13:25 UTC owner: CPU tests may run on an almost-free Vast machine if faster. Cheapest compliant offers now: 20–28
+  CPU cores, 16–63 GB RAM at $0.12–0.19/h (e.g. RTX 2060S Quebec 20 cores / 63 GB $0.124/h; RTX 3070 Ti 28 cores /
+  16 GB $0.19/h), vs this VM's 4 cores. To be used for the plan's CPU stages (reference-level audits over all public
+  episodes, CPU replays, scoring); GPU training stays on RTX PRO 6000. Every box still gets a ledger line.
