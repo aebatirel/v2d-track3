@@ -4992,3 +4992,15 @@ diagnostic; nothing is picked for submission.
   the file (four bypasses incl. a raw np.load and a copy), and the strace auditor has blind spots (system-prefix paths,
   O_RDWR opens). The fix agent was cut by the 5-hour limit (~14:58 UTC, reset 17:00); the machine restarted again.
 - 17:08 UTC: owner "continue"; workflow resumed from cache (task wdpnyr19v): the B0 fix runs, then the rest of build 1.
+
+## 2026-10-30 ~22:05 UTC: build 1 resumed again (B0 accepted with two documented residual risks)
+- B0 went three verify rounds (fixes 9bf3086 ... fc5733a; 60 guard tests OK, dummy clean run 0 forbidden opens). Round
+  3 verifier still lists two blocking items, both deliberate-evasion paths, not accidental leaks: (1) a clean process
+  could read deny-listed library meshes through the git object store (`git show HEAD:meshes/library_v3/...`), which
+  the strace audit exempts; (2) a file read and then deleted or overwritten escapes the audit's content checks.
+  Orchestrator decision: accept B0 for building (gmg code never shells out to git for data and never deletes inputs),
+  record both as residual risks, and add the cheap mitigations (allow-list of git metadata subcommands in the hook;
+  pre-run ledger snapshot and unlink/truncate tracing in the audit) before the first clean production run (B13).
+- B1 (walking skeleton) build agent committed WIP (e207a14, 4eac1fa, 3ae5bac, 457ccb8: dev bundle, SHELL/HULL with
+  partner clip, packer, minimal score with V1-V4, PREREG B.14 4/4) and was cut by the 5-hour limit (~17:55 UTC, reset
+  22:00). Owner: "Continue". Resumed 22:03 UTC (task wp49c8ksd).
