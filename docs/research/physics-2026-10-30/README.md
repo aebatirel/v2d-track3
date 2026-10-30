@@ -108,3 +108,7 @@ Readings:
 - Next hypothesis [H-squeeze]: the missing ingredient is the invisible grip force. Test: add a human-plausible squeeze
   (flexion offsets so the PD gives a few newtons per contact) on the holding hand during grasp-lock hold phases;
   falsified if zero-action sim_vs_ref with squeeze does not beat the plain copy by ≥ 0.05 on at least 3 of 4 episodes.
+- [H-squeeze] details fixed before running (30 Oct ~12:15 UTC): hand = variant P (it beat A in the plain copy);
+  holds = each episode's S1 CPU grasp-lock JSON (hand, hold_from..end); primary squeeze **0.3 rad** on finger MCP_FE /
+  PIP / DIP and thumb MCP_FE / IP of the holding hand, ramped over 5 frames; 0.15 rad is run as a secondary readout and
+  not used for the rule. Baseline = the plain P copy above (0.323 / 0.617 / 0.331 / 0.194).

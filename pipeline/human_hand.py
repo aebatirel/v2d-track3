@@ -16,9 +16,13 @@ Size variants:
   human_hand.py urdf {A|P} OUT_DIR [--ref REF.parquet] [--name NAME] [--wrist_kp 400]
       writes OUT_DIR/{left,right}_human.urdf, OUT_DIR/hand.json (template, lengths, radii) and OUT_DIR/NAME.yaml, an
       embodiment config for FlashCHORD's configs/embodiment/ (absolute URDF paths).
-  human_hand.py ref HAND_DIR IN.parquet OUT.parquet
+  human_hand.py ref HAND_DIR IN.parquet OUT.parquet [--squeeze RAD --holds GRASP_LOCK.json]
       per frame: wrist pose from the perceived keypoints (mano_<side>_joints) and the 22 joint angles that best match
       the perceived bone directions (bounded least squares, warm-started); writes them as the robot_<side>_* columns.
+      --squeeze (2026-10-30, [H-squeeze]): the grip force video cannot show. During each hold phase of a
+      pipeline/grasp_lock.py *_grasp_lock.json (hand, start..end), the holding hand's flexion targets (finger MCP_FE,
+      PIP, DIP; thumb MCP_FE, IP) get +RAD (toward the palm), ramped in and out over 5 frames, so the PD presses the
+      fingers into the object instead of resting where the keypoints put them.
 No ground truth is read.
 """
 import argparse, json, os, sys
@@ -321,6 +325,20 @@ def cmd_ref(a):
                 ['pinky_CMC'] + [f'pinky_{j}' for j in ('MCP_FE', 'MCP_AA', 'PIP', 'DIP')]
         assert [f'{s}_{o}' for o in order] == names, names
         pos, wxyz, q, err = fit_side(J, m, T)
+        if a.squeeze:
+            flex = [i for i, o in enumerate(order) if o.endswith(('MCP_FE', 'PIP', 'DIP')) or o == 'thumb_IP']
+            w = np.zeros(len(q))
+            for p in json.load(open(a.holds))['phases']:
+                if p['hand'] != s:
+                    continue
+                a0, b0 = p.get('hold_from') or p['start'], min(p['end'], len(q) - 1)
+                for f in range(max(a0 - 5, 0), min(b0 + 6, len(q))):
+                    w[f] = max(w[f], min(1.0, (f - (a0 - 5)) / 5.0, (b0 + 5 - f) / 5.0))
+            for i in flex:
+                lo, hi = LIM[order[i] if order[i] in LIM else order[i].split('_', 1)[1]]
+                q[:, i] = np.clip(q[:, i] + a.squeeze * w, lo, hi)
+            rep.setdefault('squeeze', {})[s] = dict(rad=a.squeeze, frames=int((w > 0).sum()))
+            print(f'{s}: squeeze +{a.squeeze} rad on {len(flex)} flexion joints over {(w > 0).sum()} frames')
         cols[f'robot_{s}_wrist_position'] = pos; cols[f'robot_{s}_wrist_wxyz'] = wxyz; cols[f'robot_{s}_finger_joints'] = q
         at_lim = float(np.mean([(np.isclose(q[:, i], lo) | np.isclose(q[:, i], hi)).mean() for i, (lo, hi) in
                                 enumerate([LIM[k if k in LIM else k.split('_', 1)[1]] for k in order])]))
@@ -342,6 +360,7 @@ def main():
     u = sp.add_parser('urdf'); u.add_argument('variant', choices=['A', 'P']); u.add_argument('out')
     u.add_argument('--ref'); u.add_argument('--name', default='human_hands'); u.add_argument('--wrist_kp', type=float, default=400.0)
     r = sp.add_parser('ref'); r.add_argument('hand'); r.add_argument('inp'); r.add_argument('out')
+    r.add_argument('--squeeze', type=float, default=0.0); r.add_argument('--holds')
     a = ap.parse_args()
     if a.cmd == 'urdf':
         if a.variant == 'P' and not a.ref:
