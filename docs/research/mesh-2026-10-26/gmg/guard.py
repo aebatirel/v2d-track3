@@ -409,8 +409,10 @@ def check(path, role):
 def open_input(path, role, *, expect_sha256=None, keys=None):
     """Check PATH for ROLE (module docstring, checks 1-7), record it with its sha256 and tier, return its realpath.
     Raises GuardError (refused) or FileNotFoundError (missing)."""
+    rp = None
     try:
         a, rp = _check_patterns(path, role)
+        _ADMITTED.add(rp)                    # the path checks passed: let the hook pass the hashing open (dev mode)
         if not os.path.exists(rp):
             raise FileNotFoundError(rp)
         if not os.path.isfile(rp):
@@ -427,8 +429,11 @@ def open_input(path, role, *, expect_sha256=None, keys=None):
         nf = _named_fixture(rp) if role == 'fixture' else None
         if nf and not sha.startswith(FIXTURE_FILES[nf]):
             raise GuardError(f'gmg guard: refused fixture {rp}: sha256 {sha[:16]} != {FIXTURE_FILES[nf]}')
-    except GuardError as e:
-        _record_refusal(path, role, str(e))
+    except (GuardError, OSError) as e:
+        if rp is not None and rp not in _INPUTS:
+            _ADMITTED.discard(rp)
+        if isinstance(e, GuardError):
+            _record_refusal(path, role, str(e))
         raise
     rec = _INPUTS.get(rp)
     if rec is None or rec['sha256'] != sha or rec['role'] != role:
@@ -669,4 +674,6 @@ def install_hook():
 
 
 sys.modules.setdefault('gmg.guard', sys.modules[__name__])
+if os.environ.get('GMG_RUN'):
+    set_run(os.environ['GMG_RUN'])
 install_hook()

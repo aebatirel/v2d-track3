@@ -1,0 +1,458 @@
+{
+ "schema": "gmg-roster-public/1",
+ "note": "Object names in slot order (the list order of observation.objects) for the 20 public episodes. Written once by gmg/tools/roster_public.py from the leaf column observation.objects.list.element.name only (column projection; pose and visible never read). The gmg reads this file (role roster), never a parquet. Episode keys are the episode_index from the file names.",
+ "source": {
+  "dataset": "nvidia/video_to_data_challenge",
+  "prefix": "track_3/public/data/chunk-000",
+  "column": "observation.objects.list.element.name"
+ },
+ "pyarrow": "26.0.0",
+ "created_utc": "2026-10-30T14:47:41Z",
+ "episodes": {
+  "0": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "2": [
+   "white_pot",
+   "white_pot_lid"
+  ],
+  "11": [
+   "blue_cup",
+   "beige_cup"
+  ],
+  "12": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "13": [
+   "blue_cup",
+   "plastic_dish_rack"
+  ],
+  "18": [
+   "mini_sweeper",
+   "mini_dust_pan"
+  ],
+  "21": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "22": [
+   "blue_cup",
+   "water_pitcher"
+  ],
+  "23": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "24": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "26": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "27": [
+   "plastic_dish_rack",
+   "white_pot"
+  ],
+  "31": [
+   "mini_sweeper",
+   "plastic_dish_rack"
+  ],
+  "39": [
+   "mini_dust_pan"
+  ],
+  "40": [
+   "mini_dust_pan"
+  ],
+  "41": [
+   "white_pot"
+  ],
+  "42": [
+   "white_pot"
+  ],
+  "43": [
+   "white_pot"
+  ],
+  "44": [
+   "white_pot"
+  ],
+  "45": [
+   "white_pot"
+  ]
+ },
+ "files": {
+  "0": {
+   "name": "episode_000000.parquet",
+   "sha256": "cec5ecb4f696e3ecde143afaa4d655f71e8311d4c3dfceb7b264d515a8ef94bb",
+   "bytes": 41099,
+   "rows": 373,
+   "row_groups": 1,
+   "name_column_bytes": 122,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot",
+     "white_pot_lid"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "2": {
+   "name": "episode_000002.parquet",
+   "sha256": "a1cd007e34edbdaa51138c168312ad4f0bb6e60ed65b52e72d253d6f949ae00b",
+   "bytes": 38502,
+   "rows": 343,
+   "row_groups": 1,
+   "name_column_bytes": 122,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot",
+     "white_pot_lid"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "11": {
+   "name": "episode_000011.parquet",
+   "sha256": "3117f30e5b34c5f7767e05493330fed17568a1c676b6a3c05c6ddccb3a5a741f",
+   "bytes": 17772,
+   "rows": 137,
+   "row_groups": 1,
+   "name_column_bytes": 111,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "blue_cup",
+     "beige_cup"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "12": {
+   "name": "episode_000012.parquet",
+   "sha256": "fcb6afc6b8d4b23cecc7877c9f800a6b966cb52a86a8b9841c64cc3de0d4988d",
+   "bytes": 21644,
+   "rows": 181,
+   "row_groups": 1,
+   "name_column_bytes": 127,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "blue_cup",
+     "plastic_dish_rack"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "13": {
+   "name": "episode_000013.parquet",
+   "sha256": "0aa539031d8b87545779d848084d19074afa3741e6c685ce8ecd9e4ae4e6937b",
+   "bytes": 23100,
+   "rows": 190,
+   "row_groups": 1,
+   "name_column_bytes": 127,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "blue_cup",
+     "plastic_dish_rack"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "18": {
+   "name": "episode_000018.parquet",
+   "sha256": "f52f60b1fe0d7c16b4a216bfa1456cea30f915ec1ff628b38c9cc2be1c8d45ed",
+   "bytes": 39835,
+   "rows": 353,
+   "row_groups": 1,
+   "name_column_bytes": 131,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "mini_sweeper",
+     "mini_dust_pan"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "21": {
+   "name": "episode_000021.parquet",
+   "sha256": "c479de8ba38b3a1b3ab42504bcc530c5d70675f0b0b7864413a0ebac7ac9ce6d",
+   "bytes": 22824,
+   "rows": 186,
+   "row_groups": 1,
+   "name_column_bytes": 119,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "blue_cup",
+     "water_pitcher"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "22": {
+   "name": "episode_000022.parquet",
+   "sha256": "c3081fab85ddf7f99ceaa0457a0acd1ad9a24bca83fdda312b70ae5e85d8e34c",
+   "bytes": 23052,
+   "rows": 189,
+   "row_groups": 1,
+   "name_column_bytes": 119,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "blue_cup",
+     "water_pitcher"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "23": {
+   "name": "episode_000023.parquet",
+   "sha256": "242f8fd98799486d452c366fdef393c4b45f8de8ee43c5f0f15147a0aeaa38e2",
+   "bytes": 37070,
+   "rows": 325,
+   "row_groups": 1,
+   "name_column_bytes": 129,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "24": {
+   "name": "episode_000024.parquet",
+   "sha256": "416c771fe758cf2ec87a5212ecea8ab18bacb25a791c327bd17bb5d88063b0d1",
+   "bytes": 31625,
+   "rows": 275,
+   "row_groups": 1,
+   "name_column_bytes": 127,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "26": {
+   "name": "episode_000026.parquet",
+   "sha256": "06dff16367326db7e62b66d0744a32499c607b23da842117e05009241ad75eab",
+   "bytes": 19929,
+   "rows": 158,
+   "row_groups": 1,
+   "name_column_bytes": 129,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "plastic_dish_rack",
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "27": {
+   "name": "episode_000027.parquet",
+   "sha256": "c48f07c96c15c517b14b464e3f6408a8689e5f95f76413dbe3c71e4d49b0b844",
+   "bytes": 28157,
+   "rows": 246,
+   "row_groups": 1,
+   "name_column_bytes": 130,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "plastic_dish_rack",
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "31": {
+   "name": "episode_000031.parquet",
+   "sha256": "3afbb1b3e1c64c18c422770747dac97d78238a5ba1d311458074658134ba38de",
+   "bytes": 33105,
+   "rows": 290,
+   "row_groups": 1,
+   "name_column_bytes": 142,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "mini_sweeper",
+     "plastic_dish_rack"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "39": {
+   "name": "episode_000039.parquet",
+   "sha256": "2d72abe60690507fcaca5de7f095f3d5a3deae72b50bd1e7da9e99fac62d47db",
+   "bytes": 23541,
+   "rows": 319,
+   "row_groups": 1,
+   "name_column_bytes": 107,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "mini_dust_pan"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "40": {
+   "name": "episode_000040.parquet",
+   "sha256": "119414da28e073016b572bb657f6538f90ecf7b601e785c3787b79e406afb12a",
+   "bytes": 19841,
+   "rows": 260,
+   "row_groups": 1,
+   "name_column_bytes": 107,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "mini_dust_pan"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "41": {
+   "name": "episode_000041.parquet",
+   "sha256": "3b9256847d8f928589399f73b1635ef065c09fe288508880cc83bf8582dedc83",
+   "bytes": 22312,
+   "rows": 299,
+   "row_groups": 1,
+   "name_column_bytes": 95,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "42": {
+   "name": "episode_000042.parquet",
+   "sha256": "91a09988da1f1c2b54ac708f8fd604cc43385c015a5da982e0d85a25b272bd85",
+   "bytes": 19647,
+   "rows": 257,
+   "row_groups": 1,
+   "name_column_bytes": 95,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "43": {
+   "name": "episode_000043.parquet",
+   "sha256": "addff2f68ed16c667ceb684bedf4f4864ca91e6bf7111d6dbd7bcc0d39d2e2bc",
+   "bytes": 23939,
+   "rows": 326,
+   "row_groups": 1,
+   "name_column_bytes": 95,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "44": {
+   "name": "episode_000044.parquet",
+   "sha256": "2c3a00e605faf4fa1bd98cf7ed97d69dd811f0a1449fa1e7743cca5b4cc438d6",
+   "bytes": 19050,
+   "rows": 249,
+   "row_groups": 1,
+   "name_column_bytes": 95,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  },
+  "45": {
+   "name": "episode_000045.parquet",
+   "sha256": "7bb2e222dfcc5d024b220611533485db59c7c4f0b3a387d04735ead256b55325",
+   "bytes": 21567,
+   "rows": 290,
+   "row_groups": 1,
+   "name_column_bytes": 95,
+   "constant_membership": true,
+   "distinct_slot_lists": [
+    [
+     "white_pot"
+    ]
+   ],
+   "leaves_in_file": 9,
+   "leaves_read": 1
+  }
+ },
+ "code_commit": "9509b340a06f08478ffd8d07f62a09a8cc71b746",
+ "audit": {
+  "tool": "gmg/tools/strace_audit.py --policy roster",
+  "events": 345,
+  "opens_ok": 328,
+  "forbidden_opens": 0,
+  "forbidden": [],
+  "unlisted": [],
+  "writes_outside_run": 0,
+  "data_reads": [
+   "episode_000000.parquet",
+   "episode_000002.parquet",
+   "episode_000011.parquet",
+   "episode_000012.parquet",
+   "episode_000013.parquet",
+   "episode_000018.parquet",
+   "episode_000021.parquet",
+   "episode_000022.parquet",
+   "episode_000023.parquet",
+   "episode_000024.parquet",
+   "episode_000026.parquet",
+   "episode_000027.parquet",
+   "episode_000031.parquet",
+   "episode_000039.parquet",
+   "episode_000040.parquet",
+   "episode_000041.parquet",
+   "episode_000042.parquet",
+   "episode_000043.parquet",
+   "episode_000044.parquet",
+   "episode_000045.parquet"
+  ],
+  "parquets_read": 20,
+  "other_data_reads": 0,
+  "returncode": 0,
+  "log_sha256": "e40b93670dc99757aba77c7ddcc7be0c51e77853e835c4f66bd0fd70f7ad59a3",
+  "command": "python -I roster_public.py build --src roster_src --out roster_public.json"
+ }
+}
