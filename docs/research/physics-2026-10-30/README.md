@@ -37,8 +37,20 @@ Output: `props_public_scans.json`. Asset build: `pipeline/make_assets.py LIB OUT
   CPU physics is deterministic, so one replay per arm. This is a no-policy test: it says whether the hand reference
   holds and moves lighter / heavier objects better, not what RL makes of it.
 
-## Step 3: GPU retrain (owner approved 30 Oct; plan and cost stated before launch)
-Recorded in `STATUS.md` / the work log with run ids, commit and the pre-registered rule when launched.
+## Step 3: GPU retrain (owner approved 30 Oct; pre-registered 09:50 UTC, before any result)
+- Job `ops/jobs/physics_arms.sh` (commit 6a814df): the frozen grasp-lock recipe of the 29 Oct recipe arms (GL_ARGS,
+  EVOLVE=1, kp 400 wrist, FDR + VOC fix, 70M steps, seed 42, CURVE_REP 3, NREP 5) with REUSE_REF off (grasp lock, ILC
+  and the evolutionary refinement are rebuilt under each arm's physics) and SF=0 (scans), on ep2, ep12, ep18, ep24.
+- Boxes: S0 `20261030-physS0-6a814df` (instance 58386066, RTX PRO 6000 S, UK, $1.348/h); S1
+  `20261030-physS1-6a814df` (58386069, RTX PRO 6000 WS, KR, $1.177/h). Ledger: $6.50 planned each [E].
+- Reading, fixed now (registered AUC vs mocap of the chosen checkpoint, mean of 5 official evaluations; the checkpoint is
+  chosen by sim_vs_ref only): Δ = S1 − S0 per episode.
+  - **signal:** mean Δ ≥ +0.03 and no episode Δ ≤ −0.05;
+  - **harm:** mean Δ ≤ −0.03 or any episode Δ ≤ −0.10;
+  - otherwise **inconclusive**.
+  One seed per arm and a rollout sd up to ~0.12 (ep24) make this weak: a signal buys a second seed, not adoption.
+- Understanding readouts (no decision attached): zero-action sim_vs_ref and rest check per arm (with EVOLVE), the
+  per-checkpoint curves, which objects slip or drop, and where.
 
 ## Results
 (below, appended as they come; nothing above is edited after a result)

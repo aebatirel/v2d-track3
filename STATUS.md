@@ -1,5 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~09:50 UTC: object physics study running (public scans; S0 placeholder vs S1 plausible)
+- Plan and pre-registered readings: `docs/research/physics-2026-10-30/README.md`. Tools: `pipeline/object_physics.py`,
+  `make_assets.py --physics`, `tools/set_assets.py`, `ops/jobs/physics_arms.sh` (commit 6a814df).
+- Masses on NVIDIA's scans [E] (`props_public_scans.json`): cups 128/137 g, pot 277 g, lid 88 g, pitcher 503 g, rack
+  387 g, dust pan 44 g, sweeper 45 g (prior), boards 139/141 g; placeholder 300 g. Centre of mass: the scans' own
+  origin is their surface centroid, so on the scans it barely moves (≤ 4 mm). Our generated meshes' COMs sit 2–25 mm
+  from the scans' (pitcher 24.5, beige cup 16.1, rack 13.4 mm) [M] — the COM question is about our meshes (next step).
+- Running: CPU zero-action test here (ep2/12/18/24 × S0/S1); GPU boxes S0 58386066 and S1 58386069 (≈ $6.50 each
+  planned, ledger lines added). Credit before launch $63.49. Nothing goes to Kaggle.
+- Hand representation for the later human-hand physics study: literature review running (background).
+
 ## 2026-10-30 ~09:45 UTC: owner decision — object physics may be set "where allowed"; MANO hand back on the table
 - **Owner:** keep the simulator's own world (solver, contact model) but set the objects' physical properties (mass,
   friction, ...) as far as allowed so the simulation follows the video. This replaces our own "do not change the world"

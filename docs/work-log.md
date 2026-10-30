@@ -5421,3 +5421,20 @@ arm and a no-policy replay floor to stage B.
 - Facts given: object mass/COM/inertia live in our URDFs (make_assets.py, 0.3 kg placeholder, thin-shell inertia);
   friction is one global `scene.contact_friction` 1.0 for every shape; per-object friction needs code changes;
   `object_free_joint_damping` would act as an unphysical brake. Mass cannot be measured from video alone.
+
+### 30 Oct ~09:50 UTC — object physics study launched (owner: COM first, public meshes first, 3–4 public episodes)
+- Owner: "find the centre of gravity"; proposal accepted; "first try it with the public given meshes, later the
+  generated meshes"; hand choice (MANO vs own design) left to us; 3–4 public GPU episodes approved.
+- Container setup (this cloud session, 4 CPU): FlashCHORD at the evaluator pin 8c778f90 in `scratchpad/fcvenv`
+  (uv sync). Its LFS assets were refused by the git proxy (repo not in the session's set); fetched instead from
+  media.githubusercontent.com at the same commit, every file's sha256 checked against its LFS pointer (559 files).
+- Measured [M]: NVIDIA's public URDF says "Track 3 supplies no measured physical properties. 0.3 kg is a placeholder
+  mass; COM/inertia are a uniform triangle-surface estimate over the collision mesh"; the scans' origin is that
+  centroid. Materials from public video frames: pot, lid, cups, pitcher, rack, dust pan = rigid plastic; boards = wood.
+  Our library_v3 meshes: shell COM 2–25 mm from the scans' (pitcher 24.5, beige cup 16.1, rack 13.4 mm); solid-vs-shell
+  COM on our meshes up to 19 mm (spoon, blue cup) because our meshes are thicker / partly filled (boards 2.7–3.1 cm
+  thick vs 8.5 mm real).
+- Pre-registered (README, before results): CPU zero-action S1 − S0 rule; GPU registered-AUC S1 − S0 rule.
+- GPU: `20261030-physS0-6a814df` (58386066, UK, $1.348/h) and `20261030-physS1-6a814df` (58386069, KR, $1.177/h),
+  `ARM=S0|S1 bash ops/jobs/physics_arms.sh`, commit 6a814df, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger
+  planned $6.50 each. Credit $63.49 before launch; the other session's videos box 58363797 was running.
