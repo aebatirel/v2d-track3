@@ -1,0 +1,102 @@
+D-Grasp URDF: joints by type Counter({'revolute': 48, 'fixed': 12, 'prismatic': 3})
+   WRJ0x prismatic 1 0 0 -0.5 0.5 effort 100.0
+   WRJ0y prismatic 0 1 0 -0.5 0.5 effort 100.0
+   WRJ0z prismatic 0 0 1 -0.5 0.5 effort 100.0
+   WRJ0rx revolute 1 0 0 -3.14 3.14 effort 1000
+   WRJ0ry revolute 0 1 0 -3.14 3.14 effort 1000
+   WRJ0rz revolute 0 0 1 -3.14 3.14 effort 1000
+   FFJ2 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   FFJ2_y revolute 0 1 0 -0.8 0.8 effort 1000
+   FFJ2_z revolute 0 0 1 -0.0 1.57 effort 1000
+   FFJ1 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   FFJ1_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   FFJ1_z revolute 0 0 1 -0.5000 1.57 effort 1000
+   FFJ0 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   FFJ0_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   FFJ0_z revolute 0 0 1 -0.000 1.57 effort 1000
+   MFJ2 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   MFJ2_y revolute 0 1 0 -0.8 0.8 effort 1000
+   MFJ2_z revolute 0 0 1 -0.0 1.57 effort 1000
+   MFJ1 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   MFJ1_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   MFJ1_z revolute 0 0 1 -0.000 1.57 effort 1000
+   MFJ0 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   MFJ0_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   MFJ0_z revolute 0 0 1 -0.000 1.57 effort 1000
+   RFJ2 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   RFJ2_y revolute 0 1 0 -0.8 0.8 effort 1000
+   RFJ2_z revolute 0 0 1 -0.0 1.57 effort 1000
+   RFJ1 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   RFJ1_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   RFJ1_z revolute 0 0 1 -0.000 1.57 effort 1000
+   RFJ0 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   RFJ0_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   RFJ0_z revolute 0 0 1 -0.000 1.57 effort 1000
+   LFJ2 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   LFJ2_y revolute 0 1 0 -0.8 0.8 effort 1000
+   LFJ2_z revolute 0 0 1 -0.0 1.57 effort 1000
+   LFJ1 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   LFJ1_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   LFJ1_z revolute 0 0 1 -0.000 1.57 effort 1000
+   LFJ0 revolute 1 0 0 -0.25000 0.25000 effort 1000
+   LFJ0_y revolute 0 1 0 -0.25000 0.25000 effort 1000
+   LFJ0_z revolute 0 0 1 -0.000 1.57 effort 1000
+   THJ2 revolute 1 0 0 0 1.57 effort 1000
+   THJ2_y revolute 0 1 0 -0.8 0.8 effort 1000
+   THJ2_z revolute 0 0 1 -0.25 0.25 effort 1000
+   THJ1 revolute 1 0 0 -1 1 effort 1000
+   THJ1_y revolute 0 1 0 -0.5 0.5 effort 1000
+   THJ1_z revolute 0 0 1 -0.5 0.5 effort 1000
+   THJ0 revolute 1 0 0 -0.000 1.57 effort 1000
+   THJ0_y revolute 0 1 0 -1.0000 1.0000 effort 1000
+   THJ0_z revolute 0 0 1 -1.0000 1.0000 effort 1000
+  total mass kg 0.1352
+  collision meshes ['meshes/ffdist_mean.obj', 'meshes/ffmiddle_mean.obj', 'meshes/ffprox_mean.obj', 'meshes/lfdist_mean.obj', 'meshes/lfmiddle_mean.obj', 'meshes/lfprox_mean.obj', 'meshes/mfdist_mean.obj', 'meshes/mfmiddle_mean.obj', 'meshes/mfprox_mean.obj', 'meshes/palm_mean.obj', 'meshes/rfdist_mean.obj', 'meshes/rfmiddle_mean.obj', 'meshes/rfprox_mean.obj', 'meshes/thdist_mean.obj', 'meshes/thmiddle_mean.obj', 'meshes/thprox_mean.obj']
+HOIC MJCF: option {'timestep': '0.002', 'iterations': '20', 'apirate': '200'}
+  default geom {'friction': '1 0.005 0.001', 'condim': '3', 'margin': '0.0005', 'contype': '1', 'conaffinity': '1'}
+  default joint {'limited': 'true', 'damping': '0.1', 'armature': '0.001', 'margin': '0.01', 'frictionloss': '0.001'}
+   robot0:slide0 slide 1 0 0 -2.0 2.0
+   robot0:slide1 slide 0 1 0 -2.0 2.0
+   robot0:slide2 slide 0 0 1 0.2 2.0
+   robot0:WRJ0 hinge 1 0 0 -3.14 3.14
+   robot0:WRJ1 hinge 0 1 0 -1.57 1.57
+   robot0:WRJ2 hinge 0 0 1 -3.14 3.14
+   robot0:FFJ3x hinge 1 0 0 -1.3 1.6
+   robot0:FFJ3z hinge 0 0 1 -0.35 0.3
+   robot0:FFJ2x hinge 1 0 0 -0.1 2.0
+   robot0:FFJ1x hinge 1 0 0 -0.1 2.0
+   robot0:MFJ3x hinge 1 0 0 -1.3 1.6
+   robot0:MFJ3z hinge 0 0 1 -0.4 0.3
+   robot0:MFJ2x hinge 1 0 0 -0.1 2.0
+   robot0:MFJ1x hinge 1 0 0 -0.1 2.0
+   robot0:LFJ3x hinge 1 0 0 -1.3 1.6
+   robot0:LFJ3z hinge 0 0 1 -0.65 0.2
+   robot0:LFJ2x hinge 1 0 0 -0.1 2.0
+   robot0:LFJ1x hinge 1 0 0 -0.1 2.0
+   robot0:RFJ3x hinge 1 0 0 -1.3 1.6
+   robot0:RFJ3z hinge 0 0 1 -0.3 0.1
+   robot0:RFJ2x hinge 1 0 0 -0.1 2.0
+   robot0:RFJ1x hinge 1 0 0 -0.1 2.0
+   robot0:THJ3x hinge 1 0 0 -0.5 1.0
+   robot0:THJ3z hinge 0 0 1 -1.0 0.1
+   robot0:THJ2x hinge 1 0 0 -0.9 0.2
+   robot0:THJ1x hinge 1 0 0 -0.9 0.1
+   robot0:C_palm0 box size 0.02 0.02 0.0135
+   robot0:C_palm1 box size 0.02 0.02 0.0135
+   robot0:C_palm2 box size 0.02 0.02 0.0135
+   robot0:C_palm3 box size 0.02 0.02 0.0135
+   robot0:C_FF3 capsule size 0.01 0.0228296
+   robot0:C_FF2 capsule size 0.009 0.0136348
+   robot0:C_FF1 capsule size 0.0085 0.0093181
+   robot0:C_MF3 capsule size 0.01 0.02810025
+   robot0:C_MF2 capsule size 0.009 0.0160573
+   robot0:C_MF1 capsule size 0.0085 0.00917255
+   robot0:C_LF3 capsule size 0.008 0.01892845
+   robot0:C_LF2 capsule size 0.007 0.0111746
+   robot0:C_LF1 capsule size 0.006 0.007704
+   robot0:C_RF3 capsule size 0.01 0.02588765
+   robot0:C_RF2 capsule size 0.009 0.01479295
+   robot0:C_RF1 capsule size 0.0085 0.0084531
+   robot0:C_TH3 capsule size 0.013 0.02441495
+   robot0:C_TH2 capsule size 0.011 0.01749035
+   robot0:C_TH1 capsule size 0.009 0.01241705
