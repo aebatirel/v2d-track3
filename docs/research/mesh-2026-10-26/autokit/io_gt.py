@@ -25,6 +25,15 @@ Guard (stage 1b, 2026-10-29, after the stage-1 integrity audit): every input is 
   2. allow-list: the resolved path must sit under the roots of its kind (ROOTS: obs, corr, poses, calib, mesh).
 Every input that passes is logged with its sha256 (INPUTS; inputs_log()), so a renamed copy is traceable against a
 manifest of the extracted observation files.
+
+gmg build step B0 (2026-10-30, SPEC v1 rev 1 sections 2 and 24): ROOTS['mesh'] no longer lists meshes/library_v3,
+scratchpad/auto, results/prim/meshes, scratchpad/prim or scratchpad/lathe (library_v3 is deny-listed and the others
+hold library-seeded or scan-informed meshes); its only root is the gmg run folder. Every check now also calls the
+deny-list (ops/provenance/denylist.json through pipeline/provenance.py: path globs on the given and the resolved path,
+and the sha256 of the file, so a renamed copy of a scan, a library_v1-v4 mesh or a scan-templated track is refused).
+While the gmg guard is loaded in the process (sys.modules['gmg.guard']), every io_gt input must also pass it
+(gmg.guard.check_io_gt): an io_gt root that is not on the gmg allow-list of the current GMG_MODE is refused (in clean
+mode that includes obs_all/, obs/ and auto/stage1/refined/).
 """
 import hashlib, json, os, subprocess, sys
 
@@ -39,32 +48,101 @@ STORE = 'https://huggingface.co/datasets/aebatirel/v2d-store/resolve/main'
 SWEEP_RUN = 'runs/20261025-sweep-a894083/results/sweep/base'
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..'))
 PIPELINE = f'{REPO}/pipeline'
+GMG_RUNS = os.path.join(os.path.realpath(os.environ.get('GMG_DATA_ROOT', SCRATCH)), 'gmg', 'runs')   # gmg run folders
 
 ALLOWED_KEYS = ('pts', 'cam', 'frame', 'hits', 'free', 'lo', 'vox', 'args')
 FORBIDDEN = ('/loc/', '/scan', '_align', '.parquet', 'mocap')   # substrings of a path that hold or derive from GT
 # allow-listed roots per input kind (a directory root admits everything below it; a file root admits that file only)
+# B0 (2026-10-30): the five mesh roots (scratchpad/auto, meshes/library_v3, results/prim/meshes, scratchpad/prim,
+# scratchpad/lathe) are dropped; meshes come only from gmg run folders. obs gains the gmg run folders (bundles).
 ROOTS = dict(
-    obs=(f'{SCRATCH}/obs_all', f'{SCRATCH}/obs', REFINED_DIR),
+    obs=(f'{SCRATCH}/obs_all', f'{SCRATCH}/obs', REFINED_DIR, GMG_RUNS),
     corr=(REFINED_DIR,),
     poses=(SWEEP_DIR,),
     calib=(CALIB,),
-    mesh=(f'{SCRATCH}/auto', f'{REPO}/meshes/library_v3', f'{REPO}/docs/research/mesh-2026-10-26/results/prim/meshes',
-          f'{SCRATCH}/prim', f'{SCRATCH}/lathe'),
+    mesh=(GMG_RUNS,),
 )
+DROPPED_MESH_ROOTS = (f'{SCRATCH}/auto', f'{REPO}/meshes/library_v3',
+                      f'{REPO}/docs/research/mesh-2026-10-26/results/prim/meshes', f'{SCRATCH}/prim', f'{SCRATCH}/lathe')
 INPUTS = {}                    # real path -> dict(kind, sha256, bytes, mtime) of every input that passed the guard
+_PROV = {}
+_SHA = {}                      # (real path, size, mtime_ns, inode) -> sha256
 
 
-def check_path(path):
-    """Deny-list: raise ValueError if the path (as given or resolved through links) can hold ground truth, or if it is
-    a regular file with more than one hard link. Returns the resolved path."""
+def _provenance():
+    """pipeline/provenance.py, loaded from its file (no sys.path change), and the deny-lists it and the repo hold."""
+    if 'mod' not in _PROV:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('io_gt_v2d_provenance', f'{PIPELINE}/provenance.py')
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        lists = [mod.denylist()]
+        repo_dl = f'{REPO}/ops/provenance/denylist.json'
+        if os.path.abspath(mod.DENYLIST) != os.path.abspath(repo_dl):      # V2D_DENYLIST can add, never remove
+            d = json.load(open(repo_dl))
+            lists.append(dict(globs=list(d.get('globs', [])), sha256=dict(d.get('sha256', {}))))
+        _PROV.update(mod=mod, lists=lists)
+    return _PROV['mod'], _PROV['lists']
+
+
+def _file_sha(rp):
+    st = os.stat(rp)
+    key = (rp, st.st_size, st.st_mtime_ns, st.st_ino)
+    if key not in _SHA:
+        h = hashlib.sha256()
+        with open(rp, 'rb') as f:
+            for b in iter(lambda: f.read(1 << 22), b''):
+                h.update(b)
+        _SHA[key] = h.hexdigest()
+    return _SHA[key]
+
+
+def deny_glob(path):
+    """The deny-list glob (pipeline/provenance.py semantics) a path matches, as given or resolved, or None."""
+    mod, lists = _provenance()
+    import fnmatch
+    for p in dict.fromkeys((os.path.abspath(str(path)), os.path.realpath(str(path)))):
+        g = mod._glob_hit(p)
+        if g:
+            return g
+        rel = os.path.relpath(p, REPO) if p.startswith(REPO + os.sep) else None
+        for d in lists[1:]:
+            for g in d['globs']:
+                if fnmatch.fnmatch(p, g) or (rel is not None and fnmatch.fnmatch(rel, g)):
+                    return g
+    return None
+
+
+def deny_sha(rp):
+    """The deny-list entry whose sha256 the file RP has (a renamed copy of a denied file), or None."""
+    if not os.path.isfile(rp):
+        return None
+    s = _file_sha(rp)
+    for d in _provenance()[1]:
+        if s in d['sha256']:
+            return d['sha256'][s]
+    return None
+
+
+def check_path(path, sha=True):
+    """Deny-list: raise ValueError if the path (as given or resolved through links) can hold ground truth (FORBIDDEN
+    substrings, deny-list globs), if it is a regular file with more than one hard link, or (sha=True) if its sha256 is
+    on the deny-list. Returns the resolved path. Path checks come first, so a refused path is never opened."""
     for p in (str(path), os.path.realpath(str(path))):
         low = p.lower()
         for bad in FORBIDDEN:
             if bad in low:
                 raise ValueError(f'integrity: refused path {p!r} (contains {bad!r})')
+    g = deny_glob(path)
+    if g:
+        raise ValueError(f'integrity: refused path {str(path)!r} (deny-list glob {g!r})')
     rp = os.path.realpath(str(path))
     if os.path.isfile(rp) and os.stat(rp).st_nlink > 1:
         raise ValueError(f'integrity: refused path {rp!r} (regular file with {os.stat(rp).st_nlink} hard links)')
+    if sha:
+        d = deny_sha(rp)
+        if d:
+            raise ValueError(f'integrity: refused path {rp!r} (sha256 on the deny-list: {d})')
     return rp
 
 
@@ -74,12 +152,19 @@ def _under(rp, root):
 
 
 def check_input(path, kind):
-    """Deny-list (check_path) + allow-list: the resolved path must lie under ROOTS[kind]. Returns the resolved path."""
-    rp = check_path(path)
+    """Deny-list (check_path) + allow-list: the resolved path must lie under ROOTS[kind]; while the gmg guard is
+    loaded it must also pass gmg.guard.check_io_gt; last, the sha256 deny check. Returns the resolved path."""
+    rp = check_path(path, sha=False)
     if kind not in ROOTS:
         raise ValueError(f'integrity: unknown input kind {kind!r}')
     if not any(_under(rp, r) for r in ROOTS[kind]):
         raise ValueError(f'integrity: refused {kind} path {rp!r}: not under the allow-listed roots {ROOTS[kind]}')
+    g = sys.modules.get('gmg.guard')
+    if g is not None and hasattr(g, 'check_io_gt'):
+        g.check_io_gt(rp, kind, exists=os.path.isfile(rp))
+    d = deny_sha(rp)
+    if d:
+        raise ValueError(f'integrity: refused {kind} path {rp!r} (sha256 on the deny-list: {d})')
     return rp
 
 
@@ -88,11 +173,7 @@ def _sha256(rp):
     old = INPUTS.get(rp)
     if old and old['bytes'] == st.st_size and old['mtime'] == st.st_mtime:
         return old['sha256']
-    h = hashlib.sha256()
-    with open(rp, 'rb') as f:
-        for b in iter(lambda: f.read(1 << 22), b''):
-            h.update(b)
-    return h.hexdigest()
+    return _file_sha(rp)                                     # shared with the deny-list sha256 check (cached)
 
 
 def log_input(rp, kind):
@@ -121,8 +202,8 @@ def mesh_input(path):
 
 
 def load_mesh(path, **kw):
-    """Mesh through the guard: deny-list + allow-listed mesh roots (ROOTS['mesh']: auto/**, meshes/library_v3,
-    results/prim/meshes, prim/**, lathe/**), sha256 logged, then trimesh.load(force='mesh', **kw)."""
+    """Mesh through the guard: deny-list + allow-listed mesh roots (ROOTS['mesh']: the gmg run folders only, since
+    B0), sha256 logged, then trimesh.load(force='mesh', **kw)."""
     import trimesh
     rp = mesh_input(path)
     return trimesh.load(rp, force='mesh', **kw)
