@@ -4688,3 +4688,10 @@ Advice given:
   - Pack blocker for later: pack_eval builds one shared /content/assets for evals 1/10/19/25/28/30 and merges pieces by
     object name, so a carved eval-1 pot would leak into eval 28. Per-episode asset folders are needed before any pack
     that uses ev01.
+- ~02:50 UTC: launched the carve retrain batch at commit 328139c, on demand, NREP 10; ledger planned $18:
+  - eval 1, seeds 42 / 43 (carve_rerun.sh, ev01 pieces, stored reference md5-checked): boxes 58340108 / 58340118;
+  - eval 14, seeds 42 / 43 (glock REUSE_REF; the stored sf asset copy is carved in place, the original moved aside;
+    collision counts checked): boxes 58340125 / 58340131.
+  - The first launch command was blocked by the client's safety check over an `rm -rf $A` in the eval-14 job string.
+    It was rewritten with `mv` (no deletion). Nothing had run.
+  - Session spend: $10.53 actual + arm A (~$6, still running) + $18 planned ≈ $34.5 of $45.
