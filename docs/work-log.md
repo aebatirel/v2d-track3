@@ -5410,3 +5410,14 @@ arm and a no-policy replay floor to stage B.
   it does not beat the grasp-lock zero-action replay against our reference; (2) human-proportioned hand, zero-action
   CPU replay on ep24/ep18, falsified if reset overlaps and early drift do not drop and sim_vs_ref does not beat
   Sharpa. Awaiting the owner's choice; nothing launched.
+
+### 30 Oct ~09:45 UTC — owner: use MANO; set object weight/friction "as much as allowed" to match the video
+- Read today (scratchpad copies, not committed): NVIDIA FAQ PDF (raw GitHub, main), kit `tracks/track_3/README.md`,
+  MANO licence page. No physics or object-property rule in the FAQ or kit README. MANO licence: "non-commercial
+  scientific research", "may not be reproduced, modified and/or made available in any form to any third party",
+  no distribution; commercial use (incl. "production of other artifacts for commercial purposes") prohibited.
+- Owner decision: object physical properties may be set; the simulator's world (solver, contact model) stays. Recorded
+  in STATUS.md with the proposed honesty constraints (per object not per episode, plausible values, no GT, declared).
+- Facts given: object mass/COM/inertia live in our URDFs (make_assets.py, 0.3 kg placeholder, thin-shell inertia);
+  friction is one global `scene.contact_friction` 1.0 for every shape; per-object friction needs code changes;
+  `object_free_joint_damping` would act as an unphysical brake. Mass cannot be measured from video alone.

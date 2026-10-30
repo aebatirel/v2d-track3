@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~09:45 UTC: owner decision — object physics may be set "where allowed"; MANO hand back on the table
+- **Owner:** keep the simulator's own world (solver, contact model) but set the objects' physical properties (mass,
+  friction, ...) as far as allowed so the simulation follows the video. This replaces our own "do not change the world"
+  line (note 26 §F) for object properties. Checked today: the FAQ (raw PDF) and the kit's Track 3 README contain **no
+  rule on physics or object properties**; FAQ: "Other embodiments are welcome, including ...".
+- What is ours to set: object mass / COM / inertia in our URDFs (`pipeline/make_assets.py`, today the 0.3 kg kit
+  placeholder for every object with thin-shell inertia). Friction is one global `scene.contact_friction` (1.0, all
+  shapes incl. hands and table); per-object friction would need code changes (off-limits for the pinned re-run).
+  `object_free_joint_damping` acts as a brake no real object has: not used.
+- Honesty constraints proposed (owner to confirm): one value set per object shared by every episode, physically
+  plausible (volume × material density, solid inertia), never fitted to mocap or to eval results, declared in the
+  report. Mass is not observable from video alone (forces are invisible).
+- MANO licence (read today): non-commercial research use; no redistribution or derivative made available to third
+  parties. Usable on our machines; the Apache-2.0 release would ship a builder script, not MANO-derived files.
+- Next (not started, needs go-ahead): per-object plausible masses + solid inertia from our meshes; CPU zero-action
+  replays on public episodes with the new URDFs; pre-registered rule before any GPU retrain.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
