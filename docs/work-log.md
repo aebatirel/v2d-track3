@@ -5479,3 +5479,15 @@ arm and a no-policy replay floor to stage B.
   (URDF robot name; primitive shapes had no surface samples; grasp_lock ignored the hand config) → fixes 62286da,
   103e1ba, 9731c7b (`GL_EMB`, default unchanged); valid run falsified (+0.117 / −0.039 / −0.055 / −0.092).
 - focused-pascal session told the S0/S1 store paths (it reuses S0 for its oracle-twin comparison).
+
+### 30 Oct ~13:50 UTC — round 2 launched (owner: "go nuts with all")
+- S0 physics box finished; its first store push failed (HF 429) and the 60-min retry succeeded (results in the store);
+  ledger actual $5.39 (estimate). Credit before round 2: $51.27 (ledger: $46.39 spent of the $100 budget).
+- Code 5ba27bd: `glock_public.sh` HUMAN mode (per-episode human capsule hand through every stage; default unchanged),
+  `physics_arms.sh` PAIRS / SEEDS / HUMAN. Rules pre-registered in the physics README (round 2).
+- Boxes (ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger planned $3 / $3 / $4.50):
+  - `20261030-p2s0-5ba27bd` 58409544 (KR, $1.542/h): `ARM=S0 PAIRS=2:20261024-ev3-2c1e4dd:mck SEEDS="43 44"`;
+  - `20261030-p2s1-5ba27bd` 58409510 (JP, $1.495/h): `ARM=S1 PAIRS=2:... SEEDS="43 44"`;
+  - `20261030-p2hu-5ba27bd` 58409512 (US, $1.508/h): `ARM=S0 HUMAN=1` (ep2/12/18/24, seed 42).
+  The first p2s0 create hit a vanished offer (no instance created); relaunched on 48635918.
+- Option 3 (physics-based motion solving): background research agent on Do as I Do / SPIDER code (CPU only).
