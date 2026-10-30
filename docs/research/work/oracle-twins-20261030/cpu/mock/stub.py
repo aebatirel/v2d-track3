@@ -28,8 +28,8 @@ def opt(name, default=None):
     return argv[argv.index(name) + 1] if name in argv else default
 
 
-def h01(s):  # deterministic pseudo-random in [0, 1)
-    return int(hashlib.md5(s.encode()).hexdigest()[:8], 16) / 2 ** 32
+def h01(s):  # deterministic pseudo-random in [0, 1), independent of the mock root
+    return int(hashlib.md5(s.replace(MR, '').encode()).hexdigest()[:8], 16) / 2 ** 32
 
 
 if base in ('oracle_poses.py', 'ref_vs_mocap.py') or argv[:1] in (['-c'], ['-']) or not script.endswith('.py'):

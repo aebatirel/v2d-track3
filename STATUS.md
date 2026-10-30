@@ -2,6 +2,14 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~13:05 UTC: oracle-twin test built and checked on CPU; ready to launch option B (owner's choice), NOT launched
+- Diagnostic on public twins of the hardest eval episodes: ep11 (eval 10), ep13 (eval 14), ep31 (eval 30).
+  - P = our perceived reference; O = mocap object motion; same grasp-lock recipe, box and seed; scored vs mocap.
+  - Readings fixed in `docs/research/work/oracle-twins-20261030/PREREG.md`; job string in `JOBS.txt` there
+    (`ops/jobs/oracle_twins.sh`, run id `<date>-orcB-<sha>`).
+- CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
+- Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
+
 ## 2026-10-30 ~08:50 UTC: eval-1 carve CONFIRMED on the official evaluator; pack-8 candidate ready (NOT uploaded)
 - Eval 1 (placement carve, seed 43): 20 official draws 0.924 ± 0.017 (min 0.884) vs packed policy 0.822 ± 0.239.
 - Pack 8 = pack 7 + fresh eval-1 rollout (0.9232): `results/submissions/20261030-track3h-candidate/`. Expected

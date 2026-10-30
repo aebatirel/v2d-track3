@@ -83,7 +83,7 @@ EOF
 }
 
 build() {  # $1 episode: P reference, then O reference on P's perception and hands, then G0
-  local ep=$1 A=${ROOT[$1]} d=$OT/ep$1 RP=/content/refs/perc2mck/ep$1 RO=/content/refs/oraclemck/ep$1 v=ENV_EP$1 g
+  local ep=$1 A=${ROOT[$1]} d=$OT/ep$1 RP=/content/refs/perc2mck/ep$1 RO=/content/refs/oraclemck/ep$1 g
   mkdir -p $d
   timeout 1200 bash $OPS/store.sh pull-depth $ep public > /dev/null 2>&1 || log "oracle_twins ep$ep: no stored depth (computed here)" >> $J
   ( export VARIANT=mck MKREF_ARGS="--wrist_cost 3.0" CONTACT_RETARGET=1 CR_ARGS="--rest_settle 1" STEPS=0 STOP_AFTER=reference \

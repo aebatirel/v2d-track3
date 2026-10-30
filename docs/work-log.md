@@ -4893,3 +4893,33 @@ Advice given:
   `runs/20261030-vid5-817b135/results/sub_videos/`). Box gone by 12:45; ledger actual $7.60 (estimate: 5.87 h ×
   $1.295/h, mostly HF-429-throttled pulls). Eval 25 is missing: `sub_videos.sh` does not handle PICK's `ck=` form (fix
   pending if the owner wants that video). Lesson: a video job for a few episodes should pull only those episodes' runs.
+- ~13:05 UTC **oracle twins: CPU build done; nothing launched** (workflow wf_4f80bdc9-7d2, build step; owner's choice B
+  of 12:10). Pre-registration with fixed readings: `docs/research/work/oracle-twins-20261030/PREREG.md`; job strings and
+  cost: `JOBS.txt` (same folder); CPU checks and mock: `cpu/`.
+  - **Code.** The WIP of be2b2a9 was reviewed and kept: `pipeline/oracle_poses.py` v2, the ORACLE_ARGS / MESH_DIR
+    pass-through in `pipeline_ep.sh`, and `tools/ref_vs_mocap.py`. New since then:
+    - `ops/jobs/oracle_twins.sh` builds, per twin, P (perc2 → hands → mkref → CR) and then O (mocap on P's perception
+      and hands). It runs gate G0, then one learner invocation with both arms, writes `summary.json` with R1 / R2 /
+      class / R3, and pushes. It refuses a RUN_ID without `-orc`.
+    - `glock_public.sh` and `hard_ab.sh` take a 4th PAIRS field PERC (`EP:local:mck:oracle`). This puts every O folder
+      under oracle names and is public / local only.
+    - `glock_public.sh` also gets `RUN=local`, `ENV_EP<N>`, and `ref_auc` / `floor_auc` in its summaries.
+    - `tools/no_oracle.py` is the leak guard in `pack_eval.sh`, `h5_reeval.sh` and `submit_pack.sh`. It also reads
+      each checkpoint's stored training config.
+  - **CPU results [M], public inputs.**
+    - oracle_poses v2 on eps 11 / 13 / 31: the raw track scores 1.000 vs mocap. After mkref's snap it scores
+      0.969 / 1.000 / 0.969. Up vs the table normal is ≤ 0.04°, frame-0 centres are ≤ 1.3 cm from perception, and
+      the support check is OK.
+    - G0 emulation (mkref stage (a)): O 0.969 / 1.000 / 0.969; P 0.896 / 0.896 / 0.793.
+    - The guard refused an `-orc` id, an `oracle` path and a renamed oracle-trained checkpoint, and passed all 20
+      pack-7 checkpoints.
+  - **CPU mocks.** The exact JOBS.txt strings for B (glock 11 / 13 / 31), G (glock 11 / 13) and S (std 31) all ran
+    to rc 0, with stub trainer and evaluator and real `oracle_poses.py` / `ref_vs_mocap.py`.
+    - Arms stay apart (P on `refs/glockt` / `perc2mcks`, O on `refs/oracle_glockt` / `oraclemcks`), with identical
+      training arguments and md5-identical hands.
+    - ep11's two references name `/content/assets_ev10`; ep13 and ep31's name `/content/assets`.
+    - **Bug caught by the std mock and fixed:** `PAIRS` was not passed to `hard_ab.sh`, which would have trained its
+      default ep24 / ep18 pairs.
+  - **Cost, re-estimated from job-log timings** (a grasp-lock wave of 2 trainings 66–82 min):
+    - B ≈ 4.0–5.5 h, **≈ $5.2–8.0 (central ≈ $6.3)**, a little above the ≈ $5–6 quoted at 12:10;
+    - A would be ≈ $7.9–12.0.

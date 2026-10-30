@@ -1,5 +1,5 @@
 #!/bin/bash
-# Behaviour check for existing callers: run the OLD (git HEAD) and the NEW glock_public.sh / hard_ab.sh in a mock that
+# Behaviour check for existing callers: run the OLD (git BASE, default be2b2a9 = before the oracle-twin hooks) and the NEW glock_public.sh / hard_ab.sh in a mock that
 # already holds P references (3-field PAIRS, no PERC field), and compare what they train and evaluate (audit logs) and
 # what they log (timestamps and paths normalised). usage: equiv.sh MR_SRC WORK
 S=/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad; R=/home/user/v2d-track3
@@ -11,11 +11,11 @@ for ver in old new; do
     for l in $(find $MR/content -maxdepth 3 -type l); do t=$(readlink $l); case $t in $SRC*) ln -sfn ${t/$SRC/$MR} $l ;; esac; done
     C=$MR/content; rm -rf $C/results/glock_public $C/results/oracle* $C/results/hard_ab $C/results/perc2mcks $C/runs/glock $C/runs/oracle* $C/runs/perc2mcks \
       $C/refs/glock $C/refs/glockt* $C/refs/sf $C/refs/oracle_* $C/refs/perc2mcks $C/*.log $C/push $C/run_state $C/train.lock* $MR/*.log
-    if [ $ver = old ]; then git -C $R show HEAD:ops/jobs/$job.sh | sed "s#/content#$C#g" > $C/v2d-track3/ops/jobs/$job.sh
+    if [ $ver = old ]; then /usr/bin/git -C $R show ${BASE:-be2b2a9}:ops/jobs/$job.sh | sed "s#/content#$C#g" > $C/v2d-track3/ops/jobs/$job.sh
     else sed "s#/content#$C#g" $R/ops/jobs/$job.sh > $C/v2d-track3/ops/jobs/$job.sh; fi           # the working-tree version
     . $MR/env.sh; export RUN_ID=20261030-equiv-mock SPLIT=public LIB=$C/v2d-track3/meshes/library_v3 SEED=42 NREP=2
     if [ $job = glock_public ]; then
-      (cd $C/v2d-track3 && PAIRS="11:local:mck 13:local:mck" ENV_EP11="SF=0" REPLAN=1 CURVE_REP=1 bash ops/jobs/glock_public.sh) > $C/job.log 2>&1
+      (cd $C/v2d-track3 && PAIRS="11:local:mck 13:local:mck" REPLAN=1 CURVE_REP=1 bash ops/jobs/glock_public.sh) > $C/job.log 2>&1
     else
       (cd $C/v2d-track3 && export FC_FDR_OBJ=1 FC_FDR_TIPS=1 FC_VOC_INERTIA=1 FC_IMMEDIATE_FIRST_FRAME=0.25 PDIR_ROOT=$C/perc2 SUF=s CR=0 BASE_EVAL=0 \
          PAIRS="11:local:mck" STEPS=250003456 && bash ops/jobs/hard_ab.sh) > $C/job.log 2>&1
