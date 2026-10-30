@@ -1,0 +1,724 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-30T23:09:08Z",
+ "commit": "368929f7a323db78d3b99fbc315c32eb8058e702",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "M docs/research/mesh-2026-10-26/gmg/gen_inputs.py",
+  "?? docs/research/mesh-2026-10-26/gmg/tests/test_gen_inputs.py",
+  "?? docs/research/mesh-2026-10-26/gmg/tools/b11_views.py"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "gmg/build/b5/dev_pool.py",
+  "--ep",
+  "11",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 22433,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261030-b5pool11-edba5b3",
+  "root": "runs-dev",
+  "pid": 22433,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-30T23:03:39Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep11/det_f0.npz": 2,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz": 5,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/beige_cup.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/blue_cup.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep11_beige_cup.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep11_blue_cup.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "dev_frozen",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/dev_constants.json",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/dev_constants.json",
+   "sha256": "6dd16e2e6a7d00354c61177c9be0b48053c840fa49ea6f9f88c81ff8367b0182",
+   "bytes": 8783,
+   "tier": "DEV"
+  },
+  {
+   "role": "roster",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/roster_public.json",
+   "sha256": "796639b037fc6b95f70a281678ae4e25afbc562dcdbb03d1126d6b3e6f8c8983",
+   "bytes": 10097,
+   "tier": "P0"
+  },
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "det",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep11/det_f0.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep11/det_f0.npz",
+   "sha256": "0aa2829082053f0e311d65fbc1ef0c9f6e9dba47e6d1a4d0b966d61fb6ba476a",
+   "bytes": 447835,
+   "tier": "P0",
+   "det_identity": "det file name 'det_f0.npz'",
+   "keys": [
+    "K",
+    "depth"
+   ],
+   "keys_not_read": [
+    "area",
+    "centroid",
+    "chosen",
+    "extent",
+    "extent_eroded",
+    "frame",
+    "gdino",
+    "image",
+    "intensity",
+    "mask_shape",
+    "masks",
+    "names",
+    "params",
+    "reprop",
+    "rules",
+    "score",
+    "score_rules",
+    "sim",
+    "template_extent",
+    "template_intensity",
+    "verify",
+    "verify_matched"
+   ],
+   "key_filter": "det"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "sha256": "99d845e316714119623ff8df9f1368109aeb31ee5804281a72a00239a8568f75",
+   "bytes": 35870,
+   "tier": "P1",
+   "keys": [
+    "cam_T_beige_cup",
+    "cam_T_blue_cup",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/beige_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/beige_cup.npz",
+   "sha256": "4170cab2d30fe97ae9d3e56982a62f419669ee0d4f46b904873d527f165af321",
+   "bytes": 5924962,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/blue_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/blue_cup.npz",
+   "sha256": "9752c8b0b8dab568f08d447f77c2941cf7aa22b03b7f49d37f7a50a26b6ec5bd",
+   "bytes": 2913185,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool11-edba5b3/bundle/public/ep11/episode.json",
+   "sha256": "1590af51733b876680a8eb5489fd80a9b82c373e06c4476304cd3d0a0ce30718",
+   "bytes": 12176,
+   "tier": "DEV"
+  },
+  {
+   "role": "kit",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/config/tracks.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit/config/tracks.json",
+   "sha256": "bbd3f7a61895c5383050e3a591755cbd0726833cc8634f422aeb344cfb303918",
+   "bytes": 14276,
+   "tier": "P0"
+  },
+  {
+   "role": "obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep11_beige_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep11_beige_cup.npz",
+   "sha256": "7fd1dec0fa7402a26dcf9d34ff937b3ee963396ff9ba8b8f51855ea2b3cd2c94",
+   "bytes": 5918528,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "pts",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "obs_all",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep11_blue_cup.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep11_blue_cup.npz",
+   "sha256": "31d7564d05c6334d92edd222b28132a0478c7acc968e8da9dc0b7ded639980da",
+   "bytes": 2905391,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "pts",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "t0_m",
+   "value": 0.00535877962815964,
+   "origin": "fitted:own t0_dev (PREREG A.1 statistic on obs_all)",
+   "where": "docs/research/mesh-2026-10-26/gmg/run_episode.py:50"
+  },
+  {
+   "name": "vote_voxel_m",
+   "value": 0.004,
+   "origin": "generic:PREREG A.6 vote voxel 4 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:241"
+  },
+  {
+   "name": "observed_min_hits",
+   "value": 3,
+   "origin": "generic:PREREG A.6 keep / OBSERVED (obs_points.py default)",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:57"
+  },
+  {
+   "name": "observed_min_ratio",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 keep / OBSERVED",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:58"
+  },
+  {
+   "name": "free_min_count",
+   "value": 3,
+   "origin": "generic:PREREG A.6 FREE",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:59"
+  },
+  {
+   "name": "free_max_ratio",
+   "value": 0.2,
+   "origin": "generic:PREREG A.6 FREE",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:60"
+  },
+  {
+   "name": "extraction_stride",
+   "value": 2,
+   "origin": "generic:SPEC section 7 M2 stride 2",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:262"
+  },
+  {
+   "name": "table_band_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 crop / SPEC M2 table band 8 mm (obs_points.py)",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:263"
+  },
+  {
+   "name": "contact_frame_gap3d_m",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 contact frame, > 10 sigma of depth noise and 2.5 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:32"
+  },
+  {
+   "name": "contact_frame_gap2d_px",
+   "value": 10,
+   "origin": "generic:PREREG A.6 contact frame, 10 px ~ 10 mm at 0.5-0.6 m",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:34"
+  },
+  {
+   "name": "separated_gap3d_m",
+   "value": 0.02,
+   "origin": "generic:PREREG A.6 separated frame, twice the contact gap",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:36"
+  },
+  {
+   "name": "separated_gap2d_px",
+   "value": 16,
+   "origin": "generic:PREREG A.6 separated frame, two 8-px cells",
+   "where": "docs/research/mesh-2026-10-26/gmg/contact.py:37"
+  },
+  {
+   "name": "sigma_clamp_lo_m",
+   "value": 0.0005,
+   "origin": "sensor:PREREG A.6 sigma clamp",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:140"
+  },
+  {
+   "name": "sigma_clamp_hi_m",
+   "value": 0.003,
+   "origin": "sensor:PREREG A.6 sigma clamp",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:141"
+  },
+  {
+   "name": "sigma_odd_sample_n",
+   "value": 50000,
+   "origin": "generic:numerical estimate of the A.2 median",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:142"
+  },
+  {
+   "name": "v2_band_cap_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 V2 cap 8 mm = two voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:109"
+  },
+  {
+   "name": "v2_band_k",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V2 band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:110"
+  },
+  {
+   "name": "rest_speed_max_m_per_frame",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 rest < 2 mm/frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:190"
+  },
+  {
+   "name": "rest_near_table_m",
+   "value": 0.005,
+   "origin": "generic:PREREG A.6 V4 rest within 5 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:191"
+  },
+  {
+   "name": "rest_share_min",
+   "value": 0.1,
+   "origin": "generic:PREREG A.6 V4 rest >= 10 % of good frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:192"
+  },
+  {
+   "name": "pack_budget_faces",
+   "value": 4000,
+   "origin": "kit:PREREG A.6 4000 faces (kit 4096)",
+   "where": "docs/research/mesh-2026-10-26/gmg/pack.py:22"
+  },
+  {
+   "name": "kit_budget_faces",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:69"
+  },
+  {
+   "name": "kit_budget_vertices",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:70"
+  },
+  {
+   "name": "fsv_far_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 20,000 area-weighted samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:71"
+  },
+  {
+   "name": "fsv_far_band_vox",
+   "value": 2,
+   "origin": "generic:PREREG A.6 fsv_far band 2 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:72"
+  },
+  {
+   "name": "fsv_far_weight",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 fsv_far weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:73"
+  },
+  {
+   "name": "blocks_K",
+   "value": 3,
+   "origin": "generic:PREREG A.6 K = 3",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:74"
+  },
+  {
+   "name": "bootstrap_n",
+   "value": 200,
+   "origin": "generic:PREREG A.6 bootstrap 200",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:75"
+  },
+  {
+   "name": "seed",
+   "value": 0,
+   "origin": "generic:PREREG A.6 seed 0",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:76"
+  },
+  {
+   "name": "ray_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 ray band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:77"
+  },
+  {
+   "name": "ray_clip_sigma",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 ray clip 10 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:78"
+  },
+  {
+   "name": "heldout_max_points",
+   "value": 20000,
+   "origin": "generic:PREREG A.2 held-out subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:79"
+  },
+  {
+   "name": "v2_normal_cos",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 V2 normal cosine > 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:80"
+  },
+  {
+   "name": "v2_count_min",
+   "value": 3,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:81"
+  },
+  {
+   "name": "v2_count_frac",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:82"
+  },
+  {
+   "name": "v4_share_max",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V4 1 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:83"
+  },
+  {
+   "name": "v4_depth_floor_m",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:84"
+  },
+  {
+   "name": "v4_depth_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:85"
+  },
+  {
+   "name": "v4_volume_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 V4 20,000 volume samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:86"
+  },
+  {
+   "name": "variant_menu_K",
+   "value": [
+    3,
+    5
+   ],
+   "origin": "generic:PREREG A.7 menu K in {3, 5}",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:93"
+  },
+  {
+   "name": "gen_view_holdout_deg",
+   "value": 8.0,
+   "origin": "generic:PREREG A.6 generator view hold-out 8 deg (the view-spacing constant)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:94"
+  },
+  {
+   "name": "gen_view_holdout_skip_frac",
+   "value": 0.8,
+   "origin": "generic:PREREG A.6 hold-out skipped if > 80 % removed",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:96"
+  },
+  {
+   "name": "bootstrap_block_rate",
+   "value": 0.3333333333333333,
+   "origin": "generic:PREREG A.6 block length round(n_k^(1/3))",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:98"
+  },
+  {
+   "name": "v3_tau_percentile",
+   "value": 99.0,
+   "origin": "generic:PREREG A.3 tau = 99th percentile of the fold null",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:100"
+  },
+  {
+   "name": "amb_samples",
+   "value": 3000,
+   "origin": "kit:AUC.py _ALIGNMENT_SAMPLES 3000 (mesh_metric.ambiguity)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:101"
+  },
+  {
+   "name": "amb_icp_iterations",
+   "value": 40,
+   "origin": "kit:AUC.py _ICP_ITERATIONS 40",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:103"
+  },
+  {
+   "name": "amb_icp_trim",
+   "value": 0.9,
+   "origin": "kit:AUC.py _TRIM_FRACTION 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:104"
+  },
+  {
+   "name": "amb_flip_deg",
+   "value": 90.0,
+   "origin": "generic:SPEC section 10 flip = rotation > 90 deg (mesh_metric.ambiguity)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:105"
+  },
+  {
+   "name": "class_order",
+   "value": [
+    "STRUCT",
+    "FUSE",
+    "GEN",
+    "SHELL",
+    "HULL"
+   ],
+   "origin": "informed:class order ([D] hand kits against generators)",
+   "where": "docs/research/mesh-2026-10-26/gmg/select.py:46"
+  },
+  {
+   "name": "class_order_gen_view_overlap",
+   "value": [
+    "STRUCT",
+    "SHELL",
+    "FUSE",
+    "GEN",
+    "HULL"
+   ],
+   "origin": "informed:class order (PREREG A.5 gen_view_overlap pool)",
+   "where": "docs/research/mesh-2026-10-26/gmg/select.py:47"
+  },
+  {
+   "name": "variant_menu_b_tie",
+   "value": [
+    1,
+    2
+   ],
+   "origin": "generic:PREREG A.7 menu b_tie in {1, 2} SE",
+   "where": "docs/research/mesh-2026-10-26/gmg/select.py:49"
+  },
+  {
+   "name": "variant_v0",
+   "value": {
+    "K": 3,
+    "b_tie": 1,
+    "prior": true
+   },
+   "origin": "generic:PREREG A.7 default V0 = (3, 1 SE, prior on)",
+   "where": "docs/research/mesh-2026-10-26/gmg/select.py:50"
+  },
+  {
+   "name": "v5_flip_rule",
+   "value": "amb - floor < floor",
+   "origin": "informed:V5 (seen on library and board meshes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/select.py:51"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "b5pool/ep11/beige_cup.json",
+   "sha256": "6d84169bb02796b9116ab6049d5e919b5d4f722bec94b21e5356aa07d01def70",
+   "bytes": 8573,
+   "how": "python"
+  },
+  {
+   "path": "b5pool/ep11/blue_cup.json",
+   "sha256": "3c78f54a8f92baa619e5e6220712e4e57da88703b365e4e31b73aca0d02e1b69",
+   "bytes": 8523,
+   "how": "python"
+  },
+  {
+   "path": "bundle/public/ep11/beige_cup.npz",
+   "sha256": "4170cab2d30fe97ae9d3e56982a62f419669ee0d4f46b904873d527f165af321",
+   "bytes": 5924962,
+   "how": "python"
+  },
+  {
+   "path": "bundle/public/ep11/blue_cup.npz",
+   "sha256": "9752c8b0b8dab568f08d447f77c2941cf7aa22b03b7f49d37f7a50a26b6ec5bd",
+   "bytes": 2913185,
+   "how": "python"
+  },
+  {
+   "path": "bundle/public/ep11/episode.json",
+   "sha256": "1590af51733b876680a8eb5489fd80a9b82c373e06c4476304cd3d0a0ce30718",
+   "bytes": 12176,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/beige_cup/folds/shell_t5p36_k1.glb",
+   "sha256": "94d9ab4cb002bf45ac95a7ea6f66dd642a31c68f0385a147c9091f3d8de5b9be",
+   "bytes": 71128,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/beige_cup/folds/shell_t5p36_k2.glb",
+   "sha256": "483103b165e04ffbf334060d426bddd2fca9333fcbce8207a37f0b0977f63066",
+   "bytes": 72852,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/beige_cup/folds/shell_t5p36_k3.glb",
+   "sha256": "5e2d8499f1b477e243e7e75427fb4aaf15473311ba2b5832897f841f282d153c",
+   "bytes": 72108,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/beige_cup/hull.glb",
+   "sha256": "190a59ba7d5754798b8a353cead8c4af65a7df93a9fbeac2bdc6ac96b02bf191",
+   "bytes": 28772,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/beige_cup/shell_t5p36.glb",
+   "sha256": "8b77a31c29cc1d33d9cabc975b42d3caf0fd822b935e6d4019fd69401f46b82e",
+   "bytes": 69756,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/blue_cup/folds/shell_t5p36_k1.glb",
+   "sha256": "f38b9c20b6c3d5af2320c913cf4a89f52c37b42ee0ab711d33e8e37240016249",
+   "bytes": 72204,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/blue_cup/folds/shell_t5p36_k2.glb",
+   "sha256": "6c6a638fa44d19ac2a3d7beb4010d96713fbeab30a1d55a340272f5d2ee8e5d3",
+   "bytes": 72516,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/blue_cup/folds/shell_t5p36_k3.glb",
+   "sha256": "f397585f77ccce7a27a7b002c388abab503707350babb2a6dfdd6054b129e0ce",
+   "bytes": 70860,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/blue_cup/hull.glb",
+   "sha256": "57b869ea0b17e26ff8bd8df5d0611c9c91a459aa212754b0e67ed42893caf784",
+   "bytes": 60972,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep11/blue_cup/shell_t5p36.glb",
+   "sha256": "ad37e287842e7183598d14144d91c7793facbb461f4639e22fec481ad40f1ffa",
+   "bytes": 73380,
+   "how": "python"
+  }
+ ],
+ "extra": {
+  "step": "B5 dev check (score full + select)",
+  "ep": 11,
+  "t0": {
+   "source": "dev_constants.json",
+   "run": "20261030-t0dev-e207a14"
+  },
+  "sec": 328.9,
+  "picks": {
+   "blue_cup": "shell_t5p36",
+   "beige_cup": "shell_t5p36"
+  }
+ }
+}

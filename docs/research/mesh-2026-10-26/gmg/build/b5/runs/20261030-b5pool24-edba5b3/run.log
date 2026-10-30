@@ -1,0 +1,17 @@
+[  206.1s] bundle ep24: ['wooden_piece_1', 'wooden_piece_2'], sigma {'wooden_piece_1': 1.2081, 'wooden_piece_2': 0.7006}, t0 5.359 mm
+[  248.4s] wooden_piece_1: 2 candidates built and packed (42 s)
+[  338.8s] wooden_piece_1: folds of gmg.producers.shell: rebuilt (85.3 s)
+[  338.8s] wooden_piece_1: folds of gmg.producers.hull: fixed (0.0 s)
+[  391.8s] wooden_piece_1: scored (53 s)
+[  391.9s]   wooden_piece_1/shell_t5p36: E 2.4171 blocks [2.70095, 1.5443, 3.00616] fold rebuilt fsv 0.0000 amb 4.865185599380852 floor 2.449 risk True margin 1.0109517396073953
+[  391.9s]   wooden_piece_1/hull: E 7.0949 blocks [6.64317, 6.72287, 7.56327] fold fixed fsv 0.0118 amb 5.290434294165142 floor 2.646 risk True margin 0.15387682679707335
+[  391.9s] wooden_piece_1: pick shell_t5p36 (tie set [('shell_t5p36', 0.0, 0.0)], flags ['flip_risk']); all-frames pick shell_t5p36
+[  422.1s] wooden_piece_2: 2 candidates built and packed (30 s)
+[  490.0s] wooden_piece_2: folds of gmg.producers.shell: rebuilt (63.8 s)
+[  490.0s] wooden_piece_2: folds of gmg.producers.hull: fixed (0.0 s)
+[  555.7s] wooden_piece_2: scored (66 s)
+[  555.8s]   wooden_piece_2/shell_t5p36: E 3.3202 blocks [4.89706, 2.36499, 2.6985] fold rebuilt fsv 0.0000 amb 4.120689995682337 floor 2.341 risk True margin 0.7542766883013767
+[  555.8s]   wooden_piece_2/hull: E 9.4824 blocks [7.18346, 8.33708, 9.3777] fold fixed fsv 0.1183 amb 5.992639769434028 floor 2.933 risk False margin 0.16714700641734048
+[  555.8s] wooden_piece_2: pick hull (tie set [('hull', 0.0, 0.0)], flags []); all-frames pick shell_t5p36
+[  555.9s] manifest: tier DEV, 10 inputs, commit 368929f dirty True
+{"log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b5-pool24-edba5b3.strace", "policy": "gmg", "mode": "dev", "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261030-b5pool24-edba5b3/manifest.json", "events": 2970, "opens_ok": 2649, "forbidden": 0, "unlisted": 0, "unrecorded": 0, "writes_outside_run": 0, "network": 0, "local_sockets": 0, "system": 2197, "system_files": 20, "code_outside_interp": 46, "git": 41, "git_tree_reads": 1, "data_reads": 25, "det_reads": 0, "written": 18, "moves": 0, "links": 0, "symlinks": 0, "interp_dirs": 5, "cwd0": "/home/user/v2d-track3/docs/research/mesh-2026-10-26", "allow_net": false, "forbidden_opens": 0, "forbidden_attempted_failed": 0, "command": 8, "returncode": 0}
