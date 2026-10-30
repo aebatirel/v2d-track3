@@ -4864,3 +4864,10 @@ Advice given:
     eval episodes (candidates ep11/eval 10, ep12/eval 14, ep31/eval 30, ep24/eval 25), in their own refs/<oracle> paths,
     and compares rollout-vs-mocap AUC with the same recipe on our perceived references. Readings pre-registered before
     any GPU result; GPU ≤ ≈ $10 on the owner's request.
+- 10:10 UTC coordination: session determined-wright ("Embodiment options", session_01D9UJC7MhytodZodnDDAU3z) launched
+  `20261030-physS0-6a814df` and `-physS1-` (object physics study, public scans, grasp-lock recipe, ep2/12/18/24,
+  $6.50 planned each, owner-approved). Overlaps the oracle-twin plan on ep12/ep24; message sent: HF 429 warning, offer
+  to reuse their S0 results and not duplicate ep12/ep24 arms. Ledger (all sessions) at 10:09: actual $35.48, open
+  planned $14.20 of the $100 top-up.
+  - Video box 58363797: still in sub_videos' PICK downloads (HF 429 + SSL EOF retries), 3 h 20 min up (~$4.3). Kept
+    running: a relaunch would face the same rate limit.
