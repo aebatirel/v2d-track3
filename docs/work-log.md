@@ -4971,3 +4971,11 @@ Advice given:
       min 0.872; sim_vs_ref 0.964 ± 0.027). The earlier ep11 P on another recipe/commit scored 0.570 ± 0.001.
     - ep31 P (perceived, eval 30's twin): **0.783 ± 0.042** (sim_vs_ref 0.758 ± 0.018).
     - Reading waits for the same-box P/O pairs (PREREG §4); remaining arms: ep11 P, ep13 P/O, ep31 O.
+- 18:05 UTC orcB interim (4 of 6 arms; reading still waits for the summary):
+  - ep13 (eval 14's twin, cup hand-over + flip into the rack): P **0.543 ± 0.001**, O **0.544 ± 0.002** vs mocap. Both
+    arms fail identically (sim_vs_ref 0.556 / 0.573): with the true object motion the recipe still does not copy the
+    task. Provisional class C1 (physics/learner-limited); the hand-over and flip are a robot/learner limit, so better
+    perception would not raise eval 14.
+  - G0 passed on all three twins: O references vs mocap 0.969 / 0.964 / 0.993; P 0.896 / 0.940 / 0.822.
+  - Remaining: ep11 P and ep31 O (wave 3).
+  - Another Embodiment-session box is running: 58429953 `20261030-psolve-eecd18a` (physics solve, eps 2/12/18/24).
