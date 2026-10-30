@@ -4864,3 +4864,12 @@ diagnostic; nothing is picked for submission.
   - **Registration:** worse for the generators (Sim(3)-fitted median ADD 26–29 mm; Pixal3D 10.3 mm with 6 of 20 flips).
   - Page v5 rewords the generator section, stat and plan row: oracle best-of-runs is not a method; nothing goes into a
     submission.
+- ~07:15 UTC owner: "SAM seems to do a great job but the orientation and the size seem off (overlay with the scan looks
+  weird); also we messed up the mini sweeper again". First read:
+  - single-image meshes were placed by `gen/sim3_fit.py`, a scale-free Sim(3) ICP to one-sided partial observed points,
+    which is ill-posed for scale and roll;
+  - CD-O normalises scale and re-registers, so it is blind to our placement, while ADD shows it (18–34 mm);
+  - mesh extents vs scan, e.g. lid SAM 3D 6.6 × 12.9 × 13.6 cm vs 4.8 × 18.8 × 18.8.
+
+  Launched diagnosis workflow `wf_f944d682-4b3`: SAM 3D placement decomposition (scale, rotation, translation vs shape)
+  with GT-free fix tests (≤ 12 scorings, all listed); sweeper failure analysis; each adversarially verified.
