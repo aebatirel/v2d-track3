@@ -6,7 +6,8 @@ Choices for B1 (dev bundles, DEVIATIONS B1): the seeded component is the 6-conne
 that holds the most OBSERVED voxels (dev bundles carry no seeds; the grid is the old obs_all box); 'above the table'
 is the at-rest table plane of the bundle (n.x + d >= 0 at the voxel centre), and no cut is made for an object with no
 rest plane; the partner clip removes non-OBSERVED voxels with pocc > 0 and is grown by one voxel at a time (at most
-twice) while the construction-time V2 (a) check still finds partner samples deeper than the band."""
+twice) while the construction-time V2 (a) check on the voxel volume (complete.clip_check_grid) still finds partner
+samples deeper than the band. V2 on the packed mesh (score.v2) judges the result."""
 from __future__ import annotations
 
 import numpy as np
@@ -58,8 +59,8 @@ def produce(ctx, frames=None):
         obs_lab = np.bincount(lab[(st == STATE_OBSERVED) & (lab > 0)], minlength=n + 1)
         keep = int(obs_lab[1:].argmax()) + 1 if obs_lab[1:].any() else int(np.bincount(lab.ravel())[1:].argmax()) + 1
         occ = lab == keep
+        chk = complete.clip_check_grid(occ, obs, b, obj)
         mesh = _march(occ, lo, vox)
-        chk = complete.clip_check(mesh, b, obj)
         rep.update(components=int(n), kept_voxels=int(occ.sum()), kept_observed=int(obs_lab[keep]))
         if chk['deep_total'] == 0:
             break

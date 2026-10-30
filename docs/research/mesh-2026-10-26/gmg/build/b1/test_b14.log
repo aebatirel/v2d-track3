@@ -1,0 +1,10 @@
+test_a_fused_double_cup (__main__.B14.test_a_fused_double_cup) ... ok
+test_b_filled_cup (__main__.B14.test_b_filled_cup) ... ok
+test_c_lid_with_phantom_pot (__main__.B14.test_c_lid_with_phantom_pot) ... ok
+test_d_kit_lid_passes (__main__.B14.test_d_kit_lid_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 605.339s
+
+OK
+605 s

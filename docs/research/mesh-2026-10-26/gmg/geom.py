@@ -6,8 +6,9 @@
   closest(mesh, X)                      exact unsigned distance to the surface and the normal of the nearest face
                                         (candidate faces from a KD-tree over dense surface samples, then exact
                                         point-triangle distances)
-  inside(mesh, X)                       winding number >= 0.5: fast ray parity for watertight meshes, checked against
-                                        the exact winding number on a random subset (else exact for all)
+  inside(mesh, X)                       winding number >= 0.5: signed ray crossings for watertight meshes (exact for
+                                        closed oriented meshes, overlaps included), checked against the exact winding
+                                        number on a random subset (else exact for all)
   ray_ranges(tris_c, P_c)               exact first-hit range along camera rays (perspective bucketing; PREREG A.4)
   first_hit(mesh, O, D)                 brute-force Moller-Trumbore reference (tests)
   volume_samples(mesh, n, seed, axis)   uniform samples of the enclosed volume by column parity along one axis
@@ -59,9 +60,9 @@ def winding_number(mesh, X):
     if len(X) == 0 or len(mesh.faces) == 0:
         return np.zeros(len(X))
     torch = _torch()
-    T = torch.from_numpy(_tris(mesh))                         # (F,3,3)
+    T = torch.from_numpy(_tris(mesh).astype(np.float32))      # (F,3,3); float32 is ample for the 0.5 cut
     out = np.empty(len(X))
-    Xt = torch.from_numpy(X)
+    Xt = torch.from_numpy(X.astype(np.float32))
     for s in range(0, len(X), CHUNK):
         q = Xt[s:s + CHUNK, None, None, :]                    # (c,1,1,3)
         R = T[None] - q                                       # (c,F,3,3)
@@ -177,9 +178,27 @@ def pairs2d(T2, Q, cell):
     return qi[ins], ti[ins], b1[ins], b2[ins]
 
 
+def winding_ray(mesh, X, axis=2):
+    """Winding number of each query from signed crossings of the ray along +AXIS: every face crossed above the query
+    adds the sign of its normal's AXIS component (+1 leaving, -1 entering). Exact for a closed, consistently oriented
+    mesh, overlapping or self-intersecting bodies included (the winding number of a closed surface is the signed
+    crossing count of any ray); a ray through an edge or vertex can miscount (measure zero). Returns int (n,)."""
+    X = np.asarray(X, np.float64).reshape(-1, 3)
+    T = _tris(mesh)
+    if len(X) == 0 or len(T) == 0:
+        return np.zeros(len(X), np.int64)
+    a = int(axis); uv = [k for k in range(3) if k != a]
+    ext = float(np.ptp(T.reshape(-1, 3)[:, uv], axis=0).max())
+    cell = max(ext / 128.0, 1e-5)
+    qi, ti, b1, b2 = pairs2d(T[:, :, uv], X[:, uv], cell)
+    h = T[ti, 0, a] + b1 * (T[ti, 1, a] - T[ti, 0, a]) + b2 * (T[ti, 2, a] - T[ti, 0, a])
+    na = np.cross(T[:, 1] - T[:, 0], T[:, 2] - T[:, 0])[:, a]
+    above = h > X[qi, a]
+    return np.bincount(qi[above], weights=np.sign(na[ti[above]]), minlength=len(X)).round().astype(np.int64)
+
+
 def inside_parity(mesh, X, axis=2):
-    """Ray parity along +AXIS from each query (exact for a closed, non-self-intersecting mesh, where it equals
-    winding number >= 0.5). Returns bool (n,)."""
+    """Ray parity along +AXIS (odd crossing count). Kept for tests; inside() uses winding_ray."""
     X = np.asarray(X, np.float64).reshape(-1, 3)
     T = _tris(mesh)
     if len(X) == 0 or len(T) == 0:
@@ -195,22 +214,24 @@ def inside_parity(mesh, X, axis=2):
 
 
 def inside(mesh, X, check=2000, seed=0):
-    """Generalised winding number >= 0.5 (PREREG A.3 V2 (a)). For a watertight mesh the fast ray parity is used and
-    checked against the exact winding number on CHECK random queries (seed); on any disagreement, or for a mesh that
-    is not watertight, the exact winding number is computed for every query. Returns (bool (n,), info)."""
+    """Generalised winding number >= 0.5 (PREREG A.3 V2 (a)). For a watertight mesh the winding number is taken from
+    signed ray crossings (median over the three axis directions, so a ray through an edge cannot decide alone) and
+    checked against the exact solid-angle winding number on CHECK random queries (seed); on any disagreement, or for a
+    mesh that is not watertight, the exact winding number is computed for every query. Returns (bool (n,), info)."""
     X = np.asarray(X, np.float64).reshape(-1, 3)
     info = dict(method='gwn', checked=0, disagree=0)
     if len(X) == 0:
         return np.zeros(0, bool), info
     if mesh.is_watertight:
-        par = inside_parity(mesh, X)
+        w = np.median(np.stack([winding_ray(mesh, X, k) for k in range(3)]), axis=0)
+        ins = w >= 0.5
         rng = np.random.default_rng(seed)
         idx = rng.choice(len(X), size=min(int(check), len(X)), replace=False)
-        w = winding_number(mesh, X[idx]) >= 0.5
-        info.update(checked=int(len(idx)), disagree=int((w != par[idx]).sum()))
+        g = winding_number(mesh, X[idx]) >= 0.5
+        info.update(checked=int(len(idx)), disagree=int((g != ins[idx]).sum()))
         if info['disagree'] == 0:
-            info['method'] = 'parity (checked against gwn)'
-            return par, info
+            info['method'] = 'signed ray crossings (checked against gwn)'
+            return ins, info
     return winding_number(mesh, X) >= 0.5, info
 
 

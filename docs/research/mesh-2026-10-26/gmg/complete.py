@@ -8,6 +8,9 @@
   clip_check(mesh, bundle, obj) -> dict          the V2 (a) test applied during construction: per partner, the number
                                                  of partner samples (contact frames) inside the mesh deeper than b
                                                  below its surface, and the most in any one frame
+  clip_check_grid(occ, obs, bundle, obj) -> dict the same test on a voxel volume (HULL): a sample is deep if its voxel
+                                                 is occupied and the voxel's distance to the nearest unoccupied voxel
+                                                 centre, minus half a voxel, exceeds b
 B1 builds no structural completion (lathe, mirror, part, FUSE: B8, B11, B15), so the support-plane closing of SPEC
 section 9 rule 3b is not used yet; the HULL is the only completed volume.
 """
@@ -44,6 +47,31 @@ def clip_check(mesh, bundle, obj):
             d, _, _ = geom.Closest(mesh).query(X[near])
             deep[np.nonzero(near)[0]] = ins & (d > b)
         per = np.bincount(np.searchsorted(np.asarray(sorted(set(frames))), fid[deep]), minlength=len(set(frames)))
+        rec = dict(contact_frames=len(frames), band_mm=round(b * 1e3, 3), deep=int(deep.sum()),
+                   deep_max_frame=int(per.max()) if len(per) else 0)
+        out['partners'][p] = rec
+        out['deep_total'] += rec['deep']
+        out['deep_max_frame'] = max(out['deep_max_frame'], rec['deep_max_frame'])
+    return out
+
+
+def clip_check_grid(occ, obs, bundle, obj):
+    lo, vox = np.asarray(obs['lo'], np.float64), float(obs['vox'])
+    depth = ndimage.distance_transform_edt(np.pad(occ, 1)).astype(np.float64)[1:-1, 1:-1, 1:-1] * vox - 0.5 * vox
+    out = dict(deep_total=0, deep_max_frame=0, partners={}, method='voxel depth (distance transform)')
+    for p in bundle.partners(obj):
+        frames = sorted(set(bundle.contact(obj, p)['contact']))
+        if not frames:
+            out['partners'][p] = dict(contact_frames=0, deep=0, deep_max_frame=0)
+            continue
+        X, _, fid, n_p = CT.partner_samples(bundle, obj, p, frames)
+        b = bundle.band(obj, p)
+        vi, ok = CT._vox_index(X, lo, vox, occ.shape)
+        deep = np.zeros(len(X), bool)
+        if ok.any():
+            t = tuple(vi[ok].T)
+            deep[np.nonzero(ok)[0]] = occ[t] & (depth[t] > b)
+        per = np.bincount(np.searchsorted(np.asarray(frames), fid[deep]), minlength=len(frames))
         rec = dict(contact_frames=len(frames), band_mm=round(b * 1e3, 3), deep=int(deep.sum()),
                    deep_max_frame=int(per.max()) if len(per) else 0)
         out['partners'][p] = rec
