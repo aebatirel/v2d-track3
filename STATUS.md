@@ -10,6 +10,14 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-30 ~19:00 UTC: oracle twins done — eval 10 is perception-limited, eval 14 is a robot/learner limit
+- ep11 (eval 10, cup stacking): true motion 0.940 vs our perceived 0.595 → **C2 perception-limited**. Biggest lever
+  found: make eval 10's reference physically consistent (cup nest), ≤ +0.017 LB if it transfers [E].
+- ep13 (eval 14, hand-over + flip): 0.544 vs 0.543 → **C1**: not perception; robot/learner limit.
+- ep31 (eval 30): +0.086 → inconclusive at one seed.
+- Running: leak plan Phase 1 (3 perception boxes, orcP1a/b/c, ≈ $4.4); Tier A CPU audits. Credit ≈ $30, burn ≈ $6/h.
+  Phase 2 (≈ $200) needs a top-up.
+
 ## 2026-10-30 ~08:50 UTC: eval-1 carve CONFIRMED on the official evaluator; pack-8 candidate ready (NOT uploaded)
 - Eval 1 (placement carve, seed 43): 20 official draws 0.924 ± 0.017 (min 0.884) vs packed policy 0.822 ± 0.239.
 - Pack 8 = pack 7 + fresh eval-1 rollout (0.9232): `results/submissions/20261030-track3h-candidate/`. Expected

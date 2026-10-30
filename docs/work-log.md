@@ -4995,3 +4995,11 @@ Advice given:
     repeat on the 10 twins).
   - Credit before launch $32.58; burn now ≈ $7.6/h with orcB and the Embodiment session's psolverl box.
   - After the run: check RESULT lines for NO-GDINO (it does not hold the box), and that tars hold no score files.
+- 19:00 UTC **oracle twins option B: results** (`docs/research/work/oracle-twins-20261030/RESULTS.md`; ledger actual
+  $7.80, estimate). Classes under the pre-registered rules (1.64·SE margins):
+  - ep11 → eval 10: **C2 perception-limited** (O 0.940 ± 0.034 vs P 0.595; Δ +0.345, SE 0.011). The recipe stacks the
+    cups with the true motion; our perceived reference is physically hard to copy (sim_vs_ref 0.518 vs 0.964).
+  - ep13 → eval 14: **C1 physics/learner-limited** (O 0.544 = P 0.543): the hand-over/flip is a robot/learner limit.
+  - ep31 → eval 30: **C5 inconclusive** (Δ +0.086, SE 0.020; grasp-lock learner, not eval 30's standard learner).
+  - Next [proposal]: a GT-free physically-consistent nest fix for eval 10's reference, validated first on ep11 P
+    (target: rollout AUC well above 0.595 toward the 0.940 ceiling), then eval 10 (≤ +0.017 LB [E]).
