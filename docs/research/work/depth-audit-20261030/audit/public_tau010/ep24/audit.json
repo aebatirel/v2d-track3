@@ -1,0 +1,165 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_vstat_ep24/cache/depth/public/ep24/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/vstat/tau/t0.010/ep24",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/pylib",
+  "--no_rest",
+  "--tau",
+  "0.010",
+  "--force"
+ ],
+ "time_utc": "2026-10-30T07:30:13Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "221fdb73ac1e43e3d40c0398514316f2bae9cd9e263b1ca2603ff2202c9ae7f3",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "d41382e8b5fe8982ba06173231ddee29ae7059ba",
+  "depth_audit_sha256": "f6147b995384a739184b1f1f9755e4088ac9b60c51f41904156905d3c13696d9"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_vstat_ep24/cache/depth/public/ep24/depths_fs0.5.npy",
+   "sha256": "cc4b2804f6a373e46dc1f03014c9b01010a96fef954117a2adbb596ed2fe01ca"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep24/hands_refined.npz",
+   "sha256": "6b52a50aa3b855d4ee207cfdf603884932f0ccdb3143f7b74cd7aa55d3d5938c"
+  },
+  "meshes": {
+   "wooden_piece_1": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb",
+    "sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79"
+   },
+   "wooden_piece_2": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_2.glb",
+    "sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b"
+   }
+  }
+ },
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "T": 275,
+ "frames_audited": 275,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  275,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.01,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "wooden_piece_1": {
+   "frames": 275,
+   "valid": 275,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0023,
+    0.0252,
+    0.0824
+   ],
+   "behind_mean": 0.0366,
+   "share_behind_gt_0p2": 0.0073,
+   "front_p10_p50_p90": [
+    0.0,
+    0.0003,
+    0.0146
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.0958,
+    0.199,
+    0.3627
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.6436,
+    0.8525,
+    0.9683
+   ],
+   "hand_frac_mean": 0.1842,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 53
+  },
+  "wooden_piece_2": {
+   "frames": 275,
+   "valid": 275,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0,
+    0.0007,
+    0.0182
+   ],
+   "behind_mean": 0.0059,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0013,
+    0.0101,
+    0.6156
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -16.6031,
+    -0.0041,
+    0.1753
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.3807,
+    0.9134,
+    0.9964
+   ],
+   "hand_frac_mean": 0.0928,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 44
+  }
+ },
+ "seconds": 18.9
+}

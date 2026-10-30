@@ -1,0 +1,165 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep0/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_vstat_ep0/cache/depth/public/ep0/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep0/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/vstat/tau/t0.010/ep0",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/pylib",
+  "--no_rest",
+  "--tau",
+  "0.010",
+  "--force"
+ ],
+ "time_utc": "2026-10-30T07:27:59Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "221fdb73ac1e43e3d40c0398514316f2bae9cd9e263b1ca2603ff2202c9ae7f3",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "d41382e8b5fe8982ba06173231ddee29ae7059ba",
+  "depth_audit_sha256": "f6147b995384a739184b1f1f9755e4088ac9b60c51f41904156905d3c13696d9"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep0/poses.npz",
+   "sha256": "86cb5c76502de5649122ff539b35f599f0db7a3478fb104ee2cdb6c66a49a25c"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_vstat_ep0/cache/depth/public/ep0/depths_fs0.5.npy",
+   "sha256": "c2932f8ba64e12773d34d45c73e10fb2daa16c5a439cc61fca0bbd8170a8c26d"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep0/hands_refined.npz",
+   "sha256": "104d61d1a7d76edce0ea7288dcbbcaf88cec42fbfcc93fea1af9748e2fed17fe"
+  },
+  "meshes": {
+   "white_pot": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+    "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   },
+   "white_pot_lid": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+    "sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37"
+   }
+  }
+ },
+ "objects": [
+  "white_pot",
+  "white_pot_lid"
+ ],
+ "T": 373,
+ "frames_audited": 373,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  373,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.01,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "white_pot": {
+   "frames": 373,
+   "valid": 373,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0137,
+    0.0375,
+    0.0993
+   ],
+   "behind_mean": 0.048,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0285,
+    0.065,
+    0.1072
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.145,
+    0.0946,
+    0.2112
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.4262,
+    0.71,
+    0.916
+   ],
+   "hand_frac_mean": 0.1319,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 92
+  },
+  "white_pot_lid": {
+   "frames": 373,
+   "valid": 373,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0,
+    0.0033,
+    0.0129
+   ],
+   "behind_mean": 0.0053,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0057,
+    0.0155,
+    0.0321
+   ],
+   "med_r_cm_p10_p50_p90": [
+    0.0294,
+    0.0714,
+    0.1215
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.7253,
+    0.9344,
+    0.993
+   ],
+   "hand_frac_mean": 0.0784,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 38
+  }
+ },
+ "seconds": 35.9
+}

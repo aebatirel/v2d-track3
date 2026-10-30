@@ -36,7 +36,8 @@ docs/research/work/depth-audit-20261030/):
              (cm) of our mesh's lowest vertex to that plane (n toward the camera; > 0 floats, < 0 sinks).
 
 Inputs are refused if they are, or may hold, ground truth (refine.assert_inference_input: 'observation', '.parquet',
-'score_registered', 'per_frame', 'quarantine_gt', a 'baseline' directory, result.json/summary.json/log.txt). The
+'score_registered', 'per_frame', 'quarantine_gt', '_pf.npz', '/gt/', 'calib_gt', a 'baseline', 'gt' or '*_gt'
+directory, result.json/summary.json/log.txt). The
 one exception is --ref: a parquet under a refs/<variant>/ directory whose schema has object_body_position and no
 observation.* column (our own reference, built by mkref from our perception).
 
@@ -79,9 +80,10 @@ def assert_ref_parquet(path):
     for p in {str(path), os.path.realpath(str(path))}:
         low = p.lower().replace('\\', '/')
         parts = low.split('/')
-        bad = [s for s in ('observation', 'score_registered', 'per_frame', 'quarantine_gt') if s in low]
+        bad = [s for s in refine.FORBIDDEN_SUBSTR if s != '.parquet' and s in low]
         if 'baseline' in parts:
             bad.append('baseline/')
+        bad += [c + '/' for c in refine.gt_dir_parts(low)]
         if 'refs' not in parts[:-1]:
             bad.append('not under refs/<variant>/')
         if bad:

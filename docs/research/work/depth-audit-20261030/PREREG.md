@@ -53,3 +53,19 @@ Audit code: `pipeline/depth_audit.py`, sha256 `dafbcce4…` (repo HEAD d41382e p
   outputs are kept in the scratchpad (`daudit/work/v1/`).
 - The primary score's code path is unchanged; v2 `behind` must equal v1 `behind` exactly (checked before scoring).
 - Nothing else changes: score, label, episodes, statistic and rule above stand as written.
+
+## Note 2 (2026-10-30 ~08:00 UTC, after verification and after the public ground truth was read): disclosure only
+This note changes nothing above. The public score, label, episodes, statistic, rule and verdict stand as written.
+- **Eval data seen before this file was written.** In the map stage, at 06:38–06:40 UTC, eval-3 depth was read:
+  frames 0, 100, 200 and 312 of store `cache/depth/eval/ep3/depths_fs0.5.npy`, by HTTP range read.
+  - Our pack-6 eval-3 perception and our eval-3 policy reference (glockt) were rendered against those frames for the pot
+    and the spoon (`MAP.md` §5; scratchpad `daudit/work/sanity_ev3_{perc4,ref4}.json`, written 06:40 UTC).
+  - The spoon's `behind` fractions on those four frames (0.015 / 0.056 / 0.042 / 0.008) were seen before the
+    spoon-test range above was fixed at 07:02.
+  - No other eval depth was read by this study.
+  - `MAP.md` (the map-stage record, written 06:50 UTC) is now copied unchanged into this folder.
+- **Consequence for the spoon test.** The test is planned only if the audit is informative, and it was not run. If it
+  ever runs, eval 3 is left out of the test set and reported apart, not counted. The test set becomes evals 5, 6, 15,
+  16, 32, 33, 35, 36 and 37.
+- **Label caveat found in verification.** The label's alignment matters (RESULTS.md, "Verification and fixes"). The verdict
+  holds under all three alignments checked. Claims about which errors depth "can see" depend on the alignment.

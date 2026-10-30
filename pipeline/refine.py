@@ -19,8 +19,9 @@ depth (depth0.npy, or frame 0 of depths_fs0.5.npy), our mesh library (default me
 tracking templates), optional collision pieces (make_assets.py --pieces layout, for COM and hulls), the rectified K
 (KR in the hands file, or the calibration json), and for S0 the ego_cam_c video. Object names and slot order are the
 cam_T_ keys of poses.npz (the kit roster on eval). assert_inference_input() refuses any path that contains
-'observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt', a 'baseline' directory, or is named
-result.json / summary.json / log.txt (on public episodes perc2 writes mocap AUCs into those, perc2.py:502-542).
+'observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt', '_pf.npz', '/gt/', 'calib_gt', a
+'baseline' directory or a directory named 'gt' or '*_gt', or is named result.json / summary.json / log.txt (on public
+episodes perc2 writes mocap AUCs into those, perc2.py:502-542).
 
 Table plane: mkref's own fit_table() with mkref's defaults (ring 10-90 px, 6 mm, 1000 iterations, support_tol 3 cm,
 mkref.py:797-804) on the input frame-0 poses and our meshes (loaded as make_assets.py does), so refine and mkref see the
@@ -109,8 +110,14 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 STEP_ORDER = ['S0', 'S1', 'S3', 'S4', 'S5', 'S2']
 DEFAULT_STEPS = 'S0,S1,S2,S3,S4'
-FORBIDDEN_SUBSTR = ('observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt')
+FORBIDDEN_SUBSTR = ('observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt',
+                    '_pf.npz', '/gt/', 'calib_gt')   # 30 Oct: depth-audit label files and calibration outputs
 FORBIDDEN_BASENAMES = ('result.json', 'summary.json', 'log.txt')
+
+
+def gt_dir_parts(low):
+    """Directory components that mark ground-truth stores: 'gt' or a name ending in '_gt' (quarantine_gt, calib_gt)."""
+    return [c for c in low.split('/')[:-1] if c == 'gt' or c.endswith('_gt')]
 BOARDS = ['wooden_piece_1', 'wooden_piece_2']
 T0 = time.time()
 LOG = []
@@ -128,12 +135,13 @@ def assert_inference_input(path):
     if path is None:
         return
     for p in {str(path), os.path.realpath(str(path))}:
-        low = p.lower()
+        low = p.lower().replace('\\', '/')
         bad = [s for s in FORBIDDEN_SUBSTR if s in low]
         if os.path.basename(low) in FORBIDDEN_BASENAMES:
             bad.append(os.path.basename(low))
-        if 'baseline' in low.replace('\\', '/').split('/'):
+        if 'baseline' in low.split('/'):
             bad.append('baseline/')
+        bad += [c + '/' for c in gt_dir_parts(low)]
         if bad:
             raise AssertionError(f'refine is inference: refusing input {path!r} (resolves to {p!r}; matches {bad}). '
                                  f'Ground truth (mocap poses, scores, per-frame errors, dataset parquets) is read only '

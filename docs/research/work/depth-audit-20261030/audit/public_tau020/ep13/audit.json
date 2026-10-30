@@ -1,0 +1,165 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_vstat_ep13/cache/depth/public/ep13/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/vstat/tau/t0.020/ep13",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/pylib",
+  "--no_rest",
+  "--tau",
+  "0.020",
+  "--force"
+ ],
+ "time_utc": "2026-10-30T07:28:43Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "221fdb73ac1e43e3d40c0398514316f2bae9cd9e263b1ca2603ff2202c9ae7f3",
+  "branch": "refs/heads/claude/focused-pascal-2nz9s1",
+  "commit": "d41382e8b5fe8982ba06173231ddee29ae7059ba",
+  "depth_audit_sha256": "f6147b995384a739184b1f1f9755e4088ac9b60c51f41904156905d3c13696d9"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/poses.npz",
+   "sha256": "db6d9e1c5654b0bceb7b287e095be71081dd91cd81520ff6d11380e43afe8a3d"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/daudit/dl_vstat_ep13/cache/depth/public/ep13/depths_fs0.5.npy",
+   "sha256": "000e5edc2f2cec2e9a88ecdfa3dc62035f78f7823dcef0076a688fabedab5e4b"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in/ep13/hands_refined.npz",
+   "sha256": "537edd9a952a83a96d61a7e7f4410d6721957fa7dee28d966e494bffa690ea1b"
+  },
+  "meshes": {
+   "blue_cup": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+    "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   },
+   "plastic_dish_rack": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+    "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   }
+  }
+ },
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "T": 190,
+ "frames_audited": 190,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  190,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.02,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "blue_cup": {
+   "frames": 190,
+   "valid": 190,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0001,
+    0.0142,
+    0.0626
+   ],
+   "behind_mean": 0.0214,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0031,
+    0.0475,
+    0.5561
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -2.8495,
+    -0.2122,
+    0.1184
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.4147,
+    0.906,
+    0.9744
+   ],
+   "hand_frac_mean": 0.1653,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 152
+  },
+  "plastic_dish_rack": {
+   "frames": 190,
+   "valid": 190,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0004,
+    0.0018,
+    0.0092
+   ],
+   "behind_mean": 0.0039,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0073,
+    0.0294,
+    0.322
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.2035,
+    0.0721,
+    0.2306
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.633,
+    0.7833,
+    0.9128
+   ],
+   "hand_frac_mean": 0.0246,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 0
+  }
+ },
+ "seconds": 21.3
+}
