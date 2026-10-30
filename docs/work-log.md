@@ -5456,3 +5456,15 @@ arm and a no-policy replay floor to stage B.
   the Sharpa's 104.5 mm is ≈ 1.1× [I]. Build two variants: P (perceived bone lengths) and A (anthropometric
   proportions scaled by palm). Falsified if the 10 best frames per public episode still give index < 7.5 cm, or A ≤ P.
 - MANO-vs-capsule head-to-head (§6.9) needs MANO files downloaded locally by the owner (registration); not run.
+
+### 30 Oct ~11:20 UTC — human capsule hand built and replayed (CPU); CPU mass test neutral
+- CPU zero-action mass test (pre-registered): neutral (mean Δ S1 − S0 +0.021). Details in physics README.
+- `pipeline/human_hand.py` (commit 232ca35): 22-DoF human capsule hand with the Sharpa's names; FlashCHORD builds it
+  unchanged (52 bodies, 60 shapes, 22 finger DoF per hand, 17 contact links); zero-pose FK equals the template chain
+  lengths. First IK pass had the finger flexion sign inverted (fingers pinned at extension limits); fixed by deriving
+  each chain's flexion sign from the geometry.
+- Pure copy of the perceived motion with the human hand (S1 physics): P 0.323 / 0.617 / 0.331 / 0.194 and A 0.325 /
+  0.596 / 0.133 / 0.103 (diverged) on ep2/12/18/24 vs floors 0.506/0.605/0.619/0.220 → the copy does not carry objects;
+  ep12 cup lost at f37 as with the Sharpa. `tools/hold_gap.py`: perceived fingertips near (median +0.2–1.8 cm) but not
+  squeezing. [H-size] falsified in this test (P ≥ A). Next: [H-squeeze] (pre-registered in the README).
+- GPU arms: both boxes building references since 10:08 UTC (masses confirmed in their job logs).

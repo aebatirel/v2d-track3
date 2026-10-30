@@ -77,3 +77,34 @@ Readings [M]:
 - ep24: S0 throws board 1 ≈ 80 cm (f137); S1 ≈ 23 cm.
 No GPU decision depends on this (the GPU arms were approved regardless); it says the no-policy replay is limited by
 contacts, so RL is where a mass effect could show.
+
+## Human capsule hand, first pass (30 Oct ~10:40–11:20 UTC, CPU, code 232ca35) — exploratory [M]
+Hand: `pipeline/human_hand.py` (review recommendation (b); Sharpa joint/link names so FlashCHORD's SharpaHands loads
+it; graded human finger gains/efforts; wrist kp 400; no self-contacts inside a hand). Variants: **A** adult template
+(mkref.TEMPLATE_RIGHT: index 8.5 cm, wrist→middle tip 18.5 cm); **P** perceived bone lengths per episode and side
+(index 5.4–7.0 cm). Joint angles fitted per frame to the perceived keypoints (`ref`; median bone-direction error
+9–36° per digit, 10–27 % of joint-frames at a limit, mostly finger spread and DIP hyperextension). Replay = pure copy of
+the perceived human motion (zero action), S1 object physics, scans, no grasp lock, no ILC, no policy.
+
+| episode | floor | human P | human A |
+|---|---|---|---|
+| ep2 pot + lid | 0.506 | 0.323 | 0.325 |
+| ep12 cup → rack | 0.605 | 0.617 | 0.596 |
+| ep18 sweeper + dust pan | 0.619 | 0.331 | 0.133 |
+| ep24 boards | 0.220 | 0.194 | 0.103 (NaN: the simulation diverged) |
+
+Readings:
+- **A copy of the perceived motion does not carry the objects, with either hand size.** ep12: the cup is lost at
+  f37, the same frame as with the Sharpa grasp-lock reference. The simulated wrist follows the perceived wrist to
+  1–2 cm (median), so the simulation does what the reference says.
+- `tools/hold_gap.py` on the base references (scans, our object poses): over every grasp-lock hold phase the nearest
+  perceived fingertip keypoint sits a median +0.2 to +1.8 cm outside the held object (a finger pad is 0.6–0.9 cm
+  outside its keypoint), and ≥ 2 tips are within 1.5 cm in 26–94 % of hold frames (ep24 board 1: 33 %). The perceived
+  hand is near the object but does not squeeze it: video gives positions, not grip force, and a light touch loses to
+  gravity.
+- [H-size] (review): "A no better than P on the median" → **falsified here** (P ≥ A on all four; A diverged on ep24 because
+  adult-length fingers at the perceived angles go deep into the board). In a pure copy the hand that matches the
+  perceived geometry wins; this does not tell us the person's true hand size.
+- Next hypothesis [H-squeeze]: the missing ingredient is the invisible grip force. Test: add a human-plausible squeeze
+  (flexion offsets so the PD gives a few newtons per contact) on the holding hand during grasp-lock hold phases;
+  falsified if zero-action sim_vs_ref with squeeze does not beat the plain copy by ≥ 0.05 on at least 3 of 4 episodes.

@@ -11,7 +11,9 @@
   objects leave the reference by frames 11–61 in every arm (grips, contact overlaps), mass is second order.
 - Running: GPU boxes S0 58386066 and S1 58386069 (≈ $6.50 each
   planned, ledger lines added). Credit before launch $63.49. Nothing goes to Kaggle.
-- Hand representation for the later human-hand physics study: literature review running (background).
+- Human hand: own capsule hand built (`pipeline/human_hand.py`, review in `physics-2026-10-30/human-hand-models.md`).
+  A pure copy of the perceived motion does not carry the objects with either hand size (ep12 cup lost at f37 as with
+  the Sharpa); perceived fingertips sit near the objects but do not squeeze them (`tools/hold_gap.py`). Next: squeeze test.
 
 ## 2026-10-30 ~09:45 UTC: owner decision — object physics may be set "where allowed"; MANO hand back on the table
 - **Owner:** keep the simulator's own world (solver, contact model) but set the objects' physical properties (mass,
