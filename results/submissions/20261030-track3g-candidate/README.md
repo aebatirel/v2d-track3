@@ -1,6 +1,18 @@
 # Track 3 candidate pack 7, 30 Oct 2026: pack 6 with eval 33 replaced
 
-**NOT UPLOADED. Uploading is the owner's decision.** This folder has no Kaggle receipt, and this session made no
+**UPLOADED 30 Oct ~06:40 UTC on the owner's approval** ("you can send the pack 7 to get the score"). Scores below. This folder has no Kaggle receipt, and this session made no
+
+| Board | Pack 7 | Pack 6 |
+|---|---|---|
+| AUC | **0.81460** | 0.81391 |
+| SP-SR | 0.85 | 0.85 |
+| MP-SR | 0.65 | 0.65 |
+| RPE | 3.932 cm | 3.942 cm |
+| MPPE | 2.921 cm | 2.925 cm |
+
+AUC +0.00069 (expected ≈ +0.0003 [estimate], well inside the ±0.008 band). AUC board at 06:45 UTC (API, first rows):
+1 richchentw 0.940, 2 DDD 0.931, 3 Zihao Guo 0.883, 4 Purple 0.870, 5 rlwrld 0.860, 6 SRL 0.856, **7 us 0.8146**,
+8 DSAIL 0.773. Submissions 57795535 / 537 / 538 / 540 / 541; receipt in this folder.
 Kaggle call.
 
 - `track3_submission.parquet`: 9,120 rows, 1,388,061 bytes, sha256

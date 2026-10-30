@@ -4794,3 +4794,9 @@ Advice given:
     [estimate] (eval 33 packed 0.9319 → 0.9401 sim_vs_ref); any move beyond ±0.008 would mean the eval-33 reference
     and the truth disagree for the new trajectory. No rollout is reverted or chosen by its board score (that would
     tune on eval ground truth).
+- 06:45 UTC **pack 7 scored: AUC 0.81460** (pack 6 0.81391; +0.00069 vs the +0.0003 expected), SP-SR 0.85, MP-SR
+  0.65, RPE 3.932 cm (3.942), MPPE 2.921 cm (2.925). Our best AUC, but **7th** on the AUC board now (API, 06:45 UTC):
+  richchentw 0.940, DDD 0.931 (was 0.827 on 27 Oct), Zihao Guo 0.883, Purple 0.870, rlwrld 0.860, SRL 0.856, us
+  0.8146, DSAIL 0.773. The field moved +0.03 to +0.10 since our last read; 5th needs ≈ +0.046, 3rd ≈ +0.068.
+  Reading: insurance swaps (≈ +0.0005 each) cannot close that gap. Only large levers can: the reference side
+  (perception, spoon, templates) and eval 10. The depth audit (workflow wf_1de955f1-fb0) decides where.

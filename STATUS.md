@@ -2,6 +2,12 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~06:45 UTC: PACK 7 UPLOADED (owner-approved) — AUC 0.81460, our best, but 7th: the field moved
+- Pack 7 = pack 6 + eval 33 from arm B. AUC 0.81460 (+0.0007), RPE 3.932, MPPE 2.921, SP-SR 0.85, MP-SR 0.65.
+- AUC board: 0.940 / 0.931 (DDD) / 0.883 / 0.870 / 0.860 / 0.856 / **0.8146 us** / 0.773. 5th needs ≈ +0.046.
+- Small variance swaps cannot close this; large levers only (reference side, spoon, eval 10). Running: GT-free depth
+  audit (decides reference/spoon spend), eval-1 official confirmation prep.
+
 ## 2026-10-30 ~06:20 UTC: eval-1 carve passes on the training box; pack-7 candidate built (NOT uploaded); plan written
 - **Eval 1 (placement carve, standard learner):** seed 43 0.931 ± 0.006 (10 draws, training box), seed 42 0.885 ± 0.050;
   rule mean ≥ 0.852, sd ≤ 0.239: pass. Needs an official-evaluator confirmation (N = 20, ≈ $1.6, rule pre-registered

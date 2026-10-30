@@ -5,38 +5,48 @@
   "submissions": {
     "add_auc": {
       "slug": "v2d-challenge-track3-auc",
-      "state": "PENDING",
+      "state": "COMPLETE",
       "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
       "message": "Successfully submitted to Track 3 - Egocentric - AUC",
-      "ref": 57795535
+      "ref": 57795535,
+      "public_score": "0.81460",
+      "error": ""
     },
     "spider_sr": {
       "slug": "v2d-challenge-track3-sp-sr",
-      "state": "PENDING",
+      "state": "COMPLETE",
       "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
       "message": "Successfully submitted to Track 3 - Egocentric - SP-SR",
-      "ref": 57795537
+      "ref": 57795537,
+      "public_score": "0.85000",
+      "error": ""
     },
     "maniptrans_sr": {
       "slug": "v2d-challenge-track3-mp-sr",
-      "state": "PENDING",
+      "state": "COMPLETE",
       "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
       "message": "Successfully submitted to Track 3 - Egocentric - MP-SR",
-      "ref": 57795538
+      "ref": 57795538,
+      "public_score": "0.65000",
+      "error": ""
     },
     "rpe_cm": {
       "slug": "v2d-challenge-track3-rpe",
-      "state": "PENDING",
+      "state": "COMPLETE",
       "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
       "message": "Successfully submitted to Track 3 - Egocentric - RPE (cm)",
-      "ref": 57795540
+      "ref": 57795540,
+      "public_score": "3.93179",
+      "error": ""
     },
     "mppe_cm": {
       "slug": "v2d-challenge-track3-mppe",
-      "state": "PENDING",
+      "state": "COMPLETE",
       "file": "/home/user/v2d-track3/results/submissions/20261030-track3g-candidate/track3_submission.parquet",
       "message": "Successfully submitted to Track 3 - Egocentric - MPPE (cm)",
-      "ref": 57795541
+      "ref": 57795541,
+      "public_score": "2.92126",
+      "error": ""
     }
   }
 }
