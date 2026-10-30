@@ -4785,3 +4785,12 @@ Advice given:
     falsified, the training-box numbers behind tonight's eval-14 verdict, the recipe arms and arm A's eval-33 0.906 are
     marked "basis unverified".
   - Expected cost ≈ $1.6 (≈ 1.05 h). Nothing goes to Kaggle; any upload is the owner's.
+- ~06:35 UTC **owner approved uploading pack 7** ("you can send the pack 7 to get the score lets see what improve").
+  Uploaded by the agent with the kit's `submit/v2d_submit.py` via `tools/kaggle_upload.py` (kaggle 2.2.5 in the
+  scratchpad pack7_venv), dry run first (valid, 5 uploads left today per board), then the same five boards as pack 6
+  (AUC, SP-SR, MP-SR, RPE, MPPE; meshes identical to pack 6, so CD-O is not re-submitted). File sha256 137c8687…,
+  message "seventh pack 30 Oct 2026 (pack 6 with eval 33 from arm B, 10-draw confirmed), code commit 465320b".
+  - Reading rule, fixed before the score: the board result is a transfer measurement only. Expected ≈ +0.0003 AUC
+    [estimate] (eval 33 packed 0.9319 → 0.9401 sim_vs_ref); any move beyond ±0.008 would mean the eval-33 reference
+    and the truth disagree for the new trajectory. No rollout is reverted or chosen by its board score (that would
+    tune on eval ground truth).
