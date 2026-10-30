@@ -4827,3 +4827,14 @@ Advice given:
   - video box 58363797 has been in run_job.sh setup (snapshot restore / data fetch) since 06:53, 45 min (normal ≈ 15);
     its HTTPS exec tunnel answers 502 and its SSH tunnel times out, so it cannot be inspected. The stall watchdog
     (30 min without file progress) protects the spend. Waiting until ≈ 07:55 before replacing it.
+- ~08:10 UTC **GT-free depth audit: FALSIFIED by its pre-registered rule** (workflow wf_1de955f1-fb0, CPU, $0;
+  `pipeline/depth_audit.py`, `docs/research/work/depth-audit-20261030/{PREREG,RESULTS,MAP}.md`).
+  - Pooled AUROC of the free-space violation score for frames with registered ADD > 2 cm: **0.600** (episode
+    bootstrap 95 % CI 0.40–0.78), 19 public episodes, 7,835 object-frames, 1,447 positives. Rule: informative ≥ 0.75,
+    falsified < 0.65.
+  - Fragile: leave-one-out 0.53–0.74; four episodes hold 82 % of the positives; τ = 2 cm gives 0.672. Every variant
+    still leads to the same decision.
+  - Consequence: no reference or spoon spend on the strength of this audit; the eval audit and the spoon test were not
+    run. Depth sees large track-level offsets (ep31's rack ≈ 0.8 cm proud) but not the typical 2–3 cm errors.
+  - Integrity: the map stage read 4 frames of eval-3 depth before PREREG was written (disclosed in PREREG note 2;
+    eval 3 excluded from any future spoon test). The GT input guard of refine.py / depth_audit.py was tightened.
