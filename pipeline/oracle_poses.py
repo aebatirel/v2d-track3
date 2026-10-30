@@ -16,11 +16,15 @@ v2 (2026-10-30) fixes three defects measured on 6 public twins (CPU check, work 
                 0.00-0.04 deg, frame-0 centres 0.3-1.3 cm from perception (where the perceived hands expect them).
   --align anchor0  the 20 Oct rule, kept to reproduce it: G = W_C[0] cam_T_anchor[0] inv(mocap_anchor[0]) (anchor
                 = slot 0 or --anchor). A cup's arbitrary spin about its axis then moves the other object 16-22 cm.
+  --xform FILE  (with --meshes; leak decomposition B2) take X from a tools/xstar_fit.py json instead of the kit
+                registration: xstar_geom.json (X*_geom, the rigid surface fit of our mesh to the scan) or xstar_trk.json
+                (X*_trk of this episode, fitted to mocap). Opt-in only, never a default. oracle.json then also scores
+                the oracle track in the * convention (poses taken to scan frames by the same X; 1.000 before the snap).
 oracle.json records the conversion, G, the table mkref will fit, the expected per-object snap and the oracle track's
 registered AUC vs mocap (our meshes) before and after that snap.
-Usage: python oracle_poses.py EP PERC_DIR OUT_DIR [--meshes DIR] [--align gravity|anchor0] [--anchor NAME]
-       [--t3 /content/t3] [--kit /content/kit/v2d_submission_kit] [--calib T3/calib.json] [--depth FILE]
-(v1 written 2026-10-20; v2 2026-10-30)
+Usage: python oracle_poses.py EP PERC_DIR OUT_DIR [--meshes DIR [--xform FILE]] [--align gravity|anchor0]
+       [--anchor NAME] [--t3 /content/t3] [--kit /content/kit/v2d_submission_kit] [--calib T3/calib.json] [--depth FILE]
+(v1 written 2026-10-20; v2 2026-10-30; --xform 2026-10-30)
 """
 import argparse, json, os, sys, types
 import numpy as np, pyarrow.parquet as pq, trimesh
@@ -30,12 +34,15 @@ EVAL = {1, 3, 5, 6, 8, 10, 14, 15, 16, 19, 20, 25, 28, 30, 32, 33, 35, 36, 37, 3
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 p.add_argument('ep', type=int); p.add_argument('perc_dir'); p.add_argument('out_dir')
 p.add_argument('--meshes', default=None, help='our mesh library (DIR/<obj>.glb), as score_registered.py --meshes')
+p.add_argument('--xform', default=None, help='with --meshes: X from this xstar_fit.py json, not the kit registration')
 p.add_argument('--align', choices=['gravity', 'anchor0'], default='gravity')
 p.add_argument('--anchor', default=None, help='--align anchor0: the anchor object (default slot 0)')
 p.add_argument('--t3', default='/content/t3'); p.add_argument('--kit', default='/content/kit/v2d_submission_kit')
 p.add_argument('--calib', default=None, help='default T3/calib.json')
 p.add_argument('--depth', default=None, help='frame-0 depth: a (T,H,W) stack or one (H,W) frame; default PERC_DIR/depths_fs0.5.npy')
 a = p.parse_args()
+if a.xform and not a.meshes:
+    sys.exit("--xform converts mocap to our meshes' frames: it needs --meshes")
 ROSTER = f'{a.kit}/data/track_3_evaluation_objects.json'
 if a.ep in EVAL or (os.path.exists(ROSTER) and str(a.ep) in json.load(open(ROSTER)).get('episodes', {})):
     sys.exit(f'episode {a.ep} is an eval episode: the oracle reads ground truth and is for public episodes only')
@@ -122,6 +129,10 @@ for s, n in enumerate(names):
     if a.meshes:
         M[:3, :3] = R; M[:3, 3] = H[s]['anchor'] - R @ ca
     X[n] = M
+if a.xform:                                                                         # opt-in: X*_geom or X*_trk
+    import frame_xform as FX                                                        # noqa: E402
+    X, xkind = FX.load_xform(a.xform, a.ep, names)
+REG_X = [((np.linalg.inv(X[n]) @ np.r_[H[s]['anchor'], 1.0])[:3], X[n][:3, :3].copy()) for s, n in enumerate(names)]
 conv = {n: np.einsum('tij,jk->tik', gt[n], X[n]) for n in names}
 vis = {n: trimesh.load(cand_p[n], force='mesh') for n in names}
 surf = {n: _sample_mesh_surface(np.asarray(vis[n].vertices, np.float64), np.asarray(vis[n].faces, np.int64), 800, 3)
@@ -163,11 +174,12 @@ def to7(Tm):  # 4x4 -> x y z qx qy qz qw (kit order)
     return np.r_[Tm[:3, 3], Rot.from_matrix(Tm[:3, :3]).as_quat()]
 
 
-def score(track):  # registered ADD-AUC vs mocap, exactly score_registered.py's chain (our meshes with --meshes)
+def score(track, reg=None):  # registered ADD-AUC vs mocap, score_registered.py's chain (our meshes with --meshes);
+    reg = reg or REG          # reg=REG_X: the * convention (the conversion's own X instead of the kit registration)
     ach = np.stack([[to7(track[n][t]) for n in names] for t in range(N)])[:, None]
     ref = np.stack([[to7(gt[n][t]) for n in names] for t in range(N)])[:, None]
     for s in range(B):
-        ach[:, :, s] = T3._convert_object_body(ach[:, :, s], *REG[s])
+        ach[:, :, s] = T3._convert_object_body(ach[:, :, s], *reg[s])
         ref[:, :, s, :3] += np.einsum('...ij,j->...i', T3._rotation_matrix(ref[:, :, s, 3:]), H[s]['anchor'])
     axes = [x['axis'] for x in H]; orders = [x['order'] for x in H]; pts = [x['points'] for x in H]
     ach = T3._align_registered_scene(ach, ref, axes)
@@ -189,6 +201,11 @@ info.update(
     support_check_ok=bool(-MKA.support_tol <= h.min() <= MKA.support_max),
     f0_centre_vs_perception_cm={n: round(float(np.linalg.norm(tr[n][0][:3, 3] - perc_w[n][0][:3, 3]) * 100), 2) for n in names},
     perception_vs_mocap=score(perc_w), raw_vs_mocap=score(tr), after_snap_vs_mocap=score(snapped))
+if a.xform:
+    info.update(xform=dict(file=os.path.abspath(a.xform), kind=xkind, note='X from tools/xstar_fit.py, not the kit '
+                           'registration; the *_star scores take the tracks to scan frames by the same X'),
+                perception_vs_mocap_star=score(perc_w, REG_X), raw_vs_mocap_star=score(tr, REG_X),
+                after_snap_vs_mocap_star=score(snapped, REG_X))
 
 # ---------------- outputs (perc2 layout; dtypes as perception's)
 os.makedirs(a.out_dir, exist_ok=True)
