@@ -7,6 +7,8 @@ OUT.npz: q (frames, bodies, 7) body poses [x y z qx qy qz qw], frame (reference 
 CONTACTS=1 also records per frame and body pair the summed contact normal force, tangential force and contact count
 (cf: frames x bodies x bodies x 3; body -1 = world/support stored in the last slot) from FlashCHORD's own contact
 readout (solver.update_contacts with forces), for grip-force analysis (docs/research/notes/24).
+CONTACTS=2 (2026-10-30) also keeps every individual contact: cl (n, 10) rows [record index, body0, body1, position xyz,
+normal xyz (shape0 -> shape1), force on shape0 along the normal], world frame (tools/sim_contacts.py).
 No ground truth is read. Analysis: tools/hand_object_gap.py.
 """
 import atexit, dataclasses, os, sys
@@ -16,6 +18,8 @@ import numpy as np
 mode, out = sys.argv[1], sys.argv[2]
 REC = {'q': [], 'frame': [], 'labels': [], 'cf': []}
 CONTACTS = os.environ.get('CONTACTS', '0') not in ('', '0')
+CONTACT_LIST = os.environ.get('CONTACTS', '0') == '2'
+REC['cl'] = []
 
 
 def contact_table(env):
@@ -33,10 +37,18 @@ def record(env):
     REC['q'].append(env.state_0.body_q.numpy().copy()); REC['frame'].append(int(env.timestep.numpy()[0]))
     if CONTACTS:
         REC['cf'].append(contact_table(env))
+    if CONTACT_LIST:
+        from flash_chord.runtime.contact import read_contacts_w
+        model = env.model if hasattr(env, 'model') else env.scene.model
+        rd = read_contacts_w(model, env.state_0, env.contacts); i = len(REC['q']) - 1
+        for b0, b1, p, n, f in zip(rd.body0_ids, rd.body1_ids, rd.contact_pos_w, rd.contact_normal_w, rd.contact_force_w):
+            REC['cl'].append([i, int(b0), int(b1), *p, *n, float(np.dot(f, n))])
 
 
 def save():
     extra = dict(cf=np.array(REC['cf'], np.float32)) if REC['cf'] else {}
+    if CONTACT_LIST:
+        extra['cl'] = np.array(REC['cl'], np.float64).reshape(-1, 10)
     np.savez_compressed(out, q=np.array(REC['q'], np.float32), frame=np.array(REC['frame']), labels=np.array(REC['labels']), **extra)
     print(f'trace: {len(REC["q"])} frames -> {out}', flush=True)
 

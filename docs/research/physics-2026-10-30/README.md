@@ -276,3 +276,12 @@ Spend: p2s0 $3.16, p2s1 $3.04, p2hu $3.72 (estimates from duration × rate; ledg
   with no contact: lid 8, sweeper 23, board 2 28.
 - **Frame-0 control (pre-registered ~17:50 UTC, before running):** v1 with frame 0 held (no correction at t = 0). If its
   mean Δ < +0.005 the v1 pass is attributed to frame-0 alignment and v1 is **not** adopted.
+
+## "Solver into RL", option 2: honest contact targets (built 30 Oct ~19:00 UTC, CPU) [M]
+`tools/sim_contacts.py` + `tools/trace_rollout.py CONTACTS=2`: the reference's hand–object contact targets (what
+FlashCHORD's contact objective rewards) are replaced by the contacts a simulated replay actually made, moved onto the
+reference object poses; frames where the replay lost the object keep the original targets; a hand that touches nothing
+while every object is on its reference gets no targets. CPU test on ep12's S1 grasp-lock reference: right hand 63 frames
+replaced, 26 kept (cup lost at f37 in this replay), left (parked) hand 7 frames cleared; FlashCHORD loads it; the
+zero-action replay is unchanged (0.600, as expected: contact targets only enter the reward). Intended use: on the
+solver's references in a G4 RL box (only if G3 shows a gain), with option 1 (shorter assist curriculum).
