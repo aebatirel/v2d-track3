@@ -186,3 +186,11 @@ results. None of the entries changes a pre-registered test, threshold or constan
     tampering is caught when the run is audited. Direct `posix.*` calls with `dir_fd` and C-level opens are seen by
     the audit only. Plain reads of unlisted files are refused by the audit (default-deny), not by the hook, as in
     round 2.
+33. **Roster audit: the parquets are no longer hashed by the auditor, and the round-2 report was silently weaker.**
+    In policy roster the auditor exempts the --src parquets from the path rules, then (round 2) tried to hash them for
+    the deny-sha check; its own guard hook refused the `.parquet` open and, GuardError being an OSError then, the
+    auditor's `_content` swallowed the refusal: the round-2 roster audit's "0 forbidden opens" did not include a
+    deny-sha check of the 20 parquets (found in round 3 when entry 27 made the refusal propagate). Round 3 skips the
+    content check for the --src parquets explicitly (the roster tool records each parquet's sha256 itself; no
+    deny-list entry is a parquet). The auditor launches strace through `guard.audit_spawn` (a call-stack door), since
+    the hook's new process-argument check (entry 29h) would refuse an audited command line that names a parquet.

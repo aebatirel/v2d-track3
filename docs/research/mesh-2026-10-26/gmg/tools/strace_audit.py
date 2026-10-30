@@ -335,6 +335,9 @@ def analyze(log, manifest=None, policy='gmg', src=None, out=None, allow=(), allo
         """Checks of a successful read (open for reading, link source) of a regular file."""
         if not e['read'] or not p.startswith('/') or not os.path.isfile(p):
             return
+        if exempt_roster:                                # the --src parquets: read by policy (the roster tool hashes
+            data_reads.add(p)                            # them itself; the auditor's hook refuses .parquet opens)
+            return
         if _interp(p):                                   # interpreter, venv, /usr/lib*, /lib*: system
             if not code:
                 d, det = _c(p)
@@ -527,7 +530,7 @@ def main():
         cmd = a.command[1:] if a.command[:1] == ['--'] else a.command
         os.makedirs(os.path.dirname(os.path.abspath(a.log)), exist_ok=True)
         cwd0 = os.getcwd()
-        r = subprocess.run(['strace', '-f', '-qq', '-y', '-e', TRACE, '-o', a.log, *cmd], env=CHILD_ENV)
+        r = guard.audit_spawn(['strace', '-f', '-qq', '-y', '-e', TRACE, '-o', a.log, *cmd], env=CHILD_ENV)
         rep = analyze(a.log, a.manifest, a.policy, a.src, a.out, cwd0=cwd0, **kw)
         rep['command'] = cmd
         rep['returncode'] = r.returncode

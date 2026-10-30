@@ -1240,6 +1240,33 @@ class TestStrace(Base):
                 if os.path.exists(p):
                     os.remove(p)
 
+    def test_audit_roster_policy(self):
+        """Policy roster (M0r): the --src parquets may be read (the auditor does not hash them: its own hook refuses
+        .parquet opens, round 3); any other data read, and any parquet outside --src, is caught."""
+        tag = os.path.basename(T['D'])
+        src = os.path.join(os.path.dirname(T['D']), f'roster_src_{tag}')
+        pq = _w(f'{src}/episode_000002.parquet', b'PAR1 synthetic PAR1')
+        log = os.path.join(os.path.dirname(T['D']), f'roster_{tag}.strace')
+        out = os.path.join(os.path.dirname(T['D']), f'roster_out_{tag}.json')
+        try:
+            args = [sys.executable, AUDIT, 'run', '--policy', 'roster', '--src', src, '--out', out, '--log', log, '--',
+                    'cat', pq]
+            r = subprocess.run(args, capture_output=True, text=True, env=env(run=False), cwd='/tmp', timeout=300)
+            rep = _json(log + '.audit.json')
+            self.assertEqual(rep['forbidden_opens'], 0, r.stdout[-2000:] + r.stderr[-2000:])
+            self.assertEqual(rep['data_reads'], [pq])
+            args[-1:] = [pq, T['other'], T['gt']['.parquet']]
+            r = subprocess.run(args, capture_output=True, text=True, env=env(run=False), cwd='/tmp', timeout=300)
+            rep = _json(log + '.audit.json')
+            self.assertEqual(rep['forbidden_opens'], 2, json.dumps(rep, default=str)[:2000])
+            self.assertIn(T['other'], {f['path'] for f in rep['unlisted']})
+            self.assertIn(T['gt']['.parquet'], {f['path'] for f in rep['forbidden']})
+        finally:
+            shutil.rmtree(src, ignore_errors=True)
+            for p in (log, log + '.audit.json', out):
+                if os.path.exists(p):
+                    os.remove(p)
+
     def test_audit_reconciles_det_opens(self):
         """A guarded process loads the det dump through load_npz and writes its manifest; a child `cat` of the same
         file in the same audited command is an unguarded open and is caught."""

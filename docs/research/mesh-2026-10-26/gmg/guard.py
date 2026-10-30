@@ -1453,6 +1453,8 @@ def _event_reason(event, args):
     if event == 'os.truncate':
         return _truncate_reason(*args[:2])
     if event in ('subprocess.Popen', 'os.exec', 'os.posix_spawn', 'os.spawn'):
+        if _guard_frame(_SPAWNERS):                 # the strace auditor launching the command it audits
+            return None
         parts = list(args[1:2]) if event != 'os.spawn' else list(args[2:3])
         parts.append(args[0] if event != 'os.spawn' else args[1])
         for p in parts:
@@ -1548,6 +1550,13 @@ def _os_replace(src, dst, *, src_dir_fd=None, dst_dir_fd=None):
     return r
 
 
+def audit_spawn(argv, env=None):
+    """tools/strace_audit.py only: run ARGV (strace and the audited command) without the hook's argument check. The
+    command's own file accesses are what the audit checks, so its arguments may name files the hook would refuse (the
+    roster parquets). Returns the CompletedProcess."""
+    return subprocess.run(list(argv), env=env)
+
+
 def install_hook():
     """Install the in-process guard (permanent for the interpreter; done at import)."""
     if not _HOOK['installed']:
@@ -1565,6 +1574,7 @@ def _check_roots():
 
 _DET_OPENERS = frozenset(f.__code__ for f in (load_npz, _sha_file, _npz_names))
 _PROTECTED_WRITERS = frozenset(f.__code__ for f in (set_run, _ledger_append))
+_SPAWNERS = frozenset((audit_spawn.__code__,))
 _PREFIXES = tuple(sorted({os.path.realpath(p).rstrip('/') + '/' for p in (sys.prefix, sys.exec_prefix)
                           if os.path.realpath(p) not in ('/', '/usr', '/usr/local')}))
 sys.modules.setdefault('gmg.guard', sys.modules[__name__])
