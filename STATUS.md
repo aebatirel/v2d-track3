@@ -2,6 +2,16 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~03:30 UTC: recipe arms inconclusive; packed recipe stays. Carve retrain running; eval-33 confirmation
+- **Recipe arms** (A control vs B CURR_SCALE 0.4 vs C ball kd 2, 5-eval means): no signal and no falsification for B or
+  C by the pre-registered rule, so no second seed. Details: work log 30 Oct 03:25.
+- **Eval-33 candidate** (B's checkpoint, 0.923 ± 0.013 on 5 draws): 10-draw confirmation box, rule fixed beforehand
+  (mean ≥ 0.884, sd ≤ 0.137). A fresh retrain alone (A: 0.906 ± 0.058) also beats the packed policy's H5 mean 0.854.
+- **Running:** carve retrain batch (evals 1 and 14, 2 seeds each, NREP 10; boxes 58340108/118/125/131, results
+  ≈ 06:00–07:00 UTC). Rule: eval 1 mean ≥ 0.852 and sd ≤ 0.239; eval 14 mean ≥ 0.645 and sd ≤ 0.199.
+- **Refine stage:** S2 (0.545-frame timing advance) adopted on public data (+0.006, 17/20); S1/S3 rejected, S4 neutral.
+- Spend this session: $16.90 actual + $19 planned of $45. Nothing sent to Kaggle.
+
 ## 2026-10-29 ~23:15 UTC: H5 done. Pack 6 was lucky; true expected ≈ 0.78 on the leaderboard
 - **10 fresh draws per packed checkpoint:** mean of means **0.8755** vs packed 0.9164. A re-run of today's policies
   ≈ 0.78 AUC on the leaderboard (estimate, transfer 0.74–0.78). Summary: `docs/analysis/h5-20261029/h5_summary.json`.

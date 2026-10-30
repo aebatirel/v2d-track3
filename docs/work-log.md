@@ -4695,3 +4695,33 @@ Advice given:
   - The first launch command was blocked by the client's safety check over an `rm -rf $A` in the eval-14 job string.
     It was rewritten with `mv` (no deletion). Nothing had run.
   - Session spend: $10.53 actual + arm A (~$6, still running) + $18 planned ≈ $34.5 of $45.
+- 03:25 UTC **recipe arms verdict** (pre-registered rule of ~22:40 UTC; control A `20261029-rcA-34bf6ae`, box 58317885
+  self-destroyed after its last RESULT at 03:21; ledger actual $6.37 = 4.62 h × $1.38/h, an estimate from duration ×
+  rate; its container took ~1.5 h to start). 5-eval means:
+
+  | Arm | ep12 mocap AUC | eval 32 sim_vs_ref | eval 33 sim_vs_ref |
+  |---|---|---|---|
+  | A control (packed recipe) | 0.912 ± 0.033 | 0.631 ± 0.166 | 0.906 ± 0.058 |
+  | bars for B/C (signal) | ≥ 0.882 | ≥ 0.661, sd ≤ 0.186 | ≥ 0.936, sd ≤ 0.078 |
+  | B CURR_SCALE 0.4 | 0.892 ✓ | 0.743 ± 0.138 ✓ | 0.923 ± 0.013 ✗ (−0.013) |
+  | C ball kd 2 | 0.909 ✓ | 0.702 ± 0.200 ✗ (sd) | 0.883 ± 0.014 ✗ |
+
+  - **No signal for B or C** (each misses at least one eval gate); **neither is falsified** (no episode ≤ A − 0.03).
+    Inconclusive by the rule, so neither change buys a second seed. The packed recipe stays.
+  - C's zero-action replays under kd 6 / kd 2 (the confound check) do not appear in its job log; not run. Moot, as C
+    shows no signal.
+  - Reading [H]: B's eval-32 gain (+0.11) is the largest single effect but n = 5 per arm and the eval-32 sds are
+    0.14–0.20, so it is within draw noise. All three retrained eval-32 policies are far below the packed one's H5 mean
+    (0.838 ± 0.068): the packed eval-32 policy stays.
+  - Eval 33: A's retrained checkpoint (0.906 ± 0.058) also beats the packed one's H5 mean (0.854 ± 0.137), so the gain
+    of B's checkpoint on eval 33 is mostly "a fresh retrain on the same reference", not CURR_SCALE.
+- **Eval-33 confirmation pre-registered (before any result).** One box, `ops/jobs/h5_reeval.sh` with
+  `PICK_EXTRA=33:20261029-rcB-34bf6ae EPS_ONLY=33 N=10`: pack 6's environment with B's eval-33 checkpoint
+  (policy_40001536, trained REUSE_REF on the same stored reference as the packed one), draw 1 = the full pack, draws
+  2–10 eval 33 only.
+  - Rule: B's checkpoint is the eval-33 candidate for a future pack only if its 10-draw mean sim_vs_ref ≥ 0.884 (H5
+    mean + 0.03) and sd ≤ 0.137 (H5 sd). The 5 draws already taken on the training box are not pooled.
+  - A's checkpoint is NOT tested now (it was the control, not a named candidate); it is the fallback only if B fails.
+  - Draw 1 also gives one more full-pack draw (with B at 33); it is logged, not used for any choice.
+  - Expected cost ≈ $1 (setup ~20 min + 1 full draw + 9 one-episode draws). Session total then ≈ $16.90 actual +
+    $18 carves + $1 ≈ $36 of $45. Nothing goes to Kaggle; any pack is the owner's decision.

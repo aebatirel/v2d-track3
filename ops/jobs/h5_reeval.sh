@@ -8,11 +8,14 @@
 #   2) draws 2..N: the same pristine kit evaluator on the same checkpoints JSON, each into results/h5/r<i>;
 #   3) results/h5/h5_summary.json: per episode n, mean, sd, min, p20 and the packed draw (pack 6 summary.txt).
 # As a job: ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run_id> 'N=10 bash ops/jobs/h5_reeval.sh'
+# Candidate confirmation (2026-10-30): PICK_EXTRA="EP:RUN ..." is appended to pack 6's PICK (later entries win, so it
+# replaces those episodes' checkpoints) and EPS_ONLY="EP ..." limits draws 2..N to those episodes (draw 1 stays the full
+# pack). E.g. PICK_EXTRA=33:20261029-rcB-34bf6ae EPS_ONLY=33: 10 fresh draws of a candidate eval-33 checkpoint.
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; N=${N:-10}; H=/content/results/h5; mkdir -p $H
 C=/content/v2d-track3/meshes/carve
 export RUNS="20261026-fr32s46b-5e0e100@refs/glockt/ep32,refs/sf/ep32 20261026-gl10A2-5e0e100@refs/glockt/ep10,refs/glock/ep10 20261026-c25s42-feb0407@refs/perc2mcks 20261026-fr3233s43-6a8a0e2@refs/glockt/ep33,refs/sf/ep33 20261025-evb0810-ee7ba8e@refs/glockt/ep8,refs/sf/ep8 20261025-evb1420-ee7ba8e@refs/glockt/ep14,refs/sf/ep14,refs/glockt/ep20,refs/sf/ep20 20261025-fr3233-043275f@refs/glockt/ep32,refs/sf/ep32 20261025-std0116-ee7ba8e@refs/perc2mcks 20261025-std1928-ee7ba8e@refs/perc2mcks 20261025-std30-ee7ba8e@refs/perc2mcks 20261024-pack-31ef267"
-export PICK="3:20261024-seed43-61101f5 5:20261024-seed43-61101f5 15:20261024-seed43-61101f5 16:20261024-seed43-61101f5 1:20261025-std0116-ee7ba8e:final 8:20261025-evb0810-ee7ba8e:final 14:20261025-evb1420-ee7ba8e:final 20:20261025-evb1420-ee7ba8e:final 19:20261025-std1928-ee7ba8e:final 28:20261025-std1928-ee7ba8e:final 25:20261026-c25s42-feb0407:ck=runs/perc2mcks/ep25-s42/policy_250003456.safetensors 30:20261025-std30-ee7ba8e:final 32:20261026-fr32s46b-5e0e100 33:20261026-fr3233s43-6a8a0e2 10:20261026-gl10A2-5e0e100"
+export PICK="3:20261024-seed43-61101f5 5:20261024-seed43-61101f5 15:20261024-seed43-61101f5 16:20261024-seed43-61101f5 1:20261025-std0116-ee7ba8e:final 8:20261025-evb0810-ee7ba8e:final 14:20261025-evb1420-ee7ba8e:final 20:20261025-evb1420-ee7ba8e:final 19:20261025-std1928-ee7ba8e:final 28:20261025-std1928-ee7ba8e:final 25:20261026-c25s42-feb0407:ck=runs/perc2mcks/ep25-s42/policy_250003456.safetensors 30:20261025-std30-ee7ba8e:final 32:20261026-fr32s46b-5e0e100 33:20261026-fr3233s43-6a8a0e2 10:20261026-gl10A2-5e0e100 ${PICK_EXTRA:-}"
 export EP_LIB="8:/content/v2d-track3/meshes/library_v3x" ASSET_PIECES="$C/ev25 $C/ev10"
 export COMMIT_URL=https://github.com/aebatirel/v2d-track3/commit/$(git -C $REPO_DIR rev-parse HEAD)
 label "H5: draw 1 (pack-6 environment)"
@@ -20,6 +23,11 @@ bash $REPO_DIR/ops/jobs/pack_eval.sh || { log "h5: pack_eval FAILED" >> $J; bash
 CK=/content/results/final_eval/checkpoints.json; CLEAN=/content/v2d_clean; KIT=/content/kit/v2d_submission_kit
 FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python
 cp -r /content/results/submission/qa $H/r1
+if [ -n "${EPS_ONLY:-}" ]; then
+  python -c "import json, sys; m = json.load(open(sys.argv[1])); json.dump({e: m[e] for e in sys.argv[3:]}, open(sys.argv[2], 'w'), indent=1)" \
+    $CK $H/checkpoints_only.json $EPS_ONLY || exit 1
+  CK=$H/checkpoints_only.json; log "h5: draws 2..$N only for episodes $EPS_ONLY ($(tr -d '\n ' < $CK | cut -c1-300))" >> $J
+fi
 for i in $(seq 2 $N); do
   label "H5: draw $i of $N"
   O=$H/r$i; mkdir -p $O/results
