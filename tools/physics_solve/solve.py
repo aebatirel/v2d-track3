@@ -168,6 +168,8 @@ def worker_main(conn, parquet, W, cfg):
     import warp as wp
     wp.config.log_level = wp.LOG_WARNING
     env, labels = build_env(parquet, W, planner=True)
+    env.reset(frame_id=0)   # required: an explicit reset sets the reset policy's VOC assist to the config's 0 and ends its
+    # reset hold; a never-reset env starts with VOC 1 and holds the reference frame for voc_decay_steps (v1 bug)
     ref = Ref(parquet); nb = len(labels) // W
     ob = [labels.index(f'track3_{n}/object') for n in ref.names]
     buf = env.action.buffers; A = buf.layout.action_dim
@@ -318,12 +320,12 @@ def main():
                 J = (tot * wts).sum(1) / wts.sum()
                 i_best = int(np.argmin(J))
                 if J[i_best] < best[0]:
-                    best = (float(J[i_best]), U[i_best].copy(), cost_obj[i_best].copy())
+                    best = (float(J[i_best]), U[i_best].copy(), cost_obj[i_best].copy()); best_from = (it, i_best)
                 hist.append(dict(it=it, J0=round(float(J[0]), 5), Jbest=round(float(J[i_best]), 5), Jmed=round(float(np.median(J)), 5)))
                 k = max(2, int(round(a.top * N))); top = np.argsort(J)[:k]
                 r = -J[top]; r = (r - r.mean()) / (r.std() + 1e-2); w = np.exp(r / a.temperature); w /= w.sum()
                 mean = np.einsum('i,iha->ha', w, U[top])
-            chosen = best[1]; row.update(J_warm=hist[0]['J0'], J_best=round(best[0], 5), iters=hist,
+            chosen = best[1]; row.update(J_warm=hist[0]['J0'], J_best=round(best[0], 5), iters=hist, best_from=best_from,
                                         pred_obj_cost=round(float(best[2][:C].mean()), 5))
         else:
             chosen = plan[:H].copy()
@@ -346,7 +348,7 @@ def main():
         add_now = add_dist(Q[-1][ob].astype(np.float64), ref.OP[min(t + C, T - 1)], ref.OQ[min(t + C, T - 1)], pts)
         row['add_cm'] = np.round(100 * add_now, 1).tolist(); row['sec'] = round(time.time() - t_rep, 1)
         replans.append(row)
-        log(f'[{time.time() - t_start:.0f}s] t={t} {row.get("active")} J warm {row.get("J_warm", "-")} best {row.get("J_best", "-")} '
+        log(f'[{time.time() - t_start:.0f}s] t={t} {row.get("active")} J warm {row.get("J_warm", "-")} best {row.get("J_best", "-")} {row.get("best_from", "")} '
             f'pred {row.get("pred_obj_cost", "-")} real {row["real_obj_cost"]} ADD cm {row["add_cm"]} ({row["sec"]} s)')
         # receding horizon: shift, append the last offset decaying to zero (Do as I Do's blend to the reference)
         tail = chosen[C:]
