@@ -4971,3 +4971,17 @@ diagnostic; nothing is picked for submission.
     GPU total $14-27 [E] (G0 $1-2, G1 $1.5-3.5, G2 $4-8, G3 $3-5, G4 $4-8).
 - Blocked on owner D1: `HF_TOKEN` and `VAST_API_KEY` are unset and no public depth is local [M]. G0, the clean
   extraction (B4), R1 and the eval run wait; B0-B2 and the dev steps can start now.
+
+## 2026-10-30 ~14:45 UTC: gmg design done and frozen; build workflow 1 launched
+- Design workflow `wf_cb2e792a-f27` finished (12 agents, 2.48 M subagent tokens). Judge tally: obs-first 19, hybrid
+  18, gen-first 15.5, neural-recon 13. Synthesis = obs-first CPU core + hybrid producer ensemble + gen-first's
+  contact-aware SAM 3D inputs + neural-recon's three-state evidence field; one frozen GT-free selector S1. Critic
+  listed 15 must-fix items (scan-coincident 2.5 mm wall default, scan-informed V3 tau 0.20, undisclosed eval-track
+  analyses, V2 blind to nesting, guard gaps, ...); the revision agent fixed all and froze SPEC/PREREG in commit
+  fd814f6 (record ff9702e). Zero new scan scorings.
+- Correction to the spec's D1 ("HF_TOKEN and VAST_API_KEY not set"): both services are reachable through the
+  session proxy (HF API 200, Vast /users/current 200 at ~14:30 UTC); ops/vast.sh already relies on the proxy. Public
+  depth (2.2 GB per episode) is in the store, not local; extraction streams it.
+- Build workflow 1 `wf_7426de2f-f07` (gmg-build-1): steps B0, B1, then B2->B3 (incl. GPU batch G0, est. $1-2, under
+  the owner's standing go-ahead), B5->B6, B7, B4; each step build -> adversarial verify -> fix (max 3 rounds) ->
+  commit by the step agents (own files only); integration critic writes gmg/build/REVIEW-1.md.

@@ -12,6 +12,18 @@
 - **Blocked on D1:** `HF_TOKEN` and `VAST_API_KEY` are not set, and no public depth is local. G0, clean extraction,
   R1 and the eval run wait for them.
 
+## 2026-10-30 ~14:45 UTC: gmg design frozen; build 1 running (B0-B7 incl. GPU probe G0)
+- **Design frozen** (commit fd814f6): `docs/research/mesh-2026-10-26/gmg/SPEC.md` + `PREREG.md`. Chosen: an
+  observation-first CPU core (joint extraction with per-object ownership, shells, symmetry/grammar completion into
+  unseen voxels only, free-radius markers) plus generators (SAM 3D with our metric depth, Pixal3D-MV) fused into
+  never-seen voxels, picked by one frozen GT-free rule (S1) validated leave-one-object-out. Judges: obs-first 19,
+  hybrid 18, gen-first 15.5, neural-recon 13. The owner's pot/lid point is enforced in five places.
+- **SPEC decision D1 is moot:** HF store and Vast work through the session proxy (HTTP 200); no tokens needed.
+- **Build 1** `wf_7426de2f-f07`: B0 guard, B1 walking skeleton, then chains B2->B3 (views, masks, remesh, GPU probe
+  G0 = the owner's pot/lid test with our depth), B5->B6 (score/select, X0 and X-check on existing labels), B7
+  (structure, markers), B4 (clean joint extraction of 20 public episodes). Each step is verified adversarially.
+  Notes per step in `gmg/build/`.
+
 ## 2026-10-30 ~12:15 UTC: generalized mesh generator (gmg) design running; stage 1b closed
 - **Owner asks for a generalized mesh generator.** Design workflow `wf_cb2e792a-f27`: evidence and literature done
   (`docs/research/mesh-2026-10-26/gmg/evidence.md`, `lit/gmg-2026-10-30.md`). Four designs, judges, spec and
