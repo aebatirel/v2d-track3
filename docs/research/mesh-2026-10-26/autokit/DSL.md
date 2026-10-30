@@ -494,6 +494,13 @@ parts did not explain: the residual of every earlier part (voxel clusters of ≥
 host = union of the earlier parts). The report's `diag.impl` says which implementation ran (`shell.surface_patch`;
 `parts.surface_patch_standin` only if shell.py lacks it).
 
+**Attachment (stage-1b integration, `shell.HOST_ATTACH`).** The residual cut and the 2-voxel host trim leave the
+patch 2–4 mm off the host, beyond the gates' `TOUCH` (2 mm), so `G_CONN` counted an attached patch as a separate
+body (measured, lid ep2 t 2.5: conn 0.937). `surface_patch` now moves each patch border vertex that lies within the
+island rule's host reach, whose move is supported by observed points and does not run along the border, onto the
+host surface (`shell._host_attach`, report `host_attach`). Measured on the same build: conn 1.0, fidelity sum
+1.656 → 1.628 mm, outside-silhouette `dr_fsv` unchanged.
+
 **Face budget.** The kit decodes every mesh to 4096 faces with one global decimation, which thins closed thin-shell
 patches (measured: decode area −2 to −11 % on the stage-1b patch rows built without a budget). Run programs that
 contain a patch with `run_program(..., budget=4000)`: the patch is built within `budget_share` (40 %) of the budget

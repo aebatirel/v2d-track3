@@ -131,9 +131,10 @@ ISLAND_UNION = False     # island rule: False = literal rule (a piece joins the 
                          # Measured kept area with True on six public dev episodes: +0.0 on four, +0.4 % and +1.6 %
                          # on the two largest sheets (stage-1b shell report)
 HOST_TRIM_FRAC = 2.0     # surface_patch: keep sheet parts > 2 VOXEL outside the host
-HOST_ATTACH = True       # surface_patch (stage-1b integration): border vertices of the trimmed sheet within the island
-                         # rule's host reach move onto the host surface, so an attached patch touches its host (the
-                         # 2-voxel trim otherwise leaves a 2-4 mm gap > the gates' TOUCH 2 mm: G_CONN saw a separate body)
+HOST_ATTACH = True       # surface_patch (stage-1b integration): border vertices within the island rule's host reach
+                         # whose move is supported by observed points go onto the host surface (_host_attach), so an
+                         # attached patch touches its host (the residual cut / trim otherwise leaves a 2-4 mm gap >
+                         # the gates' TOUCH 2 mm, and G_CONN saw a separate body)
 PATCH_MIN_PTS = 200      # surface_patch: fewer residual points than this -> empty patch
 MERGE_TOL = 1e-6         # vertices closer than 1 um are merged (the decimator can leave sub-um clusters)
 SPLIT_NUDGE = 2e-5       # manifold_split: copies of a split vertex move 20 um into their own fan (>> float32 GLB
@@ -1057,25 +1058,65 @@ def _host_trim(m, host, dist):
     return out, dict(host_trim_mm=round(dist * 1e3, 2), host_trimmed_area_cm2=round((m.area - out.area) * 1e4, 2)), th
 
 
-def _host_attach(m, host, reach):
-    """Stage-1b integration (A inside B): move every BORDER vertex of the trimmed sheet that lies within `reach` of
-    the host (the island rule's host_touch: the pieces it already counts as attached) to its closest point on the host
-    surface; interior vertices are unchanged. Measured on a public dev episode (lid program + shell_patch): the main
-    patch piece sat 3.8 mm (t 2.5) / 2.1 mm (t 4.0) from the host after the trim, beyond the gates' TOUCH (2 mm), so
-    gates.connectivity counted it as a separate body. Generic, no object knowledge. Returns (mesh, info)."""
+def _border_verts(F):
+    F = np.asarray(F, np.int64)
+    if not len(F):
+        return np.zeros(0, np.int64)
+    e = np.sort(np.vstack([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]]), 1)
+    u, c = np.unique(e, axis=0, return_counts=True)
+    return np.unique(u[c == 1].ravel())
+
+
+def _host_attach(m, host, reach, support=None, sup_r=VOXEL, cos_max=0.7):
+    """Stage-1b integration (A inside B): attach a patch sheet to its host. A border vertex moves to its closest point
+    on the host surface when (a) it lies within `reach` of the host (the island rule's host_touch: the pieces that
+    rule already counts as attached), (b) the move is supported by observations: observed points (all of the
+    episode's, `support`) lie within sup_r (1 voxel) of the move segment at 1/4, 1/2 and 3/4 (the surface continues
+    toward the host: an edge cut by the residual assignment or the host trim, not a free edge of the object), and
+    (c) the move is not along the border (|cos(move, border tangent)| < cos_max: no folding of a free edge that
+    runs toward the host). Interior vertices are unchanged. Measured on a public dev episode (lid program +
+    shell_patch): the main patch piece sat 3.8 mm (t 2.5) / 2.1 mm (t 4.0) from the host, beyond the gates' TOUCH
+    (2 mm), so gates.connectivity counted it as a separate body (the residual assignment leaves the gap; the trim
+    removed nothing there). Generic, no object knowledge. Returns (mesh, info)."""
     F = np.asarray(m.faces, np.int64)
-    info = dict(attach_reach_mm=round(reach * 1e3, 2), border_verts=0, attached_border_verts=0)
+    info = dict(attach_reach_mm=round(reach * 1e3, 2), border_verts=0, within_reach=0, attached_border_verts=0)
     if not len(F):
         return m, info
     e = np.sort(np.vstack([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]]), 1)
     u, c = np.unique(e, axis=0, return_counts=True)
-    bv = np.unique(u[c == 1].ravel())
+    be = u[c == 1]
+    bv = np.unique(be.ravel())
     info['border_verts'] = int(len(bv))
     if not len(bv):
         return m, info
     V = np.array(m.vertices, np.float64)
     cp, d, _ = trimesh.proximity.closest_point(host, V[bv])
-    sel = np.asarray(d) <= reach
+    d = np.asarray(d)
+    sel = (d <= reach) & (d > 1e-6)
+    info['within_reach'] = int(sel.sum())
+    mv = cp - V[bv]
+    # border tangent: from the vertex's two border neighbours (other valences: no tangent test)
+    nb = {}
+    for a, b in be:
+        nb.setdefault(int(a), []).append(int(b)); nb.setdefault(int(b), []).append(int(a))
+    tan = np.zeros_like(mv)
+    for k, v in enumerate(bv):
+        n_ = nb.get(int(v), [])
+        if len(n_) == 2:
+            tan[k] = V[n_[1]] - V[n_[0]]
+    tl = np.linalg.norm(tan, axis=1); ml = np.linalg.norm(mv, axis=1)
+    cosv = np.where((tl > 0) & (ml > 0), np.abs(np.einsum('ij,ij->i', mv, tan)) / np.maximum(tl * ml, 1e-12), 0.0)
+    along = cosv >= cos_max
+    info['along_border'] = int((sel & along).sum())
+    sel &= ~along
+    if support is not None and len(support) and sel.any():
+        tr = cKDTree(np.asarray(support, np.float64))
+        sup = np.ones(len(bv), bool)
+        for f_ in (0.25, 0.5, 0.75):
+            q = V[bv] + f_ * mv
+            sup &= np.isfinite(tr.query(q, distance_upper_bound=sup_r)[0])
+        info['unsupported'] = int((sel & ~sup).sum())
+        sel &= sup
     if sel.any():
         V[bv[sel]] = cp[sel]
         info.update(attached_border_verts=int(sel.sum()),
@@ -1083,9 +1124,10 @@ def _host_attach(m, host, reach):
     return trimesh.Trimesh(V, F, process=False), info
 
 
-def shell_sheet(obs, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, host=None, pitch=None):
+def shell_sheet(obs, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, host=None, pitch=None, P_all=None):
     """t-independent part of the route: oriented samples, measured thickness, one face per wall, the open sheet and
-    its islands. Returns a dict for solidify_sheet (several t and budgets reuse it)."""
+    its islands. Returns a dict for solidify_sheet (several t and budgets reuse it). P_all (with host): every observed
+    point of the episode, the support test of _host_attach (default: obs['pts'])."""
     t0 = time.time()
     rep = dict(voxel_mm=voxel * 1e3, mode=mode, two_sided=bool(two_sided), carve=bool(carve), host=host is not None)
     P = np.asarray(obs['pts'], np.float64); C = np.asarray(obs['cam'], np.float64)
@@ -1152,7 +1194,9 @@ def shell_sheet(obs, voxel=VOXEL, mode='oriented', two_sided=True, carve=False, 
         rep['islands'] = isl
         rep['islands_dropped'] = isl['dropped_n']; rep['islands_dropped_area_cm2'] = isl['dropped_area_cm2']
         if host_tree is not None and HOST_ATTACH and len(m.faces):
-            m, ainfo = _host_attach(m, host, HOST_TRIM_FRAC * voxel + TOUCH + pitch); rep['host_attach'] = ainfo
+            m, ainfo = _host_attach(m, host, HOST_TRIM_FRAC * voxel + TOUCH + pitch,
+                                    support=P_all if P_all is not None else P, sup_r=voxel)
+            rep['host_attach'] = ainfo
     else:
         rep['islands_dropped'] = 0; rep['islands_dropped_area_cm2'] = 0.0
     rep['sheet_area_cm2'] = round(m.area * 1e4, 2) if len(m.faces) else 0.0
@@ -1236,7 +1280,10 @@ def surface_patch(obs, idx=None, t=0.0025, max_faces=None, host=None, voxel=VOXE
         sub = {k: np.asarray(obs[k])[idx] for k in ('pts', 'cam', 'frame') if k in obs}
     else:
         sub = {k: obs[k] for k in ('pts', 'cam', 'frame') if k in obs}
-    sh = shell_sheet(sub, voxel=voxel, mode=mode, two_sided=two_sided, host=host)
+    P_all = np.asarray(obs['pts'], np.float64) if host is not None else None
+    if P_all is not None:
+        P_all = P_all[np.all(np.isfinite(P_all), 1)]
+    sh = shell_sheet(sub, voxel=voxel, mode=mode, two_sided=two_sided, host=host, P_all=P_all)
     return solidify_sheet(sh, t, max_faces=max_faces, mode=mode, return_report=return_report, rim=rim)
 
 

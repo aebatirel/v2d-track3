@@ -10,7 +10,8 @@ Synthetic (no data):
     kept), a flat flake 10 mm above it (not ball-like, dropped), a flake 1 mm above it (touches, kept) and a speck
     of 0.2 cm^2 (dropped). Checks the kept/dropped verdicts and the dropped-area report.
   - patch: surface_patch on a host cylinder with a fin sticking out, host = the cylinder: the patch must hold the
-    fin and nothing within 2 voxels of the host surface.
+    fin and no duplicate of the host surface (nothing off the fin within 2 voxels of the host); with
+    shell.HOST_ATTACH (stage-1b integration) the fin's trim-cut root must also touch the host (gap <= TOUCH).
   - split: manifold_split on a bow-tie, a 3-face edge and a closed sphere (no face lost, edge-manifold, nothing
     to split on the sphere); solidify with rim 'quad' and 'taper' on a one-triangle-wide strip and on an annulus
     (watertight, consistently wound, positive volume); a mesh under a /scan/ path is refused by the mesh loader.
@@ -236,18 +237,26 @@ def synthetic_patch(out, t=0.0025, seed=2):
         S = trimesh.sample.sample_surface(m, 50000, seed=0)[0]
         rr = np.linalg.norm(S[:, :2], axis=1)
         near_host = float(np.mean(rr < R0 + 2 * SH.VOXEL - 1e-4))
-        on_fin = float(np.mean((np.abs(S[:, 1]) < 0.006) & (S[:, 0] > R0)))
+        # stage-1b integration (shell.HOST_ATTACH): the trim-cut edge is attached to the host, so the patch now
+        # reaches the host surface along the fin root; the fin (|y| < 6 mm) counts up to the host surface (r >= R0 -
+        # 0.1 mm: the rim quads of the attached edge lie on it), and a duplicate of the host surface is a sample within
+        # the trim distance of the host OFF the fin
+        on_fin = float(np.mean((np.abs(S[:, 1]) < 0.006) & (rr > R0 - 1e-4) & (S[:, 0] > 0)))
+        dup_host = float(np.mean((rr < R0 + 2 * SH.VOXEL - 1e-4) & ~((np.abs(S[:, 1]) < 0.006) & (S[:, 0] > 0))))
+        gap_host_mm = float(np.min(np.abs(rr - R0)) * 1e3)
     else:
-        near_host, on_fin = None, None
+        near_host, on_fin, dup_host, gap_host_mm = None, None, None, None
     b = kit_check(m, f'patch_t{t * 1e3:.1f}', out) if len(m.faces) else None
     # fin area beyond the trim (both faces + edge): ~ 2 * (40 - 4) * 60 mm^2
     fin_ref = 2 * (0.040 - 2 * SH.VOXEL) * 0.060 * 1e4
     row = dict(case='synthetic_patch', t_mm=t * 1e3, faces=rep['faces'], watertight=rep['watertight'],
                bodies=rep['bodies'], area_cm2=rep['area_cm2'], fin_ref_two_faces_cm2=round(fin_ref, 1),
-               share_within_trim_of_host=near_host, share_on_fin=on_fin, host_trimmed_area_cm2=rep.get(
+               share_within_trim_of_host=near_host, share_on_fin=on_fin, share_dup_host=dup_host,
+               gap_to_host_mm=gap_host_mm, host_attach=SH.HOST_ATTACH, host_trimmed_area_cm2=rep.get(
                    'host_trimmed_area_cm2'), budget=b,
                ok=bool(len(m.faces) and rep['watertight'] and rep['faces'] <= 1500 and near_host is not None
-                       and near_host < 0.01 and on_fin > 0.98))
+                       and dup_host < 0.01 and on_fin > 0.98
+                       and (gap_host_mm <= SH.TOUCH * 1e3 if SH.HOST_ATTACH else near_host < 0.01)))
     print(json.dumps(row, default=str), flush=True)
     rows.append(row)
     # without a host, the patch holds the cylinder too
