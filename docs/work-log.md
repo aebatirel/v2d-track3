@@ -4807,3 +4807,15 @@ Advice given:
   replayed checkpoint is sha256-checked against the submitted rollout), pack 6's RUNS/PICK (+ 33:rcB) read from
   h5_reeval.sh, ASSET_PIECES ev25 + ev10 merged per object as in pack_eval.sh (fix in 817b135). A replay is a fresh
   rollout, so it can differ from the submitted one; reporting only, nothing is chosen from it.
+- 07:00 UTC **eval-1 official confirmation launched** after the CPU prep and two adversarial reviews (workflow
+  wf_02052244-fe2: environment/no-leak GO, mechanics/pack GO; the WIP label on 99fdbb5 is lifted by these reviews).
+  58364606 `20261030-e1conf-5ec130d` (RTX PRO 6000 WS Spain $1.18/h; ledger planned $1.60), job:
+  pre-pull std0116 `refs/perc2mcks/ep1`, check the eval-1 reference md5 7f230466 at the path the checkpoint names, then
+  `N=20 KEEP_RESULTS="20261026-pack6-5203d42 20261030-c33B-0202139" PICK_EXTRA="33:20261029-rcB-34bf6ae
+  1:20261030-c01s43-328139c:ck=runs/perc2mcks/ep1-s43/policy_250003456.safetensors"
+  ASSET_PIECES_EXTRA=meshes/carve/ev01 EPS_ONLY=1 EVAL_ONLY=1 bash ops/jobs/h5_reeval.sh`.
+  - CPU-verified: 18 rollouts kept from pack 6 and eval 33 from c33B; only eval 1 evaluated (EVAL_ONLY guard); eval 1
+    sees the training box's white_pot / lid collision copy (53/107 pieces, md5-identical); every other object as in
+    pack 6. Rule: work log 06:20.
+  - Note: the shared /content/assets with ev01 is safe only under EVAL_ONLY; a pack that also evaluates evals
+    3/5/6/8/28 with ev01 still needs a per-episode asset root (not built).
