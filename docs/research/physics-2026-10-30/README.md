@@ -152,3 +152,28 @@ Reading [H]: S1's ep2 training collapsed after 20M (curve 0.487 / 0.862 / 0.483 
 is no longer lifted from 30M) while S0 climbed to 0.977 at 60M; the other three episodes lean S1 (+0.02 to +0.05). With
 one seed per arm the ep2 collapse cannot be separated from seed noise; telling them apart needs ≥ 2 more seeds per arm
 on ep2 (not run). Zero-action sim_vs_ref on the box (with EVOLVE) S1: 0.601 / 0.604 / 0.542 / 0.194.
+
+### [H-lock] result (30 Oct ~14:30 UTC, CPU, code 9731c7b + 103e1ba) [M] — falsified
+Human hand P + `grasp_lock.py` (GL_EMB = the human hand, frozen GL_ARGS, no ILC, no EVOLVE), zero action, S1 physics:
+| episode | plain P copy | P + grasp lock | Δ | grasps found |
+|---|---|---|---|---|
+| ep2 | 0.323 | 0.440 | +0.117 | pot 5 fingers, gap 0.0 mm; lid 2 fingers, 9.5 mm |
+| ep12 | 0.617 | 0.578 | −0.039 | cup 5 fingers, 0.7 mm |
+| ep18 | 0.331 | 0.276 | −0.055 | dust pan 3 fingers, 4.5 mm; sweeper 4, 1.6 mm |
+| ep24 | 0.194 | 0.102 | −0.092 | board 1 5 fingers, 1.3 mm; board 2 4, 2.4 mm |
+1 of 4 episodes ≥ +0.05 → **falsified**. With a snapped, locked human grasp (2–5 fingers on, gaps 0–9.5 mm) the objects
+still leave the reference at the same early frames (ep12 cup f37, ep18 dust pan f18, ep24 board 1 f11). The Sharpa
+grasp-lock reference behaves the same at zero action (CPU S1: cup lost f37) and only RL takes it to 0.885 (GPU S1).
+
+## Summary of the study so far (30 Oct)
+- **Mass:** plausible per-object masses change little at zero action (neutral) and, after RL, lean +0.02–0.05 on three
+  episodes but count as **harm** on the pre-registered rule because S1's ep2 training collapsed (one seed). Not adopted.
+- **Centre of mass:** on NVIDIA's scans the surface-centroid COM is already right for these thin-walled objects
+  (≤ 4 mm change). On our generated meshes the COM sits 2–25 mm off the scans' (next step, as the owner asked).
+- **A copy of the video does not reproduce the episode in physics,** with the robot or a human-shaped hand, with or
+  without extra squeeze or a locked grasp: the perceived hand is near the objects but not gripping them, the perceived
+  grip dissolves during carries (ep12: thumb–finger opposition 148° → −86° in 12 frames), and in this simulator even a
+  snapped grasp loses the object within frames when nothing adapts. Something must adapt to the physics: RL (what our
+  recipe does), a sampling optimiser (SPIDER / Do as I Do) or ILC.
+- Not run (would need decisions/budget): second and third seeds on ep2 for the mass question; RL with the human hand
+  (GPU); the MANO-vs-capsule head-to-head (needs the owner's MANO download).
