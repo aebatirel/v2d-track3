@@ -5361,3 +5361,22 @@ diagnostic; nothing is picked for submission.
 
   Launched diagnosis workflow `wf_f944d682-4b3`: SAM 3D placement decomposition (scale, rotation, translation vs shape)
   with GT-free fix tests (≤ 12 scorings, all listed); sweeper failure analysis; each adversarially verified.
+
+### 2026-10-22 (training-budget session, branch `claude/modest-davinci-vltejz`, merged into main 2026-10-30)
+2026-10-22: Owner asked whether any part would benefit from a Rust rewrite (answer: no; GPU training dominates, CPU
+Python is glue or already in C++), then how to make the project cheaper (answer in chat: measure whether 250M steps are
+needed, lean training-only boxes, several policies per box, gate references, cache compiled kernels), then asked to
+analyse the 250M steps. Read FlashCHORD at the pin in a fresh clone (upstream main 7eb9721 has identical training
+configs); a background agent reviewed the literature. Wrote docs/research/notes/23-training-budget.md. Findings: the
+schedule is validated but not shown minimal; our references play 2x faster than NVIDIA's; training metrics are not
+recorded with logging.mode=disabled and push-run keeps only the newest policy, so day 1 as written gives no learning
+curve; checkpoint cadence is 10,000,384 steps, not 5M (corrected in STATUS, runbook, pipeline_ep.sh comment). A half
+schedule (125M) override was checked with Hydra compose against the pinned configs (config only, nothing trained).
+Proposed: stage A on day 1 (+0.5-1.5 GPU-h), stage B A/B {250M,125M} x 2 seeds on eps 12/22/27 (18 GPU-h, ~$9-29).
+Nothing rented; no code changes to the pipeline yet beyond the comment.
+2026-10-22 (later): Literature review returned and merged into note 23 §5. Verified here: the first nine thresholds
+equal the PPO reference schedule (2,000-14,000 iterations x 24 rollout steps x 4,096 worlds) / 10; FlashSAC's
+Shadow/Allegro cube curves (repo CSV) still rise at 50M. The review's absolute FlashSAC values differed from the CSV;
+the note uses the CSV. Other paper figures are marked [R] (from the review, not re-checked). Added an optional 62.5M
+arm and a no-policy replay floor to stage B.
+
