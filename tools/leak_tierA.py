@@ -480,11 +480,13 @@ MKA = dict(table_z=0.60, ring_in=10, ring_out=90, plane_thr=0.006, plane_iters=1
            lead_in_speed=0.2, fps=20.0, bone_norm=False)       # mkref.py defaults (the pipeline adds only --wrist_cost: IK)
 
 
-def mkref_ab(W_C, camT, names, depth0, KR, lib, Hn):
+def mkref_ab(W_C, camT, names, depth0, KR, lib, Hn, depen=False):
     """mkref.py stages (a) and (b) on poses (world_T_cam, cam_T_<obj>), with mkref's own functions and defaults:
     table frame, support check (+ its fallback), per-object snap; then the hand joints as mkref writes them (table
-    frame, invalid runs filled, parked sides, depenetration, hand separation). Returns OBJ (T,B,4,4) table frame,
-    {side: (T,21,3)}, info. Stage (b) does not move objects; its joints feed contact_retarget.rest_settle."""
+    frame, invalid runs filled, parked sides, hand separation). Returns OBJ (T,B,4,4) table frame, {side: (T,21,3)},
+    info. Stage (b) does not move objects; its joints feed contact_retarget.rest_settle, which only asks whether a
+    fingertip is within 3 cm of an object. mkref's 6 mm joint depenetration (trimesh inside tests, ~2 s per frame on
+    this VM) is therefore skipped unless DEPEN; its effect on the rest settle is measured on ep0 and ep2 (a3 'depen')."""
     import trimesh, mkref as MK
     a = types.SimpleNamespace(**MKA); T = len(W_C); B = len(names)
     vis = {n: trimesh.load(f'{lib}/{n}.glb', force='mesh') for n in names}
@@ -537,7 +539,7 @@ def mkref_ab(W_C, camT, names, depth0, KR, lib, Hn):
             hinfo[sd] = 'parked'
         else:
             Js, _ = MK.fill_invalid(Js, valid, OBJ, queries, a); hinfo[sd] = 'tracked'
-            if a.depenetrate > 0:
+            if depen and a.depenetrate > 0:
                 Js, _ = MK.depenetrate(Js, OBJ, queries, a.table_z, a.depenetrate, disc)
         J[sd] = Js
     if a.hand_sep > 0 and all(v == 'tracked' for v in hinfo.values()):
@@ -545,11 +547,11 @@ def mkref_ab(W_C, camT, names, depth0, KR, lib, Hn):
                                    {sd: Hn[f'measured_{sd}'].astype(bool) for sd in MK.SIDES}, a.hand_sep, a.lead_in, a.lead_in_speed / a.fps)
         for sd in MK.SIDES:
             J[sd] = J[sd] + off[sd][:, None, :]
-            if a.depenetrate > 0:
+            if depen and a.depenetrate > 0:
                 J[sd], _ = MK.depenetrate(J[sd], OBJ, queries, a.table_z, a.depenetrate, disc)
     info = dict(plane_inlier_frac=round(float(frac), 3), plane_rms_mm=round(float(rms) * 1000, 2), support_ok=support_ok,
                 support_fallback=fallback, fallback_lift_cm=np.round(lifted * 100, 2).tolist(), bottoms_cm=np.round(h * 100, 2).tolist(),
-                snap_cm=np.round(shifts * 100, 2).tolist(), hands=hinfo, disc=np.round(disc, 3).tolist())
+                snap_cm=np.round(shifts * 100, 2).tolist(), hands=hinfo, disc=np.round(disc, 3).tolist(), joint_depenetration=bool(depen))
     return OBJ, J, T_tab, info
 
 
@@ -782,8 +784,23 @@ def a7prep_episode(a, ep):
     return r
 
 
+def a7_hand_gaps(a, ep):
+    """Per rest-configuration frame and object, the nearest measured fingertip to the true surface (cm): a settle failure
+    with a hand within ~3 cm may be a configuration the hand was holding, not a geometry defect."""
+    D = load(a, ep); P = json.load(open(f'{a.work}/a7prep.json'))['episodes'][str(ep)]
+    Gi = np.linalg.inv(np.asarray(json.load(open(a.xtrk))['episodes'][str(ep)]['fit']['G_mocap_T_perc']))
+    _, J, _ = hands(f'{a.perc}/ep{ep}'); out = {}
+    for s, n in enumerate(D.names):
+        g = tip_gap_cm(J, np.einsum('ij,tjk->tik', Gi, D.gt[n]), surface_tree(*D.H[s]['mesh']))
+        for F in P['frames']:
+            out.setdefault(str(F), {})[n] = (round(float(g[F]), 2) if np.isfinite(g[F]) else None)
+    return str(ep), out
+
+
 def a7_read(a, eps):
     prep = json.load(open(f'{a.work}/a7prep.json'))['episodes']; out = {}
+    with ProcessPoolExecutor(a.jobs) as ex:
+        gaps = dict(ex.map(a7_hand_gaps, [a] * len(eps), eps))
     for ep in eps:
         P = prep[str(ep)]; out[str(ep)] = dict(objects=P['objects'], frames=P['frames'], dropped_held=P['dropped_held'], geoms={})
         for g, d in P['geoms'].items():
@@ -794,7 +811,8 @@ def a7_read(a, eps):
             for F, c in S['configs'].items():
                 drift = {n: c[n]['at_2s'] for n in P['objects'] if n in c}
                 ok = c['nan_at_step'] is None and len(drift) == len(P['objects']) and all(v[0] <= 1.0 and v[1] <= 5.0 for v in drift.values())
-                rows[F] = dict(at_2s=drift, peak={n: c[n]['peak'] for n in P['objects'] if n in c}, nan=c['nan_at_step'], pass_=bool(ok))
+                rows[F] = dict(at_2s=drift, peak={n: c[n]['peak'] for n in P['objects'] if n in c}, nan=c['nan_at_step'], pass_=bool(ok),
+                               hand_gap_cm=gaps[str(ep)].get(F))
             out[str(ep)]['geoms'][g] = dict(configs=rows, n=len(rows), n_pass=int(sum(x['pass_'] for x in rows.values())),
                                             gate_pass=bool(rows) and all(x['pass_'] for x in rows.values()),
                                             snap_cm=d['snap_cm'], build_sec=S.get('build_sec'), collide_shapes=S.get('collide_shapes'))

@@ -109,13 +109,15 @@ def obj_bodies(m, names):
 def rest(a):
     from scipy.spatial.transform import Rotation as Rot
     import contact_retarget as CR
+    cache = {}                                                     # one scene and its hull SDFs per object set
     for f in a.npz:
         if 'oracle' not in os.path.abspath(f):
             sys.exit(f'{f}: inputs must live under an "oracle" path')
         t0 = time.time(); Z = np.load(f); names = [str(x) for x in Z['names']]; OBJ = Z['OBJ_a']; T, B = OBJ.shape[:2]
-        root = f[:-4] + '_tree'
-        st, env, _ = build(make_tree(root, 'leak_rest', names, a.assets, OBJ[0], a.template))
-        m = st.scene.model; sdfs = [CR.HullSDF(m, b) for b in obj_bodies(m, names)]
+        if tuple(names) not in cache:
+            st, env, _ = build(make_tree(f[:-4] + '_tree', 'leak_rest', names, a.assets, OBJ[0], a.template))
+            m = st.scene.model; cache = {tuple(names): [CR.HullSDF(m, b) for b in obj_bodies(m, names)]}
+        sdfs = cache[tuple(names)]
         OP = OBJ[:, :, :3, 3].copy(); OR = [[Rot.from_matrix(OBJ[t, j, :3, :3]) for t in range(T)] for j in range(B)]
         J = {'left': Z['J_left'], 'right': Z['J_right']}
         OP2, OR2, stats = CR.rest_settle(OP, OR, J, sdfs, float(Z['table_z']))

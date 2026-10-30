@@ -208,6 +208,9 @@ if 'a7' in J:
             if 'missing' in x:
                 cell.append('not run'); continue
             worst = max(((c['at_2s'][n][0], c['at_2s'][n][1], F, n) for F, c in x['configs'].items() for n in c['at_2s']), default=None)
-            cell.append(f"{'PASS' if x['gate_pass'] else 'FAIL'} {x['n_pass']}/{x['n']}" + (f"; worst {worst[0]:.2f} cm / {worst[1]:.1f}° ({SHORT[worst[3]]} f{worst[2]})" if worst else ''))
+            free = {F: c for F, c in x['configs'].items() if all(g is None or g > 3 for g in (c.get('hand_gap_cm') or {}).values())}
+            hg = (x['configs'][worst[2]].get('hand_gap_cm') or {}).get(worst[3]) if worst else None
+            cell.append(f"{'PASS' if x['gate_pass'] else 'FAIL'} {x['n_pass']}/{x['n']} (hand-free {sum(c['pass_'] for c in free.values())}/{len(free)})"
+                        + (f"; worst {worst[0]:.2f} cm / {worst[1]:.1f}° ({SHORT[worst[3]]} f{worst[2]}, hand {hg} cm)" if worst else ''))
         print(f"| {e} | {v['frames']} ({v['dropped_held'] or '–'}) | " + ' | '.join(cell) + ' |')
     print('\n' + '; '.join(f"{g}: pass {len(s['gate_pass'])} / {s['eps']} eps" for g, s in S.items()))
