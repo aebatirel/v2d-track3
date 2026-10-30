@@ -54,7 +54,7 @@ Audit code: `pipeline/depth_audit.py`, sha256 `dafbcce4…` (repo HEAD d41382e p
 - The primary score's code path is unchanged; v2 `behind` must equal v1 `behind` exactly (checked before scoring).
 - Nothing else changes: score, label, episodes, statistic and rule above stand as written.
 
-## Note 2 (2026-10-30 ~08:00 UTC, after verification and after the public ground truth was read): disclosure only
+## Note 2 (2026-10-30 ~07:55 UTC, after verification and after the public ground truth was read): disclosure only
 This note changes nothing above. The public score, label, episodes, statistic, rule and verdict stand as written.
 - **Eval data seen before this file was written.** In the map stage, at 06:38–06:40 UTC, eval-3 depth was read:
   frames 0, 100, 200 and 312 of store `cache/depth/eval/ep3/depths_fs0.5.npy`, by HTTP range read.
