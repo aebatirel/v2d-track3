@@ -83,6 +83,29 @@ def hull_samples(V, n):
     return np.vstack([P[np.linspace(0, len(P) - 1, min(n, len(P))).astype(int)], S])
 
 
+def primitive_samples(gtype, scale, n_ring=8):
+    """Surface samples of a Newton primitive in its shape frame (capsule / cylinder along local z: scale = radius,
+    half-height; sphere: radius; box: half extents), as MjPen.link_samples does for MuJoCo geoms. None otherwise."""
+    import newton
+    u = np.linspace(0, 2 * np.pi, n_ring, endpoint=False)
+    if gtype in (int(newton.GeoType.CAPSULE), int(newton.GeoType.CYLINDER)):
+        r, h = float(scale[0]), float(scale[1]); z = np.linspace(-h, h, 5)
+        P = [[r * np.cos(a), r * np.sin(a), zz] for zz in z for a in u]
+        if gtype == int(newton.GeoType.CAPSULE):
+            P += [[0, 0, h + r], [0, 0, -h - r]] + [[0.7 * r * np.cos(a), 0.7 * r * np.sin(a), sg * (h + 0.71 * r)]
+                                                    for a in u for sg in (1, -1)]
+        return np.array(P)
+    if gtype == int(newton.GeoType.SPHERE):
+        r = float(scale[0])
+        return np.array([[r * np.cos(a) * np.sin(b), r * np.sin(a) * np.sin(b), r * np.cos(b)]
+                         for a in u for b in np.linspace(0, np.pi, 5)])
+    if gtype == int(newton.GeoType.BOX):
+        g = np.linspace(-1, 1, 3)
+        P = np.array([[x, y, z] for x in g for y in g for z in g if max(abs(x), abs(y), abs(z)) == 1], float)
+        return P * np.asarray(scale[:3], float)
+    return None
+
+
 def hand_geometry(model, side, max_pts=40):
     """Body ids, tip-site parents and collision-surface samples (body-local) of one hand."""
     import newton
@@ -91,17 +114,24 @@ def hand_geometry(model, side, max_pts=40):
     sb = model.shape_body.numpy(); flags = model.shape_flags.numpy(); tf = model.shape_transform.numpy()
     sc = model.shape_scale.numpy(); collide = int(newton.ShapeFlags.COLLIDE_SHAPES)
     pts_b, pts_l = [], []
+    prim_b, prim_l = [], []                                        # primitive shapes (used only if the hand has no mesh)
+    stype = model.shape_type.numpy()
     inv = {v: k for k, v in bodies.items()}
     for s in range(model.shape_count):
         if sb[s] not in inv or not (int(flags[s]) & collide):
             continue
         src = model.shape_source[s]
         if src is None or not hasattr(src, 'vertices'):
+            V = primitive_samples(int(stype[s]), sc[s])
+            if V is not None:
+                prim_b.append(np.full(len(V), sb[s])); prim_l.append(Rot.from_quat(tf[s, 3:7]).apply(V) + tf[s, :3])
             continue
         V = np.asarray(src.vertices, float) * sc[s]
         V = hull_samples(V, max_pts)
         V = Rot.from_quat(tf[s, 3:7]).apply(V) + tf[s, :3]
         pts_b.append(np.full(len(V), sb[s])); pts_l.append(V)
+    if not pts_b and prim_b:                                       # primitive-only hands (2026-10-30: the physics study's
+        return bodies, np.concatenate(prim_b), np.concatenate(prim_l)   # human capsule hand); mesh hands are unchanged
     if not pts_b:                                                  # primitive-only hands: MjPen.link_samples fills in
         return bodies, np.zeros(0, int), np.zeros((0, 3))
     return bodies, np.concatenate(pts_b), np.concatenate(pts_l)
