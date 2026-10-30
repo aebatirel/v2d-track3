@@ -22,6 +22,7 @@ read.
 """
 import hashlib
 import importlib.util
+import itertools
 import json
 import os
 import sys
@@ -272,6 +273,366 @@ class B14(unittest.TestCase):
                               fixture_sha256=guard.inputs()[[x['realpath'] for x in guard.inputs()].index(rp)]['sha256'],
                               faces=int(len(m.faces)), watertight=bool(m.is_watertight)))
         self.assertFalse(r['veto'])
+
+
+# ------------------------------------------------------------------------------------------------ B5 (score full)
+# Synthetic single-object episodes (tests/synth.py): known meshes, ray-cast depth with 1 mm noise, obs_points-style
+# grids. GT-free by construction; no file is read except the ambiguity reference fixture (role fixture).
+from gmg import select as SEL  # noqa: E402
+from gmg.producers import Candidate  # noqa: E402
+from gmg.tests import amb_meshes as AM, synth as SY  # noqa: E402
+
+B5_OUT = os.environ.get('B5_OUT', os.path.join(guard.CFG['data'], 'gmg', 'b5', 'test_score_b5.json'))
+AMB_REF = os.path.join(GMG, 'tests', 'fixtures', 'amb_reference.json')
+_SYN = {}
+
+
+def _record_b5(name, res):
+    try:
+        d = json.load(open(B5_OUT)) if os.path.exists(B5_OUT) else {}
+    except ValueError:
+        d = {}
+    d[name] = res
+    os.makedirs(os.path.dirname(B5_OUT), exist_ok=True)
+    with open(B5_OUT, 'w') as f:
+        json.dump(d, f, indent=1, default=lambda o: o.tolist() if hasattr(o, 'tolist') else str(o))
+
+
+def cyl_episode():
+    """Cylinder r 4 cm, h 8 cm (base at z = -4 cm). Blocks 1-2 (frames 0-30): two rings at +35 deg elevation; block 3
+    (frames 32-46): a ring at -45 deg, the only views of the base."""
+    if 'cyl' not in _SYN:
+        _SYN['cyl'] = SY.episode(SY.cylinder(), SY.ring(35, 8) + SY.ring(35, 8, 22.5) + SY.ring(-45, 8), name='cyl')
+    return _SYN['cyl']
+
+
+def disc_episode():
+    """Disc r 6 cm, 1 cm thick (z 0-1 cm), seen from +40, +10 and -20 deg: the space below it is carved FREE."""
+    if 'disc' not in _SYN:
+        _SYN['disc'] = SY.episode(SY.disc(), SY.ring(40, 8) + SY.ring(10, 8, 22.5) + SY.ring(-20, 8), name='disc')
+    return _SYN['disc']
+
+
+def slab_episode():
+    """The slab with four balls on posts (tests/amb_meshes.py) seen from +50, +20 and -30 deg."""
+    if 'slab' not in _SYN:
+        _SYN['slab'] = SY.episode(AM.slab_with_balls(), SY.ring(50, 8) + SY.ring(20, 8, 22.5) + SY.ring(-30, 8),
+                                  name='slab')
+    return _SYN['slab']
+
+
+def static_episode():
+    """24 views within about 1 deg of one direction (a static episode)."""
+    if 'static' not in _SYN:
+        cams = [SY.cam_centre(30 + 0.5 * np.sin(i), 10 + 0.8 * np.cos(i)) for i in range(24)]
+        _SYN['static'] = SY.episode(SY.cylinder(), cams, name='cyl')
+    return _SYN['static']
+
+
+class _Toy:
+    """Test producer on the cylinder episode. rule 'always': the full cylinder whatever the frames (a structured
+    completion closes the base). rule 'seen': the base only if the build frames hold more than 50 owned points on
+    the base disc (z < -39 mm, radius < 35 mm), i.e. a shell covers only what it saw. rule 'raise': no fold build.
+    rule 'skip2': the candidate exists except when building fold 2 (the frames without block 2)."""
+
+    def __init__(self, cid, cls, rule, n_params=0):
+        self.__name__, self.cid, self.cls, self.rule, self.n_params = f'toy_{cid}', cid, cls, rule, n_params
+
+    def produce(self, ctx, frames=None):
+        b, obj = ctx['bundle'], ctx['obj']
+        full = SY.cylinder()
+        obs = b.obs(obj)
+        fr = np.asarray(obs['frame'])
+        m = np.ones(len(fr), bool) if frames is None else np.isin(fr, list(frames))
+        if self.rule == 'raise' and frames is not None:
+            raise NotImplementedError('toy: no fold build')
+        if self.rule == 'skip2' and frames is not None and not np.isin(ctx['block2'], list(frames)).any():
+            return []
+        mesh = full
+        if self.rule == 'seen':
+            P = np.asarray(obs['pts'], np.float64)[m]
+            on_base = (P[:, 2] < -0.039) & (np.hypot(P[:, 0], P[:, 1]) < 0.035)
+            mesh = full if int(on_base.sum()) > 50 else SY.without_base(full)
+        return [Candidate(cid=self.cid, producer=self.__name__, cls=self.cls, mesh=mesh, params=dict(rule=self.rule),
+                          n_params=self.n_params, built_on_frames='all' if frames is None else 'subset')]
+
+
+def _row_summary(r):
+    keys = ('cid', 'cls', 'E', 'E_blocks', 'E_se', 'fold', 'fsv_far', 'fsv_far_shell', 'trusted_markers')
+    out = {k: r.get(k) for k in keys}
+    out['v3'] = r.get('v3')
+    out['ray_blocks'] = r.get('ray_blocks')
+    for a in ('amb', 'amb_noball'):
+        if r.get(a):
+            out[a] = {k: r[a].get(k) for k in ('amb_mm', 'amb_floor_mm', 'flip_risk', 'flip_units')}
+    return out
+
+
+class AmbiguityCopyTests(unittest.TestCase):
+    """score.ambiguity (own copy) == scripts/mesh_metric.ambiguity (original, kit AUC helpers) on the synthetic
+    meshes; reference values written once by build/b5/amb_reference.py outside the gmg."""
+
+    def test_copy_matches_mesh_metric(self):
+        ref = guard.load_json(AMB_REF, 'fixture')['values']
+        self.assertEqual(sorted(ref), sorted(AM.RECIPES))
+        for name, (fn, kind) in AM.RECIPES.items():
+            m = fn()
+            v, f = np.asarray(m.vertices, np.float64), np.asarray(m.faces, np.int64)
+            r = SC.ambiguity(v, f, kind)
+            self.assertEqual((len(f), len(v)), (ref[name]['faces'], ref[name]['vertices']), name)
+            for k in ('amb_mm', 'amb45_mm', 'amb_floor_mm', 'amb_rel', 'radius_mm'):
+                self.assertAlmostEqual(r[k], ref[name][k], delta=1e-9 * max(1.0, abs(ref[name][k])), msg=(name, k))
+            self.assertEqual((r['amb_rot'], r['n_starts']), (ref[name]['amb_rot'], ref[name]['n_starts']), name)
+
+    def test_kit_symmetry_from_kit_config(self):
+        self.assertEqual(SC.kit_symmetry('blue_cup'), 'axial')
+        self.assertEqual(SC.kit_symmetry('beige_cup'), 'axial')
+        self.assertEqual(SC.kit_symmetry('white_pot_lid'), 'half')
+        self.assertIsNone(SC.kit_symmetry('wooden_piece_1'))
+
+    def test_flip_units(self):
+        self.assertEqual(SC.flip_units(3.0, 1.0), 2)
+        self.assertEqual(SC.flip_units(1.5, 1.0), 0)
+        self.assertEqual(SC.flip_units(0.9, 1.0), -1)
+        self.assertEqual(SC.flip_units(float('inf'), 1.0), SC.FLIP_UNITS_INF)
+        self.assertTrue(SC.is_flip_risk(1.9, 1.0)); self.assertFalse(SC.is_flip_risk(2.0, 1.0))
+
+
+class PlanTests(unittest.TestCase):
+    def test_blocks_and_heldout_sets(self):
+        b = cyl_episode()
+        obs = b.obs('cyl')
+        good = b.good_frames('cyl')
+        self.assertEqual(len(good), 24)
+        for K in (3, 5):
+            pl = SC.plan(b, 'cyl', K)
+            bl = pl['blocks']
+            self.assertEqual(sum((x['frames'] for x in bl), []), good)             # contiguous, time order
+            sizes = [len(x['frames']) for x in bl]
+            self.assertLessEqual(max(sizes) - min(sizes), 1)
+            for k, x in enumerate(bl):
+                fr = np.asarray(obs['frame'])[x['idx']]
+                self.assertTrue(np.isin(fr, x['frames']).all())
+                vi = np.floor((np.asarray(obs['pts'], np.float64)[x['idx']] - obs['lo']) / obs['vox']).astype(int)
+                key = np.concatenate([fr[:, None], vi], 1)
+                self.assertEqual(len(np.unique(key, axis=0)), len(key))           # one point per voxel per frame
+                self.assertLessEqual(len(x['idx']), 20000)
+                tr = SC.train_frames(pl, k)
+                self.assertEqual(sorted(tr + x['frames']), good)
+        self.assertEqual(SC.heldout(b, 'cyl')[0]['idx'].tolist(), SC.plan(b, 'cyl', 3)['blocks'][0]['idx'].tolist())
+
+
+class BootstrapTests(unittest.TestCase):
+    def test_moving_blocks(self):
+        self.assertEqual([SC.block_length(n) for n in (1, 2, 7, 8, 26, 27, 64, 172)], [1, 1, 2, 2, 3, 3, 4, 6])
+        blocks = [dict(frames=list(range(0, 54, 2)), kept=list(range(0, 54, 2))),       # 27 frames: L = 3
+                  dict(frames=[60, 62, 64, 66, 70], kept=[60, 62, 64, 66, 70])]          # 5 frames: L = 2
+        reps = SC.bootstrap_reps(blocks)
+        self.assertEqual(len(reps), 200)
+        for r in reps:
+            for x, bk in zip(r, blocks):
+                kept = bk['kept']
+                L = SC.block_length(len(kept))
+                self.assertEqual(len(x), len(kept))
+                pos = [kept.index(int(f)) for f in x]
+                for s in range(0, len(pos), L):                                # contiguous runs of L frames
+                    run = pos[s:s + L]
+                    self.assertEqual(run, list(range(run[0], run[0] + len(run))))
+        again = SC.bootstrap_reps(blocks)                                       # seed 0: reproducible
+        self.assertTrue(all(np.array_equal(a, c) for r1, r2 in zip(reps, again) for a, c in zip(r1, r2)))
+
+    def test_paired_replicates(self):
+        b = cyl_episode()
+        pl = SC.plan(b, 'cyl', 3)
+        reps = SC.bootstrap_reps(pl['blocks'])
+        m = SY.cylinder()
+        ev = SC.evidence(m, b, 'cyl', pl['blocks'], 0.0)
+        e1 = SC.e_reps(ev, 0.0, b.sigma('cyl'), reps)
+        e2 = SC.e_reps(SC.evidence(m, b, 'cyl', pl['blocks'], 0.0), 0.0, b.sigma('cyl'), reps)
+        self.assertEqual(SC.se_diff(e1, e2), 0.0)
+        self.assertGreater(float(np.std(e1)), 0.0)
+
+
+class GenHoldoutTests(unittest.TestCase):
+    def test_removes_views_within_8_deg(self):
+        b = cyl_episode()
+        D = SC.view_dirs(b, 'cyl', b.good_frames('cyl'))
+        ang = np.degrees(np.arccos(np.clip(D @ D[0], -1, 1)))
+        pl = SC.plan(b, 'cyl', 3, gen_views=[0])
+        self.assertEqual(pl['removed'], [f for f, a in zip(b.good_frames('cyl'), ang) if a <= 8.0])
+        self.assertEqual(pl['removed'], [0])                     # rings 22.5 / 45 deg apart: only frame 0 itself
+        self.assertFalse(pl['gen_view_overlap'])
+        self.assertNotIn(0, pl['blocks'][0]['kept'])
+        self.assertFalse(np.isin(np.asarray(b.obs('cyl')['frame'])[pl['blocks'][0]['idx']], [0]).any())
+        self.assertIn(0, SC.train_frames(pl, 1))                  # removed from held-out sets only
+        pl2 = SC.plan(b, 'cyl', 3, gen_views=SC.view_dirs(b, 'cyl', [0]))   # directions instead of frames
+        self.assertEqual(pl2['removed'], [0])
+
+    def test_static_episode_skips_and_flags(self):
+        b = static_episode()
+        pl = SC.plan(b, 'cyl', 3, gen_views=[0])
+        self.assertTrue(pl['gen_view_overlap'])
+        self.assertEqual(pl['removed'], [])
+        self.assertFalse(pl['holdout']['applied'])
+        self.assertGreater(pl['holdout']['near_frac'], 0.8)
+        full = SY.cylinder()
+        cands = [dict(cid='gen', cls='GEN', mesh=full, n_params=0, gen_input_frames=[0]),
+                 dict(cid='shell', cls='SHELL', mesh=full, n_params=0)]
+        pool = SC.score_pool(cands, b, 'cyl', kind=None, amb=False)
+        self.assertTrue(pool['gen_view_overlap'])
+        p = SEL.pick(pool['rows'], gen_view_overlap=pool['gen_view_overlap'])
+        self.assertEqual(p['order'], ['shell', 'gen'])            # generated E is optimistic: SHELL before GEN
+        self.assertEqual(SEL.pick(pool['rows'])['order'], ['gen', 'shell'])
+
+
+class FoldTests(unittest.TestCase):
+    def test_fixed_partial_rebuilt(self):
+        b = cyl_episode()
+        pl = SC.plan(b, 'cyl', 3)
+        ctx = dict(bundle=b, obj='cyl', block2=pl['blocks'][1]['frames'])
+        folds, st = SC.build_folds(_Toy('h', 'HULL', 'raise'), ctx, pl)
+        self.assertEqual((folds, st['state']), ({}, 'fixed'))
+        from gmg.producers import hull as P_HULL
+        folds, st = SC.build_folds(P_HULL, ctx, pl)                # the B1 HULL has no fold build yet (B4/B8)
+        self.assertEqual(st['state'], 'fixed')
+        folds, st = SC.build_folds(_Toy('s', 'SHELL', 'skip2'), ctx, pl)
+        self.assertEqual(st['missing'], {'s': [1]})
+        ms, state = SC.fold_meshes(SY.cylinder(), folds['s'], 3)
+        self.assertEqual(state, 'partial')
+        ev = SC.evidence(ms, b, 'cyl', pl['blocks'], 0.0)
+        self.assertAlmostEqual(ev['R_blocks'][1], 10.0, places=4)  # no candidate on fold 2: every ray missing
+        self.assertLess(ev['R_blocks'][0], 1.0)
+        folds, st = SC.build_folds(_Toy('t', 'STRUCT', 'always'), ctx, pl)
+        self.assertEqual((st['state'], st['missing']), ('rebuilt', {}))
+        self.assertEqual(SC.fold_meshes(SY.cylinder(), folds['t'], 3)[1], 'rebuilt')
+
+
+class B5Synthetic(unittest.TestCase):
+    """SPEC 24 B5 pass condition, synthetic tests (the fourth, the deterministic tie order, is also in
+    test_select.OrderTests)."""
+
+    def test_a_cylinder_missing_base_charged_on_heldout_base_rays(self):
+        b = cyl_episode()
+        s = b.sigma('cyl')
+        pl = SC.plan(b, 'cyl', 3)
+        obs = b.obs('cyl')
+        idx3 = pl['blocks'][2]['idx']
+        P3 = np.asarray(obs['pts'], np.float64)[idx3]
+        base = (P3[:, 2] < -0.039) & (np.hypot(P3[:, 0], P3[:, 1]) < 0.035)
+        self.assertGreater(int(base.sum()), 500)                    # block 3 sees the base
+        for blk in (0, 1):
+            Pk = np.asarray(obs['pts'], np.float64)[pl['blocks'][blk]['idx']]
+            self.assertEqual(int(((Pk[:, 2] < -0.039) & (np.hypot(Pk[:, 0], Pk[:, 1]) < 0.035)).sum()), 0)
+        full, nobase = SY.cylinder(), SY.without_base(SY.cylinder())
+        res = {}
+        for nm, m in (('full', full), ('nobase', nobase)):
+            delta, cost, _ = SC.ray_costs(m, b, 'cyl', idx3[base])
+            res[nm] = dict(base_rays=int(base.sum()), miss_frac=float((delta > 3 * s).mean()),
+                           mean_cost_sigma=float(cost.mean() / s))
+        self.assertGreaterEqual(res['nobase']['miss_frac'], 0.95)  # charged on the held-out base rays
+        self.assertGreaterEqual(res['nobase']['mean_cost_sigma'], 9.0)
+        self.assertLessEqual(res['full']['miss_frac'], 0.05)
+        self.assertLess(res['full']['mean_cost_sigma'], 1.0)
+        # through the producers: a shell rebuilt without block 3 has no base and is charged on block 3; a structured
+        # completion keeps it. The all-frames form (no rebuild) cannot see the difference.
+        ctx = dict(bundle=b, obj='cyl')
+        shell_p, struct_p = _Toy('shell_toy', 'SHELL', 'seen'), _Toy('lathe_toy', 'STRUCT', 'always', n_params=4)
+        cands = shell_p.produce(ctx) + struct_p.produce(ctx)
+        self.assertEqual(len(cands[0].mesh.faces), len(full.faces))   # the all-frames shell saw the base
+        folds = {}
+        for prod in (shell_p, struct_p):
+            f, st = SC.build_folds(prod, ctx, pl)
+            self.assertEqual(st['state'], 'rebuilt')
+            folds.update(f)
+        self.assertLess(len(folds['shell_toy'][2].faces), len(full.faces))   # fold 3 (without block 3): no base
+        pool = SC.score_pool(cands, b, 'cyl', folds=folds, kind=None, amb=False)
+        flat = SC.score_pool(cands, b, 'cyl', folds=None, kind=None, amb=False)
+        r = {x['cid']: x for x in pool['rows']}; rf = {x['cid']: x for x in flat['rows']}
+        self.assertEqual((r['shell_toy']['fold'], rf['shell_toy']['fold']), ('rebuilt', 'fixed'))
+        self.assertGreater(r['shell_toy']['E_blocks'][2], 3.0)
+        self.assertLess(r['lathe_toy']['E_blocks'][2], 1.0)
+        self.assertLess(abs(rf['shell_toy']['E'] - rf['lathe_toy']['E']), 1e-9)   # identical meshes all-frames
+        p = SEL.pick(pool['rows'])
+        dE = r['shell_toy']['E'] - r['lathe_toy']['E']
+        sd = SC.se_diff(r['shell_toy']['E_reps'], r['lathe_toy']['E_reps'])
+        self.assertGreater(dE, 3 * sd)
+        self.assertEqual((p['best'], p['cid'], [c for c, _, _ in p['tie_set']]), ('lathe_toy', 'lathe_toy',
+                                                                                  ['lathe_toy']))
+        _record_b5('B5-a cylinder missing base', dict(
+            fixed_meshes=res, folds={k: _row_summary(v) for k, v in r.items()},
+            all_frames={k: _row_summary(v) for k, v in rf.items()}, dE=dE, se_diff=sd,
+            pick={k: p[k] for k in ('cid', 'best', 'tie_set', 'order', 'flags')}))
+
+    def test_b_phantom_under_disc_high_fsv_far(self):
+        b = disc_episode()
+        obs = b.obs('disc')
+        d, ph = SY.disc(), SY.phantom_under(SY.disc())
+        fd, fp = SC.fsv_far(d, obs)['fsv_far'], SC.fsv_far(ph, obs)['fsv_far']
+        self.assertLessEqual(fd, 0.01)
+        self.assertGreaterEqual(fp, 0.3)
+        # V3 with a tau from a fold null of honest candidates (here: the disc and a slightly thicker disc rebuilt per
+        # fold are identical meshes, so the null is zero and tau = 0); the phantom is vetoed, the disc is not
+        pl = SC.plan(b, 'disc', 3)
+        null = [SC.fsv_far(SY.disc(t=0.012), obs)['fsv_far'] - fd for _ in range(pl['K'])]
+        tau = SC.tau_q99(null)
+        cands = [dict(cid='disc_shell', cls='SHELL', mesh=d, n_params=0),
+                 dict(cid='disc_phantom', cls='GEN', mesh=ph, n_params=0, gen_input_frames=[0])]
+        pool = SC.score_pool(cands, b, 'disc', kind=None, tau=tau, amb=False)
+        r = {x['cid']: x for x in pool['rows']}
+        self.assertTrue(r['disc_phantom']['v3']['veto']); self.assertFalse(r['disc_shell']['v3']['veto'])
+        self.assertAlmostEqual(r['disc_phantom']['v3']['diff'], fp - fd, places=9)
+        p = SEL.pick(pool['rows'], gen_view_overlap=pool['gen_view_overlap'])
+        self.assertEqual(p['cid'], 'disc_shell')
+        self.assertEqual(p['trace'][0]['removed'], {'disc_phantom': ['V3']})
+        pool0 = SC.score_pool(cands, b, 'disc', kind=None, tau=None, amb=False)    # before B13: reported only
+        r0 = {x['cid']: x for x in pool0['rows']}
+        self.assertFalse(r0['disc_phantom']['v3']['applied'])
+        self.assertGreater(r0['disc_phantom']['E'], r0['disc_shell']['E'] + 10 * 0.3 - 1e-9)   # 10 x fsv_far in E
+        _record_b5('B5-b phantom under disc', dict(fsv_disc=fd, fsv_phantom=fp, tau=tau, holdout=pool['holdout'],
+                                                    rows={k: _row_summary(v) for k, v in r.items()},
+                                                    pick={k: p[k] for k in ('cid', 'trace', 'flags')}))
+
+    def test_c_slab_flip_risk_without_balls_not_with_trusted_balls(self):
+        slab, balls = AM.slab(), AM.slab_with_balls()
+        a0, a1 = SC.self_ambiguity(slab), SC.self_ambiguity(balls)
+        self.assertTrue(a0['flip_risk']); self.assertFalse(a1['flip_risk'])
+        b = slab_episode()
+        cands = [dict(cid='slab_balls', cls='STRUCT', mesh=balls, base_mesh=slab, balls=len(AM.BALLS), n_params=6),
+                 dict(cid='slab_plain', cls='STRUCT', mesh=slab, n_params=6)]
+        out = {}
+        for trusted in (True, False):
+            pool = SC.score_pool(cands, b, 'slab', kind=None, trusted=trusted, flip_margin=True)
+            r = {x['cid']: x for x in pool['rows']}
+            p = SEL.pick(pool['rows'])
+            v5 = [t for t in p['trace'] if t['step'] == 'V5'][0]
+            out[f'trusted={trusted}'] = dict(rows={k: _row_summary(v) | dict(obs_flip_margin=v['obs_flip_margin'])
+                                                   for k, v in r.items()},
+                                             pick={k: p[k] for k in ('cid', 'tie_set', 'order', 'flags')}, v5=v5)
+            self.assertTrue(r['slab_plain']['amb']['flip_risk'])
+            self.assertTrue(r['slab_balls']['amb_noball']['flip_risk'])
+            self.assertEqual(r['slab_balls']['trusted_markers'], len(AM.BALLS) if trusted else 0)
+            if trusted:
+                self.assertFalse(r['slab_balls']['amb']['flip_risk'])            # trusted balls break the flip
+                self.assertTrue(v5['applied']); self.assertEqual(v5['removed'], ['slab_plain'])
+                self.assertEqual(p['cid'], 'slab_balls'); self.assertNotIn('flip_risk', p['flags'])
+            else:
+                self.assertTrue(r['slab_balls']['amb']['flip_risk'])             # untrusted balls: ball-free
+                self.assertFalse(v5['applied'])
+                self.assertIn('flip_risk', p['flags'])
+        _record_b5('B5-c slab flip risk', out)
+
+    def test_d_tie_order_deterministic_on_scored_pool(self):
+        b = cyl_episode()
+        full = SY.cylinder()
+        cands = [dict(cid=c, cls=k, mesh=full, n_params=n) for c, k, n in
+                 (('s2', 'STRUCT', 4), ('s1', 'STRUCT', 4), ('sh', 'SHELL', 0), ('hu', 'HULL', 0), ('s0', 'STRUCT', 2))]
+        pool = SC.score_pool(cands, b, 'cyl', kind=None, amb=False)
+        ref = SEL.pick(pool['rows'])
+        self.assertEqual(ref['order'], ['s0', 's1', 's2', 'sh', 'hu'])         # identical E: class, params, cid
+        for perm in itertools.permutations(pool['rows']):
+            p = SEL.pick(list(perm))
+            self.assertEqual((p['cid'], p['order'], p['tie_set']), (ref['cid'], ref['order'], ref['tie_set']))
+        _record_b5('B5-d tie order', dict(order=ref['order'], tie_set=ref['tie_set'], permutations=120))
 
 
 if __name__ == '__main__':
