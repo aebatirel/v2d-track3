@@ -57,6 +57,113 @@ def run(op):
     if k == 'remove':
         os.remove(op[1])
         return True
+    if k == 'open_mode':                    # open(path, mode) and read what the mode allows
+        with open(op[1], op[2]) as f:
+            if 'r' in op[2] or '+' in op[2]:
+                f.seek(0)
+                return len(f.read(16))
+            return True
+    if k == 'a_plus_npz':                   # open 'a+b', seek 0, np.load from the handle (a readable append open)
+        import numpy as np
+        with open(op[1], 'a+b') as f:
+            f.seek(0)
+            return sorted(np.load(f).files)
+    if k == 'savez':
+        import numpy as np
+        os.makedirs(os.path.dirname(op[1]), exist_ok=True)
+        np.savez(op[1], **{key: np.arange(3) * (i + 1) for i, key in enumerate(op[2] if len(op) > 2 else ['x'])})
+        return True
+    if k == 'rename':
+        os.rename(op[1], op[2])
+        return True
+    if k == 'replace':
+        os.replace(op[1], op[2])
+        return True
+    if k == 'link':
+        os.link(op[1], op[2])
+        return True
+    if k == 'symlink':
+        os.symlink(op[1], op[2])
+        return True
+    if k == 'mkdir':
+        os.mkdir(op[1])
+        return True
+    if k == 'makedirs':
+        os.makedirs(op[1], exist_ok=True)
+        return True
+    if k == 'rmtree':
+        import shutil
+        shutil.rmtree(op[1])
+        return True
+    if k == 'truncate':
+        os.truncate(op[1], op[2])
+        return True
+    if k == 'shutil_move':
+        import shutil
+        shutil.move(op[1], op[2])
+        return True
+    if k == 'register_output':
+        return guard.register_output(op[1])
+    if k == 'outputs':
+        return guard._outputs()
+    if k == 'subprocess':                   # the hook checks the arguments before the child starts
+        import subprocess
+        return subprocess.run(op[1], capture_output=True).returncode
+    if k == 'os_system':
+        return os.system(op[1])
+    if k == 'urllib_open':                  # OpenerDirector.open raises the audit event; no proxy, a closed port
+        import urllib.request
+        try:
+            urllib.request.build_opener(urllib.request.ProxyHandler({})).open(op[1], timeout=0.5)
+        except guard.GuardError:
+            raise
+        except OSError as e:
+            return f'oserror {type(e).__name__}'
+        return True
+    if k == 'http_send':                    # an http.client request line to a local listening socket (no network)
+        import http.client
+        import socket
+        srv = socket.socket()
+        srv.bind(('127.0.0.1', 0))
+        srv.listen(1)
+        c = http.client.HTTPConnection('127.0.0.1', srv.getsockname()[1], timeout=0.5)
+        try:
+            c.request('GET', op[1])
+        except guard.GuardError:
+            raise
+        except OSError as e:
+            return f'oserror {type(e).__name__}'
+        finally:
+            c.close()
+            srv.close()
+        return True
+    if k == 'import_kit':                   # import a kit module by name with the kit root on sys.path
+        import importlib
+        sys.path.insert(0, guard.CFG['kit'])
+        try:
+            importlib.import_module(op[1])
+        finally:
+            sys.path.remove(guard.CFG['kit'])
+        return True
+    if k == 'tls_det_np_load':              # set the private thread-local det door by hand, then np.load
+        import numpy as np
+        guard._TLS.det_ok = os.path.realpath(op[1])
+        try:
+            return sorted(np.load(op[1]).files)
+        finally:
+            guard._TLS.det_ok = None
+    if k == 'internal_np_load':             # the private _internal() context, then np.load
+        import numpy as np
+        with guard._internal():
+            return sorted(np.load(op[1]).files)
+    if k == 'tls_protected_write':          # set the private protected flag by hand, then write the marker
+        guard._TLS.protected = True
+        try:
+            with open(op[1], 'w') as f:
+                f.write(op[2])
+            return True
+        finally:
+            guard._TLS.protected = False
     if k == 'attr':
         return getattr(guard, op[1])
     if k == 'write_manifest':

@@ -65,6 +65,7 @@ import stat
 import subprocess
 import sys
 import threading
+import time
 import zipfile
 
 GMG_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -93,15 +94,21 @@ DET_DIRS = ('{DATA}/data/store/ep*/**',)
 DET_SIGNATURE = ('sim', 'chosen', 'gdino', 'template_extent', 'template_intensity', 'verify', 'verify_matched',
                  'score_rules', 'reprop')
 DET_SIGNATURE_MIN = 2
-# kit files that score (or read reference data); refused for role kit
+# kit files that score (or read reference data); refused for role kit, and refused by the open hook in both modes (so
+# they cannot be imported either: the source and its __pycache__ byte code)
 KIT_SCORER = ('metric_code/**', 'v2dlb/object_mesh.py', 'v2dlb/object_pose.py', 'v2dlb/track3_pose.py',
               'v2dlb/mhr_metrics.py', 'v2dlb/vertices.py', 'v2dlb/trajectory.py', 'v2dlb/dataset.py')
+KIT_SCORER_HOOK = tuple('{KIT}/' + s for s in KIT_SCORER) + tuple(
+    '{KIT}/v2dlb/__pycache__/' + os.path.basename(s)[:-3] + '.*' for s in KIT_SCORER if s.endswith('.py'))
 # named test fixtures (dev role fixture) with the sha256 prefix of the raw file. PREREG B.14 T-V2d names the hand-kit lid
 # potlid/fit/ep2 by its LABEL sha prefix e1be3218a8608793, which is the sha of the budgeted mesh the label scored
 # (FIXTURE_LABEL_SHA; B1 checks it after fit_budget); the raw file hashes to 4bd1751e84052f05 [M] (DEVIATIONS 18).
 FIXTURE_FILES = {'{DATA}/prim/potlid/cand/white_pot_lid_ep2_fit.glb': '4bd1751e84052f05'}
 FIXTURE_LABEL_SHA = {'{DATA}/prim/potlid/cand/white_pot_lid_ep2_fit.glb': 'e1be3218a8608793'}
 RUNS = dict(clean='{DATA}/gmg/runs', dev='{DATA}/gmg/runs-dev')
+MARKER = 'run_tier.json'            # RUN/run_tier.json: written by set_run only (the open hook refuses other writers)
+LEDGER = 'outputs.jsonl'            # RUN/outputs.jsonl: the run's provenance ledger, appended by write_manifest only
+PROTECTED = (MARKER, LEDGER)
 ROLE_PATTERNS = dict(
     calib=('{DATA}/data/calib.json',),
     tracks=('{DATA}/data/sweep/ep*/poses.npz', '{DATA}/data/eval/ep*/poses.npz', '{RUN}/tracks/**'),
@@ -138,6 +145,8 @@ REFUSED = (
     ('scratchpad/obs_all (library_v3 ROI and --others)', ('{DATA}/obs_all/**', '**/scratchpad/obs_all/**'),
      ('obs_all',)),
     ('scratchpad/obs (library ROI)', ('{DATA}/obs/**', '**/scratchpad/obs/**'), ()),
+    ('HF dataset track_3 mesh/ and urdf/ (public scans and their URDFs)',
+     ('**/track_3/*/mesh/**', '**/track_3/*/urdf/**', '**/track_3/*/mesh', '**/track_3/*/urdf'), ()),
 )
 # the folders of REFUSED as concrete paths (for the KIT/WEIGHTS root check)
 REFUSED_DIRS = ('{REPO}/meshes', '{MR}/results/prim', '{DATA}/prim', '{DATA}/lathe', '{DATA}/auto', '{DATA}/gen',
@@ -155,7 +164,7 @@ WRITE_FLAGS = os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
 BANNED = ((re.compile(r'radius|(^|[_.])(r|rad)([_.]|$)|ball|marker|sphere|bead', re.I), (7.0, 0.007), ('fitted',)),
           (re.compile(r'diam', re.I), (14.0, 0.014), ('fitted',)),
           (re.compile(r'thick|wall|shell|(^|[_.])t0?([_.]|$)', re.I), (2.5, 0.0025), ('fitted', 'fallback')),
-          (re.compile(r'tau|v3|thresh|veto', re.I), (0.2,), ('fitted',)))
+          (re.compile(r'tau|v3|veto|fold', re.I), (0.2,), ('fitted',)))
 
 
 class GuardError(PermissionError, ValueError):
@@ -354,13 +363,13 @@ def _root_problem(name, root):
     run roots, the repository or a refused folder, and may not lie inside DATA/data, DATA/cache, DATA/gmg, the
     repository or a refused folder."""
     D = CFG['data']
-    keep_out = [D, os.path.join(D, 'data'), os.path.join(D, 'cache'), os.path.join(D, 'gmg'), runs_root('clean'),
-                runs_root('dev'), CFG['repo'], CFG['gmg']] + [_sub(x, raw=True) for x in REFUSED_DIRS]
+    keep_out = [D, os.path.join(D, 'data'), os.path.join(D, 'cache'), os.path.join(D, 'gmg'), os.path.join(D, 'hfds'),
+                runs_root('clean'), runs_root('dev'), CFG['repo'], CFG['gmg']] + [_sub(x, raw=True) for x in REFUSED_DIRS]
     for p in keep_out:
         if _under(p, root):
             return f'{name} root {root} contains {p}'
-    for p in [os.path.join(D, 'data'), os.path.join(D, 'cache'), os.path.join(D, 'gmg'), CFG['repo']] + \
-             [_sub(x, raw=True) for x in REFUSED_DIRS]:
+    for p in [os.path.join(D, 'data'), os.path.join(D, 'cache'), os.path.join(D, 'gmg'), os.path.join(D, 'hfds'),
+              CFG['repo']] + [_sub(x, raw=True) for x in REFUSED_DIRS]:
         if _under(root, p):
             return f'{name} root {root} lies inside {p}'
     r = _path_reason(root + '/x', '*root*')
@@ -407,13 +416,15 @@ def _named_fixture(rp):
     return None
 
 
-# ---- run folder and its marker
+# ---- run folder, its marker and its provenance ledger
 def _marker_path(rp):
-    return os.path.join(rp, 'run_tier.json')
+    return os.path.join(rp, MARKER)
 
 
 def _read_marker(rp):
-    """The run marker dict, None if missing, or {'invalid': reason}."""
+    """The run marker dict, None if missing, or {'invalid': reason}. A valid marker names its own folder (run = the
+    folder name, root = the name of the run root of its mode) and lies in the run root of its mode, so a marker copied
+    from another run, or a folder moved between the dev and the clean root, is invalid."""
     p = _marker_path(rp)
     if not os.path.lexists(p):
         return None
@@ -426,14 +437,23 @@ def _read_marker(rp):
         return dict(invalid=f'bad marker {d!r}')
     if d['mode'] == 'dev' and d['tier'] != 'DEV':
         return dict(invalid=f'dev marker with tier {d["tier"]!r}')
+    root = runs_root(d['mode'])
+    if d.get('run') != os.path.basename(rp) or d.get('root') != os.path.basename(root):
+        return dict(invalid=f'marker names run {d.get("run")!r} under {d.get("root")!r}, not this folder '
+                            f'{os.path.basename(rp)!r} under {os.path.basename(root)!r} (copied or moved marker)')
+    if os.path.dirname(rp) != root:
+        return dict(invalid=f'a {d["mode"]}-mode marker in a folder outside the {d["mode"]} run root {root}')
     return d
 
 
 def set_run(path):
     """Set the run folder (role own) once. Clean mode: DATA/gmg/runs/<yyyymmdd>-<tag>-<commit7>; dev mode:
     DATA/gmg/runs-dev/<...>. A new (or empty) folder is created with the marker run_tier.json (clean: mode clean,
-    tier P1; dev: mode dev, tier DEV). An existing folder needs a marker of the same mode; clean mode refuses a folder
-    whose marker is missing, invalid or DEV (a missing marker never means P1)."""
+    tier P1; dev: mode dev, tier DEV; plus the run name and root). An existing folder needs a valid marker of the same
+    mode; clean mode refuses a folder whose marker is missing, invalid or DEV (a missing marker never means P1). Only
+    set_run writes the marker: the open hook refuses every other write, rename, link or symlink onto run_tier.json.
+    Files already in an existing clean run folder are read only if the run's ledger (outputs.jsonl) lists them with
+    their current sha256 (see _provenance_reason)."""
     rp = _real(path)
     if CFG['run'] is not None and CFG['run'] != rp:
         raise GuardError(f'gmg guard: the run folder is already {CFG["run"]}')
@@ -447,7 +467,7 @@ def set_run(path):
     mk = _read_marker(rp)
     if exists or mk is not None:
         if mk is None:
-            raise GuardError(f'gmg guard: run folder {rp} exists without run_tier.json; a missing marker is never P1 '
+            raise GuardError(f'gmg guard: run folder {rp} exists without {MARKER}; a missing marker is never P1 '
                              f'(refused in {mode()} mode)')
         if 'invalid' in mk:
             raise GuardError(f'gmg guard: run folder {rp}: {mk["invalid"]}')
@@ -457,16 +477,18 @@ def set_run(path):
             raise GuardError(f'gmg guard: run folder {rp} is tier DEV (marker); a clean run never uses it')
         CFG['run'] = rp
     else:
-        os.makedirs(rp, exist_ok=True)
-        CFG['run'] = rp
-        try:
-            with open(_marker_path(rp), 'x') as f:
-                json.dump(dict(mode=mode(), tier='DEV' if mode() == 'dev' else 'P1', pid=os.getpid(),
-                               created_utc=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')),
-                          f)
-        except BaseException:
-            CFG['run'] = None
-            raise
+        with _protected():
+            os.makedirs(rp, exist_ok=True)
+            CFG['run'] = rp
+            try:
+                body = dict(mode=mode(), tier='DEV' if mode() == 'dev' else 'P1', run=os.path.basename(rp),
+                            root=os.path.basename(parent), pid=os.getpid(), schema='gmg-run-marker/2',
+                            created_utc=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
+                with open(_marker_path(rp), 'x') as f:
+                    json.dump(body, f)
+            except BaseException:
+                CFG['run'] = None
+                raise
     _RX.clear()
     return rp
 
@@ -480,6 +502,87 @@ def _own_tier():
     if mk is None or 'invalid' in mk or mk['mode'] != mode():
         return 'DEV'
     return 'DEV' if mode() == 'dev' else mk['tier']
+
+
+_WRITTEN = {}           # realpath under RUN -> how this process wrote it ('python' open/rename, 'registered')
+_LEDGER_CACHE = {}      # run -> ((size, mtime_ns, ino), {relpath: {sha256}})
+T0_NS = time.time_ns()  # process start (register_output sanity check)
+
+
+def _ledger(run):
+    """{relpath: {sha256}} from RUN/outputs.jsonl: the lines of this mode whose run name is this folder's. Malformed
+    lines are ignored (they admit nothing)."""
+    p = os.path.join(run, LEDGER)
+    try:
+        st = os.stat(p)
+    except OSError:
+        return {}
+    key = (st.st_size, st.st_mtime_ns, st.st_ino)
+    c = _LEDGER_CACHE.get(run)
+    if c and c[0] == key:
+        return c[1]
+    out, name = {}, os.path.basename(run)
+    with open(p, errors='replace') as f:
+        for ln in f:
+            try:
+                d = json.loads(ln)
+            except ValueError:
+                continue
+            if (isinstance(d, dict) and d.get('mode') == mode() and d.get('run') == name
+                    and isinstance(d.get('path'), str) and isinstance(d.get('sha256'), str)):
+                out.setdefault(os.path.normpath(d['path']), set()).add(d['sha256'])
+    _LEDGER_CACHE[run] = (key, out)
+    return out
+
+
+def _provenance_reason(rp):
+    """Clean mode, check 9: why an existing regular file under the current run folder may not be read, or None. It
+    may be read if this process wrote it, or if the run's ledger RUN/outputs.jsonl (appended by write_manifest of a
+    clean guarded process of this run) lists it with its current sha256. So a file that another process put there
+    (a dev process, a shell mv/cp, an unguarded byte copy of a refused folder) is refused, whatever the marker says.
+    The marker and the ledger themselves are exempt."""
+    run = CFG['run']
+    if mode() != 'clean' or not run or not _under(rp, run) or rp == run:
+        return None
+    rel = os.path.relpath(rp, run)
+    if rel in PROTECTED or rp in _WRITTEN:
+        return None
+    try:
+        st = os.stat(rp)
+    except OSError:
+        return None
+    if not stat.S_ISREG(st.st_mode):
+        return None
+    shas = _ledger(run).get(rel)
+    if not shas:
+        return (f'run provenance: {rel} has no entry in {LEDGER} (no clean guarded process of this run wrote it; '
+                f'files moved, linked or copied into a run are never inputs)')
+    if _sha256(rp) not in shas:
+        return f'run provenance: {rel} differs from its {LEDGER} entries (sha256)'
+    return None
+
+
+def register_output(path):
+    """Declare a file in the run folder that this process wrote through C code or a child process (the open hook sees
+    Python-level writes only), so write_manifest records it in the ledger. The file must lie in the current run
+    folder, be a regular file with one link and have been modified after this process started. The strace audit
+    checks that every output in a manifest was written by the audited command. Returns the realpath."""
+    rp = os.path.realpath(os.path.abspath(os.fspath(path)))
+    run = CFG['run']
+    if not run or not _under(rp, run) or rp == run:
+        raise GuardError(f'gmg guard: register_output {rp}: not in the run folder {run}')
+    if os.path.basename(rp) in PROTECTED:
+        raise GuardError(f'gmg guard: register_output {rp}: {os.path.basename(rp)} is written by the guard only')
+    st = os.lstat(rp)
+    if not stat.S_ISREG(st.st_mode) or st.st_nlink != 1:
+        raise GuardError(f'gmg guard: register_output {rp}: not a regular file with one link')
+    if st.st_mtime_ns < T0_NS - 2_000_000_000:
+        raise GuardError(f'gmg guard: register_output {rp}: not modified since this process started')
+    r = _path_reason(rp, '*hook*', rp=rp)
+    if r:
+        raise GuardError(f'gmg guard: register_output {rp}: {r}')
+    _WRITTEN.setdefault(rp, 'registered')
+    return rp
 
 
 def _check_patterns(path, role, *, run_check=True):
@@ -723,6 +826,9 @@ def open_input(path, role, *, expect_sha256=None, keys=None):
                              f'guard.load_npz only (mask keys)')
         if det:
             _register_det(rp, sha, det)
+        prov = _provenance_reason(rp)
+        if prov:
+            raise GuardError(f'gmg guard: refused {role} input {rp}: {prov}')
     except (GuardError, OSError) as e:
         if rp is not None and rp not in _INPUTS:
             _ADMITTED.discard(rp)
@@ -879,6 +985,9 @@ def constant(name, value, origin):
                          f'(one of {INFORMED_A6})')
     if head == 'fitted' and re.search(r'scan|mocap|gt\b|ground.?truth|library|cdo|cd-o|add\b', what, re.I):
         raise GuardError(f'gmg constant {name}: fitted to {what!r}: constants are never fitted to scans or GT')
+    if head == 'fitted' and re.search(r'\beval', what, re.I):
+        raise GuardError(f'gmg constant {name}: fitted to {what!r}: constants are fitted on public observations only '
+                         f'(SPEC section 2), never on eval episodes')
     try:
         v = json.loads(json.dumps(value))
     except (TypeError, ValueError):
@@ -928,12 +1037,30 @@ CODE_DIRS = (os.path.join(MESH_RESEARCH, 'gmg'), os.path.join(MESH_RESEARCH, 'au
              os.path.join(MESH_RESEARCH, 'scripts'), os.path.join(REPO, 'pipeline'))
 
 
+def _outputs():
+    """The files this process wrote in the run folder (open hook, os.rename/os.replace, register_output) that still
+    exist, with sha256 and bytes (the manifest's outputs, appended to the ledger by write_manifest)."""
+    run, out = CFG['run'], []
+    if not run:
+        return out
+    for rp, how in sorted(_WRITTEN.items()):
+        if not _under(rp, run) or rp == run or os.path.basename(rp) in PROTECTED:
+            continue
+        try:
+            st = os.lstat(rp)
+        except OSError:
+            continue
+        if stat.S_ISREG(st.st_mode):
+            out.append(dict(path=os.path.relpath(rp, run), sha256=_sha256(rp), bytes=int(st.st_size), how=how))
+    return out
+
+
 def manifest(extra=None):
     """Everything a run must report about its inputs (SPEC sections 2, 6): mode, tier, code commit, roots, deny-list
-    sources, every input with role, realpath, sha256, bytes and tier, the constants with origins, and every
-    refusal. code_dirty covers gmg/, autokit/, scripts/ and pipeline/."""
+    sources, every input with role, realpath, sha256, bytes and tier, the constants with origins, every refusal, and
+    the outputs this process wrote in the run folder. code_dirty covers gmg/, autokit/, scripts/ and pipeline/."""
     dirty = _git('status', '--porcelain', '--', *[os.path.relpath(d, CFG['repo']) for d in CODE_DIRS])
-    m = dict(schema='gmg-manifest/2', spec='SPEC v1 rev 1 (freeze fd814f6)', mode=mode(), tier=tier(),
+    m = dict(schema='gmg-manifest/3', spec='SPEC v1 rev 1 (freeze fd814f6)', mode=mode(), tier=tier(),
              created_utc=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
              commit=_git('rev-parse', 'HEAD'), code_dirty=bool(dirty), code_dirty_files=(dirty or '').splitlines(),
              code_dirs=[os.path.relpath(d, CFG['repo']) for d in CODE_DIRS],
@@ -945,14 +1072,30 @@ def manifest(extra=None):
              det_registry=dict(DETREG['source'], sha256_known=len(DETREG['sha']),
                                signature_keys=sorted(DETREG['signature'])),
              guarded_opens=dict(sorted(_GUARDED_OPENS.items())),
-             hook=dict(_HOOK), inputs=inputs(), constants=constants(), refusals=refusals())
+             hook=dict(_HOOK), inputs=inputs(), constants=constants(), refusals=refusals(), outputs=_outputs())
     if extra:
         m['extra'] = extra
     return m
 
 
+def _ledger_append(entries, man):
+    """Append ENTRIES to RUN/outputs.jsonl in one write (O_APPEND). Only this function (and set_run for the marker)
+    may write the protected files: the open hook checks the call stack."""
+    run = CFG['run']
+    now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    lines = ''.join(json.dumps(dict(e, run=os.path.basename(run), mode=mode(), pid=os.getpid(), manifest=man,
+                                    utc=now)) + '\n' for e in entries)
+    with _protected():
+        fd = os.open(os.path.join(run, LEDGER), os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o644)
+        try:
+            os.write(fd, lines.encode())
+        finally:
+            os.close(fd)
+
+
 def write_manifest(path, extra=None):
-    """Write manifest() as JSON to PATH (inside the run folder when one is set). Returns the manifest."""
+    """Write manifest() as JSON to PATH (inside the run folder when one is set) and append its outputs and the
+    manifest file itself to the run's ledger RUN/outputs.jsonl. Returns the manifest."""
     m = manifest(extra)
     rp = _real(path)
     if CFG['run'] and not rp.startswith(CFG['run'] + '/'):
@@ -960,6 +1103,10 @@ def write_manifest(path, extra=None):
     os.makedirs(os.path.dirname(rp), exist_ok=True)
     with open(rp, 'w') as f:
         json.dump(m, f, indent=1)
+    if CFG['run']:
+        rel = os.path.relpath(rp, CFG['run'])
+        own = dict(path=rel, sha256=_sha256(rp), bytes=os.path.getsize(rp), how='manifest')
+        _ledger_append([o for o in m['outputs'] if o['path'] != rel] + [own], rel)
     return m
 
 
@@ -970,44 +1117,352 @@ def _is_code(p):
     return b.endswith(CODE_SUFFIX) or '.so.' in b
 
 
-def _hook_reason(path, flags=0, dir_fd=None):
-    """(path, reason) if the hook refuses this open, else None."""
+@contextlib.contextmanager
+def _protected():
+    """set_run / _ledger_append: let the hook pass writes of the protected files (checked with the call stack)."""
+    old = getattr(_TLS, 'protected', False)
+    _TLS.protected = True
+    try:
+        yield
+    finally:
+        _TLS.protected = old
+
+
+def _guard_frame(codes):
+    """True if a frame of one of the guard functions CODES is on the call stack (so setting the private thread-local
+    flags by hand does not open the det or protected-file doors)."""
+    f = sys._getframe(1)
+    for _ in range(40):
+        if f is None:
+            return False
+        if f.f_code in codes:
+            return True
+        f = f.f_back
+    return False
+
+
+def _resolve(path, dir_fd=None, follow=True):
+    """(absolute path, resolved path) of an audit-event path. follow=False resolves the parent only (rename, remove,
+    symlink and mkdir act on the name itself, not on what it points to)."""
     s = os.fsdecode(path)
     if dir_fd is not None and not os.path.isabs(s):
         s = os.path.join(os.readlink(f'/proc/self/fd/{dir_fd}'), s)
     a = os.path.abspath(s)
-    rp = os.path.realpath(a)
+    if follow:
+        return a, os.path.realpath(a)
+    return a, os.path.join(os.path.realpath(os.path.dirname(a)), os.path.basename(a))
+
+
+def _path_hit(a, rp):
+    """Path rules of the hook (checks 2-4, the kit scorer, the dev run root in clean mode): (path, reason) or None."""
     code = _is_code(rp)
     for q in dict.fromkeys((a, rp)):
         r = _path_reason(q, '*hook*', code=code, rp=rp)
         if r:
             return q, r
-    if flags & WRITE_FLAGS:
-        for m in MODES:
-            root = runs_root(m)
-            if _under(rp, root) and rp != root and not (CFG['run'] and _under(rp, CFG['run'])):
-                return rp, f'write under the {m} run root outside the current run folder ({CFG["run"]})'
-    if getattr(_TLS, 'det_ok', None) == rp or getattr(_TLS, 'internal', False):
-        _GUARDED_OPENS[rp] = _GUARDED_OPENS.get(rp, 0) + 1
-        return None
-    if code and not _det_name_reason(a, rp):
-        return None
-    det = _det_identity(a, rp, deep=not (flags & (os.O_WRONLY | os.O_CREAT | os.O_TRUNC)))
-    if det:
-        return rp, f'{det}: a det file is opened only inside guard.load_npz'
+    if _match(rp, KIT_SCORER_HOOK) or _match(a, KIT_SCORER_HOOK):
+        return rp, 'the kit scorer is never opened or imported by a gmg process'
+    if mode() == 'clean' and _under(rp, runs_root('dev')):
+        return rp, 'the dev run root is never touched in clean mode'
     return None
 
 
+def _runs_hit(rp):
+    """(path, reason) if RP is under a run root outside the current run folder, is the current run folder itself, or
+    contains a run root (a write, rename, removal or link there would change another run or replace a run)."""
+    run = CFG['run']
+    for m in MODES:
+        root = runs_root(m)
+        if _under(root, rp):
+            return rp, f'{rp} is or contains the {m} run root'
+        if _under(rp, root) and not (run and _under(rp, run) and rp != run):
+            return rp, f'write under the {m} run root outside the current run folder ({run})'
+    return None
+
+
+def _write_hit(rp):
+    """(path, reason) if creating, truncating, appending, renaming or linking onto RP is refused."""
+    if getattr(_TLS, 'protected', False) and _guard_frame(_PROTECTED_WRITERS):
+        return None
+    r = _runs_hit(rp)
+    if r:
+        return r
+    if os.path.basename(rp) in PROTECTED and any(_under(rp, runs_root(m)) for m in MODES):
+        return rp, f'{os.path.basename(rp)} is written by the guard only (set_run / write_manifest)'
+    return None
+
+
+def _det_door(rp):
+    """An open the guard itself makes (load_npz's np.load, hashing, member names): counted for the strace
+    reconciliation and let through."""
+    if (getattr(_TLS, 'det_ok', None) == rp or getattr(_TLS, 'internal', False)) and _guard_frame(_DET_OPENERS):
+        _GUARDED_OPENS[rp] = _GUARDED_OPENS.get(rp, 0) + 1
+        return True
+    return False
+
+
+def _nlink_hit(rp):
+    """SPEC section 2: a data file with more than one hard link is refused (files under DATA outside the interpreter,
+    KIT, WEIGHTS and the gmg folder; code files and the interpreter are not checked)."""
+    if _is_code(rp) or rp.startswith(_PREFIXES):
+        return None
+    if not any(_under(rp, CFG[k]) for k in ('data', 'kit', 'weights', 'gmg')):
+        return None
+    try:
+        st = os.stat(rp)
+    except OSError:
+        return None
+    if stat.S_ISREG(st.st_mode) and st.st_nlink > 1:
+        return rp, f'regular file with {st.st_nlink} hard links'
+    return None
+
+
+def _open_reason(path, flags=0, dir_fd=None):
+    """(path, reason) if the hook refuses this open, else None. Records Python-level writes in the run folder."""
+    a, rp = _resolve(path, dir_fd)
+    hit = _path_hit(a, rp)
+    if hit:
+        return hit
+    write = bool(flags & WRITE_FLAGS)
+    if write:
+        hit = _write_hit(rp)
+        if hit:
+            return hit
+    if _det_door(rp):
+        return None
+    readable = (flags & os.O_ACCMODE) != os.O_WRONLY
+    if not (_is_code(rp) and not _det_name_reason(a, rp)):
+        det = _det_identity(a, rp, deep=readable)
+        if det:
+            return rp, f'{det}: a det file is opened only inside guard.load_npz'
+    if readable:
+        hit = _nlink_hit(rp)
+        if hit:
+            return hit
+    exists = os.path.lexists(rp)
+    if exists and not (write and flags & os.O_TRUNC):
+        r = _provenance_reason(rp)
+        if r:
+            return rp, r
+    if write and CFG['run'] and _under(rp, CFG['run']) and rp != CFG['run'] and (exists or flags & os.O_CREAT):
+        _WRITTEN.setdefault(rp, 'python')
+    return None
+
+
+def _tree_provenance(rp):
+    """Provenance of a file, or of every regular file under a directory, in the current run (clean mode)."""
+    if os.path.isdir(rp) and not os.path.islink(rp):
+        for d, _, fs in os.walk(rp):
+            for f in fs:
+                r = _provenance_reason(os.path.join(d, f))
+                if r:
+                    return r
+        return None
+    return _provenance_reason(rp)
+
+
+def _move_reason(src, dst, sfd=None, dfd=None):
+    """os.rename / os.replace (and shutil.move): the source is removed and the destination written."""
+    sa, srp = _resolve(src, sfd, follow=False)
+    da, drp = _resolve(dst, dfd, follow=False)
+    for q in ((sa, srp), (da, drp)):
+        hit = _path_hit(*q)
+        if hit:
+            return hit
+    hit = _runs_hit(srp)
+    if hit:
+        return srp, 'rename source: ' + hit[1]
+    if os.path.basename(srp) in PROTECTED and any(_under(srp, runs_root(m)) for m in MODES):
+        return srp, f'{os.path.basename(srp)} is moved by nobody'
+    hit = _write_hit(drp)
+    if hit:
+        return hit
+    run = CFG['run']
+    if run and _under(drp, run):
+        if mode() == 'clean' and not _under(srp, run):
+            return drp, (f'rename into the clean run folder from outside it ({srp}); a clean run writes its files '
+                         f'itself (temporary files inside RUN)')
+        if mode() == 'clean':
+            r = _tree_provenance(srp)
+            if r:
+                return srp, r
+    if os.path.lexists(srp) and _det_identity(sa, srp, deep=False):
+        return srp, 'a det file is never renamed (read it through guard.load_npz)'
+    return None
+
+
+def _link_reason(src, dst, sfd=None, dfd=None):
+    """os.link: a second name for a file. Never inside a run root (SPEC: files with more than one link are refused),
+    never of a refused or det file."""
+    sa, srp = _resolve(src, sfd)
+    da, drp = _resolve(dst, dfd, follow=False)
+    for q in ((sa, srp), (da, drp)):
+        hit = _path_hit(*q)
+        if hit:
+            return hit
+    for q in (srp, drp):
+        if any(_under(q, runs_root(m)) for m in MODES):
+            return q, 'a hard link is never made inside a run root (files with more than one link are refused)'
+    hit = _write_hit(drp)
+    if hit:
+        return hit
+    if _det_identity(sa, srp, deep=True):
+        return srp, 'a det file is never linked (read it through guard.load_npz)'
+    return None
+
+
+def _symlink_reason(target, dst, dfd=None):
+    """os.symlink: the link name is a write; the target gets the path rules; in clean mode a link in the run folder
+    must point inside it."""
+    da, drp = _resolve(dst, dfd, follow=False)
+    t = os.fsdecode(target)
+    ta = os.path.abspath(t if os.path.isabs(t) else os.path.join(os.path.dirname(da), t))
+    trp = os.path.realpath(ta)
+    for q in ((da, drp), (ta, trp)):
+        hit = _path_hit(*q)
+        if hit:
+            return hit
+    hit = _write_hit(drp)
+    if hit:
+        return hit
+    run = CFG['run']
+    if mode() == 'clean' and run and _under(drp, run) and not (_under(trp, run) and trp != run):
+        return drp, f'a symlink in the clean run folder must point inside it (target {trp})'
+    for m in MODES:
+        root = runs_root(m)
+        if _under(trp, root) and not (run and _under(trp, run)):
+            return trp, f'a symlink to another run under the {m} run root'
+    return None
+
+
+def _remove_reason(path, dir_fd=None, tree=False):
+    """os.remove / os.unlink / os.rmdir / shutil.rmtree: never under a run root outside the current run folder, never
+    a run root or one of its parents (CLAUDE.md: preserve existing runs)."""
+    a, rp = _resolve(path, dir_fd, follow=False)
+    hit = _runs_hit(rp)
+    if hit:
+        return rp, ('tree ' if tree else '') + 'removal: ' + hit[1]
+    _WRITTEN.pop(rp, None)
+    return None
+
+
+def _truncate_reason(path, length):
+    if isinstance(path, int):
+        return None
+    a, rp = _resolve(path)
+    hit = _path_hit(a, rp) or _write_hit(rp)
+    if hit:
+        return hit
+    if length and os.path.lexists(rp):
+        r = _provenance_reason(rp)
+        if r:
+            return rp, r
+    if CFG['run'] and _under(rp, CFG['run']) and rp != CFG['run']:
+        _WRITTEN.setdefault(rp, 'python')
+    return None
+
+
+GT_URL = re.compile(r'track_3/[^/]+/(?:mesh|urdf|data)/', re.I)
+
+
+def _url_reason(u):
+    """A URL (or an http request target) that names ground truth: the GT substrings, or the HF dataset's track_3
+    mesh/, urdf/ or data/ (parquet) folders."""
+    low = u.lower()
+    for s in SUBSTRINGS:
+        if s in low:
+            return f'URL contains {s!r}'
+    if GT_URL.search(low):
+        return 'URL names the HF dataset track_3 mesh/, urdf/ or data/ (ground truth)'
+    return None
+
+
+def _arg_reason(args):
+    """Process arguments (subprocess, exec, spawn, system): an absolute path that fails the path rules, or a URL that
+    names ground truth, is refused before the child starts."""
+    if isinstance(args, (str, bytes, os.PathLike)):
+        args = [args]
+    for x in args or ():
+        try:
+            s = os.fsdecode(x)
+        except TypeError:
+            continue
+        for tok in s.split():
+            if '://' in tok:
+                r = _url_reason(tok)
+                if r:
+                    return tok, r
+            elif tok.startswith('/'):
+                a = os.path.abspath(tok)
+                r = _path_reason(a, '*hook*', code=_is_code(a)) or (
+                    _match(a, KIT_SCORER_HOOK) and 'the kit scorer') or (
+                    mode() == 'clean' and _under(a, runs_root('dev')) and 'the dev run root (clean mode)')
+                if r:
+                    return tok, r
+    return None
+
+
+def _event_reason(event, args):
+    """(path, reason) if the hook refuses this audit event, else None."""
+    if event == 'open':
+        path = args[0] if args else None
+        if path is None or isinstance(path, int):
+            return None
+        flags = args[2] if len(args) > 2 and isinstance(args[2], int) else 0
+        return _open_reason(path, flags, getattr(_TLS, 'dir_fd', None))
+    if event == 'os.rename':
+        return _move_reason(*args[:4])
+    if event == 'os.link':
+        return _link_reason(*args[:4])
+    if event == 'os.symlink':
+        return _symlink_reason(*args[:3])
+    if event in ('os.remove', 'os.rmdir'):
+        return _remove_reason(args[0], args[1] if len(args) > 1 else None)
+    if event == 'shutil.rmtree':
+        return _remove_reason(args[0], args[1] if len(args) > 1 else None, tree=True)
+    if event == 'os.mkdir':
+        a, rp = _resolve(args[0], args[2] if len(args) > 2 else None, follow=False)
+        if rp == CFG['run']:                        # os.makedirs(RUN, exist_ok=True): mkdir of an existing folder
+            return None
+        return _path_hit(a, rp) or _write_hit(rp)
+    if event == 'os.truncate':
+        return _truncate_reason(*args[:2])
+    if event in ('subprocess.Popen', 'os.exec', 'os.posix_spawn', 'os.spawn'):
+        parts = list(args[1:2]) if event != 'os.spawn' else list(args[2:3])
+        parts.append(args[0] if event != 'os.spawn' else args[1])
+        for p in parts:
+            r = _arg_reason(p)
+            if r:
+                return r
+        return None
+    if event == 'os.system':
+        return _arg_reason(args[0])
+    if event == 'urllib.Request':
+        r = _url_reason(str(args[0]))
+        return (str(args[0]), r) if r else None
+    if event == 'http.client.send':
+        data = args[1] if len(args) > 1 else b''
+        if isinstance(data, (bytes, bytearray)):
+            line = bytes(data[:4096]).split(b'\r\n', 1)[0].decode('latin-1', 'replace')
+            parts = line.split(' ')
+            if len(parts) >= 2 and parts[0].isupper():
+                r = _url_reason(parts[1])
+                return (parts[1], r) if r else None
+        return None
+    return None
+
+
+HOOK_EVENTS = frozenset(('open', 'os.rename', 'os.link', 'os.symlink', 'os.remove', 'os.rmdir', 'shutil.rmtree',
+                         'os.mkdir', 'os.truncate', 'subprocess.Popen', 'os.exec', 'os.posix_spawn', 'os.spawn',
+                         'os.system', 'urllib.Request', 'http.client.send'))
+
+
 def _audit(event, args):
-    if event != 'open' or getattr(_TLS, 'busy', False):
+    if event not in HOOK_EVENTS or getattr(_TLS, 'busy', False):
         return
-    path = args[0] if args else None
-    if path is None or isinstance(path, int):
-        return
-    flags = args[2] if len(args) > 2 and isinstance(args[2], int) else 0
     _TLS.busy = True
     try:
-        hit = _hook_reason(path, flags, getattr(_TLS, 'dir_fd', None))
+        hit = _event_reason(event, args)
     except Exception:                                               # fail open on an internal error, but count it
         hit = None
         _HOOK['errors'] = _HOOK.get('errors', 0) + 1
@@ -1015,11 +1470,11 @@ def _audit(event, args):
         _TLS.busy = False
     if hit:
         _HOOK['blocked'] += 1
-        _record_refusal(hit[0], '*open*', hit[1], via='hook')
-        raise GuardError(f'gmg guard: refused open of {hit[0]}: {hit[1]}')
+        _record_refusal(hit[0], f'*{event}*', hit[1], via='hook')
+        raise GuardError(f'gmg guard: refused {event} of {hit[0]}: {hit[1]}')
 
 
-_OS_OPEN = os.open
+_OS_OPEN, _OS_RENAME, _OS_REPLACE = os.open, os.rename, os.replace
 
 
 def _os_open(path, flags, mode=0o777, *, dir_fd=None):
@@ -1034,11 +1489,45 @@ def _os_open(path, flags, mode=0o777, *, dir_fd=None):
         _TLS.dir_fd = old
 
 
+def _moved(src, dst, src_dir_fd, dst_dir_fd):
+    """After a successful rename inside the run folder: the destination (and every file under a moved directory) is
+    this process's output; the source names are gone."""
+    run = CFG['run']
+    if not run:
+        return
+    _, srp = _resolve(src, src_dir_fd, follow=False)
+    _, drp = _resolve(dst, dst_dir_fd, follow=False)
+    if not (_under(drp, run) and drp != run):
+        _WRITTEN.pop(srp, None)
+        return
+    how = _WRITTEN.pop(srp, 'python')
+    if os.path.isdir(drp) and not os.path.islink(drp):
+        for k in [k for k in _WRITTEN if _under(k, srp)]:
+            _WRITTEN.pop(k)
+        for d, _, fs in os.walk(drp):
+            for f in fs:
+                _WRITTEN.setdefault(os.path.join(d, f), how)
+    else:
+        _WRITTEN[drp] = how
+
+
+def _os_rename(src, dst, *, src_dir_fd=None, dst_dir_fd=None):
+    r = _OS_RENAME(src, dst, src_dir_fd=src_dir_fd, dst_dir_fd=dst_dir_fd)
+    _moved(src, dst, src_dir_fd, dst_dir_fd)
+    return r
+
+
+def _os_replace(src, dst, *, src_dir_fd=None, dst_dir_fd=None):
+    r = _OS_REPLACE(src, dst, src_dir_fd=src_dir_fd, dst_dir_fd=dst_dir_fd)
+    _moved(src, dst, src_dir_fd, dst_dir_fd)
+    return r
+
+
 def install_hook():
-    """Install the in-process open() guard (permanent for the interpreter; done at import)."""
+    """Install the in-process guard (permanent for the interpreter; done at import)."""
     if not _HOOK['installed']:
         sys.addaudithook(_audit)
-        os.open = _os_open
+        os.open, os.rename, os.replace = _os_open, _os_rename, _os_replace
         _HOOK['installed'] = True
 
 
@@ -1049,6 +1538,10 @@ def _check_roots():
             raise GuardError(f'gmg guard: refused GMG_{name.upper()}_ROOT: {r}')
 
 
+_DET_OPENERS = frozenset(f.__code__ for f in (load_npz, _sha_file, _npz_names))
+_PROTECTED_WRITERS = frozenset(f.__code__ for f in (set_run, _ledger_append))
+_PREFIXES = tuple(sorted({os.path.realpath(p).rstrip('/') + '/' for p in (sys.prefix, sys.exec_prefix)
+                          if os.path.realpath(p) not in ('/', '/usr', '/usr/local')}))
 sys.modules.setdefault('gmg.guard', sys.modules[__name__])
 _check_roots()
 install_hook()

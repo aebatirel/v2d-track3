@@ -65,8 +65,24 @@ def _bytes(path):
         return f.read()
 
 
-def _marker(run, mode='clean', tier='P1'):
-    return _w(os.path.join(run, 'run_tier.json'), json.dumps(dict(mode=mode, tier=tier)))
+def _marker(run, mode='clean', tier='P1', **kw):
+    """A run marker as set_run writes it (run name and root bound to the folder); KW overrides fields."""
+    body = dict(mode=mode, tier=tier, run=os.path.basename(run), root=os.path.basename(os.path.dirname(run)), **kw)
+    return _w(os.path.join(run, 'run_tier.json'), json.dumps({k: v for k, v in body.items() if v is not None}))
+
+
+def _sha(path):
+    return hashlib.sha256(_bytes(path)).hexdigest()
+
+
+def _ledger(run, paths, mode='clean', name=None, sha=None):
+    """Append ledger lines (RUN/outputs.jsonl) for PATHS, as write_manifest of a clean guarded process of this run
+    would. Test setup only: this runner is not guarded, so it stands in for the process that wrote the fixtures."""
+    with open(os.path.join(run, 'outputs.jsonl'), 'a') as f:
+        for p in paths:
+            rel = os.path.relpath(os.path.realpath(p), os.path.realpath(run))
+            f.write(json.dumps(dict(path=rel, sha256=sha or _sha(p), bytes=os.path.getsize(p), how='test-fixture',
+                                    run=name or os.path.basename(run), mode=mode, pid=0, manifest=None)) + '\n')
 
 
 def setUpModule():
@@ -163,6 +179,14 @@ def setUpModule():
     os.symlink(f'{REPO}/meshes/library_v3/white_pot.glb', T['sym_lib'])
     T['fixture_tmp'] = _w(f'{base}/fixtures-{os.path.basename(D)}/synthetic_lid.glb')
     T['x0_gen'] = T['refused']['gen/mesh-other']
+    # the RUN fixtures a clean guarded process of this run would have written (det copies included, so the det key
+    # filter is tested on files that pass the run provenance check)
+    _ledger(T['RUN'], [T[k] for k in ('tracks_run', 'det_copy', 'det_resaved', 'bundle_ok', 'own', 'real_det_copy')
+                       if k in T])
+    # HF dataset layout (synthetic bytes): public scans and URDFs under hfds/track_3/public/{mesh,urdf}
+    T['hf_mesh'] = _w(f'{D}/hfds/track_3/public/mesh/white_pot/white_pot.glb')
+    T['hf_urdf'] = _w(f'{D}/hfds/track_3/public/urdf/white_pot.urdf')
+    T['hf_meta'] = _w(f'{D}/hfds/track_3/public/meta/info.json', '{}')
 
 
 def tearDownModule():
@@ -457,9 +481,14 @@ class TestAllowed(Base):
             res = probe([['json', T['own'], 'own'], ['open', T['calib'], 'calib'], ['tier']])
             self.assertStatus(res, 'ok')
             self.assertEqual(res[-1]['value'], 'P0')
-            cases = [(json.dumps(dict(mode='clean', tier='DEV')), 'tier DEV'),
-                     (json.dumps(dict(mode='dev', tier='DEV')), 'dev-mode run'),
-                     (json.dumps(dict(mode='dev', tier='P1')), 'dev marker with tier'),
+            nm = os.path.basename(T['RUN'])
+            cases = [(json.dumps(dict(mode='clean', tier='DEV', run=nm, root='runs')), 'tier DEV'),
+                     (json.dumps(dict(mode='dev', tier='DEV', run=nm, root='runs-dev')), 'outside the dev run root'),
+                     (json.dumps(dict(mode='dev', tier='P1', run=nm, root='runs-dev')), 'dev marker with tier'),
+                     (json.dumps(dict(mode='clean', tier='P1')), 'copied or moved marker'),          # round-2 form
+                     (json.dumps(dict(mode='clean', tier='P1', run='20261030-other-0000000', root='runs')),
+                      'copied or moved marker'),
+                     (json.dumps(dict(mode='clean', tier='P1', run=nm, root='runs-dev')), 'copied or moved marker'),
                      ('{not json', 'unreadable marker'), (None, 'without run_tier.json')]
             for body, why in cases:
                 if body is None:
@@ -500,7 +529,7 @@ class TestAllowed(Base):
         self.assertReason(res, ('without run_tier.json',))
         shutil.copyfile(f'{dev_run}/run_tier.json', f'{clean_twin}/run_tier.json')
         res = probe([['set_run', clean_twin]], run=False)
-        self.assertReason(res, ('dev-mode run',))
+        self.assertReason(res, ('outside the dev run root',))
         # a clean run whose marker disappears after set_run: own files are DEV (never P1) and refused
         fresh = f'{D}/gmg/runs/20261030-fresh-0000000'
         res = probe([['set_run', fresh], ['write', f'{fresh}/bundle/n.json', '{}'], ['json', f'{fresh}/bundle/n.json', 'own'],
@@ -601,10 +630,215 @@ class TestHook(Base):
         res = probe([['write', f'{T["RUN"]}/bundle/w.txt'], ['write', f'{D}/gmg/runs/20200101-x-0000000/a.txt'],
                      ['write', f'{D}/gmg/runs-dev/20200101-x-0000000/a.txt'], ['write', f'{T["RUN_DEV"]}/b.txt']])
         self.assertStatus(res[:1], 'ok')
-        self.assertReason(res[1:], ('run root outside the current run folder',))
+        self.assertReason(res[1:], ('run root outside the current run folder', 'dev run root is never touched'))
         res = probe([['write', f'{T["RUN_DEV"]}/bundle/w.txt'], ['write', f'{T["RUN"]}/bundle/w2.txt']], mode='dev')
         self.assertStatus(res[:1], 'ok')
         self.assertReason(res[1:], ('run root outside the current run folder',))
+
+
+class TestRunProvenance(Base):
+    """Verification round 2, blocking item 1: dev outputs must not enter a clean run by rename, replace, link, symlink
+    or a self-written marker; and whatever ends up in a clean run folder is read only if a clean guarded process of
+    that run wrote it (ledger RUN/outputs.jsonl)."""
+
+    def _clean_run(self, tag):
+        run = f'{T["D"]}/gmg/runs/20261030-{tag}-0000000'
+        res = probe([['set_run', run], ['write_manifest', f'{run}/manifest.json']], run=False)
+        self.assertStatus(res, 'ok')
+        return run
+
+    def test_probe1_dev_replace_and_rename_into_a_clean_run(self):
+        D = T['D']
+        clean = self._clean_run('probe1')
+        dev = f'{D}/gmg/runs-dev/20261030-probe1-0000000'
+        tmp = f'{D}/misc/probe1_tmp.npz'
+        res = probe([['set_run', dev], ['npz', T['refused']['obs_all'], 'obs_all'],
+                     ['savez', tmp, ['pts']], ['savez', f'{dev}/bundle/ep2_white_pot.npz', ['pts']],
+                     ['replace', tmp, f'{clean}/bundle/ep2_white_pot.npz'],          # write-to-temp-then-replace
+                     ['rename', f'{dev}/bundle/ep2_white_pot.npz', f'{clean}/bundle/moved.npz'],
+                     ['shutil_move', tmp, f'{clean}/bundle/moved2.npz'],
+                     ['link', tmp, f'{clean}/bundle/linked.npz'],
+                     ['symlink', tmp, f'{clean}/bundle/sym.npz'],
+                     ['write', f'{clean}/bundle/direct.json'],
+                     ['makedirs', f'{clean}/bundle2'],
+                     ['remove', f'{clean}/manifest.json']], mode='dev', run=False)
+        self.assertStatus(res[:4], 'ok')
+        self.assertReason(res[4:], ('run root outside the current run folder', 'hard link is never made inside a run'))
+        self.assertFalse(os.path.exists(f'{clean}/bundle'))
+        # the same moves made by an unguarded process (this runner): the clean process accepts the folder (its marker
+        # is its own) but reads none of the moved files
+        os.makedirs(f'{clean}/bundle', exist_ok=True)
+        os.replace(tmp, f'{clean}/bundle/ep2_white_pot.npz')
+        os.rename(f'{dev}/bundle/ep2_white_pot.npz', f'{clean}/bundle/moved.npz')
+        res = probe([['set_run', clean], ['npz', f'{clean}/bundle/ep2_white_pot.npz', 'own'],
+                     ['npz', f'{clean}/bundle/moved.npz', 'own'], ['np_load', f'{clean}/bundle/moved.npz'],
+                     ['builtin_open', f'{clean}/bundle/ep2_white_pot.npz'], ['tier'],
+                     ['json', f'{clean}/manifest.json', 'own']], run=False)
+        self.assertStatus(res[:1], 'ok')
+        self.assertReason(res[1:5], ('run provenance',))
+        self.assertEqual(res[5]['value'], 'P0')                  # nothing was admitted from the moved files
+        self.assertEqual(res[6]['status'], 'ok')                 # its own manifest is in the ledger
+
+    def test_probe2_self_written_marker_and_moved_dev_run(self):
+        D = T['D']
+        name = '20261030-probe2-0000000'
+        dev, moved = f'{D}/gmg/runs-dev/{name}', f'{D}/gmg/runs/{name}'
+        forged = json.dumps(dict(mode='clean', tier='P1', run=name, root='runs'))
+        res = probe([['set_run', dev], ['savez', f'{dev}/bundle/ep2_white_pot.npz', ['pts']],
+                     ['write_manifest', f'{dev}/manifest.json'],
+                     ['write', f'{dev}/run_tier.json', forged],                       # self-written marker
+                     ['open_mode', f'{dev}/run_tier.json', 'a'], ['truncate', f'{dev}/run_tier.json', 0],
+                     ['tls_protected_write', f'{dev}/run_tier.json', forged],        # private flag set by hand
+                     ['write', f'{dev}/outputs.jsonl', '{}'],
+                     ['rename', dev, moved], ['shutil_move', dev, moved], ['symlink', dev, moved],
+                     ['rename', f'{dev}/run_tier.json', f'{dev}/x.json']], mode='dev', run=False)
+        self.assertStatus(res[:3], 'ok')
+        self.assertReason(res[3:8], ('written by the guard only',))
+        self.assertReason(res[8:11], ('run root outside the current run folder',))
+        self.assertReason(res[11:], ('is moved by nobody',))
+        self.assertEqual(_json(f'{dev}/run_tier.json')['mode'], 'dev')
+        # the same steps by an unguarded process: forge the marker, move the folder into the clean root
+        try:
+            _w(f'{dev}/run_tier.json', forged)
+            os.rename(dev, moved)
+            res = probe([['set_run', moved], ['npz', f'{moved}/bundle/ep2_white_pot.npz', 'own'],
+                         ['np_load', f'{moved}/bundle/ep2_white_pot.npz'], ['json', f'{moved}/manifest.json', 'own']],
+                        run=False)
+            self.assertStatus(res[:1], 'ok')                       # a fully forged marker passes set_run ...
+            self.assertReason(res[1:], ('run provenance',))        # ... but the dev ledger admits nothing
+            # a forged marker without the run binding (round-2 form) is refused outright
+            _w(f'{moved}/run_tier.json', json.dumps(dict(mode='clean', tier='P1')))
+            res = probe([['set_run', moved]], run=False)
+            self.assertReason(res, ('copied or moved marker',))
+        finally:
+            shutil.rmtree(moved, ignore_errors=True)
+
+    def test_ledger_rules(self):
+        run = self._clean_run('ledger')
+        a, b = f'{run}/bundle/a.npz', f'{run}/bundle/b.npz'
+        res = probe([['set_run', run], ['savez', a, ['pts']], ['npz', a, 'own'],          # own write: readable
+                     ['replace', a, b], ['npz', b, 'own'],                               # rename inside the run
+                     ['makedirs', f'{run}/tmp'], ['savez', f'{run}/tmp/c.npz'], ['rename', f'{run}/tmp', f'{run}/t2'],
+                     ['npz', f'{run}/t2/c.npz', 'own'],
+                     ['savez', f'{T["D"]}/misc/outside.npz'], ['rename', f'{T["D"]}/misc/outside.npz', f'{run}/o.npz'],
+                     ['symlink', T['calib'], f'{run}/calib.json'], ['link', b, f'{run}/b2.npz'],
+                     ['write_manifest', f'{run}/manifest.json'], ['outputs']], run=False)
+        st = [x['status'] for x in res]
+        self.assertEqual(st, ['ok'] * 10 + ['refused'] * 3 + ['ok'] * 2, json.dumps(res)[:3000])
+        self.assertIn('from outside it', res[10]['msg'])
+        self.assertIn('must point inside it', res[11]['msg'])
+        self.assertEqual(sorted(o['path'] for o in res[-1]['value'] if o['path'] != 'manifest.json'),
+                         ['bundle/b.npz', 't2/c.npz'])
+        # a fresh process: the ledger admits what the manifest recorded; changed or unlisted files are refused
+        _w(f'{run}/bundle/foreign.npz', _bytes(b))                                      # same bytes, not listed
+        with open(f'{run}/t2/c.npz', 'ab') as f:                                          # changed after the ledger
+            f.write(b'x')
+        res = probe([['set_run', run], ['npz', b, 'own'], ['npz', f'{run}/bundle/foreign.npz', 'own'],
+                     ['npz', f'{run}/t2/c.npz', 'own'], ['open_mode', f'{run}/bundle/foreign.npz', 'ab'],
+                     ['open_mode', f'{run}/bundle/foreign.npz', 'r+b'], ['a_plus_npz', f'{run}/bundle/foreign.npz'],
+                     ['np_load', f'{run}/bundle/foreign.npz'],
+                     ['open_mode', f'{run}/bundle/foreign.npz', 'wb'],                   # truncation: own content
+                     ['json', f'{run}/manifest.json', 'own']], run=False)
+        self.assertEqual(res[1]['status'], 'ok')
+        self.assertReason(res[2:3], ('has no entry in outputs.jsonl',))
+        self.assertReason(res[3:4], ('differs from its outputs.jsonl entries',))
+        self.assertReason(res[4:8], ('run provenance',))
+        self.assertStatus(res[8:], 'ok')
+        # ledger lines that do not belong to this clean run admit nothing
+        _w(f'{run}/bundle/d.npz', _bytes(b))
+        _ledger(run, [f'{run}/bundle/d.npz'], mode='dev')
+        _ledger(run, [f'{run}/bundle/d.npz'], name='20261030-other-0000000')
+        _ledger(run, [f'{run}/bundle/d.npz'], sha='0' * 64)
+        res = probe([['set_run', run], ['npz', f'{run}/bundle/d.npz', 'own']], run=False)
+        self.assertReason(res[1:], ('run provenance',))
+
+    def test_register_output(self):
+        run = self._clean_run('regout')
+        p = f'{run}/bundle/c_written.bin'
+        res = probe([['set_run', run], ['subprocess', ['sh', '-c', f'mkdir -p {run}/bundle && printf abc > {p}']],
+                     ['open', p, 'own'], ['register_output', p], ['open', p, 'own'],
+                     ['register_output', f'{T["D"]}/misc/notes.bin'], ['register_output', f'{run}/run_tier.json'],
+                     ['write_manifest', f'{run}/manifest.json'], ['outputs']], run=False)
+        self.assertEqual([x['status'] for x in res], ['ok', 'ok', 'refused', 'ok', 'ok', 'refused', 'refused', 'ok',
+                                                      'ok'], json.dumps(res)[:3000])
+        self.assertEqual(res[-1]['value'][0]['how'], 'registered')
+        old = f'{run}/bundle/old.bin'
+        _w(old)
+        os.utime(old, (1e9, 1e9))
+        res = probe([['set_run', run], ['register_output', old]], run=False)
+        self.assertReason(res[1:], ('not modified since this process started',))
+
+    def test_removals_and_other_runs(self):
+        D = T['D']
+        other = self._clean_run('other')
+        res = probe([['remove', f'{other}/manifest.json'], ['rmtree', other], ['rmtree', f'{D}/gmg/runs'],
+                     ['rmtree', f'{D}/gmg'], ['rename', f'{D}/gmg', f'{D}/gmg_old'], ['mkdir', f'{other}/x'],
+                     ['mkdir', f'{D}/gmg/runs/20261030-new-0000000'], ['truncate', f'{other}/manifest.json', 0],
+                     ['makedirs', T['RUN']], ['makedirs', f'{T["RUN"]}/sub']])
+        self.assertReason(res[:8], ('run root outside the current run folder', 'is or contains the'))
+        self.assertStatus(res[8:], 'ok')
+        self.assertTrue(os.path.isfile(f'{other}/manifest.json'))
+
+
+class TestHookEvents(Base):
+    """Round 3 non-blocking items: a+b opens, HF dataset scans, hard links, kit scorer imports, the private door
+    flags, process arguments and URLs."""
+
+    def test_a_plus_b_det_copy(self):
+        c = T['det_copy']
+        res = probe([['a_plus_npz', c], ['open_mode', c, 'r+b'], ['open_mode', c, 'a+b']])
+        self.assertReason(res, ('copy of a det file',))
+
+    def test_hf_dataset_scans(self):
+        res = probe([['builtin_open', T['hf_mesh']], ['builtin_open', T['hf_urdf']], ['open', T['hf_mesh'], 'video'],
+                     ['open', T['hf_urdf'], 'kit'], ['check', T['hf_mesh'], 'own']])
+        self.assertReason(res, ('refused folder: HF dataset track_3 mesh/ and urdf/',))
+        res = probe([['builtin_open', T['hf_meta']], ['open', T['video_hf'], 'video']])
+        self.assertStatus(res, 'ok')
+        for r in (f'{T["D"]}/hfds', f'{T["D"]}/hfds/track_3/public'):
+            rc, out, err = probe_raw([['mode']], GMG_WEIGHTS_ROOT=r)
+            self.assertNotEqual(rc, 0, (r, out))
+            self.assertIn('refused GMG_WEIGHTS_ROOT', err)
+
+    def test_hard_link_read_by_the_hook(self):
+        res = probe([['np_load', T['hl_b']], ['builtin_open', T['hl_a']]])
+        self.assertReason(res, ('hard links',))
+
+    def test_kit_scorer_import_refused(self):
+        pyc = f'{T["K"]}/v2dlb/__pycache__/object_mesh.cpython-313.pyc'
+        _w(pyc, b'\x00' * 16)
+        try:
+            res = probe([['import_kit', 'v2dlb.object_mesh'], ['import_kit', 'v2dlb.track3_pose'],
+                         ['builtin_open', pyc], ['builtin_open', T['kit_scorer'][0]]])
+            self.assertReason(res, ('kit scorer',))
+            res = probe([['import_kit', 'v2dlb.mesh_budget']])
+            self.assertStatus(res, 'ok')
+        finally:
+            os.remove(pyc)
+
+    def test_private_doors_need_a_guard_frame(self):
+        d = T['det']
+        res = probe([['tls_det_np_load', d], ['internal_np_load', d], ['tls_det_np_load', T['det_copy']],
+                     ['manifest']])
+        self.assertReason(res[:3], ('opened only inside guard.load_npz',))
+        # at most the guard's own hash of the original dump (to recognise the copy); no np.load went through
+        self.assertLessEqual(res[-1]['value']['guarded_opens'].get(os.path.realpath(d), 0), 1)
+
+    def test_process_arguments_and_urls(self):
+        hf = 'https://huggingface.co/datasets/nvidia/video_to_data_challenge/resolve/main/track_3'
+        res = probe([['subprocess', ['cat', T['refused']['obs_all']]], ['subprocess', ['cat', T['gt']['/scan']]],
+                     ['subprocess', ['curl', '-sS', f'{hf}/public/mesh/white_pot/white_pot.glb']],
+                     ['subprocess', ['curl', f'{hf}/public/data/chunk-000/episode_000002.parquet']],
+                     ['os_system', f'cat {T["refused"]["auto"]} > /dev/null'],
+                     ['urllib_open', 'http://127.0.0.1:9/datasets/x/resolve/main/track_3/public/urdf/white_pot.urdf'],
+                     ['http_send', '/datasets/nvidia/video_to_data_challenge/resolve/main/track_3/public/mesh/a.glb'],
+                     ['subprocess', ['cat', f'{T["K"]}/v2dlb/object_mesh.py']]])
+        self.assertReason(res, ('refused folder', 'path contains', 'URL', 'kit scorer'))
+        res = probe([['subprocess', ['true', T['calib']]],
+                     ['urllib_open', 'http://127.0.0.1:9/datasets/x/resolve/main/track_3/public/videos/x.mp4'],
+                     ['http_send', '/api/datasets/aebatirel/v2d-store']])
+        self.assertEqual([x['status'] for x in res], ['ok', 'ok', 'ok'], json.dumps(res)[:2000])
+        self.assertTrue(str(res[1]['value']).startswith('oserror'))         # reached the (closed) port: not refused
 
 
 class TestConstants(Base):
@@ -618,12 +852,13 @@ class TestConstants(Base):
                ['constant', 'tau_v3', 0.2, 'fitted:own CPU fold-rebuild null q99'],
                ['constant', 'ball_r_mm', 7.0, 'fitted:own B.4 consensus'],
                ['constant', 'free_ratio_max', 0.2, 'generic'],                     # A.6 FREE ratio: not banned
+               ['constant', 'free_thresh', 0.2, 'generic'],                        # round 3: 'thresh' alone is fine
                ['constant', 'vote_voxel_m', 0.004, 'generic'],                   # same value again: fine
                ['constants']]
         res = probe(ops)
         self.assertStatus(res, 'ok')
         cs = {c['name']: c for c in res[-1]['value']}
-        self.assertEqual(len(cs), 8)
+        self.assertEqual(len(cs), 9)
         self.assertTrue(all(c['where'] for c in cs.values()))
         bad = [['constant', 'x', 1, 'made-up'], ['constant', 'x', 1, 'fitted'], ['constant', 'x', 1, 'fitted: '],
                ['constant', 'x', 1, 'fitted:scan wall median'], ['constant', 'y', 1, 'fitted:library_v3 extents'],
@@ -635,15 +870,23 @@ class TestConstants(Base):
                ['constant', 'sphere_radius_mm', 7.0, 'generic'], ['constant', 'v3_threshold', 0.2, 'informed:V5'],
                ['constant', 'shell_t_mm', 2.5, 'generic'], ['constant', 'marker_diam_mm', 14.0, 'sensor'],
                ['constant', 'wall_m', 0.0025, 'kit'], ['constant', 'q', 3, 'informed'],
-               ['constant', 'q', 3, 'informed:looked nice']]
+               ['constant', 'q', 3, 'informed:looked nice'],
+               # verification round 2: constants are fitted on public observations only
+               ['constant', 'e', 3, 'fitted:eval episodes median'], ['constant', 'e', 3, 'fitted:Evaluation split q90'],
+               ['constant', 'fold_tau', 0.2, 'generic']]
         res = probe(bad)
         self.assertNotIn('ok', [x['status'] for i, x in enumerate(res) if i != 9], json.dumps(res)[:3000])
         self.assertEqual(res[9]['status'], 'ok')
         self.assertIn('already', res[10]['msg'])
         for x in res[13:18]:
             self.assertIn('scan-informed value', x['msg'])
-        for x in res[18:]:
+        for x in res[18:20]:
             self.assertIn('PREREG A.6 row', x['msg'])
+        for x in res[20:22]:
+            self.assertIn('public observations only', x['msg'])
+        self.assertIn('scan-informed value', res[22]['msg'])
+        res = probe([['constant', 'k', 3, 'fitted:retrieval of own public points']])
+        self.assertStatus(res, 'ok')
 
     def test_informed_rows_match_prereg(self):
         """INFORMED_A6 equals the PREREG A.6 rows whose origin says 'informed' (names only)."""
