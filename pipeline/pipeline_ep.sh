@@ -19,6 +19,8 @@ elif [ ! -s /content/t3/ep$EP.parquet ]; then
   echo "episode $EP has no public parquet (an eval episode needs SPLIT=eval)"; exit 1
 fi
 # PERC=oracle (public episodes only) swaps in mocap object poses on top of perc2's camera trajectory: oracle_poses.py
+# (2026-10-30 v2: with MESH_DIR the mocap poses are converted to our meshes' body frames and aligned to the perceived
+# table by gravity; ORACLE_ARGS is passed through, e.g. "--align anchor0" for the 20 Oct rule)
 case $PERC in perc2|oracle) PSCRIPT=$S/perc2.py ;; perc4) PSCRIPT=$S/perc.py ;; *) echo "unknown PERC=$PERC"; exit 1 ;; esac
 # VARIANT (e.g. "v") keeps a variant's refs, runs and results apart (refs/perc2v/...); PDIR overrides the perception
 # folder (e.g. /content/perc2c/epN from DET_PRIOR=compact); HANDS_ARGS is passed to hands_mp.py (e.g. "--linker greedy").
@@ -32,7 +34,8 @@ echo "[$(date +%T)] ep$EP start ($SPLIT, perception $PERC, steps $STEPS, seed $S
 # 1) perception (uses a cached depth if present)
 if [ $PERC = oracle ] && [ ! -s $P/poses.npz ]; then
   [ -s /content/perc2/ep$EP/poses.npz ] || PERC=perc2 SEED=$SEED STEPS=0 STOP_AFTER=perception bash $0 $EP || exit 1
-  python $S/oracle_poses.py $EP /content/perc2/ep$EP $P > $P.oracle_log.txt 2>&1 || { echo "oracle FAILED"; cat $P.oracle_log.txt; exit 1; }
+  python $S/oracle_poses.py $EP /content/perc2/ep$EP $P ${MESH_DIR:+--meshes $MESH_DIR} ${ORACLE_ARGS:-} > $P.oracle_log.txt 2>&1 \
+    || { echo "oracle FAILED"; tail -5 $P.oracle_log.txt; exit 1; }
   cp /content/perc2/ep$EP/log.txt $P/log.txt
 fi
 if [ ! -s $P/poses.npz ]; then
