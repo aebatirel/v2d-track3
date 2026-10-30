@@ -1,0 +1,18 @@
+{
+ "ep2": {
+  "checkpoint": "/content/runs/glock/ep2-s43/policy_70004736.safetensors",
+  "n": 5,
+  "sim_vs_ref": {
+   "mean": 0.9851,
+   "std": 0.0023,
+   "min": 0.981,
+   "max": 0.9876
+  },
+  "auc": {
+   "mean": 0.979,
+   "std": 0.003,
+   "min": 0.974,
+   "max": 0.9831
+  }
+ }
+}

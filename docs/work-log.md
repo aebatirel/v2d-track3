@@ -5523,3 +5523,12 @@ Background agent, CPU only, $0, no ground truth read.
   was inaccurate on 9 of 54 replans; the truth and the scores are unaffected. Fixed, solve.py md5 `c41881ae` (`ad6a7525` after a docstring update).
 - Proposed next step (owner's go-ahead needed): CUDA port, then G1 on ep2/12/18/24 (~1 h, ~$1–1.5) with a 32-copy
   jitter gate. Plan and costs in the write-up §5.
+
+### 30 Oct ~17:20 UTC — round 2 results; usage-limit stop and resume
+- 5-hour usage limit hit ~15:10–17:00 UTC: the solver-port and literature agents stopped (resumed at 17:08); the worker
+  restarted. Round-2 boxes finished meanwhile (job exit 0; self-destroyed 15:51–16:18); ledger actuals $3.16 / $3.04 /
+  $3.72 (estimates).
+- ep2 3-seed means S0 0.738, S1 0.898 → signal for plausible masses; same-reference seeds agree to 0.001 → reference-
+  build variance dominates. Human hand + RL worse than the Sharpa (mean −0.161).
+- Physics fit v1 (`pipeline/phys_fit.py`) written; inputs pulled for ep2/12/18/24 (perception tracks of 25 Oct, hands,
+  table_frame.npz); baseline scores reproduced exactly (0.9823 / 0.9662 / 0.9642 / 0.8117).

@@ -247,3 +247,22 @@ geometry: the public scans (development, as the owner allowed). Weights are fixe
 - **Gate (as the refine stage's):** adopt only if mean AUC (our meshes) ≥ baseline + 0.005 on the four episodes and no
   episode drops > 0.02. Also reported: the dynamics violation before/after, and frames where an object moves with no
   contact able to explain it (perception errors).
+
+### Round 2 results (boxes self-destroyed 15:51–16:18 UTC; summaries in `gpu/`) [M]
+**(2) ep2 seeds (registered AUC vs mocap, 5 evaluations each):**
+| arm | seed 42 (round 1) | seed 43 | seed 44 | 3-seed mean |
+|---|---|---|---|---|
+| S0 placeholder | 0.944 ± 0.036 | 0.635 ± 0.076 | 0.636 ± 0.069 | 0.738 |
+| S1 plausible | 0.736 ± 0.228 | 0.979 ± 0.003 | 0.980 ± 0.004 | **0.898** |
+Δ2 = +0.160 > −0.05 → the round-1 ep2 drop is attributed to seed noise. Round-1 rule recomputed with ep2's 3-seed means:
+Δ = +0.160 / +0.022 / +0.051 / +0.025, mean **+0.065**, no episode ≤ −0.05 → **signal** for plausible masses (by the rule:
+a signal buys another seed on the other episodes, not adoption).
+Reading [M]: the two seeds trained on the SAME reference agree closely (S0 0.635 / 0.636, S1 0.979 / 0.980), while seed
+42 on another box's reference differs by 0.24–0.31 → the variance is mostly **reference-build variance** (GPU EVOLVE /
+ILC) rather than RL-seed variance. Any comparison of recipes should rebuild references per draw.
+
+**(4) Human hand with RL (S0 physics, seed 42):** human 0.527 / 0.563 / 0.622 / 0.231 vs Sharpa 0.944 / 0.862 / 0.573 /
+0.207 (ep2/12/18/24): Δh −0.417 / −0.299 / +0.049 / +0.024, mean −0.161 → **human worse** by the pre-registered rule.
+Caveats: one reference per episode (the variance above applies), FlashSAC tuned for the Sharpa, untuned human gains.
+
+Spend: p2s0 $3.16, p2s1 $3.04, p2hu $3.72 (estimates from duration × rate; ledger).

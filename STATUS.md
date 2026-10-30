@@ -1,5 +1,13 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~17:20 UTC: physics round 2 results; physics fit (inverse dynamics) v1 being built
+- **Mass (ep2, 3 seeds):** S0 0.738 vs S1 0.898 (seed 42 was the outlier) → the mass question is now a **signal** for
+  plausible masses (+0.065 mean over 4 episodes). Seeds sharing one reference agree to 0.001; references built on
+  different boxes differ by 0.24–0.31 → reference-build variance dominates; compare recipes over rebuilt references.
+- **Human hand + RL:** worse than the Sharpa (mean −0.161; ep2 −0.42, ep12 −0.30). Not pursued for the leaderboard.
+- **Physics fit (owner's inverse-dynamics idea):** `pipeline/phys_fit.py` (refinement stage, pre-registered gate as the
+  refine stage's); first run on ep12 under way. Background agents: solver CUDA port; physics-fit literature review.
+
 ## 2026-10-30 ~13:50 UTC: physics study round 2 running (owner: "go nuts with all")
 - GPU: ep2 seeds 43+44 for S0 (58409544) and S1 (58409510); human capsule hand RL on 4 public episodes (58409512).
   Rules pre-registered in `docs/research/physics-2026-10-30/README.md` (round 2). Ledger planned $10.50.
