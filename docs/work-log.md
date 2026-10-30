@@ -4806,3 +4806,26 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
 - Scoring: `MESH_SCR=<scratchpad> mesh_metric.py run --workers 1 --manifest score_manifest.tsv --out scores.jsonl`,
   started 23:37:51 UTC (104 scorings, one per mesh).
 - SAM 3D access re-checked at 23:17: HTTP 200 (approved).
+
+### 2026-10-30 ~06:50 UTC: GPU batches closed; page v4 with generator meshes
+- **Eval depth box** (`mesh-20261029-evdepth-92f3d86`, instance 58312542): 20 of 20 eval depth caches pushed
+  (`cache/depth/eval/ep*/depths_fs0.5.npy`). Job exit 0 after 111 min; self-destroyed 23:43:41 UTC. Ledger `actual`
+  $2.95, computed from the box timestamps at $1.508/h plus bandwidth, because the API no longer returns destroyed
+  instances.
+- **Mesh-session GPU spend:** $7.31 of the $25 allocation (gen $4.36 + evdepth $2.95). Vast credit is $68.59 after all
+  sessions' boxes.
+- **Overnight interruptions:**
+  - The account's 5-hour usage limit (reset 02:00 UTC) stopped the generative-probe agent before its report, and
+    stopped stage 1b's integration and audits. The fixers had finished.
+  - At 06:25 both were resumed: the agent by message, the workflow from cache (`wf_d55d762f-ae7`).
+- **Owner asked whether the generator results are on the page.** Page v4
+  (https://claude.ai/artifact/TSEF4dCCSRdErBcfCPR2Ex):
+  - five new comparison groups: beige cup, pitcher, dust pan, sweeper, board 2;
+  - per object, the best generator meshes in purple, at most 3: the overall best plus the best Pixal3D and the best
+    SAM 3D;
+  - a "What the generators made" table: best CD-O per model, labelled best of 2–4 runs chosen by scan score, i.e.
+    optimistic;
+  - a registration-offset caveat.
+
+  The beige-cup scan display uses a display-only ICP alignment `[D]` (scratchpad `page/align/`, kept out of `obs_all`).
+  Page source is in `eval-view/`.

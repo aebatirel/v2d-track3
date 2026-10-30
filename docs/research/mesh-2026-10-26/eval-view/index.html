@@ -8,7 +8,7 @@
    scans in scan green. */
 :root {
   --bg: #f1f4f6; --panel: #ffffff; --ink: #142029; --muted: #566572; --line: #d3dbe1; --stage: #e6ebef;
-  --accent: #2463c9; --accent-soft: #dbe6f8; --sand: #b9a17d; --scan: #2f9a68;
+  --accent: #2463c9; --accent-soft: #dbe6f8; --sand: #b9a17d; --scan: #2f9a68; --gen: #8a4fbf;
   --good: #2e7d4f; --warn: #b26a00; --bad: #b8382f; --chip: #eef2f5;
   --f-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -16,11 +16,11 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0f1418; --panel: #161d23; --ink: #e3e9ee; --muted: #93a2ae; --line: #2a343c; --stage: #0b1013;
-  --accent: #6c9cf0; --accent-soft: #1d2a40; --sand: #c8b190; --scan: #4cc38a;
+  --accent: #6c9cf0; --accent-soft: #1d2a40; --sand: #c8b190; --scan: #4cc38a; --gen: #b98be6;
   --good: #5cc28a; --warn: #e3a34a; --bad: #f07a70; --chip: #1e262d; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0f1418; --panel: #161d23; --ink: #e3e9ee; --muted: #93a2ae; --line: #2a343c; --stage: #0b1013;
-  --accent: #6c9cf0; --accent-soft: #1d2a40; --sand: #c8b190; --scan: #4cc38a;
+  --accent: #6c9cf0; --accent-soft: #1d2a40; --sand: #c8b190; --scan: #4cc38a; --gen: #b98be6;
   --good: #5cc28a; --warn: #e3a34a; --bad: #f07a70; --chip: #1e262d; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); }
@@ -87,7 +87,7 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">V2D Track 3 · object meshes · 26–27 Oct 2026</div>
+    <div class="eyebrow">V2D Track 3 · object meshes · 26–30 Oct 2026</div>
     <h1>Eval Mesh Inspector</h1>
     <p class="lede">The meshes we submit for the 20 eval episodes, what they look like against the eval videos, and what
       the new mesh methods produce on public episodes, where a scan lets us measure them. New-method meshes for the eval
@@ -100,7 +100,8 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
     <div class="stat"><span>Blue cup, public episode 21 (scored against the scan)</span><b class="num">0.523 → 0.291 cm</b><span>submitted mesh → new thin-wall lathe</span></div>
     <div class="stat"><span>Registration offset, same cup</span><b class="num">10.0 → 4.1 mm</b><span>0 flips in 7 scorer seeds</span></div>
     <div class="stat"><span>Kit-of-parts meshes, public scans (pot · lid · rack)</span><b class="num">0.342 · 0.220 · 0.456 cm</b><span>submitted 0.437 · 0.421 · 0.555 cm; 0 flips</span></div>
-    <div class="stat flag"><span>New meshes for eval</span><b>Pot, lid, rack ready</b><span>cup lathes still wait on eval depth</span></div>
+    <div class="stat"><span>Image-to-3D generators, best run (public scans)</span><b class="num">beige cup 0.856 → 0.274 cm</b><span>pitcher 0.894 → 0.378 · dust pan 0.331 → 0.231</span></div>
+    <div class="stat flag"><span>Eval depth for all 20 eval episodes</span><b>Done (30 Oct)</b><span>new meshes can now be built per eval episode</span></div>
   </div>
 
   <section id="viewer">
@@ -123,7 +124,7 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
         <div class="readout" id="readout"></div>
       </div>
     </div>
-    <div class="legend"><span><i style="background:var(--sand)"></i>submitted for eval</span><span><i style="background:var(--accent)"></i>new method (public episode)</span><span><i style="background:var(--scan)"></i>public scan, diagnostic only</span></div>
+    <div class="legend"><span><i style="background:var(--sand)"></i>submitted for eval</span><span><i style="background:var(--accent)"></i>new method (public episode)</span><span><i style="background:var(--gen)"></i>image-to-3D generator (public episode)</span><span><i style="background:var(--scan)"></i>public scan, diagnostic only</span></div>
   </section>
 
   <section id="parts">
@@ -149,6 +150,25 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
       scans. A second, pre-registered run over 1.5, 2.5 and 4 mm passed at every value (lid 0.220–0.224 cm, rack
       0.449–0.458 cm), so the result does not depend on that number. Known defects: one spurious ball on the pot handle,
       no handle hole, a straight-walled rack cup holder, and no slots on the boards.</p>
+  </section>
+
+  <section id="gen">
+    <div class="eyebrow">Image-to-3D generators · 29 Oct</div>
+    <h2>What the generators made</h2>
+    <p class="note">Five generators ran on our own colour crops on one rented GPU ($4.36). Pixal3D builds the object from
+      2–6 of our views with our camera poses, so its mesh lands in our object frame. The single-image models (SAM 3D,
+      TRELLIS.2, TripoSG, Hunyuan3D-2.1) were each fitted to our stereo points by scale, rotation and position. Every mesh
+      was frozen, then scored once against the public scan. Purple rows in the viewer above are generator meshes.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Object</th><th>Eval pairs</th><th>Submitted</th><th>Our part fit</th><th>Pixal3D</th><th>SAM 3D</th><th>TRELLIS.2</th><th>TripoSG</th><th>Hunyuan3D-2.1</th></tr></thead>
+      <tbody id="genbody"></tbody>
+    </table></div>
+    <p class="note">CD-O in cm against the public scan; lower is better. Bold marks the best of the row. Each cell is the
+      best of 2–4 runs (two crops × two seeds) <b>chosen by scan score</b>, so it is optimistic: for eval the choice must be
+      made without the scan, and that check is the next step. A grey cell marked ⟲ flips in registration on at least one scorer seed.
+      Registration offset matters too, because the same registration sets the frame for the pose boards: single-image
+      fits often sit 2–3 cm off (pitcher 34 mm, blue cup 19 mm), while Pixal3D's posed meshes stay close (beige cup 6 mm,
+      dust pan 5 mm). The viewer shows each mesh's offset.</p>
   </section>
 
   <section id="eval">
@@ -188,7 +208,9 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
         <tr><td>Recompute stereo depth for the eval videos and store it</td><td>The new methods need depth from many frames. Only frame 0 of each eval episode was kept; a single frame failed on public data (CD-O 1.1–1.3 cm, flips).</td><td class="num">≈ $2–4, 1 GPU, ≈ 1 h</td><td><span class="pill warn">needs go-ahead</span></td></tr>
         <tr><td>Use the kit-of-parts pot, lid and rack for eval</td><td>Built from public episodes and in the same object frame as the submitted library (2–4 mm apart without registration), so no eval depth is needed. If the hidden scans match the public ones, CD-O 0.402 → about 0.367 cm (estimate). The open question is whether to swap only the packed mesh or the simulator copy too.</td><td class="num">$0 pack-only; GPU re-runs if the simulator copy changes</td><td><span class="pill warn">owner decision</span></td></tr>
         <tr><td>Thin-wall lathe for cups (CPU here)</td><td>Blue cup 0.523 → 0.291 cm on public data. The cups have no public-library replacement yet, so they need eval depth.</td><td class="num">$0</td><td><span class="pill">ready, waits on depth</span></td></tr>
-        <tr><td>Generative probe: SAM 3D, TRELLIS.2, Hunyuan3D-2.1 on our crops, then fit to our points</td><td>The only route in the literature to about 1 % of object size; never tried here.</td><td class="num">≈ $4–8, ceiling $12</td><td><span class="pill warn">needs permission + go-ahead</span></td></tr>
+        <tr><td>Generative probe: Pixal3D, SAM 3D, TRELLIS.2, TripoSG, Hunyuan3D-2.1 on our crops, fitted to our points</td><td>Done 29 Oct: large gains on the beige cup, pitcher and dust pan; not on the rack, sweeper or boards (see above).</td><td class="num">$4.36</td><td><span class="pill good">done</span></td></tr>
+        <tr><td>Eval depth for all 20 eval episodes</td><td>Lets every route build each eval mesh from that episode's own video (owner decision 22 Oct).</td><td class="num">≈ $2.95</td><td><span class="pill good">done</span></td></tr>
+        <tr><td>Combine: part programs + generator meshes + GT-free selection, then one pre-registered scan round</td><td>Ship only what a check that never sees the scan can pick.</td><td class="num">$0 (CPU)</td><td><span class="pill">next</span></td></tr>
       </tbody>
     </table></div>
   </section>
@@ -234,6 +256,7 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
   function colorFor(m) {
     if (m.group === 'submitted' || m.id.endsWith('_lib')) return css('--sand');
     if (m.id.endsWith('_scan')) return css('--scan');
+    if (m.id.startsWith('gen_')) return css('--gen');
     return css('--accent');
   }
   function material(color, opts) {
@@ -287,7 +310,8 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
   document.getElementById('cutpos').addEventListener('input', updateClip);
 
   const GROUPS = [['submitted', 'Submitted for eval'], ['cmp_cup', 'Blue cup · public ep 21/22'], ['cmp_pot', 'White pot · public ep 41'],
-    ['cmp_lid', 'Pot lid · public ep 2'], ['cmp_rack', 'Dish rack · public eps 12/13/27'], ['cmp_b1', 'Board 1 · public ep 24']];
+    ['cmp_lid', 'Pot lid · public ep 2'], ['cmp_beige', 'Beige cup · public ep 11'], ['cmp_pitcher', 'Water pitcher · public ep 22'],
+    ['cmp_dustpan', 'Mini dust pan · public ep 39'], ['cmp_sweeper', 'Mini sweeper · public ep 31'], ['cmp_b2', 'Board 2 · public ep 23'], ['cmp_rack', 'Dish rack · public eps 12/13/27'], ['cmp_b1', 'Board 1 · public ep 24']];
   fetch('meshes.json').then(r => r.json()).then(list => {
     list.forEach(m => meshes[m.id] = m);
     const nav = document.getElementById('list');
@@ -314,6 +338,19 @@ th { font: 500 12px/1.3 var(--f-data); text-transform: uppercase; letter-spacing
       gal.appendChild(card);
     });
   }).catch(() => { document.getElementById('gallery').textContent = 'The eval images did not load. Reload the page to try again.'; });
+const GEN_TABLE = [{"obj": "White pot", "pairs": 6, "lib": 0.437, "ours": 0.342, "gen": [[0.426, 0], [0.328, 0], [0.318, 0], [1.404, 0], [0.359, 0]]}, {"obj": "Blue cup", "pairs": 5, "lib": 0.523, "ours": 0.291, "gen": [[0.402, 0], [0.268, 0], [0.574, 0], [0.396, 0], [0.298, 0]]}, {"obj": "Dish rack", "pairs": 5, "lib": 0.555, "ours": 0.456, "gen": [[0.663, 0], [0.604, 0], [0.636, 0], [0.726, 0], [0.653, 0]]}, {"obj": "Beige cup", "pairs": 2, "lib": 0.856, "ours": null, "gen": [[0.274, 0], [0.321, 0], [0.728, 6], [1.23, 0], [0.461, 0]]}, {"obj": "Mini sweeper", "pairs": 2, "lib": 0.317, "ours": null, "gen": [[0.46, 1], [0.437, 2], [0.618, 5], [0.829, 1], [0.867, 4]]}, {"obj": "Mini dust pan", "pairs": 2, "lib": 0.331, "ours": null, "gen": [[0.236, 0], [0.261, 0], [0.338, 0], [0.516, 0], [0.231, 0]]}, {"obj": "Pot lid", "pairs": 1, "lib": 0.421, "ours": 0.22, "gen": [[0.253, 0], [1.308, 0], [0.343, 0], [0.791, 0], [0.353, 0]]}, {"obj": "Water pitcher", "pairs": 1, "lib": 0.894, "ours": null, "gen": [[1.241, 0], [0.649, 0], [0.681, 0], [1.432, 0], [0.378, 0]]}, {"obj": "Board 1", "pairs": 1, "lib": 0.222, "ours": null, "gen": [[0.182, 4], [0.192, 2], [0.473, 6], [0.336, 1], [0.334, 0]]}, {"obj": "Board 2", "pairs": 1, "lib": 0.216, "ours": null, "gen": [[0.247, 2], [0.202, 6], [0.22, 6], [0.272, 2], [0.309, 6]]}];
+(function () {
+  const body = document.getElementById('genbody');
+  GEN_TABLE.forEach(r => {
+    const vals = [r.lib, r.ours, ...r.gen.map(g => g ? g[0] : null)].filter(v => v !== null && v !== undefined);
+    const lo = Math.min(...vals);
+    const cell = (v, flips) => v === null || v === undefined ? '<td class="num note">–</td>'
+      : `<td class="num"${flips ? ' style="color:var(--muted)"' : ''}>${v === lo ? '<b>' + v.toFixed(3) + '</b>' : v.toFixed(3)}${flips ? ' ⟲' : ''}</td>`;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.obj}</td><td class="num">${r.pairs}</td>` + cell(r.lib, 0) + cell(r.ours, 0) + r.gen.map(g => g ? cell(g[0], g[1]) : cell(null)).join('');
+    body.appendChild(tr);
+  });
+})();
 fetch('synthesis.json').then(r => { if (!r.ok) throw 0; return r.json(); }).then(syn => {
     const body = document.getElementById('vbody');
     const cls = v => v === 'good' ? 'good' : (v === 'poor' ? 'bad' : 'warn');
