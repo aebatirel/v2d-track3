@@ -4985,3 +4985,10 @@ diagnostic; nothing is picked for submission.
 - Build workflow 1 `wf_7426de2f-f07` (gmg-build-1): steps B0, B1, then B2->B3 (incl. GPU batch G0, est. $1-2, under
   the owner's standing go-ahead), B5->B6, B7, B4; each step build -> adversarial verify -> fix (max 3 rounds) ->
   commit by the step agents (own files only); integration critic writes gmg/build/REVIEW-1.md.
+
+## 2026-10-30 ~17:10 UTC: build 1 interrupted by the usage limit, resumed
+- B0 (input guard) built and committed (9509b34, dd94477, 3ea6254: guard.py, io_gt fix, strace audit, 33 tests, names-only
+  public roster). Verifier round 1 FAILED it with two blocking items: the det_f0.npz key filter depends on the role, not
+  the file (four bypasses incl. a raw np.load and a copy), and the strace auditor has blind spots (system-prefix paths,
+  O_RDWR opens). The fix agent was cut by the 5-hour limit (~14:58 UTC, reset 17:00); the machine restarted again.
+- 17:08 UTC: owner "continue"; workflow resumed from cache (task wdpnyr19v): the B0 fix runs, then the rest of build 1.
