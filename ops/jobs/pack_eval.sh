@@ -31,6 +31,8 @@ if [ -n "${ASSET_PIECES:-}" ] && [ "$(echo $ASSET_PIECES | wc -w)" -gt 1 ]; then
 fi
 [ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets \
   ${ASSET_PIECES:+--pieces $ASSET_PIECES} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
+# record of the collision copy the evaluated episodes saw (2026-10-30; the head of job.log can be overwritten)
+( cd /content/assets && find . -type f | sort | xargs md5sum; grep -c "<collision>" urdf/*_rigid.urdf ) > $F/assets_md5.txt 2>&1 || true
 for x in ${RUNS:?RUNS missing}; do             # RUN or RUN@sub1,sub2 (2026-10-25: only those sub-folders, e.g. RUN@refs)
   r=${x%%@*}; sub=; [ "$r" != "$x" ] && sub=${x#*@}
   PULL_SUB="${sub//,/ }" bash $OPS/store.sh pull-run $r >> $J 2>&1 || { log "pack_eval: pull-run $x FAILED" >> $J; exit 1; }
@@ -98,6 +100,12 @@ json.dump(ev, open(out, 'w'), indent=1, sort_keys=True)
 print(f'pack_eval: earlier official rollout kept for {dict(sorted(keep.items()))} (checkpoint unchanged); evaluating {sorted(map(int, ev))}')
 PYEOF
   CK_EVAL=$F/checkpoints_eval.json
+fi
+if [ -n "${EVAL_ONLY:-}" ]; then   # EVAL_ONLY="EP ..." (2026-10-30, h5_reeval.sh ASSET_PIECES_EXTRA): the only episodes that
+  # may get a fresh rollout. A carved piece in the shared /content/assets (e.g. eval 1's white_pot) would reach any other
+  # evaluated episode with the same object (eval 28), so stop before the evaluator instead.
+  python -c "import json, sys; x = sorted(set(json.load(open(sys.argv[1]))) - set(sys.argv[2:]), key=int); print(f'pack_eval: EVAL_ONLY {sys.argv[2:]}, other episodes to evaluate: {x}'); sys.exit(1 if x else 0)" \
+    $CK_EVAL $EVAL_ONLY >> $J 2>&1 || { log "pack_eval: episodes outside EVAL_ONLY would be evaluated; stopped" >> $J; exit 1; }
 fi
 # 2026-10-26 (forensics): a pulled pack run brings its own results/submission; submit_pack.sh copies KEPT rollouts with
 # cp -n, so pack 3 silently kept the FIRST pack's seed-42 rollouts for 3/5/15/16 instead of pack 2's seed-43 ones.

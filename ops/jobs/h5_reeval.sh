@@ -3,7 +3,8 @@
 # our own reference (qa.py policy; no ground truth). Measures how much of the packed score was a lucky draw and which
 # episodes are high-variance. It never packs or uploads a best-of-N rollout: the output is information for the
 # pre-registered choice rules (work log 2026-10-29).
-#   1) pack_eval.sh with pack 6's exact choices (pack 5's RUNS / PICK / ASSET_PIECES, EP_LIB 8 only) and NO KEEP_RESULTS:
+#   1) pack_eval.sh with pack 6's exact choices (pack 5's RUNS / PICK / ASSET_PIECES, EP_LIB 8 only), no KEEP_RESULTS
+#      unless the caller sets it (below):
 #      pulls every reference / asset / checkpoint and runs draw 1 (results/submission, summary.txt);
 #   2) draws 2..N: the same pristine kit evaluator on the same checkpoints JSON, each into results/h5/r<i>;
 #   3) results/h5/h5_summary.json: per episode n, mean, sd, min, p20 and the packed draw (pack 6 summary.txt).
@@ -11,18 +12,34 @@
 # Candidate confirmation (2026-10-30): PICK_EXTRA="EP:RUN ..." is appended to pack 6's PICK (later entries win, so it
 # replaces those episodes' checkpoints) and EPS_ONLY="EP ..." limits draws 2..N to those episodes (draw 1 stays the full
 # pack). E.g. PICK_EXTRA=33:20261029-rcB-34bf6ae EPS_ONLY=33: 10 fresh draws of a candidate eval-33 checkpoint.
+# Carved candidate (2026-10-30, eval-1 carve s43): KEEP_RESULTS="<pack run> ..." (pack_eval.sh) keeps the earlier
+# official rollouts of unchanged checkpoints, so draw 1 is a pack candidate in which only the changed episodes are fresh
+# (r1 then holds only those). ASSET_PIECES_EXTRA="DIR ..." adds the candidate's collision pieces to the ONE shared
+# /content/assets (e.g. meshes/carve/ev01: carved white_pot / white_pot_lid, objects that evals 3/5/6/8/28 also have).
+# That is safe only if no other episode is evaluated, so it needs KEEP_RESULTS and EVAL_ONLY="EP ..." (pack_eval.sh
+# stops before the evaluator if any other episode would get a fresh rollout).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; N=${N:-10}; H=/content/results/h5; mkdir -p $H
 C=/content/v2d-track3/meshes/carve
+[ -n "${ASSET_PIECES_EXTRA:-}" ] && { [ -z "${KEEP_RESULTS:-}" ] || [ -z "${EVAL_ONLY:-}" ]; } \
+  && { log "h5: ASSET_PIECES_EXTRA needs KEEP_RESULTS and EVAL_ONLY (shared /content/assets)" >> $J; exit 1; }
 export RUNS="20261026-fr32s46b-5e0e100@refs/glockt/ep32,refs/sf/ep32 20261026-gl10A2-5e0e100@refs/glockt/ep10,refs/glock/ep10 20261026-c25s42-feb0407@refs/perc2mcks 20261026-fr3233s43-6a8a0e2@refs/glockt/ep33,refs/sf/ep33 20261025-evb0810-ee7ba8e@refs/glockt/ep8,refs/sf/ep8 20261025-evb1420-ee7ba8e@refs/glockt/ep14,refs/sf/ep14,refs/glockt/ep20,refs/sf/ep20 20261025-fr3233-043275f@refs/glockt/ep32,refs/sf/ep32 20261025-std0116-ee7ba8e@refs/perc2mcks 20261025-std1928-ee7ba8e@refs/perc2mcks 20261025-std30-ee7ba8e@refs/perc2mcks 20261024-pack-31ef267"
 export PICK="3:20261024-seed43-61101f5 5:20261024-seed43-61101f5 15:20261024-seed43-61101f5 16:20261024-seed43-61101f5 1:20261025-std0116-ee7ba8e:final 8:20261025-evb0810-ee7ba8e:final 14:20261025-evb1420-ee7ba8e:final 20:20261025-evb1420-ee7ba8e:final 19:20261025-std1928-ee7ba8e:final 28:20261025-std1928-ee7ba8e:final 25:20261026-c25s42-feb0407:ck=runs/perc2mcks/ep25-s42/policy_250003456.safetensors 30:20261025-std30-ee7ba8e:final 32:20261026-fr32s46b-5e0e100 33:20261026-fr3233s43-6a8a0e2 10:20261026-gl10A2-5e0e100 ${PICK_EXTRA:-}"
-export EP_LIB="8:/content/v2d-track3/meshes/library_v3x" ASSET_PIECES="$C/ev25 $C/ev10"
+export EP_LIB="8:/content/v2d-track3/meshes/library_v3x" ASSET_PIECES="$C/ev25 $C/ev10${ASSET_PIECES_EXTRA:+ $ASSET_PIECES_EXTRA}"
 export COMMIT_URL=https://github.com/aebatirel/v2d-track3/commit/$(git -C $REPO_DIR rev-parse HEAD)
 label "H5: draw 1 (pack-6 environment)"
 bash $REPO_DIR/ops/jobs/pack_eval.sh || { log "h5: pack_eval FAILED" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
 CK=/content/results/final_eval/checkpoints.json; CLEAN=/content/v2d_clean; KIT=/content/kit/v2d_submission_kit
 FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python
-cp -r /content/results/submission/qa $H/r1
+if [ -n "${KEEP_RESULTS:-}" ]; then                                # a kept rollout is an earlier draw, not a new one:
+  mkdir -p $H/r1                                                   # r1 = the episodes evaluated afresh in draw 1
+  for e in $(python -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))))" $(dirname $CK)/checkpoints_eval.json); do
+    cp -r /content/results/submission/qa/ep$e $H/r1/
+  done
+  log "h5: draw 1 fresh episodes: $(ls $H/r1 | tr '\n' ' ')" >> $J
+else
+  cp -r /content/results/submission/qa $H/r1
+fi
 if [ -n "${EPS_ONLY:-}" ]; then
   python -c "import json, sys; m = json.load(open(sys.argv[1])); json.dump({e: m[e] for e in sys.argv[3:]}, open(sys.argv[2], 'w'), indent=1)" \
     $CK $H/checkpoints_only.json $EPS_ONLY || exit 1
