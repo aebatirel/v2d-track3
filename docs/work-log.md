@@ -5010,3 +5010,15 @@ Advice given:
   failure with scans). Scoring of P_o / P_s / repeat and the template-leak verdicts: workflow
   leak-phase1-score-and-tierA (also finishes Tier A, cut again by the usage limit). Vast credit $24.87 at 22:01; one
   box running (Embodiment's psolverl).
+- ~23:50 UTC **reference-level leak readings (Phase 1, `leak-decomp-20261030/phase1/RESULTS.md`; review pending)**:
+  - L2 template (scan vs our templates, * convention): **+0.039** mean ΔR, 17/20 episodes → leaks; ≈ +0.012–0.017 LB [E].
+    With library_v3 still submitted it shrinks to +0.006 (inconclusive): most of the template gain needs a scan-like
+    submitted mesh too.
+  - L3 tracker given the true template: 1 − R*(P_s) = +0.076 (+0.033 without ep0 / ep23) → leaks; ≈ +0.008–0.010 LB [E].
+  - L1 registration on our tracks: no leak (lib scores higher than *).
+- **Tracker-failure diagnoses** (`tracker-fix/ep{0,11,24,31}/DIAG.md`, `tracker-fix/PLAN.md`): none of the four starting
+  hypotheses held. ep0 / ep24 / ep31: one frame-0 pose (or a VO camera jump on ep24) amplified by the kit's frame-0
+  scene alignment; ep11: the static outer cup's track rises 2.5–5.3 cm while the other cup nests in it. Ranked fixes:
+  S6 static hold (eval 10, central +0.007 LB [E]), a $0 GT-free eval screen, robust VO (eval 25), one GPU perception
+  box for masking / occlusion-aware registration / an area gate. Tests T1–T5 pre-registered in that PLAN.
+  - Started (CPU, $0): workflow tracker-fixes-cpu (S6 + T1 reference test, eval screen, T5 VO on ep24, review).
