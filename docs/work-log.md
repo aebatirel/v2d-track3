@@ -4871,3 +4871,12 @@ Advice given:
   planned $14.20 of the $100 top-up.
   - Video box 58363797: still in sub_videos' PICK downloads (HF 429 + SSL EOF retries), 3 h 20 min up (~$4.3). Kept
     running: a relaunch would face the same rate limit.
+- 12:10 UTC (after a usage-limit gap 10:30–12:00):
+  - Video box 58363797: rendered 4 of 5 videos by 11:23 (replay sim_vs_ref: eval 10 0.454, 32 0.880, 16 0.724, 20
+    0.942). Eval 25 failed: sub_videos.sh does not resolve PICK's `ck=` form (its checkpoint path was missing). The
+    final push to the store FAILED (HF 429 most likely); the box waits 60 min and retries once (ops/box/lib.sh
+    self_destroy). Its exec tunnel answers 502, and this container has no SSH client and no raw TCP egress, so the
+    files cannot be rescued directly. Cost so far ≈ $7.4 (06:48 → ~12:30 at $1.295/h).
+  - Oracle-twin prep: design done (ep11 / eval 10, ep13 / eval 14, ep31 / eval 30; ep24 optional), build and verify
+    were cut by the usage limit. The partial build is committed as WIP be2b2a9; workflow resumed with two launch
+    options for the owner: full (≈ $9–10) or single-box grasp-lock (≈ $5–6).
