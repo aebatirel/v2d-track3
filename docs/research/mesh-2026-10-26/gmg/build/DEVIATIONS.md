@@ -260,3 +260,25 @@ PREREG leave a detail open, or B1 limits (the full forms come in the steps named
     guard hook, which refused them (`obs_all/`), and the analysis crashed (found on the t0_dev run; B0 audited clean
     runs only). Fix: such a file is admitted in the auditor's guard (`_ADMITTED`) before it is hashed. Clean mode is
     unchanged. The t0_dev log was re-analysed with the fixed auditor (0 forbidden opens).
+52. **HULL surface coarsening when the 4 mm surface cannot be packed watertight** (2026-10-30, B1; SPEC section 8
+    P-HULL "always closed", section 14 V1). The 4 mm marching-cubes hull is of high genus (ep11 beige cup: one
+    watertight body, Euler number -134, 17016 faces [M, dev]); no fast_simplification setting decimates it to <= 4000
+    faces without non-manifold edges (agg 1 stalls at 6310 faces; agg 3, 5, 7 at targets 3000-4000, Taubin smoothing
+    first, and halving steps all leave it non-watertight [M, dev]), so the beige cup's HULL failed V1 in the first ep11
+    run. The producer now marches the finest coarsening k = 1, 2, 3 of the 4 mm grid whose `fit_budget` result is
+    watertight (k = 1 whenever it packs, so nothing changes for packable hulls). Coarse rule, chosen on dev ep11 among
+    four variants measured on both cups (any / majority of the fine voxels x keep-unless-clipped / drop any block with
+    a non-OBSERVED partner voxel; `<scratchpad>/gmg/b1/diag/hullk2_ep11.log`, GT-free features only): majority and
+    drop-partner-blocks, the only variant that passed V1 and V2 on both cups with the smaller free-space share
+    (beige k = 2: V1 pass, 0 deep partner samples, fsv_far 0.042; blue: 0, 0.20). The 'any' rule swelled the hull over
+    the partner (beige 4685 deep samples, V2 veto). The fine grid, its states, the 4 mm construction check and the
+    PREREG A.2 grid definition are unchanged; this is the shipped surface's resolution only. Report keys
+    `coarsen_k`, `surface_vox_mm`, `coarsen_tries`; flags `surface_coarsened_x<k>` or `not_packable_watertight`
+    (then the 4 mm surface is kept and V1 vetoes it). No scan, eval output or label value was seen; no
+    pre-registered test, threshold or constant changes.
+53. **Observation, not a change: the ep2 lid's SHELL is vetoed by V4 in dev** (run `20261030-b1ep2-edf9735` [M, dev]):
+    1.08 % of its volume samples lie more than 2.21 mm (3 sigma) below the at-rest table plane (threshold 1 %;
+    min height -4.98 mm; rest share 0.42), so the skeleton picks the lid's HULL (E 8.81 against the shell's 1.83).
+    Likely causes [H]: the dev table plane (DEVIATIONS 38: frame-0 det depth moved by VO, no per-frame refit) and the
+    8 mm table band of obs_all (DEVIATIONS 37). Falsifying check: B4's clean bundle (depth-cache table plane with the
+    per-frame refit) gives the same lid shell a V4 share <= 1 %. V4 is applied as pre-registered; nothing is tuned.

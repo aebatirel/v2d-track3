@@ -193,6 +193,41 @@ class V2LogicTests(unittest.TestCase):
 
 
 # ------------------------------------------------------------------------------------------------ PREREG B.14
+class HullCoarsenTests(unittest.TestCase):
+    """producers/hull._coarsen (DEVIATIONS 52): majority of kept fine voxels, no block with a non-OBSERVED partner
+    voxel, then the component with the most OBSERVED voxels; the coarse march is watertight."""
+
+    def test_rules(self):
+        from gmg.producers import hull as P_HULL
+        occ = np.zeros((12, 12, 12), bool)
+        occ[2:10, 2:10, 2:10] = True                 # 8^3 cube -> 4^3 blocks at k = 2
+        obsd = np.zeros_like(occ)
+        obsd[2, 2:10, 2:10] = True                   # one observed face
+        part = np.zeros_like(occ)
+        part[9, 9, 9] = True                         # a non-OBSERVED partner voxel in the far corner block
+        co = P_HULL._coarsen(occ, part, obsd, 2)
+        self.assertEqual(co.shape, (6, 6, 6))
+        self.assertEqual(int(co.sum()), 4 ** 3 - 1)  # the partner block is dropped
+        self.assertFalse(co[4, 4, 4])
+        part2 = np.zeros_like(occ)
+        part2[2, 2, 2] = True                        # partner voxel that is OBSERVED: never clips
+        self.assertEqual(int(P_HULL._coarsen(occ, part2, obsd, 2).sum()), 4 ** 3)
+        z = np.zeros_like(occ)
+        slab = z.copy()
+        slab[2:10, 2:10, 4] = True                   # one-voxel slab: 4 of 8 fine voxels per block = half, kept
+        self.assertEqual(int(P_HULL._coarsen(slab, z, z, 2).sum()), 16)
+        line = z.copy()
+        line[2:10, 4, 4] = True                      # one-voxel line: 2 of 8 per block, below half, dropped
+        self.assertFalse(P_HULL._coarsen(line, z, z, 2).any())
+        far = occ.copy()
+        far[0, 0, 0] = far[0, 0, 1] = far[0, 1, 0] = far[1, 0, 0] = True   # separate component without OBSERVED
+        far[1, 1, 1] = False
+        co = P_HULL._coarsen(far, np.zeros_like(occ), obsd, 2)
+        self.assertFalse(co[0, 0, 0])                # the seeded (observed) component is kept
+        m = P_HULL._march(P_HULL._coarsen(occ, part, obsd, 2), np.zeros(3), 0.008)
+        self.assertTrue(m.is_watertight)
+
+
 class B14(unittest.TestCase):
     def test_a_fused_double_cup(self):
         b = _bundle(11)
