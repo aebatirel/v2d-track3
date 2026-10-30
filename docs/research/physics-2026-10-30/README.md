@@ -266,3 +266,13 @@ ILC) rather than RL-seed variance. Any comparison of recipes should rebuild refe
 Caveats: one reference per episode (the variance above applies), FlashSAC tuned for the Sharpa, untuned human gains.
 
 Spend: p2s0 $3.16, p2s1 $3.04, p2hu $3.72 (estimates from duration × rate; ledger).
+- **v1 result [M]** (CPU, 5–14 min per episode; registered AUC vs mocap, our meshes): ep2 0.9823 → 0.9810 (−0.0013),
+  ep12 0.9662 → 0.9479 (−0.0183; cup 0.933 → 0.956, rack 0.9997 → 0.940), ep18 0.9642 → 0.9789 (+0.0147; dust pan 0.933
+  → 0.965), ep24 0.8117 → 0.8447 (+0.0330). Mean +0.0070, worst −0.018 → passes the pre-registered gate.
+  **But [M]: the corrections concentrate at frame 0 on the objects the scorer aligns on** (board 1 f0 0.28 cm / 0.55°
+  vs median 0.00; board 2 f0 0.36 / 0.67°; sweeper f0 0.78 cm / 0.63°; rack f0 0.51 cm / 1.67°): the scorer registers the
+  whole episode on frame 0 of slot 0, so part of the gain may be alignment, not physics. With hand contacts allowed
+  within 6 cm the force violation is near zero almost everywhere (v1 constrains little); frames where an object moves
+  with no contact: lid 8, sweeper 23, board 2 28.
+- **Frame-0 control (pre-registered ~17:50 UTC, before running):** v1 with frame 0 held (no correction at t = 0). If its
+  mean Δ < +0.005 the v1 pass is attributed to frame-0 alignment and v1 is **not** adopted.

@@ -152,6 +152,7 @@ def main():
     ap.add_argument('--fps', type=float, default=20.0); ap.add_argument('--w_dyn', type=float, default=1.0)
     ap.add_argument('--sig_p', type=float, default=0.01); ap.add_argument('--sig_r_deg', type=float, default=3.0)
     ap.add_argument('--max_nfev', type=int, default=60)
+    ap.add_argument('--hold_f0', type=int, default=0, help='1: no correction at frame 0 (the scorer aligns on it)')
     a = ap.parse_args(); t0 = time.time(); dt = 1.0 / a.fps
     for f in ('poses.npz', 'poses_world_vo.npz', 'table_frame.npz'):
         assert_inference_input(f'{a.inp}/{f}')
@@ -172,13 +173,16 @@ def main():
     Onew = O.copy()
     for j, o in enumerate(objs):
         sc_x = np.tile(np.r_[[a.sig_p] * 3, [np.radians(a.sig_r_deg)] * 3], T)
+        sc_prior = sc_x.copy()
+        if a.hold_f0:
+            sc_prior[:6] *= 1e-4                                          # frame 0 pinned by a stiff prior
 
         def fun(x):
             Oc = poses_from(x, O[j])
             v = violation(o, Oc, cand[j], dt).ravel() * a.w_dyn
             Wz = np.einsum('tij,sj->tsi', Oc[:, :3, :3], o.S)[..., 2] + Oc[:, None, :3, 3][..., 2]
             pen = np.minimum(np.sort(Wz, 1)[:, :10] - tz, 0.0).ravel() / 0.002
-            return np.r_[v, x / sc_x, pen]
+            return np.r_[v, x / sc_prior, pen]
 
         n_v, n_x, n_p = T * 6, T * 6, T * 10
         J = lil_matrix((n_v + n_x + n_p, T * 6), dtype=np.int8)
