@@ -231,3 +231,19 @@ Do as I Do's). Side finding: a single zero-action replay is a noisy measure (ep2
 test, H-squeeze, H-lock, H-com): they compare single replays of a chaotic system, so read their verdicts as "no robust
 effect detected", not as effect sizes. Proposed next step (agent): CUDA port + one ~1 h GPU box on ep2/12/18/24
 (≈ $1–1.5), pass bar = jittered mean beats grasp lock + ILC by ≥ 0.03 on 2 of 4 episodes.
+
+## Physics fit (owner's inverse-dynamics idea), v1 — pre-registered 30 Oct ~17:20 UTC, before any result
+Stage: perception refinement, like `pipeline/refine.py` (inputs: `poses_world_vo.npz` object poses in the rectified
+camera-0 world frame, `hands_refined.npz` keypoints, `table_frame.npz` plane; no ground truth). Tool:
+`pipeline/phys_fit.py`. Variables: per frame a small world-frame correction of each object pose. Residuals per frame:
+(a) prior, correction / (1 cm, 3°); (b) dynamics, the part of the Newton–Euler wrench m(a − g), I_w α + ω × I_w ω that
+no non-negative combination of contact forces can supply (inner non-negative least squares over friction-pyramid edges,
+μ 1.0), normalised by m g and m g · 10 cm, weight 1; contact candidates: hand keypoints within 6 cm of the object's
+surface (snapped onto it), the object's samples within 1 cm of the table, and its samples within 1 cm of another
+object; (c) table penetration of the object's lowest samples / 2 mm. Mass, COM, inertia: `props_public_scans.json`;
+geometry: the public scans (development, as the owner allowed). Weights are fixed now and not tuned on mocap.
+- Baseline (perception, registered AUC vs mocap, our meshes): ep2 0.9823, ep12 0.9662, ep18 0.9642, ep24 0.8117
+  (reproduced exactly from the refine baseline).
+- **Gate (as the refine stage's):** adopt only if mean AUC (our meshes) ≥ baseline + 0.005 on the four episodes and no
+  episode drops > 0.02. Also reported: the dynamics violation before/after, and frames where an object moves with no
+  contact able to explain it (perception errors).
