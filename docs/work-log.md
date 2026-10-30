@@ -5003,3 +5003,10 @@ Advice given:
   - ep31 → eval 30: **C5 inconclusive** (Δ +0.086, SE 0.020; grasp-lock learner, not eval 30's standard learner).
   - Next [proposal]: a GT-free physically-consistent nest fix for eval 10's reference, validated first on ep11 P
     (target: rollout AUC well above 0.595 toward the 0.940 ceiling), then eval 10 (≤ +0.017 LB [E]).
+- 22:05 UTC (after a usage-limit gap ~19:15–22:00) **Phase 1 done**: all 20 public episodes OK on all three boxes
+  (runs `20261030-orcP1{a,b,c}-87fc869`, 21 / 29 / 25 min, self-destroyed; ledger actuals $0.65 / $0.85 / $0.80,
+  estimates; every arm with Grounding DINO, depth cache reused). P_s (scan templates) vs mocap, scan frame,
+  unregistered, from the job logs: ≥ 0.96 on 16 episodes; ep11 0.863, ep31 0.863, ep24 0.849, ep0 0.078 (known frame-0
+  failure with scans). Scoring of P_o / P_s / repeat and the template-leak verdicts: workflow
+  leak-phase1-score-and-tierA (also finishes Tier A, cut again by the usage limit). Vast credit $24.87 at 22:01; one
+  box running (Embodiment's psolverl).
