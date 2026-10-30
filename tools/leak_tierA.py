@@ -422,7 +422,10 @@ def a4_episode(a, ep, W=40):
         lv, lf = XF.load_vf(f'{a.lib}/{n}.glb')
         gap_perc = tip_gap_cm(J, D.Tp[n], surface_tree(lv, lf))                  # the same hands vs OUR track
         mv, runs_ = true_motion(D.gt[n], D.H[s]['anchor'])
-        mp = refine.moving_labels(np.einsum('tij,jk->tik', D.Tp[n], np.linalg.inv(D.Xg[n])), D.H[s]['anchor'])   # our track
+        mp0 = refine.moving_labels(np.einsum('tij,jk->tik', D.Tp[n], np.linalg.inv(D.Xg[n])), D.H[s]['anchor'])  # our track,
+        mp = np.zeros(N, bool)                                                                                   # runs >= 3
+        for s0, e0 in refine.runs(mp0):
+            mp[s0:e0] = e0 - s0 >= 3
         near = gap_true < NEAR_CM; seg = segments(runs_); ev = []
         for k, (s0, e0) in enumerate(seg):
             lo = max(0, s0 - W, seg[k - 1][1] if k else 0); hi = min(N, e0 + W, seg[k + 1][0] if k + 1 < len(seg) else N)
@@ -430,7 +433,7 @@ def a4_episode(a, ep, W=40):
             ev.append(dict(segment=[int(s0), int(e0)], arrival_lag=(int(idx[0] - s0) if len(idx) else None),
                            leave_lag=(int(idx[-1] - (e0 - 1)) if len(idx) else None),
                            perc_onset_lag=(int(pm[0] - s0) if len(pm) else None), perc_end_lag=(int(pm[-1] - (e0 - 1)) if len(pm) else None),
-                           measured_frac=round(float(meas_any[s0:e0].mean()), 3)))
+                           measured_frac=round(float(meas_any[s0:e0].mean()), 3), leave_capped=bool(len(idx) and idx[-1] == hi - 1)))
         mvf = np.zeros(N, bool)
         for s0, e0 in runs_:
             mvf[s0:e0] = True
@@ -459,6 +462,7 @@ def a4_summary(res):
     gaps = [d['gap_true_cm_median'] for r in res if r['episode'] != 23 for d in r['objects_detail'].values() if d['gap_true_cm_median'] is not None]
     gp = [d['gap_perc_cm_median'] for r in res if r['episode'] != 23 for d in r['objects_detail'].values() if d['gap_perc_cm_median'] is not None]
     return dict(note='ep23 (identity swap) excluded', segments=len(segs), segments_without_hand=int(sum(x['arrival_lag'] is None for x in segs)),
+                leave_capped=int(sum(x['leave_capped'] for x in segs)),
                 arrival_lag_all=q(col(segs, 'arrival_lag')), leave_lag_all=q(col(segs, 'leave_lag')),
                 arrival_lag_first=q(col(first, 'arrival_lag')), leave_lag_last=q(col(last, 'leave_lag')),
                 perc_onset_lag_all=q(col(segs, 'perc_onset_lag')), perc_end_lag_all=q(col(segs, 'perc_end_lag')),

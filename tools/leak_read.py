@@ -268,6 +268,7 @@ def check_configs(R):
     part = lambda g: (lambda r: {k: v for k, v in r['config'].items() if k.split('.')[0] == g})
     fixed = lambda r: {k: v for k, v in r['config'].items() if k.split('.')[0] not in ('run', 'seed', 'ref', *FACTOR)}
     study = lambda r: {k: r['config'].get(k) for k in STUDY_KEYS}
+    content = lambda d: {k: v for k, v in d.items() if any(t in k.lower() for t in ('md5', 'sha', 'hash'))} or d
 
     def modal(rs, sub, what):  # the group's majority hash; every other record is refused (all of them on a tie)
         c = Counter(jhash(sub(r)) for r in rs).most_common()
@@ -303,10 +304,11 @@ def check_configs(R):
             for lev in LEVELS[g]:
                 rl = [r for r in rt if CELLS[r['cell']][i] == lev]
                 if rl:
-                    lv[lev] = modal(rl, part(g), f'{tw}: {g}.* at {lev}')
+                    modal(rl, part(g), f'{tw}: {g}.* at {lev}')
+                    lv[lev] = Counter(jhash(content(part(g)(r))) for r in rl).most_common(1)[0][0]
             for (l1, h1), (l2, h2) in itertools.combinations(lv.items(), 2):
-                if h1 is not None and h1 == h2:
-                    bad += [(r, f'{tw}: the declared stage did not change ({g}.* identical at {l1} and {l2})')
+                if h1 == h2:                                    # the files are the same: no swap happened
+                    bad += [(r, f'{tw}: the declared stage did not change ({g}.* content identical at {l1} and {l2})')
                             for r in rt if CELLS[r['cell']][i] == l2]
     seen, out = set(), []
     for r, w in bad:
