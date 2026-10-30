@@ -194,6 +194,11 @@ if 'a6' in J:
           f"{s['a1_mocap_scan_min']:.4f} (scan) / {s['a2_mocap_Xkit_min']:.4f} (lib at X_kit); T\\* two ways max |Δ| {s['b1_two_ways_max_abs']:.4f}; "
           f"cup spin max |Δ| {s['b2_cup_spin_max_abs']:.4f} (rule ≤ 0.002); budgeted-scan registration noise max {s['b1b_budget_scan_max_abs']:.4f}.")
 
+def handfree(F, c):
+    g = list((c.get('hand_gap_cm') or {}).values())
+    return bool(g) and (all(h is not None and h > 3 for h in g) or (F == '0' and all(h is None or h > 3 for h in g)))
+
+
 if 'a7' in J:
     A = J['a7']['a7']; S = J['a7']['summary']
     print('\n## A7 2 s hands-free settle of the mocap rest configurations [M] (gate: every object ≤ 1 cm and ≤ 5° at 2 s)\n')
@@ -208,9 +213,22 @@ if 'a7' in J:
             if 'missing' in x:
                 cell.append('not run'); continue
             worst = max(((c['at_2s'][n][0], c['at_2s'][n][1], F, n) for F, c in x['configs'].items() for n in c['at_2s']), default=None)
-            free = {F: c for F, c in x['configs'].items() if all(g is None or g > 3 for g in (c.get('hand_gap_cm') or {}).values())}
+            free = {F: c for F, c in x['configs'].items() if handfree(F, c)}
             hg = (x['configs'][worst[2]].get('hand_gap_cm') or {}).get(worst[3]) if worst else None
             cell.append(f"{'PASS' if x['gate_pass'] else 'FAIL'} {x['n_pass']}/{x['n']} (hand-free {sum(c['pass_'] for c in free.values())}/{len(free)})"
                         + (f"; worst {worst[0]:.2f} cm / {worst[1]:.1f}° ({SHORT[worst[3]]} f{worst[2]}, hand {hg} cm)" if worst else ''))
         print(f"| {e} | {v['frames']} ({v['dropped_held'] or '–'}) | " + ' | '.join(cell) + ' |')
     print('\n' + '; '.join(f"{g}: pass {len(s['gate_pass'])} / {s['eps']} eps" for g, s in S.items()))
+    print('\n"hand-free" = every measured fingertip is > 3 cm from every object\'s true surface at that frame; a frame with no '
+          'measured hand counts as unknown, except frame 0 (untouched start: in A4 every first hand arrival is at frame >= 10). '
+          'Gate on hand-free configurations only, per geometry:\n')
+    for g in ('lib', 'lib_carve', 'scan'):
+        res = {}
+        for e, v in A.items():
+            x = v['geoms'].get(g)
+            if not x or 'missing' in x:
+                continue
+            fr = [c for F, c in x['configs'].items() if handfree(F, c)]
+            res[int(e)] = (all(c['pass_'] for c in fr), len(fr)) if fr else (None, 0)
+        print(f"- {g}: pass {sorted(e for e, r in res.items() if r[0])}; fail {sorted(e for e, r in res.items() if r[0] is False)}; "
+              f"no hand-free configuration {sorted(e for e, r in res.items() if r[0] is None)}")
