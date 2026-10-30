@@ -5532,3 +5532,24 @@ Background agent, CPU only, $0, no ground truth read.
   build variance dominates. Human hand + RL worse than the Sharpa (mean −0.161).
 - Physics fit v1 (`pipeline/phys_fit.py`) written; inputs pulled for ep2/12/18/24 (perception tracks of 25 Oct, hands,
   table_frame.npz); baseline scores reproduced exactly (0.9823 / 0.9662 / 0.9642 / 0.8117).
+
+### 30 Oct ~17:00–17:25 UTC — physics solver: CUDA port + G1 box job, pre-registered (no GPU run yet)
+- Owner/coordinator go-ahead for G1 (GPU cap ~$2). `tools/physics_solve/solve.py` (md5 `07e3755e`):
+  - `--device cuda` runs one in-process planner env (`--worlds` = all worlds); CPU keeps the worker processes;
+  - device-generic state transfer (`assign`; the CPU tests are still bit-exact);
+  - `--truth_device` and `--deadline_s` added.
+- `jitter_check.py` (md5 `3522b860`): `--device`, the box KIT default, `--json`.
+- CPU checks:
+  - the in-process path gives offsets and truth identical to the worker path;
+  - truth vs official replay 0.0;
+  - the deadline path works;
+  - jitter reproduces 0.5594.
+- New `ops/jobs/physics_solve.sh` (md5 `d2f3d701`):
+  - per episode: S1 stored GL+ILC(+EVOLVE) reference (fallback S0, then a rebuild here), S1 scan assets;
+  - then jitter (K 64), solve (1,024 worlds = 256 × 4 robust, H 20, 4 iterations, 6 rollbacks, deadline 4 s/frame),
+    official replay + score, jitter of the output;
+  - writes `summary.json` with the verdict.
+  - Dry-run on CPU in a scratch root (store stubbed): completes; the fallback chain behaves.
+- Pre-registered in `physics-solver.md` §5.1: PASS iff the solved jittered mean beats GL+ILC by ≥ 0.03 on ≥ 2 of 4
+  episodes; harm flag at ≤ −0.05.
+- Expected ~40–55 min box time, ≈ $0.8–1.4. Nothing rented by the agent.

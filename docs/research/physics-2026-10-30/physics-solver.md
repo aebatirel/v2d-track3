@@ -299,7 +299,7 @@ Readings:
   - but only at a sample budget ~500× below Do as I Do's (64 × 4 × 16 vs 4,096 × 32 × 60 world-frames per replan).
 - **CPU is enough to develop and verify the solver, not to search at the scale the method needs.**
 
-## 5. GPU plan (not started; needs the owner's go-ahead) [E]
+## 5. GPU plan (G1 approved 30 Oct; pre-registered in §5.1) [E]
 
 Throughput assumption: **~50k world-frames/s** on an RTX PRO 6000 at ≥ 1,024 worlds [E]. That is below our measured
 RL training rate of 55–63k env steps/s at 4,096 worlds (work log, 23–26 Oct), which includes the learner.
@@ -343,6 +343,78 @@ Steps:
    - Integration decision before G3: the reference's `robot_<side>_frames` (the RL hand-tracking target) stay the
      intended hand, as in `wrist_ilc.py`, or are replaced by the solved hand's FK. To be decided with the owner.
 
+### 5.1 G1 pre-registration (written 30 Oct 2026 ~17:20 UTC, before any GPU result)
+
+The owner approved option 3 ("go nuts with all"); the coordinator set a GPU cap of ~$2 for this step. Nothing below
+is changed after a GPU result. The settings differ from the G1 row of the table above: the iterations and horizon
+were cut to fit ~1 h of box time, and the rollbacks and robust copies of CPU v3 were kept.
+
+**Code.** These versions are committed in `09e59d2` (solve.py from `cec6208`, unchanged). Launch that commit or any
+later one with the same md5s:
+- `tools/physics_solve/solve.py` md5 `07e3755e`: the CUDA port, CPU-verified as in the table below;
+- `tools/physics_solve/jitter_check.py` md5 `3522b860`: CUDA-capable, adds `--json`;
+- `ops/jobs/physics_solve.sh` md5 `d2f3d701` (includes the log-grep fix made during the dry run).
+
+CPU checks of the port [M]:
+
+| check | result |
+|---|---|
+| assign-based restore vs the 1-world truth (frames 8, 12, 16, 24) | bit-identical |
+| world 0 while the other worlds run random actions | bit-identical |
+| in-process planner (the CUDA code path, `--workers 0`) vs the 2-process worker path, same seed | identical offsets, decisions and truth trajectory |
+| in-process truth vs official `trace_rollout.py zero` replay of its output | max \|Δq\| 0.0 |
+| `--deadline_s 25` | stops optimising at t=16 and still writes a complete, bit-identical reference |
+| `jitter_check.py` after the port | reproduces 0.5594 for v1 |
+| `ops/jobs/physics_solve.sh` dry run (ep12, `/content` replaced by a scratch root, store stubbed, CPU) | completes; writes `summary.json` |
+| the same dry run with a missing input episode | falls back as designed and skips the episode |
+
+**Inputs.**
+- Episodes ep2, ep12, ep18, ep24.
+- References: the stored S1 grasp-lock + ILC + EVOLVE references, store run `20261030-physS1-6a814df`
+  `refs/glockt/ep<N>`. Their zero action on the S1 box was 0.601 / 0.604 / 0.542 / 0.194.
+  - Fallback 1: the S0 run's references (`20261030-physS0-6a814df`).
+  - Fallback 2: rebuilt on the box (grasp lock + ILC, no EVOLVE).
+  - The input actually used for each episode is logged in `summary.json`.
+- Objects: NVIDIA's public scans with the S1 plausible masses (`make_assets --physics props_public_scans.json`, as in
+  `physics_arms.sh`).
+- The baseline and the solver use the **same input file and assets**.
+
+**Settings** (the job defaults):
+- `solve.py --device cuda --worlds 1024 --robust 4 --horizon 20 --knot 4 --ctrl 4 --iters 4 --ramp 1 4 --sig_pos 0.01
+  --sig_rot 0.05 --sig_fin 0.15 --anneal 0.6 --retries 6 --retry 0.05 --back 3 --rob_pos 0.0005 --rob_fin 0.005
+  --seed 0`. That is 256 candidates × 4 robust copies, 1 s horizon, 0.2 s commits, 4 iterations, and at most 6
+  rollbacks back 0.6 s each. The truth env is on the same GPU.
+- `--deadline_s` = 4 s × episode frames: ep2 1,372 s, ep12 724 s, ep18 1,412 s, ep24 1,100 s.
+- Jitter check: `jitter_check.py --device cuda --k 64 --seed 0`. That is copy 0 plus 63 copies with N(0, 0.5 mm) wrist
+  position and N(0, 0.005 rad) finger target noise on every frame. Both references of an episode get the same noise
+  draws.
+
+**Reading** (primary; decides the next step):
+- Δ_e = mean over the 63 jittered copies (solved reference) − the same mean for the grasp lock + ILC input.
+- **PASS iff Δ_e ≥ +0.03 on at least 2 of the 4 episodes.** An episode with no result (input missing, solve failed)
+  counts as not beating the baseline.
+- Reported but not part of PASS: a **harm flag** for any Δ_e ≤ −0.05.
+- PASS → propose G2 (Do as I Do scale on the episodes that gained, ≤ ~$8) and G3 (RL from the solved references),
+  each with its own go-ahead.
+- No PASS → no further GPU spend on this solver as it stands. The write-up then records [H-scale] as falsified at G1
+  scale.
+
+**Secondary readouts** (no decision attached):
+- the nominal zero-action sim_vs_ref of both references (copy 0, and `trace_rollout.py zero` + `trace_score.py`);
+- the solver's own truth trajectory vs the official replay. GPU MuJoCo-Warp may not be bit-deterministic, so this
+  measures it;
+- solve wall time, whether the deadline was reached, the rollbacks used, and the per-copy score distributions;
+- afterwards on CPU here ($0): `jitter_check.py --k 9` of the solved parquets, to see device sensitivity.
+
+**Expected time and cost** [E]:
+- Four episodes run concurrently on one RTX PRO 6000. Estimate ~0.1 s per frame at 1,024 worlds with 4 processes
+  sharing the GPU, so ~2–3 s per committed frame. ep18 (353 frames) then takes ~15 min, and the deadlines cap each
+  episode at 12–24 min.
+- Job ~25–35 min: assets + pulls ~3 min, CUDA kernel compile ~3–5 min, solves ≤ 24 min, replays + jitter ~3 min,
+  push ~2 min.
+- Box setup ~10–20 min. Total ~40–55 min ≈ **$0.8–1.4** at $1.2–1.5/h. The deadline bounds the solve whatever the
+  throughput.
+
 Not recommended: running Do as I Do or SPIDER themselves.
 - They plan in a different contact model (condim 6, finger kp 300) and their data model allows one object per hand.
 - SPIDER's code is non-commercial.
@@ -376,6 +448,8 @@ KIT=... python tools/physics_solve/jitter_check.py REF.parquet --k 9 --sig_pos 1
 solve.py ... --workers 4 --worlds 16 --horizon 16 --knot 4 --ctrl 4 --iters 4 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.6
 # v2 (stopped after t=40)
 solve.py ... v1 args with --horizon 20 --retries 6 --retry 0.05 --back 3
+# G1 on a GPU box (pre-registered in section 5.1; the coordinator launches it)
+ops/vast.sh V2D_COMMIT=<commit with 09e59d2's job> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'bash ops/jobs/physics_solve.sh'
 # v3
 solve.py ... --workers 4 --worlds 24 --robust 4 --horizon 16 --knot 4 --ctrl 4 --iters 4 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.6 --retries 4 --retry 0.05 --back 3
 ```
