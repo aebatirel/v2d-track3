@@ -396,8 +396,8 @@ def read(a):
         cells = [f'{t} {c}' for t in tw for c in w]
         twins = {}
         for t, x in tw.items():
-            d, se, df = x['T']; tq = stats.t.ppf(0.95, df) if np.isfinite(df) else 1.645
-            pu, pd = (stats.t.sf(d / se, df), stats.t.cdf(d / se, df)) if se > 0 else (float(d <= 0), float(d >= 0))
+            d, se, df = x['T']; D = stats.t(df) if np.isfinite(df) else stats.norm; tq = D.ppf(0.95)
+            pu, pd = (D.sf(d / se), D.cdf(d / se)) if se > 0 else (float(d <= 0), float(d >= 0))
             twins[t] = dict(dT=rnd(d), dS=rnd(x['S'][0]), dg=rnd(x['g'][0]), se=rnd(se), df=rnd(df, 2),
                             lb95=rnd(d - tq * se), ub95=rnd(d + tq * se), verdict_per_twin=str(verdict(
                                 d, (d - tq * se, d + tq * se), pu <= ALPHA, pd <= ALPHA,
@@ -447,13 +447,14 @@ def read(a):
 
 
 def show(rep):
+    f4 = lambda x, n=4: 'n/a' if x is None else f'{x:.{n}f}'
     print(f"leak_read: {rep['records']} records, metric {rep['metric']}, crashes {rep['crash']}, config {rep['config_check']}")
     print(f"{'contrast':<8} {'fam':<4} {'E':>2} {'dT':>8} {'dS':>8} {'dg':>8} {'90% CI':>17} {'p_t':>7} {'p_perm':>7} "
           f"{'verdict':<13} {'LB c.74':>8} {'LB c1':>8}  action")
     for n, c in rep['contrasts'].items():
-        print(f"{n:<8} {'P' if c['family'].startswith('primary') else 's':<4} {len(c['twins_used']):>2} {c['dT']:>8.4f} "
-              f"{c['dS']:>8.4f} {c['dg']:>8.4f} {str(c['ci90']):>17.17} {c['p_adj']['p_up']:>7.4f} {c['p_adj']['q_up']:>7.4f} "
-              f"{c['verdict']:<13} {c['LB']['c0.74']['L']:>8.5f} {c['LB']['c1.0']['L']:>8.5f}  {c['LB']['action']}"
+        print(f"{n:<8} {'P' if c['family'].startswith('primary') else 's':<4} {len(c['twins_used']):>2} {f4(c['dT']):>8} "
+              f"{f4(c['dS']):>8} {f4(c['dg']):>8} {str(c['ci90']):>17.17} {f4(c['p_adj']['p_up']):>7} {f4(c['p_adj']['q_up']):>7} "
+              f"{c['verdict']:<13} {f4(c['LB']['c0.74']['L'], 5):>8} {f4(c['LB']['c1.0']['L'], 5):>8}  {c['LB']['action']}"
               + (f"  [{c['note']}]" if c['note'] else '') + (f"  [{c['extension']}]" if c['extension'] else ''))
     for p, x in rep['players'].items():
         print(f'player {p}: AOI {x["AOI"]}  LOO {x["LOO"]}  Shapley {x["shapley"]}  interaction (LOO - AOI) {x["interaction"]}')
