@@ -1,0 +1,39 @@
+{
+ "episode": 11,
+ "reference": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/oracle/dl_ref/runs/20261025-twin11v3x-0e8aebb/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "frames": 137,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3x",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 1.86,
+   "anchor_shift_cm": 0.98,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "beige_cup": {
+   "rot_deg": 131.66,
+   "anchor_shift_cm": 0.51,
+   "axis": [
+    0.011,
+    0.03,
+    0.999
+   ],
+   "order": 360
+  }
+ },
+ "ref_vs_mocap": {
+  "AUC": 0.8844,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.7447,
+  "RPE_cm": 1.7297,
+  "per_obj_AUC": {
+   "blue_cup": 0.8636,
+   "beige_cup": 0.9051
+  }
+ }
+}

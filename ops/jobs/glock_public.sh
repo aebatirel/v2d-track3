@@ -39,7 +39,16 @@
 # of an episode whose reference is finished on this box (e.g. its training failed) and trains on it.
 #   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> \
 #     'PAIRS="24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto" bash ops/jobs/glock_public.sh'
-# Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log.
+# RUN "local" (2026-10-30) = a reference already built on this box (nothing pulled). A 4th field EP:RUN:BASE:PERC
+# names the perception prefix of the base reference refs/<PERC><BASE>/ep<N> (default perc2). PERC other than perc2
+# (the oracle twins, ops/jobs/oracle_twins.sh: PERC=oracle, a reference whose object motion is mocap) is for SPLIT=public
+# and RUN local only, and keeps every working folder apart with the prefix "<PERC>_" (refs/oracle_sf, refs/oracle_glock,
+# refs/oracle_glockt, runs/oracle_glock, results/oracle_glock_public, /content/oracle_glock_ep<N>.log), so the same
+# episode can train on both references at once and nothing an eval pack pulls (refs/glockt, refs/sf) holds it.
+# ENV_EP<N> (2026-10-30, as in hard_ab.sh): space-separated VAR=value settings for episode N only (both of its entries),
+# e.g. ENV_EP11="SF=0" ENV_EP13="SF=1".
+# Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
+# summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; T=$REPO_DIR/tools; J=${J:-/content/job.log}; NREP=${NREP:-5}; PAR=${PAR:-3}; SEED=${SEED:-42}
 SPLIT=${SPLIT:-public}; SETTLE=${SETTLE:-0}; SF=${SF:-1}; REPLAN=${REPLAN:-0}; ES=${ES:-0}; STEPS=${STEPS:-70004736}; PAIRS=${PAIRS:-"24:20261021-auto24-966eb96:mcs 27:20261021-auto18-966eb96:auto"}
@@ -65,7 +74,7 @@ if [ -n "${CURR_SCALE:-}" ]; then                               # curriculum thr
 fi
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml   # kp 400 wrist (the checkpoint stores the resolved config)
 [ -s $E ] || cp $REPO_DIR/flashchord_conf/embodiment/sharpa_hands_mid.yaml $E || { log "embodiment copy FAILED" >> $J; exit 1; }
-for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u | grep -v '^new$'); do
+for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u | grep -v '^new$\|^local$'); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }
 done
 
@@ -112,12 +121,13 @@ for r in sorted(glob.glob(f'{d}/r*/')):
     try:
         q = json.load(open(f'{r}qa_policy.json')); row = dict(rollout=os.path.basename(r[:-1]), sim_vs_ref=q['sim_vs_ref'])
         if os.path.exists(f'{r}score_registered_ep{ep}.json'):          # public episodes only (vs mocap)
-            s = json.load(open(f'{r}score_registered_ep{ep}.json'))['sim']; row.update(auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR'])
+            sr = json.load(open(f'{r}score_registered_ep{ep}.json')); s = sr['sim']; row.update(auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR'])
+            row.update({k: sr[n]['AUC'] for k, n in (('ref_auc', 'reference'), ('floor_auc', 'static_floor')) if n in sr})
         rows.append(row)
     except Exception as e:
         rows.append(dict(rollout=os.path.basename(r[:-1]), error=str(e)[:120]))
 ok = [x for x in rows if 'sim_vs_ref' in x]; agg = {}
-for k in ('sim_vs_ref', 'auc'):
+for k in ('sim_vs_ref', 'auc', 'ref_auc', 'floor_auc'):
     v = np.array([x[k] for x in ok if k in x], float)
     if len(v):
         agg[k] = dict(mean=round(float(v.mean()), 4), std=round(float(v.std()), 4), min=round(float(v.min()), 4), max=round(float(v.max()), 4))
@@ -126,25 +136,34 @@ EOF
 }
 
 one() {
-  local ep=$1 run=$2 base=$3 R0 P0 hive G RD N RUN LG=/content/glock_ep$1.log ck reuse=0
-  if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
+  local ep=$1 run=$2 base=$3 perc=${4:-perc2} pre="" tg=ep$1 O=$O R0 P0 hive G RD N RUN LG ck reuse=0 ev=ENV_EP$1
+  if [ "$perc" != perc2 ]; then                                    # e.g. the oracle twins: folders apart, public only
+    [ "$SPLIT" = public ] && [ "$run" = local ] || { log "glock ep$ep: PERC $perc needs SPLIT=public and RUN local" >> $J; return 1; }
+    pre=${perc}_; tg="$perc ep$ep"; O=/content/results/${pre}glock_public
+  fi
+  LG=/content/${pre}glock_ep$ep.log
+  if [ -n "${!ev:-}" ]; then                                        # per-episode settings (one() runs in its own subshell)
+    eval "export ${!ev}" || { log "glock $tg: bad $ev" >> $J; return 1; }
+    log "glock $tg: $ev = ${!ev}" >> $J
+  fi
+  if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/${pre}glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
       && [ -f $O/ep$ep/rest_check.json ]; then                     # finish an episode whose training failed on this box:
     reuse=1                                                        # keep its finished reference (grasp lock, ILC, search)
   fi
   if [ "$run" = new ] && [ $reuse = 0 ]; then                      # end to end from the raw episode (perception on)
     ( export VARIANT=$base MKREF_ARGS="--wrist_cost 3.0" CONTACT_RETARGET=1 CR_ARGS="--rest_settle 1" STEPS=0 \
         STOP_AFTER=reference SPLIT=$SPLIT PERC=perc2; bash $P/pipeline_ep.sh $ep ) > /content/ref_ep$ep.log 2>&1 \
-      || { log "glock ep$ep: reference build FAILED ($(tail -3 /content/ref_ep$ep.log | tr '\n' ' ' | cut -c1-300))" >> $J; return 1; }
-    log "glock ep$ep: reference built from the raw episode ($(grep -a 'perception:\|qa_ref\|contact_retarget:' /content/ref_ep$ep.log | cut -c1-160 | tr '\n' ' ' | cut -c1-500))" >> $J
+      || { log "glock $tg: reference build FAILED ($(tail -3 /content/ref_ep$ep.log | tr '\n' ' ' | cut -c1-300))" >> $J; return 1; }
+    log "glock $tg: reference built from the raw episode ($(grep -a 'perception:\|qa_ref\|contact_retarget:' /content/ref_ep$ep.log | cut -c1-160 | tr '\n' ' ' | cut -c1-500))" >> $J
   fi
   if [ "$base" = auto ]; then                                      # the variant auto_ep.sh published for that episode
     base=$(python -c "import json, os; print(os.path.basename(os.path.dirname(json.load(open('/content/results/final/ep$ep/final.json'))['chosen'])).replace('perc2', '', 1))" 2>/dev/null)
-    [ -n "$base" ] || { log "glock ep$ep: no results/final/ep$ep/final.json in the pulled run" >> $J; return 1; }
+    [ -n "$base" ] || { log "glock $tg: no results/final/ep$ep/final.json in the pulled run" >> $J; return 1; }
   fi
-  R0=/content/refs/perc2$base/ep$ep; P0=$(ls $R0/processed/*/*/*.parquet 2>/dev/null | head -1)
-  [ -s "$P0" ] || { log "glock ep$ep: no reference under $R0" >> $J; return 1; }
-  fix_assets $P0 >> $LG 2>&1 || { log "glock ep$ep: assets missing" >> $J; return 1; }
-  hive=$(dirname ${P0#$R0/}); G=/content/refs/glock/ep$ep; RD=/content/refs/glockt/ep$ep; RUN=/content/runs/glock/ep$ep-s$SEED
+  R0=/content/refs/$perc$base/ep$ep; P0=$(ls $R0/processed/*/*/*.parquet 2>/dev/null | head -1)
+  [ -s "$P0" ] || { log "glock $tg: no reference under $R0" >> $J; return 1; }
+  fix_assets $P0 >> $LG 2>&1 || { log "glock $tg: assets missing" >> $J; return 1; }
+  hive=$(dirname ${P0#$R0/}); G=/content/refs/${pre}glock/ep$ep; RD=/content/refs/${pre}glockt/ep$ep; RUN=/content/runs/${pre}glock/ep$ep-s$SEED
   local ts_=$(date +%s)                                           # a pulled run may hold old checkpoints / curve scores for this
   [ -d $RUN ] && [ -n "$(ls -A $RUN 2>/dev/null)" ] && mv $RUN $RUN.pulled_$ts_   # episode (ev3 2026-10-24: ckpt_curve skips scored
   [ $reuse = 0 ] && [ -d $O/ep$ep ] && [ -n "$(ls -A $O/ep$ep 2>/dev/null)" ] && mv $O/ep$ep $O/ep$ep.pulled_$ts_   # checkpoints): keep them aside
@@ -153,29 +172,29 @@ one() {
     rm -f $O/ep$ep/curve.txt
   fi
   mkdir -p $G/$hive $RD/$hive $RUN $O/ep$ep; cp -r $R0/reconstructed_stage $G/; cp -r $R0/reconstructed_stage $RD/
-  log "glock ep$ep: base $base ($P0)$([ $reuse = 1 ] && echo "; REUSE_REF: training on this box's finished reference $RD/$hive/ref_gl_ilc.parquet")" >> $J
+  log "glock $tg: base $base ($P0)$([ $reuse = 1 ] && echo "; REUSE_REF: training on this box's finished reference $RD/$hive/ref_gl_ilc.parquet")" >> $J
   if [ $reuse = 0 ]; then                                          # reference stages (skipped with REUSE_REF)
   if [ "$SF" = 1 ]; then                                           # support-consistent meshes; the reference then names them
-    local SFT=/content/refs/sf/ep$ep; mkdir -p $SFT/$hive; cp -r $R0/reconstructed_stage $SFT/
+    local SFT=/content/refs/${pre}sf/ep$ep; mkdir -p $SFT/$hive; cp -r $R0/reconstructed_stage $SFT/
     python $P/support_fill.py $P0 $(ls $R0/reconstructed_stage/*.usda | head -1) $SFT/assets $SFT/$hive/ref_sf.parquet > $LG.sf 2>&1 \
-      || { log "glock ep$ep: support_fill FAILED ($(tail -1 $LG.sf | cut -c1-200))" >> $J; return 1; }
+      || { log "glock $tg: support_fill FAILED ($(tail -1 $LG.sf | cut -c1-200))" >> $J; return 1; }
     cp $SFT/$hive/ref_sf_support_fill.json $O/ep$ep/support_fill.json; P0=$SFT/$hive/ref_sf.parquet
-    log "glock ep$ep: support_fill $(python -c "
+    log "glock $tg: support_fill $(python -c "
 import json; d = json.load(open('$O/ep$ep/support_fill.json'))
 print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('frame'), r.get('status', 'skipped'), r.get('fill_cm')) for r in o['fills']]) for n, o in d['objects'].items()))" 2>&1 | cut -c1-600)" >> $J
   fi
   if [ "$SETTLE" = 1 ]; then                                       # settle the start in the simulator
-    local SST=/content/refs/settle/ep$ep; mkdir -p $SST/$hive; cp -r $R0/reconstructed_stage $SST/
+    local SST=/content/refs/${pre}settle/ep$ep; mkdir -p $SST/$hive; cp -r $R0/reconstructed_stage $SST/
     ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/sim_settle.py $P0 $SST/$hive/ref_settled.parquet ) > $LG.settle 2>&1 \
-      || { log "glock ep$ep: sim_settle FAILED ($(tail -1 $LG.settle | cut -c1-200))" >> $J; return 1; }
+      || { log "glock $tg: sim_settle FAILED ($(tail -1 $LG.settle | cut -c1-200))" >> $J; return 1; }
     cp $SST/$hive/ref_settled_settle.json $O/ep$ep/settle.json; P0=$SST/$hive/ref_settled.parquet
-    log "glock ep$ep: sim_settle $(tail -1 $LG.settle | cut -c1-500)" >> $J
+    log "glock $tg: sim_settle $(tail -1 $LG.settle | cut -c1-500)" >> $J
   fi
   ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl.parquet $GL_ARGS ) >> $LG 2>&1 \
-    || { log "glock ep$ep: grasp_lock FAILED" >> $J; return 1; }
+    || { log "glock $tg: grasp_lock FAILED" >> $J; return 1; }
   ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl.parquet $G/$hive/ref_gl_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
       ${ILC_HOLD:+--hold $G/$hive/ref_gl_grasp_lock.json --gain ${ILC_GAIN:-0.6}} ) >> $LG 2>&1 \
-    || { log "glock ep$ep: wrist_ilc FAILED" >> $J; return 1; }
+    || { log "glock $tg: wrist_ilc FAILED" >> $J; return 1; }
   if [ "${EVOLVE:-0}" = 1 ]; then                                  # evolutionary grasp refinement, one hold at a time
     local EV=$O/ep$ep/evolve np_ k; mkdir -p $EV; cp $G/$hive/ref_gl_ilc.parquet $EV/ref_before_evolve.parquet
     np_=$(python -c "import json; print(len(json.load(open('$G/$hive/ref_gl_grasp_lock.json'))['phases']))")
@@ -184,7 +203,7 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
           $EV/phase$k.json --phase $k --all_objects --pop ${EV_POP:-256} --gens ${EV_GENS:-20} --sigma_pos 0.03 --sigma_fin 0.3 \
           --robust ${EV_ROBUST:-4} --jitter ${EV_JITTER:-0.005} --keep_env \
           --bake $EV/phase$k.parquet ) > $EV/phase$k.log 2>&1 && [ -s $EV/phase$k.parquet ] && cp $EV/phase$k.parquet $G/$hive/ref_gl_ilc.parquet
-      log "glock ep$ep: evolve phase $k: $(python -c "import json; d=json.load(open('$EV/phase$k.json')); g=d['generations']; print('window', d['window'], 'unedited', g[0]['unedited'], 'best', d['best']['fit'], 'at gen', d['best']['gen'], 'of', len(g))" 2>&1 | tail -1)" >> $J
+      log "glock $tg: evolve phase $k: $(python -c "import json; d=json.load(open('$EV/phase$k.json')); g=d['generations']; print('window', d['window'], 'unedited', g[0]['unedited'], 'best', d['best']['fit'], 'at gen', d['best']['gen'], 'of', len(g))" 2>&1 | tail -1)" >> $J
     done
   fi
   cp $G/$hive/ref_gl_ilc.parquet $RD/$hive/
@@ -192,33 +211,33 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
   ( cd $REPO_DIR && python $T/trace_score.py $RD/$hive/ref_gl_ilc.parquet $O/ep$ep/zero.npz:zero_action ) > $O/ep$ep/zero_score.txt 2>&1
   python $T/rest_check.py $O/ep$ep/zero.npz $RD/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check.json 2>&1
-  log "glock ep$ep: rest check $(cut -c1-400 $O/ep$ep/rest_check.json)" >> $J
+  log "glock $tg: rest check $(cut -c1-400 $O/ep$ep/rest_check.json)" >> $J
   if [ "$REPLAN" -gt 0 ]; then                                     # re-plan against the simulated world
     local it n sc tr=$O/ep$ep/zero.npz best RT
     best=$(grep -a 'zero_action:' $O/ep$ep/zero_score.txt | awk '{print $NF}')
     for it in $(seq 1 $REPLAN); do
       ( cd $FC && FC=$FC GL_WRIST_KP=400 .venv/bin/python $P/grasp_lock.py $P0 $G/$hive/ref_gl_r$it.parquet $GL_ARGS --sim_trace $tr ) >> $LG 2>&1 \
-        || { log "glock ep$ep: replan $it: grasp_lock FAILED" >> $J; break; }
+        || { log "glock $tg: replan $it: grasp_lock FAILED" >> $J; break; }
       n=$(python -c "import json; print(sum(1 for x in json.load(open('$G/$hive/ref_gl_r${it}_grasp_lock.json'))['phases'] if x.get('replan')))")
-      [ "${n:-0}" -gt 0 ] || { log "glock ep$ep: replan $it: every object is where its reference says before its grasp; nothing to re-plan" >> $J; break; }
+      [ "${n:-0}" -gt 0 ] || { log "glock $tg: replan $it: every object is where its reference says before its grasp; nothing to re-plan" >> $J; break; }
       ( cd $FC && EMB=sharpa_hands_mid .venv/bin/python $P/wrist_ilc.py $G/$hive/ref_gl_r$it.parquet $G/$hive/ref_gl_r${it}_ilc.parquet --iters ${ILC_ITERS:-4} --device cuda \
         ${ILC_HOLD:+--hold $G/$hive/ref_gl_r${it}_grasp_lock.json --gain ${ILC_GAIN:-0.6}} ) >> $LG 2>&1 \
-        || { log "glock ep$ep: replan $it: wrist_ilc FAILED" >> $J; break; }
+        || { log "glock $tg: replan $it: wrist_ilc FAILED" >> $J; break; }
       RT=$RD.r$it; mkdir -p $RT/$hive; cp -r $R0/reconstructed_stage $RT/; cp $G/$hive/ref_gl_r${it}_ilc.parquet $RT/$hive/ref_gl_ilc.parquet
       ( cd $FC && EMB=sharpa_hands_mid DEV=cuda .venv/bin/python $T/trace_rollout.py zero $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet $N ) >> $LG 2>&1
       ( cd $REPO_DIR && python $T/trace_score.py $RT/$hive/ref_gl_ilc.parquet $O/ep$ep/zero_r$it.npz:zero_action ) > $O/ep$ep/zero_score_r$it.txt 2>&1
       python $T/rest_check.py $O/ep$ep/zero_r$it.npz $RT/$hive/ref_gl_ilc.parquet > $O/ep$ep/rest_check_r$it.json 2>&1
       sc=$(grep -a 'zero_action:' $O/ep$ep/zero_score_r$it.txt | awk '{print $NF}')
-      log "glock ep$ep: replan $it: $n holds re-planned ($(grep -a 'REPLAN against' $LG | tail -$n | cut -d' ' -f1-2,6- | tr '\n' ' ' | cut -c1-300)); zero action $sc (previous $best)" >> $J
+      log "glock $tg: replan $it: $n holds re-planned ($(grep -a 'REPLAN against' $LG | tail -$n | cut -d' ' -f1-2,6- | tr '\n' ' ' | cut -c1-300)); zero action $sc (previous $best)" >> $J
       if [ -n "$sc" ] && python -c "import sys; sys.exit(0 if $sc >= $best else 1)"; then
         cp $RT/$hive/ref_gl_ilc.parquet $RD/$hive/ref_gl_ilc.parquet; tr=$O/ep$ep/zero_r$it.npz; best=$sc
-        log "glock ep$ep: replan $it KEPT (training on it)" >> $J
+        log "glock $tg: replan $it KEPT (training on it)" >> $J
       else
-        log "glock ep$ep: replan $it not better; kept the previous version" >> $J; break
+        log "glock $tg: replan $it not better; kept the previous version" >> $J; break
       fi
     done
   fi
-  log "glock ep$ep: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
+  log "glock $tg: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
   fi
   local tp esp rc slot tries=0
   while :; do
@@ -233,14 +252,14 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
     rmdir /content/train_slot_$slot
     if [ $rc -ne 0 ] && [ $tries -lt 2 ] && grep -aq 'out of memory' $RUN/train.log; then   # another process took the memory
       tries=$((tries + 1)); mv $RUN $RUN.oom$tries; mkdir -p $RUN
-      log "glock ep$ep: training ran out of GPU memory; retry $tries after 60 s" >> $J; sleep 60; continue
+      log "glock $tg: training ran out of GPU memory; retry $tries after 60 s" >> $J; sleep 60; continue
     fi
     break
   done
   if [ $rc -ne 0 ] && [ ! -f $RUN/EARLY_STOPPED ]; then
-    log "glock ep$ep: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1
+    log "glock $tg: training FAILED ($(tail -2 $RUN/train.log | tr '\n' ' ' | cut -c1-200))" >> $J; return 1
   fi
-  log "glock ep$ep: trained $(ls $RUN/policy_*.safetensors | wc -l) checkpoints$([ -f $RUN/EARLY_STOPPED ] && echo "; early stop: $(cat $RUN/EARLY_STOPPED)")" >> $J
+  log "glock $tg: trained $(ls $RUN/policy_*.safetensors | wc -l) checkpoints$([ -f $RUN/EARLY_STOPPED ] && echo "; early stop: $(cat $RUN/EARLY_STOPPED)")" >> $J
   REPO_DIR=$REPO_DIR PAR=$PAR REP=${CURVE_REP:-1} bash $T/ckpt_curve.sh $RUN $O/ep$ep/curve $ep >> $LG 2>&1
   python $T/ckpt_curve_summary.py $O/ep$ep/curve > $O/ep$ep/curve.txt 2>&1
   ck=$(python - $O/ep$ep/curve $RUN << 'EOF'
@@ -252,18 +271,18 @@ best = max(((score(f), os.path.basename(os.path.dirname(f))) for f in glob.glob(
 print(f'{sys.argv[2]}/{best[1]}.safetensors' if best else '')
 EOF
 )
-  [ -s "$ck" ] || { log "glock ep$ep: no scored checkpoint" >> $J; return 1; }
-  log "glock ep$ep: curve $(tr -s ' ' < $O/ep$ep/curve.txt | cut -c1-40 | tr '\n' ';' | cut -c1-500); chosen by sim_vs_ref: $(basename $ck)" >> $J
+  [ -s "$ck" ] || { log "glock $tg: no scored checkpoint" >> $J; return 1; }
+  log "glock $tg: curve $(tr -s ' ' < $O/ep$ep/curve.txt | cut -c1-40 | tr '\n' ';' | cut -c1-500); chosen by sim_vs_ref: $(basename $ck)" >> $J
   evalrep $ck $O/ep$ep/best $ep
   cp $ck $O/ep$ep/best/policy.safetensors                        # the chosen checkpoint survives the store's pruning
-  log "glock ep$ep RESULT ($(basename $ck)): $(python -c "import json; d=json.load(open('$O/ep$ep/best/summary.json')); print('n', d['n'], 'sim_vs_ref', d.get('sim_vs_ref'), 'registered AUC vs mocap', d.get('auc'))" 2>&1 | tail -1)" >> $J
+  log "glock $tg RESULT ($(basename $ck)): $(python -c "import json; d=json.load(open('$O/ep$ep/best/summary.json')); print('n', d['n'], 'sim_vs_ref', d.get('sim_vs_ref'), 'registered AUC vs mocap', d.get('auc'))" 2>&1 | tail -1)" >> $J
 }
 
 label "glock public: $PAIRS"
 pids=()
 for x in $PAIRS; do
-  IFS=: read -r ep run base <<< "$x"
-  one $ep $run $base & pids+=($!)
+  IFS=: read -r ep run base perc <<< "$x"
+  one $ep $run $base $perc & pids+=($!)
   sleep 30
 done
 wait "${pids[@]}"

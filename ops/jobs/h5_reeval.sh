@@ -20,6 +20,8 @@
 # stops before the evaluator if any other episode would get a fresh rollout).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; N=${N:-10}; H=/content/results/h5; mkdir -p $H
+python $REPO_DIR/tools/no_oracle.py ${PICK_EXTRA:-} ${KEEP_RESULTS:-} ${ASSET_PIECES_EXTRA:-} >> $J 2>&1 \
+  || { log "h5: REFUSED: an input is an oracle twin (mocap-derived; tools/no_oracle.py)" >> $J; exit 1; }
 C=/content/v2d-track3/meshes/carve
 [ -n "${ASSET_PIECES_EXTRA:-}" ] && { [ -z "${KEEP_RESULTS:-}" ] || [ -z "${EVAL_ONLY:-}" ]; } \
   && { log "h5: ASSET_PIECES_EXTRA needs KEEP_RESULTS and EVAL_ONLY (shared /content/assets)" >> $J; exit 1; }

@@ -24,7 +24,14 @@
 # SPLIT=eval (2026-10-24, eval run): RUN "local" = a reference already built on this box (e.g. by glock_public.sh
 #   SPLIT=eval EP:new:mck), nothing pulled; PDIR_ROOT=/content/perc2 then names its perception; no mocap scoring
 #   (summaries hold sim_vs_ref only); BASE_EVAL=0.
+# A 4th field EP:RUN:BASE:PERC (2026-10-30) names the perception prefix of the base reference refs/<PERC><BASE>/ep<N>
+#   (default perc2). PERC other than perc2 (the oracle twins, ops/jobs/oracle_twins.sh: PERC=oracle, object motion from
+#   mocap) is for SPLIT=public and RUN local only: its perception is /content/<PERC>/ep<N>, its refs, runs and results
+#   are refs/<PERC><BASE><SUF>, runs/<PERC>..., results/<PERC>... and results/hard_ab/ep<N>/<PERC>_<BASE><SUF>-s<SEED>,
+#   its log /content/hard_ab_<PERC>_ep<N><SUF>-s<SEED>.log; BASE_EVAL is off for it. Both arms of one episode may be
+#   listed together (they take turns on the GPU like any two entries).
 # Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
+# Each rollout's summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
 P=$REPO_DIR/pipeline; J=${J:-/content/job.log}; NREP=${NREP:-6}; PAR=${PAR:-3}
 SEED=${SEED:-42}; SUF=${SUF:-k}; CR=${CR:-1}; BASE_EVAL=${BASE_EVAL:-1}; PDIR_ROOT=${PDIR_ROOT:-/content/perc2m}
@@ -112,13 +119,14 @@ for r in sorted(glob.glob(f'{d}/r*/')):
     try:
         q = json.load(open(f'{r}qa_policy.json')); rows.append(dict(rollout=os.path.basename(r[:-1]), sim_vs_ref=q['sim_vs_ref']))
         if os.path.exists(f'{r}score_registered_ep{ep}.json'):              # public episodes only (vs mocap)
-            s = json.load(open(f'{r}score_registered_ep{ep}.json'))['sim']; rows[-1].update(auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR'])
+            sr = json.load(open(f'{r}score_registered_ep{ep}.json')); s = sr['sim']; rows[-1].update(auc=s['AUC'], sp=s['SP_SR'], mp=s['MP_SR'])
+            rows[-1].update({k: sr[n]['AUC'] for k, n in (('ref_auc', 'reference'), ('floor_auc', 'static_floor')) if n in sr})
         if os.path.exists(f'{r}score_registered_ours_ep{ep}.json'):        # public-asset runs: also our mesh registered
             rows[-1]['auc_ours'] = json.load(open(f'{r}score_registered_ours_ep{ep}.json'))['sim']['AUC']
     except Exception as e:
         rows.append(dict(rollout=os.path.basename(r[:-1]), error=str(e)[:120]))
 ok = [x for x in rows if 'sim_vs_ref' in x]; agg = {}
-for k in ('sim_vs_ref', 'auc', 'auc_ours'):
+for k in ('sim_vs_ref', 'auc', 'auc_ours', 'ref_auc', 'floor_auc'):
     v = np.array([x[k] for x in ok if k in x], float)
     if len(v):
         agg[k] = dict(mean=round(float(v.mean()), 4), std=round(float(v.std()), 4), min=round(float(v.min()), 4), max=round(float(v.max()), 4))
@@ -129,7 +137,11 @@ EOF
 }
 
 one() {
-  local ep=$1 run=$2 base=$3 k R0 R1 ck0="" ck1 F LG ev=ENV_EP$1
+  local ep=$1 run=$2 base=$3 perc=${4:-perc2} pre="" pd="" k R0 R1 ck0="" ck1 F LG ev=ENV_EP$1
+  if [ "$perc" != perc2 ]; then                                    # e.g. the oracle twins: folders apart, public only
+    [ $SPLIT = public ] && [ "$run" = local ] || { log "ab ep$ep: PERC $perc needs SPLIT=public and RUN local" >> $J; return 1; }
+    pre=${perc}_; pd=/content/$perc; BASE_EVAL=0
+  fi
   if [ -n "${!ev:-}" ]; then                                        # per-episode settings; one() runs in its own
     eval "export ${!ev}" || { log "ab ep$ep: bad $ev" >> $J; return 1; }   # subshell, so they stay with this episode
     log "ab ep$ep: $ev = ${!ev}" >> $J
@@ -139,23 +151,23 @@ one() {
     [ -n "$base" ] || { log "ab ep$ep: no results/final/ep$ep/final.json in the pulled run" >> $J; return 1; }
     ck0=/content/results/final/ep$ep/policy.safetensors; log "ab ep$ep: auto base = $base ($ck0)" >> $J
   fi
-  k=$base$SUF; R0=/content/refs/perc2$base/ep$ep; R1=/content/refs/perc2$k/ep$ep; LG=/content/hard_ab_ep$ep$SUF-s$SEED.log
+  k=$base$SUF; R0=/content/refs/$perc$base/ep$ep; R1=/content/refs/$perc$k/ep$ep; LG=/content/hard_ab_${pre}ep$ep$SUF-s$SEED.log
   [ -d $R0/processed ] || { log "ab ep$ep: no reference $R0 in the pulled run" >> $J; return 1; }
   fix_assets $(ls $R0/processed/*/*/*.parquet | head -1) >> $J 2>&1 || { log "ab ep$ep: assets missing" >> $J; return 1; }
   rm -rf $R1; mkdir -p $(dirname $R1)                              # 2026-10-22: without the parent, cp failed silently
   cp -r $R0 $R1 || { log "ab ep$ep: copy $R0 -> $R1 FAILED" >> $J; return 1; }   # a real copy: stage 3c rewrites it
   [ -s $R1/hands.npz ] || { log "ab ep$ep: $R1 has no hands.npz" >> $J; return 1; }
   rm -f $R1/contact_retarget.json $R1/e2s_reference.parquet
-  VARIANT=$k PDIR=$PDIR_ROOT/ep$ep CONTACT_RETARGET=$CR SEED=$SEED CK_SWEEP="0.4 0.6 0.8" \
+  PERC=$perc VARIANT=$k PDIR=${pd:-$PDIR_ROOT}/ep$ep CONTACT_RETARGET=$CR SEED=$SEED CK_SWEEP="0.4 0.6 0.8" \
     bash $P/pipeline_ep.sh $ep > $LG 2>&1
-  log "ab ep$ep $k s$SEED: pipeline rc=$? $(grep -a 'contact_retarget:\|qa_policy:' $LG | cut -c1-300 | tr '\n' ' ')" >> $J
-  F=/content/results/perc2$k/ep$ep-s$SEED
+  log "ab ep$ep $pre$k s$SEED: pipeline rc=$? $(grep -a 'contact_retarget:\|qa_policy:' $LG | cut -c1-300 | tr '\n' ' ')" >> $J
+  F=/content/results/$perc$k/ep$ep-s$SEED
   [ $SPLIT = public ] && [ -s $F/episode_$(printf %06d $ep).parquet ] && python $P/score_registered.py $ep $F $SCORE_MESH > /dev/null 2>&1
   # the base checkpoint behind today's score is in git (policies/<run>/perc2<base>/); the store keeps every 10th only
   [ -s "$ck0" ] || ck0=$(ls $REPO_DIR/policies/$run/perc2$base/ep${ep}_policy_*.safetensors 2>/dev/null | head -1)
   [ -s "$ck0" ] || ck0=$(chosen /content/results/perc2$base/ep$ep-s42 /content/runs/perc2$base/ep$ep-s42 2>> $J)
-  ck1=$(chosen $F /content/runs/perc2$k/ep$ep-s$SEED 2>> $J)
-  local todo=("$k-s$SEED:$ck1"); [ "$BASE_EVAL" = 1 ] && todo=("$base:$ck0" "${todo[@]}")
+  ck1=$(chosen $F /content/runs/$perc$k/ep$ep-s$SEED 2>> $J)
+  local todo=("$pre$k-s$SEED:$ck1"); [ "$BASE_EVAL" = 1 ] && todo=("$base:$ck0" "${todo[@]}")
   for v in "${todo[@]}"; do
     [ -s "${v#*:}" ] || { log "ab ep$ep ${v%%:*}: no checkpoint" >> $J; continue; }
     [ -s $O/ep$ep/${v%%:*}/summary.json ] && { log "ab ep$ep ${v%%:*}: already evaluated" >> $J; continue; }
@@ -170,8 +182,8 @@ pids=()
 # once the previous one holds the GPU (or has ended), so its training is next in line
 export TRAIN_LOCK=${TRAIN_LOCK:-/content/train.lock}; rm -f $TRAIN_LOCK.ep*
 for x in $PAIRS; do
-  IFS=: read -r ep run base <<< "$x"
-  one $ep $run $base & pids+=($!)
+  IFS=: read -r ep run base perc <<< "$x"
+  one $ep $run $base $perc & pids+=($!)
   while [ ! -e $TRAIN_LOCK.ep$ep ] && kill -0 $! 2> /dev/null; do sleep 20; done
   sleep 60
 done

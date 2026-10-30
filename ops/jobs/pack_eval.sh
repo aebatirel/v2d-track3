@@ -16,6 +16,8 @@
 # same names; the policy must be evaluated on the reference it was trained on).
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; F=/content/results/final_eval; mkdir -p $F
+python $REPO_DIR/tools/no_oracle.py ${RUNS:-} ${PICK:-} ${KEEP_RESULTS:-} ${ASSET_PIECES:-} ${EP_LIB:-} >> $J 2>&1 \
+  || { log "pack_eval: REFUSED: an input is an oracle twin (mocap-derived; tools/no_oracle.py)" >> $J; exit 1; }
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed)
 # Standard-learner references (hard_ab.sh, refs/perc2mcks) name /content/assets/... (make_assets.py on the training box);
 # grasp-lock references carry their own copies (refs/sf/ep<N>/assets). Rebuild the same assets from ASSET_LIB, the

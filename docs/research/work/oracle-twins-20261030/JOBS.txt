@@ -1,0 +1,58 @@
+ORACLE TWINS: launch job strings (prepared 30 Oct 2026 ~12:45 UTC; NOTHING LAUNCHED; the owner chooses option A or B)
+Pre-registration: docs/research/work/oracle-twins-20261030/PREREG.md (commit it BEFORE launch; readings fixed there)
+
+Before any launch (orchestrator):
+  1. commit + push the build (ops/jobs/oracle_twins.sh, glock_public.sh, hard_ab.sh, pack_eval.sh, h5_reeval.sh,
+     submit_pack.sh, tools/no_oracle.py, tools/ref_vs_mocap.py, pipeline/oracle_poses.py, pipeline/pipeline_ep.sh,
+     docs/research/work/oracle-twins-20261030/); SHA=<that commit>, S7=${SHA:0:7}
+  2. owner's go-ahead for A or B (spend), then a ledger planned line per box:
+       python3 ops/ledger.py add planned <run_id> <usd> "oracle twins (public diagnostic, owner request 30 Oct)" owner
+  3. offer: RTX PRO 6000 (96 GB) on demand, <= $1.45/h; snapshot pt2.11-cu130-py313-20261020; the box self-destroys
+     (run_job.sh) and the stall watchdog (30 min without progress) protects the spend; no fixed time limit.
+  The run id MUST contain "-orc" (oracle_twins.sh refuses otherwise; tools/no_oracle.py keeps such runs out of packs).
+
+Common grasp-lock settings (= gl10A2 / evb1420 grasp-lock legs):
+  GL="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15"
+
+======================================================================================================================
+OPTION A (full design, 2 boxes in parallel, ≈ $7.9-12.0, central ≈ $9.8)
+----------------------------------------------------------------------------------------------------------------------
+Box G  run 20261030-orcG-$S7  (grasp-lock, eps 11 + 13, arms P + O = 4 trainings, 2 waves; ≈ 2.8-4.1 h, ≈ $3.6-5.9)
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcG-$S7 'LEARNER=glock EPS="11 13" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1" LIB=/content/v2d-track3/meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=6 SEED=42 STEPS=70004736 TRAIN_SLOTS=2 GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15" bash ops/jobs/oracle_twins.sh'
+
+Box S  run 20261030-orcS-$S7  (standard learner = std30's recipe, ep31, arms P then O = 2 trainings; ≈ 3.3-4.2 h, ≈ $4.3-6.1)
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcS-$S7 'LEARNER=std EPS="31" LIB=/content/v2d-track3/meshes/library_v3 NREP=6 SEED=42 STEPS=250003456 bash ops/jobs/oracle_twins.sh'
+
+======================================================================================================================
+OPTION B (single box, ≈ $5.2-8.0, central ≈ $6.3)
+----------------------------------------------------------------------------------------------------------------------
+Box B  run 20261030-orcB-$S7  (grasp-lock, eps 11 + 13 + 31, arms P + O = 6 trainings, 3 waves of 2; ≈ 4.0-5.5 h)
+  ep31 is LABELLED "learner differs from eval 30's packed standard-learner policy" (PREREG §5).
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261030-orcB-$S7 'LEARNER=glock EPS="11 13 31" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1" ENV_EP31="SF=1" LIB=/content/v2d-track3/meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=6 SEED=42 STEPS=70004736 TRAIN_SLOTS=2 GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15" bash ops/jobs/oracle_twins.sh'
+
+======================================================================================================================
+EXPECTED COST [estimates]. Basis [M], from the runs' job logs:
+  - one grasp-lock wave of 2 concurrent trainings (reference stages, 70M training, curve, 5 evals): 66 min (evb1420
+    grasp-lock leg, REPLAN=1), 80 min (fr1420), 82 min (ev30rp, EVOLVE=1); one alone: 60 min (twin21arc), 72 min
+    (gl10A2, eval-10 carve pieces); curve + evals alone 3-5 min (rcA);
+  - references from raw: 2 episodes concurrently 7-12 min (evb1420, ev30rp); one public episode 24 min (twin21arc,
+    depth computed on the box);
+  - standard learner: one 250M training + sweep + 5 evals 1.4-1.5 h (std30 / c25s42 boxes 1.65-1.8 h incl. setup);
+  - setup (snapshot restore + data) 2-8 min on a normal day plus boot; 43 min today under HF 429 (video box);
+  - price RTX PRO 6000 on demand $1.30-1.45/h.
+
+| Box | Boot + setup | Refs + G0 | Learner                                              | Wall      | $ (1.30-1.45/h) | central (@1.40) |
+|-----|--------------|-----------|------------------------------------------------------|-----------|-----------------|-----------------|
+| G   | 0.2-0.75 h   | 0.3-0.5 h | 2 waves x 1.1-1.4 h                                  | 2.8-4.1 h | 3.6-5.9         | 3.3 h ≈ $4.6    |
+| S   | 0.2-0.75 h   | 0.25-0.4 h| P 1.4-1.5 h, then O 1.4-1.5 h (P's evals overlap O)  | 3.3-4.2 h | 4.3-6.1         | 3.7 h ≈ $5.2    |
+| A = G + S, in parallel |  |           |                                              | ≈ 4 h     | 7.9-12.0        | ≈ $9.8          |
+| B   | 0.2-0.75 h   | 0.35-0.6 h| 3 waves x 1.1-1.4 h                                  | 4.0-5.5 h | 5.2-8.0         | 4.5 h ≈ $6.3    |
+| (G alone, if the owner drops ep31) |  |  |                                       | 2.8-4.1 h | 3.6-5.9         | ≈ $4.6          |
+
+Session budget: ≈ $9 left of the $45 cap -> A likely exceeds it (central $9.8); B fits (central $6.3, upper $8.0).
+The stall watchdog (30 min without progress) and self-destroy bound the spend; no fixed time limit.
+Store traffic per box: env restore, pull-depth per episode (≈ 1 GB each, 20-min timeout then computed on the box),
+the watchdog's 30-min interim pushes, the learner's push and the final push; no pull-run of old runs.
+
+After the box (CPU, $0): read results/oracle_twins/summary.json (+ RESULT lines in job.log) from the store with ONE
+hf_hub_download per file (429), write the readings (PREREG §4) in the work log, close the ledger with an actual line.

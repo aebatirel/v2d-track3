@@ -1,0 +1,39 @@
+{
+ "episode": 13,
+ "reference": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/oracle/dry/emul_O_ep13.parquet",
+ "frames": 190,
+ "meshes": "/home/user/v2d-track3/meshes/library_v3",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 1.47,
+   "anchor_shift_cm": 1.04,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 1.77,
+   "anchor_shift_cm": 0.54,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "ref_vs_mocap": {
+  "AUC": 1.0,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 0.4849,
+  "RPE_cm": 0.9406,
+  "per_obj_AUC": {
+   "blue_cup": 1.0,
+   "plastic_dish_rack": 1.0
+  }
+ }
+}
