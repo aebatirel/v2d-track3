@@ -132,3 +132,7 @@ object. Grip force cannot fix a grip that is not geometrically there.
   prefix and the human URDF was named `<side>_human` (no hand geometry found). Scores of that run (0.223 / 0.596 /
   0.353 / 0.194) are not a test of the hypothesis. Fix: the human URDF now carries the Sharpa's robot name; rerun with the
   rule unchanged.
+- [H-lock] runs 2 and 3 also **void**: `grasp_lock.py` built its scene with FlashCHORD's default Sharpa and ignored the
+  hand config, so it computed the grasps on a Sharpa posed with the human hand's joint angles (constant "0 fingers on,
+  mean gap 79.4 mm"). Fixed with `GL_EMB` (default unchanged). The `contact_retarget.hand_geometry` primitive-shape
+  sampling (103e1ba) is needed too: the human hand has no mesh shapes. Rerun with the rule unchanged.

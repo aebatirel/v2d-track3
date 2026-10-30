@@ -123,7 +123,9 @@ def main():
                    'stays parked at its frame-0 pose (2026-10-26, eval 10: the left hand steadying the blue cup, which '
                    'moves 5.6 cm, collides with the right hand and the carried beige cup during the stack)')
     a = p.parse_args(); t0 = time.time(); fc = os.environ.get('FC', os.getcwd())
-    st, env = cr.build_scene(os.path.abspath(a.inp), fc); m = st.scene.model
+    # GL_EMB (2026-10-30): embodiment config for the geometry / FK model (default: FlashCHORD's default Sharpa, as before);
+    # the physics study's human capsule hand needs its own (three human-hand runs had locked grasps on the Sharpa)
+    st, env = cr.build_scene(os.path.abspath(a.inp), fc, os.environ.get('GL_EMB') or None); m = st.scene.model
     t = pq.read_table(a.inp); qref = np.asarray(st.scene.robot_reference.joint_q, float).copy(); T = len(qref)
     names = t.column('object_body_names')[0].as_py()
     OP = np.array(t.column('object_body_position')[0].as_py(), float).reshape(T, len(names), 3)
