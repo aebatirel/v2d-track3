@@ -45,6 +45,11 @@ for x in ${PICK:-}; do                                             # as pack_eva
   hf download "$HF_STORE" --repo-type dataset --include "runs/$r/$sub/*" --local-dir $d > /dev/null || log "sub_videos: PICK $x FAILED" >> $J
 done
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true
+if [ -n "${ASSET_PIECES:-}" ] && [ "$(echo $ASSET_PIECES | wc -w)" -gt 1 ]; then   # several folders: merged per object,
+  PM=/content/pieces_merged; mkdir -p $PM                                          # first wins (as pack_eval.sh, 30 Oct)
+  for d in $ASSET_PIECES; do for o in $d/*/; do [ -n "$(ls $o/piece_*.obj 2>/dev/null)" ] && [ ! -e $PM/$(basename $o) ] && ln -s $(readlink -f $o) $PM/$(basename $o); done; done
+  log "sub_videos: merged collision pieces: $(ls $PM | tr '\n' ' ')" >> $J; ASSET_PIECES=$PM
+fi
 python $REPO_DIR/pipeline/make_assets.py $LIB /content/assets ${ASSET_PIECES:+--pieces $ASSET_PIECES} >> $J 2>&1 || { log "sub_videos: make_assets FAILED" >> $J; exit 1; }
 fc_patches $J || exit 1
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml; [ -s $E ] || cp $REPO_DIR/flashchord_conf/embodiment/sharpa_hands_mid.yaml $E
