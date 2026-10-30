@@ -54,3 +54,26 @@ Output: `props_public_scans.json`. Asset build: `pipeline/make_assets.py LIB OUT
 
 ## Results
 (below, appended as they come; nothing above is edited after a result)
+
+### Step 2 result (CPU zero-action, 30 Oct 09:45–10:20 UTC, code 299274e / fc75ac4) [M]
+Machine: this cloud container (4 CPU), FlashCHORD at the evaluator pin, 1 world, CPU. Outputs: scratchpad
+`phys/{S0,S1}/out/ep*/` (run.log, zero.npz, gl.log). Per-object detail: `tools/trace_objects.py`.
+
+| episode | floor | S0 (0.3 kg) | S1 (plausible) | Δ |
+|---|---|---|---|---|
+| ep2 pot + lid | 0.506 | 0.179 | 0.141 | −0.038 |
+| ep12 cup → rack | 0.605 | 0.551 | 0.600 | +0.049 |
+| ep18 sweeper + dust pan | 0.619 | 0.214 | 0.279 | +0.065 |
+| ep24 boards | 0.220 | 0.196 | 0.203 | +0.007 |
+
+Mean Δ +0.021 → **neutral** by the pre-registered rule (signal needs ≥ +0.03; no episode ≤ −0.05, none ≤ −0.10).
+Readings [M]:
+- Every arm leaves the reference early (first object > 3 cm off at frames 11–61) and all but ep24 score below the
+  do-nothing floor: grasp holds and contact geometry dominate, mass is second order at zero action.
+- ep12: the copied human grip loses the cup ~1 cm into the lift (f37) at 128 g and at 300 g; S1's gain is the heavier
+  rack (387 g) not being knocked by the dropped cup (S0: 12 cm at the end).
+- ep2: pot and lid are off 13–17 cm / ~70° from f44–61, before the pot's hold starts (f105): the lid–pot collision
+  shapes overlap (as the 30 Oct carve study found on our meshes), not a mass effect.
+- ep24: S0 throws board 1 ≈ 80 cm (f137); S1 ≈ 23 cm.
+No GPU decision depends on this (the GPU arms were approved regardless); it says the no-policy replay is limited by
+contacts, so RL is where a mass effect could show.

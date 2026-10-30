@@ -7,7 +7,9 @@
   387 g, dust pan 44 g, sweeper 45 g (prior), boards 139/141 g; placeholder 300 g. Centre of mass: the scans' own
   origin is their surface centroid, so on the scans it barely moves (≤ 4 mm). Our generated meshes' COMs sit 2–25 mm
   from the scans' (pitcher 24.5, beige cup 16.1, rack 13.4 mm) [M] — the COM question is about our meshes (next step).
-- Running: CPU zero-action test here (ep2/12/18/24 × S0/S1); GPU boxes S0 58386066 and S1 58386069 (≈ $6.50 each
+- CPU zero-action test done: **neutral** (mean Δ +0.021; ep2 −0.038, ep12 +0.049, ep18 +0.065, ep24 +0.007);
+  objects leave the reference by frames 11–61 in every arm (grips, contact overlaps), mass is second order.
+- Running: GPU boxes S0 58386066 and S1 58386069 (≈ $6.50 each
   planned, ledger lines added). Credit before launch $63.49. Nothing goes to Kaggle.
 - Hand representation for the later human-hand physics study: literature review running (background).
 
