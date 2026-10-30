@@ -4923,3 +4923,12 @@ Advice given:
   - **Cost, re-estimated from job-log timings** (a grasp-lock wave of 2 trainings 66–82 min):
     - B ≈ 4.0–5.5 h, **≈ $5.2–8.0 (central ≈ $6.3)**, a little above the ≈ $5–6 quoted at 12:10;
     - A would be ≈ $7.9–12.0.
+- ~13:20 UTC owner: dissect the pipeline on public episodes with perfect knowledge (perception with the given scans,
+  hand perception vs mocap, perception → policy with perfect meshes, ...) to find the leak; "you can spend as much".
+  - Design workflow wf_935444e9-2c5: facts (which ground truth the public data holds and which stages can be swapped;
+    every existing leak number; draw/seed noise and power), three competing designs (cumulative ladder; one-at-a-time
+    + factorial; decision-focused), judge → `docs/research/work/leak-decomp-20261030/PLAN.md`.
+  - Other sessions now: Embodiment (physics study S0/S1 on ep2/12/18/24, human-hand copy tests), Roman meeting analysis
+    (proposed an "everything true" CPU replay; waiting on the owner), mesh session (generalized mesh generator design).
+  - Option B (oracle twins, P vs mocap-object arms on ep11/13/31) stays the first two rungs; it launches on the reviews'
+    GO.
