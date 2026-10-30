@@ -5582,3 +5582,7 @@ Background agent, CPU only, $0, no ground truth read.
   - final registered AUC vs round-1 S1 seed 42 (signal / harm / inconclusive);
   - ep2 vs round-2 seeds reported.
 - Expected ~3.7–4.5 h box, ≈ $4.5–6.8. Nothing rented by the agent.
+- ~18:40 UTC physics solver G2 + G3 launched: `20261030-psolverl-04301a2` (58438083, NY, $1.467/h),
+  `bash ops/jobs/physics_solve_rl.sh` (default G3_PICK: G2's reference for ep2/ep12 only if its jittered mean ≥ G1's —
+  GT-free; accepted), commit 04301a2; ledger planned $6.80; readings pre-registered in physics-solver.md §5.2.
+  Credit before launch $32.67. Expected ≈ 3.7–4.5 h.
