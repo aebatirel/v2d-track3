@@ -9,7 +9,7 @@ import json, os, sys
 import numpy as np
 
 D = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
-REPO = os.path.abspath(os.path.join(D, '..', '..', '..', '..', '..'))
+REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..', '..'))
 J = {k: json.load(open(f'{D}/{k}.json')) for k in ('a1', 'a2', 'a3', 'a4', 'a6', 'a7') if os.path.exists(f'{D}/{k}.json')}
 H5 = json.load(open(f'{REPO}/docs/analysis/h5-20261029/h5_summary.json'))
 TWIN = {1: [2], 8: [27, 39], 10: [11], 14: [12, 13], 19: [18], 20: [21], 25: [24], 28: [27], 30: [31], 38: [39]}
@@ -103,6 +103,16 @@ if 'a2' in J:
         s = S[tag]
         print(f"| {tag} ({s['n_eps']} eps) | {s['loss_1_minus_Rstar']:.4f} | " + ' | '.join(
             f"{s['phase_loss'][p]:.4f} ({s['phase_share'][p]:.0%}); {s['phase_occ_loss'][p]['occ']:.4f} / {s['phase_occ_loss'][p]['clear']:.4f}"
+            for p in ('f0', 'rest_pre', 'moving', 'held_still', 'post')) + ' |')
+    for tag in ('all', 'no_ep23'):                                  # the same split after the body-form frame-0 re-anchor
+        sel = [r for e, r in E.items() if tag == 'all' or e != '23']
+        ph = {p: float(np.mean([np.mean([d['reanchor']['body']['split'][p]['loss'] for d in r['objects_detail'].values()]) for r in sel]))
+              for p in ('f0', 'rest_pre', 'moving', 'held_still', 'post')}
+        tot = float(np.mean([1 - r['reanchor']['body']['star']['AUC'] for r in sel]))
+        print(f"| {tag}, after the body re-anchor (A5) | {tot:.4f} | " + ' | '.join(
+            f"{ph[p]:.4f} ({ph[p] / tot:.0%}); " + '{:.4f} / {:.4f}'.format(
+                float(np.mean([np.mean([d['reanchor']['body']['split'][p]['occ']['loss'] for d in r['objects_detail'].values()]) for r in sel])),
+                float(np.mean([np.mean([d['reanchor']['body']['split'][p]['clear']['loss'] for d in r['objects_detail'].values()]) for r in sel])))
             for p in ('f0', 'rest_pre', 'moving', 'held_still', 'post')) + ' |')
     print('\nPer episode and object (loss = contribution to the object\'s 1 − AUC; frames in brackets):\n')
     print('| ep | object | R\\* | true rot span ° / travel cm | f0 ADD cm | rest_pre | moving | held_still | post | occluded frames | body re-anchor R\\* | T_trk |')
