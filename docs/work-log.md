@@ -4873,3 +4873,22 @@ diagnostic; nothing is picked for submission.
 
   Launched diagnosis workflow `wf_f944d682-4b3`: SAM 3D placement decomposition (scale, rotation, translation vs shape)
   with GT-free fix tests (≤ 12 scorings, all listed); sweeper failure analysis; each adversarially verified.
+
+## 2026-10-30 ~09:20 UTC: diagnosis workflow `wf_f944d682-4b3` done (CPU, $0)
+- Run: Workflow script `diagnose-sam-placement-and-sweeper` (4 agents, 02:53-09:06 UTC, 1.01 M subagent tokens).
+  Code: repo 9513488 + scripts in `docs/research/mesh-2026-10-26/diag-2026-10-30/`. Outputs copied there (text,
+  montages, sweeper figures and diagnostic meshes); bulk renders/fits stay in the scratchpad.
+- Scan use: SAM 12 pre-registered scorings (prereg.txt 07:07 UTC); sweeper 5 full + 7 registration-only; sweeper
+  verifier 8 registration/CD-O runs; SAM verifier 0 kit scorings. No mesh chosen from them.
+- SAM 3D placement [D]: biased objective (wrong placement scores lower on 17/20); translation slides (blue cup 32/21
+  mm, local minimum), flips of near-symmetric boards/sweeper (coin tosses), lid/sweeper-s42 shape stretch along the
+  ray. Board 1 size -15 % traced by the verifier to the broken ep23 board-1 track; ep24 refit +4.5/+0.6 %.
+  `lib` fix (Sim(3) onto library_v3 surface): kit-like ADD median 25.9 -> 14.3 mm (verifier, 3 seeds); chosen post
+  hoc among 6 variants; inherits library_v3 provenance (denylisted). Pixal3D-MV in-frame median offset 5.4 mm.
+  SAM layout rotation never saved; saved layout scale non-metric (2.1-6.5x).
+- Sweeper [D]: kit treats it as asymmetric; library_v3 margin -0.022..0.09 mm -> 3/30 flips. Verifier controls:
+  C0 symmetric no balls 9/30 flips; C1 library_v3 + 2 observed balls 0/30 (min margin 0.017); M2 0/30 (0.068); P1
+  0/30 (0.092). So missing ball bumps are the main cause. CD-O: library 0.317, M2 0.283, M2b 0.291, P1 0.2225
+  (leak-affected), P1v0 0.413. Eval-30 flip depends on scan decimation; rate ~10 % holds. ep18 points: hand blob
+  (hands=null). Generators: edge-on crop -> narrow "brush on a stick"; crops.py rejected face-on frames.
+- Stage-1b integration `wf_d55d762f-ae7`: 7 of 21 episodes done by 08:53; all pick library_v3; ETA ~13:30 UTC.

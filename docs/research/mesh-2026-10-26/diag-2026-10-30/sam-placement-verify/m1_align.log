@@ -1,0 +1,23 @@
+kit symmetric objects: {'beige_cup': 'axial', 'blue_cup': 'axial', 'white_pot_lid': 'half'}
+white_pot          scan glb vs kit cache: max vert->glb surf 3.78 mm, ext_cm [13.2 18.9 35.7]
+white_pot_lid      scan glb vs kit cache: max vert->glb surf 2.86 mm, ext_cm [ 4.7 18.8 19. ]
+blue_cup           scan glb vs kit cache: max vert->glb surf 3.65 mm, ext_cm [10.3 10.  17.2]
+water_pitcher      scan glb vs kit cache: max vert->glb surf 4.97 mm, ext_cm [14.1 27.2 41.5]
+wooden_piece_1     scan glb vs kit cache: max vert->glb surf 2.96 mm, ext_cm [ 2.7 13.9 22.7]
+wooden_piece_2     scan glb vs kit cache: max vert->glb surf 2.75 mm, ext_cm [ 2.6 13.9 22.7]
+plastic_dish_rack  scan glb vs kit cache: max vert->glb surf 7.23 mm, ext_cm [11.7 17.5 51. ]
+mini_sweeper       scan glb vs kit cache: max vert->glb surf 1.91 mm, ext_cm [ 4.8 11.4 14.2]
+mini_dust_pan      scan glb vs kit cache: max vert->glb surf 2.37 mm, ext_cm [ 4.5 17.  17.8]
+beige_cup          scan glb vs kit cache: max vert->glb surf 2.98 mm, ext_cm [10.4 11.1 16.9]
+ep21+22_blue_cup             rot  1.45 deg |t|  1.09 mm  (max motion at half-extent   3.3 mm) obs->scan median mm: identity 1.32 | R p+t 1.28 | R^T(p-t) 1.36; frac>10mm id 0.01 aligned 0.02
+ep21_blue_cup                rot  1.53 deg |t|  1.02 mm  (max motion at half-extent   3.3 mm) obs->scan median mm: identity 1.35 | R p+t 1.31 | R^T(p-t) 1.42; frac>10mm id 0.02 aligned 0.02
+ep22_blue_cup                rot  1.46 deg |t|  1.11 mm  (max motion at half-extent   3.3 mm) obs->scan median mm: identity 1.31 | R p+t 1.24 | R^T(p-t) 1.36; frac>10mm id 0.01 aligned 0.01
+ep22_water_pitcher           rot  1.79 deg |t|  1.09 mm  (max motion at half-extent   7.6 mm) obs->scan median mm: identity 2.30 | R p+t 2.08 | R^T(p-t) 2.83; frac>10mm id 0.02 aligned 0.03
+ep23_wooden_piece_1          rot  6.07 deg |t|  4.48 mm  (max motion at half-extent  16.5 mm) obs->scan median mm: identity 7.59 | R p+t 1.90 | R^T(p-t) 15.23; frac>10mm id 0.35 aligned 0.00
+ep23_wooden_piece_2          rot  1.19 deg |t|  1.85 mm  (max motion at half-extent   4.2 mm) obs->scan median mm: identity 2.32 | R p+t 1.53 | R^T(p-t) 3.43; frac>10mm id 0.05 aligned 0.06
+ep26_plastic_dish_rack       rot  3.27 deg |t|  3.96 mm  (max motion at half-extent  18.5 mm) obs->scan median mm: identity 3.41 | R p+t 2.75 | R^T(p-t) 4.93; frac>10mm id 0.06 aligned 0.05
+ep2_white_pot_lid            rot  1.82 deg |t|  1.43 mm  (max motion at half-extent   4.4 mm) obs->scan median mm: identity 1.38 | R p+t 1.27 | R^T(p-t) 1.69; frac>10mm id 0.00 aligned 0.00
+ep31_mini_sweeper            rot  4.24 deg |t|  2.13 mm  (max motion at half-extent   7.4 mm) obs->scan median mm: identity 1.90 | R p+t 1.47 | R^T(p-t) 2.51; frac>10mm id 0.01 aligned 0.01
+ep39_mini_dust_pan           rot  1.55 deg |t|  3.33 mm  (max motion at half-extent   5.7 mm) obs->scan median mm: identity 1.61 | R p+t 1.28 | R^T(p-t) 3.17; frac>10mm id 0.00 aligned 0.00
+ep41_white_pot               rot  0.55 deg |t|  2.63 mm  (max motion at half-extent   4.3 mm) obs->scan median mm: identity 2.34 | R p+t 2.23 | R^T(p-t) 2.72; frac>10mm id 0.04 aligned 0.03
+ep11_beige_cup               rot  1.81 deg |t|  1.78 mm  (max motion at half-extent   4.5 mm) obs->scan median mm: identity 1.48 | R p+t 1.24 | R^T(p-t) 1.80; frac>10mm id 0.01 aligned 0.01

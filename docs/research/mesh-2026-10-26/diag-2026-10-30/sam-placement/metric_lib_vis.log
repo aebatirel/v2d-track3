@@ -1,0 +1,11 @@
+10 items, 0 already done, 10 to run, workers 1
+[1/10] diag/sam3d_lib_vis/white_pot_s42                             cdo_eval 0.358 add_eval 5.2 flips 0/8 amb 12.62 (92.2 s)
+[2/10] diag/sam3d_lib_vis/white_pot_lid_s42                         cdo_eval 1.304 add_eval 45.3 flips 0/6 amb 3.93 (81.6 s)
+[3/10] diag/sam3d_lib_vis/blue_cup_s42                              cdo_eval 0.296 add_eval 4.7 flips 0/7 amb 4.79 (67.1 s)
+[4/10] diag/sam3d_lib_vis/water_pitcher_s42                         cdo_eval 0.747 add_eval 31.2 flips 0/6 amb 9.86 (64.4 s)
+[5/10] diag/sam3d_lib_vis/wooden_piece_1_s42                        cdo_eval 0.191 add_eval 163.3 flips 3/6 amb 2.56 (37.0 s)
+[6/10] diag/sam3d_lib_vis/wooden_piece_2_s42                        cdo_eval 0.325 add_eval 156.9 flips 5/6 amb 2.61 (46.0 s)
+[7/10] diag/sam3d_lib_vis/plastic_dish_rack_s42                     cdo_eval 0.622 add_eval 9.0 flips 0/7 amb 12.73 (64.9 s)
+[8/10] diag/sam3d_lib_vis/mini_sweeper_s42                          cdo_eval 0.704 add_eval 34.4 flips 2/6 amb 2.13 (63.6 s)
+[9/10] diag/sam3d_lib_vis/mini_dust_pan_s42                         cdo_eval 0.261 add_eval 4.2 flips 0/6 amb 5.87 (56.4 s)
+[10/10] diag/sam3d_lib_vis/beige_cup_s42                             cdo_eval 0.532 add_eval 16.1 flips 0/6 amb 7.92 (70.0 s)

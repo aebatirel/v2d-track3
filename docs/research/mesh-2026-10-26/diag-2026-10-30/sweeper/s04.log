@@ -1,0 +1,13 @@
+P1_partprog cdo_eval 0.2225 add_med 3.33 add_all 3.44 flips 0/6 amb 1.75 mm (rot 179.9)
+    19 19000057 cdo 0.2212 add 3.97 rot 1.28 axis [0.984, 0.09, 0.156] anchor_off [2.0, -3.0, 1.5]
+    30 30000090 cdo 0.2239 add 3.28 rot 0.41 axis [-0.188, -0.169, 0.968] anchor_off [2.1, -2.4, 0.7]
+    None 11 cdo 0.223 add 3.14 rot 0.66 axis [0.156, 0.162, 0.974] anchor_off [2.0, -2.4, -0.4]
+    None 22 cdo 0.2214 add 3.39 rot 0.81 axis [0.357, 0.067, 0.932] anchor_off [2.1, -2.7, -0.2]
+    None 33 cdo 0.2209 add 3.27 rot 0.47 axis [-0.931, -0.069, 0.358] anchor_off [2.1, -2.0, 1.6]
+    None 44 cdo 0.2238 add 3.58 rot 0.59 axis [0.473, 0.436, 0.766] anchor_off [2.0, -2.8, 0.8]
+P1_partprog {'seed': 19000057, 'ok_mm': 2.654, 'flip_mm': 2.824, 'margin_mm': 0.171, 'other_mm': 6.4}
+P1_partprog {'seed': 30000090, 'ok_mm': 2.67, 'flip_mm': 2.817, 'margin_mm': 0.147, 'other_mm': 6.563}
+P1_partprog {'seed': 11, 'ok_mm': 2.618, 'flip_mm': 2.794, 'margin_mm': 0.176, 'other_mm': 8.545}
+P1_partprog {'seed': 22, 'ok_mm': 2.642, 'flip_mm': 2.775, 'margin_mm': 0.132, 'other_mm': 6.545}
+P1_partprog {'seed': 33, 'ok_mm': 2.669, 'flip_mm': 2.8, 'margin_mm': 0.131, 'other_mm': 7.321}
+P1_partprog {'seed': 44, 'ok_mm': 2.625, 'flip_mm': 2.804, 'margin_mm': 0.179, 'other_mm': 8.927}

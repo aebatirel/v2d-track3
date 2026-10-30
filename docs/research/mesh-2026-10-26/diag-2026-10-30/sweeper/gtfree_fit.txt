@@ -1,0 +1,5 @@
+library_v3       obs31->mesh p50 1.47 p90 3.66 mm | mesh->obs p50 2.85 frac>10mm 0.100 | watertight True bodies 1 vol 115.8 cm3 | footprint(2mm) 1.1 cm2 lowest z -6.67 cm, COM [-0.14 -0.05 -0.12] cm
+M2_libsym_balls  obs31->mesh p50 2.02 p90 5.98 mm | mesh->obs p50 2.76 frac>10mm 0.027 | watertight True bodies 1 vol 83.8 cm3 | footprint(2mm) 4.9 cm2 lowest z -6.26 cm, COM [-0.12 -0.1  -0.09] cm
+M2b              obs31->mesh p50 2.02 p90 5.98 mm | mesh->obs p50 2.86 frac>10mm 0.043 | watertight False bodies 1 vol 85.8 cm3 | footprint(2mm) 1.1 cm2 lowest z -6.67 cm, COM [-0.13 -0.08 -0.22] cm
+P1_partprog      obs31->mesh p50 2.08 p90 4.38 mm | mesh->obs p50 2.05 frac>10mm 0.050 | watertight True bodies 1 vol 109.4 cm3 | footprint(2mm) 9.6 cm2 lowest z -5.65 cm, COM [ 0.21 -0.2   0.76] cm
+P1v0_preleak     obs31->mesh p50 2.61 p90 6.21 mm | mesh->obs p50 4.30 frac>10mm 0.201 | watertight True bodies 1 vol 192.1 cm3 | footprint(2mm) 17.1 cm2 lowest z -5.65 cm, COM [-0.16 -0.19  1.11] cm

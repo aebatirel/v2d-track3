@@ -1,0 +1,7 @@
+water_pitcher 42 {"sim3_keep0.9": [16.1, 13.2], "sim3_keep1.0": [24.0, 22.2], "kitlike_ADD_3seeds": [32.7, 34.3, 31.3]}
+water_pitcher 7 {"sim3_keep0.9": [16.3, 14.3], "sim3_keep1.0": [27.6, 26.8], "kitlike_ADD_3seeds": [31.6, 34.6, 32.8]}
+beige_cup 42 {"sim3_keep0.9": [32.0, 32.3], "sim3_keep1.0": [27.3, 26.9], "kitlike_ADD_3seeds": [22.4, 21.8, 22.2]}
+beige_cup 7 {"sim3_keep0.9": [25.5, 24.5], "sim3_keep1.0": [21.8, 21.6], "kitlike_ADD_3seeds": [17.7, 17.7, 18.9]}
+blue_cup 42 {"sim3_keep0.9": [33.8, 33.6], "sim3_keep1.0": [35.1, 35.1], "kitlike_ADD_3seeds": [30.8, 30.5, 29.9]}
+plastic_dish_rack 42 {"sim3_keep0.9": [18.6, 18.2], "sim3_keep1.0": [29.5, 24.4], "kitlike_ADD_3seeds": [29.0, 28.7, 29.4]}
+white_pot_lid 42 {"sim3_keep0.9": [5.8, 3.6], "sim3_keep1.0": [12.2, 9.8], "kitlike_ADD_3seeds": [40.0, 27.5, 29.9]}

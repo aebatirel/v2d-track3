@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~09:20 UTC: SAM 3D placement and sweeper diagnosed (CPU, $0; no submission change)
+Report: `docs/research/mesh-2026-10-26/diag-2026-10-30/README.md`.
+- **SAM 3D overlay:** shapes mostly fine; our placement step (`gen/sim3_fit.py`, scale-free Sim(3) to one-sided
+  points) has a biased objective. Errors are mostly translation along weak axes (cups 20-32 mm), flips of
+  near-symmetric boards/sweeper, and board 1's -15 % (broken ep23 track). Registering onto our library surface
+  instead of the points halves kit-like ADD (median 25.9 -> 14.3 mm [D]) but inherits library_v3's provenance
+  (on the denylist). SAM pose is still worse than library_v3 on most objects.
+- **Sweeper:** library_v3 lost the marker-ball bumps, so registration flips the near-symmetric sweeper on 3/30
+  seeds. Adding the two observed +x balls removes all 30-seed flips (C1/M2/P1) [D]. P1 part program CD-O 0.2225
+  but leak-affected (rules and 7 mm radius set after scan dimensions were computed). ep18 points carry a hand blob
+  (built with `hands: null`).
+- **Stage-1b integration** (`wf_d55d762f-ae7`) still running, ETA ~13:30 UTC; every finished episode so far picks
+  library_v3 (gates reject all program fits). Its open flag: library_v3 is not a GT-free fallback for eval.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
