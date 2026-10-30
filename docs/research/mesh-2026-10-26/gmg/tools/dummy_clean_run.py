@@ -7,7 +7,10 @@ through the guard (and the public track and calibration through autokit.io_gt, a
 every refused class of input: scans, deny-listed library meshes and scan-templated tracks, every revision-1 refused
 folder (real files where they exist), refused det keys, the kit scorer, dev-only roles, a hard-link copy, a symlink
 to a scan, a parquet, *_align and mocap paths, plain open() and np.load() of refused paths, io_gt.load_obs of
-obs_all and io_gt.load_mesh of library_v3. Every attempt must raise GuardError before the file is opened. It writes
+obs_all and io_gt.load_mesh of library_v3; round 2 adds the det-file bypasses of verification round 1 (open_input of
+det_f0.npz outside load_npz, np.load / open / shutil.copyfile of it, load_npz of it under another role with refused
+keys), an os.open through dir_fd into auto/ and writes into other run folders. Every attempt must raise GuardError
+before the file is opened. It writes
 RUN/manifest.json and RUN/dummy_result.json and prints the result; exit code 0 if every attempt was refused and every
 allowed read passed. Run it under tools/strace_audit.py to show 0 forbidden opens.
 """

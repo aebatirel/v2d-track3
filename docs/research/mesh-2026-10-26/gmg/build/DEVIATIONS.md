@@ -55,3 +55,59 @@ threshold or constant, so none goes in PREREG section F.
 14. **Roster file content.** `gmg/roster_public.json` keys episodes by the `episode_index` in the parquet file names
     and records each file's sha256, row count and the compressed size of the one column chunk read. The parquets
     were deleted after the audited build.
+
+## B0 round 2 (2026-10-30, fixes after verification round 1)
+
+No scan, eval output or scan-derived number was seen or used for any entry below. The only label-file facts used are
+the verifier's statement that the PREREG B.14 label sha prefix `e1be3218a8608793` belongs to the budgeted mesh (the
+verifier read the object, path, sha and mesh_mode fields of two label lines, no score values); this round did not open
+the label file. None of the entries changes a pre-registered test, threshold or constant, so none goes in PREREG F.
+
+15. **det key filter by file identity** (supersedes the role-based filter of round 1). A file is a det file if its
+    name is `det_f<N>.npz`, it is an `.npz` under `DATA/data/store/ep*/`, its sha256 is in the det registry
+    (`gmg/det_registry.json`: sha256, size and zip member names of the 15 local dumps, written by
+    `tools/det_registry.py`, which hashes bytes and lists names only; plus the local dumps hashed lazily and every det
+    file hashed in the process), or its zip members include at least 2 of the distinctive library-derived names
+    (`sim`, `chosen`, `gdino`, `template_extent`, `template_intensity`, `verify`, `verify_matched`, `score_rules`,
+    `reprop`; generic names such as `area`, `score`, `params` are not used, so an own bundle is not mistaken for a det
+    dump). A det file is read only through `load_npz` and only its seven mask keys, under any role.
+    `open_input(..., 'det')` outside `load_npz` is refused; the hook refuses any other open of a det file (np.load,
+    open, os.open, shutil.copy); the hook counts the opens it lets through inside `load_npz` (`guarded_opens` in the
+    manifest) and the strace audit flags any det-file open beyond that count. Stricter than SPEC section 2, which
+    states the rule for `det_f0.npz` only.
+16. **Run roots and markers** (supersedes entry 9). Clean runs: `DATA/gmg/runs/<name>/` (SPEC section 6, unchanged).
+    Dev runs: `DATA/gmg/runs-dev/<name>/` (new; SPEC section 6 names only `gmg/runs/`). `set_run` writes
+    `RUN/run_tier.json` (`{mode, tier}`: clean P1, dev DEV) into a new or empty folder; an existing folder needs a
+    marker of the same mode, and clean mode refuses a missing, invalid or DEV marker. A missing marker never means P1
+    (own files are then DEV and refused in clean mode). The hook refuses writes under either run root outside the
+    current run folder. `autokit/io_gt.py` gains the dev run root for its obs and mesh kinds; the gmg guard admits it
+    only in dev mode.
+17. **KIT and WEIGHTS roots are checked at import.** `GMG_KIT_ROOT` and `GMG_WEIGHTS_ROOT` may not contain or equal
+    DATA, `DATA/data`, `DATA/cache`, `DATA/gmg`, either run root, the repository or a refused folder, and may not lie
+    inside `DATA/data`, `DATA/cache`, `DATA/gmg`, the repository or a refused folder; otherwise the import fails.
+18. **Named fixture pinned by its raw-file sha256 prefix** `4bd1751e84052f05` [M] instead of `e1be3218a8608793`.
+    PREREG B.14 T-V2d names the hand-kit lid by its label sha prefix, which is the sha of the budgeted mesh the label
+    scored, not of the raw file `scratchpad/prim/potlid/cand/white_pot_lid_ep2_fit.glb`. The pre-registered
+    identifier is unchanged: the guard keeps it as `FIXTURE_LABEL_SHA`, and B1 must check that the budgeted fixture
+    (after `fit_budget`) has that prefix before T-V2d counts.
+19. **strace audit rules narrowed** (SPEC section 2 audit). System = `/proc`, `/sys`, `/dev` (not `/dev/shm`), the
+    interpreter and venv, `/usr/lib*`, `/lib*` and execve; a named list of system files (`ld.so.cache`, `localtime`,
+    locale, git config, ...) is exempt from the allow-list only. Every other successful read gets the GT substrings
+    (only code-suffix files are exempt), deny glob, refused folder, deny sha256, det identity and allow-list checks;
+    O_RDWR opens get the read and the write checks; writes outside the run folder, `--out` and `--allow-write` count
+    as forbidden; written files are checked for det copies and deny-listed content. Later steps that need more (fonts,
+    `/dev/shm`) must name them with `--allow` / `--allow-write`, which keep the content checks.
+20. **Constants.** An `informed` origin must name its PREREG A.6 row (`INFORMED_A6`, checked against A.6 by a test).
+    The banned-value names are matched more loosely (radius, `_r_`, ball, marker, sphere, bead; diameter 14 mm;
+    thick, wall, shell, `t`/`t0` tokens; tau, v3, thresh, veto). Not covered: the "other brief thicknesses" and the
+    "hand-kit windows" of SPEC section 2, which SPEC and PREREG name but give no values for (the t grid
+    {1.5, 2.5, 4.0} mm also holds the A.6 sensor floor 1.5 mm and the 4 mm voxel, so only 2.5 mm is banned). B7
+    freezes the detector settings.
+21. **Frozen eval tracks (SPEC section 17).** The guard checks `data/eval/ep*/poses.npz` against
+    `gmg/frozen_eval_tracks.json` automatically once that file exists (B19 writes it from the store run
+    `20261025-evperc-4f596df`); until then the input record says `registry absent`. `expect_sha256` stays available.
+22. **dir_fd and C-level opens.** `os.open` is wrapped so the hook sees the directory of a `dir_fd` open; direct
+    `posix.open` calls and opens from C code are covered by the strace audit only.
+23. **Manifest** schema `gmg-manifest/2`: adds `guarded_opens`, `run_marker`, `own_tier`, `runs_root`,
+    `det_registry`, and `code_dirty` now covers `gmg/`, `autokit/`, `scripts/` and `pipeline/` (round 1:
+    `gmg/`, `autokit/` and `pipeline/provenance.py`).
