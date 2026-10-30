@@ -9,8 +9,11 @@ folder (real files where they exist), refused det keys, the kit scorer, dev-only
 to a scan, a parquet, *_align and mocap paths, plain open() and np.load() of refused paths, io_gt.load_obs of
 obs_all and io_gt.load_mesh of library_v3; round 2 adds the det-file bypasses of verification round 1 (open_input of
 det_f0.npz outside load_npz, np.load / open / shutil.copyfile of it, load_npz of it under another role with refused
-keys), an os.open through dir_fd into auto/ and writes into other run folders. Every attempt must raise GuardError
-before the file is opened. It writes
+keys), an os.open through dir_fd into auto/ and writes into other run folders; round 3 adds the cases of
+verification round 2 (os.replace / os.rename / os.symlink into or out of runs, writes of run_tier.json and
+outputs.jsonl, the private flags set by hand, a run file a child wrote without register_output, a kit scorer import,
+the HF dataset scan and URDF paths, process arguments and URLs that name ground truth, an a+b open of the det dump and
+a constant fitted on eval episodes). Every attempt must raise GuardError before the file is opened. It writes
 RUN/manifest.json and RUN/dummy_result.json and prints the result; exit code 0 if every attempt was refused and every
 allowed read passed. Run it under tools/strace_audit.py to show 0 forbidden opens.
 """
@@ -90,6 +93,21 @@ def main():
         json.dump(dict(x=1), open(p, 'w'))
         return guard.load_json(p, 'own')
     ok('own write+read', own)
+
+    def own_replace():                                       # write to a temp file in RUN, then os.replace
+        t, p = os.path.join(run, 'bundle', '.tmp.json'), os.path.join(run, 'bundle', 'replaced.json')
+        json.dump(dict(y=2), open(t, 'w'))
+        os.replace(t, p)
+        return guard.load_json(p, 'own')
+    ok('own temp+replace+read', own_replace)
+
+    def own_registered():                                    # a child process writes; the parent registers it
+        import subprocess
+        p = os.path.join(run, 'bundle', 'child_registered.json')
+        subprocess.run(['sh', '-c', f'printf \'{{"z": 3}}\' > {p}'], check=True)
+        guard.register_output(p)
+        return guard.load_json(p, 'own')
+    ok('own child write+register_output+read', own_registered)
 
     def via_io_gt():
         from autokit import io_gt
@@ -198,6 +216,79 @@ def main():
         from autokit import io_gt
         return io_gt.mesh_input(f'{S}/lathe/ep41_white_pot_hyb.glb')
     no('io_gt.mesh_input of a dropped root (lathe)', io_gt_auto_mesh, f'{S}/lathe/ep41_white_pot_hyb.glb')
+    # round 3 (verification round 2): rename/replace/link/symlink, protected files, run provenance, the kit scorer,
+    # the HF dataset scans, process arguments and URLs, a+b opens, the private door flags, eval-fitted constants
+    other = os.path.join(guard.runs_root(), '20200101-other-0000000')
+    tmp = os.path.join(run, 'bundle', '.tmp_for_other_run.json')
+
+    def replace_into_other_run():
+        with open(tmp, 'w') as f:
+            f.write('{}')
+        try:
+            return os.replace(tmp, os.path.join(other, 'bundle', 'x.json'))
+        finally:
+            if os.path.exists(tmp):
+                os.remove(tmp)
+    no('os.replace of a temp file into another run (hook)', replace_into_other_run)
+    no('os.rename of the run folder into another name (hook)', lambda: os.rename(run, other))
+    no('os.rename into this clean run from outside it (hook)',
+       lambda: os.rename(os.path.join(D, 'gmg', 'b0r3_absent_source.json'), os.path.join(run, 'bundle', 'r.json')))
+    no('os.symlink in the run to a file outside it (hook)',
+       lambda: os.symlink(f'{D}/data/calib.json', os.path.join(run, 'bundle', 'calib.json')))
+    no('write run_tier.json (hook)', lambda: open(os.path.join(run, 'run_tier.json'), 'w'))
+    no('append outputs.jsonl (hook)', lambda: open(os.path.join(run, 'outputs.jsonl'), 'a'))
+
+    def flag_by_hand():
+        guard._TLS.protected = True
+        try:
+            return open(os.path.join(run, 'run_tier.json'), 'w')
+        finally:
+            guard._TLS.protected = False
+    no('write run_tier.json with the private flag set by hand (hook)', flag_by_hand)
+    no('shutil.rmtree of another run (hook)', lambda: shutil.rmtree(other))
+
+    def child_written():
+        import subprocess
+        p = os.path.join(run, 'bundle', 'child.json')
+        subprocess.run(['cp', f'{guard.GMG_DIR}/roster_public.json', p], check=True)
+        return guard.load_json(p, 'own')
+    no('read of a run file a child wrote without register_output (run provenance)', child_written,
+       os.path.join(run, 'bundle', 'child.json'))
+
+    def import_scorer():
+        import importlib
+        sys.path.insert(0, K)
+        try:
+            return importlib.import_module('v2dlb.object_mesh')
+        finally:
+            sys.path.remove(K)
+    no('import of the kit scorer v2dlb.object_mesh (hook)', import_scorer, f'{K}/v2dlb/object_mesh.py')
+    no('HF dataset public scan path (hook)',
+       lambda: open(f'{D}/hfds/track_3/public/mesh/white_pot/white_pot.glb', 'rb'))
+    no('HF dataset public URDF as weights', lambda: guard.open_input(f'{D}/hfds/track_3/public/urdf/white_pot.urdf',
+                                                                     'weights'))
+
+    def subprocess_gt():
+        import subprocess
+        return subprocess.run(['cat', f'{S}/obs_all/ep26_white_pot.npz'], capture_output=True)
+    no('subprocess argument in obs_all (hook)', subprocess_gt)
+
+    def url_gt():
+        import urllib.request
+        return urllib.request.build_opener(urllib.request.ProxyHandler({})).open(
+            'http://127.0.0.1:9/datasets/nvidia/video_to_data_challenge/resolve/main/track_3/public/mesh/a.glb',
+            timeout=0.5)
+    no('URL of the HF dataset scans (hook)', url_gt)
+    no('a+b open of det_f0.npz (hook)', lambda: open(det, 'a+b'), det)
+
+    def door_by_hand():
+        guard._TLS.det_ok = os.path.realpath(det)
+        try:
+            return np.load(det)
+        finally:
+            guard._TLS.det_ok = None
+    no('np.load of det_f0.npz with the private det flag set by hand (hook)', door_by_hand, det)
+    no('constant fitted on eval episodes', lambda: guard.constant('t0_mm', 2.1, 'fitted:eval episodes median'))
     no('constant 7 mm ball radius', lambda: guard.constant('ball_r_mm', 7.0, 'generic'))
     no('constant tau_v3 0.20', lambda: guard.constant('tau_v3', 0.2, 'informed'))
     no('constant fitted to scans', lambda: guard.constant('t0_mm', 2.1, 'fitted:scan wall median'))

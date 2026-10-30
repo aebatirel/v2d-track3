@@ -111,3 +111,78 @@ the label file. None of the entries changes a pre-registered test, threshold or 
 23. **Manifest** schema `gmg-manifest/2`: adds `guarded_opens`, `run_marker`, `own_tier`, `runs_root`,
     `det_registry`, and `code_dirty` now covers `gmg/`, `autokit/`, `scripts/` and `pipeline/` (round 1:
     `gmg/`, `autokit/` and `pipeline/provenance.py`).
+
+## B0 round 3 (2026-10-30, fixes after verification round 2)
+
+No scan, eval output, label value or scan-derived number was seen or used for any entry below. The eval-track sha256
+values of entry 31 are file hashes of P1 inputs (from the Hugging Face listing of our own store run), not eval
+results. None of the entries changes a pre-registered test, threshold or constant, so none goes in PREREG F.
+
+24. **The open hook covers more than `open`** (blocking item 1). Audit events `os.rename` (also `os.replace` and
+    `shutil.move`), `os.link`, `os.symlink`, `os.remove`, `os.rmdir`, `shutil.rmtree`, `os.mkdir` and `os.truncate`
+    get the path rules on every path they name, and the write rule on what they change: nothing under a run root
+    outside the current run folder, no run root or parent of one, no rename of the current run folder. In clean mode
+    a rename into the run from outside it is refused (a clean run writes its temporary files inside RUN), a symlink in
+    the run must point inside it, and the dev run root is never touched. A hard link is never made inside a run root
+    (SPEC section 2 refuses files with more than one link). Stricter than SPEC section 2, which speaks of opens.
+25. **Run marker bound to its folder and written by set_run only.** The marker now holds `run` (the folder name) and
+    `root` (`runs` or `runs-dev`); a marker that names another folder or root, or a marker of one mode in the other
+    mode's root, is invalid (catches a copied marker and a folder moved between roots by `mv`). The hook refuses every
+    write, rename, link or symlink onto `run_tier.json` and `outputs.jsonl` unless `set_run` / `write_manifest` is on
+    the call stack (the private thread-local flag alone is not enough). Round-2 markers lack the binding and are
+    invalid; no production run exists, so nothing is lost.
+26. **Run provenance ledger** (`RUN/outputs.jsonl`, check 9; answers "whoever wrote it"). `write_manifest` records the
+    files this process wrote in the run folder (Python opens for writing, renames inside RUN, `register_output`) as
+    `outputs` in the manifest (schema `gmg-manifest/3`) and appends them, with sha256 and the run name, to the ledger.
+    In clean mode a run file is read (open_input, load_npz, or any plain open the hook sees, unless the open
+    truncates it) only if this process wrote it or the ledger lists it with its current sha256. A file moved, linked
+    or copied into a clean run by a dev process, a shell command or an unguarded byte copy of a refused folder is
+    therefore never an input, even under a forged marker; this also closes the round-2 non-blocking items on byte
+    copies of refused folders and hard links placed in RUN. New API `register_output(path)` (not in SPEC section 7;
+    additive) for files a process writes through C code or a child process; the file must be in RUN, one link,
+    modified after the process started, and the strace audit checks that every manifest output was written by the
+    audited command. Consequence for B1+: a stage reads an earlier stage's files only after that stage's
+    `write_manifest`; C-level writers (torch.save to a path, cv2, open3d, ffmpeg) call `register_output`.
+27. **GuardError is no longer an OSError** (round 1 made it `PermissionError, ValueError`). A refusal raised inside a
+    library call that catches OSError would otherwise be swallowed: `shutil.move` falls back to copy and delete when
+    the rename is refused, which would launder the file into RUN by the copy. Now refusals always propagate.
+28. **strace audit** (blocking item 2). Each call is attributed to the image its pid ran when the call started (last
+    successful execve that ended before it; a forked child before its execve inherits the parent's image at the
+    clone, so clone/clone3/fork/vfork are traced); unknown means full checks. The git exemption covers read-only
+    opens of the repository's `.git/` by a git image only; every other git open gets the full checks, and work-tree
+    files git reads are exempt from the allow-list only. Traced in addition: rename, renameat, renameat2, link, linkat,
+    symlink, symlinkat, chdir, fchdir, connect (names an architecture lacks are skipped with `?`). Relative paths
+    are resolved through the dirfd annotation or the tracked working directory. New forbidden classes: a hard link
+    created in the run folder, a read data file with more than one link, a run file read that neither the command
+    wrote before nor the ledger lists, a manifest output the command did not write, a symlink target that fails the
+    path rules, a network connection (AF_INET/AF_INET6) unless `--allow-net`; a rename source or destination, link or
+    symlink outside the run folder counts as a write outside it. The CA bundle named by SSL_CERT_FILE /
+    REQUESTS_CA_BUNDLE / CURL_CA_BUNDLE is a system file (content still checked).
+29. **Non-blocking items of verification round 2.** (a) The deep det check runs for every open whose access mode is
+    not O_WRONLY (`a+b` included). (b) The HF dataset's `track_3/*/mesh/**` and `track_3/*/urdf/**` (public scans and
+    URDFs) are refused folders, and `DATA/hfds` joins the KIT/WEIGHTS root check. (c) `fitted:` origins that name
+    eval episodes are refused. (d) The 0.2 ban matches names with tau, v3, veto or fold (bare `thresh` dropped, so an
+    A.6 FREE threshold named `free_thresh` passes). (e) The hook refuses reads of data files with more than one link
+    under DATA, KIT, WEIGHTS and gmg/ (outside the interpreter); the audit checks every data read. (f) The hook
+    refuses opens of the kit scorer files and their `__pycache__` byte code in both modes, so they cannot be imported.
+    (g) The det door (load_npz, hashing, member names) and the protected-file door need a guard function on the call
+    stack; setting `_TLS.det_ok`, `_internal()` or `_TLS.protected` by hand opens nothing. (h) Process arguments
+    (subprocess, exec, posix_spawn, spawn, os.system) with an absolute path that fails the path rules, the kit scorer
+    or the dev run root, or with a URL naming ground truth (GT substrings, `track_3/*/{mesh,urdf,data}/`), and such
+    URLs in urllib requests and http.client request lines, are refused before anything is sent or started. Not
+    covered in-process: raw sockets and other clients (the audit's connect check is the backstop).
+30. **Dummy run** gains the round-3 refusal classes (73 refused attempts, was 56) and two allowed patterns (write to a
+    temporary file in RUN then `os.replace`; a child process writes a run file and the parent calls
+    `register_output`).
+31. **Frozen eval-track registry written in B0** (supersedes entry 21; SPEC section 17 leaves the check to the eval
+    path, entry 21 to B19). `tools/frozen_eval_tracks.py` lists store run `20261025-evperc-4f596df`
+    (`results/evalperc/ep<N>/poses.npz`) through the Hugging Face API and takes the LFS sha256 the hub keeps per file
+    (no download) into `gmg/frozen_eval_tracks.json`; all 20 local `data/eval/ep*/poses.npz` match [M]. Clean mode
+    now refuses eval tracks while the registry is absent (fail closed; the verifier's suggestion); dev mode notes it.
+32. **Residuals (stated, not fixed).** An unguarded process that deliberately forges both a bound marker and ledger
+    lines with the right sha256 is caught by neither the guard nor the audit of a later clean run (it is visible only
+    in that process's own audit, if it ran under one). Code in the same interpreter can tamper with the guard's private
+    state (`_WRITTEN`, `CFG`, caches); the strace audit re-derives run provenance and outputs from the log, so such
+    tampering is caught when the run is audited. Direct `posix.*` calls with `dir_fd` and C-level opens are seen by
+    the audit only. Plain reads of unlisted files are refused by the audit (default-deny), not by the hook, as in
+    round 2.

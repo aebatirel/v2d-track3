@@ -1,35 +1,46 @@
 """strace audit of a gmg process (SPEC section 2: "an strace audit runs on every production run"; build step B0).
 
   strace_audit.py run --log LOG [--manifest M.json] [--policy gmg|roster] [--src DIR --out FILE]
-                      [--allow GLOB] [--allow-write GLOB] -- CMD ...
-  strace_audit.py analyze LOG [--manifest M.json] [--policy ...] [...]
+                      [--allow GLOB] [--allow-write GLOB] [--allow-net] -- CMD ...
+  strace_audit.py analyze LOG [--cwd DIR] [--manifest M.json] [--policy ...] [...]
 
-`run` executes CMD under `strace -f -qq -y -e trace=open,openat,openat2,creat,execve,execveat` and analyses the log;
-the report goes to LOG.audit.json and stdout. The auditor imports gmg/guard.py for its rules (deny-list, refused
-folders, allow-lists, det identity), so it must be started with the same environment as the audited run (GMG_MODE,
-GMG_DATA_ROOT, GMG_RUN, ...). Its own hashing runs in the guard's internal context; the audited process is the child.
+`run` executes CMD under `strace -f -qq -y -e TRACE` (opens, execs, renames, links, symlinks, clone/fork/vfork,
+chdir/fchdir, connect) and analyses the log; the report goes to LOG.audit.json and stdout. The auditor imports
+gmg/guard.py for its rules (deny-list, refused folders, allow-lists, det identity, run ledger), so it must be started
+with the same environment as the audited run (GMG_MODE, GMG_DATA_ROOT, GMG_RUN, ...). Its own hashing runs in the
+guard's internal context; the audited process is the child.
 
-Every traced open (successful or not) is classified (round 2 rules, after verification round 1):
-  forbidden   the path (as given, or as resolved by strace -y; relative openat paths joined to their dirfd) has a GT
-              substring (/scan, /loc/, _align, .parquet, mocap; only files with a code SUFFIX are exempt, wherever they
-              are), matches a deny-list glob, or lies in a revision-1 refused folder (in dev mode a path the manifest
-              lists under a dev role is exempt); or a successfully opened regular file (read or written) has a sha256
-              on the deny-list; or a det file (guard check 8: name, store folder, sha256 registry, signature keys) was
-              opened more often than guard.load_npz opened it (manifest guarded_opens), was written (a copy), or was
-              read with keys outside the det filter;
+Attribution (round 3): every call is attributed to the program image its pid ran when the call started: the pid's
+last successful execve that ended before it, else (a forked child before its own execve) the parent's image at the
+clone, else unknown. Relative paths are joined to the -y dirfd annotation or to the pid's working directory (AT_FDCWD
+annotations, chdir/fchdir, inherited at fork; the root starts in the auditor's cwd).
+
+Every traced event is classified:
+  forbidden   the path (as given, or as resolved by strace -y) has a GT substring (/scan, /loc/, _align, .parquet,
+              mocap; only files with a code SUFFIX are exempt, wherever they are), matches a deny-list glob, lies in a
+              revision-1 refused folder (in dev mode a path the manifest lists under a dev role is exempt) or is the
+              kit scorer; a symlink target that does so; a successfully opened regular file (read or written) with a
+              sha256 on the deny-list; a read data file with more than one hard link; a hard link created in the run
+              folder; a det file (guard check 8) opened more often than guard.load_npz opened it (manifest
+              guarded_opens), written (a copy) or read with keys outside the det filter; (clean mode) a run file read
+              that neither the audited command wrote before nor the run ledger lists with its current sha256; a
+              manifest output the audited command did not write; a network connection (AF_INET/AF_INET6) unless
+              --allow-net;
   unlisted    (policy gmg) a successfully read regular non-code file outside the system set that no gmg role admits in
-              the current mode (the allow-list is default-deny); (policy roster) any data read other than the --src
-              parquets;
-  writes_outside_run  a successful open for writing (O_WRONLY, O_RDWR, O_CREAT, O_TRUNC, O_APPEND, creat) outside the
-              run folder, the --out file and --allow-write globs (/dev/null-like devices and __pycache__/*.pyc
-              excepted);
+              the current mode (the allow-list is default-deny), hard-link sources included; (policy roster) any data
+              read other than the --src parquets;
+  writes_outside_run  a successful open for writing (O_WRONLY, O_RDWR, O_CREAT, O_TRUNC, O_APPEND, creat), a rename
+              source or destination, a hard link or a symlink outside the run folder, the --out file and --allow-write
+              globs (/dev/null-like devices and __pycache__/*.pyc excepted);
   unrecorded  an admitted data file that was read but is not in the manifest (opened by C code, e.g. a video
               decoder): reported, not counted;
   system      only /proc, /sys, /dev (not /dev/shm), the interpreter and venv (sys.prefix, the sysconfig library
               paths), /usr/lib*, /lib* and execve; a short list of named system files (SYSTEM_FILES: ld.so.cache,
-              localtime, locale, git config, ...) is exempt from the allow-list only. Everything else that is read is
-              checked (substrings, deny glob, refused folder, deny sha256, det identity, allow-list).
-  git         opens by a git child process (the manifest's commit lookup): path rules only.
+              localtime, locale, git config, the CA bundle the environment names, ...) is exempt from the allow-list
+              only. Everything else that is read is checked (substrings, deny glob, refused folder, deny sha256, det
+              identity, hard links, run provenance, allow-list).
+  git         read-only opens of the repository's .git/ by a pid whose image at that call is git. Every other git open
+              gets the full checks; work-tree files git reads are exempt from the allow-list only.
 O_RDWR opens get the read checks and the write check. forbidden_opens = forbidden + unlisted + writes_outside_run;
 the pass condition is forbidden_opens == 0 and exit code 0.
 """
@@ -62,6 +73,9 @@ SYSTEM_FILES = ('/etc/ld.so.cache', '/etc/ld.so.preload', '/etc/localtime', '/et
                 '/etc/locale.alias',
                 '/etc/ssl/**', '/etc/gitconfig', '/root/.gitconfig', '/root/.config/git/**',
                 '/usr/share/locale/**', '/usr/share/zoneinfo/**', '/usr/share/git-core/**')
+# the CA bundle the environment names (TLS for HF downloads through the proxy): a system file, content still checked
+SYSTEM_FILES += tuple(sorted({os.path.realpath(os.environ[v]) for v in ('SSL_CERT_FILE', 'REQUESTS_CA_BUNDLE',
+                                                                      'CURL_CA_BUNDLE') if os.environ.get(v)}))
 LINE = re.compile(r'^(?P<call>\w+)\((?P<args>.*)\)\s+=\s+(?P<ret>-?\d+|\?)(?:<(?P<rpath>[^>]*)>)?'
                   r'(?P<err>\s+E[A-Z0-9]+.*)?\s*$')
 # argument tokens: a quoted string, or a file descriptor (AT_FDCWD or a number) with its -y path annotation

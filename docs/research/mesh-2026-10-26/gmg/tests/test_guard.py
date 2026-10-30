@@ -6,7 +6,11 @@ Pass condition (SPEC section 24, B0): every deny path, glob, sha256, refused fol
 raises; the allowed roles pass; the strace of a dummy clean-mode run shows 0 forbidden opens. Round 2 adds the
 verification-round-1 cases: the det key filter by file identity (bypasses a-d), dev outputs never entering a clean run
 (run markers), the auditor's former blind spots (system prefixes, O_RDWR, writes outside the run) and the dir_fd
-open.
+open. Round 3 adds the verification-round-2 cases: dev outputs moved into a clean run by os.replace / os.rename /
+shutil.move / os.link / os.symlink and a self-written marker (both probes), the run provenance ledger, removals and
+other runs, a+b opens, the HF dataset scans, hard-link reads, kit scorer imports, the private door flags, process
+arguments and URLs, the frozen eval tracks, and the auditor's pid attribution (a pid that ends by exec'ing git), git's
+own reads, renames, links, symlinks, network connections and manifest outputs.
 
 The guard reads its configuration once at import, so every scenario runs in a fresh interpreter (guard_probe.py) with
 GMG_DATA_ROOT pointing at a synthetic tree built here (in the session scratchpad). The synthetic files hold made-up
@@ -748,9 +752,11 @@ class TestRunProvenance(Base):
                      ['npz', f'{run}/t2/c.npz', 'own'],
                      ['savez', f'{T["D"]}/misc/outside.npz'], ['rename', f'{T["D"]}/misc/outside.npz', f'{run}/o.npz'],
                      ['symlink', T['calib'], f'{run}/calib.json'], ['link', b, f'{run}/b2.npz'],
+                     ['savez', f'{T["D"]}/misc/outside2.npz'], ['shutil_move', f'{T["D"]}/misc/outside2.npz', f'{run}/m.npz'],
                      ['write_manifest', f'{run}/manifest.json'], ['outputs']], run=False)
         st = [x['status'] for x in res]
-        self.assertEqual(st, ['ok'] * 10 + ['refused'] * 3 + ['ok'] * 2, json.dumps(res)[:3000])
+        self.assertEqual(st, ['ok'] * 10 + ['refused'] * 3 + ['ok', 'refused'] + ['ok'] * 2, json.dumps(res)[:3000])
+        self.assertFalse(os.path.exists(f'{run}/m.npz'))         # shutil.move's copy fallback did not run (round 3)
         self.assertIn('from outside it', res[10]['msg'])
         self.assertIn('must point inside it', res[11]['msg'])
         self.assertEqual(sorted(o['path'] for o in res[-1]['value'] if o['path'] != 'manifest.json'),

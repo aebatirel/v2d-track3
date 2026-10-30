@@ -1,4 +1,4 @@
-"""gmg input guard (module M0 of SPEC v1 rev 1, sections 2, 3 and 7; build step B0, round 2).
+"""gmg input guard (module M0 of SPEC v1 rev 1, sections 2, 3 and 7; build step B0, round 3).
 
 Every gmg input goes through this module. It decides, before a file is opened, whether the file may be read, and it
 records every input that passes with its sha256, so a run's manifest lists exactly what the run read.
@@ -11,9 +11,12 @@ records every input that passes with its sha256, so a run's manifest lists exact
   mode() -> 'clean' | 'dev'              env GMG_MODE, read once at import (default 'clean')
   constant(name, value, origin)          constant registry with origins (sensor, generic, kit, informed:<A.6 row>,
                                          fitted:<what>, fallback:<what>; PREREG A.6)
-  manifest() / write_manifest(path)      mode, tier, commit, roots, every input with sha256, constants, refusals
+  manifest() / write_manifest(path)      mode, tier, commit, roots, every input with sha256, constants, refusals and
+                                         the outputs this process wrote; write_manifest appends the outputs to the
+                                         run's provenance ledger RUN/outputs.jsonl
   set_run(path) / run_dir()              the run folder (role own): clean DATA/gmg/runs/<yyyymmdd>-<tag>-<commit7>/,
                                          dev DATA/gmg/runs-dev/<...>/, each with the marker RUN/run_tier.json
+  register_output(path)                  declare a run file this process wrote through C code or a child process
   check_io_gt(path, kind)                bridge for autokit/io_gt.py: an io_gt input inside a gmg process must also
                                          pass this guard (an io_gt root that is not on the gmg allow-list is refused)
   io_gt_roots_report()                   which io_gt roots this guard admits in the current mode
@@ -25,27 +28,44 @@ check is hashed, which reads its bytes but decodes nothing):
   3. the deny-list globs (ops/provenance/denylist.json through pipeline/provenance.py, plus the repo file itself, plus
      GMG_EXTRA_DENYLIST, which can only add entries);
   4. the revision-1 refusals (library_v1..v4 and v3x, results/prim, scratchpad prim/, lathe/, auto/, gen/mesh-*,
-     crops/, evalcrops/, diag/, gmg/design/, obs_all/, obs/). In dev mode a dev role named in REFUSED may pass its
-     own folder; in clean mode nothing does, and that holds even if a later allow-list change would admit the folder;
+     crops/, evalcrops/, diag/, gmg/design/, obs_all/, obs/; round 3: the HF dataset's track_3/*/mesh/ and urdf/).
+     In dev mode a dev role named in REFUSED may pass its own folder; in clean mode nothing does, and that holds even
+     if a later allow-list change would admit the folder;
   5. the allow-list of the role (ROLE_PATTERNS, on the resolved path; the kit role excludes the scorer); files in the
-     run folder need a valid run marker (clean mode: a clean marker, never DEV, never missing);
+     run folder need a valid run marker (clean mode: a clean marker bound to this folder, never DEV, never missing);
   6. the file exists, is a regular file and has exactly one hard link;
-  7. its sha256 is not on the deny-list (renamed copies), and matches expect_sha256 if one is given (and the frozen
-     eval-track registry for data/eval/ep*/poses.npz once gmg/frozen_eval_tracks.json exists, SPEC section 17);
+  7. its sha256 is not on the deny-list (renamed copies), and matches expect_sha256 if one is given, and, for
+     data/eval/ep*/poses.npz, the frozen store run in gmg/frozen_eval_tracks.json (SPEC section 17; clean mode refuses
+     eval tracks while that registry is absent);
   8. det identity (by the file, not by the role): a file named det_f<N>.npz, any .npz under DATA/data/store/ep*/, a
      file whose sha256 is in the det registry (gmg/det_registry.json plus every det file hashed in this process), or a
      zip whose member names carry the det signature keys (sim, chosen, gdino, template_*, ...). Such a file is read
-     only through load_npz and only its mask keys, whatever the role.
-A Python audit hook (installed at import) also refuses, in-process, any open() / os.open() (dir_fd resolved) of a path
-that fails checks 2-4 (files with a code suffix are exempt from check 2 only, since e.g. json/scanner.py contains
-'/scan'), any open of a det file outside load_npz (so shutil.copy, np.load or open of a det file fail), and any write
-under the run roots outside the current run folder. Opens from C code are not seen by the hook; the strace audit
-(tools/strace_audit.py) covers them and reconciles every det-file open against the guard's own count.
+     only through load_npz and only its mask keys, whatever the role;
+  9. run provenance (clean mode, files in the run folder): the file was written by this process, or the run's ledger
+     RUN/outputs.jsonl lists it with its current sha256. The ledger is appended only by write_manifest of a guarded
+     process of this run, so a file moved, linked or copied into the run by anyone else is never an input.
+A Python audit hook (installed at import) also refuses, in-process:
+  - open() / os.open() (dir_fd resolved) of a path that fails checks 2-4 (files with a code suffix are exempt from
+    check 2 only, since e.g. json/scanner.py contains '/scan'), of the kit scorer (so it cannot be imported), of the
+    dev run root in clean mode, of a det file outside load_npz (so shutil.copy, np.load or an a+b open of a det file
+    fail), of a data file with more than one hard link (under DATA, KIT, WEIGHTS or gmg/, outside the interpreter),
+    and of a run file that fails check 9 (unless the open truncates it);
+  - every write, rename/replace (source and destination), hard link, symlink, mkdir, truncate, remove or rmtree under
+    a run root outside the current run folder, or of a run root itself; a rename into a clean run from outside it; a
+    symlink in a clean run that points outside it; any hard link inside a run root; any write, rename or link onto
+    run_tier.json or outputs.jsonl except by set_run / write_manifest (checked on the call stack, so the private
+    thread-local flags cannot be set by hand; the same holds for the det-file door of load_npz);
+  - process arguments (subprocess, exec, spawn, os.system) with a path that fails checks 2-4 or a URL that names
+    ground truth (the GT substrings, the HF dataset track_3 mesh/, urdf/, data/), and such URLs in urllib requests
+    and http.client request lines.
+Opens from C code are not seen by the hook; the strace audit (tools/strace_audit.py) covers them, attributes every
+call to the program image that made it, reconciles every det-file open against the guard's own count and checks the
+manifest's outputs against the files the audited command wrote.
 
 Roots: DATA = env GMG_DATA_ROOT (default: this session's scratchpad), KIT = env GMG_KIT_ROOT (default
 DATA/kit/v2d_submission_kit), WEIGHTS = env GMG_WEIGHTS_ROOT (default DATA/weights). KIT and WEIGHTS may not contain
-or lie inside DATA/data, DATA/cache, the run roots, the repository or a refused folder (import fails otherwise).
-RUN = env GMG_RUN or set_run(). All are read once at import and recorded in the manifest.
+or lie inside DATA/data, DATA/cache, DATA/hfds, the run roots, the repository or a refused folder (import fails
+otherwise). RUN = env GMG_RUN or set_run(). All are read once at import and recorded in the manifest.
 Tiers (SPEC section 3): P0 raw inputs; P1 Phase-1 tracks (library-templated); own files carry the run marker's tier
 (clean runs start at P1; a missing or unreadable marker means DEV, never P1); dev roles and every dev-mode run are DEV.
 The worst tier wins.
@@ -167,8 +187,10 @@ BANNED = ((re.compile(r'radius|(^|[_.])(r|rad)([_.]|$)|ball|marker|sphere|bead',
           (re.compile(r'tau|v3|veto|fold', re.I), (0.2,), ('fitted',)))
 
 
-class GuardError(PermissionError, ValueError):
-    """An input (or an open) is refused by the gmg guard."""
+class GuardError(Exception):
+    """An input (or an open, rename, link, ...) is refused by the gmg guard. Deliberately not an OSError (round 3):
+    library fallbacks that catch OSError (shutil.move's copy fallback, importlib's byte-code fallback, retry loops)
+    must not swallow a refusal and carry on another way."""
 
 
 # ------------------------------------------------------------------------------------------------ configuration
@@ -1425,7 +1447,7 @@ def _event_reason(event, args):
         return _remove_reason(args[0], args[1] if len(args) > 1 else None, tree=True)
     if event == 'os.mkdir':
         a, rp = _resolve(args[0], args[2] if len(args) > 2 else None, follow=False)
-        if rp == CFG['run']:                        # os.makedirs(RUN, exist_ok=True): mkdir of an existing folder
+        if rp == CFG['run'] or os.path.lexists(rp):  # os.makedirs(..., exist_ok=True) of an existing folder: no-op
             return None
         return _path_hit(a, rp) or _write_hit(rp)
     if event == 'os.truncate':
