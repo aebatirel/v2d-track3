@@ -193,22 +193,31 @@ Rules for using the result:
 
 ## 7. Launch options and cost [E]
 
-Basis [M]:
-- setup 16 min on a normal day, 43 min under today's HF 429;
-- two grasp-lock episodes from raw on one box 1.2–1.4 h (fr1420, evb1420 grasp-lock leg);
-- one grasp-lock training + curve + 5 evaluations 0.68 h (rcA);
-- one standard-learner training + sweep + 5 evaluations 1.65–1.68 h (std30, c25s42).
+Basis [M], from the runs' job logs:
+- **One grasp-lock wave of 2 concurrent trainings** (reference stages, training, curve, 5 evaluations):
+  - 66 min (evb1420);
+  - 80 min (fr1420);
+  - 82 min (ev30rp).
+- **One grasp-lock training alone:** 60 min (twin21arc); 72 min (gl10A2, with the eval-10 carve pieces).
+- **References from raw:** 7–12 min for two episodes at once; 24 min for one public episode when the depth is computed
+  on the box.
+- **One standard-learner training + sweep + 5 evaluations:** 1.4–1.5 h.
+- **Setup:** 2–8 min plus boot on a normal day; 43 min today under HF 429.
 
-The price is RTX PRO 6000 on demand at $1.30–1.45/h. The job strings are in the scratchpad `oracle/JOBS.txt`; the work
-log records them at launch.
+The price is RTX PRO 6000 on demand at $1.30–1.45/h. The job strings are in `JOBS.txt` (this folder; the same file is
+in the scratchpad `oracle/JOBS.txt`).
 
 | Option | Boxes | Trainings | Wall time | Cost |
 |---|---|---|---|---|
-| **A (full design)** | G: grasp-lock eps 11 + 13, P + O; S: standard learner ep31, P then O | 4 + 2 | G 2.6–3.2 h; S 3.6–4.2 h (in parallel) | **≈ $8.1–10.7** (central ≈ $9.5) |
-| **B (single box)** | one: grasp-lock eps 11 + 13 + 31, P + O (ep31 labelled "learner differs from eval 30's packed standard learner") | 6 (3 waves of 2) | 3.6–4.4 h | **≈ $4.7–6.4** (central ≈ $5.6) |
+| **A (full design)** | G: grasp-lock eps 11 + 13, P + O; S: standard learner ep31, P then O | 4 + 2 | G 2.8–4.1 h; S 3.3–4.2 h (in parallel) | **≈ $7.9–12.0** (central ≈ $9.8) |
+| **B (single box)** | one: grasp-lock eps 11 + 13 + 31, P + O (ep31 labelled "learner differs from eval 30's packed standard learner") | 6 (3 waves of 2) | 4.0–5.5 h | **≈ $5.2–8.0** (central ≈ $6.3) |
+| (A's box G alone, if ep31 is dropped) | grasp-lock eps 11 + 13, P + O | 4 | 2.8–4.1 h | ≈ $3.6–5.9 (central ≈ $4.6) |
 
-This session has about $9 left of its cap, so option A can exceed it at the upper end. The owner chooses. There is no
-second seed and no ep24 extension without a new go-ahead.
+This session has about $9 left of its cap:
+- option A likely exceeds it;
+- option B fits.
+
+The owner chooses. There is no second seed and no ep24 extension without a new go-ahead.
 
 ## 8. Build notes: differences from DESIGN.md §4.1 (mechanics only, same arms)
 
@@ -231,6 +240,32 @@ second seed and no ep24 extension without a new go-ahead.
 - **Leak guard.** `tools/no_oracle.py` replaces per-script pattern checks, and also checks checkpoint configs.
 - **Run ids.** `<date>-orcG-<sha>` and `<date>-orcS-<sha>` (option A), `<date>-orcB-<sha>` (option B).
 
-## 9. CPU mock results
+## 9. CPU mock results (before launch) [M for the mechanics; the policy numbers are stubs]
 
-Filled in from `cpu/mock` runs before launch; see the work log entry of 30 Oct for the run and numbers.
+`cpu/mock/` reruns the exact job strings of `JOBS.txt`, with `/content` mapped to a mock root.
+- **Stubbed** (GPU or IK): perception (it serves the 25 Oct perception of the refine inputs), hands, mkref (stage (a)
+  with mkref's own functions), contact retargeting, support fill, grasp lock, ILC, training, evaluation, qa, and
+  rollout scoring.
+- **Real:** `oracle_poses.py`, `ref_vs_mocap.py` and `score_registered.py`.
+
+All three mocks finished with rc 0.
+- **Option B** (glock, eps 11 / 13 / 31) and **box G** (eps 11 / 13): G0 passed with
+  - O 0.969 / 1.000 / 0.969;
+  - P 0.896 / 0.896 / 0.793 (as in §2.2).
+
+  Six (four for box G) learner entries ran. Checks:
+  - P trained on `refs/glockt` and O on `refs/oracle_glockt`, with identical training arguments, seed and embodiment
+    within each episode.
+  - ep11's references (both arms) name `/content/assets_ev10`; ep13 and ep31's name `/content/assets`.
+  - The hands are md5-identical between the arms.
+  - The O arm's mkref read `/content/oracle/ep<N>/poses.npz`, P's read `/content/perc2/ep<N>/poses.npz`.
+  - No file under `perc2mck`, `glockt`, `glock`, `sf`, `glock_public` or `runs/glock` mentions an oracle folder.
+  - The summary and the RESULT lines carry R1, R2, the class and R3.
+- **Box S** (std, ep31): G0 passed with O 0.969 and P 0.793.
+  - P trained on `refs/perc2mcks`, then O on `refs/oraclemcks`, after the lock was released, with identical arguments.
+  - There were 10 evaluations per arm: final, sweep and NREP 6.
+  - Results are in `results/hard_ab/ep31/{mcks-s42,oracle_mcks-s42}`.
+  - The first std mock run caught a bug, fixed before this record: `PAIRS` was not passed to `hard_ab.sh`, which would
+    have trained its default ep24 / ep18 pairs.
+- **Existing callers** (3-field PAIRS, no PERC field): `cpu/mock/equiv.sh` ran the old (HEAD) and the new
+  `glock_public.sh` / `hard_ab.sh` in the same mock. The result is in the work log entry of 30 Oct ~13:00 UTC.
