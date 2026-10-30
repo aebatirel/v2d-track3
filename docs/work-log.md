@@ -4979,3 +4979,10 @@ Advice given:
   - G0 passed on all three twins: O references vs mocap 0.969 / 0.964 / 0.993; P 0.896 / 0.940 / 0.822.
   - Remaining: ep11 P and ep31 O (wave 3).
   - Another Embodiment-session box is running: 58429953 `20261030-psolve-eecd18a` (physics solve, eps 2/12/18/24).
+- ~18:20 UTC Phase-1 build done (workflow wf_99d31c5c-213): `ops/jobs/perc_leak.sh`, `tools/leak_p1.py`,
+  `ops/box/store.sh pull-files` (single-file downloads, no store listing: the cause of today's 429 waits), CPU mock of
+  all three box strings passes. Cost re-estimated at ≈ $4.4 for 3 boxes (range $2.8–7.4), below the approved $11–15.
+  - Reviews: integrity GO (with F1 run-id guard, F3 keep mocap-score files out of the bundle tars; guard regex before
+    Phase 2), mechanics GO with F1 (Grounding DINO preload + HF_HUB_OFFLINE so no arm silently runs without grounding)
+    and F2 (check the public data before any download). Fix + re-verify workflow wf_db1451a5-6c1 running; launch after
+    its GO.
