@@ -2,6 +2,14 @@
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 
+## 2026-10-30 ~04:50 UTC: eval-33 candidate CONFIRMED (0.934 ± 0.008, 10 draws); eval-14 carve failed
+- **Eval 33:** arm B's checkpoint passes the pre-registered rule (needs ≥ 0.884, sd ≤ 0.137) against the packed
+  policy's H5 0.854 ± 0.137. Candidate for the next pack; **the owner decides any upload** (nothing sent).
+- **Eval 14 carve:** both seeds fail (0.617 ± 0.236, 0.579 ± 0.099 vs bar 0.645). Packed eval-14 policy stays.
+- **Running:** eval-1 carve retrain, 2 seeds (boxes 58340108/118), results ≈ 06:00–07:00 UTC; rule mean ≥ 0.852,
+  sd ≤ 0.239.
+- Spend this session: $21.28 actual + ≈ $11 planned of $45.
+
 ## 2026-10-30 ~03:30 UTC: recipe arms inconclusive; packed recipe stays. Carve retrain running; eval-33 confirmation
 - **Recipe arms** (A control vs B CURR_SCALE 0.4 vs C ball kd 2, 5-eval means): no signal and no falsification for B or
   C by the pre-registered rule, so no second seed. Details: work log 30 Oct 03:25.

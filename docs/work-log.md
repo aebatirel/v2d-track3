@@ -4725,3 +4725,24 @@ Advice given:
   - Draw 1 also gives one more full-pack draw (with B at 33); it is logged, not used for any choice.
   - Expected cost ≈ $1 (setup ~20 min + 1 full draw + 9 one-episode draws). Session total then ≈ $16.90 actual +
     $18 carves + $1 ≈ $36 of $45. Nothing goes to Kaggle; any pack is the owner's decision.
+- 04:50 UTC **eval-33 confirmation: PASSED** (`20261030-c33B-0202139`, box 58343282 New York $1.46/h, commit 0202139,
+  `N=10 PICK_EXTRA=33:20261029-rcB-34bf6ae EPS_ONLY=33 bash ops/jobs/h5_reeval.sh`; self-destroyed ~04:19; ledger
+  actual $1.21, estimate from duration × rate). Results: store `runs/20261030-c33B-0202139/results/h5/`.
+  - Arm B's eval-33 checkpoint (policy_40001536), 10 fresh draws: **0.9344 ± 0.0076** (min 0.917, p20 0.932) vs the
+    packed policy's H5 0.854 ± 0.137. Rule (mean ≥ 0.884, sd ≤ 0.137): **passes**. It is the eval-33 candidate for
+    the next pack; the owner decides any upload.
+  - Expected gain if packed [estimate]: +0.080 on one episode of 20 = +0.004 mean sim_vs_ref, ≈ +0.003 leaderboard at
+    the measured transfer (0.74–0.78). Its value is mainly removing eval 33's bad mode (H5 min 0.47), not the mean.
+  - Draw 1 = one more fresh full-pack draw (with B at 33), logged only: mean 0.849; eval 1 0.190, eval 30 0.341,
+    eval 14 0.908, eval 16 0.797, eval 32 0.866. It confirms the bimodality of evals 1, 14 and 30.
+- 04:50 UTC **eval-14 placement carve: FAILED its rule** (`20261030-c14s42-328139c`, `20261030-c14s43-328139c`; boxes
+  self-destroyed ~03:55; ledger actual $1.57 and $1.60, estimates). 10-eval means of the checkpoint chosen by sim_vs_ref:
+  - seed 42: 0.617 ± 0.236 (policy_70004736); seed 43: 0.579 ± 0.099 (policy_10002432, the 10M one: from 40M its
+    curve shows "lift 0", the policy stops lifting the cup).
+  - Rule: mean ≥ 0.645 and sd ≤ 0.199. Both fail; the carve is not adopted for eval 14. The packed eval-14 policy
+    (H5 0.615 ± 0.199) stays.
+  - Reading [H]: removing the cup–rack overlap did not remove eval 14's bad mode. Both seeds' curves dip to ≈ 0.38 at
+    30M and recover late, which points at the task (place into the rack) rather than the collision copy. Falsifier
+    for a task-side cause: the zero-action replay of the carved reference already reaching ≥ 0.9 while trained
+    policies stay < 0.7 would rule out a reference defect.
+  - Session spend: $21.28 actual + eval-1 carve boxes still running (≈ $11 planned) ≈ $32 of $45.
