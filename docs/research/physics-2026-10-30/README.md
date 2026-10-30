@@ -197,3 +197,14 @@ embodiment human_P<ep>), placeholder physics, scans, frozen recipe. Compared wit
 - otherwise **inconclusive**. One seed; FlashSAC's recipe is tuned for the Sharpa.
 
 **(1) Centre of gravity on our meshes** and **(3) physics-based motion solving**: separate entries below when they run.
+
+### (1) Centre of gravity on our generated meshes (30 Oct ~14:00 UTC, CPU) [M]
+COM estimators on `meshes/library_v3` (the simulator meshes of our packs) against the scans' surface-centroid COM
+(same object frames; scans used only as a development diagnostic): our thin-shell centroid (what make_assets writes
+today) errs by median **8.3 mm** (beige cup 16.1, rack 13.4, pitcher 24.5, pot/lid 9.7, dust pan 7.0, boards 2.6–3.5,
+blue cup 1.9, sweeper 2.4); a solid voxel fill is worse (median 12.7 mm). So the current estimator stays.
+- **[H-com]** (pre-registered now, before running): a COM error of this size matters at zero action. Test: CPU grasp-lock
+  zero-action replays (frozen GL_ARGS, ILC 4, as step 2) on ep2/12/18/24 with OUR meshes (library_v3, make_assets,
+  placeholder 0.3 kg, our shell inertia) in two arms that differ only in the COM: **O0** our shell COM, **Oc** the scan's
+  COM transplanted into our mesh frame (diagnostic oracle). Falsified if |sim_vs_ref(Oc) − sim_vs_ref(O0)| < 0.03 on all
+  four episodes.
