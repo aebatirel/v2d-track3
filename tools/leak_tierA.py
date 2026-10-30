@@ -136,9 +136,13 @@ def code_version():
 # ---------------- a1: L1 and host-scan perturbations
 def perturb_scan(v, f, seed, keep=0.30, noise=0.001, holes=5, hole_area=0.10):
     """A stand-in for a different copy of the host scan: decimation to KEEP of the faces, Gaussian vertex noise, then
-    HOLES patches (nearest faces to area-weighted random centres) that remove HOLE_AREA of the surface in total."""
-    import fast_simplification
-    v2, f2 = fast_simplification.simplify(np.asarray(v, np.float32), np.asarray(f, np.int32), target_reduction=1 - keep)
+    HOLES patches (nearest faces to area-weighted random centres) that remove HOLE_AREA of the surface in total.
+    The public scans are triangle soups (3 vertices per face): they are WELDED first, as the kit's budget_mesh does.
+    Decimating the soup itself moves the centroid by 7-13 mm and the RMS radius by up to x1.27 (the 26 Oct review's
+    invalid 'unwelded decimation'); the a1 run of 30 Oct 19:41 did that and is superseded by a1_v2 (31 Oct)."""
+    import fast_simplification, trimesh
+    w = trimesh.Trimesh(np.asarray(v, np.float64), np.asarray(f, np.int64), process=True)
+    v2, f2 = fast_simplification.simplify(np.asarray(w.vertices, np.float32), np.asarray(w.faces, np.int32), target_reduction=1 - keep)
     v2 = np.asarray(v2, np.float64); f2 = np.asarray(f2, np.int64)
     rng = np.random.default_rng(seed)
     v2 = v2 + rng.normal(0, noise, v2.shape)

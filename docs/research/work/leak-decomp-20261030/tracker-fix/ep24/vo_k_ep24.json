@@ -1,0 +1,1719 @@
+{
+ "note": "GT-free keyframe-gated anchor VO correction (rule K); scored vs public mocap (oracle diagnostic)",
+ "params": {
+  "D_H": 0.05,
+  "REST_MIN": 8,
+  "V_REST": 0.0015,
+  "KW": 2,
+  "DEAD": 0.002,
+  "JUMP": 0.015,
+  "AGREE": 0.005
+ },
+ "episodes": {
+  "24": {
+   "Po": {
+    "base": {
+     "star": 0.8105,
+     "lib": 0.8117
+    },
+    "keyframes": 17,
+    "K_h3_r5_w2": {
+     "star": 0.9939,
+     "lib": 0.9936,
+     "anchored_frames": {
+      "wooden_piece_1": 32,
+      "wooden_piece_2": 136
+     },
+     "corr_cm_max": 2.63,
+     "corr_cm_end": 2.63,
+     "n_absorb": 15,
+     "n_ban": 0,
+     "log": [
+      [
+       34,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.25,
+        0.05,
+        0.14
+       ]
+      ],
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.19,
+        0.25,
+        0.38
+       ]
+      ],
+      [
+       39,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.04,
+        -0.02,
+        0.22
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.4,
+        0.55
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.09,
+        0.02,
+        -0.26
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.23,
+        -0.06,
+        -0.02
+       ]
+      ],
+      [
+       47,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.17,
+        0.31,
+        0.41
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.05,
+        -0.12,
+        -0.47
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.06,
+        -0.38,
+        0.98
+       ]
+      ],
+      [
+       51,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.01,
+        -0.08,
+        -0.23
+       ]
+      ],
+      [
+       59,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.09,
+        0.4
+       ]
+      ],
+      [
+       63,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.09,
+        0.09,
+        0.25
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.23,
+        -0.02,
+        0.16
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        0.03,
+        0.39
+       ]
+      ]
+     ]
+    },
+    "K_h3_r5_w1": {
+     "star": 0.9385,
+     "lib": 0.942,
+     "anchored_frames": {
+      "wooden_piece_1": 32,
+      "wooden_piece_2": 136
+     },
+     "corr_cm_max": 1.59,
+     "corr_cm_end": 1.59,
+     "n_absorb": 12,
+     "n_ban": 0,
+     "log": [
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.19,
+        0.25,
+        0.38
+       ]
+      ],
+      [
+       39,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.04,
+        -0.02,
+        0.22
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.4,
+        0.55
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.07,
+        -0.15,
+        -0.32
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.23,
+        -0.06,
+        -0.02
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.05,
+        -0.12,
+        -0.47
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.06,
+        -0.38,
+        0.98
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.16,
+        -0.02,
+        0.23
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       88,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.02,
+        -0.1,
+        -0.22
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.01,
+        0.09,
+        0.3
+       ]
+      ],
+      [
+       104,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.1,
+        0.12,
+        0.25
+       ]
+      ]
+     ]
+    },
+    "K_h3_r8_w2": {
+     "star": 0.9939,
+     "lib": 0.9936,
+     "anchored_frames": {
+      "wooden_piece_1": 32,
+      "wooden_piece_2": 113
+     },
+     "corr_cm_max": 2.63,
+     "corr_cm_end": 2.63,
+     "n_absorb": 15,
+     "n_ban": 0,
+     "log": [
+      [
+       34,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.25,
+        0.05,
+        0.14
+       ]
+      ],
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.19,
+        0.25,
+        0.38
+       ]
+      ],
+      [
+       39,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.04,
+        -0.02,
+        0.22
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.4,
+        0.55
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.09,
+        0.02,
+        -0.26
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.23,
+        -0.06,
+        -0.02
+       ]
+      ],
+      [
+       47,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.17,
+        0.31,
+        0.41
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.05,
+        -0.12,
+        -0.47
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.06,
+        -0.38,
+        0.98
+       ]
+      ],
+      [
+       51,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.01,
+        -0.08,
+        -0.23
+       ]
+      ],
+      [
+       59,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.09,
+        0.4
+       ]
+      ],
+      [
+       63,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.09,
+        0.09,
+        0.25
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.23,
+        -0.02,
+        0.16
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        0.03,
+        0.39
+       ]
+      ]
+     ]
+    },
+    "K_h5_r5_w2": {
+     "star": 0.8227,
+     "lib": 0.826,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 93
+     },
+     "corr_cm_max": 0.29,
+     "corr_cm_end": 0.28,
+     "n_absorb": 3,
+     "n_ban": 0,
+     "log": [
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.23,
+        -0.02,
+        0.16
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        0.03,
+        0.39
+       ]
+      ]
+     ]
+    },
+    "K_h5_r8_w2": {
+     "star": 0.8105,
+     "lib": 0.8117,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 34
+     },
+     "corr_cm_max": 0.0,
+     "corr_cm_end": 0.0,
+     "n_absorb": 0,
+     "n_ban": 0,
+     "log": []
+    }
+   },
+   "Pr": {
+    "base": {
+     "star": 0.8105,
+     "lib": 0.8117
+    },
+    "keyframes": 17,
+    "K_h3_r5_w2": {
+     "star": 0.9939,
+     "lib": 0.9936,
+     "anchored_frames": {
+      "wooden_piece_1": 32,
+      "wooden_piece_2": 136
+     },
+     "corr_cm_max": 2.63,
+     "corr_cm_end": 2.63,
+     "n_absorb": 15,
+     "n_ban": 0,
+     "log": [
+      [
+       34,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.25,
+        0.05,
+        0.14
+       ]
+      ],
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.19,
+        0.25,
+        0.38
+       ]
+      ],
+      [
+       39,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.04,
+        -0.02,
+        0.22
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.4,
+        0.55
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.09,
+        0.02,
+        -0.26
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.23,
+        -0.06,
+        -0.02
+       ]
+      ],
+      [
+       47,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.17,
+        0.31,
+        0.41
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.05,
+        -0.12,
+        -0.47
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.06,
+        -0.38,
+        0.98
+       ]
+      ],
+      [
+       51,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.01,
+        -0.08,
+        -0.23
+       ]
+      ],
+      [
+       59,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.09,
+        0.4
+       ]
+      ],
+      [
+       63,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.09,
+        0.09,
+        0.25
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.23,
+        -0.02,
+        0.16
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        0.03,
+        0.39
+       ]
+      ]
+     ]
+    },
+    "K_h3_r5_w1": {
+     "star": 0.9385,
+     "lib": 0.942,
+     "anchored_frames": {
+      "wooden_piece_1": 32,
+      "wooden_piece_2": 136
+     },
+     "corr_cm_max": 1.59,
+     "corr_cm_end": 1.59,
+     "n_absorb": 12,
+     "n_ban": 0,
+     "log": [
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.19,
+        0.25,
+        0.38
+       ]
+      ],
+      [
+       39,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.04,
+        -0.02,
+        0.22
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.4,
+        0.55
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.07,
+        -0.15,
+        -0.32
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.23,
+        -0.06,
+        -0.02
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.05,
+        -0.12,
+        -0.47
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.06,
+        -0.38,
+        0.98
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.16,
+        -0.02,
+        0.23
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       88,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.02,
+        -0.1,
+        -0.22
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.01,
+        0.09,
+        0.3
+       ]
+      ],
+      [
+       104,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.1,
+        0.12,
+        0.25
+       ]
+      ]
+     ]
+    },
+    "K_h3_r8_w2": {
+     "star": 0.9939,
+     "lib": 0.9936,
+     "anchored_frames": {
+      "wooden_piece_1": 32,
+      "wooden_piece_2": 113
+     },
+     "corr_cm_max": 2.63,
+     "corr_cm_end": 2.63,
+     "n_absorb": 15,
+     "n_ban": 0,
+     "log": [
+      [
+       34,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.25,
+        0.05,
+        0.14
+       ]
+      ],
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.19,
+        0.25,
+        0.38
+       ]
+      ],
+      [
+       39,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.04,
+        -0.02,
+        0.22
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.4,
+        0.55
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.09,
+        0.02,
+        -0.26
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.23,
+        -0.06,
+        -0.02
+       ]
+      ],
+      [
+       47,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.17,
+        0.31,
+        0.41
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.05,
+        -0.12,
+        -0.47
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.06,
+        -0.38,
+        0.98
+       ]
+      ],
+      [
+       51,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.01,
+        -0.08,
+        -0.23
+       ]
+      ],
+      [
+       59,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.09,
+        0.4
+       ]
+      ],
+      [
+       63,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.09,
+        0.09,
+        0.25
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.23,
+        -0.02,
+        0.16
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        0.03,
+        0.39
+       ]
+      ]
+     ]
+    },
+    "K_h5_r5_w2": {
+     "star": 0.8227,
+     "lib": 0.826,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 93
+     },
+     "corr_cm_max": 0.29,
+     "corr_cm_end": 0.28,
+     "n_absorb": 3,
+     "n_ban": 0,
+     "log": [
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.23,
+        -0.02,
+        0.16
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.24,
+        -0.14,
+        -0.31
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        0.03,
+        0.39
+       ]
+      ]
+     ]
+    },
+    "K_h5_r8_w2": {
+     "star": 0.8105,
+     "lib": 0.8117,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 34
+     },
+     "corr_cm_max": 0.0,
+     "corr_cm_end": 0.0,
+     "n_absorb": 0,
+     "n_ban": 0,
+     "log": []
+    }
+   },
+   "Ps": {
+    "base": {
+     "star": 0.8494,
+     "lib": null
+    },
+    "keyframes": 17,
+    "K_h3_r5_w2": {
+     "star": 0.9835,
+     "lib": null,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 134
+     },
+     "corr_cm_max": 3.08,
+     "corr_cm_end": 2.96,
+     "n_absorb": 17,
+     "n_ban": 0,
+     "log": [
+      [
+       34,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.21,
+        0.03,
+        0.19
+       ]
+      ],
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.1,
+        0.3
+       ]
+      ],
+      [
+       38,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.17,
+        0.18,
+        0.2
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.07,
+        0.34,
+        0.61
+       ]
+      ],
+      [
+       42,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.02,
+        0.12,
+        0.18
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.12,
+        -0.07,
+        -0.24
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.18,
+        -0.05,
+        -0.08
+       ]
+      ],
+      [
+       47,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.19,
+        0.22,
+        0.31
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        -0.13,
+        -0.42
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.12,
+        -0.41,
+        0.86
+       ]
+      ],
+      [
+       59,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.18,
+        0.06,
+        0.47
+       ]
+      ],
+      [
+       63,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.12,
+        0.04,
+        0.32
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.24,
+        -0.0,
+        0.18
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.25,
+        -0.07,
+        -0.33
+       ]
+      ],
+      [
+       78,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.1,
+        0.11
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.1,
+        0.34
+       ]
+      ],
+      [
+       102,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.16,
+        -0.16,
+        -0.09
+       ]
+      ]
+     ]
+    },
+    "K_h3_r5_w1": {
+     "star": 0.9485,
+     "lib": null,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 134
+     },
+     "corr_cm_max": 1.4,
+     "corr_cm_end": 1.21,
+     "n_absorb": 11,
+     "n_ban": 0,
+     "log": [
+      [
+       36,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.1,
+        0.3
+       ]
+      ],
+      [
+       38,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.17,
+        0.18,
+        0.2
+       ]
+      ],
+      [
+       40,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.07,
+        0.34,
+        0.61
+       ]
+      ],
+      [
+       43,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.12,
+        -0.07,
+        -0.24
+       ]
+      ],
+      [
+       45,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.18,
+        -0.05,
+        -0.08
+       ]
+      ],
+      [
+       48,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.02,
+        -0.13,
+        -0.42
+       ]
+      ],
+      [
+       49,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.12,
+        -0.41,
+        0.86
+       ]
+      ],
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.2,
+        -0.02,
+        0.17
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.25,
+        -0.07,
+        -0.33
+       ]
+      ],
+      [
+       88,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.02,
+        -0.11,
+        -0.18
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.04,
+        0.13,
+        0.3
+       ]
+      ]
+     ]
+    },
+    "K_h3_r8_w2": {
+     "star": 0.8494,
+     "lib": null,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 35
+     },
+     "corr_cm_max": 0.0,
+     "corr_cm_end": 0.0,
+     "n_absorb": 0,
+     "n_ban": 0,
+     "log": []
+    },
+    "K_h5_r5_w2": {
+     "star": 0.854,
+     "lib": null,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 92
+     },
+     "corr_cm_max": 0.39,
+     "corr_cm_end": 0.22,
+     "n_absorb": 5,
+     "n_ban": 0,
+     "log": [
+      [
+       75,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.24,
+        -0.0,
+        0.18
+       ]
+      ],
+      [
+       76,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.25,
+        -0.07,
+        -0.33
+       ]
+      ],
+      [
+       78,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.15,
+        0.1,
+        0.11
+       ]
+      ],
+      [
+       97,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        0.07,
+        0.1,
+        0.34
+       ]
+      ],
+      [
+       102,
+       "absorb",
+       [
+        "wooden_piece_2"
+       ],
+       [
+        -0.16,
+        -0.16,
+        -0.09
+       ]
+      ]
+     ]
+    },
+    "K_h5_r8_w2": {
+     "star": 0.8494,
+     "lib": null,
+     "anchored_frames": {
+      "wooden_piece_1": 31,
+      "wooden_piece_2": 34
+     },
+     "corr_cm_max": 0.0,
+     "corr_cm_end": 0.0,
+     "n_absorb": 0,
+     "n_ban": 0,
+     "log": []
+    }
+   }
+  }
+ }
+}

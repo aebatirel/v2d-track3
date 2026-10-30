@@ -1,0 +1,205 @@
+{
+ "map_fit_resid_cm": {
+  "median": 0.286,
+  "p95": 0.631
+ },
+ "mask_px": {
+  "sweeper": 714,
+  "rack": 21527
+ },
+ "cases": {
+  "truth": {
+   "sweeper_visible_px": 1260,
+   "sweeper_full_px": 1388,
+   "sweeper_visible_frac": 0.908,
+   "iou_mask_sweeper_visible": 0.468,
+   "iou_mask_rack_visible": 0.926,
+   "sweeper_depth_resid_cm": {
+    "n": 1260,
+    "valid_frac": 1.0,
+    "median": 0.76,
+    "mad": 1.35,
+    "frac_within_1cm": 0.423
+   },
+   "rack_depth_resid_cm": {
+    "n": 21613,
+    "valid_frac": 1.0,
+    "median": 0.36,
+    "mad": 0.44,
+    "frac_within_1cm": 0.717
+   },
+   "on_sweeper_mask_depth_vs_rendered_sweeper_cm": {
+    "n": 646,
+    "cover": 0.905,
+    "median": 0.34,
+    "mad": 0.89
+   }
+  },
+  "Ps": {
+   "sweeper_visible_px": 1185,
+   "sweeper_full_px": 1188,
+   "sweeper_visible_frac": 0.997,
+   "iou_mask_sweeper_visible": 0.508,
+   "iou_mask_rack_visible": 0.917,
+   "sweeper_depth_resid_cm": {
+    "n": 1185,
+    "valid_frac": 1.0,
+    "median": 0.36,
+    "mad": 0.54,
+    "frac_within_1cm": 0.657
+   },
+   "rack_depth_resid_cm": {
+    "n": 21609,
+    "valid_frac": 1.0,
+    "median": 0.15,
+    "mad": 0.37,
+    "frac_within_1cm": 0.782
+   },
+   "on_sweeper_mask_depth_vs_rendered_sweeper_cm": {
+    "n": 640,
+    "cover": 0.896,
+    "median": 0.33,
+    "mad": 0.37
+   }
+  },
+  "Po_scanframe": {
+   "sweeper_visible_px": 1185,
+   "sweeper_full_px": 1309,
+   "sweeper_visible_frac": 0.905,
+   "iou_mask_sweeper_visible": 0.53,
+   "iou_mask_rack_visible": 0.879,
+   "sweeper_depth_resid_cm": {
+    "n": 1185,
+    "valid_frac": 1.0,
+    "median": 0.61,
+    "mad": 0.72,
+    "frac_within_1cm": 0.603
+   },
+   "rack_depth_resid_cm": {
+    "n": 21480,
+    "valid_frac": 1.0,
+    "median": 0.3,
+    "mad": 0.66,
+    "frac_within_1cm": 0.563
+   },
+   "on_sweeper_mask_depth_vs_rendered_sweeper_cm": {
+    "n": 667,
+    "cover": 0.934,
+    "median": 0.44,
+    "mad": 0.54
+   }
+  },
+  "truth_sweeper+Ps_rack": {
+   "sweeper_visible_px": 1294,
+   "sweeper_full_px": 1388,
+   "sweeper_visible_frac": 0.932,
+   "iou_mask_sweeper_visible": 0.466,
+   "iou_mask_rack_visible": 0.914,
+   "sweeper_depth_resid_cm": {
+    "n": 1294,
+    "valid_frac": 1.0,
+    "median": 0.76,
+    "mad": 1.36,
+    "frac_within_1cm": 0.421
+   },
+   "rack_depth_resid_cm": {
+    "n": 21506,
+    "valid_frac": 1.0,
+    "median": 0.15,
+    "mad": 0.36,
+    "frac_within_1cm": 0.782
+   },
+   "on_sweeper_mask_depth_vs_rendered_sweeper_cm": {
+    "n": 646,
+    "cover": 0.905,
+    "median": 0.34,
+    "mad": 0.89
+   }
+  },
+  "Ps_sweeper+truth_rack": {
+   "sweeper_visible_px": 1174,
+   "sweeper_full_px": 1188,
+   "sweeper_visible_frac": 0.988,
+   "iou_mask_sweeper_visible": 0.513,
+   "iou_mask_rack_visible": 0.929,
+   "sweeper_depth_resid_cm": {
+    "n": 1174,
+    "valid_frac": 1.0,
+    "median": 0.36,
+    "mad": 0.54,
+    "frac_within_1cm": 0.658
+   },
+   "rack_depth_resid_cm": {
+    "n": 21695,
+    "valid_frac": 1.0,
+    "median": 0.36,
+    "mad": 0.44,
+    "frac_within_1cm": 0.719
+   },
+   "on_sweeper_mask_depth_vs_rendered_sweeper_cm": {
+    "n": 640,
+    "cover": 0.896,
+    "median": 0.33,
+    "mad": 0.37
+   }
+  }
+ },
+ "sweeper_mask_content_by_truth_render": {
+  "sweeper": 0.881,
+  "rack": 0.091,
+  "background": 0.028
+ },
+ "rack_mask_content_by_truth_render": {
+  "sweeper": 0.027,
+  "rack": 0.963,
+  "background": 0.01
+ },
+ "sweeper_mask_depth": {
+  "valid_frac": 1.0
+ },
+ "penetration_f0": {
+  "truth": {
+   "watertight": false,
+   "frac_inside": null,
+   "max_depth_mm": null,
+   "min_gap_mm": 0.02
+  },
+  "Ps": {
+   "watertight": false,
+   "frac_inside": null,
+   "max_depth_mm": null,
+   "min_gap_mm": 0.2
+  },
+  "Po_scanframe": {
+   "watertight": false,
+   "frac_inside": null,
+   "max_depth_mm": null,
+   "min_gap_mm": 0.11
+  }
+ },
+ "table_plane": [
+  [
+   -0.0782,
+   -0.6593,
+   -0.7478
+  ],
+  0.5281
+ ],
+ "sweeper_vs_our_table": {
+  "truth": {
+   "lowest_above_plane_cm": -0.21,
+   "p2_cm": 0.16,
+   "body_z_tilt_vs_plane_normal_deg": 3.35
+  },
+  "Ps": {
+   "lowest_above_plane_cm": 0.2,
+   "p2_cm": 0.36,
+   "body_z_tilt_vs_plane_normal_deg": 10.59
+  },
+  "Po_scanframe": {
+   "lowest_above_plane_cm": -0.12,
+   "p2_cm": 0.21,
+   "body_z_tilt_vs_plane_normal_deg": 8.67
+  }
+ }
+}

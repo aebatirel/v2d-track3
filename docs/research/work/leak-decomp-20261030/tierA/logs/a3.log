@@ -1,0 +1,64 @@
+ep12: * O raw 1.0000 a 1.0000 settle 1.0000 S2 0.9993 | P raw 0.9738 a 0.9663 settle 0.9831 S2 0.9845
+ep13: * O raw 1.0000 a 1.0000 settle 0.9970 S2 0.9942 | P raw 0.9036 a 0.8990 settle 0.9178 S2 0.9176
+ep11: * O raw 1.0000 a 0.9688 settle 0.9510 S2 0.9464 | P raw 0.8739 a 0.8670 settle 0.8755 S2 0.8816
+ep0: * O raw 1.0000 a 1.0000 settle 0.9995 S2 0.9945 | P raw 0.9612 a 0.9631 settle 0.9657 S2 0.9672
+ep2: * O raw 1.0000 a 1.0000 settle 0.9971 S2 0.9924 | P raw 0.9792 a 0.9785 settle 0.9753 S2 0.9774
+ep18: * O raw 1.0000 a 1.0000 settle 0.9788 S2 0.9718 | P raw 0.9680 a 0.9652 settle 0.9694 S2 0.9724
+ep23: * O raw 1.0000 a 1.0000 settle 0.9892 S2 0.9878 | P raw 0.0418 a 0.0418 settle 0.0411 S2 0.0427
+ep24: * O raw 1.0000 a 1.0000 settle 0.9943 S2 0.9891 | P raw 0.8105 a 0.8151 settle 0.8657 S2 0.8674
+ep26: * O raw 1.0000 a 0.9062 settle 0.9252 S2 0.9197 | P raw 0.9565 a 0.9035 settle 0.8975 S2 0.9140
+ep27: * O raw 1.0000 a 1.0000 settle 0.9689 S2 0.9642 | P raw 0.9376 a 0.9385 settle 0.9572 S2 0.9560
+ep31: * O raw 1.0000 a 1.0000 settle 1.0000 S2 0.9997 | P raw 0.8391 a 0.8059 settle 0.8471 S2 0.8547
+ep39: * O raw 1.0000 a 1.0000 settle 1.0000 S2 0.9955 | P raw 0.9804 a 0.9804 settle 0.9808 S2 0.9859
+ep40: * O raw 1.0000 a 1.0000 settle 0.9993 S2 0.9978 | P raw 0.9740 a 0.9740 settle 0.9805 S2 0.9829
+ep41: * O raw 1.0000 a 1.0000 settle 0.9973 S2 0.9956 | P raw 0.9881 a 0.9881 settle 0.9870 S2 0.9889
+ep42: * O raw 1.0000 a 1.0000 settle 0.9745 S2 0.9664 | P raw 0.9740 a 0.9740 settle 0.9577 S2 0.9650
+ep43: * O raw 1.0000 a 1.0000 settle 0.9703 S2 0.9684 | P raw 0.9429 a 0.9429 settle 0.8967 S2 0.9016
+ep44: * O raw 1.0000 a 1.0000 settle 0.9975 S2 0.9960 | P raw 0.9982 a 0.9982 settle 0.9942 S2 0.9955
+ep21: * O raw 1.0000 a 0.9062 settle 0.9000 S2 0.9004 | P raw 0.8313 a 0.7806 settle 0.7816 S2 0.7903
+ep45: * O raw 1.0000 a 1.0000 settle 0.9879 S2 0.9860 | P raw 0.9789 a 0.9789 settle 0.9588 S2 0.9651
+ep22: * O raw 1.0000 a 0.9062 settle 0.8907 S2 0.8905 | P raw 0.8710 a 0.8373 settle 0.8251 S2 0.8246
+stored ep2 20261024-e3-e49e83d: loaded 0.9794, e2s 0.9794, processed 0.9759, glock 0.9759
+stored ep12 20261024-ev2-2c1e4dd: loaded 0.9660, processed 0.9660, glock 0.9660
+stored ep26 20261024-w1-37cc551: loaded 0.9090, e2s 0.9090, processed 0.9197, glock 0.9197
+stored ep27 20261023-sf1227-bfb973a: loaded 0.9372, processed 0.9372, glock 0.9372
+stored ep31 20261025-std30-ee7ba8e: loaded 0.8065, e2s 0.8065, processed 0.8489, glock 0.8489
+stored ep31 20261024-ev30rp-07eef1a: glock 0.8489
+{
+ "P": {
+  "a": {
+  },
+  "settle": {
+  },
+  "S2": {
+  },
+  "chain": {
+  },
+  "R_star_mean": {
+  },
+  "R_lib_mean": {
+  }
+ },
+ "O": {
+  "a": {
+  },
+  "settle": {
+  },
+  "S2": {
+  },
+  "chain": {
+  },
+  "R_star_mean": {
+  },
+  "R_lib_mean": {
+  }
+ },
+ "O_stage_costs_ge_0p02": {
+  "a": [
+  ],
+  "settle": [
+  ],
+  "S2": []
+ }
+}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a3.json (1025.3 s)

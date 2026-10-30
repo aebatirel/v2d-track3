@@ -1,0 +1,4767 @@
+{
+ "mode": "a7",
+ "note": "ORACLE DIAGNOSTIC (public mocap + scans), leak-decomp Tier A; never a default, never for eval inference",
+ "code": {
+  "commit": "2cc68836cd89c964b2589b187e6806f836359ca2",
+  "tools_pipeline_dirty": true,
+  "leak_tierA_md5": "896e0cfb787a532ecc9f19c1bff95132"
+ },
+ "inputs": {
+  "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "xgeom": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "xgeom_md5": "919ea341f045d566404cf3951b0056cc",
+  "xtrk": "/home/user/v2d-track3/docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "xtrk_md5": "bd8432f14b90dba6fa4169f1586dee99",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "t3": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit"
+ },
+ "argv": [
+  "tools/leak_tierA.py",
+  "a7",
+  "--perc",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/refine/in",
+  "--xgeom",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json",
+  "--xtrk",
+  "docs/research/work/leak-decomp-20261030/tierA/xstar_trk.json",
+  "--lib",
+  "meshes/library_v3",
+  "--t3",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/t3",
+  "--kit",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit",
+  "--work",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/oracle_tierA/a7.json",
+  "--episodes",
+  "0,2,11,12,13,18,21,22,23,24,26,27,31,39,40,41,42,43,44,45",
+  "--jobs",
+  "2"
+ ],
+ "episodes": {},
+ "a7": {
+  "0": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": [
+    0,
+    93,
+    221,
+    315
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.32,
+         0.9
+        ],
+        "white_pot_lid": [
+         1.23,
+         5.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.38,
+         1.3
+        ],
+        "white_pot_lid": [
+         1.54,
+         8.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 33.87,
+        "white_pot_lid": 36.44
+       }
+      },
+      "93": {
+       "at_2s": {
+        "white_pot": [
+         0.36,
+         0.7
+        ],
+        "white_pot_lid": [
+         0.22,
+         2.4
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         1.58,
+         7.0
+        ],
+        "white_pot_lid": [
+         0.49,
+         6.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.19,
+        "white_pot_lid": 0.18
+       }
+      },
+      "221": {
+       "at_2s": {
+        "white_pot": [
+         0.62,
+         5.0
+        ],
+        "white_pot_lid": [
+         0.11,
+         1.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.79,
+         5.0
+        ],
+        "white_pot_lid": [
+         0.22,
+         2.6
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.43,
+        "white_pot_lid": 4.99
+       }
+      },
+      "315": {
+       "at_2s": {
+        "white_pot": [
+         0.18,
+         1.8
+        ],
+        "white_pot_lid": [
+         1.08,
+         6.1
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.31,
+         2.0
+        ],
+        "white_pot_lid": [
+         2.65,
+         9.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 21.97,
+        "white_pot_lid": 26.14
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      0.32,
+      0.0
+     ],
+     "build_sec": 6.2,
+     "collide_shapes": {
+      "white_pot": 31,
+      "white_pot_lid": 41
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.23,
+         1.0
+        ],
+        "white_pot_lid": [
+         1.3,
+         2.3
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.27,
+         1.4
+        ],
+        "white_pot_lid": [
+         2.34,
+         4.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 33.87,
+        "white_pot_lid": 36.44
+       }
+      },
+      "93": {
+       "at_2s": {
+        "white_pot": [
+         0.11,
+         1.1
+        ],
+        "white_pot_lid": [
+         0.31,
+         2.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         3.87,
+         5.4
+        ],
+        "white_pot_lid": [
+         0.31,
+         4.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.19,
+        "white_pot_lid": 0.18
+       }
+      },
+      "221": {
+       "at_2s": {
+        "white_pot": [
+         0.13,
+         0.8
+        ],
+        "white_pot_lid": [
+         0.18,
+         2.3
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.56,
+         2.2
+        ],
+        "white_pot_lid": [
+         0.3,
+         4.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.43,
+        "white_pot_lid": 4.99
+       }
+      },
+      "315": {
+       "at_2s": {
+        "white_pot": [
+         0.66,
+         1.9
+        ],
+        "white_pot_lid": [
+         1.82,
+         1.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.67,
+         2.2
+        ],
+        "white_pot_lid": [
+         2.07,
+         5.3
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 21.97,
+        "white_pot_lid": 26.14
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0,
+      0.0
+     ],
+     "build_sec": 9.6,
+     "collide_shapes": {
+      "white_pot": 48,
+      "white_pot_lid": 49
+     }
+    }
+   }
+  },
+  "2": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames": [
+    0,
+    97,
+    224,
+    309
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.17,
+         0.6
+        ],
+        "white_pot_lid": [
+         1.39,
+         3.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.34,
+         1.0
+        ],
+        "white_pot_lid": [
+         1.51,
+         5.3
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null,
+        "white_pot_lid": null
+       }
+      },
+      "97": {
+       "at_2s": {
+        "white_pot": [
+         0.78,
+         3.2
+        ],
+        "white_pot_lid": [
+         0.17,
+         1.2
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.81,
+         4.6
+        ],
+        "white_pot_lid": [
+         0.42,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.17,
+        "white_pot_lid": 18.58
+       }
+      },
+      "224": {
+       "at_2s": {
+        "white_pot": [
+         0.54,
+         1.8
+        ],
+        "white_pot_lid": [
+         0.08,
+         1.0
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         2.0,
+         15.8
+        ],
+        "white_pot_lid": [
+         0.31,
+         2.6
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.26,
+        "white_pot_lid": 10.26
+       }
+      },
+      "309": {
+       "at_2s": {
+        "white_pot": [
+         0.33,
+         1.3
+        ],
+        "white_pot_lid": [
+         1.39,
+         5.2
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.35,
+         1.6
+        ],
+        "white_pot_lid": [
+         1.77,
+         10.0
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null,
+        "white_pot_lid": null
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      0.29,
+      0.0
+     ],
+     "build_sec": 6.7,
+     "collide_shapes": {
+      "white_pot": 31,
+      "white_pot_lid": 41
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.16,
+         1.1
+        ],
+        "white_pot_lid": [
+         1.87,
+         2.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.2,
+         1.4
+        ],
+        "white_pot_lid": [
+         2.73,
+         7.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null,
+        "white_pot_lid": null
+       }
+      },
+      "97": {
+       "at_2s": {
+        "white_pot": [
+         0.16,
+         1.4
+        ],
+        "white_pot_lid": [
+         0.19,
+         1.5
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.63,
+         2.5
+        ],
+        "white_pot_lid": [
+         0.28,
+         4.3
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.17,
+        "white_pot_lid": 18.58
+       }
+      },
+      "224": {
+       "at_2s": {
+        "white_pot": [
+         0.24,
+         1.4
+        ],
+        "white_pot_lid": [
+         0.19,
+         0.6
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.24,
+         1.8
+        ],
+        "white_pot_lid": [
+         0.33,
+         3.7
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.26,
+        "white_pot_lid": 10.26
+       }
+      },
+      "309": {
+       "at_2s": {
+        "white_pot": [
+         0.72,
+         1.3
+        ],
+        "white_pot_lid": [
+         1.16,
+         2.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.72,
+         1.9
+        ],
+        "white_pot_lid": [
+         2.78,
+         12.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null,
+        "white_pot_lid": null
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0,
+      0.0
+     ],
+     "build_sec": 181.2,
+     "collide_shapes": {
+      "white_pot": 48,
+      "white_pot_lid": 49
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.16,
+         0.6
+        ],
+        "white_pot_lid": [
+         0.72,
+         8.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.2,
+         0.9
+        ],
+        "white_pot_lid": [
+         1.31,
+         9.0
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null,
+        "white_pot_lid": null
+       }
+      },
+      "97": {
+       "at_2s": {
+        "white_pot": [
+         0.11,
+         0.6
+        ],
+        "white_pot_lid": [
+         0.26,
+         1.2
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.6,
+         2.5
+        ],
+        "white_pot_lid": [
+         0.27,
+         1.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.17,
+        "white_pot_lid": 18.58
+       }
+      },
+      "224": {
+       "at_2s": {
+        "white_pot": [
+         0.32,
+         0.8
+        ],
+        "white_pot_lid": [
+         0.13,
+         1.0
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         1.76,
+         9.0
+        ],
+        "white_pot_lid": [
+         0.16,
+         1.4
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.26,
+        "white_pot_lid": 10.26
+       }
+      },
+      "309": {
+       "at_2s": {
+        "white_pot": [
+         0.19,
+         1.1
+        ],
+        "white_pot_lid": [
+         1.01,
+         7.5
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.21,
+         1.1
+        ],
+        "white_pot_lid": [
+         1.04,
+         7.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null,
+        "white_pot_lid": null
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      0.29,
+      0.0
+     ],
+     "build_sec": 7.9,
+     "collide_shapes": {
+      "white_pot": 53,
+      "white_pot_lid": 107
+     }
+    }
+   }
+  },
+  "11": {
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "frames": [
+    0,
+    101
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.41,
+         2.6
+        ],
+        "beige_cup": [
+         10.17,
+         88.4
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.74,
+         4.8
+        ],
+        "beige_cup": [
+         12.31,
+         88.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 16.45,
+        "beige_cup": 33.62
+       }
+      },
+      "101": {
+       "at_2s": {
+        "blue_cup": [
+         0.27,
+         1.8
+        ],
+        "beige_cup": [
+         2.61,
+         22.4
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.37,
+         2.2
+        ],
+        "beige_cup": [
+         2.61,
+         22.4
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 23.78,
+        "beige_cup": 23.93
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      0.05,
+      1.84
+     ],
+     "build_sec": 31.0,
+     "collide_shapes": {
+      "blue_cup": 75,
+      "beige_cup": 24
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.11,
+         0.8
+        ],
+        "beige_cup": [
+         0.46,
+         1.0
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.22,
+         1.3
+        ],
+        "beige_cup": [
+         0.62,
+         2.5
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 16.45,
+        "beige_cup": 33.62
+       }
+      },
+      "101": {
+       "at_2s": {
+        "blue_cup": [
+         0.14,
+         1.2
+        ],
+        "beige_cup": [
+         0.73,
+         5.3
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.21,
+         1.2
+        ],
+        "beige_cup": [
+         0.73,
+         5.4
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 23.78,
+        "beige_cup": 23.93
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0,
+      -0.16
+     ],
+     "build_sec": 306.3,
+     "collide_shapes": {
+      "blue_cup": 80,
+      "beige_cup": 50
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.62,
+         3.2
+        ],
+        "beige_cup": [
+         14.77,
+         90.8
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         1.2,
+         9.5
+        ],
+        "beige_cup": [
+         15.43,
+         101.6
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 16.45,
+        "beige_cup": 33.62
+       }
+      },
+      "101": {
+       "at_2s": {
+        "blue_cup": [
+         0.21,
+         2.1
+        ],
+        "beige_cup": [
+         1.63,
+         11.1
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         1.68,
+         12.0
+        ],
+        "beige_cup": [
+         3.18,
+         14.3
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 23.78,
+        "beige_cup": 23.93
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      0.05,
+      1.84
+     ],
+     "build_sec": 7.6,
+     "collide_shapes": {
+      "blue_cup": 53,
+      "beige_cup": 49
+     }
+    }
+   }
+  },
+  "12": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": [
+    0,
+    153
+   ],
+   "dropped_held": [
+    73
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.56,
+         2.5
+        ],
+        "plastic_dish_rack": [
+         0.29,
+         1.2
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         1.42,
+         9.9
+        ],
+        "plastic_dish_rack": [
+         0.37,
+         4.3
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 24.56,
+        "plastic_dish_rack": 10.25
+       }
+      },
+      "153": {
+       "at_2s": {
+        "blue_cup": [
+         1.09,
+         17.0
+        ],
+        "plastic_dish_rack": [
+         0.47,
+         1.1
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         2.37,
+         18.1
+        ],
+        "plastic_dish_rack": [
+         0.48,
+         2.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 19.17,
+        "plastic_dish_rack": 13.53
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.17,
+      0.28
+     ],
+     "build_sec": 8.1,
+     "collide_shapes": {
+      "blue_cup": 75,
+      "plastic_dish_rack": 43
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.33,
+         5.9
+        ],
+        "plastic_dish_rack": [
+         0.06,
+         1.4
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.6,
+         7.2
+        ],
+        "plastic_dish_rack": [
+         0.59,
+         3.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 24.56,
+        "plastic_dish_rack": 10.25
+       }
+      },
+      "153": {
+       "at_2s": {
+        "blue_cup": [
+         3.0,
+         21.2
+        ],
+        "plastic_dish_rack": [
+         0.13,
+         1.1
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         3.0,
+         21.2
+        ],
+        "plastic_dish_rack": [
+         0.2,
+         1.7
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 19.17,
+        "plastic_dish_rack": 13.53
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.22,
+      0.02
+     ],
+     "build_sec": 73.6,
+     "collide_shapes": {
+      "blue_cup": 80,
+      "plastic_dish_rack": 52
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.76,
+         5.5
+        ],
+        "plastic_dish_rack": [
+         0.21,
+         0.9
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         1.83,
+         11.0
+        ],
+        "plastic_dish_rack": [
+         1.13,
+         4.0
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 24.56,
+        "plastic_dish_rack": 10.25
+       }
+      },
+      "153": {
+       "at_2s": {
+        "blue_cup": [
+         2.18,
+         4.3
+        ],
+        "plastic_dish_rack": [
+         0.42,
+         1.2
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         2.95,
+         14.7
+        ],
+        "plastic_dish_rack": [
+         0.42,
+         2.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 19.17,
+        "plastic_dish_rack": 13.53
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.17,
+      0.28
+     ],
+     "build_sec": 7.8,
+     "collide_shapes": {
+      "blue_cup": 114,
+      "plastic_dish_rack": 90
+     }
+    }
+   }
+  },
+  "13": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames": [
+    0,
+    114,
+    167
+   ],
+   "dropped_held": [
+    50
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.53,
+         3.8
+        ],
+        "plastic_dish_rack": [
+         0.53,
+         1.4
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         1.27,
+         8.5
+        ],
+        "plastic_dish_rack": [
+         1.79,
+         15.4
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 20.8,
+        "plastic_dish_rack": 14.19
+       }
+      },
+      "114": {
+       "at_2s": {
+        "blue_cup": [
+         6.39,
+         47.4
+        ],
+        "plastic_dish_rack": [
+         0.32,
+         1.0
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         6.46,
+         50.5
+        ],
+        "plastic_dish_rack": [
+         0.35,
+         2.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 1.54,
+        "plastic_dish_rack": 10.91
+       }
+      },
+      "167": {
+       "at_2s": {
+        "blue_cup": [
+         5.96,
+         54.7
+        ],
+        "plastic_dish_rack": [
+         0.33,
+         0.7
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         6.29,
+         56.7
+        ],
+        "plastic_dish_rack": [
+         0.34,
+         1.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 10.18,
+        "plastic_dish_rack": 10.29
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      0.01,
+      0.3
+     ],
+     "build_sec": 6.6,
+     "collide_shapes": {
+      "blue_cup": 75,
+      "plastic_dish_rack": 43
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.36,
+         1.8
+        ],
+        "plastic_dish_rack": [
+         0.26,
+         1.3
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         2.18,
+         11.8
+        ],
+        "plastic_dish_rack": [
+         1.24,
+         3.0
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 20.8,
+        "plastic_dish_rack": 14.19
+       }
+      },
+      "114": {
+       "at_2s": {
+        "blue_cup": [
+         3.67,
+         45.8
+        ],
+        "plastic_dish_rack": [
+         0.21,
+         1.2
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         4.45,
+         59.0
+        ],
+        "plastic_dish_rack": [
+         0.43,
+         2.6
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 1.54,
+        "plastic_dish_rack": 10.91
+       }
+      },
+      "167": {
+       "at_2s": {
+        "blue_cup": [
+         1.11,
+         6.7
+        ],
+        "plastic_dish_rack": [
+         0.31,
+         2.1
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         4.32,
+         29.3
+        ],
+        "plastic_dish_rack": [
+         0.49,
+         2.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 10.18,
+        "plastic_dish_rack": 10.29
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.05,
+      0.02
+     ],
+     "build_sec": 7.4,
+     "collide_shapes": {
+      "blue_cup": 80,
+      "plastic_dish_rack": 52
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.68,
+         2.8
+        ],
+        "plastic_dish_rack": [
+         0.24,
+         0.7
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.72,
+         4.5
+        ],
+        "plastic_dish_rack": [
+         0.34,
+         1.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 20.8,
+        "plastic_dish_rack": 14.19
+       }
+      },
+      "114": {
+       "at_2s": {
+        "blue_cup": [
+         21.97,
+         177.4
+        ],
+        "plastic_dish_rack": [
+         0.4,
+         1.1
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         22.74,
+         179.6
+        ],
+        "plastic_dish_rack": [
+         0.4,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 1.54,
+        "plastic_dish_rack": 10.91
+       }
+      },
+      "167": {
+       "at_2s": {
+        "blue_cup": [
+         3.99,
+         34.2
+        ],
+        "plastic_dish_rack": [
+         0.28,
+         0.7
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         3.99,
+         34.2
+        ],
+        "plastic_dish_rack": [
+         0.31,
+         1.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 10.18,
+        "plastic_dish_rack": 10.29
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      0.01,
+      0.3
+     ],
+     "build_sec": 7.1,
+     "collide_shapes": {
+      "blue_cup": 114,
+      "plastic_dish_rack": 90
+     }
+    }
+   }
+  },
+  "18": {
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "frames": [
+    0,
+    31,
+    209,
+    244,
+    262,
+    281,
+    324
+   ],
+   "dropped_held": [
+    165
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_sweeper": [
+         14.57,
+         112.6
+        ],
+        "mini_dust_pan": [
+         0.16,
+         1.9
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         14.73,
+         124.3
+        ],
+        "mini_dust_pan": [
+         0.22,
+         1.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 16.72,
+        "mini_dust_pan": 13.95
+       }
+      },
+      "31": {
+       "at_2s": {
+        "mini_sweeper": [
+         10.26,
+         85.6
+        ],
+        "mini_dust_pan": [
+         2.99,
+         24.1
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         10.38,
+         94.3
+        ],
+        "mini_dust_pan": [
+         3.37,
+         25.7
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 25.64,
+        "mini_dust_pan": 0.13
+       }
+      },
+      "209": {
+       "at_2s": {
+        "mini_sweeper": [
+         8.03,
+         78.4
+        ],
+        "mini_dust_pan": [
+         0.29,
+         6.2
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         9.07,
+         95.9
+        ],
+        "mini_dust_pan": [
+         0.33,
+         6.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.45,
+        "mini_dust_pan": 12.13
+       }
+      },
+      "244": {
+       "at_2s": {
+        "mini_sweeper": [
+         9.47,
+         89.9
+        ],
+        "mini_dust_pan": [
+         0.3,
+         0.5
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         9.53,
+         93.6
+        ],
+        "mini_dust_pan": [
+         0.45,
+         2.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.71,
+        "mini_dust_pan": 16.81
+       }
+      },
+      "262": {
+       "at_2s": {
+        "mini_sweeper": [
+         12.48,
+         140.7
+        ],
+        "mini_dust_pan": [
+         0.25,
+         1.6
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         12.82,
+         140.7
+        ],
+        "mini_dust_pan": [
+         0.77,
+         3.3
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.24,
+        "mini_dust_pan": 16.18
+       }
+      },
+      "281": {
+       "at_2s": {
+        "mini_sweeper": [
+         7.33,
+         65.9
+        ],
+        "mini_dust_pan": [
+         0.27,
+         1.4
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         7.86,
+         76.9
+        ],
+        "mini_dust_pan": [
+         0.36,
+         2.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.1,
+        "mini_dust_pan": 14.27
+       }
+      },
+      "324": {
+       "at_2s": {
+        "mini_sweeper": [
+         8.9,
+         87.0
+        ],
+        "mini_dust_pan": [
+         0.28,
+         2.5
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         8.97,
+         87.2
+        ],
+        "mini_dust_pan": [
+         0.43,
+         8.6
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.07,
+        "mini_dust_pan": 16.77
+       }
+      }
+     },
+     "n": 7,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      0.14,
+      0.04
+     ],
+     "build_sec": 6.1,
+     "collide_shapes": {
+      "mini_sweeper": 19,
+      "mini_dust_pan": 26
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.52,
+         6.4
+        ],
+        "mini_dust_pan": [
+         0.1,
+         1.5
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         0.69,
+         7.7
+        ],
+        "mini_dust_pan": [
+         0.21,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 16.72,
+        "mini_dust_pan": 13.95
+       }
+      },
+      "31": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.79,
+         5.6
+        ],
+        "mini_dust_pan": [
+         3.1,
+         23.5
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         1.1,
+         9.3
+        ],
+        "mini_dust_pan": [
+         3.1,
+         23.8
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 25.64,
+        "mini_dust_pan": 0.13
+       }
+      },
+      "209": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.37,
+         2.3
+        ],
+        "mini_dust_pan": [
+         0.66,
+         2.1
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         0.47,
+         4.1
+        ],
+        "mini_dust_pan": [
+         0.76,
+         7.0
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.45,
+        "mini_dust_pan": 12.13
+       }
+      },
+      "244": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.79,
+         2.5
+        ],
+        "mini_dust_pan": [
+         0.6,
+         1.2
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         1.3,
+         9.3
+        ],
+        "mini_dust_pan": [
+         4.83,
+         41.3
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.71,
+        "mini_dust_pan": 16.81
+       }
+      },
+      "262": {
+       "at_2s": {
+        "mini_sweeper": [
+         3.39,
+         3.3
+        ],
+        "mini_dust_pan": [
+         0.2,
+         0.1
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         3.42,
+         35.0
+        ],
+        "mini_dust_pan": [
+         0.55,
+         2.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.24,
+        "mini_dust_pan": 16.18
+       }
+      },
+      "281": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.97,
+         8.1
+        ],
+        "mini_dust_pan": [
+         0.42,
+         1.3
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         1.06,
+         11.1
+        ],
+        "mini_dust_pan": [
+         0.43,
+         5.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.1,
+        "mini_dust_pan": 14.27
+       }
+      },
+      "324": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.73,
+         3.5
+        ],
+        "mini_dust_pan": [
+         0.45,
+         1.4
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         1.68,
+         15.7
+        ],
+        "mini_dust_pan": [
+         0.48,
+         1.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.07,
+        "mini_dust_pan": 16.77
+       }
+      }
+     },
+     "n": 7,
+     "n_pass": 3,
+     "gate_pass": false,
+     "snap_cm": [
+      0.01,
+      -0.0
+     ],
+     "build_sec": 277.4,
+     "collide_shapes": {
+      "mini_sweeper": 30,
+      "mini_dust_pan": 63
+     }
+    }
+   }
+  },
+  "21": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": [
+    0,
+    17,
+    161
+   ],
+   "dropped_held": [
+    74,
+    120
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.33,
+         3.1
+        ],
+        "water_pitcher": [
+         18.64,
+         94.5
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.53,
+         3.7
+        ],
+        "water_pitcher": [
+         18.83,
+         98.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 12.43,
+        "water_pitcher": 8.65
+       }
+      },
+      "17": {
+       "at_2s": {
+        "blue_cup": [
+         0.43,
+         3.0
+        ],
+        "water_pitcher": [
+         19.47,
+         93.2
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.73,
+         4.6
+        ],
+        "water_pitcher": [
+         24.33,
+         133.0
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 12.1,
+        "water_pitcher": 0.75
+       }
+      },
+      "161": {
+       "at_2s": {
+        "blue_cup": [
+         0.29,
+         1.7
+        ],
+        "water_pitcher": [
+         83.91,
+         95.0
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.34,
+         1.9
+        ],
+        "water_pitcher": [
+         85.66,
+         179.8
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 10.64,
+        "water_pitcher": 11.92
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      0.03,
+      0.0
+     ],
+     "build_sec": 68.5,
+     "collide_shapes": {
+      "blue_cup": 75,
+      "water_pitcher": 33
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.38,
+         0.6
+        ],
+        "water_pitcher": [
+         0.26,
+         0.3
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.69,
+         3.1
+        ],
+        "water_pitcher": [
+         0.56,
+         1.7
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 12.43,
+        "water_pitcher": 8.65
+       }
+      },
+      "17": {
+       "at_2s": {
+        "blue_cup": [
+         0.41,
+         1.0
+        ],
+        "water_pitcher": [
+         0.86,
+         1.9
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.41,
+         1.2
+        ],
+        "water_pitcher": [
+         1.15,
+         3.0
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 12.1,
+        "water_pitcher": 0.75
+       }
+      },
+      "161": {
+       "at_2s": {
+        "blue_cup": [
+         0.17,
+         1.1
+        ],
+        "water_pitcher": [
+         0.18,
+         0.9
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.26,
+         1.3
+        ],
+        "water_pitcher": [
+         0.35,
+         1.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 10.64,
+        "water_pitcher": 11.92
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 3,
+     "gate_pass": true,
+     "snap_cm": [
+      -0.0,
+      -0.21
+     ],
+     "build_sec": 70.4,
+     "collide_shapes": {
+      "blue_cup": 80,
+      "water_pitcher": 48
+     }
+    }
+   }
+  },
+  "22": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames": [
+    0,
+    151
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.2,
+         2.5
+        ],
+        "water_pitcher": [
+         18.17,
+         97.6
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.58,
+         3.9
+        ],
+        "water_pitcher": [
+         19.39,
+         107.4
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 13.89,
+        "water_pitcher": 12.09
+       }
+      },
+      "151": {
+       "at_2s": {
+        "blue_cup": [
+         0.98,
+         2.3
+        ],
+        "water_pitcher": [
+         16.51,
+         91.5
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         1.0,
+         5.0
+        ],
+        "water_pitcher": [
+         20.73,
+         120.3
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "blue_cup": 10.64,
+        "water_pitcher": 6.45
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      0.03,
+      0.0
+     ],
+     "build_sec": 9.1,
+     "collide_shapes": {
+      "blue_cup": 75,
+      "water_pitcher": 33
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "blue_cup": [
+         0.22,
+         2.5
+        ],
+        "water_pitcher": [
+         0.74,
+         0.4
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.53,
+         3.2
+        ],
+        "water_pitcher": [
+         0.82,
+         3.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 13.89,
+        "water_pitcher": 12.09
+       }
+      },
+      "151": {
+       "at_2s": {
+        "blue_cup": [
+         0.31,
+         1.6
+        ],
+        "water_pitcher": [
+         0.33,
+         1.3
+        ]
+       },
+       "peak": {
+        "blue_cup": [
+         0.31,
+         1.7
+        ],
+        "water_pitcher": [
+         0.4,
+         1.5
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "blue_cup": 10.64,
+        "water_pitcher": 6.45
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      -0.0,
+      -0.17
+     ],
+     "build_sec": 7.8,
+     "collide_shapes": {
+      "blue_cup": 80,
+      "water_pitcher": 48
+     }
+    }
+   }
+  },
+  "23": {
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": [
+    0,
+    39,
+    73,
+    106,
+    288
+   ],
+   "dropped_held": [
+    178,
+    205,
+    228
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "wooden_piece_1": [
+         0.88,
+         4.9
+        ],
+        "wooden_piece_2": [
+         0.48,
+         1.1
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         1.86,
+         27.2
+        ],
+        "wooden_piece_2": [
+         0.65,
+         3.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "wooden_piece_1": 11.01,
+        "wooden_piece_2": 19.05
+       }
+      },
+      "39": {
+       "at_2s": {
+        "wooden_piece_1": [
+         2.91,
+         9.4
+        ],
+        "wooden_piece_2": [
+         0.35,
+         0.4
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         3.72,
+         12.9
+        ],
+        "wooden_piece_2": [
+         0.6,
+         2.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 28.65,
+        "wooden_piece_2": 3.14
+       }
+      },
+      "73": {
+       "at_2s": {
+        "wooden_piece_1": [
+         10.45,
+         83.9
+        ],
+        "wooden_piece_2": [
+         0.2,
+         1.2
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         10.7,
+         85.3
+        ],
+        "wooden_piece_2": [
+         0.61,
+         4.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 20.96,
+        "wooden_piece_2": 4.87
+       }
+      },
+      "106": {
+       "at_2s": {
+        "wooden_piece_1": [
+         8.69,
+         102.9
+        ],
+        "wooden_piece_2": [
+         0.69,
+         1.6
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         8.69,
+         106.9
+        ],
+        "wooden_piece_2": [
+         1.41,
+         9.4
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 15.96,
+        "wooden_piece_2": 5.23
+       }
+      },
+      "288": {
+       "at_2s": {
+        "wooden_piece_1": [
+         1.89,
+         17.0
+        ],
+        "wooden_piece_2": [
+         2.15,
+         17.4
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         2.51,
+         27.5
+        ],
+        "wooden_piece_2": [
+         2.51,
+         26.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 11.57,
+        "wooden_piece_2": 1.94
+       }
+      }
+     },
+     "n": 5,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      0.91,
+      0.23
+     ],
+     "build_sec": 8.2,
+     "collide_shapes": {
+      "wooden_piece_1": 19,
+      "wooden_piece_2": 9
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "wooden_piece_1": [
+         0.19,
+         1.5
+        ],
+        "wooden_piece_2": [
+         0.09,
+         0.6
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         0.36,
+         1.9
+        ],
+        "wooden_piece_2": [
+         0.29,
+         1.5
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "wooden_piece_1": 11.01,
+        "wooden_piece_2": 19.05
+       }
+      },
+      "39": {
+       "at_2s": {
+        "wooden_piece_1": [
+         2.88,
+         12.3
+        ],
+        "wooden_piece_2": [
+         0.2,
+         0.4
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         2.97,
+         13.6
+        ],
+        "wooden_piece_2": [
+         0.37,
+         0.6
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 28.65,
+        "wooden_piece_2": 3.14
+       }
+      },
+      "73": {
+       "at_2s": {
+        "wooden_piece_1": [
+         9.02,
+         87.5
+        ],
+        "wooden_piece_2": [
+         0.09,
+         0.5
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         9.21,
+         91.4
+        ],
+        "wooden_piece_2": [
+         0.32,
+         1.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 20.96,
+        "wooden_piece_2": 4.87
+       }
+      },
+      "106": {
+       "at_2s": {
+        "wooden_piece_1": [
+         21.71,
+         85.4
+        ],
+        "wooden_piece_2": [
+         0.21,
+         0.7
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         21.86,
+         173.9
+        ],
+        "wooden_piece_2": [
+         0.36,
+         1.3
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 15.96,
+        "wooden_piece_2": 5.23
+       }
+      },
+      "288": {
+       "at_2s": {
+        "wooden_piece_1": [
+         0.97,
+         7.4
+        ],
+        "wooden_piece_2": [
+         0.69,
+         14.7
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         1.11,
+         13.6
+        ],
+        "wooden_piece_2": [
+         0.92,
+         14.7
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 11.57,
+        "wooden_piece_2": 1.94
+       }
+      }
+     },
+     "n": 5,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0,
+      -0.3
+     ],
+     "build_sec": 41.0,
+     "collide_shapes": {
+      "wooden_piece_1": 12,
+      "wooden_piece_2": 10
+     }
+    }
+   }
+  },
+  "24": {
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "frames": [
+    0,
+    99,
+    243
+   ],
+   "dropped_held": [
+    43,
+    163,
+    192
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "wooden_piece_1": [
+         0.48,
+         2.6
+        ],
+        "wooden_piece_2": [
+         0.28,
+         3.3
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         0.82,
+         8.2
+        ],
+        "wooden_piece_2": [
+         0.6,
+         4.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "wooden_piece_1": 2.2,
+        "wooden_piece_2": 32.0
+       }
+      },
+      "99": {
+       "at_2s": {
+        "wooden_piece_1": [
+         10.68,
+         91.1
+        ],
+        "wooden_piece_2": [
+         0.45,
+         1.6
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         11.73,
+         96.8
+        ],
+        "wooden_piece_2": [
+         0.61,
+         2.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 1.62,
+        "wooden_piece_2": 12.62
+       }
+      },
+      "243": {
+       "at_2s": {
+        "wooden_piece_1": [
+         2.1,
+         8.6
+        ],
+        "wooden_piece_2": [
+         2.31,
+         10.1
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         2.84,
+         9.5
+        ],
+        "wooden_piece_2": [
+         3.03,
+         10.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 15.07,
+        "wooden_piece_2": 4.32
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      0.92,
+      0.21
+     ],
+     "build_sec": 7.2,
+     "collide_shapes": {
+      "wooden_piece_1": 19,
+      "wooden_piece_2": 9
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "wooden_piece_1": [
+         0.26,
+         1.1
+        ],
+        "wooden_piece_2": [
+         1.11,
+         1.5
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         0.37,
+         4.3
+        ],
+        "wooden_piece_2": [
+         3.43,
+         31.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 2.2,
+        "wooden_piece_2": 32.0
+       }
+      },
+      "99": {
+       "at_2s": {
+        "wooden_piece_1": [
+         26.22,
+         46.9
+        ],
+        "wooden_piece_2": [
+         0.19,
+         0.6
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         29.22,
+         167.5
+        ],
+        "wooden_piece_2": [
+         0.32,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 1.62,
+        "wooden_piece_2": 12.62
+       }
+      },
+      "243": {
+       "at_2s": {
+        "wooden_piece_1": [
+         1.56,
+         16.8
+        ],
+        "wooden_piece_2": [
+         1.13,
+         10.4
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         1.86,
+         16.8
+        ],
+        "wooden_piece_2": [
+         1.13,
+         10.4
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 15.07,
+        "wooden_piece_2": 4.32
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0,
+      -0.33
+     ],
+     "build_sec": 6.4,
+     "collide_shapes": {
+      "wooden_piece_1": 12,
+      "wooden_piece_2": 10
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "wooden_piece_1": [
+         0.48,
+         3.2
+        ],
+        "wooden_piece_2": [
+         0.42,
+         1.4
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         1.1,
+         8.3
+        ],
+        "wooden_piece_2": [
+         4.66,
+         9.6
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "wooden_piece_1": 2.2,
+        "wooden_piece_2": 32.0
+       }
+      },
+      "99": {
+       "at_2s": {
+        "wooden_piece_1": [
+         10.56,
+         84.9
+        ],
+        "wooden_piece_2": [
+         0.16,
+         1.9
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         10.8,
+         102.6
+        ],
+        "wooden_piece_2": [
+         0.59,
+         3.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 1.62,
+        "wooden_piece_2": 12.62
+       }
+      },
+      "243": {
+       "at_2s": {
+        "wooden_piece_1": [
+         1.58,
+         2.9
+        ],
+        "wooden_piece_2": [
+         0.94,
+         2.2
+        ]
+       },
+       "peak": {
+        "wooden_piece_1": [
+         2.06,
+         6.4
+        ],
+        "wooden_piece_2": [
+         1.55,
+         3.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "wooden_piece_1": 15.07,
+        "wooden_piece_2": 4.32
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      0.92,
+      0.21
+     ],
+     "build_sec": 7.0,
+     "collide_shapes": {
+      "wooden_piece_1": 21,
+      "wooden_piece_2": 11
+     }
+    }
+   }
+  },
+  "26": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    122
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.35,
+         1.6
+        ],
+        "white_pot": [
+         16.01,
+         73.4
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.53,
+         3.0
+        ],
+        "white_pot": [
+         24.76,
+         159.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 20.57,
+        "white_pot": 11.71
+       }
+      },
+      "122": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.36,
+         0.9
+        ],
+        "white_pot": [
+         0.78,
+         1.5
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.7,
+         3.2
+        ],
+        "white_pot": [
+         2.52,
+         17.5
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 11.12,
+        "white_pot": 15.3
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 1,
+     "gate_pass": false,
+     "snap_cm": [
+      0.37,
+      0.0
+     ],
+     "build_sec": 6.9,
+     "collide_shapes": {
+      "plastic_dish_rack": 43,
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.42,
+         2.0
+        ],
+        "white_pot": [
+         2.42,
+         13.3
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.47,
+         2.2
+        ],
+        "white_pot": [
+         3.36,
+         19.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 20.57,
+        "white_pot": 11.71
+       }
+      },
+      "122": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         2.72,
+         19.9
+        ],
+        "white_pot": [
+         0.32,
+         1.1
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         2.72,
+         19.9
+        ],
+        "white_pot": [
+         0.33,
+         2.8
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 11.12,
+        "white_pot": 15.3
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0,
+      0.0
+     ],
+     "build_sec": 7.6,
+     "collide_shapes": {
+      "plastic_dish_rack": 52,
+      "white_pot": 48
+     }
+    }
+   }
+  },
+  "27": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    41
+   ],
+   "dropped_held": [
+    204
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.28,
+         1.3
+        ],
+        "white_pot": [
+         0.62,
+         2.0
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.5,
+         3.7
+        ],
+        "white_pot": [
+         0.66,
+         3.3
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 12.12,
+        "white_pot": 8.98
+       }
+      },
+      "41": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.41,
+         1.2
+        ],
+        "white_pot": [
+         0.26,
+         0.7
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         1.68,
+         10.4
+        ],
+        "white_pot": [
+         0.32,
+         2.4
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 12.37,
+        "white_pot": 0.35
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.3,
+      0.09
+     ],
+     "build_sec": 6.9,
+     "collide_shapes": {
+      "plastic_dish_rack": 43,
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.38,
+         1.3
+        ],
+        "white_pot": [
+         0.1,
+         1.1
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         1.92,
+         4.1
+        ],
+        "white_pot": [
+         0.25,
+         1.7
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 12.12,
+        "white_pot": 8.98
+       }
+      },
+      "41": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.2,
+         1.4
+        ],
+        "white_pot": [
+         0.15,
+         0.7
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.99,
+         7.8
+        ],
+        "white_pot": [
+         0.19,
+         1.5
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 12.37,
+        "white_pot": 0.35
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.02,
+      -0.3
+     ],
+     "build_sec": 7.2,
+     "collide_shapes": {
+      "plastic_dish_rack": 52,
+      "white_pot": 48
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.35,
+         0.8
+        ],
+        "white_pot": [
+         0.38,
+         1.7
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.37,
+         1.7
+        ],
+        "white_pot": [
+         0.41,
+         1.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 12.12,
+        "white_pot": 8.98
+       }
+      },
+      "41": {
+       "at_2s": {
+        "plastic_dish_rack": [
+         0.34,
+         0.8
+        ],
+        "white_pot": [
+         0.87,
+         3.5
+        ]
+       },
+       "peak": {
+        "plastic_dish_rack": [
+         0.43,
+         1.1
+        ],
+        "white_pot": [
+         5.41,
+         10.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "plastic_dish_rack": 12.37,
+        "white_pot": 0.35
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.3,
+      0.09
+     ],
+     "build_sec": 8.0,
+     "collide_shapes": {
+      "plastic_dish_rack": 104,
+      "white_pot": 104
+     }
+    }
+   }
+  },
+  "31": {
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "frames": [
+    0,
+    39,
+    84,
+    253
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_sweeper": [
+         6.62,
+         60.7
+        ],
+        "plastic_dish_rack": [
+         1.98,
+         4.8
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         6.65,
+         61.7
+        ],
+        "plastic_dish_rack": [
+         2.03,
+         7.9
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 23.71,
+        "plastic_dish_rack": 8.96
+       }
+      },
+      "39": {
+       "at_2s": {
+        "mini_sweeper": [
+         2.83,
+         18.5
+        ],
+        "plastic_dish_rack": [
+         0.41,
+         2.3
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         2.83,
+         18.5
+        ],
+        "plastic_dish_rack": [
+         0.69,
+         5.7
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.08,
+        "plastic_dish_rack": 1.21
+       }
+      },
+      "84": {
+       "at_2s": {
+        "mini_sweeper": [
+         4.98,
+         60.2
+        ],
+        "plastic_dish_rack": [
+         0.47,
+         1.6
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         5.92,
+         60.2
+        ],
+        "plastic_dish_rack": [
+         0.55,
+         2.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.1,
+        "plastic_dish_rack": 1.11
+       }
+      },
+      "253": {
+       "at_2s": {
+        "mini_sweeper": [
+         2.28,
+         12.1
+        ],
+        "plastic_dish_rack": [
+         0.23,
+         1.2
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         2.7,
+         28.1
+        ],
+        "plastic_dish_rack": [
+         0.41,
+         1.7
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.25,
+        "plastic_dish_rack": 1.27
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.56,
+      0.29
+     ],
+     "build_sec": 6.9,
+     "collide_shapes": {
+      "mini_sweeper": 19,
+      "plastic_dish_rack": 43
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_sweeper": [
+         1.54,
+         14.3
+        ],
+        "plastic_dish_rack": [
+         0.42,
+         1.3
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         1.7,
+         14.5
+        ],
+        "plastic_dish_rack": [
+         0.57,
+         2.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 23.71,
+        "plastic_dish_rack": 8.96
+       }
+      },
+      "39": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.75,
+         8.1
+        ],
+        "plastic_dish_rack": [
+         0.23,
+         1.1
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         0.77,
+         8.1
+        ],
+        "plastic_dish_rack": [
+         0.32,
+         1.6
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.08,
+        "plastic_dish_rack": 1.21
+       }
+      },
+      "84": {
+       "at_2s": {
+        "mini_sweeper": [
+         3.96,
+         117.9
+        ],
+        "plastic_dish_rack": [
+         0.27,
+         2.2
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         4.68,
+         126.3
+        ],
+        "plastic_dish_rack": [
+         0.41,
+         2.6
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.1,
+        "plastic_dish_rack": 1.11
+       }
+      },
+      "253": {
+       "at_2s": {
+        "mini_sweeper": [
+         0.35,
+         7.3
+        ],
+        "plastic_dish_rack": [
+         0.48,
+         1.5
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         0.4,
+         7.3
+        ],
+        "plastic_dish_rack": [
+         0.48,
+         1.8
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.25,
+        "plastic_dish_rack": 1.27
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.44,
+      0.02
+     ],
+     "build_sec": 7.8,
+     "collide_shapes": {
+      "mini_sweeper": 30,
+      "plastic_dish_rack": 52
+     }
+    },
+    "lib_carve": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_sweeper": [
+         1.68,
+         21.9
+        ],
+        "plastic_dish_rack": [
+         0.31,
+         1.0
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         1.7,
+         24.0
+        ],
+        "plastic_dish_rack": [
+         0.31,
+         1.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 23.71,
+        "plastic_dish_rack": 8.96
+       }
+      },
+      "39": {
+       "at_2s": {
+        "mini_sweeper": [
+         1.86,
+         24.9
+        ],
+        "plastic_dish_rack": [
+         0.04,
+         1.3
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         2.13,
+         25.5
+        ],
+        "plastic_dish_rack": [
+         0.25,
+         1.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.08,
+        "plastic_dish_rack": 1.21
+       }
+      },
+      "84": {
+       "at_2s": {
+        "mini_sweeper": [
+         5.73,
+         46.4
+        ],
+        "plastic_dish_rack": [
+         0.37,
+         1.6
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         5.9,
+         55.9
+        ],
+        "plastic_dish_rack": [
+         0.37,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.1,
+        "plastic_dish_rack": 1.11
+       }
+      },
+      "253": {
+       "at_2s": {
+        "mini_sweeper": [
+         5.74,
+         56.9
+        ],
+        "plastic_dish_rack": [
+         0.34,
+         0.9
+        ]
+       },
+       "peak": {
+        "mini_sweeper": [
+         7.04,
+         120.8
+        ],
+        "plastic_dish_rack": [
+         0.34,
+         1.4
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "mini_sweeper": 0.25,
+        "plastic_dish_rack": 1.27
+       }
+      }
+     },
+     "n": 4,
+     "n_pass": 0,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.56,
+      0.29
+     ],
+     "build_sec": 7.5,
+     "collide_shapes": {
+      "mini_sweeper": 32,
+      "plastic_dish_rack": 85
+     }
+    }
+   }
+  },
+  "39": {
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": [
+    0,
+    292
+   ],
+   "dropped_held": [],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.19,
+         2.1
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.35,
+         3.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 29.81
+       }
+      },
+      "292": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.13,
+         3.0
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.58,
+         14.5
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 3.32
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.08
+     ],
+     "build_sec": 6.0,
+     "collide_shapes": {
+      "mini_dust_pan": 26
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.15,
+         1.1
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.19,
+         2.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 29.81
+       }
+      },
+      "292": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.38,
+         0.9
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.38,
+         2.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 3.32
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 6.9,
+     "collide_shapes": {
+      "mini_dust_pan": 63
+     }
+    }
+   }
+  },
+  "40": {
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "frames": [
+    0,
+    229
+   ],
+   "dropped_held": [
+    59
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.1,
+         2.6
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.19,
+         3.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 24.71
+       }
+      },
+      "229": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.14,
+         2.8
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.21,
+         3.1
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 3.17
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.02
+     ],
+     "build_sec": 6.0,
+     "collide_shapes": {
+      "mini_dust_pan": 26
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.13,
+         0.6
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.17,
+         3.1
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 24.71
+       }
+      },
+      "229": {
+       "at_2s": {
+        "mini_dust_pan": [
+         0.18,
+         0.9
+        ]
+       },
+       "peak": {
+        "mini_dust_pan": [
+         0.23,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "mini_dust_pan": 3.17
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 7.5,
+     "collide_shapes": {
+      "mini_dust_pan": 63
+     }
+    }
+   }
+  },
+  "41": {
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    216,
+    263
+   ],
+   "dropped_held": [
+    79,
+    147,
+    171,
+    191
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.16,
+         0.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.21,
+         0.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 24.84
+       }
+      },
+      "216": {
+       "at_2s": {
+        "white_pot": [
+         3.99,
+         21.1
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         4.09,
+         21.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null
+       }
+      },
+      "263": {
+       "at_2s": {
+        "white_pot": [
+         0.17,
+         0.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.2,
+         0.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 6.16
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      0.34
+     ],
+     "build_sec": 6.5,
+     "collide_shapes": {
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.15,
+         0.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.19,
+         1.0
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 24.84
+       }
+      },
+      "216": {
+       "at_2s": {
+        "white_pot": [
+         3.69,
+         19.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         3.72,
+         20.0
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": null
+       }
+      },
+      "263": {
+       "at_2s": {
+        "white_pot": [
+         0.12,
+         1.5
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.17,
+         1.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 6.16
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 6.8,
+     "collide_shapes": {
+      "white_pot": 48
+     }
+    }
+   }
+  },
+  "42": {
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    54,
+    219
+   ],
+   "dropped_held": [
+    89
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.27,
+         1.8
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.33,
+         2.0
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 19.1
+       }
+      },
+      "54": {
+       "at_2s": {
+        "white_pot": [
+         2.15,
+         11.5
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         2.23,
+         12.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 0.79
+       }
+      },
+      "219": {
+       "at_2s": {
+        "white_pot": [
+         0.17,
+         0.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.26,
+         1.7
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.12
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      0.42
+     ],
+     "build_sec": 6.2,
+     "collide_shapes": {
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.13,
+         1.0
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.13,
+         1.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 19.1
+       }
+      },
+      "54": {
+       "at_2s": {
+        "white_pot": [
+         1.76,
+         10.4
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         1.79,
+         10.5
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 0.79
+       }
+      },
+      "219": {
+       "at_2s": {
+        "white_pot": [
+         0.13,
+         0.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.14,
+         1.0
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.12
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 6.4,
+     "collide_shapes": {
+      "white_pot": 48
+     }
+    }
+   }
+  },
+  "43": {
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    42,
+    284
+   ],
+   "dropped_held": [
+    144,
+    223
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.84,
+         2.5
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.85,
+         2.7
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 21.59
+       }
+      },
+      "42": {
+       "at_2s": {
+        "white_pot": [
+         4.88,
+         21.4
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         4.95,
+         22.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 0.31
+       }
+      },
+      "284": {
+       "at_2s": {
+        "white_pot": [
+         0.53,
+         0.8
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.56,
+         1.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.57
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.26
+     ],
+     "build_sec": 6.0,
+     "collide_shapes": {
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.1,
+         0.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.49,
+         2.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 21.59
+       }
+      },
+      "42": {
+       "at_2s": {
+        "white_pot": [
+         4.32,
+         20.3
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         4.61,
+         23.1
+        ]
+       },
+       "nan": null,
+       "pass_": false,
+       "hand_gap_cm": {
+        "white_pot": 0.31
+       }
+      },
+      "284": {
+       "at_2s": {
+        "white_pot": [
+         0.08,
+         0.8
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.15,
+         0.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 0.57
+       }
+      }
+     },
+     "n": 3,
+     "n_pass": 2,
+     "gate_pass": false,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 6.9,
+     "collide_shapes": {
+      "white_pot": 48
+     }
+    }
+   }
+  },
+  "44": {
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    208
+   ],
+   "dropped_held": [
+    98,
+    115,
+    136
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.12,
+         0.7
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.23,
+         0.8
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 21.24
+       }
+      },
+      "208": {
+       "at_2s": {
+        "white_pot": [
+         0.37,
+         3.9
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.87,
+         7.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 5.17
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.37
+     ],
+     "build_sec": 6.2,
+     "collide_shapes": {
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.11,
+         0.8
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.15,
+         0.9
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 21.24
+       }
+      },
+      "208": {
+       "at_2s": {
+        "white_pot": [
+         0.12,
+         1.0
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.19,
+         1.7
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 5.17
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 6.5,
+     "collide_shapes": {
+      "white_pot": 48
+     }
+    }
+   }
+  },
+  "45": {
+   "objects": [
+    "white_pot"
+   ],
+   "frames": [
+    0,
+    259
+   ],
+   "dropped_held": [
+    103,
+    136,
+    196
+   ],
+   "geoms": {
+    "lib": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.1,
+         0.6
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.22,
+         2.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 22.5
+       }
+      },
+      "259": {
+       "at_2s": {
+        "white_pot": [
+         0.24,
+         2.8
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.38,
+         3.4
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 1.21
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      0.27
+     ],
+     "build_sec": 6.7,
+     "collide_shapes": {
+      "white_pot": 31
+     }
+    },
+    "scan": {
+     "configs": {
+      "0": {
+       "at_2s": {
+        "white_pot": [
+         0.09,
+         2.2
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.64,
+         4.4
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 22.5
+       }
+      },
+      "259": {
+       "at_2s": {
+        "white_pot": [
+         0.14,
+         1.1
+        ]
+       },
+       "peak": {
+        "white_pot": [
+         0.19,
+         1.2
+        ]
+       },
+       "nan": null,
+       "pass_": true,
+       "hand_gap_cm": {
+        "white_pot": 1.21
+       }
+      }
+     },
+     "n": 2,
+     "n_pass": 2,
+     "gate_pass": true,
+     "snap_cm": [
+      -0.0
+     ],
+     "build_sec": 6.5,
+     "collide_shapes": {
+      "white_pot": 48
+     }
+    }
+   }
+  }
+ },
+ "summary": {
+  "lib": {
+   "eps": 20,
+   "gate_pass": [
+    27,
+    39,
+    40,
+    44,
+    45
+   ],
+   "gate_fail": [
+    0,
+    2,
+    11,
+    12,
+    13,
+    18,
+    21,
+    22,
+    23,
+    24,
+    26,
+    31,
+    41,
+    42,
+    43
+   ]
+  },
+  "lib_carve": {
+   "eps": 7,
+   "gate_pass": [
+    27
+   ],
+   "gate_fail": [
+    2,
+    11,
+    12,
+    13,
+    24,
+    31
+   ]
+  },
+  "scan": {
+   "eps": 20,
+   "gate_pass": [
+    21,
+    22,
+    27,
+    39,
+    40,
+    44,
+    45
+   ],
+   "gate_fail": [
+    0,
+    2,
+    11,
+    12,
+    13,
+    18,
+    23,
+    24,
+    26,
+    31,
+    41,
+    42,
+    43
+   ]
+  }
+ },
+ "seconds": 134.3
+}
