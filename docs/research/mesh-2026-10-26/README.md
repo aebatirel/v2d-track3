@@ -360,3 +360,21 @@ Both are hypotheses to test before another board round.
 
 Files: `results/prim/` (candidates, fidelity, scores, selections, meshes, `clean/` for the clean-up round),
 `scripts/prim_*.py`, `scripts/tmeas_lid.py` (the failed GT-free thickness measurement).
+
+## 10. Generative probe, batch 2 (added 30 Oct)
+Full report: `results/gen-probe/README.md`; code in `gen/`. One H100 box, $4.36 measured. 104 one-shot scan
+scorings after a sha256 freeze [D].
+
+| Model | Mean CD-O over 10 objects | Objects better than library_v3 |
+|---|---|---|
+| library_v3 | 0.477 | - |
+| SAM 3D | 0.501 | 6 |
+| Pixal3D-MV (posed, our frame) | 0.490 | 5 |
+| Hunyuan3D-2.1 | 0.602 | 5 |
+| TRELLIS.2 | 0.594 | 3 |
+| TripoSG | 0.984 | 0 |
+
+- The oracle best-of-generated averages 0.315 and beats our best hand-built only on the pot and the blue cup.
+- Seed variance is large, and the GT-free selector is weak (Spearman 0.46).
+- Generated meshes worsen ADD (10–29 mm vs ~6 mm).
+- Pixal3D's falsifier (median ≥ 0.08 below 0.40) is falsified.

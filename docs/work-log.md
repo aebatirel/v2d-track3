@@ -4829,3 +4829,31 @@ research workflow's raw result. Scratch outputs are in `auto/stage1/`. GT-free o
 
   The beige-cup scan display uses a display-only ICP alignment `[D]` (scratchpad `page/align/`, kept out of `obs_all`).
   Page source is in `eval-view/`.
+
+### 2026-10-30 ~06:40 UTC: batch 2 generative probe results [D] (104 one-shot scan scorings, finished overnight)
+Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`, tables in `table.md`. All scan numbers are
+diagnostic; nothing is picked for submission.
+- **Mean CD-O over the 10 objects** (seed mean; library_v3 0.477, median 0.429):
+  - SAM 3D 0.501 (median 0.383; beats library on 6/10);
+  - Pixal3D-MV 0.490 (median 0.399; 5/10);
+  - Hunyuan3D-2.1 0.602 (5/10);
+  - TRELLIS.2 0.594 (3/10);
+  - TripoSG 0.984 (0/10).
+- **Seed variance is large.** The oracle best-of-all-generated per object averages 0.315 and beats library on 8/10.
+  It beats our best hand-built on the pot (0.318 vs 0.342) and the blue cup (0.268 vs 0.291), not on the lid or
+  rack.
+- **Pose side:**
+  - Pixal3D-MV in our frame: median ADD 10.3 mm, flips on boards and sweeper.
+  - Single-image models after the GT-free Sim(3) fit: median ADD 26-29 mm (library ~6 mm).
+- **GT-free selection** (observed-point distances):
+  - Spearman with CD-O 0.46 pooled, median 0.58 per object;
+  - picks the CD-O best on 2/10 objects, mean regret 0.12 cm;
+  - library-vs-generated choice: mean CD-O 0.429 [D], better on 6, worse on 3 (boards, sweeper), and much
+    larger ADD.
+- **Verdicts:**
+  - P1 met only at the edge (SAM 3D <= 0.35 on 5/10);
+  - Pixal3D's pre-stated falsifier (median >= 0.08 below 0.40) is FALSIFIED (0.399).
+- **Next, if pursued:**
+  - a pose-safe registration of generated meshes into our tracked frame;
+  - a stronger GT-free selector (held-out-view silhouettes, free-space violations) before any generated mesh is
+    considered.

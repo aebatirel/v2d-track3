@@ -16,7 +16,7 @@
   "gtf": 6.27,
   "mv_iou": 0.978,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep41_white_pot_s7",
@@ -35,7 +35,7 @@
   "gtf": 11.65,
   "mv_iou": 0.98,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep41_white_pot_s7.ply"
  },
  {
   "label": "gen/trellis2/ep41_white_pot_k279_s42",
@@ -54,7 +54,7 @@
   "gtf": 4.470000000000001,
   "mv_iou": null,
   "sim3_scale": 0.355343,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s42.ply"
  },
  {
   "label": "gen/trellis2/ep41_white_pot_k279_s7",
@@ -73,7 +73,7 @@
   "gtf": 4.77,
   "mv_iou": null,
   "sim3_scale": 0.34344,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_k279_s7.ply"
  },
  {
   "label": "gen/triposg/ep41_white_pot_k279_s42",
@@ -92,7 +92,7 @@
   "gtf": 14.79,
   "mv_iou": null,
   "sim3_scale": 0.169497,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s42.ply"
  },
  {
   "label": "gen/triposg/ep41_white_pot_k279_s7",
@@ -111,7 +111,7 @@
   "gtf": 8.26,
   "mv_iou": null,
   "sim3_scale": 0.187054,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_k279_s7.ply"
  },
  {
   "label": "gen/hy21/ep41_white_pot_k279_s42",
@@ -130,7 +130,7 @@
   "gtf": 4.18,
   "mv_iou": null,
   "sim3_scale": 0.174155,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s42.ply"
  },
  {
   "label": "gen/hy21/ep41_white_pot_k279_s7",
@@ -149,7 +149,7 @@
   "gtf": 4.32,
   "mv_iou": null,
   "sim3_scale": 0.18404,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_k279_s7.ply"
  },
  {
   "label": "gen/sam3d/ep41_white_pot_k279_s42",
@@ -168,7 +168,7 @@
   "gtf": 3.99,
   "mv_iou": null,
   "sim3_scale": 0.364502,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s42.ply"
  },
  {
   "label": "gen/sam3d/ep41_white_pot_k279_s7",
@@ -187,7 +187,7 @@
   "gtf": 3.58,
   "mv_iou": null,
   "sim3_scale": 0.365151,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep2_white_pot_lid_s42",
@@ -206,7 +206,7 @@
   "gtf": 3.03,
   "mv_iou": 0.982,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep2_white_pot_lid_s7",
@@ -225,7 +225,7 @@
   "gtf": 11.29,
   "mv_iou": 0.987,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep2_white_pot_lid_s7.ply"
  },
  {
   "label": "gen/trellis2/ep2_white_pot_lid_k321_s42",
@@ -244,7 +244,7 @@
   "gtf": 4.23,
   "mv_iou": null,
   "sim3_scale": 0.181362,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s42.ply"
  },
  {
   "label": "gen/trellis2/ep2_white_pot_lid_k321_s7",
@@ -263,7 +263,7 @@
   "gtf": 2.58,
   "mv_iou": null,
   "sim3_scale": 0.17735,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/white_pot_lid_k321_s7.ply"
  },
  {
   "label": "gen/triposg/ep2_white_pot_lid_k321_s42",
@@ -282,7 +282,7 @@
   "gtf": 19.22,
   "mv_iou": null,
   "sim3_scale": 0.063845,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s42.ply"
  },
  {
   "label": "gen/triposg/ep2_white_pot_lid_k321_s7",
@@ -301,7 +301,7 @@
   "gtf": 6.7700000000000005,
   "mv_iou": null,
   "sim3_scale": 0.094994,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/white_pot_lid_k321_s7.ply"
  },
  {
   "label": "gen/hy21/ep2_white_pot_lid_k321_s42",
@@ -320,7 +320,7 @@
   "gtf": 2.8099999999999996,
   "mv_iou": null,
   "sim3_scale": 0.104077,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s42.ply"
  },
  {
   "label": "gen/hy21/ep2_white_pot_lid_k321_s7",
@@ -339,7 +339,7 @@
   "gtf": 2.3,
   "mv_iou": null,
   "sim3_scale": 0.082029,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/white_pot_lid_k321_s7.ply"
  },
  {
   "label": "gen/sam3d/ep2_white_pot_lid_k321_s42",
@@ -358,7 +358,7 @@
   "gtf": 9.26,
   "mv_iou": null,
   "sim3_scale": 0.154918,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s42.ply"
  },
  {
   "label": "gen/sam3d/ep2_white_pot_lid_k321_s7",
@@ -377,7 +377,7 @@
   "gtf": 8.52,
   "mv_iou": null,
   "sim3_scale": 0.138202,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_lid_k321_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep22_blue_cup_s42",
@@ -396,7 +396,7 @@
   "gtf": 2.96,
   "mv_iou": 0.932,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep22_blue_cup_s7",
@@ -415,7 +415,7 @@
   "gtf": 3.12,
   "mv_iou": 0.932,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_blue_cup_s7.ply"
  },
  {
   "label": "gen/trellis2_1024/ep22_blue_cup_k156_s42",
@@ -434,7 +434,7 @@
   "gtf": 4.1899999999999995,
   "mv_iou": null,
   "sim3_scale": 0.152085,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s42.ply"
  },
  {
   "label": "gen/trellis2_1024/ep22_blue_cup_k156_s7",
@@ -453,7 +453,7 @@
   "gtf": 3.05,
   "mv_iou": null,
   "sim3_scale": 0.17056,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_1024_sim3/blue_cup_k156_s7.ply"
  },
  {
   "label": "gen/triposg/ep22_blue_cup_k156_s42",
@@ -472,7 +472,7 @@
   "gtf": 4.46,
   "mv_iou": null,
   "sim3_scale": 0.094285,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s42.ply"
  },
  {
   "label": "gen/triposg/ep22_blue_cup_k156_s7",
@@ -491,7 +491,7 @@
   "gtf": 3.55,
   "mv_iou": null,
   "sim3_scale": 0.086422,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/blue_cup_k156_s7.ply"
  },
  {
   "label": "gen/hy21/ep22_blue_cup_k156_s42",
@@ -510,7 +510,7 @@
   "gtf": 8.13,
   "mv_iou": null,
   "sim3_scale": 0.09509,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s42.ply"
  },
  {
   "label": "gen/hy21/ep22_blue_cup_k156_s7",
@@ -529,7 +529,7 @@
   "gtf": 19.45,
   "mv_iou": null,
   "sim3_scale": 0.137421,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/blue_cup_k156_s7.ply"
  },
  {
   "label": "gen/sam3d/ep22_blue_cup_k156_s42",
@@ -548,7 +548,7 @@
   "gtf": 6.75,
   "mv_iou": null,
   "sim3_scale": 0.170835,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s42.ply"
  },
  {
   "label": "gen/sam3d/ep22_blue_cup_k156_s7",
@@ -567,7 +567,7 @@
   "gtf": 5.91,
   "mv_iou": null,
   "sim3_scale": 0.177626,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/blue_cup_k156_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep22_water_pitcher_s42",
@@ -586,7 +586,7 @@
   "gtf": 28.36,
   "mv_iou": 0.958,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep22_water_pitcher_s7",
@@ -605,7 +605,7 @@
   "gtf": 10.6,
   "mv_iou": 0.958,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep22_water_pitcher_s7.ply"
  },
  {
   "label": "gen/trellis2/ep22_water_pitcher_k174_s42",
@@ -624,7 +624,7 @@
   "gtf": 8.08,
   "mv_iou": null,
   "sim3_scale": 0.313431,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s42.ply"
  },
  {
   "label": "gen/trellis2/ep22_water_pitcher_k174_s7",
@@ -643,7 +643,7 @@
   "gtf": 6.27,
   "mv_iou": null,
   "sim3_scale": 0.35248,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/water_pitcher_k174_s7.ply"
  },
  {
   "label": "gen/triposg/ep22_water_pitcher_k174_s42",
@@ -662,7 +662,7 @@
   "gtf": 8.75,
   "mv_iou": null,
   "sim3_scale": 0.152136,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s42.ply"
  },
  {
   "label": "gen/triposg/ep22_water_pitcher_k174_s7",
@@ -681,7 +681,7 @@
   "gtf": 11.17,
   "mv_iou": null,
   "sim3_scale": 0.153121,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/water_pitcher_k174_s7.ply"
  },
  {
   "label": "gen/hy21/ep22_water_pitcher_k174_s42",
@@ -700,7 +700,7 @@
   "gtf": 6.8100000000000005,
   "mv_iou": null,
   "sim3_scale": 0.164833,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s42.ply"
  },
  {
   "label": "gen/hy21/ep22_water_pitcher_k174_s7",
@@ -719,7 +719,7 @@
   "gtf": 6.05,
   "mv_iou": null,
   "sim3_scale": 0.164881,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/water_pitcher_k174_s7.ply"
  },
  {
   "label": "gen/sam3d/ep22_water_pitcher_k174_s42",
@@ -738,7 +738,7 @@
   "gtf": 5.29,
   "mv_iou": null,
   "sim3_scale": 0.393513,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s42.ply"
  },
  {
   "label": "gen/sam3d/ep22_water_pitcher_k174_s7",
@@ -757,7 +757,7 @@
   "gtf": 5.390000000000001,
   "mv_iou": null,
   "sim3_scale": 0.410505,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/water_pitcher_k174_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep23_wooden_piece_1_s42",
@@ -776,7 +776,7 @@
   "gtf": 16.77,
   "mv_iou": 0.985,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep23_wooden_piece_1_s7",
@@ -795,7 +795,7 @@
   "gtf": 21.68,
   "mv_iou": 0.983,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_1_s7.ply"
  },
  {
   "label": "gen/trellis2/ep23_wooden_piece_1_k27_s42",
@@ -814,7 +814,7 @@
   "gtf": 13.76,
   "mv_iou": null,
   "sim3_scale": 0.262958,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s42.ply"
  },
  {
   "label": "gen/trellis2/ep23_wooden_piece_1_k27_s7",
@@ -833,7 +833,7 @@
   "gtf": 13.74,
   "mv_iou": null,
   "sim3_scale": 0.266778,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_1_k27_s7.ply"
  },
  {
   "label": "gen/triposg/ep23_wooden_piece_1_k27_s42",
@@ -852,7 +852,7 @@
   "gtf": 11.53,
   "mv_iou": null,
   "sim3_scale": 0.10003,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s42.ply"
  },
  {
   "label": "gen/triposg/ep23_wooden_piece_1_k27_s7",
@@ -871,7 +871,7 @@
   "gtf": 11.28,
   "mv_iou": null,
   "sim3_scale": 0.095947,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_1_k27_s7.ply"
  },
  {
   "label": "gen/hy21/ep23_wooden_piece_1_k27_s42",
@@ -890,7 +890,7 @@
   "gtf": 12.059999999999999,
   "mv_iou": null,
   "sim3_scale": 0.089208,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s42.ply"
  },
  {
   "label": "gen/hy21/ep23_wooden_piece_1_k27_s7",
@@ -909,7 +909,7 @@
   "gtf": 11.72,
   "mv_iou": null,
   "sim3_scale": 0.10703,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_1_k27_s7.ply"
  },
  {
   "label": "gen/sam3d/ep23_wooden_piece_1_k27_s42",
@@ -928,7 +928,7 @@
   "gtf": 11.72,
   "mv_iou": null,
   "sim3_scale": 0.189883,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s42.ply"
  },
  {
   "label": "gen/sam3d/ep23_wooden_piece_1_k27_s7",
@@ -947,7 +947,7 @@
   "gtf": 12.99,
   "mv_iou": null,
   "sim3_scale": 0.188534,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_1_k27_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep23_wooden_piece_2_s42",
@@ -966,7 +966,7 @@
   "gtf": 5.630000000000001,
   "mv_iou": 0.973,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep23_wooden_piece_2_s7",
@@ -985,7 +985,7 @@
   "gtf": 5.92,
   "mv_iou": 0.976,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep23_wooden_piece_2_s7.ply"
  },
  {
   "label": "gen/pixal_v1/ep23_wooden_piece_2_s42",
@@ -1004,7 +1004,7 @@
   "gtf": 9.899999999999999,
   "mv_iou": 0.711,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s42.ply"
  },
  {
   "label": "gen/pixal_v1/ep23_wooden_piece_2_s7",
@@ -1023,7 +1023,7 @@
   "gtf": 11.96,
   "mv_iou": 0.77,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep23_wooden_piece_2_v1_s7.ply"
  },
  {
   "label": "gen/trellis2/ep23_wooden_piece_2_k6_s42",
@@ -1042,7 +1042,7 @@
   "gtf": 3.5,
   "mv_iou": null,
   "sim3_scale": 0.297887,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s42.ply"
  },
  {
   "label": "gen/trellis2/ep23_wooden_piece_2_k6_s7",
@@ -1061,7 +1061,7 @@
   "gtf": 2.8499999999999996,
   "mv_iou": null,
   "sim3_scale": 0.218019,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/wooden_piece_2_k6_s7.ply"
  },
  {
   "label": "gen/triposg/ep23_wooden_piece_2_k6_s42",
@@ -1080,7 +1080,7 @@
   "gtf": 4.47,
   "mv_iou": null,
   "sim3_scale": 0.138043,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s42.ply"
  },
  {
   "label": "gen/triposg/ep23_wooden_piece_2_k6_s7",
@@ -1099,7 +1099,7 @@
   "gtf": 3.8200000000000003,
   "mv_iou": null,
   "sim3_scale": 0.11389,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/wooden_piece_2_k6_s7.ply"
  },
  {
   "label": "gen/hy21/ep23_wooden_piece_2_k6_s42",
@@ -1118,7 +1118,7 @@
   "gtf": 3.83,
   "mv_iou": null,
   "sim3_scale": 0.126612,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s42.ply"
  },
  {
   "label": "gen/hy21/ep23_wooden_piece_2_k6_s7",
@@ -1137,7 +1137,7 @@
   "gtf": 4.8,
   "mv_iou": null,
   "sim3_scale": 0.113178,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/wooden_piece_2_k6_s7.ply"
  },
  {
   "label": "gen/sam3d/ep23_wooden_piece_2_k6_s42",
@@ -1156,7 +1156,7 @@
   "gtf": 2.57,
   "mv_iou": null,
   "sim3_scale": 0.201088,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s42.ply"
  },
  {
   "label": "gen/sam3d/ep23_wooden_piece_2_k6_s7",
@@ -1175,7 +1175,7 @@
   "gtf": 3.23,
   "mv_iou": null,
   "sim3_scale": 0.227496,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/wooden_piece_2_k6_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep26_plastic_dish_rack_s42",
@@ -1194,7 +1194,7 @@
   "gtf": 52.129999999999995,
   "mv_iou": 0.958,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep26_plastic_dish_rack_s7",
@@ -1213,7 +1213,7 @@
   "gtf": 56.35,
   "mv_iou": 0.927,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep26_plastic_dish_rack_s7.ply"
  },
  {
   "label": "gen/trellis2/ep26_plastic_dish_rack_k144_s42",
@@ -1232,7 +1232,7 @@
   "gtf": 16.88,
   "mv_iou": null,
   "sim3_scale": 0.514773,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s42.ply"
  },
  {
   "label": "gen/trellis2/ep26_plastic_dish_rack_k144_s7",
@@ -1251,7 +1251,7 @@
   "gtf": 12.0,
   "mv_iou": null,
   "sim3_scale": 0.468346,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/plastic_dish_rack_k144_s7.ply"
  },
  {
   "label": "gen/triposg/ep26_plastic_dish_rack_k144_s42",
@@ -1270,7 +1270,7 @@
   "gtf": 18.78,
   "mv_iou": null,
   "sim3_scale": 0.21645,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s42.ply"
  },
  {
   "label": "gen/triposg/ep26_plastic_dish_rack_k144_s7",
@@ -1289,7 +1289,7 @@
   "gtf": 13.03,
   "mv_iou": null,
   "sim3_scale": 0.252435,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/plastic_dish_rack_k144_s7.ply"
  },
  {
   "label": "gen/hy21/ep26_plastic_dish_rack_k144_s42",
@@ -1308,7 +1308,7 @@
   "gtf": 15.27,
   "mv_iou": null,
   "sim3_scale": 0.230562,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s42.ply"
  },
  {
   "label": "gen/hy21/ep26_plastic_dish_rack_k144_s7",
@@ -1327,7 +1327,7 @@
   "gtf": 22.6,
   "mv_iou": null,
   "sim3_scale": 0.22061,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/plastic_dish_rack_k144_s7.ply"
  },
  {
   "label": "gen/sam3d/ep26_plastic_dish_rack_k144_s42",
@@ -1346,7 +1346,7 @@
   "gtf": 11.04,
   "mv_iou": null,
   "sim3_scale": 0.435124,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s42.ply"
  },
  {
   "label": "gen/sam3d/ep26_plastic_dish_rack_k144_s7",
@@ -1365,7 +1365,7 @@
   "gtf": 11.01,
   "mv_iou": null,
   "sim3_scale": 0.452784,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/plastic_dish_rack_k144_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep31_mini_sweeper_s42",
@@ -1384,7 +1384,7 @@
   "gtf": 10.86,
   "mv_iou": 0.982,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep31_mini_sweeper_s7",
@@ -1403,7 +1403,7 @@
   "gtf": 14.23,
   "mv_iou": 0.974,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep31_mini_sweeper_s7.ply"
  },
  {
   "label": "gen/trellis2/ep31_mini_sweeper_k270_s42",
@@ -1422,7 +1422,7 @@
   "gtf": 7.83,
   "mv_iou": null,
   "sim3_scale": 0.21955,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s42.ply"
  },
  {
   "label": "gen/trellis2/ep31_mini_sweeper_k270_s7",
@@ -1441,7 +1441,7 @@
   "gtf": 5.54,
   "mv_iou": null,
   "sim3_scale": 0.176664,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_sweeper_k270_s7.ply"
  },
  {
   "label": "gen/triposg/ep31_mini_sweeper_k270_s42",
@@ -1460,7 +1460,7 @@
   "gtf": 10.39,
   "mv_iou": null,
   "sim3_scale": 0.129528,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s42.ply"
  },
  {
   "label": "gen/triposg/ep31_mini_sweeper_k270_s7",
@@ -1479,7 +1479,7 @@
   "gtf": 7.0,
   "mv_iou": null,
   "sim3_scale": 0.096286,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_sweeper_k270_s7.ply"
  },
  {
   "label": "gen/hy21/ep31_mini_sweeper_k270_s42",
@@ -1498,7 +1498,7 @@
   "gtf": 8.47,
   "mv_iou": null,
   "sim3_scale": 0.13349,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s42.ply"
  },
  {
   "label": "gen/hy21/ep31_mini_sweeper_k270_s7",
@@ -1517,7 +1517,7 @@
   "gtf": 9.100000000000001,
   "mv_iou": null,
   "sim3_scale": 0.137577,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_sweeper_k270_s7.ply"
  },
  {
   "label": "gen/sam3d/ep31_mini_sweeper_k270_s42",
@@ -1536,7 +1536,7 @@
   "gtf": 6.640000000000001,
   "mv_iou": null,
   "sim3_scale": 0.168677,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s42.ply"
  },
  {
   "label": "gen/sam3d/ep31_mini_sweeper_k270_s7",
@@ -1555,7 +1555,7 @@
   "gtf": 3.67,
   "mv_iou": null,
   "sim3_scale": 0.145372,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_sweeper_k270_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep39_mini_dust_pan_s42",
@@ -1574,7 +1574,7 @@
   "gtf": 3.2300000000000004,
   "mv_iou": 0.908,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep39_mini_dust_pan_s7",
@@ -1593,7 +1593,7 @@
   "gtf": 3.21,
   "mv_iou": 0.911,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep39_mini_dust_pan_s7.ply"
  },
  {
   "label": "gen/pixal_v1/ep39_mini_dust_pan_s42",
@@ -1612,7 +1612,7 @@
   "gtf": 28.240000000000002,
   "mv_iou": 0.737,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s42.ply"
  },
  {
   "label": "gen/pixal_v1/ep39_mini_dust_pan_s7",
@@ -1631,7 +1631,7 @@
   "gtf": 20.380000000000003,
   "mv_iou": 0.751,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_v1/ep39_mini_dust_pan_v1_s7.ply"
  },
  {
   "label": "gen/trellis2/ep39_mini_dust_pan_k297_s42",
@@ -1650,7 +1650,7 @@
   "gtf": 3.23,
   "mv_iou": null,
   "sim3_scale": 0.18611,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s42.ply"
  },
  {
   "label": "gen/trellis2/ep39_mini_dust_pan_k297_s7",
@@ -1669,7 +1669,7 @@
   "gtf": 3.79,
   "mv_iou": null,
   "sim3_scale": 0.188317,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/mini_dust_pan_k297_s7.ply"
  },
  {
   "label": "gen/triposg/ep39_mini_dust_pan_k297_s42",
@@ -1688,7 +1688,7 @@
   "gtf": 5.609999999999999,
   "mv_iou": null,
   "sim3_scale": 0.128744,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s42.ply"
  },
  {
   "label": "gen/triposg/ep39_mini_dust_pan_k297_s7",
@@ -1707,7 +1707,7 @@
   "gtf": 5.49,
   "mv_iou": null,
   "sim3_scale": 0.099659,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/mini_dust_pan_k297_s7.ply"
  },
  {
   "label": "gen/hy21/ep39_mini_dust_pan_k297_s42",
@@ -1726,7 +1726,7 @@
   "gtf": 3.08,
   "mv_iou": null,
   "sim3_scale": 0.080158,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s42.ply"
  },
  {
   "label": "gen/hy21/ep39_mini_dust_pan_k297_s7",
@@ -1745,7 +1745,7 @@
   "gtf": 2.81,
   "mv_iou": null,
   "sim3_scale": 0.099893,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/mini_dust_pan_k297_s7.ply"
  },
  {
   "label": "gen/sam3d/ep39_mini_dust_pan_k297_s42",
@@ -1764,7 +1764,7 @@
   "gtf": 2.34,
   "mv_iou": null,
   "sim3_scale": 0.166391,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s42.ply"
  },
  {
   "label": "gen/sam3d/ep39_mini_dust_pan_k297_s7",
@@ -1783,7 +1783,7 @@
   "gtf": 3.21,
   "mv_iou": null,
   "sim3_scale": 0.182809,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/mini_dust_pan_k297_s7.ply"
  },
  {
   "label": "gen/pixal_mv/ep11_beige_cup_s42",
@@ -1802,7 +1802,7 @@
   "gtf": 6.24,
   "mv_iou": 0.986,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s42.ply"
  },
  {
   "label": "gen/pixal_mv/ep11_beige_cup_s7",
@@ -1821,7 +1821,7 @@
   "gtf": 7.23,
   "mv_iou": 0.94,
   "sim3_scale": null,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/pixal_mv/ep11_beige_cup_s7.ply"
  },
  {
   "label": "gen/trellis2/ep11_beige_cup_k6_s42",
@@ -1840,7 +1840,7 @@
   "gtf": 4.9,
   "mv_iou": null,
   "sim3_scale": 0.354294,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s42.ply"
  },
  {
   "label": "gen/trellis2/ep11_beige_cup_k6_s7",
@@ -1859,7 +1859,7 @@
   "gtf": 17.42,
   "mv_iou": null,
   "sim3_scale": 0.265757,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/trellis2_sim3/beige_cup_k6_s7.ply"
  },
  {
   "label": "gen/triposg/ep11_beige_cup_k6_s42",
@@ -1878,7 +1878,7 @@
   "gtf": 17.93,
   "mv_iou": null,
   "sim3_scale": 0.188296,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s42.ply"
  },
  {
   "label": "gen/triposg/ep11_beige_cup_k6_s7",
@@ -1897,7 +1897,7 @@
   "gtf": 12.030000000000001,
   "mv_iou": null,
   "sim3_scale": 0.156291,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/triposg_sim3/beige_cup_k6_s7.ply"
  },
  {
   "label": "gen/hy21/ep11_beige_cup_k6_s42",
@@ -1916,7 +1916,7 @@
   "gtf": 7.47,
   "mv_iou": null,
   "sim3_scale": 0.099592,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s42.ply"
  },
  {
   "label": "gen/hy21/ep11_beige_cup_k6_s7",
@@ -1935,7 +1935,7 @@
   "gtf": 12.559999999999999,
   "mv_iou": null,
   "sim3_scale": 0.096307,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/hy21_sim3/beige_cup_k6_s7.ply"
  },
  {
   "label": "gen/sam3d/ep11_beige_cup_k6_s42",
@@ -1954,7 +1954,7 @@
   "gtf": 2.83,
   "mv_iou": null,
   "sim3_scale": 0.141474,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s42.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s42.ply"
  },
  {
   "label": "gen/sam3d/ep11_beige_cup_k6_s7",
@@ -1973,6 +1973,6 @@
   "gtf": 3.14,
   "mv_iou": null,
   "sim3_scale": 0.150521,
-  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s7.ply"
+  "path": "<scratchpad>/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/beige_cup_k6_s7.ply"
  }
 ]

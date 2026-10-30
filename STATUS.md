@@ -1,10 +1,16 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-10-29 ~23:00 UTC: batch 2 generative probe running (box 58314388, H100 NVL bid $0.80/h, cap $12)
-- Models: Pixal3D multi-view (posed, our object frame), TRELLIS.2, TripoSG, Hunyuan3D-2.1 (shape), and SAM 3D
-  Objects (access approved during the run; weights copied through the private store). Code and runs:
-  `docs/research/mesh-2026-10-26/gen/`; work log 22:15-22:55 entries.
-- Scan scoring pre-registered (work log ~22:55): one scoring per mesh after a sha256 freeze; diagnostic [D] only.
+## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
+Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
+- Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
+  - SAM 3D 0.501 and Pixal3D-MV 0.490 (each beats library_v3 on about half the objects);
+  - Hunyuan3D-2.1 0.602, TRELLIS.2 0.594, TripoSG 0.984;
+  - library_v3: 0.477.
+- Oracle best-of-generated per object: 0.315; beats our best hand-built only on the pot and the blue cup.
+- Pose side is worse (generated meshes ADD 10-29 mm vs library ~6 mm).
+- The GT-free selector is too weak (Spearman 0.46).
+- No submission change. SAM 3D access is approved. Its 12.4 GB of checkpoints sit in the HF store under the run
+  folder and can be deleted.
 
 Also read `docs/context-and-decisions.md` for the owner's goals, preferences and earlier answers.
 

@@ -1,0 +1,88 @@
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[2026-10-29T22:13:00Z] UV-OK
+[2026-10-29T22:13:06Z] CODE-Pixal3D-OK f7cf38429b0bd264f1995f0f8743a88b1c728b94
+[2026-10-29T22:13:15Z] CODE-TRELLIS.2-OK 75fbf0183001ed9876c8dbb35de6b68552ee08bd
+[2026-10-29T22:13:17Z] CODE-TripoSG-OK fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c
+[2026-10-29T22:13:26Z] CODE-Hunyuan3D-2.1-OK 82920d643c0dc2f7bfd7255f45f62d386edfe60c
+[2026-10-29T22:13:36Z] A-TORCH-OK
+error: No solution found when resolving dependencies
+  cause: Because only moge==3.0.0 is available and moge==3.0.0 depends on trimesh>=4.11, we can conclude that all versions of moge depend on trimesh>=4.11.
+         And because you require trimesh==4.10.1 and moge, we can conclude that your requirements are unsatisfiable.
+[2026-10-29T22:13:48Z] A-BASIC-FAIL
+[2026-10-29T22:13:58Z] W-PIXAL3D-OK
+[2026-10-29T22:14:06Z] W-DINO-BIREF-OK
+[2026-10-29T22:14:08Z] A-WHEELS-OK
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/content/genv/lib/python3.10/site-packages/cumesh/__init__.py", line 1, in <module>
+    from . import remeshing
+  File "/content/genv/lib/python3.10/site-packages/cumesh/remeshing.py", line 3, in <module>
+    from tqdm import tqdm
+ModuleNotFoundError: No module named 'tqdm'
+[2026-10-29T22:14:11Z] A-IMPORT-FAIL
+[2026-10-29T22:14:23Z] B-TORCH-OK
+[2026-10-29T22:14:25Z] FIX-A-BASIC-OK
+[2026-10-29T22:14:26Z] B-BASIC-OK
+error: Failed to build `diso==0.1.4`
+  cause: The build backend returned an error
+  cause: Call to `setuptools.build_meta:__legacy__.prepare_metadata_for_build_wheel` failed (exit status: 1)
+
+         [stderr]
+         Traceback (most recent call last):
+           File "<string>", line 8, in <module>
+         ModuleNotFoundError: No module named 'setuptools'
+
+hint: This error likely indicates that `diso@0.1.4` depends on `setuptools`, but doesn't declare it as a build dependency. If `diso` is a first-party package, consider adding `setuptools` to its `build-system.requires`. Otherwise, either add it to your `pyproject.toml` under:
+
+[tool.uv.extra-build-dependencies]
+diso = ["setuptools"]
+
+or `uv pip install setuptools` into the environment and re-run with `--no-build-isolation`.
+[2026-10-29T22:14:26Z] B-DISO-FAIL (TripoSG falls back to the skimage extractor)
+[2026-10-29T22:14:27Z] FIX-A-MOGE-OK
+[2026-10-29T22:14:28Z] FIX-A-WHEELS-OK
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/content/genv/lib/python3.10/site-packages/o_voxel/__init__.py", line 1, in <module>
+    from . import (
+  File "/content/genv/lib/python3.10/site-packages/o_voxel/postprocess.py", line 9, in <module>
+    from flex_gemm.ops.grid_sample import grid_sample_3d
+  File "/content/genv/lib/python3.10/site-packages/flex_gemm/__init__.py", line 10, in <module>
+    from . import kernels
+  File "/content/genv/lib/python3.10/site-packages/flex_gemm/kernels/__init__.py", line 1, in <module>
+    from . import triton
+  File "/content/genv/lib/python3.10/site-packages/flex_gemm/kernels/triton/__init__.py", line 1, in <module>
+    from .grid_sample import *
+  File "/content/genv/lib/python3.10/site-packages/flex_gemm/kernels/triton/grid_sample/__init__.py", line 1, in <module>
+    from . import config
+  File "/content/genv/lib/python3.10/site-packages/flex_gemm/kernels/triton/grid_sample/config.py", line 1, in <module>
+    import triton
+  File "/content/genv/lib/python3.10/site-packages/triton/__init__.py", line 8, in <module>
+    from .runtime import (
+  File "/content/genv/lib/python3.10/site-packages/triton/runtime/__init__.py", line 1, in <module>
+    from .autotuner import (Autotuner, Config, Heuristics, autotune, heuristics)
+  File "/content/genv/lib/python3.10/site-packages/triton/runtime/autotuner.py", line 9, in <module>
+    from .jit import KernelInterface
+  File "/content/genv/lib/python3.10/site-packages/triton/runtime/jit.py", line 12, in <module>
+    from ..runtime.driver import driver
+  File "/content/genv/lib/python3.10/site-packages/triton/runtime/driver.py", line 1, in <module>
+    from ..backends import backends
+  File "/content/genv/lib/python3.10/site-packages/triton/backends/__init__.py", line 50, in <module>
+    backends = _discover_backends()
+  File "/content/genv/lib/python3.10/site-packages/triton/backends/__init__.py", line 44, in _discover_backends
+    driver = _load_module(name, os.path.join(root, name, 'driver.py'))
+  File "/content/genv/lib/python3.10/site-packages/triton/backends/__init__.py", line 12, in _load_module
+    spec.loader.exec_module(module)
+  File "/content/genv/lib/python3.10/site-packages/triton/backends/amd/driver.py", line 7, in <module>
+    from triton.runtime.build import _build
+  File "/content/genv/lib/python3.10/site-packages/triton/runtime/build.py", line 8, in <module>
+    import setuptools
+ModuleNotFoundError: No module named 'setuptools'
+[2026-10-29T22:14:30Z] FIX-A-IMPORT-FAIL
+[2026-10-29T22:14:31Z] W-TRELLIS2-OK
+2.6.0+cu124
+[2026-10-29T22:14:34Z] B-IMPORT-OK
+[2026-10-29T22:14:45Z] W-TRIPOSG-OK
+[2026-10-29T22:14:46Z] W-HY21-FAIL
+[2026-10-29T22:14:46Z] WEIGHTS-DONE 32G
+[2026-10-29T22:14:46Z] SETUP-DONE

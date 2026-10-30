@@ -1,0 +1,84 @@
+{
+ "obj": "plastic_dish_rack",
+ "video": "ep26_a.mp4",
+ "s": 1.8384509854815005,
+ "c": [
+  0.017081696540117264,
+  0.0006824061274528503,
+  0.04405990242958069
+ ],
+ "A": [
+  [
+   0.012369402455623648,
+   0.12168809076498334,
+   0.9924905340306418
+  ],
+  [
+   -0.812145571181646,
+   -0.5778097002696768,
+   0.08096625112819214
+  ],
+  [
+   0.5833240524280033,
+   -0.8070492251433801,
+   0.09168129541754512
+  ]
+ ],
+ "front_check": {
+  "rot_err": 1.546308435407262e-06,
+  "pos": [
+   -0.0,
+   -1.17186,
+   0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 138,
+   "vis": 122776,
+   "occl": 0.0704,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 0.83,
+   "rest": true,
+   "skin": 0.0,
+   "ok": true,
+   "u": [
+    0.81215,
+    0.57781,
+    -0.08097
+   ],
+   "skin_removed_px": 12917,
+   "file": "view00_k138.png",
+   "fov_deg": 59.276,
+   "dist_m": 0.6374,
+   "mask_px": 111782,
+   "sil_px": 104984,
+   "iou_sil_mask": 0.6812
+  }
+ ],
+ "n_candidates": 79,
+ "n_good": 11,
+ "args": {
+  "video": "data/store/ep26_a.mp4",
+  "poses": "data/sweep/ep26/poses.npz",
+  "hands": "data/sweep/ep26/hands.npz",
+  "calib": "data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "plastic_dish_rack",
+  "out": "gen/views_v2/ep26_plastic_dish_rack",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 15.0,
+  "occl": 0.15,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 8.0,
+  "skin": 1,
+  "skin_max": 0.01
+ },
+ "source": "views_v2"
+}

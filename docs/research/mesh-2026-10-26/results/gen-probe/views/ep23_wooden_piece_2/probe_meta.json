@@ -1,0 +1,106 @@
+{
+ "obj": "wooden_piece_2",
+ "video": "ep23_a.mp4",
+ "s": 4.345093118642343,
+ "c": [
+  -0.0007742159068584442,
+  0.001893855631351471,
+  0.001970503479242325
+ ],
+ "A": [
+  [
+   -0.14000575420757075,
+   -0.9886960627352627,
+   0.053652682531529355
+  ],
+  [
+   -0.8440587897725881,
+   0.090844651919123,
+   -0.5284993142968916
+  ],
+  [
+   0.5176512241709598,
+   -0.11927894477619753,
+   -0.8472365928116183
+  ]
+ ],
+ "front_check": {
+  "rot_err": 4.834130428177374e-07,
+  "pos": [
+   0.0,
+   -2.70635,
+   -0.0
+  ]
+ },
+ "chosen": [
+  {
+   "k": 6,
+   "vis": 85464,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.04,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    0.84406,
+    -0.09084,
+    0.5285
+   ],
+   "file": "view00_k6.png",
+   "fov_deg": 27.237,
+   "dist_m": 0.6229,
+   "mask_px": 290590,
+   "sil_px": 283173,
+   "iou_sil_mask": 0.9299
+  },
+  {
+   "k": 298,
+   "vis": 42940,
+   "occl": 0.0,
+   "inside": true,
+   "hand_joints": 0,
+   "speed_mm": 1.09,
+   "rest": true,
+   "skin": null,
+   "ok": true,
+   "u": [
+    -0.27083,
+    -0.81925,
+    0.50545
+   ],
+   "sep_deg": 83.5,
+   "file": "view01_k298.png",
+   "fov_deg": 32.062,
+   "dist_m": 0.5734,
+   "mask_px": 106588,
+   "sil_px": 98635,
+   "iou_sil_mask": 0.8726
+  }
+ ],
+ "n_candidates": 162,
+ "n_good": 20,
+ "args": {
+  "video": "data/store/ep23_a.mp4",
+  "poses": "data/sweep/ep23/poses.npz",
+  "hands": "data/sweep/ep23/hands.npz",
+  "calib": "data/calib.json",
+  "lib": "/home/user/v2d-track3/meshes/library_v3",
+  "obj": "wooden_piece_2",
+  "out": "gen/views_v2/ep23_wooden_piece_2",
+  "n": 6,
+  "size": 1024,
+  "step": 2,
+  "min_deg": 8.0,
+  "occl": 0.02,
+  "speed_mm": 1.5,
+  "span": 0.75,
+  "fill": 0.46,
+  "margin": 20,
+  "held_speed_mm": 0.0,
+  "skin": 0,
+  "skin_max": 0.01
+ },
+ "source": "views_v2"
+}

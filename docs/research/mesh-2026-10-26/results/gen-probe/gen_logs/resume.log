@@ -1,0 +1,17 @@
+[2026-10-29T22:55:06Z] sam3d weights: 15 files
+[2026-10-29T22:55:06Z] pixal3d_mv
+[2026-10-29T22:55:06Z] hy21 seed 42: crops/ep31/mini_sweeper_k270.png crops/ep31/mini_sweeper_k282.png crops/ep39/mini_dust_pan_k297.png crops/ep39/mini_dust_pan_k315.png crops/ep41/white_pot_k279.png crops/ep41/white_pot_k285.png
+[2026-10-29T22:59:57Z] hy21 seed 7: crops/ep26/plastic_dish_rack_k96.png crops/ep31/mini_sweeper_k270.png crops/ep31/mini_sweeper_k282.png crops/ep39/mini_dust_pan_k297.png crops/ep39/mini_dust_pan_k315.png crops/ep41/white_pot_k279.png crops/ep41/white_pot_k285.png
+[2026-10-29T23:06:01Z] hy21 done
+[2026-10-29T23:06:51Z] pixal done
+[2026-10-29T23:06:51Z] trellis2 1536 seed 42: crops/ep11/beige_cup_k0.png crops/ep22/blue_cup_k156.png crops/ep39/mini_dust_pan_k315.png
+[2026-10-29T23:08:39Z] trellis2 1024 seed 42: crops/ep22/blue_cup_k156.png
+[2026-10-29T23:09:53Z] trellis2 1536 seed 7: crops/ep11/beige_cup_k0.png crops/ep22/blue_cup_k156.png crops/ep22/blue_cup_k159.png
+[2026-10-29T23:11:43Z] trellis2 1024 seed 7: crops/ep22/blue_cup_k156.png crops/ep22/blue_cup_k159.png
+[2026-10-29T23:13:06Z] trellis2 done
+[2026-10-29T23:13:06Z] sam3d: crops/ep11/beige_cup_k6.png crops/ep2/white_pot_lid_k321.png crops/ep22/blue_cup_k156.png crops/ep22/water_pitcher_k174.png crops/ep23/wooden_piece_1_k27.png crops/ep23/wooden_piece_2_k6.png crops/ep26/plastic_dish_rack_k144.png crops/ep31/mini_sweeper_k270.png crops/ep39/mini_dust_pan_k297.png crops/ep41/white_pot_k279.png
+[2026-10-29T23:13:41Z] sam3d done
+Terminated
+[2026-10-29T23:18:21Z] RESUME-DONE
+SIM3-TODO-DONE
+SIM3-TODO-DONE
