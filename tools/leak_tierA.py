@@ -11,6 +11,9 @@ Track = P_o, the perception track of ROOT/ep<N>/poses_world_vo.npz (lib frames; 
       anchor, scored points and symmetry axis all from the copy). Per copy: the kit registration of library_v3 at the
       episode's own seed, T_lib, T*, and a FLIP when that registration turns > 90 deg (cups: axis tilt; lid: modulo its
       180 deg turn) from the clean public-scan registration (pipeline/mesh_gates.py flip rule).
+  a1seed  the same flip test with the CLEAN public scan as the host scan and only the kit's registration seed changed
+      (1_000_003 q + 101 slot for pseudo episodes q = 10000 + k, k < --n_seed; an eval episode's index gives a seed no
+      public episode has): flips vs the episode's own X_kit and the scene's T_lib on our track.
   a2  tracker phase split on * (L3 on P_o; PLAN §2): the AUC is a mean over frames and objects of a per-frame score
       (the kit's 9 ADD thresholds, trapezoid weights), so 1 - R* splits EXACTLY into per-frame losses. Phases per
       object from the MOCAP motion (refine.moving_labels thresholds 0.5 cm / 2 deg per frame, 3-frame closing; runs
@@ -35,7 +38,8 @@ Track = P_o, the perception track of ROOT/ep<N>/poses_world_vo.npz (lib frames; 
   a7  reads leak_settle.py's settle results: drift of every mocap rest configuration after 2 s hands-free under lib,
       lib+carve and scan collision; gate = drift <= 1 cm and <= 5 deg for every object (PLAN §3).
 Usage: python -I leak_tierA.py MODE --perc ROOT --xgeom XG --xtrk XT --lib LIB --t3 T3 --kit KIT --work DIR --out JSON
-       [--episodes 0,2,...] [--jobs 4] [--n_perturb 50]      (DIR must contain 'oracle'; MODE in a1 a2 a3prep a3 a4 a6 a7)
+       [--episodes 0,2,...] [--jobs 4] [--n_perturb 50] [--n_seed 50] [--a4_window 40]
+       (DIR must contain 'oracle'; MODE in a1 a1seed a2 a3prep a3 a4 a6 a7prep a7)
 (2026-10-30)
 """
 import argparse, hashlib, json, os, subprocess, sys, time, types
@@ -233,6 +237,60 @@ def a1_summary(res):
     return dict(per_object=per_obj)
 
 
+# ---------------- a1seed: registration flips from the scorer's seed alone (clean public scan as the host scan)
+SEED_BASE = 10_000      # pseudo episode indices SEED_BASE + k: no real (public or eval) episode has one
+
+
+def _a1seed_reg(args):
+    """The kit's registration of library_v3 (budgeted as the packer does) to the CLEAN public scan at the kit's seed of
+    pseudo episode Q, slot S: (name, slot, q) -> (candidate anchor, rotation)."""
+    a, n, s, q = args
+    XF.kit(a.kit); H = XF.host_geometry(a.t3, n, s)
+    ca, R = XF.K['T3']._register_object_body(XF.K['budget'](f'{a.lib}/{n}.glb', 4096, 4096), H['mesh'], H['anchor'], 1_000_003 * q + 101 * s)
+    return (n, s, q), (ca.tolist(), R.tolist())
+
+
+def a1seed(a, eps):
+    """A1 seed-only perturbation: the host scan IS the public scan; only the kit's registration seed changes (an eval
+    episode's index gives a seed no public episode has). Per (episode, object) and pseudo episode: flip vs the
+    episode's own registration X_kit (> 90 deg, symmetry-aware), ADD vs X_kit and X*_geom, and the scene's T_lib on
+    our track (the scene alignment couples the objects)."""
+    XF.kit(a.kit); t0 = time.time()
+    slots = sorted({(n, s) for e in eps for s, n in enumerate(XF.names_of(a.t3, e))})
+    jobs = [(a, n, s, SEED_BASE + k) for n, s in slots for k in range(a.n_seed)]
+    with ProcessPoolExecutor(a.jobs) as ex:
+        REG = dict(ex.map(_a1seed_reg, jobs, chunksize=4))
+    print(f'a1seed: {len(jobs)} registrations ({round(time.time() - t0)} s)', flush=True)
+    out = {}
+    for ep in eps:
+        D = load(a, ep); rows = []
+        lib0 = auc_named(D.names, frame_err(D.names, D.Tp, D.gt, D.H, D.REGk))
+        for k in range(a.n_seed):
+            q = SEED_BASE + k; REGq = []; reg = {}
+            for s, n in enumerate(D.names):
+                ca, R = (np.asarray(x) for x in REG[(n, s, q)]); REGq.append((ca, R))
+                Xq = XF.rigid(R, D.H[s]['anchor'] - R @ ca); E = Xq @ np.linalg.inv(D.Xk[n])
+                reg[n] = dict(rot_vs_kit_deg=round(sym_rot_deg(E[:3, :3], D.H[s]), 2), add_vs_kit_cm=round(XF.sym_add_cm(E, D.H[s], 72), 3),
+                              add_vs_xgeom_cm=round(XF.sym_add_cm(D.Xg[n] @ np.linalg.inv(Xq), D.H[s], 72), 3))
+                reg[n]['flip'] = bool(reg[n]['rot_vs_kit_deg'] > FLIP_DEG)
+            rows.append(dict(q=q, lib=auc_named(D.names, frame_err(D.names, D.Tp, D.gt, D.H, REGq)), reg=reg))
+        sc = np.array([x['lib']['AUC'] for x in rows])
+        out[str(ep)] = dict(episode=ep, objects=D.names, lib_own_seed=lib0, rows=rows, summary=dict(
+            scene_lib_mean=round(float(sc.mean()), 4), scene_lib_min=round(float(sc.min()), 4),
+            scene_drop_mean=round(float(lib0['AUC'] - sc.mean()), 4), scene_drops_ge_0p03=int((sc <= lib0['AUC'] - 0.03).sum()),
+            flips={n: int(sum(x['reg'][n]['flip'] for x in rows)) for n in D.names},
+            rot_vs_kit_deg_max={n: max(x['reg'][n]['rot_vs_kit_deg'] for x in rows) for n in D.names},
+            add_vs_kit_cm_median={n: round(float(np.median([x['reg'][n]['add_vs_kit_cm'] for x in rows])), 3) for n in D.names}))
+        print(f'ep{ep}: own-seed T_lib {lib0["AUC"]:.4f}; {a.n_seed} seeds: mean {sc.mean():.4f} min {sc.min():.4f}, flips '
+              f'{out[str(ep)]["summary"]["flips"]}', flush=True)
+    per_obj = {}
+    for n, s in slots:
+        rs = [x['reg'][n] for r in out.values() if n in r['objects'] and r['objects'].index(n) == s for x in r['rows']][:a.n_seed]
+        per_obj[f'{n}@{s}'] = dict(draws=len(rs), flips=int(sum(x['flip'] for x in rs)), rot_vs_kit_deg_max=max(x['rot_vs_kit_deg'] for x in rs),
+                                   add_vs_xgeom_cm_median=round(float(np.median([x['add_vs_xgeom_cm'] for x in rs])), 3))
+    return out, dict(per_object_slot=per_obj, n_seed=a.n_seed, seed_base=SEED_BASE, seconds=round(time.time() - t0, 1))
+
+
 # ---------------- a2 / a5: phase split of the tracker loss, frame-0 re-anchor
 BONES = [(0, 1), (1, 2), (2, 3), (3, 4), (0, 5), (5, 6), (6, 7), (7, 8), (5, 9), (9, 10), (10, 11), (11, 12), (9, 13),
          (13, 14), (14, 15), (15, 16), (13, 17), (0, 17), (17, 18), (18, 19), (19, 20), (0, 9), (0, 13), (1, 5)]   # MediaPipe + palm
@@ -411,8 +469,8 @@ def segments(runs_, merge=10):  # true motion runs closer than MERGE frames form
     return seg
 
 
-def a4_episode(a, ep, W=40):
-    D = load(a, ep); t0 = time.time(); N, names = D.N, D.names
+def a4_episode(a, ep):
+    W = a.a4_window; D = load(a, ep); t0 = time.time(); N, names = D.N, D.names
     G = np.asarray(json.load(open(a.xtrk))['episodes'][str(ep)]['fit']['G_mocap_T_perc']); Gi = np.linalg.inv(G)
     hf, J, _ = hands(f'{a.perc}/ep{ep}')
     meas_any = np.any([m for _, m in J.values()], 0)
@@ -830,12 +888,14 @@ def _run(args):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('mode', choices=['a1', 'a2', 'a3prep', 'a3', 'a4', 'a6', 'a7prep', 'a7'])
+    p.add_argument('mode', choices=['a1', 'a1seed', 'a2', 'a3prep', 'a3', 'a4', 'a6', 'a7prep', 'a7'])
     p.add_argument('--perc', required=True); p.add_argument('--xgeom', required=True); p.add_argument('--xtrk', required=True)
     p.add_argument('--lib', required=True); p.add_argument('--t3', required=True); p.add_argument('--kit', required=True)
     p.add_argument('--work', required=True, help='scratch dir (must contain "oracle")'); p.add_argument('--out', required=True)
     p.add_argument('--episodes', default=','.join(map(str, PUBLIC))); p.add_argument('--jobs', type=int, default=4)
     p.add_argument('--n_perturb', type=int, default=50)
+    p.add_argument('--n_seed', type=int, default=50, help='a1seed: pseudo episode seeds per (object, slot)')
+    p.add_argument('--a4_window', type=int, default=40, help='a4: frames searched before / after a true motion segment')
     p.add_argument('--oracle_t3', default=None, help='a3prep: T3 dir with calib.json for oracle_poses.py (default --t3)')
     p.add_argument('--stored', default=None, help='a3: json list of stored reference trees [{ep, stage, tree, lib}]')
     p.add_argument('--frames_check', default=None, help='a6: tierA/frames_check.json')
@@ -862,6 +922,8 @@ def main():
         out['summary'] = a6_check(a)
     if a.mode == 'a7':
         out.update(a7_read(a, eps))
+    if a.mode == 'a1seed':
+        out['episodes'], out['summary'] = a1seed(a, eps)
     if a.mode == 'a3' and a.stored:
         out['stored'] = a3_stored(a)
     out['seconds'] = round(time.time() - t0, 1)
