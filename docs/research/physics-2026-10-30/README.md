@@ -127,3 +127,8 @@ object. Grip force cannot fix a grip that is not geometrically there.
   object frame during each hold; no ILC) carries the objects: falsified unless zero-action sim_vs_ref beats the plain P
   copy by ≥ 0.05 on at least 3 of 4 episodes. Also compared (no rule) with the Sharpa grasp-lock S1 CPU numbers
   (0.141 / 0.600 / 0.279 / 0.203).
+- [H-lock] first run (12:45–13:20 UTC) **void**: `grasp_lock.py` reported "0 fingers on, mean gap 69–91 mm" and no
+  closing on every hold, because `contact_retarget.hand_geometry` finds hand bodies by the `<side>_sharpa_wave/` label
+  prefix and the human URDF was named `<side>_human` (no hand geometry found). Scores of that run (0.223 / 0.596 /
+  0.353 / 0.194) are not a test of the hypothesis. Fix: the human URDF now carries the Sharpa's robot name; rerun with the
+  rule unchanged.

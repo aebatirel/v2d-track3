@@ -160,7 +160,9 @@ def joint(name, parent, child, xyz=(0, 0, 0), R=np.eye(3), axis=(0, 0, 1), lim=N
 
 
 def build_urdf(side, T, m, rs):
-    s = side; out = [f'<?xml version="1.0"?>\n<robot name="{s}_human">\n']
+    # robot name = the Sharpa's: our tools find hand bodies by the "<side>_sharpa_wave/" label prefix
+    # (contact_retarget.hand_geometry; the first grasp-lock run on this hand found no geometry under "<side>_human")
+    s = side; out = [f'<?xml version="1.0"?>\n<robot name="{s}_sharpa_wave">\n']
     # palm: metacarpal capsules (index, middle, ring) + a box closing the volar surface
     geoms = ''
     for f in ('index', 'middle', 'ring'):
