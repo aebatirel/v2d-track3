@@ -4936,3 +4936,13 @@ Advice given:
   CPU cores, 16–63 GB RAM at $0.12–0.19/h (e.g. RTX 2060S Quebec 20 cores / 63 GB $0.124/h; RTX 3070 Ti 28 cores /
   16 GB $0.19/h), vs this VM's 4 cores. To be used for the plan's CPU stages (reference-level audits over all public
   episodes, CPU replays, scoring); GPU training stays on RTX PRO 6000. Every box still gets a ledger line.
+- 13:45 UTC **oracle twins option B launched**: 58408407 `20261030-orcB-38234d1` (RTX PRO 6000 Max-Q California
+  $1.467/h; Denmark offer was gone), commit 38234d1, ledger planned $7.00. Job (docs/research/work/oracle-twins-
+  20261030/JOBS.txt, option B): `LEARNER=glock EPS="11 13 31" ENV_EP11="SF=0 PIECES=meshes/carve/ev10" ENV_EP13="SF=1"
+  ENV_EP31="SF=1" LIB=meshes/library_v3 REPLAN=1 EVOLVE=0 CURVE_REP=3 NREP=10 PAR=2 SEED=42 STEPS=70004736
+  TRAIN_SLOTS=2 GL_ARGS=... bash ops/jobs/oracle_twins.sh`.
+  - Reviews (wf_4f80bdc9-7d2): mechanics GO; integrity NO-GO until F1 (class C3b: a low copy ceiling no longer hides
+    a large reference loss) and F2 (1.64·SE noise margin on every reading) were applied, plus F3 (NREP 6 → 10) and
+    PAR=2. All applied in 38234d1 BEFORE launch (PREREG §10). Synthetic checks of the classes pass.
+  - Expected ≈ 4–5.5 h (3 waves of 2 trainings) plus setup under HF 429s.
+  - Note: the physics session's box 58386066 (physS0) also shows PUSH-FAILED (HF 429); it retries once after 60 min.
