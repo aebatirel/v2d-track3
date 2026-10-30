@@ -1,28 +1,50 @@
-"""GT-free candidate features and vetoes (module M13 of SPEC section 7; minimal form for build step B1).
+"""GT-free candidate features and vetoes (module M13 of SPEC section 7; full form, build step B5).
 
-Frozen definitions: PREREG A.2-A.4. B1 implements the all-frames form (candidates are built once on all frames and
-not rebuilt per block; the K = 3 held-out blocks define the held-out point sets and the bootstrap units, as in the X0
-rule form of PREREG B.1). B5 adds the fold rebuilds, the generator view hold-out, self-ambiguity (V5) and the
-observed flip margin.
+Frozen definitions: PREREG A.2-A.4 (selection itself: select.py, PREREG A.5). Nothing here reads a scan, a label, a
+mocap pose or an eval output; scripts/mesh_metric.py is never imported (SPEC section 2): the kit decode and the
+self-ambiguity are own copies, checked against the originals by tests/test_score.py.
 
-  kit_decode(path) -> (v, f)            own copy of the kit packer's budget_mesh (v2dlb/mesh_budget.py) at 4096 faces
-                                        and 4096 vertices: weld, simplify to both limits, pad (SPEC section 2: the gmg
-                                        carries its own copy; scripts/mesh_metric.py is never imported)
-  decoded_mesh(path) -> Trimesh         the decode with its zero-area padding rows dropped (as the kit's scorer sees it)
-  v1(path) -> dict                      V1: watertight after the kit decode
-  fsv_far(mesh, obs) -> dict            PREREG A.3: share of 20,000 area-weighted surface samples (seed 0) in FREE
-                                        voxels with no OBSERVED voxel within 2 voxels (Chebyshev)
-  heldout(obs, frames, K) -> blocks     PREREG A.2 blocks and held-out sets
-  evidence(mesh, bundle, obj, blocks)   PREREG A.4 ray score on the held-out sets (all-frames candidate), per-frame
-                                        sums for the moving-block bootstrap
-  bootstrap_reps(blocks) / e_reps(...)  PREREG A.4: 200 replicates (seed 0) of contiguous runs of round(n_k^(1/3))
-                                        frames inside each block, shared by all candidates (paired)
-  v2(mesh, bundle, obj) -> dict         PREREG A.3 V2 (sample-based contact test, band b)
-  v3(fsv_c, fsv_s, tau) -> dict         PREREG A.3 V3; tau is fitted at B13 (A.3), so in B1 V3 is reported and not
-                                        applied (tau None)
-  below_table(mesh, bundle, obj)        PREREG A.3 V4
+Held-out time blocks and folds (PREREG A.2, A.4)
+  plan(bundle, obj, K, gen_views=None) -> dict   the object's good frames in time order split into K contiguous
+                                        blocks of equal frame count; held-out sets H_k (owned points, one per 4 mm
+                                        voxel per frame, then <= 20,000 at random, seed 0); generator view hold-out
+                                        (frames within 8 deg of a generator input view removed for all candidates;
+                                        skipped and flagged gen_view_overlap if > 80 % of the frames would go)
+  heldout(bundle, obj, K=None)          the plan's blocks (B1 interface)
+  train_frames(plan, k)                 the good frames outside block k (fold k's build frames)
+  view_dirs(bundle, obj, frames)        unit direction from the object's centre (median owned point) to the camera
+                                        centre, object frame; the view of a frame
+  build_folds(producer, ctx, plan)      fold candidates c_k = producer.produce(ctx, frames=train_frames(plan, k)),
+                                        matched by cid; a producer that cannot rebuild leaves its candidates fixed
+  fold_meshes(cand, folds, K)           [c_1..c_K] for one candidate: its fold rebuilds, or its all-frames mesh in
+                                        every fold ('fixed': fixed meshes, X0 replay, producers without a fold build)
+  evidence(meshes, bundle, obj, blocks, fsv)   PREREG A.4 ray score: c_k cast against H_k; R_k, E, per-frame sums
+  bootstrap_reps(blocks) / e_reps(...)  200 moving-block replicates (seed 0) of contiguous runs of L = max(1,
+                                        round(n_k^(1/3))) frames inside each block, shared by every candidate (paired)
+  se_diff(reps_c, reps_best)            SD over replicates of E(c) - E(best)
+Vetoes and features
+  kit_decode(path_or_mesh), decoded_mesh, v1      own copy of the kit packer's budget_mesh at 4096 (V1)
+  fsv_far(mesh, obs)                    PREREG A.3 (20,000 area-weighted samples, seed 0; FREE and no OBSERVED voxel
+                                        within 2 voxels, Chebyshev)
+  v2(mesh, bundle, obj), v3(fsv_c, fsv_s, tau), below_table(mesh, bundle, obj)   PREREG A.3 V2, V3, V4
+  tau_q99(diffs)                        PREREG A.3 tau: the 99th percentile of the fold null D(c, k)
+  ambiguity(v, f, kind)                 own copy of scripts/mesh_metric.ambiguity with own copies of the kit AUC
+                                        helpers it calls (_pca_basis, _initial_rotations, _kabsch,
+                                        _symmetric_mean_distance, _surface_moments, _sample_mesh_surface,
+                                        _axial_rotations; ICP 40 iterations, trim 0.9)
+  self_ambiguity(mesh, kind=None)       ambiguity + the V5 rule: flip_risk = amb - floor < floor; flip_units =
+                                        floor((amb - floor) / floor) (A.5 key 2). The caller passes the mesh with
+                                        TRUSTED balls only (base mesh when the object's balls are not trusted).
+  kit_symmetry(obj)                     'axial' / 'half' / None from the kit config (config/tracks.json, role kit)
+  obs_flip_margin(mesh, obs, kind)      diagnostic: ICP of our owned points onto the candidate from the kit's 24 PCA
+                                        starts; o2m residual of the best flipped solution minus the identity-start one
+  score_pool(cands, bundle, obj, ...)   all features of one pool, rows ready for select.pick
 """
 from __future__ import annotations
+
+import itertools
+import math
+import os
 
 import numpy as np
 import trimesh
@@ -33,6 +55,13 @@ from gmg import contact as CT, geom, guard
 from gmg.bundle import STATE_FREE, STATE_OBSERVED
 
 KIT_FACES = KIT_VERTICES = 4096
+# kit AUC.py constants used by the ambiguity copy (metric_code/track_3/AUC.py; kit scorer code, copied, never imported)
+KIT_ALIGNMENT_SAMPLES = 3000
+KIT_ICP_ITERATIONS = 40
+KIT_TRIM_FRACTION = 0.9
+KIT_SYMMETRY_ANGLES = 360
+AMB_SEEDS = (101, 202)          # mesh_metric.ambiguity: the two independent surface samples
+FLIP_UNITS_INF = 10 ** 6        # flip_units when no start stays a flip (amb infinite): the safest possible value
 
 
 def consts():
@@ -58,12 +87,36 @@ def consts():
     )
 
 
+def consts_b5():
+    """Constants added by the full form (B5)."""
+    return dict(
+        K_menu=guard.constant('variant_menu_K', [3, 5], 'generic:PREREG A.7 menu K in {3, 5}'),
+        gen_deg=guard.constant('gen_view_holdout_deg', 8.0, 'generic:PREREG A.6 generator view hold-out 8 deg '
+                                                             '(the view-spacing constant)'),
+        gen_skip=guard.constant('gen_view_holdout_skip_frac', 0.8, 'generic:PREREG A.6 hold-out skipped if > 80 % '
+                                                                     'removed'),
+        block_rate=guard.constant('bootstrap_block_rate', 1.0 / 3.0, 'generic:PREREG A.6 block length '
+                                                                     'round(n_k^(1/3))'),
+        tau_q=guard.constant('v3_tau_percentile', 99.0, 'generic:PREREG A.3 tau = 99th percentile of the fold null'),
+        amb_n=guard.constant('amb_samples', KIT_ALIGNMENT_SAMPLES, 'kit:AUC.py _ALIGNMENT_SAMPLES 3000 '
+                                                                    '(mesh_metric.ambiguity)'),
+        icp_it=guard.constant('amb_icp_iterations', KIT_ICP_ITERATIONS, 'kit:AUC.py _ICP_ITERATIONS 40'),
+        icp_trim=guard.constant('amb_icp_trim', KIT_TRIM_FRACTION, 'kit:AUC.py _TRIM_FRACTION 0.9'),
+        flip_deg=guard.constant('amb_flip_deg', 90.0, 'generic:SPEC section 10 flip = rotation > 90 deg '
+                                                     '(mesh_metric.ambiguity)'),
+    )
+
+
 # ------------------------------------------------------------------------------------------------ V1: kit decode
 def kit_decode(path, faces=KIT_FACES, vertices=KIT_VERTICES):
     """Copy of the kit packer v2dlb/mesh_budget.budget_mesh (weld, simplify to both limits, pad to the exact row
-    counts). Kept line for line; tests/test_score.py checks it against the kit file."""
+    counts). Kept line for line; tests/test_score.py checks it against the kit file. PATH may also be an in-memory
+    Trimesh (then the file round trip, e.g. GLB float32 vertices, is skipped; the shipped file is the reference)."""
     import fast_simplification
-    mesh = trimesh.load(path, force="mesh", process=False)
+    if isinstance(path, trimesh.Trimesh):
+        mesh = trimesh.Trimesh(np.asarray(path.vertices), np.asarray(path.faces), process=False)
+    else:
+        mesh = trimesh.load(path, force="mesh", process=False)
     welded = trimesh.Trimesh(mesh.vertices, mesh.faces, process=True)
     v = np.asarray(welded.vertices, dtype=np.float64)
     f = np.asarray(welded.faces, dtype=np.int64)
@@ -125,24 +178,83 @@ def fsv_far(mesh, obs, far=None):
     return dict(fsv_far=float(hit.mean()), outside_grid=float(1 - ins.mean()))
 
 
-# ------------------------------------------------------------------------------------------------ held-out ray score
-def heldout(bundle, obj):
-    """PREREG A.2: the object's good frames in time order, split into K contiguous blocks of equal frame count
-    (np.array_split); H_k = owned points of block k, at most one per 4 mm voxel per frame (random choice, seed 0),
-    then at most 20,000 at random (seed 0). Returns [dict(frames, idx)] with idx into obs arrays."""
-    c = consts()
+def tau_q99(diffs):
+    """PREREG A.3: tau = the 99th percentile of D(c, k) = fsv_far(c_k) - fsv_far(s_k) over every CPU candidate and
+    fold (numpy linear interpolation between order statistics). No floor, no cap. None if there is no difference."""
+    q = consts_b5()['tau_q']
+    d = np.asarray([x for x in diffs if x is not None and np.isfinite(x)], np.float64)
+    return float(np.percentile(d, q)) if len(d) else None
+
+
+# ------------------------------------------------------------------------------------------------ blocks and folds
+def view_dirs(bundle, obj, frames):
+    """(n,3) unit view directions of FRAMES in OBJ's frame: from the object's centre (median of its owned points,
+    all frames) to the camera centre inv(cam_T_obj[f]) . 0."""
     obs = bundle.obs(obj)
-    good = bundle.good_frames(obj)
+    P = np.asarray(obs['pts'], np.float64)[np.asarray(obs['own']) == 0]
+    centre = np.median(P, axis=0) if len(P) else np.zeros(3)
+    out = []
+    for f in frames:
+        T = np.asarray(bundle.poses[f'cam_T_{obj}'][int(f)], np.float64)
+        c = -T[:3, :3].T @ T[:3, 3]
+        d = c - centre
+        out.append(d / max(np.linalg.norm(d), 1e-12))
+    return np.asarray(out, np.float64).reshape(-1, 3)
+
+
+def _gen_holdout(bundle, obj, frames, gen_views):
+    """PREREG A.2 generator view hold-out. gen_views: frame indices of the generator inputs, or (n,3) unit view
+    directions in OBJ's frame. Returns (removed frames, info)."""
+    c = consts_b5()
+    gv = np.asarray(gen_views)
+    if gv.ndim == 2 and gv.shape[1] == 3 and gv.dtype.kind == 'f':
+        G = gv / np.linalg.norm(gv, axis=1, keepdims=True)
+        src = 'directions'
+    else:
+        G = view_dirs(bundle, obj, [int(x) for x in gv.ravel()])
+        src = 'frames'
+    D = view_dirs(bundle, obj, frames)
+    cosmax = (D @ G.T).max(axis=1) if len(G) and len(D) else np.full(len(D), -1.0)
+    near = cosmax >= np.cos(np.radians(c['gen_deg'])) - 1e-12
+    removed = [int(f) for f, n in zip(frames, near) if n]
+    frac = len(removed) / max(len(frames), 1)
+    info = dict(gen_views=int(len(G)), source=src, deg=c['gen_deg'], near_frames=len(removed), frames=len(frames),
+                near_frac=round(frac, 4))
+    if frac > c['gen_skip']:
+        info.update(applied=False, gen_view_overlap=True)
+        return [], info
+    info.update(applied=True, gen_view_overlap=False)
+    return removed, info
+
+
+def plan(bundle, obj, K=None, gen_views=None):
+    """PREREG A.2 blocks and held-out sets. The object's good frames, in time order, are split into K contiguous
+    blocks of equal frame count (np.array_split). With gen_views (only when the pool holds GEN or FUSE candidates),
+    frames whose view lies within 8 deg of a generator input view are removed from every H_k, unless more than 80 %
+    of the good frames would go (then nothing is removed and the plan is flagged gen_view_overlap). H_k = owned points
+    (own == 0) of block k's remaining frames, at most one per 4 mm voxel per frame (random choice, seed 0), then at
+    most 20,000 at random (seed 0). Returns dict(K, frames, blocks=[dict(frames, kept, idx)], removed,
+    gen_view_overlap, holdout)."""
+    c = consts()
+    consts_b5()
+    K = int(c['K'] if K is None else K)
+    obs = bundle.obs(obj)
+    good = [int(f) for f in bundle.good_frames(obj)]
+    removed, hinfo = [], None
+    if gen_views is not None and len(np.asarray(gen_views).ravel()):
+        removed, hinfo = _gen_holdout(bundle, obj, good, gen_views)
+    rem = set(removed)
     fr = np.asarray(obs['frame'])
     own = np.asarray(obs['own']) == 0
     P = np.asarray(obs['pts'], np.float64)
     lo, vox = np.asarray(obs['lo'], np.float64), float(obs['vox'])
     rng = np.random.default_rng(int(c['seed']))
     blocks = []
-    for bf in np.array_split(np.asarray(good), int(c['K'])):
-        m = np.nonzero(np.isin(fr, bf) & own)[0]
+    for bf in np.array_split(np.asarray(good, np.int64), K):
+        kept = [int(f) for f in bf if int(f) not in rem]
+        m = np.nonzero(np.isin(fr, kept) & own)[0]
         if len(m) == 0:
-            blocks.append(dict(frames=[int(x) for x in bf], idx=np.zeros(0, np.int64)))
+            blocks.append(dict(frames=[int(x) for x in bf], kept=kept, idx=np.zeros(0, np.int64)))
             continue
         perm = rng.permutation(len(m))
         mm = m[perm]
@@ -151,10 +263,63 @@ def heldout(bundle, obj):
         sel = mm[np.sort(first)]
         if len(sel) > int(c['heldout_max']):
             sel = rng.choice(sel, int(c['heldout_max']), replace=False)
-        blocks.append(dict(frames=[int(x) for x in bf], idx=np.sort(sel)))
-    return blocks
+        blocks.append(dict(frames=[int(x) for x in bf], kept=kept, idx=np.sort(sel)))
+    return dict(K=K, frames=good, blocks=blocks, removed=sorted(rem),
+                gen_view_overlap=bool(hinfo and hinfo.get('gen_view_overlap')), holdout=hinfo)
 
 
+def heldout(bundle, obj, K=None):
+    """B1 interface: the blocks of plan(bundle, obj, K) (no generator hold-out)."""
+    return plan(bundle, obj, K)['blocks']
+
+
+def train_frames(pl, k):
+    """Fold k's build frames: the plan's good frames outside block k (PREREG A.2 'frames outside block k'). Frames
+    removed by the generator hold-out stay in training (they leave the held-out sets only)."""
+    out = set(pl['blocks'][k]['frames'])
+    return [f for f in pl['frames'] if f not in out]
+
+
+def build_folds(producer, ctx, pl):
+    """Fold rebuilds of every candidate of PRODUCER: produce(ctx, frames=train_frames(pl, k)) for k = 1..K, matched
+    to the all-frames candidates by cid. Returns {cid: [mesh or None per fold]} and a status dict. A producer that
+    cannot rebuild on a frame subset (NotImplementedError) returns {} with status 'fixed' (its candidates are then
+    scored with their all-frames mesh in every fold, fold_meshes)."""
+    folds, status = {}, dict(producer=getattr(producer, '__name__', str(producer)), K=pl['K'], state='rebuilt',
+                             missing={})
+    for k in range(pl['K']):
+        try:
+            cands = producer.produce(ctx, frames=train_frames(pl, k))
+        except NotImplementedError as e:
+            status.update(state='fixed', reason=str(e))
+            return {}, status
+        for c in cands:
+            folds.setdefault(c.cid, [None] * pl['K'])[k] = c.mesh
+    for cid, ms in folds.items():
+        miss = [k for k, m in enumerate(ms) if m is None]
+        if miss:
+            status['missing'][cid] = miss
+    return folds, status
+
+
+def fold_meshes(mesh, folds, K):
+    """[c_1..c_K] of one candidate and its fold state: 'rebuilt' (every fold rebuilt), 'fixed' (no fold rebuild: the
+    all-frames mesh in every fold; fixed meshes, X0 replay, producers without a fold build), or 'partial' (a fold
+    whose rebuild produced no such candidate is scored as an EMPTY mesh: every held-out ray of that block then counts
+    as missing surface, the candidate did not exist on those training frames)."""
+    if not folds:
+        return [mesh] * int(K), 'fixed'
+    out, state = [], 'rebuilt'
+    for m in folds:
+        if m is None:
+            out.append(trimesh.Trimesh(np.zeros((0, 3)), np.zeros((0, 3), np.int64), process=False))
+            state = 'partial'
+        else:
+            out.append(m)
+    return out, state
+
+
+# ------------------------------------------------------------------------------------------------ held-out ray score
 def _huber(x, d):
     ax = np.abs(x)
     return np.where(ax <= d, x * x / (2 * d), ax - d / 2)
@@ -167,7 +332,8 @@ def ray_costs(mesh, bundle, obj, idx):
     obs = bundle.obs(obj)
     P = np.asarray(obs['pts'], np.float64)[idx]
     fr = np.asarray(obs['frame'])[idx]
-    tris = np.asarray(mesh.vertices, np.float64)[np.asarray(mesh.faces, np.int64)]
+    tris = np.asarray(mesh.vertices, np.float64)[np.asarray(mesh.faces, np.int64)] if len(mesh.faces) else \
+        np.zeros((0, 3, 3))
     delta = np.full(len(idx), np.inf)
     for f in np.unique(fr):
         m = fr == f
@@ -182,45 +348,61 @@ def ray_costs(mesh, bundle, obj, idx):
     return delta, cost, fr
 
 
-def evidence(mesh, bundle, obj, blocks, fsv):
-    """PREREG A.4, all-frames form: R_k = mean cost / sigma over H_k; E = mean_k R_k + 10 fsv_far."""
+def evidence(meshes, bundle, obj, blocks, fsv):
+    """PREREG A.4: R_k = mean cost / sigma of c_k's rays over H_k; E = mean_k R_k + 10 fsv_far (fsv_far of the
+    all-frames candidate). MESHES: [c_1..c_K] (fold candidates) or one mesh (all-frames form: the same mesh in every
+    fold). Returns E, R_blocks, ray summary, per-block summaries and the per-frame (cost sum, count) for the
+    bootstrap."""
     c = consts()
     s = bundle.sigma(obj)
-    R, per_frame, n, miss, extra, raw = [], [], 0, 0, 0, []
-    for bk in blocks:
+    if isinstance(meshes, trimesh.Trimesh):
+        meshes = [meshes] * len(blocks)
+    if len(meshes) != len(blocks):
+        raise ValueError(f'evidence: {len(meshes)} fold meshes for {len(blocks)} blocks')
+    R, per_frame, n, miss, extra, raw, per_block = [], [], 0, 0, 0, [], []
+    for mk, bk in zip(meshes, blocks):
         if len(bk['idx']) == 0:
-            R.append(np.nan); per_frame.append({}); continue
-        delta, cost, fr = ray_costs(mesh, bundle, obj, bk['idx'])
+            R.append(np.nan); per_frame.append({}); per_block.append(dict(n=0)); continue
+        delta, cost, fr = ray_costs(mk, bundle, obj, bk['idx'])
         R.append(float(cost.mean() / s))
         uf, inv = np.unique(fr, return_inverse=True)
         per_frame.append({int(f): (float(a), int(b)) for f, a, b in
                           zip(uf, np.bincount(inv, cost), np.bincount(inv))})
-        n += len(cost)
-        miss += int((delta > c['ray_band'] * s).sum())
-        extra += int((delta < -c['ray_band'] * s).sum())
+        mi = int((delta > c['ray_band'] * s).sum()); ex = int((delta < -c['ray_band'] * s).sum())
+        per_block.append(dict(n=int(len(cost)), miss_frac=round(mi / len(cost), 5), extra_frac=round(ex / len(cost), 5),
+                              no_hit_frac=round(float((~np.isfinite(delta)).mean()), 5),
+                              mean_cost_sigma=round(float(cost.mean() / s), 5)))
+        n += len(cost); miss += mi; extra += ex
         raw.append(np.abs(delta[np.isfinite(delta)]))
-    Rm = float(np.nanmean(R))
+    Rm = float(np.nanmean(R)) if np.isfinite(R).any() else float('nan')
     allabs = np.concatenate(raw) if raw else np.zeros(0)
     return dict(E=Rm + c['fsv_w'] * fsv, R_blocks=[round(x, 5) for x in R], ray=dict(
         n=n, miss_frac=round(miss / max(n, 1), 5), extra_frac=round(extra / max(n, 1), 5),
         mean_cost_sigma=round(Rm, 5), median_abs_delta_mm=round(float(np.median(allabs)) * 1e3, 4) if len(allabs)
-        else None), per_frame=per_frame)
+        else None), per_block=per_block, per_frame=per_frame)
+
+
+def block_length(nk):
+    """PREREG A.4 moving-block length L = max(1, round(n_k^(1/3)))."""
+    return max(1, int(round(nk ** consts_b5()['block_rate'])))
 
 
 def bootstrap_reps(blocks):
-    """PREREG A.4: per replicate and block, the block's frames (those with held-out points) resampled as contiguous
-    runs of L = max(1, round(n_k^(1/3))) frames with replacement, truncated to n_k. Shared by all candidates."""
+    """PREREG A.4: per replicate and block, the block's held-out frames (those left after the generator hold-out, in
+    time order) resampled as contiguous runs of L = max(1, round(n_k^(1/3))) frames with replacement (run starts
+    uniform over the n_k - L + 1 possible starts, ceil(n_k / L) runs), truncated to n_k. 200 replicates, seed 0.
+    Every candidate is scored on the same replicates (paired)."""
     c = consts()
     rng = np.random.default_rng(int(c['seed']))
     reps = []
     for _ in range(int(c['n_boot'])):
         r = []
         for bk in blocks:
-            fl = np.asarray(bk.get('frames_with_points', bk['frames']))
+            fl = np.asarray(bk.get('kept', bk['frames']), np.int64)
             nk = len(fl)
             if nk == 0:
                 r.append(fl); continue
-            L = max(1, int(round(nk ** (1 / 3))))
+            L = block_length(nk)
             starts = rng.integers(0, nk - L + 1, size=int(np.ceil(nk / L)))
             r.append(fl[(starts[:, None] + np.arange(L)[None]).ravel()[:nk]])
         reps.append(r)
@@ -228,6 +410,8 @@ def bootstrap_reps(blocks):
 
 
 def e_reps(ev, fsv, sigma, reps):
+    """E of one candidate on every bootstrap replicate (ratio estimator per block: summed cost / summed count of the
+    resampled frames), plus 10 fsv_far (constant across replicates)."""
     c = consts()
     out = np.empty(len(reps))
     for i, r in enumerate(reps):
@@ -238,8 +422,13 @@ def e_reps(ev, fsv, sigma, reps):
             a = sum(pf.get(int(f), (0.0, 0))[0] for f in fl)
             b = sum(pf.get(int(f), (0.0, 0))[1] for f in fl)
             Rk.append(a / max(b, 1) / sigma)
-        out[i] = float(np.mean(Rk)) + c['fsv_w'] * fsv
+        out[i] = (float(np.mean(Rk)) if Rk else float('nan')) + c['fsv_w'] * fsv
     return out
+
+
+def se_diff(reps_c, reps_best):
+    """PREREG A.4 SE_diff(c) = SD over the paired replicates of E(c) - E(best) (numpy population SD)."""
+    return float(np.std(np.asarray(reps_c, np.float64) - np.asarray(reps_best, np.float64)))
 
 
 # ------------------------------------------------------------------------------------------------ V2
@@ -331,3 +520,323 @@ def below_table(mesh, bundle, obj):
     share = float((h < -thr).mean())
     return dict(applies=True, veto=bool(share > c['v4_share']), share=round(share, 5), depth_mm=round(thr * 1e3, 3),
                 rest_share=r['share'], min_height_mm=round(float(h.min()) * 1e3, 3), samples=info)
+
+
+# ------------------------------------------------------------------------------------------------ self-ambiguity (V5)
+# Own copies of the kit AUC.py helpers used by scripts/mesh_metric.ambiguity (kit scorer code is refused to the gmg
+# at run time; these are copied line for line and checked against mesh_metric by tests/test_score.py).
+def _sample_mesh_surface(vertices, faces, count, seed):
+    a, b, c = vertices[faces[:, 0]], vertices[faces[:, 1]], vertices[faces[:, 2]]
+    area = 0.5 * np.linalg.norm(np.cross(b - a, c - a), axis=1)
+    total = area.sum()
+    if not np.isfinite(total) or total <= 0:
+        raise ValueError("object mesh has no surface area")
+    rng = np.random.default_rng(seed)
+    chosen = rng.choice(len(faces), size=count, p=area / total)
+    r1, r2 = rng.random(count), rng.random(count)
+    s = np.sqrt(r1)[:, None]
+    return (1 - s) * a[chosen] + s * (1 - r2[:, None]) * b[chosen] + s * r2[:, None] * c[chosen]
+
+
+def _pca_basis(points):
+    centered = points - points.mean(axis=0)
+    _, vectors = np.linalg.eigh(centered.T @ centered / max(len(centered), 1))
+    basis = vectors[:, ::-1]
+    if np.linalg.det(basis) < 0.0:
+        basis[:, -1] *= -1.0
+    return basis
+
+
+def _initial_rotations(reference, candidate, maximum):
+    ref_basis, cand_basis = _pca_basis(reference), _pca_basis(candidate)
+    rotations = [np.eye(3)]
+    seen = {tuple(np.round(rotations[0], 10).ravel())}
+    for permutation in itertools.permutations(range(3)):
+        permuted = np.eye(3)[:, permutation]
+        for signs in itertools.product((-1.0, 1.0), repeat=3):
+            mapping = permuted @ np.diag(signs)
+            if np.linalg.det(mapping) <= 0.0:
+                continue
+            rotation = ref_basis @ mapping @ cand_basis.T
+            if np.linalg.det(rotation) < 0.0:
+                continue
+            key = tuple(np.round(rotation, 10).ravel())
+            if key in seen:
+                continue
+            seen.add(key)
+            rotations.append(rotation)
+            if len(rotations) >= maximum:
+                return rotations
+    return rotations
+
+
+def _kabsch(source, target):
+    source_center, target_center = source.mean(axis=0), target.mean(axis=0)
+    left, _, right_t = np.linalg.svd((source - source_center).T @ (target - target_center))
+    rotation = right_t.T @ left.T
+    if np.linalg.det(rotation) < 0.0:
+        right_t[-1, :] *= -1.0
+        rotation = right_t.T @ left.T
+    return rotation, target_center - rotation @ source_center
+
+
+def _symmetric_mean_distance(reference, candidate):
+    to_reference = cKDTree(reference).query(candidate, k=1)[0]
+    to_candidate = cKDTree(candidate).query(reference, k=1)[0]
+    return 0.5 * (float(np.mean(to_reference)) + float(np.mean(to_candidate)))
+
+
+def _surface_moments(vertices, faces):
+    triangles = vertices[faces]
+    areas = 0.5 * np.linalg.norm(np.cross(triangles[:, 1] - triangles[:, 0],
+                                          triangles[:, 2] - triangles[:, 0]), axis=1)
+    keep = np.isfinite(areas) & (areas > 1e-12)
+    if not keep.any():
+        raise ValueError("object mesh has no surface area")
+    triangles, areas = triangles[keep], areas[keep]
+    total = float(areas.sum())
+    centroid = (triangles.mean(axis=1) * areas[:, None]).sum(axis=0) / total
+    centered = triangles - centroid
+    squared = np.einsum("tij,tij->ti", centered, centered).sum(axis=1)
+    cross = (np.einsum("ti,ti->t", centered[:, 0], centered[:, 1])
+             + np.einsum("ti,ti->t", centered[:, 0], centered[:, 2])
+             + np.einsum("ti,ti->t", centered[:, 1], centered[:, 2]))
+    radius = float(np.sqrt(max(float((areas * (squared + cross) / 6.0).sum() / total), 0.0)))
+    if not np.isfinite(radius) or radius <= 1e-12:
+        raise ValueError("object mesh has zero or invalid extent")
+    return centroid, radius
+
+
+def _axial_rotations(axis, order=KIT_SYMMETRY_ANGLES):
+    angles = np.arange(order) * (2 * np.pi / order)
+    x, y, z = axis
+    skew = np.array([[0, -z, y], [z, 0, -x], [-y, x, 0]])
+    return (np.cos(angles)[:, None, None] * np.eye(3)
+            + (1 - np.cos(angles))[:, None, None] * np.outer(axis, axis)
+            + np.sin(angles)[:, None, None] * skew)
+
+
+# copies of scripts/mesh_metric.py (rot_about, angle_deg, sym_axis, sym_rot_err, icp_from, ambiguity)
+def rot_about(axis, angle):
+    axis = np.asarray(axis, float) / np.linalg.norm(axis)
+    x, y, z = axis
+    K = np.array([[0, -z, y], [z, 0, -x], [-y, x, 0]])
+    return np.eye(3) + math.sin(angle) * K + (1 - math.cos(angle)) * K @ K
+
+
+def angle_deg(R):
+    return math.degrees(math.acos(max(-1.0, min(1.0, (np.trace(R) - 1) / 2))))
+
+
+def sym_axis(points, kind):
+    """GT-free choice of the symmetry axis among the PCA axes: the one the shape is most invariant under
+    (90 deg turn for axial, 180 deg for half-turn)."""
+    if kind is None:
+        return None
+    basis = _pca_basis(points)
+    ang = math.pi / 2 if kind == 'axial' else math.pi
+    tree = cKDTree(points)
+    best = None
+    for k in range(3):
+        d = tree.query(points @ rot_about(basis[:, k], ang).T)[0].mean()
+        if best is None or d < best[0]:
+            best = (d, basis[:, k].copy())
+    return best[1]
+
+
+def sym_rot_err(R, kind, axis):
+    """Kit orientation error of a constant body rotation R (AUC.py _symmetry_orientation_errors, static)."""
+    if kind is None:
+        return angle_deg(R)
+    if kind == 'half':
+        return min(angle_deg(R), angle_deg(R @ rot_about(axis, math.pi)))
+    a = R @ axis
+    return math.degrees(math.atan2(np.linalg.norm(np.cross(a, axis)), np.clip(a @ axis, -1, 1)))
+
+
+def icp_from(reference, candidate, start):
+    """The kit's _align_rigid inner loop (trimmed ICP) from ONE start rotation."""
+    tree = cKDTree(reference)
+    rotation = start.copy()
+    translation = reference.mean(axis=0) - rotation @ candidate.mean(axis=0)
+    previous = math.inf
+    for _ in range(KIT_ICP_ITERATIONS):
+        moved = candidate @ rotation.T + translation
+        distances, indices = tree.query(moved, k=1)
+        keep = max(3, int(math.ceil(len(distances) * KIT_TRIM_FRACTION)))
+        chosen = (np.argpartition(distances, keep - 1)[:keep] if keep < len(distances) else np.arange(len(distances)))
+        step_rotation, step_translation = _kabsch(moved[chosen], reference[indices[chosen]])
+        rotation = step_rotation @ rotation
+        translation = step_rotation @ translation + step_translation
+        error = float(np.mean(distances[chosen]))
+        if math.isfinite(previous) and abs(previous - error) <= 1e-8 * max(previous, 1.0):
+            break
+        previous = error
+    return rotation, translation, _symmetric_mean_distance(reference, candidate @ rotation.T + translation)
+
+
+def ambiguity(v, f, kind):
+    """Copy of scripts/mesh_metric.ambiguity: GT-free self-ambiguity [M]. Two independent 3000-point surface samples
+    of the same mesh (kit sampler); ICP from each of the kit's non-identity PCA starts; residual of the best start
+    that stays a flip (symmetry-aware rotation > 90 deg). Returns mm values and the noise floor (identity residual)."""
+    c, r = _surface_moments(v, f)
+    a = _sample_mesh_surface(v, f, KIT_ALIGNMENT_SAMPLES, AMB_SEEDS[0]) - c
+    b = _sample_mesh_surface(v, f, KIT_ALIGNMENT_SAMPLES, AMB_SEEDS[1]) - c
+    axis = sym_axis(a, kind)
+    floor = _symmetric_mean_distance(a, b)
+    starts = _initial_rotations(a, b, 10 ** 6)[1:]           # all signed-permutation PCA starts, minus identity
+    best, best90, best45 = None, math.inf, math.inf
+    for R0 in starts:
+        R, t, d = icp_from(a, b, R0)
+        e = sym_rot_err(R, kind, axis)
+        if e > 90 and d < best90:
+            best90, best = d, (e, angle_deg(R0))
+        if e > 45:
+            best45 = min(best45, d)
+    return dict(amb_mm=best90 * 1e3, amb45_mm=best45 * 1e3, amb_floor_mm=floor * 1e3, amb_rel=best90 / r,
+                amb_rot=None if best is None else round(best[0], 1), radius_mm=r * 1e3, n_starts=len(starts))
+
+
+def flip_units(amb_mm, floor_mm):
+    """PREREG A.5 key 2: floor((amb - floor) / floor); FLIP_UNITS_INF when no start stays a flip (amb infinite)."""
+    if amb_mm is None or floor_mm is None:
+        return None
+    if not np.isfinite(amb_mm):
+        return FLIP_UNITS_INF
+    return int(math.floor((amb_mm - floor_mm) / max(floor_mm, 1e-12)))
+
+
+def is_flip_risk(amb_mm, floor_mm):
+    """PREREG A.3 V5 / SPEC section 10: flip-risk if amb - floor < floor."""
+    if amb_mm is None or floor_mm is None:
+        return None
+    return bool(np.isfinite(amb_mm) and (amb_mm - floor_mm) < floor_mm)
+
+
+def self_ambiguity(mesh, kind=None):
+    """ambiguity() on MESH (vertices and faces as given: pass the packed mesh, which the kit decode only welds; with
+    TRUSTED balls only) plus the V5 quantities. kind: the kit's declared symmetry of the object (kit_symmetry)."""
+    consts_b5()
+    v = np.asarray(mesh.vertices, np.float64)
+    f = np.asarray(mesh.faces, np.int64)
+    r = ambiguity(v, f, kind)
+    out = dict(r)
+    out['kind'] = kind
+    out['flip_risk'] = is_flip_risk(r['amb_mm'], r['amb_floor_mm'])
+    out['flip_units'] = flip_units(r['amb_mm'], r['amb_floor_mm'])
+    if not np.isfinite(out['amb_mm']):
+        out['amb_mm'] = None
+        out['no_flip_start'] = True
+    if not np.isfinite(out['amb45_mm']):
+        out['amb45_mm'] = None
+    return out
+
+
+_KIT_SYM = {}
+
+
+def kit_symmetry(obj):
+    """The kit's declared symmetry of OBJ ('axial', 'half' or None) from {KIT}/config/tracks.json (role kit; kit
+    metadata, not authored). Kit-symmetric objects skip V5 and the flip-safety key (PREREG A.3, A.5)."""
+    if not _KIT_SYM:
+        t = guard.load_json(os.path.join(guard.CFG['kit'], 'config', 'tracks.json'), 'kit')['tracks']['track_3']
+        _KIT_SYM.update({n: 'axial' for n in t['axially_symmetric_objects']})
+        _KIT_SYM.update({n: 'half' for n in t['half_turn_symmetric_objects']})
+    return _KIT_SYM.get(obj)
+
+
+def obs_flip_margin(mesh, obs, kind=None, n=KIT_ALIGNMENT_SAMPLES, seed=0):
+    """Diagnostic (SPEC section 10): ICP of our own owned points onto the candidate from the kit's PCA starts (the
+    identity start plus every signed-permutation start, as the kit's _initial_rotations lists them). The residual of
+    a solution is the mean distance from the moved owned points to the candidate's surface samples (observed-to-model:
+    the owned points cover one side, so the model-to-observed half would charge unseen surface alike for every start).
+    Returns the identity-start residual, the best residual among solutions that end more than 90 deg (symmetry-aware)
+    from the identity, and margin = flipped - identity (mm). Large = flips are clearly worse."""
+    consts_b5()
+    P = np.asarray(obs['pts'], np.float64)[np.asarray(obs['own']) == 0]
+    if len(P) < 10 or len(mesh.faces) == 0:
+        return dict(margin_mm=None, note='too few owned points or empty mesh')
+    rng = np.random.default_rng(seed)
+    Q = P[rng.choice(len(P), min(n, len(P)), replace=False)]
+    v = np.asarray(mesh.vertices, np.float64); f = np.asarray(mesh.faces, np.int64)
+    S = _sample_mesh_surface(v, f, n, AMB_SEEDS[0])
+    axis = sym_axis(S - S.mean(0), kind)
+    tree = cKDTree(S)
+    starts = _initial_rotations(S, Q, 10 ** 6)
+    ident, flipped, rot = None, math.inf, None
+    for i, R0 in enumerate(starts):
+        R, t, _ = icp_from(S, Q, R0)
+        d = float(tree.query(Q @ R.T + t, k=1)[0].mean())
+        if i == 0:
+            ident = d
+        e = sym_rot_err(R, kind, axis)
+        if e > 90 and d < flipped:
+            flipped, rot = d, e
+    return dict(identity_mm=ident * 1e3, flipped_mm=flipped * 1e3 if np.isfinite(flipped) else None,
+                margin_mm=(flipped - ident) * 1e3 if np.isfinite(flipped) else None,
+                flipped_rot_deg=None if rot is None else round(rot, 1), n_starts=len(starts), points=int(len(Q)))
+
+
+# ------------------------------------------------------------------------------------------------ one pool
+def _get(c, k, default=None):
+    return c.get(k, default) if isinstance(c, dict) else getattr(c, k, default)
+
+
+def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=None, kind='kit', trusted=False,
+               amb=True, flip_margin=False):
+    """Every feature of one pool (PREREG A.2-A.4), rows ready for select.pick.
+
+    cands: Candidate objects or dicts with cid, cls, n_params, mesh (all-frames, as shipped: packed, with every
+    observed ball), and optionally base_mesh (the same without balls), balls (count), v1 (the packer's V1 dict; else
+    V1 is computed on the in-memory mesh), gen_input_frames (GEN / FUSE: frames fed to the generator).
+    folds: {cid: [c_1..c_K]} fold rebuilds (build_folds); a candidate without one is scored 'fixed'.
+    tau: V3 threshold (None before B13: V3 reported, not applied). shell_cid: the reference s of V3 (default: the
+    pool's SHELL candidate). kind: the kit symmetry ('kit' = look it up). trusted: the object's balls passed the B.4
+    repeatability test (else the ambiguity is measured without balls: base_mesh)."""
+    c = consts()
+    K = int(c['K'] if K is None else K)
+    kind = kit_symmetry(obj) if kind == 'kit' else kind
+    gen = [x for x in cands if _get(x, 'cls') in ('GEN', 'FUSE')]
+    gviews = sorted({int(f) for x in gen for f in (_get(x, 'gen_input_frames') or [])})
+    pl = plan(bundle, obj, K, gen_views=gviews if gen else None)
+    reps = bootstrap_reps(pl['blocks'])
+    obs = bundle.obs(obj)
+    far = far_free_grid(obs)
+    s = bundle.sigma(obj)
+    rows = []
+    for x in cands:
+        cid, mesh = _get(x, 'cid'), _get(x, 'mesh')
+        fs = fsv_far(mesh, obs, far)
+        fm, fstate = fold_meshes(mesh, (folds or {}).get(cid), K)
+        ev = evidence(fm, bundle, obj, pl['blocks'], fs['fsv_far'] or 0.0)
+        er = e_reps(ev, fs['fsv_far'] or 0.0, s, reps)
+        v1r = _get(x, 'v1')
+        if v1r is None:
+            v1r = v1(mesh)
+            v1r['source'] = 'in-memory mesh'
+        row = dict(cid=cid, cls=_get(x, 'cls'), producer=_get(x, 'producer'), n_params=int(_get(x, 'n_params', 0)),
+                   balls=int(_get(x, 'balls', 0) or 0), E=ev['E'], E_blocks=ev['R_blocks'], E_se=float(np.std(er)),
+                   E_reps=er, ray=ev['ray'], ray_blocks=ev['per_block'], fold=fstate, fsv_far=fs['fsv_far'],
+                   fsv_outside_grid=fs['outside_grid'], v1=v1r, v2=v2(mesh, bundle, obj),
+                   v4=below_table(mesh, bundle, obj), flags=list(_get(x, 'flags', []) or []))
+        row['trusted_markers'] = row['balls'] if trusted else 0
+        if amb:
+            base = _get(x, 'base_mesh')
+            if base is None and row['balls'] and not trusted:
+                row['flags'].append('amb_includes_untrusted_balls')     # no ball-free mesh was supplied
+            noball = self_ambiguity(base if base is not None else mesh, kind)
+            row['amb_noball'] = noball
+            row['amb'] = self_ambiguity(mesh, kind) if (trusted and row['balls'] and base is not None) else noball
+        if flip_margin:
+            row['obs_flip_margin'] = obs_flip_margin(mesh, obs, kind)
+        rows.append(row)
+    scid = shell_cid or next((r['cid'] for r in rows if r['cls'] == 'SHELL'), None)
+    fsv_s = next((r['fsv_far'] for r in rows if r['cid'] == scid), None)
+    for r in rows:
+        r['fsv_far_shell'] = fsv_s
+        r['v3'] = v3(r['fsv_far'], fsv_s, tau)
+    return dict(obj=obj, K=K, kind=kind, kit_symmetric=kind is not None, trusted_balls=bool(trusted),
+                gen_view_overlap=pl['gen_view_overlap'], holdout=pl['holdout'], removed_frames=pl['removed'],
+                blocks=[dict(frames=len(b['frames']), kept=len(b['kept']), points=int(len(b['idx'])),
+                             L=block_length(len(b['kept'])) if b['kept'] else None) for b in pl['blocks']],
+                shell_cid=scid, tau=tau, rows=rows, plan=pl)
