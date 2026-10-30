@@ -45,6 +45,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MR = os.path.dirname(os.path.dirname(HERE))
 if MR not in sys.path:
     sys.path.insert(0, MR)
+CHILD_ENV = dict(os.environ)                     # the audited command gets the environment unchanged
+GMG_RUN_ENV = os.environ.pop('GMG_RUN', None)    # the auditor itself never sets (or creates) the run folder
 from gmg import guard  # noqa: E402  (rules; the auditor's own hashing runs in guard._internal())
 
 TRACE = 'trace=open,openat,openat2,creat,execve,execveat'
@@ -174,7 +176,7 @@ def analyze(log, manifest=None, policy='gmg', src=None, out=None, allow=(), allo
     man = json.load(open(manifest)) if manifest else {}
     man_inputs = {i['realpath']: i for i in man.get('inputs', [])}
     guarded = {k: int(v) for k, v in (man.get('guarded_opens') or {}).items()}
-    run = (man.get('roots') or {}).get('run') or guard.CFG['run']
+    run = (man.get('roots') or {}).get('run') or (os.path.realpath(GMG_RUN_ENV) if GMG_RUN_ENV else None)
     gcfg = _guard_config()
     ev = parse(log)
     exe = {}
@@ -322,7 +324,7 @@ def main():
     if a.cmd == 'run':
         cmd = a.command[1:] if a.command[:1] == ['--'] else a.command
         os.makedirs(os.path.dirname(os.path.abspath(a.log)), exist_ok=True)
-        r = subprocess.run(['strace', '-f', '-qq', '-y', '-e', TRACE, '-o', a.log, *cmd])
+        r = subprocess.run(['strace', '-f', '-qq', '-y', '-e', TRACE, '-o', a.log, *cmd], env=CHILD_ENV)
         rep = analyze(a.log, a.manifest, a.policy, a.src, a.out, a.allow, a.allow_write)
         rep['command'] = cmd
         rep['returncode'] = r.returncode

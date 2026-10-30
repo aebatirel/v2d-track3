@@ -34,6 +34,38 @@ def run(op):
         fd = os.open(op[1], os.O_RDONLY)
         os.close(fd)
         return fd
+    if k == 'dirfd_open':                   # os.open(rel, dir_fd=open(dir)): the hook must resolve the directory
+        d = os.open(op[1], os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            fd = os.open(op[2], os.O_RDONLY, dir_fd=d)
+            os.close(fd)
+            return True
+        finally:
+            os.close(d)
+    if k == 'copyfile':
+        import shutil
+        shutil.copyfile(op[1], op[2])
+        return True
+    if k == 'write':
+        os.makedirs(os.path.dirname(op[1]), exist_ok=True)
+        with open(op[1], 'w') as f:
+            f.write(op[2] if len(op) > 2 else 'x')
+        return True
+    if k == 'rplus':
+        with open(op[1], 'r+b') as f:
+            return len(f.read(16))
+    if k == 'remove':
+        os.remove(op[1])
+        return True
+    if k == 'attr':
+        return getattr(guard, op[1])
+    if k == 'write_manifest':
+        guard.write_manifest(op[1])
+        return True
+    if k == 'own_tier':
+        return guard._own_tier()
+    if k == 'runs_root':
+        return guard.runs_root(*op[1:])
     if k == 'constant':
         return guard.constant(op[1], op[2], op[3])
     if k == 'constant_set':                 # a value that is not JSON-serialisable

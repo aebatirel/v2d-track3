@@ -557,6 +557,38 @@ def _load_det_registry():
 DETREG = _load_det_registry()
 
 
+def _local_det_originals():
+    """{size: [realpath]} of the det dumps present under DATA (stat only; hashed lazily when a file of the same size
+    shows up, so a copy of a dump that is not in det_registry.json is still recognised)."""
+    import glob
+    out = {}
+    for p in glob.glob(os.path.join(glob.escape(CFG['data']), 'data', 'store', 'ep*', 'det_f*.npz')):
+        try:
+            rp = os.path.realpath(p)
+            out.setdefault(os.stat(rp).st_size, []).append(rp)
+        except OSError:
+            continue
+    return out
+
+
+_LOCAL_DET = _local_det_originals()
+
+
+def _sha_det_original(rp):
+    """sha256 of a local det dump, hashed by the guard itself. The open is counted in _GUARDED_OPENS (inside the hook
+    the open is not seen by the hook, so it is counted here) so the strace reconciliation matches."""
+    try:
+        key = _stkey(rp)
+    except OSError:
+        return None
+    if key not in _SHA:
+        if getattr(_TLS, 'busy', False):
+            _GUARDED_OPENS[rp] = _GUARDED_OPENS.get(rp, 0) + 1
+        with _internal():
+            _SHA[key] = _sha_file(rp)
+    return _SHA[key]
+
+
 def _npz_names(rp):
     """Member names of a zip/npz (the central directory only; no member is decompressed), or None if not a zip."""
     try:
@@ -598,8 +630,13 @@ def _det_identity(a, rp, *, deep=True):
     if key in _IDENT:
         return _IDENT[key] or None
     why = ''
-    if st.st_size in DETREG['sizes']:
+    if st.st_size in DETREG['sizes'] or st.st_size in _LOCAL_DET:
         s = _sha256(rp)
+        for orig in _LOCAL_DET.get(st.st_size, ()):
+            if orig != rp and s not in DETREG['sha']:
+                so = _sha_det_original(orig)
+                if so:
+                    DETREG['sha'].setdefault(so, f'local det dump {orig}')
         if s in DETREG['sha']:
             why = f'copy of a det file (sha256 {s[:16]}, {DETREG["sha"][s]})'
     if not why:
