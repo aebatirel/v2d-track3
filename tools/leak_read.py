@@ -507,6 +507,7 @@ def mc(a):
 
     def run(a_, b_, g_):
         dd = {n: [] for n in names}; gg = {n: [] for n in names}; true = {}
+        pr = {n: {c: [] for c in FLOOR} for n in names}               # per-twin one-sided call by the SE rule, by class
         for tw, cls in TWINS.items():
             Tm, Gm = truth(a_, b_, g_, GEN[cls]['base']); s = len(SEEDS[cls]); st = {}
             for c in Tm:
@@ -515,7 +516,8 @@ def mc(a):
                          for q, y, f in (('T', x, FLOOR[cls]), ('g', g, FLOOR_G))}
             for n in names:
                 w = CONTRASTS[n][0]
-                dd[n].append(combine([(x, *st[c]['T']) for c, x in w.items()])[0])
+                d, se, df = combine([(x, *st[c]['T']) for c, x in w.items()])
+                dd[n].append(d); pr[n][cls].append(d - stats.t.ppf(1 - ALPHA, df) * se > 0)
                 gg[n].append(combine([(x, *st[c]['g']) for c, x in w.items()])[0])
                 true[n] = sum(x * Tm[c] for c, x in w.items())       # same on every twin (clipping aside)
         P = {n: pooled(np.stack(dd[n], -1)) for n in names}; Pg = {n: pooled(np.stack(gg[n], -1)) for n in names}
@@ -533,6 +535,7 @@ def mc(a):
                           rmse=round(float(np.sqrt(((P[n]['d'] - true[n]) ** 2).mean())), 4),
                           cover90=round(float(((lo <= true[n]) & (true[n] <= hi)).mean()), 3),
                           reject_up=round(float(up.mean()), 3), g_rule=round(float(np.mean(gok)), 3),
+                          per_twin_reject_up={c: round(float(np.mean(v)), 3) for c, v in pr[n].items()},
                           **{f'P_{x}': round(float((v == x).mean()), 3) for x in VERDICTS})
         fw = np.zeros(R, bool)
         for n in prim:

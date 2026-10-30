@@ -398,6 +398,16 @@ def tip_gap_cm(J, Pw, tree):
     return out
 
 
+def segments(runs_, merge=10):  # true motion runs closer than MERGE frames form one handling segment
+    seg = []
+    for s0, e0 in runs_:
+        if seg and s0 - seg[-1][1] < merge:
+            seg[-1][1] = e0
+        else:
+            seg.append([s0, e0])
+    return seg
+
+
 def a4_episode(a, ep, W=40):
     D = load(a, ep); t0 = time.time(); N, names = D.N, D.names
     G = np.asarray(json.load(open(a.xtrk))['episodes'][str(ep)]['fit']['G_mocap_T_perc']); Gi = np.linalg.inv(G)
@@ -405,54 +415,55 @@ def a4_episode(a, ep, W=40):
     meas_any = np.any([m for _, m in J.values()], 0)
     r = dict(episode=ep, objects=names, frames=N, hands_file=os.path.basename(hf), hand_measured_frac=round(float(meas_any.mean()), 3),
              near_cm=NEAR_CM, window=W, objects_detail={})
+    import refine
     for s, n in enumerate(names):
         v, f = D.H[s]['mesh']
         gap_true = tip_gap_cm(J, np.einsum('ij,tjk->tik', Gi, D.gt[n]), surface_tree(v, f))
         lv, lf = XF.load_vf(f'{a.lib}/{n}.glb')
         gap_perc = tip_gap_cm(J, D.Tp[n], surface_tree(lv, lf))                  # the same hands vs OUR track
         mv, runs_ = true_motion(D.gt[n], D.H[s]['anchor'])
-        near = gap_true < NEAR_CM; ev = []
-        for k, (s0, e0) in enumerate(runs_):
-            lo = max(0, s0 - W, runs_[k - 1][1] if k else 0); hi = min(N, e0 + W, runs_[k + 1][0] if k + 1 < len(runs_) else N)
-            idx = np.nonzero(near[lo:hi])[0] + lo
-            ev.append(dict(run=[int(s0), int(e0)], arrival_lag=(int(idx[0] - s0) if len(idx) else None),
+        mp = refine.moving_labels(np.einsum('tij,jk->tik', D.Tp[n], np.linalg.inv(D.Xg[n])), D.H[s]['anchor'])   # our track
+        near = gap_true < NEAR_CM; seg = segments(runs_); ev = []
+        for k, (s0, e0) in enumerate(seg):
+            lo = max(0, s0 - W, seg[k - 1][1] if k else 0); hi = min(N, e0 + W, seg[k + 1][0] if k + 1 < len(seg) else N)
+            idx = np.nonzero(near[lo:hi])[0] + lo; pm = np.nonzero(mp[lo:hi])[0] + lo
+            ev.append(dict(segment=[int(s0), int(e0)], arrival_lag=(int(idx[0] - s0) if len(idx) else None),
                            leave_lag=(int(idx[-1] - (e0 - 1)) if len(idx) else None),
-                           measured_frac_in_run=round(float(meas_any[s0:e0].mean()), 3)))
+                           perc_onset_lag=(int(pm[0] - s0) if len(pm) else None), perc_end_lag=(int(pm[-1] - (e0 - 1)) if len(pm) else None),
+                           measured_frac=round(float(meas_any[s0:e0].mean()), 3)))
         mvf = np.zeros(N, bool)
         for s0, e0 in runs_:
             mvf[s0:e0] = True
         gm, gp = gap_true[mvf & meas_any], gap_perc[mvf & meas_any]
         r['objects_detail'][n] = dict(
-            runs=ev, moving_frames=int(mvf.sum()), moving_frames_hand_measured=int((mvf & meas_any).sum()),
+            segments=ev, true_runs=len(runs_), moving_frames=int(mvf.sum()), moving_frames_hand_measured=int((mvf & meas_any).sum()),
             gap_true_cm_median=(round(float(np.median(gm)), 2) if len(gm) else None),
             gap_true_cm_p90=(round(float(np.percentile(gm, 90)), 2) if len(gm) else None),
             gap_true_frac_over_3cm=(round(float((gm > 3).mean()), 3) if len(gm) else None),
             gap_perc_cm_median=(round(float(np.median(gp)), 2) if len(gp) else None),
             gap_true_rest_cm_median=(round(float(np.median(gap_true[~mvf & meas_any])), 2) if (~mvf & meas_any).any() else None))
     r['seconds'] = round(time.time() - t0, 1)
-    print(f'ep{ep}: ' + '; '.join(f'{n} runs {len(d["runs"])} gap {d["gap_true_cm_median"]} (ours {d["gap_perc_cm_median"]}) lags '
-                                 f'{[(x["arrival_lag"], x["leave_lag"]) for x in d["runs"]][:4]}' for n, d in r['objects_detail'].items())
-          + f'  ({r["seconds"]} s)', flush=True)
+    print(f'ep{ep}: ' + '; '.join(f'{n} segs {len(d["segments"])} gap {d["gap_true_cm_median"]} (ours {d["gap_perc_cm_median"]}) lags '
+                                 f'{[(x["arrival_lag"], x["leave_lag"], x["perc_onset_lag"], x["perc_end_lag"]) for x in d["segments"]][:3]}'
+                                 for n, d in r['objects_detail'].items()) + f'  ({r["seconds"]} s)', flush=True)
     return r
 
 
 def a4_summary(res):
-    rows = [(r['episode'], n, x) for r in res for n, d in r['objects_detail'].items() for x in d['runs']]
-    arr = [x['arrival_lag'] for _, _, x in rows if x['arrival_lag'] is not None]
-    lea = [x['leave_lag'] for _, _, x in rows if x['leave_lag'] is not None]
-    first = [d['runs'][0] for r in res for d in r['objects_detail'].values() if d['runs']]
-    last = [d['runs'][-1] for r in res for d in r['objects_detail'].values() if d['runs']]
-    gaps = [d['gap_true_cm_median'] for r in res for d in r['objects_detail'].values() if d['gap_true_cm_median'] is not None]
-    gp = [d['gap_perc_cm_median'] for r in res for d in r['objects_detail'].values() if d['gap_perc_cm_median'] is not None]
+    segs = [x for r in res if r['episode'] != 23 for d in r['objects_detail'].values() for x in d['segments']]
+    first = [d['segments'][0] for r in res if r['episode'] != 23 for d in r['objects_detail'].values() if d['segments']]
+    last = [d['segments'][-1] for r in res if r['episode'] != 23 for d in r['objects_detail'].values() if d['segments']]
     q = lambda x: dict(n=len(x), median=(float(np.median(x)) if x else None), p25=(float(np.percentile(x, 25)) if x else None),
                        p75=(float(np.percentile(x, 75)) if x else None))          # noqa: E731
-    return dict(runs=len(rows), runs_without_hand=int(sum(x['arrival_lag'] is None for _, _, x in rows)),
-                arrival_lag_all_runs=q(arr), leave_lag_all_runs=q(lea),
-                arrival_lag_first_run=q([x['arrival_lag'] for x in first if x['arrival_lag'] is not None]),
-                leave_lag_last_run=q([x['leave_lag'] for x in last if x['leave_lag'] is not None]),
-                gap_true_cm_median_over_objects=q(gaps), gap_perc_cm_median_over_objects=q(gp),
-                H_t_gate_reference=dict(onset_offset_le_1_frame=bool(arr and abs(np.median(arr)) <= 1),
-                                        release_offset_le_1_frame=bool(lea and abs(np.median(lea)) <= 1)))
+    col = lambda L, k: [x[k] for x in L if x[k] is not None]                       # noqa: E731
+    gaps = [d['gap_true_cm_median'] for r in res if r['episode'] != 23 for d in r['objects_detail'].values() if d['gap_true_cm_median'] is not None]
+    gp = [d['gap_perc_cm_median'] for r in res if r['episode'] != 23 for d in r['objects_detail'].values() if d['gap_perc_cm_median'] is not None]
+    return dict(note='ep23 (identity swap) excluded', segments=len(segs), segments_without_hand=int(sum(x['arrival_lag'] is None for x in segs)),
+                arrival_lag_all=q(col(segs, 'arrival_lag')), leave_lag_all=q(col(segs, 'leave_lag')),
+                arrival_lag_first=q(col(first, 'arrival_lag')), leave_lag_last=q(col(last, 'leave_lag')),
+                perc_onset_lag_all=q(col(segs, 'perc_onset_lag')), perc_end_lag_all=q(col(segs, 'perc_end_lag')),
+                perc_onset_lag_first=q(col(first, 'perc_onset_lag')), perc_end_lag_last=q(col(last, 'perc_end_lag')),
+                gap_true_cm_median_over_objects=q(gaps), gap_perc_cm_median_over_objects=q(gp))
 
 
 a3prep_episode = a3_episode = a3_summary = a6_check = a7_read = a3_stored = None  # STUBS
