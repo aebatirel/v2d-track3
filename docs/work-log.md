@@ -4838,3 +4838,7 @@ Advice given:
     run. Depth sees large track-level offsets (ep31's rack ≈ 0.8 cm proud) but not the typical 2–3 cm errors.
   - Integrity: the map stage read 4 frames of eval-3 depth before PREREG was written (disclosed in PREREG note 2;
     eval 3 excluded from any future spoon test). The GT input guard of refine.py / depth_audit.py was tightened.
+- 08:20 UTC video box 58363797: job started 07:36 after a 43-min setup; at 08:20 it is still pulling its inputs (4 of 11
+  RUNS done) under HF store rate limiting (HTTP 429, ~2 min waits). Cause [H]: concurrent store traffic tonight (the
+  depth-audit downloads, two workflows' listings, the eval-1 box). Left running; the store traffic from this session is
+  kept minimal until it finishes.
