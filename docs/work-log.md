@@ -4732,7 +4732,7 @@ Advice given:
     packed policy's H5 0.854 ± 0.137. Rule (mean ≥ 0.884, sd ≤ 0.137): **passes**. It is the eval-33 candidate for
     the next pack; the owner decides any upload.
   - Expected gain if packed [estimate]: +0.080 on one episode of 20 = +0.004 mean sim_vs_ref, ≈ +0.003 leaderboard at
-    the measured transfer (0.74–0.78). Its value is mainly removing eval 33's bad mode (H5 min 0.47), not the mean.
+    the measured transfer (0.74–0.78). Its value is mainly removing eval 33's bad mode (H5 min 0.576; first written as 0.47, corrected 06:10), not the mean.
   - Draw 1 = one more fresh full-pack draw (with B at 33), logged only: mean 0.849; eval 1 0.190, eval 30 0.341,
     eval 14 0.908, eval 16 0.797, eval 32 0.866. It confirms the bimodality of evals 1, 14 and 30.
 - 04:50 UTC **eval-14 placement carve: FAILED its rule** (`20261030-c14s42-328139c`, `20261030-c14s43-328139c`; boxes
@@ -4746,3 +4746,30 @@ Advice given:
     for a task-side cause: the zero-action replay of the carved reference already reaching ≥ 0.9 while trained
     policies stay < 0.7 would rule out a reference defect.
   - Session spend: $21.28 actual + eval-1 carve boxes still running (≈ $11 planned) ≈ $32 of $45.
+- 06:10 UTC **eval-1 placement carve: PASSED its rule on the training boxes** (`20261030-c01s42-328139c`,
+  `20261030-c01s43-328139c`; standard learner, hard_ab.sh, 250M steps, NREP 10; self-destroyed 05:02:14 and 04:54:18;
+  ledger actual $3.08 and $2.91, estimates from duration × rate). 10-eval means of the checkpoint chosen by sim_vs_ref:
+  - seed 43: **0.931 ± 0.006** (policy_250003456, min 0.919); seed 42: 0.885 ± 0.050 (policy_200007680).
+  - Rule (mean ≥ 0.852, sd ≤ 0.239): both pass; the higher mean wins, so seed 43. The packed eval-1 policy: H5 0.822 ±
+    0.239 (official evaluator).
+  - Caveat (planning panel, measured): these draws ran on the training box (patched tree, hard_ab evalrep). On the
+    training box the *packed* eval-1 and eval-30 policies also showed 0/10 bad draws (0.912 ± 0.014, 0.919 ± 0.012),
+    while the official evaluator gave them 5/22 bad draws. So the carve result needs an official-evaluator
+    confirmation before any pack (RETRAIN_PLAN.md: one fresh official evaluation in the pack).
+- 06:10 UTC **correction to the eval-33 expected gain (04:50 entry).** The leaderboard scores the submitted
+  trajectories as they are (kit `metric_code/track_3/AUC.py`: mean over the 20 submitted episodes; nothing is re-run).
+  Pack 6's packed eval-33 rollout was already a good draw (0.9319), so swapping in B's draw 1 (0.9401) is +0.0082 on
+  one episode ≈ **+0.0003 leaderboard** [estimate], within noise. The +0.003 figure written at 04:50 is the expected
+  gain only if the organisers re-run checkpoints (the checkpoint hash is kept "for later validation"; unknown how it
+  is used).
+- **Pack-7 candidate built on CPU, not uploaded** (`results/submissions/20261030-track3g-candidate/`; workflow
+  wf_0f1b8d52-250): pack 6's 19 kept rollouts + c33B draw 1 for eval 33, pack 6's meshes, kit packer.
+  - sha256 137c8687…cfea7, 9,120 rows, 1,388,061 bytes, 0 mesh warnings.
+  - The local packer reproduces pack 6 byte for byte from its store inputs (d59b6e63…), with a pandas 3.1.0 venv.
+  - Integrity verifier PASS (only the 696 eval-33 pose rows and the commit URL differ from pack 6). Provenance verifier
+    PASS (checkpoint sha256 df90b216… = rcB's best policy; clean evaluator 8c778f9, 0 modified files; hashes of eval
+    script / packer / uploader equal pack 6's).
+- **Next-steps plan** (`docs/research/work/next-steps-2026-10-30/PLAN.md`; 3 planners + synthesis). Tonight: fix the
+  per-episode asset blocker (the carved eval-1 pot must not leak into eval 28), then an official 20-draw confirmation
+  of eval-1 seed 43 (≈ $1.6). Morning: the owner asks the organisers whether checkpoints are re-run, and decides one
+  upload (pack 8 if eval 1 confirms, else pack 7).

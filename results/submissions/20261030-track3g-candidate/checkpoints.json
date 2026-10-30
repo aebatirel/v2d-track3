@@ -1,0 +1,142 @@
+{
+ "1": {
+  "run": "20261025-std0116-ee7ba8e",
+  "checkpoint": "runs/20261025-std0116-ee7ba8e/results/final_eval/ep1/policy.safetensors",
+  "sha256": "f83e6ca0a9addff954b948b8edb3d79cf1021d4e9a26498c41b16681f409466a",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000001.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "3": {
+  "run": "20261024-seed43-61101f5",
+  "checkpoint": "runs/20261024-seed43-61101f5/results/glock_public/ep3/best/policy.safetensors",
+  "sha256": "737c7b9eb8bc36bb191cbe65c5e3ed07973a1e06b6b20c63f7cd2502b223ad67",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000003.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "5": {
+  "run": "20261024-seed43-61101f5",
+  "checkpoint": "runs/20261024-seed43-61101f5/results/glock_public/ep5/best/policy.safetensors",
+  "sha256": "cd7594a8c751b9e7fa11e4a752259d6ddb85fda92c6569553b9a69ae86e9c82f",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000005.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "6": {
+  "run": "20261024-pack-31ef267",
+  "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep6/best/policy.safetensors",
+  "sha256": "020e75dd4447270ae092269ba6199f68b712b8989d436d82263cfcf5c1a9b2eb",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000006.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "8": {
+  "run": "20261025-evb0810-ee7ba8e",
+  "checkpoint": "runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors",
+  "sha256": "cb6277bfc3b7f37d499ed7af262ebe1407f434dd0f778ef29d235cb59b5fa500",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000008.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "10": {
+  "run": "20261026-gl10A2-5e0e100",
+  "checkpoint": "runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors",
+  "sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000010.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "14": {
+  "run": "20261025-evb1420-ee7ba8e",
+  "checkpoint": "runs/20261025-evb1420-ee7ba8e/results/final_eval/ep14/policy.safetensors",
+  "sha256": "05b13510629eb5333fc7756b1d927275db0926005af35d09ad96e4648d9cd27e",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000014.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "15": {
+  "run": "20261024-seed43-61101f5",
+  "checkpoint": "runs/20261024-seed43-61101f5/results/glock_public/ep15/best/policy.safetensors",
+  "sha256": "e459bb2140134981823ba0c0169b20b08b95beb91b5a3a7755cc537faf9e8cd6",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000015.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "16": {
+  "run": "20261024-seed43-61101f5",
+  "checkpoint": "runs/20261024-seed43-61101f5/results/glock_public/ep16/best/policy.safetensors",
+  "sha256": "df4d4473220a61cd1c8d67ee2f6ccacc167790dc35db9ae1de68ff0a4aa40b34",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000016.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "19": {
+  "run": "20261025-std1928-ee7ba8e",
+  "checkpoint": "runs/20261025-std1928-ee7ba8e/results/final_eval/ep19/policy.safetensors",
+  "sha256": "fdc4c491e2d457a2d385d39be17f8223a90b0621f5c1d388b530567b9294e486",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000019.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "20": {
+  "run": "20261025-evb1420-ee7ba8e",
+  "checkpoint": "runs/20261025-evb1420-ee7ba8e/results/final_eval/ep20/policy.safetensors",
+  "sha256": "61dcd7a6339677ac8cf612a11a3b9bf8cd7939a358a438c111d34e213faea7ff",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000020.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "25": {
+  "run": "20261026-c25s42-feb0407",
+  "checkpoint": "runs/20261026-c25s42-feb0407/runs/perc2mcks/ep25-s42/policy_250003456.safetensors",
+  "sha256": "7edd445b741f206e79bcab18f7f2a3d6b971e2b0172eaef181255c639a385ce3",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000025.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "28": {
+  "run": "20261025-std1928-ee7ba8e",
+  "checkpoint": "runs/20261025-std1928-ee7ba8e/results/final_eval/ep28/policy.safetensors",
+  "sha256": "09b3ec5d532309746c30e93b93ec8e6c39282aeefd75c702ebae8cbfd7ec5e2f",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000028.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "30": {
+  "run": "20261025-std30-ee7ba8e",
+  "checkpoint": "runs/20261025-std30-ee7ba8e/results/final_eval/ep30/policy.safetensors",
+  "sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000030.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "32": {
+  "run": "20261026-fr32s46b-5e0e100",
+  "checkpoint": "runs/20261026-fr32s46b-5e0e100/results/glock_public/ep32/best/policy.safetensors",
+  "sha256": "7bfea035010eb67913070651b75c8acce1b8e22f7e2193f741ab186819357d94",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000032.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "33": {
+  "run": "20261029-rcB-34bf6ae",
+  "checkpoint": "runs/20261029-rcB-34bf6ae/results/glock_public/ep33/best/policy.safetensors",
+  "sha256": "df90b2162885a17c83ea69ce90067ec567b89434adbcdedc0fba19d4b0c07ccb",
+  "rollout": "runs/20261030-c33B-0202139/results/submission/results/episode_000033.{json,parquet} (draw 1 of the c33B confirmation box)",
+  "sha256_source": "hashed locally from the store file; equals the evaluator-recorded checkpoint_sha256"
+ },
+ "35": {
+  "run": "20261024-pack-31ef267",
+  "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep35/best/policy.safetensors",
+  "sha256": "e0515c33783b740c7e6b94b066d4199710752c2d2e6d1f192ae05c6175720061",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000035.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "36": {
+  "run": "20261024-pack-31ef267",
+  "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep36/best/policy.safetensors",
+  "sha256": "d1b402c803398aeae8bf0effaf8e1026a6d637770a762b1571cdcb90f6527076",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000036.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "37": {
+  "run": "20261024-pack-31ef267",
+  "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep37/best/policy.safetensors",
+  "sha256": "ec709d3d50fd84ce352d59c867cbcd648c70b12b9d91e3933510dbe6652bd25e",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000037.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ },
+ "38": {
+  "run": "20261024-pack-31ef267",
+  "checkpoint": "runs/20261024-pack-31ef267/results/glock_public/ep38/best/policy.safetensors",
+  "sha256": "6c0aa63e7a24df26e94cb63e4a0d021ed66779be0df5ef26d42625ce4d954bfe",
+  "rollout": "runs/20261026-pack6-5203d42/results/submission/results/episode_000038.{json,parquet} (pack 6, reused unchanged)",
+  "sha256_source": "evaluator-recorded checkpoint_sha256 in the pack-6 episode json (= the pack-6 parquet column)"
+ }
+}

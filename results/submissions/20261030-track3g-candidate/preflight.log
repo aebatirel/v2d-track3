@@ -1,0 +1,18 @@
+[  ok  ] python 3.13
+[  ok  ] numpy 2.5.4
+[  ok  ] pandas 3.1.0
+[  ok  ] pyarrow 26.0.0
+[ FAIL ] kaggle missing
+           needed for uploading and checking scoring status. pip install -r requirements.txt
+[  ok  ] trimesh 5.2.0
+[  ok  ] fast_simplification 0.2.0
+[  ok  ] running on the host
+           fine either way; only noted so a later dependency surprise makes sense
+[  ok  ] public Track 3 input found at /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit/data/track_3_sample_submission.parquet
+[  ok  ] public Track 3 input found at /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/kit/v2d_submission_kit/data/track_3_evaluation_objects.json
+[  ok  ] 20 trajectory parquet(s) in /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/pack7/build/results
+[  ok  ] every one of the 20 scored episodes has a trajectory
+[ warn ] Kaggle checks skipped
+           --skip-kaggle was passed
+
+1 blocking problem(s). Fix these before submitting; a rejected submission still costs quota.
