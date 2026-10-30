@@ -293,3 +293,11 @@ slot 0). The cup / dust pan / board gains vanish with frame 0 held (cup 0.9327 =
 penetration term pushes it against an imprecise table plane). Reading: with permissive contacts (hands within 6 cm) the
 physics barely constrains the object paths; the literature's v2 (honest contacts, FlashCHORD-matched contact physics)
 is the version worth testing, judged on robot executability rather than mocap AUC.
+
+## Round 3: realistic-mass seed round (pre-registered 30 Oct ~23:10 UTC, before any result)
+Boxes `ARM=S0|S1 PAIRS="12:20261024-ev2-2c1e4dd:mc 18:20261024-ev3-2c1e4dd:mc 24:20261024-ev3-2c1e4dd:mc" SEEDS=43`
+(`ops/jobs/physics_arms.sh`; each box rebuilds its references). Per episode and arm, the mean registered AUC vs mocap over
+the available seeds (ep2: 42/43/44 from rounds 1–2; ep12/18/24: 42 + 43). Δ = S1 mean − S0 mean per episode.
+- **adopt realistic masses:** mean Δ over the four episodes ≥ +0.03 and no episode ≤ −0.05;
+- **reject:** mean Δ ≤ −0.03 or any episode ≤ −0.10;
+- otherwise **inconclusive** (keep the placeholder).
