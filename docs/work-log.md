@@ -4962,3 +4962,12 @@ Advice given:
   episodes, ≈ $11–15 on 3 boxes) approved. Build + CPU mock + two reviews first (workflow leak-phase1-build); launch
   after GO and a credit check: Vast credit $44.21 at 14:50 with 4 boxes running (≈ $6/h, orcB mine, p2s0/p2s1/p2hu the
   Embodiment session's). Instance end dates checked (owner asked): earliest 31 Oct 18:00 (p2hu), no job affected.
+- 17:15 UTC (after a usage-limit gap ~15:00–17:00):
+  - Both CPU workflows (leak Tier A wf_791944d0-b72, Phase-1 build wf_99d31c5c-213) were cut by the limit; partial
+    outputs committed as WIP (2db247c); both resumed from their run ids with a continue-from-WIP note.
+  - Embodiment session's 3 boxes are gone; only orcB 58408407 runs ($1.467/h). Vast credit $36.07.
+  - **orcB interim [M, not the pre-registered reading yet]:** 2 of 6 arms done (job.log 15:54):
+    - ep11 O (mocap object motion, eval 10's twin, cup stacking): rollout AUC vs mocap **0.940 ± 0.032** (n 10,
+      min 0.872; sim_vs_ref 0.964 ± 0.027). The earlier ep11 P on another recipe/commit scored 0.570 ± 0.001.
+    - ep31 P (perceived, eval 30's twin): **0.783 ± 0.042** (sim_vs_ref 0.758 ± 0.018).
+    - Reading waits for the same-box P/O pairs (PREREG §4); remaining arms: ep11 P, ep13 P/O, ep31 O.
