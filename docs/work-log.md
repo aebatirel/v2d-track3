@@ -4929,3 +4929,45 @@ diagnostic; nothing is picked for submission.
 - Owner: "you can spend money and go ahead in all btw". Recorded in `docs/context-and-decisions.md`. GPU batches from
   the gmg design will be run without asking first; each is still stated with cost here before renting and logged
   after.
+
+## 2026-10-30 ~14:20 UTC: gmg SPEC and PREREG revised (revision 1) and frozen in git (CPU, $0)
+- Freeze commit: `fd814f6e691c467452018b72db69cdab80d843a9` (2026-10-30T14:17:21Z), parent `161a094`. Before it, both
+  files were untracked, so v1 (written 13:34 UTC) was never a real freeze. No gmg code exists yet. Zero new scan
+  scorings in this stage.
+- Hashes at the freeze: `docs/research/mesh-2026-10-26/gmg/SPEC.md` sha256
+  `181ecc39b4ce076512d1242d966f1e61dfa2a6fa35fc2aee8d06891558a119fe`; `.../gmg/PREREG.md` sha256
+  `c01e837ee6fa30ab2ee8a71e8cb037d8a2c286fc80fa3f0ae51bfb5c942fbbfb` (PREREG carries the SPEC hash). v1's SPEC hash was
+  `0ba1dcb3...9b8f8f`.
+- The workflow brief asked to mark the freeze time 2026-10-30T09:40Z. Not done: that is the design workflow's start,
+  before the files existed. PREREG records the real time (the commit) and says why.
+- Revision 1 answers a design review (15 must-fix items, integrity risks, missing items). Main changes:
+  - guard: clean mode is an allow-list; refused in addition: `scratchpad/auto/**`, `scratchpad/gen/mesh-20261029-gen-*/**`,
+    `scratchpad/crops/**`, `scratchpad/evalcrops/**`, `scratchpad/diag/**` (has `load_scan()` and scan-fitted
+    placements), `scratchpad/gmg/design/**`, `obs_all`/`obs`; `det_f0.npz` reads limited to mask keys (it also holds
+    library-render similarity and template fields); `io_gt.py` loses all five mesh roots (build step B0);
+  - withdrawn as scan-informed: default unseen thickness 2.5 mm (= leaked scan rack wall median, L4503-4504) -> fitted
+    t0 from our public two-sided thickness, with a labelled fallback; V3 tau 0.20 (scored best post hoc against scan
+    regret, `hybrid-selector/looo_L0_veto.log`) -> 99th percentile of a GT-free null from CPU fold rebuilds; the X0
+    "V3 vetoes both pot-with-lid meshes" requirement (could not fail);
+  - disclosed: eval-track analyses during design (contact_states eval 1/10/14/30; relmotion eval 1/8/10/14/19/25/28/30;
+    eval_contact_proxy all 20). The v1 "eval-1 lid 7.6 mm inside the pot" justification is in no saved file; removed;
+  - V2 is now sample-based: partner samples inside the candidate deeper than a noise-scaled band, or copied by it
+    (normal-side clause); v1's 8 mm Chebyshev band hid up to 97 % of the nested beige cup. Synthetic tests
+    pre-registered (fused double cup, filled cup, lid with phantom pot must veto; kit lid 0.2186 must pass);
+  - the partner rule applies to every completion (lathe, mirror, rotation, part, FUSE fill, hull); grid feeding and a
+    partner-occupancy channel defined; extraction passes 0-4 and a co-moving tie-break written out;
+  - spoon pairs added (pot eval 3/5/6, rack 15/16, blue cup 32/33); contact-subset adoption guard (pot contact
+    {0,2,26,27} vs lone {41-45}; blue cup {11,12,13} vs {21,22});
+  - similar views: one view x seeds; Pixal3D-MV only with >= 3 views; G1 K-c/K-d count only objects with >= 15 deg of
+    view span (dust pan ep40 added); B.2 uses 3-D-separated frames (min 10);
+  - proxy X registers candidates onto the other episode's own points (no shared library_v2 frame); a $0 X-check against
+    existing labels is pre-registered (Spearman > 0.46 on pot and blue-cup X0 pools);
+  - Phase 2: exclusive text-prompt masks (ep2 frame 0: pot and lid top boxes cover the same region) and a separated
+    start frame per object; cross-object identity test for whole-episode swaps (ep23 board 2);
+  - build order: B0 guard, B1 walking skeleton, B2 $0 M9 mask check on local videos (ep2, ep11, ep26), B3 remesh + GPU
+    probe G0 (ep2 lid separated view, ep2 pot lid-off view, 2 seeds each, ~$1-2 [E]); the owner's hypothesis is
+    tested after ~28 build-hours [E] instead of 70-100;
+  - CPU cost re-estimated: 45-110 CPU-h per public batch [E] (v1's 25-50 left out K = 5 folds and thickness re-runs);
+    GPU total $14-27 [E] (G0 $1-2, G1 $1.5-3.5, G2 $4-8, G3 $3-5, G4 $4-8).
+- Blocked on owner D1: `HF_TOKEN` and `VAST_API_KEY` are unset and no public depth is local [M]. G0, the clean
+  extraction (B4), R1 and the eval run wait; B0-B2 and the dev steps can start now.

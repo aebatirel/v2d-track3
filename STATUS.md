@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-30 ~14:20 UTC: gmg design frozen in git (SPEC and PREREG revision 1; CPU, $0)
+- **Freeze commit `fd814f6`** (14:17 UTC). `docs/research/mesh-2026-10-26/gmg/SPEC.md` sha256 `181ecc39...a119fe`,
+  `PREREG.md` sha256 `c01e837e...fbbfb` (full hashes in the work log). No gmg code yet; zero new scan scorings.
+- **Revision 1** fixes a design review: allow-list input guard with new refusals; the 2.5 mm thickness and the V3
+  threshold 0.20 were scan-informed and are replaced by values fitted on our own observations; eval-track analyses
+  disclosed; contact handling for the owner's pot/lid point now covers nesting, every kind of completion, the spoon
+  pairs and the Phase-2 masks; proxy X no longer uses the library frame.
+- **Next:** B0 guard, B1 walking skeleton, B2 $0 mask check on local videos, then G0 (SAM 3D on the ep2 lid from a
+  separated view and the ep2 pot from a lid-off view, about $1-2 [E]) to test the owner's hypothesis early.
+- **Blocked on D1:** `HF_TOKEN` and `VAST_API_KEY` are not set, and no public depth is local. G0, clean extraction,
+  R1 and the eval run wait for them.
+
 ## 2026-10-30 ~12:15 UTC: generalized mesh generator (gmg) design running; stage 1b closed
 - **Owner asks for a generalized mesh generator.** Design workflow `wf_cb2e792a-f27`: evidence and literature done
   (`docs/research/mesh-2026-10-26/gmg/evidence.md`, `lit/gmg-2026-10-30.md`). Four designs, judges, spec and
