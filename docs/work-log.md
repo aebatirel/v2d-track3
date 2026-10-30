@@ -5438,3 +5438,5 @@ arm and a no-policy replay floor to stage B.
 - GPU: `20261030-physS0-6a814df` (58386066, UK, $1.348/h) and `20261030-physS1-6a814df` (58386069, KR, $1.177/h),
   `ARM=S0|S1 bash ops/jobs/physics_arms.sh`, commit 6a814df, ENV_SNAPSHOT pt2.11-cu130-py313-20261020; ledger
   planned $6.50 each. Credit $63.49 before launch; the other session's videos box 58363797 was running.
+- ~10:00 UTC owner: "I approve for gpu too" — explicit confirmation of the GPU arms already launched (S0 58386066
+  loading, S1 58386069 in setup).
