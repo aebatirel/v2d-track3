@@ -4658,3 +4658,15 @@ Advice given:
   - **S3 tilt-to-plane: rejected.** −0.0013, drops on 24/39/40.
   - **S4 pre-contact hold: neutral** (+0.0003).
   - The GT-free versions of the refcheck oracles do not reproduce the oracle gains.
+- **Spoon proxy H2 (partial, CPU).**
+  - Per-object accuracy of thin, elongated public objects in the refine baseline (lib, measured): sweeper 0.995 (ep18)
+    and 0.912 (ep31); dust pan 0.933 (ep18), 0.960 (ep39), 0.957 (ep40).
+  - The exact frame-0 roll/tilt test needs rotation errors, which the stored per-frame scores do not hold. Not done.
+  - [H] Reading: the tracker handles thin public objects at ≈ 0.95. If the spoon really sits at 0.73–0.80, the loss is
+    spoon-specific: hidden phases (stirring inside the pot, evals 3/5/6), the near-tie frame bit (note 13), or our
+    parametric spoon mesh vs the organisers' scan.
+- **Candidate replacement for eval 33.** Arm B's eval-33 checkpoint (CURR_SCALE 0.4, seed 43, policy_40001536) has a
+  5-eval mean of 0.923 ± 0.013, vs the packed policy's H5 10-draw mean of 0.854 ± 0.137.
+  - It passes the replacement rule written at ~23:15 UTC, before the arm results: mean ≥ H5 mean + 0.03 and sd ≤ H5 sd.
+  - Arm C's eval 33 (0.883 ± 0.014) misses the mean bar by 0.001.
+  - Before any pack: confirm with 10 fresh draws (H5 protocol). The owner decides any upload.
