@@ -4636,3 +4636,25 @@ Advice given:
     So placement collision copies (main's planned "placement carves") target exactly the episodes where the score is
     lucky. Next: build and CPU-test them, then retrain with ≥ 2 seeds and choose by multi-draw means (rule (d): never
     a best draw).
+
+### 30 Oct 2026 (night, continued after the usage-limit reset at 02:00 UTC)
+- The usage limit (5-hour window) hit at ~00:30 UTC and cut two workflows:
+  - refine evaluate + verify. Recovered: the evaluation outputs were complete on disk.
+  - placement-carve build (prepare, build, verify). To be rerun.
+- **Recipe arms** (5-eval means, sim_vs_ref; ep12 also registered AUC vs mocap):
+
+  | Arm | ep12 sim_vs_ref | ep12 mocap AUC | eval 32 | eval 33 |
+  |---|---|---|---|---|
+  | B (CURR_SCALE 0.4; thresholds confirmed by ckpt_meta) | 0.908 ± 0.094 | 0.892 ± 0.076 | 0.743 ± 0.138 | 0.923 ± 0.013 |
+  | C (ball kd 2; kd 2.0 confirmed by ckpt_meta) | 0.932 ± 0.031 | 0.909 ± 0.031 | 0.702 ± 0.200 | 0.883 ± 0.014 |
+
+  - Control A started late: its host took ~1.5 h to start the container. It is on eval 32. The pre-registered verdict
+    waits for A.
+  - Boxes B and C self-destroyed; actual cost $3.82 and $4.26.
+- **Refine stage on 20 public episodes** (`docs/research/work/refine/RESULTS.md`). Baseline reproduced exactly
+  (0.8921 lib).
+  - **S2 0.545-frame advance adopted:** +0.0061 lib, 17/20 better, no drop > 0.02, scan +0.0053.
+  - **S1 support-gated snap: rejected.** −0.0077, drops on 12/13/21/22.
+  - **S3 tilt-to-plane: rejected.** −0.0013, drops on 24/39/40.
+  - **S4 pre-contact hold: neutral** (+0.0003).
+  - The GT-free versions of the refcheck oracles do not reproduce the oracle gains.
