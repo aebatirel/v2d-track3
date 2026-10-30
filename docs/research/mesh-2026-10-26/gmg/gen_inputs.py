@@ -14,6 +14,7 @@ guard (roles calib, depth, video, dev_hands); the caller passes arrays.
                                            near depth, the valid-depth map (depth of frame k reprojected into cam_a)
   exclusive(layers, obj) -> (mask, parts)  exclusive mask = footprint - every partner footprint dilated by the A.6
                                            10 px (scaled to the cam_a focal) - hand pixels in front of the target
+                                           (MediaPipe capsules, and depth occluders > 20 mm in front of it)
   frame_table(bundle, obj, geo, hands, depth, frames=None) -> [row]   per-frame statistics of one target
   choose_views(bundle, obj, census, n_max=6, *, table) -> (views, report)
                                            qualifying = separated from every partner (census), hands <= 25 % of the
@@ -23,9 +24,10 @@ guard (roles calib, depth, video, dev_hands); the caller passes arrays.
                                            contact mode (no separated frame): the same filters without separation,
                                            least partner overlap first
   masks(view, bundle, image, *, geo, hands, depth, refine=None) -> (mask, info)
-                                           the exclusive mask of VIEW; optional refinement (SAM2 point prompts: target
-                                           positives, partner negatives); a refined mask that gains any partner pixel
-                                           is cut back to the projected mask; hands and partners are removed again
+                                           the exclusive mask of VIEW; optional refinement (Sam2Refiner: target
+                                           positives, partner and hand negatives); a refined mask that gains any
+                                           partner pixel is cut back to the projected mask; otherwise it only trims
+                                           the projected mask's outline band; small fragments dropped
   partner_pixel_test(mask, bundle, obj, k, geo) -> dict   PREREG B.11: every partner owned point projected one by one
                                            and every partner footprint pixel must lie outside MASK
   inpaint_partners(image, mask, layers, obj, box) -> image   contact mode: partner pixels -> local background
@@ -71,7 +73,7 @@ def consts():
         occl=guard.constant('genmask_occluder_gap_m', 0.020, 'generic:PREREG A.6 separated-frame 3-D gap 20 mm (a '
                                                              'surface farther than it in front of the target is not '
                                                              'the target); chosen over the 10 mm contact gap after a '
-                                                             'GT-free dev check (DEVIATIONS 56)'),
+                                                             'GT-free dev check (DEVIATIONS 67)'),
     )
     return c
 
@@ -603,7 +605,7 @@ def _sample_in(mask, n, rng, erode_px=0):
 def prompts(layers, obj, M, H=None, n_pos=5, n_neg=5, seed=0):
     """SPEC section 4: point prompts on the target (N_POS spread over its exclusive mask, eroded) and the partner's
     pixels as negatives (PREREG A.6: 5 points per partner, spread over its footprint); also N_NEG negatives on the
-    hand pixels H removed from the target (DEVIATIONS 57)."""
+    hand pixels H removed from the target (DEVIATIONS 68)."""
     rng = np.random.default_rng(seed)
     pos = _sample_in(M, n_pos, rng, erode_px=6)
     neg = []
@@ -622,9 +624,11 @@ def masks(view, bundle, image=None, *, geo, hands=None, depth=None, refine=None,
     """Exclusive mask of VIEW (HxW bool) and info. REFINE: optional callable (image, pos_points, neg_points,
     projected_mask) -> refined HxW bool mask (SAM2). SPEC section 4: a refined mask that gains any partner pixel
     (dilated partner footprint) is cut back to the projected mask (flag refine_cut_back); otherwise the refinement
-    only trims: the final mask is the refined mask (holes filled) inside the projected exclusive mask (DEVIATIONS 57),
-    so hand and partner pixels stay removed in every case; a refinement that keeps less than 0.6 of the projected
-    mask (the A.6 visible-area share) is rejected (flag refine_rejected) and the projected mask is used."""
+    only trims the silhouette: pixels of the projected exclusive mask within the partner margin of its outline that
+    the refined mask (holes filled) leaves out are removed (boundary_trim; DEVIATIONS 68), so hand and partner pixels
+    stay removed in every case; a refinement that keeps less than 0.6 of the projected mask (the A.6 visible-area
+    share) is rejected (flag refine_rejected) and the projected mask is used. Fragments smaller than a disc of the
+    partner margin are dropped from the final mask (drop_fragments)."""
     c = c or consts()
     L = frame_layers(bundle, view.k, geo, hands, depth, c)
     M, q = exclusive(L, view.obj, c)
@@ -646,11 +650,40 @@ def masks(view, bundle, image=None, *, geo, hands=None, depth=None, refine=None,
             info['flags'].append('refine_rejected')                              # SAM2 segmented something else
             F = M
         else:
-            F = R & M
+            F = boundary_trim(M, R, L.partner_px)
+        F, dropped = drop_fragments(F, L.partner_px)
+        info['fragments_dropped_px'] = dropped
         info['final_area'] = int(F.sum())
     else:
+        F, dropped = drop_fragments(F, L.partner_px)
+        info['fragments_dropped_px'] = dropped
         info['final_area'] = int(F.sum())
     return F, dict(info=info, layers=L, parts=q, projected=M)
+
+
+def boundary_trim(M, R, d):
+    """The refinement adjusts the silhouette only: pixels of M within D pixels of M's outline (the projection's
+    uncertainty band, the 10 mm partner margin) that the refined mask R leaves out are removed; M's interior is our
+    geometry and stays (DEVIATIONS 68)."""
+    import cv2
+    dist = cv2.distanceTransform(np.pad(M, 1).astype(np.uint8), cv2.DIST_L2, 5)[1:-1, 1:-1]
+    return M & ~((dist <= d) & ~R)
+
+
+def drop_fragments(F, d):
+    """Remove connected fragments of F smaller than a disc of radius D (the partner margin); never the largest.
+    Returns (mask, pixels dropped)."""
+    from scipy.ndimage import label
+    lab, n = label(F)
+    if n <= 1:
+        return F, 0
+    sz = np.bincount(lab.ravel())
+    sz[0] = 0
+    keep = sz >= math.pi * d * d
+    keep[int(np.argmax(sz))] = True
+    keep[0] = False
+    out = keep[lab]
+    return out, int(F.sum() - out.sum())
 
 
 def partner_pixel_test(mask, bundle, obj, k, geo, layers=None):
@@ -708,9 +741,10 @@ def crop_box(mask, geo, pad=0.25, min_side=64):
 # ------------------------------------------------------------------------------------------------ SAM2 refinement
 class Sam2Refiner:
     """SAM2 image predictor on the CPU (transformers Sam2Model, checkpoint facebook/sam2.1-hiera-tiny in the weights
-    root, role weights): point prompts only (SPEC section 4: target positives, partner negatives), on a square crop
-    around the projected mask (crop_box), multimask output; the candidate with the highest IoU against the projected
-    mask is returned (a GT-free choice; the projected mask is our own geometry)."""
+    root, role weights): point prompts only (SPEC section 4: target positives, partner and hand negatives), on a
+    square crop around the projected mask (crop_box), multimask output, logits low-pass filtered at the low-resolution
+    grid scale; the candidate with the highest IoU against the projected mask is returned (a GT-free choice; the
+    projected mask is our own geometry)."""
     FILES = ('config.json', 'model.safetensors', 'preprocessor_config.json', 'processor_config.json',
              'video_preprocessor_config.json')
 
@@ -740,7 +774,13 @@ class Sam2Refiner:
         inp = self.proc(images=rgb, input_points=[[pts]], input_labels=[[lab]], return_tensors='pt')
         with torch.no_grad():
             out = self.model(**inp, multimask_output=True)
-        cands = self.proc.post_process_masks(out.pred_masks, inp['original_sizes'])[0][0].numpy().astype(bool)
+        # logits upsampled to the crop, low-pass filtered at the scale of SAM2's low-resolution mask grid (one cell =
+        # crop side / 256 px; its transposed-convolution upsampling leaves a checkerboard where the logits are near 0,
+        # seen as pinhole lattices inside the cups), then thresholded at 0 (DEVIATIONS 68)
+        from scipy.ndimage import gaussian_filter
+        logits = self.proc.post_process_masks(out.pred_masks, inp['original_sizes'], binarize=False)[0][0]
+        cell = max(rgb.shape[:2]) / float(out.pred_masks.shape[-1])
+        cands = np.stack([gaussian_filter(np.asarray(lg, np.float32), sigma=cell) > 0 for lg in logits.numpy()])
         Mc = M[y0:y1, x0:x1]
         ious = [float((m & Mc).sum()) / max(float((m | Mc).sum()), 1.0) for m in cands]
         i = int(np.argmax(ious))

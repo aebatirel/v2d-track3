@@ -149,7 +149,7 @@ ROLE_PATTERNS = dict(
     fixture=('{GMG}/tests/fixtures/**',),
     dev_frozen=('{GMG}/dev_constants.json',),      # B1: t0_dev (PREREG A.1 on obs_all), dev runs only
     # B2: the existing MediaPipe hands (pipeline/hands_mp.py: cam_a video + our depth + VO; no GT read) stand in for M1
-    # (hands_cpu.py, build step B4) in dev runs only; clean runs use M1's own output in RUN (DEVIATIONS 6, 54)
+    # (hands_cpu.py, build step B4) in dev runs only; clean runs use M1's own output in RUN (DEVIATIONS 6, 65)
     dev_hands=('{DATA}/data/sweep/ep*/hands.npz',),
 )
 EVAL_TRACKS = '{DATA}/data/eval/ep*/poses.npz'

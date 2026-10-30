@@ -350,3 +350,80 @@ leave a detail open.
 64. **Module name `select`.** It shadows the standard-library `select` if the gmg folder itself is put on sys.path
     (running `python gmg/run_episode.py` instead of `python -m gmg.run_episode`). The gmg is always imported as a
     package (SPEC section 7); `tests/test_select.py` checks the standard module is intact under the test invocation.
+
+## B2 (2026-10-30, generator views and Phase-1 exclusive masks; dev only)
+
+No scan, eval output, label value or scan-derived number was seen or used for any entry below. The only data looked at
+are dev bundles (obs_all + tracks), our depth, our hands and the public colour videos of ep2, ep11 and ep26. None of the
+entries changes a pre-registered test, threshold or constant, so none goes in PREREG F.
+
+65. **Dev-only guard role `dev_hands`** (`data/sweep/ep*/hands.npz`; npz keys `joints_left`, `joints_right`,
+    `valid_left`, `valid_right`, `a_offset` only; tier DEV; refused in clean mode like every dev role). SPEC M9 removes
+    hand pixels, but the hands module M1 (`hands_cpu.py`) is build step B4, and DEVIATIONS 6 refuses the existing
+    hands files in both modes. These files are `pipeline/hands_mp.py` outputs (MediaPipe on the cam_a video, our depth,
+    VO `world_T_cam`; no GT is read there [R]); they stand in for M1 in dev runs only. Clean runs use M1's output in RUN.
+    The copies under `data/store/ep*/` are not admitted (any `.npz` there is a det file by identity, DEVIATIONS 15).
+66. **Generator image = the cam_a colour stream.** Views and masks live on the `ep<N>_a.mp4` image (2028 x 1520,
+    OpenCV 14-coefficient distortion); the track frame k pairs with colour frame j = k + 1 (hands_mp.py `a_offset`;
+    the video has T frames, so the last track frame has no colour frame and is skipped). Camera chain rectified-left ->
+    cam_a as in `pipeline/hands_mp.py` / `scripts/crops.py` (only the chain is reused; crops.py seeded masks with
+    library_v3 renders and is not used). The A.6 / SPEC section 4 partner dilation "10 px" is stated on the rectified
+    image (focal 600 px; "10 px ~ 10 mm at 0.5-0.6 m"); on cam_a (focal 1150 px) the same 10 mm is
+    round(10 x 1150 / 600) = 19 px, which is used (stricter than a literal 10 px, which would be ~5 mm on cam_a).
+    Separated / contact frames still come from the bundle census on the rectified image (unchanged A.6 rule).
+67. **Hand pixels.** (a) MediaPipe capsules with the SPEC M2 radii (hand 30 mm, forearm 45 mm, 0.15 m long, as
+    `obs_points.py` / `recon_mesh.hand_segments`), drawn as discs of radius f r / z along each bone, counted only where
+    the capsule's near surface (z - r) is not behind the target's projected front surface (a hand behind the object is
+    not visible). (b) **Depth occluders** (added, not in SPEC): footprint pixels whose reprojected depth lies more than
+    20 mm in front of the target's projected front surface, grown by the depth edge band (2 rectified px x f_a / f_rect
+    = 4 px), count as hand pixels too (removed from the mask and counted in the 25 % hand share). Reason: in ep2
+    hands_mp rejected the right hand's 3-D fit from k 77 on (valid False) although MediaPipe detected it (n_det 2) [M],
+    so the first lid view (k 78) had a hand on the lid inside the mask (trial 1). 20 mm is the A.6 3-D separation gap;
+    it was chosen over the 10 mm contact gap after a GT-free dev check (`build/B2/diag/occl.log`): the pot's own
+    surface reaches -15 to -19 mm at the 1st percentile (track and template error), 0.6-0.7 % of its pixels lie beyond
+    -20 mm and none beyond -30 mm, while the hand on the lid covers 21 % of the lid footprint beyond -20 mm [M, dev].
+    Partner pixels are removed by their dilated footprint regardless of depth order (exclusive, SPEC section 4).
+68. **SAM2 refinement (B.11 "if it runs on the local CPU": it does).** Checkpoint `facebook/sam2.1-hiera-tiny`
+    (transformers format, in the weights root, role weights; 0 missing / 0 unexpected keys in `Sam2Model`) [M]. Prompts:
+    5 positives spread over the eroded exclusive mask, 5 negatives per partner (A.6 Phase-2 count) and, added, 5
+    negatives on the removed hand pixels; image crop = square box around the projected mask (+25 % per side);
+    multimask output, the candidate with the highest IoU against the projected mask is taken (GT-free). The logits are
+    low-pass filtered (Gaussian, sigma = one cell of SAM2's 256-px low-resolution mask grid) before the threshold 0 and
+    the mask's holes are filled: without it, the unfiltered masks had pinhole lattices (a transposed-convolution
+    checkerboard) inside the cups [M, trial 2]. SPEC rule kept as written: a refined mask that gains any dilated-partner
+    pixel is cut back to the projected mask (flag `refine_cut_back`). SPEC leaves open what the refinement may change
+    otherwise; here it **only trims the outline band**: pixels of the projected exclusive mask within the partner
+    margin (19 px) of its outline that SAM2 leaves out are removed; the interior is our geometry and stays (SAM2 dropped
+    the dark inside of the beige cup and grew over the hand and forearm in trials 1-3 [M]). A refinement keeping less
+    than 0.6 of the projected mask (the A.6 visible-area share) is rejected (`refine_rejected`; SAM2 segmented
+    something else). Fragments of the final mask smaller than a disc of the partner margin are dropped (projected or
+    refined). Hand and partner pixels can therefore never enter the final mask through the refinement.
+69. **View choice details** (SPEC section 4 mechanism 2, A.6 row "generator views"). Candidate frames: the object's
+    good frames (dev: every extraction frame with owned points) that have a colour frame and a depth frame. Visible
+    area = the exclusive mask's pixel count; "episode maximum" = its maximum over those frames. Hand share = removed
+    hand pixels (67 a and b) / (footprint minus dilated partners). First view = the **hand-free** qualifying frame
+    (no hand pixel on the target) with the largest visible area, else the qualifying frame with the largest visible
+    area (B.12 asks for "M9's best separated, hand-free view"; in trial 2 the largest-area rule picked a pot view with
+    the hand on the handle (16 %) although hand-free separated frames reach 97 % of that area [M, dev]); then
+    farthest-point sampling on the view direction (cam_a centre in the object frame), >= 8 deg, <= 6 views. One view
+    (x seeds, `one_view`) whenever the sampling returns one view (this includes a pool span >= 8 deg with no frame
+    >= 8 deg from the first view: ep2 pot, span 11.2 deg). Contact mode only when **no** frame is separated (SPEC
+    wording); if separated frames exist but none qualifies, no view is chosen (`no_qualifying_view`, generator not run).
+    Contact-mode order: least partner overlap (share of the footprint under the dilated partners), then hand-free, then
+    larger area; each taken frame >= 8 deg from the earlier ones. An object with no partner has every frame separated.
+    Contact mode inpaints the partners' dilated pixels outside the target mask (OpenCV Telea, crop box) for the image.
+70. **Valid depth** (A.6 "valid depth >= 0.6 of the mask"): the FoundationStereo depth of frame k, `obs_points.py`
+    validity (finite, 0.05-1.5 m, 5 x 5 dilate - erode <= 2 cm), back-projected from a box around all tracked objects,
+    moved into cam_a, projected with its distortion and z-buffered with a 3 x 3 min filter for the 1.9x focal ratio.
+    A mask pixel counts if it receives a valid sample (this is the pointmap SAM 3D will get). A depth-agreement share
+    (|depth - target front| <= 3 cm) is reported as a diagnostic only.
+71. **B.11 test as run.** Partner pixels = (a) every owned point of every partner projected one by one into cam_a at
+    the view's frame (no centroids, no dilation) and (b) every pixel of the partners' footprints (closed, filled, not
+    dilated). A view passes if neither touches the projected mask (after closing and filling) nor the final mask (after
+    refinement), the final mask holds no removed hand pixel, it is not empty, and, in separated mode, the frame is in
+    the census's separated set for every partner. Footprints: 2 mm centroids of the owned points, dilated by their
+    spacing at the median depth, closed (3 x 3) and holes filled (the census `_mask` on cam_a plus the fill).
+72. **Dev-data weakness of B.11.** obs_all removed partner points within 12 mm of the library_v3 meshes, so dev
+    partner footprints can miss partner pixels next to the contact; the 10 mm margin covers part of that. The
+    owner-relevant ep2 views are separated frames (lid-to-pot gap >= 186 px on cam_a [M, dev]), where this does not
+    matter. B.11 should run again on clean bundles (B4) or on the G0 box before SAM 3D (PREREG B.11, B.12).
