@@ -4889,3 +4889,7 @@ Advice given:
   ep11 (eval 10) + ep13 (eval 14) + ep31 (eval 30, learner labelled as differing from eval 30's packed standard
   learner), each trained on our perceived reference (P) and on the mocap-object reference (O), scored vs mocap; ≈ $5–6.
   Launch only after the CPU build and both reviews return GO (workflow wf_4f80bdc9-7d2).
+- 12:46 UTC videos delivered: the box's push retry succeeded; ep10/32/16/20.mp4 sent to the owner (store
+  `runs/20261030-vid5-817b135/results/sub_videos/`). Box gone by 12:45; ledger actual $7.60 (estimate: 5.87 h ×
+  $1.295/h, mostly HF-429-throttled pulls). Eval 25 is missing: `sub_videos.sh` does not handle PICK's `ck=` form (fix
+  pending if the owner wants that video). Lesson: a video job for a few episodes should pull only those episodes' runs.
