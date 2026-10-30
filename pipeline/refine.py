@@ -75,7 +75,11 @@ Steps (each switchable with --steps; always applied in the order S0, S1, S3, S4,
      a measured hand within 5 cm (of the tracked or the held pose). It is released as soon as the object moves even
      if no hand is seen (ep2 lid: MediaPipe missed the grasp). At release the body-frame offset between the held
      pose and the track decays linearly to zero over 10 frames (SE(3) screw interpolation), so there is no jump.
-     Frame 0 is never changed by S4.
+     Frame 0 is never changed by S4. Opt-in variants [H], all off by default (= the rule above): --s4_owner 1 (a hand
+     counts only when this object is its nearest roster object; on public ep24 a hand handling board 1 comes within
+     5 cm of board 2's frame-0 pose at frame 30), --s4_lift_moving 1 (lift-off needs a moving frame; ep24 board 2's
+     track creeps 1.5 cm upward by frame 40 with no motion label), --s4_deadband CM,DEG (own motion releases only
+     once the track has left the held pose by more than CM or DEG, as the hand-gated lock of map_semantic §2).
   S5 rest smoothing (off by default): each rest segment of >= 10 frames is held at one robust constant pose (median
      COM position, trimmed mean rotation); the segment containing frame 0 is held at the frame-0 pose (frame 0 kept);
      the offset ramps out over 5 frames on both sides.
@@ -317,7 +321,7 @@ def liftoff_frame(O, com, n, lift_cm=1.5):
 
 def hand_distances(O, S, J, M):
     """(T,) cm: nearest measured hand joint to the surface samples S (body frame) posed by O (T,4,4) or one 4x4."""
-    T = len(J['left']) if J else 0
+    T = len(next(iter(J.values()))) if J else 0
     out = np.full(T, np.inf)
     for t in range(T):
         Ot = O if O.ndim == 2 else O[t]
@@ -662,11 +666,31 @@ def step_S4(a, objs, O, lab, have_hands, n):
             r['skipped'] = f'touched at frame 0 (hand {h0:.1f} cm)'
             continue
         held = O[j][0].copy()
-        hh = hand_distances(held, o.S, L['_J'], L['_M'])
-        near = np.minimum(L['hand_cm'], hh) < a.hand_cm
+        if a.s4_owner and len(objs) > 1:                          # variant: the hand must be nearest to THIS object
+            near = np.zeros(T, bool)
+            for s in L['_J']:
+                Js, Ms = {s: L['_J'][s]}, {s: L['_M'][s]}
+                dj = np.minimum(hand_distances(O[j], o.S, Js, Ms), hand_distances(held, o.S, Js, Ms))
+                dk = np.min([hand_distances(O[k], objs[k].S, Js, Ms) for k in range(len(objs)) if k != j], axis=0)
+                near |= (dj < a.hand_cm) & (dj <= dk)
+        else:
+            hh = hand_distances(held, o.S, L['_J'], L['_M'])
+            near = np.minimum(L['hand_cm'], hh) < a.hand_cm
         t_hand = int(np.argmax(near)) if near.any() else T
         t_move = int(L['first_move'])
+        if a.s4_deadband:                                         # variant: own motion counts only past a deadband
+            dcm, ddeg = (float(x) for x in a.s4_deadband.split(','))
+            c0 = held[:3, :3] @ o.com + held[:3, 3]
+            dev = np.linalg.norm(O[j][:, :3, :3] @ o.com + O[j][:, :3, 3] - c0, axis=1) * 100
+            turn = np.array([ang_deg(O[j][t, :3, :3] @ held[:3, :3].T) for t in range(T)])
+            past = (dev > dcm) | (turn > ddeg)
+            t_move = max(t_move, int(np.argmax(past)) if past.any() else T)
         t_lift = int(L['liftoff']) if L['liftoff'] is not None else T
+        if a.s4_lift_moving and t_lift < T:                       # variant: a lift-off needs the object to be moving
+            mv = L['moving']
+            ok = [t for t in range(t_lift, T) if mv[t] and (O[j][t, :3, :3] @ o.com + O[j][t, :3, 3]) @ n
+                  - (O[j][0, :3, :3] @ o.com + O[j][0, :3, 3]) @ n > 0.015]
+            t_lift = ok[0] if ok else T
         t_r, reason = min([(t_move, 'own motion'), (t_lift, 'lift-off'), (t_hand, f'hand within {a.hand_cm:.0f} cm')],
                           key=lambda x: x[0])
         if t_r >= T:
@@ -690,6 +714,7 @@ def step_S4(a, objs, O, lab, have_hands, n):
                 blend += 1
         O[j] = new
         r.update(applied=True, hold=[1, t_r], released_at=t_r if t_r < T else None, reason=reason,
+                 variants=dict(owner=bool(a.s4_owner), lift_moving=bool(a.s4_lift_moving), deadband=a.s4_deadband),
                  first_hand_near=t_hand if t_hand < T else None, first_move=t_move if t_move < T else None,
                  liftoff=t_lift if t_lift < T else None, blend_frames=blend,
                  drift_suppressed_max_cm=round(float(drift.max()), 3), drift_at_release_cm=round(float(drift[-1]), 3),
@@ -698,7 +723,6 @@ def step_S4(a, objs, O, lab, have_hands, n):
 
 
 def step_S5(a, objs, O, lab):
-    from scipy.spatial.transform import Rotation  # noqa: F401
     rec = {}
     T = len(O[0])
     for j, o in enumerate(objs):
@@ -798,6 +822,12 @@ def parse_args(argv=None):
     p.add_argument('--s3_fade', type=int, default=10)
     # S4
     p.add_argument('--s4_blend', type=int, default=10)
+    p.add_argument('--s4_owner', type=int, default=0, help='[H] variant: a hand releases the hold only when this object '
+                   'is its nearest roster object (default 0 = any hand within --hand_cm)')
+    p.add_argument('--s4_lift_moving', type=int, default=0, help='[H] variant: lift-off counts only on a moving frame '
+                   '(vertical creep alone does not release; default 0 = object_events rule)')
+    p.add_argument('--s4_deadband', default=None, help='[H] variant "CM,DEG": own motion releases only once the track '
+                   'has left the held pose by more than CM or DEG (default off)')
     # S5
     p.add_argument('--s5_min', type=int, default=10)
     p.add_argument('--s5_blend', type=int, default=5)
@@ -818,7 +848,9 @@ def main(argv=None):
     a = parse_args(argv)
     inp = os.path.abspath(a.inp)
     out = os.path.abspath(a.out)
-    assert_inference_input(inp)
+    for pth in (inp, a.hands, a.depth, a.meshes, a.pieces, a.calib, a.video,
+                a.table if a.table and os.path.exists(a.table) else None):
+        assert_inference_input(pth)                               # before anything is created
     if os.path.realpath(inp) == os.path.realpath(out):
         raise SystemExit('refine: --out must differ from --in (existing runs are preserved)')
     if os.path.exists(os.path.join(out, 'poses.npz')) and not a.force:
@@ -982,7 +1014,8 @@ def main(argv=None):
             dr = np.array([ang_deg(O[j][t, :3, :3] @ snap[j][t, :3, :3].T) for t in range(T)])
             deltas[f'{step}_{o.name}_cm'] = dp_
             deltas[f'{step}_{o.name}_deg'] = dr
-            dc[o.name] = dict(frames_changed=int(((dp_ > 0) | (dr > 0)).sum()), max_cm=round(float(dp_.max()), 3),
+            nch = int(sum(not np.array_equal(O[j][t], snap[j][t]) for t in range(T)))
+            dc[o.name] = dict(frames_changed=nch, max_cm=round(float(dp_.max()), 3),
                               max_deg=round(float(dr.max()), 3), f0_cm=round(float(dp_[0]), 4), f0_deg=round(float(dr[0]), 4))
             snap[j] = O[j].copy()
         steps[step]['delta'] = dc

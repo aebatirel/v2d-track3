@@ -1,0 +1,227 @@
+{
+ "S1": {
+  "0": {
+   "white_pot": "f0 -0.17cm rest [([202, 373], 0.098)]",
+   "white_pot_lid": "f0 +0.00cm (gated off) rest [([77, 242], 1.114)]"
+  },
+  "2": {
+   "white_pot": "f0 +0.18cm",
+   "white_pot_lid": "f0 +0.00cm (gated off) rest [([81, 250], 1.158)]"
+  },
+  "11": {
+   "blue_cup": "f0 -0.04cm",
+   "beige_cup": "f0 +0.04cm"
+  },
+  "12": {
+   "blue_cup": "f0 +0.00cm (gated off)",
+   "plastic_dish_rack": "f0 +1.34cm"
+  },
+  "13": {
+   "blue_cup": "f0 +0.00cm (gated off)",
+   "plastic_dish_rack": "f0 +1.27cm"
+  },
+  "18": {
+   "mini_sweeper": "f0 +0.57cm",
+   "mini_dust_pan": "f0 +0.65cm"
+  },
+  "21": {
+   "blue_cup": "f0 +0.00cm (gated off) rest [([139, 186], -0.145)]",
+   "water_pitcher": "f0 +0.93cm rest [([109, 186], -0.175)]"
+  },
+  "22": {
+   "blue_cup": "f0 +0.35cm rest [([130, 189], 0.113)]",
+   "water_pitcher": "f0 +0.79cm rest [([106, 189], 0.162)]"
+  },
+  "23": {
+   "wooden_piece_1": "f0 +1.15cm rest [([108, 126], 0.105)]",
+   "wooden_piece_2": "f0 +1.59cm"
+  },
+  "24": {
+   "wooden_piece_1": "f0 +1.29cm",
+   "wooden_piece_2": "f0 +1.10cm rest [([79, 114], -1.909)]"
+  },
+  "26": {
+   "plastic_dish_rack": "f0 +1.39cm",
+   "white_pot": "f0 +0.00cm (gated off) rest [([87, 158], 0.763)]"
+  },
+  "27": {
+   "plastic_dish_rack": "f0 +1.03cm",
+   "white_pot": "f0 +0.89cm"
+  },
+  "31": {
+   "mini_sweeper": "f0 +0.00cm (gated off) rest [([268, 290], 0.223)]",
+   "plastic_dish_rack": "f0 +0.95cm"
+  },
+  "39": {
+   "mini_dust_pan": "f0 +0.44cm rest [([271, 319], 0.512)]"
+  },
+  "40": {
+   "mini_dust_pan": "f0 +0.28cm rest [([200, 260], -0.1)]"
+  },
+  "41": {
+   "white_pot": "f0 -0.04cm rest [([208, 226], -0.554), ([229, 299], -0.06)]"
+  },
+  "42": {
+   "white_pot": "f0 +0.15cm"
+  },
+  "43": {
+   "white_pot": "f0 +0.62cm rest [([267, 326], -0.704)]"
+  },
+  "44": {
+   "white_pot": "f0 +0.20cm rest [([169, 249], 0.135)]"
+  },
+  "45": {
+   "white_pot": "f0 +0.11cm"
+  }
+ },
+ "S3": {
+  "0": {
+   "white_pot": "tilt 0.42deg",
+   "white_pot_lid": "skip: not table-supported: |h| 7.96 cm > snap_max 2.0; 7.79 cm above the low"
+  },
+  "2": {
+   "white_pot": "tilt 0.91deg",
+   "white_pot_lid": "skip: not table-supported: |h| 7.97 cm > snap_max 2.0; 8.16 cm above the low"
+  },
+  "11": {
+   "blue_cup": "tilt 1.06deg",
+   "beige_cup": "skip: nearest stable rest 44.37 deg > 10.0"
+  },
+  "12": {
+   "blue_cup": "skip: not table-supported: 1.00 cm above the lowest object bottom",
+   "plastic_dish_rack": "tilt 2.89deg"
+  },
+  "13": {
+   "blue_cup": "skip: not table-supported: 1.27 cm above the lowest object bottom",
+   "plastic_dish_rack": "tilt 3.16deg"
+  },
+  "18": {
+   "mini_sweeper": "tilt 0.56deg",
+   "mini_dust_pan": "tilt 4.27deg"
+  },
+  "21": {
+   "blue_cup": "skip: not table-supported: 0.93 cm above the lowest object bottom",
+   "water_pitcher": "skip: nearest stable rest 60.11 deg > 10.0"
+  },
+  "22": {
+   "blue_cup": "tilt 1.34deg",
+   "water_pitcher": "skip: nearest stable rest 60.04 deg > 10.0"
+  },
+  "23": {
+   "wooden_piece_1": "tilt 2.05deg",
+   "wooden_piece_2": "tilt 4.67deg"
+  },
+  "24": {
+   "wooden_piece_1": "tilt 3.26deg",
+   "wooden_piece_2": "tilt 1.80deg"
+  },
+  "26": {
+   "plastic_dish_rack": "tilt 2.67deg",
+   "white_pot": "skip: not table-supported: 2.93 cm above the lowest object bottom; over anot"
+  },
+  "27": {
+   "plastic_dish_rack": "tilt 2.39deg",
+   "white_pot": "tilt 2.40deg"
+  },
+  "31": {
+   "mini_sweeper": "skip: not table-supported: 1.10 cm above the lowest object bottom; on anothe",
+   "plastic_dish_rack": "tilt 2.49deg"
+  },
+  "39": {
+   "mini_dust_pan": "tilt 3.32deg"
+  },
+  "40": {
+   "mini_dust_pan": "tilt 1.67deg"
+  },
+  "41": {
+   "white_pot": "tilt 1.81deg"
+  },
+  "42": {
+   "white_pot": "tilt 2.53deg"
+  },
+  "43": {
+   "white_pot": "tilt 4.76deg"
+  },
+  "44": {
+   "white_pot": "tilt 1.32deg"
+  },
+  "45": {
+   "white_pot": "tilt 1.66deg"
+  }
+ },
+ "S4": {
+  "0": {
+   "white_pot": "hold [1, 36] (hand within 5 cm) 45fr max 0.24cm/2.0deg",
+   "white_pot_lid": "hold [1, 35] (hand within 5 cm) 44fr max 0.19cm/1.9deg"
+  },
+  "2": {
+   "white_pot": "hold [1, 36] (hand within 5 cm) 45fr max 0.28cm/1.2deg",
+   "white_pot_lid": "hold [1, 37] (hand within 5 cm) 46fr max 0.18cm/0.7deg"
+  },
+  "11": {
+   "blue_cup": "hold [1, 6] (hand within 5 cm) 15fr max 0.08cm/4.0deg",
+   "beige_cup": "hold [1, 14] (hand within 5 cm) 23fr max 0.31cm/5.2deg"
+  },
+  "12": {
+   "blue_cup": "hold [1, 21] (hand within 5 cm) 30fr max 0.29cm/4.3deg",
+   "plastic_dish_rack": "hold [1, 137] (hand within 5 cm) 146fr max 0.79cm/3.3deg"
+  },
+  "13": {
+   "blue_cup": "hold [1, 3] (own motion) 12fr max 0.08cm/4.6deg",
+   "plastic_dish_rack": "hold [1, 17] (hand within 5 cm) 26fr max 0.20cm/1.0deg"
+  },
+  "18": {
+   "mini_sweeper": "hold [1, 25] (hand within 5 cm) 34fr max 0.16cm/1.3deg",
+   "mini_dust_pan": "hold [1, 8] (hand within 5 cm) 17fr max 0.17cm/0.8deg"
+  },
+  "21": {
+   "blue_cup": "hold [1, 26] (hand within 5 cm) 35fr max 0.41cm/3.6deg",
+   "water_pitcher": "hold [1, 6] (hand within 5 cm) 15fr max 0.26cm/0.8deg"
+  },
+  "22": {
+   "blue_cup": "hold [1, 7] (hand within 5 cm) 16fr max 0.26cm/1.4deg",
+   "water_pitcher": "hold [1, 26] (hand within 5 cm) 35fr max 0.51cm/1.4deg"
+  },
+  "23": {
+   "wooden_piece_1": "hold [1, 31] (hand within 5 cm) 40fr max 1.28cm/3.9deg",
+   "wooden_piece_2": "hold [1, 11] (hand within 5 cm) 20fr max 0.17cm/1.3deg"
+  },
+  "24": {
+   "wooden_piece_1": "skip: touched at frame 0 (hand 2.4 cm)",
+   "wooden_piece_2": "hold [1, 40] (lift-off) 49fr max 1.64cm/2.8deg"
+  },
+  "26": {
+   "plastic_dish_rack": "hold [1, 6] (hand within 5 cm) 15fr max 0.22cm/1.0deg",
+   "white_pot": "hold [1, 27] (hand within 5 cm) 36fr max 0.34cm/2.6deg"
+  },
+  "27": {
+   "plastic_dish_rack": "hold [1, 246] (never released) 245fr max 0.72cm/1.8deg",
+   "white_pot": "hold [1, 23] (own motion) 32fr max 0.72cm/9.6deg"
+  },
+  "31": {
+   "mini_sweeper": "hold [1, 19] (hand within 5 cm) 28fr max 0.19cm/2.7deg",
+   "plastic_dish_rack": "hold [1, 9] (hand within 5 cm) 18fr max 0.14cm/0.7deg"
+  },
+  "39": {
+   "mini_dust_pan": "hold [1, 32] (hand within 5 cm) 41fr max 0.21cm/2.5deg"
+  },
+  "40": {
+   "mini_dust_pan": "hold [1, 17] (hand within 5 cm) 26fr max 0.17cm/1.1deg"
+  },
+  "41": {
+   "white_pot": "hold [1, 15] (hand within 5 cm) 24fr max 0.31cm/1.0deg"
+  },
+  "42": {
+   "white_pot": "hold [1, 17] (hand within 5 cm) 26fr max 0.58cm/3.0deg"
+  },
+  "43": {
+   "white_pot": "hold [1, 9] (hand within 5 cm) 18fr max 0.24cm/3.1deg"
+  },
+  "44": {
+   "white_pot": "hold [1, 10] (hand within 5 cm) 19fr max 0.12cm/0.9deg"
+  },
+  "45": {
+   "white_pot": "hold [1, 16] (hand within 5 cm) 25fr max 0.23cm/1.0deg"
+  }
+ }
+}

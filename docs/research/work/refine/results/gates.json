@@ -1,0 +1,923 @@
+{
+ "none_vs_baseline_max_abs": {
+  "lib": 0.0,
+  "scan": 0.0
+ },
+ "arms": {
+  "S1": {
+   "lib": {
+    "mean": 0.8844,
+    "base": 0.8921,
+    "delta": -0.0077,
+    "mean_no23": 0.9288,
+    "base_no23": 0.9369,
+    "delta_no23": -0.0081,
+    "better": 6,
+    "worse": 8,
+    "unchanged": 6,
+    "worse_gt_0p001": 6,
+    "drops_gt_0p02": {
+     "12": -0.0377,
+     "13": -0.0641,
+     "21": -0.0544,
+     "22": -0.0297
+    },
+    "per_ep_delta": {
+     "0": 0.0157,
+     "2": -0.0137,
+     "11": -0.0014,
+     "12": -0.0377,
+     "13": -0.0641,
+     "18": -0.0009,
+     "21": -0.0544,
+     "22": -0.0297,
+     "23": 0.0,
+     "24": 0.0161,
+     "26": 0.0004,
+     "27": 0.0026,
+     "31": -0.0004,
+     "39": 0.0022,
+     "40": 0.0,
+     "41": 0.0,
+     "42": 0.0,
+     "43": 0.011,
+     "44": 0.0,
+     "45": 0.0
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.68
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "scan": {
+    "mean": 0.9082,
+    "base": 0.9084,
+    "delta": -0.0002,
+    "mean_no23": 0.9538,
+    "base_no23": 0.954,
+    "delta_no23": -0.0002,
+    "better": 7,
+    "worse": 6,
+    "unchanged": 7,
+    "worse_gt_0p001": 6,
+    "drops_gt_0p02": {
+     "21": -0.0467,
+     "22": -0.0221
+    },
+    "per_ep_delta": {
+     "0": -0.0064,
+     "2": -0.0091,
+     "11": 0.0007,
+     "12": 0.0261,
+     "13": 0.0265,
+     "18": -0.0014,
+     "21": -0.0467,
+     "22": -0.0221,
+     "23": 0.0,
+     "24": 0.0176,
+     "26": 0.0099,
+     "27": 0.0089,
+     "31": -0.0097,
+     "39": 0.0025,
+     "40": 0.0,
+     "41": 0.0,
+     "42": 0.0,
+     "43": 0.0,
+     "44": 0.0,
+     "45": 0.0
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.68
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "gate1_mean_lib_ge_base_plus_0p005": false,
+   "gate2_no_drop_gt_0p02": false,
+   "gate2_S3_rule_mean_rises_and_worse_le_third": false,
+   "gate3_no_new_flips_lib": true,
+   "gate3_no_new_flips_scan": true,
+   "frame0_changed_objects": [
+    [
+     0,
+     "white_pot"
+    ],
+    [
+     2,
+     "white_pot"
+    ],
+    [
+     11,
+     "blue_cup"
+    ],
+    [
+     11,
+     "beige_cup"
+    ],
+    [
+     12,
+     "plastic_dish_rack"
+    ],
+    [
+     13,
+     "plastic_dish_rack"
+    ],
+    [
+     18,
+     "mini_sweeper"
+    ],
+    [
+     18,
+     "mini_dust_pan"
+    ],
+    [
+     21,
+     "water_pitcher"
+    ],
+    [
+     22,
+     "blue_cup"
+    ],
+    [
+     22,
+     "water_pitcher"
+    ],
+    [
+     23,
+     "wooden_piece_1"
+    ],
+    [
+     23,
+     "wooden_piece_2"
+    ],
+    [
+     24,
+     "wooden_piece_1"
+    ],
+    [
+     24,
+     "wooden_piece_2"
+    ],
+    [
+     26,
+     "plastic_dish_rack"
+    ],
+    [
+     27,
+     "plastic_dish_rack"
+    ],
+    [
+     27,
+     "white_pot"
+    ],
+    [
+     31,
+     "plastic_dish_rack"
+    ],
+    [
+     39,
+     "mini_dust_pan"
+    ],
+    [
+     40,
+     "mini_dust_pan"
+    ],
+    [
+     41,
+     "white_pot"
+    ],
+    [
+     42,
+     "white_pot"
+    ],
+    [
+     43,
+     "white_pot"
+    ],
+    [
+     44,
+     "white_pot"
+    ],
+    [
+     45,
+     "white_pot"
+    ]
+   ],
+   "gate4_frame0_byte_identical": false,
+   "world_T_cam_and_keys_ok": true
+  },
+  "S2": {
+   "lib": {
+    "mean": 0.8982,
+    "base": 0.8921,
+    "delta": 0.0061,
+    "mean_no23": 0.9432,
+    "base_no23": 0.9369,
+    "delta_no23": 0.0064,
+    "better": 17,
+    "worse": 3,
+    "unchanged": 0,
+    "worse_gt_0p001": 1,
+    "drops_gt_0p02": {},
+    "per_ep_delta": {
+     "0": 0.0031,
+     "2": 0.0048,
+     "11": 0.0034,
+     "12": 0.0098,
+     "13": 0.0043,
+     "18": 0.0038,
+     "21": 0.0064,
+     "22": -0.0006,
+     "23": 0.0011,
+     "24": -0.0026,
+     "26": 0.0026,
+     "27": 0.0016,
+     "31": 0.0551,
+     "39": 0.0157,
+     "40": 0.0014,
+     "41": 0.0017,
+     "42": 0.0078,
+     "43": -0.0003,
+     "44": 0.0003,
+     "45": 0.0028
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.6923
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "scan": {
+    "mean": 0.9136,
+    "base": 0.9084,
+    "delta": 0.0053,
+    "mean_no23": 0.9595,
+    "base_no23": 0.954,
+    "delta_no23": 0.0055,
+    "better": 17,
+    "worse": 3,
+    "unchanged": 0,
+    "worse_gt_0p001": 3,
+    "drops_gt_0p02": {},
+    "per_ep_delta": {
+     "0": 0.003,
+     "2": 0.0018,
+     "11": 0.0045,
+     "12": 0.0014,
+     "13": -0.001,
+     "18": 0.003,
+     "21": 0.0069,
+     "22": -0.0036,
+     "23": 0.0011,
+     "24": -0.0037,
+     "26": 0.0041,
+     "27": 0.0045,
+     "31": 0.0579,
+     "39": 0.0108,
+     "40": 0.0031,
+     "41": 0.0013,
+     "42": 0.0027,
+     "43": 0.0008,
+     "44": 0.001,
+     "45": 0.0059
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.6923
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "gate1_mean_lib_ge_base_plus_0p005": true,
+   "gate2_no_drop_gt_0p02": true,
+   "gate2_S3_rule_mean_rises_and_worse_le_third": true,
+   "gate3_no_new_flips_lib": true,
+   "gate3_no_new_flips_scan": true,
+   "frame0_changed_objects": [
+    [
+     0,
+     "white_pot"
+    ],
+    [
+     0,
+     "white_pot_lid"
+    ],
+    [
+     2,
+     "white_pot"
+    ],
+    [
+     2,
+     "white_pot_lid"
+    ],
+    [
+     11,
+     "blue_cup"
+    ],
+    [
+     11,
+     "beige_cup"
+    ],
+    [
+     12,
+     "blue_cup"
+    ],
+    [
+     12,
+     "plastic_dish_rack"
+    ],
+    [
+     13,
+     "blue_cup"
+    ],
+    [
+     13,
+     "plastic_dish_rack"
+    ],
+    [
+     18,
+     "mini_sweeper"
+    ],
+    [
+     18,
+     "mini_dust_pan"
+    ],
+    [
+     21,
+     "blue_cup"
+    ],
+    [
+     21,
+     "water_pitcher"
+    ],
+    [
+     22,
+     "blue_cup"
+    ],
+    [
+     22,
+     "water_pitcher"
+    ],
+    [
+     23,
+     "wooden_piece_1"
+    ],
+    [
+     23,
+     "wooden_piece_2"
+    ],
+    [
+     24,
+     "wooden_piece_1"
+    ],
+    [
+     24,
+     "wooden_piece_2"
+    ],
+    [
+     26,
+     "plastic_dish_rack"
+    ],
+    [
+     26,
+     "white_pot"
+    ],
+    [
+     27,
+     "plastic_dish_rack"
+    ],
+    [
+     27,
+     "white_pot"
+    ],
+    [
+     31,
+     "mini_sweeper"
+    ],
+    [
+     31,
+     "plastic_dish_rack"
+    ],
+    [
+     39,
+     "mini_dust_pan"
+    ],
+    [
+     40,
+     "mini_dust_pan"
+    ],
+    [
+     41,
+     "white_pot"
+    ],
+    [
+     42,
+     "white_pot"
+    ],
+    [
+     43,
+     "white_pot"
+    ],
+    [
+     44,
+     "white_pot"
+    ],
+    [
+     45,
+     "white_pot"
+    ]
+   ],
+   "gate4_frame0_byte_identical": false,
+   "world_T_cam_and_keys_ok": true
+  },
+  "S2h0": {
+   "lib": {
+    "mean": 0.8951,
+    "base": 0.8921,
+    "delta": 0.003,
+    "mean_no23": 0.94,
+    "base_no23": 0.9369,
+    "delta_no23": 0.0031,
+    "better": 20,
+    "worse": 0,
+    "unchanged": 0,
+    "worse_gt_0p001": 0,
+    "drops_gt_0p02": {},
+    "per_ep_delta": {
+     "0": 0.0031,
+     "2": 0.0036,
+     "11": 0.0039,
+     "12": 0.0079,
+     "13": 0.0033,
+     "18": 0.0009,
+     "21": 0.002,
+     "22": 0.0017,
+     "23": 0.0002,
+     "24": 0.0011,
+     "26": 0.0055,
+     "27": 0.0008,
+     "31": 0.0026,
+     "39": 0.0051,
+     "40": 0.0009,
+     "41": 0.0017,
+     "42": 0.0075,
+     "43": 0.0033,
+     "44": 0.0015,
+     "45": 0.0033
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.6831
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "scan": {
+    "mean": 0.911,
+    "base": 0.9084,
+    "delta": 0.0026,
+    "mean_no23": 0.9568,
+    "base_no23": 0.954,
+    "delta_no23": 0.0028,
+    "better": 18,
+    "worse": 1,
+    "unchanged": 1,
+    "worse_gt_0p001": 1,
+    "drops_gt_0p02": {},
+    "per_ep_delta": {
+     "0": 0.003,
+     "2": 0.0029,
+     "11": 0.0048,
+     "12": 0.0022,
+     "13": 0.0008,
+     "18": 0.0016,
+     "21": 0.0037,
+     "22": 0.0012,
+     "23": 0.0,
+     "24": 0.002,
+     "26": 0.0089,
+     "27": 0.002,
+     "31": 0.0022,
+     "39": -0.0061,
+     "40": 0.0033,
+     "41": 0.0013,
+     "42": 0.0068,
+     "43": 0.0058,
+     "44": 0.001,
+     "45": 0.0054
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.6831
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "gate1_mean_lib_ge_base_plus_0p005": false,
+   "gate2_no_drop_gt_0p02": true,
+   "gate2_S3_rule_mean_rises_and_worse_le_third": true,
+   "gate3_no_new_flips_lib": true,
+   "gate3_no_new_flips_scan": true,
+   "frame0_changed_objects": [],
+   "gate4_frame0_byte_identical": true,
+   "world_T_cam_and_keys_ok": true
+  },
+  "S3": {
+   "lib": {
+    "mean": 0.8908,
+    "base": 0.8921,
+    "delta": -0.0013,
+    "mean_no23": 0.9355,
+    "base_no23": 0.9369,
+    "delta_no23": -0.0014,
+    "better": 10,
+    "worse": 8,
+    "unchanged": 2,
+    "worse_gt_0p001": 8,
+    "drops_gt_0p02": {
+     "24": -0.0207,
+     "39": -0.077,
+     "40": -0.0284
+    },
+    "per_ep_delta": {
+     "0": 0.0003,
+     "2": 0.0024,
+     "11": 0.0007,
+     "12": 0.0084,
+     "13": 0.0063,
+     "18": 0.0048,
+     "21": 0.0,
+     "22": -0.0029,
+     "23": 0.0,
+     "24": -0.0207,
+     "26": 0.0208,
+     "27": 0.0096,
+     "31": 0.0623,
+     "39": -0.077,
+     "40": -0.0284,
+     "41": -0.0054,
+     "42": -0.0071,
+     "43": 0.0138,
+     "44": -0.0067,
+     "45": -0.0071
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.68
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "scan": {
+    "mean": 0.9046,
+    "base": 0.9084,
+    "delta": -0.0038,
+    "mean_no23": 0.95,
+    "base_no23": 0.954,
+    "delta_no23": -0.0039,
+    "better": 8,
+    "worse": 11,
+    "unchanged": 1,
+    "worse_gt_0p001": 9,
+    "drops_gt_0p02": {
+     "24": -0.0305,
+     "39": -0.0741
+    },
+    "per_ep_delta": {
+     "0": 0.0001,
+     "2": 0.0039,
+     "11": 0.0022,
+     "12": 0.0033,
+     "13": -0.0131,
+     "18": 0.0019,
+     "21": 0.0,
+     "22": -0.0016,
+     "23": -0.0002,
+     "24": -0.0305,
+     "26": 0.0154,
+     "27": 0.0228,
+     "31": 0.0528,
+     "39": -0.0741,
+     "40": -0.0193,
+     "41": -0.0027,
+     "42": -0.0131,
+     "43": -0.013,
+     "44": -0.0007,
+     "45": -0.0092
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.68
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "gate1_mean_lib_ge_base_plus_0p005": false,
+   "gate2_no_drop_gt_0p02": false,
+   "gate2_S3_rule_mean_rises_and_worse_le_third": false,
+   "gate3_no_new_flips_lib": true,
+   "gate3_no_new_flips_scan": true,
+   "frame0_changed_objects": [
+    [
+     0,
+     "white_pot"
+    ],
+    [
+     2,
+     "white_pot"
+    ],
+    [
+     11,
+     "blue_cup"
+    ],
+    [
+     12,
+     "plastic_dish_rack"
+    ],
+    [
+     13,
+     "plastic_dish_rack"
+    ],
+    [
+     18,
+     "mini_sweeper"
+    ],
+    [
+     18,
+     "mini_dust_pan"
+    ],
+    [
+     22,
+     "blue_cup"
+    ],
+    [
+     23,
+     "wooden_piece_1"
+    ],
+    [
+     23,
+     "wooden_piece_2"
+    ],
+    [
+     24,
+     "wooden_piece_1"
+    ],
+    [
+     24,
+     "wooden_piece_2"
+    ],
+    [
+     26,
+     "plastic_dish_rack"
+    ],
+    [
+     27,
+     "plastic_dish_rack"
+    ],
+    [
+     27,
+     "white_pot"
+    ],
+    [
+     31,
+     "plastic_dish_rack"
+    ],
+    [
+     39,
+     "mini_dust_pan"
+    ],
+    [
+     40,
+     "mini_dust_pan"
+    ],
+    [
+     41,
+     "white_pot"
+    ],
+    [
+     42,
+     "white_pot"
+    ],
+    [
+     43,
+     "white_pot"
+    ],
+    [
+     44,
+     "white_pot"
+    ],
+    [
+     45,
+     "white_pot"
+    ]
+   ],
+   "gate4_frame0_byte_identical": false,
+   "world_T_cam_and_keys_ok": true
+  },
+  "S4": {
+   "lib": {
+    "mean": 0.8924,
+    "base": 0.8921,
+    "delta": 0.0003,
+    "mean_no23": 0.9371,
+    "base_no23": 0.9369,
+    "delta_no23": 0.0002,
+    "better": 4,
+    "worse": 1,
+    "unchanged": 15,
+    "worse_gt_0p001": 0,
+    "drops_gt_0p02": {},
+    "per_ep_delta": {
+     "0": 0.0,
+     "2": 0.0,
+     "11": 0.0,
+     "12": 0.0001,
+     "13": 0.0,
+     "18": 0.0,
+     "21": 0.0,
+     "22": 0.0,
+     "23": 0.0018,
+     "24": 0.001,
+     "26": 0.0,
+     "27": 0.0024,
+     "31": -0.0001,
+     "39": 0.0,
+     "40": 0.0,
+     "41": 0.0,
+     "42": 0.0,
+     "43": 0.0,
+     "44": 0.0,
+     "45": 0.0
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.68
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "scan": {
+    "mean": 0.9087,
+    "base": 0.9084,
+    "delta": 0.0004,
+    "mean_no23": 0.9543,
+    "base_no23": 0.954,
+    "delta_no23": 0.0003,
+    "better": 5,
+    "worse": 2,
+    "unchanged": 13,
+    "worse_gt_0p001": 0,
+    "drops_gt_0p02": {},
+    "per_ep_delta": {
+     "0": 0.0,
+     "2": 0.0,
+     "11": 0.0,
+     "12": -0.0007,
+     "13": 0.0,
+     "18": 0.0001,
+     "21": 0.0,
+     "22": -0.0001,
+     "23": 0.0018,
+     "24": 0.0023,
+     "26": 0.0,
+     "27": 0.003,
+     "31": 0.0009,
+     "39": 0.0,
+     "40": 0.0,
+     "41": 0.0,
+     "42": 0.0,
+     "43": 0.0,
+     "44": 0.0,
+     "45": 0.0
+    },
+    "new_flips": [],
+    "existing_flips": [
+     [
+      23,
+      "wooden_piece_1",
+      0.68
+     ],
+     [
+      23,
+      "wooden_piece_2",
+      1.0
+     ]
+    ]
+   },
+   "gate1_mean_lib_ge_base_plus_0p005": false,
+   "gate2_no_drop_gt_0p02": true,
+   "gate2_S3_rule_mean_rises_and_worse_le_third": true,
+   "gate3_no_new_flips_lib": true,
+   "gate3_no_new_flips_scan": true,
+   "frame0_changed_objects": [],
+   "gate4_frame0_byte_identical": true,
+   "world_T_cam_and_keys_ok": true
+  }
+ },
+ "falsifiers": {
+  "S1_ep26_pot_ge_0p93": {
+   "value": 0.9375,
+   "base": 0.9367,
+   "scan": 0.9233,
+   "passed": true
+  },
+  "S2_gain_ge_0p003_frame0_held": {
+   "delta": 0.003,
+   "delta_no23": 0.0031,
+   "scan_delta": 0.0026,
+   "passed": true
+  },
+  "S3_mean_rises_and_worse_le_third": {
+   "delta": -0.0013,
+   "worse": 8,
+   "passed": false
+  },
+  "S4": {
+   "values": {
+    "ep11_blue_cup": {
+     "value": 0.8622,
+     "base": 0.8622,
+     "delta": 0.0
+    },
+    "ep24_board2": {
+     "value": 0.8491,
+     "base": 0.847,
+     "delta": 0.0021
+    },
+    "ep2_lid": {
+     "value": 0.9723,
+     "base": 0.9723,
+     "delta": 0.0
+    }
+   },
+   "passed": false
+  }
+ }
+}

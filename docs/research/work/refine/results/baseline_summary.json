@@ -1,0 +1,311 @@
+{
+ "episodes": [
+  0,
+  2,
+  11,
+  12,
+  13,
+  18,
+  21,
+  22,
+  23,
+  24,
+  26,
+  27,
+  31,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45
+ ],
+ "n": 20,
+ "mean_AUC_lib": 0.8921,
+ "mean_AUC_lib_excl23": 0.9369,
+ "mean_AUC_scan": 0.9084,
+ "mean_AUC_scan_excl23": 0.954,
+ "refcheck_mean_lib": 0.8921,
+ "refcheck_mean_lib_excl23": 0.9369,
+ "refcheck_mean_scan": 0.9085,
+ "refcheck_mean_scan_excl23": 0.9541,
+ "per_ep": {
+  "0": {
+   "lib": 0.9641,
+   "scan": 0.9945,
+   "per_obj_lib": {
+    "white_pot": 0.9918,
+    "white_pot_lid": 0.9363
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9935,
+    "white_pot_lid": 0.9955
+   }
+  },
+  "2": {
+   "lib": 0.9823,
+   "scan": 0.9786,
+   "per_obj_lib": {
+    "white_pot": 0.9923,
+    "white_pot_lid": 0.9723
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9923,
+    "white_pot_lid": 0.9648
+   }
+  },
+  "11": {
+   "lib": 0.8978,
+   "scan": 0.9259,
+   "per_obj_lib": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9334
+   },
+   "per_obj_scan": {
+    "blue_cup": 0.8595,
+    "beige_cup": 0.9922
+   }
+  },
+  "12": {
+   "lib": 0.9662,
+   "scan": 0.9634,
+   "per_obj_lib": {
+    "blue_cup": 0.9327,
+    "plastic_dish_rack": 0.9997
+   },
+   "per_obj_scan": {
+    "blue_cup": 0.9879,
+    "plastic_dish_rack": 0.9389
+   }
+  },
+  "13": {
+   "lib": 0.9605,
+   "scan": 0.9013,
+   "per_obj_lib": {
+    "blue_cup": 0.9329,
+    "plastic_dish_rack": 0.9882
+   },
+   "per_obj_scan": {
+    "blue_cup": 0.8651,
+    "plastic_dish_rack": 0.9375
+   }
+  },
+  "18": {
+   "lib": 0.9642,
+   "scan": 0.9707,
+   "per_obj_lib": {
+    "mini_sweeper": 0.9952,
+    "mini_dust_pan": 0.9333
+   },
+   "per_obj_scan": {
+    "mini_sweeper": 0.9956,
+    "mini_dust_pan": 0.9458
+   }
+  },
+  "21": {
+   "lib": 0.8325,
+   "scan": 0.9543,
+   "per_obj_lib": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6835
+   },
+   "per_obj_scan": {
+    "blue_cup": 0.9953,
+    "water_pitcher": 0.9133
+   }
+  },
+  "22": {
+   "lib": 0.871,
+   "scan": 0.9821,
+   "per_obj_lib": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.7497
+   },
+   "per_obj_scan": {
+    "blue_cup": 0.9997,
+    "water_pitcher": 0.9646
+   }
+  },
+  "23": {
+   "lib": 0.0414,
+   "scan": 0.0418,
+   "per_obj_lib": {
+    "wooden_piece_1": 0.0829,
+    "wooden_piece_2": 0.0
+   },
+   "per_obj_scan": {
+    "wooden_piece_1": 0.0837,
+    "wooden_piece_2": 0.0
+   }
+  },
+  "24": {
+   "lib": 0.8117,
+   "scan": 0.7902,
+   "per_obj_lib": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.847
+   },
+   "per_obj_scan": {
+    "wooden_piece_1": 0.7575,
+    "wooden_piece_2": 0.823
+   }
+  },
+  "26": {
+   "lib": 0.9652,
+   "scan": 0.9484,
+   "per_obj_lib": {
+    "plastic_dish_rack": 0.9937,
+    "white_pot": 0.9367
+   },
+   "per_obj_scan": {
+    "plastic_dish_rack": 0.9933,
+    "white_pot": 0.9035
+   }
+  },
+  "27": {
+   "lib": 0.9611,
+   "scan": 0.9416,
+   "per_obj_lib": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.9223
+   },
+   "per_obj_scan": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.8831
+   }
+  },
+  "31": {
+   "lib": 0.7999,
+   "scan": 0.8907,
+   "per_obj_lib": {
+    "mini_sweeper": 0.9119,
+    "plastic_dish_rack": 0.6879
+   },
+   "per_obj_scan": {
+    "mini_sweeper": 0.9496,
+    "plastic_dish_rack": 0.8319
+   }
+  },
+  "39": {
+   "lib": 0.9602,
+   "scan": 0.9765,
+   "per_obj_lib": {
+    "mini_dust_pan": 0.9602
+   },
+   "per_obj_scan": {
+    "mini_dust_pan": 0.9765
+   }
+  },
+  "40": {
+   "lib": 0.957,
+   "scan": 0.9796,
+   "per_obj_lib": {
+    "mini_dust_pan": 0.957
+   },
+   "per_obj_scan": {
+    "mini_dust_pan": 0.9796
+   }
+  },
+  "41": {
+   "lib": 0.991,
+   "scan": 0.9885,
+   "per_obj_lib": {
+    "white_pot": 0.991
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9885
+   }
+  },
+  "42": {
+   "lib": 0.9915,
+   "scan": 0.9861,
+   "per_obj_lib": {
+    "white_pot": 0.9915
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9861
+   }
+  },
+  "43": {
+   "lib": 0.9482,
+   "scan": 0.9808,
+   "per_obj_lib": {
+    "white_pot": 0.9482
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9808
+   }
+  },
+  "44": {
+   "lib": 0.9967,
+   "scan": 0.9982,
+   "per_obj_lib": {
+    "white_pot": 0.9967
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9982
+   }
+  },
+  "45": {
+   "lib": 0.9795,
+   "scan": 0.9741,
+   "per_obj_lib": {
+    "white_pot": 0.9795
+   },
+   "per_obj_scan": {
+    "white_pot": 0.9741
+   }
+  }
+ },
+ "alt_swap_in": {
+  "ep11_twin11v3x_libv3x": {
+   "meshes": "/home/user/v2d-track3/meshes/library_v3x",
+   "AUC": 0.8964,
+   "SP_SR": 1.0,
+   "MP_SR": 1.0,
+   "MPPE_cm": 1.6666,
+   "RPE_cm": 1.8278,
+   "per_obj_AUC": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9307
+   }
+  },
+  "ep11_twin11v3x_scan": {
+   "meshes": "public scans",
+   "AUC": 0.9161,
+   "SP_SR": 1.0,
+   "MP_SR": 1.0,
+   "MPPE_cm": 1.3533,
+   "RPE_cm": 2.2815,
+   "per_obj_AUC": {
+    "blue_cup": 0.8595,
+    "beige_cup": 0.9726
+   }
+  },
+  "ep21_twin21arc_lib": {
+   "meshes": "/home/user/v2d-track3/meshes/library_v3",
+   "AUC": 0.8372,
+   "SP_SR": 1.0,
+   "MP_SR": 0.0,
+   "MPPE_cm": 2.0935,
+   "RPE_cm": 1.2543,
+   "per_obj_AUC": {
+    "blue_cup": 0.9829,
+    "water_pitcher": 0.6915
+   }
+  },
+  "ep21_twin21arc_scan": {
+   "meshes": "public scans",
+   "AUC": 0.9575,
+   "SP_SR": 1.0,
+   "MP_SR": 1.0,
+   "MPPE_cm": 1.0792,
+   "RPE_cm": 1.0573,
+   "per_obj_AUC": {
+    "blue_cup": 0.9963,
+    "water_pitcher": 0.9187
+   }
+  }
+ }
+}
