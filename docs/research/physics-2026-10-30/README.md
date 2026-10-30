@@ -214,3 +214,9 @@ blue cup 1.9, sweeper 2.4); a solid voxel fill is worse (median 12.7 mm). So the
 - **Chaos control (pre-registered 14:15 UTC, before running):** arm **Op** = O0 with each object's COM moved 2 mm in a
   random direction (seed 0). If |Op − O0| ≥ 0.10 on ep2, the [H-com] effect is attributed to chaotic sensitivity of the
   zero-action replay, not to COM accuracy.
+- **Chaos control result [M]:** Op (O0 + random 2 mm COM shift): ep2 0.259 (+0.109 vs O0), ep12 0.538 (−0.005), ep18
+  0.114 (−0.116), ep24 0.338 (+0.151). |Op − O0| ≥ 0.10 on ep2 → by the rule the [H-com] effect is **chaotic
+  sensitivity, not COM accuracy**: a meaningless 2 mm nudge moves the zero-action outcome as much as the 1–2 cm move to
+  the scans' COM. Reading: without feedback (zero action) the replay is chaotic in the objects' parameters, so "tune the
+  physics until the simulation matches the video" cannot work by adjusting parameters; closed-loop control (RL, MPC)
+  is what makes outcomes stable. COM accuracy at the cm level may still matter for RL policies; that needs RL arms.

@@ -5491,3 +5491,6 @@ arm and a no-policy replay floor to stage B.
   - `20261030-p2hu-5ba27bd` 58409512 (US, $1.508/h): `ARM=S0 HUMAN=1` (ep2/12/18/24, seed 42).
   The first p2s0 create hit a vanished offer (no instance created); relaunched on 48635918.
 - Option 3 (physics-based motion solving): background research agent on Do as I Do / SPIDER code (CPU only).
+- ~14:40 UTC (1) COM on our meshes: shell centroid median 8.3 mm from the scans (kept); [H-com] O0 vs Oc not falsified
+  (+0.215 / −0.024 / −0.060 / +0.021) but the 2 mm chaos control moves as much (+0.109 / −0.005 / −0.116 / +0.151) →
+  zero-action replays are chaotic in object parameters; the COM effect is sensitivity, not accuracy.
