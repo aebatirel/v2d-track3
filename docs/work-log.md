@@ -4892,3 +4892,17 @@ diagnostic; nothing is picked for submission.
   (leak-affected), P1v0 0.413. Eval-30 flip depends on scan decimation; rate ~10 % holds. ep18 points: hand blob
   (hands=null). Generators: edge-on crop -> narrow "brush on a stick"; crops.py rejected face-on frames.
 - Stage-1b integration `wf_d55d762f-ae7`: 7 of 21 episodes done by 08:53; all pick library_v3; ETA ~13:30 UTC.
+
+## 2026-10-30 ~09:40 UTC: owner asks for a generalized mesh generator; design workflow launched
+- Owner: "do whatever you like to make a generalized mesh generator" (ultracode on).
+- Plan: three workflows in sequence, reading each result before the next.
+  1. Design `wf_cb2e792a-f27` (gmg-design): evidence synthesis + focused literature review, four competing designs
+     (observation-first CPU; generator-first with metric-depth conditioning and multi-view silhouette/depth fit;
+     per-episode neural reconstruction; hybrid ensemble with a leave-one-object-out validated GT-free selector),
+     three judges (accuracy, integrity/generality, feasibility/cost), synthesis into `docs/research/mesh-2026-10-26/
+     gmg/SPEC.md` + frozen `PREREG.md`, completeness critic, one revision. Zero scan scorings in this stage.
+  2. Build (CPU first; any GPU batch is stated with cost for the owner's go-ahead).
+  3. Public run, GT-free selection, one pre-registered scan round, adversarial audits.
+- Constraints carried in: no library_v1-v4 at inference (denylist), no scan-derived constants, eval meshes rebuilt per
+  eval episode.
+- Stage-1b integration `wf_d55d762f-ae7` keeps running (2 cores, ETA ~13:30 UTC).
