@@ -76,3 +76,8 @@ carve rule.
   best candidate; flip units inherited; V5 clarification guarded at R1 (dev: only wooden_piece_2 changes); tolerance 0;
   masses placeholder until owner decision D-I1; predictions P27a-c, P28, P29, P32, P34 rewritten so they can fail.
   Not run (stated in INTERLOCK 16): silhouette gate T-I2a, decide_pair on ep24 T-I2b. Next: commit + push; then BI1.
+
+## ORCHESTRATOR NOTE (31 Oct 10:00 UTC): priority input, read `build/keen-heisenberg-priority-20261031.md`
+After ep24, run the dev interlock on the rack seat / cavity cases before ep2/ep11 if time allows: ep31 (sweeper in the
+rack; eval 30 twin, largest spread) and ep13 (cup in the rack; eval 14 twin). Report the free-travel result for the
+sweeper in the rack (October's rack carve dropped it 2.5-3.5 cm).
