@@ -1,0 +1,2 @@
+[2026-10-31T14:51:39Z] ep11_gate code mocksha0000000, arms [e11c e11t], seeds [42 43], LIB <MR>/content/v2d-track3/meshes/library_v3, PIECES <MR>/content/v2d-track3/meshes/carve/ev10, NREP 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-10-31T14:51:41Z] ep11_gate STOP: runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/perc2/poses.npz md5 a7d6e14b825108396c1254600c917cd6 != 2f4800ff07fd37da531acf2ee60f120e

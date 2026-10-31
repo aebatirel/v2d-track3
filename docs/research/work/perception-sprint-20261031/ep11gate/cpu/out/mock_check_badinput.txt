@@ -1,0 +1,10 @@
+ok   no store listing (single-file downloads only)  [6]
+ok   every download succeeded
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mocksha', 'dst': 'runs/20261031-e11g-mocksha', 'msg': 'run 20261031-e11g-mocksha: 2026-10-31T14:51:41Z'}]]
+ok   hands_mp / hand_refine / perc2 never ran
+ok   rc 1 (stopped)  [rc=1]
+ok   stopped for: md5  [runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/perc2/poses.npz md5 a7d6e14b825108396c1254600c917cd6 != 2f4800ff07fd37da531acf2ee60f120e]
+ok   no reference built
+ok   no training
+ok   push holds the stop reason
+{"mr": "badinput", "expect": "STOP:md5", "rc": "rc=1", "n_checks": 9, "failed": []}

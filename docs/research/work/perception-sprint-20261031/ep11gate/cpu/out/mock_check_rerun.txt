@@ -1,0 +1,17 @@
+ok   no store listing (single-file downloads only)  [43]
+ok   every download succeeded
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mockrr', 'dst': 'runs/20261031-e11g-mockrr', 'msg': 'run 20261031-e11g-mockrr: 2026-10-31T14:52:55Z'}]]
+ok   hands_mp / hand_refine / perc2 never ran
+ok   rc 0  [rc=0]
+ok   verdict PASS  [PASS: ['delta +0.1201 >= +0.05 and no seed of T more than 0.05 below its C seed']]
+ok   verdict pushed to the store
+ok   no depth cache in the push
+ok   e11t/s43: trained once  [1]
+ok   e11t/s43: trained on its own copy  [/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/mock/incomplete/content/refs/perc2e11ts43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave]
+ok   e11t/s43: seed, steps  [('43', 70004736)]
+ok   e11t/s43: 0.3 kg URDFs under /content/assets
+ok   e11t/s43: reference holds the blue cup as its arm says
+ok   e11t/s43: 10 best + 21 curve evaluations, each on the checkpoint's own task  [31]
+ok   e11t/s43: mocap scoring only after its training finished  [10]
+ok   verify identity: e2s own < other on both arms  [{'e11c': {'e11c': 0.038, 'e11t': 2.38}, 'e11t': {'e11c': 2.456, 'e11t': 0.038}}]
+{"mr": "rerun", "expect": "PASS", "rc": "rc=0", "n_checks": 16, "failed": []}

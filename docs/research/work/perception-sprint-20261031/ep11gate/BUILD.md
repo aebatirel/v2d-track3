@@ -2,7 +2,8 @@
 
 **Question.** Before any eval-10 retrain on the cup-nest fix, does V4p (S12 `--s12_mode support` + MuJoCo seat of the
 beige cup + S2) make ep11's reference copyable by the packed eval-10 recipe? Rule, noise and what PASS / FAIL buy:
-`PREREG.md` (written 14:05 UTC, before any build output; sha256 `7e5194e7…` at writing). Launch string and cost:
+`PREREG.md` (written 14:05 UTC, before any build output; sha256 `7e5194e7…` at writing; §7 added ~15:10 UTC lists the
+build amendments, mechanics only, sections 1–6 byte-unchanged). Launch string and cost:
 `JOBS.txt`. Labels: [M] measured here, [E] estimate, [H] hypothesis. Machine: this Claude cloud VM (4 CPU), ~14:00–15:30
 UTC, $0; no GPU, Vast or Kaggle; nothing committed by this step.
 
@@ -122,7 +123,7 @@ stages once per arm shared by both seeds, current commit, base reference from P_
 | `tools/e11g_verify.py` | new: `b0`, `arms`, `verify` (imports mass_verify / mass_arm helpers unchanged) |
 | `tools/e11g_verdict.py` | new: the PREREG rule (imports mass_verdict's `stats` / `r4` unchanged); ties at exactly +0.05 / −0.05 count as met (1e-9) |
 | `.gitignore` | one exception: `docs/research/work/perception-sprint-20261031/ep11gate/expect/*.npz` |
-| `docs/research/work/perception-sprint-20261031/ep11gate/` | PREREG.md, JOBS.txt, BUILD.md, expect/, cpu/ (mock scripts, out/) |
+| `docs/research/work/perception-sprint-20261031/ep11gate/` | PREREG.md, JOBS.txt, BUILD.md, expect/ (B0 comparison files), cpu/mock/ (setup.sh, run_mock.sh, run_all.sh, check_all.sh, stub.py, hf_stub.py, check.py, verdict_tests.py, b0_fixtures.py), cpu/out/ (evidence) |
 
 Not changed: `pipeline/refine.py`, `pipeline/nest.py`, `tools/nest_physics.py`, `pipeline/pipeline_ep.sh`,
 `ops/jobs/glock_public.sh`, `tools/mass_*.py`, `tools/no_oracle.py`, any eval job. `bash -n` clean on every new script.
@@ -135,9 +136,40 @@ e11g_tracks.sh / refine.py / nest_physics.py (in the local pinned venvs the job'
 make_assets.py, pipeline_ep.sh, glock_public.sh, ckpt_curve.sh, store.sh, e11g_verify.py, e11g_verdict.py; a stub `hf`
 that serves single files and refuses listings, and whose uploads land in a fake store (so a re-run box can pull them).
 
-MOCK_RESULTS_TABLE
+`run_all.sh` runs eight scenarios, `check_all.sh` runs `check.py` on each (`cpu/out/mock_checks.txt`,
+`mock_check_<n>.txt`, and each scenario's own summary / verify / verdict text in `mock_<n>/`). Mock numbers are NOT
+evidence about V4p.
 
-`verdict_tests.py` (synthetic cells): VERDICT_TESTS.
+| scenario | injected | outcome | checks |
+|---|---|---|---|
+| pass | mock effect +0.12 on references that hold the blue cup | **PASS** (C 0.595, T 0.715, Δ +0.120, seeds +0.119 / +0.121) | 49/49 |
+| fail | effect +0.02 | **FAIL** (Δ +0.020 < +0.05) | 49/49 |
+| seeddrop | effect +0.20, T seed 43 lowered 0.27 | **FAIL** by the seed clause (Δ +0.065 ≥ +0.05, seed 43 −0.069) | 49/49 |
+| invalid | one extra config key in T s42's training | **INVALID** (config diff `training.mock_extra_setting`) | 49/49 |
+| incomplete | T s43's training exits 1 | **INCOMPLETE** (`e11t/s43` missing; everything else VERIFIED) | 41/41 |
+| rerun | a new box: `RERUN_FROM=<incomplete's run> CELLS="e11t:43"` | **PASS** over all four cells; only e11t s43 trained; seed copies equal the first manifest | 16/16 |
+| b0stop | the committed T expectation replaced by C's | **STOP** at B0 (MISMATCH): no reference, no training; reason pushed | 9/9 |
+| badinput | a corrupted P_o `poses.npz` served by the store | **STOP** at the input md5 check, before anything is built | 9/9 |
+
+What the checks assert in the verdict scenarios: no store listing (6 single-file downloads; the re-run 43) and exactly
+one upload; hands_mp / hand_refine / perc2 never ran; the two pinned venvs got their exact pins; B0 IDENTICAL on both
+arms (the real refine + physics ran on the downloaded inputs); mkref ran once per arm on that arm's rebuilt track
+(md5 `b32ab808…` / `25801979…`), the ep11 depth cache, the stored hands (`d9c391de…`), `--wrist_cost 3.0`,
+`/content/assets`, SPLIT public; contact retargeting `--rest_settle 1` once per arm; grasp lock only in the reference
+stages (2 arms × plan + re-plan) with gl10A2's GL_ARGS and kp 400; each cell trained once, on its own copy, with its
+seed and 70,004,736 steps, loading the same 0.3 kg URDFs under `/content/assets` in all cells; the arm's reference
+holds the blue cup (T, lift < 1 cm) or not (C, +2.42 cm); 10 best + 21 curve evaluations per cell, each on the
+checkpoint's own task; every mocap scoring call of a cell after that cell's training finished; wave order (both s42
+trainings done before any s43 starts); both arms of a seed with identical training arguments; the verdict and the
+re-run file list in the push; no depth cache in the push; arm identity (pre-CR mkref output: 0.04 cm to its own track,
+2.4 cm to the other).
+
+A first re-run attempt read INVALID: the mock trees of the two boxes had different roots, so the earlier cells'
+checkpoint configs named files under the first tree (a mock artefact; on Vast both boxes use `/content`). The verify
+check that caught it is the intended one (a cell must train on its own copy). The mock now runs the re-run at the first
+tree's path; `cpu/out/mock_rerun/` is that run.
+
+`verdict_tests.py` (synthetic cells): 14/14 (`cpu/out/verdict_tests.json`): PASS at Δ = +0.105 and at exactly +0.05; FAIL at +0.03 and +0.0499; FAIL on a seed at −0.07 with Δ +0.065; PASS with a seed at exactly −0.05 and Δ +0.05; INCOMPLETE with 7 scored rollouts in a cell (PASS with 8), with a missing summary, and with a cell verify lists as missing; INVALID when verify failed (also with a missing cell) or verify.json is absent; per-object deltas omitted when the per-rollout score files are absent.
 
 ## 8. Integrity
 - Public ep11 only; no eval episode, pack, Kaggle or GPU. Nothing eval-side changed.
@@ -165,3 +197,21 @@ MOCK_RESULTS_TABLE
    deltas are missing in a merged verdict; the rule does not use them.
 8. `glock_public.sh` logs `glock_public summary: {}` for PERC-prefixed pairs (its job-level summary globs the unprefixed
    folder; also in mass_check). Cosmetic; `results/ep11_gate/summary.json` is the gate's summary.
+
+## 10. Exact commands (this VM, 31 Oct ~14:05–15:30 UTC; HEAD ed45786 + the uncommitted files above)
+`S=/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad`, `W=$S/ep11gate`,
+`PY=$S/map/scoring/venv/bin/python`, `G=docs/research/work/perception-sprint-20261031/ep11gate`.
+1. Inputs: `$PY -I $G/cpu/scripts/dl.py $W/dl <the 5 store paths of section 1> runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/inputs.json`
+   (one `hf_hub_download` each); copies into `$W/cpu/in/ep11`.
+2. Tracks: `bash tools/e11g_tracks.sh $W/cpu/in/ep11 $W/cpu/tracks_a $PY $S/carve/fcvenv/bin/python` (11 s), and the
+   variants of section 2 with the venvs `$W/boxmain_venv`, `$W/e11g_venv`, `$W/phys_venv` (uv, py3.13; pins as listed),
+   `NPY_DISABLE_CPU_FEATURES=X86_V4` for the dispatch test. Expectation: `expect/` written from `tracks_a`.
+3. B0: `$PY -I tools/e11g_verify.py b0 --tracks <tracks> --expect $G/expect --out ...` on every variant and on
+   `$PY -I $G/cpu/mock/b0_fixtures.py $W/cpu/tracks_a <out>` (`cpu/out/b0_runs.txt`, `cpu/out/b0/`).
+4. Stage (a): `$PY -I docs/research/work/oracle-twins-20261030/cpu/scripts/mkref_a_emul.py <repo> <tracks>/{C,T}/ep11/poses.npz
+   $W/cpu/in/ep11/depth0.npy $S/hfds/track_3/public/meta/camera_calibration.json meshes/library_v3 11 $S/map/scoring/t3 <out>.parquet`,
+   then (oracle side) `$PY -I tools/ref_vs_mocap.py 11 <out>.parquet --meshes meshes/library_v3 --t3 $S/map/scoring/t3
+   --kit $S/map/scoring/kit/v2d_submission_kit` (`cpu/out/stage_a/`).
+5. Mock: `bash $G/cpu/mock/run_all.sh` (eight scenarios, ~4.5 min each, trees in `$W/mock/<n>`), `bash $G/cpu/mock/check_all.sh`;
+   `$PY -I $G/cpu/mock/verdict_tests.py <repo> $W/vt $G/cpu/out/verdict_tests.json`.
+6. Guard: `$PY -I tools/no_oracle.py <name>` for each gate name and the P_o source path (`cpu/out/no_oracle_names.txt`).

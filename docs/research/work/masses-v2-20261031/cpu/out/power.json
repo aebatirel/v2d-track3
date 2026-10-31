@@ -1,0 +1,246 @@
+{
+ "note": "Masses v2: operating characteristic of the owner's rule, stated BEFORE any v2 result (31 Oct 2026). [E] model:\ncell mean(ep, arm, seed) = mu_ep + delta_ep * arm + s + r, s ~ N(0, sigma_s) per training (each arm x seed trains on its own),\nr ~ N(0, sigma_r / sqrt(10)) (10 rollouts). delta(ep) = mean over 2 seeds of (cell1 - cell0); rule (PREREG section 4):\nADOPT iff round(mean delta, 4) >= 0.03 and >= 3 of 4 round(delta, 4) > 0 and no round(delta, 4) <= -0.05.\nNoise per episode (sigma_r = rollout sd, sigma_s = between-training sd of a cell mean), from measured numbers:\n  ep24: sigma_r 0.139 (ev3 n5 sd 0.1246 pop -> sample), sigma_s 0.10 (ep24 std-learner seed pair r5ks/r5ks43: 0.099)\n  ep31: sigma_r 0.136 (ev30rp n5 0.1218 pop -> sample; orcB n10 0.044), sigma_s 0.06 (assumed; between the classes)\n  ep11: sigma_r 0.005 (twin11v3 0.0043), sigma_s 0.02 (assumed; a stuck-at-floor policy)\n  ep13: sigma_r 0.001 (orcB 0.0008), sigma_s 0.01 (assumed)\n  bounding scenarios with the FIRST CHECK's per-cell sd: all-ep2-like (sigma_r 0.33 = its cells' 0.29-0.37, sigma_s 0.08)\n  and all-ep12-like (sigma_r 0.02 = its cells' 0.017-0.024, sigma_s 0.01).\nWrites power.json. Usage: python3 power.py OUT.json",
+ "n_sim": 40000,
+ "results": {
+  "candidates": {
+   "0 everywhere": {
+    "p_adopt": 0.126,
+    "p_mean_clause": 0.184,
+    "p_3of4": 0.309,
+    "p_no_drop": 0.506,
+    "se_delta_ep": [
+     0.1092,
+     0.0201,
+     0.01,
+     0.0738
+    ],
+    "se_mean_delta": 0.0334
+   },
+   "+0.03 everywhere": {
+    "p_adopt": 0.458,
+    "p_mean_clause": 0.497,
+    "p_3of4": 0.835,
+    "p_no_drop": 0.659,
+    "se_delta_ep": [
+     0.1092,
+     0.0201,
+     0.01,
+     0.0738
+    ],
+    "se_mean_delta": 0.0334
+   },
+   "+0.05 everywhere": {
+    "p_adopt": 0.66,
+    "p_mean_clause": 0.726,
+    "p_3of4": 0.917,
+    "p_no_drop": 0.745,
+    "se_delta_ep": [
+     0.1092,
+     0.0201,
+     0.01,
+     0.0738
+    ],
+    "se_mean_delta": 0.0334
+   },
+   "+0.09 everywhere (Round 3 mean, scans)": {
+    "p_adopt": 0.867,
+    "p_mean_clause": 0.965,
+    "p_3of4": 0.977,
+    "p_no_drop": 0.876,
+    "se_delta_ep": [
+     0.1092,
+     0.0201,
+     0.01,
+     0.0738
+    ],
+    "se_mean_delta": 0.0334
+   },
+   "-0.03 everywhere": {
+    "p_adopt": 0.003,
+    "p_mean_clause": 0.036,
+    "p_3of4": 0.009,
+    "p_no_drop": 0.286,
+    "se_delta_ep": [
+     0.1092,
+     0.0201,
+     0.01,
+     0.0738
+    ],
+    "se_mean_delta": 0.0334
+   },
+   "+0.12 on the 2 noisy, 0 on the 2 stuck (mean +0.06)": {
+    "p_adopt": 0.588,
+    "p_mean_clause": 0.814,
+    "p_3of4": 0.658,
+    "p_no_drop": 0.922,
+    "se_delta_ep": [
+     0.1092,
+     0.0201,
+     0.01,
+     0.0738
+    ],
+    "se_mean_delta": 0.0334
+   }
+  },
+  "all_ep2_like (first check sd)": {
+   "0 everywhere": {
+    "p_adopt": 0.13,
+    "p_mean_clause": 0.325,
+    "p_3of4": 0.311,
+    "p_no_drop": 0.177,
+    "se_delta_ep": [
+     0.1315,
+     0.1315,
+     0.1315,
+     0.1315
+    ],
+    "se_mean_delta": 0.0657
+   },
+   "+0.03 everywhere": {
+    "p_adopt": 0.229,
+    "p_mean_clause": 0.504,
+    "p_3of4": 0.46,
+    "p_no_drop": 0.285,
+    "se_delta_ep": [
+     0.1315,
+     0.1315,
+     0.1315,
+     0.1315
+    ],
+    "se_mean_delta": 0.0657
+   },
+   "+0.05 everywhere": {
+    "p_adopt": 0.31,
+    "p_mean_clause": 0.619,
+    "p_3of4": 0.559,
+    "p_no_drop": 0.365,
+    "se_delta_ep": [
+     0.1315,
+     0.1315,
+     0.1315,
+     0.1315
+    ],
+    "se_mean_delta": 0.0657
+   },
+   "+0.09 everywhere (Round 3 mean, scans)": {
+    "p_adopt": 0.493,
+    "p_mean_clause": 0.818,
+    "p_3of4": 0.744,
+    "p_no_drop": 0.539,
+    "se_delta_ep": [
+     0.1315,
+     0.1315,
+     0.1315,
+     0.1315
+    ],
+    "se_mean_delta": 0.0657
+   },
+   "-0.03 everywhere": {
+    "p_adopt": 0.064,
+    "p_mean_clause": 0.18,
+    "p_3of4": 0.19,
+    "p_no_drop": 0.1,
+    "se_delta_ep": [
+     0.1315,
+     0.1315,
+     0.1315,
+     0.1315
+    ],
+    "se_mean_delta": 0.0657
+   },
+   "+0.12 on the 2 noisy, 0 on the 2 stuck (mean +0.06)": {
+    "p_adopt": 0.3,
+    "p_mean_clause": 0.677,
+    "p_3of4": 0.579,
+    "p_no_drop": 0.347,
+    "se_delta_ep": [
+     0.1315,
+     0.1315,
+     0.1315,
+     0.1315
+    ],
+    "se_mean_delta": 0.0657
+   }
+  },
+  "all_ep12_like (first check sd)": {
+   "0 everywhere": {
+    "p_adopt": 0.0,
+    "p_mean_clause": 0.0,
+    "p_3of4": 0.31,
+    "p_no_drop": 1.0,
+    "se_delta_ep": [
+     0.0118,
+     0.0118,
+     0.0118,
+     0.0118
+    ],
+    "se_mean_delta": 0.0059
+   },
+   "+0.03 everywhere": {
+    "p_adopt": 0.503,
+    "p_mean_clause": 0.503,
+    "p_3of4": 1.0,
+    "p_no_drop": 1.0,
+    "se_delta_ep": [
+     0.0118,
+     0.0118,
+     0.0118,
+     0.0118
+    ],
+    "se_mean_delta": 0.0059
+   },
+   "+0.05 everywhere": {
+    "p_adopt": 1.0,
+    "p_mean_clause": 1.0,
+    "p_3of4": 1.0,
+    "p_no_drop": 1.0,
+    "se_delta_ep": [
+     0.0118,
+     0.0118,
+     0.0118,
+     0.0118
+    ],
+    "se_mean_delta": 0.0059
+   },
+   "+0.09 everywhere (Round 3 mean, scans)": {
+    "p_adopt": 1.0,
+    "p_mean_clause": 1.0,
+    "p_3of4": 1.0,
+    "p_no_drop": 1.0,
+    "se_delta_ep": [
+     0.0118,
+     0.0118,
+     0.0118,
+     0.0118
+    ],
+    "se_mean_delta": 0.0059
+   },
+   "-0.03 everywhere": {
+    "p_adopt": 0.0,
+    "p_mean_clause": 0.0,
+    "p_3of4": 0.0,
+    "p_no_drop": 0.83,
+    "se_delta_ep": [
+     0.0118,
+     0.0118,
+     0.0118,
+     0.0118
+    ],
+    "se_mean_delta": 0.0059
+   },
+   "+0.12 on the 2 noisy, 0 on the 2 stuck (mean +0.06)": {
+    "p_adopt": 0.748,
+    "p_mean_clause": 1.0,
+    "p_3of4": 0.748,
+    "p_no_drop": 1.0,
+    "se_delta_ep": [
+     0.0118,
+     0.0118,
+     0.0118,
+     0.0118
+    ],
+    "se_mean_delta": 0.0059
+   }
+  }
+ }
+}

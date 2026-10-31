@@ -24,9 +24,13 @@ for sc in ${@:-pass fail seeddrop invalid incomplete rerun b0stop badinput}; do
     seeddrop) run seeddrop FAIL MOCK_EFFECT=0.20 MOCK_DROP_SEED=43 MOCK_DROP=0.27 ;;
     invalid) run invalid INVALID MOCK_CFG_EXTRA='perc2e11ts42_glock/' ;;
     incomplete) run incomplete INCOMPLETE MOCK_FAIL_TRAIN='perc2e11ts43_glock/' ;;
-    rerun) bash $M/setup.sh $W/rerun /home/user/v2d-track3 $W/incomplete/store > /dev/null
-           ( cd /tmp && RUN_ID=20261031-e11g-mockrr bash $M/run_mock.sh $W/rerun \
-               "RERUN_FROM=20261031-e11g-mocksha CELLS=\"e11t:43\" $JOB" ) ;;
+    rerun) # a real re-run box has the same /content as the first box, so the first run's checkpoint configs (absolute
+           # task.parquet paths) resolve on it; here the re-run tree takes the incomplete tree's path while it runs
+           rm -rf $W/rerun $W/incomplete_run1; mv $W/incomplete $W/incomplete_run1
+           bash $M/setup.sh $W/incomplete /home/user/v2d-track3 $W/incomplete_run1/store > /dev/null
+           ( cd /tmp && RUN_ID=20261031-e11g-mockrr bash $M/run_mock.sh $W/incomplete \
+               "RERUN_FROM=20261031-e11g-mocksha CELLS=\"e11t:43\" $JOB" )
+           mv $W/incomplete $W/rerun; mv $W/incomplete_run1 $W/incomplete ;;
     b0stop) bash $M/setup.sh $W/b0stop > /dev/null
             E=$W/b0stop/content/v2d-track3/docs/research/work/perception-sprint-20261031/ep11gate/expect
             cp $E/C_poses.npz $E/T_poses.npz
