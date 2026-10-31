@@ -321,3 +321,15 @@ from our mesh) and a wooden-spoon estimate (no scan) — an owner decision befor
   wooden_spoon 0.05 kg stated prior (no scan; 30–70 g typical). Checked: library_v3 assets get the masses, COM unchanged.
   Use: `MA_ARGS="--physics docs/research/physics-2026-10-30/props_masses_only.json"` (glock_public.sh). Retraining the
   eval policies needs a top-up and the pack session's coordination; any upload is the owner's decision.
+
+## R5-lite for the pack session's leak plan (31 Oct, CPU) [M] — public diagnostic, oracle-marked inputs
+orcB references (`runs/20261030-orcB-38234d1/refs`): O = mocap object motion (our meshes, gravity-aligned, perceived hands,
+grasp lock + ILC, 0.3 kg), P = perceived motion, same recipe. Zero action, `jitter_check.py` 16 copies (0.5 mm / 0.005
+rad, seed 0, CRN), sim_vs_ref against each one's own reference:
+| episode | O (true motion) | P (perceived) | Δ |
+|---|---|---|---|
+| ep13 (eval 14 twin) | 0.569 ± 0.008 | 0.551 ± 0.007 | +0.018 |
+| ep31 (eval 30 twin) | 0.556 ± 0.091 | 0.554 ± 0.096 | +0.002 |
+ep11 skipped (its references name `/content/assets_ev10`, not in the store pull). Reading: with true object motion the
+zero-action plan is barely more executable; on these twins the zero-action limit is the plan's physics (grip, hand-over),
+not perception — consistent with orcB's RL result on ep13 (0.544 both). Not a c6 run (scans + scan frames not built).
