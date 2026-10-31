@@ -1,0 +1,358 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T19:28:44Z",
+ "commit": "cdc8b4016a207653fad83f0d21fe55b406d52d99",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_png.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_png_data.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_public_summary.py"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_cands.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31",
+  "--ep",
+  "31"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 10885,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-fi5pub-3053a78",
+  "root": "runs-dev",
+  "pid": 10812,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T19:15:26Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/mini_sweeper.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/plastic_dish_rack.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "dev_frozen",
+   "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/dev_constants.json",
+   "realpath": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/dev_constants.json",
+   "sha256": "6dd16e2e6a7d00354c61177c9be0b48053c840fa49ea6f9f88c81ff8367b0182",
+   "bytes": 8783,
+   "tier": "DEV"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep31/poses.npz",
+   "sha256": "997c6807837fd2adc602a0ee32de79926d9a304e4d2d9c4c603a56c517314a22",
+   "bytes": 75062,
+   "tier": "P1",
+   "keys": [
+    "cam_T_mini_sweeper",
+    "cam_T_plastic_dish_rack",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/episode.json",
+   "sha256": "1f4b01378600e20ef495509cf7712e1b2a115e8428f6aee93353382bfb29cf1e",
+   "bytes": 50201,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/mini_sweeper.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/mini_sweeper.npz",
+   "sha256": "bf5a461bd398a17802fab8e01287509b88073e051a6ab2e46cd49250ff9763c8",
+   "bytes": 3726673,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/plastic_dish_rack.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep31/plastic_dish_rack.npz",
+   "sha256": "557c2e274875f0eabd419fd1dc1ae6bbe442344ecf86e2f6d50ddf67766ba938",
+   "bytes": 45165416,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "t0_m",
+   "value": 0.00535877962815964,
+   "origin": "fitted:own t0_dev (PREREG A.1 statistic on obs_all)",
+   "where": "docs/research/mesh-2026-10-26/gmg/tools/interlock_cands.py:29"
+  },
+  {
+   "name": "v2_band_cap_m",
+   "value": 0.008,
+   "origin": "generic:PREREG A.6 V2 cap 8 mm = two voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:109"
+  },
+  {
+   "name": "v2_band_k",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V2 band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/bundle.py:110"
+  },
+  {
+   "name": "pack_budget_faces",
+   "value": 4000,
+   "origin": "kit:PREREG A.6 4000 faces (kit 4096)",
+   "where": "docs/research/mesh-2026-10-26/gmg/pack.py:25"
+  },
+  {
+   "name": "kit_budget_faces",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:73"
+  },
+  {
+   "name": "kit_budget_vertices",
+   "value": 4096,
+   "origin": "kit:mesh_budget 4096",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:74"
+  },
+  {
+   "name": "fsv_far_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 20,000 area-weighted samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:75"
+  },
+  {
+   "name": "fsv_far_band_vox",
+   "value": 2,
+   "origin": "generic:PREREG A.6 fsv_far band 2 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:76"
+  },
+  {
+   "name": "fsv_far_weight",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 fsv_far weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:77"
+  },
+  {
+   "name": "blocks_K",
+   "value": 3,
+   "origin": "generic:PREREG A.6 K = 3",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:78"
+  },
+  {
+   "name": "bootstrap_n",
+   "value": 200,
+   "origin": "generic:PREREG A.6 bootstrap 200",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:79"
+  },
+  {
+   "name": "seed",
+   "value": 0,
+   "origin": "generic:PREREG A.6 seed 0",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:80"
+  },
+  {
+   "name": "ray_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 ray band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:81"
+  },
+  {
+   "name": "ray_clip_sigma",
+   "value": 10.0,
+   "origin": "generic:PREREG A.6 ray clip 10 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:82"
+  },
+  {
+   "name": "heldout_max_points",
+   "value": 20000,
+   "origin": "generic:PREREG A.2 held-out subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:83"
+  },
+  {
+   "name": "v2_normal_cos",
+   "value": 0.5,
+   "origin": "generic:PREREG A.6 V2 normal cosine > 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:84"
+  },
+  {
+   "name": "v2_count_min",
+   "value": 3,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:85"
+  },
+  {
+   "name": "v2_count_frac",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V2 count > max(3, 1 %)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:86"
+  },
+  {
+   "name": "v4_share_max",
+   "value": 0.01,
+   "origin": "generic:PREREG A.6 V4 1 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:87"
+  },
+  {
+   "name": "v4_depth_floor_m",
+   "value": 0.002,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:88"
+  },
+  {
+   "name": "v4_depth_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 V4 max(3 sigma, 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:89"
+  },
+  {
+   "name": "v4_volume_samples",
+   "value": 20000,
+   "origin": "generic:PREREG A.3 V4 20,000 volume samples",
+   "where": "docs/research/mesh-2026-10-26/gmg/score.py:90"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "cand/public/ep31/mini_sweeper/hull.glb",
+   "sha256": "a99cec646a082f6aa94f906a50bac5a21b4c3a467f737a4a5027fe62e7597fa7",
+   "bytes": 72528,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/mini_sweeper/hull.json",
+   "sha256": "3f0abaa4be6f9a66e43b8453aa7bbc37f112e2345025c4d431e0ba096e9ce62e",
+   "bytes": 1354,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/mini_sweeper/shell_t5p36.glb",
+   "sha256": "812b6d88a17dd5767f9390a331343cd359d972dbb1670a94787d6b4a297263cf",
+   "bytes": 71652,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/mini_sweeper/shell_t5p36.json",
+   "sha256": "23c0cfe9a5d3b2326543dd010896870cdaf781343e173e31a70f62f0dcdc9acf",
+   "bytes": 1214,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/plastic_dish_rack/hull.glb",
+   "sha256": "aca8bb1b63926488690a35ba5d8ef1cc6f1f987fd5284402ad23057227efb5e4",
+   "bytes": 67452,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/plastic_dish_rack/hull.json",
+   "sha256": "565c5f25d399f7b549c7de40dc40c9e84c62af14aa1fb401b65c19a168ecdb96",
+   "bytes": 1535,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/plastic_dish_rack/shell_t5p36.glb",
+   "sha256": "398777aa8bde56fec2d169cb10665079050d8caa9d42f11844380582d6857e6c",
+   "bytes": 71432,
+   "how": "python"
+  },
+  {
+   "path": "cand/public/ep31/plastic_dish_rack/shell_t5p36.json",
+   "sha256": "11a2723d613a6d788d4ca636671e4fb72d358b9a4719097f5dc20cd98480b7a1",
+   "bytes": 1225,
+   "how": "python"
+  }
+ ]
+}

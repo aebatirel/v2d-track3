@@ -1,0 +1,59 @@
+{
+ "ep": 31,
+ "note": "post hoc, report only (PREREG F-I5.14 (7)); decides nothing",
+ "pairs": {
+  "mini_sweeper|plastic_dish_rack": {
+   "contact_frames": 145,
+   "static_runs": [
+    [
+     2,
+     12
+    ],
+    [
+     276,
+     288
+    ]
+   ],
+   "receiver": "plastic_dish_rack",
+   "guest": "mini_sweeper",
+   "containment": {
+    "mini_sweeper": 0.0,
+    "plastic_dish_rack": 0.0
+   },
+   "hands_off_static": 13,
+   "s_frames": [
+    282,
+    8
+   ],
+   "flags": [],
+   "S": [
+    {
+     "frame": 282,
+     "default": {
+      "disp_mm": 84.155,
+      "dz_mm": 84.136,
+      "lateral_mm": 1.757,
+      "tilt_deg": 26.015,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": false
+     }
+    },
+    {
+     "frame": 8,
+     "default": {
+      "disp_mm": 86.679,
+      "dz_mm": 86.661,
+      "lateral_mm": 1.658,
+      "tilt_deg": 24.522,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": false
+     }
+    }
+   ]
+  }
+ }
+}

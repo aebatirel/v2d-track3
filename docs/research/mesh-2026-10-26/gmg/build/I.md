@@ -790,6 +790,17 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   4; the lid did not take the lathe route; S not run in the rule). Delivered-default S (diagnostic): receiver pot
   (containment 0.951 vs 0.0), 43 hands-off static frames, **f24: lid drops 80.6 mm (displacement 84.8 mm, tilt 12.5
   deg); f328: 87.1 mm (88.0 mm, 6.2 deg)**: the lid falls into the pot. Figure `build/I/png/fi5pub_ep2.png`.
+- 20:50 [M] ep31 plastic_dish_rack default pieces = route 4 at 6 mm (47 boxes, 94 cells): lathe rejected (9.15 sigma),
+  CoACD 82 hulls (425 s), 65 over 0.3 cm3 (max 14.5 cm3) -> 6 mm boxes (2683 s for the rack's pieces step). ep31 pair
+  running. ep13 rack (lathe rejected, 12.80 sigma): CoACD returned 80 hulls (< the 82 cap), keep-out repair / gate
+  running. Figures now show the delivered-default S for out-of-scope pairs (`fi5_png.py` 4th argument).
+- 20:53 [M] **ep31 done (20:52:25, `done 4952.4 s`, code 407a18e): out of scope (no collider intrusion at all: overlap
+  along the track 0.0 / 0.0 cm3, no component), default delivered.** Delivered colliders: sweeper 3 boxes = 0.65 cm3 for
+  a 35.35 cm3 SHELL body (1.8 %), rack 47 boxes = 20.3 cm3 for 404.8 cm3 (5.0 %). Delivered-default S (diagnostic):
+  receiver rack (containment 0.0 / 0.0, tie -> the object that moves less), 13 hands-off static frames, **f282: sweeper
+  drops 84.1 mm (tilt 26.0 deg); f8: 86.7 mm (24.5 deg)**: it falls through the rack's boxes to the table. **P47
+  falsified** (the delivered copy lets the sweeper drop > 4 mm). Figure `build/I/png/fi5pub_ep31.png`. ep13 still in
+  its rack pieces step.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
