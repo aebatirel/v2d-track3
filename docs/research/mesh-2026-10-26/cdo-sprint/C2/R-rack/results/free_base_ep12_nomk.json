@@ -1,0 +1,53 @@
+{
+ "mesh": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c2r/runA1/cand/base/plastic_dish_rack/ep12_nomk.glb",
+ "n": 200000,
+ "regions": {
+  "cup": {
+   "frac_area": 0.2116,
+   "seen_any": 0.5241,
+   "empty_any": 0.0237,
+   "empty_majority": 0.0062,
+   "unseen_all": 0.4625
+  },
+  "front_wall": {
+   "frac_area": 0.1473,
+   "seen_any": 0.6952,
+   "empty_any": 0.1215,
+   "empty_majority": 0.0151,
+   "unseen_all": 0.2882
+  },
+  "back_wall": {
+   "frac_area": 0.1606,
+   "seen_any": 0.6377,
+   "empty_any": 0.1474,
+   "empty_majority": 0.0153,
+   "unseen_all": 0.3122
+  },
+  "right_end": {
+   "frac_area": 0.0453,
+   "seen_any": 0.5109,
+   "empty_any": 0.105,
+   "empty_majority": 0.002,
+   "unseen_all": 0.4315
+  },
+  "pegs/basin": {
+   "frac_area": 0.1552,
+   "seen_any": 0.8216,
+   "empty_any": 0.2581,
+   "empty_majority": 0.0623,
+   "unseen_all": 0.1329
+  },
+  "basin_low": {
+   "frac_area": 0.2799,
+   "seen_any": 0.2611,
+   "empty_any": 0.0583,
+   "empty_majority": 0.0036,
+   "unseen_all": 0.6879
+  }
+ },
+ "all": {
+  "seen_any": 0.5395,
+  "empty_any": 0.1077,
+  "empty_majority": 0.0168
+ }
+}

@@ -5789,3 +5789,17 @@ diagnostic; nothing is picked for submission.
   (wf_e425946b-d24) launched ~21:20 UTC with Prep25 (mapping + ep25 bundle) in parallel.
 - Collision carve: the workflow's Eval step replaced by a no-run record (script edited; resume after its verifiers
   finish). Reason: T-I13 delivered nothing usable, so eval runs under this rule cannot pass. Round 2 (F-I5.15) next.
+
+## 2026-10-31 ~21:30 UTC: CD-O sprint C2 track R (dish rack parts): H-R falsified, guard PASS, not adopted (CPU, ~$0.02)
+- **Folder:** `docs/research/mesh-2026-10-26/cdo-sprint/C2/R-rack/` (PREREG `01c25d2`, amendment A1 `945baa5`, pick
+  `8d53a60`; RESULTS.md, NOTES.md).
+- **Diagnosis [M]** (GT-free residual, free-space and shadow maps vs the C0 rack): residuals near noise; the largest
+  outside cluster is depth-edge smear in the back lip's shadow; pegs are deeper along y than wide along x; the right
+  end's inner face is sloped. Options added to `prim_rack.py` (old defaults byte-identical): `--end_draft`,
+  `--peg_kappa_free`, `--cup_quad`.
+- **A1:** C0b's pass-B rack points held 1-37 % static clutter (cube ROI); cleaned by a connectivity rule
+  (`clean_pts.py`) before 8 option runs (96 meshes, local).
+- **Pick (fidelity):** K/ep12_nomk 5.483 mm (base 5.533; C0 mesh 5.536 on the same points).
+- **One scoring [D]:** CD-O 0.4413 (C0 0.4560, library 0.5551), ADD med 6.56 mm, flips 0/7 -> no WIN (needs <= 0.436).
+- **AUC guard [D]:** PASS, mean dAUC +0.0147, min -0.0076. Not adopted; pack 9a keeps the C0 rack.
+- Vast 58571056 created for the uncleaned inputs never started and was destroyed (~$0.02 [E]).
