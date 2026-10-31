@@ -5155,3 +5155,17 @@ Advice given:
   - Plan: ep11 rollout gate (control vs V4p, 2 seeds, pass ≥ +0.05 vs mocap), then rebuild only eval 10's reference;
     with masses, eval 10 trains as a masses-only arm and a masses+nest arm (same seeds) so the effects separate.
     ≈ $10 [E]; value +0.004–0.012 LB, central +0.007 [E]. Masking re-track: not before the freeze.
+
+## 2026-10-31 ~12:25 UTC — masses eval retrain prep: review fixes F1–F7 re-verified, one more fix (R1)
+- Re-review (workflow wf_880680d3-14b, 12:06–12:21 UTC, current tree): GO (conditional). Mock training boxes 165/165,
+  confirmation box 27/27, negative tests 24/24, rule fixture tests 41/41, extra adversarial tests 21/21; equivalence E2/E3k
+  identical, E3 differs only by the 4 kept rollout parquets; every training box makes single-file store downloads and 0
+  listings. PLAN.md has 0 removed lines since the pre-registration commit dac8924.
+- R1 fixed (d4f5806): rule 2's tie-break compared an unrounded difference of 4-decimal means with 0.005, so an exact
+  0.0050 gap read as larger (old code: 195 of 4950 test gaps counted as within) and skipped the lower-sd choice PLAN asks
+  for. Now rounded; new fixture test; 42/42 pass. R2/R3: budget note in JOBS.txt updated to the $128.43 credit and this
+  session's lean allocation (~$24–39 [E]); the C1 merge line takes mevG1v if G1v is chosen. R4 (a non-timeout crash of a
+  standard-learner evaluation stays INVALID) left as specified.
+- Freed ~15 GB of regenerable mock trees in the scratchpad (disk had reached 94%).
+- Gates still in force before any launch: transfer check ADOPT, gate 1 (config diff), and the owner's GO.
+- Mass transfer check (run 20261031-mass-2ed46ea): 3 of 4 cells in; ep12 seed 43 still training/evaluating.
