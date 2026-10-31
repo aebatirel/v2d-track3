@@ -19,3 +19,7 @@
 2026-10-31T21:22:24Z [D] SCORED once: cdo_eval 0.4413 (cdo_all 0.4430), add_med 6.56, add_eval 6.65, flips 0/7, amb 11.8 -> WIN false (needs <= 0.43604; C0 0.45604); H-R falsified. Guard next (reported; adoption impossible).
 2026-10-31T21:24:41Z [D] GUARD PASS (mean dAUC +0.0147, min -0.0076 ep12, dMPPE -0.086, dRPE -0.038). Not adopted (no WIN: CD-O 0.4413 > 0.43604). RESULTS.md complete.
 2026-10-31T21:25:36Z [verify] verifier session start: reading PREREG/RESULTS/scripts; will write verify.md
+2026-10-31T21:36:50Z [verify] checks so far: git times OK; pick recomputed (exact, fid 5.48339 vs base 5.53314 unrounded gain 0.0498); clean_pts reproduced (arrays equal); guard recomputed with C0 guard_eval.py (PASS +0.0147/-0.0076); score record single; mesh bytes = scored = guard bytes. Running dropped-rack-points diag.
+2026-10-31T21:40:36Z [verify] clean_pts dropped 0 raw points within 10 mm of the pick (all eps); ep26 11.1% kept >30 mm. Re-running with C0 mesh as independent reference (dropped_c0ref.txt). Writing verify.md.
+2026-10-31T21:52:28Z [verify] verify.md committed + pushed 9174cde (no blocking finding; N1 fidelity gain 0.0498 unrounded; N2 box destroy time unconfirmed, no vast key here).
+- 2026-10-31T21:56Z (orchestrator) ops/vast.sh show: instance 58571056 (mesh-20261031-c2r-18e63eb) is not listed, so it is gone. Live mesh-bold box at this time: 58580656 mesh-20261031-e0b-c8f1c33 (E0b markers, A40, $0.601/h, C0b/E0b eval agent).

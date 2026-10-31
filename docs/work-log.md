@@ -5890,3 +5890,11 @@ diagnostic; nothing is picked for submission.
   splats are inside out in every g1 mesh (C0b / E0b owners).
 - Next (proposals): rack base-mesh scoring to split the replacements and cleaning from K (needs a dated PREREG);
   pitcher H-P2 (mirror-completed closed shell, rule not fidelity-only).
+
+### 2026-10-31 22:00 UTC — orchestrator: C2 closed (nothing adopted); rack box confirmed gone
+- C2 workflow done (12f5c22): pitcher H-P falsified (CD-O 1.160 vs library 0.894 [D]); rack H-R falsified (0.4413 vs
+  C0 0.456, short of the -0.02 WIN margin; AUC guard PASS, mean +0.0147). Pack keeps the C0 rack and library pitcher.
+- `ops/vast.sh show` at ~22:00 UTC: 58571056 (c2r) not listed, gone. Live mesh-bold box: 58580656
+  mesh-20261031-e0b-c8f1c33 (E0b markers, A40, $0.601/h).
+- Verifier note for the C0b/E0b owners: every lathe_obs splat is inside out (negative signed volume), including the
+  C0 blue cup and the C1/C0b beige cups; CD-O/AUC do not depend on face orientation, simulator/COM use would.
