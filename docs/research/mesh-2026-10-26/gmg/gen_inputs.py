@@ -885,7 +885,7 @@ def sam3d_input(view, bundle, image, mask, *, geo, depth, maps=None, zfront=None
         g = float(c['occl'] if gap is None else gap)
         zu = cv2.remap(np.asarray(zfront, np.float32), m1, m2, cv2.INTER_NEAREST, borderMode=cv2.BORDER_CONSTANT,
                        borderValue=float('inf'))
-        behind = np.isfinite(z) & ~(z <= zu + g)
+        behind = np.isfinite(z) & (~np.isfinite(zu) | (z > zu + g))
         n_behind = int((mu & behind).sum())
         z = np.where(behind, np.inf, z).astype(np.float32)
     P = pointmap_from_depth(z, geo.Ka, mu)
