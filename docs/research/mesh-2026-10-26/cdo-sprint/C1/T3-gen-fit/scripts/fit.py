@@ -9,12 +9,15 @@ Method (optimal-step non-rigid ICP, Amberg et al. CVPR 2007, own implementation 
   unknowns: one 3x4 affine per vertex (X, 4n x 3), stiffness alpha * ||(M kron G) X||^2 over mesh edges (M = node-arc
   incidence, G = diag(1,1,1,gamma)), alpha decreasing over a schedule; per alpha, iterate correspondences -> solve.
   Data term (robust, both directions, observed regions only):
-    s2t  each vertex -> nearest observed point, kept iff distance <= cap and the vertex faces the camera that saw the
+    s2t  (weight w_s2t, default 0 since v2) each vertex -> nearest of its knn observed points that passes the tests:
+         kept iff distance <= cap and the vertex faces the camera that saw the
          point: n_vertex . unit(cam - p) >= cos_vis (visibility test; a wall face turned away from that camera, e.g.
          the inner face behind a seen outer wall, cannot have produced the point), then the worst (1 - trim_q) of the
          kept residuals are dropped;
-    t2s  each observed point -> nearest surface sample of the current mesh (barycentric row on its face), same tests
-         with the face normal; its total weight is balanced to the s2t total (w_t2s).
+    t2s  each observed point -> nearest of its knn surface samples of the current mesh (barycentric row on its face)
+         that passes the same tests with the face normal; total weight w_t2s * n (n = vertices). v1 (s2t + t2s,
+         nearest only) shrank the dev pot by 2 % away from its observed band: in a noisy band around a thin wall the
+         vertex->nearest-point direction picks the band's near edge or the other wall's band.
     Point-to-plane via projected targets: target = x + (n n^T + beta (I - n n^T)) (p - x), n = the mesh normal at x
     (beta = small point-to-point share, as in Li et al. 2008 / 2009). (v0 used PCA normals of the observed points:
     too noisy at 2 mm, lambda0/sum median 0.22, so dropped.)
@@ -43,7 +46,7 @@ DEFAULT = dict(
     holdout_block=10, holdout_mod=5, holdout_res=2,   # 20 % of 10-frame blocks held out
     alphas=[100.0, 50.0, 25.0, 12.0, 6.0, 3.0, 1.5, 0.75],
     gamma=1.0, max_it=8, tol=2e-4,                    # tol in normalised units (bbox diagonal = 1)
-    cap_m=0.010, trim_q=0.9, cos_vis=0.1, beta=0.1, w_t2s=1.0, eps=1e-4,
+    cap_m=0.010, trim_q=0.9, cos_vis=0.2, beta=0.1, w_t2s=1.0, w_s2t=0.0, knn=8, eps=1e-4,
     mesh_samples=150000,
     stop_stage=None,          # index into alphas of the last stage kept (None = all)
     out_faces=4000, close_hole_max=200,
@@ -173,7 +176,12 @@ def distortion(V0, V, F):
     l0 = np.linalg.norm(V0[E[:, 0]] - V0[E[:, 1]], axis=1); l1 = np.linalg.norm(V[E[:, 0]] - V[E[:, 1]], axis=1)
     lr = np.abs(np.log(np.maximum(l1, 1e-12) / np.maximum(l0, 1e-12)))
     disp = np.linalg.norm(V - V0, axis=1) * 1e3
-    return dict(area_ratio=float(a1.sum() / a0.sum()), flip_frac=float((flip * a0).sum() / a0.sum()),
+    def rms(Vx, ax):                                                   # area-weighted RMS radius (CD-O's scale fix)
+        cen = V0[F].mean(1) if Vx is V0 else V[F].mean(1)
+        c = (cen * ax[:, None]).sum(0) / ax.sum()
+        return np.sqrt((((cen - c) ** 2).sum(1) * ax).sum() / ax.sum())
+    return dict(area_ratio=float(a1.sum() / a0.sum()), rms_ratio=float(rms(V, a1) / rms(V0, a0)),
+                flip_frac=float((flip * a0).sum() / a0.sum()),
                 edge_logratio_med=float(np.median(lr)), edge_logratio_p99=float(np.quantile(lr, 0.99)),
                 disp_med_mm=float(np.median(disp)), disp_p95_mm=float(np.quantile(disp, 0.95)),
                 disp_max_mm=float(disp.max()))
@@ -201,8 +209,11 @@ def nicp(V0, F, P, UP, cfg, log, stage_cb=None):
             V = D @ X
             vn = vertex_normals(V, F)
             # s2t
-            d, j = tP.query(V)
-            ok = (d <= cap) & (np.einsum('ni,ni->n', vn, UP[j]) >= cosv)
+            kn = cfg['knn']
+            dk, jk = tP.query(V, k=kn)
+            vk = (dk <= cap) & (np.einsum('ni,nki->nk', vn, UP[jk]) >= cosv)
+            first = np.argmax(vk, 1); ok = vk.any(1)
+            d = dk[np.arange(n), first]; j = jk[np.arange(n), first]
             if ok.sum() > 10:
                 ok &= d <= np.quantile(d[ok], cfg['trim_q'])
             Us = proj_target(V[ok], P[j[ok]], vn[ok], beta)
@@ -210,16 +221,18 @@ def nicp(V0, F, P, UP, cfg, log, stage_cb=None):
             # t2s
             S, fid, b = sample_bary(V, F, cfg['mesh_samples'], seed=100 * si + it)
             fn = face_normals(V, F)
-            dt, k = cKDTree(S).query(P)
-            okt = (dt <= cap) & (np.einsum('ni,ni->n', fn[fid[k]], UP) >= cosv)
+            dtk, kk_ = cKDTree(S).query(P, k=kn)
+            vt = (dtk <= cap) & (np.einsum('nki,ni->nk', fn[fid[kk_]], UP) >= cosv)
+            ft = np.argmax(vt, 1); okt = vt.any(1)
+            dt = dtk[np.arange(len(P)), ft]; k = kk_[np.arange(len(P)), ft]
             if okt.sum() > 10:
                 okt &= dt <= np.quantile(dt[okt], cfg['trim_q'])
             kk = k[okt]
             B = sp.csr_matrix((b[kk].ravel(), (np.repeat(np.arange(len(kk)), 3), F[fid[kk]].ravel())), shape=(len(kk), n))
             Ut = proj_target(S[kk], P[okt], fn[fid[kk]], beta)
             Dt = B @ D
-            ws = 1.0
-            wt = cfg['w_t2s'] * np.sqrt(max(ok.sum(), 1) / max(okt.sum(), 1))
+            ws = cfg['w_s2t']                                         # per-row weights; totals in units of n
+            wt = cfg['w_t2s'] * np.sqrt(n / max(okt.sum(), 1))
             A = sp.vstack([alpha * MG, ws * Ds, wt * Dt, np.sqrt(cfg['eps']) * I4]).tocsr()
             Bv = np.vstack([np.zeros((MG.shape[0], 3)), ws * Us, wt * Ut, np.sqrt(cfg['eps']) * X])
             X_new = spsolve((A.T @ A).tocsc(), A.T @ Bv)
