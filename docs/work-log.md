@@ -5969,3 +5969,17 @@ Background agent, CPU only, $0, no ground truth read.
 - Ledger planned `20261031-rscrS43-d6787a8` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
   56921483 20261031-rscrS43-d6787a8 'ARMS=S SEEDS=43 bash ops/jobs/recipe_screen.sh'` (d6787a8 = cc9c32f + one log
   line) → Vast 58560711, RTX PRO 6000 Max-Q, Michigan, $1.34/h. Both S boxes end ~21:00–21:30 UTC [E].
+
+### 2026-10-31 18:26 UTC — determined-wright: recipe screen seed-43 box finished (12/12 cells scored)
+- Run 20261031-rscr43-865dfbb, Vast 58532423: job done 17:37 UTC, self-destroyed. Ledger actual $7.73 (~5.2 h ×
+  $1.487/h, estimate). Summary pulled from the store.
+- Seed-43 cells, AUC mean ± sd over 10 draws:
+
+  | episode | C | K | D |
+  |---|---|---|---|
+  | ep2 | .869±.174 | .959±.020 | .862±.236 |
+  | ep12 | .612±.014 | .582±.024 | .919±.022 |
+  | ep18 | .624±.002 | .620±.009 | .600±.059 |
+  | ep24 | .238±.005 | .251±.013 | .230±.003 |
+
+- No verdict until the seed-42 box (10/12 at 18:26) and the two arm-S boxes finish.
