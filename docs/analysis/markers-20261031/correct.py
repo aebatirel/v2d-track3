@@ -7,7 +7,8 @@ fixed pose, the track rest mask) and our track. Output: a corrected cam_T_<obj> 
   2. consistency gate with the prior: |D| < GATE_T and < GATE_R;
   3. temporal outlier rejection: reject D_t that differs from the weighted median of its +-6 frames by > 15 mm / 8 deg;
   4. per-frame smoothing: weighted mean of the accepted D over a 9-frame window (centre +-4); frames without a fix
-     interpolate linearly between the nearest smoothed corrections (carry), and hold the nearest one at the ends;
+     interpolate linearly between the nearest smoothed corrections when the gap is <= 60 frames (carry), else hold
+     the nearest one for <= 15 frames, else no correction;
   5. static segments (track rest runs >= 10 frames): vote over the >= 3-marker corrections; the largest 5-deg cluster
      wins if it has >= 4 votes and >= 2x the runner-up, and its chordal mean (rotation) and median (translation) is
      applied as one constant correction to the whole segment; otherwise abstain (keep step 4).
@@ -25,6 +26,7 @@ GATE_T, GATE_R = 0.03, 20.0
 OUT_T, OUT_R = 0.015, 8.0
 HALF = 4
 SEG_MIN, CL_DEG, VOTE_MIN = 10, 5.0, 4
+CARRY_GAP, CARRY_HOLD = 60, 15     # interpolate across gaps <= 60 frames; else hold <= 15 frames, then no correction
 
 
 def runs(mask):
@@ -50,14 +52,16 @@ def interp(Da, Db, s):
     return out
 
 
-def correct(T, n, F, rest, opts=None):
-    """T (N,4,4) prior cam_T_obj, n (N,) markers per fix, F (N,4,4) fixed poses (nan if none), rest (N,) bool.
-    Returns corrected track (N,4,4), per-frame correction D (N,4,4), info dict."""
-    o = dict(vote=True, carry=True); o.update(opts or {})
+def correct(T, n, F, rest, opts=None, A=None):
+    """T (N,4,4) prior cam_T_obj, n (N,) markers per fix, F (N,4,4) fixed poses (nan if none), rest (N,) bool,
+    A (4,4) the episode's constant body-frame offset from the pooled layout (identity when the layout is the episode's
+    own). The gate and the 'no correction' default are relative to A. Returns corrected track, correction D, info."""
+    o = dict(vote=True, carry=True, const=True); o.update(opts or {})
+    A = np.eye(4) if A is None or not o['const'] else A
     N = len(T); D = np.full((N, 4, 4), np.nan); w = np.zeros(N)
     for t in range(N):
         if n[t] >= 2 and np.all(np.isfinite(F[t])):
-            d = np.linalg.inv(T[t]) @ F[t]; dt, dr = dist(d, np.eye(4))
+            d = np.linalg.inv(T[t]) @ F[t]; dt, dr = dist(d, A)
             if dt < GATE_T and dr < GATE_R:
                 D[t] = d; w[t] = 1.0 if n[t] >= 3 else W2
     n_gate = int((w > 0).sum())
@@ -77,16 +81,18 @@ def correct(T, n, F, rest, opts=None):
         if nb:
             Ds[t] = wavg(D[nb], w[nb])
     have = np.nonzero(np.isfinite(Ds[:, 0, 0]))[0]
-    C = np.tile(np.eye(4), (N, 1, 1))
+    C = np.tile(A, (N, 1, 1))
     if len(have) and o['carry']:
         for t in range(N):
             if np.isfinite(Ds[t, 0, 0]):
                 C[t] = Ds[t]; continue
             a = have[have < t]; b = have[have > t]
-            if len(a) and len(b):
+            if len(a) and len(b) and b[0] - a[-1] <= CARRY_GAP:
                 C[t] = interp(Ds[a[-1]], Ds[b[0]], (t - a[-1]) / (b[0] - a[-1]))
-            else:
-                C[t] = Ds[a[-1]] if len(a) else Ds[b[0]]
+            elif len(a) and t - a[-1] <= CARRY_HOLD and (not len(b) or t - a[-1] <= b[0] - t):
+                C[t] = Ds[a[-1]]
+            elif len(b) and b[0] - t <= CARRY_HOLD:
+                C[t] = Ds[b[0]]
     elif len(have):
         for t in have:
             C[t] = Ds[t]
@@ -130,7 +136,7 @@ def main():
     split, ep, obj = sys.argv[1], int(sys.argv[2]), sys.argv[3]
     F = np.load(f'{mlib.S}/mk/scan/fix_{split}{ep}_{obj}.npz')
     P = np.load(mlib.poses_path(split, ep)); T = P[f'cam_T_{obj}'].astype(np.float64)[:len(F['n'])]
-    out, C, info = correct(T, F['n'], F['fix'], F['rest'])
+    out, C, info = correct(T, F['n'], F['fix'], F['rest'], A=F['A'] if 'A' in F.files else None)
     rv = Rot.from_matrix(C[:, :3, :3])
     info.update(ep=ep, obj=obj, corr_t_mm_med=round(float(np.median(np.linalg.norm(C[:, :3, 3], axis=1)) * 1000), 1),
                 corr_r_deg_med=round(float(np.median(np.degrees(rv.magnitude()))), 2),

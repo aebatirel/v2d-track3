@@ -21,10 +21,11 @@ def main():
     F = np.load(f'{S}/mk/scan/fix_{split}{ep}_{obj}.npz'); Lb = F['layout']
     rig = mlib.Rig(); rc, rb = mlib.rectified(rig, split, ep)
     T = np.load(mlib.poses_path(split, ep))[f'cam_T_{obj}'].astype(np.float64)
+    A = F['A'] if 'A' in F.files else np.eye(4)      # consensus -> this episode's track body frame
     N = min(J['N'], len(F['n'])); added = 0
     for t in range(N):
         fixed = F['n'][t] >= 2 and np.all(np.isfinite(F['fix'][t]))
-        P = F['fix'][t] if fixed else T[t]
+        P = F['fix'][t] if fixed else T[t] @ A
         X = Lb @ P[:3, :3].T + P[:3, 3]
         if np.any(X[:, 2] < 0.15):
             continue

@@ -35,7 +35,8 @@ def main():
                 int(min(1599, uL[:, 0].max() + mpx)), int(min(999, uL[:, 1].max() + mpx)))
         if rect[2] - rect[0] < 10 or rect[3] - rect[1] < 10:
             return []
-        return detect.stereo(rig, rc[t], rb[t], rect, (X[:, 2].min() - 0.08, X[:, 2].max() + 0.08), dv0, tol)
+        area = (rect[2] - rect[0]) * (rect[3] - rect[1]); k = int(np.clip(area / 4000, 30, 80))
+        return detect.stereo(rig, rc[t], rb[t], rect, (X[:, 2].min() - 0.08, X[:, 2].max() + 0.08), dv0, tol, k=k)
 
     # pass 1: vertical offset of the rectified pair from this episode's own detections
     dvs = []

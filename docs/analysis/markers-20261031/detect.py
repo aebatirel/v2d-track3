@@ -41,11 +41,12 @@ def circles(img, rect, rmin, rmax, k=20, min_sup=0.35, min_mag=4.0, max_isd=None
     h, w = crop.shape
     best = np.zeros((h, w), np.float32); ridx = np.zeros((h, w), np.int16)
     for i, r in enumerate(radii):
-        a = np.zeros((h, w), np.float32)
+        a = np.zeros(h * w, np.float64)
         for s in (1, -1):
             cx = np.rint(xs + s * r * dx).astype(int); cy = np.rint(ys + s * r * dy).astype(int)
             ok = (cx >= 0) & (cx < w) & (cy >= 0) & (cy < h)
-            np.add.at(a, (cy[ok], cx[ok]), 1.0)
+            a += np.bincount(cy[ok] * w + cx[ok], minlength=h * w)
+        a = a.reshape(h, w).astype(np.float32)
         a = cv2.GaussianBlur(a, (0, 0), 0.8) * (2 * np.pi * 0.8 ** 2) / (2 * np.pi * r)
         upd = a > best; best[upd] = a[upd]; ridx[upd] = i
     loc = (best == cv2.dilate(best, np.ones((5, 5), np.uint8))) & (best > min_sup)
@@ -55,8 +56,9 @@ def circles(img, rect, rmin, rmax, k=20, min_sup=0.35, min_mag=4.0, max_isd=None
     order = np.argsort(-best[py, px])[:k * 3]
     out = []
     for j in order:
-        cy0, cx0 = py[j], px[j]; r = radii[ridx[cy0, cx0]]
-        fit = _refine(xs, ys, dx, dy, cx0, cy0, r)
+        cy0, cx0 = py[j], px[j]; r = radii[ridx[cy0, cx0]]; bx = 3.5 * r + 3
+        loc_ = np.nonzero((np.abs(xs - cx0) < bx) & (np.abs(ys - cy0) < bx))[0]
+        fit = _refine(xs[loc_], ys[loc_], dx[loc_], dy[loc_], cx0, cy0, r)
         if fit is None:
             continue
         u, v, rr, rms, cov = fit

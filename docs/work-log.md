@@ -5797,3 +5797,22 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
     M1, the lateral neck marker and the roll lever, is the bottleneck.
   - layout from our video: triangle 55.3/154.2/196.5 mm (video-built template 53.5/153.2/194.6), fit rms 1.6–2.2 mm.
   - PREREG block 1 written 18:52 UTC. Next: correction layer, then public validation.
+
+### 2026-10-31 ~20:15 UTC — GT-free marker correction layer FAILS its public gate (not adopted)
+Files: docs/analysis/markers-20261031/ (README, PREREG blocks 1–3, public_validation.json, diag_fix.json,
+eval_sizes.json, scripts). CPU, $0. PREREG rule at 18:52; method frozen with script hashes at 19:38, before the first
+score.
+- Public validation (kit registered chain, per-object AUC, 16 units: pot eps 0, 2, 26, 27, 41–45; lid 0, 2; blue cup 11,
+  12, 13, 21, 22): primary mean ΔAUC −0.083, 1/16 improved, worst −0.407 (lid ep2 via the pot anchor). Raw fixes only:
+  −0.039. All variants FAIL (rule ≥ +0.010, ≥ 60 %, no unit < −0.020). Episode RPE rises in 8 of 9 touched episodes.
+- Untestable: wooden pieces, pitcher, sweeper (< 2 markers found); rack and beige cup had only 2 (rule needs 3).
+- Why (post-hoc vs mocap): our public tracks (pot 0.26–0.42 cm) beat single-frame b/c stereo marker fixes (1.0–2.2 cm;
+  markers 12–16 px). Note 17's gains assumed an emulated 10 mm / 5° prior.
+- Spoon (eval, GT-free):
+  - ≥ 2 markers in 34–73 % of frames (73–89 % at rest in 8/10 episodes); ≥ 3 in 2–18 %;
+  - layout from video 54.9 / 195.9 / 154.3 mm, residual 2.0 mm;
+  - tracker roll vs the template's marker model disagree by ~5°, undecidable without GT;
+  - eval 16 f ≥ 120: the layer would push the spoon 19.7 mm below the table (impossible), probably locking onto rack
+    markers [H].
+- Not adopted. Untested next idea: add ego_cam_a (≈ 2× resolution) as a third view, only worth a new pre-registration
+  if a post-hoc check shows 3-marker fixes beating the track on public lid/pot frames.

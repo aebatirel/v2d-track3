@@ -56,29 +56,43 @@ def hand_state(d, obj, split):
 
 def best_set(X, Lb, Tprior, tol=TOL):
     """largest layout-consistent labelled subset of detections X (n,3 camera) -> (labels dict marker->det, pose 4x4,
-    rms m). Ties: smaller distance to the prior pose."""
+    rms m), by backtracking over prior-gated candidates (a detection is a candidate for marker j when it lies within
+    GATE_T + sin(GATE_R) * lever_j of j's prior prediction). Ties: closer to the prior pose."""
     k, n = len(Lb), len(X)
     if n == 0:
         return {}, None, None
     Dl = np.linalg.norm(Lb[:, None] - Lb[None], axis=2); Dx = np.linalg.norm(X[:, None] - X[None], axis=2)
     pred = Lb @ Tprior[:3, :3].T + Tprior[:3, 3]
-    best = (0, -1e9, {}, None, None)
-    for m in range(min(k, n), 0, -1):
-        if m < best[0]:
-            break
-        for mk in itertools.combinations(range(k), m):
-            for di in itertools.permutations(range(n), m):
-                if any(abs(Dx[di[a], di[b]] - Dl[mk[a], mk[b]]) > tol for a in range(m) for b in range(a + 1, m)):
-                    continue
-                lab = dict(zip(mk, di))
-                pose, rms = fit_pose(lab, X, Lb, Tprior)
-                dt = np.linalg.norm(pose[:3, 3] - Tprior[:3, 3])
-                dr = np.degrees(Rot.from_matrix(pose[:3, :3] @ Tprior[:3, :3].T).magnitude())
-                if dt > GATE_T or dr > GATE_R:
-                    continue
-                sc = -dt / GATE_T - dr / GATE_R - rms / tol
-                if m > best[0] or sc > best[1]:
-                    best = (m, sc, lab, pose, rms)
+    lever = np.linalg.norm(Lb - Lb.mean(0), axis=1)
+    cand = [[i for i in range(n) if np.linalg.norm(X[i] - pred[j]) < GATE_T + np.sin(np.radians(GATE_R)) * lever[j]]
+            for j in range(k)]
+    best = [0, -1e9, {}, None, None]
+
+    def leaf(lab):
+        m = len(lab)
+        if m == 0 or m < best[0]:
+            return
+        pose, rms = fit_pose(lab, X, Lb, Tprior)
+        dt = np.linalg.norm(pose[:3, 3] - Tprior[:3, 3])
+        dr = np.degrees(Rot.from_matrix(pose[:3, :3] @ Tprior[:3, :3].T).magnitude())
+        if dt > GATE_T or dr > GATE_R:
+            return
+        sc = -dt / GATE_T - dr / GATE_R - rms / tol
+        if m > best[0] or sc > best[1]:
+            best[:] = [m, sc, dict(lab), pose, rms]
+
+    def rec(j, lab, used):
+        if len(lab) + (k - j) < best[0]:
+            return
+        if j == k:
+            leaf(lab); return
+        for i in cand[j]:
+            if i in used or any(abs(Dx[i, lab[q]] - Dl[j, q]) > tol for q in lab):
+                continue
+            lab[j] = i; used.add(i); rec(j + 1, lab, used); used.discard(i); del lab[j]
+        rec(j + 1, lab, used)
+
+    rec(0, {}, set())
     return best[2], best[3], best[4]
 
 
@@ -128,6 +142,18 @@ def refine_layout(D, L0, rest_only=True):
         Sh, res = L.gpa(sets, k)
         if Sh is None:
             return L0, dict(note='too few sets; seed kept', n_sets=len(sets))
+    # placement: body-frame medians of the labelled markers, from complete sets when there are >= 10 of them (a
+    # 2-marker label is constrained only by one distance, so its marker can be a look-alike)
+    full_pts = [[] for _ in range(k)]
+    for d in D:
+        for t in range(d['N']):
+            lab = d['labs'][t]
+            if len(lab) == k and (not rest_only or d['rest'][t]):
+                B, _ = d['B'][t]
+                for j, i in lab.items():
+                    full_pts[int(j)].append(B[i])
+    if len(full_pts[0]) >= 10:
+        Bpts = full_pts
     Bm = np.array([np.median(b, 0) if len(b) else L0[j] for j, b in enumerate(Bpts)])
     nB = [len(b) for b in Bpts]
     R, t = L.kabsch(Sh, Bm, w=np.maximum(np.array(nB, float), 1.0))
@@ -137,9 +163,45 @@ def refine_layout(D, L0, rest_only=True):
                           for (a_, b_), v in pd.items()},
                 place_resid_mm=(np.linalg.norm(Lb - Bm, axis=1) * 1000).round(1).tolist(),
                 shift_from_seed_mm=(np.linalg.norm(Lb - L0, axis=1) * 1000).round(1).tolist())
-    if res is not None and len(res):
-        info['gpa_mm'] = dict(median=float(np.median(res) * 1000), p90=float(np.percentile(res, 90) * 1000))
+    res = []
+    for s_ in sets:
+        if len(s_) >= 3:
+            ks = sorted(s_); A = np.array([s_[j] for j in ks]); R_, t_ = L.kabsch(A, Sh[ks])
+            res.append(np.linalg.norm(A @ R_.T + t_ - Sh[ks], axis=1).mean())
+    if res:
+        info['shape_fit_mm'] = dict(n=len(res), median=round(float(np.median(res) * 1000), 2),
+                                    p90=round(float(np.percentile(res, 90) * 1000), 2))
     return Lb, info
+
+
+def discover_seed(D, r3_min=0.0046, min_sep=0.025, max_k=6):
+    """GT-free layout seed from our own video: body-frame clusters of rest detections (mklayout.discover), kept when
+    their median 3-D radius is marker-like (>= r3_min), they are seen in >= 2 episodes (share >= 0.05; one episode
+    suffices if the object has one), and they are >= min_sep apart (strongest first)."""
+    C, share, cnt = L.discover([d['B'] for d in D], [d['rest'] for d in D], min_share=0.15)
+    rows = []
+    for c, sh in zip(C, share):
+        per_ep, r3 = [], []
+        for d in D:
+            hit = 0
+            for t, (B, X) in enumerate(d['B']):
+                if d['rest'][t] and len(B):
+                    dd = np.linalg.norm(B - c, axis=1); i = int(np.argmin(dd))
+                    if dd[i] < 0.012:
+                        hit += 1; r3.append(d['dets'][t][i]['r3'])
+            per_ep.append(hit / max(1, int(d['rest'].sum())))
+        rows.append(dict(c=c, share=sh, per_ep=per_ep, r3=float(np.median(r3)) if r3 else 0.0))
+    need = 2 if len(D) >= 2 else 1
+    keep = []
+    for r in sorted(rows, key=lambda r: -r['share']):
+        ok = r['r3'] >= r3_min and sum(p >= 0.05 for p in r['per_ep']) >= need
+        ok = ok and all(np.linalg.norm(r['c'] - q['c']) >= min_sep for q in keep)
+        r['kept'] = bool(ok)
+        if ok and len(keep) < max_k:
+            keep.append(r)
+    info = [dict(c_mm=(r['c'] * 1000).round(1).tolist(), share=r['share'], per_ep=[round(p, 2) for p in r['per_ep']],
+                 r3_mm=round(r['r3'] * 1000, 2), kept=r['kept']) for r in rows]
+    return np.array([r['c'] for r in keep]), info
 
 
 def label_all(D, Lb):
@@ -165,6 +227,27 @@ def main():
     if '--seed-template' in sys.argv:      # our own video-measured template layout (note 20 / spoon/params.json)
         L0 = np.array(json.load(open('/home/user/v2d-track3/spoon/params.json'))['markers_canonical_m'])
         rep['seed'] = 'spoon template (note 20 stereo measurements of our own video)'
+    elif '--consensus' in sys.argv:
+        Cj = json.load(open(sys.argv[sys.argv.index('--consensus') + 1]))
+        L0 = np.array(Cj['layout_body_m']); rep['seed'] = 'consensus ' + sys.argv[sys.argv.index('--consensus') + 1]
+        keep = []
+        for d in D:
+            o = Cj['offsets'].get(str(d['e'])); A = np.eye(4)
+            if o is None:      # not registered: the episode's own track frame (within-episode corrections only)
+                print('episode', d['e'], 'not registered to the consensus: offset = identity')
+                rep.setdefault('unregistered', []).append(d['e'])
+            else:
+                A[:3, :3] = np.array(o['R']); A[:3, 3] = o['t']
+            d['A'] = A
+            d['T_obj'] = d['T']; d['T'] = d['T'] @ A          # prior in the consensus (mesh) frame
+            keep.append(d)
+        D = keep
+        rep['layout_body_m'] = L0.tolist(); label_all(D, L0); _census_out(D, L0, rep, obj, split, out); return
+    elif '--discover' in sys.argv:
+        L0, info = discover_seed(D); rep['seed'] = 'discovery'; rep['discovery'] = info
+        print('discovery:', len(L0), 'markers'); [print('  ', r) for r in info]
+        if len(L0) < 2:
+            json.dump(rep, open(out, 'w'), indent=1); print('fewer than 2 markers discovered'); return
     else:
         L0 = np.array(json.load(open(sys.argv[sys.argv.index('--seed') + 1]))['layout_body_m'])
         rep['seed'] = sys.argv[sys.argv.index('--seed') + 1]
@@ -176,6 +259,10 @@ def main():
     rep['layout_refine'] = info; rep['layout_body_m'] = Lb.tolist()
     print('layout refine:', json.dumps(info))
     label_all(D, Lb)
+    _census_out(D, Lb, rep, obj, split, out)
+
+
+def _census_out(D, Lb, rep, obj, split, out):
     rep['census'] = {}
     for d in D:
         n = d['n']
@@ -193,7 +280,7 @@ def main():
         np.savez_compressed(f'{S}/mk/scan/fix_{split}{d["e"]}_{obj}.npz', n=n, rest=d['rest'],
                             hand=d['hand'] if d['hand'] is not None else np.zeros(0),
                             fix=np.array([p if p is not None else np.full((4, 4), np.nan) for p in d['fix']]),
-                            labs=json.dumps(d['labs']), layout=Lb)
+                            labs=json.dumps(d['labs']), layout=Lb, A=d.get('A', np.eye(4)))
     json.dump(rep, open(out, 'w'), indent=1)
 
 

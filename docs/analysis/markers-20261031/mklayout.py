@@ -28,8 +28,15 @@ def kabsch(A, B, w=None):
     return R, cb - R @ ca
 
 
-def rest_mask(Tw, win=4, pos=0.006, rot=4.0):
-    n = len(Tw); out = np.zeros(n, bool)
+def rest_mask(Tw, win=4, pos=0.006, rot=4.0, med=3):
+    """our track is still over +-win frames, after a +-med running median (robust to one-frame track outliers such
+    as a bad frame 0)."""
+    n = len(Tw); out = np.zeros(n, bool); Tw = Tw.copy(); Ts = Tw.copy()
+    for t in range(n):
+        a, b = max(0, t - med), min(n, t + med + 1)
+        Ts[t, :3, 3] = np.median(Tw[a:b, :3, 3], 0)
+        Ts[t, :3, :3] = Rot.from_matrix(Tw[a:b, :3, :3]).mean().as_matrix()
+    Tw = Ts
     for t in range(n):
         a, b = max(0, t - win), min(n - 1, t + win)
         dp = np.linalg.norm(Tw[a:b + 1, :3, 3] - Tw[t, :3, 3], axis=1).max()

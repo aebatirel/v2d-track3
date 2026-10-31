@@ -57,18 +57,19 @@ class Rig:
         return np.stack([x, y, z], -1)
 
 
-def read_frames(path, maxn=None):
+def read_frames(path, maxn=None, remap=None):
+    """grey frames of a video; with remap=(mapx, mapy) each frame is rectified as it is read (saves memory)."""
     cap = cv2.VideoCapture(path); out = []
     while True:
         ok, f = cap.read()
         if not ok or (maxn and len(out) >= maxn): break
-        out.append(cv2.cvtColor(f, cv2.COLOR_BGR2GRAY))
+        g = cv2.cvtColor(f, cv2.COLOR_BGR2GRAY)
+        out.append(cv2.remap(g, remap[0], remap[1], cv2.INTER_LINEAR) if remap is not None else g)
     return out
 
 
 def rectified(rig, split, e, maxn=None):
-    fc = read_frames(VID[(split, 'c')].format(e), maxn); fb = read_frames(VID[(split, 'b')].format(e), maxn)
-    n = min(len(fc), len(fb))
-    rc = [cv2.remap(fc[i], rig.MC[0], rig.MC[1], cv2.INTER_LINEAR) for i in range(n)]
-    rb = [cv2.remap(fb[i], rig.MB[0], rig.MB[1], cv2.INTER_LINEAR) for i in range(n)]
-    return rc, rb
+    """rectified left (ego_cam_c) and right (ego_cam_b) frames, exactly as pipeline/perc2.py builds them."""
+    rc = read_frames(VID[(split, 'c')].format(e), maxn, rig.MC); rb = read_frames(VID[(split, 'b')].format(e), maxn, rig.MB)
+    n = min(len(rc), len(rb))
+    return rc[:n], rb[:n]
