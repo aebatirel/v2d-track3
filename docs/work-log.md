@@ -5695,3 +5695,12 @@ arm and a no-policy replay floor to stage B.
   log. The upload is this session's decision under the owner's direct instruction here. The 05:00 trigger already
   covers "work log shows it built and passed". A backup check was added at 07:30 UTC (send_later) in case 9b is still
   being built at 05:00.
+- 21:22 UTC bold-albattani sent focused-pascal its eval delivery statement:
+  - **NOT delivered:** F-I5 collision carves for evals 32/33, 14/16/30, 10 and 1. Piece splitting failed on all 10
+    public objects; exact colliders fail hands-off because tracked rest poses interpenetrate, sink into the table or
+    float; carving is not the remedy for the spoon episodes 32/33/16.
+  - **Conditional:** the eval-25 board slot, round 3 running; a firm yes/no by 08:00 UTC; default keeps
+    `meshes/carve/ev25`.
+  - **E0b eval meshes:** only pot and beige cup are eligible, and both are less accurate on public than pack 9a+'s, so
+    9a+ stays.
+  - Effect: pack 10 Tier 1 = eval 10 V4p + tonight's D cells (+ eval 25 if round 3 says yes).
