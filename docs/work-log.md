@@ -5583,3 +5583,11 @@ Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on 
   best-of-N: packed rollouts stay draw 1 by position. ep11 gate running (Vast 58552489, run 20261031-e11g-663b7df,
   $1.07/h), result ≈ 19–21 UTC. My comment: compare 10-draw means (new vs packed policy's H5 mean), not the packed single
   draw, with an optional as-scored guard as a secondary condition.
+- ~16:10 UTC focused-pascal fixes the pack-10 swap rule (to be pre-registered with the audit priorities ≈ 19:00).
+  GT-free, ≥ 10 fresh official draws; all of:
+  - (a) mean sim_vs_ref ≥ the packed policy's H5 mean;
+  - (b) failure rate (GT-free RPE > 5 cm) ≤ the packed policy's;
+  - (c) median GT-free RPE not worse;
+  - secondary: the new packed draw 1 is not below the old packed draw by > 0.05.
+  Eval 10 is scored against both references.
+  Gap flagged: H5 kept no rollouts, so (b)/(c) need fresh draws of the packed policies with rollouts kept (≈ $2 [E]).
