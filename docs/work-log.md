@@ -5389,3 +5389,15 @@ arm and a no-policy replay floor to stage B.
 - Every submission's code commit (6f1aea3, 46b8389, 3758189, f7a49a9, 526918b, 5203d42, 465320b) is reachable from `main`.
 - Code merged without conflicts. STATUS.md and this log conflicted only where sessions appended entries; both sides kept.
 - Sessions still running push to their own branches; merge them into `main` again when they finish.
+
+### 2026-10-31 ~15:00 UTC — standings check (owner asked; read-only, $0)
+- Kaggle API, all six Track 3 boards, 14:48–14:58 UTC. No new upload since pack 7 (AUC 0.81460, 30 Oct 06:28 UTC).
+- Our ranks [M]: AUC 8th (0.81460), SP-SR 7th (0.85, tied with DSAIL and Purple), MP-SR 8th (0.65), RPE 11th (3.932),
+  MPPE 10th (2.921), CD-O 18th of 20 (0.402; leaders 0.213 / 0.239 / 0.250).
+- Final rank = lowest sum of the six board ranks (FAQ; next-steps-2026-10-30/PLAN.md). Sum of ranks [M]:
+  richchentw 6, DDD 17, rlwrld 22, Zihao Guo 25, SRL 31, Purple 38, sam&alex 48, SoySauceChicken 49, DSAIL 53,
+  Sambhav 60, **Imitation.Tech 62 (11th)**, Zimo Li 73. (Teams missing a board were given rank 21 on it; no team above
+  us is missing one, so this assumption does not change our place.)
+- Close neighbours: CD-O 0.372 is 15th, 0.338 is 14th, 0.297 is 10th; RPE 9th is 3.853 and 10th is 3.928; MP-SR 0.70 ties
+  7th; SP-SR 0.90 ties 6th.
+- Vast: 2 boxes running (recipe screen 58531195 / 58532423, $2.76/h); credit $118.64.

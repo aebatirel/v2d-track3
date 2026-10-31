@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~15:00 UTC: standings — 11th on the final ranking (sum of six board ranks); CD-O 18th is the anchor
+- No new upload; pack 7 AUC 0.81460 is 8th on AUC. Board ranks: AUC 8, SP-SR 7, MP-SR 8, RPE 11, MPPE 10, CD-O 18.
+- Rank sum 62 → 11th (10th 60, 9th 53, 8th 49, 7th 48). CD-O ≤ 0.338 → 14th; ≤ 0.297 → 10th. Details: work log 31 Oct 15:00.
+
 ## 2026-10-30 ~06:40 UTC: batch 2 generative probe done ($4.36, box destroyed; results [D])
 Report: `docs/research/mesh-2026-10-26/results/gen-probe/README.md`. Code: `docs/research/mesh-2026-10-26/gen/`.
 - Five generators were run on our crops and posed views; 104 one-shot scan scorings. Mean CD-O over 10 objects:
