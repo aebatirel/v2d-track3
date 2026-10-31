@@ -5641,3 +5641,6 @@ Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). 
   AUC guard (51/51) [D], pack-9a configuration over 15 public twins: mean ΔAUC +0.0079, min −0.0092, ΔRPE −0.121 cm.
   E0 box 58555214 created 16:25 UTC (run mesh-20261031-e0-b05f001). E0's pot/lid/rack share the marker-ball issue;
   pack 10 gets GT-free ball rebuilds.
+- ~16:40 UTC focused-pascal: pack 9a is built, staged and dry-run validated (5 uploads left per board). Its upload
+  call was blocked by that session's permission guard, because the owner's approval reached it only by relay. It asked
+  the owner directly in its own chat to reply "upload 9a" (or "pack 8"). This session does not upload in its place.
