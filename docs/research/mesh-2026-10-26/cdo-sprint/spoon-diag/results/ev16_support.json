@@ -1,0 +1,1213 @@
+[
+{
+"f": 0,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.5
+},
+{
+"f": 1,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.1
+},
+{
+"f": 2,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.1
+},
+{
+"f": 3,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.5
+},
+{
+"f": 4,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.4
+},
+{
+"f": 5,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.0
+},
+{
+"f": 6,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.9
+},
+{
+"f": 7,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 2.0
+},
+{
+"f": 8,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.7
+},
+{
+"f": 9,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.6
+},
+{
+"f": 10,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.0
+},
+{
+"f": 11,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.7
+},
+{
+"f": 12,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.2
+},
+{
+"f": 13,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.0
+},
+{
+"f": 14,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.9
+},
+{
+"f": 15,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.8
+},
+{
+"f": 16,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.5
+},
+{
+"f": 17,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.5
+},
+{
+"f": 18,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.1
+},
+{
+"f": 19,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.3
+},
+{
+"f": 20,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 2.5
+},
+{
+"f": 21,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.4
+},
+{
+"f": 22,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.4
+},
+{
+"f": 23,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.4
+},
+{
+"f": 24,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.0
+},
+{
+"f": 25,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.0
+},
+{
+"f": 26,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.7
+},
+{
+"f": 27,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.3
+},
+{
+"f": 28,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.2
+},
+{
+"f": 29,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.2
+},
+{
+"f": 30,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -1.3
+},
+{
+"f": 31,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 4.6
+},
+{
+"f": 32,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 14.5
+},
+{
+"f": 33,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 25.5
+},
+{
+"f": 34,
+"gap_mm": 72.2,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 45.6
+},
+{
+"f": 35,
+"gap_mm": 109.9,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 57.8
+},
+{
+"f": 36,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 73.4
+},
+{
+"f": 37,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 81.1
+},
+{
+"f": 38,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 91.7
+},
+{
+"f": 39,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 89.8
+},
+{
+"f": 40,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 93.7
+},
+{
+"f": 41,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 100.7
+},
+{
+"f": 42,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 99.3
+},
+{
+"f": 43,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 87.7
+},
+{
+"f": 44,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 84.6
+},
+{
+"f": 45,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 82.9
+},
+{
+"f": 46,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 80.3
+},
+{
+"f": 47,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 66.9
+},
+{
+"f": 48,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 66.0
+},
+{
+"f": 49,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 64.4
+},
+{
+"f": 50,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 58.2
+},
+{
+"f": 51,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 66.0
+},
+{
+"f": 52,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 72.3
+},
+{
+"f": 53,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 73.2
+},
+{
+"f": 54,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 71.5
+},
+{
+"f": 55,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 68.9
+},
+{
+"f": 56,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 71.0
+},
+{
+"f": 57,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 77.1
+},
+{
+"f": 58,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 74.2
+},
+{
+"f": 59,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 74.9
+},
+{
+"f": 60,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 78.6
+},
+{
+"f": 61,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 77.1
+},
+{
+"f": 62,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 77.4
+},
+{
+"f": 63,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 78.8
+},
+{
+"f": 64,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 84.2
+},
+{
+"f": 65,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 89.9
+},
+{
+"f": 66,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 101.6
+},
+{
+"f": 67,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 121.8
+},
+{
+"f": 68,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 133.5
+},
+{
+"f": 69,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 144.0
+},
+{
+"f": 70,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 161.7
+},
+{
+"f": 71,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 174.8
+},
+{
+"f": 72,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 181.0
+},
+{
+"f": 73,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 172.8
+},
+{
+"f": 74,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 170.0
+},
+{
+"f": 75,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 168.9
+},
+{
+"f": 76,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 160.0
+},
+{
+"f": 77,
+"gap_mm": null,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 147.9
+},
+{
+"f": 78,
+"gap_mm": 35.8,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 132.0
+},
+{
+"f": 79,
+"gap_mm": 22.6,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 120.5
+},
+{
+"f": 80,
+"gap_mm": 16.1,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 108.1
+},
+{
+"f": 81,
+"gap_mm": 14.2,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 98.9
+},
+{
+"f": 82,
+"gap_mm": 7.3,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 89.6
+},
+{
+"f": 83,
+"gap_mm": 4.1,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 81.4
+},
+{
+"f": 84,
+"gap_mm": 3.6,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 73.2
+},
+{
+"f": 85,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 66.5
+},
+{
+"f": 86,
+"gap_mm": 1.0,
+"within2mm_vis_cm3": 0.12,
+"within2mm_hull_cm3": 0.26,
+"lowest_above_table_mm": 48.4
+},
+{
+"f": 87,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 1.3,
+"within2mm_hull_cm3": 1.95,
+"lowest_above_table_mm": 38.8
+},
+{
+"f": 88,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.99,
+"within2mm_hull_cm3": 1.59,
+"lowest_above_table_mm": 31.6
+},
+{
+"f": 89,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.67,
+"within2mm_hull_cm3": 1.23,
+"lowest_above_table_mm": 20.3
+},
+{
+"f": 90,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.4,
+"within2mm_hull_cm3": 0.83,
+"lowest_above_table_mm": 14.4
+},
+{
+"f": 91,
+"gap_mm": 2.0,
+"within2mm_vis_cm3": 0.01,
+"within2mm_hull_cm3": 0.09,
+"lowest_above_table_mm": 11.7
+},
+{
+"f": 92,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 11.9
+},
+{
+"f": 93,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 5.1
+},
+{
+"f": 94,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": -0.5
+},
+{
+"f": 95,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 3.6
+},
+{
+"f": 96,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.23,
+"within2mm_hull_cm3": 0.49,
+"lowest_above_table_mm": 5.5
+},
+{
+"f": 97,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.61,
+"within2mm_hull_cm3": 1.18,
+"lowest_above_table_mm": 1.5
+},
+{
+"f": 98,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.57,
+"within2mm_hull_cm3": 1.06,
+"lowest_above_table_mm": -0.6
+},
+{
+"f": 99,
+"gap_mm": 1.0,
+"within2mm_vis_cm3": 0.1,
+"within2mm_hull_cm3": 0.24,
+"lowest_above_table_mm": -1.1
+},
+{
+"f": 100,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.36,
+"within2mm_hull_cm3": 0.71,
+"lowest_above_table_mm": -2.0
+},
+{
+"f": 101,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.32,
+"within2mm_hull_cm3": 0.62,
+"lowest_above_table_mm": -0.8
+},
+{
+"f": 102,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.3,
+"within2mm_hull_cm3": 0.61,
+"lowest_above_table_mm": 3.0
+},
+{
+"f": 103,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.25,
+"within2mm_hull_cm3": 0.5,
+"lowest_above_table_mm": -2.0
+},
+{
+"f": 104,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.79,
+"within2mm_hull_cm3": 1.39,
+"lowest_above_table_mm": 4.8
+},
+{
+"f": 105,
+"gap_mm": 1.0,
+"within2mm_vis_cm3": 0.18,
+"within2mm_hull_cm3": 0.44,
+"lowest_above_table_mm": 4.6
+},
+{
+"f": 106,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.28,
+"within2mm_hull_cm3": 0.56,
+"lowest_above_table_mm": 2.7
+},
+{
+"f": 107,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.23,
+"within2mm_hull_cm3": 0.52,
+"lowest_above_table_mm": 5.5
+},
+{
+"f": 108,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.24,
+"within2mm_hull_cm3": 0.52,
+"lowest_above_table_mm": 4.0
+},
+{
+"f": 109,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 2.3
+},
+{
+"f": 110,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 2.2
+},
+{
+"f": 111,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 0.1
+},
+{
+"f": 112,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 1.7
+},
+{
+"f": 113,
+"gap_mm": 1.0,
+"within2mm_vis_cm3": 0.07,
+"within2mm_hull_cm3": 0.17,
+"lowest_above_table_mm": 0.4
+},
+{
+"f": 114,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.48,
+"within2mm_hull_cm3": 0.93,
+"lowest_above_table_mm": 0.6
+},
+{
+"f": 115,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.79,
+"within2mm_hull_cm3": 1.4,
+"lowest_above_table_mm": 1.3
+},
+{
+"f": 116,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.5,
+"within2mm_hull_cm3": 1.17,
+"lowest_above_table_mm": 2.4
+},
+{
+"f": 117,
+"gap_mm": 0.0,
+"within2mm_vis_cm3": 0.42,
+"within2mm_hull_cm3": 0.89,
+"lowest_above_table_mm": 5.2
+},
+{
+"f": 118,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 1.05,
+"lowest_above_table_mm": 2.7
+},
+{
+"f": 119,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.07,
+"lowest_above_table_mm": 11.0
+},
+{
+"f": 120,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 17.8
+},
+{
+"f": 121,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.12,
+"lowest_above_table_mm": 20.0
+},
+{
+"f": 122,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 20.3
+},
+{
+"f": 123,
+"gap_mm": 1.0,
+"within2mm_vis_cm3": 0.07,
+"within2mm_hull_cm3": 0.96,
+"lowest_above_table_mm": 26.3
+},
+{
+"f": 124,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.23,
+"lowest_above_table_mm": 23.8
+},
+{
+"f": 125,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.41,
+"lowest_above_table_mm": 25.3
+},
+{
+"f": 126,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 22.1
+},
+{
+"f": 127,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 21.1
+},
+{
+"f": 128,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 19.6
+},
+{
+"f": 129,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 21.5
+},
+{
+"f": 130,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 18.8
+},
+{
+"f": 131,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.4,
+"lowest_above_table_mm": 23.8
+},
+{
+"f": 132,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.12,
+"lowest_above_table_mm": 23.0
+},
+{
+"f": 133,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 17.9
+},
+{
+"f": 134,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 19.2
+},
+{
+"f": 135,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 22.9
+},
+{
+"f": 136,
+"gap_mm": 7.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 18.9
+},
+{
+"f": 137,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 16.6
+},
+{
+"f": 138,
+"gap_mm": 8.2,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 16.4
+},
+{
+"f": 139,
+"gap_mm": 5.9,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.16,
+"lowest_above_table_mm": 20.0
+},
+{
+"f": 140,
+"gap_mm": 2.8,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.31,
+"lowest_above_table_mm": 21.5
+},
+{
+"f": 141,
+"gap_mm": 4.6,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 17.0
+},
+{
+"f": 142,
+"gap_mm": 2.0,
+"within2mm_vis_cm3": 0.02,
+"within2mm_hull_cm3": 0.59,
+"lowest_above_table_mm": 22.7
+},
+{
+"f": 143,
+"gap_mm": 4.5,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.29,
+"lowest_above_table_mm": 19.0
+},
+{
+"f": 144,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 20.3
+},
+{
+"f": 145,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 19.1
+},
+{
+"f": 146,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.06,
+"lowest_above_table_mm": 19.2
+},
+{
+"f": 147,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.02,
+"lowest_above_table_mm": 17.5
+},
+{
+"f": 148,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.05,
+"lowest_above_table_mm": 18.4
+},
+{
+"f": 149,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 17.2
+},
+{
+"f": 150,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 17.8
+},
+{
+"f": 151,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 16.8
+},
+{
+"f": 152,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 13.0
+},
+{
+"f": 153,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 8.4
+},
+{
+"f": 154,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.03,
+"lowest_above_table_mm": 11.3
+},
+{
+"f": 155,
+"gap_mm": 6.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 13.2
+},
+{
+"f": 156,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 16.3
+},
+{
+"f": 157,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 11.9
+},
+{
+"f": 158,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.04,
+"lowest_above_table_mm": 6.2
+},
+{
+"f": 159,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 9.9
+},
+{
+"f": 160,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.01,
+"lowest_above_table_mm": 5.6
+},
+{
+"f": 161,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 6.4
+},
+{
+"f": 162,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 6.6
+},
+{
+"f": 163,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 11.3
+},
+{
+"f": 164,
+"gap_mm": 7.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 7.5
+},
+{
+"f": 165,
+"gap_mm": 5.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.42,
+"lowest_above_table_mm": 2.2
+},
+{
+"f": 166,
+"gap_mm": 1.4,
+"within2mm_vis_cm3": 0.02,
+"within2mm_hull_cm3": 1.58,
+"lowest_above_table_mm": 1.3
+},
+{
+"f": 167,
+"gap_mm": 3.2,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 1.01,
+"lowest_above_table_mm": 0.6
+},
+{
+"f": 168,
+"gap_mm": 7.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 5.6
+},
+{
+"f": 169,
+"gap_mm": 4.5,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.51,
+"lowest_above_table_mm": -0.4
+},
+{
+"f": 170,
+"gap_mm": 4.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.1,
+"lowest_above_table_mm": 3.2
+},
+{
+"f": 171,
+"gap_mm": 3.0,
+"within2mm_vis_cm3": 0.0,
+"within2mm_hull_cm3": 0.0,
+"lowest_above_table_mm": 12.9
+},
+{
+"f": 172,
+"gap_mm": 2.0,
+"within2mm_vis_cm3": 0.03,
+"within2mm_hull_cm3": 0.1,
+"lowest_above_table_mm": 13.5
+}
+]

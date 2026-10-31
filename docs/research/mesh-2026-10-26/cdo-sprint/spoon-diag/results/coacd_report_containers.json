@@ -1,0 +1,33 @@
+{
+ "coacd_version": "unknown",
+ "cup_ep32sf": {
+  "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/spoondiag/dl/runs/20261026-fr32s46b-5e0e100/refs/sf/ep32/assets/mesh/blue_cup/blue_cup.glb",
+  "md5": "0e2bb5f5a185ecf91f5689e95a7f61b1",
+  "V": 5781,
+  "F": 11566,
+  "pieces": 65,
+  "hull_vol_sum_cm3": 457.3,
+  "mesh_vol_cm3": 405.0,
+  "sec": 133.8
+ },
+ "cup_lib": {
+  "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+  "md5": "7542631493e3a0564f6d74009de67d54",
+  "V": 5991,
+  "F": 11986,
+  "pieces": 65,
+  "hull_vol_sum_cm3": 452.9,
+  "mesh_vol_cm3": 400.3,
+  "sec": 211.5
+ },
+ "rack_lib": {
+  "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+  "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+  "V": 16438,
+  "F": 32912,
+  "pieces": 38,
+  "hull_vol_sum_cm3": 1252.2,
+  "mesh_vol_cm3": 866.4,
+  "sec": 254.5
+ }
+}

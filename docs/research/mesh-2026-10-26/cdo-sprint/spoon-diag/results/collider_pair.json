@@ -1,0 +1,6169 @@
+{
+ "32": {
+  "spoon_hulls": "spoon_ep32sf_coacd.npz",
+  "spoon_pieces": 10,
+  "spoon_hull_union_cm3": 120.4,
+  "spoon_added_by_coacd_cm3": 21.0,
+  "summary": {
+   "spoonhull_in_vis": {
+    "max": 3.42,
+    "argmax": 154,
+    "frames_gt_1": 5
+   },
+   "spoonhull_in_hull": {
+    "max": 4.42,
+    "argmax": 154,
+    "frames_gt_1": 9
+   },
+   "spoonadded_in_vis": {
+    "max": 0.78,
+    "argmax": 154,
+    "frames_gt_1": 0
+   },
+   "spoonadded_in_hull": {
+    "max": 1.23,
+    "argmax": 154,
+    "frames_gt_1": 1
+   },
+   "spoonhull_in_lathe": {
+    "max": 1.27,
+    "argmax": 149,
+    "frames_gt_1": 4
+   }
+  },
+  "per_frame": [
+   {
+    "f": 0,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 1,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 2,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 3,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 4,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 5,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 6,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 7,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 8,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 9,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 10,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 11,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 12,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 13,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 14,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 15,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 16,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 17,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 18,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 19,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 20,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 21,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 22,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 23,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 24,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 25,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 26,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 27,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 28,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 29,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 30,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 31,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 32,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 33,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 34,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 35,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 36,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 37,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 38,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 39,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 40,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 41,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 42,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 43,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 44,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 45,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 46,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 47,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 48,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 49,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 50,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 51,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 52,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 53,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 54,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 55,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 56,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 57,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 58,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 59,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 60,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 61,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 62,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 63,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 64,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 65,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 66,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 67,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 68,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 69,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 70,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 71,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 72,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 73,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 74,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 75,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 76,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 77,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.02
+   },
+   {
+    "f": 78,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.047,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.284
+   },
+   {
+    "f": 79,
+    "spoonhull_in_vis": 0.179,
+    "spoonhull_in_hull": 0.52,
+    "spoonadded_in_vis": 0.03,
+    "spoonadded_in_hull": 0.152,
+    "spoonhull_in_lathe": 0.628
+   },
+   {
+    "f": 80,
+    "spoonhull_in_vis": 0.834,
+    "spoonhull_in_hull": 1.539,
+    "spoonadded_in_vis": 0.402,
+    "spoonadded_in_hull": 0.729,
+    "spoonhull_in_lathe": 0.948
+   },
+   {
+    "f": 81,
+    "spoonhull_in_vis": 0.851,
+    "spoonhull_in_hull": 1.691,
+    "spoonadded_in_vis": 0.422,
+    "spoonadded_in_hull": 0.783,
+    "spoonhull_in_lathe": 0.985
+   },
+   {
+    "f": 82,
+    "spoonhull_in_vis": 1.016,
+    "spoonhull_in_hull": 1.796,
+    "spoonadded_in_vis": 0.375,
+    "spoonadded_in_hull": 0.763,
+    "spoonhull_in_lathe": 1.012
+   },
+   {
+    "f": 83,
+    "spoonhull_in_vis": 0.422,
+    "spoonhull_in_hull": 0.722,
+    "spoonadded_in_vis": 0.084,
+    "spoonadded_in_hull": 0.196,
+    "spoonhull_in_lathe": 0.662
+   },
+   {
+    "f": 84,
+    "spoonhull_in_vis": 0.955,
+    "spoonhull_in_hull": 1.492,
+    "spoonadded_in_vis": 0.5,
+    "spoonadded_in_hull": 0.769,
+    "spoonhull_in_lathe": 1.121
+   },
+   {
+    "f": 85,
+    "spoonhull_in_vis": 0.041,
+    "spoonhull_in_hull": 0.064,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.861
+   },
+   {
+    "f": 86,
+    "spoonhull_in_vis": 0.165,
+    "spoonhull_in_hull": 0.341,
+    "spoonadded_in_vis": 0.013,
+    "spoonadded_in_hull": 0.041,
+    "spoonhull_in_lathe": 0.803
+   },
+   {
+    "f": 87,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 88,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 89,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 90,
+    "spoonhull_in_vis": 0.327,
+    "spoonhull_in_hull": 0.803,
+    "spoonadded_in_vis": 0.074,
+    "spoonadded_in_hull": 0.172,
+    "spoonhull_in_lathe": 0.665
+   },
+   {
+    "f": 91,
+    "spoonhull_in_vis": 0.034,
+    "spoonhull_in_hull": 0.125,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.395
+   },
+   {
+    "f": 92,
+    "spoonhull_in_vis": 1.374,
+    "spoonhull_in_hull": 2.221,
+    "spoonadded_in_vis": 0.466,
+    "spoonadded_in_hull": 0.759,
+    "spoonhull_in_lathe": 0.26
+   },
+   {
+    "f": 93,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 94,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 95,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 96,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 97,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 98,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 99,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 100,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 101,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 102,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 103,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 104,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 105,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 106,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 107,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 108,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 109,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 110,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 111,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 112,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 113,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 114,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 115,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 116,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 117,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 118,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 119,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 120,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 121,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 122,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 123,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 124,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 125,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 126,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 127,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 128,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 129,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 130,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 131,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 132,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 133,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 134,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 135,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 136,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 137,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 138,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 139,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 140,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 141,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 142,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 143,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 144,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 145,
+    "spoonhull_in_vis": 0.041,
+    "spoonhull_in_hull": 0.105,
+    "spoonadded_in_vis": 0.003,
+    "spoonadded_in_hull": 0.027,
+    "spoonhull_in_lathe": 0.742
+   },
+   {
+    "f": 146,
+    "spoonhull_in_vis": 0.284,
+    "spoonhull_in_hull": 0.543,
+    "spoonadded_in_vis": 0.108,
+    "spoonadded_in_hull": 0.213,
+    "spoonhull_in_lathe": 0.689
+   },
+   {
+    "f": 147,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.581
+   },
+   {
+    "f": 148,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.007,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.358
+   },
+   {
+    "f": 149,
+    "spoonhull_in_vis": 0.375,
+    "spoonhull_in_hull": 0.56,
+    "spoonadded_in_vis": 0.074,
+    "spoonadded_in_hull": 0.145,
+    "spoonhull_in_lathe": 1.269
+   },
+   {
+    "f": 150,
+    "spoonhull_in_vis": 0.162,
+    "spoonhull_in_hull": 0.213,
+    "spoonadded_in_vis": 0.007,
+    "spoonadded_in_hull": 0.01,
+    "spoonhull_in_lathe": 0.351
+   },
+   {
+    "f": 151,
+    "spoonhull_in_vis": 0.074,
+    "spoonhull_in_hull": 0.128,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 152,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 153,
+    "spoonhull_in_vis": 1.711,
+    "spoonhull_in_hull": 2.417,
+    "spoonadded_in_vis": 0.202,
+    "spoonadded_in_hull": 0.452,
+    "spoonhull_in_lathe": 0.044
+   },
+   {
+    "f": 154,
+    "spoonhull_in_vis": 3.416,
+    "spoonhull_in_hull": 4.418,
+    "spoonadded_in_vis": 0.776,
+    "spoonadded_in_hull": 1.228,
+    "spoonhull_in_lathe": 0.3
+   },
+   {
+    "f": 155,
+    "spoonhull_in_vis": 0.753,
+    "spoonhull_in_hull": 1.259,
+    "spoonadded_in_vis": 0.216,
+    "spoonadded_in_hull": 0.348,
+    "spoonhull_in_lathe": 0.057
+   },
+   {
+    "f": 156,
+    "spoonhull_in_vis": 1.731,
+    "spoonhull_in_hull": 1.941,
+    "spoonadded_in_vis": 0.702,
+    "spoonadded_in_hull": 0.793,
+    "spoonhull_in_lathe": 1.056
+   },
+   {
+    "f": 157,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.03,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.013,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 158,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 159,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 160,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 161,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 162,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 163,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 164,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 165,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 166,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 167,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 168,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 169,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 170,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 171,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 172,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 173,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 174,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 175,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 176,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 177,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 178,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 179,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 180,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 181,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 182,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 183,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 184,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 185,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 186,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 187,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 188,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 189,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 190,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 191,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 192,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 193,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 194,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 195,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 196,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 197,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 198,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 199,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 200,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 201,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 202,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 203,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 204,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 205,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 206,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 207,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 208,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 209,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 210,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 211,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 212,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 213,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 214,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 215,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 216,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 217,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 218,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 219,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 220,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 221,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 222,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 223,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 224,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 225,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 226,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 227,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 228,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 229,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 230,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 231,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 232,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 233,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 234,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 235,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 236,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 237,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 238,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 239,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 240,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 241,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 242,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 243,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 244,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 245,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 246,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 247,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 248,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 249,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 250,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 251,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 252,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 253,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 254,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 255,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 256,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 257,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 258,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   }
+  ]
+ },
+ "33": {
+  "spoon_hulls": "spoon_lib_coacd.npz",
+  "spoon_pieces": 9,
+  "spoon_hull_union_cm3": 100.0,
+  "spoon_added_by_coacd_cm3": 15.4,
+  "summary": {
+   "spoonhull_in_vis": {
+    "max": 14.49,
+    "argmax": 158,
+    "frames_gt_1": 21
+   },
+   "spoonhull_in_hull": {
+    "max": 15.81,
+    "argmax": 159,
+    "frames_gt_1": 23
+   },
+   "spoonadded_in_vis": {
+    "max": 4.87,
+    "argmax": 158,
+    "frames_gt_1": 10
+   },
+   "spoonadded_in_hull": {
+    "max": 5.15,
+    "argmax": 158,
+    "frames_gt_1": 13
+   },
+   "spoonhull_in_lathe": {
+    "max": 2.56,
+    "argmax": 157,
+    "frames_gt_1": 13
+   }
+  },
+  "per_frame": [
+   {
+    "f": 0,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 1,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 2,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 3,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 4,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 5,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 6,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 7,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 8,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 9,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 10,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 11,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 12,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 13,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 14,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 15,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 16,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 17,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 18,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 19,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 20,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 21,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 22,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 23,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 24,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 25,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 26,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 27,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 28,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 29,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 30,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 31,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 32,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 33,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 34,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 35,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 36,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 37,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 38,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 39,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 40,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 41,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 42,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 43,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 44,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 45,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 46,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 47,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 48,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 49,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 50,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 51,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 52,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 53,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 54,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 55,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 56,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 57,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 58,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 59,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 60,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 61,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 62,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 63,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 64,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 65,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 66,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 67,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 68,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 69,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 70,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 71,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 72,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 73,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 74,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 75,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 76,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 77,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 78,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 79,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 80,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 81,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 82,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 83,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 84,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 85,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 86,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 87,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 88,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 89,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 90,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 91,
+    "spoonhull_in_vis": 2.477,
+    "spoonhull_in_hull": 3.375,
+    "spoonadded_in_vis": 0.651,
+    "spoonadded_in_hull": 0.945,
+    "spoonhull_in_lathe": 0.466
+   },
+   {
+    "f": 92,
+    "spoonhull_in_vis": 2.666,
+    "spoonhull_in_hull": 3.895,
+    "spoonadded_in_vis": 0.769,
+    "spoonadded_in_hull": 1.384,
+    "spoonhull_in_lathe": 0.327
+   },
+   {
+    "f": 93,
+    "spoonhull_in_vis": 0.452,
+    "spoonhull_in_hull": 0.601,
+    "spoonadded_in_vis": 0.03,
+    "spoonadded_in_hull": 0.054,
+    "spoonhull_in_lathe": 0.084
+   },
+   {
+    "f": 94,
+    "spoonhull_in_vis": 0.665,
+    "spoonhull_in_hull": 0.945,
+    "spoonadded_in_vis": 0.034,
+    "spoonadded_in_hull": 0.051,
+    "spoonhull_in_lathe": 0.024
+   },
+   {
+    "f": 95,
+    "spoonhull_in_vis": 0.003,
+    "spoonhull_in_hull": 0.017,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 96,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 97,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 98,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 99,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 100,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 101,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 102,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 103,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 104,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 105,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 106,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 107,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 108,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 109,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 110,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 111,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 112,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 113,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 114,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 115,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 116,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 117,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 118,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 119,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 120,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 121,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 122,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 123,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 124,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 125,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 126,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 127,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 128,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 129,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 130,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 131,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 132,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 133,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 134,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 135,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 136,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 137,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 138,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 139,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 140,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 141,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 142,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 143,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 144,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 145,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 146,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 147,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 148,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 149,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.095,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 150,
+    "spoonhull_in_vis": 3.52,
+    "spoonhull_in_hull": 4.877,
+    "spoonadded_in_vis": 1.441,
+    "spoonadded_in_hull": 1.92,
+    "spoonhull_in_lathe": 0.888
+   },
+   {
+    "f": 151,
+    "spoonhull_in_vis": 5.208,
+    "spoonhull_in_hull": 6.713,
+    "spoonadded_in_vis": 2.035,
+    "spoonadded_in_hull": 2.572,
+    "spoonhull_in_lathe": 1.563
+   },
+   {
+    "f": 152,
+    "spoonhull_in_vis": 2.454,
+    "spoonhull_in_hull": 3.432,
+    "spoonadded_in_vis": 0.992,
+    "spoonadded_in_hull": 1.357,
+    "spoonhull_in_lathe": 1.073
+   },
+   {
+    "f": 153,
+    "spoonhull_in_vis": 0.034,
+    "spoonhull_in_hull": 0.165,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.007,
+    "spoonhull_in_lathe": 0.769
+   },
+   {
+    "f": 154,
+    "spoonhull_in_vis": 0.381,
+    "spoonhull_in_hull": 0.425,
+    "spoonadded_in_vis": 0.091,
+    "spoonadded_in_hull": 0.105,
+    "spoonhull_in_lathe": 1.178
+   },
+   {
+    "f": 155,
+    "spoonhull_in_vis": 0.881,
+    "spoonhull_in_hull": 1.988,
+    "spoonadded_in_vis": 0.395,
+    "spoonadded_in_hull": 0.722,
+    "spoonhull_in_lathe": 1.974
+   },
+   {
+    "f": 156,
+    "spoonhull_in_vis": 8.616,
+    "spoonhull_in_hull": 9.683,
+    "spoonadded_in_vis": 2.437,
+    "spoonadded_in_hull": 2.798,
+    "spoonhull_in_lathe": 2.538
+   },
+   {
+    "f": 157,
+    "spoonhull_in_vis": 14.165,
+    "spoonhull_in_hull": 15.63,
+    "spoonadded_in_vis": 4.411,
+    "spoonadded_in_hull": 4.84,
+    "spoonhull_in_lathe": 2.555
+   },
+   {
+    "f": 158,
+    "spoonhull_in_vis": 14.486,
+    "spoonhull_in_hull": 15.687,
+    "spoonadded_in_vis": 4.867,
+    "spoonadded_in_hull": 5.154,
+    "spoonhull_in_lathe": 2.123
+   },
+   {
+    "f": 159,
+    "spoonhull_in_vis": 14.418,
+    "spoonhull_in_hull": 15.812,
+    "spoonadded_in_vis": 4.637,
+    "spoonadded_in_hull": 4.995,
+    "spoonhull_in_lathe": 2.17
+   },
+   {
+    "f": 160,
+    "spoonhull_in_vis": 8.184,
+    "spoonhull_in_hull": 8.832,
+    "spoonadded_in_vis": 2.619,
+    "spoonadded_in_hull": 2.849,
+    "spoonhull_in_lathe": 0.074
+   },
+   {
+    "f": 161,
+    "spoonhull_in_vis": 1.131,
+    "spoonhull_in_hull": 1.748,
+    "spoonadded_in_vis": 0.084,
+    "spoonadded_in_hull": 0.236,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 162,
+    "spoonhull_in_vis": 0.027,
+    "spoonhull_in_hull": 0.442,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 163,
+    "spoonhull_in_vis": 0.095,
+    "spoonhull_in_hull": 0.584,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.013,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 164,
+    "spoonhull_in_vis": 1.417,
+    "spoonhull_in_hull": 2.386,
+    "spoonadded_in_vis": 0.209,
+    "spoonadded_in_hull": 0.439,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 165,
+    "spoonhull_in_vis": 1.164,
+    "spoonhull_in_hull": 1.903,
+    "spoonadded_in_vis": 0.243,
+    "spoonadded_in_hull": 0.344,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 166,
+    "spoonhull_in_vis": 0.483,
+    "spoonhull_in_hull": 1.053,
+    "spoonadded_in_vis": 0.101,
+    "spoonadded_in_hull": 0.138,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 167,
+    "spoonhull_in_vis": 0.732,
+    "spoonhull_in_hull": 0.911,
+    "spoonadded_in_vis": 0.118,
+    "spoonadded_in_hull": 0.149,
+    "spoonhull_in_lathe": 0.243
+   },
+   {
+    "f": 168,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.216
+   },
+   {
+    "f": 169,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 170,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 171,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 172,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 173,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 174,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 175,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 176,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 177,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 178,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 179,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 180,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 181,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 182,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 183,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 184,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 185,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 186,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 187,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 188,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 189,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 190,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 191,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 192,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 193,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 194,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 195,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 196,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 197,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 198,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 199,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 200,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 201,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 202,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 203,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 204,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 205,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 206,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 207,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 208,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 209,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.23
+   },
+   {
+    "f": 210,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.051
+   },
+   {
+    "f": 211,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.051
+   },
+   {
+    "f": 212,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 213,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.979
+   },
+   {
+    "f": 214,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.675
+   },
+   {
+    "f": 215,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.83
+   },
+   {
+    "f": 216,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.24
+   },
+   {
+    "f": 217,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.202
+   },
+   {
+    "f": 218,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.304
+   },
+   {
+    "f": 219,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.28
+   },
+   {
+    "f": 220,
+    "spoonhull_in_vis": 0.01,
+    "spoonhull_in_hull": 0.017,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.547
+   },
+   {
+    "f": 221,
+    "spoonhull_in_vis": 0.017,
+    "spoonhull_in_hull": 0.034,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.783
+   },
+   {
+    "f": 222,
+    "spoonhull_in_vis": 0.25,
+    "spoonhull_in_hull": 0.327,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.945
+   },
+   {
+    "f": 223,
+    "spoonhull_in_vis": 2.059,
+    "spoonhull_in_hull": 2.352,
+    "spoonadded_in_vis": 0.223,
+    "spoonadded_in_hull": 0.321,
+    "spoonhull_in_lathe": 1.32
+   },
+   {
+    "f": 224,
+    "spoonhull_in_vis": 3.125,
+    "spoonhull_in_hull": 3.699,
+    "spoonadded_in_vis": 0.591,
+    "spoonadded_in_hull": 0.736,
+    "spoonhull_in_lathe": 1.32
+   },
+   {
+    "f": 225,
+    "spoonhull_in_vis": 1.93,
+    "spoonhull_in_hull": 2.558,
+    "spoonadded_in_vis": 0.189,
+    "spoonadded_in_hull": 0.385,
+    "spoonhull_in_lathe": 0.931
+   },
+   {
+    "f": 226,
+    "spoonhull_in_vis": 4.499,
+    "spoonhull_in_hull": 5.491,
+    "spoonadded_in_vis": 1.337,
+    "spoonadded_in_hull": 1.721,
+    "spoonhull_in_lathe": 1.357
+   },
+   {
+    "f": 227,
+    "spoonhull_in_vis": 3.534,
+    "spoonhull_in_hull": 4.077,
+    "spoonadded_in_vis": 1.164,
+    "spoonadded_in_hull": 1.343,
+    "spoonhull_in_lathe": 1.029
+   },
+   {
+    "f": 228,
+    "spoonhull_in_vis": 2.94,
+    "spoonhull_in_hull": 3.328,
+    "spoonadded_in_vis": 0.972,
+    "spoonadded_in_hull": 1.097,
+    "spoonhull_in_lathe": 0.928
+   },
+   {
+    "f": 229,
+    "spoonhull_in_vis": 3.689,
+    "spoonhull_in_hull": 4.215,
+    "spoonadded_in_vis": 1.222,
+    "spoonadded_in_hull": 1.394,
+    "spoonhull_in_lathe": 1.104
+   },
+   {
+    "f": 230,
+    "spoonhull_in_vis": 2.622,
+    "spoonhull_in_hull": 3.102,
+    "spoonadded_in_vis": 0.753,
+    "spoonadded_in_hull": 0.938,
+    "spoonhull_in_lathe": 0.894
+   },
+   {
+    "f": 231,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 232,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 233,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.115,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.01,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 234,
+    "spoonhull_in_vis": 0.064,
+    "spoonhull_in_hull": 0.149,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.064
+   },
+   {
+    "f": 235,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.01,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.017
+   },
+   {
+    "f": 236,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 237,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 238,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 239,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 240,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 241,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 242,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 243,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 244,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 245,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 246,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 247,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 248,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 249,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 250,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 251,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 252,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 253,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 254,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 255,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 256,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 257,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 258,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 259,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 260,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 261,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 262,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 263,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 264,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 265,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 266,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 267,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 268,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 269,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 270,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 271,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 272,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 273,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 274,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 275,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 276,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 277,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 278,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 279,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 280,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 281,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 282,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 283,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 284,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 285,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 286,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 287,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 288,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 289,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 290,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 291,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 292,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 293,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 294,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 295,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 296,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 297,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 298,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 299,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 300,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 301,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 302,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 303,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 304,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 305,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 306,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 307,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 308,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 309,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 310,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 311,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 312,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 313,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 314,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 315,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 316,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 317,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 318,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 319,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 320,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 321,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 322,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 323,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 324,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 325,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 326,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 327,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 328,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 329,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 330,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 331,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 332,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 333,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 334,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 335,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 336,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 337,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 338,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 339,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 340,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 341,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 342,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 343,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 344,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 345,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 346,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   },
+   {
+    "f": 347,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0,
+    "spoonhull_in_lathe": 0.0
+   }
+  ]
+ },
+ "16": {
+  "spoon_hulls": "spoon_lib_coacd.npz",
+  "spoon_pieces": 9,
+  "spoon_hull_union_cm3": 100.0,
+  "spoon_added_by_coacd_cm3": 15.4,
+  "summary": {
+   "spoonhull_in_vis": {
+    "max": 0.6,
+    "argmax": 87,
+    "frames_gt_1": 0
+   },
+   "spoonhull_in_hull": {
+    "max": 0.84,
+    "argmax": 87,
+    "frames_gt_1": 0
+   },
+   "spoonadded_in_vis": {
+    "max": 0.0,
+    "argmax": 0,
+    "frames_gt_1": 0
+   },
+   "spoonadded_in_hull": {
+    "max": 0.02,
+    "argmax": 166,
+    "frames_gt_1": 0
+   }
+  },
+  "per_frame": [
+   {
+    "f": 0,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 1,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 2,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 3,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 4,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 5,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 6,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 7,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 8,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 9,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 10,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 11,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 12,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 13,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 14,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 15,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 16,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 17,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 18,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 19,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 20,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 21,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 22,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 23,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 24,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 25,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 26,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 27,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 28,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 29,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 30,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 31,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 32,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 33,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 34,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 35,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 36,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 37,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 38,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 39,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 40,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 41,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 42,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 43,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 44,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 45,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 46,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 47,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 48,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 49,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 50,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 51,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 52,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 53,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 54,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 55,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 56,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 57,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 58,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 59,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 60,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 61,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 62,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 63,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 64,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 65,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 66,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 67,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 68,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 69,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 70,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 71,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 72,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 73,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 74,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 75,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 76,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 77,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 78,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 79,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 80,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 81,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 82,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 83,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 84,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 85,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 86,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 87,
+    "spoonhull_in_vis": 0.597,
+    "spoonhull_in_hull": 0.844,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 88,
+    "spoonhull_in_vis": 0.334,
+    "spoonhull_in_hull": 0.611,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 89,
+    "spoonhull_in_vis": 0.165,
+    "spoonhull_in_hull": 0.348,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 90,
+    "spoonhull_in_vis": 0.061,
+    "spoonhull_in_hull": 0.182,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 91,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 92,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 93,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 94,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 95,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 96,
+    "spoonhull_in_vis": 0.013,
+    "spoonhull_in_hull": 0.044,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 97,
+    "spoonhull_in_vis": 0.172,
+    "spoonhull_in_hull": 0.371,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 98,
+    "spoonhull_in_vis": 0.165,
+    "spoonhull_in_hull": 0.317,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 99,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 100,
+    "spoonhull_in_vis": 0.047,
+    "spoonhull_in_hull": 0.172,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 101,
+    "spoonhull_in_vis": 0.034,
+    "spoonhull_in_hull": 0.145,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 102,
+    "spoonhull_in_vis": 0.03,
+    "spoonhull_in_hull": 0.149,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 103,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.051,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 104,
+    "spoonhull_in_vis": 0.257,
+    "spoonhull_in_hull": 0.496,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 105,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 106,
+    "spoonhull_in_vis": 0.003,
+    "spoonhull_in_hull": 0.081,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 107,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.024,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 108,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.017,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 109,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 110,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 111,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 112,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 113,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 114,
+    "spoonhull_in_vis": 0.118,
+    "spoonhull_in_hull": 0.23,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 115,
+    "spoonhull_in_vis": 0.277,
+    "spoonhull_in_hull": 0.553,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 116,
+    "spoonhull_in_vis": 0.105,
+    "spoonhull_in_hull": 0.253,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 117,
+    "spoonhull_in_vis": 0.088,
+    "spoonhull_in_hull": 0.202,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 118,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.415,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.007
+   },
+   {
+    "f": 119,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 120,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 121,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.01,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 122,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 123,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.658,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 124,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.047,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 125,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.149,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 126,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 127,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 128,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 129,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 130,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 131,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.145,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 132,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.01,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 133,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 134,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 135,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 136,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 137,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 138,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 139,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.013,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 140,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.091,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 141,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 142,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.304,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 143,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.074,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 144,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 145,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 146,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 147,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 148,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 149,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 150,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 151,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 152,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 153,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 154,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 155,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 156,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 157,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 158,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 159,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 160,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 161,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 162,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 163,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 164,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 165,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.068,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.003
+   },
+   {
+    "f": 166,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.766,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.02
+   },
+   {
+    "f": 167,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.381,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.007
+   },
+   {
+    "f": 168,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 169,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.101,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.003
+   },
+   {
+    "f": 170,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 171,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   },
+   {
+    "f": 172,
+    "spoonhull_in_vis": 0.0,
+    "spoonhull_in_hull": 0.0,
+    "spoonadded_in_vis": 0.0,
+    "spoonadded_in_hull": 0.0
+   }
+  ]
+ }
+}
