@@ -5292,3 +5292,13 @@ Advice given:
   avoid a double submission. This session does not upload. Receipt and the six scores will be recorded here when sent.
 - Eval-10 V4p retrain prep (CPU) running: workflow wf_7c1ef6a1-020 (PREREG with the agreed swap rule scored against both
   references, job ops/jobs/ev10_v4p.sh, mock, reviews); launch only after an ep11 gate PASS and the owner's go.
+
+## 2026-10-31 18:13 UTC — PACK 9a+ UPLOADED (by the score-status session) — AUC 0.81757, CD-O 0.332
+- File `results/submissions/20261031-track3i-candidate/build_9aplus/track3_submission.parquet` (sha256 e02736ea…, commit
+  URL d7ecaef), submissions 57847040/45/47/49/52/54; receipt + UPLOAD.md copied from claude/standings-20261031.
+- Scores [M] (pack 7 → 9a+): AUC 0.81460 → **0.81757**; SP-SR 0.85 / MP-SR 0.65 unchanged; RPE 3.93179 → **3.87853**;
+  MPPE 2.92126 → **2.89663**; CD-O 0.40188 → **0.33234** (mesh session's estimate 0.333). Ranks: AUC 8, SP-SR 8, MP-SR 8,
+  RPE 11, MPPE 11, CD-O 14 → rank sum 60, 11th (score-status session).
+- Inputs to keep for the PR #215 container: pack 8's rollouts (runs 20261026-pack6-5203d42, 20261030-c33B-0202139,
+  20261030-e1conf2-d41382e in the store), the packed meshes (meshes/c0_pack9a, meshes/c1_pack9aplus, pack 6's meshes),
+  the checkpoints named in each rollout JSON. Nothing is to be deleted from those runs.
