@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~21:20 UTC: overnight — eval-10 gate PASSED (+0.142), V4p retrain + targeted D cells running; pack 9b auto-upload
+- Owner (21:14, keen-heisenberg chat): D cells on 14/16/25/30/33 tonight; pack 9b uploads automatically if every swap passes.
+- Re-track public test approved; per-episode Set B meshes ready (21:12). Marker layer closed (public gate FAIL).
+- Physics solver closed (no signal); masses v2 verdict ≈ 23:00–01:00; arm V (object velocity) approved.
+
 ## 2026-10-31 18:18 UTC: PACK 9a+ UPLOADED — AUC 0.81757 (best), CD-O 0.332 (14th, was 18th); rank sum 60, 11th
 - Pack 8 rollouts + mesh swaps (C0 pot/lid/rack, C1 beige cup and dust pan; flagged). RPE 3.879, MPPE 2.897, SR unchanged.
 - Next: eval-10 gate (≈ 19–21 UTC), recipe/DR verdict (≈ 22:30), masses v2 (overnight); pack 10 retrain from 1 Nov 18:00.

@@ -5883,3 +5883,12 @@ score.
     number; the gate's frame reference is library_v3 (P1 tier); the pick is in-sample; few meshes are watertight after
     budget_mesh.
   focused-pascal copied; it launches the approved public re-track test.
+- ~21:15 UTC keen-heisenberg relayed two owner decisions made in its chat, verified here in its transcript
+  (AskUserQuestion answers at 21:14:50Z):
+  - start the targeted D cells (evals 14, 16, 25, 30, 33; 2 seeds; ≈ $16–23) TONIGHT on the current packed
+    configuration, as morning-pack candidates via the swap rule;
+  - pack 9b (= 9a+ + eval-10 V4p if it passes + passing D cells) uploads AUTOMATICALLY once every swapped episode
+    passes the pre-registered swap rule and the pack checks pass.
+  Also: the owner approved arm V (actor sees object velocity, ≈ $7–9) in determined-wright's chat. Credit $69.22
+  at 21:14 UTC. No carves or eval-25 slot were delivered tonight, so pack-10 Tier 1 may shrink. keen-heisenberg writes
+  a morning summary at ~05:00 UTC; this chat's items were sent to it.
