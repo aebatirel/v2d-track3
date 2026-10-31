@@ -1,19 +1,37 @@
-# Track 3 pack-9a candidate, 31 Oct 2026: pack 8 with the mesh session's C0 meshes (DRAFT)
+# Track 3 pack-9a candidate, 31 Oct 2026: pack 8 with the mesh session's C0 pot, lid and rack
 
-**NOT UPLOADED. Uploading is the owner's decision.** Status at ~16:15 UTC: built and tested with dummy meshes; the C0
-meshes have not arrived (expected ~19:00 UTC). Fallback if C0 fails its checks or misses the window: upload pack 8
-(`results/submissions/20261030-track3h-candidate/`) alone, commands below.
+**NOT UPLOADED YET.** Owner: "I want a pack today" (31 Oct ~15:40 UTC, via the score-status session); planned upload
+~20:00–20:30 UTC to all six boards unless the owner stops it. Fallback: pot + rack only (`build_2obj/`), or pack 8.
 
-Fill in when built: `track3_submission.parquet` sha256 `<TBD>`, bytes `<TBD>`, 9,120 rows, MESH WARNINGs `<TBD>`, code
-commit `<TBD>`, C0 source (mesh session commit or store path) and md5 per object `<TBD>`.
+**Chosen build: `build_3obj/`** — `track3_submission.parquet` sha256 `9c19bb0c85901de46113483c9df5a2927ae626f1094a87ad3f77725aa22ea662`,
+1,335,354 bytes, 9,120 rows, 0 MESH WARNINGs, uploader offline validation PASS, code commit
+https://github.com/aebatirel/v2d-track3/commit/50004a7575b4ecf4f31058434b56589cca0f64dd (holds `meshes/c0_pack9a/`, the
+exact packed C0 files: white_pot 0264da83…, white_pot_lid 35727a10…, plastic_dish_rack bbca8ec0…, from bold-albattani
+5cce3d2). Differs from pack 8 only in `object_mesh_b64` (12 payloads) and `code_commit_url` (all rows). CD-O file
+`track3_submission.cd-o.parquet` (294,912 rows) derived offline by the uploader's own code.
+
+**Mesh choice and checks.**
+- Blue cup held back (its selector was written after scoring; CLAUDE.md). Pot, lid, rack as fitted (C0, not the
+  aligned C0a): rule `docs/research/work/pack9a-20261031/MESH_RULE.md`, fixed before reading the mesh session's AUC guard
+  (public twins, registered scoring, single swaps vs library_v3, 51 runs, 0 failures: pot mean dAUC +0.0030 (n 9),
+  lid +0.0055 (n 2), rack +0.0158 (n 5)).
+- Swap tool frame check exit 2 (needs review) → mesh-session sign-off per the tool's procedure: **pot YES, lid YES, rack
+  YES** (bold-albattani, ~16:30 UTC). Flags were: centroid shifts 5.4 / 7.3 / 11.5 mm (shape: pot handle, lid underside,
+  rack ribs/stems; ICP 2.9 / 2.6 / 1.9 mm); lid extent ratio 0.87 along its normal (C0 42.4 mm vs library_v3 52.4 mm;
+  the cameras' points of the lid span 43.2 mm: library_v3's underside is inflated); and the offline proxy (library_v3 as
+  the stand-in scan) flipping the lid 162°. Under the kit's real registration onto the public lid scan the C0 lid lands
+  1.45–1.81° from identity (library_v3 1.05–1.74°) with a smaller anchor shift (0.40–0.47 vs 0.71–0.79 cm); the kit
+  declares the lid half-turn symmetric.
+- Expected effect [E, mesh session]: CD-O ≈ 0.367 (from 0.402) with these three; pose boards about unchanged (public
+  guard mean dAUC ≥ 0 per object). Each board keeps its best submission.
 
 ## Content
 
 | Item | Source |
 |---|---|
 | Rollouts, all 20 evals | pack 8's, byte for byte: pack 7's 19 rollouts plus eval 1 from `runs/20261030-e1conf2-d41382e/results/submission/results/episode_000001.{json,parquet}` |
-| Meshes, 19 of 36 (episode, object) pairs | pack 6/7/8's `meshes/`, unchanged: library_v3, plus v3x for eval 8's beige_cup |
-| Meshes, 17 pairs: white_pot (evals 1, 3, 5, 6, 8, 28), white_pot_lid (1), plastic_dish_rack (14, 15, 16, 28, 30), blue_cup (10, 14, 20, 32, 33) | the mesh session's C0 files (all 17 replaced files are library_v3 in pack 8) |
+| Meshes, 24 of 36 (episode, object) pairs | pack 6/7/8's `meshes/`, unchanged: library_v3, plus v3x for eval 8's beige_cup |
+| Meshes, 12 pairs: white_pot (evals 1, 3, 5, 6, 8, 28), white_pot_lid (1), plastic_dish_rack (14, 15, 16, 28, 30) | the mesh session's C0 files (all 12 replaced files are library_v3 in pack 8) |
 | Simulator assets, policies | unchanged: no rollout was re-run |
 
 - The C0 mesh is what gets packed and scored. The rollouts' poses are body frames of the library_v3 bodies the
@@ -22,7 +40,7 @@ commit `<TBD>`, C0 source (mesh session commit or store path) and md5 per object
 - So C0 must be in the library_v3 body frame, or come with a C0 → library_v3 4x4. Otherwise a frame offset of d mm
   moves every scored pose of that object by about d mm. `tools/pack_swap_meshes.py` measures this before packing (frame
   report).
-- Boards affected: CD-O (17 of its 36 pairs change), and the five pose boards through the mesh registration.
+- Boards affected: CD-O (12 of its 36 pairs change), and the five pose boards through the mesh registration.
 
 ## Build (CPU, scratch `S=/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad`)
 
