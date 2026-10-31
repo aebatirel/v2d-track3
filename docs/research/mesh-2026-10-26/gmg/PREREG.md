@@ -791,6 +791,65 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     survival, 0.3 W notch: **generic**. Global carve and V5-clarification tolerance 0: **generic**. Placeholder mass
     0.3 kg: **generic** (make_assets default).
 
+- **2026-10-31, F-I2: INTERLOCK build-time corrections (build step BI1, T-I1 synthetic tests).** Written 11:10-11:30
+  UTC while building `interlock.py`, `silhouette.py`, `gen_slot.py`, `physcheck.py`, `simpieces.py`, `simphys.py`
+  (commit recorded in `build/I.md`). Still before any gmg scoring round (zero gmg scan scorings exist; no scan number
+  was read for this entry). Inputs: the T-I1 synthetic runs (`tests/test_interlock.py`) and dev runs without a scan.
+  **No numeric threshold of F-I1.14 changes.** F-I1.12 says a T-I1 miss is a code bug, fixed and logged before BI2;
+  these are the fixes and the definitions they make explicit. Where F-I1 and this entry differ, this entry wins.
+  - **F-I2.1 Silhouette classes at 2 mm.** Votes are also cast on the 2 mm sub-grid; a 4 mm voxel is SIL if any of
+    its 8 sub-voxels is see-through (NMF >= 3, NMF >= 0.5 NMV) and SOLID if none is and one is testable. Reason: a
+    4 mm voxel straddling a slot edge was "seen solid" by its centre pixel (T-I1 s1, t = 6 mm: 36 of 96 voxels O).
+  - **F-I2.2 Across axis n.** n = the direction perpendicular to d in which the partner's evidence near the crossing
+    (inside the target candidate dilated by 2 voxels, median assembled pose) is thinnest (the partner plate's
+    normal); fallback the component's thinnest axis (export input, < 20 samples). Reason: the component's thinnest
+    axis is min(target thickness, partner thickness) and picked the target's own thickness (w_sim 24.5 mm for a 6 mm
+    partner in T-I1).
+  - **F-I2.3 Image width (GAP).** Measured on the region closed in 3-D (2 iterations, inside the voxels it spans) with
+    2-D hole filling, pixel-centre convention (radius = distance transform - 0.5). Reason: the partner's evidence is
+    its observed faces (its interior is UNKNOWN), so the region is hollow and its projection too narrow (t = 18 mm gave
+    8.0 px against the pre-registered 10.8 px).
+  - **F-I2.4 Unseen orphans.** If the R_U carve fails the topology guard, candidate components it cuts off that hold
+    no OBSERVED voxel and lie inside the convex hull of R are carved with it, and the guard is re-tested. Reason: a
+    hollow inner-cup region leaves the unseen core of a filled outer candidate as a separate component (T-I1 n9).
+  - **F-I2.5 Carve solid.** Every carve (CARVE and OFFSET) is the candidate's 2 mm sub-voxels inside the region's
+    (d, m) footprint with |n - c_n| <= w / 2; sub-voxels of class-O voxels are excluded (step 4 never carves them);
+    it is also written as an exact oriented box when the region's extent along d is >= 2 w (v2 also required the m
+    extent, which a plate thinner than twice its partner never has) and the box cuts no class-O voxel.
+  - **F-I2.6 Budget (iv) scope.** (iv) applies to carves that hold R_O voxels (INTERLOCK 4.2 step 4 lists it there);
+    an R_U-only carve has the topology guard of step 3 and the physical tests of F-I1.8; the cumulative 10 % volume
+    counts every carve. Reason: a filled outer cup's cavity is far above 10 % of the candidate (T-I1 n9).
+  - **F-I2.7 U voxels with R_O.** U voxels rejected alone (an internal void) are carved with the R_O voxels when the
+    union keeps the topology (the interior of a thick plate's slot).
+  - **F-I2.8 Pair level.** A linked pair carves when each side either carves on its own or has a holding OFFSET;
+    {OFFSET, CARVE} is allowed (a lateral offset of one plate is no offset in the crossing plate's frame, T-I1 o1);
+    two OFFSETs need t_p = -R^T t_o within two grid steps; otherwise both PUSH (`interlock_pair_fail`).
+  - **F-I2.9 Through-column ends.** "Each end of the component" = its end layer (voxels within one voxel of its
+    smallest / largest coordinate along d); the end exits if the majority of its layer does.
+  - **F-I2.10 Generator placement without saved layouts.** The 29 Oct SAM 3D meshes have no layout (unit size): dev
+    placement = similarity ICP to our observed samples within 6 mm of our pick (clean OBSERVED grids hold voxels far
+    from the object: ep24 board 1's span 417 mm), 4 PCA sign starts, flip member by the residual (margin in sigma);
+    `gen_slot.layout_consensus` is built for G1/G2 runs that save layouts. Remesh survival uses our watertight 2 mm
+    remesh + fit_budget(4000) until B15's M10 exists.
+  - **F-I2.11 Silhouette negatives.** Pixels 8-40 px outside the target's projected mask, outside every other
+    object's (dilated 8 px) and the hands' masks, instead of "depth > 20 mm behind": build 1's batch deletes the depth
+    caches to save disk (5 GB free). The colour model needs background colour samples only.
+  - **F-I2.12 P1 here.** The FlashCHORD scene is not in this container: no carve is delivered from it (the default
+    pieces are delivered and the carved pieces kept under `_carved_pending_p1/` for the FlashCHORD settle); the
+    plain-MuJoCo settle is reported as the pre-check (INTERLOCK 6.2: it does not decide).
+  - **F-I2.13 Contract clarifications.** The reference may be a parquet file (their reference format); the guard is
+    applied to every input of its provenance chain and to the reference path except for the `.parquet` suffix itself;
+    the export header carries `reference_poses_f_star` (the reference pose of each object at f_star) and `T`, so the
+    fiducial check needs no parquet reader (the guard refuses `.parquet` reads).
+  - **F-I2.14 Known miss of P26 (kept, not tuned).** T-I1 s1 at t = 6 mm decides PUSH, not CARVE: the 4 mm motion
+    region overhangs a 6 mm slot by one voxel column of seen wood (32 of 96 voxels class O > 25 %). A resolution limit
+    of the 4 mm evidence; the ep24 boards are 13-19 mm thick in our observations [M]. The test is marked as an
+    expected failure, so a change that silently "fixes" it is visible.
+  - **F-I2.15 T-I1 coverage in BI1.** Run and passing: s0 sweep (6, 10, 13, 18, 25 mm), s1 with synthetic votes
+    (10-25 mm), o1, o2, w, n2, n4, n5, n7 (geometry: slot travel <= 4 mm, through-cut > 40 mm), n8, n9, the export
+    round trip and the fiducial refusal. Not run in BI1 (open): s2 and the rendered-image silhouette cases, (g) the
+    placed generator plate (T3), n3, n6.
+
 ## Revision 1 changelog
 
 What changed, and why:

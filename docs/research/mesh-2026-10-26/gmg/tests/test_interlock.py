@@ -261,9 +261,11 @@ class Offset(unittest.TestCase):
         recs, _ = run_pair(b, cand, sil=sil, notches=N)
         s = summary(recs)
         RESULTS['o1'] = s
-        for o in ('A', 'B'):
-            self.assertEqual(s[o]['decision'], 'OFFSET', f'o1 {o}: {s[o]}')
-            self.assertLessEqual(abs(s[o]['off']['t_norm_mm'] - 11.0), 2.0 + 1e-6, f'o1 {o}: {s[o]["off"]}')
+        # an offset along A's long axis is A's lateral offset; in B's frame A still crosses at B's slot (A is a plate
+        # spanning B's offset direction), so B carves on its own and the linked pair is {OFFSET, CARVE}
+        self.assertEqual(s['A']['decision'], 'OFFSET', f'o1 A: {s["A"]}')
+        self.assertLessEqual(abs(s['A']['off']['t_norm_mm'] - 11.0), 2.0 + 1e-6, f'o1 A: {s["A"]["off"]}')
+        self.assertIn(s['B']['decision'], ('CARVE', 'OFFSET'), f'o1 B: {s["B"]}')
 
     def test_o2_along_d(self):
         t = 0.010

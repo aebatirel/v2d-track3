@@ -261,7 +261,7 @@ def main():
                     sa = GS.source_a(ev[t], pl['mesh'], pl['side_resolved'], r_notch, near_lin=near,
                                      kind=s.comps[0].run.kind)
                     row = dict(path=gp, residual_mm=pl['residual_mm'], margin_sigma=pl['margin_sigma'],
-                               side_resolved=pl['side_resolved'], scale=round(pl['s'], 5),
+                               scale=round(pl['s'], 5), placed_extents_mm=np.round(pl['mesh'].extents * 1e3, 1).tolist(),
                                **{k: v for k, v in sa.items() if k not in ('C_a', 'C_a_sub')})
                     rows.append(row)
                     pl['mesh'].export(os.path.join(out_dir, f'gen_placed_{t}_{os.path.basename(gp)[:-4]}.glb'))
@@ -279,6 +279,26 @@ def main():
                             s.notches.append(l)
                 prep[f'gen_{t}'] = dict(runs=rows, used=row['path'])
         recs = IL.decide_pair(b, sides[o], sides[p])
+        if sides[o].runs:
+            np.save(os.path.join(out_dir, 'T_asm.npy'), IL._asm_pose(sides[o].intr, sides[o].runs[0]))
+        for t in (o, p):                                   # voxel sets for the figures (build/I/i_png.py)
+            arr = {}
+            for i, r in enumerate([r for r in recs if r['target'] == t]):
+                arr[f'comp{i}_lin'] = r['_comp'].lin
+                arr[f'comp{i}_region'] = r['_comp'].region()
+                arr[f'comp{i}_nv'] = r['_comp'].n_v
+                if '_sim_solid' in r:
+                    arr[f'comp{i}_sim_sub'] = r['_sim_solid']['sub_lin']
+                if '_sub_solid' in r:
+                    arr[f'comp{i}_sub_sub'] = r['_sub_solid']['sub_lin']
+            if sides[t].gen is not None:
+                arr['gen_C_a'] = sides[t].gen['C_a']
+            if sil[t] and 'nmv' in sil[t]:
+                from gmg import silhouette as SI
+                arr['sil'] = SI.sil_mask(sil[t]['nmv'], sil[t]['nmf']) & ev[t].occ
+            arr['occ'] = ev[t].occ
+            np.savez_compressed(os.path.join(out_dir, f'voxels_{t}.npz'), lo=ev[t].grid.lo, vox=ev[t].grid.vox,
+                                shape=np.asarray(ev[t].grid.shape), **arr)
         for r in recs:
             all_dec.append(IL.public(r))
             if 'push_list' in r:

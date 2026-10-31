@@ -667,7 +667,7 @@ def partner_thickness(C_world_o, n, ev_o):
     return float(np.percentile(s, 99) - np.percentile(s, 1)), float(0.5 * (np.percentile(s, 99) + np.percentile(s, 1)))
 
 
-def carve_solid(ev, comp_lin, frame3, centre_n, w, plate=True, extend=0.003):
+def carve_solid(ev, comp_lin, frame3, centre_n, w, plate=True, extend=0.003, exclude_lin=None):
     """The removed solid of a component at width w (INTERLOCK 3.5): the candidate's 2 mm sub-voxels inside the
     component's (d, m) footprint (its voxels' squares, +-2 mm) with |n - centre_n| <= w / 2 (F-I2.5: the width also
     applies when the region is not plate-like). Plate-like regions (both other extents >= 2 w) are also described
@@ -694,8 +694,11 @@ def carve_solid(ev, comp_lin, frame3, centre_n, w, plate=True, extend=0.003):
     inF = np.zeros(len(S), bool); inF[okf] = F[fd[okf], fm[okf]]
     slab = np.abs(S @ n - centre_n) <= w / 2
     sel = inF & slab
+    if exclude_lin is not None and len(exclude_lin):              # class O voxels are never carved (4.2 (iii))
+        ex = np.zeros(ev.sgrid.size, bool); ex[sub_lin(ev.grid, exclude_lin)] = True
+        sel &= ~ex[slin]
     out = dict(kind='voxels', sub_lin=slin[sel], cm3=float(sel.sum()) * sg ** 3 * 1e6, width_mm=round(w * 1e3, 2))
-    if plate and (ext_d[1] - ext_d[0]) >= 2 * w and (ext_m[1] - ext_m[0]) >= 2 * w:
+    if plate and (ext_d[1] - ext_d[0]) >= 2 * w:
         def open_side(axis, val, sign):
             q = C[np.abs(C @ axis - val) <= ev.grid.vox] + sign * axis * ev.grid.vox * 1.5
             l, ok = ev.grid.lin(q)
@@ -709,6 +712,8 @@ def carve_solid(ev, comp_lin, frame3, centre_n, w, plate=True, extend=0.003):
         half = np.array([0.5 * (hi_d - lo_d), 0.5 * w, 0.5 * (hi_m - lo_m)])
         A = np.stack([d, n, m])
         inside = np.all(np.abs((S - cen) @ A.T) <= half, axis=1)
+        if exclude_lin is not None and len(exclude_lin) and (inside & ex[slin]).any():
+            return out                                        # a box would cut seen-solid voxels: voxel carve
         out.update(kind='box', axes=A.tolist(), centre=cen.tolist(), half=half.tolist(), sub_lin=slin[inside],
                    cm3=float(inside.sum()) * sg ** 3 * 1e6)
     return out
@@ -1004,6 +1009,12 @@ def decide_component(comp, side, b, poses, R_lin, report):
                        silgap_share=round(iii_share, 3), i=bool(i_ok), ii=bool(ii_ok), iii=bool(iii_ok))
         if i_ok and ii_ok and iii_ok:
             carve |= (sil_v | gap_v)
+            if U.any() and not carve[U].all():
+                # U voxels rejected alone (an internal void) are carved with R_O when the union keeps the topology
+                okt3, tinfo3 = topology_kept(ev, R_lin[carve | U])
+                reasons['ru_with_ro_topology'] = tinfo3
+                if okt3:
+                    carve |= U
         else:
             if not ii_ok:
                 reasons['ro'] = 'PUSH (a pose correction within the prior removes it)'
@@ -1017,6 +1028,7 @@ def decide_component(comp, side, b, poses, R_lin, report):
     if not carve.any():
         return 'PUSH', reasons
     reasons['carve_voxels'] = int(carve.sum())
+    reasons['_o_lin'] = R_lin[o_v]
     cl = R_lin[carve]
     if '_orphan_lin' in reasons:
         cl = np.concatenate([cl, reasons.pop('_orphan_lin')])
@@ -1176,7 +1188,8 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         rep['_frame3'] = A; rep['_cen_n'] = cen_n
         if rep['decision'] == 'CARVE':
             cl = rep.pop('_carve_lin')
-            sol = carve_solid(ev, cl, A, cen_n, w_sim, plate=comp.run.kind in ('INSERTION', 'SLIDE'))
+            sol = carve_solid(ev, cl, A, cen_n, w_sim, plate=comp.run.kind in ('INSERTION', 'SLIDE'),
+                              exclude_lin=rep.pop('_o_lin', None))
             rep['_sim_solid'] = sol
             Cs = ev.sgrid.centres(sol['sub_lin']) if len(sol['sub_lin']) else np.zeros((0, 3))
             ext_d = ev.extent_along(d)
