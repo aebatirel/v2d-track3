@@ -1,0 +1,15 @@
+{
+ "do_not_use": "F-I1.8 violated: pieces hold more than 0.3 cm3 of keep-out per hull ({'beige_cup': {'pieces': 32, 'max_piece_keepout_cm3': 532.568}, 'blue_cup': {'pieces': 32, 'max_piece_keepout_cm3': 945.264}}); marked by the round-1 fix (PREREG F-I3.8, 2026-10-31). Do not hand these pieces to a simulator; load_sim refuses this folder.",
+ "rule": "F-I3.8",
+ "per_object": {
+  "beige_cup": {
+   "pieces": 32,
+   "max_piece_keepout_cm3": 532.568
+  },
+  "blue_cup": {
+   "pieces": 32,
+   "max_piece_keepout_cm3": 945.264
+  }
+ },
+ "date": "2026-10-31"
+}

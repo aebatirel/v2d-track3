@@ -16,7 +16,11 @@ library meshes. FlashCHORD's CoACD returns each convex piece unchanged, so `make
   build(...)                                      default and carved pieces of one object, with the report
   fit_mesh(hulls)                                 union of the pieces (one watertight mesh: the `_fit` mesh)
   props(hulls, mass)                              COM and inertia of the uniform solid of the pieces
-  write_round(...)                                RUN/sim/<split>/ep<N>/r<k>/ layout + manifest (fiducials, sha256)
+  pieces_gate(sets, KP, KW)                       F-I3.8: deliver only a piece set with <= 0.3 cm3 keep-out per hull
+                                                  (ours, else CoACD's), else mark the delivery do-not-use
+  write_round(...)                                RUN/sim/<split>/ep<N>/r<k>/ layout + manifest gmg-sim/2 (objects.<obj>.
+                                                  {files, fiducials}, code identity, interlock state), props_gmg.json in
+                                                  the phys_fit layout (F-I3.9)
 """
 from __future__ import annotations
 
@@ -296,7 +300,7 @@ def build(mesh, ev, carves=(), partner_occ_lin=None, sil_lin=None, log=None):
     default, rep_d = decompose(G[ins], SURF, KP, KW, pitch)
     rep = dict(default=rep_d, solid_cm3=round(float(ins.sum()) * pitch ** 3 * 1e6, 2), keepout_points=int(len(KP)))
     if not carves:
-        return dict(default=default, carved=None, report=rep)
+        return dict(default=default, carved=None, report=rep, keep=(KP, KW))
     carved = list(default)
     vox_carves = [c for c in carves if c['kind'] == 'voxels']
     box_carves = [c for c in carves if c['kind'] == 'box']
@@ -318,7 +322,7 @@ def build(mesh, ev, carves=(), partner_occ_lin=None, sil_lin=None, log=None):
     for i, V in enumerate(carved):
         carved[i] = reduce_hull(V, k_('maxv'))
     rep['box_cut'] = dict(boxes=len(box_carves), hulls_touched=touched, pieces=len(carved))
-    return dict(default=default, carved=carved, report=rep)
+    return dict(default=default, carved=carved, report=rep, keep=(KP, KW))
 
 
 # --------------------------------------------------------------------------- delivery layout (6.1)
@@ -331,13 +335,47 @@ def _sha(p):
 
 
 def fiducials(hulls):
-    """8 corners of the oriented box of the pieces' union, moved 1 mm inward (file coordinates)."""
+    """8 fiducials of an object (file coordinates; F-I3.9 definition): the oriented bounding box of ALL vertices of
+    its pieces, with axes = the principal axes (SVD) of those vertices about their mean; each corner is moved 1 mm
+    inward along each of the three box axes (so a corner moves sqrt(3) = 1.73 mm along the box diagonal and every box
+    face lies 1 mm inside the extreme vertex on that side). The Embodiment tool's fiducial_box check expects exactly
+    this (margins 1 mm on every face)."""
     P = np.vstack(hulls)
     c = P.mean(0); U = np.linalg.svd(P - c, full_matrices=False)[2]
     A = (P - c) @ U.T
     lo, hi = A.min(0) + 0.001, A.max(0) - 0.001
     cs = np.array([[x, y, z] for x in (lo[0], hi[0]) for y in (lo[1], hi[1]) for z in (lo[2], hi[2])])
     return (cs @ U + c).tolist()
+
+
+def keepout_excess(hulls, KP, KW, pitch=None):
+    """Keep-out volume (cm3) inside each convex piece (the F-I1.8 per-hull quantity, weights as in decompose)."""
+    pitch = k_('pitch_m') if pitch is None else pitch
+    VOX = pitch ** 3 * 1e6
+    return [float(KW[inside_eq(ConvexHull(V).equations, KP)].sum()) * VOX for V in hulls]
+
+
+def pieces_gate(sets, KP, KW, tol=None):
+    """F-I3.8: the delivered pieces must hold <= tol (0.3 cm3) of keep-out per hull (F-I1.8). SETS = {name: hulls}
+    in preference order (ours first, then CoACD's): the first set that complies is chosen; if none does, the set with
+    the smallest maximum is reported and the delivery is marked do-not-use. Returns dict(choice, hulls, report,
+    do_not_use)."""
+    tol = k_('tol_cm3') if tol is None else tol
+    rep, first = {}, None
+    for name, hl in sets.items():
+        if hl is None:
+            continue
+        ex = keepout_excess(hl, KP, KW)
+        rep[name] = dict(n=len(hl), max_cm3=round(max(ex), 3) if ex else 0.0, sum_cm3=round(sum(ex), 3),
+                         over_tol=int(sum(e > tol for e in ex)))
+        if first is None and (max(ex) if ex else 0.0) <= tol:
+            first = name
+    if first is not None:
+        return dict(choice=first, hulls=sets[first], report=rep, do_not_use=None)
+    best = min(rep, key=lambda k: rep[k]['max_cm3'])
+    return dict(choice=best, hulls=sets[best], report=rep,
+                do_not_use=f'no piece set holds <= {tol} cm3 of keep-out per hull (F-I1.8): '
+                           + ', '.join(f'{k} max {v["max_cm3"]} cm3' for k, v in rep.items()))
 
 
 def write_object(out_dir, obj, visual_mesh, hulls, carve_rec):
@@ -348,34 +386,77 @@ def write_object(out_dir, obj, visual_mesh, hulls, carve_rec):
     for k, V in enumerate(hulls):
         trimesh.convex.convex_hull(V).export(os.path.join(d, f'piece_{k:02d}.obj'))
     pr = props(hulls, k_('mass_kg'))
-    json.dump(pr, open(os.path.join(d, 'inertia.json'), 'w'), indent=1)
-    json.dump(carve_rec, open(os.path.join(d, 'carve.json'), 'w'), indent=1, default=str)
+    with open(os.path.join(d, 'inertia.json'), 'w') as fh:
+        json.dump(pr, fh, indent=1)
+    with open(os.path.join(d, 'carve.json'), 'w') as fh:
+        json.dump(carve_rec, fh, indent=1, default=str)
     os.makedirs(os.path.join(out_dir, '_fit'), exist_ok=True)
     fm = fit_mesh(hulls)
     fm.export(os.path.join(out_dir, '_fit', f'{obj}.glb'))
     return pr, dict(watertight_fit=bool(fm.is_watertight))
 
 
-def write_round(out_dir, episode, split, round_k, objects, p_sim, commit):
-    """objects: {obj: dict(visual=mesh, hulls=list, carve=dict)}. Writes the per-object files, props_gmg.json and
-    manifest.json. Never overwrites an existing round folder."""
+CODE_FILES = ('interlock.py', 'simpieces.py', 'simphys.py', 'silhouette.py', 'gen_slot.py', 'physcheck.py',
+              'tools/interlock_dev.py')
+
+
+def code_identity():
+    """The code that wrote a delivery (non-blocking review item): HEAD of the checkout, whether the gmg interlock files
+    differ from HEAD (dirty), and the sha256 of each of them, so the identity holds without a clean commit."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    sha = {f: _sha(os.path.join(here, f)) for f in CODE_FILES if os.path.exists(os.path.join(here, f))}
+    dirty = guard._git('status', '--porcelain', '--', *[os.path.join(here, f) for f in CODE_FILES])
+    return dict(commit=guard._git('rev-parse', 'HEAD'), dirty=bool(dirty and str(dirty).strip()),
+                dirty_files=str(dirty).strip().splitlines() if dirty else [], sha256=sha)
+
+
+def write_round(out_dir, episode, split, round_k, objects, p_sim, commit=None, interlock=None):
+    """objects: {obj: dict(visual=mesh, hulls=list, carve=dict[, gate=pieces_gate result])}. Writes the per-object
+    files, props_gmg.json (the phys_fit layout {obj: {physics: {mass_kg, com_m, inertia_kgm2}}}, F-I3.9) and
+    manifest.json (schema gmg-sim/2: objects.<obj>.{files, fiducials} as the Embodiment reader expects, plus the
+    top-level files / fiducials of gmg-sim/1, the code identity and the interlock state). A delivery with any object
+    whose pieces fail the keep-out gate is marked do-not-use (F-I3.8). Never overwrites an existing round folder."""
     if os.path.exists(os.path.join(out_dir, 'manifest.json')):
         raise FileExistsError(f'{out_dir}: a delivered round is never overwritten')
     os.makedirs(out_dir, exist_ok=True)
     props_all, files, fids = {}, {}, {}
+    props_all['_note'] = ('gmg simulator copy (INTERLOCK 6.1, PREREG F-I1.8, F-I3.9): mass = the 0.3 kg placeholder '
+                          '(owner decision D-I1 open; props_masses_only.json is scan-derived), com_m and inertia_kgm2 '
+                          '(about the COM, file axes) of the uniform solid of the pieces. Layout as '
+                          'props_masses_only.json, read by pipeline/phys_fit.py (props[name]["physics"]).')
+    dnu = {}
     for obj, o in objects.items():
         pr, info = write_object(out_dir, obj, o['visual'], o['hulls'], o['carve'])
-        props_all[obj] = dict(mass_kg=k_('mass_kg'), com_m=pr['com'], inertia_kgm2=pr['inertia'],
-                              provenance=dict(pieces=f'{obj}/piece_*.obj', mass='placeholder 0.3 kg (D-I1 open)'))
+        props_all[obj] = dict(physics=dict(model='gmg pieces (uniform solid)', mass_kg=k_('mass_kg'), com_m=pr['com'],
+                                           inertia_kgm2=pr['inertia'], volume_cm3=pr['volume_cm3'],
+                                           provenance=dict(pieces=f'{obj}/piece_*.obj',
+                                                           mass='placeholder 0.3 kg (D-I1 open)')))
         fids[obj] = fiducials(o['hulls'])
-    json.dump(props_all, open(os.path.join(out_dir, 'props_gmg.json'), 'w'), indent=1)
+        g = o.get('gate') or {}
+        if g.get('do_not_use'):
+            dnu[obj] = g['do_not_use']
+    with open(os.path.join(out_dir, 'props_gmg.json'), 'w') as fh:
+        json.dump(props_all, fh, indent=1)
     for root, _, fs in os.walk(out_dir):
         for f in fs:
             p = os.path.join(root, f)
             files[os.path.relpath(p, out_dir)] = _sha(p)
-    man = dict(schema='gmg-sim/1', episode=int(episode), split=split, round=int(round_k), p_sim=p_sim,
-               objects=list(objects), files=files, fiducials=fids, commit=commit,
+    per = {obj: dict(files={k.split('/', 1)[1]: v for k, v in files.items() if k.startswith(obj + '/')},
+                     fiducials=fids[obj], gate={k: v for k, v in (objects[obj].get('gate') or {}).items()
+                                                if k in ('choice', 'report', 'do_not_use')})
+           for obj in objects}
+    man = dict(schema='gmg-sim/2', episode=int(episode), split=split, round=int(round_k), p_sim=p_sim,
+               objects=per, object_order=list(objects), files=files, fiducials=fids, code=code_identity(),
+               commit=commit or guard._git('rev-parse', 'HEAD'), interlock=interlock,
+               do_not_use=dnu or None,
+               fiducial_definition='8 corners of the PCA-oriented bounding box of all piece vertices, each coordinate '
+                                   '1 mm inward along each box axis (simpieces.fiducials)',
                note='visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py '
-                    '--pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes')
-    json.dump(man, open(os.path.join(out_dir, 'manifest.json'), 'w'), indent=1)
+                    '--pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for '
+                    'phys_fit --props')
+    with open(os.path.join(out_dir, 'manifest.json'), 'w') as fh:
+        json.dump(man, fh, indent=1, default=str)
+    if dnu:
+        with open(os.path.join(out_dir, 'DO_NOT_USE.json'), 'w') as fh:
+            json.dump(dict(do_not_use=dnu, rule='F-I3.8'), fh, indent=1)
     return man

@@ -82,90 +82,9 @@ def world_pose(b, obj, f):
 
 
 def physics(b, o, p, hulls_o, hulls_p, run, carve_cm3, default_o, default_p, copies, label, do_proxy=True):
-    """The 6.2 table for one pair (o host, p guest) at poses P_sim (= P_sel here)."""
-    out = dict(label=label)
-    rels = {f: IL.rel_pose(b.poses, o, p, f) for f in range(int(b.meta['T']))}
-    asm = run.assembled or run.build[-5:]
-    f_asm = asm[len(asm) // 2]
-    # P2 free travel: gravity (table normal in the host frame), +d, +n, -n
-    pl = b.table_in_obj(o, f_asm) if b.meta.get('table') else None
-    dirs = {}
-    if pl is not None:
-        dirs['gravity'] = -np.asarray(pl[0])
-    A = IL.axes_of(np.vstack(hulls_p) @ rels[f_asm][:3, :3].T + rels[f_asm][:3, 3], run.d)[1]
-    dirs.update({'+d': A[0], '+n': A[1], '-n': -A[1]})
-    Xg, cell = PH.guest_samples(hulls_p)
-    tr_c, base_c = PH.free_travel(hulls_o, hulls_p, rels[f_asm], dirs, Xg, cell)
-    Xd, celld = PH.guest_samples(default_p)
-    tr_d, base_d = PH.free_travel(default_o, default_p, rels[f_asm], dirs, Xd, celld)
-    p2 = all(tr_c[k] <= max(PH.k_('travel_max_m'), tr_d[k] + PH.k_('travel_default_plus_m')) for k in tr_c)
-    out['P2'] = dict(frame=int(f_asm), carved_mm={k: round(v * 1e3, 1) for k, v in tr_c.items()},
-                     default_mm={k: round(v * 1e3, 1) for k, v in tr_d.items()}, overlap_at_pose_cm3=[round(base_d, 3),
-                                                                                                     round(base_c, 3)],
-                     pass_=bool(p2))
-    # P4 over-removal (both objects)
-    out['P4'] = {o: PH.over_removal(default_o, hulls_o, carve_cm3.get(o, 0.0)),
-                 p: PH.over_removal(default_p, hulls_p, carve_cm3.get(p, 0.0))}
-    # P6 / P7 overlap series (default vs carved) on stride-4 frames and the run's check frames
-    fr6 = sorted(set(list(range(0, int(b.meta['T']), 4)) + list(run.assembled)))
-    ov_d = PH.overlap_series(default_o, default_p, rels, fr6, Xd, celld)
-    ov_c = PH.overlap_series(hulls_o, hulls_p, rels, fr6, Xg, cell)
-    worse = [f for f in fr6 if ov_c[f] > ov_d[f] + PH.k_('p6_tol_cm3')]
-    out['P6'] = dict(frames=len(fr6), worse_frames=worse[:20], n_worse=len(worse), pass_=not worse,
-                     default_asm_median=round(float(np.median([ov_d[f] for f in run.assembled])) if run.assembled else 0, 3),
-                     carved_asm_median=round(float(np.median([ov_c[f] for f in run.assembled])) if run.assembled else 0, 3))
-    if run.check:
-        chk = [f for f in run.check]
-        od = PH.overlap_series(default_o, default_p, rels, chk, Xd, celld)
-        oc = PH.overlap_series(hulls_o, hulls_p, rels, chk, Xg, cell)
-        sd, sc = float(np.sum(list(od.values()))), float(np.sum(list(oc.values())))
-        out['P7'] = dict(check_frames=len(chk), default_sum_cm3=round(sd, 2), carved_sum_cm3=round(sc, 2),
-                         default_median=round(float(np.median(list(od.values()))), 3),
-                         carved_median=round(float(np.median(list(oc.values()))), 3),
-                         pass_=bool(sc <= PH.k_('p7_share') * sd) if sd > 0 else True)
-    else:
-        out['P7'] = dict(applies=False, flag='no_holdout')
-    out['overlap_series'] = dict(default={int(k): round(v, 3) for k, v in ov_d.items()},
-                                 carved={int(k): round(v, 3) for k, v in ov_c.items()})
-    # P1 settle pre-check (plain MuJoCo) at the assembled frame
-    if b.meta.get('table'):
-        tb = b.meta['table']
-        W0 = world_pose(b, o, f_asm); Wg = world_pose(b, p, f_asm)
-        hp = SP.props(hulls_o, 0.3); gp = SP.props(hulls_p, 0.3)
-        try:
-            out['P1_precheck'] = PH.settle(hulls_o, hulls_p, W0, Wg, (np.asarray(tb['n']), float(tb['d'])), hp, gp,
-                                           copies=copies)
-            hpd = SP.props(default_o, 0.3); gpd = SP.props(default_p, 0.3)
-            out['P1_precheck_default'] = PH.settle(default_o, default_p, W0, Wg, (np.asarray(tb['n']), float(tb['d'])),
-                                                   hpd, gpd, copies=copies)
-        except Exception as e:
-            out['P1_precheck'] = dict(error=f'{type(e).__name__}: {e}')
-    else:
-        out['P1_precheck'] = dict(applies=False, reason='no table plane in the bundle')
-    out['P1'] = dict(run=False, reason='FlashCHORD scene not in this container (INTERLOCK 6.2: the pre-check does not '
-                                       'decide)')
-    # P3 replay proxy (INSERTION)
-    if do_proxy and run.kind == 'INSERTION':
-        t0 = max(0, run.frames[0] - PH.k_('pre'))
-        frames = list(range(t0, int(b.meta['T'])))
-        gpp = SP.props(hulls_p, 0.3)
-        t = time.time()
-        res = PH.replay_proxy(hulls_o, hulls_p, rels, frames, asm,
-                              dict(default=(default_o, default_p, True), carved=(hulls_o, hulls_p, True),
-                                   nocollide=(default_o, default_p, False)), copies=copies, guest_props=gpp, log=log)
-        res['sec'] = round(time.time() - t, 1)
-        res['frames'] = [frames[0], frames[-1]]
-        res['judge'] = PH.p3_pass(res)
-        out['P3'] = res
-    tests = [out['P2']['pass_'], out['P4'][o]['pass_'], out['P4'][p]['pass_'], out['P6']['pass_'],
-             out['P7'].get('pass_', True)]
-    if 'P3' in out:
-        tests.append(out['P3']['judge']['pass_'])
-    out['P2_P7_pass'] = bool(all(tests))
-    out['deliver_carved'] = False
-    out['deliver_reason'] = ('P2-P7 pass but P1 (FlashCHORD settle) not run: default pieces delivered, carved pieces '
-                             'kept for the FlashCHORD check') if out['P2_P7_pass'] else 'a physical test failed: default pieces'
-    return out
+    """The 6.2 table for one pair at P_sel (moved to simphys.pair_physics, shared with interlock.default_physics)."""
+    return PH.pair_physics(b, o, p, hulls_o, hulls_p, run, carve_cm3, default_o, default_p, copies, label,
+                           do_proxy=do_proxy, log=log)
 
 
 def main():
@@ -225,26 +144,17 @@ def main():
         for t, q in ((o, p), (p, o)):
             cf = b.contact(t, q)['contact']
             intr = IL.intrusions_from_tracks(b, t, q, ev[t], cf)
-            runs = IL.engaged_runs(intr, cf, int(b.meta['stride']))
-            comps = []
-            for r in runs:
-                cs, nmin = IL.regions(intr, r, ev[t], float(b.contact(t, q).get('j_mm') or 0) * 1e-3)
-                comps += cs
-            good = set(b.good_frames(t)) & set(b.good_frames(q))
-            okfr = [len([f for f in r.frames if f in good]) / max(len(r.frames), 1) for r in runs]
-            # (c) is absent if EITHER object is TRACK_FAIL or IDENTITY_SWAP (F-I1.2; public semantics)
-            sflags = sorted(set((b.meta.get('sanity') or {}).get(t, {}).get('flags', []) or []) |
-                            set((b.meta.get('sanity') or {}).get(q, {}).get('flags', []) or []))
-            failing = ('TRACK_FAIL', 'IDENTITY_SWAP') if a.identity == 'public' else ('TRACK_FAIL',)
-            track_ok = all(x >= 0.8 for x in okfr) and not any(f in failing for f in sflags)
             pc = geom.volume_samples(cands[q][picks[q]], 20000, seed=0)[0]
-            sides[t] = IL.Side(t, ev[t], intr, comps, runs, sil=sil[t], track_ok=track_ok,
-                               track_reason=f'good share {np.round(okfr, 2).tolist()} flags {sflags}',
-                               partner_collider=pc, fh=fh[t])
+            # the same constructor as the export path (F-I3.1); sources (a) / (b) are filled below
+            sides[t] = IL.make_side(b, t, q, ev[t], intr, cf, sources=dict(sil=sil[t]), identity=a.identity,
+                                    partner_collider=pc, fh=fh[t])
+            runs, comps, okfr, track_ok = sides[t].runs, sides[t].comps, sides[t].gate['good_share'], \
+                sides[t].track_ok
             prep[f'{t}<-{q}'] = dict(contact_frames=len(cf), runs=[r.summary() for r in runs],
                                      components=[dict(voxels=int(len(c.lin)), swept=int(c.swept.sum()),
                                                       cm3=round(len(c.lin) * ev[t].grid.vox ** 3 * 1e6, 2))
-                                                 for c in comps], good_share=okfr, track_ok=track_ok)
+                                                 for c in comps], good_share=okfr, track_ok=track_ok,
+                                     gate=sides[t].gate)
             log(t, '<-', q, json.dumps(prep[f'{t}<-{q}'], default=IL._jdefault)[:600])
         # (a) generator
         gen_paths = {}
@@ -364,12 +274,22 @@ def main():
                 jdump(phys, os.path.join(out_dir, f'physics_{o}_{p}.json'))
             for x in (o, p):
                 deliver = 'default'
-                hl = built[x]['default']
+                # F-I3.8: the default pieces must hold <= 0.3 cm3 keep-out per hull; else CoACD's pieces checked
+                # against the same keep-out; else the delivery is marked do-not-use
+                gate = SP.pieces_gate({'gmg': built[x]['default'], 'coacd': built[x]['coacd']}, *built[x]['keep'])
+                log('pieces gate', x, gate['choice'], json.dumps(gate['report']), gate['do_not_use'] or '')
+                hl = gate['hulls']
                 if phys is not None and phys['deliver_carved']:
                     deliver, hl = 'carved', built[x]['carved']
-                sim_objects[x] = dict(visual=cands[x][picks[x]], hulls=hl,
+                    gate = SP.pieces_gate({'carved': built[x]['carved']}, *built[x]['keep'])
+                prep.setdefault('pieces_gate', {})[x] = {k: v for k, v in gate.items() if k != 'hulls'}
+                sim_objects[x] = dict(visual=cands[x][picks[x]], hulls=hl, gate=gate,
+                                      sources=dict(sil=sil[x], gen=sides[x].gen, notches=sides[x].notches,
+                                                   notches_sil=sides[x].notches_sil, grid=ev[x].grid),
                                       carve=dict(delivered=deliver, decisions=[d for d in all_dec if d['target'] == x],
                                                  pieces_report=built[x]['report'],
+                                                 pieces_choice=gate['choice'], pieces_gate=gate['report'],
+                                                 do_not_use=gate['do_not_use'],
                                                  flags=['sim_pose_fallback'] + ([] if phys is None else
                                                                                ['p1_not_run_flashchord']),
                                                  physics=None if phys is None else
@@ -422,8 +342,16 @@ def main():
     jdump(push, os.path.join(out_dir, 'push_list.json'))
     if sim_objects and not a.no_physics:
         sim_dir = os.path.join(a.run, 'sim', split, f'ep{a.ep}' + (f'-{a.tag}' if a.tag else ''), 'r0')
+        for x, so in sim_objects.items():                # sources (a), (b), notches travel with the round (F-I3.1)
+            sx = so.pop('sources')
+            IL.write_sources(os.path.join(sim_dir, 'sources'), x, sx['sil'], sx['gen'], sx['notches'],
+                             sx['notches_sil'], sx['grid'])
+        state = dict(round=0, holdout={}, carved_cm3={x: 0.0 for x in sim_objects},
+                     solid_ref_cm3={x: round(ev[x].solid_cm3(), 3) for x in sim_objects},
+                     default_collider_cm3={x: round(SP.hull_volume(so['hulls']) * 1e6, 3)
+                                           for x, so in sim_objects.items()}, delivered='default')
         man = SP.write_round(sim_dir, a.ep, split, 0, sim_objects, dict(source='P_sel', flag='sim_pose_fallback',
-                                                                       tracks=b.meta['tracks']), guard._git('rev-parse', 'HEAD'))
+                                                                       tracks=b.meta['tracks']), interlock=state)
         report['sim_dir'] = sim_dir
     report['sec'] = round(time.time() - t_start, 1)
     report['log'] = LOG

@@ -312,3 +312,97 @@ def settle(host, guest, T_wh, T_wg, table, hp, gp, copies=None):
     return dict(**{k: round(v * (100 if 'drift' in k or 'sink' in k else 1), 3) for k, v in M.items()},
                 units='drift/sink cm, tilt deg', copies=len(rows), nan=nan, fall_through=int(fall), pass_=bool(ok),
                 decides=False, note='plain-MuJoCo pre-check; INTERLOCK 6.2: P1 is decided in the FlashCHORD scene')
+
+
+def pair_physics(b, o, p, hulls_o, hulls_p, run, carve_cm3, default_o, default_p, copies, label, rels=None,
+                 do_proxy=True, log=None):
+    """The F-I1.8 table for one carved pair (o host, p guest): P2 free travel, P4 over-removal, P6 / P7 overlap, the
+    plain-MuJoCo P1 pre-check (does not decide; FlashCHORD's settle is the Embodiment's jitter_check, A3) and the P3
+    replay proxy for INSERTION runs. RELS = {frame: T_{o<-p}} of the pose source the simulator replays (P_sim: an
+    Embodiment export's rel_T, F-I3.1); None = our tracks (P_sel). Shared by the dev driver and
+    interlock.default_physics (moved here from tools/interlock_dev.py)."""
+    import time
+    from gmg import interlock as IL, simpieces as SP
+    log = log or (lambda *a: None)
+    out = dict(label=label, pose_source='rels (P_sim)' if rels is not None else 'our tracks (P_sel)')
+    T = int(b.meta['T'])
+    if rels is None:
+        rels = {f: IL.rel_pose(b.poses, o, p, f) for f in range(T)}
+    asm = [f for f in (run.assembled or run.build[-5:]) if f in rels] or [f for f in run.frames if f in rels][-5:]
+    f_asm = asm[len(asm) // 2]
+    pl = b.table_in_obj(o, f_asm) if b.meta.get('table') else None
+    dirs = {}
+    if pl is not None:
+        dirs['gravity'] = -np.asarray(pl[0])
+    A = IL.axes_of(np.vstack(hulls_p) @ rels[f_asm][:3, :3].T + rels[f_asm][:3, 3], run.d)[1]
+    dirs.update({'+d': A[0], '+n': A[1], '-n': -A[1]})
+    Xg, cell = guest_samples(hulls_p)
+    tr_c, base_c = free_travel(hulls_o, hulls_p, rels[f_asm], dirs, Xg, cell)
+    Xd, celld = guest_samples(default_p)
+    tr_d, base_d = free_travel(default_o, default_p, rels[f_asm], dirs, Xd, celld)
+    p2 = all(tr_c[k] <= max(k_('travel_max_m'), tr_d[k] + k_('travel_default_plus_m')) for k in tr_c)
+    out['P2'] = dict(frame=int(f_asm), carved_mm={k: round(v * 1e3, 1) for k, v in tr_c.items()},
+                     default_mm={k: round(v * 1e3, 1) for k, v in tr_d.items()},
+                     overlap_at_pose_cm3=[round(base_d, 3), round(base_c, 3)], pass_=bool(p2))
+    out['P4'] = {o: over_removal(default_o, hulls_o, carve_cm3.get(o, 0.0)),
+                 p: over_removal(default_p, hulls_p, carve_cm3.get(p, 0.0))}
+    fr6 = sorted(set([f for f in range(0, T, 4) if f in rels] + [f for f in run.assembled if f in rels]))
+    ov_d = overlap_series(default_o, default_p, rels, fr6, Xd, celld)
+    ov_c = overlap_series(hulls_o, hulls_p, rels, fr6, Xg, cell)
+    worse = [f for f in fr6 if ov_c[f] > ov_d[f] + k_('p6_tol_cm3')]
+    asm_in = [f for f in run.assembled if f in ov_d]
+    out['P6'] = dict(frames=len(fr6), worse_frames=worse[:20], n_worse=len(worse), pass_=not worse,
+                     default_asm_median=round(float(np.median([ov_d[f] for f in asm_in])) if asm_in else 0, 3),
+                     carved_asm_median=round(float(np.median([ov_c[f] for f in asm_in])) if asm_in else 0, 3))
+    chk = [f for f in run.check if f in rels]
+    if chk:
+        od = overlap_series(default_o, default_p, rels, chk, Xd, celld)
+        oc = overlap_series(hulls_o, hulls_p, rels, chk, Xg, cell)
+        sd, sc = float(np.sum(list(od.values()))), float(np.sum(list(oc.values())))
+        out['P7'] = dict(check_frames=len(chk), default_sum_cm3=round(sd, 2), carved_sum_cm3=round(sc, 2),
+                         default_median=round(float(np.median(list(od.values()))), 3),
+                         carved_median=round(float(np.median(list(oc.values()))), 3),
+                         pass_=bool(sc <= k_('p7_share') * sd) if sd > 0 else True)
+    else:
+        out['P7'] = dict(applies=False, flag='no_holdout')
+    out['overlap_series'] = dict(default={int(k): round(v, 3) for k, v in ov_d.items()},
+                                 carved={int(k): round(v, 3) for k, v in ov_c.items()})
+    if b.meta.get('table'):
+        tb = b.meta['table']
+        W0 = b.poses['world_T_cam'][f_asm].astype(np.float64) @ b.poses[f'cam_T_{o}'][f_asm].astype(np.float64)
+        Wg = W0 @ rels[f_asm]
+        hp = SP.props(hulls_o, 0.3); gp = SP.props(hulls_p, 0.3)
+        try:
+            out['P1_precheck'] = settle(hulls_o, hulls_p, W0, Wg, (np.asarray(tb['n']), float(tb['d'])), hp, gp,
+                                        copies=copies)
+            hpd = SP.props(default_o, 0.3); gpd = SP.props(default_p, 0.3)
+            out['P1_precheck_default'] = settle(default_o, default_p, W0, Wg, (np.asarray(tb['n']), float(tb['d'])),
+                                                hpd, gpd, copies=copies)
+        except Exception as e:
+            out['P1_precheck'] = dict(error=f'{type(e).__name__}: {e}')
+    else:
+        out['P1_precheck'] = dict(applies=False, reason='no table plane in the bundle')
+    out['P1'] = dict(run=False, reason='FlashCHORD scene not in this container (INTERLOCK 6.2: the pre-check does not '
+                                       'decide; the settle is the Embodiment jitter_check, A3)')
+    if do_proxy and run.kind == 'INSERTION':
+        t0 = max(0, run.frames[0] - k_('pre'))
+        frames = [f for f in range(t0, T) if f in rels]
+        gpp = SP.props(hulls_p, 0.3)
+        t = time.time()
+        res = replay_proxy(hulls_o, hulls_p, rels, frames, asm,
+                           dict(default=(default_o, default_p, True), carved=(hulls_o, hulls_p, True),
+                                nocollide=(default_o, default_p, False)), copies=copies, guest_props=gpp, log=log)
+        res['sec'] = round(time.time() - t, 1)
+        res['frames'] = [frames[0], frames[-1]]
+        res['judge'] = p3_pass(res)
+        out['P3'] = res
+    tests = [out['P2']['pass_'], out['P4'][o]['pass_'], out['P4'][p]['pass_'], out['P6']['pass_'],
+             out['P7'].get('pass_', True)]
+    if 'P3' in out:
+        tests.append(out['P3']['judge']['pass_'])
+    out['P2_P7_pass'] = bool(all(tests))
+    out['deliver_carved'] = False
+    out['deliver_reason'] = ('P2-P7 pass but P1 (FlashCHORD settle) not run: default pieces delivered, carved pieces '
+                             'kept for the FlashCHORD check') if out['P2_P7_pass'] else \
+        'a physical test failed: default pieces'
+    return out

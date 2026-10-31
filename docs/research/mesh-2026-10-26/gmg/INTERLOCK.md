@@ -1,8 +1,11 @@
-# gmg INTERLOCK stage: slots, seats and cavities that let touching objects fit (design v2)
+# gmg INTERLOCK stage: slots, seats and cavities that let touching objects fit (design v2, built, round-1 fixes)
 
 Date: 2026-10-31. v1 written at repo commit `de64bd3` and committed as `2eb8397`; this v2 answers the design review of
 v1 (blocking items B1-B7 and the non-blocking items; section 16 lists each one and where it is resolved). Branch
-`claude/bold-albattani-6qmxsv`. Status: **design, not built**. This file adds a stage to the frozen gmg design
+`claude/bold-albattani-6qmxsv`. Status: **built** (BI1 code and synthetic tests, section 17; BI2 dev runs on ep24, ep2,
+ep11, section 18) and **corrected after the verifier's review of the build** (round-1 fixes, PREREG F-I3, section
+19). Outcome so far: on the dev runs the rule pushes every pair (no carve); the Embodiment contract now runs on their
+real tool (section 19). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
 section 8 and in PREREG F-I1.0. The selection-rule changes are pre-registered as PREREG section F entry **F-I1**
 (dated 2026-10-31, revised the same day). If this file and PREREG F-I1 disagree, PREREG wins. Writing v1 and v2 used
@@ -76,14 +79,18 @@ flip-risky. With F-I1 a HULL no longer counts as the safe alternative (SPEC sect
 4 dev objects picked so far only board 2 changes), slot-less candidates are vetoed when a slotted one overlaps the
 partner by at least 1 cm3 less, and the R1 scan check also covers this change.
 
-**Not known yet.** Whether the ep24 boards actually get carved: the dev data cannot say, and the first dev run of the
-built code decides (T-I2b). If the silhouette cannot be used and the gap is wide enough that stereo could have
-resolved it (more than about 13.5 mm in the image at the boards' 0.5 m range), the rule pushes instead, and the boards
-stay slot-less, in the simulator too; the tracker and the Embodiment session then get the case.
+**What the built stage does (31 Oct, dev runs without a scan; sections 18-19).** It pushes the ep24 boards instead
+of carving them: the place the partner passes through is 19-25 mm wide in our data (the partner's stereo thickness
+plus track jitter), while the real slot looks about 6-8 mm wide in the video [E], so most of that place is wood our
+cameras saw, and the rule treats that as a pose error, not a missing slot. A counterfactual slot (never delivered)
+lets the simulated cross close to 0.33 cm, against 1.85 cm without it, so the slot itself works; the open problem is
+measuring where and how wide it is. The cups and the pot+lid also push. Our own simulator pieces for the open
+containers (pot, cups) fill their openings, so those deliveries are marked do-not-use until the splitter is fixed.
 
-**Cost.** CPU only, no rental, but heavier than v1 said: the 16-copy physics checks take about 0.6-2.5 CPU-hours per
-carved pair on our 4 shared cores [E]. mujoco and coacd must be installed in the gmg venv and FlashCHORD's venv rebuilt
-here. GPU: SAM 3D on board views added to G1/G2/G4, about +$0.5-1.5 in total [E]. **One owner decision (D-I1):** may
+**Cost.** CPU only, no rental. The 16-copy physics checks take about 0.6-2.5 CPU-hours per carved pair on our 4 shared
+cores [E]. mujoco and coacd are installed in the gmg venv; FlashCHORD's settle is run by the Embodiment session with
+its own venv (jitter_check), not here. GPU: SAM 3D on board views added to G1/G2/G4, about +$0.5-1.5 in total [E].
+**One owner decision (D-I1):** may
 simulator copies and the physics fit use the adopted masses (`props_masses_only.json`, computed from the scans' surface
 areas)? Until you say yes they use the 0.3 kg placeholder, on public and eval alike.
 
@@ -766,6 +773,33 @@ and our pieces; our rule reads our bundle and that export). On eval nothing is c
 `tools/intrusion.py` samples the union of `piece_XX.obj` (not the GLB), writes `pts_local` in file coordinates, adds the
 fiducial fields and the `reference` / `fit` blocks; phys_fit runs with `--meshes r<k>/_fit --props r<k>/props_gmg.json`.
 
+### 11.8 Resolutions (31 Oct 10:55 UTC, orchestrator; accepted by the Embodiment session 10:52; written here 31 Oct ~15:00 after the verifier's review, PREREG F-I3.9 / F-I3.10)
+Their `tools/intrusion.py` (commit `759032e`, read here at `48cda9f`) raised five open points; the decisions and how
+the code implements them:
+1. **manifest layout.** Adopted: `manifest.json` schema `gmg-sim/2` carries `objects.<obj>.{files {basename: sha256},
+   fiducials [8 x 3]}` (their reader's preferred layout) and keeps the `gmg-sim/1` top-level `files` / `fiducials`
+   (`load_sim` reads both). **Fiducials, exactly:** the 8 corners of the oriented bounding box of ALL vertices of the
+   object's pieces, box axes = the principal axes (SVD) of those vertices about their mean; each corner coordinate is
+   moved 1 mm inward along each box axis (a corner moves 1.73 mm along the diagonal; every box face lies 1 mm inside
+   the extreme vertex). Their `fiducial_box` check (margins 1 mm, symmetric) expects exactly this.
+2. **Reference pose for validate step 1.** The header's own poses are never used (that compared the header with
+   itself). Two independent sources (F-I3.10): (i) an independent reader of the reference's `object_body_*` columns
+   (`validate(..., ref_poses=)`; for B10: a guard role for our reference parquets, since `guard.py` refuses every
+   `.parquet` and belongs to build 1), or (ii) our tracks (role tracks) when their sha256 is the chain's
+   `poses.npz`: one rigid transform common to all objects plus a per-object vertical shift (mkref's table snap) is
+   fitted on the fiducials, and every object's fiducials and the export's `rel_T` at f_star must agree within 0.5 mm.
+   Without either source the export is refused. Public dataset parquets stay refused everywhere.
+3. **Provenance.** Their per-step chain is read (each step's `inputs`, `artifact`, `sha256`); a reconstructed chain
+   (`--prov`, inferred, or marked reconstructed) is accepted with flag `prov_reconstructed` as long as it holds a
+   perception `poses.npz` with a sha256 and no ground-truth or object-motion source (mocap, scans, `_align`,
+   `oracle`, `/loc/`, deny-list, dataset episode parquets). library_v1..v4 meshes as simulator assets are allowed with
+   flag `ref_sim_assets_library`; any other library_v file is refused. `poses_world_vo.npz` is not required.
+4. **`--fit_commit`**: fine; the fit block must name a commit (else `pushed_residual_m` is forced to NaN).
+5. **Approximate `pushed_residual_m`**: fine; it only feeds PUSH, and our push proxy remains the fallback.
+**props_gmg.json** is now in phys_fit's layout `{obj: {physics: {mass_kg, com_m, inertia_kgm2, ...}}}` (the layout of
+`props_masses_only.json`; the mass is still the 0.3 kg placeholder until D-I1). Section 19 records the run of their
+real tool on our ep24 round 0 and our validator's verdict.
+
 ---
 
 ## 12. Modules, hooks and hand-offs
@@ -931,45 +965,55 @@ Code (new files only; none of build 1's files is edited): `gmg/interlock.py`, `g
 `gmg/tests/test_interlock.py` (T-I1). Build-time corrections and their reasons: PREREG **F-I2** (no F-I1.14 threshold
 changed). Notes and commands: `build/I.md`.
 
-### 17.1 For the Embodiment session (determined-wright): what to call, what to write
+### 17.1 For the Embodiment session (determined-wright): what to call, what to write (updated 31 Oct, F-I3)
 
 ```python
 import sys; sys.path.insert(0, 'docs/research/mesh-2026-10-26')   # GMG_MODE=dev for public dev, clean otherwise
 from gmg import interlock as IL
-ok, rep = IL.validate('…/intrusions.npz', sim_dir='…/sim/public/ep24/r0')        # 11.2 checks; rep['refused']
-res = IL.carve_from_intrusions(('wooden_piece_1', 'wooden_piece_2'), '…/intrusions.npz',
-                               evidence='…/bundle/public/ep24', sim_dir='…/r0', out_dir='…/r1', round=1)
-# res['decisions'] (per region: decision, tier, reasons, push_mm, widths, offset, flags), res['pieces_dir'],
-# res['validation'], res['physics'] (if a physics_fn is passed; without it the carved pieces go to r1/_carved_pending/
-# and r1 delivers the previous pieces)
-acc = IL.round_accept(intr_r0, intr_r1, sim_r0, sim_r1, check_frames)      # 11.5 A1 / A2
-sim = IL.load_sim('…/r0', episode=24)                                       # refuses another episode's folder
+b = IL.load_bundle_any('…/bundle/public/ep24')                     # our evidence (tracks, grids, flags)
+tracks = dict(path=b.meta['tracks']['path'], sha256=b.meta['tracks']['sha256'], poses=b.poses)
+ok, rep = IL.validate('…/intrusions.npz', '…/sim/public/ep24/r0', tracks=tracks)   # 11.2 + F-I3.10; rep['refused']
+res = IL.carve_from_intrusions(('wooden_piece_1', 'wooden_piece_2'), '…/intrusions.npz', evidence='…/bundle/public/ep24',
+                               sim_dir='…/r0', out_dir='…/r1', round=1)   # physics_fn='default' (P2-P7 + P1 pre-check)
+# res['decisions'] (per region: decision, tier, reasons, push_mm, widths, offset, budget, flags, push_list),
+# res['pieces_dir'], res['validation'], res['physics']; carved pieces that cannot be delivered here (P1 = your
+# jitter_check) go to r1/_carved_pending_p1/ and r1 delivers the previous pieces
+acc = IL.round_accept('…/intr_r0.npz', '…/intr_r1.npz', '…/r0', '…/r1', tracks=tracks,
+                      settle={'wooden_piece_1|wooden_piece_2': dict(pass_=True, ...)})   # 11.5 A1-A4, F-I3.3
+sim = IL.load_sim('…/r0', episode=24)          # refuses another episode's folder and do-not-use folders (F-I3.8)
 ```
-CLI: `python -m gmg.interlock validate --intrusions F --sim-in DIR` and
-`python -m gmg.interlock carve --pair A B --intrusions F --evidence BUNDLE --sim-in DIR --out DIR --round K`.
+`physics_fn(b, o, p, carved, default, recs, rels=None, run=None) -> dict(deliver_carved, P2_P7_pass, ...)`; the default
+(`IL.default_physics()`) runs `simphys.pair_physics` on the export's own `rel_T` (P_sim). Sources (a), (b) and the
+observed notches come from `<sim_dir>/sources/<obj>.npz`, written by the gmg with round 0 and carried by every round
+(F-I3.1), so the export path decides with the same inputs as ours.
+CLI: `python -m gmg.interlock validate --intrusions F --sim-in DIR --evidence BUNDLE`,
+`python -m gmg.interlock carve --pair A B --intrusions F --evidence BUNDLE --sim-in DIR --out DIR --round K
+[--no-physics]`, `python -m gmg.interlock accept --prev F0 --new F1 --sim-prev D0 --sim-new D1 --evidence BUNDLE
+[--settle JSON] [--band-m B]`.
 
-**Export file (schema `gmg-intrusion/2`)**: `intrusions.npz` + `intrusions.json` next to it. A reference writer that
-produces exactly this format from a delivered round and a set of poses is `IL.write_export(path, bundle, sim_dir,
-pair, reference, poses=None, frames=None, pitch=0.002, fit=None, pushed=None)`; `tests/test_interlock.py Contract`
-round-trips it through `validate` and shows the refusal of a geom-frame (shifted) export.
+**Export file (schema `gmg-intrusion/2`)**: exactly what `tools/intrusion.py` writes; `IL.write_export(path, bundle,
+sim_dir, pair, reference, poses=None, frames=None, pitch=0.002, fit=None, pushed=None)` writes the same header layout
+from a delivered round and a set of poses (tests).
 - npz per sample: `frame` int32, `target`, `partner` int16 (indices into `objects`), `pts_local` (N,3) float32 in the
   TARGET's file coordinates (the coordinates of its `piece_XX.obj` / `<obj>.glb`), `depth_m` float32;
 - npz per frame-pair: `fp_frame`, `fp_target`, `fp_partner`, `rel_T` (P,4,4) float64 (partner file -> target file),
   `pushed_residual_m` float32 (NaN if no fit), `intr_vol_m3` float32;
-- json: `schema`, `objects`, `round`, `sim_dir`, `meshes` {obj: {"<obj>/piece_XX.obj": sha256}}, `pitch_m`, `tool`,
-  `commit`, `argv`, `reference` {path, sha256, provenance {chain [...], inputs {path: sha256}}}, `fit` (when any
-  pushed_residual_m is finite: tool, commit, argv, meshes {obj: sha256 of r<k>/_fit/<obj>.glb}, props {path,
-  sha256 of r<k>/props_gmg.json}, prior {sig_p: 0.01, sig_r_deg: 3, hold_f0}), `pose_source`, `f_star`,
-  `fiducials_world`, `fiducials_back`, **`reference_poses_f_star`** {obj: 4x4 world_T_obj at f_star} and **`T`**
-  (F-I2.13: the guard refuses `.parquet` reads, so the fiducial check uses these header poses).
+- json: `schema`, `objects`, `round`, `sim_dir`, `meshes` {obj: {"piece_XX.obj" (or "<obj>/piece_XX.obj"): sha256}},
+  `pitch_m`, `tool`, `commit`, `argv`, `reference` {path, sha256, provenance {chain [{tool, commit, run_id, artifact,
+  sha256, inputs {path: sha256}}], ...}}, `fit` (tool, commit, argv, meshes {obj: sha256 of r<k>/_fit/<obj>.glb}, props
+  {path, sha256 of r<k>/props_gmg.json}, prior {sig_p: 0.01, sig_r_deg: 3, hold_f0}), `pose_source`, `frames` (or
+  `T`), `f_star`, `fiducials_file`, `fiducials_world`, `fiducials_back`.
 - Partner samples: points of a <= 2 mm grid inside the union of the partner's delivered pieces (not the GLB).
 
 **Delivered round folder** (`simpieces.write_round`, never overwritten): `<obj>/<obj>.glb` (visual = submitted mesh),
-`<obj>/piece_XX.obj` (collision; `make_assets.py --pieces`), `<obj>/inertia.json` {com, inertia, mass, volume_cm3},
-`<obj>/carve.json` (delivered: default | carved, decisions, physics), `_fit/<obj>.glb` (union of the pieces for
-`phys_fit.py --meshes r<k>/_fit`), `props_gmg.json` {obj: mass_kg 0.3 placeholder (D-I1 open), com_m, inertia_kgm2},
-`manifest.json` {episode, split, round, p_sim, objects, files {path: sha256}, fiducials {obj: 8 points}, commit}.
-Carved pieces that passed P2-P7 but could not run P1 in FlashCHORD are kept in `<interlock out>/_carved_pending_p1/`.
+`<obj>/piece_XX.obj` (collision; `make_assets.py --pieces`), `<obj>/inertia.json`, `<obj>/carve.json` (delivered,
+decisions, physics, pieces gate), `_fit/<obj>.glb` (union of the pieces for `phys_fit.py --meshes r<k>/_fit`),
+`props_gmg.json` {obj: {physics: {mass_kg 0.3 placeholder (D-I1 open), com_m, inertia_kgm2, volume_cm3}}} (phys_fit
+`--props`), `sources/<obj>.npz`, `manifest.json` (schema gmg-sim/2: episode, split, round, p_sim, objects.<obj>.{files,
+fiducials, gate}, files {path: sha256}, fiducials, code {commit, dirty, sha256 of the code files}, interlock {holdout,
+carved_cm3, solid_ref_cm3, default_collider_cm3}, do_not_use), `interlock_regions.npz` (rounds >= 1) and, when the
+pieces fail the keep-out gate, `DO_NOT_USE.json`. Carved pieces that passed P2-P7 but could not run P1 here are kept
+in `<interlock out>/_carved_pending_p1/` (one name for both paths).
 
 ### 17.2 What the rule does, in one paragraph (for them)
 A place in the target's own frame is carved in the simulator copy only if the partner enters it in at least
@@ -1007,11 +1051,16 @@ the same public geometry, i.e. what the rule will do on eval 25 / 10 if the evid
 | simulator r0 | default pieces (32 + 32; CoACD 13-15) | |
 | submitted | no ICARVE (no T2 / T3 / T2o) | |
 
-Why no carve, in plain words: stereo saw wood across the slot (bridging); the silhouette that should see through it
-looks at the **brown wooden table** behind the slot, which the colour model cannot tell from the light board
-(`png/sil_ep24_b1.png`, `sil_ep24_b2.png`: the motion region lies exactly on the slot visible in the RGB frames); and
-the GAP width test sits just above its threshold (9.0 vs 8 px). [H] A depth-free see-through test (e.g. the table plane
-visible through the slot: the ray hits the table, not the board) would separate these cases; not pre-registered.
+Why no carve, in plain words (**corrected 31 Oct, PREREG F-I3.11**; the first version blamed the brown table): the
+place the partner passes through is 19-25 mm wide in board 1's frame (the partner's stereo evidence thickness, 12-19 mm,
+plus track jitter), while the real slot looks about 6-8 mm wide in the RGB video (cam_a frame 26, board 2: 10-12 px at
+about 1.6 px/mm, inner wall included) [E, by eye]. So two thirds or more of that place is wood that the cameras saw,
+and even a perfect silhouette that sees the true slot would leave most of R class O (> 25 %): step 2 pushes. The
+wooden table may also hurt the colour model, but it is not why the boards push, and the earlier [H] that a depth-free
+see-through test would separate the cases is withdrawn. The 12-19 mm figure quoted in F-I2.14 and the test docstring
+is the evidence thickness, not the boards'; the t = 6 mm known miss of T-I1 is therefore the regime that matters on
+ep24 and eval 25. [H, not used] The region must be measured against the partner's plate thickness, not its evidence
+thickness (falsifiable on ep24, F-I3.11).
 
 **DIAG counterfactual** (forced split at the shared plane, never delivered or submitted; `results/ep24-evalsem/
 diag_*.json`): slotted shells packed watertight (3892 / 4000 faces), slot widths w_sub 12.6 / 14.6 mm, w_sim 21.7 /
@@ -1059,7 +1108,9 @@ that B10 must not take at face value. Default pieces fill the cups' cavities (un
   at all on public ep24 / ep11). With eval semantics it PUSHES the boards: the evidence it is allowed to trust says
   "solid" where the slot is. The physics of a slot is not the limit: a DIAG slot lets the cross close to 0.33 cm.
 - **Open problems, measured here** (none fixed in this step; each needs a dated F entry before use):
-  1. silhouette contrast against a same-coloured background (wooden table) [M] -> [H] a geometric see-through test;
+  1. the motion region is 2-4 x wider than the slot (partner evidence thickness + jitter vs a 6-8 mm slot [E]), so
+     class O dominates whatever the silhouette sees (corrected 31 Oct, F-I3.11; the "wooden table" reading and its
+     [H] are withdrawn);
   2. w_sim uses the partner's extent near the crossing (19.7 mm with a marker bump vs 12.6 mm plate) -> P2 fails [M];
   3. F-I1.8 keep-out limited to 2 voxels from the surface lets our default pieces fill open containers (pot, cups):
      425 / 544 cm3 overlap vs CoACD 98 / ~300 cm3 [M]. A probe without the limit does not fix it [M]: ep11 overlap
@@ -1076,7 +1127,25 @@ that B10 must not take at face value. Default pieces fill the cups' cavities (un
   silhouettes not run); T-I2a (board 1 absent, board 2 passes the gate but disagrees); T-I2b (PUSH both, eval
   semantics; IGNORE on public); T-I2c / P27 above; T-I3 / P28 void (no carve); T-I4 / P29 void (no ICARVE exists);
   T-I5 holds on ep2; T-I6 holds on ep11; T-I7 to T-I10 not run in this step.
-- **Hand-off to the Embodiment session:** r0 folders (dev, default pieces, placeholder masses) in
-  `build/I/sim_r0/ep24-evalsem/`, `ep2-t3/`, `ep11-evalsem/` (layout of 17.1); their export can be validated and
-  carved with `interlock.carve_from_intrusions` today. On ep24 their reference will meet the same class-O evidence
-  unless their fit's validated `pushed_residual_m` or a new see-through source changes the classes.
+- **Hand-off to the Embodiment session (corrected 31 Oct, F-I3.8):** the r0 folders `build/I/sim_r0/ep24-evalsem/`,
+  `ep2-t3/`, `ep11-evalsem/` violate F-I1.8 (pieces hold up to 0.72 / 2.0 cm3 (boards), 945 / 533 cm3 (cups) and
+  1250 cm3 (pot) of keep-out per hull, limit 0.3 cm3) and are now marked **do-not-use** (`DO_NOT_USE.json`;
+  `load_sim` refuses them). Their props file is also in the wrong layout for phys_fit (fixed in F-I3.9). New
+  deliveries go through the keep-out gate (section 19); the ep24 r0 of section 19 is the one to use.
+
+## 19. Round-1 fixes after the verifier's review of the build (31 Oct, PREREG F-I3)
+
+The review found eight blocking problems in the built stage. Each one, what was wrong, and what the code does now
+(rule text in PREREG F-I3; labels [M] measured here without a scan, [E] estimate, [H] hypothesis):
+
+| review item | what was wrong | fix (F-I3) |
+|---|---|---|
+| B1 contract vs their real tool | validate crashed on their header (no `reference_poses_f_star`), refused every export (basename mesh keys, per-step provenance inputs, chain parquets and library sim assets), had no frame range (`frames` vs `T`), compared the header's poses with themselves; props_gmg.json was not in phys_fit's layout | validate reads their header, never raises, takes the f_star pose from an independent source only (a reader of the reference, or our tracks when they are the chain's `poses.npz`: frame-free fit + rel_T at f_star), reads per-step provenance with `prov_reconstructed`, refuses ground truth and dataset parquets but not reference parquets or library sim assets; props_gmg.json `{obj: {physics: ...}}`; manifest `objects.<obj>.{files, fiducials}` (F-I3.9, F-I3.10, 11.8) |
+| B2 export path not the same rule | no silhouette, generator, notches or identity gate on the export path; n axis fell back to the component's thinnest axis | one constructor `make_side` for both paths; sources saved with every round (`sources/<obj>.npz`); partner pieces as the export's partner samples (F-I3.1) |
+| B3 iteration | budget not cumulative, A1 on invalid exports, A1 on all samples without the other-pair clause, check frames recomputed, A3 / A4 not wired | cumulative budget vs the round-0 solid, fixed hold-out, round_accept rewritten (F-I3.3) |
+| B4 class O carved | submitted ICARVE ignored class O; OFFSET's N + t had no budget | both fixed (F-I3.2, F-I3.4) |
+| B5 (a) could not fail | C_a cut to R's neighbourhood before the tests | whole touching components + reverse share (two-way), also (a, b) and OFFSET (F-I3.5) |
+| B6 container pieces | r0 pieces of the pot and cups held up to 1250 cm3 of keep-out per hull (limit 0.3) and were offered to the Embodiment | keep-out gate (ours, else CoACD, else do-not-use; `load_sim` refuses); the three old r0 folders marked do-not-use (F-I3.8) |
+| B7 tests | o2 never exercised its rule, n4 passed vacuously, the contract test never called carve_from_intrusions | o2a / o2b, n4 on its runs, contract through carve_from_intrusions, new tests (F-I3.6) |
+| B8 wrong justification | "boards 12-19 mm thick" was the evidence thickness; the slot is about 6-8 mm in the video [E] | F-I2.14 / 18.1 corrected; the table explanation and its [H] withdrawn (F-I3.11) |
+

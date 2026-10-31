@@ -16,6 +16,13 @@ n2 resting 6 mm inside an observed face -> PUSH; n4 3-frame contact -> IGNORE; n
 n7 (thin tall guest in a holder slot whose carve removes the slot bottom) -> P2 travel > 40 mm detected; carved slot
 width >= partner collider thickness + 2 mm in every carved case. The silhouette cases here use synthetic votes or
 rendered images where noted (render: numpy ray casting of the true slotted plates on a textured table).
+Round-1 fixes (PREREG F-I3): o2 split into o2a (as above) and o2b (along-d offset, silhouettes see the true slots:
+CARVE, no OFFSET, nothing carved past one voxel beyond the slot end, o_residual_push); n4 asserted on its TRANSIENT
+run; Agreement (blob generator disagrees; OFFSET carries budget (iv)); Contract (export path = tracks path through
+carve_from_intrusions; the Embodiment header validated against an independent pose, malformed / wrong exports refused
+without a crash; our tracks as the chain's poses.npz incl. a 3 mm re-centring refused); Iteration (two rounds,
+round_accept A1-A4, A3 pending without the settle, invalid export, cumulative budget); PiecesGate (keep-out gate,
+do-not-use, props / manifest layout).
 Results: <scratchpad>/gmg/interlock/test_interlock.json (env IL_OUT overrides). Nothing is read from disk but code.
 """
 import json
@@ -130,22 +137,32 @@ def cross_episode(t, offset=(0, 0, 0), jitter=True, seed=0, n_ins=60, n_asm=30, 
     return Bundle(meta, obs, poses), world_B
 
 
+def sources_of(sil=None, gen=None, notches=None):
+    return {o: dict(sil=(sil or {}).get(o), gen=(gen or {}).get(o), notches=(notches or {}).get(o, []),
+                    notches_sil=(notches or {}).get(o, [])) for o in ('A', 'B')}
+
+
 def run_pair(b, cand, sil=None, gen=None, notches=None, collider=None):
+    """The tracks path through interlock.make_side, the constructor the export path uses too (F-I3.1)."""
     sides = {}
+    src = sources_of(sil, gen, notches)
     for o, p in (('A', 'B'), ('B', 'A')):
         ev = IL.Evidence(b, o, cand[o])
         cf = b.contact(o, p)['contact']
         intr = IL.intrusions_from_tracks(b, o, p, ev, cf)
-        runs = IL.engaged_runs(intr, cf, b.meta['stride'])
-        comps = []
-        for r in runs:
-            comps += IL.regions(intr, r, ev, 0.0005)[0]
         pc = collider[p] if collider and p in collider else IL.geom.volume_samples(cand[p], 20000, seed=0)[0]
-        sides[o] = IL.Side(o, ev, intr, comps, runs, sil=(sil or {}).get(o), gen=(gen or {}).get(o),
-                           notches=(notches or {}).get(o, []), notches_sil=(notches or {}).get(o, []),
-                           partner_collider=pc, fh=IL.FrameHits(b, o, ev.grid))
+        sides[o] = IL.make_side(b, o, p, ev, intr, cf, sources=src[o], identity='public', partner_collider=pc)
     recs = IL.decide_pair(b, sides['A'], sides['B'])
     return recs, sides
+
+
+def ref_poses_of(poses):
+    """The independent reference pose of validate step (1) in the synthetic tests: world_T_obj from the poses that
+    made the export (what a reader of the reference would return)."""
+    def fn(f):
+        return {o: poses['world_T_cam'][f].astype(np.float64) @ poses[f'cam_T_{o}'][f].astype(np.float64)
+                for o in ('A', 'B')}
+    return fn
 
 
 def sil_votes(ev, true_mesh, see_through=True):
@@ -165,7 +182,9 @@ def sil_votes(ev, true_mesh, see_through=True):
 def summary(recs):
     return {r['target']: dict(decision=r['decision'], tier=r['tier'], flags=r['flags'], mix=r.get('class_mix'),
                               iw=r.get('image_width_px'), split=(r.get('split') or {}).get('through_column'),
-                              w_sim=r['widths']['w_sim_mm'], off=r.get('offset'))
+                              w_sim=r['widths']['w_sim_mm'], w_sub=r['widths']['w_sub_mm'], off=r.get('offset'),
+                              submitted=r.get('submitted'), budget=r.get('budget'),
+                              a=(r.get('sources') or {}).get('a'), b=(r.get('sources') or {}).get('b'))
             for r in recs if r['voxels'] >= 10}
 
 
@@ -210,9 +229,10 @@ class Silhouette(unittest.TestCase):
 
     @unittest.expectedFailure
     def test_s1_t6_resolution_limit(self):
-        """KNOWN MISS of P26 (logged in build/I.md, PREREG F-I2): at t = 6 mm the 4 mm motion region overhangs the
+        """KNOWN MISS of P26 (PREREG F-I2.14, corrected in F-I3.11): at t = 6 mm the 4 mm motion region overhangs the
         slot by one voxel column of seen wood (32 of 96 voxels class O > 25 %) -> PUSH, not the pre-registered CARVE.
-        A resolution limit of the 4 mm evidence, not a code bug; the real boards are 12-19 mm thick [M]."""
+        A resolution limit of the 4 mm evidence. NOT a corner case: the ep24 boards' slots look about 6-8 mm wide in
+        the RGB video [E, by eye]; 12-19 mm was the stereo evidence thickness, not the boards' (F-I3.11)."""
         s = self._s1(6)
         RESULTS['s1_t6'] = s
         for o in ('A', 'B'):
@@ -268,17 +288,56 @@ class Offset(unittest.TestCase):
         self.assertIn(s['B']['decision'], ('CARVE', 'OFFSET'), f'o1 B: {s["B"]}')
 
     def test_o2_along_d(self):
+        """o2a (pre-registered in F-I1.12): offset 11 mm ALONG d with a testable silhouette that sees wood everywhere:
+        PUSH both, no OFFSET."""
         t = 0.010
         b, _ = cross_episode(t, offset=(0, -0.011, 0))
         cand = dict(A=plate(t), B=plate(t))
         evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
         sil = dict(A=sil_votes(evA, plate(t, 'top'), see_through=False), B=sil_votes(evB, plate(t), see_through=False))
-        from gmg import silhouette as SI
         recs, _ = run_pair(b, cand, sil=sil, notches=dict(A=[], B=[]))
         s = summary(recs)
         RESULTS['o2'] = s
         for o in ('A', 'B'):
             self.assertEqual(s[o]['decision'], 'PUSH', f'o2 {o}: {s[o]}')
+
+    def test_o2b_along_d_see_through(self):
+        """o2b (pre-registered in F-I3.6 before this run): offset 11 mm ALONG d at all frames, silhouettes that see
+        the TRUE slots and their notches. A shift along d is never OFFSET; the true-slot voxels are SIL and are carved,
+        the overshoot past the slot end is class O and is never carved (simulator AND submitted solid, F-I3.2): it goes
+        to the push list (o_residual_push). Expected: both plates CARVE (no OFFSET), every carved sub-voxel within one
+        4 mm voxel of the true slot (A: y >= -4 mm; B: y <= +4 mm in its frame), flag o_residual_push."""
+        t = 0.010
+        b, _ = cross_episode(t, offset=(0, -0.011, 0))
+        cand = dict(A=plate(t), B=plate(t))
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
+        from gmg import silhouette as SI
+        N = dict(A=SI.notches(sil['A']['nmv'], sil['A']['nmf'], evA), B=SI.notches(sil['B']['nmv'], sil['B']['nmf'], evB))
+        recs, sides = run_pair(b, cand, sil=sil, notches=N)
+        s = summary(recs)
+        ext = {}
+        for r in recs:
+            if r['voxels'] < 10:
+                continue
+            for key in ('_sim_solid', '_sub_solid'):
+                if key in r and len(r[key]['sub_lin']):
+                    C = sides[r['target']].ev.sgrid.centres(r[key]['sub_lin'])
+                    ext[f'{r["target"]}{key}'] = [round(float(C[:, 1].min()) * 1e3, 1), round(float(C[:, 1].max()) * 1e3, 1)]
+        RESULTS['o2b'] = dict(summary=s, y_extent_mm=ext)
+        for o in ('A', 'B'):
+            self.assertNotEqual(s[o]['decision'], 'OFFSET', f'o2b {o}: {s[o]}')
+            self.assertEqual(s[o]['decision'], 'CARVE', f'o2b {o}: {s[o]}')
+        # A's slot end is overshot (class O on its carve side): residual push. B's overshoot lies on the far side of
+        # its split plane (A's half of the cross), so B has no class O to push. F-I3.6 first said "both plates";
+        # corrected after the first run (logged in F-I3.6), the rule is unchanged.
+        self.assertIn('o_residual_push', s['A']['flags'], f'o2b A: {s["A"]}')
+        self.assertGreater(s['A']['mix']['O'], 0, f'o2b A: {s["A"]}')
+        for k, (lo, hi) in ext.items():
+            if k.startswith('A'):
+                self.assertGreaterEqual(lo, -4.0 - 1e-6, f'o2b {k}: carve reaches y = {lo} mm past the slot end')
+            else:
+                self.assertLessEqual(hi, 4.0 + 1e-6, f'o2b {k}: carve reaches y = {hi} mm past the slot end')
 
 
 class Sources(unittest.TestCase):
@@ -343,7 +402,7 @@ class Partner(unittest.TestCase):
 
 
 class Controls(unittest.TestCase):
-    def _two(self, pose_fn, n_frames, mesh_a, mesh_b, contact):
+    def _two(self, pose_fn, n_frames, mesh_a, mesh_b, contact, sides=False):
         T = n_frames
         rng = np.random.default_rng(3)
         cam = look([0, -0.3, 0.4])
@@ -359,8 +418,8 @@ class Controls(unittest.TestCase):
                     good={'A': [True] * T, 'B': [True] * T}, sanity={'A': dict(flags=[]), 'B': dict(flags=[])},
                     table=None, rest={}, tier='SYNTH')
         b = Bundle(meta, obs, poses)
-        recs, _ = run_pair(b, dict(A=mesh_a, B=mesh_b))
-        return recs
+        recs, sd = run_pair(b, dict(A=mesh_a, B=mesh_b))
+        return (recs, sd) if sides else recs
 
     def test_n2_resting_pose_error(self):
         """A box resting 6 mm inside an observed face for 40 frames (no motion): PUSH or IGNORE, never CARVE."""
@@ -375,15 +434,21 @@ class Controls(unittest.TestCase):
         self.assertFalse(any(v == 'CARVE' for v in s.values()), s)
 
     def test_n4_short_contact(self):
+        """n4: a 3-frame contact 8 mm deep: the stage sees the intrusion (>= 3 voxels entered in those frames), its run
+        is TRANSIENT, no persistent region forms, nothing is carved (IGNORE by construction). Asserted on the runs, so
+        the test cannot pass vacuously (round-1 review B7)."""
         A = trimesh.creation.box(extents=[0.15, 0.15, 0.03])
         B = trimesh.creation.box(extents=[0.08, 0.08, 0.04])
 
         def pose(f):
             T = np.eye(4); T[2, 3] = 0.035 - (0.008 if 10 <= f < 13 else -0.05); return T
-        recs = self._two(pose, 30, A, B, [10, 11, 12])
-        s = {r['target']: r['decision'] for r in recs}
-        RESULTS['n4'] = s
-        self.assertTrue(all(v == 'IGNORE' for v in s.values()), s)
+        recs, sides = self._two(pose, 30, A, B, [10, 11, 12], sides=True)
+        runs = {o: [r.kind for r in sides[o].runs] for o in sides}
+        entered = {o: [sides[o].intr.count(f) for f in (10, 11, 12)] for o in sides}
+        RESULTS['n4'] = dict(runs=runs, entered=entered, decisions={r['target']: r['decision'] for r in recs})
+        self.assertTrue(any(max(v) >= 3 for v in entered.values()), entered)
+        self.assertTrue(all(k == 'TRANSIENT' for v in runs.values() for k in v) and any(runs.values()), runs)
+        self.assertFalse(any(r['decision'] in ('CARVE', 'OFFSET') for r in recs), RESULTS['n4'])
 
     def test_n5_random_intrusions(self):
         A = trimesh.creation.box(extents=[0.15, 0.15, 0.03])
@@ -496,32 +561,323 @@ class Pieces(unittest.TestCase):
         self.assertGreater(tr2['gravity'], 0.040)
 
 
-class Contract(unittest.TestCase):
-    def test_export_roundtrip(self):
-        """write_export -> validate -> carve_from_intrusions on the synthetic cross (t = 10 mm): same decisions as the
-        tracks path; a geom-frame (shifted) export is refused by the fiducial check."""
-        import tempfile
+class Agreement(unittest.TestCase):
+    def test_blob_generator_disagrees(self):
+        """B5 (round-1 review): a generator 'concavity' covering the whole candidate (no slot at all) must not agree
+        with the motion region (F-I3.5 two-way agreement): (a) present and disagreeing, nothing submitted."""
+        t = 0.010
+        b, _ = cross_episode(t)
+        cand = dict(A=plate(t), B=plate(t))
+        gen = {o: dict(C_a=IL.Evidence(b, o, cand[o], sub=False).occ.copy(), survived=True, side_resolved=False)
+               for o in ('A', 'B')}
+        recs, _ = run_pair(b, cand, gen=gen)
+        s = summary(recs)
+        RESULTS['blob_gen'] = {o: dict(decision=v['decision'], tier=v['tier'], submitted=v['submitted'], a=v['a'])
+                               for o, v in s.items()}
+        for o in ('A', 'B'):
+            self.assertTrue(s[o]['a']['present'] and not s[o]['a']['agree'], s[o]['a'])
+            self.assertFalse(s[o]['submitted'], s[o])
+            self.assertNotIn(s[o]['tier'], ('T2', 'T3', 'T2o'), s[o])
+
+    def test_offset_has_budget(self):
+        """B4b: an OFFSET carve (N + t) is measured by budget (iv) and the topology test like any carve: a 1 cm track
+        offset at the assembled frames only, silhouette seeing the true slots."""
         t = 0.010
         b, world_B = cross_episode(t)
+        pre, n_ins = 10, 60
+        P = b.poses
+        wB = world_B.copy()
+        for f in range(pre + n_ins, len(wB)):
+            wB[f, :3, 3] += np.array([0.010, 0, 0])
+        P['cam_T_B'] = np.einsum('fij,fjk->fik', P['cam_T_A'].astype(np.float64), wB).astype(np.float32)
+        cand = dict(A=plate(t), B=plate(t))
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
+        from gmg import silhouette as SI
+        N = dict(A=SI.notches(sil['A']['nmv'], sil['A']['nmf'], evA), B=SI.notches(sil['B']['nmv'], sil['B']['nmf'], evB))
+        recs, _ = run_pair(b, cand, sil=sil, notches=N)
+        s = summary(recs)
+        RESULTS['offset_budget'] = {o: dict(decision=v['decision'], off=v['off'], budget=v['budget']) for o, v in s.items()}
+        for r in recs:
+            if r.get('offset') and r['offset'].get('holds') is not None and r['decision'] == 'OFFSET':
+                self.assertIsNotNone(r.get('budget'), r)
+                self.assertTrue(r['budget']['ok'] and r['budget']['applies'], r['budget'])
+            if r.get('offset') and 'budget' in r['offset']:
+                self.assertIn('vol_share', r['offset']['budget'])
+
+
+def _sim_r0(b, cand, td, name='r0'):
+    sim = os.path.join(td, name)
+    built = {o: SP.build(cand[o], IL.Evidence(b, o, cand[o], sub=False)) for o in ('A', 'B')}
+    st = dict(round=0, holdout={}, carved_cm3={o: 0.0 for o in ('A', 'B')},
+              solid_ref_cm3={o: IL.Evidence(b, o, cand[o]).solid_cm3() for o in ('A', 'B')},
+              default_collider_cm3={o: SP.hull_volume(built[o]['default']) * 1e6 for o in ('A', 'B')})
+    SP.write_round(sim, 999, 'public', 0, {o: dict(visual=cand[o], hulls=built[o]['default'], carve={})
+                                           for o in ('A', 'B')}, dict(source='synthetic'), 'test', interlock=st)
+    return sim, built
+
+
+_RUN = '/x/runs/20261031-synthetic-0000000'
+SYN_REF = dict(path=f'{_RUN}/refs/ep999/ref.parquet', sha256='1' * 64,
+               provenance=dict(chain=[dict(tool='synthetic reference writer (tests)', commit='0000000',
+                                           run_id='20261031-synthetic-0000000',
+                                           artifact=f'{_RUN}/refs/ep999/ref.parquet', sha256='1' * 64,
+                                           inputs={f'{_RUN}/perc/ep999/poses.npz': '2' * 64})]))
+
+
+class Contract(unittest.TestCase):
+    def test_export_same_rule(self):
+        """B2 (round-1 review): write_export -> validate -> carve_from_intrusions on the synthetic cross takes the SAME
+        decisions and tiers as the tracks path when both get the same sources (s1 see-through silhouettes, t = 10 and
+        18 mm; and no silhouette, t = 10 mm)."""
+        import tempfile
+        res = {}
+        for t_mm, use_sil in ((10, True), (18, True), (10, False)):
+            t = t_mm * 1e-3
+            b, _ = cross_episode(t)
+            b.meta['ep'] = 999
+            cand = dict(A=plate(t), B=plate(t))
+            sil = None
+            if use_sil:
+                evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+                sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
+            recs_t, _ = run_pair(b, cand, sil=sil)
+            st = summary(recs_t)
+            with tempfile.TemporaryDirectory(dir=guard.SCRATCH_DEFAULT) as td:
+                sim, _ = _sim_r0(b, cand, td)
+                path = os.path.join(td, 'intr.npz')
+                IL.write_export(path, b, sim, ('A', 'B'), reference=SYN_REF)
+                r = IL.carve_from_intrusions(('A', 'B'), path, b, sim, os.path.join(td, 'r1'), 1, physics_fn=None,
+                                             sources=sources_of(sil), ref_poses=ref_poses_of(b.poses))
+            se = {d['target']: dict(decision=d['decision'], tier=d['tier'], mix=d.get('class_mix'),
+                                    w_sim=d['widths']['w_sim_mm'], iw=d.get('image_width_px'))
+                  for d in r['decisions'] if d['voxels'] >= 10}
+            key = f't{t_mm}_{"sil" if use_sil else "nosil"}'
+            res[key] = dict(tracks={o: dict(decision=v['decision'], tier=v['tier'], mix=v['mix'], w_sim=v['w_sim'],
+                                            iw=v['iw']) for o, v in st.items()},
+                            export=se, refused=r['validation'].get('refused'))
+            self.assertFalse(r['validation'].get('refused'), r['validation'])
+            for o in ('A', 'B'):
+                self.assertIn(o, se, res[key])
+                self.assertEqual((se[o]['decision'], se[o]['tier']), (st[o]['decision'], st[o]['tier']), res[key])
+        RESULTS['contract_same_rule'] = res
+
+    def test_validator_their_format(self):
+        """B1 (round-1 review): the Embodiment tool's header (meshes by basename, `frames`, per-step provenance inputs,
+        fiducials_file) validates against an independent reference pose; malformed or wrong exports are refused,
+        never crash: shifted fiducials (3 mm), a 15 mm pts_local shift, frames out of range, no frame count, no
+        independent pose, ground truth or a dataset parquet in the chain, no perception poses.npz."""
+        import tempfile
+        t = 0.010
+        b, _ = cross_episode(t)
+        cand = dict(A=plate(t), B=plate(t))
+        out = {}
+        with tempfile.TemporaryDirectory(dir=guard.SCRATCH_DEFAULT) as td:
+            sim, _ = _sim_r0(b, cand, td)
+            path = os.path.join(td, 'intr.npz')
+            chain = dict(source='--prov reconstructed.json', complete=False, chain=[
+                dict(tool='pipeline/mkref.py (reconstructed)', commit='abc', run_id='20261030-test-0000000',
+                     artifact='/x/runs/20261030-test-0000000/refs/ep24/processed/sequence_id=t3_ep024/r.parquet',
+                     sha256='1' * 64, inputs={'/x/runs/20261030-test-0000000/perc/ep24/poses.npz': '2' * 64,
+                                              '/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb': '3' * 64})])
+            ref = dict(path='/x/runs/20261030-test-0000000/refs/ep24/r.parquet', sha256='1' * 64, provenance=chain)
+            IL.write_export(path, b, sim, ('A', 'B'), reference=ref)
+            rp = ref_poses_of(b.poses)
+            ok, rep = IL.validate(path, sim, ref_poses=rp)
+            out['their_format'] = dict(ok=ok, refused=rep['refused'], flags=rep['flags'], pose=rep.get('reference_pose'))
+            self.assertTrue(ok, rep)
+            self.assertIn('prov_reconstructed', rep['flags'])
+            self.assertIn('ref_sim_assets_library', rep['flags'])
+            ok0, rep0 = IL.validate(path, sim)
+            out['no_independent_pose'] = dict(ok=ok0, refused=rep0['refused'])
+            self.assertFalse(ok0)
+            hp = path[:-4] + '.json'
+            H = json.load(open(hp))
+            z0 = dict(np.load(path))
+
+            def variant(name, hdr=None, z=None, expect=False):
+                json.dump(hdr or H, open(hp, 'w'), default=IL._jdefault)
+                np.savez_compressed(path, **(z or z0))
+                try:
+                    ok_, rep_ = IL.validate(path, sim, ref_poses=rp)
+                except Exception as e:                               # a crash is a test failure
+                    self.fail(f'{name}: validate raised {type(e).__name__}: {e}')
+                out[name] = dict(ok=ok_, refused=rep_['refused'][:3])
+                self.assertEqual(ok_, expect, f'{name}: {rep_}')
+            H1 = dict(H); H1['meshes'] = {o: {f'{o}/{k}': v for k, v in m.items()} for o, m in H['meshes'].items()}
+            variant('meshes_with_folder_prefix', H1, expect=True)
+            H2 = dict(H); H2.pop('frames')
+            variant('no_frame_count', H2)
+            z2 = dict(z0); z2['frame'] = z0['frame'] + 100000
+            variant('frames_out_of_range', z=z2)
+            z3 = dict(z0); z3['pts_local'] = z0['pts_local'] + np.float32([0.015, 0, 0])
+            variant('pts_local_shift_15mm', z=z3)
+            H4 = json.loads(json.dumps(H)); H4['fiducials_world'] = {o: (np.asarray(v) + 0.003).tolist()
+                                                                     for o, v in H['fiducials_world'].items()}
+            variant('fiducials_world_shift_3mm', H4)
+            for name, inp in (('chain_mocap', '/x/mocap/ep24/poses.npz'),
+                              ('chain_dataset_parquet', '/data/hfds/track_3/public/data/chunk-000/episode_000024.parquet'),
+                              ('chain_library_poses', '/home/user/v2d-track3/meshes/library_v3/poses.npz'),
+                              ('chain_scan', '/x/scan/wooden_piece_1.ply')):
+                H5 = json.loads(json.dumps(H))
+                H5['reference']['provenance']['chain'][0]['inputs'][inp] = '4' * 64
+                variant(name, H5)
+            H6 = json.loads(json.dumps(H))
+            H6['reference']['provenance']['chain'][0]['inputs'] = {'/x/a.npz': '5' * 64}
+            variant('chain_without_poses', H6)
+            json.dump(H, open(hp, 'w'))
+            np.savez_compressed(path, **z0)
+        RESULTS['contract_validator'] = out
+
+    def test_chain_tracks_pose(self):
+        """F-I3.10 source (ii): our tracks as the independent pose when their sha256 is the chain's poses.npz; the
+        reference frame differs from the tracks' world by a rigid transform and per-object vertical shifts (mkref)."""
+        import tempfile
+        t = 0.010
+        b, _ = cross_episode(t)
         cand = dict(A=plate(t), B=plate(t))
         with tempfile.TemporaryDirectory(dir=guard.SCRATCH_DEFAULT) as td:
-            sim = os.path.join(td, 'r0')
-            built = {o: SP.build(cand[o], IL.Evidence(b, o, cand[o], sub=False)) for o in ('A', 'B')}
-            SP.write_round(sim, 999, 'public', 0, {o: dict(visual=cand[o], hulls=built[o]['default'], carve={})
-                                                   for o in ('A', 'B')}, dict(source='synthetic'), 'test')
+            sim, _ = _sim_r0(b, cand, td)
+            # the reference frame: a table frame (rotation + translation) and per-object z snaps of 3 / -2 mm
+            Tt = np.eye(4); Tt[:3, :3] = Rot.from_euler('xyz', [10, -5, 30], degrees=True).as_matrix()
+            Tt[:3, 3] = [0.1, -0.2, 0.05]
+            zs = dict(A=0.003, B=-0.002)
+            P = b.poses
+            ref = {k: v.copy() for k, v in P.items()}
+            for o in ('A', 'B'):
+                W = np.einsum('fij,fjk->fik', P['world_T_cam'].astype(np.float64), P[f'cam_T_{o}'].astype(np.float64))
+                O = np.einsum('ij,fjk->fik', Tt, W); O[:, 2, 3] += zs[o]
+                ref[f'cam_T_{o}'] = np.einsum('fij,fjk->fik', np.linalg.inv(P['world_T_cam'].astype(np.float64)),
+                                              O).astype(np.float64)
+            chain = dict(chain=[dict(tool='mkref', commit='c', run_id='r', artifact='/x/r.parquet', sha256='1' * 64,
+                                     inputs={'/x/perc/ep24/poses.npz': 'f' * 64})])
             path = os.path.join(td, 'intr.npz')
-            IL.write_export(path, b, sim, ('A', 'B'), reference=dict(path='synthetic', sha256='0' * 64,
-                                                                    provenance=dict(chain=['synthetic test'])))
-            ok, rep = IL.validate(path, sim, synthetic_ok=True)
-            RESULTS['contract_valid'] = dict(ok=ok, reasons=rep.get('refused'))
+            IL.write_export(path, b, sim, ('A', 'B'), poses=ref, reference=dict(path='/x/r.parquet', sha256='1' * 64,
+                                                                               provenance=chain))
+            tracks = dict(path='/x/perc/ep24/poses.npz', sha256='f' * 64, poses=P)
+            ok, rep = IL.validate(path, sim, tracks=tracks)
+            res = dict(ok=ok, pose=rep.get('reference_pose'), refused=rep['refused'])
             self.assertTrue(ok, rep)
-            bad = os.path.join(td, 'bad.npz')
-            IL.write_export(bad, b, sim, ('A', 'B'), reference=dict(path='synthetic', sha256='0' * 64,
-                                                                   provenance=dict(chain=['synthetic test'])),
-                            shift_fiducials=0.003)
-            ok2, rep2 = IL.validate(bad, sim, synthetic_ok=True)
-            RESULTS['contract_shifted'] = dict(ok=ok2, reasons=rep2.get('refused'))
+            tr2 = dict(tracks, sha256='e' * 64)
+            ok2, rep2 = IL.validate(path, sim, tracks=tr2)
+            res['other_tracks'] = dict(ok=ok2, refused=rep2['refused'][:2])
             self.assertFalse(ok2)
+            # a geom-frame error: object B's samples and fiducials re-centred by 3 mm in its own frame along B's y
+            # (horizontal here; the fiducial fit alone absorbs most of it, the rel_T check at f_star sees it at full
+            # size). Known blind spot (F-I3.10): a re-centring along the reference's vertical at f_star is absorbed by
+            # the per-object vertical shift (B's x is vertical in this episode); rel_T over all rows is reported.
+            ref2 = {k: v.copy() for k, v in ref.items()}
+            C = np.eye(4); C[:3, 3] = [0.0, 0.003, 0.0]
+            ref2['cam_T_B'] = np.einsum('fij,jk->fik', ref['cam_T_B'], C)
+            path2 = os.path.join(td, 'intr2.npz')
+            IL.write_export(path2, b, sim, ('A', 'B'), poses=ref2, reference=dict(path='/x/r.parquet', sha256='1' * 64,
+                                                                                 provenance=chain))
+            ok3, rep3 = IL.validate(path2, sim, tracks=tracks)
+            res['recentred_3mm'] = dict(ok=ok3, pose=rep3.get('reference_pose'))
+            self.assertFalse(ok3)
+            self.assertGreater(max(rep3['reference_pose']['rel_T_f_star_mm'].values()), 2.0, rep3['reference_pose'])
+        RESULTS['contract_chain_tracks'] = res
+
+
+class Iteration(unittest.TestCase):
+    def test_two_rounds(self):
+        """B3 (round-1 review): round 1 from the r0 export carves the cross (a stub physics_fn delivers the carved
+        pieces); the r1 export validates; round_accept keeps the check frames fixed in r1, computes A1 on the
+        persistent intrusion at engaged check frames, and does not accept without the external settle (A3 pending);
+        the cumulative budget of round 2 counts round 1's carve against the round-0 solid."""
+        import tempfile
+        t = 0.010
+        b, _ = cross_episode(t)
+        b.meta['ep'] = 999
+        cand = dict(A=plate(t), B=plate(t))
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
+        rp = ref_poses_of(b.poses)
+        out = {}
+        with tempfile.TemporaryDirectory(dir=guard.SCRATCH_DEFAULT) as td:
+            sim0, _ = _sim_r0(b, cand, td)
+            e0 = os.path.join(td, 'e0.npz')
+            IL.write_export(e0, b, sim0, ('A', 'B'), reference=SYN_REF)
+
+            def stub(b_, o, p, carved, default, recs, rels=None, run=None):
+                return dict(deliver_carved=True, P2_P7_pass=True, stub=True)
+            r1 = IL.carve_from_intrusions(('A', 'B'), e0, b, sim0, os.path.join(td, 'r1'), 1, physics_fn=stub,
+                                          sources=sources_of(sil), ref_poses=rp)
+            out['r1'] = {d['target']: dict(decision=d['decision'], tier=d['tier'], budget=d.get('budget'))
+                         for d in r1['decisions'] if d['voxels'] >= 10}
+            self.assertTrue(any(d['decision'] == 'CARVE' for d in r1['decisions']), out['r1'])
+            man1 = json.load(open(os.path.join(td, 'r1', 'manifest.json')))
+            st1 = man1['interlock']
+            out['state1'] = dict(carved_cm3=st1['carved_cm3'], n_check={k: len(v) for k, v in st1['holdout'].items()})
+            self.assertTrue(all(v > 0 for v in st1['carved_cm3'].values()), st1['carved_cm3'])
+            e1 = os.path.join(td, 'e1.npz')
+            IL.write_export(e1, b, os.path.join(td, 'r1'), ('A', 'B'), reference=SYN_REF)
+            acc = IL.round_accept(e0, e1, sim0, os.path.join(td, 'r1'), ref_poses=rp)
+            out['accept_no_settle'] = {k: acc.get(k) for k in ('valid', 'A1', 'A1_detail', 'A2', 'A3', 'A4',
+                                                               'A4_detail', 'accept')}
+            self.assertEqual(acc['valid'], [True, True], acc)
+            self.assertTrue(acc['A1'], acc.get('A1_detail'))
+            self.assertIsNone(acc['A3'])
+            self.assertFalse(acc['accept'])
+            acc2 = IL.round_accept(e0, e1, sim0, os.path.join(td, 'r1'), ref_poses=rp,
+                                   settle={'A|B': dict(pass_=True, source='test stub')})
+            out['accept_with_settle'] = {k: acc2.get(k) for k in ('A1', 'A3', 'A4', 'accept')}
+            self.assertTrue(acc2['A3'] and acc2['A4'] and acc2['accept'], acc2)
+            # an invalid export: A1 is not computed and the round is not accepted
+            z = dict(np.load(e1)); z['pts_local'] = z['pts_local'] + np.float32([0.015, 0, 0])
+            bad = os.path.join(td, 'bad.npz'); np.savez_compressed(bad, **z)
+            import shutil
+            shutil.copy(e1[:-4] + '.json', bad[:-4] + '.json')
+            acc3 = IL.round_accept(e0, bad, sim0, os.path.join(td, 'r1'), ref_poses=rp, settle={'A|B': dict(pass_=True)})
+            out['accept_invalid'] = {k: acc3.get(k) for k in ('valid', 'A1', 'accept')}
+            self.assertIsNone(acc3['A1']); self.assertFalse(acc3['accept'])
+            # round 2: the budget's running total starts at round 1's carve
+            r2 = IL.carve_from_intrusions(('A', 'B'), e1, b, os.path.join(td, 'r1'), os.path.join(td, 'r2'), 2,
+                                          physics_fn=None, sources=sources_of(sil), ref_poses=rp)
+            b2 = [d.get('budget') for d in r2['decisions'] if d.get('budget')]
+            out['r2'] = dict(decisions={d['target']: d['decision'] for d in r2['decisions'] if d['voxels'] >= 3},
+                             budgets=b2)
+            for bb in b2:
+                self.assertGreater(bb['carved_before_cm3'], 0.0, bb)
+        RESULTS['iteration'] = out
+
+
+class PiecesGate(unittest.TestCase):
+    def test_container_gate(self):
+        """B6 (round-1 review): pieces of an open cup that span its cavity hold far more than 0.3 cm3 of keep-out per
+        hull; the gate marks the delivery do-not-use and load_sim refuses it."""
+        import tempfile
+        cup = trimesh.boolean.difference([trimesh.creation.cylinder(0.045, 0.09, sections=48),
+                                          trimesh.creation.cylinder(0.040, 0.09, sections=48).apply_translation(
+                                              [0, 0, 0.006])], engine='manifold')
+        rng = np.random.default_rng(0)
+        obs = dict(A=evidence_obs(cup, rng, 4))
+        meta = dict(objects=['A'], T=4, stride=1, K=[[FX, 0, 800], [0, FX, 500], [0, 0, 1]], sigma_mm=dict(A=1.0),
+                    contact={}, good={'A': [True] * 4}, sanity={'A': dict(flags=[])}, table=None, rest={}, tier='SYNTH')
+        poses = dict(world_T_cam=np.tile(np.eye(4), (4, 1, 1)).astype(np.float32),
+                     cam_T_A=np.tile(np.eye(4), (4, 1, 1)).astype(np.float32))
+        b = Bundle(meta, obs, poses)
+        ev = IL.Evidence(b, 'A', cup, sub=False)
+        built = SP.build(cup, ev)
+        filled = [np.asarray(trimesh.creation.cylinder(0.045, 0.09, sections=24).vertices)]   # one hull over the cavity
+        gate = SP.pieces_gate({'gmg': filled}, *built['keep'])
+        gate2 = SP.pieces_gate({'gmg': built['default']}, *built['keep'])
+        RESULTS['pieces_gate'] = dict(filled={k: v for k, v in gate.items() if k != 'hulls'},
+                                      ours={k: v for k, v in gate2.items() if k != 'hulls'})
+        self.assertIsNotNone(gate['do_not_use'], gate['report'])
+        with tempfile.TemporaryDirectory(dir=guard.SCRATCH_DEFAULT) as td:
+            sim = os.path.join(td, 'r0')
+            SP.write_round(sim, 998, 'public', 0, {'A': dict(visual=cup, hulls=filled, carve={}, gate=gate)},
+                           dict(source='synthetic'), 'test')
+            with self.assertRaises(ValueError):
+                IL.load_sim(sim)
+            self.assertTrue(os.path.exists(os.path.join(sim, 'DO_NOT_USE.json')))
+            man = json.load(open(os.path.join(sim, 'manifest.json')))
+            props = json.load(open(os.path.join(sim, 'props_gmg.json')))
+            self.assertIn('physics', props['A'])
+            self.assertEqual(len(props['A']['physics']['com_m']), 3)
+            self.assertIn('piece_00.obj', man['objects']['A']['files'])
+            self.assertEqual(len(man['objects']['A']['fiducials']), 8)
 
 
 def tearDownModule():

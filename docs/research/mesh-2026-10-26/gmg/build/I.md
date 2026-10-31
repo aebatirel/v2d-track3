@@ -255,3 +255,57 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - (ii) Lathe-style piece sets need the lowest wall band to reach the top of the base piece, with no gap ring. Add a
   piece-union gap check: no empty band between the pieces inside the solid.
 - (iii) Wall bands must be split finely enough around the axis that no piece's hull bridges the cavity.
+
+## Round-1 fix (verifier review of the BI1/BI2 build; agent of the build workflow, started 31 Oct 13:52 UTC)
+- 13:52 read I.md, the review (B1-B8 + non-blocking), interlock.py, the driver, tests, simpieces, their
+  `tools/intrusion.py` and `pipeline/phys_fit.py` at origin/claude/determined-wright-3joens `48cda9f`, the verifier's
+  probes (`<scratch>/verify_I/adv.py`, logs, `zoom_b2.png`: slot about 6-8 mm [E], looked at again).
+- 14:00-14:30 code (rule changes = PREREG F-I3.1-F-I3.11, written 14:40):
+  B1 validate rewritten for their header (basename or `<obj>/` mesh keys + piece-set equality, `frames` or `T`,
+  `fiducials_file`, never raises: refuses), provenance per-step inputs + `prov_reconstructed` + GT / dataset-parquet /
+  library-as-motion refusals, the independent f_star pose from `ref_poses` (reader hook for B10) or our tracks when
+  their sha256 is the chain's `poses.npz` (frame-free fit: common rigid frame + per-object vertical shift on the
+  fiducials, AND rel_T at f_star); props_gmg.json in phys_fit's `{obj: {physics: ...}}` layout; manifest gmg-sim/2
+  `objects.<obj>.{files, fiducials}` + code identity (sha256 of the code files, dirty flag); fiducial definition
+  documented. B2 `make_side` (one constructor for both paths), sources saved with r0 (`sources/<obj>.npz`) and loaded
+  by carve_from_intrusions, export partner samples = partner pieces lattice (n axis, push). B3 cumulative budget vs
+  the round-0 solid (manifest `interlock` state), fixed hold-out (`engaged_runs(holdout=)`), round_accept rewritten
+  (A1 persistent-at-engaged-check + other-pair/phase gains, nothing computed on an invalid export, A3 pending without
+  the external settle, A4 from the folder), round_k checked. B4 submitted solid excludes class O; OFFSET N + t has
+  budget (iv) + topology before the pair level. B5 two-way agreement (whole C_a components, reverse share >= 50 %),
+  also (a, b) and OFFSET. B6 keep-out gate (ours, else CoACD, else do-not-use; `load_sim` refuses) and the three old
+  r0 folders marked `DO_NOT_USE.json` (boards 0.72 / 2.0, cups 945 / 533, pot 1250 cm3 per hull > 0.3). B7 o2 split
+  (o2a as pre-registered, o2b new pre-registered outcome), n4 asserted on its runs, contract test through
+  carve_from_intrusions, new tests (blob generator, OFFSET budget, validator variants, chain-tracks pose incl. a 3 mm
+  re-centring, two-round iteration, pieces gate). B8 F-I2.14 justification, INTERLOCK 18.1 and the test docstring
+  corrected (F-I3.11). `simphys.pair_physics` (moved from the driver) = `interlock.default_physics()`.
+- 14:14 tests batch 1 [M] (650 s, load 5-9): validator on their header format OK (flags prov_reconstructed,
+  ref_sim_assets_library); refusals: no independent pose, no frame count, frames out of range, 15 mm pts_local shift
+  (containment partner 0.0), 3 mm fiducial shift (5.2 mm), mocap / dataset parquet / library_v3 poses / scan in the
+  chain, chain without poses.npz; meshes with `<obj>/` prefix accepted. Chain-tracks pose: pass with a table-frame
+  transform and 2.5 / -2.5 mm vertical shifts; other tracks refused; a 6 mm re-centring gave only 0.63 mm fiducial
+  residual (the fit absorbs it) -> added the rel_T-at-f_star check, test now uses 3 mm. Blob generator: (a) disagrees
+  (centroid 31.8 mm, axis 89 deg, reverse share 0.03), T1, nothing submitted.
+- 14:27 launched the ep24 eval-semantics re-run with the fixed code (tag r1evalsem, no --diag; writes r0 with sources
+  and the pieces gate): `GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_dev --run <run> --ep 24 --bundle
+  <scratch>/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24 --cands <run>/cand/public/ep24 --pick
+  wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36 --video <scratch>/data/store/ep24_a.mp4 --calib
+  <scratch>/data/calib.json --hands <run>/in/hands24/hands.npz --gen "<4 sam3d board plys>" --proxy-copies 16
+  --identity eval --tag r1evalsem` (run `20261031-i2probe-626ce13`, HEAD e9f4dbd + uncommitted I files; log
+  `drv24_r1evalsem.log`). Test batch 2 (contract same-rule, iteration, pieces gate, o2b, OFFSET budget) running.
+- Their real tool: `build/I/contract_ext.py` (not a gmg process) builds an ep24 reference parquet from OUR tracks in a
+  table frame (stand-in: their perceived ep24 reference is not in this container, no HF token), runs their
+  `intrusion.py` on our new r0, their `phys_fit.py` (max_nfev 3, plumbing) on our `_fit` + `props_gmg.json`, and
+  `intrusion.py --fit`; the gmg side then validates and carves. Runs after the driver writes r0.
+- 14:31 ep24 r1evalsem decisions [M]: identical to BI2 (board 1 PUSH, U 2 / O 65, image width 9.0 px; board 2 PUSH,
+  U 41 / O 77 testable-solid) but (a) now DISAGREES on both boards (two-way agreement, F-I3.5) -> `interlock_disagree`.
+- 14:37 pieces gate on ep24 [M]: ours 0.72 / 2.0 cm3 max keep-out per hull (13 / 21 of 32 over 0.3), CoACD 52.9 /
+  77.3 cm3 (12 of 13 / 15 over) -> neither complies, the new ep24 r0 is do-not-use (F-I3.8 amended with the numbers).
+  The contract test with their tool therefore runs on it with the explicit diagnostic override (flagged).
+- 14:40 test batch 2 [M] (802 s): OFFSET budget OK, pieces gate OK; 4 failures, all test-side: (1) the synthetic
+  SYN_REF chain `['synthetic test']` is refused by carve_from_intrusions / round_accept (they never pass
+  synthetic_ok): tests now use a real chain (tool, run id, a poses.npz input); (2) the re-centring test moved B along
+  its x, which is VERTICAL in this episode: the per-object vertical shift absorbed it (rel_T 0.58 mm) -> the blind
+  spot is now stated in F-I3.10 and the test re-centres along B's y; (3) o2b: A carves SIL voxels only with
+  o_residual_push, B has no class O on its carve side (its overshoot lies past its split plane): my F-I3.6
+  expectation "flag on both" was wrong; corrected and logged in F-I3.6, rule unchanged. Re-run 14:41 (t3.log).

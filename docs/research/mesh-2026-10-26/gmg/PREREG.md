@@ -857,6 +857,114 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     (plate A T3; plate B the known miss above), the export round trip and the fiducial refusal. Not run in BI1
     (open): s2 and the rendered-image silhouette cases.
 
+- **2026-10-31, F-I3: INTERLOCK round-1 fixes (after the verifier's review of the BI1/BI2 build).** Written 13:55-15:30
+  UTC. Still before any gmg scoring round (zero gmg scan scorings exist; no scan number was read for this entry; the
+  only new inputs are the review, synthetic tests, the Embodiment tool's code at `48cda9f` and dev runs without a
+  scan). **No numeric threshold of F-I1.14 changes**; the new definitions reuse existing constants (50 % majority,
+  0.3 cm3, 0.5 mm, 10 %). Where F-I1 / F-I2 and this entry differ, this entry wins. Code: `interlock.py`,
+  `simpieces.py`, `simphys.py`, `tools/interlock_dev.py`, `tests/test_interlock.py`; notes `build/I.md`.
+  - **F-I3.1 One rule on both paths (review B2).** `interlock.make_side` builds a target of a pair the same way on our
+    tracks and on an Embodiment export: engaged runs (with a fixed hold-out, F-I3.3), persistent regions, the identity
+    / track gate of F-I1.2 from our bundle (public: TRACK_FAIL or IDENTITY_SWAP makes (c) absent; eval: IDENTITY_SWAP
+    only flags), sources (a) and (b) and the observed notches. The gmg writes (a), (b) and the notches of every target
+    to `<round>/sources/<obj>.npz` when it delivers round 0, and every later round carries them; `carve_from_intrusions`
+    reads them, so SIL, GAP, OFFSET and the tiers can fire on the export path. On the export path the partner's full
+    samples are the union of its delivered pieces at 2 mm (what the exporter samples): the across axis n (F-I2.2) and
+    the push proxy use them, as the partner evidence is used on the tracks path.
+  - **F-I3.2 The submitted solid obeys class O (review B4a).** ICARVE carves exactly the voxels the rule carved (R_U,
+    SIL, GAP and the unseen orphans) at width w_sub, minus the sub-voxels of every class-O voxel, as the simulator solid
+    does; at T2o the notch N minus its class-O voxels (OBSERVED and not see-through). An empty submitted solid is no
+    submission (flag `submitted_solid_empty`).
+  - **F-I3.3 Iteration as pre-registered (review B3).** (a) The budget (iv) is cumulative over rounds and over the
+    components of one call, against the ROUND-0 solid volume (stored in each round's `manifest.json` `interlock`
+    block with the carved volume so far); a reverted round releases its budget because the next round starts from the
+    previous folder. (b) `round_accept` computes nothing if either export fails `validate` (not accepted). (c) A1 =
+    on the engaged check frames, the persistent intrusion (export samples inside the regions the round carved, on the
+    target's grid) falls by >= 10 % AND no ordered pair gains > 0.1 cm3 of intrusion in either phase (engaged check
+    frames; all other frames), the targeted pair's engaged-check phase excepted. (d) Check frames are fixed when a run
+    is first built and stored in the round (`interlock.holdout`); a later round never builds from them and never
+    recomputes them (`engaged_runs(..., holdout=)`). (e) A3 = the carved pair passed P2-P7 here AND the Embodiment's
+    jitter_check settle (`--k 16`) reports a pass; without that report A3 is pending and the round is not accepted.
+    A4 = cumulative carve <= 10 % of the round-0 solid, >= 90 % of the round-0 default collider volume, topology kept,
+    <= 165 shapes, read from the round folder.
+  - **F-I3.4 OFFSET carves have a budget (review B4b).** N + t at width w_sim is measured by (iv) (cumulative volume,
+    reach <= 0.6 along d, topology of the carved sub-voxels) before the pair level decides; an OFFSET that fails it does
+    not hold (`budget_iv_fail (N + t)`), so its linked partner cannot carve on it.
+  - **F-I3.5 Two-way, notch-shaped (a) (review B5; required before any submitted ICARVE).** The (a) notch near R is
+    the WHOLE connected components of C_a that touch R dilated by 2 voxels (v1 cut C_a down to that neighbourhood, so a
+    concavity covering the whole candidate agreed with any R). Agreement adds the reverse share: >= 50 % of those
+    components must lie in R dilated by one voxel (besides >= 50 % of R in them, centroid <= 10 mm, axes <= 15 deg).
+    The (a, b) test is two-way the same way, and an OFFSET notch N + t must also lie by >= 50 % in R dilated by one
+    voxel. On ep24 the placed SAM 3D concavities (63 x 117 mm blocks) therefore disagree; P27b's pass is not evidence
+    of a slot.
+  - **F-I3.6 Class-O residual and test o2b (review B7; written before o2b's first run).** The class-O voxels of a
+    carved region are never carved; the intrusion left there is a pose error and goes to the push list next to the
+    carve (`PUSH_RESIDUAL`, flag `o_residual_push`). Pre-registered T-I1 o2b: a track offset of 11 mm ALONG d at every
+    frame with silhouettes that see the true slots (and their notches): both plates CARVE, never OFFSET, every carved
+    sub-voxel (simulator and submitted solid) within one 4 mm voxel past the true slot end, flag `o_residual_push`.
+    *Correction after o2b's first run (14:40 UTC; the rule is unchanged, only my expectation was wrong):* the flag
+    is expected on plate A only. The offset pushes the partner past A's slot end (class O on A's carve side), while
+    on B the overshoot lies beyond B's split plane, in A's half of the cross, so B's carve side has no class O
+    (measured: B U 31 / SIL 35 / O 0).
+    o2 (now o2a) keeps its F-I1.12 form (testable silhouette that sees wood: PUSH, no OFFSET). n4 asserts that the
+    3-frame contact is seen (>= 3 voxels entered), its run is TRANSIENT and nothing is carved (no vacuous pass).
+  - **F-I3.7 One-sided region.** When only one target of a pair has a persistent region (e.g. a sparse partner
+    evidence), every record of the pair carries `one_sided_region`.
+  - **F-I3.8 Delivered pieces obey the F-I1.8 keep-out (review B6).** A delivery uses our pieces only if every hull
+    holds <= 0.3 cm3 of keep-out; else CoACD's pieces of the pick checked against the same keep-out; if neither set
+    complies, the round folder is marked do-not-use (`DO_NOT_USE.json`, `manifest.do_not_use`) and `load_sim` refuses
+    it (diagnostics may override explicitly). The 31 Oct r0 folders that violate F-I1.8 (ep2 pot 1250 cm3, ep11 cups
+    945 / 533 cm3, ep24 boards 0.72 / 2.0 cm3 per hull) are marked do-not-use in `build/I/sim_r0/`. Measured on the
+    ep24 re-run (14:37 UTC) [M]: our board pieces 0.72 / 2.0 cm3 max (13 / 21 of 32 hulls over 0.3), CoACD's
+    (threshold 0.05) 52.9 / 77.3 cm3 max (12 of 13 / 15 over): neither complies, so the new ep24 round 0 is
+    do-not-use as well (keep-out weights as in F-I1.8: partner occupancy counts 10 x).
+  - **F-I3.9 Delivery layout (contract).** `props_gmg.json` in the phys_fit layout {obj: {physics: {mass_kg, com_m,
+    inertia_kgm2, ...}}} (the layout of `props_masses_only.json`; mass still the 0.3 kg placeholder, D-I1 open);
+    `manifest.json` schema `gmg-sim/2` with `objects.<obj>.{files, fiducials}` (the Embodiment reader's layout) plus
+    the gmg-sim/1 top-level `files` / `fiducials`, the code identity (sha256 of the interlock code files and a dirty
+    flag) and the `interlock` state. Fiducials (definition in `simpieces.fiducials`): the 8 corners of the oriented
+    bounding box (principal axes of all piece vertices) of the pieces, each coordinate 1 mm inward along each box axis.
+    One pending folder name: `_carved_pending_p1/`.
+  - **F-I3.10 Validator on the Embodiment tool's export (review B1; the orchestrator's 10:55 resolutions).** Header:
+    `meshes` keyed by basename or `<obj>/` path, the set of piece files must equal the round's; `frames` or `T`;
+    `fiducials_file` must equal the round's fiducials. A malformed export (missing arrays, out-of-range frames or
+    indices, sample groups without a frame-pair row, f_star out of range) is refused, never raises. Provenance: the
+    chain's per-step `inputs` and artifacts are read (and a top-level `inputs`); every step names a tool and a run id;
+    a perception `poses.npz` with a sha256 must be in the chain (resolution 3: `poses_world_vo.npz` is not required);
+    a chain given by `--prov`, inferred or marked reconstructed is accepted with flag `prov_reconstructed`; refused:
+    mocap, `/scan`, `_scan`, `_align`, `oracle`, `/loc/`, deny-list globs and sha256, the gmg refused folders, and a
+    dataset episode parquet (by location: `track_3/`, `/hfds/`, `/data/chunk-`, `episode_0`); other `.parquet` files
+    (references) pass; library_v1..v4 files pass only as simulator mesh assets (a mesh suffix or `/content/assets`;
+    flag `ref_sim_assets_library`), never as an object-motion source. **Independent reference pose (resolution 2):**
+    the header's own poses are never used; the pose at f_star comes from (i) an independent reader of the reference
+    (`ref_poses`; hook for B10: a guard role that reads only the `object_body_*` columns of our reference parquets,
+    since guard.py refuses `.parquet` and is build 1's file), or (ii) our tracks (role tracks) when their sha256 is
+    the chain's `poses.npz`: one rigid transform common to all objects plus a per-object vertical shift (mkref's
+    table snap) fitted on the fiducials, then every object's fiducials AND the export's rel_T at f_star (the partner's
+    fiducials mapped by rel_T and by the poses) must agree within 0.5 mm. No independent source: refused. Known blind
+    spot of (ii): a re-centring along the reference's vertical axis at f_star is absorbed by that object's vertical
+    shift; the rel_T deviation over all rows is reported (not enforced: a reference may legitimately change object
+    poses frame by frame).
+  - **F-I3.11 Correction of F-I2.14's justification (review B8).** "The ep24 boards are 13-19 mm thick in our
+    observations" is the stereo EVIDENCE thickness, not the boards'. In cam_a frame 26 of `ep24_a.mp4` board 2's slot
+    is about 10-12 px wide at about 1.6 px/mm along the long axis, roughly 6-8 mm including the visible inner wall
+    [E, by eye, GT-free; looked at again for this entry]. So the t = 6 mm known miss is the regime of ep24 and eval 25,
+    not a corner case. INTERLOCK 18.1's explanation is withdrawn: the motion region is 19-25 mm wide (the partner's
+    evidence thickness plus jitter), 2-4 times the slot, so even a perfect silhouette that sees the true slot would leave
+    most of R class O (> 25 %) and step 2 would still PUSH; the brown table may also hurt the colour model, but it is
+    not why the boards PUSH, and the [H] that a depth-free see-through test would separate the cases is withdrawn.
+    New [H] (not pre-registered, not used): the region must be measured against the partner's PLATE thickness, not
+    its evidence thickness; falsified if, on ep24, the entering partner samples restricted to the partner's own
+    two-sided plate thickness still give a region wider than 2 x the video slot width.
+  - **F-I3.12 Column rule (no pockets under seen faces; written 14:43 UTC after o2b's second run failed its
+    pre-registered bound).** For INSERTION and SLIDE runs a partner that passes through a plate fills the plate's
+    thickness (the carve frame's m axis). A voxel of R whose column along m (same d and n cell, 4 mm raster) holds a
+    class-O voxel of R is not carved, and is kept out of the carve solid's footprint (simulator and submitted): carving
+    it would only open a pocket under a seen face. If nothing carvable remains, the component is PUSHED. Reason [M]:
+    o2b carved A's unseen mid-plane voxels past the slot end, reaching 7.5 mm beyond it (the round-1 review saw the
+    same in o2sil and a half-thickness pocket in offset_asm); with the rule A's carve ends 1.5 mm past the slot end
+    (sub-voxel centre). Cavity carves (SEAT, REST, the n9 cup) are not affected. No constant is added.
+
 ## Revision 1 changelog
 
 What changed, and why:

@@ -9,7 +9,9 @@ candidates, our images (gmg.silhouette), placed generator meshes (gmg.gen_slot) 
   Evidence(b, obj, mesh)                        one object's grids in its own frame + candidate occupancy (4 mm, 2 mm)
   partner_points(b, p, exclude=None)            p's OBSERVED and shared voxels as 2 mm sub-samples (INTERLOCK 3.3)
   intrusions_from_tracks(b, o, p, ev_o, frames, poses=None, exclude_p=None) -> Intrusions
-  intrusions_from_export(z, hdr, o, p, ev_o)    the same object from an export (schema gmg-intrusion/2)
+  intrusions_from_export(path, val, o, p, ev_o, partner_samples)  the same object from an export (gmg-intrusion/2)
+  make_side(b, t, q, ev, intr, frames, sources, identity, ...)   one target of a pair, the same on both paths (F-I3.1)
+  write_sources / load_sources                  sources (a), (b) and notches saved with a delivered round (F-I3.1)
   engaged_runs(intr, contact, stride)           runs, kinds (INSERTION / SEAT / SLIDE / TRANSIENT), d, assembled frames
   blocks(run)                                   10-frame build / check blocks (F-I1.1)
   regions(intr, run, ev_o, j)                   persistent 26-connected components with the sweep test (3.3)
@@ -21,9 +23,12 @@ candidates, our images (gmg.silhouette), placed generator meshes (gmg.gen_slot) 
   agree(region, sources) -> tier                cross-check (3.4)
   carve_solid(...)                              the removed solid at width w (2 mm sub-voxels or an oriented box)
   icarve(mesh, solids)                          ICARVE candidate (manifold boolean)
-  validate(path, sim_dir)                       the export validator (11.2)
-  carve_from_intrusions(...)                    the function the Embodiment session calls (11.3)
-  load_sim(dir, episode)                        a delivered sim folder, refused for another episode (6.4)
+  validate(path, sim_dir, ref_poses, tracks)    the export validator (11.2, F-I3.10; the Embodiment tool's header)
+  carve_from_intrusions(...)                    the function the Embodiment session calls (11.3, F-I3.1, F-I3.3)
+  round_accept(...)                             A1-A4 of round k (11.5, F-I3.3)
+  default_physics()                             the physics_fn of carve_from_intrusions (simphys.pair_physics)
+  load_sim(dir, episode)                        a delivered sim folder, refused for another episode (6.4) or when
+                                                marked do-not-use (F-I3.8)
 
 Constants: CONST below (F-I1.14 values and origins). guard.INFORMED_A6 (guard.py, build 1's file) does not list the
 F-I1.14 rows yet, so the informed constants are kept in this module's registry and written into every report; generic
@@ -351,8 +356,9 @@ def classify_path(frames, rel):
     return travel, straight, d, path
 
 
-def engaged_runs(intr, contact_frames, stride):
-    """F-I1.1 engaged runs of one ordered pair (target <- partner)."""
+def engaged_runs(intr, contact_frames, stride, holdout=None):
+    """F-I1.1 engaged runs of one ordered pair (target <- partner). holdout (F-I3.3, iteration): the check frames fixed
+    by an earlier round; they are never build frames, and frames outside them follow the 10-frame blocks."""
     nmin = K('engaged_min_vox'); gap = K('gap_bridge_frames'); ntr = K('transient_frames')
     cf = sorted(int(f) for f in contact_frames if int(f) in intr.rel)
     eng = [f for f in cf if intr.count(f) >= nmin]
@@ -380,6 +386,12 @@ def engaged_runs(intr, contact_frames, stride):
             kind = 'SLIDE'
         asm = static[-1] if (static and kind in ('INSERTION', 'SEAT')) else []
         build, check, flags = blocks(fr)
+        if holdout:
+            hs = set(int(f) for f in holdout)
+            if hs & set(fr):                      # a run seen before: its check frames stay the earlier round's
+                check = sorted(hs & set(fr))
+                build = [f for f in fr if f not in hs]
+                flags = [x for x in flags if x != 'no_holdout'] + ['holdout_fixed']
         runs.append(Run(fr, kind, travel, straight, d, asm, static, build, check, flags))
     return runs
 
@@ -798,32 +810,49 @@ def entry_open_share(lin, d, ev):
     return info['exit_share_entry_end']
 
 
+def touching_components(grid, mask, near):
+    """Linear indices of the whole 26-connected components of MASK (bool on GRID) that touch NEAR (bool)."""
+    lab, n = ndimage.label(np.asarray(mask, bool).reshape(grid.shape), structure=np.ones((3, 3, 3)))
+    lab = lab.ravel()
+    ids = np.unique(lab[np.asarray(near, bool) & (lab > 0)])
+    return np.nonzero(np.isin(lab, ids) & (lab > 0))[0] if len(ids) else np.zeros(0, np.int64)
+
+
 def agree(R, d, ev, gen=None, sil=None, N_b=None, comp_axes=None):
     """INTERLOCK 3.4 for one region R (4 mm voxels of the target): presence and agreement of (a) generator concavity,
     (b) silhouette, with (c) = R itself (present when this is called). Returns dict with present/agree per source
-    and pair, the tier candidates and the reasons."""
+    and pair, the tier candidates and the reasons.
+    PREREG F-I3.5 (two-way, notch-shaped (a)): the (a) notch is the WHOLE connected components of C_a that touch R
+    dilated by 2 voxels (v1 cut C_a down to that neighbourhood first, so a concavity covering the whole candidate
+    'agreed' with any R); centroid and principal axis are those of the whole components, >= 50 % of R must lie in them
+    dilated by one voxel AND >= 50 % of them must lie in R dilated by one voxel (reverse share). The (a, b) test is
+    two-way in the same way."""
     g = ev.grid
     rep = dict(a=dict(present=False), b=dict(present=False), ab=None)
     Rm = np.zeros(g.size, bool); Rm[R] = True
     CR = g.centres(R)
     near = dilate(g, R, 2)
+    Rd1 = dilate(g, R, 1)
     if gen is not None and gen.get('C_a') is not None and gen.get('survived', True):
         Ca = np.asarray(gen['C_a'], bool)
-        Cn = np.nonzero(Ca & near)[0]
+        Cn = touching_components(g, Ca, near)
         if len(Cn) >= K('min_testable'):
             CC = g.centres(Cn)
             dist = float(np.linalg.norm(CC.mean(0) - CR.mean(0)))
             ax_r = axes_of(CR)[1][0]; ax_a = axes_of(CC)[1][0]
             ang = float(np.degrees(np.arccos(min(1.0, abs(float(ax_r @ ax_a))))))
-            Cd = dilate(g, np.nonzero(Ca)[0], 1)
+            Cd = dilate(g, Cn, 1)
             share = float(Cd[R].mean())
+            rev = float(Rd1[Cn].mean())
             side = None
             if gen.get('side_resolved'):
                 side = entry_open_share(Cn, d, ev) >= 0.5
-            ok = dist <= K('agree_dist_m') and ang <= K('agree_deg') and share >= K('agree_share') and side is not False
+            ok = (dist <= K('agree_dist_m') and ang <= K('agree_deg') and share >= K('agree_share') and
+                  rev >= K('agree_share') and side is not False)
             rep['a'] = dict(present=True, agree=bool(ok), centroid_mm=round(dist * 1e3, 1), axis_deg=round(ang, 1),
-                            share_in_Ca=round(share, 3), side_open=side, side_tested=side is not None,
-                            voxels=int(len(Cn)))
+                            share_in_Ca=round(share, 3), share_Ca_in_R=round(rev, 3), side_open=side,
+                            side_tested=side is not None, voxels=int(len(Cn)),
+                            cm3=round(len(Cn) * g.vox ** 3 * 1e6, 2), R_cm3=round(len(R) * g.vox ** 3 * 1e6, 2))
         else:
             rep['a'] = dict(present=False, reason='C_a has < 3 voxels near R')
     elif gen is not None:
@@ -841,11 +870,17 @@ def agree(R, d, ev, gen=None, sil=None, N_b=None, comp_axes=None):
         rep['b'] = dict(present=False, reason='silhouette gate failed' if not sil.get('gate_ok') else 'absent')
     if rep['a']['present'] and N_b is not None and len(N_b):
         Nb = np.zeros(g.size, bool); Nb[N_b] = True
-        Rb = np.nonzero(Nb & near)[0]
+        Rb = touching_components(g, Nb, near)
         if len(Rb) == 0:
             Rb = np.nonzero(Nb)[0]
-        Cd = dilate(g, np.nonzero(np.asarray(gen['C_a'], bool))[0], 1)
-        rep['ab'] = dict(agree=float(Cd[Rb].mean()) >= K('agree_share'), share=round(float(Cd[Rb].mean()), 3))
+        Ca_t = touching_components(g, np.asarray(gen['C_a'], bool), dilate(g, Rb, 2))
+        if len(Ca_t) == 0:
+            rep['ab'] = dict(agree=False, share=0.0, reverse=0.0)
+        else:
+            s1 = float(dilate(g, Ca_t, 1)[Rb].mean())
+            s2 = float(dilate(g, Rb, 1)[Ca_t].mean())
+            rep['ab'] = dict(agree=bool(s1 >= K('agree_share') and s2 >= K('agree_share')), share=round(s1, 3),
+                             reverse=round(s2, 3))
     return rep
 
 
@@ -885,8 +920,28 @@ class Side:
     track_ok: bool = True
     track_reason: str = ''
     partner_collider: np.ndarray = None   # partner's collider volume samples in the PARTNER frame (round 0: its pick)
-    carved_cm3_before: float = 0.0   # earlier rounds' carves (cumulative budget)
+    carved_cm3_before: float = 0.0   # earlier rounds' carves (cumulative budget, F-I1.3 (iv); F-I3.3)
     fh: FrameHits = None
+    solid_ref_cm3: float = None      # the budget's base: the ROUND-0 solid volume (F-I3.3), else ev.solid_cm3()
+    carved_now_cm3: float = 0.0      # carves accepted for this target in this call (running total)
+    gate: dict = None                # identity / track gate record (make_side)
+
+
+def _budget(side, ev, sol, d, applies=True):
+    """F-I1.3 (iv) for one carve solid of SIDE (CARVE or OFFSET, F-I3.4): cumulative volume over rounds and over the
+    components of this call <= 10 % of the round-0 solid (F-I3.3), reach <= 0.6 of the extent along d, and the
+    topology of the carved sub-voxels kept. applies=False (an R_U-only carve, F-I2.6): topology only."""
+    Cs = ev.sgrid.centres(sol['sub_lin']) if len(sol['sub_lin']) else np.zeros((0, 3))
+    ext_d = ev.extent_along(d)
+    reach = float((Cs @ d).max() - (Cs @ d).min() + ev.sgrid.vox) / max(ext_d, 1e-9) if len(Cs) else 0.0
+    base = side.solid_ref_cm3 if side.solid_ref_cm3 else ev.solid_cm3()
+    vol_share = (side.carved_cm3_before + side.carved_now_cm3 + sol['cm3']) / max(base, 1e-9)
+    okt, tinfo = topology_kept(ev, sol['sub_lin'], sub=True)
+    ok = bool(okt and (not applies or (vol_share <= K('budget_vol') and reach <= K('budget_reach'))))
+    return dict(carve_cm3=round(sol['cm3'], 2), vol_share=round(vol_share, 4), reach=round(reach, 3), topology=tinfo,
+                applies=bool(applies), ok=ok, base_cm3=round(base, 2),
+                carved_before_cm3=round(side.carved_cm3_before + side.carved_now_cm3, 2),
+                note='(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only')
 
 
 def _comp_frame(comp, ev, side=None):
@@ -1038,10 +1093,26 @@ def decide_component(comp, side, b, poses, R_lin, report):
                 reasons['step'] = 4
                 return 'PUSH', reasons
     reasons['step'] = 4 if RO.any() else 3
-    if not carve.any():
-        return 'PUSH', reasons
+    drop = np.zeros(n, bool)
+    if carve.any() and o_v.any() and run.kind in ('INSERTION', 'SLIDE'):
+        # F-I3.12 column rule: a partner that passes through a plate fills the plate's thickness (the carve frame's
+        # m axis); a voxel whose column along m holds a class-O voxel of R cannot be used by it, so carving it only
+        # makes a pocket under a seen face (round-1 review: o2sil, offset_asm). Such voxels are not carved and are
+        # kept out of the carve solid's footprint.
+        A3 = _comp_frame(comp, ev, side)[1]
+        C = g.centres(R_lin)
+        key = np.stack([np.round(C @ A3[0] / g.vox), np.round(C @ A3[1] / g.vox)], 1).astype(np.int64)
+        okey = {tuple(k) for k in key[o_v]}
+        blocked = np.array([tuple(k) in okey for k in key])
+        drop = carve & blocked
+        carve = carve & ~blocked
+        if drop.any():
+            reasons['pocket_dropped_voxels'] = int(drop.sum())
+        if not carve.any():
+            reasons['why'] = 'every carvable voxel lies in a column with a seen-solid voxel (F-I3.12)'
+            return 'PUSH', reasons
     reasons['carve_voxels'] = int(carve.sum())
-    reasons['_o_lin'] = R_lin[o_v]
+    reasons['_o_lin'] = np.concatenate([R_lin[o_v], R_lin[drop]])
     cl = R_lin[carve]
     if '_orphan_lin' in reasons:
         cl = np.concatenate([cl, reasons.pop('_orphan_lin')])
@@ -1086,10 +1157,13 @@ def offset(R_lin, d, ev, notches, ev_p=None, R_p=None, notches_p=None, T_op=None
     moved = np.unique(l[ok])
     md = dilate(g, moved, 1)
     share = float(md[R_lin].mean())
+    # F-I3.5: two-way, as in agree(): >= 50 % of N + t must also lie in R dilated by one voxel (a notch the size of
+    # the region, not a concavity that covers it)
+    rev = float(dilate(g, R_lin, 1)[moved].mean()) if len(moved) else 0.0
     okt, tinfo = topology_kept(ev, N)
     return dict(t_mm=np.round(t * 1e3, 1).tolist(), t_norm_mm=round(float(np.linalg.norm(t)) * 1e3, 1),
-                t_along_d_mm=round(float(t @ d) * 1e3, 1), share_R_in_N_t=round(share, 3), holds=bool(share >= 0.5
-                                                                                                  and okt),
+                t_along_d_mm=round(float(t @ d) * 1e3, 1), share_R_in_N_t=round(share, 3),
+                share_N_t_in_R=round(rev, 3), holds=bool(share >= 0.5 and rev >= 0.5 and okt),
                 topology=tinfo, N=N, N_moved=moved, o_displaced=int((ev.state[moved] == STATE_OBSERVED).sum()))
 
 
@@ -1112,6 +1186,8 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
     """F-I1.3 for one pair (both ordered directions): components of so (o <- p) and sp (p <- o). Returns the list of
     decision records (one per component), each with the carve solids for the simulator copy (width w_sim) and, at
     T2/T3/T2o, for submitted candidates (width w_sub)."""
+    if int(round_k) > K('max_rounds'):
+        raise ValueError(f'round {round_k} > {K("max_rounds")} (F-I1.13)')
     out = []
     sides = {so.name: so, sp.name: sp}
     # linking at the median assembled pose (per run of o <- p)
@@ -1201,24 +1277,22 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         rep['_frame3'] = A; rep['_cen_n'] = cen_n
         if rep['decision'] == 'CARVE':
             cl = rep.pop('_carve_lin')
+            o_lin = rep.get('_o_lin')
             sol = carve_solid(ev, cl, A, cen_n, w_sim, plate=comp.run.kind in ('INSERTION', 'SLIDE'),
-                              exclude_lin=rep.pop('_o_lin', None))
+                              exclude_lin=o_lin)
             rep['_sim_solid'] = sol
-            Cs = ev.sgrid.centres(sol['sub_lin']) if len(sol['sub_lin']) else np.zeros((0, 3))
-            ext_d = ev.extent_along(d)
-            reach = float((Cs @ d).max() - (Cs @ d).min() + ev.sgrid.vox) / max(ext_d, 1e-9) if len(Cs) else 0.0
-            vol_share = (side.carved_cm3_before + sol['cm3']) / max(ev.solid_cm3(), 1e-9)
-            okt, tinfo = topology_kept(ev, sol['sub_lin'], sub=True)
+            rep['_carve_lin_kept'] = cl
             has_ro = (rep.get('class_mix', {}).get('SIL', 0) + rep.get('class_mix', {}).get('GAP', 0)) > 0
-            rep['budget'] = dict(carve_cm3=round(sol['cm3'], 2), vol_share=round(vol_share, 3), reach=round(reach, 3),
-                                 topology=tinfo, applies=bool(has_ro),
-                                 note='(iv) applies to R_O carves; an R_U-only carve has the topology guard only')
-            if not okt or (has_ro and (vol_share > K('budget_vol') or reach > K('budget_reach'))):
+            bud = _budget(side, ev, sol, d, applies=bool(has_ro))
+            rep['budget'] = bud
+            if not bud['ok']:
                 rep['decision'] = 'PUSH'
                 rep['flags'].append('interlock_partner_too_thick' if (w_col and w_col + 2 * K('clearance_m') >= w_sim
-                                                                      and vol_share > K('budget_vol'))
+                                                                      and bud['vol_share'] > K('budget_vol'))
                                     else 'budget_iv_fail')
                 rep.pop('_sim_solid', None)
+            else:
+                side.carved_now_cm3 += sol['cm3']
         rep['own_decision'] = rep['decision']
     # OFFSET for class-O pushes (4.4)
     offs = {}
@@ -1231,8 +1305,20 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         if rep['decision'] == 'PUSH' and rep.get('step') == 2:
             off = offset(R, d, ev, side.notches or [])
             if off is not None:
+                if off['holds']:
+                    # F-I3.4: N + t is a carve like any other: budget (iv) (cumulative), reach and the topology of the
+                    # carved sub-voxels at w_sim, before the pair level decides
+                    w = float(rep['widths']['w_sim_mm']) * 1e-3
+                    sol = carve_solid(ev, off['N_moved'], A, rep['_cen_n'], w, plate=False)
+                    bud = _budget(side, ev, sol, d, applies=True)
+                    off['budget'] = bud
+                    if bud['ok']:
+                        off['_sim_solid'] = sol
+                    else:
+                        off['holds'] = False
+                        off['why_not'] = 'budget_iv_fail (N + t)'
                 offs[key] = off
-                rep['offset'] = {k: v for k, v in off.items() if k not in ('N', 'N_moved')}
+                rep['offset'] = {k: v for k, v in off.items() if k not in ('N', 'N_moved', '_sim_solid')}
     # pair level (4.3): a linked pair carves only if each side either carves on its own or has a holding OFFSET (both
     # OFFSET: one relative offset, t_p = -R^T t_o within two grid steps); otherwise both PUSH (interlock_pair_fail)
     def status(k):
@@ -1278,8 +1364,9 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         off = offs.get(key)
         if off is not None and off['holds'] and rep['decision'] == 'PUSH':
             rep['decision'] = 'OFFSET'
-            w = float(rep['widths']['w_sim_mm']) * 1e-3
-            rep['_sim_solid'] = carve_solid(ev, off['N_moved'], A, rep['_cen_n'], w, plate=False)
+            rep['_sim_solid'] = off['_sim_solid']
+            rep['budget'] = off['budget']
+            side.carved_now_cm3 += off['_sim_solid']['cm3']
             rep['o_displaced'] = off['o_displaced']
             rep['flags'].append('o_displaced')
             rep['push_list'] = dict(kind='OFFSET', t_mm=off['t_mm'], frames=[comp.run.frames[0], comp.run.frames[-1]],
@@ -1287,6 +1374,13 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         elif rep['decision'] == 'PUSH':
             rep['push_list'] = dict(kind='PUSH', frames=[comp.run.frames[0], comp.run.frames[-1]],
                                     push_mm=rep.get('push_mm'), why=rep.get('why') or rep.get('ro'))
+        elif rep['decision'] == 'CARVE' and rep.get('_o_lin') is not None and len(rep['_o_lin']):
+            # F-I3.6: the class-O voxels of a carved region are never carved (F-I1.3); the intrusion left there is a
+            # pose error and goes to the push list next to the carve
+            rep['flags'].append('o_residual_push')
+            rep['push_list'] = dict(kind='PUSH_RESIDUAL', frames=[comp.run.frames[0], comp.run.frames[-1]],
+                                    o_voxels=int(len(rep['_o_lin'])),
+                                    why='class-O voxels of a carved region (seen solid): pose correction, not carve')
         offset_ab = bool(off is not None and off['holds'] and ag['a'].get('present') and ag['b'].get('present') and
                          (ag.get('ab') or {}).get('agree') and comp.run.kind in ('INSERTION', 'SEAT'))
         tier, dis = tier_of(rep['decision'], ag, offset_ab=offset_ab)
@@ -1298,12 +1392,39 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         rep['submitted'] = tier in ('T2', 'T3', 'T2o') and not dis
         if rep['submitted']:
             w = float(rep['widths']['w_sub_mm']) * 1e-3
-            lin_sub = off['N'] if tier == 'T2o' else comp.region()
+            if tier == 'T2o':
+                lin_sub = np.asarray(off['N'], np.int64)
+                o_sub = _o_class(side, lin_sub)
+            else:
+                lin_sub = rep.get('_carve_lin_kept', comp.region())
+                o_sub = rep.get('_o_lin')
+            # F-I3.2 (B4): the submitted solid excludes the class-O voxels exactly as the simulator solid does
             rep['_sub_solid'] = carve_solid(ev, lin_sub, A, rep['_cen_n'], w,
-                                            plate=comp.run.kind in ('INSERTION', 'SLIDE'))
+                                            plate=comp.run.kind in ('INSERTION', 'SLIDE'), exclude_lin=o_sub)
+            if not len(rep['_sub_solid']['sub_lin']):
+                rep['submitted'] = False
+                rep['flags'].append('submitted_solid_empty')
+                rep.pop('_sub_solid')
         rep['sim_carve'] = rep['decision'] in ('CARVE', 'OFFSET') and '_sim_solid' in rep
+        rep['round'] = int(round_k)
         out.append(rep)
+    # F-I3.7: a region on one side only (the partner side has none) is flagged; with a sparse partner evidence the
+    # partner's half-slot cannot be decided
+    names = {so.name: bool(so.comps), sp.name: bool(sp.comps)}
+    if names[so.name] != names[sp.name]:
+        for r in out:
+            r['flags'].append('one_sided_region')
     return out
+
+
+def _o_class(side, lin):
+    """Class-O voxels of LIN outside a component decision (OFFSET notch N): OBSERVED and not see-through (SIL)."""
+    lin = np.asarray(lin, np.int64)
+    if not len(lin):
+        return lin
+    silc = sil_classes(side.sil, lin, side.ev.grid)
+    o = (side.ev.state[lin] == STATE_OBSERVED) & (silc != 'SIL')
+    return lin[o]
 
 
 def public(rec):
@@ -1337,22 +1458,59 @@ def _sha(path):
     return h.hexdigest()
 
 
-def load_sim(sim_dir, episode=None):
-    """A delivered round (6.1 layout). Refused (ValueError) when the manifest names another episode (6.4) or a file's
-    sha256 differs from the manifest. Returns dict(manifest, pieces {obj: [vertex arrays]}, fit {obj: mesh})."""
+def _man_objects(man):
+    """Object names of a delivered manifest: `objects` is a list (gmg-sim/1 as delivered on 31 Oct) or the dict
+    objects.<obj>.{files, fiducials} (F-I3.9, the layout the Embodiment reader expects)."""
+    objs = man.get('objects') or []
+    if isinstance(objs, dict):
+        return list(man.get('object_order') or objs.keys())
+    return [o if isinstance(o, str) else o.get('name') for o in objs]
+
+
+def man_piece_files(man, o):
+    """{basename: sha256} of the collision pieces piece_*.obj of object O in a delivered manifest (either layout)."""
+    objs = man.get('objects')
+    if isinstance(objs, dict) and isinstance(objs.get(o), dict) and objs[o].get('files'):
+        fs = {os.path.basename(k): v for k, v in objs[o]['files'].items()}
+    else:
+        fs = {k.split('/', 1)[1]: v for k, v in (man.get('files') or {}).items() if k.startswith(o + '/')}
+    return {k: v for k, v in fs.items() if k.startswith('piece_') and k.endswith('.obj')}
+
+
+def man_fiducials(man, o):
+    objs = man.get('objects')
+    if isinstance(objs, dict) and isinstance(objs.get(o), dict) and objs[o].get('fiducials') is not None:
+        return np.asarray(objs[o]['fiducials'], np.float64).reshape(8, 3)
+    return np.asarray((man.get('fiducials') or {})[o], np.float64).reshape(8, 3)
+
+
+def load_sim(sim_dir, episode=None, allow_do_not_use=False):
+    """A delivered round (6.1 layout). Refused (ValueError) when the manifest names another episode (6.4), a file's
+    sha256 differs from the manifest, or the folder is marked do-not-use (F-I3.8: a DO_NOT_USE.json next to the
+    manifest or manifest['do_not_use']; diagnostics may pass allow_do_not_use=True). Returns dict(manifest, pieces
+    {obj: [vertex arrays]}, fit {obj: mesh}, objects [names])."""
     import trimesh
-    man = json.load(open(os.path.join(sim_dir, 'manifest.json')))
+    with open(os.path.join(sim_dir, 'manifest.json')) as fh:
+        man = json.load(fh)
     if episode is not None and int(man['episode']) != int(episode):
         raise ValueError(f'load_sim: {sim_dir} is episode {man["episode"]}, not {episode} (one folder per episode)')
+    dnu = os.path.join(sim_dir, 'DO_NOT_USE.json')
+    if (man.get('do_not_use') or os.path.exists(dnu)) and not allow_do_not_use:
+        why = man.get('do_not_use') or json.load(open(dnu))
+        raise ValueError(f'load_sim: {sim_dir} is marked do-not-use: {why}')
     for rel, sha in man['files'].items():
         if _sha(os.path.join(sim_dir, rel)) != sha:
             raise ValueError(f'load_sim: {rel} changed since delivery')
     pieces, fit = {}, {}
-    for o in man['objects']:
-        fs = sorted(f for f in os.listdir(os.path.join(sim_dir, o)) if f.startswith('piece_') and f.endswith('.obj'))
+    objs = _man_objects(man)
+    for o in objs:
+        fs = sorted(man_piece_files(man, o))
+        on_disk = sorted(f for f in os.listdir(os.path.join(sim_dir, o)) if f.startswith('piece_') and f.endswith('.obj'))
+        if fs != on_disk:
+            raise ValueError(f'load_sim: {o} piece files on disk {on_disk} differ from the manifest {fs}')
         pieces[o] = [np.asarray(trimesh.load(os.path.join(sim_dir, o, f), force='mesh').vertices) for f in fs]
         fit[o] = trimesh.load(os.path.join(sim_dir, '_fit', f'{o}.glb'), force='mesh')
-    return dict(manifest=man, pieces=pieces, fit=fit)
+    return dict(manifest=man, pieces=pieces, fit=fit, objects=objs)
 
 
 def _union_grid(hulls, pitch):
@@ -1362,13 +1520,94 @@ def _union_grid(hulls, pitch):
     return G[inside_any(hulls, G)]
 
 
+# ------------------------------------------------------------------------------------------------ sources (F-I3.1)
+def write_sources(folder, obj, sil=None, gen=None, notches=None, notches_sil=None, grid=None):
+    """Sources (a) and (b) of one target as computed by the gmg from OUR evidence (video, generator mesh), saved next to
+    a delivered round (`<round>/sources/<obj>.npz`) so carve_from_intrusions decides with the same inputs as the
+    tracks path (F-I3.1). Arrays only (no pickles)."""
+    os.makedirs(folder, exist_ok=True)
+    arr = {}
+    if grid is not None:
+        arr.update(grid_lo=np.asarray(grid.lo), grid_vox=np.float64(grid.vox), grid_shape=np.asarray(grid.shape))
+    if sil:
+        arr['sil_gate_ok'] = np.bool_(bool(sil.get('gate_ok')))
+        for k in ('nmv', 'nmf', 'nmv_sub', 'nmf_sub'):
+            if sil.get(k) is not None:
+                arr['sil_' + k] = np.asarray(sil[k], np.int32)
+    if gen and gen.get('C_a') is not None:
+        arr['gen_C_a'] = np.asarray(gen['C_a'], bool)
+        arr['gen_survived'] = np.bool_(bool(gen.get('survived', True)))
+        arr['gen_side_resolved'] = np.bool_(bool(gen.get('side_resolved')))
+    for key, ns in (('notches', notches), ('notches_sil', notches_sil)):
+        ns = [np.asarray(n, np.int64) for n in (ns or [])]
+        arr[key + '_lin'] = np.concatenate(ns) if ns else np.zeros(0, np.int64)
+        arr[key + '_len'] = np.asarray([len(n) for n in ns], np.int64)
+    path = os.path.join(folder, f'{obj}.npz')
+    np.savez_compressed(path, **arr)
+    return path
+
+
+def load_sources(folder, obj, grid=None):
+    """The dict make_side takes (sil, gen, notches, notches_sil) from write_sources' file, or {} if absent. Refused
+    (ValueError) if its grid differs from GRID (the target's bundle grid)."""
+    path = os.path.join(folder, f'{obj}.npz')
+    if not os.path.exists(path):
+        return {}
+    z = dict(np.load(path, allow_pickle=False))
+    if grid is not None and 'grid_shape' in z:
+        if tuple(int(x) for x in z['grid_shape']) != tuple(grid.shape) or not np.allclose(z['grid_lo'], grid.lo) or \
+                abs(float(z['grid_vox']) - grid.vox) > 1e-9:
+            raise ValueError(f'load_sources: {path} is on another grid than the bundle of {obj}')
+    out = {}
+    if 'sil_gate_ok' in z:
+        out['sil'] = dict(gate_ok=bool(z['sil_gate_ok']), **{k: z['sil_' + k] for k in ('nmv', 'nmf', 'nmv_sub',
+                                                                                          'nmf_sub')
+                                                              if 'sil_' + k in z})
+    if 'gen_C_a' in z:
+        out['gen'] = dict(C_a=z['gen_C_a'].astype(bool), survived=bool(z['gen_survived']),
+                          side_resolved=bool(z['gen_side_resolved']))
+    for key in ('notches', 'notches_sil'):
+        L = z.get(key + '_len', np.zeros(0, np.int64))
+        flat = z.get(key + '_lin', np.zeros(0, np.int64))
+        out[key] = list(np.split(flat, np.cumsum(L)[:-1])) if len(L) else []
+    return out
+
+
+def make_side(b, t, q, ev_t, intr, contact_frames, sources=None, identity='public', partner_collider=None, fh=None,
+              holdout=None, carved_before=0.0, solid_ref_cm3=None):
+    """One target (t <- q) of a pair, built the SAME way on our tracks and on an Embodiment export (F-I3.1): engaged
+    runs (with the fixed hold-out of earlier rounds), persistent regions, the identity / track gate of F-I1.2 (public:
+    TRACK_FAIL or IDENTITY_SWAP makes (c) absent; eval: IDENTITY_SWAP only flags), sources (a) and (b) and the
+    observed notches from SOURCES (write_sources / load_sources or the driver's in-memory dicts)."""
+    runs = engaged_runs(intr, contact_frames, int(b.meta['stride']), holdout=holdout)
+    j = float(b.contact(t, q).get('j_mm') or 0) * 1e-3
+    comps = []
+    for r in runs:
+        comps += regions(intr, r, ev_t, j)[0]
+    good = set(b.good_frames(t)) & set(b.good_frames(q))
+    okfr = [len([f for f in r.frames if f in good]) / max(len(r.frames), 1) for r in runs]
+    san = b.meta.get('sanity') or {}
+    sflags = sorted(set((san.get(t) or {}).get('flags', []) or []) | set((san.get(q) or {}).get('flags', []) or []))
+    failing = ('TRACK_FAIL', 'IDENTITY_SWAP') if identity == 'public' else ('TRACK_FAIL',)
+    track_ok = all(x >= 0.8 for x in okfr) and not any(f in failing for f in sflags)
+    src = sources or {}
+    return Side(t, ev_t, intr, comps, runs, sil=src.get('sil'), gen=src.get('gen'),
+                notches=list(src.get('notches') or []), notches_sil=list(src.get('notches_sil') or []),
+                track_ok=track_ok, track_reason=f'good share {np.round(okfr, 2).tolist()} flags {sflags} identity '
+                                                f'{identity}',
+                partner_collider=partner_collider, fh=fh or FrameHits(b, t, ev_t.grid),
+                carved_cm3_before=float(carved_before or 0.0), solid_ref_cm3=solid_ref_cm3,
+                gate=dict(good_share=[round(x, 3) for x in okfr], flags=sflags, identity=identity, track_ok=track_ok))
+
+
+# ------------------------------------------------------------------------------------------------ export (11.2)
 def write_export(path, b, sim_dir, pair, reference, poses=None, frames=None, pitch=0.002, shift_fiducials=0.0,
-                 fit=None, pushed=None):
-    """Reference implementation of the export `gmg-intrusion/2` (what tools/intrusion.py should write; tests and
-    format example). Partner solid samples = 2 mm grid points inside the union of the partner's delivered pieces;
-    pts_local in the target's file coordinates (rel_T = T_{target<-partner} from POSES, default our tracks); target
-    depth = distance to the target pieces' union surface (positive inside). shift_fiducials: test hook that writes
-    fiducials_world shifted (a geom-frame mistake)."""
+                 fit=None, pushed=None, f_star=None):
+    """Reference writer of the export `gmg-intrusion/2` in the header layout of the Embodiment tool
+    (tools/intrusion.py, determined-wright 759032e): meshes {obj: {basename: sha256}}, `frames` (T), `fiducials_file`,
+    `f_star`, `fiducials_world`, `fiducials_back`, `reference`, `fit`, `pose_source`. Partner solid samples = 2 mm grid
+    points inside the union of the partner's delivered pieces; pts_local in the target's file coordinates (rel_T =
+    T_{target<-partner} from POSES, default our tracks). shift_fiducials: test hook (a geom-frame mistake)."""
     from gmg.simpieces import inside_any
     sim = load_sim(sim_dir)
     man = sim['manifest']
@@ -1397,25 +1636,23 @@ def write_export(path, b, sim_dir, pair, reference, poses=None, frames=None, pit
                 fp['pushed_residual_m'].append(np.nan if pushed is None else pushed.get((t, q, f), np.nan))
                 fp['intr_vol_m3'].append(n * pitch ** 3)
     cat = {k: (np.concatenate(v) if v else np.zeros((0, 3) if k == 'pts_local' else 0)) for k, v in rows.items()}
-    f_star = frames[len(frames) // 2]
-    fw, fb = {}, {}
+    f_star = frames[len(frames) // 2] if f_star is None else int(f_star)
+    fw, fb, ff = {}, {}, {}
     for o in objs:
-        F = np.asarray(man['fiducials'][o])
+        F = man_fiducials(man, o)
         Wo = (poses['world_T_cam'][f_star].astype(np.float64) @ poses[f'cam_T_{o}'][f_star].astype(np.float64))
         Xw = F @ Wo[:3, :3].T + Wo[:3, 3] + shift_fiducials
         fw[o] = Xw.tolist()
         Wi = np.linalg.inv(Wo)
         fb[o] = (Xw @ Wi[:3, :3].T + Wi[:3, 3]).tolist()
+        ff[o] = F.tolist()
     np.savez_compressed(path, **cat, **{k: np.asarray(v) for k, v in fp.items()})
     hdr = dict(schema=SCHEMA_INTR, objects=objs, round=int(man['round']), sim_dir=os.path.abspath(sim_dir),
-               meshes={o: {f'{o}/{os.path.basename(p)}': s for p, s in man['files'].items() if p.startswith(o + '/')
-                           and p.endswith('.obj')} for o in objs}, pitch_m=pitch, tool='gmg.interlock.write_export',
+               meshes={o: dict(man_piece_files(man, o)) for o in objs}, pitch_m=pitch, tool='gmg.interlock.write_export',
                commit=guard._git('rev-parse', 'HEAD'), argv=sys.argv, reference=reference, fit=fit,
-               pose_source='reference', f_star=int(f_star), fiducials_world=fw, fiducials_back=fb,
-               reference_poses_f_star={o: (poses['world_T_cam'][f_star].astype(np.float64) @
-                                           poses[f'cam_T_{o}'][f_star].astype(np.float64)).tolist() for o in objs},
-               T=int(b.meta['T']))
-    with open(path[:-4] + '.json' if path.endswith('.npz') else path + '.json', 'w') as f:
+               pose_source='reference', frames=int(b.meta['T']), f_star=int(f_star), fiducials_file=ff,
+               fiducials_world=fw, fiducials_back=fb)
+    with open(_hdr_path(path), 'w') as f:
         json.dump(hdr, f, indent=1, default=_jdefault)
     return path
 
@@ -1424,113 +1661,372 @@ def _hdr_path(path):
     return path[:-4] + '.json' if path.endswith('.npz') else path + '.json'
 
 
-def validate(path, sim_dir, synthetic_ok=False):
-    """INTERLOCK 11.2 validator. Returns (ok, report); report['refused'] lists the reasons of a refusal, and
-    report['pushed_residual'] = 'kept' | 'forced_nan' (flag fit_provenance_refused). Same on public and eval.
-    synthetic_ok: tests only (a reference whose provenance chain is the literal 'synthetic test')."""
+def _kabsch(X, Y):
+    """R, t minimising sum |R X + t - Y|^2."""
+    cx, cy = X.mean(0), Y.mean(0)
+    H = (X - cx).T @ (Y - cy)
+    U, _, Vt = np.linalg.svd(H)
+    D = np.diag([1.0, 1.0, np.sign(np.linalg.det(Vt.T @ U.T))])
+    R = Vt.T @ D @ U.T
+    return R, cy - R @ cx
+
+
+def _chain_items(prov):
+    """(inputs {path: sha256 or None}, artifacts {path: sha256 or None}, steps) of a reference provenance in either
+    layout: the Embodiment tool's {chain: [{tool, commit, run_id, artifact, sha256, inputs {path: sha}}], ...} or our
+    old {chain: [...], inputs {path: sha}} (F-I3.10)."""
+    chain = prov.get('chain') or []
+    steps = [s for s in chain if isinstance(s, dict)]
+    inputs, arts = {}, {}
+    for s in steps:
+        for p, h in (s.get('inputs') or {}).items():
+            inputs[str(p)] = h
+        if s.get('artifact'):
+            arts[str(s['artifact'])] = s.get('sha256')
+    for p, h in (prov.get('inputs') or {}).items():
+        inputs[str(p)] = h
+    return inputs, arts, steps
+
+
+MESH_SUFFIX = ('.glb', '.obj', '.ply', '.stl', '.urdf', '.xml', '.gltf')
+DATASET_PARQUET = ('track_3/', '/hfds/', '/data/chunk-', 'episode_0')
+
+
+def chain_path_reason(path, sha=None):
+    """Why a path of a reference provenance chain is refused (F-I3.10), or (None, flag). Ground truth anywhere
+    (mocap, scans, *_align, oracle, /loc/, the deny-list globs and sha256, the gmg REFUSED folders) is refused;
+    `.parquet` is allowed except the public / eval dataset's episode parquets (by location); library_v1..v4 files are
+    allowed only as simulator mesh assets (a mesh suffix: flag `ref_sim_assets_library`), never as an object-motion
+    source."""
+    raw = str(path)
+    low = raw.lower()
+    for s in ('mocap', '/scan', '_scan', '_align', 'oracle', '/loc/'):
+        if s in low:
+            return f'path contains {s!r}', None
+    if sha and sha in guard.DENY['sha256']:
+        return f'sha256 on the deny-list ({guard.DENY["sha256"][sha]})', None
+    if '.parquet' in low and any(s in low for s in DATASET_PARQUET):
+        return 'a dataset episode parquet (ground-truth pose field)', None
+    flag = None
+    import re as _re
+    if _re.search(r'meshes/library_v(?:[1-4]|3x)/', low) or _re.search(r'library_v[1-4]', low):
+        if low.endswith(MESH_SUFFIX) or '/content/assets' in low:
+            flag = 'ref_sim_assets_library'
+        else:
+            return 'library_v1..v4 file that is not a simulator mesh asset (object-motion source?)', None
+    if low.startswith(('hf://', 'http://', 'https://')) or '(box-local' in low or '/content/' in low:
+        return None, flag
+    q = os.path.abspath(raw)
+    if q.lower().endswith('.parquet'):            # the '.parquet' substring alone is not a reason here; the rest is
+        q = q[:-len('.parquet')] + '.pqref'
+    why = guard._path_reason(q, 'own')
+    if why and flag and 'library_v' in why:
+        why = None
+    return why, flag
+
+
+def _prov_check(ref, rep, synthetic_ok=False):
+    """F-I1.13 step (2) with F-I3.10: the chain may come from the Embodiment tool (per-step inputs) or be reconstructed
+    (flag `prov_reconstructed`); every step names a tool and a run id; the chain holds a perception `poses.npz` with a
+    sha256; nothing in it is ground truth (chain_path_reason). Returns the chain's {path: sha256} inputs."""
+    prov = (ref or {}).get('provenance') or {}
+    if not ref or not prov:
+        rep['refused'].append('reference provenance missing')
+        return {}
+    if synthetic_ok and prov.get('chain') == ['synthetic test']:
+        rep['flags'].append('synthetic_reference')
+        return {}
+    inputs, arts, steps = _chain_items(prov)
+    if not steps:
+        rep['refused'].append('reference provenance has no chain steps')
+        return inputs
+    bad = [i for i, s in enumerate(steps) if not s.get('tool') or not s.get('run_id')]
+    if bad:
+        rep['refused'].append(f'reference provenance incomplete: steps {bad} lack tool or run_id')
+    src = str(prov.get('source') or '')
+    if prov.get('reconstructed') or src.startswith(('--prov', 'inferred')) or any(
+            'reconstructed' in str(s.get('tool', '')) for s in steps):
+        rep['flags'].append('prov_reconstructed')
+    poses = {p: h for p, h in {**inputs, **arts}.items() if os.path.basename(p.split(' ')[0]) == 'poses.npz' and h}
+    if not poses:
+        rep['refused'].append('reference provenance names no perception poses.npz with a sha256')
+    unhashed = [p for p, h in inputs.items() if not h]
+    if unhashed:
+        rep['flags'].append('prov_input_unhashed')
+        rep['prov_unhashed'] = unhashed[:20]
+    flags = set()
+    for pth, h in list(inputs.items()) + list(arts.items()) + [(ref.get('path', ''), ref.get('sha256'))]:
+        why, fl = chain_path_reason(pth, h)
+        if why:
+            rep['refused'].append(f'reference chain input {pth}: {why}')
+        if fl:
+            flags.add(fl)
+    rep['flags'] += sorted(flags)
+    return {**inputs, **arts}
+
+
+def _rel_check(z, objs, F_man, O, fs):
+    """rel_T rows at f_star against the independent poses O {obj: 4x4 at f_star, reference frame}: the partner's file
+    fiducials mapped by the export's rel_T and by inv(O_t) O_p; max distance (m) per ordered pair. A geom-frame or
+    re-centred object frame shows here at full size (R_rel c_p - c_t), while a common world transform cannot hide it
+    (rel_T is frame-free)."""
+    out = {}
+    for i, (f, t, q) in enumerate(zip(z['fp_frame'], z['fp_target'], z['fp_partner'])):
+        if int(f) != fs:
+            continue
+        to, qo = objs[int(t)], objs[int(q)]
+        Rp = np.linalg.inv(O[to]) @ O[qo]
+        Re = np.asarray(z['rel_T'][i], np.float64)
+        F = F_man[qo]
+        d = np.linalg.norm((F @ Re[:3, :3].T + Re[:3, 3]) - (F @ Rp[:3, :3].T + Rp[:3, 3]), axis=1).max()
+        out[f'{to}<-{qo}'] = float(d)
+    return out
+
+
+def _ref_pose_check(hdr, objs, F_man, T_hdr, chain, ref_poses=None, tracks=None, z=None):
+    """F-I1.13 step (1) `fiducials_world` against an INDEPENDENT reference pose at f_star (F-I3.10, the orchestrator's
+    resolution 2). Sources: (i) ref_poses {obj: 4x4 world_T_obj at f_star in the reference frame} from an independent
+    reader (hook for B10: a guard role for our reference parquets' object_body_* columns); (ii) our tracks
+    (dict(path, sha256, poses), role tracks) when their sha256 is the chain's perception poses.npz: then the pose is
+    world_T_cam @ cam_T_obj at f_star, mapped into the reference frame by ONE rigid transform common to all objects
+    plus a per-object vertical shift (mkref's per-object table snap), fitted on the fiducials. Returns (status
+    'pass' | 'fail' | 'unavailable', info)."""
+    tol = K('fid_tol_m')
+    fs = int(hdr['f_star'])
+    fw = {o: np.asarray(hdr['fiducials_world'][o], np.float64).reshape(8, 3) for o in objs}
+    if ref_poses is not None:
+        W = ref_poses(fs) if callable(ref_poses) else ref_poses
+        err = {o: float(np.linalg.norm(F_man[o] @ np.asarray(W[o])[:3, :3].T + np.asarray(W[o])[:3, 3] - fw[o],
+                                       axis=1).max()) for o in objs}
+        rel = _rel_check(z, objs, F_man, {o: np.asarray(W[o], np.float64) for o in objs}, fs) if z is not None else {}
+        ok = all(v <= tol for v in err.values()) and all(v <= tol for v in rel.values())
+        return ('pass' if ok else 'fail'), dict(mode='independent reader', err_mm={o: round(v * 1e3, 3)
+                                                                                      for o, v in err.items()},
+                                                rel_T_f_star_mm={k: round(v * 1e3, 3) for k, v in rel.items()})
+    if tracks is None:
+        return 'unavailable', dict(reason='no independent reference pose (no reader, no tracks)')
+    shas = {h for p, h in chain.items() if os.path.basename(str(p).split(' ')[0]) == 'poses.npz' and h}
+    if tracks.get('sha256') not in shas:
+        return 'unavailable', dict(reason='our tracks are not the chain\'s perception poses.npz (sha256 differs)',
+                                   tracks_sha256=tracks.get('sha256'), chain_poses_sha256=sorted(shas))
+    P = tracks['poses']
+    if int(len(P['world_T_cam'])) != int(T_hdr):
+        return 'fail', dict(reason=f'frame count {T_hdr} differs from the chain tracks ({len(P["world_T_cam"])})')
+    W = {o: P['world_T_cam'][fs].astype(np.float64) @ P[f'cam_T_{o}'][fs].astype(np.float64) for o in objs}
+    X = {o: F_man[o] @ W[o][:3, :3].T + W[o][:3, 3] for o in objs}
+    s = {o: 0.0 for o in objs}
+    ez = np.array([0.0, 0.0, 1.0])
+    for _ in range(20):
+        R, t = _kabsch(np.vstack([X[o] for o in objs]), np.vstack([fw[o] - s[o] * ez for o in objs]))
+        s_new = {o: float(np.mean((fw[o] - (X[o] @ R.T + t)) @ ez)) for o in objs}
+        if max(abs(s_new[o] - s[o]) for o in objs) < 1e-9:
+            s = s_new
+            break
+        s = s_new
+    res = {o: float(np.linalg.norm(fw[o] - s[o] * ez - (X[o] @ R.T + t), axis=1).max()) for o in objs}
+    Tc = np.eye(4); Tc[:3, :3] = R; Tc[:3, 3] = t
+    O = {}
+    for o in objs:
+        O[o] = Tc @ W[o]; O[o][:3, 3] += s[o] * ez
+    rel = _rel_check(z, objs, F_man, O, fs) if z is not None else {}
+    ok = all(v <= tol for v in res.values()) and all(v <= tol for v in rel.values())
+    # report only (not enforced): rel_T deviation over ALL rows with the same frame and shifts; a re-centring along
+    # the vertical at f_star is absorbed by the vertical shift there, but not once the object turns
+    allrows = []
+    if z is not None:
+        for f in sorted(set(int(x) for x in z['fp_frame'])):
+            Of = {}
+            for o in objs:
+                Wf = P['world_T_cam'][f].astype(np.float64) @ P[f'cam_T_{o}'][f].astype(np.float64)
+                Of[o] = Tc @ Wf; Of[o][:3, 3] += s[o] * ez
+            allrows += list(_rel_check(z, objs, F_man, Of, f).values())
+    allrep = dict(n=len(allrows), median_mm=round(float(np.median(allrows)) * 1e3, 3) if allrows else None,
+                  p90_mm=round(float(np.percentile(allrows, 90)) * 1e3, 3) if allrows else None,
+                  max_mm=round(float(np.max(allrows)) * 1e3, 3) if allrows else None)
+    return ('pass' if ok else 'fail'), dict(mode='chain tracks (frame-free: common rigid frame + per-object vertical '
+                                                 'shift)', residual_mm={o: round(v * 1e3, 3) for o, v in res.items()},
+                                            vertical_shift_mm={o: round(v * 1e3, 2) for o, v in s.items()},
+                                            rel_T_f_star_mm={k: round(v * 1e3, 3) for k, v in rel.items()},
+                                            rel_T_all_rows_report_only=allrep)
+
+
+def validate(path, sim_dir, ref_poses=None, tracks=None, synthetic_ok=False, allow_do_not_use=False):
+    """INTERLOCK 11.2 / F-I1.13 validator with the F-I3.10 corrections (works on the Embodiment tool's header).
+    Returns (ok, report); report['refused'] lists the reasons of a refusal, report['pushed_residual'] = 'none' |
+    'kept' | 'forced_nan' (flag fit_provenance_refused). Never raises on a malformed export (it is refused). Same on
+    public and eval. ref_poses / tracks: the independent reference pose of step (1) (_ref_pose_check); without one the
+    export is refused. synthetic_ok: tests only (a reference whose provenance chain is the literal 'synthetic test')."""
     from gmg.simpieces import inside_any
     rep = dict(refused=[], flags=[])
-    hdr = json.load(open(_hdr_path(path)))
-    z = dict(np.load(path))
     try:
-        sim = load_sim(sim_dir)
+        hdr = json.load(open(_hdr_path(path)))
+        z = dict(np.load(path, allow_pickle=False))
+    except Exception as e:
+        rep['refused'].append(f'unreadable export: {type(e).__name__}: {e}')
+        return False, rep
+    try:
+        sim = load_sim(sim_dir, allow_do_not_use=allow_do_not_use)
     except Exception as e:
         rep['refused'].append(f'sim folder: {e}')
         return False, rep
+    if allow_do_not_use and (sim['manifest'].get('do_not_use') or os.path.exists(os.path.join(sim_dir,
+                                                                                               'DO_NOT_USE.json'))):
+        rep['flags'].append('do_not_use_overridden (diagnostic only)')
     man = sim['manifest']
     if hdr.get('schema') != SCHEMA_INTR:
         rep['refused'].append(f'schema {hdr.get("schema")!r}')
-    objs = hdr['objects']
-    # (1) hashes, frames, rigidity, fiducials, containment
+    objs = list(hdr.get('objects') or [])
+    unknown = [o for o in objs if o not in sim['objects']]
+    if not objs or unknown:
+        rep['refused'].append(f'objects {objs} not in the delivered round ({sim["objects"]})')
+        return False, rep
+    need = ('frame', 'target', 'partner', 'pts_local', 'fp_frame', 'fp_target', 'fp_partner', 'rel_T',
+            'pushed_residual_m', 'intr_vol_m3')
+    miss = [k for k in need if k not in z]
+    if miss:
+        rep['refused'].append(f'export arrays missing: {miss}')
+        return False, rep
+    # (1a) mesh hashes: the header's piece files (keys '<obj>/piece_XX.obj' or 'piece_XX.obj') == the round's pieces
     for o in objs:
-        for rel, sha in (hdr.get('meshes') or {}).get(o, {}).items():
-            if man['files'].get(rel) != sha:
-                rep['refused'].append(f'mesh hash {rel} differs from the delivered round')
-        if not (hdr.get('meshes') or {}).get(o):
-            rep['refused'].append(f'no mesh hashes for {o}')
-    T = int(hdr.get('T', 10 ** 9))
-    if len(z['frame']) and (z['frame'].min() < 0 or z['frame'].max() >= T):
-        rep['refused'].append('frames out of range')
+        mf = man_piece_files(man, o)
+        hm = {os.path.basename(k): v for k, v in ((hdr.get('meshes') or {}).get(o) or {}).items()}
+        hp = {k: v for k, v in hm.items() if k.startswith('piece_') and k.endswith('.obj')}
+        if not hp:
+            rep['refused'].append(f'no piece hashes for {o}')
+            continue
+        if set(hp) != set(mf):
+            rep['refused'].append(f'{o}: piece files {sorted(set(hp) ^ set(mf))[:6]} not in both the export and the '
+                                  f'delivered round')
+        bad = [k for k in hp if k in mf and hp[k] != mf[k]]
+        if bad:
+            rep['refused'].append(f'{o}: piece hashes {bad[:6]} differ from the delivered round')
+    # (1b) frames, indices, frame-pair rows, rigidity
+    T_hdr = hdr.get('T', hdr.get('frames'))
+    if T_hdr is None:
+        rep['refused'].append('no frame count in the header (T or frames)')
+        return False, rep
+    T_hdr = int(T_hdr)
+    fr, fpf = np.asarray(z['frame']), np.asarray(z['fp_frame'])
+    if (len(fr) and (fr.min() < 0 or fr.max() >= T_hdr)) or (len(fpf) and (fpf.min() < 0 or fpf.max() >= T_hdr)):
+        rep['refused'].append(f'frames out of range [0, {T_hdr})')
+        return False, rep
+    B = len(objs)
+    for k in ('target', 'partner', 'fp_target', 'fp_partner'):
+        v = np.asarray(z[k])
+        if len(v) and (v.min() < 0 or v.max() >= B):
+            rep['refused'].append(f'{k} index out of range')
+            return False, rep
+    fpi = {}
+    for i, (f, t, q) in enumerate(zip(fpf, z['fp_target'], z['fp_partner'])):
+        key = (int(f), int(t), int(q))
+        if key in fpi:
+            rep['refused'].append(f'duplicate frame-pair row {key}')
+            return False, rep
+        fpi[key] = i
+    keys = set(zip(fr.tolist(), np.asarray(z['target']).tolist(), np.asarray(z['partner']).tolist()))
+    orphan = [k for k in keys if k not in fpi]
+    if orphan:
+        rep['refused'].append(f'{len(orphan)} sample groups have no frame-pair row (e.g. {sorted(orphan)[:3]})')
+        return False, rep
     R = np.asarray(z['rel_T'])[:, :3, :3]
     if len(R) and (np.abs(np.einsum('nji,njk->nik', R, R) - np.eye(3)).max() > 1e-4 or
                    np.abs(np.linalg.det(R) - 1).max() > 1e-4):
         rep['refused'].append('rel_T not rigid')
+    # (1c) fiducials: file fiducials == the round's, round trip, and the independent reference pose
     tol = K('fid_tol_m')
-    fs = int(hdr['f_star'])
-    for o in objs:
-        F = np.asarray(man['fiducials'][o]); Fb = np.asarray(hdr['fiducials_back'][o])
-        if np.linalg.norm(F - Fb, axis=1).max() > tol:
-            rep['refused'].append(f'fiducial round trip {o} > 0.5 mm')
-        Wo = np.asarray(hdr['reference_poses_f_star'][o])
-        Xw = F @ Wo[:3, :3].T + Wo[:3, 3]
-        if np.linalg.norm(Xw - np.asarray(hdr['fiducials_world'][o]), axis=1).max() > tol:
-            rep['refused'].append(f'fiducials_world {o} off the reference pose at f_star by > 0.5 mm (geom frame?)')
-    rep['flags'].append('fiducial_reference_from_header')
+    F_man = {o: man_fiducials(man, o) for o in objs}
+    try:
+        fs = int(hdr['f_star'])
+        if not 0 <= fs < T_hdr:
+            raise ValueError('f_star out of range')
+        for o in objs:
+            if hdr.get('fiducials_file') is not None and \
+                    np.abs(np.asarray(hdr['fiducials_file'][o], np.float64).reshape(8, 3) - F_man[o]).max() > 1e-6:
+                rep['refused'].append(f'fiducials_file of {o} differ from the round manifest (stale manifest?)')
+            Fb = np.asarray(hdr['fiducials_back'][o], np.float64).reshape(8, 3)
+            if np.linalg.norm(F_man[o] - Fb, axis=1).max() > tol:
+                rep['refused'].append(f'fiducial round trip {o} > 0.5 mm')
+            np.asarray(hdr['fiducials_world'][o], np.float64).reshape(8, 3)
+    except Exception as e:
+        rep['refused'].append(f'fiducial fields missing or malformed: {type(e).__name__}: {e}')
+        return False, rep
+    if 'reference_poses_f_star' in hdr:
+        rep['flags'].append('header_reference_poses_ignored')
+    # (2) reference provenance (needed by (1c)'s chain-tracks source)
+    chain = _prov_check(hdr.get('reference') or {}, rep, synthetic_ok=synthetic_ok)
+    status, info = _ref_pose_check(hdr, objs, F_man, T_hdr, chain, ref_poses=ref_poses, tracks=tracks, z=z)
+    info_pub = {k: v for k, v in info.items() if not k.startswith('_')}
+    rep['reference_pose'] = dict(status=status, **info_pub)
+    if status == 'fail':
+        rep['refused'].append(f'fiducials_world off the independent reference pose at f_star by > 0.5 mm: {info_pub}')
+    elif status == 'unavailable':
+        rep['refused'].append(f'no independent reference pose for the fiducial check (F-I1.13 (1), F-I3.10): '
+                              f'{info.get("reason")}')
+    # (1d) containment of 10,000 samples in the target's pieces and, mapped back, in the partner's
     rng = np.random.default_rng(0)
-    n = len(z['frame'])
+    n = len(fr)
     if n:
         idx = rng.choice(n, min(K('contain_n'), n), replace=False)
-        fpi = {(int(f), int(t), int(q)): i for i, (f, t, q) in enumerate(zip(z['fp_frame'], z['fp_target'],
-                                                                             z['fp_partner']))}
         ins_t = np.zeros(len(idx), bool); ins_p = np.zeros(len(idx), bool)
+        tg, pa, ff = np.asarray(z['target'])[idx], np.asarray(z['partner'])[idx], fr[idx]
+        X = np.asarray(z['pts_local'])[idx].astype(np.float64)
         for ti, t in enumerate(objs):
-            m = z['target'][idx] == ti
+            m = tg == ti
             if not m.any():
                 continue
-            X = z['pts_local'][idx][m].astype(np.float64)
-            ins_t[m] = inside_any(sim['pieces'][t], X + 0.0)
-            back = np.zeros(m.sum(), bool)
-            for j, (ii, f, q) in enumerate(zip(np.nonzero(m)[0], z['frame'][idx][m], z['partner'][idx][m])):
-                Tm = np.asarray(z['rel_T'][fpi[(int(f), ti, int(q))]])
-                Ti = np.linalg.inv(Tm)
-                y = Ti[:3, :3] @ X[j] + Ti[:3, 3]
-                back[j] = inside_any(sim['pieces'][objs[int(q)]], y[None])[0]
-            ins_p[m] = back
-        # samples on a 2 mm grid lie within float tolerance of hull faces: count a sample within 0.5 mm as inside
-        rep['containment'] = dict(target=round(float(ins_t.mean()), 4), partner=round(float(ins_p.mean()), 4))
+            ins_t[m] = inside_any(sim['pieces'][t], X[m])
+            for qi, q in enumerate(objs):
+                mq = m & (pa == qi)
+                if not mq.any():
+                    continue
+                Y = np.zeros((int(mq.sum()), 3))
+                for j, (ii, f) in enumerate(zip(np.nonzero(mq)[0], ff[mq])):
+                    Ti = np.linalg.inv(np.asarray(z['rel_T'][fpi[(int(f), ti, qi)]], np.float64))
+                    Y[j] = Ti[:3, :3] @ X[ii] + Ti[:3, 3]
+                ins_p[mq] = inside_any(sim['pieces'][q], Y)
+        rep['containment'] = dict(target=round(float(ins_t.mean()), 4), partner=round(float(ins_p.mean()), 4),
+                                  n=int(len(idx)))
         if ins_t.mean() < K('contain_share') or ins_p.mean() < K('contain_share'):
             rep['refused'].append(f'containment {rep["containment"]} < 99 %')
-    # (2) reference provenance
-    ref = hdr.get('reference') or {}
-    prov = ref.get('provenance') or {}
-    if not ref or not prov:
-        rep['refused'].append('reference provenance missing')
-    elif not (synthetic_ok and prov.get('chain') == ['synthetic test']):
-        chain = prov.get('chain') or []
-        inputs = prov.get('inputs') or {}
-        if not chain or not inputs:
-            rep['refused'].append('reference provenance incomplete (chain and inputs with sha256 required)')
-        for pth in list(inputs) + [ref.get('path', '')]:
-            q = os.path.abspath(str(pth))
-            why = guard._path_reason(q, 'own')
-            if why and not (pth == ref.get('path') and why == "path contains '.parquet'"):
-                rep['refused'].append(f'reference chain input {pth}: {why}')
-    # (3) fit block
-    pr = np.asarray(z.get('pushed_residual_m', np.zeros(0)))
+    # (3) fit block: pushed_residual_m counts only for a fit on this round's _fit meshes and props_gmg.json, 1 cm / 3 deg
+    pr = np.asarray(z['pushed_residual_m'], np.float64)
     rep['pushed_residual'] = 'none' if not np.isfinite(pr).any() else 'kept'
     if np.isfinite(pr).any():
         fit = hdr.get('fit') or {}
-        fit_ok = bool(fit)
+        why = []
+        if not fit:
+            why.append('no fit block')
+        if fit and not fit.get('commit'):
+            why.append('fit commit unknown')
         want = {o: man['files'].get(f'_fit/{o}.glb') for o in objs}
-        if fit_ok and {o: (fit.get('meshes') or {}).get(o) for o in objs} != want:
-            fit_ok = False
-        if fit_ok and (fit.get('props') or {}).get('sha256') != man['files'].get('props_gmg.json'):
-            fit_ok = False
+        if fit and {o: (fit.get('meshes') or {}).get(o) for o in objs} != want:
+            why.append('fit meshes are not the round\'s _fit/<obj>.glb')
+        if fit and (fit.get('props') or {}).get('sha256') != man['files'].get('props_gmg.json'):
+            why.append('fit props are not the round\'s props_gmg.json')
         pri = fit.get('prior') or {}
-        if fit_ok and not (abs(float(pri.get('sig_p', 0)) - 0.01) < 1e-9 and abs(float(pri.get('sig_r_deg', 0)) - 3.0)
-                           < 1e-9):
-            fit_ok = False
-        if not fit_ok:
+        try:
+            if fit and not (abs(float(pri.get('sig_p', 0)) - 0.01) < 1e-9 and
+                            abs(float(pri.get('sig_r_deg', 0)) - 3.0) < 1e-9):
+                why.append('fit prior is not 1 cm / 3 deg')
+        except (TypeError, ValueError):
+            why.append('fit prior unreadable')
+        if fit.get('nan_reasons'):
+            why.append(f'exporter nan_reasons {fit.get("nan_reasons")}')
+        if why:
             rep['pushed_residual'] = 'forced_nan'
             rep['flags'].append('fit_provenance_refused')
+            rep['fit_refused'] = why
     ok = not rep['refused']
     return ok, rep
 
 
-def intrusions_from_export(path, val, o, p, ev_o):
-    """Intrusions of target o by partner p from a validated export (pts_local in o's file frame = our object frame)."""
+def intrusions_from_export(path, val, o, p, ev_o, partner_samples=None):
+    """Intrusions of target o by partner p from a validated export (pts_local in o's file frame = our object frame).
+    partner_samples (F-I3.1): the partner's full solid samples in its own frame (the union of its delivered pieces at
+    2 mm, what the exporter samples), so the push proxy moves the whole partner and the across axis n comes from the
+    partner's body, as on the tracks path."""
     hdr = json.load(open(_hdr_path(path)))
-    z = dict(np.load(path))
+    z = dict(np.load(path, allow_pickle=False))
     objs = hdr['objects']
     ti, qi = objs.index(o), objs.index(p)
     m = (z['target'] == ti) & (z['partner'] == qi)
@@ -1550,37 +2046,61 @@ def intrusions_from_export(path, val, o, p, ev_o):
         Pp[k] = P[k] @ Ti[:3, :3].T + Ti[:3, 3]
     lin, ok = ev_o.grid.lin(P)
     k = ok.copy(); k[ok] = ev_o.occ[lin[ok]]
-    return Intrusions(o, p, fr[k], P[k], Pp[k], lin[k], rel, sorted(rel), 'export', Xp=None,
+    return Intrusions(o, p, fr[k], P[k], Pp[k], lin[k], rel, sorted(rel), 'export', Xp=partner_samples,
                       pushed_residual=pushed if any(np.isfinite(v) for v in pushed.values()) else None)
 
 
-def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, visual=None, physics_fn=None):
-    """INTERLOCK 11.3, the function the Embodiment session calls. Validates the export (11.2), builds the regions from
-    its samples with the same builder (build/check blocks, persistence, sweep, through-column split with the pair's
-    shared plane), decides with decide_pair (the push proxy, or pushed_residual_m when the fit block validated),
-    carves the round's pieces (box carves exactly; voxel carves as keep-out) and writes round `round` into out_dir
-    (never overwritten). physics_fn(b, o, p, carved, default, recs) -> dict may run the 6.2 tests (A3); without it the
-    carved pieces are written to out_dir/_carved_pending/ and the round delivers the previous pieces.
-    Returns dict(pieces_dir, decisions, physics, validation)."""
+def default_physics(copies=None, log=None):
+    """The physics_fn carve_from_intrusions uses by default (F-I1.8 P2-P7 and the plain-MuJoCo P1 pre-check, on the
+    export's own relative poses P_sim; the FlashCHORD P1 settle is the Embodiment's jitter_check, A3)."""
+    from gmg import simphys as PH
+
+    def fn(b, o, p, carved, default, recs, rels=None, run=None):
+        cm3 = {r['target']: r['_sim_solid']['cm3'] for r in recs if r.get('sim_carve')}
+        return PH.pair_physics(b, o, p, carved[o], carved[p], run, cm3, default[o], default[p],
+                               copies or PH.k_('copies'), 'export round', rels=rels, log=log)
+    return fn
+
+
+def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, visual=None, physics_fn='default',
+                          sources=None, identity=None, ref_poses=None, copies=None, allow_do_not_use=False):
+    """INTERLOCK 11.3, the function the Embodiment session calls; the SAME rule as our tracks path (F-I3.1): the export
+    is validated (11.2, F-I3.10), its samples go through make_side (engaged runs with the hold-out fixed by earlier
+    rounds, persistent regions, the identity / track gate, sources (a) and (b) and the observed notches from
+    `sim_dir/sources/<obj>.npz` written by the gmg at round 0, or SOURCES) and decide_pair with the cumulative budget
+    (F-I3.3: earlier rounds' carves against the round-0 solid). The carved pieces go through physics_fn ('default':
+    default_physics(); None: no physics) and are delivered only if it says so; otherwise round `round` delivers the
+    previous pieces and the carved ones go to out_dir/_carved_pending_p1/. Writes round `round` into out_dir (never
+    overwritten) with the interlock state for the next round. Returns dict(pieces_dir, decisions, physics,
+    validation, manifest)."""
     from gmg import simpieces as SP
-    ok, val = validate(intrusions, sim_dir)
+    if int(round) > K('max_rounds'):
+        raise ValueError(f'round {round} > {K("max_rounds")} (F-I1.13)')
+    b = evidence if hasattr(evidence, 'meta') and hasattr(evidence, 'poses') else load_bundle_any(evidence)
+    tracks = None
+    if b.meta.get('tracks'):
+        tracks = dict(path=b.meta['tracks'].get('path'), sha256=b.meta['tracks'].get('sha256'), poses=b.poses)
+    ok, val = validate(intrusions, sim_dir, ref_poses=ref_poses, tracks=tracks, allow_do_not_use=allow_do_not_use)
     if not ok:
         return dict(pieces_dir=None, decisions=[], physics=None, validation=val)
     hdr = json.load(open(_hdr_path(intrusions)))
-    b = load_bundle_any(evidence)
-    sim = load_sim(sim_dir, episode=b.meta.get('ep'))
+    sim = load_sim(sim_dir, episode=b.meta.get('ep'), allow_do_not_use=allow_do_not_use)
+    st = sim['manifest'].get('interlock') or {}
+    identity = identity or ('eval' if b.meta.get('split') == 'eval' else 'public')
     o, p = pair
     ev = {x: Evidence(b, x, sim['fit'][x]) for x in pair}
-    sides = {}
+    S = {x: _union_grid(sim['pieces'][x], 0.002) for x in pair}
+    src_dir = os.path.join(sim_dir, 'sources')
+    sides, intrs = {}, {}
     for t, q in ((o, p), (p, o)):
-        intr = intrusions_from_export(intrusions, val, t, q, ev[t])
-        cf = sorted(intr.rel)
-        runs = engaged_runs(intr, cf, int(b.meta['stride']))
-        comps = []
-        for r in runs:
-            comps += regions(intr, r, ev[t], float(b.contact(t, q).get('j_mm') or 0) * 1e-3)[0]
-        sides[t] = Side(t, ev[t], intr, comps, runs, partner_collider=_union_grid(sim['pieces'][q], 0.002),
-                        fh=FrameHits(b, t, ev[t].grid))
+        intr = intrusions_from_export(intrusions, val, t, q, ev[t], partner_samples=S[q])
+        intrs[t] = intr
+        src = (sources or {}).get(t) if sources is not None else load_sources(src_dir, t, ev[t].grid)
+        hold = (st.get('holdout') or {}).get(f'{t}<-{q}')
+        sides[t] = make_side(b, t, q, ev[t], intr, sorted(intr.rel), sources=src, identity=identity,
+                             partner_collider=S[q], holdout=hold,
+                             carved_before=(st.get('carved_cm3') or {}).get(t, 0.0),
+                             solid_ref_cm3=(st.get('solid_ref_cm3') or {}).get(t) or ev[t].solid_cm3())
     recs = decide_pair(b, sides[o], sides[p], round_k=round)
     carved = {}
     for x in pair:
@@ -1594,44 +2114,215 @@ def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, v
             res = SP.build(sim['fit'][x], ev[x], vox)
             hl = res['carved']
         carved[x] = hl
-    phys = physics_fn(b, o, p, carved, sim['pieces'], recs) if physics_fn else None
-    deliver = phys is not None and phys.get('deliver_carved')
+    any_carve = any(r.get('sim_carve') for r in recs)
+    if physics_fn == 'default':
+        physics_fn = default_physics(copies)
+    phys = None
+    if any_carve and physics_fn is not None:
+        run = next((r['_comp'].run for r in recs if r.get('sim_carve')), None)
+        phys = physics_fn(b, o, p, carved, sim['pieces'], recs, rels=intrs[o].rel, run=run)
+    deliver = bool(phys is not None and phys.get('deliver_carved'))
+    # the interlock state for the next round (F-I3.3): fixed hold-out, cumulative carves, round-0 solid, regions
+    hold_new = dict(st.get('holdout') or {})
+    reg = {}
+    for t, q in ((o, p), (p, o)):
+        key = f'{t}<-{q}'
+        ch = sorted(set(hold_new.get(key) or []) | {int(f) for r in sides[t].runs for f in r.check})
+        hold_new[key] = ch
+        carved_lin = [r['_comp'].region() for r in recs if r['target'] == t and r.get('sim_carve')]
+        reg[key] = np.unique(np.concatenate(carved_lin)) if carved_lin else np.zeros(0, np.int64)
+    cum = dict(st.get('carved_cm3') or {})
+    for x in pair:
+        add = sum(r['_sim_solid']['cm3'] for r in recs if r['target'] == x and r.get('sim_carve')) if deliver else 0.0
+        cum[x] = round(float(cum.get(x, 0.0)) + float(add), 4)
+    dnu_prev = sim['manifest'].get('do_not_use') or (json.load(open(os.path.join(sim_dir, 'DO_NOT_USE.json')))
+                                                       if os.path.exists(os.path.join(sim_dir, 'DO_NOT_USE.json'))
+                                                       else None)
+    state = dict(round=int(round), holdout=hold_new, carved_cm3=cum,
+                 solid_ref_cm3={x: (st.get('solid_ref_cm3') or {}).get(x) or sides[x].solid_ref_cm3 for x in pair},
+                 default_collider_cm3=st.get('default_collider_cm3') or
+                 {x: round(SP.hull_volume(sim['pieces'][x]) * 1e6, 3) for x in pair},
+                 previous=os.path.abspath(sim_dir), delivered='carved' if deliver else 'previous',
+                 regions_file='interlock_regions.npz')
     objects = {x: dict(visual=(visual or {}).get(x, sim['fit'][x]),
+                       gate=dict(do_not_use=f'built on a do-not-use round ({sim_dir}): {dnu_prev}') if dnu_prev
+                       else None,
                        hulls=carved[x] if deliver else sim['pieces'][x],
                        carve=dict(round=round, delivered='carved' if deliver else 'previous',
                                   decisions=[public(r) for r in recs if r['target'] == x],
-                                  intrusions=os.path.abspath(intrusions), validation=val)) for x in pair}
-    man = SP.write_round(out_dir, b.meta.get('ep'), b.meta.get('split', 'public'), round, objects,
-                         dict(source='embodiment export', reference=hdr.get('reference')), guard._git('rev-parse', 'HEAD'))
-    if not deliver:
+                                  intrusions=os.path.abspath(intrusions), validation=val,
+                                  physics=None if phys is None else {k: v for k, v in phys.items()
+                                                                     if k != 'overlap_series'})) for x in pair}
+    if os.path.exists(os.path.join(out_dir, 'manifest.json')):
+        raise FileExistsError(f'{out_dir}: a delivered round is never overwritten')
+    os.makedirs(out_dir, exist_ok=True)
+    if os.path.isdir(src_dir) and sources is None:          # the sources travel with every round (hashed below)
+        import shutil
+        shutil.copytree(src_dir, os.path.join(out_dir, 'sources'))
+    elif sources is not None:
         for x in pair:
-            dd = os.path.join(out_dir, '_carved_pending', x)
+            s_ = sources.get(x) or {}
+            write_sources(os.path.join(out_dir, 'sources'), x, s_.get('sil'), s_.get('gen'), s_.get('notches'),
+                          s_.get('notches_sil'), ev[x].grid)
+    np.savez_compressed(os.path.join(out_dir, 'interlock_regions.npz'),
+                        **{f'lin::{k}': v for k, v in reg.items()},
+                        **{f'grid_lo::{x}': ev[x].grid.lo for x in pair},
+                        **{f'grid_vox::{x}': np.float64(ev[x].grid.vox) for x in pair},
+                        **{f'grid_shape::{x}': np.asarray(ev[x].grid.shape) for x in pair})
+    man = SP.write_round(out_dir, b.meta.get('ep'), b.meta.get('split', 'public'), round, objects,
+                         dict(source='embodiment export', reference=hdr.get('reference')), interlock=state)
+    if any_carve and not deliver:
+        import trimesh
+        for x in pair:
+            dd = os.path.join(out_dir, '_carved_pending_p1', x)
             os.makedirs(dd, exist_ok=True)
-            import trimesh
             for k, V in enumerate(carved[x]):
                 trimesh.convex.convex_hull(V).export(os.path.join(dd, f'piece_{k:02d}.obj'))
     return dict(pieces_dir=out_dir, decisions=[public(r) for r in recs], physics=phys, validation=val, manifest=man)
 
 
-def round_accept(intr_prev, intr_new, sim_prev, sim_new, check_frames, band_m=None):
-    """INTERLOCK 11.5 A1 / A2 on two exports (rounds k-1 and k, each validated): persistent intrusion volume at the
-    held-out check frames must fall by >= 10 %; check-frame pairs with pushed_residual_m > b must not increase (only if
-    both fit blocks validated). A3 / A4 come from the physical tests and the budget of the round's carve.json."""
+def _export_volumes(path, regions, frames_check, engaged):
+    """Per ordered pair key 't<-q': persistent intrusion volume (samples in the round's carved regions) on the engaged
+    check frames, and total volume per phase ('engaged_check', 'other')."""
+    hdr = json.load(open(_hdr_path(path)))
+    z = dict(np.load(path, allow_pickle=False))
+    objs = hdr['objects']
+    pitch = float(hdr.get('pitch_m', 0.002))
     out = {}
-    vols = []
-    for path, sd in ((intr_prev, sim_prev), (intr_new, sim_new)):
-        ok, val = validate(path, sd)
-        z = dict(np.load(path))
-        m = np.isin(z['fp_frame'], check_frames)
-        vols.append(float(np.sum(z['intr_vol_m3'][m])) * 1e6)
-        pr = z['pushed_residual_m'][m]
-        out.setdefault('pushed', []).append(None if val.get('pushed_residual') != 'kept' or band_m is None
-                                            else int((pr > band_m).sum()))
-        out.setdefault('valid', []).append(ok)
-    out['check_cm3'] = [round(v, 3) for v in vols]
-    out['A1'] = bool(vols[0] > 0 and vols[1] <= 0.9 * vols[0])
-    out['A2'] = (out['pushed'][1] <= out['pushed'][0]) if None not in out['pushed'] else None
+    for ti, t in enumerate(objs):
+        for qi, q in enumerate(objs):
+            if t == q:
+                continue
+            key = f'{t}<-{q}'
+            chk = set(frames_check.get(key) or []) & set(engaged.get(key) or [])
+            m = (z['target'] == ti) & (z['partner'] == qi)
+            f = z['frame'][m]
+            pers = 0.0
+            if key in regions and len(regions[key]['lin']):
+                g = regions[key]['grid']
+                lin, ok = g.lin(z['pts_local'][m].astype(np.float64))
+                inR = np.zeros(len(lin), bool)
+                inR[ok] = np.isin(lin[ok], regions[key]['lin'])
+                pers = float((inR & np.isin(f, list(chk))).sum()) * pitch ** 3 * 1e6
+            mf = (z['fp_target'] == ti) & (z['fp_partner'] == qi)
+            ff = z['fp_frame'][mf]
+            vv = z['intr_vol_m3'][mf].astype(np.float64) * 1e6
+            ech = np.isin(ff, list(chk))
+            out[key] = dict(persistent_check_cm3=pers, engaged_check_cm3=float(vv[ech].sum()),
+                            other_cm3=float(vv[~ech].sum()))
     return out
+
+
+def round_accept(intr_prev, intr_new, sim_prev, sim_new, band_m=None, settle=None, ref_poses=None, tracks=None):
+    """F-I1.13 / INTERLOCK 11.5 acceptance of round k (sim_new, built from intr_prev on sim_prev; intr_new = the
+    Embodiment's export on sim_new), with the F-I3.3 corrections: both exports must validate (else not accepted, A1
+    not computed); check frames and the targeted regions are the ones fixed in sim_new's interlock state (never
+    recomputed from the new export); A1 = on the engaged check frames the persistent intrusion (samples in the carved
+    regions) falls by >= 10 % AND no other ordered pair or phase gains > 0.1 cm3; A2 = check-frame pairs with
+    pushed_residual_m > band do not increase (both fit blocks validated, band given); A3 = every carved pair passed
+    P2-P7 here AND the external settle (Embodiment jitter_check, `settle` = {pair: dict(pass_=bool, ...)}) passed;
+    without that report A3 is pending and the round is not accepted; A4 = cumulative budget (10 % of the round-0 solid
+    where (iv) applies), >= 90 % of the round-0 default collider volume, topology kept, <= 165 shapes."""
+    from gmg import simpieces as SP
+    out = dict(valid=[], refused=[])
+    for path, sd in ((intr_prev, sim_prev), (intr_new, sim_new)):
+        ok, val = validate(path, sd, ref_poses=ref_poses, tracks=tracks)
+        out['valid'].append(ok)
+        out['refused'].append(val.get('refused'))
+        out.setdefault('pushed_state', []).append(val.get('pushed_residual'))
+    if not all(out['valid']):
+        out.update(A1=None, A2=None, A3=None, A4=None, accept=False, why='an export did not validate')
+        return out
+    simn = load_sim(sim_new)
+    man = simn['manifest']
+    st = man.get('interlock') or {}
+    rz = dict(np.load(os.path.join(sim_new, st.get('regions_file', 'interlock_regions.npz')), allow_pickle=False))
+    regions = {}
+    for k, v in rz.items():
+        if k.startswith('lin::'):
+            key = k[5:]
+            t = key.split('<-')[0]
+            regions[key] = dict(lin=v, grid=Grid(rz[f'grid_lo::{t}'], float(rz[f'grid_vox::{t}']),
+                                                rz[f'grid_shape::{t}']))
+    hold = st.get('holdout') or {}
+    engaged = {}
+    for o in _man_objects(man):
+        cj = json.load(open(os.path.join(sim_new, o, 'carve.json')))
+        for d in cj.get('decisions') or []:
+            key = f'{d["target"]}<-{d["partner"]}'
+            fr = d.get('run', {}).get('frames') or []
+            if len(fr) == 2:
+                engaged.setdefault(key, set()).update(range(int(fr[0]), int(fr[1]) + 1))
+    engaged = {k: sorted(v) for k, v in engaged.items()}
+    v0 = _export_volumes(intr_prev, regions, hold, engaged)
+    v1 = _export_volumes(intr_new, regions, hold, engaged)
+    out['volumes_prev'] = {k: {kk: round(vv, 4) for kk, vv in v.items()} for k, v in v0.items()}
+    out['volumes_new'] = {k: {kk: round(vv, 4) for kk, vv in v.items()} for k, v in v1.items()}
+    targeted = [k for k in regions if len(regions[k]['lin'])]
+    if not targeted:
+        out.update(A1=None, accept=False, why='the round adds no CARVE (stop)')
+    else:
+        p0 = sum(v0[k]['persistent_check_cm3'] for k in targeted if k in v0)
+        p1 = sum(v1[k]['persistent_check_cm3'] for k in targeted if k in v1)
+        gains = []
+        for k in set(v0) | set(v1):
+            for ph in ('engaged_check_cm3', 'other_cm3'):
+                if k in targeted and ph == 'engaged_check_cm3':
+                    continue
+                dv = v1.get(k, {}).get(ph, 0.0) - v0.get(k, {}).get(ph, 0.0)
+                if dv > 0.1:
+                    gains.append((k, ph, round(dv, 3)))
+        out['A1_detail'] = dict(persistent_prev_cm3=round(p0, 4), persistent_new_cm3=round(p1, 4), gains=gains)
+        out['A1'] = bool(p0 > 0 and p1 <= 0.9 * p0 and not gains)
+    # A2
+    pr = []
+    for path in (intr_prev, intr_new):
+        z = dict(np.load(path, allow_pickle=False))
+        chk = np.zeros(len(z['fp_frame']), bool)
+        hdr = json.load(open(_hdr_path(path)))
+        for i, (f, t, q) in enumerate(zip(z['fp_frame'], z['fp_target'], z['fp_partner'])):
+            key = f'{hdr["objects"][int(t)]}<-{hdr["objects"][int(q)]}'
+            chk[i] = int(f) in set(hold.get(key) or [])
+        pr.append(None if band_m is None else int((np.asarray(z['pushed_residual_m'])[chk] > band_m).sum()))
+    out['A2'] = (pr[1] <= pr[0]) if (None not in pr and all(s == 'kept' for s in out['pushed_state'])) else None
+    # A3
+    objs = _man_objects(man)
+    phys = [json.load(open(os.path.join(sim_new, o, 'carve.json'))).get('physics') for o in objs]
+    delivered = st.get('delivered') == 'carved'
+    p27 = all((ph or {}).get('P2_P7_pass') for ph in phys) if delivered else None
+    out['A3_detail'] = dict(delivered=st.get('delivered'), P2_P7_pass=p27, settle=settle)
+    if not delivered:
+        out['A3'] = None
+    elif settle is None:
+        out['A3'] = None
+        out['A3_detail']['pending'] = 'the FlashCHORD settle (Embodiment jitter_check --k 16) has not been reported'
+    else:
+        out['A3'] = bool(p27 and all(v.get('pass_') for v in settle.values()))
+    # A4
+    cum = st.get('carved_cm3') or {}
+    base = st.get('solid_ref_cm3') or {}
+    dcol = st.get('default_collider_cm3') or {}
+    shares = {o: (float(cum.get(o, 0.0)) / float(base[o])) if base.get(o) else None for o in objs}
+    keep = {o: round(SP.hull_volume(simn['pieces'][o]) * 1e6 / dcol[o], 4) if dcol.get(o) else None for o in objs}
+    shapes = sum(len(simn['pieces'][o]) for o in objs)
+    topo = all(((d.get('budget') or {}).get('topology') or {}).get('before') ==
+               ((d.get('budget') or {}).get('topology') or {}).get('after')
+               for o in objs for d in json.load(open(os.path.join(sim_new, o, 'carve.json'))).get('decisions') or []
+               if d.get('sim_carve'))
+    a4 = all(v is None or v <= K('budget_vol') + 1e-9 for v in shares.values()) and \
+        all(v is None or v >= 0.9 for v in keep.values()) and topo and shapes <= 165
+    out['A4_detail'] = dict(cum_share=shares, collider_kept=keep, shapes=shapes, topology=topo)
+    out['A4'] = bool(a4)
+    out['accept'] = bool(out.get('A1') and out['A2'] is not False and out['A3'] and out['A4'])
+    return out
+
+
+def _tracks_of(evidence):
+    if not evidence:
+        return None
+    b = load_bundle_any(evidence)
+    t = b.meta.get('tracks') or {}
+    return dict(path=t.get('path'), sha256=t.get('sha256'), poses=b.poses) if t else None
 
 
 def _cli():
@@ -1642,16 +2333,30 @@ def _cli():
     c.add_argument('--pair', nargs=2, required=True); c.add_argument('--intrusions', required=True)
     c.add_argument('--evidence', required=True); c.add_argument('--sim-in', required=True)
     c.add_argument('--out', required=True); c.add_argument('--round', type=int, required=True)
+    c.add_argument('--no-physics', action='store_true')
     v = sub.add_parser('validate')
     v.add_argument('--intrusions', required=True); v.add_argument('--sim-in', required=True)
+    v.add_argument('--evidence', help='our bundle: its tracks are the independent reference pose when they are the '
+                                      'chain\'s poses.npz (F-I3.10)')
+    r = sub.add_parser('accept')
+    r.add_argument('--prev', required=True); r.add_argument('--new', required=True)
+    r.add_argument('--sim-prev', required=True); r.add_argument('--sim-new', required=True)
+    r.add_argument('--evidence'); r.add_argument('--band-m', type=float); r.add_argument('--settle')
     a = ap.parse_args()
     if a.cmd == 'validate':
-        ok, rep = validate(a.intrusions, a.sim_in)
+        ok, rep = validate(a.intrusions, a.sim_in, tracks=_tracks_of(a.evidence))
         print(json.dumps(dict(ok=ok, **rep), indent=1, default=_jdefault))
+        return
+    if a.cmd == 'accept':
+        st = json.load(open(a.settle)) if a.settle else None
+        res = round_accept(a.prev, a.new, a.sim_prev, a.sim_new, band_m=a.band_m, settle=st,
+                           tracks=_tracks_of(a.evidence))
+        print(json.dumps(res, indent=1, default=_jdefault))
         return
     if a.round > K('max_rounds'):
         raise SystemExit(f'round {a.round} > {K("max_rounds")} (F-I1.13)')
-    res = carve_from_intrusions(tuple(a.pair), a.intrusions, a.evidence, a.sim_in, a.out, a.round)
+    res = carve_from_intrusions(tuple(a.pair), a.intrusions, a.evidence, a.sim_in, a.out, a.round,
+                                physics_fn=None if a.no_physics else 'default')
     print(json.dumps({k: v for k, v in res.items() if k != 'manifest'}, indent=1, default=_jdefault)[:20000])
 
 
