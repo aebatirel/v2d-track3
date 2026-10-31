@@ -1117,6 +1117,9 @@ def decide_component(comp, side, b, poses, R_lin, report):
     cl = R_lin[carve]
     if '_orphan_lin' in reasons:
         cl = np.concatenate([cl, reasons.pop('_orphan_lin')])
+    if not len(cl):                                    # crash fix (F-I5 build, 31 Oct): an empty carve set crashed
+        reasons['why'] = 'no carvable voxel (empty carve set)'      # carve_solid; it is a PUSH, as an empty step 4
+        return 'PUSH', reasons
     reasons['_carve_lin'] = cl
     return 'CARVE', reasons
 
