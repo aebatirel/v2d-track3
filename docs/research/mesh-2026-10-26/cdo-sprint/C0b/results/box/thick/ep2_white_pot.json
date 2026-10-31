@@ -1,0 +1,14 @@
+{
+ "obj": "white_pot",
+ "ep": 2,
+ "file": "/content/results/c0b/pts/B/ep2_white_pot.npz",
+ "n": 253,
+ "median_m": 0.0015,
+ "info": {
+  "points": 2872941,
+  "samples": 63328,
+  "measured": 253,
+  "median_mm": 1.5
+ },
+ "sec": 56.4
+}

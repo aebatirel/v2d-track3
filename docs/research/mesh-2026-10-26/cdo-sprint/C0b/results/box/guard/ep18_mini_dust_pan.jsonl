@@ -1,0 +1,4 @@
+{"file": "/content/results/c0b/pts/A/ep18_mini_dust_pan.npz", "half_m": 0.3, "kept": 1814264, "near_face": 65662, "share": 0.036192, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep18_mini_dust_pan.npz", "half_m": 0.45, "kept": 4898608, "near_face": 0, "share": 0.0, "max_abs_mm": 425.9, "rebuild": false}
+{"file": "/content/results/c0b/pts/B/ep18_mini_dust_pan.npz", "half_m": 0.3, "kept": 1697585, "near_face": 26436, "share": 0.015573, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/B/ep18_mini_dust_pan.npz", "half_m": 0.45, "kept": 4051846, "near_face": 0, "share": 0.0, "max_abs_mm": 425.9, "rebuild": false}

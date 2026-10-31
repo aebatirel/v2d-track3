@@ -1,0 +1,4 @@
+white_pot {"pick": "pot/ep43/fit", "fid_all_sum_mm": 3.407, "n_eligible": 32, "n_candidates": 32, "runner_up": "pot/ep43/nostem", "runner_up_fid": 3.407}
+plastic_dish_rack {"pick": "rack/ep13/full", "fid_all_sum_mm": 33.32, "n_eligible": 12, "n_candidates": 12, "runner_up": "rack/ep13/nomk", "runner_up_fid": 37.811}
+blue_cup {"pick": "cup/ep21/g1", "fid_all_sum_mm": 3.377, "n_eligible": 5, "n_candidates": 5, "runner_up": "cup/ep22/g1", "runner_up_fid": 3.518}
+beige_cup {"pick": "beige/ep11/g1", "fid_all_sum_mm": 3.91, "n_eligible": 2, "n_candidates": 2, "runner_up": "beige/ep11/g0", "runner_up_fid": 5.167}

@@ -1,0 +1,15 @@
+{
+ "obj": "white_pot_lid",
+ "file": "/content/results/c0b/pts/B/ep2_white_pot_lid.npz",
+ "sigma_m": 0.0008245805762876345,
+ "T": 343,
+ "stride": 2,
+ "info": {
+  "even_points": 766781,
+  "odd_points": 778530,
+  "sheet_faces": 116933,
+  "raw_median_mm": 0.825,
+  "n": 50000
+ },
+ "sec": 29.3
+}

@@ -1,0 +1,14 @@
+{
+ "obj": "wooden_piece_2",
+ "ep": 24,
+ "file": "/content/results/c0b/pts/B/ep24_wooden_piece_2.npz",
+ "n": 4,
+ "median_m": 0.0015,
+ "info": {
+  "points": 2281875,
+  "samples": 23387,
+  "measured": 4,
+  "median_mm": 1.5
+ },
+ "sec": 27.3
+}

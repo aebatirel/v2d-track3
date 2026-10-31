@@ -1,0 +1,4 @@
+{"file": "/content/results/c0b/pts/A/ep24_wooden_piece_1.npz", "half_m": 0.3, "kept": 3745894, "near_face": 19956, "share": 0.005327, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep24_wooden_piece_1.npz", "half_m": 0.45, "kept": 3778494, "near_face": 724, "share": 0.000192, "max_abs_mm": 450.0, "rebuild": false}
+{"file": "/content/results/c0b/pts/B/ep24_wooden_piece_1.npz", "half_m": 0.3, "kept": 3436284, "near_face": 19956, "share": 0.005807, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/B/ep24_wooden_piece_1.npz", "half_m": 0.45, "kept": 3464294, "near_face": 724, "share": 0.000209, "max_abs_mm": 450.0, "rebuild": false}

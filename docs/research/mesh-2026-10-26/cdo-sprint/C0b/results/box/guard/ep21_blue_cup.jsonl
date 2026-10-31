@@ -1,0 +1,3 @@
+{"file": "/content/results/c0b/pts/A/ep21_blue_cup.npz", "half_m": 0.3, "kept": 1469267, "near_face": 12459, "share": 0.00848, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/A/ep21_blue_cup.npz", "half_m": 0.45, "kept": 2125694, "near_face": 3443, "share": 0.00162, "max_abs_mm": 450.0, "rebuild": true}
+{"file": "/content/results/c0b/pts/B/ep21_blue_cup.npz", "half_m": 0.3, "kept": 1426212, "near_face": 0, "share": 0.0, "max_abs_mm": 272.0, "rebuild": false}
