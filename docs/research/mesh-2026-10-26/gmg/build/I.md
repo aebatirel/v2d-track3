@@ -585,7 +585,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   misses; only the acceptance can refuse it. x7 n2 (sweep 0.0) and n4 (TRANSIENT) out of scope as predicted; x6 / x10
   identical records. Speed: exact K-in-piece vertex enumeration (`cavpieces.intersect_points`, 0.8 ms vs 13 ms for
   the plane-by-plane clip, identical on 400 random pairs) now used.
-- 18:17 PREREG F-I4.15 (F-I4.15.0-F-I4.15.10; predictions P51-P58, since P41-P50 are F-I5's; synthetic w6c, w8, w8b,
+- 18:14 PREREG F-I4.15 (F-I4.15.0-F-I4.15.10; predictions P51-P58, since P41-P50 are F-I5's; synthetic w6c, w8, w8b,
   w9) and INTERLOCK 20.10 (+ header and 20.9 item 1 pointers) written. Nothing run, no code edited. Design points: t and
   mid plane from the step-2 estimator on all near points (plate tests unchanged, on the downsample); outline re-rastered
   at 2 mm along the rectangle's axes (same cell rules), outer ring, Douglas-Peucker 1.0 mm, must be simple; slot bottom
@@ -596,3 +596,6 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   "a full rectangle would fail keep-out" does not follow. ep23 from the v6 bundle (b4ext6-90c8cce, v4 board-1 crop
   clipped). Freeze for eval 25 only if ep24 fi4o carves both and passes all but P1, and ep23 board 1 is plate-like with
   a body built. Committing + pushing (PREREG.md, INTERLOCK.md, this log, work log).
+- 18:15 pushed f62454a (PREREG F-I4.15, INTERLOCK 20.10, this log, work log; committed 18:14:55 UTC). Correction: the
+  entry above, F-I4.15's header and the work-log heading first said 18:17, a guessed time; replaced by the commit time
+  (follow-up commit, text otherwise unchanged). Amend step done; no code edited, nothing run.

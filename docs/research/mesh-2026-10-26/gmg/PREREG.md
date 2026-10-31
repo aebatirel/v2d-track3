@@ -1287,7 +1287,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     but is not independent (written after diag14 had measured the faces about 7 mm apart with the same split).
 
 - **2026-10-31, F-I4.15 (post hoc): the plate body follows the observed outline (polygon prisms), and t comes from
-  all points.** Written 18:00-18:17 UTC from the orchestrator's decision (31 Oct, ~18:05 UTC as it states; F-I4.15.0) and
+  all points.** Written 18:00-18:14 UTC (pushed in f62454a, committed 18:14:55 UTC) from the orchestrator's decision (31 Oct, ~18:05 UTC as it states; F-I4.15.0) and
   committed and pushed **before any code or run uses it**. Placed with the F-I4 entries; in time it follows F-I5
   (17:34 UTC). Still before any gmg scoring round (zero gmg scan scorings exist; no scan number was read for this
   entry). Labelled **post hoc**: it replaces the F-I4.2 body, the F-I4.6 pieces and the thickness estimate of F-I4.1 /

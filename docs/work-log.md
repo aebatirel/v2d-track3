@@ -5568,7 +5568,7 @@ diagnostic; nothing is picked for submission.
   - eval 25 with board identity mapped to the pack's ev25idfix reference and a new ep25 gmg bundle;
   - report.
 
-### 2026-10-31 ~18:17 UTC — board slot round 2: PREREG F-I4.15 written (amend step, nothing run)
+### 2026-10-31 ~18:15 UTC — board slot round 2: PREREG F-I4.15 written (amend step, nothing run)
 - PREREG F-I4.15 and INTERLOCK 20.10 committed before any code or run uses them (gmg `build/I.md`, "Board slot round 2").
 - Outline-polygon plate body (2 mm cells along the rectangle axes, Douglas-Peucker 1 mm), convex prisms of the polygon
   minus the slot (ear clipping + Hertel-Mehlhorn, cap floor(165 / objects)), t from all points, slot depth from the
