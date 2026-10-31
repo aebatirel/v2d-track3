@@ -5192,3 +5192,17 @@ diagnostic; nothing is picked for submission.
   - No top team has published a mesh method. The only public Track 3 pipeline (rborah-cmu/ego2sim-nvidia-v2d) uses
     FoundationPose meshes plus SAM2/WiLoR.
 - Reply: C0 after its AUC guard and verifiers (aim <= 1 Nov 12:00 UTC); C1 runs at $0 on CPU (no GPU batch now).
+
+### 2026-10-31 ~15:45-16:00 UTC — owner wants a pack today: C0 hand-off moved to ~18:30 UTC
+- Score session (data): owner quote ~15:40 UTC, "I want a pack today". The upload is before ~21:00 UTC. Each Kaggle board
+  keeps the selected or best submission (PR #215 kit CONTAINER_SUBMISSION.md; pack 5 vs 4), so the AUC guard is
+  information for tonight, not a gate.
+- Done:
+  - Created `meshes/library_c0` (library_v3 + pot, lid, rack, blue-cup swaps) and `meshes/library_c0x` (library_v3x +
+    the same swaps, for eval 8), commit 5cce3d2. All other files are byte-identical.
+  - Launched an independent hand-off verifier (byte identity vs scored meshes, roster, kit pack dry run, frame / ICP
+    shift, integrity); output `cdo-sprint/C0/verify_handoff.md`.
+  - The C0 workflow's AUC guard (51 runs, started 15:35) continues in parallel.
+  - Reniced the gmg / interlock processes to 19.
+- Told the score session: C0 goes to focused-pascal by ~18:30 UTC at the latest. Caveat: if the final ranking scores one
+  selected submission on all boards, the AUC guard gates the final choice.
