@@ -5298,3 +5298,20 @@ diagnostic; nothing is picked for submission.
     - pin fast_simplification 0.2.0 in pack_eval.sh;
     - the C0 README is still to come (stage 4).
 - Sent the frame yes/no to focused-pascal and the score session. AUC guard 40/51 runs, 0 failures.
+
+### 2026-10-31 ~16:15 UTC — C0 AUC guard: all 4 objects pass (51/51 runs, frozen rule)
+- Runs: `cdo-sprint/C0/scripts/run_auc_guard.sh` (score_registered.py on 15 public twins: base, c0, single/<o>),
+  15:35-16:10 UTC, this container, 2 streams at nice 5. 0 failures.
+- Verdict from the frozen `guard_eval.py` (PREREG 081b37e), my reproduction to `<scratch>/cdo_c0/guard_orch_check.json`.
+  The workflow's AUC_RESULTS.md and verifiers follow.
+
+  | Object | Mean dAUC | Min dAUC | Mean dMPPE | Mean dRPE | Verdict |
+  |---|---|---|---|---|---|
+  | pot | +0.0030 | -0.0159 (ep2) | -0.057 cm | -0.108 cm | ADOPT |
+  | lid | +0.0055 | 0.0 | -0.079 cm | -0.121 cm | ADOPT |
+  | rack | +0.0158 | -0.0092 | -0.043 cm | -0.097 cm | ADOPT |
+  | blue cup | +0.0241 | -0.0049 | -0.249 cm | +0.163 cm | ADOPT (still held back from 9a for the selector-integrity reason) |
+
+  Joint c0 over 15 twins (reported only): mean dAUC +0.0148, min -0.024, MP-SR +0.067.
+- Sent to focused-pascal and the score session: the rack's 2.3 deg rotation does not hurt registered AUC on its twins.
+  Keep it in 9a.
