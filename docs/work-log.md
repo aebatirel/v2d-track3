@@ -5315,3 +5315,23 @@ diagnostic; nothing is picked for submission.
   Joint c0 over 15 twins (reported only): mean dAUC +0.0148, min -0.024, MP-SR +0.067.
 - Sent to focused-pascal and the score session: the rack's 2.3 deg rotation does not hurt registered AUC on its twins.
   Keep it in 9a.
+
+### 2026-10-31 ~16:20-16:30 UTC — pack 9a built by focused-pascal; mesh sign-off sent (pot, rack, lid YES)
+- Pack 9a (focused-pascal):
+  - pack 8 plus the C0 pot, lid and rack (12 of 36 pairs); commit URL 50004a7, sha256 9c19bb0c...;
+  - offline validation passed, 0 MESH WARNING;
+  - their swap tool's frame check flagged the centroid shift (pot 5.44 mm, rack 11.46 mm) and, for the lid, the
+    extent ratio and a 162 deg rotation from the kit-registration proxy (library_v3 used as a stand-in scan).
+- Sign-off evidence sent:
+  - **Real registration, lid onto the public lid scan** (`score_registered.py` JSONs): C0 lid 1.81 / 1.45 deg, anchor
+    0.40 / 0.47 cm (ep0 / ep2); library_v3 1.74 / 1.05 deg, 0.71 / 0.79 cm. No flip; 0/6 flips in the 27 Oct scoring.
+  - **Lid thickness**, GT-free along library_v3's normal:
+    - C0 -5.0..+37.4 mm;
+    - our ep2 observed lid points (1.49 M) p0.5-p99.5 -5.3..+37.9 mm;
+    - library_v3 -16.9..+35.5 mm, ~12 mm below anything observed.
+    So the difference is real shape.
+  - Pot and rack centroid shifts are shape differences; both pass the AUC guard.
+- **Post-hoc C0a diagnostic** (focused-pascal's C0 rigidly ICP-aligned onto library_v3; owner asked "Cant you fix the
+  rotation and scale error"):
+  - 21 single-swap registered-AUC runs, `cdo-sprint/C0a-diag/run_c0a.sh`, outputs `<scratch>/cdo_c0/runs_c0a`.
+  - Not used for 9a: focused-pascal's pre-registered MESH_RULE picked as-fitted C0 because every mean dAUC >= 0.
