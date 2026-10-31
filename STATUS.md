@@ -10,6 +10,10 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 20:51 UTC: ep11 gate PASS (Δ +0.142 vs mocap) — eval-10 V4p retrain launching
+- Seed 42 +0.013, seed 43 +0.271 (T 0.861); control stays at its static floor. Verified, no timeouts.
+- Eval-10 retrain (ops/jobs/ev10_v4p.sh, 2 seeds + 10 confirmation draws, swap rule on both references) next.
+
 ## 2026-10-31 18:13 UTC: PACK 9a+ UPLOADED — AUC 0.81757 (best), CD-O 0.332 (from 0.402); rank sum 60, 11th
 - Uploaded by the score-status session (owner's word there) from `results/submissions/20261031-track3i-candidate/build_9aplus/`.
 - RPE 3.879, MPPE 2.897; SP-SR / MP-SR unchanged. Next levers: eval 10 (ep11 gate result ~19:30–21:00), pack 10.

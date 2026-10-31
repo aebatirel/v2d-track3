@@ -1,0 +1,143 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+ [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/depth0.npy
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-g1-022fece/refs/perc2m/ep11/hands.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/perc2/poses.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261025-g1-022fece/refs/perc2m/ep11/hands_refined.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/perc2/poses_world_vo.npz
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+pulled cache/depth/public/ep11/depths_fs0.5.npy
+[2026-10-31T16:07:05Z] ep11_gate: inputs ok ({"path": "/content/hfstore/cache/depth/public/ep11/depths_fs0.5.npy", "bytes": 876800128, "shape": [137, 1000, 1600], "frame0_sha256": "070547135e460052c1c2cf15862068feaf6225076b2bf614fef9a63494680588", "ok": true})
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: /content/e11g_vr/bin/python -m pip install --upgrade pip
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: /content/e11g_vp/bin/python -m pip install --upgrade pip
+[refine    1.0s] S12 window blue_cup <- beige_cup [42, 137) hold to 137 (episode end), pre-nest f33, outer height change mean -2.40 cm (min -5.39); inner none
+nest_physics inner: window blue_cup <- beige_cup [42, 137), settled 36 frames; dz {'beige_cup': {'median': -1.07, 'min': -1.454, 'max': -0.901}}
+[2026-10-31T16:07:39Z] ep11_gate B0: GO: e11c IDENTICAL md5 b32ab808e560f8a3ebbec3658701066c; e11t DIFFERS (max 0.7770 mm, 0.6484 deg) md5 527eac7a6e34d64fb36dccf10aef4725
+[2026-10-31T16:11:42Z] ep11_gate e11t: reference built ([16:09:45] qa_ref: {"kind": "ref", "reasons": [], "wrist_p95_mm": {"left": 10.1, "right": 24.6}, "max_step_cm": {"left": 2.9, "right": 3.9}, "pass": true, "score": 24.6} [16:11:42] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":95,"optimised":95,"pen_p95_mm_before":19.1,"pen_p95_mm_after":2.0,"tip_to_target_mm_median":2.0,"tip_to )
+[2026-10-31T16:11:49Z] ep11_gate e11c: reference built ([16:09:45] qa_ref: {"kind": "ref", "reasons": [], "wrist_p95_mm": {"left": 10.1, "right": 24.6}, "max_step_cm": {"left": 2.9, "right": 3.9}, "pass": true, "score": 24.6} [16:11:49] contact_retarget: {"left":{"tip_site_depth_mm":[1.2,1.7,1.7,1.7,1.7],"contact_frames":96,"optimised":96,"pen_p95_mm_before":18.0,"pen_p95_mm_after":6.7,"tip_to_target_mm_median":2.3,"tip_to )
+[2026-10-31T16:11:51Z] glock_public code 663b7df, pairs [11:local:mck:perc2e11c 11:local:mck:perc2e11t], seed 42, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-10-31T16:11:51Z] glock_public: REF_ONLY 1, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T16:11:53Z] glock_public: collision pieces from /content/v2d-track3/meshes/carve/ev10 (beige_cup blue_cup carve.json fc_test )
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-10-31T16:11:53Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-10-31T16:11:53Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-10-31T16:11:55Z] glock perc2e11c ep11: base mck (/content/refs/perc2e11cmck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/67a02523d4c24fe88e8d5a81e410ed42-0.parquet)
+[2026-10-31T16:12:25Z] glock perc2e11t ep11: base mck (/content/refs/perc2e11tmck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d5a8ed5cc6a04d7aa731b59d97e23e69-0.parquet)
+[2026-10-31T16:16:40Z] glock perc2e11c ep11: rest check {"all_ok": false, "mm": 5.0, "deg": 2.0, "objects": {"blue_cup": {"until_frame": 50, "max_mm": 37.3, "max_deg": 16.8, "worst_frame": 49, "ok": false}, "beige_cup": {"until_frame": 12, "max_mm": 3.4, "max_deg": 0.1, "worst_frame": 8, "ok": true}}}
+[2026-10-31T16:16:40Z] glock perc2e11t ep11: rest check {"all_ok": true, "mm": 5.0, "deg": 2.0, "objects": {"blue_cup": {"until_frame": 12, "max_mm": 3.3, "max_deg": 1.9, "worst_frame": 2, "ok": true}, "beige_cup": {"until_frame": 12, "max_mm": 2.7, "max_deg": 0.1, "worst_frame": 10, "ok": true}}}
+[2026-10-31T16:17:06Z] glock perc2e11t ep11: replan 1: every object is where its reference says before its grasp; nothing to re-plan
+[2026-10-31T16:17:06Z] glock perc2e11t ep11: right beige_cup: SNAP human grasp, closing {"index": null, "middle": 0.025, "ring": 0.025, "pinky": 0.025, "thumb": null} right beige_cup 18-87: human grasp (human holds at axis 5.1 cm), grasp pose from f27 (4 fingers on, mean gap 7.1 mm), hold from f15, object moves f25, lift 0.7  right beige_cup: SNAP human grasp, closing {"index": null, "middle": 0.025, "ring": 0.025, "pinky": 0.025, "thumb": null} right beige_cup 18-87: human grasp (human holds at axis 5.1 cm), grasp pose from f27 (4 fingers on, mean gap 7.1 mm), hold from f15, object moves f25, lift 0.7   | zero action floor_vs_ref 0.5778 zero_action: sim_vs_ref 0.5579 
+[2026-10-31T16:17:06Z] glock perc2e11t ep11: REF_ONLY: reference finished (/content/refs/perc2e11t_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet); not trained
+[2026-10-31T16:18:29Z] glock perc2e11c ep11: replan 1: 1 holds re-planned (left blue_cup: simulation {"seen_at_frame": 43, "hold_from": 53, "off_cm": 3.6, "off_deg": 12.4, "carry_back": [63, 83]} ); zero action 0.4786 (previous 0.3987)
+[2026-10-31T16:18:29Z] glock perc2e11c ep11: replan 1 KEPT (training on it)
+[2026-10-31T16:18:29Z] glock perc2e11c ep11: right beige_cup: SNAP human grasp, closing {"index": null, "middle": 0.025, "ring": 0.025, "pinky": 0.025, "thumb": null} right beige_cup 18-90: human grasp (human holds at axis 5.2 cm), grasp pose from f29 (4 fingers on, mean gap 7.0 mm), hold from f15, object moves f25, lift 0.7  left blue_cup: SNAP human grasp, closing {"index": 0.175, "middle": 0.225, "ring": 0.325, "pinky": null, "thumb": 0.175} left blue_cup 56-102: human grasp (human holds at axis 0.5 cm), grasp pose from f57 (5 fingers on, mean gap 1.3 mm), hold from f53, object moves f63, lift 0.7 c right beige_cup: SNAP human grasp, closing {"index": null, "middle": 0.025, "ring": 0.025, "pinky": 0.025, "thumb": null} right beige_cup 18-90: human grasp (human holds at axis 5.2 cm), grasp pose from f29 (4 fingers on, mean gap 7.0 mm), hold from f15, object moves f25, lift 0.7  left blue_cup: SNAP human grasp, closing {"index": 0.175, "middle": 0.225, "ring": 0.325, "pinky": null, "thumb": 0.175} left blue_cup 56-102: human grasp (human holds at axis 0.5 cm), grasp pose from f57 (5 fingers on, mean gap 1.3 mm), hold from f53, object moves f63, lift 0.7 c  | zero action floor_vs_ref 0.5135 zero_action: sim_vs_ref 0.3987 
+[2026-10-31T16:18:29Z] glock perc2e11c ep11: REF_ONLY: reference finished (/content/refs/perc2e11c_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet); not trained
+[2026-10-31T16:18:29Z] glock_public summary: {}
+[2026-10-31T16:18:30Z] ep11_gate arms: ARMS OK :: e11c: reference e89bb9c7fe96e1dd180afc4800bba0a5 (fingerprint c311b51e4589), base a95db832025cff411d1bf6ae07652398, blue_cup 0.3 kg, beige_cup 0.3 kg; e11t: reference c527ceb0522d276879a803cd0e8ab3c8 (fingerprint ac4f0dd422ba), base cbfebb4947265545c7b86500254a98ab, blue_cup 0.3 kg, beige_cup 0.3 kg
+[2026-10-31T16:18:30Z] ep11_gate identity before training: GO: bad arms [], apart window blue/beige cm [2.404, 0.0]
+[2026-10-31T16:18:31Z] ep11_gate: seed 42, PAIRS [11:local:mck:perc2e11cs42 11:local:mck:perc2e11ts42]
+[2026-10-31T16:18:32Z] glock_public code 663b7df, pairs [11:local:mck:perc2e11cs42 11:local:mck:perc2e11ts42], seed 42, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-10-31T16:18:32Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T16:18:34Z] glock_public: collision pieces from /content/v2d-track3/meshes/carve/ev10 (beige_cup blue_cup carve.json fc_test )
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-10-31T16:18:34Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-10-31T16:18:34Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-10-31T16:18:35Z] glock perc2e11cs42 ep11: base mck (/content/refs/perc2e11cs42mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/67a02523d4c24fe88e8d5a81e410ed42-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e11cs42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T16:19:05Z] glock perc2e11ts42 ep11: base mck (/content/refs/perc2e11ts42mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d5a8ed5cc6a04d7aa731b59d97e23e69-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e11ts42_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T17:40:17Z] glock perc2e11ts42 ep11: trained 7 checkpoints
+[2026-10-31T17:46:04Z] glock perc2e11ts42 ep11: curve  10M sim_vs_ref 0.578 | blue_cup: lift 0; 20M sim_vs_ref 0.577 | blue_cup: lift 0; 30M sim_vs_ref 0.576 | blue_cup: lift 0; 40M sim_vs_ref 0.513 | blue_cup: lift 0; 50M sim_vs_ref 0.577 | blue_cup: lift 0; 60M sim_vs_ref 0.602 | blue_cup: lift 0; 70M sim_vs_ref 0.617 | blue_cup: lift 0;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-10-31T17:54:26Z] glock perc2e11ts42 ep11 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.6226, 'std': 0.0562, 'min': 0.4626, 'max': 0.6704} registered AUC vs mocap {'mean': 0.6073, 'std': 0.0533, 'min': 0.4548, 'max': 0.6503}
+[2026-10-31T18:21:11Z] glock perc2e11cs42 ep11: trained 7 checkpoints
+[2026-10-31T18:26:20Z] glock perc2e11cs42 ep11: curve  10M sim_vs_ref 0.517 | blue_cup: lift 0; 20M sim_vs_ref 0.513 | blue_cup: lift 0; 30M sim_vs_ref 0.513 | blue_cup: lift 0; 40M sim_vs_ref 0.513 | blue_cup: lift 0; 50M sim_vs_ref 0.514 | blue_cup: lift 0; 60M sim_vs_ref 0.494 | blue_cup: lift 0; 70M sim_vs_ref 0.511 | blue_cup: lift 0;; chosen by sim_vs_ref: policy_10002432.safetensors
+[2026-10-31T18:34:27Z] glock perc2e11cs42 ep11 RESULT (policy_10002432.safetensors): n 10 sim_vs_ref {'mean': 0.515, 'std': 0.0014, 'min': 0.5135, 'max': 0.5171} registered AUC vs mocap {'mean': 0.5947, 'std': 0.0, 'min': 0.5947, 'max': 0.5947}
+[2026-10-31T18:34:27Z] glock_public summary: {}
+[2026-10-31T18:34:28Z] ep11_gate: seed 43, PAIRS [11:local:mck:perc2e11cs43 11:local:mck:perc2e11ts43]
+[2026-10-31T18:34:29Z] glock_public code 663b7df, pairs [11:local:mck:perc2e11cs43 11:local:mck:perc2e11ts43], seed 43, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 0, REPLAN 1, EVOLVE 0 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15]
+[2026-10-31T18:34:29Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T18:34:31Z] glock_public: collision pieces from /content/v2d-track3/meshes/carve/ev10 (beige_cup blue_cup carve.json fc_test )
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/v2d_voc.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/runtime/object_control.py
+[2026-10-31T18:34:31Z] patched FlashCHORD (VOC with the full inertia tensor)
+installed: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/v2d_fdr.py
+already patched: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/objectives/tracking.py
+wrote: /content/v2d/robotic_grounding/flash_chord/src/flash_chord/configs/curriculum/tracking_250m_mixed_reset_v2d.yaml
+[2026-10-31T18:34:31Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-10-31T18:34:32Z] glock perc2e11cs43 ep11: base mck (/content/refs/perc2e11cs43mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/67a02523d4c24fe88e8d5a81e410ed42-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e11cs43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T18:35:02Z] glock perc2e11ts43 ep11: base mck (/content/refs/perc2e11ts43mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d5a8ed5cc6a04d7aa731b59d97e23e69-0.parquet); REUSE_REF: training on this box's finished reference /content/refs/perc2e11ts43_glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T19:56:53Z] glock perc2e11ts43 ep11: trained 7 checkpoints
+[2026-10-31T20:02:40Z] glock perc2e11ts43 ep11: curve  10M sim_vs_ref 0.508 | blue_cup: lift 1; 20M sim_vs_ref 0.577 | blue_cup: lift 0; 30M sim_vs_ref 0.576 | blue_cup: lift 0; 40M sim_vs_ref 0.575 | blue_cup: lift 2; 50M sim_vs_ref 0.567 | blue_cup: lift 0; 60M sim_vs_ref 0.842 | blue_cup: lift 0; 70M sim_vs_ref 0.909 | blue_cup: lift 0;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-10-31T20:11:05Z] glock perc2e11ts43 ep11 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.8564, 'std': 0.0957, 'min': 0.5956, 'max': 0.9284} registered AUC vs mocap {'mean': 0.8613, 'std': 0.095, 'min': 0.6134, 'max': 0.9418}
+[2026-10-31T20:37:30Z] glock perc2e11cs43 ep11: trained 7 checkpoints
+[2026-10-31T20:42:40Z] glock perc2e11cs43 ep11: curve  10M sim_vs_ref 0.517 | blue_cup: lift 0; 20M sim_vs_ref 0.515 | blue_cup: lift 0; 30M sim_vs_ref 0.514 | blue_cup: lift 0; 40M sim_vs_ref 0.513 | blue_cup: lift 0; 50M sim_vs_ref 0.513 | blue_cup: lift 0; 60M sim_vs_ref 0.514 | blue_cup: lift 0; 70M sim_vs_ref 0.515 | blue_cup: lift 0;; chosen by sim_vs_ref: policy_10002432.safetensors
+[2026-10-31T20:50:47Z] glock perc2e11cs43 ep11 RESULT (policy_10002432.safetensors): n 10 sim_vs_ref {'mean': 0.5111, 'std': 0.0105, 'min': 0.4811, 'max': 0.518} registered AUC vs mocap {'mean': 0.5899, 'std': 0.0144, 'min': 0.5468, 'max': 0.5947}
+[2026-10-31T20:50:47Z] glock_public summary: {}
+[2026-10-31T20:50:49Z] ep11_gate verify: VERIFIED :: B0 {'e11c': 'IDENTICAL', 'e11t': 'DIFFERS'} :: identity e11c e2s {'e11c': 0.038, 'e11t': 2.38} trained {'e11c': 0.0, 'e11t': 2.404}; e11t e2s {'e11c': 2.456, 'e11t': 0.038} trained {'e11c': 2.404, 'e11t': 0.0} :: trained references' blue cups apart {'window': 2.404, 'hands_off_f101_136': 2.367} cm :: eval timeouts: none
+[2026-10-31T20:50:49Z] ep11_gate RESULT: PASS: delta +0.1420 >= +0.05 and no seed of T more than 0.05 below its C seed | C 0.5923 T 0.7343 delta 0.142 per seed {'42': 0.0126, '43': 0.2714} SE 0.0183 spread 0.1294 | sim_vs_ref delta 0.2264 | blue delta -0.0372 beige delta 0.3214 | B0 {'e11c': 'IDENTICAL', 'e11t': 'DIFFERS'}

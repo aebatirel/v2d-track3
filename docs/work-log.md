@@ -5334,3 +5334,21 @@ Advice given:
 - Owner (~18:45 UTC, via the score-status session): "Go retrack" (public re-track test when the per-episode clean meshes
   land; CPU prep wf_91244bc7-640 running); spoon marker correction handled in the score-status session; owner asks not to
   bring up deadlines in messages to them.
+
+## 2026-10-31 20:51 UTC — ep11 rollout gate: PASS (pre-registered rule) — the eval-10 cup-nest fix (S12 V4p) transfers to rollouts
+- Run 20261031-e11g-663b7df (Vast 58552489, AU $1.069/h, commit 663b7df); VERIFIED (arms differ only in the refined track;
+  identity before and after training ok; B0 C IDENTICAL, T DIFFERS 0.78 mm / 0.65° as predicted); no eval timeouts.
+- Registered AUC vs mocap (public ep11, 10 rollouts per cell) [M]:
+
+  | seed | C (no S12) | T (S12 V4p) | Δ |
+  |---|---|---|---|
+  | 42 | 0.5947 ± 0.000 (ckpt 10M, static floor) | 0.6073 ± 0.053 (70M) | +0.013 |
+  | 43 | 0.5899 ± 0.015 (10M) | 0.8613 ± 0.100 (70M; max 0.942) | +0.271 |
+
+  Seed-mean Δ **+0.142** (bar +0.05; SE 0.018 from rollouts; two-seed spread 0.129), no seed of T below C. sim_vs_ref Δ
+  +0.226. Per object: beige +0.321, blue −0.037. C's policy never leaves the static floor on either seed.
+- Reading [H]: the physically consistent nest lets the grasp-lock learner actually perform the nest on ep11 (seed 43),
+  where the uncorrected reference trains to a do-nothing policy. Seed-to-seed spread is large, so two seeds on eval 10.
+- Ledger actual $5.35 (~5.0 h × $1.069/h; estimate). Results copied to ep11gate/results/.
+- Next (PREREG §5 "PASS buys"): the eval-10 retrain on V4p (ops/jobs/ev10_v4p.sh; reviews GO after fixes, merged
+  now; fixtures 25/25), launched under the owner's eval-10 go (15:20 UTC). Swap only by the both-reference rule.
