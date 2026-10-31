@@ -1,0 +1,125 @@
+{
+ "expect": "/home/user/v2d-track3/docs/research/work/perception-sprint-20261031/ep11gate/expect",
+ "arms": {
+  "e11c": {
+   "track": "C",
+   "poses": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/cpu/tracks_onevenv/C/ep11/poses.npz",
+   "md5_box": "b32ab808e560f8a3ebbec3658701066c",
+   "md5_expected": "b32ab808e560f8a3ebbec3658701066c",
+   "compare": {
+    "world_T_cam_identical": true,
+    "objects": {
+     "blue_cup": {
+      "frames_differing": 0,
+      "max_mm": 0.0,
+      "max_deg": 0.0
+     },
+     "beige_cup": {
+      "frames_differing": 0,
+      "max_mm": 0.0,
+      "max_deg": 0.0
+     }
+    }
+   },
+   "md5_expected_file": "b32ab808e560f8a3ebbec3658701066c",
+   "band": "IDENTICAL"
+  },
+  "e11t": {
+   "track": "T",
+   "poses": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ep11gate/cpu/tracks_onevenv/T/ep11/poses.npz",
+   "md5_box": "ffb4e8dfff86fcfdebdb6d3b782a79c0",
+   "md5_expected": "25801979433d7265bfd5aef2ca868dcc",
+   "compare": {
+    "world_T_cam_identical": true,
+    "objects": {
+     "blue_cup": {
+      "frames_differing": 0,
+      "max_mm": 0.0,
+      "max_deg": 0.0
+     },
+     "beige_cup": {
+      "frames_differing": 42,
+      "max_mm": 0.368338,
+      "max_deg": 0.339221
+     }
+    }
+   },
+   "md5_expected_file": "25801979433d7265bfd5aef2ca868dcc",
+   "band": "DIFFERS"
+  }
+ },
+ "bands": {
+  "numeric_mm": 0.01,
+  "numeric_deg": 0.001,
+  "differs_mm": 5.0,
+  "differs_deg": 2.0
+ },
+ "tracks_json": {
+  "inputs": {
+   "poses.npz": "2f4800ff07fd37da531acf2ee60f120e",
+   "poses_world_vo.npz": "6e2c2ff5fd0ea38c0b0f21b4783048a4",
+   "depth0.npy": "5b9fb362bda1264854c5fdc0c9e4c502",
+   "hands_refined.npz": "d9c391deaf73509b6c52e3b743580272"
+  },
+  "tracks": {
+   "C": {
+    "poses.npz": "b32ab808e560f8a3ebbec3658701066c",
+    "poses_world_vo.npz": "694dfb0ecaac62fb5ecfd14ee4c55b3b"
+   },
+   "T": {
+    "poses.npz": "ffb4e8dfff86fcfdebdb6d3b782a79c0",
+    "poses_world_vo.npz": "d11255560a1e6bb4e7a5b5c3ec9c46ed"
+   }
+  },
+  "T_stages": {
+   "pre": "1b5f84c6ce058d2d369a0c26f40a8385",
+   "phys": "493661edcce792e82ea634d4c23e0336"
+  },
+  "finite": {
+   "C": true,
+   "T_pre": true,
+   "T": true
+  },
+  "code": {
+   "pipeline/refine.py": "aae1fb410a659f6f8b494e5e93dbbbe0affbaa4db4a094ed012dd3977f1954b1",
+   "pipeline/nest.py": "7e063b944324666cdec987ec3e036192b907cadcadca303112dd7f571559dfee",
+   "pipeline/offsetfix.py": "1610649f718dcff07e616176dd4ba3d5159d4e01c9eae03908d88f3ff348d2c5",
+   "tools/nest_physics.py": "e95000361ca4beccdb7fffcc0ad7769963a03c3a03161d55fa6d5a90956fde26"
+  },
+  "versions": {
+   "refine_python": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "trimesh": "5.2.0"
+   },
+   "physics_python": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "trimesh": "5.2.0",
+    "mujoco": "3.8.1"
+   }
+  },
+  "nest_physics": {
+   "window": [
+    42,
+    137
+   ],
+   "frames_settled": 36,
+   "runs": [
+    [
+     101,
+     137
+    ]
+   ],
+   "dz_cm": {
+    "beige_cup": {
+     "median": -1.07,
+     "min": -1.454,
+     "max": -0.901
+    }
+   }
+  },
+  "ok": true
+ },
+ "go": true
+}

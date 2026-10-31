@@ -1,0 +1,137 @@
+{
+ "passed": 14,
+ "total": 14,
+ "cases": [
+  {
+   "case": "pass",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "reasons": [
+    "delta +0.1050 >= +0.05 and no seed of T more than 0.05 below its C seed"
+   ],
+   "delta": 0.105,
+   "se": 0.0,
+   "blue": 0.105,
+   "sim": 0.0525
+  },
+  {
+   "case": "pass_boundary_delta_0.05",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "reasons": [
+    "delta +0.0500 >= +0.05 and no seed of T more than 0.05 below its C seed"
+   ]
+  },
+  {
+   "case": "fail_delta_0.03",
+   "want": "FAIL",
+   "got": "FAIL",
+   "ok": true,
+   "reasons": [
+    "delta +0.0300 < +0.05"
+   ]
+  },
+  {
+   "case": "fail_just_below_0.05",
+   "want": "FAIL",
+   "got": "FAIL",
+   "ok": true,
+   "reasons": [
+    "delta +0.0499 < +0.05"
+   ]
+  },
+  {
+   "case": "fail_seed_drop",
+   "want": "FAIL",
+   "got": "FAIL",
+   "ok": true,
+   "reasons": [
+    "seed 43: T below C by -0.0700 (< -0.05)"
+   ]
+  },
+  {
+   "case": "pass_seed_drop_exactly_0.05",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "reasons": [
+    "delta +0.0500 >= +0.05 and no seed of T more than 0.05 below its C seed"
+   ]
+  },
+  {
+   "case": "incomplete_7_scored",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "reasons": [
+    "missing or < 8 scored rollouts: ['e11t/s43'] (re-run only these cells on the stored references)"
+   ]
+  },
+  {
+   "case": "pass_8_scored",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "reasons": [
+    "delta +0.1050 >= +0.05 and no seed of T more than 0.05 below its C seed"
+   ]
+  },
+  {
+   "case": "incomplete_summary_missing",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "reasons": [
+    "missing or < 8 scored rollouts: ['e11t/s43'] (re-run only these cells on the stored references)"
+   ]
+  },
+  {
+   "case": "incomplete_verify_lists_missing",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "reasons": [
+    "missing or < 8 scored rollouts: ['e11t/s43'] (re-run only these cells on the stored references)"
+   ]
+  },
+  {
+   "case": "invalid_verify_failed",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "reasons": [
+    "e11g_verify.py failed: the arms are not what the design says (see verify.json)"
+   ]
+  },
+  {
+   "case": "invalid_verify_failed_and_missing",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "reasons": [
+    "e11g_verify.py failed: the arms are not what the design says (see verify.json)",
+    "also missing or < 8 scored rollouts: ['e11t/s43']"
+   ]
+  },
+  {
+   "case": "invalid_no_verify_json",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "reasons": [
+    "e11g_verify.py failed: the arms are not what the design says (see verify.json)"
+   ]
+  },
+  {
+   "case": "pass_no_per_object_files",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "reasons": [
+    "delta +0.1050 >= +0.05 and no seed of T more than 0.05 below its C seed"
+   ]
+  }
+ ]
+}

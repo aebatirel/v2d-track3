@@ -1,0 +1,84 @@
+EP11 ROLLOUT GATE (control vs S12 V4p): launch job string (prepared 31 Oct 2026 ~15:00 UTC; NOTHING LAUNCHED; needs the owner's go-ahead)
+Pre-registration: docs/research/work/perception-sprint-20261031/ep11gate/PREREG.md (14:05 UTC; rule fixed there; commit it unchanged with the code)
+Build notes and CPU evidence: BUILD.md, cpu/ (same folder)
+
+Before the launch (orchestrator):
+  1. commit + push: ops/jobs/ep11_gate.sh, tools/e11g_tracks.sh, tools/e11g_verify.py, tools/e11g_verdict.py, .gitignore (the
+     two expect/*.npz files), docs/research/work/perception-sprint-20261031/ep11gate/ (PREREG.md unchanged, expect/,
+     cpu/, BUILD.md, JOBS.txt); SHA=<that commit>, S7=${SHA:0:7}. Check on the commit: `git ls-files
+     docs/research/work/perception-sprint-20261031/ep11gate/expect` lists C_poses.npz, T_poses.npz, expect.json (the job
+     stops at B0 without them).
+  2. the owner's go-ahead for the spend below (the lean plan's eval-10 lane, ~$10 in all: this gate ~$4-8, then, only on
+     PASS and with a new go, the eval-10 retrain + confirmation), then a ledger line:
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned <date>-e11g-$S7 5.50 "ep11 rollout gate: control vs S12 V4p (public ep11, 2 arms x 2 seeds, NREP 10)" owner
+  3. offer: ONE RTX PRO 6000 (96 GB) on demand, <= $1.50/h (`ops/vast.sh offers`); snapshot pt2.11-cu130-py313-20261020.
+     The box self-destroys when the job ends (run_job.sh); the stall watchdog (30 min without new log lines or
+     checkpoints) protects the spend; there is no fixed time limit.
+
+Run id: <date>-e11g-$S7   e.g. 20261031-e11g-$S7   (ep11_gate.sh refuses a run id without "-e11g-")
+Job string (everything is fixed inside the script: episode 11, arms e11c/e11t, seeds 42/43, the gl10A2 recipe, NREP 10,
+PAR 2, TRAIN_SLOTS 2, EVAL_TIMEOUT 1200; nothing can be overridden from the string):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e11g-$S7 'bash ops/jobs/ep11_gate.sh'
+
+What it runs on the box (in order; PREREG section 2):
+  - make_assets.py library_v3 -> /content/assets with the meshes/carve/ev10 collision pieces (as gl10A2);
+  - 6 single-file store downloads (store.sh pull-files; no listing): runs/20261030-orcP1b-87fc869/results/leak_p1/ep11/
+    {perc2/poses.npz, perc2/poses_world_vo.npz, depth0.npy}, runs/20261025-g1-022fece/refs/perc2m/ep11/{hands_refined.npz,
+    hands.npz}, cache/depth/public/ep11/depths_fs0.5.npy (877 MB); md5 of each small file and the cache's size and
+    frame-0 sha256 checked -> stop before anything else on a mismatch;
+  - two pinned venvs (python -m venv + pip, else uv): refine numpy 2.5.4 / scipy 1.18.1 / trimesh 5.2.0 / rtree 1.4.1;
+    physics numpy 2.4.6 / scipy 1.18.0 / trimesh 4.12.2 / mujoco 3.8.1;
+  - tools/e11g_tracks.sh: C = refine S2; T = refine S12 support -> nest_physics inner (ev10) -> refine S2 (V4p);
+    tools/e11g_verify.py b0 vs ep11gate/expect -> IDENTICAL / NUMERIC / DIFFERS(T) go on, MISMATCH stops (no reference);
+  - per arm (both at once): pipeline_ep.sh 11 STOP_AFTER=reference, PERC=perc2 VARIANT=e11{c,t}mck, PDIR = the arm's
+    rebuilt track + the cache link, the stored hands copied in, mkref --wrist_cost 3.0, contact retargeting
+    --rest_settle 1 -> refs/perc2e11{c,t}mck/ep11; build_<arm>.json;
+  - glock_public.sh REF_ONLY=1 SEED=42 PAIRS="11:local:mck:perc2e11c 11:local:mck:perc2e11t" (grasp lock with gl10A2's
+    GL_ARGS, ILC, REPLAN 1) -> refs/perc2e11{c,t}_glockt/ep11; tools/e11g_verify.py arms -> per-seed byte copies
+    refs/perc2e11{c,t}s{42,43}_glockt/ep11 + rest_check; results/ep11_gate/rerun_files.txt;
+  - seed 42: glock_public.sh REUSE_REF=1 REQUIRE_REUSE=1 PAIRS="11:local:mck:perc2e11cs42 11:local:mck:perc2e11ts42"
+    (one wave of 2 trainings, 70M steps, curve 3 evaluations per checkpoint, checkpoint by sim_vs_ref, 10 official
+    evaluations scored sim_vs_ref + registered ADD-AUC vs mocap); then seed 43 the same;
+  - tools/e11g_verify.py verify -> results/ep11_gate/verify.json; tools/e11g_verdict.py -> summary.json; RESULT line in
+    job.log (eval timeouts printed right after the label); ckpt_meta.txt;
+  - ONE store push at the end (plus the platform's 30-min interim pushes and its final self-destroy push).
+
+EXPECTED COST [estimates]. Basis [M], from the runs' job logs:
+  - gl10A2 (eval 10, same recipe, one training alone, 26 Oct): setup 8 min, reference stages (grasp lock, ILC, re-plan)
+    4.5 min, 70M training 64 min, curve 2.5 min, 5 evaluations 1 min; whole job 80 min;
+  - orcB (30 Oct, ep11 among 6 grasp-lock trainings, TRAIN_SLOTS 2, PAR 2, NREP 10): ep11 trainings sharing the GPU
+    with another training 70-95 min; curve + 10 evaluations 13-16 min; P reference from raw (perception + mkref + CR)
+    6-10 min;
+  - mass check (31 Oct, 4 waves of 2): waves of 78-91 min incl. curve and 10 evaluations;
+  - setup 0.2-0.75 h (43 min under HF 429 on 30 Oct); RTX PRO 6000 on demand $1.30-1.50/h.
+
+| stage                                                              | low (h) | central (h) | high (h) |
+|--------------------------------------------------------------------|---------|-------------|----------|
+| setup: boot, snapshot, make_assets, 6 downloads, venvs, tracks + B0 | 0.25    | 0.35        | 0.90     |
+| setup: 2 base references (mkref + CR) + 2 grasp-lock ref stages    | 0.15    | 0.25        | 0.35     |
+| 4 trainings = 2 waves x 2 sharing the GPU, incl. the curve (3 x 7) | 2.60    | 2.95        | 3.55     |
+| 4 x 10 official evaluations of the chosen checkpoints              | 0.13    | 0.18        | 0.25     |
+| scoring (score_registered per rollout), verify, verdict, push      | 0.05    | 0.10        | 0.20     |
+| total wall                                                          | 3.2     | 3.8         | 5.25     |
+| $ at 1.30 / 1.42 / 1.50 per h                                       | $4.2    | $5.4        | $7.9     |
+
+  => ~$4.2-7.9, central ~$5.4. Tail risks: a failed final push waits 60 min (+~$1.5); B0 MISMATCH or an input mismatch
+     stops after setup (~$0.5-1.5 spent, no gate reading).
+  INCOMPLETE re-run of one cell (below): setup ~0.4 h + one training alone ~1.1 h + evaluations -> ~1.6-2.0 h, ~$2.1-3.0.
+
+INCOMPLETE re-run (PREREG section 3; only the missing cells, on THIS run's stored references; SAME commit $SHA):
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e11g-$S7r 'RERUN_FROM=<first run id> CELLS="e11t:43" bash ops/jobs/ep11_gate.sh'
+  (CELLS = the cells summary.json lists as missing, e.g. "e11c:42 e11t:43". The box pulls the ~35 files of
+   rerun_files.txt and each other cell's best/summary.json + best/policy.safetensors, one download each, rebuilds
+   /content/assets, re-makes the seed copies (they must equal the first run's manifest), trains the listed cells, then
+   verify + verdict over all four cells; the other cells' eval timeouts come from the first run's verify.json.)
+
+After the box (CPU, $0):
+  - read results/ep11_gate/{summary.json, verify.json, b0.json, verdict.txt, build_e11c.json, build_e11t.json, arms.json}
+    and job.log from the store, ONE hf_hub_download per file (HF 429);
+  - write the reading (PREREG section 3 label first, then the reported numbers) in the work log and STATUS.md; ledger
+    actual line (LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id> <usd> "<note>");
+  - diagnostic (oracle side, public only, after the rollouts): tools/ref_vs_mocap.py on each arm's trained reference
+    (refs/perc2e11{c,t}_glockt) and base reference, beside the CPU stage-(a) previews in BUILD.md (C 0.9012, T 0.9722);
+  - PASS -> propose the eval-10 retrain (PREREG section 5) to the owner; FAIL -> eval 10 stays as packed.

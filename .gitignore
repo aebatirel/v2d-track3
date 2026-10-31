@@ -14,6 +14,8 @@
 /ckpt/
 *.npy
 *.npz
+# ep11 gate B0 comparison files only (2 x ~45 KB; docs/research/work/perception-sprint-20261031/ep11gate/BUILD.md)
+!/docs/research/work/perception-sprint-20261031/ep11gate/expect/*.npz
 *.mp4
 *.safetensors
 !/policies/**/*.safetensors
