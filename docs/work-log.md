@@ -5879,3 +5879,16 @@ Background agent, CPU only, $0, no ground truth read.
   - Exact K/D settings for a retrain, as in §8 and `tools/recipe_screen.py`; both are independent of the masses assets.
   - Caveats [H]: transfer from public scans to library_v3; K+D together untested.
   - Nothing else from physics is ready: G3 harm on ep2; loop no evidence; fit v2 on hold.
+
+### 2026-10-31 16:15 UTC — determined-wright: ep2 video, current recipe vs physics-solved references (CPU, reporting only)
+- Source: store run 20261031-rlloop-ccf9058. Stored best-checkpoint draws, 5 of 10 per arm: O1 (current recipe,
+  `results/glock_public/ep2/best/r*`) and O3 (physics loop, `results/physics_rl_loop/ep2/o3/best/r*`).
+- Shown: the median-AUC stored draw of each arm, not the best: O1 r1 (0.580; stored 0.323–0.917) and O3 r4 (0.913;
+  stored 0.460–0.957).
+- Command: `tools/render_eval_rollout.py <episode_000002.parquet> <meshdir> <out.mp4> --size 640x480`, then ffmpeg
+  hstack. Meshdir: the public scans of white_pot / white_pot_lid, welded and decimated to 4k faces (raw scans are
+  unwelded triangle soup and render as speckles).
+- Seen: in O1 the pot tips over (19 cm off its reference by frame 320); in O3 it stays upright (~1 cm off).
+- Caveat: ep2 is O3's best episode (ep12/ep18 about equal, ep24 −0.03). §6.1 explains why the gain cannot be credited
+  to the loop itself.
+- Video is not in git (CLAUDE.md); it is in the session scratchpad `vid/out/ep2_current_vs_physics.mp4`.
