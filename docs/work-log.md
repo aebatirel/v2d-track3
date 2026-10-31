@@ -5692,3 +5692,6 @@ Background agent, CPU only, $0, no ground truth read.
   phys_fit. Real ep24 (perceived ref, collision_decomp pieces, 275 frames): 5.2 s, 124 intruding frame-pairs (max
   0.92 cm³). Open contract points sent to the mesh session (manifest layout, validator vs parquet, no provenance chain
   in any current reference, phys_fit.json lacks commit/argv).
+- ~11:50 UTC 31 Oct: owner topped up $100 for the lean plan; Vast credit measured 28.47 → 128.43. Ledger budget line
+  added. Allocation (est.): pack lane $24–39 first + second retrain $10–15; mesh lane $15–28; my screen $28–34 +
+  confirm ~$10; buffer ~$10. Both other sessions told; each box keeps a ledger planned line first.
