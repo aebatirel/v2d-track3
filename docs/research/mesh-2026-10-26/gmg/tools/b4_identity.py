@@ -34,14 +34,49 @@ def _one(kk):
 
 
 def _pool_map(shells, pairs, workers):
-    """TS.reg_chamfers over PAIRS on a fork process pool (children only compute; no file access)."""
-    import multiprocessing as mp
+    """TS.reg_chamfers over PAIRS in WORKERS forked children (os.fork + os.pipe, pickle over the pipe). Not
+    multiprocessing: its locks are POSIX semaphores, which open files under /dev/shm, a write outside the run for the
+    strace audit. The children only compute and leave with os._exit (no file access, no atexit handler)."""
+    import pickle
     _SHELLS.clear()
     _SHELLS.update(shells)
-    if workers <= 1:
+    if workers <= 1 or len(pairs) < 2:
         return [_one(kk) for kk in pairs]
-    with mp.get_context('fork').Pool(workers) as pool:
-        return pool.map(_one, pairs, chunksize=4)
+    chunks = [pairs[i::workers] for i in range(workers)]
+    procs = []
+    for ch in chunks:
+        if not ch:
+            continue
+        r, w = os.pipe()
+        pid = os.fork()
+        if pid == 0:                                  # child
+            os.close(r)
+            try:
+                data = pickle.dumps([_one(kk) for kk in ch])
+            except BaseException as e:                # noqa: BLE001 (re-raised in the parent)
+                data = pickle.dumps(RuntimeError(f'worker failed: {e!r}'))
+            view = memoryview(data)
+            while len(view):
+                view = view[os.write(w, view):]
+            os.close(w)
+            os._exit(0)
+        os.close(w)
+        procs.append((pid, r, ch))
+    out = {}
+    for pid, r, ch in procs:
+        buf = []
+        while True:
+            b = os.read(r, 1 << 20)
+            if not b:
+                break
+            buf.append(b)
+        os.close(r)
+        os.waitpid(pid, 0)
+        res = pickle.loads(b''.join(buf))
+        if isinstance(res, BaseException):
+            raise res
+        out.update(zip(ch, res))
+    return [out[kk] for kk in pairs]
 
 
 def main():
@@ -82,7 +117,7 @@ def main():
             if 'TRACK_FAIL' not in m['sanity'][o]['flags']:
                 good.append((ep, o))
     # every registration the cross tests need (round 2: TS.reg_chamfers, best of REG_SEEDS, full-shell chamfer, and
-    # the round-1 seed-0 value), on a fork process pool (the ICP loop holds the GIL, so threads gave no speed-up;
+    # the round-1 seed-0 value), in forked worker processes (the ICP loop holds the GIL, so threads gave no speed-up;
     # each registration is independent and seeded, so the values are those of the serial loop; speed only)
     pairs = TS.cross_pairs(shells, good)
     vals = _pool_map(shells, pairs, a.workers)

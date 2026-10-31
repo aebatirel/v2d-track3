@@ -964,6 +964,15 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     o2b carved A's unseen mid-plane voxels past the slot end, reaching 7.5 mm beyond it (the round-1 review saw the
     same in o2sil and a half-thickness pocket in offset_asm); with the rule A's carve ends 1.5 mm past the slot end
     (sub-voxel centre). Cavity carves (SEAT, REST, the n9 cup) are not affected. No constant is added.
+  - **F-I3.13 Known difference between the paths (logged, not tuned; measured 15:20 UTC).** With the same rule and the
+    same sources, the export path decides from the partner's delivered PIECES (F-I1.13) and our tracks path from the
+    partner's stereo EVIDENCE (F-I1.1). On the synthetic cross the two agree with see-through silhouettes (t = 10 and
+    18 mm: CARVE T2 on both plates on both paths) but not without one at t = 10 mm: GAP image width 5.0 px on the
+    tracks path (the evidence partner is about 6 mm thick on the 4 mm grid) against 7.0 / 9.0 px on the export path
+    (the 10 mm pieces), so board B is class O and the pair PUSHES on the export path while the tracks path CARVES at T1.
+    The test is kept as an expected failure. [H, not used] Deciding the export's regions from our partner evidence
+    moved by the export's rel_T (P_sim), with the export's own samples used for validation and acceptance only, would
+    make the two paths identical up to the pose source; falsified if that variant still differs on this case.
 
 ## Revision 1 changelog
 
