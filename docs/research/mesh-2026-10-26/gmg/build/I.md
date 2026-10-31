@@ -607,13 +607,13 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   (default bands) would also widen the wall below the guest's base corner and remove the ledge Q1 relies on. 18:41
   amendment (PREREG F-I5.13, dated): band edges at the carve's ends kept, <= 30 mm bands inside (x1 host: 81 pieces at
   16 sectors vs 177 with the 10 mm re-banding [M]). Committing, then relaunching D2.
-- 18:43 [M] x1 diagnostic without jitter, c by the rule (`t_diag.log`, 18:26-18:41): c = 0.1 mm (sigma_sup 0.0515:
+- 18:42 [M] x1 diagnostic without jitter, c by the rule (`t_diag.log`, 18:26-18:41): c = 0.1 mm (sigma_sup 0.0515:
   without jitter R+ holds only the rim region), caps pass (0.8 % removed), S fails for carved and default alike (guest
   pushed up 4.64 / 4.59 mm), P3 / P4 / P7 fail: same as the c = 0.1 mm override. [M, code reading] x5's dipped frames
   50-55 lie in a check block of run [16, 89] (build 16-25, 36-45, 56-65, ...; check 26-35, 46-55, ...), so the
   pre-registered x5 fixture never exercised the overshoot rule (a fixture defect; no rule involved). D2 batches
   running from 18:41 (`<scratch>/fi5/d2a.log`: x1, x2b, x2c; `d2b.log` from 18:42: x5, x2, sweeper), code 3484d8d.
-- 18:45 [M] **rack (cup in a U-slot, 1 mm into one prong; pre-registered rule, code 72cfef3 behaviour; log
+- 18:42 [M] **rack (cup in a U-slot, 1 mm into one prong; pre-registered rule, code 72cfef3 behaviour; log
   `<scratch>/fi5/t_oth2.log`, 18:34-18:41): CARVE delivered (p1_pending)**: rack route 3 default (3 CoACD pieces),
   cup lathe (65); receiver = rack (containment 0.963 vs 0.003), INSERTION [29, 89], sweep 1.0, c = 1.0 mm (sigma_sup
   1.0), no overshoot; carve: CoACD on the carved rack died in its child (SIGABRT, exit -6: the fix worked), route 4,
@@ -623,6 +623,8 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   frames 32.6 -> 6.8 cm3. Report caveat: the rigid shift reads "cleared at 0 mm" on all 12 frames because every
   frame's overlap (<= 1.09 cm3) is already under the 2 cm3 threshold, so `carve_of_pose_error` is trivially true here.
   lidpot running.
+- 18:43 correction: the two entries above first said 18:43 and 18:45 (guessed); replaced by the commit time of
+  3dea95b (18:42 UTC). From here on log times are read from the clock.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
