@@ -5917,7 +5917,7 @@ Background agent, CPU only, $0, no ground truth read.
 - Agents building on CPU: arm S in the recipe screen, and `ops/jobs/eval_solve.sh`. Asked focused-pascal for pack 10's
   grasp-lock eval episodes and their reference/asset inputs.
 
-### 2026-10-31 16:55 UTC — determined-wright: masses v2 pre-registration reviewed, GO
+### 2026-10-31 16:33 UTC — determined-wright: masses v2 pre-registration reviewed, GO (clock checked; the message to focused-pascal said ~16:55 in error)
 - Reviewed focused-pascal's PREREG (claude/focused-pascal-2nz9s1, 8c05528 + verdict fixes 74da763,
   docs/research/work/masses-v2-20261031/).
   - Selection by library_v3 baseline only: ep24 0.2406, ep11 0.5249 (twin11v3 frozen reference, not V4p), ep13 0.5428,
