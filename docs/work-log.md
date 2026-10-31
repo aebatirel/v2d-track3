@@ -5420,3 +5420,13 @@ arm and a no-policy replay floor to stage B.
     pending;
   - proposed an "all inputs true" zero-action rung (scans + mocap object motion + plausible mass + H-lock grip) on a
     shared public episode, to separate simulator limits from perception limits. Not started. Detail: analysis §9.
+- 31 Oct ~05:10 UTC: message from focused-pascal (coordination; owner told it to coordinate). It has already added the
+  "everything true" replay as leak-plan rung R5 and asked determined-wright to run it on ep12/ep13, so nothing was sent
+  from here; the owner had not answered that question.
+  - Overnight results that bear on Roman's ideas, read from the branches and summarised in analysis §10:
+    - H-lock falsified;
+    - chaos control: a 2 mm COM nudge ≈ a 1–2 cm move;
+    - human hand with RL worse than the Sharpa (mean −0.161);
+    - realistic masses adopted (+0.090);
+    - oracle twins: eval 10 is perception-limited, eval 14 is not.
+  - New hypothesis [H-onehand]: a one-hand plan for ep13 / eval 14 (≈ $3). Not started.

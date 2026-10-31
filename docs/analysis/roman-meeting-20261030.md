@@ -144,3 +144,31 @@ the public rule above fails.
   Reading: if this copy carries the objects, the simulator is good enough and the remaining loss is perception. If it
   fails, the limit is the simulated contact or hand model, which only RL feedback or hand-side contact geometry can
   address. Not started; needs coordination between the two sessions.
+
+## 10. Update, 31 Oct ~05:10 UTC: Roman's ideas, tested overnight by the other sessions
+Read from the branches (not re-run here): determined-wright `docs/research/physics-2026-10-30/README.md` (3d37ea2);
+focused-pascal `docs/research/work/oracle-twins-20261030/RESULTS.md` and its work log (1d23440).
+- **Exact copy, human hand with a snapped, locked grip ([H-lock]):** falsified. With 2–5 fingers on and gaps of
+  0–9.5 mm, the objects still leave at the same early frames (ep12 cup f37) [M].
+- **Chaos control:** a random 2 mm centre-of-mass nudge moves the zero-action outcome as much as a 1–2 cm correction
+  (ep2 +0.109, ep24 +0.151) [M]. Without feedback the replay is chaotic, so tuning the physics until the simulation
+  matches the video cannot work.
+- **Sampling MPC solver (Do as I Do-style, CPU):** on the exact replay the cup is carried to f84 instead of f37, but the
+  gain is gone under 0.5 mm target noise [M]. Single zero-action replays are noisy measures; read them as jittered
+  means.
+- **Human hand with RL** (Roman's embodiment swap): **worse** by the pre-registered rule. Human 0.527 / 0.563 / 0.622 /
+  0.231 vs Sharpa 0.944 / 0.862 / 0.573 / 0.207 on ep2/12/18/24, mean −0.161 [M]. Caveats: one seed, a recipe tuned
+  for the Sharpa, untuned human gains. The Sharpa stays.
+- **Realistic masses:** adopted by the round-3 rule, mean +0.090 vs mocap on 4 public episodes with scans [M].
+  - Next, run by focused-pascal: a transfer check on our meshes (≈ $5–6), then eval retrains. Owner go-ahead needed.
+- **Oracle twins (option B):**
+  - ep11 / eval 10 is perception-limited: true object motion 0.940 vs ours 0.595 [M]. Upper bound ≈ +0.017 LB [E].
+  - ep13 / eval 14 is not: 0.544 with either reference [M]. The left→right hand-over and flip fail even with the true
+    object motion, and both arms use our perceived hands.
+- **Coordination:** focused-pascal already added the "everything true" replay as rung R5 of its leak plan and asked
+  determined-wright to run it on ep12/ep13. No separate message was sent from here.
+- **New hypothesis from Roman's "avoid hand-overs" [H-onehand]:**
+  - Idea: on ep13, a grasp-lock plan that carries the cup with one hand (no hand-over) beats 0.544 by ≥ 0.05. The
+    scorer checks objects only.
+  - Falsified if it does not, under the same recipe with one seed per reference and NREP 10.
+  - Cost ≈ $3 GPU [E] after a CPU plan check. Not started; owner decision.
