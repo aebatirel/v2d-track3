@@ -35,6 +35,11 @@ def local(R, p):
     return R + p[len(BOX_R):]
 
 
+def set_box_root(r):
+    global BOX_R
+    BOX_R = r
+
+
 def one(p):
     if not os.path.exists(p):
         return None
@@ -156,7 +161,9 @@ def main():
     ap.add_argument('--results', required=True); ap.add_argument('--repo', required=True)
     ap.add_argument('--run_id', required=True); ap.add_argument('--run_info', required=True)
     ap.add_argument('--adopted', required=True)
+    ap.add_argument('--box_root', default=BOX_R, help='results path on the box (dry-run test only)')
     a = ap.parse_args()
+    set_box_root(a.box_root)
     R, REPO = a.results, a.repo
     adopted = [x for x in a.adopted.split(',') if x]
     SP = f'{REPO}/docs/research/mesh-2026-10-26/cdo-sprint'
@@ -220,7 +227,8 @@ def main():
     for base, out in (('library_v3', 'library_e0b'), ('library_v3x', 'library_e0bx')):
         srcd, dstd = f'{REPO}/meshes/{base}', f'{REPO}/meshes/{out}'
         files = {}
-        plan_files = {f: (f'{srcd}/{f}', f'meshes/{base}/{f}') for f in sorted(os.listdir(srcd)) if f != 'README.md'}
+        plan_files = {f: (f'{srcd}/{f}', f'meshes/{base}/{f}') for f in sorted(os.listdir(srcd))   # as library_c0 / e0:
+                      if f.endswith('.glb') or f == 'mini_sweeper.flatten.json'}           # glb + the sweeper flatten record
         for o, s in ship.items():
             plan_files[f'{o}.glb'] = (f'{REPO}/{s["path"]}', s['path'])
         for f, (src, srel) in plan_files.items():
