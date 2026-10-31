@@ -93,3 +93,9 @@ After both boxes (CPU, $0; this session):
   6. INVALID -> no reading; find the cause in verify.json, fix, and ask the owner before re-running.
   7. ADOPT -> nothing launches automatically: the eval masses retrain (mass_eval.sh, O1/O2, ~$16-26 [E]) needs its own
      owner go-ahead. NOT ADOPTED -> the placeholder stays; record it.
+
+LAUNCH RECORD (31 Oct 2026)
+- 16:29Z box A 20261031-mv2a-b5043ce (Vast 58555561, California 56700683): host went offline before the container started;
+  destroyed 16:42Z, ledger actual $0. Relaunched 16:42Z as **20261031-mv2a2-b5043ce** (Japan 58349609, $1.511/h), same job
+  string and commit b5043ce. In the merge / pull commands below, box A = 20261031-mv2a2-b5043ce.
+- 16:37Z box B 20261031-mv2b-b5043ce (Vast 58556043, Romania 57986770, $1.375/h).
