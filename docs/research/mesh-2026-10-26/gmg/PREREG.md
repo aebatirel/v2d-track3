@@ -1147,6 +1147,32 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     **informed** (A.6); parallel 30 deg and overlap 0.5: **generic** (structure.py). Every acceptance threshold: as in
     F-I1.14.
 
+- **2026-10-31, F-I4.12 (post hoc): slot centre from the partner's plate body, not from the component's voxel
+  centroid.** Written 16:55 UTC after the first synthetic w1 probe of the F-I4 build and committed and pushed **before
+  T-I11 (ep24) or any other real-data run with F-I4**; no real-data F-I4 number exists when it is committed. Labelled
+  post hoc: it changes F-I4.3 after a pre-registered test (F-I4.10 w1) missed. Measured [M, synthetic, T-I1 cross,
+  t = 10 mm, two-sided cameras, waiver on; probe `<scratch>/interlock/fi4/probe_w.py`, 4 copies]: the F-I4.3 centre
+  (the unweighted 4 mm voxel centroid of the linked component along a_L) lies **2.76 mm (A) and -2.81 mm (B)** from
+  the true slot centre (w1 tolerance 2.0 mm: **w1 fails**). Cause: the partner's OBSERVED evidence voxels sit
+  asymmetrically about its mid plane in its own 4 mm grid, and the component's 4 mm voxels quantise again. Effect:
+  the slotted plates overlap by **2.69 cm3** at the assembled frames, so P3's restored overlap clause (< 1.0 cm3) fails
+  while its lag passes (0.22 cm / 0.5 deg); P2, P4, P6, P7 and the keep-out gate (0.0 cm3 per hull) pass. Other
+  w1 quantities in the same probe: plate thickness 10.17 / 10.12 mm (true 10), slot width 12.12 / 12.17 mm, depth sum
+  137.75 mm against W_x 134.02 mm (difference 3.7 mm), plate bodies 238.4 x 133.4 mm (true 230 x 125: the outline
+  rectangle over 2 mm cells and 1 mm noise is about 4 mm larger on each side [M]).
+  **Change:** c_L = the coordinate along a_L, in o's mid plane at the middle of the slot's depth range, at which the
+  **partner's plate mid plane** (F-I4.1 mid_n, mid_d of p, mapped into o by the median assembled relative pose T_op of
+  F-I4.3) crosses the slot's centre line. The slot then holds the partner's simulator body (its plate of thickness
+  t_p) at the replayed assembled pose with the pre-registered 1 mm clearance on each side. The component centroid is
+  still computed, used for the split-plane cap of the depth (F-I4.3, unchanged), and reported (`c_L_component_mm`,
+  `c_L_shift_mm`); if the mapped partner normal is perpendicular to a_L (|n' . a_L| < 1e-6, a numerical guard) the
+  centroid is used and flagged. **Nothing else changes:** no threshold, width, depth, entry side, budget, consistency
+  window, pieces or acceptance test. The same code serves the synthetic tests and T-I11. Evidence it uses: our tracks
+  (the pose) and the partner's owned points (its mid plane), both GT-free.
+  [H] Falsified if w1 still misses the 2.0 mm centre tolerance at t = 6, 10 or 18 mm, or if the carved overlap at the
+  assembled frames of the synthetic cross stays >= 1.0 cm3. Known limit [H]: the centre now follows the tracks at the
+  assembled frames; a track error there moves the slot with it, which P6 / P7 (other frames) can expose.
+
 ## Revision 1 changelog
 
 What changed, and why:

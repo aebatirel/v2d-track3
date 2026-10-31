@@ -376,3 +376,13 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   origin/claude/bold-albattani-6qmxsv). Reading interlock.py / structure.py / simphys.py / simpieces.py / driver / tests.
   Plan: new `platebody.py` (plate test, outline body, analytic slot, pieces), `--waiver-fi4` branch in decide_pair +
   driver, P3 overlap clause in simphys, T-I1 w1-w5; then T-I11 (clean ep24, eval semantics).
+- 16:50 [M] first synthetic probe of the build (t = 10 mm, two-sided cameras, waiver on; `<scratch>/interlock/fi4/
+  probe_w.py`): plate test 10.17 / 10.12 mm (overlap 1.0), CARVE both (old F-I3 decision CARVE via GAP), bodies
+  238.4 x 133.4 mm (true 230 x 125), slot widths 12.12 / 12.17 mm, depths 69.2 / 68.6 mm (split cap), depth sum
+  137.75 vs W_x 134.02 (diff 3.7 mm, ok), budget 2.6 % / reach 0.52, keep-out 0.0 cm3 per hull. MISS: the F-I4.3
+  slot centre (4 mm voxel centroid of the component) is 2.76 / -2.81 mm from the true slot (w1 tolerance 2 mm) ->
+  overlap at the assembled frames 2.69 cm3 -> P3 fails on the restored overlap clause (lag 0.22 cm / 0.5 deg passes;
+  4 copies, 87 s). P2/P4/P6/P7 pass.
+- 16:55 PREREG F-I4.12 (post hoc, before any real-data F-I4 run): slot centre = the partner's plate mid plane at the
+  median assembled pose crossing the slot centre line; the component centroid stays reported and sets the split cap.
+  No threshold changed. Committing F-I4.12 + this log before running anything else with it.
