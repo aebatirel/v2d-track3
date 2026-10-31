@@ -5496,3 +5496,20 @@ diagnostic; nothing is picked for submission.
     eval-10-only CD-O 0.346.
 - **Dust pan T2** (md5 19765405..., evals 19 slot 1 and 38 slot 0): ICP 1.34 deg / 0.25 mm. YES.
 - Scratch outputs: `<scratch>/c1pack/frame.json`.
+
+### 2026-10-31 ~17:35 UTC — owner extends the carve waiver to every colliding pair; collision-carve workflow
+- Owner (verbatim): "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide
+  we can carve it".
+- Launched `collision-carve` (`wf_4fb89344-0c3`, task wvv1rgqx1):
+  - **Design:** PREREG F-I5 + INTERLOCK 21, no code edits.
+    - Scope: any persistently interpenetrating pair. Class O, the silhouette and the push preference no longer block;
+      the rigid-shift alternative is reported.
+    - Carve = target minus the partner's collider swept over the intrusion frames, plus clearance.
+    - Cavity-preserving pieces: plates analytic; lathe containers ring/band with no empty ring; others CoACD plus a
+      keep-out repair or voxel boxes.
+    - Acceptance: hands-off rest/sink <= 4 mm / 5 deg (the ev10w failure mode), P2, P3, P4, P6/P7, and the pieces gate.
+  - **Build** waits for the board-slot Build step before editing shared files.
+  - **Public:** ep11, ep2, ep12, ep13, ep31.
+  - Two verifiers.
+  - **Eval twins:** 10, 1, 14, 30 (25 from board-slot).
+  - Report and hand-offs.
