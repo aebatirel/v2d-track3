@@ -6078,3 +6078,32 @@ Background agent, CPU only, $0, no ground truth read.
   - (c) Carved assets move as one body; the risk is objects that start nested or touching (ep12 CPU test: median
     0.71 mm after the hold, max 58 mm).
 - Offered: an opt-in FC_DR_SKIP_IMMEDIATE flag (~1 h, CPU tests) and a free CPU pop check per episode.
+
+### 2026-10-31 21:22 UTC — determined-wright: arm V (actor sees object velocity) built and pre-registered; owner GO
+- keen-heisenberg (21:01 UTC) relayed the owner's request for a slip-aware, physics-informed robot side. Items:
+  1. object velocity in the actor's observation;
+  2. solver v2 (no-slip term, force feasibility, worst-of-copies scoring);
+  3. part of 2.
+- CPU check at the evaluator pin (video_to_data 8c778f9), `docs/research/physics-2026-10-30/v_obs/`:
+  - `observation.object_body_velocity.enabled=true` lands in the checkpoint's resolved config.
+  - `harness.evaluate_checkpoint` rebuilds the env from that config, and `apply_evaluation_composition` never touches
+    the observation.
+  - Actor observation: 722 → 734 values (+12 for 2 objects); the rest is identical. The velocity is 0 at the frame-0
+    reset and live after 30 steps.
+- Owner (~21:09 UTC, AskUserQuestion):
+  - **arm V "Go"** (≈ $7–9 [E]).
+  - Solver v2: the owner asked what it is and why it failed. Answered: it is not built; its precondition (S signal)
+    failed. Recommended skipping; waiting on the owner.
+- Pre-registered as physics-solver.md §10 (c213eae, before any V result):
+  - V = C + the override, ep2/12/18/24 × seeds 42/43, physS1 references, control = the screen's C cells.
+  - The V seed-43 box first re-scores C/ep24-s43: 10 fresh evaluations of its stored chosen checkpoint.
+  - Rule as K's: signal iff mean Δ ≥ +0.03 and no Δ ≤ −0.05; harm iff mean ≤ −0.03 or any Δ ≤ −0.10.
+- Code ab63b37:
+  - `tools/recipe_screen.py`: arm V, the actor-velocity config check, V_vs_C.
+  - `ops/jobs/recipe_screen.sh`: RESCORE="arm:ep:seed:STORE_RUN", run before any training.
+  - Stubs and `dry_run_v.sh` / `dry_check_v.py`.
+- Tests:
+  - Dry run: **33/33 PASS**, including the real stored checkpoint's config check, the merge replacing the 4-draw
+    record, and the negative cases.
+  - Real summaries re-merged with the new tool: C/K/D/S output unchanged.
+  - The full older dry run (dry_run.sh → scratchpad `rs/dry7`) is running as a regression check.
