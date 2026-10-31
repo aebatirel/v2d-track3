@@ -5913,3 +5913,8 @@ diagnostic; nothing is picked for submission.
 - Collision-carve round 2 stopped (~22:17) and amended -> PREREG F-I5.16 (same contact gate, bound 1.5 x the packed default
   pieces; ring layout = smallest cavity-safe layout that keeps a wall floor; eval precheck also reports the packed
   pieces' ncon / nefc under sim=rl), resumed as task w6yrvudqw.
+- 22:40 UTC: determined-wright measured the eval-25 contact budget under sim=rl (their `contact_budget/`, 9c1d100): packed
+  configuration max 276 / median 201 rows per world (njmax 512 hard; nconmax 256 pooled), max 65 contacts, hands +
+  support about half. Both rounds stopped again before their amend steps committed anything, scripts extended with an
+  ABSOLUTE bound (max nefc per world <= 380 in the full scene with both hands, via their budget.py --pieces), resumed
+  (board slot wug9jhsun, collision carve w3tew9tbg).
