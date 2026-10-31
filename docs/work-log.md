@@ -5152,3 +5152,32 @@ diagnostic; nothing is picked for submission.
   - cups stay PUSH unless the shift test fails, and the sink test binds;
   - add a piece-union gap check;
   - split wall bands finely enough that no hull bridges the cavity.
+
+### 2026-10-31 ~15:15-15:40 UTC — CD-O sprint started (request from the owner's score session)
+- Message from session_01D9UJC7rdn1DZrNM1rKyE7b (owner's "New score status" session; data):
+  - Ranks: CD-O 18th of 20 (0.402); final rank = sum of six board ranks (ours 62, 11th overall).
+  - Leaders: 0.213 / 0.239 / 0.250.
+  - Owner quote: "get me into that top tier".
+  - Requested: an eval mesh-set candidate by ~2 Nov 18:00 UTC, with its public-scan CD-O vs library_v3 and a public-twin
+    AUC-safety reading.
+- Board model check:
+  - spoon 10/36 pairs at ~0.18 (inferred) + library_v3 public CD-O weighted over the other 26 pairs (0.491) = 0.402.
+  - This matches the board, so the estimates below use this model [E].
+- Reply sent ~15:25 UTC:
+  - C0 earliest ~1 Nov 12:00 UTC, ~0.335 [E].
+  - C1 by 2 Nov 18:00 (at risk), ~0.31-0.32 [H].
+  - Generate-then-fit as C2 for the freeze [H].
+  - Blockers: the owner's compliance tier (same as library_v3) and a packed-mesh-only swap.
+- Launched workflow `cdo-sprint-c0` (`wf_b71021a8-698`, task wvdsexfjz):
+  - assemble the exact meshes, the 36-pair MANIFEST and a GT-free frame check;
+  - commit PREREG.md for the AUC guard before scoring;
+  - run score_registered.py on 15 public twins;
+  - two adversarial verifiers, then the report.
+  - AUC guard rule: per swapped object, mean dAUC >= -0.005, min >= -0.02, mean dMPPE and dRPE <= +0.2 cm.
+- Launched workflow `cdo-sprint-c1` (`wf_a717f699-b68`, task wqpaofa4o), $0, three tracks:
+  - T3: generate-then-fit of the probe's GT-free picks, one scoring each; H-GF is falsified if fewer than 3 of 10 WIN;
+  - T1: beige-cup obs-lathe on ep11 with the blue-cup ep21 settings, one scoring;
+  - T2: SAM 3D picks for the pitcher, dust pan and beige cup, placed by ICP to the library surface; ADD read; AUC guard.
+  - Gates: CD-O WIN = baseline - 0.02; ADD <= library + 2 mm; flips; the same AUC guard as C0.
+- Machine: 4 cores at load ~11. The gmg build-1 and interlock processes were reniced to 10 so the sprint goes first. Both
+  keep running.

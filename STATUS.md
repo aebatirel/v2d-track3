@@ -1,5 +1,29 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~15:40 UTC: CD-O sprint for the leaderboard (owner via the score session; CPU, $0 so far)
+- **Request** (owner's score session, 15:15 UTC): CD-O is our worst board (0.402, 18th of 20; rank = sum of six board
+  ranks; 0.338 -> 14th, 0.297 -> 10th, 0.282 -> 6th). Wanted: an eval mesh-set candidate, chosen GT-free, by ~2 Nov
+  18:00 UTC, with an AUC-safety reading on public twins. The swap is applied to the packed mesh only; rollouts stay.
+- **Board model:** pair-weighted mean over 36 eval pairs (spoon 10, pot 6, rack 5, blue cup 5, beige 2, dust pan 2,
+  sweeper 2, lid 1, pitcher 1, boards 1+1). library_v3 public CD-O over the 26 non-spoon pairs is 0.491. With the spoon at
+  ~0.18 (inferred) this predicts the board's 0.402.
+- **C0** (workflow `wf_b71021a8-698`, folder `docs/research/mesh-2026-10-26/cdo-sprint/C0/`):
+  - swaps four meshes that were already built and scored once [D]:
+    - pot prim ep41: 0.437 -> 0.342;
+    - lid prim ep2: 0.421 -> 0.220;
+    - rack prim joint: 0.555 -> 0.456;
+    - blue-cup obs-lathe ep21: 0.523 -> 0.291;
+  - expected board ~0.335 [E];
+  - the pre-registered public-twin AUC guard runs before hand-off;
+  - provenance is the same tier as library_v3 (fitted along library_v3-anchored tracks), which is the owner's call.
+- **C1** (workflow `wf_a717f699-b68`, folder `cdo-sprint/C1/`, $0), three pre-registered tracks:
+  - T1: beige-cup obs-lathe;
+  - T2: already-scored generated picks for the pitcher, dust pan and beige cup, placed in the library frame;
+  - T3: generate-then-fit public test (hypothesis H-GF).
+  - The expected gain on top of C0 is about -0.01 to -0.03 [H].
+- **gmg build-1 and the interlock** keep running at lower CPU priority (nice 10). The gmg itself cannot reach the
+  freeze (B13-B22 remain).
+
 ## 2026-10-30 ~14:20 UTC: gmg design frozen in git (SPEC and PREREG revision 1; CPU, $0)
 - **Freeze commit `fd814f6`** (14:17 UTC). `docs/research/mesh-2026-10-26/gmg/SPEC.md` sha256 `181ecc39...a119fe`,
   `PREREG.md` sha256 `c01e837e...fbbfb` (full hashes in the work log). No gmg code yet; zero new scan scorings.
