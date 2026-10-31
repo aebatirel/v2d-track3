@@ -281,7 +281,7 @@ Timeouts are counted.
 - Ledger planned: $9.00 per box.
 
 ## 12. Review amendments (31 Oct 2026 ~16:45 UTC, before any launch; no v2 result exists)
-Two reviews (selection/integrity: NO-GO until F1+F2; mechanics: GO). Sections 1–8 above are unchanged; the owner's rule
+Two reviews (selection/integrity: NO-GO until F1+F2; mechanics: GO). Sections 1–11 above are unchanged; the owner's rule
 is unchanged. Changes, all in `tools/mass_verdict.py --rule v2` (v1 default byte-identical, re-checked):
 - **F1 (blocking, fixed):** a box that never wrote or pushed `verify.json` (died, watchdog, push failure) made the merge
   read INVALID. Now its pairs are unverified, i.e. missing → **INCOMPLETE** (rerun only those pairs), as the owner's
