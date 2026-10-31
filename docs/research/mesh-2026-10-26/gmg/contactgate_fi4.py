@@ -73,7 +73,8 @@ def sim_rl(path=None):
     """The sim=rl values from the committed copy (simple 'key: value' YAML), its sha256, and any value that differs
     from PREREG F-I4.17.1 (mismatch)."""
     path = path or SIM_RL_PATH
-    raw = open(path, 'rb').read()
+    with open(path, 'rb') as fh:
+        raw = fh.read()
     vals = {}
     for line in raw.decode().splitlines():
         if ':' not in line or line.strip().startswith('#'):
