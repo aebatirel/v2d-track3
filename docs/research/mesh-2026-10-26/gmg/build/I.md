@@ -1163,6 +1163,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   eb97989), at REV 15 after the split and at REV 16: all 163 piece arrays byte-identical in the three runs; REV 15
   records identical except timing fields; REV 16 chooses rung 1.0 on both boards and only adds fields (ladder,
   coverage, slot_centre, fi4_rev 16). 38-41 s per run.
+- 22:14 pushed 3b7e6d0 (build; committed 22:13 UTC). Launched at 3b7e6d0 (gmg interlock files clean), this container,
+  `nice -n 5`, load 0.1: (1) **T-I11 ep24 `fi4p`** = the fi4o command + `--fi4-pieces-only --tag fi4p` (run
+  `runs-dev/20261031-i2probe-626ce13`, log `<run>/drv24_fi4p.log`, launch file `<run>/drv24_fi4p.launch`); (2) T-I1
+  `tests/test_fi416.py` in four processes (`FI416_OUT=<scratch>/slot3/tests/test_fi416_<job>.json`, logs beside):
+  `W10.test_k5_t8_s2_physics`; W10 k1-k4; W10 k6-k9; `Identity`. ReRuns, W10Report and ep23 follow when cores free.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
@@ -1200,3 +1205,10 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 22:03 pushed f00e657 (PREREG F-I5.15, INTERLOCK 21.13 + pointers, this log; committed 22:02:24 UTC, so the "22:03"
   first written in those three places was corrected to 22:02 in a follow-up commit, text otherwise unchanged). Design
   step done: no code edited, nothing run, $0. The Build step may start from f00e657.
+- 22:05 (Build step, collision-carve round-2 workflow) started 22:04. F-I5.15 confirmed on origin (f00e657 and 22c88fd
+  are ancestors of origin/claude/bold-albattani-6qmxsv). Task: implement F-I5.15 behind `--waiver-fi5` rev 2 (round-1
+  path stays reachable), synthetic tests (ring intrusion <= 0 at 8/12/16 sectors on a tapered cup and a pot profile;
+  continuity against the SHELL; precheck overlap / table / float; true nest on-axis and 1 mm off passes S on the
+  delivered pieces; controls plates and flag-off unchanged), commit + push. Reading `cavpieces.py`, `collcarve.py`,
+  `tests/test_collcarve.py`, `tools/interlock_dev.py` (shared) next. Load 0.2 (4 cores).
+- 22:17 ORCHESTRATOR: round-3 workflow stopped at ~22:16 UTC after determined-wright's P1 report (contact-budget overflow of the 57/77-prism r0 under sim=rl, see 22:20 orchestrator note in INTERLOCK/PREREG to follow). Killed the orphaned heavy runs started ~22:14 by the Build step: pid 1997 (interlock_dev ep24 F-I4.16 run) and pid 2001 (test_fi416 W10.test_k5_t8_s2_physics); their partial outputs are not results. The geometric w10 cells (pids 2004, 2007) and Identity (2010) were left running; their records are valid F-I4.16 outputs.
