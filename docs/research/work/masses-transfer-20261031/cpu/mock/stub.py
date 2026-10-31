@@ -75,10 +75,12 @@ def read_ck(path):
     return m, json.loads(m['user.resolved_config_json'])
 
 
-def setk(d, key, v):
+def setk(d, key, v):                                                   # hydra override a.b.c=v -> nested dict
     ks = key.split('.')
     for k in ks[:-1]:
-        d = d.setdefault(k, {}) if isinstance(d.get(k, {}), dict) else d.__setitem__(k, {}) or d[k]
+        if not isinstance(d.get(k), dict):
+            d[k] = {}
+        d = d[k]
     d[ks[-1]] = v
 
 

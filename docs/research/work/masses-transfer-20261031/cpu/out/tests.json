@@ -1,0 +1,151 @@
+{
+ "ok": true,
+ "failures": [],
+ "tests": {
+  "T0_baseline_verified": {
+   "ok": true,
+   "detail": []
+  },
+  "T1_wrong_mass_detected": {
+   "ok": true,
+   "detail": [
+    "ep12/mass1/s42: blue_cup loads 0.3 kg from MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf, expected 0.128",
+    "ep12/mass1/s43: blue_cup loads 0.3 kg from MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf, expected 0.128"
+   ]
+  },
+  "T2_second_parquet_detected": {
+   "ok": true,
+   "detail": [
+    "ep2/mass1/s43: ValueError: 2 .parquet files (FlashCHORD needs exactly one) in the reference folder MR/content/refs/mass1s43_glockt"
+   ]
+  },
+  "T3_other_reference_detected": {
+   "ok": true,
+   "detail": [
+    "ep12/mass0/s42: reference fingerprint 01838d4b7f1acac2d307bae3df59a09b != source f7d8bb94a6087baa06e2f262e47118e9 (not the same reference)"
+   ]
+  },
+  "T0_restored_verified": {
+   "ok": true,
+   "detail": []
+  },
+  "T4_verdict_rule": {
+   "ok": true,
+   "detail": {
+    "got": {
+     "adopt": "ADOPT",
+     "short": "NOT ADOPTED",
+     "drop": "NOT ADOPTED",
+     "edge": "ADOPT",
+     "incomplete": "INCOMPLETE",
+     "invalid": "INVALID"
+    },
+    "want": {
+     "adopt": "ADOPT",
+     "short": "NOT ADOPTED",
+     "drop": "NOT ADOPTED",
+     "edge": "ADOPT",
+     "incomplete": "INCOMPLETE",
+     "invalid": "INVALID"
+    }
+   }
+  },
+  "T5_equals_make_assets_physics": {
+   "ok": true,
+   "detail": {
+    "beige_cup": {
+     "mass": [
+      0.1367,
+      0.1367
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.90329727765198e-09
+    },
+    "blue_cup": {
+     "mass": [
+      0.128,
+      0.128
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 2.147045392709252e-09
+    },
+    "mini_dust_pan": {
+     "mass": [
+      0.0442,
+      0.0442
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 4.1967205525571574e-09
+    },
+    "mini_sweeper": {
+     "mass": [
+      0.045,
+      0.045
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 4.511007978171873e-09
+    },
+    "plastic_dish_rack": {
+     "mass": [
+      0.3865,
+      0.3865
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 5.001991204957043e-09
+    },
+    "water_pitcher": {
+     "mass": [
+      0.5031,
+      0.5031
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.8885700386906e-09
+    },
+    "white_pot_lid": {
+     "mass": [
+      0.0882,
+      0.0882
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.3061685705806386e-09
+    },
+    "white_pot": {
+     "mass": [
+      0.2771,
+      0.2771
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 7.653292237430943e-09
+    },
+    "wooden_piece_1": {
+     "mass": [
+      0.1389,
+      0.1389
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.4248008055819e-09
+    },
+    "wooden_piece_2": {
+     "mass": [
+      0.1409,
+      0.1409
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 3.0379772063856302e-09
+    },
+    "wooden_spoon": {
+     "mass": [
+      0.05,
+      0.05
+     ],
+     "com_equal": true,
+     "inertia_rel_err": 4.1617593818726766e-09
+    }
+   }
+  },
+  "T6_non_placeholder_source_refused": {
+   "ok": true,
+   "detail": "mass_arm ep12: MR/content/refs/sf/ep12/assets/urdf/blue_cup_rigid.urdf has mass 0.5, not the 0.3 kg placeholder this check assumes"
+  }
+ }
+}

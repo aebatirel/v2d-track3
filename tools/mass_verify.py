@@ -40,7 +40,7 @@ def resolve_parquet(p):
         return p
     fs = sorted(glob.glob(os.path.join(p, '**', '*.parquet'), recursive=True))
     if len(fs) != 1:
-        raise ValueError(f'reference folder {p} holds {len(fs)} .parquet files (FlashCHORD needs exactly one)')
+        raise ValueError(f'{len(fs)} .parquet files (FlashCHORD needs exactly one) in the reference folder {p}')
     return fs[0]
 
 

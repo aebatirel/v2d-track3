@@ -1,0 +1,162 @@
+{
+ "ok": true,
+ "failures": [],
+ "checks": {
+  "C1_eight_trainings": {
+   "ok": true,
+   "detail": "8 trainings: [(2, 'mass0', 42), (2, 'mass0', 43), (2, 'mass1', 42), (2, 'mass1', 43), (12, 'mass0', 42), (12, 'mass0', 43), (12, 'mass1', 42), (12, 'mass1', 43)]"
+  },
+  "C1_steps_seed": {
+   "ok": true,
+   "detail": "{'ep2/mass0/s42': (70004736, '42'), 'ep2/mass1/s42': (70004736, '42'), 'ep12/mass0/s42': (70004736, '42'), 'ep12/mass1/s42': (70004736, '42'), 'ep2/mass0/s43': (70004736, '43'), 'ep2/mass1/s43': (70004736, '43'), 'ep12/mass0/s43': (70004736, '43'), 'ep12/mass1/s43': (70004736, '43')}"
+  },
+  "C2_same_reference_ep2": {
+   "ok": true,
+   "detail": "training fingerprints {'30c9ad1bcfce850ed3a2cf578a290477'}, source 30c9ad1bcfce850ed3a2cf578a290477"
+  },
+  "C2_ep2_built_here_not_E3": {
+   "ok": true,
+   "detail": "built 30c9ad1bcfce850ed3a2cf578a290477, E3 stored 1ce86a8f67fd5fc5fc9ac1b05467a370"
+  },
+  "C2_only_urdf_paths_differ_ep2_mass0_s42": {
+   "ok": true,
+   "detail": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_only_urdf_paths_differ_ep2_mass1_s42": {
+   "ok": true,
+   "detail": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_only_urdf_paths_differ_ep2_mass0_s43": {
+   "ok": true,
+   "detail": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_only_urdf_paths_differ_ep2_mass1_s43": {
+   "ok": true,
+   "detail": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_same_reference_ep12": {
+   "ok": true,
+   "detail": "training fingerprints {'f7d8bb94a6087baa06e2f262e47118e9'}, source f7d8bb94a6087baa06e2f262e47118e9"
+  },
+  "C2_ep12_is_stored_ev2_reference": {
+   "ok": true,
+   "detail": "f7d8bb94a6087baa06e2f262e47118e9 vs PREREG f7d8bb94a6087baa06e2f262e47118e9"
+  },
+  "C2_only_urdf_paths_differ_ep12_mass0_s42": {
+   "ok": true,
+   "detail": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_only_urdf_paths_differ_ep12_mass1_s42": {
+   "ok": true,
+   "detail": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_only_urdf_paths_differ_ep12_mass0_s43": {
+   "ok": true,
+   "detail": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C2_only_urdf_paths_differ_ep12_mass1_s43": {
+   "ok": true,
+   "detail": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet"
+  },
+  "C3_train_masses_ep2_mass0_s42": {
+   "ok": true,
+   "detail": "{'white_pot': 0.3, 'white_pot_lid': 0.3} from ['MR/content/refs/mass0_sf/ep2/assets/urdf']"
+  },
+  "C3_train_masses_ep2_mass1_s42": {
+   "ok": true,
+   "detail": "{'white_pot': 0.2771, 'white_pot_lid': 0.0882} from ['MR/content/refs/mass1_sf/ep2/assets/urdf']"
+  },
+  "C3_train_masses_ep12_mass0_s42": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.3, 'plastic_dish_rack': 0.3} from ['MR/content/refs/mass0_sf/ep12/assets/urdf']"
+  },
+  "C3_train_masses_ep12_mass1_s42": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'plastic_dish_rack': 0.3865} from ['MR/content/refs/mass1_sf/ep12/assets/urdf']"
+  },
+  "C3_train_masses_ep2_mass0_s43": {
+   "ok": true,
+   "detail": "{'white_pot': 0.3, 'white_pot_lid': 0.3} from ['MR/content/refs/mass0_sf/ep2/assets/urdf']"
+  },
+  "C3_train_masses_ep2_mass1_s43": {
+   "ok": true,
+   "detail": "{'white_pot': 0.2771, 'white_pot_lid': 0.0882} from ['MR/content/refs/mass1_sf/ep2/assets/urdf']"
+  },
+  "C3_train_masses_ep12_mass0_s43": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.3, 'plastic_dish_rack': 0.3} from ['MR/content/refs/mass0_sf/ep12/assets/urdf']"
+  },
+  "C3_train_masses_ep12_mass1_s43": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'plastic_dish_rack': 0.3865} from ['MR/content/refs/mass1_sf/ep12/assets/urdf']"
+  },
+  "C4_every_evaluation_loads_its_arm": {
+   "ok": true,
+   "detail": "248 evaluations (80 of chosen checkpoints), 0 wrong: []"
+  },
+  "C5_identical_settings_ep2_s42": {
+   "ok": true,
+   "detail": "args differ: []; env {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None} vs {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None}"
+  },
+  "C5_identical_settings_ep2_s43": {
+   "ok": true,
+   "detail": "args differ: []; env {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None} vs {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None}"
+  },
+  "C5_identical_settings_ep12_s42": {
+   "ok": true,
+   "detail": "args differ: []; env {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None} vs {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None}"
+  },
+  "C5_identical_settings_ep12_s43": {
+   "ok": true,
+   "detail": "args differ: []; env {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None} vs {'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None}"
+  },
+  "C5_seeds_differ_only_in_seed": {
+   "ok": true,
+   "detail": ""
+  },
+  "C6_shared_ep12_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "C6_mass0_assets_byte_identical_to_shared_ep12": {
+   "ok": true,
+   "detail": "4 files"
+  },
+  "C6_shared_assets_untouched_ep12": {
+   "ok": true,
+   "detail": ""
+  },
+  "C6_mass0_assets_byte_identical_to_shared_ep2": {
+   "ok": true,
+   "detail": "4 files"
+  },
+  "C6_content_assets_placeholder": {
+   "ok": true,
+   "detail": "11 URDFs"
+  },
+  "C7_one_push": {
+   "ok": true,
+   "detail": "1 uploads"
+  },
+  "C7_pulls": {
+   "ok": true,
+   "detail": "['hf download mock/store --repo-type dataset --include runs/20261024-ev3-2c1e4dd/refs/perc2mck/ep2/* --local-dir /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockA/content/hfstore', 'hf download mock/store --repo-type dataset --include runs/20261024-ev2-2c1e4dd/refs/perc2mc/ep12/* --local-dir /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockA/content/hfstore', 'hf download mock/store --repo-type dataset --include runs/20261024-ev2-2c1e4dd/refs/sf/ep12/* --local-dir /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockA/content/hfstore', 'hf download mock/store --repo-type dataset --include runs/20261024-ev2-2c1e4dd/refs/glockt/ep12/* --local-dir /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockA/content/hfstore', 'hf download mock/store runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/rest_check.json --repo-type dataset --local-dir /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockA/content/hfstore', 'hf upload mock/store /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockA/content/push/20261031-mass-mocksha runs/20261031-mass-mocksha --repo-type dataset --commit-message run 20261031-mass-mocksha: 2026-10-31T05:16:25Z']"
+  },
+  "C8_verified": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "C8_summary": {
+   "ok": true,
+   "detail": "verdict ADOPT (mock scores: not evidence)"
+  },
+  "C8_pair_config_diffs_allowed": {
+   "ok": true,
+   "detail": "{'ep2/s42': {'ep2/mass1/s42': ['output_dir', 'reference.parquet', 'task.parquet']}, 'ep2/s43': {'ep2/mass1/s43': ['output_dir', 'reference.parquet', 'task.parquet']}, 'ep12/s42': {'ep12/mass1/s42': ['output_dir', 'reference.parquet', 'task.parquet']}, 'ep12/s43': {'ep12/mass1/s43': ['output_dir', 'reference.parquet', 'task.parquet']}}"
+  }
+ },
+ "trainings": 8,
+ "evaluations": 248,
+ "verdict_mock": "ADOPT",
+ "note": "mock scores are synthetic (stub.py); they test the plumbing, not masses"
+}
