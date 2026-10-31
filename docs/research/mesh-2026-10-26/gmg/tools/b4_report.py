@@ -24,6 +24,33 @@ def sha256(p):
     return h.hexdigest()
 
 
+# PREREG C.2 anchor order (fixed at the freeze; GT-free: largest view_cap60 in obs_census.jsonl)
+C2_ORDER = {'white_pot': [27, 43, 26, 45, 41, 42, 44, 0, 2], 'white_pot_lid': [2, 0],
+            'plastic_dish_rack': [31, 26, 12, 13, 27], 'blue_cup': [12, 13, 11, 22, 21], 'beige_cup': [11],
+            'water_pitcher': [21, 22], 'mini_dust_pan': [40, 39, 18], 'mini_sweeper': [18, 31],
+            'wooden_piece_1': [24, 23], 'wooden_piece_2': [23, 24]}
+
+
+def anchors(rows):
+    """PREREG C.2: per object, the first episode of its list that has neither TRACK_FAIL nor IDENTITY_SWAP (None if
+    every listed episode is flagged), with the skipped episodes and their flags."""
+    fl = {(x['ep'], x['obj']): [f for f in x['flags'] if f in ('TRACK_FAIL', 'IDENTITY_SWAP')] for x in rows}
+    out = {}
+    for o, order in C2_ORDER.items():
+        skipped, pick = [], None
+        for ep in order:
+            f = fl.get((ep, o))
+            if f is None:
+                continue
+            if f:
+                skipped.append(dict(ep=ep, flags=f))
+            else:
+                pick = ep
+                break
+        out[o] = dict(anchor=pick, first_listed=order[0], skipped=skipped)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--run', required=True)
@@ -66,7 +93,8 @@ def main():
                                      co_moving_unresolved=c.get('co_moving_unresolved'), tie_break=c.get('tie_break'),
                                      ownership={k: m['ownership'][k] for k in (key, f'{p}|{o}')},
                                      band_mm_rev=m['contact'][f'{p}|{o}'].get('band_mm'),
-                                     j_mm_rev=m['contact'][f'{p}|{o}'].get('j_mm'))
+                                     j_mm_rev=m['contact'][f'{p}|{o}'].get('j_mm'),
+                                     sep3d_frame_diag=(len(c['sep3d_frame']) if 'sep3d_frame' in c else None))
         summ[f'ep{ep}'] = rec
     json.dump(summ, open(os.path.join(a.out, 'summary.json'), 'w'), indent=1)
     # B.3
@@ -113,7 +141,9 @@ def main():
                                  track_fail_readings=s.get('track_fail_readings'),
                                  split={p: (v.get('testable'), v.get('pass_')) for p, v in
                                         (s.get('identity_split') or {}).items()},
-                                 cross={k: v for k, v in cj['results'][f'ep{ep}:{o}'].items() if k != 'chamfers_mm'}))
+                                 identity_fail=s.get('identity_fail'),
+                                 cross={k: v for k, v in cj['results'][f'ep{ep}:{o}'].items()
+                                        if k not in ('chamfers_mm', 'chamfers_seed0_mm')}))
         flagged = [f'ep{x["ep"]}:{x["obj"]}' for x in rows if 'IDENTITY_SWAP' in x['flags']]
         # P22 is about the cross-object test; split-test failures also mark IDENTITY_SWAP (SPEC section 7) and are
         # listed apart
@@ -122,6 +152,11 @@ def main():
         split_flagged = [f'ep{x["ep"]}:{x["obj"]}' for x in rows
                          if any(t and p is False for t, p in x['split'].values())]
         not_testable = [f'ep{x["ep"]}:{x["obj"]}' for x in rows if not x['cross'].get('testable')]
+        # round 2: the round-1 registration (seed 0 only) verdicts, reported beside; they set no flag
+        cross_flagged_seed0 = [f'ep{x["ep"]}:{x["obj"]}' for x in rows if x['cross'].get('testable')
+                               and x['cross'].get('seed0') is not None and not x['cross']['seed0']['pass_']]
+        split_flagged_seed0 = [f'ep{x["ep"]}:{x["obj"]}' for x in rows
+                               if (x.get('identity_fail') or {}).get('seed0_split')]
         lid_cup = [k for k in not_testable if k.split(':')[1] in ('white_pot_lid', 'beige_cup')]
         p22 = dict(cross_flags_exactly_ep23_board2=(cross_flagged == ['ep23:wooden_piece_2']),
                    lid_and_beige_cup_not_testable=sorted(lid_cup) == sorted(
@@ -134,6 +169,9 @@ def main():
                                           p22['lid_and_beige_cup_not_testable']),
                        track_fail=[f'ep{x["ep"]}:{x["obj"]}' for x in rows if 'TRACK_FAIL' in x['flags']],
                        not_testable_cross=not_testable,
+                       seed0=dict(note='round-1 registration (subsample seed 0 only); sets no flag',
+                                  cross_flagged=cross_flagged_seed0, split_flagged=split_flagged_seed0),
+                       anchors=anchors(rows),
                        rows=rows), open(os.path.join(a.out, 'b15.json'), 'w'), indent=1)
     # strace audits
     if a.audit_glob:

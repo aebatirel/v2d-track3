@@ -2,7 +2,7 @@
 # B4 finish (after every episode of the clean run is done): the cross-object identity test over all public bundles
 # (PREREG B.15; updates each episode.json) and the B.2a leakage test, each as a clean guarded process under the strace
 # audit; then the git summaries (gmg/build/b4/) and the HF store upload (runs/mesh-<run>/).
-# Usage: b4_finish.sh CLEAN_RUN DEV_RUN [--no-push]
+# Usage: [B4_OUT=gmg/build/b4/v5] b4_finish.sh CLEAN_RUN DEV_RUN [--no-push]
 set -u
 RUN=$1; DEVRUN=$2; PUSH=${3:-push}
 REPO=$(cd "$(dirname "$0")/../../../../.." && pwd)
@@ -25,7 +25,7 @@ for step in identity b2a; do
   [ "$RC" = 0 ] || { echo "$step failed; see $LOGD/$step.log"; exit 1; }
   echo "rc=$RC" > "$LOGD/$step.done"
 done
-"$V" -I gmg/tools/b4_report.py --run "$RUN" --dev-run "$DEVRUN" --out gmg/build/b4 \
+"$V" -I gmg/tools/b4_report.py --run "$RUN" --dev-run "$DEVRUN" --out "${B4_OUT:-gmg/build/b4}" \
   --audit-glob "$AUD/b4-$TAG-*.audit.json" > "$LOGD/report.log" 2>&1 || { echo "report failed"; exit 1; }
 tail -n 1 "$LOGD/report.log"
 if [ "$PUSH" = push ]; then
