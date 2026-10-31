@@ -5803,3 +5803,41 @@ diagnostic; nothing is picked for submission.
 - **One scoring [D]:** CD-O 0.4413 (C0 0.4560, library 0.5551), ADD med 6.56 mm, flips 0/7 -> no WIN (needs <= 0.436).
 - **AUC guard [D]:** PASS, mean dAUC +0.0147, min -0.0076. Not adopted; pack 9a keeps the C0 rack.
 - Vast 58571056 created for the uncleaned inputs never started and was destroyed (~$0.02 [E]).
+
+### 2026-10-31 21:30 UTC — collision carve F-I5, Report step (collision-carve workflow): INTERLOCK 21.12, hand-offs
+- **Record:** INTERLOCK 21.12 (results: accuracy / failures / cost table, what both verifiers confirmed, 12 corrections
+  and caveats to 21.11 and the F-I5.14 outcomes, the two hand-offs, 9 open decisions for round 2 replacing 21.11's
+  list); correction pointers in 21.11; header and section-0 pointers; a post-hoc, record-only verification note under
+  PREREG F-I5.14 outcomes (prediction scoring, mechanism, "must not be used" is a recommendation); STATUS top section.
+  No code, no run, no rental ($0).
+- **Outcome of the workflow:** nothing carved or delivered for any episode; eval twins 10 / 1 / 14 / 30 not run
+  (orchestrator ~21:30). Verifiers: verify_cc_0 (2ebe67e) no blocking item; verify_cc_1 (3d26bce) 3 blocking items for
+  round 2: lathe rings fail the gate on their own (8 sectors forced by the 82-piece cap, chord inset about 3 mm;
+  continuity check self-referential), S fails on faithful SHELL colliders at all 8 S frames (impossible tracked poses:
+  interpenetration, guest inside the table, floating sweeper), ep11 cup SHELLs bottomless and co-located (no nest
+  test).
+- **Corrections (no outcome change):** P42 not tested, P44 holds as written; ep11 default S bimodal; exact volumes
+  (props 1.52-1.94x high; ep11 removed 9.38 %, P4 still fails); flag-off ep11 PUSH, ep2 pot PUSH; no sources/, carved
+  ladder skips routes 2/3, F-I5.7 (ii)/(iii) not built; dev-tier t0; the sweep gate decided ep12 and ep2.
+- **Hand-off text, Embodiment session (determined-wright):**
+  > Collision carve (gmg F-I5, the owner's "if 2 mesh collide we can carve it" waiver): there is no r0 folder for any eval episode. Evals 10, 1, 14 and 30 were not run (orchestrator, 31 Oct ~21:30 UTC), because the public runs delivered nothing usable. Nothing changed for you: no carved or new default pieces, no sources/ notches, nothing to jitter_check. The five public F-I5 round folders (ep11, 2, 12, 13, 31; scratch only, never uploaded) hold 6 mm boxes keeping 2-9 % of each body; do not use them or measure intrusion against them. Data for your frame-by-frame fixes [M, verify_cc_1 B2]: at our hands-off frames the tracks are impossible (ep11 cups overlap 86 cm3; the ep12/13 cup sits 15-23 mm inside the table; the ep31 sweeper floats 45 mm above it). The ep24 P1 request (F-I4.15 r0) is unchanged. Record: INTERLOCK 21.12, branch claude/bold-albattani-6qmxsv.
+- **Hand-off text, pack builder (focused-pascal):**
+  > Collision carve (gmg F-I5): no eval episode has new carved simulator pieces. Evals 10, 1, 14 and 30 were not run (orchestrator, 31 Oct ~21:30 UTC), because the public runs delivered nothing usable. Keep the pack's collision pieces as they are (meshes/carve/ev10, ev01, ev25); no rollout re-run is needed now. If round 2 (F-I5.15, public first) later delivers eval pieces, they will differ from yours in shape and split, so adopting them will need rollout re-runs, not a pack-only swap. A finding that may apply to your pipeline/lathe_collision.py, which uses the same ring layout [M ours, E yours]: wall pieces built as hulls of the profile at the sector edges put their inner face r_in(1 - cos(pi/N)) inside the cavity at mid-sector. On our cups: 2.9-3.4 mm with 8 sectors, 1.2-1.3 mm with 16; the formula gives about 0.8 mm at r = 40 mm with 16. Record: INTERLOCK 21.12.
+
+### 2026-10-31 21:40 UTC — orchestrator: owner mandate relayed; blue-cup candidate; cup-axis check; eval delivery statement
+- Owner (relayed by keen-heisenberg, typed 21:22 UTC): "okay I allow 3d mesh chat to do anything as long as it improves
+  the score and doesnt intervine with the rules of the competiton. they can go crazy". Guard-rails from keen-heisenberg:
+  shared credit (ledger read 21:38: budget $325, actual $131.91; mesh-bold actuals today $0.98); submissions go through
+  the pack lane; CLAUDE.md integrity rules hold.
+- Cup-axis launch hold (focused-pascal): GT-free axis and closed-end check of the Set B blue cups vs library_v3
+  (`cdo-sprint/PUBOWN/checks/cup_axis.json`, 577f838). Tilts 0.9-5.0 deg; ep11/13/21/22 are spin; ep12 g0 is up-down
+  flipped (closed at its wide end) and goes back to library_v3. focused-pascal launched rtkA/rtkB with that set.
+- Eval delivery statement to focused-pascal and keen-heisenberg: no F-I5 carves for evals 32/33/14/16/30/10/1
+  (measured reasons); eval-25 slot conditional on round 3 (yes/no by 08:00 UTC); E0b pot/beige less accurate than 9a+.
+- Collision-carve round 1 verifiers: verify_cc_1 has 3 blocking findings (ring chord sag 1-3 mm into the cavity at the
+  cap; S fails even on faithful colliders because tracked rest poses interpenetrate / sit in the table / float; ep11
+  SHELLs bottomless). Eval step replaced by a no-run record; workflow resumed to its Report.
+- **Blue-cup candidate:** C0 blue cup on top of 9a+, incremental guard over twins 11/12/13/21/22 (one new ep11 joint
+  run, 21:25:39-21:26:35 UTC, HEAD 0683232, this container, $0): mean dAUC +0.022, min -0.030 (ep13; fails the -0.02
+  clause), dMPPE -0.22 cm, dRPE +0.17 cm. Recommended to the pack lane, flagged; board CD-O about -0.032 [E].
+  Record `cdo-sprint/C0/bluecup-on-9aplus/README.md` (fc952de).
