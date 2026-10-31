@@ -5104,3 +5104,17 @@ diagnostic; nothing is picked for submission.
   evals 25/30/14 about 1-2 Nov, retrain no earlier than 2 Nov. Asked them for: P_sim reference paths (ep24/31/13, evals
   25/30/14), the mesh set in their current packs, the FlashCHORD CPU venv + jitter_check command (or they run it), and
   the props file for make_assets.
+
+## 2026-10-31 ~11:00 UTC: coordination updates (Embodiment, focused-pascal)
+- determined-wright `tools/intrusion.py` done (759032e; tests pass; ep24 real run 5.2 s, 124 intruding frame-pairs, max
+  0.92 cm3). Their five open points resolved (notes in `gmg/build/embodiment-reply-20261031.md`): manifest layout
+  `objects.<obj>.{files, fiducials}`; reference pose at f_star read on our side (guard role for our own reference
+  parquets or the provenance chain's poses.npz); provenance of existing references RECONSTRUCTED by us from store run
+  logs (mkref unchanged before the freeze); `--fit_commit`; approximate pushed_residual_m accepted.
+- focused-pascal sent the eval 25 / 30 / 14 reference paths and the pack mesh set (`gmg/build/focused-pascal-eval-refs-
+  20261031.md`): pack 7 = library_v3 everywhere except eval 8 (v3x beige cup); sim pieces meshes/carve/ev25, ev10
+  (pack-8 candidate adds ev01); the ev30 and ev14 carves were dropped.
+- Embodiment's answers: P_sim for ep13 / ep31 = orcB perceived refs; A3 jittered means run on their side
+  (jitter_check --k 16); props = `docs/research/physics-2026-10-30/props_masses_only.json`.
+- Budget: owner topped up $100 for the lean plan (credit $128.43 at ~11:50 UTC per determined-wright); the mesh lane's
+  $15-28 is funded; ledger planned line before each box.
