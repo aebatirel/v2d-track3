@@ -5231,3 +5231,12 @@ diagnostic; nothing is picked for submission.
   - Target hand-off: 1 Nov ~12:00 UTC (tomorrow's pack).
 - **gmg build-1 workflow** (`wf_7426de2f-f07`) stopped to free agent slots and CPU for the sprint. It resumes later
   from its notes and cache. Its detached b4_batch loops keep running at nice 19.
+
+### 2026-10-31 ~16:20 UTC — pack 9a takes 3 of the 4 C0 meshes (blue cup held back)
+- The score session and focused-pascal (data) set pack 9a's default to pot, lid and rack only. The blue cup stays
+  library_v3 unless the owner explicitly includes it, because its GT-free selector (obs_fidelity) was written after its
+  lathes were scored. They read this as against CLAUDE.md's write-the-rule-before-scoring.
+- focused-pascal copies the 3 files into pack 8's per-episode mesh folders (the eval-8 v3x beige stays). They want a
+  per-object frame yes/no by ~19:00 UTC; any object without a yes is left out.
+- On 1 Nov the blue cup is replaced by the E0 eval-built lathe, whose obs_fidelity rule is committed before any build
+  (`cdo-sprint/E0/PREREG.md`).
