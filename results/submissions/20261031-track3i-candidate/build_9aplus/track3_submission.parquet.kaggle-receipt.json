@@ -1,0 +1,61 @@
+{
+  "track": "track_3",
+  "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.parquet",
+  "message": "pack 9a+ 31 Oct 2026: pack 8 + mesh swaps (pot, lid, rack C0; beige cup, dust pan C1; flagged), code commit d7ecaef",
+  "submissions": {
+    "add_auc": {
+      "slug": "v2d-challenge-track3-auc",
+      "state": "COMPLETE",
+      "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - AUC",
+      "ref": 57847040,
+      "public_score": "0.81757",
+      "error": ""
+    },
+    "spider_sr": {
+      "slug": "v2d-challenge-track3-sp-sr",
+      "state": "COMPLETE",
+      "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - SP-SR",
+      "ref": 57847045,
+      "public_score": "0.85000",
+      "error": ""
+    },
+    "maniptrans_sr": {
+      "slug": "v2d-challenge-track3-mp-sr",
+      "state": "COMPLETE",
+      "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MP-SR",
+      "ref": 57847047,
+      "public_score": "0.65000",
+      "error": ""
+    },
+    "rpe_cm": {
+      "slug": "v2d-challenge-track3-rpe",
+      "state": "COMPLETE",
+      "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - RPE (cm)",
+      "ref": 57847049,
+      "public_score": "3.87853",
+      "error": ""
+    },
+    "mppe_cm": {
+      "slug": "v2d-challenge-track3-mppe",
+      "state": "COMPLETE",
+      "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric - MPPE (cm)",
+      "ref": 57847052,
+      "public_score": "2.89663",
+      "error": ""
+    },
+    "cd_o_cm": {
+      "slug": "v2d-challenge-track3-cd-o",
+      "state": "COMPLETE",
+      "file": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/upload9ap/track3_submission.cd-o.parquet",
+      "message": "Successfully submitted to Track 3 - Egocentric (object reconstruction) - CD-O (cm)",
+      "ref": 57847054,
+      "public_score": "0.33234",
+      "error": ""
+    }
+  }
+}
