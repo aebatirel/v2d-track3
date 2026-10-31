@@ -5899,3 +5899,15 @@ score.
   - D inconclusive (sd falls on 1 episode only);
   - S no signal (ep2 −0.133).
   Arm V (actor sees object velocity) is training on 2 boxes; verdict ≈ 00:30–01:00 UTC.
+
+### 2026-10-31 ~23:00 UTC — re-track test FAILS every pre-registered clause (no pack change)
+- focused-pascal: P_o' (per-episode Set B meshes as FoundationPose templates) vs P_o on 20 public episodes:
+  - mean ΔR −0.170 (bar ≥ +0.01); 3/20 positive (bar ≥ 12); min ΔR −0.973; mean ΔRPE +1.32 cm.
+  - Cause [M]: the white_pot and two-cup templates break tracking (ep45 0.980 → 0.006, ep0 0.962 → 0.037, ep11 0.898 →
+    0.193).
+  - Valid run: code 8b3cf78, both boxes exit 0; measured cost $1.54.
+  - Record: docs/research/work/retrack-20261031/verdict.txt (942dbfc on its branch).
+- Reading: the own-video meshes help when only submitted (pack 9a+: CD-O and AUC up), but as tracking templates
+  these builds (stray marker balls, extra bodies, not watertight) derail FoundationPose. The 18:35 re-track proposal
+  is falsified as built. A re-track with cleaner templates (e.g. the submitted C0/C1 picks) would be a new hypothesis
+  with its own in-sample caveat; not proposed tonight.

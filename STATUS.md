@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~23:00 UTC: re-track test FAILED (mean dR −0.170, 3/20); no reference change from perception tonight
+- Own-episode meshes as tracking templates break FoundationPose (pot, two-cup episodes). Marker layer also closed.
+- Pack 9b still pending: eval-10 V4p confirmation and targeted D cells (keen-heisenberg uploads if the swap rule passes).
+
 ## 2026-10-31 ~21:20 UTC: overnight — eval-10 gate PASSED (+0.142), V4p retrain + targeted D cells running; pack 9b auto-upload
 - Owner (21:14, keen-heisenberg chat): D cells on 14/16/25/30/33 tonight; pack 9b uploads automatically if every swap passes.
 - Re-track public test approved; per-episode Set B meshes ready (21:12). Marker layer closed (public gate FAIL).
