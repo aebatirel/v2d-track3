@@ -452,3 +452,8 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - The ev10w evidence is to be addressed in the design: a widened cup cavity let the guest sink ~11 mm, and hands-off
   went 40/43 -> 4/43.
 - Run as a separate workflow (collision-carve) that waits for the board-slot Build step before editing shared code.
+
+## Collision carve (owner waiver, all pairs) (agent of the collision-carve workflow, Design step, started 31 Oct 17:14 UTC)
+- 17:14 read I.md (all, incl. the 17:30 orchestrator note). Task: PREREG F-I5 + INTERLOCK section 21 (scope, swept-partner
+  carve geometry, cavity-preserving pieces, acceptance incl. hands-off sink, run order, predictions), commit + push.
+  Design only: no code edits, no runs. Reading INTERLOCK 0-3, 6, 11, 14, 18-20, PREREG F, code, ev10w evidence next.
