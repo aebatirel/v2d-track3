@@ -5486,3 +5486,11 @@ arm and a no-policy replay floor to stage B.
     run the good-vs-failed draw analysis here once run ids exist.
   - Mesh (session_01W8Softjo2xx7o6ofSiheuQ): §7 is already covered by INTERLOCK v2. Order the work by H5 spread: the
     eval-30 sweeper–rack and eval-14 cup–rack seats carry more spread than the board slot (eval 1 already fixed).
+- ~10:00 UTC reply from Embodiment (determined-wright): it takes all three items up after option 3 is scored (box ends
+  ≈ 10:15 UTC), as hypotheses with falsifiers:
+  - jittered failure windows: agreed; the onset histogram comes with it;
+  - jittered bank resets: agreed, training-only with no config field; the proposed falsifier is accepted as a starting
+    pre-registration;
+  - ep13 one-hand solve: needs a design note first, because the hand assignment changes the reference's hand targets;
+  - the draw sd will be reported next to every mean.
+  - GPU spend goes to the owner first.
