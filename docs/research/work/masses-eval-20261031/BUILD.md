@@ -150,9 +150,10 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
   - The boxes also write `results/mass_eval/files.txt`: the store paths a pack would pull for their candidates
     (check_train T10).
   - Remaining listings, all on the pack side (`pack_eval.sh --include`; not changed here, because every pack job shares
-    them and the equivalence baseline would move). [M, mock C1 hf log] 51 for five candidates: pack 6's base 36 (RUNS
-    19, PICK 15, KEEP_RESULTS 2) and the masses additions 15. The reviewer's mock with six candidates had 54. A later
-    opt-in single-file hook fed by `files.txt` could remove the additions. Not built.
+    them and the equivalence baseline would move). [M, mock C1 hf log] 54 for the six mocked candidates: pack 6's base 36
+    (RUNS 19, PICK 15, KEEP_RESULTS 2) and the masses additions 18 (RUNS_EXTRA 2 per grasp-lock candidate and 1 for eval 1,
+    PICK_EXTRA 1 each and rcB); 51 in the first re-run, which had five. A later opt-in single-file hook fed by
+    `files.txt` could remove the 18 additions. Not built.
 - **B7, pack-9 CPU repack: design only (not built; build and review it before any pack-9 proposal).**
   - Inputs:
     - `c1_rule.json`: its BOARD SWAP episodes, plus INSURANCE ones only on the owner's written yes;
@@ -181,7 +182,7 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
   meaningful), the evaluators (scene rebuilt from the checkpoint's saved config, `/workspace` read as `/content`), the kit
   evaluator and packer, qa. Store: the 20 real packed reference parquets and 20 real packed checkpoints, pack 6's and
   c33B's real submitted rollouts; synthetic sf asset folders (make_assets, 0.3 kg), base folders and result files.
-- **`run_all.sh`**: G1 (20 + 8), G2 (33 + 15), G4 (10), S1a (1, s42), S1b (1, s43), then `tools/mass_eval_merge.py` over
+- **`run_all.sh`** (as reviewed; for the re-run see below): G1 (20 + 8), G2 (33 + 15), G4 (10), S1a (1, s42), S1b (1, s43), then `tools/mass_eval_merge.py` over
   the five pushed `summary.json` files and the confirmation box C1 it specifies (h5_reeval.sh, N 3, KEEP_RESULTS = pack
   7's sources, all six candidates).
   - `check_train.py`: **112 / 112 checks pass** (`cpu/out/mock_check_train.json`), 6 episodes, 11 trainings, 5 boxes:
@@ -206,16 +207,33 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
   N8 eval 1 with 28, N9 wrong mode, N10 run id without `-mev`, N11 a stored reference that is not the packed one
   (dropped, nothing trained), N12 eval 33 without its curriculum
   (INVALID).
-- **Equivalence, hooks off** (old = 14ae515, the last commit before this build; `cpu/out/equiv*.txt`): **identical** job
-  logs, loads (audits), written files (names + md5), exit codes and store traffic for
-  - E2 `hard_ab.sh` + `pipeline_ep.sh` on the eval-1 carve path (1 training, 7 evaluations, 1 upload);
-  - E3 `pack_eval.sh` + `h5_reeval.sh` rebuilding pack 7 (all 20 rollouts kept, draws 2..3 for evals 3 and 19, 4 uploads);
+- **Equivalence, hooks off** (old = 14ae515, the last commit before this build; `cpu/out/equiv*.txt`; re-run after the
+  review fixes: `cpu/out_f1f7/equiv*`): job logs, loads (audits), written files (names + md5), exit codes and store
+  traffic are **identical except h5 draws 2..N keep rollout parquets (ab55e8c, intended)** for
+  - E2 `hard_ab.sh` + `pipeline_ep.sh` on the eval-1 carve path (1 training, 7 evaluations, 1 upload): identical in all 5;
+  - E3 `pack_eval.sh` + `h5_reeval.sh` rebuilding pack 7 (all 20 rollouts kept, draws 2..3 for evals 3 and 19, 4 uploads):
+    rc, job log, audits and store traffic identical; files differ only by the 4 kept `results/h5/r{2,3}/ep{3,19}/*.parquet`
+    (ab55e8c, 31 Oct 09:59: KEEP_ROLLOUTS defaults to 1; the "identical" first written here came from a template built
+    before ab55e8c). E3k, the same with `KEEP_ROLLOUTS=0`: identical in all 5 (review F5);
   - `glock_public.sh` + `ckpt_curve.sh` with the transfer check's own equivalence job strings
     (`masses-transfer-20261031/cpu/mock/equiv.sh BASE=14ae515`: 2 trainings, 52 evaluations, 2 uploads).
 - `bash -n` passes on every script; the new Python compiles.
+- **Re-run after the review fixes (31 Oct ~11:10-11:31 UTC; `cpu/out_f1f7/`).** Same mock, its store now mirroring the
+  29 Oct listing in every pulled sub-folder (setup: 295 placeholders, 260 unlisted synthetic files removed), boxes G1, G2,
+  G4 (eval 10, now both seeds), S1a, S1b, G1v (new), C1 (six candidates, N 3), then the rule script:
+  - `check_train.py` **165 / 165** (adds per box: single-file downloads exactly the table's lists and 0 listings, T9
+    support stage, T10 files.txt; G1v trains eval 20 with both seeds on library_v3, VERIFIED);
+  - `check_pack.py` **27 / 27** (adds P8: tools/mass_eval_rule.py on C1's real outputs, all six INCOMPLETE by rule 4 at
+    N 3, spoon NO READING);
+  - `neg.sh` **24 / 24** (the 14 above, plus N14, N15, N15b, N16, N16b, N17, N17b-e);
+  - `rule_tests/test_rule.py` **41 / 41**; equivalence as above; `bash -n` on 56 scripts.
+  - Store requests [M, mock hf logs]: G1 86 / G2 62 / G4 23 / S1a 26 / S1b 26 / G1v 39 single-file downloads, 0
+    listings each; C1 54 listings (36 base + 18 masses additions), unchanged pack side.
 - **Mock limits.** Stub physics and scores; synthetic sf assets, so the 0.3 kg-source check of real support-filled URDFs
   is exercised only on the box (mass_arm refuses a non-placeholder source); the real resolved config may hold keys the
   template does not (finding 3, JOBS.txt gate 1); the hf stub copies files but has no HF 429.
 
 ## Not done here
-No commit, launch, download or Kaggle action; no STATUS / work-log entry (the orchestrator's). Reviews pending.
+No commit, launch, download or Kaggle action; no STATUS / work-log entry (the orchestrator's). Build reviewed
+(conditional GO, F1-F8); F1-F7 applied, F8 as a dated pointer in PLAN section 4. Before C1: commit tools/mass_eval_rule.py
+(F4). Before any pack-9 proposal: build and review B7. Gate 1 (one transfer-box checkpoint's config diff) stays mandatory.
