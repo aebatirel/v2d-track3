@@ -1456,3 +1456,21 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   base top (`_wall_starts`), never at the pieces. **n1 smoke** (2 copies, not a result) first failed precheck (c) at
   both S frames: wall integrity read 0 mm left on half of the 20,000 rays (trimesh reports the hit on the sample's own
   face at t ~ 1e-6). Fix: rays start 0.05 mm off the sample (added back). Re-runs of r2 / r3 / n1 next.
+- 23:42 (Build 2) [M] re-runs (16 copies): r2 now passes (forced 1 mm ring caught: worst height gap share > 0.5; the
+  thin set with outer faces 1.8 mm in passes its self-check and fails continuity2); r3 re-run pending (its formula
+  first used the worst sector edge; the rule fits each sector at its own rays: 16 sectors have one integer-degree edge
+  per sector, so R = r_out). **r4 / r5** (P97): r4 accepted at 12 sectors b1, n_r 13 (8 sectors failed (iii)
+  continuity, gaps 81.7 %); r5 accepted at 16 sectors b1, n_r 17; the 8-sector candidates failed (i) min wall (-2.28
+  mm), not (iii) as P97 said (miss of that clause, as F-I5.16 (2)'s own geometry implies), the 12-sector one (iii).
+  **Precheck** (P85): p1 fails (a) (-10.0 mm), p2 fails (b) (10.0 mm from the table, 73 mm from the host), p3 fails
+  (c) only (V_ov 77.3 cm3, removed 0.77, topology 1/0 -> 2/2, 0.05 mm wall left), p4 passes (V_ov 12.9 cm3, removed
+  0.088, topology kept, 3.49 mm wall left): P85 holds. **Controls**: x6 / x10 identical under FI5R2 and FI5 (rev 1);
+  CC.REV = 1; round-1 x9 reproduces. **n1 smoke (2 copies, not a result)**: precheck passes at both S frames (f81,
+  f62; 3.08 / 2.93 mm wall left), c = 0.10 mm (sigma_wall 0.051 / 0.050), off-axis rule: nest, e_ax 0.25 mm, t_min 2.60
+  mm, carvable; carve on 48 K fragments (R = 6 voxels, R+ boxes), forced edges 12 / 95 mm, 25 pieces, 9 widen + 1
+  trim_top; **wall integrity fails**: the trimmed sector has no wall above 80 mm (409 of 6,874 K samples see no carved
+  material outward) -> default delivered; S on the default rings fails (+5.1 / +4.8 mm, pushed up) where S_ref (64
+  sectors) holds the guest (0.6 / 0.9 mm) -> floor fail; G1 passes (304 rows vs packed 744, the packed default itself
+  overflows 16/16: `packed_overflow`). Committed ba3387d (code of the runs below). Launched 23:40:18 (this container,
+  nice 15, code = ba3387d): the five nest tests n1, n3, tn0, tn1, n2a at 16 copies, one process each, outputs
+  `<scratch>/cc2b/nest/<test>.json|log`.

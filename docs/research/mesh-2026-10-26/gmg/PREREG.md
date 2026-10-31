@@ -3048,6 +3048,65 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       determined-wright's numbers are [R] evidence for the rule and the c1 target, not inputs to any shape. Public
       development only; constants fixed here before any run; failures reported with numbers; any later change is a new
       dated entry labelled post hoc.
+  - **F-I5.17 Round 2 as built (F-I5.15 and F-I5.16; decided while building, 22:47-23:45 UTC, before any real run;
+    no threshold changed).** Code: `gmg/cavpieces.py` (rev-2 section: `Profile2`, `build_layout`, `search_layout`,
+    `continuity2`, `intrusion2`, `reference_rings`, `carve2`, `route3_r2`, `route_pieces2`, `faithful_boxes`, exact
+    helpers), `gmg/collcarve.py` (rev-2 section: `Faithful`, `precheck`, `carvable_mesh`, `exact_clip`,
+    `wall_integrity`, `topology_1mm`, `FI5R2`, `floor_and_gate`, `write_r2_records`, `run_episode2`, `sink_test2`;
+    `run_episode(..., rev=None)` keeps rev 1 as the default), new `gmg/contactgate5.py` (G1, packed default, G2 status),
+    new driver `gmg/tools/collcarve2_dev.py` (`--fi5-rev 2 --waiver-fi5 ...` around the unedited shared
+    `tools/interlock_dev.py`), `tests/test_collcarve2.py` (T-I14 subset), `build/I/fi515_round1_markers.py` ((4e)).
+    Deviations from the text, none of them a threshold:
+    (1) **File name**: the gate module is `contactgate5.py`, not `contactgate.py` (F-I5.16 (6)(i)): the board-slot lane
+    wrote its own `gmg/contactgate.py` for F-I4.17 at the same time; no shared code.
+    (2) **Construction rays**: azimuths at integer degrees, heights at the 1 mm level midpoints (h_lo + (k + 1/2) mm);
+    band edges on the 1 mm levels except the base top (exact); exact hits from mesh slices through the axis (no ray
+    library); a wall band thinner than one row uses its nearest row.
+    (3) **Negative walls**: a sector band whose outer chord would lie inside its tangent inner face is clipped by both
+    face planes (dropped when empty), so no piece reaches into the cavity for any candidate; such a candidate fails
+    check (i) (the pot at 8 sectors: min wall -3.9 mm, every wall piece dropped).
+    (4) **b2 bands**: the greedy band edges of a b2 candidate start at the lowest of its per-sector base tops (each
+    sector's first wall band still starts at its own base top). **Forced carve edges** (D2 (b)): the K heights over all
+    sectors of a wall run, snapped outward to the 1 mm levels, common to the run's sectors; the layout keeps the
+    default's N_s, base kind and band edges plus these two edges (the search is not re-run for the carved set).
+    (5) **Continuity** (F-I5.15 (1e)): radial rays start at the wall run's start taken from the SHELL (the base top:
+    b1 the lowest cavity floor, b2 the lowest per-sector top), never from the pieces (a first build started them at
+    the lowest wall piece and so missed a forced 1 mm ring: r2, fixed at 23:26); the covered share is measured on the
+    innermost SHELL interval; axial rays clip the SHELL interval to the solid run's heights. The search orders
+    candidates by the nominal count N_s B_w + base pieces (dropped negative-wall pieces do not lower it).
+    (6) **Precheck (b)**: the faithful receiver distance is the exact point-to-cube distance of the faithful box
+    corners in both directions (edge-edge closest pairs are not searched: an over-estimate below one cell); V_ov > 0
+    counts as distance 0. **Precheck (c)**: the wall-integrity rays on the meshes use a seeded subset of at most 20,000
+    of the guest's 0.5 mm samples inside the receiver, starting 0.05 mm off the sample (trimesh reports hits at t ~ 0 on
+    the sample's own face; the offset is added back).
+    (7) **Clearance**: with no guest sample in R+ at all, c = c_min (round 1 gave 0).
+    (8) **Wall rule samples** (6.4)(a): the union-boundary samples of the K fragments that lie strictly inside the
+    unclipped K (the faces the R+ boxes cut) are not K's surface and are dropped. **Carve** (`carve2`): round 1's four options per piece on the round-2 faces (widen the tangent inner face,
+    shrink the outer chord, trim top / bottom), exact (every vertex of K inside the piece ends on the removed side);
+    the 0.2 mm numerical wall keep of round 1 stays inside the option LP; the wall-integrity rule decides. The boolean
+    route's carved body runs routes 3 and 4 (route 2 does not apply to a non-lathe receiver).
+    (9) **S**: `sink_test2` = simphys.sink_test (same scene, jitters, measures, pass rule) with a 2 GB MuJoCo arena:
+    [M] the 64-sector references overflow the default arena in plain MuJoCo (ncon 7,090, nefc 28,360 on the x1 cup
+    pair; one 2 s copy then takes 33 s under load 10). **S_ref runs in the floor only where S on the delivered pieces
+    fails** (the floor verdict depends on it only there; `full_ref=True` runs it everywhere); the acceptance carries S
+    on the carved and the default pieces.
+    (10) **Floor S frames**: the receiver by containment at the mean relative pose over the pair's static frames, hands
+    off for that guest; a precheck failure at a floor frame goes to the push list.
+    (11) **G1**: S scenes at every precheck-passing acceptance and floor frame; the settle scene at asm[len // 2] of
+    the largest receiver component's run (assembled frames, else the last 5 build frames); non-gated frames are
+    recorded without counts; jitters as the tests use (S: seed 2, settle: seed 1); a copy may stop at its first
+    overflowing step (`stop_on_overflow`, used by the g1 fixture only: the verdict is overflow, the maxima are then
+    lower bounds). coacd 1.0.11 for the packed default is installed in `<scratch>/coacd1011` (pip --target) and runs in
+    a child process.
+    (12) **Records**: `floor.json`, `contact_gate.json`, `push_list_fi5r2.json`, `DO_NOT_USE.json` (merged with
+    write_round's), `CONTACT_GATE_PENDING.json` (always on a real folder here: no FlashCHORD, warp, newton or
+    mujoco_warp on this machine); the manifest gets `fi5_rev` 2 and the three owner quotes.
+    (13) **Round-1 markers (4e)**: written beside the five committed manifests in
+    `build/I/results/collcarve-public/ep*/r0/`; the scratch folders `runs-dev/20261031-fi5pub-3053a78/...` are not on
+    this machine (the round-1 run's container is gone), so they carry no marker.
+    (14) **T-I14 here** covers the subset the build task names (rings r1-r5, precheck p1-p4, nests n1, n3 and the
+    orchestrator's true-nest cases tn0, tn1, n2a, gate g1-g3, controls); n4-n6, f1-f3, the P91 diagnostic and T-I17 c1
+    are not run in this step (c1 needs the ep24 v6 bundle, not on this machine).
 
 ## Revision 1 changelog
 
