@@ -236,8 +236,9 @@ class FI5:
     for), route=str, lathe=(Lathe, pieces) or None, plate_like=bool, n_ring=int (lathe ring pieces before the handle
     hulls), cap=int)}. hands: our M1 hands npz dict or None. physics False skips the acceptance (decision only).
     Diagnostic overrides (tests x4, x5 only; never in a delivery): c_override (m), no_overshoot. diag_rest: PREREG
-    F-I5.13 diagnostic D2 (post hoc; never delivered): rest-anchored pocket, default ring layout, volume and reach caps
-    reported only (topology still gates), S also on default and failed carves."""
+    F-I5.13 diagnostic D2 (post hoc; never delivered): rest-anchored pocket, band edges at the carve's ends with <= 30 mm
+    bands inside it (amended 18:41 before any D2 result), volume and reach caps reported only (topology still gates), S
+    also on default and failed carves."""
 
     def __init__(self, b, objects, hands=None, copies=None, log=None, physics=True, c_override=None,
                  no_overshoot=False, poses=None, n_objects=None, diag_rest=False):
@@ -366,7 +367,8 @@ class FI5:
             for n_s in [ns0] + [x for x in CP.k_('sector_fallback') if x < ns0]:
                 base = L.pieces(n_s)
                 ranges = L.carved_ranges(base, Kall, Aall)
-                pcs = L.pieces(n_s, carved=None if self.diag_rest else ranges)    # D2 (b): default bands
+                pcs = L.pieces(n_s, carved=ranges,             # D2 (b, amended 18:41): edges at the carve's ends,
+                               lim_carved=CP.k_('band_m') if self.diag_rest else None)   # <= 30 mm bands inside it
                 cp, crep = L.carve(pcs, Kall, Aall)
                 hl = L.hulls(cp) + list(extra)
                 if len(hl) <= ob['cap']:

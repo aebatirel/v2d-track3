@@ -602,6 +602,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 18:38 pushed 01e91f0 (committed 18:37:28 UTC). Correction: the entries first said 18:45 / 18:46 (guessed); replaced
   by the commit time 18:37 in PREREG F-I5.11 / F-I5.13, INTERLOCK 21.10 and this log (text otherwise unchanged).
   Next: D2 code (FI5 diag_rest option, never delivered) and the D2 tests.
+- 18:39 D2 code committed 5569b42 and launched (x1, x2b, x2c). 18:40 stopped before any result (no S, acceptance or
+  summary line; one carve-geometry line not read; log kept as `<scratch>/fi5/d2a_aborted.log`): D2 (b) as written
+  (default bands) would also widen the wall below the guest's base corner and remove the ledge Q1 relies on. 18:41
+  amendment (PREREG F-I5.13, dated): band edges at the carve's ends kept, <= 30 mm bands inside (x1 host: 81 pieces at
+  16 sectors vs 177 with the 10 mm re-banding [M]). Committing, then relaunching D2.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG

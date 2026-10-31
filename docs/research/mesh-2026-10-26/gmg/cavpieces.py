@@ -349,12 +349,13 @@ class Lathe:
         return ri, ro
 
     # ---- default pieces
-    def band_edges(self, b0, b1, carved=None):
+    def band_edges(self, b0, b1, carved=None, lim_carved=None):
         """Bin-edge indices of the bands of the run b0..b1: <= 30 mm, <= 10 mm inside the carved height range
-        (carved = (h_lo, h_hi) or None) with edges at the bin edges just outside the carve."""
+        (carved = (h_lo, h_hi) or None) with edges at the bin edges just outside the carve. lim_carved (PREREG F-I5.13
+        diagnostic D2 only): the band limit inside the carve instead of 10 mm."""
         e = list(range(b0, b1 + 2))
         H = self.he
-        band, bc = k_('band_m'), k_('band_carved_m')
+        band, bc = k_('band_m'), (k_('band_carved_m') if lim_carved is None else lim_carved)
         cut = {e[0], e[-1]}
         seg = None
         if carved is not None and carved[1] > carved[0]:
@@ -376,7 +377,7 @@ class Lathe:
         out.append(cut[-1])
         return sorted(set(out))
 
-    def pieces(self, n_s=None, carved=None, ring_gap_m=0.0):
+    def pieces(self, n_s=None, carved=None, ring_gap_m=0.0, lim_carved=None):
         """Default piece dicts. carved: {sector: (h_lo, h_hi)} wall ranges to re-band at <= 10 mm. ring_gap_m (test
         x9 only): the lowest wall band of every sector starts this far above the base top (the ev10 defect)."""
         n_s = n_s or k_('n_sectors')
@@ -385,7 +386,7 @@ class Lathe:
         runs = self.runs()
         for kind, b0, b1 in runs:
             for s in range(n_s if kind == 'wall' else 1):
-                edges = self.band_edges(b0, b1, (carved or {}).get(s) if kind == 'wall' else None)
+                edges = self.band_edges(b0, b1, (carved or {}).get(s) if kind == 'wall' else None, lim_carved)
                 for x0, x1 in zip(edges[:-1], edges[1:]):
                     hk = self.he[x0:x1 + 1].copy()
                     if kind == 'wall' and ring_gap_m > 0 and x0 == b0 and b0 > 0:

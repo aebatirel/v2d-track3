@@ -1830,6 +1830,13 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       correction (F-I5.7 shift) is the remedy | topology kept.
     - **Q5** x2c-D2 (1 mm offset): topology kept, S passes | either fails.
     - **Q6** sweeper-D2: reach about 0.96 reported; S passes (the stick drops <= c onto its cut floor) | S fails.
+    **Amendment to (b), 18:41 UTC, after the first D2 launch (18:39) and before any D2 result was produced (the run
+    was stopped at 18:40 with no S, acceptance or summary line; its one carve-geometry line was not read):** the lathe
+    carve keeps F-I5.4's band edges at each sector's carve top and bottom and drops only the 10 mm limit inside the
+    carve (bands <= 30 mm there). Reason (geometry, stated before any result): with the default bands a single linear
+    inner face per band also widens the wall below the guest's base corner, which removes the ledge Q1 relies on (the
+    guest could drop onto the host base, about 4.5 mm in x1). Measured on the x1 host: default 65 pieces, this layout 81
+    (16 sectors, cap 82), the pre-registered 10 mm re-banding 177 (hence its 12 / 8-sector fallback).
     Use: if Q1, Q2, Q5, Q6 hold, the remaining blockers for cups and holders are the 10 % volume cap and the 0.6 reach
     cap (F-I1.14 numbers made for board slots): a policy decision for the orchestrator / owner, to be written as a
     dated entry before any real run uses it. If Q1 or Q5 fails, a rest-anchored pocket does not keep a nested cup and
