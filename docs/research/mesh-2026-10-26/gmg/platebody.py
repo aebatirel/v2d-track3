@@ -61,6 +61,23 @@ reproduces F-I4.15 exactly, the polygon code is shared):
                                       run); flag slot_centre_disagrees when |u_obs - c_L| > 1 mm; report only
   p_sim_overlap                       F-I4.16.4 P_sel -> P_sim check (eval only): slotted pieces at reference poses
   manifest_fi416                      the F-I4.16 keys of the r0 manifest's owner_waiver block
+
+PREREG F-I4.17 (post hoc, round 3, orchestrator decision 2 of 31 Oct ~22:25 UTC; REV = 17, records carry fi4_rev 17;
+REV = 16 / 15 reproduce F-I4.16 / F-I4.15, the shared code is unchanged):
+  low_piece_fit                       F-I4.17.2 the outline raster M fitted by U(theta) = a full-length waist rectangle
+                                      plus up to two end rectangles (each containing the waist rows, 1 <= e <= n_L / 3),
+                                      maximising IoU (cells) by deterministic exhaustive stages (waist; left end; right
+                                      end; waist again; <= 10 passes; ties: fewer rectangles, smaller area, theta)
+  plate_body_low                      the delivered body: U extruded at t when IoU >= 0.90, else flag
+                                      low_piece_iou_fail and the F-I4.16 polygon at its chosen rung (fallback); the
+                                      F-I4.16 ladder and polygon are computed and reported in both cases
+  box_partition / pieces_boxes        F-I4.17.2 slab partition of a rectilinear ring in both directions (fewer boxes,
+                                      tie: cuts along a_W), each box extruded to +-t / 2 (8-vertex cuboid); exact tiling
+                                      checked (<= 1 mm2)
+  pieces_body                         box partition for a low-piece body, F-I4.15.4 prisms otherwise
+  manifest_fi417                      the F-I4.17 keys of the r0 manifest's owner_waiver block
+  The contact-budget gate (F-I4.17.1 part 1) is gmg/contactgate_fi4.py (named so, not contactgate.py, because the
+  concurrent F-I5.16 build plans its own new gmg/contactgate.py).
 """
 from __future__ import annotations
 
@@ -100,10 +117,16 @@ C = dict(
     centre_run_w=(3.0, 'generic:F-I4.16.8 slot centre observable when the half-peak run is <= 3 w wide (report only)'),
     stock_dt_m=(0.001, 'generic:F-I4.16.8 same stock when the two all-point t differ by <= 1 mm (coverage report)'),
     p_sim_flag_cm3=(0.3, 'informed:F-I4.16.8 P_sim overlap flag median > 0.3 cm3 (keep-out level per hull, F-I1.14)'),
+    lp_iou_min=(0.90, 'informed:F-I4.17.8 low-piece body when IoU with the outline raster >= 0.90 (decision 2)'),
+    lp_rect_max=(3, 'informed:F-I4.17.8 <= 3 frame-aligned rectangles: waist + up to two ends (decision 2)'),
+    lp_end_frac=(3, 'generic:F-I4.17.8 an end rectangle is at most floor(n_L / 3) cells long'),
+    lp_passes=(10, 'generic:F-I4.17.8 at most 10 coordinate passes of the low-piece search'),
+    lp_tie=(1e-12, 'generic:F-I4.17.8 IoU ties within 1e-12'),
+    box_snap_mm=(1e-5, 'generic:F-I4.17.2 box partition: vertex coordinates within 1e-5 mm are one cut line'),
 )
 
-REV = 16                # PREREG F-I4.16 (records carry fi4_rev); 15 = F-I4.15 (commit 19c4309); 14 = the F-I4.14
-#                         rectangle route (tests only)
+REV = 17                # PREREG F-I4.17 (records carry fi4_rev); 16 = F-I4.16 (commit 3b7e6d0); 15 = F-I4.15 (commit
+#                         19c4309); 14 = the F-I4.14 rectangle route (tests only)
 
 
 def k_(name):
@@ -1138,7 +1161,7 @@ def _outline(b, obj, info):
     raw = np.stack([((Rc[:, 0] + lo[0]) * r - L / 2) * 1e3, ((Rc[:, 1] + lo[1]) * r - W / 2) * 1e3], 1)
     raw = drop_collinear(raw)
     frame_box = dict(axes=A.tolist(), centre=c0.tolist(), half=[L / 2, W / 2, t / 2])
-    return out, dict(A=A, c0=c0, L=L, W=W, t=t, r=r, comp=comp, raw=raw, frame_box=frame_box)
+    return out, dict(A=A, c0=c0, L=L, W=W, t=t, r=r, comp=comp, raw=raw, frame_box=frame_box, lo=lo)
 
 
 def _widths(poly):
@@ -1459,6 +1482,304 @@ def manifest_fi416(records):
     return out
 
 
+# ------------------------------------------------------------------------------------------------ F-I4.17 low-piece body
+def _lp_better(a, b):
+    """F-I4.17.2 order of two fits: higher IoU (beyond 1e-12); ties: fewer rectangles, smaller union area, then the
+    lexicographically smallest theta (w0, w1, e_L, p0_L, p1_L, e_R, p0_R, p1_R)."""
+    tie = k_('lp_tie')
+    if a['iou'] > b['iou'] + tie:
+        return True
+    if b['iou'] > a['iou'] + tie:
+        return False
+    return (a['n_rect'], a['area'], a['theta']) < (b['n_rect'], b['area'], b['theta'])
+
+
+class _LPFit:
+    """Union-of-rectangles evaluation on the cropped outline raster M (n_L x n_W cells; i along a_L, j along a_W) by a
+    2-D prefix sum. theta = (w0, w1, e_L, p0_L, p1_L, e_R, p0_R, p1_R); an absent end is (0, 0, 0)."""
+
+    def __init__(self, M):
+        self.M = np.asarray(M, bool)
+        self.nL, self.nW = self.M.shape
+        S = np.zeros((self.nL + 1, self.nW + 1), np.int64)
+        S[1:, 1:] = self.M.astype(np.int64).cumsum(0).cumsum(1)
+        self.S, self.m = S, int(self.M.sum())
+        self.emax = self.nL // k_('lp_end_frac')
+
+    def rs(self, i0, i1, j0, j1):
+        if i1 <= i0 or j1 <= j0:
+            return 0
+        S = self.S
+        return int(S[i1, j1] - S[i0, j1] - S[i1, j0] + S[i0, j0])
+
+    def ev(self, th):
+        w0, w1, eL, p0L, p1L, eR, p0R, p1R = th
+        nL, h = self.nL, w1 - w0
+        inter, area = self.rs(0, nL, w0, w1), nL * h
+        if eL:
+            inter += self.rs(0, eL, p0L, w0) + self.rs(0, eL, w1, p1L)
+            area += eL * ((p1L - p0L) - h)
+        if eR:
+            inter += self.rs(nL - eR, nL, p0R, w0) + self.rs(nL - eR, nL, w1, p1R)
+            area += eR * ((p1R - p0R) - h)
+        return dict(theta=tuple(int(x) for x in th), iou=inter / float(area + self.m - inter), inter=int(inter),
+                    area=int(area), n_rect=1 + int(eL > 0) + int(eR > 0))
+
+    def best(self, cands):
+        bst = None
+        for th in cands:
+            e = self.ev(th)
+            if bst is None or _lp_better(e, bst):
+                bst = e
+        return bst
+
+    def waist_all(self):
+        return self.best((w0, w1, 0, 0, 0, 0, 0, 0) for w0 in range(self.nW) for w1 in range(w0 + 1, self.nW + 1))
+
+    def end(self, th, side):
+        w0, w1 = th[0], th[1]
+        keep = list(th)
+
+        def gen():
+            for e in [0] + list(range(1, self.emax + 1)):
+                if e == 0:
+                    trip = [(0, 0, 0)]
+                else:
+                    trip = [(e, p0, p1) for p0 in range(0, w0 + 1) for p1 in range(w1, self.nW + 1)]
+                for tr in trip:
+                    q = list(keep)
+                    if side == 'L':
+                        q[2:5] = tr
+                    else:
+                        q[5:8] = tr
+                    yield tuple(q)
+        return self.best(gen())
+
+    def waist_in(self, th):
+        lo, hi = 0, self.nW
+        for e, p0, p1 in ((th[2], th[3], th[4]), (th[5], th[6], th[7])):
+            if e:
+                lo, hi = max(lo, p0), min(hi, p1)
+        return self.best((w0, w1) + tuple(th[2:]) for w0 in range(lo, hi) for w1 in range(w0 + 1, hi + 1))
+
+
+def low_piece_fit(M):
+    """PREREG F-I4.17.2: the union U(theta) of at most three frame-aligned rectangles (waist over the full length
+    [0, n_L) x [w0, w1); ends [0, e_L) x [p0_L, p1_L) and [n_L - e_R, n_L) x [p0_R, p1_R), each containing the waist
+    rows, 1 <= e <= floor(n_L / 3)) that maximises IoU = |U & M| / |U | M| (cells). Search: (1) waist alone, every
+    (w0, w1); (2) left end, then right end, every (e, p0, p1) with the rest fixed (absent included); (3) waist again
+    inside the present ends' rows; (2)-(3) repeated until theta does not change, at most 10 passes. Ties as
+    _lp_better. Returns dict(theta, iou, inter, area, n_rect, passes, fn_cells, fp_cells, m_cells, n_L, n_W)."""
+    F = _LPFit(M)
+    cur = F.waist_all()
+    passes = 0
+    for passes in range(1, k_('lp_passes') + 1):
+        old = cur['theta']
+        cur = F.end(cur['theta'], 'L')
+        cur = F.end(cur['theta'], 'R')
+        cur = F.waist_in(cur['theta'])
+        if cur['theta'] == old:
+            break
+    return dict(cur, passes=int(passes), converged=bool(cur['theta'] == old), fn_cells=int(F.m - cur['inter']),
+                fp_cells=int(cur['area'] - cur['inter']), m_cells=int(F.m), n_L=int(F.nL), n_W=int(F.nW),
+                end_max_cells=int(F.emax))
+
+
+def _lp_rects(th, nL):
+    """theta -> rectangles in crop cells [(i0, i1, j0, j1), ...] (waist first)."""
+    w0, w1, eL, p0L, p1L, eR, p0R, p1R = th
+    R = [('waist', 0, nL, w0, w1)]
+    if eL:
+        R.append(('end_left', 0, eL, p0L, p1L))
+    if eR:
+        R.append(('end_right', nL - eR, nL, p0R, p1R))
+    return R
+
+
+def _lp_ring(ctx, fit, off):
+    """U as a CCW ring in frame mm (the raster's cell corners, as _outline's raw ring) and its rectangles in mm."""
+    nL, nW = fit['n_L'], fit['n_W']
+    Um = np.zeros((nL, nW), bool)
+    rects = []
+    r, L, W = ctx['r'], ctx['L'], ctx['W']
+    oi, oj = off[0] + int(ctx['lo'][0]), off[1] + int(ctx['lo'][1])
+    for name, i0, i1, j0, j1 in _lp_rects(fit['theta'], nL):
+        Um[i0:i1, j0:j1] = True
+        rects.append(dict(name=name, cells=[int(i0), int(i1), int(j0), int(j1)],
+                          u_mm=[round(((i0 + oi) * r - L / 2) * 1e3, 3), round(((i1 + oi) * r - L / 2) * 1e3, 3)],
+                          v_mm=[round(((j0 + oj) * r - W / 2) * 1e3, 3), round(((j1 + oj) * r - W / 2) * 1e3, 3)]))
+    loops, pinch = mask_ring(Um)
+    if len(loops) != 1 or pinch:
+        return None, rects
+    Rc = loops[0].astype(np.float64)
+    ring = np.stack([((Rc[:, 0] + oi) * r - L / 2) * 1e3, ((Rc[:, 1] + oj) * r - W / 2) * 1e3], 1)
+    ring = drop_collinear(ring)
+    if poly_area(ring) < 0:
+        ring = ring[::-1]
+    return ring, rects
+
+
+def plate_body_low(b, obj, info, ev, fp=None, cap=None, pre=None):
+    """PREREG F-I4.17.2: the low-piece body. The F-I4.16 polygon on its ladder rung is computed first (report and
+    fallback; plate_body_ladder unchanged); then the fit of the outline raster (_outline's component, cropped to its
+    bounding box). IoU >= 0.90: body = U extruded to +-t / 2 about the mid plane (box kind 'low_piece', no balls); else
+    flag low_piece_iou_fail and the F-I4.16 polygon body (box kind 'polygon'). Reported: theta (cells, mm), IoU,
+    passes, false-negative / false-positive areas, end - waist per end, the F-I4.16 ladder table and chosen rung, the
+    FREE share of U, of the F-I4.16 polygon and of the full rectangle, coverage with U's area."""
+    if cap is None:
+        cap = k_('shapes_max') // max(1, len(b.objects))
+    out0, ctx = pre if pre is not None else _outline(b, obj, info)
+    lad = plate_body_ladder(b, obj, info, ev, fp=fp, cap=cap, pre=(out0, ctx))
+    if ctx is None:
+        return dict(lad, fi4_rev=17)
+    comp = ctx['comp']
+    I, J = np.nonzero(comp)
+    off = (int(I.min()), int(J.min()))
+    Mc = comp[off[0]:int(I.max()) + 1, off[1]:int(J.max()) + 1]
+    fit = low_piece_fit(Mc)
+    ring, rects = _lp_ring(ctx, fit, off)
+    r2 = ctx['r'] ** 2 * 1e4
+    wd = {x['name']: x['v_mm'][1] - x['v_mm'][0] for x in rects}
+    lp = dict(rule='F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; '
+                   'exhaustive stages, <= 10 passes', raster_cells=[fit['n_L'], fit['n_W']], crop_offset_cells=list(off),
+              raster_cm2=round(fit['m_cells'] * r2, 2), theta_cells=list(fit['theta']), rectangles=rects,
+              n_rect=fit['n_rect'], iou=round(fit['iou'], 6), passes=fit['passes'], converged=fit['converged'],
+              fn_cells=fit['fn_cells'], fp_cells=fit['fp_cells'], fn_cm2=round(fit['fn_cells'] * r2, 2),
+              fp_cm2=round(fit['fp_cells'] * r2, 2), end_max_cells=fit['end_max_cells'],
+              end_minus_waist_mm={k: round(v - wd['waist'], 3) for k, v in wd.items() if k != 'waist'},
+              iou_min=k_('lp_iou_min'), iou_pass=bool(fit['iou'] >= k_('lp_iou_min')), ring_ok=ring is not None)
+    pol = dict(ok=lad.get('ok'), why=lad.get('why'), chosen_eps_mm=(lad.get('ladder') or {}).get('chosen_eps_mm'),
+               polygon={k: v for k, v in (lad.get('polygon') or {}).items() if k != 'poly_mm'},
+               free_share_polygon=(lad.get('free_share') or {}).get('polygon'), coverage=lad.get('coverage'),
+               widths_mm=lad.get('widths_mm'))
+    if lp['iou_pass'] and ring is not None:
+        out = dict(out0, flags=list(out0['flags']), fi4_rev=17)
+        out = _body_of(out, ctx, ring, 'low_piece', 0.0, ev)
+        out['box'] = dict(out['box'], kind='low_piece', rects_mm=[dict(name=x['name'], u_mm=x['u_mm'], v_mm=x['v_mm'])
+                                                                  for x in rects])
+        out.update(body_kind='low_piece', low_piece=lp, ladder=lad.get('ladder'), f_i416_polygon=pol,
+                   source='low-piece body: <= 3 frame-aligned rectangles fitted to the outline raster (F-I4.17.2)')
+        pa = poly_area(ring)
+        out['coverage'] = dict(frame=round(pa / (ctx['L'] * ctx['W'] * 1e6), 4), polygon_cm2=round(pa * 1e-2, 2),
+                               frame_cm2=round(ctx['L'] * ctx['W'] * 1e4, 2), body='U (low-piece)',
+                               rule='F-I4.16.5 (report only, no gate)')
+        out['free_share_reports'] = dict(low_piece=out['free_share']['polygon'],
+                                         f_i416_polygon=pol['free_share_polygon'],
+                                         rectangle=out['free_share']['rectangle'])
+        return out
+    out = dict(lad, flags=list(lad.get('flags', [])) + ['low_piece_iou_fail'], fi4_rev=17,
+               body_kind='f_i416_polygon_fallback', low_piece=lp, f_i416_polygon=pol)
+    if out.get('ok'):
+        out['box'] = dict(out['box'], kind='polygon')
+    return out
+
+
+def _snap(x, tol):
+    xs = np.sort(np.unique(np.asarray(x, np.float64)))
+    keep = [xs[0]]
+    for v in xs[1:]:
+        if v - keep[-1] > tol:
+            keep.append(v)
+    return np.asarray(keep)
+
+
+def _slab_boxes(R, ax, tol):
+    """One direction of the F-I4.17.2 partition: cut lines perpendicular to axis AX at every distinct vertex coordinate
+    along AX; the section of each slab (at its middle) is a set of intervals along the other axis (edges of constant
+    other-coordinate crossing the middle); one box per (slab, interval); boxes of adjacent slabs with identical
+    intervals are merged. Returns [(a0, a1, b0, b1)] in (AX, other) coordinates."""
+    P = np.asarray(R, np.float64)
+    n = len(P)
+    o = 1 - ax
+    cuts = _snap(P[:, ax], tol)
+    E = [(P[i], P[(i + 1) % n]) for i in range(n)]
+    hz = [(min(a[ax], c[ax]), max(a[ax], c[ax]), 0.5 * (a[o] + c[o])) for a, c in E if abs(a[o] - c[o]) <= tol]
+    opened, boxes = {}, []
+    for k in range(len(cuts) - 1):
+        mid = 0.5 * (cuts[k] + cuts[k + 1])
+        vs = sorted(v for lo_, hi_, v in hz if lo_ < mid < hi_)
+        if len(vs) % 2:
+            raise RuntimeError('box partition: odd section')
+        iv = [(round(vs[q], 7), round(vs[q + 1], 7)) for q in range(0, len(vs), 2)]
+        nxt = {}
+        for key in iv:
+            nxt[key] = opened.pop(key) if key in opened else cuts[k]
+        for key, a0 in opened.items():
+            boxes.append((a0, cuts[k], key[0], key[1]))
+        opened = nxt
+    for key, a0 in opened.items():
+        boxes.append((a0, cuts[-1], key[0], key[1]))
+    return [bx for bx in boxes if bx[1] - bx[0] > tol and bx[3] - bx[2] > tol]
+
+
+def box_partition(R_mm):
+    """PREREG F-I4.17.2: the rectilinear ring R_mm (frame mm) cut into axis-aligned boxes by the slab method in both
+    directions ((A) cuts along a_W at the a_L coordinates of the vertices, (B) the axes swapped); the direction with
+    fewer boxes (tie: A). Returns (boxes [(u0, u1, v0, v1)], info)."""
+    tol = k_('box_snap_mm')
+    R = np.asarray(R_mm, np.float64)
+    if poly_area(R) < 0:
+        R = R[::-1]
+    nv = len(R)
+    rect = bool(all(abs(R[i, 0] - R[(i + 1) % nv, 0]) <= tol or abs(R[i, 1] - R[(i + 1) % nv, 1]) <= tol
+                    for i in range(nv)))
+    if not rect:
+        raise RuntimeError('box partition: ring is not rectilinear')
+    A = [(a0, a1, b0, b1) for a0, a1, b0, b1 in _slab_boxes(R, 0, tol)]
+    B = [(b0, b1, a0, a1) for a0, a1, b0, b1 in _slab_boxes(R, 1, tol)]
+    use, d = (A, 'A (cuts along a_W)') if len(A) <= len(B) else (B, 'B (cuts along a_L)')
+    a_r = abs(poly_area(R))
+    a_b = float(sum((u1 - u0) * (v1 - v0) for u0, u1, v0, v1 in use))
+    side = min(min(u1 - u0, v1 - v0) for u0, u1, v0, v1 in use) if use else 0.0
+    return use, dict(direction=d, n_A=len(A), n_B=len(B), ring_vertices=int(nv),
+                     ring_reflex=_reflex(R), ring_area_mm2=round(a_r, 3), boxes_area_mm2=round(a_b, 3),
+                     tiling_diff_mm2=round(abs(a_b - a_r), 6), tiling_ok=bool(abs(a_b - a_r) <= 1.0),
+                     smallest_side_mm=round(float(side), 3))
+
+
+def pieces_boxes(body, R_mm, cap):
+    """F-I4.17.2 pieces: the box partition of R_mm, each box extruded to +-t / 2 (8-vertex cuboid in the board frame).
+    Returns (hulls, info) with the keys of pieces_poly's info."""
+    boxes, inf = box_partition(R_mm)
+    hulls = [prism(body, [[u0, v0], [u1, v0], [u1, v1], [u0, v1]]) for u0, u1, v0, v1 in boxes]
+    info = dict(n=len(boxes), cap=int(cap), over_cap=bool(len(boxes) > cap), max_vertices_per_prism=8 if boxes else 0,
+                all_convex=True, ring_area_mm2=inf['ring_area_mm2'], parts_area_mm2=inf['boxes_area_mm2'],
+                tiling_diff_mm2=inf['tiling_diff_mm2'], tiling_ok=inf['tiling_ok'],
+                method='slab partition, both directions, fewer boxes (F-I4.17.2)', direction=inf['direction'],
+                n_A=inf['n_A'], n_B=inf['n_B'], ring_vertices=inf['ring_vertices'], ring_reflex=inf['ring_reflex'],
+                smallest_side_mm=inf['smallest_side_mm'],
+                boxes_mm=[[round(float(x), 3) for x in bx] for bx in boxes])
+    return hulls, info
+
+
+def pieces_body(body, R_mm, cap):
+    """F-I4.17: box pieces for a low-piece body (box kind 'low_piece'), the F-I4.15.4 prisms otherwise."""
+    if body.get('kind') == 'low_piece':
+        return pieces_boxes(body, R_mm, cap)
+    return pieces_poly(body, R_mm, cap)
+
+
+def manifest_fi417(records):
+    """The F-I4.17 keys of the r0 manifest's owner_waiver block (the F-I4.16 keys of manifest_fi416 included): per
+    board the body kind, theta (mm), IoU, rectangles, box lists of the slotted and default pieces."""
+    out = manifest_fi416(records)
+    out['fi417'] = {}
+    for x, rec in records.items():
+        bd = rec.get('body') or {}
+        lp = bd.get('low_piece') or {}
+        out['fi417'][x] = dict(body_kind=bd.get('body_kind'), iou=lp.get('iou'), n_rect=lp.get('n_rect'),
+                               theta_cells=lp.get('theta_cells'), rectangles_mm=[
+                                   {k: q.get(k) for k in ('name', 'u_mm', 'v_mm')} for q in lp.get('rectangles', [])],
+                               fn_cm2=lp.get('fn_cm2'), fp_cm2=lp.get('fp_cm2'), passes=lp.get('passes'),
+                               end_minus_waist_mm=lp.get('end_minus_waist_mm'),
+                               slotted_boxes={k: (bd.get('slotted_pieces') or {}).get(k) for k in (
+                                   'n', 'direction', 'boxes_mm', 'tiling_diff_mm2', 'smallest_side_mm')},
+                               default_boxes={k: (bd.get('default_pieces') or {}).get(k) for k in (
+                                   'n', 'direction', 'boxes_mm', 'tiling_diff_mm2', 'smallest_side_mm')},
+                               free_share=bd.get('free_share_reports'), f_i416_polygon=bd.get('f_i416_polygon'))
+    return out
+
+
 # ------------------------------------------------------------------------------------------------ F-I4.15 slot
 def slot_for_poly(side, comp, R_lin, body, t_partner, run, partner_plane=None):
     """PREREG F-I4.15.3: frame, d, entry side, c_L (F-I4.12, middle of the rectangle-based depth range), the slot
@@ -1669,15 +1990,17 @@ def apply_waiver(b, so, sp, recs, links, round_k=0):
     return recs
 
 
-def _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap):
+def _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap, rev=16):
     """PREREG F-I4.16.1: per board the outline (frame + raw ring); the slot footprint in the rectangle frame (the F-I4.3
     / F-I4.12 slot checks run here, before the ladder); the ladder on the board's own ring and footprint; the body on
     the chosen rung and its default prisms; the polygon edge at the mouth (slot_band_outside_polygon on the chosen
     ring); the coverage (F-I4.16.5) and slot-centre (F-I4.16.4) reports. Fills BODIES, SLOTS, DEFAULTS and W (as the
-    F-I4.15 branch does); returns the failing gate name or None."""
+    F-I4.15 branch does); returns the failing gate name or None. REV >= 17 (PREREG F-I4.17.2): the body is
+    plate_body_low (the low-piece body, or the F-I4.16 polygon as its fallback) and the default pieces come from
+    pieces_body (boxes for a low-piece body); everything else is the F-I4.16 code."""
     pre = {s.name: _outline(b, s.name, pi[s.name]) for s, _, _ in S}
     for s, _, _ in S:
-        bodies[s.name] = dict(pre[s.name][0], fi4_rev=16)
+        bodies[s.name] = dict(pre[s.name][0], fi4_rev=rev)
     W['body'] = {n: dict(x) for n, x in bodies.items()}
     for n, (o_, ctx) in pre.items():
         if ctx is None:
@@ -1694,15 +2017,15 @@ def _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap):
         if not sl['ok']:
             return sl['why']
     for s, c, r in S:                                       # the ladder, per board
-        bodies[s.name] = plate_body_ladder(b, s.name, pi[s.name], s.ev, fp=_footprint(slots[s.name]), cap=cap,
-                                           pre=pre[s.name])
+        bodies[s.name] = (plate_body_low if rev >= 17 else plate_body_ladder)(
+            b, s.name, pi[s.name], s.ev, fp=_footprint(slots[s.name]), cap=cap, pre=pre[s.name])
     W['body'] = {n: dict(x) for n, x in bodies.items()}
     for n, bd in bodies.items():
         if not bd['ok']:
             return bd.get('why', 'plate_body')
     for s, c, r in S:                                       # F-I4.15.4 default prisms of the chosen ring
         R_mm = np.asarray(bodies[s.name]['box']['poly'], np.float64) * 1e3
-        defaults[s.name], dinf = pieces_poly(bodies[s.name]['box'], R_mm, cap)
+        defaults[s.name], dinf = (pieces_body if rev >= 17 else pieces_poly)(bodies[s.name]['box'], R_mm, cap)
         W['body'][s.name]['default_pieces'] = dinf
     if any(W['body'][n]['default_pieces']['over_cap'] for n in bodies):
         return 'plate_body_over_cap'
@@ -1778,8 +2101,9 @@ def _pair(b, so, sp, co, cp, ro, rp, round_k):
     poly = REV >= 15                                       # PREREG F-I4.15: polygon body, prisms, D from its edge
     cap = k_('shapes_max') // max(1, len(b.objects))
     defaults = {}
-    if REV >= 16:                                          # PREREG F-I4.16: footprint first, then the ladder
-        gate = _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap)
+    if REV >= 16:                                          # PREREG F-I4.16: footprint first, then the ladder (F-I4.17:
+    #                                                        then the low-piece body, ladder as report / fallback)
+        gate = _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap, rev=min(REV, 17))
         if gate is not None:
             return fail(gate)
     else:
@@ -1841,7 +2165,8 @@ def _pair(b, so, sp, co, cp, ro, rp, round_k):
     slotted_by = {}
     if poly:                                               # F-I4.15.4 slotted prisms (polygon minus the footprint)
         for s, c, r in S:
-            sh, sinf = pieces_poly(bodies[s.name]['box'], bud[s.name]['_slotted_ring'], cap)
+            sh, sinf = (pieces_body if REV >= 17 else pieces_poly)(bodies[s.name]['box'], bud[s.name]['_slotted_ring'],
+                                                                   cap)
             slotted_by[s.name] = sh
             W['body'][s.name]['slotted_pieces'] = sinf
         if any(W['body'][n]['slotted_pieces']['over_cap'] for n in bodies):

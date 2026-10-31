@@ -1208,6 +1208,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   corrected to the commit time 22:41 in a follow-up commit, text otherwise unchanged. Only my lines were staged
   (index built from HEAD plus this step's block). Amend 2 done: no code edited, nothing run, $0. The Build step may
   start from 030260b; the F-I4.16 w10 records may now be read as F-I4.16 reports.
+- 22:52 (Build + public runs step under F-I4.16 and F-I4.17, board-slot round-3 workflow) started 22:43. F-I4.17
+  confirmed on origin (030260b ancestor of origin/claude/bold-albattani-6qmxsv). Read STATUS, CLAUDE.md, this log (round
+  3), PREREG F-I4.17 (all), `platebody.py` (REV 16 branch), `tests/test_fi416.py`, `test_fi415` helpers, `simphys`
+  (settle_xml, settle, replay_xml, pair_physics), `simpieces.write_round`, the driver (run_waiver, r0 extra). [M] mujoco
+  3.17.0 probe: `<size njmax="20" nconmax="3"/>` with two boxes on a plane gives ncon 8, nefc 32 and no CONTACTFULL /
+  CNSTRFULL warning (the limits are not applied), so part 1 compares the counts with 512 / 256 as F-I4.17.1 says;
+  nefc = 4 ncon there. F-I4.16 records collected (written 22:19 / 22:32, read now as F-I4.16 reports): W10 k1-k4 and
+  k6-k9 all pass F-I4.16's geometric freeze checks (chosen eps 1.0 or 1.5 mm; default prisms 27-80, slotted 30-80;
+  keep-out 0.0; widths within 0.3 mm of t + 2 [M]); Identity REV 15 vs 16 ok and w6c at REV 16 ok (1105 s). The k5
+  physics cell was killed at 22:17 (no result). Plan: platebody REV 17 (low-piece fit, box partition, fallback), new
+  `gmg/contactgate.py` (part 1), minimal driver fields, `tests/test_fi417.py`; commit; then code checks, the gate
+  validity check, w10 under REV 17, k5 physics + part 1, ep24 fi4q, ep23. Load 2.8 (4 cores; three other agents' jobs).
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
@@ -1277,3 +1289,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 22:47 pushed 217aa1f (PREREG F-I5.16, INTERLOCK 21.14 + pointers, this log; committed 22:46:38 UTC). Design 2 step
   done: no code edited, nothing run, $0. The Build step may start from 217aa1f (F-I5.15 at f00e657 / 22c88fd plus
   F-I5.16).
+- 22:55 (Build step 2, collision-carve round-2 workflow, started 22:47) F-I5.15 (f00e657, 22c88fd) and F-I5.16
+  (217aa1f, 04146fa) confirmed on origin. The 22:04 Build instance left no code change (git status clean for gmg code)
+  and no scratch code. Plan: `cavpieces.py` rev-2 functions (per-ray profile, tangent-inner / chordal-outer rings,
+  intrusion, continuity against the SHELL, smallest-layout search with b1 / b2 bases, 64-sector reference, CoACD
+  floor(cap/2)); new `contactgate.py` (G1 under the sim=rl limits of `15-verify/cfg_sim_rl.yaml`, packed default, G2
+  pending marker); `collcarve.py` rev-2 branch (precheck, D2 K, wall-band c, 1 mm topology, wall integrity, off-axis,
+  S_ref, floor, DO_NOT_USE, gate); new driver `tools/collcarve2_dev.py` (`--fi5-rev 2` around the shared
+  `interlock_dev.py`, which is not edited); `tests/test_collcarve2.py` (T-I14 subset the task names). Load 3.4 / 4.

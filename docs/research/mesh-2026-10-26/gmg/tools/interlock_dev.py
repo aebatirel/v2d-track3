@@ -404,7 +404,16 @@ def main():
                                            acceptance=acc, default_pieces='_default/<obj>/piece_XX.obj (unslotted '
                                                                           'plates)'),
                          p1_pending=bool(acc['pass_all_but_P1']))
-            if getattr(PB, 'REV', 14) >= 16:           # PREREG F-I4.16.4-F-I4.16.5: ladder, coverage, slot centre
+            if getattr(PB, 'REV', 14) >= 17:           # PREREG F-I4.17.4: low-piece body, boxes, contact gate
+                extra['owner_waiver'].update(PB.manifest_fi417({x: v['record'] for x, v in wv.items()}))
+                extra['owner_waiver']['contact_gate_part1'] = acc.get('contact_gate')
+                extra['contact_budget_pending'] = True
+                extra['contact_budget_part2'] = dict(
+                    status='pending', bound='max nefc per world <= 380 in the full eval scene (budget.py, W 8, 60 '
+                    'steps; PREREG F-I4.17.1 part 2)', why_not_here='no FlashCHORD source, warp, newton or '
+                    'mujoco_warp in this container (venv: mujoco only); hand-off to determined-wright',
+                    caveat='zero-action rollouts; a grasping policy may add hand-object contacts')
+            elif getattr(PB, 'REV', 14) >= 16:         # PREREG F-I4.16.4-F-I4.16.5: ladder, coverage, slot centre
                 extra['owner_waiver'].update(PB.manifest_fi416({x: v['record'] for x, v in wv.items()}))
             rule = 'F-I3.8 / F-I4.8'
             only = acc.get('pass_all_but_P1') is None and acc.get('physics_not_run')   # F-I4.16.6 step 3
@@ -464,6 +473,17 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
                                W[p]['_waiver']['default'], copies, 'F-I4 waiver slot (slotted vs unslotted plates)',
                                log=log)
         acc = PB.acceptance(phys, gates, {k: v for k, v in n_shapes.items() if v is not None})
+        if getattr(PB, 'REV', 14) >= 17:                  # PREREG F-I4.17.1 part 1: the contact-budget gate
+            from gmg import contactgate_fi4 as CG
+            cg = CG.gate_pair(b, o, p, run, W, copies=copies, log=log)
+            jdump(cg, os.path.join(out_dir, f'contact_gate_{o}_{p}.json'))
+            acc['contact_gate'] = {k: v for k, v in cg.items() if k != 'per_set'}
+            acc['tests']['contact_gate_part1'] = bool(cg['pass_'])
+            acc['contact_budget_pending'] = True           # part 2 (budget.py <= 380) not measured here
+            if not cg['pass_']:
+                acc['failing'].append('contact_gate_part1')
+                acc['pass_all_but_P1'] = False
+                acc['contact_budget_fail'] = CG.summary_line(cg)
     acc['shapes'] = n_shapes
     acc['sec'] = round(time.time() - t, 1)
     log('F-I4 acceptance', json.dumps(acc, default=IL._jdefault))
@@ -473,6 +493,8 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
     jdump(phys, os.path.join(out_dir, f'physics_{o}_{p}.json'))
     dnu = None if (acc['pass_all_but_P1'] or acc.get('physics_not_run')) else \
         f'F-I4.7 failing: {acc["failing"]} (F-I4.8: written for the record)'
+    if dnu and acc.get('contact_budget_fail'):          # PREREG F-I4.17.1: DO_NOT_USE names contact_budget
+        dnu = f'contact_budget (F-I4.17.1 part 1): {acc["contact_budget_fail"]}; {dnu}'
     out = {}
     for x in (o, p):
         r = W[x]
@@ -494,7 +516,8 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
                                                                                       if k != 'hulls'},
                                  do_not_use=g.get('do_not_use'), owner_waiver=PB.WAIVER_REF,
                                  flags=['sim_pose_fallback', 'owner_waiver_fi4', 'p1_pending',
-                                        'plate_body_no_markers'] + list(r['waiver_fi4']['plate'][x].get('flags', [])),
+                                        'plate_body_no_markers'] + list(r['waiver_fi4']['plate'][x].get('flags', [])) +
+                                       (['contact_budget_pending'] if acc.get('contact_budget_pending') else []),
                                  physics={k: v for k, v in phys.items() if k != 'overlap_series'}, acceptance=acc))
     return out
 
