@@ -176,6 +176,9 @@ def main():
     ap.add_argument('--hands'); ap.add_argument('--gen', default='')
     ap.add_argument('--diag', action='store_true'); ap.add_argument('--proxy-copies', type=int, default=16)
     ap.add_argument('--no-physics', action='store_true'); ap.add_argument('--tag', default='')
+    ap.add_argument('--identity', default='public', choices=('public', 'eval'),
+                    help='public: IDENTITY_SWAP makes (c) absent (F-I1.2); eval: the identity test only flags (SPEC '
+                         'section 7), i.e. what the same rule does on an eval episode')
     a = ap.parse_args()
     guard.set_run(a.run)
     t_start = time.time()
@@ -205,9 +208,11 @@ def main():
             if 'nmv' in r:
                 np.savez_compressed(os.path.join(out_dir, f'sil_{o}.npz'), nmv=r['nmv'], nmf=r['nmf'], occ=ev[o].occ)
     report = dict(ep=a.ep, bundle=a.bundle, tier=b.meta.get('tier'), picks=picks, constants=IL.constants_report(),
+                  identity_semantics=a.identity, sanity_flags={o: (b.meta.get('sanity') or {}).get(o, {}).get('flags')
+                                                               for o in objs},
                   sim_pose='P_sel (flag sim_pose_fallback: no provenance-checked replay reference for public dev)',
                   pairs={}, silhouette={o: ({k: v for k, v in (sil[o] or {}).items() if not k.startswith('_') and
-                                             k not in ('nmv', 'nmf', 'notches')} | dict(
+                                             k not in ('nmv', 'nmf', 'nmv_sub', 'nmf_sub', 'notches')} | dict(
                                                  notch_voxels=[int(len(n)) for n in (sil[o] or {}).get('notches', [])]))
                                             if sil[o] else None for o in objs})
     pairs = [(objs[i], objs[j]) for i in range(len(objs)) for j in range(i + 1, len(objs))]
@@ -227,8 +232,11 @@ def main():
                 comps += cs
             good = set(b.good_frames(t)) & set(b.good_frames(q))
             okfr = [len([f for f in r.frames if f in good]) / max(len(r.frames), 1) for r in runs]
-            sflags = (b.meta.get('sanity') or {}).get(t, {}).get('flags', [])
-            track_ok = all(x >= 0.8 for x in okfr) and not any(f in ('TRACK_FAIL', 'IDENTITY_SWAP') for f in sflags)
+            # (c) is absent if EITHER object is TRACK_FAIL or IDENTITY_SWAP (F-I1.2; public semantics)
+            sflags = sorted(set((b.meta.get('sanity') or {}).get(t, {}).get('flags', []) or []) |
+                            set((b.meta.get('sanity') or {}).get(q, {}).get('flags', []) or []))
+            failing = ('TRACK_FAIL', 'IDENTITY_SWAP') if a.identity == 'public' else ('TRACK_FAIL',)
+            track_ok = all(x >= 0.8 for x in okfr) and not any(f in failing for f in sflags)
             pc = geom.volume_samples(cands[q][picks[q]], 20000, seed=0)[0]
             sides[t] = IL.Side(t, ev[t], intr, comps, runs, sil=sil[t], track_ok=track_ok,
                                track_reason=f'good share {np.round(okfr, 2).tolist()} flags {sflags}',

@@ -170,3 +170,41 @@ store run logs (mkref unchanged before the freeze). Eval 10 intrusion result (ca
 - ep2 first attempt crashed (MemoryError): the generator closing radius used the partner pick's thinnest extent (a
   pot's diameter); capped at t_max = 20 mm (F-I2 addition). physcheck interpenetration now uses a 1 mm occupancy grid
   per candidate (exact per-frame inside tests took ~2 s per frame). Restarted 11:47.
+- 11:36 (observed 11:48) build 1's B4 wrote the B.15 cross identity test into the clean bundles in place
+  (`episode.json` of ep2/ep11/ep24 modified 11:36:26; grids unchanged): ep24 BOTH boards IDENTITY_SWAP (board 1's
+  shell is nearer ep24 board 2's than its own: 2.8 vs 18.0 mm; the boards are near-identical), ep11 blue cup
+  IDENTITY_SWAP, ep2 none. Under F-I1.2 (public) IDENTITY_SWAP makes (c) absent -> the ep24 `final` run decides
+  IGNORE for every board region (T0, no carve). Added `--identity eval` to the driver (SPEC section 7: on eval the
+  identity test only flags) and launched `evalsem`: the same rule as on eval 25 with the same geometry. Our 11:10 t2
+  run read the bundle before the flags were written (same grids).
+- Visual check of (b) [looked at, not a measurement]: `interlock/bi/sil_ep24_b1.png`, `sil_ep24_b2.png` (copied to
+  `build/I/png/`): the motion region R lies on the slot visible in the RGB frames on both boards (board 1 standing in
+  the hand, board 2 on the table), from the edge to about the middle. Through the slot the camera sees the BROWN
+  WOODEN TABLE, which the colour model cannot tell from the light wood: board 2's testable silhouette calls the slot
+  solid ((b) disagrees), and board 1 has no qualifying frame (a hand within 16 px in 33 of 34 separated frames).
+- 12:00-12:35 runs and incidents [M]: ep2 t2 was OOM-killed at 9.9 GB RSS in physcheck (1 mm occupancy grid of the
+  pot, ~6 M cells) -> occupancy grid capped at ~2 M cells and `fast_inside` chunked (250 k). Both ep24 runs (final,
+  evalsem) sat > 30 min in physcheck: board 1's packed HULL is not watertight after trimesh's vertex merge, so
+  `fast_inside` fell back to the exact solid-angle sum on 1.44 M points -> signed crossings for any query set
+  > 20 k points. Killed runs kept as `interlock/public/*-killed`. Relaunched ep24 evalsem and ep2 (tag t3) 12:29.
+- ep24 DIAG counterfactual (evalsem, 16 jittered copies; never delivered): replay proxy default 1.85 cm / 113.0 deg
+  (blocked), DIAG carved 0.33 cm / 9.4 deg (max after assembly 0.77 cm), contact off 0.03 cm / 0.09 deg -> P3 fails
+  on rotation (> 5 deg). P2 at frame 246: gravity 3.5 mm, +d 5.0 mm, +n 13.0 mm (fail: > max(4, 0.5 + 1) mm; w_sim
+  21.7 mm on board 1 vs a 12.6 mm evidence thickness), -n 0.0. P4 pass (kept 95.4 / 97.3 % of the default collider),
+  P6 pass (assembled overlap median 6.9 -> 0.76 cm3), P7 pass (check-frame overlap median 6.8 -> 0.73 cm3). P1
+  pre-check (plain MuJoCo, does not decide) fails for default AND carved: the cross is held in the air at the
+  assembled frame, both boards drop about 2.1 cm with hands parked.
+- P27 on ep24 (clean bundle, dev process; `p27.py`): P27a entry-side share 0.646 (board 1) / 0.580 (board 2) ->
+  FAILS (< 0.6 on board 2); P27b (a, c) offset along the long axis -3.6 / 7.1 mm -> passes (<= 10 mm), but the placed
+  SAM 3D concavity next to the region is 56-71 mm long along the board's long axis (the closing at r = 12.4 mm fills
+  far more than the slot), so its centroid is weak evidence; P27c observed share 0.93 / 0.61 -> passes (>= 0.5).
+  slot_summary [M]: motion band 25.1 / 19.1 mm wide along the long axis, spanning the full width (130.8 / 128.2 mm);
+  carve side from the edge to 9.6 mm / -5.6 mm past the centre line; SAM notch centroid within 1.3 / 7.1 mm along L.
+- ep11 evalsem (clean bundle; blue cup IDENTITY_SWAP on public -> (c) absent there): INSERTION f42-136, travel
+  190 mm, straightness 0.92; regions 1214 (blue) and 782 (beige) voxels, class O 52 / 62 % (testable-solid
+  silhouette) -> PUSH both; (a) and (b) disagree; one 3-voxel U carve on the beige cup (T1, 0.33 cm3; its pair has no
+  carve, so no physics and default pieces delivered). VI at the assembled frames: shells overlap the partner's
+  evidence by 100.7 / 73.9 cm3 vs the partner-clipped HULLs 9.1 / 33.3 cm3 -> VI would veto the SHELLS (a HULL win:
+  a risk for B10, reported, not acted on). Default pieces of the partial cup shells fill the cavities (union
+  697 / 666 cm3 vs solid 172 / 169 cm3; split stuck at the 32-piece cap) -> collider overlap along the track up to
+  544 cm3 vs CoACD about 300 cm3: our decomposition is WORSE than CoACD here (open problem for B9).

@@ -180,7 +180,12 @@ def fast_inside(mesh, X):
     X = np.asarray(X, np.float64).reshape(-1, 3)
     if len(X) == 0:
         return np.zeros(0, bool)
-    if mesh.is_watertight:
+    if len(X) > 250000:                                   # chunks: the crossing-pair arrays grow with the queries
+        return np.concatenate([fast_inside(mesh, X[i:i + 250000]) for i in range(0, len(X), 250000)])
+    if mesh.is_watertight or len(X) > 20000:
+        # a mesh that is not watertight after loading (a packed HULL can lose closure in trimesh's vertex merge) is
+        # still tested by signed crossings when the query set is large: the exact solid-angle sum over a 1 mm grid
+        # takes hours (median over three axes; the error is confined to rays through the open edges)
         w = np.median(np.stack([geom.winding_ray(mesh, X, k) for k in range(3)]), axis=0)
         return w >= 0.5
     return geom.inside(mesh, X)[0]

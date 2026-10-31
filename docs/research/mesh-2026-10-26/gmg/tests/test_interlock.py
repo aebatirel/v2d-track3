@@ -281,6 +281,51 @@ class Offset(unittest.TestCase):
             self.assertEqual(s[o]['decision'], 'PUSH', f'o2 {o}: {s[o]}')
 
 
+class Sources(unittest.TestCase):
+    def test_g_generator_t3(self):
+        """(g) a slotted generator plate placed with 4 mm / 5 deg error + see-through silhouette + motion: T3 on both
+        plates, submitted candidates built (ICARVE watertight)."""
+        from gmg import gen_slot as GS
+        t = 0.010
+        b, _ = cross_episode(t)
+        cand = dict(A=plate(t), B=plate(t))
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
+        gen = {}
+        for o, ev, sl in (('A', evA, 'top'), ('B', evB, 'bottom')):
+            g = plate(t, sl)
+            E = np.eye(4); E[:3, :3] = Rot.from_euler('z', 5, degrees=True).as_matrix(); E[:3, 3] = [0.004, 0, 0]
+            g.apply_transform(E)
+            gen[o] = GS.source_a(ev, g, True, max(0.006, t), check_remesh=False)
+        recs, sides = run_pair(b, cand, sil=sil, gen=gen)
+        s = summary(recs)
+        RESULTS['g'] = {o: dict(v, sources=next(r['sources'] for r in recs if r['target'] == o and r['voxels'] >= 10))
+                        for o, v in s.items()}
+        for o in ('A', 'B'):
+            self.assertEqual(s[o]['decision'], 'CARVE', f'g {o}: {s[o]}')
+        self.assertEqual(s['A']['tier'], 'T3', f'g A: {RESULTS["g"]["A"]}')
+        # B: KNOWN MISS of P26 (F-I2.14): the 5 deg error about the plate centre plus 4 mm moves B's slot by 6.7 mm
+        # across its 10 mm width, 42 % of R inside C_a dilated by one voxel (< 50 %): (a) disagrees -> T1, not T3
+        RESULTS['g_B_known_miss'] = s['B']['tier']
+        for r in recs:
+            if r.get('submitted'):
+                mc, info = IL.icarve(cand[r['target']], [IL.solid_mesh(sides[r['target']].ev, r['_sub_solid'])])
+                self.assertTrue(info['watertight'], info)
+
+    def test_n6_solid_silhouette(self):
+        """n6: the main case with a testable silhouette that is NOT see-through in the slots: PUSH both."""
+        t = 0.010
+        b, _ = cross_episode(t)
+        cand = dict(A=plate(t), B=plate(t))
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sil = dict(A=sil_votes(evA, plate(t), see_through=False), B=sil_votes(evB, plate(t), see_through=False))
+        recs, _ = run_pair(b, cand, sil=sil)
+        s = summary(recs)
+        RESULTS['n6'] = s
+        for o in ('A', 'B'):
+            self.assertEqual(s[o]['decision'], 'PUSH', f'n6 {o}: {s[o]}')
+
+
 class Partner(unittest.TestCase):
     def test_w_thick_partner(self):
         """Partner's collider = a 60 mm thick box (a HULL-like partner): w_sim breaks the budget -> PUSH."""
@@ -352,6 +397,42 @@ class Controls(unittest.TestCase):
         s = {r['target']: r['decision'] for r in recs}
         RESULTS['n5'] = s
         self.assertFalse(any(v == 'CARVE' for v in s.values()), s)
+
+    def test_n3_below_observed_floor(self):
+        """n3: an inner cylinder lowered 12 mm below an outer cup's observed floor (floor testable in the silhouette,
+        not see-through): PUSH, never CARVE or OFFSET of the floor."""
+        outer = trimesh.boolean.difference([trimesh.creation.cylinder(0.045, 0.09, sections=48),
+                                            trimesh.creation.cylinder(0.040, 0.09, sections=48).apply_translation(
+                                                [0, 0, 0.008])], engine='manifold')
+        inner = trimesh.creation.cylinder(0.030, 0.08, sections=48)
+        T = 70
+        floor_top = -0.045 + 0.008
+
+        def pose(f):
+            M = np.eye(4); M[2, 3] = 0.13 - min(f, 50) / 50 * (0.13 - (floor_top - 0.012 + 0.04)); return M
+        rng = np.random.default_rng(3)
+        cam = look([0, -0.35, 0.35])
+        world_B = np.stack([pose(f) for f in range(T)])
+        poses = dict(world_T_cam=np.tile(np.linalg.inv(cam), (T, 1, 1)).astype(np.float32),
+                     cam_T_A=np.tile(cam, (T, 1, 1)).astype(np.float32),
+                     cam_T_B=np.einsum('ij,fjk->fik', cam, world_B).astype(np.float32))
+        obs = dict(A=evidence_obs(outer, rng, T), B=evidence_obs(inner, rng, T))
+        contact = list(range(20, T))
+        cen = dict(frames=list(range(T)), contact=contact, separated=list(range(20)), j_mm=0.5, band_mm=3.0)
+        meta = dict(objects=['A', 'B'], T=T, stride=1, K=[[FX, 0, 800], [0, FX, 500], [0, 0, 1]],
+                    sigma_mm=dict(A=1.0, B=1.0), contact={'A|B': dict(cen), 'B|A': dict(cen)},
+                    good={'A': [True] * T, 'B': [True] * T}, sanity={'A': dict(flags=[]), 'B': dict(flags=[])},
+                    table=None, rest={}, tier='SYNTH')
+        b = Bundle(meta, obs, poses)
+        cand = dict(A=outer, B=inner)
+        evA = IL.Evidence(b, 'A', outer)
+        sil = dict(A=sil_votes(evA, outer, see_through=False))
+        recs, _ = run_pair(b, cand, sil=sil)
+        s = {r['target']: dict(decision=r['decision'], mix=r.get('class_mix'), flags=r['flags'])
+             for r in recs if r['voxels'] >= 3}
+        RESULTS['n3'] = s
+        self.assertIn('A', s)
+        self.assertNotIn(s['A']['decision'], ('CARVE', 'OFFSET'), s)
 
     def test_n9_cup_nesting(self):
         """Inner cup lowered into an outer cup whose candidate fills the cavity rim to floor (cavity UNKNOWN): no

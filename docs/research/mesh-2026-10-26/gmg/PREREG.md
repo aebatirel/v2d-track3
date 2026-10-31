@@ -844,11 +844,18 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   - **F-I2.14 Known miss of P26 (kept, not tuned).** T-I1 s1 at t = 6 mm decides PUSH, not CARVE: the 4 mm motion
     region overhangs a 6 mm slot by one voxel column of seen wood (32 of 96 voxels class O > 25 %). A resolution limit
     of the 4 mm evidence; the ep24 boards are 13-19 mm thick in our observations [M]. The test is marked as an
-    expected failure, so a change that silently "fixes" it is visible.
+    expected failure, so a change that silently "fixes" it is visible. Second known miss: T-I1 (g) gives T3 on
+    plate A but T1 on plate B: a 5 deg error about the plate centre plus 4 mm moves B's 10 mm slot by 6.7 mm, so 42 %
+    of R lies in C_a dilated by one voxel (< 50 %) and (a) disagrees; the agreement rule is kept as pre-registered.
+  - **F-I2.16 Generator closing radius cap.** r = min(max(6 mm, the partner pick's thinnest 1-99 % extent), 20 mm):
+    the thinnest extent of a pot or cup is its diameter (a 150 mm closing ball ran out of memory on ep2).
+  - **F-I2.17 Generator notches inside the candidate.** C_a is restricted to the target candidate's occupancy, as N_b
+    is (3.2): generator concavities where our candidate has no material (around marker posts, above faces) are not
+    notches of our mesh.
   - **F-I2.15 T-I1 coverage in BI1.** Run and passing: s0 sweep (6, 10, 13, 18, 25 mm), s1 with synthetic votes
-    (10-25 mm), o1, o2, w, n2, n4, n5, n7 (geometry: slot travel <= 4 mm, through-cut > 40 mm), n8, n9, the export
-    round trip and the fiducial refusal. Not run in BI1 (open): s2 and the rendered-image silhouette cases, (g) the
-    placed generator plate (T3), n3, n6.
+    (10-25 mm), o1, o2, w, n2, n3, n4, n5, n6, n7 (geometry: slot travel <= 4 mm, through-cut > 40 mm), n8, n9, (g)
+    (plate A T3; plate B the known miss above), the export round trip and the fiducial refusal. Not run in BI1
+    (open): s2 and the rendered-image silhouette cases.
 
 ## Revision 1 changelog
 

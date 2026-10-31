@@ -70,18 +70,18 @@ def objects_png(out_dir, cand_dir, picks, prefix):
         for ax, name in (((0, 1), 'face-on (long x width)'), ((0, 2), 'edge (long x thickness)')):
             img = canvas()
             draw(img, X, c, U, ax, scale=scale, depth_shade=True)
+            if 'gen_C_a' in z:
+                draw(img, centres(lo, vox, shape, np.nonzero(z['gen_C_a'])[0]), c, U, ax, COL['gen'], 3, scale)
             for k in sorted(z):
-                if k.endswith('_region'):
+                if k.endswith('_region') and len(z[k]) >= 3:
                     draw(img, centres(lo, vox, shape, z[k]), c, U, ax, COL['region'], 2, scale)
             for k in sorted(z):
                 if k.endswith('_sim_sub'):
                     draw(img, centres(lo, vox / 2, sshape, z[k]), c, U, ax, COL['carve'], 1, scale)
-            if 'gen_C_a' in z:
-                draw(img, centres(lo, vox, shape, np.nonzero(z['gen_C_a'])[0]), c, U, ax, COL['gen'], 2, scale)
             if 'sil' in z:
                 draw(img, centres(lo, vox, shape, np.nonzero(z['sil'])[0]), c, U, ax, COL['sil'], 2, scale)
             label(img, f'{obj} pick {cid}: {name}')
-            label(img, 'red motion region R  magenta sim carve', 36, (0, 0, 160))
+            label(img, 'red motion region R (carve side)  magenta sim carve', 36, (0, 0, 160))
             label(img, 'blue SAM3D notch (placed)  green silhouette SIL', 52, (160, 80, 0))
             panels.append(img)
         dg = glob.glob(os.path.join(out_dir, 'diag', obj, 'DIAG_slot_*.glb'))

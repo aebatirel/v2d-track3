@@ -143,9 +143,12 @@ def phases(b, o, p, runs):
 _OCC = {}
 
 
-def _occ_grid(mesh, pitch=0.001):
-    """Candidate occupancy on a 1 mm grid over its bounds (cached per mesh): per-frame inside tests become look-ups."""
+def _occ_grid(mesh, pitch=None):
+    """Candidate occupancy on a 1 mm grid over its bounds (coarser for large objects: at most about 2 million cells;
+    cached per mesh): per-frame inside tests become look-ups."""
     key = id(mesh)
+    if pitch is None:
+        pitch = max(0.001, float(np.prod(mesh.extents + 0.004) / 2.0e6) ** (1 / 3))
     if key not in _OCC:
         g = IL.Grid(mesh.bounds[0] - 2 * pitch, pitch, np.ceil((mesh.extents + 4 * pitch) / pitch).astype(int))
         _OCC[key] = (g, IL.fast_inside(mesh, g.centres()))
