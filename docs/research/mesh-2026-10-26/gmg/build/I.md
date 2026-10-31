@@ -54,3 +54,25 @@ carve rule.
   workflow: adversarial review of INTERLOCK.md / F-I1, then build BI1 (interlock.py, silhouette.py, physcheck.py,
   simpieces.py, gen_slot.py, tests/test_interlock.py) in new files only. Open: clean ep24 bundle (B4 batch v4, stream
   3) for T-I2; FlashCHORD venv absent from this container (proxy test needs `mujoco` in the gmg venv).
+- 09:30 review round 1 received (B1-B7 + 14 non-blocking). Read: determined-wright physics README (phys_fit v1 ran on
+  the public scans with props_public_scans.json; phys_fit.py loads `{meshes}/{n}.glb` and needs com_m/inertia),
+  origin/main carve-20261030 BUILD.md + RETRAIN_PLAN.md (E1 lid sinks 0.6-1.0 cm with 6 mm free travel; E30 sweeper
+  falls through, > 40 mm free travel, 35 % hull lost; v3 'ends' falsified; settle chaotic; 165-shape budget, E28 208;
+  shared /content/assets leaks carves across evals), props_masses_only.json (masses = shell model on the scans' area x
+  video materials: scan-derived). Checked [M, 09:33]: gmg venv lacks mujoco AND coacd; ep24_a.mp4 is in the scratch
+  store. Re-ran the reviewer's `review_I/gapw.py` (outputs `interlock/rev2/gapw.out`): confirms board 1 HULL region
+  thinnest 8.6 mm (inscribed 11.3), board 2 HULL 23.8 mm (inscribed 16.0), shells 8.9 / 4.0 mm, nmin 14-15, camera
+  range 0.514 / 0.504 m, fx 600.2. Dev S1 picks exist for 4 objects (B5 pools ep11, ep24); the V5 clarification
+  changes only wooden_piece_2's. Writing INTERLOCK v2 + F-I1 revision now.
+- 09:55 INTERLOCK.md v2 and PREREG F-I1 v2 written (F-I1.0 added: SPEC section 14 override named; F-I1.1-F-I1.14
+  revised). Main changes: P_sel vs P_sim pose sources (sim copy follows the replayed reference; eval 25 = packed
+  ev25idfix reference; eval IDENTITY_SWAP flag-only per SPEC 7); build/check 10-frame blocks; true through-column split;
+  image-plane GAP (8 depth px ~ 13.5 mm at 0.50-0.51 m); decide_pair (linked components both-or-neither); w_sim >= the
+  partner's sim collider thickness; OFFSET rule (observed notch N moved by a lateral t <= 20 mm into the sim copy,
+  tracker hand-off, submitted only at T2o); disagreeing source blocks submission; physical acceptance P1-P7 for every
+  carved pair (16-copy settle, free travel <= 4 mm, replay proxy, over-removal, 165-shape cap, no new overlap,
+  held-out overlap); per-episode asset folders; contract v2 (union of pieces in file coordinates, fiducials,
+  containment, reference/fit provenance, NaN forcing; _fit/<obj>.glb + props_gmg.json delivered); VI relative to the
+  best candidate; flip units inherited; V5 clarification guarded at R1 (dev: only wooden_piece_2 changes); tolerance 0;
+  masses placeholder until owner decision D-I1; predictions P27a-c, P28, P29, P32, P34 rewritten so they can fail.
+  Not run (stated in INTERLOCK 16): silhouette gate T-I2a, decide_pair on ep24 T-I2b. Next: commit + push; then BI1.

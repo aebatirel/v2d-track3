@@ -570,79 +570,136 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   review of v1. Its author saw no new scan number; the review itself quoted only existing [M] and [D] numbers. The
   changes are listed in the changelog below.
 - **2026-10-31, F-I1: INTERLOCK stage (slots, seats, cavities) and the placement/physics checks along the track.**
-  Written 08:50-09:20 UTC at commit `de64bd3`, before any gmg scoring round (R1 has not started; zero gmg scan
-  scorings exist). Its author saw **no new scan number**: the design used zero scan scorings; the only [D] numbers it
-  quotes are older ledger entries (XCarve, the planar cut, the October carve tests). Design text: `INTERLOCK.md`
-  (this folder); where it and this entry differ, this entry wins. SPEC.md is not edited.
+  Written 08:50-09:20 UTC at commit `de64bd3` (v1, committed `2eb8397`); **revised 09:30-10:00 UTC (v2) after the
+  design review of v1**. Both versions were written before any gmg scoring round (R1 has not started; zero gmg scan
+  scorings exist). Their author saw **no new scan number**: the design used zero scan scorings; the only [D] numbers it
+  quotes are older ledger entries (XCarve, the planar cut, the October carve tests). v2's new inputs are dev re-runs
+  without a scan and documents (carve-20261030, the physics README, `phys_fit.py`, `props_masses_only.json`). Design
+  text: `INTERLOCK.md` (this folder; its section 16 maps every review item to its resolution); where it and this entry
+  differ, this entry wins. SPEC.md is not edited.
   **Reason.** Owner, 31 Oct ~08:50-09:00 UTC: the boards cannot interlock in a simulator without their slot; let the
   frame-by-frame physics fix carve meshes where pieces must interlock or nest. Dev measurements without a scan
   (`INTERLOCK.md` section 1): along our ep24 track the partner board passes through each board in 56 of 79 contact
-  frames on a straight 118.6 mm path; 100 % of the entered voxels are OBSERVED in the dev grids (stereo bridging); V2
-  finds 0 partner samples deeper than its band (a sample inside a plate is at most half the thickness deep), so V2
-  cannot see plate crossings; board 2's S1 pick on the B5 dev pool is a 6.8 cm HULL because V5 removed the thin
-  flip-risk shell. The rules below are generic or carried over from earlier pre-registrations; nothing is fitted.
-  - **F-I1.1 Engaged runs** (per ordered pair o <- p): maximal runs of contact frames in which the partner evidence
-    occupancy (p's OBSERVED and shared voxel centres plus 2 mm sub-samples, minus p's own accepted region R*_p) enters
-    o's candidate by >= 3 voxels; gaps <= 2 stride frames bridged. Kind: INSERTION if the partner origin path in o's
-    frame has travel >= 20 mm and straightness (s1 / (s1 + s2 + s3)) >= 0.7; SEAT/REST if not INSERTION and the
-    relative speed is < 2 mm per frame for >= 5 frames; SLIDE otherwise; TRANSIENT if the run has < 5 frames.
+  frames on a straight 118.6 mm path, through a band centred 10.5-12.9 mm from where SAM 3D draws the slot; 96-100 % of
+  the entered voxels are OBSERVED in the dev grids (bridging and likely partner contamination); V2 finds 0 partner
+  samples deeper than its band, so V2 cannot see plate crossings; board 2's S1 pick on the B5 dev pool is a HULL
+  (6.8 cm oriented-box thickness) because V5 removed the thin flip-risk shell. October's simulator-copy carves let
+  guests sink or fall through (E1 lid 6 mm free travel, E30 sweeper > 40 mm). The rules below are generic, carried over
+  from earlier pre-registrations, or labelled informed in F-I1.14; nothing is fitted.
+  - **F-I1.0 SPEC rule overridden (declared).** SPEC section 14: interaction carving "only in this copy, never in the
+    packed mesh (carving the packed mesh hurt: lid +0.14 to +0.18 [D])". F-I1.4 overrides this sentence for the ICARVE
+    and FUSE-I candidates only; the rest of SPEC section 14 stands. Allowed because PREREG section F records amendments
+    made before any scoring round and none has run; declared here rather than by editing the frozen SPEC. Justified
+    because the October harm came from unconditional single-source carves of the packed mesh, while ICARVE and FUSE-I
+    enter only as candidates (two agreeing sources, none disagreeing), compete in the frozen S1 selection, and are
+    reverted globally at R1 (F-I1.11) unless they help. Also reconciled with SPEC section 7: on eval the identity test
+    only flags (F-I1.2).
+  - **F-I1.1 Engaged runs, frames, pose sources** (per ordered pair o <- p): maximal runs of contact frames in which the
+    partner evidence occupancy (p's OBSERVED and shared voxel centres plus 2 mm sub-samples, minus p's carved region,
+    decided jointly with o's) enters o's candidate by >= 3 voxels; gaps <= 2 stride frames bridged. Kind: INSERTION if
+    the partner origin path in o's frame has travel >= 20 mm and straightness (s1 / (s1 + s2 + s3)) >= 0.7; SEAT/REST if
+    not INSERTION and the relative speed is < 2 mm per frame for >= 5 frames; SLIDE otherwise; TRANSIENT if < 5 frames.
     Assembled frames = the last stretch of >= 5 frames with relative speed < 2 mm per frame in an INSERTION or SEAT run.
+    **Build and check frames:** each run is cut into consecutive 10-frame blocks, even blocks build, odd blocks are held
+    out for acceptance; runs < 20 frames use all frames and have no held-out test (flag `no_holdout`). **Pose sources:**
+    P_sel (the gmg tracks) for everything that decides submitted meshes; P_sim (the reference the simulator replays: the
+    packed policy's reference, or the current Embodiment round's reference) for the simulator copy, if its provenance
+    passes F-I1.13 step 2, else P_sel with flag `sim_pose_fallback`. Eval 25: P_sim = the packed eval-25 policy's
+    reference (pack 3: `20261025-ev25idfix-02de0c7`), subject to the same check.
   - **F-I1.2 Sources and tiers.** (a) concavity of the placed GEN mesh (notches: closing radius max(6 mm, partner
-    thickness at the crossing); cavities: convex hull minus solid), within 2 voxels of R_c; absent if fewer than 80 %
-    of its volume survives remesh and budget. (b) silhouette: per-pixel two-class 3-component GMMs on Lab colour and a
-    5 x 5 texture, fitted on the episode's own pixels; voxel see-through (SIL) if NMF >= 3 and NMF >= 0.5 NMV over
-    2-D-separated good frames (hands <= 25 % of the mask, no hand pixel within 16 px); used only if held-out pixel
-    accuracy >= 0.9 and false see-through <= 2 % on interior voxels with hits >= 10. (c) motion: voxel persistent if
-    entered in >= max(5, ceil(0.25 N_run)) frames of the run; swept if the partner-local positions entering it span
-    >= max(8 mm, 3 j) at their 90th-percentile extent; a persistent region spanning >= 0.9 of o's extent along the
-    insertion direction is split by one plane normal to it (through the region's centroid, or through the end of the
-    (a) concavity if (a) agrees), o keeping the far side, the plane shared by both objects of the pair; (c) is absent if
-    either object is TRACK_FAIL or IDENTITY_SWAP or good in < 80 % of the run's frames. Agreement: (a, c) centroid
-    distance <= 10 mm, axis angle <= 15 deg, >= 50 % of R_c inside (a) dilated by 1 voxel, (a) on the entry side;
-    (b, c) >= 50 % of R_c's testable voxels (NMV >= 3) are SIL; (a, b) >= 50 % of R_b inside (a) dilated by 1 voxel.
-    Tiers: T3 all three agree; T2 exactly two agree among (a, c), (b, c), (a, b) without (c); T1 (c) present and (a),
-    (b) absent or disagreeing; T0 otherwise. Submitted candidates (F-I1.4) only at T2 and T3; the simulator copy at
-    T1 and above, subject to F-I1.3.
-  - **F-I1.3 Carve rule** (`gmg/interlock.py decide`; one implementation shared with the Embodiment session). Voxel
-    classes on o's 4 mm grid: U = FREE or UNKNOWN; SIL = OBSERVED and see-through; GAP = OBSERVED, silhouette absent
-    for it (gate failed or NMV < 3), the component's width across its thinnest axis <= 8 depth pixels at its median
-    camera range, and removing it keeps o's component count and genus; O = any other OBSERVED voxel. Per persistent
-    26-connected component R: IGNORE if TRANSIENT or < 3 voxels; PUSH all of R if > 25 % of R is class O; else R_U is
-    CARVED if the carved solid keeps its component count and genus (else PUSH); the SIL and GAP voxels of R_O are
-    CARVED only if (i) >= 50 % of R_O's voxels are swept and the run is INSERTION or SLIDE, (ii) the intrusion is not
-    pushable: over the frames in which R is entered, the median of the smallest rigid translation of the partner (26
-    directions plus R's normal) that leaves < 3 entered voxels exceeds 10 mm (with an Embodiment export instead:
-    `pushed_residual_m` > b in >= 50 % of those frames), (iii) >= 75 % of R_O is SIL or GAP, (iv) SIL and GAP voxels
-    carved for o total <= 10 % of the candidate's solid volume, R reaches <= 0.6 of o's extent along the entry
-    direction, and the topology test holds; otherwise PUSH (`interlock_unresolved` when the intrusion is not pushable
-    either). Class O voxels are never carved.
-  - **F-I1.4 New candidates (A.1 addition).** ICARVE(c) for every feasible STRUCT, FUSE, GEN or SHELL candidate c
-    (never HULL) of an object with a T2 or T3 component: c minus the carve solid (the component, width = the partner's
-    measured two-sided thickness at the crossing, else its pick's thickness there, capped at the simulator width) by a
-    manifold boolean; class of c; flag `interlock_carved`. FUSE-I (with GEN meshes): FUSE whose observed shell is cut
-    by the T2/T3 components before the union. Both are rebuilt per fold like their base.
-  - **F-I1.5 Evidence score (A.2, A.4 addition).** Held-out points whose voxel lies in a T2/T3 component of the object
-    are removed for every candidate of that object (paired); the count is reported.
-  - **F-I1.6 Vetoes (A.3 additions).** **VI:** the median over assembled frames of the partner evidence occupancy
-    volume inside the candidate exceeds 1.0 cm3; applied only if at least one feasible candidate of the object passes
-    VI. **V4t:** more than 1 % of 20,000 volume samples lie more than max(3 sigma, 2 mm) below the table in >= 25 % of
-    good frames; applied only if at least one feasible candidate passes it (else flag `track_below_table`). **VP**
-    (GEN, FUSE, FUSE-I only): on held-out frames the per-frame placement offset's robust median exceeds 10 mm or
-    15 deg. **VF** (ICARVE, FUSE-I): fewer flip units (A.5 step 3.2) than its base candidate, or an
-    observed flip margin smaller than the base's by more than 1 sigma. **V5 clarification:** a HULL candidate does not
-    count as the feasible non-flip-risk candidate that makes V5 apply (SPEC section 8: HULL is fallback only).
-  - **F-I1.7 Pick (A.5).** Unchanged; vetoes now V1-V5 plus VI, V4t, VP, VF.
-  - **F-I1.8 Simulator copy (SPEC section 14 copy rule).** Convex pieces of the pick (`gmg/simpieces.py`): solid at
-    1.5-2 mm minus the carved components widened by 1 mm per side; keep-out = carved + FREE + SIL + persistent partner
+    thickness at the crossing); cavities: convex hull minus solid), near R_c (2 voxels) or within 20 mm for OFFSET;
+    absent if < 80 % of its volume survives remesh and budget; its flip member is chosen by trusted markers, then the
+    depth residual, never by the slot side; if neither separates the flips by >= 1 sigma its side is unresolved. (b)
+    silhouette: per-pixel two-class 3-component GMMs on Lab colour and a 5 x 5 texture, fitted on the episode's own
+    pixels; voxel see-through (SIL) if NMF >= 3 and NMF >= 0.5 NMV over 2-D-separated good frames (hands <= 25 % of the
+    mask, no hand pixel within 16 px); used only if held-out pixel accuracy >= 0.9 and false see-through <= 2 % on
+    interior voxels with hits >= 10; notch set N_b = SIL components inside the candidate. (c) motion, from build frames:
+    voxel persistent if entered in >= max(5, ceil(0.25 N_build)) build frames; swept if the partner-local positions
+    entering it span >= max(8 mm, 3 j) at their 90th-percentile extent; d = the principal direction of the partner path,
+    signed by its mean velocity; the entry side is where the partner comes from (a physical requirement, not evidence);
+    a persistent component is split only if it is a true through-column (along d it exits o at both ends: the voxels 1
+    voxel beyond each end are outside the candidate or FREE), by one plane normal to d through its centroid (or the end
+    of (a) if (a) agrees), o keeping the far side, one plane per linked pair (F-I1.3) at the median assembled pose. On
+    public, (c) is absent if either object is TRACK_FAIL or IDENTITY_SWAP or good in < 80 % of the run's frames; on eval
+    IDENTITY_SWAP only flags (SPEC section 7). Agreement: (a, c) centroid distance <= 10 mm, angle between the principal
+    axes as unsigned lines <= 15 deg, >= 50 % of R_c inside (a) dilated by 1 voxel, (a) open toward the entry side
+    (tested only when (a)'s side is resolved); (b, c) >= 50 % of R_c's testable voxels (NMV >= 3) are SIL; (a, b) >= 50 %
+    of R_b (or N_b) inside (a) dilated by 1 voxel. **Any present source that disagrees blocks submitted candidates.** A
+    component pushed or ignored by F-I1.3 never yields submitted candidates except at T2o, where (c)'s position is
+    excluded from the agreement tests and (a) and (b) must both be present and agree on the notch. Tiers: T3 all three present
+    and agreeing; T2 exactly two present and agreeing, the third absent; T2o the OFFSET case with (a) and (b) agreeing on
+    the notch; T1 (c) present and CARVE, (a) and (b) absent or disagreeing; T0 otherwise. Submitted candidates (F-I1.4)
+    at T2, T3 and T2o; the simulator copy at T1 and above (and T2o as N + t), subject to F-I1.3 and F-I1.8.
+  - **F-I1.3 Carve rule** (`gmg/interlock.py decide_pair`; one implementation shared with the Embodiment session; the
+    same region builder for our tracks and for the export). Voxel classes on o's 4 mm grid: U = FREE or UNKNOWN; SIL =
+    OBSERVED and see-through; GAP = OBSERVED, silhouette absent for it (gate failed or NMV < 3), the component's
+    **image width** (median over the views in which >= 3 of its voxels have depth hits, of 2 x the largest inscribed
+    radius of its projected 2 mm sub-samples at the depth input's resolution) <= 8 depth pixels, and removing it keeps
+    o's component count and genus; O = any other OBSERVED voxel. Per persistent 26-connected component R: IGNORE if
+    TRANSIENT or < 3 voxels; PUSH all of R if > 25 % of R is class O (then OFFSET is tried); else R_U is CARVED if the
+    carved solid keeps its component count and genus (else PUSH); the SIL and GAP voxels of R_O are CARVED only if (i)
+    >= 50 % of R_O's voxels are swept and the run is INSERTION or SLIDE, (ii) not pushable: over the build frames in
+    which R is entered, the median of the smallest rigid translation of the partner (26 directions plus R's normal) that
+    leaves < 3 entered voxels exceeds 10 mm (with an Embodiment export whose fit block validates: `pushed_residual_m` > b
+    in >= 50 % of those frames), (iii) >= 75 % of R_O is SIL or GAP, (iv) measured after the split and at width w_sim:
+    the voxels carved for o over all components and rounds total <= 10 % of the candidate's solid volume, R reaches
+    <= 0.6 of o's extent along d, and the topology test holds; otherwise PUSH (`interlock_unresolved` when not pushable
+    either). **Pair level:** components R_o and R_p are linked if each lies by >= 50 % inside the crossing volume (o's
+    candidate intersected with p's at the median assembled relative pose, dilated by 1 voxel); linked components are
+    CARVED together only if both pass, else both PUSH (`interlock_pair_fail`); unlinked components are decided per
+    target. **Widths:** w_sim = max(1-99 % extent across the feature of the partner samples that entered R at the
+    assembled build frames, the partner's delivered simulator collider thickness at the crossing) + 2 x 1 mm; if w_sim
+    breaks (iv) the linked pair is pushed (`interlock_partner_too_thick`); w_sub = the partner's evidence two-sided
+    thickness at the crossing (else its pick's), capped at w_sim. **OFFSET:** for a component (or linked pair) pushed by
+    the class-O step, with an observed notch N (a SIL component, or a placed GEN notch that survived remesh) within
+    20 mm: t = the translation on a 2 mm grid, |t| <= 20 mm and |t . d| <= 0.5 |t|, maximising the overlap of N + t with
+    R; OFFSET holds if >= 50 % of R lies inside N + t dilated by 1 voxel and N passes the topology test; then the
+    simulator copy (P_sim) carves N + t at width w_sim under (iv) and F-I1.8 (class-O voxels inside it listed as
+    `o_displaced`), t and the frames go to the tracker, and submitted ICARVE is built at N only at T2o for INSERTION or
+    SEAT runs. A shift mostly along d is never OFFSET. Outside OFFSET, class O voxels are never carved.
+  - **F-I1.4 New candidates (A.1 addition; overrides SPEC section 14 for these two types, F-I1.0).** ICARVE(c) for every
+    feasible STRUCT, FUSE, GEN or SHELL candidate c (never HULL) of an object with a T2, T3 or T2o component: c minus the
+    carve solid (width w_sub; at N for T2o) by a manifold boolean; class of c; flag `interlock_carved`. FUSE-I (with GEN
+    meshes): FUSE whose observed shell is cut by those carve solids before the union. Both are rebuilt per fold like
+    their base.
+  - **F-I1.5 Evidence score (A.2, A.4 addition).** Held-out points whose voxel lies in a T2, T3 or T2o carve solid of the
+    object are removed for every candidate of that object (paired); the count is reported.
+  - **F-I1.6 Vetoes (A.3 additions) and ranking.** **VI:** with I(c) = the median over assembled frames of the partner
+    evidence occupancy volume inside c, c is vetoed if I(c) - min over the object's feasible candidates of I(c') > 1.0 cm3.
+    **V4t:** more than 1 % of 20,000 volume samples lie more than max(3 sigma, 2 mm) below the table in >= 25 % of good
+    frames; applied only if at least one feasible candidate passes it (else flag `track_below_table`). **VP** (GEN,
+    FUSE, FUSE-I only): on held-out frames the per-frame placement offset's robust median exceeds 10 mm or 15 deg. **VF**
+    (ICARVE, FUSE-I): observed flip margin smaller than the base's by more than 1 sigma (expected to fire rarely; the
+    R1 revert of F-I1.11 is the guard against a submitted-mesh flip). **Flip units (A.5 step 3.2):** ICARVE(c) and FUSE-I
+    are ranked with their base's flip units. **V5 clarification:** a HULL candidate does not count as the feasible
+    non-flip-risk candidate that makes V5 apply (SPEC section 8: HULL is fallback only); every pick it changes is
+    flagged `v5_hull_clarified` (dev: `wooden_piece_2` only, of the 4 dev objects with an S1 pick).
+  - **F-I1.7 Pick (A.5).** Unchanged; vetoes now V1-V5 plus VI, V4t, VP, VF; the flip-unit rule above.
+  - **F-I1.8 Simulator copy (SPEC section 14 copy rule).** Convex pieces of the pick (`gmg/simpieces.py`) at poses
+    P_sim: solid at 1.5-2 mm minus the carves at width w_sim; keep-out = carved + FREE + SIL + persistent partner
     occupancy within 2 voxels of the surface; split until every hull holds <= 0.3 cm3 of keep-out; <= 32 pieces (64 if
-    the solid > 300 cm3); <= 64 vertices per hull; layout `DIR/<obj>/<obj>.glb` + `piece_XX.obj` + `carve.json`, one
-    directory per round, never overwritten. **Interlock test** (per INSERTION or SEAT run, CPU MuJoCo proxy of
-    `pipeline/interaction_carve.py` driven by our tracks' relative path, 16 jittered copies at 0.5 mm / 0.005 rad,
-    common random numbers, statistics = means over copies): pass if at the assembled frames the carved pieces' median
-    lag <= 0.5 cm and <= 5 deg, collider overlap < 1.0 cm3, and the lag never exceeds 1.0 cm after the first assembled
-    frame; "slot not limiting" if the default pieces' lag < 1 cm and < 10 deg. Carved pieces are delivered if they
-    pass, or if they cut the default lag by >= 50 % (flag `interlock_test_fail`); otherwise the uncarved pieces.
-  - **F-I1.9 Features and flags along the track (every candidate).** Per-frame 6-DoF placement offsets (trimmed
+    the solid > 300 cm3); <= 64 vertices per hull. Layout per episode and round, never overwritten:
+    `<obj>/<obj>.glb` + `piece_XX.obj` (same file coordinates) + `inertia.json` + `carve.json`; `_fit/<obj>.glb` (union of
+    the pieces); `props_gmg.json` (mass = the 0.3 kg placeholder until owner decision D-I1, since
+    `props_masses_only.json` is scan-derived; COM and inertia from the pieces); `manifest.json` (episode, round, P_sim
+    and its provenance, sha256 of every file, 8 fiducials per object). **Physical acceptance for every carved pair, any
+    kind, any voxel class** (means over 16 jittered copies at 0.5 mm / 0.005 rad, common random numbers), at the
+    assembled frame (INSERTION, SEAT), the middle of each static contact segment (<= 3; SEAT, REST, SLIDE, R_U carves) and
+    frame 0 if in contact: **P1** 2 s hands-free settle under gravity, hands parked, no drive, in the FlashCHORD scene
+    (the carve-20261030 `settle_at.py` recipe): guest and host mean drift <= 1 cm and mean tilt <= 5 deg, mean relative
+    sink of the guest along gravity <= 4 mm, no NaN, no fall-through copy; **P2** Monte Carlo free travel of the carved
+    guest pieces along gravity, +d and +-n (0.5 mm steps until the overlap with the host pieces exceeds 0.05 cm3 on
+    200,000 points) <= max(4 mm, default + 1 mm); **P3** (INSERTION) the replay proxy of `interaction_carve.py` driven
+    by P_sim: carved median lag <= 0.5 cm and <= 5 deg at the assembled frames, collider overlap < 1.0 cm3, lag never
+    > 1.0 cm after the first assembled frame; **P4** removed collider volume <= 1.5 x the carved region at w_sim and
+    >= 90 % of each object's default collider volume kept; **P5** <= 165 collision shapes per episode (merge hulls,
+    smallest keep-out increase first; else the pair with the smallest P1 gain gets default pieces); **P6** at every
+    checked frame (stride 4 plus rest frames) carved overlap <= default + 0.1 cm3; **P7** (runs with check frames) the
+    carved pieces' collider overlap on check frames <= half the default's. Carved pieces are delivered only if all
+    applicable tests pass; otherwise the default pieces (flag `interlock_physics_fail`). One asset folder per episode:
+    `interlock.load_sim` refuses another episode's folder, and the pack must build per-episode asset roots and pass the
+    URDF collision-count check before any launch.
+  - **F-I1.9 Features and flags along the track (every candidate, P_sel).** Per-frame 6-DoF placement offsets (trimmed
     point-to-plane, unconstrained directions below 1 % of the largest information eigenvalue excluded): flags
     `placement_offset` (|median| > max(3 sigma, 2 mm) or > 2 deg) and `placement_drift` (MAD > 3 sigma or a 10-frame
     block deviation > max(3 sigma, 5 mm)); interpenetration volume per partner and phase (apart, contact, engaged,
@@ -655,53 +712,84 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     applies the same rule on eval 25. G0, G1, G2 and G4 record per run: view frame, `cam_T_obj` of that frame, mask PNG
     and sha256, pointmap sha256, seed, the raw mesh before remesh, the layout in camera and object frame, runtime.
     Layout consensus (chordal L1 rotation mean modulo the mesh's flip set, geometric-median translation, median scale;
-    outliers > 15 deg or > 10 mm) and the F-I1.9 placement features over all good frames are reported next to K-c and
-    K-d (K-c', report only); G0 also reports them for the ep2 lid and pot. K-f (report only): share of board runs whose
-    placed mesh has a notch >= 0.3 of the board width from one edge that survives remesh. B.10 addition: a GEN mesh's
-    concavity near R_c must keep >= 80 % of its volume after remesh and budget, else (a) is absent for it.
+    outliers > 15 deg or > 10 mm; flip member by markers then depth residual, never by the slot side) and the F-I1.9
+    placement features over all good frames are reported next to K-c and K-d (K-c', report only); G0 also reports them
+    for the ep2 lid and pot. K-f (report only): share of board runs whose placed mesh has a notch >= 0.3 of the board
+    width from one edge that survives remesh. B.10 addition: a GEN mesh's concavity near R_c must keep >= 80 % of its
+    volume after remesh and budget, else (a) is absent for it.
   - **F-I1.11 Rounds and adoption (C.3, C.4, C.6, D.2 additions).** R1: for each anchor whose pick is ICARVE, its base
-    candidate is also scored (at most +10). R2: for each anchor whose pick is ICARVE or FUSE-I, its base candidate (at
-    most +20). Caps: R1 <= 63 (<= 83 under the thickness fallback), R2 <= 73; total <= 136 mesh scorings (<= 156);
-    expected use: 2-4 (the boards). **Global carve adoption, before D.1 is computed:** over all anchors whose pick is
-    ICARVE or FUSE-I, if mean (cdo_eval(pick) - cdo_eval(base)) > +0.005 cm, or any such pick flips on more of the 30
-    extra seeds than its base (sweeper, boards) or has flips_eval > 0 where its base has 0, then every ICARVE and
-    FUSE-I pick reverts to its base for submission (the simulator copy keeps its carve) and D.1 uses the bases. This
-    is a fourth scan-informed choice (D.2), applied once as a method choice, never per object. The +0.005 cm tolerance
-    is informed: the earlier XCarve carve measured +0.006 / +0.007 and is meant to fail it.
-  - **F-I1.12 New tests B.16 (build steps BI1-BI4; zero scan scorings)** T-I1 to T-I9 and K-f exactly as in
-    `INTERLOCK.md` section 13, with these predictions (E additions):
+    candidate is also scored, and for each anchor flagged `v5_hull_clarified`, its pre-clarification pick (together at
+    most +10). R2: the same for ICARVE or FUSE-I picks (at most +20). Caps: R1 <= 63 (<= 83 under the thickness
+    fallback), R2 <= 73; total <= 136 mesh scorings (<= 156); expected use: 2-4 (the boards). **Two global method
+    choices, applied once before D.1 is computed:** (1) over all anchors whose pick is ICARVE or FUSE-I, if mean
+    (cdo_eval(pick) - cdo_eval(base)) > 0, or any such pick flips on more of the 30 extra seeds than its base or has
+    flips_eval > 0 where its base has 0, every ICARVE and FUSE-I pick reverts to its base for submission (the simulator
+    copy keeps its carve); (2) over the `v5_hull_clarified` anchors, the same test against the pre-clarification picks;
+    if it fails, those picks revert. Tolerance 0 (v1's +0.005 cm was set from XCarve's scan results and is withdrawn);
+    per-object differences and their 30-seed spread are reported. These are the fourth and fifth scan-informed choices
+    (D.2), each applied once as a method choice, never per object.
+  - **F-I1.12 New tests B.16 (build steps BI1-BI4; zero scan scorings)** T-I1 to T-I10 and K-f exactly as in
+    `INTERLOCK.md` section 13 (T-I1 sweeps the plate thickness over 6, 10, 13, 18, 25 mm with pre-registered GAP
+    outcomes and runs the silhouette on rendered images; T-I2a and T-I2b are reported without prediction), with these
+    predictions (E additions):
     - P26 T-I1 synthetic plates and controls pass as stated | any miss (a code bug, fixed and logged) | [H]
-    - P27 clean ep24: the two boards' entry halves lie on opposite edges and >= 50 % of R_c is OBSERVED | same edge, or
-      < 20 % OBSERVED (then GAP is unused) | [H]
-    - P28 T-I3: carved pieces pass the interlock test and the default pieces fail it on ep24 | carved fails | [H]
-    - P29 T-I4: board 2's pick is not the HULL | HULL picked while a non-HULL candidate is feasible | [H]
-    - P30 T-I5 to T-I7: no class-O voxel carved on ep2, ep11, ep12, ep13, ep18 | any | [H]
+    - P27a clean ep24: entry-side share of frame counts >= 0.6 on both boards | < 0.6 on either | [H; dev 0.54-0.57]
+    - P27b clean ep24: (a, c) offset along the long axis <= 10 mm on both boards | > 10 mm | [H; dev 10.5-12.9 mm]
+    - P27c clean ep24: >= 50 % of R_c OBSERVED | < 20 % (GAP and OFFSET unused on the boards) | [H]
+    - P28 T-I3: if T-I2b carves the boards, the carved pieces pass P1-P7 and P3 and the default pieces fail P3 | any
+      carved failure | [H]; void, not passed, if T-I2b pushes the boards
+    - P29 T-I4: on clean ep24, an existing ICARVE(shell) overlaps >= 1 cm3 less than the slot-less shell and VI removes
+      the slot-less shell and HULL | otherwise | [H]
+    - P30 T-I5 to T-I7: no class-O voxel carved on ep2, ep11, ep12, ep13, ep18; no delivered carve with free travel
+      > 4 mm; <= 165 shapes per episode | any | [H]
     - P31 T-I8: CPU picks' constant placement offset <= 1 mm on >= 9 of 10 anchor pairs; `placement_drift` on the
       ep11 blue cup | < 8 of 10, or no flag | [H]
-    - P32 T-I9: after Embodiment round 1 on ep24, persistent intrusion volume at engaged frames -80 % or more and
-      frame-pairs with `pushed_residual_m` > b -50 % or more (jittered means) | less | [H]
+    - P32 T-I9 on ep24: round 1 reduces the check-frame intrusion volume by >= 50 % and its carved copies pass P1-P7;
+      on ep11 no observed floor voxel is carved | either fails | [H]
     - P33 K-f: >= half of the board runs show a notch that survives remesh | fewer | [H]
+    - P34 T-I10 negative control (ep31, the eval-30 twin): the rack-sweeper pair delivers its default pieces or a carve
+      with gravity free travel <= 4 mm and mean tilt <= 5 deg | any delivered copy outside these bounds | [H]
     These tests gate or fix steps; none is a failure criterion of the gmg (D.3).
-  - **F-I1.13 Embodiment contract (operational).** Export schema `gmg-intrusion/1` (`INTERLOCK.md` section 11.2:
-    per sample `frame, target, partner, pts_local, depth_m`; per frame-pair `rel_T, pushed_residual_m, intr_vol_m3`;
-    partner solid samples at pitch <= 2 mm; mesh sha256 must match the delivered round). Round k is accepted only if
-    the jittered means (16 copies, 0.5 mm / 0.005 rad, common random numbers) of the persistent intrusion volume at
-    engaged frames and of the count of frame-pairs with `pushed_residual_m` > b both fall against round k-1; at most 3
-    rounds; stop early if a round adds no CARVE or both fall by < 10 %; the carve budget of F-I1.3 is cumulative over
-    rounds. Zero-action sim_vs_ref is reported, never used to decide.
+  - **F-I1.13 Embodiment contract (operational).** Export schema `gmg-intrusion/2` (`INTERLOCK.md` section 11.2).
+    Partner samples (grid pitch <= 2 mm) and target depth come from the union of the delivered round's collision pieces,
+    never from the visual GLB; `pts_local` and `rel_T` are in the delivered files' coordinates (never MuJoCo geom
+    frames). Header: `meshes` (sha256 of every file read), `reference` with its provenance chain back to perception
+    outputs, `fit` (tool, commit, argv, `--meshes` hashes, `--props` path and hash, prior), `pose_source`, fiducials.
+    `interlock.validate`: (1) refuse on any mesh hash mismatch, out-of-range frame, non-rigid `rel_T`, fiducial round
+    trip > 0.5 mm, `fiducials_world` off the reference pose by > 0.5 mm, or < 99 % of 10,000 samples inside the
+    target's pieces (or, mapped back, inside the partner's); (2) refuse if the reference provenance is missing,
+    incomplete, or touches a denied input (gmg guard, `ops/provenance/denylist.json`); (3) set every `pushed_residual_m`
+    to NaN (flag `fit_provenance_refused`, our push proxy decides) unless the fit's `--meshes` are exactly the round's
+    `_fit/<obj>.glb`, its `--props` exactly the round's `props_gmg.json`, and its prior 1 cm / 3 deg. Identical on
+    public and eval. Export samples enter the same region builder (build and check frames, persistence, sweep,
+    through-column split with the pair's shared plane) and decide_pair; the reach and volume budget are measured after
+    the split; the partner's carved region is already absent from its pieces. Round k is accepted only if (A1) on check
+    frames the persistent intrusion volume at engaged frames falls by >= 10 % against round k-1 and no other pair or
+    phase gains > 0.1 cm3, (A2) check-frame pairs with `pushed_residual_m` > b do not increase (only with a validated
+    fit block), (A3) every carved pair passes F-I1.8 P1-P7 and its settle means are no worse than round k-1's by more
+    than one standard error, (A4) the cumulative budget, the 90 % collider-volume floor, topology and the 165-shape cap
+    hold; otherwise round k is reverted and its budget released. At most 3 rounds; stop early if a round adds no CARVE
+    or A1 fails. Round 0 is built from P_sim. Build-frame reductions and zero-action sim_vs_ref are reported, never used
+    to decide.
   - **F-I1.14 Constants and origins (A.6 additions).** Engaged >= 3 voxels; TRANSIENT < 5 frames; static < 2 mm per
-    frame; persistence max(5, 25 %); sweep max(8 mm, 3 j); split at >= 0.9 of the extent; 50 % majorities; 25 % class-O
-    and V4t persistence; budget 10 % and 0.6 reach; GMM 3 components, 5 x 5 texture, 20 % pixel split; agreement
-    10 mm / 15 deg (= K-c); offset flags 3 sigma, 2 mm, 2 deg, 5 mm; 10-frame blocks; rest 15 frames and 30 mm hands
-    distance; 16 jittered copies: **generic** (statistics, voxel counts, existing K-c / V4 / rest definitions, the
-    Embodiment session's minimum-frame and jitter settings). Travel 20 mm and straightness 0.7: **informed** (XCarve
-    design of 22 Oct, initial values; its ep24 insertion 11.3 cm / 0.89 and ep2 lid 1.7 cm were seen). Push prior
-    10 mm / 3 deg: **generic** (phys_fit v1's prior). w_bridge 8 depth pixels: **generic [H]** (two cells of a
-    quarter-resolution stereo cost volume). Silhouette NMF >= 3, 0.5 and the 2 % false-free gate: **informed** (22 Oct
-    S2 design; 1 % / 0 % on the boards seen with a scan slot box). VI 1.0 cm3, collider overlap 1.0 cm3, proxy lag
-    0.5 cm / 5 deg vs default 2 cm / 20 deg, 1 mm clearance, 0.3 cm3 keep-out, 32/64 pieces, 64 vertices: **informed**
-    (26 Oct pre-registered carve rule and `collision_decomp.py`, written before their results). 80 % remesh survival,
-    0.3 W notch: **generic**. Global carve tolerance +0.005 cm: **informed** (above).
+    frame; persistence max(5, 25 %); sweep max(8 mm, 3 j); through-column test 1 voxel; 10-frame build/check blocks and
+    the 20-frame minimum; 50 % majorities and the linking share; 25 % class-O and V4t persistence; budget 10 % and 0.6
+    reach; GMM 3 components, 5 x 5 texture, 20 % pixel split; agreement 10 mm / 15 deg (= K-c); offset flags 3 sigma,
+    2 mm, 2 deg, 5 mm; 10-frame drift blocks; rest 15 frames and 30 mm hands distance; 16 jittered copies; OFFSET lateral share
+    0.5 and 2 mm grid; 99 % containment, 0.5 mm fiducials; A1 10 %: **generic** (statistics, voxel counts, existing K-c /
+    V4 / rest definitions, the Embodiment session's minimum-frame and jitter settings). Travel 20 mm and straightness 0.7:
+    **informed** (XCarve design of 22 Oct, initial values; its ep24 insertion 11.3 cm / 0.89 and ep2 lid 1.7 cm were
+    seen). Push prior 10 mm / 3 deg: **generic** (phys_fit v1's prior). w_bridge 8 depth pixels: **generic [H]** (two
+    cells of a quarter-resolution stereo cost volume). Silhouette NMF >= 3, 0.5 and the 2 % false-free gate:
+    **informed** (22 Oct S2 design; 1 % / 0 % on the boards seen with a scan slot box). VI 1.0 cm3 margin, collider
+    overlap 1.0 cm3, proxy lag 0.5 cm / 5 deg vs default 2 cm / 20 deg, 1 mm clearance, 0.3 cm3 keep-out, 32/64 pieces,
+    64 vertices: **informed** (26 Oct pre-registered carve rule and `collision_decomp.py`, written before their results).
+    Settle 2 s, 1 cm / 5 deg, P6 0.1 cm3: **informed** (carve-20261030 criteria 2 and 3, written before its results).
+    Free travel and relative sink 4 mm (2 x 1 mm clearance + one 2 mm carve voxel), P4 1.5 x and 90 %, the 165-shape cap:
+    **informed** (chosen after seeing carve-20261030's 6 mm / > 40 mm travel, 4-13 x removal, 35 % loss and note 19's
+    budget). OFFSET t_max 20 mm (two push-prior widths): **informed** (the dev offset 10.5-12.9 mm was seen). 80 % remesh
+    survival, 0.3 W notch: **generic**. Global carve and V5-clarification tolerance 0: **generic**. Placeholder mass
+    0.3 kg: **generic** (make_assets default).
 
 ## Revision 1 changelog
 
