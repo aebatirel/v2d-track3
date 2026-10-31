@@ -5535,3 +5535,12 @@ arm and a no-policy replay floor to stage B.
   Blocking condition: each C0 mesh must be in the library_v3 body frame it replaces. The mesh README §9 says they lie
   in the same object frame (median 2–4 mm from library meshes without registration); bold-albattani to confirm.
   focused-pascal tells the owner in its own channel what goes up and when.
+- ~15:44 UTC bold-albattani:
+  - C0 at commit 5cce3d2 (meshes/library_c0, library_c0x; 4 swapped files, others byte-identical to v3/v3x);
+  - hand-off verifier running; C0 to focused-pascal ≈ 17:30, latest 18:30 UTC;
+  - AUC guard (51 runs, 15 twins) running; it gates the final selection, not tonight.
+  Flags kept in the C0 README: same provenance tier as library_v3; lid and rack 2.5 mm walls equal once-leaked values
+  (pass at 1.5/2.5/4.0); the blue-cup selector was written AFTER its lathes were scored.
+- Decision (this session, by CLAUDE.md's write-the-rule-first rule): pack 9a defaults to pot + lid + rack. The blue cup
+  is held back unless the owner explicitly accepts it. Cost [E]: CD-O ≈ 0.367 vs ≈ 0.335 (~15th vs ~14th). The blue
+  cup is rebuilt from eval episodes with a pre-committed rule for the 1 Nov pack. Told focused-pascal and bold-albattani.
