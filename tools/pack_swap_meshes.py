@@ -33,7 +33,10 @@ Steps:
  6. checks against --base (e.g. pack 8): same row count and row_id order, same columns; every column identical except
     code_commit_url (must equal --code-commit on every row) and object_mesh_b64, which may differ only on the payload
     row (first row) of a swapped (episode, slot); every swapped payload decodes to the kit's budget_mesh of the written
-    file (the packed mesh IS the replacement); MESH WARNING lines in pack.log are counted and listed.
+    file (the packed mesh IS the replacement); MESH WARNING lines in pack.log are counted and listed;
+ 7. the uploader's offline steps (kit submit/v2d_submit.py validate_submission, then cd_o_submission ->
+    OUT/track3_submission.cd-o.parquet validated as track_3_mesh; no Kaggle call): the CD-O rows may change only for
+    the swapped objects whose payload changed. The real upload re-derives that CD-O file next to the parquet.
 Exit 0: checks pass, no flags. 2: checks pass but frame flags or MESH WARNINGs need a human. 1: a hard failure.
 Packing only: no ground truth is read (the packer reads row_id from the kit's sample submission plus the roster).
 Run it with the packing venv (pandas 3.0.6 / pyarrow 26.0.0 / numpy 2.5.4 / trimesh 5.2.0 / fast_simplification 0.2.0
@@ -383,6 +386,35 @@ def main():
             check['pandas_version'] = [ma, mb]
             if ma != mb:
                 info.append(f'schema metadata pandas_version {mb} vs base {ma} (metadata only; table content compared)')
+        # The uploader's own offline steps (kit submit/v2d_submit.py main, no network): validate_submission, then the
+        # CD-O file it derives and uploads to the sixth board, compared with the one derived from the base.
+        try:
+            import importlib.util
+            from pathlib import Path
+            spec = importlib.util.spec_from_file_location('v2d_submit_offline', os.path.join(kit, 'submit', 'v2d_submit.py'))
+            sub = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(sub)
+            from v2dlb.track3_pose import cd_o_submission
+            import pandas as pd
+            config = json.load(open(os.path.join(kit, 'config', 'tracks.json')))
+            frame = sub.validate_submission(Path(parquet), 'track_3', config)
+            sample = pd.read_parquet(os.path.join(kit, 'data', 'track_3_mesh_sample_submission.parquet'))
+            cdo = cd_o_submission(frame, sample, roster)
+            cdo_path = os.path.join(out, 'track3_submission.cd-o.parquet')
+            cdo.to_parquet(cdo_path, index=False)
+            sub.validate_submission(Path(cdo_path), 'track_3_mesh', config)
+            cdo_base = cd_o_submission(pd.read_parquet(args.base), sample, roster)
+            k = cdo.row_id.str.extract(r'^t3m_(\d+)_(.+)_[01]_\d+$')
+            dif = (cdo[['x', 'y', 'z']].values != cdo_base[['x', 'y', 'z']].values).any(axis=1)
+            cdo_changed = sorted({f'{int(e)}:{n}' for e, n in zip(k[0][dif], k[1][dif])}, key=lambda s: (int(s.split(':')[0]), s))
+            check['uploader_validation'] = 'pass (offline validate_submission; CD-O file derived and validated)'
+            check['cd_o_file'] = {'path': cdo_path, 'rows': len(cdo), 'sha256': digest(cdo_path, 'sha256'),
+                                  'pairs_changed_vs_base': cdo_changed}
+            expected = sorted(check.get('payload_changed', []), key=lambda s: (int(s.split(':')[0]), s))
+            if cdo_changed != expected:
+                hard.append(f'CD-O rows changed for {cdo_changed}, expected exactly the changed payloads {expected}')
+        except SystemExit as error:
+            hard.append(f'uploader offline validation failed: {error}')
         check['sha256'] = digest(parquet, 'sha256')
         check['base_sha256'] = digest(args.base, 'sha256')
         check['bytes'] = os.path.getsize(parquet)
@@ -430,6 +462,10 @@ def main():
                      f"{check.get('byte_identical_to_base')} | rows {check.get('rows')} | columns differing from base: "
                      f"{check.get('columns_differing')}")
         lines.append(f"mesh payloads changed: {check.get('payload_changed')} | unchanged: {check.get('payload_unchanged')}")
+        if 'cd_o_file' in check:
+            c = check['cd_o_file']
+            lines.append(f"uploader offline validation: {check['uploader_validation']} | CD-O file {c['rows']} rows "
+                         f"sha256 {c['sha256'][:16]}... | CD-O pairs changed vs base: {c['pairs_changed_vs_base']}")
     lines.append(f'pack.log MESH WARNINGs: {len(warnings)}' + ''.join('\n  ' + w for w in warnings))
     lines += ['info: ' + i for i in info] + ['HARD FAIL: ' + h for h in hard] + ['FLAG: ' + f for f in frame_flags]
     lines.append(f"STATUS {['OK', 'HARD FAIL', 'NEEDS REVIEW (flags)'][status]} (exit {status})")
