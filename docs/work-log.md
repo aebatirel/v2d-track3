@@ -5352,3 +5352,5 @@ Advice given:
 - Ledger actual $5.35 (~5.0 h × $1.069/h; estimate). Results copied to ep11gate/results/.
 - Next (PREREG §5 "PASS buys"): the eval-10 retrain on V4p (ops/jobs/ev10_v4p.sh; reviews GO after fixes, merged
   now; fixtures 25/25), launched under the owner's eval-10 go (15:20 UTC). Swap only by the both-reference rule.
+- 21:08 UTC **eval-10 V4p retrain launched**: run `20261031-e10v-caf38fb` on offer 28810507 (Spain, $1.377/h), commit
+  caf38fb, job `bash ops/jobs/ev10_v4p.sh`; ledger planned $6.00. Expected ≈ 2.8–4.7 h, $3–7 [E].
