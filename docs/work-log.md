@@ -5485,3 +5485,9 @@ Advice given:
   $3.00. All five D training boxes launched (G 58587687, S25a 58588731, S25b 58589859, S30a 58590659, S30b 58591555);
   D boxes burn ≈ $6.75/h. Vast credit $49.53 (23:45Z). Next: per-box summary.json + verify.txt after each box, then
   dr_eval_merge.py → the confirmation box string (PREREG section 3), then dr_score / dr_verdict on CPU.
+- 23:55 UTC bold-albattani final C0b/E0b hand-off (their cdo-sprint/C0b/README.md, commit e5baab1; relayed to
+  score-status): E0b white_pot (pot/ep3/thick, md5 073872f4…, evals 1 3 5 6 8 28) and beige_cup (beige/ep8/g1, md5
+  0d926da1…, evals 8 10), meshes/library_e0b + library_e0bx (eval 8). [D, public] both worse than 9a+: pot CD-O 0.392 vs
+  C0 0.342, beige 0.30 vs C1/T1 0.25; AUC guard passed on public. Their recommendation: keep 9a+'s pot and beige on
+  score; E0b = the provenance-cleaner option (owner's compliance call). Flags if chosen: pot 17/32 marker balls below the
+  base (−60 mm vs −43 mm), beige three inside-out shells. Lid / rack / blue cup not adopted. Pack 9b keeps 9a+'s meshes.
