@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~23:35 UTC: eval-10 V4p retrain NO-SWAP (policy never lifts the cup); masses v2 NOT ADOPTED
+- Eval 10 stays as packed (0.46, fails 10/10). Masses mean Δ +0.003. Pack 9b only if D cells (14/16/25/30/33) pass.
+- Tonight's failures: re-track, markers, solver, masses, eval-10 retrain. Landed: pack 9a+ meshes (AUC 0.8176, CD-O 0.332).
+
 ## 2026-10-31 ~23:00 UTC: re-track test FAILED (mean dR −0.170, 3/20); no reference change from perception tonight
 - Own-episode meshes as tracking templates break FoundationPose (pot, two-cup episodes). Marker layer also closed.
 - Pack 9b still pending: eval-10 V4p confirmation and targeted D cells (keen-heisenberg uploads if the swap rule passes).

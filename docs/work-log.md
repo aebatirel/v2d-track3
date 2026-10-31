@@ -5911,3 +5911,14 @@ score.
   these builds (stray marker balls, extra bodies, not watertight) derail FoundationPose. The 18:35 re-track proposal
   is falsified as built. A re-track with cleaner templates (e.g. the submitted C0/C1 picks) would be a new hypothesis
   with its own in-sample caveat; not proposed tonight.
+
+### 2026-10-31 ~23:35 UTC — eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED
+- focused-pascal (commit 28a03df on its branch):
+  - Eval 10, VERIFIED, 10/10 confirmation draws: NO-SWAP on an equal floor. Neither seed ever lifts the blue cup (lift
+    0 at every checkpoint). New vs packed: 0.459 vs 0.463 on V, 0.449 vs 0.453 on P; both fail 10/10 draws at RPE
+    ~15.9 cm. The ep11 gate gain did not transfer. Eval 10 stays as packed. Cost $3.25.
+  - Masses v2, both boxes VERIFIED: NOT ADOPTED. Mean Δ +0.0034 (bar +0.03), 1/4 positive (needs 3): ep24 +0.038,
+    ep11 −0.014, ep13 −0.002, ep31 −0.009.
+  - D arm: 4 boxes running (G 14/16/33, S25 s42/s43, S30 s42); S30 s43 ≈ 23:45. Reading after all five plus one
+    confirmation box.
+- Pack 9b: the only possible additions are passing D cells.
