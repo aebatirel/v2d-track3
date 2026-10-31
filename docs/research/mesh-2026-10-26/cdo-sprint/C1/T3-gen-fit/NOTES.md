@@ -19,3 +19,4 @@ Bulk outputs: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81a
 - 2026-10-31T15:59:30Z build pot OK: identical diagnostics to dev v5 stage 0 (deterministic).
 - 2026-10-31T16:00:16Z build blue_cup OK. Prepared GT-free AUC tracks for extra twins 18,23,24,39,40 in scratch cdo_c1/t3/auc/tracks (C0 recipe); wrote scripts/guard.py (C0 rule).
 - 2026-10-31T16:00:59Z build OK so far: pot, lid, blue cup (4002 f after hole fill, <= 4096 budget), board 2 (watertight), pitcher. GT-free held tmean90 in->fit: pot 2.14->2.02, lid 2.23->2.31, blue 2.44->2.14, board2 2.23->2.10, pitcher 2.97->2.79.
+- 2026-10-31T16:02:51Z build all 10 OK (2 streams, 15:57:54-16:02:17Z clock). manifest.py -> build_manifest.json, score_manifest.tsv, meshes/*_t3fit.glb (sha256 in PREREG s4). GT-free held-out residual better on 8, worse on lid and beige. PREREG filled; next commit+push PREREG, then score.

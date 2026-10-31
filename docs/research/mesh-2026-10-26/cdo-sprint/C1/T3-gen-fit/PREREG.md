@@ -89,6 +89,10 @@ fitted mesh, its sha256 and its GT-free diagnostics: `build_manifest.json`; scor
 
 The held-out residual got worse on the lid (2.23 -> 2.31) and the beige cup (1.65 -> 1.81) and better on the other 8. These GT-free changes are recorded now as predictions; they do not select or drop any mesh (all 10 are scored).
 
+Known confound (recorded before scoring): the raw pick was scored by the kit packer straight from its 100-400k-face
+file; the fitted mesh went raw -> 12k (fast_simplification) -> fit -> 4k. Part of any fitted-vs-raw CD-O difference
+can come from that decimation path; no control scoring is spent on it (budget: one scoring per fitted mesh).
+
 ## 5. Scoring and the CD-O GATE
 Command (one process, after this file is pushed):
 `venv/bin/python -I scripts/score.py score_manifest.tsv <scratch>/cdo_c1/t3/scores.jsonl`, copied to
@@ -110,6 +114,14 @@ Also reported (not gates): the change vs the raw pick's [D] CD-O; for pot, lid, 
 mesh beats C0's candidate by 0.02 (C0: 0.3417, 0.2199, 0.4560, 0.2906) — a WIN that does not beat C0 is not a
 candidate over C0; the per-object GT-free held-out change next to the [D] CD-O change.
 Verdicts: `python -I scripts/gates.py scores.jsonl gates.json` (rules above, nothing else).
+
+Exact commands (run from this folder, `S` = the session scratchpad):
+```
+$S/venv/bin/python -I scripts/score.py score_manifest.tsv $S/cdo_c1/t3/scores.jsonl > $S/cdo_c1/t3/score.log 2>&1
+cp $S/cdo_c1/t3/scores.jsonl $S/cdo_c1/t3/score.log .
+$S/venv/bin/python -I scripts/gates.py scores.jsonl gates.json
+# for each WIN object o:  bash scripts/run_auc.sh o meshes/o_t3fit.glb; python -I scripts/guard.py $S/cdo_c1/t3/auc/runs o auc_o.json
+```
 
 ## 6. AUC GUARD (only for WINs; same rule as C0)
 Twins = the public episodes whose perception tracks contain the object: pot 0, 2, 26, 27, 41-45; lid 0, 2; blue cup
