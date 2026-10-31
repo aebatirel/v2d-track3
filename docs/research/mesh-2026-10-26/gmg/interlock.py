@@ -1145,22 +1145,9 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
                 dec, rep = decide_component(comp, side, b, poses_sim, R, rep)
             rep['decision'] = dec
             recs[id(comp)] = (side, comp, rep)
-    # pair level: linked components both CARVE or both PUSH
-    for key, (side, comp, rep) in recs.items():
-        if key in links:
-            others = [recs[id(c)][2] for c in links[key]]
-            if rep['decision'] == 'CARVE' and any(o['decision'] != 'CARVE' for o in others):
-                rep['decision'] = 'PUSH'
-                rep['flags'].append('interlock_pair_fail')
-            elif rep['decision'] != 'CARVE' and any(o['decision'] == 'CARVE' for o in others):
-                for o in others:
-                    if o['decision'] == 'CARVE':
-                        o['decision'] = 'PUSH'
-                        o['flags'].append('interlock_pair_fail')
-    # widths, solids, budget (iv); OFFSET for class-O pushes; tiers
+    # widths, solids and the budget (iv) for every component that carves on its own
     for key, (side, comp, rep) in recs.items():
         ev = side.ev
-        other = sp if side is so else so
         R = comp.region()
         c3, A = _comp_frame(comp, ev, side)
         d, n, m = A
@@ -1176,11 +1163,10 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
             Xc = side.partner_collider @ T_op[:3, :3].T + T_op[:3, 3]
             pt = partner_thickness(Xc, n, ev)
             if pt is not None:
-                w_col, cen_c = pt
+                w_col = pt[0]
         w_sim = max(w_samp, w_col or 0.0) + 2 * K('clearance_m')
         # w_sub: the partner's evidence thickness at the crossing (its OBSERVED samples), capped at w_sim
-        Xp_ev = partner_points(b, comp.partner)
-        Xe = Xp_ev @ T_op[:3, :3].T + T_op[:3, 3]
+        Xe = partner_points(b, comp.partner) @ T_op[:3, :3].T + T_op[:3, 3]
         pe = partner_thickness(Xe, n, ev)
         w_sub = min(pe[0], w_sim) if pe is not None else min(w_col or w_sim, w_sim)
         rep['widths'] = dict(w_sim_mm=round(w_sim * 1e3, 2), entering_samples_mm=round(w_samp * 1e3, 2),
@@ -1197,20 +1183,18 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
             reach = float((Cs @ d).max() - (Cs @ d).min() + ev.sgrid.vox) / max(ext_d, 1e-9) if len(Cs) else 0.0
             vol_share = (side.carved_cm3_before + sol['cm3']) / max(ev.solid_cm3(), 1e-9)
             okt, tinfo = topology_kept(ev, sol['sub_lin'], sub=True)
+            has_ro = (rep.get('class_mix', {}).get('SIL', 0) + rep.get('class_mix', {}).get('GAP', 0)) > 0
             rep['budget'] = dict(carve_cm3=round(sol['cm3'], 2), vol_share=round(vol_share, 3), reach=round(reach, 3),
-                                 topology=tinfo)
-            if vol_share > K('budget_vol') or reach > K('budget_reach') or not okt:
+                                 topology=tinfo, applies=bool(has_ro),
+                                 note='(iv) applies to R_O carves; an R_U-only carve has the topology guard only')
+            if not okt or (has_ro and (vol_share > K('budget_vol') or reach > K('budget_reach'))):
                 rep['decision'] = 'PUSH'
                 rep['flags'].append('interlock_partner_too_thick' if (w_col and w_col + 2 * K('clearance_m') >= w_sim
                                                                       and vol_share > K('budget_vol'))
                                     else 'budget_iv_fail')
                 rep.pop('_sim_solid', None)
-    # re-apply pair level after the budget
-    for key, (side, comp, rep) in recs.items():
-        if key in links and rep['decision'] == 'CARVE':
-            if any(recs[id(c)][2]['decision'] != 'CARVE' for c in links[key]):
-                rep['decision'] = 'PUSH'; rep['flags'].append('interlock_pair_fail'); rep.pop('_sim_solid', None)
-    # OFFSET for class-O pushes (4.4), per component first
+        rep['own_decision'] = rep['decision']
+    # OFFSET for class-O pushes (4.4)
     offs = {}
     for key, (side, comp, rep) in recs.items():
         ev = side.ev
@@ -1223,29 +1207,44 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
             if off is not None:
                 offs[key] = off
                 rep['offset'] = {k: v for k, v in off.items() if k not in ('N', 'N_moved')}
-    # a linked pair is shifted jointly: one relative offset, t_p = -R^T t_o, both hold or neither
+    # pair level (4.3): a linked pair carves only if each side either carves on its own or has a holding OFFSET (both
+    # OFFSET: one relative offset, t_p = -R^T t_o within two grid steps); otherwise both PUSH (interlock_pair_fail)
+    def status(k):
+        r = recs[k][2]
+        if r['decision'] == 'CARVE':
+            return 'CARVE'
+        if k in offs and offs[k]['holds']:
+            return 'OFFSET'
+        return r['decision']
     done = set()
     for key, (side, comp, rep) in recs.items():
-        if key in done or key not in links or side is not so:
+        if key in done or key not in links:
             continue
-        cp = links[key][0]; kp = id(cp)
-        done |= {key, kp}
-        ok_o = key in offs and offs[key]['holds']
-        ok_p = kp in offs and offs[kp]['holds']
-        if ok_o and ok_p:
-            T_op = _asm_pose(so.intr, comp.run)
-            t_o = np.asarray(offs[key]['t_mm']) * 1e-3; t_p = np.asarray(offs[kp]['t_mm']) * 1e-3
-            mism = float(np.linalg.norm(t_p + T_op[:3, :3].T @ t_o))
-            rep['offset']['pair_mismatch_mm'] = round(mism * 1e3, 1)
+        group = [key] + [id(c) for c in links[key]]
+        done |= set(group)
+        st = {k: status(k) for k in group}
+        ok = all(v in ('CARVE', 'OFFSET') for v in st.values())
+        offk = [k for k in group if st[k] == 'OFFSET']
+        if ok and len(offk) == 2:
+            k0, k1 = offk
+            s0 = recs[k0][0]
+            T01 = _asm_pose(s0.intr, recs[k0][1].run)
+            t0_ = np.asarray(offs[k0]['t_mm']) * 1e-3; t1_ = np.asarray(offs[k1]['t_mm']) * 1e-3
+            mism = float(np.linalg.norm(t1_ + T01[:3, :3].T @ t0_))
+            recs[k0][2]['offset']['pair_mismatch_mm'] = round(mism * 1e3, 1)
             if mism > 2 * K('offset_grid_m'):
-                offs[key]['holds'] = offs[kp]['holds'] = False
-                rep['flags'].append('interlock_pair_fail'); recs[kp][2]['flags'].append('interlock_pair_fail')
-        elif ok_o or ok_p:
-            for k_ in (key, kp):
-                if k_ in offs and offs[k_]['holds']:
-                    offs[k_]['holds'] = False
-                    recs[k_][2]['flags'].append('interlock_pair_fail')
-                    recs[k_][2].setdefault('offset', {})['pair'] = 'partner has no holding OFFSET: both PUSH'
+                ok = False
+        if not ok:
+            for k in group:
+                r = recs[k][2]
+                if st[k] in ('CARVE', 'OFFSET'):
+                    r['flags'].append('interlock_pair_fail')
+                if r['decision'] == 'CARVE':
+                    r['decision'] = 'PUSH'; r.pop('_sim_solid', None)
+                if k in offs:
+                    offs[k]['holds'] = False
+                    r.setdefault('offset', {})['pair'] = 'the linked partner neither carves nor has an OFFSET: both PUSH'
+        rep['pair_status'] = {recs[k][2]['target']: st[k] for k in group}
     for key, (side, comp, rep) in recs.items():
         ev = side.ev
         A = rep['_frame3']
