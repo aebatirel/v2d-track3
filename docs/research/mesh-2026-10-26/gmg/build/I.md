@@ -762,6 +762,15 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   (S fails on ep11)**; P44: c = 1.0 mm (base in the pocket, the stated alternative); P48 holds only trivially.
   Summary `<scratch>/fi5pub/out/summary_ep11.json`, figure `build/I/png/fi5pub_ep11.png` (side view now: every 2 mm
   collider sample and the SHELL bodies).
+- 20:26 [M] ep13 blue_cup default pieces = route 4 at 6 mm (25 boxes; lathe 8 sectors / 65 rings, 0 gaps, over the cap
+  with the handle hulls, CoACD fails the gate). **ep12 plastic_dish_rack = route 4 at 6 mm (45 boxes, 108 cells)**: lathe
+  rejected (14.6 sigma), CoACD 0.02 82 hulls (287 s) with 75 over 0.3 cm3 (max 6.61 cm3, keep-out 114 cm3 in all) ->
+  6 mm boxes. **P46 falsified** (route 4 needed for the rack). ep12 pair running.
+- 20:29 [M] **ep12 done (20:28:13, `done 3510.5 s`): out of scope, PUSH stands, default delivered.** Both components fail
+  the kept sweep gate (cup <- rack 6 voxels, INSERTION [142, 180], sweep share 0.0; rack <- cup 9 voxels, SEAT, 0.0), so
+  no receiver, no carve, no S, no rigid shift. Collider overlap along the track max 0.232 cm3. Delivered defaults: blue
+  cup 29 boxes = 11.88 cm3 for a 230.0 cm3 SHELL body (5.2 %), rack 45 boxes = 23.33 cm3 for 357.2 cm3 (6.5 %).
+  Figure `build/I/png/fi5pub_ep12.png`.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
