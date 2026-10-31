@@ -62,6 +62,13 @@
 # may also use a PERC prefix perc2e10v (the reference stages, REF_ONLY=1, on the V4p base reference refs/perc2e10vmck/ep10
 # that the job built on this box) or perc2e10vs<seed> (its per-seed copies), RUN local; folders refs/perc2e10v*_glock*,
 # results/perc2e10v*_glock_public. Unset, every PERC decision is exactly as before.
+# FC_DR_PATCH=1 (2026-10-31, pack 9b D arm, ops/jobs/mass_eval.sh ARM=dr; docs/research/work/pack9b-20261031/PREREG.md;
+# opt-in, off by default): ops/box/patch_flashchord_dr.py is applied right after fc_patches (start-state randomisation
+# of sampled training resets; the patched tree is inert unless FC_DR_RESET is set in a process; the caller passes
+# FC_DR_RESET / FC_DR_SEED to the training process only, through TRAIN_ENV). With it, SPLIT=eval also accepts a PERC
+# prefix drs<seed> (the D arm's byte copy of a packed eval reference, tools/dr_arm.py) with RUN local and
+# REQUIRE_REUSE=1 only; folders refs/drs<seed>_glock*, runs/drs<seed>_glock, results/drs<seed>_glock_public. Unset,
+# nothing of this runs.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -91,6 +98,10 @@ pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_
 python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 [ -n "${PIECES:-}" ] && log "glock_public: collision pieces from $PIECES ($(ls $PIECES | tr '\n' ' '))" >> $J
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
+if [ "${FC_DR_PATCH:-0}" = 1 ]; then                             # (2026-10-31, pack 9b D arm) after fc_patches; inert unless
+  python $REPO_DIR/ops/box/patch_flashchord_dr.py $FC >> $J 2>&1 || { log "FlashCHORD DR patch FAILED" >> $J; exit 1; }   # FC_DR_RESET is set
+  log "patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 $(md5sum < $REPO_DIR/ops/box/patch_flashchord_dr.py | cut -c1-12)); training env [${TRAIN_ENV:-}]" >> $J
+fi
 case " $PAIRS" in *:new:*) ensure_gdino $J ;; esac              # perception runs here: detection grounding term (2026-10-24:
                                                                  # missing on the 24 Oct eval boxes, so that term was off)
 curr_thresholds() { python -c "s = $1; t = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]; print('[' + ','.join(str(int(x * s)) for x in t) + ']')"; }
@@ -167,9 +178,14 @@ one() {
   local ep=$1 run=$2 base=$3 perc=${4:-perc2} pre="" tg=ep$1 O=$O R0 P0 hive G RD N RUN LG ck reuse=0 ev=ENV_EP$1
   if [ "$perc" != perc2 ]; then                                    # e.g. the oracle twins: folders apart, public only;
     if [ "$SPLIT" = eval ]; then                                   # an eval episode's mass-arm copy (mass_eval.sh): reuse only
+      if [[ $perc =~ ^drs[0-9]+$ ]]; then                          # (2026-10-31) the D arm's byte copy: FC_DR_PATCH only
+        { [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ] && [ "${FC_DR_PATCH:-0}" = 1 ]; } \
+          || { log "glock ep$ep: PERC $perc (D arm) with SPLIT=eval needs RUN local, REQUIRE_REUSE=1 and FC_DR_PATCH=1" >> $J; return 1; }
+      else
       { [[ $perc =~ ^mass[0-9]+s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
         || { [ "${EVAL_LOCAL_REF:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10v(s[0-9]+)?$ ]] && [ "$run" = local ]; } \
         || { log "glock ep$ep: PERC $perc with SPLIT=eval needs a mass<A>s<seed> prefix, RUN local and REQUIRE_REUSE=1" >> $J; return 1; }
+      fi
     else
     [ "$SPLIT" = public ] && [ "$run" = local ] || { log "glock ep$ep: PERC $perc needs SPLIT=public and RUN local" >> $J; return 1; }
     fi

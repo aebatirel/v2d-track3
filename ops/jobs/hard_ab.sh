@@ -34,6 +34,10 @@
 #   here and in pipeline_ep.sh's evaluations (main + checkpoint sweep): timeout -k 60, each evaluation folder gets
 #   eval_rc.txt (124 cut, 137 killed after the 60 s grace). NO_PUSH=1: no store push at the end (the calling job pushes
 #   once). Both off by default.
+# FC_DR_PATCH=1 (2026-10-31, pack 9b D arm, ops/jobs/mass_eval.sh ARM=dr; docs/research/work/pack9b-20261031/PREREG.md;
+#   opt-in, off by default): ops/box/patch_flashchord_dr.py is applied after this script's other FlashCHORD patches
+#   (start-state randomisation of sampled training resets; inert unless FC_DR_RESET is set in a process). The caller
+#   sets FC_DR_RESET / FC_DR_SEED / FC_DR_SKIP_IMMEDIATE per episode in ENV_EP<N>.
 # Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
 # Each rollout's summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -73,6 +77,10 @@ fi
 if [ "${FC_VOC_INERTIA:-0}" != 0 ]; then   # VOC with the full inertia tensor (ops/box/patch_flashchord_voc.py); opt-in here
   python $REPO_DIR/ops/box/patch_flashchord_voc.py $FC >> $J 2>&1 || { log "FlashCHORD VOC patch FAILED" >> $J; exit 1; }
   export FC_VOC_INERTIA; log "patched FlashCHORD (VOC with the full inertia tensor)" >> $J
+fi
+if [ "${FC_DR_PATCH:-0}" = 1 ]; then   # (2026-10-31, pack 9b D arm) after the patches above; per-episode env in ENV_EP<N>
+  python $REPO_DIR/ops/box/patch_flashchord_dr.py $FC >> $J 2>&1 || { log "FlashCHORD DR patch FAILED" >> $J; exit 1; }
+  log "patched FlashCHORD (start-state randomisation of sampled training resets, ops/box/patch_flashchord_dr.py md5 $(md5sum < $REPO_DIR/ops/box/patch_flashchord_dr.py | cut -c1-12)); per-episode env: $(env | grep '^ENV_EP[0-9]*=' | sort | tr '\n' ' ')" >> $J
 fi
 for run in $(for x in $PAIRS; do echo $x | cut -d: -f2; done | sort -u | grep -v '^local$'); do
   bash $OPS/store.sh pull-run $run >> $J 2>&1 || { log "pull-run $run FAILED" >> $J; exit 1; }
