@@ -1,0 +1,687 @@
+{
+ "rule": "PREREG C0b 9 (c): threshold = 3 x max over the reference candidates of each statistic, measured against the C0b public pick (C0 frame_check.py, no registration); axis not checked when the pick's PCA eigenvalue is within a ratio >= 0.8 of a neighbour",
+ "factor": 3.0,
+ "objects": {
+  "white_pot": {
+   "pick": "pot/ep43/fit",
+   "n_references": 28,
+   "excludes": true,
+   "pick_pca_sd_mm": [
+    81.99874437328614,
+    53.39305489782682,
+    33.90990877412944
+   ],
+   "eigen_ratios_neighbour": [
+    0.42398953298002146,
+    0.40335152489476245
+   ],
+   "axis_checked": [
+    true,
+    true,
+    true
+   ],
+   "ref_max_centroid_offset_mm": 36.18525142256214,
+   "ref_max_surf_symmetric_median_mm": 4.306122879207284,
+   "ref_max_axis_angle_deg": [
+    14.04983824765536,
+    8.8579883828214,
+    12.054936248320889
+   ],
+   "max_centroid_offset_mm": 108.55575426768641,
+   "max_surf_symmetric_median_mm": 12.918368637621853,
+   "max_axis_angle_deg": [
+    42.14951474296608,
+    26.5739651484642,
+    36.16480874496267
+   ],
+   "references": [
+    {
+     "label": "pot/ep2/fit",
+     "centroid_offset_mm": 7.389524003987449,
+     "surf_symmetric_median_mm": 2.3444449526298703,
+     "axis_angle_deg": [
+      9.214255024933173,
+      8.850699570479037,
+      2.7790322485529018
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep2/nomk",
+     "centroid_offset_mm": 11.87370984950183,
+     "surf_symmetric_median_mm": 2.3041205083335194,
+     "axis_angle_deg": [
+      4.857462059040404,
+      1.9159051403718026,
+      4.550671587373283
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep2/nostem",
+     "centroid_offset_mm": 4.919463144235612,
+     "surf_symmetric_median_mm": 2.329853665608419,
+     "axis_angle_deg": [
+      8.730296719655593,
+      8.15503270809279,
+      3.2480231168424814
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep2/thick",
+     "centroid_offset_mm": 5.666170468976947,
+     "surf_symmetric_median_mm": 2.756199452565957,
+     "axis_angle_deg": [
+      9.454579870172974,
+      8.8579883828214,
+      3.637220654385567
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep26/fit",
+     "centroid_offset_mm": 12.402974669623516,
+     "surf_symmetric_median_mm": 1.6022870207057518,
+     "axis_angle_deg": [
+      5.41775201850515,
+      3.4407381708428324,
+      4.367985748693299
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep26/nomk",
+     "centroid_offset_mm": 13.208426693552365,
+     "surf_symmetric_median_mm": 1.4801378689567233,
+     "axis_angle_deg": [
+      6.467579658769381,
+      2.3785111136959234,
+      6.294848811601311
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep26/nostem",
+     "centroid_offset_mm": 12.551015019503888,
+     "surf_symmetric_median_mm": 1.607679473313346,
+     "axis_angle_deg": [
+      5.530994362627697,
+      3.501688159168176,
+      4.4642803788767385
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep26/thick",
+     "centroid_offset_mm": 12.290259284688696,
+     "surf_symmetric_median_mm": 2.999836124243393,
+     "axis_angle_deg": [
+      5.531299083232525,
+      3.0813180940026683,
+      5.059278287053724
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep27/fit",
+     "centroid_offset_mm": 36.108669675198236,
+     "surf_symmetric_median_mm": 3.1273698394162497,
+     "axis_angle_deg": [
+      11.203025782836297,
+      7.208551364389748,
+      10.614247713424573
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep27/nomk",
+     "centroid_offset_mm": 27.7420079196217,
+     "surf_symmetric_median_mm": 3.348090355468143,
+     "axis_angle_deg": [
+      14.04983824765536,
+      7.35912358892554,
+      12.054936248320889
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep27/nostem",
+     "centroid_offset_mm": 36.02909599358081,
+     "surf_symmetric_median_mm": 3.131400359724652,
+     "axis_angle_deg": [
+      11.193727626135205,
+      7.244559173612378,
+      10.630877432840288
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep27/thick",
+     "centroid_offset_mm": 36.18525142256214,
+     "surf_symmetric_median_mm": 3.0401201716175557,
+     "axis_angle_deg": [
+      11.344169386598244,
+      7.338773011464066,
+      10.693803957235774
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep41/fit",
+     "centroid_offset_mm": 5.120593186005912,
+     "surf_symmetric_median_mm": 1.3675122695303048,
+     "axis_angle_deg": [
+      4.749262237983671,
+      4.483159811582203,
+      3.121184671343567
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep41/nomk",
+     "centroid_offset_mm": 7.401062358024559,
+     "surf_symmetric_median_mm": 1.3095760643364471,
+     "axis_angle_deg": [
+      5.190507896973241,
+      4.241321313614004,
+      4.084299710629557
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep41/nostem",
+     "centroid_offset_mm": 5.120593186005912,
+     "surf_symmetric_median_mm": 1.3675122695303048,
+     "axis_angle_deg": [
+      4.749262237983671,
+      4.483159811582203,
+      3.121184671343567
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep41/thick",
+     "centroid_offset_mm": 5.274218147832778,
+     "surf_symmetric_median_mm": 2.6123033450668665,
+     "axis_angle_deg": [
+      4.897782415398678,
+      4.583496053541175,
+      3.855470049689109
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep42/fit",
+     "centroid_offset_mm": 7.534573924615537,
+     "surf_symmetric_median_mm": 1.2448553700257903,
+     "axis_angle_deg": [
+      2.2346535606183218,
+      2.1994679924971448,
+      0.6396659257945541
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep42/nomk",
+     "centroid_offset_mm": 10.869084724647108,
+     "surf_symmetric_median_mm": 1.1487984361560724,
+     "axis_angle_deg": [
+      4.510052917795544,
+      3.5894639670421715,
+      2.7823784337721618
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep42/nostem",
+     "centroid_offset_mm": 7.534573924615537,
+     "surf_symmetric_median_mm": 1.2448553700257903,
+     "axis_angle_deg": [
+      2.2346535606183218,
+      2.1994679924971448,
+      0.6396659257945541
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep42/thick",
+     "centroid_offset_mm": 5.817510264039527,
+     "surf_symmetric_median_mm": 2.9953188021948436,
+     "axis_angle_deg": [
+      2.6903632459672364,
+      2.387748921693926,
+      1.2531140245079102
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep44/fit",
+     "centroid_offset_mm": 21.30922476352854,
+     "surf_symmetric_median_mm": 2.478649569569194,
+     "axis_angle_deg": [
+      7.743436904132149,
+      5.998066095225189,
+      5.49644064958224
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep44/nomk",
+     "centroid_offset_mm": 12.293154260967363,
+     "surf_symmetric_median_mm": 2.270562785860789,
+     "axis_angle_deg": [
+      6.8468930051905,
+      3.116360615276595,
+      6.472164933266995
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep44/nostem",
+     "centroid_offset_mm": 5.045690523020588,
+     "surf_symmetric_median_mm": 2.3470674393286397,
+     "axis_angle_deg": [
+      7.453768965128373,
+      5.2816313615575305,
+      6.040822875566327
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep44/thick",
+     "centroid_offset_mm": 13.980533181737693,
+     "surf_symmetric_median_mm": 2.285968601811251,
+     "axis_angle_deg": [
+      6.362356425282009,
+      3.393898493909835,
+      5.676784353201132
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep45/fit",
+     "centroid_offset_mm": 17.346790945089356,
+     "surf_symmetric_median_mm": 2.3861477371745825,
+     "axis_angle_deg": [
+      5.624618746557072,
+      5.98183483721444,
+      2.3723665935210443
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep45/nomk",
+     "centroid_offset_mm": 15.51055378902132,
+     "surf_symmetric_median_mm": 2.251419476684144,
+     "axis_angle_deg": [
+      4.193493246359152,
+      3.131940220833863,
+      2.8258274535018346
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep45/nostem",
+     "centroid_offset_mm": 17.346790945089356,
+     "surf_symmetric_median_mm": 2.3861477371745825,
+     "axis_angle_deg": [
+      5.624618746557072,
+      5.98183483721444,
+      2.3723665935210443
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    },
+    {
+     "label": "pot/ep45/thick",
+     "centroid_offset_mm": 13.626031846240119,
+     "surf_symmetric_median_mm": 4.306122879207284,
+     "axis_angle_deg": [
+      5.27691491763812,
+      5.962605360868185,
+      2.7756438284317397
+     ],
+     "pick_pca_sd_mm": [
+      81.99874437328614,
+      53.39305489782682,
+      33.90990877412944
+     ]
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "pick": "rack/ep13/full",
+   "n_references": 8,
+   "excludes": true,
+   "pick_pca_sd_mm": [
+    138.2478621235729,
+    71.73886162310106,
+    34.2658497864865
+   ],
+   "eigen_ratios_neighbour": [
+    0.269272568899477,
+    0.22814662663137755
+   ],
+   "axis_checked": [
+    true,
+    true,
+    true
+   ],
+   "ref_max_centroid_offset_mm": 6512.4504906456605,
+   "ref_max_surf_symmetric_median_mm": 277.0181169060247,
+   "ref_max_axis_angle_deg": [
+    81.77000043033216,
+    77.87321749086756,
+    89.69143476778218
+   ],
+   "max_centroid_offset_mm": 19537.35147193698,
+   "max_surf_symmetric_median_mm": 831.0543507180741,
+   "max_axis_angle_deg": [
+    245.31000129099647,
+    233.6196524726027,
+    269.07430430334654
+   ],
+   "references": [
+    {
+     "label": "rack/ep12/full",
+     "centroid_offset_mm": 6492.195887999325,
+     "surf_symmetric_median_mm": 46.93272335420228,
+     "axis_angle_deg": [
+      81.77000043033216,
+      77.87321749086756,
+      89.69143476778218
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep12/nomk",
+     "centroid_offset_mm": 6512.4504906456605,
+     "surf_symmetric_median_mm": 185.16201490706686,
+     "axis_angle_deg": [
+      81.76241160868634,
+      77.79100596146395,
+      89.66990412606907
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep26/full",
+     "centroid_offset_mm": 2843.2111205872484,
+     "surf_symmetric_median_mm": 39.54683731621496,
+     "axis_angle_deg": [
+      12.425283776177409,
+      11.794147019221331,
+      6.684995894834848
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep26/nomk",
+     "centroid_offset_mm": 2869.8339087635513,
+     "surf_symmetric_median_mm": 49.90964278354016,
+     "axis_angle_deg": [
+      12.454853088653444,
+      11.733709805056371,
+      6.63986936388261
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep27/full",
+     "centroid_offset_mm": 86.01564188712902,
+     "surf_symmetric_median_mm": 23.21804006902073,
+     "axis_angle_deg": [
+      20.48349523884526,
+      14.24591316388047,
+      19.262473556842835
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep27/nomk",
+     "centroid_offset_mm": 96.20276159091601,
+     "surf_symmetric_median_mm": 27.190028631333234,
+     "axis_angle_deg": [
+      21.02643818730399,
+      16.795644916977466,
+      21.14053611721093
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep31/full",
+     "centroid_offset_mm": 2507.4417018449158,
+     "surf_symmetric_median_mm": 46.76235646210961,
+     "axis_angle_deg": [
+      56.25522169765131,
+      74.91032695025258,
+      87.43260980456552
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    },
+    {
+     "label": "rack/ep31/nomk",
+     "centroid_offset_mm": 2512.352357952365,
+     "surf_symmetric_median_mm": 277.0181169060247,
+     "axis_angle_deg": [
+      56.30671153644883,
+      74.99253117204822,
+      87.4729571961498
+     ],
+     "pick_pca_sd_mm": [
+      138.2478621235729,
+      71.73886162310106,
+      34.2658497864865
+     ]
+    }
+   ]
+  },
+  "blue_cup": {
+   "pick": "cup/ep21/g1",
+   "n_references": 2,
+   "excludes": true,
+   "pick_pca_sd_mm": [
+    83.76253465948375,
+    43.793425584166215,
+    25.96192294213387
+   ],
+   "eigen_ratios_neighbour": [
+    0.2733494560540284,
+    0.35144379326955855
+   ],
+   "axis_checked": [
+    true,
+    true,
+    true
+   ],
+   "ref_max_centroid_offset_mm": 29.727708005927568,
+   "ref_max_surf_symmetric_median_mm": 1.8032182680610367,
+   "ref_max_axis_angle_deg": [
+    76.16193599135462,
+    87.05649926931522,
+    81.66210390645017
+   ],
+   "max_centroid_offset_mm": 89.1831240177827,
+   "max_surf_symmetric_median_mm": 5.40965480418311,
+   "max_axis_angle_deg": [
+    228.48580797406387,
+    261.1694978079457,
+    244.9863117193505
+   ],
+   "references": [
+    {
+     "label": "cup/ep22/g0",
+     "centroid_offset_mm": 29.727708005927568,
+     "surf_symmetric_median_mm": 1.6791150001804795,
+     "axis_angle_deg": [
+      76.16193599135462,
+      87.05649926931522,
+      81.66210390645017
+     ],
+     "pick_pca_sd_mm": [
+      83.76253465948375,
+      43.793425584166215,
+      25.96192294213387
+     ]
+    },
+    {
+     "label": "cup/ep22/g1",
+     "centroid_offset_mm": 5.962567446384707,
+     "surf_symmetric_median_mm": 1.8032182680610367,
+     "axis_angle_deg": [
+      7.030266368292516,
+      5.653627568505352,
+      5.063984940008254
+     ],
+     "pick_pca_sd_mm": [
+      83.76253465948375,
+      43.793425584166215,
+      25.96192294213387
+     ]
+    }
+   ]
+  },
+  "beige_cup": {
+   "pick": "beige/ep11/g1",
+   "n_references": 0,
+   "excludes": false,
+   "note": "no reference candidate from another public episode: frame check reported only"
+  }
+ }
+}

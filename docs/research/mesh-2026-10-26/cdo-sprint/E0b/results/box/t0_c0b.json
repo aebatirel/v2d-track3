@@ -1,0 +1,566 @@
+{
+ "rule": "PREREG A.1",
+ "objects": {
+  "beige_cup": {
+   "episodes": [
+    11
+   ],
+   "n": 59,
+   "median_m": 0.0015
+  },
+  "blue_cup": {
+   "episodes": [
+    11,
+    12,
+    13,
+    21,
+    22
+   ],
+   "n": 23796,
+   "median_m": 0.0016584684806464885
+  },
+  "mini_dust_pan": {
+   "episodes": [
+    18,
+    39,
+    40
+   ],
+   "n": 5390,
+   "median_m": 0.007220309058639065
+  },
+  "mini_sweeper": {
+   "episodes": [
+    18,
+    31
+   ],
+   "n": 40,
+   "median_m": 0.003571250959176566
+  },
+  "plastic_dish_rack": {
+   "episodes": [
+    27
+   ],
+   "n": 3,
+   "median_m": 0.003973148630545806
+  },
+  "water_pitcher": {
+   "episodes": [
+    21,
+    22
+   ],
+   "n": 878,
+   "median_m": 0.006914396453865964
+  },
+  "white_pot": {
+   "episodes": [
+    0,
+    2,
+    26,
+    27,
+    41,
+    42,
+    43,
+    45
+   ],
+   "n": 290913,
+   "median_m": 0.004559400604354957
+  },
+  "wooden_piece_1": {
+   "episodes": [
+    24
+   ],
+   "n": 22564,
+   "median_m": 0.006567402634353509
+  },
+  "wooden_piece_2": {
+   "episodes": [
+    23,
+    24
+   ],
+   "n": 8532,
+   "median_m": 0.005731159455279411
+  }
+ },
+ "objects_with_200": [
+  "blue_cup",
+  "mini_dust_pan",
+  "water_pitcher",
+  "white_pot",
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "fittable": true,
+ "t0_raw_m": 0.004559400604354957,
+ "clamp_m": [
+  0.0015,
+  0.008
+ ],
+ "t0_m": 0.004559400604354957,
+ "origin": "fitted:own",
+ "per_episode": [
+  {
+   "obj": "white_pot",
+   "ep": 0,
+   "file": "/content/results/c0b/pts/B/ep0_white_pot.npz",
+   "n": 35,
+   "median_m": 0.0015,
+   "info": {
+    "points": 4200645,
+    "samples": 77063,
+    "measured": 35,
+    "median_mm": 1.5
+   },
+   "sec": 75.3
+  },
+  {
+   "obj": "white_pot_lid",
+   "ep": 0,
+   "file": "/content/results/c0b/pts/B/ep0_white_pot_lid.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 36442,
+    "samples": 2752,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 1.7
+  },
+  {
+   "obj": "white_pot",
+   "ep": 2,
+   "file": "/content/results/c0b/pts/B/ep2_white_pot.npz",
+   "n": 253,
+   "median_m": 0.0015,
+   "info": {
+    "points": 2872941,
+    "samples": 63328,
+    "measured": 253,
+    "median_mm": 1.5
+   },
+   "sec": 56.4
+  },
+  {
+   "obj": "white_pot_lid",
+   "ep": 2,
+   "file": "/content/results/c0b/pts/B/ep2_white_pot_lid.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 1545311,
+    "samples": 18020,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 32.1
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 11,
+   "file": "/content/results/c0b/pts/B/ep11_blue_cup.npz",
+   "n": 158,
+   "median_m": 0.0015,
+   "info": {
+    "points": 235972,
+    "samples": 15100,
+    "measured": 158,
+    "median_mm": 1.5
+   },
+   "sec": 5.6
+  },
+  {
+   "obj": "beige_cup",
+   "ep": 11,
+   "file": "/content/results/c0b/pts/B/ep11_beige_cup.npz",
+   "n": 59,
+   "median_m": 0.0015,
+   "info": {
+    "points": 511462,
+    "samples": 16356,
+    "measured": 59,
+    "median_mm": 1.5
+   },
+   "sec": 20.0
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 12,
+   "file": "/content/results/c0b/pts/B/ep12_blue_cup.npz",
+   "n": 13978,
+   "median_m": 0.0035162608520068867,
+   "info": {
+    "points": 1888264,
+    "samples": 50315,
+    "measured": 13978,
+    "median_mm": 3.5163
+   },
+   "sec": 48.8
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 12,
+   "file": "/content/results/c0b/pts/B/ep12_plastic_dish_rack.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 2572496,
+    "samples": 55762,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 50.5
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 13,
+   "file": "/content/results/c0b/pts/B/ep13_blue_cup.npz",
+   "n": 9235,
+   "median_m": 0.004316043579132076,
+   "info": {
+    "points": 824043,
+    "samples": 28471,
+    "measured": 9235,
+    "median_mm": 4.316
+   },
+   "sec": 16.5
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 13,
+   "file": "/content/results/c0b/pts/B/ep13_plastic_dish_rack.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 2291202,
+    "samples": 54489,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 70.4
+  },
+  {
+   "obj": "mini_sweeper",
+   "ep": 18,
+   "file": "/content/results/c0b/pts/B/ep18_mini_sweeper.npz",
+   "n": 27,
+   "median_m": 0.0015,
+   "info": {
+    "points": 2015824,
+    "samples": 30392,
+    "measured": 27,
+    "median_mm": 1.5
+   },
+   "sec": 41.7
+  },
+  {
+   "obj": "mini_dust_pan",
+   "ep": 18,
+   "file": "/content/results/c0b/pts/B/ep18_mini_dust_pan.npz",
+   "n": 97,
+   "median_m": 0.009185553335553601,
+   "info": {
+    "points": 4051846,
+    "samples": 40951,
+    "measured": 97,
+    "median_mm": 9.1856
+   },
+   "sec": 51.2
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 21,
+   "file": "/content/results/c0b/pts/B/ep21_blue_cup.npz",
+   "n": 321,
+   "median_m": 0.0016584684806464885,
+   "info": {
+    "points": 1426212,
+    "samples": 27598,
+    "measured": 321,
+    "median_mm": 1.6585
+   },
+   "sec": 26.1
+  },
+  {
+   "obj": "water_pitcher",
+   "ep": 21,
+   "file": "/content/results/c0b/pts/B/ep21_water_pitcher.npz",
+   "n": 877,
+   "median_m": 0.005992183600238428,
+   "info": {
+    "points": 4253726,
+    "samples": 103950,
+    "measured": 877,
+    "median_mm": 5.9922
+   },
+   "sec": 75.3
+  },
+  {
+   "obj": "blue_cup",
+   "ep": 22,
+   "file": "/content/results/c0b/pts/B/ep22_blue_cup.npz",
+   "n": 104,
+   "median_m": 0.0015,
+   "info": {
+    "points": 1222465,
+    "samples": 25785,
+    "measured": 104,
+    "median_mm": 1.5
+   },
+   "sec": 19.1
+  },
+  {
+   "obj": "water_pitcher",
+   "ep": 22,
+   "file": "/content/results/c0b/pts/B/ep22_water_pitcher.npz",
+   "n": 1,
+   "median_m": 0.007836609307493499,
+   "info": {
+    "points": 4625229,
+    "samples": 94129,
+    "measured": 1,
+    "median_mm": 7.8366
+   },
+   "sec": 72.2
+  },
+  {
+   "obj": "wooden_piece_1",
+   "ep": 23,
+   "file": "/content/results/c0b/pts/B/ep23_wooden_piece_1.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 104155,
+    "samples": 8195,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 3.4
+  },
+  {
+   "obj": "wooden_piece_2",
+   "ep": 23,
+   "file": "/content/results/c0b/pts/B/ep23_wooden_piece_2.npz",
+   "n": 8528,
+   "median_m": 0.009962318910558822,
+   "info": {
+    "points": 1001230,
+    "samples": 32344,
+    "measured": 8528,
+    "median_mm": 9.9623
+   },
+   "sec": 27.5
+  },
+  {
+   "obj": "wooden_piece_1",
+   "ep": 24,
+   "file": "/content/results/c0b/pts/B/ep24_wooden_piece_1.npz",
+   "n": 22564,
+   "median_m": 0.006567402634353509,
+   "info": {
+    "points": 3464294,
+    "samples": 50565,
+    "measured": 22564,
+    "median_mm": 6.5674
+   },
+   "sec": 68.0
+  },
+  {
+   "obj": "wooden_piece_2",
+   "ep": 24,
+   "file": "/content/results/c0b/pts/B/ep24_wooden_piece_2.npz",
+   "n": 4,
+   "median_m": 0.0015,
+   "info": {
+    "points": 2281875,
+    "samples": 23387,
+    "measured": 4,
+    "median_mm": 1.5
+   },
+   "sec": 27.3
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 26,
+   "file": "/content/results/c0b/pts/B/ep26_plastic_dish_rack.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 1043222,
+    "samples": 60198,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 52.2
+  },
+  {
+   "obj": "white_pot",
+   "ep": 26,
+   "file": "/content/results/c0b/pts/B/ep26_white_pot.npz",
+   "n": 42524,
+   "median_m": 0.0048091790501697705,
+   "info": {
+    "points": 1697754,
+    "samples": 84249,
+    "measured": 42524,
+    "median_mm": 4.8092
+   },
+   "sec": 74.6
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 27,
+   "file": "/content/results/c0b/pts/B/ep27_plastic_dish_rack.npz",
+   "n": 3,
+   "median_m": 0.003973148630545806,
+   "info": {
+    "points": 6113045,
+    "samples": 105053,
+    "measured": 3,
+    "median_mm": 3.9731
+   },
+   "sec": 79.7
+  },
+  {
+   "obj": "white_pot",
+   "ep": 27,
+   "file": "/content/results/c0b/pts/B/ep27_white_pot.npz",
+   "n": 71882,
+   "median_m": 0.004307593659294047,
+   "info": {
+    "points": 5070209,
+    "samples": 141389,
+    "measured": 71882,
+    "median_mm": 4.3076
+   },
+   "sec": 78.7
+  },
+  {
+   "obj": "mini_sweeper",
+   "ep": 31,
+   "file": "/content/results/c0b/pts/B/ep31_mini_sweeper.npz",
+   "n": 13,
+   "median_m": 0.0056425019183531325,
+   "info": {
+    "points": 616026,
+    "samples": 12839,
+    "measured": 13,
+    "median_mm": 5.6425
+   },
+   "sec": 15.2
+  },
+  {
+   "obj": "plastic_dish_rack",
+   "ep": 31,
+   "file": "/content/results/c0b/pts/B/ep31_plastic_dish_rack.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 5820763,
+    "samples": 85798,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 77.9
+  },
+  {
+   "obj": "mini_dust_pan",
+   "ep": 39,
+   "file": "/content/results/c0b/pts/B/ep39_mini_dust_pan.npz",
+   "n": 1284,
+   "median_m": 0.007220309058639065,
+   "info": {
+    "points": 1985060,
+    "samples": 24148,
+    "measured": 1284,
+    "median_mm": 7.2203
+   },
+   "sec": 36.6
+  },
+  {
+   "obj": "mini_dust_pan",
+   "ep": 40,
+   "file": "/content/results/c0b/pts/B/ep40_mini_dust_pan.npz",
+   "n": 4009,
+   "median_m": 0.0031291801980738625,
+   "info": {
+    "points": 1451222,
+    "samples": 24967,
+    "measured": 4009,
+    "median_mm": 3.1292
+   },
+   "sec": 40.1
+  },
+  {
+   "obj": "white_pot",
+   "ep": 41,
+   "file": "/content/results/c0b/pts/B/ep41_white_pot.npz",
+   "n": 32263,
+   "median_m": 0.004512522078077558,
+   "info": {
+    "points": 4596118,
+    "samples": 114667,
+    "measured": 32263,
+    "median_mm": 4.5125
+   },
+   "sec": 67.6
+  },
+  {
+   "obj": "white_pot",
+   "ep": 42,
+   "file": "/content/results/c0b/pts/B/ep42_white_pot.npz",
+   "n": 21526,
+   "median_m": 0.004606279130632354,
+   "info": {
+    "points": 3313419,
+    "samples": 104950,
+    "measured": 21526,
+    "median_mm": 4.6063
+   },
+   "sec": 75.2
+  },
+  {
+   "obj": "white_pot",
+   "ep": 43,
+   "file": "/content/results/c0b/pts/B/ep43_white_pot.npz",
+   "n": 82932,
+   "median_m": 0.004912966138303573,
+   "info": {
+    "points": 4460971,
+    "samples": 140347,
+    "measured": 82932,
+    "median_mm": 4.913
+   },
+   "sec": 80.7
+  },
+  {
+   "obj": "white_pot",
+   "ep": 44,
+   "file": "/content/results/c0b/pts/B/ep44_white_pot.npz",
+   "n": 0,
+   "median_m": null,
+   "info": {
+    "points": 3889442,
+    "samples": 76502,
+    "measured": 0,
+    "median_mm": null
+   },
+   "sec": 73.2
+  },
+  {
+   "obj": "white_pot",
+   "ep": 45,
+   "file": "/content/results/c0b/pts/B/ep45_white_pot.npz",
+   "n": 39498,
+   "median_m": 0.007497955226906723,
+   "info": {
+    "points": 3686304,
+    "samples": 132871,
+    "measured": 39498,
+    "median_mm": 7.498
+   },
+   "sec": 63.9
+  }
+ ],
+ "statistic": "t0_C0b (PREREG C0b 3.3 step 3: A.1 on the C0b observed points of the public object-episodes)",
+ "n_rows": 33
+}

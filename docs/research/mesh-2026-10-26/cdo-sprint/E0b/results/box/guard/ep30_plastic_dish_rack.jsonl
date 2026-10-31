@@ -1,0 +1,3 @@
+{"file": "/content/results/e0b/pts/A/ep30_plastic_dish_rack.npz", "half_m": 0.3, "kept": 6336221, "near_face": 53414, "share": 0.00843, "max_abs_mm": 300.0, "rebuild": true}
+{"file": "/content/results/e0b/pts/A/ep30_plastic_dish_rack.npz", "half_m": 0.45, "kept": 6359261, "near_face": 0, "share": 0.0, "max_abs_mm": 302.0, "rebuild": false}
+{"file": "/content/results/e0b/pts/B/ep30_plastic_dish_rack.npz", "half_m": 0.3, "kept": 5287869, "near_face": 2023, "share": 0.000383, "max_abs_mm": 300.0, "rebuild": false}

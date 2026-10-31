@@ -1,0 +1,41 @@
+{"c0b": {"t_wall": 0.0045594, "s0_min": 0.0045594, "markers_dir": "/content/results/e0b/markers", "cup_lean": true, "joint_tol": 1.25}}
+Traceback (most recent call last):
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_rack.py", line 1059, in <module>
+    main()
+    ~~~~^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_rack.py", line 1055, in main
+    run(a.obs_dir, a.out, a.episodes.split(','))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_rack.py", line 943, in run
+    lips[ep] = lip_above_cut(P, C)[0]
+               ~~~~~~~~~~~~~^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_rack.py", line 867, in lip_above_cut
+    return rim_height(x, y, h, xh + 0.015), fr['up']
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_rack.py", line 242, in rim_height
+    return float(np.median(lip_tops(x, y, h, x0)[:, 2]))
+                           ~~~~~~~~^^^^^^^^^^^^^
+  File "/content/v2d-track3/docs/research/mesh-2026-10-26/scripts/prim_rack.py", line 226, in lip_tops
+    ylo, yhi = np.percentile(y[t], [1, 99]); xhi = np.percentile(x[t], 99)
+               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/content/e0bw/venv/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py", line 4259, in percentile
+    return _quantile_unchecked(
+        a, q, axis, out, overwrite_input, method, keepdims, weights, weak_q)
+  File "/content/e0bw/venv/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py", line 4523, in _quantile_unchecked
+    return _ureduce(a,
+                    func=_quantile_ureduce_func,
+    ...<6 lines>...
+                    method=method,
+                    weak_q=weak_q)
+  File "/content/e0bw/venv/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py", line 3893, in _ureduce
+    r = func(a, **kwargs)
+  File "/content/e0bw/venv/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py", line 4682, in _quantile_ureduce_func
+    result = _quantile(arr,
+                       quantiles=q,
+    ...<3 lines>...
+                       weights=wgt,
+                       weak_q=weak_q)
+  File "/content/e0bw/venv/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py", line 4806, in _quantile
+    slices_having_nans = np.isnan(arr[-1, ...])
+                                  ~~~^^^^^^^^^
+IndexError: index -1 is out of bounds for axis 0 with size 0
