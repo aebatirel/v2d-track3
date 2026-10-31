@@ -440,3 +440,75 @@ entries changes a pre-registered test, threshold or constant, so none goes in PR
     commit at its start in the manifest (`extra.start_commit`), because the manifest takes HEAD when it is written and
     another agent committed B7 files to the shared checkout during that run (manifest commit f286e79 = fd7b357 plus
     `structure.py` and `build/B7.md`, neither imported by B2). No scan or eval number involved; no PREREG value changed.
+
+## B7 (2026-10-31, structure.py and markers.py; synthetic tests and dev run)
+
+No scan or eval output was read or scored for any entry below (zero scan scorings; the dev run reads obs_all, tracks,
+calib, roster and the det depth/K keys only). Known to this build before any choice: the frozen SPEC/PREREG text,
+including SPEC section 10's scan-catalogue marker numbers (about 7 mm, about 5 balls) and the obs-first design-probe
+summaries (disclosed in `build/B7.md`). No pre-registered test, threshold or constant is changed, so nothing goes in
+PREREG F.
+
+74. **"Recovered within 1 sigma" (SPEC 24, B7 pass condition) is measured as a position error over the object**, so an
+    angle error counts with its lever arm: lathe = distance from the true axis to the estimated axis at the two ends
+    of the object's span along the true axis; mirror = max over the true mesh's vertices of the difference of the
+    signed distances to the estimated and the true plane; plate = |thickness error| and the mid plane by the mirror
+    measure. sigma = the 1 mm range noise of the synthetic renderer. The spec gives no measure; an angle-only or
+    offset-only test would ignore the other half of the error. Chosen before the test ran (the trial numbers of the
+    30 Oct notes were known: 0.15-0.2 deg, 0.5 mm).
+75. **Mirror search and evaluation** (structure.py; sym_probe logic): the probe's 400-normal search with the pairing
+    offset is followed by a Nelder-Mead refinement of (two tilts, offset) on the same ranking score (synthetic
+    finding, 30 Oct notes: on boxy shapes the pairing offset stalls 4 mm off). A symmetry's shares are taken over the
+    points it MOVES by more than the 3 sigma noise band ("observed" = lands in a voxel with any evidence, "free" =
+    lands in a FREE voxel, residual = 80 % trimmed mean nearest-neighbour distance of the moved points that land in
+    observed voxels), and a symmetry that moves fewer than half the points is not accepted (it holds the surface,
+    e.g. a plate's face plane, and completes nothing). PREREG A.6's three acceptance thresholds are applied as
+    written; the moved-share condition only removes degenerate planes.
+76. **Axis, repeats, planes.** Axis: two candidates, lathe_obs.fit_axis + parts.refine_axis_rot and parts.axis_search
+    (rim window E1 of A.6b), the lower rotational consistency wins; rotational consistency = lathe_obs.rot_consistency
+    with its defaults (45/90/135 deg, 80 % trimmed mean) on a fixed 20,000-point subsample of the 2 mm-downsampled
+    owned points (the SPEC names this function; no other definition was tried). lathe_mad_sigma (sym_probe's
+    partial-view lathe score) is reported only. Repeats: C2-C6 about the axis candidate and the three principal axes,
+    accepted with the mirror rule (entry 75). Planes: parts.segment_planes with the 3 sigma band and the plate_set
+    defaults; plane pair = two opposed, parallel (< 30 deg) faces with the material between them, footprint overlap
+    >= 0.5 and a gap in the slab window 3-25 mm (A.6, informed).
+77. **A flat plate passes the lathe test.** PREREG A.6 accepts a lathe on rotational consistency <= 3 sigma alone; the
+    synthetic 10 mm slab scores 2.80 sigma (rotating a plate about its normal keeps most points on the plate; the 80 %
+    trim drops the corners), so it is accepted as a lathe. Not changed (a pre-registered threshold). The share of
+    rotated points landing in FREE voxels (`rot_free_viol`, 39 % for the slab, 3 % for the cup) and lathe_mad_sigma
+    (13.5 vs 0.2) are reported as diagnostics. [H] Downstream, a lathe candidate of a plate fills free space and is
+    charged by fsv_far and E (B8/B5); falsified if a dev plate's SYM lathe candidate is picked at B8/B10.
+78. **Marker detector details the SPEC leaves open** (markers.py): one RANDOM point per 1.5 mm voxel (the probe's first
+    point favours early frames when points are stored frame by frame); votes computed batched (same fits as
+    parts.sphere_fit_free; tested); the vote residual limit max(1.5 sigma, 0.12 r) uses the bundle's sigma (A.2) in
+    place of the probe's own split floor; "fit residual" = the median |d - r| over the fit inliers (the value
+    parts.sphere_fit_free / sphere_fit_ransac return); observed cap = 2 a with cos a = 1 - 2 x cap spread; convex =
+    share of the points within the 3 sigma band that face their camera (parts.fit_ball's RANSAC rule, >= 0.8); frames
+    and "both halves" (frames < T/2 and >= T/2) are counted on the raw owned points within the band that face their
+    camera; overlap suppression keeps the ball with more votes; consensus = the plain median of the accepted radii
+    pooled over the episode's objects (SPEC section 10; ball_nms.py's support-weighted median and its +-25 % filter
+    are not applied: the SPEC text names neither); the second pass bounds the votes and the robust fit to consensus
+    +-10 % and adds only balls that overlap no kept ball; posts are decided in attach() against the candidate mesh
+    (the stem rule needs the host surface). Frozen in `gmg/marker_settings.json` (3f7f661) before the dev run.
+79. **Known limitation: the frozen detector accepts sharp corners and edges as balls** [M, synthetic]. On a 100 x 60 x
+    30 mm box with four 6.5 mm balls (1 mm noise) the four balls are found within 0.35 mm, but 9 corner/edge fits
+    (r 8.9-12.5 mm, median residual 1.0-1.4 mm <= 1.5 sigma, cap 155-210 deg, convex 0.89-0.94) pass every frozen
+    test, and the radius consensus lands on them (10.9 mm). Two GT-free statistics separate the 171 pass-1
+    candidates completely on this scene: the median angle between local PCA normals and the fitted radial direction
+    (balls 11-19 deg, corners 29-67 deg; the normal-compatibility test of Schnabel, Wahl and Klein 2007, "Efficient
+    RANSAC for point-cloud shape detection", which parts.sphere_fit_ransac cites but does not implement) and the
+    ratio of points just outside the sphere to points on it (0.02-0.28 vs 0.21-4.3, overlapping). **Not adopted**:
+    a new acceptance test changes the pre-registered detector, and the scan-catalogue marker numbers are known to
+    this build (SPEC section 10), so the amendment rule does not allow it here. Both statistics are computed and
+    reported for every candidate and ball as diagnostics only (`normal_dev_deg`, `outside_ratio`), so the owner can
+    decide. Pre-registered guard: B.4 (bimodal radius in >= 2 episodes turns balls off; the corner radii differ from
+    the balls'). Risk [H]: real sharp corners (boards, dust pan, rack) repeat across episodes, so B.4's repeatability
+    can pass and make corner "balls" trusted; falsified if the dev run finds no ball with normal_dev_deg > 25 deg on
+    the boards, dust pan and rack.
+80. **Speed only** (markers.py, no change of result): voting chunks sorted by neighbourhood size; the batched
+    Gauss-Newton stops once every fit converged (|step| < 1e-10 m).
+81. **Dev run** (`tools/b7_dev.py`): the 10 anchors of PREREG C.2 are the first episode of each list (track sanity is
+    B4 and not built, so no anchor is replaced); dev bundles from obs_all (tier DEV, never scored); structure for the
+    anchor object only; markers for every tracked object of the episode (the consensus is pooled over them); ep40 has
+    one tracked object (mini_dust_pan). Notes edited while the run ran make the end manifest `code_dirty` (B7 notes and
+    this file only); `b7_summary.json` records HEAD and the dirty files at the start.
