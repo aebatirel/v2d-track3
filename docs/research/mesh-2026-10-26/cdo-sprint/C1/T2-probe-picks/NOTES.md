@@ -1,0 +1,2 @@
+# T2 probe picks NOTES (append-only, UTC). SCR = /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad; bulk in SCR/cdo_c1/t2/
+- 2026-10-31T16:01:20Z created dir; fresh start (no prior NOTES). Read T1 RESULTS/PREREG (T1 beige lathe already WIN 0.248/0.255 + ep11 AUC PASS), diag-2026-10-30 README + sam-placement/common.py (best_sim3 = 24 PCA starts, symmetric trimmed ICP, keep 0.9).

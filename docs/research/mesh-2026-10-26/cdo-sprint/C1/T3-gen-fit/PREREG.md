@@ -48,8 +48,9 @@ pot. `obs_all` used library_v3 as ROI box and as the "others" mask (provenance c
    surface samples whose face faces the camera that saw the point (n . unit(cam - p) >= 0.2), within a 6 mm cap,
    best 80 % kept, pure point-to-plane (beta 0). Working mesh: the placed mesh decimated to 12 000 faces.
 3. **Repair and pack**: trimesh weld / degenerate and duplicate faces / winding / small holes, then quadric decimation
-   to <= 4 000 faces (fast_simplification, the kit packer's simplifier), then the kit's `budget_mesh(4096, 4096)`
-   check. pymeshlab hole closing is not available here (its meshing plugin needs libOpenGL), so meshes that are not
+   to a 4 000-face target (fast_simplification, the kit packer's simplifier; the small-hole filling after it can add
+   a few faces, e.g. blue cup 4 002), then the kit's `budget_mesh(4096, 4096)` check: every mesh is <= 4 096 faces
+   and vertices, so the packer does not simplify it again. pymeshlab hole closing is not available here (its meshing plugin needs libOpenGL), so meshes that are not
    watertight after the 12k decimation stay open; the kit never checks watertightness (C0 notes).
 
 How the settings were chosen (GT-free, dev object = white_pot ep41, chosen because it has the most eval pairs of the
@@ -65,15 +66,28 @@ change, face flips, self-intersections). Full log: `NOTES.md`, `dev_diag/`.
 - v5 (the one extra variant allowed by the rule written before it ran): cap 6 mm, trim 0.8, beta 0, alphas
   100/50/25. Stage choice by the rule written before v5 ran (argmin held-out tmean90 subject to flips <= 0.5 %,
   self-intersections <= input + 1 % of faces, |area change| <= 10 %, free-space violation <= input + 0.01; ties
-  within 0.02 mm -> stiffer): **STAGE_RESULT**.
+  within 0.02 mm -> stiffer): held-out tmean90 input 2.14, alpha 100 2.02, alpha 50 2.05, alpha 25 2.09 mm; all constraints hold -> stage 0 (alpha 100).
 
-Frozen: `cfg_frozen.json` = v5 settings with `alphas` = **FROZEN_ALPHAS** (sha256 **CFG_SHA**).
+Frozen: `cfg_frozen.json` = v5 settings with `alphas` = [100.0] (one stage, up to 5 iterations) (sha256 e380755a2e55abf2aae5898b535ca678c1f42d1387fdaf3e3a2beb8372ebf5a3).
 
 ## 4. Meshes to score (one scoring each, never re-scored)
 Built by `bash scripts/run_fits.sh cfg_frozen.json <scratch>/cdo_c1/t3/build` (two streams of five objects). Every
 fitted mesh, its sha256 and its GT-free diagnostics: `build_manifest.json`; scoring manifest `score_manifest.tsv`.
 
-**MESH_TABLE**
+| Object | Fitted mesh (this folder) | sha256 | faces / watertight / bodies | GT-free [M]: held-out tmean90 mm in -> fit; train; free-space frac; area x; RMS-radius x; self-int faces in -> fit |
+|---|---|---|---|---|
+| white_pot | `meshes/white_pot_t3fit.glb` | `ff2c26624b24ffc8c0ee2813b52d171ead7f74f5f8414164253f726ce2236df1` | 4000 / True / 4 | 2.14 -> 2.02; 2.82 -> 2.50; 0.076 -> 0.072; 1.026; 1.0047; 12 -> 50 |
+| white_pot_lid | `meshes/white_pot_lid_t3fit.glb` | `1e647af6a78c2e30cf26b939e859e8f6857700e59a671ec781d13d8f094ae6ec` | 4000 / False / 1 | 2.23 -> 2.31; 2.48 -> 2.58; 0.111 -> 0.103; 1.002; 1.0005; 16 -> 16 |
+| blue_cup | `meshes/blue_cup_t3fit.glb` | `84a103978bb340b2ccdb702cd93848b5a393b4af7626473941a8d067b297759c` | 4002 / False / 1 | 2.44 -> 2.14; 2.42 -> 2.14; 0.057 -> 0.051; 1.031; 1.0113; 1026 -> 1026 |
+| water_pitcher | `meshes/water_pitcher_t3fit.glb` | `6425bfa3a9f1f81bbac5e4d69e162dec3456446447f43886cc959245abc14c21` | 4000 / False / 7 | 2.97 -> 2.79; 3.44 -> 3.22; 0.136 -> 0.117; 1.004; 0.9997; 50 -> 47 |
+| wooden_piece_1 | `meshes/wooden_piece_1_t3fit.glb` | `e1f55980b0929caffceb9ae739982a18c6b2992a2f741b627b83134d1539f8f0` | 4000 / False / 1 | 1.78 -> 1.75; 1.70 -> 1.45; 0.239 -> 0.212; 0.970; 0.9899; 131 -> 131 |
+| wooden_piece_2 | `meshes/wooden_piece_2_t3fit.glb` | `4ce208a309c5ca2597c7a5216090d9abb8338a036835bad61b8dfa152d4c2075` | 4000 / True / 6 | 2.23 -> 2.10; 2.44 -> 2.30; 0.210 -> 0.159; 0.963; 0.9902; 73 -> 154 |
+| plastic_dish_rack | `meshes/plastic_dish_rack_t3fit.glb` | `5c4e045d2dc3d6fb039a36568ef2d1d2c4fb17ef2d614adce1487ad6916e1778` | 4000 / False / 24 | 3.11 -> 2.79; 3.20 -> 2.88; 0.510 -> 0.449; 0.988; 1.0027; 12 -> 389 |
+| mini_sweeper | `meshes/mini_sweeper_t3fit.glb` | `89cdc1b779fe193244a63c7aae21d6546fb82bb762f33d0204ceb991966d7848` | 3999 / False / 5 | 2.63 -> 2.47; 3.00 -> 2.84; 0.227 -> 0.166; 0.938; 0.9800; 100 -> 355 |
+| mini_dust_pan | `meshes/mini_dust_pan_t3fit.glb` | `64a48c0ff0da33c4b4498a201b702ef9322c0ef2b285c55ff7ac3709826b3be1` | 3999 / False / 13 | 1.88 -> 1.70; 2.01 -> 1.80; 0.087 -> 0.086; 1.096; 1.0194; 49 -> 527 |
+| beige_cup | `meshes/beige_cup_t3fit.glb` | `566d9cbda9714693b239ecb77d4d5fbad57116a14aad3f65aa10c2d77d314188` | 4000 / False / 4 | 1.65 -> 1.81; 1.90 -> 1.82; 0.080 -> 0.083; 1.013; 1.0048; 31 -> 137 |
+
+The held-out residual got worse on the lid (2.23 -> 2.31) and the beige cup (1.65 -> 1.81) and better on the other 8. These GT-free changes are recorded now as predictions; they do not select or drop any mesh (all 10 are scored).
 
 ## 5. Scoring and the CD-O GATE
 Command (one process, after this file is pushed):

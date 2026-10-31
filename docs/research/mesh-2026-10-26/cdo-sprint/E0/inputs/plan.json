@@ -1,0 +1,478 @@
+{
+ "objects": [
+  "white_pot",
+  "white_pot_lid",
+  "plastic_dish_rack",
+  "blue_cup"
+ ],
+ "pairs": [
+  {
+   "eval_episode": 1,
+   "slot": 0,
+   "object": "white_pot"
+  },
+  {
+   "eval_episode": 1,
+   "slot": 1,
+   "object": "white_pot_lid"
+  },
+  {
+   "eval_episode": 3,
+   "slot": 0,
+   "object": "white_pot"
+  },
+  {
+   "eval_episode": 5,
+   "slot": 0,
+   "object": "white_pot"
+  },
+  {
+   "eval_episode": 6,
+   "slot": 0,
+   "object": "white_pot"
+  },
+  {
+   "eval_episode": 8,
+   "slot": 1,
+   "object": "white_pot"
+  },
+  {
+   "eval_episode": 10,
+   "slot": 0,
+   "object": "blue_cup"
+  },
+  {
+   "eval_episode": 14,
+   "slot": 0,
+   "object": "blue_cup"
+  },
+  {
+   "eval_episode": 14,
+   "slot": 1,
+   "object": "plastic_dish_rack"
+  },
+  {
+   "eval_episode": 15,
+   "slot": 0,
+   "object": "plastic_dish_rack"
+  },
+  {
+   "eval_episode": 16,
+   "slot": 0,
+   "object": "plastic_dish_rack"
+  },
+  {
+   "eval_episode": 20,
+   "slot": 0,
+   "object": "blue_cup"
+  },
+  {
+   "eval_episode": 28,
+   "slot": 0,
+   "object": "plastic_dish_rack"
+  },
+  {
+   "eval_episode": 28,
+   "slot": 1,
+   "object": "white_pot"
+  },
+  {
+   "eval_episode": 30,
+   "slot": 1,
+   "object": "plastic_dish_rack"
+  },
+  {
+   "eval_episode": 32,
+   "slot": 0,
+   "object": "blue_cup"
+  },
+  {
+   "eval_episode": 33,
+   "slot": 0,
+   "object": "blue_cup"
+  }
+ ],
+ "n_pairs": 17,
+ "episodes_by_object": {
+  "white_pot": [
+   1,
+   3,
+   5,
+   6,
+   8,
+   28
+  ],
+  "white_pot_lid": [
+   1
+  ],
+  "plastic_dish_rack": [
+   14,
+   15,
+   16,
+   28,
+   30
+  ],
+  "blue_cup": [
+   10,
+   14,
+   20,
+   32,
+   33
+  ]
+ },
+ "episodes": {
+  "1": {
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "track_bodies": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "result_objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "frames_poses": 335,
+   "frames_result": 335,
+   "depth_bytes": 2144000128,
+   "depth_frames": 335,
+   "depth_covers_poses": true,
+   "poses_sha256": "4c6917db187faeeb2c17669f1ba91039495be685735f7751b8b9c70bfa7d1262",
+   "result_sha256": "666bf74f8f092136777d560100029de89eadf4265e08dc80c718f31f7e501b95",
+   "video_a": "ep1_a.mp4",
+   "video_bytes": 37903304,
+   "video_sha256": "88c2b59924c65ba60b8457b565d03d0458a46484a711bbb2583ec3ceaa4406ae",
+   "roster_matches_track": true
+  },
+  "3": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "frames_poses": 313,
+   "frames_result": 313,
+   "depth_bytes": 2003200128,
+   "depth_frames": 313,
+   "depth_covers_poses": true,
+   "poses_sha256": "f3bae3e3a2d1546e0e99ba0953deb7d996b87c1544e2c179312f8f89733af0ba",
+   "result_sha256": "48be58b531c83f91ab1b9810c5045e2fac995f034c371196d35f24705870db20",
+   "video_a": "ep3_a.mp4",
+   "video_bytes": 35191176,
+   "video_sha256": "0b0c6fc26a93fbe8a01a77c22d2a88b3acc562bb01beb2c7b795d4a69c7276e1",
+   "roster_matches_track": true
+  },
+  "5": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "frames_poses": 288,
+   "frames_result": 288,
+   "depth_bytes": 1843200128,
+   "depth_frames": 288,
+   "depth_covers_poses": true,
+   "poses_sha256": "62372509880883f789bde78d6b07c2f7f3a9ff0aed98ed7b5997de083ff21e6e",
+   "result_sha256": "520a77ba1931e13e3f8771f63fe24bfbf4debf94abd4bd0f68a1b42ed24c2514",
+   "video_a": "ep5_a.mp4",
+   "video_bytes": 34361968,
+   "video_sha256": "c2b0fae7458637e7d76b606d52c068b987a19b8cb8a4bed954d1fde9f87bbf8b",
+   "roster_matches_track": true
+  },
+  "6": {
+   "objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "white_pot",
+    "wooden_spoon"
+   ],
+   "frames_poses": 243,
+   "frames_result": 243,
+   "depth_bytes": 1555200128,
+   "depth_frames": 243,
+   "depth_covers_poses": true,
+   "poses_sha256": "916dad7fdd88b259bbc0eeaa9e5c28dedec0c3c4a6c069a1cbaf8b20e5eb7dd6",
+   "result_sha256": "719ad02eaa76df5d25206caec6a50983a3d4fb8cfcb010c7b0049d75bb49f128",
+   "video_a": "ep6_a.mp4",
+   "video_bytes": 29092915,
+   "video_sha256": "d40b0a8197aa03f671348faafc791cc19a297f2449c61a01882bc798327efa0a",
+   "roster_matches_track": true
+  },
+  "8": {
+   "objects": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "track_bodies": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "result_objects": [
+    "beige_cup",
+    "white_pot"
+   ],
+   "frames_poses": 219,
+   "frames_result": 219,
+   "depth_bytes": 1401600128,
+   "depth_frames": 219,
+   "depth_covers_poses": true,
+   "poses_sha256": "a3290382529ece7935834c3a917f3c1568f14cf792e3816ea4889d4b298c5a5c",
+   "result_sha256": "43a77c773dd69a74f10d556cfe1e18b83fa7c284039f3ff2d6045a7e56d1a522",
+   "video_a": "ep8_a.mp4",
+   "video_bytes": 24195085,
+   "video_sha256": "7de7900f452cbdcdadc3ccb15c38b2d6353ed539c702ab179e9dc89b91d7399a",
+   "roster_matches_track": true
+  },
+  "10": {
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "track_bodies": [
+    "beige_cup",
+    "blue_cup"
+   ],
+   "result_objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "frames_poses": 161,
+   "frames_result": 161,
+   "depth_bytes": 1030400128,
+   "depth_frames": 161,
+   "depth_covers_poses": true,
+   "poses_sha256": "e7a0662078d0b74c45452e9c28f2af36d00b46a0dd4847c36e7c3ac1e6245cb9",
+   "result_sha256": "6f6f990e299c39db6031fe5befe6fea975898efc8679b14043780b30cad85366",
+   "video_a": "ep10_a.mp4",
+   "video_bytes": 18722280,
+   "video_sha256": "babc1428bdbf54dfda4bafe859df109e3bdc3278de19634cfcd6053c4fa15c40",
+   "roster_matches_track": true
+  },
+  "14": {
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "track_bodies": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "result_objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "frames_poses": 158,
+   "frames_result": 158,
+   "depth_bytes": 1011200128,
+   "depth_frames": 158,
+   "depth_covers_poses": true,
+   "poses_sha256": "1eecb46cf15920c5134cf5f1e6a8e6b2e83e23670838fdf9fb9799af3e2160c0",
+   "result_sha256": "4b4243bc615831e759a992fda4536ef860a15d267cfb0fabc4a11f29005c81ab",
+   "video_a": "ep14_a.mp4",
+   "video_bytes": 18090752,
+   "video_sha256": "ae005a010cf61fbe71e0e71dca1a4ee1c34a40f9536626fc8d95426e1f649195",
+   "roster_matches_track": true
+  },
+  "15": {
+   "objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "frames_poses": 166,
+   "frames_result": 166,
+   "depth_bytes": 1062400128,
+   "depth_frames": 166,
+   "depth_covers_poses": true,
+   "poses_sha256": "7c846aeadeb0dece121de6aec059d9aea2d2f54edcdb0bf4a337dfba905313d3",
+   "result_sha256": "2ac115aa21fdcf8638928358e7c7cfb3053353b09e5470ed7240223a479603f3",
+   "video_a": "ep15_a.mp4",
+   "video_bytes": 17304258,
+   "video_sha256": "613432b991fd51f9bca00fef3960e6d52480a0d21a1742d5c55f1cc34e191df9",
+   "roster_matches_track": true
+  },
+  "16": {
+   "objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "plastic_dish_rack",
+    "wooden_spoon"
+   ],
+   "frames_poses": 173,
+   "frames_result": 173,
+   "depth_bytes": 1107200128,
+   "depth_frames": 173,
+   "depth_covers_poses": true,
+   "poses_sha256": "fe96119919e09b369e304c641ad6469c7e5bba9395785384a1560c61d7f8a5bd",
+   "result_sha256": "dd39fbaf0cfcaf4c96215512b73fee0c6af42abee19e9e142a4fded4642980b1",
+   "video_a": "ep16_a.mp4",
+   "video_bytes": 19803621,
+   "video_sha256": "04fdcd63651092b5f5273ddffe62f41827a12a866695870ecbadd9bcc6e573d0",
+   "roster_matches_track": true
+  },
+  "20": {
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "track_bodies": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "result_objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "frames_poses": 202,
+   "frames_result": 202,
+   "depth_bytes": 1292800128,
+   "depth_frames": 202,
+   "depth_covers_poses": true,
+   "poses_sha256": "13ead8947f1c6d98081a4c6d4f572c8ffee62717312f3e70afff5ea6fae4981a",
+   "result_sha256": "eb352a3f07016dc2983636d7bd4456538ef1ecace9de2019e0c9372f13191be4",
+   "video_a": "ep20_a.mp4",
+   "video_bytes": 21131083,
+   "video_sha256": "48ed17cd35187777a95e773b558e9bb3372c43930e1e9c759be8459a41915116",
+   "roster_matches_track": true
+  },
+  "28": {
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "track_bodies": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "result_objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "frames_poses": 220,
+   "frames_result": 220,
+   "depth_bytes": 1408000128,
+   "depth_frames": 220,
+   "depth_covers_poses": true,
+   "poses_sha256": "5251eb70f6461d3c6dc0c2102620e3c36cdbbca382f231523b3d574429c4735f",
+   "result_sha256": "d61c7be1eb6df54d92dbca0187fadd7bacdaadbddf9c1b41f861aa0a5d91d551",
+   "video_a": "ep28_a.mp4",
+   "video_bytes": 20599462,
+   "video_sha256": "0d572057fae96d4bbda723987aad5e86111b1c8c07953b5f5df6b4ec1767343f",
+   "roster_matches_track": true
+  },
+  "30": {
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "track_bodies": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "result_objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "frames_poses": 263,
+   "frames_result": 263,
+   "depth_bytes": 1683200128,
+   "depth_frames": 263,
+   "depth_covers_poses": true,
+   "poses_sha256": "1ba722ca2d6d1b82ed0c7d049411cbfe456d9be137549cc73fa715a040f4852c",
+   "result_sha256": "62f24f4e68c9f9e86b3dc6bc6dc47626e7ab541ff68e470e742e04e0ec3f3315",
+   "video_a": "ep30_a.mp4",
+   "video_bytes": 23692187,
+   "video_sha256": "dd1a14be4f6be07656bec533b5f9561edc07ddbbc0b94e9d5e79b653f25576c3",
+   "roster_matches_track": true
+  },
+  "32": {
+   "objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "frames_poses": 259,
+   "frames_result": 259,
+   "depth_bytes": 1657600128,
+   "depth_frames": 259,
+   "depth_covers_poses": true,
+   "poses_sha256": "38416e84a72d3ed54703174b267ca66e835e2f7c314e6906c93c14d0da208dd3",
+   "result_sha256": "b5a27485594130eef8faadd594574e00358738f9da42e6bea1654eaf9e496c31",
+   "video_a": "ep32_a.mp4",
+   "video_bytes": 28253380,
+   "video_sha256": "dad802a215d11bca6a524f0b9c2ada132b625ce5983e101d391c78d9aa0c4b8a",
+   "roster_matches_track": true
+  },
+  "33": {
+   "objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "track_bodies": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "result_objects": [
+    "blue_cup",
+    "wooden_spoon"
+   ],
+   "frames_poses": 348,
+   "frames_result": 348,
+   "depth_bytes": 2227200128,
+   "depth_frames": 348,
+   "depth_covers_poses": true,
+   "poses_sha256": "cf8c24d5d5a80f889b6cbbb20df4beeaa96fda5ff55f5bae19dfc7e4199137c5",
+   "result_sha256": "f0fe042eb652f6903b14fd010b329295d85a11f5055ef4849b414fae43eee215",
+   "video_a": "ep33_a.mp4",
+   "video_bytes": 37691681,
+   "video_sha256": "c33dfd0b7109171be3b3535429aecf5d84abaa83766e5a815f066fb4a65dd8af",
+   "roster_matches_track": true
+  }
+ },
+ "calib_sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+ "tracks_source": "scratchpad data/eval/ep<N>/{poses.npz,result.json} = HF store runs/20261025-evperc-4f596df/results/evalperc/ep<N>/ (the pack poses; eval_perc_check.sh, LIB=meshes/library_v3)",
+ "depth_source": "HF store cache/depth/eval/ep<N>/depths_fs0.5.npy (run mesh-20261029-evdepth-92f3d86)"
+}
