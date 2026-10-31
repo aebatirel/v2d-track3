@@ -781,6 +781,15 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   static runs [2, 10], [170, 180], S f176 (assembled): 126.8 mm, dz 60.4 mm, lateral 111.4 mm, tilt 99.9 deg (the cup
   falls out of the rack); f6: 8.2 mm (pushed up 6.1 mm), tilt 3.8 deg. Both fail S (4 mm, 5 deg): the delivered
   default copies of ep11 and ep12 do not hold the objects.
+- 20:35 [M] **ep2 done (20:33:54, `done 3663.6 s`, code 407a18e): out of scope, default delivered.** Lid: lathe accepted
+  (1.86 sigma) but `lathe_profile_complex` (3 radial intervals in a bin), CoACD 82 hulls, 16 over 0.3 cm3 (max 1.30
+  cm3) -> 6 mm boxes (25 boxes, 78 cells). Pot as at 20:07. Delivered colliders: pot 42 boxes = 23.54 cm3 for a 369.9 cm3
+  SHELL body (6.4 %), lid 25 boxes = 16.85 cm3 for 180.7 cm3 (9.3 %). Collider overlap along the track max 0.16 cm3.
+  Gates: pot <- lid 3 voxels and lid <- pot 4 voxels, SEAT [48, 58], sweep share 0.0 (both) -> no receiver, no carve;
+  the F-I1..F-I3 decisions stand (pot IGNORE, lid PUSH). **P45 falsified** (the pot took the lathe route and then route
+  4; the lid did not take the lathe route; S not run in the rule). Delivered-default S (diagnostic): receiver pot
+  (containment 0.951 vs 0.0), 43 hands-off static frames, **f24: lid drops 80.6 mm (displacement 84.8 mm, tilt 12.5
+  deg); f328: 87.1 mm (88.0 mm, 6.2 deg)**: the lid falls into the pot. Figure `build/I/png/fi5pub_ep2.png`.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
