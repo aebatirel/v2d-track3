@@ -58,6 +58,10 @@
 # an eval episode's stored reference) is also allowed with SPLIT=eval, RUN local and REQUIRE_REUSE=1 only (no perception
 # and no reference stage runs on an eval episode); CURR_SCALE in ENV_EP<N> scales that episode's curriculum only (before,
 # CURR_SCALE was read once for the whole job, so ENV_EP<N>="CURR_SCALE=..." had no effect on training).
+# EVAL_LOCAL_REF=1 (2026-10-31, eval-10 V4p retrain, ops/jobs/ev10_v4p.sh; opt-in, off by default): with SPLIT=eval, eval 10
+# may also use a PERC prefix perc2e10v (the reference stages, REF_ONLY=1, on the V4p base reference refs/perc2e10vmck/ep10
+# that the job built on this box) or perc2e10vs<seed> (its per-seed copies), RUN local; folders refs/perc2e10v*_glock*,
+# results/perc2e10v*_glock_public. Unset, every PERC decision is exactly as before.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -163,7 +167,8 @@ one() {
   local ep=$1 run=$2 base=$3 perc=${4:-perc2} pre="" tg=ep$1 O=$O R0 P0 hive G RD N RUN LG ck reuse=0 ev=ENV_EP$1
   if [ "$perc" != perc2 ]; then                                    # e.g. the oracle twins: folders apart, public only;
     if [ "$SPLIT" = eval ]; then                                   # an eval episode's mass-arm copy (mass_eval.sh): reuse only
-      [[ $perc =~ ^mass[0-9]+s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ] \
+      { [[ $perc =~ ^mass[0-9]+s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ]; } \
+        || { [ "${EVAL_LOCAL_REF:-0}" = 1 ] && [ "$ep" = 10 ] && [[ $perc =~ ^perc2e10v(s[0-9]+)?$ ]] && [ "$run" = local ]; } \
         || { log "glock ep$ep: PERC $perc with SPLIT=eval needs a mass<A>s<seed> prefix, RUN local and REQUIRE_REUSE=1" >> $J; return 1; }
     else
     [ "$SPLIT" = public ] && [ "$run" = local ] || { log "glock ep$ep: PERC $perc needs SPLIT=public and RUN local" >> $J; return 1; }

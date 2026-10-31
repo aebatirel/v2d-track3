@@ -16,6 +16,8 @@
 *.npz
 # ep11 gate B0 comparison files only (2 x ~45 KB; docs/research/work/perception-sprint-20261031/ep11gate/BUILD.md)
 !/docs/research/work/perception-sprint-20261031/ep11gate/expect/*.npz
+# eval-10 V4p retrain B0 comparison file only (1 x ~62 KB; docs/research/work/perception-sprint-20261031/ev10retrain/BUILD.md)
+!/docs/research/work/perception-sprint-20261031/ev10retrain/expect/*.npz
 *.mp4
 *.safetensors
 !/policies/**/*.safetensors

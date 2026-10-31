@@ -1,0 +1,263 @@
+{
+ "ok": true,
+ "n": 20,
+ "passed": 20,
+ "cases": [
+  {
+   "case": "pass",
+   "expect": "SWAP-ELIGIBLE",
+   "got": "SWAP-ELIGIBLE",
+   "failing_clauses": [],
+   "expected_failing": [],
+   "why": [
+    "every clause holds on both references"
+   ],
+   "ok": true
+  },
+  {
+   "case": "fail_a_V_disagree",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "a_V"
+   ],
+   "expected_failing": [
+    "a_V"
+   ],
+   "why": [
+    "fails: ['a_V']",
+    "both-reference disagreement on clause(s) ['a'] (holds on ['P'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "fail_a_P",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "a_P"
+   ],
+   "expected_failing": [
+    "a_P"
+   ],
+   "why": [
+    "fails: ['a_P']",
+    "both-reference disagreement on clause(s) ['a'] (holds on ['V'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "fail_b_P",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "b_P"
+   ],
+   "expected_failing": [
+    "b_P"
+   ],
+   "why": [
+    "fails: ['b_P']",
+    "both-reference disagreement on clause(s) ['b'] (holds on ['V'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "fail_c_V",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "c_V"
+   ],
+   "expected_failing": [
+    "c_V"
+   ],
+   "why": [
+    "fails: ['c_V']",
+    "both-reference disagreement on clause(s) ['c'] (holds on ['P'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "fail_s_P",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "s_P"
+   ],
+   "expected_failing": [
+    "s_P"
+   ],
+   "why": [
+    "fails: ['s_P']",
+    "both-reference disagreement on clause(s) ['s'] (holds on ['V'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "fail_s_V",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "s_V"
+   ],
+   "expected_failing": [
+    "s_V"
+   ],
+   "why": [
+    "fails: ['s_V']",
+    "both-reference disagreement on clause(s) ['s'] (holds on ['P'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "ties_hold",
+   "expect": "SWAP-ELIGIBLE",
+   "got": "SWAP-ELIGIBLE",
+   "failing_clauses": [],
+   "expected_failing": [],
+   "why": [
+    "every clause holds on both references"
+   ],
+   "ok": true
+  },
+  {
+   "case": "incomplete_conf_9",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "9 scored confirmation draws (< 10)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "incomplete_packed_9",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "9 scored packed-policy draws (< 10)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "incomplete_no_old",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "old packed draw scored 0 times (1 needed)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "incomplete_no_seed",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "no chosen seed (seeds without 8 scored training-box rollouts: ['43'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "incomplete_draw1_unscored",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "9 scored confirmation draws (< 10)",
+    "confirmation draw 1 not scored"
+   ],
+   "ok": true
+  },
+  {
+   "case": "incomplete_packed_missing",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "0 scored packed-policy draws (< 10)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "invalid_verify",
+   "expect": "INVALID",
+   "got": "INVALID",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "verify failed: ['config diff']"
+   ],
+   "ok": true
+  },
+  {
+   "case": "invalid_verify_missing",
+   "expect": "INVALID",
+   "got": "INVALID",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "verify failed: ['verify.json missing']"
+   ],
+   "ok": true
+  },
+  {
+   "case": "nan_unscored_incomplete",
+   "expect": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "9 scored confirmation draws (< 10)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "nan_slipped_invalid",
+   "expect": "INVALID",
+   "got": "INVALID",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "clause a_P is not finite (nan, 0.45549999999999996)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "eleven_draws",
+   "expect": "SWAP-ELIGIBLE",
+   "got": "SWAP-ELIGIBLE",
+   "failing_clauses": [],
+   "expected_failing": [],
+   "why": [
+    "every clause holds on both references"
+   ],
+   "ok": true
+  },
+  {
+   "case": "new_at_floor",
+   "expect": "NO-SWAP",
+   "got": "NO-SWAP",
+   "failing_clauses": [
+    "a_P",
+    "a_V",
+    "c_V"
+   ],
+   "expected_failing": null,
+   "why": [
+    "fails: ['a_V', 'c_V', 'a_P']",
+    "both-reference disagreement on clause(s) ['c'] (holds on ['P'])"
+   ],
+   "ok": true
+  }
+ ]
+}
