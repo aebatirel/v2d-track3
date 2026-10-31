@@ -1165,3 +1165,50 @@ reference differing. The owner asked whether this was explored enough. It was no
 - Seed 42: .553 (sd .099) vs .620 (sd .015). Seed 43: .616 vs .624.
 - Training nondeterminism alone moves a cell by up to 0.07 AUC and its draw sd by 6×. Single-cell differences of this
   size are noise.
+
+## 10. Arm V: the policy sees object velocity (pre-registered 31 Oct 2026 ~21:20 UTC, written before any V result)
+
+**Why.**
+- keen-heisenberg relayed the owner's request (21:01 UTC) for a slip-aware, physics-informed robot side. The owner
+  approved this test here at ~21:10 UTC ("Go"; ≈ $7–9 [E]).
+- Measured on rollouts (keen-heisenberg's drawdiv, not mine): object drift or drops of 1–14 cm are decided at contact
+  moments.
+- The actor never sees object velocity; the critic does (`env.critic_context.object_body_velocity: true`). A slip
+  shows first as object velocity relative to the hand.
+- [H-v]: giving the actor the objects' world-frame linear and angular velocity lets it react to slip onset, which
+  raises AUC and/or cuts the draw spread.
+
+**Design.**
+- **Arm V:** the screen's C recipe exactly (§8; same job code path, STEPS 70,004,736, early stopping, checkpoint
+  chosen by sim_vs_ref, NREP 10 official evaluations scored with registered AUC vs mocap, scoring only), plus one
+  training override: `observation.object_body_velocity.enabled=true`.
+  - The override is stored in the checkpoint's resolved config, and the evaluator rebuilds the actor's observation from
+    it. CPU check at the evaluator pin: `v_obs/README.md` (+12 observation values for 2 objects; the rest identical).
+- **Episodes, seeds, references:** ep2/12/18/24 × seeds 42/43 on the physS1 references (the same files and md5s as C;
+  arm S gave no signal).
+- **Control:** the screen's C cells (non-concurrent, as for S).
+- **C/ep24-s43 re-score.** That cell has 4 of 10 draws (§8.1). The V seed-43 box makes 10 fresh official evaluations
+  of its stored chosen checkpoint (`policy_20000768`, store run 20261031-rscr43-865dfbb, `best/policy.safetensors`),
+  before any training starts on that box.
+  - The selection is not redone. The fresh 10-draw record replaces the 4-draw one in the merge; the old draws are
+    reported alongside.
+  - This also completes §8's K and D verdicts, which are computed with their own fixed rules.
+- **Box plan:** 2 boxes, ARMS=V SEEDS=42 | ARMS=V SEEDS=43 (the second with the re-score).
+
+**Rule (fixed).**
+- Δ(ep) = seed-mean AUC(V) − seed-mean AUC(C).
+- **"signal"** iff mean Δ over the 4 episodes ≥ +0.03 and no Δ(ep) ≤ −0.05.
+- **"harm"** iff mean Δ ≤ −0.03 or any Δ(ep) ≤ −0.10.
+- Otherwise **"inconclusive"**.
+- Any missing V or C cell (fewer than 8 of 10 draws) → **INCOMPLETE**.
+- **INVALID** if a V checkpoint config does not carry `object_body_velocity.enabled = true` in its observation, or if
+  a V cell trained on a reference other than the registered physS1 file.
+- Reported, no rule: per-episode draw sd for V and C, the worst draw, the chosen checkpoints, and sim_vs_ref ordering.
+
+**Noise reading (registered now).** The ep18 replicate (§9.1) moved one cell by up to 0.07 AUC with no change at
+all. A single-episode Δ of that size is within training noise.
+
+**Actions.**
+- **signal:** report to the owner and the pack-10 session. Adding V to pack 10 is a separate owner decision with its
+  cost stated; the swap rule decides per episode.
+- **harm or inconclusive:** V is not used.
