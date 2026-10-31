@@ -5621,3 +5621,11 @@ arm and a no-policy replay floor to stage B.
       physics, optional synergies, gated on arm S, ≈ $8–12 [E]. Exact cost to the owner before launch.
     - **focused-pascal:** S2 into rebuilt eval references (masses arm unchanged); the smoother as a refine step with
       frozen cross-validated settings, kit-chain gate.
+- ~22:45 UTC owner: "Roman meant a Kalman filter for the robot; does ours use Kalman to make the policy follow the
+  perceived path?"
+  - Answer: no. None of the sent items is literally a Kalman filter in the robot loop. The policy reads exact
+    simulator state, and the measured robot error is slip at contact moments, not estimation noise or lag (< 1 frame).
+  - Roman's estimator/controller separation maps to perception + smoother (estimator) and solver + RL (controller).
+  - A literal in-loop filter would need training with observation noise plus a policy-architecture or evaluator code
+    change (off-limits before the freeze); it would matter on a real robot.
+  - Page v3 states this framing.
