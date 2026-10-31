@@ -5930,3 +5930,24 @@ diagnostic; nothing is picked for submission.
   3 plain expected). Freeze: w10 k1-k9 carve with the box body, k5 physics + part 1; ep24 `fi4q` carve + P2-P7 + part 1.
   Predictions P120-P137 (P93 onward left to the concurrent F-I5.16). Nothing run, no code, $0. Log: gmg `build/I.md`
   "Board slot round 3".
+
+### 2026-10-31 23:27 UTC — gmg I board slot round 3, Build + public runs under F-I4.16 / F-I4.17: freeze (a) fails on the contact gate
+- Build (dc4a2a4, fix a130449): `platebody.py` REV 17 (low-piece body: <= 3 frame-aligned rectangles fitted by IoU to
+  the outline raster, cut into boxes; F-I4.16 polygon as report / fallback), new `gmg/contactgate_fi4.py` (part 1,
+  plain MuJoCo with the sim=rl options and limits; named so because the concurrent F-I5.16 build plans its own
+  `contactgate.py`), minimal driver fields, `tests/test_fi417.py`. Code checks pass (fit, partition, nefc = 4 ncon;
+  REV 16 byte identity on w1 t = 10 vs 3b7e6d0).
+- Gate validity [M]: part 1 flags the round-2 ep24 r0 (868 rows, 3 / 16 copies overflow, ratio 27 to the one-box
+  control) and passes the control against itself.
+- Freeze (b) [M]: w10 k1-k9 all CARVE with the low-piece body (IoU 0.972-0.996, 5 slotted / 3 default boxes per board,
+  keep-out 0.0, widths within 0.33 mm of t + 2); k5 P2-P7 pass (P3 0.031 cm / 0.14 deg) and part 1 passes (84 vs 48
+  rows, ratio 1.75). Part-1 ratios of the other cells (reported): 1.50-2.08 (k2 2.08 > 2.0, k6 = 2.0).
+- Freeze (a) [M]: ep24 `fi4q` CARVEs both with the low-piece body (IoU 0.958 / 0.952, 5 / 3 boxes, keep-out 0.0,
+  cross-lap diff 1.59 mm), P2-P7 pass (P3 0.074 cm / 0.68 deg), but **part 1 fails: 124 rows (31 contacts) vs the
+  one-box control's 32 (8), ratio 3.875 > 2.0**, no overflow; default boxes 112. Nearly all contacts are board-table
+  (boards on their edges, up to 4 plane contacts per box). r0 written with DO_NOT_USE (contact_budget), not sent to
+  determined-wright. **F-I4.17 is not frozen; eval 25 not run; nothing tuned.**
+- Reports [M]: w10p A falls back to the polygon (IoU 0.741); w10n ok; ep23 board 1 IoU 0.814 -> polygon rung 1.5 mm;
+  w8 slot-centre miss -2.17 mm (inherited check; P2-P7 pass). Part 2 (budget.py, <= 380 rows) cannot run here (no
+  FlashCHORD / warp / newton / mujoco_warp). Cost: this container only, no rental, $0. Log: gmg `build/I.md` "Board
+  slot round 3"; results `build/I/results/slot3-ep24/`, `slot3-ep23/`, `slot3-tests/`.

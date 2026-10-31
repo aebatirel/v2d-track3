@@ -1340,6 +1340,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   otherwise w8 CARVEs both (low-piece IoU 0.981 / 0.980, 5 / 3 boxes, w 8.81) and passes P2-P7 (P3 0.104 cm / 1.6
   deg); w8b passes everything (IoU 0.977 / 0.977, P3 0.033 cm / 0.17 deg). P132 holds (IoU >= 0.90 and CARVE in all
   three). The waiver-off test_interlock suite is at 19 / 24, all as recorded in round 2 so far.
+- 23:27 **Freeze decision (F-I4.17.3): NOT frozen.** (b) holds [M]: all nine w10 cells CARVE both with the low-piece body
+  (IoU 0.972-0.996), keep-out <= 0.3 (0.0), widths within 1 mm; k5 passes P2-P7 and part 1 (ratio 1.75). **(a) fails**
+  [M]: ep24 fi4q passes P2-P7 with the low-piece body on both, but part 1 fails (ratio 3.875 > 2.0; no overflow). The
+  round stops here: nothing tuned, eval 25 not run under F-I4.17, the ep24 r0 is a DO_NOT_USE record and is not handed
+  to determined-wright (F-I4.17.6 step 8). Any change (for example a ratio that counts boxes along the table edge, or a
+  bound on absolute rows) is a new dated entry and an orchestrator decision. Predictions: P120, P121, P122, P124, P125,
+  P127, P129, P130, P131, P132, P133, P134 hold; **P123 fails** (ratio 3.875); **P128 fails** as written (floor 0.93
+  holds, but the IoU rises from sigma_e 2 to 3 at every t); P126, P135-P137 not measured / not run. [E, from the
+  per-copy contact classes] the ratio clause penalises any multi-box board standing on its edge on the table: the
+  delivered 10 boxes make 27-28 board-table contacts against the control's 8, and even the unslotted default boxes give
+  112 rows (3.5 x). Absolute counts stay far below the per-world limits (124 of 512 rows, 31 of 256 contacts).
+  Machine: this container only, no rental, $0. Work-log entry written.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
@@ -1428,3 +1440,19 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   smoke: 2 x 77 stacked tiles settle: max nefc 5648, ncon 1412 (overflow), 0.38 s per step; one-hull packed slab: 32 /
   8. `collcarve.py` rev-2 helpers (Faithful, precheck, carvable_mesh, exact_clip, wall_integrity, topology_1mm) added;
   FI5R2.apply, floor / gate and the driver next.
+- 23:27 (Build 2) [M] first T-I14 results (code ced42fd + fixes below, `<scratch>/gmg/interlock/test_collcarve2.json`,
+  16 copies): **gate** g1 (2 x 77 tiles stacked, settle scene, sim=rl): `contact_overflow` in 16/16 copies (max nefc
+  >= 5600, ncon >= 1400; copies stop at the first overflowing step), packed default (CoACD 1.0.11 at 0.05: 1 hull)
+  32 rows; g3 (delivered = packed) passes, ratio 1.0; g2 (packed hull split in 2 x 2) `contact_ratio` 7.0 (224 / 32,
+  no overflow). **r1**: round-1 8-sector chords on a 5.36 mm-wall cup (r_out 47.6 mm): round 1's own check passes,
+  construction intrusion 3.26 mm (verify_cc_1 B1: 2.9-3.4), continuity2 fails (gaps 39.7 %): the check is not
+  self-referential. **r3 sweep** (construction intrusion): cup 8 / 12 / 16 sectors 0.0 / 0.0 / 0.0 mm (min wall 0.97 /
+  2.60 / 3.24 mm; continuity-ray intrusion <= 0.015 mm); pot 12 / 16: 0.0 / 0.0 (min wall 0.57 / 2.09 mm); **pot 8
+  sectors first gave 3.59 mm of intrusion**: its outer chord lies inside the tangent inner face (wall -3.9 mm) and
+  the 8-vertex hull then reaches into the cavity. Fix (as built, no rule change): a negative-wall sector band is
+  clipped by both face planes and dropped when empty (pot 8: all 8 wall pieces dropped, no ray hits a piece, min
+  wall -3.9 mm reported; such a candidate fails check (i) anyway). **r2 forced ring first passed continuity2**: the
+  radial rays started at each sector's lowest wall PIECE (moved up with the ring). Fix: the rays start at the SHELL's
+  base top (`_wall_starts`), never at the pieces. **n1 smoke** (2 copies, not a result) first failed precheck (c) at
+  both S frames: wall integrity read 0 mm left on half of the 20,000 rays (trimesh reports the hit on the sample's own
+  face at t ~ 1e-6). Fix: rays start 0.05 mm off the sample (added back). Re-runs of r2 / r3 / n1 next.
