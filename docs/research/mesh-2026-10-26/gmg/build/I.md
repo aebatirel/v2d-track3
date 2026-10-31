@@ -81,3 +81,21 @@ carve rule.
 After ep24, run the dev interlock on the rack seat / cavity cases before ep2/ep11 if time allows: ep31 (sweeper in the
 rack; eval 30 twin, largest spread) and ep13 (cup in the rack; eval 14 twin). Report the free-travel result for the
 sweeper in the rack (October's rack carve dropped it 2.5-3.5 cm).
+
+## BI1/BI2 build (agent of the build workflow, started 31 Oct 09:53 UTC)
+- 09:53 read I.md, INTERLOCK.md v2 (all sections), PREREG F-I1 (F-I1.0-F-I1.14), bundle/contact/geom/guard/pack,
+  producers, pipeline/interaction_carve.py, collision_decomp.py, make_assets.py, the Embodiment reply. Load 8.9 on 4
+  cores (build 1). [M] Installed into the gmg venv: mujoco 3.17.0, coacd 1.0.14 (pip, 09:58). FlashCHORD venv: not in
+  this container and not rebuilt (LFS assets + Newton/warp stack; too heavy next to build 1) -> P1 runs as the plain-MuJoCo
+  pre-check only (INTERLOCK 6.2 says the pre-check does not decide); P3 (replay proxy) is plain MuJoCo by design.
+- Data found [M]: CLEAN ep24 and ep2 bundles exist (B4 batch v4, `gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24`,
+  `ep2`; ep11 not yet). Dev bundles: b5pool24 (ep24, obs_all), b1ep2-a7d4d64, b1ep11-a7d4d64. Video: `data/store/ep24_a.mp4`,
+  `ep2_a.mp4`, `ep11_a.mp4` = ego cam_a (2028x1520, fx 1150; chain rect-left -> cam_a from `pipeline/hands_mp.geometry`,
+  stereo frame k = cam_a frame k + 1). SAM 3D board meshes of 29 Oct were generated from ep23 crops (dev only), unit-normalised
+  (L ~ 1.0, no saved layout): placement in our frame is by our depth (scale + rigid ICP, flip by depth residual).
+- Note: PNGs go to `build/I/png/` instead of `build/i/`: a sibling folder `build/i` next to `build/I` collides on
+  case-insensitive checkouts (macOS, Windows).
+
+## ORCHESTRATOR NOTE (31 Oct 10:12 UTC): ep31 evidence added to `build/keen-heisenberg-priority-20261031.md`
+The sweeper-rack contact at lift-off (ep31 f~45-53) is where the eval-30 draws split; make the ep31 seat and its
+free-travel test (sweeper lifts out of the rack without knocking it) part of the dev report.
