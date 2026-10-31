@@ -35,7 +35,10 @@ LEARNER_P8 = {1: 'standard, carve s43 (c01s43)'}
 
 # failure rule (fixed before any eval rollout was scored; thresholds checked on the public P-arm draws only)
 KP_CM = 5.0          # per-frame keypoint error (kit MPPE keypoints) above which an object is "off" the reference
-FAIL_FRAC = 0.20     # object fails if it is off in >= 20 % of frames; pair fails if per-frame RPE > 5 cm in >= 20 %
+FAIL_FRAC = 0.20     # a rollout fails if any object is off in >= 20 % of its frames
+# v1 also failed a rollout whose per-frame RPE was > 5 cm in >= 20 % of frames; on the public check that clause flagged
+# 6 successful draws (ep31, ep12: total RPE 2.5-3.5 cm, long lever arms), so it was demoted to 'marginal' before any
+# eval rollout was scored.
 LEFT_MOVE = 5.0      # left behind: reference travel >= 5 cm and simulated travel < 30 % of it
 LEFT_RATIO = 0.30
 FLUNG_CM = 15.0      # flung: the simulated anchor goes >= 15 cm away from every point of the reference path
@@ -110,11 +113,15 @@ def audit(L, parquet, names, lib):
         objs.append(o)
     rpe5 = float((pf_rpe > 5).mean()) if len(names) > 1 else 0.0
     fail_obj = [o for o in objs if o['fail']]
-    fail = bool(fail_obj) or rpe5 >= FAIL_FRAC
+    fail = bool(fail_obj)
     reason = '; '.join(f"{o['name']}: {o['reason']}" for o in fail_obj)
-    if fail and not fail_obj:
-        reason = f'pair relation off in {100 * rpe5:.0f} % of frames (each object < 20 %)'
-    marginal = (not fail) and (any(o['frac_kp_over_5cm'] >= 0.05 or o['end_kp_cm'] > KP_CM for o in objs) or rpe5 >= 0.05)
+    why = [f"{o['name']} off in {100 * o['frac_kp_over_5cm']:.0f} % of frames, ends {o['end_kp_cm']:.1f} cm" for o in objs
+           if o['frac_kp_over_5cm'] >= 0.05 or o['end_kp_cm'] > KP_CM]
+    if rpe5 >= 0.05:
+        why.append(f'per-frame RPE > 5 cm in {100 * rpe5:.0f} % of frames')
+    marginal = (not fail) and bool(why)
+    if marginal:
+        reason = 'marginal: ' + '; '.join(why)
     return dict(names=names, frames=T, AUC=round(m['AUC'], 4), MPPE=round(m['MPPE'], 4), RPE=round(m['RPE'], 4),
                 rpe_max_frame_cm=round(float(pf_rpe.max()), 2), rpe_frac_frames_over_5cm=round(rpe5, 3),
                 fail=fail, reason=reason, marginal=bool(marginal), objects=objs)

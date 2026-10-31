@@ -5603,3 +5603,9 @@ Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on 
   AUC guard 40/51, verdict ≈ 16:30; shipping before it is recorded as a deviation from C0 PREREG §5. E0 (eval-built
   meshes) moved to a self-destroying Vast CPU box (≈ $1–4). Eval-25 board-slot build started (owner waived the camera
   rule for the slot, in that session); it needs an eval-25 re-run to take effect.
+- ~16:15 UTC focused-pascal (the owner asked it "Cant you fix the rotation and scale error"):
+  - scale is a non-issue (the kit rescales the submitted mesh to the scan for CD-O and the pose boards);
+  - built C0a = C0 ICP-aligned onto library_v3 (keeps the CD-O gain, pose boards behave like pack 8);
+  - rule fixed before data (docs/research/work/pack9a-20261031/MESH_RULE.md on its branch): as-fitted C0 per object iff
+    the public AUC guard shows it ≥ library_v3, else C0a; C0a for all three if the guard is not in by 19:15 UTC;
+  - blue cup stays out pending the owner.
