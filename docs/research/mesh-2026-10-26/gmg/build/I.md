@@ -821,6 +821,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   nothing carved or delivered; the round folders in `<scratch>/gmg/runs-dev/20261031-fi5pub-3053a78/sim/` are not to
   be used; decisions needed are in INTERLOCK 21.11. Eval twins still blocked (no eval bundle). No rental; STATUS.md
   left to the orchestrator.
+- 20:59 (verifier, physics/geometry lens, verify_cc_1) started: re-measure delivered collider volumes vs bodies,
+  keep-out, cavity preservation (union vs solid, empty-ring), rest/sink numbers from logs, one jittered S re-run, PNGs.
+  Output build/I/verify_cc_1.md only.
+- 21:10 (verify_cc_1) [M] so far (scripts + JSON in `<scratch>/vcc1/`): delivered volumes re-measured = README; ep11
+  cup SHELLs are bottomless (axis rays hit nothing); SHELL overlap at S frames ep11 f126 86 cm3, ep2 25/24, ep12 f176
+  7.5, ep13 3.1, ep31 0; lathe ring sets WITHOUT handle hulls fail the gate (ep11 beige 16 @8 / 29 @16 sectors, ep12
+  blue 15 / 18, pot 36 @12), rings sit 1.2-3.1 mm (cups) / 12 mm (pot) inside the cavity at mid-sector, continuity
+  check is self-referential; S copy 0 / 2 of ep11 carved reproduced exactly (4.23 / 112.54 mm); default bimodal
+  (copy 0 7.2 mm pushed up, copy 2 + unjittered fall 121 mm). Running: faithful 2 mm-box S on ep11 f126.
+- 21:15 (verifier, rule-compliance lens, verify_cc_0) started 21:00: F-I5 / F-I5.14 / F-I5.14 (7) push times vs launches,
+  code identity (sha256 vs 1b9f0c1), inputs and GT-free provenance, gates and delivery vs F-I5.0-F-I5.7 as written,
+  prediction scoring. Output build/I/verify_cc_0.md only.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
@@ -1008,3 +1020,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   to determined-wright (P1 on r0) and focused-pascal (keep meshes/carve/ev25; a future slot needs an eval-25 rollout
   re-run); 7 open decisions), 20.11 correction pointer, header pointer, STATUS top section, work-log entry with both
   hand-off texts. Committing my lines only (the 20:59 verify_cc_1 line in this file is another agent's, left unstaged).
+
+## Board slot round 3 (F-I4.16 ladder, w10 freeze family, eval 25) (board-slot round-3 workflow, started 31 Oct 21:15 UTC)
+- 21:17 (Prep25 step, runs in parallel with the Amend; needs no F-I4 rule) started. Read STATUS, CLAUDE.md, this log
+  (round 2, all), INTERLOCK 20.9 item 3, the focused-pascal eval-refs note and `packed_refs.json` (branch
+  claude/focused-pascal-2nz9s1, file commit 71bac00): eval 25 packed reference = run `20261026-c25s42-feb0407`,
+  `refs/perc2mcks/ep25/processed/.../2057d9f1...-0.parquet` md5 71ac95f3, its perception track `perc2/ep25/poses.npz`
+  (+ `identity_fix.json`). Plan: (1) pull the reference track (and parquet) from the store, map our local evperc ep25
+  track's boards to the reference's per board by a rigid comparison of trajectories; (2) eval-25 gmg bundle
+  (extract_joint, eval depth from the store, video `data/eval/ep25_a.mp4`, hands as for public) with the mapped
+  tracks, then shell_t5p36 candidates (interlock_cands); (3) `build/I/results/slot3-ev25/PREP.md`. No F-I4 decision,
+  no physics, meshes/carve/ev25 not read.
