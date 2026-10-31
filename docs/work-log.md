@@ -5448,3 +5448,11 @@ Advice given:
   Review's non-blocking notes kept for the reading: "D only" = D + seed + code version (std: D also in the training-box
   evaluations); run ids after 00:00 UTC carry 20261101 (take ids from the ledger); C evaluates only the candidates while
   H5p7 evaluated all 20 per call [H: no cross-episode effect]; D on the standard learner untested at 250M steps.
+- 23:07–23:10 UTC box G canary checks [M, job.log via ops/vast.sh exec]: "environment restored from
+  pt2.11-cu130-py313-20261020" 23:07:32; "mass_eval: packed references checked for [14 16 33]" 23:09:17 (ep14 glock
+  20261025-evb1420-ee7ba8e, md5 10d5f3ba…); "patched FlashCHORD (start-state randomisation …, md5 570a7f47793d); training
+  env [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42]" 23:09:22; runs/drs42_glock/ep14-s42/train.log: "v2d FC_DR_RESET: sampled
+  resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints,
+  4096 worlds, seed 42" (no tail, as required for 14). → S boxes go.
+- 23:11 UTC S25a: `create 57986768 20261031-drS25s42-a1a7e25 'ARM=dr MODE=std EPS="25" SEEDS="42" bash ops/jobs/mass_eval.sh'`
+  (same V2D_COMMIT / ENV_SNAPSHOT) → instance 58588731 (Romania, $1.377/h); ledger planned $3.00.
