@@ -5674,3 +5674,11 @@ arm and a no-policy replay floor to stage B.
   - ep24 slot verified on public (P1 pending with determined-wright) but not frozen for eval 25. Its hand-off to
     focused-pascal: keep `meshes/carve/ev25` in the pack.
   - My delivery-statement request is queued behind its current turn.
+- ~21:45 UTC focused-pascal: its permission guard blocks a Kaggle upload on relayed approval (as it did for 9a at
+  16:40). It proposed handing pack 9b to the session where the owner gave the word.
+  - Agreed: this session is the single uploader of pack 9b; the score-status session was told not to upload it.
+  - Readiness: kit downloaded to the scratchpad (submit/v2d_submit.py sha256 d31d4a7c…, matching the 9a+ record);
+    kaggle 2.2.5 in a scratch venv; tools/kaggle_upload.py.
+  - Dry run on 9a+'s file (sha256 e02736ea…): valid, 9,120 rows, 6 boards, 4 left today on each, nothing submitted.
+  - The 05:00 UTC check-in trigger was updated to verify (swap-rule verdicts vs PREREG, sha256, rows, commit,
+    script hashes, byte-diff), dry-run and upload 9b with a receipt if it passes; no GPU spend.
