@@ -1,0 +1,455 @@
+{
+ "ok": true,
+ "failures": [],
+ "checks": {
+  "G1_ep20_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G1_ep20_s42_T1_packed_reference": {
+   "ok": true,
+   "detail": "c1e09fcc24b9ace1c5aee25fa5027c6e vs real c1e09fcc24b9ace1c5aee25fa5027c6e"
+  },
+  "G1_ep20_s42_T2_train_masses": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'water_pitcher': 0.5031} from ['MS/box/content/refs/mass1_sf/ep20/assets/urdf']"
+  },
+  "G1_ep20_s42_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42)"
+  },
+  "G1_ep20_s42_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G1_ep20_s42_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G1_ep20_s43_T1_packed_reference": {
+   "ok": true,
+   "detail": "c1e09fcc24b9ace1c5aee25fa5027c6e vs real c1e09fcc24b9ace1c5aee25fa5027c6e"
+  },
+  "G1_ep20_s43_T2_train_masses": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'water_pitcher': 0.5031} from ['MS/box/content/refs/mass1_sf/ep20/assets/urdf']"
+  },
+  "G1_ep20_s43_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43)"
+  },
+  "G1_ep20_s43_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G1_ep20_s43_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G1_ep20_T4_seeds_differ_only_in_seed": {
+   "ok": true,
+   "detail": "['reset.seed=42', 'reset.seed=43']"
+  },
+  "G1_ep20_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "G1_ep20_T5_asset_copy_untouched": {
+   "ok": true,
+   "detail": "22 files"
+  },
+  "G1_ep8_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G1_ep8_s42_T1_packed_reference": {
+   "ok": true,
+   "detail": "89ef51dec3970829a44e55d0cb2bb2be vs real 89ef51dec3970829a44e55d0cb2bb2be"
+  },
+  "G1_ep8_s42_T2_train_masses": {
+   "ok": true,
+   "detail": "{'beige_cup': 0.1367, 'white_pot': 0.2771} from ['MS/box/content/refs/mass1_sf/ep8/assets/urdf']"
+  },
+  "G1_ep8_s42_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42)"
+  },
+  "G1_ep8_s42_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G1_ep8_s42_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G1_ep8_s43_T1_packed_reference": {
+   "ok": true,
+   "detail": "89ef51dec3970829a44e55d0cb2bb2be vs real 89ef51dec3970829a44e55d0cb2bb2be"
+  },
+  "G1_ep8_s43_T2_train_masses": {
+   "ok": true,
+   "detail": "{'beige_cup': 0.1367, 'white_pot': 0.2771} from ['MS/box/content/refs/mass1_sf/ep8/assets/urdf']"
+  },
+  "G1_ep8_s43_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43)"
+  },
+  "G1_ep8_s43_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G1_ep8_s43_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G1_ep8_T4_seeds_differ_only_in_seed": {
+   "ok": true,
+   "detail": "['reset.seed=42', 'reset.seed=43']"
+  },
+  "G1_ep8_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "G1_ep8_T5_asset_copy_untouched": {
+   "ok": true,
+   "detail": "22 files"
+  },
+  "G1_T5_content_assets_placeholder": {
+   "ok": true,
+   "detail": "11 URDFs"
+  },
+  "G1_T6_one_push": {
+   "ok": true,
+   "detail": "1"
+  },
+  "G1_T6_pulls_exactly_the_table": {
+   "ok": true,
+   "detail": "['runs/20261025-evb0810-ee7ba8e/refs/glockt/ep8/*', 'runs/20261025-evb0810-ee7ba8e/refs/perc2mck/ep8/*', 'runs/20261025-evb0810-ee7ba8e/refs/sf/ep8/*', 'runs/20261025-evb0810-ee7ba8e/results/final_eval/ep8/policy.safetensors', 'runs/20261025-evb0810-ee7ba8e/results/glock_public/ep8/rest_check.json', 'runs/20261025-evb0810-ee7ba8e/results/glock_public/ep8/support_fill.json', 'runs/20261025-evb0810-ee7ba8e/results/glock_public/ep8/zero_score.txt', 'runs/20261025-evb1420-ee7ba8e/refs/glockt/ep20/*', 'runs/20261025-evb1420-ee7ba8e/refs/perc2mck/ep20/*', 'runs/20261025-evb1420-ee7ba8e/refs/sf/ep20/"
+  },
+  "G1_T7_no_reference_stage": {
+   "ok": true,
+   "detail": ""
+  },
+  "G1_T8_verified": {
+   "ok": true,
+   "detail": "{'20': ('VERIFIED', []), '8': ('VERIFIED', [])}"
+  },
+  "G1_T8_packed_config_diff_allowed_only": {
+   "ok": true,
+   "detail": "{'ep20/s42': ['output_dir', 'reference.parquet', 'task.parquet'], 'ep20/s43': ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'], 'ep8/s42': ['output_dir', 'reference.parquet', 'task.parquet'], 'ep8/s43': ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']}"
+  },
+  "G1_T8_candidates": {
+   "ok": true,
+   "detail": "{'RUNS_EXTRA': '20261101-mevG1-mocksha@refs/mass1_sf/ep20,refs/mass1s43_glockt/ep20 20261101-mevG1-mocksha@refs/mass1_sf/ep8,refs/mass1s42_glockt/ep8', 'PICK_EXTRA': '20:20261101-mevG1-mocksha:ck=results/mass1s43_glock_public/ep20/best/policy.safetensors 8:20261101-mevG1-mocksha:ck=results/mass1s42_glock_public/ep8/best/policy.safetensors', 'MASS_EPS': '20 8', 'EVAL_ONLY': '20 8', 'EPS_ONLY': '20 8', 'MA_ARGS': '', 'ASSET_PIECES_EXTRA': '', 'note': 'strings for ops/jobs/h5_reeval.sh (PLAN section 5 rule 4); merge boxes by joining their strings; a std candidate needs MA_ARGS, and no unchanged s"
+  },
+  "G2_ep33_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G2_ep33_s42_T1_packed_reference": {
+   "ok": true,
+   "detail": "e45b81792154fa1e9987e56b6c41bbcc vs real e45b81792154fa1e9987e56b6c41bbcc"
+  },
+  "G2_ep33_s42_T2_train_masses": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'wooden_spoon': 0.05} from ['MS/box/content/refs/mass1_sf/ep33/assets/urdf']"
+  },
+  "G2_ep33_s42_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42)"
+  },
+  "G2_ep33_s42_T4_curriculum": {
+   "ok": true,
+   "detail": "[7864320, 13762560, 19660800, 25559040, 31457280, 37355520, 43253760, 49152000, 55050240, 80003072, 100001382]"
+  },
+  "G2_ep33_s42_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G2_ep33_s43_T1_packed_reference": {
+   "ok": true,
+   "detail": "e45b81792154fa1e9987e56b6c41bbcc vs real e45b81792154fa1e9987e56b6c41bbcc"
+  },
+  "G2_ep33_s43_T2_train_masses": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'wooden_spoon': 0.05} from ['MS/box/content/refs/mass1_sf/ep33/assets/urdf']"
+  },
+  "G2_ep33_s43_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43)"
+  },
+  "G2_ep33_s43_T4_curriculum": {
+   "ok": true,
+   "detail": "[7864320, 13762560, 19660800, 25559040, 31457280, 37355520, 43253760, 49152000, 55050240, 80003072, 100001382]"
+  },
+  "G2_ep33_s43_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G2_ep33_T4_seeds_differ_only_in_seed": {
+   "ok": true,
+   "detail": "['reset.seed=42', 'reset.seed=43']"
+  },
+  "G2_ep33_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "G2_ep33_T5_asset_copy_untouched": {
+   "ok": true,
+   "detail": "22 files"
+  },
+  "G2_ep15_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G2_ep15_s42_T1_packed_reference": {
+   "ok": true,
+   "detail": "5c7e694e79808aef1074518cc8ad976a vs real 5c7e694e79808aef1074518cc8ad976a"
+  },
+  "G2_ep15_s42_T2_train_masses": {
+   "ok": true,
+   "detail": "{'plastic_dish_rack': 0.3865, 'wooden_spoon': 0.05} from ['MS/box/content/refs/mass1_sf/ep15/assets/urdf']"
+  },
+  "G2_ep15_s42_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42)"
+  },
+  "G2_ep15_s42_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G2_ep15_s42_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G2_ep15_s43_T1_packed_reference": {
+   "ok": true,
+   "detail": "5c7e694e79808aef1074518cc8ad976a vs real 5c7e694e79808aef1074518cc8ad976a"
+  },
+  "G2_ep15_s43_T2_train_masses": {
+   "ok": true,
+   "detail": "{'plastic_dish_rack': 0.3865, 'wooden_spoon': 0.05} from ['MS/box/content/refs/mass1_sf/ep15/assets/urdf']"
+  },
+  "G2_ep15_s43_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43)"
+  },
+  "G2_ep15_s43_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G2_ep15_s43_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G2_ep15_T4_seeds_differ_only_in_seed": {
+   "ok": true,
+   "detail": "['reset.seed=42', 'reset.seed=43']"
+  },
+  "G2_ep15_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "G2_ep15_T5_asset_copy_untouched": {
+   "ok": true,
+   "detail": "22 files"
+  },
+  "G2_T5_content_assets_placeholder": {
+   "ok": true,
+   "detail": "11 URDFs"
+  },
+  "G2_T6_one_push": {
+   "ok": true,
+   "detail": "1"
+  },
+  "G2_T6_pulls_exactly_the_table": {
+   "ok": true,
+   "detail": "['runs/20261024-pack-31ef267/refs/glockt/ep15/*', 'runs/20261024-pack-31ef267/refs/perc2mck/ep15/*', 'runs/20261024-pack-31ef267/refs/sf/ep15/*', 'runs/20261024-pack-31ef267/results/glock_public/ep15/rest_check.json', 'runs/20261024-pack-31ef267/results/glock_public/ep15/support_fill.json', 'runs/20261024-pack-31ef267/results/glock_public/ep15/zero_score.txt', 'runs/20261024-seed43-61101f5/results/glock_public/ep15/best/policy.safetensors', 'runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/*', 'runs/20261026-fr3233s43-6a8a0e2/refs/perc2mck/ep33/*', 'runs/20261026-fr3233s43-6a8a0e2/refs/sf/ep33"
+  },
+  "G2_T7_no_reference_stage": {
+   "ok": true,
+   "detail": ""
+  },
+  "G2_T8_verified": {
+   "ok": true,
+   "detail": "{'33': ('VERIFIED', []), '15': ('VERIFIED', [])}"
+  },
+  "G2_T8_packed_config_diff_allowed_only": {
+   "ok": true,
+   "detail": "{'ep33/s42': ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'], 'ep33/s43': ['output_dir', 'reference.parquet', 'task.parquet'], 'ep15/s42': ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed'], 'ep15/s43': ['output_dir', 'reference.parquet', 'task.parquet']}"
+  },
+  "G2_T8_candidates": {
+   "ok": true,
+   "detail": "{'RUNS_EXTRA': '20261101-mevG2-mocksha@refs/mass1_sf/ep33,refs/mass1s42_glockt/ep33 20261101-mevG2-mocksha@refs/mass1_sf/ep15,refs/mass1s42_glockt/ep15', 'PICK_EXTRA': '33:20261101-mevG2-mocksha:ck=results/mass1s42_glock_public/ep33/best/policy.safetensors 15:20261101-mevG2-mocksha:ck=results/mass1s42_glock_public/ep15/best/policy.safetensors', 'MASS_EPS': '33 15', 'EVAL_ONLY': '33 15', 'EPS_ONLY': '33 15', 'MA_ARGS': '', 'ASSET_PIECES_EXTRA': '', 'note': 'strings for ops/jobs/h5_reeval.sh (PLAN section 5 rule 4); merge boxes by joining their strings; a std candidate needs MA_ARGS, and no unch"
+  },
+  "G4_ep10_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1}"
+  },
+  "G4_ep10_s42_T1_packed_reference": {
+   "ok": true,
+   "detail": "cbcd56d0af6878d41e08f1750aeaaf80 vs real cbcd56d0af6878d41e08f1750aeaaf80"
+  },
+  "G4_ep10_s42_T2_train_masses": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'beige_cup': 0.1367} from ['MS/box/content/refs/mass1_sf/ep10/assets/urdf']"
+  },
+  "G4_ep10_s42_T4_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42)"
+  },
+  "G4_ep10_s42_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "G4_ep10_s42_T3_evaluations": {
+   "ok": true,
+   "detail": "31 evaluations (10 NREP), 0 wrong"
+  },
+  "G4_ep10_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "G4_T5_content_assets_placeholder": {
+   "ok": true,
+   "detail": "11 URDFs"
+  },
+  "G4_T6_one_push": {
+   "ok": true,
+   "detail": "1"
+  },
+  "G4_T6_pulls_exactly_the_table": {
+   "ok": true,
+   "detail": "['runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/*', 'runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/*', 'runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors', 'runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/rest_check.json', 'runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/zero_score.txt'] vs ['runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/*', 'runs/20261026-gl10A2-5e0e100/refs/perc2mck/ep10/*', 'runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/best/policy.safetensors', 'runs/20261026-gl10A2-5e0e100/results/glock_public/ep10/rest_check.json', 'r"
+  },
+  "G4_T7_no_reference_stage": {
+   "ok": true,
+   "detail": ""
+  },
+  "G4_T8_verified": {
+   "ok": true,
+   "detail": "{'10': ('VERIFIED', [])}"
+  },
+  "G4_T8_packed_config_diff_allowed_only": {
+   "ok": true,
+   "detail": "{'ep10/s42': ['output_dir', 'reference.parquet', 'task.parquet']}"
+  },
+  "G4_T8_candidates": {
+   "ok": true,
+   "detail": "{'RUNS_EXTRA': '20261101-mevG4-mocksha@refs/mass1_sf/ep10,refs/mass1s42_glockt/ep10', 'PICK_EXTRA': '10:20261101-mevG4-mocksha:ck=results/mass1s42_glock_public/ep10/best/policy.safetensors', 'MASS_EPS': '10', 'EVAL_ONLY': '10', 'EPS_ONLY': '10', 'MA_ARGS': '', 'ASSET_PIECES_EXTRA': '', 'note': 'strings for ops/jobs/h5_reeval.sh (PLAN section 5 rule 4); merge boxes by joining their strings; a std candidate needs MA_ARGS, and no unchanged std episode may be evaluated beside it (KEEP_RESULTS + EVAL_ONLY)'}"
+  },
+  "S1a_ep1_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1}"
+  },
+  "S1a_ep1_s42_T1_packed_reference": {
+   "ok": true,
+   "detail": "c94d59eb700a2290b23fc453fbfdbeb5 vs real c94d59eb700a2290b23fc453fbfdbeb5, md5 01c6aab448554b9785b213fd415cef86 vs pulled 01c6aab448554b9785b213fd415cef86"
+  },
+  "S1a_ep1_s42_T2_train_masses": {
+   "ok": true,
+   "detail": "{'white_pot': 0.2771, 'white_pot_lid': 0.0882} from ['MS/box/content/assets/urdf']"
+  },
+  "S1a_ep1_s42_T4_steps_seed": {
+   "ok": true,
+   "detail": "(250003456, 42)"
+  },
+  "S1a_ep1_s42_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "S1a_ep1_s42_T3_evaluations": {
+   "ok": true,
+   "detail": "14 evaluations (10 NREP), 0 wrong"
+  },
+  "S1a_ep1_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "S1a_T5_content_assets_masses_and_pieces": {
+   "ok": true,
+   "detail": "({'wooden_piece_1': 0.1389, 'wooden_piece_2': 0.1409, 'white_pot': 0.2771, 'wooden_spoon': 0.05, 'beige_cup': 0.1367, 'plastic_dish_rack': 0.3865, 'blue_cup': 0.128, 'white_pot_lid': 0.0882, 'water_pitcher': 0.5031, 'mini_sweeper': 0.045, 'mini_dust_pan': 0.0442}, {'white_pot': 53, 'white_pot_lid': 107})"
+  },
+  "S1a_T6_one_push": {
+   "ok": true,
+   "detail": "1"
+  },
+  "S1a_T6_pulls_exactly_the_table": {
+   "ok": true,
+   "detail": "['runs/20261024-pack-31ef267/perc2/ep1/*', 'runs/20261024-pack-31ef267/refs/perc2mck/ep1/*', 'runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors'] vs ['runs/20261024-pack-31ef267/perc2/ep1/*', 'runs/20261024-pack-31ef267/refs/perc2mck/ep1/*', 'runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors']"
+  },
+  "S1a_T7_no_reference_stage": {
+   "ok": true,
+   "detail": ""
+  },
+  "S1a_T8_verified": {
+   "ok": true,
+   "detail": "{'1': ('VERIFIED', [])}"
+  },
+  "S1a_T8_packed_config_diff_allowed_only": {
+   "ok": true,
+   "detail": "{'ep1/s42': ['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']}"
+  },
+  "S1a_T8_candidates": {
+   "ok": true,
+   "detail": "{'RUNS_EXTRA': '20261101-mevS1s42-mocksha@refs/perc2mcks/ep1', 'PICK_EXTRA': '1:20261101-mevS1s42-mocksha:ck=runs/perc2mcks/ep1-s42/policy_250003456.safetensors', 'MASS_EPS': '1', 'EVAL_ONLY': '1', 'EPS_ONLY': '1', 'MA_ARGS': '--physics /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json', 'ASSET_PIECES_EXTRA': '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/meshes/carve/ev01', 'note': 'strings for ops"
+  },
+  "S1b_ep1_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{43: 1}"
+  },
+  "S1b_ep1_s43_T1_packed_reference": {
+   "ok": true,
+   "detail": "c94d59eb700a2290b23fc453fbfdbeb5 vs real c94d59eb700a2290b23fc453fbfdbeb5, md5 01c6aab448554b9785b213fd415cef86 vs pulled 01c6aab448554b9785b213fd415cef86"
+  },
+  "S1b_ep1_s43_T2_train_masses": {
+   "ok": true,
+   "detail": "{'white_pot': 0.2771, 'white_pot_lid': 0.0882} from ['MS/box/content/assets/urdf']"
+  },
+  "S1b_ep1_s43_T4_steps_seed": {
+   "ok": true,
+   "detail": "(250003456, 43)"
+  },
+  "S1b_ep1_s43_T4_curriculum": {
+   "ok": true,
+   "detail": "[19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]"
+  },
+  "S1b_ep1_s43_T3_evaluations": {
+   "ok": true,
+   "detail": "14 evaluations (10 NREP), 0 wrong"
+  },
+  "S1b_ep1_T5_reference_untouched": {
+   "ok": true,
+   "detail": ""
+  },
+  "S1b_T5_content_assets_masses_and_pieces": {
+   "ok": true,
+   "detail": "({'wooden_piece_1': 0.1389, 'wooden_piece_2': 0.1409, 'white_pot': 0.2771, 'wooden_spoon': 0.05, 'beige_cup': 0.1367, 'plastic_dish_rack': 0.3865, 'blue_cup': 0.128, 'white_pot_lid': 0.0882, 'water_pitcher': 0.5031, 'mini_sweeper': 0.045, 'mini_dust_pan': 0.0442}, {'white_pot': 53, 'white_pot_lid': 107})"
+  },
+  "S1b_T6_one_push": {
+   "ok": true,
+   "detail": "1"
+  },
+  "S1b_T6_pulls_exactly_the_table": {
+   "ok": true,
+   "detail": "['runs/20261024-pack-31ef267/perc2/ep1/*', 'runs/20261024-pack-31ef267/refs/perc2mck/ep1/*', 'runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors'] vs ['runs/20261024-pack-31ef267/perc2/ep1/*', 'runs/20261024-pack-31ef267/refs/perc2mck/ep1/*', 'runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors']"
+  },
+  "S1b_T7_no_reference_stage": {
+   "ok": true,
+   "detail": ""
+  },
+  "S1b_T8_verified": {
+   "ok": true,
+   "detail": "{'1': ('VERIFIED', [])}"
+  },
+  "S1b_T8_packed_config_diff_allowed_only": {
+   "ok": true,
+   "detail": "{'ep1/s43': ['output_dir', 'reference.parquet', 'task.parquet']}"
+  },
+  "S1b_T8_candidates": {
+   "ok": true,
+   "detail": "{'RUNS_EXTRA': '20261101-mevS1s43-mocksha@refs/perc2mcks/ep1', 'PICK_EXTRA': '1:20261101-mevS1s43-mocksha:ck=runs/perc2mcks/ep1-s43/policy_214286336.safetensors', 'MASS_EPS': '1', 'EVAL_ONLY': '1', 'EPS_ONLY': '1', 'MA_ARGS': '--physics /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json', 'ASSET_PIECES_EXTRA': '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/meshes/carve/ev01', 'note': 'strings for ops"
+  }
+ },
+ "note": "mock scores are synthetic (stub.py): plumbing, not masses"
+}

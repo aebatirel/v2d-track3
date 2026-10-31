@@ -104,11 +104,17 @@ done
 for f in $(cd $CK && find . -name '*.safetensors' | sed 's#^\./##'); do
   mkdir -p $(dirname $ST/$f); cp $CK/$f $ST/$f
 done
+# pack-31ef267 holds a 24 Oct grasp-lock checkpoint for every roster episode (pack_eval.sh needs all 20 before PICK);
+# those the h5 PICK replaces are synthetic placeholders here (never evaluated: replaced, then kept or picked)
+for e in 1 3 5 8 10 14 15 16 19 20 25 28 30 32 33; do
+  d=$ST/20261024-pack-31ef267/results/glock_public/ep$e/best; mkdir -p $d
+  $PY -I -c "import json, struct, sys; h = json.dumps({'__metadata__': {'user.resolved_config_json': '{}', 'mock': 'placeholder, replaced by PICK'}}).encode(); open(sys.argv[1], 'wb').write(struct.pack('<Q', len(h)) + h)" $d/policy.safetensors
+done
 mkdir -p $ST/20261025-std0116-ee7ba8e/results/final_eval/ep1 $ST/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/best
 cp $S/e1conf/dl_std0116ck/runs/20261025-std0116-ee7ba8e/results/final_eval/ep1/policy.safetensors $ST/20261025-std0116-ee7ba8e/results/final_eval/ep1/
 cp $S/e1conf/dlv_fr3233s43/runs/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/best/policy.safetensors $ST/20261026-fr3233s43-6a8a0e2/results/glock_public/ep33/best/
 # kept official rollouts (KEEP_RESULTS): pack 6 and c33B
-for x in dl_keep/runs/20261026-pack6-5203d42 vA_keep/runs/20261030-c33B-0202139; do
+for x in dl_keep/runs/20261026-pack6-5203d42 dl_keep/runs/20261030-c33B-0202139; do
   d=$ST/$(basename $x)/results/submission/results; mkdir -p $d; cp $S/e1conf/$x/results/submission/results/episode_* $d/
 done
 # the mock's table: md5 of the rewritten parquets, fingerprints asserted equal to the real ones

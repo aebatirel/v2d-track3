@@ -14,16 +14,19 @@ masses its policy trained with only if the files its reference names are on this
 For every episode about to be evaluated (CHECKPOINTS, e.g. pack_eval's checkpoints_eval.json) this follows that chain
 and requires: every URDF resolves verbatim (a file); episodes in --mass-eps load the props' mass_kg for every object,
 every other evaluated episode loads the 0.3 kg placeholder; for --mass-eps episodes with a --table row, the reference's
-fingerprint (tools/mass_arm.traj_fingerprint) is the packed policy's (PLAN section 1). A --mass-eps episode not being
+fingerprint (tools/mass_arm.traj_fingerprint) is the packed policy's (PLAN section 1) and, where the table names
+collision pieces (eval 1 ev01, eval 10 ev10, eval 25 ev25), each such object's URDF has one <collision> per piece (as it
+trained; e.g. a pack without ASSET_PIECES_EXTRA ev01 would evaluate eval 1 on the plain pot). A --mass-eps episode not being
 evaluated here (kept rollout, KEEP_RESULTS) is listed as kept; one that is not in --all at all is a failure (typo).
 Saved paths under /workspace/ are read under --content (the box links /content -> /workspace). No ground truth is read.
 Exit 1 on any failure. Usage:
   mass_pack_check.py --checkpoints CK_EVAL.json [--all CK_ALL.json] --props PROPS.json --mass-eps "1 20 33"
                      [--table packed_refs.json] [--content /content] --out OUT.json
 """
-import argparse, glob, json, os, sys
+import argparse, glob, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from mass_arm import read_inertial, traj_fingerprint, md5, PLACEHOLDER   # noqa: E402
 from mass_verify import ck_config, resolve_parquet                         # noqa: E402
 import pyarrow.parquet as pq                                               # noqa: E402
@@ -80,6 +83,13 @@ def main():
                              f'{want if want is not None else "?"} kg ({"masses retrain" if e in mass else "placeholder"})')
         if e in mass and e in tab and fp != tab[e]['traj_fingerprint']:
             fails.append(f'ep{e}: reference fingerprint {fp} is not the packed policy\'s {tab[e]["traj_fingerprint"]}')
+        if e in mass and e in tab and tab[e].get('pieces'):                  # the collision pieces it trained with
+            for n, v in loaded.items():
+                k = len(glob.glob(os.path.join(REPO, tab[e]['pieces'], n, 'piece_*.obj')))
+                c = len(re.findall(r'<collision>', open(v['urdf']).read())) if v['mass'] is not None else None
+                v['collisions'] = c
+                if k and c != k:
+                    fails.append(f'ep{e}: {n} has {c} collision pieces ({v["urdf"]}), it trained with the {k} of {tab[e]["pieces"]}')
     kept = sorted(mass & set(allc) - set(ev), key=int)
     shared = {e: sorted({os.path.dirname(os.path.dirname(v['urdf'])) for v in r.get('loaded', {}).values()}) for e, r in rows.items()}
     out = dict(ok=not fails, failures=fails, mass_eps=sorted(mass, key=int), evaluated=sorted(ev, key=int), kept_mass_eps=kept,

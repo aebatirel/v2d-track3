@@ -45,7 +45,7 @@ Shared labels, from our own track (after S0) and our hands only, never ground tr
                 rack or pot, pot in a rack). table_supported = plane ok and |h| <= snap_max (2 cm) and
                 h - min_k h_k <= 0.5 cm and not on_other and not over_other.
 
-Steps (each switchable with --steps; always applied in the order S0, S6, S1, S3, S4, S5, S2):
+Steps (each switchable with --steps; always applied in the order S0, S6, S11, S1, S3, S4, S5, S2, S10):
   S0 identity fix hook: pipeline/identity_fix.py (board knob darkness) on a copy, when the roster is the board pair
      and the video, calibration and both board meshes exist; otherwise skipped and logged. Its output is the input of
      every later step and of the labels.
@@ -101,6 +101,22 @@ Steps (each switchable with --steps; always applied in the order S0, S6, S1, S3,
      (bi-invariant, so independent of the mesh-frame origin; --s2_interp decoupled = linear position + slerp as in
      refcheck systematics/fixed_shift.py); T frames kept; the last frame is held. --s2_hold_f0 1 keeps frame 0.
      Hands are not shifted [H: the lag is tracker latency, not a sync offset; untested].
+  S10 held-object wrist lock (31 Oct; perception sprint "heldpose", pipeline/heldpose.py) [H until its public gate]:
+     opt-in, after S2 (the hands are not time-shifted). For each GT-free hold (a measured hand within --s10_contact_cm
+     of our mesh at the tracked pose, gaps <= --s10_bridge bridged, >= --s10_min_len frames, palm and object each
+     travelling >= --s10_carry_cm), the pose is moved toward P(t) = W(t) G: W = our smoothed palm frame
+     (hands_refined joints 0, 5, 9, 13, 17), G = the grasp transform estimated from the tracker on the hold's first
+     visible frames. --s10_mode gate (default) blends by the GT-free visibility of the object against our hand at the
+     predicted pose; replace / trans are ungated readings (trans keeps the tracker's rotation). Frame 0 is never
+     changed. Pre-registration: docs/research/work/perception-sprint-20261031/heldpose/README.md.
+  S11 constant-offset re-fit (31 Oct; perception sprint "offset", pipeline/offsetfix.py) [H until its public gate]:
+     opt-in, after S6 and before S2 (a whole-track body correction commutes with S2's screw interpolation). Per object,
+     point-to-plane ICP (trimmed) of our mesh onto our stereo depth with the occluders removed (other objects rendered at
+     their tracked poses, our hands, the table plane), from the tracked pose; one constant body-frame correction C.
+     --s11_mode f0: frame 0 only, pixels from the det_f0.npz mask (--s11_det, default IN/det_f0.npz); mf: consensus over
+     the object's non-moving frames of a 48-frame grid of the depth cache (--s11_depth: the full depths_fs0.5.npy or a
+     grid npz), pixels from our predicted silhouette. --s11_apply whole (O C on every frame) or prefix (before the
+     perceived onset, as F1). Pre-registration: docs/research/work/perception-sprint-20261031/offset/README.md.
 
 Usage:
   python pipeline/refine.py --in PERC_DIR --out OUT_DIR [--steps S1,S2,S3,S4] [--hands H.npz] [--depth D.npy]
@@ -121,7 +137,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-STEP_ORDER = ['S0', 'S6', 'S1', 'S3', 'S4', 'S5', 'S2']   # tracker fixes S7 (before S6), S9, S8 (after it): not built
+STEP_ORDER = ['S0', 'S6', 'S11', 'S1', 'S3', 'S4', 'S5', 'S2', 'S10']   # tracker fixes S7 (before S6), S9, S8 (after it): not built
 DEFAULT_STEPS = 'S0,S1,S2,S3,S4'
 FORBIDDEN_SUBSTR = ('observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt',
                     '_pf.npz', '/gt/', 'calib_gt')   # 30 Oct: depth-audit label files and calibration outputs
@@ -874,7 +890,7 @@ def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--in', dest='inp', required=True, help='perception dir (poses.npz, poses_world_vo.npz, vo.json, ...)')
     p.add_argument('--out', required=True, help='refined perception dir (new; never the input dir)')
-    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S6 (default {DEFAULT_STEPS}; applied in '
+    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S6, S10 (default {DEFAULT_STEPS}; applied in '
                                                            f'the order {",".join(STEP_ORDER)}); "none" = copy only')
     p.add_argument('--hands', default=None, help='default IN/hands_refined.npz, else IN/hands.npz')
     p.add_argument('--depth', default=None, help='frame-0 depth: default IN/depth0.npy, else frame 0 of IN/depths_fs0.5.npy')
@@ -929,6 +945,38 @@ def parse_args(argv=None):
     p.add_argument('--s2_advance', type=float, default=0.545)
     p.add_argument('--s2_interp', choices=['se3', 'decoupled'], default='se3')
     p.add_argument('--s2_hold_f0', type=int, default=0)
+    # S10 (pipeline/heldpose.py; values pre-registered in perception-sprint-20261031/heldpose/README.md)
+    p.add_argument('--s10_mode', choices=['gate', 'replace', 'trans'], default='gate')
+    p.add_argument('--s10_contact_cm', type=float, default=2.0)
+    p.add_argument('--s10_bridge', type=int, default=6)
+    p.add_argument('--s10_min_len', type=int, default=10)
+    p.add_argument('--s10_carry_cm', type=float, default=2.0)
+    p.add_argument('--s10_onset', type=int, default=15)
+    p.add_argument('--s10_vis_g', type=float, default=0.6)
+    p.add_argument('--s10_vis_hi', type=float, default=0.8)
+    p.add_argument('--s10_vis_lo', type=float, default=0.4)
+    p.add_argument('--s10_ramp', type=int, default=5)
+    p.add_argument('--s10_smooth', type=int, default=5)
+    p.add_argument('--s10_trim_deg', type=float, default=20.0)
+    p.add_argument('--s10_radius_cm', type=float, default=1.0)
+    # S11 (pipeline/offsetfix.py; values pre-registered in perception-sprint-20261031/offset/README.md)
+    p.add_argument('--s11_mode', choices=['mf', 'f0'], default='mf')
+    p.add_argument('--s11_apply', choices=['whole', 'prefix'], default='whole')
+    p.add_argument('--s11_depth', default=None, help='S11 mf: depth cache (T,H,W) .npy or grid .npz {frames, depth}')
+    p.add_argument('--s11_det', default=None, help='S11 f0: frame-0 detections (default IN/det_f0.npz)')
+    p.add_argument('--s11_frames', type=int, default=48)
+    p.add_argument('--s11_min_frames', type=int, default=5)
+    p.add_argument('--s11_min_pts', type=int, default=150)
+    p.add_argument('--s11_band_cm', type=float, default=2.0)
+    p.add_argument('--s11_hand_cm', type=float, default=2.0)
+    p.add_argument('--s11_table_cm', type=float, default=0.8)
+    p.add_argument('--s11_dil', type=int, default=2)
+    p.add_argument('--s11_trim', type=float, default=0.8)
+    p.add_argument('--s11_iters', type=int, default=30)
+    p.add_argument('--s11_max_cm', type=float, default=3.0)
+    p.add_argument('--s11_max_deg', type=float, default=10.0)
+    p.add_argument('--s11_spread_cm', type=float, default=1.0)
+    p.add_argument('--s11_spread_deg', type=float, default=3.0)
     a = p.parse_args(argv)
     st = [s.strip().upper() for s in a.steps.split(',') if s.strip() and s.strip().lower() != 'none']
     bad = [s for s in st if s not in STEP_ORDER]
@@ -1099,6 +1147,7 @@ def main(argv=None):
     steps = rec.setdefault('steps', {})
     snap = [O[j].copy() for j in range(len(O))]
     deltas = {}
+    aux_extra = {}
 
     def note_delta(step):
         dc = {}
@@ -1133,6 +1182,29 @@ def main(argv=None):
             steps['S5'] = step_S5(a, objs, O, lab)
         elif step == 'S2':
             O, steps['S2'] = step_S2(a, O)
+        elif step == 'S11':
+            sys.path.insert(0, HERE)
+            import offsetfix
+            if KR is None:
+                steps['S11'] = dict(skipped='no K')
+            else:
+                detp = a.s11_det or os.path.join(inp, 'det_f0.npz')
+                det = np.load(checked(detp), allow_pickle=True) if os.path.exists(detp) else None
+                if det is not None:
+                    inputs['det_f0'] = detp
+                if a.s11_depth:
+                    inputs['s11_depth'] = checked(a.s11_depth)
+                dsrc = offsetfix.DepthSource(a.s11_depth, T, depth0)
+                pl = s6_plane(depth0, KR, W_C[0], n_, d_, prec)
+                steps['S11'] = offsetfix.step_S11(a, objs, O, W_C, KR, H, lab, dsrc, det,
+                                                  None if pl[0] is None else (np.asarray(pl[0], float), float(pl[1])), log)
+                steps['S11']['table_plane_source'] = pl[2]
+                steps['S11']['det_path'] = detp if det is not None else None
+        elif step == 'S10':
+            sys.path.insert(0, HERE)
+            import heldpose
+            steps['S10'] = heldpose.step_S10(a, objs, O, W_C, Jh, Mh, KR, interp_pose, log)
+            aux_extra.update(steps['S10'].pop('_aux', {}))        # per-frame S10 diagnostics -> pose_opt_aux.npz
         note_delta(step)
         log(f'{step}:', json.dumps({k: v for k, v in steps[step].items() if k != 'delta'}, default=str)[:600])
     if 'S1' in a.step_set:
@@ -1189,6 +1261,7 @@ def main(argv=None):
         aux[f'{o.name}_hand_cm'] = L['hand_cm']
         aux[f'{o.name}_changed'] = changed[o.name]
     aux.update(deltas)
+    aux.update(aux_extra)
     np.savez(os.path.join(out, 'pose_opt_aux.npz'), **aux)
     log(f'wrote {out}: checks {json.dumps({k: v for k, v in chk.items() if k != "keys"})}')
     if not (chk['world_T_cam_byte_identical'] and chk['keys_ok'] and chk['frames_ok'] and chk['finite']):

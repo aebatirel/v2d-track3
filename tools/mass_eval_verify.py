@@ -63,6 +63,17 @@ def stats(rows):
                 min=round(float(v.min()), 4), values=[round(float(x), 4) for x in v])
 
 
+def rule2(st, seeds):
+    """PLAN section 5 rule 2: the seed with the higher training-box mean; within 0.005 the lower sd; still tied, the
+    first seed listed (42). st = {seed: stats}; seeds without rollouts are ignored. None if no seed has any."""
+    have = [s for s in seeds if st.get(s, {}).get('n', 0) > 0]
+    if not have:
+        return None
+    best = max(have, key=lambda s: st[s]['mean'])
+    close = [s for s in have if abs(st[s]['mean'] - st[best]['mean']) <= 0.005]
+    return min(close, key=lambda s: (st[s]['sd'], seeds.index(s)))
+
+
 def cell_paths(mode, C, e, s):
     """(results dir, chosen checkpoint or None, rollout dirs glob, curve/sweep eval logs) of one cell."""
     if mode == 'glock':
@@ -199,12 +210,7 @@ def main():
         status = 'INVALID' if fails else ('INCOMPLETE' if missing or unchecked or len(missing) == len(seeds) else 'VERIFIED')
         V['episodes'][e] = dict(status=status, failures=fails, missing=missing, unchecked=unchecked, cells=cells)
         st = {s: c.get('stats', dict(n=0)) for s, c in cells.items()}
-        have = [s for s in seeds if st[s].get('n', 0) > 0]
-        cand = None
-        if have:
-            best = max(have, key=lambda s: st[s]['mean'])
-            close = [s for s in have if abs(st[s]['mean'] - st[best]['mean']) <= 0.005]
-            cand = min(close, key=lambda s: (st[s]['sd'], seeds.index(s)))
+        cand = rule2(st, seeds)
         ent = dict(status=status, seeds={s: dict(st[s], eval_timeouts=cells[s]['eval_timeouts'],
                                                  checkpoint=cells[s].get('checkpoint')) for s in seeds},
                    rule2_candidate=cand if status != 'INVALID' else None,

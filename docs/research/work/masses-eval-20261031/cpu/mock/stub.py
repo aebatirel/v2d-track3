@@ -76,7 +76,8 @@ def write_ck(path, cfg, steps):
             'user.environment_steps': str(steps), 'user.curriculum_stage': '10', 'user.resolved_config_json': json.dumps(cfg)}
     h = json.dumps({'__metadata__': meta}).encode(); h += b' ' * (-len(h) % 8)
     with open(path, 'wb') as f:
-        f.write(struct.pack('<Q', len(h))); f.write(h); f.write(os.urandom(64))   # weights stand-in: a unique sha256
+        f.write(struct.pack('<Q', len(h))); f.write(h)                      # weights stand-in: unique per path and config,
+        f.write(hashlib.sha256((path.replace(MR, '') + json.dumps(cfg, sort_keys=True)).encode()).digest() * 2)   # reproducible
 
 
 def read_ck(path):
