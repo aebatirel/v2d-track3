@@ -306,12 +306,13 @@ def classifier(b, obj, imgs, geo, hands=None, seed=0):
                        heldout_acc_neg=round(acc_n, 4), frames=len(imgs))
 
 
-def votes(b, obj, imgs, geo, model, ev, hands=None):
+def votes(b, obj, imgs, geo, model, ev, hands=None, sub=False):
     """NMV / NMF per voxel of ev's 4 mm grid (only voxels inside the candidate occupancy are voted): a voxel counts in a
     frame if its centre projects inside the image, outside every other object's and the hands' masks; NMF if the
     pixel's background probability exceeds 0.5."""
-    g = ev.grid
-    lin = np.nonzero(ev.occ)[0]
+    g = ev.sgrid if sub else ev.grid
+    occ = ev.socc if sub else ev.occ
+    lin = np.nonzero(occ)[0]
     Cc = g.centres(lin)
     nmv = np.zeros(g.size, np.int32); nmf = np.zeros(g.size, np.int32)
     others = {p: _obj_points(b, p)[::4] for p in b.partners(obj)}
@@ -390,8 +391,9 @@ def run(b, obj, ev, video, calib, hands=None, offset=1):
     if model is None:
         return dict(gate_ok=False, gate=cinfo, frames=fr, qualifying=qinfo)
     nmv, nmf = votes(b, obj, imgs, geo, model, ev, hands)
+    nmv_s, nmf_s = votes(b, obj, imgs, geo, model, ev, hands, sub=True) if ev.socc is not None else (None, None)
     ok, ginfo = gate(cinfo, nmv, nmf, ev)
     ginfo.update(cinfo)
     N = notches(nmv, nmf, ev) if ok else []
-    return dict(nmv=nmv, nmf=nmf, gate_ok=ok, gate=ginfo, frames=fr, qualifying=qinfo,
+    return dict(nmv=nmv, nmf=nmf, nmv_sub=nmv_s, nmf_sub=nmf_s, gate_ok=ok, gate=ginfo, frames=fr, qualifying=qinfo,
                 notches=N, sil_voxels=int((sil_mask(nmv, nmf) & ev.occ).sum()), _model=model, _geo=geo)

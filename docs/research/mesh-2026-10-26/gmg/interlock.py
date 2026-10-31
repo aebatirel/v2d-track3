@@ -668,20 +668,34 @@ def partner_thickness(C_world_o, n, ev_o):
 
 
 def carve_solid(ev, comp_lin, frame3, centre_n, w, plate=True, extend=0.003):
-    """The removed solid of a component at width w (INTERLOCK 3.5): an oriented box (plate-like regions: both other
-    extents >= 2 w) spanning the component's (d, m) extent, |n - centre_n| <= w / 2, extended by EXTEND on every side
-    where the component reaches the candidate surface; otherwise the component's 2 mm sub-voxels. Returns dict with
-    kind ('box' with axes/centre/half sizes, or 'voxels' with sub-grid indices) and the 2 mm sub-voxels removed."""
+    """The removed solid of a component at width w (INTERLOCK 3.5): the candidate's 2 mm sub-voxels inside the
+    component's (d, m) footprint (its voxels' squares, +-2 mm) with |n - centre_n| <= w / 2 (F-I2.5: the width also
+    applies when the region is not plate-like). Plate-like regions (both other extents >= 2 w) are also described
+    as an oriented box, extended by EXTEND on every side where the component reaches the candidate surface, so the
+    pieces can be cut exactly (simpieces.remove_box). Returns dict(kind 'box' | 'voxels', sub_lin, cm3, ...)."""
     d, n, m = frame3
     C = ev.grid.centres(comp_lin)
     sd, sm = C @ d, C @ m
     h = ev.grid.vox / 2
     ext_d = [sd.min() - h, sd.max() + h]
     ext_m = [sm.min() - h, sm.max() + h]
-    S = ev.sgrid.centres(np.nonzero(ev.socc)[0])
     slin = np.nonzero(ev.socc)[0]
+    S = ev.sgrid.centres(slin)
+    sg = ev.sgrid.vox
+    # footprint of the component in (d, m) on a 2 mm raster
+    fd = np.floor((S @ d - ext_d[0]) / sg).astype(np.int64); fm = np.floor((S @ m - ext_m[0]) / sg).astype(np.int64)
+    nd, nm = int(np.ceil((ext_d[1] - ext_d[0]) / sg)) + 1, int(np.ceil((ext_m[1] - ext_m[0]) / sg)) + 1
+    F = np.zeros((nd, nm), bool)
+    cd = np.floor((sd - ext_d[0]) / sg).astype(np.int64); cm = np.floor((sm - ext_m[0]) / sg).astype(np.int64)
+    for a_ in (-1, 0, 1):
+        for b_ in (-1, 0, 1):
+            F[np.clip(cd + a_, 0, nd - 1), np.clip(cm + b_, 0, nm - 1)] = True
+    okf = (fd >= 0) & (fd < nd) & (fm >= 0) & (fm < nm)
+    inF = np.zeros(len(S), bool); inF[okf] = F[fd[okf], fm[okf]]
+    slab = np.abs(S @ n - centre_n) <= w / 2
+    sel = inF & slab
+    out = dict(kind='voxels', sub_lin=slin[sel], cm3=float(sel.sum()) * sg ** 3 * 1e6, width_mm=round(w * 1e3, 2))
     if plate and (ext_d[1] - ext_d[0]) >= 2 * w and (ext_m[1] - ext_m[0]) >= 2 * w:
-        # extend open sides: the side is open if the candidate ends within one voxel beyond the component there
         def open_side(axis, val, sign):
             q = C[np.abs(C @ axis - val) <= ev.grid.vox] + sign * axis * ev.grid.vox * 1.5
             l, ok = ev.grid.lin(q)
@@ -694,13 +708,10 @@ def carve_solid(ev, comp_lin, frame3, centre_n, w, plate=True, extend=0.003):
         cen = d * 0.5 * (lo_d + hi_d) + n * centre_n + m * 0.5 * (lo_m + hi_m)
         half = np.array([0.5 * (hi_d - lo_d), 0.5 * w, 0.5 * (hi_m - lo_m)])
         A = np.stack([d, n, m])
-        loc = (S - cen) @ A.T
-        inside = np.all(np.abs(loc) <= half, axis=1)
-        return dict(kind='box', axes=A.tolist(), centre=cen.tolist(), half=half.tolist(), sub_lin=slin[inside],
-                    cm3=float(inside.sum()) * ev.sgrid.vox ** 3 * 1e6, width_mm=round(w * 1e3, 2))
-    sl = sub_lin(ev.grid, comp_lin)
-    sl = sl[ev.socc[sl]]
-    return dict(kind='voxels', sub_lin=sl, cm3=float(len(sl)) * ev.sgrid.vox ** 3 * 1e6, width_mm=round(w * 1e3, 2))
+        inside = np.all(np.abs((S - cen) @ A.T) <= half, axis=1)
+        out.update(kind='box', axes=A.tolist(), centre=cen.tolist(), half=half.tolist(), sub_lin=slin[inside],
+                   cm3=float(inside.sum()) * sg ** 3 * 1e6)
+    return out
 
 
 def solid_mesh(ev, solid):
@@ -738,11 +749,22 @@ def icarve(mesh, solids_meshes):
 
 
 # ------------------------------------------------------------------------------------------------ sources and classes
-def sil_classes(sil, lin):
+def sil_classes(sil, lin, grid=None):
     """Per voxel of LIN: 'SIL' (see-through), 'SOLID' (testable, not see-through) or None (silhouette absent for it:
-    gate failed, not run, or NMV < 3). sil = dict(nmv, nmf, gate_ok) on the 4 mm grid, or None."""
+    gate failed, not run, or NMV < 3). sil = dict(nmv, nmf, gate_ok[, nmv_sub, nmf_sub]) on the 4 mm grid (and its
+    2 mm sub-grid). With sub-grid votes (PREREG F-I2.1, T-I1 fix) a 4 mm voxel is SIL if any of its 8 sub-voxels is
+    see-through and SOLID if none is and one is testable: a 4 mm voxel straddling a slot edge is not seen solid."""
     out = np.full(len(lin), None, object)
     if not sil or not sil.get('gate_ok'):
+        return out
+    lin = np.asarray(lin, np.int64)
+    if sil.get('nmv_sub') is not None and grid is not None:
+        sl = sub_lin(grid, lin).reshape(len(lin), 8)
+        nmv, nmf = np.asarray(sil['nmv_sub'])[sl], np.asarray(sil['nmf_sub'])[sl]
+        test = nmv >= 3
+        see = test & (nmf >= 3) & (nmf >= 0.5 * nmv)
+        out[test.any(1)] = 'SOLID'
+        out[see.any(1)] = 'SIL'
         return out
     nmv, nmf = np.asarray(sil['nmv'])[lin], np.asarray(sil['nmf'])[lin]
     test = nmv >= 3
@@ -789,7 +811,7 @@ def agree(R, d, ev, gen=None, sil=None, N_b=None, comp_axes=None):
     elif gen is not None:
         rep['a'] = dict(present=False, reason='gen notch lost in remesh' if gen.get('survived') is False else 'no C_a')
     if sil and sil.get('gate_ok'):
-        cls = sil_classes(sil, R)
+        cls = sil_classes(sil, R, g)
         testable = np.array([c is not None for c in cls])
         if testable.sum() >= K('min_testable'):
             share = float(np.mean([c == 'SIL' for c in cls[testable]]))
@@ -871,6 +893,35 @@ def _comp_frame(comp, ev, side=None):
     return c, A
 
 
+def _orphans(ev, remove_lin, R_lin):
+    """Candidate voxels that the removal cuts off from the largest remaining component, hold no OBSERVED voxel and
+    lie inside the convex hull of the region R (4 mm grid)."""
+    from scipy.spatial import Delaunay
+    g = ev.grid
+    occ = ev.occ.copy(); occ[np.asarray(remove_lin, np.int64)] = False
+    lab, n = ndimage.label(occ.reshape(g.shape), structure=np.ones((3, 3, 3)))
+    lab = lab.ravel()
+    if n < 2:
+        return np.zeros(0, np.int64)
+    sizes = np.bincount(lab)[1:]
+    big = int(np.argmax(sizes)) + 1
+    CR = g.centres(R_lin)
+    try:
+        hull = Delaunay(CR)
+    except Exception:
+        return np.zeros(0, np.int64)
+    out = []
+    for k in range(1, n + 1):
+        if k == big:
+            continue
+        l = np.nonzero(lab == k)[0]
+        if (ev.state[l] == STATE_OBSERVED).any():
+            continue
+        if (hull.find_simplex(g.centres(l)) >= 0).mean() >= 0.5:
+            out.append(l)
+    return np.concatenate(out) if out else np.zeros(0, np.int64)
+
+
 def decide_component(comp, side, b, poses, R_lin, report):
     """F-I1.3 steps 1-4 for one component R (after the split). Returns (decision, reasons dict)."""
     ev = side.ev
@@ -881,7 +932,7 @@ def decide_component(comp, side, b, poses, R_lin, report):
         reasons['step'] = 1
         return 'IGNORE', reasons
     st = ev.state[R_lin]
-    silc = sil_classes(side.sil, R_lin)
+    silc = sil_classes(side.sil, R_lin, g)
     U = (st != STATE_OBSERVED)
     obs = ~U
     sil_v = obs & (silc == 'SIL')
@@ -912,6 +963,17 @@ def decide_component(comp, side, b, poses, R_lin, report):
     # step 3: R_U
     if U.any():
         okt, tinfo = topology_kept(ev, R_lin[U])
+        if not okt:
+            # F-I2.4 (T-I1 fix): the partner's evidence is its observed surface, so a hollow region can cut off
+            # unseen candidate material inside the partner (a cup's core); candidate components split off by the
+            # carve that hold no OBSERVED voxel and lie inside the convex hull of R are removed with R
+            orphan = _orphans(ev, R_lin[U], R_lin)
+            if len(orphan):
+                okt2, tinfo2 = topology_kept(ev, np.concatenate([R_lin[U], orphan]))
+                reasons['ru_orphans'] = dict(voxels=int(len(orphan)), topology=tinfo2)
+                if okt2:
+                    okt, tinfo = True, tinfo2
+                    reasons['_orphan_lin'] = orphan
         reasons['ru_topology'] = tinfo
         if okt:
             carve |= U
@@ -955,7 +1017,10 @@ def decide_component(comp, side, b, poses, R_lin, report):
     if not carve.any():
         return 'PUSH', reasons
     reasons['carve_voxels'] = int(carve.sum())
-    reasons['_carve_lin'] = R_lin[carve]
+    cl = R_lin[carve]
+    if '_orphan_lin' in reasons:
+        cl = np.concatenate([cl, reasons.pop('_orphan_lin')])
+    reasons['_carve_lin'] = cl
     return 'CARVE', reasons
 
 

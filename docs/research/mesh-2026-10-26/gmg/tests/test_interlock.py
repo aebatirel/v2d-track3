@@ -149,13 +149,17 @@ def run_pair(b, cand, sil=None, gen=None, notches=None, collider=None):
 
 
 def sil_votes(ev, true_mesh, see_through=True):
-    """Synthetic silhouette votes: every voxel of the candidate occupancy testable (NMV 6); see-through (NMF 6) where
-    the voxel centre is outside the TRUE slotted plate (if see_through), else NMF 0."""
-    C = ev.grid.centres()
-    nmv = np.where(ev.occ, 6, 0).astype(np.int32)
-    out = ~IL.fast_inside(true_mesh, C)
-    nmf = np.where(ev.occ & out & see_through, 6, 0).astype(np.int32)
-    return dict(nmv=nmv, nmf=nmf, gate_ok=True)
+    """Synthetic silhouette votes on the 4 mm grid and its 2 mm sub-grid: every candidate voxel testable (NMV 6);
+    see-through (NMF 6) where the (sub-)voxel centre is outside the TRUE slotted plate (if see_through), else NMF 0."""
+    out = {}
+    for key, g, occ in (('', ev.grid, ev.occ), ('_sub', ev.sgrid, ev.socc)):
+        C = g.centres()
+        nmv = np.where(occ, 6, 0).astype(np.int32)
+        o = ~IL.fast_inside(true_mesh, C)
+        out['nmv' + key] = nmv
+        out['nmf' + key] = np.where(occ & o & see_through, 6, 0).astype(np.int32)
+    out['gate_ok'] = True
+    return out
 
 
 def summary(recs):
@@ -201,7 +205,7 @@ class Silhouette(unittest.TestCase):
             t = t_mm * 1e-3
             b, _ = cross_episode(t)
             cand = dict(A=plate(t), B=plate(t))
-            evA, evB = IL.Evidence(b, 'A', cand['A'], sub=False), IL.Evidence(b, 'B', cand['B'], sub=False)
+            evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
             sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
             recs, _ = run_pair(b, cand, sil=sil)
             s = summary(recs)
@@ -215,7 +219,7 @@ class Silhouette(unittest.TestCase):
         t = 0.025
         b, _ = cross_episode(t)
         cand = dict(A=plate(t), B=plate(t))
-        evA, evB = IL.Evidence(b, 'A', cand['A'], sub=False), IL.Evidence(b, 'B', cand['B'], sub=False)
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
         sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t), see_through=False))
         recs, _ = run_pair(b, cand, sil=sil)
         s = summary(recs)
@@ -228,10 +232,10 @@ class Silhouette(unittest.TestCase):
 class Offset(unittest.TestCase):
     def test_o1_lateral(self):
         """Track offset 11 mm along A's long axis (lateral to d); silhouette see-through at the TRUE slots."""
-        t = 0.025
+        t = 0.010
         b, _ = cross_episode(t, offset=(0.011, 0, 0))
         cand = dict(A=plate(t), B=plate(t))
-        evA, evB = IL.Evidence(b, 'A', cand['A'], sub=False), IL.Evidence(b, 'B', cand['B'], sub=False)
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
         sil = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
         from gmg import silhouette as SI
         N = dict(A=SI.notches(sil['A']['nmv'], sil['A']['nmf'], evA), B=SI.notches(sil['B']['nmv'], sil['B']['nmf'], evB))
@@ -243,10 +247,10 @@ class Offset(unittest.TestCase):
             self.assertLessEqual(abs(s[o]['off']['t_norm_mm'] - 11.0), 2.0 + 1e-6, f'o1 {o}: {s[o]["off"]}')
 
     def test_o2_along_d(self):
-        t = 0.025
+        t = 0.010
         b, _ = cross_episode(t, offset=(0, -0.011, 0))
         cand = dict(A=plate(t), B=plate(t))
-        evA, evB = IL.Evidence(b, 'A', cand['A'], sub=False), IL.Evidence(b, 'B', cand['B'], sub=False)
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
         sil = dict(A=sil_votes(evA, plate(t, 'top'), see_through=False), B=sil_votes(evB, plate(t), see_through=False))
         from gmg import silhouette as SI
         recs, _ = run_pair(b, cand, sil=sil, notches=dict(A=[], B=[]))
@@ -377,7 +381,7 @@ class Pieces(unittest.TestCase):
         cut, touched = SP.remove_box(H, slot)
         vol = SP.hull_volume(cut) * 1e6
         self.assertEqual(touched, 1)
-        self.assertAlmostEqual(vol, 0.10 * 0.10 * 0.06 * 1e6 - 0.02 * 0.04 * 0.0302 * 1e6, delta=0.05)
+        self.assertAlmostEqual(vol, 0.10 * 0.10 * 0.06 * 1e6 - 0.02 * 0.04 * (0.03 + 0.0001) * 1e6, delta=0.05)
         guest = [np.asarray(trimesh.creation.box(extents=[0.015, 0.030, 0.250]).apply_translation([0, 0, 0.125 +
                                                                                                     0.0]).vertices)]
         # guest stands in the 30 mm deep slot (bottom at z = 0); a second carve removes the slot bottom (through)

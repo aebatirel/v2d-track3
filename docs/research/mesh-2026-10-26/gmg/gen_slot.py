@@ -192,12 +192,13 @@ def concavity(ev, S, r):
     cav = np.zeros_like(S)
     idx = np.argwhere(S)
     if len(idx) > 10:
-        from scipy.spatial import Delaunay
+        from scipy.spatial import ConvexHull
         try:
-            hull = Delaunay(idx[np.unique(np.round(idx / 2), axis=0, return_index=True)[1]] if len(idx) > 40000
-                            else idx)
-            box = np.argwhere(np.ones_like(S))
-            ins = hull.find_simplex(box) >= 0
+            eq = ConvexHull(idx.astype(np.float64)).equations
+            box = np.argwhere(np.ones_like(S)).astype(np.float64)
+            ins = np.ones(len(box), bool)
+            for e in eq:                                   # half-space tests, facet by facet (fast, exact)
+                ins &= box @ e[:3] + e[3] <= 1e-9
             cav = ins.reshape(S.shape) & ~S
         except Exception:
             pass
