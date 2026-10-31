@@ -12,6 +12,12 @@ rest planes, route-A shells, split identity test), with three differences:
   3. no frame-0 det seeds (none exist for eval in DATA/data/store; ep24's public bundle had none either) and no aux
      owner file (the B.3 ROI-swap validation is public only).
 No scan, mesh, mocap, parquet pose or alignment file is opened (guard; strace audit).
+--rehome CLEAN_BUNDLE (GMG_MODE=dev): the guard admits a tracks file only from data/sweep, data/eval (frozen sha256)
+or the CURRENT run's tracks/, so a clean bundle whose tracks are the mapped track in the clean run cannot be loaded by
+a dev consumer (interlock_cands, interlock_dev). This mode regenerates the mapped track in the dev run (same frozen
+source, same map: identical arrays), copies the clean bundle's object npz and shell files byte for byte (read through
+role clean_run, sha256 recorded) into RUN/bundle/eval/ep<N>/ and rewrites only episode.json's tracks entry (path,
+sha256), tier DEV and a rehomed_from record. Consumers then use that bundle with --run = this dev run.
 Usage: GMG_MODE=clean python gmg/tools/ev_extract.py --run <DATA>/gmg/runs/<yyyymmdd>-<tag>-<commit7> --ep 25 \
          --map wooden_piece_1=wooden_piece_2:Rx180,wooden_piece_2=wooden_piece_1:I
 """
@@ -48,8 +54,11 @@ def main():
     ap.add_argument('--run', required=True)
     ap.add_argument('--ep', type=int, required=True)
     ap.add_argument('--map', required=True, help='TARGET=SOURCE:ROT,... (board names of the packed reference)')
+    ap.add_argument('--rehome', default='', help='dev mode only: CLEAN_RUN/bundle/eval/ep<N> to copy into --run')
     a = ap.parse_args()
-    if guard.mode() != 'clean':
+    if a.rehome and guard.mode() != 'dev':
+        raise SystemExit('ev_extract --rehome runs in GMG_MODE=dev only')
+    if not a.rehome and guard.mode() != 'clean':
         raise SystemExit('ev_extract runs in GMG_MODE=clean only')
     import numpy as np
     from gmg import hands_cpu, extract_joint as EJ, track_sanity as TS, bundle as BU
@@ -97,6 +106,9 @@ def main():
     with open(os.path.join(tdir, 'mapping.json'), 'w') as f:
         json.dump(mrec, f, indent=1)
     log('mapped tracks', tracks, json.dumps(mrec['map']))
+    if a.rehome:
+        rehome(a, run, ep, split, objs, mrec, tracks, start, log)
+        return
     # M1 hands (world_T_cam only)
     hdir = os.path.join(run, 'hands', split, f'ep{ep}')
     th = time.time()
@@ -148,6 +160,47 @@ def main():
     guard.write_manifest(os.path.join(run, 'manifests', f'{split}-ep{ep}.json'),
                          extra=dict(step='Prep25 (ev_extract)', ep=ep, split=split, start=start, track_map=mrec,
                                     timing=b.meta['timing']))
+
+
+def rehome(a, run, ep, split, objs, mrec, tracks, start, log):
+    """Dev mode: copy a clean eval bundle into this run with the tracks entry pointing at this run's mapped track."""
+    import hashlib
+    src = os.path.realpath(a.rehome)
+    meta = guard.load_json(os.path.join(src, 'episode.json'), 'clean_run')
+    if meta.get('split') != split or int(meta.get('ep', -1)) != ep or list(meta['objects']) != objs:
+        raise SystemExit(f'--rehome {src}: split / ep / objects differ from eval ep{ep} {objs}')
+    tm = meta.get('track_map') or {}
+    if tm.get('map') != mrec['map'] or (tm.get('source') or {}).get('sha256') != mrec['source']['sha256']:
+        raise SystemExit(f'--rehome {src}: the clean bundle was built with another map or source track: {tm}')
+    out = os.path.join(run, 'bundle', split, f'ep{ep}')
+    os.makedirs(out, exist_ok=True)
+    files = {}
+    for f in [f'{o}.npz' for o in objs] + [f'shell_{o}.npy' for o in objs]:
+        sp = os.path.join(src, f)
+        rp = guard.open_input(sp, 'clean_run')
+        with open(rp, 'rb') as fh:
+            data = fh.read()
+        sha = hashlib.sha256(data).hexdigest()
+        if sha != guard._INPUTS[os.path.realpath(sp)]['sha256']:
+            raise SystemExit(f'--rehome: {sp} changed while it was read')
+        with open(os.path.join(out, f), 'wb') as fh:
+            fh.write(data)
+        files[f] = dict(sha256=sha, bytes=len(data))
+    new = dict(meta)
+    t_sha = guard._sha256(os.path.realpath(tracks))
+    new['tracks'] = dict(path=tracks, sha256=t_sha)
+    new['tier'] = 'DEV'
+    new['rehomed_from'] = dict(bundle=src, episode_json_sha256=guard._INPUTS[os.path.realpath(
+        os.path.join(src, 'episode.json'))]['sha256'], clean_tracks=meta['tracks'], files=files,
+        rule='object npz and shell files copied byte for byte; tracks = the same map of the same frozen source, '
+             'regenerated in this run (the tracks role admits only the current run\'s tracks/)')
+    with open(os.path.join(out, 'episode.json'), 'w') as fh:
+        json.dump(new, fh)
+    log(f'rehomed {src} -> {out}: files {json.dumps(files)}; tracks {tracks} sha256 {t_sha}')
+    os.makedirs(os.path.join(run, 'manifests'), exist_ok=True)
+    guard.write_manifest(os.path.join(run, 'manifests', f'{split}-ep{ep}-rehome.json'),
+                         extra=dict(step='Prep25 (ev_extract --rehome)', ep=ep, split=split, start=start,
+                                    track_map=mrec, rehomed_from=new['rehomed_from']))
 
 
 if __name__ == '__main__':
