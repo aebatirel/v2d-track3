@@ -5422,3 +5422,12 @@ arm and a no-policy replay floor to stage B.
   team has one member.
 - The repo collaborators are still aebatirel, ardai and BortuceKhan. `Nvidia-V2D-Challenge` is still not listed
   (owner action).
+
+### 31 Oct — registration closed; late-registration email drafted
+- The owner found the form closed ("Registration is now closed ... please email V2D_Challenge@nvidia.com").
+- Kaggle GetTeam re-read on all six team IDs: 'Imitation.Tech', one member (Ahmet Ercan Batirel).
+- AUC leaderboard: richchentw 0.94530, DDD 0.93229, Purple 0.90689, rlwrld 0.90339, Zihao Guo 0.88288,
+  SRL 0.85558, DSAIL 0.84391, **Imitation.Tech 0.81460 (8th)**.
+- Email text: `docs/organiser-email-late-registration-2026-10-31.md`. It is saved as an unsent Gmail draft via the
+  connector. That account is ahmet@ophanic.com, not the aebatirel@gmail.com used for Kaggle and named as primary
+  contact; flagged to the owner. Nothing was sent.

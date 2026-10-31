@@ -1,5 +1,14 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31: registration form closed before the owner submitted it; late-registration email drafted (not sent)
+- The form page now reads "Registration is now closed". The email to V2D_Challenge@nvidia.com asks for late
+  registration and carries the form answers: `docs/organiser-email-late-registration-2026-10-31.md`. It is an
+  unsent Gmail draft in the connected account (ahmet@ophanic.com). The owner fills in the members and sends it.
+- Kaggle (31 Oct): the team is "Imitation.Tech" on all six Track 3 boards, with one member. AUC 0.8146 is now
+  **8th** (DSAIL 0.844 passed us). Top 7: 0.945 / 0.932 / 0.907 / 0.903 / 0.883 / 0.856 / 0.844.
+- Still open (owner): share the repo with `Nvidia-V2D-Challenge` (not a collaborator on 31 Oct); send the
+  rules-questions email (`docs/organiser-email-draft-2026-10-22.md`).
+
 ## 2026-10-30 ~18:40 UTC: team registration form drafted (owner action; not submitted)
 - Draft answers: `docs/registration-form-draft-2026-10-30.md`. Owner fills in member names, emails and affiliations,
   then submits the Google Form (the agent cannot sign in).
