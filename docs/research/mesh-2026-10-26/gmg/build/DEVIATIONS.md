@@ -697,3 +697,52 @@ scan number was seen; none bears on these choices.
     flags apart, because P22 is stated for the cross-object test, while SPEC section 7 marks IDENTITY_SWAP on either;
     written after the identity log was seen (ep24 board 1 fails the split test). No rule or threshold changes. No scan
     number seen.
+106. **(2026-10-31, B3) M10 remesh method as built** (`gmg/remesh.py`; SPEC section 7 M10 says "generalised winding
+    number or SDF voxelisation, marching cubes, largest-component cleanup, then fit_budget"). (a) The inside test is
+    the GWN >= 0.5 estimated by six axis-direction ray votes per node (a ray votes inside if its signed crossing count
+    is non-zero or its crossing count is odd; inside if more than 3 of 6 vote; exact winding number per ray for a
+    closed oriented mesh; the six-direction share approximates the GWN's solid-angle mean for open meshes; the ray
+    voting of Nooruddin and Turk 2003); nodes near the surface with 2-4 inside votes get the exact solid-angle GWN of a
+    3000-face copy (at most 5000 nodes, nearest the surface first). Reason: exact GWN at every node did not finish
+    20k queries x 12k faces in 2 min on this shared CPU [M]; grids hold 0.2-5 M nodes. (b) Voxel cleanup before
+    marching cubes: enclosed outside regions filled, largest 6-connected solid kept (the "largest-component cleanup",
+    done on the solid; the mesh split after marching cubes stays as a second guard). (c) Numerical choices: grid origin
+    shifted by 0.382 pitch (nodes exactly on CAD planes gave zero-volume slivers); exact distances only within 2
+    pitches of the surface; thin-part retry (union with a 0.75-pitch shell) when < 90 % of the input surface lies
+    within one pitch of the result; budget ladder 4000, 3992, ..., 3744 checked with the kit decode (float32 vertices,
+    zero-area faces dropped) and accepted only with |area change| <= 5 %, then marching cubes at 2x / 3x / 4x pitch
+    (pitch_fallback); none accepted -> the decoded-watertight try with the least area change (budget_unaccepted).
+    Seen before (c)'s area tolerance and pitch fallback, and before (a)'s parity and (b): the GT-free remesh outcomes of
+    3-6 of the 104 B.10 meshes (dev trial runs `runs-dev/20261031-b10try*`, kept). B.10's threshold is unchanged; the
+    final B.10 run covers all 104 with the final code. No scan or eval number seen.
+107. **(2026-10-31, B3) G0 inputs are prepared on the local CPU, not on the box** (SPEC section 18 G0 row: "SAM2 masks
+    for ep2; the mask test of PREREG B.11 runs on the box first"). PREREG B.11 allows the local CPU when SAM2 runs there
+    (it does, B2); `tools/g0_inputs.py` re-runs M9 and B.11 on the CLEAN ep2 bundle of B4 (PREREG B.12: clean if B4 has
+    run; DEVIATIONS 72 asked for this re-run) and writes the SAM 3D inputs only if B.11 passes; the box runs SAM 3D
+    only. The process is dev (the clean bundle is read through the dev role clean_run, as `interlock.load_bundle_any`),
+    so every G0 output is tier DEV (flag dev_process_clean_bundle). Hands: role dev_hands (`data/sweep/ep2/hands.npz`,
+    `pipeline/hands_mp.py` output) as in B2; B4's M1 hands (same `hands_mp.py`) sit in the B4 run folder, which no
+    dev role admits. No scan or eval number seen.
+108. **(2026-10-31, B3) SAM 3D input camera and pointmap filter.** The colour frame is undistorted to a pinhole
+    camera with cam_a's own K (same camera frame); the mask is remapped with nearest interpolation; the pointmap is
+    our depth of frame k reprojected into that camera (z-buffer, 3x3 gap fill, back-projected along the pixel rays),
+    NaN outside the mask (lit note 1.1; organiser `_depth_to_pointmap`). Added after seeing the trial inputs (GT-free,
+    before any SAM 3D output): depth samples more than 20 mm (the A.6 occluder / separated-frame gap, constant
+    `genmask_occluder_gap_m`) behind the target's projected front surface, or at filled-hole pixels of the footprint
+    (no owned point: a handle loop), are NaN. In trial 1, 1-3 % of the pot's and the lid control's samples lay at
+    1.36-1.51 m inside the mask [M] (background past the silhouette: the depth camera and cam_a see it from different
+    places, and through the handle loop). Masks are unchanged (B2 design).
+109. **(2026-10-31, B3) G0 control runs (report only; not part of the B.12 outcome)**, asked for by the task brief
+    ("plus whatever controls B.12 names (e.g. the old contact-frame input)"); B.12 itself names none. Per target: a
+    census contact frame with 3-D contact (d3 <= 10 mm), largest target footprint first, whose naive mask is
+    hand-free with valid depth >= 0.6 (else the smallest hand share <= 25 %); naive mask = target footprint minus
+    MediaPipe hand capsules and depth occluders outside the partner's dilated footprint (the partner stays in the
+    mask, as in the 29 Oct input whose mask was the library-render silhouette), largest component, no SAM2; seeds 0
+    and 1; same pointmap rule. Changed after trial 1 (GT-free montages, no SAM 3D output): the first rule used the
+    frame table's hand share, which is relative to the exclusive mask, and picked lid k276 with a hand on the lid; and
+    the depth-occluder rule had removed the lid from the pot control (k24).
+110. **(2026-10-31, B3) The G0 lid view is M9's first view, which on the clean bundle is not strictly hand-free.**
+    PREREG B.12 asks for "M9's best separated, hand-free view". On the clean ep2 bundle no qualifying lid frame is
+    hand-free: every frame has 1.3-1.7 % depth-occluder pixels at the lid's lower rim (no MediaPipe hand) [M], so M9's
+    rule (hand-free first, else the largest visible area) takes k132 (dev bundle in B2: k118, hand-free). The montage
+    shows the lid alone on the table, no hand. Used as is; M9 is not changed. No scan or eval number seen.

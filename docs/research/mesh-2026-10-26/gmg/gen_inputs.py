@@ -790,3 +790,144 @@ class Sam2Refiner:
                          sam_scores=[round(float(s), 4) for s in out.iou_scores[0, 0].tolist()],
                          n_pos=len(pos), n_neg=len(pts) - len(pos))
         return R
+
+
+# ------------------------------------------------------------------------------------------------ SAM 3D job inputs
+# (build step B3, SPEC section 7 M9 sam3d_job; lit note 1.1: the pointmap must be pixel-aligned with the RGB given to
+# SAM 3D, metric, NaN outside the target mask, as the organiser wrapper v2d_sam3d `_depth_to_pointmap` builds it)
+def undistort_maps(geo):
+    """cv2 remap tables from the distorted cam_a image to a pinhole image with cam_a's own K (same camera frame:
+    no rotation), so the pinhole image, its mask and the pointmap share pixels and intrinsics."""
+    import cv2
+    return cv2.initUndistortRectifyMap(geo.Ka, geo.Da, None, geo.Ka, (geo.W, geo.H), cv2.CV_32FC1)
+
+
+def pinhole_depth(D, geo, roi_rect, c=None):
+    """Depth image (HxW float32, inf where none) of the pinhole cam_a camera (K = geo.Ka, no distortion) from the
+    rectified-left depth D of one frame: obs_points.py validity (as depth_layer), back-projected, moved into cam_a,
+    projected without distortion, z-buffered (nearest point wins), and gaps of one pixel filled by a 3x3 minimum
+    filter (one rectified pixel covers about f_a / f_rect = 1.9 cam_a pixels), as depth_layer does on the distorted
+    image."""
+    import cv2
+    c = c or consts()
+    x0, y0, x1, y1 = roi_rect
+    pad = 2
+    xa, ya = max(x0 - pad, 0), max(y0 - pad, 0)
+    xb, yb = min(x1 + pad, D.shape[1]), min(y1 + pad, D.shape[0])
+    Dt = np.array(D[ya:yb, xa:xb], dtype=np.float32)
+    Dz = np.where(np.isfinite(Dt), Dt, 0).astype(np.float32)
+    k5 = np.ones((5, 5), np.uint8)
+    edge = (cv2.dilate(Dz, k5) - cv2.erode(Dz, k5)) > c['edge']
+    ok = np.isfinite(Dt) & (Dt > Z_MIN) & (Dt < c['zmax']) & ~edge
+    vv, uu = np.nonzero(ok)
+    d = Dt[vv, uu].astype(np.float64)
+    uu = uu + xa; vv = vv + ya
+    K = geo.K_rect
+    Pr = np.stack([(uu - K[0, 2]) * d / K[0, 0], (vv - K[1, 2]) * d / K[1, 1], d], 1)
+    Xa = to_a(Pr, geo)
+    zb = np.full((geo.H, geo.W), np.inf, np.float32)
+    front = Xa[:, 2] > Z_MIN
+    Xa = Xa[front]
+    if not len(Xa):
+        return zb
+    Ka = geo.Ka
+    u = Ka[0, 0] * Xa[:, 0] / Xa[:, 2] + Ka[0, 2]
+    v = Ka[1, 1] * Xa[:, 1] / Xa[:, 2] + Ka[1, 2]
+    ui, vi = np.floor(u + 0.5).astype(np.int64), np.floor(v + 0.5).astype(np.int64)
+    inn = (ui >= 0) & (ui < geo.W) & (vi >= 0) & (vi < geo.H)
+    ui, vi, zz = ui[inn], vi[inn], Xa[inn, 2].astype(np.float32)
+    if not len(zz):
+        return zb
+    order = np.argsort(-zz)
+    zb[vi[order], ui[order]] = zz[order]
+    bx0, by0 = max(int(ui.min()) - 2, 0), max(int(vi.min()) - 2, 0)
+    bx1, by1 = min(int(ui.max()) + 3, geo.W), min(int(vi.max()) + 3, geo.H)
+    sub = zb[by0:by1, bx0:bx1]
+    fill = cv2.erode(np.where(np.isfinite(sub), sub, 1e6).astype(np.float32), np.ones((3, 3), np.uint8))
+    sub2 = np.where(np.isfinite(sub), sub, fill)
+    sub2[sub2 >= 1e6] = np.inf
+    zb[by0:by1, bx0:bx1] = sub2
+    return zb
+
+
+def pointmap_from_depth(z, K, mask):
+    """(H, W, 3) float32 OpenCV camera points of the pinhole depth image Z (K), NaN where no depth or outside MASK
+    (organiser v2d_sam3d `_depth_to_pointmap`, before its PyTorch3D rotation, which the box applies)."""
+    H, W = z.shape
+    gu, gv = np.meshgrid(np.arange(W, dtype=np.float32), np.arange(H, dtype=np.float32))
+    zz = z.astype(np.float32)
+    P = np.stack([(gu - np.float32(K[0, 2])) * zz / np.float32(K[0, 0]),
+                  (gv - np.float32(K[1, 2])) * zz / np.float32(K[1, 1]), zz], -1)
+    bad = ~np.isfinite(zz) | (zz <= 0) | ~np.asarray(mask, bool)
+    P[bad] = np.nan
+    return P
+
+
+def sam3d_input(view, bundle, image, mask, *, geo, depth, maps=None, zfront=None, gap=None):
+    """SAM 3D inputs of VIEW: dict(rgb (HxWx3 uint8, RGB, undistorted), mask (HxW bool, undistorted, nearest),
+    pointmap (HxWx3 float32, OpenCV pinhole cam_a, NaN outside the mask / without depth), K (3x3 pinhole = cam_a K),
+    camA_T_obj (4x4, the object pose in that camera at track frame k), stats). IMAGE is the distorted BGR colour frame
+    j = k + a_offset; MASK its target mask on the distorted image. ZFRONT (optional): the target's projected front
+    depth on the distorted image (Layers.zf[obj]); a depth sample more than GAP (default the 20 mm occluder gap)
+    behind it, or at a pixel without an owned point (a filled hole of the footprint, e.g. a handle loop), is not the
+    target's surface (background seen past the silhouette or through the hole, or forward-warping parallax at the
+    silhouette) and is set to NaN (flag behind_dropped in the stats)."""
+    import cv2
+    c = consts()
+    m1, m2 = maps if maps is not None else undistort_maps(geo)
+    rgb = cv2.remap(image, m1, m2, cv2.INTER_LINEAR)[:, :, ::-1].copy()
+    mu = cv2.remap(np.asarray(mask, np.uint8), m1, m2, cv2.INTER_NEAREST).astype(bool)
+    roi = _rect_roi(centroids_by_obj(bundle), bundle.poses, view.k, geo)
+    z = pinhole_depth(depth[view.k], geo, roi) if roi is not None else np.full(mu.shape, np.inf, np.float32)
+    n_depth = int((mu & np.isfinite(z)).sum())
+    n_behind = 0
+    if zfront is not None:
+        g = float(c['occl'] if gap is None else gap)
+        zu = cv2.remap(np.asarray(zfront, np.float32), m1, m2, cv2.INTER_NEAREST, borderMode=cv2.BORDER_CONSTANT,
+                       borderValue=float('inf'))
+        behind = np.isfinite(z) & ~(z <= zu + g)
+        n_behind = int((mu & behind).sum())
+        z = np.where(behind, np.inf, z).astype(np.float32)
+    P = pointmap_from_depth(z, geo.Ka, mu)
+    valid = np.isfinite(P).all(-1)
+    T = geo.T_a_rect @ bundle.poses[f'cam_T_{view.obj}'][view.k].astype(np.float64)
+    st = dict(mask_px_distorted=int(np.asarray(mask, bool).sum()), mask_px=int(mu.sum()), depth_px_in_mask=n_depth,
+              behind_dropped_px=n_behind, pointmap_valid_px=int(valid.sum()),
+              pointmap_valid_share=round(float(valid.sum()) / max(int(mu.sum()), 1), 4))
+    if valid.any():
+        Q = P[valid]
+        st.update(z_median_m=round(float(np.median(Q[:, 2])), 4),
+                  extent_m=np.round(np.percentile(Q, 98, axis=0) - np.percentile(Q, 2, axis=0), 4).tolist())
+    return dict(rgb=rgb, mask=mu, pointmap=P, K=np.asarray(geo.Ka, np.float64), camA_T_obj=T, stats=st)
+
+
+def write_sam3d_input(out_dir, tag, inp, meta):
+    """Write one SAM 3D job input: <tag>.png (RGB), <tag>_mask.png (0/255), <tag>_pointmap.npz (float32 'points',
+    compressed), <tag>.json (META + K + camA_T_obj + sha256 of the three files). Returns the json record."""
+    import hashlib
+    import os
+    from PIL import Image
+    os.makedirs(out_dir, exist_ok=True)
+    paths = dict(rgb=os.path.join(out_dir, f'{tag}.png'), mask=os.path.join(out_dir, f'{tag}_mask.png'),
+                 pointmap=os.path.join(out_dir, f'{tag}_pointmap.npz'))
+    Image.fromarray(inp['rgb']).save(paths['rgb'], optimize=True)
+    Image.fromarray((inp['mask'].astype(np.uint8) * 255)).save(paths['mask'], optimize=True)
+    np.savez_compressed(paths['pointmap'], points=inp['pointmap'].astype(np.float32))
+    sha = {}
+    for k, p in paths.items():
+        h = hashlib.sha256()
+        with open(p, 'rb') as f:
+            for blk in iter(lambda: f.read(1 << 20), b''):
+                h.update(blk)
+        sha[k] = h.hexdigest()
+        guard.register_output(p)
+    rec = dict(meta, tag=tag, files={k: os.path.basename(p) for k, p in paths.items()}, sha256=sha,
+               K=inp['K'].tolist(), camA_T_obj=inp['camA_T_obj'].tolist(), stats=inp['stats'],
+               convention='pointmap: OpenCV camera (x right, y down, z forward), metres, pinhole K = cam_a K, image '
+                          'undistorted from cam_a with that K; mesh layout -> camA_T_mesh; obj_T_mesh = '
+                          'inv(camA_T_obj) camA_T_mesh')
+    jp = os.path.join(out_dir, f'{tag}.json')
+    with open(jp, 'w') as f:
+        json.dump(rec, f, indent=1)
+    guard.register_output(jp)
+    return rec
