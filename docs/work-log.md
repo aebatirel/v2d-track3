@@ -5090,3 +5090,9 @@ Advice given:
     eval 10 via T2 masking. Review wording fixes applied to SCREEN.md.
   - **T5 robust VO on ep24: PASSES** (P_o * 0.8105 → 0.9941; common-mode error 2.72 → 0.40 cm). Cause: perc2's 2 m
     depth clip. But no confirmed eval target (eval 25 is clean; eval 35 open).
+- ~06:45 UTC **mass transfer check launched** after both reviews' GO (own re-verify; determined-wright re-check of
+  1–3 at 2ed46ea): 58502738 `20261031-mass-2ed46ea` (RTX PRO 6000 Max-Q Texas $1.45/h), commit 2ed46ea, job
+  `bash ops/jobs/mass_check.sh` (ep2 reference built on the box with the frozen recipe, ep12 stored ev2 reference;
+  arms 0.3 kg vs props_masses_only; seeds 42/43; NREP 10; EVAL_TIMEOUT 1200 with -k 60). Rule:
+  `docs/research/work/masses-transfer-20261031/PREREG.md`. Expected ≈ 5.4–7.5 h, ≈ $6.5–11; ledger planned $9 (the
+  append wrote 6 identical lines after an "upstream request failed" retry; harmless, `show` keys open runs by id).
