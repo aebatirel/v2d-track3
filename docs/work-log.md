@@ -5507,3 +5507,9 @@ arm and a no-policy replay floor to stage B.
   - Where the policy fails deterministically (ep11 P, ep13), draws agree (sd ≤ 0.003).
   - Reading: failures cluster at one or two events per episode, so target those events and put robustness noise there.
     These are low-spread twins (sd 0.02–0.05); the high-spread ep2 follows on the masses-check run.
+- ~10:30 UTC (owner: "sure"): draw-divergence results sent to two sessions, each queued after its turn:
+  - Embodiment (inputs for 1a/1b: failure windows cluster at 1–2 events, plus a late ep31 event);
+  - mesh (ep31's split is the sweeper lift-off from the rack, with the rack knocked in arm P, which supports the
+    sweeper–rack seat priority).
+  - Promised: the same analysis on the high-spread ep2 from `20261031-mass-2ed46ea` once it finishes. No Turkish summary
+    for Prof. İnceoğlu yet (owner).
