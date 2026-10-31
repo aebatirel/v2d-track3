@@ -189,3 +189,10 @@ the real V adds contact retargeting and grasp lock].
 - **H5p7 timing**: if its eval-10 rollouts are not in the store when this box ends, the verdict is completed on CPU
   (JOBS.txt "After the box"); the same code.
 - **Seeds run one after the other** (~1.2 h, ~$1.5 more than two at once), for the proven glock_public path.
+
+## Review status (31 Oct ~20:35 UTC)
+- Integrity review: GO on condition of its F1/F2 (verdict-tool only, ~20 lines + one PREREG §10 line).
+- Mechanics review: GO on condition of its F1 (draw 1 = the first confirmation invocation with a scored rollout) and F2
+  (stop the confirmation loop after 3 consecutive draws without a rollout); F3/F4 recommended.
+- The patches are tested in the reviewers' scratch copies. They are applied ONLY if the ep11 gate reads PASS (its seed-42
+  interim is Δ +0.013; a PASS needs seed 43 ≈ +0.09), before the launch commit. Not launched.
