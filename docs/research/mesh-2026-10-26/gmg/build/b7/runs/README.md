@@ -13,3 +13,7 @@
   objects (4 opens each), a `det_f0.npz` open (guard key filter, cannot be reconciled without the manifest's count)
   or a write into this run folder (the run folder is known only from the manifest); no GT path, no network.
   Structure code is unchanged since f286e79; the anchors are rerun under a full audit (B7 notes).
+- `20261031-b7struct2-c56d473`: structure for the two anchors missing above (ep27 white_pot, ep31 plastic_dish_rack),
+  audited with its manifest: 0 forbidden, 0 unlisted, 0 unrecorded, 0 writes outside the run, no network. Manifest
+  commit 7cd51b7 (HEAD at the end), `code_dirty` only because of another agent's notes file (`build/I.md`);
+  `b7_summary.json` records c56d473 clean at the start.
