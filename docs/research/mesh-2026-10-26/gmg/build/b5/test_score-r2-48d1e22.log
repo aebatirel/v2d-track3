@@ -1,4 +1,6 @@
 test_copy_matches_mesh_metric (__main__.AmbiguityCopyTests.test_copy_matches_mesh_metric) ... ok
 test_flip_units (__main__.AmbiguityCopyTests.test_flip_units) ... ok
 test_kit_symmetry_from_kit_config (__main__.AmbiguityCopyTests.test_kit_symmetry_from_kit_config) ... ok
-test_a_fused_double_cup (__main__.B14.test_a_fused_double_cup) ... 
+test_a_fused_double_cup (__main__.B14.test_a_fused_double_cup) ... ok
+test_b_filled_cup (__main__.B14.test_b_filled_cup) ... ok
+test_c_lid_with_phantom_pot (__main__.B14.test_c_lid_with_phantom_pot) ... 
