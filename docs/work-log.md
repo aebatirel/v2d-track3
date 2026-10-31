@@ -5254,3 +5254,26 @@ diagnostic; nothing is picked for submission.
   - **Select, Verify (x2), Report.**
 - Spending under the owner's standing go-ahead ("you can spend money and go ahead in all"). The plan and cost are
   logged before create.
+
+### 2026-10-31 ~16:00-16:10 UTC — owner waives the camera rule for the board slot; board-slot workflow
+- Owner (this session, verbatim): "Okay I waive that camera rule". This answers the report that the frozen interlock
+  rule PUSHES the ep24 boards because stereo calls the slot observed-solid and the silhouette cannot confirm it.
+- **Scope (my reading, to be fixed in PREREG F-I4 before any run):**
+  - plate-plate INSERTION pairs only;
+  - class O and an absent or failing silhouette no longer block a CARVE;
+  - all other gates stay;
+  - cups, pot and lid are unchanged (ev10w).
+- Stopped the interlock workflow `wf_c7bae0ea-5c5` (round-1 work committed at 58adcd0).
+- **Launched `board-slot`** (`wf_8acce122-d7b`, task w6jmnhakr):
+  - Amend: F-I4 sets
+    - slot width = the partner's plate evidence thickness + 2 mm;
+    - centre = the motion centroid along the long axis;
+    - depth = the deepest penetration + 2 mm, with a cross-lap sum check;
+    - simulator board = thin plate at the evidence thickness;
+    - w_sim = the partner's plate thickness (post hoc);
+    - analytic box pieces;
+    - the existing acceptance thresholds.
+  - Build: synthetic tests, then public ep24 with physics.
+  - Two verifiers.
+  - Eval 25 with the identity-correct tracks; r0 compared with the packed meshes/carve/ev25.
+  - Report, plus hand-off texts for determined-wright and focused-pascal.
