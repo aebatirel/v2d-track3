@@ -5604,3 +5604,21 @@ diagnostic; nothing is picked for submission.
   - track R: rack parts added where our points show the prim missing structure (H-R: <= 0.40);
   - each with a PREREG, a pre-registered obs_fidelity pick, one scoring and the C0 AUC guard, plus a verifier;
   - one self-destroying Vast CPU box per track allowed (cap $4).
+
+### 2026-10-31 ~18:40 UTC — owner wants carve/seat fixes for the weak eval episodes for the pack-10 retrain
+- Score session (data). Owner quote ~18:30: "I think we can improve in all of these with the new method and carving
+  method for the board. I remember blue cup and spoon the spoon doesnt enter the cup proper and for some rack things we
+  know off..."
+- Asked for collision assets by 1 Nov 12:00 UTC (focused-pascal's retrain starts 18:00):
+  - spoon into blue cup, evals 32 and 33;
+  - rack seats, evals 14, 16 and 30 (15 if relevant);
+  - board slot, eval 25.
+- Done:
+  - Edited the collision-carve workflow's Public stage (order: ep12/13, ep31, ep11, ep2; Vast box allowed) and Eval
+    stage (owner priority list, per-episode delivery lines in `build/I/collcarve_deliveries.md`, the spoon validated on
+    its own eval episode). Stopped and resumed it (run `wf_4fb89344-0c3`, task wuupcn83x). The build agent continues
+    from fae78de and its notes.
+  - Spawned a fast GT-free spoon-in-cup diagnostic for evals 32, 33 and 16. Folder `cdo-sprint/spoon-diag/`. It places
+    our reference spoon poses in the cup frame and measures intrusion into the packed cup collider vs an open-cavity cup.
+- Reply: the board slot is at risk for 12:00; spoon and rack are possible. I'll deliver per episode and give a status
+  at ~09:00 UTC.

@@ -5,6 +5,15 @@ PREREG section 6 recommendation is E0 replaced by its E0 pick. All four (pot, li
 meshes/library_v3x with those four files replaced. Use it as the packed (submitted) mesh only; the simulator assets and
 rollouts stay library_v3x. Use it for eval 8 only (as library_v3x); every other eval pair uses meshes/library_e0.
 
+**Open ship gates (2026-10-31 report step; details in cdo-sprint/E0/README.md section 3 and MANIFEST.json `ship_gates`):**
+- **G1 (pot, lid, rack):** the marker balls use the scan-derived 7 mm prior and 5-9.5 mm window (verify_0 B1). The
+  owner's "Ship 9a, flagged" covers the C0 meshes only, so these three need an explicit owner decision, or the
+  scan-free E0b rebuild instead. The blue cup is not affected.
+- **G2 (all four):** the packed mesh also drives the five pose boards (the kit registers it), and E0 has no public-twin
+  AUC guard (verify_1 B1). Either use these meshes for the CD-O submission only, or run C0's guard with them first.
+- **Not a drop-in for pack 9a+:** this folder keeps library_v3 for beige_cup and mini_dust_pan, which pack 9a+ replaced
+  (C1). Merge the four E0 objects one by one into the current pack library; do not pack this folder whole.
+
 Details, flags and per-pair records: docs/research/mesh-2026-10-26/cdo-sprint/E0/MANIFEST.json and README.md.
 Built on Vast run mesh-20261031-e0-b05f001 (code b05f001) with the frozen public code of commit 2971a10.
 
