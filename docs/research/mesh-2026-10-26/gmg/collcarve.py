@@ -235,15 +235,18 @@ class FI5:
     """Context of an F-I5 run. objects: {name: dict(hulls=default pieces, body=trimesh (the body the pieces stand
     for), route=str, lathe=(Lathe, pieces) or None, plate_like=bool, n_ring=int (lathe ring pieces before the handle
     hulls), cap=int)}. hands: our M1 hands npz dict or None. physics False skips the acceptance (decision only).
-    Diagnostic overrides (tests x4, x5 only; never in a delivery): c_override (m), no_overshoot."""
+    Diagnostic overrides (tests x4, x5 only; never in a delivery): c_override (m), no_overshoot. diag_rest: PREREG
+    F-I5.13 diagnostic D2 (post hoc; never delivered): rest-anchored pocket, default ring layout, volume and reach caps
+    reported only (topology still gates), S also on default and failed carves."""
 
     def __init__(self, b, objects, hands=None, copies=None, log=None, physics=True, c_override=None,
-                 no_overshoot=False, poses=None, n_objects=None):
+                 no_overshoot=False, poses=None, n_objects=None, diag_rest=False):
         self.b, self.objects, self.hands = b, objects, hands
         self.copies = copies or 16
         self.log = log or (lambda *a: None)
         self.physics = physics
         self.c_override, self.no_overshoot = c_override, no_overshoot
+        self.diag_rest = bool(diag_rest)
         self.poses = poses
         self.n_objects = n_objects or len(objects)
         self.results = {}
@@ -363,7 +366,7 @@ class FI5:
             for n_s in [ns0] + [x for x in CP.k_('sector_fallback') if x < ns0]:
                 base = L.pieces(n_s)
                 ranges = L.carved_ranges(base, Kall, Aall)
-                pcs = L.pieces(n_s, carved=ranges)
+                pcs = L.pieces(n_s, carved=None if self.diag_rest else ranges)    # D2 (b): default bands
                 cp, crep = L.carve(pcs, Kall, Aall)
                 hl = L.hulls(cp) + list(extra)
                 if len(hl) <= ob['cap']:
@@ -527,6 +530,29 @@ class FI5:
             best = int((j - np.arange(len(a))).max())
             n1 += best / len(a) >= k_('onesided')
         return dict(frames=len(fr), one_sided_share=round(n1 / max(len(fr), 1), 3))
+
+    def _sink_rows(self, recv, guest, carved, S_frames):
+        """D2 diagnostic: S on the default pieces and on a carve that failed its gate (rows only, decides nothing)."""
+        from gmg import simphys as PH, simpieces as SP
+        b = self.b
+        tb = b.meta['table']
+        poses = self.poses or b.poses
+        gh = self.objects[guest]['hulls']
+        gp = SP.props(gh, SP.k_('mass_kg'))
+        rows = []
+        for f in S_frames:
+            Wr = _world(b, recv, f, self.poses)
+            Wg = Wr @ IL.rel_pose(poses, recv, guest, f)
+            row = dict(frame=int(f))
+            for name, H in (('default', self.objects[recv]['hulls']), ('carved_failed', carved)):
+                if H is None:
+                    continue
+                r = PH.sink_test(H, gh, Wr, Wg, (np.asarray(tb['n']), float(tb['d'])), gp, copies=self.copies,
+                                 secs=k_('s_secs'), dt=k_('s_dt'), disp_max=k_('s_disp_m'), tilt_max=k_('s_tilt_deg'))
+                row[name] = {k: v for k, v in r.items() if k != 'per_copy'}
+            rows.append(row)
+            self.log('S (D2 diag rows)', recv, '<-', guest, f, json.dumps(row, default=IL._jdefault))
+        return rows
 
     # ---- F-I5.5 acceptance
     def _accept(self, recv, guest, carved, side, comp, T_rest, S_frames, g_dir, K, A, n_axis, carved_body=None):
@@ -713,12 +739,32 @@ class FI5:
                 cinfo['flag_c_zero'] = 'c_zero'
             c_all.append(c)
             gofs = [CP.offset_hull(V, c) for V in self.objects[guest]['hulls']] if c > 0 else offs
-            K = [_tf(rside.intr.rel[f], V) for f in Fc for V in gofs]
+            d2 = None
+            if self.diag_rest and T_rest is not None:  # F-I5.13 D2 (a): rest pose + straight approach channel along d
+                p0 = _tf(T_rest, cg[None])[0]
+                sf = np.array([float((_tf(rside.intr.rel[f], cg[None])[0] - p0) @ comp.run.d) for f in F])
+                s_min = float(min(0.0, sf.min())) if len(sf) else 0.0
+                Tsh = np.eye(4); Tsh[:3, 3] = comp.run.d * s_min
+                K = []
+                for V in gofs:
+                    U = np.vstack([_tf(T_rest, V), _tf(Tsh @ T_rest, V)])
+                    K.append(U[ConvexHull(U).vertices])
+                dev = [_tf(rside.intr.rel[f], cg[None])[0] - p0 for f in F]
+                lat = [float(np.linalg.norm(v - (v @ comp.run.d) * comp.run.d)) for v in dev]
+                d2 = dict(s_min_mm=round(s_min * 1e3, 2), frames_deeper_than_rest=int((sf > 0).sum()),
+                          deepest_mm=round(float(sf.max()) * 1e3, 2) if len(sf) else None,
+                          lateral_dev_mm_median_max=[round(float(np.median(lat)) * 1e3, 2),
+                                                     round(float(max(lat)) * 1e3, 2)] if lat else None,
+                          note='DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered')
+            else:
+                K = [_tf(rside.intr.rel[f], V) for f in Fc for V in gofs]
             Kall += K
             allow_masks += [Rfn] * len(K)
             row = dict(gates=g, rest=rinf, T_rest=None if T_rest is None else np.round(T_rest, 6).tolist(),
                        overshoot_frames=over, carve_frames=len(Fc), build_frames_entered=len(F), clearance=cinfo,
                        R_voxels=int(len(comp.lin)), Rplus_voxels=int(Rp.sum()))
+            if d2 is not None:
+                row['diag_rest'] = d2
             comp_rows.append(row)
             if rest is None:
                 rest = (T_rest, S_frames, comp, Rfn, K, c)
@@ -750,16 +796,24 @@ class FI5:
         W['report'] = rep
         # acceptance
         acc = None
-        if carved is not None and W['caps']['pass_'] and self.physics:
+        caps_gate = W['caps']['pass_']
+        if self.diag_rest and carved is not None:        # D2 (c): volume and reach reported, topology gates
+            caps_gate = bool(W['caps'].get('ok_topology'))
+            W['caps']['diag_gating'] = 'D2: topology only (volume and reach reported)'
+        if self.diag_rest and self.physics and not caps_gate and rest[1] and self.b.meta.get('table'):
+            W['diag_S_rows'] = self._sink_rows(recv, guest, carved, rest[1])
+        if carved is not None and caps_gate and self.physics:
             n_axis = IL.axes_of(ev_r.grid.centres(comp0.lin), comp0.run.d)[1][1]
             acc = self._accept(recv, guest, carved, rside, comp0, T_rest, S_frames, g_dir, Kall, allow_masks, n_axis,
                                carved_body)
             W['acceptance'] = acc
             self.log('F-I5 acceptance', recv, '<-', guest, json.dumps(acc['tests']), acc['failing'])
         deliver = bool(acc is not None and acc['pass_all_but_P1'] and self.c_override is None and
-                       not self.no_overshoot)
+                       not self.no_overshoot and not self.diag_rest)
         W['deliver'] = 'carved (p1_pending)' if deliver else 'default'
-        if self.c_override is not None or self.no_overshoot:
+        if self.diag_rest:
+            W['diag_D2_would_pass_all_but_P1'] = bool(acc is not None and acc['pass_all_but_P1'])
+        if self.c_override is not None or self.no_overshoot or self.diag_rest:
             W['diagnostic'] = 'override set: never delivered'
         W['_carved'] = carved
         if deliver:
@@ -868,13 +922,13 @@ def object_routes(b, objs, bodies, picks_mesh, out_dir, log, structure=None, pla
 
 
 def run_pairs(b, objects, fh=None, hands=None, identity='eval', copies=16, log=None, physics=True, c_override=None,
-              no_overshoot=False, pairs=None):
+              no_overshoot=False, pairs=None, diag_rest=False):
     """Collider sides of every pair (F-I5.1, make_side: the same constructor as the export path), decide_pair with the
     F-I5 branch. OBJECTS as in FI5. Returns (ctx, report)."""
     log = log or print
     objs = list(objects)
     ctx = FI5(b, objects, hands=hands, copies=copies, log=log, physics=physics, c_override=c_override,
-              no_overshoot=no_overshoot)
+              no_overshoot=no_overshoot, diag_rest=diag_rest)
     pairs = pairs or [(objs[i], objs[j]) for i in range(len(objs)) for j in range(i + 1, len(objs))]
     report = dict(pairs={}, overlap_track={}, decisions=[])
     for o, p in pairs:

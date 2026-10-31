@@ -24,7 +24,8 @@ CARVE delivered (and with the exclusion disabled S fails); x6 plate pair untouch
 plate never takes the lathe route, a folded sheet with a forced lathe fails the gate and falls to route 3; x9 a forced
 1 mm ring is caught by the continuity check; x10 flag off unchanged; x11 an open box via route 3 passes the gate with
 its opening empty. Additional cases asked by the orchestrator (no pre-registered outcome; reported as measured):
-x2b = x2 with a 5 mm offset (the eval-10 offset); lidpot, rack, sweeper (P45-P47 analogues).
+x2b = x2 with a 5 mm offset (the eval-10 offset); lidpot, rack, sweeper (P45-P47 analogues). Class D2: the PREREG
+F-I5.13 diagnostic (rest-anchored pocket, never delivered), predictions Q1-Q6 written before it ran.
 Results: <scratchpad>/gmg/interlock/test_collcarve.json (env CC_OUT overrides).
 """
 import json
@@ -289,7 +290,10 @@ class Cups(unittest.TestCase):
     def test_x1_diag_nojit_c01(self):
         self._diag('x1_diag_nojit_c01', c=0.0001, jitter=False)
 
+    @unittest.expectedFailure
     def test_x2(self):
+        """Pre-registered "CARVE delivered" MISSED (18:27 UTC, PREREG F-I5.12): c 1.0 mm, topology 1/1 -> 14/3 (16
+        sectors, 43 infeasible pieces removed), removed 35 %, reach 0.81; default delivered, S not run."""
         b, M = cups_case(depth_err=0.0, offset=(0.003, 0.0))
         objects, ctx, W, rep = run(b, M, 'x2', lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
         s = summary(W); RESULTS['x2']['summary'] = s; _save()
@@ -303,7 +307,10 @@ class Cups(unittest.TestCase):
         log('x2b', json.dumps(s, default=IL._jdefault)[:3000])
         self.assertIsNotNone(s['deliver'])                           # no pre-registered outcome: reported
 
+    @unittest.expectedFailure
     def test_x3(self):
+        """Pre-registered "S fails, default delivered" MISSED (18:27 UTC, PREREG F-I5.12): the receiver's component
+        fails the sweep gate (0.378), receiver_no_region, no carve and no S (the default is delivered, but not by S)."""
         b, M = cups_case(depth_err=0.0, offset=(0.003, 0.0), guest_taper=TAN * 2.0)
         objects, ctx, W, rep = run(b, M, 'x3', lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
         s = summary(W); RESULTS['x3']['summary'] = s; _save()
@@ -311,7 +318,10 @@ class Cups(unittest.TestCase):
         self.assertEqual(s['deliver'], 'default', s)
         self.assertIn('S', s['failing'] or [], s)
 
+    @unittest.expectedFailure
     def test_x4(self):
+        """Pre-registered "S or P2 gravity fails" MISSED (18:30 UTC, PREREG F-I5.12): the caps fail first
+        (topology 1/1 -> 33/31, 74 %, reach 0.91), so nothing is simulated; default delivered."""
         b, M = cups_case()
         objects, ctx, W, rep = run(b, M, 'x4', lathe=dict(A=AXIS, B=AXIS), c_override=0.001, hands=b.hands)
         s = summary(W); RESULTS['x4']['summary'] = s; _save()
@@ -319,7 +329,10 @@ class Cups(unittest.TestCase):
         self.assertEqual(s['deliver'], 'default', s)
         self.assertTrue('S' in (s['failing'] or []) or 'P2' in (s['failing'] or []), s)
 
+    @unittest.expectedFailure
     def test_x5(self):
+        """Pre-registered "overshoot flagged, CARVE delivered" MISSED (18:26 UTC, PREREG F-I5.12): no overshoot frame
+        flagged and the caps fail (topology 1/1 -> 33/31, 74 %, reach 0.91); default delivered."""
         T = 90
         dip = (list(range(50, 56)), 0.010)
         b, M = cups_case(dip=dip, T=T)
@@ -337,6 +350,69 @@ class Cups(unittest.TestCase):
         s2 = summary(W2); RESULTS['x5_no_exclusion']['summary'] = s2; _save()
         log('x5 no exclusion', json.dumps(s2, default=IL._jdefault)[:2000])
         self.assertIn('S', s2['failing'] or [], s2)
+
+
+class D2(unittest.TestCase):
+    """PREREG F-I5.13 diagnostic D2 (post hoc, never delivered): rest-anchored pocket, default ring layout, volume and
+    reach reported only. Each test asserts its pre-written prediction (Q1-Q6): a pass means the prediction held."""
+
+    def _d2(self, key, b, M, lathe=None, hands=None):
+        objects, ctx, W, rep = run(b, M, key, lathe=lathe, hands=hands, diag_rest=True)
+        s = summary(W)
+        comp = (W.get('components') or [{}])[0]
+        s.update(diag_rest=comp.get('diag_rest'), diag_S_rows=W.get('diag_S_rows'),
+                 would_pass=W.get('diag_D2_would_pass_all_but_P1'), diagnostic=W.get('diagnostic'))
+        RESULTS[key]['summary'] = s
+        RESULTS[key]['note'] = 'DIAGNOSTIC D2 (PREREG F-I5.13, never delivered)'
+        _save()
+        log(key, json.dumps({k: v for k, v in s.items() if k not in ('gates', 'carve')}, default=IL._jdefault)[:3000])
+        self.assertNotEqual(str(s['deliver']), 'carved (p1_pending)')
+        return s, W
+
+    def _topo(self, s):
+        return bool((s['caps'] or {}).get('ok_topology'))
+
+    def _S(self, s):
+        return bool(s['S']) and all(r['carved']['pass_'] for r in s['S'])
+
+    def test_q1_x1(self):
+        b, M = cups_case()
+        s, W = self._d2('d2_x1', b, M, lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
+        self.assertTrue(self._topo(s), s['caps']); self.assertTrue(self._S(s), s['S'])
+
+    def test_q2_x5(self):
+        b, M = cups_case(dip=(list(range(50, 56)), 0.010))
+        s, W = self._d2('d2_x5', b, M, lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
+        self.assertTrue(self._topo(s), s['caps']); self.assertTrue(self._S(s), s['S'])
+
+    def test_q3_x2(self):
+        b, M = cups_case(depth_err=0.0, offset=(0.003, 0.0))
+        s, W = self._d2('d2_x2', b, M, lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
+        self.assertFalse(self._topo(s), s['caps'])
+
+    def test_q4_x2b(self):
+        b, M = cups_case(depth_err=0.0, offset=(0.005, 0.0))
+        s, W = self._d2('d2_x2b', b, M, lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
+        self.assertFalse(self._topo(s), s['caps'])
+
+    def test_q5_x2c(self):
+        b, M = cups_case(depth_err=0.0, offset=(0.001, 0.0))
+        s, W = self._d2('d2_x2c', b, M, lathe=dict(A=AXIS, B=AXIS), hands=b.hands)
+        self.assertTrue(self._topo(s), s['caps']); self.assertTrue(self._S(s), s['S'])
+
+    def test_q6_sweeper(self):
+        blk = trimesh.creation.box(extents=[0.06, 0.06, 0.06]).apply_translation([0, 0, 0.03])
+        hole = trimesh.creation.box(extents=[0.022, 0.022, 0.06]).apply_translation([0, 0, 0.02 + 0.03])
+        holder = trimesh.boolean.difference([blk, hole], engine='manifold')
+        stick = trimesh.creation.box(extents=[0.020, 0.020, 0.200]).apply_translation([0, 0, 0.100])
+        T = 90
+        pose = nest_motion(0.020 - 0.0005, T, n_far=14, n_slow=40, z_top=0.25, slow_mm=45.0)
+
+        def pose2(f):
+            M_ = pose(f); M_[0, 3] = 0.002; return M_
+        b = episode(holder, stick, pose2, T, list(range(10, T)))
+        s, W = self._d2('d2_sweeper', b, dict(A=holder, B=stick), hands=hands_for(pose2, T, 56, grip=(0.0, 0.012, 0.17)))
+        self.assertTrue(self._S(s), s['S'])
 
 
 class Routes(unittest.TestCase):
