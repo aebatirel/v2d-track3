@@ -5665,3 +5665,12 @@ arm and a no-policy replay floor to stage B.
   - the marker layer is closed;
   - the eval rollout audit found one failure (eval 10).
   - The owner asked that messages to them not bring up deadlines.
+- ~21:20 UTC owner: "what about the mesh chat?" Read bold-albattani (5b3bbea, INTERLOCK 20.12, work log):
+  - Set B per-episode public meshes delivered (~21:12), so the re-track test is unblocked;
+  - C0b: white pot and beige cup adopted (WIN + AUC guard); lid, rack and blue cup fail; C2 pitcher/rack workflow
+    running;
+  - E0 eval meshes: gates G1 (scan-derived marker-ball prior) and G2 (no AUC guard) are open owner decisions;
+  - interlock carves failed on public;
+  - ep24 slot verified on public (P1 pending with determined-wright) but not frozen for eval 25. Its hand-off to
+    focused-pascal: keep `meshes/carve/ev25` in the pack.
+  - My delivery-statement request is queued behind its current turn.
