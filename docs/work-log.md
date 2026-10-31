@@ -5667,3 +5667,11 @@ Background agent, CPU only, $0, no ground truth read.
   early stop at 6 iterations). Published two private pages: "Solver–RL Loop" (schematic, curves, per-turn table, loop v2
   proposal ~$10–15 est.) https://claude.ai/artifact/A254GDBKXmA7Kxig7ET2cU and "Physics Study Board"
   https://claude.ai/artifact/Na4KEzWSQazQxzZ33KBKyZ. Vast credit measured $29.16 at 10:35 UTC (mass box running).
+- 10:55 UTC 31 Oct: owner idea "bigger LR first, then fine-tune; maybe domain randomization". Evidence check: the
+  evaluator runs VOC 0 (work log, VOC fix entry), so early peaks are real; O3 ep2 collapsed between 20M and 30M right
+  after the VOC curriculum stage dropped assist 0.25 → 0.1 (CURR_SCALE 0.4 thresholds 19.7M / 25.6M); G3 ep2 likewise
+  peaked at 30M under VOC 0.75. Hypotheses [H-voc] collapse follows the assist fade; [H-lr2] a high-then-low LR
+  (6e-4 → 3e-5 cosine) keeps the peak; [H-dr] training-only DR (reset nudges 1–2 mm, mass/friction ±20 %, COM ±5 mm,
+  action noise; no config field, as the evaluator rebuilds from the config) cuts draw spread ≥ 40 % with mean ≥ −0.02.
+  Proposed test: 3 arms × ep2/ep18 × 2 seeds, ~$9–11 est.; not built or run, awaiting the owner (budget clash with the
+  eval retrain noted).

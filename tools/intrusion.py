@@ -86,7 +86,10 @@ def tri_samples(T, h):
     for j, t in enumerate(T):
         k = int(np.argmax([np.linalg.norm(t[(i + 1) % 3] - t[i]) for i in range(3)]))
         A, B, C = t[k], t[(k + 1) % 3], t[(k + 2) % 3]
-        L = np.linalg.norm(B - A); e1 = (B - A) / L; cx = (C - A) @ e1; e2 = C - A - cx * e1; cy = np.linalg.norm(e2)
+        L = np.linalg.norm(B - A)
+        if L < 1e-12:
+            continue
+        e1 = (B - A) / L; cx = (C - A) @ e1; e2 = C - A - cx * e1; cy = np.linalg.norm(e2)
         for p, q in ((A, B), (B, C), (C, A)):
             n = max(1, int(np.ceil(np.linalg.norm(q - p) / h))); P.append(p + np.linspace(0, 1, n + 1)[:, None] * (q - p))
         if cy > h / 4:
@@ -142,10 +145,10 @@ class Union:
             P.append(S[~(self.depth_lb(S + PROBE * N[I], skip=k) > 0)])
         return np.concatenate(P)
 
-    def depth(self, X, h):
+    def depth(self, X, h, lb):
         if self.tree is None:
             self.tree = cKDTree(self.surface(h))
-        return np.maximum(self.tree.query(X)[0], self.depth_lb(X))
+        return np.maximum(self.tree.query(X)[0], lb)
 
 
 def fiducial_box(F, V):
@@ -244,7 +247,7 @@ def load_ref(path):
     if bad:
         raise Refuse(f'{path} has columns {bad}: an episode parquet, not our reference')
     names = t.column('object_body_names')[0].as_py(); B = len(names)
-    P = np.array(t.column('object_body_position')[0].as_py(), float); T = len(P) // B if P.ndim == 1 else len(P)
+    P = np.array(t.column('object_body_position')[0].as_py(), float); T = P.size // (3 * B)
     P = P.reshape(T, B, 3); Q = np.array(t.column('object_body_wxyz')[0].as_py(), float).reshape(T, B, 4)
     O = np.tile(np.eye(4), (T, B, 1, 1))
     O[..., :3, :3] = Rot.from_quat(Q.reshape(-1, 4)[:, [1, 2, 3, 0]]).as_matrix().reshape(T, B, 3, 3); O[..., :3, 3] = P
@@ -452,7 +455,7 @@ def main(argv=None):
 
     # ---- per frame and ordered pair
     C = np.stack([np.einsum('tij,j->ti', O[:, b, :3, :3], U[b].centre) + O[:, b, :3, 3] for b in range(B)], 1)
-    rows, pts, dep_rows = [], [], []
+    rows, pts, lbs = [], [], []
     for t in range(B):
         for p in range(B):
             if t == p:
@@ -462,19 +465,20 @@ def main(argv=None):
                 R = Oi[f, t] @ O[f, p]
                 X = S[p] @ R[:3, :3].T + R[:3, 3]
                 idx = np.nonzero(np.all((X > U[t].alo) & (X < U[t].ahi), 1))[0]
-                Xin = X[idx[U[t].depth_lb(X[idx]) > EPS]] if len(idx) else np.zeros((0, 3))
-                rows.append((f, t, p, R, len(Xin))); pts.append(Xin)
-    order = sorted(range(len(rows)), key=lambda i: rows[i][:3]); rows = [rows[i] for i in order]; pts = [pts[i] for i in order]
+                lb = U[t].depth_lb(X[idx]) if len(idx) else np.zeros(0); k = lb > EPS
+                rows.append((f, t, p, R, int(k.sum()))); pts.append(X[idx[k]]); lbs.append(lb[k])
+    order = sorted(range(len(rows)), key=lambda i: rows[i][:3])
+    rows, pts, lbs = [rows[i] for i in order], [pts[i] for i in order], [lbs[i] for i in order]
     Pn = len(rows); cnt = np.array([r[4] for r in rows], int)
     fp_frame = np.array([r[0] for r in rows], np.int32); fp_t = np.array([r[1] for r in rows], np.int16)
     fp_p = np.array([r[2] for r in rows], np.int16); relT = np.array([r[3] for r in rows], float).reshape(Pn, 4, 4)
     vol = (cnt * pitch ** 3).astype(np.float32); row_of = np.repeat(np.arange(Pn), cnt)
     X = np.concatenate(pts) if Pn else np.zeros((0, 3)); N = len(X)
-    depth, depth_lb = np.zeros(N), np.zeros(N)
+    depth_lb = np.concatenate(lbs) if Pn else np.zeros(0); depth = np.zeros(N); del pts, lbs
     for t in range(B):
         m = fp_t[row_of] == t if N else np.zeros(0, bool)
         if m.any():
-            depth[m] = U[t].depth(X[m], h); depth_lb[m] = U[t].depth_lb(X[m])
+            depth[m] = U[t].depth(X[m], h, depth_lb[m])
     t_loop = time.time() - t0 - t_setup
 
     # ---- fiducials at f_star, containment, rigidity
