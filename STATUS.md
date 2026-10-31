@@ -10,6 +10,16 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 ~13:05 UTC: realistic masses NOT ADOPTED by the pre-registered rule; eval-10 cavity check running (CPU)
+- Mass transfer check (run 20261031-mass-2ed46ea, VERIFIED, no eval timeouts; registered AUC vs mocap, 10 draws/cell):
+  - ep2 (pot + lid): 0.567 → 0.723, Δ +0.157 (seeds +0.081 / +0.233; SE 0.105).
+  - ep12 (cup into rack): 0.924 → 0.911, Δ −0.013 (seeds −0.006 / −0.019; SE 0.007). Bar +0.03 on both → NOT ADOPTED.
+  - The eval pipeline keeps the 0.3 kg placeholder; masses eval retrain (O1–O3) is off. Box cost ≈ $9.10 (ledger).
+- Eval-10 lane: S12 V4p reference + H-nest-a (widened blue-cup cavity, meshes/carve/ev10w, from the Embodiment
+  session's intrusion diagnostic; mesh session's checks M2 one-sided/rigid-shift and M3 does-not-sink built in).
+  CPU build + pre-registered falsifier + review running (workflow wf_29f730f3-67c). Then the ep11 rollout gate
+  (control / V4p / V4p+ev10w if it passes, ≈ $5–7) needs the owner's go.
+
 ## 2026-10-31 ~11:20 UTC: perception sprint — only the eval-10 cup-nest fix passes; owner topped up $100 (lean plan)
 - Offset fix (S11) and held-pose fix (S10) FAILED their pre-registered rules on 20 public episodes → dropped.
 - Cup-nest fix (S12) passes on ep11 (0.901 → 0.969–0.978 reference); eval-10 version V4p needs an ep11 rollout gate

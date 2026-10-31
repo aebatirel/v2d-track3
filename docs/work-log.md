@@ -5169,3 +5169,33 @@ Advice given:
 - Freed ~15 GB of regenerable mock trees in the scratchpad (disk had reached 94%).
 - Gates still in force before any launch: transfer check ADOPT, gate 1 (config diff), and the owner's GO.
 - Mass transfer check (run 20261031-mass-2ed46ea): 3 of 4 cells in; ep12 seed 43 still training/evaluating.
+
+## 2026-10-31 ~13:05 UTC — mass transfer check: NOT ADOPTED (pre-registered rule)
+- Run 20261031-mass-2ed46ea (Vast 58502738, RTX PRO 6000 Max-Q, $1.45/h, code 2ed46ea, `bash ops/jobs/mass_check.sh`),
+  job done 12:49Z, self-destroyed. verify: VERIFIED (configs differ only in output_dir / reference.parquet / task.parquet;
+  masses as intended: mass0 0.3 kg, mass1 props_masses_only), eval timeouts none (all 8 cells: 10/10 best, 21/21 curve).
+- Registered AUC vs mocap, 10 official rollouts per cell [M]:
+
+  | episode | seed | 0.3 kg | realistic | Δ |
+  |---|---|---|---|---|
+  | ep2 (pot + lid) | 42 | 0.552 | 0.633 | +0.081 |
+  | ep2 | 43 | 0.581 | 0.814 | +0.233 |
+  | ep12 (cup into rack) | 42 | 0.928 | 0.921 | −0.006 |
+  | ep12 | 43 | 0.920 | 0.900 | −0.019 |
+
+  ep2 Δ +0.157 (SE 0.105; sim_vs_ref Δ +0.150); ep12 Δ −0.013 (SE 0.007; sim_vs_ref Δ −0.009).
+- Rule (PREREG §3: Δ ≥ +0.03 on every episode, no seed drop below −0.05, ≥ 8 scored rollouts): **NOT ADOPTED**
+  (ep12 −0.013 < +0.03). The eval pipeline keeps the 0.3 kg placeholder; the masses eval retrain (O1–O3) is off; the prep
+  (mass_eval.sh etc., R1-fixed) stays on the shelf. Per PREREG, NOT ADOPTED leaves open only the physics session's
+  condition (references rebuilt under the masses) as its own pre-registered test.
+- Reading [H]: ep2's gain is large but ~1.5 SE with bimodal rollouts (sd 0.27–0.29); a pot/lid-only follow-up would be
+  a post-hoc hypothesis and needs a fresh public pot/lid episode before any eval spend (owner decision; not proposed now).
+- Results copied to docs/research/work/masses-transfer-20261031/results/ (summary.json, verify.json, job.log).
+- Ledger: actual $9.10 (estimate, ~6.25 h × $1.45/h); the line shows session "unknown-session" (LEDGER_SESSION unset),
+  it is focused-pascal's.
+- Eval-10: determined-wright's intrusion diagnostic (branch claude/determined-wright-3joens 2a11301): carved ev10 still
+  intrudes 18–36 cm³ at f100–117 because the lower blue cavity is ~5–7 mm too narrow; blue-cup rise is not contact.
+  Agreed I build ev10w (new folder; ev10 untouched). Mesh session (bold-albattani) added checks: M2 one-sided vs
+  all-round + minimal clearing rigid shift (≤ 1 cm / 3° → track error, don't carve), M3 does-not-sink settle (≤ 4 mm,
+  ≤ 5° tilt), M4 convex pieces delivered without re-decomposition. CPU workflow wf_29f730f3-67c (pre-register, reproduce
+  baseline, build, falsify, review) running; no GPU.
