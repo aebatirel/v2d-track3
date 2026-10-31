@@ -5683,3 +5683,12 @@ Background agent, CPU only, $0, no ground truth read.
   worst draw). Dropped mass/friction DR (the scored rollout uses our own assets: no dynamics gap). Sequencing agreed with
   the pack session: masses retrain first with the current recipe, winner into a second smaller retrain. Board page v2
   (copies in docs/research/physics-2026-10-30/pages/).
+- ~11:30 UTC 31 Oct: owner chose the LEAN budget ($87–121 total, top-up $60–90 needed; credit $29.16).
+  `tools/intrusion.py` finished (agent build, CPU): CLI `intrusion.py REF.parquet SIM_DIR OUT.npz [--round K]
+  [--pitch_mm 2] [--surf_mm 0.5] [--prov PROV.json] [--fit PHYS_FIT_OUT --fit_commit SHA]`, gmg-intrusion/2 fields,
+  fiducial round trip, deny-list provenance guard. Tests (tools/intrusion_tests/, ALL PASS): two-box overlaps match an
+  independent count exactly, volumes within the 2 mm grid bound, rel_T error ≤ 7e-16, depth within 0.14 mm; refusals
+  for re-centred pieces / shifted fiducials / edited piece / wrong episode / mocap path / library_v3 in chain / scans
+  phys_fit. Real ep24 (perceived ref, collision_decomp pieces, 275 frames): 5.2 s, 124 intruding frame-pairs (max
+  0.92 cm³). Open contract points sent to the mesh session (manifest layout, validator vs parquet, no provenance chain
+  in any current reference, phys_fit.json lacks commit/argv).
