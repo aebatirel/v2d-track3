@@ -5551,3 +5551,10 @@ arm and a no-policy replay floor to stage B.
     (left stored draws 0.32–0.92, right 0.46–0.96).
   - The clean solved-vs-normal test is arm S (§9), running. Drafted for the owner an inventory of the physical elements
     in use and tested, to answer Roman.
+- ~20:00 UTC owner: "aren't we using a Kalman filter to fix the path?"
+  - Checked: no. Note 26 §D3 (26 Oct, focused-pascal) put a filter in the reference, not the policy (the actor reads
+    exact simulator state). It recommended an offline robust full-clip smoother, but kept it as a "$0 side test with a
+    low prior" because the measured reference error is mostly bias, not jitter. Never run.
+  - The perception sprint (focused-pascal, 31 Oct ~11:20 UTC) **falsified [H-spoon]** from the Roman analysis
+    (S10 heldpose: proxy mean −0.018; the palm frame turns 10–50° relative to the object within a hold). S11 constant
+    offset failed. S12 cup-nest passed on ep11 at reference level (+0.068 / +0.076); its rollout gate is running.
