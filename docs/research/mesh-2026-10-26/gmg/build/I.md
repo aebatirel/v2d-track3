@@ -830,9 +830,17 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   blue 15 / 18, pot 36 @12), rings sit 1.2-3.1 mm (cups) / 12 mm (pot) inside the cavity at mid-sector, continuity
   check is self-referential; S copy 0 / 2 of ep11 carved reproduced exactly (4.23 / 112.54 mm); default bimodal
   (copy 0 7.2 mm pushed up, copy 2 + unjittered fall 121 mm). Running: faithful 2 mm-box S on ep11 f126.
+- 21:23 (verify_cc_1) done, pushed 3d26bce (build/I/verify_cc_1.md only). Blocking: B1 ring pieces alone fail the gate
+  (ep11 beige all 16 failing hulls are rings, ep13 20 of 22; continuity check self-referential); B2 S fails on faithful
+  SHELL 2 mm-box colliders at all 8 S frames (10-30 mm; ep31 sweeper floats 45 mm above the table, free fall 73-75 mm;
+  ep13 / ep12 f6 guest 15-23 mm inside the table plane); B3 ep11 cup SHELLs bottomless and co-located at f126.
 - 21:15 (verifier, rule-compliance lens, verify_cc_0) started 21:00: F-I5 / F-I5.14 / F-I5.14 (7) push times vs launches,
   code identity (sha256 vs 1b9f0c1), inputs and GT-free provenance, gates and delivery vs F-I5.0-F-I5.7 as written,
   prediction scoring. Output build/I/verify_cc_0.md only.
+- 21:22 (verify_cc_0) done, pushed 2ebe67e (build/I/verify_cc_0.md only): no blocking finding; 13 nonblocking (round
+  folders called unusable carry no do-not-use marker; no sources/ in F-I5 rounds; carved ladder skips routes 2/3,
+  not in F-I5.11; decision_f_i3 is not the flag-off decision (ep11 CARVE vs flag-off PUSH; 20:35 ep2 line wrong);
+  GT-free claim rests on dev-tier t0_dev (library_v3 ROI, PREREG A.1); P42 untested, P44 re-scored post hoc).
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
