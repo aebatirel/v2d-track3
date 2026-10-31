@@ -5701,3 +5701,17 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - CD-O 0.33234 (0.40188; estimate was 0.333).
 - Boards at 18:18 UTC: AUC 8, SP-SR 8, MP-SR 8, RPE 11, MPPE 11, CD-O 14 (was 18). Rank sum 60 (was 62), still 11th.
   Sambhav rose to 48. 10th DSAIL 57, 9th SoySauceChicken 52, 8th sam&alex 51.
+
+### 2026-10-31 ~18:30 UTC — owner: carves for every weak episode; "approach 0.9"
+- Owner, verbatim: "I think we can improve in all of these with the new method and carving method for the board. I
+  remember blue cup and spoon the spoon doesnt enter the cup proper and for some rack things we know off. I think if we
+  can get almost perfect on our perception we can approach to 0.9 ehich with the new methods I think is possible since
+  we know where the objects will be".
+- Asked bold-albattani, GT-free, by 1 Nov 12:00: carved blue-cup collision so the spoon can enter (evals 32, 33; check
+  intrusion first); rack seats (evals 14, 16, 30); eval-25 board slot. Asked focused-pascal to plan pack-10 cells with
+  these assets plus the solver (if it signals), masses (if adopted) and the recipe verdict, with cost.
+- Ceiling arithmetic given to the owner [E]: board ≈ (rollout-vs-reference) × (reference-vs-truth).
+  - Pack 7: S 0.911 (GT-free, measured) and board 0.8146, so eval reference-level AUC R ≈ 0.89–0.90 [E].
+  - Perfect tracking alone (S → 1) gives ≈ 0.89–0.90.
+  - Eval 10 fixed (S ≈ 0.935) gives ≈ 0.84.
+  - 0.9 needs near-perfect tracking on all 20 episodes plus references at least as good as now.
