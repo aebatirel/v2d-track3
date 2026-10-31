@@ -5206,3 +5206,28 @@ diagnostic; nothing is picked for submission.
   - Reniced the gmg / interlock processes to 19.
 - Told the score session: C0 goes to focused-pascal by ~18:30 UTC at the latest. Caveat: if the final ranking scores one
   selected submission on all boards, the AUC guard gates the final choice.
+
+### 2026-10-31 ~16:10-16:20 UTC — C0 files sent for pack 9a; E0 (eval-built) started; gmg build-1 paused
+- **To focused-pascal** (pack 9a = pack 8 + C0 packed meshes; target upload ~20:30 UTC):
+  - folders `meshes/library_c0`, `meshes/library_c0x` (commit 5cce3d2), md5:
+    - pot 0264da83fc0e396c652a43d282dbc0ea
+    - lid 35727a10bca407594f41d108b4dc03ab
+    - rack bbca8ec0c26e6e37baaa145cef4e48e5
+    - blue cup 9e3a74fd98921c4c589cee7956da457c
+  - preliminary frame numbers at identity vs library_v3 (median symmetric distance 2.35-3.43 mm). The final frame
+    confirmation follows from the hand-off verifier (rigid-ICP motion).
+- **Owner (relayed 15:50 UTC):** "if the method of mesh creation better just recreate the meshes in the eval and use
+  that".
+  - Corrected the score session: the eval depth cache already exists (29 Oct batch, $2.95), so eval builds are CPU,
+    $0.
+  - Launched workflow `cdo-sprint-e0` (`wf_aee68881-8d9`, task wq7mvnvwr), folder `cdo-sprint/E0/`:
+    - eval observed points;
+    - C0 methods with frozen public settings on each eval episode;
+    - a pre-registered obs_fidelity pick per object;
+    - diagnostics: C0 and library_v3 fidelity on the eval observations, the per-episode alternative;
+    - recommendation rule: E0 unless C0 is >15 % better in fidelity;
+    - frame and kit checks, two verifiers, `meshes/library_e0` / `e0x`;
+    - public context numbers (distribution of single-episode builds vs scan).
+  - Target hand-off: 1 Nov ~12:00 UTC (tomorrow's pack).
+- **gmg build-1 workflow** (`wf_7426de2f-f07`) stopped to free agent slots and CPU for the sprint. It resumes later
+  from its notes and cache. Its detached b4_batch loops keep running at nice 19.
