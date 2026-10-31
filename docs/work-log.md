@@ -5096,3 +5096,15 @@ Advice given:
   arms 0.3 kg vs props_masses_only; seeds 42/43; NREP 10; EVAL_TIMEOUT 1200 with -k 60). Rule:
   `docs/research/work/masses-transfer-20261031/PREREG.md`. Expected ≈ 5.4–7.5 h, ≈ $6.5–11; ledger planned $9 (the
   append wrote 6 identical lines after an "upstream request failed" retry; harmless, `show` keys open runs by id).
+- ~09:10 UTC owner: "Is there anything we can do to improve perception? Are we doing anything for that?" Started a
+  perception sprint (workflow perception-sprint, CPU, $0), three experiments on the 20 public episodes, each with a
+  pass rule pre-registered in its README before scoring:
+  - **offset**: GT-free correction of the constant per-object pose offset (0.025 of the 0.033 tracker leak with true
+    templates is constant): occlusion-masked trimmed depth ICP at frame 0 / rest spans, multi-hypothesis refinement,
+    rest-frame consensus. Adopt if mean ΔR ≥ +0.01, ≥ 12/20 better, no episode < −0.01, on both public arms.
+  - **heldpose**: while held, pose = our wrist × a per-hold grasp transform (spoon proxy: sweeper / dust pan). Adopt if
+    ≥ +0.005 on the thin-object proxies and no episode drops > 0.01.
+  - **mask10**: eval-10 nest fix (GT-free nest constraint or CPU physics projection; masking re-track spec for GPU).
+    Pass: ep11 ≥ +0.05, others unchanged.
+  - Then a ranked plan: eval targets, value, and delivery in the same boxes as the masses retrain with a clean
+    attribution design.
