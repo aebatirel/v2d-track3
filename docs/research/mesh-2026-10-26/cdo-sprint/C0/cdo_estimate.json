@@ -1,0 +1,56 @@
+{
+ "label": "[E] estimate; assumes the hidden eval scans match the public scans and per-pair CD-O equals the public-scan CD-O at eval seeds",
+ "model": "board CD-O = pair-weighted mean over 36 eval pairs; spoon CD-O inferred from the board",
+ "board_pack7_cm": 0.402,
+ "nonspoon_sum_pack7_cm": 12.6491,
+ "nonspoon_mean_pack7_cm": 0.4865,
+ "nonspoon_mean_library_v3_only_cm": 0.4914,
+ "spoon_inferred_cm": 0.1823,
+ "spoon_formula": "(0.402*36 - nonspoon_sum_pack7)/10",
+ "per_object": {
+  "white_pot": {
+   "pairs": 6,
+   "lib_cm": 0.4371,
+   "new_cm": 0.3417,
+   "delta_per_pair_cm": -0.0954,
+   "weighted_delta_sum_cm": -0.5724,
+   "board_delta_cm": -0.0159
+  },
+  "white_pot_lid": {
+   "pairs": 1,
+   "lib_cm": 0.4211,
+   "new_cm": 0.2199,
+   "delta_per_pair_cm": -0.2012,
+   "weighted_delta_sum_cm": -0.2012,
+   "board_delta_cm": -0.0056
+  },
+  "plastic_dish_rack": {
+   "pairs": 5,
+   "lib_cm": 0.5551,
+   "new_cm": 0.456,
+   "delta_per_pair_cm": -0.0991,
+   "weighted_delta_sum_cm": -0.4955,
+   "board_delta_cm": -0.0138
+  },
+  "blue_cup": {
+   "pairs": 5,
+   "lib_cm": 0.5233,
+   "new_cm": 0.2906,
+   "delta_per_pair_cm": -0.2327,
+   "weighted_delta_sum_cm": -1.1635,
+   "board_delta_cm": -0.0323
+  }
+ },
+ "total_weighted_delta_cm": -2.4326,
+ "board_delta_cm": -0.0676,
+ "board_c0_cm": 0.3344,
+ "check_board_c0_from_sums_cm": 0.3344,
+ "adopted_subsets_cm": {
+  "white_pot": 0.3861,
+  "white_pot_lid": 0.3964,
+  "plastic_dish_rack": 0.3882,
+  "blue_cup": 0.3697,
+  "white_pot+white_pot_lid+plastic_dish_rack": 0.3667,
+  "white_pot+white_pot_lid+plastic_dish_rack+blue_cup": 0.3344
+ }
+}

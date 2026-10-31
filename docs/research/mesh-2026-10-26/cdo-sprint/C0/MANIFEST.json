@@ -1,0 +1,904 @@
+{
+ "candidate": "C0",
+ "status": "assembled, AUC guard pre-registered (PREREG.md), not adopted",
+ "rule": "packed mesh only; simulator copies and rollouts unchanged",
+ "n_pairs": 36,
+ "n_swapped": 17,
+ "swaps": {
+  "white_pot": {
+   "mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "bytes": 297072,
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": []
+  },
+  "white_pot_lid": {
+   "mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v2.glb",
+   "sha256": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+   "bytes": 172708,
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/lid/t2.5_fit.glb",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/lid_scores.jsonl",
+    "label": "clean/lid/t2.5_fit",
+    "sha1_16": "67632273f5723dc9",
+    "cdo_eval_cm": 0.2199,
+    "add_eval_mm": 4.46,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4211,
+     "add_eval_mm": 8.12,
+     "flips_all": 0,
+     "sha1_16": "0beb9d4b7b051730"
+    }
+   },
+   "flags": [
+    "T_LID 2.5 mm equals the value that leaked from scan measurements into the first brief (scan lid wall 1.8 mm); the clean-up round passed at 1.5/2.5/4.0 mm (worst 0.224 / 5.06 mm) and 2.5 is kept as the grid midpoint, not chosen by fidelity (fidelity prefers the thinnest sheet: 1.436 < 1.686 < 2.259)"
+   ]
+  },
+  "plastic_dish_rack": {
+   "mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "bytes": 43256,
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.456,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5551,
+     "add_eval_mm": 5.994,
+     "flips_all": 0,
+     "sha1_16": "c737056fcb749935"
+    }
+   },
+   "flags": [
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+   ]
+  },
+  "blue_cup": {
+   "mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "bytes": 557540,
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.2906,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5233,
+     "add_eval_mm": 9.97,
+     "flips_all": 0,
+     "sha1_16": "2fba7aceef409479"
+    }
+   },
+   "flags": [
+    "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+   ]
+  }
+ },
+ "pairs": [
+  {
+   "eval_episode": 1,
+   "slot": 0,
+   "object": "white_pot",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts primitive assembly (prim_potlid.py pot --variant fit), fitted to ep41 observed stereo points",
+   "selection": "GT-free obs_fidelity over all pot candidates (results/prim/potlid/selection.json), pre-registered in docs/work-log.md 2026-10-27 before scoring",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": [],
+   "replaces": "meshes/library_v3/white_pot.glb",
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+  },
+  {
+   "eval_episode": 1,
+   "slot": 1,
+   "object": "white_pot_lid",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v2.glb",
+   "c0_sha256": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/lid/t2.5_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts (prim_potlid.py lid --variant fit, PRIM_T_LID=0.0025), fitted to ep2 observed points",
+   "selection": "clean-up round pre-registered in docs/work-log.md 2026-10-27: fidelity picks fit vs tsdf at each thickness; shipped default T_LID 2.5 mm (grid midpoint) because all of 1.5/2.5/4.0 passed",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/lid_scores.jsonl",
+    "label": "clean/lid/t2.5_fit",
+    "sha1_16": "67632273f5723dc9",
+    "cdo_eval_cm": 0.2199,
+    "add_eval_mm": 4.46,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4211,
+     "add_eval_mm": 8.12,
+     "flips_all": 0,
+     "sha1_16": "0beb9d4b7b051730"
+    }
+   },
+   "flags": [
+    "T_LID 2.5 mm equals the value that leaked from scan measurements into the first brief (scan lid wall 1.8 mm); the clean-up round passed at 1.5/2.5/4.0 mm (worst 0.224 / 5.06 mm) and 2.5 is kept as the grid midpoint, not chosen by fidelity (fidelity prefers the thinnest sheet: 1.436 < 1.686 < 2.259)"
+   ],
+   "replaces": "meshes/library_v3/white_pot_lid.glb",
+   "replaces_sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37"
+  },
+  {
+   "eval_episode": 3,
+   "slot": 0,
+   "object": "white_pot",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts primitive assembly (prim_potlid.py pot --variant fit), fitted to ep41 observed stereo points",
+   "selection": "GT-free obs_fidelity over all pot candidates (results/prim/potlid/selection.json), pre-registered in docs/work-log.md 2026-10-27 before scoring",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": [],
+   "replaces": "meshes/library_v3/white_pot.glb",
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+  },
+  {
+   "eval_episode": 3,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 5,
+   "slot": 0,
+   "object": "white_pot",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts primitive assembly (prim_potlid.py pot --variant fit), fitted to ep41 observed stereo points",
+   "selection": "GT-free obs_fidelity over all pot candidates (results/prim/potlid/selection.json), pre-registered in docs/work-log.md 2026-10-27 before scoring",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": [],
+   "replaces": "meshes/library_v3/white_pot.glb",
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+  },
+  {
+   "eval_episode": 5,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 6,
+   "slot": 0,
+   "object": "white_pot",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts primitive assembly (prim_potlid.py pot --variant fit), fitted to ep41 observed stereo points",
+   "selection": "GT-free obs_fidelity over all pot candidates (results/prim/potlid/selection.json), pre-registered in docs/work-log.md 2026-10-27 before scoring",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": [],
+   "replaces": "meshes/library_v3/white_pot.glb",
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+  },
+  {
+   "eval_episode": 6,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 8,
+   "slot": 0,
+   "object": "beige_cup",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3x/beige_cup.glb",
+   "c0_sha256": "af327b8087fcba7456910b9c2b6a56655082970f4bb7bf078c61e21c97e63845",
+   "source_path": "meshes/library_v3x/beige_cup.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3x/beige_cup",
+    "cdo_eval_cm": 0.7299,
+    "add_eval_mm": 5.395,
+    "flips_all": 0
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 8,
+   "slot": 1,
+   "object": "white_pot",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts primitive assembly (prim_potlid.py pot --variant fit), fitted to ep41 observed stereo points",
+   "selection": "GT-free obs_fidelity over all pot candidates (results/prim/potlid/selection.json), pre-registered in docs/work-log.md 2026-10-27 before scoring",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": [],
+   "replaces": "meshes/library_v3x/white_pot.glb",
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+  },
+  {
+   "eval_episode": 10,
+   "slot": 0,
+   "object": "blue_cup",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "obs-lathe (lathe_obs.py, hollow + observed appendages by voxel splat, config g1) on ep21 observed points",
+   "selection": "GT-free obs_fidelity over 5 candidates with ep21+ep22 points (results/obs_diag.txt): ep21 4.084 < merged 4.234 < ep22 5.788 < library_v3 5.86 < ep22 no-markers 6.628 mm",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.2906,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5233,
+     "add_eval_mm": 9.97,
+     "flips_all": 0,
+     "sha1_16": "2fba7aceef409479"
+    }
+   },
+   "flags": [
+    "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+   ],
+   "replaces": "meshes/library_v3/blue_cup.glb",
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  {
+   "eval_episode": 10,
+   "slot": 1,
+   "object": "beige_cup",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/beige_cup.glb",
+   "c0_sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+   "source_path": "meshes/library_v3/beige_cup.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/beige_cup",
+    "cdo_eval_cm": 0.8562,
+    "add_eval_mm": 6.55,
+    "flips_all": 0
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 14,
+   "slot": 0,
+   "object": "blue_cup",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "obs-lathe (lathe_obs.py, hollow + observed appendages by voxel splat, config g1) on ep21 observed points",
+   "selection": "GT-free obs_fidelity over 5 candidates with ep21+ep22 points (results/obs_diag.txt): ep21 4.084 < merged 4.234 < ep22 5.788 < library_v3 5.86 < ep22 no-markers 6.628 mm",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.2906,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5233,
+     "add_eval_mm": 9.97,
+     "flips_all": 0,
+     "sha1_16": "2fba7aceef409479"
+    }
+   },
+   "flags": [
+    "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+   ],
+   "replaces": "meshes/library_v3/blue_cup.glb",
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  {
+   "eval_episode": 14,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts (prim_rack.py run, PRIM_T_WALL=0.0025, PRIM_CUP_LEAN=1), joint fit of eps 12/13/27",
+   "selection": "prim_rack GT-free selection (joint) per config; fidelity picks lean (5.935) over upright (6.116) at 2.5 mm; clean-up round pre-registered 2026-10-27; T_WALL 2.5 mm kept as grid midpoint",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.456,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5551,
+     "add_eval_mm": 5.994,
+     "flips_all": 0,
+     "sha1_16": "c737056fcb749935"
+    }
+   },
+   "flags": [
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+   ],
+   "replaces": "meshes/library_v3/plastic_dish_rack.glb",
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+  },
+  {
+   "eval_episode": 15,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts (prim_rack.py run, PRIM_T_WALL=0.0025, PRIM_CUP_LEAN=1), joint fit of eps 12/13/27",
+   "selection": "prim_rack GT-free selection (joint) per config; fidelity picks lean (5.935) over upright (6.116) at 2.5 mm; clean-up round pre-registered 2026-10-27; T_WALL 2.5 mm kept as grid midpoint",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.456,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5551,
+     "add_eval_mm": 5.994,
+     "flips_all": 0,
+     "sha1_16": "c737056fcb749935"
+    }
+   },
+   "flags": [
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+   ],
+   "replaces": "meshes/library_v3/plastic_dish_rack.glb",
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+  },
+  {
+   "eval_episode": 15,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 16,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts (prim_rack.py run, PRIM_T_WALL=0.0025, PRIM_CUP_LEAN=1), joint fit of eps 12/13/27",
+   "selection": "prim_rack GT-free selection (joint) per config; fidelity picks lean (5.935) over upright (6.116) at 2.5 mm; clean-up round pre-registered 2026-10-27; T_WALL 2.5 mm kept as grid midpoint",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.456,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5551,
+     "add_eval_mm": 5.994,
+     "flips_all": 0,
+     "sha1_16": "c737056fcb749935"
+    }
+   },
+   "flags": [
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+   ],
+   "replaces": "meshes/library_v3/plastic_dish_rack.glb",
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+  },
+  {
+   "eval_episode": 16,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 19,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/mini_sweeper.glb",
+   "c0_sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "source_path": "meshes/library_v3/mini_sweeper.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/mini_sweeper",
+    "cdo_eval_cm": 0.317,
+    "add_eval_mm": 25.56,
+    "flips_all": 1
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 19,
+   "slot": 1,
+   "object": "mini_dust_pan",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/mini_dust_pan.glb",
+   "c0_sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "source_path": "meshes/library_v3/mini_dust_pan.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/mini_dust_pan",
+    "cdo_eval_cm": 0.3307,
+    "add_eval_mm": 5.61,
+    "flips_all": 0
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 20,
+   "slot": 0,
+   "object": "blue_cup",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "obs-lathe (lathe_obs.py, hollow + observed appendages by voxel splat, config g1) on ep21 observed points",
+   "selection": "GT-free obs_fidelity over 5 candidates with ep21+ep22 points (results/obs_diag.txt): ep21 4.084 < merged 4.234 < ep22 5.788 < library_v3 5.86 < ep22 no-markers 6.628 mm",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.2906,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5233,
+     "add_eval_mm": 9.97,
+     "flips_all": 0,
+     "sha1_16": "2fba7aceef409479"
+    }
+   },
+   "flags": [
+    "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+   ],
+   "replaces": "meshes/library_v3/blue_cup.glb",
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  {
+   "eval_episode": 20,
+   "slot": 1,
+   "object": "water_pitcher",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/water_pitcher.glb",
+   "c0_sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+   "source_path": "meshes/library_v3/water_pitcher.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/water_pitcher",
+    "cdo_eval_cm": 0.8942,
+    "add_eval_mm": 7.63,
+    "flips_all": 0
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 25,
+   "slot": 0,
+   "object": "wooden_piece_1",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_piece_1.glb",
+   "c0_sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+   "source_path": "meshes/library_v3/wooden_piece_1.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/wooden_piece_1",
+    "cdo_eval_cm": 0.2219,
+    "add_eval_mm": 2.39,
+    "flips_all": 0
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 25,
+   "slot": 1,
+   "object": "wooden_piece_2",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_piece_2.glb",
+   "c0_sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b",
+   "source_path": "meshes/library_v3/wooden_piece_2.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/wooden_piece_2",
+    "cdo_eval_cm": 0.2158,
+    "add_eval_mm": 3.56,
+    "flips_all": 0
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 28,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts (prim_rack.py run, PRIM_T_WALL=0.0025, PRIM_CUP_LEAN=1), joint fit of eps 12/13/27",
+   "selection": "prim_rack GT-free selection (joint) per config; fidelity picks lean (5.935) over upright (6.116) at 2.5 mm; clean-up round pre-registered 2026-10-27; T_WALL 2.5 mm kept as grid midpoint",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.456,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5551,
+     "add_eval_mm": 5.994,
+     "flips_all": 0,
+     "sha1_16": "c737056fcb749935"
+    }
+   },
+   "flags": [
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+   ],
+   "replaces": "meshes/library_v3/plastic_dish_rack.glb",
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+  },
+  {
+   "eval_episode": 28,
+   "slot": 1,
+   "object": "white_pot",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/potlid/cand/white_pot_ep41_fit.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts primitive assembly (prim_potlid.py pot --variant fit), fitted to ep41 observed stereo points",
+   "selection": "GT-free obs_fidelity over all pot candidates (results/prim/potlid/selection.json), pre-registered in docs/work-log.md 2026-10-27 before scoring",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/potlid/metric_all.jsonl",
+    "label": "potlid/fit/ep41",
+    "sha1_16": "4bf2135570c1da26",
+    "cdo_eval_cm": 0.3417,
+    "add_eval_mm": 3.047,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.4371,
+     "add_eval_mm": 6.67,
+     "flips_all": 0,
+     "sha1_16": "69c8aa6b527a921c"
+    }
+   },
+   "flags": [],
+   "replaces": "meshes/library_v3/white_pot.glb",
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+  },
+  {
+   "eval_episode": 30,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/mini_sweeper.glb",
+   "c0_sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "source_path": "meshes/library_v3/mini_sweeper.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/mini_sweeper",
+    "cdo_eval_cm": 0.317,
+    "add_eval_mm": 25.56,
+    "flips_all": 1
+   },
+   "note": null
+  },
+  {
+   "eval_episode": 30,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/prim/clean/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "kit-of-parts (prim_rack.py run, PRIM_T_WALL=0.0025, PRIM_CUP_LEAN=1), joint fit of eps 12/13/27",
+   "selection": "prim_rack GT-free selection (joint) per config; fidelity picks lean (5.935) over upright (6.116) at 2.5 mm; clean-up round pre-registered 2026-10-27; T_WALL 2.5 mm kept as grid midpoint",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/prim/clean/rack_scores.jsonl",
+    "label": "clean/rack/t2.5_lean1/all_joint",
+    "sha1_16": "b855279b68ecb432",
+    "cdo_eval_cm": 0.456,
+    "add_eval_mm": 5.368,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5551,
+     "add_eval_mm": 5.994,
+     "flips_all": 0,
+     "sha1_16": "c737056fcb749935"
+    }
+   },
+   "flags": [
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+   ],
+   "replaces": "meshes/library_v3/plastic_dish_rack.glb",
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+  },
+  {
+   "eval_episode": 32,
+   "slot": 0,
+   "object": "blue_cup",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "obs-lathe (lathe_obs.py, hollow + observed appendages by voxel splat, config g1) on ep21 observed points",
+   "selection": "GT-free obs_fidelity over 5 candidates with ep21+ep22 points (results/obs_diag.txt): ep21 4.084 < merged 4.234 < ep22 5.788 < library_v3 5.86 < ep22 no-markers 6.628 mm",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.2906,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5233,
+     "add_eval_mm": 9.97,
+     "flips_all": 0,
+     "sha1_16": "2fba7aceef409479"
+    }
+   },
+   "flags": [
+    "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+   ],
+   "replaces": "meshes/library_v3/blue_cup.glb",
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  {
+   "eval_episode": 32,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 33,
+   "slot": 0,
+   "object": "blue_cup",
+   "swapped": true,
+   "c0_mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "source_path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/lathe/ep21_blue_cup_g1.glb",
+   "provenance_tier": "tier P1: fitted to our stereo points along library_v3-anchored tracks (same tier as library_v3)",
+   "method": "obs-lathe (lathe_obs.py, hollow + observed appendages by voxel splat, config g1) on ep21 observed points",
+   "selection": "GT-free obs_fidelity over 5 candidates with ep21+ep22 points (results/obs_diag.txt): ep21 4.084 < merged 4.234 < ep22 5.788 < library_v3 5.86 < ep22 no-markers 6.628 mm",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/lathe_obs.jsonl",
+    "label": "lathe_obs_g/a1/ep21/blue_cup",
+    "sha1_16": "1bd4c8f5f475596f",
+    "cdo_eval_cm": 0.2906,
+    "add_eval_mm": 4.088,
+    "flips_all": 0,
+    "library_v3": {
+     "cdo_eval_cm": 0.5233,
+     "add_eval_mm": 9.97,
+     "flips_all": 0,
+     "sha1_16": "2fba7aceef409479"
+    }
+   },
+   "flags": [
+    "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+   ],
+   "replaces": "meshes/library_v3/blue_cup.glb",
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+  },
+  {
+   "eval_episode": 33,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 35,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 36,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 37,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "source_path": "meshes/library_v3/wooden_spoon.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": null,
+   "note": "wooden_spoon has no public scan; no [D] CD-O"
+  },
+  {
+   "eval_episode": 38,
+   "slot": 0,
+   "object": "mini_dust_pan",
+   "swapped": false,
+   "c0_mesh": "meshes/library_v3/mini_dust_pan.glb",
+   "c0_sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "source_path": "meshes/library_v3/mini_dust_pan.glb",
+   "provenance_tier": "unchanged from pack 7",
+   "public_D": {
+    "file": "docs/research/mesh-2026-10-26/results/baseline_library.jsonl",
+    "label": "library_v3/mini_dust_pan",
+    "cdo_eval_cm": 0.3307,
+    "add_eval_mm": 5.61,
+    "flips_all": 0
+   },
+   "note": null
+  }
+ ]
+}
