@@ -127,6 +127,9 @@ def w_checks(s, t_mm, centre_tol=2.0):
             m.append(f'{o} decision {r["decision"]} {r["tier"]} {r["flags"]} gate {r.get("gate_fail")} '
                      f'body {r.get("body_why")}')
             continue
+        if r.get('w_mm') is None:
+            m.append(f'{o} CARVE not from the waiver route: gate {r.get("gate_fail")} body {r.get("body_why")}')
+            continue
         if abs(r['w_mm'] - (t_mm + 2.0)) > 1.0:
             wm.append(f'{o} width {r["w_mm"]} (t measured {r["plate_t_mm"]})')
         if abs(r['centre_mm']) > centre_tol:
