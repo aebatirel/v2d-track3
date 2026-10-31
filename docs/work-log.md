@@ -5902,3 +5902,17 @@ Background agent, CPU only, $0, no ground truth read.
 - Recipe screen interim (box-local, 12 of 24 cells; not a verdict): ep2 s42 C .955±.029 K .965±.009 D .743±.269;
   ep2 s43 C .869±.174 K .959±.020 D .862±.236; ep12 s42 C .576±.066; ep12 s43 C .612±.014 K .582±.024 D .919±.022;
   ep18 s43 C .624±.002 K .620±.009.
+
+### 2026-10-31 16:35 UTC — determined-wright: owner questioned the solver verdicts; clean re-test approved
+- Owner: "Are we sure … did we really explore everything?" Re-read G2/G3/§6.1 records. Overstated in my summaries:
+  - G3's "harm" is one seed (42) on ep2. That seed also collapses on the normal reference; seeds 43/44 reach 0.98. The
+    chosen ep2 policy was erratic (0.197–0.968).
+  - The loop was barely exercised: the solver edited 0 frames in 4 of 8 turns.
+  - The option-3 ep2 gain may come from the solved references plus the shorter LR schedule; never tested cleanly.
+  - Corrected the push board (v3).
+- Owner chose "Test + auto eval":
+  - Arm S (solved references, the screen's C recipe, seeds 42/43) against the screen's C cells, pre-registered as
+    physics-solver.md §9 (83664f6; timestamps corrected to ~16:25/16:30 UTC). ≈ $9–10 [E].
+  - If "signal", eval solving (≈ $15 [E]) starts without asking again.
+- Agents building on CPU: arm S in the recipe screen, and `ops/jobs/eval_solve.sh`. Asked focused-pascal for pack 10's
+  grasp-lock eval episodes and their reference/asset inputs.

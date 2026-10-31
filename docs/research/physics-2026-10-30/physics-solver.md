@@ -1027,13 +1027,13 @@ Reused unchanged: `tools/early_stop.sh`, `tools/ckpt_curve.sh`, `tools/ckpt_curv
   recorded on the box.
 - The box speed with D's extra kernels.
 
-## 9. Clean solver re-test, arm S (pre-registered 31 Oct 2026 ~16:50 UTC, written before any S result)
+## 9. Clean solver re-test, arm S (pre-registered 31 Oct 2026 ~16:30 UTC, written before any S result)
 
 **Why.** G3's "harm" rests on one seed (42) on ep2, which also collapses with the normal reference; G3's ep2 policy
 was erratic (5 evaluations 0.197–0.968). Option 3 never tested solved references against normal ones with only the
 reference differing. The owner asked whether this was explored enough. It was not.
 
-**Owner's decision (31 Oct ~16:45 UTC, "Test + auto eval"):**
+**Owner's decision (31 Oct ~16:25 UTC, "Test + auto eval"):**
 - Run this test.
 - Prepare eval solving on CPU while it runs.
 - If S gives "signal", start solving the eval episodes (~$15 [E]) without asking again.
