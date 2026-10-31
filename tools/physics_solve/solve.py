@@ -305,6 +305,12 @@ def main():
     p.add_argument('--early_n', type=int, default=2); p.add_argument('--min_iters', type=int, default=4)
     p.add_argument('--pace_s', type=float, default=0.0, help='> 0: pacing; when the solve loop is behind PACE_S seconds per '
                    'committed frame, a replan runs only MIN_ITERS iterations and no boosted (rollback) iterations')
+    p.add_argument('--start_state', default='', help='solve from a recorded simulator state instead of frame 0: a '
+                   'tools/trace_rollout.py STATE=1 npz (e.g. the policy\'s rollout); --t0 = its reference frame. Offsets '
+                   'stay zero before t0 (2026-10-31, solver<->RL loop)')
+    p.add_argument('--t0', type=int, default=0)
+    p.add_argument('--record', action='store_true', help='also store the truth\'s full state per committed frame (jq, jqd, '
+                   'qd, qw, es as trace_rollout STATE=1) and its contacts (cl as CONTACTS=2) in OUT_solve.npz')
     p.add_argument('--seed', type=int, default=0)
     a = p.parse_args(); t_start = time.time(); rng = np.random.default_rng(a.seed)
     a.truth_device = a.truth_device or a.device
@@ -366,8 +372,33 @@ def main():
     offsets = np.zeros((T, A)); plan = np.zeros((a.horizon, A))
     with on(truth):
         truth.reset(frame_id=0)
-    Q = [truth.state_0.body_q.numpy().copy()]; FR = [0]
-    replans = []; t = 0; chunks = []; boost, boost_until, retries = 0, -1, 0; deadline_t = None
+    t = 0
+    if a.start_state:                                   # continue from a recorded state (the policy's, at frame t0)
+        tr = np.load(a.start_state); fr_ = [int(x) for x in tr['frame']]
+        i0 = fr_.index(a.t0)                            # first row of that frame (a trace ends with the viewer's reset)
+        snap0 = dict(joint_q=tr['jq'][i0], joint_qd=tr['jqd'][i0], body_q=tr['q'][i0].reshape(-1), body_qd=tr['qd'][i0],
+                     qacc_warmstart=tr['qw'][i0], timestep=a.t0, episode_step=int(tr['es'][i0]))
+        with on(truth):
+            restore(truth, snap0)
+        t = a.t0
+        log(f'[{time.time() - t_start:.0f}s] start state: {os.path.basename(a.start_state)} row {i0} (frame {a.t0})')
+    REC = {k: [] for k in ('jq', 'jqd', 'qd', 'qw', 'es', 'cl')}
+
+    def rec_state():                                    # --record: the truth's state (world 0) and contacts, per row
+        if not a.record:
+            return
+        REC['jq'].append(truth.state_0.joint_q.numpy().copy()); REC['jqd'].append(truth.state_0.joint_qd.numpy().copy())
+        REC['qd'].append(truth.state_0.body_qd.numpy().reshape(-1).copy())
+        REC['qw'].append(truth.solver.mjw_data.qacc_warmstart.numpy()[0].copy()); REC['es'].append(int(truth.episode_step.numpy()[0]))
+        rows = []
+        if len(REC['jq']) > 1:                          # the first row (reset or restore) has no step contacts
+            from flash_chord.runtime.contact import read_contacts_w
+            rd = read_contacts_w(truth.model, truth.state_0, truth.contacts); i = len(REC['jq']) - 1
+            for b0, b1, p_, n_, f_ in zip(rd.body0_ids, rd.body1_ids, rd.contact_pos_w, rd.contact_normal_w, rd.contact_force_w):
+                rows.append([i, int(b0), int(b1), *p_, *n_, float(np.dot(f_, n_))])
+        REC['cl'].append(rows)
+    Q = [truth.state_0.body_q.numpy().copy()]; FR = [t]; rec_state()
+    replans = []; chunks = []; boost, boost_until, retries = 0, -1, 0; deadline_t = None
     t_loop0 = time.time(); n_paced = 0
     nk = a.horizon // a.knot + 1
     while t < stop:
@@ -460,7 +491,7 @@ def main():
         for k in range(C):
             with on(truth):
                 truth.step(None)
-            q = truth.state_0.body_q.numpy().copy(); Q.append(q); FR.append(int(truth.timestep.numpy()[0]))
+            q = truth.state_0.body_q.numpy().copy(); Q.append(q); FR.append(int(truth.timestep.numpy()[0])); rec_state()
             kk = min(t + k + 1, T - 1)
             real.append(float(np.minimum(add_dist(q[ob].astype(np.float64), ref.OP[kk], ref.OQ[kk], pts), a.clip).sum()))
         row['real_obj_cost'] = round(float(np.mean(real)), 5)
@@ -485,6 +516,8 @@ def main():
             with on(truth):
                 restore(truth, e['snap'])
             del Q[e['nQ']:]; del FR[e['nQ']:]; offsets[e['t']:] = 0.0; plan = e['plan'].copy()
+            for k_ in REC:
+                del REC[k_][e['nQ']:]
             boost = boost + 1 if t - C < boost_until else 1; boost_until = t; retries += 1
             log(f'  rollback {retries}/{a.retries}: {[ref.names[j] for j in lost]} lost at frame {t}; back to t={e["t"]}, boost {boost}')
             replans[-1]['rollback_to'] = e['t']; t = e['t']; del chunks[ib:]
@@ -506,8 +539,13 @@ def main():
         for col, v in ((f'robot_{s}_wrist_position', pos), (f'robot_{s}_wrist_wxyz', wxyz), (f'robot_{s}_finger_joints', fing)):
             i = out.column_names.index(col); out = out.set_column(i, col, pa.array([v.tolist()], type=out.schema.field(col).type))
     pq.write_table(out, a.out)
+    extra = {}
+    if a.record:                                        # trace_rollout layout (STATE=1, CONTACTS=2)
+        extra = dict(jq=np.array(REC['jq'], np.float32), jqd=np.array(REC['jqd'], np.float32), qd=np.array(REC['qd'], np.float32),
+                     qw=np.array(REC['qw'], np.float32), es=np.array(REC['es']),
+                     cl=np.array([r for rows in REC['cl'] for r in rows], np.float64).reshape(-1, 10))
     np.savez_compressed(os.path.splitext(a.out)[0] + '_solve.npz', offsets=offsets, q=np.array(Q, np.float32),
-                        frame=np.array(FR), labels=np.array(labels))
+                        frame=np.array(FR), labels=np.array(labels), t0=a.t0, **extra)
     n_iters = [len(r['iters']) for r in replans if 'iters' in r]
     json.dump(dict(args=vars(a), T=T, objects=ref.names, moving=moving.tolist(), replans=replans, deadline_t=deadline_t,
                    rollbacks=retries, paced_replans=n_paced, mean_iters=round(float(np.mean(n_iters)), 2) if n_iters else None,

@@ -77,6 +77,13 @@ if mode == 'policy':
     sys.argv = [sys.argv[0]] + sys.argv[3:]
     sys.path.insert(0, os.path.join(os.getcwd(), 'scripts'))
     import view_policy as vp
+    from flash_chord.envs.rl import RLEnv as _RLEnv
+    _cap0 = _RLEnv.capture_step
+
+    def _capture_step(self):                     # Warp graph capture crashes on the CPU (2026-10-31): step eagerly
+        if not self.device.is_cpu:               # there (the same transition); CUDA unchanged
+            _cap0(self)
+    _RLEnv.capture_step = _capture_step
     init0, step0 = vp.FlashSACPolicyViewer.__init__, vp.FlashSACPolicyViewer.step
 
     def init(self, *a, **k):
