@@ -5919,7 +5919,7 @@ diagnostic; nothing is picked for submission.
   ABSOLUTE bound (max nefc per world <= 380 in the full scene with both hands, via their budget.py --pieces), resumed
   (board slot wug9jhsun, collision carve w3tew9tbg).
 
-### 2026-10-31 22:43 UTC — gmg I board slot round 3, Amend 2: PREREG F-I4.17 + INTERLOCK 20.14 (written before any run)
+### 2026-10-31 22:41 UTC — gmg I board slot round 3, Amend 2: PREREG F-I4.17 + INTERLOCK 20.14 (written before any run)
 - From orchestrator decision 2 and its absolute bound, after determined-wright's P1 / sim=rl results (3c7fd32) and
   eval-25 contact budget (9c1d100). Contact-budget gate for every F-I4 delivery: part 1 (plain MuJoCo, here) = settle
   scene at the median and first assembled frame, 16 copies, sim=rl limits read from `cfg_sim_rl.yaml` (sha256

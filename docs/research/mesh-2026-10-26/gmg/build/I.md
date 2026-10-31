@@ -1188,7 +1188,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   below) starts F-I5.16 at P93, so **F-I4.17 takes P120 onward** (a gap of P93-P119 for F-I5.16, so that the two
   concurrent entries cannot collide). Not read: the F-I4.16 w10 records (`<scratch>/slot3/tests/test_fi416_k*.json`,
   written 22:19) and the Identity log; they stay unread until F-I4.17 is pushed.
-- 22:43 PREREG F-I4.17 (F-I4.17.0-F-I4.17.9; predictions P120-P137) and INTERLOCK 20.14 (+ header pointer and a
+- 22:41 PREREG F-I4.17 (F-I4.17.0-F-I4.17.9; predictions P120-P137) and INTERLOCK 20.14 (+ header pointer and a
   status line closing 20.13) written. Nothing run, no code edited, $0. Design points beyond the decision text, stated
   before any run: (1) "the P2/P3 settles" read as the P1 pre-check settle scene (table + both boards free) started at
   the median and at the first assembled frame (f246 / f218 on ep24), 16 copies, 2 s, sim=rl options (dt 0.01 s,
@@ -1203,6 +1203,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   polygon fallback on any freeze board fails (a) / (b). [E] risk named in P123: the 2.0 x one-box ratio may fail even
   for boxes (one board-board pair in the control against several at the slot). Committing my lines only (the
   collision-carve 22:33 line in this file and the C0b NOTES change are other agents', left unstaged).
+- 22:42 pushed 030260b (PREREG F-I4.17, INTERLOCK 20.14 + header pointer + 20.13 status line, this log, work log;
+  committed 22:41:19 UTC, on origin at 22:41). The "22:42" / "22:43" stamps first written in those texts were
+  corrected to the commit time 22:41 in a follow-up commit, text otherwise unchanged. Only my lines were staged
+  (index built from HEAD plus this step's block). Amend 2 done: no code edited, nothing run, $0. The Build step may
+  start from 030260b; the F-I4.16 w10 records may now be read as F-I4.16 reports.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and

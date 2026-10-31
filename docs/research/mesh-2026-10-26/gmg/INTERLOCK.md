@@ -1870,7 +1870,7 @@ box if that is faster end to end (cap $3 for the round, ledger mesh-bold). Expec
   report-only w10n.
 - The tilted step-1 plane pair (20.11 item 4) and a FREE-share gate (20.12 open decision 4) are not addressed.
 
-Status (31 Oct 22:42 UTC): superseded for delivery by PREREG F-I4.17 (section 20.14). The round-2 ep24 folder failed
+Status (31 Oct 22:41 UTC): superseded for delivery by PREREG F-I4.17 (section 20.14). The round-2 ep24 folder failed
 P1 at determined-wright's reference and overflows the sim=rl contact limits; it is marked do-not-use (26b8c6b). Of
 the F-I4.16 runs launched at 22:14, the ep24 `fi4p` run and the w10 physics cell were stopped by the orchestrator
 at 22:17 (no results); the geometric w10 cells finished (files written 22:19) and Identity was still running at

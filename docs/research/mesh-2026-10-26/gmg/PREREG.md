@@ -1927,7 +1927,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     is a new dated entry.
 
 - **2026-10-31, F-I4.17 (post hoc): a contact-budget gate for every delivery; a low-piece body (at most three
-  frame-aligned rectangles, cut into boxes); a new freeze.** Written 22:28-22:43 UTC from the orchestrator's decision
+  frame-aligned rectangles, cut into boxes); a new freeze.** Written 22:28-22:41 UTC from the orchestrator's decision
   2 and its absolute bound (F-I4.17.0), and committed and pushed **before any code or run uses it**. Still before any
   gmg scoring round (zero gmg scan scorings exist; no scan number was read for this entry). Labelled **post hoc**: it
   was written after determined-wright's P1 settle and sim=rl contact check on the round-2 ep24 r0 (their branch
