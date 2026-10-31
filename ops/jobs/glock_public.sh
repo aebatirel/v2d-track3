@@ -47,6 +47,10 @@
 # episode can train on both references at once and nothing an eval pack pulls (refs/glockt, refs/sf) holds it.
 # ENV_EP<N> (2026-10-30, as in hard_ab.sh): space-separated VAR=value settings for episode N only (both of its entries),
 # e.g. ENV_EP11="SF=0" ENV_EP13="SF=1".
+# REF_ONLY=1 (2026-10-31, ops/jobs/mass_check.sh): stop each episode after its reference stages (no training), e.g. to
+# build one reference that several arms then train on with REUSE_REF=1. NO_PUSH=1: no store push at the end (the
+# calling job pushes once). EVAL_TIMEOUT=<s>: cut an official evaluation that runs longer (a stalled evaluation
+# otherwise holds the box until the 30-min watchdog destroys it; physics p3ms1, 31 Oct). All three are off by default.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -59,6 +63,7 @@ ST4=$(( STEPS / 4096 * 4096 )); [ "$ST4" != "$STEPS" ] && echo "[$(date -u +%FT%
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
 log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, EVOLVE ${EVOLVE:-0} (worlds ${EV_POP:-256}, robust ${EV_ROBUST:-4}, gens ${EV_GENS:-20}), DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
+[ -n "${REF_ONLY:-}${NO_PUSH:-}${EVAL_TIMEOUT:-}" ] && log "glock_public: REF_ONLY ${REF_ONLY:-0}, NO_PUSH ${NO_PUSH:-0}, EVAL_TIMEOUT ${EVAL_TIMEOUT:-none}" >> $J
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 # PIECES (2026-10-26): collision-copy pieces (e.g. meshes/carve/ev10, the hybrid cups) for the simulator copy, as in
 # hard_ab.sh; use with SF=0 (support_fill would rebuild those objects' collision from the library mesh). References
@@ -104,7 +109,7 @@ evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluatio
   local ck=$1 d=$2 ep=$3 E6 i pids=()
   E6=$(printf %06d $ep); mkdir -p $d
   for i in $(seq 1 $NREP); do
-    ( mkdir -p $d/r$i; cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+    ( mkdir -p $d/r$i; cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
         evaluation.checkpoint=$ck evaluation.world_count=1 evaluation.reset_mode=explicit \
         evaluation.metrics_output=$d/r$i/episode_$E6.json evaluation.object_trajectories_output=$d/r$i/episode_$E6.parquet \
         hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1 \
@@ -239,6 +244,9 @@ print('; '.join(n + (' FILLED ' if o['filled'] else ' as is ') + str([(r.get('fr
   fi
   log "glock $tg: $(grep -a 'grasp pose\|WRAP\|SNAP' $LG | cut -c1-160 | tr '\n' ' ') | zero action $(grep -a 'zero_action:\|floor' $O/ep$ep/zero_score.txt | tr '\n' ' ')" >> $J
   fi
+  if [ "${REF_ONLY:-0}" = 1 ]; then                                 # reference only (mass_check.sh builds it once)
+    log "glock $tg: REF_ONLY: reference finished ($RD/$hive/ref_gl_ilc.parquet); not trained" >> $J; return 0
+  fi
   local tp esp rc slot tries=0
   while :; do
     slot=$(train_slot); esp=
@@ -294,4 +302,4 @@ for f in sorted(glob.glob(f'{sys.argv[1]}/ep*/best/summary.json')):
 print(json.dumps(out, indent=1))
 EOF
 log "glock_public summary: $(tr -d '\n ' < $O/summary.json | cut -c1-1500)" >> $J
-bash $OPS/store.sh push-run > /dev/null 2>&1 || true
+[ "${NO_PUSH:-0}" = 1 ] || bash $OPS/store.sh push-run > /dev/null 2>&1 || true

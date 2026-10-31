@@ -1,0 +1,380 @@
+{
+ "1": {
+  "switches": [
+   58,
+   145
+  ],
+  "observed": [
+   145
+  ],
+  "burst": 1,
+  "burst_switches": [
+   58
+  ],
+  "burst_observed": []
+ },
+ "3": {
+  "switches": [
+   17,
+   67,
+   250,
+   308
+  ],
+  "observed": [
+   17,
+   308
+  ],
+  "burst": 1,
+  "burst_switches": [
+   17
+  ],
+  "burst_observed": [
+   17
+  ]
+ },
+ "5": {
+  "switches": [
+   35,
+   58,
+   213,
+   227
+  ],
+  "observed": [],
+  "burst": 2,
+  "burst_switches": [
+   35,
+   58
+  ],
+  "burst_observed": []
+ },
+ "6": {
+  "switches": [
+   40,
+   198
+  ],
+  "observed": [],
+  "burst": 1,
+  "burst_switches": [
+   40
+  ],
+  "burst_observed": []
+ },
+ "8": {
+  "switches": [
+   46,
+   82,
+   102,
+   170
+  ],
+  "observed": [],
+  "burst": 2,
+  "burst_switches": [
+   82,
+   102
+  ],
+  "burst_observed": []
+ },
+ "10": {
+  "switches": [
+   54,
+   130
+  ],
+  "observed": [],
+  "burst": 1,
+  "burst_switches": [
+   54
+  ],
+  "burst_observed": []
+ },
+ "14": {
+  "switches": [
+   74,
+   85,
+   97,
+   124
+  ],
+  "observed": [
+   74,
+   85,
+   97,
+   124
+  ],
+  "burst": 3,
+  "burst_switches": [
+   74,
+   85,
+   97
+  ],
+  "burst_observed": [
+   74,
+   85,
+   97
+  ]
+ },
+ "15": {
+  "switches": [
+   32,
+   62,
+   95,
+   134
+  ],
+  "observed": [
+   32,
+   62,
+   95,
+   134
+  ],
+  "burst": 1,
+  "burst_switches": [
+   32
+  ],
+  "burst_observed": [
+   32
+  ]
+ },
+ "16": {
+  "switches": [
+   57,
+   104,
+   145
+  ],
+  "observed": [
+   57
+  ],
+  "burst": 1,
+  "burst_switches": [
+   57
+  ],
+  "burst_observed": [
+   57
+  ]
+ },
+ "19": {
+  "switches": [
+   151,
+   203
+  ],
+  "observed": [
+   203
+  ],
+  "burst": 1,
+  "burst_switches": [
+   151
+  ],
+  "burst_observed": []
+ },
+ "20": {
+  "switches": [
+   14,
+   26,
+   36,
+   68,
+   99,
+   108,
+   138,
+   154
+  ],
+  "observed": [],
+  "burst": 3,
+  "burst_switches": [
+   14,
+   26,
+   36
+  ],
+  "burst_observed": []
+ },
+ "25": {
+  "switches": [
+   66,
+   147
+  ],
+  "observed": [
+   66,
+   147
+  ],
+  "burst": 1,
+  "burst_switches": [
+   66
+  ],
+  "burst_observed": [
+   66
+  ]
+ },
+ "28": {
+  "switches": [
+   25,
+   44,
+   64,
+   84,
+   153,
+   218
+  ],
+  "observed": [
+   25,
+   44,
+   64,
+   84,
+   153,
+   218
+  ],
+  "burst": 2,
+  "burst_switches": [
+   25,
+   44
+  ],
+  "burst_observed": [
+   25,
+   44
+  ]
+ },
+ "30": {
+  "switches": [
+   203,
+   252
+  ],
+  "observed": [
+   252
+  ],
+  "burst": 1,
+  "burst_switches": [
+   203
+  ],
+  "burst_observed": []
+ },
+ "32": {
+  "switches": [
+   28,
+   50,
+   253
+  ],
+  "observed": [
+   28,
+   253
+  ],
+  "burst": 2,
+  "burst_switches": [
+   28,
+   50
+  ],
+  "burst_observed": [
+   28
+  ]
+ },
+ "33": {
+  "switches": [
+   8,
+   20,
+   137,
+   273,
+   302,
+   330,
+   335,
+   341
+  ],
+  "observed": [
+   8,
+   20,
+   335,
+   341
+  ],
+  "burst": 3,
+  "burst_switches": [
+   330,
+   335,
+   341
+  ],
+  "burst_observed": [
+   335,
+   341
+  ]
+ },
+ "35": {
+  "switches": [
+   25,
+   30,
+   35,
+   39,
+   48,
+   122,
+   165,
+   186,
+   259,
+   268,
+   310,
+   320,
+   346,
+   378,
+   416
+  ],
+  "observed": [
+   416
+  ],
+  "burst": 5,
+  "burst_switches": [
+   25,
+   30,
+   35,
+   39,
+   48
+  ],
+  "burst_observed": []
+ },
+ "36": {
+  "switches": [
+   20,
+   39,
+   47,
+   58,
+   68,
+   181,
+   204,
+   318,
+   330,
+   375,
+   382,
+   388,
+   394
+  ],
+  "observed": [
+   20,
+   394
+  ],
+  "burst": 4,
+  "burst_switches": [
+   375,
+   382,
+   388,
+   394
+  ],
+  "burst_observed": [
+   394
+  ]
+ },
+ "37": {
+  "switches": [
+   38,
+   117
+  ],
+  "observed": [],
+  "burst": 1,
+  "burst_switches": [
+   38
+  ],
+  "burst_observed": []
+ },
+ "38": {
+  "switches": [
+   36,
+   148,
+   241
+  ],
+  "observed": [
+   241
+  ],
+  "burst": 1,
+  "burst_switches": [
+   36
+  ],
+  "burst_observed": []
+ }
+}
