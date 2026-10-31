@@ -5832,3 +5832,10 @@ Background agent, CPU only, $0, no ground truth read.
   fixes the floor (beige sits on it, median gap −0.1 mm), but its lower cavity is ~5–7 mm too narrow in radius
   (18–36 cm³ at f100–117). The blue cup's +3.1–3.7 cm rise is not penetration avoidance (separation needs blue DOWN).
 - H-nest-a + falsifier in the README. Sent to focused-pascal (asked to copy bold-albattani).
+
+### 2026-10-31 12:57 UTC — determined-wright: recipe screen training started on both boxes
+- Both boxes pulled the 4 physS1 references with identical md5s (ep2 b4807f41, ep12 96ddc1ca, ep18 f0f14155, ep24
+  699fe426) and started C/ep2 + K/ep2 at 12:50 UTC (seed 42 on 58531195, seed 43 on 58532423); GPU 100 %, 81.7 GB.
+- D (the DR patch under CUDA graph capture, untested on GPU) first trains when an ep2 slot frees; checked next.
+- focused-pascal takes H-nest-a (new folder meshes/carve/ev10w, my diagnostic as falsifier, then an extra arm in its
+  ep11 gate only if it passes; owner go-ahead first). Mass check: 3 of 4 cells in (ep2 +0.081 / +0.233, ep12 s42 −0.007).
