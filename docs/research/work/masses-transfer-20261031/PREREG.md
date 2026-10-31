@@ -106,3 +106,37 @@ Markers: [M] measured, [E] estimate, [H] hypothesis.
   changed after any result.
 - Run ids carry `-mass-`. Arm folders are `refs/mass{0,1}*` and `results/mass{0,1}s*_glock_public`, apart from
   everything an eval pack pulls.
+
+## 6. Build amendments (2026-10-31 ~06:30 UTC; mechanics only)
+- **Status.** Added after two reviews of the build, our own and the external one of commit 4e019af. Nothing has run on
+  a GPU, so no result exists. Sections 1–5 are unchanged: the question, the design, the rule (Δ ≥ +0.03 on every
+  episode, no seed drop below −0.05, at least 8 scored rollouts per cell), the metric, its sign and the cells.
+- **What changed.** Only how the code applies that rule:
+  - **Missing cell.** A cell without a chosen checkpoint counts as missing, so the run is INCOMPLETE (section 3), not
+    INVALID. This covers a failed training or a failed checkpoint choice: no `best/summary.json` or no
+    `best/policy.safetensors`.
+    - `mass_verify.py` lists such cells under `missing`.
+    - A verification failure in any present cell still makes the run INVALID. The missing cells are then listed with it.
+    - A cell that verify lists as missing is missing for the verdict, even when its summary file exists.
+  - **Pair config check (section 2).** Values are compared after each arm's name is replaced by a token.
+    - So a value that differs only in where that arm's files live is not a difference, for example
+      `runs/mass1s42_glock/…` vs `runs/mass0s42_glock/…`.
+    - `output_dir`, `task.parquet` and `reference.parquet` stay allowed as before.
+    - Any other difference still makes the run INVALID.
+    - The step check reads `training.total_environment_steps`, the key `glock_public.sh` sets. Other keys of that name
+      are left to the pair check.
+  - **Evaluation timeouts.** An official evaluation is cut at EVAL_TIMEOUT (1200 s) with `timeout -k 60`. One that
+    ignores SIGTERM is killed 60 s later.
+    - Each evaluation's exit code is recorded: 124 means cut, 137 means killed after the grace period.
+    - The cuts are counted per cell and per arm, both for the chosen checkpoint's 10 rollouts and for the checkpoint
+      curve.
+    - They are reported in `verify.json` and printed right after the verdict label.
+    - The rule is not changed: a cut rollout is unscored, and a cell still needs at least 8 scored rollouts. But cuts
+      can correlate with the arm, so they must be read before the verdict.
+  - **`mass_arm.py` NaN fix.** It no longer uses pyarrow `Table.equals`, which returns False for identical NaN values and
+    so would have refused any reference holding a NaN. It now checks the same schema, the same fingerprint and an
+    unchanged `object_mesh_paths`.
+  - **REQUIRE_REUSE.** `mass_check.sh` runs the trainings with `glock_public.sh REQUIRE_REUSE=1`. If an arm copy is not
+    a finished reference on the box, the job exits without rebuilding anything. Otherwise it would build a per-arm
+    reference, which section 2 rules out.
+- **Evidence.** `BUILD.md` "Review fixes" and `cpu/out/`.

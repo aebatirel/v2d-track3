@@ -9,11 +9,14 @@ sim_vs_ref (no ground truth), each scored vs mocap (registered ADD-AUC, score_re
   delta(ep,s) = cell mean(treatment, s) - cell mean(control, s)  (same reference, same seed, same box)
 Verdict (PREREG section 3):
   INVALID       mass_verify.py failed (the arms did not load what the design says);
-  INCOMPLETE    a cell is missing or has fewer than MIN_N scored rollouts (no reading; re-run the missing cells);
+  INCOMPLETE    a cell is missing or has fewer than MIN_N scored rollouts (no reading; re-run the missing cells); a cell
+                verify.json lists as missing (no chosen checkpoint) counts as missing even if its summary.json exists;
   ADOPT         delta(ep) >= +0.03 on EVERY episode and no delta(ep,s) < -0.05;
   NOT ADOPTED   otherwise.
 Also reported, not part of the rule: sim_vs_ref per cell and delta, the noise (SE of delta from the rollout spread), the
-references' own AUC vs mocap per cell (ref_auc: the same reference must give the same value in both arms) and the floor.
+references' own AUC vs mocap per cell (ref_auc: the same reference must give the same value in both arms) and the floor;
+evaluations cut by EVAL_TIMEOUT per cell and per arm (verify.json eval_timeouts), printed right after the label (a cut
+can correlate with the arm: read it before the verdict).
 Usage: mass_verdict.py --eps "2 12" --seeds "42 43" --control mass0 --treatment mass1 --verify V.json --out S.json
        [--content /content] [--manifests "M2.json M12.json"] [--min_n 8]
 """
@@ -50,7 +53,8 @@ def verdict(rows, eps, seeds, control, treatment, verify_ok, min_n):
                              delta=(sum(t) / len(t) - sum(c) / len(c)) if c and t else None, per_seed_delta=ps,
                              se_delta=math.sqrt(sum(se)) / len(seeds) if se else None)
     if not verify_ok:
-        return 'INVALID', ['mass_verify.py failed: the arms did not load what the design says (see verify.json)'], per
+        return 'INVALID', (['mass_verify.py failed: the arms did not load what the design says (see verify.json)']
+                           + ([f'also missing or < {min_n} scored rollouts: {missing}'] if missing else [])), per
     if missing:
         return 'INCOMPLETE', [f'missing or < {min_n} scored rollouts: {missing}'], per
     ok = True
@@ -77,6 +81,7 @@ def main():
     a = ap.parse_args()
     C = a.content.rstrip('/'); eps = [int(x) for x in a.eps.split()]; seeds = a.seeds.split()
     V = json.load(open(a.verify)) if os.path.exists(a.verify) else dict(ok=False, failures=['verify.json missing'])
+    vmiss = set(V.get('missing', []))                          # no chosen checkpoint: not verified -> missing
     man = {}
     for f in a.manifests.split():
         if os.path.exists(f):
@@ -88,7 +93,7 @@ def main():
         for arm in (a.control, a.treatment):
             for s in seeds:
                 f = f'{C}/results/{arm}s{s}_glock_public/ep{e}/best/summary.json'; row = None
-                if os.path.exists(f):
+                if os.path.exists(f) and f'ep{e}/{arm}/s{s}' not in vmiss:
                     d = json.load(open(f)); rr = d.get('rollouts', [])
                     row = dict(checkpoint=d.get('checkpoint'), n_rollouts=len(rr), errors=sum(1 for x in rr if 'error' in x),
                                auc=stats([x['auc'] for x in rr if 'auc' in x]), sim_vs_ref=stats([x['sim_vs_ref'] for x in rr if 'sim_vs_ref' in x]),
@@ -97,6 +102,16 @@ def main():
                 rows[(e, arm, s)] = row
                 cells[f'ep{e}/{arm}/s{s}'] = None if row is None else {k: (r4(v) if isinstance(v, dict) else v) for k, v in row.items()}
     label, reasons, per = verdict(rows, eps, seeds, a.control, a.treatment, bool(V.get('ok')), a.min_n)
+    # evaluations cut by EVAL_TIMEOUT (not part of the rule; never silent): per cell and per arm, printed after the label
+    tmo = {k: (V.get('cells', {}).get(k) or {}).get('eval_timeouts') for k in cells}
+    cut = {k: v for k, v in tmo.items() if v and (v['best'] or v['curve'])}
+    unrec = sorted(k for k, v in tmo.items() if v and v['best_without_rc'])
+    per_arm = {arm: dict(best=sum(v['best'] for k, v in tmo.items() if v and k.split('/')[1] == arm),
+                         curve=sum(v['curve'] for k, v in tmo.items() if v and k.split('/')[1] == arm)) for arm in (a.control, a.treatment)}
+    flag = (f' [EVAL TIMEOUTS in {len(cut)} cell(s): ' + ', '.join(f'{k} best {v["best"]}/{v["best_runs"]} curve {v["curve"]}/{v["curve_runs"]}'
+                                                                  for k, v in cut.items())
+            + '; per arm best/curve ' + ', '.join(f'{arm} {v["best"]}/{v["curve"]}' for arm, v in per_arm.items()) + ']' if cut else '') \
+        + (f' [eval exit codes NOT RECORDED for {unrec}]' if unrec else '')
     for e in eps:                                              # secondary readings (not part of the rule)
         p = per[f'ep{e}']
         sv = {arm: [rows[(e, arm, s)]['sim_vs_ref']['mean'] for s in seeds if (rows.get((e, arm, s)) or {}).get('sim_vs_ref')]
@@ -110,9 +125,10 @@ def main():
     out = dict(rule='docs/research/work/masses-transfer-20261031/PREREG.md', control=a.control, treatment=a.treatment,
                bars=dict(gain_each_episode=GAIN, max_seed_drop=DROP, min_scored_rollouts=a.min_n),
                verdict=label, reasons=reasons, verification_ok=bool(V.get('ok')), verification_failures=V.get('failures', [])[:20],
+               verification_missing=sorted(vmiss), eval_timeouts=dict(cells_cut=cut, per_arm=per_arm, not_recorded=unrec, per_cell=tmo),
                episodes=per, references=man, cells=cells)
     json.dump(out, open(a.out, 'w'), indent=1)
-    print(f'{label}: ' + '; '.join(reasons) + ' | ' + '; '.join(
+    print(f'{label}{flag}: ' + '; '.join(reasons) + ' | ' + '; '.join(
         f"ep{e} {a.control} {per[f'ep{e}']['control_seed_mean']} {a.treatment} {per[f'ep{e}']['treatment_seed_mean']} delta "
         f"{per[f'ep{e}']['delta']} per seed {per[f'ep{e}']['per_seed_delta']}" for e in eps))
 

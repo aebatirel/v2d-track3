@@ -17,11 +17,16 @@
 #             (every other column identical). MA_ARGS is NOT used: a grasp-lock reference names its own asset copy
 #             (refs/sf/ep<N>/assets), so make_assets.py never reaches it.
 #   seeds     42 and 43, one glock_public.sh invocation per seed (4 trainings = 2 waves of TRAIN_SLOTS=2: ep2's arms, then
-#             ep12's), REUSE_REF=1 on the arm copies, 70M steps, checkpoint chosen by sim_vs_ref (no ground truth), then
+#             ep12's), REUSE_REF=1 REQUIRE_REUSE=1 on the arm copies (glock_public.sh exits, rebuilding nothing, if an arm
+#             copy is not a finished reference), 70M steps, checkpoint chosen by sim_vs_ref (no ground truth), then
 #             NREP=10 official evaluations each scored sim_vs_ref + registered ADD-AUC vs mocap (library_v3).
+#             EVAL_TIMEOUT=1200 (timeout -k 60): each evaluation's exit code -> eval_rc.txt; cuts are counted per cell
+#             (verify.json eval_timeouts) and printed right after the verdict label (never silently accepted).
 #   checks    tools/mass_verify.py: each chosen checkpoint's saved config -> reference parquet -> URDFs (what FlashCHORD and
 #             the official evaluator load) carry the arm's masses; same reference fingerprint; configs differ only in
-#             output_dir / task.parquet; seeds and steps. tools/mass_verdict.py: summary + the pre-registered verdict.
+#             output_dir / task.parquet (or by the arm's name only); seeds and steps. A cell without a chosen checkpoint
+#             is listed as missing (verdict INCOMPLETE), not a verify failure. tools/mass_verdict.py: summary + the
+#             pre-registered verdict. Build amendments of 31 Oct (mechanics only): PREREG.md section 6.
 # Integrity: public only; mocap is read only by score_registered.py after each rollout (scoring). Nothing here goes to
 # an eval pack: run ids carry "-mass-"; the arm folders are refs/mass{0,1}*, results/mass{0,1}s*_glock_public.
 # Output: /content/results/mass_check/{summary.json,verify.json,arms_ep<N>.json,stored_refs.txt}; RESULT lines in
@@ -38,7 +43,7 @@ SEEDS=${SEEDS:-"42 43"}; SRC_EP2=${SRC_EP2:-20261024-ev3-2c1e4dd:mck:build}; SRC
 export SPLIT=public LIB=$REPO_DIR/meshes/library_v3 SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=10 PAR=2 TRAIN_SLOTS=2 STEPS=70004736 \
   EVAL_TIMEOUT=1200 NO_PUSH=1
 export GL_ARGS="--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1"
-unset MA_ARGS PIECES SETTLE CURR_SCALE ES FC_DROP_START TRAIN_ARGS TRAIN_ENV REF_ONLY REUSE_REF
+unset MA_ARGS PIECES SETTLE CURR_SCALE ES FC_DROP_START TRAIN_ARGS TRAIN_ENV REF_ONLY REUSE_REF REQUIRE_REUSE
 for e in $EPS; do unset ENV_EP$e; done
 log "mass_check code $(git -C $REPO_DIR rev-parse --short HEAD), episodes [$EPS], seeds [$SEEDS], arms [$ARMS], props $PROPS ($(md5sum < $PROPS | cut -c1-12)), sources ep2 $SRC_EP2 ep12 $SRC_EP12, LIB $LIB, NREP $NREP, STEPS $STEPS, GL_ARGS [$GL_ARGS]" >> $J
 cp $PROPS $MC/props_used.json
@@ -99,7 +104,7 @@ for s in $SEEDS; do                                                 # one invoca
   P=""; for x in $PAIRS_S; do for a in $ARMS; do P="$P ${x%%:*}:local:${x#*:}:${a}s$s"; done; done
   label "mass check: seed $s [$P ]"
   log "mass_check: seed $s, PAIRS [${P# }]" >> $J
-  ( REUSE_REF=1 SEED=$s PAIRS="${P# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "mass_check: seed $s returned $?" >> $J
+  ( REUSE_REF=1 REQUIRE_REUSE=1 SEED=$s PAIRS="${P# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "mass_check: seed $s returned $?" >> $J
 done
 
 label "mass check: verify + verdict"

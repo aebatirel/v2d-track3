@@ -1,6 +1,7 @@
 {
  "ok": true,
  "failures": [],
+ "missing": [],
  "allowed_config_differences": [
   "output_dir",
   "reference.parquet",
@@ -36,14 +37,59 @@
    ]
   }
  },
+ "pair_config_equal_after_arm_name": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "eval_timeouts": {},
  "cells": {
   "ep2/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass0s42_glock/ep2-s42/policy_70004736.safetensors",
    "checkpoint_steps": "70004736",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "68f27a8d0463b05b61b468091c23d7e7",
+   "reference_md5": "a1da461235483778f4cf0f9122f73b9d",
    "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
    "loaded_urdfs": {
     "white_pot": {
@@ -62,19 +108,32 @@
     }
    },
    "reset_seed": 42,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "bc9b4643a76902ac4c592d465107a60ef45b815acaf0fd25496862828b17a379"
+   "checkpoint_sha256": "35f07553be6f3eb1ee9a27e15663088f17dbe438edaaa3b79499bd3401470b2e"
   },
   "ep2/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass0s43_glock/ep2-s43/policy_9998336.safetensors",
    "checkpoint_steps": "9998336",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "68f27a8d0463b05b61b468091c23d7e7",
+   "reference_md5": "a1da461235483778f4cf0f9122f73b9d",
    "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
    "loaded_urdfs": {
     "white_pot": {
@@ -93,19 +152,32 @@
     }
    },
    "reset_seed": 43,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "4b654db4b6f764852ec6f784a5a71af383086e08a134719ace752dbc787b9641"
+   "checkpoint_sha256": "19101152b4cceedaa5d7f85a2973f83797e72a6bccdb96695a6984e4a7a5d89a"
   },
   "ep2/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass1s42_glock/ep2-s42/policy_20000768.safetensors",
    "checkpoint_steps": "20000768",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "0f08372845862d0e1e5fb4b2776fda25",
+   "reference_md5": "032543ef87954e3b9122f1c9a6b62031",
    "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
    "loaded_urdfs": {
     "white_pot": {
@@ -124,19 +196,32 @@
     }
    },
    "reset_seed": 42,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "51eae32d90cd71f7d2a066726d18c51f7747f0a78a5b199c1837afe8aa92f9d7"
+   "checkpoint_sha256": "e1d53e990988a031565c7145d3a582a8a39f7d0374053c9844a1bdd87819a16c"
   },
   "ep2/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass1s43_glock/ep2-s43/policy_9998336.safetensors",
    "checkpoint_steps": "9998336",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "0f08372845862d0e1e5fb4b2776fda25",
+   "reference_md5": "032543ef87954e3b9122f1c9a6b62031",
    "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
    "loaded_urdfs": {
     "white_pot": {
@@ -155,19 +240,32 @@
     }
    },
    "reset_seed": 43,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "16fd029c0c76810e7e0e4fa1f9c5f0d5fd173a101a84481ab94c20bd92eb018f"
+   "checkpoint_sha256": "9edea3a3d3c85516e87e8877fabc356ad46a0ae2de5b106222ba204856811876"
   },
   "ep12/mass0/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass0s42_glock/ep12-s42/policy_40001536.safetensors",
    "checkpoint_steps": "40001536",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "e487460a842f0cd9220d40997d477cb5",
+   "reference_md5": "111de1ca10521a328df3025c0c1a040c",
    "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
    "loaded_urdfs": {
     "blue_cup": {
@@ -186,19 +284,32 @@
     }
    },
    "reset_seed": 42,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "116df7bef4934241e81c0d7399d1fcaf1cd9a07224fdcc0c48b786d0708de9cf"
+   "checkpoint_sha256": "d13eb3187bf5c5bc0eee72190b7eee7f4a9fd42c0a7d6a97bf2bff60ab411446"
   },
   "ep12/mass0/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass0s43_glock/ep12-s43/policy_40001536.safetensors",
    "checkpoint_steps": "40001536",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "e487460a842f0cd9220d40997d477cb5",
+   "reference_md5": "111de1ca10521a328df3025c0c1a040c",
    "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
    "loaded_urdfs": {
     "blue_cup": {
@@ -217,19 +328,32 @@
     }
    },
    "reset_seed": 43,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "8ccb812caffecde6eebe9e51d5ea6454e7e742bd5535444395c082af4f14235c"
+   "checkpoint_sha256": "b982ffadbda822c17b35e7e68f9eb6e812d48ac4d97450a89916ad8e52603816"
   },
   "ep12/mass1/s42": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass1s42_glock/ep12-s42/policy_49999872.safetensors",
    "checkpoint_steps": "49999872",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "016f73470eb4092164b559a56ebcdfd3",
+   "reference_md5": "e4ce01572e621ed69332e0943a6dceec",
    "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
    "loaded_urdfs": {
     "blue_cup": {
@@ -248,19 +372,32 @@
     }
    },
    "reset_seed": 42,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "b9e5a3389adc7e17a15acd83512562e623e663c8e2ca7201ca5a94e27edc5479"
+   "checkpoint_sha256": "83c2dc51f7832777ea9729016f5256d96eda8d5e07e3ae4605b458563a369819"
   },
   "ep12/mass1/s43": {
+   "eval_timeouts": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
    "checkpoint": "MR/content/runs/mass1s43_glock/ep12-s43/policy_49999872.safetensors",
    "checkpoint_steps": "49999872",
    "curriculum_stage": "10",
    "task_parquet": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
    "reference_file": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "reference_md5": "016f73470eb4092164b559a56ebcdfd3",
+   "reference_md5": "e4ce01572e621ed69332e0943a6dceec",
    "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
    "loaded_urdfs": {
     "blue_cup": {
@@ -279,11 +416,10 @@
     }
    },
    "reset_seed": 43,
-   "total_environment_steps": [
-    70004736
-   ],
+   "total_environment_steps": 70004736,
+   "other_total_environment_steps": {},
    "evaluations": 10,
-   "checkpoint_sha256": "c944539c139bda5d2d54fa6bbfab55e5c3bf7c952a9185f7706fab2fc306d0c3"
+   "checkpoint_sha256": "d2fb220ad7b4f0c22a1ce09b8c70a72149fc84b8c6e2cfbb0ac3d91a61dc02d7"
   }
  },
  "rule": "docs/research/work/masses-transfer-20261031/PREREG.md"

@@ -10,7 +10,10 @@ whose header metadata holds user.resolved_config_json (task.parquet, reference.p
 training.total_environment_steps and every other override), the evaluator reads it back from the checkpoint (as
 evaluation/harness.py does) and writes checkpoint / checkpoint_sha256 into its metrics file (as the real one does).
 Mock scores (NOT evidence about masses): AUC = base(ep) + 0.05 (ep2) / 0.04 (ep12) when any loaded mass != 0.3 - 0.01
-at seed 43 + noise in [-0.02, 0.02]; ref_auc depends on the reference fingerprint only."""
+at seed 43 + noise in [-0.02, 0.02]; ref_auc depends on the reference fingerprint only.
+Injected stalls (2026-10-31, off unless set; the timeout test only): the evaluator hangs (sleeps 300 s) when its
+metrics_output matches the regex MOCK_HANG, and also ignores SIGTERM when it matches MOCK_HANG_NOTERM (so only
+timeout -k can end it)."""
 import glob, hashlib, json, os, re, shutil, struct, sys, time
 role, argv = sys.argv[1], sys.argv[2:]
 MR, PY = os.environ['MOCK_MR'], os.environ['MOCK_PY']
@@ -129,6 +132,13 @@ elif base == 'train_flash_sac.py':
 elif base == 'evaluate_policy.py':
     kv = dict(x.split('=', 1) for x in argv[1:] if '=' in x)
     ck = kv['evaluation.checkpoint']; meta, cfg = read_ck(ck)
+    for var, noterm in (('MOCK_HANG_NOTERM', True), ('MOCK_HANG', False)):
+        if os.environ.get(var) and re.search(os.environ[var], kv['evaluation.metrics_output']):
+            import signal
+            if noterm:
+                signal.signal(signal.SIGTERM, signal.SIG_IGN)
+            audit('hang_audit', out=kv['evaluation.metrics_output'], ignores_sigterm=noterm, t=time.time())
+            time.sleep(300); sys.exit(0)
     rp, fp, loaded = fc_load(cfg['task']['parquet'])                     # the scene of the CHECKPOINT's saved config
     mo, to = kv['evaluation.metrics_output'], kv['evaluation.object_trajectories_output']; os.makedirs(os.path.dirname(mo), exist_ok=True)
     json.dump(dict(mock=1, checkpoint=ck, checkpoint_sha256=hashlib.sha256(open(ck, 'rb').read()).hexdigest()), open(mo, 'w'))

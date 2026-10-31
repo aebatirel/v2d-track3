@@ -50,7 +50,10 @@
 # REF_ONLY=1 (2026-10-31, ops/jobs/mass_check.sh): stop each episode after its reference stages (no training), e.g. to
 # build one reference that several arms then train on with REUSE_REF=1. NO_PUSH=1: no store push at the end (the
 # calling job pushes once). EVAL_TIMEOUT=<s>: cut an official evaluation that runs longer (a stalled evaluation
-# otherwise holds the box until the 30-min watchdog destroys it; physics p3ms1, 31 Oct). All three are off by default.
+# otherwise holds the box until the 30-min watchdog destroys it; physics p3ms1, 31 Oct): timeout -k 60, so one that
+# ignores SIGTERM is killed 60 s later; each evaluation folder then gets eval_rc.txt (its exit code: 124 cut, 137 killed
+# after the grace) so the cuts can be counted (tools/mass_verify.py). REQUIRE_REUSE=1 (with REUSE_REF=1): exit before
+# anything runs if any pair has no finished reference on this box (no silent rebuild). All four are off by default.
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -63,7 +66,16 @@ ST4=$(( STEPS / 4096 * 4096 )); [ "$ST4" != "$STEPS" ] && echo "[$(date -u +%FT%
 export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/glock_public; mkdir -p $O
 log "glock_public code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], seed $SEED, steps $STEPS, NREP $NREP, SPLIT $SPLIT, SETTLE $SETTLE, SF $SF, REPLAN $REPLAN, EVOLVE ${EVOLVE:-0} (worlds ${EV_POP:-256}, robust ${EV_ROBUST:-4}, gens ${EV_GENS:-20}), DROP ${FC_DROP_START:-0}, ES $ES (target ${ES_TARGET:-0.9}), CURR_SCALE ${CURR_SCALE:-1}, GL_ARGS [$GL_ARGS]" >> $J
-[ -n "${REF_ONLY:-}${NO_PUSH:-}${EVAL_TIMEOUT:-}" ] && log "glock_public: REF_ONLY ${REF_ONLY:-0}, NO_PUSH ${NO_PUSH:-0}, EVAL_TIMEOUT ${EVAL_TIMEOUT:-none}" >> $J
+[ -n "${REF_ONLY:-}${NO_PUSH:-}${EVAL_TIMEOUT:-}${REQUIRE_REUSE:-}" ] && log "glock_public: REF_ONLY ${REF_ONLY:-0}, NO_PUSH ${NO_PUSH:-0}, EVAL_TIMEOUT ${EVAL_TIMEOUT:-none}, REQUIRE_REUSE ${REQUIRE_REUSE:-0}" >> $J
+if [ "${REQUIRE_REUSE:-0}" = 1 ]; then                           # every pair must train on this box's finished reference
+  [ "${REUSE_REF:-0}" = 1 ] || { log "glock_public: REQUIRE_REUSE=1 needs REUSE_REF=1; nothing run" >> $J; exit 1; }
+  for x in $PAIRS; do                                            # one()'s REUSE_REF condition, before anything runs
+    IFS=: read -r ep_ run_ base_ perc_ <<< "$x"; pre_=; [ -n "$perc_" ] && [ "$perc_" != perc2 ] && pre_=${perc_}_
+    ls /content/refs/${pre_}glockt/ep$ep_/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
+      && [ -f /content/results/${pre_}glock_public/ep$ep_/rest_check.json ] \
+      || { log "glock_public: REQUIRE_REUSE: pair $x has no finished reference on this box (refs/${pre_}glockt/ep$ep_/processed/*/*/ref_gl_ilc.parquet and results/${pre_}glock_public/ep$ep_/rest_check.json); nothing rebuilt or trained" >> $J; exit 1; }
+  done
+fi
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_mesh (score_registered --meshes); support_fill union
 # PIECES (2026-10-26): collision-copy pieces (e.g. meshes/carve/ev10, the hybrid cups) for the simulator copy, as in
 # hard_ab.sh; use with SF=0 (support_fill would rebuild those objects' collision from the library mesh). References
@@ -109,11 +121,12 @@ evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluatio
   local ck=$1 d=$2 ep=$3 E6 i pids=()
   E6=$(printf %06d $ep); mkdir -p $d
   for i in $(seq 1 $NREP); do
-    ( mkdir -p $d/r$i; cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
+    ( mkdir -p $d/r$i; cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout -k 60 $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
         evaluation.checkpoint=$ck evaluation.world_count=1 evaluation.reset_mode=explicit \
         evaluation.metrics_output=$d/r$i/episode_$E6.json evaluation.object_trajectories_output=$d/r$i/episode_$E6.parquet \
-        hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1 \
-      && python $P/qa.py policy $d/r$i $ep > /dev/null 2>&1 \
+        hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1
+      rc_=$?; [ -n "${EVAL_TIMEOUT:-}" ] && echo $rc_ > $d/r$i/eval_rc.txt   # 124 cut, 137 killed after the 60 s grace
+      [ $rc_ = 0 ] && python $P/qa.py policy $d/r$i $ep > /dev/null 2>&1 \
       && { [ "$SPLIT" = eval ] || python $P/score_registered.py $ep $d/r$i --meshes $MESH_DIR > /dev/null 2>&1; } ) & pids+=($!)
     [ ${#pids[@]} -ge $PAR ] && { wait "${pids[@]}"; pids=(); }
   done
@@ -154,6 +167,9 @@ one() {
   if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/${pre}glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
       && [ -f $O/ep$ep/rest_check.json ]; then                     # finish an episode whose training failed on this box:
     reuse=1                                                        # keep its finished reference (grasp lock, ILC, search)
+  fi
+  if [ "${REQUIRE_REUSE:-0}" = 1 ] && [ $reuse = 0 ]; then         # (e.g. ENV_EP<N> changed it): never rebuild silently
+    log "glock $tg: REQUIRE_REUSE: no finished reference on this box; not rebuilt, not trained" >> $J; return 1
   fi
   if [ "$run" = new ] && [ $reuse = 0 ]; then                      # end to end from the raw episode (perception on)
     ( export VARIANT=$base MKREF_ARGS="--wrist_cost 3.0" CONTACT_RETARGET=1 CR_ARGS="--rest_settle 1" STEPS=0 \

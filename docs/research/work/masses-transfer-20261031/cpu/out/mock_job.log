@@ -1,62 +1,100 @@
-[2026-10-31T05:34:18Z] mass_check code mocksha0000000, episodes [2 12], seeds [42 43], arms [mass0 mass1], props MR/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json (d55089307ff2), sources ep2 20261024-ev3-2c1e4dd:mck:build ep12 20261024-ev2-2c1e4dd:mc:reuse, LIB MR/content/v2d-track3/meshes/library_v3, NREP 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
-[2026-10-31T05:34:21Z] mass_check: building the grasp-lock reference(s) here with the frozen recipe: 2:local:mck
-[2026-10-31T05:34:21Z] glock_public code mocksha0000000, pairs [2:local:mck], seed 42, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 1, REPLAN 0, EVOLVE 1 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
-[2026-10-31T05:34:21Z] glock_public: REF_ONLY 1, NO_PUSH 1, EVAL_TIMEOUT 1200
-[2026-10-31T05:34:22Z] patched FlashCHORD (VOC with the full inertia tensor)
-[2026-10-31T05:34:23Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
-[2026-10-31T05:34:23Z] glock ep2: base mck (MR/content/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet)
-[2026-10-31T05:34:25Z] glock ep2: support_fill white_pot as is [(0, 'STABLE AS IS', None), (244, 'STABLE AS IS', None)]; white_pot_lid as is [(0, 'skipped', None), (124, 'STABLE AS IS', None), (306, 'skipped', None)]
-[2026-10-31T05:34:26Z] glock ep2: evolve phase 0: window [5, 40] unedited 0.55 best 0.6 at gen 7 of 20
-[2026-10-31T05:34:26Z] glock ep2: evolve phase 1: window [5, 40] unedited 0.55 best 0.6 at gen 7 of 20
-[2026-10-31T05:34:27Z] glock ep2: rest check {"ok": true, "mock": 1}
-[2026-10-31T05:34:27Z] glock ep2: grasp pose (mock)  | zero action zero_action: 0.6100 
-[2026-10-31T05:34:27Z] glock ep2: REF_ONLY: reference finished (MR/content/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet); not trained
-[2026-10-31T05:34:53Z] glock_public summary: {}
-[2026-10-31T05:34:57Z] mass_check ep2: mass_arm ep2: source MR/content/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 dc22a8275ce78811f71e5663ad0c39ea, fingerprint 30c9ad1bcfce850ed3a2cf578a290477); mass0: white_pot 0.3 kg, white_pot_lid 0.3 kg; mass1: white_pot 0.2771 kg, white_pot_lid 0.0882 kg
-[2026-10-31T05:34:58Z] mass_check ep12: mass_arm ep12: source MR/content/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 d8ab0333904f32a9be625b597b543b2c, fingerprint f7d8bb94a6087baa06e2f262e47118e9); mass0: blue_cup 0.3 kg, plastic_dish_rack 0.3 kg; mass1: blue_cup 0.128 kg, plastic_dish_rack 0.3865 kg
-[2026-10-31T05:34:59Z] mass_check: seed 42, PAIRS [2:local:mck:mass0s42 2:local:mck:mass1s42 12:local:mc:mass0s42 12:local:mc:mass1s42]
-[2026-10-31T05:34:59Z] glock_public code mocksha0000000, pairs [2:local:mck:mass0s42 2:local:mck:mass1s42 12:local:mc:mass0s42 12:local:mc:mass1s42], seed 42, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 1, REPLAN 0, EVOLVE 1 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
-[2026-10-31T05:34:59Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200
-[2026-10-31T05:35:00Z] patched FlashCHORD (VOC with the full inertia tensor)
-[2026-10-31T05:35:00Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
-[2026-10-31T05:35:01Z] glock mass0s42 ep2: base mck (MR/content/refs/mass0s42mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:35:04Z] glock mass0s42 ep2: trained 7 checkpoints
-[2026-10-31T05:35:17Z] glock mass0s42 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_70004736.safetensors
-[2026-10-31T05:35:24Z] glock mass0s42 ep2 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.8527, 'std': 0.0107, 'min': 0.8362, 'max': 0.8688} registered AUC vs mocap {'mean': 0.8039, 'std': 0.0113, 'min': 0.783, 'max': 0.8175}
-[2026-10-31T05:35:31Z] glock mass1s42 ep2: base mck (MR/content/refs/mass1s42mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:35:34Z] glock mass1s42 ep2: trained 7 checkpoints
-[2026-10-31T05:35:46Z] glock mass1s42 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_20000768.safetensors
-[2026-10-31T05:35:53Z] glock mass1s42 ep2 RESULT (policy_20000768.safetensors): n 10 sim_vs_ref {'mean': 0.8944, 'std': 0.0097, 'min': 0.8825, 'max': 0.9161} registered AUC vs mocap {'mean': 0.8518, 'std': 0.013, 'min': 0.8331, 'max': 0.8697}
-[2026-10-31T05:36:01Z] glock mass0s42 ep12: base mc (MR/content/refs/mass0s42mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:36:04Z] glock mass0s42 ep12: trained 7 checkpoints
-[2026-10-31T05:36:15Z] glock mass0s42 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_40001536.safetensors
-[2026-10-31T05:36:21Z] glock mass0s42 ep12 RESULT (policy_40001536.safetensors): n 10 sim_vs_ref {'mean': 0.855, 'std': 0.0108, 'min': 0.8356, 'max': 0.8684} registered AUC vs mocap {'mean': 0.8828, 'std': 0.0107, 'min': 0.864, 'max': 0.8973}
-[2026-10-31T05:36:31Z] glock mass1s42 ep12: base mc (MR/content/refs/mass1s42mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:36:33Z] glock mass1s42 ep12: trained 7 checkpoints
-[2026-10-31T05:36:45Z] glock mass1s42 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_49999872.safetensors
-[2026-10-31T05:36:51Z] glock mass1s42 ep12 RESULT (policy_49999872.safetensors): n 10 sim_vs_ref {'mean': 0.8896, 'std': 0.0112, 'min': 0.8752, 'max': 0.9077} registered AUC vs mocap {'mean': 0.9226, 'std': 0.0106, 'min': 0.9084, 'max': 0.9383}
-[2026-10-31T05:37:00Z] glock_public summary: {}
-[2026-10-31T05:37:01Z] mass_check: seed 43, PAIRS [2:local:mck:mass0s43 2:local:mck:mass1s43 12:local:mc:mass0s43 12:local:mc:mass1s43]
-[2026-10-31T05:37:01Z] glock_public code mocksha0000000, pairs [2:local:mck:mass0s43 2:local:mck:mass1s43 12:local:mc:mass0s43 12:local:mc:mass1s43], seed 43, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 1, REPLAN 0, EVOLVE 1 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
-[2026-10-31T05:37:01Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200
-[2026-10-31T05:37:02Z] patched FlashCHORD (VOC with the full inertia tensor)
-[2026-10-31T05:37:02Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
-[2026-10-31T05:37:03Z] glock mass0s43 ep2: base mck (MR/content/refs/mass0s43mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:37:06Z] glock mass0s43 ep2: trained 7 checkpoints
-[2026-10-31T05:37:18Z] glock mass0s43 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_9998336.safetensors
-[2026-10-31T05:37:25Z] glock mass0s43 ep2 RESULT (policy_9998336.safetensors): n 10 sim_vs_ref {'mean': 0.8367, 'std': 0.0114, 'min': 0.8222, 'max': 0.854} registered AUC vs mocap {'mean': 0.7896, 'std': 0.01, 'min': 0.7715, 'max': 0.8028}
-[2026-10-31T05:37:33Z] glock mass1s43 ep2: base mck (MR/content/refs/mass1s43mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:37:36Z] glock mass1s43 ep2: trained 7 checkpoints
-[2026-10-31T05:37:48Z] glock mass1s43 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_9998336.safetensors
-[2026-10-31T05:37:55Z] glock mass1s43 ep2 RESULT (policy_9998336.safetensors): n 10 sim_vs_ref {'mean': 0.8917, 'std': 0.0096, 'min': 0.8726, 'max': 0.9057} registered AUC vs mocap {'mean': 0.8339, 'std': 0.0101, 'min': 0.8201, 'max': 0.8557}
-[2026-10-31T05:38:03Z] glock mass0s43 ep12: base mc (MR/content/refs/mass0s43mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:38:05Z] glock mass0s43 ep12: trained 7 checkpoints
-[2026-10-31T05:38:17Z] glock mass0s43 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_40001536.safetensors
-[2026-10-31T05:38:23Z] glock mass0s43 ep12 RESULT (policy_40001536.safetensors): n 10 sim_vs_ref {'mean': 0.8389, 'std': 0.0133, 'min': 0.822, 'max': 0.8574} registered AUC vs mocap {'mean': 0.8696, 'std': 0.0104, 'min': 0.8516, 'max': 0.8851}
-[2026-10-31T05:38:33Z] glock mass1s43 ep12: base mc (MR/content/refs/mass1s43mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
-[2026-10-31T05:38:36Z] glock mass1s43 ep12: trained 7 checkpoints
-[2026-10-31T05:38:47Z] glock mass1s43 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_49999872.safetensors
-[2026-10-31T05:38:53Z] glock mass1s43 ep12 RESULT (policy_49999872.safetensors): n 10 sim_vs_ref {'mean': 0.8863, 'std': 0.0089, 'min': 0.8671, 'max': 0.8992} registered AUC vs mocap {'mean': 0.9153, 'std': 0.0094, 'min': 0.8984, 'max': 0.9277}
-[2026-10-31T05:39:02Z] glock_public summary: {}
-[2026-10-31T05:39:06Z] mass_check verify: VERIFIED :: ep2/mass0/s42 white_pot 0.3,white_pot_lid 0.3; ep2/mass0/s43 white_pot 0.3,white_pot_lid 0.3; ep2/mass1/s42 white_pot 0.2771,white_pot_lid 0.0882; ep2/mass1/s43 white_pot 0.2771,white_pot_lid 0.0882; ep12/mass0/s42 blue_cup 0.3,plastic_dish_rack 0.3; ep12/mass0/s43 blue_cup 0.3,plastic_dish_rack 0.3; ep12/mass1/s42 blue_cup 0.128,plastic_dish_rack 0.3865; ep12/mass1/s43 blue_cup 0.128,plastic_dish_rack 0.3865
-[2026-10-31T05:39:06Z] mass_check RESULT: ADOPT: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}
+[2026-10-31T06:15:52Z] mass_check code mocksha0000000, episodes [2 12], seeds [42 43], arms [mass0 mass1], props MR/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json (d55089307ff2), sources ep2 20261024-ev3-2c1e4dd:mck:build ep12 20261024-ev2-2c1e4dd:mc:reuse, LIB MR/content/v2d-track3/meshes/library_v3, NREP 10, STEPS 70004736, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261024-ev3-2c1e4dd
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+pulled runs/20261024-ev2-2c1e4dd
+pulled runs/20261024-ev2-2c1e4dd/results/glock_public/ep12/rest_check.json
+[2026-10-31T06:15:55Z] mass_check: building the grasp-lock reference(s) here with the frozen recipe: 2:local:mck
+[2026-10-31T06:15:55Z] glock_public code mocksha0000000, pairs [2:local:mck], seed 42, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 1, REPLAN 0, EVOLVE 1 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
+[2026-10-31T06:15:55Z] glock_public: REF_ONLY 1, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 0
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T06:15:57Z] patched FlashCHORD (VOC with the full inertia tensor)
+[2026-10-31T06:15:57Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-10-31T06:15:58Z] glock ep2: base mck (MR/content/refs/perc2mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet)
+[2026-10-31T06:15:59Z] glock ep2: support_fill white_pot as is [(0, 'STABLE AS IS', None), (244, 'STABLE AS IS', None)]; white_pot_lid as is [(0, 'skipped', None), (124, 'STABLE AS IS', None), (306, 'skipped', None)]
+[2026-10-31T06:16:01Z] glock ep2: evolve phase 0: window [5, 40] unedited 0.55 best 0.6 at gen 7 of 20
+[2026-10-31T06:16:01Z] glock ep2: evolve phase 1: window [5, 40] unedited 0.55 best 0.6 at gen 7 of 20
+[2026-10-31T06:16:02Z] glock ep2: rest check {"ok": true, "mock": 1}
+[2026-10-31T06:16:03Z] glock ep2: grasp pose (mock)  | zero action zero_action: 0.6100 
+[2026-10-31T06:16:03Z] glock ep2: REF_ONLY: reference finished (MR/content/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet); not trained
+[2026-10-31T06:16:27Z] glock_public summary: {}
+[2026-10-31T06:16:31Z] mass_check ep2: mass_arm ep2: source MR/content/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 b68484648302d79939ee0aac61e5f181, fingerprint 30c9ad1bcfce850ed3a2cf578a290477); mass0: white_pot 0.3 kg, white_pot_lid 0.3 kg; mass1: white_pot 0.2771 kg, white_pot_lid 0.0882 kg
+[2026-10-31T06:16:33Z] mass_check ep12: mass_arm ep12: source MR/content/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet (md5 2404cbc30f0dfc7ff384fe5cdbfa5a16, fingerprint f7d8bb94a6087baa06e2f262e47118e9); mass0: blue_cup 0.3 kg, plastic_dish_rack 0.3 kg; mass1: blue_cup 0.128 kg, plastic_dish_rack 0.3865 kg
+[2026-10-31T06:16:33Z] mass_check: seed 42, PAIRS [2:local:mck:mass0s42 2:local:mck:mass1s42 12:local:mc:mass0s42 12:local:mc:mass1s42]
+[2026-10-31T06:16:33Z] glock_public code mocksha0000000, pairs [2:local:mck:mass0s42 2:local:mck:mass1s42 12:local:mc:mass0s42 12:local:mc:mass1s42], seed 42, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 1, REPLAN 0, EVOLVE 1 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
+[2026-10-31T06:16:33Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T06:16:35Z] patched FlashCHORD (VOC with the full inertia tensor)
+[2026-10-31T06:16:35Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-10-31T06:16:35Z] glock mass0s42 ep2: base mck (MR/content/refs/mass0s42mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:16:38Z] glock mass0s42 ep2: trained 7 checkpoints
+[2026-10-31T06:16:51Z] glock mass0s42 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_70004736.safetensors
+[2026-10-31T06:16:59Z] glock mass0s42 ep2 RESULT (policy_70004736.safetensors): n 10 sim_vs_ref {'mean': 0.8527, 'std': 0.0107, 'min': 0.8362, 'max': 0.8688} registered AUC vs mocap {'mean': 0.8039, 'std': 0.0113, 'min': 0.783, 'max': 0.8175}
+[2026-10-31T06:17:05Z] glock mass1s42 ep2: base mck (MR/content/refs/mass1s42mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:17:08Z] glock mass1s42 ep2: trained 7 checkpoints
+[2026-10-31T06:17:22Z] glock mass1s42 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_20000768.safetensors
+[2026-10-31T06:17:30Z] glock mass1s42 ep2 RESULT (policy_20000768.safetensors): n 10 sim_vs_ref {'mean': 0.8944, 'std': 0.0097, 'min': 0.8825, 'max': 0.9161} registered AUC vs mocap {'mean': 0.8518, 'std': 0.013, 'min': 0.8331, 'max': 0.8697}
+[2026-10-31T06:17:35Z] glock mass0s42 ep12: base mc (MR/content/refs/mass0s42mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:17:38Z] glock mass0s42 ep12: trained 7 checkpoints
+[2026-10-31T06:17:50Z] glock mass0s42 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_40001536.safetensors
+[2026-10-31T06:17:58Z] glock mass0s42 ep12 RESULT (policy_40001536.safetensors): n 10 sim_vs_ref {'mean': 0.855, 'std': 0.0108, 'min': 0.8356, 'max': 0.8684} registered AUC vs mocap {'mean': 0.8828, 'std': 0.0107, 'min': 0.864, 'max': 0.8973}
+[2026-10-31T06:18:05Z] glock mass1s42 ep12: base mc (MR/content/refs/mass1s42mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:18:08Z] glock mass1s42 ep12: trained 7 checkpoints
+[2026-10-31T06:18:19Z] glock mass1s42 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_49999872.safetensors
+[2026-10-31T06:18:27Z] glock mass1s42 ep12 RESULT (policy_49999872.safetensors): n 10 sim_vs_ref {'mean': 0.8896, 'std': 0.0112, 'min': 0.8752, 'max': 0.9077} registered AUC vs mocap {'mean': 0.9226, 'std': 0.0106, 'min': 0.9084, 'max': 0.9383}
+[2026-10-31T06:18:35Z] glock_public summary: {}
+[2026-10-31T06:18:35Z] mass_check: seed 43, PAIRS [2:local:mck:mass0s43 2:local:mck:mass1s43 12:local:mc:mass0s43 12:local:mc:mass1s43]
+[2026-10-31T06:18:35Z] glock_public code mocksha0000000, pairs [2:local:mck:mass0s43 2:local:mck:mass1s43 12:local:mc:mass0s43 12:local:mc:mass1s43], seed 43, steps 70004736, NREP 10, SPLIT public, SETTLE 0, SF 1, REPLAN 0, EVOLVE 1 (worlds 256, robust 4, gens 20), DROP 0, ES 0 (target 0.9), CURR_SCALE 1, GL_ARGS [--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15 --onset_anchor 1]
+[2026-10-31T06:18:35Z] glock_public: REF_ONLY 0, NO_PUSH 1, EVAL_TIMEOUT 1200, REQUIRE_REUSE 1
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [-0.18  0.32 -1.62] cm
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [-0.03 -0.01  0.17] cm
+mini_dust_pan: 3332 verts, watertight True, extents cm [ 3.9 15.9 16.9], mass 0.300 kg, com [-0.52 -0.18 -0.42] cm
+mini_sweeper: 2196 verts, watertight True, extents cm [ 3.4 11.  14.7], mass 0.300 kg, com [-0.16 -0.03  0.  ] cm
+plastic_dish_rack: 16438 verts, watertight True, extents cm [10.9 15.9 49.6], mass 0.300 kg, com [ 0.65 -0.53  1.15] cm
+water_pitcher: 15914 verts, watertight True, extents cm [14.8 26.1 41.2], mass 0.300 kg, com [-0.33  1.37  1.95] cm
+white_pot: 11859 verts, watertight True, extents cm [13.1 19.  36.2], mass 0.300 kg, com [ 0.46 -0.65 -0.46] cm
+white_pot_lid: 4862 verts, watertight True, extents cm [ 5.2 18.9 18.5], mass 0.300 kg, com [-0.38 -0.33  0.79] cm
+wooden_piece_1: 4098 verts, watertight True, extents cm [ 3.1 13.3 22.9], mass 0.300 kg, com [ 0.06 -0.09 -0.26] cm
+wooden_piece_2: 4324 verts, watertight True, extents cm [ 2.7 13.8 22.9], mass 0.300 kg, com [0.19 0.11 0.18] cm
+wooden_spoon: 1614 verts, watertight True, extents cm [ 2.9  5.2 32.2], mass 0.300 kg, com [-0.   -0.    0.07] cm
+[2026-10-31T06:18:37Z] patched FlashCHORD (VOC with the full inertia tensor)
+[2026-10-31T06:18:37Z] patched FlashCHORD (FDR rewards): object points 1, fingertip bound 1; TRAIN_ARGS [curriculum=tracking_250m_mixed_reset_v2d objective.force_closure.enabled=true objective.force_closure.weight=6 objective.contact_wrench_support.weight=3 objective.unintended_contact.weight=-2 ]
+[2026-10-31T06:18:37Z] glock mass0s43 ep2: base mck (MR/content/refs/mass0s43mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:18:40Z] glock mass0s43 ep2: trained 7 checkpoints
+[2026-10-31T06:18:52Z] glock mass0s43 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_9998336.safetensors
+[2026-10-31T06:18:59Z] glock mass0s43 ep2 RESULT (policy_9998336.safetensors): n 10 sim_vs_ref {'mean': 0.8367, 'std': 0.0114, 'min': 0.8222, 'max': 0.854} registered AUC vs mocap {'mean': 0.7896, 'std': 0.01, 'min': 0.7715, 'max': 0.8028}
+[2026-10-31T06:19:07Z] glock mass1s43 ep2: base mck (MR/content/refs/mass1s43mck/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/f8637657a46a4c5f8bb2d62440661afa-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:19:10Z] glock mass1s43 ep2: trained 7 checkpoints
+[2026-10-31T06:19:23Z] glock mass1s43 ep2: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_9998336.safetensors
+[2026-10-31T06:19:30Z] glock mass1s43 ep2 RESULT (policy_9998336.safetensors): n 10 sim_vs_ref {'mean': 0.8917, 'std': 0.0096, 'min': 0.8726, 'max': 0.9057} registered AUC vs mocap {'mean': 0.8339, 'std': 0.0101, 'min': 0.8201, 'max': 0.8557}
+[2026-10-31T06:19:37Z] glock mass0s43 ep12: base mc (MR/content/refs/mass0s43mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:19:40Z] glock mass0s43 ep12: trained 7 checkpoints
+[2026-10-31T06:19:51Z] glock mass0s43 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_40001536.safetensors
+[2026-10-31T06:19:57Z] glock mass0s43 ep12 RESULT (policy_40001536.safetensors): n 10 sim_vs_ref {'mean': 0.8389, 'std': 0.0133, 'min': 0.822, 'max': 0.8574} registered AUC vs mocap {'mean': 0.8696, 'std': 0.0104, 'min': 0.8516, 'max': 0.8851}
+[2026-10-31T06:20:07Z] glock mass1s43 ep12: base mc (MR/content/refs/mass1s43mc/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/a69bc9160a8b493d9ef26253779baa4d-0.parquet); REUSE_REF: training on this box's finished reference MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet
+[2026-10-31T06:20:10Z] glock mass1s43 ep12: trained 7 checkpoints
+[2026-10-31T06:20:21Z] glock mass1s43 ep12: curve policy_mock 0.6;; chosen by sim_vs_ref: policy_49999872.safetensors
+[2026-10-31T06:20:27Z] glock mass1s43 ep12 RESULT (policy_49999872.safetensors): n 10 sim_vs_ref {'mean': 0.8863, 'std': 0.0089, 'min': 0.8671, 'max': 0.8992} registered AUC vs mocap {'mean': 0.9153, 'std': 0.0094, 'min': 0.8984, 'max': 0.9277}
+[2026-10-31T06:20:37Z] glock_public summary: {}
+[2026-10-31T06:20:39Z] mass_check verify: VERIFIED :: eval timeouts: none :: ep2/mass0/s42 white_pot 0.3,white_pot_lid 0.3; ep2/mass0/s43 white_pot 0.3,white_pot_lid 0.3; ep2/mass1/s42 white_pot 0.2771,white_pot_lid 0.0882; ep2/mass1/s43 white_pot 0.2771,white_pot_lid 0.0882; ep12/mass0/s42 blue_cup 0.3,plastic_dish_rack 0.3; ep12/mass0/s43 blue_cup 0.3,plastic_dish_rack 0.3; ep12/mass1/s42 blue_cup 0.128,plastic_dish_rack 0.3865; ep12/mass1/s43 blue_cup 0.128,plastic_dish_rack 0.3865
+[2026-10-31T06:20:39Z] mass_check RESULT: ADOPT: every episode delta >= +0.03 and no seed drop > 0.05 | ep2 mass0 0.7968 mass1 0.8428 delta 0.0461 per seed {'42': 0.0479, '43': 0.0443}; ep12 mass0 0.8762 mass1 0.919 delta 0.0428 per seed {'42': 0.0399, '43': 0.0457}

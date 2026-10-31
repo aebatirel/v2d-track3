@@ -2,7 +2,7 @@
  "episode": 12,
  "base": "mc",
  "source_parquet": "MR/content/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
- "source_md5": "d8ab0333904f32a9be625b597b543b2c",
+ "source_md5": "2404cbc30f0dfc7ff384fe5cdbfa5a16",
  "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
  "hive": "processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
  "source_asset_root": "MR/content/refs/sf/ep12/assets",
@@ -63,7 +63,7 @@
    "seeds": {
     "42": {
      "parquet": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-     "md5": "e487460a842f0cd9220d40997d477cb5",
+     "md5": "111de1ca10521a328df3025c0c1a040c",
      "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
      "base_link": "MR/content/refs/mass0s42mc/ep12",
      "results": "MR/content/results/mass0s42_glock_public/ep12",
@@ -71,7 +71,7 @@
     },
     "43": {
      "parquet": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-     "md5": "e487460a842f0cd9220d40997d477cb5",
+     "md5": "111de1ca10521a328df3025c0c1a040c",
      "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
      "base_link": "MR/content/refs/mass0s43mc/ep12",
      "results": "MR/content/results/mass0s43_glock_public/ep12",
@@ -121,7 +121,7 @@
    "seeds": {
     "42": {
      "parquet": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-     "md5": "016f73470eb4092164b559a56ebcdfd3",
+     "md5": "e4ce01572e621ed69332e0943a6dceec",
      "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
      "base_link": "MR/content/refs/mass1s42mc/ep12",
      "results": "MR/content/results/mass1s42_glock_public/ep12",
@@ -129,7 +129,7 @@
     },
     "43": {
      "parquet": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-     "md5": "016f73470eb4092164b559a56ebcdfd3",
+     "md5": "e4ce01572e621ed69332e0943a6dceec",
      "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
      "base_link": "MR/content/refs/mass1s43mc/ep12",
      "results": "MR/content/results/mass1s43_glock_public/ep12",
@@ -138,5 +138,5 @@
    }
   }
  },
- "created": "2026-10-31T05:34:57Z"
+ "created": "2026-10-31T06:16:32Z"
 }

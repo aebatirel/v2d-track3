@@ -1,5 +1,4 @@
 {
- "MOCK_NOTE": "CPU mock with synthetic scores (cpu/mock/stub.py: +0.05 / +0.04 built in for any non-0.3 kg mass). Tests the plumbing only; NOT evidence about masses.",
  "rule": "docs/research/work/masses-transfer-20261031/PREREG.md",
  "control": "mass0",
  "treatment": "mass1",
@@ -14,6 +13,135 @@
  ],
  "verification_ok": true,
  "verification_failures": [],
+ "verification_missing": [],
+ "eval_timeouts": {
+  "cells_cut": {},
+  "per_arm": {
+   "mass0": {
+    "best": 0,
+    "curve": 0
+   },
+   "mass1": {
+    "best": 0,
+    "curve": 0
+   }
+  },
+  "not_recorded": [],
+  "per_cell": {
+   "ep2/mass0/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep2/mass0/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep2/mass1/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep2/mass1/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep12/mass0/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep12/mass0/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep12/mass1/s42": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep12/mass1/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   }
+  }
+ },
  "episodes": {
   "ep2": {
    "control_seed_mean": 0.7968,
@@ -43,7 +171,7 @@
  "references": {
   "ep2": {
    "source_parquet": "MR/content/refs/glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "source_md5": "dc22a8275ce78811f71e5663ad0c39ea",
+   "source_md5": "b68484648302d79939ee0aac61e5f181",
    "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
    "masses": {
     "mass0": {
@@ -58,7 +186,7 @@
   },
   "ep12": {
    "source_parquet": "MR/content/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
-   "source_md5": "d8ab0333904f32a9be625b597b543b2c",
+   "source_md5": "2404cbc30f0dfc7ff384fe5cdbfa5a16",
    "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
    "masses": {
     "mass0": {

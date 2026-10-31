@@ -154,8 +154,12 @@ def main():
             sys.exit(f'mass_arm ep{ep} {arm}: the copied mesh files differ from the source asset folder')
         ti = t.column_names.index('object_urdf_paths')
         ta = t.set_column(ti, 'object_urdf_paths', pa.array([new_urdfs], type=t.schema.field('object_urdf_paths').type))
-        same = ta.drop_columns(list(PATH_COLS)).equals(t.drop_columns(list(PATH_COLS)))
-        if not same or traj_fingerprint(ta) != fp:
+        # not Table.equals: pyarrow returns False for identical NaN values (t.equals(t) is False with one NaN), which would
+        # refuse any reference holding a NaN. Same schema (names, types, order) + same fingerprint (every value but the
+        # asset paths, NaN-safe) + object_mesh_paths unchanged (the fingerprint leaves it out) cover the same claim.
+        mesh_same = 'object_mesh_paths' not in t.column_names or \
+            ta.column('object_mesh_paths').to_pylist() == t.column('object_mesh_paths').to_pylist()
+        if not ta.schema.equals(t.schema) or not mesh_same or traj_fingerprint(ta) != fp:
             sys.exit(f'mass_arm ep{ep} {arm}: the copy differs from the source in a column other than {PATH_COLS}')
         man['arms'][arm] = dict(props=props, asset_root=A, objects=objs, mesh_md5=meshes, seeds={})
         for s in a.seeds.split():

@@ -42,11 +42,14 @@ meshes, our perceived references, and the frozen grasp-lock recipe?
   metadata `user.resolved_config_json` (no safetensors package needed). It checks that:
   - the loaded URDF masses are the arm's, from the arm's own folder;
   - the reference fingerprint (md5 over every column except the asset paths) equals the source's;
-  - the two arms' saved configs differ only in `output_dir`, `task.parquet` / `reference.parquet`, or another string
-    that differs only by the arm name;
-  - `reset.seed` is the seed and `total_environment_steps` is 70,004,736;
+  - the two arms' saved configs differ only in `output_dir`, `task.parquet` / `reference.parquet`, or in values that
+    are equal once each arm's name is replaced by a token (lists and nested values included);
+  - `reset.seed` is the seed and `training.total_environment_steps` is 70,004,736;
   - the evaluated rollouts' `checkpoint_sha256` is the chosen checkpoint's.
   - Any failure makes the run INVALID (PREREG section 3).
+  - A cell without a chosen checkpoint is not a failure. It is listed under `missing`, and the verdict is INCOMPLETE.
+  - It also counts each cell's evaluations cut by EVAL_TIMEOUT (`eval_timeouts`). `mass_verdict.py` prints them right
+    after the label.
 
 ## Deviations from the brief (for the orchestrator)
 1. **ep2's reference is built on the box, not taken from the store.** The store's ep2 grasp-lock reference (E3,
@@ -65,11 +68,14 @@ meshes, our perceived references, and the frozen grasp-lock recipe?
    - The measured wave of 2 concurrent 70M trainings is about 72 min. The GPU is saturated by one training, which alone
      takes 36–44 min, so the second slot adds pairing but no throughput.
    - 4 waves plus the ep2 reference build plus setup make up the total.
-3. **Three opt-in hooks were added to `glock_public.sh`**, all off by default:
+3. **Four opt-in hooks were added to `glock_public.sh`**, all off by default:
    - `REF_ONLY=1`: stop after the reference stages;
    - `NO_PUSH=1`: so the job pushes once;
-   - `EVAL_TIMEOUT=<s>`: cut a stalled evaluation, also in `tools/ckpt_curve.sh`.
-   - mass_check sets EVAL_TIMEOUT to 1200 s, after the physics box p3ms1 was lost to a 30-min evaluation stall.
+   - `EVAL_TIMEOUT=<s>`: cut a stalled evaluation, also in `tools/ckpt_curve.sh`. It uses `timeout -k 60`, so an
+     evaluation that ignores SIGTERM is killed 60 s later. Each evaluation folder gets `eval_rc.txt`;
+   - `REQUIRE_REUSE=1` (with `REUSE_REF=1`): exit before anything runs if a pair has no finished reference on the box.
+   - mass_check sets EVAL_TIMEOUT to 1200 s, after the physics box p3ms1 was lost to a 30-min evaluation stall. It
+     sets REQUIRE_REUSE=1 for the trainings, not for the ep2 reference build.
    - Old vs new scripts with the hooks off give identical job logs, audits, files and uploads (`cpu/out/equiv.txt`).
 4. **"Pushes once"** means the job pushes once. The platform's 30-min watchdog pushes and its final self-destroy push are
    unchanged.
@@ -100,26 +106,49 @@ meshes, our perceived references, and the frozen grasp-lock recipe?
     - The shared reference and its asset folder are byte-unchanged. `/content/assets` stays at 0.3 kg.
     - Exactly 1 upload. The pulls are exactly the 5 listed in JOBS.txt.
     - `mass_verify` reports VERIFIED, and the summary has 8 cells with n 10 each.
-- **`tests.py`: 9 tests** (`cpu/out/tests.json`).
+- **`tests.py`: 17 tests** (`cpu/out/tests.json`): the 9 below plus 8 for the review fixes (next section).
   - `mass_verify` FAILS on a wrong mass (M1 cup reset to 0.3), on a second `.parquet` in an arm folder, on a changed
     reference sample, and on a changed reward weight in one arm's saved config. It is VERIFIED again after each restore.
   - The verdict rule returns ADOPT / NOT ADOPTED (gain +0.02 on one episode) / NOT ADOPTED (seed −0.06 while the mean
     passes) / ADOPT at the boundaries (+0.03, −0.05) / INCOMPLETE (7 rollouts) / INVALID.
   - The `mass_arm` rewrite equals `make_assets.py --physics` (T5), and `mass_arm` refuses a non-placeholder source (T6).
-- **`cpu/out/eval_timeout_test.txt`:** with `EVAL_TIMEOUT=3` a hanging evaluation is cut at 3 s, left unscored, and
-  MUJOCO_GL / XLA settings still reach it. Without the setting nothing changes.
+- **`cpu/out/eval_timeout_test.txt`** (before the review fixes, plain `timeout`): with `EVAL_TIMEOUT=3` a hanging
+  evaluation is cut at 3 s, left unscored, and MUJOCO_GL / XLA settings still reach it. Without the setting nothing
+  changes. The end-to-end run with `-k 60` is `cpu/out/timeout_mock_check.json` (next section).
 - **Mock limits.**
   - The stubs copy references, so the mock's ep2 "built" reference has the base's fingerprint. On the box it differs,
     and the job records it in `stored_refs.txt`.
   - The real saved config has about 470 fields. The pair check allows only path-like differences, so an unexpected real
     difference makes the run INVALID rather than passing silently.
 
+## Review fixes (31 Oct ~06:30 UTC; CPU only, nothing launched)
+Two reviews said NO-GO: our own, which required F1, and the external one of 4e019af, which raised findings 1–6. The
+rule is unchanged; PREREG section 6 lists these mechanics. Each fix has a fixture test (`cpu/mock/tests.py`). "Before"
+is the same fixture on the 4e019af tools; all [M] on the mock.
+
+| finding | fix | evidence |
+|---|---|---|
+| F1 / ext 1: a missing cell made the run INVALID | `mass_verify.py` lists a cell without `best/summary.json` + `best/policy.safetensors` under `missing` (not a failure, and no pair failure for it); `mass_verdict.py` treats verify's `missing` cells as missing; INVALID still comes first, with the missing cells listed beside it | T8 one lost cell: INCOMPLETE (before: INVALID). T9 ep2 dropped (no results, no ep2 manifest): INCOMPLETE (before: INVALID). T10 lost cell + wrong cup mass: INVALID, with "also missing" |
+| ext 2: arm-named config values and every `total_environment_steps` key | pair check compares values after replacing each arm's name with a token (strings, lists, nested), keeping the 3 allowed keys; step check reads `training.total_environment_steps` only | T12: `logging.run_dir`, `env.task.parquet` and a list `scene.asset_dirs` that embed the arm name give VERIFIED (before: INVALID). The same key differing by more than the arm name gives INVALID. T7 (reward weight) still gives INVALID. A real 30 Oct config has one `total_environment_steps` key |
+| ext 3: `Table.equals` is False on NaN | `mass_arm.py` checks the schema, the fingerprint and an unchanged `object_mesh_paths` | T11: a reference with a NaN wrist sample and an all-NaN column gets both arm copies, NaN kept (before: refused, "differs from the source"); `t.equals(t)` is False (pyarrow 26). The stored ep2/ep12 references have no NaN today |
+| ext 4: timeouts dropped silently | `timeout -k 60` in `glock_public.sh` evalrep and `ckpt_curve.sh`. Each evaluation writes `eval_rc.txt` when EVAL_TIMEOUT is set. `mass_verify.py` counts rc 124/137 per cell (best rollouts and curve) in `eval_timeouts`. `mass_verdict.py` prints them right after the label, per cell and per arm, and in `summary.json`. The rule is unchanged | T13: an injected best rc 124 + curve rc 137 is counted and printed. T13a: the clean mock flags nothing, and every cell has eval_rc 0 ×10 (best) and ×21 (curve). `run_timeout_mock.sh` end to end (EVAL_TIMEOUT 4 s, 3 stalled evaluations, one ignoring SIGTERM): rc 124/124/137 at ~3.8 s / ~3.8 s / ~63.8 s, verify VERIFIED, verdict line `ADOPT [EVAL TIMEOUTS in 3 cell(s): …; per arm best/curve mass0 1/0, mass1 1/1]`, cut cells 9 scored of 10 (`cpu/out/timeout_mock_*`) |
+| ext 5: a failed REUSE condition rebuilt silently | `glock_public.sh REQUIRE_REUSE=1`: pre-flight over every pair (and a guard in `one()`) exits before anything runs; it also needs REUSE_REF=1. `mass_check.sh` sets it for the trainings | T14: an arm copy without `rest_check.json` gives rc 1 with the pair named, and no training, rebuild or `runs/` change. REQUIRE_REUSE without REUSE_REF gives rc 1. Mock job log: the trainings run with `REQUIRE_REUSE 1`, the ep2 build with 0 |
+| ext 6: JOBS.txt / BUILD.md uncommitted | committed in 358a18e (`git ls-files` lists both) | the orchestrator must commit this folder's new files too: `cpu/mock/run_timeout_mock.sh`, `cpu/mock/timeout_check.py`, `cpu/out/timeout_mock_*` |
+
+- **Re-run after the fixes.**
+  - Full mock of the JOBS.txt string: rc 0, `check.py` 38/38, VERIFIED, "eval timeouts: none" (`cpu/out/mock_*`).
+  - `tests.py` 17/17.
+  - Equivalence of the old and new `glock_public.sh` / `ckpt_curve.sh` with the hooks off: identical (`cpu/out/equiv.txt`).
+  - `bash -n` passes on every script.
+- **Not applied, not in the task:** our review's recommendations F2 (stop before training if an episode is dropped),
+  F3 (pull timeout 1500 s), F4 (PREREG text and the ep2 prior), F5 (stale credit line) and F7 (mark partial re-runs).
+
 ## Files
 - New: `ops/jobs/mass_check.sh`, `tools/mass_arm.py`, `tools/mass_verify.py`, `tools/mass_verdict.py`, this folder
-  (`PREREG.md`, `JOBS.txt`, `BUILD.md`, `cpu/mock/{setup.sh, run_mock.sh, stub.py, check.py, tests.py, equiv.sh}`,
-  `cpu/out/*`).
-- Changed, opt-in only: `ops/jobs/glock_public.sh` (REF_ONLY, NO_PUSH, EVAL_TIMEOUT), `tools/ckpt_curve.sh`
-  (EVAL_TIMEOUT).
+  (`PREREG.md`, `JOBS.txt`, `BUILD.md`, `cpu/mock/{setup.sh, run_mock.sh, stub.py, check.py, tests.py, equiv.sh,
+  run_timeout_mock.sh, timeout_check.py}`, `cpu/out/*`).
+- Changed, opt-in only: `ops/jobs/glock_public.sh` (REF_ONLY, NO_PUSH, EVAL_TIMEOUT, REQUIRE_REUSE),
+  `tools/ckpt_curve.sh` (EVAL_TIMEOUT).
 - Not done here: no commit, no launch, no Kaggle, no STATUS / work-log entry (the orchestrator's).
 
 ## If the verdict is ADOPT (later, owner's go-ahead per batch)
