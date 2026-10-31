@@ -6,7 +6,9 @@ v1 (blocking items B1-B7 and the non-blocking items; section 16 lists each one a
 ep11, section 18) and **corrected after the verifier's review of the build** (round-1 fixes, PREREG F-I3, section
 19). Outcome so far: on the dev runs the rule pushes every pair (no carve); the Embodiment contract now runs on their
 real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of the camera rule** for plate-plate
-insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it). This file adds a stage to the frozen gmg design
+insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it). **Extended 31 Oct
+~17:40 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
+F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
 section 8 and in PREREG F-I1.0. The selection-rule changes are pre-registered as PREREG section F entry **F-I1**
 (dated 2026-10-31, revised the same day). If this file and PREREG F-I1 disagree, PREREG wins. Writing v1 and v2 used
@@ -93,6 +95,15 @@ wood there" no longer blocks the slot in the simulator copy. The simulator board
 measured thickness. The slot is drawn from measurements: width = the other board's thickness + 2 mm, centred where
 it passes, deep enough to meet the other slot. Every other check stays, and the physics tests must pass. Submitted
 meshes, cups, the pot and the lid are unchanged. This was written down (PREREG F-I4) before anything was run with it.
+
+**Your extended waiver (31 Oct, section 21).** "if 2 mesh collide we can carve it": any pair whose simulator shapes
+overlap again and again along our tracks may be carved (cups, pot and lid, cup or pot in the rack, sweeper), simulator
+copy only. First every object gets pieces that keep its cavity empty (rings for cups, a finer CoACD with a repair, or
+exact boxes); then the receiving object is cut by the other object's own pieces where they persistently go, with a
+clearance computed from the slope it rests on (about 0.1 mm on a cup wall, so the inner cup cannot sink the way the
+widened eval-10 cup did). A carve is delivered only if, among other tests, the guest stays within 4 mm and 5 degrees of
+its tracked pose with the hands off. The pose correction that would remove the overlap instead is computed and shown,
+not used to block. Written down (PREREG F-I5) before any code or run.
 
 **Cost.** CPU only, no rental. The 16-copy physics checks take about 0.6-2.5 CPU-hours per carved pair on our 4 shared
 cores [E]. mujoco and coacd are installed in the gmg venv; FlashCHORD's settle is run by the Embodiment session with
@@ -1355,3 +1366,204 @@ naming the test, for the record. The submitted (CD-O) board mesh is unchanged.
 - On public ep24 the identity flags (IDENTITY_SWAP on both boards) still make (c) absent: the public-semantics
   decision stays IGNORE. T-I11 runs with eval semantics, as in sections 18-19. Eval 25 runs later with its own
   reference and the identical code.
+
+## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
+
+**In plain words.** You extended the waiver ("but like we said it doesnt have to be a board it can be a cup of what
+ever like if 2 mesh collide we can carve it", 31 Oct; recorded at 17:13 UTC). So any two objects whose simulator
+shapes overlap again and again along our tracks may now be carved, not only the boards: a cup stacked in a cup, a lid
+on the pot, a cup or pot in the rack, the sweeper in the rack or the dust pan. "The cameras saw material there" no
+longer stops the cut, and neither does "a small pose correction would also remove the overlap"; we still compute that
+correction and show it to you, because on eval 10 it explains most of the cup overlap. The boards keep their own route
+(section 20). Submitted (scored) meshes are not touched.
+
+Three things make this different from October's carves, which let guests sink or fall through:
+- **Pieces that keep a cup empty.** Today our simulator pieces fill the inside of a cup or pot (ep11 cups: 453 / 793 cm3
+  of pieces for 172 / 170 cm3 of cup; ep2 pot: 2776 cm3 for 362 cm3 [M]), and CoACD does the same. A cup cannot nest
+  in a filled cup whatever we carve. So every object first gets pieces that keep cavities empty: cups and other round
+  containers as rings of wall pieces around their own measured profile (16 slices around, bands up the side, a base,
+  and no gap between wall and base: the 1 mm empty ring found in October's eval-10 pieces cannot happen); other shapes
+  with a finer CoACD plus a repair step, or, as a last resort, exact boxes.
+- **The cut is the other object's shape where it actually goes.** We cut the receiving object (the one the other is
+  lowered into) by the other object's simulator pieces, placed at every frame in which the overlap persists, with a
+  small clearance. Frames in which our track pushes the guest deeper than where it finally rests are not cut, so the
+  pocket is never deeper than the resting place.
+- **The clearance is small where the guest leans on a slope.** A cup wall tapers by about 3 degrees. One millimetre of
+  extra room on such a wall lets the inner cup drop about 19 mm before it touches again; that is exactly how the
+  widened eval-10 cavity failed (the inner cup sank about 11-12 mm with the hands off [M, focused-pascal]). The
+  clearance is therefore computed from the slope of the guest's own surface: about 0.1 mm on a cup wall, 1 mm on a flat
+  seat such as a lid rim.
+
+Every carved pair must then pass physical tests, the main new one being the failure you saw on eval 10: **with the
+hands off, the guest must stay within 4 mm and 5 degrees of where our track puts it** (16 slightly shaken copies). If
+any test fails, the uncarved pieces are delivered and the numbers are reported. The order of the runs is public ep11
+(cups), ep2 (pot and lid), ep12 and ep13 (cup and rack), ep31 (sweeper and rack), the boards from the board-slot runs,
+then the eval twins 10, 1, 14 and 30. CPU only.
+
+### 21.1 Scope (F-I5.0-F-I5.2)
+| | F-I5 (flag `--waiver-fi5`) | unchanged |
+|---|---|---|
+| pairs | every pair whose colliders interpenetrate persistently, any object, any engaged run except TRANSIENT | plate pairs (both plate-like): F-I4 |
+| what no longer blocks or replaces a carve | class O; the silhouette (failing, absent, or seeing wood) and the GAP width; OFFSET; the push test | |
+| gates kept | engaged runs, build / check hold-out, persistence max(5, 25 %), sweep share >= 50 % of OBSERVED voxels at max(8 mm, 3 j), identity / track gate, caps, acceptance, pieces gate | |
+| changed clause | the sweep's run kind: any non-TRANSIENT engaged run (SEAT included), not only INSERTION / SLIDE | |
+| reported only | rigid-shift alternative, one-sidedness, the F-I1 to F-I3 decision of the same pair | |
+| destination | simulator copy only (tier T1, `owner_waiver_fi5`) | submitted meshes |
+
+Why the run-kind clause changes: the owner names seated and stacked objects; the sweep share still demands that the
+other object moves through the place, so a partner resting with a pose error (the same few points entering, F-I1.3
+(i)) is still not carved. Intrusion is now measured **between simulator colliders** (the partner's pieces sampled on a
+2 mm grid inside the target's pieces), on our tracks exactly as on an Embodiment export (F-I1.13): the overlap that
+matters is the one the simulator sees. Public runs use eval semantics (`--identity eval`), as in sections 18-20.
+
+### 21.2 Colliders first: pieces that keep cavities empty (F-I5.4)
+Measured problem [M, 18.4 item 3]: the port of `collision_decomp.py` freezes pieces whose best split removes < 10 % of
+their excess, and its keep-out only counts free space within 8 mm of the surface, so hulls span container openings;
+CoACD (FlashCHORD's default 0.05) fills them too, and FlashCHORD decomposes each delivered piece on its own, so what we
+deliver is what collides [M, ev10w M4]. Routes, in order (a route whose pieces fail the gate falls to the next):
+
+| route | objects | pieces |
+|---|---|---|
+| 1 plate | plate pairs (F-I4) | F-I4.6 analytic boxes |
+| 2 lathe container | structure lathe accepted (rotc <= 3 sigma, A.6) and not plate-like | rings: 16 sectors (12, 8 if over the cap) x bands <= 30 mm (<= 10 mm where carved), from our SHELL candidate's profile completed by revolution; base = centre disc + 16 rim sectors (several contacts, so it does not rock: `lathe_collision.py`'s reason); walls start exactly at each sector's base top; a handle (shell material outside the body, >= 0.3 cm3) goes to route 3 |
+| 3 others | everything else, or a lathe whose pieces fail | CoACD 0.02, then keep-out repair: split any hull holding > 0.3 cm3 of keep-out by its best plane, no minimum-gain stop, until it complies or the cap is reached |
+| 4 voxel boxes | when 3 fails | the 2 mm cells inside the body and outside the keep-out, merged into maximal boxes (exact); coarser 4 / 6 / 8 mm cells (kept only if all their 2 mm cells are) if over the cap |
+
+- **Gate** for every set (default and carved): each hull holds <= 0.3 cm3 of keep-out = points outside the body it
+  stands for that lie in the carve or the guest's swept collider (weight 10) or in a FREE voxel (weight 1), with **no
+  distance limit** (a hull that spans a cup's opening holds seen-empty space far from the surface).
+- **Wall-continuity check** (lathe): rays at the mid-wall radius every 0.5 mm up the wall and every 1 deg around must
+  each hit a piece (catches a 1 mm empty ring).
+- **Cap:** floor(165 / objects in the episode) pieces per object (82 with two objects); the episode's 165-shape cap
+  (P5) stays. The previous 32 / 64 cap belonged to the old splitter, which F-I5 runs do not use.
+- Which object takes which route is measured in the run. Seen before [M, B7 dev bundles]: lathe accepted for the
+  ep11 beige cup (2.88 sigma), the ep12 blue cup (1.61), the ep2 lid (2.04) and, wrongly, the ep40 dust pan (1.97;
+  rotated points land in FREE space 38 % of the time, so its lathe pieces are expected to fail the gate and fall to
+  route 3); rejected for the ep27 pot (3.01, by 0.01 sigma), the rack (8.8), the sweeper (4.2), the boards.
+
+### 21.3 Where the carve goes and how big it is (F-I5.3)
+1. **Receiver.** The object the other one is inside: the larger share of the other's collider inside its convex hull
+   (a nested cup: ~1 for the outer cup, small for the inner one). Ties (< 0.1 apart): the object that moves less. Only
+   the receiver is cut; cutting both would leave a gap as thick as the overlap, and the guest would sink into it.
+2. **Rest pose.** The guest's mean pose in the receiver's frame over the pair's hands-off static frames (no hand
+   within 30 mm of the guest), preferring the assembled stretch.
+3. **Overshoot frames** (not cut, sent to the push list): build frames in which the guest's centroid is more than 4 mm
+   past its rest position along the insertion direction or along gravity. On eval 10 the inner cup sits on the floor at f100-117
+   and 2.5-27 mm above it (median 13 mm) at f118-160 of the same nest [M, determined-wright]: a pocket cut at every frame would be as deep as the deepest frame, and the resting cup would
+   fall into it.
+4. **Swept solid.** The union, over the remaining build frames in which the region is entered, of the guest's pieces
+   placed by the track and grown by c (each face plane moved out by c), kept only inside the persistent region grown by
+   one 4 mm voxel. The cut is exact geometry (a boolean, or per-slice radii for the rings), not 2 mm voxels: c is far
+   below a voxel.
+5. **Clearance** c = min(1 mm, 0.5 x 4 mm x the 99th percentile of the downward component of the guest's surface
+   normal where the pocket wraps it). Worked values [E]: cup wall with a 2.8-4.7 deg taper -> 0.05-0.15 mm after
+   rounding (predicted drop <= 2 mm); flat lid rim or a base on a shelf -> 1 mm (drop 1 mm). c = 0 is allowed (exact
+   fit, `c_zero`).
+6. **Caps** (F-I1.14 thresholds): cumulative carve <= 10 % of the receiver's round-0 collider volume; reach <= 0.6 along
+   the insertion direction for INSERTION and SLIDE runs; the carved collider keeps its component count and Euler number
+   on the 2 mm grid (no hole through a wall, no split). On eval 10's library-based meshes the median overlap was 14.5 /
+   29.1 cm3 against a 153 cm3 blue collider [M, focused-pascal]: about 9-19 %, so the 10 % cap is expected to bind for
+   cups whenever the track offset is large; our own cups and tracks are not measured yet.
+
+### 21.4 Acceptance (F-I5.5)
+Carved receiver against the same pair with both default colliders, poses P_sim, means over 16 jittered copies:
+
+| test | pass |
+|---|---|
+| **S hands-off rest / sink** (new) | at up to 3 hands-off static frames: receiver fixed, guest free, gravity along our table normal, plain MuJoCo, 2 ms, 2 s (the ev10w M3 setup): mean guest displacement from its tracked pose <= 4 mm and tilt <= 5 deg; no NaN; no guest below the receiver |
+| P2 free travel | gravity, +d, +-n <= max(4 mm, default + 1 mm) |
+| P3 replay proxy (every run kind) | lag <= 0.5 cm and 5 deg at the S (else engaged) frames, never > 1 cm after, overlap < 1 cm3 |
+| P4 over-removal | removed <= 1.5 x the carve, >= 90 % kept |
+| P5 shapes | <= 165 per episode |
+| P6 / P7 overlap | no frame worse than default + 0.1 cm3; held-out check frames at most half the default's |
+| pieces gate | every hull <= 0.3 cm3 of keep-out |
+
+All must pass, else the default pieces are delivered and the failing test is reported with its numbers. No hands-off
+static frame: S is untestable (`sink_untestable`) and P2's gravity bound carries the sink check. FlashCHORD's own 2 s
+settle (P1) stays with the Embodiment session's `jitter_check` before any pack uses the folder (`p1_pending`).
+
+### 21.5 Delivery and what is reported (F-I5.6, F-I5.7)
+- Round folder per episode and tag (Embodiment layout): carved pieces for objects whose pair passed, default pieces
+  otherwise, `_default/` for all, failed carves under `_carved_failed/`, `manifest.json` with an `owner_waiver_fi5`
+  block and `p1_pending: true`; do-not-use only if a default fails the gate.
+- Reported per pair, never deciding: the rigid-shift alternative (translation proxy, and a rotation-augmented search
+  within 1 cm / 3 deg as in ev10w M2: the share of frames it clears to <= 2 cm3), one-sidedness about a lathe axis,
+  flag `carve_of_pose_error` when the shift clears >= 75 % of the frames (the carve then makes room for a track error;
+  the shift also goes to the tracker), the decision the same pair gets with the flag off, S for plate pairs.
+
+### 21.6 Run order, commands and cost
+1. **Build** (new code paths; F-I1 to F-I4 stay the default; starts after the board-slot workflow's build step has
+   finished editing the shared files `interlock.py`, `simphys.py`, `tools/interlock_dev.py`, `tests/test_interlock.py`):
+   new `gmg/collcarve.py` (scope, receiver, rest pose and overshoot, swept solid, c, caps, rigid-shift report), new
+   `gmg/cavpieces.py` (lathe rings, CoACD + repair, voxel boxes, continuity check, gate), `simphys.sink_test` (S), the
+   `--waiver-fi5` branch in `interlock.decide_pair` and the driver, T-I12 x1-x11. [E] 15-30 min for the tests on this
+   container.
+2. **T-I13 public**, eval semantics, one tag per run, in order ep11, ep2, ep12, ep13, ep31 (ep24 from the board-slot
+   runs). Template (run `20261031-i2probe-626ce13`; ep12 / ep13 first need candidates from `tools/interlock_cands.py`
+   and hands from `hands_cpu.py`): `GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_dev --run <run> --ep 11
+   --bundle <scratch>/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep11 --cands <run>/cand/public/ep11 --pick
+   blue_cup=shell_t5p36,beige_cup=shell_t5p36 --hands <hands.npz of ep11> --proxy-copies 16 --identity eval
+   --waiver-fi5 --no-physcheck --tag fi5`. The exact command, machine, code commit and outputs of every run go to
+   `build/I.md`.
+3. **Eval twins** 10, 1, 14, 30, the same command on each eval bundle with P_sim = the packed eval reference when its
+   provenance validates (F-I3.10), else our eval tracks (`sim_pose_fallback`). No eval bundle exists in this container
+   at 17:30 UTC [M]: these runs wait for the eval extraction and are reported as blocked until then. Eval 25 comes from
+   the board-slot work.
+4. **Cost [E].** Per public episode on this loaded 4-core container: structure (lathe) test 4-27 min per object (B7:
+   218-1612 s), pieces a few minutes (CoACD on the rack longer), intrusion and carve minutes, S (16 copies x <= 3
+   frames x 2 variants x 1000 steps) and P3 (16 copies x 3 variants) 5-20 min: about 45-90 min per episode, 4-8 h for
+   the five. Alternative allowed by the task: one self-destroying Vast CPU box (16-32 vCPU, about $0.15-0.40/h [E]) runs
+   them in parallel in about 1.5-2.5 h, about $0.5-1.5 [E], under the $5 cap; plan and cost are stated to the owner and
+   entered in the ledger (`LEDGER_SESSION=mesh-bold`, planned and actual) before renting, per the runbook. No GPU.
+
+### 21.7 Predictions (PREREG F-I5.9; each with its falsifier)
+| | prediction | falsified if |
+|---|---|---|
+| P41 | ep11: both cups lathe route, default pieces pass the gate, no empty ring | a cup leaves the route, a hull > 0.3 cm3, or a gap |
+| P42 | ep11: default lathe colliders cut the max collider overlap along the track to <= 109 cm3 (20 % of the old 544) | above |
+| P43 | ep11: the swept-partner carve keeps the guest at its tracked pose (S <= 4 mm and 5 deg at every hands-off frame, where the ev10w widening sank 11.6 mm) and P2-P7 pass | **the sink test fails on ep11**, or any other test fails |
+| P44 | cups' c 0.05-0.2 mm (1.0 mm if the guest's base is in the pocket) [E] | outside |
+| P45 | ep2: pot route 3 or 4, lid lathe, receiver pot, c 1.0 mm, S and P2 pass | S fails or lid gravity travel > 4 mm |
+| P46 | ep12 / ep13: rack by route 3 within its cap, receiver rack, S passes | route 4 needed or S fails |
+| P47 | ep31: any delivered copy keeps the sweeper's gravity travel <= 4 mm and tilt <= 5 deg | outside |
+| P48 | ep11: the rigid shift clears >= 75 % of the build frames (`carve_of_pose_error`), as on eval 10 (30 / 31) | < 50 % |
+| P49 | eval twins 10, 1, 14, 30 get the same per-pair outcome as ep11, ep2, ep13, ep31 | any differs |
+| P50 | T-I12 x1-x11 pass as stated (x3 and x4 are built to fail S: they check that the test sees the ev10w mechanism) | any miss |
+
+### 21.8 Prior work and tools consulted (for this design)
+- **ev10w** (focused-pascal `334393e`) [M, theirs]: one-sided intrusion 60 / 61 frames, 5.4 mm axis offset, rigid
+  shift <= 1 cm / 3 deg clears 30 / 31 frames; the widened cavity sinks 11.6 mm and drops hands-off settles 40 / 43 ->
+  4 / 43; taper 2.8-4.7 deg; their recommendation: settle gates on hands-off frames only (adopted in S). Their
+  `pipeline/lathe_collision.py` [R]: 16 segments, 30 mm bands, a multi-piece base so that MuJoCo gets several contacts,
+  wall pieces as convex hulls of the profile at the segment edges (the ring layout of route 2 follows it; our profile
+  comes from our own SHELL candidate, not from a library mesh).
+- **determined-wright** `tools/intrusion.py` and the eval-10 diagnostic [R]: the export samples the union of pieces on
+  a grid (F-I5.1 uses the same definition on our tracks); their first "cavity too narrow" reading was withdrawn after
+  ev10w (axis error), which is why F-I5 measures against the receiver's own pieces and reports one-sidedness.
+- **CoACD** (Wei et al., "Approximate Convex Decomposition for 3D Meshes with Collision-Aware Concavity and Tree
+  Search", SIGGRAPH 2022; github SarahWeiii/CoACD) [R]: installed `coacd 1.0.14`, `run_coacd(mesh, threshold=0.05,
+  max_convex_hull=-1, preprocess_mode='auto', ...)`; the concavity threshold sets how finely it cuts, but nothing in it
+  knows which empty space must stay empty, hence the keep-out repair after it.
+- **MuJoCo** [R]: a mesh geom collides as its convex hull, so a non-convex body needs convex pieces; in the installed
+  3.17.0 multi-point convex collision is on by default (`mjDSBL_MULTICCD` is a disable flag, checked in the venv
+  17:25 UTC); ev10w's M3 used 3.8.1. S runs with the defaults; parity with FlashCHORD's simulator is P1's job.
+- **Swept volumes** [generic]: the swept volume of a rigid body over sampled poses is approximated by the union of its
+  posed copies; between-frame motion is not covered, which matters little here because only persistent voxels are cut
+  and the frames are 20 Hz.
+- Hypotheses of this section are labelled [H]; the experiments that falsify them are P41-P50 and T-I12 (x3, x4 test the
+  clearance reasoning directly).
+
+### 21.9 Limits and risks (stated before any run)
+- **A carve can make room for a track error.** If the rigid shift explains the overlap (as on eval 10), the carve fits
+  the shapes to a wrong relative pose. The flag `carve_of_pose_error` and the push list make this visible; the physics
+  tests decide delivery, not this flag (the owner's waiver).
+- **One-sided offsets.** A guest pushed against one side of a pocket with an open gap on the other side may slide down
+  and sideways when the hands let go, unless the pocket has a floor or shelf under it (T-I12 x2 vs x3). S decides.
+- **The 10 % cap may bind for cups** (eval-10 overlaps were 9-19 % of a cup collider on library-based meshes); then
+  nothing is carved and the default rings are delivered, which already remove the cavity filling.
+- **Lathe completion** fills unseen sectors by revolution; a cup with a handle or a dent there is approximated. FREE
+  space inside the completed body fails the gate (route 3 then).
+- **Masses** remain the 0.3 kg placeholder (D-I1), so S tests geometry and contact more than the real dynamics.
+- **Simulator parity.** S runs plain MuJoCo 3.17.0; FlashCHORD's simulator (the Newton / Warp stack) may differ; P1 by
+  the Embodiment session remains required before packing.
+- **Eval** needs eval bundles that do not exist yet; P_sim provenance may fall back to our eval tracks.

@@ -465,3 +465,35 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   as an expected failure, no rule change. Implication for ep24 [H]: board 1's step-2 t may read ~0.2-0.5 mm thin.
 - 17:15 committing the F-I4.14 code + tests, then T-I11 re-run (tag fi4b) and, concurrently, the Waiver + Controls
   re-run (w1-w5 with the new code) in the background.
+- 17:24 read INTERLOCK 0-3, 4, 6, 11, 14, 18-20, PREREG F-I1..F-I4.14, interlock.py (decide_component/decide_pair,
+  regions, runs), platebody header, structure.py lathe test + B7 table (lathe accepted: lid 2.04, beige 2.88, blue 1.61,
+  dust pan 1.97 (false positive, rot FREE 0.38); pot 3.01 rejected; plates pass rotc alone), ev10w README (334393e),
+  lathe_collision.py (16 sectors, 30 mm bands, base = centre disc + 16 rim sectors), determined-wright ev10_intrusion.
+  Design points so far: c from the measured support slope (sink ~ c / sin(taper): c = 1 mm on a 3 deg taper -> ~19 mm);
+  overshoot frames (partner deeper than the rest pose by > 4 mm along d or gravity) excluded from the sweep; one
+  receiver per non-plate pair; cavity-preserving default for every object; S = ev10w M3 settle (host fixed, guest free).
+- 17:30 design decided (writing PREREG F-I5 + INTERLOCK 21 now; nothing run, no code edited): colliders = cavity-
+  preserving default pieces of every object (plate -> F-I4 boxes; lathe (A.6 rotc AND not plate-like) -> 16 sectors x
+  bands from our SHELL solid's profile, walls start at each sector's base top, continuity check on 0.5 mm x 1 deg rays;
+  others -> CoACD 0.02 + keep-out repair -> exact voxel boxes of (solid minus keep-out)); intrusion on colliders; gates
+  = persistence + sweep share (run-kind clause relaxed to non-TRANSIENT); one receiver per non-plate pair (containment
+  share); carve = receiver minus the guest's posed pieces offset by c over the build frames in R, overshoot frames
+  (> 4 mm past the hands-off rest pose along d or gravity) excluded; c = min(1 mm, 0.5 x 4 mm x q99 support slope);
+  caps 10 % volume, reach 0.6 (INSERTION/SLIDE), topology on 2 mm; acceptance S (ev10w M3 settle, host fixed, 16 copies,
+  <= 4 mm and 5 deg) + P2-P7 + gate; push/one-sidedness reported only. Predictions P41-P49, synthetic T-I12 x1-x11.
+- 17:15-17:30 [M] **T-I11 re-run, tag fi4b** (code 9ad1af9 = F-I4 + F-I4.12 + F-I4.14; same command as fi4evalsem with
+  `--tag fi4b`; 914 s, concurrent with the T-I1 Waiver + Controls re-run): **plate test now holds on both boards**:
+  board 1 step 2 (camera-side pair) t = 6.21 mm (faces at +4.19 / -2.02 mm, 19,431 / 17,244 points from 38 / 101
+  frames, overlap 0.97, angle 1.3 deg, rms 2.5 / 1.7 mm <= 9 mm, extents 216 x 121 mm); board 2 step 3 (one face, all
+  22,304 points from one side, 119 frames; 1-99 % extent 14.8 mm <= 25) with t := 6.21 mm (`plate_t_partner_prior`).
+  In scope (both INSERTION); kept gates pass: sweep 1.0 / 1.0, push 19.0 / 22.0 mm (> 10). **Then F-I4.2 fails on
+  both boards: `plate_outline_not_rectangular`** (fill of the min-area rectangle 0.895 / 0.868 < 0.9; rectangles
+  234.5 x 142.3 / 231.1 x 142.0 mm, 7,470 / 7,124 cells of 2 mm) -> `waiver_gate_fail:plate_outline_not_rectangular`,
+  the old decision stands: both PUSH (board 2 with interlock_disagree). No slot, no physics, no r0 delivery under
+  F-I4; the old path wrote its r0 again (pieces gate 0.72 / 2.0 cm3, do-not-use). This is a gate failure after the
+  one allowed post-hoc fix: stopping here, no tuning; reporting. P40 (board 1 by step 2, t in 5-9 mm; board 2 by
+  step 3) holds; P36 (CARVE both) fails at F-I4.2.
+- 17:36 PREREG F-I5 (F-I5.0-F-I5.10; predictions P41-P50; synthetic T-I12 x1-x11; real runs T-I13) and INTERLOCK
+  section 21 (+ header and section-0 pointers) written. Nothing run, no code edited. Committing + pushing now (only
+  PREREG.md, INTERLOCK.md, this log). Next (build step, after the board-slot build has released the shared files):
+  collcarve.py, cavpieces.py, simphys.sink_test, the --waiver-fi5 branch, T-I12; then T-I13 in the F-I5.9 order.

@@ -1248,6 +1248,228 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     -like, or if on ep24 step 2 does not hold for board 1. Known limit: board 2's slot in board 1 is sized by a prior
     (board 2 = board 1's stock), not by a measurement; the depth of each slot is a prior as before (F-I4.3).
 
+- **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
+  only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:40 UTC in a design step (no code edited,
+  nothing run for it) and committed and pushed **before any code or run uses it**. Still before any gmg scoring round
+  (zero gmg scan scorings exist; no scan number was read for this entry). **Post hoc** with respect to results the
+  author has read: INTERLOCK sections 18-20 (every pre-registered decision so far is PUSH; our default pieces fill the
+  container cavities: ep2 pot union 2776 cm3 vs solid 362, ep11 cups 453 / 793 vs 172 / 170 [M]; CoACD refills them
+  too), the ev10w write-up (focused-pascal `334393e`: on eval 10 the cup intrusion is one-sided in 60 / 61 frames, the
+  inner axis 5.4 mm off; a lathe-widened cavity let the guest sink 11.6 mm median and hands-off settles fell from 40 / 43
+  to 4 / 43; taper 2.8-4.7 deg, about 17-20 mm of drop per mm of radial clearance; a ~1 mm empty ring between the wall
+  bands and the base in ev10 [M, theirs]) and determined-wright's eval-10 diagnostic. No number of a run under this
+  entry exists when it is committed. Where F-I1 to F-I4 and this entry differ, this entry wins for the pairs in its
+  scope **when the run sets the new flag `--waiver-fi5`**; with the flag off nothing changes (F-I1 to F-I4 exactly).
+  Plate-plate pairs keep F-I4 (F-I4.0-F-I4.14 and any later F-I4 entry). Design text, plain-language summary and run
+  plan: `INTERLOCK.md` section 21.
+  - **F-I5.0 The waiver (verbatim) and its scope.** Owner, session_01W8Softjo2xx7o6ofSiheuQ: (1) 31 Oct ~16:00 UTC,
+    "Okay I waive that camera rule" (F-I4.0); (2) 31 Oct, recorded by the orchestrator note committed at 17:13 UTC
+    (`cc95b9f`; the note says ~17:30): "but like we said it doesnt have to be a board it can be a cup of what ever like
+    if 2 mesh collide we can carve it"; (3) 30 Oct, the request behind INTERLOCK section 11 as the orchestrator relays
+    it: the Embodiment session's frame-by-frame physics fix should be able to carve the next object "when it enters it,
+    or when the cups are stacked they carve themselves into the another". **Scope:** every pair of objects whose
+    **simulator colliders** (F-I5.1) interpenetrate **persistently** along the pose source (F-I5.2), any object, any
+    engaged run that is not TRANSIENT. A pair whose two objects are both plate-like (F-I4.1 / F-I4.14) is a **plate
+    pair** and follows F-I4 unchanged; every other pair follows this entry. In scope: **class O, the silhouette (failing,
+    absent or seeing wood), the GAP image width, the OFFSET route and the push test (F-I1.3 (ii)) no longer block or
+    replace a carve.** The rigid-shift alternative is computed and reported for every pair (F-I5.7) and decides nothing.
+    **Kept:** engaged runs and the hold-out of check frames (F-I1.1, F-I3.3), persistence and the moves-through sweep
+    share (F-I5.2), the identity / track gate (F-I1.2, F-I3.1: on public TRACK_FAIL or IDENTITY_SWAP makes the region
+    absent; on eval IDENTITY_SWAP only flags), the carve caps (F-I5.3 (e)), the physical acceptance (F-I5.5) and the
+    pieces keep-out gate (F-I5.4). **Simulator copy only:** no ICARVE or FUSE-I candidate comes from this entry, the
+    submitted (CD-O) meshes are not touched, F-I3.2 stands. Every record in scope carries `owner_waiver_fi5`, tier T1,
+    `submitted` False. Public runs of this entry use eval semantics (`--identity eval`), as T-I11 and INTERLOCK 18-19 did
+    (ep11's blue cup and both ep24 boards are IDENTITY_SWAP on public); the public-semantics decision is also reported.
+  - **F-I5.1 Colliders and intrusion between colliders (both paths, F-I3.1).** Every object of an F-I5 run gets a
+    **default collider**: the cavity-preserving pieces of its uncarved simulator body (F-I5.4). Intrusion is measured
+    between colliders, not between evidence and candidate: partner samples = the points of a 2 mm grid inside the union
+    of the partner's pieces (the Embodiment export's definition, F-I1.13); target occupancy = inside the union of the
+    target's pieces (exact half-space test per piece), counted on the target's 4 mm bundle grid. The region builder is
+    the existing one (engaged runs >= 3 voxels, kinds, 10-frame build / check blocks, persistence, per-voxel sweep
+    extent, 26-connected components; F-I1.1, F-I1.2 (c), F-I2.9, F-I3.3). Poses: P_sim (F-I1.1; else P_sel with
+    `sim_pose_fallback`). The through-column split (F-I1.2) is not applied to F-I5 pairs: it exists for a partner whose
+    own slot is bridged in its evidence (plate pairs, F-I4); a partner's posed collider is what the simulator collides.
+  - **F-I5.2 Gates (persistence and moves-through as now).** Per persistent component R of an ordered pair: IGNORE if
+    the run is TRANSIENT or R has < 3 voxels. Persistence unchanged: n_v >= max(5, ceil(0.25 N_build)). Moves-through
+    unchanged in its measurement: >= 50 % of R's OBSERVED voxels are swept at max(8 mm, 3 j) (F-I1.3 (i)); R's U voxels
+    need no sweep (F-I1.3 step 3). **One clause changes:** the run kind of (i) ("INSERTION or SLIDE") becomes "any
+    engaged run that is not TRANSIENT" (SEAT included), because the owner's scope names seated and stacked objects and
+    the sweep share still requires the partner to move through the place; a partner resting with a pose error enters
+    with the same few points and fails it. A component that fails a gate keeps its F-I1 to F-I3 decision and the record
+    names the gate (`waiver_gate_fail:<gate>`).
+  - **F-I5.3 Carve geometry (GT-free).**
+    - (a) **One receiver per pair** (only plate pairs carve both objects, F-I4). Containment share s_t = the volume
+      share of the other object's collider (2 mm grid points) inside the convex hull of t's collider, at the pair's
+      median relative pose over the build frames in which R is entered. Receiver = the object with the larger s; if
+      |s_o - s_p| < 0.1, the object whose own track moves less (median world speed over those frames). The receiver is
+      carved by the guest; the guest is never carved by this pair; the guest's own components of the pair are reported.
+    - (b) **Rest pose and overshoot frames.** Hands-off static frames of the pair = frames of its static stretches
+      (relative speed < 2 mm per frame for >= 5 frames, F-I1.1) with no hand point within 30 mm of the guest's collider
+      (our M1 hands; the F-I1.9 rest distance). Rest pose T_rest = the mean pose (`interlock.mean_pose`) of the guest
+      in the receiver's frame over the hands-off static frames of the assembled stretch, else of all hands-off static
+      frames. A build frame is an **overshoot frame** if the guest's collider centroid lies more than s_max = 4 mm past
+      its T_rest position along the run direction d or along gravity (our table normal, in the receiver's frame at the
+      rest frames). Overshoot frames are not carved; they go to the push list (`overshoot_frames`, with their offsets).
+      Without a hands-off static frame there is no T_rest, nothing is excluded, and S is untestable (F-I5.5).
+    - (c) **Swept solid.** F_carve = the build frames of the run in which R is entered, minus the overshoot frames;
+      check frames are never used. K = the union over f in F_carve and over the guest's pieces g_j of T_{r<-g}[f]
+      applied to offset_c(g_j), where offset_c moves every face plane of the convex piece outward by c (the face-offset
+      polytope contains the exact dilation by c). K is restricted to R+ = R dilated by one 4 mm voxel (the union of
+      those voxel boxes): transient contact elsewhere is not carved. Carved receiver body = body minus (K inside R+), by
+      exact geometry: a manifold boolean for the others route, per-(sector, bin) radii for the lathe route (F-I5.4).
+    - (d) **Clearance c** = min(c_0, 0.5 x s_max x sigma_sup), floored at 0 and rounded down to 0.05 mm; c_0 = 1.0 mm
+      (the F-I1.14 clearance), s_max = 4 mm (the F-I1.14 sink and free-travel bound), sigma_sup = the 99th percentile of
+      max(0, n . g) over the guest's collider surface samples (0.5 mm spacing) inside R+ at T_rest (the facets the pocket
+      wraps; n the guest's outward normal, g the unit gravity vector; at the median engaged pose when there is no
+      T_rest). Reason (geometry, stated
+      before any run): a clearance c on a support facet whose outward normal has the downward component sigma lets the
+      guest drop about c / sigma before it touches; on a 3 deg cup wall (sigma ~ 0.05) c = 1 mm is ~19 mm, the ev10w
+      mechanism. The formula keeps that drop <= 2 mm, half of s_max (the other half is left for the pose spread of the
+      swept frames and the jitter). A flat seat (a lid rim, a base on a shelf: sigma ~ 1) gets c = 1 mm. sigma_sup = 0
+      gives c = 0 (exact fit, flag `c_zero`).
+    - (e) **Caps** (thresholds of F-I1.14, unchanged): cumulative carved collider volume (Monte Carlo, all rounds,
+      F-I3.3) <= 10 % of the receiver's round-0 collider volume, for every F-I5 carve (the F-I2.6 exemption of R_U-only
+      carves is not used: a cavity-preserving body has no unseen cavity fill to remove); reach <= 0.6 of the receiver's
+      extent along d for INSERTION and SLIDE runs; topology: the 2 mm grid points inside the carved pieces keep the
+      default's 26-connected component count and Euler number (`interlock.topology`; a wall thinned below about one
+      sub-voxel opens a hole there and fails). Failure: `budget_iv_fail` or `topology_fail`, default delivered.
+  - **F-I5.4 Cavity-preserving pieces (default and carved, every object of an F-I5 run).** The first route that
+    applies and passes the pieces gate is used; a route whose pieces fail the gate falls to the next:
+    1. **Plate** (plate pair): F-I4.6 analytic boxes, unchanged. A plate-like object paired with a non-plate gets its
+       F-I4.2 plate body, carved by F-I5.3, and goes to route 4.
+    2. **Lathe container**: `structure.hypotheses` accepts the lathe (rotc <= 3 sigma, A.6, unchanged) **and** the
+       object is not plate-like (F-I4.1 / F-I4.14 steps 1-2; a flat plate passes rotc alone, B7). Body: the profile of
+       the object's SHELL candidate solid (the CPU producer's shell, present for every object; the visual GLB stays the
+       submitted mesh) about the structure axis, 2 mm height bins and 16 azimuth sectors: per (sector, bin) the radial
+       interval of the solid's 2 mm sub-samples; per bin the median over the sectors that hold material of the outer
+       and inner radius; a bin is wall if that inner radius > max(3 sigma, 2 mm), else solid (base); more than two
+       radial intervals in a bin -> route 3 (`lathe_profile_complex`). The body is the revolution of that profile
+       (symmetry completion of the unseen sectors). Shell material outside the body by > 3 sigma in components of
+       >= 0.3 cm3 (a handle) is decomposed by route 3 and added. Pieces: N_s = 16 sectors (12, then 8, if the object's
+       piece cap is exceeded) x height bands <= 30 mm (<= 10 mm where a carve applies), band edges on profile bins and
+       at the top and bottom of each sector's carve; each wall piece = the convex hull of its outer and inner profile
+       points at the sector's two edge angles; base = a centre disc (r / 2) plus N_s rim sectors; **the lowest wall band
+       of every sector starts exactly at that sector's base top** (no empty ring: the ev10 defect). Carve (F-I5.3) in
+       profile space: a guest sample above the sector's base top sets that (sector, bin)'s inner radius to
+       (its radius + c) / cos(pi / N_s) where larger (the inner chord then clears it by c); a sample below lowers that
+       sector's base top to its height - c. **Wall-continuity check:** rays at the mid-wall radius every 0.5 mm in
+       height from the base top to the rim and every 1 deg in azimuth must each lie inside a piece; a gap rejects the
+       route (`lathe_wall_gap`).
+    3. **Others** (or a lathe that failed): CoACD on the (carved) body mesh, threshold 0.02 (finer than its 0.05
+       default), preprocess auto, max_convex_hull = the object's piece cap; then **keep-out repair**: every hull holding
+       > 0.3 cm3 of keep-out is split by the plane that minimises the keep-out volume in its two children, repeated
+       without any minimum-gain stop (the frozen-split failure of INTERLOCK 18.4 item 3) until each hull is <= 0.3 cm3
+       or the cap is reached.
+    4. **Voxel boxes** (exact fallback): the 2 mm grid points inside the (carved) body and outside the keep-out,
+       merged greedily into maximal axis-aligned boxes (exact unions of their cells); over the cap, a 4, 6, then 8 mm
+       grid whose cells are kept only when all their 2 mm cells are kept. Over the cap at 8 mm: the object has no
+       compliant pieces.
+    **Pieces gate** (F-I3.8 mechanism, F-I1.8 tolerance): every hull holds <= 0.3 cm3 of keep-out; keep-out = the 2 mm grid points
+    outside the body the pieces stand for (the default or the carved body) that lie in K inside R+ (weight 10) or in a
+    FREE voxel of the object's grid (weight 1), **without the 2-voxel distance limit of F-I1.8** (hulls spanning a
+    container's opening hold FREE space far from its surface; INTERLOCK 18.4 item 3). The silhouette is not run (it cannot change an
+    F-I5 decision), so SIL adds nothing. **Piece cap:** floor(165 / number of objects in the episode) per object, and
+    P5 for the episode. An object without compliant default pieces makes the round folder do-not-use (F-I3.8). The old
+    splitter (`simpieces.decompose`) is not used in F-I5 runs.
+  - **F-I5.5 Acceptance per carved pair** (receiver carved against the same pair with both default colliders, poses
+    P_sim; simulated tests as means over 16 jittered copies, 0.5 mm / 0.005 rad, common random numbers). Carved pieces
+    are delivered only if **all** pass; otherwise the default pieces, with the numbers and the failing test reported.
+    - **S, hands-off rest / sink (new; the ev10w failure mode)**: at up to 3 hands-off static frames (the middle frame
+      of each hands-off static segment, longest first), plain MuJoCo (gmg venv, 3.17.0, default contacts), receiver
+      fixed at its pose, guest free (uniform-solid inertia of its pieces, the 0.3 kg placeholder mass, D-I1), our table
+      plane, gravity along its normal, dt 2 ms, 2.0 s, no hands (the ev10w M3 setup, informed). Pass at every S frame:
+      the mean displacement of the guest from its tracked pose <= 4 mm and its mean tilt <= 5 deg; no NaN copy; no copy
+      with the guest below the receiver's lowest point. Per-copy dz, lateral and tilt are reported, and the default's.
+      No hands-off static frame: S is untestable (`sink_untestable`) and P2's gravity bound carries the sink check.
+    - **P2** free travel (F-I1.8, unchanged): along gravity, +d and +-n (n = the component's thinnest axis normal to d)
+      <= max(4 mm, default + 1 mm); 26 directions reported. At T_rest, else at the median assembled or engaged pose.
+    - **P3** replay proxy (F-I1.8 / F-I4.7, for every run kind): carved median lag <= 0.5 cm and <= 5 deg at the S
+      frames (at the engaged frames when there is none), never > 1.0 cm after the first of them, no NaN copy, collider
+      overlap < 1.0 cm3 there.
+    - **P4** removed collider volume <= 1.5 x the carve's volume inside the body, >= 90 % of the default kept.
+    - **P5** <= 165 shapes per episode (merge adjacent hulls, smallest keep-out increase first, each still <= 0.3 cm3;
+      else the pair whose carve gains least in S mean displacement over its default gets its default).
+    - **P6** carved overlap <= default + 0.1 cm3 at every checked frame (stride 4 plus the rest frames), every pair of
+      the episode; **P7** on the check frames of engaged runs, carved overlap <= 0.5 x the default's (`no_holdout` runs:
+      reported only).
+    - Pieces gate (F-I5.4) on the carved and the default sets.
+    - **P1** (FlashCHORD 2 s settle) stays the Embodiment session's `jitter_check --k 16` on the delivered folder before
+      any pack uses it (F-I2.12 as amended by F-I4.8); A1-A4 of F-I3.3 apply to later rounds, with S added to A3.
+  - **F-I5.6 Delivery.** A new round folder per episode and tag (never overwritten) in the Embodiment layout (F-I3.9):
+    per object `piece_XX.obj` = carved pieces when its pair passed F-I5.5, else its default pieces; `<obj>.glb` = the
+    unchanged submitted mesh; `_default/` = every object's default pieces; `manifest.json` with an `owner_waiver_fi5`
+    block (this entry, the quotes, per pair: receiver, c, sigma_sup, overshoot frames, caps, S and P2-P7 numbers, route
+    per object) and `p1_pending: true`; `sources/`; `props_gmg.json` (0.3 kg placeholder). Carved pieces of a failed pair
+    are kept under `_carved_failed/<pair>/` with the failing test, never used. Do-not-use only when a default fails the
+    pieces gate.
+  - **F-I5.7 Reported, never deciding.** Per pair: (i) the rigid-shift alternative: the push proxy (smallest partner
+    translation over 26 directions plus R's normal, 2 mm steps, F-I1.3 (ii)) and a rotation-augmented search on at most
+    12 build frames (tilts 0-3 deg in 1 deg steps at 8 azimuths, translations <= 10 mm on a 2 mm grid then 0.5 mm; the
+    ev10w M2 search): the share of frames whose collider intrusion falls to <= 2 cm3 within 1 cm / 3 deg; (ii) for lathe
+    receivers, one-sidedness: the share of build frames with >= 75 % of the intrusion volume in one 180 deg half about
+    the axis; (iii) flag `carve_of_pose_error` when (i) clears >= 75 % of the frames: the carve then makes room for a
+    track error, and the shift goes to the push list for the tracker; (iv) the F-I1 to F-I3 decision the same pair gets
+    with the flag off; (v) S on plate pairs (F-I4 decides them).
+  - **F-I5.8 Integrity.** Inputs: our clean bundle (owned points, grids, tracks, census, identity flags, sigma), our
+    candidates (SHELL, pick), our hands (M1), our table plane, P_sim after the F-I1.13 / F-I3.10 provenance check.
+    GT-free: no scan, mocap, dataset-parquet `pose` field, `*_align`, library_v1..v4 geometry or scan-derived constant
+    (the mass is the 0.3 kg placeholder until D-I1). Public development and eval inference stay separate; constants are
+    fixed here before any run and never tuned on eval; failures are reported with numbers; any change after a run is a
+    new dated entry labelled post hoc. The F-I5 flag, its code paths and its tests are new; the F-I1 to F-I4 behaviour
+    stays the default.
+  - **F-I5.9 Tests and predictions (written before any code or run).** **T-I12** synthetic (`tests/test_interlock.py`,
+    flag on unless stated): x1 nested tapered cups (taper 3 deg, host wall 4 mm, guest tracked 0.5 mm radially too deep
+    at a hands-off rest, coaxial insertion along the axis): both lathe route, receiver = host (s >= 0.8 vs <= 0.2),
+    c in 0.05-0.15 mm, no empty ring, gate passes, CARVE delivered with S, P2-P7 passing; x2 = x1 with a 3 mm one-sided
+    lateral offset at the rest frames and the guest's bottom edge inside the host wall (a shelf): CARVE delivered;
+    x3 = x2 without the shelf (the offset pockets only the tapered wall): S fails and the default is delivered (the
+    acceptance catches the ev10w mechanism); x4 = x1 with c forced to 1.0 mm (diagnostic override, never delivered): S
+    or P2 gravity fails (drop > 4 mm); x5 = x1 with 6 build frames 10 mm deeper along d: those frames are flagged
+    overshoot and not carved, CARVE delivered; with the exclusion disabled (diagnostic) S fails; x6 plate pair: the
+    F-I4 path, records identical to F-I4 alone (w1 cases); x7 controls n2 (resting pose error: not swept, no carve of
+    OBSERVED voxels), n4 (TRANSIENT), wandering jitter (not persistent): no carve; x8 a flat plate passing rotc is
+    routed as a plate, never as a lathe; a folded sheet passing rotc gets lathe pieces that fail the gate (FREE inside)
+    and falls to route 3; x9 a lathe built with a forced 1 mm ring between base and wall is caught by the continuity
+    check, the real builder has none; x10 flag off: every existing T-I1 decision unchanged; x11 an open box (pot-like)
+    via route 3 passes the gate with its opening empty. **T-I13** real runs, eval semantics, in this order: public ep11
+    (cups), ep2 (pot, lid), ep12 and ep13 (blue cup and rack), ep31 (sweeper and rack); ep24 boards come from the
+    board-slot (F-I4) runs and are not re-run; then the eval twins 10, 1, 14, 30 (eval 25 from the board-slot work), each
+    only once its eval bundle exists. Predictions (E additions; [H] unless marked):
+    - **P41** ep11: both cups take the lathe route (B7 dev rotc 1.61 / 2.88 sigma) and their default pieces pass the
+      gate with no empty ring | either cup leaves the lathe route, a hull > 0.3 cm3, or a continuity gap.
+    - **P42** ep11: the default lathe colliders alone cut the maximum collider overlap along the track to <= 20 % of the
+      old splitter's 544 cm3 (<= 109 cm3) | above.
+    - **P43** ep11 (the owner's case): the receiver is the cup the other is lowered into; the swept-partner carve keeps
+      the guest at its tracked pose: S passes at every hands-off frame (mean displacement <= 4 mm, tilt <= 5 deg; the
+      ev10w lathe widening sank 11.6 mm), and P2-P7 pass | **the sink test fails on ep11**, or any other test fails.
+    - **P44** [E] the cups' c is 0.05-0.2 mm (taper 2.8-4.7 deg, sigma_sup 0.05-0.08) unless the guest's base lies in
+      the pocket (then 1.0 mm) | outside these values.
+    - **P45** ep2: the pot takes route 3 or 4 (B7 dev, ep27 pot: rotc 3.01 sigma, rejected by 0.01 sigma), the lid the
+      lathe route (B7 dev, ep2 lid: 2.04 sigma); receiver = pot; c = 1.0 mm (flat rim seat); S and P2 pass | S fails or the lid's gravity
+      travel > 4 mm (October's carved lid sank 0.6-1.0 cm with 6 mm of free travel).
+    - **P46** ep12, ep13: the rack's pieces pass the gate by route 3 within its cap (no voxel-box fallback); receiver =
+      rack; S passes for the cup | route 4 is needed, or S fails.
+    - **P47** ep31 (P34 restated for F-I5): every delivered copy lets the sweeper drop <= 4 mm (P2 gravity) and tilt
+      <= 5 deg (S) | any delivered copy outside these bounds (October's rack carve dropped it 2.5-3.5 cm).
+    - **P48** ep11 report: the rigid shift clears >= 75 % of the build frames within 1 cm / 3 deg
+      (`carve_of_pose_error`), as on eval 10 (30 of 31 frames) | < 50 %.
+    - **P49** each eval twin (10, 1, 14, 30) gets the same per-pair outcome (carved delivered or default) as its public
+      twin (ep11, ep2, ep13, ep31) | any differs (reported, nothing tuned).
+    - **P50** T-I12 x1-x11 pass as stated | any miss (logged; a code bug is fixed and logged, a rule change needs a
+      dated post-hoc entry).
+    These tests gate or fix steps; none is a failure criterion of the gmg (D.3).
+  - **F-I5.10 Constants and origins.** c_0 1.0 mm and s_max 4 mm: **informed** (F-I1.14). The half-budget factor 0.5,
+    the 99th percentile of the support slope, the 0.05 mm rounding: **generic**. Containment tie 0.1: **generic**.
+    Overshoot bound = s_max: **informed** (F-I1.14). Hands distance 30 mm and the static rule: **generic** (F-I1.14).
+    S: 2 s, 4 mm, 5 deg, 16 copies **informed** (F-I1.14); its setup (receiver fixed, guest free, 2 ms, plain MuJoCo)
+    **informed** (the ev10w M3 settle, chosen after seeing its result). Lathe: 16 sectors, 30 mm bands, the centre-disc
+    plus rim-sector base **generic** (`lathe_collision.py` defaults); 10 mm bands where carved **informed** (ev10w's
+    widened band); 12 / 8 sector fallback, 2 mm bins, max(3 sigma, 2 mm) wall test, 0.5 mm x 1 deg continuity rays,
+    0.3 cm3 handle residual (= the keep-out tolerance) **generic**. CoACD 0.02 **generic** (finer than its 0.05
+    default). Voxel grids 2 / 4 / 6 / 8 mm **generic**. Piece cap floor(165 / objects) and the 0.3 cm3, weight-10
+    keep-out **informed** (F-I1.14). Rigid-shift report (1 cm / 3 deg, 2 cm3, the tilt grid, 75 % one-sided) **informed**
+    (ev10w M2); `carve_of_pose_error` 75 % **generic**. Every other threshold: as in F-I1.14 and F-I4.11.
+
 ## Revision 1 changelog
 
 What changed, and why:
