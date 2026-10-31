@@ -5224,3 +5224,14 @@ Advice given:
 - Started CPU workflow wf_0f7cb69b-fa2: ep11 rollout gate (C = P_o + S2 vs T = + S12 V4p; gl10A2 grasp-lock recipe;
   meshes/carve/ev10; seeds 42/43; NREP 10; PASS iff seed-mean Δ ≥ +0.05 vs mocap and no T seed below its C seed by
   > 0.05). PREREG, job script, CPU mock, integrity + mechanics reviews. No GPU until the owner's go.
+
+## 2026-10-31 ~15:00 UTC — Masses v2 (owner-approved re-test) taken into this lane
+- The owner approved "Masses v2" at 14:55 UTC in determined-wright's session (its work log, commit 7e3311c on
+  claude/determined-wright-3joens). Design: 4 public headroom episodes (not ep2 or ep12; the lowest current library_v3
+  baseline AUC with a usable reference; fixed in the PREREG before any run); 0.3 kg vs realistic masses; one shared
+  reference per episode; seeds 42/43; NREP 10; the same verify step. Rule: ADOPT iff mean Δ over the 4 ≥ +0.03 AND
+  ≥ 3 of 4 Δ > 0 AND no Δ ≤ −0.05; missing cells → INCOMPLETE. ≈ $18–20, 2 boxes, ~7 h. An eval masses retrain after
+  ADOPT needs its own go-ahead.
+- determined-wright proposed that I run it with mass_check.sh and the verdict tool; they review the PREREG before launch.
+  CPU prep workflow wf_eec92e0b-27a started (baseline table, selection, PREREG, opt-in v2 rule, mock, two reviews).
+- In parallel: ep11 rollout gate prep (wf_0f7cb69b-fa2). Box creates will be staggered.
