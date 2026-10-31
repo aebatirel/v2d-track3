@@ -5685,3 +5685,19 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   only (eval 8 unverified, left out) + dust pan T2 on evals 19 and 38 (base files confirmed library_v3). Offline
   validation passes. CD-O [E] 0.346 vs 0.367 for 9a. Waits for the owner's "upload 9a" / "upload 9a+" / "pack 8" in
   its chat.
+
+### 2026-10-31 18:13–18:18 UTC — PACK 9a+ UPLOADED (owner: "Upload which you think of the highest score potential")
+- Chosen: build_9aplus (both beige pairs + dust pan + C0 pot/lid/rack), sha256 e02736ea…, commit URL d7ecaef. It has
+  the highest CD-O potential, and each board keeps its best. focused-pascal was told first and did not upload.
+- Checks: sha256 match; script hashes match the kit (packer 49b13052…, uploader d31d4a7c…); commit on origin; dry run
+  valid (5 left per board).
+- Submissions 57847040 / 45 / 47 / 49 / 52 / 54. Receipt and UPLOAD.md:
+  results/submissions/20261031-track3i-candidate/build_9aplus/ (this branch).
+- Scores [M]:
+  - AUC 0.81757 (best so far; pack 7 0.81460);
+  - SP-SR 0.85, MP-SR 0.65 (unchanged);
+  - RPE 3.87853 (3.93179);
+  - MPPE 2.89663 (2.92126);
+  - CD-O 0.33234 (0.40188; estimate was 0.333).
+- Boards at 18:18 UTC: AUC 8, SP-SR 8, MP-SR 8, RPE 11, MPPE 11, CD-O 14 (was 18). Rank sum 60 (was 62), still 11th.
+  Sambhav rose to 48. 10th DSAIL 57, 9th SoySauceChicken 52, 8th sam&alex 51.

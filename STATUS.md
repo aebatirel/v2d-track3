@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 18:18 UTC: PACK 9a+ UPLOADED — AUC 0.81757 (best), CD-O 0.332 (14th, was 18th); rank sum 60, 11th
+- Pack 8 rollouts + mesh swaps (C0 pot/lid/rack, C1 beige cup and dust pan; flagged). RPE 3.879, MPPE 2.897, SR unchanged.
+- Next: eval-10 gate (≈ 19–21 UTC), recipe/DR verdict (≈ 22:30), masses v2 (overnight); pack 10 retrain from 1 Nov 18:00.
+
 ## 2026-10-31 ~16:45 UTC: eval audit — only eval 10 fails; ≈ 1.5 cm of board RPE is eval reference/registration
 - Packed eval rollouts vs our own references: RPE 2.45 (board 3.93). Eval 10 = 15.76 (0.79 cm of the mean); others
   1.3–3.7. So the 16:10 heading below holds on public twins only; on eval the reference side carries ≈ 1.5 cm.
