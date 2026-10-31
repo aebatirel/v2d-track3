@@ -86,6 +86,19 @@ JOINT_TOL = 1.25        # joint fit: episodes whose own fit has fidelity <= JOIN
 # markers.py balls of each episode (<dir>/ep<N>.json) attached by markers.attach. Unset = the behaviour above.
 GMG_MK = None           # dict(dir=..., sha=...) when --markers_dir is given
 C0B_USED = {}
+# C2 track R options (cdo-sprint/C2/R-rack/PREREG.md; main() sets them). Unset = the behaviour above, byte for byte.
+#   --end_draft      : the right end's inner face gets its own draft s1e (one more outline parameter, bounds as s1);
+#                      the basin inset is s(h) on the front / back walls and s_e(h) = s0 + s1e (H_r - h) at the right end
+#   --peg_kappa_free : per peg row the section depth / width ratio kappa (b = kappa a) is fitted, bounds PEG_KAPPA_B
+#   --cup_quad       : cup-holder half extents ex, ey get a quadratic term in h (gx, gy; |g| <= CUP_QUAD_G); tube and
+#                      cavity are then unions of CUP_RINGS stacked frusta (a convex hull of two rings cannot bend)
+END_DRAFT = False
+PEG_KAPPA_FREE = False
+PEG_KAPPA_B = (0.5, 3.0)    # generic search bounds of the section aspect (1:2 .. 3:1); no prior value
+CUP_QUAD = False
+CUP_QUAD_G = 2.5            # 1/m: the +-0.25 lean / draft bound spread over a 0.1 m tube (0.25 / 0.1)
+CUP_RINGS = 8               # frusta per cup-holder tube / cavity (CUP_QUAD only)
+C2R_USED = {}
 
 
 # ------------------------------------------------------------------------------------------------ io / frame
@@ -261,11 +274,24 @@ def fit_outline(P, C, x, y, h, fr, x0, xa, lipc, info):
         X = c * (xs - cx) + s * (ys - cy); Y = -s * (xs - cx) + c * (ys - cy)
         sd, gx, gy = rrect_sd(X, Y, hx, hy, r)
         return sd, c * gx - s * gy, s * gx + c * gy
+
+    def end_side(p, xs, ys):
+        # C2R END_DRAFT: points whose nearest outline side is the right end (local +X, X gradient dominant)
+        xb, cy, th, _, hy, r = p[:6]
+        cx, hx = 0.5 * (xa + xb), 0.5 * (xb - xa)
+        c, s = math.cos(th), math.sin(th)
+        X = c * (xs - cx) + s * (ys - cy); Y = -s * (xs - cx) + c * (ys - cy)
+        _, gxl, gyl = rrect_sd(X, Y, hx, hy, r)
+        return (X > 0) & (np.abs(gxl) >= np.abs(gyl))
+    if END_DRAFT:
+        p = np.r_[p, 0.3]
     H_r = lipc[0] + lipc[1] * x + lipc[2] * y                 # local lip height of every point
     for it in range(4):
         sd, gx, gy = geom(p, x, y)
         vr = vx * gx + vy * gy
         s_h = p[6] + p[7] * (H_r - h)
+        if END_DRAFT:
+            s_h = np.where(end_side(p, x, y), p[6] + p[8] * (H_r - h), s_h)
         near = t & (sd > -0.035) & (sd < 0.015)
         outer = near & (h > 0.003) & (h < H_r - 0.006) & (vr > VR) & (np.abs(sd - p[3] * (H_r - h)) < 0.008)
         inner = near & (h > 0.006) & (h < H_r - 0.006) & (vr < -VR) & (np.abs(sd + s_h) < 0.008)
@@ -279,10 +305,15 @@ def fit_outline(P, C, x, y, h, fr, x0, xa, lipc, info):
 
         def res(q):
             sdq = geom(q, xs, ys)[0]
-            target = np.where(cls == 0, q[3] * (Hs - hs), np.where(cls == 1, -(q[6] + q[7] * (Hs - hs)), -0.5 * q[6]))
+            s_in = q[6] + q[7] * (Hs - hs)
+            if END_DRAFT:
+                s_in = np.where(end_side(q, xs, ys), q[6] + q[8] * (Hs - hs), s_in)
+            target = np.where(cls == 0, q[3] * (Hs - hs), np.where(cls == 1, -s_in, -0.5 * q[6]))
             return sdq - target
         lo = [-np.inf, -np.inf, -0.2, -0.3, 0.03, 0.002, S0_MIN, 0.0]
         hi = [np.inf, np.inf, 0.2, 1.0, 0.15, 0.06, 0.03, 1.5]
+        if END_DRAFT:
+            lo, hi = lo + [0.0], hi + [1.5]
         p = least_squares(res, np.clip(p, np.array(lo) + 1e-6, np.array(hi) - 1e-6), bounds=(lo, hi),
                           loss='soft_l1', f_scale=F_SCALE).x
     r_ = res(p)
@@ -291,6 +322,9 @@ def fit_outline(P, C, x, y, h, fr, x0, xa, lipc, info):
                            med_abs_res_mm=float(np.median(np.abs(r_)) * 1e3),
                            res_by_class_mm=[float(np.median(np.abs(r_[cls == k])) * 1e3) if (cls == k).any() else None
                                             for k in range(3)])
+    if END_DRAFT:
+        info['outline']['s1e'] = p[8]
+        info['outline']['n_inner_end'] = int((inner & end_side(p, x, y)).sum())
     return p
 
 
@@ -321,6 +355,8 @@ def cup_lsq(P, n, x, y, h, fr, reg, H_r, h_ft, top, p, geom, vx, vy):
         lean = 0.25 if CUP_LEAN else 1e-6           # upright: no lean and no draft (a straight tube)
         lo = [-np.inf, -np.inf, -lean, -lean, 0.01, 0.01, -lean, -lean, 0.004]
         hi = [np.inf, np.inf, lean, lean, 0.08, 0.12, lean, lean, 0.05]
+        if CUP_QUAD:
+            lo, hi = lo + [-CUP_QUAD_G, -CUP_QUAD_G], hi + [CUP_QUAD_G, CUP_QUAD_G]
         p = least_squares(res, np.clip(p, np.array(lo) + 1e-6, np.array(hi) - 1e-6), bounds=(lo, hi),
                           loss='soft_l1', f_scale=F_SCALE).x
     return p, res(p), cls
@@ -374,9 +410,13 @@ def fit_cup(P, C, n, x, y, h, fr, xr, H_r, h_ft, info):
     xl, xh = np.percentile(x[tall], [1, 99]); yl, yh = np.percentile(y[tall], [1, 99])
     p = np.array([0.5 * (xl + xh), 0.5 * (yl + yh), 0, 0, 0.5 * (xh - xl), 0.5 * (yh - yl), 0, 0, 0.02])
     v = C - P; v /= np.linalg.norm(v, axis=1, keepdims=True); vx, vy = v @ fr['L'], v @ fr['w']
+    if CUP_QUAD:
+        p = np.r_[p, 0.0, 0.0]
 
     def geom(q, xs, ys, hs):
         cx = q[0] + q[2] * hs; cy = q[1] + q[3] * hs; ex = q[4] + q[6] * hs; ey = q[5] + q[7] * hs
+        if CUP_QUAD:
+            ex = ex + q[9] * hs * hs; ey = ey + q[10] * hs * hs
         return rrect_sd(xs - cx, ys - cy, ex, ey, q[8])
     if not CUP_LEAN:
         p, r_, cls = cup_upright(P, n, x, y, h, fr, reg, H_r, top, p, geom, vx, vy)
@@ -390,6 +430,8 @@ def fit_cup(P, C, n, x, y, h, fr, xr, H_r, h_ft, info):
                        h_cf=h_cf, n_floor=int(fl.sum()), n_fit=int(len(r_)), med_abs_res_mm=float(np.median(np.abs(r_)) * 1e3),
                        res_by_class_mm=[float(np.median(np.abs(r_[cls == k])) * 1e3) if (cls == k).any() else None
                                         for k in range(3)])
+    if CUP_QUAD:
+        info['cup'].update(gx=p[9], gy=p[10])
     return p, top, h_cf
 
 
@@ -467,21 +509,26 @@ def fit_peg_row(x, y, h, cents, ok, top_lim, dh=0.006):
             p0 = np.r_[np.full(nk, 0.006), 0, 0, 0, 0, cents[:, 0], cents[:, 1]]
         else:
             p0 = np.r_[np.interp(knots, q['knots'], q['a']), q['u0'], q['u1'], q['v0'], q['v1'], q['xc'], q['yc']]
+        if PEG_KAPPA_FREE:
+            p0 = np.r_[p0, 1.0 if q is None else q['kappa']]
 
         def res(qq):
-            a = np.maximum(np.interp(hs, knots, qq[:nk]), 0.0008); b = PEG_KAPPA * a
+            a = np.maximum(np.interp(hs, knots, qq[:nk]), 0.0008); b = (qq[-1] if PEG_KAPPA_FREE else PEG_KAPPA) * a
             dx = xs - qq[nk + 4 + pid] - (qq[nk] + qq[nk + 1] * hs)
             dy = ys - qq[nk + 4 + K + pid] - (qq[nk + 2] + qq[nk + 3] * hs)
             return (np.hypot(dx / a, dy / b) - 1) * np.sqrt(a * b)
         lean = 0.4 if PEG_LEAN else 1e-6
         lo = np.r_[np.full(nk, 0.001), -1e-6, -lean, -1e-6, -lean, cents[:, 0] - 0.008, cents[:, 1] - 0.008]
         hi = np.r_[np.full(nk, 0.02), 1e-6, lean, 1e-6, lean, cents[:, 0] + 0.008, cents[:, 1] + 0.008]
+        if PEG_KAPPA_FREE:
+            lo, hi = np.r_[lo, PEG_KAPPA_B[0]], np.r_[hi, PEG_KAPPA_B[1]]
         qq = least_squares(res, np.clip(p0, lo + 1e-7, hi - 1e-7), bounds=(lo, hi), loss='soft_l1',
                            f_scale=F_SCALE).x
         r_ = res(qq)
-        q = dict(knots=knots.tolist(), a=qq[:nk].tolist(), kappa=PEG_KAPPA, u0=float(qq[nk]), u1=float(qq[nk + 1]),
+        q = dict(knots=knots.tolist(), a=qq[:nk].tolist(), kappa=float(qq[-1]) if PEG_KAPPA_FREE else PEG_KAPPA,
+                 u0=float(qq[nk]), u1=float(qq[nk + 1]),
                  v0=float(qq[nk + 2]), v1=float(qq[nk + 3]), H_p=H_p, xc=qq[nk + 4:nk + 4 + K].tolist(),
-                 yc=qq[nk + 4 + K:].tolist(), n=int(len(idx)), med_abs_res_mm=float(np.median(np.abs(r_)) * 1e3))
+                 yc=qq[nk + 4 + K:nk + 4 + 2 * K].tolist(), n=int(len(idx)), med_abs_res_mm=float(np.median(np.abs(r_)) * 1e3))
     return q
 
 
@@ -518,6 +565,10 @@ def build_body(geo):
     # basin: frustum of the outline inset by s(h), cut at the cup holder's outer face
     def inset(hh):
         s = o['s0'] + o['s1'] * (H_r - hh)
+        if 's1e' in o:                                # C2R END_DRAFT: the right end inset by its own s_e(h)
+            se = o['s0'] + o['s1e'] * (H_r - hh)
+            return rrect_poly(o['cx'] + 0.5 * (s - se), o['cy'], o['hx'] - 0.5 * (s + se), o['hy'] - s,
+                              max(o['rc'] - max(s, se), 0.002))
         return rrect_poly(o['cx'], o['cy'], o['hx'] - s, o['hy'] - s, max(o['rc'] - s, 0.002))
     htop = H_r + 0.01
     basin = hull(np.r_[np.c_[inset(h_ft), np.full(len(inset(h_ft)), h_ft)], on_lip(inset(htop), 0.01)])
@@ -526,16 +577,32 @@ def build_body(geo):
     body = body - basin
     # cup holder tube (outer hull) and cavity
     def cup_poly(hh, d):
+        if 'gx' in cup:                               # C2R CUP_QUAD
+            return rrect_poly(cup['cx'] + cup['ux'] * hh, cup['cy'] + cup['uy'] * hh,
+                              cup['ex'] + cup['fx'] * hh + cup['gx'] * hh * hh - d,
+                              cup['ey'] + cup['fy'] * hh + cup['gy'] * hh * hh - d, max(cup['r'] - d, 0.002))
         return rrect_poly(cup['cx'] + cup['ux'] * hh, cup['cy'] + cup['uy'] * hh, cup['ex'] + cup['fx'] * hh - d,
                           cup['ey'] + cup['fy'] * hh - d, max(cup['r'] - d, 0.002))
     top = cup['top']
-    tube = hull(rings([(cup_poly(h_tab, 0), h_tab), (cup_poly(top, 0), top)]))
+    if 'gx' in cup:
+        hs_ = np.linspace(h_tab, top, CUP_RINGS + 1)
+        tube = mf.Manifold.batch_boolean([hull(rings([(cup_poly(a_, 0), a_), (cup_poly(b_, 0), b_)]))
+                                          for a_, b_ in zip(hs_[:-1], hs_[1:])], mf.OpType.Add)
+    else:
+        tube = hull(rings([(cup_poly(h_tab, 0), h_tab), (cup_poly(top, 0), top)]))
     # cavity floor perpendicular to the tube axis (ux, uy, 1) through the observed floor height at the centre
     fl = cup_poly(cup['h_cf'], T_WALL)
     cxf, cyf = cup['cx'] + cup['ux'] * cup['h_cf'], cup['cy'] + cup['uy'] * cup['h_cf']
     fl_h = cup['h_cf'] - cup['ux'] * (fl[:, 0] - cxf) - cup['uy'] * (fl[:, 1] - cyf)
     fl_h = np.maximum(fl_h, h_ft)
-    cav = hull(np.r_[np.c_[fl, fl_h], rings([(cup_poly(top + 0.01, T_WALL), top + 0.01)])])
+    if 'gx' in cup:                                   # C2R CUP_QUAD: floor frustum, then stacked frusta to the top
+        hs_ = np.linspace(float(np.max(fl_h)), top + 0.01, CUP_RINGS + 1)
+        segs = [hull(np.r_[np.c_[fl, fl_h], rings([(cup_poly(hs_[1], T_WALL), hs_[1])])])]
+        segs += [hull(rings([(cup_poly(a_, T_WALL), a_), (cup_poly(b_, T_WALL), b_)]))
+                 for a_, b_ in zip(hs_[1:-1], hs_[2:])]
+        cav = mf.Manifold.batch_boolean(segs, mf.OpType.Add)
+    else:
+        cav = hull(np.r_[np.c_[fl, fl_h], rings([(cup_poly(top + 0.01, T_WALL), top + 0.01)])])
     parts = [body, tube]
     # pegs
     for row in geo['pegs']:
@@ -626,6 +693,8 @@ def fit(P, C, F, band, info=None, depth=None, up_fixed=None):
                              n_segments=n_lip, resid_sd_mm=sd_lip)
     outline = dict(cx=0.5 * (xa + po[0]), cy=po[1], hx=0.5 * (po[0] - xa), hy=po[4], rc=po[5], s0=po[6], s1=po[7],
                    so1=po[3], theta=po[2], xa=xa)
+    if END_DRAFT:
+        outline['s1e'] = po[8]
     # floor: a T_WALL plate on the table (table = cut - band); with a shared floor depth below the lip (driver:
     # the deepest of all episodes' cuts, since the floor is unseen in every episode) it is placed at H_r - depth
     h_ft = -band + T_WALL if depth is None else H_r - depth
@@ -633,8 +702,12 @@ def fit(P, C, F, band, info=None, depth=None, up_fixed=None):
     pc, top, h_cf = fit_cup(P, C, n, x, y, h, fr, xh, H_r, h_ft, info)
     cup = dict(cx=pc[0], cy=pc[1], ux=pc[2], uy=pc[3], ex=pc[4], ey=pc[5], fx=pc[6], fy=pc[7], r=pc[8], top=top,
                h_cf=h_cf)
+    if CUP_QUAD:
+        cup.update(gx=pc[9], gy=pc[10])
     # the cup holder's outer face towards the tray (at the lip height): the basin ends there
     x_cup_face = cup['cx'] + cup['ux'] * H_r + cup['ex'] + cup['fx'] * H_r
+    if CUP_QUAD:
+        x_cup_face = x_cup_face + cup['gx'] * H_r * H_r
     # pegs: inside the basin (at least 4 mm inside the inner face), right of the cup holder
     sd = rrect_sd(x - outline['cx'], y - outline['cy'], outline['hx'], outline['hy'], outline['rc'])[0]
     s_h = outline['s0'] + outline['s1'] * (H_r - h)
@@ -704,6 +777,8 @@ def build(P, C, F, band, variants, prefix, fr_out=None, depth=None, up_fixed=Non
         m.export(f)
         out[var] = dict(path=f, faces=int(len(m.faces)), watertight=bool(m.is_watertight))
     rep = dict(info=info, variants=out, frame={k: v.tolist() for k, v in fr.items()})
+    if C2R_USED:
+        rep['c2r'] = C2R_USED
     json.dump(rep, open(prefix + '.json', 'w'), indent=1, default=float)
     return rep, geo, fr
 
@@ -727,6 +802,8 @@ def build_gmg(P, info, geo, fr, body, variants, prefix, fr_out, balls):
         m.export(f)
         out[var] = dict(path=f, faces=int(len(m.faces)), watertight=bool(m.is_watertight))
     rep = dict(info=info, variants=out, frame={k: v.tolist() for k, v in fr.items()}, c0b=C0B_USED)
+    if C2R_USED:
+        rep['c2r'] = C2R_USED
     json.dump(rep, open(prefix + '.json', 'w'), indent=1, default=float)
     return rep, geo, fr
 
@@ -932,8 +1009,21 @@ def main():
         q.add_argument('--t_wall', type=float, default=None, help='C0b: wall / floor thickness T (m), replaces T_WALL')
         q.add_argument('--s0_min_t', action='store_true', help='C0b: lip width lower bound S0_MIN = T')
         q.add_argument('--markers_dir', default=None, help='C0b: gmg detect_episode outputs <dir>/ep<N>.json')
+        q.add_argument('--end_draft', action='store_true', help='C2R: own draft for the right end inner face')
+        q.add_argument('--peg_kappa_free', action='store_true', help='C2R: per-row peg section aspect fitted')
+        q.add_argument('--cup_quad', action='store_true', help='C2R: cup-holder half extents quadratic in h')
     a = p.parse_args()
-    global T_WALL, S0_MIN, GMG_MK
+    global T_WALL, S0_MIN, GMG_MK, END_DRAFT, PEG_KAPPA_FREE, CUP_QUAD
+    if a.end_draft:
+        END_DRAFT = C2R_USED['end_draft'] = True
+    if a.peg_kappa_free:
+        PEG_KAPPA_FREE = C2R_USED['peg_kappa_free'] = True
+        C2R_USED['peg_kappa_bounds'] = list(PEG_KAPPA_B)
+    if a.cup_quad:
+        CUP_QUAD = C2R_USED['cup_quad'] = True
+        C2R_USED.update(cup_quad_g=CUP_QUAD_G, cup_rings=CUP_RINGS)
+    if C2R_USED:
+        print(json.dumps(dict(c2r=C2R_USED)), flush=True)
     if a.t_wall is not None:
         if a.t_wall < 0:
             raise SystemExit('C0b: rack wall needs thickness.py (< 200 measurements) or t0_C0b (not fittable)')
