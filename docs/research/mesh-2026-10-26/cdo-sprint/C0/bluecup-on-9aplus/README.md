@@ -35,3 +35,14 @@ interaction (C0 rack + C0 blue cup) was already flagged in C0 (joint -0.0240).
 **Orchestrator recommendation (to the pack lane, decision theirs/owner's):** include it, flagged. Expected board
 effect [E]: CD-O about -0.032 (5/36 pairs x -0.232), AUC about +0.003, MPPE about -0.03 cm, RPE about +0.02 cm. The
 risk is concentrated on rack + blue-cup episodes (one twin of five at -0.03 AUC).
+
+**Pack-lane answers (21:45 UTC).** focused-pascal: NO for 9b unless the owner explicitly accepts it (the min clause
+fails; evals 14 and 16 are rack episodes; the 9a lid/rack rule required every clause). keen-heisenberg: not in the
+automatic 9b upload; goes into the owner's morning summary as a decision, with these numbers. Both are consistent with
+the rule; the orchestrator accepts.
+
+**ep13 breakdown [D, stored runs]** (per-object AUC, 9a+ config = `single_plastic_dish_rack` vs + C0 cup = `c0`):
+blue cup 0.9395 -> 0.9007 (-0.039), rack 0.9928 -> 0.9724 (-0.020) with the SAME rack mesh. So about a third of the
+episode drop lands on the unchanged rack: the scorer couples objects within an episode (registration records a
+per-episode anchor shift) [H: shared anchor]. On ep12 the same pair gains (+0.033). The C0 cup alone on ep13 (vs
+library) is also negative for the cup (0.9329 -> 0.9112).
