@@ -5788,3 +5788,12 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - eval 16: no rack seat filled. From f120 our reference holds the spoon 1–8 mm from the rack plates with nothing
     under it, so it is unsupported on release. That is a spoon-pose problem, and the lever is the marker layer.
   Forwarded to the marker agent.
+- 19:10 UTC marker layer checkpoint 1 (docs/analysis/markers-20261031/; CPU, GT-free):
+  - detector: gradient circle Hough + black-base contrast, stereo on rectified c/b rows, guided second pass; nothing
+    learned, no GT.
+  - spoon census, layout-consistent sets (all / rest / hand):
+    - ≥ 2 markers: 68/94/66 % (eval 35), 56/94/51 % (36), 72/83/64 % (37);
+    - ≥ 3 markers: 16/27/16 %, 10/15/10 %, 7/1/11 %.
+    M1, the lateral neck marker and the roll lever, is the bottleneck.
+  - layout from our video: triangle 55.3/154.2/196.5 mm (video-built template 53.5/153.2/194.6), fit rms 1.6–2.2 mm.
+  - PREREG block 1 written 18:52 UTC. Next: correction layer, then public validation.

@@ -30,7 +30,7 @@ def hands_path(e):
 
 def load(obj, split, e):
     P = np.load(mlib.poses_path(split, e)); T = P[f'cam_T_{obj}'].astype(np.float64); W = P['world_T_cam'].astype(np.float64)
-    J = json.load(open(f'{S}/mk/scan/{split}{e}_{obj}.json'))
+    J = json.load(open(f'{S}/mk/scan/{split}{e}_{obj}{os.environ.get("MK_SUFFIX", "")}.json'))
     N = min(J['N'], len(T)); T, W = T[:N], W[:N]
     return dict(e=e, T=T, W=W, Tw=W @ T, dets=J['dets'][:N], dv0=J['dv0'], N=N)
 
