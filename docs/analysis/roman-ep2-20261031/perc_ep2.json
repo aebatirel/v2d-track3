@@ -1,0 +1,34 @@
+{
+ "white_pot": {
+  "rms_total_cm": 0.6,
+  "const_cm": 0.04,
+  "rms_varying_cm": 0.6,
+  "best_delay_frames": 0.5,
+  "best_delay_ms": 25.0,
+  "moving_rms_no_shift_cm": 0.86,
+  "moving_rms_best_shift_cm": 0.64,
+  "slow_drift_rms_cm": 0.44,
+  "noise_rms_cm": 0.25,
+  "frames": 343,
+  "moving_frames": 108,
+  "constant_body_offset_cm_removed": 0.3,
+  "rot_err_deg_median": 1.67,
+  "rot_err_deg_p90": 4.31
+ },
+ "white_pot_lid": {
+  "rms_total_cm": 0.43,
+  "const_cm": 0.07,
+  "rms_varying_cm": 0.43,
+  "best_delay_frames": 0.55,
+  "best_delay_ms": 28.0,
+  "moving_rms_no_shift_cm": 0.71,
+  "moving_rms_best_shift_cm": 0.32,
+  "slow_drift_rms_cm": 0.24,
+  "noise_rms_cm": 0.2,
+  "frames": 343,
+  "moving_frames": 92,
+  "constant_body_offset_cm_removed": 0.37,
+  "rot_err_deg_median": 0.9,
+  "rot_err_deg_p90": 1.78
+ }
+}

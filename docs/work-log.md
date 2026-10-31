@@ -5578,3 +5578,17 @@ arm and a no-policy replay floor to stage B.
   bounded by the small jitter share. Roman's help is best aimed at bias observability.
 - **Proposed:** answer Roman with the bias-vs-noise finding; make the 6-DoF time series he asked for ($0, public, mocap
   as diagnostic only); no UKF build unless the plots show meaningful noise.
+- ~21:10 UTC owner: "are you sure it's delay and not noise? Make Roman's video." Measured on public ep2 (CPU, $0;
+  `docs/analysis/roman-ep2-20261031/`):
+  - **robot layer** (the Embodiment video): no delay, noise 0.15–0.6 cm, drift or failure 1–14 cm;
+  - **perception layer:** a real **half-frame delay** (25 / 28 ms), noise 0.20–0.25 cm, drift 0.24–0.44 cm;
+  - half-frame advance: ADD −20 %;
+  - Roman's per-object Kalman at three noise levels: 0 to +22 % worse (it adds lag); offline RTS −1 to −3 %.
+  - **Flag:** S2 (the adopted half-frame advance) is not wired into `pipeline_ep.sh`, so the eval references lack it.
+  - Video for Roman (`romanvid.py`, 1920×1080, 17 s) sent to the owner. It shows:
+    - each object tracked separately on the colour camera, with mocap dots;
+    - the hand keypoints;
+    - 6-DoF series per object with ±2σ bands and contact shading;
+    - the delay / noise / Kalman numbers.
+  - Corrected the earlier "error is mostly a fixed offset". Per the standings decomposition that holds for AUC (≈ 80 %
+    of the reference AUC loss without ep23); about half for MPPE (1.18 → 0.55); not for RPE (1.00 → 0.77).
