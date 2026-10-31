@@ -1,7 +1,7 @@
 {
  "tool": "tools/rtk_mesh_check.py check",
- "time": "2026-10-31T21:16:58Z",
- "commit": "fef059b7638f0dc04ad70a3bd8394464fd1718f0",
+ "time": "2026-10-31T21:24:41Z",
+ "commit": "d6428216bedc8f2a698263882f2d141247c098cc",
  "dir": "/home/user/v2d-track3/meshes/rtk_e0b_public",
  "tsv": "docs/research/work/leak-decomp-20261030/phase1/inputs.tsv",
  "library": "/home/user/v2d-track3/meshes/library_v3",
@@ -17,8 +17,6 @@
   "ep11/blue_cup.glb: frame: surface centroid moved 5.22 mm > 5.0",
   "ep11/blue_cup.glb: frame: ICP corrects 7.06 mm / 1.676 deg (limits 5.0 mm / 5.0 deg)",
   "ep11/blue_cup.glb: frame: kit-registration proxy moves the body 8.44 mm > 5.0",
-  "ep12/blue_cup.glb: provenance tier mentions 'scans': \"inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc\"",
-  "ep12/blue_cup.glb: frame: kit-registration proxy moves the body 9.4 mm > 5.0",
   "ep13/blue_cup.glb: provenance tier mentions 'scans': \"inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc\"",
   "ep2/white_pot.glb: provenance tier mentions 'scans': \"inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc\"",
   "ep2/white_pot.glb: frame: surface centroid moved 9.3 mm > 5.0",
@@ -47,7 +45,7 @@
   "ep45/white_pot.glb: frame: extent ratio [1.2758, 0.9982, 1.0046] outside +-15% (scale or axis order?)"
  ],
  "manifest": {
-  "md5": "e467db65fd7c87d8ab4eaf23cc2db6fa",
+  "md5": "3de52dd2222ca4717d1b89ff69131300",
   "provenance_tier": "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or scan-derived constants"
  },
  "guard": {
@@ -155,39 +153,6 @@
     "surface centroid moved 5.22 mm > 5.0",
     "ICP corrects 7.06 mm / 1.676 deg (limits 5.0 mm / 5.0 deg)",
     "kit-registration proxy moves the body 8.44 mm > 5.0"
-   ]
-  },
-  "ep12/blue_cup.glb": {
-   "episode": 12,
-   "object": "blue_cup",
-   "slot": 0,
-   "md5": "07703cca0ece60a3d62a017e7b4425ae",
-   "sha256": "8362277196ddd4446ed2036148a85de62ceba267dfcd71e89b8616d2cb53682c",
-   "bytes": 408620,
-   "gltf": {
-    "nodes": 1,
-    "meshes": 1,
-    "extensionsUsed": []
-   },
-   "vertices": 11330,
-   "faces": 22656,
-   "extent_mm": [
-    85.93,
-    96.28,
-    179.75
-   ],
-   "sorted_extent_ratio_vs_library_v3": [
-    0.9038,
-    0.998,
-    1.0763
-   ],
-   "manifest_hashes_checked": [
-    "md5",
-    "sha256"
-   ],
-   "provenance_tier": "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or scan-derived constants",
-   "frame_flags": [
-    "kit-registration proxy moves the body 9.4 mm > 5.0"
    ]
   },
   "ep13/blue_cup.glb": {
@@ -527,8 +492,8 @@
   }
  },
  "coverage": {
-  "episodes_with_a_mesh": 13,
-  "meshes": 14,
+  "episodes_with_a_mesh": 12,
+  "meshes": 13,
   "per_episode": {
    "0": {
     "objects": [
@@ -570,10 +535,9 @@
      "blue_cup",
      "plastic_dish_rack"
     ],
-    "delivered": [
-     "blue_cup"
-    ],
+    "delivered": [],
     "library_v3": [
+     "blue_cup",
      "plastic_dish_rack"
     ]
    },
@@ -998,90 +962,6 @@
     "kit-registration proxy moves the body 8.44 mm > 5.0"
    ],
    "file": "ep11/blue_cup.glb",
-   "symmetry": "axial",
-   "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
-  },
-  {
-   "base_aabb_centre_mm": [
-    0.16,
-    3.76,
-    5.22
-   ],
-   "base_extent_mm": [
-    95.08,
-    96.47,
-    167.02
-   ],
-   "new_aabb_centre_mm": [
-    2.08,
-    4.5,
-    6.0
-   ],
-   "new_extent_mm": [
-    85.93,
-    96.28,
-    179.75
-   ],
-   "base_centroid_mm": [
-    -0.52,
-    -0.08,
-    1.78
-   ],
-   "new_centroid_mm": [
-    1.16,
-    2.04,
-    -2.32
-   ],
-   "centroid_offset_mm": 4.91,
-   "aabb_centre_offset_mm": 2.2,
-   "rms_radius_ratio": 1.076,
-   "extent_ratio": [
-    0.9038,
-    0.998,
-    1.0762
-   ],
-   "surface_mm": {
-    "median": 2.701,
-    "p95": 14.497,
-    "max": 40.304,
-    "mean": 4.294
-   },
-   "sample_spacing_mm": 0.689,
-   "icp_centroid_shift_mm": 2.36,
-   "icp_rotation_deg": 4.997,
-   "icp_median_after_mm": 2.525,
-   "icp_suggested_T_new_to_base": [
-    [
-     0.99989075,
-     0.01320967,
-     -0.00663238,
-     -0.00081255
-    ],
-    [
-     -0.01259158,
-     0.99622561,
-     0.08588354,
-     0.00108228
-    ],
-    [
-     0.00774184,
-     -0.08579064,
-     0.99628311,
-     0.00221735
-    ],
-    [
-     0.0,
-     0.0,
-     0.0,
-     1.0
-    ]
-   ],
-   "kit_proxy_pose_shift_mm": 9.4,
-   "kit_proxy_rotation_deg": 134.533,
-   "flags": [
-    "kit-registration proxy moves the body 9.4 mm > 5.0"
-   ],
-   "file": "ep12/blue_cup.glb",
    "symmetry": "axial",
    "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
   },

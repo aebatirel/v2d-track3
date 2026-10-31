@@ -1,4 +1,4 @@
-rtk_mesh_check /home/user/v2d-track3/meshes/rtk_e0b_public: FLAGGED  14 meshes in 13/20 episodes; 0 failures, 37 flags; guard rc 0
+rtk_mesh_check /home/user/v2d-track3/meshes/rtk_e0b_public: FLAGGED  13 meshes in 12/20 episodes; 0 failures, 35 flags; guard rc 0
   FLAG ep0/white_pot.glb: provenance tier mentions 'scans': "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc"
   FLAG ep0/white_pot.glb: frame: surface centroid moved 8.14 mm > 5.0
   FLAG ep11/beige_cup.glb: provenance tier mentions 'scans': "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc"
@@ -8,8 +8,6 @@ rtk_mesh_check /home/user/v2d-track3/meshes/rtk_e0b_public: FLAGGED  14 meshes i
   FLAG ep11/blue_cup.glb: frame: surface centroid moved 5.22 mm > 5.0
   FLAG ep11/blue_cup.glb: frame: ICP corrects 7.06 mm / 1.676 deg (limits 5.0 mm / 5.0 deg)
   FLAG ep11/blue_cup.glb: frame: kit-registration proxy moves the body 8.44 mm > 5.0
-  FLAG ep12/blue_cup.glb: provenance tier mentions 'scans': "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc"
-  FLAG ep12/blue_cup.glb: frame: kit-registration proxy moves the body 9.4 mm > 5.0
   FLAG ep13/blue_cup.glb: provenance tier mentions 'scans': "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc"
   FLAG ep2/white_pot.glb: provenance tier mentions 'scans': "inputs: sweep tracks, C0b pass-B observed points (FoundationStereo depth), C0b thickness/sigma/markers, t0_C0b; never scans, mocap, parquet poses, *_align or sc"
   FLAG ep2/white_pot.glb: frame: surface centroid moved 9.3 mm > 5.0
@@ -39,7 +37,7 @@ rtk_mesh_check /home/user/v2d-track3/meshes/rtk_e0b_public: FLAGGED  14 meshes i
   ep0: delivered white_pot; library_v3 white_pot_lid
   ep2: delivered white_pot; library_v3 white_pot_lid
   ep11: delivered blue_cup,beige_cup; library_v3 -
-  ep12: delivered blue_cup; library_v3 plastic_dish_rack
+  ep12: delivered -; library_v3 blue_cup,plastic_dish_rack
   ep13: delivered blue_cup; library_v3 plastic_dish_rack
   ep18: delivered -; library_v3 mini_sweeper,mini_dust_pan
   ep21: delivered blue_cup; library_v3 water_pitcher

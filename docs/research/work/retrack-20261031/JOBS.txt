@@ -95,3 +95,10 @@ REVIEW ADDITIONS (31 Oct ~20:40 UTC, before any launch)
 - After the boxes: rtk_pull.py also pulls runs/<rid>/run_job.log; check each for "environment restored from
   pt2.11-cu130-py313-20261020", no "snapshot restore FAILED", and an "] gpu:" line naming an RTX PRO 6000 (record the driver);
   otherwise INVALID (PREREG §11 amendment 3).
+
+LAUNCH RECORD (31 Oct 2026)
+- Delivery meshes/rtk_e0b_public = the mesh session's Set B (alt_e0_gated, chosen before any score), 13 meshes in 12/20
+  episodes after the launch-hold check: the ep12 blue cup g0 was a wrong mesh (closed end at the wide end; mesh
+  session's GT-free axis check, commit 577f838) and went back to library_v3 before any score; the other four blue cups'
+  > 45° proxy rotations are spin about the axis (axis tilt 0.9–2.5°). VALIDATION.json: flagged (shape/frame flags and the
+  tier's "never scans" disclaimer), 0 failures; verify OK.

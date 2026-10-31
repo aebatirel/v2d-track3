@@ -45,15 +45,6 @@
    "set": "B",
    "source": "pubown"
   },
-  "ep12/blue_cup.glb": {
-   "path": "ep12/blue_cup.glb",
-   "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep12_blue_cup_g0.glb",
-   "sha256": "8362277196ddd4446ed2036148a85de62ceba267dfcd71e89b8616d2cb53682c",
-   "md5": "07703cca0ece60a3d62a017e7b4425ae",
-   "bytes": 408620,
-   "set": "B",
-   "source": "pubown_candidate"
-  },
   "ep13/blue_cup.glb": {
    "path": "ep13/blue_cup.glb",
    "store_path": "runs/mesh-20261031-pubown-ed7171c/results/pubown/cand/blue_cup/ep13_blue_cup_g0.glb",
@@ -135,5 +126,8 @@
    "set": "B",
    "source": "pubown"
   }
+ },
+ "removed": {
+  "ep12/blue_cup.glb": "mesh session (bold-albattani, ~21:40 UTC, before any re-track score; commit 577f838 cdo-sprint/PUBOWN/checks/cup_axis.json): closed end at -z, the wide end (the lathe closed the cup's opening) -> a wrong mesh; ep12 blue cup back to library_v3"
  }
 }
