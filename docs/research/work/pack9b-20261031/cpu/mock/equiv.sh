@@ -3,7 +3,8 @@
 # commit before any D-arm change to these files) and the NEW ones (working tree) on existing-caller job strings in
 # identical fresh boxes, with every new hook unset (no ARM, no FC_DR_PATCH, no DR_EPS); compared: exit code, the job log
 # (timestamps and pulled_/prev_ suffixes normalised), what the stub trainer / evaluators loaded and which FlashCHORD patches
-# ran (audits without timestamps), the files written (names + md5) and the store traffic; and no training log of any
+# ran (audits without timestamps), the files written (names + md5; JSON without mass_arm.py's "created" timestamp line:
+# the first run showed EG's arms_ep{15,33}.json differing only there) and the store traffic; and no training log of any
 # of these boxes holds a "v2d FC_DR_RESET" line (the D line is absent in non-D trainings).
 #   EG mass_eval.sh MODE=glock EPS="33 15" SEEDS="42 43" (the masses G2 box): mass_eval.sh + glock_public.sh
 #   ES mass_eval.sh MODE=std EPS="1" SEEDS="42" (the masses S1a box): mass_eval.sh + hard_ab.sh
@@ -26,7 +27,10 @@ run() {  # $1 name, $2 old files, $3 run id, $4 job
     B=$MS/box; W=$OUT/equiv_$1_$ver; mkdir -p $W
     norm $B/content/job.log | grep -v '^cp: warning' > $W.joblog
     cat $B/train_audit.log $B/eval_audit.log $B/kit_audit.log $B/patch_audit.log 2> /dev/null | norm | sort > $W.audit
-    ( cd $B/content && find results runs refs -type f 2> /dev/null | sort | while read -r f; do echo "$f $(md5sum < $f | cut -c1-32)"; done ) | norm > $W.files
+    # md5 per file; JSON files without their "created" timestamp line (tools/mass_arm.py writes the creation time)
+    ( cd $B/content && find results runs refs -type f 2> /dev/null | sort | while read -r f; do
+        case $f in *.json) echo "$f $(grep -v '^ *"created": "[0-9T:Z-]*",\?$' $f | md5sum | cut -c1-32)" ;; *) echo "$f $(md5sum < $f | cut -c1-32)" ;; esac
+      done ) | norm > $W.files
     norm $B/hf.log | sed 's/: [0-9T:-]*Z$/: T/' > $W.hf; echo "rc $(cat $B/rc.txt)" > $W.rc
     echo "$(find $B/content/runs -name train.log 2> /dev/null | wc -l) training logs, $(find $B/content/runs -name train.log -exec grep -l 'v2d FC_DR_RESET' {} + 2> /dev/null | wc -l) with a v2d FC_DR_RESET line" > $W.dline
     rm -rf $W

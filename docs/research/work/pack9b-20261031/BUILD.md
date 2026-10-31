@@ -141,12 +141,41 @@ read. Markers: [M] measured, [E] estimate, [H] hypothesis.
      - pack9b = the PASS set; the job string is as pre-registered.
    - In the mock merge, eval 30 chose seed 43 by the lower-sd tie-break (means within 0.005). The synthetic verdict reads
      14 NO-SWAP, 16 PASS, 25 PASS, 30 NO-SWAP, 33 PASS (`cpu/out/mock/mock_verdict.txt`); this says nothing about D.
-4. **Negative tests** `cpu/mock/neg.sh`: see `cpu/out/neg/neg.txt` (results in the section below).
-5. **Default paths unchanged** `cpu/mock/equiv.sh`: old = 880db25 (before any D change to these files), new = the working
-   tree, on existing-caller job strings with every hook unset. See `cpu/out/equiv/equiv.txt` (results in the section
-   below).
-6. `bash -n` passes on every changed or new script, and py_compile passes on the new Python (results in the section
-   below).
+4. **Negative tests** `cpu/mock/neg.sh`: **12 / 12 as expected** (`cpu/out/neg/neg.txt`, `neg.json`).
+   - Training side:
+     - N1 a run id without `-dr`, N2 a patch file that is not the 4e5c8a0 port, N3 an unknown ARM: each refused before
+       any pull, with no training;
+     - N4 a hook that prints nothing, N5 a hook that reads seed + 1, N6 std without the skip flag reaching the hook,
+       N7 a non-D training log on the D box: each trains, and dr_eval_verify then reads INVALID with the right reason;
+     - N8 `glock_public.sh` PERC drs42 on SPLIT=eval without FC_DR_PATCH: that pair is refused, with no training and no
+       DR patch.
+   - Confirmation side:
+     - C1 a D reference copy not pulled, and C2 the packed eval-14 checkpoint left in place of the D pick: dr_pack_check
+       refuses before the kit evaluator (0 kit evaluations). In C2 the packed rollout is kept by KEEP_RESULTS, so the
+       check reads "in DR_EPS but not evaluated here";
+     - C3 the verdict without the pack-check files: 5 / 5 INVALID;
+     - C4 one H5p7 draw naming another checkpoint: that episode INVALID, and only that one.
+5. **Default paths unchanged** `cpu/mock/equiv.sh`. Old = 880db25 (before any D change to these files), new = the working
+   tree, on existing-caller job strings with every hook unset (`cpu/out/equiv/equiv.txt`). The cases:
+   - EG: the masses G2 box (mass_eval.sh + glock_public.sh), 4 trainings, 124 evaluations;
+   - ES: the masses S1a box (mass_eval.sh + hard_ab.sh), 1 training, 14 evaluations;
+   - E2: the hard_ab.sh + pipeline_ep.sh carve path;
+   - E3: pack_eval.sh + h5_reeval.sh rebuilding pack 7.
+
+   Results:
+   - exit code, job log, audits (what each trainer / evaluator loaded and which patches ran) and store traffic are
+     **IDENTICAL** in all four;
+   - files: the first run (`cpu/out/equiv_run1/equiv.txt`) differed only in EG's `results/mass_eval/arms_ep{15,33}.json`,
+     and only in their `"created"` timestamp (tools/mass_arm.py, unchanged; checked by diff). The re-run normalises
+     that line and reads IDENTICAL in every respect;
+   - no training log of these default boxes holds a "v2d FC_DR_RESET" line (EG 4 / 4, ES 1 / 1, E2 1 / 1).
+
+   glock_public.sh's public path (SPLIT=public) is not re-run here. Its diff is the FC_DR_PATCH block, run only when
+   FC_DR_PATCH=1, and the drs-prefix branch, reached only by a `drs<seed>` PERC (which no existing caller passes), plus
+   comments.
+6. `bash -n` passes on the 10 changed or new shell scripts, and py_compile on 12 Python files (the 6 new tools, the
+   ported patch, the 4 mock scripts and the fixture test)
+   (`cpu/out/syntax.txt`).
 
 ## Findings, deviations and risks (for the orchestrator)
 1. **FC_DR_SKIP_IMMEDIATE is ported (4e5c8a0).** The standard-learner boxes can launch with the grasp-lock box. The

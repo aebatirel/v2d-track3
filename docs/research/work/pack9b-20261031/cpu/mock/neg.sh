@@ -12,7 +12,9 @@
 #   N8 glock_public.sh PERC drs42 on SPLIT=eval without FC_DR_PATCH -> refused for that pair (no training)
 #  confirmation side (the merge's h5_reeval.sh job string, altered):
 #   C1 a D reference copy not pulled (RUNS_EXTRA without ep16) -> dr_pack_check refuses before the kit evaluator
-#   C2 DR_EPS lists 14 but PICK_EXTRA keeps the packed eval-14 checkpoint -> refused ("the D PICK did not take")
+#   C2 DR_EPS lists 14 but PICK_EXTRA keeps the packed eval-14 checkpoint -> refused before the kit evaluator (with
+#      KEEP_RESULTS the packed checkpoint's pack-6 rollout is kept, so dr_pack_check finds 14 "in DR_EPS but not evaluated
+#      here"; without KEEP_RESULTS it would read "the D PICK did not take")
 #   C3 the verdict without the pack-check files (a box run without DR_EPS) -> every candidate INVALID
 #   C4 the verdict with a packed-side H5p7 draw replaced by another checkpoint's rollout -> that episode INVALID
 MS=$1; OUT=$2; M=$(cd $(dirname $0) && pwd); mkdir -p $OUT; R=/home/user/v2d-track3; : > $OUT/neg.txt
@@ -38,7 +40,7 @@ v=$(vstat); res N6 $(echo "$v" | grep -q 'ep30 INVALID.*without the skip-immedia
 box N7 20261101-drN7-mocksha 'mkdir -p /content/runs/perc2x/ep9-s42 && echo "a training without D" > /content/runs/perc2x/ep9-s42/train.log; ARM=dr MODE=std EPS="30" SEEDS="43" bash ops/jobs/mass_eval.sh'
 v=$(vstat); res N7 $(echo "$v" | grep -q 'ep30 INVALID.*non-D trainings on this D box' && echo PASS || echo FAIL) "$v"
 box N8 20261101-drN8-mocksha 'SPLIT=eval NREP=1 PAIRS="14:local:mck:drs42" LIB=/content/v2d-track3/meshes/library_v3 bash ops/jobs/glock_public.sh'
-g=$(J | grep -c 'PERC drs42 (D arm) with SPLIT=eval needs RUN local, REQUIRE_REUSE=1 and FC_DR_PATCH=1'); res N8 $([ "$g" = 1 ] && [ "$(ntrain)" = 0 ] && [ "$(grep -c patch_flashchord_dr $MS/box/patch_audit.log 2> /dev/null || echo 0)" = 0 ] && echo PASS || echo FAIL) "$(J | grep 'drs42' | tail -1 | cut -c1-200)"
+g=$(J | grep -c 'PERC drs42 (D arm) with SPLIT=eval needs RUN local, REQUIRE_REUSE=1 and FC_DR_PATCH=1'); res N8 $([ "$g" = 1 ] && [ "$(ntrain)" = 0 ] && [ "$(cat $MS/box/patch_audit.log 2> /dev/null | grep -c patch_flashchord_dr)" = 0 ] && echo PASS || echo FAIL) "$(J | grep 'drs42' | tail -1 | cut -c1-200)"
 CONF=$(cat $OUT/../outA/mock_confirmation_job.txt 2> /dev/null || cat $OUT/mock_confirmation_job.txt)
 C1=$(echo "$CONF" | sed 's# [^ "]*@refs/drs[0-9]*_glockt/ep16##')
 box C1 20261101-drNC1-mocksha "$C1"
@@ -46,8 +48,8 @@ g=$(J | grep -c 'dr_pack_check: REFUSED'); k=$(cat $MS/box/kit_audit.log 2> /dev
 res C1 $([ "$g" -ge 1 ] && [ "$k" = 0 ] && echo PASS || echo FAIL) "kit evaluations $k; $(J | grep 'dr_pack_check: REFUSED' | head -1 | cut -c1-220)"
 C2=$(echo "$CONF" | sed 's# 14:[^ "]*:ck=results/drs[0-9]*_glock_public/ep14/best/policy.safetensors##')
 box C2 20261101-drNC2-mocksha "$C2"
-g=$(J | grep -c 'the D PICK did not take'); k=$(cat $MS/box/kit_audit.log 2> /dev/null | wc -l)
-res C2 $([ "$g" -ge 1 ] && [ "$k" = 0 ] && echo PASS || echo FAIL) "kit evaluations $k; $(J | grep -o 'ep14: the checkpoint to evaluate is the packed one[^|]*' | head -1)"
+g=$(J | grep -c 'dr_pack_check: REFUSED (1): ep14: \(in DR_EPS but not evaluated here\|the checkpoint to evaluate is the packed one\)'); k=$(cat $MS/box/kit_audit.log 2> /dev/null | wc -l)
+res C2 $([ "$g" -ge 1 ] && [ "$k" = 0 ] && echo PASS || echo FAIL) "kit evaluations $k; $(J | grep -o 'REFUSED (1): ep14: [^:]*' | head -1)"
 A=$OUT/../outA; TABM=$MS/tmpl/content/v2d-track3/docs/research/work/masses-eval-20261031/packed_refs.json
 SC=$(for e in 14 16 25 30 33; do printf -- '--score %s ' $A/score_ep$e.json; done)
 $P -I $R/tools/dr_verdict.py --merge $A/mock_merge.json --table $TABM $SC --out $OUT/neg_C3.json > $OUT/neg_C3.txt 2>&1

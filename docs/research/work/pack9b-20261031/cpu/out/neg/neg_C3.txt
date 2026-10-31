@@ -1,0 +1,6 @@
+ep14 INVALID :: pack-side check files: 0 of 2 (before draw 1 and before draws 2..N; PREREG 3) :: new 0.8797 (n 10, RPE med 3.4779, fails 0) vs packed 0.8816 (n 10, RPE med 3.4022, fails 0)
+ep16 INVALID :: pack-side check files: 0 of 2 (before draw 1 and before draws 2..N; PREREG 3) :: new 0.843 (n 10, RPE med 1.6783, fails 2) vs packed 0.8412 (n 10, RPE med 1.7109, fails 2)
+ep25 INVALID :: pack-side check files: 0 of 2 (before draw 1 and before draws 2..N; PREREG 3) :: new 0.894 (n 10, RPE med 2.8381, fails 0) vs packed 0.764 (n 10, RPE med 2.915, fails 4)
+ep30 INVALID :: pack-side check files: 0 of 2 (before draw 1 and before draws 2..N; PREREG 3) :: new 0.8052 (n 10, RPE med 2.9636, fails 4) vs packed 0.8678 (n 10, RPE med 2.7439, fails 2)
+ep33 INVALID :: pack-side check files: 0 of 2 (before draw 1 and before draws 2..N; PREREG 3) :: new 0.9382 (n 10, RPE med 1.9226, fails 0) vs packed 0.8725 (n 10, RPE med 1.9391, fails 0)
+pack 9b swaps (PASS): none

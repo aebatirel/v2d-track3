@@ -5405,3 +5405,7 @@ Advice given:
   table plane on eval 25. Neither affects tonight's D cells (packed configuration).
 - Recipe screen complete (determined-wright, c20c94a): K inconclusive, D inconclusive (mean +0.049; sd falls on ep12
   only), S no signal; the targeted D cells still rest on the per-episode swap rule.
+- ~22:25 UTC determined-wright [M]: FlashCHORD training under sim=rl (njmax 512/world) overflows constraint rows on
+  public ep2 (0.36–0.61 M "nefc overflow" lines, requests up to 948) and ep12 (13k), control included; 0 overflow lines in
+  50 stored scored draws (scoring unaffected). [H] dropped constraints may hurt learning on contact-rich scenes. Candidate
+  (later, not tonight): grep packed eval train.logs; a sim.njmax=1024 training variant if an eval episode overflows heavily.
