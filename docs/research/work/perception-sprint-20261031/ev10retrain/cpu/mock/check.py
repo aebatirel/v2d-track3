@@ -1,10 +1,11 @@
-"""Assertions on one eval-10 V4p retrain mock run (2026-10-31). Usage: check.py MR EXPECT [RUN_ID] [--rerun SEEDS]
+"""Assertions on one eval-10 V4p retrain mock run (2026-10-31). Usage: check.py MR EXPECT [RUN_ID] [--rerun SEEDS] [--b0 IDENTICAL|DIFFERS]
 EXPECT: SWAP-ELIGIBLE | NO-SWAP | INCOMPLETE | INVALID (a verdict run, rc 0) or STOP:<substring of the STOPPED reason> (rc 1).
 Prints one line per check and a JSON summary; exit 1 if any check fails."""
 import glob, json, os, sys
 MR, EXPECT = sys.argv[1], sys.argv[2]
 RID = sys.argv[3] if len(sys.argv) > 3 and not sys.argv[3].startswith('--') else '20261031-e10v-mocksha'
 RERUN = sys.argv[sys.argv.index('--rerun') + 1].split() if '--rerun' in sys.argv else None
+B0 = sys.argv[sys.argv.index('--b0') + 1] if '--b0' in sys.argv else 'IDENTICAL'
 C = f'{MR}/content'; G = f'{C}/results/ev10_v4p'; ST = f'{MR}/store/runs/{RID}'
 GL = '--single_hand 1 --mcp_first 1 --close 10 --palm_clear -0.001 --wrap_where_held 1 --snap 1 --approach_cm 15'.split()
 res, bad = [], []
@@ -61,9 +62,10 @@ else:
         ok(f's{s}: every CLI training key equals the packed gl10A2 config', not x['cli_vs_packed_mismatch'],
            f"{x['cli_vs_packed_mismatch']} compared {x['cli_keys_compared']}")
     if not RERUN:
-        ok('V4p track rebuilt here: B0 IDENTICAL (same CPU / venvs as the expectation)', V['b0_band'] == 'IDENTICAL', V['b0_band'])
-        ok('mkref ran once on the V4p track (md5 fa449903...) with the eval-10 cache and the stored hands, SPLIT=eval',
-           len(mk) == 1 and mk[0]['poses_md5'] == 'fa449903630d6bb42dd79131331f4b6b' and mk[0]['depth'].endswith('cache/depth/eval/ep10/depths_fs0.5.npy')
+        b0 = json.load(open(f'{G}/b0.json'))
+        ok(f'V4p track rebuilt here: B0 {B0}', V['b0_band'] == B0, V['b0_band'])
+        ok('mkref ran once on the box\'s V4p track (md5 = B0\'s md5_box) with the eval-10 cache and the stored hands, SPLIT=eval',
+           len(mk) == 1 and mk[0]['poses_md5'] == b0['md5_box'] and mk[0]['depth'].endswith('cache/depth/eval/ep10/depths_fs0.5.npy')
            and mk[0]['hands_md5'] == '419c230800b727240663597916cba59e' and mk[0]['split'] == 'eval', mk)
         gls = [y for y in ra if y['stage'] == 'grasp_lock.py']
         ok('grasp-lock reference stages ran once (+ re-plan check) with the gl10A2 GL_ARGS and kp 400',

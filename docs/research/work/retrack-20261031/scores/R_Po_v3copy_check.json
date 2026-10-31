@@ -1,0 +1,526 @@
+{
+ "kind": "score",
+ "rule": "R = registered ADD-AUC vs mocap, lib convention (kit registration of the mesh the arm tracked with onto the public scan); RPE / MPPE (cm) on the same chain. ORACLE scoring (reads mocap), public episodes, after inference.",
+ "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po",
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "lib_ep_dir": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy",
+ "episodes": {
+  "0": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep0/poses_world_vo.npz",
+   "track_md5": "7228d31020167995daa984aa967f5dd3",
+   "frames": 373,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "AUC": 0.962,
+   "per_obj_AUC": {
+    "white_pot": 0.9904,
+    "white_pot_lid": 0.9335
+   },
+   "RPE_cm": 1.3825,
+   "MPPE_cm": 1.0684,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep0/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    },
+    "white_pot_lid": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep0/white_pot_lid.glb",
+     "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+     "source": "episode"
+    }
+   }
+  },
+  "2": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep2/poses_world_vo.npz",
+   "track_md5": "1ac3c32a5d6ad9c7c31896f05c5d0c23",
+   "frames": 343,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "AUC": 0.9866,
+   "per_obj_AUC": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.9807
+   },
+   "RPE_cm": 1.4386,
+   "MPPE_cm": 0.709,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep2/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    },
+    "white_pot_lid": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep2/white_pot_lid.glb",
+     "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+     "source": "episode"
+    }
+   }
+  },
+  "11": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep11/poses_world_vo.npz",
+   "track_md5": "6e2c2ff5fd0ea38c0b0f21b4783048a4",
+   "frames": 137,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "AUC": 0.8978,
+   "per_obj_AUC": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9334
+   },
+   "RPE_cm": 1.739,
+   "MPPE_cm": 1.6375,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep11/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "beige_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep11/beige_cup.glb",
+     "md5": "6226281f120192c52bffec7680fa9d8f",
+     "source": "episode"
+    }
+   }
+  },
+  "12": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep12/poses_world_vo.npz",
+   "track_md5": "abc2f9047edbcc8db21ad743693ca6d6",
+   "frames": 181,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.9662,
+   "per_obj_AUC": {
+    "blue_cup": 0.9327,
+    "plastic_dish_rack": 0.9997
+   },
+   "RPE_cm": 1.1393,
+   "MPPE_cm": 0.961,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep12/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep12/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "episode"
+    }
+   }
+  },
+  "13": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep13/poses_world_vo.npz",
+   "track_md5": "75eb0008b7ce02e47f97ee1fd21330f6",
+   "frames": 190,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.9595,
+   "per_obj_AUC": {
+    "blue_cup": 0.9329,
+    "plastic_dish_rack": 0.9862
+   },
+   "RPE_cm": 1.3872,
+   "MPPE_cm": 1.0683,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep13/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep13/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "episode"
+    }
+   }
+  },
+  "18": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep18/poses_world_vo.npz",
+   "track_md5": "b21f81a203f6451276a41f968bed2b28",
+   "frames": 353,
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "AUC": 0.9144,
+   "per_obj_AUC": {
+    "mini_sweeper": 0.8978,
+    "mini_dust_pan": 0.9309
+   },
+   "RPE_cm": 4.0676,
+   "MPPE_cm": 1.6322,
+   "meshes": {
+    "mini_sweeper": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep18/mini_sweeper.glb",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "source": "episode"
+    },
+    "mini_dust_pan": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep18/mini_dust_pan.glb",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "source": "episode"
+    }
+   }
+  },
+  "21": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep21/poses_world_vo.npz",
+   "track_md5": "fd264afe35bfd70c759726238fc98eb0",
+   "frames": 186,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "AUC": 0.8325,
+   "per_obj_AUC": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6835
+   },
+   "RPE_cm": 1.2549,
+   "MPPE_cm": 2.1483,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep21/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "water_pitcher": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep21/water_pitcher.glb",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "source": "episode"
+    }
+   }
+  },
+  "22": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep22/poses_world_vo.npz",
+   "track_md5": "e54e6dd81b8b288790cfc7d1e0316fe6",
+   "frames": 189,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "AUC": 0.8707,
+   "per_obj_AUC": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.749
+   },
+   "RPE_cm": 1.2229,
+   "MPPE_cm": 1.8084,
+   "meshes": {
+    "blue_cup": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep22/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "episode"
+    },
+    "water_pitcher": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep22/water_pitcher.glb",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "source": "episode"
+    }
+   }
+  },
+  "23": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep23/poses_world_vo.npz",
+   "track_md5": "ab309a9f5b515329d885944afcc60445",
+   "frames": 325,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "AUC": 0.0414,
+   "per_obj_AUC": {
+    "wooden_piece_1": 0.0829,
+    "wooden_piece_2": 0.0
+   },
+   "RPE_cm": 14.1797,
+   "MPPE_cm": 15.5817,
+   "meshes": {
+    "wooden_piece_1": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep23/wooden_piece_1.glb",
+     "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "source": "episode"
+    },
+    "wooden_piece_2": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep23/wooden_piece_2.glb",
+     "md5": "825a7fe364d280603f36226595137f43",
+     "source": "episode"
+    }
+   }
+  },
+  "24": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep24/poses_world_vo.npz",
+   "track_md5": "9c40fe260d47449f2cd155bb07d3f89d",
+   "frames": 275,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "AUC": 0.8117,
+   "per_obj_AUC": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.847
+   },
+   "RPE_cm": 0.9832,
+   "MPPE_cm": 2.36,
+   "meshes": {
+    "wooden_piece_1": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep24/wooden_piece_1.glb",
+     "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "source": "episode"
+    },
+    "wooden_piece_2": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep24/wooden_piece_2.glb",
+     "md5": "825a7fe364d280603f36226595137f43",
+     "source": "episode"
+    }
+   }
+  },
+  "26": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep26/poses_world_vo.npz",
+   "track_md5": "19929d5d89745857ff7dc85e332ee5c9",
+   "frames": 158,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "AUC": 0.9717,
+   "per_obj_AUC": {
+    "plastic_dish_rack": 0.9953,
+    "white_pot": 0.9482
+   },
+   "RPE_cm": 1.2928,
+   "MPPE_cm": 0.8393,
+   "meshes": {
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep26/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "episode"
+    },
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep26/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  },
+  "27": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep27/poses_world_vo.npz",
+   "track_md5": "66f0d115bc7d15c23fe01a46eaf4af8f",
+   "frames": 246,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "AUC": 0.9605,
+   "per_obj_AUC": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.921
+   },
+   "RPE_cm": 1.155,
+   "MPPE_cm": 0.7881,
+   "meshes": {
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep27/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "episode"
+    },
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep27/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  },
+  "31": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep31/poses_world_vo.npz",
+   "track_md5": "8a632780cbb73d0aca229dbf832f44e0",
+   "frames": 290,
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.7998,
+   "per_obj_AUC": {
+    "mini_sweeper": 0.9121,
+    "plastic_dish_rack": 0.6875
+   },
+   "RPE_cm": 1.9084,
+   "MPPE_cm": 2.0276,
+   "meshes": {
+    "mini_sweeper": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep31/mini_sweeper.glb",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "source": "episode"
+    },
+    "plastic_dish_rack": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep31/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "episode"
+    }
+   }
+  },
+  "39": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep39/poses_world_vo.npz",
+   "track_md5": "e11faf63aeed0e8f0df28b35fd88ba9c",
+   "frames": 319,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "AUC": 0.9602,
+   "per_obj_AUC": {
+    "mini_dust_pan": 0.9602
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 1.0277,
+   "meshes": {
+    "mini_dust_pan": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep39/mini_dust_pan.glb",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "source": "episode"
+    }
+   }
+  },
+  "40": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep40/poses_world_vo.npz",
+   "track_md5": "448038e2e6c9769228df054875f12f83",
+   "frames": 260,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "AUC": 0.957,
+   "per_obj_AUC": {
+    "mini_dust_pan": 0.957
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 0.9009,
+   "meshes": {
+    "mini_dust_pan": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep40/mini_dust_pan.glb",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "source": "episode"
+    }
+   }
+  },
+  "41": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep41/poses_world_vo.npz",
+   "track_md5": "10a2bf097632ab970cdf33d1b6549b26",
+   "frames": 299,
+   "objects": [
+    "white_pot"
+   ],
+   "AUC": 0.991,
+   "per_obj_AUC": {
+    "white_pot": 0.991
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 0.6034,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep41/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  },
+  "42": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep42/poses_world_vo.npz",
+   "track_md5": "6930e2aec6424721a64bb735ce599d68",
+   "frames": 257,
+   "objects": [
+    "white_pot"
+   ],
+   "AUC": 0.9903,
+   "per_obj_AUC": {
+    "white_pot": 0.9903
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 0.5922,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep42/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  },
+  "43": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep43/poses_world_vo.npz",
+   "track_md5": "7d83627797f3890554208cfc575c263f",
+   "frames": 326,
+   "objects": [
+    "white_pot"
+   ],
+   "AUC": 0.9477,
+   "per_obj_AUC": {
+    "white_pot": 0.9477
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 1.0497,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep43/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  },
+  "44": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep44/poses_world_vo.npz",
+   "track_md5": "7e7b92023c37b6199463eef51184f4ae",
+   "frames": 249,
+   "objects": [
+    "white_pot"
+   ],
+   "AUC": 0.9967,
+   "per_obj_AUC": {
+    "white_pot": 0.9967
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 0.4736,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep44/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  },
+  "45": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po/ep45/poses_world_vo.npz",
+   "track_md5": "24bd878dda75268d0495eca0f7c22f5e",
+   "frames": 290,
+   "objects": [
+    "white_pot"
+   ],
+   "AUC": 0.9795,
+   "per_obj_AUC": {
+    "white_pot": 0.9795
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 0.7205,
+   "meshes": {
+    "white_pot": {
+     "path": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/v3copy/ep45/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "episode"
+    }
+   }
+  }
+ },
+ "mean": {
+  "AUC": 0.88986,
+  "RPE_cm": 1.65755,
+  "MPPE_cm": 1.89989,
+  "n": 20
+ }
+}

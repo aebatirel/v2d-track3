@@ -1,0 +1,288 @@
+{
+ "kind": "score",
+ "rule": "R = registered ADD-AUC vs mocap, lib convention (kit registration of the mesh the arm tracked with onto the public scan); RPE / MPPE (cm) on the same chain. ORACLE scoring (reads mocap), public episodes, after inference.",
+ "perc": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2",
+ "lib": "/home/user/v2d-track3/meshes/library_v3",
+ "lib_ep_dir": null,
+ "episodes": {
+  "2": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep2/poses_world_vo.npz",
+   "track_md5": "1ac3c32a5d6ad9c7c31896f05c5d0c23",
+   "frames": 343,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "AUC": 0.9866,
+   "per_obj_AUC": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.9807
+   },
+   "RPE_cm": 1.4386,
+   "MPPE_cm": 0.709,
+   "meshes": {
+    "white_pot": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "library"
+    },
+    "white_pot_lid": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+     "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+     "source": "library"
+    }
+   }
+  },
+  "11": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep11/poses_world_vo.npz",
+   "track_md5": "6e2c2ff5fd0ea38c0b0f21b4783048a4",
+   "frames": 137,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "AUC": 0.8978,
+   "per_obj_AUC": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9334
+   },
+   "RPE_cm": 1.739,
+   "MPPE_cm": 1.6375,
+   "meshes": {
+    "blue_cup": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "library"
+    },
+    "beige_cup": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/beige_cup.glb",
+     "md5": "6226281f120192c52bffec7680fa9d8f",
+     "source": "library"
+    }
+   }
+  },
+  "12": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep12/poses_world_vo.npz",
+   "track_md5": "c89b2d7d612631c4e797f7f303f17d26",
+   "frames": 181,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.9672,
+   "per_obj_AUC": {
+    "blue_cup": 0.9347,
+    "plastic_dish_rack": 0.9997
+   },
+   "RPE_cm": 1.1417,
+   "MPPE_cm": 0.9435,
+   "meshes": {
+    "blue_cup": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "library"
+    },
+    "plastic_dish_rack": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "library"
+    }
+   }
+  },
+  "13": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep13/poses_world_vo.npz",
+   "track_md5": "faa4d588586a4dc9ef37c8b39c648319",
+   "frames": 190,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.9612,
+   "per_obj_AUC": {
+    "blue_cup": 0.9299,
+    "plastic_dish_rack": 0.9924
+   },
+   "RPE_cm": 1.3837,
+   "MPPE_cm": 1.056,
+   "meshes": {
+    "blue_cup": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "library"
+    },
+    "plastic_dish_rack": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "library"
+    }
+   }
+  },
+  "18": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep18/poses_world_vo.npz",
+   "track_md5": "b21f81a203f6451276a41f968bed2b28",
+   "frames": 353,
+   "objects": [
+    "mini_sweeper",
+    "mini_dust_pan"
+   ],
+   "AUC": 0.9144,
+   "per_obj_AUC": {
+    "mini_sweeper": 0.8978,
+    "mini_dust_pan": 0.9309
+   },
+   "RPE_cm": 4.0676,
+   "MPPE_cm": 1.6322,
+   "meshes": {
+    "mini_sweeper": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "source": "library"
+    },
+    "mini_dust_pan": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/mini_dust_pan.glb",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "source": "library"
+    }
+   }
+  },
+  "21": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep21/poses_world_vo.npz",
+   "track_md5": "1e5fc9366e5b9f99f3fb119c0548e159",
+   "frames": 186,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "AUC": 0.8332,
+   "per_obj_AUC": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6848
+   },
+   "RPE_cm": 1.2547,
+   "MPPE_cm": 2.1406,
+   "meshes": {
+    "blue_cup": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/blue_cup.glb",
+     "md5": "7542631493e3a0564f6d74009de67d54",
+     "source": "library"
+    },
+    "water_pitcher": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/water_pitcher.glb",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "source": "library"
+    }
+   }
+  },
+  "24": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep24/poses_world_vo.npz",
+   "track_md5": "9c40fe260d47449f2cd155bb07d3f89d",
+   "frames": 275,
+   "objects": [
+    "wooden_piece_1",
+    "wooden_piece_2"
+   ],
+   "AUC": 0.8117,
+   "per_obj_AUC": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.847
+   },
+   "RPE_cm": 0.9832,
+   "MPPE_cm": 2.36,
+   "meshes": {
+    "wooden_piece_1": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_1.glb",
+     "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "source": "library"
+    },
+    "wooden_piece_2": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/wooden_piece_2.glb",
+     "md5": "825a7fe364d280603f36226595137f43",
+     "source": "library"
+    }
+   }
+  },
+  "27": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep27/poses_world_vo.npz",
+   "track_md5": "b672853e791e128caf6a331e68a9af6d",
+   "frames": 246,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "AUC": 0.9741,
+   "per_obj_AUC": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.9482
+   },
+   "RPE_cm": 1.1473,
+   "MPPE_cm": 0.6724,
+   "meshes": {
+    "plastic_dish_rack": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "library"
+    },
+    "white_pot": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "source": "library"
+    }
+   }
+  },
+  "31": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep31/poses_world_vo.npz",
+   "track_md5": "ebea46ce833644ca227929a40ecc5691",
+   "frames": 290,
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "AUC": 0.7998,
+   "per_obj_AUC": {
+    "mini_sweeper": 0.9121,
+    "plastic_dish_rack": 0.6875
+   },
+   "RPE_cm": 1.9137,
+   "MPPE_cm": 2.0302,
+   "meshes": {
+    "mini_sweeper": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/mini_sweeper.glb",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "source": "library"
+    },
+    "plastic_dish_rack": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+     "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+     "source": "library"
+    }
+   }
+  },
+  "39": {
+   "track": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po2/ep39/poses_world_vo.npz",
+   "track_md5": "e11faf63aeed0e8f0df28b35fd88ba9c",
+   "frames": 319,
+   "objects": [
+    "mini_dust_pan"
+   ],
+   "AUC": 0.9602,
+   "per_obj_AUC": {
+    "mini_dust_pan": 0.9602
+   },
+   "RPE_cm": 0.0,
+   "MPPE_cm": 1.0277,
+   "meshes": {
+    "mini_dust_pan": {
+     "path": "/home/user/v2d-track3/meshes/library_v3/mini_dust_pan.glb",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "source": "library"
+    }
+   }
+  }
+ },
+ "mean": {
+  "AUC": 0.91062,
+  "RPE_cm": 1.50695,
+  "MPPE_cm": 1.42091,
+  "n": 10
+ }
+}

@@ -1,0 +1,114 @@
+{
+ "episode": 45,
+ "objects": [
+  "white_pot"
+ ],
+ "T": 290,
+ "run_id": "20261030-orcP1a-87fc869",
+ "commit": "87fc869c24cec3cd1b90864ef3924b8e373639f3",
+ "oracle": [
+  "perc2scan (scan templates = ground-truth geometry)"
+ ],
+ "inputs": {
+  "episode": 45,
+  "objects": [
+   "white_pot"
+  ],
+  "T": 290,
+  "depth": {
+   "store": "cache/depth/public/ep45/depths_fs0.5.npy",
+   "path": "/workspace/hfstore/cache/depth/public/ep45/depths_fs0.5.npy",
+   "bytes": 1856000128,
+   "bytes_expected": 1856000128,
+   "shape": [
+    290,
+    1000,
+    1600
+   ],
+   "dtype": "float32",
+   "stat": "3504488164 1856000128 1793386377",
+   "usable": true,
+   "frame0_sha256": "20c9c436f5367faf9e3d42c57146fa0853d7c8cce96389329f547c78b7cc065d",
+   "frame0_sha256_expected": "20c9c436f5367faf9e3d42c57146fa0853d7c8cce96389329f547c78b7cc065d",
+   "frame0_valid_frac": 0.6557,
+   "depth0_npy_md5": "2294f7d0d0bb3b09df0901419a181223",
+   "matches_refine_inputs": true
+  },
+  "hands": {
+   "store_dir": "runs/20261025-g1-022fece/refs/perc2m/ep45",
+   "hands.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep45/hands.npz",
+    "md5_expected": "e0a5c9db91ea02b99bbdee8763729015",
+    "md5": "e0a5c9db91ea02b99bbdee8763729015",
+    "md5_ok": true,
+    "frames": [
+     290,
+     290
+    ]
+   },
+   "hands_refined.npz": {
+    "store": "runs/20261025-g1-022fece/refs/perc2m/ep45/hands_refined.npz",
+    "md5_expected": "04cac8094d6ece174f7af6a546d13085",
+    "md5": "04cac8094d6ece174f7af6a546d13085",
+    "md5_ok": true,
+    "frames": [
+     290,
+     290
+    ]
+   }
+  },
+  "ok": true,
+  "problems": []
+ },
+ "arms": {
+  "perc2": {
+   "arm": "o",
+   "folder": "perc2",
+   "rc": 0,
+   "seconds": 38,
+   "mesh_dir": "/content/v2d-track3/meshes/library_v3",
+   "templates": {
+    "white_pot": {
+     "path": "/content/v2d-track3/meshes/library_v3/white_pot.glb",
+     "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+     "scan": false
+    }
+   },
+   "template_kind": "library",
+   "gdino": true,
+   "depth_ready_s": 1.6,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true
+  },
+  "perc2scan": {
+   "arm": "s",
+   "folder": "perc2scan",
+   "rc": 0,
+   "seconds": 41,
+   "mesh_dir": "<unset>",
+   "templates": {
+    "white_pot": {
+     "path": "/content/t3/mesh/white_pot/white_pot.glb",
+     "md5": "8604f60411ee7424fd68d7ca6f0d1271",
+     "scan": true
+    }
+   },
+   "template_kind": "scan",
+   "gdino": true,
+   "depth_ready_s": 1.6,
+   "depth_stat_unchanged": true,
+   "depth_reused": true,
+   "objects_ok": true,
+   "poses_ok": true,
+   "world_vo_maxdiff": 0.0,
+   "ok": true,
+   "camera_maxdiff_vs_perc2": 0.0
+  }
+ },
+ "gt_files": "result.json and log.txt of every arm hold mocap scores (perc2 scoring block); poses.npz, poses_world_vo.npz, vo.json, perc_log_inference.txt do not; bundle_ep<N>_oracle.tar leaves both out (they stay in the folder push for diagnostics)",
+ "ok": true
+}

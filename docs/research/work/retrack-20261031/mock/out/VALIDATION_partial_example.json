@@ -1,0 +1,2624 @@
+{
+ "tool": "tools/rtk_mesh_check.py check",
+ "time": "2026-10-31T18:49:40Z",
+ "commit": "e618f5c380216ffc13f1623fe2991d2a1b55a279",
+ "dir": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial",
+ "tsv": "docs/research/work/leak-decomp-20261030/phase1/inputs.tsv",
+ "library": "/home/user/v2d-track3/meshes/library_v3",
+ "status": "flagged",
+ "hard_failures": [],
+ "flags": [
+  "ep13/plastic_dish_rack.glb: frame: surface centroid moved 10.0 mm > 5.0",
+  "ep13/plastic_dish_rack.glb: frame: ICP corrects 9.99 mm / 0.002 deg (limits 5.0 mm / 5.0 deg)",
+  "ep13/plastic_dish_rack.glb: frame: kit-registration proxy moves the body 10.0 mm > 5.0"
+ ],
+ "manifest": {
+  "md5": "5419320315543797e07a92650ff6932a",
+  "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3"
+ },
+ "guard": {
+  "rc": 0,
+  "out": "no_oracle: 1 inputs checked, none oracle-derived"
+ },
+ "files": {
+  "ep0/white_pot.glb": {
+   "episode": 0,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep0/white_pot_lid.glb": {
+   "episode": 0,
+   "object": "white_pot_lid",
+   "slot": 1,
+   "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+   "sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+   "bytes": 195652,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 4862,
+   "faces": 9732,
+   "extent_mm": [
+    51.88,
+    189.49,
+    184.99
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep11/blue_cup.glb": {
+   "episode": 11,
+   "object": "blue_cup",
+   "slot": 0,
+   "md5": "7542631493e3a0564f6d74009de67d54",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "bytes": 240760,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 5991,
+   "faces": 11986,
+   "extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep12/blue_cup.glb": {
+   "episode": 12,
+   "object": "blue_cup",
+   "slot": 0,
+   "md5": "7542631493e3a0564f6d74009de67d54",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "bytes": 240760,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 5991,
+   "faces": 11986,
+   "extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep12/plastic_dish_rack.glb": {
+   "episode": 12,
+   "object": "plastic_dish_rack",
+   "slot": 1,
+   "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+   "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "bytes": 659028,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 16438,
+   "faces": 32912,
+   "extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep13/blue_cup.glb": {
+   "episode": 13,
+   "object": "blue_cup",
+   "slot": 0,
+   "md5": "7542631493e3a0564f6d74009de67d54",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "bytes": 240760,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 5991,
+   "faces": 11986,
+   "extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep13/plastic_dish_rack.glb": {
+   "episode": 13,
+   "object": "plastic_dish_rack",
+   "slot": 1,
+   "md5": "dd5fbcaaa6ec1951db4cbc4065f4753c",
+   "sha256": "65d99e20914105e0d67609d29c4dccb65479e98f8e90cbb81a979f6ada4ba098",
+   "bytes": 659028,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 16438,
+   "faces": 32912,
+   "extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": [
+    "surface centroid moved 10.0 mm > 5.0",
+    "ICP corrects 9.99 mm / 0.002 deg (limits 5.0 mm / 5.0 deg)",
+    "kit-registration proxy moves the body 10.0 mm > 5.0"
+   ]
+  },
+  "ep2/white_pot.glb": {
+   "episode": 2,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "cd5bf99ec5e701508d64011dc0040d5c",
+   "sha256": "414c0baac87db0f7a1ce05ff67336d0b7ea73f017e9936cfefa12a1a1c7ecf34",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    133.08,
+    189.87,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.016,
+    0.9972,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep2/white_pot_lid.glb": {
+   "episode": 2,
+   "object": "white_pot_lid",
+   "slot": 1,
+   "md5": "a1e89f0ba08dfe568e64f7cbb275c671",
+   "sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+   "bytes": 195652,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 4862,
+   "faces": 9732,
+   "extent_mm": [
+    51.88,
+    189.49,
+    184.99
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep21/blue_cup.glb": {
+   "episode": 21,
+   "object": "blue_cup",
+   "slot": 0,
+   "md5": "7542631493e3a0564f6d74009de67d54",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "bytes": 240760,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 5991,
+   "faces": 11986,
+   "extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep22/blue_cup.glb": {
+   "episode": 22,
+   "object": "blue_cup",
+   "slot": 0,
+   "md5": "7542631493e3a0564f6d74009de67d54",
+   "sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "bytes": 240760,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 5991,
+   "faces": 11986,
+   "extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep26/plastic_dish_rack.glb": {
+   "episode": 26,
+   "object": "plastic_dish_rack",
+   "slot": 0,
+   "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+   "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "bytes": 659028,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 16438,
+   "faces": 32912,
+   "extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep26/white_pot.glb": {
+   "episode": 26,
+   "object": "white_pot",
+   "slot": 1,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep27/plastic_dish_rack.glb": {
+   "episode": 27,
+   "object": "plastic_dish_rack",
+   "slot": 0,
+   "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+   "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "bytes": 659028,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 16438,
+   "faces": 32912,
+   "extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep27/white_pot.glb": {
+   "episode": 27,
+   "object": "white_pot",
+   "slot": 1,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep31/plastic_dish_rack.glb": {
+   "episode": 31,
+   "object": "plastic_dish_rack",
+   "slot": 1,
+   "md5": "e6835614899250bf2a1a6ca3ae56bc4c",
+   "sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "bytes": 659028,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 16438,
+   "faces": 32912,
+   "extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep41/white_pot.glb": {
+   "episode": 41,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep42/white_pot.glb": {
+   "episode": 42,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep43/white_pot.glb": {
+   "episode": 43,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep44/white_pot.glb": {
+   "episode": 44,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  },
+  "ep45/white_pot.glb": {
+   "episode": 45,
+   "object": "white_pot",
+   "slot": 0,
+   "md5": "b97d460ae26d6ced15ebe53f7addc10c",
+   "sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "bytes": 475632,
+   "gltf": {
+    "nodes": 1,
+    "meshes": 1,
+    "extensionsUsed": []
+   },
+   "vertices": 11859,
+   "faces": 23734,
+   "extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "sorted_extent_ratio_vs_library_v3": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "manifest_hashes_checked": [
+    "md5",
+    "sha256"
+   ],
+   "provenance_tier": "STUB tier (mock): byte copy of library_v3, tier P1 like library_v3",
+   "frame_flags": []
+  }
+ },
+ "coverage": {
+  "episodes_with_a_mesh": 15,
+  "meshes": 21,
+  "per_episode": {
+   "0": {
+    "objects": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "delivered": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "library_v3": []
+   },
+   "2": {
+    "objects": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "delivered": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "library_v3": []
+   },
+   "11": {
+    "objects": [
+     "blue_cup",
+     "beige_cup"
+    ],
+    "delivered": [
+     "blue_cup"
+    ],
+    "library_v3": [
+     "beige_cup"
+    ]
+   },
+   "12": {
+    "objects": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "delivered": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "library_v3": []
+   },
+   "13": {
+    "objects": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "delivered": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "library_v3": []
+   },
+   "18": {
+    "objects": [
+     "mini_sweeper",
+     "mini_dust_pan"
+    ],
+    "delivered": [],
+    "library_v3": [
+     "mini_sweeper",
+     "mini_dust_pan"
+    ]
+   },
+   "21": {
+    "objects": [
+     "blue_cup",
+     "water_pitcher"
+    ],
+    "delivered": [
+     "blue_cup"
+    ],
+    "library_v3": [
+     "water_pitcher"
+    ]
+   },
+   "22": {
+    "objects": [
+     "blue_cup",
+     "water_pitcher"
+    ],
+    "delivered": [
+     "blue_cup"
+    ],
+    "library_v3": [
+     "water_pitcher"
+    ]
+   },
+   "23": {
+    "objects": [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ],
+    "delivered": [],
+    "library_v3": [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ]
+   },
+   "24": {
+    "objects": [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ],
+    "delivered": [],
+    "library_v3": [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ]
+   },
+   "26": {
+    "objects": [
+     "plastic_dish_rack",
+     "white_pot"
+    ],
+    "delivered": [
+     "plastic_dish_rack",
+     "white_pot"
+    ],
+    "library_v3": []
+   },
+   "27": {
+    "objects": [
+     "plastic_dish_rack",
+     "white_pot"
+    ],
+    "delivered": [
+     "plastic_dish_rack",
+     "white_pot"
+    ],
+    "library_v3": []
+   },
+   "31": {
+    "objects": [
+     "mini_sweeper",
+     "plastic_dish_rack"
+    ],
+    "delivered": [
+     "plastic_dish_rack"
+    ],
+    "library_v3": [
+     "mini_sweeper"
+    ]
+   },
+   "39": {
+    "objects": [
+     "mini_dust_pan"
+    ],
+    "delivered": [],
+    "library_v3": [
+     "mini_dust_pan"
+    ]
+   },
+   "40": {
+    "objects": [
+     "mini_dust_pan"
+    ],
+    "delivered": [],
+    "library_v3": [
+     "mini_dust_pan"
+    ]
+   },
+   "41": {
+    "objects": [
+     "white_pot"
+    ],
+    "delivered": [
+     "white_pot"
+    ],
+    "library_v3": []
+   },
+   "42": {
+    "objects": [
+     "white_pot"
+    ],
+    "delivered": [
+     "white_pot"
+    ],
+    "library_v3": []
+   },
+   "43": {
+    "objects": [
+     "white_pot"
+    ],
+    "delivered": [
+     "white_pot"
+    ],
+    "library_v3": []
+   },
+   "44": {
+    "objects": [
+     "white_pot"
+    ],
+    "delivered": [
+     "white_pot"
+    ],
+    "library_v3": []
+   },
+   "45": {
+    "objects": [
+     "white_pot"
+    ],
+    "delivered": [
+     "white_pot"
+    ],
+    "library_v3": []
+   }
+  }
+ },
+ "frame_reports": [
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep0/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    9.94,
+    -0.3,
+    3.37
+   ],
+   "base_extent_mm": [
+    51.88,
+    189.49,
+    184.99
+   ],
+   "new_aabb_centre_mm": [
+    9.94,
+    -0.3,
+    3.37
+   ],
+   "new_extent_mm": [
+    51.88,
+    189.49,
+    184.99
+   ],
+   "base_centroid_mm": [
+    -3.81,
+    -3.19,
+    7.97
+   ],
+   "new_centroid_mm": [
+    -3.81,
+    -3.19,
+    7.97
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.257,
+    "p95": 0.537,
+    "max": 0.961,
+    "mean": 0.273
+   },
+   "sample_spacing_mm": 0.546,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.01,
+   "icp_median_after_mm": 0.256,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -1.857e-05,
+     -2.999e-05,
+     -1.6e-07
+    ],
+    [
+     1.857e-05,
+     0.99999999,
+     -0.00016616,
+     3.42e-06
+    ],
+    [
+     2.999e-05,
+     0.00016615,
+     0.99999999,
+     -1.263e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep0/white_pot_lid.glb",
+   "symmetry": "half-turn",
+   "library_v3_md5": "a1e89f0ba08dfe568e64f7cbb275c671"
+  },
+  {
+   "base_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "base_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "new_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "new_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "base_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "new_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.276,
+    "p95": 0.577,
+    "max": 1.05,
+    "mean": 0.295
+   },
+   "sample_spacing_mm": 0.589,
+   "icp_centroid_shift_mm": 0.02,
+   "icp_rotation_deg": 0.005,
+   "icp_median_after_mm": 0.275,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -8.446e-05,
+     9.2e-06,
+     3.51e-06
+    ],
+    [
+     8.446e-05,
+     1.0,
+     1.346e-05,
+     1.79e-06
+    ],
+    [
+     -9.2e-06,
+     -1.346e-05,
+     1.0,
+     -1.544e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep11/blue_cup.glb",
+   "symmetry": "axial",
+   "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
+  },
+  {
+   "base_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "base_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "new_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "new_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "base_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "new_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.276,
+    "p95": 0.577,
+    "max": 1.05,
+    "mean": 0.295
+   },
+   "sample_spacing_mm": 0.589,
+   "icp_centroid_shift_mm": 0.02,
+   "icp_rotation_deg": 0.005,
+   "icp_median_after_mm": 0.275,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -8.446e-05,
+     9.2e-06,
+     3.51e-06
+    ],
+    [
+     8.446e-05,
+     1.0,
+     1.346e-05,
+     1.79e-06
+    ],
+    [
+     -9.2e-06,
+     -1.346e-05,
+     1.0,
+     -1.544e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep12/blue_cup.glb",
+   "symmetry": "axial",
+   "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
+  },
+  {
+   "base_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "base_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "new_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "new_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "base_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "new_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.455,
+    "p95": 0.944,
+    "max": 1.747,
+    "mean": 0.484
+   },
+   "sample_spacing_mm": 0.969,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.002,
+   "icp_median_after_mm": 0.453,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -3.19e-05,
+     -2.445e-05,
+     4.11e-06
+    ],
+    [
+     3.19e-05,
+     1.0,
+     -7.6e-06,
+     5.1e-07
+    ],
+    [
+     2.445e-05,
+     7.6e-06,
+     1.0,
+     -4.78e-06
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep12/plastic_dish_rack.glb",
+   "symmetry": "none",
+   "library_v3_md5": "e6835614899250bf2a1a6ca3ae56bc4c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "base_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "new_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "new_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "base_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "new_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.276,
+    "p95": 0.577,
+    "max": 1.05,
+    "mean": 0.295
+   },
+   "sample_spacing_mm": 0.589,
+   "icp_centroid_shift_mm": 0.02,
+   "icp_rotation_deg": 0.005,
+   "icp_median_after_mm": 0.275,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -8.446e-05,
+     9.2e-06,
+     3.51e-06
+    ],
+    [
+     8.446e-05,
+     1.0,
+     1.346e-05,
+     1.79e-06
+    ],
+    [
+     -9.2e-06,
+     -1.346e-05,
+     1.0,
+     -1.544e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep13/blue_cup.glb",
+   "symmetry": "axial",
+   "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
+  },
+  {
+   "base_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "base_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "new_aabb_centre_mm": [
+    27.08,
+    0.68,
+    44.06
+   ],
+   "new_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "base_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "new_centroid_mm": [
+    16.55,
+    -5.08,
+    10.38
+   ],
+   "centroid_offset_mm": 10.0,
+   "aabb_centre_offset_mm": 10.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 3.738,
+    "p95": 9.812,
+    "max": 10.243,
+    "mean": 4.36
+   },
+   "sample_spacing_mm": 0.969,
+   "icp_centroid_shift_mm": 9.99,
+   "icp_rotation_deg": 0.002,
+   "icp_median_after_mm": 0.453,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -1.612e-05,
+     -3.074e-05,
+     -0.00999461
+    ],
+    [
+     1.612e-05,
+     1.0,
+     -5.25e-06,
+     -2.7e-07
+    ],
+    [
+     3.074e-05,
+     5.24e-06,
+     1.0,
+     -5.63e-06
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 10.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [
+    "surface centroid moved 10.0 mm > 5.0",
+    "ICP corrects 9.99 mm / 0.002 deg (limits 5.0 mm / 5.0 deg)",
+    "kit-registration proxy moves the body 10.0 mm > 5.0"
+   ],
+   "file": "ep13/plastic_dish_rack.glb",
+   "symmetry": "none",
+   "library_v3_md5": "e6835614899250bf2a1a6ca3ae56bc4c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    15.94,
+    2.35,
+    62.58
+   ],
+   "new_extent_mm": [
+    133.08,
+    189.87,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    7.87,
+    -6.36,
+    -5.43
+   ],
+   "centroid_offset_mm": 3.23,
+   "aabb_centre_offset_mm": 3.05,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.016,
+    0.9972,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 1.242,
+    "p95": 3.816,
+    "max": 6.448,
+    "mean": 1.553
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 3.23,
+   "icp_rotation_deg": 2.014,
+   "icp_median_after_mm": 0.386,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99938227,
+     0.03514352,
+     0.0001409,
+     -0.00299943
+    ],
+    [
+     -0.03514352,
+     0.99938228,
+     -3.552e-05,
+     0.00010898
+    ],
+    [
+     -0.00014207,
+     3.055e-05,
+     0.99999999,
+     1.8e-06
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 3.24,
+   "kit_proxy_rotation_deg": 2.0,
+   "flags": [],
+   "file": "ep2/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    9.94,
+    -0.3,
+    3.37
+   ],
+   "base_extent_mm": [
+    51.88,
+    189.49,
+    184.99
+   ],
+   "new_aabb_centre_mm": [
+    9.94,
+    -0.3,
+    3.37
+   ],
+   "new_extent_mm": [
+    51.88,
+    189.49,
+    184.99
+   ],
+   "base_centroid_mm": [
+    -3.81,
+    -3.19,
+    7.97
+   ],
+   "new_centroid_mm": [
+    -3.81,
+    -3.19,
+    7.97
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.257,
+    "p95": 0.537,
+    "max": 0.961,
+    "mean": 0.273
+   },
+   "sample_spacing_mm": 0.546,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.01,
+   "icp_median_after_mm": 0.256,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -1.857e-05,
+     -2.999e-05,
+     -1.6e-07
+    ],
+    [
+     1.857e-05,
+     0.99999999,
+     -0.00016616,
+     3.42e-06
+    ],
+    [
+     2.999e-05,
+     0.00016615,
+     0.99999999,
+     -1.263e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep2/white_pot_lid.glb",
+   "symmetry": "half-turn",
+   "library_v3_md5": "a1e89f0ba08dfe568e64f7cbb275c671"
+  },
+  {
+   "base_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "base_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "new_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "new_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "base_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "new_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.276,
+    "p95": 0.577,
+    "max": 1.05,
+    "mean": 0.295
+   },
+   "sample_spacing_mm": 0.589,
+   "icp_centroid_shift_mm": 0.02,
+   "icp_rotation_deg": 0.005,
+   "icp_median_after_mm": 0.275,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -8.446e-05,
+     9.2e-06,
+     3.51e-06
+    ],
+    [
+     8.446e-05,
+     1.0,
+     1.346e-05,
+     1.79e-06
+    ],
+    [
+     -9.2e-06,
+     -1.346e-05,
+     1.0,
+     -1.544e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep21/blue_cup.glb",
+   "symmetry": "axial",
+   "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
+  },
+  {
+   "base_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "base_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "new_aabb_centre_mm": [
+    0.16,
+    3.76,
+    5.22
+   ],
+   "new_extent_mm": [
+    95.08,
+    96.47,
+    167.02
+   ],
+   "base_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "new_centroid_mm": [
+    -0.52,
+    -0.08,
+    1.78
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.276,
+    "p95": 0.577,
+    "max": 1.05,
+    "mean": 0.295
+   },
+   "sample_spacing_mm": 0.589,
+   "icp_centroid_shift_mm": 0.02,
+   "icp_rotation_deg": 0.005,
+   "icp_median_after_mm": 0.275,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -8.446e-05,
+     9.2e-06,
+     3.51e-06
+    ],
+    [
+     8.446e-05,
+     1.0,
+     1.346e-05,
+     1.79e-06
+    ],
+    [
+     -9.2e-06,
+     -1.346e-05,
+     1.0,
+     -1.544e-05
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep22/blue_cup.glb",
+   "symmetry": "axial",
+   "library_v3_md5": "7542631493e3a0564f6d74009de67d54"
+  },
+  {
+   "base_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "base_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "new_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "new_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "base_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "new_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.455,
+    "p95": 0.944,
+    "max": 1.747,
+    "mean": 0.484
+   },
+   "sample_spacing_mm": 0.969,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.002,
+   "icp_median_after_mm": 0.453,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -3.19e-05,
+     -2.445e-05,
+     4.11e-06
+    ],
+    [
+     3.19e-05,
+     1.0,
+     -7.6e-06,
+     5.1e-07
+    ],
+    [
+     2.445e-05,
+     7.6e-06,
+     1.0,
+     -4.78e-06
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep26/plastic_dish_rack.glb",
+   "symmetry": "none",
+   "library_v3_md5": "e6835614899250bf2a1a6ca3ae56bc4c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep26/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "base_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "new_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "new_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "base_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "new_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.455,
+    "p95": 0.944,
+    "max": 1.747,
+    "mean": 0.484
+   },
+   "sample_spacing_mm": 0.969,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.002,
+   "icp_median_after_mm": 0.453,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -3.19e-05,
+     -2.445e-05,
+     4.11e-06
+    ],
+    [
+     3.19e-05,
+     1.0,
+     -7.6e-06,
+     5.1e-07
+    ],
+    [
+     2.445e-05,
+     7.6e-06,
+     1.0,
+     -4.78e-06
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep27/plastic_dish_rack.glb",
+   "symmetry": "none",
+   "library_v3_md5": "e6835614899250bf2a1a6ca3ae56bc4c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep27/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "base_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "new_aabb_centre_mm": [
+    17.08,
+    0.68,
+    44.06
+   ],
+   "new_extent_mm": [
+    109.43,
+    159.12,
+    495.98
+   ],
+   "base_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "new_centroid_mm": [
+    6.55,
+    -5.08,
+    10.38
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.455,
+    "p95": 0.944,
+    "max": 1.747,
+    "mean": 0.484
+   },
+   "sample_spacing_mm": 0.969,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.002,
+   "icp_median_after_mm": 0.453,
+   "icp_suggested_T_new_to_base": [
+    [
+     1.0,
+     -3.19e-05,
+     -2.445e-05,
+     4.11e-06
+    ],
+    [
+     3.19e-05,
+     1.0,
+     -7.6e-06,
+     5.1e-07
+    ],
+    [
+     2.445e-05,
+     7.6e-06,
+     1.0,
+     -4.78e-06
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep31/plastic_dish_rack.glb",
+   "symmetry": "none",
+   "library_v3_md5": "e6835614899250bf2a1a6ca3ae56bc4c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep41/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep42/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep43/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep44/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  },
+  {
+   "base_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "base_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "new_aabb_centre_mm": [
+    13.49,
+    0.54,
+    62.58
+   ],
+   "new_extent_mm": [
+    130.98,
+    190.41,
+    362.26
+   ],
+   "base_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "new_centroid_mm": [
+    4.64,
+    -6.53,
+    -5.43
+   ],
+   "centroid_offset_mm": 0.0,
+   "aabb_centre_offset_mm": 0.0,
+   "rms_radius_ratio": 1.0,
+   "extent_ratio": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "surface_mm": {
+    "median": 0.387,
+    "p95": 0.796,
+    "max": 1.595,
+    "mean": 0.41
+   },
+   "sample_spacing_mm": 0.821,
+   "icp_centroid_shift_mm": 0.01,
+   "icp_rotation_deg": 0.017,
+   "icp_median_after_mm": 0.385,
+   "icp_suggested_T_new_to_base": [
+    [
+     0.99999996,
+     0.00025763,
+     0.00013011,
+     -1.97e-06
+    ],
+    [
+     -0.00025763,
+     0.99999997,
+     -1.488e-05,
+     4.74e-06
+    ],
+    [
+     -0.00013011,
+     1.484e-05,
+     0.99999999,
+     5.5e-07
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "kit_proxy_pose_shift_mm": 0.0,
+   "kit_proxy_rotation_deg": 0.0,
+   "flags": [],
+   "file": "ep45/white_pot.glb",
+   "symmetry": "none",
+   "library_v3_md5": "b97d460ae26d6ced15ebe53f7addc10c"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial: FLAGGED  21 meshes in 15/20 episodes; 0 failures, 3 flags; guard rc 0
+  FLAG ep13/plastic_dish_rack.glb: frame: surface centroid moved 10.0 mm > 5.0
+  FLAG ep13/plastic_dish_rack.glb: frame: ICP corrects 9.99 mm / 0.002 deg (limits 5.0 mm / 5.0 deg)
+  FLAG ep13/plastic_dish_rack.glb: frame: kit-registration proxy moves the body 10.0 mm > 5.0
+  ep0: delivered white_pot,white_pot_lid; library_v3 -
+  ep2: delivered white_pot,white_pot_lid; library_v3 -
+  ep11: delivered blue_cup; library_v3 beige_cup
+  ep12: delivered blue_cup,plastic_dish_rack; library_v3 -
+  ep13: delivered blue_cup,plastic_dish_rack; library_v3 -
+  ep18: delivered -; library_v3 mini_sweeper,mini_dust_pan
+  ep21: delivered blue_cup; library_v3 water_pitcher
+  ep22: delivered blue_cup; library_v3 water_pitcher
+  ep23: delivered -; library_v3 wooden_piece_1,wooden_piece_2
+  ep24: delivered -; library_v3 wooden_piece_1,wooden_piece_2
+  ep26: delivered plastic_dish_rack,white_pot; library_v3 -
+  ep27: delivered plastic_dish_rack,white_pot; library_v3 -
+  ep31: delivered plastic_dish_rack; library_v3 mini_sweeper
+  ep39: delivered -; library_v3 mini_dust_pan
+  ep40: delivered -; library_v3 mini_dust_pan
+  ep41: delivered white_pot; library_v3 -
+  ep42: delivered white_pot; library_v3 -
+  ep43: delivered white_pot; library_v3 -
+  ep44: delivered white_pot; library_v3 -
+  ep45: delivered white_pot; library_v3 -
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/partial/VALIDATION.json
+
+real	1m33.288s
+user	1m31.838s
+sys	0m0.574s

@@ -1,0 +1,57 @@
+=== bad_units
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/bad_units: FAIL  1 meshes in 1/20 episodes; 2 failures, 5 flags; guard rc 0
+  FAIL ep2/white_pot.glb: largest extent 362.3 (units: metres expected, 2 cm-1 m)
+  FAIL ep2/white_pot.glb: sorted extents [1000.0, 1000.0, 1000.0] x library_v3 (scale or units)
+  FLAG ep2/white_pot.glb: frame: surface centroid moved 9666.11 mm > 5.0
+  FLAG ep2/white_pot.glb: frame: ICP corrects 25211.89 mm / 14.816 deg (limits 5.0 mm / 5.0 deg)
+  FLAG ep2/white_pot.glb: frame: median surface distance 36256.008 mm > 5.0
+  FLAG ep2/white_pot.glb: frame: kit-registration proxy moves the body 9710.42 mm > 5.0
+  FLAG ep2/white_pot.glb: frame: extent ratio [1000.035, 999.992, 1000.0054] outside +-15% (scale or axis order?)
+  ep2: delivered white_pot; library_v3 white_pot_lid
+rc=1
+=== bad_node
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/bad_node: FAIL  1 meshes in 1/20 episodes; 1 failures, 3 flags; guard rc 0
+  FAIL ep2/white_pot.glb: node transforms (node 0 matrix [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.01, 0.0, 0.0, 1.0])
+  FLAG ep2/white_pot.glb: frame: surface centroid moved 10.0 mm > 5.0
+  FLAG ep2/white_pot.glb: frame: ICP corrects 10.0 mm / 0.013 deg (limits 5.0 mm / 5.0 deg)
+  FLAG ep2/white_pot.glb: frame: kit-registration proxy moves the body 10.0 mm > 5.0
+  ep2: delivered white_pot; library_v3 white_pot_lid
+rc=1
+=== bad_name
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/bad_name: FAIL  0 meshes in 0/20 episodes; 2 failures, 0 flags; guard rc 0
+  FAIL ep2/blue_cup.glb: blue_cup is not an object of ep2 (white_pot,white_pot_lid)
+  FAIL no ep<N>/<obj>.glb mesh delivered
+rc=1
+=== bad_suffix
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/bad_suffix: FAIL  0 meshes in 0/20 episodes; 2 failures, 0 flags; guard rc 0
+  FAIL ep2/white_pot.obj: mesh suffix .obj (perc2 only reads <obj>.glb; it would track library_v3)
+  FAIL no ep<N>/<obj>.glb mesh delivered
+rc=1
+=== bad_md5
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/bad_md5: FAIL  1 meshes in 1/20 episodes; 1 failures, 0 flags; guard rc 0
+  FAIL ep2/white_pot.glb: MANIFEST md5 000000000000... != file b97d460ae26d...
+  ep2: delivered white_pot; library_v3 white_pot_lid
+rc=1
+=== no_manifest
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/no_manifest: FAIL  1 meshes in 1/20 episodes; 1 failures, 0 flags; guard rc 0
+  FAIL MANIFEST.json missing (the provenance tier must be recorded)
+  ep2: delivered white_pot; library_v3 white_pot_lid
+rc=1
+=== no_tier
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/no_tier: FAIL  1 meshes in 1/20 episodes; 1 failures, 0 flags; guard rc 0
+  FAIL ep2/white_pot.glb: no provenance tier (entry or manifest provenance_tier)
+  ep2: delivered white_pot; library_v3 white_pot_lid
+rc=1
+=== scan_copy
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/scan_copy: FAIL  1 meshes in 1/20 episodes; 1 failures, 2 flags; guard rc 1
+  FAIL tools/no_oracle.py refuses the delivery: REFUSED: oracle-twin / leak-study (mocap- or scan-derived) input, never for an eval pack:
+  /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/scan_copy (/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/scan_copy/ep2/white_pot.glb: sha256 of datase
+  FLAG ep2/white_pot.glb: frame: surface centroid moved 9.68 mm > 5.0
+  FLAG ep2/white_pot.glb: frame: kit-registration proxy moves the body 6.75 mm > 5.0
+  ep2: delivered white_pot; library_v3 white_pot_lid
+rc=1
+=== bad_dir
+rtk_mesh_check /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/fix/bad_dir: FAIL  0 meshes in 0/20 episodes; 2 failures, 0 flags; guard rc 0
+  FAIL ep5/: not ep<N> of a public episode in inputs.tsv
+  FAIL no ep<N>/<obj>.glb mesh delivered
+rc=1

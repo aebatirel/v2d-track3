@@ -1,0 +1,22 @@
+ep2: R 0.9866  RPE 1.439 cm  MPPE 0.709 cm  white_pot episode 0.9925, white_pot_lid episode 0.9807
+ep0: R 0.9620  RPE 1.383 cm  MPPE 1.068 cm  white_pot episode 0.9904, white_pot_lid episode 0.9335
+ep12: R 0.9662  RPE 1.139 cm  MPPE 0.961 cm  blue_cup episode 0.9327, plastic_dish_rack episode 0.9997
+ep11: R 0.8978  RPE 1.739 cm  MPPE 1.637 cm  blue_cup episode 0.8622, beige_cup episode 0.9334
+ep18: R 0.9144  RPE 4.068 cm  MPPE 1.632 cm  mini_sweeper episode 0.8978, mini_dust_pan episode 0.9309
+ep13: R 0.9595  RPE 1.387 cm  MPPE 1.068 cm  blue_cup episode 0.9329, plastic_dish_rack episode 0.9862
+ep21: R 0.8325  RPE 1.255 cm  MPPE 2.148 cm  blue_cup episode 0.9815, water_pitcher episode 0.6835
+ep23: R 0.0414  RPE 14.180 cm  MPPE 15.582 cm  wooden_piece_1 episode 0.0829, wooden_piece_2 episode 0.0000
+ep22: R 0.8707  RPE 1.223 cm  MPPE 1.808 cm  blue_cup episode 0.9924, water_pitcher episode 0.7490
+ep24: R 0.8117  RPE 0.983 cm  MPPE 2.360 cm  wooden_piece_1 episode 0.7764, wooden_piece_2 episode 0.8470
+ep26: R 0.9717  RPE 1.293 cm  MPPE 0.839 cm  plastic_dish_rack episode 0.9953, white_pot episode 0.9482
+ep27: R 0.9605  RPE 1.155 cm  MPPE 0.788 cm  plastic_dish_rack episode 1.0000, white_pot episode 0.9210
+ep39: R 0.9602  RPE 0.000 cm  MPPE 1.028 cm  mini_dust_pan episode 0.9602
+ep31: R 0.7998  RPE 1.908 cm  MPPE 2.028 cm  mini_sweeper episode 0.9121, plastic_dish_rack episode 0.6875
+ep41: R 0.9910  RPE 0.000 cm  MPPE 0.603 cm  white_pot episode 0.9910
+ep40: R 0.9570  RPE 0.000 cm  MPPE 0.901 cm  mini_dust_pan episode 0.9570
+ep42: R 0.9903  RPE 0.000 cm  MPPE 0.592 cm  white_pot episode 0.9903
+ep43: R 0.9477  RPE 0.000 cm  MPPE 1.050 cm  white_pot episode 0.9477
+ep44: R 0.9967  RPE 0.000 cm  MPPE 0.474 cm  white_pot episode 0.9967
+ep45: R 0.9795  RPE 0.000 cm  MPPE 0.721 cm  white_pot episode 0.9795
+mean over 20: R 0.88986  RPE 1.6576 cm  MPPE 1.8999 cm
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/retrack/scores/Po_v3copy.json

@@ -9,6 +9,7 @@
 #   topup       the 3rd official draw fails                                       -> SWAP-ELIGIBLE (11 calls, 10 scored draws)
 #   nopacked    the H5p7 run not in the store yet (404)                           -> INCOMPLETE on the box (no long waits);
 #               then cpu_after.sh completes the packed side from the store as on CPU after the box -> SWAP-ELIGIBLE
+#   differs     the box's OpenBLAS kernel is Haswell (OPENBLAS_CORETYPE)          -> B0 DIFFERS (0.90 mm / 1.31 deg), go on -> SWAP-ELIGIBLE
 #   b0stop      the committed expectation replaced by the stored track            -> STOP before any reference (B0 MISMATCH)
 #   badinput    a corrupted eval-10 track served by the store                     -> STOP before anything (md5)
 # usage: run_all.sh [scenario ...]   (default: all, in the order above)
@@ -20,7 +21,7 @@ run() {  # $1 name, then env assignments
   bash $M/setup.sh $W/$n > /dev/null
   ( cd /tmp && env "$@" nice -n 5 bash $M/run_mock.sh $W/$n "$JOB" )
 }
-for sc in ${@:-pass floor worse invalid incomplete rerun topup nopacked b0stop badinput}; do
+for sc in ${@:-pass floor worse invalid incomplete rerun topup nopacked differs b0stop badinput}; do
   case $sc in
     pass) run pass MOCK_POLICY=copy ;;
     floor) run floor MOCK_POLICY=floor ;;
@@ -34,6 +35,7 @@ for sc in ${@:-pass floor worse invalid incomplete rerun topup nopacked b0stop b
            mv $W/incomplete $W/rerun; mv $W/incomplete_run1 $W/incomplete ;;
     topup) run topup MOCK_POLICY=copy MOCK_CONF_FAIL_DRAW=3 ;;
     nopacked) run nopacked MOCK_POLICY=copy MOCK_HIDE=h5p7 ;;
+    differs) run differs MOCK_POLICY=copy OPENBLAS_CORETYPE=Haswell ;;
     b0stop) bash $M/setup.sh $W/b0stop > /dev/null
             E=$W/b0stop/content/v2d-track3/docs/research/work/perception-sprint-20261031/ev10retrain/expect
             cp $W/b0stop/store/runs/20261026-pack6-5203d42/perc2/ep10/poses.npz $E/V_poses.npz
