@@ -6125,3 +6125,16 @@ Background agent, CPU only, $0, no ground truth read.
   - the targeted D cells (evals 14/16/25/30/33, 2 seeds) start tonight; focused-pascal launches them;
   - pack 9b uploads automatically once its rule and checks pass.
 - Credit $69.22 at 21:20 UTC, shared by all lanes.
+
+### 2026-10-31 21:48 UTC — determined-wright: D reset check delivered; regression dry run 70/70; P1 helper started
+- Regression dry run `rs/dry8` at the default stub clock: **70/70 PASS**, exit 0. dry7's one FAIL was the 4 s stub clock.
+- **D reset check** (`docs/research/physics-2026-10-30/d_reset_check/`, 8fb5152): CPU, box patch set, 32 worlds, DR vs
+  no DR with the same upstream frames, on the 5 packed D evals (md5s = packed_refs.json) and the 4 public screen
+  episodes.
+  - Object offset at the end of the hold (median / share > 1 cm / max):
+    - evals: 14 0.63/31 %/3.15; 16 0.16/25 %/4.00; 25 0.60/34 %/6.70; 30 1.05/56 %/3.28; 33 0.57/28 %/2.60;
+    - public: 2 1.09/50 %/3.39; 12 0.81/47 %/4.41; 18 0.00/3 %/1.32; 24 1.05/53 %/4.30.
+  - No eval outside the public range, and no NaN. Sent to focused-pascal and keen-heisenberg.
+- bold-albattani's P1 request (r0 slot2-ep24 boards; INTERLOCK §6.2 settle with 16 jittered copies): a CPU helper is
+  running it in scratchpad `p1ep24/`. I review before replying; ETA promised ~23:30 UTC.
+- keen-heisenberg's command-smoothing (A) and synergy (B) CPU tests are queued next.
