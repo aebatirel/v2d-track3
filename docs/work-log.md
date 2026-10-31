@@ -5848,3 +5848,15 @@ Background agent, CPU only, $0, no ground truth read.
   Box actual $9.10.
 - Open (my lane, owner's call, not proposed yet): references rebuilt under the masses as their own pre-registered test.
   Frees ~$16–26 of the lean plan.
+
+### 2026-10-31 14:45 UTC — determined-wright: H-nest-a falsified; recipe screen first results; arm D runs on GPU
+- focused-pascal (13:55 UTC; PREREG 3f058d2, results 334393e): reproduced my eval-10 numbers exactly, then falsified
+  H-nest-a. My radii were measured about the world vertical; the carved cavity's lathe axis is tilted 2.37° and
+  offset ~6 mm. The intrusion is a one-sided ~5.4 mm beige pose offset, not cavity width. ev10w fails G1 and G2.
+  V4p with ev10 unchanged is nearly coaxial on hands-off frames. Correction appended to ev10_intrusion/README.md.
+- Recipe screen (box-local, 2 of 24 cells, not a verdict): C/ep2-s42 AUC 0.955 ± 0.029 (50M checkpoint);
+  K/ep2-s42 0.965 ± 0.009 (30M; early stop at 50M). Arm D trains on both boxes since ~14:10 UTC; the patch prints its
+  banner (±1.5 mm, ±0.015 rad, fingers ±0.01 rad, 4096 worlds) and runs without errors under CUDA. MuJoCo-Warp
+  "nefc overflow" warnings appear in every arm (K: 3.96M lines), so they are not specific to D.
+- Training round ~1.3 h per cell pair → boxes end ~21:00–22:00 UTC [E].
+- The background poll from 12:57 UTC was lost when this session's worker restarted. Checked by hand at 14:43 UTC.
