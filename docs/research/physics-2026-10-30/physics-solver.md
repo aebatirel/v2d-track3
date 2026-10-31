@@ -521,6 +521,125 @@ Not recommended: running Do as I Do or SPIDER themselves.
   Test: G1 on ep12. Falsified if the cup is still lost before f70 in most jittered copies at G1 scale.
 - [H-gpu] and [H-RL]: §5.
 
+### 6.1 Option 3: solver and RL taking turns, plus the option-1 control (pre-registered 31 Oct 2026 ~05:30 UTC, before any GPU result)
+
+**Why.**
+- G2 found plans that hold in the scored physics (jittered 0.763 / 0.832 vs 0.524 / 0.578).
+- G3's RL from those plans was far ahead at 30M (0.965 / 0.761 / 0.523 / 0.191 vs 0.483 / 0.549 / 0.529 / 0.112), but
+  the final AUC vs mocap was no better (0.584 / 0.892 / 0.622 / 0.244 vs 0.736 / 0.885 / 0.625 / 0.232). ep2 collapsed
+  after 30M, as round-1 seed 42 also did.
+- Two things are missing:
+  - **keeping** the head start, which needs checkpoint choice and the curriculum length (option 1);
+  - **teaching** the policy where it fails, from its own states (option 3: cf. Guided Policy Search, Levine & Koltun
+    2013; DAgger, Ross et al. 2011; PHC fail-state recovery, Luo et al. 2023).
+- FlashCHORD's rules hold: the scored run is the learned policy in the unchanged evaluator, and every change is on the
+  training side.
+
+**Design (per episode; `ops/jobs/physics_rl_loop.sh`).**
+1. **Where RL fails.**
+   - The newest checkpoint is played like the evaluator: frame 0, VOC 0, no termination, deterministic policy.
+     The tool is `tools/trace_rollout.py policy` with `STATE=1`, which now also stores the full simulator state per
+     frame: joint_q/qd, body_qd, MuJoCo warm start.
+   - `tools/physics_solve/failures.py` marks the first frame at which an object stays more than 3 cm ADD off our
+     reference for at least 8 frames, while the reference moves it or a hand is near it.
+   - A solver window then runs from 0.5 s before that frame to 3 s after it. At most 2 windows are kept, the earliest
+     failure first; overlapping windows are merged.
+2. **Solver from those states.**
+   - `solve.py --start_state <trace> --t0 <window start> --stop <window end> --record`: the truth env is restored to
+     the **policy's own state**, and planning continues from there on the current training reference.
+   - Settings: 1,024 worlds = 256 candidates × 4 robust copies, 2 s horizon, 0.4 s commits, ≤ 16 iterations with
+     early stop, annealing to G1's final noise (0.903¹⁵ ≈ 0.216), ≤ 2 rollbacks, 15 min deadline per window.
+   - It records its own states and contacts.
+3. **Into training** (`tools/physics_solve/merge_ref.py`):
+   - (a) **reference segment:** the solver's wrist and finger targets replace the reference's inside the window and
+     return to it over 6 frames afterwards. `robot_<side>_frames` (the hand-tracking target) and the object reference
+     stay unchanged;
+   - (b) **contact targets:** inside the window, the solver's simulated contacts (`tools/sim_contacts.py`);
+   - (c) **reset-state bank:** the policy's states from the window start to its failure, and the solver's states along
+     the window where every object is within 3 cm (every 5 frames). The bank accumulates over rounds.
+   - Training draws 25 % of its resets from the bank through **`ops/box/patch_flashchord_states.py`**, a training-only
+     FlashCHORD patch kept as a separate file like `patch_flashchord_drop.py`.
+     - It is inert unless `FC_STATE_RESET` is set, and it adds no config field.
+     - What it edits in `lifecycle/reset.py`:
+       - `reset_kernel` loads a banked joint_q / joint_qd, adding the world's object offsets;
+       - `sample_reference_reset` draws from the bank, with no extra random draws while no bank is loaded;
+       - a bank reset sets the reference timestep to the banked frame, keeps the fingers as stored and skips the
+         settling hold;
+       - `prepare_explicit_reset` clears the flag, so every explicit evaluation reset is untouched;
+       - the bank is allocated in `ReferenceResetTable.build`, before graph capture.
+4. **Rounds:** one FlashSAC run with seed 42, `CURR_SCALE 0.4`, the FDR rewards + VOC fix and S1 masses.
+   - Round A runs 0 → 30M on the solved reference R0.
+   - Diagnose → R1 + bank; round B **resumes** the same run (actor, critic, optimiser; the replay buffer refills)
+     30M → 50M on R1 with the bank.
+   - Diagnose → R2 + bank; round C runs 50M → 70M.
+   - FlashCHORD's resume checks only the object articulation contract, so a merged parquet of the same episode is
+     accepted (code read: `checkpoint_metadata.validate_resume_reference_config`).
+5. **Keeping the head start:** as in rounds 1–3, every checkpoint from 10M to 70M is scored by 3 official evaluations
+   (sim_vs_ref against our reference, whose object trajectory is the same in every round). The best gets 5 evaluations
+   with registered AUC vs mocap, so a 30M peak is kept even if later rounds lose it.
+
+**Option-1 control (O1)**, on the same box:
+- `glock_public.sh` with REUSE_REF on the same solved references and the same frozen recipe, seed 42;
+- plus early stopping: `ES=1`, target 0.9, patience 20M, from 20M;
+- plus `CURR_SCALE 0.4`: assist 0 from 49M instead of 123M;
+- O1 and O3 share the two GPU training slots.
+
+**CPU evidence** (this container; FlashCHORD at the evaluator pin; JAX CPU installed in the scratchpad venv for the
+policy path) [M]:
+
+| check | result |
+|---|---|
+| `trace_rollout.py policy` with `STATE=1` on a stored ep12 checkpoint (CPU: Warp graph capture is skipped on the CPU, eager step) | 182 records with state |
+| `failures.py` on the GL+ILC zero-action trace | cup onset f38 (earlier diagnostics: f37/38) |
+| `failures.py` on the CPU test policy | cup onset f35, window 25–95 |
+| solve from the zero-action trace's state at f28 → f48: the official replay of the output from frame 0 vs the solver's committed trajectory | max \|Δq\| **0.0** |
+| same: frames before f28 vs the input's replay | 0.0 |
+| same: offsets confined to the window | yes |
+| `merge_ref.py` | targets change only in the window + 6 blend frames; window = segment; contact targets replaced on in-window frames; FlashCHORD loads the result (joint-limit validation passes) |
+| bank filter | keeps only the solver states that hold |
+| state patch on a patched copy: inert (no bank) | sampled resets identical to the original package (frames, finger scales, joint states) |
+| state patch, bank share 1.0 | every world loads its banked state bit-exactly, at the banked frame, no hold |
+| state patch, share 0.5 | a mix of bank and reference resets |
+| state patch, explicit resets | always the reference; flag cleared |
+| `physics_rl_loop.sh` dry run in a scratch root (store, training, evaluations and `glock_public.sh` stubbed; real CPU policy rollouts, failure finder, start-state solves, merges, patch) | three rounds with resume and bank (18 → 36 states), one parquet per task dir, O1 got the intended settings, summary verdicts evaluated |
+
+Not testable on CPU: FlashSAC training (its graph capture crashes on the CPU), hence resuming on a merged reference and
+the bank under graph capture (allocated before capture, like the drop patch's arrays).
+
+**Code** (HEAD `1b5a1d4` plus the uncommitted `merge_ref.py` bank filter):
+
+| file | md5 |
+|---|---|
+| `solve.py` | `fa511432` |
+| `failures.py` | `8fb670c9` |
+| `merge_ref.py` | `82635b68` |
+| `trace_rollout.py` | `c35f053e` |
+| `patch_flashchord_states.py` | `ecb4ef52` |
+| `physics_rl_loop.sh` | `078d2550` |
+| `glock_public.sh` | `a2733085` (unchanged) |
+
+**Readings** (registered AUC vs mocap of the checkpoint chosen by sim_vs_ref, 5 evaluations; one seed):
+- **Primary, O3 − O1** (the loop's own value):
+  - **signal** iff the mean over the 4 episodes is ≥ +0.03 and no episode is ≤ −0.05;
+  - **harm** iff the mean is ≤ −0.03 or any episode is ≤ −0.10;
+  - otherwise **inconclusive**;
+  - an episode without a result is left out and flagged.
+- **Secondary, same rule:**
+  - O1 − G3: does early stopping plus a shorter curriculum keep the head start?
+  - O3 − G3.
+- Reported only: O3 vs round-1 S1 seed 42 (0.736 / 0.885 / 0.625 / 0.232) and vs round 3's realistic-mass seed means.
+- **[H-teach] (mechanism):** the final O3 policy's first failure frame is later than after round A on ≥ 2 of 4
+  episodes; otherwise not supported.
+- Also reported: windows per round, solver results per window, bank sizes, and the policy-rollout sim_vs_ref per round.
+- One seed, and ep2 seed 42 collapsed twice: a signal buys more seeds, not adoption.
+
+**Expected time and cost** [E]:
+- Training: 8 runs of ≤ 70M (O1 may stop early) in 2 slots at ~55–60k env steps/s in total, ≈ 2.7–3.3 h.
+- O3 diagnosis + solves: ~10–30 min per round per episode, overlapped by the other runs' training.
+- About 300 one-world official evaluations, mostly overlapped with training.
+- Setup + references ~25 min; tail ~30 min.
+- **Total ≈ 4–5 h ≈ $5.5–7.5** at $1.3–1.5/h; worst case ~5.5 h ≈ $8.3, within the ~$10 cap.
+
 ## 7. Commands (exact)
 
 From the FlashCHORD dir (`scratchpad/src/video_to_data/robotic_grounding/flash_chord`), with
@@ -540,6 +659,8 @@ KIT=... python tools/physics_solve/jitter_check.py REF.parquet --k 9 --sig_pos 1
 solve.py ... --workers 4 --worlds 16 --horizon 16 --knot 4 --ctrl 4 --iters 4 --ramp 1 4 --sig_pos 0.01 --sig_rot 0.05 --sig_fin 0.15 --anneal 0.6
 # v2 (stopped after t=40)
 solve.py ... v1 args with --horizon 20 --retries 6 --retry 0.05 --back 3
+# Option 3 loop + option-1 control on one GPU box (pre-registered in section 6.1)
+ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'bash ops/jobs/physics_rl_loop.sh'
 # G2 + G3 on one GPU box (pre-registered in section 5.2)
 ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'bash ops/jobs/physics_solve_rl.sh'
 # G1 on a GPU box (pre-registered in section 5.1; the coordinator launches it)

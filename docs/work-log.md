@@ -5606,3 +5606,30 @@ Background agent, CPU only, $0, no ground truth read.
   action, `tools/physics_solve/jitter_check.py --k 16 --seed 0` (KIT=$S/dl/kit/x/v2d_submission_kit): ep13 0.569 ± 0.008
   vs 0.551 ± 0.007; ep31 0.556 ± 0.091 vs 0.554 ± 0.096; ep11 skipped (assets_ev10 missing). True motion barely helps
   zero-action executability; result sent to the pack session. Table: physics README "R5-lite".
+
+### 31 Oct ~04:30–05:35 UTC — option 3 (solver ↔ RL loop) + option-1 control: built on CPU, pre-registered (no GPU run)
+- Owner approved. Design and readings in `physics-solver.md` §6.1.
+- Built and CPU-tested:
+  - `tools/trace_rollout.py` `STATE=1` (full simulator state per frame; on the CPU the policy path skips Warp graph
+    capture, which crashes there);
+  - `tools/physics_solve/failures.py` (first frame an object stays > 3 cm ADD off for ≥ 8 frames → windows from
+    0.5 s before);
+  - `solve.py --start_state/--t0/--record` (solve from a recorded state; the official replay of the output equals the
+    solver's trajectory, 0.0);
+  - `merge_ref.py` (solver targets into the reference + contacts + reset-state bank; only solver states that hold);
+  - `ops/box/patch_flashchord_states.py`, a training-only reset-state bank:
+    - inert: resets identical to the original;
+    - share 1.0: banked states loaded bit-exactly;
+    - explicit resets untouched.
+- New `ops/jobs/physics_rl_loop.sh`:
+  - O1 = REUSE_REF on the G3 solved references + ES + CURR_SCALE 0.4;
+  - O3 = 30M / 50M / 70M rounds of one resumed FlashSAC run, with diagnosis → windowed solves → merge → bank between
+    rounds;
+  - scoring as rounds 1–3.
+  - CPU dry run with stubs for training, evaluation and store: completes.
+- The scratchpad FlashCHORD venv got jax/flax/optax/safetensors/distrax/wandb (CPU) for the policy-path tests.
+- Pre-registered:
+  - primary O3 − O1 registered AUC (signal / harm / inconclusive);
+  - O1 − G3 and O3 − G3;
+  - [H-teach].
+- Estimate ≈ 4–5 h, ≈ $5.5–7.5 (worst ≈ $8.3). Nothing rented by the agent.

@@ -16,7 +16,8 @@ What enters training (written to OUT.parquet and --bank):
   2. --contacts: the contact targets of the window frames are replaced by the solver's simulated contacts
      (tools/sim_contacts.py on the segment's trajectory: frames outside the window keep theirs);
   3. reset-state bank (for ops/box/patch_flashchord_states.py): the policy's own states from each window start to
-     its failure onset (every --every frames) and the solver's states along the window (every --every frames):
+     its failure onset (every --every frames) and the solver's states along the window (every --every frames, only
+     where every object is within --bank_cm ADD of its reference: states of a plan that holds, not of one that lost it):
      jq (K, per-world joint_q), jqd (K, per-world joint_qd), frame (K,), src (K,: 0 = policy, 1 = solver), appended
      to --bank_in if given.
 Usage: merge_ref.py BASE.parquet OUT.parquet --seg S1.parquet [S2.parquet] [--trace P.npz --windows W.json]
@@ -45,8 +46,11 @@ def main():
     p.add_argument('--windows', default='', help='failures.py JSON (onsets, for the policy states of the bank)')
     p.add_argument('--bank', default=''); p.add_argument('--bank_in', default='')
     p.add_argument('--blend', type=int, default=6); p.add_argument('--every', type=int, default=5)
-    p.add_argument('--contacts', action='store_true')
+    p.add_argument('--contacts', action='store_true'); p.add_argument('--bank_cm', type=float, default=3.0)
     a = p.parse_args()
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import solve as S
+    ref = S.Ref(a.base); pts = S.sphere_points(500)
     t = pq.read_table(a.base); T = len(t.column('robot_left_wrist_position')[0].as_py())
     base = {s: cols(t, s) for s in SIDES}; cur = {s: [x.copy() for x in base[s]] for s in SIDES}
     log = dict(base=os.path.abspath(a.base), segments=[])
@@ -77,10 +81,15 @@ def main():
                     cur[s][1][f] = q[[3, 0, 1, 2]]
                     cur[s][2][f] = np.clip(F0[f] + c * df, lo, hi)
             row['window'] = [t0, t1]
-        if 'jq' in z.files:                                             # solver states along the window
+        if 'jq' in z.files:                                             # solver states along the window, where it holds
+            L = [str(x) for x in z['labels']]; ob = [next(i for i, l in enumerate(L) if l.startswith(f'track3_{nm}/')) for nm in ref.names]
+            kept = 0
             for i in range(0, len(fr), a.every):
                 if fr[i] < T - 1:
-                    bank['jq'].append(z['jq'][i]); bank['jqd'].append(z['jqd'][i]); bank['frame'].append(fr[i]); bank['src'].append(1)
+                    add = S.add_dist(z['q'][i][ob].astype(np.float64), ref.OP[fr[i]], ref.OQ[fr[i]], pts)
+                    if add.max() <= a.bank_cm / 100:
+                        bank['jq'].append(z['jq'][i]); bank['jqd'].append(z['jqd'][i]); bank['frame'].append(fr[i]); bank['src'].append(1); kept += 1
+            row['solver_states_banked'] = kept
         log['segments'].append(row)
     if a.trace:                                                         # the policy's states before each failure
         d = np.load(a.trace); fr = [int(x) for x in d['frame']]
