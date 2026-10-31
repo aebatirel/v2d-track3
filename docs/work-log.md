@@ -5434,3 +5434,17 @@ Advice given:
   (ep45 widest, 167 mm vs 131). [H] uncoloured templates render in the renderer's default colour and hurt FoundationPose's
   RGB render-and-compare (not the whole story: uncoloured blue cups gained slightly). Falsifier: re-track ep45 + ep0 with
   the same meshes painted uniform grey 173 (~$1). Not run tonight (off the pack-10 path; needs the owner's word).
+- ~22:59 UTC **D arm launch, box G (canary)**. Independent review (subagent, 84 tool calls): GO, no blocking defect; default
+  paths IDENTICAL in the equivalence mocks (EG/ES/E2/E3), 45/45 rule + D-line fixtures, packed_refs.json = PREREG table on
+  all five episodes, confirmation box free of FC_DR_*. Required before/at launch: owner's go with cost (relayed GO 20:40 via
+  score-status "sure add that whatev" at ≈$16–23 and ~21:25 via keen-heisenberg "start the D cells TONIGHT"; reviewed
+  cost $16.6–24.6, central ~$21; credit $56.52); a pushed SHA (a1a7e25 = 975231e code + docs only, `git diff --stat
+  975231e HEAD -- ops tools pipeline` empty); G first, S boxes only after G's job.log shows "packed references checked",
+  "patched FlashCHORD (start-state randomisation…)" and the D line in the first drs42 train.log.
+  Job: `ops/vast.sh V2D_COMMIT=a1a7e258bd90… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 58449260 20261031-drG-a1a7e25
+  'ARM=dr MODE=glock EPS="14 16 33" SEEDS="42 43" bash ops/jobs/mass_eval.sh'` → instance 58587687 (France, $1.377/h,
+  RTX PRO 6000 Max-Q, 32 cpu / 123 GB); ledger planned $7.50. (The create call's output echoed the instance's own API key
+  into this session's transcript only; nothing committed. Later creates filter it.)
+  Review's non-blocking notes kept for the reading: "D only" = D + seed + code version (std: D also in the training-box
+  evaluations); run ids after 00:00 UTC carry 20261101 (take ids from the ledger); C evaluates only the candidates while
+  H5p7 evaluated all 20 per call [H: no cross-episode effect]; D on the standard learner untested at 250M steps.
