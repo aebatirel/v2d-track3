@@ -5650,3 +5650,8 @@ Background agent, CPU only, $0, no ground truth read.
   Bank is small (4 states). O1 so far: ep2 early stop at 60M (best 40M), ep12 RESULT AUC 0.893 (ES at 50M, "two in a
   row >= 0.9"), ep18 AUC 0.579 (ES at 60M). Slots are shared, so total time looks ~5.5-6 h (est. $8-8.5), above the
   4-5 h estimate; not cut (still progressing).
+- ~08:50 UTC 31 Oct: the mesh session (bold-albattani) relayed an owner idea: carve meshes where objects must interlock or
+  nest (pieces entering slots, stacked cups), driven by per-frame physics fixes. Replied: feasible on CPU as a standalone
+  GT-free `tools/intrusion.py` (per frame/pair penetrating samples in the target's frame + depth, plus phys_fit v1's
+  residual after pose correction); carved sim copies in the existing make_assets `--pieces DIR/<obj>/piece_*.obj` layout
+  (CoACD keeps each piece, so slots are not refilled). Waiting for their reviewed interface; nothing built yet.
