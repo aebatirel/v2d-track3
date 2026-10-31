@@ -6,7 +6,8 @@
      seed mean passes) / boundary (+0.03 exactly, -0.05 exactly: passes) / INCOMPLETE (7 rollouts) / INVALID;
   T5 mass_arm.set_mass() on make_assets.py's placeholder URDFs gives make_assets.py --physics props_masses_only.json's
      masses, COMs and inertias (library_v3, every object): the arm copy is what MA_ARGS would have built;
-  T6 mass_arm.py refuses a source reference whose URDF is not the 0.3 kg placeholder.
+  T6 mass_arm.py refuses a source reference whose URDF is not the 0.3 kg placeholder;
+  T7 mass_verify.py FAILS when the two arms' saved training configs differ in a setting (a reward weight) (restored).
 """
 import glob, json, os, shutil, subprocess, sys, tempfile
 import pyarrow as pa, pyarrow.parquet as pq
@@ -41,6 +42,14 @@ t = t.set_column(t.column_names.index('robot_left_wrist_position'), 'robot_left_
                  pa.array([w], type=t.schema.field('robot_left_wrist_position').type)); pq.write_table(t, p)
 rc, f = verify(); shutil.move(tmp, p)
 res['T3_other_reference_detected'] = dict(ok=rc != 0 and any('not the same reference' in x for x in f), detail=[x.replace(MR, 'MR') for x in f[:2]])
+import struct                                                                             # noqa: E402
+ck = f'{C}/results/mass1s42_glock_public/ep2/best/policy.safetensors'; keep = ck + '.keep'; shutil.copy(ck, keep)
+with open(ck, 'rb') as fh:
+    nh = struct.unpack('<Q', fh.read(8))[0]; hd = json.loads(fh.read(nh))
+cf = json.loads(hd['__metadata__']['user.resolved_config_json']); cf['objective']['force_closure']['weight'] = '7'
+hd['__metadata__']['user.resolved_config_json'] = json.dumps(cf); b = json.dumps(hd).encode(); b += b' ' * (-len(b) % 8)
+open(ck, 'wb').write(struct.pack('<Q', len(b)) + b); rc, f = verify(); shutil.move(keep, ck)
+res['T7_other_training_setting_detected'] = dict(ok=rc != 0 and any('objective.force_closure.weight' in x for x in f), detail=f[:2])
 rc, f = verify(); res['T0_restored_verified'] = dict(ok=rc == 0 and not f, detail=f[:2])
 
 

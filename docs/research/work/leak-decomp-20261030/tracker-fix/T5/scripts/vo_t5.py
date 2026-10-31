@@ -17,7 +17,8 @@ Camera variants written (world = perc2's rectified-left camera c at frame 0, Ope
              (frame 0 first) whose map gives >= KF_OK PnP inliers (SQPnP RANSAC 1.5 px + LM); a new keyframe is opened,
              with the best candidate's pose, only when none does (the 13 Oct pipeline/perc.py rule, here with stereo maps).
              Ablations: --kf_mode latest (perc2's chain: match only the latest keyframe, re-base on the previous frame
-             when it gives < KF_OK); --no_mask 1 (no object or hand masks).
+             when it gives < KF_OK); --no_mask 1 (no object or hand masks); --zmax 2.0 (map points only up to 2 m, as
+             perc2's depth clip, which drops the static far background).
   rvo_plane  F1 + F3: rvo with the table-plane constraint applied to each new keyframe's pose before its map is built.
 Plane fit (same SGBM depth for frame 0 and keyframes, objects and hands masked, step-4 samples 0.2-1.2 m): frame 0 by
 det_rules.table_plane's RANSAC (normal within 65 deg of camera up, 6 mm) + 2 least-squares refits; a keyframe from the
@@ -168,6 +169,7 @@ def plane_correction(pc, Wk, p0):
 
 
 def main():
+    global ZMAX
     ap = argparse.ArgumentParser()
     for k in ('b', 'c', 'calib', 'poses', 'vo', 'hands', 'meshes', 'out'):
         ap.add_argument('--' + k, required=True)
@@ -176,8 +178,10 @@ def main():
     ap.add_argument('--map', default='sgbm', choices=('sgbm', 'sift'))
     ap.add_argument('--kf_mode', default='earliest', choices=('earliest', 'latest'))
     ap.add_argument('--no_mask', type=int, default=0)
+    ap.add_argument('--zmax', type=float, default=ZMAX)   # ablation: 2.0 = perc2's FoundationStereo depth clip
     ap.add_argument('--variants', default='base,plane,rvo,rvo_plane')
     a = ap.parse_args()
+    ZMAX = a.zmax
     for f in (a.b, a.c, a.calib, a.poses, a.vo, a.hands, a.meshes):
         assert_inference_input(f)
     os.makedirs(a.out, exist_ok=True)

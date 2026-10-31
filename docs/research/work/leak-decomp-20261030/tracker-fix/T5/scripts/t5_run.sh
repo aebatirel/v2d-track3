@@ -1,7 +1,7 @@
 #!/bin/bash
 # T5 first stage (tracker-fix PLAN §3 T5, §4 item 3): robust camera on public ep24, this VM, CPU, $0. Inference part
 # (vo_t5.py, GT-free) for every declared run, then the oracle scoring (t5_score.py, reads mocap) after all cameras exist.
-# Declared before any scoring (31 Oct ~05:55 UTC); development used GT-free readouts only (RESULTS.md §1):
+# Declared before any scoring (31 Oct ~05:20 UTC); development used GT-free readouts only (RESULTS.md §1):
 #   main        base (control), plane (F3 alone, primary plane-only), rvo (F1 alone), rvo_plane (F1 + F3, primary VO)
 #               SGBM keyframe maps, KF_OK 120, plane gate 300 samples
 #   plane3000   plane with the first, a-priori gate (3000 samples)                       sensitivity
@@ -34,3 +34,12 @@ $PY -I $T5/scripts/t5_score.py $W $W/t5_scores.json \
   main:base,main:plane,main:rvo,main:rvo_plane,plane3000:plane,sift:rvo,sift:rvo_plane,k150:rvo,k150:rvo_plane,nomask:rvo,latest:rvo \
   > $W/logs/score.log 2>&1 || echo "FAIL score"
 cat $W/logs/score.log
+# ---- added after the scores above (31 Oct ~05:38 UTC), mechanism ablation only (not a candidate fix):
+# perc2 clips its depth to 0.15-2.0 m, so its VO map has no static far background. Does the clip alone bring the jump back?
+#   z2latest   rvo, latest-keyframe chain, no masks, map points <= 2 m   (closest to perc2's VO, SGBM depth)
+#   z2         rvo, earliest keyframe, masks, map points <= 2 m
+run z2latest --variants rvo --kf_mode latest --no_mask 1 --zmax 2.0 &
+run z2 --variants rvo --zmax 2.0 &
+wait
+$PY -I $T5/scripts/t5_score.py $W $W/t5_scores_z2.json z2latest:rvo,z2:rvo > $W/logs/score_z2.log 2>&1 || echo "FAIL score z2"
+cat $W/logs/score_z2.log

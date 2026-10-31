@@ -1,0 +1,22 @@
+[    0.0s] rectified focal 600.2 baseline 0.07547
+[    7.9s] frames c/b/poses 275 275 275 objects ['wooden_piece_1', 'wooden_piece_2']
+[   16.2s] masks: mean masked fraction 0.121 max 0.15
+[   17.0s] frame-0 plane [-0.1108, -0.7199, -0.6852] 0.5313 inliers 6549 rms mm 2.76
+[   18.6s] features 0 c kp 2216 stereo 3-D 0
+[   50.9s] features 50 c kp 2474 stereo 3-D 0
+[   76.2s] features 100 c kp 1615 stereo 3-D 0
+[  101.8s] features 150 c kp 1889 stereo 3-D 0
+[  127.6s] features 200 c kp 2162 stereo 3-D 0
+[  154.3s] features 250 c kp 2325 stereo 3-D 0
+[  170.9s] rvo 25 kf used 0 inliers 372 keyframes 1
+[  175.1s] rvo 50 kf used 0 inliers 210 keyframes 1
+[  177.8s] rvo 75 kf used 0 inliers 176 keyframes 1
+[  180.2s] rvo 100 kf used 96 inliers 337 keyframes 2
+[  183.5s] rvo 125 kf used 96 inliers 352 keyframes 2
+[  186.5s] rvo 150 kf used 96 inliers 238 keyframes 2
+[  189.6s] rvo 175 kf used 96 inliers 198 keyframes 2
+[  192.3s] rvo 200 kf used 96 inliers 205 keyframes 2
+[  194.3s] rvo 225 kf used 96 inliers 216 keyframes 2
+[  196.4s] rvo 250 kf used 96 inliers 253 keyframes 2
+[  198.8s] rvo keyframes [0, 96] fails 0 frames on kf0 97 median inliers 232
+[  198.8s] DONE

@@ -25,6 +25,13 @@
     "ep12/mass0/s42: reference fingerprint 01838d4b7f1acac2d307bae3df59a09b != source f7d8bb94a6087baa06e2f262e47118e9 (not the same reference)"
    ]
   },
+  "T7_other_training_setting_detected": {
+   "ok": true,
+   "detail": [
+    "ep2/mass1/s42: best/policy.safetensors is not the checkpoint the summary names",
+    "ep2/mass1/s42: /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/masscheck/mockC/content/results/mass1s42_glock_public/ep2/best/r1/episode_000002.json evaluated checkpoint sha256 51eae32d90cd != chosen c6726ae1b97d"
+   ]
+  },
   "T0_restored_verified": {
    "ok": true,
    "detail": []

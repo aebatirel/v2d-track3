@@ -11,7 +11,8 @@ Checks (any failure makes the run INVALID for the verdict):
   - masses: mass0 arms load 0.3 kg for every object, props arms the props' mass_kg; the COM equals the source's;
   - same reference: every arm's parquet has the source reference's fingerprint (all columns but the asset paths) and
     differs from it only in object_urdf_paths;
-  - same training: per episode and seed the two arms' saved configs differ only in output_dir and task/reference.parquet;
+  - same training: per episode and seed the two arms' saved configs differ only in output_dir and task/reference.parquet
+    (or another string that differs only by the arm name, i.e. where the arm's files live);
     reset.seed is the seed; total_environment_steps equal in all arms;
   - the evaluated rollouts name the chosen checkpoint (when the evaluator writes it into its metrics file).
 Usage: mass_verify.py --eps "2 12" --seeds "42 43" --arms "mass0:none mass1:PROPS.json" --steps 70004736 --out V.json
@@ -138,7 +139,10 @@ def main():
                 for k in ks[1:]:
                     f1 = flat(cfgs[k])
                     d[k] = sorted(x for x in set(f0) | set(f1) if f0.get(x) != f1.get(x))
-                    bad = [x for x in d[k] if x not in ALLOWED_DIFF]
+                    a0, a1 = ks[0].split('/')[1], k.split('/')[1]          # also allowed: any other string that differs
+                    path_only = lambda x: (isinstance(f0.get(x), str) and isinstance(f1.get(x), str)   # only by the arm name
+                                           and f1[x].replace(a1, a0) == f0[x])                        # (where its files live)
+                    bad = [x for x in d[k] if x not in ALLOWED_DIFF and not path_only(x)]
                     if bad:
                         fails.append(f'{ks[0]} vs {k}: saved configs differ in {bad[:8]}')
                 pairs[f'ep{ep}/s{s}'] = d

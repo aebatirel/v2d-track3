@@ -1,0 +1,81 @@
+{
+ "ruleK": {
+  "first_ge_1cm": 40,
+  "f40": 1.53,
+  "f50": 1.99,
+  "f100": 2.63,
+  "end": 2.63
+ },
+ "rvo": {
+  "wooden_piece_1": {
+   "first_ge_1cm": 38,
+   "f36": 0.58,
+   "f40": 1.73,
+   "f50": 2.1,
+   "f100": 2.9,
+   "end": 2.83,
+   "max": 3.47,
+   "max_before_f27": 0.16,
+   "cos_with_ruleK_f100": 0.996
+  },
+  "wooden_piece_2": {
+   "first_ge_1cm": 38,
+   "f36": 0.6,
+   "f40": 1.72,
+   "f50": 2.06,
+   "f100": 2.9,
+   "end": 2.83,
+   "max": 3.35,
+   "max_before_f27": 0.17,
+   "cos_with_ruleK_f100": 0.993
+  }
+ },
+ "rvo_plane": {
+  "wooden_piece_1": {
+   "first_ge_1cm": 38,
+   "f36": 0.58,
+   "f40": 1.73,
+   "f50": 2.1,
+   "f100": 2.72,
+   "end": 2.83,
+   "max": 3.47,
+   "max_before_f27": 0.16,
+   "cos_with_ruleK_f100": 0.999
+  },
+  "wooden_piece_2": {
+   "first_ge_1cm": 38,
+   "f36": 0.6,
+   "f40": 1.72,
+   "f50": 2.06,
+   "f100": 2.6,
+   "end": 2.83,
+   "max": 3.35,
+   "max_before_f27": 0.17,
+   "cos_with_ruleK_f100": 0.998
+  }
+ },
+ "plane": {
+  "wooden_piece_1": {
+   "first_ge_1cm": 40,
+   "f36": 0.48,
+   "f40": 1.65,
+   "f50": 1.79,
+   "f100": 1.93,
+   "end": 2.33,
+   "max": 2.56,
+   "max_before_f27": 0.0,
+   "cos_with_ruleK_f100": 0.77
+  },
+  "wooden_piece_2": {
+   "first_ge_1cm": 61,
+   "f36": 0.25,
+   "f40": 0.68,
+   "f50": 0.76,
+   "f100": 1.75,
+   "end": 2.33,
+   "max": 2.4,
+   "max_before_f27": 0.0,
+   "cos_with_ruleK_f100": 0.794
+  }
+ }
+}

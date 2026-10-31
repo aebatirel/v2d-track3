@@ -1,0 +1,290 @@
+{
+ "ok": true,
+ "failures": [],
+ "allowed_config_differences": [
+  "output_dir",
+  "reference.parquet",
+  "task.parquet"
+ ],
+ "pair_config_differences": {
+  "ep2/s42": {
+   "ep2/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep2/s43": {
+   "ep2/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s42": {
+   "ep12/mass1/s42": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  },
+  "ep12/s43": {
+   "ep12/mass1/s43": [
+    "output_dir",
+    "reference.parquet",
+    "task.parquet"
+   ]
+  }
+ },
+ "cells": {
+  "ep2/mass0/s42": {
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep2-s42/policy_70004736.safetensors",
+   "checkpoint_steps": "70004736",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "68f27a8d0463b05b61b468091c23d7e7",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "bc9b4643a76902ac4c592d465107a60ef45b815acaf0fd25496862828b17a379"
+  },
+  "ep2/mass0/s43": {
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep2-s43/policy_9998336.safetensors",
+   "checkpoint_steps": "9998336",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "68f27a8d0463b05b61b468091c23d7e7",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00279907252
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass0_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.00124525615
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "4b654db4b6f764852ec6f784a5a71af383086e08a134719ace752dbc787b9641"
+  },
+  "ep2/mass1/s42": {
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep2-s42/policy_20000768.safetensors",
+   "checkpoint_steps": "20000768",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s42_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "0f08372845862d0e1e5fb4b2776fda25",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "51eae32d90cd71f7d2a066726d18c51f7747f0a78a5b199c1837afe8aa92f9d7"
+  },
+  "ep2/mass1/s43": {
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep2-s43/policy_9998336.safetensors",
+   "checkpoint_steps": "9998336",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s43_glockt/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "0f08372845862d0e1e5fb4b2776fda25",
+   "traj_fingerprint": "30c9ad1bcfce850ed3a2cf578a290477",
+   "loaded_urdfs": {
+    "white_pot": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.2771,
+     "com": "0.004576 -0.006496 -0.004585",
+     "ixx": 0.00258540998
+    },
+    "white_pot_lid": {
+     "urdf": "MR/content/refs/mass1_sf/ep2/assets/urdf/white_pot_lid_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.0882,
+     "com": "-0.003806 -0.003319 0.007932",
+     "ixx": 0.000366105308
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "16fd029c0c76810e7e0e4fa1f9c5f0d5fd173a101a84481ab94c20bd92eb018f"
+  },
+  "ep12/mass0/s42": {
+   "checkpoint": "MR/content/runs/mass0s42_glock/ep12-s42/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e487460a842f0cd9220d40997d477cb5",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "116df7bef4934241e81c0d7399d1fcaf1cd9a07224fdcc0c48b786d0708de9cf"
+  },
+  "ep12/mass0/s43": {
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep12-s43/policy_40001536.safetensors",
+   "checkpoint_steps": "40001536",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass0s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "e487460a842f0cd9220d40997d477cb5",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000915149943
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass0_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00770560679
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "8ccb812caffecde6eebe9e51d5ea6454e7e742bd5535444395c082af4f14235c"
+  },
+  "ep12/mass1/s42": {
+   "checkpoint": "MR/content/runs/mass1s42_glock/ep12-s42/policy_49999872.safetensors",
+   "checkpoint_steps": "49999872",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s42_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "016f73470eb4092164b559a56ebcdfd3",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 42,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "b9e5a3389adc7e17a15acd83512562e623e663c8e2ca7201ca5a94e27edc5479"
+  },
+  "ep12/mass1/s43": {
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep12-s43/policy_49999872.safetensors",
+   "checkpoint_steps": "49999872",
+   "curriculum_stage": "10",
+   "task_parquet": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave",
+   "reference_file": "MR/content/refs/mass1s43_glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "reference_md5": "016f73470eb4092164b559a56ebcdfd3",
+   "traj_fingerprint": "f7d8bb94a6087baa06e2f262e47118e9",
+   "loaded_urdfs": {
+    "blue_cup": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/blue_cup_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.128,
+     "com": "-0.000345 -0.000144 0.001723",
+     "ixx": 0.000390463976
+    },
+    "plastic_dish_rack": {
+     "urdf": "MR/content/refs/mass1_sf/ep12/assets/urdf/plastic_dish_rack_rigid.urdf",
+     "resolved": "verbatim",
+     "mass": 0.3865,
+     "com": "0.006452 -0.005337 0.011530",
+     "ixx": 0.00992739008
+    }
+   },
+   "reset_seed": 43,
+   "total_environment_steps": [
+    70004736
+   ],
+   "evaluations": 10,
+   "checkpoint_sha256": "c944539c139bda5d2d54fa6bbfab55e5c3bf7c952a9185f7706fab2fc306d0c3"
+  }
+ },
+ "rule": "docs/research/work/masses-transfer-20261031/PREREG.md"
+}

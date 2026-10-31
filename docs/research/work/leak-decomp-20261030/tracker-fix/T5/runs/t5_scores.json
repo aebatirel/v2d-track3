@@ -1,0 +1,681 @@
+{
+ "note": "ORACLE scoring vs public mocap, after inference (T5 first stage, ep24)",
+ "objects": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "recompose_check_maxdiff_base": 2.220446049250313e-16,
+ "runs": {
+  "main:base": {
+   "Po_star": 0.8105,
+   "Po_lib": 0.8117,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.7736,
+    "wooden_piece_2": 0.8473
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.7764,
+    "wooden_piece_2": 0.847
+   },
+   "Ps_star": 0.8494,
+   "Po_common": {
+    "common_cm_med": 2.72,
+    "common_cm_p90": 2.88,
+    "common_cm_phase": {
+     "A": 0.3,
+     "B": 1.64,
+     "C": 2.6,
+     "D": 2.64,
+     "E": 2.77,
+     "F": 2.78
+    },
+    "common_cm_end": 2.72,
+    "common_vec_cm_f100": [
+     1.2,
+     0.13,
+     2.38
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 3.06,
+     "wooden_piece_2": 2.3
+    },
+    "diff_cm_med": 0.78,
+    "auc_common_removed": 0.9988
+   },
+   "Ps_common": {
+    "common_cm_med": 2.38,
+    "common_cm_p90": 2.64,
+    "common_cm_phase": {
+     "A": 0.36,
+     "B": 1.4,
+     "C": 2.19,
+     "D": 2.34,
+     "E": 2.54,
+     "F": 2.63
+    },
+    "common_cm_end": 2.58,
+    "common_vec_cm_f100": [
+     1.03,
+     0.41,
+     1.95
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 2.57,
+     "wooden_piece_2": 2.26
+    },
+    "diff_cm_med": 0.47,
+    "auc_common_removed": 0.9989
+   }
+  },
+  "main:plane": {
+   "Po_star": 0.9438,
+   "Po_lib": 0.9436,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9382,
+    "wooden_piece_2": 0.9493
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9389,
+    "wooden_piece_2": 0.9484
+   },
+   "Ps_star": 0.9475,
+   "Po_common": {
+    "common_cm_med": 1.36,
+    "common_cm_p90": 1.66,
+    "common_cm_phase": {
+     "A": 0.3,
+     "B": 0.84,
+     "C": 1.39,
+     "D": 1.38,
+     "E": 1.34,
+     "F": 1.62
+    },
+    "common_cm_end": 1.59,
+    "common_vec_cm_f100": [
+     1.26,
+     0.09,
+     0.57
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 1.63,
+     "wooden_piece_2": 1.21
+    },
+    "diff_cm_med": 0.86,
+    "auc_common_removed": 0.9989
+   },
+   "Ps_common": {
+    "common_cm_med": 1.39,
+    "common_cm_p90": 1.69,
+    "common_cm_phase": {
+     "A": 0.36,
+     "B": 0.52,
+     "C": 1.16,
+     "D": 1.47,
+     "E": 1.41,
+     "F": 1.69
+    },
+    "common_cm_end": 1.66,
+    "common_vec_cm_f100": [
+     1.1,
+     0.35,
+     0.14
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 1.47,
+     "wooden_piece_2": 1.33
+    },
+    "diff_cm_med": 0.55,
+    "auc_common_removed": 0.9991
+   }
+  },
+  "main:rvo": {
+   "Po_star": 0.9943,
+   "Po_lib": 0.9943,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9939,
+    "wooden_piece_2": 0.9948
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9941,
+    "wooden_piece_2": 0.9945
+   },
+   "Ps_star": 0.9919,
+   "Po_common": {
+    "common_cm_med": 0.39,
+    "common_cm_p90": 0.57,
+    "common_cm_phase": {
+     "A": 0.26,
+     "B": 0.33,
+     "C": 0.44,
+     "D": 0.48,
+     "E": 0.4,
+     "F": 0.28
+    },
+    "common_cm_end": 0.3,
+    "common_vec_cm_f100": [
+     -0.35,
+     0.1,
+     -0.01
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.52,
+     "wooden_piece_2": 0.5
+    },
+    "diff_cm_med": 0.72,
+    "auc_common_removed": 0.9986
+   },
+   "Ps_common": {
+    "common_cm_med": 0.45,
+    "common_cm_p90": 0.85,
+    "common_cm_phase": {
+     "A": 0.32,
+     "B": 0.48,
+     "C": 0.53,
+     "D": 0.84,
+     "E": 0.44,
+     "F": 0.32
+    },
+    "common_cm_end": 0.43,
+    "common_vec_cm_f100": [
+     -0.51,
+     0.34,
+     -0.45
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.51,
+     "wooden_piece_2": 0.52
+    },
+    "diff_cm_med": 0.42,
+    "auc_common_removed": 0.9986
+   }
+  },
+  "main:rvo_plane": {
+   "Po_star": 0.9941,
+   "Po_lib": 0.9941,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9939,
+    "wooden_piece_2": 0.9943
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9941,
+    "wooden_piece_2": 0.9941
+   },
+   "Ps_star": 0.9928,
+   "Po_common": {
+    "common_cm_med": 0.4,
+    "common_cm_p90": 0.62,
+    "common_cm_phase": {
+     "A": 0.26,
+     "B": 0.33,
+     "C": 0.49,
+     "D": 0.56,
+     "E": 0.4,
+     "F": 0.28
+    },
+    "common_cm_end": 0.3,
+    "common_vec_cm_f100": [
+     -0.4,
+     0.09,
+     0.28
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.6,
+     "wooden_piece_2": 0.5
+    },
+    "diff_cm_med": 0.72,
+    "auc_common_removed": 0.9986
+   },
+   "Ps_common": {
+    "common_cm_med": 0.45,
+    "common_cm_p90": 0.75,
+    "common_cm_phase": {
+     "A": 0.32,
+     "B": 0.48,
+     "C": 0.53,
+     "D": 0.75,
+     "E": 0.44,
+     "F": 0.32
+    },
+    "common_cm_end": 0.43,
+    "common_vec_cm_f100": [
+     -0.56,
+     0.32,
+     -0.16
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.51,
+     "wooden_piece_2": 0.52
+    },
+    "diff_cm_med": 0.41,
+    "auc_common_removed": 0.9986
+   }
+  },
+  "plane3000:plane": {
+   "Po_star": 0.9235,
+   "Po_lib": 0.9235,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9164,
+    "wooden_piece_2": 0.9307
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9173,
+    "wooden_piece_2": 0.9298
+   },
+   "Ps_star": 0.936,
+   "Po_common": {
+    "common_cm_med": 1.45,
+    "common_cm_p90": 1.94,
+    "common_cm_phase": {
+     "A": 0.3,
+     "B": 1.53,
+     "C": 1.92,
+     "D": 1.43,
+     "E": 1.44,
+     "F": 1.62
+    },
+    "common_cm_end": 1.58,
+    "common_vec_cm_f100": [
+     1.24,
+     0.14,
+     0.54
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 1.76,
+     "wooden_piece_2": 1.23
+    },
+    "diff_cm_med": 0.77,
+    "auc_common_removed": 0.9989
+   },
+   "Ps_common": {
+    "common_cm_med": 1.39,
+    "common_cm_p90": 1.76,
+    "common_cm_phase": {
+     "A": 0.36,
+     "B": 1.3,
+     "C": 1.7,
+     "D": 1.39,
+     "E": 1.38,
+     "F": 1.66
+    },
+    "common_cm_end": 1.63,
+    "common_vec_cm_f100": [
+     1.08,
+     0.4,
+     0.11
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 1.56,
+     "wooden_piece_2": 1.29
+    },
+    "diff_cm_med": 0.46,
+    "auc_common_removed": 0.9991
+   }
+  },
+  "sift:rvo": {
+   "Po_star": 0.9839,
+   "Po_lib": 0.9836,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9786,
+    "wooden_piece_2": 0.9891
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9795,
+    "wooden_piece_2": 0.9877
+   },
+   "Ps_star": 0.9868,
+   "Po_common": {
+    "common_cm_med": 0.36,
+    "common_cm_p90": 1.13,
+    "common_cm_phase": {
+     "A": 0.39,
+     "B": 0.41,
+     "C": 0.26,
+     "D": 0.32,
+     "E": 0.32,
+     "F": 1.11
+    },
+    "common_cm_end": 0.79,
+    "common_vec_cm_f100": [
+     0.07,
+     -0.01,
+     -0.16
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.57,
+     "wooden_piece_2": 0.6
+    },
+    "diff_cm_med": 0.72,
+    "auc_common_removed": 0.9951
+   },
+   "Ps_common": {
+    "common_cm_med": 0.56,
+    "common_cm_p90": 0.97,
+    "common_cm_phase": {
+     "A": 0.4,
+     "B": 0.54,
+     "C": 0.55,
+     "D": 0.69,
+     "E": 0.29,
+     "F": 0.79
+    },
+    "common_cm_end": 0.71,
+    "common_vec_cm_f100": [
+     -0.09,
+     0.23,
+     -0.59
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.58,
+     "wooden_piece_2": 0.67
+    },
+    "diff_cm_med": 0.42,
+    "auc_common_removed": 0.9964
+   }
+  },
+  "sift:rvo_plane": {
+   "Po_star": 0.9843,
+   "Po_lib": 0.9856,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9773,
+    "wooden_piece_2": 0.9914
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9802,
+    "wooden_piece_2": 0.9909
+   },
+   "Ps_star": 0.989,
+   "Po_common": {
+    "common_cm_med": 0.49,
+    "common_cm_p90": 1.06,
+    "common_cm_phase": {
+     "A": 0.4,
+     "B": 0.48,
+     "C": 0.36,
+     "D": 0.47,
+     "E": 0.49,
+     "F": 1.05
+    },
+    "common_cm_end": 0.89,
+    "common_vec_cm_f100": [
+     0.03,
+     -0.06,
+     0.43
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.77,
+     "wooden_piece_2": 0.53
+    },
+    "diff_cm_med": 0.75,
+    "auc_common_removed": 0.9962
+   },
+   "Ps_common": {
+    "common_cm_med": 0.44,
+    "common_cm_p90": 0.86,
+    "common_cm_phase": {
+     "A": 0.44,
+     "B": 0.65,
+     "C": 0.41,
+     "D": 0.37,
+     "E": 0.14,
+     "F": 0.86
+    },
+    "common_cm_end": 0.84,
+    "common_vec_cm_f100": [
+     -0.13,
+     0.18,
+     -0.0
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.51,
+     "wooden_piece_2": 0.5
+    },
+    "diff_cm_med": 0.43,
+    "auc_common_removed": 0.9968
+   }
+  },
+  "k150:rvo": {
+   "Po_star": 0.9948,
+   "Po_lib": 0.9947,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9943,
+    "wooden_piece_2": 0.9952
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9945,
+    "wooden_piece_2": 0.9948
+   },
+   "Ps_star": 0.9917,
+   "Po_common": {
+    "common_cm_med": 0.39,
+    "common_cm_p90": 0.59,
+    "common_cm_phase": {
+     "A": 0.26,
+     "B": 0.33,
+     "C": 0.46,
+     "D": 0.5,
+     "E": 0.4,
+     "F": 0.28
+    },
+    "common_cm_end": 0.3,
+    "common_vec_cm_f100": [
+     -0.3,
+     0.24,
+     -0.07
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.51,
+     "wooden_piece_2": 0.51
+    },
+    "diff_cm_med": 0.72,
+    "auc_common_removed": 0.9988
+   },
+   "Ps_common": {
+    "common_cm_med": 0.45,
+    "common_cm_p90": 0.95,
+    "common_cm_phase": {
+     "A": 0.32,
+     "B": 0.48,
+     "C": 0.53,
+     "D": 0.94,
+     "E": 0.44,
+     "F": 0.32
+    },
+    "common_cm_end": 0.43,
+    "common_vec_cm_f100": [
+     -0.47,
+     0.48,
+     -0.51
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.51,
+     "wooden_piece_2": 0.52
+    },
+    "diff_cm_med": 0.42,
+    "auc_common_removed": 0.9986
+   }
+  },
+  "k150:rvo_plane": {
+   "Po_star": 0.9959,
+   "Po_lib": 0.9958,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9943,
+    "wooden_piece_2": 0.9975
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9945,
+    "wooden_piece_2": 0.997
+   },
+   "Ps_star": 0.9948,
+   "Po_common": {
+    "common_cm_med": 0.4,
+    "common_cm_p90": 0.61,
+    "common_cm_phase": {
+     "A": 0.26,
+     "B": 0.33,
+     "C": 0.49,
+     "D": 0.53,
+     "E": 0.4,
+     "F": 0.28
+    },
+    "common_cm_end": 0.3,
+    "common_vec_cm_f100": [
+     -0.34,
+     0.19,
+     0.34
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.6,
+     "wooden_piece_2": 0.5
+    },
+    "diff_cm_med": 0.71,
+    "auc_common_removed": 0.9989
+   },
+   "Ps_common": {
+    "common_cm_med": 0.45,
+    "common_cm_p90": 0.75,
+    "common_cm_phase": {
+     "A": 0.32,
+     "B": 0.48,
+     "C": 0.53,
+     "D": 0.76,
+     "E": 0.44,
+     "F": 0.32
+    },
+    "common_cm_end": 0.43,
+    "common_vec_cm_f100": [
+     -0.5,
+     0.43,
+     -0.09
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.5,
+     "wooden_piece_2": 0.52
+    },
+    "diff_cm_med": 0.41,
+    "auc_common_removed": 0.9988
+   }
+  },
+  "nomask:rvo": {
+   "Po_star": 0.9945,
+   "Po_lib": 0.9947,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.9941,
+    "wooden_piece_2": 0.995
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.9945,
+    "wooden_piece_2": 0.9948
+   },
+   "Ps_star": 0.9933,
+   "Po_common": {
+    "common_cm_med": 0.38,
+    "common_cm_p90": 0.55,
+    "common_cm_phase": {
+     "A": 0.3,
+     "B": 0.34,
+     "C": 0.42,
+     "D": 0.47,
+     "E": 0.39,
+     "F": 0.27
+    },
+    "common_cm_end": 0.44,
+    "common_vec_cm_f100": [
+     -0.26,
+     0.08,
+     0.25
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.57,
+     "wooden_piece_2": 0.43
+    },
+    "diff_cm_med": 0.72,
+    "auc_common_removed": 0.9981
+   },
+   "Ps_common": {
+    "common_cm_med": 0.43,
+    "common_cm_p90": 0.66,
+    "common_cm_phase": {
+     "A": 0.34,
+     "B": 0.48,
+     "C": 0.48,
+     "D": 0.67,
+     "E": 0.41,
+     "F": 0.33
+    },
+    "common_cm_end": 0.43,
+    "common_vec_cm_f100": [
+     -0.42,
+     0.31,
+     -0.18
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.47,
+     "wooden_piece_2": 0.49
+    },
+    "diff_cm_med": 0.42,
+    "auc_common_removed": 0.9983
+   }
+  },
+  "latest:rvo": {
+   "Po_star": 0.9955,
+   "Po_lib": 0.9952,
+   "Po_star_per_obj": {
+    "wooden_piece_1": 0.995,
+    "wooden_piece_2": 0.9959
+   },
+   "Po_lib_per_obj": {
+    "wooden_piece_1": 0.995,
+    "wooden_piece_2": 0.9955
+   },
+   "Ps_star": 0.9933,
+   "Po_common": {
+    "common_cm_med": 0.4,
+    "common_cm_p90": 0.56,
+    "common_cm_phase": {
+     "A": 0.26,
+     "B": 0.33,
+     "C": 0.46,
+     "D": 0.49,
+     "E": 0.4,
+     "F": 0.36
+    },
+    "common_cm_end": 0.4,
+    "common_vec_cm_f100": [
+     -0.35,
+     0.24,
+     0.15
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.55,
+     "wooden_piece_2": 0.54
+    },
+    "diff_cm_med": 0.72,
+    "auc_common_removed": 0.9988
+   },
+   "Ps_common": {
+    "common_cm_med": 0.54,
+    "common_cm_p90": 0.87,
+    "common_cm_phase": {
+     "A": 0.32,
+     "B": 0.48,
+     "C": 0.53,
+     "D": 0.87,
+     "E": 0.58,
+     "F": 0.5
+    },
+    "common_cm_end": 0.6,
+    "common_vec_cm_f100": [
+     -0.52,
+     0.47,
+     -0.29
+    ],
+    "anchor_err_cm_med": {
+     "wooden_piece_1": 0.59,
+     "wooden_piece_2": 0.63
+    },
+    "diff_cm_med": 0.42,
+    "auc_common_removed": 0.9986
+   }
+  }
+ }
+}

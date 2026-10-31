@@ -1,0 +1,65 @@
+MASSES TRANSFER CHECK: launch job string (prepared 31 Oct 2026 ~05:45 UTC; NOTHING LAUNCHED; needs the owner's go-ahead)
+Pre-registration: docs/research/work/masses-transfer-20261031/PREREG.md (rule fixed there; commit it unchanged with the code)
+Build notes and CPU evidence: BUILD.md, cpu/ (same folder)
+
+Before the launch (orchestrator):
+  1. commit + push: ops/jobs/mass_check.sh, ops/jobs/glock_public.sh (REF_ONLY / NO_PUSH / EVAL_TIMEOUT hooks, off by
+     default), tools/ckpt_curve.sh (EVAL_TIMEOUT hook), tools/mass_arm.py, tools/mass_verify.py, tools/mass_verdict.py,
+     docs/research/work/masses-transfer-20261031/ ; SHA=<that commit>, S7=${SHA:0:7}
+  2. the owner's go-ahead for the spend below, then a ledger line:
+       python3 ops/ledger.py add planned 20261031-mass-$S7 9.00 "masses transfer check (public ep2/ep12, M0 vs M1, 2 seeds)" owner
+  3. offer: ONE RTX PRO 6000 (96 GB) on demand, <= $1.47/h; snapshot pt2.11-cu130-py313-20261020. The box
+     self-destroys when the job ends (run_job.sh), and the stall watchdog (30 min without progress) protects the spend.
+     There is no fixed time limit.
+
+Run id: 20261031-mass-$S7   (mass_check.sh refuses a run id without "-mass-")
+Job string (everything else is fixed inside the script: episodes, seeds, arms, recipe, NREP 10, PAR 2, TRAIN_SLOTS 2):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261031-mass-$S7 'bash ops/jobs/mass_check.sh'
+
+What it runs on the box (in order):
+  - pull: 20261024-ev2-2c1e4dd refs/perc2mc/ep12, refs/sf/ep12, refs/glockt/ep12 (+ results/glock_public/ep12/
+    rest_check.json via pull-files); 20261024-ev3-2c1e4dd refs/perc2mck/ep2. That is 4 listings and 1 single-file
+    download, each with 3 tries.
+  - ep2 grasp-lock reference built once, frozen recipe, 0.3 kg (glock_public.sh REF_ONLY=1 NO_PUSH=1);
+  - tools/mass_arm.py per episode: arm folders refs/mass{0,1}_sf/ep<N>/assets, parquet copies refs/mass{0,1}s{42,43}_glockt;
+  - seed 42: glock_public.sh REUSE_REF=1 NO_PUSH=1 PAIRS="2:local:mck:mass0s42 2:local:mck:mass1s42 12:local:mc:mass0s42
+    12:local:mc:mass1s42" (2 waves of 2 trainings); then seed 43 the same;
+  - tools/mass_verify.py -> results/mass_check/verify.json; tools/mass_verdict.py -> results/mass_check/summary.json;
+    RESULT line in job.log;
+  - ONE store push (the platform's own 30-min interim pushes and its final self-destroy push remain).
+
+EXPECTED COST [estimates]. Basis [M], from the runs' job logs:
+  - one REUSE_REF grasp-lock training alone on the GPU, 70M steps (rcA 29 Oct): 36 / 43 / 44 min, then curve (3 evaluations
+    per checkpoint) 3 min and 5 evaluations 1-2 min;
+  - two trainings sharing the GPU (orcB 30 Oct, TRAIN_SLOTS 2, PAR 2, NREP 10): 71-75 min per wave of 2 (the GPU is
+    saturated by one training: no throughput gain from the second slot), curve 6-7 min, 10 evaluations 4-8 min;
+  - reference build with the evolutionary search (2 holds), GPU: about 15-30 min (24 Oct GPU validation: "minutes" per hold);
+  - setup 0.2-0.75 h (43 min under HF 429 on 30 Oct); price RTX PRO 6000 on demand $1.18-1.47/h (30 Oct boxes).
+
+| stage                                           | hours          |
+|-------------------------------------------------|----------------|
+| boot + setup                                    | 0.2-0.75       |
+| pulls (5 store requests, HF 429 risk)           | 0.1-0.25       |
+| ep2 reference build (SF, grasp lock, ILC, evolve)| 0.25-0.5      |
+| 4 waves x 2 trainings (65-80 min each)          | 4.3-5.3        |
+| seed boundary (seed 42's last curve + evals)    | 0.25           |
+| last curve + evals, verify, verdict, push       | 0.3-0.4        |
+| total                                           | 5.4-7.5 (central ~6.2 h) |
+
+  => ~$6.5-11.0, central ~$8.7 at $1.40/h. The brief's "~1 box x ~3-4 h" (and the earlier "~$5-6" quote to the
+     physics session) assumed shorter waves. The measured wave is ~72 min, and 8 trainings need 4 of them.
+  Vast credit at 04:50 UTC 31 Oct: $16.17 (STATUS / work log), so the check fits, but little is left for an eval
+  retrain afterwards (~$20-25 [E], physics session).
+
+After the box (CPU, $0):
+  - read results/mass_check/{summary.json, verify.json, stored_refs.txt} from the store, with ONE hf_hub_download per file
+    (HF 429);
+  - compare stored_refs.txt with PREREG section 2:
+    - ep12 glockt fingerprint f7d8bb94a6087baa06e2f262e47118e9;
+    - ep2 base fingerprint 30c9ad1bcfce850ed3a2cf578a290477;
+  - write the reading (PREREG section 3) in the work log, per seed and per reference;
+  - close the ledger with an actual line.
+  - INCOMPLETE -> re-run only the missing seed(s) on THIS run's references, with:
+      SEEDS=<s> SRC_EP2=20261031-mass-$S7:mck:reuse SRC_EP12=20261031-mass-$S7:mc:reuse bash ops/jobs/mass_check.sh
+    Then apply mass_verdict.py once to the combined cells.
