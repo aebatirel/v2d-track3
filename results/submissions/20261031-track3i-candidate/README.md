@@ -17,7 +17,21 @@ tier as C0, no MK_R0 balls):
   (ep11 guard +0.008; beige per-object AUC 0.933 → 0.949; the 13° ICP is mostly spin about the kit-declared symmetry axis
   and library_v3's broken two-piece beige); **beige eval 8 NOT verified** (no public twin tracked with v3x; ICP to v3x
   11.9°/8.5 mm) → left out. [E] CD-O 0.346 (9a: 0.367).
-- `build_9aplus/` (both beige pairs + dust pan; sha256 e02736ea…, commit URL d7ecaef): NOT signed off for eval 8.
+- `build_9aplus/` (both beige pairs + dust pan; sha256 e02736ea3c7e33ffcee5ada4a6a1dbc8ad4e72cd2889abdaa9968b8d3af6a7d8,
+  commit URL d7ecaef): mesh session (~17:15 UTC) **conditional YES for eval 8**: "eval 8 beige swap not covered by a public
+  twin (rollouts tracked with library_v3x; pot also swapped)"; the lathe sits closer to v3x than to v3; CD-O on that pair
+  0.730 → 0.255. [E] board CD-O 0.333. Recommended by the mesh session (each board keeps its best).
+- Beige real registration onto the public ep11 scan: total rotation 4.04° (tilt ≤ 4°), anchor shift 0.47 cm
+  (library_v3 beige: 145.3°, almost all free spin, 0.59 cm); 32-seed symmetry-aware metric: max 3.5°, 0 flips.
+- Provenance flags, as stated by the mesh session. T1 beige cup: (a) tier P1, fitted to our stereo points along
+  library_v3-anchored tracks (library_v3 itself fused along scan-templated tracks; on our deny-list); (b) lathe_obs.py was
+  written on 26 Oct in a loop that also read the public scans: 3 mm wall fallback (scan-informed), floor rule (scan
+  diagnostics), --tmin 1.5 mm (after scan wall statistics), TIE factor (origin unknown) — whether they bind for the beige
+  lathe is being checked in the C0b scan-free rebuild; (c) its config g1 was the blue-cup configuration chosen on 26 Oct
+  after the blue-cup lathes were scored; T1's own mesh, mask and settings were fixed in its PREREG before its single
+  scoring. T2 dust pan: (a) SAM 3D output (SAM licence) from crops seeded by library_v3 projected along our tracks;
+  (b) placed by a GT-free Sim(3) ICP onto the library_v3 dust pan (scale 0.996); (c) picked by the probe's GT-free metric,
+  whose agreement with the scans (Spearman 0.46) was measured only after the probe's scoring; (d) tier P1.
 
 **NOT UPLOADED YET.** Owner: "I want a pack today" (31 Oct ~15:40 UTC, via the score-status session); planned upload
 ~20:00–20:30 UTC to all six boards unless the owner stops it. Fallback: pot + rack only (`build_2obj/`), or pack 8.
