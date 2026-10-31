@@ -70,10 +70,13 @@ def render(b, geo, video, obj, body, frames, path, lines, slot_box=None, pieces=
         x0, y0 = np.maximum(P.min(0).astype(int) - 80, 0)
         x1, y1 = np.minimum(P.max(0).astype(int) + 80, [im.shape[1], im.shape[0]])
         crop = im[y0:y1, x0:x1].copy()
-        for q, s in enumerate([f'frame {f} ({kind})'] + list(lines)):
-            cv2.putText(crop, s, (8, 22 + 22 * q), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 3)
-            cv2.putText(crop, s, (8, 22 + 22 * q), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-        tiles.append(cv2.resize(crop, (720, int(720 * crop.shape[0] / crop.shape[1]))))
+        crop = cv2.resize(crop, (720, int(720 * crop.shape[0] / crop.shape[1])))
+        txt = [f'frame {f} ({kind})'] + list(lines)
+        band = np.zeros((14 + 18 * len(txt), crop.shape[1], 3), np.uint8)
+        for q, s in enumerate(txt):
+            cv2.putText(band, s[:110], (6, 16 + 18 * q), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (255, 255, 255), 1,
+                        cv2.LINE_AA)
+        tiles.append(np.vstack([band, crop]))
     h = max(t.shape[0] for t in tiles)
     tiles = [np.vstack([t, np.zeros((h - t.shape[0], t.shape[1], 3), np.uint8)]) for t in tiles]
     cv2.imwrite(path, np.hstack(tiles))

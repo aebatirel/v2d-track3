@@ -39,9 +39,14 @@ def budget_ok(path):
     return d['v'] <= 4096 and d['f'] <= 4096, d
 
 
+from concurrent.futures import ThreadPoolExecutor   # fidelity processes run 3 at a time (same commands, one mesh each)
+paths = {lab: f'{W}/cand/{lab.split("_")[0]}_water_pitcher_{lab.split("_")[1]}.glb' for lab in LABELS}
+jobs = [(lab, k) for lab in LABELS if os.path.exists(paths[lab]) for k in OBS] + [(p, k) for p in report for k in OBS]
+with ThreadPoolExecutor(3) as ex:
+    FID_RES = dict(zip(jobs, ex.map(lambda j: fid(OBS[j[1]], paths.get(j[0], j[0])), jobs)))
 rows = []
 for lab in LABELS:
-    p = f'{W}/cand/{lab.split("_")[0]}_water_pitcher_{lab.split("_")[1]}.glb'
+    p = paths[lab]
     row = dict(label=lab, path=p, exists=os.path.exists(p))
     if not row['exists']:
         row['excluded'] = 'build failed / missing'
@@ -50,7 +55,7 @@ for lab in LABELS:
     row.update(faces=int(len(m.faces)), watertight=bool(m.is_watertight))
     ok, info = budget_ok(p)
     row['budget'] = info
-    row['fid'] = {k: fid(o, p) for k, o in OBS.items()}
+    row['fid'] = {k: FID_RES[(lab, k)] for k in OBS}
     if not row['watertight']:
         row['excluded'] = 'not watertight'
     elif not ok:
@@ -64,7 +69,7 @@ ok = [r for r in rows if 'excluded' not in r]
 pick = min(ok, key=lambda r: (round(r['fid']['ALL']['sum_mm'], 3), r['faces'], r['label'].encode())) if ok else None
 rep = []
 for p in report:
-    rep.append(dict(path=p, fid={k: fid(o, p) for k, o in OBS.items()}))
+    rep.append(dict(path=p, fid={k: FID_RES[(p, k)] for k in OBS}))
     print('report', p, {k: v.get('sum_mm') for k, v in rep[-1]['fid'].items()}, flush=True)
 res = dict(rule='lowest obs_fidelity sum_mm on ALL (ep21+ep22 C0b pass-B points); ties: fewer faces, label',
            candidates=rows, pick=None if pick is None else dict(label=pick['label'], path=pick['path'],
