@@ -733,3 +733,22 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   geometry), log <run>/cands23_v6.log. New result scripts (not decision code): `build/I/fi415_ep23.py` (plate test +
   body + default prisms + PNG, both boards), `build/I/fi415_png.py` (polygon / slotted prisms / slot box over RGB),
   `build/I/fi415_summary.py` (one summary JSON per T-I11 run).
+- 18:41-18:44 [M] **ep23 plate test + body (F-I4.15.6 step 4; v6 bundle b4ext6-90c8cce, picks shell_t5p36 built
+  18:39-18:41; code 3484d8d = 19c4309 for platebody / interlock; `build/I/fi415_ep23.py`, 156 s; out
+  <run>/fi415_ep23/)**. Board 1: plate by step 3 (one face: 10,499 downsampled points all from the + side, 62 frames,
+  1-99 % extent along n 13.1 mm), t := board 2's all-point t **10.785 mm** (`plate_t_partner_prior`; board 2's track is
+  the wrong board, so this t is reported only). Body: rectangle frame 224 x 124 mm (fill 0.742), polygon 168 -> 140
+  vertices (68 reflex), 206.0 cm2; widths waist 108 / ends 74 mm (partial outline: the shell covers part of the board,
+  PNG); FREE share 4.27 % vs rectangle 16.9 % (ratio 0.252); default prisms **85 > cap 82 -> `plate_body_over_cap`, body
+  not built**. Board 2 (wrong-board track, reported only): plane pair t 10.69 mm (downsample) -> 10.785 mm (all points:
+  287,828 / 529,870 points, frames 0-90 / 78-324), polygon 102 vertices, waist 126 / ends 134 mm, FREE 9.1 % vs 26.2 %
+  (0.346), 56 prisms. **Freeze condition (b) fails** (board 1's body is not built), so F-I4.15 is not frozen for eval 25
+  whatever ep24 gives. P57 fails (t 10.785 > 10, body not built, end - waist -34 mm; only the FREE ratio part holds).
+  Run in parallel with ep24 (code frozen; it cannot change the ep24 run).
+- 18:49 [M] **ep24 fi4o decisions: both boards CARVE (T1, owner_waiver_fi4)**. Board 1: step 2 (camera-side pair on the
+  downsample, t 6.212 mm) -> **all-point t 7.401 mm** (faces +3.70 / -3.70 mm, 736,196 / 1,023,648 points, frames 0-74 /
+  74-274; per-frame medians 2.41-4.70 / -4.61..-3.06 mm). Board 2: step 3 one face, t := 7.401 mm. P54 holds (6.8-8.0).
+  Keep-out gate (18:49-18:50): slotted prisms **57 / 77**, max 0.0 cm3 per hull (P51 holds, by construction);
+  P58 (<= 16 prisms) fails; P5 shapes 134 <= 165. Physics (P2-P7, 16 copies) running since 18:50.
+- 19:00 [M] T-I1 F-I4.15 suite so far: w1 (t = 10, 13, 18; 25 out of scope) ok; **w1 t = 6 width now passes** (the
+  F-I4.13 known miss; t from all points); w2, w3 ok; w4 running.
