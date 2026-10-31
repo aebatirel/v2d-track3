@@ -5483,3 +5483,16 @@ diagnostic; nothing is picked for submission.
   (scan-free rebuild of the T1 lathe, one scoring, ep11 guard, eval builds on evals 8 and 10).
   - The C0b audit (9451062) found 163 constants: 16 scan-derived and 71 of unknown origin (16 suspect).
 - Sent the C1 summary to the score session (cc focused-pascal) for pack-10 planning.
+
+### 2026-10-31 ~17:25 UTC — packing instructions for an optional "9a+" (T1 beige + T2 dust pan) sent to focused-pascal
+- Requested by the score session. 9a+ goes in only if the owner picks it; the default stays the C0b/E0b scan-free
+  rebuild in pack 10.
+- **Beige T1** (md5 8c8be2b0..., eval 10 slot 1 and eval 8 slot 0).
+  - Rigid ICP from identity: vs library_v3 15.7 deg / 11.1 mm; vs library_v3x 11.9 deg / 8.5 mm (v3x vs v3 5.7 deg /
+    3.0 mm). Median surface distance 2.9 / 2.8 mm.
+  - The ICP rotation is not a clean frame measure: axial symmetry, a 92 x 104 x 93 mm appendage shell, broken library
+    beige.
+  - The ep11 AUC guard (+0.008) covers eval 10. Eval 8 (v3x-tracked) has no twin, so it is the owner's call. [E]
+    eval-10-only CD-O 0.346.
+- **Dust pan T2** (md5 19765405..., evals 19 slot 1 and 38 slot 0): ICP 1.34 deg / 0.25 mm. YES.
+- Scratch outputs: `<scratch>/c1pack/frame.json`.
