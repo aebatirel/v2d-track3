@@ -5755,3 +5755,11 @@ diagnostic; nothing is picked for submission.
   a physical delivery floor (collider share of the body, S on the delivered pieces); 21.10's five decisions follow.
 - Results: `gmg/build/I/results/collcarve-public/` (README, per-episode JSON and logs), figures
   `gmg/build/I/png/fi5pub_ep*.png`.
+
+### 2026-10-31 21:05 UTC — board slot round 2, Eval 25 step (board-slot round-2 workflow): not run
+- No blocking finding in verify_slot2_0 / verify_slot2_1, so nothing to fix. Freeze condition (b) of F-I4.15.6 fails
+  (ep23 board 1: 85 default prisms > cap 82), and no later F-I4 entry or orchestrator decision exists, so eval 25 is not
+  run under F-I4.15. No ep25 identity mapping, bundle, F-I4 run, r0 or meshes/carve/ev25 comparison was done; nothing
+  read from meshes/carve/ev25; no rental, $0. Log: `gmg/build/I.md`, Board slot round 2, 21:05.
+- Needs a decision: a new dated F-I4 entry (prism count; a fresh condition (b); optionally ep23's partial outline and
+  the board-2 slot-centre offset of verify_slot2_1 N1), then a freeze.

@@ -983,3 +983,17 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   agent's interlock.py crash guard cbed3cb; 3951 s): **Ran 24 tests, OK (2 expected failures, the earlier recorded known
   misses)**. Log in `build/I/results/slot2-ep24/tests/`. Round-2 step done: ep24 slot delivered with P1 pending; not
   frozen for eval 25 (ep23 board 1 over the prism cap); eval 25 not run; no rental ($0).
+- 21:05 (Eval 25 step, board-slot round-2 workflow) started and closed. Read STATUS, CLAUDE.md, this log (round 2,
+  all), PREREG F-I4.15.6 and the F-I4.15 outcomes, the build result and both verifier reports (verify_slot2_0,
+  verify_slot2_1: no blocking finding in either, so nothing to fix). Checked: freeze condition (b) fails
+  (`slot2-ep23/ep23_fi415.json`: board 1 default prisms over_cap true, 85 > 82 [M]), and no F-I4 entry or orchestrator
+  decision after F-I4.15 exists on the branch or on origin (fetched 21:05). F-I4.15.6 step 5: "Eval 25 is then not run
+  under F-I4.15; any change is a new dated entry and an orchestrator decision." **Eval 25 not run.** The task's four
+  steps (ep25 board-identity mapping, ep25 bundle, F-I4 run with physics, r0 + comparison with meshes/carve/ev25) are
+  gated on "no rule change needed", so none was done: no ep25 output written, meshes/carve/ev25 not read, no
+  `slot2-ev25/` folder, no rental ($0). For the next entry (decision only): a prism-count fix (verify_slot2_0 N2: ep23
+  can no longer be the independent condition (b); name an untouched public plate episode or a pre-written synthetic
+  family), and say whether it also targets ep23's partial outline (verify_slot2_1 N6) and board 2's slot centre
+  (verify_slot2_1 N1: about 3.5 mm off the observed slot, set by the tracked pose at assembly; with P_sim = the packed
+  eval-25 reference it may exceed the 1 mm clearance [H]). The identity mapping and the ep25 bundle need no F-I4 rule
+  and can be scheduled on their own.
