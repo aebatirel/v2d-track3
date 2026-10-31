@@ -5428,3 +5428,9 @@ Advice given:
   $1.508/h), rtkA $0.73, rtkB $0.81. Both H5 boxes ran ~2x the plan: [H] per-draw time on those hosts, not checked.
   Ledger actual total $152.94; open: e10v, mv2b (mine), rscrV42/V43 (other session). Vast credit $56.52 (22:58Z).
   runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json is in the store (D build agent, 22:38Z); no CPU rebuild needed.
+- ~23:00 UTC bold-albattani (mesh files only, no tracks read): pot templates' stray parts / centroid offsets do not track
+  the losses (ep44 7 far parts and 62 mm offset, −0.017; ep0 clean and 3.7 mm off, −0.925); all own-video templates carry
+  no colour (trimesh visual None) vs library_v3 grey vertex colours (mean 173, spread 30); volumes 408–778 cm³ vs 625
+  (ep45 widest, 167 mm vs 131). [H] uncoloured templates render in the renderer's default colour and hurt FoundationPose's
+  RGB render-and-compare (not the whole story: uncoloured blue cups gained slightly). Falsifier: re-track ep45 + ep0 with
+  the same meshes painted uniform grey 173 (~$1). Not run tonight (off the pack-10 path; needs the owner's word).
