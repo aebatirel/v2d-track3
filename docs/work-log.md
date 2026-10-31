@@ -5622,3 +5622,28 @@ diagnostic; nothing is picked for submission.
     our reference spoon poses in the cup frame and measures intrusion into the packed cup collider vs an open-cavity cup.
 - Reply: the board slot is at risk for 12:00; spoon and rack are possible. I'll deliver per episode and give a status
   at ~09:00 UTC.
+
+### 2026-10-31 ~18:25-18:40 UTC — E0 report: packaged, verified, two ship gates open (CPU, $0, no new scoring)
+- Workflow `cdo-sprint-e0`, report step. Report: `docs/research/mesh-2026-10-26/cdo-sprint/E0/README.md`. Step log:
+  `cdo-sprint/E0/NOTES.md`. Verifiers: `E0/verify_0.md` (integrity, 42ab815) and `E0/verify_1.md` (frame and kit,
+  f302485).
+- **Rule result (PREREG s6), unchanged:** E0 for pot (ep3/fit 2.922 vs C0 2.914 mm), lid (ep1/t2.5_fit 1.675 vs
+  1.772), rack (joint 6.419 vs 6.245; library_v3 5.881) and blue cup (ep32/g1 2.646 vs library_v3 2.906). Fidelity is
+  in-sample and not CD-O; there is no eval ground truth.
+- **Both blocking findings need a decision, so neither was "fixed" by a run.** They are recorded as ship gates:
+  - **G1 (verify_0 B1), pot, lid, rack:** the scan-derived marker-ball prior (MK_R0 7 mm, 5-9.5 mm window) is in the
+    picks. "Ship 9a, flagged" covers C0 only. Needs an owner decision, or E0b.
+  - **G2 (verify_1 B1), all four:** the packed mesh drives the 5 pose boards and E0 has no public-twin AUC guard. The
+    kit-registration proxy puts pot, lid and rack in line with C0; the blue cup tilts 3.3-7.3 deg (C0 0.9-2.3). Choose
+    (a) CD-O submission only, or (b) C0's guard run unchanged with the E0 meshes. (b) reads public scans and parquets,
+    which E0's eval-only rules exclude, so it was not run here.
+- **Documentation fixes (no mesh, pick or frozen-field change):**
+  - `E0/scripts/e0_status.py` (python -I, idempotent) adds `ship_gates`, `pose_boards`, `verification`,
+    `provenance_note`, `not_a_drop_in`, `status_history` and per-pair `ship_gates` to `E0/MANIFEST.json`. It asserts
+    every `e0_package.py` field is unchanged. sha256 3528f561... -> 84bfa9a4....
+  - `E0/README.md` rewritten: picks, gates, public context, frame and kit numbers, box cost, flags (tier P1, 2.5 mm
+    grid midpoint, eval tracks, BAR_T0, cup floor, threads, depth size check).
+  - `meshes/library_e0{,x}/README.md`: gate block and "not a drop-in for pack 9a+" (they keep library_v3 beige cup and
+    dust pan; merge E0 objects one by one).
+- **Box (unchanged):** run `mesh-20261031-e0-b05f001`, Vast 58555214, 96 cores, created 16:25:29, done 16:40:22, gone
+  16:40:39; ledger planned $1.00, actual $0.13 [E].

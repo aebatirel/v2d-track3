@@ -82,7 +82,8 @@ REV = 15                # PREREG F-I4.15 (records carry fi4_rev); 14 = the F-I4.
 
 def k_(name):
     v, o = C[name]
-    guard.constant(f'pb.{name}', v, o)
+    if o.startswith('generic'):            # informed constants (F-I1.14 rows) are recorded as in simphys / simpieces
+        guard.constant(f'pb.{name}', v, o)
     return v
 
 

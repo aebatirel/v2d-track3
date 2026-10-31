@@ -1,5 +1,18 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~18:40 UTC: E0 (C0 methods rebuilt on eval) packaged and verified; 2 ship gates open (Vast $0.13 [E])
+- **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/E0/README.md`; MANIFEST `cdo-sprint/E0/MANIFEST.json`
+  (sha256 84bfa9a4...). Not scored (no eval ground truth).
+- **Box:** one Vast CPU box, 96 cores, about 15 min end to end (prep estimate 40-60), self-destroyed; $0.13 [E].
+- **Rule result (PREREG s6): E0 for all four.** Fidelity E0 / C0 / library_v3, mm, in-sample:
+  pot 2.922 / 2.914 / 3.881; lid 1.675 / 1.772 / 5.186; rack 6.419 / 6.245 / 5.881; blue cup 2.646 / 2.723 / 2.906.
+  Pot and rack do not beat C0 even in-sample (inside the 15 % margin).
+- **Open (owner / pack builder):**
+  - G1: E0 pot, lid and rack carry the scan-derived marker-ball prior. Ship with a new explicit OK, or wait for E0b.
+  - G2: the packed mesh drives the 5 pose boards and E0 has no AUC guard. CD-O submission only, or run C0's guard
+    with the E0 meshes first. The blue cup's axis differs most (kit tilt 3.3-7.3 deg vs C0 0.9-2.3).
+  - `library_e0` is not a drop-in for pack 9a+: merge objects one by one.
+
 ## 2026-10-31 ~18:20 UTC: pack 9a+ uploaded — CD-O 0.40188 -> 0.33234 (rank 18 -> 14), pose boards slightly better
 - **Pack 9a+** (uploaded by the eval lane; owner: "upload which you think of the highest score potential"):
   - pack 8 plus the C0 pot / lid / rack (prim fits);

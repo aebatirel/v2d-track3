@@ -561,6 +561,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   Finding [M]: the moves-through gate depends on the share of moving build frames in the run; a long hands-off rest
   after a short in-contact insertion fails it (risk for the real cups, P43). x1 fixture changed (fixture only, no rule
   or threshold change, labelled post hoc): in-contact slow phase 20 mm over 40 frames, 34 rest frames. Re-running.
+- 18:30 (collision-carve Build, restarted agent) read this log; previous instance's last entry is 18:07 (placed below,
+  under Board slot round 2, by append order). Its background runs still going (PIDs 1312: x1 diagnostics c01 / nojit;
+  10954 from 18:24: x5, x2, x3, x4, x2b_5mm; logs `<scratch>/fi5/t_diag.log`, `t_cups.log`). Code at fae78de + WIP
+  snapshots; the shared platebody.py is being edited by the board-slot round-2 Build (not mine, not touched). Next:
+  re-read F-I5 / INTERLOCK 21 and the code, collect the x1-x5 results, then decide.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
