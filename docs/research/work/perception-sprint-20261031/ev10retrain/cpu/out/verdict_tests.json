@@ -1,7 +1,7 @@
 {
  "ok": true,
- "n": 21,
- "passed": 21,
+ "n": 25,
+ "passed": 25,
  "cases": [
   {
    "case": "pass",
@@ -166,14 +166,57 @@
    "ok": true
   },
   {
-   "case": "incomplete_draw1_unscored",
+   "case": "draw1_unscored_9_draws",
    "expect": "INCOMPLETE",
    "got": "INCOMPLETE",
    "failing_clauses": [],
    "expected_failing": null,
    "why": [
-    "9 scored confirmation draws (< 10)",
-    "confirmation draw 1 not scored"
+    "9 scored confirmation draws (< 10)"
+   ],
+   "ok": true
+  },
+  {
+   "case": "draw1_failed_first_scored_is_draw1",
+   "expect": "SWAP-ELIGIBLE",
+   "got": "SWAP-ELIGIBLE",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "every clause holds on both references"
+   ],
+   "ok": true
+  },
+  {
+   "case": "packed_wrong_checkpoint",
+   "expect": "INVALID",
+   "got": "INVALID",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "packed/r5: checkpoint zzzzzzzzzzzz != 76a12265ebf7"
+   ],
+   "ok": true
+  },
+  {
+   "case": "conf_wrong_checkpoint",
+   "expect": "INVALID",
+   "got": "INVALID",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "conf/r5: checkpoint zzzzzzzzzzzz != y"
+   ],
+   "ok": true
+  },
+  {
+   "case": "own_ref_failed_after_box",
+   "expect": "INVALID",
+   "got": "INVALID",
+   "failing_clauses": [],
+   "expected_failing": null,
+   "why": [
+    "packed/r3: own-reference check not ok"
    ],
    "ok": true
   },

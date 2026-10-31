@@ -27,6 +27,8 @@ Usage: e10v_verdict.py --score S1.json [--score S2.json ...] --verify V.json --c
 import argparse, json, math, os, statistics, sys
 
 TOL, SEC_DROP, OLD_PACKED_P = 1e-9, 0.05, 0.4563
+PACKED_SHA = '76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9'
+PACKED_REF_MD5 = '1a5003d94852c275519066645a1b9869'
 REFS = ('V', 'P')
 
 
@@ -58,14 +60,29 @@ def side(rows, X):
                 median_rpe_raw=statistics.median([x['RPE'] for x in s]) if s else None)
 
 
-def verdict(sets, verify, choice, min_n=10):
+def verdict(sets, verify, choice, min_n=10, refs_md5=None):
     reasons, clauses = [], {}
     N = scored((sets.get('conf') or {}).get('rollouts', [])); K = scored((sets.get('packed') or {}).get('rollouts', []))
     O = scored((sets.get('old') or {}).get('rollouts', []))
-    draw1 = next((r for r in (sets.get('conf') or {}).get('rollouts', []) if r.get('draw') == 1), None)
+    # draw 1 = the first confirmation invocation (by order) that produced a scored rollout; a call without a rollout is no draw
+    draw1 = min(N, key=lambda r: r.get('draw', 0), default=None)
     sides = {X: dict(new=side(N, X), packed=side(K, X)) for X in REFS}
     if not verify or not verify.get('ok'):
         return 'INVALID', [f'verify failed: {(verify or {}).get("failures", ["verify.json missing"])[:6]}'], clauses, sides
+    bad_id = []                                       # also on sets scored after the box (JOBS.txt 'After the box')
+    for name, s_ in sets.items():
+        for r in s_.get('rollouts', []):
+            if not r.get('scored'):
+                continue
+            if s_.get('own') in REFS and not (r.get('own_ref_check') or {}).get('ok'):
+                bad_id.append(f'{name}/r{r.get("draw")}: own-reference check not ok')
+            want = PACKED_SHA if name in ('packed', 'old') else (choice or {}).get('sha256') if name == 'conf' else None
+            if want and r.get('checkpoint_sha256') != want:
+                bad_id.append(f'{name}/r{r.get("draw")}: checkpoint {str(r.get("checkpoint_sha256"))[:12]} != {want[:12]}')
+    if refs_md5 is not None and (refs_md5.get('P') != PACKED_REF_MD5 or len(refs_md5.get('V', set())) != 1):
+        bad_id.append(f'reference md5s across score files: {refs_md5}')
+    if bad_id:
+        return 'INVALID', bad_id[:6], clauses, sides
     inc = []
     if not choice or not choice.get('chosen'):
         inc.append(f'no chosen seed (seeds without 8 scored training-box rollouts: {(choice or {}).get("incomplete_seeds")})')
@@ -75,8 +92,8 @@ def verdict(sets, verify, choice, min_n=10):
         inc.append(f'{len(K)} scored packed-policy draws (< {min_n})')
     if len(O) != 1:
         inc.append(f'old packed draw scored {len(O)} times (1 needed)')
-    if not (draw1 and draw1.get('scored') and all(X in draw1.get('vs', {}) for X in REFS)):
-        inc.append('confirmation draw 1 not scored')
+    if draw1 is None:
+        inc.append('no scored confirmation draw')
     if inc:
         return 'INCOMPLETE', inc, clauses, sides
     for X in REFS:
@@ -93,7 +110,7 @@ def verdict(sets, verify, choice, min_n=10):
                                  margin=round(vals['b'][1] - vals['b'][0], 4))
         clauses[f'c_{X}'] = dict(new_median_rpe=round(vals['c'][0], 4), packed_median_rpe=round(vals['c'][1], 4), holds=vals['c'][0] <= vals['c'][1] + TOL,
                                  margin=round(vals['c'][1] - vals['c'][0], 4))
-        clauses[f's_{X}'] = dict(new_draw1=round(d1, 4), old_packed_draw=round(old, 4), bar=round(old - SEC_DROP, 4), holds=d1 >= old - SEC_DROP - TOL,
+        clauses[f's_{X}'] = dict(new_draw1=round(d1, 4), new_draw1_r=draw1.get('draw'), old_packed_draw=round(old, 4), bar=round(old - SEC_DROP, 4), holds=d1 >= old - SEC_DROP - TOL,
                                  margin=round(d1 - (old - SEC_DROP), 4))
     bad = [k for k, v in clauses.items() if not v['holds']]
     if not bad:
@@ -111,14 +128,18 @@ def main():
     ap.add_argument('--choice', required=True); ap.add_argument('--out', required=True); ap.add_argument('--min_n', type=int, default=10)
     a = ap.parse_args()
     js = lambda f: json.load(open(f)) if f and os.path.isfile(f) else None
-    sets = {}
+    sets, refs_md5 = {}, {}
     for f in a.score:
-        for k, v in (js(f) or {}).get('sets', {}).items():
+        d_ = js(f) or {}
+        for X, info in d_.get('refs', {}).items():
+            refs_md5.setdefault(X, set()).add(info.get('md5'))
+        for k, v in d_.get('sets', {}).items():
             sets[k] = v
+    refs_md5 = {X: (next(iter(v)) if X == 'P' and len(v) == 1 else v) for X, v in refs_md5.items()}
     verify, choice = js(a.verify), js(a.choice)
-    label, why, clauses, sides = verdict(sets, verify, choice, a.min_n)
+    label, why, clauses, sides = verdict(sets, verify, choice, a.min_n, refs_md5)
     conf = sets.get('conf') or {}
-    d1 = next((r for r in conf.get('rollouts', []) if r.get('draw') == 1 and r.get('scored')), None)
+    d1 = min((r for r in conf.get('rollouts', []) if r.get('scored')), key=lambda r: r.get('draw', 0), default=None)
     lit = dict(new_draw1_vs_V=d1['vs']['V']['sim_vs_ref'] if d1 else None, old_packed_draw_vs_P=OLD_PACKED_P,
                holds=bool(d1 and d1['vs']['V']['sim_vs_ref'] >= OLD_PACKED_P - SEC_DROP - TOL))
     n_v = (sides.get('V') or {}).get('new', {}).get('sim_vs_ref') or {}

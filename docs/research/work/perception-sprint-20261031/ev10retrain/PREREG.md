@@ -201,3 +201,14 @@ The question, design, rule (section 5) and bars are unchanged.
   BUILD.md section 3).
 - The identity check of section 6 also runs right after the grasp-lock stages, before any training (the job stops there
   on failure: no training is spent on a wrong reference).
+- **Review amendments (31 Oct ~21:00 UTC, after the ep11 gate PASS, before any eval-10 V4p result; mechanics only):**
+  - Draw 1 = the first confirmation call, in order, that produced a scored rollout; a call without a rollout is no draw
+    (it leaves nothing to pack). The pack builder uses the same definition. Still fixed by order, never by score.
+  - The verdict re-checks rollout identity on every scored set, including sets scored on CPU after the box: own-reference
+    check ok; packed/old rollouts name the packed checkpoint (sha256 76a12265…cbb9); confirmation rollouts name the chosen
+    checkpoint; all score files agree on V's md5 and P = 1a5003d9…; otherwise INVALID.
+  - The confirmation loop stops after 3 consecutive calls without a rollout (INCOMPLETE; re-run the missing draws).
+  - A re-run's file list is rewritten after every stage, so a box killed mid-run still leaves it for the re-run.
+  - Fixtures 25/25 (`cpu/scripts/verdict_tests.py` → `cpu/out/verdict_tests.json`).
+  - Owner-facing reading of EQUAL FLOOR (review F5): if the new policy also fails every draw, a SWAP-ELIGIBLE has no
+    expected gain; it is presented as "no expected gain; keep the packed policy unless the owner wants the swap".

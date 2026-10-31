@@ -78,13 +78,21 @@ pull_md5() {  # $1 store path, $2 md5: single-file download, md5 checked
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # as glock_public.sh (kit budget_mesh, support_fill union)
 python $P/make_assets.py $LIB $ASSETS --pieces $PIECES >> $J 2>&1 || stop "make_assets FAILED"   # the references name /content/assets
 
+list_results() {  # what a re-run pulls (finished seeds' best/, confirmation draws); rewritten after every stage so an
+                  # interim or self-destroy push carries it even if finish() never runs
+  ( cd /content && find results/${PRE}s*_glock_public/ep$EP/best -maxdepth 2 -type f \( -name summary.json -o -name policy.safetensors \
+      -o -name qa_policy.json -o -name "episode_0000$EP.*" \) 2> /dev/null; find results/ev10_v4p/conf -mindepth 2 -maxdepth 3 -type f \
+      \( -name qa_policy.json -o -name "episode_0000$EP.*" -o -name eval_rc.txt \) 2> /dev/null ) | sort > $G/rerun_results.txt
+}
+
 train_seed() {  # $1 seed: one glock_public.sh call on this box's stored V copy
   local s=$1; label "ev10 v4p: seed $s"; log "ev10_v4p: seed $s, PAIRS [$EP:local:$BASE:${PRE}s$s]" >> $J
   ( REUSE_REF=1 REQUIRE_REUSE=1 SEED=$s PAIRS="$EP:local:$BASE:${PRE}s$s" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "ev10_v4p: seed $s returned $?" >> $J
+  list_results
 }
 
 confirm() {  # draws of the chosen checkpoint on the pristine evaluator until NCONF have a qa_policy.json (PREREG 3.4)
-  local ck sha CK CLEAN=/content/v2d_clean KIT=/content/kit/v2d_submission_kit FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python i have n O tries=0
+  local ck sha CK CLEAN=/content/v2d_clean KIT=/content/kit/v2d_submission_kit FCV=/content/v2d/robotic_grounding/flash_chord/.venv/bin/python i have n O tries=0 fails=0
   ck=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['checkpoint'])" $G/choice.json)
   sha=$(python -c "import json, sys; print(json.load(open(sys.argv[1]))['sha256'])" $G/choice.json)
   python $T/no_oracle.py $ck $(python -c "import json, sys; d = json.load(open(sys.argv[1])); print(d['seeds'][d['chosen']]['results'])" $G/choice.json) >> $J 2>&1 \
@@ -108,6 +116,8 @@ confirm() {  # draws of the chosen checkpoint on the pristine evaluator until NC
     cp $O/results/episode_0000$EP.* $O/ep$EP/ 2> /dev/null && python $P/qa.py policy $O/ep$EP $EP > /dev/null 2>&1 || true
     rm -rf $O/results
     log "ev10_v4p: confirmation draw $n rc $(cat $O/eval_rc.txt) sim_vs_ref $(python -c "import json, sys; print(json.load(open(sys.argv[1]))['sim_vs_ref'])" $O/ep$EP/qa_policy.json 2>/dev/null || echo none)" >> $J
+    if [ -s $O/ep$EP/qa_policy.json ]; then fails=0; else fails=$((fails + 1)); fi; list_results
+    [ $fails -lt 3 ] || { log "ev10_v4p: 3 confirmation draws in a row gave no rollout: confirmation stopped (INCOMPLETE; conf/r*/eval.log)" >> $J; break; }
   done
 }
 
@@ -136,9 +146,7 @@ finish() {  # score, verify, verdict, push
   log "ev10_v4p verify: $(cut -c1-1500 $G/verify.txt)" >> $J
   python $T/e10v_verdict.py --score $G/score.json --verify $G/verify.json --choice $G/choice.json --out $G/summary.json > $G/verdict.txt 2>&1
   log "ev10_v4p RESULT: $(cut -c1-2500 $G/verdict.txt)" >> $J
-  ( cd /content && find results/${PRE}s*_glock_public/ep$EP/best -maxdepth 2 -type f \( -name summary.json -o -name policy.safetensors \
-      -o -name qa_policy.json -o -name "episode_0000$EP.*" \) 2> /dev/null; find results/ev10_v4p/conf -mindepth 2 -maxdepth 3 -type f \
-      \( -name qa_policy.json -o -name "episode_0000$EP.*" -o -name eval_rc.txt \) 2> /dev/null ) | sort > $G/rerun_results.txt   # what a re-run pulls
+  list_results                                                    # what a re-run pulls
   for c in /content/results/${PRE}s*_glock_public/ep$EP/best/policy.safetensors; do   # stored config of each chosen checkpoint
     [ -f $c ] && /content/v2d/robotic_grounding/flash_chord/.venv/bin/python $T/ckpt_meta.py $c
   done > $G/ckpt_meta.txt 2>&1
@@ -159,7 +167,7 @@ if [ -n "${RERUN_FROM:-}" ]; then   # ----- INCOMPLETE re-run on RERUN_FROM's st
   mapfile -t RF < $HS/runs/$RERUN_FROM/results/ev10_v4p/rerun_files.txt
   # the result files that run pushed (finish(): finished seeds' best/, confirmation draws), listed there: only files that
   # exist are pulled (a guessed absent path costs store.sh's 5 retries, ~10 min each: CPU mock, 31 Oct)
-  bash $OPS/store.sh pull-files runs/$RERUN_FROM/results/ev10_v4p/rerun_results.txt >> $J 2>&1 \
+  PULL_RETRY_S=5 bash $OPS/store.sh pull-files runs/$RERUN_FROM/results/ev10_v4p/rerun_results.txt >> $J 2>&1 \
     && while read -r f; do
          s_=$(echo $f | sed -n "s#^results/${PRE}s\([0-9]*\)_glock_public/.*#\1#p")
          [ -n "$s_" ] && case " ${SEEDS_TODO:-} " in *" $s_ "*) continue ;; esac   # a seed to retrain starts clean

@@ -21,6 +21,10 @@ def base():
     packed = [roll(i, 0.45 + 0.001 * i, 15.0 + 0.1 * i, 0.45 + 0.001 * i, 15.5 + 0.1 * i) for i in range(1, 11)]
     old = [roll(1, 0.452, 15.2, 0.4563, 15.76)]
     sets = dict(conf=dict(own='V', rollouts=conf), packed=dict(own='P', rollouts=packed), old=dict(own='P', rollouts=old))
+    for r in conf:
+        r['checkpoint_sha256'] = 'y'
+    for r in packed + old:
+        r['checkpoint_sha256'] = V.PACKED_SHA
     return sets, dict(ok=True, failures=[]), dict(chosen='42', checkpoint='x', sha256='y')
 
 
@@ -79,7 +83,11 @@ case('incomplete_conf_9', 'INCOMPLETE', m(lambda s, v, c: s['conf']['rollouts'].
 case('incomplete_packed_9', 'INCOMPLETE', m(lambda s, v, c: s['packed']['rollouts'].pop()))
 case('incomplete_no_old', 'INCOMPLETE', m(lambda s, v, c: s.pop('old')))
 case('incomplete_no_seed', 'INCOMPLETE', m(lambda s, v, c: c.update(chosen=None, incomplete_seeds=['43'])))
-case('incomplete_draw1_unscored', 'INCOMPLETE', m(lambda s, v, c: s['conf']['rollouts'][0].update(scored=False)))
+case('draw1_unscored_9_draws', 'INCOMPLETE', m(lambda s, v, c: s['conf']['rollouts'][0].update(scored=False)))
+case('draw1_failed_first_scored_is_draw1', 'SWAP-ELIGIBLE', m(lambda s, v, c: (s['conf']['rollouts'][0].update(scored=False), s['conf']['rollouts'].append(dict(s['conf']['rollouts'][1], draw=11)))))
+case('packed_wrong_checkpoint', 'INVALID', m(lambda s, v, c: s['packed']['rollouts'][4].update(checkpoint_sha256='z' * 64)))
+case('conf_wrong_checkpoint', 'INVALID', m(lambda s, v, c: s['conf']['rollouts'][4].update(checkpoint_sha256='z' * 64)))
+case('own_ref_failed_after_box', 'INVALID', m(lambda s, v, c: s['packed']['rollouts'][2].update(own_ref_check=dict(ok=False))))
 case('incomplete_packed_missing', 'INCOMPLETE', m(lambda s, v, c: s.pop('packed')))
 case('invalid_verify', 'INVALID', m(lambda s, v, c: v.update(ok=False, failures=['config diff'])))
 case('invalid_verify_missing', 'INVALID', lambda s, v, c: (s, None, c))
@@ -88,8 +96,8 @@ case('nan_unscored_incomplete', 'INCOMPLETE', m(lambda s, v, c: s['conf']['rollo
 # defence in depth: a NaN that slipped through as 'scored' makes a clause non-finite -> INVALID
 case('nan_slipped_invalid', 'INVALID', m(lambda s, v, c: s['conf']['rollouts'][4]['vs']['P'].update(sim_vs_ref=float('nan'))))
 # 11 draws on each side still read (>= 10)
-case('eleven_draws', 'SWAP-ELIGIBLE', m(lambda s, v, c: s['conf']['rollouts'].append(roll(11, 0.86, 2.1, 0.76, 3.1)) or
-                                         s['packed']['rollouts'].append(roll(11, 0.45, 15.0, 0.45, 15.0))), [])
+case('eleven_draws', 'SWAP-ELIGIBLE', m(lambda s, v, c: s['conf']['rollouts'].append(dict(roll(11, 0.86, 2.1, 0.76, 3.1), checkpoint_sha256='y')) or
+                                         s['packed']['rollouts'].append(dict(roll(11, 0.45, 15.0, 0.45, 15.0), checkpoint_sha256=V.PACKED_SHA))), [])
 # the new policy also fails like the packed one (left behind at the floor): typical NO-SWAP
 def floor(s, v, c):
     for i, r in enumerate(s['conf']['rollouts']):

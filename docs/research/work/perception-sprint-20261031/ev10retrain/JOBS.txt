@@ -110,3 +110,6 @@ After the box (CPU, $0):
     <usd> "<note>");
   - SWAP-ELIGIBLE -> build the pack-10 candidate with this run's confirmation draw 1 for eval 10 (offline validation;
     NOT uploaded) and ask the owner; NO-SWAP -> eval 10 stays as packed; INCOMPLETE / INVALID -> no reading (above).
+
+REVIEW NOTE (F3): a packed top-up must not replace H5p7's packed set: copy the top-up box's eval-10 rollouts into the same
+tree (r11, r12, ...) and score them with ONE --score glob over the whole set.
