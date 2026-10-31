@@ -1,0 +1,226 @@
+{
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24",
+ "sim": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r0",
+ "identity": "eval",
+ "exports": {
+  "e0.npz": {
+   "valid": true,
+   "refused": [],
+   "flags": [
+    "do_not_use_overridden (diagnostic only)"
+   ],
+   "reference_pose": {
+    "status": "pass",
+    "mode": "chain tracks (frame-free: common rigid frame + per-object vertical shift)",
+    "residual_mm": {
+     "wooden_piece_1": 0.0,
+     "wooden_piece_2": 0.0
+    },
+    "vertical_shift_mm": {
+     "wooden_piece_1": -0.0,
+     "wooden_piece_2": 0.0
+    },
+    "rel_T_f_star_mm": {
+     "wooden_piece_1<-wooden_piece_2": 0.0,
+     "wooden_piece_2<-wooden_piece_1": 0.0
+    },
+    "rel_T_all_rows_report_only": {
+     "n": 482,
+     "median_mm": 0.0,
+     "p90_mm": 0.0,
+     "max_mm": 0.0
+    }
+   },
+   "containment": {
+    "target": 1.0,
+    "partner": 1.0,
+    "n": 10000
+   },
+   "pushed_residual": "none",
+   "fit_refused": null,
+   "their_flags": [
+    "reference_provenance_incomplete"
+   ],
+   "their_checks": {
+    "fiducial_round_trip_mm": 8.275921921288955e-14,
+    "fiducial_vs_parquet_mm": 6.359601310784502e-14,
+    "fiducial_box": {
+     "wooden_piece_1": {
+      "ok": true,
+      "box_err": 2.220446049250313e-16,
+      "margins_mm": [
+       [
+        1.0,
+        1.0
+       ],
+       [
+        1.0,
+        1.0
+       ],
+       [
+        1.0,
+        1.0
+       ]
+      ],
+      "asym_mm": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "wooden_piece_2": {
+      "ok": true,
+      "box_err": 6.463815864799253e-16,
+      "margins_mm": [
+       [
+        1.0,
+        1.0
+       ],
+       [
+        1.0,
+        1.0
+       ],
+       [
+        1.0,
+        1.0
+       ]
+      ],
+      "asym_mm": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "containment_target": 1.0,
+    "containment_partner": 1.0,
+    "containment_n": 10000,
+    "rel_T_orthonormality_err": 1.3322676295501878e-15
+   },
+   "counts": {
+    "samples": 130848,
+    "rows": 482,
+    "rows_with_intrusion": 227,
+    "partner_samples": {
+     "wooden_piece_1": 30689,
+     "wooden_piece_2": 29976
+    },
+    "pieces": {
+     "wooden_piece_1": 32,
+     "wooden_piece_2": 32
+    }
+   },
+   "seconds": {
+    "setup": 2.04,
+    "loop": 16.89,
+    "fit": 0.0,
+    "total": 19.31
+   },
+   "tool_commit": null,
+   "decisions": [
+    {
+     "target": "wooden_piece_1",
+     "decision": "PUSH",
+     "tier": "T0",
+     "voxels": 171,
+     "region_voxels": 88,
+     "mix": {
+      "U": 3,
+      "SIL": 0,
+      "GAP": 0,
+      "O": 85,
+      "O_testable_solid": 0
+     },
+     "iw": 10.31,
+     "push_mm": null,
+     "pushed_residual_used": null,
+     "flags": [
+      "interlock_disagree",
+      "interlock_push"
+     ],
+     "sources": {
+      "a": false,
+      "b": null,
+      "ab": null
+     },
+     "w_sim": 25.03,
+     "run": [
+      162,
+      274
+     ]
+    },
+    {
+     "target": "wooden_piece_2",
+     "decision": "PUSH",
+     "tier": "T0",
+     "voxels": 160,
+     "region_voxels": 77,
+     "mix": {
+      "U": 36,
+      "SIL": 0,
+      "GAP": 0,
+      "O": 41,
+      "O_testable_solid": 41
+     },
+     "iw": null,
+     "push_mm": null,
+     "pushed_residual_used": null,
+     "flags": [
+      "interlock_disagree",
+      "interlock_push"
+     ],
+     "sources": {
+      "a": false,
+      "b": false,
+      "ab": false
+     },
+     "w_sim": 10.5,
+     "run": [
+      162,
+      274
+     ]
+    }
+   ],
+   "r1": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-r1evalsem/r1-e0"
+  }
+ },
+ "do_not_use_overridden": true,
+ "tracks_path": [
+  {
+   "target": "wooden_piece_1",
+   "decision": "PUSH",
+   "tier": "T0",
+   "voxels": 127,
+   "region_voxels": 67,
+   "mix": {
+    "U": 2,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 65,
+    "O_testable_solid": 0
+   },
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ]
+  },
+  {
+   "target": "wooden_piece_2",
+   "decision": "PUSH",
+   "tier": "T0",
+   "voxels": 222,
+   "region_voxels": 118,
+   "mix": {
+    "U": 41,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 77,
+    "O_testable_solid": 77
+   },
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ]
+  }
+ ]
+}

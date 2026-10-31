@@ -332,3 +332,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   (`one_sided_region`); rack <- sweeper no engaged run. Shell overlaps along the track <= 0.32 cm3 (sweeper shell,
   engaged frames), rack shell 0.0. No silhouette (no separated good frame: in contact in all 145 frames). Nothing to
   carve or push; the P34 free-travel check was not run (no r0 for ep31 in this round).
+- 15:20 probes `<scratch>/interlock/r1fix/probe/same.py` [M]: same decisions and tiers on both paths for s1 t = 10 / 18
+  mm (CARVE T2); without a silhouette at t = 10 mm the export path PUSHES (GAP image width 7.0 / 9.0 px vs 5.0 px on
+  the tracks path: the export partner is its 10 mm pieces, ours its ~6 mm stereo evidence) -> F-I3.13 known
+  difference, test kept as an expected failure; [H] decide export regions from our evidence moved by rel_T.
+- 15:37 full T-I1 suite (23 tests, 3152 s): 20 OK, 1 expected failure (s1 t = 6), 2 failures = test expectations:
+  the no-silhouette contract case (above) and A1 in the two-round test (the export path's voxel carve is partly
+  refilled by our splitter: 435.3 -> 403.5 cm3, -7 %, A1 False = round rejected, which is the acceptance working).
+  Tests corrected (A1 checked against its definition, not forced True); re-run of the three changed tests started.
+- 15:41 e0fit (their intrusion.py --fit on the plumbing fit, 2598 s): their fit check OK; pushed_residual finite on
+  352 / 482 rows, median 65 mm on the intruding rows; our validator VALID with pushed_residual KEPT; decisions PUSH /
+  PUSH T0 (class O decides at step 2). Results copied to `build/I/results/contract_ep24/`.

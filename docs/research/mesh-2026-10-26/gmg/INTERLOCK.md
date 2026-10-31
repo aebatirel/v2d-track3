@@ -1176,8 +1176,35 @@ The review found eight blocking problems in the built stage. Each one, what was 
   disagreeing** - the same decisions and tiers as our tracks path. The regions differ because the export samples
   the partner's pieces (solid) and ours its stereo evidence: board 1 U 3 / O 85 (tracks U 2 / O 65), board 2 U 36 /
   O 41 (tracks U 41 / O 77). Before the frame-grid fix the export path gave IGNORE (good share 0.5, see the table).
+- **With their fit** (`intrusion.py --fit <phys_fit out> --fit_commit 48cda9f`, 2598 s, of which 2573 s for the push
+  residuals): their own fit check passed (fit input = this reference, 0.0 mm / 0.0 deg); `pushed_residual_m` finite
+  on 352 of 482 rows (130 beyond their 10 cm cap), non-zero on the 227 intruding rows, median 65 mm (on a 3-iteration
+  plumbing fit, i.e. nearly uncorrected poses of two boards that cross). Our validator: **valid, `pushed_residual`
+  kept** (the fit ran on the round's `_fit` meshes and `props_gmg.json` with the 1 cm / 3 deg prior and names a
+  commit). Decisions unchanged (PUSH both, T0): step 2 (class O) decides before the push test.
+- Files: `build/I/results/contract_ep24/` (their export headers, their phys_fit report, our validation and decision
+  records, the reference `.prov.json`, sha256 of the exports and the reference parquet kept in the scratchpad).
 
-### 19.2 ep31 (sweeper in the rack, eval-30 twin; the orchestrator's priority case) [M]
+### 19.2 Tests (T-I1 with the round-1 additions) [M]
+Full suite with the final rule code (`<scratch>/interlock/r1fix/full.log`, 23 tests, 3152 s at load 9-14): 20 OK,
+1 expected failure (s1 at t = 6 mm, F-I2.14 / F-I3.11), 2 failures that were test expectations, not rule defects,
+both corrected and re-run (`rerun.log`): (1) the contract same-rule test without a silhouette (t = 10 mm): the
+export path pushes where the tracks path carves at the GAP threshold (F-I3.13; now a logged expected failure; the
+silhouette cases t = 10 / 18 mm give the same decisions and tiers on both paths); (2) the two-round test expected A1
+to pass, but the export path's voxel carve is partly refilled by our splitter (persistent check-frame intrusion
+435.3 -> 403.5 cm3, -7 %), so A1 rejects the round, as it should (F-I3.3); the test now checks that A1 is computed
+from the fixed check frames and matches its definition, that A3 is pending without the settle, that the round is
+not accepted, that an invalid export is not evaluated, and that round 2 counts round 1's carve in its budget.
+New tests that pass: blob generator disagrees (centroid 31.8 mm, axis 89 deg, reverse share 0.03); OFFSET carries
+budget (iv); the Embodiment header validates against an independent pose and 10 malformed or wrong variants are
+refused without a crash (3 mm fiducial shift, 15 mm pts_local shift, frames out of range, no frame count, no
+independent pose, mocap / dataset parquet / library_v3 poses / scan in the chain, no poses.npz); our tracks as the
+chain's poses.npz with a table frame and +-2.5 mm vertical snaps validates, other tracks are refused, a 3 mm
+re-centring is refused; the pieces gate marks a cup whose hull spans its cavity do-not-use and `load_sim` refuses
+it; o2a PUSH; o2b CARVE on both plates, no OFFSET, A's carve within 1.5 mm of the slot end, o_residual_push on A;
+n4 sees the 3-frame contact (TRANSIENT run) and carves nothing.
+
+### 19.3 ep31 (sweeper in the rack, eval-30 twin; the orchestrator's priority case) [M]
 Eval semantics (the sweeper is IDENTITY_SWAP on public), decisions only (`--no-physics`, 398 s), shells as picks:
 sweeper <- rack has one SLIDE run (f18-40, 12 frames, 42.8 mm, straightness 0.55) with a 2-voxel region (IGNORE,
 `one_sided_region`); rack <- sweeper has no engaged run. The shells overlap at most 0.32 cm3 along the track
@@ -1185,7 +1212,7 @@ sweeper <- rack has one SLIDE run (f18-40, 12 frames, 42.8 mm, straightness 0.55
 there is nothing to carve or push on ep31; the P34 free-travel test needs a delivered r0 for ep31 (not built in this
 round; a rack's pieces will also meet the keep-out gate). ep13 (cup in the rack) was not run.
 
-### 19.3 Still open after round 1
+### 19.4 Still open after round 1
 1. **The boards still push.** The motion region (19-25 mm, the partner's evidence thickness plus jitter) is 2-4 times
    the slot (about 6-8 mm in the video [E]); class O dominates whatever the silhouette sees. [H, F-I3.11, not used]
    measure the region against the partner's plate thickness.
