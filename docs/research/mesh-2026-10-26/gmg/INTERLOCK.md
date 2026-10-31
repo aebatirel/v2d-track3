@@ -1176,3 +1176,29 @@ The review found eight blocking problems in the built stage. Each one, what was 
   disagreeing** - the same decisions and tiers as our tracks path. The regions differ because the export samples
   the partner's pieces (solid) and ours its stereo evidence: board 1 U 3 / O 85 (tracks U 2 / O 65), board 2 U 36 /
   O 41 (tracks U 41 / O 77). Before the frame-grid fix the export path gave IGNORE (good share 0.5, see the table).
+
+### 19.2 ep31 (sweeper in the rack, eval-30 twin; the orchestrator's priority case) [M]
+Eval semantics (the sweeper is IDENTITY_SWAP on public), decisions only (`--no-physics`, 398 s), shells as picks:
+sweeper <- rack has one SLIDE run (f18-40, 12 frames, 42.8 mm, straightness 0.55) with a 2-voxel region (IGNORE,
+`one_sided_region`); rack <- sweeper has no engaged run. The shells overlap at most 0.32 cm3 along the track
+(engaged frames; rack shell 0.0). No silhouette (the two are in contact in all 145 frames). So with our CPU shells
+there is nothing to carve or push on ep31; the P34 free-travel test needs a delivered r0 for ep31 (not built in this
+round; a rack's pieces will also meet the keep-out gate). ep13 (cup in the rack) was not run.
+
+### 19.3 Still open after round 1
+1. **The boards still push.** The motion region (19-25 mm, the partner's evidence thickness plus jitter) is 2-4 times
+   the slot (about 6-8 mm in the video [E]); class O dominates whatever the silhouette sees. [H, F-I3.11, not used]
+   measure the region against the partner's plate thickness.
+2. **Every delivery so far is do-not-use** under the keep-out gate: our splitter reaches 0.72 / 2.0 cm3 per hull on the
+   boards (limit 0.3) and fills the containers (up to 1250 cm3); CoACD is worse on the boards (53-77 cm3). B9 needs a
+   better splitter (more pieces where the keep-out is, or CoACD pieces re-split against our keep-out).
+3. **Independent reference pose for real references:** their perceived references are accepted only when our tracks
+   are the chain's `poses.npz`, or when B10 adds the guard role for our reference parquets (`validate(ref_poses=)`).
+   Known blind spot: a re-centring along the vertical at f_star (absorbed by the per-object vertical shift).
+4. A3 needs their jitter_check settle report; without it no round is accepted.
+5. Not run: phys_fit with the real prior to convergence on our pieces (only the plumbing run), ep13, the ep2 / ep11
+   re-runs with the new code (their old r0 folders are marked do-not-use), CoACD pieces checked against the keep-out
+   on the containers, the P34 free-travel test on ep31.
+6. Non-blocking review items left: w_sub is not asserted in the tests (6.0 mm for a 10 mm partner in o2b: the
+   voxel-centre extent); offset_asm (a track offset only at the assembled frames) is covered by the column rule for
+   the half-thickness pocket but the misplaced slab centre is only caught by the P3 replay.
