@@ -40,10 +40,11 @@ T0=$(date +%s)
 log "E0 job start: run $RUN_ID commit $(git -C $REPO_DIR rev-parse HEAD) dirty=$(git -C $REPO_DIR status --porcelain -- docs/research/mesh-2026-10-26/scripts docs/research/mesh-2026-10-26/cdo-sprint/E0/jobs pipeline | wc -l) cpus $(nproc) workers $NPROC ram $(free -g | awk '/Mem/{print $2}') GB disk $(df -h $ROOT | awk 'NR==2{print $4}') free; stride $STRIDE${E0_EPS:+, episodes [$E0_EPS] (DRY subset)}"
 [ "$STRIDE" = 2 ] || log "DRY: obs_points stride $STRIDE (production is the public default 2)"
 fail() { log "E0-FAIL: $*"; label "E0 FAIL: $*"; finish 1; }
+cnt() { local n; n=$(grep -c "$1" "$2" 2> /dev/null); echo ${n:-0}; }   # matching lines (0 if none / no file)
 progress() {  # one line per minute, only when something changed (the stall watchdog must still see a real stall)
   local last=""
   while sleep 60; do
-    local cur="$(for s in hands obs build fid check; do printf '%s %s/%s ' $s $(grep -c '^OK' $R/status/$s.txt 2> /dev/null || echo 0) $(grep -c '^FAIL' $R/status/$s.txt 2> /dev/null || echo 0); done) files $(find $R -type f | wc -l)"
+    local cur="$(for s in hands obs build fid check; do printf '%s %s/%s ' $s $(cnt '^OK' $R/status/$s.txt) $(cnt '^FAIL' $R/status/$s.txt); done) files $(find $R -type f | wc -l)"
     [ "$cur" != "$last" ] && log "progress (ok/fail): $cur load $(cut -d' ' -f1 /proc/loadavg)" && last=$cur
   done
 }
@@ -51,7 +52,7 @@ prun() {  # $1 stage: run commands/<stage>.txt with NPROC workers
   local n; n=$(grep -c . $R/commands/$1.txt || true)
   log "stage $1: $n tasks, $NPROC workers"; label "E0 $1 ($n tasks)"
   [ "$n" -gt 0 ] && xargs -d '\n' -P $NPROC -n 1 bash -c < $R/commands/$1.txt
-  log "stage $1 done: OK $(grep -c '^OK' $R/status/$1.txt 2> /dev/null || echo 0) FAIL $(grep -c '^FAIL' $R/status/$1.txt 2> /dev/null || echo 0)" \
+  log "stage $1 done: OK $(cnt '^OK' $R/status/$1.txt) FAIL $(cnt '^FAIL' $R/status/$1.txt)" \
       "$(grep '^FAIL' $R/status/$1.txt 2> /dev/null | cut -d' ' -f2 | tr '\n' ' ')"
 }
 finish() {
@@ -92,8 +93,8 @@ T() { "$PY" -I $JOBD/e0_tasks.py $1 --plan $IN/plan.json --env $R/env.json > $R/
 # 2. hands (MediaPipe), 3. observed points
 if [ -x "$MPPY" ] && "$MPPY" -c "import mediapipe" 2> /dev/null; then T hands; prun hands; else log "no MediaPipe venv: obs_points without --hands"; fi
 T obs; prun obs
-[ "$(grep -c '^OK' $R/status/obs.txt 2> /dev/null || echo 0)" -gt 0 ] || fail "no observed points"
-for f in $R/obs/*.npz; do log "obs $(basename $f .npz): $(tail -1 $R/logs/obs/$(basename $f .npz | sed -E 's/^ep([0-9]+)_(.*)$/\2__ep\1/; s/^white_pot_lid/lid/; s/^white_pot/pot/; s/^plastic_dish_rack/rack/; s/^blue_cup/cup/').log 2> /dev/null)"; done
+[ "$(cnt '^OK' $R/status/obs.txt)" -gt 0 ] || fail "no observed points"
+for f in $R/logs/obs/*.log; do log "obs $(basename $f .log): $(tail -1 $f)"; done
 
 # 4. candidate builds
 T build; prun build
