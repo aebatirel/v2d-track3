@@ -10,14 +10,25 @@ stored reference per episode, ES on, cap STEPS, checkpoint chosen by sim_vs_ref)
      every assist stage lasts twice as long (VOC >= 0.25 until 127.8M instead of 63.9M)
   D  start-state randomization: training env FC_DR_RESET (ops/box/patch_flashchord_dr.py) and FC_DR_SEED = the seed; no
      config field
+  S  (2026-10-31, physics-solver.md section 9) C's recipe exactly (no override, no env) on the PHYSICS-SOLVED references
+     that G3 trained on (store run 20261030-psolverl-04301a2: G2 refs/psolve2 for ep2 / ep12, G1 refs/psolve for ep18 /
+     ep24; ref_ps.parquet). Only the reference differs from C; the S_vs_C verdict compares S with the screen's C cells.
+     The registered md5 of every reference (REF_MD5) was measured on the CPU from the store on 31 Oct: the solved files
+     equal G3's training copies (psolverl refs/glockt), their object columns equal the physS1 references' (the solver
+     edits only robot_<side>_wrist_position / _wrist_wxyz / _finger_joints), and ep18's equals its input (G1 edited 0 frames).
 Subcommands:
   args ARM STEPS                 Hydra overrides of the arm (one line)
-  env ARM SEED DR                environment assignments of the arm's TRAINING process (one line; empty for C / K)
+  env ARM SEED DR                environment assignments of the arm's TRAINING process (one line; empty for C / K / S)
+  ref ARM                        the arm's reference set: base (the physS1 references of C / K / D) or solved (S)
+  solved_sub EP                  the store sub-folder of the episode's solved reference (refs/psolve2/ep2 ...)
+  refmd5 SET EP                  the registered md5 of the episode's reference of that set (base | solved)
   ckcfg CKPT OUT.json [RUN]      the checkpoint's resolved settings (needs safetensors: FlashCHORD's venv)
   cell ARM EP SEED CELL_DIR RUN [STATUS]   one cell's record (JSON on stdout)
   summary RESULTS_DIR [--run ID] [--commit SHA] [--cells "arm:ep:seed ..."] [--meta K=V ...]   the box summary
-  verdict SUMMARY.json|RESULTS_DIR ... [--out MERGED.json]   merge box summaries (or a box's results/recipe_screen
-                                 directory: its cell.json files) and compute the pre-registered verdicts
+  verdict SUMMARY.json|RESULTS_DIR ... [--out MERGED.json] [--ref-md5 MD5.json]   merge box summaries (or a box's
+                                 results/recipe_screen directory: its cell.json files) and compute the pre-registered
+                                 verdicts (K_vs_C, D_vs_C: section 8; S_vs_C: section 9). --ref-md5 replaces REF_MD5
+                                 ({"base": {"2": md5, ...}, "solved": {...}}; the CPU dry run's stub files only)
 No ground truth is read here: AUC values come from the job's scoring (pipeline/score_registered.py, after inference)."""
 import glob, hashlib, json, math, os, re, sys
 
@@ -27,7 +38,19 @@ VOC = [1.0, 0.75, 0.5, 0.25, 0.1, 0.05, 0.025, 0.01, 0.0, 0.0, 0.0]   # tracking
 LR_C = dict(learning_rate_initial=3e-4, learning_rate_peak=3e-4, learning_rate_end=1.5e-4, learning_rate_schedule_updates=None)
 K_LR = dict(learning_rate_initial=6e-4, learning_rate_peak=6e-4, learning_rate_end=3e-5)
 K_CURR = 2.0
-ARMS, EPS, SEEDS = ('C', 'K', 'D'), (2, 12, 18, 24), (42, 43)
+ARMS, EPS, SEEDS = ('C', 'K', 'D'), (2, 12, 18, 24), (42, 43)   # the section-8 screen (its verdicts use these arms only)
+S_ARM = 'S'                                  # section 9: C's recipe on the physics-solved references (verdict S_vs_C)
+REF_SET = dict(C='base', K='base', D='base', S='solved')
+REF_TREE = dict(base='glockt', solved='screenS')    # the job's task trees: $CROOT/refs/<tree>/ep<N>/<hive>/ref_gl_ilc.parquet
+SOLVED_SUB = {2: 'refs/psolve2/ep2', 12: 'refs/psolve2/ep12', 18: 'refs/psolve/ep18', 24: 'refs/psolve/ep24'}  # G3's choice
+# Registered reference files (md5 of the parquet the training reads), measured on the CPU from the store, 31 Oct 2026:
+#   base   runs/20261030-physS1-6a814df/refs/glockt/ep<N>/processed/.../ref_gl_ilc.parquet (the screen's C / K / D; also
+#          what both screen boxes recorded at 12:50 UTC: b4807f41 96ddc1ca f0f14155 699fe426)
+#   solved runs/20261030-psolverl-04301a2/<SOLVED_SUB>/processed/.../ref_ps.parquet (= that run's refs/glockt copy G3 trained on)
+REF_MD5 = dict(base={2: 'b4807f41fcf4b0b69eb8b27098d5bd80', 12: '96ddc1ca6d19e8e5321b4ef9c89c34bb',
+                     18: 'f0f14155f35c5a2970de48e1a88aa23a', 24: '699fe4266a0a965aaf4472a1bfcc8828'},
+               solved={2: '336917e37399fbc43cc2ef124adfc487', 12: '6e4c9448ac7e81da59314cc898c1e8a4',
+                       18: 'f0f14155f35c5a2970de48e1a88aa23a', 24: '7edd70e352dd31a0db11c89938d12d10'})
 MIN_DRAWS = 8                                # a cell counts as present iff >= 8 of its NREP (10) draws were scored
 TOL = 1e-9                                   # rule bounds are inclusive as written (>= 0.03 etc.), up to float rounding
 
@@ -41,7 +64,7 @@ def k_thresholds():
 
 
 def arm_overrides(arm, steps):
-    if arm in ('C', 'D'):
+    if arm in ('C', 'D', 'S'):
         return []
     if arm == 'K':
         o = 'training.optimization.'
@@ -55,9 +78,15 @@ def arm_env(arm, seed, dr):
         if not re.fullmatch(r'[0-9.,]+', dr):
             raise SystemExit(f'DR_RESET must be pos_mm,rot_rad,joint_rad without spaces, got {dr!r}')
         return [f'FC_DR_RESET={dr}', f'FC_DR_SEED={int(seed)}']
-    if arm in ('C', 'K'):
+    if arm in ('C', 'K', 'S'):
         return []
     raise SystemExit(f'unknown arm {arm!r}')
+
+
+def ref_set(arm):
+    if arm not in REF_SET:
+        raise SystemExit(f'unknown arm {arm!r}')
+    return REF_SET[arm]
 
 
 def expected(arm, steps, seed):
@@ -85,6 +114,7 @@ def ckcfg(ck, out, run=None):
                       wrench_weight=c.get('objective', {}).get('contact_wrench_support', {}).get('weight'),
                       unintended_weight=c.get('objective', {}).get('unintended_contact', {}).get('weight')),
              dr_strings=sorted(set(re.findall(r'(?i)fc_dr\w*|v2d_dr\w*|dr_reset\w*', text))),
+             task_parquet=str(c.get('task', {}).get('parquet')),
              cfg_sha256=hashlib.sha256(norm.encode()).hexdigest()[:16])
     json.dump(d, open(out, 'w'), indent=1)
     return d
@@ -123,7 +153,7 @@ def cell(arm, ep, seed, cd, run, status=None):
         curve.append([int(re.findall(r'\d+', os.path.basename(d))[0]), s, 'es' if es else 'curve'])
     es_stop = open(f'{run}/EARLY_STOPPED').read().strip() if os.path.exists(f'{run}/EARLY_STOPPED') else None
     ck = best.get('checkpoint')
-    rec = dict(arm=arm, ep=int(ep), seed=int(seed), status=st, checkpoint=os.path.basename(ck) if ck else None,
+    rec = dict(arm=arm, ep=int(ep), seed=int(seed), status=st, ref_set=REF_SET.get(arm), checkpoint=os.path.basename(ck) if ck else None,
                checkpoint_steps=int(re.findall(r'policy_(\d+)', ck)[0]) if ck and re.findall(r'policy_(\d+)', ck) else None,
                trained_checkpoints=len(glob.glob(f'{run}/policy_*.safetensors')), early_stop=es_stop,
                auc=stats(auc), sim_vs_ref=stats(svr), draws_failed=[r['rollout'] for r in rows if 'auc' not in r],
@@ -163,8 +193,10 @@ def key(arm, ep, seed):
     return f'{arm}/ep{ep}-s{seed}'
 
 
-def verdicts(cells, steps):
-    """cells: {key: record}. The pre-registered rules (physics-solver.md section 8); a missing cell -> INCOMPLETE."""
+def verdicts(cells, steps, ref_md5=None, refs=None):
+    """cells: {key: record}. The pre-registered rules (physics-solver.md section 8: K_vs_C, D_vs_C; section 9: S_vs_C);
+    a missing cell -> INCOMPLETE. ref_md5: the registered reference md5s (default REF_MD5); refs: the boxes' reference
+    records ({run: summary['refs']}), reported only."""
     present = {k: r for k, r in cells.items() if r.get('present')}
     missing = [dict(cell=key(a, e, s), status=(cells.get(key(a, e, s)) or {}).get('status', 'not in any summary'),
                     draws=((cells.get(key(a, e, s)) or {}).get('auc') or {}).get('n', 0))
@@ -175,7 +207,7 @@ def verdicts(cells, steps):
         if p:
             invalid[k] = p
     for e in EPS:                                   # one stored reference per episode across all arms, seeds, boxes
-        md5 = {r['ref_md5'] for k, r in present.items() if r['ep'] == e}
+        md5 = {r['ref_md5'] for k, r in present.items() if r['ep'] == e and r['arm'] in ARMS}   # (S: its own set, S_vs_C)
         if len(md5) > 1:
             invalid[f'ep{e}'] = [f'reference md5 differs between cells: {sorted(md5)}']
     for e in EPS:                                   # D adds no config field: its config equals C's (same ep, seed)
@@ -252,14 +284,75 @@ def verdicts(cells, steps):
     ok = [x for x in agree if x['same_order'] is not None]
     out['report_sim_vs_ref_ranks_seeds_like_auc'] = dict(agree=sum(x['same_order'] for x in ok), of=len(ok), cells=agree)
     out['missing_cells'] = missing
+    out['S_vs_C'] = s_vs_c(cells, present, invalid, auc_m, sd_m, ref_md5 or REF_MD5, refs)
     return out
+
+
+def s_vs_c(cells, present, invalid, auc_m, sd_m, exp, refs=None):
+    """Section 9's fixed rule: S (solved references) vs the screen's C cells, both C's recipe."""
+    pair = ('C', S_ARM)
+    m_ = [dict(cell=key(a, e, s), status=(cells.get(key(a, e, s)) or {}).get('status', 'not in any summary'),
+               draws=((cells.get(key(a, e, s)) or {}).get('auc') or {}).get('n', 0))
+          for e in EPS for s in SEEDS for a in pair if key(a, e, s) not in present]
+    inv = {k: list(v) for k, v in invalid.items() if k.split('/')[0] in pair}     # config problems: S must carry C's config
+    for e in EPS:
+        sm = sorted({str(present[key(S_ARM, e, s)].get('ref_md5')) for s in SEEDS if key(S_ARM, e, s) in present})
+        if len(sm) > 1:
+            inv[f'S_ep{e}'] = [f'S cells of ep{e} trained on different reference files: {sm}']
+        for s in SEEDS:
+            for a in pair:
+                r = present.get(key(a, e, s))
+                if not r:
+                    continue
+                want = exp[REF_SET[a]][e]
+                if r.get('ref_md5') != want:
+                    inv.setdefault(key(a, e, s), []).append(f"reference md5 {r.get('ref_md5')} is not the registered {REF_SET[a]} reference {want}")
+                tp = (r.get('config_check') or {}).get('task_parquet')   # recorded by ckcfg since arm S (absent in older cells)
+                if tp and tp != 'None' and f'/refs/{REF_TREE[REF_SET[a]]}/ep{e}/' not in tp:
+                    inv.setdefault(key(a, e, s), []).append(f'trained on {tp}, not on refs/{REF_TREE[REF_SET[a]]}/ep{e}')
+    r4 = lambda x: None if x is None else round(x, 4)  # noqa: E731
+    one = lambda r: None if not r else dict(auc=r['auc']['mean'], auc_sd=r['auc']['sd'], auc_worst=r['auc']['min'], draws=r['auc']['n'],  # noqa: E731
+                                            sim_vs_ref=(r.get('sim_vs_ref') or {}).get('mean'), checkpoint_steps=r.get('checkpoint_steps'),
+                                            early_stop=r.get('early_stop'))
+    per = {}
+    for e in EPS:
+        c, s_ = auc_m('C', e), auc_m(S_ARM, e)
+        per[f'ep{e}'] = dict(C=r4(c), S=r4(s_), delta=None if c is None or s_ is None else r4(s_ - c),
+                             draw_sd_C=r4(sd_m('C', e)), draw_sd_S=r4(sd_m(S_ARM, e)),
+                             seeds={f's{sd}': {a: one(present.get(key(a, e, sd))) for a in pair} for sd in SEEDS})
+    ds = [(auc_m(S_ARM, e) - auc_m('C', e)) for e in EPS if auc_m(S_ARM, e) is not None and auc_m('C', e) is not None]
+    rule = ('delta(ep) = seed-mean AUC(S) - seed-mean AUC(C) over seeds 42 / 43; signal iff the mean of delta over episodes '
+            '2 / 12 / 18 / 24 >= +0.03 and no delta(ep) <= -0.05; otherwise no signal; any missing S or C cell -> INCOMPLETE '
+            '(not a verdict: eval solving does not start)')
+    if inv:
+        v = 'INVALID'
+    elif m_:
+        v = 'INCOMPLETE'
+    else:
+        mu, lo = sum(ds) / len(ds), min(ds)             # TOL: a bound hit exactly is not lost to float rounding
+        v = 'signal' if mu >= 0.03 - TOL and lo > -0.05 + TOL else 'no signal'
+    act = ('eval solving starts (owner pre-approval, physics-solver.md section 9); pack 10 swap rule decides what is packed'
+           if v == 'signal' else 'stop: solved references are not used for eval')
+    rep = {}
+    for run, rr in (refs or {}).items():                 # the boxes' own records (S box: solver input vs C's reference)
+        for e in EPS:
+            b, s_ = (rr or {}).get(f'ep{e}') or {}, (rr or {}).get(f'S_ep{e}') or {}
+            if s_:
+                rep.setdefault(f'ep{e}', []).append(dict(run=run, solved_md5=s_.get('md5'), solved_src=s_.get('src'),
+                                                         solver_input_md5=s_.get('in_md5'), base_md5_on_box=b.get('md5'),
+                                                         solver_input_is_registered_base=s_.get('in_md5') == exp['base'][e]))
+    return dict(rule=rule, verdict=v, action=act, missing=[x['cell'] for x in m_], missing_detail=m_, invalid=inv,
+                mean_delta=None if m_ or not ds else r4(sum(ds) / len(ds)), min_delta=None if m_ or not ds else r4(min(ds)),
+                provisional_mean_delta_on_complete_episodes=r4(sum(ds) / len(ds)) if ds else None, episodes=per,
+                registered_ref_md5={k: {str(e): m for e, m in v_.items()} for k, v_ in exp.items()}, box_reference_records=rep)
 
 
 def table(cells):
     lines = ['cell          status   ckpt   draws  AUC mean   sd     worst   svr mean  sd     ES stop']
+    arms = ARMS + ((S_ARM,) if any(k.startswith(S_ARM + '/') for k in cells) else ())   # S rows only when S cells exist
     for e in EPS:
         for s in SEEDS:
-            for a in ARMS:
+            for a in arms:
                 r = cells.get(key(a, e, s))
                 if not r:
                     lines.append(f'{key(a, e, s):13s} (none)'); continue
@@ -270,12 +363,40 @@ def table(cells):
     return '\n'.join(lines)
 
 
+def ref_records(o):
+    """The box's reference records ($O/refs/<name>.md5 / .hive / .src / .in_md5 / .zero_score.txt; name = ep<N> for the
+    physS1 references, S_ep<N> for the solved ones), for the summary."""
+    out = {}
+    for f in sorted(glob.glob(f'{o}/refs/*.md5')):
+        n = os.path.basename(f)[:-4]; rec = dict(md5=open(f).read().strip())
+        for x in ('hive', 'src', 'in_md5'):
+            if os.path.exists(f'{o}/refs/{n}.{x}'):
+                rec[x] = open(f'{o}/refs/{n}.{x}').read().strip()
+        if os.path.exists(f'{o}/refs/{n}.zero_score.txt'):
+            rec['zero_action'] = [l.strip() for l in open(f'{o}/refs/{n}.zero_score.txt', errors='replace') if 'zero_action' in l][:1]
+        out[n] = rec
+    return out
+
+
+def load_md5(path):
+    d = json.load(open(path))
+    return {k: {int(e): m for e, m in d[k].items()} for k in ('base', 'solved')}
+
+
 def main(a):
     cmd = a[0] if a else ''
     if cmd == 'args':
         print(' '.join(arm_overrides(a[1], a[2])))
     elif cmd == 'env':
         print(' '.join(arm_env(a[1], a[2], a[3])))
+    elif cmd == 'ref':
+        print(ref_set(a[1]))
+    elif cmd == 'solved_sub':
+        if int(a[1]) not in SOLVED_SUB:
+            raise SystemExit(f'no solved reference registered for ep{a[1]}')
+        print(SOLVED_SUB[int(a[1])])
+    elif cmd == 'refmd5':
+        print(REF_MD5[a[1]][int(a[2])])
     elif cmd == 'ckcfg':
         ckcfg(a[1], a[2], a[3] if len(a) > 3 else None)
     elif cmd == 'cell':
@@ -295,22 +416,27 @@ def main(a):
             arm, ep, seed = c.split(':'); j = jl(f'{o}/{arm}/ep{ep}-s{seed}/cell.json')
             cells[key(arm, ep, seed)] = j or dict(arm=arm, ep=int(ep), seed=int(seed), status='no record', present=False)
         out = dict(run=opt['run'], commit=opt['commit'], steps=int(opt['steps']), assigned=assigned, meta=meta, cells=cells,
+                   refs=ref_records(o),
                    note='box-local verdicts: cells run on other boxes count as missing here; merge every box with `verdict`')
-        out['verdicts_box_local'] = verdicts(cells, int(opt['steps']))
+        out['verdicts_box_local'] = verdicts(cells, int(opt['steps']), refs={opt['run']: out['refs']})
         print(json.dumps(out, indent=1))
     elif cmd == 'verdict':
-        files, outp = [], None
+        files, outp, md5f = [], None, None
         i = 1
         while i < len(a):
             if a[i] == '--out':
                 outp = a[i + 1]; i += 2
+            elif a[i] == '--ref-md5':
+                md5f = a[i + 1]; i += 2
             else:
                 files.append(a[i]); i += 1
-        cells, dup, src, steps = {}, [], {}, set()
+        cells, dup, src, steps, refs = {}, [], {}, set(), {}
         load = lambda f: json.load(open(f)) if not os.path.isdir(f) else dict(  # noqa: E731
             run=f, steps=70004736, cells={key(c['arm'], c['ep'], c['seed']): c for c in (jl(x) for x in sorted(glob.glob(f'{f}/*/ep*-s*/cell.json'))) if c})
         for f in files:
             s = load(f); steps.add(int(s.get('steps', 70004736)))
+            if s.get('refs'):
+                refs[s.get('run') or f] = s['refs']
             for k, r in s['cells'].items():
                 if k in cells and cells[k].get('present'):
                     if r.get('present'):
@@ -319,9 +445,9 @@ def main(a):
                 cells[k] = r; src[k] = f
         if len(steps) != 1:
             raise SystemExit(f'the summaries disagree on STEPS: {sorted(steps)}')
-        v = verdicts(cells, steps.pop())
+        v = verdicts(cells, steps.pop(), ref_md5=load_md5(md5f) if md5f else None, refs=refs)
         out = dict(inputs=files, runs=[load(f).get('run') for f in files], duplicates=dup, cell_source=src,
-                   cells=cells, verdicts=v)
+                   ref_md5_file=md5f, cells=cells, verdicts=v)
         if outp:
             json.dump(out, open(outp, 'w'), indent=1)
         print(table(cells))
@@ -337,6 +463,14 @@ def main(a):
         r = v['report_sim_vs_ref_ranks_seeds_like_auc']; print(f"sim_vs_ref orders the two seeds like AUC in {r['agree']} of {r['of']} (arm, episode) pairs")
         if v['missing_cells']:
             print('missing cells:', [f"{m['cell']} ({m['status']}, {m['draws']} draws)" for m in v['missing_cells']])
+        x = v['S_vs_C']
+        print(f"S_vs_C: {x['verdict']}  mean delta {x['mean_delta']}  min delta {x['min_delta']}  (provisional on complete episodes "
+              f"{x['provisional_mean_delta_on_complete_episodes']})" + (f"  missing {x['missing']}" if x['missing'] else '')
+              + (f"  INVALID {x['invalid']}" if x['invalid'] else '') + f"  -> {x['action']}")
+        for e, d in x['episodes'].items():
+            print(f"   {e}: C {d['C']} S {d['S']} delta {d['delta']} draw sd C {d['draw_sd_C']} S {d['draw_sd_S']}  "
+                  + '  '.join(f"{sd}: C {(q['C'] or {}).get('auc')} @{(q['C'] or {}).get('checkpoint_steps')} S {(q['S'] or {}).get('auc')} @{(q['S'] or {}).get('checkpoint_steps')}"
+                              for sd, q in d['seeds'].items()))
         if dup:
             print('duplicates (first kept):', dup)
     else:

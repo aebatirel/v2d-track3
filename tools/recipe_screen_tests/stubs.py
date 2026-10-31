@@ -9,17 +9,23 @@ nothing here is a measurement. Modes (the dry run writes one-line wrappers that 
   assets    pipeline/make_assets.py LIB OUT ...: a fake URDF with a mass line
   curve     tools/ckpt_curve.sh RUN OUT EP (REP env): fake per-checkpoint sim_vs_ref (mean of REP)
   curve_summary  tools/ckpt_curve_summary.py OUT
-  es_eval   early_stop.sh's ES_EVAL CKPT DIR: fake sim_vs_ref, prints it; hangs on C/ep18-s42's 20M checkpoint"""
-import json, os, re, signal, sys, time
+  es_eval   early_stop.sh's ES_EVAL CKPT DIR: fake sim_vs_ref, prints it; hangs on C/ep18-s42's 20M checkpoint
+  fake_solved REF OUT SHIFT   (arm S, 2026-10-31) a stand-in for a solver output: REF with SHIFT (m) added to both
+            robot_<side>_wrist_position columns, every other column unchanged (as tools/physics_solve/solve.py edits only
+            the robot target columns); SHIFT 0 copies REF byte for byte (as G1's ep18, which edited no frame)
+Arm S (fake): C's numbers plus S_D below; the training stub records the md5 of every parquet in its task directory."""
+import hashlib, json, os, re, shutil, signal, sys, time
 
 ROOT = os.environ.get('DRY_ROOT', '')
 CKPTS = [10002432, 20000768, 30003200, 40001536, 50003968, 60002304, 70004736]
 THR = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]
 # fake design: K beats C by +0.04 on average (none <= -0.05); D is 0.01 lower with a 50 % smaller draw sd on ep2 and ep12
 BASE = {2: 0.70, 12: 0.88, 18: 0.60, 24: 0.22}
-ARM_D = {'C': {2: 0.0, 12: 0.0, 18: 0.0, 24: 0.0}, 'K': {2: 0.10, 12: 0.02, 18: 0.03, 24: 0.01}, 'D': {2: -0.02, 12: 0.0, 18: -0.01, 24: -0.01}}
+ARM_D = {'C': {2: 0.0, 12: 0.0, 18: 0.0, 24: 0.0}, 'K': {2: 0.10, 12: 0.02, 18: 0.03, 24: 0.01}, 'D': {2: -0.02, 12: 0.0, 18: -0.01, 24: -0.01},
+         'S': {2: 0.10, 12: 0.03, 18: -0.01, 24: 0.02}}   # S vs C (fake): mean +0.035, lowest -0.01 -> "signal"
 SD = {2: 0.20, 12: 0.03, 18: 0.06, 24: 0.02}
-SD_X = {'C': {2: 1, 12: 1, 18: 1, 24: 1}, 'K': {2: 1, 12: 1, 18: 1, 24: 1}, 'D': {2: 0.5, 12: 0.5, 18: 0.9, 24: 1.0}}
+SD_X = {'C': {2: 1, 12: 1, 18: 1, 24: 1}, 'K': {2: 1, 12: 1, 18: 1, 24: 1}, 'D': {2: 0.5, 12: 0.5, 18: 0.9, 24: 1.0},
+        'S': {2: 0.6, 12: 1, 18: 1, 24: 1}}
 Z = [-1.5, -1.0, -0.5, -0.25, 0.0, 0.0, 0.25, 0.5, 1.0, 1.5]
 _m = sum(Z) / len(Z); _s = (sum((z - _m) ** 2 for z in Z) / len(Z)) ** 0.5
 Z = [(z - _m) / _s for z in Z]                                     # mean 0, population sd 1: 10 draws give BASE, SD exactly
@@ -28,7 +34,7 @@ PROFILE = {2: [0.90, 0.95, 0.50, 0.50, 0.50, 0.48, 0.47], 12: [0.70, 0.80, 0.92,
 
 
 def cell_of(path):
-    m = re.search(r'/(C|K|D)/ep(\d+)-s(\d+)', path)
+    m = re.search(r'/(C|K|D|S)/ep(\d+)-s(\d+)', path)
     return (m.group(1), int(m.group(2)), int(m.group(3))) if m else (None, None, None)
 
 
@@ -56,7 +62,11 @@ def train():
     run = a['output_dir']; steps = int(a['training.total_environment_steps']); seed = int(a['reset.seed'])
     os.makedirs(run, exist_ok=True)
     env = {k: os.environ.get(k) for k in ('FC_DR_RESET', 'FC_DR_SEED', 'FC_FDR_OBJ', 'FC_FDR_TIPS', 'FC_VOC_INERTIA', 'FC_STATE_RESET', 'FC_DROP_START')}
-    json.dump(dict(argv=sys.argv[1:], env=env), open(os.path.join(run, 'stub_train.json'), 'w'), indent=1)
+    td = a['task.parquet'].strip("'")                                # what FlashCHORD would read: every parquet of the task dir
+    files = {f: hashlib.md5(open(os.path.join(td, f), 'rb').read()).hexdigest() for f in sorted(os.listdir(td)) if f.endswith('.parquet')} \
+        if os.path.isdir(td) else None
+    stage = sorted(os.listdir(os.path.join(td, '..', '..', '..', 'reconstructed_stage'))) if os.path.isdir(os.path.join(td, '..', '..', '..', 'reconstructed_stage')) else None
+    json.dump(dict(argv=sys.argv[1:], env=env, task_files=files, support_stage=stage), open(os.path.join(run, 'stub_train.json'), 'w'), indent=1)
     if os.environ.get('FC_DR_RESET'):
         print(f"v2d FC_DR_RESET: sampled resets perturbed (STUB of ops/box/patch_flashchord_dr.py) [{os.environ['FC_DR_RESET']}] seed {os.environ.get('FC_DR_SEED')}", flush=True)
     o = dict(learning_rate_initial=3e-4, learning_rate_peak=3e-4, learning_rate_end=1.5e-4, learning_rate_schedule_updates=None)
@@ -143,9 +153,23 @@ def es_eval():
     json.dump(dict(sim_vs_ref=v), open(os.path.join(d, 'qa_policy.json'), 'w')); print(v)
 
 
+def fake_solved():
+    src, out, shift = sys.argv[1], sys.argv[2], float(sys.argv[3])
+    if shift == 0:
+        shutil.copyfile(src, out); return
+    import pyarrow as pa, pyarrow.parquet as pq
+    t = pq.read_table(src)
+    add = lambda x: [add(y) for y in x] if isinstance(x, list) else x + shift  # noqa: E731  (flat or per-frame [x, y, z])
+    for col in ('robot_left_wrist_position', 'robot_right_wrist_position'):
+        i = t.column_names.index(col); v = add(t.column(col)[0].as_py())
+        t = t.set_column(i, col, pa.array([v], type=t.schema.field(col).type))
+    pq.write_table(t, out)
+
+
 def main(mode):
     signal.signal(signal.SIGTERM, lambda *a: sys.exit(143))
-    dict(train=train, evaluate=evaluate, qa=qa, score=score, assets=assets, curve=curve, curve_summary=curve_summary, es_eval=es_eval)[mode]()
+    dict(train=train, evaluate=evaluate, qa=qa, score=score, assets=assets, curve=curve, curve_summary=curve_summary, es_eval=es_eval,
+         fake_solved=fake_solved)[mode]()
 
 
 if __name__ == '__main__':

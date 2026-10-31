@@ -5,9 +5,17 @@
 # FlashCHORD's lifecycle/reset.py). Injected faults: D/ep24-s43 training crashes after 2 checkpoints (a missing cell),
 # K/ep2-s42 best draw r7 hangs (EVAL_TIMEOUT), the ES watcher of C/ep18-s42 hangs (ES_TAIL). Then the merge
 # (recipe_screen.py verdict) and the checks (dry_check.py).
-# Usage: dry_run.sh DRY_DIR STOCK_FLASHCHORD_DIR JOB_PYTHON FC_VENV_PYTHON REF.parquet   (DRY_DIR must not exist)
+# Phase 2 (arm S, physics-solver.md section 9; 2026-10-31): a fake store run 20261030-psolverl-04301a2 with stand-in
+# solved references (stubs.py fake_solved: REF with the robot wrist targets shifted, objects unchanged; ep18 = REF byte
+# for byte, as G1's), plus decoys the job must not use (G1's ep2/ep12 outputs in refs/psolve, G3's copies in refs/glockt).
+# Boxes sboxS42 / sboxS43 (ARMS=S SEEDS=42 | 43, REF_MD5_CHECK=0: the stub files are not the registered ones), sboxSX
+# (ARMS=S, REF_MD5_CHECK=1: every S reference must be refused), sboxM (CELLS="C:12:42 S:12:42": both sets in one job).
+# Then the merge of A + B + sboxS42 + sboxS43 (with the stub md5s, and with the registered ones) and dry_check_s.py.
+# Usage: dry_run.sh DRY_DIR STOCK_FLASHCHORD_DIR JOB_PYTHON FC_VENV_PYTHON REF.parquet [OLD_DRY_DIR]
+#   DRY_DIR must not exist; OLD_DRY_DIR: a dry run of the code before arm S (e.g. dry4), for the C/K/D train-command
+#   comparison in dry_check_s.py
 set -u
-DRY=$1; FCSRC=$2; PYV=$3; FCPY=$4; REF=$5
+DRY=$1; FCSRC=$2; PYV=$3; FCPY=$4; REF=$5; OLD=${6:-}
 HERE=$(cd "$(dirname "$0")" && pwd); REPO=$(cd $HERE/../.. && pwd)
 [ -e "$DRY" ] && { echo "$DRY exists"; exit 1; }
 mkdir -p $DRY/fakestore/runs/20261030-physS1-6a814df/refs/glockt
@@ -61,4 +69,42 @@ wait
 cat $DRY/exits.txt
 $PYV $REPO/tools/recipe_screen.py verdict $DRY/boxA/results/recipe_screen/summary.json $DRY/boxB/results/recipe_screen/summary.json \
   --out $DRY/merged.json > $DRY/merged.txt 2>&1; echo "merge exit $?"
-$PYV $HERE/dry_check.py $DRY
+$PYV $HERE/dry_check.py $DRY; rc1=$?
+
+# ---- phase 2: arm S (the same mkbox; S boxes are named sbox* so that dry_check.py's box* globs see phase 1 only)
+PSR=$DRY/fakestore/runs/20261030-psolverl-04301a2/refs
+hv() { echo processed/sequence_id=t3_ep$(printf %03d $1)/robot_name=sharpa_wave; }
+mkps() {  # $1 solve folder, $2 episode, $3 shift (m) of its stand-in solved file
+  mkdir -p $1/$(hv $2) $1/reconstructed_stage; echo stub > $1/reconstructed_stage/stage.usda; cp $REF $1/$(hv $2)/ref_in.parquet
+  $PYV $HERE/stubs.py fake_solved $REF $1/$(hv $2)/ref_ps.parquet $3; echo '{}' > $1/$(hv $2)/ref_ps_solve.json; echo stub > $1/$(hv $2)/ref_ps_solve.log
+}
+mkps $PSR/psolve2/ep2 2 0.001; mkps $PSR/psolve2/ep12 12 0.0015; mkps $PSR/psolve/ep18 18 0; mkps $PSR/psolve/ep24 24 0.0005
+mkps $PSR/psolve/ep2 2 0.002; mkps $PSR/psolve/ep12 12 0.002                     # decoys: G1's ep2 / ep12 outputs
+for e in 2 12 18 24; do                                                           # decoys: G3's training copies (refs/glockt)
+  mkdir -p $PSR/glockt/ep$e/$(hv $e) $PSR/glockt/ep$e/reconstructed_stage; echo stub > $PSR/glockt/ep$e/reconstructed_stage/stage.usda
+  $PYV $HERE/stubs.py fake_solved $REF $PSR/glockt/ep$e/$(hv $e)/ref_gl_ilc.parquet 0.003
+done
+$PYV -c 'import hashlib, json, sys
+m = lambda p: hashlib.md5(open(p, "rb").read()).hexdigest()
+sub = {2: "psolve2", 12: "psolve2", 18: "psolve", 24: "psolve"}
+hv = lambda e: f"processed/sequence_id=t3_ep{e:03d}/robot_name=sharpa_wave"
+json.dump(dict(base={str(e): m(sys.argv[1]) for e in sub}, solved={str(e): m(f"{sys.argv[2]}/{sub[e]}/ep{e}/{hv(e)}/ref_ps.parquet") for e in sub}),
+          open(sys.argv[3], "w"), indent=1)' $REF $PSR $DRY/stub_ref_md5.json
+sbox() {  # $1 box name, $2 seed, $3 REF_MD5_CHECK, $4 the cell selection (ARMS=... or CELLS=...)
+  local ROOT=$DRY/sbox$1; mkbox $ROOT
+  ( cd $ROOT/v2d-track3 && env CROOT=$ROOT DRY_ROOT=$ROOT PATH=$ROOT/bin:$PATH ES_EVAL=$ROOT/bin/es_eval DRY_CK_SLEEP=${DRY_CK_SLEEP:-12} \
+      SLOT_POLL=1 CELL_GAP=1 ZERO=0 PIP=0 EVAL_TIMEOUT=8 ES_TAIL=40 CURVE_TIMEOUT=120 RUN_ID=dry-sbox$1-$2 SEEDS=$2 \
+      REF_MD5_CHECK=$3 "$4" FC_DR_RESET=9,9,9 CURR_SCALE=0.4 bash ops/jobs/recipe_screen.sh > $ROOT/stdout.txt 2>&1
+    echo "sbox$1 job exit $?" >> $DRY/exits_s.txt )
+}
+sbox S42 42 0 ARMS=S & sbox S43 43 0 ARMS=S & sbox SX 42 1 ARMS=S & sbox M 42 0 "CELLS=C:12:42 S:12:42" &
+wait
+cat $DRY/exits_s.txt
+A=$DRY/boxA/results/recipe_screen/summary.json; B=$DRY/boxB/results/recipe_screen/summary.json
+S2=$DRY/sboxS42/results/recipe_screen/summary.json; S3=$DRY/sboxS43/results/recipe_screen/summary.json
+$PYV $REPO/tools/recipe_screen.py verdict $A $B $S2 $S3 --ref-md5 $DRY/stub_ref_md5.json --out $DRY/merged_S.json > $DRY/merged_S.txt 2>&1
+echo "merge S (stub md5s) exit $?"
+$PYV $REPO/tools/recipe_screen.py verdict $A $B $S2 $S3 --out $DRY/merged_S_registered.json > $DRY/merged_S_registered.txt 2>&1
+echo "merge S (registered md5s) exit $?"
+$PYV $HERE/dry_check_s.py $DRY $REF $OLD; rc2=$?
+exit $(( rc1 || rc2 ))
