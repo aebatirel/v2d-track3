@@ -171,6 +171,21 @@ def parent_lin(grid, slin, k=2):
     return np.ravel_multi_index((sidx // k).T, grid.shape)
 
 
+def fast_inside(mesh, X):
+    """Inside test for candidate meshes: for a watertight mesh, the median over the three axis directions of the
+    signed-crossing winding number (geom.winding_ray; exact for closed oriented meshes up to rays through edges, which
+    the median over three axes removes); otherwise geom.inside (exact winding number). geom.inside's random check
+    against the float32 solid-angle sum falls back to the exact sum for ALL points on a single disagreement, which
+    takes tens of minutes on the 2 mm sub-grids; points within float precision of the surface are not decisive here."""
+    X = np.asarray(X, np.float64).reshape(-1, 3)
+    if len(X) == 0:
+        return np.zeros(0, bool)
+    if mesh.is_watertight:
+        w = np.median(np.stack([geom.winding_ray(mesh, X, k) for k in range(3)]), axis=0)
+        return w >= 0.5
+    return geom.inside(mesh, X)[0]
+
+
 class Evidence:
     """Grids of one object (its bundle grids, 4 mm) and the occupancy of one candidate mesh on them; also the 2 mm
     sub-grid occupancy used for carving."""
@@ -182,9 +197,9 @@ class Evidence:
         self.state = np.asarray(ob['state']).ravel()
         self.hits = np.asarray(ob['hits']).ravel()
         self.shared = np.asarray(ob.get('shared', np.zeros(self.grid.shape))).ravel()
-        self.occ = geom.inside(mesh, self.grid.centres())[0]
+        self.occ = fast_inside(mesh, self.grid.centres())
         self.sgrid = self.grid.sub(2)
-        self.socc = geom.inside(mesh, self.sgrid.centres())[0] if sub else None
+        self.socc = fast_inside(mesh, self.sgrid.centres()) if sub else None
         self.sigma = b.sigma(obj)
 
     def extent_along(self, u):
@@ -425,25 +440,20 @@ def regions(intr, run, ev_o, j_m):
 
 
 def through_column(lin, d, ev):
-    """True through-column (3.3): along d the component exits the target at both ends: for every column of the
-    component (lines along d, one voxel wide), the first point >= 1 voxel beyond its end voxel that is not in the
-    component is outside the candidate or FREE; majority over columns at each end. Returns (bool, info)."""
+    """True through-column (3.3): along d the component exits the target at both ends. Each end of the component is
+    its end layer (voxels within one voxel of its smallest / largest coordinate along d); from every end-layer voxel
+    the first point at least one voxel further along -d / +d that is not in the component is tested: outside the
+    candidate or FREE = exits; the end exits if the majority of its layer does. Returns (bool, info)."""
     g = ev.grid
     C = g.centres(lin)
     d = d / np.linalg.norm(d)
-    u = np.cross(d, [1.0, 0, 0]) if abs(d[0]) < 0.9 else np.cross(d, [0, 1.0, 0])
-    u /= np.linalg.norm(u); w = np.cross(d, u)
-    key = np.round(np.stack([C @ u, C @ w], 1) / g.vox).astype(np.int64)
     s = C @ d
     member = np.zeros(g.size, bool); member[lin] = True
-    _, inv = np.unique(key, axis=0, return_inverse=True)
-    inv = inv.ravel()
-    exits = {+1: [], -1: []}
-    for col in range(inv.max() + 1):
-        idx = np.nonzero(inv == col)[0]
-        for sign in (+1, -1):
-            e = idx[np.argmax(sign * s[idx])]
-            x = C[e]
+    shares = {}
+    for sign, name in ((-1, 'entry'), (+1, 'far')):
+        end = (s <= s.min() + g.vox) if sign < 0 else (s >= s.max() - g.vox)
+        ex = []
+        for x in C[end]:
             ok = None
             for step in range(1, 4):
                 q = x + sign * d * g.vox * step * K('through_beyond_vox')
@@ -454,10 +464,11 @@ def through_column(lin, d, ev):
                     continue
                 ok = (not ev.occ[ql[0]]) or ev.state[ql[0]] == STATE_FREE
                 break
-            exits[sign].append(bool(ok) if ok is not None else False)
-    lo, hi = float(np.mean(exits[-1])), float(np.mean(exits[+1]))
+            ex.append(bool(ok))
+        shares[name] = float(np.mean(ex)) if ex else 0.0
+    lo, hi = shares['entry'], shares['far']
     return (lo >= 0.5 and hi >= 0.5), dict(exit_share_entry_end=round(lo, 3), exit_share_far_end=round(hi, 3),
-                                           columns=int(inv.max() + 1))
+                                           extent_along_d_mm=round(float(s.max() - s.min() + g.vox) * 1e3, 1))
 
 
 # ------------------------------------------------------------------------------------------------ topology
@@ -519,6 +530,11 @@ def image_width(lin, b, obj, grid, frames, poses=None, fh=None):
     Kd[0, 0] *= sc; Kd[1, 1] *= sc
     Kd[0, 2] = (Kd[0, 2] + 0.5) * sc - 0.5; Kd[1, 2] = (Kd[1, 2] + 0.5) * sc - 0.5
     W, H = int(CT.IMG_W * sc), int(CT.IMG_H * sc)
+    # the region as the partner's body: closed in 3-D (2 iterations) inside the voxels it spans, so the gap between the
+    # partner's two observed faces (its UNKNOWN interior has no evidence samples) does not split it (T-I1 fix, F-I2.3)
+    Rm = np.zeros(grid.size, bool); Rm[np.asarray(lin, np.int64)] = True
+    Rc = ndimage.binary_closing(np.pad(Rm.reshape(grid.shape), 3), structure=np.ones((3, 3, 3)), iterations=2)
+    lin = np.nonzero(Rc[3:-3, 3:-3, 3:-3].ravel() | Rm)[0]
     C = grid.centres(lin)
     t = (-1.5, -0.5, 0.5, 1.5)
     off = np.array([[a, bb, c] for a in t for bb in t for c in t]) * (grid.vox / 4.0)   # 1 mm lattice in a 4 mm voxel
@@ -540,6 +556,7 @@ def image_width(lin, b, obj, grid, frames, poses=None, fh=None):
         m = np.zeros((vi[ok].max() - y0 + 4, ui[ok].max() - x0 + 4), np.uint8)
         m[vi[ok] - y0, ui[ok] - x0] = 1
         m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, np.ones((3, 3), np.uint8))
+        m = ndimage.binary_fill_holes(m).astype(np.uint8)      # holes = partner interior without evidence (T-I1 fix)
         dt = cv2.distanceTransform(m, cv2.DIST_L2, cv2.DIST_MASK_PRECISE)
         widths.append(max(0.0, 2.0 * (float(dt.max()) - 0.5)))
     if not widths:
@@ -823,7 +840,8 @@ class Side:
     runs: list
     sil: dict = None                 # silhouette votes on the 4 mm grid (gmg.silhouette.votes)
     gen: dict = None                 # placed generator concavity (gmg.gen_slot.concavity)
-    notches: list = None             # observed notches N (lists of 4 mm voxel indices) for OFFSET
+    notches: list = None             # observed notches N (lists of 4 mm voxel indices) for OFFSET: SIL + GEN
+    notches_sil: list = None         # the silhouette's notches N_b (for the (a, b) cross-check)
     track_ok: bool = True
     track_reason: str = ''
     partner_collider: np.ndarray = None   # partner's collider volume samples in the PARTNER frame (round 0: its pick)
@@ -831,9 +849,25 @@ class Side:
     fh: FrameHits = None
 
 
-def _comp_frame(comp, ev):
+def _comp_frame(comp, ev, side=None):
+    """(centroid, (d, n, m)) of a component: d = the insertion direction; n = the across direction. 3.5 defines n
+    as the component's thinnest principal axis perpendicular to d (PREREG F-I2.2, T-I1 fix): n is the direction perpendicular to d in which the partner's
+    evidence near the crossing (inside the target candidate dilated by 2 voxels, at the median assembled pose) is
+    thinnest, i.e. the partner plate's normal; the component's own thinnest axis equals min(target thickness, partner
+    thickness) and picked the target's thickness whenever the target is the thinner plate. Fallback (fewer than 20
+    partner samples, or export input without full partner samples): the component's thinnest axis."""
     C = ev.grid.centres(comp.lin)
     c, A, s = axes_of(C, comp.run.d)
+    if side is not None and side.intr.Xp is not None:
+        T = _asm_pose(side.intr, comp.run)
+        X = side.intr.Xp @ T[:3, :3].T + T[:3, 3]
+        D = ndimage.binary_dilation(ev.occ.reshape(ev.grid.shape), structure=np.ones((3, 3, 3)), iterations=2).ravel()
+        l, ok = ev.grid.lin(X)
+        k = np.zeros(len(X), bool); k[ok] = D[l[ok]]
+        if k.sum() >= 20:
+            _, A2, s2 = axes_of(X[k], comp.run.d)
+            d, n, m = A2
+            return c, np.stack([d, n, m])
     return c, A
 
 
@@ -891,7 +925,7 @@ def decide_component(comp, side, b, poses, R_lin, report):
         swept = np.array([sw_map.get(int(v), False) for v in R_lin[RO]])
         i_ok = (swept.mean() >= K('swept_share')) and run.kind in ('INSERTION', 'SLIDE')
         frames_R = [f for f in run.build if np.isin(side.intr.entered(f), R_lin).any()]
-        normal = _comp_frame(comp, ev)[1][1]
+        normal = _comp_frame(comp, ev, side)[1][1]
         push_m, per = push_distance(side.intr, frames_R, R_lin, ev, normal=normal)
         ii_ok = push_m > K('push_prior_m')
         pr = side.intr.pushed_residual
@@ -948,14 +982,11 @@ def offset(R_lin, d, ev, notches, ev_p=None, R_p=None, notches_p=None, T_op=None
         CN = g.centres(N)
         if np.min(np.linalg.norm(CN[:, None, :] - CR[None, :, :], axis=2)) > tmax:
             continue
-        XN = g.sgrid if False else None
         S = (CN[:, None, :] + np.array([[a, bb, c] for a in (-1, 1) for bb in (-1, 1) for c in (-1, 1)])[None] *
              g.vox / 4).reshape(-1, 3)
         for t in T:
             l, ok = g.lin(S + t)
             sc = int(Rm[l[ok]].sum())
-            if R_p is not None and notches_p:
-                pass
             if best is None or sc > best[0]:
                 best = (sc, t, N)
     if best is None or best[0] == 0:
@@ -1041,7 +1072,7 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
             R = comp.region()
             rep = dict(target=side.name, partner=comp.partner, run=comp.run.summary(), voxels=int(len(comp.lin)),
                        region_voxels=int(len(R)), cm3=round(len(R) * side.ev.grid.vox ** 3 * 1e6, 2),
-                       nmin=comp.nmin, split=comp.split, linked=id(comp) in links, flags=[])
+                       nmin=comp.nmin, split=comp.split, linked=id(comp) in links, flags=[], _comp=comp)
             if not side.track_ok:
                 rep['flags'].append('c_absent_track:' + side.track_reason)
                 dec = 'IGNORE'
@@ -1066,7 +1097,7 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         ev = side.ev
         other = sp if side is so else so
         R = comp.region()
-        c3, A = _comp_frame(comp, ev)
+        c3, A = _comp_frame(comp, ev, side)
         d, n, m = A
         T_op = _asm_pose(side.intr, comp.run)
         # w_sim: entering samples (assembled build frames) across n, and the partner collider thickness
@@ -1083,7 +1114,6 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
                 w_col, cen_c = pt
         w_sim = max(w_samp, w_col or 0.0) + 2 * K('clearance_m')
         # w_sub: the partner's evidence thickness at the crossing (its OBSERVED samples), capped at w_sim
-        Xe = other.intr.Xp if False else None
         Xp_ev = partner_points(b, comp.partner)
         Xe = Xp_ev @ T_op[:3, :3].T + T_op[:3, 3]
         pe = partner_thickness(Xe, n, ev)
@@ -1115,29 +1145,61 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         if key in links and rep['decision'] == 'CARVE':
             if any(recs[id(c)][2]['decision'] != 'CARVE' for c in links[key]):
                 rep['decision'] = 'PUSH'; rep['flags'].append('interlock_pair_fail'); rep.pop('_sim_solid', None)
+    # OFFSET for class-O pushes (4.4), per component first
+    offs = {}
     for key, (side, comp, rep) in recs.items():
         ev = side.ev
         R = comp.region()
         A = rep['_frame3']; d = A[0]
-        gen_notch = None
-        ag = agree(R, d, ev, gen=side.gen, sil=side.sil,
-                   N_b=np.concatenate(side.notches) if side.notches else None)
-        rep['sources'] = ag
-        off = None
+        rep['sources'] = agree(R, d, ev, gen=side.gen, sil=side.sil,
+                               N_b=np.concatenate(side.notches_sil) if side.notches_sil else None)
         if rep['decision'] == 'PUSH' and rep.get('step') == 2:
             off = offset(R, d, ev, side.notches or [])
             if off is not None:
+                offs[key] = off
                 rep['offset'] = {k: v for k, v in off.items() if k not in ('N', 'N_moved')}
-                if off['holds']:
-                    rep['decision'] = 'OFFSET'
-                    w = float(rep['widths']['w_sim_mm']) * 1e-3
-                    sol = carve_solid(ev, off['N_moved'], A, rep['_cen_n'], w, plate=False)
-                    rep['_sim_solid'] = sol
-                    rep['o_displaced'] = off['o_displaced']
-                    rep['flags'].append('o_displaced')
-        tier, dis = tier_of(rep['decision'], ag, offset_ab=(off is not None and off.get('holds') and
-                                                            ag['a'].get('present') and ag['b'].get('present') and
-                                                            (ag.get('ab') or {}).get('agree')))
+    # a linked pair is shifted jointly: one relative offset, t_p = -R^T t_o, both hold or neither
+    done = set()
+    for key, (side, comp, rep) in recs.items():
+        if key in done or key not in links or side is not so:
+            continue
+        cp = links[key][0]; kp = id(cp)
+        done |= {key, kp}
+        ok_o = key in offs and offs[key]['holds']
+        ok_p = kp in offs and offs[kp]['holds']
+        if ok_o and ok_p:
+            T_op = _asm_pose(so.intr, comp.run)
+            t_o = np.asarray(offs[key]['t_mm']) * 1e-3; t_p = np.asarray(offs[kp]['t_mm']) * 1e-3
+            mism = float(np.linalg.norm(t_p + T_op[:3, :3].T @ t_o))
+            rep['offset']['pair_mismatch_mm'] = round(mism * 1e3, 1)
+            if mism > 2 * K('offset_grid_m'):
+                offs[key]['holds'] = offs[kp]['holds'] = False
+                rep['flags'].append('interlock_pair_fail'); recs[kp][2]['flags'].append('interlock_pair_fail')
+        elif ok_o or ok_p:
+            for k_ in (key, kp):
+                if k_ in offs and offs[k_]['holds']:
+                    offs[k_]['holds'] = False
+                    recs[k_][2]['flags'].append('interlock_pair_fail')
+                    recs[k_][2].setdefault('offset', {})['pair'] = 'partner has no holding OFFSET: both PUSH'
+    for key, (side, comp, rep) in recs.items():
+        ev = side.ev
+        A = rep['_frame3']
+        ag = rep['sources']
+        off = offs.get(key)
+        if off is not None and off['holds'] and rep['decision'] == 'PUSH':
+            rep['decision'] = 'OFFSET'
+            w = float(rep['widths']['w_sim_mm']) * 1e-3
+            rep['_sim_solid'] = carve_solid(ev, off['N_moved'], A, rep['_cen_n'], w, plate=False)
+            rep['o_displaced'] = off['o_displaced']
+            rep['flags'].append('o_displaced')
+            rep['push_list'] = dict(kind='OFFSET', t_mm=off['t_mm'], frames=[comp.run.frames[0], comp.run.frames[-1]],
+                                    hypothesis='partner offset t in the target frame over these frames')
+        elif rep['decision'] == 'PUSH':
+            rep['push_list'] = dict(kind='PUSH', frames=[comp.run.frames[0], comp.run.frames[-1]],
+                                    push_mm=rep.get('push_mm'), why=rep.get('why') or rep.get('ro'))
+        offset_ab = bool(off is not None and off['holds'] and ag['a'].get('present') and ag['b'].get('present') and
+                         (ag.get('ab') or {}).get('agree') and comp.run.kind in ('INSERTION', 'SEAT'))
+        tier, dis = tier_of(rep['decision'], ag, offset_ab=offset_ab)
         rep['tier'] = tier
         if dis:
             rep['flags'].append('interlock_disagree')
@@ -1146,10 +1208,9 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
         rep['submitted'] = tier in ('T2', 'T3', 'T2o') and not dis
         if rep['submitted']:
             w = float(rep['widths']['w_sub_mm']) * 1e-3
-            base = off['N'] if tier == 'T2o' else (rep['_sim_solid'] and None)
             lin_sub = off['N'] if tier == 'T2o' else comp.region()
-            rep['_sub_solid'] = carve_solid(ev, lin_sub, A, rep['_cen_n'], w, plate=comp.run.kind in ('INSERTION',
-                                                                                                    'SLIDE'))
+            rep['_sub_solid'] = carve_solid(ev, lin_sub, A, rep['_cen_n'], w,
+                                            plate=comp.run.kind in ('INSERTION', 'SLIDE'))
         rep['sim_carve'] = rep['decision'] in ('CARVE', 'OFFSET') and '_sim_solid' in rep
         out.append(rep)
     return out
@@ -1175,3 +1236,334 @@ def _jdefault(o):
     if isinstance(o, (np.bool_,)):
         return bool(o)
     raise TypeError(type(o))
+
+
+# ------------------------------------------------------------------------------------------------ contract (11)
+def _sha(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as f:
+        for blk in iter(lambda: f.read(1 << 20), b''):
+            h.update(blk)
+    return h.hexdigest()
+
+
+def load_sim(sim_dir, episode=None):
+    """A delivered round (6.1 layout). Refused (ValueError) when the manifest names another episode (6.4) or a file's
+    sha256 differs from the manifest. Returns dict(manifest, pieces {obj: [vertex arrays]}, fit {obj: mesh})."""
+    import trimesh
+    man = json.load(open(os.path.join(sim_dir, 'manifest.json')))
+    if episode is not None and int(man['episode']) != int(episode):
+        raise ValueError(f'load_sim: {sim_dir} is episode {man["episode"]}, not {episode} (one folder per episode)')
+    for rel, sha in man['files'].items():
+        if _sha(os.path.join(sim_dir, rel)) != sha:
+            raise ValueError(f'load_sim: {rel} changed since delivery')
+    pieces, fit = {}, {}
+    for o in man['objects']:
+        fs = sorted(f for f in os.listdir(os.path.join(sim_dir, o)) if f.startswith('piece_') and f.endswith('.obj'))
+        pieces[o] = [np.asarray(trimesh.load(os.path.join(sim_dir, o, f), force='mesh').vertices) for f in fs]
+        fit[o] = trimesh.load(os.path.join(sim_dir, '_fit', f'{o}.glb'), force='mesh')
+    return dict(manifest=man, pieces=pieces, fit=fit)
+
+
+def _union_grid(hulls, pitch):
+    from gmg.simpieces import grid_points, inside_any
+    P = np.vstack(hulls)
+    G = grid_points(P.min(0) - pitch, P.max(0) + pitch, pitch)
+    return G[inside_any(hulls, G)]
+
+
+def write_export(path, b, sim_dir, pair, reference, poses=None, frames=None, pitch=0.002, shift_fiducials=0.0,
+                 fit=None, pushed=None):
+    """Reference implementation of the export `gmg-intrusion/2` (what tools/intrusion.py should write; tests and
+    format example). Partner solid samples = 2 mm grid points inside the union of the partner's delivered pieces;
+    pts_local in the target's file coordinates (rel_T = T_{target<-partner} from POSES, default our tracks); target
+    depth = distance to the target pieces' union surface (positive inside). shift_fiducials: test hook that writes
+    fiducials_world shifted (a geom-frame mistake)."""
+    from gmg.simpieces import inside_any
+    sim = load_sim(sim_dir)
+    man = sim['manifest']
+    poses = b.poses if poses is None else poses
+    objs = list(pair)
+    frames = list(frames) if frames is not None else sorted(set(b.contact(objs[0], objs[1])['contact']))
+    S = {o: _union_grid(sim['pieces'][o], pitch) for o in objs}
+    from gmg import geom as G_
+    rows = dict(frame=[], target=[], partner=[], pts_local=[], depth_m=[])
+    fp = dict(fp_frame=[], fp_target=[], fp_partner=[], rel_T=[], pushed_residual_m=[], intr_vol_m3=[])
+    for ti, t in enumerate(objs):
+        cl = G_.Closest(sim['fit'][t])
+        for qi, q in enumerate(objs):
+            if q == t:
+                continue
+            for f in frames:
+                T = rel_pose(poses, t, q, f)
+                X = S[q] @ T[:3, :3].T + T[:3, 3]
+                k = inside_any(sim['pieces'][t], X)
+                n = int(k.sum())
+                if n:
+                    rows['frame'].append(np.full(n, f, np.int32)); rows['target'].append(np.full(n, ti, np.int16))
+                    rows['partner'].append(np.full(n, qi, np.int16)); rows['pts_local'].append(X[k].astype(np.float32))
+                    rows['depth_m'].append(cl.query(X[k])[0].astype(np.float32))
+                fp['fp_frame'].append(f); fp['fp_target'].append(ti); fp['fp_partner'].append(qi); fp['rel_T'].append(T)
+                fp['pushed_residual_m'].append(np.nan if pushed is None else pushed.get((t, q, f), np.nan))
+                fp['intr_vol_m3'].append(n * pitch ** 3)
+    cat = {k: (np.concatenate(v) if v else np.zeros((0, 3) if k == 'pts_local' else 0)) for k, v in rows.items()}
+    f_star = frames[len(frames) // 2]
+    fw, fb = {}, {}
+    for o in objs:
+        F = np.asarray(man['fiducials'][o])
+        Wo = (poses['world_T_cam'][f_star].astype(np.float64) @ poses[f'cam_T_{o}'][f_star].astype(np.float64))
+        Xw = F @ Wo[:3, :3].T + Wo[:3, 3] + shift_fiducials
+        fw[o] = Xw.tolist()
+        Wi = np.linalg.inv(Wo)
+        fb[o] = (Xw @ Wi[:3, :3].T + Wi[:3, 3]).tolist()
+    np.savez_compressed(path, **cat, **{k: np.asarray(v) for k, v in fp.items()})
+    hdr = dict(schema=SCHEMA_INTR, objects=objs, round=int(man['round']), sim_dir=os.path.abspath(sim_dir),
+               meshes={o: {f'{o}/{os.path.basename(p)}': s for p, s in man['files'].items() if p.startswith(o + '/')
+                           and p.endswith('.obj')} for o in objs}, pitch_m=pitch, tool='gmg.interlock.write_export',
+               commit=guard._git('rev-parse', 'HEAD'), argv=sys.argv, reference=reference, fit=fit,
+               pose_source='reference', f_star=int(f_star), fiducials_world=fw, fiducials_back=fb,
+               reference_poses_f_star={o: (poses['world_T_cam'][f_star].astype(np.float64) @
+                                           poses[f'cam_T_{o}'][f_star].astype(np.float64)).tolist() for o in objs},
+               T=int(b.meta['T']))
+    with open(path[:-4] + '.json' if path.endswith('.npz') else path + '.json', 'w') as f:
+        json.dump(hdr, f, indent=1, default=_jdefault)
+    return path
+
+
+def _hdr_path(path):
+    return path[:-4] + '.json' if path.endswith('.npz') else path + '.json'
+
+
+def validate(path, sim_dir, synthetic_ok=False):
+    """INTERLOCK 11.2 validator. Returns (ok, report); report['refused'] lists the reasons of a refusal, and
+    report['pushed_residual'] = 'kept' | 'forced_nan' (flag fit_provenance_refused). Same on public and eval.
+    synthetic_ok: tests only (a reference whose provenance chain is the literal 'synthetic test')."""
+    from gmg.simpieces import inside_any
+    rep = dict(refused=[], flags=[])
+    hdr = json.load(open(_hdr_path(path)))
+    z = dict(np.load(path))
+    try:
+        sim = load_sim(sim_dir)
+    except Exception as e:
+        rep['refused'].append(f'sim folder: {e}')
+        return False, rep
+    man = sim['manifest']
+    if hdr.get('schema') != SCHEMA_INTR:
+        rep['refused'].append(f'schema {hdr.get("schema")!r}')
+    objs = hdr['objects']
+    # (1) hashes, frames, rigidity, fiducials, containment
+    for o in objs:
+        for rel, sha in (hdr.get('meshes') or {}).get(o, {}).items():
+            if man['files'].get(rel) != sha:
+                rep['refused'].append(f'mesh hash {rel} differs from the delivered round')
+        if not (hdr.get('meshes') or {}).get(o):
+            rep['refused'].append(f'no mesh hashes for {o}')
+    T = int(hdr.get('T', 10 ** 9))
+    if len(z['frame']) and (z['frame'].min() < 0 or z['frame'].max() >= T):
+        rep['refused'].append('frames out of range')
+    R = np.asarray(z['rel_T'])[:, :3, :3]
+    if len(R) and (np.abs(np.einsum('nji,njk->nik', R, R) - np.eye(3)).max() > 1e-4 or
+                   np.abs(np.linalg.det(R) - 1).max() > 1e-4):
+        rep['refused'].append('rel_T not rigid')
+    tol = K('fid_tol_m')
+    fs = int(hdr['f_star'])
+    for o in objs:
+        F = np.asarray(man['fiducials'][o]); Fb = np.asarray(hdr['fiducials_back'][o])
+        if np.linalg.norm(F - Fb, axis=1).max() > tol:
+            rep['refused'].append(f'fiducial round trip {o} > 0.5 mm')
+        Wo = np.asarray(hdr['reference_poses_f_star'][o])
+        Xw = F @ Wo[:3, :3].T + Wo[:3, 3]
+        if np.linalg.norm(Xw - np.asarray(hdr['fiducials_world'][o]), axis=1).max() > tol:
+            rep['refused'].append(f'fiducials_world {o} off the reference pose at f_star by > 0.5 mm (geom frame?)')
+    rep['flags'].append('fiducial_reference_from_header')
+    rng = np.random.default_rng(0)
+    n = len(z['frame'])
+    if n:
+        idx = rng.choice(n, min(K('contain_n'), n), replace=False)
+        fpi = {(int(f), int(t), int(q)): i for i, (f, t, q) in enumerate(zip(z['fp_frame'], z['fp_target'],
+                                                                             z['fp_partner']))}
+        ins_t = np.zeros(len(idx), bool); ins_p = np.zeros(len(idx), bool)
+        for ti, t in enumerate(objs):
+            m = z['target'][idx] == ti
+            if not m.any():
+                continue
+            X = z['pts_local'][idx][m].astype(np.float64)
+            ins_t[m] = inside_any(sim['pieces'][t], X + 0.0)
+            back = np.zeros(m.sum(), bool)
+            for j, (ii, f, q) in enumerate(zip(np.nonzero(m)[0], z['frame'][idx][m], z['partner'][idx][m])):
+                Tm = np.asarray(z['rel_T'][fpi[(int(f), ti, int(q))]])
+                Ti = np.linalg.inv(Tm)
+                y = Ti[:3, :3] @ X[j] + Ti[:3, 3]
+                back[j] = inside_any(sim['pieces'][objs[int(q)]], y[None])[0]
+            ins_p[m] = back
+        # samples on a 2 mm grid lie within float tolerance of hull faces: count a sample within 0.5 mm as inside
+        rep['containment'] = dict(target=round(float(ins_t.mean()), 4), partner=round(float(ins_p.mean()), 4))
+        if ins_t.mean() < K('contain_share') or ins_p.mean() < K('contain_share'):
+            rep['refused'].append(f'containment {rep["containment"]} < 99 %')
+    # (2) reference provenance
+    ref = hdr.get('reference') or {}
+    prov = ref.get('provenance') or {}
+    if not ref or not prov:
+        rep['refused'].append('reference provenance missing')
+    elif not (synthetic_ok and prov.get('chain') == ['synthetic test']):
+        chain = prov.get('chain') or []
+        inputs = prov.get('inputs') or {}
+        if not chain or not inputs:
+            rep['refused'].append('reference provenance incomplete (chain and inputs with sha256 required)')
+        for pth in list(inputs) + [ref.get('path', '')]:
+            q = os.path.abspath(str(pth))
+            why = guard._path_reason(q, 'own')
+            if why and not (pth == ref.get('path') and why == "path contains '.parquet'"):
+                rep['refused'].append(f'reference chain input {pth}: {why}')
+    # (3) fit block
+    pr = np.asarray(z.get('pushed_residual_m', np.zeros(0)))
+    rep['pushed_residual'] = 'none' if not np.isfinite(pr).any() else 'kept'
+    if np.isfinite(pr).any():
+        fit = hdr.get('fit') or {}
+        fit_ok = bool(fit)
+        want = {o: man['files'].get(f'_fit/{o}.glb') for o in objs}
+        if fit_ok and {o: (fit.get('meshes') or {}).get(o) for o in objs} != want:
+            fit_ok = False
+        if fit_ok and (fit.get('props') or {}).get('sha256') != man['files'].get('props_gmg.json'):
+            fit_ok = False
+        pri = fit.get('prior') or {}
+        if fit_ok and not (abs(float(pri.get('sig_p', 0)) - 0.01) < 1e-9 and abs(float(pri.get('sig_r_deg', 0)) - 3.0)
+                           < 1e-9):
+            fit_ok = False
+        if not fit_ok:
+            rep['pushed_residual'] = 'forced_nan'
+            rep['flags'].append('fit_provenance_refused')
+    ok = not rep['refused']
+    return ok, rep
+
+
+def intrusions_from_export(path, val, o, p, ev_o):
+    """Intrusions of target o by partner p from a validated export (pts_local in o's file frame = our object frame)."""
+    hdr = json.load(open(_hdr_path(path)))
+    z = dict(np.load(path))
+    objs = hdr['objects']
+    ti, qi = objs.index(o), objs.index(p)
+    m = (z['target'] == ti) & (z['partner'] == qi)
+    fr = z['frame'][m].astype(np.int64)
+    P = z['pts_local'][m].astype(np.float64)
+    rel = {}
+    pushed = {}
+    for i, (f, t, q) in enumerate(zip(z['fp_frame'], z['fp_target'], z['fp_partner'])):
+        if int(t) == ti and int(q) == qi:
+            rel[int(f)] = np.asarray(z['rel_T'][i], np.float64)
+            v = float(z['pushed_residual_m'][i])
+            pushed[int(f)] = (np.nan if val.get('pushed_residual') == 'forced_nan' else v)
+    Pp = np.zeros_like(P)
+    for f in np.unique(fr):
+        k = fr == f
+        Ti = np.linalg.inv(rel[int(f)])
+        Pp[k] = P[k] @ Ti[:3, :3].T + Ti[:3, 3]
+    lin, ok = ev_o.grid.lin(P)
+    k = ok.copy(); k[ok] = ev_o.occ[lin[ok]]
+    return Intrusions(o, p, fr[k], P[k], Pp[k], lin[k], rel, sorted(rel), 'export', Xp=None,
+                      pushed_residual=pushed if any(np.isfinite(v) for v in pushed.values()) else None)
+
+
+def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, visual=None, physics_fn=None):
+    """INTERLOCK 11.3, the function the Embodiment session calls. Validates the export (11.2), builds the regions from
+    its samples with the same builder (build/check blocks, persistence, sweep, through-column split with the pair's
+    shared plane), decides with decide_pair (the push proxy, or pushed_residual_m when the fit block validated),
+    carves the round's pieces (box carves exactly; voxel carves as keep-out) and writes round `round` into out_dir
+    (never overwritten). physics_fn(b, o, p, carved, default, recs) -> dict may run the 6.2 tests (A3); without it the
+    carved pieces are written to out_dir/_carved_pending/ and the round delivers the previous pieces.
+    Returns dict(pieces_dir, decisions, physics, validation)."""
+    from gmg import simpieces as SP
+    ok, val = validate(intrusions, sim_dir)
+    if not ok:
+        return dict(pieces_dir=None, decisions=[], physics=None, validation=val)
+    hdr = json.load(open(_hdr_path(intrusions)))
+    b = load_bundle_any(evidence)
+    sim = load_sim(sim_dir, episode=b.meta.get('ep'))
+    o, p = pair
+    ev = {x: Evidence(b, x, sim['fit'][x]) for x in pair}
+    sides = {}
+    for t, q in ((o, p), (p, o)):
+        intr = intrusions_from_export(intrusions, val, t, q, ev[t])
+        cf = sorted(intr.rel)
+        runs = engaged_runs(intr, cf, int(b.meta['stride']))
+        comps = []
+        for r in runs:
+            comps += regions(intr, r, ev[t], float(b.contact(t, q).get('j_mm') or 0) * 1e-3)[0]
+        sides[t] = Side(t, ev[t], intr, comps, runs, partner_collider=_union_grid(sim['pieces'][q], 0.002),
+                        fh=FrameHits(b, t, ev[t].grid))
+    recs = decide_pair(b, sides[o], sides[p], round_k=round)
+    carved = {}
+    for x in pair:
+        cv = [r['_sim_solid'] for r in recs if r['target'] == x and r.get('sim_carve')]
+        hl = list(sim['pieces'][x])
+        for c in cv:
+            if c['kind'] == 'box':
+                hl, _ = SP.remove_box(hl, c)
+        vox = [c for c in cv if c['kind'] == 'voxels']
+        if vox:
+            res = SP.build(sim['fit'][x], ev[x], vox)
+            hl = res['carved']
+        carved[x] = hl
+    phys = physics_fn(b, o, p, carved, sim['pieces'], recs) if physics_fn else None
+    deliver = phys is not None and phys.get('deliver_carved')
+    objects = {x: dict(visual=(visual or {}).get(x, sim['fit'][x]),
+                       hulls=carved[x] if deliver else sim['pieces'][x],
+                       carve=dict(round=round, delivered='carved' if deliver else 'previous',
+                                  decisions=[public(r) for r in recs if r['target'] == x],
+                                  intrusions=os.path.abspath(intrusions), validation=val)) for x in pair}
+    man = SP.write_round(out_dir, b.meta.get('ep'), b.meta.get('split', 'public'), round, objects,
+                         dict(source='embodiment export', reference=hdr.get('reference')), guard._git('rev-parse', 'HEAD'))
+    if not deliver:
+        for x in pair:
+            dd = os.path.join(out_dir, '_carved_pending', x)
+            os.makedirs(dd, exist_ok=True)
+            import trimesh
+            for k, V in enumerate(carved[x]):
+                trimesh.convex.convex_hull(V).export(os.path.join(dd, f'piece_{k:02d}.obj'))
+    return dict(pieces_dir=out_dir, decisions=[public(r) for r in recs], physics=phys, validation=val, manifest=man)
+
+
+def round_accept(intr_prev, intr_new, sim_prev, sim_new, check_frames, band_m=None):
+    """INTERLOCK 11.5 A1 / A2 on two exports (rounds k-1 and k, each validated): persistent intrusion volume at the
+    held-out check frames must fall by >= 10 %; check-frame pairs with pushed_residual_m > b must not increase (only if
+    both fit blocks validated). A3 / A4 come from the physical tests and the budget of the round's carve.json."""
+    out = {}
+    vols = []
+    for path, sd in ((intr_prev, sim_prev), (intr_new, sim_new)):
+        ok, val = validate(path, sd)
+        z = dict(np.load(path))
+        m = np.isin(z['fp_frame'], check_frames)
+        vols.append(float(np.sum(z['intr_vol_m3'][m])) * 1e6)
+        pr = z['pushed_residual_m'][m]
+        out.setdefault('pushed', []).append(None if val.get('pushed_residual') != 'kept' or band_m is None
+                                            else int((pr > band_m).sum()))
+        out.setdefault('valid', []).append(ok)
+    out['check_cm3'] = [round(v, 3) for v in vols]
+    out['A1'] = bool(vols[0] > 0 and vols[1] <= 0.9 * vols[0])
+    out['A2'] = (out['pushed'][1] <= out['pushed'][0]) if None not in out['pushed'] else None
+    return out
+
+
+def _cli():
+    import argparse
+    ap = argparse.ArgumentParser(prog='python -m gmg.interlock')
+    sub = ap.add_subparsers(dest='cmd', required=True)
+    c = sub.add_parser('carve')
+    c.add_argument('--pair', nargs=2, required=True); c.add_argument('--intrusions', required=True)
+    c.add_argument('--evidence', required=True); c.add_argument('--sim-in', required=True)
+    c.add_argument('--out', required=True); c.add_argument('--round', type=int, required=True)
+    v = sub.add_parser('validate')
+    v.add_argument('--intrusions', required=True); v.add_argument('--sim-in', required=True)
+    a = ap.parse_args()
+    if a.cmd == 'validate':
+        ok, rep = validate(a.intrusions, a.sim_in)
+        print(json.dumps(dict(ok=ok, **rep), indent=1, default=_jdefault))
+        return
+    if a.round > K('max_rounds'):
+        raise SystemExit(f'round {a.round} > {K("max_rounds")} (F-I1.13)')
+    res = carve_from_intrusions(tuple(a.pair), a.intrusions, a.evidence, a.sim_in, a.out, a.round)
+    print(json.dumps({k: v for k, v in res.items() if k != 'manifest'}, indent=1, default=_jdefault)[:20000])
+
+
+if __name__ == '__main__':
+    _cli()

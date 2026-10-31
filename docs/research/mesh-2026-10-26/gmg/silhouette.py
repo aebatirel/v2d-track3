@@ -9,7 +9,7 @@ vote see-through in qualifying frames.
   qualifying(b, obj, hands)              good frames, 2-D separated from every partner, hands <= 25 % of the mask and
                                          no hand pixel within 16 px of the target's projected mask
   classifier(b, obj, imgs, geo, ...)     positives / negatives, Lab + 5 x 5 texture features, two 3-component GMMs
-                                         (cv2.ml.EM), held-out accuracy and the contrast gate inputs
+                                         (numpy EM), held-out accuracy and the contrast gate inputs
   votes(b, obj, imgs, geo, model, ...)   NMV / NMF per 4 mm voxel; SIL = NMF >= 3 and NMF >= 0.5 NMV
   gate(...)                              accuracy >= 0.9 and false see-through <= 2 % on interior strongly observed voxels
   notches(sil, ev)                       N_b = SIL components inside the candidate occupancy (26-connected, >= 3 voxels)
@@ -194,36 +194,61 @@ def features(img):
     return np.dstack([lab, sd[:, :, None]])
 
 
+def _gmm_fit(X, k, iters=60, seed=0):
+    """Full-covariance Gaussian mixture by EM (numpy; k-means++ initialisation, seeded)."""
+    rng = np.random.default_rng(seed)
+    X = np.asarray(X, np.float64)
+    n, dim = X.shape
+    mu = [X[rng.integers(n)]]
+    for _ in range(1, k):
+        d2 = np.min([((X - m) ** 2).sum(1) for m in mu], axis=0)
+        mu.append(X[rng.choice(n, p=d2 / d2.sum())])
+    mu = np.array(mu)
+    cov = np.array([np.cov(X.T) + np.eye(dim) * 1e-3 for _ in range(k)])
+    w = np.full(k, 1.0 / k)
+    prev = -np.inf
+    for _ in range(iters):
+        ll = _comp_ll(X, w, mu, cov)
+        mx = ll.max(1, keepdims=True)
+        tot = mx + np.log(np.exp(ll - mx).sum(1, keepdims=True))
+        r = np.exp(ll - tot)
+        nk = r.sum(0) + 1e-9
+        w = nk / n
+        mu = (r.T @ X) / nk[:, None]
+        for j in range(k):
+            D = X - mu[j]
+            cov[j] = (r[:, j, None] * D).T @ D / nk[j] + np.eye(dim) * 1e-3
+        cur = float(tot.mean())
+        if cur - prev < 1e-5:
+            break
+        prev = cur
+    return w, mu, cov
+
+
+def _comp_ll(X, w, mu, cov):
+    out = []
+    for j in range(len(w)):
+        Si = np.linalg.inv(cov[j]); _, ld = np.linalg.slogdet(cov[j])
+        D = X - mu[j]
+        out.append(np.log(max(w[j], 1e-12)) - 0.5 * (np.einsum('ij,jk,ik->i', D, Si, D) + ld +
+                                                    X.shape[1] * np.log(2 * np.pi)))
+    return np.stack(out, 1)
+
+
 class GMM2:
-    """Two-class colour model: one cv2.ml.EM (k components, diagonal... full covariance) per class; posterior of
-    class 'background' with the training class priors."""
+    """Two-class colour model: one k-component full-covariance Gaussian mixture per class (EM, numpy; the headless
+    OpenCV build has no cv2.ml); posterior of class 'background' with the training class priors."""
 
     def __init__(self, k):
         self.k = k
 
     def fit(self, Xf, Xb):
-        import cv2
-        self.m = []
-        for X in (Xf, Xb):
-            em = cv2.ml.EM_create()
-            em.setClustersNumber(self.k)
-            em.setCovarianceMatrixType(cv2.ml.EM_COV_MAT_GENERIC)
-            em.setTermCriteria((cv2.TERM_CRITERIA_COUNT + cv2.TERM_CRITERIA_EPS, 100, 1e-3))
-            em.trainEM(X.astype(np.float64))
-            self.m.append(em)
+        self.m = [_gmm_fit(Xf, self.k, seed=0), _gmm_fit(Xb, self.k, seed=1)]
         self.prior = np.array([len(Xf), len(Xb)], np.float64) / (len(Xf) + len(Xb))
         return self
 
-    def _loglik(self, em, X):
-        w = em.getWeights().ravel(); mu = em.getMeans(); covs = em.getCovs()
-        ll = []
-        for j in range(len(w)):
-            S = covs[j] + np.eye(X.shape[1]) * 1e-3
-            Si = np.linalg.inv(S); _, ld = np.linalg.slogdet(S)
-            D = X - mu[j]
-            ll.append(np.log(max(w[j], 1e-12)) - 0.5 * (np.einsum('ij,jk,ik->i', D, Si, D) + ld +
-                                                        X.shape[1] * np.log(2 * np.pi)))
-        ll = np.stack(ll, 1)
+    def _loglik(self, m, X):
+        ll = _comp_ll(X, *m)
         mx = ll.max(1, keepdims=True)
         return (mx + np.log(np.exp(ll - mx).sum(1, keepdims=True))).ravel()
 
