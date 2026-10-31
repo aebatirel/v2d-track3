@@ -5524,3 +5524,27 @@ diagnostic; nothing is picked for submission.
   - T1: tier P1; lathe_obs developed in a scan-reading loop (C0b AUDIT section 3.3); g1 config chosen after blue-cup
     scoring.
   - T2: library_v3-seeded crops; ICP onto the library_v3 surface; probe selector validity measured post hoc.
+
+### 2026-10-31 ~18:00 UTC — board slot under the owner's camera-rule waiver: no notch built, eval 25 not run
+- Owner asked: "Did we managed to get these faster notch?" Answer: **no** [M]. No slot was built, physics-tested or
+  delivered, on public ep24 or on eval 25. Full record: `gmg/INTERLOCK.md` 20.8-20.9, PREREG F-I4 to F-I4.14 (with
+  outcomes and the correction bullet), `gmg/build/I.md`, results `gmg/build/I/results/slot-ep24/`.
+- Runs (this container, 4 shared cores, CPU, $0; public ep24, dev, eval semantics, clean bundle `20261031-b4ext4-b61e8aa`,
+  run `20261031-i2probe-626ce13`, `python -m gmg.tools.interlock_dev ... --identity eval --waiver-fi4 --no-physcheck`,
+  full command in `build/I.md` 16:51):
+  - `fi4evalsem` (code cd2383f, 16:51-16:58, 455 s): F-I4.1 found no plane pair on either board -> out of scope, both PUSH.
+  - F-I4.14 (post hoc, pushed dad65a1 before the re-run): camera-side face pair, else a one-face plate at the partner's t.
+  - `fi4b` (code 9ad1af9, 17:15-17:30, 914 s): board 1 t = 6.21 mm (camera-side pair), board 2 t := 6.21 mm (prior);
+    sweep 1.0 / 1.0, push 19.0 / 22.0 mm; then F-I4.2 failed (rectangle fill 0.895 / 0.868 < 0.9) -> both PUSH.
+    Stopped there, no tuning.
+  - T-I1 Waiver + Controls (1081 s): OK, 3 expected failures; the pre-registered w6 falsifier fired (8.07 / 8.39 mm for 10).
+- Verifiers: `verify_slot_0.md` (rules; no blocking item; ep11 cups identical with the waiver on and off) and
+  `verify_slot_1.md` (geometry; blocking B1: the boards are I-shaped, so the rectangle failed for a real reason and both
+  rectangle fixes are wrong; board 1 t is 7.3-7.4 mm on all points vs 6.21 on the downsample).
+- Eval 25 not run: the public twin has no accepted slot and the next fix is a rule change.
+- Delivered: nothing new. ep24 `sim/public/ep24-fi4b/r0` = old default pieces (identical to the r1evalsem / fi4evalsem
+  folders), DO_NOT_USE (F-I3.8). No eval-25 folder; the pack keeps `meshes/carve/ev25`.
+- Open: plate body following the outline (new dated post-hoc F-I4.15, owner / orchestrator; ep23 check first, frozen
+  before eval 25); 2-3 deg tilt test; ep25 gmg bundle and per-board mapping to the packed reference; default plate pieces'
+  keep-out (F-I5 route); record items in INTERLOCK 20.9 item 5.
+- Hand-offs written for determined-wright (r0 state) and focused-pascal (eval-25 pieces need a rollout re-run).

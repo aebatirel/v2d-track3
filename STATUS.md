@@ -1,5 +1,20 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~18:00 UTC: board slot under the camera-rule waiver: no notch built; eval 25 not run (CPU, $0)
+- **Answer to the owner:** no. No slot was built, physics-tested or delivered on public ep24 or eval 25 [M].
+  Report: `docs/research/mesh-2026-10-26/gmg/INTERLOCK.md` section 20.9; log `gmg/build/I.md`.
+- **ep24 (dev, eval semantics), two runs, both boards still PUSH:**
+  - fi4evalsem (code cd2383f): no plate found on either board (F-I4.1), so the waiver never engaged;
+  - fi4b (code 9ad1af9, after the dated post-hoc F-I4.14): plates found (board 1 t = 6.21 mm measured, board 2 the same
+    by prior); kept gates pass; then the rectangle plate body fails (fill 0.895 / 0.868 < 0.9).
+  - Cause (verify_slot_1): the boards are I-shaped (waist 130 / 125 mm, ends 137 / 136 mm). A waist rectangle cuts off
+    wood; a full-width one fills 22.9 / 19.5 cm3 of seen-empty space.
+- **Delivered:** nothing new. The ep24 r0 is the old default folder again (byte-identical pieces, props and fiducials),
+  DO_NOT_USE (keep-out 0.72 / 2.0 cm3 per hull). The pack keeps `meshes/carve/ev25` for eval 25.
+- **Open:** a plate body that follows the outline needs a new dated post-hoc rule (owner / orchestrator), checked on ep23
+  first and frozen before eval 25; a 2-3 deg tilt test; an ep25 gmg bundle and a per-board mapping to the packed
+  reference; the default plate pieces' keep-out (F-I5 route).
+
 ## 2026-10-31 ~17:10 UTC: C1 done; beige-cup lathe and dust-pan pick adopted, on top of pack 9a (CPU, $0)
 - **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/C1/README.md`.
 - **Adopted** (CD-O gate WIN + AUC guard PASS [D]; verifiers found no blocking item):

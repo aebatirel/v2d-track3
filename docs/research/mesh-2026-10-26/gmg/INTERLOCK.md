@@ -6,7 +6,8 @@ v1 (blocking items B1-B7 and the non-blocking items; section 16 lists each one a
 ep11, section 18) and **corrected after the verifier's review of the build** (round-1 fixes, PREREG F-I3, section
 19). Outcome so far: on the dev runs the rule pushes every pair (no carve); the Embodiment contract now runs on their
 real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of the camera rule** for plate-plate
-insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it). **Extended 31 Oct
+insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it); **result (31 Oct
+~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
@@ -95,6 +96,10 @@ wood there" no longer blocks the slot in the simulator copy. The simulator board
 measured thickness. The slot is drawn from measurements: width = the other board's thickness + 2 mm, centred where
 it passes, deep enough to meet the other slot. Every other check stays, and the physics tests must pass. Submitted
 meshes, cups, the pot and the lid are unchanged. This was written down (PREREG F-I4) before anything was run with it.
+**Result (31 Oct ~18:00 UTC, section 20.9): no notch was built.** On public ep24 both boards are still pushed: the
+first run found no plate on either board, and after one dated post-hoc fix the rectangle plate body failed, because the
+boards are I-shaped (wider ends). Eval 25 was not run and nothing new was delivered. The next step is a plate body that
+follows the outline, a new rule that you or the orchestrator decide on.
 
 **Your extended waiver (31 Oct, section 21).** "if 2 mesh collide we can carve it": any pair whose simulator shapes
 overlap again and again along our tracks may be carved (cups, pot and lid, cup or pot in the rack, sweeper), simulator
@@ -1384,6 +1389,75 @@ naming the test, for the record. The submitted (CD-O) board mesh is unchanged.
   idea is withdrawn (it cuts off wood); a full-width rectangle holds 22.9 / 19.5 cm3 of FREE space. A body that follows
   the outline needs a new dated post-hoc F-I4 entry (owner / orchestrator decision). Board 1's t is 6.21 mm on the
   2 mm downsample and 7.3-7.4 mm on all points. Eval 25 was not run under F-I4: the public twin has no accepted slot.
+
+### 20.9 Result of the board-slot workflow: what is delivered and what is open (31 Oct ~18:00 UTC)
+**For the owner ("Did we managed to get these faster notch?"): no.** No notch (slot) was built, physics-tested or
+delivered, on public ep24 or on eval 25 [M]. Under the waiver both ep24 boards are still PUSH in both runs. Eval 25 was
+not run, because the public twin has no accepted slot and the next fix is a rule change (item 1 below).
+
+**Results** [M] (public ep24, dev, eval semantics, clean bundle `20261031-b4ext4-b61e8aa`, run
+`20261031-i2probe-626ce13`, this container, CPU; commands in `build/I.md`):
+
+| run (UTC) | code | wall | plate test | first failing gate | decision (board 1 / board 2) |
+|---|---|---|---|---|---|
+| fi4evalsem, 16:51-16:58 | cd2383f | 455 s | F-I4.1: no plane pair on either board (board 1: the 9 mm band at sigma 3.0 mm merges both faces; board 2: one face seen) | out of scope | PUSH T0 / PUSH T0, `interlock_disagree` |
+| fi4b, 17:15-17:30 | 9ad1af9 | 914 s | F-I4.14: board 1 step 2, t = 6.21 mm; board 2 step 3, t := 6.21 mm (partner prior) | F-I4.2 outline body, fill 0.895 / 0.868 < 0.9 | PUSH T0 / PUSH T0, `interlock_disagree` |
+
+- Kept gates that passed in fi4b before the failure: INSERTION 122.3 / 127.7 mm (straightness 0.91 / 0.92), sweep
+  1.0 / 1.0, push 19.0 / 22.0 mm (> 10).
+- Why F-I4.2 failed (`verify_slot_1.md` B1): the boards are I-shaped. The waist is 130 / 125 mm wide, the ends 137 /
+  136 mm, over 16-22 mm at each end. Inside the 2-98 % box the outline fills 0.996 / 0.983. A waist-width rectangle cuts
+  off wood; a full-width rectangle puts 22.9 / 19.5 cm3 in space the cameras saw as empty (keep-out would fail [E]).
+  The gate failed for a real reason.
+- Board 1's t: 6.21 mm on the 2 mm downsample the run used, 7.3-7.4 mm on all 1.76 M points [M]. Its two faces were seen
+  in separate frame ranges (0-74 and 74-274).
+- Physics: none on a slot. Synthetic only: w5 lag 0.033 cm / 0.16 deg; w7 (one-face partner) carves both boards,
+  widths 12.17 mm, keep-out 0.0. The DIAG slot (motion band, never delivered) closed the cross to 0.33 cm / 9.4 deg
+  against 1.85 cm / 113 deg for the default pieces.
+- Tests: T-I1 Waiver + Controls with the F-I4.14 code: OK, 14 tests, 3 expected failures (t = 6 mm width; w6 reads
+  8.07 / 8.39 mm for a true 10 mm, so the F-I4.14 falsifier fired; w6b, one cell at t = 18 mm, sigma 1 mm). The ep11
+  cups control (`verify_slot_0.md`) gives identical decisions with the waiver off and on.
+- Predictions: P35 failed (run 1), P36 failed (F-I4.2), P37 and P38 not tested, P39 holds for ep11 (ep2 not run), P40
+  holds but is not independent (written after the diagnosis that measured the faces).
+- Cost: CPU on this container's 4 shared cores, no rental, $0. About 50 min of runs in all [E, sum of the logged
+  times: 455 + 914 s for T-I11, 1081 + 250 s for the tests, 127 s for the verifier's control, plus the 16:38-16:50
+  tests].
+
+**What is delivered.** Nothing new, to the Embodiment session or to the pack.
+- ep24: `<scratch>/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-fi4b/r0` is the old route's folder again: 32
+  default pieces per board, `interlock.delivered = default`, carved 0 / 0 cm3, `DO_NOT_USE.json` (F-I3.8: ours 0.72 /
+  2.0 cm3 per hull, CoACD 52.9 / 77.3 cm3). Its pieces, `props_gmg.json` (sha256 `0166d4e4...`, 0.3 kg placeholder)
+  and fiducials are byte-identical to those of `ep24-r1evalsem/r0` and `ep24-fi4evalsem/r0` [M, manifest hashes]. Only
+  the code block (now with `platebody.py`) and the decision records (`carve.json`, `sources/`, with a `waiver_fi4`
+  block holding the plate test and the failed gate) differ. There is no `owner_waiver` block, no `p1_pending` and no
+  `_default/`: nothing for their jitter_check. `code.commit` reads 42ab815 (the HEAD when the manifest was written);
+  the code that ran is 9ad1af9 (the sha256 of the gmg files match).
+- eval 25: no folder. The packed eval-25 simulator keeps `meshes/carve/ev25` (library_v3-based, another session's).
+  There is no GT-free replacement yet. When there is one, its pieces differ from `meshes/carve/ev25` in width, depth,
+  centre and split, so using them needs an eval-25 rollout re-run, not a pack-only swap.
+- In git: PREREG F-I4, F-I4.12, F-I4.13, F-I4.14 (with outcomes and the correction bullet); sections 20-20.9; the code
+  (`platebody.py`, the `--waiver-fi4` branch, off by default) at 9ad1af9; tests w1-w7; `build/I/results/slot-ep24/`;
+  `build/I/verify_slot_0.md` and `verify_slot_1.md`. The submitted board meshes are unchanged.
+
+**Open items** (none started; item 1 needs the owner or the orchestrator):
+1. **Plate body rule.** A body that follows the outline (for example a waist box plus two end boxes, fitted to the
+   edges or eroded, because the 2 mm raster grows the body: 238.4 x 133.4 mm for a true 230 x 125 in w1) would be a new
+   dated post-hoc entry F-I4.15. It should state the forking path (F-I4.12, F-I4.14 and this one each followed an
+   outcome), accept or narrow F-I4.14's wider plate-like test (steps 2-3; board 2's t is a prior, not a measurement),
+   choose the thickness estimator (all points or the downsample), be checked on another public plate episode first
+   (ep23, dev) and be frozen before eval 25.
+2. **Synthetic tilt case.** Board 1's partner crosses 1.74 deg off its slot axis in plane; 1 mm clearance per side over
+   60-75 mm of depth tolerates about 1.5-1.9 deg [E]. Add a w-case at 2-3 deg before the next real run.
+3. **Eval-25 inputs.** There is no gmg eval bundle for ep25 yet (gmg extraction plus the HF eval depth cache). The local
+   ep25 `poses.npz` (sha256 `e95ccaef...`) is the frozen evperc track from before the ev25idfix naming (identity swapped),
+   so the mapping of our boards to the packed reference's boards must be checked per board before any slot run.
+4. **Default plate pieces** fail keep-out on both boards (above). The planned fix is F-I5's cavity-preserving route
+   (plates get the F-I4 boxes, section 21.2); not run yet.
+5. **Records** (no outcome changes): the P3 overlap clause now applies to every pair, waiver or not (it restores
+   F-I1.8, but it is a global change of the default path); the waiver CARVE branch does not reset `submitted` (not
+   exercised); manifests stamp the HEAD at write time, not the launch commit; 20.3 and the `platebody.py` docstring still
+   name the motion centroid as the slot centre (F-I4.12 changed it); the rest of the existing T-I1 suite was not re-run
+   with the waiver off (Controls and Waiver were).
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 
