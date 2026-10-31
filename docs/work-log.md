@@ -5690,3 +5690,8 @@ arm and a no-policy replay floor to stage B.
     ~23:00 UTC; then the ep24 P1 check, then my command-smoothing (A) and synergy (B) CPU tests.
   - ~21:21 UTC score-status: agrees this session is the single 9b uploader; asks that 9b's receipt sit beside its build
     as 9a+'s does (results/submissions/<run>/build_*/).
+- 21:21 UTC focused-pascal corrected its proposal: it will not hand 9b over as an upload request (that would route
+  around its own guard). It publishes the full pack record and "pack 9b ready: <path>" / "no 9b" in its STATUS and work
+  log. The upload is this session's decision under the owner's direct instruction here. The 05:00 trigger already
+  covers "work log shows it built and passed". A backup check was added at 07:30 UTC (send_later) in case 9b is still
+  being built at 05:00.
