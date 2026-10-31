@@ -45,7 +45,7 @@ Shared labels, from our own track (after S0) and our hands only, never ground tr
                 rack or pot, pot in a rack). table_supported = plane ok and |h| <= snap_max (2 cm) and
                 h - min_k h_k <= 0.5 cm and not on_other and not over_other.
 
-Steps (each switchable with --steps; always applied in the order S0, S6, S11, S12, S1, S3, S4, S5, S2, S10):
+Steps (each switchable with --steps; always applied in the order S0, S6, S11, S12, S1, S3, S4, S5, S2, S10, S13):
   S0 identity fix hook: pipeline/identity_fix.py (board knob darkness) on a copy, when the roster is the board pair
      and the video, calibration and both board meshes exist; otherwise skipped and logged. Its output is the input of
      every later step and of the labels.
@@ -124,6 +124,13 @@ Steps (each switchable with --steps; always applied in the order S0, S6, S11, S1
      outer's bottom must be at its frame-0 height before the nest; optional depth veto (--s12_depth). --s12_inner floor
      also puts the inner cup's bottom on the outer's cavity floor (from --s12_pieces or our mesh). Frame 0 is never
      changed. Pre-registration: docs/research/work/perception-sprint-20261031/mask10/README.md.
+  S13 zero-lag position smoother (31 Oct; perception sprint "rts", pipeline/rts.py) [H until its public gate]: opt-in,
+     after S2 (and S10), on their output. Per object and world axis, a constant-velocity Rauch-Tung-Striebel smoother
+     (forward Kalman pass + backward pass, no lag) of the pose translation: dt = 1 / --s13_fps, observation sigma
+     --s13_sigma m, process noise --s13_q_near m^2/s^3 on frames where a valid joint of our hands is within --s13_near_m
+     of our mesh's vertices (every len(V) // --s13_verts-th, posed by the input track), --s13_q_far otherwise.
+     Rotations are not changed. Frame 0 is not held (as S2). Pre-registration:
+     docs/research/work/perception-sprint-20261031/rts/PREREG.md.
 
 Usage:
   python pipeline/refine.py --in PERC_DIR --out OUT_DIR [--steps S1,S2,S3,S4] [--hands H.npz] [--depth D.npy]
@@ -144,7 +151,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-STEP_ORDER = ['S0', 'S6', 'S11', 'S12', 'S1', 'S3', 'S4', 'S5', 'S2', 'S10']   # tracker fixes S7 (before S6), S9, S8 (after it): not built
+STEP_ORDER = ['S0', 'S6', 'S11', 'S12', 'S1', 'S3', 'S4', 'S5', 'S2', 'S10', 'S13']   # tracker fixes S7 (before S6), S9, S8 (after it): not built
 DEFAULT_STEPS = 'S0,S1,S2,S3,S4'
 FORBIDDEN_SUBSTR = ('observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt',
                     '_pf.npz', '/gt/', 'calib_gt')   # 30 Oct: depth-audit label files and calibration outputs
@@ -897,7 +904,7 @@ def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--in', dest='inp', required=True, help='perception dir (poses.npz, poses_world_vo.npz, vo.json, ...)')
     p.add_argument('--out', required=True, help='refined perception dir (new; never the input dir)')
-    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S6, S10 (default {DEFAULT_STEPS}; applied in '
+    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S6, S10..S13 (default {DEFAULT_STEPS}; applied in '
                                                            f'the order {",".join(STEP_ORDER)}); "none" = copy only')
     p.add_argument('--hands', default=None, help='default IN/hands_refined.npz, else IN/hands.npz')
     p.add_argument('--depth', default=None, help='frame-0 depth: default IN/depth0.npy, else frame 0 of IN/depths_fs0.5.npy')
@@ -1002,6 +1009,13 @@ def parse_args(argv=None):
     p.add_argument('--s12_hand_cm', type=float, default=2.0)
     p.add_argument('--s12_table_cm', type=float, default=0.8)
     p.add_argument('--s12_pieces', default=None, help='S12 inner floor: collision pieces DIR/<obj>/piece_*.obj')
+    # S13 zero-lag position smoother (pipeline/rts.py; values pre-registered in perception-sprint-20261031/rts/PREREG.md)
+    p.add_argument('--s13_sigma', type=float, default=0.008, help='S13: observation noise sigma (m)')
+    p.add_argument('--s13_q_near', type=float, default=4.0, help='S13: process noise q (m^2/s^3) when a hand is near')
+    p.add_argument('--s13_q_far', type=float, default=0.04, help='S13: process noise q (m^2/s^3) otherwise')
+    p.add_argument('--s13_near_m', type=float, default=0.035, help='S13: hand gate, joint-to-vertex distance (m)')
+    p.add_argument('--s13_fps', type=float, default=20.0, help='S13: frame rate (dt = 1 / fps)')
+    p.add_argument('--s13_verts', type=int, default=300, help='S13: gate vertices = every len(V) // VERTS-th mesh vertex')
     a = p.parse_args(argv)
     st = [s.strip().upper() for s in a.steps.split(',') if s.strip() and s.strip().lower() != 'none']
     bad = [s for s in st if s not in STEP_ORDER]
@@ -1242,6 +1256,11 @@ def main(argv=None):
             import heldpose
             steps['S10'] = heldpose.step_S10(a, objs, O, W_C, Jh, Mh, KR, interp_pose, log)
             aux_extra.update(steps['S10'].pop('_aux', {}))        # per-frame S10 diagnostics -> pose_opt_aux.npz
+        elif step == 'S13':
+            sys.path.insert(0, HERE)
+            import rts
+            steps['S13'] = rts.step_S13(a, objs, O, H, checked, log)
+            aux_extra.update(steps['S13'].pop('_aux', {}))        # per-frame S13 diagnostics -> pose_opt_aux.npz
         note_delta(step)
         log(f'{step}:', json.dumps({k: v for k, v in steps[step].items() if k != 'delta'}, default=str)[:600])
     if 'S1' in a.step_set:
