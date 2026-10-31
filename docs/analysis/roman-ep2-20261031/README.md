@@ -110,3 +110,8 @@ a hand is near, ×0.01 when still.
 - Held-out gain on top of the advance: −1.2 % (10 better, 2 worse, worst +0.012 cm) and −0.5 % (7 better, 0 worse).
 - Advance + smoother vs raw on the held-out halves: −10.5 % and −3.2 %.
 - Proposed to focused-pascal as a refine step behind the kit-chain gate.
+
+**Correction (31 Oct ~23:15 UTC).** In `rtssweep.py` and `cvsmooth.py` the rotation channel's observation σ was
+`sig / 0.1 * deg2rad(0.3) / 2`. For the chosen 8 mm that is 2.1e-4 in quaternion units (≈ 0.024°), so rotations were
+effectively not smoothed. The cross-validated gains are position-only smoothing. The port to the refine stage
+(focused-pascal) is positions only. Rotation smoothing at 0.6° (`all20.py` 'med') was not cross-validated.

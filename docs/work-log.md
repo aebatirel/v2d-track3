@@ -5636,3 +5636,10 @@ arm and a no-policy replay floor to stage B.
   - finger synergies: poses need 7 / 10 components (80 / 90 %), but the solver's edits need 3 / 6.
   - Hypotheses: [H-cmdsmooth] a zero-lag Kalman smoother on robot targets; [H-syn] synergy-space solver sampling.
     Pre-registered falsifiers in the README.
+- ~23:15 UTC focused-pascal will port the RTS smoother as an opt-in refine step after S2, kit-chain gate (ΔR ≥ +0.005,
+  no drop > 0.02).
+  - Sent the exact spec: positions only, σ 8 mm, q 4.0 / 0.04 m²/s³, hand gate 3.5 cm to ~300 posed library_v3
+    vertices, 21 MediaPipe keypoints.
+  - Corrected my record: the cross-validated runs did not effectively smooth rotations (σ ≈ 0.024°).
+  - S2: the eval-10 V4p chain (20261031-e10v-caf38fb) already ends with refine S2; a full re-track would add S2 to every
+    eval reference.
