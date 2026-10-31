@@ -6154,3 +6154,23 @@ Background agent, CPU only, $0, no ground truth read.
   **inconclusive** (sd falls on 1 episode), S vs C **no signal** (min −0.133). No INVALID.
   `gpu/recipe_screen_KDS_complete.{json,txt}`; physics-solver.md §8.1.
 - The V cells are training on both boxes.
+
+### 2026-10-31 22:20 UTC — determined-wright: P1 settle on bold-albattani's r0 (ep24 boards) — FAIL for carved and default
+- A CPU helper ran INTERLOCK §6.2 P1 (16 jittered copies, frame 246 plus 258/270) on our physS1 ep24 reference (md5
+  699fe426), r0 from cdc8b40 vs `_default`. Record: `docs/research/physics-2026-10-30/p1_ep24/` (RESULT.md,
+  result.json, scripts, commands). I reviewed it and re-checked the contact limits in `configs/sim/rl.yaml`.
+- **P1 fails for both carved and default.** Drift: carved 3.7 / 3.2 cm, default 3.2 / 3.2 cm, all against a 1 cm limit.
+  The default also fails tilt (13° / 8°). No NaN.
+  - Cause: our reference holds the assembled cross 27–36 mm above the table at f246–274, with no hand near. The
+    per-object z shift fits the 3 cm library_v3 boards at frame 0, not 7.4 mm plates on edge.
+  - So the test does not separate carved from default.
+  - Diagnostic only: with the hover removed, the carved pieces pass every numeric criterion (relative sink −4.8 mm
+    signed); the default fails tilt.
+- **Contact-budget hazard [M].** With the training sim config (`sim=rl`: nconmax 256, njmax 512 per world), the carved
+  r0 scene overflows in 16/16 copies (it asks for 500–670 contacts and up to ~2030 constraint rows). Contacts are
+  dropped and the boards fall through the table.
+  - The default pieces never overflow.
+  - The packed `meshes/carve/ev25` pieces showed no overflow warning in the D reset check's 64 runs.
+  - The evaluator rebuilds the env from the checkpoint config, so the same limits apply at scoring.
+- [H] Our ep24 track places the free-standing cross ~3 cm too high; the same may hold for eval 25 (boards). Falsifier:
+  a GT-free depth check of the board bottom edges against the table plane.
