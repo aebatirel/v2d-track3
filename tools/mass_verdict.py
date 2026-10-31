@@ -28,9 +28,11 @@ NREP and verify step; two boxes (2 + 2 episodes), merged here:
   A pair (episode, seed) is taken whole (both arms) from the ONE root where both arms are present, verified (in that
   root's verify.json cells, not in its missing list) and have >= --min_n scored rollouts. A pair qualifying in two roots
   is refused (exit 2, no verdict): an INCOMPLETE re-run box may only re-run pairs that are missing everywhere else.
-  delta(ep) as v1 (unrounded cell means); the rule compares 4-decimal values (the precision every AUC is reported at):
-  d(ep) = round(delta(ep), 4), m = round(mean of the 4 unrounded delta(ep), 4).
-  INVALID       any verify.json not ok (or missing);
+  delta(ep) as v1 (unrounded cell means); the clauses compare the owner's literal rule on values rounded to 9 decimals
+  (float noise only; review F3, 31 Oct amendment): d(ep) = round(delta(ep), 9), m = round(mean of the 4 delta(ep), 9);
+  reports show 4 decimals.
+  INVALID       any verify.json present and not ok, or a non-finite delta (review F2); a box with NO verify.json leaves
+                its pairs unverified, i.e. missing -> INCOMPLETE (review F1);
   INCOMPLETE    a pair qualifies in no root (missing cell, no chosen checkpoint, or < min_n scored rollouts);
   ADOPT         m >= +0.03 AND at least 3 of the 4 d(ep) > 0 AND no d(ep) <= -0.05;
   NOT ADOPTED   otherwise (every failed clause is named).
@@ -96,20 +98,24 @@ def verdict_v2(rows, eps, seeds, control, treatment, verify_ok, min_n, partial=F
     missing = [f'ep{e}/{a}/s{s}' for e in eps for a in (control, treatment) for s in seeds
                if not (rows.get((e, a, s)) or {}).get('auc') or rows[(e, a, s)]['auc']['n'] < min_n]
     full = [e for e in eps if per[f'ep{e}']['delta'] is not None and not any(m.startswith(f'ep{e}/') for m in missing)]
-    d4 = {e: round(per[f'ep{e}']['delta'], 4) for e in full}
+    d4 = {e: round(per[f'ep{e}']['delta'], 4) for e in full}                      # display
+    d9 = {e: round(per[f'ep{e}']['delta'], 9) for e in full}                      # the clauses (review F3)
     mean = sum(per[f'ep{e}']['delta'] for e in full) / len(full) if full else None
     cl = dict(mean_delta=mean, mean_delta_4dp=None if mean is None else round(mean, 4), delta_4dp={f'ep{e}': d for e, d in d4.items()},
-              n_positive=sum(1 for d in d4.values() if d > 0), drops=[f'ep{e}' for e, d in d4.items() if d <= V2_DROP],
+              mean_delta_9dp=None if mean is None else round(mean, 9),
+              n_positive=sum(1 for d in d9.values() if d > 0), drops=[f'ep{e}' for e, d in d9.items() if d <= V2_DROP],
               episodes_scored=len(full))
     if not verify_ok:
         return 'INVALID', (['mass_verify.py failed in at least one box: the arms did not load what the design says (see verify)']
                            + ([f'also missing or < {min_n} scored rollouts: {missing}'] if missing else [])), per, cl
     if missing:
         return 'INCOMPLETE', [f'missing or < {min_n} scored rollouts: {missing}'], per, cl
+    if not all(math.isfinite(x) for x in [mean, *d9.values()]):
+        return 'INVALID', ['non-finite delta (a NaN/inf AUC reached a cell mean)'], per, cl
     if partial:
         return 'PARTIAL', [f'box reading over {len(eps)} of {V2_NEP} episodes; the v2 verdict needs both boxes merged'], per, cl
     reasons, ok = [], True
-    if cl['mean_delta_4dp'] < V2_MEAN:
+    if cl['mean_delta_9dp'] < V2_MEAN:
         ok = False; reasons.append(f'mean delta {cl["mean_delta_4dp"]:+.4f} < +{V2_MEAN}')
     if cl['n_positive'] < V2_POS:
         ok = False; reasons.append(f'only {cl["n_positive"]} of {len(eps)} episodes with delta > 0 (needs >= {V2_POS})')
@@ -125,7 +131,8 @@ def cell_row(f):
     """One cell's row from its best/summary.json, exactly as v1 main() builds it."""
     d = json.load(open(f)); rr = d.get('rollouts', [])
     return dict(checkpoint=d.get('checkpoint'), n_rollouts=len(rr), errors=sum(1 for x in rr if 'error' in x),
-                auc=stats([x['auc'] for x in rr if 'auc' in x]), sim_vs_ref=stats([x['sim_vs_ref'] for x in rr if 'sim_vs_ref' in x]),
+                auc=stats([x['auc'] for x in rr if isinstance(x.get('auc'), (int, float)) and math.isfinite(x['auc'])]),
+                auc_nonfinite=sum(1 for x in rr if 'auc' in x and not (isinstance(x['auc'], (int, float)) and math.isfinite(x['auc']))), sim_vs_ref=stats([x['sim_vs_ref'] for x in rr if 'sim_vs_ref' in x]),
                 ref_auc=stats([x['ref_auc'] for x in rr if 'ref_auc' in x]), floor_auc=stats([x['floor_auc'] for x in rr if 'floor_auc' in x]),
                 auc_rollouts=[round(x['auc'], 4) for x in rr if 'auc' in x])
 
@@ -138,7 +145,9 @@ def main_v2(a):
         sys.exit(f'mass_verdict v2: {len(roots)} --content roots but {len(vfs)} --verify files (one per box, same order)')
     if not a.partial and len(eps) != V2_NEP:
         sys.exit(f'mass_verdict v2: the rule needs exactly {V2_NEP} episodes (got {eps}); use --partial for one box')
-    Vs = [json.load(open(f)) if os.path.exists(f) else dict(ok=False, failures=[f'{f} missing']) for f in vfs]
+    # a box that never wrote / pushed verify.json (died, watchdog, push failed): its cells are unverified, so missing
+    # (INCOMPLETE, PREREG 5.2), not a verify failure (INVALID needs a verify.json with ok false)
+    Vs = [json.load(open(f)) if os.path.exists(f) else dict(ok=True, cells={}, missing=[], failures=[], absent=f) for f in vfs]
     man = {}
     for f in a.manifests.split():
         if os.path.exists(f):
@@ -200,6 +209,7 @@ def main_v2(a):
                verdict=label, reasons=reasons, clauses={k: (round(v, 6) if isinstance(v, float) else v) for k, v in cl.items()},
                verification_ok=vok, verification_failures=[f for V in Vs for f in V.get('failures', [])][:40],
                verification_missing=sorted({m for V in Vs for m in V.get('missing', [])}), roots=roots, verify_files=vfs,
+               verify_absent=[V['absent'] for V in Vs if V.get('absent')],
                cell_source=source, eval_timeouts=dict(cells_cut=cut, per_arm=per_arm, not_recorded=unrec, per_cell=tmo),
                episodes=per, references=man, cells=cells)
     json.dump(out, open(a.out, 'w'), indent=1)

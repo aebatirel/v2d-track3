@@ -1,8 +1,7 @@
 """Fixture tests of the Masses v2 rule (tools/mass_verdict.py --rule v2) and of the unchanged v1 default (2026-10-31).
 usage: python3 -I tests_v2.py OUT.json [FIRST_CHECK_DL_ROOT]
   R*  verdict_v2() on synthetic cells: ADOPT; NOT ADOPTED on each clause alone (mean, 3 of 4, drop); boundaries exactly at
-      mean +0.03 (passes), delta -0.05 (fails: '<= -0.05'), -0.0499 (passes), delta 0.0 and +0.00004 (not > 0 at 4
-      decimals), exactly 3 of 4 positive (passes); INCOMPLETE (7 rollouts; a missing cell); INVALID (with missing listed);
+      mean +0.03 (passes), delta -0.05 (fails: '<= -0.05'), -0.0499 (passes), delta 0.0 (not > 0) and +0.00004 (> 0: owner's literal rule, 31 Oct amendment); a NaN delta (INVALID), exactly 3 of 4 positive (passes); INCOMPLETE (7 rollouts; a missing cell); INVALID (with missing listed);
       PARTIAL (box reading);
   M*  main_v2() on file trees (two boxes merged; a pair split over two boxes; a re-run box filling a missing pair; a pair
       present twice -> exit 2, no verdict; a cell verify lists as missing; a cell not in verify's cells; a failed verify;
@@ -61,8 +60,12 @@ case('R8_exactly_3of4_positive_one_zero', cells({24: 0.10, 11: 0.05, 13: 0.05, 3
      check=lambda r, c: c['n_positive'] == 3)
 case('R9_zero_is_not_positive', cells({24: 0.10, 11: 0.10, 13: 0.0, 31: 0.0}), 'NOT ADOPTED',
      check=lambda r, c: c['n_positive'] == 2)
-case('R10_+0.00004_rounds_to_zero_not_positive', cells({24: 0.10, 11: 0.10, 13: 0.00004, 31: 0.0}), 'NOT ADOPTED',
-     check=lambda r, c: c['n_positive'] == 2)
+# review F3 (31 Oct amendment): the clauses read the owner's literal rule (9-decimal rounding removes float noise only),
+# so +0.00004 IS positive (it was 'not positive' under the earlier 4-decimal comparison)
+case('R10_+0.00004_is_positive_owner_literal', cells({24: 0.10, 11: 0.10, 13: 0.00004, 31: 0.0}), 'ADOPT',
+     check=lambda r, c: c['n_positive'] == 3)
+# review F2: a non-finite delta (NaN cell mean) is INVALID, never ADOPT
+case('R10b_nan_delta_invalid', cells({24: float('nan'), 11: 0.10, 13: 0.10, 31: 0.10}), 'INVALID')
 case('R11_per_seed_drop_alone_does_not_fail', cells({24: (0.20, -0.10), 11: 0.05, 13: 0.05, 31: 0.05}), 'ADOPT')
 r = cells({24: 0.10, 11: 0.05, 13: 0.05, 31: 0.05}); r[(13, 'mass1', '43')]['auc']['n'] = 7
 case('R12_incomplete_7_rollouts', r, 'INCOMPLETE', check=lambda rs, c: 'ep13/mass1/s43' in rs[0])

@@ -1,6 +1,6 @@
 {
- "passed": 30,
- "total": 30,
+ "passed": 31,
+ "total": 31,
  "tests": {
   "R1_adopt": {
    "ok": true,
@@ -17,6 +17,7 @@
      "ep13": 0.02,
      "ep31": -0.01
     },
+    "mean_delta_9dp": 0.04,
     "n_positive": 3,
     "drops": [],
     "episodes_scored": 4
@@ -37,6 +38,7 @@
      "ep13": 0.02,
      "ep31": 0.02
     },
+    "mean_delta_9dp": 0.0275,
     "n_positive": 4,
     "drops": [],
     "episodes_scored": 4
@@ -57,6 +59,7 @@
      "ep13": 0.0,
      "ep31": -0.02
     },
+    "mean_delta_9dp": 0.0475,
     "n_positive": 2,
     "drops": [],
     "episodes_scored": 4
@@ -77,6 +80,7 @@
      "ep13": 0.03,
      "ep31": -0.06
     },
+    "mean_delta_9dp": 0.055,
     "n_positive": 3,
     "drops": [
      "ep31"
@@ -99,6 +103,7 @@
      "ep13": 0.03,
      "ep31": 0.03
     },
+    "mean_delta_9dp": 0.03,
     "n_positive": 4,
     "drops": [],
     "episodes_scored": 4
@@ -119,6 +124,7 @@
      "ep13": 0.0299,
      "ep31": 0.0299
     },
+    "mean_delta_9dp": 0.0299,
     "n_positive": 4,
     "drops": [],
     "episodes_scored": 4
@@ -139,6 +145,7 @@
      "ep13": 0.05,
      "ep31": -0.05
     },
+    "mean_delta_9dp": 0.0625,
     "n_positive": 3,
     "drops": [
      "ep31"
@@ -161,6 +168,7 @@
      "ep13": 0.05,
      "ep31": -0.05
     },
+    "mean_delta_9dp": 0.0625,
     "n_positive": 3,
     "drops": [
      "ep31"
@@ -183,6 +191,7 @@
      "ep13": 0.05,
      "ep31": -0.0499
     },
+    "mean_delta_9dp": 0.062525,
     "n_positive": 3,
     "drops": [],
     "episodes_scored": 4
@@ -203,6 +212,7 @@
      "ep13": 0.05,
      "ep31": 0.0
     },
+    "mean_delta_9dp": 0.05,
     "n_positive": 3,
     "drops": [],
     "episodes_scored": 4
@@ -223,17 +233,18 @@
      "ep13": 0.0,
      "ep31": 0.0
     },
+    "mean_delta_9dp": 0.05,
     "n_positive": 2,
     "drops": [],
     "episodes_scored": 4
    }
   },
-  "R10_+0.00004_rounds_to_zero_not_positive": {
+  "R10_+0.00004_is_positive_owner_literal": {
    "ok": true,
-   "got": "NOT ADOPTED",
-   "want": "NOT ADOPTED",
+   "got": "ADOPT",
+   "want": "ADOPT",
    "reasons": [
-    "only 2 of 4 episodes with delta > 0 (needs >= 3)"
+    "mean delta +0.0500 >= +0.03, 3 of 4 delta > 0, no delta <= -0.05"
    ],
    "clauses": {
     "mean_delta_4dp": 0.05,
@@ -243,7 +254,29 @@
      "ep13": 0.0,
      "ep31": 0.0
     },
-    "n_positive": 2,
+    "mean_delta_9dp": 0.05001,
+    "n_positive": 3,
+    "drops": [],
+    "episodes_scored": 4
+   }
+  },
+  "R10b_nan_delta_invalid": {
+   "ok": true,
+   "got": "INVALID",
+   "want": "INVALID",
+   "reasons": [
+    "non-finite delta (a NaN/inf AUC reached a cell mean)"
+   ],
+   "clauses": {
+    "mean_delta_4dp": NaN,
+    "delta_4dp": {
+     "ep24": NaN,
+     "ep11": 0.1,
+     "ep13": 0.1,
+     "ep31": 0.1
+    },
+    "mean_delta_9dp": NaN,
+    "n_positive": 3,
     "drops": [],
     "episodes_scored": 4
    }
@@ -263,6 +296,7 @@
      "ep13": 0.05,
      "ep31": 0.05
     },
+    "mean_delta_9dp": 0.05,
     "n_positive": 4,
     "drops": [],
     "episodes_scored": 4
@@ -282,6 +316,7 @@
      "ep11": 0.05,
      "ep31": 0.05
     },
+    "mean_delta_9dp": 0.066666667,
     "n_positive": 3,
     "drops": [],
     "episodes_scored": 3
@@ -301,6 +336,7 @@
      "ep11": 0.05,
      "ep13": 0.05
     },
+    "mean_delta_9dp": 0.066666667,
     "n_positive": 3,
     "drops": [],
     "episodes_scored": 3
@@ -321,6 +357,7 @@
      "ep11": 0.05,
      "ep13": 0.05
     },
+    "mean_delta_9dp": 0.066666667,
     "n_positive": 3,
     "drops": [],
     "episodes_scored": 3
@@ -341,6 +378,7 @@
      "ep13": 0.05,
      "ep31": 0.05
     },
+    "mean_delta_9dp": 0.0625,
     "n_positive": 4,
     "drops": [],
     "episodes_scored": 4
@@ -360,7 +398,7 @@
   },
   "M4_pair_twice_refused_exit2": {
    "ok": true,
-   "got": "REFUSED (no verdict): pair(s) qualify in more than one box: [\"ep13/s43 in ['/tmp/tmpnez98784/A', '/tmp/tmpnez98784/R']\"]"
+   "got": "REFUSED (no verdict): pair(s) qualify in more than one box: [\"ep13/s43 in ['/tmp/tmp0droy6nq/A', '/tmp/tmp0droy6nq/R']\"]"
   },
   "M5_pair_split_over_boxes_incomplete": {
    "ok": true,

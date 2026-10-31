@@ -279,3 +279,26 @@ Timeouts are counted.
 - **Two boxes: ≈ $14–25, central ≈ $18** [E]. The owner's estimate was ≈ $18–20. Wall time is ≈ 6–8 h, the boxes running
   in parallel.
 - Ledger planned: $9.00 per box.
+
+## 9. Review amendments (31 Oct 2026 ~16:45 UTC, before any launch; no v2 result exists)
+Two reviews (selection/integrity: NO-GO until F1+F2; mechanics: GO). Sections 1–8 above are unchanged; the owner's rule
+is unchanged. Changes, all in `tools/mass_verdict.py --rule v2` (v1 default byte-identical, re-checked):
+- **F1 (blocking, fixed):** a box that never wrote or pushed `verify.json` (died, watchdog, push failure) made the merge
+  read INVALID. Now its pairs are unverified, i.e. missing → **INCOMPLETE** (rerun only those pairs), as the owner's
+  "missing cells → INCOMPLETE" says. INVALID needs a verify.json that exists and fails.
+- **F2 (blocking, fixed):** a NaN/inf rollout AUC could produce a false ADOPT. A non-finite AUC is now not a scored
+  rollout (it counts toward neither the cell mean nor the 8-rollout minimum); a non-finite Δ makes the run INVALID.
+- **F3 (decision, owner's literal rule):** the clauses now compare values rounded to 9 decimals (float noise only), not
+  4: "Δ > 0", "mean ≥ +0.03" and "Δ ≤ −0.05" read as the owner wrote them (so +0.00004 counts as positive; an exact
+  −0.05 still fails). Reports show 4 decimals. §5.1's "4-decimal comparison" is replaced by this.
+- **F4 (mechanics):** an INCOMPLETE re-run of a REFUSED episode leaves `SRC_EP<N>` unset, so the table's source run is
+  used (still md5 + fingerprint checked).
+- **F5 (record):** JOBS.txt was written ~15:32 UTC and this PREREG committed in 276f275 at 15:43 UTC (not "16:30" /
+  "15:30–16:10"). The step-4 tie rule has no effect (only tie: ep18/ep39 at ranks 7–8). One more §3.3 reading: admitting
+  twin21base with the lowest run per episode would make ep21 (0.6565) the 4th episode. The selection stays as written
+  (ep24, ep11, ep13, ep31); the reviewer confirmed ep31 under 3 of 5 readings and that it is not cherry-picked.
+- Evidence: fixtures 31/31 (`cpu/out/tests_v2.json`: R10 flipped to the literal rule, R10b NaN → INVALID added; v1 stored
+  summary reproduced byte for byte); the reviewer's dead-box test now gives INCOMPLETE for a box with no verify.json
+  (with or without interim pushes); a NaN rollout in files is dropped as unscored; a NaN Δ gives INVALID.
+- Observation for the owner (from §7, restated): ep11 and ep13 sit at measured floors, so ADOPT needs one of them
+  strictly above 0; P(ADOPT) ≈ 0.59 even if ep24 and ep31 gain +0.12 [E].
