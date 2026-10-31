@@ -1,5 +1,18 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~20:15 UTC: board slot round 2 (F-I4.15 outline body): ep24 slot built and delivered, P1 pending; not frozen for eval 25 (CPU, $0)
+- **ep24 (public, dev, eval semantics, tag fi4o, code 19c4309):** both boards CARVE (simulator copy only). Board 1 t =
+  7.40 mm from all points (6.21 on the downsample); board 2 takes it. Bodies = observed outline polygons (I-shaped:
+  waist 130 / 126, ends 137 / 136 mm), FREE share 4.1 % / 1.9 % vs 12.9 % / 10.3 % for full rectangles. Slot 9.40 mm
+  wide, 67.6 / 66.6 mm deep; cross-lap within 5.9 mm. 57 / 77 slotted prisms, keep-out 0.0. **P2-P7 pass on 16 copies**
+  (P3 0.078 cm / 0.74 deg vs default 2.81 cm / 104 deg). **Delivered:** `gmg/build/I/results/slot2-ep24/fi4o/r0`,
+  `carved_p1_pending` (the Embodiment's jitter_check --k 16 decides P1).
+- **Not frozen for eval 25; eval 25 not run.** ep23 board 1 (one face, partial outline) needs 85 prisms > cap 82, so
+  its body is not built (pre-registered freeze condition (b)). Synthetic w7 / w8 / w8b fail at the same cap; w1-w6,
+  w6c, w9 (2.5 deg tilt, P3 0.28 cm / 4.0 deg) pass. Cause: the 1 mm simplification keeps every 2 mm raster step.
+- **Open:** a prism-count fix needs a new dated rule (owner / orchestrator), then ep23 again; P1 on the ep24 folder;
+  ep25 bundle and per-board mapping. Report: `gmg/INTERLOCK.md` 20.11, PREREG F-I4.15 outcomes, `gmg/build/I.md`.
+
 ## 2026-10-31 ~18:40 UTC: E0 (C0 methods rebuilt on eval) packaged and verified; 2 ship gates open (Vast $0.13 [E])
 - **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/E0/README.md`; MANIFEST `cdo-sprint/E0/MANIFEST.json`
   (sha256 84bfa9a4...). Not scored (no eval ground truth).

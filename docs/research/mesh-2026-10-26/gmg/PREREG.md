@@ -1554,6 +1554,45 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       the tests 30-40 min; the ep23 candidates, plate test and body 20-40 min. If the shared container cannot make
       progress, one self-destroying Vast CPU box (`docs/runbook-vast.md`, ledger session mesh-bold, cap $5, destroyed
       and confirmed). Expected spend $0-1.
+  - **Outcomes (2026-10-31, 18:30-20:12 UTC; record only: no rule, threshold or constant changed after an outcome;
+    code 19c4309 for every run below; log `build/I.md` "Board slot round 2"; results `build/I/results/slot2-ep24/`,
+    `slot2-ep23/`) [M].**
+    - **T-I11 ep24 tag fi4o** (launched 18:38:27, 2612.7 s, physics 1938 s; this container, 4 shared cores, load
+      14-32): **both boards CARVE** (T1, simulator copy only; F-I3 decision PUSH / PUSH). Board 1 step 2, t 6.212 mm on
+      the downsample, **7.401 mm on all 1.76 M near points** (faces +-3.70 mm, frames 0-74 / 74-274); board 2 step 3,
+      t := 7.401 mm. Polygons 86 / 126 vertices (41 / 61 reflex), 297.96 / 287.16 cm2; widths waist 130 / 126 mm, ends
+      137 / 135.9 mm; FREE share 4.08 % / 1.89 % against the full rectangle's 12.92 % / 10.33 % (ratios 0.316 / 0.183).
+      Slot w 9.40 mm; c_L 3.97 / 1.36 mm; D from the polygon edge 67.55 / 66.56 mm (from the rectangle 77.55 /
+      66.56); cross-lap D sum 134.11 vs W_x 128.23 mm (diff 5.88); budget 2.12 % / 1.95 %, reach 0.443 / 0.460,
+      topology ok. Prisms: default 50 / 71, slotted 57 / 77 (cap 82), tiling exact. Keep-out 0.0 cm3 per hull. P2-P7 on
+      16 copies all pass: P3 carved 0.078 cm / 0.74 deg (default 2.805 cm / 103.66 deg), overlap at the assembled
+      frames 0.04 cm3; P2 0.5 / 0.5 / 0.0 / 2.0 mm; P4 kept 0.98 / 0.98; P5 134 shapes; P6 0 worse of 84 frames; P7
+      3.80 vs 146.45 cm3. Plain-MuJoCo P1 pre-check (does not decide) fails for carved and default alike. **Delivered:
+      r0 `carved_p1_pending` (p1_pending, no DO_NOT_USE; `_default/` = unslotted prisms; owner_waiver fi4_rev 15).**
+    - **ep23 (step 4; v6 bundle, picks shell_t5p36 built 18:39-18:41)**: board 1 plate by step 3 (one face), t := board
+      2's all-point t 10.785 mm (board 2's track is the wrong board: reported only); polygon 140 vertices (68 reflex) on a
+      partial outline (waist 108 / ends 74 mm); FREE 4.27 % vs 16.9 %; **default prisms 85 > cap 82:
+      `plate_body_over_cap`, no body**. Board 2 (reported only): plane pair 10.69 -> 10.785 mm, 102 vertices, 56 prisms,
+      FREE 9.1 % vs 26.2 %.
+    - **Freeze (F-I4.15.6 step 5): (a) holds, (b) fails** (ep23 board 1's body is not built). **F-I4.15 is not frozen
+      for eval 25 and eval 25 is not run under it.** Any change is a new dated entry and an orchestrator decision.
+    - **T-I1 (synthetic)**: w1 at t = 6 / 10 / 13 / 18 pass (all-point t 5.84 / 9.73 / 12.63 / 17.48 mm; t = 25 out of
+      scope as before), **the F-I4.13 t = 6 width miss is gone** (7.84 vs 8 +- 1 mm); w2, w3, w4, w5 (0.033 cm / 0.16
+      deg) pass; **w6 now passes** (9.70 / 9.73 mm at sigma 3); **w6c passes** in all 6 cells (0.15-0.52 mm thin);
+      **w7 misses** (one-face B: 184-vertex polygon, 111 default prisms > 82: `plate_body_over_cap`); **w8 and w8b
+      miss** (over the cap: w8 B slotted 83, w8b 90 / 84; first run ERROR from a test-harness bug, fixed and re-run,
+      no rule change); w8 also shows B's step-1 plane pair tilted 3.4 deg (t 5.11 mm), which F-I4.15.1 keeps as the
+      reference normal (B's polygon prism 21.8 % FREE vs A's 3.6 %); **w9 (2.5 deg tilt) passes P3** (0.282 cm / 3.99
+      deg, overlap 0.33 cm3; slotted 72 / 81, under the cap). The waiver-off T-I1 suite: see `build/I.md`.
+    - **Predictions:** P51 holds (by construction), P52a holds, P52b holds, P53 holds (I-shape 7.0 / 9.9 mm; FREE
+      ratios 0.316 / 0.183), P54 holds (7.401 mm; not independent), P55 **fails** (w7, w8, w8b), P56 holds, P57
+      **fails** (t 10.785 > 10, body over the cap, end - waist -34 mm; FREE ratio 0.252 holds), P58 **fails** (57 / 77
+      prisms > 16).
+    - **Mechanism of the cap failures [M]:** with 2 mm cells and a 1.0 mm Douglas-Peucker tolerance, every one-cell
+      step of a noisy edge survives as two reflex vertices, and Hertel-Mehlhorn gives about one prism per reflex vertex
+      (ep24: 41 / 61 reflex -> 57 / 77 slotted prisms; ep23 board 1: 68 -> 85; synthetic w7 B: 90 -> 111). The P58
+      expectation (<= 16) assumed a near-rectilinear outline. [H, not adopted]: a tolerance above the raster pitch, or
+      an outline fitted to rectilinear segments, would cut the prism count; it would need its own dated entry.
 
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,

@@ -9,7 +9,7 @@ real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of 
 insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it); **result (31 Oct
 ~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Round 2 (31 Oct
 ~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
-points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Extended 31 Oct
+points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
@@ -1560,6 +1560,42 @@ keep-out, the F-I1.14 acceptance thresholds).
   reported only.
 - Cost [E]: CPU on this container, about 1.5-2 h of runs in all; one self-destroying Vast CPU box only if the
   container cannot make progress (cap $5). Expected spend $0-1.
+
+### 20.11 Round 2 result: slot built and delivered on ep24 (P1 pending); not frozen for eval 25 (31 Oct ~20:15 UTC) [M]
+**In plain words.** With the outline body (F-I4.15) the simulator boards of public ep24 now carry a slot. Both boards
+CARVE, every physics test we run passes, and the simulator folder is delivered with "P1 pending": the Embodiment
+session's settle test (jitter_check --k 16) still has to pass on it before any pack uses it. The rule is **not frozen
+for eval 25**: on the second public episode (ep23) board 1's outline is so ragged that its prisms exceed the per-body
+cap (85 > 82), so the pre-registered freeze condition fails. Eval 25 is not run under F-I4.15.
+
+| | board 1 (wooden_piece_1) | board 2 (wooden_piece_2) |
+|---|---|---|
+| decision (F-I3 before) | CARVE T1 (PUSH) | CARVE T1 (PUSH) |
+| plate test, t | step 2; 6.21 mm downsample -> **7.40 mm all points** | step 3 one face; t := 7.40 mm (prior) |
+| polygon | 86 vertices, 298.0 cm2; waist 130 / ends 137 mm | 126 vertices, 287.2 cm2; waist 126 / ends 136 mm |
+| FREE share, polygon vs rectangle | 4.1 % vs 12.9 % | 1.9 % vs 10.3 % |
+| slot w / D (polygon edge) / c_L | 9.40 / 67.55 / 3.97 mm | 9.40 / 66.56 / 1.36 mm |
+| prisms default / slotted (cap 82) | 50 / 57 | 71 / 77 |
+| keep-out per hull | 0.0 cm3 | 0.0 cm3 |
+
+Pair: cross-lap D sum 134.11 vs W_x 128.23 mm (5.88 mm, window 10); budget 2.1 % / 2.0 %, reach 0.44 / 0.46. Physics
+(16 jittered copies, P_sel = P_sim fallback): P3 carved lag **0.078 cm / 0.74 deg** (default 2.81 cm / 104 deg), overlap
+0.04 cm3; P2, P4-P7 pass; 134 shapes <= 165. Delivered: `build/I/results/slot2-ep24/fi4o/r0` (also in the run folder),
+`carved_p1_pending`; PNGs `build/I/results/slot2-ep24/fi4o/ep24_fi415_wooden_piece_{1,2}.png` (the red slot box sits on
+the slot visible in our RGB frames).
+
+ep23 (body only): board 1 one-face plate with t = 10.8 mm borrowed from board 2's (wrong-board) track; outline partial
+(PNG `build/I/results/slot2-ep23/`), 140 vertices, 85 prisms > 82 -> no body. Synthetic: w1-w6, w6c, w9 pass (the t = 6
+mm width miss of round 1 is gone); w7, w8, w8b fail at the same prism cap. Cause [M]: the 1 mm simplification keeps every
+2 mm raster step of a noisy edge, and each step adds about one prism.
+
+Open (decisions for the owner / orchestrator, not taken here):
+1. A prism-count fix (coarser tolerance or a rectilinear outline fit) needs a new dated entry, then ep23 again, before
+   eval 25 can use this route.
+2. P1 on the delivered ep24 folder (Embodiment `jitter_check --k 16`).
+3. As before: an ep25 gmg bundle and the per-board P_sel -> P_sim mapping (20.9 item 3).
+4. The step-1 plane pair can come out tilted (synthetic w8 B: 3.4 deg, t 5.1 mm) and F-I4.15.1 keeps its normal; the
+   body then leans out of the board (21.8 % FREE). Not seen on ep24 (step 2 and step 3 there).
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 

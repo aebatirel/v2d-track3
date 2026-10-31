@@ -5722,3 +5722,15 @@ diagnostic; nothing is picked for submission.
   limits for non-plates, and an exact R+ clip.
 - **Not done:** T-I13 real runs (public ep11/2/12/13/31) and the eval twins.
 - Results: `gmg/build/I/results/fi5-tI12/`.
+
+### 2026-10-31 20:15 UTC — board slot round 2 (F-I4.15): build, tests, ep24 slot delivered (P1 pending), ep23 body check (board-slot round-2 workflow, Build + public runs)
+- **Built** (`gmg/platebody.py`, REV 15): all-point thickness, outline polygon body (2 mm cells along the rectangle
+  axes, Douglas-Peucker 1.0 mm), slot depth from the polygon edge, convex prisms (ear clipping + Hertel-Mehlhorn, cap
+  floor(165 / objects)); self-contained 2-D geometry. Tests `gmg/tests/test_fi415.py`. Code 19c4309.
+- **ep24 fi4o** (this container, 2613 s): both boards CARVE, t 7.40 mm, 57 / 77 prisms, keep-out 0.0, P2-P7 pass (P3
+  0.078 cm / 0.74 deg); r0 delivered `carved_p1_pending`. Results `gmg/build/I/results/slot2-ep24/`.
+- **ep23** (v6 bundle, body only): board 1 one-face, t 10.8 mm from the wrong-board track, 85 prisms > 82 -> no body:
+  freeze condition (b) fails, eval 25 not run under F-I4.15. Results `gmg/build/I/results/slot2-ep23/`.
+- **Synthetic:** w1 (t = 6 width miss gone), w2-w6, w6c, w9 pass; w7, w8, w8b fail at the prism cap; one harness bug
+  (w8 physics guard) fixed and re-run.
+- Predictions: P51, P52a/b, P53, P54, P56 hold; P55, P57, P58 fail. Cost: CPU only, $0; no rental.

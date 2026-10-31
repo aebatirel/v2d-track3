@@ -737,7 +737,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   the cap is reached") never gets a split (0 steps); the gate then fails on a few hulls and route 4's coarse grids keep
   only cells lying wholly inside thin walls. The delivered defaults pass the rule's gate but are not usable colliders
   for thin objects [E until the delivered volumes are read]. Rule as written; reported.
-- 20:08 [M] **ep2 white_pot default pieces = route 4 at 6 mm (42 boxes, 109 cells)**: lathe accepted (2.39 sigma), rings
+- 20:07 [M] **ep2 white_pot default pieces = route 4 at 6 mm (42 boxes, 109 cells)**: lathe accepted (2.39 sigma), rings
   fine (12 sectors, 73 ring pieces, continuity 0 gaps on 82,080 rays), handle step 8 components (34.9, 12.9, 10.6 cm3:
   plausibly the real handles; and 2.4, 0.4, 2.7, 3.8, 0.6 cm3) -> rings + handle hulls over 82 -> CoACD 82 hulls (539 s),
   51 over 0.3 cm3 (max 4.23 cm3) -> 6 mm boxes. ep12 blue_cup handle step: 15 components, 22.1 cm3 in all from 3,184
@@ -894,3 +894,10 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
     centre check is off by -3.92 mm on A (the centre follows the tilted partner plane; reported, not a w9 criterion);
     end - waist 12 / 10 mm; FREE ratio 0.326 / 0.773 (B's normal tilted 3.4 deg, as in the probe).
   - P55 fails (w7 and w8 miss; w6c holds; w1-w5 keep or improve their F-I4.14 outcomes).
+- 20:05 [M] w8 / w8b re-run with the fixed harness (launched 20:01:31 with the fix uncommitted, committed in bf6d7f6 with
+  identical content; 211 s): **both miss at the prism cap** (no physics reached). w8: A 112 vertices / 68 default / 72
+  slotted, B 116 / 70 / **83 > 82**; end - waist 12 / 10 mm; FREE 3.6 % vs 11.2 % (A), 21.8 % vs 28.2 % (B, tilted
+  step-1 normal). w8b (sigma 3, step 2): A 138 vertices / 75 / **90**, B 134 / 75 / **84**; t 6.84 / 6.81 mm; end -
+  waist 10 / 9.5; FREE 3.7 % / 3.9 % vs 12.4 %.
+- 20:14 PREREG F-I4.15 outcomes bullet, INTERLOCK 20.11 (+ header pointer), STATUS section and work-log entry written
+  (record only). Waiver-off T-I1 suite still running (19 ok so far, no failure).
