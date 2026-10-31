@@ -5822,3 +5822,13 @@ Background agent, CPU only, $0, no ground truth read.
   instance 58532423, RTX PRO 6000 WS, South Korea, $1.487/h all-in.
 - Expected end ~20:00–23:00 UTC [E]; both self-destroy. Merge afterwards on CPU:
   `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/... --out merged.json`.
+
+### 2026-10-31 13:00 UTC — determined-wright: eval-10 cup-nest intrusion diagnostic (CPU, GT-free)
+- Agent ran `tools/intrusion.py` logic on the eval-10 reference (gl10A2-5e0e100 ep10, md5 1a5003d9) against the carved
+  `meshes/carve/ev10` cups (A) and plain library_v3 cups (B). Diagnostic only: the tool refuses library_v3 in the
+  provenance chain, so a wrapper recorded the deny hit instead. Write-up, small outputs, scripts:
+  `docs/research/physics-2026-10-30/ev10_intrusion/` (npz 46 MB left in the scratchpad, regenerable).
+- Result [M]: library_v3's blue cup has a false floor 66 mm above its base (68–94 cm³ intrusion at f100–160). Carved A
+  fixes the floor (beige sits on it, median gap −0.1 mm), but its lower cavity is ~5–7 mm too narrow in radius
+  (18–36 cm³ at f100–117). The blue cup's +3.1–3.7 cm rise is not penetration avoidance (separation needs blue DOWN).
+- H-nest-a + falsifier in the README. Sent to focused-pascal (asked to copy bold-albattani).

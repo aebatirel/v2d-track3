@@ -1,0 +1,515 @@
+{
+ "DIAGNOSTIC": "GT-free consistency check of our eval-10 reference; not contract-valid; no score",
+ "T": 161,
+ "keys": {
+  "A": "carved pieces meshes/carve/ev10 (intrusion.py via diagnostic wrapper)",
+  "Bd": "collision_decomp pieces of library_v3 (blue cup: one stuck piece fills the cavity)",
+  "Bm": "plain library_v3 meshes, exact winding-number SDF"
+ },
+ "ranges": {
+  "f0-37": {
+   "A": {
+    "beige_in_blue": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "blue_in_beige": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "vpush_beige_up_mm (= blue down)": null,
+    "vpush_beige_down_mm (= blue up)": null,
+    "push_min_mm": null,
+    "push_blue_up_cos": null,
+    "floor_gap_mm": null
+   },
+   "Bd": {
+    "beige_in_blue": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "blue_in_beige": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "vpush_beige_up_mm (= blue down)": null,
+    "vpush_beige_down_mm (= blue up)": null
+   },
+   "Bm": {
+    "beige_in_blue": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "blue_in_beige": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "vpush_beige_up_mm (= blue down)": null,
+    "vpush_beige_down_mm (= blue up)": null,
+    "floor_gap_mm": null
+   }
+  },
+  "f38-46": {
+   "A": {
+    "beige_in_blue": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "blue_in_beige": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "vpush_beige_up_mm (= blue down)": null,
+    "vpush_beige_down_mm (= blue up)": null,
+    "push_min_mm": null,
+    "push_blue_up_cos": null,
+    "floor_gap_mm": null
+   },
+   "Bd": {
+    "beige_in_blue": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "blue_in_beige": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "vpush_beige_up_mm (= blue down)": null,
+    "vpush_beige_down_mm (= blue up)": null
+   },
+   "Bm": {
+    "beige_in_blue": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "blue_in_beige": {
+     "frames": 0,
+     "vol_cm3": null,
+     "depth_max_mm": null
+    },
+    "vpush_beige_up_mm (= blue down)": null,
+    "vpush_beige_down_mm (= blue up)": null,
+    "floor_gap_mm": null
+   }
+  },
+  "f47-99": {
+   "A": {
+    "beige_in_blue": {
+     "frames": 21,
+     "vol_cm3": {
+      "min": 0.31,
+      "median": 8.66,
+      "max": 23.73
+     },
+     "depth_max_mm": {
+      "min": 1.08,
+      "median": 2.42,
+      "max": 2.46
+     }
+    },
+    "blue_in_beige": {
+     "frames": 22,
+     "vol_cm3": {
+      "min": 0.01,
+      "median": 7.9,
+      "max": 23.75
+     },
+     "depth_max_mm": {
+      "min": 0.29,
+      "median": 4.2,
+      "max": 4.9
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 0.57,
+     "median": 82.96,
+     "max": 135.21
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 179.67,
+     "median": 179.67,
+     "max": 179.67
+    },
+    "push_min_mm": {
+     "min": 0.04,
+     "median": 32.8,
+     "max": 79.94
+    },
+    "push_blue_up_cos": {
+     "min": -1.0,
+     "median": -0.08,
+     "max": 0.22
+    },
+    "floor_gap_mm": {
+     "min": 7.12,
+     "median": 122.95,
+     "max": 205.7
+    }
+   },
+   "Bd": {
+    "beige_in_blue": {
+     "frames": 33,
+     "vol_cm3": {
+      "min": 0.21,
+      "median": 26.58,
+      "max": 127.27
+     },
+     "depth_max_mm": {
+      "min": 2.0,
+      "median": 14.81,
+      "max": 29.86
+     }
+    },
+    "blue_in_beige": {
+     "frames": 33,
+     "vol_cm3": {
+      "min": 0.14,
+      "median": 26.52,
+      "max": 127.42
+     },
+     "depth_max_mm": {
+      "min": 1.43,
+      "median": 5.55,
+      "max": 10.46
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 1.99,
+     "median": 72.75,
+     "max": 153.46
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 167.11,
+     "median": 176.66,
+     "max": 186.22
+    }
+   },
+   "Bm": {
+    "beige_in_blue": {
+     "frames": 26,
+     "vol_cm3": {
+      "min": 3.99,
+      "median": 16.91,
+      "max": 80.61
+     },
+     "depth_max_mm": {
+      "min": 4.75,
+      "median": 6.88,
+      "max": 14.69
+     }
+    },
+    "blue_in_beige": {
+     "frames": 26,
+     "vol_cm3": {
+      "min": 3.98,
+      "median": 17.26,
+      "max": 80.74
+     },
+     "depth_max_mm": {
+      "min": 3.98,
+      "median": 5.18,
+      "max": 9.46
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 35.0,
+     "median": 81.5,
+     "max": 154.0
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 168.0,
+     "median": 186.0,
+     "max": 200.0
+    },
+    "floor_gap_mm": {
+     "min": -58.14,
+     "median": 90.35,
+     "max": 153.24
+    }
+   }
+  },
+  "f100-117": {
+   "A": {
+    "beige_in_blue": {
+     "frames": 18,
+     "vol_cm3": {
+      "min": 18.47,
+      "median": 29.11,
+      "max": 36.02
+     },
+     "depth_max_mm": {
+      "min": 1.99,
+      "median": 2.19,
+      "max": 2.45
+     }
+    },
+    "blue_in_beige": {
+     "frames": 18,
+     "vol_cm3": {
+      "min": 18.43,
+      "median": 28.44,
+      "max": 36.4
+     },
+     "depth_max_mm": {
+      "min": 3.9,
+      "median": 4.5,
+      "max": 4.91
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 62.82,
+     "median": 79.46,
+     "max": 93.81
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 169.37,
+     "median": 170.17,
+     "max": 177.85
+    },
+    "push_min_mm": {
+     "min": 48.81,
+     "median": 55.53,
+     "max": 84.22
+    },
+    "push_blue_up_cos": {
+     "min": -1.0,
+     "median": -1.0,
+     "max": 0.13
+    },
+    "floor_gap_mm": {
+     "min": -1.39,
+     "median": -0.14,
+     "max": 7.52
+    }
+   },
+   "Bd": {
+    "beige_in_blue": {
+     "frames": 18,
+     "vol_cm3": {
+      "min": 119.89,
+      "median": 139.22,
+      "max": 141.94
+     },
+     "depth_max_mm": {
+      "min": 19.36,
+      "median": 20.23,
+      "max": 22.59
+     }
+    },
+    "blue_in_beige": {
+     "frames": 18,
+     "vol_cm3": {
+      "min": 120.62,
+      "median": 139.84,
+      "max": 142.62
+     },
+     "depth_max_mm": {
+      "min": 10.22,
+      "median": 10.39,
+      "max": 10.47
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 155.63,
+     "median": 163.86,
+     "max": 165.24
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 153.94,
+     "median": 156.64,
+     "max": 168.37
+    }
+   },
+   "Bm": {
+    "beige_in_blue": {
+     "frames": 18,
+     "vol_cm3": {
+      "min": 71.54,
+      "median": 91.74,
+      "max": 94.08
+     },
+     "depth_max_mm": {
+      "min": 7.35,
+      "median": 9.48,
+      "max": 10.25
+     }
+    },
+    "blue_in_beige": {
+     "frames": 18,
+     "vol_cm3": {
+      "min": 71.5,
+      "median": 91.42,
+      "max": 93.37
+     },
+     "depth_max_mm": {
+      "min": 9.2,
+      "median": 9.47,
+      "max": 9.74
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 134.0,
+     "median": 155.5,
+     "max": 161.0
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 131.0,
+     "median": 156.0,
+     "max": 167.0
+    },
+    "floor_gap_mm": {
+     "min": -67.76,
+     "median": -66.84,
+     "max": -58.46
+    }
+   }
+  },
+  "f118-160": {
+   "A": {
+    "beige_in_blue": {
+     "frames": 43,
+     "vol_cm3": {
+      "min": 3.1,
+      "median": 14.48,
+      "max": 32.14
+     },
+     "depth_max_mm": {
+      "min": 1.69,
+      "median": 2.03,
+      "max": 2.45
+     }
+    },
+    "blue_in_beige": {
+     "frames": 43,
+     "vol_cm3": {
+      "min": 3.14,
+      "median": 14.3,
+      "max": 32.57
+     },
+     "depth_max_mm": {
+      "min": 2.01,
+      "median": 3.6,
+      "max": 4.29
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 24.11,
+     "median": 49.81,
+     "max": 75.46
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 172.9,
+     "median": 184.55,
+     "max": 198.66
+    },
+    "push_min_mm": {
+     "min": 4.04,
+     "median": 15.7,
+     "max": 80.63
+    },
+    "push_blue_up_cos": {
+     "min": -1.0,
+     "median": -0.98,
+     "max": 0.01
+    },
+    "floor_gap_mm": {
+     "min": 2.51,
+     "median": 13.07,
+     "max": 27.32
+    }
+   },
+   "Bd": {
+    "beige_in_blue": {
+     "frames": 43,
+     "vol_cm3": {
+      "min": 110.82,
+      "median": 127.62,
+      "max": 141.18
+     },
+     "depth_max_mm": {
+      "min": 20.78,
+      "median": 23.19,
+      "max": 25.8
+     }
+    },
+    "blue_in_beige": {
+     "frames": 43,
+     "vol_cm3": {
+      "min": 110.45,
+      "median": 128.18,
+      "max": 141.5
+     },
+     "depth_max_mm": {
+      "min": 10.19,
+      "median": 10.37,
+      "max": 10.49
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 133.32,
+     "median": 148.34,
+     "max": 161.53
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 159.76,
+     "median": 175.51,
+     "max": 187.23
+    }
+   },
+   "Bm": {
+    "beige_in_blue": {
+     "frames": 43,
+     "vol_cm3": {
+      "min": 67.67,
+      "median": 81.67,
+      "max": 92.74
+     },
+     "depth_max_mm": {
+      "min": 7.5,
+      "median": 7.81,
+      "max": 9.42
+     }
+    },
+    "blue_in_beige": {
+     "frames": 43,
+     "vol_cm3": {
+      "min": 67.6,
+      "median": 81.75,
+      "max": 92.83
+     },
+     "depth_max_mm": {
+      "min": 8.7,
+      "median": 9.14,
+      "max": 9.69
+     }
+    },
+    "vpush_beige_up_mm (= blue down)": {
+     "min": 126.0,
+     "median": 146.0,
+     "max": 157.0
+    },
+    "vpush_beige_down_mm (= blue up)": {
+     "min": 160.0,
+     "median": 175.0,
+     "max": 188.0
+    },
+    "floor_gap_mm": {
+     "min": -64.32,
+     "median": -52.98,
+     "max": -37.55
+    }
+   }
+  }
+ }
+}

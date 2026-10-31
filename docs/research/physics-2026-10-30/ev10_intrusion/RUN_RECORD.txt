@@ -1,0 +1,10 @@
+ev10 intrusion diagnostic (GT-free; DIAGNOSTIC, NOT CONTRACT-VALID), 31 Oct 2026 ~10:55-12:50 UTC, CPU (this cloud container), repo HEAD 4eb10b1 (branch claude/determined-wright-3joens, tools/intrusion.py unmodified).
+Reference: dl/runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet  md5 1a5003d94852c275519066645a1b9869 (HF store aebatirel/v2d-store), run commit 5e0e100c (COMMIT file); meshes/library_v3/{blue,beige}_cup.glb and all meshes/carve/ev10/{blue,beige}_cup files at HEAD are git-blob-identical to 5e0e100 (GitHub API).
+Sim dirs: sim/A_carve_ev10/ep10/r0 (copies of meshes/carve/ev10 pieces), sim/B_libv3_decomp/ep10/r0 (pipeline/collision_decomp.py defaults on library_v3 cups, fcvenv; blue cup: 10 pieces, one stuck piece fills the cavity, union/solid 2.19, logs/decomp_*.log). Manifests: scripts/make_manifest_ev10.py (diagnostic, split eval).
+Provenance: scripts/make_prov.py -> prov_reconstructed.json (reconstructed=true).
+1. tools/intrusion.py REF SIM OUT --prov prov_reconstructed.json  -> REFUSED for both sets (library_v3 in chain), logs/contract_try.log
+2. scripts/intrusion_diag.py REF SIM out/DIAG_<set>.npz prov_reconstructed.json  (tool main() with deny hits recorded not enforced + push direction on reference poses). B push phase stopped after ~55 min (cost); B pushes for f90/110/140 in out/push_B_selected.txt (scripts/push_one.py).
+3. scripts/gap.py REF out/gap_ev10 (fcvenv): floor gap, vertical clearance (v1 unmasked vclear superseded: out/gap_ev10_v1_vclear_unmasked*), exact library_v3 mesh SDF intrusion.
+4. scripts/vpush.py REF out/vpush_ev10.json SIM_A SIM_B (fcvenv): pure world-vertical separation both senses.
+5. scripts/combine.py -> out/ev10_intrusion_per_frame.csv, out/ev10_intrusion_summary.json; scripts/radii.py -> out/radii_A.txt; scripts/poke.py -> out/poke_A.txt
+No ground truth read; no score computed.
