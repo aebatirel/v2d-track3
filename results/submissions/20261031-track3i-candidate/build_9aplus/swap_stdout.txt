@@ -1,14 +1,14 @@
 no_oracle: 5 inputs checked, none oracle-derived
-pack_swap_meshes: <SCRATCH>/pack9ap/pack9ap
+pack_swap_meshes: <SCRATCH>/pack9ap/pack9ap2
 swapped 4 (episode, object) pairs of 36: beige_cup -> eps [8, 10], mini_dust_pan -> eps [19, 38]
 file md5 changed: 8:beige_cup ebea224c->8c8be2b0, 10:beige_cup 6226281f->8c8be2b0, 19:mini_dust_pan c33fa411->19765405, 38:mini_dust_pan c33fa411->19765405
 frame report (mm; base = the mesh being replaced):
   beige_cup          eps [8] base ebea224c | centroid offset 9.55 | AABB centre offset 10.93 | extent base [98.06, 111.07, 176.59] new [101.39, 104.01, 170.6] | surface median/p95/max 2.812/24.744/57.243 (spacing 0.727) | ICP 2.39 mm 8.446 deg (median after 3.407) | kit proxy 5.27 mm 7.735 deg (symmetry axial) | FLAG: surface centroid moved 9.55 mm > 5.0; ICP corrects 2.39 mm / 8.446 deg (limits 5.0 mm / 5.0 deg); kit-registration proxy moves the body 5.27 mm > 5.0
   beige_cup          eps [10] base library_v3 | centroid offset 9.02 | AABB centre offset 10.67 | extent base [99.3, 110.43, 173.88] new [101.39, 104.01, 170.6] | surface median/p95/max 2.91/29.864/60.449 (spacing 0.727) | ICP 3.74 mm 13.019 deg (median after 5.536) | kit proxy 5.2 mm 14.3 deg (symmetry axial) | FLAG: surface centroid moved 9.02 mm > 5.0; ICP corrects 3.74 mm / 13.019 deg (limits 5.0 mm / 5.0 deg); kit-registration proxy moves the body 5.2 mm > 5.0
   mini_dust_pan      eps [19, 38] base library_v3 | centroid offset 3.1 | AABB centre offset 9.69 | extent base [39.31, 159.12, 168.51] new [41.17, 164.19, 167.67] | surface median/p95/max 2.385/7.537/13.921 (spacing 0.493) | ICP 1.22 mm 1.246 deg (median after 2.282) | kit proxy 1.9 mm 1.533 deg (symmetry none) | ok
-parquet: 1312390 B sha256 8884006e3446cf4f9c2ade99ccbb4f3f9bcab7df659e7b1bc371e52dcab22366 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'object_mesh_b64': 4}
+parquet: 1312390 B sha256 e02736ea3c7e33ffcee5ada4a6a1dbc8ad4e72cd2889abdaa9968b8d3af6a7d8 | byte-identical to base: False | rows [9120, 9120] | columns differing from base: {'code_commit_url': 9120, 'object_mesh_b64': 4}
 mesh payloads changed: ['8:beige_cup', '10:beige_cup', '19:mini_dust_pan', '38:mini_dust_pan'] | unchanged: []
-uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 1c520c366c78503a... | CD-O pairs changed vs base: ['8:beige_cup', '10:beige_cup', '19:mini_dust_pan', '38:mini_dust_pan']
+uploader offline validation: pass (offline validate_submission; CD-O file derived and validated) | CD-O file 294912 rows sha256 94168d80731c0603... | CD-O pairs changed vs base: ['8:beige_cup', '10:beige_cup', '19:mini_dust_pan', '38:mini_dust_pan']
 pack.log MESH WARNINGs: 0
 FLAG: beige_cup (episodes [8]): surface centroid moved 9.55 mm > 5.0
 FLAG: beige_cup (episodes [8]): ICP corrects 2.39 mm / 8.446 deg (limits 5.0 mm / 5.0 deg)

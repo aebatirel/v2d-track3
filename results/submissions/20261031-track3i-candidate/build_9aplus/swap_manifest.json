@@ -15,9 +15,9 @@
   "--base",
   "/home/user/v2d-track3/results/submissions/20261031-track3i-candidate/build_3obj/track3_submission.parquet",
   "--code-commit",
-  "https://github.com/aebatirel/v2d-track3/commit/50004a7575b4ecf4f31058434b56589cca0f64dd",
+  "https://github.com/aebatirel/v2d-track3/commit/d7ecaefd304e398bcd299fbbf5306ad2931ec973",
   "-o",
-  "<SCRATCH>/pack9ap/pack9ap"
+  "<SCRATCH>/pack9ap/pack9ap2"
  ],
  "python": "3.13.17",
  "versions": {
@@ -44,7 +44,7 @@
  },
  "transforms": {},
  "base": "/home/user/v2d-track3/results/submissions/20261031-track3i-candidate/build_3obj/track3_submission.parquet",
- "code_commit": "https://github.com/aebatirel/v2d-track3/commit/50004a7575b4ecf4f31058434b56589cca0f64dd",
+ "code_commit": "https://github.com/aebatirel/v2d-track3/commit/d7ecaefd304e398bcd299fbbf5306ad2931ec973",
  "packer_command": [
   "<SCRATCH>/pack9a_venv306/bin/python",
   "-I",
@@ -52,15 +52,15 @@
   "--track",
   "track_3",
   "--results",
-  "<SCRATCH>/pack9ap/pack9ap/results",
+  "<SCRATCH>/pack9ap/pack9ap2/results",
   "--meshes",
-  "<SCRATCH>/pack9ap/pack9ap/meshes",
+  "<SCRATCH>/pack9ap/pack9ap2/meshes",
   "--code-commit",
-  "https://github.com/aebatirel/v2d-track3/commit/50004a7575b4ecf4f31058434b56589cca0f64dd",
+  "https://github.com/aebatirel/v2d-track3/commit/d7ecaefd304e398bcd299fbbf5306ad2931ec973",
   "--eval-script",
   "<SCRATCH>/map/scoring/kit/v2d_submission_kit/flash_chord/scripts/evaluate_policy.py",
   "-o",
-  "<SCRATCH>/pack9ap/pack9ap/track3_submission.parquet"
+  "<SCRATCH>/pack9ap/pack9ap2/track3_submission.parquet"
  ],
  "packer_cwd": "<SCRATCH>/map/scoring/kit/v2d_submission_kit",
  "results_md5": {
@@ -725,6 +725,7 @@
    9120
   ],
   "columns_differing": {
+   "code_commit_url": 9120,
    "object_mesh_b64": 4
   },
   "payload_changed": [
@@ -740,9 +741,9 @@
   ],
   "uploader_validation": "pass (offline validate_submission; CD-O file derived and validated)",
   "cd_o_file": {
-   "path": "<SCRATCH>/pack9ap/pack9ap/track3_submission.cd-o.parquet",
+   "path": "<SCRATCH>/pack9ap/pack9ap2/track3_submission.cd-o.parquet",
    "rows": 294912,
-   "sha256": "1c520c366c78503afd4c67158b4ace9d3d358b97dd09cf9b0286d48471e83678",
+   "sha256": "94168d80731c0603da924d070b6ac6033102ebeaa9714f24cb3820657acb3d46",
    "pairs_changed_vs_base": [
     "8:beige_cup",
     "10:beige_cup",
@@ -750,7 +751,7 @@
     "38:mini_dust_pan"
    ]
   },
-  "sha256": "8884006e3446cf4f9c2ade99ccbb4f3f9bcab7df659e7b1bc371e52dcab22366",
+  "sha256": "e02736ea3c7e33ffcee5ada4a6a1dbc8ad4e72cd2889abdaa9968b8d3af6a7d8",
   "base_sha256": "9c19bb0c85901de46113483c9df5a2927ae626f1094a87ad3f77725aa22ea662",
   "bytes": 1312390,
   "byte_identical_to_base": false,
