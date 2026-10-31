@@ -95,10 +95,14 @@ def main():
         log(f'sanity {o}: {r["n_good"]}/{r["n_frames"]} good, flags {r["flags"]}, below {r["below_table_frac"]}, '
             f'resid {r["block_resid_mm"]}')
     b.meta['rest'] = {o: BU._rest(b, o, b.meta['table_band_m']) for o in objs}
-    shells = {}
+    shells, b.meta['shells'] = {}, {}
+    out = BU.bundle_dir(run, split, ep)
+    os.makedirs(out, exist_ok=True)
+    for o in objs:
+        shells[o], sinfo = TS.route_a_shell(b.obs(o), b.good_frames(o))
+        np.save(os.path.join(out, f'shell_{o}.npy'), shells[o].astype(np.float32))
+        b.meta['shells'][o] = dict(file=f'shell_{o}.npy', **sinfo)
     if len(objs) > 1:
-        for o in objs:
-            shells[o], _ = TS.route_a_shell(b.obs(o), b.good_frames(o))
         for o in objs:
             res = {}
             for p in objs:
@@ -109,7 +113,6 @@ def main():
                                                       r.get('chamfer_h1_p_mm'), r.get('chamfer_h2_p_mm'))
                                                   for p, r in res.items()}))
     b.meta['timing']['sanity_s'] = round(time.time() - ts, 1)
-    out = BU.bundle_dir(run, split, ep)
     BU.save_bundle(b, out)
     b.meta['timing']['episode_s'] = round(time.time() - t0, 1)
     log(f'bundle {out} total {b.meta["timing"]["episode_s"]} s')

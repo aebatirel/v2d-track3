@@ -23,7 +23,8 @@ records every input that passes with its sha256, so a run's manifest lists exact
 
 Checks of open_input, in this order (a path is refused before the file is opened; only a file that passed every path
 check is hashed, which reads its bytes but decodes nothing):
-  1. the role exists, and a dev-only role (obs_all, x0_pool, fixture, dev_frozen, dev_hands) is refused in clean mode;
+  1. the role exists, and a dev-only role (obs_all, x0_pool, fixture, dev_frozen, dev_hands, clean_run) is refused in
+     clean mode;
   2. path substrings /scan, /loc/, _align, .parquet, mocap (case-insensitive; as given and resolved through links);
   3. the deny-list globs (ops/provenance/denylist.json through pipeline/provenance.py, plus the repo file itself, plus
      GMG_EXTRA_DENYLIST, which can only add entries);
@@ -100,7 +101,7 @@ FROZEN_EVAL_TRACKS = os.path.join(GMG_DIR, 'frozen_eval_tracks.json')  # SPEC se
 MODES = ('clean', 'dev')
 SUBSTRINGS = ('/scan', '/loc/', '_align', '.parquet', 'mocap')
 CLEAN_ROLES = ('calib', 'tracks', 'depth', 'video', 'det', 'roster', 'kit', 'weights', 'own', 'frozen')
-DEV_ROLES = ('obs_all', 'x0_pool', 'fixture', 'dev_frozen', 'dev_hands')
+DEV_ROLES = ('obs_all', 'x0_pool', 'fixture', 'dev_frozen', 'dev_hands', 'clean_run')
 ROLES = CLEAN_ROLES + DEV_ROLES
 # npz key filters (fnmatch patterns). det_f0.npz also holds library-derived fields (sim, template_*, chosen, score*,
 # verify*, rules, params, ...) and the Grounding DINO boxes (gdino): all refused (SPEC section 2). NPZ_KEYS['det']
@@ -151,6 +152,9 @@ ROLE_PATTERNS = dict(
     # B2: the existing MediaPipe hands (pipeline/hands_mp.py: cam_a video + our depth + VO; no GT read) stand in for M1
     # (hands_cpu.py, build step B4) in dev runs only; clean runs use M1's own output in RUN (DEVIATIONS 6, 65)
     dev_hands=('{DATA}/data/sweep/ep*/hands.npz',),
+    # B4: dev validation (PREREG B.3 ROI swap) reads a clean run's bundle and its owners aux file next to obs_all; dev
+    # processes only (a clean process reads its own run through role own), outputs tier DEV (DEVIATIONS 82)
+    clean_run=('{DATA}/gmg/runs/*/bundle/**', '{DATA}/gmg/runs/*/aux/**'),
 )
 EVAL_TRACKS = '{DATA}/data/eval/ep*/poses.npz'
 # revision-1 refusals: (name, patterns, dev roles that may pass this folder in dev mode only)

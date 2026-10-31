@@ -88,6 +88,17 @@ def consts(vox, cube, stride):
 
 
 # ------------------------------------------------------------------------------------------------ per-frame samples
+K5 = np.ones((5, 5), np.uint8)
+
+
+def filtered_depth(Draw, edge):
+    """obs_points.py / recon_mesh depth-edge filter: NaN where dilate - erode (5 x 5) exceeds EDGE."""
+    Dt = np.array(Draw, dtype=np.float32)
+    Dz = np.where(np.isfinite(Dt), Dt, 0).astype(np.float32)
+    Dt[(cv2.dilate(Dz, K5) - cv2.erode(Dz, K5)) > edge] = np.nan
+    return Dt
+
+
 class Frames:
     """Per extraction frame: the edge-filtered depth, the refit table plane (camera frame), the valid-sample image and
     the samples inside at least one object's cube (pixel index, camera-frame point, cube voxel index per object)."""
@@ -105,11 +116,7 @@ class Frames:
         self.H, self.W = H, W
 
     def depth(self, t):
-        c = self.c
-        Dt = np.array(self.D[t], dtype=np.float32)
-        Dz = np.where(np.isfinite(Dt), Dt, 0).astype(np.float32)
-        Dt[(cv2.dilate(Dz, self.k5) - cv2.erode(Dz, self.k5)) > c['edge']] = np.nan
-        return Dt
+        return filtered_depth(self.D[t], self.c['edge'])
 
     def table(self, t, Pc):
         """obs_points.py: the frame-0 plane moved by VO, refit to nearby samples (<= 10 deg correction)."""

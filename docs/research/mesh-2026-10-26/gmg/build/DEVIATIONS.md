@@ -512,3 +512,77 @@ PREREG F.
     anchor object only; markers for every tracked object of the episode (the consensus is pooled over them); ep40 has
     one tracked object (mini_dust_pan). Notes edited while the run ran make the end manifest `code_dirty` (B7 notes and
     this file only); `b7_summary.json` records HEAD and the dirty files at the start.
+
+## B4 (2026-10-31, joint extraction, hands, track sanity, contact; clean public bundles)
+
+Written before any B4 output was looked at (interpretations of SPEC section 7 M1-M4 and PREREG B.2a, B.3, B.15). No
+scan number was seen; none bears on these choices.
+
+82. **Dev-only guard role `clean_run`** (`DATA/gmg/runs/*/bundle/**`, `DATA/gmg/runs/*/aux/**`; tier DEV, refused in
+    clean mode like every dev role). PREREG B.3 compares the clean extraction with obs_all; obs_all is dev-only, so the
+    comparison runs in a dev process (`tools/b4_roi_swap.py`), which must read the clean run's grids and its owner
+    labels. A clean process still reads only its own run (role own).
+83. **Lattice and final grid box.** The cube lattice puts the track origin on a voxel corner (generic: no library box
+    sets the phase). The final grids (SPEC section 6) cover a sub-lattice of the cube: the seeded component's box plus
+    2 cm (obs_points.py's ROI margin; obs_all used library box + 2 cm) or, when the 1.5 x guard fires, the guard box
+    (seed box + max(2 cm, 25 %) per side). SPEC does not say where the grids end after the crop.
+84. **Voxel-centric votes, kept from obs_points.py.** "`hits`: owned samples of this object only" is the obs_points hit
+    (|sdf| < 4 mm between the voxel centre and the depth at the voxel's pixel) counted only when that pixel's sample is
+    owned by o (`shared`: when it is shared and o is in the tie set). `free`: every valid depth ray after the edge
+    filter carves (table and hand pixels too), as in obs_points.py. Pass 0 counts hits from every valid sample.
+85. **Ownership tie, "within 2 binomial standard errors"**: |r_best - r_k| <= 2 sqrt(se_best^2 + se_k^2) (the SE of a
+    difference of two proportions), each se from the Agresti-Caffo adjusted proportion (h + 1) / (n + 2), so a ratio
+    of 0 or 1 from 3 frames is not certain (the plain SE would be 0). The tie set holds every keep-rule object within
+    2 SE of the best; two or more members = shared.
+86. **Seeds and seeded components.** SPEC: "provisional owned points of o's 3-D-separated frames ...; or, if frame 0 is
+    3-D-separated for o, the frame-0 SAM2 proposal ...". Read as: the det proposal (B) when frame 0 is 3-D-separated
+    from every other tracked object in the pass-1 census and an exclusive proposal exists; otherwise the separated-frame
+    points (A). Reason: in a single-object episode (A) is every persistent point within 0.30 m, so it cannot separate a
+    static object from static clutter, which is what the guard is for; (B) is the Phase-1 analogue of the Phase-2
+    start-frame mask. Proposal choice: proposals holding o's projected frame-0 origin (half-resolution det mask pixel),
+    minus those holding another tracked object's projected origin, then the largest IoU with o's provisional (owned or
+    o-tied) footprint at frame 0; seed points = frame-0 samples inside it that are provisionally o-owned or o-tied
+    (so no table, hand or partner pixel of a loose mask seeds). (A) uses owned points only. Det dumps exist for 15 of
+    the 20 public episodes (none for ep12, ep18, ep24, ep27, ep40). Component voxel set = cube voxels holding at least
+    one provisional o-owned or o-tied sample (all pass the pass-0 keep rule); 8 mm connectivity = voxel centres at
+    most 2 voxels apart (Euclidean); the seeded component = every component holding a seed point's voxel. Guard: per
+    axis, component box (voxel centres +- half a voxel) > 1.5 x seed-point box; fallback box = seed box +-
+    max(2 cm, 25 % of the seed extent on that axis); the component is clipped to it. Nearest-seed tie-break uses the
+    seed points as 2 mm centroids (object frame).
+87. **Co-moving bookkeeping.** tied fraction = share of o's pass-1 samples (owned or o-tied) that were tied with p;
+    `co_moving` if > 0.5; `co_moving_unresolved` if co_moving and rule (c) left more than half of those tied samples
+    shared; `tie_break` = the more frequent of mask and seed among the pass-3 tie decisions of the pair, `none` if
+    neither decided any. Rule (a) (Phase 1) applies at frame 0 only and assigns a tied sample when exactly one tied
+    object's chosen proposal holds its pixel. With more than two tied objects, (b) compares the two nearest seeds.
+88. **Frames with a cube corner behind the camera** (obs_points.py skipped the frame when a ROI corner had z < 5 cm):
+    the pixel box becomes the whole image, so a 0.6 m cube near the camera (object held close) does not drop the frame.
+89. **Table.** Frame-0 RANSAC (recon_mesh.table_plane on the full-resolution frame-0 depth) under the first tracked
+    object (slot order) whose origin admits a plane; per-frame refits (obs_points.py rule) on the samples of the union
+    of the cubes; refits stored as `table_frames` (camera frame) for M3. V4's `rest` keeps B1's world plane moved by VO.
+90. **Track sanity (M3).** Owned points of a frame lie above the 8 mm table band by construction, so the below-table
+    test places the object's surface samples (one per OBSERVED voxel, `contact.observed_samples`) with the frame's
+    track and tests them against that frame's refit table plane. Block-vs-rest residual: the blocks are A.2's K = 3
+    contiguous blocks of the object's frames with owned points; residual(f) = median distance of up to 2000 of f's
+    owned points (seed 0) to the 2 mm centroids of the owned points of the other two blocks. "Its frames" (TRACK_FAIL)
+    = the object's frames with owned points; good = such a frame that is not bad.
+91. **Identity shells (M3).** "Route-A shell" = the route-A sheet of `autokit.shell.shell_sheet` (the shell's
+    mid-surface: t0 is fitted only at B13), from up to 400k random owned points (seed 0) of the object's good frames;
+    4000 area-weighted samples; chamfer = mean of the two mean nearest distances (mm) after registering A onto B
+    (24 starts = the 24 proper axis permutations of A's PCA frame onto B's, centroids aligned, 30 point-to-point ICP
+    iterations on 1500 points per side, best final chamfer). Split test: first and second half (time order) of the good
+    frames; the partner's shell from its good frames; pass if chamfer(h1, h2) < min(chamfer(h1, p), chamfer(h2, p)).
+    Cross test: references are the other object-episodes without TRACK_FAIL. A failed split or cross test marks o
+    IDENTITY_SWAP (SPEC: "a failure marks o IDENTITY_SWAP"). `register` lives in track_sanity.py until M11 (B6).
+92. **M1 environment.** `uv venv --python /usr/bin/python3.12 <DATA>/mpvenv`; mediapipe 0.10.14, numpy 2.5.4,
+    opencv-python-headless and opencv-contrib-python 5.0.0.93 (uv's resolution), scipy 1.18.1. hands_mp.py runs with
+    its defaults (a_offset 1, legacy API, greedy linker), as the existing sweep. Videos: the public dataset's cam_a
+    files (`DATA/hfds/track_3/public/videos/...`; the local `data/store/ep<N>_a.mp4` copies have the same sizes). The
+    strace audit gets `--allow <DATA>/mpvenv/**`: the child reads its model files (.tflite, .binarypb), which are data
+    files by suffix.
+93. **B.3 as run.** Old OBSERVED = the A.2 rule on obs_all hits/free (B1's `state_grid`); new OBSERVED on the OLD
+    lattice = the clean final owner labels (aux `owners.npz`) re-voted with the same vote function and A.2 rule (a
+    lattice-phase difference alone would otherwise lower the Jaccard); "new outside the old box" uses the clean grid on
+    its own lattice (voxel centres outside [lo, hi] of the obs_all file).
+94. **B.2a as run.** The reference sheet takes up to 600k random owned points (seed 0) of the 3-D-separated frames
+    (final census, gap > 20 mm) that hold o's owned points; testable if >= 10 such frames; "p's owned samples in the
+    same frame" = p's `own == 0` points of that frame moved by T_{o<-p}[f]; contact frames from the final census.
