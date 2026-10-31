@@ -138,10 +138,20 @@ What the frame numbers say:
   - Bound [M]: whichever frame the eval 8 poses are in, the shipped beige differs from that frame's library mesh by at
     most about 8 deg about the near-symmetric axis and 3.4 mm.
 
-### 3.2 Not-adopted objects (information only)
-Filled in from `frame_kit_copy.log` when the remaining comparisons finish; see the progress log at the end. The
-committed exact frame check (`results/frame_check_report.json`) already gives, against library_v3: rack pick centroid
-37.0 mm, symmetric median 6.83 mm; blue cup pick centroid 29.6 mm, major axis 73.5 deg. None of these meshes ships.
+### 3.2 Not-adopted objects (information only; nothing here ships)
+| New -> reference | Centroid, mm | Axes, deg | Sym. median / p90, mm | ICP from identity: rot / trans | Sym. median after ICP | Multi-start |
+|---|---|---|---|---|---|---|
+| C0b rack ep13/full -> library_v3 | 37.2 | 12.1 / 12.1 / 0.9 | 6.88 / 52.67 | 13.9 deg / 33.6 mm | 11.03 | identity basin (rel 0.47 deg) |
+| C0b rack ep13/full -> C0 rack (pack 9a) | 29.1 | 12.7 / 12.5 / 3.7 | 8.61 / 47.24 | 7.7 deg / 21.7 mm | 9.43 | identity basin (rel 0.01 deg) |
+| C0b blue cup ep21/g1 -> library_v3 | 29.5 | 73.7 / 73.4 / 6.4 | 2.99 / 13.90 | 24.0 deg / 18.4 mm | 7.33 | **best start 116 deg away** (trimmed mean 10.2 vs 11.3 mm) |
+
+- **Rack.** The rack pick is a different shape, not a moved rack: 2659 cm3 against library_v3's 866 cm3, 487 x 265 x 151 mm,
+  and 11 mm median distance even after ICP. This agrees with its CD-O of 1.63 [D].
+- **Blue cup.** The clutter blobs (PUBLIC_RESULTS) make even rigid registration ambiguous, which agrees with the kit's
+  registration failure behind add_med 120 mm [D].
+- **Not finished.** The remaining comparisons (blue cup vs C0, the E0b lid and blue-cup info picks, and the C0 / T1
+  controls against library_v3) were still running when this file was committed. They are not needed for any verdict
+  above. If they finish, they are in `SCR/v1c0b/frame_kit_copy.log`.
 
 ## 4. Marker balls on the shipped files [M]
 
@@ -265,4 +275,5 @@ nothing towards +axis, so the opening is up and the bottom is at about -43 mm.
 - 22:47Z [M] scored / guarded sha = picks; glTF headers; kit on library_v3.
 - 23:05Z-23:30Z [M] pot balls under the base (balls3-5, bottom.py); beige inside-out shells; frames of the adopted
   objects; beige per-episode frames.
-- 23:40Z wrote this file; the not-adopted frame rows (3.2) follow when `frame_kit.py` ends.
+- 23:40Z wrote this file (pushed e62a3ff).
+- 23:50Z [M] section 3.2: rack and blue-cup picks vs library_v3 / C0; remaining info comparisons not waited for.
