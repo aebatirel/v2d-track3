@@ -1,0 +1,6 @@
+test_known_limitation_no_ball_on_plain_box (__main__.Synthetic.test_known_limitation_no_ball_on_plain_box) ... expected failure
+
+----------------------------------------------------------------------
+Ran 1 test in 531.526s
+
+OK (expected failures=1)

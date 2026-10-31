@@ -1,0 +1,7 @@
+test_balls_r4mm_recall (__main__.Synthetic.test_balls_r4mm_recall) ... ok
+test_known_limitation_no_false_ball_r4mm (__main__.Synthetic.test_known_limitation_no_false_ball_r4mm) ... expected failure
+
+----------------------------------------------------------------------
+Ran 2 tests in 543.620s
+
+OK (expected failures=1)
