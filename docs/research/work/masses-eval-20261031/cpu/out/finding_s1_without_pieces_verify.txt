@@ -1,0 +1,2 @@
+ep1 INVALID (2 failures: ep1/s43: white_pot: 1 collisions, 53 pieces in meshes/carve/ev01 | ep1/s43: white_pot_lid: 1 collisions, 107 pieces in meshes/carve/ev01) :: s43 n 10 mean 0.8925 sd 0.0117 min 0.8759 cut 0/0 :: candidate None :: loads s43 white_pot 0.2771,white_pot_lid 0.0882
+confirmation: {"RUNS_EXTRA": "", "PICK_EXTRA": "", "MASS_EPS": "", "EVAL_ONLY": "", "EPS_ONLY": "", "MA_ARGS": "", "ASSET_PIECES_EXTRA": ""}

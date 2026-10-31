@@ -48,7 +48,7 @@ def out(lib, pieces, err=''):
 bad = [e for e in eps if e not in T or T[e]['mode'] != mode]
 if mode not in ('glock', 'std') or bad or len(set(eps)) != len(eps):
     out('', '', f'mode {mode}: episodes {bad or eps} are not distinct {mode} episodes of packed_refs.json')
-shared = [e for e in eps if T[e]['asset_root'] == '/content/assets']          # references that name /content/assets
+shared = [e for e in eps if T[e]['shared_assets']]                           # references that name /content/assets
 libs, pieces = {T[e]['lib'] for e in shared}, {T[e]['pieces'] for e in shared}
 if len(libs) > 1 or len(pieces) > 1:
     out('', '', f'episodes {shared} share /content/assets but need libraries {sorted(libs)} / pieces {sorted(map(str, pieces))}')
