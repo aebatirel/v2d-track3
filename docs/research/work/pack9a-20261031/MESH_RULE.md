@@ -52,3 +52,11 @@ blue cup is prepared only so that the owner can choose it.
   **white_pot: C0; white_pot_lid: C0; plastic_dish_rack: C0** (as fitted, bold-albattani 5cce3d2). C0a is not used.
 - Reading [H]: on public twins C0's placement (fitted to stereo in our track frame) does not hurt and on average helps the
   pose scores, consistent with it correcting part of library_v3's template bias rather than adding a rotation error.
+
+## Post-hoc diagnostic (mesh session, ~16:25 UTC; not part of the rule, recorded only)
+Same twins/tracks/scorer as the guard, single swaps vs library_v3, 21/21 runs OK. Mean / min dAUC, C0 vs C0a:
+pot +0.0030/−0.0159 vs +0.0006/−0.0176; lid +0.0055/0.0000 vs +0.0055/0.0000; rack +0.0158/−0.0092 vs −0.0046/−0.0356
+(C0a would fail the guard's min −0.02); blue cup +0.0241/−0.0049 vs +0.0097/−0.0004. Aligning C0 onto library_v3 makes
+registered AUC worse or equal on every object: the ~2° "rotation" against library_v3 is mostly library_v3's own frame
+error, and C0 as fitted to the observations sits closer to the real object frame [n 2–9 twins per object; public scans
+stand in for the hidden ones; not pre-registered]. Runner: bold-albattani `cdo-sprint/C0a-diag/run_c0a.sh`.
