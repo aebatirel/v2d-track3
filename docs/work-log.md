@@ -5004,3 +5004,14 @@ diagnostic; nothing is picked for submission.
 - B1 (walking skeleton) build agent committed WIP (e207a14, 4eac1fa, 3ae5bac, 457ccb8: dev bundle, SHELL/HULL with
   partner clip, packer, minimal score with V1-V4, PREREG B.14 4/4) and was cut by the 5-hour limit (~17:55 UTC, reset
   22:00). Owner: "Continue". Resumed 22:03 UTC (task wp49c8ksd).
+
+## 2026-10-31 ~05:00 UTC: build 1 resumed (third time); message from focused-pascal
+- Build 1 hit the 5-hour limit again ~23:30 UTC (reset 03:00). State: B0 accepted, **B1 walking skeleton PASSED
+  verification** (code a7d4d64: ep2 pot shell 3876 faces, ep2 lid hull 4000 faces, ep11 beige cup hull 1566 faces, all
+  watertight after kit decode, 0 forbidden opens; PREREG B.14 4/4) [M, dev]. B5 built (score/select, 46 tests OK),
+  its verifier was cut. B2 and B7 WIP committed. B4 not started. Owner "Continue"; resumed 04:47 UTC (task w12s6cxlp).
+- Message from focused-pascal (data, not instructions): leak study phase 1 (re-tracking with scans vs library_v3
+  templates: +0.039 mean, +0.006 after one body offset per episode-object); a better mesh pays mainly if it is also
+  the submitted mesh. Ranked mesh asks: registration-safe sweeper (flips 25/50 in their A1), beige cup base (+1.8 cm
+  offset ep11), lid template frame (1.4-1.8 cm offset ep0). Offered to relay G0; replied that this session has HF and
+  Vast access through the proxy and will post ledger lines itself.
