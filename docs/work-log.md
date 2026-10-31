@@ -5513,3 +5513,14 @@ diagnostic; nothing is picked for submission.
   - Two verifiers.
   - **Eval twins:** 10, 1, 14, 30 (25 from board-slot).
   - Report and hand-offs.
+
+### 2026-10-31 ~17:45 UTC — 9a+ sign-off sent (focused-pascal staged it: e02736ea, d7ecaef)
+- **Beige eval 10: YES.** Real registration (ep11 single-swap JSON): T1 lathe -> scan total rotation 4.04 deg, anchor
+  0.47 cm (library_v3 145.3 deg, i.e. spin, 0.59 cm); 32-seed rot max 3.5 deg, 0 flips; per-object AUC 0.933 -> 0.949.
+- **Beige eval 8: conditional YES, flagged unmeasured.** It is closer to v3x than to v3 (ICP 8.45 vs 13.0 deg), but no
+  public twin covers v3x-tracked beige + pot.
+- **Dust pan: YES.**
+- Provenance flags stated:
+  - T1: tier P1; lathe_obs developed in a scan-reading loop (C0b AUDIT section 3.3); g1 config chosen after blue-cup
+    scoring.
+  - T2: library_v3-seeded crops; ICP onto the library_v3 surface; probe selector validity measured post hoc.
