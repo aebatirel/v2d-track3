@@ -7,7 +7,9 @@ ep11, section 18) and **corrected after the verifier's review of the build** (ro
 19). Outcome so far: on the dev runs the rule pushes every pair (no carve); the Embodiment contract now runs on their
 real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of the camera rule** for plate-plate
 insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it); **result (31 Oct
-~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Extended 31 Oct
+~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Round 2 (31 Oct
+~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
+points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
@@ -1445,7 +1447,8 @@ not run, because the public twin has no accepted slot and the next fix is a rule
    dated post-hoc entry F-I4.15. It should state the forking path (F-I4.12, F-I4.14 and this one each followed an
    outcome), accept or narrow F-I4.14's wider plate-like test (steps 2-3; board 2's t is a prior, not a measurement),
    choose the thickness estimator (all points or the downsample), be checked on another public plate episode first
-   (ep23, dev) and be frozen before eval 25.
+   (ep23, dev) and be frozen before eval 25. **Answered 31 Oct ~18:05 UTC by the orchestrator's decision: PREREG F-I4.15,
+   section 20.10.**
 2. **Synthetic tilt case.** Board 1's partner crosses 1.74 deg off its slot axis in plane; 1 mm clearance per side over
    60-75 mm of depth tolerates about 1.5-1.9 deg [E]. Add a w-case at 2-3 deg before the next real run.
 3. **Eval-25 inputs.** There is no gmg eval bundle for ep25 yet (gmg extraction plus the HF eval depth cache). The local
@@ -1458,6 +1461,105 @@ not run, because the public twin has no accepted slot and the next fix is a rule
    exercised); manifests stamp the HEAD at write time, not the launch commit; 20.3 and the `platebody.py` docstring still
    name the motion centroid as the slot centre (F-I4.12 changed it); the rest of the existing T-I1 suite was not re-run
    with the waiver off (Controls and Waiver were).
+
+### 20.10 Round 2: a body that follows the board's outline (PREREG F-I4.15; written before any run with it)
+**In plain words.** The first round stopped because the simulator board had to be a rectangle, and the boards are
+not rectangles: they are I-shaped, with ends about 7-11 mm wider than the middle [M, `verify_slot_1.md` B1]. A
+rectangle as wide as the ends puts about 20 cm3 of wood where the cameras saw empty space; a rectangle as narrow as the
+middle cuts the ends off. The orchestrator decided (31 Oct ~18:05 UTC) on four changes:
+- The simulator board becomes the **outline we see**: a polygon traced from our points, smoothed by at most 1 mm, at
+  the board's thickness.
+- It is cut into **flat convex pieces** (prisms). The slot is cut out of the polygon before the pieces are made.
+- The **thickness** is measured on all our points, not on a thinned-out sample. The thinned sample read 6.2 mm on
+  board 1, all points read 7.3-7.4 mm, and a synthetic test showed the old estimate reading thin.
+- Before the rule is used on eval 25 it is run once more on ep24 (slot and physics), and on a second public episode
+  with the boards (ep23: plate test and body only).
+
+Everything else stays as in sections 20.1-20.7: the waiver's scope, the kept gates, the slot's width (the other board's
+thickness + 2 mm), its centre (F-I4.12), its depth, the cross-lap check, the budget, the physics tests and the
+delivery.
+
+**What changes, by step** (PREREG F-I4.15.1-F-I4.15.4):
+
+| step | F-I4 to F-I4.14 (round 1) | F-I4.15 (round 2) |
+|---|---|---|
+| plate test | plane pair, else camera-side pair, else one face (on the 2 mm downsample) | unchanged |
+| thickness t, mid plane | from the test that passed, on the downsample | the camera-side face estimator on all owned points within 6 mm of the pick; a one-face board takes the partner's t (unchanged prior) |
+| body | min-area rectangle of the outline at t, must fill >= 0.9 | the outline polygon at t: same 2 mm cells and rules, laid along the rectangle's axes, outer ring simplified by Douglas-Peucker at 1.0 mm, must be a simple polygon; no balls |
+| rectangle | the body | the frame only (axes, centre, edge used to open the slot box); fill reported |
+| slot depth D | from the rectangle's edge | from the polygon's edge at the slot's mouth (the waist); the slot bottom's position is unchanged |
+| W_x, budget, topology | on boxes | on the polygon prisms (same thresholds) |
+| pieces | three boxes | convex prisms: the polygon minus the slot, ear-clipped and merged by Hertel-Mehlhorn; at most floor(165 / objects) per body; <= 64 vertices each |
+| keep-out gate | decides | decides, unchanged |
+
+Why the slot's depth is measured from the waist: the cross-lap check compares the two depths with the crossing width
+of the two bodies, which for polygon bodies is set by the waists. Measured from the rectangle edges, the two depths
+would grow by about 15 mm in sum on ep24 [E], more than the 10 mm window.
+
+**A point about the keep-out gate [R, code read].** The gate takes the seen-empty points (and the slot) that lie
+outside all the pieces and counts how many fall inside each piece. That catches a convex piece bulging past the shape
+it stands for. Pieces that tile the body exactly have no bulge, so they always pass (0.0 cm3), whether or not the body
+itself reaches into space the cameras saw as empty. So the gate checks the pieces, not the body. The body's fit is the
+**FREE share** (the share of the body in voxels the cameras saw as empty). It is reported, compared with the rectangle
+body, and tested by prediction P53; it is not a gate. The earlier statement that a full-width rectangle "would fail the
+keep-out gate" ([E], gate not run) does not follow from the code.
+
+**New constants** (PREREG F-I4.15.9):
+
+| name | value | origin |
+|---|---|---|
+| outline simplification (Douglas-Peucker) | 1.0 mm | generic: half the 2 mm raster pitch; the decision's example value |
+| prisms per body | floor(165 / objects in the episode), 82 on ep24 | informed: the P5 cap of 165 shapes (F-I1.14), as F-I5.4 |
+| vertices per prism | <= 64 (<= 32 per polygon part) | informed: MuJoCo limit (F-I1.14) |
+| prediction thresholds (4 mm I-shape, 1/3 of the rectangle's FREE share, 16 prisms, 6.8-8.0 mm, 2.5 deg) | as stated | set now for predictions only; they decide nothing |
+| fill share 0.9 | dropped | went with the rectangle body (fill still reported) |
+
+Every other constant is reused unchanged (2 mm raster, >= 3 frames per cell, t / 2 + 3 sigma slab, 6 mm filter,
+3-25 mm window, 2 x 1 mm clearance, 2 mm depth margin, 3 mm extensions, 10 mm consistency, 10 % / 0.6 budget, 0.3 cm3
+keep-out, the F-I1.14 acceptance thresholds).
+
+**Run order and the freeze** (PREREG F-I4.15.6):
+1. Build in `platebody.py`; synthetic tests w1-w7 re-run, plus w6c (thickness on all points), w8 / w8b (an I-shaped
+   cross at sigma 1 / 3 mm), w9 (the partner tilted 2.5 deg, open item 2 of 20.9), and the full T-I1 suite with the
+   waiver off.
+2. ep24, tag `fi4o`: the fi4b command with a new tag; slot, pieces, keep-out, P2-P7 on 16 copies; launch commit
+   recorded.
+3. ep23 (public, dev): plate test and body only, both boards, from the v6 bundle `20261031-b4ext6-90c8cce` (its v4
+   board-1 crop was clipped, fixed in B4 round 2), picks `shell_t5p36` built the same way as ep24's. Board 2's track is
+   the wrong board: reported, not adopted.
+4. **Frozen for eval 25 only if** ep24 builds the slot on both boards and passes every test except P1 (P52), **and**
+   ep23 board 1 is plate-like with a body built without a gate failure. Otherwise the round stops and reports; nothing is
+   tuned; eval 25 is not run under F-I4.15. Synthetic misses and other falsified predictions are reported and do not
+   stop the round.
+5. Eval 25 afterwards needs the ep25 gmg bundle and the per-board check of how our board labels map to the packed
+   reference (open item 3 of 20.9).
+
+**Predictions** (PREREG F-I4.15.8; P41-P50 belong to F-I5):
+
+| | prediction | falsified if | label |
+|---|---|---|---|
+| P51 | ep24: the slotted pieces of both boards pass keep-out (<= 0.3 cm3 per piece) | any piece over | [H], near-certain by construction (tests the tiling, not the body) |
+| P52 | ep24: both boards CARVE (cross-lap within 10 mm, budget, topology) and P2-P7 pass on 16 copies (P3 <= 0.5 cm, <= 5 deg, overlap < 1 cm3) | any gate pushes or any test fails | [H]; reported as P52a / P52b |
+| P53 | ep24: the polygon is I-shaped (ends >= 4 mm wider than the waist) and its FREE share is <= 1/3 of the rectangle body's | either fails | [H]; the I-shape part is not independent; [E] 1-4 % absolute |
+| P54 | ep24 board 1: t (all points) in 6.8-8.0 mm; board 2 takes it | outside | not independent (verify_slot_1: 7.30-7.40 mm) |
+| P55 | synthetic: w6c within 1 mm in all 6 cells; w8, w8b pass; w1-w5, w7 as before | any miss | [H] |
+| P56 | synthetic w9 (2.5 deg tilt): P3 passes | P3 fails | [H]; [E] overlap <= 0.1 cm3 |
+| P57 | ep23 board 1: plate-like, t in 5-10 mm, body built, I-shaped, FREE share <= 1/3 of its rectangle's | any fails | [H]; board 2 reported only |
+| P58 | ep24: <= 16 prisms per slotted body | more | [H] |
+
+**Limits and risks (stated before any run).**
+- Each F-I4 change so far (F-I4.12, F-I4.14, F-I4.15) followed an outcome and made the route more permissive. This one
+  follows the measured cause (the shape), was decided by the orchestrator, and is checked on ep23 before eval 25.
+- The outline still grows the body by about 4 mm per side (synthetic w1 [M]); it is not eroded. P53 measures what that
+  costs in seen-empty space.
+- The slot's depths remain priors split by the split plane (20.3); the cross-lap check guards only their sum.
+- Board 2's thickness is still the same-stock prior, not a measurement.
+- An aligned slot with 1 mm clearance is at the limit of the replayed crossing angle on board 1 (about 1.7 deg in
+  plane; verify_slot_1 B3). w9 probes it; P3 decides on ep24.
+- On ep23 only board 1 can count; if board 1 is a one-face plate, its t comes from the wrong-board track and is
+  reported only.
+- Cost [E]: CPU on this container, about 1.5-2 h of runs in all; one self-destroying Vast CPU box only if the
+  container cannot make progress (cap $5). Expected spend $0-1.
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 

@@ -585,3 +585,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   misses; only the acceptance can refuse it. x7 n2 (sweep 0.0) and n4 (TRANSIENT) out of scope as predicted; x6 / x10
   identical records. Speed: exact K-in-piece vertex enumeration (`cavpieces.intersect_points`, 0.8 ms vs 13 ms for
   the plane-by-plane clip, identical on 400 random pairs) now used.
+- 18:17 PREREG F-I4.15 (F-I4.15.0-F-I4.15.10; predictions P51-P58, since P41-P50 are F-I5's; synthetic w6c, w8, w8b,
+  w9) and INTERLOCK 20.10 (+ header and 20.9 item 1 pointers) written. Nothing run, no code edited. Design points: t and
+  mid plane from the step-2 estimator on all near points (plate tests unchanged, on the downsample); outline re-rastered
+  at 2 mm along the rectangle's axes (same cell rules), outer ring, Douglas-Peucker 1.0 mm, must be simple; slot bottom
+  as before, D measured from the polygon's edge at the slot mouth (from the rectangle edges the depth sum would grow
+  ~15 mm [E]); pieces = ear clipping + Hertel-Mehlhorn of (polygon minus slot footprint), <= 64 vertices, cap
+  floor(165 / objects); keep-out gate unchanged. Read in code [R]: the F-I4.6 gate counts keep-out outside the pieces'
+  union, so exact pieces pass by construction and the body's FREE share is reported (P53), not gated; the earlier [E]
+  "a full rectangle would fail keep-out" does not follow. ep23 from the v6 bundle (b4ext6-90c8cce, v4 board-1 crop
+  clipped). Freeze for eval 25 only if ep24 fi4o carves both and passes all but P1, and ep23 board 1 is plate-like with
+  a body built. Committing + pushing (PREREG.md, INTERLOCK.md, this log, work log).

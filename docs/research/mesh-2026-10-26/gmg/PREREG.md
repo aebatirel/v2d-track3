@@ -1286,6 +1286,275 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     P35 failed (fi4evalsem, no plane pair), P36 failed (F-I4.2 in fi4b), P37 and P38 not tested (no slot), P40 holds
     but is not independent (written after diag14 had measured the faces about 7 mm apart with the same split).
 
+- **2026-10-31, F-I4.15 (post hoc): the plate body follows the observed outline (polygon prisms), and t comes from
+  all points.** Written 18:00-18:17 UTC from the orchestrator's decision (31 Oct, ~18:05 UTC as it states; F-I4.15.0) and
+  committed and pushed **before any code or run uses it**. Placed with the F-I4 entries; in time it follows F-I5
+  (17:34 UTC). Still before any gmg scoring round (zero gmg scan scorings exist; no scan number was read for this
+  entry). Labelled **post hoc**: it replaces the F-I4.2 body, the F-I4.6 pieces and the thickness estimate of F-I4.1 /
+  F-I4.14 after T-I11 `fi4b` failed F-I4.2 on both ep24 boards and after the verifiers' GT-free diagnosis
+  (`build/I/verify_slot_1.md` B1-B3, `build/I/verify_slot_0.md` N1, N5). When it is committed no slot, slotted piece or
+  physics result under F-I4 exists for any real episode (fi4b built none), and none was looked at. The real-data
+  numbers it rests on are listed under "Evidence". **Forking path, stated plainly** (verify_slot_0 N5): F-I4.12 (after
+  the synthetic w1 miss), F-I4.14 (after `no_plane_pair` on ep24) and this entry (after the F-I4.2 failure on ep24)
+  each changed the route after an outcome, and each made it more permissive. This one was decided by the orchestrator
+  from the measured cause of the failure (the boards' shape), not from a slot or physics outcome. It is checked on a
+  second public plate episode (ep23) and frozen before eval 25 (F-I4.15.6). Where F-I4 to F-I4.14 and this entry
+  differ, this entry wins for runs with code that implements it (records carry `fi4_rev: 15`). The F-I4.14 route (the
+  rectangle body) stays reproducible from commit 9ad1af9. Design text for the owner: `INTERLOCK.md` section 20.10.
+  - **F-I4.15.0 The decision (orchestrator, 31 Oct ~18:05 UTC, post hoc), as written in the task text:** "(1) plate
+    body = the observed outline polygon (the same 2 mm raster, >= 3 frames per cell, one closing, holes filled, largest
+    component), simplified (state the tolerance, generic, e.g. 1 mm) and extruded at thickness t; pieces = a convex
+    decomposition of that polygon into prisms (state the method and cap), minus the analytic slot box, plus marker-ball
+    hulls if the body carries balls; the keep-out gate decides, unchanged; (2) thickness t from the step-2 face
+    estimator on ALL owned points within the filter (not the 2 mm downsample), justified by the fired w6 falsifier;
+    (3) everything else in F-I4 unchanged (slot width t_partner + 2 mm, centre F-I4.12, depth F-I4.3, consistency,
+    budget, P2-P7 acceptance, delivery with p1_pending); (4) a second public plate episode (ep23) is run for the plate
+    test and body only (its board-2 track is known to be the wrong board: report, no adoption) before the rule is
+    frozen for eval 25." The owner's waivers (F-I4.0, F-I5.0) are unchanged. Point (3) keeps F-I4.14 steps 2-3 as
+    written. The decision does not otherwise answer verify_slot_0 N2 (the plate-like scope widened by F-I4.14), which
+    therefore stands as labelled there.
+  - **Evidence [M]** (GT-free; public ep24, dev, eval semantics; clean bundle `20261031-b4ext4-b61e8aa`):
+    - (a) fi4b (code 9ad1af9): F-I4.2 failed on both boards. Fill of the min-area rectangle 0.895 / 0.868 < 0.9;
+      rectangles 234.5 x 142.3 / 231.1 x 142.0 mm.
+    - (b) verify_slot_1 B1: the boards are I-shaped. The outline mask is 130 / 125 mm wide at 30-70 % of the length and
+      137 / 136 mm in the outer 10 % (raster growth included). The parts at least 8 mm wider than the waist run 22 / 6 mm
+      and 16 / 20 mm along the length. Seen in our RGB frames; the flare points lie in the face planes, away from our
+      hands and table. The mask fills 0.996 / 0.983 of its 2-98 % box. The full-width rectangle holds 22.9 / 19.5 cm3
+      (11.5 % / 9.9 %) in FREE voxels; a waist-width rectangle cuts the lugs off.
+    - (c) verify_slot_1 B2: board-1 t = 6.21 mm from step 2 on the 2 mm first-point-per-voxel downsample (36,675
+      points). The same camera-side split on all 1.76 M near points reads 7.40 mm (median of per-frame face medians
+      7.30 mm, interior points 7.35 mm). The two faces are seen in disjoint frame ranges (0-74 and 74-274).
+    - (d) the F-I4.14 falsifier "w6 does not recover t within 1 mm" fired: step 1 read 8.07 / 8.39 mm for a true
+      10 mm at sigma 3 mm (on the downsample); step 2 on the downsample read 0.2-0.9 mm thin (w6b).
+  - **F-I4.15.1 Thickness and mid plane from all points** (replaces the t estimate of F-I4.1 / F-I4.14; the plate-like
+    TESTS are unchanged).
+    - The tests that make an object plate-like stay on the 2 mm downsample, exactly as F-I4.1 and F-I4.14 state: the
+      plane pair (step 1), the camera-side checks (i)-(vi) (step 2), the one-face thin-extent test (step 3).
+    - For a plate by step 1 or step 2, **t and the mid plane are re-estimated** by the step-2 estimator on **all** its
+      owned points within 6 mm of the pick (the F-I2.10 filter, `_near_points`: no downsample, no cap):
+      - reference normal a and offset d_ref: the decided plane pair's mid_n, mid_d (step 1), or the reference plane's
+        normal and offset (step 2, as in F-I4.14);
+      - slab: points with |a . x - d_ref| <= 25 mm;
+      - S+ / S-: the slab points whose camera lies on the + / - side, (c - x) . a > 0 / < 0;
+      - m+ and m-: the medians of a . x over S+ and S-; **t = m+ - m-**; mid plane (a, (m+ + m-) / 2).
+    - Checks on this estimate: each side holds >= 300 points from >= 3 frames, t > 0, and t is in 3-25 mm. If one
+      fails, the object is not plate-like (`t_all_points_fail`) and the pair leaves the route (old decision).
+    - One-face plate (step 3): t := the partner's all-point t (same-stock prior [E], flag `plate_t_partner_prior`,
+      unchanged). Mid plane = the median a . x of the seen side over all near points in the slab, moved t / 2 away from
+      its cameras. The step-3 tests are unchanged; its plate-extent test (both in-plane extents >= 2 (t + 2 mm)) uses
+      this t.
+    - Reported per plate: the downsample t (as F-I4.1 / F-I4.14 compute it), the all-point t, the 5 / 50 / 95 %
+      per-frame face medians, and each face's frame range.
+    - This t sets the body thickness (F-I4.15.2), the partner's slot width w = t + 2 mm (F-I4.3, F-I4.5) and the
+      outline slab (t / 2 + 3 sigma).
+    - Reason: evidence (c) and (d). Expected [M, not independent]: board 1 about 7.4 mm (verify_slot_1 computed this
+      split on all points before this entry). Board 2 inherits it.
+  - **F-I4.15.2 Body: the observed outline polygon** (replaces F-I4.2's rectangle body).
+    - Input: the object's near points (all of them, as F-I4.2 already used) with |mid_n . x - mid_d| <= t / 2 +
+      3 sigma, with the F-I4.15.1 t and mid plane, and their frames.
+    - (a) **Frame** (F-I4.2 code, unchanged): the raster in the reference plane's (e1, e2) (2 mm cells, >= 3 distinct
+      frames per cell, one 3 x 3 closing, holes filled, the largest 8-connected component) and its minimum-area
+      rectangle over the cell corners give a_L (long axis), a_W, a_T = mid_n, the centre c0, L and W. The rectangle is
+      no longer the body: its fill is reported, and the 0.9 fill gate goes with the rectangle body.
+    - (b) **Outline raster**: the same points rasterised again at 2 mm along (a_L, a_W), with cell edges on the
+      rectangle's sides and the same cell rules (>= 3 distinct frames per cell, one 3 x 3 closing, holes filled, the
+      largest 8-connected component). The pitch and the cell rules are F-I4.2's ("the same 2 mm raster" of the
+      decision); only the orientation follows the rectangle. Reason, stated before any run: a board's straight edges
+      parallel to its rectangle then lie on raster lines, so the outline is rectilinear where the board is. In a raster
+      laid at an angle, every 2 mm step of a slanted edge survives a 1 mm simplification as a reflex vertex and adds
+      pieces.
+    - (c) **Polygon**: the outer boundary of the union of the component's cells (a closed rectilinear ring through cell
+      corners), with collinear vertices removed. Then **Douglas-Peucker simplification at 1.0 mm** on the closed ring,
+      split at the two ring vertices farthest apart.
+      - The result must be a simple polygon (no self-intersection, no self-touching).
+      - If it is not, the unsimplified ring is used (flag `outline_unsimplified`).
+      - If that is not simple either (cells touching only at a corner), the body fails with
+        `plate_outline_not_simple`, and the pair leaves the route (old decision; `waiver_gate_fail:<gate>`, F-I4.0).
+    - (d) **Body** = the polygon extruded to +-t / 2 about the mid plane (a prism along a_T). The outline body carries
+      no marker balls (flag `plate_body_no_markers`, as in F-I4.2): the balls stand on the face inside the outline
+      [M, verify_slot_1 B1 item 2], so they do not change the polygon. A STRUCT plate candidate, if one ever exists, is
+      still the body (F-I4.2, first sentence, unchanged); none exists.
+    - (e) **Reported, not used**:
+      - the polygon's area against the component's cell area;
+      - its widths along a_W at 30-70 % of its length and in the outer 10 % (the I-shape);
+      - its vertex and reflex-vertex counts;
+      - the **FREE share**: the share of 2 mm grid points inside the body whose voxel in the object's grid is FREE
+        (the F-I4.2 "reported, not used" quantity). It is computed by the same code for the polygon body and for the
+        full rectangle body at the same t.
+    - Known limit [M, w1]: the outline raster grows the body by about 4 mm per side (w1: 238.4 x 133.4 mm for a true
+      230 x 125 mm). The decision does not erode the outline, and neither does this entry.
+  - **F-I4.15.3 The slot on a polygon body.** F-I4.3 (width t_p + 2 mm; depth = the partner's 99th-percentile
+    penetration + 2 mm, with the split cap; through the full thickness + 3 mm on each side), F-I4.12 (the centre) and
+    the F-I4.4 thresholds are unchanged in substance. On a polygon they read as follows:
+    - **Frame, d, entry side s_e (the -d side), c_L**: computed as now in the rectangle frame of F-I4.15.2 (a). c_L
+      follows F-I4.12, at the middle of the rectangle-based depth range.
+    - **Slot bottom b** (position along a_W): as now. b = u_rect - s_e (P + 2 mm), with u_rect = s_e W / 2 the
+      rectangle's entry edge and P the 99th-percentile penetration measured from it, capped at the split plane. b is
+      the deepest partner sample (or the split plane) plus 2 mm, so it does not depend on the edge that depth is
+      measured from.
+    - **Entry edge u_e**: the polygon's outermost coordinate along s_e a_W inside the slot band |u_L - c_L| <= w / 2.
+      This is the polygon's edge at the slot's mouth: the waist edge on an I-shaped board.
+    - **D = s_e (u_e - b)**, and P = D - 2 mm. Both are measured from u_e. They are the D and P that are reported and
+      used in the cross-lap check and the budget.
+    - **Slot box**: along a_L, c_L +- w / 2; along a_W, from u_rect + s_e 3 mm (outside every polygon edge) to b;
+      along a_T, +-(t / 2 + 3 mm).
+    - **W_x**: as F-I4.3. Points of the 2 mm grid inside both unslotted polygon bodies at the median assembled relative
+      pose; W_x = their extent along d. The pair passes if |D_o + D_p - W_x| <= 10 mm (window unchanged).
+    - **Budget (F-I4.4, thresholds unchanged)**:
+      - volume share = area(slot footprint intersected with the polygon) / area(polygon), cumulative against the
+        round-0 polygon body, <= 10 % (the slot spans the full thickness);
+      - reach = extent along d of (slot box intersected with the body) / extent along d of the body, <= 0.6;
+      - topology: the slotted polygon (the polygon minus the slot footprint) is one simple polygon without holes; the
+        bottom b lies inside the polygon (D is smaller than the polygon's extent along a_W on the slot centre line);
+        and there is polygon material on both sides of the slot band between u_e and b (both prongs have positive
+        area).
+    - Why D is measured from the polygon edge (stated before any run): the cross-lap check compares D_o + D_p with
+      W_x, and W_x of two polygon bodies is set by their widths at the crossing (the waists). Measured from the
+      rectangle edges, the sum would grow by about (142.3 - 130) / 2 + (142.0 - 125) / 2 = 15 mm on ep24 [E, from the
+      fi4b rectangles and the verify_slot_1 waists]: more than the whole 10 mm window.
+    - c_L is not recomputed with the polygon-based depth range. The difference is the partner's tilt against a_L times
+      half the edge shift, about tan(2 deg) x 4 mm = 0.15 mm [E, arithmetic with verify_slot_1 B3's 2.1 / 1.5 deg].
+  - **F-I4.15.4 Pieces** (replaces F-I4.6's three boxes; the keep-out gate is unchanged).
+    - **Slotted pieces**: an exact convex partition of the slotted polygon (the polygon minus the slot footprint,
+      which is the slot box's section in the mid plane), each part extruded to +-t / 2 into a convex prism. **Default
+      pieces** (for P2-P7 and `_default/`): the same partition of the unslotted polygon. The box is subtracted in 2-D
+      before the partition, not from each prism, so that every piece is convex and the union is exact (a prism notched
+      by the box is not convex). This is the decision's "convex decomposition of that polygon into prisms, minus the
+      analytic slot box", in the order that keeps the pieces convex.
+    - **Method** (deterministic):
+      - ear-clipping triangulation of the simple polygon: counter-clockwise ring, collinear vertices removed first;
+        ears taken in ring order starting from the lowest-index vertex; an ear is a strictly convex vertex whose
+        triangle contains no other ring vertex;
+      - then **Hertel-Mehlhorn merging**: the internal diagonals are visited longest first (ties by vertex indices),
+        and one is removed when both of its endpoints stay convex (interior angle <= 180 deg) in the merged part.
+      - Guarantee: at most four times the minimum number of convex parts (Hertel and Mehlhorn 1983; the same algorithm
+        as CGAL's `approx_convex_partition_2`, doc.cgal.org Partition_2, read 31 Oct).
+    - **Vertex limit**: a part with more than 32 vertices (a prism over 64 vertices, the MuJoCo limit of F-I1.14) is
+      split by the diagonal from its vertex 0 to its vertex floor(k / 2), repeatedly, until every part has <= 32.
+    - **Cap**: at most floor(165 / objects in the episode) prisms per body (82 on ep24), for the slotted set and for
+      the default set. This is F-I5.4's cap, from the P5 limit of 165 shapes per episode. Over the cap, the body fails
+      with `plate_body_over_cap` and the pair leaves the route (old decision). There is no ladder of tolerances.
+    - **Marker balls**: one icosphere hull (<= 64 vertices) per ball the body carries, as in F-I4.6. The outline body
+      carries none.
+    - **Keep-out gate**: F-I4.6, unchanged (`platebody.keepout_gate`: the F-I3.8 gate with the F-I1.8 keep-out within
+      2 voxels, partner and carve weight 10, <= 0.3 cm3 per hull, else do-not-use). It decides.
+    - **What the gate measures [R, code read: `platebody.keepout_gate`, `simpieces.keepout_points`,
+      `simpieces.pieces_gate`]**:
+      - It counts keep-out points that lie outside every slotted piece (`ins` False) and inside a hull. Pieces that
+        tile the body exactly therefore hold 0.0 cm3 by construction, whatever the body's own FREE share. The gate
+        checks that the pieces stay inside the body and out of the slot.
+      - It cannot see a body that extends into seen-empty space. The F-I4.14 correction (a) and verify_slot_1 B1 (b)
+        say a full-width rectangle "would fail" the keep-out gate [E, gate not run]; that does not follow from the
+        code, and the correction here is a record correction only.
+      - The body's fit to the observed space is the FREE share of F-I4.15.2 (e). It is reported, and tested by
+        prediction P53. It is not a gate: the decision keeps the gate unchanged.
+  - **F-I4.15.5 Unchanged.**
+    - F-I4.0 scope and kept gates; the F-I4.1 / F-I4.14 plate tests.
+    - F-I4.3 width, depth rule, split cap and the 3 mm extensions; the F-I4.12 centre; the 10 mm consistency window;
+      the F-I4.4 thresholds; F-I4.5 w_sim.
+    - F-I4.7 acceptance: P2-P7 on 16 copies with the same thresholds. The default is the unslotted body (now its
+      prisms). P4's "slot's volume inside the body" = the slot footprint intersected with the polygon, times t.
+    - F-I4.8 delivery: the slotted pieces at the top level, `_default/`, `p1_pending: true`, `DO_NOT_USE.json` naming
+      any failing test. The `owner_waiver` block now also holds `fi4_rev: 15`, the polygon in the body frame, the
+      tolerance and the piece counts.
+    - F-I4.9 integrity.
+    - With `--waiver-fi4` off, nothing changes.
+    - Interface note for F-I5 (no change to F-I5 here): F-I5.4 route 1 ("F-I4.6 analytic boxes") and the body of a
+      plate-like object paired with a non-plate ("its F-I4.2 plate body") refer to F-I4. Under F-I4.15 they read as
+      the polygon prisms and the polygon body. The collision-carve workflow records whether its code follows.
+  - **F-I4.15.6 Run order, ep23 and the freeze.**
+    1. Build in `platebody.py` (new functions; the `--waiver-fi4` route uses F-I4.15) and the tests of F-I4.15.7.
+    2. T-I1: w1-w7 re-run, the new w6c, w8, w8b and w9, and the **full** existing T-I1 suite with the waiver off
+       (verify_slot_0 N6).
+    3. **T-I11 ep24, tag `fi4o`** (new tag; nothing overwritten): the fi4b command with `--tag fi4o`. The code commit
+       is recorded at launch (verify_slot_0 N8). P2-P7 run on 16 copies.
+    4. **ep23** (public, dev): the plate test (F-I4.1 / F-I4.14 with F-I4.15.1) and the body (F-I4.15.2, its default
+       prisms, FREE share) for both boards. No linking, slot, decision or physics.
+       - Bundle: run `20261031-b4ext6-90c8cce` (v6). Chosen because the ep23 board 1 of the v4 bundle is the
+         guard-clipped crop that B4 round 2 fixed (`build/B4.md`, 14:24-15:07 UTC, before this entry).
+       - Picks: `shell_t5p36` for both boards, built for ep23 from that bundle with the producer and constants used for
+         ep24 (`manifest_cands_ep24.json`).
+       - Board 2's track is the wrong board (orchestrator; B4 identity flags). It is reported and never adopted. If
+         board 1 is a one-face plate, its t comes from board 2; this is flagged and reported only.
+    5. **Freeze.** F-I4.15 is frozen for eval 25 (code commit recorded; no further F-I4 change before eval 25) when
+       both hold:
+       - (a) T-I11 `fi4o` CARVEs both ep24 boards and every F-I4.7 test except P1 passes, keep-out included (P52);
+       - (b) ep23 board 1 is plate-like (any step) and its F-I4.15 body is built without a gate failure (the first
+         part of P57).
+       If (a) or (b) fails, the round stops, nothing is tuned, and the failure is reported. Eval 25 is then not run
+       under F-I4.15; any change is a new dated entry and an orchestrator decision. Synthetic misses (F-I4.15.7) and
+       falsified predictions outside (a)-(b) are reported with their numbers and do not stop the round. This is stated
+       now, so that no miss is relabelled afterwards (verify_slot_0 N1).
+    6. **Eval 25** (after the freeze only; not a run of this entry): needs the gmg ep25 eval bundle and the per-board
+       P_sel -> P_sim mapping check (INTERLOCK 20.9 open item 3; verify_slot_1 N6). Identical code; P_sim = the packed
+       eval-25 reference; nothing tuned on eval.
+  - **F-I4.15.7 Tests (synthetic T-I1, before T-I11).**
+    - **w1-w7 re-run.** w1's "three box pieces per plate" now reads: prisms that tile the slotted polygon exactly (area
+      difference <= 1 mm2), within the cap. Every other w1-w5 / w7 threshold is as before. The t = 6 mm width miss and
+      t = 25 mm out of scope stay recorded cases; their outcomes may change because t now comes from all points, and
+      they are reported either way.
+    - **w6c** (the step-2 estimator on all points; replaces w6b, which used the downsample): synthetic two-sided plates
+      at t = 6, 10, 18 mm and sigma 1, 3 mm. Pass: |t - true| <= 1.0 mm in every cell.
+    - **w8** (I-shaped cross): two plates 230 mm long, 125 mm wide at the waist, 136 mm over 20 mm at each end (the
+      ep24 shape in round numbers [M, verify_slot_1 B1]), t = 7 mm, two-sided cameras off the plate planes, sigma
+      1 mm, a slot in the waist at mid-length, waiver on. Pass, all of:
+      - both CARVE;
+      - on both polygons, end width - waist width is within 3 mm of the true 11 mm;
+      - D is measured from the waist edge, and |D_A + D_B - W_x| <= 10 mm;
+      - w within 1 mm of t + 2 mm; centre within 2 mm of the true slot;
+      - the prisms tile exactly, within the cap; keep-out 0.0 cm3;
+      - the FREE share of the polygon body is below the rectangle body's;
+      - P3 (16 copies): <= 0.5 cm and <= 5 deg, overlap < 1.0 cm3.
+    - **w8b**: w8 at sigma 3 mm (the 9 mm inlier band then exceeds t, as on ep24 board 1).
+    - **w9** (tilt; verify_slot_1 B3, INTERLOCK 20.9 open item 2): w8 with the partner turned 2.5 deg about a_T at
+      the assembled frames. Reported (P56).
+  - **F-I4.15.8 Predictions** (written before any run). P41-P50 are F-I5's, so the task text's "P41 / P42" are P51 /
+    P52 here.
+    - **P51** ep24 (fi4o): the slotted F-I4.15 pieces of both boards pass the keep-out gate (<= 0.3 cm3 per hull) |
+      any hull over | [H, near-certain by construction: it tests the exact tiling and the slot subtraction, not the
+      body's fit (F-I4.15.4)]
+    - **P52** ep24: both boards CARVE under F-I4.15 (every kept gate; |D_1 + D_2 - W_x| <= 10 mm with polygon entry
+      edges; budget and topology) and P2-P7 pass on 16 copies (P3 <= 0.5 cm and <= 5 deg, overlap < 1.0 cm3) | any
+      gate PUSHes, or any of P2-P7 fails | [H]. Reported as P52a (CARVE both) and P52b (P2-P7).
+    - **P53** ep24: the polygon body follows the outline. Its end widths exceed its waist width by >= 4 mm on both
+      boards [not independent: verify_slot_1 measured the same mask], and its FREE share is <= 1/3 of the full
+      rectangle body's FREE share at the same t on the same board [H; E: 1-4 % absolute, against the rectangle's
+      11.5 / 9.9 % at 6.21 mm] | end - waist < 4 mm on a board, or FREE share > 1/3 of the rectangle's
+    - **P54** ep24 board 1: all-point t in 6.8-8.0 mm; board 2 t := board 1's | outside | [not independent:
+      verify_slot_1 B2 measured 7.30-7.40 mm with this estimator]
+    - **P55** synthetic: w6c is within 1 mm in all 6 cells; w8 and w8b pass as stated; w1-w5 and w7 keep their F-I4.14
+      outcomes | any miss | [H]
+    - **P56** synthetic w9 (2.5 deg tilt): P3 passes (<= 0.5 cm / 5 deg, overlap < 1.0 cm3) | P3 fails | [H; E:
+      overlap <= 0.1 cm3, verify_slot_1 B3]
+    - **P57** ep23 board 1: plate-like (any step) with all-point t in 5-10 mm; the body is built (simple polygon,
+      within the cap); I-shaped (end - waist >= 4 mm); FREE share <= 1/3 of its rectangle's | any fails | [H]. Board 2
+      is reported only.
+    - **P58** ep24: <= 16 prisms per slotted body (a measure of the outline's roughness) | > 16 | [H]
+    These tests and predictions gate or fix steps only as F-I4.15.6 states. None is a failure criterion of the gmg
+    (D.3).
+  - **F-I4.15.9 Constants and origins.**
+    - New:
+      - simplification tolerance 1.0 mm: **generic** (half the 2 mm raster pitch, the position uncertainty of a cell
+        edge; the decision's example value);
+      - prism cap floor(165 / objects): **informed** (the P5 cap of 165 shapes, F-I1.14), as in F-I5.4;
+      - <= 32 vertices per polygon part (64 per prism): **informed** (the MuJoCo limit, F-I1.14 `maxv`);
+      - the prediction thresholds (4 mm I-shape, 1/3 FREE, 16 prisms, 6.8-8.0 mm, 2.5 deg tilt): set now for
+        predictions only; they decide nothing.
+    - Reused unchanged: raster 2 mm; >= 3 frames per cell; slab t / 2 + 3 sigma; the 6 mm filter; >= 300 points from
+      >= 3 frames per face; slab window 3-25 mm; clearance 2 x 1 mm; depth margin 2 mm; the 3 mm extensions; W_x grid
+      2 mm; consistency 10 mm; budget 10 % / 0.6; keep-out 0.3 cm3; every acceptance threshold (F-I1.14).
+    - Dropped with the rectangle body: the fill share 0.9 (the fill is still reported).
+  - **F-I4.15.10 Integrity and cost.**
+    - GT-free, as F-I4.9. Inputs: our clean bundles (ep24 `b4ext4-b61e8aa`, ep23 `b4ext6-90c8cce`), our picks,
+      tracks, hands and video (source (b) is reported only). No scan, mocap, dataset-parquet `pose`, `*_align`, or
+      library geometry as shape evidence. `meshes/carve/ev25` is never read. No `--gen`.
+    - Public development only. Eval 25 runs only after the freeze, with the identical code. Every miss and failure is
+      reported. Any change after an outcome is a new dated entry.
+    - Cost [E]: CPU on this container. fi4b took 914 s without slot physics; with P2-P7 on 16 copies about 20-40 min;
+      the tests 30-40 min; the ep23 candidates, plate test and body 20-40 min. If the shared container cannot make
+      progress, one self-destroying Vast CPU box (`docs/runbook-vast.md`, ledger session mesh-bold, cap $5, destroyed
+      and confirmed). Expected spend $0-1.
+
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,
   nothing run for it) and committed and pushed **before any code or run uses it**. Still before any gmg scoring round
