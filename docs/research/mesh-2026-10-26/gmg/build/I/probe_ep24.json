@@ -1,0 +1,364 @@
+{
+ "wooden_piece_1<-wooden_piece_2": {
+  "contact_frames": 79,
+  "n_partner_samples": 3882,
+  "own_extent_mm_p1_p99": [
+   233.9,
+   128.2,
+   41.8
+  ],
+  "hull_nmin1": {
+   "n_vox": 388,
+   "cm3": 24.83,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    388
+   ],
+   "extent_mm_pca": [
+    20.5,
+    128.4,
+    42.3
+   ],
+   "centre_mm_pca": [
+    27.9,
+    8.3,
+    -1.4
+   ]
+  },
+  "hull_nmin8": {
+   "n_vox": 282,
+   "cm3": 18.05,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    282
+   ],
+   "extent_mm_pca": [
+    12.5,
+    128.3,
+    42.3
+   ],
+   "centre_mm_pca": [
+    29.0,
+    7.8,
+    -1.4
+   ]
+  },
+  "hull_nmin20": {
+   "n_vox": 231,
+   "cm3": 14.78,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    231
+   ],
+   "extent_mm_pca": [
+    9.0,
+    124.3,
+    42.3
+   ],
+   "centre_mm_pca": [
+    28.8,
+    1.7,
+    -1.2
+   ]
+  },
+  "hull_nmin40": {
+   "n_vox": 39,
+   "cm3": 2.5,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    39
+   ],
+   "extent_mm_pca": [
+    1.9,
+    32.1,
+    32.1
+   ],
+   "centre_mm_pca": [
+    29.1,
+    -38.6,
+    1.0
+   ]
+  },
+  "shell_t5p36_nmin1": {
+   "n_vox": 221,
+   "cm3": 14.14,
+   "state_unknown_free_observed": [
+    9,
+    1,
+    211
+   ],
+   "extent_mm_pca": [
+    16.2,
+    124.2,
+    20.4
+   ],
+   "centre_mm_pca": [
+    27.5,
+    15.9,
+    -2.0
+   ]
+  },
+  "shell_t5p36_nmin8": {
+   "n_vox": 156,
+   "cm3": 9.98,
+   "state_unknown_free_observed": [
+    8,
+    1,
+    147
+   ],
+   "extent_mm_pca": [
+    10.7,
+    124.2,
+    20.4
+   ],
+   "centre_mm_pca": [
+    29.2,
+    17.2,
+    -2.2
+   ]
+  },
+  "shell_t5p36_nmin20": {
+   "n_vox": 132,
+   "cm3": 8.45,
+   "state_unknown_free_observed": [
+    6,
+    0,
+    126
+   ],
+   "extent_mm_pca": [
+    9.2,
+    120.2,
+    16.6
+   ],
+   "centre_mm_pca": [
+    28.9,
+    10.8,
+    -1.9
+   ]
+  },
+  "shell_t5p36_nmin40": {
+   "n_vox": 15,
+   "cm3": 0.96,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    15
+   ],
+   "extent_mm_pca": [
+    1.7,
+    31.9,
+    4.5
+   ],
+   "centre_mm_pca": [
+    29.3,
+    -34.5,
+    -1.2
+   ]
+  },
+  "partner_origin_range_mm": [
+   268.8,
+   175.6,
+   114.5
+  ],
+  "hull_entered_vox_per_frame": {
+   "p50": 119.0,
+   "p90": 211.2,
+   "max": 250,
+   "frames_ge10": 56
+  },
+  "partner_origin_range_mm_intrusion_frames": [
+   14.6,
+   121.8,
+   12.1
+  ],
+  "intrusion_frames_first_last": [
+   164,
+   274
+  ]
+ },
+ "wooden_piece_2<-wooden_piece_1": {
+  "contact_frames": 79,
+  "n_partner_samples": 6533,
+  "own_extent_mm_p1_p99": [
+   233.3,
+   122.0,
+   18.7
+  ],
+  "hull_nmin1": {
+   "n_vox": 520,
+   "cm3": 33.28,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    520
+   ],
+   "extent_mm_pca": [
+    54.5,
+    125.1,
+    40.3
+   ],
+   "centre_mm_pca": [
+    -15.8,
+    9.0,
+    3.1
+   ]
+  },
+  "hull_nmin8": {
+   "n_vox": 364,
+   "cm3": 23.3,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    364
+   ],
+   "extent_mm_pca": [
+    45.6,
+    124.3,
+    40.2
+   ],
+   "centre_mm_pca": [
+    -18.0,
+    10.2,
+    3.8
+   ]
+  },
+  "hull_nmin20": {
+   "n_vox": 262,
+   "cm3": 16.77,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    262
+   ],
+   "extent_mm_pca": [
+    45.1,
+    124.3,
+    40.2
+   ],
+   "centre_mm_pca": [
+    -18.3,
+    8.0,
+    4.7
+   ]
+  },
+  "hull_nmin40": {
+   "n_vox": 57,
+   "cm3": 3.65,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    57
+   ],
+   "extent_mm_pca": [
+    9.5,
+    67.9,
+    8.3
+   ],
+   "centre_mm_pca": [
+    -16.9,
+    39.5,
+    -0.2
+   ]
+  },
+  "shell_t5p36_nmin1": {
+   "n_vox": 213,
+   "cm3": 13.63,
+   "state_unknown_free_observed": [
+    4,
+    0,
+    209
+   ],
+   "extent_mm_pca": [
+    54.1,
+    121.2,
+    5.0
+   ],
+   "centre_mm_pca": [
+    -13.7,
+    13.4,
+    3.7
+   ]
+  },
+  "shell_t5p36_nmin8": {
+   "n_vox": 127,
+   "cm3": 8.13,
+   "state_unknown_free_observed": [
+    2,
+    0,
+    125
+   ],
+   "extent_mm_pca": [
+    45.2,
+    120.3,
+    4.3
+   ],
+   "centre_mm_pca": [
+    -18.2,
+    14.0,
+    3.6
+   ]
+  },
+  "shell_t5p36_nmin20": {
+   "n_vox": 83,
+   "cm3": 5.31,
+   "state_unknown_free_observed": [
+    1,
+    0,
+    82
+   ],
+   "extent_mm_pca": [
+    40.8,
+    120.3,
+    4.2
+   ],
+   "centre_mm_pca": [
+    -19.2,
+    14.4,
+    3.6
+   ]
+  },
+  "shell_t5p36_nmin40": {
+   "n_vox": 20,
+   "cm3": 1.28,
+   "state_unknown_free_observed": [
+    0,
+    0,
+    20
+   ],
+   "extent_mm_pca": [
+    6.9,
+    63.9,
+    0.1
+   ],
+   "centre_mm_pca": [
+    -17.2,
+    40.1,
+    3.6
+   ]
+  },
+  "partner_origin_range_mm": [
+   224.4,
+   217.7,
+   57.8
+  ],
+  "hull_entered_vox_per_frame": {
+   "p50": 132.0,
+   "p90": 254.4,
+   "max": 302,
+   "frames_ge10": 56
+  },
+  "partner_origin_range_mm_intrusion_frames": [
+   11.5,
+   122.4,
+   9.1
+  ],
+  "intrusion_frames_first_last": [
+   164,
+   274
+  ]
+ }
+}
