@@ -6061,7 +6061,7 @@ Background agent, CPU only, $0, no ground truth read.
   final table with arm S, the timeline and two road entries. Other lanes stay as of 19:20 TRT, as the header says.
   Copy in `docs/research/physics-2026-10-30/pages/push-board.html`.
 
-### 2026-10-31 20:58 UTC — determined-wright: targeted D for pack 10 (owner reversal relayed by score-status)
+### 2026-10-31 20:54 UTC — determined-wright: targeted D for pack 10 (owner reversal relayed by score-status; my messages said 20:57 in error)
 - Score-status session (20:51 UTC) relayed the owner's words, ~20:40 UTC in that chat: "sure add that whatev". This
   answers its proposal: D as a second version on the unstable evals 14, 16, 25, 30, 33, ≈ $6–10, swap rule decides.
   Not said in this chat; the spend is the pack-10 session's.
