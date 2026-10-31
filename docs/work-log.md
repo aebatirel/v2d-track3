@@ -6079,7 +6079,7 @@ Background agent, CPU only, $0, no ground truth read.
     0.71 mm after the hold, max 58 mm).
 - Offered: an opt-in FC_DR_SKIP_IMMEDIATE flag (~1 h, CPU tests) and a free CPU pop check per episode.
 
-### 2026-10-31 21:22 UTC — determined-wright: arm V (actor sees object velocity) built and pre-registered; owner GO
+### 2026-10-31 21:18 UTC — determined-wright: arm V (actor sees object velocity) built and pre-registered; owner GO
 - keen-heisenberg (21:01 UTC) relayed the owner's request for a slip-aware, physics-informed robot side. Items:
   1. object velocity in the actor's observation;
   2. solver v2 (no-slip term, force feasibility, worst-of-copies scoring);
