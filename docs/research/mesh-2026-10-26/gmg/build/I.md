@@ -309,3 +309,26 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   spot is now stated in F-I3.10 and the test re-centres along B's y; (3) o2b: A carves SIL voxels only with
   o_residual_push, B has no class O on its carve side (its overshoot lies past its split plane): my F-I3.6
   expectation "flag on both" was wrong; corrected and logged in F-I3.6, rule unchanged. Re-run 14:41 (t3.log).
+- 14:42 ep24 r1evalsem driver done (897 s) [M]: r0 `<run>/sim/public/ep24-r1evalsem/r0` (gmg-sim/2, sources,
+  props in phys_fit layout, code identity dirty=True: the interlock files were uncommitted then; their sha256 are in
+  the manifest) marked do-not-use by the gate. Board 2's OFFSET now fails budget (iv) (reach 0.81, the N + t carve
+  splits the board: components 1 -> 2), so the "OFFSET holds alone" of BI2 is gone; (a) disagrees on both boards.
+- 14:43 F-I3.12 column rule added after the o2b probe (`<scratch>/interlock/r1fix/probe/o2b.py`): A's carve reached
+  7.5 mm past the slot end through unseen mid-plane voxels; with the rule 1.5 mm. Full T-I1 suite relaunched with the
+  final rule code (`<scratch>/interlock/r1fix/full.log`).
+- 14:44 WIP commit `1bdb06b` pushed.
+- 14:46 found while running the contract: (1) the parameter `round` of carve_from_intrusions shadowed the builtin
+  round() (crash when writing the interlock state) -> `builtins.round`; full suite restarted at 14:47; (2) the export
+  path took every frame while our bundle has stride 2, so the gate's good share was 0.5 and (c) absent (IGNORE):
+  the export's frame-pairs are now restricted to the bundle's census frames (F-I3.1 text). This second change was made
+  after the full suite started; it is a no-op for the stride-1 synthetic bundles of T-I1.
+- 14:47-15:08 their real tool (`build/I/contract_ext.py`, outputs `<scratch>/interlock/r1fix/contract24/`):
+  intrusion.py on our r0 OK (22 s, 227 / 482 frame-pairs, fiducial box margins 1.0 mm), phys_fit max_nfev 3 OK
+  (691 s; plumbing), intrusion.py --fit running. Our side (`build/I/contract_gmg.py`, `--allow-do-not-use`):
+  e0 VALID (independent pose from our tracks = the chain's poses.npz: residual 0.0, rel_T 0.0 mm); export decisions
+  PUSH / PUSH T0 = tracks path; regions differ (pieces vs evidence samples).
+- 14:45-14:51 ep31 (sweeper in the rack, eval-30 twin; eval semantics, decisions only, `--no-physics`, 398 s) [M]:
+  sweeper <- rack one SLIDE run f18-40 (12 frames, 42.8 mm, straightness 0.55) with a 2-voxel region -> IGNORE
+  (`one_sided_region`); rack <- sweeper no engaged run. Shell overlaps along the track <= 0.32 cm3 (sweeper shell,
+  engaged frames), rack shell 0.0. No silhouette (no separated good frame: in contact in all 145 frames). Nothing to
+  carve or push; the P34 free-travel check was not run (no r0 for ep31 in this round).

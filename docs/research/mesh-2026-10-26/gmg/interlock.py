@@ -36,6 +36,7 @@ ones are also registered with the guard. Hook for B10: add 'F-I1.14' to INFORMED
 """
 from __future__ import annotations
 
+import builtins as _bi
 import dataclasses
 import hashlib
 import json
@@ -2097,7 +2098,13 @@ def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, v
         intrs[t] = intr
         src = (sources or {}).get(t) if sources is not None else load_sources(src_dir, t, ev[t].grid)
         hold = (st.get('holdout') or {}).get(f'{t}<-{q}')
-        sides[t] = make_side(b, t, q, ev[t], intr, sorted(intr.rel), sources=src, identity=identity,
+        # F-I3.1: the export's frame-pairs on OUR frame grid (the bundle's census frames, its stride): the gate's good
+        # share, the blocks and the gap bridging then count the same frames as on the tracks path (an export holds
+        # every frame; with stride 2 half of them have no evidence and would halve the good share)
+        grid_fr = set(int(f) for f in (b.contact(t, q).get('frames') or
+                                       range(0, int(b.meta['T']), int(b.meta['stride']))))
+        cf = sorted(f for f in intr.rel if f in grid_fr)
+        sides[t] = make_side(b, t, q, ev[t], intr, cf, sources=src, identity=identity,
                              partner_collider=S[q], holdout=hold,
                              carved_before=(st.get('carved_cm3') or {}).get(t, 0.0),
                              solid_ref_cm3=(st.get('solid_ref_cm3') or {}).get(t) or ev[t].solid_cm3())
@@ -2134,14 +2141,14 @@ def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, v
     cum = dict(st.get('carved_cm3') or {})
     for x in pair:
         add = sum(r['_sim_solid']['cm3'] for r in recs if r['target'] == x and r.get('sim_carve')) if deliver else 0.0
-        cum[x] = round(float(cum.get(x, 0.0)) + float(add), 4)
+        cum[x] = _bi.round(float(cum.get(x, 0.0)) + float(add), 4)
     dnu_prev = sim['manifest'].get('do_not_use') or (json.load(open(os.path.join(sim_dir, 'DO_NOT_USE.json')))
                                                        if os.path.exists(os.path.join(sim_dir, 'DO_NOT_USE.json'))
                                                        else None)
     state = dict(round=int(round), holdout=hold_new, carved_cm3=cum,
                  solid_ref_cm3={x: (st.get('solid_ref_cm3') or {}).get(x) or sides[x].solid_ref_cm3 for x in pair},
                  default_collider_cm3=st.get('default_collider_cm3') or
-                 {x: round(SP.hull_volume(sim['pieces'][x]) * 1e6, 3) for x in pair},
+                 {x: _bi.round(SP.hull_volume(sim['pieces'][x]) * 1e6, 3) for x in pair},
                  previous=os.path.abspath(sim_dir), delivered='carved' if deliver else 'previous',
                  regions_file='interlock_regions.npz')
     objects = {x: dict(visual=(visual or {}).get(x, sim['fit'][x]),

@@ -1149,3 +1149,30 @@ The review found eight blocking problems in the built stage. Each one, what was 
 | B7 tests | o2 never exercised its rule, n4 passed vacuously, the contract test never called carve_from_intrusions | o2a / o2b, n4 on its runs, contract through carve_from_intrusions, new tests (F-I3.6) |
 | B8 wrong justification | "boards 12-19 mm thick" was the evidence thickness; the slot is about 6-8 mm in the video [E] | F-I2.14 / 18.1 corrected; the table explanation and its [H] withdrawn (F-I3.11) |
 
+| (found while fixing) | the export path counted every frame, our bundle every second one (stride 2), so the gate saw a good share of 0.5 and made (c) absent; carves past a slot end opened pockets under seen faces | export frame-pairs on our frame grid (F-I3.1); column rule (F-I3.12) |
+
+### 19.1 Their real tool on our ep24 round 0 (31 Oct 14:50-15:30, dev, no scan) [M]
+- **Round 0** (`gmg/tools/interlock_dev.py --identity eval --tag r1evalsem`, run `20261031-i2probe-626ce13`, 897 s):
+  decisions as in 18.1 (board 1 PUSH, U 2 / O 65, image width 9.0 px; board 2 PUSH, U 41 / O 77 testable solid),
+  now with **(a) disagreeing on both boards** under the two-way test (board 1: the placed SAM 3D concavity near R is
+  38.4 cm3 against R 4.3 cm3, reverse share 0.21, centroid 24.4 mm; board 2: 6.7 vs 7.6 cm3, reverse 0.35,
+  centroid 19.3 mm). Board 2's OFFSET, which "held alone" in 18.1, now fails its budget (F-I3.4): reach 0.81 > 0.6
+  and the N + t carve would cut the board in two (components 1 -> 2). The **pieces gate** marks this round
+  do-not-use: our pieces hold 0.72 / 2.0 cm3 of keep-out per hull at most (13 / 21 of 32 hulls over 0.3), CoACD's
+  52.9 / 77.3 cm3 (12 of 13 / 15). Collider overlap along the track: ours max 7.45 cm3, CoACD max 18.5 cm3.
+- **Their tool, unmodified** (`origin/claude/determined-wright-3joens` at `48cda9f`: `tools/intrusion.py`,
+  `pipeline/phys_fit.py`), run by `build/I/contract_ext.py` (not a gmg process) on that round 0 with a reference
+  parquet built from OUR ep24 tracks in a table frame (a stand-in: their perceived ep24 reference is not in this
+  container and there is no HF token here) and a `.prov.json` naming the tracks file:
+  `intrusion.py` accepted our manifest and fiducials (fiducial box margins exactly 1.0 mm on every face, round trip
+  and parquet check ~1e-13 mm, containment 1.0 / 1.0), 22 s, 227 of 482 frame-pairs with intrusion, 130,848
+  samples, flag `reference_provenance_incomplete` (their perception list: no `poses_world_vo.npz`,
+  `hands_refined.npz`, `table_frame.npz` in our chain). `phys_fit.py` read our `_fit/<obj>.glb` and
+  `props_gmg.json` and ran to completion (max_nfev 3: a plumbing run, not a fit result; 691 s).
+- **Our validator on their export** (`build/I/contract_gmg.py`, with the explicit do-not-use override, flagged):
+  **valid**; independent pose from our tracks as the chain's `poses.npz` (frame-free fit residual 0.0 mm, rel_T at
+  f_star 0.0 mm, rel_T over all 482 rows 0.0 mm, vertical shifts 0.0 mm); `pushed_residual` none.
+- **carve_from_intrusions on their export** (eval semantics, sources from the round): **PUSH both boards, T0, (a)
+  disagreeing** - the same decisions and tiers as our tracks path. The regions differ because the export samples
+  the partner's pieces (solid) and ours its stereo evidence: board 1 U 3 / O 85 (tracks U 2 / O 65), board 2 U 36 /
+  O 41 (tracks U 41 / O 77). Before the frame-grid fix the export path gave IGNORE (good share 0.5, see the table).
