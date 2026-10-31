@@ -5386,3 +5386,12 @@ Advice given:
   accepts it in their own words. Noted for future carves: lathe ring pieces sag r_in(1−cos(π/N)) inside the cavity at
   mid-sector (ev10 uses --seg 12: ≈ 1.4 mm at r 40 mm; ev10w measured 1.0–1.9 mm); a tangent-at-mid-sector inner face
   would be cavity-safe [H]; ev10 unchanged now (the ep11 gate passed with it).
+
+## 2026-10-31 ~21:50 UTC — RTS position smoother (S13): FAILS its pre-registered gate
+- Opt-in refine step S13 (positions-only RTS after S2, keen-heisenberg's frozen settings σ 8 mm, q 4.0/0.04 by the hand
+  gate). Gate on the 20 public episodes (PREREG rts/, dc4be79; amendment 1 before any score): Po mean ΔR_lib **−0.00011**
+  (bar ≥ +0.005), min −0.0022 (ep22), 9 better / 7 worse; refineP replication −0.00046 → **FAIL**. Max move per episode
+  ≤ 0.0044 AUC; positions move 0.03–0.3 cm against the kit's 1–9 cm ADD steps. RPE −0.007 cm (reading only).
+- Default behaviour byte-identical (80/80 runs, 240/240 npz sha256); tests 7/7 + existing s6/s10/s12 pass. S13 stays as
+  an unused opt-in; S2 remains the only adopted time fix. Note: the source's cross-validation record disagrees with its
+  README (σ 16 vs 8 mm on one half); the params were tuned on these same 20 episodes, so the gate is not a holdout.
