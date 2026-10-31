@@ -6043,3 +6043,17 @@ Background agent, CPU only, $0, no ground truth read.
 - Answer: **"No D"**. Pack 10 stays on the current recipe.
 - Told focused-pascal and the score-status session; the D proposal is withdrawn.
 - No re-score of C/ep24-s43 (≈ $1, not asked for), so the §8 verdicts stay formally INCOMPLETE, with the bounds above.
+
+### 2026-10-31 20:32 UTC — determined-wright: solver re-test finished; final merge; eval solving NOT started
+- rscrS43 (58560711): job exit 0 at 20:26 UTC, self-destroyed (box gone 20:30). Ledger actual $3.88 (~2.9 h × $1.336/h,
+  estimate). No screen boxes are left on the account.
+- S/ep24-s43: .237 (sd .014, 10 draws), checkpoint at 40M.
+- Final merge over the 4 box summaries: `python3 tools/recipe_screen.py verdict … --out
+  docs/research/physics-2026-10-30/gpu/recipe_screen_S_merged.json`; text in `gpu/recipe_screen_S_merged.txt`. The
+  post-hoc selector check is `gpu/scripts/recipe_screen_posthoc_select.py` → `gpu/recipe_screen_posthoc_select.txt`.
+- S vs C: INCOMPLETE (C/ep24-s43). It is "no signal" under any completion: Δ ep2 −0.133, ep12 +0.223, ep18 −0.038,
+  ep24 ≈ +0.007 provisional. Per §9: stop. Eval solving is not started; solved references are not used for eval.
+- Written up as physics-solver.md §8.1 and §9.1.
+- focused-pascal's reply (queued 20:25 UTC, sent before it saw "No D"): offered the masses-v2 mass0 cells as a library_v3
+  check set for a D falsifier (≈ $6–10 [E]). Not run, because the owner declined D.
+- Lane total for the screen and the re-test: $8.22 + $7.73 + $3.30 + $3.88 = $23.13 (actuals, estimates).

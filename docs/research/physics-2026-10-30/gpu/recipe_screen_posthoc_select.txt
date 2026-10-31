@@ -1,0 +1,23 @@
+per (episode, seed): AUC / svr per arm
+ep2  s42  C 0.955/0.962   K 0.965/0.973   D 0.743/0.750   S 0.751/0.762
+ep2  s43  C 0.869/0.877   K 0.959/0.968   D 0.862/0.870   S 0.808/0.814
+ep12 s42  C 0.576/0.598   K 0.519/0.521   D 0.924/0.937   S 0.832/0.835
+ep12 s43  C 0.612/0.616   K 0.582/0.579   D 0.919/0.922   S 0.801/0.819
+ep18 s42  C 0.620/0.590   K 0.623/0.595   D 0.603/0.580   S 0.553/0.533
+ep18 s43  C 0.624/0.597   K 0.620/0.593   D 0.600/0.575   S 0.616/0.588
+ep24 s42  C 0.234/0.237   K 0.191/0.168   D 0.233/0.235   S 0.249/0.227
+ep24 s43  C --   K 0.251/0.225   D 0.230/0.234   S 0.237/0.219
+
+pairwise: does higher svr pick higher AUC? (per episode x seed, both cells present)
+C vs K: 7/7  misses: []
+C vs D: 7/7  misses: []
+C vs S: 6/7  misses: ['ep24s42 dAUC -0.015']
+K vs D: 7/8  misses: ['ep24s43 dAUC +0.021']
+K vs S: 8/8  misses: []
+D vs S: 6/8  misses: ['ep24s42 dAUC -0.016', 'ep24s43 dAUC -0.007']
+
+selector "per episode x seed, max svr over arms" vs C alone (AUC)
+CD: mean gain +0.0935 over 7 cells; ep2s42->C +0.000 (sd 0.029 vs 0.029), ep2s43->C +0.000 (sd 0.174 vs 0.174), ep12s42->D +0.348 (sd 0.021 vs 0.066), ep12s43->D +0.307 (sd 0.022 vs 0.014), ep18s42->C +0.000 (sd 0.015 vs 0.015), ep18s43->C +0.000 (sd 0.002 vs 0.002), ep24s42->C +0.000 (sd 0.003 vs 0.003)
+CS: mean gain +0.0636 over 7 cells; ep2s42->C +0.000 (sd 0.029 vs 0.029), ep2s43->C +0.000 (sd 0.174 vs 0.174), ep12s42->S +0.256 (sd 0.070 vs 0.066), ep12s43->S +0.190 (sd 0.082 vs 0.014), ep18s42->C +0.000 (sd 0.015 vs 0.015), ep18s43->C +0.000 (sd 0.002 vs 0.002), ep24s42->C +0.000 (sd 0.003 vs 0.003)
+CDS: mean gain +0.0935 over 7 cells; ep2s42->C +0.000 (sd 0.029 vs 0.029), ep2s43->C +0.000 (sd 0.174 vs 0.174), ep12s42->D +0.348 (sd 0.021 vs 0.066), ep12s43->D +0.307 (sd 0.022 vs 0.014), ep18s42->C +0.000 (sd 0.015 vs 0.015), ep18s43->C +0.000 (sd 0.002 vs 0.002), ep24s42->C +0.000 (sd 0.003 vs 0.003)
+CKDS: mean gain +0.1081 over 7 cells; ep2s42->K +0.009 (sd 0.009 vs 0.029), ep2s43->K +0.090 (sd 0.019 vs 0.174), ep12s42->D +0.348 (sd 0.021 vs 0.066), ep12s43->D +0.307 (sd 0.022 vs 0.014), ep18s42->K +0.003 (sd 0.006 vs 0.015), ep18s43->C +0.000 (sd 0.002 vs 0.002), ep24s42->C +0.000 (sd 0.003 vs 0.003)

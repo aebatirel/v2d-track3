@@ -1027,6 +1027,66 @@ Reused unchanged: `tools/early_stop.sh`, `tools/ckpt_curve.sh`, `tools/ckpt_curv
   recorded on the box.
 - The box speed with D's extra kernels.
 
+### 8.1 Results (31 Oct 2026, merged ~20:31 UTC, after all boxes finished)
+
+**Runs:**
+
+| run | Vast | commit | seeds, arms | job end | cost |
+|---|---|---|---|---|---|
+| 20261031-rscr42-2e25459 | 58531195 | 2e25459 | 42: C K D | exit 0, 18:43 UTC | $8.22 |
+| 20261031-rscr43-865dfbb | 58532423 | 865dfbb | 43: C K D | exit 0, 17:37 UTC | $7.73 |
+
+- Command (each box): `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'SEEDS=<seed> bash
+  ops/jobs/recipe_screen.sh'`.
+- Costs are ledger actuals, estimated from hours × price.
+- Merge: `python3 tools/recipe_screen.py verdict <4 box summary.json> --out gpu/recipe_screen_S_merged.json`. Output:
+  `gpu/recipe_screen_S_merged.txt`. Reference md5s were checked against the registered table, with no INVALID.
+
+**Cells.** AUC vs mocap: mean (draw sd, ddof 0), 10 draws unless noted.
+
+| ep | seed | C | K | D |
+|---|---|---|---|---|
+| 2 | 42 | .955 (.029) | .965 (.009) | .743 (.269) |
+| 2 | 43 | .869 (.174) | .959 (.020) | .862 (.236) |
+| 12 | 42 | .576 (.066) | .519 (.067) | .924 (.021) |
+| 12 | 43 | .612 (.014) | .582 (.024) | .919 (.022) |
+| 18 | 42 | .620 (.015) | .623 (.006) | .603 (.053) |
+| 18 | 43 | .624 (.002) | .620 (.009) | .600 (.059), 9 draws |
+| 24 | 42 | .234 (.003) | .191 (.022) | .233 (.006) |
+| 24 | 43 | .238 (.005), **4 draws** | .251 (.013) | .230 (.003) |
+
+**Missing cell: C/ep24-s43.**
+- 6 of its 10 draws (r1 r2 r3 r7 r8 r9) crashed at evaluator start (16:41 UTC).
+- The error is `env.cc:93 Check failed: ret == 0 (11 vs. 0) Thread tf_foreach creation via pthread_create() failed`,
+  i.e. EAGAIN: the box's thread/process limit, hit while two other cells were training.
+- It is an infrastructure crash, not a policy failure. The cell is below the 8-draw minimum, so it is missing.
+
+**Verdicts (pre-registered rules):**
+- **K vs C: INCOMPLETE.**
+  - Seed-mean Δ: ep2 +0.050, ep12 −0.043, ep18 −0.001.
+  - Under any completion of the missing cell the verdict would be "inconclusive":
+    - "signal" needs Δ(ep24) ≥ +0.115, i.e. a C seed-mean ≤ 0.106, which is impossible;
+    - "harm" needs C/ep24-s43 ≥ 0.41, i.e. its 6 missing draws averaging ≥ 0.53, while no ep24 draw in the screen
+      exceeds 0.29.
+- **D vs C: INCOMPLETE, and not determined.**
+  - Seed-mean Δ: ep2 −0.110 (sd .253 vs .101), ep12 +0.327 (sd .021 vs .040; the sd falls), ep18 −0.020.
+  - The verdict becomes "signal" iff C/ep24-s43's 10-draw sd is ≥ 0.0116. Its 4 present draws have sd 0.0046, and the
+    other C ep24 seed has 0.0026. Otherwise it is "inconclusive".
+  - Not re-scored: the owner chose not to use D (20:29 UTC), so no decision depends on it.
+- **Reported, no rule:**
+  - Picking the seed by sim_vs_ref gains +0.021 (C), +0.016 (K), +0.016 (D) AUC over the 2-seed mean.
+  - sim_vs_ref orders the two seeds like AUC in 11 of 11 pairs.
+
+**Post-hoc, not pre-registered [H].**
+- Script: `gpu/scripts/recipe_screen_posthoc_select.py`. Output: `gpu/recipe_screen_posthoc_select.txt`.
+- Per (episode, seed), the arm with the higher 10-draw sim_vs_ref also had the higher AUC:
+  - C vs D 7/7, C vs K 7/7, K vs D 7/8;
+  - the one miss is on ep24, within 0.021.
+- "Train C and D, keep the higher sim_vs_ref" gains +0.094 mean over 7 cells. All of the gain is on ep12.
+- Proposed for pack 10 (≈ $14–20 [E]). The **owner declined ("No D", 20:29 UTC)**.
+- Falsifier, not run: D on further library_v3 public episodes, where sim_vs_ref picks D but D's AUC is lower by > 0.02.
+  focused-pascal offered its masses-v2 mass0 cells (ep11/13/24/31) as the control.
+
 ## 9. Clean solver re-test, arm S (pre-registered 31 Oct 2026 ~16:30 UTC, written before any S result)
 
 **Why.** G3's "harm" rests on one seed (42) on ep2, which also collapses with the normal reference; G3's ep2 policy
@@ -1063,3 +1123,45 @@ reference differing. The owner asked whether this was explored enough. It was no
 - **signal:** eval solving starts (owner's pre-approval). Pack 10's own per-episode swap rule (focused-pascal)
   decides what is packed.
 - **no signal or INCOMPLETE:** stop. Solved references are not used for eval.
+
+### 9.1 Results (31 Oct 2026, merged ~20:31 UTC)
+
+**Runs:**
+
+| run | Vast | commit | GPU, price | job end | cost |
+|---|---|---|---|---|---|
+| 20261031-rscrS42-cc9c32f | 58559935 | cc9c32f | RTX PRO 6000 WS, $1.444/h | exit 0, 19:38 UTC | $3.30 |
+| 20261031-rscrS43-d6787a8 | 58560711 | d6787a8 = cc9c32f + one log line | RTX PRO 6000 Max-Q, $1.336/h | exit 0, 20:26 UTC | $3.88 |
+
+- Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <run> 'ARMS=S SEEDS=<seed> bash
+  ops/jobs/recipe_screen.sh'`.
+- Costs are ledger actuals, estimated.
+- S references (md5 as registered): ep2 336917e3…, ep12 6e4c9448…, ep18 f0f14155…, ep24 7edd70e3…. The C (physS1)
+  references: ep2 b4807f41…, ep12 96ddc1ca…, ep18 f0f14155…, ep24 699fe426….
+
+**Cells.** AUC: mean (draw sd), 10 draws each; the chosen checkpoint in brackets.
+
+| ep | S seed 42 | S seed 43 | S seed-mean | C seed-mean | Δ |
+|---|---|---|---|---|---|
+| 2 | .751 (.211) [20M] | .808 (.225) [20M] | .780 | .912 | **−0.133** |
+| 12 | .832 (.070) [30M] | .802 (.082) [30M] | .817 | .594 | +0.223 |
+| 18 | .553 (.099) [10M] | .616 (.014) [10M] | .584 | .622 | −0.038 |
+| 24 | .249 (.005) [10M] | .237 (.014) [40M] | .243 | (.234; s43 missing) | (≈ +0.007) |
+
+**Verdict.**
+- Formally **INCOMPLETE**, because C/ep24-s43 is missing (§8.1).
+- It is **"no signal" under any completion**, because Δ(ep2) = −0.133 ≤ −0.05. The provisional 3-episode mean Δ is
+  +0.017, below +0.03 anyway.
+- **Action (pre-registered): stop. Eval solving is not started, and solved references are not used for eval.**
+
+**What this settles.**
+- The solved references help ep12 on both seeds (+0.22).
+- They hurt ep2 on both seeds (−0.13), with draw sd about 0.22 vs C's 0.10.
+- So G3's ep2 "harm" was not only seed 42's collapse: the clean, two-seed test also loses on ep2.
+
+**ep18 replicate.**
+- S's ep18 file is byte-identical to C's. So S/ep18 and C/ep18 are the same reference, seed and recipe, trained on
+  different boxes.
+- Seed 42: .553 (sd .099) vs .620 (sd .015). Seed 43: .616 vs .624.
+- Training nondeterminism alone moves a cell by up to 0.07 AUC and its draw sd by 6×. Single-cell differences of this
+  size are noise.

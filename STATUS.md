@@ -1,20 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-10-31 ~20:24 UTC: recipe screen done (24/24 cells, 1 control cell short of draws); solver re-test → no eval solving
+## 2026-10-31 ~20:32 UTC: recipe screen + solver re-test DONE (all boxes gone); no eval solving; owner: no D
 - **One cell is short of draws.** C/ep24-s43 has 4 of its 10 draws: 6 evaluator starts crashed (`pthread_create`
   EAGAIN, a box thread limit; infrastructure, not the policy). So all three verdicts are formally INCOMPLETE.
 - **K vs C:** inconclusive under any completion of that cell (3-episode mean Δ +0.002).
 - **D vs C:** not determined. ep12 +0.33 (both seeds, sd falls); ep2 −0.11 (sd 2.5× higher); ep18 −0.02. It flips to
   "signal" only if C/ep24-s43's 10-draw sd ≥ 0.0116 (4 present draws: 0.0046). Re-scoring that cell costs ≈ $1 [E] and
   needs the owner's go-ahead.
-- **S vs C (§9):** no signal under any completion (Δ ep2 −0.132 ≤ −0.05; ep12 +0.223; ep18 −0.038). S/ep24-s43 is still
-  running on 58560711. Per §9: stop. **Eval solving is not started.**
+- **S vs C (§9):** no signal under any completion (Δ ep2 −0.133 ≤ −0.05; ep12 +0.223; ep18 −0.038; ep24 ≈ +0.007).
+  Per §9: stop. **Eval solving is not started**; solved references are not used for eval. Write-up: physics-solver.md
+  §8.1 / §9.1.
 - **ep18 replicate:** S's ep18 reference is byte-identical to C's, so the two ep18 cells are the same setup trained
   twice. They differ by up to 0.07 AUC per seed: pure training nondeterminism.
 - **Post-hoc [H]:** in every C-vs-D pair, the arm with the higher 10-draw sim_vs_ref (GT-free) also had the higher AUC
   (7/7). "Train C and D per episode, keep the higher sim_vs_ref" → +0.094 mean on public cells (all from ep12).
   Offered for pack 10; owner chose **"No D"** (20:29 UTC). Pack 10 stays on the current recipe.
-- Spend today on this lane: rscr42 $8.22, rscr43 $7.73, rscrS42 $3.30 (actuals, estimates); rscrS43 running ($1.34/h).
+- Spend on this lane: rscr42 $8.22, rscr43 $7.73, rscrS42 $3.30, rscrS43 $3.88 = $23.13 (actuals, estimates). No boxes
+  of this session are running.
 
 ## 2026-10-31 ~03:15 UTC: realistic masses ADOPTED by the pre-registered rule (round 3)
 - Seed means S1 − S0: ep2 +0.160, ep12 +0.103 (S1 seed 43 lost to a stalled box), ep18 +0.011, ep24 +0.084 → mean +0.090.
