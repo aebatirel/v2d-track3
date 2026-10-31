@@ -5528,3 +5528,10 @@ arm and a no-policy replay floor to stage B.
   - choose per object by the GT-free obs_fidelity rule, written before choosing;
   - report the public single-episode build distribution vs scan as context.
   Tonight's pack keeps C0 unless the eval builds are verified by ~19:00 UTC; otherwise they go into the 1 Nov pack.
+- ~15:43 UTC focused-pascal confirms pack 9a:
+  - now: CPU repack check (rebuild pack 8 byte for byte except the commit URL);
+  - at C0's arrival: swap only the packed meshes, then row-diff checks, mesh md5s, kit preflight;
+  - upload by ~20:30 UTC; fallback pack 8 at 20:00.
+  Blocking condition: each C0 mesh must be in the library_v3 body frame it replaces. The mesh README §9 says they lie
+  in the same object frame (median 2–4 mm from library meshes without registration); bold-albattani to confirm.
+  focused-pascal tells the owner in its own channel what goes up and when.
