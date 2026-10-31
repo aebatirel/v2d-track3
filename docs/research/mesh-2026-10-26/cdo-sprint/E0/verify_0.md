@@ -1,6 +1,7 @@
 # E0 verify_0: adversarial verification, integrity lens
 
 - **When / where.** 2026-10-31, ~17:00-17:30 UTC, cloud VM (4 shared cores, loaded), CPU only, $0. I did not build E0.
+- **Code version.** HEAD 5ae9361. The E0 package commit is 3fbc1d1, and the box ran b05f001.
 - **Scope.** Ground-truth reads in every E0 script and in the box job; contents of the store inputs folder; PREREG
   timing against the dry-run, box and git/store times; settings against the public frozen ones; the pick, recomputed
   from the box's raw tables; ledger lines; whether the box is gone. Also: which scan-derived or unexplained constants
@@ -16,8 +17,9 @@
 - **Blocking: 1 (B1).** It is a ship gate for pot, lid and rack, not a defect in the run. The blue cup is not affected.
 - **Non-blocking: 9 (N1-N9).**
 - **Confirmed: 9 (C1-C9).** No ground truth was read. The store inputs hold no ground truth. PREREG was pushed
-  before any eval candidate existed and did not change afterwards. Settings equal the public ones, except N1. The pick
-  and recommendation recompute exactly. The ledger is complete, and the box is gone.
+  before any eval candidate existed and did not change afterwards. Settings equal the public ones. The frozen rack
+  code re-runs the public rack byte-identically, but the box's thread count differs (N1). The pick and recommendation
+  recompute exactly. The ledger is complete, and the box is gone.
 
 ## Blocking
 
@@ -52,7 +54,7 @@
 
 ## Non-blocking
 
-### N1. Rack code: the frozen `prim_rack.py` is not the file the public clean-up round ran, and my public re-run is not byte-identical
+### N1. Rack code: the frozen `prim_rack.py` is not the file the public clean-up round recorded. It reproduces that run byte-identically, but the box's thread setting changes the bytes
 
 - **The mismatch [M].**
   - `results/prim/clean/code_state.txt` records `prim_rack.py` sha1 **7a7fa102** for the clean-up-round runs, which
@@ -61,22 +63,26 @@
   - No commit contains 7a7fa102. The two git versions are ca2aea0d (104ae2a) and 18a923c3 (2971a10).
   - PREREG section 2 calls 18a923c3 "the committed clean-round file" and does not mention the mismatch. The prep
     reproduced the pot, lid and cup byte-identically, but not the rack.
-- **Evidence for equivalence [M].** `scratchpad/prim/clean/rack/default/` (27 Oct 07:08:24, 17 s before the commit;
-  `default.check` = `DEFAULT-SAME`) holds a default-settings re-run.
-  - All 12 meshes are byte-identical to `t2.5_lean1/`.
-  - Its `joint_joint.glb` md5 is bbca8ec0…, the C0 rack.
-  - This fits the diff 104ae2a→2971a10: the defaults now equal T_WALL 2.5 / CUP_LEAN 1, plus comments. But nothing
-    records which file that re-run executed.
-- **My re-run [M].** Command: `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 venv/bin/python -I -W ignore
-  E0/jobs/frozen/.../prim_rack.py run --obs_dir scratchpad/obs_all --out scratchpad/cdo_e0/verify0/rack_pub`, local
-  pinned venv (same versions as the box `freeze_main.txt`).
-  - With `OMP_NUM_THREADS=1`: 12/12 meshes differ from the public run.
-  - Structure is identical: H_r, cup top, pegs and markers per episode.
-  - Faces differ by ≤ 4. Fidelity differs by ≤ 0.004 mm. The joint is 5.938 vs 5.935 mm, with 2354 vs 2356 faces.
-  - With default threads: RACK_THR_RESULT.
-- **Effect.** This sits far inside the 15 % rule margin. The rack rec does not depend on it (C0/pick 0.973).
-- **Needed.** Record in PREREG/BOX that the rack's public run used 7a7fa102, and cite the DEFAULT-SAME evidence. Do
-  not claim a byte-identical rack reproduction.
+- **My public re-run with the frozen file [M].** Command, run in `scratchpad/cdo_e0/verify0` with the local pinned
+  venv (same versions as the box `freeze_main.txt`):
+  `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 venv/bin/python -I -W ignore E0/jobs/frozen/docs/research/mesh-2026-10-26/scripts/prim_rack.py run --obs_dir scratchpad/obs_all --out <dir>`
+
+  | Run | Thread setting | Result against the public `t2.5_lean1` run |
+  |---|---|---|
+  | `rack_pub_thr` | the machine's default, as the public run | **all 12 meshes byte-identical**, including `joint_joint.glb` md5 bbca8ec0…, which is the C0 rack; selection joint 5.935 |
+  | `rack_pub` | `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1` | **all 12 meshes differ**: same structure (H_r, cup top, pegs, markers); faces ≤ 4 apart, fidelity ≤ 0.004 mm apart; joint 5.938 vs 5.935 mm, 2354 vs 2356 faces |
+
+  So 18a923c3 is equivalent to the code that built the C0 rack. This agrees with the 27 Oct `DEFAULT-SAME` re-run.
+  The defaults now equal T_WALL 2.5 / CUP_LEAN 1; the rest of the diff is comments.
+- **The bytes depend on BLAS/OpenMP threads.** `e0_box.sh` exports `OMP/OPENBLAS/MKL_NUM_THREADS=2`. The public runs
+  and the prep's byte-identical pot, lid and cup reproductions used the local default (4 cores). So no E0 build was
+  made under the exact numeric conditions of the public runs.
+- **Effect [M on the rack, E elsewhere].** On the public rack the effect is ≤ 0.004 mm of fidelity. That is far inside
+  the 15 % margin. No E0 recommendation depends on it: C0/pick is 0.973-1.058, and library_v3/pick for the cup is
+  1.098.
+- **Needed.**
+  - In PREREG/BOX, note the 7a7fa102 record and this equivalence evidence.
+  - Treat the thread count as part of the frozen settings in E0b: record it, or pin it to the public value.
 
 ### N2. library_v3 is a scan-tier input on the project's own deny-list, and E0 does not disclose this
 
@@ -209,7 +215,8 @@ This is not an integrity defect; it is already disclosed.
 - All 7 files under `jobs/frozen` have the same sha1 as `git show 2971a10:<path>`.
 - `prim_potlid.py` c2627630 equals `code_state.txt`. The working-tree file (9032a68b, 14eaf37 WIP) is correctly not
   used.
-- Exception: `prim_rack.py`, see N1.
+- `prim_rack.py` is the exception on paper: 18a923c3 against the recorded 7a7fa102. It reproduces the public rack run
+  byte-identically with default threads (N1).
 
 ### C5. The settings equal the public ones [M]
 
@@ -261,10 +268,13 @@ Store commit times are in C3.
 
 ### C9. The box is gone [M]
 
-`ops/vast.sh show` at ~17:12 UTC lists 7 instances of other sessions. Instance 58555214 is not among them.
+`ops/vast.sh show` lists only other sessions' instances: 7 at ~17:06 UTC and 8 at 17:26:13 UTC. Instance 58555214
+is in neither listing.
 
 ## Re-run
 
 - `python -I scratchpad/cdo_e0/verify0/recompute.py <box results/e0> E0/inputs/thresholds.json` (output
   `scratchpad/cdo_e0/verify0/recompute_out.json`).
-- Rack: the commands in N1 (output `scratchpad/cdo_e0/verify0/rack_pub*`).
+- Rack: the command in N1, run once with the machine's default threads and once with `OMP_NUM_THREADS=1` (outputs
+  `scratchpad/cdo_e0/verify0/rack_pub_thr/`, `rack_pub/` and their `.log`). Each run took 3-17 min on the loaded
+  4-core VM.
