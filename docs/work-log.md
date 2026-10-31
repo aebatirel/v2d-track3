@@ -5841,3 +5841,14 @@ diagnostic; nothing is picked for submission.
   run, 21:25:39-21:26:35 UTC, HEAD 0683232, this container, $0): mean dAUC +0.022, min -0.030 (ep13; fails the -0.02
   clause), dMPPE -0.22 cm, dRPE +0.17 cm. Recommended to the pack lane, flagged; board CD-O about -0.032 [E].
   Record `cdo-sprint/C0/bluecup-on-9aplus/README.md` (fc952de).
+
+### 2026-10-31 21:55 UTC — orchestrator: F-I5 round 1 closed; hand-offs relayed; round 2 (F-I5.15) launched
+- Collision-carve workflow (wf_4fb89344-0c3) finished its Report (01de940; INTERLOCK 21.12). Hand-offs relayed to
+  determined-wright (no eval r0; impossible tracked rest poses on public ep11/12/13/31) and focused-pascal (keep the
+  packed carves; ring chord-sag finding r_in(1-cos(pi/N)) may apply to their pipeline/lathe_collision.py).
+- Orchestrator decision for round 2 (post hoc, to be written as PREREG F-I5.15 after a prior-work review): cavity-safe
+  rings (inner tangent, outer chordal), CoACD at cap/2 then repair, pose precheck on faithful colliders at every S frame
+  (pose_impossible -> push list), physical delivery floor + DO_NOT_USE markers, a true nest (synthetic if no public
+  one), then the five 21.10 decisions; off-axis nests not carved. Workflow collision-carve-2 (wf_5b6edef9-640) launched,
+  with a GT-free eval precheck (packed references and colliders, evals 10/1/14/16/30/32/33) as a diagnostic for the
+  pose lanes. One Vast box allowed, cap $3, ledger first.
