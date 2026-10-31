@@ -2,7 +2,7 @@
 does (pack.pack: fit_budget 4000, own kit decode, V1). Uses build 1's producers unchanged.
 
   GMG_MODE=dev python -m gmg.tools.interlock_cands --run RUN --bundle BUNDLE_DIR --ep N [--objects a,b]
-Writes RUN/cand/public/ep<N>/<obj>/<cid>.glb and <cid>.json (producer report + pack info)."""
+Writes RUN/cand/<split>/ep<N>/<obj>/<cid>.glb and <cid>.json (producer report + pack info; split from the bundle)."""
 from __future__ import annotations
 
 import argparse
@@ -30,7 +30,7 @@ def main():
     b = IL.load_bundle_any(a.bundle)
     objs = a.objects.split(',') if a.objects else b.objects
     for o in objs:
-        out = os.path.join(a.run, 'cand', 'public', f'ep{a.ep}', o)
+        out = os.path.join(a.run, 'cand', b.meta.get('split', 'public'), f'ep{a.ep}', o)   # eval bundle -> cand/eval
         os.makedirs(out, exist_ok=True)
         for mod in (P_SHELL, P_HULL):
             for c in mod.produce(dict(bundle=b, obj=o, t0=t0)):
