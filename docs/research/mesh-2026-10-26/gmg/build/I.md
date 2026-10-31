@@ -361,3 +361,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 16:03 read I.md (all), INTERLOCK 0-3, 6, 11, 14, 18, 19, PREREG F-I1..F-I3, interlock.py (to decide_pair). Task:
   write PREREG F-I4 + INTERLOCK section 20 (waiver scope, slot geometry from GT-free evidence, plate body, analytic
   pieces, acceptance, delivery), commit + push BEFORE any code runs with it. No run in this step.
+- 16:15 design decided (writing PREREG F-I4 + INTERLOCK 20 now; nothing run): plate-like = structure.py plane pair
+  (accepted['plate'], slab window 3-25 mm) on owned points within 6 mm of the pick (F-I2.10 filter); t = that pair's
+  thickness; body = STRUCT plate if one exists (none for ep24: cand folder has shell_t5p36 + hull only), else the box
+  of the observed outline (2 mm raster, >= 3 frames per cell, min-area rectangle, fill >= 0.9) at t; slot w = t_p + 2 mm,
+  centre = motion component's centroid along a_L, depth = partner's deepest penetration in R (capped at the shared
+  split plane: both slots are bridged, only the sum of depths is constrained) + 2 mm; consistency |D1 + D2 - W_x|
+  <= 10 mm; 3-box pieces; acceptance P2-P7 + keep-out unchanged, default = unslotted plate; P1 stays theirs; r0 with
+  p1_pending (amends F-I2.12 for this route only).
