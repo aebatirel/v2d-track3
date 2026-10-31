@@ -1108,3 +1108,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   method (half-peak centre of below-mid-plane points, 8 mm band trim, +-30 mm, >= 100 points); P_sim flag on the
   median overlap. Committing my lines only (other agents' uncommitted lines in PREREG.md, INTERLOCK.md and this file
   are left unstaged).
+- 21:37 pushed 782db1c (PREREG F-I4.16, INTERLOCK 20.13 + header + 20.12 status line, F-I4.15 outcomes N3 / N4 lines,
+  this log, work log; committed 21:36:31 UTC, on origin at 21:36:48; the "21:37" stamps in those texts are that
+  commit time rounded to the minute). Only my lines were staged. Amend step done: no code edited, nothing run, $0.
+  The Build step may start from 782db1c.
