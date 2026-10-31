@@ -5126,3 +5126,9 @@ Advice given:
   dropped. Core ~$25–35, max ~$45. Their draft (public recipe screen ~$35–45 + confirm ~$20 + optional loop ~$12) plus
   mine ≈ $100–120 against $29 credit: the owner would need ~$70–90 more. Proposed order: masses retrain first on the
   current recipe; their recipe winner into a second, smaller retrain on the top episodes.
+- 10:51 UTC (relayed by determined-wright) **owner chose the LEAN budget** to the freeze: total ≈ $87–121, top-up
+  ≈ $60–90 on the $29 credit. This session's lane: mass-check remainder; eval-10 fix + retrain; masses eval retrain O2
+  if the check ADOPTs (no spoon wave); a second, smaller retrain with the Embodiment session's recipe winner. Their lane:
+  3-arm public recipe screen (control / keep-the-peak / reset-nudge DR) on ep2/12/18/24 × 2 seeds + a 2-episode confirm,
+  launched only when credit allows. The eval retrain has priority on credit. tools/intrusion.py (759032e, their branch)
+  available for eval 10's cup-nest penetration check.
