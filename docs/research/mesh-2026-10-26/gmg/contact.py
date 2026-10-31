@@ -1,4 +1,4 @@
-"""Contact census and partner samples (module M4, minimal form for build step B1; B4 adds the full M4).
+"""Contact census and partner samples (module M4; minimal form at build step B1, used by extract_joint at B4).
 
 GT-free: our tracks (cam_T_<obj>, world_T_cam), our owned points and grids, the rectified camera matrix. No file
 access here (the bundle passes arrays in).
@@ -9,7 +9,8 @@ access here (the bundle passes arrays in).
                                          contact / separated / sep3d frame lists (SPEC section 4, PREREG A.6)
   rel(poses, o, p, f)                    T_{o<-p}[f] = inv(cam_T_o[f]) . cam_T_p[f]
   partner_samples(bundle, target, partner, frames)   P_p moved into the target frame at each frame
-  jitter(bundle, o, p)                   pair jitter j (PREREG A.2)
+  jitter(poses, o, p, Xp, frames, stride) pair jitter j (PREREG A.2)
+  census_bundle(bundle)                  SPEC M4 census(bundle): the census of a bundle's owned points
 
 Dev bundles (bundle.from_obs_all) use this module with obs_all points, whose partner points within 12 mm of the
 library_v3 meshes were removed: dev contact numbers overstate separation and are never evidence for the pot-and-lid
@@ -176,6 +177,19 @@ def census(objs, poses, frames, K):
             out[f'{o}|{p}'] = rec
             out[f'{p}|{o}'] = dict(rec)
     return out
+
+
+def census_bundle(bundle):
+    """SPEC M4 `census(bundle)`: the census of a bundle's owned points (own == 0; 2 mm centroids, object frame) over its
+    extraction frames, with the bundle's camera matrix. Same numbers as the pass-4 census of extract_joint."""
+    cen = {}
+    for o in bundle.objects:
+        ob = bundle.obs(o)
+        own = np.asarray(ob.get('own', np.zeros(len(ob['pts']), np.uint8)))
+        cen[o] = centroids(np.asarray(ob['pts'])[own == 0])
+    if len(cen) < 2:
+        return {}
+    return census(cen, bundle.poses, bundle.frames(), np.asarray(bundle.meta['K'], np.float64))
 
 
 def separated_for(contact, target, others):

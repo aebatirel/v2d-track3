@@ -13,8 +13,8 @@
 GT-free: our owned points, our tracks and the per-frame table planes of the bundle. The thresholds are PREREG A.6
 "track sanity" and "identity tests" (informed: written after tracks were found bad through scan ADD).
 
-Bad frame (SPEC section 7): more than 5 % of the object's owned surface samples (one per OBSERVED voxel, placed by the
-frame's track) lie more than max(3 sigma, 3 mm) below the frame's table plane, or the frame's block-vs-rest residual
+Bad frame (SPEC section 7): more than 5 % of the object's owned points (all frames, object frame; placed by the frame's
+track) lie more than max(3 sigma, 3 mm) below the frame's table plane, or the frame's block-vs-rest residual
 exceeds 3 times the episode median (blocks: the A.2 K = 3 contiguous blocks of the object's frames; residual of frame
 f = median distance of f's owned points to the 2 mm centroids of the owned points of the other blocks). TRACK_FAIL:
 fewer than 30 % of the object's frames, or fewer than 20 frames, are good.
@@ -33,6 +33,7 @@ SHELL_SAMPLES = 4000    # area-weighted samples of a sheet used by the chamfer (
 REG_N = 1500            # points per side in the ICP (random, seed 0; numerical)
 ICP_ITERS = 30
 RESID_N = 2000          # owned points of a frame used for its block-vs-rest residual (random, seed 0; numerical)
+BELOW_N = 50000         # owned points used by the below-table test (random, seed 0; numerical)
 
 
 def _consts():
@@ -71,7 +72,11 @@ def check(bundle, obj):
     fr = np.asarray(obs['frame'])
     own = np.asarray(obs['own'])
     frs = frames_with_points(obs)
-    X = bundle.samples(obj)[0]
+    # the object's owned points (all frames, object frame; BELOW_N at random, seed 0) placed by each frame's track
+    idx = np.nonzero(own == 0)[0]
+    if len(idx) > BELOW_N:
+        idx = np.random.default_rng(0).choice(idx, BELOW_N, replace=False)
+    X = P[idx]
     thr = max(c['below_k'] * sig, c['below_min'])
     below = {}
     for f in frs:

@@ -586,3 +586,17 @@ scan number was seen; none bears on these choices.
 94. **B.2a as run.** The reference sheet takes up to 600k random owned points (seed 0) of the 3-D-separated frames
     (final census, gap > 20 mm) that hold o's owned points; testable if >= 10 such frames; "p's owned samples in the
     same frame" = p's `own == 0` points of that frame moved by T_{o<-p}[f]; contact frames from the final census.
+95. **(2026-10-31, B4, after the ep2 trial) Below-table test on the raw owned points** (supersedes the sample choice of
+    entry 90). The first implementation placed one sample per OBSERVED voxel by each frame's track; on the ep2 trial
+    (`runs/20261031-b4try1-738976b`, not audited) it marked 80 of 172 white_pot frames and 34 of 172 lid frames bad,
+    all while the objects rest on the table: the underside, seen only while lifted, is about 5 % of the voxel samples
+    and sits 4-15 mm under the table at rest [M]. SPEC says "more than 5 % of its owned points"; the raw owned points
+    (all frames, 50k at random, seed 0) weight each surface by how often it was seen, as the text reads. Same trial:
+    0 of 172 pot frames and 7 of 172 lid frames bad [M]. Thresholds unchanged. No scan number seen.
+96. **(2026-10-31, B4) B.3 diagnostic added (not a pass condition).** obs_points.py never removed partner surfaces from
+    its hit votes (`--others` filtered the saved points only; the hit vote excludes table and hand pixels only), so
+    an obs_all OBSERVED grid holds the partner's voxels where the partner sat persistently in the object's frame;
+    ownership removes them by design. b4_roi_swap therefore also reports the Jaccard over old-lattice voxels whose clean
+    voxel has no partner evidence (pocc = 0 and shared = 0) and the number of lost voxels with partner evidence. The
+    B.3 verdict stays the pre-registered one. Seen before adding it: the ep2 trial values (pot Jaccard 0.907, lid
+    0.918; 532 of the pot's 1005 lost voxels and 286 of the lid's 351 carry partner evidence) [M, dev comparison].

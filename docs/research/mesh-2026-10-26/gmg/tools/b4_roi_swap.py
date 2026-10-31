@@ -98,8 +98,22 @@ def main():
         A, B = r['st'] == 2, new_st == 2
         inter, union = int((A & B).sum()), int((A | B).sum())
         jac = inter / union if union else float('nan')
-        z = guard.load_npz(os.path.join(bdir, f'{o}.npz'), 'clean_run', keys=['state', 'lo', 'vox'])
+        z = guard.load_npz(os.path.join(bdir, f'{o}.npz'), 'clean_run', keys=['state', 'lo', 'vox', 'pocc', 'shared'])
         st = np.asarray(z['state'])
+        # diagnostic (not the B.3 pass condition): the Jaccard over old-lattice voxels whose clean voxel (the one holding
+        # the old centre) has no partner evidence (pocc == 0 and shared == 0). obs_points.py never removed partner
+        # surfaces from its hit votes (--others filtered the points only), so old OBSERVED includes partner voxels.
+        oi = np.argwhere(np.ones(r['shape'], bool))
+        oc = r['lo'] + (oi + 0.5) * r['vox']
+        vi = np.floor((oc - np.asarray(z['lo'], np.float64)) / float(z['vox'])).astype(np.int64)
+        ins = np.all((vi >= 0) & (vi < np.asarray(st.shape)), axis=1)
+        part = np.zeros(len(oc), bool)
+        pg = (np.asarray(z['pocc']) > 0) | (np.asarray(z['shared']) > 0)
+        part[ins] = pg[tuple(vi[ins].T)]
+        part = part.reshape(r['shape'])
+        A2, B2 = A & ~part, B & ~part
+        u2 = int((A2 | B2).sum())
+        jac_np = int((A2 & B2).sum()) / u2 if u2 else float('nan')
         ijk = np.argwhere(st == 2)
         ctr = np.asarray(z['lo'], np.float64) + (ijk + 0.5) * float(z['vox'])
         out = ~np.all((ctr >= r['lo']) & (ctr <= r['hi']), axis=1)
@@ -108,6 +122,8 @@ def main():
                    clean_observed=int(len(ctr)), clean_observed_outside_old_box=int(out.sum()),
                    outside_share=round(float(out.mean()) if len(out) else float('nan'), 4),
                    old_only=int((A & ~B).sum()), new_only=int((B & ~A).sum()),
+                   old_only_partner_evidence=int((A & ~B & part).sum()),
+                   jaccard_no_partner_evidence_diag=round(jac_np, 4),
                    pass_jaccard=bool(jac >= 0.95), pass_outside=bool(len(out) and out.mean() <= 0.05))
         recs.append(rec)
         print(json.dumps(rec), flush=True)
