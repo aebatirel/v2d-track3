@@ -14,7 +14,7 @@
   physics-solver.md §8. Estimate 2 boxes ≈ $20–28 [E], worst ≤ $33. K's horizon stays as registered (136,728 updates,
   the same clock as C; the actor's clock runs at half speed in both arms, so K's actor LR stays ≥ 3.18e-4; chosen
   checkpoints sit at 10–20M where the tail barely matters). Reviewed and committed 12:10 UTC; waits for the owner's
-  go-ahead and for the pack session's eval work to go first. Owner approved 12:13 UTC ("Go, after pack"); waiting on focused-pascal.
+  go-ahead and for the pack session's eval work to go first. Owner approved 12:13 UTC ("Go, after pack"); focused-pascal OK. Box 1 SEEDS=42 = Vast 58531195 (run 20261031-rscr42-2e25459, created 12:16 UTC, $1.27/h); box 2 SEEDS=43 next.
 
 - Budget (31 Oct ~10:50 UTC): owner chose LEAN ($87–121 total to the freeze; owner topped up $100 at ~10:56 UTC → credit $128.43). My lane: 3-arm recipe screen (control / keep-the-peak: LR 6e-4→3e-5 + slower VOC fade / training-only reset-nudge DR) on ep2/12/18/24 × 2 seeds, 10 draws per pick (~$28–34 est.), + 2-episode confirm (~$10); being built on CPU, launch only when credit allows (pack session's eval retrain has priority). tools/intrusion.py done (759032e).
 

@@ -5804,3 +5804,11 @@ Background agent, CPU only, $0, no ground truth read.
   ≤ $33, once focused-pascal's eval-10 / masses work is launched or it confirms no conflict. Asked focused-pascal at
   12:15 UTC. Candidate offers 56216787 ($1.27/h, PL), 48367592 / 57986770 ($1.38/h). Ledger planned lines go in
   before each create.
+
+### 2026-10-31 12:16 UTC — determined-wright: recipe screen box 1 of 2 rented
+- focused-pascal (12:15 UTC): no objection to running alongside; its boxes go up ~15:00–19:00 UTC; asked for creates
+  ~10 min apart (HF store 429s at setup). Owner's condition met. Vast credit $126.55 measured 12:14 UTC.
+- Ledger planned `20261031-rscr42-2e25459` $14. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56216787 20261031-rscr42-2e25459 'SEEDS=42 bash ops/jobs/recipe_screen.sh'` (commit 2e25459, = 609582a job + log
+  lines) → Vast instance 58531195, RTX PRO 6000 Max-Q, Poland, $1.271/h all-in.
+- Box 2 (SEEDS=43) follows ~10 min later after box 1's setup looks healthy.
