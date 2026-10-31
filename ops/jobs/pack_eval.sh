@@ -18,7 +18,7 @@
 J=${J:-/content/job.log}; F=/content/results/final_eval; mkdir -p $F
 python $REPO_DIR/tools/no_oracle.py ${RUNS:-} ${PICK:-} ${KEEP_RESULTS:-} ${ASSET_PIECES:-} ${EP_LIB:-} ${ASSET_LIB:-} >> $J 2>&1 \
   || { log "pack_eval: REFUSED: an input is an oracle twin (mocap-derived; tools/no_oracle.py)" >> $J; exit 1; }
-pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed)
+pip install -q fast_simplification==0.2.0 manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed); pinned 31 Oct: the version the CD-O scores used
 # Standard-learner references (hard_ab.sh, refs/perc2mcks) name /content/assets/... (make_assets.py on the training box);
 # MA_ARGS (2026-10-31): the same make_assets.py arguments the standard learners were trained with, e.g. --physics
 # docs/research/physics-2026-10-30/props_masses_only.json (realistic masses); unset = the 0.3 kg placeholder.
