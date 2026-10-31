@@ -5456,3 +5456,5 @@ Advice given:
   4096 worlds, seed 42" (no tail, as required for 14). → S boxes go.
 - 23:11 UTC S25a: `create 57986768 20261031-drS25s42-a1a7e25 'ARM=dr MODE=std EPS="25" SEEDS="42" bash ops/jobs/mass_eval.sh'`
   (same V2D_COMMIT / ENV_SNAPSHOT) → instance 58588731 (Romania, $1.377/h); ledger planned $3.00.
+- 23:23 UTC S25b: `create 58257843 20261031-drS25s43-a1a7e25 'ARM=dr MODE=std EPS="25" SEEDS="43" bash ops/jobs/mass_eval.sh'`
+  → instance 58589859 (United Kingdom, $1.348/h); ledger planned $3.00.
