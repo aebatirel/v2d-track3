@@ -1263,7 +1263,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     F-I4 delivery. Stopped here: this step allowed one post-hoc entry (this one), so nothing is changed after the
     failure. [H] for the next decision (not adopted): a body that does not let end flares set the width (e.g. the
     rectangle of the 2-98 % outline, or fill measured on the 2-98 % box) would pass; it needs its own dated entry.
-  - **Correction of the outcomes above (2026-10-31, 17:55 UTC, after `build/I/verify_slot_0.md` and
+  - **Correction of the outcomes above (2026-10-31, 17:54 UTC, after `build/I/verify_slot_0.md` and
     `build/I/verify_slot_1.md`; record only: no rule, threshold or code changed, nothing run).**
     (a) **Cause of the F-I4.2 failure [M, verify_slot_1 B1]:** the "flares" are the boards' real I-shape (ends wider
     than the waist), not marker balls or bumps. The flare points lie in the face planes, none is within 30 mm of our

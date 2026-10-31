@@ -521,7 +521,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 17:52 (eval-25 step, board-slot workflow) started: read I.md (all), verify_slot_0/1 (blocking B1), PREREG F-I4.13,
   F-I4.14 (+ outcomes), F-I5 header, INTERLOCK 20.8 / 21.1. Task: first fix blocking verifier findings that need no
   new decision; run eval 25 under F-I4 only if no rule change is needed and ep24 acceptance passed.
-- 17:57 (eval-25 step) **decision: eval 25 NOT run under F-I4.** Reasons: (1) verify_slot_1 B1 (blocking) needs a
+- 17:54 (eval-25 step) **decision: eval 25 NOT run under F-I4.** Reasons: (1) verify_slot_1 B1 (blocking) needs a
   rule change: a plate body that follows the I-shaped outline (waist box + lug boxes or similar) is a new dated
   post-hoc F-I4 entry, an owner / orchestrator decision; verify_slot_0 N5 adds that it should be checked on another
   public plate episode first and frozen before eval 25. (2) ep24 acceptance failed: no slot was built (P36 failed at
@@ -531,10 +531,21 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   correction bullet (cause = real I-shape; the 2-98 % rectangle [H] withdrawn; board-1 t 6.21 mm = downsample, 7.3-7.4
   mm on all points; the w6 falsifier fired; P35 / P36 failed, P37 / P38 untested, P40 not independent) and an
   INTERLOCK 20.8 bullet.
-- 17:57 eval-25 inputs, checked for the next step only (nothing opened beyond hashes and our perception result.json)
+- 17:54 eval-25 inputs, checked for the next step only (nothing opened beyond hashes and our perception result.json)
   [M]: `<scratch>/data/eval/ep25_a.mp4` present; `<scratch>/data/eval/ep25/poses.npz` sha256 e95ccaef... equals the
   frozen evperc track (`frozen_eval_tracks.json`, run 20261025-evperc-4f596df), which the 25 Oct identity rule scored
   +50.0 (rank 21 of 32, swapped: wooden_piece_1 <- old wooden_piece_2 @ Rx 180 deg). So it PREDATES the ev25idfix
   naming. The pack's eval-25 reference came from the ev25idfix box's fresh perception (rank 1, nothing applied), i.e.
   a different track: the P_sel -> P_sim board mapping (verify_slot_1 N6) must be checked per board before any eval-25
   slot run. No gmg eval bundle for ep25 exists yet (needs the gmg extraction plus the HF eval depth cache).
+- 18:00 (collision-carve Build) written, not yet committed: `gmg/cavpieces.py` (F-I5.4 routes 1-4, lathe profile +
+  ring pieces + continuity check, CoACD 0.02 + keep-out repair, voxel boxes, gate), `gmg/collcarve.py` (collider
+  evidence / intrusions, FI5 context with gates, receiver, rest / overshoot, c, swept carve, caps, acceptance S + P2-P7,
+  rigid-shift / one-sided report, delivery, driver branch), `simphys.sink_test` (appended), hook
+  `interlock.decide_pair(..., waiver_fi5=None)` (3 lines), `simpieces.CODE_FILES` += the two modules. Build notes
+  (to go into PREREG as F-I5.11, before any real run): (1) profile radii by ray casting the SHELL mesh (3 azimuths
+  per sector, median) instead of the 2 mm sub-samples, which sit up to ~1 mm inside the surfaces; (2) lathe carve per
+  piece (best of new inner face by LP / new outer face / trim top / trim bottom), because a band hull refills per-bin
+  radii; carved wall ranges re-banded at <= 10 mm first. Smoke test (tapered cup, 64 sections): 65 ring pieces,
+  continuity 0 gaps / 64,440 rays; a forced 1 mm ring is caught (720 gaps at 5.94-6.44 mm). Next: tests/test_collcarve.py.
+- 17:55 correction: the two entries above and the PREREG F-I4.14 correction bullet first carried guessed times (17:57 / 17:55); replaced by the commit time of 3b662c3 (17:54:13 UTC). Text otherwise unchanged.
