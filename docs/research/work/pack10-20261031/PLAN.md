@@ -78,3 +78,14 @@ carves change only the simulator assets (the reference is unchanged), so one ref
 - Reference-side additions (keen-heisenberg): S2 for every eval reference that is rebuilt anyway (V4p already has it; a
   passing re-track rebuilds all with S2); an RTS smoother step after S2 only if it passes its own public gate
   (mean ΔR ≥ +0.005, no episode drop > 0.02; pre-registered). The masses arm keeps the packed references.
+
+## Update (31 Oct ~21:35 UTC): mesh lane deliveries (bold-albattani)
+- **No collision carves/seats for pack 10**: F-I5 carves for evals 32/33 (spoon in blue cup), 14/16/30 (rack seats),
+  10 and 1 will NOT be delivered (public ep11/2/12/13/31: piece splitting failed, lathe rings 1–3 mm inside cavities,
+  tracked rest poses interpenetrate or float — carving is not the remedy). Keep the packed assets.
+- **Eval-25 board slot**: conditional (round 3 running); firm yes/no by 1 Nov 08:00 UTC; would need an eval-25 rollout re-run.
+- **E0b eval meshes**: only pot and beige cup eligible under the scan-free rule; both less accurate on public than 9a+'s
+  (pot CD-O 0.392 vs C0 0.342; beige 0.30 vs T1 0.25). Keep 9a+'s on accuracy; E0b = the provenance-clean alternative,
+  the owner's call.
+- So Tier 1 = eval 10 V4p (retrain running) + the D cells (tonight, owner's go) + eval 25 slot only if delivered.
+  Tier 2 = masses (if ADOPT) and/or re-tracked references (if the re-track test passes; S2 included).
