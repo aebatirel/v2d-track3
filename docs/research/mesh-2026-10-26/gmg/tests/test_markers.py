@@ -74,6 +74,7 @@ def run_case(r_ball, balls=True):
         m, truth = ball_box(r_ball, balls)
         t = time.time()
         b = synth.episode(m, cams(), name='o', seed=0)
+        b.meta['ep'] = f'synth_r{r_ball * 1e4:.0f}_{int(balls)}'    # one consensus constant name per scene
         tr = time.time() - t
         t = time.time()
         res = MK.detect_episode(b, sigma=SIGMA)
