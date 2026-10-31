@@ -1762,7 +1762,7 @@ settle (P1) stays with the Embodiment session's `jitter_check` before any pack u
   the Embodiment session remains required before packing.
 - **Eval** needs eval bundles that do not exist yet; P_sim provenance may fall back to our eval tracks.
 
-### 21.10 Build and synthetic tests (31 Oct, 17:36-18:45 UTC; PREREG F-I5.11-F-I5.13)
+### 21.10 Build and synthetic tests (31 Oct, 17:36-18:37 UTC; PREREG F-I5.11-F-I5.13)
 **In plain words.** The code is built and wired in behind the `--waiver-fi5` flag (nothing changes without it). On the
 synthetic tests the rule as written **carves no cup**: every nested-cup case stops at the size and shape limits
 before the physics test is reached, so the default rings (which already keep the cups hollow) would be delivered. The

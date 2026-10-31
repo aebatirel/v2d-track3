@@ -1776,7 +1776,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     default). Voxel grids 2 / 4 / 6 / 8 mm **generic**. Piece cap floor(165 / objects) and the 0.3 cm3, weight-10
     keep-out **informed** (F-I1.14). Rigid-shift report (1 cm / 3 deg, 2 cm3, the tilt grid, 75 % one-sided) **informed**
     (ev10w M2); `carve_of_pose_error` 75 % **generic**. Every other threshold: as in F-I1.14 and F-I4.11.
-  - **F-I5.11 As built (decided while building, 17:36-18:33 UTC, before any real run; recorded 18:45 UTC).** Code
+  - **F-I5.11 As built (decided while building, 17:36-18:33 UTC, before any real run; recorded 18:37 UTC).** Code
     `gmg/collcarve.py`, `gmg/cavpieces.py`, `simphys.sink_test`, the `waiver_fi5` hook in `interlock.decide_pair`, the
     `--waiver-fi5` driver branch, `tests/test_collcarve.py` (T-I12 lives in this new file: `tests/test_interlock.py` was
     being edited by the board-slot workflow). Deviations from the text above, none of them a threshold:
@@ -1808,7 +1808,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     sigma_sup = 1 because R+ holds the guest's base corner (P44 anticipated this case: c = 1.0 mm). Without track jitter
     (diagnostic) the nest's main components fail the sweep gate (0.15 / 0.28, run SEAT) and S fails for the carved
     and the default pieces alike (the 9.5 mm-too-deep guest is pushed up 4.6 mm). No rule is changed by this entry.
-  - **F-I5.13 Diagnostic D2, rest-anchored pocket (post hoc, written 18:45 UTC after F-I5.12, before D2 runs; NOT a
+  - **F-I5.13 Diagnostic D2, rest-anchored pocket (post hoc, written 18:37 UTC after F-I5.12, before D2 runs; NOT a
     rule: never delivered, decides nothing; for the orchestrator / owner).** Question: does a pocket cut at the guest's
     hands-off rest pose keep a nested guest where our track puts it (P43's question), once the noise of the raw frames
     is not carved? D2 = F-I5 with three changes: (a) when T_rest exists, K per guest piece g = the convex hull of
