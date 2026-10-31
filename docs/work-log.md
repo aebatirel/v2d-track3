@@ -5601,3 +5601,13 @@ arm and a no-policy replay floor to stage B.
 - ~22:10 UTC zero-lag smoother sweep (owner: "can't we address the Kalman lag offline?"): RTS best −1.5 % alone,
   −5.1 % with the half-frame advance (vs −4.4 %), 0 objects worse. Tuned on public, so an upper bound. Page for Roman
   published: https://claude.ai/artifact/6ZSVt1Fz17nXR8gzEKx7mo (private; ep2 video embedded).
+- ~22:20 UTC owner: "we meant the Kalman filter for the robot as well". Page v2 adds a robot-side section (the owner has
+  shared the page by link):
+  - the policy reads exact simulator state, so no input filtering is needed; the robot's error is drift or drops at
+    contact moments, not noise or delay;
+  - Kalman-shaped robot levers:
+    - (1) object velocity in the actor's observation (a slip signal; the critic has it, the actor does not; one config
+      switch, notebook open hypothesis), proposed: 4 public episodes × 2 seeds vs the recipe control, ≈ $5–6 [E];
+    - (2) uncertainty training (start-state randomisation is in tonight's screen; observation noise + a memory in the
+      policy needs code, after the freeze);
+    - (3) worst-of-copies scoring in the physics solver.
