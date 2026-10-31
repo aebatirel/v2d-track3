@@ -5839,3 +5839,12 @@ Background agent, CPU only, $0, no ground truth read.
 - D (the DR patch under CUDA graph capture, untested on GPU) first trains when an ep2 slot frees; checked next.
 - focused-pascal takes H-nest-a (new folder meshes/carve/ev10w, my diagnostic as falsifier, then an extra arm in its
   ep11 gate only if it passes; owner go-ahead first). Mass check: 3 of 4 cells in (ep2 +0.081 / +0.233, ep12 s42 −0.007).
+
+### 2026-10-31 13:05 UTC — determined-wright: mass transfer check result received (focused-pascal's run)
+- Run 20261031-mass-2ed46ea (library_v3, 0.3 kg vs realistic masses, shared reference per episode, NREP 10), as
+  reported by focused-pascal (results on claude/focused-pascal-2nz9s1, 991fdea): VERIFIED; NOT ADOPTED under its
+  PREREG §3. ep2 0.552→0.633 (s42), 0.581→0.814 (s43), Δ +0.157 (SE 0.105); ep12 0.928→0.921, 0.920→0.900, Δ −0.013
+  (SE 0.007): ep12 misses the +0.03 bar. Eval keeps the 0.3 kg placeholder; the masses retrain (O1–O3, $16–26) is off.
+  Box actual $9.10.
+- Open (my lane, owner's call, not proposed yet): references rebuilt under the masses as their own pre-registered test.
+  Frees ~$16–26 of the lean plan.
