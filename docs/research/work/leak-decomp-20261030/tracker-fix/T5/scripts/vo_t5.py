@@ -8,23 +8,29 @@ Camera variants written (world = perc2's rectified-left camera c at frame 0, Ope
              from its own stereo depth) is mapped to world with the corrected chain so far, and the minimal world
              correction that puts it onto the frame-0 plane (rotation of the normal about the centroid of the table
              inliers, then a shift along the normal) is composed onto every later frame. 3 DoF: height and tilt.
-  rvo        F1: stereo keyframe-map VO (docs/research/work/17/vo17.py, here in perc2's rectified frames): SIFT on
-             rectified c with our tracked objects (our meshes at our cam_T_obj, filled triangles, dilated DIL_OBJ px)
-             and our hands (hull of the 21 hands_refined joints mapped to camera t through the camera they were built
-             with, extended to the bottom image edge for the forearm, dilated DIL_HAND px) masked out; row-constrained
-             c-b stereo matching on the rectified pair gives metric 3-D (Z = f B / d); each frame is matched first to
-             the EARLIEST keyframe (frame 0 first) whose map gives >= KF_OK PnP inliers, and a new keyframe is opened
-             only when none does (its map: its own stereo points placed with its pose).
+  rvo        F1: keyframe-map VO in perc2's rectified frames: SIFT on rectified c with our tracked objects (our meshes
+             at our cam_T_obj, filled triangles, dilated DIL_OBJ px) and our hands (hull of the 21 hands_refined joints,
+             mapped to camera t through the camera they were built with, extended to the bottom image edge for the
+             forearm, dilated DIL_HAND px) masked out. A keyframe's map = its masked keypoints with metric 3-D from the
+             rectified c/b pair: --map sgbm (default) samples our SGBM depth at the keypoint; --map sift is vo17's sparse
+             stereo (row-constrained SIFT c-b matches, Z = f B / d). Each frame is matched first to the EARLIEST keyframe
+             (frame 0 first) whose map gives >= KF_OK PnP inliers (SQPnP RANSAC 1.5 px + LM); a new keyframe is opened,
+             with the best candidate's pose, only when none does (the 13 Oct pipeline/perc.py rule, here with stereo maps).
+             Ablations: --kf_mode latest (perc2's chain: match only the latest keyframe, re-base on the previous frame
+             when it gives < KF_OK); --no_mask 1 (no object or hand masks).
   rvo_plane  F1 + F3: rvo with the table-plane constraint applied to each new keyframe's pose before its map is built.
-Plane fit (all variants, frame 0 included, same method): semi-global block matching (OpenCV SGBM) on the rectified c/b
-pair, our objects and hands masked out, then det_rules.table_plane's RANSAC (normal within 65 deg of camera up,
-0.2-1.0 m, 6 mm) followed by two least-squares refits on its 6 mm inliers. A keyframe correction is skipped (logged) when
-the fit has < PL_MIN inlier samples or would rotate > PL_MAXDEG or shift > PL_MAXCM (a failed fit, not a camera error).
+Plane fit (same SGBM depth for frame 0 and keyframes, objects and hands masked, step-4 samples 0.2-1.2 m): frame 0 by
+det_rules.table_plane's RANSAC (normal within 65 deg of camera up, 6 mm) + 2 least-squares refits; a keyframe from the
+samples within PL_BAND (3 cm) of the frame-0 plane seen through its current pose estimate, then least-squares refits on
+shrinking bands (1 cm, 6 mm). (First version, not used: det_rules RANSAC on the masked keyframe depth found other planes,
+12-42 deg off, once the boards and hands covered most of the small table, f40-61.) A keyframe correction is skipped
+(logged) when the fit has < --pl_min samples, rms > PL_MAXRMS mm, or would tilt > PL_MAXDEG or shift > PL_MAXCM.
 Inputs (inference outputs and public calibration only; every path passes refine.assert_inference_input): b/c videos,
 the public camera calibration, our poses.npz, vo.json, hands_refined.npz, our meshes. No mocap, no scans, no
 observation.objects.
 Usage: python -I vo_t5.py --b B.mp4 --c C.mp4 --calib CAL.json --poses poses.npz --vo vo.json --hands hands_refined.npz
-                          --meshes DIR --out OUTDIR [--kf_ok 150]
+                          --meshes DIR --out OUTDIR [--variants base,plane,rvo,rvo_plane] [--kf_ok 120] [--map sgbm|sift]
+                          [--pl_min 300] [--kf_mode earliest|latest] [--no_mask 0|1]
 Outputs: OUTDIR/W_<variant>.npy (N,4,4) world_T_cam; OUTDIR/vo_t5.json (keyframes, inliers, planes, corrections, params).
 """
 import argparse, hashlib, json, os, sys, time
@@ -165,9 +171,11 @@ def main():
     ap = argparse.ArgumentParser()
     for k in ('b', 'c', 'calib', 'poses', 'vo', 'hands', 'meshes', 'out'):
         ap.add_argument('--' + k, required=True)
-    ap.add_argument('--kf_ok', type=int, default=150)
+    ap.add_argument('--kf_ok', type=int, default=120)
     ap.add_argument('--pl_min', type=int, default=300)
     ap.add_argument('--map', default='sgbm', choices=('sgbm', 'sift'))
+    ap.add_argument('--kf_mode', default='earliest', choices=('earliest', 'latest'))
+    ap.add_argument('--no_mask', type=int, default=0)
     ap.add_argument('--variants', default='base,plane,rvo,rvo_plane')
     a = ap.parse_args()
     for f in (a.b, a.c, a.calib, a.poses, a.vo, a.hands, a.meshes):
@@ -207,7 +215,7 @@ def main():
     p0 = plane(0)
     log('frame-0 plane', np.round(p0['n'], 4).tolist(), round(p0['c'], 4), 'inliers', p0['n_inl'], 'rms mm', round(p0['rms_mm'], 2))
     rep = dict(params=dict(DIL_OBJ=DIL_OBJ, DIL_HAND=DIL_HAND, RATIO_ST=RATIO_ST, RATIO_KF=RATIO_KF, ROW_TOL=ROW_TOL, ZMIN=ZMIN,
-                           ZMAX=ZMAX, PNP_PX=PNP_PX, PNP_MIN=PNP_MIN, MAP=a.map, KF_OK=a.kf_ok, PL_MIN=a.pl_min, PL_MAXRMS=PL_MAXRMS, PL_MAXDEG=PL_MAXDEG,
+                           ZMAX=ZMAX, PNP_PX=PNP_PX, PNP_MIN=PNP_MIN, MAP=a.map, KF_MODE=a.kf_mode, NO_MASK=a.no_mask, KF_OK=a.kf_ok, PL_MIN=a.pl_min, PL_MAXRMS=PL_MAXRMS, PL_MAXDEG=PL_MAXDEG,
                            PL_MAXCM=PL_MAXCM, PL_BAND=PL_BAND, sgbm='192 disp, block 5, 3WAY, full res'),
                inputs={k: dict(path=getattr(a, k), sha256_16=sha(getattr(a, k))) for k in ('b', 'c', 'calib', 'poses', 'vo', 'hands')},
                meshes={n: sha(f'{a.meshes}/{n}.glb') for n in names}, frames=N, objects=names,
@@ -250,7 +258,7 @@ def main():
         FC, ST = [], []
         dmin, dmax = FR * BASE / ZMAX, FR * BASE / ZMIN
         for t in range(N):
-            kc, Dc = sift.detectAndCompute(rc[t], (255 * (~MASK[t])).astype(np.uint8))
+            kc, Dc = sift.detectAndCompute(rc[t], None if a.no_mask else (255 * (~MASK[t])).astype(np.uint8))
             kb, Db = siftb.detectAndCompute(rb[t], None) if a.map == 'sift' else ((), None)
             pc_ = np.array([k.pt for k in kc], np.float32).reshape(-1, 2); pb_ = np.array([k.pt for k in kb], np.float32).reshape(-1, 2)
             FC.append((pc_, Dc))
@@ -312,7 +320,11 @@ def main():
             W = [np.eye(4)]; kfs = [make_kf(0, np.eye(4))]; ninl, used, fails, pinfo = [0], [0], 0, []
             for t in range(1, N):
                 cand = []; pick = None
-                for kf in kfs:                                   # earliest first
+                if a.kf_mode == 'latest' and t - 1 > kfs[-1]['t']:   # ablation: perc2's chain (latest keyframe only)
+                    Wl, nl = pnp(kfs[-1], t)
+                    if Wl is None or nl < a.kf_ok:
+                        kfs.append(make_kf(t - 1, W[t - 1]))
+                for kf in (kfs if a.kf_mode == 'earliest' else kfs[-1:]):   # earliest first
                     Wt, n_ = pnp(kf, t)
                     if Wt is not None:
                         cand.append((kf['t'], Wt, n_))
@@ -323,7 +335,7 @@ def main():
                 if pick is None:
                     fails += 1; W.append(W[-1].copy()); ninl.append(0); used.append(-1); continue
                 k, Wt, n_ = pick
-                if n_ < a.kf_ok:                                 # no keyframe is usable: open one here
+                if n_ < a.kf_ok and a.kf_mode == 'earliest':     # no keyframe is usable: open one here
                     if use_plane:
                         C, info = plane_step(t, Wt, v); Wt = C @ Wt; pinfo.append(info)
                     kfs.append(make_kf(t, Wt))

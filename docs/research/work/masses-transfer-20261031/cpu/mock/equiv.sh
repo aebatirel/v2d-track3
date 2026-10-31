@@ -24,9 +24,9 @@ for ver in old new; do
   norm $MR/content/job.log | grep -v '^hf \|^cp: warning' > $W/$ver.joblog
   cat $MR/train_audit.log $MR/eval_audit.log $MR/ref_audit.log 2> /dev/null | norm | sort > $W/$ver.audit
   find $MR/content/results $MR/content/runs $MR/content/refs -type f 2> /dev/null | sed "s#$MR#MR#g" | sed 's/prev_[0-9]*/prev_T/g; s/pulled_[0-9]*/pulled_T/g' | sort > $W/$ver.files
-  sed "s#$MR#MR#g" $MR/hf.log > $W/$ver.hf
+  sed -e "s#$MR#MR#g" -e 's/: [0-9T:-]*Z$/: T/' $MR/hf.log > $W/$ver.hf
 done
 for k in joblog audit files hf; do
   if cmp -s $W/old.$k $W/new.$k; then echo "$k: IDENTICAL ($(wc -l < $W/new.$k) lines)"; else echo "$k: DIFFERS"; diff $W/old.$k $W/new.$k | head -20; fi
 done
-echo "uploads: old $(grep -c '^hf upload' $W/old.hf), new $(grep -c '^hf upload' $W/new.hf); trainings: old $(grep -c '"task"' $W/old.audit), new $(grep -c '"task"' $W/new.audit)"
+echo "uploads: old $(grep -c '^hf upload' $W/old.hf), new $(grep -c '^hf upload' $W/new.hf); trainings: old $(grep -c '"steps"' $W/old.audit), new $(grep -c '"steps"' $W/new.audit); evaluations: old $(grep -c '"ck"' $W/old.audit), new $(grep -c '"ck"' $W/new.audit)"

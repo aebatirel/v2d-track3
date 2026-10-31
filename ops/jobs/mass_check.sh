@@ -30,8 +30,10 @@
 . /content/v2d-track3/ops/box/lib.sh
 T=$REPO_DIR/tools; J=${J:-/content/job.log}; MC=/content/results/mass_check; mkdir -p $MC
 case "${RUN_ID:-}" in *-mass-*) ;; *) log "mass_check: RUN_ID '${RUN_ID:-}' must contain -mass-" >> $J; exit 1 ;; esac
-EPS="2 12"; SEEDS="42 43"; ARMS="mass0 mass1"; PROPS=$REPO_DIR/docs/research/physics-2026-10-30/props_masses_only.json
-SRC_EP2=20261024-ev3-2c1e4dd:mck:build; SRC_EP12=20261024-ev2-2c1e4dd:mc:reuse
+EPS="2 12"; ARMS="mass0 mass1"; PROPS=$REPO_DIR/docs/research/physics-2026-10-30/props_masses_only.json
+# SEEDS / SRC_EP<N> are set only for an INCOMPLETE re-run (PREREG section 3): the missing seed(s) on THIS run's stored
+# references, e.g. SEEDS=43 SRC_EP2=<this run id>:mck:reuse SRC_EP12=<this run id>:mc:reuse (never rebuild ep2's reference)
+SEEDS=${SEEDS:-"42 43"}; SRC_EP2=${SRC_EP2:-20261024-ev3-2c1e4dd:mck:build}; SRC_EP12=${SRC_EP12:-20261024-ev2-2c1e4dd:mc:reuse}
 # the frozen grasp-lock recipe (recipe_arms_launch.sh GLOCK_COMMON) with NREP 10 / PAR 2 (oracle twins); nothing overridable
 export SPLIT=public LIB=$REPO_DIR/meshes/library_v3 SF=1 REPLAN=0 EVOLVE=1 CURVE_REP=3 NREP=10 PAR=2 TRAIN_SLOTS=2 STEPS=70004736 \
   EVAL_TIMEOUT=1200 NO_PUSH=1
@@ -86,9 +88,9 @@ label "mass check: arm copies"
 PAIRS_S=""; MANS=""
 for e in $EPS; do
   v=SRC_EP$e; IFS=: read -r run base mode <<< "${!v}"
-  python $T/mass_arm.py --ep $e --base $base --arms "mass0:none mass1:$PROPS" --seeds "$SEEDS" --out $MC/arms_ep$e.json >> $J 2>&1 \
-    || { log "mass_check ep$e: mass_arm FAILED (reference incomplete?); episode dropped -> verdict INCOMPLETE" >> $J; continue; }
-  log "mass_check ep$e: $(tail -1 $J | cut -c1-600)" >> $J
+  python $T/mass_arm.py --ep $e --base $base --arms "mass0:none mass1:$PROPS" --seeds "$SEEDS" --out $MC/arms_ep$e.json > $MC/arms_ep$e.txt 2>&1 \
+    || { log "mass_check ep$e: mass_arm FAILED ($(tail -2 $MC/arms_ep$e.txt | tr '\n' ' ' | cut -c1-300)); episode dropped -> verdict INCOMPLETE" >> $J; continue; }
+  log "mass_check ep$e: $(tail -1 $MC/arms_ep$e.txt | cut -c1-700)" >> $J
   MANS="$MANS $MC/arms_ep$e.json"; PAIRS_S="$PAIRS_S $e:$base"
 done
 [ -n "$PAIRS_S" ] || { log "mass_check: no episode has a finished reference" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
