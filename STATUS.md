@@ -1,6 +1,11 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-10-31 ~16:10 UTC: RPE/MPPE gap = failed rollouts, not perception; pack 9a tonight; packs 9b/10 on 1–2 Nov
+## 2026-10-31 ~16:45 UTC: eval audit — only eval 10 fails; ≈ 1.5 cm of board RPE is eval reference/registration
+- Packed eval rollouts vs our own references: RPE 2.45 (board 3.93). Eval 10 = 15.76 (0.79 cm of the mean); others
+  1.3–3.7. So the 16:10 heading below holds on public twins only; on eval the reference side carries ≈ 1.5 cm.
+- Running: GT-free gross-error screen of eval references (H-gross), ≈ 19:00 UTC.
+
+## 2026-10-31 ~16:10 UTC: RPE/MPPE gap = failed rollouts on PUBLIC twins (see 16:45 for eval); pack 9a tonight
 - Decomposition (public, CPU): reference RPE 1.66 (1.00 w/o ep23) vs top six 1.10–1.73; failed draws 10–77 cm vs
   1.4–3.5 when successful; GT-free RPE vs our reference tracks mocap RPE (r 0.9998). K1/K2 reference fixes FAIL.
 - Pack 9a = pack 8 + C0 pot/lid/rack (blue cup held back), upload ≈ 20:30 UTC (focused-pascal). Eval-built meshes for 1 Nov.
