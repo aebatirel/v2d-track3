@@ -1263,6 +1263,28 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     F-I4 delivery. Stopped here: this step allowed one post-hoc entry (this one), so nothing is changed after the
     failure. [H] for the next decision (not adopted): a body that does not let end flares set the width (e.g. the
     rectangle of the 2-98 % outline, or fill measured on the 2-98 % box) would pass; it needs its own dated entry.
+  - **Correction of the outcomes above (2026-10-31, 17:55 UTC, after `build/I/verify_slot_0.md` and
+    `build/I/verify_slot_1.md`; record only: no rule, threshold or code changed, nothing run).**
+    (a) **Cause of the F-I4.2 failure [M, verify_slot_1 B1]:** the "flares" are the boards' real I-shape (ends wider
+    than the waist), not marker balls or bumps. The flare points lie in the face planes, none is within 30 mm of our
+    hand joints in the same frame or within 3 mm of our table plane, they come from 138 / 81 frames, the committed RGB
+    frames (`build/I/png/sil_ep24_b1.png`, `sil_ep24_b2.png`) show stepped wider ends, and inside the 2-98 % box the
+    mask fills 0.996 / 0.983 (waist 130 / 125 mm, ends 137 / 136 mm, raster growth included; the parts at least 8 mm
+    wider than the waist run 22 / 6 mm and 16 / 20 mm along the length at the two ends). The
+    [H] above is **withdrawn**: the 2-98 % rectangle would cut off real wood, and the rectangle at the full end width
+    puts 11.5 % / 9.9 % of its volume (22.9 / 19.5 cm3) in FREE voxels (the F-I4.2 "reported, not used" quantity), so
+    P37 ("keep-out met by construction") cannot hold for these boards with any one-rectangle body [E: keep-out gate
+    not run]. A body that follows the outline is a rule change and needs its own dated post-hoc entry; none is made here.
+    (b) **Board-1 thickness [M, verify_slot_1 B2]:** t = 6.21 mm is the step-2 estimate on the 2 mm first-point-per-voxel
+    downsample, as this entry specifies. The same camera-side split on all 1.76 M near points reads 7.40 mm (median of
+    per-frame face medians 7.30 mm, interior points 7.35 mm). The two faces are seen in disjoint frame ranges (+ face
+    frames 0-74, - face frames 74-274, one frame in common), so t is a cross-phase number (about +-1 mm [E]). Board 2's
+    prior inherits 6.21 mm. P40 holds either way.
+    (c) **Falsifier and prediction status [M, verify_slot_0 N1 / N4]:** the falsifier "w6 does not recover t within
+    1 mm" **fired** (8.07 / 8.39 mm for 10 mm). w6 never reached step 2 (its faces did not merge), so it shows that the
+    unchanged step 1 reads up to about 2 mm thin at sigma 3 mm; the step-2 estimator is checked by w6b. Predictions:
+    P35 failed (fi4evalsem, no plane pair), P36 failed (F-I4.2 in fi4b), P37 and P38 not tested (no slot), P40 holds
+    but is not independent (written after diag14 had measured the faces about 7 mm apart with the same split).
 
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,

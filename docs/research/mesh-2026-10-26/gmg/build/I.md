@@ -516,3 +516,25 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   results entry after F-I4.14 (fi4b, 17:15-17:30) is in this log and its build commit 9ad1af9 is pushed; the shared
   code files are unmodified in the worktree (last touched 17:14). Writing NEW files first (collcarve.py, cavpieces.py,
   tests/test_collcarve.py); shared files get minimal hooks at the end.
+- 17:41 (verifier, geometry/physics lens, verify_slot_1) started: reading fi4b results, then a GT-free re-measure (plate t from all points, outline flare points vs hands/table/frames, crossing angles at the assembled pose); output build/I/verify_slot_1.md only.
+- 17:51 (verifier, verify_slot_1) done, pushed b4bf043 (build/I/verify_slot_1.md only): no notch confirmed; outline flares = real I-shaped boards (RGB + in-plane flare points, no hand/table), rectangle body would hold 23/20 cm3 FREE; board-1 t 7.3-7.4 mm on all points vs 6.21 on the downsample; crossing geometry consistent (2.1/1.5 deg).
+- 17:52 (eval-25 step, board-slot workflow) started: read I.md (all), verify_slot_0/1 (blocking B1), PREREG F-I4.13,
+  F-I4.14 (+ outcomes), F-I5 header, INTERLOCK 20.8 / 21.1. Task: first fix blocking verifier findings that need no
+  new decision; run eval 25 under F-I4 only if no rule change is needed and ep24 acceptance passed.
+- 17:57 (eval-25 step) **decision: eval 25 NOT run under F-I4.** Reasons: (1) verify_slot_1 B1 (blocking) needs a
+  rule change: a plate body that follows the I-shaped outline (waist box + lug boxes or similar) is a new dated
+  post-hoc F-I4 entry, an owner / orchestrator decision; verify_slot_0 N5 adds that it should be checked on another
+  public plate episode first and frozen before eval 25. (2) ep24 acceptance failed: no slot was built (P36 failed at
+  F-I4.2; keep-out of slotted pieces and P2-P7 never ran on a slot). Running eval 25 now would either PUSH the boards
+  again at F-I4.2 or need a body change made on eval, which the rules forbid. F-I5 does not change this: plate pairs
+  keep F-I4 (INTERLOCK 21.1). Fixed without a new decision (record only, no code, nothing run): PREREG F-I4.14
+  correction bullet (cause = real I-shape; the 2-98 % rectangle [H] withdrawn; board-1 t 6.21 mm = downsample, 7.3-7.4
+  mm on all points; the w6 falsifier fired; P35 / P36 failed, P37 / P38 untested, P40 not independent) and an
+  INTERLOCK 20.8 bullet.
+- 17:57 eval-25 inputs, checked for the next step only (nothing opened beyond hashes and our perception result.json)
+  [M]: `<scratch>/data/eval/ep25_a.mp4` present; `<scratch>/data/eval/ep25/poses.npz` sha256 e95ccaef... equals the
+  frozen evperc track (`frozen_eval_tracks.json`, run 20261025-evperc-4f596df), which the 25 Oct identity rule scored
+  +50.0 (rank 21 of 32, swapped: wooden_piece_1 <- old wooden_piece_2 @ Rx 180 deg). So it PREDATES the ev25idfix
+  naming. The pack's eval-25 reference came from the ev25idfix box's fresh perception (rank 1, nothing applied), i.e.
+  a different track: the P_sel -> P_sim board mapping (verify_slot_1 N6) must be checked per board before any eval-25
+  slot run. No gmg eval bundle for ep25 exists yet (needs the gmg extraction plus the HF eval depth cache).

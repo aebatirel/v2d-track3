@@ -1378,6 +1378,12 @@ naming the test, for the record. The submitted (CD-O) board mesh is unchanged.
   outline flares about 9 mm per side at the ends of the long axis). Both boards stay PUSH; no slot was built, no
   physics ran on a slot, nothing is delivered under F-I4. Results: `build/I/results/slot-ep24/`, outline masks
   `build/I/png/ep24_fi4b_outline_*.png`.
+- Verification (`build/I/verify_slot_0.md`, `verify_slot_1.md`, 31 Oct 17:41-17:55 UTC) and record correction
+  (PREREG F-I4.14, correction bullet; no rule changed): no notch confirmed. The outline "flares" are the boards' real
+  I-shape (ends about 7-11 mm wider than the 125-130 mm waist, over up to 22 mm at each end), not marker balls. The 2-98 % rectangle
+  idea is withdrawn (it cuts off wood); a full-width rectangle holds 22.9 / 19.5 cm3 of FREE space. A body that follows
+  the outline needs a new dated post-hoc F-I4 entry (owner / orchestrator decision). Board 1's t is 6.21 mm on the
+  2 mm downsample and 7.3-7.4 mm on all points. Eval 25 was not run under F-I4: the public twin has no accepted slot.
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 
