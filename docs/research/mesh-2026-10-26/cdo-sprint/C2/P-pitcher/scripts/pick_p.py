@@ -5,13 +5,16 @@
      seed 0, no ICP), one mesh per process, on the C0b pass-B points of BOTH public episodes (set ALL);
   3. pick: lowest sum_mm; ties (equal to 3 decimals) -> fewer raw faces -> label in byte order.
 Reported only (never deciding): fidelity on each episode alone; library_v3 water_pitcher on the same points.
-Usage: pick_p.py W OUT.json [REPORT_MESH ...]
+Usage: pick_p.py W OUT.json [REPORT_MESH ...] [--sets=ALL|ep21,ep22] [--cand=DIR]   (defaults: all three sets, cand)
 """
 import json, os, subprocess, sys
 import trimesh
 
-W, out = sys.argv[1], sys.argv[2]
-report = sys.argv[3:]
+args = [x for x in sys.argv[1:] if not x.startswith('--')]
+CAND = next((x.split('=', 1)[1] for x in sys.argv[1:] if x.startswith('--cand=')), 'cand')   # A2: --cand=cand_a2
+SETS = next((x.split('=', 1)[1].split(',') for x in sys.argv[1:] if x.startswith('--sets=')), ['ALL', 'ep21', 'ep22'])
+W, out = args[0], args[1]
+report = args[2:]
 S = '/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad'
 R = '/home/user/v2d-track3'
 PY = f'{S}/venv/bin/python'
@@ -19,6 +22,7 @@ FID = f'{R}/docs/research/mesh-2026-10-26/scripts/obs_fidelity.py'
 KIT = f'{S}/kit/v2d_submission_kit'
 OBS = {'ALL': f'{W}/pts/B/ep21_water_pitcher.npz,{W}/pts/B/ep22_water_pitcher.npz',
        'ep21': f'{W}/pts/B/ep21_water_pitcher.npz', 'ep22': f'{W}/pts/B/ep22_water_pitcher.npz'}
+OBS = {k: v for k, v in OBS.items() if k in SETS}      # --sets=ALL: the deciding set only (per-episode = report run)
 LABELS = [f'{s}_{v}' for s in ('ep21', 'ep22', 'merged', 'ep21r', 'ep22r', 'mergedr') for v in ('g1', 'g0')]   # A1: +r
 
 
@@ -40,7 +44,7 @@ def budget_ok(path):
 
 
 from concurrent.futures import ThreadPoolExecutor   # fidelity processes run 3 at a time (same commands, one mesh each)
-paths = {lab: f'{W}/cand/{lab.split("_")[0]}_water_pitcher_{lab.split("_")[1]}.glb' for lab in LABELS}
+paths = {lab: f'{W}/{CAND}/{lab.split("_")[0]}_water_pitcher_{lab.split("_")[1]}.glb' for lab in LABELS}
 jobs = [(lab, k) for lab in LABELS if os.path.exists(paths[lab]) for k in OBS] + [(p, k) for p in report for k in OBS]
 with ThreadPoolExecutor(3) as ex:
     FID_RES = dict(zip(jobs, ex.map(lambda j: fid(OBS[j[1]], paths.get(j[0], j[0])), jobs)))
@@ -60,13 +64,13 @@ for lab in LABELS:
         row['excluded'] = 'not watertight'
     elif not ok:
         row['excluded'] = 'budget_mesh'
-    elif 'sum_mm' not in row['fid']['ALL']:
+    elif 'ALL' in OBS and 'sum_mm' not in row['fid']['ALL']:
         row['excluded'] = 'no fidelity'
     rows.append(row)
     print(json.dumps({k: row.get(k) for k in ('label', 'faces', 'watertight', 'excluded')}),
           {k: v.get('sum_mm') for k, v in row['fid'].items()}, flush=True)
 ok = [r for r in rows if 'excluded' not in r]
-pick = min(ok, key=lambda r: (round(r['fid']['ALL']['sum_mm'], 3), r['faces'], r['label'].encode())) if ok else None
+pick = min(ok, key=lambda r: (round(r['fid']['ALL']['sum_mm'], 3), r['faces'], r['label'].encode())) if ok and 'ALL' in OBS else None
 rep = []
 for p in report:
     rep.append(dict(path=p, fid={k: FID_RES[(p, k)] for k in OBS}))
