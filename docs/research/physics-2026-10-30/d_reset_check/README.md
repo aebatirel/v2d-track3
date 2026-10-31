@@ -56,7 +56,7 @@ objects that start nested or touching pop apart.
   shares (25–56 %) sit inside the public range (0–1.09 cm, 3–53 %).
 - **The largest single pop is eval 25: 5.8 cm** with the packed carve pieces (frame 156; 6.7 cm at frame 170 without
   them), about 1.3× the public maximum (4.4 cm). Its median is ordinary.
-- **Correction, 21:56 UTC.** The first eval-25 run used library_v3 without the packed carve pieces. focused-pascal's
+- **Correction, 21:54 UTC.** The first eval-25 run used library_v3 without the packed carve pieces. focused-pascal's
   packed_refs.json gives `pieces: meshes/carve/ev25` for eval 25 (none for 14/16/30/33). Re-run with
   `make_assets.py meshes/library_v3 OUT --pieces meshes/carve/ev25`, 42 collision entries per board URDF:
   `eval25_carved_pieces.json`.
