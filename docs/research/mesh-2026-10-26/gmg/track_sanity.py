@@ -248,9 +248,22 @@ def split_test(bundle, obj, partner, shells=None):
                 frames_h1=h, frames_h2=len(good) - h)
 
 
-def cross_test(shells, key, good_keys):
+def cross_pairs(shells, good_keys):
+    """Every (key, other) registration the cross test of every shell needs (A = key's shell onto B = other's)."""
+    out = []
+    for key in sorted(shells):
+        if not len(shells[key]):
+            continue
+        for k in good_keys:
+            if k != key and k in shells and len(shells[k]):
+                out.append((key, k))
+    return out
+
+
+def cross_test(shells, key, good_keys, chamfers=None):
     """SPEC section 7 cross-object test. shells: {(ep, obj): samples}; key = (ep, obj); good_keys: the keys whose
-    object passed track sanity (no TRACK_FAIL). Pass: the nearest other shell (registered chamfer) is o's own."""
+    object passed track sanity (no TRACK_FAIL). Pass: the nearest other shell (registered chamfer) is o's own.
+    chamfers: optional {(key, other): registered chamfer mm} computed beforehand (same function, reg_chamfer)."""
     ep, obj = key
     if key not in shells or not len(shells[key]):
         return dict(testable=False, reason='no shell')
@@ -258,7 +271,8 @@ def cross_test(shells, key, good_keys):
     other = [k for k in good_keys if k[1] != obj and k in shells and len(shells[k])]
     if not own:
         return dict(testable=False, reason='no other good public episode of this object')
-    d = {f'ep{k[0]}:{k[1]}': round(reg_chamfer(shells[key], shells[k]), 3) for k in own + other}
+    d = {f'ep{k[0]}:{k[1]}': round(chamfers[(key, k)] if chamfers is not None else reg_chamfer(shells[key], shells[k]), 3)
+         for k in own + other}
     d_own = min(d[f'ep{k[0]}:{k[1]}'] for k in own)
     d_oth = min(d[f'ep{k[0]}:{k[1]}'] for k in other) if other else float('inf')
     near = min(d, key=d.get)

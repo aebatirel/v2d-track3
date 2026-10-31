@@ -27,6 +27,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--run', required=True)
     ap.add_argument('--eps', default=','.join(str(e) for e in PUBLIC))
+    ap.add_argument('--workers', type=int, default=4)
     a = ap.parse_args()
     if guard.mode() != 'clean':
         raise SystemExit('b4_identity runs in GMG_MODE=clean only')
@@ -59,9 +60,17 @@ def main():
             shells[(ep, o)] = np.load(p).astype(np.float64)
             if 'TRACK_FAIL' not in m['sanity'][o]['flags']:
                 good.append((ep, o))
+    # every registration the cross tests need, on a thread pool (cKDTree queries and LAPACK release the GIL; each
+    # registration is independent and seeded, so the values are those of the serial loop; speed only)
+    from concurrent.futures import ThreadPoolExecutor
+    pairs = TS.cross_pairs(shells, good)
+    with ThreadPoolExecutor(max_workers=a.workers) as ex:
+        vals = list(ex.map(lambda kk: TS.reg_chamfer(shells[kk[0]], shells[kk[1]]), pairs))
+    chamfers = dict(zip(pairs, vals))
+    print(f'{len(pairs)} registrations, {round(time.time() - t0, 1)} s', flush=True)
     res = {}
     for key in sorted(shells):
-        r = TS.cross_test(shells, key, good)
+        r = TS.cross_test(shells, key, good, chamfers=chamfers)
         res[f'ep{key[0]}:{key[1]}'] = r
         print(key, {k: r.get(k) for k in ('testable', 'pass_', 'nearest', 'd_own_mm', 'd_other_mm', 'reason')},
               flush=True)

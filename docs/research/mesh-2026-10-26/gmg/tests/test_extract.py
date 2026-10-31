@@ -154,6 +154,25 @@ class RegistrationTests(unittest.TestCase):
         self.assertLess(ch, 2.0)            # mm
         self.assertGreater(TS.chamfer_mm(P, Q), 20.0)
 
+    def test_cross_precomputed_threads(self):
+        # b4_identity precomputes the registrations on a thread pool: same values and verdicts as the serial loop
+        from concurrent.futures import ThreadPoolExecutor
+        rng = np.random.default_rng(3)
+        box = lambda a, b, c: rng.uniform(-1, 1, (900, 3)) * [a, b, c]
+        sh = {(1, 'x'): box(0.05, 0.03, 0.01), (2, 'x'): box(0.05, 0.03, 0.01) + 0.002,
+              (1, 'y'): box(0.09, 0.02, 0.02), (3, 'y'): box(0.09, 0.02, 0.02)}
+        good = sorted(sh)
+        pairs = TS.cross_pairs(sh, good)
+        self.assertEqual(len(pairs), 12)
+        with ThreadPoolExecutor(max_workers=3) as ex:
+            vals = list(ex.map(lambda kk: TS.reg_chamfer(sh[kk[0]], sh[kk[1]]), pairs))
+        ch = dict(zip(pairs, vals))
+        for key in good:
+            a, b = TS.cross_test(sh, key, good), TS.cross_test(sh, key, good, chamfers=ch)
+            self.assertEqual(a['chamfers_mm'], b['chamfers_mm'])
+            self.assertEqual(a['pass_'], b['pass_'])
+            self.assertTrue(a['pass_'])
+
     def test_size_counts(self):
         rng = np.random.default_rng(2)
         P = rng.normal(0, 1, (3000, 3))
