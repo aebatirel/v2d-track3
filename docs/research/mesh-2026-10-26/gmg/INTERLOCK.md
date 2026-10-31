@@ -117,7 +117,7 @@ to 6 mm boxes keeping 2-9 % of each object; on those pieces every hands-off test
 needs a decision before any carve can be judged (21.11).
 **Verified (31 Oct ~21:30 UTC, section 21.12).** Fixing the piece builder alone would not be enough: at the frames
 tested our tracked poses are themselves impossible (the ep11 cups overlap by half a cup, a cup sits 15-23 mm inside the
-table, the sweeper floats 45 mm above it), so even exact copies of our shapes fail the hands-off test; and the ring
+table, the sweeper floats 45 mm above it), so even 2 mm copies of our shapes fail the hands-off test; and the ring
 pieces fail the hollowness test on their own. The eval episodes were not run. Round 2 (F-I5.15) comes next, public
 episodes first.
 
@@ -2006,7 +2006,7 @@ in three ways that change what round 2 must fix:
 - The ring pieces for the cups and the pot fail the "keep it hollow" test on their own; the "handle" pieces are not the
   cause. With at most 82 pieces a 20 cm cup gets only 8 slices, and their flat inner faces cut about 3 mm into the
   cup's opening.
-- Even pieces that copy our cup, pot and sweeper shapes exactly fail the hands-off test at all eight frames tested,
+- Even pieces that copy our cup, pot and sweeper shapes to 2 mm fail the hands-off test at all eight frames tested,
   because our tracked poses there are physically impossible: the two ep11 cups overlap by half a cup, the ep12 / ep13
   cup sits 15-23 mm inside the table, the ep31 sweeper floats 45 mm above it. Better pieces alone cannot fix these
   pairs; the poses have to be checked first.
