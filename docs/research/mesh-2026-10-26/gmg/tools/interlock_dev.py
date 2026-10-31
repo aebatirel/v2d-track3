@@ -443,7 +443,7 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
                                                                                       if k != 'hulls'},
                                  do_not_use=g.get('do_not_use'), owner_waiver=PB.WAIVER_REF,
                                  flags=['sim_pose_fallback', 'owner_waiver_fi4', 'p1_pending',
-                                        'plate_body_no_markers'],
+                                        'plate_body_no_markers'] + list(r['waiver_fi4']['plate'][x].get('flags', [])),
                                  physics={k: v for k, v in phys.items() if k != 'overlap_series'}, acceptance=acc))
     return out
 

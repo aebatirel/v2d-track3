@@ -457,3 +457,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 17:14 read I.md (all, incl. the 17:30 orchestrator note). Task: PREREG F-I5 + INTERLOCK section 21 (scope, swept-partner
   carve geometry, cavity-preserving pieces, acceptance incl. hands-off sink, run order, predictions), commit + push.
   Design only: no code edits, no runs. Reading INTERLOCK 0-3, 6, 11, 14, 18-20, PREREG F, code, ev10w evidence next.
+- 17:12-17:14 [M] w6b + w7 (log `<scratch>/interlock/fi4/f414/test_w67b.log`, 151 s): **w7 passes** (B one-face, t =
+  A's 10.17 mm via `partner_prior`, CARVE both, widths 12.17 / 12.17 mm, centres 0.15 / 0.21 mm, depth sum - W_x 4.67
+  mm, 3 pieces, keep-out 0.0 cm3). **w6b (step 2 estimator)**: t = 5.81 / 5.82 (true 6), 9.57 / 9.66 (10), 17.12 /
+  17.12 (18) at sigma 1 / 3 mm: all within 1 mm, reading 0.2-0.9 mm thin (edge points pull the face medians inwards);
+  one cell misses: t = 18, sigma 1.0, rms check (v) fails (edge points in the 25 mm slab; step 1 holds there). Kept
+  as an expected failure, no rule change. Implication for ep24 [H]: board 1's step-2 t may read ~0.2-0.5 mm thin.
+- 17:15 committing the F-I4.14 code + tests, then T-I11 re-run (tag fi4b) and, concurrently, the Waiver + Controls
+  re-run (w1-w5 with the new code) in the background.
