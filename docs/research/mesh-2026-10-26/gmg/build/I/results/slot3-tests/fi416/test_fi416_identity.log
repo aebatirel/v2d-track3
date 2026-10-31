@@ -1,0 +1,9 @@
+test_rev15_vs_rev16 (__main__.Identity.test_rev15_vs_rev16) ... ok
+test_w6c_estimator (__main__.Identity.test_w6c_estimator)
+w6c (the F-I4.15.1 estimator alone) at REV 16: |t - true| <= 1.0 mm in all six cells (plate_info is not ... ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3/tests/test_fi416_identity.json
+
+----------------------------------------------------------------------
+Ran 2 tests in 1104.794s
+
+OK

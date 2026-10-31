@@ -1,0 +1,3 @@
+launch 23:15:58 commit ced42fd2771b1a228885fc880d50e1fa7e417570 gmg_dirty:  M docs/research/mesh-2026-10-26/gmg/collcarve.py 
+cmd: env GMG_MODE=dev FI417_OUT=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3b/tests/test_fi417_reruns.json /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/venv/bin/python tests/test_fi417.py ReRuns
+29393

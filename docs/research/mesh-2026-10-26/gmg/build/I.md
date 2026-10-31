@@ -1259,6 +1259,66 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   'delivered' key; the set was named `r2_prisms`): a code defect in the message only, fixed (delivered / control names
   carried in the record), committed next, and the check re-run for the record. Identity worker failed at import (the
   3b7e6d0 tree lacked `pipeline/provenance.py`; now extracted too).
+- 23:01 pushed a130449 (message fix; committed 23:00 UTC). Launched at a130449 (`nice -n 5`, this container, load 3-8
+  from other agents' jobs): GateValidity re-run (record), **T-I11 ep24 `fi4q`** (the fi4o command of 18:38 with
+  `--tag fi4q`, physics on; run `runs-dev/20261031-i2probe-626ce13`, log `<run>/drv24_fi4q.log`, script
+  `<scratch>/slot3b/drv24_fi4q.sh`), **W10 k5** (physics + part 1); 23:03:30 W10 k1-k4 and k6-k9 (two processes);
+  outputs `<scratch>/slot3b/tests/test_fi417_<job>.json`.
+- 23:05 [M] GateValidity re-run (115 s under load): identical numbers (round-2 prisms 868 rows / 217 contacts, 3 / 16
+  overflow copies at S1, ratio 27.125; default 880 / 220, 1 overflow; control 32 / 8), test OK (the gate FAILS the
+  round-2 r0, PASSES control vs control). **Code check (i) passes** [M]: w1 t = 10 mm at REV 16, gmg package of 3b7e6d0
+  (git archive, + pipeline / ops / autokit / scripts at 3b7e6d0) vs this code (platebody identical at dc4a2a4 and
+  a130449): 163 piece arrays byte-identical, records identical (0 differences); `fi417_identity.py`.
+- 23:12 [M] **W10 k5 (t 8, sigma_e 2; freeze (b) physics cell) passes under REV 17** (393 s under load 8-11): both
+  CARVE (T1) with the **low-piece body on both**: 3 rectangles each, IoU **0.980 / 0.972** (raster 121 x 74 / 122 x 74
+  cells; false negatives 0.48 / 1.32 cm2, false positives 6.20 / 8.12 cm2; end - waist 8 / 10 and 12 / 12 mm, true 12;
+  2 passes); **5 slotted / 3 default boxes** per board (smallest side 9.78 mm), keep-out 0.0 cm3, w 9.78 mm (t all
+  points 7.78; |w - 10| = 0.22), crosslap diff 3.37 mm. F-I4.16 polygon (report): rung 1.0 / 1.5 mm. FREE share: U
+  10.3 / 10.2 %, polygon 8.7 / 8.4 %, rectangle 16.9 %. **P2-P7 pass** on 16 copies (P3 carved lag 0.031 cm / 0.14 deg,
+  after-max 0.052 cm, overlap 0.0; default 1.17 cm / 103.6 deg; P2 travel +d 3.5 / +n 2.0 / -n 0.5 mm; P6 0 worse; P7
+  0.60 vs 242.5 cm3). **Part 1 PASS**: delivered max nefc **84** (S1; S2 76), max ncon 21, no overflow in 32 copies;
+  one-box control **48** (12 contacts); ratio **1.75** <= 2.0; default (3 boxes per board) 80. P3 replay counts
+  (report): delivered 50, default 106, control 22 rows. Also passed so far: k1, k2, k6, k7 (geometric part; records
+  written at the end of each process).
+- 23:16 [M] **W10 k1-k9 under REV 17: freeze (b)'s geometric part holds in all nine cells** (two processes, 665 /
+  667 s; k5 as above): every board CARVEs (T1) with the **low-piece body, 3 rectangles, IoU 0.972-0.996**, **5 slotted /
+  3 default boxes**, keep-out 0.0 cm3, |w - (t + 2)| <= 0.33 mm (w 7.70-7.91 / 9.74-9.79 / 11.67-11.72 for t 6 / 8 /
+  10). Part-1 counts (reported; not freeze inputs except k5): delivered max nefc 64-100 (max ncon 16-25), no overflow
+  anywhere, control 48 in every cell, ratio k1 1.67, **k2 2.08**, k3 1.83, k4 1.50, k5 1.75, **k6 2.00**, k7 1.83, k8
+  1.67, k9 1.75; default 80-96. So the 2.0 ratio would have failed k2 and sits on its limit in k6 [M]. P127 holds;
+  P128 holds for the 0.93 floor (min 0.972) but its "IoU does not rise with sigma_e" clause fails (t 6: 0.979 / 0.977
+  -> 0.972 / 0.975 -> 0.982 / 0.987).
+- 23:16 [M] **T-I11 ep24 `fi4q` done (828 s, code a130449 = dc4a2a4 for platebody; launch 23:01:02): both CARVE (T1)
+  with the low-piece body, P2-P7 pass, but contact-gate part 1 FAILS on the ratio: delivered max nefc 124 vs one-box
+  control 32 -> ratio 3.875 > 2.0 (no overflow).**
+  - Body: board 1 IoU **0.958** (raster 117 x 71 cells, theta (5, 69, 16, 0, 69, 14, 2, 69): waist 234.0 x 128.0 mm,
+    ends 32 / 28 mm long, end - waist 10 / 6 mm; FN 3.20 cm2, FP 9.64 cm2; 2 passes); board 2 IoU **0.952** (115 x 71,
+    theta (6, 66, 22, 2, 68, 38, 2, 67): waist 120 mm wide, left end 44 mm, right end 76 mm long, end - waist 12 / 10;
+    FN 6.16, FP 7.88 cm2; 5 passes). t 7.401 mm (as round 2). Boxes **5 slotted / 3 default** per board (smallest side
+    9.40 mm = w). Keep-out 0.0 cm3 (44,172 / 24,247 points). F-I4.16 polygon ladder (report): rung 1.0 fits on both
+    (57 / 77 slotted prisms); rungs 2.0 / 3.0 / 4.0 give 17 / 11 / 6 and 22 / 16 / 10 slotted prisms.
+  - Slot: w 9.40 mm both; D from U's edge 67.55 / 54.56 mm (from the rectangle 77.55 / 66.56: the waist edge lies 10.0 /
+    12.0 mm inside); cross-lap D sum 122.11 vs W_x 120.52 mm, diff **1.59 mm**; budget 4.70 / 3.80 cm3 (2.1 / 1.8 %),
+    reach 0.465 / 0.398, topology ok.
+  - **P2-P7 pass** (16 copies): P2 travel 0.5 / 0.5 / 0.0 / 1.5 mm; **P3 carved lag 0.074 cm / 0.68 deg** (after-max
+    0.315 cm; default 0.849 cm / 104.2 deg; no-collide 0.032 / 0.09), overlap 0.039 cm3; P4 removed 5.03 / 3.85 vs slot
+    4.70 / 3.80 cm3, kept 0.978 / 0.982; P5 10 shapes; P6 0 worse of 84; P7 3.49 vs 142.31 cm3. Plain-MuJoCo P1
+    pre-check (does not decide): carved drift 2.58 / 2.41 cm, tilt 1.34 / 2.39 deg, fails on drift (the pair starts
+    16.7 mm above our table); default 3.07 / 3.45 cm, 6.1 / 6.0 deg.
+  - **Part 1** (S1 f246, S2 f218, 16 copies): delivered max nefc **124** (S1; S2 120), max ncon 31, **no overflow**;
+    default (3 + 3 boxes) 112 / 28; **control 32 / 8**; ratio **3.875** -> FAIL. At the max-nefc step the delivered
+    contacts are 27-28 board-table and 0-3 board-board (control 8 board-table, 0 board-board): the boards settle on
+    their edges and every box on the bottom edge makes up to 4 plane contacts, so the ratio grows with the number of
+    boxes along the table edge [M, per-copy classes; E for the cause]. Lowered diagnostic: 112 / 132, control 40. P3
+    replay counts (report): delivered 50, default 94, control 22.
+  - r0 written `<run>/sim/public/ep24-fi4q/r0` with **DO_NOT_USE.json** (both boards: "contact_budget (F-I4.17.1 part
+    1): delivered max nefc 124 / ..., ratio 3.875 (<= 2.0) ..."), `p1_pending` false, `contact_budget_pending` true,
+    part 2 pending (cannot run here). Slot-centre report: board 2 `slot_centre_disagrees` delta **-5.0 mm** (361
+    points; observed notch at -3.64 vs c_L 1.36 mm); board 1 two-sided (not applicable).
+  - **Freeze (a) fails** (part 1). Per F-I4.17.3 the round stops: nothing tuned, eval 25 not run under F-I4.17. Per
+    F-I4.17.6 step 8 the fi4q r0 is a record and is not sent for P1 / part 2 (part 1 failed).
+  - Predictions: P120 holds (3 rectangles, IoU 0.958 / 0.952), P121 holds (5 / 3 boxes, CARVE), P122 holds (0.074 cm /
+    0.68 deg), **P123 fails** (ratio 3.875), P124 holds (default 112 between 32 and 124), P126 not measured.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
@@ -1336,3 +1396,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   pending marker); `collcarve.py` rev-2 branch (precheck, D2 K, wall-band c, 1 mm topology, wall integrity, off-axis,
   S_ref, floor, DO_NOT_USE, gate); new driver `tools/collcarve2_dev.py` (`--fi5-rev 2` around the shared
   `interlock_dev.py`, which is not edited); `tests/test_collcarve2.py` (T-I14 subset the task names). Load 3.4 / 4.
+- 23:08 (Build 2) [M] built so far (not committed yet): `cavpieces.py` rev-2 section (Profile2 with exact slice-ray
+  hits, tangent-inner / chordal-outer rings, b1 / b2 bases, greedy bands, intrusion2, continuity2, search_layout,
+  reference_rings, carve2, route3_r2, route_pieces2, faithful_boxes); smoke on the T-I12 x1 host cup (b1, one band):
+  8 sectors min wall 0.97 mm, continuity fails (gap share 0.84); 12 sectors 2.60 mm, passes (gaps 0.4 %); 16 sectors
+  3.24 mm, passes; construction intrusion 0.0 at all three, continuity-ray intrusion <= 0.015 mm. New
+  `contactgate5.py` (named so because the board-slot lane is writing its own `gmg/contactgate.py` for F-I4.17, seen
+  untracked at 22:52; no shared code, as-built deviation of F-I5.16 (6)(i)'s file name): sim=rl read from
+  `15-verify/cfg_sim_rl.yaml` (sha matches), coacd 1.0.11 installed in `<scratch>/coacd1011` (pip --target);
+  smoke: 2 x 77 stacked tiles settle: max nefc 5648, ncon 1412 (overflow), 0.38 s per step; one-hull packed slab: 32 /
+  8. `collcarve.py` rev-2 helpers (Faithful, precheck, carvable_mesh, exact_clip, wall_integrity, topology_1mm) added;
+  FI5R2.apply, floor / gate and the driver next.

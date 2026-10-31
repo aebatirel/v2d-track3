@@ -1,0 +1,3018 @@
+{
+ "w10_k1": {
+  "source": "test_fi417_k1234.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.978976,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     69,
+     13,
+     1,
+     72,
+     13,
+     0,
+     71
+    ],
+    "raster_cells": [
+     119,
+     72
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -119.272,
+       118.728
+      ],
+      [
+       -66.187,
+       65.813
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -119.272,
+       -93.272
+      ],
+      [
+       -70.187,
+       71.813
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.728,
+       118.728
+      ],
+      [
+       -72.187,
+       69.813
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.28,
+    "fp_cm2": 6.44,
+    "passes": 2,
+    "t_all_mm": 5.832,
+    "plate_t_mm": 5.83,
+    "t_source": "plane_pair",
+    "w_mm": 7.7,
+    "D_mm": 67.89,
+    "centre_mm": 0.07,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 7.703,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.25,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.5,
+    "free_share": {
+     "low_piece": 0.0601,
+     "f_i416_polygon": 0.0417,
+     "rectangle": 0.1242
+    },
+    "coverage_frame": 0.9273
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.977085,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     69,
+     12,
+     1,
+     72,
+     13,
+     1,
+     72
+    ],
+    "raster_cells": [
+     119,
+     72
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -119.305,
+       118.695
+      ],
+      [
+       -66.35,
+       65.65
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -119.305,
+       -95.305
+      ],
+      [
+       -70.35,
+       71.65
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.695,
+       118.695
+      ],
+      [
+       -70.35,
+       71.65
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.28,
+    "fp_cm2": 7.04,
+    "passes": 2,
+    "t_all_mm": 5.703,
+    "plate_t_mm": 5.7,
+    "t_source": "plane_pair",
+    "w_mm": 7.83,
+    "D_mm": 66.38,
+    "centre_mm": 0.12,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 7.832,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.25,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.1698,
+     "f_i416_polygon": 0.1537,
+     "rectangle": 0.2269
+    },
+    "coverage_frame": 0.9244
+   }
+  },
+  "misses_b": [],
+  "sec": 161.6,
+  "part1_sec": 15.2,
+  "fixture": {
+   "k": 1,
+   "t_mm": 6,
+   "sigma_e_mm": 1.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4161,
+    "noise": 4261,
+    "sample_A": 4361,
+    "sample_B": 4461
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.6667,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 89,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.001326,
+      0.999999,
+      -0.000312
+     ],
+     "table_d": 0.075098
+    },
+    "S2": {
+     "frame": 79,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.001326,
+      0.999999,
+      -0.000312
+     ],
+     "table_d": 0.073456
+    }
+   },
+   "sec": 15.2,
+   "delivered": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 76,
+      "max_ncon": 19,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 80.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 40,
+      "max_ncon": 10,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 76,
+      "max_ncon": 19,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 40,
+      "max_ncon": 10,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k2": {
+  "source": "test_fi417_k1234.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.972411,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     71,
+     15,
+     1,
+     73,
+     13,
+     1,
+     74
+    ],
+    "raster_cells": [
+     121,
+     74
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -121.025,
+       120.975
+      ],
+      [
+       -68.216,
+       67.784
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -121.025,
+       -91.025
+      ],
+      [
+       -72.216,
+       71.784
+      ]
+     ],
+     [
+      "end_right",
+      [
+       94.975,
+       120.975
+      ],
+      [
+       -72.216,
+       73.784
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 8.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.8,
+    "fp_cm2": 8.44,
+    "passes": 2,
+    "t_all_mm": 5.906,
+    "plate_t_mm": 5.91,
+    "t_source": "plane_pair",
+    "w_mm": 7.79,
+    "D_mm": 69.63,
+    "centre_mm": 1.36,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 7.785,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 1.23,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.5,
+    "free_share": {
+     "low_piece": 0.1713,
+     "f_i416_polygon": 0.1503,
+     "rectangle": 0.2269
+    },
+    "coverage_frame": 0.93
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.97528,
+    "n_rect": 3,
+    "theta_cells": [
+     4,
+     71,
+     14,
+     1,
+     73,
+     15,
+     2,
+     74
+    ],
+    "raster_cells": [
+     121,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -121.141,
+       120.859
+      ],
+      [
+       -67.026,
+       66.974
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -121.141,
+       -93.141
+      ],
+      [
+       -73.026,
+       70.974
+      ]
+     ],
+     [
+      "end_right",
+      [
+       90.859,
+       120.859
+      ],
+      [
+       -71.026,
+       72.974
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 1.64,
+    "fp_cm2": 6.56,
+    "passes": 2,
+    "t_all_mm": 5.785,
+    "plate_t_mm": 5.79,
+    "t_source": "plane_pair",
+    "w_mm": 7.91,
+    "D_mm": 67.61,
+    "centre_mm": -1.22,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 7.906,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 1.23,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.5,
+    "free_share": {
+     "low_piece": 0.1829,
+     "f_i416_polygon": 0.1693,
+     "rectangle": 0.257
+    },
+    "coverage_frame": 0.9079
+   }
+  },
+  "misses_b": [],
+  "sec": 153.6,
+  "part1_sec": 17.0,
+  "fixture": {
+   "k": 2,
+   "t_mm": 6,
+   "sigma_e_mm": 2.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4162,
+    "noise": 4262,
+    "sample_A": 4362,
+    "sample_B": 4462
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": false,
+   "ratio": 2.0833,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 84,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.00176,
+      0.999998,
+      -0.00072
+     ],
+     "table_d": 0.076571
+    },
+    "S2": {
+     "frame": 69,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.00176,
+      0.999998,
+      -0.00072
+     ],
+     "table_d": 0.076449
+    }
+   },
+   "sec": 17.0,
+   "delivered": {
+    "max_nefc": 100,
+    "max_ncon": 25,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 100,
+      "max_ncon": 25,
+      "median_max_nefc": 78.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "median_max_nefc": 74.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 74.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 74.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 100,
+      "max_ncon": 25,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k3": {
+  "source": "test_fi417_k1234.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.981827,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     72,
+     16,
+     1,
+     74,
+     15,
+     0,
+     75
+    ],
+    "raster_cells": [
+     122,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.509,
+       121.491
+      ],
+      [
+       -69.084,
+       68.916
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.509,
+       -90.509
+      ],
+      [
+       -73.084,
+       72.916
+      ]
+     ],
+     [
+      "end_right",
+      [
+       91.491,
+       121.491
+      ],
+      [
+       -75.084,
+       74.916
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 8.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 0.48,
+    "fp_cm2": 5.76,
+    "passes": 2,
+    "t_all_mm": 5.827,
+    "plate_t_mm": 5.83,
+    "t_source": "plane_pair",
+    "w_mm": 7.82,
+    "D_mm": 70.39,
+    "centre_mm": 0.14,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 7.821,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.89,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.1246,
+     "f_i416_polygon": 0.1109,
+     "rectangle": 0.1866
+    },
+    "coverage_frame": 0.9319
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.987178,
+    "n_rect": 3,
+    "theta_cells": [
+     4,
+     72,
+     17,
+     1,
+     75,
+     16,
+     1,
+     75
+    ],
+    "raster_cells": [
+     122,
+     76
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.0,
+       122.0
+      ],
+      [
+       -68.0,
+       68.0
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.0,
+       -88.0
+      ],
+      [
+       -74.0,
+       74.0
+      ]
+     ],
+     [
+      "end_right",
+      [
+       90.0,
+       122.0
+      ],
+      [
+       -74.0,
+       74.0
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 0.28,
+    "fp_cm2": 4.08,
+    "passes": 2,
+    "t_all_mm": 5.821,
+    "plate_t_mm": 5.82,
+    "t_source": "plane_pair",
+    "w_mm": 7.83,
+    "D_mm": 68.5,
+    "centre_mm": -0.49,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 7.827,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.89,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.1166,
+     "f_i416_polygon": 0.1066,
+     "rectangle": 0.1907
+    },
+    "coverage_frame": 0.9161
+   }
+  },
+  "misses_b": [],
+  "sec": 150.5,
+  "part1_sec": 14.0,
+  "fixture": {
+   "k": 3,
+   "t_mm": 6,
+   "sigma_e_mm": 3.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4163,
+    "noise": 4263,
+    "sample_A": 4363,
+    "sample_B": 4463
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.8333,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 96,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.000796,
+      1.0,
+      0.000284
+     ],
+     "table_d": 0.077047
+    },
+    "S2": {
+     "frame": 92,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.000796,
+      1.0,
+      0.000284
+     ],
+     "table_d": 0.078634
+    }
+   },
+   "sec": 14.0,
+   "delivered": {
+    "max_nefc": 88,
+    "max_ncon": 22,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 68,
+      "max_ncon": 17,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 32,
+      "max_ncon": 8,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 68,
+      "max_ncon": 17,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 32,
+      "max_ncon": 8,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k4": {
+  "source": "test_fi417_k1234.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.982726,
+    "n_rect": 3,
+    "theta_cells": [
+     4,
+     69,
+     13,
+     1,
+     71,
+     13,
+     1,
+     72
+    ],
+    "raster_cells": [
+     119,
+     72
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -119.513,
+       118.487
+      ],
+      [
+       -64.443,
+       65.557
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -119.513,
+       -93.513
+      ],
+      [
+       -70.443,
+       69.557
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.487,
+       118.487
+      ],
+      [
+       -70.443,
+       71.557
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 2.12,
+    "fp_cm2": 3.36,
+    "passes": 2,
+    "t_all_mm": 7.768,
+    "plate_t_mm": 7.77,
+    "t_source": "plane_pair",
+    "w_mm": 9.76,
+    "D_mm": 71.04,
+    "centre_mm": -0.18,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 9.761,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.97,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.0475,
+     "f_i416_polygon": 0.0442,
+     "rectangle": 0.1315
+    },
+    "coverage_frame": 0.9099
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.982587,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     68,
+     13,
+     0,
+     71,
+     13,
+     0,
+     71
+    ],
+    "raster_cells": [
+     119,
+     72
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -119.226,
+       118.774
+      ],
+      [
+       -65.339,
+       64.661
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -119.226,
+       -93.226
+      ],
+      [
+       -71.339,
+       70.661
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.774,
+       118.774
+      ],
+      [
+       -71.339,
+       70.661
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 1.36,
+    "fp_cm2": 4.16,
+    "passes": 2,
+    "t_all_mm": 7.761,
+    "plate_t_mm": 7.76,
+    "t_source": "plane_pair",
+    "w_mm": 9.77,
+    "D_mm": 61.94,
+    "centre_mm": 0.04,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 9.768,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.97,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.049,
+     "f_i416_polygon": 0.0407,
+     "rectangle": 0.1118
+    },
+    "coverage_frame": 0.9278
+   }
+  },
+  "misses_b": [],
+  "sec": 199.0,
+  "part1_sec": 17.1,
+  "fixture": {
+   "k": 4,
+   "t_mm": 8,
+   "sigma_e_mm": 1.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4164,
+    "noise": 4264,
+    "sample_A": 4364,
+    "sample_B": 4464
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.5,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 97,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.001197,
+      0.999999,
+      -0.000173
+     ],
+     "table_d": 0.073464
+    },
+    "S2": {
+     "frame": 95,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.001197,
+      0.999999,
+      -0.000173
+     ],
+     "table_d": 0.07388
+    }
+   },
+   "sec": 17.1,
+   "delivered": {
+    "max_nefc": 72,
+    "max_ncon": 18,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 64,
+      "max_ncon": 16,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 72,
+      "max_ncon": 18,
+      "median_max_nefc": 68.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 92,
+    "max_ncon": 23,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 92,
+      "max_ncon": 23,
+      "median_max_nefc": 78.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 36.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 64,
+      "max_ncon": 16,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 72,
+      "max_ncon": 18,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 92,
+      "max_ncon": 23,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k5": {
+  "source": "test_fi417_k5.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.98006,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     71,
+     15,
+     1,
+     73,
+     15,
+     0,
+     73
+    ],
+    "raster_cells": [
+     121,
+     74
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -121.798,
+       120.202
+      ],
+      [
+       -68.206,
+       67.794
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -121.798,
+       -91.798
+      ],
+      [
+       -72.206,
+       71.794
+      ]
+     ],
+     [
+      "end_right",
+      [
+       90.202,
+       120.202
+      ],
+      [
+       -74.206,
+       71.794
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 8.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.48,
+    "fp_cm2": 6.2,
+    "passes": 2,
+    "t_all_mm": 7.776,
+    "plate_t_mm": 7.78,
+    "t_source": "plane_pair",
+    "w_mm": 9.78,
+    "D_mm": 69.82,
+    "centre_mm": 0.07,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 9.777,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 3.37,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.1027,
+     "f_i416_polygon": 0.0871,
+     "rectangle": 0.1688
+    },
+    "coverage_frame": 0.9253
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.971881,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     70,
+     15,
+     0,
+     73,
+     16,
+     0,
+     73
+    ],
+    "raster_cells": [
+     122,
+     74
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -121.785,
+       122.215
+      ],
+      [
+       -68.092,
+       65.908
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -121.785,
+       -91.785
+      ],
+      [
+       -74.092,
+       71.908
+      ]
+     ],
+     [
+      "end_right",
+      [
+       90.215,
+       122.215
+      ],
+      [
+       -74.092,
+       71.908
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 1.32,
+    "fp_cm2": 8.12,
+    "passes": 2,
+    "t_all_mm": 7.777,
+    "plate_t_mm": 7.78,
+    "t_source": "plane_pair",
+    "w_mm": 9.78,
+    "D_mm": 67.58,
+    "centre_mm": -0.23,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 9.776,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 3.37,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.5,
+    "free_share": {
+     "low_piece": 0.1024,
+     "f_i416_polygon": 0.0837,
+     "rectangle": 0.1688
+    },
+    "coverage_frame": 0.9265
+   }
+  },
+  "misses_b": [],
+  "sec": 392.6,
+  "part1_sec": 42.8,
+  "fixture": {
+   "k": 5,
+   "t_mm": 8,
+   "sigma_e_mm": 2.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4165,
+    "noise": 4265,
+    "sample_A": 4365,
+    "sample_B": 4465
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.75,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 97,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.002825,
+      0.999996,
+      -0.000496
+     ],
+     "table_d": 0.076148
+    },
+    "S2": {
+     "frame": 94,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.002825,
+      0.999996,
+      -0.000496
+     ],
+     "table_d": 0.07591
+    }
+   },
+   "sec": 17.5,
+   "delivered": {
+    "max_nefc": 84,
+    "max_ncon": 21,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "median_max_nefc": 68.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 76,
+      "max_ncon": 19,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 80.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 76.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 48.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 76,
+      "max_ncon": 19,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   },
+   "p3_replay": {
+    "delivered": {
+     "max_nefc": 50,
+     "max_ncon": 11,
+     "median_max_nefc": 28.0,
+     "nan_copies": 0
+    },
+    "default": {
+     "max_nefc": 106,
+     "max_ncon": 25,
+     "median_max_nefc": 38.0,
+     "nan_copies": 0
+    },
+    "control": {
+     "max_nefc": 22,
+     "max_ncon": 4,
+     "median_max_nefc": 22.0,
+     "nan_copies": 0
+    }
+   }
+  },
+  "physics": {
+   "pass_P2_P7": true,
+   "acceptance": {
+    "tests": {
+     "P2": true,
+     "P3": true,
+     "P4_A": true,
+     "P4_B": true,
+     "P5": true,
+     "P6": true,
+     "P7": true
+    },
+    "P5": {
+     "shapes": 10,
+     "cap": 165,
+     "pass_": true
+    },
+    "failing": [],
+    "pass_all_but_P1": true,
+    "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I2.12, F-I4.8)"
+   },
+   "P3": {
+    "carved": {
+     "lag_cm_asm": 0.031,
+     "lag_cm_asm_sd": 0.004,
+     "lag_deg_asm": 0.14,
+     "lag_cm_after_max": 0.052,
+     "copies": 16,
+     "nan": 0
+    },
+    "default": {
+     "lag_cm_asm": 1.174,
+     "lag_cm_asm_sd": 1.43,
+     "lag_deg_asm": 103.55,
+     "lag_cm_after_max": 1.224,
+     "copies": 16,
+     "nan": 0
+    },
+    "nocollide": {
+     "lag_cm_asm": 0.029,
+     "lag_cm_asm_sd": 0.0,
+     "lag_deg_asm": 0.11,
+     "lag_cm_after_max": 0.057,
+     "copies": 16,
+     "nan": 0
+    },
+    "judge": {
+     "pass_": true,
+     "slot_not_limiting": false,
+     "overlap_asm_cm3": 0.0,
+     "overlap_ok": true
+    }
+   },
+   "P2": {
+    "frame": 97,
+    "carved_mm": {
+     "+d": 3.5,
+     "+n": 2.0,
+     "-n": 0.5
+    },
+    "default_mm": {
+     "+d": 60.0,
+     "+n": 60.0,
+     "-n": 60.0
+    },
+    "overlap_at_pose_cm3": [
+     8.542,
+     0.0
+    ],
+    "pass_": true
+   },
+   "P6": {
+    "frames": 30,
+    "worse_frames": [],
+    "n_worse": 0,
+    "pass_": true,
+    "default_asm_median": 8.452,
+    "carved_asm_median": 0.0
+   },
+   "P7": {
+    "check_frames": 40,
+    "default_sum_cm3": 242.52,
+    "carved_sum_cm3": 0.6,
+    "default_median": 6.654,
+    "carved_median": 0.0,
+    "pass_": true
+   },
+   "sec": 195.4
+  }
+ },
+ "w10_k6": {
+  "source": "test_fi417_k6789.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.982326,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     72,
+     16,
+     0,
+     75,
+     15,
+     1,
+     75
+    ],
+    "raster_cells": [
+     122,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.574,
+       121.426
+      ],
+      [
+       -69.1,
+       68.9
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.574,
+       -90.574
+      ],
+      [
+       -75.1,
+       74.9
+      ]
+     ],
+     [
+      "end_right",
+      [
+       91.426,
+       121.426
+      ],
+      [
+       -73.1,
+       74.9
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.44,
+    "fp_cm2": 5.64,
+    "passes": 2,
+    "t_all_mm": 7.794,
+    "plate_t_mm": 7.79,
+    "t_source": "plane_pair",
+    "w_mm": 9.74,
+    "D_mm": 71.29,
+    "centre_mm": -0.56,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 9.745,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 3.37,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.1263,
+     "f_i416_polygon": 0.1129,
+     "rectangle": 0.1866
+    },
+    "coverage_frame": 0.9331
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.986389,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     72,
+     15,
+     1,
+     75,
+     16,
+     0,
+     75
+    ],
+    "raster_cells": [
+     122,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.509,
+       121.491
+      ],
+      [
+       -69.098,
+       68.902
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.509,
+       -92.509
+      ],
+      [
+       -73.098,
+       74.902
+      ]
+     ],
+     [
+      "end_right",
+      [
+       89.491,
+       121.491
+      ],
+      [
+       -75.098,
+       74.902
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 0.28,
+    "fp_cm2": 4.4,
+    "passes": 2,
+    "t_all_mm": 7.745,
+    "plate_t_mm": 7.74,
+    "t_source": "plane_pair",
+    "w_mm": 9.79,
+    "D_mm": 70.09,
+    "centre_mm": 0.1,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 9.794,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 3.37,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.1263,
+     "f_i416_polygon": 0.1157,
+     "rectangle": 0.1866
+    },
+    "coverage_frame": 0.9336
+   }
+  },
+  "misses_b": [],
+  "sec": 160.8,
+  "part1_sec": 14.0,
+  "fixture": {
+   "k": 6,
+   "t_mm": 8,
+   "sigma_e_mm": 3.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4166,
+    "noise": 4266,
+    "sample_A": 4366,
+    "sample_B": 4466
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 2.0,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 97,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.000994,
+      0.999999,
+      -0.0011
+     ],
+     "table_d": 0.076102
+    },
+    "S2": {
+     "frame": 94,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      0.000994,
+      0.999999,
+      -0.0011
+     ],
+     "table_d": 0.07703
+    }
+   },
+   "sec": 13.9,
+   "delivered": {
+    "max_nefc": 96,
+    "max_ncon": 24,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 96,
+      "max_ncon": 24,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 80.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 88,
+    "max_ncon": 22,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 68.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 44.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 96,
+      "max_ncon": 24,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k7": {
+  "source": "test_fi417_k6789.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.985853,
+    "n_rect": 3,
+    "theta_cells": [
+     4,
+     69,
+     14,
+     1,
+     72,
+     13,
+     1,
+     72
+    ],
+    "raster_cells": [
+     119,
+     73
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -119.014,
+       118.986
+      ],
+      [
+       -66.016,
+       63.984
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -119.014,
+       -91.014
+      ],
+      [
+       -72.016,
+       69.984
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.986,
+       118.986
+      ],
+      [
+       -72.016,
+       69.984
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 0.8,
+    "fp_cm2": 3.68,
+    "passes": 2,
+    "t_all_mm": 9.713,
+    "plate_t_mm": 9.71,
+    "t_source": "plane_pair",
+    "w_mm": 11.7,
+    "D_mm": 66.87,
+    "centre_mm": -0.0,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 11.696,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 3.64,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.2398,
+     "f_i416_polygon": 0.2329,
+     "rectangle": 0.2993
+    },
+    "coverage_frame": 0.9214
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.995968,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     69,
+     13,
+     0,
+     72,
+     13,
+     1,
+     72
+    ],
+    "raster_cells": [
+     118,
+     72
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -118.0,
+       118.0
+      ],
+      [
+       -66.0,
+       66.0
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -118.0,
+       -92.0
+      ],
+      [
+       -72.0,
+       72.0
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.0,
+       118.0
+      ],
+      [
+       -70.0,
+       72.0
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.24,
+    "fp_cm2": 1.04,
+    "passes": 2,
+    "t_all_mm": 9.696,
+    "plate_t_mm": 9.7,
+    "t_source": "plane_pair",
+    "w_mm": 11.71,
+    "D_mm": 66.77,
+    "centre_mm": -0.29,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 11.713,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 3.64,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.2431,
+     "f_i416_polygon": 0.2412,
+     "rectangle": 0.2934
+    },
+    "coverage_frame": 0.9335
+   }
+  },
+  "misses_b": [],
+  "sec": 144.8,
+  "part1_sec": 19.0,
+  "fixture": {
+   "k": 7,
+   "t_mm": 10,
+   "sigma_e_mm": 1.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4167,
+    "noise": 4267,
+    "sample_A": 4367,
+    "sample_B": 4467
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.8333,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 89,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -8.1e-05,
+      1.0,
+      -0.000396
+     ],
+     "table_d": 0.07394
+    },
+    "S2": {
+     "frame": 81,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -8.1e-05,
+      1.0,
+      -0.000396
+     ],
+     "table_d": 0.07394
+    }
+   },
+   "sec": 19.0,
+   "delivered": {
+    "max_nefc": 88,
+    "max_ncon": 22,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 72,
+      "max_ncon": 18,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 84,
+    "max_ncon": 21,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 76.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "median_max_nefc": 78.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 72,
+      "max_ncon": 18,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 88,
+      "max_ncon": 22,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k8": {
+  "source": "test_fi417_k6789.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.984858,
+    "n_rect": 3,
+    "theta_cells": [
+     4,
+     71,
+     15,
+     1,
+     74,
+     15,
+     1,
+     74
+    ],
+    "raster_cells": [
+     121,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -121.34,
+       120.66
+      ],
+      [
+       -67.006,
+       66.994
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -121.34,
+       -91.34
+      ],
+      [
+       -73.006,
+       72.994
+      ]
+     ],
+     [
+      "end_right",
+      [
+       90.66,
+       120.66
+      ],
+      [
+       -73.006,
+       72.994
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 1.36,
+    "fp_cm2": 3.68,
+    "passes": 2,
+    "t_all_mm": 9.701,
+    "plate_t_mm": 9.7,
+    "t_source": "plane_pair",
+    "w_mm": 11.67,
+    "D_mm": 68.33,
+    "centre_mm": 0.34,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 11.671,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.64,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.5,
+    "free_share": {
+     "low_piece": 0.2756,
+     "f_i416_polygon": 0.2694,
+     "rectangle": 0.3385
+    },
+    "coverage_frame": 0.9105
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.975702,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     71,
+     15,
+     0,
+     74,
+     15,
+     0,
+     74
+    ],
+    "raster_cells": [
+     122,
+     74
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.0,
+       122.0
+      ],
+      [
+       -68.0,
+       68.0
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.0,
+       -92.0
+      ],
+      [
+       -74.0,
+       74.0
+      ]
+     ],
+     [
+      "end_right",
+      [
+       92.0,
+       122.0
+      ],
+      [
+       -74.0,
+       74.0
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 0.08,
+    "fp_cm2": 8.16,
+    "passes": 2,
+    "t_all_mm": 9.671,
+    "plate_t_mm": 9.67,
+    "t_source": "plane_pair",
+    "w_mm": 11.7,
+    "D_mm": 68.33,
+    "centre_mm": -0.18,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 11.701,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.64,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.2917,
+     "f_i416_polygon": 0.2745,
+     "rectangle": 0.335
+    },
+    "coverage_frame": 0.9389
+   }
+  },
+  "misses_b": [],
+  "sec": 163.9,
+  "part1_sec": 13.1,
+  "fixture": {
+   "k": 8,
+   "t_mm": 10,
+   "sigma_e_mm": 2.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4168,
+    "noise": 4268,
+    "sample_A": 4368,
+    "sample_B": 4468
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.6667,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 83,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.001163,
+      0.999999,
+      0.001122
+     ],
+     "table_d": 0.076097
+    },
+    "S2": {
+     "frame": 69,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.001163,
+      0.999999,
+      0.001122
+     ],
+     "table_d": 0.076097
+    }
+   },
+   "sec": 13.1,
+   "delivered": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 72,
+      "max_ncon": 18,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 68.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 96,
+    "max_ncon": 24,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 96,
+      "max_ncon": 24,
+      "median_max_nefc": 76.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 96,
+      "max_ncon": 24,
+      "median_max_nefc": 78.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 36.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 72,
+      "max_ncon": 18,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 96,
+      "max_ncon": 24,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 96,
+      "max_ncon": 24,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ },
+ "w10_k9": {
+  "source": "test_fi417_k6789.json",
+  "boards": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.98696,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     72,
+     16,
+     0,
+     74,
+     15,
+     1,
+     75
+    ],
+    "raster_cells": [
+     122,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.597,
+       121.403
+      ],
+      [
+       -69.099,
+       68.901
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.597,
+       -90.597
+      ],
+      [
+       -75.099,
+       72.901
+      ]
+     ],
+     [
+      "end_right",
+      [
+       91.403,
+       121.403
+      ],
+      [
+       -73.099,
+       74.901
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 10.0
+    },
+    "fn_cm2": 0.64,
+    "fp_cm2": 3.84,
+    "passes": 2,
+    "t_all_mm": 9.717,
+    "plate_t_mm": 9.72,
+    "t_source": "plane_pair",
+    "w_mm": 11.72,
+    "D_mm": 70.99,
+    "centre_mm": -0.2,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 11.72,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.95,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.2997,
+     "f_i416_polygon": 0.2931,
+     "rectangle": 0.3492
+    },
+    "coverage_frame": 0.9312
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "body_kind": "low_piece",
+    "iou": 0.986864,
+    "n_rect": 3,
+    "theta_cells": [
+     3,
+     72,
+     16,
+     0,
+     75,
+     14,
+     0,
+     75
+    ],
+    "raster_cells": [
+     122,
+     75
+    ],
+    "rectangles_mm": [
+     [
+      "waist",
+      [
+       -122.532,
+       121.468
+      ],
+      [
+       -69.119,
+       68.881
+      ]
+     ],
+     [
+      "end_left",
+      [
+       -122.532,
+       -90.532
+      ],
+      [
+       -75.119,
+       74.881
+      ]
+     ],
+     [
+      "end_right",
+      [
+       93.468,
+       121.468
+      ],
+      [
+       -75.119,
+       74.881
+      ]
+     ]
+    ],
+    "end_minus_waist_mm": {
+     "end_left": 12.0,
+     "end_right": 12.0
+    },
+    "fn_cm2": 0.16,
+    "fp_cm2": 4.36,
+    "passes": 2,
+    "t_all_mm": 9.72,
+    "plate_t_mm": 9.72,
+    "t_source": "plane_pair",
+    "w_mm": 11.72,
+    "D_mm": 70.02,
+    "centre_mm": -0.11,
+    "slotted_boxes": 5,
+    "default_boxes": 3,
+    "smallest_side_mm": 11.717,
+    "keepout_max_cm3": 0.0,
+    "crosslap_diff_mm": 2.95,
+    "gate_fail": null,
+    "body_why": null,
+    "f_i416_chosen_eps_mm": 1.0,
+    "free_share": {
+     "low_piece": 0.3018,
+     "f_i416_polygon": 0.2932,
+     "rectangle": 0.3492
+    },
+    "coverage_frame": 0.9341
+   }
+  },
+  "misses_b": [],
+  "sec": 197.4,
+  "part1_sec": 12.0,
+  "fixture": {
+   "k": 9,
+   "t_mm": 10,
+   "sigma_e_mm": 3.0,
+   "sigma_n_mm": 1.0,
+   "declared_sigma_mm": 1.0,
+   "T": 100,
+   "seeds": {
+    "pose": 4169,
+    "noise": 4269,
+    "sample_A": 4369,
+    "sample_B": 4469
+   },
+   "A": {
+    "samples": 3000
+   },
+   "B": {
+    "samples": 3000
+   }
+  },
+  "part1": {
+   "pass_": true,
+   "ratio": 1.75,
+   "no_overflow": true,
+   "scenes": {
+    "S1": {
+     "frame": 87,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.001008,
+      0.999998,
+      0.001765
+     ],
+     "table_d": 0.076887
+    },
+    "S2": {
+     "frame": 75,
+     "table_kind": "synthetic (normal -d, 1 mm beyond the lowest vertex along d)",
+     "table_n": [
+      -0.001008,
+      0.999998,
+      0.001765
+     ],
+     "table_d": 0.076887
+    }
+   },
+   "sec": 12.0,
+   "delivered": {
+    "max_nefc": 84,
+    "max_ncon": 21,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "median_max_nefc": 64.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "default": {
+    "max_nefc": 80,
+    "max_ncon": 20,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 72.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "median_max_nefc": 68.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "control": {
+    "max_nefc": 48,
+    "max_ncon": 12,
+    "overflow_copies": 0,
+    "by_scene": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 32.0,
+      "overflow_copies": 0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "median_max_nefc": 40.0,
+      "overflow_copies": 0
+     }
+    }
+   },
+   "lowered": {
+    "delivered": {
+     "S1": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 84,
+      "max_ncon": 21,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "default": {
+     "S1": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 80,
+      "max_ncon": 20,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    },
+    "control": {
+     "S1": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     },
+     "S2": {
+      "max_nefc": 48,
+      "max_ncon": 12,
+      "overflow_copies": 0,
+      "lowered_by_mm": 0.0
+     }
+    }
+   }
+  }
+ }
+}
