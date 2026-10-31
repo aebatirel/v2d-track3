@@ -1,0 +1,130 @@
+{
+ "when": "2026-10-31 ~21:45 UTC",
+ "gt_free": true,
+ "question": "focused-pascal launch hold: kit proxy rotates the Set B blue cups by 65-179 deg; is it spin about the axis?",
+ "axis_tilt_vs_library_v3": {
+  "library_v3": {
+   "axis_fit": [
+    -0.0239,
+    -0.0213,
+    0.9995
+   ],
+   "tilt_from_z_deg": 1.83
+  },
+  "ep11_blue_cup_g1.glb": {
+   "axis_lathe_json": [
+    0.0184,
+    0.0062,
+    -0.9998
+   ],
+   "axis_fit": [
+    -0.0195,
+    -0.004,
+    0.9998
+   ],
+   "fit_vs_lathe_json_deg": 0.14,
+   "tilt_vs_library_v3_deg (lathe axis)": 0.92,
+   "tilt_vs_library_v3_deg (fit)": 1.02,
+   "axis_offset_mm": 2.2
+  },
+  "ep12_blue_cup_g0.glb": {
+   "axis_lathe_json": [
+    -0.0188,
+    -0.1088,
+    0.9939
+   ],
+   "axis_fit": [
+    -0.019,
+    -0.108,
+    0.994
+   ],
+   "fit_vs_lathe_json_deg": 0.05,
+   "tilt_vs_library_v3_deg (lathe axis)": 5.03,
+   "tilt_vs_library_v3_deg (fit)": 4.99,
+   "axis_offset_mm": 0.6
+  },
+  "ep13_blue_cup_g0.glb": {
+   "axis_lathe_json": [
+    0.0336,
+    0.0484,
+    -0.9983
+   ],
+   "axis_fit": [
+    -0.0327,
+    -0.0481,
+    0.9983
+   ],
+   "fit_vs_lathe_json_deg": 0.06,
+   "tilt_vs_library_v3_deg (lathe axis)": 1.65,
+   "tilt_vs_library_v3_deg (fit)": 1.62,
+   "axis_offset_mm": 1.8
+  },
+  "ep21_blue_cup_g0.glb": {
+   "axis_lathe_json": [
+    -0.0071,
+    0.034,
+    -0.9994
+   ],
+   "axis_fit": [
+    0.006,
+    -0.0318,
+    0.9995
+   ],
+   "fit_vs_lathe_json_deg": 0.14,
+   "tilt_vs_library_v3_deg (lathe axis)": 1.92,
+   "tilt_vs_library_v3_deg (fit)": 1.82,
+   "axis_offset_mm": 3.9
+  },
+  "ep22_blue_cup_g0.glb": {
+   "axis_lathe_json": [
+    0.067,
+    0.0125,
+    -0.9977
+   ],
+   "axis_fit": [
+    -0.065,
+    -0.0126,
+    0.9978
+   ],
+   "fit_vs_lathe_json_deg": 0.11,
+   "tilt_vs_library_v3_deg (lathe axis)": 2.52,
+   "tilt_vs_library_v3_deg (fit)": 2.41,
+   "axis_offset_mm": 1.6
+  },
+  "ep11_blue_cup_g0.glb": {
+   "axis_lathe_json": [
+    0.0184,
+    0.0062,
+    -0.9998
+   ],
+   "axis_fit": [
+    -0.0181,
+    -0.0061,
+    0.9998
+   ],
+   "fit_vs_lathe_json_deg": 0.01,
+   "tilt_vs_library_v3_deg (lathe axis)": 0.92,
+   "tilt_vs_library_v3_deg (fit)": 0.93,
+   "axis_offset_mm": 2.1
+  }
+ },
+ "closed_end": [
+  "blue_cup.glb z-range mm -74.8..87.1 n_core 2717 core z median mm 45.7 -> base at +z (opening -z)",
+  "ep11_blue_cup_g1.glb z-range mm -77.9..77.9 n_core 1163 core z median mm 77.4 -> base at +z (opening -z)",
+  "ep12_blue_cup_g0.glb z-range mm -77.2..96.5 n_core 1469 core z median mm -72.4 -> base at -z (opening +z)",
+  "ep13_blue_cup_g0.glb z-range mm -79.6..97.0 n_core 1365 core z median mm 95.6 -> base at +z (opening -z)",
+  "ep21_blue_cup_g0.glb z-range mm -77.1..88.4 n_core 1368 core z median mm 87.2 -> base at +z (opening -z)",
+  "ep22_blue_cup_g0.glb z-range mm -79.7..87.4 n_core 1273 core z median mm 86.0 -> base at +z (opening -z)"
+ ],
+ "reading": {
+  "ep11_g1": "axis 0.9 deg, base end agrees with library_v3 (+z): spin",
+  "ep13_g0": "1.6 deg, base agrees: spin",
+  "ep21_g0": "1.9 deg, base agrees: spin",
+  "ep22_g0": "2.5 deg, base agrees: spin",
+  "ep12_g0": "axis line 5.0 deg, but the closed end is at -z, opposite library_v3 and the other four, and the closed end is the WIDE end (r90 45 mm vs 39 mm at the rim end): the lathe closed the opening. Up-down flip, not spin. Excluded from the headline set (orchestrator, before any re-track score): library_v3 for ep12 blue cup."
+ },
+ "commands": [
+  "python -I scripts/pubown_cup_axis.py meshes/library_v3/blue_cup.glb <cand>/ep11_blue_cup_g1.glb <cand>/ep1{2,3}_blue_cup_g0.glb <cand>/ep2{1,2}_blue_cup_g0.glb",
+  "python -I scripts/pubown_cup_base.py (same files)"
+ ]
+}
