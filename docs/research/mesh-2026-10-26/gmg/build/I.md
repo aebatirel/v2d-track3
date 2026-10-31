@@ -861,3 +861,23 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 19:23 T-I1 waiver-off suite launched (all classes but Waiver: Sweep Silhouette Offset Sources Partner Controls Pieces
   Agreement Contract Iteration PiecesGate; HEAD 7402553 incl. cbed3cb; log `<scratch>/fi415/tests/test_interlock_waiveroff.log`).
   F-I4.15 suite so far: w1, w1 t6, w2, w3, w4, w5 ok; w6 running.
+- 20:01 [M] **T-I1 F-I4.15 suite done** (13 tests, 4964 s, code 19c4309; log + JSON in `build/I/results/slot2-ep24/tests/`):
+  FAILED (1 failure, 2 errors, 1 skip). Per case:
+  - w1 (t = 6, 10, 13, 18; 25 out of scope as before) **pass**; t all points 5.84 / 9.73 / 12.63 / 17.48 mm (downsample
+    pair 7.24 / 10.17 / 13.43 / 18.12), widths 7.84 / 11.72 / 14.63 / 19.47, centres within 0.12 mm, cross-lap diff
+    7.5 / 5.7 / 2.7 / 4.1 mm, keep-out 0.0, slotted prisms 80/69, 38/51, 58/56, 62/63 (all <= 82). **The F-I4.13
+    t = 6 width miss is gone** (7.84 vs 8 +- 1).
+  - w2, w3, w4 (o2a / o2b PUSH, interlock_slot_inconsistent) pass; w5 pass (lag 0.033 cm / 0.16 deg, overlap 0.0).
+  - **w6 now passes** (sigma 3: t all points 9.70 / 9.73 vs downsample 8.07 / 8.39; widths 11.73 / 11.70).
+  - **w6c passes** in all 6 cells: 5.84 / 5.85, 9.73 / 9.70, 17.48 / 17.48 mm (true 6 / 10 / 18; 0.15-0.52 mm thin).
+  - **w7 misses**: B (one face, edges removed) has a 184-vertex polygon (90 reflex) -> 111 default prisms > cap 82 ->
+    `plate_body_over_cap`, old decision (A 64 vertices, 32 prisms). Pre-registered w7 outcome (CARVE both) missed.
+  - **w8, w8b: ERROR in the test harness** (my bug: the physics guard tested `decision == 'CARVE'`, which the F-I3
+    decision kept after a waiver gate failure also satisfies; p3_of then found no waiver pieces, KeyError). The
+    harness is fixed (guard = both carved by the waiver route) and w8 / w8b re-run at 20:01 (no rule change). From the
+    18:3x probe, w8 misses at the cap (B slotted 83 > 82).
+  - **w9 (2.5 deg tilt) passes P3** (P56 holds): both CARVE (slotted 72 / 81, under the cap with the tilted slot),
+    P3 carved 0.282 cm / 3.99 deg, overlap 0.33 cm3 (default 0.754 cm / 99.7 deg), P2-P7 pass, P5 153 shapes; the w1
+    centre check is off by -3.92 mm on A (the centre follows the tilted partner plane; reported, not a w9 criterion);
+    end - waist 12 / 10 mm; FREE ratio 0.326 / 0.773 (B's normal tilted 3.4 deg, as in the probe).
+  - P55 fails (w7 and w8 miss; w6c holds; w1-w5 keep or improve their F-I4.14 outcomes).

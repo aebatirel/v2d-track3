@@ -263,7 +263,9 @@ class WaiverR2(TI.Waiver):
         if wm:
             m += wm
         out = dict(summary=s, misses=m)
-        if physics and all((s.get(o) or {}).get('decision') == 'CARVE' for o in 'AB'):
+        if physics and all((s.get(o) or {}).get('w_mm') is not None for o in 'AB'):     # both carved by the waiver route
+            # (fixed after the first run: the old check on 'CARVE' also caught the F-I3 CARVE kept after a waiver gate
+            # failure, and p3_of then had no waiver pieces: KeyError, reported as ERROR for w8 / w8b)
             t0 = time.time()
             ph, acc = p3_of(b, recs, 16, f'T-I1 {key} (F-I4.15)')
             p3 = ph['P3']
@@ -275,6 +277,7 @@ class WaiverR2(TI.Waiver):
             if not (c['lag_cm_asm'] <= 0.5 and c['lag_deg_asm'] <= 5.0 and
                     ph['P6']['carved_asm_median'] < 1.0 and j['pass_']):
                 m.append(f'P3 carved {c} overlap {ph["P6"]["carved_asm_median"]} judge {j}')
+        out['misses'] = m
         RES[key] = out
         return out, m
 
