@@ -1,5 +1,15 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31: being on the challenge-page leaderboard does NOT mean we are registered (Kaggle rules §8.d)
+- The challenge-page leaderboard is generated from Kaggle (`leaderboard.json`, `"source": "kaggle"`, 37 Track 3
+  teams incl. plain Kaggle usernames). It still shows us as "Ahmet Ercan Batirel" (generated 31 Oct 08:54 UTC).
+- Kaggle Track 3 rules §8.d: "Accepting the Rules on this platform enters you into this leaderboard only; it does not
+  register you for the Competition. Each team must complete the registration form ... before the end of the
+  Competition Period. A team that has not registered may be excluded from Prizes and from the announcement of
+  results, even if it appears on a leaderboard."
+- §9.a: the `code_commit_url` must link to a commit in a repository shared with the V2D organisers' account.
+- Owner actions still needed: send the late-registration email; share the repo with `Nvidia-V2D-Challenge`.
+
 ## 2026-10-31: registration form closed before the owner submitted it; late-registration email drafted (not sent)
 - The form page now reads "Registration is now closed". The email to V2D_Challenge@nvidia.com asks for late
   registration and carries the form answers: `docs/organiser-email-late-registration-2026-10-31.md`. It is an

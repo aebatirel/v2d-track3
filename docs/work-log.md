@@ -5431,3 +5431,16 @@ arm and a no-policy replay floor to stage B.
 - Email text: `docs/organiser-email-late-registration-2026-10-31.md`. It is saved as an unsent Gmail draft via the
   connector. That account is ahmet@ophanic.com, not the aebatirel@gmail.com used for Kaggle and named as primary
   contact; flagged to the owner. Nothing was sent.
+
+### 31 Oct — challenge-page leaderboard is not the registration list
+- The owner saw our team on https://nvidia-isaac.github.io/video_to_data/v2d_challenge/ and concluded that we were
+  registered.
+- Checked the page data: it renders
+  https://raw.githubusercontent.com/MVerghese/v2d-leaderboard-data/main/leaderboard.json (schema 1, source
+  "kaggle", generated 2026-10-31T08:54:18Z). Track 3 lists 37 Kaggle teams; we are row 8 as "Ahmet Ercan
+  Batirel" (overall rank 8).
+- Kaggle rules, read through `competitions.PageService/ListPages` for competition 168681 (Track 3 AUC):
+  - §8.d: registration on the competition website is required in addition to accepting the rules. Unregistered
+    teams "may be excluded from Prizes and from the announcement of results, even if it appears on a leaderboard".
+  - §9.a: the commit must be in a repo shared with the V2D organisers' account.
+- Told the owner: the late-registration email still needs to be sent, and the repo needs to be shared.
