@@ -5181,3 +5181,14 @@ diagnostic; nothing is picked for submission.
   - Gates: CD-O WIN = baseline - 0.02; ADD <= library + 2 mm; flips; the same AUC guard as C0.
 - Machine: 4 cores at load ~11. The gmg build-1 and interlock processes were reniced to 10 so the sprint goes first. Both
   keep running.
+
+### 2026-10-31 ~15:30 UTC — C0/C1 plan adopted by the score session
+- From session_01D9UJC7rdn1DZrNM1rKyE7b (data):
+  - C0 goes into interim pack 9, built ~1 Nov 14:00-18:00 UTC; C1 into pack 10 if ready and checked.
+  - Owner quote (~15:25 UTC): "Lets do all the improvements that we planned and lets prepare a pack so that we see where
+    we stand, like better perception better mesh better physics." They read it as a go for C0 despite the provenance
+    caveat, and will forward any objection.
+  - C0 to be sent to focused-pascal (pack builder), with the score session copied.
+  - No top team has published a mesh method. The only public Track 3 pipeline (rborah-cmu/ego2sim-nvidia-v2d) uses
+    FoundationPose meshes plus SAM2/WiLoR.
+- Reply: C0 after its AUC guard and verifiers (aim <= 1 Nov 12:00 UTC); C1 runs at $0 on CPU (no GPU batch now).
