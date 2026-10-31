@@ -5715,3 +5715,15 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - Perfect tracking alone (S → 1) gives ≈ 0.89–0.90.
   - Eval 10 fixed (S ≈ 0.935) gives ≈ 0.84.
   - 0.9 needs near-perfect tracking on all 20 episodes plus references at least as good as now.
+- ~18:28 UTC focused-pascal pack-10 draft (docs/research/work/pack10-20261031/PLAN.md on its branch, c43d535) [E]:
+  - Tier 1 (always): 2 seeds each, the per-episode swap rule, ≈ $20–33:
+    - eval 10 (V4p if the gate passes);
+    - 32 and 33 (carved blue cup);
+    - 14 and 16 (rack seats);
+    - 30 (standard learner, rack seat);
+    - 25 (standard learner, new board slot).
+  - Tier 2 (only for global changes that pass: masses, solver, recipe): the other 13 evals, ≈ $55–90 (one arm) or
+    ≈ $95–130 with a minus-recipe control.
+  - The final list and cost go to the owner tomorrow morning for one go-ahead, after tonight's verdicts.
+  - Its estimate: eval 10 to ~0.9 ≈ +0.022; 32/33/14/16/30/25 at +0.05 each ≈ +0.015; plausible pack-10 target
+    ≈ 0.85–0.86 [E].
