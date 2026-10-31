@@ -5780,3 +5780,11 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   scan-derived), public validation on mocap-bearing objects with a pre-registered rule, before any eval use. Output
   docs/analysis/markers-20261031/.
 - Owner preference (repeat of 26 Oct): do not raise deadlines with the owner; time planning is the owner's.
+- ~18:58 UTC bold-albattani spoon diagnostic (cdo-sprint/spoon-diag/README.md, commit 2681d8b; GT-free):
+  - eval 33: library_v3 blue cup ≥ 50 % solid up to 66 mm (75 mm in its collision pieces). It blocks the spoon only
+    in the deepest scoop frames (≤ 9.8 cm³, 19 mm deep); 33/66 in-cup frames are unblocked. A carve gives a partial
+    benefit [H]; the rest looks like policy/grasp behaviour.
+  - eval 32: not blocked (spoon ≤ 73 mm below the rim); a carve changes nothing.
+  - eval 16: no rack seat filled. From f120 our reference holds the spoon 1–8 mm from the rack plates with nothing
+    under it, so it is unsupported on release. That is a spoon-pose problem, and the lever is the marker layer.
+  Forwarded to the marker agent.
