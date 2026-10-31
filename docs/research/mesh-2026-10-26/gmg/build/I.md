@@ -548,4 +548,4 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   piece (best of new inner face by LP / new outer face / trim top / trim bottom), because a band hull refills per-bin
   radii; carved wall ranges re-banded at <= 10 mm first. Smoke test (tapered cup, 64 sections): 65 ring pieces,
   continuity 0 gaps / 64,440 rays; a forced 1 mm ring is caught (720 gaps at 5.94-6.44 mm). Next: tests/test_collcarve.py.
-- 17:55 correction: the two entries above and the PREREG F-I4.14 correction bullet first carried guessed times (17:57 / 17:55); replaced by the commit time of 3b662c3 (17:54:13 UTC). Text otherwise unchanged.
+- 17:55 correction (eval-25 step): its 17:54 decision and inputs entries above and the PREREG F-I4.14 correction bullet first carried guessed times (17:57 / 17:55); replaced by the commit time of 3b662c3 (17:54:13 UTC). Text otherwise unchanged.
