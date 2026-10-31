@@ -53,3 +53,12 @@ PCA of the 22 finger joints:
   sample budget; jittered zero-action score.
 - Falsified if synergy sampling is not ≥ the standard on ≥ 3 of 4 episodes.
 - CPU prototype, then a G1-scale box ≈ $1.5–3 [E].
+
+## Outcome (31 Oct 22:23 UTC, determined-wright, pre-registered in physics-solver.md §11) [M]
+- **[H-cmdsmooth] FAILS the rule.** RTS, σ 5 mm, q 4.0; quaternion components and fingers at the same bandwidth;
+  frame 0 pinned; world-frame smoothing (the locked grasp was not recomputed). Jittered sim_vs_ref, 16 copies, CRN, CPU.
+  - GL+ILC plans: ep2 +0.002, ep12 +0.004, ep18 +0.014, ep24 +0.003. All positive, all far below +0.03.
+  - Solved plans: −0.011, −0.027, +0.014, −0.025. [H] Smoothing undoes part of the solver's tuning.
+  - No RL follow-up. Record: `docs/research/physics-2026-10-30/cmd_smooth/` (9c1d100) on claude/determined-wright-3joens.
+- **[H-syn] not run.** Its CPU prototype needs the solver on CPU (hours per episode). The solver is already closed for
+  eval (arm S: no signal), so the test is parked unless the owner asks.

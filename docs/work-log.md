@@ -5724,3 +5724,6 @@ arm and a no-policy replay floor to stage B.
     0.16–1.05 cm, 25–56 % of worlds > 1 cm at hold end, vs public 0–1.09 cm and 3–53 %); no NaN; eval 25 had one
     6.7 cm pop at f170.
   - Arm V running (2 boxes, results ~00:30 UTC). Next: the P1 check for bold-albattani, then command-smoothing test A.
+- 22:23 UTC determined-wright: command-smoothing test A FAILS the pre-registered rule (§11). GL+ILC +0.002 to +0.014;
+  solved plans −0.027 to +0.014. No RL follow-up. Synergy test B parked: it needs the CPU solver (hours per episode), and
+  the solver is closed for eval after arm S; it can run if the owner wants.
