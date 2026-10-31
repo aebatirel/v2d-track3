@@ -5118,3 +5118,19 @@ diagnostic; nothing is picked for submission.
   (jitter_check --k 16); props = `docs/research/physics-2026-10-30/props_masses_only.json`.
 - Budget: owner topped up $100 for the lean plan (credit $128.43 at ~11:50 UTC per determined-wright); the mesh lane's
   $15-28 is funded; ledger planned line before each box.
+
+### 2026-10-31 ~12:55 UTC — eval-10 cup-nest diagnostic (from focused-pascal / determined-wright), our reply
+- Received (data from other sessions; not contract-valid because library_v3 is denylisted): on eval 10 the plain
+  library_v3 blue cup intrudes 68-94 cm3 (cavity floor 66 mm high); carve ev10 fixes the floor but still intrudes
+  18-36 cm3 (lower cavity radius ~5-7 mm too small). focused-pascal will build `meshes/carve/ev10w` (lathe-widened
+  cavity) on their branch, hypothesis H-nest-a, falsifier intrusion <= 2 cm3/frame; nothing launches without the owner.
+- Our reply (no build on our side):
+  - The lathe approach is fine (both cups are kit-axial).
+  - First test whether the intrusion is the same all round the axis. If it is one-sided, it is a track offset or
+    tilt, so push rather than carve.
+  - Add a sink falsifier. Widening a tapered seat lets the guest drop about dr/tan(taper) (a guess, ~10 mm per mm at
+    5 deg). E16 measured 0.6-1.0 cm sinks at 6 mm clearance. So: settle in MuJoCo with the hands parked, rest within
+    ~4 mm of the track height, tilt <= 5 deg; else widen only below the seat.
+  - Deliver the ~3 mm wall as convex pieces, not CoACD.
+  - Shared our public-ep11 interlock dev result: both cup regions class O, so PUSH. It is weak evidence that the
+    track nests too deep.
