@@ -51,7 +51,8 @@ for x in starts:
     arm, s, ep = arm_of(x['run']); cells[(ep, arm, s)] = x
 exp_cells = sorted((e, arm, s) for e in EPS for arm in ('mass0', 'mass1') for s in SEEDS)
 failed = {arm_of(x['run'])[::-1][0:1] + arm_of(x['run'])[0:2] for x in fl}
-ok('V1_trainings', sorted(cells) == exp_cells and len(starts) == len(exp_cells), f'{len(starts)} started (injected failures {sorted(failed)}): {sorted(cells)}')
+ok('V1_trainings', sorted(set(cells) | failed) == exp_cells and not set(cells) & failed and len(starts) == len(exp_cells) - len(failed),
+   f'{len(starts)} started and finished, injected failures {sorted(failed)}: {sorted(cells)}')
 ok('V1_steps_seed', all(x['steps'] == 70004736 and int(x['seed']) == s for (e, arm, s), x in cells.items()), '')
 for ep in EPS:
     fps = {x['fingerprint'] for (e, arm, s), x in cells.items() if e == ep}
@@ -72,7 +73,7 @@ for x in ev:
     arm, s, ep = arm_of(x['ck']); got = {n: v['mass'] for n, v in x['loaded'].items()}; exp = {n: (want[n] if arm == 'mass1' else 0.3) for n in got}
     if got != exp or not all(f'/refs/{arm}_sf/ep{ep}/' in v['urdf'] for v in x['loaded'].values()) or x['fingerprint'] != cells[(ep, arm, s)]['fingerprint']:
         bad.append(x['ck'].replace(MR, 'MR'))
-n_tr = len([k for k in cells if k not in failed]); best = [x for x in ev if '/best/' in x['out']]
+n_tr = len(cells); best = [x for x in ev if '/best/' in x['out']]
 ok('V4_every_evaluation_loads_its_arm', not bad and len(ev) == n_tr * (7 * 3 + 10) and len(best) == 10 * n_tr,
    f'{len(ev)} evaluations ({len(best)} of chosen checkpoints) for {n_tr} finished trainings, {len(bad)} wrong')
 for ep in EPS:
@@ -82,7 +83,7 @@ for ep in EPS:
             ok(f'V5_identical_settings_ep{ep}_s{s}', x0['args'] == x1['args'] and x0['env'] == x1['env'], str(sorted(set(x0['args']) ^ set(x1['args']))))
 if len(SEEDS) == 2:
     ok('V5_seeds_differ_only_in_seed', all(sorted(set(cells[(e, arm, 42)]['args']) ^ set(cells[(e, arm, 43)]['args'])) == ['reset.seed=42', 'reset.seed=43']
-                                           for e in EPS for arm in ('mass0', 'mass1')), '')
+                                           for e in EPS for arm in ('mass0', 'mass1') if (e, arm, 42) in cells and (e, arm, 43) in cells), '')
 for ep in EPS:
     run = SRC.get(str(ep), REAL['episodes'][str(ep)]['source_run'])
     st = glob.glob(f'{a.STORE}/runs/{run}/refs/glockt/ep{ep}/processed/*/*/ref_gl_ilc.parquet')[0]
