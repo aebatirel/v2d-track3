@@ -196,6 +196,8 @@ def main():
     ap.add_argument('--meshes', required=True, help='base meshes: episode_XXXXXX/<object>.glb (copied, never modified)')
     ap.add_argument('--replace', required=True, help='folder of replacement meshes named <object>.glb')
     ap.add_argument('--objects', help='comma list to swap (each must be in --replace); default: every mesh there')
+    ap.add_argument('--only-episodes', default='', help='opt-in (31 Oct, pack 9a+): "obj:ep,ep;obj2:ep" swaps those objects '
+                    'only in the listed episodes (other episodes keep the base mesh); objects not named swap everywhere')
     ap.add_argument('--transform', help='JSON {object: 4x4} mapping replacement coords into the base body frame')
     ap.add_argument('--base', required=True, help='base packed parquet to check against (e.g. pack 8)')
     ap.add_argument('--code-commit', required=True)
@@ -227,6 +229,10 @@ def main():
                 raise SystemExit(f'error: two replacement files for {stem}')
             files[stem] = os.path.abspath(os.path.join(args.replace, name))
     objects = [o.strip() for o in args.objects.split(',')] if args.objects else sorted(files)
+    only = {k.strip(): {int(e) for e in v.split(',') if e.strip()} for k, v in
+            (x.split(':', 1) for x in args.only_episodes.split(';') if x.strip())}
+    if set(only) - set(objects):
+        raise SystemExit(f'error: --only-episodes names objects not swapped: {sorted(set(only) - set(objects))}')
     missing = [o for o in objects if o not in files]
     if missing or not objects:
         raise SystemExit(f'error: no replacement file for {missing or "any object"} in {args.replace}')
@@ -264,8 +270,8 @@ def main():
                 raise SystemExit(f'error: base meshes lack episode {ep} {obj}')
             path = os.path.join(d, obj + present[0])
             entry = {'episode': int(ep), 'slot': slot, 'object': obj, 'file': os.path.relpath(path, out),
-                     'md5_before': digest(path), 'swapped': obj in objects}
-            if obj in objects:
+                     'md5_before': digest(path), 'swapped': obj in objects and (obj not in only or int(ep) in only[obj])}
+            if entry['swapped']:
                 if present != ['.glb']:
                     raise SystemExit(f'error: episode {ep} {obj}: base is {present}, expected one .glb')
                 entry['base_copy'] = os.path.join(out, 'base_meshes', f'episode_{int(ep):06d}', obj + '.glb')
@@ -287,6 +293,10 @@ def main():
             entry['md5_after'] = digest(path)
             pairs.append(entry)
     swapped = [p for p in pairs if p['swapped']]
+    for o, eps_o in only.items():                                      # every listed episode must really have the object
+        got = {p['episode'] for p in swapped if p['object'] == o}
+        if got != eps_o:
+            raise SystemExit(f'error: --only-episodes {o}: listed {sorted(eps_o)}, swappable {sorted(got)}')
     lib = os.path.join(REPO, 'meshes', 'library_v3')
 
     # Frame report: one per distinct (object, base md5, written md5).
