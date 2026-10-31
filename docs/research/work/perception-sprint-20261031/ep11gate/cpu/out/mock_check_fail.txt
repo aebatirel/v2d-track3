@@ -1,6 +1,6 @@
 ok   no store listing (single-file downloads only)  [6]
 ok   every download succeeded
-ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mocksha', 'dst': 'runs/20261031-e11g-mocksha', 'msg': 'run 20261031-e11g-mocksha: 2026-10-31T15:02:18Z'}]]
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mocksha', 'dst': 'runs/20261031-e11g-mocksha', 'msg': 'run 20261031-e11g-mocksha: 2026-10-31T15:38:22Z'}]]
 ok   hands_mp / hand_refine / perc2 never ran
 ok   rc 0  [rc=0]
 ok   verdict FAIL  [FAIL: ['delta +0.0201 < +0.05']]

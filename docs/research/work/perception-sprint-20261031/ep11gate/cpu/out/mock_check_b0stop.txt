@@ -1,6 +1,6 @@
 ok   no store listing (single-file downloads only)  [6]
 ok   every download succeeded
-ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mocksha', 'dst': 'runs/20261031-e11g-mocksha', 'msg': 'run 20261031-e11g-mocksha: 2026-10-31T14:51:38Z'}]]
+ok   exactly one store upload (the final push)  [[{'kind': 'upload', 'src': '<MR>/content/push/20261031-e11g-mocksha', 'dst': 'runs/20261031-e11g-mocksha', 'msg': 'run 20261031-e11g-mocksha: 2026-10-31T15:52:50Z'}]]
 ok   hands_mp / hand_refine / perc2 never ran
 ok   rc 1 (stopped)  [rc=1]
 ok   stopped for: B0 MISMATCH  [B0 MISMATCH: the rebuilt tracks are not the pre-registered ones (b0.json); no reference built]

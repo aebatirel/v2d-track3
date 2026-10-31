@@ -36,6 +36,10 @@
   "arms_apart_blue_cm": {
    "window": 2.418,
    "hands_off_f101_136": 2.385
+  },
+  "arms_apart_beige_cm": {
+   "window": 0.0,
+   "hands_off_f101_136": 1.114
   }
  },
  "builds": {
