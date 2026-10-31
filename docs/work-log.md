@@ -5061,3 +5061,8 @@ Advice given:
     after this batch and the owner's OK; it will review the mass-check job and run R5 ("everything true" CPU replay) on
     ep12/ep13. Sent it the inputs: c6 references are not built yet; it can use the orcB O references (true motion, our
     meshes) for ep13 now, or build c6 from the Phase-1 bundles (oracle_poses without --meshes, scanlib assets).
+- 05:10 UTC R5-lite from session determined-wright (CPU, public diagnostic; their branch README "R5-lite"): zero-action
+  replay of the orcB references, 16 jittered copies (CRN), sim_vs_ref vs each own reference: ep13 O 0.569 ± 0.008 vs
+  P 0.551 ± 0.007 (+0.018); ep31 O 0.556 ± 0.091 vs P 0.554 ± 0.096 (+0.002); ep11 skipped (its refs name
+  /content/assets_ev10). Reading: true object motion barely improves zero-action executability on ep13/ep31; the limit
+  is the plan's physics (grip, hand-over), consistent with orcB ep13 O = P = 0.544 after RL.
