@@ -1173,6 +1173,21 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   assembled frames of the synthetic cross stays >= 1.0 cm3. Known limit [H]: the centre now follows the tracks at the
   assembled frames; a track error there moves the slot with it, which P6 / P7 (other frames) can expose.
 
+- **2026-10-31, F-I4.13: T-I1 w1-w5 outcomes before T-I11 (no rule change).** Synthetic, code = F-I4 + F-I4.12, run
+  17:00-17:15 UTC on this container [M]: w1 at t = 10, 13, 18 mm passes (CARVE T1, not submitted; plate thickness
+  10.17/10.12, 13.43/13.34, 18.12/18.12 mm; width within 0.2 mm of t + 2; centre within 0.1 mm of the true slot, the
+  F-I4.3 component centroid would have been 0.76-2.81 mm off; 3 pieces; keep-out 0.0 cm3 per hull; depth sum - W_x =
+  2.6-4.3 mm). **Known miss at t = 6 mm (pre-registered w1 width tolerance):** the plane-pair thickness reads
+  7.24 / 7.30 mm, so the slot is 9.30 / 9.24 mm wide against 8 +- 1 mm (everything else at t = 6 passes). Kept as an
+  expected failure (`test_w1_t6_width_known_miss`); the thickness code is not changed. Implication for ep24 [H]: if the
+  boards are about 6 mm thick, t and the slot may read about 1.2 mm too wide (more clearance; P2 does not bound it,
+  the "default + 1 mm" clause being loose). **t = 25 mm (build-task extra, at the slab window's upper end):** no plane
+  pair, out of scope, the old decision (PUSH) stands; reported, not a w1 case. w2 (waiver off unchanged, also on the
+  two-sided bundles), w3 (n2, n4, n9 identical with the waiver on; a plate with a 30 mm cylinder partner unchanged;
+  reported only: a 16 mm rod is not plate-like either), w4 (o2a and o2b: both PUSH with `interlock_slot_inconsistent`,
+  depth sum - W_x = 22.0 mm) and w5 (t = 10 mm, 16 copies: carved lag 0.033 cm / 0.16 deg, overlap at the assembled
+  frames 0.0 cm3; default 6.07 cm / 91 deg; P2-P7 pass) pass. Controls n2-n5, n9 pass with the waiver off.
+
 ## Revision 1 changelog
 
 What changed, and why:

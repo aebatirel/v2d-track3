@@ -386,3 +386,12 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 16:55 PREREG F-I4.12 (post hoc, before any real-data F-I4 run): slot centre = the partner's plate mid plane at the
   median assembled pose crossing the slot centre line; the component centroid stays reported and sets the split cap.
   No threshold changed. Committing F-I4.12 + this log before running anything else with it.
+- 17:00-17:15 [M] T-I1 Waiver + Controls (code F-I4 + F-I4.12; logs `<scratch>/interlock/fi4/test_waiver.log`,
+  `test_w1.log`, JSON `test_waiver.json`, `test_w1.json`): w1 passes at t = 10 / 13 / 18 mm (centre within 0.1 mm;
+  component centroid would be 0.76-2.81 mm off; widths within 0.2 mm of t + 2; depth sum - W_x 2.6-4.3 mm; keep-out
+  0.0); t = 6 mm misses the width tolerance only (plane-pair t 7.24 / 7.30 -> w 9.30 / 9.24 vs 8 +- 1): known miss,
+  expected failure, PREREG F-I4.13 (no rule change); t = 25 mm out of scope (no plane pair at the window's edge) -> old
+  PUSH. w2, w3 (n2/n4/n9 identical; 30 mm cylinder partner unchanged; 16 mm rod not plate-like), w4 (o2a/o2b PUSH,
+  interlock_slot_inconsistent, diff 22 mm), w5 (16 copies: lag 0.033 cm / 0.16 deg, overlap 0.0) pass; Controls OK.
+- 17:17 committing the build (platebody.py, waiver hooks, P3 overlap clause, write_round extra, driver flags
+  --waiver-fi4 / --no-physcheck, tests, build/I/fi4_png.py) + F-I4.13, then T-I11.
