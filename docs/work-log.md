@@ -5381,3 +5381,8 @@ Advice given:
 - Pack 9b upload: corrected my proposal — I will not ask another session to upload (my session's guard blocked the
   upload; asking a peer would route around it). I publish pack 9b's record and report it; the upload is between the
   owner and the session where the owner gave the word, or the owner's word here.
+- ~21:45 UTC mesh lane: no new eval carves (keep meshes/carve/ev10, ev01, ev25); C0 blue cup for 9b → my lane NO (fails
+  the guard's pre-registered min clause: ep13 rack+cup −0.030 < −0.02; selector not pre-registered) unless the owner
+  accepts it in their own words. Noted for future carves: lathe ring pieces sag r_in(1−cos(π/N)) inside the cavity at
+  mid-sector (ev10 uses --seg 12: ≈ 1.4 mm at r 40 mm; ev10w measured 1.0–1.9 mm); a tangent-at-mid-sector inner face
+  would be cavity-safe [H]; ev10 unchanged now (the ep11 gate passed with it).
