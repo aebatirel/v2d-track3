@@ -1,0 +1,12 @@
+test_lathe_recovered_within_1_sigma (__main__.Lathe.test_lathe_recovered_within_1_sigma) ... ok
+test_mirror_recovered_within_1_sigma (__main__.Mirror.test_mirror_recovered_within_1_sigma) ... ok
+test_plate_recovered_within_1_sigma (__main__.Plate.test_plate_recovered_within_1_sigma) ... ok
+test_constants_registered (__main__.Units.test_constants_registered) ... ok
+test_sigma_required (__main__.Units.test_sigma_required) ... ok
+test_sym_eval_exact_mirror (__main__.Units.test_sym_eval_exact_mirror)
+A point set symmetric about z = 0 scores residual ~ 0, observed 1, free 0 at the true plane. ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 401.147s
+
+OK
