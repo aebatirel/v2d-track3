@@ -1583,7 +1583,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       miss** (over the cap: w8 B slotted 83, w8b 90 / 84; first run ERROR from a test-harness bug, fixed and re-run,
       no rule change); w8 also shows B's step-1 plane pair tilted 3.4 deg (t 5.11 mm), which F-I4.15.1 keeps as the
       reference normal (B's polygon prism 21.8 % FREE vs A's 3.6 %); **w9 (2.5 deg tilt) passes P3** (0.282 cm / 3.99
-      deg, overlap 0.33 cm3; slotted 72 / 81, under the cap). The waiver-off T-I1 suite: see `build/I.md`.
+      deg, overlap 0.33 cm3; slotted 72 / 81, under the cap). The waiver-off T-I1 suite (24 tests, every class but Waiver): OK with its 2 recorded expected failures.
     - **Predictions:** P51 holds (by construction), P52a holds, P52b holds, P53 holds (I-shape 7.0 / 9.9 mm; FREE
       ratios 0.316 / 0.183), P54 holds (7.401 mm; not independent), P55 **fails** (w7, w8, w8b), P56 holds, P57
       **fails** (t 10.785 > 10, body over the cap, end - waist -34 mm; FREE ratio 0.252 holds), P58 **fails** (57 / 77

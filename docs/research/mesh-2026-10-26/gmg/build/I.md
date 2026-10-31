@@ -928,4 +928,8 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   step-1 normal). w8b (sigma 3, step 2): A 138 vertices / 75 / **90**, B 134 / 75 / **84**; t 6.84 / 6.81 mm; end -
   waist 10 / 9.5; FREE 3.7 % / 3.9 % vs 12.4 %.
 - 20:14 PREREG F-I4.15 outcomes bullet, INTERLOCK 20.11 (+ header pointer), STATUS section and work-log entry written
-  (record only). Waiver-off T-I1 suite still running (19 ok so far, no failure).
+  (record only). Waiver-off T-I1 suite: 24 tests OK, 2 expected failures (20:29 entry).
+- 20:29 [M] **T-I1 waiver-off suite** (all classes but Waiver; launched 19:23:53 at HEAD 7402553, which includes another
+  agent's interlock.py crash guard cbed3cb; 3951 s): **Ran 24 tests, OK (2 expected failures, the earlier recorded known
+  misses)**. Log in `build/I/results/slot2-ep24/tests/`. Round-2 step done: ep24 slot delivered with P1 pending; not
+  frozen for eval 25 (ep23 board 1 over the prism cap); eval 25 not run; no rental ($0).
