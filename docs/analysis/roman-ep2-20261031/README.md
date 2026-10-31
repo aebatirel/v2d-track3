@@ -115,3 +115,13 @@ a hand is near, ×0.01 when still.
 `sig / 0.1 * deg2rad(0.3) / 2`. For the chosen 8 mm that is 2.1e-4 in quaternion units (≈ 0.024°), so rotations were
 effectively not smoothed. The cross-validated gains are position-only smoothing. The port to the refine stage
 (focused-pascal) is positions only. Rotation smoothing at 0.6° (`all20.py` 'med') was not cross-validated.
+
+**Corrections and outcome (31 Oct ~21:35 UTC).**
+- The halves did NOT pick the same cell. Train A picked σ 16 mm and train B σ 8 mm, both with q 4.0 and still ×0.01
+  (`cvsmooth.json`). My earlier "both halves pick the same cell" was wrong; focused-pascal caught it.
+- **Kit-chain gate FAILED** (focused-pascal, opt-in refine step S13: positions only, after S2, σ 8 mm). Over the 20
+  public episodes, R_lib vs mocap: mean ΔR −0.00011 (bar +0.005), 9 better / 7 worse, no episode moving more than
+  0.0044. The positions move 0.03–0.3 cm against the scorer's 1–9 cm ADD steps, so the smoother's effect is below the
+  board's resolution.
+- S13 stays an unused opt-in. S2 (the half-frame advance) remains the only adopted timing fix. Write-up:
+  `docs/research/work/perception-sprint-20261031/rts/README.md` on claude/focused-pascal-2nz9s1.

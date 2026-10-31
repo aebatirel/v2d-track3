@@ -5714,3 +5714,7 @@ arm and a no-policy replay floor to stage B.
   - Kept OUT of the automatic 9b upload: the owner's authorisation covers only 9a+ + V4p + passing D cells.
   - Listed as an owner decision for the morning. The 05:00 trigger now states the content limit explicitly, plus a
     "no mesh change" byte-diff check.
+- 21:34 UTC focused-pascal: the RTS position smoother (S13, after S2, σ 8 mm) FAILS its pre-registered kit-chain gate:
+  mean ΔR −0.00011 vs +0.005, 9 better / 7 worse; the effect is below the scorer's resolution. Not adopted.
+  - It also caught my error: the cross-validation halves chose σ 16 mm (A) and 8 mm (B), not the same cell.
+    Corrected in the README.
