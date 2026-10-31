@@ -81,8 +81,9 @@ rack / cup). Full tables and per-episode diagnostics: `box/selection.md`.
 Observations (facts from the table, no rule changed):
 - The pot pick does not beat C0 even in-sample (C0 is 0.3 % lower), and neither does the rack pick (C0 2.7 % lower).
   Both stay within the pre-registered 15 % margin, so the rule says E0.
-- On the rack, library_v3 has the lowest ALL fidelity of all meshes (5.881, 8.4 % below the pick). It is also lowest
-  on 4 of the 5 rack episodes; ep30 is the exception. The rack rule compares only against C0, so this changes
+- On the rack, library_v3 has the lowest ALL fidelity of all meshes (5.881, 8.4 % below the pick). It is also the lowest
+  of all 14 rack meshes on episodes 14, 15, 16 and 28. On ep30, C0 is lowest (7.339), then the pick (7.379), checked
+  over every row of `fidelity.jsonl`. The rack rule compares only against C0, so this changes
   nothing, but a reviewer should see it: E0's in-sample advantage did not show up for the rack.
 - The cup pick beats library_v3 by 9 % and C0 by 3 % in-sample. The lid pick beats C0 by 5.5 %.
 
