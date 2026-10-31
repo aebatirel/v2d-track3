@@ -5354,3 +5354,21 @@ Advice given:
   now; fixtures 25/25), launched under the owner's eval-10 go (15:20 UTC). Swap only by the both-reference rule.
 - 21:08 UTC **eval-10 V4p retrain launched**: run `20261031-e10v-caf38fb` on offer 28810507 (Spain, $1.377/h), commit
   caf38fb, job `bash ops/jobs/ev10_v4p.sh`; ledger planned $6.00. Expected ≈ 2.8–4.7 h, $3–7 [E].
+
+## 2026-10-31 ~21:50 UTC — owner decisions (via keen-heisenberg, ~21:25 UTC): D cells tonight; pack 9b
+- Owner: "Yes, start tonight" for the targeted D cells (evals 14, 16, 33 grasp-lock; 25, 30 standard learner; seeds
+  42/43) on each episode's CURRENT packed configuration (no carves, no masses), then 10 fresh official draws per
+  candidate; pack 9b = pack 9a+ + eval-10 V4p (if SWAP-ELIGIBLE) + every passing D cell; "Upload automatically" when the
+  rule and the pack checks pass.
+- Upload constraint: this session's permission guard blocked my own Kaggle upload at ~16:40 (the owner's standing rule;
+  approval reached here only relayed). So pack 9b will be handed, with path / sha256 / checks, to keen-heisenberg's or
+  the score-status session (where the owner gave the word) for the upload, as for 9a+; or the owner says it here.
+- Build started (CPU agent): opt-in D mode on the masses-eval machinery (packed configuration per episode from
+  packed_refs.json), determined-wright's patch_flashchord_dr.py (609582a), PREREG of the swap rule vs H5p7's fresh draws,
+  verdict tool + fixtures, mocks, JOBS. Then review, then launch (grasp-lock box + standard boxes + confirmation).
+- Mesh lane (keen-heisenberg / bold-albattani): interlock carves for ep11/12/13/31/2 delivered nothing tonight; eval-25
+  slot not frozen (round 3 running); pack 10 Tier 1 is planned without new carves unless the mesh lane delivers.
+- Re-track: Set B delivery staged and validated (4611c78); launch held for the blue-cup > 45° proxy-rotation check with
+  the mesh session (spin about the axis expected).
+- RTS smoother: implementation + public gate running (CPU agent); PREREG committed dc4be79 before any score.
+- Credit ≈ $69 (21:20 UTC); reserve ≥ $10.
