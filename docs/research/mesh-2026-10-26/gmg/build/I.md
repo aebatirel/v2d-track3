@@ -1352,6 +1352,12 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   delivered 10 boxes make 27-28 board-table contacts against the control's 8, and even the unslotted default boxes give
   112 rows (3.5 x). Absolute counts stay far below the per-world limits (124 of 512 rows, 31 of 256 contacts).
   Machine: this container only, no rental, $0. Work-log entry written.
+- 23:52 [M] **Waiver-off controls keep their outcomes**: `tests/test_interlock.py` all classes but Waiver (Sweep
+  Silhouette Offset Sources Partner Controls Pieces Agreement Contract Iteration PiecesGate), launched 23:06:01 at
+  a130449 (nice 10), **Ran 24 tests, OK (2 expected failures, the recorded known misses)**, 2712 s: the same outcome
+  as round 2 (20:29 entry). Build + public runs step done: freeze not reached (ep24 part 1), eval 25 not run, ep24 r0 a
+  DO_NOT_USE record, this container only, $0. Results in `build/I/results/slot3-ep24/`, `slot3-ep23/`,
+  `slot3-tests/` (fi416 = the F-I4.16 records, fi417 = this step).
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
