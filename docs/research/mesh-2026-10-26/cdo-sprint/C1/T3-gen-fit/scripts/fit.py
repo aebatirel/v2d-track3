@@ -46,8 +46,8 @@ DEFAULT = dict(
     holdout_block=10, holdout_mod=5, holdout_res=2,   # 20 % of 10-frame blocks held out
     alphas=[100.0, 50.0, 25.0, 12.0, 6.0, 3.0, 1.5, 0.75],
     gamma=1.0, max_it=8, tol=2e-4,                    # tol in normalised units (bbox diagonal = 1)
-    cap_m=0.010, trim_q=0.9, cos_vis=0.2, beta=0.1, w_t2s=1.0, w_s2t=0.0, knn=8, eps=1e-4,
-    mesh_samples=150000,
+    cap_m=0.010, trim_q=0.9, cos_vis=0.2, beta=0.1, w_t2s=1.0, w_s2t=0.0, knn=64, eps=1e-4,
+    mesh_samples=40000,       # coarse enough that knn=64 reaches the other face of a thin wall (~10 mm patch)
     stop_stage=None,          # index into alphas of the last stage kept (None = all)
     out_faces=4000, close_hole_max=200,
 )
