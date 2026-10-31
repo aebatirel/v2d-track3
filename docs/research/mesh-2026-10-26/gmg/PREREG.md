@@ -1926,6 +1926,354 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     inference stay separate: nothing is tuned on eval. Every miss and failure is reported; any change after an outcome
     is a new dated entry.
 
+- **2026-10-31, F-I4.17 (post hoc): a contact-budget gate for every delivery; a low-piece body (at most three
+  frame-aligned rectangles, cut into boxes); a new freeze.** Written 22:28-22:43 UTC from the orchestrator's decision
+  2 and its absolute bound (F-I4.17.0), and committed and pushed **before any code or run uses it**. Still before any
+  gmg scoring round (zero gmg scan scorings exist; no scan number was read for this entry). Labelled **post hoc**: it
+  was written after determined-wright's P1 settle and sim=rl contact check on the round-2 ep24 r0 (their branch
+  `claude/determined-wright-3joens`, commit 3c7fd32) and their eval-25 contact budget (commit 9c1d100), both read with
+  `git show` for this entry (Evidence). Also existing when it was written, and **not read** by its author: the F-I4.16
+  records of the geometric w10 cells (`<scratch>/slot3/tests/test_fi416_k1234.json`, `..._k6789.json`, written 22:19)
+  and the Identity run (still running at 22:31); the decision text cites no number from them. No low-piece body, box
+  piece or plain-MuJoCo contact count of any of our pieces has been computed. **Forking path, stated plainly:**
+  F-I4.12, F-I4.14, F-I4.15, the polygon-edge depth reading, F-I4.16 and this entry each followed an outcome. The
+  first five made the route more permissive. This one adds a gate (stricter) and replaces the delivered body after a
+  measured failure of the delivered pieces in the evaluator's simulator configuration, not after a slot or physics
+  outcome of our own tests. Where F-I4.16 and this entry differ, this entry wins for runs with code that implements it
+  (records carry `fi4_rev: 17`). The F-I4.16 route stays reproducible from commit 3b7e6d0 (REV 16), F-I4.15 from
+  19c4309 (REV 15). Design text for the owner: `INTERLOCK.md` section 20.14.
+  - **F-I4.17.0 The decision (orchestrator, decision 2, post hoc), as given in the task text (condensed, every rule
+    kept).** Stamped "31 Oct ~22:25 UTC" in the task text; the absolute bound is stamped "~22:40 UTC" there, and it
+    entered the work log in commit 24f53ca (committed 22:23:42 UTC), with the budget.py procedure note in 3aa71aa
+    (22:25:52). The stamps are recorded as given. "(1) CONTACT-BUDGET GATE, binding for every F-I4 delivery from now
+    on: build the scene of the P2-P7 tests (both boards' pieces + table) in MuJoCo with the sim=rl solver limits read
+    from their configs/sim/rl.yaml (quote the values and the file sha), run the P2/P3 settles on 16 jittered copies,
+    record per copy max ncon and max nefc and any overflow warning. Pass iff no overflow in any copy AND max nefc of the
+    delivered pieces <= max nefc of a ONE-BOX-PER-BOARD control (each board as its single F-I4.2 rectangle-frame box,
+    same scene) x 2.0 (origin: the eval scene also holds the hand and other objects, so a slotted board may cost at most
+    twice a plain board). Report the default pieces' numbers too. Fail -> DO_NOT_USE.json. (2) LOW-PIECE BODY (replaces
+    the polygon prisms as the delivered body; the F-I4.16 ladder and polygon stay as reports): fit the outline raster
+    with the union of at most 3 rectangles aligned with the F-I4.2 frame - one waist rectangle plus up to two end
+    rectangles, symmetric along the board's long axis allowed but not required - chosen to maximise IoU with the
+    outline raster (state the search); subtract the analytic slot box (F-I4.15/16 slot rules unchanged, D measured from
+    the rectilinear edge at the mouth); decompose the remainder into boxes in the board frame (expected <= 7 per
+    board). Gate: IoU >= 0.90 with the outline raster, else fall back to the F-I4.16 polygon (which then must pass the
+    contact gate). Keep-out gate unchanged; report FREE. (3) Freeze for eval 25: the w10 family's full cells must
+    CARVE under the low-piece body with keep-out <= 0.3 cm3 and pass the contact gate (geometry for all cells, physics
+    + contact gate for the sigma 2 / t 8 cell); ep24 regression under the low-piece body must CARVE both and pass P2-P7
+    and the contact gate. ep23 report only. (4) Deliver the ep24 low-piece r0 (p1_pending) with a note asking
+    determined-wright to repeat P1 at their reference AND at their lowered (1 mm) diagnostic pose, and the contact
+    check under sim=rl. [Runs:] the geometric w10 cells and Identity tests launched ~22:14 under F-I4.16 (pids 2004 /
+    2007 / 2010) were left running; their outputs are valid F-I4.16 records. The ep24 F-I4.16 run (pid 1997) and the
+    w10 physics cell (pid 2001) were killed by the orchestrator at 22:17 (not results). ABSOLUTE BOUND: in the FULL eval
+    scene under sim=rl (both Sharpa hands 26 + 26 geoms, both objects' pieces, support, ground; 8 training resets x 60
+    zero-action steps) the packed configuration uses max 276 / median 201 constraint rows per world (njmax 512 is a
+    hard per-world limit; nconmax 256 is pooled across worlds) and max 65 contacts; hands + support take about half;
+    board-board 14 and board-support 11-12 contacts. So the gate ALSO requires: max nefc per world <= 380 (about 75 % of
+    512) in the full scene with both hands, measured with determined-wright's budget.py (run from their branch with
+    our pieces, read-only, on CPU; if it cannot run here, record why and hand the r0 to determined-wright for that
+    check before any delivery is called usable). Caveat to record: zero-action rollouts; a grasping policy may add
+    hand-object contacts." The decision's "via its --pieces option" is dropped: `budget.py` has no such option [R,
+    9c1d100; `build/I/budget_py_usage.md`, orchestrator 22:25]; the pieces enter through the reference's assets
+    (F-I4.17.1, part 2). The owner's waivers (F-I4.0, F-I5.0) are unchanged. The round-2 r0 is already marked
+    DO_NOT_USE (commit 26b8c6b).
+  - **Evidence [M by determined-wright; read for this entry, not re-run]** (CPU, FlashCHORD at video_to_data
+    8c778f9, newton 1.2.0, warp 1.14.0, mujoco 3.8.1; our reference = the gmg P_sel tracks plus a constant world-z
+    shift per object, +12.904 / +10.989 mm; no ground truth):
+    - (a) P1 at f246, 16 jittered copies, large buffers (nconmax 4096, njmax 16384): **fails for carved and default
+      alike**. Carved drift 3.707 / 3.230 cm (host / guest), tilt 3.08 / 1.96 deg; default 3.184 / 3.201 cm and 13.14 /
+      7.71 deg. Cause: their reference holds the assembled cross 27-36 mm above the table (the z shift was fitted to the
+      2.7-3.1 cm library boards). **Lowered rigidly to 1 mm above the table** (diagnostic, not the spec): carved passes
+      every numeric criterion (drift 0.787 / 0.379 cm, tilt 3.00 / 2.21 deg, signed sink -4.80 mm); default fails tilt
+      (15.90 / 5.71 deg; with its own inertia 17.76 / 5.05 deg).
+    - (b) **sim=rl buffers** (nconmax 256, njmax 512, one world per copy): the carved scene overflows in **16 / 16**
+      copies (200-231 warning lines per copy; the broadphase asks for 500-670 contacts), contacts are dropped and the
+      guest ends 10-46 cm below the table top in 16 / 16 copies (mean tilt about 90 deg). The default pieces never
+      overflow; their per-copy results equal the large-buffer runs to the stored 3 decimals.
+    - (c) Large buffers, max nefc in any of 17 worlds: carved 2027 (f246), 453 (f258), 770 (f270); default 416 / 435 /
+      366; default with own inertia 425 / 439 / 366. Collision shapes loaded: carved 57 / 77, default 50 / 71
+      (FlashCHORD runs CoACD on each piece and keeps one hull per piece).
+    - (d) **Eval-25 full-scene budget** (`contact_budget/budget.py` and JSONs, 9c1d100; 8 sampled training resets x 60
+      zero-action steps, sim=rl): with the packed carve pieces (boards 21 + 11 collision geoms, hands 26 + 26, support
+      1, ground 1): contacts per world max 65 / median 46, nefc per world **max 276 / median 201**. Largest per-world
+      pair maxima: right-hand self 21, right hand-board 2 20, left hand-board 1 17, left-hand self 15, **board-board
+      14, support-board 12 / 11**. library_v3 boards without pieces (19 + 9 geoms): 56 / 40 contacts, nefc 240 /
+      174.5. The JSONs report nconmax 2048 (= 256 x 8 worlds, pooled) and njmax 512.
+    - [E, arithmetic on (d)] about 4.2 rows per contact (276 / 65), as 4 rows per condim-3 contact under the pyramidal
+      cone (F-I4.17.1, doc check) plus a few other rows; 2027 rows correspond to about 500 contacts.
+  - **F-I4.17.1 The contact-budget gate** (new; binding for every F-I4 delivery: ep24, eval 25 and any later one).
+    - **Limits** (sim=rl, the training and evaluator configuration [R, determined-wright: the evaluator rebuilds from
+      the checkpoint config]): read from the copy on determined-wright's branch,
+      `docs/research/work/15-verify/cfg_sim_rl.yaml` (git blob af3c506d, sha256 `695536b7...4b66`; the same file is on
+      our branch, committed 20 Oct): `fps 20.0`, `substeps 5`, `solver newton`, `integrator implicitfast`, `cone
+      pyramidal`, **`njmax 512`**, **`nconmax 256`**, `impratio 20.0`, `iterations 100`, `ls_iterations 50`,
+      `use_mujoco_contacts true`. The values agree with determined-wright's RESULT.md (sim=rl: nconmax 256, njmax 512).
+      The FlashCHORD source file (`configs/sim/rl.yaml`) is not on this machine [M, 22:3x: `find` shows only the
+      submission kit's evaluation configs and a shim]; if the Build step obtains it at video_to_data 8c778f9 it quotes
+      that file's sha256 too, and a difference in any value above is reported before any gate run.
+    - **Part 1 (plain MuJoCo, run here; decides).**
+      - Scenes: the P1 pre-check settle scene of `simphys.settle_xml` (table plane, both boards free with their
+        uniform-solid props at 0.3 kg, gravity along minus the table normal, mesh geoms with condim 3 and friction
+        0.5), started at the poses of two frames of the engaged INSERTION run: **S1** the pre-check frame (the median
+        assembled frame, `asm[len // 2]`; f246 on ep24) and **S2** the first assembled frame (f218 on ep24, where
+        determined-wright measured the largest intrusion). This is this entry's reading of the decision's "P2/P3
+        settles": P2 and P3 are judged at the assembled frames, and the settle scene is the one that holds both
+        boards' pieces and the table. 16 jittered copies per scene (`simphys.jitters`, seed 1, guest jittered, as
+        `settle`), 2.0 s each.
+      - Options from sim=rl: timestep 0.01 s (1 / (20 x 5)), Newton solver, pyramidal cone, implicitfast integrator,
+        iterations 100, ls_iterations 50, impratio 20, `<size njmax="512" nconmax="256"/>`; every other option at the
+        MuJoCo default (in mujoco 3.17.0 nativeccd and multiccd are on by default [M, enum read 22:3x]). The P2-P7 tests
+        keep their own scenes and time steps (F-I4.7 unchanged); this scene only counts.
+      - Synthetic pairs (no bundle table): the table plane has normal -d (d = the guest's unit insertion direction in
+        the host frame over the assembled frames), passes 1 mm beyond the pair's lowest piece vertex along d at the
+        start pose (the 1 mm of determined-wright's lowered diagnostic), and gravity points along d.
+      - Recorded per copy, at every physics step: `d.ncon`, `d.nefc`, and the MuJoCo warning counters
+        `mjWARN_CONTACTFULL` and `mjWARN_CNSTRFULL`; per copy the maxima, the step of the maximum, and the contacts by
+        class (board-board, board-table) at that step.
+      - **Overflow in a copy** := max ncon > 256, or max nefc > 512, or a CONTACTFULL / CNSTRFULL warning. Plain
+        MuJoCo sizes its arena from `njmax` / `nconmax` but does not stop at them [M, mujoco 3.17.0: the attributes are
+        stored and the arena grows from 13.6 to 14.7 MB], so the limits are applied to the counts. 256 is the
+        per-world value; MuJoCo-Warp pools it over worlds (Evidence (d)), so a single world may exceed it in training
+        when others are below. Using it per world is the stricter reading.
+      - **Control:** the same scenes, frames, copies and jitter draws with each board replaced by its single F-I4.2
+        rectangle-frame box (L x W of the frame rectangle, thickness t of F-I4.15.1, centred on c0 in the mid plane,
+        axes a_L, a_W, a_T), one convex mesh geom per board, no slot; uniform-solid props at 0.3 kg.
+      - **Pass** iff no copy of S1 or S2 overflows with the delivered (slotted) pieces, **and** max nefc of the
+        delivered pieces (over S1, S2 and all copies) <= **2.0 x** max nefc of the control (same maximum).
+      - Reported, not gated: the default (unslotted) pieces in the same scenes; medians; per-scene, per-copy values; the
+        P3 replay scene (`simphys.replay_xml`, no table, the P3 frames and jitters) for delivered, default and control;
+        the pair lowered rigidly so its lowest vertex is 1 mm above the table (determined-wright's diagnostic pose).
+      - **Gate validity check** (report, run once before any freeze input): part 1 on the round-2 r0 pieces (polygon
+        prisms 57 / 77, default 50 / 71) in the ep24 scenes. They overflowed in MuJoCo-Warp (Evidence (b)); if part 1
+        does not flag them (no overflow and ratio <= 2.0), part 1 is recorded as weaker than MuJoCo-Warp, and part 2
+        (or determined-wright's check) becomes the only contact evidence for any delivery. Stated now; P125.
+      - Fail -> the round's r0 is written with `DO_NOT_USE.json` naming `contact_budget` and the numbers.
+    - **Part 2 (absolute bound, determined-wright's tool; a delivery condition).**
+      - Tool: `docs/research/physics-2026-10-30/contact_budget/budget.py` at 9c1d100 (38 lines; arguments `REF.parquet
+        OUT.json`; env `W=8 STEPS=60`, `USE_COPY`, `FC_*` patch variables), run from their branch read-only, on CPU,
+        as `build/I/budget_py_usage.md` states: `pipeline/make_assets.py meshes/library_v3 OUT --pieces <r0>`; a copy
+        of the reference tree with `object_urdf_paths` rewritten to `OUT/urdf/<obj>_rigid.urdf`; budget.py on that copy.
+        library_v3 supplies only the visual mesh (`make_assets`), which does not collide [R, determined-wright RESULT.md
+        section 4].
+      - References (ours, not ground truth): ep24 = the glockt reference determined-wright used for P1
+        (`runs/20261030-physS1-6a814df/refs/glockt/ep24/`, parquet md5 699fe426..., `EMB=sharpa_hands_mid`, a
+        grasp-lock episode); eval 25 = the packed eval-25 reference (the c25s42 reference of `PREP.md`, standard
+        learner, `EMB` unset).
+      - **Pass iff `max_nefc_per_world` <= 380.** Recorded: max / median nefc and contacts per world, contacts by pair,
+        collision geoms per group, budget.py sha256, FlashCHORD commit, reference path and md5. Caveat recorded with
+        every number: zero-action rollouts; a grasping policy may add hand-object contacts.
+      - Where it runs: [M, 22:3x] this machine has no FlashCHORD source, no warp, newton or mujoco_warp (our venv has
+        mujoco 3.17.0 only). The Build step checks once more and records why it cannot run; the r0 path then goes to
+        determined-wright (they offered to run it). Until part 2 is measured, the r0 carries
+        `contact_budget_pending: true` and is not called usable; > 380 -> `DO_NOT_USE.json` naming `contact_budget_abs`.
+      - Not applicable to synthetic pairs (no FlashCHORD reference exists for them); recorded as such.
+    - **Doc check (31 Oct 22:3x UTC) [R]:**
+      - MuJoCo documentation, Computation chapter (mujoco.readthedocs.io, latest): a condim-3 contact has 3 constraint
+        rows under the elliptic cone and 4 under the pyramidal cone; "MPR and GJK/EPA always return a single contact
+        point", and the multi-contact option adds up to 4 more; box-plane returns up to 4 and capsule-plane up to 2;
+        body pairs come from a sweep-and-prune broad phase and an AABB-tree mid phase, and contacts are active below
+        their margin.
+      - MuJoCo Warp page (MJWarp, same site, latest): `nconmax` is the expected number of contacts per world and the
+        pool over all worlds is nconmax x nworld (`naconmax` sets the pool directly), so one world may exceed nconmax
+        when the total fits; "the number of constraints per world is strictly limited by njmax"; an overflow "leads to
+        undefined behavior"; the limits are given to `make_data` / `put_data`, not parsed from the XML `size`; box-box
+        uses the general convex pipeline (GJK/EPA) by default, "up to 4" contacts, the specialised box-box collider "up
+        to 8"; mesh-mesh and box-mesh go through the convex (CCD) pipeline; plane-mesh gives up to 4 (3 in MuJoCo).
+      - Consequence for this design [E]: the count grows with the number of convex piece pairs in contact (up to 4
+        contacts, 16 rows, each), not with piece size. Fewer, larger pieces is therefore the lever. Box pieces still go
+        through the convex pipeline: FlashCHORD loads each piece as a mesh hull [R, Evidence (c)], not as a MuJoCo box.
+  - **F-I4.17.2 The low-piece body** (replaces F-I4.15.2 (c)-(d) and F-I4.16.1 as the delivered body; the polygon, its
+    ladder and its prisms are still computed and reported, and are the fallback).
+    - **Input:** the outline raster M of F-I4.15.2 (b): 2 mm cells along (a_L, a_W) with cell edges on the frame
+      rectangle's sides, >= 3 distinct frames per cell, one 3 x 3 closing, holes filled, the largest 8-connected
+      component. n_L x n_W cells; column index i along a_L, row index j along a_W.
+    - **Family** U(theta), integers in cells, every edge on a cell line, at most three rectangles:
+      - waist rectangle: columns [0, n_L), rows [w0, w1);
+      - left end (present when e_L > 0): columns [0, e_L), rows [p0_L, p1_L);
+      - right end (present when e_R > 0): columns [n_L - e_R, n_L), rows [p0_R, p1_R);
+      - each present end contains the waist rows (p0 <= w0, p1 >= w1) and has 1 <= e <= floor(n_L / 3);
+      - no symmetry is imposed; every mirror-symmetric choice is in the family (the decision: "allowed but not
+        required"). The waist spans the raster's full length because the frame rectangle is the component's
+        minimum-area rectangle, so both end columns hold cells.
+    - **Objective:** IoU(theta) = |U and M| / |U or M|, counted in cells.
+    - **Search** (deterministic; every stage exhaustive over its parameters, with per-column prefix sums of M):
+      1. waist alone: every 0 <= w0 < w1 <= n_W;
+      2. left end: every (e_L, p0_L, p1_L) with the waist and the current right end fixed, kept only if IoU rises; then
+         the right end the same way;
+      3. waist again: every (w0, w1) inside the rows of the present ends, the ends fixed; then step 2 again;
+      4. steps 2-3 repeat until theta does not change, at most 10 passes.
+      - Ties (IoU equal within 1e-12): fewer rectangles, then the smaller union area, then the lexicographically
+        smallest theta in the order (w0, w1, e_L, p0_L, p1_L, e_R, p0_R, p1_R).
+      - It returns a local optimum of the family, exact for a waist-only fit and for each end given the rest. Reported:
+        theta (cells and mm), IoU, passes, false-negative area (cells of M outside U) and false-positive area (cells of
+        U outside M).
+    - **Gate:** IoU >= **0.90** -> the low-piece body. Else flag `low_piece_iou_fail` and fall back to the F-I4.16
+      polygon at its chosen rung (F-I4.16.1, unchanged), which must then pass the contact gate like any delivery.
+    - **Body:** U extruded to +-t / 2 about the mid plane (t of F-I4.15.1), along a_T. No marker balls (as F-I4.15.2
+      (d)).
+    - **Slot** (F-I4.15.3 with F-I4.16.1's order, unchanged in substance): the footprint (w, c_L, b, s_e, box from u_rect
+      + s_e 3 mm to b) comes from the rectangle frame before the body, with the F-I4.3 checks. On U:
+      - u_e = U's outermost coordinate along s_e a_W inside the band |u_L - c_L| <= w / 2: the rectilinear edge at the
+        mouth (the waist edge, or an end rectangle's edge where the band reaches an end);
+      - D = s_e (u_e - b), P = D - 2 mm; W_x between the two chosen bodies (2 mm grid, median assembled pose); the 10 mm
+        cross-lap window; the budget against the round-0 chosen body (area share <= 10 %, reach <= 0.6); topology (U
+        minus the footprint is one simple polygon without holes, b inside U, both prongs of positive area);
+        `slot_band_outside_polygon` read on U.
+    - **Pieces (boxes):** U' = U minus the footprint is a rectilinear polygon (every edge along a_L or a_W). Partition:
+      - (A) cut along a_W at every distinct a_L coordinate of a vertex of U'; in each slab the section is a set of
+        disjoint a_W intervals; one box per (slab, interval); boxes of adjacent slabs with identical intervals are
+        merged, repeatedly, until none merges;
+      - (B) the same with the two axes swapped;
+      - the direction with fewer boxes is used (tie: A). Each box is extruded to +-t / 2: a cuboid piece of 8 vertices
+        in the board frame. Exact tiling is checked (area difference <= 1 mm2).
+      - **Default pieces:** the same partition of U (no slot).
+      - [R] The minimum number of rectangles for a hole-free rectilinear polygon with n vertices is n / 2 - g - 1, g =
+        the largest number of pairwise disjoint axis-parallel chords that join two reflex vertices (Eppstein, "Graph-
+        theoretic solutions to computational geometry problems", WG 2009 / arXiv 0908.3916, which credits several
+        independent authors; minimum via bipartite matching). [E, arithmetic] An I-shape with one waist slot has n = 16
+        and g = 2, so it needs 5 boxes, which (A) gives (left end, waist left of the slot, under the slot, right of the
+        slot, right end); its default needs 3. Reported per board: n, the box count, the smallest box side (sliver
+        check). Expected <= 7 per board (the decision).
+    - **Cap** floor(165 / objects) unchanged (met by a wide margin). **Keep-out gate** unchanged (F-I4.6 /
+      F-I4.15.4): 0.0 by construction for an exact tiling (F-I4.15.4 note); it decides.
+    - **Reported, not used:** the FREE share of the low-piece body, of the chosen F-I4.16 polygon body and of the full
+      rectangle body (one code, F-I4.15.2 (e)); end minus waist width from theta; coverage (F-I4.16.5) with U's area;
+      the F-I4.16.1 ladder table and the chosen rung with its default / slotted prism counts.
+  - **F-I4.17.3 Freeze for eval 25** (replaces F-I4.16.3). F-I4.17 is frozen for eval 25 (code commit recorded; no
+    further F-I4 change before eval 25) when both hold:
+    - **(a) ep24 regression**, T-I11 tag `fi4q` (new tag; nothing overwritten; the fi4o command of F-I4.16.6 step 3
+      with `--tag fi4q`, physics on): both boards CARVE through the waiver route with the **low-piece body on both**
+      (IoU >= 0.90; a polygon fallback on either board fails (a)), P2-P7 pass on 16 copies (F-I4.7 thresholds), and
+      contact-gate part 1 passes.
+    - **(b) w10** (the fixtures of F-I4.16.2 unchanged: shape, cross, noise, cells k1-k9, seeds): in each of the nine
+      full-outline cells both boards CARVE through the waiver route with the low-piece body on both (IoU >= 0.90),
+      keep-out <= 0.3 cm3 per hull, and |w - (t + 2 mm)| <= 1.0 mm on both (kept from F-I4.16.3 (b)); **and** the
+      (t 8, sigma_e 2) cell k5 passes P2-P7 on 16 copies (the F-I4.16.3 (b) thresholds) and contact-gate part 1.
+    - **Not freeze inputs:** part 2 (a delivery condition, F-I4.17.4), the part-1 counts of k1-k4 and k6-k9 (reported),
+      the gate validity check, w10p, w10n, w7, w8, w8b, the w1 code checks, ep23, the F-I4.16 polygon reports, the
+      slot-centre and coverage reports, and every prediction of F-I4.17.7.
+    - If (a) or (b) fails, the round stops, nothing is tuned, and the failure is reported with its numbers; eval 25 is
+      not run under F-I4.17; any change is a new dated entry and an orchestrator decision.
+    - Eval 25 is also not started if, at its launch, part 2 has been measured on the ep24 r0 and failed (> 380).
+  - **F-I4.17.4 Delivery** (F-I4.8 / F-I4.15.5, amended).
+    - The r0 folder: slotted box pieces at the top level, `_default/` = the unslotted boxes, `p1_pending: true`,
+      `contact_budget_pending: true` until part 2 is measured. The `owner_waiver` block adds `fi4_rev: 17`, theta (mm)
+      and IoU per board, the box lists, the part-1 record (delivered, default, control; per scene and copy; options;
+      the sim=rl values and file sha256), the F-I4.16 ladder report, the slot-centre and coverage reports.
+    - `DO_NOT_USE.json` when part 1 fails (at writing), and later when part 2 or P1 fails.
+    - **ep24 hand-off to determined-wright** (the decision's point 4): the r0 path and a note asking for (i) P1 at their
+      reference, (ii) P1 at their lowered (1 mm) diagnostic pose, (iii) the sim=rl contact check (overflow lines and
+      max nefc per copy, as their Evidence (b)), and (iv) part 2 with budget.py if it did not run here.
+    - The round-2 r0 stays DO_NOT_USE (26b8c6b). The F-I4.16 records (w10 geometric cells, Identity) are reported as
+      F-I4.16 records only.
+  - **F-I4.17.5 Unchanged.** F-I4.0 scope and kept gates; the plate tests and the all-point t (F-I4.15.1); the slot
+    rules (F-I4.3, F-I4.12, F-I4.15.3 with F-I4.16.1's order); F-I4.4 thresholds; F-I4.5 w_sim; F-I4.7 acceptance (P2-P7
+    on 16 copies; P4's "slot's volume inside the body" = footprint intersected with U, times t); the slot-centre report
+    and the eval-25 P_sel -> P_sim check (F-I4.16.4); the coverage report (F-I4.16.5); the w10 / w10p / w10n fixtures
+    (F-I4.16.2); integrity. With `--waiver-fi4` off nothing changes. Interface note for F-I5 (no change to F-I5 here):
+    where F-I5 gives a plate "the F-I4 boxes" / "its F-I4 plate body", under F-I4.17 these read as the low-piece boxes
+    and U; the collision-carve workflow records whether its code follows (it has its own contact-budget entry).
+  - **F-I4.17.6 Tests, run order and cost** (after this entry is pushed).
+    1. **Build:** `platebody.py` REV 17 (the low-piece fit, the box partition, the fallback; REV 15 / 16 reachable),
+       the part-1 counter in a new file (`gmg/contactgate.py`), minimal driver fields; new `tests/test_fi417.py`.
+       Committed before any run; the launch commit of every run goes to a launch file at launch.
+    2. **Code checks** (before any freeze input; a failure is a code defect, fixed in a recorded commit, not a rule
+       change): (i) Identity: at `fi4_rev 16` the REV 17 code reproduces REV 16 on w1 t = 10 mm byte for byte (pieces
+       and records except timing); (ii) the fit on exact rasters: an exact I-mask gives IoU 1.0 and its theta, a
+       rectangle mask one rectangle, a T-mask two; (iii) the partition tiles exactly on an I-shape with a waist slot
+       (5 boxes, default 3) and on a rectangle with a slot (3 boxes, default 1); (iv) the part-1 counter on one box at
+       rest on a plane: nefc = 4 ncon (pyramidal, condim 3, no other constraint) at every step.
+    3. **Gate validity check** (F-I4.17.1; the round-2 r0 pieces in the ep24 scenes).
+    4. **T-I1** `tests/test_fi417.py`: w10 k1-k9 (geometry; part-1 counts reported), k5 with physics (P2-P7, 16
+       copies) and part 1; w10p, w10n, w7, w8, w8b re-run under F-I4.17 (report); w1 t = 10 mm under REV 17 (report;
+       P134).
+    5. **T-I11 ep24 `fi4q`**: P2-P7 on 16 copies and part 1. May run in parallel with step 4 (code frozen first; the
+       freeze is decided after both).
+    6. **ep23** (public, dev, report only; `build/I/fi416_ep23.py` extended): plate test, low-piece fit and IoU, the
+       polygon ladder; no slot, no adoption.
+    7. **Freeze decision** (F-I4.17.3).
+    8. **ep24 delivery** (F-I4.17.4) to determined-wright: whatever (a)'s outcome, the fi4q r0 is a record; it is sent
+       for P1 and part 2 only when P2-P7 and part 1 passed (otherwise it carries DO_NOT_USE.json naming the failed test
+       and is reported).
+    9. **Eval 25, only if frozen:** the Prep25 bundle and mapping; identical code; P_sim = the packed eval-25
+       reference; P2-P7 on 16 copies and part 1; part 2 here or by determined-wright; r0 with the slot-centre,
+       coverage and P_sel -> P_sim reports; `meshes/carve/ev25` read only after r0 is written.
+    - Cost [E]: CPU. Build 1-1.5 h. The fit and the partition take seconds per board; w10 about 2-4 min per cell (the
+      round-3 geometric cells took about 5 min for four, 22:14-22:19 [M, file times]); k5 physics 10-30 min; part 1
+      per pair about 3 configurations x 2 scenes x 16 copies x 200 steps with <= 16 pieces, minutes [E]; the validity
+      check with 134 / 121 prisms about 5-15 min [E]; ep24 fi4q about 11 min to the pieces plus physics (round 2: 1938
+      s with 134 prisms; boxes are cheaper); ep23 about 3 min; eval 25 1-2 h. On this container (4 shared cores) or one
+      self-destroying Vast CPU box when that is faster end to end (`docs/runbook-vast.md`, `ops/vast.sh`; ledger
+      session mesh-bold, planned line before create, actual after; cap $3 for the round; destruction confirmed with
+      `ops/vast.sh show`). Expected spend $0-1.
+  - **F-I4.17.7 Predictions** (written before any run; P93 onward is taken by the concurrent F-I5.16 entry of the
+    collision-carve workflow, so these start at P120 to avoid a clash). They gate or fix nothing beyond F-I4.17.3; none
+    is a failure criterion of the gmg (D.3).
+    - **P120** ep24 (fi4q): the fit chooses three rectangles (an I) on both boards with IoU in 0.93-0.99 | IoU < 0.93
+      or fewer than three rectangles on a board | [not independent of the measured I-shape (verify_slot_1 B1); E: the
+      outline masks fill 0.996 / 0.983 of their 2-98 % boxes]
+    - **P121** ep24: both boards CARVE under the low-piece body (cross-lap window, budget, topology) with 5 slotted and
+      3 default boxes per board | a push, a fallback, or another box count | [H]
+    - **P122** ep24: P2-P7 pass on 16 copies, P3 carved lag <= 0.3 cm and <= 3 deg | any fails | [H; E: round 2 gave
+      0.078 cm / 0.74 deg with the same slot footprint]
+    - **P123** ep24: part 1 passes (no overflow; delivered max nefc <= 2.0 x control) | overflow or ratio > 2.0 | [H,
+      low confidence; E: delivered 100-200 rows, control 40-70 rows, ratio 1.5-3.5. The control's two boxes form one
+      board-board pair and two board-table pairs; the slotted pair forms several board-board pairs at the slot walls
+      and bottoms, so the ratio clause may fail even with boxes]
+    - **P124** ep24: the default boxes' max nefc lies between the control's and the delivered pieces' | outside | [H]
+    - **P125** gate validity: part 1 flags the round-2 r0 polygon prisms (overflow, or ratio > 2.0) | not flagged |
+      [H; if falsified, plain MuJoCo undercounts against MuJoCo-Warp and part 2 carries the evidence]
+    - **P126** ep24 part 2 (budget.py, ep24 glockt reference, the fi4q r0): max nefc per world <= 380 | > 380 | [H; E
+      200-320: library_v3 boards (19 + 9 geoms) gave 240 on eval 25]
+    - **P127** w10: freeze (b)'s geometric part holds in all nine cells | any cell misses | [H]
+    - **P128** w10: IoU >= 0.93 in all nine cells, and in each t the IoU does not rise with sigma_e | any cell < 0.93,
+      or a rise | [H; E: sigma_e 3 mm moves the raster edge by about one cell]
+    - **P129** w10 k5: P2-P7 pass and part 1 passes | any fails | [H, low confidence for the part-1 ratio, as P123]
+    - **P130** w10p (report): A's IoU < 0.90, so A falls back to the polygon (`low_piece_iou_fail`) | IoU >= 0.90 | [H;
+      E: the hidden 30 % at the slot-side edge is either covered by U (false positives) or cut by a narrower waist
+      (false negatives)]
+    - **P131** w10n (report): both boards plate-like with the all-point t within 1 mm of 8 mm, IoU >= 0.90, both
+      CARVE | any fails | [H]
+    - **P132** w7, w8, w8b (report): IoU >= 0.90 on every board, and both boards CARVE in each | any fails | [H]
+    - **P133** ep23 board 1 (report): IoU < 0.90 (the partial outline) and its polygon fallback needs a rung | IoU >=
+      0.90 | [not independent: its partial outline (coverage 0.742) and its 1.0 mm prism count are known]
+    - **P134** w1 at t = 10 mm under REV 17 (report): one rectangle, IoU >= 0.95, 3 slotted and 1 default box, CARVE |
+      otherwise | [H]
+    - **P135** eval 25 (only if frozen): both CARVE under the low-piece body, P2-P7 and part 1 pass | a push, a
+      fallback or a failed test | [H, low confidence]
+    - **P136** eval 25 (only if frozen): part 2 max nefc per world <= 380 | > 380 | [H; E 220-320]
+    - **P137** eval 25 (only if frozen): the P_sel -> P_sim median overlap <= 0.3 cm3 (P70 restated for the boxes) |
+      > 0.3 cm3 | [H, low confidence]
+  - **F-I4.17.8 Constants and origins.**
+
+    | constant | value | origin |
+    |---|---|---|
+    | njmax, nconmax | 512 rows, 256 contacts per world | sim=rl (`cfg_sim_rl.yaml`, sha256 695536b7...), **informed**: the training and evaluator configuration |
+    | count-scene options | dt 0.01 s (20 fps x 5), Newton, pyramidal, implicitfast, 100 / 50 iterations, impratio 20 | sim=rl, as above |
+    | overflow | per copy: max ncon > 256, max nefc > 512, or a CONTACTFULL / CNSTRFULL warning | this entry, from the limits (plain MuJoCo does not stop at them [M]) |
+    | count scenes | settle scene at the median and the first assembled frame, 16 copies, 2 s | this entry's reading of "the P2/P3 settles"; copies, jitter and 2 s reused (F-I1.14) |
+    | synthetic table | normal -d, 1 mm beyond the lowest vertex along d, gravity along d | this entry; 1 mm from determined-wright's lowered diagnostic |
+    | control | one F-I4.2 rectangle-frame box per board, t of F-I4.15.1, 0.3 kg | decision |
+    | ratio | delivered max nefc <= 2.0 x control | decision (hands and other objects share the eval scene) |
+    | absolute bound | max nefc per world <= 380 in the full eval scene (budget.py, W 8, 60 steps) | decision: about 75 % of njmax 512, from determined-wright's measured 276 / 201 [M] |
+    | rectangles | <= 3: waist + up to two ends, ends contain the waist rows, end length <= n_L / 3 | decision (<= 3, waist + ends); containment and n_L / 3: this entry (an end widens, and is at most a third of the length) |
+    | search | exhaustive stages, coordinate passes <= 10, tie rules | this entry (deterministic) |
+    | IoU gate | >= 0.90 on the outline raster | decision |
+    | box partition | slab method, both directions, fewer boxes | this entry; optimum stated from Eppstein 2010 |
+    | expected boxes | <= 7 per board | decision (report only) |
+    | prediction thresholds | 0.93-0.99, 0.3 cm / 3 deg, 1.5-3.5, 200-320 rows | set now for predictions only; they decide nothing |
+
+    Every other constant of F-I4.15.9 and F-I4.16.8 is reused unchanged (2 mm raster, cap, 2 x 1 mm clearance, 2 mm
+    depth margin, 10 mm window, 10 % / 0.6 budget, 0.3 cm3 keep-out, the acceptance thresholds, the w10 fixtures and
+    seeds, the slot-centre and P_sim flags).
+  - **F-I4.17.9 Integrity.** GT-free, as F-I4.9 / F-I4.16.9. Inputs: our clean bundles (ep24 `b4ext4-b61e8aa`, ep23
+    `b4ext6-90c8cce`, the ep25 bundle of Prep25), our picks, tracks, hands and video; for part 2 our own references
+    (determined-wright's glockt ep24 tree, the packed eval-25 reference); determined-wright's code and results are read
+    only. No scan, mocap, dataset-parquet `pose`, `*_align`, or library geometry as shape evidence (library_v3 enters
+    part 2 only as the non-colliding visual of `make_assets`). `meshes/carve/ev25` is not read before the eval-25 r0 is
+    written. Public development and eval inference stay separate; nothing is tuned on eval. Every miss and failure is
+    reported; any change after an outcome is a new dated entry.
+
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,
   nothing run for it) and committed and pushed **before any code or run uses it**. Still before any gmg scoring round

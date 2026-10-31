@@ -5918,3 +5918,15 @@ diagnostic; nothing is picked for submission.
   support about half. Both rounds stopped again before their amend steps committed anything, scripts extended with an
   ABSOLUTE bound (max nefc per world <= 380 in the full scene with both hands, via their budget.py --pieces), resumed
   (board slot wug9jhsun, collision carve w3tew9tbg).
+
+### 2026-10-31 22:43 UTC — gmg I board slot round 3, Amend 2: PREREG F-I4.17 + INTERLOCK 20.14 (written before any run)
+- From orchestrator decision 2 and its absolute bound, after determined-wright's P1 / sim=rl results (3c7fd32) and
+  eval-25 contact budget (9c1d100). Contact-budget gate for every F-I4 delivery: part 1 (plain MuJoCo, here) = settle
+  scene at the median and first assembled frame, 16 copies, sim=rl limits read from `cfg_sim_rl.yaml` (sha256
+  695536b7..., njmax 512, nconmax 256): no overflow and max nefc <= 2.0 x a one-box-per-board control; part 2 =
+  determined-wright's budget.py in the full scene with both hands, max nefc per world <= 380 (delivery condition;
+  expected to run on their side, no FlashCHORD / warp here [M]). Low-piece body: <= 3 frame-aligned rectangles fitted
+  by IoU to the outline raster (gate 0.90, else the F-I4.16 polygon), minus the slot box, cut into boxes (5 slotted /
+  3 plain expected). Freeze: w10 k1-k9 carve with the box body, k5 physics + part 1; ep24 `fi4q` carve + P2-P7 + part 1.
+  Predictions P120-P137 (P93 onward left to the concurrent F-I5.16). Nothing run, no code, $0. Log: gmg `build/I.md`
+  "Board slot round 3".

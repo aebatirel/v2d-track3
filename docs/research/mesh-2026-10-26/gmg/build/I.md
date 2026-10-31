@@ -1168,6 +1168,41 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   `runs-dev/20261031-i2probe-626ce13`, log `<run>/drv24_fi4p.log`, launch file `<run>/drv24_fi4p.launch`); (2) T-I1
   `tests/test_fi416.py` in four processes (`FI416_OUT=<scratch>/slot3/tests/test_fi416_<job>.json`, logs beside):
   `W10.test_k5_t8_s2_physics`; W10 k1-k4; W10 k6-k9; `Identity`. ReRuns, W10Report and ep23 follow when cores free.
+- 22:28 (Amend 2 step, board-slot round-3 workflow) started. Task: PREREG F-I4.17 + INTERLOCK 20.14 from the
+  orchestrator's decision 2 (contact-budget gate, low-piece body of <= 3 frame-aligned rectangles, new freeze, ep24
+  low-piece r0 for determined-wright) and its absolute bound (max nefc per world <= 380 in the full eval scene, their
+  budget.py); commit + push before any code runs with it. No code, no run. Read: this log (round 3 incl. the 22:17 /
+  22:25 orchestrator lines), PREREG F-I4.15 / F-I4.16, INTERLOCK 20.9-20.13, `build/I/budget_py_usage.md`;
+  determined-wright's `p1_ep24/RESULT.md` + `result.json` (3c7fd32) and `contact_budget/budget.py` + both JSONs
+  (9c1d100), read with `git show` (their branch not checked out). [R] `budget.py` at 9c1d100 takes `REF.parquet OUT.json`
+  only (no `--pieces`; the pieces enter through the reference's `object_urdf_paths`, as `budget_py_usage.md` says).
+  [R] The sim=rl file on their branch is the copy `docs/research/work/15-verify/cfg_sim_rl.yaml` (git blob af3c506d,
+  sha256 695536b7..., identical on our branch): njmax 512, nconmax 256, newton, pyramidal, implicitfast, 100 / 50
+  iterations, impratio 20, fps 20 x 5 substeps; the FlashCHORD source (`configs/sim/rl.yaml`) is not on this machine.
+- 22:36 Doc checks [R]: MuJoCo computation chapter (rows per condim-3 contact: 3 elliptic / 4 pyramidal; MPR and GJK/EPA
+  return one contact, multiccd adds up to 4; box-plane up to 4) and the MJWarp page (nconmax per world, pooled as
+  nconmax x nworld, njmax strictly per world, overflow undefined; box-box through the convex pipeline, up to 4 contacts,
+  the specialised collider up to 8; mesh-mesh CCD; plane-mesh 4 vs 3). [M] our venv's mujoco 3.17.0 stores `<size
+  njmax nconmax>` and only grows its arena (13.6 -> 14.7 MB), so a plain-MuJoCo gate must compare counts with the limits;
+  multiccd is a disable flag there (on by default). Prediction numbers: the collision-carve Design 2 step (22:33 line
+  below) starts F-I5.16 at P93, so **F-I4.17 takes P120 onward** (a gap of P93-P119 for F-I5.16, so that the two
+  concurrent entries cannot collide). Not read: the F-I4.16 w10 records (`<scratch>/slot3/tests/test_fi416_k*.json`,
+  written 22:19) and the Identity log; they stay unread until F-I4.17 is pushed.
+- 22:43 PREREG F-I4.17 (F-I4.17.0-F-I4.17.9; predictions P120-P137) and INTERLOCK 20.14 (+ header pointer and a
+  status line closing 20.13) written. Nothing run, no code edited, $0. Design points beyond the decision text, stated
+  before any run: (1) "the P2/P3 settles" read as the P1 pre-check settle scene (table + both boards free) started at
+  the median and at the first assembled frame (f246 / f218 on ep24), 16 copies, 2 s, sim=rl options (dt 0.01 s,
+  Newton, pyramidal, implicitfast, 100 / 50 iterations, impratio 20); P2-P7 keep their own scenes; (2) overflow per copy
+  := max ncon > 256 or max nefc > 512 or a CONTACTFULL / CNSTRFULL warning (plain MuJoCo does not stop at the limits);
+  (3) a gate validity check: part 1 run once on the round-2 prisms, which overflowed in MuJoCo-Warp (P125); (4) part 2
+  (budget.py <= 380) is a delivery condition (`contact_budget_pending` until measured), not a freeze input; eval 25 is
+  not started if ep24's part 2 is known to fail; (5) rectangle family: a full-length waist plus ends that contain the
+  waist rows and are at most n_L / 3 long; search = exhaustive stages (waist, each end, waist again; <= 10 passes),
+  ties to fewer rectangles; (6) boxes by a slab partition in both directions, fewer boxes (an I with a waist slot: 5,
+  the minimum, Eppstein 2010); (7) synthetic table 1 mm beyond the lowest vertex along the insertion direction; (8) a
+  polygon fallback on any freeze board fails (a) / (b). [E] risk named in P123: the 2.0 x one-box ratio may fail even
+  for boxes (one board-board pair in the control against several at the slot). Committing my lines only (the
+  collision-carve 22:33 line in this file and the C0b NOTES change are other agents', left unstaged).
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
