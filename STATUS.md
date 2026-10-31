@@ -9,6 +9,8 @@
 
 - Option 3 (31 Oct, run 20261031-rlloop-ccf9058, ≈ $6.48): rule says "signal" (O3 − O1 +0.068) but 3 of 4 chosen checkpoints are pre-loop and round A is confounded by the LR-schedule horizon → no evidence the loop helps (physics-solver.md §6.1 Results). Next candidates (owner decides): H-lr test; keen-heisenberg's bank growth ideas; intrusion export for the mesh session's carve loop (building on CPU).
 
+- Budget (31 Oct ~11:30 UTC): owner chose LEAN ($87–121 total to the freeze; top-up $60–90 needed on $29.16). My lane: 3-arm recipe screen (control / keep-the-peak: LR 6e-4→3e-5 + slower VOC fade / training-only reset-nudge DR) on ep2/12/18/24 × 2 seeds, 10 draws per pick (~$28–34 est.), + 2-episode confirm (~$10); being built on CPU, launch only when credit allows (pack session's eval retrain has priority). tools/intrusion.py done (759032e).
+
 ## 2026-10-30 ~23:10 UTC: solver G2 strong at zero action; G3 RL learns faster but final scores not better
 - G2 (full-scale search, ep2/ep12): jittered zero-action 0.763 / 0.832 vs current recipe 0.524 / 0.578.
 - G3 (RL from solved refs): at 30M far ahead (0.965 / 0.761 / 0.523 / 0.191 vs 0.483 / 0.549 / 0.529 / 0.112) but final AUC
