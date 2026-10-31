@@ -227,16 +227,35 @@ def free_shift(U, X, u, s_max):
     return s if s <= s_max else np.inf
 
 
+AXES = np.r_[np.eye(3), -np.eye(3)]
+
+
 def push_residual(U, X, s_max=0.10):
-    """Smallest translation of the partner samples X (target file coordinates) that leaves none inside U."""
-    X = X[np.all((X > U.alo - s_max) & (X < U.ahi + s_max), 1)]
-    if not (U.depth_lb(X) > EPS).any():
+    """Smallest translation of the partner samples X (target file coordinates) that leaves none inside U: the 6 axes,
+    42 icosphere directions, then 12-direction cones at 10 and 3 deg around the best. Once a shift s_best is known, only
+    samples within s_best of U's box can matter for a better direction (their intervals all start beyond s_best), so
+    each direction is evaluated on that subset with cap s_best: exact per direction, much cheaper."""
+    near = lambda Y, c: Y[np.all((Y > U.alo - c) & (Y < U.ahi + c), 1)]
+    X = near(X, s_max); Xa = near(X, 0.0)
+    if not len(Xa) or not (U.depth_lb(Xa) > EPS).any():
         return 0.0
-    D = icosphere_dirs(); s = np.array([free_shift(U, X, u, s_max) for u in D]); u = D[int(np.argmin(s))]; best = s.min()
+    best, u_best = np.inf, None
+    for cap in (0.01, 0.03, s_max):                                       # a first finite bound, cheapest cap first
+        Xc = near(X, cap); s = [free_shift(U, Xc, u, cap) for u in AXES]
+        if np.isfinite(min(s)):
+            best, u_best = min(s), AXES[int(np.argmin(s))]; break
+    if u_best is None:
+        return np.inf
+
+    def scan(D):
+        nonlocal best, u_best
+        for u in D:
+            s = free_shift(U, near(X, best), u, best)
+            if s < best:
+                best, u_best = s, u
+    scan(icosphere_dirs())
     for deg in (10.0, 3.0):
-        C = cone(u, deg); sc = np.array([free_shift(U, X, c, s_max) for c in C])
-        if sc.min() < best:
-            best, u = sc.min(), C[int(np.argmin(sc))]
+        scan(cone(u_best, deg))
     return float(best)
 
 
