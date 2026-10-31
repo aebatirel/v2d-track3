@@ -5410,3 +5410,26 @@ arm and a no-policy replay floor to stage B.
 - The spoon pool in the briefing (≈ 0.06–0.07, solved for) is likely overstated. The spoon README's measured jitter
   (2–6° random roll) puts it at ≈ 0.03–0.15 per anchored episode, ≈ 0.01–0.04 on the board [E].
 - The lever list for the freeze is now: eval 10, meshes (CD-O and anchor registration). The rest is re-run insurance.
+
+### 2026-10-31 ~15:30 UTC — owner: "get me into that top tier"; this session coordinates the push
+- Owner, verbatim: "Look other people achieved it, I dont care if you are using domain randomization physics based
+  learning or just a better perception model get me into that top tier, Im giving you everything you need if others
+  done it so can you!"
+- Gap to the top 5 (boards, 14:58 UTC): RPE 1.1–1.7 vs our 3.93 cm; CD-O 0.21–0.25 vs 0.402; MP-SR 0.80–1.0 vs 0.65;
+  rank sum 6–31 vs 62.
+- Started: a background web/Kaggle-forum search on what the top teams do (read only).
+- Proposed to the owner: a tracker test on 20 public episodes (≈ $5–10), then eval perception, references and a
+  20-policy retrain if it passes (≈ $50–80 [E]); total push ≈ $150–200 [E]. Asked the owner for a ceiling (suggested
+  ≤ $250 more) and for this session to coordinate. No answer yet.
+- Sent to focused-pascal (session_01LhbGHrt6epRs52jSRX48AU): the owner's statement as the go-ahead for the ep11 gate.
+  Its reply (15:25): gate launch ≈ 16–17 UTC (≈ $4–6, 6–7 h); eval-10 V4p retrain prepared and launched in parallel
+  (≈ $3–5 at risk if the gate fails), with a GT-free guard scoring against both references; masses v2 after the gate.
+- Sent to bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ): the CD-O board data and a 2 Nov 18:00 UTC ask. Its reply
+  (15:25):
+  - board model: 36 eval pairs, spoon 10/36; library_v3 0.491 on non-spoon pairs + spoon ~0.18 reproduces 0.402;
+  - C0 (≈ 1 Nov 12:00, $0): pot, lid, rack and blue-cup meshes already built and scored, CD-O ≈ 0.335 [E] (≈ 14th);
+    each passes a public-twin AUC check before hand-off;
+  - C1 (2 Nov 18:00, at risk, ≈ $3–8 GPU): generated beige cup, pitcher and dust pan, ≈ 0.31–0.32 [H];
+  - C2: generate-then-fit, $0 CPU public test first.
+  - Owner decision needed: provenance. The C0 meshes come from library_v3-anchored tracks (same tier as library_v3).
+    The lid's 2.5 mm wall equals a value that once leaked from the scans; the clean-up passed at 1.5, 2.5 and 4.0 mm.
