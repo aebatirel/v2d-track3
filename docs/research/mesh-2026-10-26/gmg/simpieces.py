@@ -397,7 +397,7 @@ def write_object(out_dir, obj, visual_mesh, hulls, carve_rec):
 
 
 CODE_FILES = ('interlock.py', 'simpieces.py', 'simphys.py', 'silhouette.py', 'gen_slot.py', 'physcheck.py',
-              'tools/interlock_dev.py')
+              'tools/interlock_dev.py', 'platebody.py')
 
 
 def code_identity():
@@ -410,12 +410,16 @@ def code_identity():
                 dirty_files=str(dirty).strip().splitlines() if dirty else [], sha256=sha)
 
 
-def write_round(out_dir, episode, split, round_k, objects, p_sim, commit=None, interlock=None):
+def write_round(out_dir, episode, split, round_k, objects, p_sim, commit=None, interlock=None, extra=None,
+                dnu_rule='F-I3.8'):
     """objects: {obj: dict(visual=mesh, hulls=list, carve=dict[, gate=pieces_gate result])}. Writes the per-object
     files, props_gmg.json (the phys_fit layout {obj: {physics: {mass_kg, com_m, inertia_kgm2}}}, F-I3.9) and
     manifest.json (schema gmg-sim/2: objects.<obj>.{files, fiducials} as the Embodiment reader expects, plus the
     top-level files / fiducials of gmg-sim/1, the code identity and the interlock state). A delivery with any object
-    whose pieces fail the keep-out gate is marked do-not-use (F-I3.8). Never overwrites an existing round folder."""
+    whose pieces fail the keep-out gate is marked do-not-use (F-I3.8). Never overwrites an existing round folder.
+    PREREG F-I4.8 (board slot, owner waiver): an object dict may carry 'default_hulls' (written to
+    _default/<obj>/piece_XX.obj, hashed with the rest); EXTRA = top-level manifest keys (owner_waiver, p1_pending);
+    DNU_RULE names the rule in DO_NOT_USE.json."""
     if os.path.exists(os.path.join(out_dir, 'manifest.json')):
         raise FileExistsError(f'{out_dir}: a delivered round is never overwritten')
     os.makedirs(out_dir, exist_ok=True)
@@ -426,6 +430,11 @@ def write_round(out_dir, episode, split, round_k, objects, p_sim, commit=None, i
                           'props_masses_only.json, read by pipeline/phys_fit.py (props[name]["physics"]).')
     dnu = {}
     for obj, o in objects.items():
+        if o.get('default_hulls') is not None:
+            dd = os.path.join(out_dir, '_default', obj)
+            os.makedirs(dd, exist_ok=True)
+            for k, V in enumerate(o['default_hulls']):
+                trimesh.convex.convex_hull(V).export(os.path.join(dd, f'piece_{k:02d}.obj'))
         pr, info = write_object(out_dir, obj, o['visual'], o['hulls'], o['carve'])
         props_all[obj] = dict(physics=dict(model='gmg pieces (uniform solid)', mass_kg=k_('mass_kg'), com_m=pr['com'],
                                            inertia_kgm2=pr['inertia'], volume_cm3=pr['volume_cm3'],
@@ -454,9 +463,11 @@ def write_round(out_dir, episode, split, round_k, objects, p_sim, commit=None, i
                note='visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py '
                     '--pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for '
                     'phys_fit --props')
+    if extra:
+        man.update(extra)
     with open(os.path.join(out_dir, 'manifest.json'), 'w') as fh:
         json.dump(man, fh, indent=1, default=str)
     if dnu:
         with open(os.path.join(out_dir, 'DO_NOT_USE.json'), 'w') as fh:
-            json.dump(dict(do_not_use=dnu, rule='F-I3.8'), fh, indent=1)
+            json.dump(dict(do_not_use=dnu, rule=dnu_rule), fh, indent=1)
     return man

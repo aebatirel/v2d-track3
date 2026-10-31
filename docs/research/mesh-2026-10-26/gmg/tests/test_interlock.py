@@ -82,9 +82,11 @@ def grid_for(mesh, pad=4):
     return IL.Grid(lo, VOX, shape)
 
 
-def evidence_obs(mesh_evidence, rng, n_frames, frames_seen=None):
+def evidence_obs(mesh_evidence, rng, n_frames, frames_seen=None, two_sided=False):
     """obs dict of an object whose stereo evidence is MESH_EVIDENCE (slot-less = bridged): OBSERVED within 4 mm inside
-    its surface, UNKNOWN deeper inside, FREE outside; owned points on its surface in every frame."""
+    its surface, UNKNOWN deeper inside, FREE outside; owned points on its surface in every frame. two_sided (PREREG
+    F-I4.10): each point's camera centre lies 0.4 m out along its face normal, so both faces of a plate are seen from
+    their own side and a plane pair can exist (the default keeps cam = 0, as every earlier test)."""
     g = grid_for(mesh_evidence)
     C = g.centres()
     ins = IL.fast_inside(mesh_evidence, C)
@@ -92,17 +94,22 @@ def evidence_obs(mesh_evidence, rng, n_frames, frames_seen=None):
     state = np.where(ins, np.where(d <= 0.004, 2, 0), 1).astype(np.uint8)
     hits = np.where(state == 2, 20, 0).astype(np.uint16)
     free = np.where(state == 1, 20, 0).astype(np.uint16)
-    P = trimesh.sample.sample_surface(mesh_evidence, 3000, seed=0)[0]
+    P, fi = trimesh.sample.sample_surface(mesh_evidence, 3000, seed=0)
     frames = frames_seen if frames_seen is not None else range(n_frames)
     pts = np.concatenate([P + rng.normal(0, 0.001, P.shape) for _ in frames]).astype(np.float32)
     fr = np.concatenate([np.full(len(P), f, np.int32) for f in frames])
-    return dict(pts=pts, cam=np.zeros_like(pts), frame=fr, own=np.zeros(len(pts), np.uint8), lo=g.lo, hi=g.lo + VOX *
+    cam = np.zeros_like(pts)
+    if two_sided:
+        cam = (pts + 0.4 * np.tile(np.asarray(mesh_evidence.face_normals)[fi], (len(list(frames)), 1))).astype(
+            np.float32)
+    return dict(pts=pts, cam=cam, frame=fr, own=np.zeros(len(pts), np.uint8), lo=g.lo, hi=g.lo + VOX *
                 np.asarray(g.shape), vox=VOX, hits=hits.reshape(g.shape), free=free.reshape(g.shape),
                 state=state.reshape(g.shape), shared=np.zeros(g.shape, np.uint16), pocc=np.zeros(g.shape, np.uint16),
                 args='{}')
 
 
-def cross_episode(t, offset=(0, 0, 0), jitter=True, seed=0, n_ins=60, n_asm=30, pre=10, evid=('plain', 'plain')):
+def cross_episode(t, offset=(0, 0, 0), jitter=True, seed=0, n_ins=60, n_asm=30, pre=10, evid=('plain', 'plain'),
+                  two_sided=False, mesh_b=None):
     """Two-plate episode. World = A's frame. B's pose: R_B, translation (0, y(f), 0) + offset; y from 0.12 m to 0 over
     n_ins frames, then n_asm assembled frames; pre frames with B far away (y = 0.6 m) for silhouettes. Cameras: even
     frames face-on to A (+z side, tilted 8 deg), odd frames face-on to B (-x side, tilted 8 deg), 0.5 m from the
@@ -125,7 +132,9 @@ def cross_episode(t, offset=(0, 0, 0), jitter=True, seed=0, n_ins=60, n_asm=30, 
                  cam_T_A=cam_T_w.astype(np.float32), cam_T_B=np.einsum('fij,fjk->fik', cam_T_w, world_B).astype(np.float32))
     eA = plate(t) if evid[0] == 'plain' else plate(t, 'top')
     eB = plate(t) if evid[1] == 'plain' else plate(t, 'bottom')
-    obs = dict(A=evidence_obs(eA, rng, T), B=evidence_obs(eB, rng, T))
+    if mesh_b is not None:                                   # F-I4.10 w3: a non-plate partner (B's evidence = mesh_b)
+        eB = mesh_b
+    obs = dict(A=evidence_obs(eA, rng, T, two_sided=two_sided), B=evidence_obs(eB, rng, T, two_sided=two_sided))
     stride = 1
     contact = [f for f in range(pre, T)]
     sep = list(range(pre))
@@ -142,8 +151,12 @@ def sources_of(sil=None, gen=None, notches=None):
                     notches_sil=(notches or {}).get(o, [])) for o in ('A', 'B')}
 
 
-def run_pair(b, cand, sil=None, gen=None, notches=None, collider=None):
-    """The tracks path through interlock.make_side, the constructor the export path uses too (F-I3.1)."""
+WAIVER_ON = False               # Waiver.test_w3: re-runs the control tests with the waiver on
+
+
+def run_pair(b, cand, sil=None, gen=None, notches=None, collider=None, waiver=None):
+    """The tracks path through interlock.make_side, the constructor the export path uses too (F-I3.1). waiver: PREREG
+    F-I4 (decide_pair(waiver_fi4=True))."""
     sides = {}
     src = sources_of(sil, gen, notches)
     for o, p in (('A', 'B'), ('B', 'A')):
@@ -152,7 +165,7 @@ def run_pair(b, cand, sil=None, gen=None, notches=None, collider=None):
         intr = IL.intrusions_from_tracks(b, o, p, ev, cf)
         pc = collider[p] if collider and p in collider else IL.geom.volume_samples(cand[p], 20000, seed=0)[0]
         sides[o] = IL.make_side(b, o, p, ev, intr, cf, sources=src[o], identity='public', partner_collider=pc)
-    recs = IL.decide_pair(b, sides['A'], sides['B'])
+    recs = IL.decide_pair(b, sides['A'], sides['B'], waiver_fi4=WAIVER_ON if waiver is None else waiver)
     return recs, sides
 
 
@@ -604,6 +617,186 @@ class Agreement(unittest.TestCase):
                 self.assertTrue(r['budget']['ok'] and r['budget']['applies'], r['budget'])
             if r.get('offset') and 'budget' in r['offset']:
                 self.assertIn('vol_share', r['offset']['budget'])
+
+
+WAIVER_W1 = (6, 10, 18)          # PREREG F-I4.10 w1 (pre-registered thicknesses)
+WAIVER_EXTRA = (13, 25)         # the build task's extra thicknesses (reported; 25 mm is the slab window's upper end)
+
+
+def _waiver_case(t_mm, offset=(0, 0, 0), sil=None, notches=None, waiver=True, mesh_b=None, cand_b=None):
+    t = t_mm * 1e-3
+    b, _ = cross_episode(t, offset=offset, two_sided=True, mesh_b=mesh_b)
+    cand = dict(A=plate(t), B=cand_b if cand_b is not None else plate(t))
+    sl = None
+    if sil == 'see':
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sl = dict(A=sil_votes(evA, plate(t, 'top')), B=sil_votes(evB, plate(t, 'bottom')))
+        if notches:
+            from gmg import silhouette as SI
+            notches = dict(A=SI.notches(sl['A']['nmv'], sl['A']['nmf'], evA),
+                           B=SI.notches(sl['B']['nmv'], sl['B']['nmf'], evB))
+    elif sil == 'solid':
+        evA, evB = IL.Evidence(b, 'A', cand['A']), IL.Evidence(b, 'B', cand['B'])
+        sl = dict(A=sil_votes(evA, plate(t, 'top'), see_through=False), B=sil_votes(evB, plate(t), see_through=False))
+        notches = dict(A=[], B=[])
+    recs, sides = run_pair(b, cand, sil=sl, notches=notches, waiver=waiver)
+    return b, cand, recs, sides
+
+
+def _waiver_summary(recs, sides):
+    out = {}
+    for r in recs:
+        if r['voxels'] < 10:
+            continue
+        w = r.get('waiver_fi4') or {}
+        x = r['target']
+        row = dict(decision=r['decision'], tier=r['tier'], flags=r['flags'], submitted=r.get('submitted'),
+                   old=r.get('decision_f_i3'), in_scope=w.get('in_scope'), gate_fail=w.get('gate_fail'),
+                   plate_t_mm=None if not (w.get('plate') or {}).get(x, {}).get('plate') else
+                   round(w['plate'][x]['t_m'] * 1e3, 2), crosslap=w.get('crosslap'))
+        if r.get('_waiver'):
+            wv = r['_waiver']
+            c0 = np.asarray(wv['body']['centre']); aL = np.asarray(wv['body']['axes'][0])
+            # the true slot of A and B lies at x = 0 of its own frame (the plates' long axis is x)
+            row.update(w_mm=wv['slot']['w_mm'], D_mm=wv['slot']['D_mm'], centre_mm=round(float(
+                (c0 + wv['slot']['_c_L'] * aL)[0]) * 1e3, 2), centre_component_mm=round(float(
+                    (c0 + float(wv['slot']['c_L_component_mm']) * 1e-3 * aL)[0]) * 1e3, 2),
+                n_pieces=len(wv['slotted']), budget=w['budget'][x], body=(w['body'][x]['L_mm'], w['body'][x]['W_mm'],
+                                                                          w['body'][x]['t_mm']))
+        out[x] = row
+    return out
+
+
+def _decisions(recs):
+    return {r['target']: (r['decision'], r['tier'], sorted(f for f in r['flags'] if f != 'owner_waiver_fi4' and
+                                                            not f.startswith('waiver_gate_fail')))
+            for r in recs if r['voxels'] >= 3}
+
+
+class Waiver(unittest.TestCase):
+    """PREREG F-I4.10 (owner waiver of the camera rule; F-I4.12 slot centre): w1-w5, plus the build task's extra
+    thicknesses 13 and 25 mm (reported). Synthetic owned points carry two-sided camera centres."""
+
+    def test_w1_plates(self):
+        from gmg import platebody as PB
+        from gmg.tools.interlock_dev import partner_occ_lin
+        res = {}
+        for t_mm in WAIVER_W1 + WAIVER_EXTRA:
+            b, cand, recs, sides = _waiver_case(t_mm)
+            s = _waiver_summary(recs, sides)
+            for x in ('A', 'B'):
+                r = next((r for r in recs if r['target'] == x and r.get('_waiver')), None)
+                if r is None:
+                    continue
+                y = 'B' if x == 'A' else 'A'
+                fr = [f for rr in sides[x].runs for f in rr.build]
+                occ = partner_occ_lin(b, x, y, sides[x].ev, fr, max(c.nmin for c in sides[x].comps))
+                g = PB.keepout_gate(sides[x].ev, r['_waiver']['body'], r['_waiver']['slot'], r['_waiver']['slotted'],
+                                    occ)
+                s[x]['keepout'] = g['report']['slotted_plate']
+            res[t_mm] = s
+            RESULTS.setdefault('w1', {})[t_mm] = s
+            if t_mm == 25 and any(not s[o].get('in_scope') for o in s):
+                # the slab window's upper end: out of scope is a permitted outcome, then the decision is the old one
+                for o in s:
+                    self.assertIsNone(s[o]['old'], s[o])
+                continue
+            for o in ('A', 'B'):
+                self.assertIn(o, s, f't={t_mm}: no component on {o}')
+                self.assertEqual(s[o]['decision'], 'CARVE', f't={t_mm} {o}: {s[o]}')
+                self.assertEqual(s[o]['tier'], 'T1', s[o])
+                self.assertFalse(s[o]['submitted'], s[o])
+                self.assertIn('owner_waiver_fi4', s[o]['flags'])
+                self.assertLessEqual(abs(s[o]['w_mm'] - (t_mm + 2.0)), 1.0, f't={t_mm} {o}: width {s[o]["w_mm"]}')
+                self.assertLessEqual(abs(s[o]['centre_mm']), 2.0, f't={t_mm} {o}: centre {s[o]["centre_mm"]}')
+                self.assertEqual(s[o]['n_pieces'], 3)
+                self.assertLessEqual(s[o]['keepout']['max_cm3'], 0.3, s[o]['keepout'])
+            self.assertTrue(s['A']['crosslap']['ok'], s['A']['crosslap'])
+            self.assertLessEqual(abs(s['A']['crosslap']['diff_mm']), 10.0)
+
+    def test_w2_waiver_off(self):
+        """w2: waiver off = every decision as before, also on the two-sided bundles (the camera centres are not read
+        by F-I1..F-I3); the whole existing suite runs with the waiver off (the default)."""
+        res = {}
+        for t_mm in (10, 18):
+            t = t_mm * 1e-3
+            b1, _ = cross_episode(t)
+            b2, _ = cross_episode(t, two_sided=True)
+            cand = dict(A=plate(t), B=plate(t))
+            d1 = _decisions(run_pair(b1, cand)[0])
+            d2 = _decisions(run_pair(b2, cand, waiver=False)[0])
+            res[t_mm] = dict(plain=d1, two_sided_waiver_off=d2)
+            self.assertEqual(d1, d2, f't={t_mm}')
+            self.assertFalse(any(r.get('waiver_fi4') for r in run_pair(b2, cand, waiver=False)[0]))
+        RESULTS['w2'] = res
+
+    def test_w3_controls_unchanged(self):
+        """w3: waiver on, decisions unchanged: n2 resting pose error, n4 short contact, n9 cup nesting (the control
+        tests run again with the waiver on; their assertions and their recorded decisions must not change), and a
+        plate whose partner is a 30 mm cylinder (not plate-like). A thin 16 mm rod is run and reported only [H: the
+        plane-pair test may call a thin rod plate-like]."""
+        global WAIVER_ON
+        out = {}
+        for name, key in (('test_n2_resting_pose_error', 'n2'), ('test_n4_short_contact', 'n4'),
+                          ('test_n9_cup_nesting', 'n9')):
+            got = {}
+            for wv in (False, True):
+                WAIVER_ON = wv
+                try:
+                    getattr(Controls(name), name)()
+                finally:
+                    WAIVER_ON = False
+                got[wv] = json.loads(json.dumps(RESULTS[key], default=str))
+            out[key] = got
+            self.assertEqual(got[False], got[True], key)
+        rods = {}
+        for r_mm in (15, 8):
+            rod = trimesh.creation.cylinder(radius=r_mm * 1e-3, height=0.200, sections=48)
+            rod.apply_transform(trimesh.transformations.rotation_matrix(np.pi / 2, [0, 1, 0]))   # axis along B's x
+            dec = {}
+            for wv in (False, True):
+                b, cand, recs, sides = _waiver_case(10, waiver=wv, mesh_b=rod, cand_b=rod)
+                dec[wv] = _decisions(recs)
+                if wv:
+                    rods[r_mm] = dict(off=dec[False], on=_waiver_summary(recs, sides))
+            if r_mm == 15:
+                self.assertEqual(dec[False], dec[True], f'cylinder r={r_mm} mm')
+                self.assertFalse(any(r.get('_waiver') for r in recs))
+            rods[r_mm]['decisions_equal'] = dec[False] == dec[True]
+        out['plate_cylinder'] = rods
+        RESULTS['w3'] = out
+
+    def test_w4_overshoot(self):
+        """w4: waiver on, o2a (silhouette sees wood) and o2b (silhouette sees the true slots): 11 mm offset along d at
+        every frame: nothing carved (budget (iv) or interlock_slot_inconsistent)."""
+        res = {}
+        for name, sil, notches in (('o2a', 'solid', None), ('o2b', 'see', True)):
+            b, cand, recs, sides = _waiver_case(10, offset=(0, -0.011, 0), sil=sil, notches=notches)
+            s = _waiver_summary(recs, sides)
+            res[name] = s
+            for o in ('A', 'B'):
+                self.assertNotIn(s[o]['decision'], ('CARVE', 'OFFSET'), f'{name} {o}: {s[o]}')
+                self.assertTrue(any(f in s[o]['flags'] for f in ('interlock_slot_inconsistent', 'budget_iv_fail')),
+                                f'{name} {o}: {s[o]}')
+            self.assertFalse(any(r.get('sim_carve') for r in recs))
+        RESULTS['w4'] = res
+
+    def test_w5_p3(self):
+        """w5: P3 on w1 at t = 10 mm, 16 jittered copies: carved lag <= 0.5 cm and <= 5 deg (and the F-I4.7 table)."""
+        from gmg import platebody as PB
+        b, cand, recs, sides = _waiver_case(10)
+        W = {r['target']: r for r in recs if r.get('_waiver')}
+        self.assertEqual(set(W), {'A', 'B'})
+        run = W['A']['_comp'].run
+        ph = PH.pair_physics(b, 'A', 'B', W['A']['_waiver']['slotted'], W['B']['_waiver']['slotted'], run,
+                             {x: W[x]['_waiver']['slot_cm3'] for x in 'AB'}, W['A']['_waiver']['default'],
+                             W['B']['_waiver']['default'], 16, 'T-I1 w5')
+        ph.pop('overlap_series', None)
+        acc = PB.acceptance(ph, {}, {'A': 3, 'B': 3})
+        RESULTS['w5'] = dict(P3=ph['P3'], P2=ph['P2'], P6=ph['P6'], P7=ph['P7'], P4=ph['P4'], acceptance=acc)
+        c = ph['P3']['carved']
+        self.assertLessEqual(c['lag_cm_asm'], 0.5, c)
+        self.assertLessEqual(c['lag_deg_asm'], 5.0, c)
 
 
 def _sim_r0(b, cand, td, name='r0'):

@@ -1183,10 +1183,12 @@ def _asm_pose(intr, run):
     return mean_pose([intr.rel[f] for f in fr])
 
 
-def decide_pair(b, so, sp, poses_sim=None, round_k=0):
+def decide_pair(b, so, sp, poses_sim=None, round_k=0, waiver_fi4=False):
     """F-I1.3 for one pair (both ordered directions): components of so (o <- p) and sp (p <- o). Returns the list of
     decision records (one per component), each with the carve solids for the simulator copy (width w_sim) and, at
-    T2/T3/T2o, for submitted candidates (width w_sub)."""
+    T2/T3/T2o, for submitted candidates (width w_sub). waiver_fi4 (PREREG F-I4, the owner's waiver of the camera rule,
+    default off): after these decisions, linked plate-plate INSERTION pairs go through platebody.apply_waiver (analytic
+    slot in rec['_waiver'], simulator copy only); with the flag off nothing changes."""
     if int(round_k) > K('max_rounds'):
         raise ValueError(f'round {round_k} > {K("max_rounds")} (F-I1.13)')
     out = []
@@ -1415,7 +1417,17 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0):
     if names[so.name] != names[sp.name]:
         for r in out:
             r['flags'].append('one_sided_region')
+    if waiver_fi4:                                   # PREREG F-I4 (owner waiver), new path; off = F-I1..F-I3 only
+        from gmg import platebody as PB
+        PB.apply_waiver(b, so, sp, out, links, round_k=round_k)
     return out
+
+
+def sim_carve_cm3(r):
+    """Volume (cm3) a simulator carve removes: the analytic slot inside the plate body (F-I4) or the carve solid."""
+    if r.get('_waiver'):
+        return float(r['_waiver']['slot_cm3'])
+    return float(r['_sim_solid']['cm3'])
 
 
 def _o_class(side, lin):
@@ -2057,14 +2069,15 @@ def default_physics(copies=None, log=None):
     from gmg import simphys as PH
 
     def fn(b, o, p, carved, default, recs, rels=None, run=None):
-        cm3 = {r['target']: r['_sim_solid']['cm3'] for r in recs if r.get('sim_carve')}
+        cm3 = {r['target']: sim_carve_cm3(r) for r in recs if r.get('sim_carve')}
         return PH.pair_physics(b, o, p, carved[o], carved[p], run, cm3, default[o], default[p],
                                copies or PH.k_('copies'), 'export round', rels=rels, log=log)
     return fn
 
 
 def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, visual=None, physics_fn='default',
-                          sources=None, identity=None, ref_poses=None, copies=None, allow_do_not_use=False):
+                          sources=None, identity=None, ref_poses=None, copies=None, allow_do_not_use=False,
+                          waiver_fi4=False):
     """INTERLOCK 11.3, the function the Embodiment session calls; the SAME rule as our tracks path (F-I3.1): the export
     is validated (11.2, F-I3.10), its samples go through make_side (engaged runs with the hold-out fixed by earlier
     rounds, persistent regions, the identity / track gate, sources (a) and (b) and the observed notches from
@@ -2108,9 +2121,15 @@ def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, v
                              partner_collider=S[q], holdout=hold,
                              carved_before=(st.get('carved_cm3') or {}).get(t, 0.0),
                              solid_ref_cm3=(st.get('solid_ref_cm3') or {}).get(t) or ev[t].solid_cm3())
-    recs = decide_pair(b, sides[o], sides[p], round_k=round)
+    recs = decide_pair(b, sides[o], sides[p], round_k=round, waiver_fi4=waiver_fi4)
     carved = {}
+    default_pieces = dict(sim['pieces'])
     for x in pair:
+        wv = [r['_waiver'] for r in recs if r['target'] == x and r.get('sim_carve') and r.get('_waiver')]
+        if wv:                                       # F-I4: the analytic slotted plate; default = the unslotted plate
+            carved[x] = list(wv[0]['slotted'])
+            default_pieces[x] = list(wv[0]['default'])
+            continue
         cv = [r['_sim_solid'] for r in recs if r['target'] == x and r.get('sim_carve')]
         hl = list(sim['pieces'][x])
         for c in cv:
@@ -2127,7 +2146,7 @@ def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, v
     phys = None
     if any_carve and physics_fn is not None:
         run = next((r['_comp'].run for r in recs if r.get('sim_carve')), None)
-        phys = physics_fn(b, o, p, carved, sim['pieces'], recs, rels=intrs[o].rel, run=run)
+        phys = physics_fn(b, o, p, carved, default_pieces, recs, rels=intrs[o].rel, run=run)
     deliver = bool(phys is not None and phys.get('deliver_carved'))
     # the interlock state for the next round (F-I3.3): fixed hold-out, cumulative carves, round-0 solid, regions
     hold_new = dict(st.get('holdout') or {})
@@ -2140,7 +2159,7 @@ def carve_from_intrusions(pair, intrusions, evidence, sim_dir, out_dir, round, v
         reg[key] = np.unique(np.concatenate(carved_lin)) if carved_lin else np.zeros(0, np.int64)
     cum = dict(st.get('carved_cm3') or {})
     for x in pair:
-        add = sum(r['_sim_solid']['cm3'] for r in recs if r['target'] == x and r.get('sim_carve')) if deliver else 0.0
+        add = sum(sim_carve_cm3(r) for r in recs if r['target'] == x and r.get('sim_carve')) if deliver else 0.0
         cum[x] = _bi.round(float(cum.get(x, 0.0)) + float(add), 4)
     dnu_prev = sim['manifest'].get('do_not_use') or (json.load(open(os.path.join(sim_dir, 'DO_NOT_USE.json')))
                                                        if os.path.exists(os.path.join(sim_dir, 'DO_NOT_USE.json'))

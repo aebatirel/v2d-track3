@@ -246,15 +246,23 @@ def replay_proxy(host, guest, rels, frames, asm_frames, variants, copies=None, g
     return out
 
 
-def p3_pass(res):
+def p3_pass(res, overlap_cm3=None):
+    """P3 judgement (F-I1.8 / INTERLOCK 6.3): carved median lag <= 0.5 cm and <= 5 deg at the assembled frames, lag never
+    > 1.0 cm after the first assembled frame, no NaN copy, and collider overlap < 1.0 cm3 at the assembled frames.
+    OVERLAP_CM3 = the median carved collider overlap at the assembled frames (the P6 series); this F-I1.8 clause was
+    missing from the BI1 code and is restored by PREREG F-I4.7 (None: not judged, as before)."""
     c = res.get('carved', {})
     d = res.get('default', {})
     if 'lag_cm_asm' not in c:
         return dict(pass_=False, reason='carved proxy produced no finite copy')
     ok = (c['lag_cm_asm'] <= k_('lag_asm_m') * 100 and c['lag_deg_asm'] <= k_('lag_asm_deg') and
           c['lag_cm_after_max'] <= k_('lag_after_m') * 100 and c['nan'] == 0)
+    ovl_ok = None if overlap_cm3 is None else bool(overlap_cm3 < k_('ovl_max_cm3'))
+    if ovl_ok is False:
+        ok = False
     not_lim = 'lag_cm_asm' in d and d['lag_cm_asm'] < k_('not_limiting_m') * 100 and d['lag_deg_asm'] < k_('not_limiting_deg')
-    return dict(pass_=bool(ok), slot_not_limiting=bool(not_lim))
+    return dict(pass_=bool(ok), slot_not_limiting=bool(not_lim),
+                overlap_asm_cm3=None if overlap_cm3 is None else round(float(overlap_cm3), 3), overlap_ok=ovl_ok)
 
 
 def settle_xml(host, guest, T_wh, T_wg, n_table, d_table, hp, gp):
@@ -394,7 +402,7 @@ def pair_physics(b, o, p, hulls_o, hulls_p, run, carve_cm3, default_o, default_p
                                 nocollide=(default_o, default_p, False)), copies=copies, guest_props=gpp, log=log)
         res['sec'] = round(time.time() - t, 1)
         res['frames'] = [frames[0], frames[-1]]
-        res['judge'] = p3_pass(res)
+        res['judge'] = p3_pass(res, overlap_cm3=out['P6']['carved_asm_median'])     # F-I4.7: overlap clause restored
         out['P3'] = res
     tests = [out['P2']['pass_'], out['P4'][o]['pass_'], out['P4'][p]['pass_'], out['P6']['pass_'],
              out['P7'].get('pass_', True)]

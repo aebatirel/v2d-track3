@@ -39,6 +39,7 @@ import numpy as np  # noqa: E402
 import trimesh  # noqa: E402
 
 from gmg import interlock as IL, simpieces as SP, simphys as PH, physcheck as PC, geom  # noqa: E402
+from gmg import platebody as PB  # noqa: E402
 
 LOG = []
 
@@ -95,6 +96,10 @@ def main():
     ap.add_argument('--hands'); ap.add_argument('--gen', default='')
     ap.add_argument('--diag', action='store_true'); ap.add_argument('--proxy-copies', type=int, default=16)
     ap.add_argument('--no-physics', action='store_true'); ap.add_argument('--tag', default='')
+    ap.add_argument('--waiver-fi4', action='store_true',
+                    help='PREREG F-I4 (owner waiver of the camera rule): plate-plate INSERTION pairs get the analytic '
+                         'slot in the simulator copy (default off: F-I1..F-I3 only)')
+    ap.add_argument('--no-physcheck', action='store_true', help='skip step 5 (per-candidate physcheck)')
     ap.add_argument('--identity', default='public', choices=('public', 'eval'),
                     help='public: IDENTITY_SWAP makes (c) absent (F-I1.2); eval: the identity test only flags (SPEC '
                          'section 7), i.e. what the same rule does on an eval episode')
@@ -127,7 +132,7 @@ def main():
             if 'nmv' in r:
                 np.savez_compressed(os.path.join(out_dir, f'sil_{o}.npz'), nmv=r['nmv'], nmf=r['nmf'], occ=ev[o].occ)
     report = dict(ep=a.ep, bundle=a.bundle, tier=b.meta.get('tier'), picks=picks, constants=IL.constants_report(),
-                  identity_semantics=a.identity, sanity_flags={o: (b.meta.get('sanity') or {}).get(o, {}).get('flags')
+                  identity_semantics=a.identity, owner_waiver_fi4=bool(a.waiver_fi4), sanity_flags={o: (b.meta.get('sanity') or {}).get(o, {}).get('flags')
                                                                for o in objs},
                   sim_pose='P_sel (flag sim_pose_fallback: no provenance-checked replay reference for public dev)',
                   pairs={}, silhouette={o: ({k: v for k, v in (sil[o] or {}).items() if not k.startswith('_') and
@@ -201,7 +206,12 @@ def main():
                         if len(l) >= 3:
                             s.notches.append(l)
                 prep[f'gen_{t}'] = dict(runs=rows, used=row['path'])
-        recs = IL.decide_pair(b, sides[o], sides[p])
+        recs = IL.decide_pair(b, sides[o], sides[p], waiver_fi4=a.waiver_fi4)
+        for t in (o, p):
+            pinfo = getattr(sides[t], '_plate_fi4', None)
+            if pinfo is not None:
+                log('plate F-I4.1', t, json.dumps({k: v for k, v in pinfo.items() if not k.startswith('_') and
+                                                  k not in ('planes',)}, default=IL._jdefault)[:900])
         if sides[o].runs:
             np.save(os.path.join(out_dir, 'T_asm.npy'), IL._asm_pose(sides[o].intr, sides[o].runs[0]))
         for t in (o, p):                                   # voxel sets for the figures (build/I/i_png.py)
@@ -240,69 +250,74 @@ def main():
                 fr = [f for r in sides[x].runs for f in r.build]
                 nm = max([c.nmin for c in sides[x].comps] or [5])
                 occ[x] = partner_occ_lin(b, x, y, ev[x], fr, nm) if fr else np.zeros(0, np.int64)
-            built = {}
-            for x in (o, p):
-                carves = [r['_sim_solid'] for r in recs if r['target'] == x and r.get('sim_carve')]
-                sil_lin = None
-                if sil[x] and sil[x].get('gate_ok'):
-                    from gmg import silhouette as SI
-                    sil_lin = np.nonzero(SI.sil_mask(sil[x]['nmv'], sil[x]['nmf']))[0]
-                built[x] = SP.build(cands[x][picks[x]], ev[x], carves, occ[x], sil_lin)
-                built[x]['coacd'] = coacd_pieces(cands[x][picks[x]])
-                log('pieces', x, 'default', len(built[x]['default']), 'carved',
-                    None if built[x]['carved'] is None else len(built[x]['carved']), 'coacd', len(built[x]['coacd']),
-                    f'{time.time() - t:.0f}s')
-            # overlap along the track: CoACD (FlashCHORD default) vs our default pieces
-            rels = {f: IL.rel_pose(b.poses, o, p, f) for f in range(int(b.meta['T']))}
-            fr6 = list(range(0, int(b.meta['T']), 4))
-            ovl = {}
-            for name in ('coacd', 'default'):
-                ser = PH.overlap_series(built[o][name], built[p][name], rels, fr6)
-                ovl[name] = dict(median=round(float(np.median(list(ser.values()))), 3),
-                                 max=round(float(max(ser.values())), 3), series=ser)
-            prep['collider_overlap_track'] = {k: {kk: vv for kk, vv in v.items() if kk != 'series'} for k, v in
-                                              ovl.items()}
-            jdump(ovl, os.path.join(out_dir, f'overlap_{o}_{p}.json'))
-            carved_pairs = [r for r in recs if r.get('sim_carve')]
-            phys = None
-            if carved_pairs and all(built[x]['carved'] is not None for x in (o, p)):
-                run = sides[o].runs[0] if sides[o].runs else sides[p].runs[0]
-                phys = physics(b, o, p, built[o]['carved'], built[p]['carved'], run,
-                               {r['target']: r['_sim_solid']['cm3'] for r in carved_pairs}, built[o]['default'],
-                               built[p]['default'], a.proxy_copies, 'decided')
-                prep['physics'] = {k: v for k, v in phys.items() if k != 'overlap_series'}
-                jdump(phys, os.path.join(out_dir, f'physics_{o}_{p}.json'))
-            for x in (o, p):
-                deliver = 'default'
-                # F-I3.8: the default pieces must hold <= 0.3 cm3 keep-out per hull; else CoACD's pieces checked
-                # against the same keep-out; else the delivery is marked do-not-use
-                gate = SP.pieces_gate({'gmg': built[x]['default'], 'coacd': built[x]['coacd']}, *built[x]['keep'])
-                log('pieces gate', x, gate['choice'], json.dumps(gate['report']), gate['do_not_use'] or '')
-                hl = gate['hulls']
-                if phys is not None and phys['deliver_carved']:
-                    deliver, hl = 'carved', built[x]['carved']
-                    gate = SP.pieces_gate({'carved': built[x]['carved']}, *built[x]['keep'])
-                prep.setdefault('pieces_gate', {})[x] = {k: v for k, v in gate.items() if k != 'hulls'}
-                sim_objects[x] = dict(visual=cands[x][picks[x]], hulls=hl, gate=gate,
-                                      sources=dict(sil=sil[x], gen=sides[x].gen, notches=sides[x].notches,
-                                                   notches_sil=sides[x].notches_sil, grid=ev[x].grid),
-                                      carve=dict(delivered=deliver, decisions=[d for d in all_dec if d['target'] == x],
-                                                 pieces_report=built[x]['report'],
-                                                 pieces_choice=gate['choice'], pieces_gate=gate['report'],
-                                                 do_not_use=gate['do_not_use'],
-                                                 flags=['sim_pose_fallback'] + ([] if phys is None else
-                                                                               ['p1_not_run_flashchord']),
-                                                 physics=None if phys is None else
-                                                 {k: v for k, v in phys.items() if k != 'overlap_series'}))
-                if built[x]['carved'] is not None:
-                    dd = os.path.join(out_dir, '_carved_pending_p1', x)
-                    os.makedirs(dd, exist_ok=True)
-                    for kk, V in enumerate(built[x]['carved']):
-                        trimesh.convex.convex_hull(V).export(os.path.join(dd, f'piece_{kk:02d}.obj'))
-            # ---- DIAG counterfactuals
-            if a.diag:
-                diag[f'{o}|{p}'] = run_diag(b, o, p, sides, recs, cands, picks, ev, built, out_dir, a.proxy_copies)
-                jdump(diag[f'{o}|{p}'], os.path.join(out_dir, f'diag_{o}_{p}.json'))
+            if any(r.get('_waiver') for r in recs):
+                # PREREG F-I4.6-F-I4.8: slotted vs unslotted plate bodies; no splitter, no CoACD, no DIAG
+                sim_objects.update(run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, a.proxy_copies,
+                                              out_dir, prep))
+            else:
+                built = {}
+                for x in (o, p):
+                    carves = [r['_sim_solid'] for r in recs if r['target'] == x and r.get('sim_carve')]
+                    sil_lin = None
+                    if sil[x] and sil[x].get('gate_ok'):
+                        from gmg import silhouette as SI
+                        sil_lin = np.nonzero(SI.sil_mask(sil[x]['nmv'], sil[x]['nmf']))[0]
+                    built[x] = SP.build(cands[x][picks[x]], ev[x], carves, occ[x], sil_lin)
+                    built[x]['coacd'] = coacd_pieces(cands[x][picks[x]])
+                    log('pieces', x, 'default', len(built[x]['default']), 'carved',
+                        None if built[x]['carved'] is None else len(built[x]['carved']), 'coacd', len(built[x]['coacd']),
+                        f'{time.time() - t:.0f}s')
+                # overlap along the track: CoACD (FlashCHORD default) vs our default pieces
+                rels = {f: IL.rel_pose(b.poses, o, p, f) for f in range(int(b.meta['T']))}
+                fr6 = list(range(0, int(b.meta['T']), 4))
+                ovl = {}
+                for name in ('coacd', 'default'):
+                    ser = PH.overlap_series(built[o][name], built[p][name], rels, fr6)
+                    ovl[name] = dict(median=round(float(np.median(list(ser.values()))), 3),
+                                     max=round(float(max(ser.values())), 3), series=ser)
+                prep['collider_overlap_track'] = {k: {kk: vv for kk, vv in v.items() if kk != 'series'} for k, v in
+                                                  ovl.items()}
+                jdump(ovl, os.path.join(out_dir, f'overlap_{o}_{p}.json'))
+                carved_pairs = [r for r in recs if r.get('sim_carve')]
+                phys = None
+                if carved_pairs and all(built[x]['carved'] is not None for x in (o, p)):
+                    run = sides[o].runs[0] if sides[o].runs else sides[p].runs[0]
+                    phys = physics(b, o, p, built[o]['carved'], built[p]['carved'], run,
+                                   {r['target']: r['_sim_solid']['cm3'] for r in carved_pairs}, built[o]['default'],
+                                   built[p]['default'], a.proxy_copies, 'decided')
+                    prep['physics'] = {k: v for k, v in phys.items() if k != 'overlap_series'}
+                    jdump(phys, os.path.join(out_dir, f'physics_{o}_{p}.json'))
+                for x in (o, p):
+                    deliver = 'default'
+                    # F-I3.8: the default pieces must hold <= 0.3 cm3 keep-out per hull; else CoACD's pieces checked
+                    # against the same keep-out; else the delivery is marked do-not-use
+                    gate = SP.pieces_gate({'gmg': built[x]['default'], 'coacd': built[x]['coacd']}, *built[x]['keep'])
+                    log('pieces gate', x, gate['choice'], json.dumps(gate['report']), gate['do_not_use'] or '')
+                    hl = gate['hulls']
+                    if phys is not None and phys['deliver_carved']:
+                        deliver, hl = 'carved', built[x]['carved']
+                        gate = SP.pieces_gate({'carved': built[x]['carved']}, *built[x]['keep'])
+                    prep.setdefault('pieces_gate', {})[x] = {k: v for k, v in gate.items() if k != 'hulls'}
+                    sim_objects[x] = dict(visual=cands[x][picks[x]], hulls=hl, gate=gate,
+                                          sources=dict(sil=sil[x], gen=sides[x].gen, notches=sides[x].notches,
+                                                       notches_sil=sides[x].notches_sil, grid=ev[x].grid),
+                                          carve=dict(delivered=deliver, decisions=[d for d in all_dec if d['target'] == x],
+                                                     pieces_report=built[x]['report'],
+                                                     pieces_choice=gate['choice'], pieces_gate=gate['report'],
+                                                     do_not_use=gate['do_not_use'],
+                                                     flags=['sim_pose_fallback'] + ([] if phys is None else
+                                                                                   ['p1_not_run_flashchord']),
+                                                     physics=None if phys is None else
+                                                     {k: v for k, v in phys.items() if k != 'overlap_series'}))
+                    if built[x]['carved'] is not None:
+                        dd = os.path.join(out_dir, '_carved_pending_p1', x)
+                        os.makedirs(dd, exist_ok=True)
+                        for kk, V in enumerate(built[x]['carved']):
+                            trimesh.convex.convex_hull(V).export(os.path.join(dd, f'piece_{kk:02d}.obj'))
+                # ---- DIAG counterfactuals
+                if a.diag:
+                    diag[f'{o}|{p}'] = run_diag(b, o, p, sides, recs, cands, picks, ev, built, out_dir, a.proxy_copies)
+                    jdump(diag[f'{o}|{p}'], os.path.join(out_dir, f'diag_{o}_{p}.json'))
         # ---- ICARVE (submitted path)
         for r in recs:
             if r.get('submitted') and '_sub_solid' in r:
@@ -317,7 +332,7 @@ def main():
                     log('ICARVE', x, cid, info, pinfo['faces'], pinfo['watertight_packed'])
     # ---- physcheck for every candidate
     pcs = {}
-    for o in objs:
+    for o in ([] if a.no_physcheck else objs):
         pcs[o] = {}
         ph_by_p = {}
         for p in b.partners(o):
@@ -350,14 +365,87 @@ def main():
                      solid_ref_cm3={x: round(ev[x].solid_cm3(), 3) for x in sim_objects},
                      default_collider_cm3={x: round(SP.hull_volume(so['hulls']) * 1e6, 3)
                                            for x, so in sim_objects.items()}, delivered='default')
+        wv = {x: so_['waiver'] for x, so_ in sim_objects.items() if so_.get('waiver')}
+        extra, rule = None, 'F-I3.8'
+        if wv:                                         # PREREG F-I4.8: owner_waiver block, p1_pending
+            acc = next(iter(wv.values()))['acceptance']
+            extra = dict(owner_waiver=dict(rule=PB.WAIVER_REF, quote=PB.WAIVER_QUOTE, scope='plate-plate INSERTION '
+                                           'pairs, simulator copy only (F-I4.0)', objects={x: v['record'] for x, v in
+                                                                                         wv.items()},
+                                           acceptance=acc, default_pieces='_default/<obj>/piece_XX.obj (unslotted '
+                                                                          'plates)'),
+                         p1_pending=bool(acc['pass_all_but_P1']))
+            rule = 'F-I3.8 / F-I4.8'
+            for x, v in wv.items():
+                state['carved_cm3'][x] = v['record']['budget']['slot_cm3'] if acc['pass_all_but_P1'] else 0.0
+                state['solid_ref_cm3'][x] = v['record']['budget']['body_cm3']
+            state['delivered'] = 'carved_p1_pending' if acc['pass_all_but_P1'] else 'do_not_use (F-I4.7 failed)'
+        for so_ in sim_objects.values():
+            so_.pop('waiver', None)
         man = SP.write_round(sim_dir, a.ep, split, 0, sim_objects, dict(source='P_sel', flag='sim_pose_fallback',
-                                                                       tracks=b.meta['tracks']), interlock=state)
+                                                                       tracks=b.meta['tracks']), interlock=state,
+                             extra=extra, dnu_rule=rule)
         report['sim_dir'] = sim_dir
     report['sec'] = round(time.time() - t_start, 1)
     report['log'] = LOG
     jdump(report, os.path.join(out_dir, 'report.json'))
     guard.write_manifest(os.path.join(out_dir, 'manifest.json'))
     log('done', report['sec'], 's')
+
+
+def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir, prep):
+    """PREREG F-I4.6-F-I4.8 for one in-scope pair that passed the decision gates: keep-out gate on the slotted plates,
+    the F-I4.7 physics (carved = slotted plates, default = unslotted plates, poses P_sel = P_sim fallback, COPIES
+    jittered copies), acceptance, and the sim_objects entries for write_round (visual = our pick, unchanged; pieces =
+    slotted plates; _default = unslotted plates; DO_NOT_USE when a test other than P1 fails)."""
+    W = {r['target']: r for r in recs if r.get('_waiver')}
+    t = time.time()
+    gates = {}
+    for x in (o, p):
+        sil_lin = None
+        if sil[x] and sil[x].get('gate_ok'):
+            from gmg import silhouette as SI
+            sil_lin = np.nonzero(SI.sil_mask(sil[x]['nmv'], sil[x]['nmf']))[0]
+        wv = W[x]['_waiver']
+        gates[x] = PB.keepout_gate(ev[x], wv['body'], wv['slot'], wv['slotted'], occ[x], sil_lin)
+        log('F-I4 keep-out gate', x, json.dumps({k: v for k, v in gates[x].items() if k != 'hulls'}))
+    run = W[o]['_comp'].run
+    phys = PH.pair_physics(b, o, p, W[o]['_waiver']['slotted'], W[p]['_waiver']['slotted'], run,
+                           {x: W[x]['_waiver']['slot_cm3'] for x in (o, p)}, W[o]['_waiver']['default'],
+                           W[p]['_waiver']['default'], copies, 'F-I4 waiver slot (slotted vs unslotted plates)', log=log)
+    n_shapes = {x: len(W[x]['_waiver']['slotted']) for x in (o, p)}
+    n_shapes.update({x: None for x in b.objects if x not in (o, p)})
+    acc = PB.acceptance(phys, gates, {k: v for k, v in n_shapes.items() if v is not None})
+    acc['shapes'] = n_shapes
+    acc['sec'] = round(time.time() - t, 1)
+    log('F-I4 acceptance', json.dumps(acc, default=IL._jdefault))
+    prep['physics'] = {k: v for k, v in phys.items() if k != 'overlap_series'}
+    prep['acceptance_fi4'] = acc
+    prep['pieces_gate'] = {x: {k: v for k, v in g.items() if k != 'hulls'} for x, g in gates.items()}
+    jdump(phys, os.path.join(out_dir, f'physics_{o}_{p}.json'))
+    dnu = None if acc['pass_all_but_P1'] else f'F-I4.7 failing: {acc["failing"]} (F-I4.8: written for the record)'
+    out = {}
+    for x in (o, p):
+        r = W[x]
+        g = dict(gates[x])
+        if g.get('do_not_use') is None and dnu:
+            g['do_not_use'] = dnu
+        rec = dict(slot=r['waiver_fi4']['slot'][x], body=r['waiver_fi4']['body'][x],
+                   budget=r['waiver_fi4']['budget'][x], crosslap=r['waiver_fi4']['crosslap'],
+                   plate=r['waiver_fi4']['plate'][x], gates=r['waiver_fi4']['gates'][x])
+        out[x] = dict(visual=cands[x][picks[x]], hulls=r['_waiver']['slotted'], default_hulls=r['_waiver']['default'],
+                      gate=g, waiver=dict(record=rec, acceptance=acc),
+                      sources=dict(sil=sil[x], gen=sides[x].gen, notches=sides[x].notches,
+                                   notches_sil=sides[x].notches_sil, grid=ev[x].grid),
+                      carve=dict(delivered='carved (slotted plate, p1_pending)' if not dnu else 'do_not_use',
+                                 decisions=[IL.public(rr) for rr in recs if rr['target'] == x],
+                                 pieces_choice='slotted_plate (F-I4.6)', pieces_gate={k: v for k, v in g.items()
+                                                                                      if k != 'hulls'},
+                                 do_not_use=g.get('do_not_use'), owner_waiver=PB.WAIVER_REF,
+                                 flags=['sim_pose_fallback', 'owner_waiver_fi4', 'p1_pending',
+                                        'plate_body_no_markers'],
+                                 physics={k: v for k, v in phys.items() if k != 'overlap_series'}, acceptance=acc))
+    return out
 
 
 def run_diag(b, o, p, sides, recs, cands, picks, ev, built, out_dir, copies):

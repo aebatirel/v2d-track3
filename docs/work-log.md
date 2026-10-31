@@ -5396,3 +5396,11 @@ diagnostic; nothing is picked for submission.
 - Next: GT-free rebuilds (C0b public + E0b eval) with balls from gmg markers.py (frozen A.6 settings) or none,
   thickness from our own observations, and a provenance audit of every constant in prim_potlid / prim_rack / lathe_obs /
   obs_points.
+- ~17:00 UTC: launched `cdo-sprint-c0b` (`wf_cda9cf8c-c1c`, task wjo64ivo4), folder `cdo-sprint/C0b/`:
+  - audit of every constant in prim_potlid / prim_rack / lathe_obs / obs_points / obs_fidelity;
+  - PREREG with GT-free replacements (markers.py balls, thickness.py walls, own-observation or documented generic
+    values), committed before building;
+  - public rebuild with the C0 pools, a pre-registered pick (the blue cup included), one scoring per pick and the C0
+    AUC guard (base runs reused);
+  - eval rebuild (E0b) with library_e0b / e0bx;
+  - two verifiers, report and hand-off for pack 10.
