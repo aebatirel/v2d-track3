@@ -1,0 +1,5 @@
+ep14 VERIFIED :: s42 n 10 mean 0.8855 sd 0.0125 min 0.8664 cut 0/0 D-line ok; s43 n 10 mean 0.8757 sd 0.0152 min 0.8555 cut 0/0 D-line ok :: candidate 42
+ep16 VERIFIED :: s42 n 10 mean 0.8803 sd 0.0115 min 0.8628 cut 0/0 D-line ok; s43 n 10 mean 0.8754 sd 0.0139 min 0.8561 cut 0/0 D-line ok :: candidate 42
+ep33 VERIFIED :: s42 n 10 mean 0.8873 sd 0.012 min 0.8605 cut 0/0 D-line ok; s43 n 10 mean 0.879 sd 0.012 min 0.861 cut 0/0 D-line ok :: candidate 42
+hook: {"expected_md5": "d92ed77113adfd1aadeedda70a9d7bde", "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde", "reset_tagged": true}; other training logs: 0
+confirmation: {"RUNS_EXTRA": "20261101-drG-mocksha@refs/drs42_glockt/ep14 20261101-drG-mocksha@refs/drs42_glockt/ep16 20261101-drG-mocksha@refs/drs42_glockt/ep33", "PICK_EXTRA": "14:20261101-drG-mocksha:ck=results/drs42_glock_public/ep14/best/policy.safetensors 16:20261101-drG-mocksha:ck=results/drs42_glock_public/ep16/best/policy.safetensors 33:20261101-drG-mocksha:ck=results/drs42_glock_public/ep33/best/policy.safetensors", "DR_EPS": "14 16 33", "EVAL_ONLY": "14 16 33", "EPS_ONLY": "14 16 33", "ASSET_PIECES_EXTRA": ""}

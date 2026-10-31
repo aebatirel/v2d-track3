@@ -1,0 +1,140 @@
+PACK 9b D ARM: job strings per box, in launch order (prepared 31 Oct 2026 ~21:30-22:40 UTC; NOTHING LAUNCHED)
+Pre-registration: PREREG.md (this folder; sections 1-7 written before any D result). Build notes and CPU evidence: BUILD.md,
+cpu/ (same folder). Per-episode facts: docs/research/work/masses-eval-20261031/packed_refs.json (read by every box).
+Patch: ops/box/patch_flashchord_dr.py = determined-wright 4e5c8a0, byte for byte (md5 570a7f47793d02ba5b0bf3d5e6fd6eac,
+blob 4f7305391b1d...); FC_DR_SKIP_IMMEDIATE is in it, so the standard-learner boxes can launch with the grasp-lock box.
+(The earlier TODO "port the updated patch before the standard-learner boxes" is DONE: 4e5c8a0 is the ported version;
+mass_eval.sh ARM=dr refuses any other md5.)
+
+Before the launch (orchestrator):
+  1. commit + push: ops/box/patch_flashchord_dr.py (4e5c8a0 port), ops/jobs/mass_eval.sh (ARM=dr), ops/jobs/glock_public.sh
+     (FC_DR_PATCH + drs prefix), ops/jobs/hard_ab.sh (FC_DR_PATCH), ops/jobs/pack_eval.sh + ops/jobs/h5_reeval.sh (DR_EPS),
+     tools/{dr_arm,dr_eval_verify,dr_eval_merge,dr_pack_check,dr_score,dr_verdict}.py, docs/research/work/pack9b-20261031/
+     (PREREG.md unchanged, JOBS.txt, BUILD.md, cpu/). SHA=<that commit>, S7=${SHA:0:7}, D=<launch date YYYYMMDD>,
+     SNAP=pt2.11-cu130-py313-20261020.
+  2. the owner's go for the plan and cost below (relayed GO ~20:40 UTC via the score-status session: "sure add that whatev";
+     state this cost); `ops/vast.sh show` + the Vast credit; one ledger `planned` line per box (below).
+  3. offer: ONE RTX PRO 6000 (96 GB) on demand per box, <= ~$1.47/h (`ops/vast.sh offers`). Every box self-destroys when its
+     job ends (run_job.sh); the 30-min stall watchdog protects the spend; there is no fixed time limit.
+     Stagger the creates 10-15 min apart (HF 429); not in the same minute as another session's box.
+  Run ids must contain "-dr" (mass_eval.sh ARM=dr refuses otherwise): <date>-dr<box>-<sha7>.
+
+---------------- WAVE 1: training boxes (5 boxes; launch in this order, ~10 min apart) ----------------
+G    grasp lock, evals 14 16 33, seeds 42 43 (per seed one glock_public.sh call, 3 trainings in TRAIN_SLOTS 2: a pair, then one)
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-drG-$S7 7.50 "pack 9b D arm: grasp lock evals 14 16 33, seeds 42/43 (packed config + FC_DR_RESET)" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-drG-$S7 'ARM=dr MODE=glock EPS="14 16 33" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+S25a standard learner, eval 25 (ev25 pieces in /content/assets), seed 42
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-drS25s42-$S7 3.00 "pack 9b D arm: std eval 25 (ev25), seed 42, FC_DR_SKIP_IMMEDIATE" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-drS25s42-$S7 'ARM=dr MODE=std EPS="25" SEEDS="42" bash ops/jobs/mass_eval.sh'
+S25b standard learner, eval 25, seed 43
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-drS25s43-$S7 3.00 "pack 9b D arm: std eval 25 (ev25), seed 43, FC_DR_SKIP_IMMEDIATE" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-drS25s43-$S7 'ARM=dr MODE=std EPS="25" SEEDS="43" bash ops/jobs/mass_eval.sh'
+S30a standard learner, eval 30 (no pieces), seed 42
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-drS30s42-$S7 3.00 "pack 9b D arm: std eval 30, seed 42, FC_DR_SKIP_IMMEDIATE" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-drS30s42-$S7 'ARM=dr MODE=std EPS="30" SEEDS="42" bash ops/jobs/mass_eval.sh'
+S30b standard learner, eval 30, seed 43
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-drS30s43-$S7 3.00 "pack 9b D arm: std eval 30, seed 43, FC_DR_SKIP_IMMEDIATE" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-drS30s43-$S7 'ARM=dr MODE=std EPS="30" SEEDS="43" bash ops/jobs/mass_eval.sh'
+  (25 and 30 cannot share a box: eval 25 needs the ev25 pieces in the ONE /content/assets, eval 30 trained without them;
+   mass_eval.sh refuses that combination. One seed per box as the masses S1a / S1b plan: the two seeds of one episode run
+   in parallel instead of 2 x 2.0-2.3 h in a row.)
+
+What a training box runs (mass_eval.sh ARM=dr; everything is fixed inside, nothing is read from the env for D):
+  - refuses: a run id without -dr; a patch file whose md5 is not the 4e5c8a0 port; an unknown ARM; FC_DR_* / TRAIN_ENV /
+    FC_DR_PATCH from the environment are logged and unset;
+  - pulls per episode (packed_refs.json pull_files: single-file downloads, NO store listing; G 81 + 9 + 3, S25 27 + 1,
+    S30 25 + 1 [M, mock hf logs]); md5 + fingerprint of the stored reference must be the packed one, and (grasp lock) the
+    base's support stage must be the packed reference's; else the episode is dropped (INCOMPLETE), nothing trains on it;
+  - grasp lock: tools/dr_arm.py per-seed BYTE copies refs/drs<seed>_glockt/ep<N> (+ base link + result files); per seed
+    glock_public.sh SPLIT=eval REUSE_REF=1 REQUIRE_REUSE=1 NO_PUSH=1 FC_DR_PATCH=1 TRAIN_ENV="FC_DR_RESET=1.5,0.015,0.01
+    FC_DR_SEED=<seed>" PAIRS <N>:local:mck:drs<seed> (70,004,736 steps, CURVE_REP 3, NREP 10, EVAL_TIMEOUT 1200; eval 33
+    CURR_SCALE 0.4 via ENV_EP33 from the table);
+    standard learner: hard_ab.sh SPLIT=eval CR=0 SUF=dr FC_DR_PATCH=1 MA_ARGS= (no masses), the packed PIECES (ev25 / none),
+    ENV_EP<N>="FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed> FC_DR_SKIP_IMMEDIATE=1", FDR + VOC + FC_IMMEDIATE_FIRST_FRAME 0.25,
+    250,003,456 steps, sweep 0.4/0.6/0.8, NREP 10, EVAL_TIMEOUT 1200;
+  - tools/dr_eval_verify.py -> results/dr_eval/{verify.json, summary.json, verify.txt}; "mass_eval ARM=dr RESULT" line in
+    job.log (per episode VERIFIED / INVALID / INCOMPLETE, per seed n / mean / sd / min / timeouts / D-line ok, the seed
+    choice of PREREG 2, the confirmation strings, the hook md5); ckpt_meta.txt; files.txt; ONE store push at the end.
+  Required D line (PREREG 1.2), checked by the verify in every D training log:
+    14 / 16 / 33: "v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers
+                   +-0.01 rad; 2 objects, <j> finger joints, <W> worlds, seed <s>"   (nothing after the seed)
+    25 / 30:      the same + "; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)"
+  INCOMPLETE (a seed without a checkpoint, < 8 scored rollouts, or a std main evaluation cut): retrain ONLY that seed on a
+  new box, same commit (PREREG 6):
+    grasp lock: 'ARM=dr MODE=glock EPS="<N>" SEEDS="<seed>" bash ops/jobs/mass_eval.sh'   run id $D-drG<N>r<seed>-$S7
+    std:        the S box's string again                                                   run id $D-drS<N>r<seed>-$S7
+  then merge all summaries again (the other seeds' verified cells count from their first box).
+
+After each training box (CPU, $0): results/dr_eval/summary.json and verify.txt (one single-file download each); work-log entry:
+exact job string, box id, run id, commit, per episode status, n / mean / sd / min per seed, the D-line result, timeouts;
+ledger `actual` line (LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id> <usd> "<note>").
+
+---------------- C: official confirmation (after ALL training boxes are read; PREREG section 3) ----------------
+Built on CPU from the five summaries (one single-file download per box):
+  python3 -I tools/dr_eval_merge.py --table docs/research/work/masses-eval-20261031/packed_refs.json --out <dir>/c_merge.json \
+    <dir>/runs/$D-drG-$S7/results/dr_eval/summary.json <dir>/runs/$D-drS25s42-$S7/results/dr_eval/summary.json \
+    <dir>/runs/$D-drS25s43-$S7/results/dr_eval/summary.json <dir>/runs/$D-drS30s42-$S7/results/dr_eval/summary.json \
+    <dir>/runs/$D-drS30s43-$S7/results/dr_eval/summary.json
+  It prints the job string (JOB: ...); with all five episodes candidates it reads (seeds as the merge chose them):
+  LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-drC-$S7 1.50 "pack 9b D arm confirmation: 10 official draws of the D candidates" owner
+  ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=$SNAP create <offer> $D-drC-$S7 \
+    'N=10 KEEP_RESULTS="20261026-pack6-5203d42 20261030-c33B-0202139" RUNS_EXTRA="$D-drG-$S7@refs/drs<s14>_glockt/ep14 $D-drG-$S7@refs/drs<s16>_glockt/ep16 $D-drS25s<s25>-$S7@refs/perc2mckdr/ep25 $D-drS30s<s30>-$S7@refs/perc2mckdr/ep30 $D-drG-$S7@refs/drs<s33>_glockt/ep33" PICK_EXTRA="33:20261029-rcB-34bf6ae 14:$D-drG-$S7:ck=results/drs<s14>_glock_public/ep14/best/policy.safetensors 16:$D-drG-$S7:ck=results/drs<s16>_glock_public/ep16/best/policy.safetensors 25:$D-drS25s<s25>-$S7:ck=runs/perc2mckdr/ep25-s<s25>/policy_<step>.safetensors 30:$D-drS30s<s30>-$S7:ck=runs/perc2mckdr/ep30-s<s30>/policy_<step>.safetensors 33:$D-drG-$S7:ck=results/drs<s33>_glock_public/ep33/best/policy.safetensors" DR_EPS="14 16 25 30 33" EVAL_ONLY="14 16 25 30 33" EPS_ONLY="14 16 25 30 33" PACKED_TXT=/content/v2d-track3/results/submissions/20261030-track3g-candidate/summary.txt bash ops/jobs/h5_reeval.sh'
+  USE THE MERGE'S PRINTED STRING (it fills the seeds and the sweep checkpoint steps); never edit it by hand.
+  - pack 6's environment: eval 25's ev25 pieces are already in h5_reeval.sh's ASSET_PIECES (with ev10); eval 30 is evaluated
+    beside them as its packed policy was in pack 6 / H5p7 (its objects have no pieces); eval 1 is not involved (its pack-6
+    rollout is kept, KEEP_RESULTS); no ASSET_PIECES_EXTRA, no MA_ARGS.
+  - On the box: pack_eval.sh keeps every unchanged episode's rollout byte for byte, evaluates only the candidates
+    (EVAL_ONLY guard), and tools/dr_pack_check.py (DR_EPS) refuses before the kit evaluator unless every evaluated episode
+    resolves its URDFs verbatim at 0.3 kg and each candidate loads the packed reference (md5 + fingerprint) and its
+    pieces and is not the packed checkpoint; the same check before draws 2..10. Rollouts kept (KEEP_ROLLOUTS default 1).
+  - Store listings left on C: pack_eval.sh's --include pulls (pack 6's base 36 + RUNS_EXTRA 5 + PICK_EXTRA 6), as the
+    masses C1 and H5p7 boxes ran them. If HF 429 stalls C, the stall watchdog applies.
+  - Outputs: results/submission (draw 1 = r1), results/h5/r1..r10/ep<N>/episode_0000NN.{parquet,json} + qa_policy.json,
+    results/h5/h5_summary.json, results/final_eval/dr_pack_check.json, results/h5/dr_pack_check.json.
+  Confirmation short of 10 scored draws for an episode: top-up box, same commit, N = missing + 1, the same PICK/RUNS strings
+  with EPS_ONLY / EVAL_ONLY / DR_EPS = that episode; copy its r2.. draws into the first box's tree as r11, r12, ... (draw 1
+  stays the first box's by position). Packed side short of 10: 'N=<missing+1> PICK_EXTRA=33:20261029-rcB-34bf6ae
+  EPS_ONLY=<N> PACKED_TXT=/content/v2d-track3/results/submissions/20261030-track3g-candidate/summary.txt bash
+  ops/jobs/h5_reeval.sh' (its r2.. draws added to the H5p7 set as r11...), then score with ONE glob over the whole set.
+
+---------------- After C (CPU, $0): scoring and verdict (PREREG sections 4 and 6) ----------------
+  Downloads (single-file hf_hub_download each, NO listing; 5 s retries): per episode N in 14 16 25 30 33 (E6 = 0000NN):
+    runs/$D-drC-$S7/results/h5/r{1..10}/ep<N>/episode_<E6>.parquet           (50)
+    runs/20261031-h5p7-1a7cdff/results/h5/r{1..10}/ep<N>/episode_<E6>.parquet (50; the packed policy's fresh draws)
+    old packed draw: runs/20261026-pack6-5203d42/results/submission/results/episode_<E6>.parquet (14 16 25 30),
+                     runs/20261030-c33B-0202139/results/submission/results/episode_000033.parquet (33)
+    P (the packed reference): runs/<source_run>/<reference> of packed_refs.json, i.e.
+      runs/20261025-evb1420-ee7ba8e/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet
+      runs/20261024-pack-31ef267/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet
+      runs/20261026-c25s42-feb0407/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet
+      runs/20261025-std30-ee7ba8e/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet
+      runs/20261026-fr3233s43-6a8a0e2/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet
+      (md5 must be the table's: dr_verdict.py checks it; the pack-6 box copies on this VM already match, BUILD.md)
+    runs/$D-drC-$S7/results/final_eval/dr_pack_check.json, runs/$D-drC-$S7/results/h5/dr_pack_check.json, h5_summary.json
+  Score (kit = scratchpad map/scoring/kit/v2d_submission_kit, its venv python; ~10 s per rollout, 8 workers):
+    for N in 14 16 25 30 33: python -I tools/dr_score.py --kit $KIT --lib meshes/library_v3 --ep $N --ref P=<P_N> \
+      --out <dir>/score_ep$N.json --set "conf:P:<dl>/runs/$D-drC-$S7/results/h5/r*/ep$N/episode_<E6>.parquet" \
+      --set "packed:P:<dl>/runs/20261031-h5p7-1a7cdff/results/h5/r*/ep$N/episode_<E6>.parquet" --set "old:P:<old_N>"
+  Verdict:
+    python -I tools/dr_verdict.py --merge <dir>/c_merge.json --table docs/research/work/masses-eval-20261031/packed_refs.json \
+      --score <dir>/score_ep14.json ... --score <dir>/score_ep33.json \
+      --pack-check <dl>/runs/$D-drC-$S7/results/final_eval/dr_pack_check.json --pack-check <dl>/runs/$D-drC-$S7/results/h5/dr_pack_check.json \
+      --out <dir>/verdict.json
+    -> per episode PASS / NO-SWAP / INCOMPLETE / INVALID with the clause table, and "pack 9b swaps (PASS): [...]".
+  Then: work log + STATUS (label first, the clause table, accuracy + failures + cost together); ledger actual lines;
+  PASS -> pack 9b candidate on CPU: pack 9a+ with that episode's D draw-1 rollout (verdict.json pack9b[N].path, the
+  confirmation's results/submission or r<i>) in place of its packed rollout, every other episode byte-identical; offline
+  validation; NOT uploaded (the owner's word decides, in the session that uploads). NO-SWAP / INCOMPLETE / INVALID ->
+  the packed rollout stays.
+
+EXPECTED COST [estimates; basis: measured masses-eval / pack-10 timings: grasp lock ~$1.0-1.5 per cell with up to 4
+cells per GPU, standard learner ~$2.4-3.4 per cell (c01s43 / c01s43 measured $3.08 / $2.91, 2.0-2.3 h), 10-draw
+confirmation ~$1-2 per box; RTX PRO 6000 on demand $1.07-1.47/h]:
+  G     6 cells   $6.0-9.0  (central ~$7.5); wall ~3.5-5.5 h (per seed a pair of 70M trainings sharing the GPU, then one
+                  alone, curves and 10 evaluations overlapping; two seeds in a row; + 0.3-0.9 h setup)
+  S25a, S25b, S30a, S30b  1 cell each, $2.4-3.4 each (central ~$3.0); wall 2.0-2.3 h each, in parallel
+  C     ~$1-2 (central ~$1.5); wall ~0.6-1.2 h (5 episodes x 10 draws; draw 1 evaluates only the candidates)
+  => total ~$16.6-24.6, central ~$21; results: training ~2.5 h (std) / ~5 h (G) after launch, confirmation +1 h, verdict on CPU
+  Tail risks: HF 429 on setup (+0.3 h a box); a failed final push waits 60 min (+~$1.5); an INCOMPLETE seed re-run
+  (grasp lock ~$1.5-2.5 one seed alone, std ~$2.4-3.4); a confirmation top-up (~$0.8-1.1).
+  Not done here: no launch, no download, no ledger line, no commit (orchestrator).

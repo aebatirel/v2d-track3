@@ -1,0 +1,543 @@
+{
+ "n": 134,
+ "passed": 134,
+ "failures": [],
+ "checks": {
+  "G_ep14_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G_ep14_s42_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/drs42_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet md5 7d808716db88e674f67fdd039252b6db store 7d808716db88e674f67fdd039252b6db fp 71fa181ba92c320a47450c2e42561222"
+  },
+  "G_ep14_s42_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'blue_cup': (0.3, 'MS/box/content/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf'), 'plastic_dish_rack': (0.3, 'MS/box/content/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf')}"
+  },
+  "G_ep14_s42_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '42', 'FC_DR_SKIP_IMMEDIATE': None}"
+  },
+  "G_ep14_s42_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42']"
+  },
+  "G_ep14_s42_T6_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42, [19660800, 34406400, 49152000])"
+  },
+  "G_ep14_s43_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/drs43_glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet md5 7d808716db88e674f67fdd039252b6db store 7d808716db88e674f67fdd039252b6db fp 71fa181ba92c320a47450c2e42561222"
+  },
+  "G_ep14_s43_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'blue_cup': (0.3, 'MS/box/content/refs/sf/ep14/assets/urdf/blue_cup_rigid.urdf'), 'plastic_dish_rack': (0.3, 'MS/box/content/refs/sf/ep14/assets/urdf/plastic_dish_rack_rigid.urdf')}"
+  },
+  "G_ep14_s43_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '43', 'FC_DR_SKIP_IMMEDIATE': None}"
+  },
+  "G_ep14_s43_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43']"
+  },
+  "G_ep14_s43_T6_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43, [19660800, 34406400, 49152000])"
+  },
+  "G_ep14_T2_evals_0.3": {
+   "ok": true,
+   "detail": "62"
+  },
+  "G_ep14_T3_no_DR_env_in_evaluations": {
+   "ok": true,
+   "detail": "['{}']"
+  },
+  "G_ep14_T2_asset_copy_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_ep14_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_ep16_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G_ep16_s42_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/drs42_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet md5 ff59708e867893ea1137fa7f2222cbcd store ff59708e867893ea1137fa7f2222cbcd fp ade67fc96f0d73b16b4d5f36109f10ae"
+  },
+  "G_ep16_s42_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'plastic_dish_rack': (0.3, 'MS/box/content/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf'), 'wooden_spoon': (0.3, 'MS/box/content/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf')}"
+  },
+  "G_ep16_s42_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '42', 'FC_DR_SKIP_IMMEDIATE': None}"
+  },
+  "G_ep16_s42_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42']"
+  },
+  "G_ep16_s42_T6_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42, [19660800, 34406400, 49152000])"
+  },
+  "G_ep16_s43_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/drs43_glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet md5 ff59708e867893ea1137fa7f2222cbcd store ff59708e867893ea1137fa7f2222cbcd fp ade67fc96f0d73b16b4d5f36109f10ae"
+  },
+  "G_ep16_s43_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'plastic_dish_rack': (0.3, 'MS/box/content/refs/sf/ep16/assets/urdf/plastic_dish_rack_rigid.urdf'), 'wooden_spoon': (0.3, 'MS/box/content/refs/sf/ep16/assets/urdf/wooden_spoon_rigid.urdf')}"
+  },
+  "G_ep16_s43_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '43', 'FC_DR_SKIP_IMMEDIATE': None}"
+  },
+  "G_ep16_s43_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43']"
+  },
+  "G_ep16_s43_T6_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43, [19660800, 34406400, 49152000])"
+  },
+  "G_ep16_T2_evals_0.3": {
+   "ok": true,
+   "detail": "62"
+  },
+  "G_ep16_T3_no_DR_env_in_evaluations": {
+   "ok": true,
+   "detail": "['{}']"
+  },
+  "G_ep16_T2_asset_copy_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_ep16_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_ep33_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1, 43: 1}"
+  },
+  "G_ep33_s42_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/drs42_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet md5 0dc12ef4152cb121c5abb19fdece736a store 0dc12ef4152cb121c5abb19fdece736a fp e45b81792154fa1e9987e56b6c41bbcc"
+  },
+  "G_ep33_s42_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'blue_cup': (0.3, 'MS/box/content/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf'), 'wooden_spoon': (0.3, 'MS/box/content/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf')}"
+  },
+  "G_ep33_s42_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '42', 'FC_DR_SKIP_IMMEDIATE': None}"
+  },
+  "G_ep33_s42_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42']"
+  },
+  "G_ep33_s42_T6_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 42, [7864320, 13762560, 19660800])"
+  },
+  "G_ep33_s43_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/drs43_glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet md5 0dc12ef4152cb121c5abb19fdece736a store 0dc12ef4152cb121c5abb19fdece736a fp e45b81792154fa1e9987e56b6c41bbcc"
+  },
+  "G_ep33_s43_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'blue_cup': (0.3, 'MS/box/content/refs/sf/ep33/assets/urdf/blue_cup_rigid.urdf'), 'wooden_spoon': (0.3, 'MS/box/content/refs/sf/ep33/assets/urdf/wooden_spoon_rigid.urdf')}"
+  },
+  "G_ep33_s43_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': None, 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '43', 'FC_DR_SKIP_IMMEDIATE': None}"
+  },
+  "G_ep33_s43_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43']"
+  },
+  "G_ep33_s43_T6_steps_seed": {
+   "ok": true,
+   "detail": "(70004736, 43, [7864320, 13762560, 19660800])"
+  },
+  "G_ep33_T2_evals_0.3": {
+   "ok": true,
+   "detail": "62"
+  },
+  "G_ep33_T3_no_DR_env_in_evaluations": {
+   "ok": true,
+   "detail": "['{}']"
+  },
+  "G_ep33_T2_asset_copy_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_ep33_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_T5_dr_patch_last": {
+   "ok": true,
+   "detail": "['patch_flashchord_voc.py', 'patch_flashchord_fdr.py', 'patch_flashchord_dr.py', 'patch_flashchord_voc.py', 'patch_flashchord_fdr.py', 'patch_flashchord_dr.py']"
+  },
+  "G_T5_tree_tagged_once": {
+   "ok": true,
+   "detail": ""
+  },
+  "G_T7_store": {
+   "ok": true,
+   "detail": "(1, 0, 93, [])"
+  },
+  "G_T8_no_default_folders": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "G_T9_verified": {
+   "ok": true,
+   "detail": "{'14': ('VERIFIED', []), '16': ('VERIFIED', []), '33': ('VERIFIED', [])}"
+  },
+  "G_ep14_s42_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['output_dir', 'reference.parquet', 'task.parquet']"
+  },
+  "G_ep14_s43_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']"
+  },
+  "G_ep16_s42_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']"
+  },
+  "G_ep16_s43_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['output_dir', 'reference.parquet', 'task.parquet']"
+  },
+  "G_ep33_s42_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']"
+  },
+  "G_ep33_s43_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['output_dir', 'reference.parquet', 'task.parquet']"
+  },
+  "G_T9_candidates": {
+   "ok": true,
+   "detail": "{14: '14:20261101-drG-mocksha:ck=results/drs42_glock_public/ep14/best/policy.safetensors', 16: '16:20261101-drG-mocksha:ck=results/drs42_glock_public/ep16/best/policy.safetensors', 33: '33:20261101-drG-mocksha:ck=results/drs42_glock_public/ep33/best/policy.safetensors'}"
+  },
+  "G_ep14_T10_pushed": {
+   "ok": true,
+   "detail": "results/drs42_glock_public/ep14/best/policy.safetensors"
+  },
+  "G_ep16_T10_pushed": {
+   "ok": true,
+   "detail": "results/drs42_glock_public/ep16/best/policy.safetensors"
+  },
+  "G_ep33_T10_pushed": {
+   "ok": true,
+   "detail": "results/drs42_glock_public/ep33/best/policy.safetensors"
+  },
+  "S25a_ep25_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1}"
+  },
+  "S25a_ep25_s42_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet md5 b8927222ccce422e8685052b630a74e8 store b8927222ccce422e8685052b630a74e8 fp 6f70983787fdf07a26079508400e8fed"
+  },
+  "S25a_ep25_s42_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'wooden_piece_1': (0.3, 'MS/box/content/assets/urdf/wooden_piece_1_rigid.urdf'), 'wooden_piece_2': (0.3, 'MS/box/content/assets/urdf/wooden_piece_2_rigid.urdf')}"
+  },
+  "S25a_ep25_s42_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': '0.25', 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '42', 'FC_DR_SKIP_IMMEDIATE': '1'}"
+  },
+  "S25a_ep25_s42_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)']"
+  },
+  "S25a_ep25_s42_T6_steps_seed": {
+   "ok": true,
+   "detail": "(250003456, 42, [19660800, 34406400, 49152000])"
+  },
+  "S25a_ep25_T2_evals_0.3": {
+   "ok": true,
+   "detail": "14"
+  },
+  "S25a_ep25_T3_std_evaluations_env_reported": {
+   "ok": true,
+   "detail": "['{\"FC_DR_RESET\": \"1.5,0.015,0.01\", \"FC_DR_SEED\": \"42\", \"FC_DR_SKIP_IMMEDIATE\": \"1\"}']"
+  },
+  "S25a_ep25_T2_pieces": {
+   "ok": true,
+   "detail": "({'wooden_piece_1': 21, 'wooden_piece_2': 11}, {'wooden_piece_1': 21, 'wooden_piece_2': 11})"
+  },
+  "S25a_ep25_T2_assets_eq_twin": {
+   "ok": true,
+   "detail": ""
+  },
+  "S25a_ep25_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "S25a_T5_dr_patch_last": {
+   "ok": true,
+   "detail": "['patch_flashchord.py', 'patch_flashchord_fdr.py', 'patch_flashchord_voc.py', 'patch_flashchord_dr.py']"
+  },
+  "S25a_T5_tree_tagged_once": {
+   "ok": true,
+   "detail": ""
+  },
+  "S25a_T7_store": {
+   "ok": true,
+   "detail": "(1, 0, 28, [])"
+  },
+  "S25a_T8_no_default_folders": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "S25a_T9_verified": {
+   "ok": true,
+   "detail": "{'25': ('VERIFIED', [])}"
+  },
+  "S25a_ep25_s42_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['output_dir', 'reference.parquet', 'task.parquet']"
+  },
+  "S25a_T9_candidates": {
+   "ok": true,
+   "detail": "{25: '25:20261101-drS25s42-mocksha:ck=runs/perc2mckdr/ep25-s42/policy_107143168.safetensors'}"
+  },
+  "S25a_ep25_T10_pushed": {
+   "ok": true,
+   "detail": "runs/perc2mckdr/ep25-s42/policy_107143168.safetensors"
+  },
+  "S25b_ep25_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{43: 1}"
+  },
+  "S25b_ep25_s43_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/perc2mckdr/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet md5 b8927222ccce422e8685052b630a74e8 store b8927222ccce422e8685052b630a74e8 fp 6f70983787fdf07a26079508400e8fed"
+  },
+  "S25b_ep25_s43_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'wooden_piece_1': (0.3, 'MS/box/content/assets/urdf/wooden_piece_1_rigid.urdf'), 'wooden_piece_2': (0.3, 'MS/box/content/assets/urdf/wooden_piece_2_rigid.urdf')}"
+  },
+  "S25b_ep25_s43_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': '0.25', 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '43', 'FC_DR_SKIP_IMMEDIATE': '1'}"
+  },
+  "S25b_ep25_s43_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)']"
+  },
+  "S25b_ep25_s43_T6_steps_seed": {
+   "ok": true,
+   "detail": "(250003456, 43, [19660800, 34406400, 49152000])"
+  },
+  "S25b_ep25_T2_evals_0.3": {
+   "ok": true,
+   "detail": "14"
+  },
+  "S25b_ep25_T3_std_evaluations_env_reported": {
+   "ok": true,
+   "detail": "['{\"FC_DR_RESET\": \"1.5,0.015,0.01\", \"FC_DR_SEED\": \"43\", \"FC_DR_SKIP_IMMEDIATE\": \"1\"}']"
+  },
+  "S25b_ep25_T2_pieces": {
+   "ok": true,
+   "detail": "({'wooden_piece_1': 21, 'wooden_piece_2': 11}, {'wooden_piece_1': 21, 'wooden_piece_2': 11})"
+  },
+  "S25b_ep25_T2_assets_eq_twin": {
+   "ok": true,
+   "detail": ""
+  },
+  "S25b_ep25_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "S25b_T5_dr_patch_last": {
+   "ok": true,
+   "detail": "['patch_flashchord.py', 'patch_flashchord_fdr.py', 'patch_flashchord_voc.py', 'patch_flashchord_dr.py']"
+  },
+  "S25b_T5_tree_tagged_once": {
+   "ok": true,
+   "detail": ""
+  },
+  "S25b_T7_store": {
+   "ok": true,
+   "detail": "(1, 0, 28, [])"
+  },
+  "S25b_T8_no_default_folders": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "S25b_T9_verified": {
+   "ok": true,
+   "detail": "{'25': ('VERIFIED', [])}"
+  },
+  "S25b_ep25_s43_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']"
+  },
+  "S25b_T9_candidates": {
+   "ok": true,
+   "detail": "{25: '25:20261101-drS25s43-mocksha:ck=runs/perc2mckdr/ep25-s43/policy_142856192.safetensors'}"
+  },
+  "S25b_ep25_T10_pushed": {
+   "ok": true,
+   "detail": "runs/perc2mckdr/ep25-s43/policy_142856192.safetensors"
+  },
+  "S30a_ep30_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{42: 1}"
+  },
+  "S30a_ep30_s42_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet md5 cb21238d01dc078e457ef9a66520a94f store cb21238d01dc078e457ef9a66520a94f fp c3510178ff08a2743da889514bd21240"
+  },
+  "S30a_ep30_s42_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'mini_sweeper': (0.3, 'MS/box/content/assets/urdf/mini_sweeper_rigid.urdf'), 'plastic_dish_rack': (0.3, 'MS/box/content/assets/urdf/plastic_dish_rack_rigid.urdf')}"
+  },
+  "S30a_ep30_s42_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': '0.25', 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '42', 'FC_DR_SKIP_IMMEDIATE': '1'}"
+  },
+  "S30a_ep30_s42_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)']"
+  },
+  "S30a_ep30_s42_T6_steps_seed": {
+   "ok": true,
+   "detail": "(250003456, 42, [19660800, 34406400, 49152000])"
+  },
+  "S30a_ep30_T2_evals_0.3": {
+   "ok": true,
+   "detail": "14"
+  },
+  "S30a_ep30_T3_std_evaluations_env_reported": {
+   "ok": true,
+   "detail": "['{\"FC_DR_RESET\": \"1.5,0.015,0.01\", \"FC_DR_SEED\": \"42\", \"FC_DR_SKIP_IMMEDIATE\": \"1\"}']"
+  },
+  "S30a_ep30_T2_assets_eq_twin": {
+   "ok": true,
+   "detail": ""
+  },
+  "S30a_ep30_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "S30a_T5_dr_patch_last": {
+   "ok": true,
+   "detail": "['patch_flashchord.py', 'patch_flashchord_fdr.py', 'patch_flashchord_voc.py', 'patch_flashchord_dr.py']"
+  },
+  "S30a_T5_tree_tagged_once": {
+   "ok": true,
+   "detail": ""
+  },
+  "S30a_T7_store": {
+   "ok": true,
+   "detail": "(1, 0, 26, [])"
+  },
+  "S30a_T8_no_default_folders": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "S30a_T9_verified": {
+   "ok": true,
+   "detail": "{'30': ('VERIFIED', [])}"
+  },
+  "S30a_ep30_s42_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['output_dir', 'reference.parquet', 'task.parquet']"
+  },
+  "S30a_T9_candidates": {
+   "ok": true,
+   "detail": "{30: '30:20261101-drS30s42-mocksha:ck=runs/perc2mckdr/ep30-s42/policy_142856192.safetensors'}"
+  },
+  "S30a_ep30_T10_pushed": {
+   "ok": true,
+   "detail": "runs/perc2mckdr/ep30-s42/policy_142856192.safetensors"
+  },
+  "S30b_ep30_T1_one_training_per_seed": {
+   "ok": true,
+   "detail": "{43: 1}"
+  },
+  "S30b_ep30_s43_T1_byte_copy_of_packed": {
+   "ok": true,
+   "detail": "MS/box/content/refs/perc2mckdr/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet md5 cb21238d01dc078e457ef9a66520a94f store cb21238d01dc078e457ef9a66520a94f fp c3510178ff08a2743da889514bd21240"
+  },
+  "S30b_ep30_s43_T2_train_masses_0.3": {
+   "ok": true,
+   "detail": "{'mini_sweeper': (0.3, 'MS/box/content/assets/urdf/mini_sweeper_rigid.urdf'), 'plastic_dish_rack': (0.3, 'MS/box/content/assets/urdf/plastic_dish_rack_rigid.urdf')}"
+  },
+  "S30b_ep30_s43_T3_training_env": {
+   "ok": true,
+   "detail": "{'FC_FDR_OBJ': '1', 'FC_FDR_TIPS': '1', 'FC_VOC_INERTIA': '1', 'FC_IMMEDIATE_FIRST_FRAME': '0.25', 'GL_WRIST_KP': None, 'FC_DR_RESET': '1.5,0.015,0.01', 'FC_DR_SEED': '43', 'FC_DR_SKIP_IMMEDIATE': '1'}"
+  },
+  "S30b_ep30_s43_T4_dr_line": {
+   "ok": true,
+   "detail": "['v2d FC_DR_RESET: sampled resets perturbed by +-1.5 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 43; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)']"
+  },
+  "S30b_ep30_s43_T6_steps_seed": {
+   "ok": true,
+   "detail": "(250003456, 43, [19660800, 34406400, 49152000])"
+  },
+  "S30b_ep30_T2_evals_0.3": {
+   "ok": true,
+   "detail": "14"
+  },
+  "S30b_ep30_T3_std_evaluations_env_reported": {
+   "ok": true,
+   "detail": "['{\"FC_DR_RESET\": \"1.5,0.015,0.01\", \"FC_DR_SEED\": \"43\", \"FC_DR_SKIP_IMMEDIATE\": \"1\"}']"
+  },
+  "S30b_ep30_T2_assets_eq_twin": {
+   "ok": true,
+   "detail": ""
+  },
+  "S30b_ep30_T8_pulled_refs_unchanged": {
+   "ok": true,
+   "detail": ""
+  },
+  "S30b_T5_dr_patch_last": {
+   "ok": true,
+   "detail": "['patch_flashchord.py', 'patch_flashchord_fdr.py', 'patch_flashchord_voc.py', 'patch_flashchord_dr.py']"
+  },
+  "S30b_T5_tree_tagged_once": {
+   "ok": true,
+   "detail": ""
+  },
+  "S30b_T7_store": {
+   "ok": true,
+   "detail": "(1, 0, 26, [])"
+  },
+  "S30b_T8_no_default_folders": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "S30b_T9_verified": {
+   "ok": true,
+   "detail": "{'30': ('VERIFIED', [])}"
+  },
+  "S30b_ep30_s43_T9_config_diff_allowed": {
+   "ok": true,
+   "detail": "['env.reset.seed', 'output_dir', 'reference.parquet', 'reset.seed', 'task.parquet', 'training.seed']"
+  },
+  "S30b_T9_candidates": {
+   "ok": true,
+   "detail": "{30: '30:20261101-drS30s43-mocksha:ck=runs/perc2mckdr/ep30-s43/policy_250003456.safetensors'}"
+  },
+  "S30b_ep30_T10_pushed": {
+   "ok": true,
+   "detail": "runs/perc2mckdr/ep30-s43/policy_250003456.safetensors"
+  }
+ }
+}

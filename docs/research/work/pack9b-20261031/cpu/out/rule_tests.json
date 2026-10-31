@@ -359,7 +359,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "no \"v2d FC_DR_RESET\" line in /tmp/drv_j8g2xm2g/train_36.log (the D hook did not run in this training)"
+    "no \"v2d FC_DR_RESET\" line in SCRATCH/darm/tmp/drv_zzvflt5o/train_36.log (the D hook did not run in this training)"
    ]
   },
   {
@@ -368,7 +368,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "D line seed 43 != the cell seed 42 (/tmp/drv_j8g2xm2g/train_37.log)"
+    "D line seed 43 != the cell seed 42 (SCRATCH/darm/tmp/drv_zzvflt5o/train_37.log)"
    ]
   },
   {
@@ -377,7 +377,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in /tmp/drv_j8g2xm2g/train_38.log: ..."
+    "D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in SCRATCH/darm/tmp/drv_zzvflt5o/train_38.log: ..."
    ]
   },
   {
@@ -386,7 +386,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "D line with an unexpected tail (no FC_DR_SKIP_IMMEDIATE expected) in /tmp/drv_j8g2xm2g/train_39.log: ...; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)"
+    "D line with an unexpected tail (no FC_DR_SKIP_IMMEDIATE expected) in SCRATCH/darm/tmp/drv_zzvflt5o/train_39.log: ...; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)"
    ]
   },
   {
@@ -395,7 +395,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "unexpected D line in /tmp/drv_j8g2xm2g/train_40.log: v2d FC_DR_RESET: sampled resets perturbed by +-3.0 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42"
+    "unexpected D line in SCRATCH/darm/tmp/drv_zzvflt5o/train_40.log: v2d FC_DR_RESET: sampled resets perturbed by +-3.0 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42"
    ]
   },
   {
@@ -404,7 +404,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "D line names 3 objects, the reference has 2 (/tmp/drv_j8g2xm2g/train_41.log)"
+    "D line names 3 objects, the reference has 2 (SCRATCH/darm/tmp/drv_zzvflt5o/train_41.log)"
    ]
   },
   {
@@ -413,7 +413,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in /tmp/drv_j8g2xm2g/train_42.log: ..."
+    "D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in SCRATCH/darm/tmp/drv_zzvflt5o/train_42.log: ..."
    ]
   },
   {
@@ -422,7 +422,7 @@
    "got": "False",
    "ok": true,
    "why": [
-    "training log /tmp/drv_j8g2xm2g/no_such.log missing"
+    "training log SCRATCH/darm/tmp/drv_zzvflt5o/no_such.log missing"
    ]
   },
   {
@@ -431,7 +431,7 @@
    "got": "d92ed77113adfd1aadeedda70a9d7bde",
    "ok": true,
    "why": [
-    "rc/flash_chord/lifecycle/v2d_dr.py\npatched: /tmp/drhook_vv_qz001/src/flash_chord/lifecycle/reset.py\n"
+    "-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/darm/tmp/drhook_w8jropyc/src/flash_chord/lifecycle/reset.py\n"
    ]
   }
  ]

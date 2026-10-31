@@ -1,0 +1,3 @@
+ep25 VERIFIED :: s43 n 10 mean 0.8764 sd 0.0157 min 0.8554 cut 0/0 D-line ok :: candidate 43
+hook: {"expected_md5": "d92ed77113adfd1aadeedda70a9d7bde", "installed_md5": "d92ed77113adfd1aadeedda70a9d7bde", "reset_tagged": true}; other training logs: 0
+confirmation: {"RUNS_EXTRA": "20261101-drS25s43-mocksha@refs/perc2mckdr/ep25", "PICK_EXTRA": "25:20261101-drS25s43-mocksha:ck=runs/perc2mckdr/ep25-s43/policy_142856192.safetensors", "DR_EPS": "25", "EVAL_ONLY": "25", "EPS_ONLY": "25", "ASSET_PIECES_EXTRA": ""}
