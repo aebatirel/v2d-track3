@@ -5372,3 +5372,12 @@ Advice given:
   the mesh session (spin about the axis expected).
 - RTS smoother: implementation + public gate running (CPU agent); PREREG committed dc4be79 before any score.
 - Credit ≈ $69 (21:20 UTC); reserve ≥ $10.
+- ~21:27 UTC **re-track test launched** (owner "Go retrack"): delivery = Set B with the ep12 blue cup back on library_v3
+  (wrong mesh per the mesh session's axis check, before any score); 13 meshes in 12 episodes; VALIDATION verify OK.
+  Boxes: `20261031-rtkA-8b3cf78` (58580189, Spain $1.431/h; eps 26 13 27 44 42 40 24 45 18 0) and
+  `20261031-rtkB-8b3cf78` (58580201, Denmark $1.473/h; eps 11 12 21 22 31 41 39 23 43 2), commit 8b3cf78, arm o with
+  LIB_EP_DIR=meshes/rtk_e0b_public; ledger planned $1.50 each. Verdict on CPU afterwards (rtk_pull.py + rtk_verdict.py,
+  PREREG retrack-20261031 incl. §11 amendments).
+- Pack 9b upload: corrected my proposal — I will not ask another session to upload (my session's guard blocked the
+  upload; asking a peer would route around it). I publish pack 9b's record and report it; the upload is between the
+  owner and the session where the owner gave the word, or the owner's word here.
