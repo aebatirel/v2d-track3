@@ -1,6 +1,7 @@
 # PUBOWN: one own-video mesh set per public episode (C0b constants), for the perception re-track test
 
-Written 2026-10-31 ~18:50 UTC, before any PUBOWN build. Step log: `NOTES.md`. Job: `jobs/`.
+Written 2026-10-31 ~18:50 UTC, before any PUBOWN build. Updated ~19:55 UTC, after C0b's public box finished
+(C0B-DONE rc=0, 19:33 UTC) and before any PUBOWN box build. Step log: `NOTES.md`. Job: `jobs/`.
 
 **What it is.** The public analogue of E0b, at the granularity of one episode. Every public episode gets its own
 mesh for each object that has a clean own-video method. That mesh is built only from that episode's observed points,
@@ -21,6 +22,14 @@ Labels: [M] measured, [E] estimate, [H] hypothesis. Paths are relative to `docs/
 | beige_cup | 11 | `lathe_obs.py` on the M_sep(own) separated-frame points (C0b PREREG s10, from C1/T1) | 2: g1, g0 |
 
 That is 9 + 2 + 5 + 5 + 1 = 22 pairs and 74 candidates.
+- **The lid is expected to fail [M, C0b box].** C0b's public box built 0 of 16 lid candidates on ep0 and ep2. The
+  flange selection came out empty: clutter in the cube-ROI lid points gives robust scale s = 107 mm on ep2. C0b
+  records this as pre-registered (no candidate, no retry).
+  - PUBOWN uses the same code and the same lid points, so lid ep0 and ep2 will almost certainly fail again and keep
+    library_v3.
+  - The lid builds stay in the job so that the rule is unchanged and the failure is recorded per pair. They cost
+    seconds.
+  - So the expected deliverable is **20 PUBOWN meshes + 2 library_v3 lids**.
 - **water_pitcher** (ep21, 22) joins only if `cdo-sprint/C2/P-pitcher` reports ADOPTED before the PUBOWN box is
   created. Then its own per-episode build command is added as a separate pair list, recorded in NOTES. At 18:32 UTC it
   was not adopted: the obs points were still being built.
@@ -101,15 +110,19 @@ asks for them in git.
 
 - **Work:**
   - 4 sigma tasks;
-  - 1 marker detection (ep0, pot + lid). This is the long pole. [E] 15-60 min on one core; C0b's box log gives the
-    measured ep2 (pot + lid) time;
+  - 1 marker detection (ep0, pot + lid). This is the long pole. [M] C0b's box: ep2 pot + lid took 1031 s, ep26/27
+    1080/1183 s, ep41-45 671-834 s; ep0 [E] about 15-20 min;
   - 42 build tasks, 74 candidates;
   - 74 checks and 74 fidelity runs.
   - The 33 build tasks that need no new marker file run while ep0's detection runs; the 9 pot and lid ep0 tasks run after
     it.
-  - No depth download: C0b's points are reused. Inputs are about 0.3-1 GB [E].
+  - No depth download: C0b's points are reused. [M] C0b's pass-B files total 1016 MB over 34 files; PUBOWN fetches
+    23 of them plus small rows.
+  - [M] Local dry run (ep12, 4 shared loaded cores, nice 19): the single-episode rack run took 447 s and a cup lathe
+    66 s. On C0b's box all 32 builds took 2.3 min and 426 fidelity runs 1.8 min.
 - **Box:** one Vast CPU box, at least 32 cores and 64 GB, `SETUP=none`, `DISK=40`, `FAIL_HOLD_MIN=0`, at or below
-  $0.5/h. [E] 30-75 min wall, **about $0.3-0.6**.
+  $0.5/h. Fidelity workers = RAM / 8 GB (C0b's rule). [E] 25-40 min wall including setup (venv about 1 min, fetch
+  about 1-2 min, ep0 markers about 15-20 min in parallel with the other builds), **about $0.2-0.4**.
   - Ledger session `mesh-bold`: a planned line before the create, an actual line after. The cap for this job is $2.
   - The box self-destroys; confirm it is gone.
 - **Create** (after staging; `<run>` = `mesh-YYYYMMDD-pubown-<commit7>`):
@@ -123,8 +136,8 @@ asks for them in git.
     together (C0b PREREG 3.4 [H]). C0b masks only the beige cup.
   - Falsifier: the blue-cup ep11 pick's own fidelity and its re-track error compared with ep21/22.
 - **Thin evidence on single episodes.** The rack's floor depth and wall thickness come from one episode. The lid and
-  rack had 0 two-sided thickness measurements on every public episode [M, C0b dev], so they use t0_C0b (about 5 mm,
-  double C0's 2.5 mm).
+  rack had no usable two-sided thickness measurements, so they use t0_C0b. [M] C0b box: t0_C0b = 4.559 mm (fittable;
+  the rack had 3 measurements, the lid 0), against C0's 2.5 mm.
 - **In-sample pick.** Own fidelity rewards over-fit variants (e.g. `thick` when the points are noisy). The re-track
   test is the out-of-sample check.
 - **Frames.** Meshes are in the object frame of the library_v3-seeded sweep track, as fitted, with no alignment

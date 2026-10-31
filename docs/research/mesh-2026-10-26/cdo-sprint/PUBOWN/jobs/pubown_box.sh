@@ -29,6 +29,8 @@ fi
 : "${RUN_ID:?RUN_ID is not set}"
 ROOT=${PUB_ROOT:-/content}; W=$ROOT/pubw; R=$ROOT/results/pubown; IN=$W/inputs; REUSE=$W/reuse
 NPROC=${PUB_NPROC:-$(nproc)}
+RAMGB=$(free -g | awk '/Mem/{print $2}')
+FIDP=$(( RAMGB / 8 )); [ $FIDP -gt $NPROC ] && FIDP=$NPROC; [ $FIDP -lt 1 ] && FIDP=1    # obs_fidelity: C0b's RAM rule
 PY=${PUB_PY:-$W/venv/bin/python}
 C0B_COMMIT=00e858434419b3e6bb11508ec8b35e092d76199f    # C0b public box code; checked against plan.json below
 CODE=$W/code                                          # the code tree at C0B_COMMIT (pubown_freeze.sh); builders run from here
@@ -40,7 +42,7 @@ mkdir -p $W $R/{logs/{sigma,markers,build,fid,check},status,pts/B,thick,sigma,ma
   $R/cand/{white_pot,white_pot_lid,blue_cup,beige_cup,rack} $R/fid/{pot,lid,rack,cup,beige} $R/check/{pot,lid,rack,cup,beige}
 exec >> $R/pubown_job.log 2>&1
 T0=$(date +%s)
-log "PUBOWN job start: run $RUN_ID commit $(git -C $REPO_DIR rev-parse HEAD) workers $NPROC ram $(free -g | awk '/Mem/{print $2}') GB disk $(df -h $ROOT | awk 'NR==2{print $4}') free"
+log "PUBOWN job start: run $RUN_ID commit $(git -C $REPO_DIR rev-parse HEAD) workers $NPROC (fid $FIDP) ram $RAMGB GB disk $(df -h $ROOT | awk 'NR==2{print $4}') free"
 fail() { log "PUBOWN-FAIL: $*"; label "PUBOWN FAIL: $*"; finish 1; }
 cnt() { local n; n=$(grep -c "$1" "$2" 2> /dev/null); echo ${n:-0}; }
 cputot() { ps -eo cputimes,comm --no-headers 2> /dev/null | awk '$2 ~ /python/ {s += $1} END {print s + 0}'; }
@@ -143,7 +145,7 @@ log "candidates built: $("$PY" -c "import json,collections; c=json.load(open('$R
 
 # 5. checks + own-point fidelity, 6. per-pair pick
 T check; T fid
-prun check; prun fid
+prun check; prun fid $FIDP
 "$PY" -I $JOBD/pubown_select.py --results $R --cands $R/candidates.json --plan $R/plan.json > $R/logs/select.log 2>&1 \
   && log "select: $(tr '\n' ' ' < $R/logs/select.log | cut -c1-3000)" || log "select FAILED: $(tail -3 $R/logs/select.log)"
 finish 0
