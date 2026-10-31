@@ -10,6 +10,18 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 ~17:20 UTC: 6 boxes running; pack 9a / 9a+ built and signed off, waiting for the owner's own upload word
+- Running (all past setup): ep11 gate 58552489 (`20261031-e11g-663b7df`, result ~19:30–21:00); Masses v2 boxes
+  `20261031-mv2a2-b5043ce` (ep24+13) and `20261031-mv2b-b5043ce` (ep11+31), verdict ~23:00–01:00; pack-10 comparison set
+  `20261031-h5p7-1a7cdff` and `20261031-h5e1-1a7cdff`. Embodiment recipe screen (2 boxes) and mesh E0 box also running.
+- Pack 9a (pack 8 + C0 pot/lid/rack; `results/submissions/20261031-track3i-candidate/build_3obj`, sha256 9c19bb0c…) and
+  9a+ (+ C1 beige cup and dust pan; `build_9aplus` both beige pairs e02736ea… / `build_9aplus_e10` eval-10 beige only
+  6743f01d…) are built, validated offline and signed off by the mesh session (eval-8 beige conditional, unmeasured).
+  Provenance flags (scan-derived ball radius etc.) disclosed; owner chose "Ship 9a, flagged" in the mesh session.
+  **Upload blocked** until the owner says it in this chat (standing rule: nothing to Kaggle without the owner's word).
+- Pack 10 inputs: swap rule agreed (fresh-draw mean vs packed H5 mean, failure rate GT-free RPE > 5 cm, median RPE,
+  packed-draw guard); eval 10 is the only clear failing eval (GT-free audit); no eval reference fix besides V4p.
+
 ## 2026-10-31 ~14:00 UTC: realistic masses NOT ADOPTED; eval-10 cavity widening falsified; ep11 gate prep running (CPU)
 - Mass transfer check (run 20261031-mass-2ed46ea, VERIFIED, no eval timeouts; registered AUC vs mocap, 10 draws/cell):
   - ep2 (pot + lid): 0.567 → 0.723, Δ +0.157 (seeds +0.081 / +0.233; SE 0.105).
