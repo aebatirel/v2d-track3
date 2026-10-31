@@ -19,7 +19,7 @@ cannot sign in to Google or submit the form. Fields in `[brackets]` need the own
 
 **Email:** aebatirel@gmail.com (tick "Record ... as the email")
 
-**Team Name:** imitation.tech (owner's choice, 30 Oct). Rename the Kaggle team to match on all six Track 3
+**Team Name:** Imitation.Tech (owner's choice, 30 Oct; Kaggle rename done by the owner, verified 31 Oct). Rename the Kaggle team to match on all six Track 3
 competitions. Each competition has its own team (IDs: AUC 17196705, SP-SR 17196772, MP-SR 17196773, RPE 17196774,
 MPPE 17196776, CD-O 17196777). On each competition page: Team tab → Team Name → Save Changes. The agent could not
 do it: the public Kaggle API has no rename call, and the site's `competitions.TeamService/UpdateTeam` endpoint
@@ -67,7 +67,7 @@ returned 401 to the API token; it needs a browser login.
 
 **Message to organizers:**
 > We are registering late. Our Track 3 entries are already on the Kaggle boards under the team name
-> "imitation.tech" (previously "Ahmet Ercan Batirel"). Please link them to this registration. Our code repository (github.com/aebatirel/v2d-track3) is
+> "Imitation.Tech" (previously "Ahmet Ercan Batirel"). Please link them to this registration. Our code repository (github.com/aebatirel/v2d-track3) is
 > shared with the GitHub account Nvidia-V2D-Challenge. We will send v2d_challenge@nvidia.com a few rules questions
 > about the floating-wrist servo setting and mesh provenance. Thank you!
 

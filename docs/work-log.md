@@ -5415,3 +5415,10 @@ arm and a no-policy replay floor to stage B.
 - Our six Track 3 team IDs: AUC 17196705, SP-SR 17196772, MP-SR 17196773, RPE 17196774, MPPE 17196776,
   CD-O 17196777. The AUC team has one member (ahmetercanbatirel, the leader).
 - Owner renames in the browser (Team tab on each competition). The registration draft now uses the new name.
+
+### 31 Oct — Kaggle team rename verified
+- The owner renamed the team in the browser. GetTeam on all six Track 3 team IDs returns 'Imitation.Tech'. The
+  scores are unchanged (AUC 0.81460, SP-SR 0.85, MP-SR 0.65, RPE 3.93179, MPPE 2.92126, CD-O 0.40188), and each
+  team has one member.
+- The repo collaborators are still aebatirel, ardai and BortuceKhan. `Nvidia-V2D-Challenge` is still not listed
+  (owner action).
