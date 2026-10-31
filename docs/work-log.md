@@ -5591,3 +5591,6 @@ Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on 
   - secondary: the new packed draw 1 is not below the old packed draw by > 0.05.
   Eval 10 is scored against both references.
   Gap flagged: H5 kept no rollouts, so (b)/(c) need fresh draws of the packed policies with rollouts kept (≈ $2 [E]).
+- ~16:15 UTC focused-pascal: fresh draws of the packed policies with rollouts kept, as the pack-10 comparison set
+  (PREREG uses them for (a), (b) and (c); H5 means as a cross-check). H5p7: pack 7's 20 policies, N=10, ≈ $2.5–3.5.
+  H5e1: pack 8's eval-1 policy, ≈ $1.2–1.6. Launch ≈ 17:00–17:30 UTC; ≈ $4–5 total, stated to the owner by that lane.
