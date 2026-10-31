@@ -1,0 +1,207 @@
+{
+ "rule": "docs/research/work/masses-v2-20261031/PREREG.md",
+ "rule_version": "v2",
+ "control": "mass0",
+ "treatment": "mass1",
+ "bars": {
+  "mean_delta_min": 0.03,
+  "positive_episodes_min": 3,
+  "episode_delta_fail_at_or_below": -0.05,
+  "min_scored_rollouts": 8,
+  "compared_at": "4 decimals"
+ },
+ "verdict": "PARTIAL",
+ "reasons": [
+  "box reading over 1 of 4 episodes; the v2 verdict needs both boxes merged"
+ ],
+ "clauses": {
+  "mean_delta": 0.05058,
+  "mean_delta_4dp": 0.0506,
+  "delta_4dp": {
+   "ep13": 0.0506
+  },
+  "n_positive": 1,
+  "drops": [],
+  "episodes_scored": 1
+ },
+ "verification_ok": true,
+ "verification_failures": [],
+ "verification_missing": [],
+ "roots": [
+  "MR/content"
+ ],
+ "verify_files": [
+  "MR/content/results/mass_check/verify.json"
+ ],
+ "cell_source": {
+  "ep13/mass0/s43": "MR/content",
+  "ep13/mass1/s43": "MR/content"
+ },
+ "eval_timeouts": {
+  "cells_cut": {},
+  "per_arm": {
+   "mass0": {
+    "best": 0,
+    "curve": 0
+   },
+   "mass1": {
+    "best": 0,
+    "curve": 0
+   }
+  },
+  "not_recorded": [],
+  "per_cell": {
+   "ep13/mass0/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   },
+   "ep13/mass1/s43": {
+    "best": 0,
+    "best_runs": 10,
+    "best_rc": {
+     "0": 10
+    },
+    "best_without_rc": 0,
+    "curve": 0,
+    "curve_runs": 21,
+    "curve_rc": {
+     "0": 21
+    },
+    "curve_without_rc": 0
+   }
+  }
+ },
+ "episodes": {
+  "ep13": {
+   "control_seed_mean": 0.6938,
+   "treatment_seed_mean": 0.7444,
+   "delta": 0.0506,
+   "per_seed_delta": {
+    "43": 0.0506
+   },
+   "se_delta": 0.0045,
+   "sim_vs_ref_delta": 0.0429,
+   "ref_auc_spread_across_cells": 0.0,
+   "harm_reading": false
+  }
+ },
+ "references": {
+  "ep13": {
+   "source_parquet": "MR/content/refs/glockt/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+   "source_md5": "682ff17d1810527ebaa16f3ea6fcc702",
+   "traj_fingerprint": "231ba75397e31811d965cc3dc645dd11",
+   "masses": {
+    "mass0": {
+     "blue_cup": 0.3,
+     "plastic_dish_rack": 0.3
+    },
+    "mass1": {
+     "blue_cup": 0.128,
+     "plastic_dish_rack": 0.3865
+    }
+   }
+  }
+ },
+ "cells": {
+  "ep13/mass0/s43": {
+   "checkpoint": "MR/content/runs/mass0s43_glock/ep13-s43/policy_49999872.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.6938,
+    "sd": 0.0087,
+    "min": 0.6815,
+    "max": 0.7049
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8453,
+    "sd": 0.0124,
+    "min": 0.8259,
+    "max": 0.8588
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8694,
+    "sd": 0.0,
+    "min": 0.8694,
+    "max": 0.8694
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7049,
+    0.6824,
+    0.6815,
+    0.6946,
+    0.6892,
+    0.7027,
+    0.6881,
+    0.7042,
+    0.6911,
+    0.6991
+   ]
+  },
+  "ep13/mass1/s43": {
+   "checkpoint": "MR/content/runs/mass1s43_glock/ep13-s43/policy_70004736.safetensors",
+   "n_rollouts": 10,
+   "errors": 0,
+   "auc": {
+    "n": 10,
+    "mean": 0.7444,
+    "sd": 0.0113,
+    "min": 0.7229,
+    "max": 0.7558
+   },
+   "sim_vs_ref": {
+    "n": 10,
+    "mean": 0.8882,
+    "sd": 0.0087,
+    "min": 0.8758,
+    "max": 0.9035
+   },
+   "ref_auc": {
+    "n": 10,
+    "mean": 0.8694,
+    "sd": 0.0,
+    "min": 0.8694,
+    "max": 0.8694
+   },
+   "floor_auc": {
+    "n": 10,
+    "mean": 0.59,
+    "sd": 0.0,
+    "min": 0.59,
+    "max": 0.59
+   },
+   "auc_rollouts": [
+    0.7497,
+    0.7556,
+    0.7488,
+    0.7558,
+    0.7421,
+    0.7437,
+    0.7494,
+    0.7493,
+    0.7263,
+    0.7229
+   ]
+  }
+ }
+}

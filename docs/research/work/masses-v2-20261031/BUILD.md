@@ -85,12 +85,23 @@ No GPU box ran and nothing was sent to Kaggle. No commit was made here; the orch
 | check | result |
 |---|---|
 | v1 default on the first check's stored results (`v1_unchanged.txt`) | the original and the new tool both reproduce the committed `summary.json` byte for byte, and the job.log RESULT line exactly: NOT ADOPTED, ep12 −0.0128 |
-| default mass_check job unchanged (`equiv_default.txt`: the first check's mock and JOBS string, old vs new scripts, same mock path) | EQUIV_RESULT |
-| rule fixtures (`tests_v2.json`, `cpu/mock/tests_v2.py`) | TESTS_RESULT |
-| CPU mock of both box strings + merge + failure paths (`mock_v2.txt`, `check_*.json`, `merge_*.txt`) | MOCK_RESULT |
+| default mass_check job unchanged (`equiv_default.txt`: the first check's mock and JOBS string, old vs new scripts, same mock path) | old (2ed46ea) vs new run of the first check's string: job log (as written and sorted), train / eval / ref audits (268 lines), all 1,719 files written, store traffic (1 upload, 4 listings + 1 download as before), summary.json, verify.json, verdict and verify lines all **IDENTICAL**; check.py 38/38 on both. The two scripts differ in md5. (A first run at different mock paths differed only by path-dependent md5s; an earlier run against HEAD compared new with new because HEAD already held a WIP commit of the new files. Both runs were discarded and fixed in the script.) |
+| rule fixtures (`tests_v2.json`, `cpu/mock/tests_v2.py`) | **30/30 pass**: R1–R15 rule clauses (ADOPT; NOT ADOPTED on the mean, the 3-of-4 and the drop clause, each alone; mean exactly +0.03 passes and 0.0299 fails; Δ exactly −0.05 fails, also when float arithmetic gives −0.04999…; −0.0499 passes; Δ 0.0 and +0.00004 are not positive; exactly 3 of 4 passes; a per-seed −0.10 alone does not fail; INCOMPLETE on 7 rollouts and on a missing cell; INVALID with missing listed; PARTIAL), M1–M11 file-tree merges (two boxes; missing cell; a re-run filling the pair; a pair twice → exit 2; a pair split over boxes; verify-missing beats a summary; an unverified cell; a failed verify → INVALID; 3 episodes refused; box PARTIAL; boundary drop from files), V1 (the first check's own fixture cases, and the stored results byte for byte) |
+| CPU mock of both box strings + merge + failure paths (`mock_v2.txt`, `check_*.json`, `merge_*.txt`) | box A (ep24 + ep13) and box B (ep11 + ep31): **37/37 checks each**, 8 trainings, 248 evaluations, **22 single-file downloads, 0 listings, 1 upload** each; merge → a verdict (synthetic ADOPT). Failure paths: F (an injected training failure) 34/34 checks, box INCOMPLETE, merge INCOMPLETE; R (the INCOMPLETE re-run string) 18/18, 11 downloads from F's pushed run; merge F+B+R → a verdict, with the ep13/s43 pair taken from R; A+B+R → **REFUSED, exit 2**; T (a tampered ep31 reference) → ep31 REFUSED, never trained (4 trainings), INCOMPLETE; G (guards) → a -mass- id in MV2 mode, a -mv2 id in default mode, ep2, and a changed props file all exit 1 before any download |
 | operating characteristic of the rule (`power.json`) | P(ADOPT) 0.13 at no effect, 0.66 at +0.05, 0.87 at +0.09 [E, model in PREREG §7] |
 
-MOCK_DETAIL
+Mock details (`cpu/out/mock_v2/`, `mock_v2.txt`).
+- **What each box check proves** (`check_v2.py`, from what the stub FlashCHORD trainer and evaluator actually loaded):
+  - every training read the ONE pulled reference, whose fingerprint equals the REAL table's (PREREG) value, and the arm
+    parquets differ only in `object_urdf_paths`;
+  - mass1 loaded the props masses and mass0 0.3 kg, each from its own arm folder;
+  - each of the 31 evaluations per training loaded its checkpoint's arm through the checkpoint's saved `task.parquet`;
+  - the paired arms had identical arguments and environment, and seeds differ only in `reset.seed`;
+  - the pulled reference and assets are untouched, and `/content/assets` stays at 0.3 kg;
+  - the downloads are exactly the table's 22 files, once each.
+- **The store.** The fake store is built from the 16 real downloaded files plus 28 labelled stand-ins.
+  `mock_table_diff.json` lists the provenance of every file and the md5 substitution for the path-re-pointed parquets.
+- **Run time.** The full mock took 17 min of light CPU (24 min user); the default-equivalence mock took 10 min.
 
 ## 5. Risks and open points
 - **ep11 and ep13 sit at or below their static floors with tiny sd [M].** Their d(ep) may be ≈ 0, and 0.0000 is not

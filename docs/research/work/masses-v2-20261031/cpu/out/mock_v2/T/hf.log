@@ -1,0 +1,23 @@
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/d6e85c126bb940e0b7c17ebaff9e87d6-0.parquet --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/perc2mck/ep11/reconstructed_stage/t3_ep011_support.usda --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/glockt/ep11/reconstructed_stage/t3_ep011_support.usda --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/mesh/beige_cup/beige_cup.glb --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/mesh/blue_cup/blue_cup.glb --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/urdf/beige_cup_rigid.urdf --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/urdf/blue_cup_rigid.urdf --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/rest_check.json --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/zero_score.txt --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/support_fill.json --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/919152d3c8c943f3a6900a4ee7fa0c19-0.parquet --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/perc2mck/ep31/reconstructed_stage/t3_ep031_support.usda --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/glockt/ep31/processed/sequence_id=t3_ep031/robot_name=sharpa_wave/ref_gl_ilc.parquet --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/glockt/ep31/reconstructed_stage/t3_ep031_support.usda --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/sf/ep31/assets/mesh/mini_sweeper/mini_sweeper.glb --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/sf/ep31/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/sf/ep31/assets/urdf/mini_sweeper_rigid.urdf --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/refs/sf/ep31/assets/urdf/plastic_dish_rack_rigid.urdf --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/rest_check.json --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/zero_score.txt --repo-type dataset --local-dir MR/content/hfstore
+hf download mock/store runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/support_fill.json --repo-type dataset --local-dir MR/content/hfstore
+hf upload mock/store MR/content/push/20261031-mv2t-mocksha runs/20261031-mv2t-mocksha --repo-type dataset --commit-message run 20261031-mv2t-mocksha: 2026-10-31T16:03:41Z

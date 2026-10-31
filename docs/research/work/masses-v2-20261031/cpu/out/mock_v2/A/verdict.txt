@@ -1,0 +1,1 @@
+PARTIAL: box reading over 2 of 4 episodes; the v2 verdict needs both boxes merged | mean delta +0.0510; ep24 mass0 0.6957 mass1 0.7462 delta 0.0504 per seed {'42': 0.0497, '43': 0.0511}; ep13 mass0 0.6952 mass1 0.7467 delta 0.0515 per seed {'42': 0.0524, '43': 0.0506}

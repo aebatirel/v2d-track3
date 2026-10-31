@@ -1,0 +1,149 @@
+{
+ "ok": true,
+ "failures": [],
+ "checks": {
+  "V1_trainings": {
+   "ok": true,
+   "detail": "7 started and finished, injected failures [(13, 'mass1', 43)]: [(13, 'mass0', 42), (13, 'mass0', 43), (13, 'mass1', 42), (24, 'mass0', 42), (24, 'mass0', 43), (24, 'mass1', 42), (24, 'mass1', 43)]"
+  },
+  "V1_steps_seed": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_one_reference_ep24": {
+   "ok": true,
+   "detail": "training fingerprints {'83b9bdd4bfe74aa9bc97df0e4fe34d79'}, pulled 83b9bdd4bfe74aa9bc97df0e4fe34d79, PREREG table 83b9bdd4bfe74aa9bc97df0e4fe34d79"
+  },
+  "V2_only_urdf_paths_differ_ep24_mass0_s42": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_only_urdf_paths_differ_ep24_mass1_s42": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_only_urdf_paths_differ_ep24_mass0_s43": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_only_urdf_paths_differ_ep24_mass1_s43": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_one_reference_ep13": {
+   "ok": true,
+   "detail": "training fingerprints {'231ba75397e31811d965cc3dc645dd11'}, pulled 231ba75397e31811d965cc3dc645dd11, PREREG table 231ba75397e31811d965cc3dc645dd11"
+  },
+  "V2_only_urdf_paths_differ_ep13_mass0_s42": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_only_urdf_paths_differ_ep13_mass1_s42": {
+   "ok": true,
+   "detail": ""
+  },
+  "V2_only_urdf_paths_differ_ep13_mass0_s43": {
+   "ok": true,
+   "detail": ""
+  },
+  "V3_train_masses_ep24_mass0_s42": {
+   "ok": true,
+   "detail": "{'wooden_piece_1': 0.3, 'wooden_piece_2': 0.3}"
+  },
+  "V3_train_masses_ep24_mass1_s42": {
+   "ok": true,
+   "detail": "{'wooden_piece_1': 0.1389, 'wooden_piece_2': 0.1409}"
+  },
+  "V3_train_masses_ep13_mass0_s42": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.3, 'plastic_dish_rack': 0.3}"
+  },
+  "V3_train_masses_ep13_mass1_s42": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.128, 'plastic_dish_rack': 0.3865}"
+  },
+  "V3_train_masses_ep24_mass0_s43": {
+   "ok": true,
+   "detail": "{'wooden_piece_1': 0.3, 'wooden_piece_2': 0.3}"
+  },
+  "V3_train_masses_ep24_mass1_s43": {
+   "ok": true,
+   "detail": "{'wooden_piece_1': 0.1389, 'wooden_piece_2': 0.1409}"
+  },
+  "V3_train_masses_ep13_mass0_s43": {
+   "ok": true,
+   "detail": "{'blue_cup': 0.3, 'plastic_dish_rack': 0.3}"
+  },
+  "V4_every_evaluation_loads_its_arm": {
+   "ok": true,
+   "detail": "217 evaluations (70 of chosen checkpoints) for 7 finished trainings, 0 wrong"
+  },
+  "V5_identical_settings_ep24_s42": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "V5_identical_settings_ep24_s43": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "V5_identical_settings_ep13_s42": {
+   "ok": true,
+   "detail": "[]"
+  },
+  "V5_seeds_differ_only_in_seed": {
+   "ok": true,
+   "detail": ""
+  },
+  "V6_pulled_reference_untouched_ep24": {
+   "ok": true,
+   "detail": ""
+  },
+  "V6_assets_ep24": {
+   "ok": true,
+   "detail": "4 files; mass0 copy identical True; store identical True"
+  },
+  "V6_pulled_reference_untouched_ep13": {
+   "ok": true,
+   "detail": ""
+  },
+  "V6_assets_ep13": {
+   "ok": true,
+   "detail": "4 files; mass0 copy identical True; store identical True"
+  },
+  "V6_content_assets_placeholder": {
+   "ok": true,
+   "detail": ""
+  },
+  "V7_one_push": {
+   "ok": true,
+   "detail": "1 uploads"
+  },
+  "V7_no_listing": {
+   "ok": true,
+   "detail": "0 listings"
+  },
+  "V7_downloads_exactly_the_table": {
+   "ok": true,
+   "detail": "22 single-file downloads, 22 expected; extra [] missing []"
+  },
+  "V8_verify": {
+   "ok": true,
+   "detail": "ok True, missing ['ep13/mass1/s43'], failures []"
+  },
+  "V8_summary_v2_partial": {
+   "ok": true,
+   "detail": "verdict INCOMPLETE, 7 cells with n 10"
+  },
+  "V8_box_result_line": {
+   "ok": true,
+   "detail": ""
+  }
+ },
+ "trainings": 7,
+ "evaluations": 217,
+ "single_file_downloads": 22,
+ "listings": 0,
+ "uploads": 1,
+ "box_verdict": "INCOMPLETE",
+ "note": "mock scores are synthetic (stub_v2.py); they test the plumbing, not masses"
+}
