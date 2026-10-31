@@ -853,6 +853,10 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   ev25); 9 open decisions for round 2 F-I5.15), 21.11 / header / section-0 pointers, a post-hoc record-only note under
   PREREG F-I5.14 outcomes, STATUS top section, work-log entry with both hand-off texts. Committing my lines only (the
   board-slot round-3 Amend lines in this file are another agent's, left unstaged).
+- 21:30 all Report-step edits (INTERLOCK 21.12 and pointers, PREREG F-I5.14 verification note, STATUS top section,
+  work-log entry, these lines) were swept into the orchestrator's WIP snapshots 3ebf68c / ad78d92 / 6d3d2c9 (on origin,
+  21:29) before my own commit; this line is committed separately. **Report step done.** Collision-carve workflow closed:
+  nothing carved or delivered; round 2 (F-I5.15) per INTERLOCK 21.12 open decisions.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
