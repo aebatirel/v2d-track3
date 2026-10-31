@@ -60,7 +60,7 @@ def beige_qual(plan, env):
 def all_set(plan, env, o):
     if o == 'beige_cup':
         return beige_qual(plan, env) or []
-    return plan['all_set'][o]
+    return plan['all_set'].get(o, [])
 
 
 def targets(plan):
