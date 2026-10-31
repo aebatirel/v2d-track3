@@ -404,3 +404,24 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   --pick wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36 --video <scratch>/data/store/ep24_a.mp4 --calib
   <scratch>/data/calib.json --hands <run>/in/hands24/hands.npz --proxy-copies 16 --identity eval --waiver-fi4
   --no-physcheck --tag fi4evalsem` (run 20261031-i2probe-626ce13; no --gen; log <run>/drv24_fi4evalsem.log).
+- 17:00 (scope-fix step, agent of the board-slot workflow) restarted from this log: T-I11 tag fi4evalsem finished
+  16:58:48 (454.6 s) [M]: plate F-I4.1 false on BOTH boards (`no_plane_pair`; owned points within 6 mm 1,759,844 /
+  1,408,169, after the 2 mm downsample 36,675 / 22,304; sigma 3.0 / 0.74 mm) -> waiver out of scope, decisions as
+  r1evalsem (board 1 PUSH; board 2 PUSH interlock_disagree); pieces gate 0.72 / 2.0 cm3 (do-not-use). Next: GT-free
+  diagnosis of the missing plane pair (density along the thinnest axis, faces seen per frame), then ONE post-hoc
+  PREREG entry F-I4.14, re-run w1-w5, then T-I11 once more (new tag).
+- 17:08 [M] GT-free diagnosis of no_plane_pair (`<scratch>/interlock/fi4/diag14/diag_plane.py`, JSON
+  `diag_plane.json`; our bundle points, cameras, frames, sigma and our pick only; no slot or physics output read):
+  board 1 (sigma 3.0 mm -> 3 sigma band 9.0 mm): BOTH faces seen (42 % of points from the +n side, 38 frames; 58 %
+  from the -n side, 101 frames); per-frame median offsets along the thinnest axis +3.88 mm (MAD 0.45) and -3.16 mm
+  (MAD 0.32) -> faces ~7.0 mm apart, track jitter along n < 0.5 mm, within-frame IQR 1.75 mm. segment_planes with
+  the 9 mm band merges both faces into ONE plane (26,022 pts, two-sided share 0.49, rms 3.7 mm, offset 0.3 mm = the
+  middle) -> no pair can form. Cause: the inflated object-episode sigma (B7 bundle had 1.21 mm), not missing faces.
+  Board 2 (sigma 0.74): ONE face only (0 % of points from the +n side, 117 frames all from -n); 4 parallel planes
+  all seen from the same side (offsets -2.5 / 0 / +2.3 / +3.0 mm); 1-99 % extent along n 12.65 mm (1 % tail at
+  -9.3 mm on the camera side = bump; 5-95 % 4.6 mm). Its thickness is not observable two-sided in this episode.
+- 17:20 PREREG F-I4.14 written (post hoc, decided from the diagnosis only; no ep24 slot / physics output exists or
+  was read): plate test order (1) F-I4.1 plane pair unchanged, (2) camera-side face pair (split the slab points by
+  camera side, median offset per face, antiparallel 30 deg, t in 3-25 mm, overlap 0.5, rms <= 3 sigma, both in-plane
+  extents >= 2 (t + 2 mm)), (3) one-face plate with t = the partner's measured t (same-stock prior [E]); new
+  synthetic w6 (sigma 3 mm merges faces) and w7 (one-face B). Committing + pushing before any code runs with it.

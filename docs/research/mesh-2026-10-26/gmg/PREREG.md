@@ -1188,6 +1188,66 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   depth sum - W_x = 22.0 mm) and w5 (t = 10 mm, 16 copies: carved lag 0.033 cm / 0.16 deg, overlap at the assembled
   frames 0.0 cm3; default 6.07 cm / 91 deg; P2-P7 pass) pass. Controls n2-n5, n9 pass with the waiver off.
 
+- **2026-10-31, F-I4.14 (post hoc): plate test that works on real plates (camera-side face pair; one-face plate with
+  the partner's thickness).** Written 17:10-17:20 UTC after T-I11 (tag `fi4evalsem`, code cd2383f, 16:51-16:58 UTC)
+  found **no plane pair on either ep24 board** (F-I4.1 `no_plane_pair`), so the waiver never engaged and both boards
+  were PUSHED again. Committed and pushed **before** any run that uses it. Labelled post hoc: it changes F-I4.1 after a
+  real-data scope failure (not an acceptance failure). Decided from the GT-free diagnosis below only; no slot
+  geometry or physics outcome exists for ep24 under F-I4 (the pair never entered the route), and none was looked at.
+  - **Diagnosis [M]** (`<scratch>/interlock/fi4/diag14/diag_plane.py` / `.json`; our clean bundle's owned points within
+    6 mm of the pick, their camera centres and frames, the object-episode sigma, our pick; nothing else). Board 1:
+    sigma 3.0 mm, so the segment_planes inlier band is 3 sigma = 9.0 mm. **Both faces are seen**: 42 % of the points from
+    the +n side (38 frames), 58 % from the -n side (101 frames); per-frame median offsets along the thinnest axis
+    +3.88 mm (MAD 0.45) and -3.16 mm (MAD 0.32), i.e. faces about 7.0 mm apart, track jitter along n under 0.5 mm,
+    within-frame IQR 1.75 mm. The 9 mm band merges both faces into **one** plane (26,022 points, two-sided share 0.49,
+    rms 3.7 mm, offset 0.3 mm = the middle), so no pair can form. Cause: the inflated sigma (the B7 bundle had 1.21 mm
+    for this object-episode), not missing faces. Board 2: sigma 0.74 mm; **one face only** (0 % of points from the +n
+    side; all 117 frames see the -n face); segment_planes returns 4 parallel planes all seen from the same side
+    (offsets -2.5 / 0 / +2.3 / +3.0 mm); 1-99 % extent along n 12.65 mm (the 1 % tail at -9.3 mm lies on the camera
+    side: a bump; 5-95 % 4.6 mm). Its thickness is not observable two-sided in this episode, and the 1-99 % extent of
+    one face (and the 12.6 mm w_sub, which is the same kind of extent at the crossing) measures face noise plus
+    protrusions, not thickness.
+  - **Change (F-I4.1 extended; tried in this order, the first that holds decides):**
+    1. **F-I4.1 plane pair, unchanged** (so every synthetic w1-w5 result where it held stays as it was).
+    2. **Camera-side face pair.** Same input as F-I4.1 (the 2 mm downsampled owned points within 6 mm of the pick,
+       with their camera centres and frames). Reference plane = the largest plane of the F-I4.1 segmentation (normal
+       a, oriented to its cameras; offset d_a). Slab = points with |a . x - d_a| <= 25 mm (the slab window's upper end,
+       A.6). Split the slab points by the side their camera is on: S+ = (c - x) . a > 0, S- = (c - x) . a < 0. Each side
+       is a face if it holds >= 300 points (plane_min) from >= 3 frames. Each face: PCA plane (normal oriented to its
+       cameras), offset m+- = median of a . x over its points (robust to the merged band), rms about its own plane.
+       Plate if all hold: (i) the two face normals antiparallel within 30 deg (plane_deg); (ii) material between them:
+       t = m+ - m- > 0 (the face seen from +a lies further along +a); (iii) t in the slab window 3-25 mm; (iv) footprint
+       overlap >= 0.5 (the 2-98 % boxes, as structure._planes); (v) each face's rms <= 3 sigma (the plane inlier band);
+       (vi) **plate-like extents**: both in-plane 2-98 % extents of the slab points >= 2 w with w = t + 2 mm (the
+       carve_solid plate-like test: both other extents >= 2 w). Thickness t, mid plane (a, (m+ + m-) / 2), outline axes
+       from the reference plane. Flag `plate_pair_camera_side`.
+    3. **One-face plate.** If one side holds >= 300 points from >= 3 frames and the other does not, and the 1-99 %
+       extent of the slab points along a is <= 25 mm (thin-extent test, slab window upper end), the object is a
+       one-face plate candidate. Its thickness is **not measured**: t := the **partner's** thickness when the partner
+       is a two-sided plate by step 1 or 2 (prior [E]: the two boards of a cross-lap / halving joint are taken to be
+       the same stock; flag `plate_t_partner_prior`). Mid plane = the seen face (median a . x of the seen side) moved by
+       t / 2 away from its cameras. Test (vi) then applies with this t. If the partner has no measured thickness either,
+       the object is not plate-like (`one_face_no_partner_t`) and the pair is out of scope (old decision).
+    Not used for t, as before: w_sub, the 1-99 % extent of one face, thickness.py, any library mesh, any other
+    episode's measurement (eval semantics: one episode at a time).
+  - **Nothing else changes:** F-I4.2 body (outline at t about the mid plane), F-I4.3-F-I4.12 slot, budget, pieces,
+    acceptance thresholds, delivery and integrity rules. Constants reused, none new: plane_min 300, plane_deg 30,
+    slab window 3-25 mm (informed, A.6), overlap 0.5, band 3 sigma, >= 3 frames (generic), plate-like 2 w (generic,
+    carve_solid). The partner-thickness prior is a modelling assumption [E], labelled as such in the records.
+  - **Tests (synthetic T-I1, re-run before T-I11):** w1-w5 re-run unchanged (expected identical: step 1 holds there;
+    t = 25 mm may now enter by step 2, which is reported and then checked like any other w1 thickness). New: **w6**
+    (t = 10 mm, two-sided, object-episode sigma set to 3.0 mm so the F-I4.1 band merges the faces): plate by step 2,
+    |t - 10| <= 1 mm, CARVE both, w1 checks; **w7** (t = 10 mm, B's -z face removed from its evidence so B is one-face):
+    B plate by step 3 with t = A's t, CARVE both, w1 checks. w3 rods and cylinder reported as before (the cylinder
+    must stay out of scope).
+  - **Predictions for T-I11 re-run (tag `fi4b`, clean ep24, eval semantics, --waiver-fi4, physics 16 copies) [E]:**
+    P40 board 1 plate by step 2 with t in 5-9 mm; board 2 plate by step 3 with t = board 1's t. Then P36-P38 apply as
+    written (CARVE both and the depth-sum check passes; keep-out passes; P2-P7 pass with P3 <= 0.5 cm / 5 deg). If any
+    acceptance test fails, the failure is reported with its numbers and nothing is tuned.
+  - [H] Falsified if w6 does not recover t within 1 mm, if w7 does not carve, if the 30 mm cylinder of w3 becomes plate
+    -like, or if on ep24 step 2 does not hold for board 1. Known limit: board 2's slot in board 1 is sized by a prior
+    (board 2 = board 1's stock), not by a measurement; the depth of each slot is a prior as before (F-I4.3).
+
 ## Revision 1 changelog
 
 What changed, and why:
