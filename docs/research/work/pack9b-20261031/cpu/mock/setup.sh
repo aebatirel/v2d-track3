@@ -222,7 +222,7 @@ for e in 14 16 25 30 33; do
   sha=$(tabv $e packed_sha256); ref=$(tabv $e reference)
   for i in $(seq 1 10); do
     d=$ST/20261031-h5p7-1a7cdff/results/h5/r$i/ep$e; E6=$(printf %06d $e)
-    MOCK_MR=$B MOCK_PY=$PY $PY -I $M/stub.py mkdraw $TP/templates/rollout_ep$e.parquet $d/episode_$E6.parquet h5p7/$e/$i $sha /workspace/$ref 0.2
+    MOCK_MR=$TP MOCK_PY=$PY $PY -I $M/stub.py mkdraw $TP/templates/rollout_ep$e.parquet $d/episode_$E6.parquet h5p7/$e/$i $sha /workspace/$ref 0.2
     echo "{\"mock\": 1, \"checkpoint_sha256\": \"$sha\"}" > $d/episode_$E6.json
   done
 done
