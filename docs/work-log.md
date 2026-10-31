@@ -5240,3 +5240,17 @@ diagnostic; nothing is picked for submission.
   per-object frame yes/no by ~19:00 UTC; any object without a yes is left out.
 - On 1 Nov the blue cup is replaced by the E0 eval-built lathe, whose obs_fidelity rule is committed before any build
   (`cdo-sprint/E0/PREREG.md`).
+
+### 2026-10-31 ~16:45 UTC — owner: "Is there a way that we can get these faster with vast machines?" E0 moved to a Vast box
+- **Bottleneck:** the 4-core cloud VM (load ~15). The C0 AUC guard is 18/51 runs in 13 min and finishes locally in
+  ~35 min, so it is not moved. Tonight's frame check is light.
+- **E0 changed:** the first E0 workflow (`wf_aee68881-8d9`) was stopped after its inventory step. Relaunched as
+  `cdo-sprint-e0-box` (`wf_256965c1-47f`, task w32025tfn), in this order:
+  - **Prep:** PREREG.md and one box job script (`cdo-sprint/E0/jobs/e0_box.sh`), with a local dry run on one small pair
+    and the inputs uploaded to the store run folder.
+  - **Box:** one many-core Vast box (>= 32 cores, ~<= $0.8/h, expected ~$1-4, cap $8). It runs obs_points, all
+    candidate builds, the fidelity table and the checks in parallel, pushes the results to the HF store and
+    self-destroys. Ledger planned/actual lines under LEDGER_SESSION=mesh-bold.
+  - **Select, Verify (x2), Report.**
+- Spending under the owner's standing go-ahead ("you can spend money and go ahead in all"). The plan and cost are
+  logged before create.
