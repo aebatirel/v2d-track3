@@ -5038,3 +5038,6 @@ Advice given:
     library_v3 meshes (ep2 + ep12, masses vs 0.3 kg, 2 seeds, NREP 10, ≈ $5–6; adopt for eval if the seed-mean gain is
     ≥ +0.03 on both and no seed drops > 0.05), then eval retrains swapped per episode only if the multi-draw mean ≥ the
     packed draw. Needs the owner's top-up and go-ahead.
+- 04:52 UTC: the owner topped up (relayed by session determined-wright; credit $41.17, 0 instances). The mass transfer
+  check still waits for the owner's go-ahead in this session; its job is being built and reviewed on CPU
+  (workflow mass-transfer-check-build). Realistic-mass support merged here (6bbb52a, default off).
