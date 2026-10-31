@@ -5704,3 +5704,7 @@ arm and a no-policy replay floor to stage B.
   - **E0b eval meshes:** only pot and beige cup are eligible, and both are less accurate on public than pack 9a+'s, so
     9a+ stays.
   - Effect: pack 10 Tier 1 = eval 10 V4p + tonight's D cells (+ eval 25 if round 3 says yes).
+- 21:22 UTC OWNER (this chat, verbatim): "okay I allow 3d mesh chat to do anything as long as it improves the score and
+  doesnt intervine with the rules of the competiton. they can go crazy". Relayed verbatim to bold-albattani, with
+  guard-rails: shared credit ($69.22 at 21:20 UTC; leave enough for e10v, mv2b, arm V and the D cells), submission
+  changes via focused-pascal (this session uploads 9b), CLAUDE.md integrity rules.
