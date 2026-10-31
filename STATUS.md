@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~21:30 UTC: overnight coordination (owner asleep; goal "a new better pack in the morning")
+- **Owner decisions (this chat, ~21:25 UTC):**
+  - (1) start the targeted D cells (evals 14, 16, 25, 30, 33, 2 seeds, ≈ $16–23 [E]) TONIGHT on the current packed
+    configuration;
+  - (2) pack 9b = pack 9a+ + eval-10 V4p (if it passes) + passing D cells, uploaded automatically if every swapped
+    episode passes the pre-registered swap rule and the pack checks pass.
+- **Sent to:**
+  - focused-pascal: launch, swap rule, pack, upload, budget, carve risk;
+  - determined-wright: D settings, standard-learner start-skip flag, CPU reset check; arm V proceeds;
+  - standings: records;
+  - bold-albattani: a delivery statement for pack 10 by 08:00 UTC.
+- **At 21:20 UTC:** Vast credit $69.22. Running: mv2b (masses v2), h5p7 (self-destroying), e10v (eval-10 V4p).
+  Arm V was approved in determined-wright (≈ $7–9).
+- **Risk:** the mesh lane delivered no rack/cup carves tonight, and the eval-25 slot was not run. Pack 10 Tier 1 may
+  shrink.
+- **Morning check-in** scheduled for 05:00 UTC (summary for the owner; no spend or upload from this chat).
+
 ## 2026-10-31 ~07:40 UTC: Prof. İnceoğlu's feedback on the Learner Notebook analysed (no spend, nothing run)
 Analysis: `docs/analysis/arda-feedback-20261031.md`.
 - **His points:** the draw variance matters; training has no domain randomisation or observation noise; compare a
