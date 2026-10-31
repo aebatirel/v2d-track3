@@ -5872,3 +5872,14 @@ score.
   rebuildable on CPU). H5e1 finished.
 - Masses v2: box A (ep24, ep13) done, partial Δ ep24 +0.038, ep13 ≈ 0 (not a verdict). Box B on its seed-43 wave;
   merged verdict ≈ 23:00–01:00.
+- ~21:12 UTC bold-albattani: per-public-episode clean mesh sets ready early.
+  - Store runs/mesh-20261031-pubown-ed7171c/results/pubown/; MANIFEST at
+    cdo-sprint/PUBOWN/MANIFEST.json (76f9023); C0b tree 00e8584; one CPU box, ≈ 21 min, ≈ $0.15; no GT read.
+  - Use Set B (alt_e0_gated, chosen before any re-track score): 14 own-episode meshes. Pots ep0, 2, 26, 41–45; blue cup
+    ep11 g1 and ep12/13/21/22 g0; beige ep11. Everything else stays library_v3 (racks are not reproducible across
+    machines, the lid builder failed 16/16).
+  - Set A keeps 7 frame-broken meshes; diagnostics only.
+  - Caveats: ep11 blue cup carries extra bodies; stray marker balls far from the pot in ep2/44/45; ep13 g0 rests on one
+    number; the gate's frame reference is library_v3 (P1 tier); the pick is in-sample; few meshes are watertight after
+    budget_mesh.
+  focused-pascal copied; it launches the approved public re-track test.
