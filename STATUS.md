@@ -1,5 +1,23 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~17:10 UTC: C1 done; beige-cup lathe and dust-pan pick adopted, on top of pack 9a (CPU, $0)
+- **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/C1/README.md`.
+- **Adopted** (CD-O gate WIN + AUC guard PASS [D]; verifiers found no blocking item):
+  - beige cup = T1 obs-lathe `C1/T1-beige-lathe/meshes/ep11_beige_cup_sep_g1.glb` (sha256 60e398b0...0078):
+    eval 10 0.856 -> 0.248, eval 8 0.730 -> 0.255; ep11 dAUC +0.008;
+  - mini dust pan = T2 placed SAM 3D pick `C1/T2-probe-picks/meshes/mini_dust_pan_k297_s42_lib.glb`
+    (2fb147b5...7d02): 0.331 -> 0.259 / 0.260; twins 18/39/40 mean dAUC +0.012.
+- **T3 (generate-then-fit):** nothing adopted. Its 3 CD-O wins all fail the AUC guard. H-GF is "not falsified", but
+  the fit created no new win.
+- **[E] board CD-O:** pack 9a 0.367 -> **0.333** with C1 (beige -0.030, dust pan -0.004). With the held-back blue cup
+  it is 0.300; with beige on eval 10 only, 0.346.
+- **Pack 9a + C1 on 18 twins [D]** (stored runs, no new scoring): mean dAUC +0.0091, min -0.0092.
+- **Open:**
+  - eval 8 (beige with the C0 pot, v3x-tracked rollouts) has no twin;
+  - provenance O1 covers both meshes;
+  - joint ep11 / ep18 runs are needed if the blue cup or a sweeper swap joins the pack.
+  - Nothing was sent to focused-pascal.
+
 ## 2026-10-31 ~16:50 UTC: C0 done (stage 4); pack 9a ships pot, lid and rack; marker-ball flag needs an owner answer
 - **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/C0/README.md`. MANIFEST `cdo-sprint/C0/MANIFEST.json`
   (sha256 5a87a853...8cb7c).

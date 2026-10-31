@@ -5437,3 +5437,30 @@ diagnostic; nothing is picked for submission.
   - write ONE post-hoc PREREG entry F-I4.14, decided without looking at the slot or physics outcomes;
   - re-run the synthetic tests and T-I11 once with physics;
   - report both runs.
+
+### 2026-10-31 ~17:00-17:10 UTC — C1 report (CPU, $0, no new scoring)
+- C1 workflow (`wf_a717f699-b68`), report step. Folder `docs/research/mesh-2026-10-26/cdo-sprint/C1/`: `README.md`,
+  `NOTES.md`, `c1_cdo_estimate.json`, `c1_config.json`, `scripts/c1_estimate.py`, `scripts/c1_config.py`.
+- Verifiers T1 `26b2f76`, T2 `507709c`, T3 `d8df274`: no blocking item, so nothing was fixed or re-run. The
+  non-blocking items are listed in README §8.
+- C1 choice by fixed precedence; no object had two adopted candidates:
+  - **beige cup = T1 lathe**, sha256 60e398b0f8006c6608e40b1988047aa89e35533e8bb85906c36cf9f9f8370078 [D]: CD-O
+    0.2475 / 0.2549 on eval 10 / 8, add_med 5.70 mm, 0/32 flips, ep11 guard PASS (dAUC +0.0080);
+  - **mini dust pan = T2 placed pick**, sha256 2fb147b535c9f8b863b56ec80239f28809b10fe9ca881a10a5c724f209777d02 [D]:
+    CD-O 0.2587 / 0.2601 on eval 19 / 38, add_med 4.83 mm, 0/32 flips, guard PASS (mean dAUC +0.0124, min -0.0014).
+  - T3: pot, blue cup and dust pan fail the guard; the 7 other objects fail the CD-O gate. Nothing adopted.
+- Hypotheses:
+  - H-BL survives;
+  - H-GF is not falsified, but the fit created no new WIN (the raw picks already pass the gate);
+  - H-T2 survives for the dust pan only, a replication of the 30 Oct diag.
+- [E] board, C0's model (`python -I scripts/c1_estimate.py <mesh-2026-10-26> c1_cdo_estimate.json`):
+  - C1 adds -0.0341, so pack 9a 0.3667 -> 0.3327;
+  - with beige on eval 10 only, 0.3459;
+  - with C0's held-back blue cup, 0.3004.
+- [D] pack 9a + C1 over 18 twins, recombined from stored run JSONs (`python -I scripts/c1_config.py <cdo-sprint>
+  c1_config.json`): mean dAUC +0.0091, min -0.0092 (ep12), dMPPE -0.074 cm, dRPE -0.103 cm.
+- Open:
+  - eval 8 beige (offset anchor, with the C0 pot as rotation anchor; v3x-tracked rollouts) has no twin;
+  - provenance O1, including the lathe_obs constants flagged by C0b;
+  - joint ep11 / ep18 runs are needed if the blue cup or a sweeper swap joins the pack.
+- Nothing was sent to focused-pascal or packed.
