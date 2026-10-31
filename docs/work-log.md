@@ -5812,3 +5812,13 @@ Background agent, CPU only, $0, no ground truth read.
   56216787 20261031-rscr42-2e25459 'SEEDS=42 bash ops/jobs/recipe_screen.sh'` (commit 2e25459, = 609582a job + log
   lines) → Vast instance 58531195, RTX PRO 6000 Max-Q, Poland, $1.271/h all-in.
 - Box 2 (SEEDS=43) follows ~10 min later after box 1's setup looks healthy.
+
+### 2026-10-31 12:28 UTC — determined-wright: recipe screen box 2 of 2 rented
+- Box 1 (58531195) healthy at 12:23 UTC: job log shows code 2e25459, arms [C K D], seeds [42], patches applied
+  (TRAIN_ARGS curriculum=tracking_250m_mixed_reset_v2d + FDR weights), references pulling.
+- Ledger planned `20261031-rscr43-865dfbb` $15 (note names offer 57548541, which was gone at create: 404 no_such_ask).
+  Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 57391360 20261031-rscr43-865dfbb
+  'SEEDS=43 bash ops/jobs/recipe_screen.sh'` (commit 865dfbb: same job code as 2e25459, log lines only) → Vast
+  instance 58532423, RTX PRO 6000 WS, South Korea, $1.487/h all-in.
+- Expected end ~20:00–23:00 UTC [E]; both self-destroy. Merge afterwards on CPU:
+  `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/... --out merged.json`.
