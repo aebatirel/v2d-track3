@@ -5480,3 +5480,8 @@ Advice given:
   merge files were already in the store (pulled 30/30). Copied verify/summary/job.log of both boxes into results/.
 - 23:32 UTC S30a: `create 56216789 20261031-drS30s42-a1a7e25 'ARM=dr MODE=std EPS="30" SEEDS="42" bash ops/jobs/mass_eval.sh'`
   → instance 58590659 (Poland, $1.271/h); ledger planned $3.00.
+- 23:45 UTC S30b: `create 28784856 20261031-drS30s43-a1a7e25 'ARM=dr MODE=std EPS="30" SEEDS="43" bash ops/jobs/mass_eval.sh'`
+  → instance 58591555 (Spain, $1.377/h; chosen over the $1.271 Poland offer, which is the same host as S30a); ledger planned
+  $3.00. All five D training boxes launched (G 58587687, S25a 58588731, S25b 58589859, S30a 58590659, S30b 58591555);
+  D boxes burn ≈ $6.75/h. Vast credit $49.53 (23:45Z). Next: per-box summary.json + verify.txt after each box, then
+  dr_eval_merge.py → the confirmation box string (PREREG section 3), then dr_score / dr_verdict on CPU.
