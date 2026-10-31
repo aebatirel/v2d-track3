@@ -6175,7 +6175,7 @@ Background agent, CPU only, $0, no ground truth read.
 - [H] Our ep24 track places the free-standing cross ~3 cm too high; the same may hold for eval 25 (boards). Falsifier:
   a GT-free depth check of the board bottom edges against the table plane.
 
-### 2026-10-31 22:24 UTC — determined-wright: test A (command smoothing) FAILS; contact budget of eval 25 measured
+### 2026-10-31 22:22 UTC — determined-wright: test A (command smoothing) FAILS; contact budget of eval 25 measured
 - Test A (§11, pre-registered 21:50 UTC): 16 CPU jitter checks, 16 copies each, common random numbers.
   - GL raw → smoothed Δ: +0.002 / +0.004 / +0.014 / +0.003.
   - SOL raw → smoothed Δ: −0.011 / −0.027 / +0.014 / −0.025.
