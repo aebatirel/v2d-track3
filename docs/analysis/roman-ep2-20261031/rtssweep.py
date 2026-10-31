@@ -43,29 +43,34 @@ def prep(d, meshdir):  # the same fits and gate as all20.episode, returning the 
     return out
 
 
-data, meshdir, outf = sys.argv[1:4]
-objs = []
-for d in sorted(glob.glob(f'{data}/ep*'), key=lambda s: int(s.rsplit('ep', 1)[1])):
-    objs += prep(d, meshdir)
-raw = np.array([A.add_cm(o['p'], o['q'], o['R0'], o['G']) for o in objs]); adv = {}
-res = {'raw_mean': float(raw.mean()), 'n_objects': len(objs), 'cells': []}
-for shift in (0.0, A.ADV):
-    for sig in (0.0005, 0.001, 0.002, 0.004):
-        for qf in (1.0, 4.0, 16.0, 64.0):
-            for qs_ratio in (1.0, 1e-2, 1e-4):  # still-object process noise as a fraction of the held one (1.0 = no gating)
-                vals = []
-                for o in objs:
-                    p, q = (o['p'], o['q']) if shift == 0 else (A.advance(o['p'], shift), A.qadvance(o['q'], shift))
-                    ps = A.kf(p, o['held'], sig, qf, qf * qs_ratio, smooth=True)
-                    qq = A.kf(q, o['held'], sig / 0.1 * np.deg2rad(0.3) / 2, qf * 2.5, qf * 2.5 * qs_ratio, smooth=True)  # rotation noise scaled with sig
-                    vals.append(A.add_cm(ps, qq, o['R0'], o['G']))
-                v = np.array(vals); dlt = v - raw
-                res['cells'].append(dict(shift=shift, sig_m=sig, q_held=qf, still_ratio=qs_ratio, mean=float(v.mean()),
-                                         rel_pct=float(100 * (v.mean() / raw.mean() - 1)), better=int((dlt < -0.005).sum()), worse=int((dlt > 0.005).sum())))
-        print('shift', shift, 'done', file=sys.stderr, flush=True)
-# the shift alone, for reference
-sh = np.array([A.add_cm(A.advance(o['p'], A.ADV), A.qadvance(o['q'], A.ADV), o['R0'], o['G']) for o in objs])
-res['shift_only'] = dict(mean=float(sh.mean()), rel_pct=float(100 * (sh.mean() / raw.mean() - 1)))
-json.dump(res, open(outf, 'w'), indent=1)
-best0 = min([c for c in res['cells'] if c['shift'] == 0], key=lambda c: c['mean']); best1 = min([c for c in res['cells'] if c['shift'] > 0], key=lambda c: c['mean'])
-print(json.dumps(dict(raw=res['raw_mean'], shift_only=res['shift_only'], best_smoother_no_shift=best0, best_smoother_with_shift=best1), indent=1))
+def main():
+    data, meshdir, outf = sys.argv[1:4]
+    objs = []
+    for d in sorted(glob.glob(f'{data}/ep*'), key=lambda s: int(s.rsplit('ep', 1)[1])):
+        objs += prep(d, meshdir)
+    raw = np.array([A.add_cm(o['p'], o['q'], o['R0'], o['G']) for o in objs]); adv = {}
+    res = {'raw_mean': float(raw.mean()), 'n_objects': len(objs), 'cells': []}
+    for shift in (0.0, A.ADV):
+        for sig in (0.0005, 0.001, 0.002, 0.004):
+            for qf in (1.0, 4.0, 16.0, 64.0):
+                for qs_ratio in (1.0, 1e-2, 1e-4):  # still-object process noise as a fraction of the held one (1.0 = no gating)
+                    vals = []
+                    for o in objs:
+                        p, q = (o['p'], o['q']) if shift == 0 else (A.advance(o['p'], shift), A.qadvance(o['q'], shift))
+                        ps = A.kf(p, o['held'], sig, qf, qf * qs_ratio, smooth=True)
+                        qq = A.kf(q, o['held'], sig / 0.1 * np.deg2rad(0.3) / 2, qf * 2.5, qf * 2.5 * qs_ratio, smooth=True)  # rotation noise scaled with sig
+                        vals.append(A.add_cm(ps, qq, o['R0'], o['G']))
+                    v = np.array(vals); dlt = v - raw
+                    res['cells'].append(dict(shift=shift, sig_m=sig, q_held=qf, still_ratio=qs_ratio, mean=float(v.mean()),
+                                             rel_pct=float(100 * (v.mean() / raw.mean() - 1)), better=int((dlt < -0.005).sum()), worse=int((dlt > 0.005).sum())))
+            print('shift', shift, 'done', file=sys.stderr, flush=True)
+    # the shift alone, for reference
+    sh = np.array([A.add_cm(A.advance(o['p'], A.ADV), A.qadvance(o['q'], A.ADV), o['R0'], o['G']) for o in objs])
+    res['shift_only'] = dict(mean=float(sh.mean()), rel_pct=float(100 * (sh.mean() / raw.mean() - 1)))
+    json.dump(res, open(outf, 'w'), indent=1)
+    best0 = min([c for c in res['cells'] if c['shift'] == 0], key=lambda c: c['mean']); best1 = min([c for c in res['cells'] if c['shift'] > 0], key=lambda c: c['mean'])
+    print(json.dumps(dict(raw=res['raw_mean'], shift_only=res['shift_only'], best_smoother_no_shift=best0, best_smoother_with_shift=best1), indent=1))
+
+
+if __name__ == '__main__':
+    main()

@@ -5611,3 +5611,13 @@ arm and a no-policy replay floor to stage B.
     - (2) uncertainty training (start-state randomisation is in tonight's screen; observation noise + a memory in the
       policy needs code, after the freeze);
     - (3) worst-of-copies scoring in the physics solver.
+- ~22:35 UTC owner: wants item 1 (slip signal) with physical knowledge, working with and improving the physics solver;
+  2 and 3 where they fit; and perception improvements.
+  - Cross-validated smoother: held-out −0.5 / −1.2 % on top of S2; same settings chosen on both halves.
+  - Messages sent:
+    - **determined-wright:** arm V (object velocity in the actor; verify the config key and evaluator honouring on
+      CPU), 4 eps × 2 seeds on tonight's chosen reference base, ≈ $5–6 [E]; V+D if D passes; solver v2 with a no-slip
+      term, force feasibility (task_wrench + grasp_force LP), worst-of-copies scoring, earlier re-plan windows, gradual
+      physics, optional synergies, gated on arm S, ≈ $8–12 [E]. Exact cost to the owner before launch.
+    - **focused-pascal:** S2 into rebuilt eval references (masses arm unchanged); the smoother as a refine step with
+      frozen cross-validated settings, kit-chain gate.

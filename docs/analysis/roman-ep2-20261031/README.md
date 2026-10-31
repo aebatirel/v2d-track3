@@ -102,3 +102,11 @@ on perception (our tracked object paths, the robot's training target), not on th
 state.
 
 Shared page for Roman: https://claude.ai/artifact/6ZSVt1Fz17nXR8gzEKx7mo (private until the owner shares it).
+
+## Cross-validated smoother (`cvsmooth.py` → `cvsmooth.json`) [M]
+Settings were chosen on half of the episodes (alternate episodes of the sorted list) and scored on the other half, both
+ways, always on top of the half-frame advance. Both halves pick the same cell: observation noise 8 mm, process 4.0 when
+a hand is near, ×0.01 when still.
+- Held-out gain on top of the advance: −1.2 % (10 better, 2 worse, worst +0.012 cm) and −0.5 % (7 better, 0 worse).
+- Advance + smoother vs raw on the held-out halves: −10.5 % and −3.2 %.
+- Proposed to focused-pascal as a refine step behind the kit-chain gate.
