@@ -1148,7 +1148,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     F-I1.14.
 
 - **2026-10-31, F-I4.12 (post hoc): slot centre from the partner's plate body, not from the component's voxel
-  centroid.** Written 16:55 UTC after the first synthetic w1 probe of the F-I4 build and committed and pushed **before
+  centroid.** Written 16:33 UTC after the first synthetic w1 probe of the F-I4 build (16:26-16:32) and committed and pushed (94eed1c, 16:35 UTC) **before
   T-I11 (ep24) or any other real-data run with F-I4**; no real-data F-I4 number exists when it is committed. Labelled
   post hoc: it changes F-I4.3 after a pre-registered test (F-I4.10 w1) missed. Measured [M, synthetic, T-I1 cross,
   t = 10 mm, two-sided cameras, waiver on; probe `<scratch>/interlock/fi4/probe_w.py`, 4 copies]: the F-I4.3 centre
@@ -1174,7 +1174,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   assembled frames; a track error there moves the slot with it, which P6 / P7 (other frames) can expose.
 
 - **2026-10-31, F-I4.13: T-I1 w1-w5 outcomes before T-I11 (no rule change).** Synthetic, code = F-I4 + F-I4.12, run
-  17:00-17:15 UTC on this container [M]: w1 at t = 10, 13, 18 mm passes (CARVE T1, not submitted; plate thickness
+  16:38-16:50 UTC on this container [M]: w1 at t = 10, 13, 18 mm passes (CARVE T1, not submitted; plate thickness
   10.17/10.12, 13.43/13.34, 18.12/18.12 mm; width within 0.2 mm of t + 2; centre within 0.1 mm of the true slot, the
   F-I4.3 component centroid would have been 0.76-2.81 mm off; 3 pieces; keep-out 0.0 cm3 per hull; depth sum - W_x =
   2.6-4.3 mm). **Known miss at t = 6 mm (pre-registered w1 width tolerance):** the plane-pair thickness reads
