@@ -5599,3 +5599,8 @@ diagnostic; nothing is picked for submission.
 - **Next:**
   - blue cup via C0b (-1.16 -> ~0.300 board);
   - then pitcher and rack.
+- ~18:30 UTC: launched `cdo-sprint-c2` (`wf_ab0f7487-e3d`, task wf1kqbge3), scan-free:
+  - track P: pitcher obs-lathe plus appendages on ep21/ep22 (H-P: CD-O <= 0.6, ADD <= library + 2 mm);
+  - track R: rack parts added where our points show the prim missing structure (H-R: <= 0.40);
+  - each with a PREREG, a pre-registered obs_fidelity pick, one scoring and the C0 AUC guard, plus a verifier;
+  - one self-destroying Vast CPU box per track allowed (cap $4).

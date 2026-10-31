@@ -599,3 +599,8 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 18:15 pushed f62454a (PREREG F-I4.15, INTERLOCK 20.10, this log, work log; committed 18:14:55 UTC). Correction: the
   entry above, F-I4.15's header and the work-log heading first said 18:17, a guessed time; replaced by the commit time
   (follow-up commit, text otherwise unchanged). Amend step done; no code edited, nothing run.
+- 18:22 (Build + public runs step, board-slot round-2 workflow) started: F-I4.15 confirmed on origin (f62454a, 033d8a8
+  ancestors of origin/claude/bold-albattani-6qmxsv). Read I.md "Board slot (owner waiver)" + round 2, PREREG F-I4 to
+  F-I4.15, platebody.py. Plan: F-I4.15 in platebody.py (new functions; rectangle path kept for fi4_rev 14), driver
+  hooks only if needed, tests w1-w9 (+ w6c, w8, w8b, w9), full T-I1 waiver off, then T-I11 ep24 tag fi4o with physics
+  (16 copies), then ep23 plate + body only (v6 bundle).

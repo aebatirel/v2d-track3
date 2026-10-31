@@ -122,6 +122,12 @@ def main():
                 nc, cc = nn, -nn @ q0
         Po = Pc @ Ti[:3, :3].T + Ti[:3, 3]
         inroi = np.all((Po >= lo) & (Po <= hi), axis=1)
+        if a.roi_cube is not None:
+            # C0b cube ROI (whole-image windows): the same filters, evaluated only where they can matter (samples
+            # inside the cube; voxel samples within HIT of the surface) - the kept samples and votes are the same
+            fast_frame(a, t, Pc, Po, inroi, segs, others, nc, cc, X, T, K, W, H, Dt, hits, free, keep_pts, keep_cam,
+                       keep_fr, Ti)
+            continue
         bad = (Pc @ nc + cc) <= a.table_band
         if segs is not None and len(segs[t][0]):
             A0, B0, rad = segs[t]
@@ -169,6 +175,56 @@ def main():
                         hits=hits.reshape(shape), free=free.reshape(shape), args=json.dumps(_args_record(a)))
     print(json.dumps(dict(obj=a.obj, frames=int(len(range(0, N, a.stride))), raw=int(len(pts)), kept=int(ok.sum()),
                           sec=round(time.time() - t0, 1))))
+
+
+def _capsule_bad(P, segs_t):
+    bad = np.zeros(len(P), bool)
+    A0, B0, rad = segs_t
+    for s in range(len(A0)):
+        ab = B0[s] - A0[s]; ap = P - A0[s]
+        h = np.clip(ap @ ab / max(ab @ ab, 1e-12), 0, 1)
+        bad |= np.linalg.norm(ap - h[:, None] * ab, axis=1) <= rad[s]
+    return bad
+
+
+def fast_frame(a, t, Pc, Po, inroi, segs, others, nc, cc, X, T, K, W, H, Dt, hits, free, keep_pts, keep_cam, keep_fr, Ti):
+    """One frame of the loop in main() for the C0b cube ROI. Same rules as the library-box path: a sample is kept
+    iff it is inside the ROI and not on the table band, a hand / forearm capsule or within OTHER_R of a co-object; a
+    voxel gets a free vote where depth lies > FREE behind it and a hit where a filtered sample lies within HIT of it.
+    The filters run only on the samples whose result is used (inside the cube; within HIT), which is what makes the
+    0.6 m cube affordable."""
+    ci = np.nonzero(inroi)[0]
+    Pci = Pc[ci]
+    bad = (Pci @ nc + cc) <= a.table_band
+    if segs is not None and len(segs[t][0]):
+        bad |= _capsule_bad(Pci, segs[t])
+    for T_oo, tree, olo, ohi in others:
+        Tj = np.linalg.inv(T_oo[t]); Pq = Pci @ Tj[:3, :3].T + Tj[:3, 3]
+        near = np.nonzero(np.all((Pq >= olo - a.other_r) & (Pq <= ohi + a.other_r), axis=1))[0]
+        if len(near):
+            bad[near[tree.query(Pq[near], k=1, distance_upper_bound=a.other_r)[0] <= a.other_r]] = True
+    sel = ci[~bad]
+    keep_pts.append(Po[sel].astype(np.float32)); keep_fr.append(np.full(len(sel), t, np.int32))
+    keep_cam.append(np.repeat(Ti[:3, 3][None].astype(np.float32), len(sel), 0))
+    Xc = X @ T[:3, :3].T + T[:3, 3]; z = Xc[:, 2]
+    okv = z > 0.05
+    pu = np.full(len(X), -1, np.int64); pv = pu.copy()
+    pu[okv] = np.round(K[0, 0] * Xc[okv, 0] / z[okv] + K[0, 2]).astype(np.int64)
+    pv[okv] = np.round(K[1, 1] * Xc[okv, 1] / z[okv] + K[1, 2]).astype(np.int64)
+    okv &= (pu >= 0) & (pu < W) & (pv >= 0) & (pv < H)
+    idx = np.nonzero(okv)[0]
+    dv = Dt[pv[idx], pu[idx]]
+    good = np.isfinite(dv) & (dv > 0.05)
+    idx, dv = idx[good], dv[good]
+    sdf = dv - z[idx]
+    free[idx[sdf > a.free]] += 1
+    nr = np.abs(sdf) < a.hit
+    idn, dn = idx[nr], dv[nr]
+    Pd = Xc[idn] * (dn / z[idn])[:, None]
+    badv = (Pd @ nc + cc) <= a.table_band
+    if segs is not None and len(segs[t][0]):
+        badv |= _capsule_bad(Pd, segs[t])
+    hits[idn[~badv]] += 1
 
 
 def _args_record(a):

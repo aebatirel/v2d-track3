@@ -427,7 +427,10 @@ class FI5:
         return f
 
     # ---- F-I5.3 (e) caps
-    def _caps(self, recv, carved, d, kind, carved_before):
+    def _caps(self, recv, carved, d, kind, carved_before, kin=None):
+        """F-I5.3 (e): removed collider volume (default minus carved, Monte Carlo) cumulative <= 10 % of the round-0
+        collider volume; reach of the carve (the default collider's samples inside K and R+, as interlock._budget
+        measures the carve solid) <= 0.6 of the collider's extent along d (INSERTION / SLIDE); topology on 2 mm."""
         from gmg import simphys as PH
         ob = self.objects[recv]
         Xd, cell = PH.guest_samples(ob['hulls'])
@@ -436,10 +439,12 @@ class FI5:
         inC = CP.Hulls(carved).inside(Xd)
         removed = float((~inC).sum()) * cell * 1e6
         share = (carved_before + removed) / max(ob['vol0_cm3'], 1e-9)
+        inK = kin(Xd) if kin is not None else ~inC
+        carve_cm3 = float(inK.sum()) * cell * 1e6
         reach = None
-        if kind in ('INSERTION', 'SLIDE') and (~inC).any():
+        if kind in ('INSERTION', 'SLIDE') and inK.any():
             s_all = Xd @ d
-            s_rm = Xd[~inC] @ d
+            s_rm = Xd[inK] @ d
             reach = float((s_rm.max() - s_rm.min()) / max(s_all.max() - s_all.min(), 1e-9))
         # topology on the 2 mm grid
         pitch = CP.k_('pitch_m')
@@ -452,7 +457,8 @@ class FI5:
         ok_v = share <= k_('budget_vol')
         ok_r = reach is None or reach <= k_('budget_reach')
         ok_t = t0 == t1
-        return dict(removed_cm3=round(removed, 3), cumulative_share=round(share, 4), vol0_cm3=round(ob['vol0_cm3'], 2),
+        return dict(removed_cm3=round(removed, 3), carve_in_body_cm3=round(carve_cm3, 3),
+                    cumulative_share=round(share, 4), vol0_cm3=round(ob['vol0_cm3'], 2),
                     reach=None if reach is None else round(reach, 3), topology=dict(default=list(t0), carved=list(t1)),
                     ok_vol=bool(ok_v), ok_reach=bool(ok_r), ok_topology=bool(ok_t), pass_=bool(ok_v and ok_r and ok_t),
                     fail=None if (ok_v and ok_r and ok_t) else ('topology_fail' if not ok_t else 'budget_iv_fail'))
@@ -729,7 +735,9 @@ class FI5:
         if carved is None:
             W['caps'] = dict(pass_=False, fail='budget_iv_fail', why=crep.get('why'))
         else:
-            W['caps'] = self._caps(recv, carved, comp0.run.d, comp0.run.kind, self.objects[recv]['carved_cm3'])
+            W['caps'] = self._caps(recv, carved, comp0.run.d, comp0.run.kind, self.objects[recv]['carved_cm3'],
+                                   kin=self._k_inside([k for k, _ in self.objects[recv]['K']] + Kall,
+                                                      [a for _, a in self.objects[recv]['K']] + allow_masks))
         # report (F-I5.7)
         rep = {}
         try:

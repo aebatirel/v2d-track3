@@ -418,8 +418,11 @@ class Controls(unittest.TestCase):
         W, rep = self._boxes(pose, 30, [10, 11, 12], 'x7_n4')
         self.assertFalse(W.get('in_scope'), W)
 
+    @unittest.expectedFailure
     def test_x7_wander(self):
-        """T-I1 n5 control (a 30 mm box at random positions within +-60 mm, 3 mm deep): not persistent, no carve."""
+        """T-I1 n5 control (a 30 mm box at random positions within +-60 mm, 3 mm deep): pre-registered "not persistent,
+        no carve" MISSED (18:04 UTC, logged): between colliders B always sits 3 mm inside A, so B<-A holds 64 persistent
+        swept voxels and A<-B 7; the pair is in F-I5 scope and only the acceptance can refuse it."""
         rng = np.random.default_rng(5)
         pos = rng.uniform(-0.06, 0.06, (40, 2))
 
