@@ -783,3 +783,67 @@ scan number was seen; none bears on these choices.
     PCA extents of the placed mesh against the owned points' extents, on all owned points and on their largest 8 mm
     component (about 5 % of the clean ep2 lid's owned points lie 200-330 mm from its median [M], which inflates the
     all-points extent; seen in the dry run), share outside the grid, `physcheck.placement` (F-I1.9), montage.
+
+## B4 round 2 (2026-10-31, fixes after B4 verification round 1)
+
+Written 14:05-14:40 UTC, **after** the v4 run (`20261031-b4ext4-b61e8aa`) and its B.2a, B.3 and B.15 results and the
+verifier's report were seen. No scan or eval number was seen; none bears on these entries. The v4 verdicts (B.2a FAIL,
+B.3 FAIL, P22 falsified) are the pre-registered outcomes and are not changed by anything below (PREREG D.3). Round-2
+entries carry labels `B4-R2.n` instead of numbers, because parallel sessions append to this file.
+
+B4-R2.0. **Numbering and disclosure note.** Numbers 82 and 102 are each used twice: read B4's entries as "B4-82" (dev
+    role `clean_run`) and "B4-102" (speed only; how B.15 is reported), B7's as "B7-82" and "B7-102". Number 111 is
+    also used twice (B5 round 2 and B3; not B4's). Entries 95, 99, 100 and 101 were written after outputs were seen;
+    each says so; none involved a scan or eval number and none changes a pre-registered verdict.
+B4-R2.1. **Rule-B seed points = the proposal's samples that no other object owns** (supersedes the seed-point
+    sentence of entry 86; applies to the fallback seed of entry 101 too). Entry 86 kept only frame-0 samples inside
+    the chosen proposal that were provisionally o-owned or o-tied. Seen [M, GT-free, `<DATA>/gmg/b4fix/det_diag.py`:
+    det masks, tracks, calib and v4 bundle points]: in ep23 both boards' proposals are whole-board masks (half-res
+    areas 7016 / 7028 and 6804 cells; each covers 100 % / 95 % of the board's frame-0 footprint), but only 96 / 260 of
+    their cells held a provisionally owned point of the board (IoU 0.013 / 0.038), so board 1's seed was 283 points
+    (box 11 x 66 x 39 mm) and the 1.5 x guard clipped its component from 1864 to 335 voxels. SPEC section 7 calls the
+    proposal itself the seed ("the frame-0 SAM2 proposal ... assigned exclusively"); the ownership filter was this
+    builder's addition. Now: seed points = every frame-0 sample of o's cube inside the chosen proposal that is not
+    provisionally owned by another tracked object (o-owned, o-tied and unowned samples; a sample owned by another
+    object, or shared without o in its tie set, is excluded). The proposal choice (exclusive, holding o's projected
+    origin, largest IoU with o's provisional footprint), the guard, its constants and every other rule are unchanged.
+    The seed's category counts are stored (`crop.<o>.seed_in_proposal`, `seed_mine`, `seed_unowned`,
+    `seed_other_excluded`). Affects the det-seeded episodes (v4: ep11, 22, 23, 26 pot, 31, 39, 41-45); rule-A episodes
+    are unchanged. Not fixed by it: a proposal that is itself a partial mask (ep31 sweeper: it covers 64 % of the
+    sweeper's frame-0 footprint), and a rule-A seed that already holds clutter (ep24 board 1: seed box 131 x 191 x
+    372 mm, so the guard cannot act). Both are properties of SPEC's one-view seed and guard and are reported, not
+    changed.
+B4-R2.2. **Identity-test distance less dependent on the ICP subsample** (track_sanity `reg_chamfers`; SPEC section 7
+    "symmetric chamfer in mm after rigid best-of-24 PCA-start ICP"). Seen (verifier, `verif_b4/cross_seed.py` [M]):
+    with the round-1 distance (one 1500-point subsample, seed 0, chamfer on that subsample) the ep11 blue cup is
+    flagged at seeds 0-2 and passes at seed 3; the ep22 blue cup is flagged at seed 0 only. Now: register() with
+    subsample seeds 0-3 (24 PCA starts each, unchanged), each final transform's chamfer evaluated on the full
+    4000-sample shells, the lowest wins; the split and cross tests both use it. The round-1 seed-0 values and verdicts
+    are stored beside (`seed0`) and set no flag. No threshold or rule changes; the decision is still d_own < d_other.
+    b4_identity runs the registrations on a fork process pool (3 workers; speed only).
+B4-R2.3. **Census diagnostic: the gap between each frame's own owned points** (`contact.frame_gaps`; pass-4 census
+    records gain `d3_frame_mm` and `sep3d_frame`). Seen (verifier, `verif_b4/perframe_gap.py` [M]): the census gap
+    (whole-episode owned clouds placed by the tracks, the reading of the design probe `gen-first/contact_census.py`
+    that SPEC M4 reuses) is <= 0.8 mm in every ep26 frame although the pot moves 208 x 206 x 56 mm relative to the
+    rack; each frame's own points are > 20 mm apart in 17 of 79 frames (ep26) and 43 of 123 (ep27). The census rule is
+    NOT changed: the per-frame reading misses contact hidden by occlusion (a seated lid's visible top lies far from the
+    pot's visible wall), and SPEC names the probe's logic. No rule, flag or seed reads the new fields. b4_b2a reports
+    beside the pre-registered B.2a a diagnostic leakage (`diag_frame_gap`): reference from the `sep3d_frame` frames,
+    test frames = census contact frames outside them. It is not B.2a and changes no verdict.
+B4-R2.4. **Interface deviations from the SPEC section 7 table (not recorded in round 1).** M2: `extract_episode`
+    returns the in-memory `Bundle`, not `bundle_dir`; `out_dir` is ignored (b4_extract saves the bundle after M3 has
+    added good frames, sanity, rest planes and shells); extra keywords `aux_dir`, `log`, `roster`; `seed_masks` is the
+    det-dump path. M4: `census(objs, poses, frames, K)` works on centroid clouds; SPEC's `census(bundle)` is
+    `census_bundle(bundle)`, which returns the census fields only: `j_mm`, `co_moving`, `co_moving_unresolved`,
+    `tie_break`, `band_mm` and `census_unstable` are added by extract_joint to the pass-4 records it stores in
+    `meta['contact']` (what later steps read). M3: `check(bundle, obj)` returns good, flags, below_table_frac,
+    block_resid_mm and extra fields, but not identity_split / identity_cross: those need the partner's shell and all
+    public bundles, so b4_extract writes `identity_split` and b4_identity writes `identity_cross` into
+    `meta['sanity'][obj]`. Round 2 adds the pass-2/3 helpers (`det_candidates`, `det_seed_select`,
+    `seeded_component`, `crop_guard`, `resolve_ties`, `pair_flags`) as module functions so tests reach them; apart from
+    B4-R2.1 they compute what round 1 computed inline. No result changes.
+B4-R2.5. **Run v5** (`<DATA>/gmg/runs/20261031-b4ext5-a776e8e`, all 20 public episodes on one commit, clean,
+    strace-audited, 2 local streams because of disk). v4 stays the pre-registered B4 record; v5's B.2a, B.3 and B.15
+    numbers are post-hoc [M] (after the v4 numbers were seen) and are reported beside v4, never in place of it. Which
+    bundle set later steps consume (v4 as pre-registered, or v5 without the known crop defect) is left to the
+    orchestrator / owner; the C.2 anchor table is given for both.
