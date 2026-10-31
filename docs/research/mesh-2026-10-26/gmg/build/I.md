@@ -714,6 +714,22 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   load ~20-24): **ep11 blue_cup rotc 3.013 sigma -> lathe NOT accepted** (threshold 3 sigma; B7 dev bundle gave 1.61),
   so it goes to route 3 (CoACD 0.02 + repair): **P41 falsified as written** (a cup leaves the lathe route); no change.
   ep12 blue_cup 1.598 sigma -> lathe; ep31 mini_sweeper 3.068 -> route 3. CoACD children running for ep11, ep12, ep31.
+- 19:55 [M] **ep11 blue_cup default pieces = route 4 (voxel boxes at 6 mm: 17 boxes, 30 cells)**: route 3 CoACD 0.02
+  returned 82 hulls (= the cap, 688 s), so the keep-out repair could not split (0 steps); 36 hulls over 0.3 cm3, max
+  2.99 cm3 (keep-out 30.4 cm3 in all) -> gate fail -> route 4; 2 mm boxes over the cap, 4 mm too, 6 mm passes with 30
+  cells (~6.5 cm3 [E, 30 x 216 mm3] for a cup body of ~170 cm3: a coarse grid of cells that must lie wholly inside a
+  ~4 mm wall keeps almost nothing). The gate passes by construction, but this collider is not a cup [E until the
+  delivered volume is read]. Rule as written; no change; reported. ep2 white_pot lathe accepted (2.39 sigma; P45
+  expected route 3 / 4).
+- 20:01 [M] **ep12 blue_cup default pieces also = route 4 (6 mm boxes: 29 boxes, 55 cells)**: the lathe route was
+  accepted (1.598 sigma), its rings were fine (8 sectors after the fallback, 65 ring pieces, continuity 0 gaps on 129,240
+  rays), but the "handle" step found many components of shell material outside the revolved body by > 3 sigma (>= 13
+  components of 0.4-3.1 cm3, each decomposed and added), so rings + handle hulls exceed the 82 cap
+  (`lathe_over_cap (with the handle)`); route 3 CoACD 0.02 gave 82 hulls (1020 s), 36 over 0.3 cm3 (max 4.86 cm3) ->
+  route 4. So on real data both blue cups so far get a sparse 6 mm box collider [M: 30 / 55 cells], not a cup. [H] the
+  "handle" components are SHELL-candidate residuals (the blue cup has no handle), i.e. the 3 sigma / 0.3 cm3 handle test
+  is too permissive for our noisy shells; falsifier: those components lie on the shell's outer surface within ~2 sigma
+  of the profile in other sectors. Reported, no change.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
