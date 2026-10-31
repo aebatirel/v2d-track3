@@ -5404,3 +5404,18 @@ diagnostic; nothing is picked for submission.
     AUC guard (base runs reused);
   - eval rebuild (E0b) with library_e0b / e0bx;
   - two verifiers, report and hand-off for pack 10.
+
+### 2026-10-31 ~16:52-16:57 UTC — E0 select and package (CPU, $0, nothing recomputed)
+- Box run `mesh-20261031-e0-b05f001` (code b05f001, Vast instance 58555214, ~15 min, ~$0.13 [E]) was pulled
+  (sha256 1062/1062 OK). `cdo-sprint/E0/scripts/e0_package.py` (python -I) applied PREREG sections 4 and 6 again from
+  the raw fidelity and check rows. It agrees with the box selection.json on every object.
+- Picks (obs_fidelity sum_mm on all eval points of the object; E0 / C0 / library_v3; in-sample for E0) [M]:
+  pot ep3/fit 2.922 / 2.914 / 3.881 (18/24 eligible; runner-up ep3/nostem is byte-identical, then ep3/thick 3.077);
+  lid ep1/t2.5_fit 1.675 / 1.772 / 5.186 (1/2; tsdf not watertight); rack joint (eval 14, 15, 16, 28, 30)
+  6.419 / 6.245 / 5.881 (12/12; runner-up joint_nomk 6.432); blue cup ep32/g1 2.646 / 2.723 / 2.906 (11/11; runner-up
+  ep32/g0 2.664). Recommendation E0 x4, no rule flags. Reviewer notes: pot and rack do not beat C0 even in-sample;
+  library_v3 has the lowest rack fidelity of all 14 meshes. The marker-ball prior and the 2.5 mm thickness flags carry
+  over from C0.
+- Packaged `meshes/library_e0` and `meshes/library_e0x` (library_c0 / c0x, with blue cup reset to v3 / v3x and the 4 E0
+  picks), `cdo-sprint/E0/meshes/`, `E0/MANIFEST.json` (36 pairs; 17 E0, 19 unchanged), `E0/README.md`. md5: pot
+  858fc4c6..., lid 08b65d4f..., rack 9b8adbe3..., blue cup b479269e.... Not scored: there is no eval ground truth.

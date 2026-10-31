@@ -1,0 +1,2189 @@
+{
+ "candidate": "E0",
+ "description": "C0's mesh methods (kit-of-parts pot, lid, rack; observed-point lathe blue cup) rebuilt with the same frozen public settings on each EVAL episode where the object appears; one mesh per object picked GT-free by the pre-registered rule (PREREG.md) and shipped for every eval pair of it.",
+ "status": "packaged; not scored (no eval ground truth exists). Recommendation by PREREG section 6: white_pot E0, white_pot_lid E0, plastic_dish_rack E0, blue_cup E0. Owner decides what ships.",
+ "prereg": {
+  "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0/PREREG.md",
+  "sha256": "bfb85697c3ae0c79f3bf7563a96a1d0f2472937eb823f2612902a8a84b7ab6d1"
+ },
+ "run": {
+  "run_id": "mesh-20261031-e0-b05f001",
+  "commit": "b05f001001fe3d4a80659e32c1d1c9fa91f3276d",
+  "instance": "58555214",
+  "offer": "57321792 (Connecticut US, AMD EPYC 7K62, 96 effective cores, 252 GB RAM, $0.487/h all-in)",
+  "created_utc": "2026-10-31T16:25:29Z",
+  "job_done_utc": "2026-10-31T16:40:22Z",
+  "destroyed_confirmed_utc": "2026-10-31T16:40:39Z",
+  "usd_actual_estimate": 0.13,
+  "pairs_ok": 17,
+  "pairs_failed": 0,
+  "results_local_sha256_check": "1062/1062 OK",
+  "results_store": "aebatirel/v2d-store runs/mesh-20261031-e0-b05f001/results/e0/",
+  "report": "docs/research/mesh-2026-10-26/cdo-sprint/E0/BOX.md"
+ },
+ "rule": "packed mesh only; simulator copies and rollouts unchanged (as C0)",
+ "libraries": {
+  "library_e0": {
+   "base": "meshes/library_c0",
+   "blue_cup_from": "meshes/library_v3/blue_cup.glb",
+   "swapped_by_e0": [
+    "blue_cup",
+    "plastic_dish_rack",
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "files": {
+    "beige_cup.glb": {
+     "sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+     "md5": "6226281f120192c52bffec7680fa9d8f",
+     "bytes": 151640,
+     "source": "meshes/library_c0/beige_cup.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "blue_cup.glb": {
+     "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+     "md5": "b479269e3ee21266db84df8a17bfdc1c",
+     "bytes": 421096,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "mini_dust_pan.glb": {
+     "sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "bytes": 134356,
+     "source": "meshes/library_c0/mini_dust_pan.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "mini_sweeper.flatten.json": {
+     "sha256": "22eb5e30e70c228387b0c0aa91977c1ed0dc8010951e6a852373e0757cc26493",
+     "md5": "bf72300f982d5ffe933d84104f62f9ee",
+     "bytes": 131,
+     "source": "meshes/library_c0/mini_sweeper.flatten.json",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "mini_sweeper.glb": {
+     "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "bytes": 88960,
+     "source": "meshes/library_c0/mini_sweeper.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "plastic_dish_rack.glb": {
+     "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+     "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+     "bytes": 48336,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "water_pitcher.glb": {
+     "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "bytes": 637688,
+     "source": "meshes/library_c0/water_pitcher.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "white_pot.glb": {
+     "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+     "md5": "858fc4c64b147eb2245bdcced9a29f73",
+     "bytes": 281184,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "white_pot_lid.glb": {
+     "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+     "md5": "08b65d4f7080e55c6ee81be9fa19cf8f",
+     "bytes": 171568,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_lid_eval1_t2.5_fit.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "wooden_piece_1.glb": {
+     "sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+     "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "bytes": 165136,
+     "source": "meshes/library_c0/wooden_piece_1.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "wooden_piece_2.glb": {
+     "sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b",
+     "md5": "825a7fe364d280603f36226595137f43",
+     "bytes": 173988,
+     "source": "meshes/library_c0/wooden_piece_2.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "wooden_spoon.glb": {
+     "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+     "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "bytes": 72556,
+     "source": "meshes/library_c0/wooden_spoon.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    }
+   },
+   "path": "meshes/library_e0"
+  },
+  "library_e0x": {
+   "base": "meshes/library_c0x",
+   "blue_cup_from": "meshes/library_v3x/blue_cup.glb",
+   "swapped_by_e0": [
+    "blue_cup",
+    "plastic_dish_rack",
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "files": {
+    "beige_cup.glb": {
+     "sha256": "af327b8087fcba7456910b9c2b6a56655082970f4bb7bf078c61e21c97e63845",
+     "md5": "ebea224c3dace035bdef928fcfa05967",
+     "bytes": 73908,
+     "source": "meshes/library_c0x/beige_cup.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "beige_cup.v5.json": {
+     "sha256": "b834d03a4f294239a302b08052b126ee2ab72f62010eceb605e0df4a64141b72",
+     "md5": "105ed4097dabacd9eddcef4e2f809d83",
+     "bytes": 1746,
+     "source": "meshes/library_c0x/beige_cup.v5.json",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "blue_cup.glb": {
+     "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+     "md5": "b479269e3ee21266db84df8a17bfdc1c",
+     "bytes": 421096,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "mini_dust_pan.glb": {
+     "sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+     "md5": "c33fa41118944a7da340cc82fc6449d8",
+     "bytes": 134356,
+     "source": "meshes/library_c0x/mini_dust_pan.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "mini_sweeper.flatten.json": {
+     "sha256": "22eb5e30e70c228387b0c0aa91977c1ed0dc8010951e6a852373e0757cc26493",
+     "md5": "bf72300f982d5ffe933d84104f62f9ee",
+     "bytes": 131,
+     "source": "meshes/library_c0x/mini_sweeper.flatten.json",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "mini_sweeper.glb": {
+     "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+     "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+     "bytes": 88960,
+     "source": "meshes/library_c0x/mini_sweeper.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "plastic_dish_rack.glb": {
+     "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+     "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+     "bytes": 48336,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "water_pitcher.glb": {
+     "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+     "md5": "fc824fc5b0a9325c91b630c19ba32677",
+     "bytes": 637688,
+     "source": "meshes/library_c0x/water_pitcher.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "white_pot.glb": {
+     "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+     "md5": "858fc4c64b147eb2245bdcced9a29f73",
+     "bytes": 281184,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "white_pot_lid.glb": {
+     "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+     "md5": "08b65d4f7080e55c6ee81be9fa19cf8f",
+     "bytes": 171568,
+     "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_lid_eval1_t2.5_fit.glb",
+     "same_as_c0": false,
+     "same_as_v3": false
+    },
+    "wooden_piece_1.glb": {
+     "sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+     "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+     "bytes": 165136,
+     "source": "meshes/library_c0x/wooden_piece_1.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "wooden_piece_2.glb": {
+     "sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b",
+     "md5": "825a7fe364d280603f36226595137f43",
+     "bytes": 173988,
+     "source": "meshes/library_c0x/wooden_piece_2.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    },
+    "wooden_spoon.glb": {
+     "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+     "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+     "bytes": 72556,
+     "source": "meshes/library_c0x/wooden_spoon.glb",
+     "same_as_c0": true,
+     "same_as_v3": true
+    }
+   },
+   "path": "meshes/library_e0x"
+  }
+ },
+ "library_use": "meshes/library_e0 for every eval pair except eval 8; meshes/library_e0x for eval 8 (as library_v3 / library_v3x and library_c0 / library_c0x)",
+ "selection": {
+  "white_pot": {
+   "eval_episodes": [
+    1,
+    3,
+    5,
+    6,
+    8,
+    28
+   ],
+   "n_candidates": 24,
+   "n_eligible": 18,
+   "excluded": {
+    "pot/ep1/tsdf": [
+     "raw mesh not watertight"
+    ],
+    "pot/ep3/tsdf": [
+     "raw mesh not watertight"
+    ],
+    "pot/ep5/tsdf": [
+     "raw mesh not watertight"
+    ],
+    "pot/ep6/tsdf": [
+     "raw mesh not watertight"
+    ],
+    "pot/ep8/tsdf": [
+     "raw mesh not watertight"
+    ],
+    "pot/ep28/tsdf": [
+     "raw mesh not watertight"
+    ]
+   },
+   "ranking": [
+    {
+     "label": "pot/ep3/fit",
+     "fid_all_sum_mm": 2.922,
+     "faces_raw": 15574,
+     "sha256_16": "af321725727cb1d5"
+    },
+    {
+     "label": "pot/ep3/nostem",
+     "fid_all_sum_mm": 2.922,
+     "faces_raw": 15574,
+     "sha256_16": "af321725727cb1d5"
+    },
+    {
+     "label": "pot/ep3/thick",
+     "fid_all_sum_mm": 3.077,
+     "faces_raw": 15574,
+     "sha256_16": "088d24085a341a74"
+    },
+    {
+     "label": "pot/ep28/thick",
+     "fid_all_sum_mm": 3.382,
+     "faces_raw": 15944,
+     "sha256_16": "01a15662b3f34a45"
+    },
+    {
+     "label": "pot/ep5/fit",
+     "fid_all_sum_mm": 3.487,
+     "faces_raw": 16124,
+     "sha256_16": "c50f5203181c7ea0"
+    },
+    {
+     "label": "pot/ep5/nostem",
+     "fid_all_sum_mm": 3.487,
+     "faces_raw": 16124,
+     "sha256_16": "c50f5203181c7ea0"
+    },
+    {
+     "label": "pot/ep1/fit",
+     "fid_all_sum_mm": 3.611,
+     "faces_raw": 15250,
+     "sha256_16": "0a87bc270a1cb11e"
+    },
+    {
+     "label": "pot/ep1/nostem",
+     "fid_all_sum_mm": 3.611,
+     "faces_raw": 15250,
+     "sha256_16": "0a87bc270a1cb11e"
+    },
+    {
+     "label": "pot/ep8/fit",
+     "fid_all_sum_mm": 3.665,
+     "faces_raw": 15568,
+     "sha256_16": "3fde379e971d82eb"
+    },
+    {
+     "label": "pot/ep8/nostem",
+     "fid_all_sum_mm": 3.665,
+     "faces_raw": 15568,
+     "sha256_16": "3fde379e971d82eb"
+    },
+    {
+     "label": "pot/ep1/thick",
+     "fid_all_sum_mm": 3.692,
+     "faces_raw": 15540,
+     "sha256_16": "e779e10cb48fcd7a"
+    },
+    {
+     "label": "pot/ep28/nostem",
+     "fid_all_sum_mm": 3.743,
+     "faces_raw": 15836,
+     "sha256_16": "059d1df5e426ce91"
+    },
+    {
+     "label": "pot/ep28/fit",
+     "fid_all_sum_mm": 3.745,
+     "faces_raw": 15944,
+     "sha256_16": "f4e9c0ca55111966"
+    },
+    {
+     "label": "pot/ep6/fit",
+     "fid_all_sum_mm": 3.879,
+     "faces_raw": 16142,
+     "sha256_16": "a4fe7a05d678e1d7"
+    },
+    {
+     "label": "pot/ep6/nostem",
+     "fid_all_sum_mm": 3.879,
+     "faces_raw": 16142,
+     "sha256_16": "a4fe7a05d678e1d7"
+    },
+    {
+     "label": "pot/ep5/thick",
+     "fid_all_sum_mm": 3.901,
+     "faces_raw": 15844,
+     "sha256_16": "fc7de46c7280c08a"
+    },
+    {
+     "label": "pot/ep8/thick",
+     "fid_all_sum_mm": 4.414,
+     "faces_raw": 15282,
+     "sha256_16": "6e282b77091ed322"
+    },
+    {
+     "label": "pot/ep6/thick",
+     "fid_all_sum_mm": 4.473,
+     "faces_raw": 16170,
+     "sha256_16": "4f925a8fc083588e"
+    }
+   ],
+   "pick": {
+    "label": "pot/ep3/fit",
+    "fid_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "faces_raw": 15574,
+    "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+    "episode": "3",
+    "variant": "fit",
+    "box_path": "/content/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+    "fid_ep": {
+     "ep1": 3.648,
+     "ep28": 3.291,
+     "ep3": 3.344,
+     "ep5": 3.018,
+     "ep6": 3.138,
+     "ep8": 4.181
+    },
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 6.475382691366273,
+    "surf_symmetric_median_mm": 3.199077261555793,
+    "axis_angle_deg": [
+     2.98507402886471,
+     3.391201789673773,
+     4.408808416624371
+    ]
+   },
+   "runner_up": {
+    "label": "pot/ep3/nostem",
+    "fid_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "faces_raw": 15574,
+    "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7"
+   },
+   "runner_up_note": "pot/ep3/nostem is byte-identical to the pick (same sha256); the first different mesh is pot/ep3/thick",
+   "runner_up_distinct": {
+    "label": "pot/ep3/thick",
+    "fid_all": {
+     "sum_mm": 3.077,
+     "obs_to_mesh_mm": 1.955,
+     "mesh_to_obs_mm": 1.123
+    },
+    "faces_raw": 15574,
+    "sha256": "088d24085a341a7422300655f723f611d53ee012c01222941033d4626642aab9"
+   },
+   "c0": {
+    "label": "pot/C0",
+    "fid_all": {
+     "sum_mm": 2.914,
+     "obs_to_mesh_mm": 1.923,
+     "mesh_to_obs_mm": 0.991
+    },
+    "fid_ep": {
+     "ep1": 3.963,
+     "ep28": 2.895,
+     "ep3": 3.624,
+     "ep5": 3.367,
+     "ep6": 3.45,
+     "ep8": 3.974
+    }
+   },
+   "library_v3": {
+    "label": "pot/library_v3",
+    "fid_all": {
+     "sum_mm": 3.881,
+     "obs_to_mesh_mm": 2.462,
+     "mesh_to_obs_mm": 1.42
+    },
+    "fid_ep": {
+     "ep1": 4.997,
+     "ep28": 4.438,
+     "ep3": 5.291,
+     "ep5": 4.764,
+     "ep6": 4.967,
+     "ep8": 5.412
+    }
+   },
+   "c0_over_pick": 0.9972621492128679,
+   "library_v3_over_pick": 1.3281998631074605,
+   "recommendation": "E0",
+   "rule_flags": [],
+   "box_selection_agrees": true
+  },
+  "white_pot_lid": {
+   "eval_episodes": [
+    1
+   ],
+   "n_candidates": 2,
+   "n_eligible": 1,
+   "excluded": {
+    "lid/ep1/t2.5_tsdf": [
+     "raw mesh not watertight"
+    ]
+   },
+   "ranking": [
+    {
+     "label": "lid/ep1/t2.5_fit",
+     "fid_all_sum_mm": 1.675,
+     "faces_raw": 9488,
+     "sha256_16": "e3dd5861a5081e44"
+    }
+   ],
+   "pick": {
+    "label": "lid/ep1/t2.5_fit",
+    "fid_all": {
+     "sum_mm": 1.675,
+     "obs_to_mesh_mm": 0.928,
+     "mesh_to_obs_mm": 0.747
+    },
+    "faces_raw": 9488,
+    "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+    "episode": "1",
+    "variant": "t2.5_fit",
+    "box_path": "/content/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_fit.glb",
+    "fid_ep": {
+     "ep1": 1.675
+    },
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.18777369664479,
+    "surf_symmetric_median_mm": 2.6574202320024005,
+    "axis_angle_deg": [
+     74.41253477867585,
+     74.42691451143031,
+     1.592997485354835
+    ]
+   },
+   "runner_up": null,
+   "runner_up_note": null,
+   "runner_up_distinct": null,
+   "c0": {
+    "label": "lid/C0",
+    "fid_all": {
+     "sum_mm": 1.772,
+     "obs_to_mesh_mm": 1.024,
+     "mesh_to_obs_mm": 0.748
+    },
+    "fid_ep": {
+     "ep1": 1.772
+    }
+   },
+   "library_v3": {
+    "label": "lid/library_v3",
+    "fid_all": {
+     "sum_mm": 5.186,
+     "obs_to_mesh_mm": 1.429,
+     "mesh_to_obs_mm": 3.757
+    },
+    "fid_ep": {
+     "ep1": 5.186
+    }
+   },
+   "c0_over_pick": 1.057910447761194,
+   "library_v3_over_pick": 3.0961194029850745,
+   "recommendation": "E0",
+   "rule_flags": [],
+   "box_selection_agrees": true
+  },
+  "plastic_dish_rack": {
+   "eval_episodes": [
+    14,
+    15,
+    16,
+    28,
+    30
+   ],
+   "n_candidates": 12,
+   "n_eligible": 12,
+   "excluded": {},
+   "ranking": [
+    {
+     "label": "rack/joint/joint",
+     "fid_all_sum_mm": 6.419,
+     "faces_raw": 2638,
+     "sha256_16": "fc67c59baa1cab06"
+    },
+    {
+     "label": "rack/joint/joint_nomk",
+     "fid_all_sum_mm": 6.432,
+     "faces_raw": 2238,
+     "sha256_16": "227476d9129bd343"
+    },
+    {
+     "label": "rack/ep14/full",
+     "fid_all_sum_mm": 6.674,
+     "faces_raw": 2210,
+     "sha256_16": "9afc50ac828037bb"
+    },
+    {
+     "label": "rack/ep14/nomk",
+     "fid_all_sum_mm": 6.674,
+     "faces_raw": 2210,
+     "sha256_16": "9afc50ac828037bb"
+    },
+    {
+     "label": "rack/ep16/full",
+     "fid_all_sum_mm": 6.779,
+     "faces_raw": 2602,
+     "sha256_16": "083c63470b2c1000"
+    },
+    {
+     "label": "rack/ep16/nomk",
+     "fid_all_sum_mm": 6.828,
+     "faces_raw": 2202,
+     "sha256_16": "9bece622e449d835"
+    },
+    {
+     "label": "rack/ep28/full",
+     "fid_all_sum_mm": 7.131,
+     "faces_raw": 1844,
+     "sha256_16": "e71cc32efd2ae0df"
+    },
+    {
+     "label": "rack/ep28/nomk",
+     "fid_all_sum_mm": 7.188,
+     "faces_raw": 1644,
+     "sha256_16": "7b60407dee259656"
+    },
+    {
+     "label": "rack/ep30/full",
+     "fid_all_sum_mm": 7.437,
+     "faces_raw": 2618,
+     "sha256_16": "d560ba16d1b9443e"
+    },
+    {
+     "label": "rack/ep30/nomk",
+     "fid_all_sum_mm": 7.488,
+     "faces_raw": 1886,
+     "sha256_16": "9072ec8d9c76b564"
+    },
+    {
+     "label": "rack/ep15/full",
+     "fid_all_sum_mm": 7.553,
+     "faces_raw": 2498,
+     "sha256_16": "7f44c55f79b73bc3"
+    },
+    {
+     "label": "rack/ep15/nomk",
+     "fid_all_sum_mm": 7.611,
+     "faces_raw": 1998,
+     "sha256_16": "78ac6bbdefc2cddc"
+    }
+   ],
+   "pick": {
+    "label": "rack/joint/joint",
+    "fid_all": {
+     "sum_mm": 6.419,
+     "obs_to_mesh_mm": 1.87,
+     "mesh_to_obs_mm": 4.55
+    },
+    "faces_raw": 2638,
+    "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+    "episode": "joint",
+    "variant": "joint",
+    "box_path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+    "fid_ep": {
+     "ep14": 7.444,
+     "ep15": 8.721,
+     "ep16": 8.512,
+     "ep28": 8.824,
+     "ep30": 7.379
+    },
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 2638,
+     "vertices": 1325,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.395544682052032,
+    "surf_symmetric_median_mm": 3.4287227109300824,
+    "axis_angle_deg": [
+     2.2683177351982446,
+     0.7597161496280531,
+     2.3273092711799777
+    ]
+   },
+   "runner_up": {
+    "label": "rack/joint/joint_nomk",
+    "fid_all": {
+     "sum_mm": 6.432,
+     "obs_to_mesh_mm": 1.874,
+     "mesh_to_obs_mm": 4.558
+    },
+    "faces_raw": 2238,
+    "sha256": "227476d9129bd3433a9877ed9a2abb3370d953eadcf3d48edde245f723a05ac6"
+   },
+   "runner_up_note": null,
+   "runner_up_distinct": {
+    "label": "rack/joint/joint_nomk",
+    "fid_all": {
+     "sum_mm": 6.432,
+     "obs_to_mesh_mm": 1.874,
+     "mesh_to_obs_mm": 4.558
+    },
+    "faces_raw": 2238,
+    "sha256": "227476d9129bd3433a9877ed9a2abb3370d953eadcf3d48edde245f723a05ac6"
+   },
+   "c0": {
+    "label": "rack/C0",
+    "fid_all": {
+     "sum_mm": 6.245,
+     "obs_to_mesh_mm": 1.844,
+     "mesh_to_obs_mm": 4.402
+    },
+    "fid_ep": {
+     "ep14": 7.212,
+     "ep15": 8.37,
+     "ep16": 8.139,
+     "ep28": 8.501,
+     "ep30": 7.339
+    }
+   },
+   "library_v3": {
+    "label": "rack/library_v3",
+    "fid_all": {
+     "sum_mm": 5.881,
+     "obs_to_mesh_mm": 2.633,
+     "mesh_to_obs_mm": 3.248
+    },
+    "fid_ep": {
+     "ep14": 6.986,
+     "ep15": 7.737,
+     "ep16": 7.727,
+     "ep28": 7.464,
+     "ep30": 7.63
+    }
+   },
+   "c0_over_pick": 0.9728929739834866,
+   "library_v3_over_pick": 0.9161863218569871,
+   "recommendation": "E0",
+   "rule_flags": [],
+   "box_selection_agrees": true
+  },
+  "blue_cup": {
+   "eval_episodes": [
+    10,
+    14,
+    20,
+    32,
+    33
+   ],
+   "n_candidates": 11,
+   "n_eligible": 11,
+   "excluded": {},
+   "ranking": [
+    {
+     "label": "cup/ep32/g1",
+     "fid_all_sum_mm": 2.646,
+     "faces_raw": 23348,
+     "sha256_16": "e6c18b2ae40dcdeb"
+    },
+    {
+     "label": "cup/ep32/g0",
+     "fid_all_sum_mm": 2.664,
+     "faces_raw": 22464,
+     "sha256_16": "d35088445bf2fc67"
+    },
+    {
+     "label": "cup/ep14/g0",
+     "fid_all_sum_mm": 2.824,
+     "faces_raw": 22848,
+     "sha256_16": "489fd9325b6d3d48"
+    },
+    {
+     "label": "cup/ep33/g1",
+     "fid_all_sum_mm": 2.846,
+     "faces_raw": 29968,
+     "sha256_16": "9f53a5526c219d3b"
+    },
+    {
+     "label": "cup/ep14/g1",
+     "fid_all_sum_mm": 2.892,
+     "faces_raw": 48488,
+     "sha256_16": "556ee35ee048002b"
+    },
+    {
+     "label": "cup/merged/g1",
+     "fid_all_sum_mm": 3.007,
+     "faces_raw": 59954,
+     "sha256_16": "194d71e0d395b1d4"
+    },
+    {
+     "label": "cup/ep33/g0",
+     "fid_all_sum_mm": 3.024,
+     "faces_raw": 21312,
+     "sha256_16": "6691008cfba59d6b"
+    },
+    {
+     "label": "cup/ep20/g1",
+     "fid_all_sum_mm": 3.079,
+     "faces_raw": 27610,
+     "sha256_16": "02c06b4be8ad2fb5"
+    },
+    {
+     "label": "cup/ep20/g0",
+     "fid_all_sum_mm": 3.153,
+     "faces_raw": 21504,
+     "sha256_16": "8afbf38678e8855a"
+    },
+    {
+     "label": "cup/ep10/g0",
+     "fid_all_sum_mm": 3.531,
+     "faces_raw": 23616,
+     "sha256_16": "c887227b36489ce8"
+    },
+    {
+     "label": "cup/ep10/g1",
+     "fid_all_sum_mm": 3.55,
+     "faces_raw": 24660,
+     "sha256_16": "9ed2dd7056ac27fd"
+    }
+   ],
+   "pick": {
+    "label": "cup/ep32/g1",
+    "fid_all": {
+     "sum_mm": 2.646,
+     "obs_to_mesh_mm": 1.438,
+     "mesh_to_obs_mm": 1.208
+    },
+    "faces_raw": 23348,
+    "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+    "episode": "32",
+    "variant": "g1",
+    "box_path": "/content/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+    "fid_ep": {
+     "ep10": 7.748,
+     "ep14": 4.417,
+     "ep20": 5.895,
+     "ep32": 5.196,
+     "ep33": 4.073
+    },
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 4.0379846033061755,
+    "surf_symmetric_median_mm": 2.4834313460328676,
+    "axis_angle_deg": [
+     3.6250697024729615,
+     69.33273109639974,
+     69.43053571936186
+    ]
+   },
+   "runner_up": {
+    "label": "cup/ep32/g0",
+    "fid_all": {
+     "sum_mm": 2.664,
+     "obs_to_mesh_mm": 1.457,
+     "mesh_to_obs_mm": 1.207
+    },
+    "faces_raw": 22464,
+    "sha256": "d35088445bf2fc67bc665f3d5ab2782d8c536b66582b3a6523e45b829ce5c851"
+   },
+   "runner_up_note": null,
+   "runner_up_distinct": {
+    "label": "cup/ep32/g0",
+    "fid_all": {
+     "sum_mm": 2.664,
+     "obs_to_mesh_mm": 1.457,
+     "mesh_to_obs_mm": 1.207
+    },
+    "faces_raw": 22464,
+    "sha256": "d35088445bf2fc67bc665f3d5ab2782d8c536b66582b3a6523e45b829ce5c851"
+   },
+   "c0": {
+    "label": "cup/C0",
+    "fid_all": {
+     "sum_mm": 2.723,
+     "obs_to_mesh_mm": 1.585,
+     "mesh_to_obs_mm": 1.138
+    },
+    "fid_ep": {
+     "ep10": 7.689,
+     "ep14": 4.734,
+     "ep20": 5.741,
+     "ep32": 5.041,
+     "ep33": 3.9
+    }
+   },
+   "library_v3": {
+    "label": "cup/library_v3",
+    "fid_all": {
+     "sum_mm": 2.906,
+     "obs_to_mesh_mm": 1.866,
+     "mesh_to_obs_mm": 1.041
+    },
+    "fid_ep": {
+     "ep10": 7.223,
+     "ep14": 4.125,
+     "ep20": 7.59,
+     "ep32": 5.765,
+     "ep33": 5.217
+    }
+   },
+   "c0_over_pick": 1.029100529100529,
+   "library_v3_over_pick": 1.0982615268329554,
+   "recommendation": "E0",
+   "rule_flags": [],
+   "box_selection_agrees": true
+  }
+ },
+ "picks": {
+  "white_pot": {
+   "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "build_records": [
+    "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.build.json",
+    "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.axis.json"
+   ],
+   "box_path": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb"
+  },
+  "white_pot_lid": {
+   "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_lid_eval1_t2.5_fit.glb",
+   "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+   "md5": "08b65d4f7080e55c6ee81be9fa19cf8f",
+   "bytes": 171568,
+   "build_records": [
+    "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_lid_eval1_t2.5_fit.build.json"
+   ],
+   "box_path": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_fit.glb"
+  },
+  "plastic_dish_rack": {
+   "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+   "bytes": 48336,
+   "build_records": [
+    "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.build.json"
+   ],
+   "box_path": "runs/mesh-20261031-e0-b05f001/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb"
+  },
+  "blue_cup": {
+   "path": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "md5": "b479269e3ee21266db84df8a17bfdc1c",
+   "bytes": 421096,
+   "build_records": [
+    "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.lathe.json"
+   ],
+   "box_path": "runs/mesh-20261031-e0-b05f001/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb"
+  }
+ },
+ "n_pairs": 36,
+ "n_e0_swapped": 17,
+ "n_differs_from_c0": 17,
+ "n_differs_from_pack7": 17,
+ "pairs": [
+  {
+   "eval_episode": 1,
+   "slot": 0,
+   "object": "white_pot",
+   "mesh": "meshes/library_e0/white_pot.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "e0_label": "pot/ep3/fit",
+   "method": "kit-of-parts primitive assembly, `prim_potlid.py pot obs/ep3_white_pot.npz OUT --variant fit --lib meshes/library_v3/white_pot.glb --axis_cache axis/ep3_white_pot.json`, fitted to eval 3 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 18 eligible / 24 candidates; runner-up pot/ep3/thick; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 3.648,
+     "c0_sum_mm": 3.963,
+     "library_v3_sum_mm": 4.997,
+     "own_episode_best": "pot/ep1/fit",
+     "own_episode_best_sum_mm": 4.484
+    },
+    "c0_all_sum_mm": 2.914,
+    "library_v3_all_sum_mm": 3.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 7.34 mm), prior r 7.0 mm (free fit 32.52 mm); 5 cluster(s) rejected.",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 2.914 mm vs pick 2.922 mm on ALL (C0/pick 0.997); within the 15 % margin, so E0 by PREREG 6.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/white_pot.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/white_pot.glb",
+   "pack7_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 1,
+   "slot": 1,
+   "object": "white_pot_lid",
+   "mesh": "meshes/library_e0/white_pot_lid.glb",
+   "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+   "md5": "08b65d4f7080e55c6ee81be9fa19cf8f",
+   "bytes": 171568,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_lid_eval1_t2.5_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_fit.glb",
+   "e0_label": "lid/ep1/t2.5_fit",
+   "method": "kit-of-parts, `PRIM_T_LID=0.0025 prim_potlid.py lid obs/ep1_white_pot_lid.npz OUT --variant fit --lib meshes/library_v3/white_pot_lid.glb`, fitted to eval 1 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 1 eligible / 2 candidates; runner-up None; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 1.675,
+     "obs_to_mesh_mm": 0.928,
+     "mesh_to_obs_mm": 0.747
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 1.675,
+     "c0_sum_mm": 1.772,
+     "library_v3_sum_mm": 5.186,
+     "own_episode_best": "lid/ep1/t2.5_fit",
+     "own_episode_best_sum_mm": 1.675
+    },
+    "c0_all_sum_mm": 1.772,
+    "library_v3_all_sum_mm": 5.186,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: free r 7.74 mm, prior r 7.0 mm (free fit 12.07 mm); 3 cluster(s) rejected.",
+    "THICKNESS: T_LID (PRIM_T_LID=0.0025) = 2.5 mm is the grid midpoint of the public clean-up round (passed at 1.5 / 2.5 / 4.0 mm); it equals the value that once leaked from scan measurements; not chosen by any eval number (our points cannot measure it).",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/white_pot_lid.glb",
+   "c0_sha256": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/white_pot_lid.glb",
+   "pack7_sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 3,
+   "slot": 0,
+   "object": "white_pot",
+   "mesh": "meshes/library_e0/white_pot.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "e0_label": "pot/ep3/fit",
+   "method": "kit-of-parts primitive assembly, `prim_potlid.py pot obs/ep3_white_pot.npz OUT --variant fit --lib meshes/library_v3/white_pot.glb --axis_cache axis/ep3_white_pot.json`, fitted to eval 3 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 18 eligible / 24 candidates; runner-up pot/ep3/thick; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 3.344,
+     "c0_sum_mm": 3.624,
+     "library_v3_sum_mm": 5.291,
+     "own_episode_best": "pot/ep3/fit",
+     "own_episode_best_sum_mm": 3.344
+    },
+    "c0_all_sum_mm": 2.914,
+    "library_v3_all_sum_mm": 3.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 7.34 mm), prior r 7.0 mm (free fit 32.52 mm); 5 cluster(s) rejected.",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 2.914 mm vs pick 2.922 mm on ALL (C0/pick 0.997); within the 15 % margin, so E0 by PREREG 6.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/white_pot.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/white_pot.glb",
+   "pack7_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 3,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 5,
+   "slot": 0,
+   "object": "white_pot",
+   "mesh": "meshes/library_e0/white_pot.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "e0_label": "pot/ep3/fit",
+   "method": "kit-of-parts primitive assembly, `prim_potlid.py pot obs/ep3_white_pot.npz OUT --variant fit --lib meshes/library_v3/white_pot.glb --axis_cache axis/ep3_white_pot.json`, fitted to eval 3 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 18 eligible / 24 candidates; runner-up pot/ep3/thick; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 3.018,
+     "c0_sum_mm": 3.367,
+     "library_v3_sum_mm": 4.764,
+     "own_episode_best": "pot/ep5/fit",
+     "own_episode_best_sum_mm": 3.806
+    },
+    "c0_all_sum_mm": 2.914,
+    "library_v3_all_sum_mm": 3.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 7.34 mm), prior r 7.0 mm (free fit 32.52 mm); 5 cluster(s) rejected.",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 2.914 mm vs pick 2.922 mm on ALL (C0/pick 0.997); within the 15 % margin, so E0 by PREREG 6.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/white_pot.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/white_pot.glb",
+   "pack7_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 5,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 6,
+   "slot": 0,
+   "object": "white_pot",
+   "mesh": "meshes/library_e0/white_pot.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "e0_label": "pot/ep3/fit",
+   "method": "kit-of-parts primitive assembly, `prim_potlid.py pot obs/ep3_white_pot.npz OUT --variant fit --lib meshes/library_v3/white_pot.glb --axis_cache axis/ep3_white_pot.json`, fitted to eval 3 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 18 eligible / 24 candidates; runner-up pot/ep3/thick; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 3.138,
+     "c0_sum_mm": 3.45,
+     "library_v3_sum_mm": 4.967,
+     "own_episode_best": "pot/ep6/fit",
+     "own_episode_best_sum_mm": 4.369
+    },
+    "c0_all_sum_mm": 2.914,
+    "library_v3_all_sum_mm": 3.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 7.34 mm), prior r 7.0 mm (free fit 32.52 mm); 5 cluster(s) rejected.",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 2.914 mm vs pick 2.922 mm on ALL (C0/pick 0.997); within the 15 % margin, so E0 by PREREG 6.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/white_pot.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/white_pot.glb",
+   "pack7_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 6,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 8,
+   "slot": 0,
+   "object": "beige_cup",
+   "mesh": "meshes/library_e0x/beige_cup.glb",
+   "sha256": "af327b8087fcba7456910b9c2b6a56655082970f4bb7bf078c61e21c97e63845",
+   "md5": "ebea224c3dace035bdef928fcfa05967",
+   "bytes": 73908,
+   "e0_swapped": false,
+   "source": "meshes/library_c0x/beige_cup.glb (byte-identical to meshes/library_v3x/beige_cup.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0x/beige_cup.glb",
+   "c0_sha256": "af327b8087fcba7456910b9c2b6a56655082970f4bb7bf078c61e21c97e63845",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3x/beige_cup.glb",
+   "pack7_sha256": "af327b8087fcba7456910b9c2b6a56655082970f4bb7bf078c61e21c97e63845",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 8,
+   "slot": 1,
+   "object": "white_pot",
+   "mesh": "meshes/library_e0x/white_pot.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "e0_label": "pot/ep3/fit",
+   "method": "kit-of-parts primitive assembly, `prim_potlid.py pot obs/ep3_white_pot.npz OUT --variant fit --lib meshes/library_v3/white_pot.glb --axis_cache axis/ep3_white_pot.json`, fitted to eval 3 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 18 eligible / 24 candidates; runner-up pot/ep3/thick; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 4.181,
+     "c0_sum_mm": 3.974,
+     "library_v3_sum_mm": 5.412,
+     "own_episode_best": "pot/ep8/fit",
+     "own_episode_best_sum_mm": 5.15
+    },
+    "c0_all_sum_mm": 2.914,
+    "library_v3_all_sum_mm": 3.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 7.34 mm), prior r 7.0 mm (free fit 32.52 mm); 5 cluster(s) rejected.",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 2.914 mm vs pick 2.922 mm on ALL (C0/pick 0.997); within the 15 % margin, so E0 by PREREG 6.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0x/white_pot.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3x/white_pot.glb",
+   "pack7_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 10,
+   "slot": 0,
+   "object": "blue_cup",
+   "mesh": "meshes/library_e0/blue_cup.glb",
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "md5": "b479269e3ee21266db84df8a17bfdc1c",
+   "bytes": 421096,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+   "e0_label": "cup/ep32/g1",
+   "method": "observed-point lathe, `lathe_obs.py obs/ep32_blue_cup.npz OUT` (all defaults = g1: hollow lathe + observed appendages), fitted to eval 32 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 11 eligible / 11 candidates; runner-up cup/ep32/g0; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.646,
+     "obs_to_mesh_mm": 1.438,
+     "mesh_to_obs_mm": 1.208
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 7.748,
+     "c0_sum_mm": 7.689,
+     "library_v3_sum_mm": 7.223,
+     "own_episode_best": "cup/ep10/g1",
+     "own_episode_best_sum_mm": 5.624
+    },
+    "c0_all_sum_mm": 2.723,
+    "library_v3_all_sum_mm": 2.906,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "FRAME (GT-free check vs library_v3, no registration): centroid 4.0 mm, median surface distance 2.48 mm, major-axis angle 3.6 deg (middle/minor axes ill-defined for a lathe, not checked).",
+    "EVAL 10: the blue cup nests the beige cup with a ~5 mm track offset in nest frames (work log 31 Oct 13:55); the pick's worst per-episode fidelity is on ep10 (7.748 mm; own-episode best there cup/ep10/g1 5.624 mm).",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/blue_cup.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/blue_cup.glb",
+   "pack7_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 10,
+   "slot": 1,
+   "object": "beige_cup",
+   "mesh": "meshes/library_e0/beige_cup.glb",
+   "sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+   "md5": "6226281f120192c52bffec7680fa9d8f",
+   "bytes": 151640,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/beige_cup.glb (byte-identical to meshes/library_v3/beige_cup.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/beige_cup.glb",
+   "c0_sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/beige_cup.glb",
+   "pack7_sha256": "f7309312d3005eefa4e5457b07d2a44efe0a9c051ad537d13cb9761f3cc361d5",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 14,
+   "slot": 0,
+   "object": "blue_cup",
+   "mesh": "meshes/library_e0/blue_cup.glb",
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "md5": "b479269e3ee21266db84df8a17bfdc1c",
+   "bytes": 421096,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+   "e0_label": "cup/ep32/g1",
+   "method": "observed-point lathe, `lathe_obs.py obs/ep32_blue_cup.npz OUT` (all defaults = g1: hollow lathe + observed appendages), fitted to eval 32 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 11 eligible / 11 candidates; runner-up cup/ep32/g0; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.646,
+     "obs_to_mesh_mm": 1.438,
+     "mesh_to_obs_mm": 1.208
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 4.417,
+     "c0_sum_mm": 4.734,
+     "library_v3_sum_mm": 4.125,
+     "own_episode_best": "cup/ep14/g1",
+     "own_episode_best_sum_mm": 3.912
+    },
+    "c0_all_sum_mm": 2.723,
+    "library_v3_all_sum_mm": 2.906,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "FRAME (GT-free check vs library_v3, no registration): centroid 4.0 mm, median surface distance 2.48 mm, major-axis angle 3.6 deg (middle/minor axes ill-defined for a lathe, not checked).",
+    "EVAL 10: the blue cup nests the beige cup with a ~5 mm track offset in nest frames (work log 31 Oct 13:55); the pick's worst per-episode fidelity is on ep10 (7.748 mm; own-episode best there cup/ep10/g1 5.624 mm).",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/blue_cup.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/blue_cup.glb",
+   "pack7_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 14,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "mesh": "meshes/library_e0/plastic_dish_rack.glb",
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+   "bytes": 48336,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "e0_label": "rack/joint/joint",
+   "method": "kit-of-parts, `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 prim_rack.py run --obs_dir obs --out cand/rack/t2.5_lean1 --episodes 14,15,16,28,30`, variant joint; joint fit over ep14, ep15, ep16, ep28, ep30 (episodes whose own full fit is within JOINT_TOL 1.25 of the best, rigidly aligned on their points, moved to the mean frame). Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 12 eligible / 12 candidates; runner-up rack/joint/joint_nomk; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 6.419,
+     "obs_to_mesh_mm": 1.87,
+     "mesh_to_obs_mm": 4.55
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 7.444,
+     "c0_sum_mm": 7.212,
+     "library_v3_sum_mm": 6.986,
+     "own_episode_best": "rack/ep14/full",
+     "own_episode_best_sum_mm": 7.501
+    },
+    "c0_all_sum_mm": 6.245,
+    "library_v3_all_sum_mm": 5.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 6.52 mm), prior r 7.0 mm (free fit 6.24 mm); 26 cluster(s) rejected.",
+    "THICKNESS: T_WALL (PRIM_T_WALL=0.0025) = 2.5 mm is the grid midpoint of the public clean-up round (passed at 1.5 / 2.5 / 4.0 mm); it equals the value that once leaked from scan measurements; not chosen by any eval number (our points cannot measure it).",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 6.245 mm vs pick 6.419 mm on ALL (C0/pick 0.973); within the 15 % margin, so E0 by PREREG 6.",
+    "LIBRARY_V3 LOWER FIDELITY: library_v3 5.881 mm vs pick 6.419 mm on ALL (lowest of all 14 meshes of this object) and lower on ep14, ep15, ep16, ep28; PREREG 6 compares only C0 for this object, so this is a reviewer note, not a rule flag.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/plastic_dish_rack.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/plastic_dish_rack.glb",
+   "pack7_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 15,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "mesh": "meshes/library_e0/plastic_dish_rack.glb",
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+   "bytes": 48336,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "e0_label": "rack/joint/joint",
+   "method": "kit-of-parts, `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 prim_rack.py run --obs_dir obs --out cand/rack/t2.5_lean1 --episodes 14,15,16,28,30`, variant joint; joint fit over ep14, ep15, ep16, ep28, ep30 (episodes whose own full fit is within JOINT_TOL 1.25 of the best, rigidly aligned on their points, moved to the mean frame). Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 12 eligible / 12 candidates; runner-up rack/joint/joint_nomk; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 6.419,
+     "obs_to_mesh_mm": 1.87,
+     "mesh_to_obs_mm": 4.55
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 8.721,
+     "c0_sum_mm": 8.37,
+     "library_v3_sum_mm": 7.737,
+     "own_episode_best": "rack/ep15/full",
+     "own_episode_best_sum_mm": 9.743
+    },
+    "c0_all_sum_mm": 6.245,
+    "library_v3_all_sum_mm": 5.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 6.52 mm), prior r 7.0 mm (free fit 6.24 mm); 26 cluster(s) rejected.",
+    "THICKNESS: T_WALL (PRIM_T_WALL=0.0025) = 2.5 mm is the grid midpoint of the public clean-up round (passed at 1.5 / 2.5 / 4.0 mm); it equals the value that once leaked from scan measurements; not chosen by any eval number (our points cannot measure it).",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 6.245 mm vs pick 6.419 mm on ALL (C0/pick 0.973); within the 15 % margin, so E0 by PREREG 6.",
+    "LIBRARY_V3 LOWER FIDELITY: library_v3 5.881 mm vs pick 6.419 mm on ALL (lowest of all 14 meshes of this object) and lower on ep14, ep15, ep16, ep28; PREREG 6 compares only C0 for this object, so this is a reviewer note, not a rule flag.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/plastic_dish_rack.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/plastic_dish_rack.glb",
+   "pack7_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 15,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 16,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "mesh": "meshes/library_e0/plastic_dish_rack.glb",
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+   "bytes": 48336,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "e0_label": "rack/joint/joint",
+   "method": "kit-of-parts, `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 prim_rack.py run --obs_dir obs --out cand/rack/t2.5_lean1 --episodes 14,15,16,28,30`, variant joint; joint fit over ep14, ep15, ep16, ep28, ep30 (episodes whose own full fit is within JOINT_TOL 1.25 of the best, rigidly aligned on their points, moved to the mean frame). Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 12 eligible / 12 candidates; runner-up rack/joint/joint_nomk; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 6.419,
+     "obs_to_mesh_mm": 1.87,
+     "mesh_to_obs_mm": 4.55
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 8.512,
+     "c0_sum_mm": 8.139,
+     "library_v3_sum_mm": 7.727,
+     "own_episode_best": "rack/ep16/full",
+     "own_episode_best_sum_mm": 8.51
+    },
+    "c0_all_sum_mm": 6.245,
+    "library_v3_all_sum_mm": 5.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 6.52 mm), prior r 7.0 mm (free fit 6.24 mm); 26 cluster(s) rejected.",
+    "THICKNESS: T_WALL (PRIM_T_WALL=0.0025) = 2.5 mm is the grid midpoint of the public clean-up round (passed at 1.5 / 2.5 / 4.0 mm); it equals the value that once leaked from scan measurements; not chosen by any eval number (our points cannot measure it).",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 6.245 mm vs pick 6.419 mm on ALL (C0/pick 0.973); within the 15 % margin, so E0 by PREREG 6.",
+    "LIBRARY_V3 LOWER FIDELITY: library_v3 5.881 mm vs pick 6.419 mm on ALL (lowest of all 14 meshes of this object) and lower on ep14, ep15, ep16, ep28; PREREG 6 compares only C0 for this object, so this is a reviewer note, not a rule flag.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/plastic_dish_rack.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/plastic_dish_rack.glb",
+   "pack7_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 16,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 19,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "mesh": "meshes/library_e0/mini_sweeper.glb",
+   "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+   "bytes": 88960,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/mini_sweeper.glb (byte-identical to meshes/library_v3/mini_sweeper.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/mini_sweeper.glb",
+   "c0_sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/mini_sweeper.glb",
+   "pack7_sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 19,
+   "slot": 1,
+   "object": "mini_dust_pan",
+   "mesh": "meshes/library_e0/mini_dust_pan.glb",
+   "sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "md5": "c33fa41118944a7da340cc82fc6449d8",
+   "bytes": 134356,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/mini_dust_pan.glb (byte-identical to meshes/library_v3/mini_dust_pan.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/mini_dust_pan.glb",
+   "c0_sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/mini_dust_pan.glb",
+   "pack7_sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 20,
+   "slot": 0,
+   "object": "blue_cup",
+   "mesh": "meshes/library_e0/blue_cup.glb",
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "md5": "b479269e3ee21266db84df8a17bfdc1c",
+   "bytes": 421096,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+   "e0_label": "cup/ep32/g1",
+   "method": "observed-point lathe, `lathe_obs.py obs/ep32_blue_cup.npz OUT` (all defaults = g1: hollow lathe + observed appendages), fitted to eval 32 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 11 eligible / 11 candidates; runner-up cup/ep32/g0; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.646,
+     "obs_to_mesh_mm": 1.438,
+     "mesh_to_obs_mm": 1.208
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 5.895,
+     "c0_sum_mm": 5.741,
+     "library_v3_sum_mm": 7.59,
+     "own_episode_best": "cup/ep20/g1",
+     "own_episode_best_sum_mm": 6.046
+    },
+    "c0_all_sum_mm": 2.723,
+    "library_v3_all_sum_mm": 2.906,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "FRAME (GT-free check vs library_v3, no registration): centroid 4.0 mm, median surface distance 2.48 mm, major-axis angle 3.6 deg (middle/minor axes ill-defined for a lathe, not checked).",
+    "EVAL 10: the blue cup nests the beige cup with a ~5 mm track offset in nest frames (work log 31 Oct 13:55); the pick's worst per-episode fidelity is on ep10 (7.748 mm; own-episode best there cup/ep10/g1 5.624 mm).",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/blue_cup.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/blue_cup.glb",
+   "pack7_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 20,
+   "slot": 1,
+   "object": "water_pitcher",
+   "mesh": "meshes/library_e0/water_pitcher.glb",
+   "sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+   "md5": "fc824fc5b0a9325c91b630c19ba32677",
+   "bytes": 637688,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/water_pitcher.glb (byte-identical to meshes/library_v3/water_pitcher.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/water_pitcher.glb",
+   "c0_sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/water_pitcher.glb",
+   "pack7_sha256": "9f16ed2a18578f4cbe014edc3aa2a662a5e8cd1bf95570a344274e80d41b4bb2",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 25,
+   "slot": 0,
+   "object": "wooden_piece_1",
+   "mesh": "meshes/library_e0/wooden_piece_1.glb",
+   "sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+   "md5": "d152b2b5e6a9d9acdd5bd37e29e72b9d",
+   "bytes": 165136,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_piece_1.glb (byte-identical to meshes/library_v3/wooden_piece_1.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_piece_1.glb",
+   "c0_sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_piece_1.glb",
+   "pack7_sha256": "51f55fe3504bd362ab648d20d3b747112845eff131023bb383ac22bccc0f7c79",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 25,
+   "slot": 1,
+   "object": "wooden_piece_2",
+   "mesh": "meshes/library_e0/wooden_piece_2.glb",
+   "sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b",
+   "md5": "825a7fe364d280603f36226595137f43",
+   "bytes": 173988,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_piece_2.glb (byte-identical to meshes/library_v3/wooden_piece_2.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_piece_2.glb",
+   "c0_sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_piece_2.glb",
+   "pack7_sha256": "7a30217810b5938cbf64124384ba8b779633e5509f3a87ff6cf443add435464b",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 28,
+   "slot": 0,
+   "object": "plastic_dish_rack",
+   "mesh": "meshes/library_e0/plastic_dish_rack.glb",
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+   "bytes": 48336,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "e0_label": "rack/joint/joint",
+   "method": "kit-of-parts, `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 prim_rack.py run --obs_dir obs --out cand/rack/t2.5_lean1 --episodes 14,15,16,28,30`, variant joint; joint fit over ep14, ep15, ep16, ep28, ep30 (episodes whose own full fit is within JOINT_TOL 1.25 of the best, rigidly aligned on their points, moved to the mean frame). Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 12 eligible / 12 candidates; runner-up rack/joint/joint_nomk; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 6.419,
+     "obs_to_mesh_mm": 1.87,
+     "mesh_to_obs_mm": 4.55
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 8.824,
+     "c0_sum_mm": 8.501,
+     "library_v3_sum_mm": 7.464,
+     "own_episode_best": "rack/ep28/full",
+     "own_episode_best_sum_mm": 8.812
+    },
+    "c0_all_sum_mm": 6.245,
+    "library_v3_all_sum_mm": 5.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 6.52 mm), prior r 7.0 mm (free fit 6.24 mm); 26 cluster(s) rejected.",
+    "THICKNESS: T_WALL (PRIM_T_WALL=0.0025) = 2.5 mm is the grid midpoint of the public clean-up round (passed at 1.5 / 2.5 / 4.0 mm); it equals the value that once leaked from scan measurements; not chosen by any eval number (our points cannot measure it).",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 6.245 mm vs pick 6.419 mm on ALL (C0/pick 0.973); within the 15 % margin, so E0 by PREREG 6.",
+    "LIBRARY_V3 LOWER FIDELITY: library_v3 5.881 mm vs pick 6.419 mm on ALL (lowest of all 14 meshes of this object) and lower on ep14, ep15, ep16, ep28; PREREG 6 compares only C0 for this object, so this is a reviewer note, not a rule flag.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/plastic_dish_rack.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/plastic_dish_rack.glb",
+   "pack7_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 28,
+   "slot": 1,
+   "object": "white_pot",
+   "mesh": "meshes/library_e0/white_pot.glb",
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "md5": "858fc4c64b147eb2245bdcced9a29f73",
+   "bytes": 281184,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/white_pot_eval3_fit.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "e0_label": "pot/ep3/fit",
+   "method": "kit-of-parts primitive assembly, `prim_potlid.py pot obs/ep3_white_pot.npz OUT --variant fit --lib meshes/library_v3/white_pot.glb --axis_cache axis/ep3_white_pot.json`, fitted to eval 3 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 18 eligible / 24 candidates; runner-up pot/ep3/thick; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.922,
+     "obs_to_mesh_mm": 1.978,
+     "mesh_to_obs_mm": 0.944
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 3.291,
+     "c0_sum_mm": 2.895,
+     "library_v3_sum_mm": 4.438,
+     "own_episode_best": "pot/ep28/thick",
+     "own_episode_best_sum_mm": 2.456
+    },
+    "c0_all_sum_mm": 2.914,
+    "library_v3_all_sum_mm": 3.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 7.34 mm), prior r 7.0 mm (free fit 32.52 mm); 5 cluster(s) rejected.",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 2.914 mm vs pick 2.922 mm on ALL (C0/pick 0.997); within the 15 % margin, so E0 by PREREG 6.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/white_pot.glb",
+   "c0_sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/white_pot.glb",
+   "pack7_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 30,
+   "slot": 0,
+   "object": "mini_sweeper",
+   "mesh": "meshes/library_e0/mini_sweeper.glb",
+   "sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "md5": "c126a8ff33dcc8f4504b285e0b3cc5c2",
+   "bytes": 88960,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/mini_sweeper.glb (byte-identical to meshes/library_v3/mini_sweeper.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/mini_sweeper.glb",
+   "c0_sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/mini_sweeper.glb",
+   "pack7_sha256": "66f6dc93f1b2da6f9adab8f28146f9df4e58731e80f50a83a50db4d18620ca3e",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 30,
+   "slot": 1,
+   "object": "plastic_dish_rack",
+   "mesh": "meshes/library_e0/plastic_dish_rack.glb",
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "md5": "9b8adbe3bbdf09666f604436aa4cade4",
+   "bytes": 48336,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/plastic_dish_rack_eval_joint_joint.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "e0_label": "rack/joint/joint",
+   "method": "kit-of-parts, `PRIM_T_WALL=0.0025 PRIM_CUP_LEAN=1 prim_rack.py run --obs_dir obs --out cand/rack/t2.5_lean1 --episodes 14,15,16,28,30`, variant joint; joint fit over ep14, ep15, ep16, ep28, ep30 (episodes whose own full fit is within JOINT_TOL 1.25 of the best, rigidly aligned on their points, moved to the mean frame). Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 12 eligible / 12 candidates; runner-up rack/joint/joint_nomk; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 6.419,
+     "obs_to_mesh_mm": 1.87,
+     "mesh_to_obs_mm": 4.55
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 7.379,
+     "c0_sum_mm": 7.339,
+     "library_v3_sum_mm": 7.63,
+     "own_episode_best": "rack/ep30/full",
+     "own_episode_best_sum_mm": 7.565
+    },
+    "c0_all_sum_mm": 6.245,
+    "library_v3_all_sum_mm": 5.881,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "MARKER BALLS: the frozen prim_potlid.py (sha1 c2627630; markers_from is also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm; both values are SCAN-DERIVED (same flag as C0, verify_0 B1; work log 27 Oct ~17:20 UTC). E0 used the frozen public code unchanged, so this mesh carries the prior. In this mesh's build record: 2 ball(s) kept by the build: prior r 7.0 mm (free fit 6.52 mm), prior r 7.0 mm (free fit 6.24 mm); 26 cluster(s) rejected.",
+    "THICKNESS: T_WALL (PRIM_T_WALL=0.0025) = 2.5 mm is the grid midpoint of the public clean-up round (passed at 1.5 / 2.5 / 4.0 mm); it equals the value that once leaked from scan measurements; not chosen by any eval number (our points cannot measure it).",
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "DOES NOT BEAT C0 EVEN IN-SAMPLE: C0 6.245 mm vs pick 6.419 mm on ALL (C0/pick 0.973); within the 15 % margin, so E0 by PREREG 6.",
+    "LIBRARY_V3 LOWER FIDELITY: library_v3 5.881 mm vs pick 6.419 mm on ALL (lowest of all 14 meshes of this object) and lower on ep14, ep15, ep16, ep28; PREREG 6 compares only C0 for this object, so this is a reviewer note, not a rule flag.",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/plastic_dish_rack.glb",
+   "c0_sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/plastic_dish_rack.glb",
+   "pack7_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": true
+  },
+  {
+   "eval_episode": 32,
+   "slot": 0,
+   "object": "blue_cup",
+   "mesh": "meshes/library_e0/blue_cup.glb",
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "md5": "b479269e3ee21266db84df8a17bfdc1c",
+   "bytes": 421096,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+   "e0_label": "cup/ep32/g1",
+   "method": "observed-point lathe, `lathe_obs.py obs/ep32_blue_cup.npz OUT` (all defaults = g1: hollow lathe + observed appendages), fitted to eval 32 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 11 eligible / 11 candidates; runner-up cup/ep32/g0; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.646,
+     "obs_to_mesh_mm": 1.438,
+     "mesh_to_obs_mm": 1.208
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 5.196,
+     "c0_sum_mm": 5.041,
+     "library_v3_sum_mm": 5.765,
+     "own_episode_best": "cup/ep32/g1",
+     "own_episode_best_sum_mm": 5.196
+    },
+    "c0_all_sum_mm": 2.723,
+    "library_v3_all_sum_mm": 2.906,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "FRAME (GT-free check vs library_v3, no registration): centroid 4.0 mm, median surface distance 2.48 mm, major-axis angle 3.6 deg (middle/minor axes ill-defined for a lathe, not checked).",
+    "EVAL 10: the blue cup nests the beige cup with a ~5 mm track offset in nest frames (work log 31 Oct 13:55); the pick's worst per-episode fidelity is on ep10 (7.748 mm; own-episode best there cup/ep10/g1 5.624 mm).",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/blue_cup.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/blue_cup.glb",
+   "pack7_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 32,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 33,
+   "slot": 0,
+   "object": "blue_cup",
+   "mesh": "meshes/library_e0/blue_cup.glb",
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "md5": "b479269e3ee21266db84df8a17bfdc1c",
+   "bytes": 421096,
+   "e0_swapped": true,
+   "source": "docs/research/mesh-2026-10-26/cdo-sprint/E0/meshes/blue_cup_eval32_g1.glb",
+   "source_box": "runs/mesh-20261031-e0-b05f001/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+   "e0_label": "cup/ep32/g1",
+   "method": "observed-point lathe, `lathe_obs.py obs/ep32_blue_cup.npz OUT` (all defaults = g1: hollow lathe + observed appendages), fitted to eval 32 observed points. Frozen public code of commit 2971a10 (E0/jobs/frozen, SHA1SUMS) on Vast run mesh-20261031-e0-b05f001 (code commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d); observed points: obs_points.py (public prep_obs.sh command: stride 2, --hands from MediaPipe hands_mp.py on eval cam_a video, --others = the episode's other library_v3 bodies, --roi library_v3) on our library_v3-anchored eval tracks and FoundationStereo eval depth (no scan, mocap, parquet pose or _align file).",
+   "selection": "PREREG.md section 4 (exclusions, then lowest obs_fidelity sum_mm on ALL eval points of the object): pick of 11 eligible / 11 candidates; runner-up cup/ep32/g0; recommendation E0 by section 6",
+   "fidelity": {
+    "set_all": {
+     "sum_mm": 2.646,
+     "obs_to_mesh_mm": 1.438,
+     "mesh_to_obs_mm": 1.208
+    },
+    "this_episode": {
+     "e0_pick_sum_mm": 4.073,
+     "c0_sum_mm": 3.9,
+     "library_v3_sum_mm": 5.217,
+     "own_episode_best": "cup/ep33/g1",
+     "own_episode_best_sum_mm": 3.999
+    },
+    "c0_all_sum_mm": 2.723,
+    "library_v3_all_sum_mm": 2.906,
+    "note": "obs_fidelity.py defaults (trim 0.9), mm; GT-free; in-sample for E0 [M]"
+   },
+   "flags": [
+    "IN-SAMPLE PICK: chosen by obs_fidelity on the same eval points it was fitted to (PREREG 7); C0 and library_v3 are out-of-sample there. Fidelity is not CD-O (public Spearman 0.85 over 32 pot candidates, 0.5 over 5 cup candidates). No eval ground truth exists: E0 is not scored.",
+    "FRAME (GT-free check vs library_v3, no registration): centroid 4.0 mm, median surface distance 2.48 mm, major-axis angle 3.6 deg (middle/minor axes ill-defined for a lathe, not checked).",
+    "EVAL 10: the blue cup nests the beige cup with a ~5 mm track offset in nest frames (work log 31 Oct 13:55); the pick's worst per-episode fidelity is on ep10 (7.748 mm; own-episode best there cup/ep10/g1 5.624 mm).",
+    "METHOD QUALIFIER: the object set and each object's method come from C0, which was chosen with public-scan [D] scores; within that, the E0 pick is GT-free under PREREG.md (pre-registered before any eval candidate)."
+   ],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/blue_cup.glb",
+   "c0_sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "differs_from_c0": true,
+   "pack7_mesh": "meshes/library_v3/blue_cup.glb",
+   "pack7_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "differs_from_pack7": true,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 33,
+   "slot": 1,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 35,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 36,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 37,
+   "slot": 0,
+   "object": "wooden_spoon",
+   "mesh": "meshes/library_e0/wooden_spoon.glb",
+   "sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "md5": "68dcf0495c23d2213b1ec4a35b8ad423",
+   "bytes": 72556,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/wooden_spoon.glb (byte-identical to meshes/library_v3/wooden_spoon.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/wooden_spoon.glb",
+   "c0_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/wooden_spoon.glb",
+   "pack7_sha256": "9e8c0baa3aefebb54af11e4b2f7aba4e4fa111a46d918f223caae0265f7e8159",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  },
+  {
+   "eval_episode": 38,
+   "slot": 0,
+   "object": "mini_dust_pan",
+   "mesh": "meshes/library_e0/mini_dust_pan.glb",
+   "sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "md5": "c33fa41118944a7da340cc82fc6449d8",
+   "bytes": 134356,
+   "e0_swapped": false,
+   "source": "meshes/library_c0/mini_dust_pan.glb (byte-identical to meshes/library_v3/mini_dust_pan.glb)",
+   "method": "unchanged from library_c0 / pack 7 (not an E0 object)",
+   "fidelity": null,
+   "flags": [],
+   "rule_flags": [],
+   "c0_mesh": "meshes/library_c0/mini_dust_pan.glb",
+   "c0_sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "differs_from_c0": false,
+   "pack7_mesh": "meshes/library_v3/mini_dust_pan.glb",
+   "pack7_sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2",
+   "differs_from_pack7": false,
+   "c0_in_pack_9a": false
+  }
+ ],
+ "integrity": "Inference inputs: our eval tracks, eval stereo depth, eval videos, calibration, kit mesh_budget, library_v3 meshes (ROI / others / frame check). Nothing read a scan, mocap, a parquet pose field or an *_align file (jobs/e0_stage_inputs.py asserted the upload). No setting was tuned on eval."
+}
