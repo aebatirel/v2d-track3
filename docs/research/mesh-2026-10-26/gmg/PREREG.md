@@ -1593,6 +1593,338 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       (ep24: 41 / 61 reflex -> 57 / 77 slotted prisms; ep23 board 1: 68 -> 85; synthetic w7 B: 90 -> 111). The P58
       expectation (<= 16) assumed a near-rectilinear outline. [H, not adopted]: a tolerance above the raster pitch, or
       an outline fitted to rectilinear segments, would cut the prism count; it would need its own dated entry.
+    - **Run order (record, verify_slot2_0 N3; added 31 Oct 21:37 UTC with F-I4.16):** T-I1 (launched 18:38:09) and
+      T-I11 fi4o (18:38:27) ran in parallel, not T-I1 first as F-I4.15.6 steps 2-3 and F-I4.15.7 ("before T-I11")
+      state; the waiver-off suite ran 19:23-20:29, after fi4o had finished; ep23 ran in parallel with fi4o. No outcome
+      effect: the code was frozen at 19c4309 before any launch, and synthetic misses did not stop the round
+      (F-I4.15.6 step 5).
+    - **Test threshold (record, verify_slot2_0 N4; added with F-I4.16):** `test_fi415.w_checks` flags keep-out only
+      above 0.3 cm3 per hull (the F-I4.10 w1 threshold), where F-I4.15.7 w8 says "keep-out 0.0 cm3". It decided
+      nothing: w8 and w8b stopped at the prism cap before the keep-out gate, and w9 is report-only for P3. Under
+      F-I4.16 the w8 / w8b re-runs report keep-out against both readings (0.0 as written in F-I4.15.7, and 0.3); the
+      w10 freeze family uses 0.3 cm3 per hull, as the decision states (F-I4.16.3).
+
+- **2026-10-31, F-I4.16 (post hoc): an outline simplification ladder for the prism cap; a new synthetic freeze family
+  (w10); slot-centre and outline-coverage reports.** Written 21:21-21:37 UTC from the orchestrator's decision (31 Oct,
+  ~21:20 UTC; F-I4.16.0) and committed and pushed **before any code or run uses it**. Still before any gmg scoring
+  round (zero gmg scan scorings exist; no scan number was read for this entry). Labelled **post hoc**, as the decision
+  itself says: it was written after the F-I4.15 prism counts at 1.0 mm were seen on ep23 (85 > 82), ep24 (57 / 77) and
+  the synthetic w7 (111), w8 (83) and w8b (90 / 84). No prism count at any tolerance other than 1.0 mm has been computed
+  for any real or synthetic polygon (the round-2 probes and both verifiers' recounts used 1.0 mm only [M, scratch code
+  read 21:25]), so the outcomes of the ladder are unseen. **Forking path, stated plainly:** F-I4.12 (after the w1
+  miss), F-I4.14 (after `no_plane_pair` on ep24), F-I4.15 (after the F-I4.2 failure on ep24), its polygon-edge depth
+  reading (verify_slot2_0 N1) and this entry each followed an outcome, and each made the route more permissive. This
+  one follows the measured cause of the cap misses (one-cell raster steps kept by a half-cell tolerance), its ladder is
+  bounded by a generic argument (two raster cells), and its freeze check is a synthetic family written here before any
+  run, because ep23 is spent as an independent check (verify_slot2_0 N2). Where F-I4.15 and this entry differ, this
+  entry wins for runs with code that implements it (records carry `fi4_rev: 16`). The F-I4.15 route stays reproducible
+  from commit 19c4309 (REV 15). Design text for the owner: `INTERLOCK.md` section 20.13.
+  - **F-I4.16.0 The decision (orchestrator, 31 Oct ~21:20 UTC, post hoc), as given in the task text (condensed, every
+    rule kept):** "(1) Prism cap: outline simplification ladder. Douglas-Peucker tolerance eps tried in the order 1.0,
+    1.5, 2.0, 3.0, 4.0 mm; take the smallest eps whose ring is simple and whose SLOTTED prism count is <= the cap
+    floor(165 / objects); body, slot, depth, budget and the keep-out gate are then computed on that polygon exactly as
+    F-I4.15. Generic origin: the raster pitch is 2 mm, so edge detail below one cell is not measured; 1.0 mm (half a
+    cell) keeps the staircase; 4.0 mm (two cells) bounds how far the outline may move. No rung fits ->
+    plate_body_over_cap as before. eps and the vertex / reflex / prism counts per rung are reported. (Literature check
+    and citation; ACD with concavity tau = 2 mm is the named alternative for a later round, not this one.) (2) New
+    freeze condition (b) replacing ep23 (spent): a NEW synthetic family w10, written in the PREREG before any run,
+    seeds not used before: I-shaped cross-lap plate pairs (ends 6 mm wider per side than the waist, as ep24), true t 6,
+    8 and 10 mm, edge noise sigma 1, 2 and 3 mm (9 full-outline cells), plus w10p: one board with 30 % of its outline
+    occluded (hand-shaped blob, as ep23). Condition (b) holds iff every full-outline w10 cell CARVEs both boards under
+    the cap with keep-out <= 0.3 cm3 per hull and slot widths within +-1 mm of t_partner + 2, AND the sigma 2 / t 8
+    cell passes P2-P7 with physics (16 copies). w10p, w7, w8, w8b are re-run and REPORTED only. Condition (a)
+    regression: ep24 under F-I4.16 must still CARVE both with P2-P7 pass. If eps = 1.0 already fits both ep24 boards,
+    the pieces must be byte-identical to the round-2 r0 and no new physics is needed; otherwise re-run physics. ep23:
+    re-run the plate test + body under F-I4.16, report only (no adoption, not a freeze input). (3) Slot-centre report
+    (verify_slot2_1 N1), report-only, geometry unchanged: for a one-face board, measure the observed notch from
+    below-face points in the slot's depth band (GT-free); report observed centre vs analytic c_L; if |delta| > 1 mm
+    write slot_centre_disagrees {delta_mm, n_points} in the r0 manifest. On eval 25 also the INTERLOCK 20.9 item-3
+    P_sel -> P_sim check: place the delivered slotted pieces at the packed eval-25 reference poses at the assembled
+    frames and report partner-in-body overlap (flag if > 0.3 cm3). (4) Outline coverage (verify_slot2_1 N6),
+    report-only: polygon area / rectangle-frame area, and vs the other board's polygon area when both are the same
+    stock; no gate. (5) Everything else in F-I4.15 is unchanged. Eval 25 runs under F-I4.16 iff (a) and (b) hold."
+    The owner's waivers (F-I4.0, F-I5.0) are unchanged. The decision does not address the tilted step-1 plane pair
+    (INTERLOCK 20.11 open item 4) or a FREE-share gate (20.12 open decision 4); both stand as recorded.
+  - **Evidence [M]** (records of round 2, code 19c4309, Douglas-Peucker at 1.0 mm; cap 82 = floor(165 / 2)):
+
+    | case | vertices | reflex | default prisms | slotted prisms | prisms per reflex vertex (default) |
+    |---|---|---|---|---|---|
+    | ep24 board 1 (`slot2-ep24/fi4o`) | 86 | 41 | 50 | 57 | 1.22 |
+    | ep24 board 2 | 126 | 61 | 71 | 77 | 1.16 |
+    | ep23 board 1 (`slot2-ep23/ep23_fi415.json`) | 140 | 68 | **85 > 82** | (no slot) | 1.25 |
+    | ep23 board 2 (wrong-board track, reported only) | 102 | 49 | 56 | (no slot) | 1.14 |
+    | w7 A / B (`slot2-ep24/tests/test_fi415.json`) | 64 / 184 | 30 / 90 | 32 / **111** | (stopped) | 1.07 / 1.23 |
+    | w8 A / B (`test_fi415_w8rerun.json`) | 112 / 116 | 54 / 56 | 68 / 70 | 72 / **83** | 1.26 / 1.25 |
+    | w8b A / B | 138 / 134 | 67 / 65 | 75 / 75 | **90** / **84** | 1.12 / 1.15 |
+    | w9 A / B (fit) | 112 / 116 | 54 / 56 | 68 / 70 | 72 / 81 | 1.26 / 1.25 |
+
+    - Mechanism (F-I4.15 outcomes): the outline lies on a 2 mm raster; a one-cell step of a noisy edge is 2 mm from
+      any chord over it, more than the 1.0 mm tolerance, so it survives as a pair of vertices, one of them reflex.
+      Hertel-Mehlhorn gives 1.07-1.26 prisms per reflex vertex in every recorded case (table).
+    - Coverage (verify_slot2_1 N6; arithmetic on the recorded areas): ep23 board 1's polygon is 206.0 cm2 in a 224.0 x
+      124.0 mm frame (0.742) and 0.727 of ep23 board 2's 283.2 cm2; the ep24 boards are 297.96 / 287.16 cm2 in their
+      frames (0.893 / 0.875), ratio board 1 / board 2 1.038. ep23 board 1 misses the part under the hand.
+    - Slot centre (verify_slot2_1 N1): on ep24 board 2 (one face), 428 below-face points before the run lie at u =
+      -6.6..+2.4 mm (peak -4.1, half-peak -5.6..-1.6) against the analytic c_L = 1.36 mm.
+  - **F-I4.16.1 The simplification ladder** (replaces the single tolerance of F-I4.15.2 (c) and the sentence "There is
+    no ladder of tolerances" of F-I4.15.4; every other part of F-I4.15.2-F-I4.15.4 is unchanged).
+    - **Rungs** E = (1.0, 1.5, 2.0, 3.0, 4.0) mm, tried in this order. For each rung eps, the ring R_eps is
+      Douglas-Peucker at eps on the same closed raw ring as F-I4.15.2 (c) (outer ring of the component's cells,
+      collinear vertices removed, split at the two ring vertices farthest apart, distance to the chord segment, a
+      vertex kept when its distance exceeds eps), then collinear vertices removed.
+    - **Slot footprint first.** The slot's width w, centre c_L, bottom b, entry side s_e and box (along a_W from u_rect
+      + s_e 3 mm to b) are computed in the rectangle frame (F-I4.15.3) and do not depend on the polygon [R,
+      `slot_for_poly`, `_footprint`]. They are therefore computed once, before the ladder. Only u_e, D and P depend on
+      the polygon; they are taken from the chosen R_eps after the ladder. Gate names are unchanged: the F-I4.3 slot
+      checks run on the rectangle frame before the ladder, and `slot_band_outside_polygon` is checked on the chosen
+      R_eps.
+    - **A rung fits** a board when all three hold: (i) R_eps is a simple polygon (`ring_simple`); (ii) its default
+      prisms (the F-I4.15.4 partition of R_eps) number <= the cap; (iii) where the board has a slot, its slotted prisms
+      (the F-I4.15.4 partition of R_eps minus the slot footprint, every ring of the difference) number <= the cap.
+      (iii) is the decision's criterion; (ii) is F-I4.15.4's cap on the default set, kept unchanged so that the two caps
+      cannot disagree; in every recorded case the default count is at most the slotted count (table above). A ring of
+      the difference that is not simple makes the rung not fit (its count is undefined). The ladder does not test the
+      budget, topology, cross-lap or keep-out gates: those run once, on the chosen polygon, exactly as F-I4.15.
+    - **Choice:** the smallest fitting eps, per board. Each board's rung depends only on its own ring and its own
+      footprint, so the two boards of a pair may take different rungs; each records its eps.
+    - **No rung fits:** if at least one rung's ring is simple, the body fails with `plate_body_over_cap` (the pair
+      leaves the route, old decision, `waiver_gate_fail:plate_body_over_cap`), as F-I4.15. If no rung's ring is simple,
+      F-I4.15.2 (c)'s fallback applies unchanged: the unsimplified raw ring (flag `outline_unsimplified`) with
+      conditions (ii)-(iii), else `plate_outline_not_simple`.
+    - **Board without a slot** (the ep23 body check; any body built before linking): the rung is chosen on (i) and
+      (ii) only.
+    - **Then, exactly as F-I4.15:** body = R_eps extruded to +-t / 2 (F-I4.15.2 (d)); u_e, D = s_e (u_e - b), P = D -
+      2 mm (F-I4.15.3); W_x between the two chosen polygon bodies; the 10 mm cross-lap window; the budget against the
+      round-0 chosen polygon; topology; the prisms of (ii) and (iii) as the default and slotted pieces; the keep-out
+      gate (F-I4.6 / F-I4.15.4); P2-P7; delivery (F-I4.8 / F-I4.15.5).
+    - **Reported per board and per rung** (all five rungs, also those above the chosen one, for the record only): eps,
+      simple, vertices, reflex vertices, default prisms, slotted prisms, polygon area (cm2), and the outline
+      displacement d_max = the largest distance of a raw-ring vertex to R_eps (<= eps by construction [R]: every
+      discarded vertex lies within eps of the chord that replaced it). Also the chosen eps, the FREE share of the chosen
+      polygon body and of the rung-1.0 polygon body (F-I4.15.2 (e) code), and the end-minus-waist width of both.
+    - **Why the bound is two cells (generic, from the decision):** the outline raster has a 2 mm pitch, so detail
+      smaller than one cell is not measured; Douglas-Peucker moves the ring by at most eps; at 4.0 mm a step of up to
+      two cells may be removed, which bounds how far the body can move from the observed cells. A real feature smaller
+      than eps can be simplified away: on ep24 the I-shape steps are 3.5-5 mm per side [M, 20.11], so a rung of 4.0 mm
+      could fill in a waist recess. This is reported (end-minus-waist per rung), not gated.
+    - **Literature checked (31 Oct ~21:30 UTC; bibliographic records found by web search, papers not re-read) [R]:**
+      - Douglas and Peucker 1973, "Algorithms for the reduction of the number of points required to represent a
+        digitized line or its caricature", The Canadian Cartographer / Cartographica 10(2): 112-122: the tolerance-band
+        method kept here; its tolerance is a distance, which ties it to the raster pitch. It does not guarantee a
+        simple result, hence test (i).
+      - Visvalingam and Whyatt 1993, "Line generalisation by repeated elimination of points", The Cartographic
+        Journal 30(1): 46-51: removes the point with the smallest effective triangle area first. Its threshold is an
+        area with no direct distance bound to set from the 2 mm pitch; not chosen, named only.
+      - Hertel and Mehlhorn 1983, "Fast triangulation of simple polygons", FCT 1983, LNCS 158: 207-218 (CGAL
+        `approx_convex_partition_2` documentation, read for F-I4.15): the partition kept. It removes inessential
+        diagonals of a triangulation; each remaining diagonal is essential at a reflex vertex, so it yields at most
+        2r + 1 parts for r reflex vertices, while any convex partition needs at least ceil(r / 2) + 1, hence its
+        4 x optimal bound. The prism count is therefore driven by the reflex vertices that survive simplification.
+      - Lien and Amato, "Approximate convex decomposition of polygons" (SoCG 2004, pp. 17-26; journal version in
+        Computational Geometry: Theory and Applications, 2006, volume and pages not verified here): resolves the most
+        significant notches first until every piece's concavity is <= tau. **Named alternative for a later round, tau =
+        2 mm (one cell), not this one:** it would cut the piece count without moving the outline, but its pieces are
+        only approximately convex, so their convex hulls bulge by up to tau into the slot or into seen-empty space, and
+        the exact-tiling argument behind the keep-out gate (F-I4.15.4) would no longer hold; it needs its own gate.
+  - **F-I4.16.2 The synthetic family w10** (new freeze input; replaces ep23 in condition (b)). Written before any run;
+    no w10 fixture exists in code when this entry is committed.
+    - **Geometry (per cell):** two identical slot-less I-shaped plates (same stock), `iplate10(t)`: length 230 mm along
+      the plate's local x, waist 125 mm along local y, ends 137 mm wide (6 mm per side more than the waist) over 20 mm
+      at each end, thickness t along local z. This is `test_fi415.iplate` with the end width 137 mm instead of 136 mm.
+      The 6 mm per-side step exceeds every rung (4.0 mm), so the I-shape is measurable at every rung.
+    - **Cross:** `test_interlock.cross_episode(t, two_sided=True, mesh_b=iplate10(t), seed=pose seed)`: world = A's
+      frame; B's pose R_B, translated along y from 120 mm to 0 over 60 insertion frames, then 30 assembled frames, after
+      10 separated frames (T = 100); per-frame pose jitter 0.2 deg / 0.5 mm (the T-I1 jitter); two-sided cameras; the
+      candidates for both boards `iplate10(t)` (as w8). The pair runs through `TI.run_pair(b, cand, waiver=True)`. The
+      true slots lie at x = 0 of each plate's own frame, A's opening at its +y edge, B's at its -y edge.
+    - **Evidence (the one change against w8):** each plate's owned points are 3000 surface samples of the slot-less
+      `iplate10(t)` (`trimesh.sample.sample_surface`, sample seed below), the same samples in every frame, as
+      `evidence_obs`. In each frame every sample is displaced in the plate's own frame by sigma_e x N(0, 1) along local
+      x, sigma_e x N(0, 1) along local y and 1.0 mm x N(0, 1) along local z (one (3000, 3) standard-normal draw per
+      frame, frames in order, A's 100 frames first, then B's, from the cell's noise generator). Camera centre = the
+      displaced point + 0.4 m along the sample's face normal (as `evidence_obs`, two-sided). Grid states as
+      `evidence_obs`, from the true slot-less mesh (OBSERVED within 4 mm inside the surface, UNKNOWN deeper, FREE
+      outside). Declared `sigma_mm` = 1.0 for both plates, equal to the true normal noise, so the plate test's band and
+      the outline slab use the noise the points carry (answers verify_slot2_0 N9 for this family). The in-plane
+      displacement is the decision's "edge noise": it is what moves the outline; interior points stay inside it.
+    - **Cells:** t in {6, 8, 10} mm x sigma_e in {1, 2, 3} mm, nine cells, numbered k = 1..9 in the order (t, sigma_e) =
+      (6, 1), (6, 2), (6, 3), (8, 1), (8, 2), (8, 3), (10, 1), (10, 2), (10, 3). sigma_e = 1 mm is w8's noise level
+      (w8: isotropic 1 mm); 2 and 3 mm are rougher than ep24 (w8 at 1 mm already has 54 / 56 reflex vertices against
+      ep24's 41 / 61 [M]).
+    - **Seeds** (none used before in `gmg/` code or tests [M, grep 21:30: the existing seeds are 0-9, 20, 101, 1000]):
+      cell k uses pose seed 4160 + k (`cross_episode`), noise generator `numpy.random.default_rng(4260 + k)`, sample
+      seed 4360 + k for A and 4460 + k for B.
+    - **w10p** (report only; k = 10: seeds 4170 / 4270 / 4370 / 4470): the (t 8, sigma_e 2) cell with 30 % of A's
+      outline occluded by a hand-shaped blob, as on ep23 board 1.
+      - Occluder, in A's frame (mm; A's slot opens at y = +62.5, the waist edge, at x = 0): a palm ellipse centred at
+        (75, 62.5) with semi-axes (40 s, 30 s), united with four finger capsules of radius 8 s whose axes run from (75 +
+        c s, 62.5) to (75 + c s, 62.5 - 70 s) for c in {-27, -9, 9, 27}: a hand gripping the slot-side edge, fingers
+        across the face.
+      - Scale s: the value in [0.2, 3.0] that makes the occluded share of A's true footprint (the slot-less
+        `iplate10(8 mm)` outline, 292.3 cm2) 0.300 +- 0.005, found by bisection with the area on a 0.5 mm grid, when the
+        fixture is built and before the pair runs; s and the share are reported. [E] s about 1.3, so the palm keeps
+        about 20 mm from the slot band; if the occluder reaches |x| < 10 mm this is reported (the slot band would then
+        lie under the hand).
+      - Effect: A's samples whose (x, y) lie inside the occluder are dropped in every frame; A's grid voxels whose
+        centre's (x, y) lies inside the occluder become UNKNOWN (state 0, hits 0, free 0) at every z (the hand blocks
+        the view of the board and of the air beside it). B is unchanged.
+      - Origin of 30 %: ep23 board 1's polygon is 206.0 cm2 against 287-298 cm2 for the same-stock ep24 boards, about
+        28-31 % missing [M, verify_slot2_1 N6].
+    - **w10n** (report only; added by this entry, not in the decision; k = 11: seeds 4171 / 4271 / 4371 / 4471): the t
+      = 8 mm cell with isotropic 3 mm noise (sigma 3 mm along local x, y and z) and declared `sigma_mm` = 3.0. It shows
+      what real 3 mm normal noise does to the plate test and t (the 9 mm step-1 band then exceeds t, as on ep24 board
+      1); w6c and w8b only declared 3 mm (verify_slot2_0 N9). Not a freeze input.
+    - **Recorded per cell** (all cells, w10p, w10n): the plate route and t (downsample and all points); per board the
+      ladder table of F-I4.16.1 and the chosen eps; decision and gate; w, c_L and its offset from x = 0; u_e, D, entry
+      edge shift; W_x and the cross-lap difference; budget, reach, topology; default / slotted prisms; keep-out per
+      hull (max); FREE share of the chosen polygon and of the rectangle body; end minus waist (true 12 mm); coverage
+      (F-I4.16.5); for the physics cell P2-P7 and P5.
+    - **Re-runs, reported only:** w7, w8 and w8b with their F-I4.15.7 fixtures and seeds unchanged, under F-I4.16 (the
+      ladder); w8 / w8b keep-out against 0.0 cm3 (as written) and 0.3 cm3. **Regression check:** WaiverR2 w1 at t =
+      10 mm (fits at 1.0 mm under F-I4.15: 38 / 51 slotted prisms) must choose rung 1.0 and give the same decision,
+      slot (w, c_L, D) and prism counts as its round-2 record; a difference is a code defect (reported and fixed in a
+      recorded commit before the freeze is declared; a code fix is not a rule change).
+  - **F-I4.16.3 Freeze for eval 25** (replaces F-I4.15.6 step 5). F-I4.16 is frozen for eval 25 (code commit
+    recorded; no further F-I4 change before eval 25) when both hold:
+    - **(a) ep24 regression**, T-I11 tag `fi4p` (new tag; nothing overwritten): both boards CARVE under F-I4.16 and
+      P2-P7 pass on 16 copies. If rung 1.0 is chosen on both boards, every piece file (top-level `piece_XX.obj` of both
+      boards and `_default/`) must be byte-identical (sha256) to round-2 r0 (`build/I/results/slot2-ep24/fi4o/r0`), and
+      P2-P7 are then inherited from round 2 (no new physics); a byte difference while rung 1.0 is chosen means (a)
+      fails (a code regression: the ladder must not change a body it does not need to change). If another rung is
+      chosen on either board, P2-P7 are re-run on 16 copies with the F-I4.7 thresholds.
+    - **(b) w10**: in every one of the nine full-outline cells, both boards CARVE through the waiver route (T1,
+      `owner_waiver_fi4`; every kept gate, the cross-lap window, budget and topology passed) with both prism sets <= 82
+      at the chosen rung, keep-out <= 0.3 cm3 per hull, and |w - (t + 2 mm)| <= 1.0 mm on both boards (t = the cell's
+      true thickness, which is the partner's); **and** the (t 8, sigma_e 2) cell passes P2-P7 on 16 copies (F-I4.7
+      thresholds: P3 lag <= 0.5 cm and <= 5 deg at assembly, never > 1 cm after it, no NaN copy, overlap < 1.0 cm3 as
+      implemented, i.e. the median over the assembled frames (verify_slot2_1 N4); P2, P4, P6, P7 as F-I4.7; P5 <= 165).
+    - **Not freeze inputs:** w10p, w10n, w7, w8, w8b, the w1 regression (except as a code check), ep23, the slot-centre
+      and coverage reports, and every prediction of F-I4.16.7.
+    - If (a) or (b) fails, the round stops, nothing is tuned, and the failure is reported with its numbers; eval 25 is
+      not run under F-I4.16; any change is a new dated entry and an orchestrator decision. Stated now, so that no miss
+      can be relabelled afterwards.
+  - **F-I4.16.4 Slot-centre report and the P_sel -> P_sim check** (report only; no geometry, gate or delivery change).
+    - **Scope:** every slotted board that is a one-face plate (F-I4.14 step 3). A two-sided board records "not
+      applicable" (its far face is seen directly, so below-face points are not through-slot evidence).
+    - **Estimator** (the verifier's method, `<scratch>/verify_slot2_1/vobs2.py` part (b), fixed here):
+      - points: the board's near points (6 mm filter, all points) in the outline slab |a_T . x - mid_d| <= t / 2 +
+        3 sigma, from the frames before the first frame of the pair's engaged INSERTION run (the partner not yet
+        engaged; on ep24 this is the verifier's "frames < 164");
+      - body-frame coordinates (u along a_L, v along a_W, w along a_T, origin the body centre on the mid plane); the
+        seen side = the sign of the median w of the points in the band and window (next item); **below-face** = w x
+        seen sign < 0 (beyond the mid plane, more than t / 2 under the seen face);
+      - depth band: v between u_e and b, trimmed by 8 mm at each end (away from the mouth and the slot bottom); window
+        abs(u - c_L) <= 30 mm; 1 mm bins of u;
+      - profile: the histogram of the below-face points' u; u_obs = the midpoint of the contiguous run of bins >= half
+        the peak bin that contains the peak; also reported: the peak bin centre, the run's width, n_points (below-face
+        points in band and window) and the on-face profile (w x seen sign > 1 mm) for context;
+      - observable iff n_points >= 100, the run does not touch either end of the window, and the run is at most 3 w
+        wide; otherwise "not observable" (no flag).
+    - **Flag:** delta = u_obs - c_L. If observable and |delta| > 1.0 mm, the decision record and the r0 manifest's
+      `owner_waiver` block carry `slot_centre_disagrees: {delta_mm, n_points, u_obs_mm, c_L_mm}`. The slot is not moved
+      (the simulator replays our tracks, and F-I4.12 centres the slot on them); the flag is a caveat for P1 and for
+      any pose source other than our tracks.
+    - **P_sel -> P_sim check (eval 25 only; INTERLOCK 20.9 item 3):** after the per-board mapping of our tracks to
+      the packed eval-25 reference, the delivered slotted pieces of both boards are placed at the reference poses at
+      each assembled frame of our engaged run (the P3 assembled frames). Per frame: the volume of one board's slotted
+      pieces inside the other's (the P6 estimator of `simphys`). Reported: median, max, frames over 0.3 cm3. The r0
+      manifest carries `p_sim_overlap: {median_cm3, max_cm3, frames_over}` when the median exceeds 0.3 cm3 (the median,
+      as P3's overlap clause is judged; the max is reported beside it). The packed reference is our own submitted
+      prediction for eval 25 (the pack's perception track), not ground truth.
+  - **F-I4.16.5 Outline-coverage report** (report only, no gate): per body at the chosen rung, coverage_frame =
+    polygon area / (L x W of its rectangle frame), and, when the pair is same stock (one board's t is the partner prior
+    `plate_t_partner_prior`, or the two all-point t differ by <= 1 mm), coverage_partner = polygon area / the partner's
+    polygon area. In the decision record and the r0 manifest.
+  - **F-I4.16.6 Run order and cost** (after this entry is pushed).
+    1. Build: `platebody.py` REV 16 (the ladder in the polygon route, the footprint before the ladder, the reports of
+       F-I4.16.4-F-I4.16.5, a P_sim overlap function); new `tests/test_fi416.py` (w10, w10p, w10n; the w7 / w8 / w8b
+       re-runs and the w1 regression through `test_fi415` with REV 16). Committed before any run; the launch commit
+       of every run is written to a launch file at launch (verify_slot2_1 N7: `launch_code` is taken after the bundle
+       stage).
+    2. T-I1: `test_fi416.py` (all cells, the physics cell, w10p, w10n, re-runs, w1 regression). T-I11 ep24 `fi4p` may
+       run in parallel with it: the code is frozen at the build commit, and the freeze is decided only when both have
+       finished (stated now; verify_slot2_0 N3). The waiver-off suite is not re-run: with `--waiver-fi4` off the polygon
+       route is not reached, and F-I5 uses only `plate_info`, which F-I4.16 does not change [R, `interlock.decide_pair`,
+       `collcarve.object_routes`].
+    3. **T-I11 ep24, tag `fi4p`:** the fi4o command (INTERLOCK 20.6 step 2 with `--tag fi4p`; bundle
+       `20261031-b4ext4-b61e8aa`, picks `shell_t5p36`, `--identity eval`, 16 copies, no `--gen`, `--no-physcheck`).
+       When rung 1.0 is chosen on both boards the run may stop after writing the pieces (a driver option, off by
+       default), and the pieces are compared byte for byte with round-2 r0. The new round folder (with the slot-centre
+       and coverage reports) is a record; the folder delivered for P1 stays round-2's r0 when the pieces are identical,
+       and the `slot_centre_disagrees` result is relayed as a caveat to it.
+    4. **ep23** (public, dev, report only): `build/I/fi415_ep23.py` under REV 16 (plate test, body, ladder on the
+       default prisms, FREE share, coverage), the v6 bundle and the round-2 picks. No adoption, not a freeze input.
+    5. Freeze decision (F-I4.16.3).
+    6. **Eval 25, only if frozen:** the ep25 gmg bundle and the per-board mapping (the parallel Prep25 step, no F-I4
+       rule); identical code; P_sim = the packed eval-25 reference; P2-P7 on 16 copies; r0 with the slot-centre,
+       coverage and P_sel -> P_sim reports; `meshes/carve/ev25` read only after r0 is written, for the comparison.
+    - Cost [E]: CPU. The build about 45-60 min; w10 about 2-4 min per cell without physics (round 2: w8 + w8b to the
+      cap in 211 s), the physics cell 10-30 min (16 copies); ep24 fi4p about 11 min to the pieces (fi4o: 2613 s total,
+      1938 s of it physics); ep23 about 3 min; eval 25 about 1-2 h with physics. On this container (4 shared cores,
+      heavily loaded) or one self-destroying Vast CPU box when that is faster end to end (`docs/runbook-vast.md`,
+      `ops/vast.sh`; ledger session mesh-bold, planned line before create, actual after; cap $3 for the round;
+      destruction confirmed with `ops/vast.sh show`). Expected spend $0-1.
+  - **F-I4.16.7 Predictions** (written before any run; P51-P58 are F-I4.15's, so these start at P59). They gate or fix
+    nothing beyond F-I4.16.3; none is a failure criterion of the gmg (D.3).
+    - **P59** ep24 (fi4p): rung 1.0 is chosen on both boards and every piece file is byte-identical to round-2 r0 |
+      another rung, or any byte difference | [not independent for the rung (57 / 77 <= 82 is known); tests the code]
+    - **P60** w10: freeze condition (b)'s geometric part holds in all nine cells (both CARVE within the cap, keep-out
+      <= 0.3 cm3 per hull, |w - (t + 2)| <= 1 mm) | any cell misses | [H]
+    - **P61** w10 (t 8, sigma_e 2): P2-P7 pass on 16 copies | any fails | [H; E: P3 0.05-0.3 cm and < 4 deg (w5 0.033
+      cm, w9 0.28 cm, ep24 0.078 cm)]
+    - **P62** w10: the chosen rung is 1.0 or 1.5 mm in the three sigma_e = 1 cells and <= 3.0 mm in every cell | a
+      sigma_e = 1 cell needs >= 2.0 mm, or any cell needs 4.0 mm or fits no rung | [H; E: w8 at isotropic 1 mm missed
+      the cap by one prism at 1.0 mm (83); a one-cell step is under 2 mm from a chord that spans it, so it cannot
+      survive eps >= 2.0 mm]
+    - **P63** w10: on the chosen polygons the I-shape survives (end minus waist within 3 mm of the true 12 mm on both
+      boards), D is measured from the waist edge (entry-edge shift >= 3 mm), and d_max <= eps | any of the three fails
+      in a cell | [H; d_max <= eps holds by construction and tests the implementation]
+    - **P64** re-runs (report only): w7, w8 and w8b each fit a rung <= 4.0 mm on both boards and CARVE both | a board
+      fits no rung, or a kept gate pushes | [H; the 1.0 mm counts are known (111; 83; 90 / 84), the counts at other
+      rungs are not]
+    - **P65** w10p (report only): A's body is built at some rung, both boards CARVE, and A's coverage_partner is
+      0.65-0.75 | no body, a push, or coverage outside | [H; if it holds, F-I4.16 carves a board whose outline misses
+      about 30 %: there is no coverage gate]
+    - **P66** w10n (report only): both boards plate-like with the all-point t within 1 mm of 8 mm, and both CARVE |
+      either fails | [H; E: step 2 (camera-side pair) rather than step 1]
+    - **P67** ep23 board 1 (report only): a rung <= 4.0 mm brings its default prisms <= 82; coverage_frame 0.70-0.78 and
+      coverage_partner <= 0.75 | no rung fits, or a coverage outside | [not independent: its 1.0 mm count (85) and its
+      area (206 cm2) are known]
+    - **P68** slot centre, ep24 board 2 (one face): observable, flagged, delta in -6..-2 mm; board 1 (two-sided) not
+      applicable | not observable, |delta| <= 1 mm, or delta outside | [not independent: verify_slot2_1 N1 measured
+      this profile]
+    - **P69** eval 25 (only if frozen): both boards CARVE under F-I4.16 and P2-P7 pass on 16 copies with P_sim = the
+      packed reference | a push or any failed test | [H, low confidence]
+    - **P70** eval 25 (only if frozen): the P_sel -> P_sim median overlap is <= 0.3 cm3 | > 0.3 cm3 | [H, low
+      confidence: the slot follows our track (verify_slot2_1 N1); it fails if the packed reference differs from our
+      track at assembly by more than the 1 mm clearance]
+  - **F-I4.16.8 Constants and origins.**
+
+    | constant | value | origin |
+    |---|---|---|
+    | ladder rungs | 1.0, 1.5, 2.0, 3.0, 4.0 mm, smallest fitting first | **generic in argument** (2 mm raster pitch: 1.0 = half a cell, the F-I4.15 value; 2.0 = one cell, the smallest measured detail; 4.0 = two cells, the most the outline may move; 1.5 and 3.0 the decision's intermediate rungs); **post hoc in timing** (chosen after the 1.0 mm counts were seen) |
+    | fit criterion | ring simple, slotted and default prisms <= cap | decision (slotted), F-I4.15.4 (default cap kept) |
+    | prism cap | floor(165 / objects), 82 for two objects | unchanged, informed (P5, F-I1.14) |
+    | w10 plate | 230 mm long, waist 125 mm, ends 137 mm over 20 mm | informed: ep24's I-shape in round numbers (verify_slot_1 B1); end step 6 mm per side from the decision |
+    | w10 t | 6, 8, 10 mm | decision (around ep24's 7.4 mm [M]) |
+    | w10 sigma_e | 1, 2, 3 mm in plane; 1.0 mm normal; declared 1.0 mm | decision (edge noise); normal noise and declared sigma: fixture, as w1-w9 |
+    | w10 frames, jitter, cameras | T = 100 (10 / 60 / 30), 0.2 deg / 0.5 mm, two-sided at 0.4 m | fixture, as `cross_episode` |
+    | w10 seeds | 4160 + k, 4260 + k, 4360 + k, 4460 + k | fixture, new (unused in `gmg/`) |
+    | w10p occluder | 30 % of A's footprint; palm + four fingers, scale by bisection | informed: ep23 board 1 (28-31 % missing [M]); shape: fixture, stated now |
+    | w10n | t 8 mm, isotropic 3 mm, declared 3 mm | this entry (report only; verify_slot2_0 N9) |
+    | slot-centre flag | abs(delta) > 1.0 mm | generic: the slot's clearance per side (F-I4.3) |
+    | slot-centre estimator | 8 mm band trim, +-30 mm window, 1 mm bins, half-peak run, >= 100 points, run <= 3 w | the verifier's method (verify_slot2_1 N1); thresholds set now; report only |
+    | P_sim overlap flag | median > 0.3 cm3 | informed: the keep-out level per hull (F-I1.14); report only |
+    | same stock (coverage) | partner prior, or all-point t within 1 mm | generic; report only |
+    | freeze thresholds | keep-out 0.3 cm3 per hull, width +-1 mm, cap, F-I4.7 | reused (F-I4.6, F-I4.10 w1, F-I4.15.4, F-I1.14) |
+
+    Every other constant of F-I4.15.9 is reused unchanged.
+  - **F-I4.16.9 Integrity.** GT-free, as F-I4.9 / F-I4.15.10. Inputs: our clean bundles (ep24 `b4ext4-b61e8aa`, ep23
+    `b4ext6-90c8cce`, the ep25 bundle from Prep25), our picks, tracks, hands and video, and for eval 25 the packed
+    reference poses (our own prediction). No scan, mocap, dataset-parquet `pose`, `*_align`, or library geometry as
+    shape evidence. `meshes/carve/ev25` is not read before the eval-25 r0 is written. Public development and eval
+    inference stay separate: nothing is tuned on eval. Every miss and failure is reported; any change after an outcome
+    is a new dated entry.
 
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,

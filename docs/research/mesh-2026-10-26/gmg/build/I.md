@@ -1088,3 +1088,23 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   log `<scratch>/slot3ev25/logs/ev_extract.log`. Mapped track sha256 49adcb73...; vs the ref track: board 1 7.3 mm /
   1.3 deg median, board 2 4.9 mm / 2.2 deg; board 2 in board 1 over f294-355 differs by 7.9 mm median (xyz 2.1 / -1.3 /
   -7.3 mm, mostly along board 1's z) and 2.5 deg (report only, `rel_assembly.json`).
+- 21:30 short literature check (web search for bibliographic records; papers not re-read): Douglas-Peucker 1973
+  (Cartographica 10(2) 112-122), Visvalingam-Whyatt 1993 (Cartogr. J. 30(1) 46-51), Hertel-Mehlhorn 1983 (FCT, LNCS
+  158 207-218; CGAL doc), Lien-Amato ACD of polygons (SoCG 2004 17-26; journal 2006, volume / pages not verified).
+  Seeds in `gmg/` code and tests: 0-9, 20, 101, 1000 only [M, grep], so w10 uses 4161-4171 / 4261-4271 / 4361-4371 /
+  4461-4471. Noted: a parallel Prep25 step of this workflow works in `<scratch>/slot3ev25/` (not read here).
+- 21:37 PREREG F-I4.16 (F-I4.16.0-F-I4.16.9; predictions P59-P70) and INTERLOCK 20.13 (+ header pointer and a status
+  line under 20.12's open decisions) written; the verify_slot2_0 N3 (run order) and N4 (keep-out threshold) lines added
+  to the F-I4.15 outcomes bullet. Nothing run, no code edited. Design points beyond the decision text, stated before
+  any run: (1) the slot footprint (w, c_L, b, box) does not depend on the polygon [R, `slot_for_poly`, `_footprint`],
+  so it is computed before the ladder and each board takes its own rung; (2) a rung fits on simple ring + slotted
+  prisms <= cap (the decision) + default prisms <= cap (F-I4.15.4's cap kept; default <= slotted in every record); the
+  ladder never searches over the budget / topology / cross-lap / keep-out gates; (3) w10 "edge noise" = in-plane
+  displacement sigma_e of every sample per frame, normal noise 1 mm, declared sigma 1 mm (so declared and real normal
+  noise agree, verify_slot2_0 N9); ends 137 mm keep the 6 mm I-step above every rung; (4) w10n (isotropic 3 mm,
+  declared 3 mm, report only) added for the real-normal-noise question; (5) w10p occluder = palm ellipse + four finger
+  capsules over A's slot-side edge, scaled by bisection to 30 % of A's footprint; (6) ep24 `fi4p` may stop after the
+  pieces when rung 1.0 fits both, then byte comparison; (7) slot-centre estimator fixed to the verifier's vobs2 (b)
+  method (half-peak centre of below-mid-plane points, 8 mm band trim, +-30 mm, >= 100 points); P_sim flag on the
+  median overlap. Committing my lines only (other agents' uncommitted lines in PREREG.md, INTERLOCK.md and this file
+  are left unstaged).

@@ -5852,3 +5852,18 @@ diagnostic; nothing is picked for submission.
   one), then the five 21.10 decisions; off-axis nests not carved. Workflow collision-carve-2 (wf_5b6edef9-640) launched,
   with a GT-free eval precheck (packed references and colliders, evals 10/1/14/16/30/32/33) as a diagnostic for the
   pose lanes. One Vast box allowed, cap $3, ledger first.
+
+### 2026-10-31 21:37 UTC — board slot round 3: PREREG F-I4.16 written (amend step, nothing run)
+- PREREG F-I4.16 and INTERLOCK 20.13 committed before any code or run uses them (gmg `build/I.md`, "Board slot round
+  3"); the orchestrator's decision of ~21:20 UTC, post hoc (after the 1.0 mm counts: ep23 85 > 82, w7 111, w8 83, w8b
+  90 / 84).
+- Douglas-Peucker ladder 1.0 / 1.5 / 2.0 / 3.0 / 4.0 mm per board, the smallest whose ring is simple and whose slotted
+  (and default) prisms fit floor(165 / objects); the slot footprint is computed first (it does not depend on the
+  polygon); everything else as F-I4.15. Literature: Douglas-Peucker 1973, Visvalingam-Whyatt 1993, Hertel-Mehlhorn
+  1983; Lien-Amato approximate convex decomposition (tau 2 mm) named for a later round.
+- New freeze condition (b): synthetic w10 (I-shaped pairs, ends 137 / waist 125 mm, t 6 / 8 / 10 x in-plane edge
+  noise 1 / 2 / 3 mm; seeds 4161-4171, 4261-4271, 4361-4371, 4461-4471, all new): all nine cells carve within the cap
+  (keep-out <= 0.3 cm3, width +-1 mm) and the t 8 / sigma 2 cell passes P2-P7; (a) ep24 `fi4p` carves and passes,
+  byte-identical to round 2 at rung 1.0. Report only: w10p (30 % hand occlusion), w10n (isotropic 3 mm), w7 / w8 /
+  w8b, ep23, the slot-centre check (flag > 1 mm) and coverage; on eval 25 the P_sel -> P_sim overlap.
+- Predictions P59-P70. F-I4.15 outcomes: the verify_slot2_0 N3 run-order and N4 keep-out-threshold lines added.

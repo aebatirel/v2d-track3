@@ -9,7 +9,7 @@ real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of 
 insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it); **result (31 Oct
 ~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Round 2 (31 Oct
 ~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
-points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Extended 31 Oct
+points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Round 3 (31 Oct ~21:20 UTC, orchestrator decision, post hoc): a simplification ladder for the prism cap, a new synthetic freeze family w10, and slot-centre and coverage reports (PREREG F-I4.16, section 20.13; written and pushed before any run with it).** **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). **Collision-carve result and report (31 Oct ~20:57 and ~21:30 UTC): nothing carved or delivered on the five public episodes; eval twins not run (orchestrator); two verifiers: the ring pieces fail the gate on their own and our tracked poses fail the hands-off test even with faithful colliders, sections 21.11-21.12.** This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
@@ -1717,6 +1717,150 @@ Record only (no outcome effect):
    and can be scheduled now.
 7. Eval 25 then needs the frozen rule, a run with physics, the P1 report and, on the pack side, an eval-25 rollout
    re-run before any use.
+
+Status (31 Oct 21:37 UTC): open decisions 1-3 are answered by the orchestrator's decision of ~21:20 UTC, PREREG
+F-I4.16 (section 20.13): 1 by the simplification ladder and the synthetic freeze family w10; 2 by a coverage report
+without a gate (the tilted step-1 plane pair is not addressed); 3 by a report-only slot-centre check (the slot is not
+moved). Decision 4 (a FREE-share gate) was not taken.
+
+### 20.13 Round 3: a simplification ladder for the piece cap, and a new freeze check (PREREG F-I4.16; written before any run with it)
+**In plain words.** Round 2 gave public ep24 a slotted simulator copy of both boards, but the rule did not freeze for
+eval 25: on ep23 one board needed 85 convex pieces where at most 82 are allowed, and three synthetic cases missed the
+same limit. The cause is measured: we trace the board's outline on a 2 mm grid and smooth it by only 1 mm, so every
+one-cell step of a noisy edge stays, and each step costs about one piece. The orchestrator decided (31 Oct ~21:20
+UTC, after seeing these counts) on four changes:
+- **Smooth more only when needed.** The outline is smoothed by 1.0 mm as before; if the pieces exceed the limit, by
+  1.5, 2.0, 3.0 and then 4.0 mm, and the first that fits is used. 4 mm (two grid cells) is the most the outline may
+  move. Nothing else about the body, the slot, the checks or the physics changes.
+- **A new freeze check.** ep23 was used up as a check (we have seen its count). In its place: a new family of synthetic
+  board pairs, written down here before any run, with the ep24 board shape, three thicknesses and three levels of edge
+  noise. All nine must be slotted correctly under the limit, and one of them must also pass the physics tests. ep24
+  must still carve and pass; if the old 1 mm smoothing fits there, its pieces must be exactly the round-2 pieces.
+- **Two warnings in the record, no change to the slot:** where a board is seen from one side only, we compare the slot
+  with the notch we can see from below and flag it if they differ by more than 1 mm (on ep24 board 2 the verifier saw
+  about 3.5 mm); on eval 25 we also place the pieces at the poses the pack's simulator replays and report how much
+  the boards overlap.
+- **A coverage figure:** how much of the board's frame (and of its partner's area) the traced outline covers. ep23
+  board 1 covers only about 74 %, because a hand hid part of it. Reported, not gated.
+
+Eval 25 is run under this rule only if ep24 and the nine synthetic cases pass. The submitted board meshes are not
+touched.
+
+**What changes** (PREREG F-I4.16.1-F-I4.16.5):
+
+| step | F-I4.15 (round 2) | F-I4.16 (round 3) |
+|---|---|---|
+| outline simplification | Douglas-Peucker 1.0 mm; over the cap: no body | rungs 1.0, 1.5, 2.0, 3.0, 4.0 mm, per board; the smallest whose ring is simple and whose slotted (and default) prisms fit the cap; none fits: no body (`plate_body_over_cap`) |
+| order in a pair | body, default cap, slot, cross-lap, budget, slotted cap | body raster, slot footprint (rectangle frame, polygon-independent), ladder, then u_e, D, W_x, cross-lap, budget, keep-out on the chosen polygon |
+| freeze condition (b) | ep23 board 1 body built | synthetic w10: 9 cells all carve correctly, one passes physics |
+| freeze condition (a) | ep24 carves, P2-P7 pass | the same, and at rung 1.0 the pieces are byte-identical to round 2 |
+| slot centre | not checked | report on one-face boards: observed notch vs c_L; flag if off by > 1 mm |
+| eval 25 poses | - | P_sel -> P_sim overlap at the assembled frames; flag if the median > 0.3 cm3 |
+| outline coverage | fill only | polygon / frame and polygon / partner (same stock); report only |
+
+**Evidence it rests on** [M, round-2 records, Douglas-Peucker 1.0 mm, cap 82]:
+
+| case | vertices | reflex | default prisms | slotted prisms |
+|---|---|---|---|---|
+| ep24 board 1 / 2 | 86 / 126 | 41 / 61 | 50 / 71 | 57 / 77 |
+| ep23 board 1 (board 2: wrong-board track) | 140 (102) | 68 (49) | **85** (56) | - |
+| w7 A / B | 64 / 184 | 30 / 90 | 32 / **111** | - |
+| w8 A / B | 112 / 116 | 54 / 56 | 68 / 70 | 72 / **83** |
+| w8b A / B | 138 / 134 | 67 / 65 | 75 / 75 | **90** / **84** |
+
+About 1.1-1.3 prisms per reflex vertex in every case. No count at any other tolerance has been computed, so what the
+ladder does is not known yet.
+
+**Prior work checked (short review, 31 Oct)** [R]:
+- Douglas and Peucker (1973, The Canadian Cartographer / Cartographica 10(2)): the method we keep. Its tolerance is a
+  distance, so it can be tied to the 2 mm grid; it can produce a self-crossing ring, which we test for.
+- Visvalingam and Whyatt (1993, The Cartographic Journal 30(1)): removes the points that span the smallest triangles.
+  Its threshold is an area, with no direct distance bound; not chosen.
+- Hertel and Mehlhorn (1983, FCT, LNCS 158): the convex partition we keep (at most 4 x the optimum). The number of
+  pieces follows the number of reflex corners that survive smoothing, so smoothing is the lever.
+- Lien and Amato, approximate convex decomposition of polygons (SoCG 2004; journal 2006): pieces may keep a small
+  concavity (tau). With tau = 2 mm it is the named alternative for a later round. Not now, because its pieces bulge
+  past the board by up to tau, which our keep-out argument does not allow without a new gate.
+
+**The synthetic freeze family w10** (PREREG F-I4.16.2; new seeds 4161-4471, none used before):
+
+| item | value |
+|---|---|
+| boards | two identical I-shaped plates, 230 mm long, 125 mm waist, 137 mm ends over 20 mm (6 mm per side, as ep24), crossing at mid-length (the T-I1 cross: 10 separated, 60 insertion, 30 assembled frames, 0.2 deg / 0.5 mm pose jitter, cameras on both sides) |
+| cells | t = 6, 8, 10 mm x in-plane edge noise sigma_e = 1, 2, 3 mm (normal noise 1 mm, declared sigma 1 mm): 9 cells |
+| pass (all nine) | both boards carve through the waiver route, both piece sets <= 82, keep-out <= 0.3 cm3 per piece, slot width within 1 mm of t + 2 mm |
+| physics cell | t 8 / sigma_e 2: P2-P7 on 16 jittered copies (P3 <= 0.5 cm, <= 5 deg, overlap < 1 cm3) |
+| w10p (report only) | the physics cell with 30 % of one board hidden under a hand-shaped blob (palm plus four fingers over the slot-side edge, scaled to 30 % of the board; as ep23) |
+| w10n (report only, added by this entry) | t 8 with real isotropic 3 mm noise and declared 3 mm (tests the plate test and t, which the other cells do not) |
+| also reported | w7, w8, w8b re-run; w1 at t = 10 must stay identical (code check) |
+
+**Freeze for eval 25** (PREREG F-I4.16.3):
+- (a) ep24 (tag `fi4p`): both boards carve and P2-P7 pass. If rung 1.0 fits both (expected: 57 / 77 <= 82), every
+  piece file must be byte-identical to round-2 r0 and the round-2 physics stands; a byte difference fails (a). If
+  another rung is chosen, physics is re-run.
+- (b) w10 as above.
+- If either fails, the round stops and reports; nothing is tuned; eval 25 is not run under F-I4.16. ep23, w10p, w10n,
+  w7, w8, w8b and the two reports never decide the freeze.
+
+**Slot-centre report** (one-face boards only; PREREG F-I4.16.4): from our own points before the partner arrives, the
+points seen deeper than the board's mid plane inside the slot's depth band (the notch seen from above) give a profile
+across the slot; its half-peak centre is compared with the slot centre c_L. If they differ by more than 1 mm (the slot's
+clearance per side) and at least 100 points support it, the round folder carries `slot_centre_disagrees`. The slot is
+not moved: the simulator replays our tracks, and the slot must agree with them. On eval 25 the delivered pieces are
+also placed at the packed reference poses (our own submitted eval-25 prediction) at the assembled frames, and the
+overlap is reported (`p_sim_overlap` if its median exceeds 0.3 cm3).
+
+**New constants** (PREREG F-I4.16.8):
+
+| name | value | origin |
+|---|---|---|
+| ladder rungs | 1.0, 1.5, 2.0, 3.0, 4.0 mm, smallest fitting first | generic in argument (half a cell, one cell, two cells of the 2 mm grid; 4 mm bounds the outline's move), post hoc in timing (after the 1.0 mm counts) |
+| w10 shape, thicknesses, noise | as above | ep24's shape in round numbers; the decision's t and sigma_e; fixture otherwise |
+| w10p occlusion | 30 % | ep23 board 1: 28-31 % missing against the same-stock ep24 boards [M] |
+| slot-centre flag | 1 mm, >= 100 points, 8 mm band trim, +-30 mm window | the slot's clearance; the verifier's method; report only |
+| P_sim overlap flag | median > 0.3 cm3 | the keep-out level per piece; report only |
+
+Every other constant of F-I4.15 is unchanged (2 mm raster, cap floor(165 / objects), 2 x 1 mm clearance, 2 mm depth
+margin, 10 mm cross-lap window, 10 % / 0.6 budget, 0.3 cm3 keep-out, the acceptance thresholds).
+
+**Run order and cost** (PREREG F-I4.16.6): build `platebody.py` REV 16 and `tests/test_fi416.py`; then the w10 tests and
+ep24 `fi4p` (in parallel; the code is frozen first and the freeze is decided after both); ep23 report; the freeze
+decision; eval 25 only if frozen (ep25 bundle and per-board mapping from the parallel Prep25 step, physics with the
+packed reference, `meshes/carve/ev25` read only after our r0 is written). Cost [E]: CPU; about 1 h build, 0.5-1 h of
+tests, 11 min for ep24 to the pieces, 1-2 h for eval 25 with physics. On this container or one self-destroying Vast CPU
+box if that is faster end to end (cap $3 for the round, ledger mesh-bold). Expected spend $0-1.
+
+**Predictions** (PREREG F-I4.16.7; P51-P58 are F-I4.15's):
+
+| | prediction | falsified if | label |
+|---|---|---|---|
+| P59 | ep24: rung 1.0 on both boards, pieces byte-identical to round 2 | another rung or a byte difference | not independent (counts known); tests the code |
+| P60 | w10: all nine cells carve correctly under the cap | any cell misses | [H] |
+| P61 | w10 t 8 / sigma_e 2: P2-P7 pass | any fails | [H]; [E] P3 0.05-0.3 cm |
+| P62 | w10: rung 1.0-1.5 mm at sigma_e = 1, <= 3.0 mm everywhere | a sigma_e = 1 cell needs >= 2.0, or any needs 4.0 or nothing fits | [H] |
+| P63 | w10: the I-shape survives (end - waist within 3 mm of 12), D from the waist edge, outline moved <= eps | any fails | [H]; the last part by construction |
+| P64 | w7, w8, w8b fit a rung and carve both (report) | no rung or a push | [H] |
+| P65 | w10p: body built, both carve, coverage 0.65-0.75 of the partner (report) | otherwise | [H]; if it holds, a 30 %-hidden board is carved: no coverage gate |
+| P66 | w10n: plate-like, t within 1 mm, both carve (report) | otherwise | [H] |
+| P67 | ep23 board 1: a rung fits, coverage 0.70-0.78 of its frame, <= 0.75 of board 2 (report) | otherwise | not independent |
+| P68 | ep24 board 2: notch observable, flagged, slot centre off by -6..-2 mm | otherwise | not independent (verify_slot2_1 N1) |
+| P69 | eval 25 (if frozen): both carve, P2-P7 pass with the packed reference | a push or a failed test | [H], low confidence |
+| P70 | eval 25 (if frozen): P_sim overlap median <= 0.3 cm3 | > 0.3 cm3 | [H], low confidence |
+
+**Limits and risks (stated before any run).**
+- This is the fifth outcome-informed step in the F-I4 chain (F-I4.12, F-I4.14, F-I4.15, the polygon-edge depth
+  reading, this one), each more permissive. The ladder's bound is generic (two grid cells), but it was chosen after the
+  1.0 mm counts were seen. The freeze check is new synthetic data, not a real episode: no untouched public plate
+  episode remains.
+- A coarser rung can smooth away real detail up to its eps: the ep24 I-shape steps are 3.5-5 mm per side, so a 4 mm
+  rung could fill in a waist recess. Reported per rung, not gated.
+- The partial outline (ep23, w10p) is not gated: a board with 30 % of its outline hidden can be carved, and its
+  simulator copy then lacks that part of the board.
+- Board 2 of ep24 keeps its slot about 3.5 mm from the observed notch; the report flags it, the geometry stays (it is
+  consistent with our tracks, on which the simulator replays).
+- w10's normal noise is 1 mm in all nine cells; real 3 mm normal noise (ep24 board 1's sigma) is tested only by the
+  report-only w10n.
+- The tilted step-1 plane pair (20.11 item 4) and a FREE-share gate (20.12 open decision 4) are not addressed.
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 
