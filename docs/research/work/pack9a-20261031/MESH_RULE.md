@@ -29,3 +29,15 @@ Per object (white_pot, white_pot_lid, plastic_dish_rack):
 - If the guard's per-object verdicts are not available by 19:15 UTC: use C0a for all three (zero pose risk).
 blue_cup stays out of 9a either way (its selection-rule issue is the owner's decision, not a frame question); a C0a
 blue cup is prepared only so that the owner can choose it.
+
+## C0a built (~16:50 UTC; after the rule above, before reading the AUC guard)
+- `meshes/c0a_20261031/<object>.glb`: local rigid ICP of C0 (5cce3d2) onto library_v3, started at identity (trimesh
+  `registration.icp`, no scale, no reflection, 20k kit-sampled points each), faces unchanged; `scripts/align_local.py`;
+  report `c0a_align_report.json`, md5s `c0a_md5.txt`.
+- The kit scorer's own 25-start alignment (`scripts/align.py`, first attempt) flipped the round lid by 174°: a global
+  search is unusable for the frame question; it is not used.
+- Measured [M]: the alignment moves the pot 0.26° / 1.7 mm, the lid 2.06° / 1.1 mm, the rack 1.89° / 2.8 mm (up to
+  9.6 mm at its ends), the blue cup 1.53° / 4.1 mm. Symmetric chamfer to library_v3 before → after: pot 4.48 → 4.51 mm,
+  lid 4.12 → 4.01, rack 5.19 → 4.90, blue cup 3.70 → 3.31. The overlap with library_v3 is dominated by real shape
+  difference (4–5 mm); the "rotation" relative to library_v3 is weakly determined (three methods give 1.9–2.5° for the
+  rack) and improves the overlap by ≤ 0.4 mm.
