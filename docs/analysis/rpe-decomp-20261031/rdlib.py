@@ -133,18 +133,18 @@ def metrics(A7, R7, H, per_frame=False):
     """kit metrics on aligned achieved A7 vs reference R7 (T,B,7)."""
     a, r = A7[:, None], R7[:, None]
     axes = [h['axis'] for h in H]; orders = [h['order'] for h in H]; pts = [h['points'] for h in H]
-    out = dict(AUC=float(M._registered_pose_metric('add_auc', a, r, pts, axes, orders)),
-               MPPE=float(M._registered_pose_metric('mppe_cm', a, r, pts, axes, orders)),
-               RPE=float(M._registered_pose_metric('rpe_cm', a, r, pts, axes, orders)))
+    # the kit's add_auc is _add_auc(stack of _symmetry_point_errors per body) = mean of the per-body AUCs, and its
+    # mppe_cm is the mean of the per-body keypoint errors: computed once per body here (same functions, same result)
+    adds = [M._symmetry_point_errors(a[:, :, s], r[:, :, s], pts[s], axes[s], orders[s]) for s in range(len(H))]
     kp = M._MPPE_KEYPOINT_DIRECTIONS * M._MPPE_KEYPOINT_RADIUS_M
-    out['obj_AUC'] = [float(M._registered_pose_metric('add_auc', a[:, :, s:s + 1], r[:, :, s:s + 1], pts[s:s + 1],
-                                                      axes[s:s + 1], orders[s:s + 1])) for s in range(len(H))]
-    mp = [M._symmetry_point_errors(a[:, :, s], r[:, :, s], kp, axes[s], orders[s])[:, 0] * 100 for s in range(len(H))]
-    out['obj_MPPE'] = [float(x.mean()) for x in mp]
+    mp = [M._symmetry_point_errors(a[:, :, s], r[:, :, s], kp, axes[s], orders[s]) for s in range(len(H))]
+    out = dict(AUC=float(M._add_auc(np.stack(adds, axis=-1))), MPPE=float(np.mean(mp) * 100),
+               RPE=float(M._registered_pose_metric('rpe_cm', a, r, pts, axes, orders)))
+    out['obj_AUC'] = [float(M._add_auc(x[..., None])) for x in adds]
+    out['obj_MPPE'] = [float(x.mean() * 100) for x in mp]
     if per_frame:
-        out['pf_mppe_cm'] = np.stack(mp, 1)                                     # (T,B)
-        out['pf_adds_cm'] = np.stack([M._symmetry_point_errors(a[:, :, s], r[:, :, s], pts[s], axes[s], orders[s])[:, 0] * 100
-                                      for s in range(len(H))], 1)
+        out['pf_mppe_cm'] = np.stack([x[:, 0] for x in mp], 1) * 100            # (T,B)
+        out['pf_adds_cm'] = np.stack([x[:, 0] for x in adds], 1) * 100
         out['pf_rpe_cm'] = rpe_per_frame(A7, R7, H)
     return out
 

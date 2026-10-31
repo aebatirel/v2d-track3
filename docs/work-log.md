@@ -5505,3 +5505,13 @@ arm and a no-policy replay floor to stage B.
   - total ≈ $90–130 (central $110), 2 staggered waves, ≈ 11–14 h.
   Cheaper: one-seed control −$15–22; no control −$30–45. pack_eval.sh records the sim assets (assets_md5.txt). The ep11
   gate launches within ~30 min.
+
+### 2026-10-31 ~15:40 UTC — owner: "I want a pack today" → pack 9a tonight
+- Owner, verbatim: "I want a pack today". Read with the earlier "prepare a pack so that we see where we stand" as approval
+  to upload tonight's pack once built and preflighted (owner told; stop honoured if sent).
+- Pack 9a = pack 8 (20261030-track3h-candidate: pack 7 + fresh eval-1 rollout) + C0 packed meshes (pot, lid, rack,
+  blue cup). Rollouts and sim assets unchanged.
+- Each board keeps its own best (PR #215 kit; pack 5 precedent), so AUC cannot drop below 0.81460 on the board. The
+  public-twin AUC guard is asked as information, not a gate.
+- Asked bold-albattani for C0 by ~19:00 UTC; focused-pascal builds, preflights and uploads before ~21:00 UTC.
+  Fallback: pack 8 alone if C0 is not in by ~20:00 UTC. Eval 10 goes into the next pack.

@@ -16,6 +16,7 @@ unchanged, so every variant is scored exactly as a submission would be.
   c_rest every object held at truth in the frames where it is still in mocap (+-5 frames: < 0.5 cm, < 2 deg).
   d      every object's frame-0 pose replaced by truth, our world-frame motion deltas kept.
   cd     c, then d on the remaining objects.
+  *_k    c / c_rest / d / cd with the truth expressed by the kit's own alignment W_kit instead of W* (robustness).
   e      the varying remainder = the metric left after b (and after d), reported as values, not deltas.
 Usage: python -I decomp.py RDLIB_DIR SCRATCH XTRK_JSON OUT_JSON [--episodes 0,2,...] [--jobs 4]
 """
@@ -99,9 +100,29 @@ def run(ep, a):
         Xcd[:, s] = Gw[:, s]
     out['variants']['cd'] = rnd(L.score(L.to7(Xcd), G, H))
 
-    # ---- descriptive diagnostics on base (kit alignment)
+    # ---- the same c / c_rest / d / cd with the truth expressed by the KIT's own alignment W_kit instead of W*
     A = L.align(C, G, H)
     Am, Gm = L.to4(A), G4
+    Wk = Am[0, 0] @ np.linalg.inv(C4[0, 0]); Gk = np.einsum('ij,tsjk->tsik', np.linalg.inv(Wk), G4)
+    Xc = C4.copy()
+    for s in untouched:
+        Xc[:, s] = Gk[:, s]
+    out['variants']['c_k'] = rnd(L.score(L.to7(Xc), G, H)) if untouched else out['variants']['base']
+    Xr = C4.copy(); Xr[still] = Gk[still]
+    out['variants']['c_rest_k'] = rnd(L.score(L.to7(Xr), G, H))
+    Xd = C4.copy()
+    for s in range(B):
+        Xd[:, s] = L.retarget_start(C4[:, s], Gk[0, s])
+    out['variants']['d_k'] = rnd(L.score(L.to7(Xd), G, H))
+    for s in untouched:
+        Xd[:, s] = Gk[:, s]
+    out['variants']['cd_k'] = rnd(L.score(L.to7(Xd), G, H))
+    # W* vs W_kit: rotation (deg) and translation (cm) between the two world maps
+    dW = W @ np.linalg.inv(Wk)
+    out['W_star_vs_kit'] = dict(rot_deg=round(float(np.degrees(Rot.from_matrix(dW[:3, :3]).magnitude())), 3),
+                                shift_at_slot0_cm=round(float(np.linalg.norm((dW @ np.r_[Am[0, 0, :3, 3], 1])[:3] - Am[0, 0, :3, 3]) * 100), 3))
+
+    # ---- descriptive diagnostics on base (kit alignment)
     obj = []
     for s, h in enumerate(H):
         pos = np.linalg.norm(Am[:, s, :3, 3] - Gm[:, s, :3, 3], axis=1) * 100
