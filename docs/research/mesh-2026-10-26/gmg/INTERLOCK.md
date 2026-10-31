@@ -9,7 +9,7 @@ real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of 
 insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it); **result (31 Oct
 ~18:00 UTC): no notch built on public ep24, eval 25 not run, nothing delivered (section 20.9)**. **Round 2 (31 Oct
 ~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
-points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Extended 31 Oct
+points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
@@ -1586,7 +1586,7 @@ Pair: cross-lap D sum 134.11 vs W_x 128.23 mm (5.88 mm, window 10); budget 2.1 %
 (16 jittered copies, P_sel = P_sim fallback): P3 carved lag **0.078 cm / 0.74 deg** (default 2.81 cm / 104 deg), overlap
 0.04 cm3; P2, P4-P7 pass; 134 shapes <= 165. Delivered: `build/I/results/slot2-ep24/fi4o/r0` (also in the run folder),
 `carved_p1_pending`; PNGs `build/I/results/slot2-ep24/fi4o/ep24_fi415_wooden_piece_{1,2}.png` (the red slot box sits on
-the slot visible in our RGB frames).
+the slot visible in our RGB frames; corrected in 20.12 item 1: board 1 only).
 
 ep23 (body only): board 1 one-face plate with t = 10.8 mm borrowed from board 2's (wrong-board) track; outline partial
 (PNG `build/I/results/slot2-ep23/`), 140 vertices, 85 prisms > 82 -> no body. Synthetic: w1-w6, w6c, w9 pass (the t = 6
@@ -1600,6 +1600,118 @@ Open (decisions for the owner / orchestrator, not taken here):
 3. As before: an ep25 gmg bundle and the per-board P_sel -> P_sim mapping (20.9 item 3).
 4. The step-1 plane pair can come out tilted (synthetic w8 B: 3.4 deg, t 5.1 mm) and F-I4.15.1 keeps its normal; the
    body then leans out of the board (21.8 % FREE). Not seen on ep24 (step 2 and step 3 there).
+
+### 20.12 Round 2 report: verification, record corrections, hand-offs, open decisions (31 Oct ~21:15 UTC)
+**In plain words.** Public ep24 now has a simulator copy of both boards with a slot. It passes every physics test we
+run on our own tracks (P2-P7). It goes to the Embodiment session for the settle test (P1); no pack may use it before
+that passes. Eval 25 has no slot: the rule did not freeze (on ep23, board 1 needs more convex pieces than the cap
+allows), so eval 25 was not run and the pack keeps `meshes/carve/ev25`. Two independent verifiers found no blocking
+problem. One finding matters for P1: board 2's slot sits about 3.5 mm off the slot we see in our own frames, because the
+slot follows our tracked pose at assembly. With poses closer to the true assembly it may collide by more than its 1 mm
+clearance. The submitted board meshes are unchanged.
+
+**Accuracy, failures and cost** [M unless marked]:
+
+| item | result |
+|---|---|
+| ep24 fi4o (code 19c4309, 2613 s) | both boards CARVE; t 7.40 mm (all points); 57 / 77 slotted prisms; P2-P7 pass on 16 copies (P3 0.078 cm / 0.74 deg vs default 2.81 cm / 104 deg) |
+| ep23 body check (v6 bundle, 156 s) | board 1 one face, partial outline, 85 prisms > cap 82: no body; freeze condition (b) fails |
+| F-I4.15 synthetic suite (4964 s + 211 s re-run) | w1-w6, w6c, w9 pass; w7, w8, w8b fail at the prism cap |
+| waiver-off T-I1 suite (3951 s, at 7402553) | 24 tests OK, 2 expected failures |
+| predictions | P51 (by construction), P52a, P52b, P53, P54 (not independent), P56 hold; P55, P57, P58 fail |
+| verification | `build/I/verify_slot2_0.md` (V0, rule compliance) and `verify_slot2_1.md` (V1, geometry and physics): no blocking item |
+| eval 25 | not run (F-I4.15.6 step 5); no ep25 output; `meshes/carve/ev25` not read |
+| cost | this container's 4 shared CPU cores, no rental, $0; about 3.3 h of run and test wall time, partly in parallel [E, sum of the logged times], plus two verifier passes |
+
+**Confirmed by the verifiers** [M]: F-I4.15 was pushed at 18:14:58, before any F-I4.15 code (18:24:30) or run; every run
+used one byte-identical `platebody.py` (sha256 `a1ca8960...`); the rule text was not edited after any outcome; the code
+does what the rule says (one laxer synthetic threshold, item 10); no ground truth was read; the delivered pieces are
+exact convex right prisms at t = 7.401 mm that tile the polygon, with the rule's slot width, centre and depth within
+the 0.25 mm check raster; P3 re-run on the delivered files gives 0.079 cm / 0.74 deg (a fresh seed 0.060 cm / 0.33
+deg); no observed material lies outside the body; board 1's slot lies on the real slot (looked at, RGB frames); the
+prism counts reproduce (ep24 50 / 57 and 71 / 77, ep23 85 and 56).
+
+**Corrections and caveats to 20.11 and the PREREG F-I4.15 outcomes** (no decision changes). For P1 and the next rule:
+1. **Board 2's slot is about 3.5 mm off the real slot** (V1 N1, [M + looked at]). The real gap spans u = -6..+1.5 mm
+   (centre about -2 mm); the analytic footprint spans -3.34..+6.06 mm (c_L 1.36). It covers about two thirds of the
+   real gap plus about 4.5 mm of real wood. Cause: our tracked relative pose at assembly (board 1's observed face lands
+   about 3.7 mm inside board 2's wood), on which F-I4.12 centres the slot. On our tracks the replay is consistent, so P3
+   passes. 20.11's "the red slot box sits on the slot visible in our RGB frames" holds for board 1 only. [H] On P1's
+   reference poses, or on eval 25, the offset exceeds the 1 mm clearance; falsifier: the Embodiment's jitter_check
+   passes on r0.
+2. **The CARVE rests on F-I4.15.3** (V0 N1, [M]). Measured from the rectangle edge, the depth sum is 144.11 mm (diff
+   15.88 mm > 10): `interlock_slot_inconsistent`, PUSH. The polygon-edge reading was pre-registered at 18:14 but chosen
+   with the ep24 geometry known: the fourth outcome-informed step in the F-I4 chain (F-I4.12, F-I4.14, F-I4.15, and
+   this reading).
+3. **Board 2's D = 66.56 mm is set by a 2-4 mm polygon spike at the slot mouth** (V1 N2). Beside it, D2 is about 55-59
+   mm [E] and W_x is likely inflated the same way; the 10 mm window decision is unlikely to change [E]. One spike sets
+   u_e (the outermost polygon coordinate in the band). The slot removes the spike except for a 0.38 mm sliver prism.
+4. **"Keep-out 0.0 cm3" is the gate's measure, and it is tautological for an exact tiling** (F-I4.15.4; V1 N3).
+   Seen-empty (FREE) volume inside the delivered slotted hulls: 8.11 / 3.99 cm3 (3.7 / 1.9 %), 88-89 % of it within
+   4 mm of the polygon edge (the raster growth); 10 of 134 hulls hold more than 0.3 cm3 (max 0.745). No gate tests
+   this; making the FREE share a gate needs a new decision.
+5. **P3's overlap clause is a median** (V1 N4): 0.04 cm3 over the assembled frames. Per frame (0.25 mm grid) the
+   delivered pieces give 0.40-1.04 cm3 at f218-234 and f238, max 1.044, 2 frames over 1.0, beside the slot walls where
+   the partner normal is 2.2-3.1 deg off a_L. It passes as pre-registered.
+6. **Sliver prisms** (V1 N5): slotted pieces narrower than 2 mm: 21 of 57 (narrowest 1.41 mm) and 27 of 77 (0.39 mm);
+   length / width up to 172. [H] They may add contact noise in a settle; falsifier: P1 passes on r0, or a variant with
+   merged slivers settles no better.
+7. **ep23 board 1 is a partial outline, not only a cap miss** (V1 N6): 206 cm2 against 287-298 cm2 for the same-stock
+   ep24 boards (fill 0.742); it misses the part under the hand. A cap-only fix would still omit about 30 % of the board
+   [E].
+8. **ep23 cannot be the independent freeze check of a prism-count fix** (V0 N2): the fix would be chosen after seeing
+   its count (85 against 82).
+
+Record only (no outcome effect):
+9. Run order (V0 N3): T-I1 (18:38:09) and T-I11 fi4o (18:38:27) ran in parallel, not tests first as F-I4.15.6 / .7 say;
+   the waiver-off suite ran after fi4o; ep23 ran in parallel. The code was frozen at 19c4309.
+10. `test_fi415.w_checks` flags keep-out only above 0.3 cm3, where F-I4.15.7 w8 says 0.0 (V0 N4). It decided nothing:
+    w8 and w8b stopped at the cap first.
+11. w6c's sigma-3 cells change only the declared sigma (the points keep 1 mm noise), so they test which reference plane
+    is chosen, not robustness to 3 mm noise (V0 N9).
+12. F-I5 interface (V0 N8, [R]): at REV 15 `plate_info` runs the all-point estimator and can turn a plate into not
+    plate-like (`t_all_points_fail`); `collcarve.object_routes` uses it, so F-I4.15 does reach F-I5. No such case in the
+    committed results.
+13. Constants (V0 N7, [R]): shapes_max 165 and part_vmax 32 (informed, F-I4.15.9) bypass `guard.constant`, so they are
+    missing from the run manifest's constants list.
+14. Code identity (V0 N5, V1 N7): report.json `launch_code` is taken after the bundle stage. Its commit field reads
+    3484d8d and its collcarve.py / cavpieces.py hashes are 3484d8d's; its platebody / interlock / simphys / simpieces /
+    driver hashes equal 19c4309's (the F-I4 path that ran). The r0 `manifest.json` code block reads 7402553 with the
+    cbed3cb interlock.py hash (written at 19:21); the process had loaded the pre-cbed3cb file. The committed
+    `ep23_fi415.json` is the 19:11 re-run (code identity 3053a78, same content as the first run). The waiver-off suite
+    ran at 7402553, the w8 / w8b re-run at 212d2a1 plus the harness fix later committed as bf6d7f6. The F-I4.15
+    `platebody.py` first entered git in the WIP snapshots 8f72399 / caefcb4 (18:28-18:29), byte-identical to what ran;
+    6ed88f1 carried only the w_checks guard (the build log said otherwise).
+15. Diagnostics not in the log (V0 N6): `<scratch>/fi415/t_geom.py` (18:24), `dbg_b.py` (18:35, the w8 B tilt
+    finding), `t_hm.py` (18:36), `probe_w7.py` (19:27). None changed code.
+16. Not in clones: `r0/sources/*.npz` (gitignored) is only in the scratch run folder
+    `<scratch>/gmg/runs-dev/20261031-i2probe-626ce13/sim/public/ep24-fi4o/r0` (otherwise identical to the committed
+    copy, `diff -rq` 21:08). P4's Monte Carlo default volume for board 1 is 226.9 cm3 against an exact 220.525 cm3
+    (harmless, V1 N7).
+
+**Hand-offs** (relayed by the orchestrator; texts in the work log of 31 Oct ~21:15 UTC):
+- **Embodiment session (determined-wright): P1 on the ep24 folder.** Folder
+  `build/I/results/slot2-ep24/fi4o/r0` (`manifest.json` sha256 `271f9899...`, `carved_p1_pending`, `p1_pending: true`,
+  no `DO_NOT_USE.json`): slotted pieces at the top level (57 / 77), unslotted `_default/` (50 / 71), `_fit/<obj>.glb`,
+  `props_gmg.json` (0.3 kg placeholder). Their `jitter_check --k 16` decides P1; a fail marks the folder do-not-use
+  (F-I4.8). Caveats: items 1 and 6.
+- **Pack builder (focused-pascal): eval 25.** No GT-free eval-25 slot exists; keep `meshes/carve/ev25`. A future slot
+  differs from it in width, depth, centre and split, so using it needs an eval-25 rollout re-run, not a pack-only
+  swap. We have not read `meshes/carve/ev25` and will not compare against it before our own eval-25 slot exists.
+
+**Open decisions** (owner / orchestrator; none taken here):
+1. A new dated F-I4 entry for the prism count: its tolerance or fit method stated before any run (from a generic
+   argument or the w7 / w8 shapes), with a fresh condition (b): an untouched public plate episode or a pre-written
+   synthetic family.
+2. Whether that entry also targets ep23's partial outline (item 7) and the tilted step-1 plane pair (20.11 item 4).
+3. Whether to add an observed-notch consistency check on c_L (item 1) [H]; falsifier: board 2's c_L moves onto the
+   observed gap (about -2 mm) and P3 still passes on our tracks.
+4. Whether the body's FREE share becomes a gate (item 4).
+5. P1 on r0 (Embodiment). A fail marks the folder do-not-use and changes nothing else.
+6. The ep25 gmg bundle and the per-board mapping of our tracks to the packed reference (20.9 item 3) need no F-I4 rule
+   and can be scheduled now.
+7. Eval 25 then needs the frozen rule, a run with physics, the P1 report and, on the pack side, an eval-25 rollout
+   re-run before any use.
 
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 

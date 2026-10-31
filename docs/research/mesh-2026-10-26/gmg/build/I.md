@@ -997,3 +997,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   (verify_slot2_1 N1: about 3.5 mm off the observed slot, set by the tracked pose at assembly; with P_sim = the packed
   eval-25 reference it may exceed the 1 mm clearance [H]). The identity mapping and the ep25 bundle need no F-I4 rule
   and can be scheduled on their own.
+- 21:09 (Report step, board-slot round-2 workflow) started. Read STATUS, CLAUDE.md, this log (round 2, all), INTERLOCK
+  20.9-20.11, verify_slot2_0 / verify_slot2_1 summaries, the delivered r0 manifest. Plan: INTERLOCK 20.12 (results
+  addendum: verification, record corrections, hand-offs, open decisions), STATUS top section, work-log entry; no code,
+  no run, no rental. r0 in the run folder = the committed copy (`diff -rq`, 21:08).
+- 21:12 INTERLOCK 20.12 written (accuracy / failures / cost; verifier confirmations; 16 corrections and caveats, none
+  changing a decision: board 2's slot about 3.5 mm off the observed slot, D from the polygon edge decides the CARVE,
+  board 2's mouth spike, tautological keep-out with FREE 3.7 / 1.9 % in the hulls, per-frame P3 overlap, slivers,
+  ep23 partial outline, ep23 spent as freeze check, run order, code-identity records, unlogged diagnostics; hand-offs
+  to determined-wright (P1 on r0) and focused-pascal (keep meshes/carve/ev25; a future slot needs an eval-25 rollout
+  re-run); 7 open decisions), 20.11 correction pointer, header pointer, STATUS top section, work-log entry with both
+  hand-off texts. Committing my lines only (the 20:59 verify_cc_1 line in this file is another agent's, left unstaged).

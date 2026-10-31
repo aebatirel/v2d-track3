@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~21:15 UTC: board slot round 2 closed: verified, ep24 slot goes to P1; eval 25 not run (CPU, $0)
+- **Verified:** two verifiers (`gmg/build/I/verify_slot2_0.md`, `verify_slot2_1.md`), no blocking item. The delivered
+  ep24 prisms, slot and P3 reproduce [M]. Board 2's slot is about 3.5 mm off the slot seen in our frames (it follows
+  our tracked pose at assembly), a risk for P1 [H]. The CARVE rests on measuring slot depth from the polygon edge
+  (from the rectangle edge both boards PUSH).
+- **Hand-offs (the orchestrator relays):** to the Embodiment session, P1 (`jitter_check --k 16`) on
+  `gmg/build/I/results/slot2-ep24/fi4o/r0`; to the pack builder, keep `meshes/carve/ev25` for eval 25 (a future slot
+  needs an eval-25 rollout re-run).
+- **Open (owner / orchestrator):** a dated F-I4 entry for the prism count with a fresh freeze check; whether it also
+  covers ep23's partial outline, board 2's slot centre and a FREE-share gate; the ep25 bundle and per-board mapping
+  (no rule needed). Report: `gmg/INTERLOCK.md` 20.12.
+
 ## 2026-10-31 ~20:15 UTC: board slot round 2 (F-I4.15 outline body): ep24 slot built and delivered, P1 pending; not frozen for eval 25 (CPU, $0)
 - **ep24 (public, dev, eval semantics, tag fi4o, code 19c4309):** both boards CARVE (simulator copy only). Board 1 t =
   7.40 mm from all points (6.21 on the downsample); board 2 takes it. Bodies = observed outline polygons (I-shaped:

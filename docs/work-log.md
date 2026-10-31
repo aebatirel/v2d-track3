@@ -5763,3 +5763,16 @@ diagnostic; nothing is picked for submission.
   read from meshes/carve/ev25; no rental, $0. Log: `gmg/build/I.md`, Board slot round 2, 21:05.
 - Needs a decision: a new dated F-I4 entry (prism count; a fresh condition (b); optionally ep23's partial outline and
   the board-2 slot-centre offset of verify_slot2_1 N1), then a freeze.
+
+### 2026-10-31 21:15 UTC — board slot round 2, Report step (board-slot round-2 workflow): INTERLOCK 20.12, hand-offs
+- **Record:** INTERLOCK 20.12 (results addendum): accuracy / failures / cost table, what both verifiers confirmed, 16
+  corrections and caveats to 20.11 and the F-I4.15 outcomes (none changes a decision), the two hand-offs, 7 open
+  decisions. Header pointer and a correction pointer in 20.11 (the slot box sits on the observed slot for board 1
+  only). STATUS top section. No code, no run, no rental ($0).
+- **Main points:** ep24 slot verified (pieces, slot, P3 reproduce); board 2's slot about 3.5 mm off the observed slot
+  (tracked pose at assembly), a P1 risk [H]; the CARVE rests on D measured from the polygon edge (rectangle edge: diff
+  15.88 mm, PUSH); keep-out 0.0 is tautological for an exact tiling (FREE in the hulls 3.7 / 1.9 %); eval 25 not run.
+- **Hand-off text, Embodiment session (determined-wright):**
+  > P1 request, public ep24 boards (gmg F-I4.15 slot, simulator copy only). Folder `docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep24/fi4o/r0`, branch claude/bold-albattani-6qmxsv (committed in cdc8b40, unchanged since). `manifest.json` (gmg-sim/2, sha256 271f9899...) reads `delivered: carved_p1_pending`, `p1_pending: true`; no DO_NOT_USE. Top level: slotted collision pieces `wooden_piece_{1,2}/piece_XX.obj` (57 / 77 convex prisms, t 7.40 mm); `<obj>.glb` = unchanged submitted mesh; `_fit/<obj>.glb` for phys_fit --meshes; `props_gmg.json` (0.3 kg placeholder) for --props. `_default/` holds the unslotted control pieces (50 / 71). Please run `jitter_check --k 16` on r0 with your reference poses and report pass/fail, drift and intrusion per board (the control too, if your tool takes it). A fail marks the folder do-not-use. Caveats: board 2's slot sits about 3.5 mm off the slot seen in our frames; 48 pieces are under 2 mm wide.
+- **Hand-off text, pack builder (focused-pascal):**
+  > Eval 25 board slot: there is no GT-free replacement for `meshes/carve/ev25`; keep it in the pack. Our outline-prism rule (F-I4.15) built a slot on public ep24 (P2-P7 pass on our tracks, P1 pending with the Embodiment session) but did not freeze: on ep23, board 1 needs 85 prisms against a cap of 82. Before any eval-25 slot: a new dated rule entry, a fresh freeze check, an ep25 gmg bundle and a per-board mapping of our tracks to the packed reference. When eval-25 slot pieces exist, they will differ from `meshes/carve/ev25` in width (partner thickness + 2 mm; 9.4 mm on ep24), depth, centre and piece split, so adopting them needs an eval-25 rollout re-run, not a pack-only swap. We have not read `meshes/carve/ev25`; the comparison comes only after our pieces exist. Nothing to do now. Record: INTERLOCK 20.12.
