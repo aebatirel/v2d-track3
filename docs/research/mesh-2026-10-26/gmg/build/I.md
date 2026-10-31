@@ -99,3 +99,9 @@ sweeper in the rack (October's rack carve dropped it 2.5-3.5 cm).
 ## ORCHESTRATOR NOTE (31 Oct 10:12 UTC): ep31 evidence added to `build/keen-heisenberg-priority-20261031.md`
 The sweeper-rack contact at lift-off (ep31 f~45-53) is where the eval-30 draws split; make the ep31 seat and its
 free-travel test (sweeper lifts out of the rack without knocking it) part of the dev report.
+
+## ORCHESTRATOR NOTE (31 Oct 10:50 UTC): Embodiment's answers, see `build/embodiment-reply-20261031.md` (second reply)
+P_sim for ep13 / ep31 = orcB perceived references `runs/20261030-orcB-38234d1/refs/glockt/ep{13,31}` (validate their
+provenance with the section-11 validator; the orcB mocap "O" arm stays refused); ep24 path to follow. They run A3
+(jitter_check --k 16) on our pieces dir. props_gmg.json must match `docs/research/physics-2026-10-30/props_masses_only.json`
+(on their branch origin/claude/determined-wright-3joens if not on ours).

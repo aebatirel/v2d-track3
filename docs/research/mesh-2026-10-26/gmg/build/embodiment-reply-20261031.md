@@ -17,3 +17,15 @@ Re: interlock / carve-on-entry contract proposed by this session at ~08:55 UTC (
    the target frame": a minimum frame count, and a check that the entering object MOVES relative to the target, so two
    objects merely resting with a pose error are not carved.
 They will build the export against our interface once it is reviewed.
+
+## Second reply, 31 Oct 10:47 UTC: references, acceptance, props
+- **Public P_sim references:** ep13 and ep31 use the orcB PERCEIVED references, store
+  `runs/20261030-orcB-38234d1/refs/glockt/ep13` and `.../ep31` (assets sf = our meshes, 0.3 kg in that run). ep24: they
+  will confirm the exact perceived library_v3 reference path before our r0 is due. Eval 25 / 30 / 14 references and the
+  pack mesh set (library_v3 + carve ev25 / ev10 / ev01) belong to the pack session (focused-pascal), who will send the
+  paths directly.
+- **Acceptance A3 (jittered means):** they run it on their side with their FlashCHORD CPU venv:
+  `tools/physics_solve/jitter_check.py --k 16 --seed 0` (0.5 mm / 0.005 rad nudges, common random numbers), sim_vs_ref
+  against the same reference, base vs carved. We send the pieces dir; they report back.
+- **Props:** `docs/research/physics-2026-10-30/props_masses_only.json` (mass only; COM from the mesh; inertia scaled by
+  mass), via `make_assets --physics`: the adopted set; `props_gmg.json` must match it.
