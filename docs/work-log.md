@@ -5735,3 +5735,17 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - rack seats validated first on ep12/13/31, then evals 14, 16, 30;
   - board slot round 2 running (I-shaped boards), at risk for 12:00.
   Which items make 12:00 is reported by 1 Nov ~09:00 UTC. Deliveries are logged in gmg/build/I/collcarve_deliveries.md.
+
+### 2026-10-31 ~18:35 UTC — owner: "how can we improve our perception … what is our solution?"
+- Summary given to the owner (all from committed results):
+  - FAILED: S11 constant-offset depth ICP (≈ 0, even with true meshes); S10 held pose (−0.018); S6 static hold (no eval
+    effect); K1 rest-hold / K2 initial-hold (+0.001); A-f0 rest-averaged anchor (+0.001); S1/S3 refine stages;
+    GT-free depth audit (AUROC 0.600).
+  - PASSED: S2 timing advance (adopted); robust VO (fixes ep24; no eval case); S12 cup-nest (eval 10, in gate);
+    better submitted meshes (pack 9a+: AUC +0.003, RPE −0.053 measured).
+  - Error structure: public reference RPE ≈ 1.0 cm without ep23. The remaining loss is mostly constant per-object body
+    offsets that follow the template shape (L2). The eval reference side carries ≈ 1.5 cm RPE, invisible GT-free.
+- Proposed solution [H]: re-track with better template meshes (clean C0b/E0b method, each episode's own video), with
+  the same meshes submitted. Public test first (P_o' vs P_o, pre-registered). If it passes: eval re-track, rebuild
+  references, pack-10 Tier-2 retrain. Feasibility questions sent to focused-pascal and bold-albattani; no spend until
+  the owner says go.
