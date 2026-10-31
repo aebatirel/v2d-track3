@@ -5695,3 +5695,6 @@ Background agent, CPU only, $0, no ground truth read.
 - ~11:50 UTC 31 Oct: owner topped up $100 for the lean plan; Vast credit measured 28.47 → 128.43. Ledger budget line
   added. Allocation (est.): pack lane $24–39 first + second retrain $10–15; mesh lane $15–28; my screen $28–34 +
   confirm ~$10; buffer ~$10. Both other sessions told; each box keeps a ledger planned line first.
+- Correction (10:58 UTC 31 Oct, from the ledger/notification timestamps): my entries since ~10:20 UTC carried clock
+  estimates up to ~1 h late. Actual times: loop pages published ~10:25, LR/DR proposal ~10:35, budget replies 10:44–10:46,
+  combined budget ~10:48, lean chosen ~10:50, top-up recorded 10:56 UTC (not 11:05 / 11:30 / 11:50).
