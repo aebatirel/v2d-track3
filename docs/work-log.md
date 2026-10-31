@@ -5851,3 +5851,9 @@ score.
     mean wins; a tie goes to no-D.
 - Vast 20:53 UTC: credit $70.43; 3 boxes ($4.44/h): mv2b (masses v2), h5p7 labelled "PUSH-FAILED, destr…", h5e1.
   Flagged h5p7 to focused-pascal: it is the swap rule's comparison set.
+- 20:55 UTC determined-wright sent focused-pascal the D settings and caveats:
+  - add the patch to glock_public / hard_ab; env FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>;
+  - on the screen D raised ep2's draw sd 0.10 → 0.25, so it is not shown to steady episodes; the swap rule decides;
+  - on the standard learner (25, 30) DR also perturbs the deployment-exact starts (untested);
+  - carved-asset risk: objects that start nested or touching.
+  It offered a free CPU check per episode and an opt-in flag to skip the deployment-exact starts.
