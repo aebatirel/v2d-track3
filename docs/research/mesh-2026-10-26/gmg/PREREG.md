@@ -977,6 +977,176 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     moved by the export's rel_T (P_sim), with the export's own samples used for validation and acceptance only, would
     make the two paths identical up to the pose source; falsified if that variant still differs on this case.
 
+- **2026-10-31, F-I4: board slot under the owner's waiver of the camera rule (plate-plate INSERTION pairs, simulator
+  copy only).** Written 16:03-16:25 UTC and committed and pushed **before any code or run uses it**. Still before any
+  gmg scoring round (zero gmg scan scorings exist; no scan number was read for this entry). **Post hoc** with respect
+  to the ep24 dev results of `INTERLOCK.md` sections 18-19, which the author has seen: both boards PUSH at the class-O
+  step; the motion band is 25.1 / 19.1 mm wide against a slot of about 6-8 mm in the video [E]; DIAG motion-band slot
+  replay 0.33 cm / 9.4 deg against 1.85 cm / 113 deg for the default (16 copies); P2 +n 13 mm with w_sim 21.7 mm; our
+  pieces hold 0.72 / 2.0 cm3 of keep-out per hull, CoACD's 52.9 / 77.3 cm3. No number of a run under this entry exists
+  when it is committed. Where F-I1 to F-I3 and this entry differ, this entry wins for the pairs in its scope, and only
+  there. Design text and the run plan: `INTERLOCK.md` section 20. Code (a later build step; new code paths only, the
+  F-I3 behaviour stays the default): `interlock.py` (the waiver branch), a new `platebody.py` (plate body, analytic
+  slot, pieces), `simphys.py` (the P3 overlap clause, F-I4.7), `tools/interlock_dev.py` (flag `--waiver-fi4`),
+  `tests/test_interlock.py` (F-I4.10).
+  - **F-I4.0 The waiver (verbatim) and its scope.** Owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC:
+    "Okay I waive that camera rule". It answers the report that the pre-registered rule pushes the ep24 boards because
+    stereo calls the slot observed solid (class O) and the RGB silhouette cannot confirm it (board 1: a hand within
+    16 px in 33 of 34 separated frames; board 2: a testable silhouette that sees wood, SIL share 0.008) [M, INTERLOCK
+    18.1, 19.1]. **Scope:** a linked pair (F-I1.3 linking) whose two targets are both plate-like (F-I4.1) and whose
+    linked components both come from INSERTION runs (travel >= 20 mm, straightness >= 0.7; F-I1.1, unchanged). For
+    these pairs only, and for the simulator copy only: (a) **class O no longer blocks a carve**: F-I1.3 step 2 (PUSH when
+    more than 25 % of R is class O), step 4 (iii) (>= 75 % of R_O SIL or GAP), the column rule F-I3.12 and the clause "class-O
+    voxels are never carved" (F-I1.3, F-I2.5, F-I3.2 for the simulator solid, F-I3.6) do not apply to the analytic slot
+    of F-I4.3; (b) **an absent or failing silhouette no longer blocks it** (gate failed, NMV < 3, or a testable
+    silhouette that sees wood). **Every other gate stays, unchanged:** engaged runs and the INSERTION kind; persistence
+    n_v >= max(5, ceil(0.25 N_build)); the sweep test (>= 50 % of R's OBSERVED voxels swept at max(8 mm, 3 j): the
+    partner moves through); not pushable (F-I1.3 (ii): the median smallest rigid partner translation over the build
+    frames in which R is entered > 10 mm, or a validated `pushed_residual_m`); budget (iv) and topology (on the
+    analytic slot, F-I4.4); the linked pair carves both or neither (F-I1.3, F-I2.8); the identity / track gate (F-I1.2,
+    F-I3.1: on public, TRACK_FAIL or IDENTITY_SWAP makes (c) absent; on eval IDENTITY_SWAP only flags); the physical
+    acceptance (F-I4.7); the pieces keep-out gate (F-I3.8, F-I4.6). **Outside the scope nothing changes:** cups, pot,
+    lid, rack, sweeper, dust pan and spoon pairs, every SEAT, REST, SLIDE or TRANSIENT run, and any pair with a target
+    that is not plate-like follow F-I1 to F-I3 exactly (the ev10w measurements say cup intrusions are track errors).
+    **Submitted meshes are unchanged:** the waiver never creates an ICARVE or FUSE-I candidate; F-I3.2 (the submitted
+    solid obeys class O) and the tier rules stand; the board's submitted (CD-O) mesh is not touched in this step. A pair
+    in scope that fails a kept gate gets its F-I1 to F-I3 decision (PUSH, or OFFSET as before) and the record names the
+    failing gate (`waiver_gate_fail:<gate>`). Every record in scope carries the flag `owner_waiver_fi4`; its tier is T1
+    (simulator only; `interlock_disagree` if (a) or (b) is present and disagrees). One branch serves both paths (F-I3.1:
+    our tracks and an Embodiment export); round 0 is built from our tracks.
+  - **F-I4.1 Plate-like (the existing code path) and plate thickness.** An object is plate-like if
+    `structure.hypotheses` (`structure.py`, build step B7; its `_points` and `_planes` steps may be called alone, the
+    same code) finds at least one **plane pair** (`accepted['plate']`): two planes parallel within 30 deg, seen from
+    opposite sides with the material between them, footprints overlapping by >= 0.5, the gap inside the slab two-face
+    window 3-25 mm (PREREG A.6, informed). The window is the thin-extent part of the test. Input: the object's owned
+    points (`own == 0`) in the episode's clean bundle that lie within 6 mm of its pick's surface (the F-I2.10 filter:
+    the clean OBSERVED grid of ep24 board 1 spans 417 mm, and its owned points in frames ~72-240 lie about 125 mm from
+    its candidate [M, INTERLOCK 18.1]); sigma = the bundle's sigma of the object. **The plate pair** of the object is
+    the pair with the largest footprint overlap, ties broken by the larger inlier count of its two planes. It gives the
+    object's **plate thickness t** (`thickness_mm`) and its mid plane (`mid_n`, `mid_d`). Seen before this entry [M,
+    dev obs_all files, B7]: ep24 board 1 one pair, 7.4 mm (overlap 0.98); ep23 board 2 two pairs, 11.6 mm (1.00) and
+    4.4 mm (0.75); none on the lid, the two cups, the sweeper, the pitcher, the pot, the rack or the dust pan. The clean
+    ep24 values are unknown when this is written. Not used for t: the evidence thickness w_sub (12.6 / 14.6 mm on the
+    DIAG; F-I3.11 says the evidence thickness is not the plate's) and `thickness.two_sided_measurements`.
+  - **F-I4.2 Plate body (the simulator body of each target in scope).** If a STRUCT plate candidate (P-PROG slab, B8 or
+    B11) exists for the object, it is the body, and its marker balls are kept. Otherwise the body is the **extrusion of
+    the observed outline** at thickness t. This is the expected case on ep24 [M, listing at 16:10 UTC]: the candidate
+    folder holds only `shell_t5p36` and `hull`, and the STRUCT producers are not built. Outline: the F-I4.1 points with
+    |mid_n . x - mid_d| <= t / 2 + 3 sigma, projected on the mid plane and rasterised at 2 mm; a cell is in the outline
+    if it holds points of >= 3 distinct frames (the OBSERVED rule hits >= 3, A.6); one 3 x 3 closing, holes filled, the
+    largest 8-connected component kept. Its minimum-area rectangle (over the cell corners) gives the long axis a_L and
+    length L (the longer side), the width axis a_W and width W_o, and the normal a_T = mid_n. Body = the box
+    L x W_o x t centred on the rectangle's centre in the mid plane, with no marker balls (flag `plate_body_no_markers`).
+    If the component fills less than 0.9 of its rectangle, no analytic body exists and the pair leaves the waiver route
+    (`plate_outline_not_rectangular`). Reported, not used: the volume share of the body inside FREE voxels of the
+    object's grid. The body replaces the pick (shell or HULL) in the simulator copy of both targets of the pair; the
+    visual `<obj>.glb` stays the submitted mesh (unchanged).
+  - **F-I4.3 Slot geometry from GT-free evidence (not from the motion band's width).** Per target o of the linked pair,
+    in o's frame, with partner p and o's own run direction d (F-I1.1):
+    - **width** along a_L: w = t_p + 2 x 1.0 mm (t_p = the partner's plate thickness, F-I4.1; the 1 mm clearance of
+      F-I1.14);
+    - **centre line**: c_L = the centroid along a_L of o's linked persistent component (all its 4 mm voxel centres,
+      unweighted, before the split);
+    - **entry edge**: the edge of o's body, along a_W, on the side the partner comes from (F-I1.2: the -d side);
+    - **depth** along a_W from the entry edge: D = P + 2.0 mm, with P = the partner's deepest penetration = the 99th
+      percentile, along a_W from the entry edge, of the partner evidence samples that entered o's region R (the
+      component after the pre-registered through-column split, F-I1.2) in the assembled build frames, capped at the
+      depth of the pair's shared split plane when that split applied. Reason [M, INTERLOCK 18.1]: the partner's own
+      slot is bridged in its evidence, so the unsplit region spans the full width (131 / 128 mm) and the unsplit
+      penetration is the full width by construction. With both slots bridged, the evidence constrains only the sum of
+      the two depths; the split plane (the pre-registered tie-break through the centroid of both components at the
+      median assembled pose) sets each board's share. Each depth is therefore a prior [E], not a measurement; the check
+      below tests the sum;
+    - **through the full thickness**: along a_T the slot spans t + 2 x 3 mm; along a_W it starts 3 mm outside the entry
+      edge (the 3 mm extension of `carve_solid`), so the slot box opens the edge and both faces cleanly.
+    - **Cross-lap consistency (both targets, once per pair):** W_x = the extent along d (o's frame) of the intersection
+      of the two unslotted bodies at the median assembled relative pose (2 mm grid points inside both). If
+      |D_o + D_p - W_x| > 10 mm, the linked pair is PUSHED with flag `interlock_slot_inconsistent` and nothing is
+      delivered. Reported per target: the angle between d and a_W, and between the partner's plate normal (mapped into
+      o at the median assembled pose) and a_L.
+  - **F-I4.4 Budget (iv) and topology on the analytic slot (unchanged thresholds).** Volume share = volume of
+    (slot box intersected with the body) / body volume, cumulative over rounds against the round-0 body (F-I3.3),
+    <= 10 %; reach = extent along d of (slot box intersected with the body) / extent of the body along d, <= 0.6;
+    topology: D < W_o and both prongs keep a positive length along a_L (one connected body of genus 0). A failure is
+    `budget_iv_fail` and the pair PUSHES.
+  - **F-I4.5 Width for P2 (post hoc; fixes open problem 2 of INTERLOCK 18.4).** For pairs in scope w_sim = w of F-I4.3
+    (t_p + 2 mm). F-I1.3's terms "1-99 % extent across the feature of the entering partner samples" and "the partner's
+    collider thickness at the crossing" are not used. The partner's simulator body is its plate body (thickness t_p,
+    no bump), so the slot is 2.0 mm wider than the partner's collider by construction. The failure it answers [M,
+    seen]: DIAG w_sim 21.7 mm from the partner's 1-99 % extent near the crossing (19.7 mm, marker bump included)
+    against w_sub 12.6 mm, P2 +n 13 mm. w_sub is not used (no submission).
+  - **F-I4.6 Pieces (analytic; keep-out met by construction; the gate still runs).** Slotted body = three boxes that
+    share faces: the solid part (full length L, from the slot bottom to the far edge, full t) and two prongs (from the
+    entry edge to the slot bottom, along a_L from each end of the body to the side of the slot, full t); plus one
+    convex piece per marker ball the body carries (an icosphere hull of <= 64 vertices). Default (for P2-P7) = the
+    unslotted body (one box, plus the balls). The F-I3.8 gate runs on the slotted pieces with the F-I1.8 keep-out
+    (carved slot + FREE + SIL + the partner's persistent occupancy, within 2 voxels of the slotted body's surface;
+    partner and carve weight 10): every hull <= 0.3 cm3, else the delivery is do-not-use. No splitter and no CoACD.
+  - **F-I4.7 Acceptance (thresholds unchanged; 16 jittered copies, 0.5 mm / 0.005 rad, common random numbers, where
+    the simulator runs).** Poses P_sim (public ep24 dev: P_sel, flag `sim_pose_fallback`); carved = the slotted bodies;
+    default = the unslotted bodies. **P2** free travel along gravity, +d and +-n <= max(4 mm, default + 1 mm). **P3**
+    replay proxy: carved median lag <= 0.5 cm and <= 5 deg at the assembled frames, lag never > 1.0 cm after the first
+    assembled frame, no NaN copy, and collider overlap < 1.0 cm3 at the assembled frames (the median carved overlap of
+    the P6 series; this F-I1.8 clause is missing from `simphys.p3_pass` and is restored, not new). **P4** removed
+    collider volume <= 1.5 x the slot's volume inside the body, and >= 90 % of the default collider volume kept. **P5**
+    <= 165 shapes per episode. **P6** carved overlap <= default + 0.1 cm3 at every checked frame. **P7** carved
+    check-frame overlap <= 0.5 x the default's. **Keep-out** F-I4.6. **P1** (FlashCHORD 2 s settle: drift <= 1 cm,
+    tilt <= 5 deg, relative sink <= 4 mm, no NaN, no fall-through) remains the Embodiment session's
+    `jitter_check --k 16` on the delivered folder (F-I2.12, A3 of F-I3.3); the plain-MuJoCo pre-check is reported and
+    does not decide. Expected [H]: with an unslotted default that already interpenetrates at the crossing, the
+    "default + 1 mm" clause leaves the +-n and +d bounds of P2 loose (the default's travel there is the 60 mm search
+    cap); the slot's clearance is fixed by construction (F-I4.5), and P3 and P7 are the binding geometric tests.
+    Reported, never deciding: the carved travel in absolute mm in all 26 directions.
+  - **F-I4.8 Delivery (simulator copy only).** If every test of F-I4.7 except P1 passes: a new round folder in the
+    Embodiment layout (INTERLOCK 6.1, F-I3.9): `<obj>/<obj>.glb` = the submitted mesh, unchanged; `<obj>/piece_XX.obj`
+    = the slotted plate pieces; `inertia.json`; `carve.json`; `_fit/<obj>.glb`; `props_gmg.json` (the 0.3 kg
+    placeholder, D-I1 open); `manifest.json` gmg-sim/2 with an `owner_waiver` block (F-I4, the quote, the slot geometry
+    and checks) and `p1_pending: true`; `sources/`; the unslotted plate pieces under `_default/`. **This amends F-I2.12
+    for this route only:** the slotted pieces sit at the top level because the P1 test (their jitter_check) reads a
+    round folder; no pack may use the folder until their report passes P1 for it; a P1 failure marks it do-not-use
+    (the F-I3.8 mechanism). If any other test fails, the folder is still written for the record, with
+    `DO_NOT_USE.json` naming the failing test, and nothing is offered. A new tag per run; never overwritten. The
+    submitted (CD-O) board mesh is unchanged.
+  - **F-I4.9 Integrity.** Inputs: our clean bundle (owned points, grids, tracks, census, identity flags), our picks,
+    and our video for source (b), which is reported only. GT-free: no scan, mocap, dataset-parquet `pose`, `*_align`,
+    or library_v1..v4 geometry as shape evidence (library meshes may set ROI boxes as before). `meshes/carve/ev25` and
+    every other library-based slot mesh are never read. The 29 Oct SAM 3D board meshes (library-seeded crops, dev only)
+    are not passed to F-I4 runs (`--gen` omitted): source (a) cannot change a simulator decision, and no submission is
+    made. Public development (ep24) and eval inference (eval 25) stay separate. Nothing is tuned on eval. Eval 25 later
+    runs the identical code with P_sim = the packed eval-25 reference (F-I1.1). A failed acceptance is reported; any
+    fix after it is a new dated F entry labelled post hoc.
+  - **F-I4.10 Pre-registered tests and predictions (written before any run).** T-I1 additions (synthetic,
+    `tests/test_interlock.py`; the synthetic owned points get camera centres on both faces of each plate so that a
+    plane pair can exist):
+    - **w1** s0 cross without a silhouette, t = 6, 10, 18 mm, waiver on: both plates CARVE (simulator only, tier T1,
+      `submitted` False); |w - (t + 2 mm)| <= 1.0 mm; |c_L - the true slot centre| <= 2.0 mm;
+      |D_A + D_B - W_x| <= 10 mm; three box pieces per plate; keep-out <= 0.3 cm3 per hull;
+    - **w2** waiver off: every existing T-I1 decision is unchanged;
+    - **w3** waiver on, unchanged decisions: n9 cup nesting (no plane pair), n2 resting pose error (not INSERTION),
+      n4 short contact (TRANSIENT), and a plate whose partner is a cylinder (not plate-like);
+    - **w4** waiver on, o2a and o2b (11 mm overshoot along d): nothing carved (budget (iv) or
+      `interlock_slot_inconsistent`);
+    - **w5** P3 on w1 at t = 10 mm (16 copies): carved lag <= 0.5 cm and <= 5 deg.
+    Predictions (E additions; the T-I11 run is clean ep24 with eval semantics):
+    - P35 both ep24 boards are plate-like, with t inside 5-10 mm (the video slot is about 6-8 mm [E]) | no plane pair
+      on either board, or t outside 5-10 mm | [H]
+    - P36 the waiver route decides CARVE on both boards and |D_1 + D_2 - W_x| <= 10 mm | PUSH, or
+      `interlock_slot_inconsistent` | [H]
+    - P37 the slotted pieces pass the keep-out gate (<= 0.3 cm3 per hull) | any hull over | [H, near-certain by
+      construction]
+    - P38 P2-P7 pass on 16 copies, with P3 carved <= 0.5 cm and <= 5 deg (the DIAG motion-band slot gave 0.33 cm /
+      9.4 deg) | any fails | [H]
+    - P39 (only if run) ep2 pot + lid and ep11 cups: decisions unchanged (no plane pair) | any carve under the waiver
+      | [H]
+    These tests gate or fix steps; none is a failure criterion of the gmg (D.3).
+  - **F-I4.11 Constants and origins.** Width clearance 2 x 1.0 mm: **informed** (F-I1.14). Depth margin 2.0 mm:
+    **generic** (the same clearance at the slot bottom; fixed in the task text before any F-I4 run). Consistency window
+    10 mm: **generic** (= K-c). Outline: 2 mm raster (= the carve sub-grid), >= 3 frames per cell (= OBSERVED hits
+    >= 3, A.6), slab margin 3 sigma (A.6 noise band), rectangle fill share 0.9: **generic**. The 6 mm point filter:
+    carried over from F-I2.10. The 3 mm extension: the existing `carve_solid` value. Plane-pair window 3-25 mm:
+    **informed** (A.6); parallel 30 deg and overlap 0.5: **generic** (structure.py). Every acceptance threshold: as in
+    F-I1.14.
+
 ## Revision 1 changelog
 
 What changed, and why:

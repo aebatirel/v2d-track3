@@ -369,3 +369,5 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   split plane: both slots are bridged, only the sum of depths is constrained) + 2 mm; consistency |D1 + D2 - W_x|
   <= 10 mm; 3-box pieces; acceptance P2-P7 + keep-out unchanged, default = unslotted plate; P1 stays theirs; r0 with
   p1_pending (amends F-I2.12 for this route only).
+- 16:16 PREREG F-I4 written (F-I4.0-F-I4.11; predictions P35-P39, T-I1 w1-w5). Next: INTERLOCK section 20 + pointers.
+- 16:18 INTERLOCK section 20 written (+ header and section-0 pointers). Committing F-I4 + section 20 now (no code changed, nothing run).

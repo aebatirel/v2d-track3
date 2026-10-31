@@ -5,7 +5,8 @@ v1 (blocking items B1-B7 and the non-blocking items; section 16 lists each one a
 `claude/bold-albattani-6qmxsv`. Status: **built** (BI1 code and synthetic tests, section 17; BI2 dev runs on ep24, ep2,
 ep11, section 18) and **corrected after the verifier's review of the build** (round-1 fixes, PREREG F-I3, section
 19). Outcome so far: on the dev runs the rule pushes every pair (no carve); the Embodiment contract now runs on their
-real tool (section 19). This file adds a stage to the frozen gmg design
+real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of the camera rule** for plate-plate
+insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
 section 8 and in PREREG F-I1.0. The selection-rule changes are pre-registered as PREREG section F entry **F-I1**
 (dated 2026-10-31, revised the same day). If this file and PREREG F-I1 disagree, PREREG wins. Writing v1 and v2 used
@@ -86,6 +87,12 @@ cameras saw, and the rule treats that as a pose error, not a missing slot. A cou
 lets the simulated cross close to 0.33 cm, against 1.85 cm without it, so the slot itself works; the open problem is
 measuring where and how wide it is. The cups and the pot+lid also push. Our own simulator pieces for the open
 containers (pot, cups) fill their openings, so those deliveries are marked do-not-use until the splitter is fixed.
+
+**Your waiver (31 Oct ~16:00 UTC, section 20).** For two flat boards that slide into each other, "the cameras saw
+wood there" no longer blocks the slot in the simulator copy. The simulator boards become thin plates at their own
+measured thickness. The slot is drawn from measurements: width = the other board's thickness + 2 mm, centred where
+it passes, deep enough to meet the other slot. Every other check stays, and the physics tests must pass. Submitted
+meshes, cups, the pot and the lid are unchanged. This was written down (PREREG F-I4) before anything was run with it.
 
 **Cost.** CPU only, no rental. The 16-copy physics checks take about 0.6-2.5 CPU-hours per carved pair on our 4 shared
 cores [E]. mujoco and coacd are installed in the gmg venv; FlashCHORD's settle is run by the Embodiment session with
@@ -1229,3 +1236,122 @@ round; a rack's pieces will also meet the keep-out gate). ep13 (cup in the rack)
 6. Non-blocking review items left: w_sub is not asserted in the tests (6.0 mm for a 10 mm partner in o2b: the
    voxel-centre extent); offset_asm (a track offset only at the assembled frames) is covered by the column rule for
    the half-thickness pocket but the misplaced slab centre is only caught by the P3 replay.
+
+## 20. Board slot under the owner's waiver of the camera rule (31 Oct, PREREG F-I4; written before any run with it)
+
+**In plain words.** You waived the camera rule ("Okay I waive that camera rule", 31 Oct ~16:00 UTC). Until now the
+rule refused to cut the boards' slot because stereo paints wood across a gap of about 6-8 mm [E], and the RGB check
+could not confirm it (a hand in the way on board 1; on board 2 the colour check called the slot wood). Under the
+waiver, for two flat boards that slide into each other, "the cameras saw wood there" no longer stops the cut.
+Everything else still has to hold: the other board must really pass through that place, again and again, along a
+straight path; a small pose correction (up to 1 cm) must not be able to explain the overlap; the cut must stay small
+(10 % of the board, at most 0.6 of its width); both boards are cut or neither; and the cut copy must pass the physics
+checks. The change applies to the simulator copy only. The board meshes we submit for scoring are not touched. Cups,
+the pot, the lid and every other object keep the old rule.
+
+Two other changes come with it, both measured problems of sections 18-19:
+- **The simulator board becomes a thin flat plate at its own measured thickness.** Today it is the stereo shell,
+  which is thicker than the board and carries the marker bumps. That made the slot too wide (21.7 mm, against
+  12.6 mm for the partner's evidence across the crossing), and our convex pieces could not stay out of the empty
+  space around it (0.72 / 2.0 cm3 per piece; the limit is 0.3).
+- **The slot is drawn from measurements, not from the band the other board's stereo points sweep.** That band is
+  19-25 mm wide, two to four times the slot. Width = the other board's plate thickness + 2 mm. Centre = the middle of
+  the place it passes through. Depth = from the edge it enters to where it stops + 2 mm. A check confirms that the two
+  slots together span the crossing.
+
+### 20.1 Scope (F-I4.0)
+| | in scope (waiver applies) | outside (F-I1 to F-I3 unchanged) |
+|---|---|---|
+| objects | both targets plate-like (20.2) | any target not plate-like: cups, pot, lid, rack, sweeper, dust pan, spoon |
+| run kind | INSERTION on both linked components (travel >= 20 mm, straightness >= 0.7) | SEAT, REST, SLIDE, TRANSIENT |
+| class O, silhouette | no longer block the carve (step 2, step 4 (iii), column rule F-I3.12, "class O never carved") | as before |
+| kept gates | engaged runs, persistence, sweep (partner moves through), push test > 10 mm, budget (iv) and topology, both-or-neither, identity / track gate, physics P2-P7, keep-out gate; P1 by the Embodiment | as before |
+| destination | simulator copy only (tier T1, `owner_waiver_fi4`) | as before |
+| submitted mesh | unchanged (no ICARVE / FUSE-I from the waiver) | as before |
+
+If a pair in scope fails a kept gate, it gets the old decision (PUSH, or OFFSET as before) and the record names the
+gate (`waiver_gate_fail:<gate>`).
+
+### 20.2 Plate-like, thickness and the simulator body (F-I4.1, F-I4.2)
+- **Plate-like** = the existing structure test (`structure.py`, build step B7) finds a plane pair: two parallel faces
+  seen from opposite sides with material between them, 3-25 mm apart, footprints overlapping by at least half. It runs
+  on the object's own points in the clean bundle within 6 mm of its pick (the clean grid of board 1 holds points
+  125 mm away in frames ~72-240 [M, 18.1]). The pair with the largest overlap gives the **plate thickness t** and the
+  mid plane. Seen before writing this [M, dev, B7]: ep24 board 1 7.4 mm; ep23 board 2 11.6 mm (and a 4.4 mm pair);
+  no plane pair on any cup, the pot, the lid, the rack, the sweeper, the pitcher or the dust pan. Clean ep24 values:
+  not known yet.
+- **Body.** A STRUCT plate candidate if one exists (none for ep24 today: only `shell_t5p36` and `hull` [M]),
+  otherwise the board's outline seen in our points (2 mm cells with points from at least 3 frames, closed, holes
+  filled, largest piece), replaced by its minimum-area rectangle (it must fill at least 90 % of it) and extruded to t
+  about the mid plane. No marker balls in this case (`plate_body_no_markers`). The visual GLB stays the submitted
+  mesh.
+
+### 20.3 The slot (F-I4.3, F-I4.4)
+In the target's own frame, with a_L its long axis, a_W its width axis and a_T its normal:
+- **width** along a_L = t of the partner + 2 x 1 mm clearance;
+- **centre** along a_L = the centroid of the target's motion region (the place the partner passes through, every
+  voxel counted once);
+- **from** 3 mm outside the entry edge (the edge on the side the partner comes from) **to** depth D = P + 2 mm, where
+  P is how deep the partner's points reach into the target's region after the pre-registered split. When the split
+  applies, P is capped at the split plane;
+- **through** the full thickness (t + 3 mm on each side).
+
+Why the split plane decides the depth: each board's stereo also paints wood across its own slot, so in the data the
+partner seems to pass through the whole width of the board (the regions span 131 / 128 mm [M]). The data constrain
+only the sum of the two depths. The pre-registered split plane (through the centroid of both regions at the assembled
+pose) divides it. Each depth is therefore a prior [E], and the **cross-lap check** tests the sum: D_1 + D_2 must lie
+within 10 mm of W_x, the width of the crossing (the overlap of the two unslotted plates along the insertion direction
+at the assembled pose). Otherwise both boards are pushed (`interlock_slot_inconsistent`). Budget: the slot is at most
+10 % of the plate's volume and reaches at most 0.6 of its width; the slotted plate stays one piece without a hole.
+
+### 20.4 Pieces and acceptance (F-I4.5 to F-I4.7)
+- **Pieces:** three boxes per board (the solid part and the two prongs beside the slot) and one piece per marker
+  ball if the body has balls. Each box is exactly a part of the body and covers no space outside it, so the keep-out
+  limit (0.3 cm3 per piece) is met by construction. The gate still runs. No splitter, no CoACD.
+- **Acceptance, thresholds unchanged:** P2 free travel <= max(4 mm, default + 1 mm); P3 replay over 16 jittered
+  copies: lag <= 0.5 cm and <= 5 deg at assembly, never > 1 cm after it, no NaN copy, collider overlap < 1 cm3 (this
+  pre-registered clause was missing from the code and is restored); P4 removal <= 1.5 x the slot and >= 90 % kept;
+  P5 <= 165 shapes; P6 no new overlap (+0.1 cm3); P7 held-out overlap at most half the default's. The default is the
+  same plate without the slot. P1 (the hands-free settle in FlashCHORD) stays with the Embodiment session's
+  jitter_check on the delivered folder.
+- **What we expect [H]:** P2 will be loose across the slot and along the insertion. The unslotted plates already
+  overlap at the crossing, so the default "travel" there is just the search cap. The slot's clearance (2 mm) is fixed
+  by construction, so P3 (does the cross close, and within 5 deg) and P7 (do held-out frames improve) are the tests
+  that can fail. The motion-band DIAG slot closed to 0.33 cm but stayed 9.4 deg off, so P3 is the test to watch.
+
+### 20.5 What is delivered (F-I4.8)
+Only the simulator copy, as a new round folder in the Embodiment layout (`<obj>/<obj>.glb` = the unchanged submitted
+mesh, `<obj>/piece_XX.obj` = the slotted plate pieces, `_fit/`, `props_gmg.json` with the 0.3 kg placeholder,
+`manifest.json` with an `owner_waiver` block and `p1_pending: true`, `sources/`, and the unslotted plate under
+`_default/`). It is offered only if every test except P1 passes. Their jitter_check then decides P1; no pack uses the
+folder before it passes. This changes F-I2.12 (which kept carved pieces in `_carved_pending_p1/`) for this route
+only, because their P1 tool reads a round folder. A failing run still writes its folder, with `DO_NOT_USE.json`
+naming the test, for the record. The submitted (CD-O) board mesh is unchanged.
+
+### 20.6 Run plan and cost (after this section and F-I4 are committed and pushed)
+1. Build (new code paths, F-I3 stays the default): `platebody.py`; the `--waiver-fi4` branch in `interlock.py` and
+   `tools/interlock_dev.py`; the P3 overlap clause in `simphys.py`; T-I1 additions w1-w5 (F-I4.10). Then run w1-w5
+   and the existing suite with the waiver off (w2).
+2. **T-I11**, clean ep24, eval semantics, the same inputs as `r1evalsem` (INTERLOCK 19.1) but without `--gen` and
+   without the per-candidate physcheck: `GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_dev --run <run> --ep
+   24 --bundle <scratch>/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24 --cands <run>/cand/public/ep24 --pick
+   wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36 --video <scratch>/data/store/ep24_a.mp4 --calib
+   <scratch>/data/calib.json --hands <run>/in/hands24/hands.npz --proxy-copies 16 --identity eval --waiver-fi4 --tag
+   fi4evalsem` (run `20261031-i2probe-626ce13`; the code commit recorded in `build/I.md`).
+3. Cost [E]: CPU only, on this container's 4 shared cores, one run at a time. The plane test is about 4-7 min per
+   board (B7 took 257-394 s for all hypotheses), decisions about 5-15 min, P3 about 1 s per copy x 16 x 3 variants
+   [M, 18.1], P2/P4/P6/P7 a few minutes: about 20-40 min for T-I11, and 15-30 min for the tests. No rental.
+4. Report: P35-P38 as written (F-I4.10), with numbers, failures included. P39 (ep2, ep11 controls) only if run.
+
+### 20.7 Limits and risks (stated before the run)
+- The split between the two depths is a prior, not a measurement (20.3); the consistency check guards only the sum.
+- The plane test can find no pair on the clean bundle (one face seen too little): then the pair is out of scope
+  (P35 fails) and the boards stay pushed. It can also take a wrong pair (ep23 board 2 also had a 4.4 mm pair; the
+  rule takes the larger overlap): then t is wrong, which P35's 5-10 mm range and the physics tests may show.
+- The rectangle body ignores rounded corners and the marker balls. The visual GLB (the shell) is thicker than the
+  collision plate.
+- P1 at the assembled frame may be uninformative: the cross is held in the air there, and both boards dropped about
+  2 cm with the hands parked in the plain-MuJoCo pre-check, slot or no slot [M, 18.1].
+- On public ep24 the identity flags (IDENTITY_SWAP on both boards) still make (c) absent: the public-semantics
+  decision stays IGNORE. T-I11 runs with eval semantics, as in sections 18-19. Eval 25 runs later with its own
+  reference and the identical code.
