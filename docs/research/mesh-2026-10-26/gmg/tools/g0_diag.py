@@ -9,8 +9,10 @@ of our own files, the posed meshes 4-6 cm nearer the camera than our pointmap wi
 error, not an input error: our pointmap lies on the owned points to 0.2-0.3 mm median).
 
 For every SAM 3D run: the layout-placed mesh (as g0_report) is re-aligned to the target's owned points (largest 8 mm
-component) by a trimmed similarity ICP (gen_slot._icp: our points onto the mesh surface, 80 % trim, 40 iterations,
-scale free) started at the layout placement; then the same measures as g0_report (remesh M10, pack, fsv_far against
+component) by a trimmed ICP (gen_slot._icp: our points onto the mesh surface, 80 % trim, 40 iterations) started at the
+layout placement, --variant similarity (scale free; a one-sided fit can inflate the mesh) or rigid_extent (scale from
+the in-plane PCA extent ratio as gen_slot.place_by_depth, then rigid; added after the similarity variant gave lid
+scales x1.32-1.38); then the same measures as g0_report (remesh M10, pack, fsv_far against
 the SHELL, V2 against the partner) plus: the ICP scale, rotation and translation from the layout placement, the
 trimmed residual, the extents along the owned core's PCA axes, and the mesh height above the owned points' table side
 along their thinnest PCA axis (a lid-on-pot body shows as extra height). Outputs RUN/diag/summary.json and
@@ -50,12 +52,13 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--run', required=True)
     ap.add_argument('--bundle', required=True)
+    ap.add_argument('--variant', choices=('similarity', 'rigid_extent'), default='similarity')
     a = ap.parse_args()
     if guard.mode() != 'dev':
         raise SystemExit('g0_diag: dev only')
     guard.set_run(a.run)
     start = dict(start_commit=guard._git('rev-parse', 'HEAD'))
-    out = os.path.join(a.run, 'diag')
+    out = os.path.join(a.run, 'diag' if a.variant == 'similarity' else 'diag_' + a.variant)
     os.makedirs(out, exist_ok=True)
     RM.consts(); SC.consts()
     b = load_clean_bundle(os.path.realpath(a.bundle))
@@ -79,10 +82,29 @@ def main():
         G = np.asarray(trimesh.sample.sample_surface(placed, 40000, seed=0)[0])
         rng = np.random.default_rng(0)
         Ps = P[rng.choice(len(P), min(len(P), 40000), replace=False)]
-        R, tt, s, d = gen_slot._icp(Ps, cKDTree(G), G, np.eye(3), np.zeros(3), 1.0, ICP_ITERS, ICP_TRIM, scale=True)
+        if a.variant == 'rigid_extent':
+            # scale fixed by the in-plane extents (median ratio over the two major PCA axes of the owned core, as
+            # gen_slot.place_by_depth), then rigid trimmed ICP: a one-sided similarity ICP can inflate the mesh
+            # (our points only need to lie on part of its surface)
+            cP, cG = Ps.mean(0), G.mean(0)
+            UP = np.linalg.svd(Ps - cP, full_matrices=False)[2]; UG = np.linalg.svd(G - cG, full_matrices=False)[2]
+            eP = np.percentile((Ps - cP) @ UP.T, 99, 0) - np.percentile((Ps - cP) @ UP.T, 1, 0)
+            eG = np.percentile((G - cG) @ UG.T, 99, 0) - np.percentile((G - cG) @ UG.T, 1, 0)
+            sg = float(np.median([eP[0] / eG[0], eP[1] / eG[1]]))          # mesh scale factor about its centroid
+            G = cG + (G - cG) * sg
+            placed = trimesh.Trimesh(cG + (np.asarray(placed.vertices) - cG) * sg, np.asarray(placed.faces),
+                                     process=False)
+            R, tt, s, d = gen_slot._icp(Ps, cKDTree(G), G, np.eye(3), np.zeros(3), 1.0, ICP_ITERS, ICP_TRIM,
+                                        scale=False)
+            s = 1.0 / sg if sg > 0 else 1.0
+            s_rep = sg
+        else:
+            R, tt, s, d = gen_slot._icp(Ps, cKDTree(G), G, np.eye(3), np.zeros(3), 1.0, ICP_ITERS, ICP_TRIM,
+                                        scale=True)
+            s_rep = 1 / s
         k = d <= np.quantile(d, ICP_TRIM)
         # our points map onto the mesh by x -> s R x + t; the mesh moves onto our points by the inverse
-        V = (np.asarray(placed.vertices) - tt) @ R / s
+        V = (np.asarray(placed.vertices) - tt) @ R / (s if a.variant == 'similarity' else 1.0)
         aligned = trimesh.Trimesh(V, np.asarray(placed.faces), process=False)
         mb, rinfo = RM.watertight(aligned)
         m, pinfo = PK.pack(mb, os.path.join(out, 'aligned', f"{r['tag']}_s{r['seed']}.glb"))
@@ -94,10 +116,11 @@ def main():
         thin = U[2]
         hp = (P - c) @ thin; S = np.asarray(trimesh.sample.sample_surface(m, 40000, seed=0)[0]); hm = (S - c) @ thin
         row = dict(tag=r['tag'], seed=r['seed'], obj=o, kind=r['kind'],
-                   icp=dict(scale=round(1 / s, 4), rot_deg=round(float(np.degrees(Rot.from_matrix(R).magnitude())), 2),
-                            trans_mm=round(float(np.linalg.norm(-R.T @ tt / s)) * 1e3, 1),
-                            trimmed_resid_mm=round(float(d[k].mean()) / s * 1e3, 2),
-                            resid_p90_mm=round(float(np.percentile(d, 90)) / s * 1e3, 2)),
+                   icp=dict(variant=a.variant, scale=round(float(s_rep), 4),
+                            rot_deg=round(float(np.degrees(Rot.from_matrix(R).magnitude())), 2),
+                            trans_mm=round(float(np.linalg.norm(tt)) * 1e3, 1),
+                            trimmed_resid_mm=round(float(d[k].mean()) * 1e3, 2),
+                            resid_p90_mm=round(float(np.percentile(d, 90)) * 1e3, 2)),
                    fsv_far=round(fs['fsv_far'], 4), fsv_shell=round(shell[o], 4), fsv_diff=round(dd, 4),
                    v2_veto=bool(v2['veto']), v2=v2['partners'], would_pass=bool(dd <= 0.05 and not v2['veto']),
                    v1=pinfo['v1']['watertight'], remesh_flags=rinfo.get('flags'), pca=pca_extents(m, P),
@@ -116,7 +139,8 @@ def main():
             f"{dd:+.4f}) V2 {'VETO' if v2['veto'] else 'ok'}; thin axis owned {row['thin_axis_mm']['owned']} mesh "
             f"{row['thin_axis_mm']['mesh']} ({time.time() - t:.0f} s)")
     summ = dict(what='G0 post-hoc diagnostic (not pre-registered; does not change the B.12 outcome)',
-                icp=dict(iters=ICP_ITERS, trim=ICP_TRIM, start='layout placement', scale='free'),
+                icp=dict(iters=ICP_ITERS, trim=ICP_TRIM, start='layout placement', variant=a.variant,
+                         scale='free' if a.variant == 'similarity' else 'in-plane PCA extent ratio, then rigid'),
                 rows=[{k: v for k, v in x.items() if not k.startswith('_')} for x in rows])
     with open(os.path.join(out, 'summary.json'), 'w') as f:
         json.dump(summ, f, indent=1, default=float)
@@ -131,8 +155,9 @@ def main():
                "trimmed similarity ICP", "panels: aligned mesh in the input view | owned core (grey) + mesh (green) "
                "PCA 0-1 | PCA 0-2"]
         B11.save_png(os.path.join(out, f'montage_{o}.png'), B11.montage(mr, hdr))
-    guard.write_manifest(os.path.join(a.run, 'manifest_diag.json'), extra=dict(step='B3', what='G0 post-hoc diagnostic',
-                                                                              **start))
+    guard.write_manifest(os.path.join(a.run, 'manifest_diag.json' if a.variant == 'similarity' else
+                                      f'manifest_diag_{a.variant}.json'),
+                         extra=dict(step='B3', what=f'G0 post-hoc diagnostic ({a.variant})', **start))
     log('done')
 
 
