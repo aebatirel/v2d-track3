@@ -11,7 +11,7 @@ insertions, simulator copy only (PREREG F-I4, section 20; written and pushed bef
 ~18:05 UTC, orchestrator decision): the plate body follows the observed outline (polygon prisms) and t comes from all
 points** (PREREG F-I4.15, section 20.10; written and pushed before any run with it). **Round-2 result (31 Oct ~20:15 UTC): both ep24 boards slotted, P2-P7 pass, r0 delivered with P1 pending; not frozen for eval 25 (ep23 board 1 over the prism cap), section 20.11.** **Round-2 report (31 Oct ~21:15 UTC): two verifiers, no blocking item; board 2's slot about 3.5 mm off the observed slot; P1 handed to the Embodiment session; eval 25 not run; open decisions, section 20.12.** **Extended 31 Oct
 ~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
-F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
+F-I5, section 21; written and pushed before any code or run with it). **Collision-carve result and report (31 Oct ~20:57 and ~21:30 UTC): nothing carved or delivered on the five public episodes; eval twins not run (orchestrator); two verifiers: the ring pieces fail the gate on their own and our tracked poses fail the hands-off test even with faithful colliders, sections 21.11-21.12.** This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
 section 8 and in PREREG F-I1.0. The selection-rule changes are pre-registered as PREREG section F entry **F-I1**
 (dated 2026-10-31, revised the same day). If this file and PREREG F-I1 disagree, PREREG wins. Writing v1 and v2 used
@@ -115,6 +115,11 @@ not used to block. Written down (PREREG F-I5) before any code or run.
 runs wrote must not be used.** The step that builds hollow-keeping pieces failed on all ten real objects and fell back
 to 6 mm boxes keeping 2-9 % of each object; on those pieces every hands-off test fails by 8-127 mm. The piece builder
 needs a decision before any carve can be judged (21.11).
+**Verified (31 Oct ~21:30 UTC, section 21.12).** Fixing the piece builder alone would not be enough: at the frames
+tested our tracked poses are themselves impossible (the ep11 cups overlap by half a cup, a cup sits 15-23 mm inside the
+table, the sweeper floats 45 mm above it), so even exact copies of our shapes fail the hands-off test; and the ring
+pieces fail the hollowness test on their own. The eval episodes were not run. Round 2 (F-I5.15) comes next, public
+episodes first.
 
 **Cost.** CPU only, no rental. The 16-copy physics checks take about 0.6-2.5 CPU-hours per carved pair on our 4 shared
 cores [E]. mujoco and coacd are installed in the gmg venv; FlashCHORD's settle is run by the Embodiment session with
@@ -1974,12 +1979,14 @@ the rack (91-127 mm), the lid falls 81-87 mm into the pot and the sweeper 84-87 
 - Why the pieces fail [M, `build/I/results/collcarve-public/README.md`]: (1) CoACD is asked for at most the piece cap
   (82) and returns exactly 82 hulls, so the keep-out repair cannot split, and 2-75 hulls per object hold more than 0.3
   cm3 of seen-empty space; (2) the ring pieces of cups and the pot are continuous (0 gaps), but the "handle" step adds
-  hulls for 6-15 residual shell components per object (22-68 cm3), which push the set over the cap or fail the gate; the
+  hulls for 6-15 residual shell components per object (22-68 cm3), which push the set over the cap or fail the gate
+  [corrected in 21.12 item 1: the ring pieces fail the gate on their own, and the continuity check cannot see it]; the
   ep11 blue cup misses the lathe test at 3.013 sigma (threshold 3) and the ep2 lid has three radial intervals; (3) the
   box fallback keeps a 6 mm cell only when it lies wholly inside the body, which a 3-5 mm wall almost never does.
 - Predictions: P41, P43, P45, P46, P47 falsified; P42 and P48 hold only because the pieces are nearly empty; P44 void;
-  P49 not tested.
-- **Decisions needed before any further F-I5 run (orchestrator / owner; each a dated PREREG entry first):**
+  P49 not tested. [Corrected in 21.12 item 8: P42 not tested, P44 holds as written.]
+- **Decisions needed before any further F-I5 run (orchestrator / owner; each a dated PREREG entry first; superseded by
+  the list in 21.12):**
   1. the default-pieces ladder: CoACD below the cap so the repair can work, and a bounded handle step [H, falsifiers in
      the results README];
   2. a physical delivery floor: no round folder whose delivered pieces keep less than a stated share of the body or fail
@@ -1989,3 +1996,153 @@ the rack (91-127 mm), the lid falls 81-87 mm into the pot and the sweeper 84-87 
   overlaps are under its 2 cm3 level anyway.
 - Eval twins 10, 1, 14, 30: still blocked (no eval bundle) and not worth running until (1) and (2) are decided.
 - Cost: this container only (five runs in parallel, 45-83 min each under load 14-25), $0, no rental.
+
+### 21.12 Report: verification, record corrections, hand-offs, open decisions (31 Oct ~21:30 UTC)
+**In plain words.** The collision carve as written produced nothing usable, and there is no carved simulator piece
+for any episode, public or eval. The eval step (evals 10, 1, 14, 30) was cancelled by the orchestrator (~21:30 UTC),
+because no run under this rule could pass. Two independent verifiers re-checked the public runs. The numbers reproduce
+and the rule was followed as written. But the physics check found that our explanation of the failure was incomplete
+in three ways that change what round 2 must fix:
+- The ring pieces for the cups and the pot fail the "keep it hollow" test on their own; the "handle" pieces are not the
+  cause. With at most 82 pieces a 20 cm cup gets only 8 slices, and their flat inner faces cut about 3 mm into the
+  cup's opening.
+- Even pieces that copy our cup, pot and sweeper shapes exactly fail the hands-off test at all eight frames tested,
+  because our tracked poses there are physically impossible: the two ep11 cups overlap by half a cup, the ep12 / ep13
+  cup sits 15-23 mm inside the table, the ep31 sweeper floats 45 mm above it. Better pieces alone cannot fix these
+  pairs; the poses have to be checked first.
+- Both ep11 cup shapes have no bottom, and at rest both stand on the table in nearly the same place. So ep11 does not
+  test one cup nesting in another.
+
+Submitted meshes were never touched. Round 2 (PREREG F-I5.15) is next, public episodes first.
+
+**Accuracy, failures and cost** [M unless marked]:
+
+| item | result |
+|---|---|
+| design (PREREG F-I5.0-F-I5.10) | pushed d156571 (17:34:10), before any F-I5 code (18:11) or run |
+| build and synthetic tests T-I12 (F-I5.11-F-I5.13) | built behind `--waiver-fi5` (flag off: identical records); the rule as written carves no nested cup (caps stop every case before S); synthetic cup in rack slot carved (S 0.68 / 0.80 mm); P50 falsified. D2 diagnostic: a rest-pose carve keeps the guest within 2.3-3.0 mm / 3.4 deg but fails the 2 mm topology test |
+| T-I13 public (F-I5.14), code 1b9f0c1 | ep11, 2, 12, 13, 31 in parallel, 45-83 min each (load 14-25); nothing carved; all 10 objects end in 6 mm boxes (1.8-9.3 % of the body); S on the delivered pieces fails on every pair, 8.2-126.8 mm |
+| predictions P41-P50 | P41, P43, P45, P46, P47, P50 falsified; P48 holds only trivially; P44 holds as written; P42 and P49 not tested (corrected, item 8) |
+| verification | `build/I/verify_cc_0.md` (rule compliance): no blocking item, 13 nonblocking; `build/I/verify_cc_1.md` (physics and geometry): 3 blocking items for the next round, 9 nonblocking |
+| eval twins 10, 1, 14, 30 | not run (orchestrator, ~21:30 UTC): no eval bundle, and no run under this rule can pass. An eval-bundle tool (`tools/ev_extract.py`, 5bf54bc, board-slot round 3, for eval 25) was committed at 21:25 [R]; no bundle for 10, 1, 14 or 30 exists yet [M, 21:31] |
+| delivered | nothing: no carved pieces anywhere, nothing uploaded or packed |
+| cost | this container's 4 shared cores, no rental, $0; about 4.2 h of wall time from design (17:14) to the second verifier (21:23), runs partly in parallel [E, from the log times] |
+
+**Confirmed by the verifiers** [M]: F-I5 reached origin at 17:34:10, before the first F-I5 code; F-I5.14 at 19:17:17,
+before the first launch (19:29:39); addendum (7) at 20:30:13, before its first output (20:31:09). The module sha256 of
+all five launch records and ten report records equal the 1b9f0c1 blobs (clean). The commands match F-I5.14 (2). The
+hands copies equal the v6 M1 outputs, and the F-I5 code paths open no scan, mocap, parquet pose, `*_align` file or
+library mesh [R]. The ep11 gates and steps follow F-I5 as written (receiver by containment 0.617 vs 0.401, 7 overshoot
+frames, c = 1.0 mm, caps, S, P3, P4). Out-of-scope components keep their earlier decision, none is CARVE, and
+`submitted` is False on every record. The delivered volumes, CoACD counts (82 hulls x 9, 80 x 1), routes and S numbers
+reproduce; S is deterministic (the stored carved copies 0 and 2 re-run bit for bit).
+
+**Corrections and caveats to 21.11 and the PREREG F-I5.14 outcomes.** None changes an outcome under the rule as
+written. Items 1-3 change what round 2 has to decide (verify_cc_1, blocking for the next round):
+1. **The lathe ring pieces fail the gate on their own** (B1). Re-run per hull: on ep11 beige all 16 failing hulls are
+   rings and the 15 handle hulls pass (max 0.288 cm3); on ep13 blue 20 of 22 failing hulls are rings. Ring sets without
+   any handle hull fail too (ep12 blue 15 over at 8 sectors, 18 at 16; pot 36 at 12, 45 at 16; ep11 beige 29 at 16).
+   Cause: each wall piece is the hull of the profile at its two sector edges, so its inner face is a chord r_in(1 -
+   cos(pi/N_s)) inside the cavity at mid-sector: measured -2.9 to -3.4 mm with 8 sectors, -1.2 to -1.3 mm with 16, -12.5
+   mm for the pot. The 82-piece cap forces 8 sectors on these 186-204 mm cups (16 x 7 = 112 and 12 x 7 = 84 bands are
+   both over it). 21.11's "the handle hulls push the set over the cap or fail the gate" (mechanism 2) is wrong for both
+   objects whose gate was reached, and decision 1's "bounded handle step" is falsified by its own falsifier. The
+   continuity check is self-referential (it tests the middle of the pieces' own chord polygon), so "0 gaps" is no
+   evidence that the rings fit the wall: the 8-sector rings hold only 45-49 % of the body cells. Most of the ep12 blue
+   "handle" residual is 8-sector outer-chord sag (3.5 mm > 3 sigma), not SHELL noise (V1 N5).
+2. **S fails on faithful colliders too** (B2): the SHELL bodies as 2 mm boxes (736-4,751 per object, no cap) fail S at
+   all eight S frames (ep11 f126 10.9 mm / 6.5 deg; ep12 f176 10.5 mm, f6 18.6 mm; ep13 f146 20.1 mm; ep31 f282 / f8
+   free fall 72.6 / 74.8 mm; ep2 f24 / f328 13.9 / 29.9 mm). Causes measured at the tracked poses: interpenetration (ep11
+   86.0 cm3, half the guest; ep2 25.0 / 24.1 cm3; ep12 f176 7.5 cm3); the guest inside our table plane (ep13 f146 23.3
+   mm, ep12 f6 15.1 mm, SHELL bottom); the ep31 sweeper 45-46 mm above the table with zero contacts, over space the
+   rack's own grid marks 88-94 % FREE. So the 6 mm boxes explain how the delivered copies fail, not why S fails on
+   these pairs, and a delivery floor based on S on the delivered pieces alone cannot tell a piece failure from a pose
+   failure. P47 fails whatever the pieces.
+3. **ep11 is not a cup-nesting case with the v6 inputs** (B3): both cup SHELLs are bottomless (axis rays from 20
+   cavity points hit nothing; the beige profile has 0 solid bins); at f126 both stand on the table (lowest points 3.2 /
+   3.4 mm above it), axes 2.8 mm and 1.7 deg apart. The guest is held by the table, not by the receiver, so P43, P44 and
+   "in scope, receiver beige, SEAT" say nothing about cup-in-cup sink. [H] Both tracks lock onto the same stack, or the
+   SHELLs are built from the stack's surfaces; falsifier: the identity / B.2a step on v6 and each cup's observed rim
+   heights. The overshoot exclusion was physically right (at f106-114 the guest's SHELL bottom lies up to 2.8 mm below
+   the table).
+
+Record and scoring corrections:
+4. **"Must not be used" is a recommendation, not a rule outcome** (V0 N1). Under F-I5.4 / F-I5.6 the five round folders
+   are deliverable (do-not-use only on a gate failure), and they carry no `DO_NOT_USE.json`. The recommendation rests on
+   diagnostic F-I5.14 (7) and item 2. Their pieces exist only in this container's scratch
+   (`<scratch>/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep*-fi5/r0`); git holds their manifests, props and the
+   failed ep11 carve.
+5. **The ep11 default S is bimodal** (V1 N1): copy 0 7.2 mm (pushed up 5.4 mm, no fall), copy 2 142.7 mm (falls 120.6
+   mm), unjittered 146.7 mm. "The inner cup falls 80 mm" is a mean of no-falls and 120 mm falls. The default's per-copy
+   rows are dropped (`collcarve.py:587`, `build/I/fi5_default_sink.py:130`), against F-I5.5.
+6. **Exact volumes** (V1 N2-N4): `props_gmg.json` `volume_cm3` overstates the delivered boxes 1.52-1.94x (1.5 mm face
+   samples; COM and inertia come from the same samples). On exact volumes ep11 removed 0.648 cm3 = 9.38 % of 6.912 cm3
+   (reported 9.97 %), and P4 still fails (0.648 > 0.621). P2 passed vacuously (60 mm, the search cap, for carved and
+   default alike), and the 10 % cap was relative to a 6.8 cm3 collider.
+7. **Flag-off decisions** (V0 N4): `decision_f_i3` holds the F-I1 to F-I3 logic applied to the collider components,
+   not the flag-off decision F-I5.7 (iv) asks for. Flag-off (`decisions.json`): ep11 PUSH (class O > 25 %, where
+   `decision_f_i3` says CARVE); ep2 pot PUSH (the 20:35 log line said IGNORE). Latent: a gate-failing component keeps
+   its label but loses its solid, so a CARVE label could stand with nothing carved (did not occur).
+8. **Predictions** (V0 N8): P42 is not tested (its subject, default lathe colliders, never occurred), not "holds
+   trivially". P44 holds as written (c = 1.0 mm is its stated alternative, as the 20:17 log scored it); 21.11's "void"
+   was a post-hoc re-reading with the right reason (any axis-aligned box set gives sigma_sup >= 1/sqrt(3), so c = 1 mm).
+   P47 is falsified through diagnostic (7) and, by item 2, on faithful colliders too. P43 is falsified on a
+   configuration that is not a nest (item 3).
+9. **As-built gaps not in F-I5.11** (V0 N2, N3, N5): no F-I5 round folder has `sources/` (`--waiver-fi5` sets
+   `no_physics`, which skips the only `write_sources` call), so the Embodiment's `carve_from_intrusions` has nothing to
+   read; the carved receiver skips routes 2 and 3 (`collcarve.py` line 396; ep11's carved beige went to boxes although
+   its lathe test passed, effect probably none [E]); F-I5.7 (iii) "the shift goes to the push list" is not built; (ii)
+   one-sidedness is null whenever the receiver's lathe route failed; the rigid shift runs for in-scope pairs only.
+10. **Semantics and tier** (V0 N6, N7): the v6 bundles have no identity step, so public and eval semantics coincide on
+    these inputs (on earlier bundles ep11's blue cup was IDENTITY_SWAP on public [E]). "GT-free" holds at the dev tier:
+    every F-I5 body is shell_t5p36 with t0_dev = 5.36 mm, fitted on `obs_all` (library_v3 ROI), which PREREG A.1 allows
+    in DEV runs only; the eval twins must use the clean t0. The dev per-object medians for the cups are 1.5 / 1.6 mm
+    [R], and the SHELL cup walls the boxes sample are 5.0-5.4 mm, not "3-5 mm" (V1 N6).
+11. **The kept sweep gate decided two pairs** (V0 N11): the moves-through sweep share put ep12 and ep2 out of scope.
+    It is written in F-I5.2, so the runs comply, but it is missing from 21.11's decision list; once the pieces are
+    fixed it will decide the resting pairs (lid on pot, cup in rack) that the owner's waiver covers.
+12. Smaller records (V0 N9, N10, N12; V1 N7-N9): report.json `launch_code` is taken after the inputs load, so ep13,
+    ep31 and ep11 (launched at cdc8b40) record 407a18e, with no module difference; the run folder, hands copy (19:15:26)
+    and candidate builds (from 19:15) began just before F-I5.14 reached origin (19:17:17), with no outcome yet; the ep11
+    guest records are tier T0 without the `owner_waiver_fi5` flag; the 20:08 log time was corrected at 20:13; route 4
+    keeps 2 mm cells by their centre, so a kept 6 mm cell can stick out up to 1 mm; the ep12 blue base is only 50.9 %
+    covered by its 8-sector disc and rim pieces; the side-view figures draw no table line (with one, the table
+    penetration and the floating sweeper would have been visible).
+
+**Hand-offs** (relayed by the orchestrator; texts in the work log of 31 Oct ~21:30 UTC):
+- **Embodiment session (determined-wright):** no F-I5 r0 folder exists for any eval episode, and nothing changed for
+  them: no carved or new default pieces, no `sources/`, nothing to check. The five public F-I5 round folders are not
+  for use. Item 2's pose findings are passed on as data for their frame-by-frame fixes. The ep24 F-I4.15 P1 request
+  (20.12) is separate and unchanged.
+- **Pack builder (focused-pascal):** no eval episode has new carved simulator pieces; keep the pack's collision pieces
+  (`meshes/carve/ev10`, `ev01`, `ev25`); no rollout re-run is needed now. Pieces from a later round would differ in
+  shape and split, so adopting them would need rollout re-runs, not a pack-only swap. Item 1's chord inset applies to
+  any ring layout built as hulls of the profile at the sector edges, theirs included [E].
+
+**Open decisions for round 2** (PREREG F-I5.15; orchestrator / owner; each a dated entry before any run uses it; this
+list replaces 21.11's):
+1. **Ring geometry and the cap, not the handle step** (item 1): inner faces tangent to the measured inner surface
+   (vertices at r_in / cos(pi/N_s) at the sector edges), band edges at profile slope changes, a cap that allows 16
+   sectors on a 20 cm cup, and a continuity check against the measured wall instead of the pieces' own chords [H;
+   falsifier: the gate still fails on ep11 beige and ep12 blue at 16 sectors].
+2. **CoACD below the cap** so the keep-out repair can split (21.11 decision 1, first half) [H; falsifier: the repair
+   still leaves hulls over 0.3 cm3 at the cap].
+3. **A delivery floor with absolute bounds and exact volumes** (items 2, 6): S on a faithful reference collider (the
+   2 mm SHELL boxes, 2-50 s per copy) beside S on the delivered pieces, calling a failure a piece failure only when the
+   reference passes [H].
+4. **A pose precheck at each S frame** (item 2): the guest's lowest point against the table plane, the faithful-body
+   overlap and the contacts at t = 0. A frame that fails goes to the tracker, not to the carve.
+5. **A real nesting case** (item 3): run the identity / B.2a step on v6 and check each cup's rim heights before ep11 is
+   used again, or use a synthetic nest with a bottomed receiver.
+6. **The sweep gate for resting pairs** (item 11).
+7. **The five decisions of 21.10** (carve geometry, nest clearance, topology grid, caps for cups and holders, exact
+   clip), downstream of 1-6.
+8. **Records before the next delivery:** a labelled post-hoc `DO_NOT_USE.json` in the five scratch round folders
+   (item 4), `sources/` in F-I5 rounds, the carved-ladder routes, the flag-off decision field, F-I5.7 (ii) / (iii), the
+   default's per-copy S rows, exact-volume props (items 5-9).
+9. **A focused prior-work review before the fixes are chosen** (CLAUDE.md; V0 N13). Closest prior: focused-pascal's
+   `pipeline/lathe_collision.py` (334393e: rings and base only, no handle step). The fixes' falsifiers should not rest
+   only on the ten public objects on which the failures were found.
+
+Masses remain the 0.3 kg placeholder (D-I1), and S runs plain MuJoCo 3.17.0, not FlashCHORD's simulator (P1 stays with
+the Embodiment session).

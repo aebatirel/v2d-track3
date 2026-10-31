@@ -1938,6 +1938,15 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     pieces: every pair fails, displacement 8.2-126.8 mm (ep11 80.5; ep12 126.8 / 8.2; ep13 90.6; ep31 84.2 / 86.7; ep2
     84.8 / 88.0). As-built gap found: the rigid-shift report runs only for in-scope pairs (F-I5.7 says every pair).
     No rule is changed by this entry; the decisions are listed in INTERLOCK 21.11.
+  - **F-I5.14 verification (recorded 31 Oct ~21:30 UTC, post hoc, record only; no outcome or rule changes;
+    `build/I/verify_cc_0.md`, `verify_cc_1.md`, INTERLOCK 21.12).** Scoring corrections: P42 is not tested (its subject,
+    default lathe colliders, never occurred), not "holds trivially"; P44 holds as written (c = 1.0 mm is its stated
+    alternative), the "void" above being a post-hoc re-reading; P47 is falsified through diagnostic (7), and also on
+    faithful SHELL colliders; P43 is falsified on a configuration that is not a nest (both ep11 cup SHELLs are
+    bottomless and stand on the table at the S frame). Mechanism correction: the lathe ring pieces fail the gate on
+    their own (chord inset r_in(1 - cos(pi/N_s)), 8 sectors forced by the cap), not through the handle hulls. "The round
+    folders must not be used" is a recommendation from diagnostic (7), not an outcome of this rule, under which they are
+    deliverable; they carry no do-not-use marker. The eval twins (P49) were not run (orchestrator, ~21:30 UTC).
 
 ## Revision 1 changelog
 

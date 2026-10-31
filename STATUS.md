@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~21:30 UTC: collision carve F-I5 closed: verified, nothing delivered, eval not run; round 2 must check poses as well as pieces (CPU, $0)
+- **Result:** no carved simulator piece for any episode, public or eval. Evals 10 / 1 / 14 / 30 not run (orchestrator).
+  The five public round folders (scratch only) are not for use; they carry no do-not-use marker yet.
+- **Verified** (`gmg/build/I/verify_cc_0.md`: no blocking item; `verify_cc_1.md`: 3 blocking items for the next
+  round). The numbers reproduce and the rule was followed. But: (B1) the cup / pot ring pieces fail the hollowness
+  gate on their own (the 82-piece cap forces 8 sectors; inner faces about 3 mm inside the cavity), so "bound the
+  handle step" is falsified; (B2) S fails even on faithful SHELL colliders at all 8 S frames, because the tracked
+  poses are impossible there (ep11 cups overlap 86 cm3, ep12 / ep13 cup 15-23 mm inside the table, ep31 sweeper 45 mm
+  above it); (B3) both ep11 cup SHELLs are bottomless and co-located, so ep11 does not test nesting.
+- **Corrections:** P42 not tested, P44 holds as written; the ep11 default S (80.5 mm) is a mean of 7 mm and 121 mm
+  falls; flag-off decisions ep11 PUSH, ep2 pot PUSH; exact box volumes (props overstate 1.5-1.9x).
+- **Hand-offs:** determined-wright, nothing to run (the ep24 P1 request stands); focused-pascal, no new eval pieces,
+  keep `meshes/carve/ev10`, `ev01`, `ev25`, no rollout re-run now.
+- **Next (round 2, PREREG F-I5.15, public first):** ring geometry and cap, CoACD below the cap, a delivery floor with a
+  faithful-reference S and absolute bounds, a pose precheck at each S frame, a real nesting case, the sweep gate for
+  resting pairs, then the 21.10 decisions; a prior-work review first. Report: `gmg/INTERLOCK.md` 21.12.
+
 ## 2026-10-31 ~21:30 UTC: orchestrator: per-episode sets handed off (Set B); board slot round 3 started; F-I5 eval stopped
 - **PUBOWN (per-public-episode own-video meshes for the re-track test):** one Vast box, about $0.15 [E], self-destroyed.
   7 of 20 Set A picks are broken in frame (all 5 racks, up to 16.3 m long; blue cup g1 on ep12/13/21/22; pot ep27).

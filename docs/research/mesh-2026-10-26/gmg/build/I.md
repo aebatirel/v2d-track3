@@ -841,6 +841,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   folders called unusable carry no do-not-use marker; no sources/ in F-I5 rounds; carved ladder skips routes 2/3,
   not in F-I5.11; decision_f_i3 is not the flag-off decision (ep11 CARVE vs flag-off PUSH; 20:35 ep2 line wrong);
   GT-free claim rests on dev-tier t0_dev (library_v3 ROI, PREREG A.1); P42 untested, P44 re-scored post hoc).
+- 21:23 (Report step, collision-carve workflow) started. Read STATUS (orchestrator 21:30 entry: eval step cancelled),
+  CLAUDE.md, this log (collision carve, all, incl. the 17:30 note), INTERLOCK 21-21.11, verify_cc_0 / verify_cc_1. Plan:
+  INTERLOCK 21.12 (results: accuracy / failures / cost, verifier confirmations, corrections to 21.11, hand-offs, open
+  decisions), header + section-0 pointers, STATUS top section, work-log entry; no code, no run, no rental.
+- 21:29 INTERLOCK 21.12 written (accuracy / failures / cost; verifier confirmations; 12 corrections and caveats, none
+  changing an outcome: rings fail the gate on their own, S fails on faithful SHELL colliders at all 8 S frames, ep11
+  SHELLs bottomless and co-located, "must not be used" is a recommendation with no marker, default S bimodal, exact
+  volumes, flag-off decisions, P42 / P44 / P47 scoring, as-built gaps, dev tier, sweep gate; hand-offs to
+  determined-wright (no eval r0, nothing to run) and focused-pascal (no new eval pieces, keep meshes/carve/ev10, ev01,
+  ev25); 9 open decisions for round 2 F-I5.15), 21.11 / header / section-0 pointers, a post-hoc record-only note under
+  PREREG F-I5.14 outcomes, STATUS top section, work-log entry with both hand-off texts. Committing my lines only (the
+  board-slot round-3 Amend lines in this file are another agent's, left unstaged).
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
@@ -1039,3 +1051,36 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   (extract_joint, eval depth from the store, video `data/eval/ep25_a.mp4`, hands as for public) with the mapped
   tracks, then shell_t5p36 candidates (interlock_cands); (3) `build/I/results/slot3-ev25/PREP.md`. No F-I4 decision,
   no physics, meshes/carve/ev25 not read.
+- 21:21 (Amend step, board-slot round-3 workflow) started. Read STATUS, CLAUDE.md, this log ("Board slot round 2",
+  all), INTERLOCK 20.9-20.12, PREREG F-I4.15 (incl. outcomes), verify_slot2_0 / verify_slot2_1 (all), the round-2
+  result records (`slot2-ep24/tests/*.json`, `slot2-ep23/ep23_fi415.json`), `platebody.py` (`plate_body_poly`,
+  `dp_ring`, `slot_for_poly`, `pieces_poly`, `_pair`), `tests/test_fi415.py` and the `test_interlock.py` fixtures
+  (`cross_episode`, `evidence_obs`, seeds in use). Task: PREREG F-I4.16 (the orchestrator's decision of ~21:20 UTC:
+  Douglas-Peucker ladder 1.0-4.0 mm, synthetic freeze family w10 + w10p, slot-centre and coverage reports) and
+  INTERLOCK 20.13, plus the verify_slot2_0 N3 / N4 lines in the F-I4.15 outcomes; commit + push before any code runs
+  with it. No code, no run. INTERLOCK 20.12 is already on origin (5b3bbea), so no wait. No tolerance other than 1.0
+  mm has been computed on any polygon (round-2 scratch probes and the verifiers' recount use 1.0 mm only [M, grep]).
+- 21:22 [M] **Board identity (GT-free; inputs are our own perception outputs).** Pulled from the store (curl, new dir
+  `<scratch>/slot3ev25/dl_ref/`): c25s42 `perc2/ep25/poses.npz` (sha256 3e0813b8..., = the store LFS oid),
+  `identity_fix.json` (as tracked, rank 1 of 32, applied false), the processed reference parquet (md5 71ac95f3 = 
+  packed_refs.json), `refs/perc2mcks/ep25/table_frame.npz`. Rigid comparison (`<scratch>/slot3ev25/scripts/map_tracks.py`,
+  356 frames, world_T_cam identical, max |diff| 0.0): ours (local evperc, sha256 e95ccaef..., frozen) wooden_piece_1
+  = ref wooden_piece_2 (body offset nearest I, 1.25 deg off, per-frame spread 1.75 deg; centres 4.9 mm median / 16.0
+  max); ours wooden_piece_2 = ref wooden_piece_1 (offset nearest Rx180, 0.96 deg off, spread 1.24 deg; centres 7.3 / 14.7
+  mm); the identity pairing costs 362 mm vs 12 mm (sum of median centre distances) and leaves 47-48 deg rotation
+  spread. Same as the 25 Oct identity rule's swap (wooden_piece_1 <- old wooden_piece_2 @ Rx 180). The packed parquet
+  replays the ref track: object_body_position in the table frame = T_table_from_world world_T_cam cam_T_obj with xy
+  diff 0.000 mm and a z-only shift (wp1 -7.9..+12.2 mm, wp2 +4.7..+13.5 mm; mkref snap / depenetration), rotation
+  0.03 / 0.05 deg median. Map for the bundle: `wooden_piece_1=wooden_piece_2:Rx180,wooden_piece_2=wooden_piece_1:I`.
+- 21:26 code 5bf54bc pushed: new `gmg/tools/ev_extract.py` (b4_extract steps on split eval; frozen eval track read
+  through the guard, board map applied in-process, mapped track written to RUN/tracks/eval/ep25/; kit roster; no det
+  seeds, no aux) and `tools/interlock_cands.py` output folder = the bundle's split (cand/eval/ep25; public unchanged).
+  Eval depth `cache/depth/eval/ep25/depths_fs0.5.npy` downloaded (curl, 75 s, sha256 f63ac377... = LFS oid; disk free
+  0.76 GB while it is here, deleted after the extraction).
+- 21:27:43 launched (HEAD fc952de, no gmg code change vs 5bf54bc): `GMG_MODE=clean nice -n 5 python gmg/tools/strace_audit.py
+  run --log <scratch>/gmg/audit/ev25-20261031-ev25ext-5bf54bc-ep25.strace --manifest <run>/manifests/eval-ep25.json
+  --allow "<scratch>/mpvenv/**" -- python gmg/tools/ev_extract.py --run <run> --ep 25 --map
+  wooden_piece_1=wooden_piece_2:Rx180,wooden_piece_2=wooden_piece_1:I`, run `<scratch>/gmg/runs/20261031-ev25ext-5bf54bc`,
+  log `<scratch>/slot3ev25/logs/ev_extract.log`. Mapped track sha256 49adcb73...; vs the ref track: board 1 7.3 mm /
+  1.3 deg median, board 2 4.9 mm / 2.2 deg; board 2 in board 1 over f294-355 differs by 7.9 mm median (xyz 2.1 / -1.3 /
+  -7.3 mm, mostly along board 1's z) and 2.5 deg (report only, `rel_assembly.json`).

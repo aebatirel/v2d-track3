@@ -18,3 +18,4 @@
 2026-10-31T21:21:04Z scoring start: score_c2r.py meshes/plastic_dish_rack_c2r_K_ep12_nomk.glb c2r/rack/K_ep12_nomk results/score.jsonl (commit 8d53a60)
 2026-10-31T21:22:24Z [D] SCORED once: cdo_eval 0.4413 (cdo_all 0.4430), add_med 6.56, add_eval 6.65, flips 0/7, amb 11.8 -> WIN false (needs <= 0.43604; C0 0.45604); H-R falsified. Guard next (reported; adoption impossible).
 2026-10-31T21:24:41Z [D] GUARD PASS (mean dAUC +0.0147, min -0.0076 ep12, dMPPE -0.086, dRPE -0.038). Not adopted (no WIN: CD-O 0.4413 > 0.43604). RESULTS.md complete.
+2026-10-31T21:25:36Z [verify] verifier session start: reading PREREG/RESULTS/scripts; will write verify.md
