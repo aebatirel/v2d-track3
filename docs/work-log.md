@@ -5647,3 +5647,17 @@ diagnostic; nothing is picked for submission.
     dust pan; merge E0 objects one by one).
 - **Box (unchanged):** run `mesh-20261031-e0-b05f001`, Vast 58555214, 96 cores, created 16:25:29, done 16:40:22, gone
   16:40:39; ledger planned $1.00, actual $0.13 [E].
+
+### 2026-10-31 ~18:50 UTC — E0 (eval-built, old constants) done; comparison only, superseded by E0b
+- Workflow `wf_256965c1-47f` done.
+- **Box:** instance 58555214 (96-core EPYC, $0.487/h). Job 11.5 min, 17/17 eval pairs, 530 MB pushed to the HF store,
+  self-destroyed. **$0.13.** A many-core box turns hours of local CPU into minutes.
+- **Picks** (GT-free fidelity, in-sample): pot ep3 fit, lid ep1 t2.5, rack joint over the eval rack episodes, blue cup
+  ep32 g1. Recommendation E0 for all four. Folders `meshes/library_e0` / `e0x`.
+- **Open gates:**
+  - G1: the scan-derived marker balls on pot, lid and rack;
+  - G2: no AUC guard (no eval GT; methods are guarded on public only).
+- On the rack, library_v3 has the best eval fidelity of 14 meshes. Pot and rack E0 do not beat C0 even in-sample.
+- **Not shipping.** The scan-free C0b/E0b rebuild (running) is the pack-10 path.
+- Prep found that the working-tree `scripts/prim_potlid.py` differs by one line from the code that built C0 (14eaf37,
+  29 Oct); E0 ran a frozen copy (2971a10).
