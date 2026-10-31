@@ -1,0 +1,35 @@
+{
+ "label": "C2P/ep22_water_pitcher_g1_a2",
+ "sha": "478b9fb3cc65c841",
+ "cdo_eval": 1.16,
+ "cdo_all": 1.1553218749999998,
+ "cdo_sd": 0.011788758797446616,
+ "add_eval": 10.64,
+ "add_med": 11.0,
+ "add_med6": 11.165,
+ "add_max": 13.49,
+ "rot_max": 3.55,
+ "flips_eval": 0,
+ "flips_all": 0,
+ "n_seeds": 32,
+ "amb_mm": 12.261911320143696,
+ "secs": 958.0
+}
+{
+ "cdo_ev20": 1.16,
+ "add_med6": 11.165,
+ "add_med32": 11.0,
+ "flips_all": 0,
+ "n_seeds": 32,
+ "thr_cdo": 0.8742,
+ "thr_add": 9.97,
+ "cdo_ok": false,
+ "add_ok": false,
+ "flips_ok": true,
+ "WIN": false,
+ "H_P": "falsified",
+ "secondary": {
+  "add_med32_ok": false,
+  "cdo_all": 1.1553218749999998
+ }
+}
