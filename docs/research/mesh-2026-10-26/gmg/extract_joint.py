@@ -172,20 +172,8 @@ class Frames:
         Pc = np.stack([(uu - K[0, 2]) * d / K[0, 0], (vv - K[1, 2]) * d / K[1, 1], d], 1).astype(np.float64)
         nc, cc = self.table(t, Pc)
         bad = (Pc @ nc + cc) <= c['band']
-        if self.segs is not None and len(self.segs[t][0]):
-            A0, B0, rad = self.segs[t]
-            lo = np.minimum(A0, B0).min(0) - rad.max()
-            hi = np.maximum(A0, B0).max(0) + rad.max()
-            near = np.nonzero(np.all((Pc >= lo) & (Pc <= hi), axis=1))[0]
-            if len(near):
-                Q = Pc[near]
-                hb = np.zeros(len(near), bool)
-                for s in range(len(A0)):
-                    ab = B0[s] - A0[s]
-                    ap = Q - A0[s]
-                    h = np.clip(ap @ ab / max(ab @ ab, 1e-12), 0, 1)
-                    hb |= np.linalg.norm(ap - h[:, None] * ab, axis=1) <= rad[s]
-                bad[near[hb]] = True
+        if self.segs is not None:
+            bad |= in_capsules(Pc, self.segs[t])
         keep = ~bad
         uu, vv, Pc = uu[keep], vv[keep], Pc[keep]
         okimg[vv, uu] = True
@@ -203,6 +191,50 @@ class Frames:
         pix = (vv * self.W + uu)[anyc].astype(np.int32)
         return dict(Dt=Dt, okimg=okimg, nc=nc, cc=cc, pix=pix, P=Pc[anyc].astype(np.float32),
                     lin=[li[anyc].astype(np.int32) for li in lin])
+
+
+def in_capsules(Pc, seg):
+    """Camera-frame points inside any MediaPipe capsule of one frame (seg = (A, B, r) from hands_cpu.segments)."""
+    out = np.zeros(len(Pc), bool)
+    if seg is None or not len(seg[0]):
+        return out
+    A0, B0, rad = seg
+    lo = np.minimum(A0, B0).min(0) - rad.max()
+    hi = np.maximum(A0, B0).max(0) + rad.max()
+    near = np.nonzero(np.all((Pc >= lo) & (Pc <= hi), axis=1))[0]
+    if len(near):
+        Q = Pc[near]
+        hb = np.zeros(len(near), bool)
+        for s in range(len(A0)):
+            ab = B0[s] - A0[s]
+            ap = Q - A0[s]
+            h = np.clip(ap @ ab / max(ab @ ab, 1e-12), 0, 1)
+            hb |= np.linalg.norm(ap - h[:, None] * ab, axis=1) <= rad[s]
+        out[near[hb]] = True
+    return out
+
+
+def proposal_points(mask, pscale, Dt, K, T_co, c, seg=None, other_pix=None):
+    """DEVIATIONS B4-R2.6: the 3-D extent of a frame-0 proposal for the crop guard. Object-frame points of the
+    proposal's full-resolution pixels (pixel (v, u) in the proposal if mask[v / pscale, u / pscale]) whose
+    edge-filtered depth is valid (zmin, zmax), inside the object's cube, outside the frame's hand capsules and not at
+    a pixel whose sample another object provisionally owns (other_pix: linear full-resolution pixels). The 8 mm table
+    band is NOT applied: the visible top of an object lying flat on the table is within it."""
+    hh, ww = mask.shape
+    H, W = Dt.shape
+    rows = np.minimum((np.arange(H) / pscale).astype(np.int64), hh - 1)
+    cols = np.minimum((np.arange(W) / pscale).astype(np.int64), ww - 1)
+    vv, uu = np.nonzero(mask[rows][:, cols])
+    d = Dt[vv, uu]
+    ok = np.isfinite(d) & (d > c['zmin']) & (d < c['zmax'])
+    if other_pix is not None and len(other_pix):
+        ok &= ~np.isin(vv.astype(np.int64) * W + uu, other_pix)
+    vv, uu, d = vv[ok], uu[ok], d[ok]
+    Pc = np.stack([(uu - K[0, 2]) * d / K[0, 0], (vv - K[1, 2]) * d / K[1, 1], d], 1).astype(np.float64)
+    Pc = Pc[~in_capsules(Pc, seg)]
+    Ti = np.linalg.inv(T_co)
+    Po = Pc @ Ti[:3, :3].T + Ti[:3, 3]
+    return Po[np.all(np.abs(Po) < c['cube'], axis=1)]
 
 
 def vote(Dt, label, T, axes, K, c, nlab=1):
@@ -417,11 +449,16 @@ def seeded_component(vset, lab, seed, c, n):
     return cm, labs
 
 
-def crop_guard(cm, seed, c, n):
+def crop_guard(cm, seed, c, n, box_pts=None):
     """SPEC section 7 pass 2 guard: if the component's box (voxel centres +- half a voxel) exceeds guard_k x the seed
     box on any axis, the component is clipped to the seed box + max(guard_min, guard_frac x seed extent) per axis.
-    Without a guard the grid box is the component box + grid_margin. Returns (cm, box (lo, hi) or None, info)."""
+    Without a guard the grid box is the component box + grid_margin. box_pts (DEVIATIONS B4-R2.6): extra points of
+    the seed (a rule-B proposal's 3-D extent, proposal_points) that widen the seed box only. Returns (cm, box (lo, hi)
+    or None, info)."""
     info = dict(guard=False)
+    if box_pts is not None and len(box_pts) and len(seed):
+        info['seed_box_points_mm'] = np.round((seed.max(0) - seed.min(0)) * 1e3, 1).tolist()
+        seed = np.vstack([seed, box_pts])
     nv = int(cm.sum())
     if not nv:
         return cm, None, info
@@ -627,6 +664,10 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         oc = P[f'cam_T_{o}'][0].astype(np.float64)[:3, 3]
         org0[o] = (K[0, 0] * oc[0] / oc[2] + K[0, 2], K[1, 1] * oc[1] / oc[2] + K[1, 2]) if oc[2] > 0.05 else None
     comp_mask, seeds, seed_info = [], [], {}
+    box_pts_k = {}
+
+    def EJ_tied(s0, k):
+        return _tied_with(s0['own1'], s0['tied1'], k)
     for k, o in enumerate(objs):
         info = {}
         sep3 = sep3d_all(census1, o)
@@ -646,6 +687,13 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
                 return None
             Ti = np.linalg.inv(FR.T_co[o][0])
             info.update(seed=tag)
+            # the proposal's 3-D extent for the guard's seed box (DEVIATIONS B4-R2.6)
+            other = ~EJ_tied(s0, k) & (s0['own1'] != NONE)
+            bp = proposal_points(props[dinf['det_index']], pscale, FR.depth(0), K, FR.T_co[o][0], c,
+                                 seg=(segs[0] if segs is not None else None),
+                                 other_pix=s0['pix'][other].astype(np.int64))
+            box_pts_k[k] = bp
+            info['seed_box_proposal_points'] = int(len(bp))
             return s0['P'][sel].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
 
         # (B) the frame-0 proposal, if frame 0 is 3-D-separated for o
@@ -688,7 +736,8 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
                 cm[vset] = True          # no seed (DEVIATIONS 101): no seeded-component restriction, no guard
                 info['no_seed'] = True
         info['component_voxels'] = int(cm.sum())
-        cm, box, ginf = crop_guard(cm, seed, c, n)
+        bpts = box_pts_k.get(k) if str(info.get('seed', '')).startswith('det_f0') else None
+        cm, box, ginf = crop_guard(cm, seed, c, n, box_pts=bpts)
         info.update(ginf)
         info['box'] = None if box is None else [np.round(box[0], 4).tolist(), np.round(box[1], 4).tolist()]
         comp_mask.append(cm.reshape(n, n, n))

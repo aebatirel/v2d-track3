@@ -1,5 +1,5 @@
 """Unit tests of the B4 decision code that verification round 1 found untested (round 2): extract_joint passes 2-3
-(det_candidates, det_seed_select, seeded_component, crop_guard, resolve_ties, pair_flags), track_sanity.check,
+(det_candidates, det_seed_select, proposal_points, seeded_component, crop_guard, resolve_ties, pair_flags), track_sanity.check,
 split_test and the failing path of cross_test (also reg_chamfers), tools/b4_b2a.direction, contact.frame_gaps.
 Synthetic data only; no data file is read.
 
@@ -155,6 +155,59 @@ class ComponentGuardTests(unittest.TestCase):
         self.assertFalse(info3['guard'])
         self.assertEqual(int(cm3.sum()), int(cm.sum()))
         self.assertIsNone(EJ.crop_guard(np.zeros(self.n ** 3, bool), seed, C, self.n)[1])
+
+
+class ProposalExtentTests(unittest.TestCase):
+    def test_proposal_points_keep_table_band(self):
+        # a flat 10 x 6 cm slab whose top lies 4 mm above the table plane (inside the 8 mm band): every proposal pixel
+        # with depth becomes a box point, except hand-capsule pixels, pixels another object owns and pixels out of
+        # the cube
+        K = np.array([[600.0, 0, 800], [0, 600.0, 500], [0, 0, 1]])
+        D = np.full((1000, 1600), np.nan, np.float32)
+        D[400:600, 700:900] = 0.5
+        c = dict(C, edge=0.02)
+        mask = np.zeros((500, 800), bool)
+        mask[200:300, 350:450] = True                   # half-res: covers full-res rows 400-599, cols 700-899
+        T = np.eye(4)
+        T[2, 3] = 0.5
+        P = EJ.proposal_points(mask, 2.0, D, K, T, c)
+        self.assertGreater(len(P), 30000)
+        self.assertLess(np.abs(P[:, 2]).max(), 1e-6)
+        ext = P.max(0) - P.min(0)
+        self.assertAlmostEqual(ext[0], 199 * 0.5 / 600, delta=0.002)
+        # a hand capsule over the left half, and pixels owned by another object, are left out
+        seg = (np.array([[-0.2, 0.0, 0.5]]), np.array([[-0.05, 0.0, 0.5]]), np.array([0.05]))
+        other = np.arange(500, 600, dtype=np.int64) * 1600 + 850
+        P2 = EJ.proposal_points(mask, 2.0, D, K, T, c, seg=seg, other_pix=other)
+        self.assertLess(len(P2), len(P))
+        Pc2 = P2 + [0, 0, 0.5]                          # camera frame
+        h = np.clip((Pc2[:, 0] + 0.2) / 0.15, 0, 1)
+        dseg = np.linalg.norm(Pc2 - (np.array([-0.2, 0, 0.5]) + h[:, None] * [0.15, 0, 0]), axis=1)
+        self.assertGreater(dseg.min(), 0.05 - 1e-9)      # nothing inside the capsule
+        self.assertLess(P[:, 0].min(), -0.08)            # (those pixels were there before)
+        Pc = P2 @ np.eye(3).T + [0, 0, 0.5]
+        u = np.rint(600 * Pc[:, 0] / Pc[:, 2] + 800).astype(int)
+        v = np.rint(600 * Pc[:, 1] / Pc[:, 2] + 500).astype(int)
+        self.assertFalse(np.any((u == 850) & (v >= 500)))
+
+    def test_box_points_widen_seed_box(self):
+        # the round-1 failure mode: a seed of a few points on a large flat component fires the guard and clips it;
+        # with the proposal's extent as box points the guard keeps the component
+        n = 150
+        ijk = [(60 + i, 60 + j, 60) for i in range(40) for j in range(25)]
+        cm = np.zeros(n ** 3, bool)
+        cm[(np.array(ijk)[:, 0] * n + np.array(ijk)[:, 1]) * n + 60] = True
+        ctr = -C['cube'] + (np.array(ijk, float) + 0.5) * C['vox']
+        seed = ctr[(np.array(ijk)[:, 0] < 63) & (np.array(ijk)[:, 1] < 63)]
+        seed = np.vstack([seed - [0, 0, 0.002], seed + [0, 0, 0.002]])
+        cm1, _, i1 = EJ.crop_guard(cm, seed, C, n)
+        self.assertTrue(i1['guard'])
+        self.assertLess(int(cm1.sum()), int(cm.sum()))
+        bp = np.vstack([ctr - [0, 0, 0.002], ctr + [0, 0, 0.002]])
+        cm2, _, i2 = EJ.crop_guard(cm, seed, C, n, box_pts=bp)
+        self.assertFalse(i2['guard'])
+        self.assertEqual(int(cm2.sum()), int(cm.sum()))
+        self.assertIn('seed_box_points_mm', i2)
 
 
 class TieBreakTests(unittest.TestCase):

@@ -887,3 +887,21 @@ B5-R3.3. **(2026-10-31, B5 round 3) Stricter input contracts (select.pick, score
     `build/b5/dev_pool.py` (the round-1 dev check, a recorded run) passed none of them; it is kept as run and would
     need `t0_mm=` if re-run. Code contracts only; no pre-registered test, threshold or constant changes. No scan or
     eval number seen.
+B4-R2.6. **(14:40-14:55 UTC, after the v5 trial episodes ep23 and ep31) The guard's seed box of a rule-B seed spans
+    the proposal's 3-D extent, without the table band.** Seen [M, GT-free]: with B4-R2.1 alone (run
+    `20261031-b4ext5-a776e8e`), ep23 board 1's seed grew only to 565 samples (283 owned + 282 unowned) and the guard
+    still clipped its component (1864 -> 377 voxels; B.3 Jaccard 0.107). Diagnostic `<DATA>/gmg/b4fix/f0_diag.py`
+    (frame-0 depth read by an HTTP range request from the store, det masks, the run's MediaPipe hands, the bundle's
+    frame-0 table plane): of the 28064 full-resolution pixels of board 1's proposal, 27814 have valid depth after the
+    edge filter and 27249 of them lie inside the 8 mm table band (height above the refit plane p10 / p50 / p90 =
+    1.8 / 3.4 / 4.2 mm); none is in a hand capsule; board 2: 26114 of 27216 inside the band (4.6 / 5.6 / 6.3 mm). Both
+    boards lie flat on the table at frame 0, so the crop band removes their visible top and the frame-0 samples
+    cannot carry the proposal's extent. Fix: the guard compares the component's box with the box of the seed points
+    together with `proposal_points` (the proposal's full-resolution pixels with valid edge-filtered depth, in o's
+    cube, outside the frame's hand capsules, not at a pixel whose sample another object provisionally owns; the table
+    band is not applied). Seed points for the component choice and the nearest-seed tie-break stay those of
+    B4-R2.1. Guard factor, margins and rule-A seeds unchanged. Expected not to help a proposal that is itself a
+    partial mask (ep31 sweeper: 1611 -> 867 voxels in both v4 and the stopped v5). The stopped run
+    `20261031-b4ext5-a776e8e` (ep23 and ep31 complete, the rest not started) is kept as a failed attempt; all 20
+    episodes are rerun in a fresh run on the commit of this entry (supersedes the run named in B4-R2.5). Unit tests
+    `ProposalExtentTests`. No scan or eval number seen.
