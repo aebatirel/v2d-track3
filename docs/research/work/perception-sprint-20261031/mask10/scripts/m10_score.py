@@ -24,7 +24,7 @@ LIB = f'{REPO}/meshes/library_v3'
 XG = json.load(open(f'{REPO}/docs/research/work/leak-decomp-20261030/tierA/xstar_geom.json'))['objects']
 W = f'{S}/mask10/runs'
 ARMS = {'Po': f'{S}/leak/t1/in_Po', 'refineP': f'{S}/refine/in'}
-VARS = ['input', 'S2', 'V1', 'V1h', 'V2', 'V1d', 'V3', 'V3p']
+VARS = os.environ.get('M10_VARS', 'input,S2,V1,V1h,V2,V1d,V3,V3p').split(',')   # partial re-score: M10_VARS=S2,V2
 TOL_OTHER, BAR11 = 0.002, 0.05
 PHASES = dict(A=(0, 20), B=(20, 40), C=(40, 60), D=(60, 72), E=(72, 102), F=(102, 137))   # ep11 DIAG §1
 THR = np.arange(0.01, 0.10, 0.01); TW = np.r_[0.5, np.ones(7), 0.5] / 8

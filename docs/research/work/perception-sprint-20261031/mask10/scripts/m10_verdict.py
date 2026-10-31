@@ -5,7 +5,16 @@ import json, sys
 import numpy as np
 full, e11, out = sys.argv[1:4]
 F = json.load(open(full))['episodes']
-F['11'] = json.load(open(e11))['episodes']['11']
+R = json.load(open(e11))['episodes']['11']          # ep11 re-score of the fixed variants (M10_VARS) replaces them
+for arm in ('Po', 'refineP'):
+    for v in R['arms'][arm]['delta']:
+        if v == 'input':
+            continue
+        F['11']['arms'][arm][v] = R['arms'][arm][v]
+        F['11']['arms'][arm]['delta'][v] = R['arms'][arm]['delta'][v]
+        F['11']['arms'][arm]['delta_per_obj'][v] = R['arms'][arm]['delta_per_obj'][v]
+    assert R['arms'][arm]['S2']['lib']['AUC'] == F['11']['arms'][arm]['S2']['lib']['AUC']
+F['11']['rescored_variants'] = [v for v in R['arms']['Po']['delta'] if v != 'input']
 EPS = sorted(F, key=int)
 V = ['V1', 'V1h', 'V2', 'V1d', 'V3', 'V3p']
 ver = {}
