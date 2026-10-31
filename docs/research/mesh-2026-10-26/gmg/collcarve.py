@@ -348,11 +348,12 @@ class FI5:
         return c, info
 
     # ---- carve geometry (F-I5.3 (c), F-I5.4)
-    def _carve(self, recv, K, allow):
-        """Carved pieces of the receiver for the cumulative carve (earlier accepted carves + this one)."""
+    def _carve(self, recv, K, A):
+        """Carved pieces of the receiver for the cumulative carve (earlier accepted carves + this one); A = the R+
+        mask function of each K piece."""
         ob = self.objects[recv]
         Kall = [k for k, _ in ob['K']] + list(K)
-        Aall = [a for _, a in ob['K']] + [allow] * len(K)
+        Aall = [a for _, a in ob['K']] + list(A)
         rep = dict(route=ob['route'], K_pieces=len(Kall))
         if ob.get('lathe') is not None and ob['route'] == '2_lathe':
             L, pcs0 = ob['lathe']

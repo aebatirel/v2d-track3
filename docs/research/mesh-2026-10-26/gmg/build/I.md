@@ -561,3 +561,27 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   Finding [M]: the moves-through gate depends on the share of moving build frames in the run; a long hands-off rest
   after a short in-contact insertion fails it (risk for the real cups, P43). x1 fixture changed (fixture only, no rule
   or threshold change, labelled post hoc): in-contact slow phase 20 mm over 40 frames, 34 rest frames. Re-running.
+
+## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
+- 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
+  F-I4-F-I4.14 (incl. outcomes and the correction bullet), F-I5 header, build/I/verify_slot_0.md and verify_slot_1.md,
+  platebody.py (plate_info, _camera_side, plate_body, slot_for, crossing_extent, slot_budget, pieces, keepout_gate,
+  _pair), simpieces.keepout_points / pieces_gate. Task: write PREREG F-I4.15 (the orchestrator's decision of ~18:05 UTC:
+  outline-polygon body, prism pieces, t from all points, ep23 check before eval 25) + an INTERLOCK 20 addendum, with
+  constants, origins, predictions and falsifiers; commit + push before any code runs with it. No code, no run here.
+- 18:07 [M] T-I12 x1 (revised fixture, synthetic hands holding the guest while it moves): gates pass (receiver A,
+  INSERTION, sweep 0.869), containment A 0.885 / B 0.065, rest from 18 assembled hands-off frames, S frames 81, 62, no
+  overshoot. **c = 1.0 mm (sigma_sup = 1.0)**: R+ (R dilated by one 4 mm voxel, 4,337 voxels) holds 210k of the guest's
+  259k surface samples, including its base (downward normals), so the 99th percentile is 1. Carve (lathe, 12 sectors
+  after the 16-sector set exceeded the 82-piece cap): 62 of the re-banded pieces have no feasible option and are
+  removed: the union over 38 jittered build frames (0.5 mm / 0.2 deg per frame, the T-I1 jitter) plus the 1.29 mm
+  corner growth of the face offset reaches r = 38.4-39.0 mm in a 35.7-39.7 mm wall. Caps: removed 74.7 cm3 = 74 % of
+  100.4, reach 1.0, topology 1/1 -> 33/31: **topology_fail, default delivered**. Pre-registered x1 outcome MISSED
+  (c 0.05-0.15 and CARVE delivered). Two mechanisms not anticipated in F-I5.3: (i) sigma_sup over R+ includes the
+  guest's base whenever the pocket reaches the base edge, so c = 1 mm for nested cups; (ii) the swept union widens the
+  pocket by the per-frame jitter envelope (about 2 mm here). No rule changed. Diagnostics running (never delivered):
+  x1 with c forced to 0.1 mm, x1 without track jitter, both. Also: x7 wander (T-I1 n5 fixture, 30 mm box) is IN scope
+  under F-I5 (A<-B 7 persistent voxels, B<-A 64; sweep 1.0): the pre-registered "not persistent: no carve" also
+  misses; only the acceptance can refuse it. x7 n2 (sweep 0.0) and n4 (TRANSIENT) out of scope as predicted; x6 / x10
+  identical records. Speed: exact K-in-piece vertex enumeration (`cavpieces.intersect_points`, 0.8 ms vs 13 ms for
+  the plane-by-plane clip, identical on 400 random pairs) now used.

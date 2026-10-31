@@ -132,6 +132,46 @@ def clip_vertices(V, planes):
         return None
 
 
+def hull_parts(V):
+    """(vertices, unique facet planes, edge index pairs) of conv(V)."""
+    h = ConvexHull(np.asarray(V, np.float64))
+    W = h.points[h.vertices]
+    h2 = ConvexHull(W)
+    simp = h2.simplices
+    E = np.unique(np.sort(np.vstack([simp[:, [0, 1]], simp[:, [1, 2]], simp[:, [0, 2]]]), axis=1), axis=0)
+    return W, unique_planes(h2.equations), E
+
+
+def _edge_plane_points(V, E, eq):
+    """Crossings of the edges E of V with the planes eq (all pairs)."""
+    A, B = V[E[:, 0]], V[E[:, 1]]
+    sa = A @ eq[:, :3].T + eq[:, 3]                       # (edges, planes)
+    sb = B @ eq[:, :3].T + eq[:, 3]
+    m = (sa * sb) < 0
+    if not m.any():
+        return np.zeros((0, 3))
+    ei, pi = np.nonzero(m)
+    t = sa[ei, pi] / (sa[ei, pi] - sb[ei, pi])
+    return A[ei] + t[:, None] * (B[ei] - A[ei])
+
+
+def intersect_points(PA, PB, tol=1e-9):
+    """Vertices of conv(A) intersected with conv(B), from their hull_parts (exact vertex enumeration: vertices of each
+    inside the other plus edge-facet crossings inside both). Returns None when the intersection has no interior
+    (empty or touching)."""
+    VA, qA, EA = PA
+    VB, qB, EB = PB
+    P = np.vstack([VA, VB, _edge_plane_points(VA, EA, qB), _edge_plane_points(VB, EB, qA)])
+    ok = np.all(P @ qA[:, :3].T + qA[:, 3] <= tol, axis=1) & np.all(P @ qB[:, :3].T + qB[:, 3] <= tol, axis=1)
+    P = P[ok]
+    if len(P) < 4:
+        return None
+    c = P.mean(0)
+    if (c @ qA[:, :3].T + qA[:, 3]).max() > -1e-7 or (c @ qB[:, :3].T + qB[:, 3]).max() > -1e-7:
+        return None
+    return P
+
+
 def offset_hull(V, c):
     """The face-offset polytope of conv(V): every face plane moved outward by c (contains the exact dilation by c)."""
     from scipy.spatial import HalfspaceIntersection
@@ -426,6 +466,7 @@ class Lathe:
         (R+); a K-in-piece set none of whose points (vertices and centroid) is allowed is ignored. Iterates until no
         piece holds a K piece (each round re-checks the changed pieces). Returns (new pieces, report)."""
         KH = Hulls(K)
+        KP = [hull_parts(V) for V in KH.V]
         al = allow if isinstance(allow, (list, tuple)) else [allow] * len(K)
         rep = dict(conflicts=0, options={}, removed_pieces=0, rounds=0, infeasible=0)
         P = [dict(p) for p in pieces]
@@ -438,12 +479,12 @@ class Lathe:
                 if p is None:
                     continue
                 V = self.verts(p)
-                eqp = unique_planes(hull_eq(V))
+                PP = hull_parts(V)
                 lo, hi = V.min(0), V.max(0)
                 cand = np.nonzero(np.all((KH.lo <= hi + 1e-9) & (KH.hi >= lo - 1e-9), axis=1))[0]
                 Qs = []
                 for j in cand:
-                    Q = clip_vertices(KH.V[j], eqp)
+                    Q = intersect_points(KP[j], PP)
                     if Q is None:
                         continue
                     if al[j] is not None and not al[j](np.vstack([Q, Q.mean(0)[None]])).any():
@@ -466,6 +507,12 @@ class Lathe:
                     P[i] = None
                     rep['removed_pieces'] += 1
                     rep['infeasible'] += 1
+                    hq = (Q - self.c) @ self.a
+                    rep.setdefault('infeasible_rows', []).append(dict(
+                        kind=p['kind'], s=int(p['s']), h_mm=[round(float(p['hk'][0]) * 1e3, 2),
+                                                          round(float(p['hk'][-1]) * 1e3, 2)],
+                        K_h_mm=[round(float(hq.min()) * 1e3, 2), round(float(hq.max()) * 1e3, 2)],
+                        K_r_mm=[round(float(x) * 1e3, 2) for x in np.percentile(self.cyl(Q)[1], [0, 100])]))
                     continue
                 rep['options'][best[0]] = rep['options'].get(best[0], 0) + 1
                 P[i] = best[1]
@@ -480,17 +527,18 @@ class Lathe:
     def carved_ranges(self, pieces, K, allow=None):
         """{sector: (h_lo, h_hi)} of K inside the wall pieces (for re-banding at <= 10 mm before the carve)."""
         KH = Hulls(K)
+        KP = [hull_parts(V) for V in KH.V]
         al = allow if isinstance(allow, (list, tuple)) else [allow] * len(K)
         out = {}
         for p in pieces:
             if p['kind'] != 'wall':
                 continue
             V = self.verts(p)
-            eqp = unique_planes(hull_eq(V))
+            PP = hull_parts(V)
             lo, hi = V.min(0), V.max(0)
             cand = np.nonzero(np.all((KH.lo <= hi + 1e-9) & (KH.hi >= lo - 1e-9), axis=1))[0]
             for j in cand:
-                Q = clip_vertices(KH.V[j], eqp)
+                Q = intersect_points(KP[j], PP)
                 if Q is None or (al[j] is not None and not al[j](np.vstack([Q, Q.mean(0)[None]])).any()):
                     continue
                 h = (Q - self.c) @ self.a
