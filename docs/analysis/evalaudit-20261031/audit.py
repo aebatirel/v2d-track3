@@ -13,7 +13,14 @@ public episode parquets. Inputs are only
 
 Usage (python -I):
   audit.py check RDLIB_DIR KIT_DIR ROLL_JSON OUT_JSON CELL_DIR:ARM/epN [...]   public draws, compared with roll_rollouts.json
-  audit.py eval  RDLIB_DIR KIT_DIR DL_DIR SUMMARY7 SUMMARY8 OUT_JSON           the 20 eval episodes of packs 7 and 8
+  audit.py eval  RDLIB_DIR KIT_DIR DL_DIR SUMMARY7 SUMMARY8 OUT_JSON [CHECK_JSON]   the 20 eval episodes of packs 7
+                 and 8 (CHECK_JSON: the check output, embedded in OUT_JSON as a compact table)
+  audit.py trace RDLIB_DIR KIT_DIR PARQUET NAME,NAME [STEP]                    per-frame errors of one rollout (printed;
+                 library_v3)
+  audit.py fetch DL_DIR                     the 63 evaluator files from the HF store (single-file hf_hub_download, no
+                 listing; any token works behind this container's proxy)
+  audit.py packcheck PACK_PARQUET DL_DIR p7|p8     packed poses == the evaluator parquets' achieved columns, and the
+                 packed checkpoint_sha256 == the episode JSON's (printed)
 """
 import glob, json, os, sys, time
 import numpy as np, pyarrow.parquet as pq
@@ -161,7 +168,7 @@ def summary(path):
     txt = open(path).read(); return {int(k): v for k, v in json.loads(txt[:txt.index('}') + 1]).items()}
 
 
-def eval_audit(rdlib, kitdir, dl, sum7, sum8, out):
+def eval_audit(rdlib, kitdir, dl, sum7, sum8, out, check_json=None):
     L = kit(rdlib, kitdir)
     roster = {int(k): v for k, v in json.load(open(f'{kitdir}/data/track_3_evaluation_objects.json'))['episodes'].items()}
     packed = {'p7': summary(sum7), 'p8': summary(sum8)}
@@ -188,16 +195,79 @@ def eval_audit(rdlib, kitdir, dl, sum7, sum8, out):
                   f"{a['MPPE']:6.2f} AUC {a['AUC']:.4f} | maxRPE {a['rpe_max_frame_cm']:6.1f} >5cm {a['rpe_frac_frames_over_5cm']:.2f} | "
                   f"fail {a['fail']} {a['reason']} ({time.time() - t0:.0f} s)", flush=True)
         res[pk] = rows
-    json.dump(dict(kind='evalaudit', note='GT-free: sim vs our own reference, kit chain (rdlib), library meshes as host',
-                   rule=dict(KP_CM=KP_CM, FAIL_FRAC=FAIL_FRAC, LEFT_MOVE=LEFT_MOVE, LEFT_RATIO=LEFT_RATIO, FLUNG_CM=FLUNG_CM),
-                   packs={k: {str(e): v for e, v in r.items()} for k, r in res.items()}), open(out, 'w'), indent=1)
+    out_d = dict(kind='evalaudit', note='GT-free: sim vs our own reference, kit chain (rdlib), library meshes as host',
+                 rule=dict(KP_CM=KP_CM, FAIL_FRAC=FAIL_FRAC, LEFT_MOVE=LEFT_MOVE, LEFT_RATIO=LEFT_RATIO, FLUNG_CM=FLUNG_CM),
+                 packs={k: {str(e): v for e, v in r.items()} for k, r in res.items()})
+    if check_json:
+        c = json.load(open(check_json))['cells']
+        out_d['public_check'] = dict(
+            note='GT-free numbers recomputed here vs roll_rollouts.json (rpe-decomp-20261031): policy = sim vs our reference '
+                 '(same path), total = sim vs mocap (copied from roll_rollouts.json, not recomputed here)',
+            cells={k: dict(max_abs_diff_vs_roll_policy=v['max_abs_diff_vs_roll_policy'],
+                           draws=[dict(draw=r['draw'], ours=r['ours'], roll_policy=r['roll_policy'], roll_total=r['roll_total'],
+                                       fail=r['fail'], reason=r['reason']) for r in v['draws']]) for k, v in c.items()})
+    json.dump(out_d, open(out, 'w'), indent=1)
     print('wrote', out)
+
+
+def trace(rdlib, kitdir, parquet, names, step=6):
+    L = kit(rdlib, kitdir); names = names.split(','); step = int(step)
+    A, F = load(parquet, names)
+    H = [lib_host(L, LIB, n, s) for s, n in enumerate(names)]
+    C, R = L.convert(A, [(h['anchor'], np.eye(3)) for h in H]), L.ref_anchor(F, H)
+    Al = L.align(C, R, H); m = L.metrics(Al, R, H, per_frame=True)
+    for t in range(0, len(A), step):
+        print(t, 'rpe %5.1f' % m['pf_rpe_cm'][t], ' '.join('kp%d %5.1f z_sim %5.1f z_ref %5.1f' % (
+            s, m['pf_mppe_cm'][t, s], Al[t, s, 2] * 100, R[t, s, 2] * 100) for s in range(len(names))))
+
+
+def fetch(out):
+    from huggingface_hub import hf_hub_download
+    want = []
+    for e in [1, 3, 5, 6, 8, 10, 14, 15, 16, 19, 20, 25, 28, 30, 32, 35, 36, 37, 38]:
+        want += [f'{P6}/results/episode_{e:06d}.parquet', f'{P6}/results/episode_{e:06d}.json', f'{P6}/qa/ep{e}/qa_policy.json']
+    for e, base in ((33, SRC['p8'][33]), (1, SRC['p8'][1])):
+        want += [f'{base}/results/episode_{e:06d}.parquet', f'{base}/results/episode_{e:06d}.json', f'{base}/qa/ep{e}/qa_policy.json']
+    for f in want:
+        for i in range(5):
+            try:
+                hf_hub_download('aebatirel/v2d-store', f, repo_type='dataset', local_dir=out, token='dummy'); print('ok', f, flush=True); break
+            except Exception as ex:
+                print('retry', i, f, type(ex).__name__, str(ex)[:160], flush=True); time.sleep(15 * (i + 1))
+        else:
+            print('FAILED', f, flush=True)
+
+
+def packcheck(pack, dl, tag):
+    P = pq.read_table(pack, columns=['row_id', 'pos_x', 'pos_y', 'pos_z', 'quat_x', 'quat_y', 'quat_z', 'quat_w',
+                                     'checkpoint_sha256']).to_pandas()
+    P['ep'] = P.row_id.str.slice(9, 15).astype(int); P['f'] = P.row_id.str.slice(22, 28).astype(int)
+    P['o'] = P.row_id.str.split('/o').str[-1].astype(int)
+    bad = 0
+    for e in sorted(P.ep.unique()):
+        base = f"{dl}/{SRC[tag].get(e, P6)}/results/episode_{e:06d}"
+        q = P[P.ep == e].sort_values(['f', 'o'])
+        t = pq.read_table(base + '.parquet').to_pandas(); t = t[t.environment_id == 0].sort_values(['reference_frame', 'object_id'])
+        a = t[[f'achieved_{k}' for k in ('position_x', 'position_y', 'position_z', 'quaternion_x', 'quaternion_y',
+                                         'quaternion_z', 'quaternion_w')]].to_numpy(float)
+        b = q[['pos_x', 'pos_y', 'pos_z', 'quat_x', 'quat_y', 'quat_z', 'quat_w']].to_numpy(float)
+        same = a.shape == b.shape and float(np.abs(a - b).max()) == 0.0
+        sha = set(q.checkpoint_sha256) == {json.load(open(base + '.json'))['checkpoint_sha256']}
+        bad += not (same and sha)
+        print(f'{tag} eval {e}: rows {len(b)}/{len(a)} poses identical {same} checkpoint sha256 match {sha}')
+    print(f'{tag}: {bad} mismatching episodes')
 
 
 if __name__ == '__main__':
     if sys.argv[1] == 'check':
         check(*sys.argv[2:6], sys.argv[6:])
     elif sys.argv[1] == 'eval':
-        eval_audit(*sys.argv[2:8])
+        eval_audit(*sys.argv[2:8], sys.argv[8] if len(sys.argv) > 8 else None)
+    elif sys.argv[1] == 'trace':
+        trace(*sys.argv[2:])
+    elif sys.argv[1] == 'fetch':
+        fetch(sys.argv[2])
+    elif sys.argv[1] == 'packcheck':
+        packcheck(*sys.argv[2:5])
     else:
         sys.exit(__doc__)

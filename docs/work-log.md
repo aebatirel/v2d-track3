@@ -5609,3 +5609,22 @@ Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on 
   - rule fixed before data (docs/research/work/pack9a-20261031/MESH_RULE.md on its branch): as-fitted C0 per object iff
     the public AUC guard shows it ≥ library_v3, else C0a; C0a for all three if the guard is not in by 19:15 UTC;
   - blue cup stays out pending the owner.
+
+### 2026-10-31 ~16:45 UTC — GT-free audit of the packed eval rollouts: one failure (eval 10); ≈ 1.5 cm of board RPE is reference-side
+Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). CPU, $0, no GT read.
+- The method reproduces the stored sim-vs-reference RPE/MPPE/AUC exactly on 70/70 public draws. The failure flag (fixed
+  before any eval scoring) catches all 33 public failures (10.1–76.8 cm) and none of the 37 successes.
+- Pack 7 vs our own reference [M]: mean RPE 2.450 (recomputed here), MPPE 1.561, AUC 0.911. Board: 3.932 / 2.921 /
+  0.8146.
+- Only eval 10 fails: the beige cup is left behind; RPE 15.76, contributing 0.79 cm of the mean. Fixing it alone
+  → board RPE ≈ 3.24 [E].
+- Borderline, not failures: eval 32 (cup knocked, RPE 3.69), eval 14 (3.39), eval 1 (2.89 / 2.46 in pack 8). The other
+  12 two-object episodes score 1.30–2.79.
+- So ≈ 1.48 cm of the board RPE (≈ 1.85 cm per two-object episode) is our eval reference and/or mesh registration vs
+  the hidden truth. On public, reference RPE is 1.66 (1.00 without ep23).
+- This CORRECTS my 16:10 reading ("RPE gap = failed rollouts, not perception"). That holds on public twins. On eval,
+  the reference/registration side carries ≈ 60 % of the gap to a failure-free ~2.4.
+- Hypotheses (README; untested):
+  - H-spoon: the eval-only spoon; GT-free falsifier = silhouette check vs public objects;
+  - H-gross: one or two grossly wrong eval references, e.g. an identity swap;
+  - H-diffuse: all eval references worse; no GT-free falsifier.
