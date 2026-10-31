@@ -2831,6 +2831,223 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
       evidence or scan-derived constant; the C1/T1 census in (5) is another lane's [R] note, not an input. Public
       development only; constants fixed here before any run; failures reported with numbers; any later change is a new
       dated entry labelled post hoc.
+  - **F-I5.16 Round 2, amended: a contact-budget gate for every F-I5 delivery, the smallest cavity-safe ring layout,
+    and contact numbers in the eval precheck (post hoc; written 31 Oct 22:23-22:46 UTC in a design step, no code
+    edited and nothing run for it; committed and pushed before any code or run uses it).** Basis: the orchestrator's
+    decision 2 of 31 Oct ~22:30 UTC (items 1-3) and the absolute bound it added at ~22:40 UTC, relayed by the round-2
+    workflow task, under the owner's waiver (F-I5.0) and the owner's mandate of 21:22 UTC. **Evidence** (another lane,
+    [R]; it motivates the rule and is not an input to any shape): (i) determined-wright's P1 settle on the round-2 ep24
+    board-slot r0 (`docs/research/physics-2026-10-30/p1_ep24/RESULT.md`, branch `claude/determined-wright-3joens`,
+    commit 3c7fd32): under the training sim config `sim=rl` (nconmax 256, njmax 512 per world; one world per copy, the
+    as-is recipe) the carved pair of 57 / 77 convex pieces overflows MuJoCo-Warp in 16/16 jittered copies at f246
+    (200-231 warning lines per copy; the broadphase asks for 500-670 contacts), contacts are dropped and both boards end
+    10-46 cm below the table top (mean tilt about 90 deg); with large buffers the carved pieces need up to about 2030
+    constraint rows per world at f246 (453 at f258, 770 at f270); the default pieces (50 / 71) never overflow and use
+    416-425 rows; the evaluator rebuilds from the checkpoint config, so the same limits apply at scoring. (ii)
+    determined-wright's eval-25 contact budget (`docs/research/physics-2026-10-30/contact_budget/`, commit 9c1d100:
+    `budget.py`, `eval25_packed_pieces.json`, `eval25_library_v3_plain.json`): in the full scene under sim=rl (both
+    Sharpa hands 26 + 26 collision geoms, boards 21 + 11, support, ground; 8 sampled training resets x 60 zero-action
+    steps) the packed configuration uses max 276 / median 201 rows and max 65 / median 46 contacts per world (pooled
+    naconmax 2048 = 256 x 8; njmax 512); largest per-world pair maxima: right-hand self 21, right hand-board 2 20, left
+    hand-board 1 17, left-hand self 15, board-board 14, support-board 12 / 11; library_v3 boards without pieces (19 +
+    9): 240 / 174.5 rows. **Post hoc** with respect to these numbers and to everything F-I5.15 lists. No run under
+    F-I5.15 or this entry exists when it is committed: the round-2 Build step stopped at 22:17 UTC with no gmg code
+    edited [M, `git status`]. Also read for this entry: `build/I/budget_py_usage.md` (orchestrator note of 22:25 UTC:
+    `budget.py` has no `--pieces` flag; our pieces enter through `make_assets.py` and a reference copy with
+    `object_urdf_paths` remapped), the MuJoCo-Warp page and the MuJoCo computation chapter (INTERLOCK 21.14.1), the
+    committed copy of the sim config `docs/research/work/15-verify/cfg_sim_rl.yaml` (on this branch since f7620b2; git
+    blob af3c506d, sha256 `695536b798ff5f7b1d391e3a6932288e23329c026f27cd364f77230d703f4b66`; fetched at
+    video_to_data@7c0d3b94, whose `robotic_grounding/flash_chord/` equals the evaluator pin 8c778f90 [R,
+    `docs/professor-package/notes/01-baseline-dissection.md`:25-28]): fps 20.0, substeps 5, solver newton, integrator
+    implicitfast, cone pyramidal, **njmax 512**, **nconmax 256**, impratio 20.0, iterations 100, ls_iterations 50,
+    use_mujoco_contacts true; FlashCHORD's convex decomposition at that code (`15-verify/fc_mesh.py`:62-90:
+    `coacd.run_coacd(threshold=0.05, max_convex_hull=-1, preprocess_mode="auto")`, coacd 1.0.11 pinned in its
+    pyproject [R, notes 15:814-818], `decompose_objects: true` in the training scene [R, notes 01:250]); and the
+    concurrent F-I4.17 (board-slot lane, same decision; its gate part 1 runs in plain MuJoCo). Found [M]: this container
+    has no FlashCHORD source tree, warp, newton or mujoco_warp (our venv: mujoco 3.17.0, coacd 1.0.14); in mujoco 3.17.0
+    nativeccd and multiccd are disable flags, so both are on by default (enableflags 0, disableflags 0). Where F-I5.15
+    and this entry differ, this entry wins for runs that select round 2 (the same round-2 option). Plate pairs keep F-I4
+    (now F-I4.17). Design text, review table and plain-language summary: INTERLOCK 21.14.
+    - **(1) Contact-budget gate (new; binding for every F-I5 delivery: carved or default, routes 2, 3 and 4).**
+      (a) **Limits and solver**: the values above, read at run time from `15-verify/cfg_sim_rl.yaml` (sha256 checked
+      against the value above before every gate run; a mismatch stops the run). If the Build obtains
+      `configs/sim/rl.yaml` at the pin 8c778f90 (as notes 19 A1 fetched pinned files with `gh api .../contents`), its
+      sha256 is recorded too and any value that differs is reported before any gate run. (b) **Engine G1: plain MuJoCo
+      3.17.0** (runs here and on the box). The test's own scene MJCF (same bodies, pieces as mesh geoms, masses and
+      inertia, table plane, poses and jitters) with the sim=rl options: timestep 0.01 s (1 / (fps x substeps)), Newton
+      solver, implicitfast integrator, pyramidal cone, impratio 20, iterations 100, ls_iterations 50, `<size njmax="512"
+      nconmax="256"/>`, every other option at the MuJoCo default (nativeccd and multiccd on); geoms condim 3 and friction
+      1.0 (FlashCHORD's `contact_friction` on every colliding shape [R, determined-wright
+      `docs/research/grasp/flashchord-capabilities-for-grasp-search.md`:164]; S itself keeps its 0.5, F-I5.10). Recorded
+      per copy at every step: `d.ncon`, `d.nefc` and the warning counters `mjWARN_CONTACTFULL` and `mjWARN_CNSTRFULL`;
+      per copy the maxima and their step, and the contacts by class (guest-receiver, guest-table, receiver-table) at the
+      step of max nefc. **Overflow in a copy** := max ncon > nconmax, or max nefc > njmax, or one of those warnings.
+      Plain MuJoCo grows its arena past the limits instead of dropping contacts [M, F-I4.17.1], so the limits are applied
+      to the counts. One world per copy and 256 per world is the strict reading: MuJoCo-Warp pools nconmax over worlds
+      (a world may exceed it when the pool fits) but limits njmax strictly per world [R, MuJoCo-Warp page]. Where a
+      MuJoCo-Warp install exists (FlashCHORD's environment on the box, if set up), the same scenes are also run there,
+      one world per copy at the sim=rl limits, with `Data.overflow` and the warning lines recorded: report only, except
+      as (h) says. (c) **Scenes and frames of G1**: the physics scenes of the acceptance in which bodies move freely, as
+      each test sets them up: S (`simphys.sink_xml`: receiver static, guest free, our table plane) at the F-I5.5
+      acceptance frames and at every floor S frame (F-I5.15 (4c)), and the plain-MuJoCo P1 pre-check settle
+      (`simphys.settle_xml`: both objects free, table plane) at its frame (`asm[len // 2]`); 16 copies with the jitters
+      those tests use; 2 s each. Only frames that pass the pose precheck (F-I5.15 (3)) are gated: at a `pose_impossible`
+      frame the count measures the track's interpenetration, not the pieces, and the evaluator-side hazard of such poses
+      is what G2 measures (its resets are sampled from the reference); those frames are recorded, report only. P2 and
+      P4-P7 are geometric (no physics scene). P3 (`simphys.replay_xml`, a weld drives the guest) is recorded, report
+      only: a weld forcing one body through another is not a configuration the evaluator runs. No gated frame:
+      `contact_gate_pair_vacuous`, recorded; G2 still binds. (d) **Baseline, the packed default**: per object, the
+      collision geometry the pack's asset path gives the object's visual mesh when the object carries no collision
+      pieces: `pipeline/make_assets.py` without `--pieces` makes the visual the collision mesh, and FlashCHORD replaces
+      it at load by `coacd.run_coacd(threshold=0.05, max_convex_hull=-1, preprocess_mode="auto")` with coacd 1.0.11
+      (above); the Build runs that exact call on the round folder's visual mesh of the object (`<obj>.glb`, the mesh the
+      pack would load) with coacd 1.0.11 installed in a separate target, and places the hulls in the same scenes,
+      frames, poses and jitters (common random numbers). Reason: same shape, frame and poses as our pieces, so the ratio
+      isolates the cost of our pieces against what the pack would run. Our own uncut default pieces (`_default/`, the
+      F-I5 route output) are run beside it, report only (the other reading of "packed default"). (e) **G1 pass** iff no
+      copy of any gated scene and frame overflows with the delivered pieces, **and** max nefc of the delivered pieces <=
+      **1.5 x** max nefc of the packed default, both maxima taken over all gated scenes, frames, copies and steps. A
+      packed default that itself overflows somewhere is flagged `packed_overflow` (for the pack lane); plain MuJoCo's
+      counts are uncapped, so the ratio is still computed. (f) **G2, absolute bound in the full scene**:
+      determined-wright's `budget.py` at 9c1d100, read-only (`git show` into scratch), run as `build/I/budget_py_usage.md`
+      states (`make_assets.py meshes/library_v3 OUT --pieces <our r0>`, which takes only the non-colliding visual from
+      library_v3 [R, P1 RESULT section 4]; a copy of the reference tree with `object_urdf_paths` rewritten to
+      `OUT/urdf/<obj>_rigid.urdf`; `W=8 STEPS=60`; `EMB` as the note says), CPU, in FlashCHORD's environment. **Pass
+      iff `max_nefc_per_world` <= 380** and no overflow line. Reference: the episode's FlashCHORD reference whose object
+      poses are our P_sel up to a constant shift per object (residual <= 1 mm and 1 deg over the frames, checked as
+      determined-wright did for ep24); public: our `runs/20261030-physS1-6a814df/refs/...` trees on the HF store where
+      one exists for the episode (the Build lists them), otherwise `budget_untestable`. Recorded beside it, report only:
+      the packed configuration on the same reference (make_assets of the pack mesh set without pieces). Caveat recorded
+      with every G2 number: zero-action rollouts; a grasping policy may add hand-object contacts. G2 does not apply to
+      synthetic pairs (no reference; recorded). (g) **Outcome**: G1 or G2 fails -> `DO_NOT_USE.json` in the round folder
+      (rule F-I5.16 (1); reason `contact_overflow`, `contact_ratio` or `contact_budget_380`, with the numbers). G2 cannot
+      run (no FlashCHORD environment here, or no matching reference) -> `CONTACT_GATE_PENDING.json` (why, and the r0
+      path sent to determined-wright, who offered to run it): the folder is not called usable until a passing G2 is
+      recorded. Records: `contact_gate.json` per round folder (config path and sha256, every value used, mujoco and
+      coacd versions, per pair, scene, frame, piece set and copy the maxima, steps, classes and warnings, the ratio, the
+      MuJoCo-Warp rows where run, the G2 JSONs with reference path and md5, the verdict). (h) **Validity check c1
+      (T-I17, before any gated delivery)**: G1's engine and options on the round-2 ep24 board-slot r0
+      (`build/I/results/slot2-ep24/fi4o/r0`: carved 57 / 77, `_default` 50 / 71; read only) at f246, both boards free
+      (the settle scene), poses = determined-wright's reference at f246 (our P_sel plus their constant world-z shifts
+      +12.904 / +10.989 mm, RESULT section 2) over a table plane at their table top, their 16 draws
+      (`default_rng(0).normal((16, 2, 6))`, 0.5 mm and 0.005 rad per axis on both objects, about the mesh origin, in the
+      world frame), 2 s. c1 passes iff the carved set overflows in >= 15 of 16 copies, the default in none, and max nefc
+      carved / default >= 3 (theirs, large buffers: 2027 / 416, about 4.9). If F-I4.17's validity check (its P125) ran
+      the same scene, options and draws, its record may be cited instead (commit named). c1 fails -> G1 in plain MuJoCo
+      is recorded as weaker than MuJoCo-Warp, and no F-I5 delivery is called usable before G1 has run in MuJoCo-Warp
+      (FlashCHORD's environment on the box, or determined-wright).
+    - **(2) Ring layout = the smallest cavity-safe layout (replaces F-I5.15 (1d); the piece cap no longer chooses the
+      layout).** Candidates: N_s in {8, 12, 16, 20, 24, 32}; wall bands B_w = W_r, W_r + 1, ... (W_r = the wall runs),
+      band edges by F-I5.15 (1d)'s greedy sequence (nested: each step adds the one 1 mm split that gains the most ring
+      volume); base per solid run: **b1** one convex piece per base band (the prism of the N_s-gon inscribed in the
+      base's outer profile, top plane at the run's lowest cavity-floor point on the axial construction rays, bottom
+      plane at the run's lowest SHELL bottom point, so the support plane is kept; the volume it adds outside the SHELL
+      under the base is reported as `underside_fill_cm3` and meets the keep-out gate like any piece), then **b2** F-I5.15
+      (1c)'s centre disc plus N_s rim sectors; base bands <= 30 mm. **Search order**: ascending ring-piece count n_r =
+      N_s B_w + (base pieces); ties: larger exact ring volume first. Handle hulls n_h (F-I5.4's handle step on the
+      candidate's rings) are computed for the candidate under test. A candidate is accepted, and the search stops, when
+      every check passes, in this order: (i) min wall left >= w_min = 1.5 mm in every wall piece (F-I5.15 (1b)); (ii)
+      construction intrusion <= 1e-6 m (F-I5.15 (1f)); (iii) the continuity check against the SHELL (F-I5.15 (1e)); (iv)
+      the pieces gate (F-I5.4) on rings and handle hulls; (v) share of the SHELL volume >= f_keep = 0.5 with the handle
+      hulls (F-I5.15 (4c)(i), moved into the search so that a layout already known to be do-not-use is not chosen). The
+      search ends when n_r + n_h > floor(165 / objects) (P5's share; it now only bounds the search); no accepted
+      candidate: route 3. Every candidate tried is logged with the check it failed. The contact gate (1) then runs on
+      the pair. Neither a gate failure nor an S floor failure climbs the search (a larger layout has more pieces [E]; no
+      layout is selected on S outcomes); either gives `DO_NOT_USE.json`. The reference rings (64 sectors, F-I5.15 (4a))
+      are never delivered and are not gated. Routes 3 and 4 keep F-I5.15 (2) and F-I5.4 (cap = floor(165 / objects)),
+      now followed by the gate. **Geometry [E, stated before any run]**: a tangent inner face and a chordal outer face
+      leave (r + t) cos(pi / N_s) - r of wall at mid-sector, so the continuity rule's half cover needs r / t <=
+      (cos(pi / N_s) - 1/2) / (1 - cos(pi / N_s)) = 5.6 at 8 sectors, 13.7 at 12, 25.0 at 16 (r inner radius, t wall).
+      Our SHELL walls are t = 5.36 mm (t0_dev); at their widest heights the cups (r_out 46.0-47.6 mm in the round-1
+      profiles, r / t about 7.6-7.9) need 12 sectors and the ep2 pot (r_out 98.4 mm, r / t about 17.4) 16. The decision's
+      example of 8 sectors x 2-3 bands is therefore expected to fail continuity on every real cup (P93).
+    - **(3) Eval precheck: contact numbers of the packed pieces (diagnostic; report only, decides nothing, never tuned
+      on; runs with the eval precheck of F-I5.15 (11)(v), after the orchestrator's go).** Per eval episode with two or
+      more objects in focused-pascal's `docs/research/work/masses-eval-20261031/packed_refs.json` (their branch
+      `claude/focused-pascal-2nz9s1`): the pack's reference (path and md5 as listed) and the pack's collision geometry
+      (the pack mesh set through make_assets plus the packed carve pieces, `meshes/carve/ev25`, `ev10` and, where packed,
+      `ev01`; FlashCHORD's decomposition as in (1d)). (a) **Pair scene**: both objects free plus the table plane at the
+      reference's support top, G1's engine and options, the 16 S jitter draws, at up to 3 frames per pair: the middle
+      frames of the 3 longest static stretches of the pair on the reference's object poses (F-I1.1: < 2 mm per frame,
+      >= 5 frames) in which the two packed colliders are within s_max = 4 mm of each other, hands-off frames first (no
+      reference hand point within 30 mm of either object, F-I5.3 (2)); per pair and frame: max ncon, max nefc, the step,
+      the classes and the overflow flag. (b) **Full scene**: `budget.py` on the pack's own reference (the packed
+      configuration, W 8, STEPS 60), max and median rows and contacts per world, contacts by pair, overflow lines. Written
+      to `build/I/results/collcarve-r2/eval_contact_precheck.json`, any overflow named in its first lines, and sent to
+      the pack lane (focused-pascal) and determined-wright. These references are our perception (library-templated
+      tracks, tier P1), not ground truth; they serve here only as poses for a contact count, never as shape evidence.
+    - **(4) Tests and predictions (after F-I5.15's P92; F-I4.17 starts at P120; [H] unless marked; falsifier after
+      "|").** T-I14 gains the gate fixtures g1-g3 and the search fixtures r4-r5; **T-I17** is c1 ((1h)); T-I15 and T-I16
+      run the search (2) and G1 / G2. Changes to F-I5.15's predictions: **P72** (cap rule) is replaced by P93; **P74**
+      (share >= 0.5) is now a search criterion and is replaced by P94; wherever P81, P82, P84, P86 or P89 say
+      "delivered", G1 must also pass (G2 does not apply to synthetic pairs). [E] P82's n3 leg loses margin: with 12
+      sectors the x1 host keeps about 2.7 mm of wall (37.7 cos 15 deg - 33.7), so t_min - w_min is about 1.2 mm against
+      e_ax + c = 1.1 mm (it was about 1.8 mm at 16 sectors).
+      - **P93** [E, geometry of (2)] no route-2 cup or pot of T-I15 / T-I16 (ep11 beige and blue, ep12, ep13, ep21,
+        ep22 blue; the pots) is accepted at 8 sectors, and the ep2 pot not at 12: those candidates fail (i) or (iii) at
+        the widest heights; [H] the cups are accepted at 12 or 16 sectors | any cup or pot accepted at 8, the ep2 pot at
+        12, or a cup at more than 16.
+      - **P94** every route-2 cup and pot of T-I15 / T-I16 has an accepted candidate (route 2 holds), with n_r + n_h <=
+        50 for each cup and <= 70 for the pot | a route-2 cup or pot falls to route 3, or exceeds its count.
+      - **P95** T-I17 c1 passes: the ep24 carved r0 overflows in >= 15/16 copies, the default in none, max nefc ratio
+        >= 3 | any not (then (1h)'s fallback applies).
+      - **P96** gate fixtures: g1 (two free objects of 100 box pieces each, 10 x 10 tiles, stacked face to face on the
+        table: [E] 100 tile pairs at up to 4 contacts each, more than 256) -> `contact_overflow`; g2 (delivered = the packed default's hulls each split in four across
+        their contact faces) -> `contact_ratio`; g3 (delivered = the packed default) -> passes with ratio 1.0 | any differs.
+      - **P97** search fixtures (analytic straight-tapered cups, t = 5.36 mm, 3 deg taper, flat solid base): r4 (r_out
+        47.6 mm at the rim) accepted at 12 sectors with b1 and one wall band (n_r = 13), the 8-sector candidate tried
+        before it failing (iii); r5 (r_out 98.4 mm) accepted at 16 sectors, b1, one band (n_r = 17), the 8- and
+        12-sector candidates tried before it failing (iii) | any differs.
+      - **P98** T-I14 n1 (smallest layout, 12 sectors [E]): the carved delivery passes G1 (no overflow; max nefc <= 1.5 x
+        its packed default) | an overflow or a ratio above 1.5.
+      - **P99** T-I16: no delivered set, default or carved, overflows in a gated G1 scene | any overflow.
+      - **P100** T-I16 ep2 (lid on pot): the lid's route-3 set (41 to 82 CoACD hulls) on the pot's rings fails the G1
+        ratio, so ep2 is DO_NOT_USE | ep2 passes G1.
+      - **P101** the packed defaults (CoACD 0.05 of our visuals, (1d)) of every cup and pot of T-I16 fail the F-I5.4
+        keep-out gate (they fill the cavity; notes 01:380 expected this of CoACD at 0.05), report only | any passes.
+      - **P102** G2: every T-I16 delivery that passes G1 and has a matching reference stays <= 380 rows per world | any
+        above 380.
+      - **P103** eval precheck (when run): no eval pair's packed pieces overflow in the pair scene at its frames, and
+        `budget.py` on the packed eval-25 reference reproduces determined-wright's max 276 / median 201 rows within 2 % |
+        any overflow, or eval 25 off by more than 2 %.
+      These tests gate or fix steps; none is a failure criterion of the gmg (D.3).
+    - **(5) Constants and origins.** Ratio 1.5 and absolute 380 rows per world: **the orchestrator's decision 2** (1.5:
+      "the carve may cost somewhat more than what the pack already runs, not multiples of it"; 380 = about 75 % of njmax
+      512, from determined-wright's measured eval-25 packed max of 276 [M, theirs]). njmax 512, nconmax 256, fps 20,
+      substeps 5, Newton, implicitfast, pyramidal, impratio 20, iterations 100, ls_iterations 50: **the evaluator's sim
+      config** (`cfg_sim_rl.yaml`, sha256 above). One world per copy, 256 per world: **generic** (the strict reading of
+      a pooled limit). Friction 1.0, condim 3: **informed** (FlashCHORD [R]). The packed default's CoACD call (0.05,
+      -1, auto, coacd 1.0.11): **the evaluator's code** (`fc_mesh.py`). `budget.py` W 8, STEPS 60: **informed**
+      (determined-wright's measurement settings). 16 copies and the S jitters, 2 s: **informed** (F-I5.10). c1: their
+      16 draws and poses (**informed**, theirs); >= 15/16 and ratio >= 3: **generic** (one copy of slack for engine
+      differences; 3 is below their 4.9 and twice the 1.5 bound). G2 reference residual 1 mm and 1 deg: **generic** (the
+      1 mm grid of F-I5.15). Search order by ring pieces, ties by volume, b1 before b2: **generic** (the decision:
+      "the smallest layout", "fewer, larger pieces"); N_s set, greedy bands, base bands 30 mm, w_min 1.5 mm, f_keep 0.5:
+      unchanged from F-I5.15. Search end floor(165 / objects): **informed** (P5, F-I1.14). Eval precheck frames: s_max
+      4 mm and the static rule (**informed**, F-I1.14), hands-off 30 mm (**generic**, F-I5.3 (2)), 3 frames (**generic**,
+      F-I5.5). P94's 50 / 70: **generic** (12 x 3 + 1 + 13 handle hulls; 16 x 3 + 1 + 21).
+    - **(6) Run order, machine, cost.** (i) **Build** here (nice; never killing or renicing others): `gmg/cavpieces.py`
+      (the search (2), b1 base), a new `gmg/contactgate.py` (G1 scenes and counts, the packed-default call, the records,
+      the G2 wrapper and its pending marker), the gate call in `gmg/collcarve.py` round 2, T-I14 additions (g1-g3,
+      r4-r5) in `tests/test_collcarve2.py`, coacd 1.0.11 in a separate target in scratch; deviations found while building
+      (none a threshold) recorded as F-I5.16 as-built before any real run; code frozen, committed and pushed. T-I17 c1
+      runs here first [E, minutes]; its verdict is logged before T-I15 / T-I16. (ii) **The box** (the one self-destroying
+      Vast CPU box of F-I5.15 (11)(ii); ledger `LEDGER_SESSION=mesh-bold`, planned line before create and actual after,
+      stall watchdog 30 min, results copied off before destroy, destroy confirmed): T-I15, T-I16 with G1, L0; G2 where
+      FlashCHORD's environment can be set up there (pin 8c778f90, `uv sync`, LFS assets fetched from
+      media.githubusercontent.com at the same commit with sha256 checked, as determined-wright did on 30 Oct ~09:50
+      [R, their work log]) and a matching reference exists; otherwise `CONTACT_GATE_PENDING.json` and the r0 paths go to
+      determined-wright. [E] G1 adds about 3 piece sets x 16 copies x (<= 6 S frames + 1 settle) of 200 steps per pair,
+      tens of minutes on 32 vCPU; the FlashCHORD setup 15-30 min; about +$0.1-0.5, round total about $0.6-2.0 with
+      storage and traffic; the round cap stays $3 and the shared credit is left to the other lanes. If the box's estimate
+      exceeds the cap, stop and report. (iii) The eval precheck (3) runs only after the orchestrator's go (F-I5.15
+      (11)(v)).
+    - **(7) Integrity.** As F-I5.15 (12). The gate reads no ground truth: our poses, our pieces, our references.
+      library_v3 meshes appear only where the pack runs them (the non-colliding visual in G2's make_assets, the packed
+      comparison rows in G2 and in (3)), never as shape evidence and never in a decision about our shapes.
+      determined-wright's numbers are [R] evidence for the rule and the c1 target, not inputs to any shape. Public
+      development only; constants fixed here before any run; failures reported with numbers; any later change is a new
+      dated entry labelled post hoc.
 
 ## Revision 1 changelog
 

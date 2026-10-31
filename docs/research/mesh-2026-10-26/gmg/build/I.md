@@ -1253,3 +1253,24 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   `tests/test_collcarve.py`, `tools/interlock_dev.py` (shared) next. Load 0.2 (4 cores).
 - 22:17 ORCHESTRATOR: round-3 workflow stopped at ~22:16 UTC after determined-wright's P1 report (contact-budget overflow of the 57/77-prism r0 under sim=rl, see 22:20 orchestrator note in INTERLOCK/PREREG to follow). Killed the orphaned heavy runs started ~22:14 by the Build step: pid 1997 (interlock_dev ep24 F-I4.16 run) and pid 2001 (test_fi416 W10.test_k5_t8_s2_physics); their partial outputs are not results. The geometric w10 cells (pids 2004, 2007) and Identity (2010) were left running; their records are valid F-I4.16 outputs.
 - 22:25 ORCHESTRATOR NOTE (both round 3 board slot and collision-carve round 2): determined-wright's budget.py has NO --pieces flag; the exact procedure (make_assets --pieces, reference copy with object_urdf_paths remapped, run budget.py; max_nefc_per_world is the <= 380 number) is in build/I/budget_py_usage.md. If it cannot run here, send them the r0 path.
+- 22:33 (Design 2 step, collision-carve round-2 workflow, started 22:23) Task: orchestrator decision 2 (~22:30 UTC, contact
+  budget) + the absolute bound (~22:40 UTC) as PREREG F-I5.16 + INTERLOCK 21.14, written and pushed before any code runs
+  with it. Read: this section (F-I5.15 / 21.13 at f00e657 + 22c88fd; the Build step stopped at 22:17 with no code edited,
+  working tree has no collcarve / cavpieces change), determined-wright's `p1_ep24/RESULT.md` (3c7fd32) and
+  `contact_budget/` (9c1d100: budget.py, eval25_packed_pieces.json, eval25_library_v3_plain.json), the 22:25 note and
+  `build/I/budget_py_usage.md` (no --pieces flag). Found [M]: no FlashCHORD source, warp, newton or mujoco_warp in this
+  container (venv has mujoco 3.17.0 only; the kit copy of flash_chord has no configs/sim), so rl.yaml cannot be read
+  here: its values are quoted [R] from determined-wright's notes (rl.yaml:2-12) until the Build reads the file at the
+  pin. Highest prediction P92, so this entry starts at P93 (re-checked before commit). No code, no run, $0.
+- 22:46 (Design 2) Correction to 22:33: the sim config IS readable here: `docs/research/work/15-verify/cfg_sim_rl.yaml`
+  (on this branch since f7620b2; sha256 695536b7...4b66; flash_chord at 7c0d3b94 = the pin 8c778f90, notes 01:25-28):
+  njmax 512, nconmax 256, fps 20, substeps 5, newton, implicitfast, pyramidal, impratio 20, 100 / 50 iterations (as
+  F-I4.17 found). Also [M] mujoco 3.17.0 has nativeccd and multiccd ON by default (disable flags), so G1 runs in plain
+  MuJoCo with the limits applied to the counts, plus validity check c1 on the ep24 r0. FlashCHORD's decomposition
+  (`15-verify/fc_mesh.py`:62-90, coacd 1.0.11, threshold 0.05) defines the packed default. Short review (MuJoCo-Warp
+  page, MuJoCo computation chapter) in INTERLOCK 21.14.1. F-I4.17 reserved P93-P119 for this entry and uses P120+.
+  Written: PREREG F-I5.16 ((1) gate G1 / G2 / c1, (2) smallest-layout search, (3) eval precheck contact numbers, (4)
+  P93-P103, (5) constants, (6) run order and cost +$0.1-0.5 [E], (7) integrity) and INTERLOCK 21.14 (plain words,
+  review table, gate, search, eval precheck, constants, predictions, run order, limits) + header and section-0
+  pointers. No code edited, nothing run, no rental, $0. Committing PREREG.md, INTERLOCK.md and this log (only my lines
+  are in their diffs).
