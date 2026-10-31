@@ -1,0 +1,76 @@
+{
+ "prereg": "B.11",
+ "pass_": true,
+ "episodes": {
+  "2": {
+   "pass_": true,
+   "targets": {
+    "white_pot": {
+     "mode": "separated",
+     "n_views": 1,
+     "flags": [
+      "one_view",
+      "mv_skipped"
+     ],
+     "pass_": true
+    },
+    "white_pot_lid": {
+     "mode": "separated",
+     "n_views": 1,
+     "flags": [
+      "one_view",
+      "mv_skipped"
+     ],
+     "pass_": true
+    }
+   }
+  },
+  "11": {
+   "pass_": true,
+   "targets": {
+    "blue_cup": {
+     "mode": "separated",
+     "n_views": 1,
+     "flags": [
+      "one_view",
+      "mv_skipped"
+     ],
+     "pass_": true
+    },
+    "beige_cup": {
+     "mode": "separated",
+     "n_views": 1,
+     "flags": [
+      "one_view",
+      "mv_skipped"
+     ],
+     "pass_": true
+    }
+   }
+  },
+  "26": {
+   "pass_": true,
+   "targets": {
+    "plastic_dish_rack": {
+     "mode": "contact",
+     "n_views": 1,
+     "flags": [
+      "contact_mode",
+      "one_view",
+      "mv_skipped"
+     ],
+     "pass_": true
+    },
+    "white_pot": {
+     "mode": "contact",
+     "n_views": 6,
+     "flags": [
+      "contact_mode"
+     ],
+     "pass_": true
+    }
+   }
+  }
+ },
+ "refine": "sam2"
+}
