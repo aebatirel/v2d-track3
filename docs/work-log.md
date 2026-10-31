@@ -5423,3 +5423,8 @@ Advice given:
   pre-registered] blue-cup templates alone might help slightly; the falsifying test would be a pre-registered blue-cup-
   only re-track. Not proposed tonight. Per PREREG §7: no eval re-track; nothing enters an eval pack. Ledger actual
   $0.73 + $0.81 = $1.54 (planned $3.00).
+- ~22:57 UTC ledger actuals [M, from each box's run_job.log in the store]: h5p7 $5.85 (16:42–20:52Z, 240 min, $1.389/h;
+  plan $3.00), h5e1 $6.95 (16:43–20:49Z, 243 min, $1.681/h; plan $1.50), mv2a2 $6.20 (16:42–20:48Z, 242 min,
+  $1.508/h), rtkA $0.73, rtkB $0.81. Both H5 boxes ran ~2x the plan: [H] per-draw time on those hosts, not checked.
+  Ledger actual total $152.94; open: e10v, mv2b (mine), rscrV42/V43 (other session). Vast credit $56.52 (22:58Z).
+  runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json is in the store (D build agent, 22:38Z); no CPU rebuild needed.
