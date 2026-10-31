@@ -5681,3 +5681,7 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - Correction from that session: eval 10 is packed with library_v3; only eval 8 uses v3x.
   Default: C1 objects go into the scan-free C0b/E0b rebuild for pack 10. Optional "9a+" (9a + T1 + T2, flagged) asked
   to be staged by focused-pascal; the owner chooses "upload 9a" or "upload 9a+" in that chat.
+- ~17:17 UTC focused-pascal staged 9a+ (sha256 6743f01d…, commit URL e82b0c6): pack 9a + beige cup T1 on eval 10
+  only (eval 8 unverified, left out) + dust pan T2 on evals 19 and 38 (base files confirmed library_v3). Offline
+  validation passes. CD-O [E] 0.346 vs 0.367 for 9a. Waits for the owner's "upload 9a" / "upload 9a+" / "pack 8" in
+  its chat.
