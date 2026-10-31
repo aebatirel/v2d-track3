@@ -5857,3 +5857,18 @@ score.
   - on the standard learner (25, 30) DR also perturbs the deployment-exact starts (untested);
   - carved-asset risk: objects that start nested or touching.
   It offered a free CPU check per episode and an opt-in flag to skip the deployment-exact starts.
+
+### 2026-10-31 ~21:10 UTC — ep11 rollout gate PASSES (eval-10 cup-nest reference V4p)
+- focused-pascal: VERIFIED, no timeouts. Registered AUC vs mocap Δ +0.142 (bar +0.05).
+  - seed 42: C 0.5947 / T 0.6073 (+0.013);
+  - seed 43: C 0.5899 / T 0.8613 (+0.271);
+  - per object: beige +0.321, blue −0.037;
+  - the control never leaves its static floor (chosen checkpoint 10M on both seeds).
+  Seed spread is large: one seed carries the gain.
+- Eval-10 V4p retrain launched: run 20261031-e10v-caf38fb, Spain $1.377/h, ledger $6, ≈ 3–4.7 h, 2 seeds + 10
+  confirmation draws. Swap only if the rule holds on both references. Result ≈ 00:30–02:00 UTC. If SWAP-ELIGIBLE: pack
+  9b = 9a+ with the new eval-10 rollout (draw 1 by position); upload on the owner's word.
+- H5p7 comparison set: all 10 draws × 20 episodes with rollouts are in the store (only the final summary push failed;
+  rebuildable on CPU). H5e1 finished.
+- Masses v2: box A (ep24, ep13) done, partial Δ ep24 +0.038, ep13 ≈ 0 (not a verdict). Box B on its seed-43 wave;
+  merged verdict ≈ 23:00–01:00.
