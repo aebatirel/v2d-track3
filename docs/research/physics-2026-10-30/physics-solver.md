@@ -1166,7 +1166,7 @@ reference differing. The owner asked whether this was explored enough. It was no
 - Training nondeterminism alone moves a cell by up to 0.07 AUC and its draw sd by 6×. Single-cell differences of this
   size are noise.
 
-## 10. Arm V: the policy sees object velocity (pre-registered 31 Oct 2026 ~21:20 UTC, written before any V result)
+## 10. Arm V: the policy sees object velocity (pre-registered 31 Oct 2026 ~21:11 UTC, written before any V result)
 
 **Why.**
 - keen-heisenberg relayed the owner's request (21:01 UTC) for a slip-aware, physics-informed robot side. The owner
