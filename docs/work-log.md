@@ -5643,3 +5643,10 @@ Background agent, CPU only, $0, no ground truth read.
   Fix before launch: a missing cell gives INVALID instead of the pre-registered INCOMPLETE (reproduced with a fixture);
   the config diff may give a false INVALID on path-bearing keys; pyarrow Table.equals fails on NaN columns; eval
   timeouts dropped silently (stall may correlate with the mass arm). Fixture: scratchpad masscheck_review/test/.
+- 08:05 UTC 31 Oct [M] rlloop box progress: O3 round A (30M) done on ep2 (policy sim_vs_ref 0.453; window f52-177, pot +
+  lid), ep24 (0.208; f6-125, wooden pieces), ep12 (0.916; f114-180, blue cup); solves + merges ran (~5-8 min each).
+  O3 ep2 round B started 07:54: FlashSAC resumed from state_30003200 (progress line starts at 30,003,200/50,003,968) and
+  the reset-state bank loaded (4 states, share 0.25), running under graph capture → both GPU-untested parts work.
+  Bank is small (4 states). O1 so far: ep2 early stop at 60M (best 40M), ep12 RESULT AUC 0.893 (ES at 50M, "two in a
+  row >= 0.9"), ep18 AUC 0.579 (ES at 60M). Slots are shared, so total time looks ~5.5-6 h (est. $8-8.5), above the
+  4-5 h estimate; not cut (still progressing).
