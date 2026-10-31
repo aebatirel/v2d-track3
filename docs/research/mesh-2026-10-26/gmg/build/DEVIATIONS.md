@@ -746,3 +746,30 @@ scan number was seen; none bears on these choices.
     hand-free: every frame has 1.3-1.7 % depth-occluder pixels at the lid's lower rim (no MediaPipe hand) [M], so M9's
     rule (hand-free first, else the largest visible area) takes k132 (dev bundle in B2: k118, hand-free). The montage
     shows the lid alone on the table, no hand. Used as is; M9 is not changed. No scan or eval number seen.
+111. **(2026-10-31, B5 round 2) Self-ambiguity "trusted balls only" with standard Candidate objects.** PREREG A.3 V5
+    and A.5 key 2 measure the self-ambiguity with trusted balls only, otherwise ball-free. The round-1 `score_pool`
+    measured it on the mesh WITH untrusted balls when no ball-free mesh was supplied (the default path for Candidate
+    objects, which had no such field; verifier's break input, synthetic). Now: untrusted balls and no ball-free mesh
+    -> the value is unknown (`score.amb_unknown`: flip_risk None, flip_units None), which select.pick already treats
+    as neither risky nor safe for V5 and last on key 2 (entry 60 (ii)); the row is flagged
+    `amb_unknown_untrusted_balls_no_base` and a pick with it `flip_risk_unknown`. `Candidate` gets an optional last
+    field `base_mesh = None` (backward compatible) so producers / markers.attach callers can pass the ball-free mesh;
+    the ball count is max(declared, len(mesh.metadata['balls'])). An interpretation of A.3 / A.5 as frozen; no
+    pre-registered test, threshold or constant changes. No scan or eval number seen.
+112. **(2026-10-31, B5 round 2) Bootstrap replicate with an empty resampled block.** A.4's ratio estimator per block
+    is undefined when a replicate's resampled frames of a block hold no held-out point; round 1 scored it R_k = 0 (a
+    perfect fit), while the point estimate drops a block without points (nanmean). Now the replicate drops that
+    block too (NaN replicate if no block is left) and SE_diff is the SD over the replicates where both E are
+    defined. Pairing is kept (per-frame point counts are the same for every candidate). Latent on the public data:
+    0 replicates hit it on the 33 clean public object-episodes of run 20261031-b4ext4-b61e8aa, K = 3 (verifier, [M,
+    GT-free]). Interpretation of A.4; no constant changes. No scan or eval number seen.
+113. **(2026-10-31, B5 round 2) select.pick input contract, V3 reference s, V1 source.** (i) `pick` takes the
+    score_pool dict (kit_symmetric, gen_view_overlap and the pool flags come from it) or its rows (each carries them
+    under `pool`); for untagged rows both keywords are required, and a keyword that contradicts the pool raises
+    (round 1 defaulted both to False: V5 and the flip key would have applied to kit-symmetric objects). (ii) V3's s
+    ("the route-A shell at t0", A.3): `shell_fsv` (the t0 shell's fsv_far from the main run, for the A.1
+    t0-alternate re-runs), else `shell_cid`, else the SHELL row with t_mm == `t0_mm`, else the only SHELL row;
+    several SHELL rows otherwise raise (round 1 took the first in input order); no SHELL -> pool flag
+    `v3_no_shell_reference`. (iii) V1 computed on the in-memory mesh (no packer v1 supplied) flags the row
+    `v1_in_memory` (A.3 V1 is defined on the shipped, packed mesh; B10 passes the packer's v1). Code contracts only;
+    no pre-registered test, threshold or constant changes. No scan or eval number seen.
