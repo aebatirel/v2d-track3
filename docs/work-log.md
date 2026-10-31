@@ -5661,3 +5661,18 @@ diagnostic; nothing is picked for submission.
 - **Not shipping.** The scan-free C0b/E0b rebuild (running) is the pack-10 path.
 - Prep found that the working-tree `scripts/prim_potlid.py` differs by one line from the code that built C0 (14eaf37,
   29 Oct); E0 ran a frozen copy (2971a10).
+
+### 2026-10-31 ~18:55 UTC — per-public-episode own-video mesh sets for a perception re-track test (score session)
+- Ask (data): clean per-episode mesh sets (the C0b method from each public episode's own video) as perc2 templates for
+  a re-track test scored vs mocap by focused-pascal. Needed early 1 Nov.
+- Reply:
+  - Feasible as the E0b analogue on public: one box, ~15-20 min, ~$0.2.
+  - ETA 1 Nov ~04:00-06:00 UTC, after C0b's options freeze.
+  - Objects: pot, lid, rack, blue cup, beige cup (pitcher if C2 adopts); the rest stay library_v3.
+  - Caveats: the meshes are fused along library_v3-seeded tracks, and per-episode quality varies (pot 0.31-0.65 [D]).
+  - Nothing dropped; the eval-1 pot/lid carve would slip first.
+- Launched `pub-own-meshes` (`wf_56ac223f-44f`, task wd6tqh337), folder `cdo-sprint/PUBOWN/`:
+  - waits for C0b's frozen options, then adapts the E0 box job to public pairs (each episode its own mesh, no
+    cross-episode pick);
+  - one box (cap $2), with a MANIFEST and frame/kit checks;
+  - one verifier.
