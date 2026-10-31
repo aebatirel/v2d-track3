@@ -1,0 +1,78 @@
+fit.py mesh /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gen/mesh-20261029-gen-f3fbeb0/results/gen/sam3d_sim3/white_pot_k279_s7.ply obs /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/obs_all/ep41_white_pot.npz cfg {"work_faces": 12000, "ds_vox": 0.002, "nrm_k": 16, "holdout_block": 10, "holdout_mod": 5, "holdout_res": 2, "alphas": [100.0, 50.0, 25.0, 12.0, 6.0, 3.0, 1.5, 0.75], "gamma": 1.0, "max_it": 8, "tol": 0.0002, "cap_m": 0.01, "trim_q": 0.9, "cos_vis": 0.1, "beta": 0.1, "w_t2s": 1.0, "eps": 0.0001, "mesh_samples": 150000, "stop_stage": null, "out_faces": 4000, "close_hole_max": 200}
+obs train 3707338 raw -> 124906 vox; held 851317 -> 82106 (21 s)
+work mesh 6010 v 12000 f (raw 105216 v 210412 f) watertight False bodies 6
+{"tag": "input", "alpha": null, "train_o2m": {"med_mm": 2.400888861210174, "tmean90_mm": 2.821679756144449, "p90_mm": 8.634224125669592}, "held_o2m": {"med_mm": 1.7968528162951685, "tmean90_mm": 2.141304333261352, "p90_mm": 6.971340261121691}, "m2o": {"tmean90_mm": 1.1836317155937288, "frac_inbox": 0.99237}, "free_frac": 0.07648, "outside_grid": 0.0, "area_ratio": 1.0, "flip_frac": 0.0, "edge_logratio_med": 0.0, "edge_logratio_p99": 0.0, "disp_med_mm": 0.0, "disp_p95_mm": 0.0, "disp_max_mm": 0.0, "selfint_faces": 12}
+  stage 0 alpha 100 it 0: s2t 3317/6010 t2s 42238/124906 med_s2t 0.00258 max_dv 0.00312
+  stage 0 alpha 100 it 1: s2t 3325/6010 t2s 41276/124906 med_s2t 0.00257 max_dv 0.00202
+  stage 0 alpha 100 it 2: s2t 3329/6010 t2s 40562/124906 med_s2t 0.00258 max_dv 0.00176
+  stage 0 alpha 100 it 3: s2t 3345/6010 t2s 39931/124906 med_s2t 0.00261 max_dv 0.00158
+  stage 0 alpha 100 it 4: s2t 3360/6010 t2s 39400/124906 med_s2t 0.00263 max_dv 0.00146
+  stage 0 alpha 100 it 5: s2t 3377/6010 t2s 38924/124906 med_s2t 0.00261 max_dv 0.00134
+  stage 0 alpha 100 it 6: s2t 3385/6010 t2s 38629/124906 med_s2t 0.00259 max_dv 0.00117
+  stage 0 alpha 100 it 7: s2t 3394/6010 t2s 38496/124906 med_s2t 0.00261 max_dv 0.00178
+{"tag": "stage_0", "alpha": 100.0, "train_o2m": {"med_mm": 2.5528948530620186, "tmean90_mm": 3.0315359228935663, "p90_mm": 9.501671618638733}, "held_o2m": {"med_mm": 1.8983880749611228, "tmean90_mm": 2.3122458587733075, "p90_mm": 7.501272063003594}, "m2o": {"tmean90_mm": 1.2012156914508294, "frac_inbox": 0.99567}, "free_frac": 0.06692, "outside_grid": 0.0, "area_ratio": 0.9822972584455775, "flip_frac": 0.0, "edge_logratio_med": 0.0051319106002535855, "edge_logratio_p99": 0.030605132987037834, "disp_med_mm": 1.9532310649635969, "disp_p95_mm": 4.054849491309597, "disp_max_mm": 5.652728298105211, "selfint_faces": 22} (55 s)
+  stage 1 alpha 50 it 0: s2t 3406/6010 t2s 38369/124906 med_s2t 0.00262 max_dv 0.00293
+  stage 1 alpha 50 it 1: s2t 3421/6010 t2s 38369/124906 med_s2t 0.00263 max_dv 0.00321
+  stage 1 alpha 50 it 2: s2t 3434/6010 t2s 38395/124906 med_s2t 0.00261 max_dv 0.00410
+  stage 1 alpha 50 it 3: s2t 3443/6010 t2s 38392/124906 med_s2t 0.00262 max_dv 0.00398
+  stage 1 alpha 50 it 4: s2t 3448/6010 t2s 38553/124906 med_s2t 0.00260 max_dv 0.00448
+  stage 1 alpha 50 it 5: s2t 3458/6010 t2s 38506/124906 med_s2t 0.00261 max_dv 0.00353
+  stage 1 alpha 50 it 6: s2t 3457/6010 t2s 38577/124906 med_s2t 0.00261 max_dv 0.00365
+  stage 1 alpha 50 it 7: s2t 3462/6010 t2s 38628/124906 med_s2t 0.00260 max_dv 0.00375
+{"tag": "stage_1", "alpha": 50.0, "train_o2m": {"med_mm": 2.582594463075168, "tmean90_mm": 3.0510048930028564, "p90_mm": 9.663757487195925}, "held_o2m": {"med_mm": 1.9463507767540664, "tmean90_mm": 2.356025435295817, "p90_mm": 7.6586524870883785}, "m2o": {"tmean90_mm": 1.2231804255094705, "frac_inbox": 0.99656}, "free_frac": 0.06588, "outside_grid": 0.0, "area_ratio": 0.983807635442832, "flip_frac": 0.0, "edge_logratio_med": 0.008130187032466162, "edge_logratio_p99": 0.042175105815657005, "disp_med_mm": 2.7459364761579166, "disp_p95_mm": 5.582038418730575, "disp_max_mm": 13.670882160702346, "selfint_faces": 12} (81 s)
+  stage 2 alpha 25 it 0: s2t 3469/6010 t2s 38751/124906 med_s2t 0.00259 max_dv 0.00384
+  stage 2 alpha 25 it 1: s2t 3483/6010 t2s 38734/124906 med_s2t 0.00260 max_dv 0.00352
+  stage 2 alpha 25 it 2: s2t 3486/6010 t2s 38757/124906 med_s2t 0.00261 max_dv 0.00252
+  stage 2 alpha 25 it 3: s2t 3499/6010 t2s 38871/124906 med_s2t 0.00261 max_dv 0.00204
+  stage 2 alpha 25 it 4: s2t 3505/6010 t2s 38809/124906 med_s2t 0.00262 max_dv 0.00161
+  stage 2 alpha 25 it 5: s2t 3513/6010 t2s 38864/124906 med_s2t 0.00262 max_dv 0.00191
+  stage 2 alpha 25 it 6: s2t 3521/6010 t2s 39012/124906 med_s2t 0.00262 max_dv 0.00186
+  stage 2 alpha 25 it 7: s2t 3522/6010 t2s 39035/124906 med_s2t 0.00263 max_dv 0.00145
+{"tag": "stage_2", "alpha": 25.0, "train_o2m": {"med_mm": 2.56667087329183, "tmean90_mm": 3.0363937223939765, "p90_mm": 9.676654104732417}, "held_o2m": {"med_mm": 1.9510860812293263, "tmean90_mm": 2.3643671266454227, "p90_mm": 7.692406303374972}, "m2o": {"tmean90_mm": 1.2241316841679086, "frac_inbox": 0.99668}, "free_frac": 0.0663, "outside_grid": 0.0, "area_ratio": 0.9867070081183336, "flip_frac": 0.0, "edge_logratio_med": 0.00985556193147995, "edge_logratio_p99": 0.046853711916920435, "disp_med_mm": 3.1451748468872767, "disp_p95_mm": 6.214606733875671, "disp_max_mm": 15.514997241433557, "selfint_faces": 5} (103 s)
+  stage 3 alpha 12 it 0: s2t 3525/6010 t2s 39168/124906 med_s2t 0.00262 max_dv 0.00125
+  stage 3 alpha 12 it 1: s2t 3558/6010 t2s 39207/124906 med_s2t 0.00262 max_dv 0.00128
+  stage 3 alpha 12 it 2: s2t 3560/6010 t2s 39402/124906 med_s2t 0.00261 max_dv 0.00204
+  stage 3 alpha 12 it 3: s2t 3570/6010 t2s 39464/124906 med_s2t 0.00261 max_dv 0.00145
+  stage 3 alpha 12 it 4: s2t 3570/6010 t2s 39622/124906 med_s2t 0.00261 max_dv 0.00101
+  stage 3 alpha 12 it 5: s2t 3571/6010 t2s 39752/124906 med_s2t 0.00261 max_dv 0.00121
+  stage 3 alpha 12 it 6: s2t 3572/6010 t2s 39898/124906 med_s2t 0.00260 max_dv 0.00118
+  stage 3 alpha 12 it 7: s2t 3574/6010 t2s 40002/124906 med_s2t 0.00261 max_dv 0.00088
+{"tag": "stage_3", "alpha": 12.0, "train_o2m": {"med_mm": 2.4868025521611385, "tmean90_mm": 2.9787529828162063, "p90_mm": 9.575388124083727}, "held_o2m": {"med_mm": 1.928867915188298, "tmean90_mm": 2.3383138344908643, "p90_mm": 7.635242085522822}, "m2o": {"tmean90_mm": 1.2147249351956575, "frac_inbox": 0.99712}, "free_frac": 0.06535, "outside_grid": 0.0, "area_ratio": 0.9896165839334241, "flip_frac": 0.0, "edge_logratio_med": 0.011187880122637163, "edge_logratio_p99": 0.05030549435906151, "disp_med_mm": 3.4212455761229927, "disp_p95_mm": 6.55288953565841, "disp_max_mm": 16.784766350473767, "selfint_faces": 9} (127 s)
+  stage 4 alpha 6 it 0: s2t 3573/6010 t2s 40113/124906 med_s2t 0.00260 max_dv 0.00195
+  stage 4 alpha 6 it 1: s2t 3624/6010 t2s 40517/124906 med_s2t 0.00255 max_dv 0.00088
+  stage 4 alpha 6 it 2: s2t 3637/6010 t2s 40592/124906 med_s2t 0.00255 max_dv 0.00157
+  stage 4 alpha 6 it 3: s2t 3644/6010 t2s 40887/124906 med_s2t 0.00255 max_dv 0.00072
+  stage 4 alpha 6 it 4: s2t 3646/6010 t2s 40867/124906 med_s2t 0.00254 max_dv 0.00072
+  stage 4 alpha 6 it 5: s2t 3651/6010 t2s 40901/124906 med_s2t 0.00254 max_dv 0.00079
+  stage 4 alpha 6 it 6: s2t 3660/6010 t2s 41091/124906 med_s2t 0.00254 max_dv 0.00097
+  stage 4 alpha 6 it 7: s2t 3658/6010 t2s 41112/124906 med_s2t 0.00254 max_dv 0.00095
+{"tag": "stage_4", "alpha": 6.0, "train_o2m": {"med_mm": 2.351169907408017, "tmean90_mm": 2.8930486548838874, "p90_mm": 9.48264189909135}, "held_o2m": {"med_mm": 1.892672132711646, "tmean90_mm": 2.28701971274243, "p90_mm": 7.5574259923032026}, "m2o": {"tmean90_mm": 1.1878170360207532, "frac_inbox": 0.99693}, "free_frac": 0.06323, "outside_grid": 0.0, "area_ratio": 0.9908020574055498, "flip_frac": 0.0, "edge_logratio_med": 0.012176005734768503, "edge_logratio_p99": 0.05917569530732573, "disp_med_mm": 3.6201360379764975, "disp_p95_mm": 6.773515777395511, "disp_max_mm": 18.669114325042102, "selfint_faces": 6} (152 s)
+  stage 5 alpha 3 it 0: s2t 3660/6010 t2s 41286/124906 med_s2t 0.00253 max_dv 0.00250
+  stage 5 alpha 3 it 1: s2t 3709/6010 t2s 41801/124906 med_s2t 0.00247 max_dv 0.00113
+  stage 5 alpha 3 it 2: s2t 3717/6010 t2s 42260/124906 med_s2t 0.00246 max_dv 0.00076
+  stage 5 alpha 3 it 3: s2t 3721/6010 t2s 42332/124906 med_s2t 0.00245 max_dv 0.00085
+  stage 5 alpha 3 it 4: s2t 3723/6010 t2s 42371/124906 med_s2t 0.00244 max_dv 0.00057
+  stage 5 alpha 3 it 5: s2t 3726/6010 t2s 42490/124906 med_s2t 0.00244 max_dv 0.00049
+  stage 5 alpha 3 it 6: s2t 3723/6010 t2s 42479/124906 med_s2t 0.00244 max_dv 0.00058
+  stage 5 alpha 3 it 7: s2t 3728/6010 t2s 42497/124906 med_s2t 0.00244 max_dv 0.00076
+{"tag": "stage_5", "alpha": 3.0, "train_o2m": {"med_mm": 2.265783805728762, "tmean90_mm": 2.8025218840862647, "p90_mm": 9.417616282954041}, "held_o2m": {"med_mm": 1.861575597497365, "tmean90_mm": 2.211394357794331, "p90_mm": 7.424881441047264}, "m2o": {"tmean90_mm": 1.1396934691337621, "frac_inbox": 0.99718}, "free_frac": 0.06136, "outside_grid": 0.0, "area_ratio": 0.990438259585306, "flip_frac": 5.436533291627203e-07, "edge_logratio_med": 0.012885805952890178, "edge_logratio_p99": 0.07471414619865953, "disp_med_mm": 3.877460330274653, "disp_p95_mm": 7.4606170954354, "disp_max_mm": 20.679683481215772, "selfint_faces": 5} (181 s)
+  stage 6 alpha 1.5 it 0: s2t 3733/6010 t2s 42581/124906 med_s2t 0.00243 max_dv 0.00288
+  stage 6 alpha 1.5 it 1: s2t 3772/6010 t2s 43448/124906 med_s2t 0.00234 max_dv 0.00213
+  stage 6 alpha 1.5 it 2: s2t 3776/6010 t2s 43737/124906 med_s2t 0.00231 max_dv 0.00176
+  stage 6 alpha 1.5 it 3: s2t 3781/6010 t2s 43929/124906 med_s2t 0.00230 max_dv 0.00095
+  stage 6 alpha 1.5 it 4: s2t 3781/6010 t2s 44141/124906 med_s2t 0.00229 max_dv 0.00126
+  stage 6 alpha 1.5 it 5: s2t 3783/6010 t2s 44095/124906 med_s2t 0.00229 max_dv 0.00099
+  stage 6 alpha 1.5 it 6: s2t 3784/6010 t2s 44124/124906 med_s2t 0.00229 max_dv 0.00070
+  stage 6 alpha 1.5 it 7: s2t 3784/6010 t2s 44192/124906 med_s2t 0.00230 max_dv 0.00068
+{"tag": "stage_6", "alpha": 1.5, "train_o2m": {"med_mm": 2.1965644027789906, "tmean90_mm": 2.7286356393810682, "p90_mm": 9.35177491582757}, "held_o2m": {"med_mm": 1.8378075409174857, "tmean90_mm": 2.1410690771169554, "p90_mm": 7.250938641460082}, "m2o": {"tmean90_mm": 1.091248789463593, "frac_inbox": 0.99701}, "free_frac": 0.05942, "outside_grid": 0.0, "area_ratio": 0.9912836893301581, "flip_frac": 5.436533291627203e-07, "edge_logratio_med": 0.014401620162195863, "edge_logratio_p99": 0.09878364354969617, "disp_med_mm": 4.1646195649495255, "disp_p95_mm": 7.774991519327692, "disp_max_mm": 21.479408814048323, "selfint_faces": 5} (214 s)
+  stage 7 alpha 0.75 it 0: s2t 3790/6010 t2s 44142/124906 med_s2t 0.00230 max_dv 0.00294
+  stage 7 alpha 0.75 it 1: s2t 3807/6010 t2s 45041/124906 med_s2t 0.00215 max_dv 0.00311
+  stage 7 alpha 0.75 it 2: s2t 3817/6010 t2s 45756/124906 med_s2t 0.00211 max_dv 0.00362
+  stage 7 alpha 0.75 it 3: s2t 3819/6010 t2s 46591/124906 med_s2t 0.00209 max_dv 0.00243
+  stage 7 alpha 0.75 it 4: s2t 3826/6010 t2s 47074/124906 med_s2t 0.00209 max_dv 0.00271
+  stage 7 alpha 0.75 it 5: s2t 3827/6010 t2s 47473/124906 med_s2t 0.00208 max_dv 0.00345
+  stage 7 alpha 0.75 it 6: s2t 3842/6010 t2s 48205/124906 med_s2t 0.00209 max_dv 0.00434
+  stage 7 alpha 0.75 it 7: s2t 3855/6010 t2s 48731/124906 med_s2t 0.00209 max_dv 0.00323
+{"tag": "stage_7", "alpha": 0.75, "train_o2m": {"med_mm": 2.0730941924612667, "tmean90_mm": 2.523732027937405, "p90_mm": 8.737475590632693}, "held_o2m": {"med_mm": 1.7646901360701852, "tmean90_mm": 1.9824845131146247, "p90_mm": 6.756824872197373}, "m2o": {"tmean90_mm": 1.0560550343268196, "frac_inbox": 0.99705}, "free_frac": 0.05806, "outside_grid": 0.0, "area_ratio": 1.0010432807887373, "flip_frac": 2.9114131339805144e-05, "edge_logratio_med": 0.017441725516641002, "edge_logratio_p99": 0.1809345606048288, "disp_med_mm": 4.378357681420246, "disp_p95_mm": 8.008743200883472, "disp_max_mm": 21.916961523140046, "selfint_faces": 197} (256 s)
+final {"path": "dev/pot_v1/fit.glb", "sha256": "06b35b0f072f54d6dd94c0c1662be603fafa6c7cfdcdb19c6d6dd2ecf345aca7", "faces": 4000, "verts": 2006, "watertight": true, "bodies": 4, "budget_faces": 4000, "budget_verts": 2006, "train_o2m": {"med_mm": 2.1148058777975907, "tmean90_mm": 2.5811127235817675, "p90_mm": 8.920752017137788}, "held_o2m": {"med_mm": 1.78575205854309, "tmean90_mm": 2.020008023828834, "p90_mm": 6.899828733904556}, "m2o": {"tmean90_mm": 1.0600284130879276, "frac_inbox": 0.99745}, "free_frac": 0.05627, "outside_grid": 0.0}
+done 261.7 s

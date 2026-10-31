@@ -1,0 +1,25 @@
+import sys, numpy as np, trimesh
+sys.path.insert(0, '/home/user/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C1/T3-gen-fit/scripts')
+import fit
+from scipy.spatial import cKDTree
+cfg = dict(fit.DEFAULT)
+obs, grid = fit.load_obs(sys.argv[2], cfg)
+m = trimesh.load(sys.argv[1], process=False)
+V, F = np.asarray(m.vertices), np.asarray(m.faces)
+print('volume', m.volume, 'wind consistent', m.is_winding_consistent)
+P, U = obs['train']['p'], obs['train']['u']
+vn = fit.vertex_normals(V, F)
+d, j = cKDTree(P).query(V)
+vis = np.einsum('ni,ni->n', vn, U[j])
+ok = (d <= 0.01) & (vis >= 0.1)
+side = np.einsum('ni,ni->n', P[j] - V, vn)
+print('s2t ok', ok.mean(), 'signed offset along vn of ok (mm): mean', side[ok].mean()*1e3, 'frac outward', (side[ok] > 0).mean())
+nok = (d <= 0.01) & (vis < 0.1)
+print('s2t rejected-by-vis', nok.mean(), 'their signed offset mean', side[nok].mean()*1e3)
+S, fid, b = fit.sample_bary(V, F, 150000, 0)
+fn = fit.face_normals(V, F)
+dt, k = cKDTree(S).query(P)
+vt = np.einsum('ni,ni->n', fn[fid[k]], U)
+okt = (dt <= 0.01) & (vt >= 0.1)
+st = np.einsum('ni,ni->n', P - S[k], fn[fid[k]])
+print('t2s ok', okt.mean(), 'signed offset mean', st[okt].mean()*1e3, 'frac outward', (st[okt] > 0).mean())
