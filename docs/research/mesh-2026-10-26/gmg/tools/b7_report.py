@@ -50,17 +50,22 @@ def main():
               + f" | {h['planes']} | " + (','.join(f"C{r}" for r in h['repeats_accepted']) or '-')
               + f" | {h['timing_s'].get('total'):.0f} | {h['run']} |")
     print()
-    print('| object | balls | radii mm (sorted) | consensus mm | B.4 share within 15 % | normal_dev deg | '
-          'normal_dev <= 20 / > 25 | outside ratio | pass 2 | pooled over | run |')
-    print('|---|---|---|---|---|---|---|---|---|---|---|')
+    print('| object | balls | radii mm (sorted) | consensus mm | B.4 share within 15 % | pass-1 share (diag.) | '
+          'normal_dev deg | normal_dev <= 20 / > 25 | outside ratio | pass 2 | pooled over | run |')
+    print('|---|---|---|---|---|---|---|---|---|---|---|---|')
     for (ep, o), M in sorted(marks.items()):
         nd = [x for x in M['nd'] if x is not None]
         u = M['unimodal']
+        r1 = [r for r, p in zip(M['radii'], M['passes']) if p == 1]     # diagnostic: the unimodal share before pass 2
+        s1 = '-'
+        if r1:
+            med = sorted(r1)[len(r1) // 2] if len(r1) % 2 else 0.5 * sum(sorted(r1)[len(r1) // 2 - 1:len(r1) // 2 + 1])
+            s1 = f"{sum(abs(r - med) <= 0.15 * med for r in r1) / len(r1):.2f} (n {len(r1)})"
         print(f"| ep{ep} {o}{' (anchor)' if (ep, o) in anchors else ''} | {len(M['radii'])} | "
               + (', '.join(f'{r:.1f}' for r in sorted(M['radii'])) or '-') + f" | {M['consensus']} | "
               + (f"{u['share_within_15pct']:.2f} ({'unimodal' if u['unimodal_b4'] else 'not unimodal'})" if u else '-')
-              + f" | {rng(nd)} | {sum(x <= 20 for x in nd)} / {sum(x > 25 for x in nd)} | {rng(M['orr'], '{:.2f}')} | "
-              f"{sum(p == 2 for p in M['passes'])} | {'+'.join(M['objects'])} | {M['run']} |")
+              + f" | {s1} | {rng(nd)} | {sum(x <= 20 for x in nd)} / {sum(x > 25 for x in nd)} | "
+              f"{rng(M['orr'], '{:.2f}')} | {sum(p == 2 for p in M['passes'])} | {'+'.join(M['objects'])} | {M['run']} |")
 
 
 if __name__ == '__main__':
