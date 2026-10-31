@@ -372,3 +372,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 16:16 PREREG F-I4 written (F-I4.0-F-I4.11; predictions P35-P39, T-I1 w1-w5). Next: INTERLOCK section 20 + pointers.
 - 16:18 INTERLOCK section 20 written (+ header and section-0 pointers). Committing F-I4 + section 20 now (no code changed, nothing run).
 - 16:19 committed and pushed c13f53c (PREREG F-I4, INTERLOCK 20, this log). Amend step done; no code changed, nothing run. Next step (build): platebody.py, --waiver-fi4 branch, P3 overlap clause, T-I1 w1-w5, then T-I11 (INTERLOCK 20.6).
+- 16:20 (build step, agent of the board-slot workflow) started: F-I4 confirmed on origin (c13f53c ancestor of
+  origin/claude/bold-albattani-6qmxsv). Reading interlock.py / structure.py / simphys.py / simpieces.py / driver / tests.
+  Plan: new `platebody.py` (plate test, outline body, analytic slot, pieces), `--waiver-fi4` branch in decide_pair +
+  driver, P3 overlap clause in simphys, T-I1 w1-w5; then T-I11 (clean ep24, eval semantics).
