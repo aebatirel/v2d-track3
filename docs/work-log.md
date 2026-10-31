@@ -5831,3 +5831,6 @@ score.
   - solver re-test (S vs C): NO SIGNAL (ep2 −0.13), so eval solving is NOT started (physics solver closed).
   Post-hoc [H]: GT-free sim_vs_ref picked the higher-AUC arm in 7/7 C-vs-D pairs. Proposal: train D beside C on the
   eval episodes and keep the better per episode (pack-10 swap rule), ≈ $14–20 [E], pending the owner.
+- 20:31 UTC determined-wright: the owner chose "No D" in its chat. Pack 10 stays on the current recipe, and the
+  D-beside-C proposal is withdrawn. Told focused-pascal: Tier 2 now depends on masses v2 (and on the re-track for
+  references).
