@@ -1,0 +1,12 @@
+== make_assets d7576a4 (library_v3 + ev10)
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], com [-0.18  0.32 -1.62] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], com [-0.03 -0.01  0.17] cm, 53 collision pieces
+== make_assets a0baeef (library_v3 + ev10)
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], com [0.07 0.16 0.3 ] cm, 53 collision pieces
+== make_assets HEAD (library_v3 + ev10)
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], mass 0.300 kg, com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], mass 0.300 kg, com [0.07 0.16 0.3 ] cm, 53 collision pieces
+== gl10A2 job.log (runs/20261026-gl10A2-5e0e100/job.log)
+beige_cup: 3767 verts, watertight True, extents cm [ 9.9 11.  17.4], com [ 0.15  0.55 -0.42] cm, 49 collision pieces
+blue_cup: 5991 verts, watertight True, extents cm [ 9.5  9.6 16.7], com [0.07 0.16 0.3 ] cm, 53 collision pieces

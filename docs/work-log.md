@@ -5927,3 +5927,17 @@ Background agent, CPU only, $0, no ground truth read.
   sit at non-mass floors, so the "3 of 4 > 0" clause is near a coin flip there. Its §7 puts P(ADOPT) at ≈ 0.59 even with
   +0.12 on ep24/ep31 [E]; with no effect, a false ADOPT is ≈ 0.13 [E]. ≈ $18 [E]; focused-pascal launches and keeps the
   ledger lines.
+
+### 2026-10-31 17:05 UTC — determined-wright: eval-solve job ready (CPU-tested, not launched)
+- `ops/jobs/eval_solve.sh` with `tools/physics_solve/eval_inputs.py`, `eval_solve_summary.py`, tests in
+  `tools/physics_solve/tests/eval_solve/` (TESTS.txt) and docs in `docs/research/physics-2026-10-30/eval_solve/`.
+  `ops/box/store.sh` gains `pull-files` (byte-identical to focused-pascal's version; additive only).
+- Inputs: the 15 grasp-lock eval episodes (3 5 6 8 10 14 15 16 20 32 33 35 36 37 38) from focused-pascal's
+  `packed_refs.json` (copied at 71bac00). All 15 references exist and match their md5; assets present at 0.3 kg.
+  Standard-learner evals 1/19/25/28/30 are refused.
+- Solver settings = G2_ARGS byte for byte, 2 solves per GPU, 64-copy jittered check on input and output. No GT read.
+- CPU smoke test on eval 37 at tiny scale (not a result): jitter 0.890 → 0.938 (4 copies); only right-hand wrist and
+  finger targets changed, on 11 frames. Dry runs of the full job, failure handling and the eval-10 override pass.
+- Plan: 2 boxes (evsolve1: 35 36 33 20 16 15 37; evsolve2: 3 5 38 32 6 8 10 14), 3.9–4.7 h each [E], ≈ $9–14 [E],
+  worst ≈ $12–17. Launches only if §9 gives "signal" (owner pre-approved). Caveats: solved under 0.3 kg; eval 10 V4p
+  path pending.
