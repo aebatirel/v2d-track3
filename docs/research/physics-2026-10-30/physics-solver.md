@@ -1026,3 +1026,40 @@ Reused unchanged: `tools/early_stop.sh`, `tools/ckpt_curve.sh`, `tools/ckpt_curv
 - The store pull of the physS1 references: the paths come from the G1 summary and the job scripts, and the md5 is
   recorded on the box.
 - The box speed with D's extra kernels.
+
+## 9. Clean solver re-test, arm S (pre-registered 31 Oct 2026 ~16:50 UTC, written before any S result)
+
+**Why.** G3's "harm" rests on one seed (42) on ep2, which also collapses with the normal reference; G3's ep2 policy
+was erratic (5 evaluations 0.197–0.968). Option 3 never tested solved references against normal ones with only the
+reference differing. The owner asked whether this was explored enough. It was not.
+
+**Owner's decision (31 Oct ~16:45 UTC, "Test + auto eval"):**
+- Run this test.
+- Prepare eval solving on CPU while it runs.
+- If S gives "signal", start solving the eval episodes (~$15 [E]) without asking again.
+
+**Design.**
+- **Arm S.** The solved references from store run `20261030-psolverl-04301a2`, the same files G3 trained on: G2 for
+  ep2 / ep12 (`refs/psolve2`) and G1 for ep18 / ep24 (`refs/psolve`). The exact file and md5 per episode are recorded by
+  the job. The solver's input was the physS1 reference the recipe screen uses (`gpu/psolve_G1_summary.json`).
+- **Recipe.** Identical to recipe-screen arm C (§8): the same job code path, STEPS 70,004,736, early stopping as §8,
+  checkpoint chosen by sim_vs_ref, NREP 10 official evaluations, each scored with registered AUC vs mocap (scoring
+  only).
+- **Seeds and episodes.** Seeds 42 and 43; ep2, 12, 18 and 24: 8 cells.
+- **Control.** The recipe screen's C cells, same seeds, same episodes, the physS1 references. The control is
+  non-concurrent: other boxes, earlier the same day, the same recipe code. Box-to-box differences are assumed small
+  next to draw noise [H].
+- **ep18 caveat.** If its solved file is identical to the input (G1 may have edited nothing), it counts anyway: it is
+  what the method produced.
+
+**Rule (fixed).**
+- Δ(ep) = seed-mean AUC(S) − seed-mean AUC(C).
+- **"signal"** iff mean Δ over the 4 episodes ≥ +0.03 AND no Δ(ep) ≤ −0.05.
+- Otherwise **"no signal"**.
+- Any missing S or C cell → **INCOMPLETE**, which is not a verdict and does not start eval solving.
+- Reported, not part of the rule: per-episode draw sd for S and C, the chosen checkpoints, and ep2 per seed.
+
+**Actions.**
+- **signal:** eval solving starts (owner's pre-approval). Pack 10's own per-episode swap rule (focused-pascal)
+  decides what is packed.
+- **no signal or INCOMPLETE:** stop. Solved references are not used for eval.
