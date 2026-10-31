@@ -26,7 +26,8 @@ Steps:
     the packed base mesh with the base centroid as anchor, i.e. how far the scorer's body conversion would move if the
     scan were the base mesh (pose shift mm, rotation deg). Rotations about a symmetry axis (blue/beige cup) or a half
     turn (lid) are not pose errors. FLAG (exit 2) when centroid offset > --max-centre-mm, ICP correction > --max-icp-mm
-    or > --max-icp-deg, median distance > --max-median-mm, kit proxy shift > --max-icp-mm, or an extent ratio leaves
+    or > --max-icp-deg, median distance > --max-median-mm, kit proxy shift > --max-icp-mm (or its rotation > --max-icp-deg
+    for an object without symmetry), or an extent ratio leaves
     [1/(1+tol), 1+tol] (scale or axis permutation). Large offsets mean a frame mismatch, not a better shape;
  5. the kit packer (tools/pack_submission.py; cwd = kit; --python, default this interpreter, with -I) ->
     OUT/track3_submission.parquet and OUT/pack.log;
@@ -119,7 +120,7 @@ def angle_deg(R):
     return math.degrees(math.acos(max(-1.0, min(1.0, (np.trace(R) - 1) / 2))))
 
 
-def frame_report(base_path, new_path, seed, kit_seed, args):
+def frame_report(base_path, new_path, seed, kit_seed, symmetry, args):
     """Base (the mesh being replaced) vs the written replacement, both in their file coordinates (metres)."""
     from scipy.spatial import cKDTree
     from v2dlb.object_mesh import _surface_moments
@@ -180,6 +181,8 @@ def frame_report(base_path, new_path, seed, kit_seed, args):
         flags.append(f"median surface distance {r['surface_mm']['median']} mm > {args.max_median_mm}")
     if r['kit_proxy_pose_shift_mm'] > args.max_icp_mm:
         flags.append(f"kit-registration proxy moves the body {r['kit_proxy_pose_shift_mm']} mm > {args.max_icp_mm}")
+    if r['kit_proxy_rotation_deg'] > args.max_icp_deg and symmetry == 'none':     # symmetric: may spin about its axis
+        flags.append(f"kit-registration proxy rotates the body {r['kit_proxy_rotation_deg']} deg > {args.max_icp_deg}")
     if np.any(ratio > 1 + args.extent_tol) or np.any(ratio < 1 / (1 + args.extent_tol)):
         flags.append(f"extent ratio {r['extent_ratio']} outside +-{args.extent_tol:.0%} (scale or axis order?)")
     r['flags'] = flags
@@ -298,7 +301,7 @@ def main():
                'base_is_library_v3': p['md5_before'] == libmd5, 'new_md5': p['md5_after'],
                'symmetry': SYMMETRY.get(p['object'], 'none')}
         rep.update(frame_report(p['base_copy'], os.path.join(out, p['file']), 7,
-                                1_000_003 * p['episode'] + 101 * p['slot'], args))
+                                1_000_003 * p['episode'] + 101 * p['slot'], rep['symmetry'], args))
         seen[key] = rep
         reports.append(rep)
 
