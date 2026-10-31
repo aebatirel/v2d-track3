@@ -1213,7 +1213,7 @@ all. A single-episode Δ of that size is within training noise.
   cost stated; the swap rule decides per episode.
 - **harm or inconclusive:** V is not used.
 
-## 11. Command smoothing test A (pre-registered 31 Oct 2026 ~21:55 UTC, CPU, $0, written before any result)
+## 11. Command smoothing test A (pre-registered 31 Oct 2026 ~21:50 UTC, CPU, $0, written before any result)
 
 **Request.** keen-heisenberg relayed the owner (21:10 UTC). [H-cmdsmooth]: the robot's own targets jitter (wrist
 0.3–1.1 cm and 1.5–10°, fingers 4–12°) much more than the object path (0.09–0.2 cm). A zero-lag forward–backward
