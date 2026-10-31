@@ -120,13 +120,23 @@ asks for them in git.
     23 of them plus small rows.
   - [M] Local dry run (ep12, 4 shared loaded cores, nice 19): the single-episode rack run took 447 s and a cup lathe
     66 s. On C0b's box all 32 builds took 2.3 min and 426 fidelity runs 1.8 min.
-- **Box:** one Vast CPU box, at least 32 cores and 64 GB, `SETUP=none`, `DISK=40`, `FAIL_HOLD_MIN=0`, at or below
+- **Box:** one Vast CPU box, at least 32 cores and 64 GB, `SETUP=none`, `DISK=40`, at or below
   $0.5/h. Fidelity workers = RAM / 8 GB (C0b's rule). [E] 25-40 min wall including setup (venv about 1 min, fetch
   about 1-2 min, ep0 markers about 15-20 min in parallel with the other builds), **about $0.2-0.4**.
   - Ledger session `mesh-bold`: a planned line before the create, an actual line after. The cap for this job is $2.
   - The box self-destroys; confirm it is gone.
-- **Create** (after staging; `<run>` = `mesh-YYYYMMDD-pubown-<commit7>`):
-  `SETUP=none DISK=40 FAIL_HOLD_MIN=0 V2D_COMMIT=<commit> ops/vast.sh create <offer> <run> 'bash docs/research/mesh-2026-10-26/cdo-sprint/PUBOWN/jobs/pubown_box.sh'`
+- **Failure hold.** On a non-zero job exit, `run_job.sh` keeps the box 30 min (`FAIL_HOLD_MIN`, not settable through
+  `ops/vast.sh`) and then the watchdog destroys it. Destroy it by hand if no debugging is needed.
+- **Staged (2026-10-31 ~19:58 UTC):** run id **`mesh-20261031-pubown-ed7171c`**, code commit
+  `ed7171caf6c87b792e1da9d8c38e560a18855475`.
+  - Inputs are in the store at `runs/mesh-20261031-pubown-ed7171c/inputs/`: 18 files plus `SHA256SUMS`; `plan.json`
+    sha256 `90178838...9222`.
+  - 97 reused C0b files, 725 MB, are present in `runs/mesh-20261031-c0b-00e8584/results/c0b/`, and their LFS sha256
+    equals C0b's `SHA256SUMS` [M].
+  - Create:
+    `ops/vast.sh SETUP=none DISK=40 V2D_COMMIT=ed7171caf6c87b792e1da9d8c38e560a18855475 create <offer> mesh-20261031-pubown-ed7171c 'bash docs/research/mesh-2026-10-26/cdo-sprint/PUBOWN/jobs/pubown_box.sh'`
+  - Watch: `ops/vast.sh exec mesh-20261031-pubown-ed7171c 'grep -v progress /content/results/pubown/pubown_job.log | tail'`.
+    The end line is `PUBOWN-DONE rc=0` or `PUBOWN-INCOMPLETE`.
 
 ## 6. Known risks [H]
 
