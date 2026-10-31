@@ -248,6 +248,10 @@ def source_a(ev, placed, side_resolved, r, near_lin=None, kind='INSERTION', chec
         near = IL.dilate(ev.grid, near_lin, int(np.ceil(0.020 / ev.grid.vox)))
         nsub = np.repeat(np.repeat(np.repeat(near.reshape(ev.grid.shape), 2, 0), 2, 1), 2, 2)
         sub = sub & nsub
+    # the notches that matter are where our candidate holds material (the bridged slot), as N_b is restricted to the
+    # candidate occupancy (3.2); generator concavities outside it (around marker posts, above faces) are dropped
+    occ_sub = np.repeat(np.repeat(np.repeat(ev.occ.reshape(ev.grid.shape), 2, 0), 2, 1), 2, 2)
+    sub = sub & occ_sub
     out = dict(C_a=to_vox4(ev, sub), C_a_sub=sub.ravel(), notch_cm3=round(float(notch.sum()) * ev.sgrid.vox ** 3 * 1e6, 2),
                cavity_cm3=round(float(cav.sum()) * ev.sgrid.vox ** 3 * 1e6, 2),
                near_cm3=round(float(sub.sum()) * ev.sgrid.vox ** 3 * 1e6, 2), side_resolved=bool(side_resolved),

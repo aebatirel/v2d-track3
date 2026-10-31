@@ -140,19 +140,32 @@ def phases(b, o, p, runs):
     return dict(apart=sorted(allf - cf), contact=sorted(cf - eng), engaged=sorted(eng), assembled=sorted(asm))
 
 
+_OCC = {}
+
+
+def _occ_grid(mesh, pitch=0.001):
+    """Candidate occupancy on a 1 mm grid over its bounds (cached per mesh): per-frame inside tests become look-ups."""
+    key = id(mesh)
+    if key not in _OCC:
+        g = IL.Grid(mesh.bounds[0] - 2 * pitch, pitch, np.ceil((mesh.extents + 4 * pitch) / pitch).astype(int))
+        _OCC[key] = (g, IL.fast_inside(mesh, g.centres()))
+    return _OCC[key]
+
+
 def interpenetration(mesh, b, obj, partner, ph, poses=None):
-    """5.2: per phase, I_f = partner evidence sub-samples (2 mm, 0.008 cm3 each) inside the candidate (cm3)."""
+    """5.2: per phase, I_f = partner evidence sub-samples (2 mm, 0.008 cm3 each) inside the candidate (cm3); inside =
+    the sample's cell of the candidate's 1 mm occupancy grid."""
     poses = b.poses if poses is None else poses
     Xp = IL.partner_points(b, partner)
-    lo, hi = mesh.bounds[0] - 0.004, mesh.bounds[1] + 0.004
+    g, occ = _occ_grid(mesh)
     out, per = {}, {}
     for name, frs in ph.items():
         vals = []
         for f in frs:
             T = IL.rel_pose(poses, obj, partner, f)
             X = Xp @ T[:3, :3].T + T[:3, 3]
-            X = X[np.all((X > lo) & (X < hi), axis=1)]
-            n = int(IL.fast_inside(mesh, X).sum()) if len(X) else 0
+            l, ok = g.lin(X)
+            n = int(occ[l[ok]].sum())
             vals.append(n * k_('sample_cm3'))
             per[int(f)] = round(n * k_('sample_cm3'), 3)
         if vals:

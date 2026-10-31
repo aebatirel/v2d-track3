@@ -256,12 +256,17 @@ def main():
                     gm = GS.decimate(GS.load_gen(gp), GS.k_('dec_faces'))
                     pl = GS.place_by_depth(gm, b, t, ref_mesh=cands[t][picks[t]])
                     other = sides[p if t == o else o]
-                    r_notch = max(GS.k_('notch_r_min'), float(np.median([c.info.get('s_min_mm', 8) for c in
-                                                                        s.comps])) * 1e-3)
+                    # closing radius max(6 mm, partner thickness at the crossing): the partner pick's thinnest
+                    # 1-99 % extent (F-I1.2)
+                    Xq = geom.volume_samples(cands[p if t == o else o][picks[p if t == o else o]], 20000, seed=0)[0]
+                    Aq = (Xq - Xq.mean(0)) @ np.linalg.svd(Xq - Xq.mean(0), full_matrices=False)[2].T
+                    th = float(np.percentile(Aq[:, 2], 99) - np.percentile(Aq[:, 2], 1))
+                    # capped at t_max (20 mm): the thinnest extent of a pot or cup is its diameter, not a wall
+                    r_notch = min(max(GS.k_('notch_r_min'), th), IL.K('offset_tmax_m'))
                     sa = GS.source_a(ev[t], pl['mesh'], pl['side_resolved'], r_notch, near_lin=near,
                                      kind=s.comps[0].run.kind)
                     row = dict(path=gp, residual_mm=pl['residual_mm'], margin_sigma=pl['margin_sigma'],
-                               scale=round(pl['s'], 5), placed_extents_mm=np.round(pl['mesh'].extents * 1e3, 1).tolist(),
+                               scale=round(pl['s'], 5), closing_r_mm=round(r_notch * 1e3, 1), placed_extents_mm=np.round(pl['mesh'].extents * 1e3, 1).tolist(),
                                **{k: v for k, v in sa.items() if k not in ('C_a', 'C_a_sub')})
                     rows.append(row)
                     pl['mesh'].export(os.path.join(out_dir, f'gen_placed_{t}_{os.path.basename(gp)[:-4]}.glb'))

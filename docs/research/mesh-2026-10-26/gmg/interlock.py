@@ -619,6 +619,14 @@ def push_distance(intr, frames, region_lin, ev, normal=None):
 def axes_of(C, d=None):
     """Principal axes of points C; with d: (d, n, m) where n is the thinner in-plane axis perpendicular to d."""
     c = C.mean(0)
+    if len(C) < 3:
+        B = np.eye(3) if d is None else None
+        if d is None:
+            return c, B, np.zeros(3)
+        d = d / np.linalg.norm(d)
+        n = np.cross(d, [1.0, 0, 0]) if abs(d[0]) < 0.9 else np.cross(d, [0, 1.0, 0])
+        n /= np.linalg.norm(n)
+        return c, np.stack([d, n, np.cross(d, n)]), np.zeros(2)
     if d is None:
         _, s, Vt = np.linalg.svd(C - c, full_matrices=False)
         return c, Vt, s

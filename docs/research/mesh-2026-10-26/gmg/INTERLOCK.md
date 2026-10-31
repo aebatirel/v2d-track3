@@ -920,3 +920,62 @@ only new measurements are dev re-runs without a scan (E15, E22) and documents re
 
 Not done in this revision (stated, not hidden): the silhouette gate on ep24 and decide_pair on the ep24 dev regions
 were not run (no code yet; they are T-I2a and T-I2b, first in BI2); `review_depth.py` was not re-run.
+
+---
+
+## 17. As built (BI1, 31 Oct) — interface for the gmg and for the Embodiment session
+
+Code (new files only; none of build 1's files is edited): `gmg/interlock.py`, `gmg/silhouette.py`, `gmg/gen_slot.py`,
+`gmg/physcheck.py`, `gmg/simpieces.py`, `gmg/simphys.py`, `gmg/tools/interlock_dev.py` (dev driver of one episode),
+`gmg/tools/interlock_cands.py` (CPU candidates of a clean bundle through build 1's producers),
+`gmg/tests/test_interlock.py` (T-I1). Build-time corrections and their reasons: PREREG **F-I2** (no F-I1.14 threshold
+changed). Notes and commands: `build/I.md`.
+
+### 17.1 For the Embodiment session (determined-wright): what to call, what to write
+
+```python
+import sys; sys.path.insert(0, 'docs/research/mesh-2026-10-26')   # GMG_MODE=dev for public dev, clean otherwise
+from gmg import interlock as IL
+ok, rep = IL.validate('…/intrusions.npz', sim_dir='…/sim/public/ep24/r0')        # 11.2 checks; rep['refused']
+res = IL.carve_from_intrusions(('wooden_piece_1', 'wooden_piece_2'), '…/intrusions.npz',
+                               evidence='…/bundle/public/ep24', sim_dir='…/r0', out_dir='…/r1', round=1)
+# res['decisions'] (per region: decision, tier, reasons, push_mm, widths, offset, flags), res['pieces_dir'],
+# res['validation'], res['physics'] (if a physics_fn is passed; without it the carved pieces go to r1/_carved_pending/
+# and r1 delivers the previous pieces)
+acc = IL.round_accept(intr_r0, intr_r1, sim_r0, sim_r1, check_frames)      # 11.5 A1 / A2
+sim = IL.load_sim('…/r0', episode=24)                                       # refuses another episode's folder
+```
+CLI: `python -m gmg.interlock validate --intrusions F --sim-in DIR` and
+`python -m gmg.interlock carve --pair A B --intrusions F --evidence BUNDLE --sim-in DIR --out DIR --round K`.
+
+**Export file (schema `gmg-intrusion/2`)**: `intrusions.npz` + `intrusions.json` next to it. A reference writer that
+produces exactly this format from a delivered round and a set of poses is `IL.write_export(path, bundle, sim_dir,
+pair, reference, poses=None, frames=None, pitch=0.002, fit=None, pushed=None)`; `tests/test_interlock.py Contract`
+round-trips it through `validate` and shows the refusal of a geom-frame (shifted) export.
+- npz per sample: `frame` int32, `target`, `partner` int16 (indices into `objects`), `pts_local` (N,3) float32 in the
+  TARGET's file coordinates (the coordinates of its `piece_XX.obj` / `<obj>.glb`), `depth_m` float32;
+- npz per frame-pair: `fp_frame`, `fp_target`, `fp_partner`, `rel_T` (P,4,4) float64 (partner file -> target file),
+  `pushed_residual_m` float32 (NaN if no fit), `intr_vol_m3` float32;
+- json: `schema`, `objects`, `round`, `sim_dir`, `meshes` {obj: {"<obj>/piece_XX.obj": sha256}}, `pitch_m`, `tool`,
+  `commit`, `argv`, `reference` {path, sha256, provenance {chain [...], inputs {path: sha256}}}, `fit` (when any
+  pushed_residual_m is finite: tool, commit, argv, meshes {obj: sha256 of r<k>/_fit/<obj>.glb}, props {path,
+  sha256 of r<k>/props_gmg.json}, prior {sig_p: 0.01, sig_r_deg: 3, hold_f0}), `pose_source`, `f_star`,
+  `fiducials_world`, `fiducials_back`, **`reference_poses_f_star`** {obj: 4x4 world_T_obj at f_star} and **`T`**
+  (F-I2.13: the guard refuses `.parquet` reads, so the fiducial check uses these header poses).
+- Partner samples: points of a <= 2 mm grid inside the union of the partner's delivered pieces (not the GLB).
+
+**Delivered round folder** (`simpieces.write_round`, never overwritten): `<obj>/<obj>.glb` (visual = submitted mesh),
+`<obj>/piece_XX.obj` (collision; `make_assets.py --pieces`), `<obj>/inertia.json` {com, inertia, mass, volume_cm3},
+`<obj>/carve.json` (delivered: default | carved, decisions, physics), `_fit/<obj>.glb` (union of the pieces for
+`phys_fit.py --meshes r<k>/_fit`), `props_gmg.json` {obj: mass_kg 0.3 placeholder (D-I1 open), com_m, inertia_kgm2},
+`manifest.json` {episode, split, round, p_sim, objects, files {path: sha256}, fiducials {obj: 8 points}, commit}.
+Carved pieces that passed P2-P7 but could not run P1 in FlashCHORD are kept in `<interlock out>/_carved_pending_p1/`.
+
+### 17.2 What the rule does, in one paragraph (for them)
+A place in the target's own frame is carved in the simulator copy only if the partner enters it in at least
+max(5, 25 %) of the build frames of an engaged run, the entered voxels are not seen as solid (unseen, or see-through
+in our RGB silhouette, or narrower than 8 depth pixels where stereo saw it), the partner moves through it (sweep test)
+and cannot be pushed out within 1 cm (our push proxy, or your validated `pushed_residual_m`), and the carve stays in
+the budget; both halves of an interlocking pair are carved together or not at all; an observed notch (silhouette or
+placed SAM 3D) within 2 cm to the side of where the reference puts the partner is moved there (OFFSET) and the offset
+goes to the tracker. Everything else is PUSH: a pose correction for your fit or the tracker (`push_list.json`).

@@ -154,3 +154,19 @@ Then make the validator pass on their real ep24 export (r0 built from our pieces
 
 ## ORCHESTRATOR NOTE (31 Oct 10:55 UTC): resolutions accepted by Embodiment; WE reconstruct reference provenance from
 store run logs (mkref unchanged before the freeze). Eval 10 intrusion result (carved ev10 vs library cups) will arrive.
+- 11:05-11:45 T-I1 complete for the run cases (12 tests OK, 1 expected failure = the logged P26 miss s1 t = 6 mm,
+  F-I2.14); export round trip validates and a 3 mm fiducial shift is refused. Commit `18b9d07` pushed (BI1 code,
+  tests, F-I2). Contract section INTERLOCK 17 written (as-built interface, export keys, delivered layout).
+- BI2 ep24 (clean B4 v4 bundle, shells as picks after the V5 clarification; run `20261031-i2probe-626ce13`, tag t2,
+  code 18b9d07 + the fixes listed in F-I2): decisions [M, dev process]: board 1 <- 2 split (through-column), region
+  67 voxels, class O 97 %, image width 9.0 px (> 8) -> PUSH; board 2 <- 1 split, 118 voxels, U 41 / O 77 (all 77
+  testable-solid in the silhouette) -> PUSH; (a) SAM 3D notch AGREES with (c) on both boards (centroid <= 10 mm,
+  axis <= 15 deg, >= 50 % overlap), side unresolved (flip margin 0.00-0.01 sigma); (b) on board 2 DISAGREES (sees
+  wood where the motion region is). DIAG counterfactual (forced split at the shared plane, w_sub, never delivered):
+  slotted shells watertight, 3892 / 4000 faces packed; replay proxy (MuJoCo, 4 copies): default pieces lag 1.86 cm /
+  112.9 deg at the assembled frames (the cross cannot close), DIAG carved 0.34 cm / 9.3 deg, contact off 0.03 cm /
+  0.1 deg -> the carved copy slides in but stays 9.3 deg off (P3 needs <= 5 deg). Default pieces 32 per board (cap),
+  CoACD 15 each. The proxy runs in ~1 s per copy here (not 248 s).
+- ep2 first attempt crashed (MemoryError): the generator closing radius used the partner pick's thinnest extent (a
+  pot's diameter); capped at t_max = 20 mm (F-I2 addition). physcheck interpenetration now uses a 1 mm occupancy grid
+  per candidate (exact per-frame inside tests took ~2 s per frame). Restarted 11:47.
