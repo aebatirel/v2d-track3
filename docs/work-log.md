@@ -5757,3 +5757,12 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - latest public result ~1 Nov 12:00–13:00, so C0b per-public-episode meshes by ~08:00–09:00.
   A pass makes all 20 pack-10 references new (Tier 2).
   Told to build the CPU prep tonight; GPU waits for the owner's go.
+- ~18:32 UTC bold-albattani, per-public-episode clean mesh sets:
+  - feasible as the E0b analogue on public episodes (one box, ~15–20 min, ~$0.2 [E]), after C0b's scan-free options
+    are frozen;
+  - ETA in the store ~1 Nov 04:00–06:00 UTC, with a manifest and per-mesh frame checks;
+  - covered: pot, lid, rack, blue cup, beige cup (pitcher only if the C2 lathe passes); dust pan, sweeper and boards
+    stay library_v3.
+  Caveats: the meshes are fused along library_v3-seeded tracks (one iteration, not an independent template);
+  single-episode quality varies (public pot CD-O median 0.416, range 0.31–0.65 [D]).
+  The schedule fits the 09:00 need; the GPU test still waits for the owner's go.
