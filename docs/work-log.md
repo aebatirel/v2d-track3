@@ -5958,3 +5958,8 @@ Background agent, CPU only, $0, no ground truth read.
   of rscr42/rscr43 (non-concurrent).
 - The builder left three stray files at the container root (/exits_s.txt, /merged_S*.txt). Its delete was blocked by
   the safety check, so they are left in place and reported to the owner. They are outside the repo.
+
+### 2026-10-31 17:22 UTC — determined-wright: arm S box 1 of 2 rented (physics-solver.md §9)
+- Ledger planned `20261031-rscrS42-cc9c32f` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56213818 20261031-rscrS42-cc9c32f 'ARMS=S SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast 58559935, RTX PRO 6000
+  WS, Greece, $1.444/h. Box 2 (SEEDS=43) follows ~10 min later.
