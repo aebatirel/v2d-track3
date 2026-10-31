@@ -50,7 +50,7 @@ for o, el in plan['candidate_eps'].items():
             ratio_vs_e0=(gB[-1]['kept'] / e0kept[f'{SHORT[o]}__ep{e}']) if gB and e0kept.get(f'{SHORT[o]}__ep{e}') else None)
 for f in sorted(glob.glob(f'{R}/msep_ep*.json')):
     j = json.load(open(f))
-    dig['msep'][os.path.basename(f)[5:-5]] = {k: j[k] for k in ('frames_evaluated', 'frames_kept', 'frames_kept_with_points',
+    dig['msep'][os.path.basename(f)[7:-5]] = {k: j[k] for k in ('frames_evaluated', 'frames_kept', 'frames_kept_with_points',
                                                                  'pts_in', 'pts_out', 'qualifies')}
 if os.path.exists(f'{R}/params.json'):
     for k, v in json.load(open(f'{R}/params.json'))['targets'].items():
