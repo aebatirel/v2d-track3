@@ -5990,3 +5990,13 @@ diagnostic; nothing is picked for submission.
   `E0b/README.md`.
 - **Machine.** Shared cloud VM, CPU only, $0 for this step. No Vast box is open from C0b / E0b. Report:
   `docs/research/mesh-2026-10-26/cdo-sprint/C0b/README.md`.
+
+### 2026-10-31 23:15 UTC — orchestrator: C0b/E0b closed; hand-off relayed
+- C0b/E0b workflow done (report e5baab1). E0b ships pot/ep3/thick (md5 073872f4...) on evals 1/3/5/6/8/28 and
+  beige/ep8/g1 (0d926da1...) on evals 8/10 in `meshes/library_e0b` / `library_e0bx`; box 58580656, $0.49 [E], destroyed.
+  Both are less accurate on public than 9a+'s (pot 0.392 vs 0.342, beige 0.30 vs 0.25 [D]); lid/rack/blue cup not adopted.
+  Flags B1 (pot balls below base) and B2 (beige inside-out shells) for any simulator use. Verifier N1: describe as "no
+  scan-derived value; the ball detector has one gmg-informed setting". Relayed to focused-pascal with the recommendation:
+  on score keep 9a+; E0b is the owner's compliance option.
+- Re-track (PUBOWN Set B) FAIL verdict recorded in PUBOWN/NOTES.md (1787cb9); uncoloured-template hypothesis logged by
+  focused-pascal for the owner, not run.

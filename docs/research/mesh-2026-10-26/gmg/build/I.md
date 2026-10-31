@@ -1480,3 +1480,22 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   overflows 16/16: `packed_overflow`). Committed ba3387d (code of the runs below). Launched 23:40:18 (this container,
   nice 15, code = ba3387d): the five nest tests n1, n3, tn0, tn1, n2a at 16 copies, one process each, outputs
   `<scratch>/cc2b/nest/<test>.json|log`.
+- 23:54 (Build 2) [M] r3 re-run passes (code ba3387d): construction intrusion 0.0 mm at 8 / 12 / 16 sectors on the
+  T-I12 cup (min wall 0.97 / 2.60 / 3.24 mm), the T-I12 pot (-3.89 (all wall pieces dropped) / 0.57 / 2.09 mm) and the
+  256-facet analytic cup (0.959 / 2.634 / 3.233 mm against the rule's formula 0.955 / 2.637 / 3.231: within 0.004 mm);
+  continuity-ray intrusion <= 0.015 mm; continuity passes at 12 / 16 on the cup, at 16 only on the pot. **tn0** (true
+  nest, exact rest, on axis, half-offset sectors; 16 copies): out of scope (no persistent component), default rings
+  delivered, S on them 0.73 / 1.05 mm (f81 / f62): passes; floor passes; G1 passes (184 rows vs packed 720, the packed
+  default overflows). **tn1** (exact rest depth, 1 mm off axis): `off_axis_nest` (e_ax 1.09 + c 0.10 > t_min 2.60 -
+  w_min 1.50), default delivered, S 1.26 / 1.27 mm: passes; floor and G1 pass. **n2a** (exact rest, ALIGNED sectors):
+  S on the default rings 14.1 mm (fails: P83's aligned leg), S_ref running. n1 / n3 in S_ref (S on the delivered
+  default fails, guest pushed up 4.9 / 4.8 mm). **Diagnostic (post hoc, report only, never delivered;
+  `<scratch>/cc2b/dbg_wall3.json`)** on n1's carve inputs: the rule's carve picks `trim_top` in one sector (K sits only
+  near the rim there inside R+, R = 6 voxels), which leaves 409 K samples with no wall (wall_integrity_fail); with the
+  trim options removed for wall pieces the same K gives 10 widen, wall left >= 1.56 mm, topology kept, residual
+  guest-in-host overlap at T_rest 0.146 cm3 (rule carve 0.271, default 0.955), but S still lifts the guest 4.06 / 3.98
+  mm (one frame fails 4 mm): R+ (6 voxels of a uniform 0.5 mm overlap) leaves overlap uncarved. Two hypotheses for the
+  orchestrator, neither applied: H-a the most-volume option rule picks wall-opening trims (falsifier: a wall-keeping
+  preference still fails the wall rule on n1); H-b the persistent region R from 2 mm collider samples under-covers a
+  thin uniform overlap (falsifier: R+ = every 4 mm voxel holding guest-in-host overlap at the rest frames, and S still
+  lifts the guest > 4 mm).
