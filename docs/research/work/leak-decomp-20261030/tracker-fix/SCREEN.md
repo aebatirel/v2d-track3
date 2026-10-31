@@ -11,7 +11,7 @@ checks: which VO switches rule K can see, the eval-36 burst, the eval-10 camera,
 three readings (§6).
 
 ## Verdict
-1. **M4, the frame-0 detection decoy (ep0), is not present on any eval [M].**
+1. **M4, the frame-0 detection decoy (ep0), is not flagged on any screened eval (1, 3, 5, 6, 8, 20, 28 for the area gate; 8, 14, 32, 33 for S9) [M].**
    - Area screen: all 14 chosen proposals on evals 1, 3, 5, 6, 8, 20 and 28 have area ratios 0.60–1.07. The flag is > 1.5.
    - The smallest margin over an oversized decoy is eval 8's beige cup at 0.077. Eval 1's pot is next at 0.106. On public
      ep0 the margin was 0.005.
@@ -29,8 +29,7 @@ three readings (§6).
      keyframes, so there is no jump.
    - Eval 35 stays **unresolved**. Its burst (f25–48) happens while the spoon is picked up and held, so no track can measure
      the camera there.
-4. **M1, the static container lifting under a nested object (ep11), is present on eval 10, but S6 as frozen does not fire
-   there [M].** The committed `refine.step_S6` freezes only the racks of evals 14, 15, 16, 28 and 30. They move ≤ 0.75 cm and
+4. **M1, the static container lifting under a nested object (ep11): eval 10's track shows ep11's M1 signature [M on our track; H that it is a tracker error: GT-free depth at f150 is ambiguous], and S6 as frozen does not fire there [M].** The committed `refine.step_S6` freezes only the racks of evals 14, 15, 16, 28 and 30. They move ≤ 0.75 cm and
    do not lift.
    - Eval 10's blue cup really slides 4.1–4.9 cm at f38–46, so its horizontal travel exceeds the 2 cm rule. Four checks
      agree: the left fist moves 4.0 cm with it, the depth fits the slid pose, the camera is right to ≤ 0.6 cm, and a power
@@ -38,7 +37,7 @@ three readings (§6).
    - It then shows ep11's signature:
      - +3.1 to +3.7 cm while the beige cup is lowered into it (f100–117);
      - +1.6 to +2.4 cm held after both hands have left (f120–160).
-     - About 0.4 cm of that held offset is camera.
+     - The camera's share is ≤ 0.4 cm.
 5. **Eval targets for PLAN §4** (step 1's eval leg included, because S6 has none):
    - **Step 1 (S6):** no eval-10 target under the frozen rule.
    - **Step 3 (T5 VO):** no confirmed eval target. Eval 35 is the only open candidate.
@@ -292,7 +291,7 @@ Per-frame data: `e10_profile.txt`, `e10_hand_rerun.txt`, `e10_depth.txt`, `e10_v
 ## 5. What this does to PLAN §4
 | step | eval target now | reading |
 |---|---|---|
-| 1 S6 static hold | **none** (racks only, ≤ 0.75 cm) | T1's public reference test can still run ($0). The T1 rollouts ($2.6–5.2) and the eval-10 S6 retrain ($2.6) have no eval target under the frozen rule. |
+| 1 S6 static hold | **none** (racks only, ≤ 0.75 cm) | T1's public reference part ran in parallel and fails its rule on the P_o arm (ep27 * −0.0023). The T1 rollouts ($2.6–5.2) and the eval-10 S6 retrain ($2.6) have no eval target under the frozen rule. |
 | 3 T5 robust VO + plane (CPU) | **none confirmed**; eval 35 unresolved | Eval 25 is clean, so the planned +0.004 central falls to ≈ +0.001 [E, weak]: eval 35 alone, p ≈ 0.1–0.35 from 1 jump in 3 public bursts, × +0.005–0.008 per jumped eval. Insurance for any re-perception; the $0 ep24 part on this VM is the only part with tool value now. |
 | 4 GPU perception box (T2, T3, T4b) | **eval 10, through T2 masking** | T3/S8 (M2): no target (no anchor < 0.70). T4 area gate + S9 (M4): no target (insurance; smallest decoy margin 0.077, eval 8). The box's eval value now rests on T2's ep11 test. |
 | 5 rollout gates | **none of those listed** | ep31 (M2) and ep24 (M3) have no eval target. If T2 passes, the gate that matters is ep11 (eval 10's twin) with the masked re-track, then an eval-10 retrain under the multi-draw rule. |
@@ -348,3 +347,11 @@ This continuation, from `$S/screen` (lean) and `$S/screen2` (the rest), no store
 5. `$PY -I scripts/e10_vo_bg.py $S/screen/dl_depth/ev10_f0_30_60_150.npy` → `e10_vo_bg.txt` (300-iteration trimmed ICP, about 2 min).
 
 All scripts and outputs are in `screen/` here.
+
+## Review amendments (31 Oct ~06:30 UTC, adversarial review of this report)
+- The hands live in perc2's camera frame, so the fist moving with eval 10's cup rules out a tracker-only slip, not a
+  camera error. The camera conclusion rests on T1's controlled 6-DoF camera check (passed its public controls; 0.09 cm
+  vertical on eval 10, `T1/camcheck/eval10.json`) and on the ICP background check, which has only an injected
+  pure-translation power check and no real positive control; its −0.44 cm at f150 sits inside its own floor (0.53 cm at f30).
+- Wording corrected per the review: M1 on eval 10 is [M] on our track and [H] as a tracker error; the camera's share of the
+  held offset is ≤ 0.4 cm; M4 is "not flagged on the screened evals", not "not present".

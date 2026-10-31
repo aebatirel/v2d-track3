@@ -5078,3 +5078,15 @@ Advice given:
   ≈ $6.5–11, central ≈ $8.7 (one training saturates the GPU; 4 waves + the ep2 reference build). ep2's reference is
   built on the box with the frozen recipe (the stored ep2 reference was E3's older recipe). Fix + re-verify workflow
   running (mass-check-fixes).
+- ~06:35 UTC **tracker fixes, CPU results (workflow wf_7cf6d53f-37e; review: all three SOUND)**:
+  - **T1, S6 static hold:** freezes exactly the mocap-static objects on 20/20 public episodes, mean +0.004 (almost all
+    ep11 +0.068), but the pre-registered no-harm rule FAILS on the Phase-1 P_o arm by 0.0003 (ep27 * −0.0023 vs −0.002;
+    the frozen rack is the kit's rotation anchor). **On eval 10 S6 freezes nothing**: our track shows the blue cup
+    sliding 4.1–4.9 cm at f38–46 with the left hand (camera ruled out ≤ 0.6 cm), so the +0.007 LB that ranked S6 first
+    does not exist. No GPU spend on S6; S6 stays opt-in and unused.
+  - **Eval screen (GT-free):** M4 (frame-0 decoy) and M2 (anchor tilt) not flagged on the screened evals; M3 (VO jump)
+    not flagged except eval 35 (burst during the spoon pickup, unresolved); M1's signature is on eval 10's track (+3.1 to
+    +3.7 cm while nesting) [M on the track, H as a tracker error]. Only eval target left for the GPU perception box:
+    eval 10 via T2 masking. Review wording fixes applied to SCREEN.md.
+  - **T5 robust VO on ep24: PASSES** (P_o * 0.8105 → 0.9941; common-mode error 2.72 → 0.40 cm). Cause: perc2's 2 m
+    depth clip. But no confirmed eval target (eval 25 is clean; eval 35 open).

@@ -10,6 +10,14 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 ~06:35 UTC: tracker fixes measured on CPU; mass check in final fixes; coordination with other sessions
+- S6 static hold: fails its no-harm rule by 0.0003 and does nothing on eval 10 (the cup really slides in our track) →
+  dropped. Robust VO fixes ep24 (0.81 → 0.994) but no eval has that failure. Eval screen: the only remaining eval target
+  for perception fixes is eval 10 (masking re-track, one GPU box ≈ $1–2 + rollout gate).
+- Realistic masses (Embodiment session, +0.090 vs mocap on 4 public eps with scans) → transfer check on our meshes built,
+  two reviews' fixes being applied; ≈ $6.5–11; launch after GO. Eval retrain with masses ≈ $20–25 if it passes.
+- Sessions coordinated (Embodiment: rlloop box running, R5-lite done; mesh: gmg build, its own G0 launch). Credit ≈ $33.
+
 ## 2026-10-30 ~19:00 UTC: oracle twins done — eval 10 is perception-limited, eval 14 is a robot/learner limit
 - ep11 (eval 10, cup stacking): true motion 0.940 vs our perceived 0.595 → **C2 perception-limited**. Biggest lever
   found: make eval 10's reference physically consistent (cup nest), ≤ +0.017 LB if it transfers [E].
