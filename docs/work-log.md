@@ -5494,3 +5494,16 @@ arm and a no-policy replay floor to stage B.
   - ep13 one-hand solve: needs a design note first, because the hand assignment changes the reference's hand targets;
   - the draw sd will be reported next to every mean.
   - GPU spend goes to the owner first.
+- ~10:10 UTC reply from focused-pascal:
+  - `h5_reeval.sh` now keeps per-draw rollouts by default (ab55e8c on its branch).
+  - Runs that already keep them: `20261030-orcB-38234d1` (public ep11/13/31, P and O, 10 draws) and, when done,
+    `20261031-mass-2ed46ea`.
+- ~10:20 UTC **draw-divergence analysis** (Prof. İnceoğlu's good-vs-failed comparison; CPU, $0, no ground truth beyond
+  the oracle arm's own reference): `docs/analysis/drawdiv-20261031/` (`fetch.sh`, `drawdiv.py`, `drawdiv_orcB.json`).
+  - Draws of one checkpoint differ by micrometres from frames 1–11, stay within 5 mm until a contact event, then split
+    by 2 cm at the same event in nearly every pair:
+    - ep31: the sweeper lift-off at f48–57 (the rack is knocked in arm P), plus a later event f162–233 in 3 draws;
+    - ep11 O: the beige-cup carry / nest (failures f63–69).
+  - Where the policy fails deterministically (ep11 P, ep13), draws agree (sd ≤ 0.003).
+  - Reading: failures cluster at one or two events per episode, so target those events and put robustness noise there.
+    These are low-spread twins (sd 0.02–0.05); the high-spread ep2 follows on the masses-check run.
