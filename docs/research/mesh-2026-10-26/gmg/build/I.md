@@ -1112,3 +1112,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   this log, work log; committed 21:36:31 UTC, on origin at 21:36:48; the "21:37" stamps in those texts are that
   commit time rounded to the minute). Only my lines were staged. Amend step done: no code edited, nothing run, $0.
   The Build step may start from 782db1c.
+
+## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
+- 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
+  the verification note), verify_cc_0 / verify_cc_1, `build/I/results/collcarve-public/README.md`, this log's "Collision
+  carve" section, `cavpieces.py` (Lathe, continuity, gate, CoACD, repair, routes), `collcarve.py` (gates, receiver,
+  rest, clearance, carve, caps, acceptance, apply), focused-pascal's `pipeline/lathe_collision.py` (origin
+  claude/focused-pascal-2nz9s1, last change 334393e), the public roster (`roster_public.json`, names only). Task: the
+  orchestrator's decision of ~21:50 UTC (items 1-7) as PREREG F-I5.15 + INTERLOCK 21.13 after a prior-work review;
+  commit + push before any code. No code, no run. Highest prediction so far P70 (F-I4.16, 782db1c), so round 2 starts at
+  P71. Next: the review (CoACD paper + README, V-HACD, MuJoCo docs, cavity-preserving decomposition, Factory / SDF).
+- 21:38 [M] ev_extract progress: hands (M1, MediaPipe, cam_a video `data/eval/ep25_a.mp4`, 356 frames 2028x1520 at
+  20 fps) 280.6 s, 353 / 356 frames with a hand; pass 0 178 frames, 9.21 M samples, voxels 112,831 / 137,302, 221 s.
+  Disk free ~0.6 GB while the eval depth is local (another agent is writing too); extraction continues.
