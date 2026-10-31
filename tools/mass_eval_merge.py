@@ -2,7 +2,9 @@
 docs/research/work/masses-eval-20261031/JOBS.txt "C1"). CPU only; reads each box's results/mass_eval/summary.json
 (tools/mass_eval_verify.py; one single-file download per box), no ground truth.
 Per episode over all boxes that trained it (e.g. eval 1: S1a seed 42 and S1b seed 43 on two boxes):
-  - any box INVALID -> the episode is out (rule 3: its packed policy stays); a box that is not VERIFIED contributes nothing;
+  - any box INVALID -> the episode is out (rule 3: its packed policy stays). A seed counts from a VERIFIED box, or from an
+    INCOMPLETE box whose only gaps are OTHER seeds (missing or thin, nothing unchecked): e.g. seed 42 of a grasp-lock box
+    whose seed 43 must be retrained counts once seed 43 arrives from its new box;
   - both pre-registered seeds (--seeds, 42 and 43) must come from VERIFIED boxes with n >= 8 scored training-box rollouts
     each (PLAN section 5 rule 2 as amended 31 Oct, review F1). Otherwise the episode is INCOMPLETE: no candidate, no
     single-seed fallback; the output names, per missing seed, what to do (retrain only those seeds on a new box, same
@@ -52,13 +54,13 @@ def main():
         B = per[e]; T = tab[e]
         if any(b['status'] == 'INVALID' for b in B):
             out[e] = dict(decision='OUT (a box INVALID: packed policy stays)', boxes=[(b['run'], b['status']) for b in B]); continue
-        ok = [b for b in B if b['status'] == 'VERIFIED']
+        ok = [b for b in B if b['status'] == 'VERIFIED' or (b['status'] == 'INCOMPLETE' and not b['unchecked'])]
         st, src, extra = {}, {}, []
         for b in ok:
             for s, v in b['seeds'].items():
                 if s not in order:
                     extra.append(f'{s} ({b["run"]})'); continue
-                if v.get('n', 0) >= MIN_N:
+                if v.get('n', 0) >= MIN_N and s not in b['retrain']:
                     if s in st:
                         sys.exit(f'ep{e}: seed {s} trained on two boxes ({src[s]["run"]}, {b["run"]})')
                     st[s] = v; src[s] = b

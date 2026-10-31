@@ -71,6 +71,21 @@ def fc_load(task):
     return p, traj_fingerprint(t), loaded, len(t.column('object_body_position')[0].as_py())
 
 
+def stage_of(p):
+    """the support stage FlashCHORD resolves next to a reference parquet (assets/registry.py support_usda_for_parquet,
+    colocated branch): {path, md5} or None (2026-10-31, review F2; recorded, not enforced, so older mock data still runs)"""
+    parts = os.path.realpath(p).split('/')
+    ix = [k for k, x in enumerate(parts) if x.startswith('sequence_id=')]
+    if not ix:
+        return None
+    seq = parts[ix[-1]].split('=', 1)[1]; rob = next((x.split('=', 1)[1] for x in reversed(parts) if x.startswith('robot_name=')), None)
+    sd = '/'.join(parts[:ix[-1] - 1]) + '/reconstructed_stage'
+    for n in ([f'{seq}_{rob}_support.usda'] if rob else []) + [f'{seq}_support.usda']:
+        if os.path.isfile(f'{sd}/{n}'):
+            return dict(path=f'{sd}/{n}', md5=hashlib.md5(open(f'{sd}/{n}', 'rb').read()).hexdigest())
+    return None
+
+
 def write_ck(path, cfg, steps):
     meta = {'format': 'learner_state', 'user.algorithm': 'flash_sac', 'user.checkpoint_kind': 'policy',
             'user.environment_steps': str(steps), 'user.curriculum_stage': '10', 'user.resolved_config_json': json.dumps(cfg)}
@@ -110,7 +125,7 @@ def rollout(ck, mo, to, tag):
     json.dump(dict(mock=1, checkpoint=ck, checkpoint_sha256=hashlib.sha256(open(ck, 'rb').read()).hexdigest()), open(mo, 'w'))
     json.dump(dict(task=cfg['task']['parquet'], reference_file=rp, fingerprint=fp, masses={n: v['mass'] for n, v in loaded.items()},
                    urdfs={n: v['urdf'] for n, v in loaded.items()}, seed=cfg['reset']['seed']), open(to, 'w'))
-    audit(tag, ck=ck, out=mo, task=cfg['task']['parquet'], reference_file=rp, fingerprint=fp, loaded=loaded)
+    audit(tag, ck=ck, out=mo, task=cfg['task']['parquet'], reference_file=rp, fingerprint=fp, loaded=loaded, stage=stage_of(rp))
 
 
 if base == 'train_flash_sac.py':
@@ -128,7 +143,7 @@ if base == 'train_flash_sac.py':
     cfg['task']['parquet'] = rp; cfg['reference']['parquet'] = rp; cfg['reference']['num_frames'] = nf
     cfg['training']['total_environment_steps'] = steps
     env = {e: os.environ.get(e) for e in ('FC_FDR_OBJ', 'FC_FDR_TIPS', 'FC_VOC_INERTIA', 'FC_IMMEDIATE_FIRST_FRAME', 'GL_WRIST_KP')}
-    audit('train_audit', run=run, task=kv['task.parquet'], reference_file=rp, fingerprint=fp, loaded=loaded, seed=s, steps=steps,
+    audit('train_audit', run=run, task=kv['task.parquet'], reference_file=rp, fingerprint=fp, loaded=loaded, seed=s, steps=steps, stage=stage_of(rp),
           kind=kind, args=sorted(x for x in argv[1:] if x.split('=', 1)[0] not in ('output_dir', 'task.parquet')), env=env, t=time.time())
     os.makedirs(run, exist_ok=True); time.sleep(1)
     for k in range(1, 8):

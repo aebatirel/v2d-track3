@@ -10,10 +10,15 @@ From what the stub FlashCHORD trainer and evaluator actually loaded (train_audit
      with the CURR_SCALE 0.4 thresholds of its packed checkpoint (rcB), every other episode with the default ones;
   T5 the pulled references and asset folders are byte-unchanged after the box; on grasp-lock boxes /content/assets stays
      at 0.3 kg; on the std boxes /content/assets carries the props masses and ev01's 53 / 107 pieces;
-  T6 store traffic per box: exactly one upload; the downloads are the table's pulls, result files and recipe checkpoint;
+  T6 store traffic per box: exactly one upload; the downloads are single-file downloads (no store listing: review F7) of
+     exactly the table's pull_files, result files and recipe checkpoint;
   T7 no reference stage ran on an eval episode (no grasp_lock / ILC / evolve / support_fill / rollout / rest_check);
   T8 mass_eval_verify: every episode VERIFIED, packed-config differences only in allowed keys, a rule-2 candidate and
-     confirmation strings.
+     confirmation strings;
+  T9 (review F2) every training read the packed reference's support stage (the md5 of the store's refs/glockt/ep<N>
+     stage; std: of the pulled base's), and verify recorded the same comparison;
+  T10 (review F7) results/mass_eval/files.txt lists the store paths of every candidate's reference / asset copies and
+     chosen checkpoints, and each of them is in the pushed run.
 """
 import glob, json, os, re, struct, sys
 MS, OUT = sys.argv[1], sys.argv[2]
@@ -26,7 +31,8 @@ props = {n: v['physics']['mass_kg'] for n, v in json.load(open(f'{REPO}/docs/res
          if isinstance(v, dict) and 'physics' in v}
 BOXES = dict(G1=('glock', [20, 8], [42, 43], '20261101-mevG1-mocksha'), G2=('glock', [33, 15], [42, 43], '20261101-mevG2-mocksha'),
              G4=('glock', [10], [42], '20261101-mevG4-mocksha'), S1a=('std', [1], [42], '20261101-mevS1s42-mocksha'),
-             S1b=('std', [1], [43], '20261101-mevS1s43-mocksha'))
+             S1b=('std', [1], [43], '20261101-mevS1s43-mocksha'),
+             G1v=('glock', [20], [42, 43], '20261101-mevG1v20-mocksha'))   # review F3: the cheaper EPS="20" variant of G1
 res, fails = {}, []
 
 
@@ -76,6 +82,10 @@ for box, (mode, eps, seeds, rid) in BOXES.items():
             ok(f'{box}_ep{e}_s{s}_T2_train_masses', got == {n: props[n] for n in got} and all(u['urdf'].startswith(root) for u in x['loaded'].values()),
                f'{got} from {sorted({os.path.dirname(u["urdf"]).replace(MS, "MS") for u in x["loaded"].values()})}')
             ok(f'{box}_ep{e}_s{s}_T4_steps_seed', x['steps'] == T['steps'] and int(x['seed']) == s, (x['steps'], x['seed']))
+            pst = glob.glob(f'{MS}/store/runs/{T["source_run"]}/refs/{"glockt" if mode == "glock" else "perc2mck"}/ep{e}/reconstructed_stage/*.usda')
+            vs = json.load(open(f'{C}/results/mass_eval/verify.json'))['episodes'][str(e)]['cells'][str(s)].get('support_stage', {})
+            ok(f'{box}_ep{e}_s{s}_T9_support_stage', len(pst) == 1 and x.get('stage') and x['stage']['md5'] == md5(pst[0])
+               and vs.get('md5') == vs.get('packed_md5') == md5(pst[0]), (x.get('stage'), vs))
             cfg = ckcfg(sorted(glob.glob(f'{fx(x["run"])}/policy_*.safetensors'))[-1])
             want = RCB if e == 33 else DEF
             ok(f'{box}_ep{e}_s{s}_T4_curriculum', cfg['curriculum']['thresholds'] == want and cfg['training']['curriculum']['thresholds'] == want,
@@ -113,11 +123,13 @@ for box, (mode, eps, seeds, rid) in BOXES.items():
         ok(f'{box}_T5_content_assets_masses_and_pieces', m == {n: props[n] for n in m} and cols == dict(white_pot=53, white_pot_lid=107), (m, cols))
     hf = open(f'{B}/hf.log').read().splitlines()
     ups = [x for x in hf if x.startswith('hf upload')]
-    dl = sorted(x.split('--include ')[1].split()[0] if '--include' in x else x.split()[3] for x in hf if x.startswith('hf download'))
-    want = sorted([f'runs/{REAL[str(e)]["source_run"]}/{s}/*' for e in eps for s in REAL[str(e)]['pull']]
+    listing = [x for x in hf if x.startswith('hf download') and '--include' in x]
+    dl = sorted(x.split()[3] for x in hf if x.startswith('hf download') and '--include' not in x)
+    want = sorted([f for e in eps for f in REAL[str(e)]['pull_files']]
                   + [f for e in eps for f in REAL[str(e)]['result_files']] + [REAL[str(e)]['recipe_checkpoint'] for e in eps])
     ok(f'{box}_T6_one_push', len(ups) == 1 and f'runs/{rid}' in ups[0], len(ups))
-    ok(f'{box}_T6_pulls_exactly_the_table', dl == want, f'{dl} vs {want}')
+    ok(f'{box}_T6_pulls_exactly_the_table', dl == want, f'{len(dl)} downloads vs {len(want)}: {sorted(set(dl) ^ set(want))[:6]}')
+    ok(f'{box}_T6_no_store_listing', not listing, listing[:3])
     ok(f'{box}_T7_no_reference_stage', not os.path.exists(f'{B}/forbidden_audit.log'),
        open(f'{B}/forbidden_audit.log').read()[:300] if os.path.exists(f'{B}/forbidden_audit.log') else '')
     V = json.load(open(f'{C}/results/mass_eval/verify.json')); S = json.load(open(f'{C}/results/mass_eval/summary.json'))
@@ -128,6 +140,14 @@ for box, (mode, eps, seeds, rid) in BOXES.items():
     ok(f'{box}_T8_packed_config_diff_allowed_only', all(set(d) <= allowed for d in diffs.values()), diffs)
     ok(f'{box}_T8_candidates', all(S['episodes'][str(e)].get('pick_extra') for e in eps) and S['confirmation']['MASS_EPS'].split() == [str(e) for e in eps],
        S['confirmation'])
+    FL = open(f'{C}/results/mass_eval/files.txt').read().split()
+    need = [f'runs/{rid}/refs/mass1_sf/ep{e}/' for e in eps] + [f'runs/{rid}/refs/mass1s{s}_glockt/ep{e}/' for e in eps for s in seeds] \
+        if mode == 'glock' else [f'runs/{rid}/refs/perc2mcks/ep{e}/' for e in eps]
+    cks = [f'runs/{rid}/' + os.path.relpath(os.path.realpath(fx(S['episodes'][str(e)]['seeds'][str(s)]['checkpoint'])), os.path.realpath(C))
+           for e in eps for s in seeds]
+    pushed = [f for f in FL if os.path.isfile(f'{MS}/store/{f}')]
+    ok(f'{box}_T10_files_manifest', all(any(f.startswith(n) for f in FL) for n in need) and all(c in FL for c in cks) and len(pushed) == len(FL),
+       f'{len(FL)} paths, {len(pushed)} in the store; checkpoints {cks}')
 out = dict(ok=not fails, failures=fails, checks=res, note='mock scores are synthetic (stub.py): plumbing, not masses')
 json.dump(out, open(OUT, 'w'), indent=1)
 print(('ALL TRAINING CHECKS PASS' if not fails else f'{len(fails)} FAILED: ' + ' | '.join(fails[:8])) + f' ({len(res)} checks)')

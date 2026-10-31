@@ -13,6 +13,10 @@
 #   - SYNTHETIC (the real files are not on this machine): every refs/sf/ep<N>/assets (make_assets.py, 0.3 kg, the
 #     episode's library), the grasp-lock base folders refs/perc2mck/ep<N> (the glockt parquet with /content/assets URDF
 #     paths, a stage .usda, hands), perc2/ep1/poses.npz, results/glock_public/ep<N>/{rest_check.json, ...}.
+# 2026-10-31 (review F7): within every sub-folder a training box pulls, the store holds exactly the files of the table's
+# pull_files (the 29 Oct store listing): the real file names; files the mock has no stand-in for are placeholders
+# (stage .usda per episode, identical in refs/glockt and refs/perc2mck as on the real store [H]; .parquet = a copy of
+# the episode's base parquet; .npz / .json / other small stand-ins), and unlisted synthetic files there are removed.
 # Parquet asset paths are rewritten /content/ -> MS/box/content/ (the fingerprint ignores them, the md5 changes): the
 # mock's copy of packed_refs.json carries the md5 of the rewritten files; its fingerprints stay the real ones, and
 # setup asserts every rewritten reference still has its real fingerprint.
@@ -70,19 +74,22 @@ for c in ('object_urdf_paths', 'object_mesh_paths'):
 pq.write_table(t, dst)
 PYEOF
 }
-synth_np() {  # $1 dir: hands.npz, hands_refined.npz, a stage .usda (contents unused by the mock)
+synth_np() {  # $1 dir, $2 episode: hands.npz, hands_refined.npz, the episode's support stage (real name, mock content)
   mkdir -p $1/reconstructed_stage; $PY -I -c "import numpy as np, sys; np.savez(sys.argv[1] + '/hands.npz', mock=np.zeros(1)); np.savez(sys.argv[1] + '/hands_refined.npz', mock=np.zeros(1))" $1
-  echo '#usda 1.0 (mock stage)' > $1/reconstructed_stage/stage.usda
+  stage $1 $2
 }
+stage() { mkdir -p $1/reconstructed_stage; echo "#usda 1.0 (mock support stage, eval $2)" > $1/reconstructed_stage/$(printf 't3_ep%03d' $2)_support.usda; }
 TAB=$R/docs/research/work/masses-eval-20261031/packed_refs.json
 tabv() { $PY -I -c "import json, sys; v = json.load(open(sys.argv[1]))['episodes'][sys.argv[2]][sys.argv[3]]; print(' '.join(v) if isinstance(v, list) else v)" $TAB $1 $2; }
+listed() {  # $1 episode, $2 sub-folder prefix: that listed file, relative to the prefix (e.g. the base parquet's real name)
+  $PY -I -c "import json, sys; x = json.load(open(sys.argv[1]))['episodes'][sys.argv[2]]; p = 'runs/' + x['source_run'] + '/' + sys.argv[3]; print([f[len(p):] for f in x['pull_files'] if f.startswith(p)][0])" $TAB $1 "$2"
+}
 # grasp-lock episodes: glockt (real) + sf assets + base (synthetic) + result files, in the episode's source run
 for e in 3 5 6 8 10 14 15 16 20 32 33 35 36 37 38; do
   src=$(tabv $e source_run); lib=$(tabv $e lib); root=$(tabv $e asset_root); X=$ST/$src
   f=$(ls $D6/glockt/ep$e/processed/*/*/ref_gl_ilc.parquet); hive=$(dirname ${f#$D6/glockt/ep$e/})
-  rw $f $X/refs/glockt/ep$e/$hive/ref_gl_ilc.parquet; mkdir -p $X/refs/glockt/ep$e/reconstructed_stage
-  echo '#usda 1.0 (mock stage)' > $X/refs/glockt/ep$e/reconstructed_stage/stage.usda
-  rw $f $X/refs/perc2mck/ep$e/$hive/base$e-0.parquet base; synth_np $X/refs/perc2mck/ep$e
+  rw $f $X/refs/glockt/ep$e/$hive/ref_gl_ilc.parquet; stage $X/refs/glockt/ep$e $e
+  rw $f $X/refs/perc2mck/ep$e/processed/$(listed $e refs/perc2mck/ep$e/processed/) base; synth_np $X/refs/perc2mck/ep$e $e
   if [ "$root" != /content/assets ]; then
     mkdir -p $X/refs/sf/ep$e; $PY -I $TC/v2d-track3/pipeline/make_assets.py $R/meshes/$lib $X/refs/sf/ep$e/assets > /dev/null
   fi
@@ -93,7 +100,7 @@ for e in 3 5 6 8 10 14 15 16 20 32 33 35 36 37 38; do
 done
 # eval 1 (standard learner): the real base parquet + synthetic hands / perception
 X=$ST/20261024-pack-31ef267; f=$(ls $S/e1conf/dl_c01s43/runs/20261030-c01s43-328139c/refs/perc2mck/ep1/processed/*/*/*.parquet)
-rw $f $X/refs/perc2mck/ep1/${f#*/refs/perc2mck/ep1/}; synth_np $X/refs/perc2mck/ep1
+rw $f $X/refs/perc2mck/ep1/${f#*/refs/perc2mck/ep1/}; synth_np $X/refs/perc2mck/ep1 1
 mkdir -p $X/perc2/ep1; $PY -I -c "import numpy as np, sys; np.savez(sys.argv[1], world_T_cam=np.tile(np.eye(4), (335, 1, 1)))" $X/perc2/ep1/poses.npz
 echo 'mock perception log' > $X/perc2/ep1/log.txt
 # packed standard-learner references (refs/perc2mcks, what their checkpoints name) in the runs h5_reeval.sh pulls
@@ -117,6 +124,36 @@ cp $S/e1conf/dlv_fr3233s43/runs/20261026-fr3233s43-6a8a0e2/results/glock_public/
 for x in dl_keep/runs/20261026-pack6-5203d42 dl_keep/runs/20261030-c33B-0202139; do
   d=$ST/$(basename $x)/results/submission/results; mkdir -p $d; cp $S/e1conf/$x/results/submission/results/episode_* $d/
 done
+# the pulled sub-folders = the listing (review F7): placeholders for listed files without a stand-in, unlisted files removed
+$PY -I - $TAB $MS/store << 'EOF'
+import glob, json, os, shutil, sys
+import numpy as np
+T = json.load(open(sys.argv[1]))['episodes']; ST = sys.argv[2]; made = rm = 0
+for e, x in T.items():
+    subs = [f'{ST}/runs/{x["source_run"]}/{s}' for s in x['pull']]
+    if not all(os.path.isdir(d) for d in subs):
+        continue                                                   # an episode the mock never trains (std 19 25 28 30)
+    base = glob.glob(f'{ST}/runs/{x["source_run"]}/refs/perc2mck/ep{e}/processed/*/*/*.parquet')[0]
+    want = {f'{ST}/{f}' for f in x['pull_files']}
+    for f in sorted(want):
+        if os.path.exists(f):
+            continue
+        os.makedirs(os.path.dirname(f), exist_ok=True); made += 1
+        if f.endswith('.parquet'):
+            shutil.copy(base, f)
+        elif f.endswith('.npz'):
+            np.savez(f[:-4], mock=np.zeros(1))
+        elif f.endswith('.json'):
+            json.dump(dict(mock='placeholder for a listed store file'), open(f, 'w'))
+        else:
+            open(f, 'w').write(f'mock placeholder for {os.path.basename(f)}\n')
+    for d in subs:
+        for f in glob.glob(f'{d}/**/*', recursive=True):
+            if os.path.isfile(f) and f not in want:
+                os.remove(f); rm += 1
+    assert {f for d in subs for f in glob.glob(f'{d}/**/*', recursive=True) if os.path.isfile(f)} == want, e
+print(f'store sub-folders = the listing: {made} placeholders written, {rm} unlisted synthetic files removed')
+EOF
 # the mock's table: md5 of the rewritten parquets, fingerprints asserted equal to the real ones
 $PY -I - $TAB $ST $TC/v2d-track3/docs/research/work/masses-eval-20261031/packed_refs.json $TC/v2d-track3/tools << 'EOF'
 import glob, json, sys
