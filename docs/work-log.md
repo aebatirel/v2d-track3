@@ -5749,3 +5749,11 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   the same meshes submitted. Public test first (P_o' vs P_o, pre-registered). If it passes: eval re-track, rebuild
   references, pack-10 Tier-2 retrain. Feasibility questions sent to focused-pascal and bold-albattani; no spend until
   the owner says go.
+- ~18:32 UTC focused-pascal, re-track feasibility:
+  - job ops/jobs/perc_leak.sh needs a per-episode template opt-in (LIB_EP_DIR), and tools/leak_p1.py the same switch;
+    ~1–2 h CPU;
+  - public test (P_o' + o2 repeat) ≈ $2–3.5, ≈ 1–1.5 h wall clock [E from Phase 1: 3 boxes, $2.30];
+  - eval re-track ≈ $2–4, ≈ 1 h;
+  - latest public result ~1 Nov 12:00–13:00, so C0b per-public-episode meshes by ~08:00–09:00.
+  A pass makes all 20 pack-10 references new (Tier 2).
+  Told to build the CPU prep tonight; GPU waits for the owner's go.
