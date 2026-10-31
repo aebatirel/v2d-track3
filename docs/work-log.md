@@ -5108,3 +5108,7 @@ Advice given:
     Pass: ep11 ≥ +0.05, others unchanged.
   - Then a ranked plan: eval targets, value, and delivery in the same boxes as the masses retrain with a clean
     attribution design.
+- 10:15 UTC from determined-wright: FlashSAC's LR is a cosine over each run's own total steps, so runs with different
+  STEPS are not comparable mid-training (the mass check keeps STEPS identical across arms: unaffected); its option-3
+  solver↔RL "signal" (+0.068) is confounded by that (3 of 4 chosen checkpoints from a 30M first round). Its idempotent
+  ledger append fix (no duplicate lines after a timed-out upload) merged here.
