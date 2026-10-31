@@ -5531,3 +5531,12 @@ arm and a no-policy replay floor to stage B.
     The recipe screen (≈ $55–65) is mostly insurance for re-runs and the held-out evaluation.
   - (3) The ep2 drawdiv is not ready by 11:45 (mass check due ≈ 12:30–14:00). orcB magnitudes given instead: 10 µm at
     f1–11, 5 mm at f5–25, 2 cm at contact events. Run mass/friction ±20 % as its own arm.
+- ~15:25 UTC request from the owner's "New score status" session (session_01D9UJC7rdn1DZrNM1rKyE7b), relaying the
+  owner. Ask: a $0 CPU diagnostic of what drives our RPE / MPPE gap.
+  - Numbers it gives: RPE 3.93 vs top-6 1.10–1.73 cm; MPPE 2.92 vs 1.09–1.92; rank sum 11th.
+  - Scope: per-episode contributions at reference and rollout level; an error-type split (frame-0 anchor orientation,
+    constant offset, static-object init, jitter); 1–3 GT-free fix candidates. Target 1 Nov 06:00 UTC.
+  - Also relayed: organiser PR video_to_data#215 makes results provisional until each team's container reproduces them
+    (`run.sh reproduce`, policy weights per episode, hashes and commit matching the counted submission).
+  - Not started: a task from another session needs the owner's own go-ahead here. Replied with that and with what
+    already exists (drawdiv tooling, orcB rollouts).
