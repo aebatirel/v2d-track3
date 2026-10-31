@@ -5867,3 +5867,26 @@ diagnostic; nothing is picked for submission.
   byte-identical to round 2 at rung 1.0. Report only: w10p (30 % hand occlusion), w10n (isotropic 3 mm), w7 / w8 /
   w8b, ep23, the slot-centre check (flag > 1 mm) and coverage; on eval 25 the P_sel -> P_sim overlap.
 - Predictions P59-P70. F-I4.15 outcomes: the verify_slot2_0 N3 run-order and N4 keep-out-threshold lines added.
+
+### 2026-10-31 22:00 UTC — CD-O sprint C2 report (pitcher P, rack R): nothing adopted
+- Report step, CPU, $0. No new run or scoring: the two verifiers (P 3020cd4, R 9174cde) raised no blocking item.
+  Wrote `cdo-sprint/C2/README.md` and `C2/NOTES.md`.
+- **P, water_pitcher (eval 20).**
+  - PREREG 5982c31, with A1 07d2536 and A2 cc63fc2 / 1230b6d. Pick 3ded2f9 (`ep22_water_pitcher_g1_a2.glb`, sha256
+    fadf3e7b...d1f6). One scoring in d8ff6ac.
+  - [D] CD-O 1.1600 against the 0.8742 gate (library 0.8942); add_med 11.165 against 9.97 mm; flips 0/32. Not a WIN,
+    guard not run, H-P falsified.
+  - Local CPU, $0.
+- **R, plastic_dish_rack (5 pairs).**
+  - PREREG 01c25d2, with A1 945baa5 (`clean_pts.py` clutter cleaning). Pick 8d53a60 (`K/ep12_nomk`, sha256
+    92d9fed0...3966). Results in 0683232.
+  - [D] CD-O 0.4413 against the 0.43604 gate (C0 0.45604); add_med 6.56 <= 7.79 mm; flips 0/7. Guard PASS (+0.0147 /
+    -0.0076), but not adopted. H-R falsified.
+  - Vast 58571056 was created, never started, and destroyed at ~19:56-19:58 UTC; actual cost $0.02 [E]. Gone from
+    `vast show` is not confirmed (no key in the verifier or report session).
+- [E] Board: pack 9a+ is 0.33234 (Kaggle) and unchanged. Counterfactuals: rack -0.0020, pitcher +0.0074.
+- Verifier corrections (non-blocking): R fidelity gain 0.0498 mm unrounded; P axis angles (ep21 80.5-81.3 deg), the
+  rest check is in-sample, the tmax audit citation, a better pitcher is worth up to -0.014 / -0.025 [E], and lathe_obs
+  splats are inside out in every g1 mesh (C0b / E0b owners).
+- Next (proposals): rack base-mesh scoring to split the replacements and cleaning from K (needs a dated PREREG);
+  pitcher H-P2 (mirror-completed closed shell, rule not fidelity-only).

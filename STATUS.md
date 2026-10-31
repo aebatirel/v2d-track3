@@ -1,5 +1,20 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~22:00 UTC: CD-O sprint C2 (scan-free pitcher, rack) closed: nothing adopted, board stays 0.33234 (CPU, ~$0.02)
+- **Pitcher (eval 20):** H-P falsified. The obs-lathe + splat pick scored CD-O 1.160 cm against library_v3's 0.894
+  [D]; add_med 11.17 mm fails its 9.97 mm gate. The object is an elephant-shaped watering can seen from one side only.
+  No WIN, so the guard was not run; library_v3 stays. Had it shipped: +0.0074 on the board [E].
+- **Rack (5 pairs):** H-R falsified. The K/ep12 pick scored CD-O 0.4413 cm [D]; the WIN needs <= 0.4360 (C0 0.4560).
+  add_med 6.56 mm and 0 flips pass, and the AUC guard PASSES (mean +0.0147, min -0.0076), but with no WIN it is not
+  adopted. Pack 9a keeps the C0 rack. Had it shipped: -0.0020 [E].
+- **Verifiers:** no blocking item. Corrections are listed in `cdo-sprint/C2/README.md` section 6.
+- **Open:**
+  - Confirm that Vast box 58571056 (created, never started) is gone, with `ops/vast.sh show`. No Vast key in this
+    session.
+  - lathe_obs appendage splats are inside out (negative volume) in every g1 mesh, including C0b's beige and blue cups:
+    hand to the C0b / E0b owners before any COM or simulator use.
+- **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/C2/README.md`.
+
 ## 2026-10-31 ~21:30 UTC: collision carve F-I5 closed: verified, nothing delivered, eval not run; round 2 must check poses as well as pieces (CPU, $0)
 - **Result:** no carved simulator piece for any episode, public or eval. Evals 10 / 1 / 14 / 30 not run (orchestrator).
   The five public round folders (scratch only) are not for use; they carry no do-not-use marker yet.
