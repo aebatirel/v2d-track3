@@ -95,3 +95,17 @@ the 0.545-frame advance), raises the registered ADD-AUC of the refined track vs 
   1–9 cm, our fast noise is ≈ 0.15 cm median [M, keen-heisenberg], and the held-out diagnostic gain was 0.5–1.2 % of a
   ≈ 0.5–1.6 cm mean ADD (≈ 0.003–0.02 cm). S13 also moves frame 0, which shifts the kit's frame-0 scene alignment.
 - Cost: CPU in this container, $0; ≈ 10–20 min inference (80 refine runs), ≈ 20–40 min scoring.
+
+## Amendment 1 (2026-10-31 21:26 UTC; append-only; BEFORE any score, after GT-free bookkeeping only)
+
+- **What was found (GT-free, `scripts/rts_bytecheck.py` on the 80 refine outputs; no mocap read, no score computed):**
+  the written S13 rotation blocks are byte-identical to the control's on 16918 of 16984 object-frames. The other 66
+  are the LAST frame of every object: S2 holds that frame (its input bytes are written unchanged), S13 moves its
+  position, so refine's shared writer re-orthonormalises its rotation (the SVD it applies to every changed frame, for
+  every step). There the treatment rotation equals the orthonormal projection of the control's rotation to
+  ≤ 2.3e-6 deg; the chordal distance to the control's raw rotation is ≤ 1.27e-4 deg, which is the float32 input's own
+  non-orthonormality (|RᵀR − I| ≤ 6.1e-6), not a rotation. By the letter, (c)'s 1e-4 deg bound fires on 1 of 66 frames.
+- **Amended INVALID (c):** S13's written rotation differs by more than 1e-4 deg from the control's rotation, or, on a
+  frame the control writes unchanged and S13 changes, from the orthonormal projection of the control's rotation.
+- Original text above unchanged (sha256 809a4acd… recorded in `results/PREREG_sha256_before_any_run.txt`; also in
+  commit dc4be79). Nothing else changes. Disclosed in README.md.

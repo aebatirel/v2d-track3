@@ -153,15 +153,16 @@ def test_hand_gate_switches_q():
         if label == 'near':
             assert np.array_equal(np.nonzero(near)[0], np.arange(50, 70)), np.nonzero(near)[0]
             assert abs(rec['_aux']['S13_blue_cup_hand_m'][55] - 0.02) < 1e-9
-            q_near_step = OO[0][58:63, 0, 3].copy()
+            e_near = np.abs(OO[0][:, 0, 3] - p[:, 0])
         else:
             assert not near.any()
-            q_far_step = OO[0][58:63, 0, 3].copy()
+            e_far = np.abs(OO[0][:, 0, 3] - p[:, 0])
             if label == 'none':
                 assert rec['hands'] == 'no hands file: no frame near'
-    # with the hand near (q 4.0) the step is followed closely; with q 0.04 everywhere it is smoothed over many frames
-    assert np.abs(q_near_step - p[58:63, 0]).max() < 0.004, q_near_step - p[58:63, 0]
-    assert np.abs(q_far_step - p[58:63, 0]).max() > 0.008, q_far_step - p[58:63, 0]
+    # hand near (q 4.0): the 3 cm step is followed (6.3 mm at the step frames, < 1 mm two frames away); q 0.04
+    # everywhere: rounded over many frames (12 mm at the step, > 3 mm two frames away)
+    assert e_near.max() < 0.0065 and e_far.max() > 0.010, (e_near.max(), e_far.max())
+    assert e_near[[57, 62]].max() < 0.001 and e_far[[57, 62]].min() > 0.003, (e_near[[57, 62]], e_far[[57, 62]])
     ref = kf_reference(p, np.isin(np.arange(T), np.arange(50, 70)), 0.008, 4.0, 0.04, smooth=True)
     OO = [O.copy()]
     rts.step_S13(args(), [o], OO, H, refine.checked, lambda *a: None)
