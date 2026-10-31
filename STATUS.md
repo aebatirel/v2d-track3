@@ -8,6 +8,9 @@
 - R5-lite (31 Oct, CPU): true vs perceived object motion, zero action, jittered: ep13 0.569 vs 0.551, ep31 0.556 vs 0.554 → the zero-action limit is grip/contact physics, not perception (physics README).
 
 - Option 3 (31 Oct, run 20261031-rlloop-ccf9058, ≈ $6.48): rule says "signal" (O3 − O1 +0.068) but 3 of 4 chosen checkpoints are pre-loop and round A is confounded by the LR-schedule horizon → no evidence the loop helps (physics-solver.md §6.1 Results). Next candidates (owner decides): H-lr test; keen-heisenberg's bank growth ideas; intrusion export for the mesh session's carve loop (building on CPU).
+- Eval-10 nest diagnostic (31 Oct 13:00 UTC, CPU, GT-free): library_v3 blue cup has a 66 mm false floor; carved ev10 fixes
+  the floor but its lower cavity is ~6 mm too narrow (18–36 cm³ intrusion f100–117); the blue cup's rise is not contact.
+  `docs/research/physics-2026-10-30/ev10_intrusion/README.md`; sent to focused-pascal.
 - Recipe screen (31 Oct ~12:05 UTC, CPU only, NOT launched): arms C (control) / K (LR 6e-4→3e-5, pinned horizon, assist fade ×2) /
   D (training-only start-state randomization, `ops/box/patch_flashchord_dr.py`) × ep2/12/18/24 × seeds 42/43 on the physS1
   references; job `ops/jobs/recipe_screen.sh`, merge `tools/recipe_screen.py verdict`; CPU tests pass; pre-registered in
