@@ -6107,3 +6107,21 @@ Background agent, CPU only, $0, no ground truth read.
     record, and the negative cases.
   - Real summaries re-merged with the new tool: C/K/D/S output unchanged.
   - The full older dry run (dry_run.sh → scratchpad `rs/dry7`) is running as a regression check.
+
+### 2026-10-31 21:27 UTC — determined-wright: arm V boxes rented (physics-solver.md §10); DR skip option delivered
+- Code for both boxes: V2D_COMMIT 0636f20 (arm V + RESCORE from ab63b37; later commits are logs).
+- Box 2 (seed 43, with the re-score): `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 V2D_COMMIT=0636f20… create
+  28784856 20261031-rscrV43-0636f20 'ARMS=V SEEDS=43 RESCORE=C:24:43:20261031-rscr43-865dfbb bash ops/jobs/recipe_screen.sh'`
+  → Vast 58580297, RTX PRO 6000 WS, Spain, $1.377/h.
+- Box 1 (seed 42): `… create 47655764 20261031-rscrV42-0636f20 'ARMS=V SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast
+  58580313, RTX PRO 6000 WS, Serbia, $1.497/h. The first offer (28784861) was gone (404 no_such_ask).
+- Ledger planned $4.5 each (21:19 UTC). Expected end ~00:00–00:45 UTC [E].
+- Regression dry run `rs/dry7` (DRY_CK_SLEEP=4): 69/70 PASS. The one FAIL is the ES-kill check: every stub training
+  reached its cap. Most likely the 4 s stub clock (dry6 used the default 12 s and passed); the ES code is unchanged.
+  Re-running at the default speed as `rs/dry8`.
+- FC_DR_SKIP_IMMEDIATE=1 delivered to focused-pascal (4e5c8a0) for the standard-learner D cells (evals 25, 30).
+  CPU test 17/17 PASS (`tools/recipe_screen_tests/dr_skip_test_log.txt`).
+- Owner decisions relayed by keen-heisenberg (~21:15 UTC; the owner went to sleep):
+  - the targeted D cells (evals 14/16/25/30/33, 2 seeds) start tonight; focused-pascal launches them;
+  - pack 9b uploads automatically once its rule and checks pass.
+- Credit $69.22 at 21:20 UTC, shared by all lanes.

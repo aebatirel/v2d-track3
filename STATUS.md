@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~21:27 UTC: arm V running (2 boxes); D skip option delivered; owner asleep
+- **Arm V** (the actor sees object velocity; physics-solver.md §10; owner "Go" ~21:09 UTC, ≈ $7–9 [E]):
+  - Vast 58580313 (seed 42, run 20261031-rscrV42-0636f20) and 58580297 (seed 43 + re-score of C/ep24-s43, run
+    20261031-rscrV43-0636f20).
+  - Ends ~00:00–00:45 UTC [E]. Merge: `tools/recipe_screen.py verdict` over the 6 summaries (rscr42, rscr43, rscrS42,
+    rscrS43, rscrV42, rscrV43).
+- **For focused-pascal's targeted D cells** (evals 14/16/25/30/33, tonight):
+  - FC_DR_SKIP_IMMEDIATE=1 for the standard-learner evals 25/30: 4e5c8a0, CPU 17/17 PASS.
+  - Pending from me: the per-episode CPU reset check on the packed assets.
+- Queue: the reset check → bold-albattani's ep24 P1 jitter check → keen-heisenberg's command-smoothing (A) and
+  synergy (B) CPU tests. Solver v2: waiting on the owner (recommended skip).
+
 ## 2026-10-31 ~20:32 UTC: recipe screen + solver re-test DONE (all boxes gone); no eval solving; owner: no D
 - **One cell is short of draws.** C/ep24-s43 has 4 of its 10 draws: 6 evaluator starts crashed (`pthread_create`
   EAGAIN, a box thread limit; infrastructure, not the policy). So all three verdicts are formally INCOMPLETE.
