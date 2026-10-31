@@ -1,0 +1,188 @@
+Arm S (physics-solver.md section 9) CPU tests, 2026-10-31 16:35-17:20 UTC. Machine: cloud session container (4 CPU), no GPU.
+S = <scratchpad>; FAKE numbers in the dry run (stubs.py), nothing here is a measurement of a policy.
+
+== 1. Real reference files (store aebatirel/v2d-store, downloaded to S/srefs_dl; no ground truth read)
+Command: S/venv/bin/python -I tools/recipe_screen_tests/solved_refs_check.py S/srefs_dl
+ep2: physS1 b4807f41fcf4b0b69eb8b27098d5bd80  solved 336917e37399fbc43cc2ef124adfc487 (psolve2/ep2)  solved==G3 training copy True  solver input==physS1 True  solved==input False
+     object columns identical True (10 object_* columns); non-robot columns differing []; support stage identical True; URDF roots ['/content/assets']
+     differing columns (max abs, n values differing / n): {'robot_right_wrist_position': (0.0604, 936, 1029), 'robot_right_wrist_wxyz': (0.0565, 1248, 1372), 'robot_right_finger_joints': (0.7233, 6864, 7546), 'robot_left_wrist_position': (0.0305, 936, 1029), 'robot_left_wrist_wxyz': (0.0468, 1248, 1372), 'robot_left_finger_joints': (0.5481, 6864, 7546)}
+ep12: physS1 96ddc1ca6d19e8e5321b4ef9c89c34bb  solved 6e4c9448ac7e81da59314cc898c1e8a4 (psolve2/ep12)  solved==G3 training copy True  solver input==physS1 True  solved==input False
+     object columns identical True (10 object_* columns); non-robot columns differing []; support stage identical True; URDF roots ['/content/assets']
+     differing columns (max abs, n values differing / n): {'robot_right_wrist_position': (0.0493, 540, 543), 'robot_right_wrist_wxyz': (0.1095, 720, 724), 'robot_right_finger_joints': (0.7358, 3960, 3982)}
+ep18: physS1 f0f14155f35c5a2970de48e1a88aa23a  solved f0f14155f35c5a2970de48e1a88aa23a (psolve/ep18)  solved==G3 training copy True  solver input==physS1 True  solved==input True
+     object columns identical True (10 object_* columns); non-robot columns differing []; support stage identical True; URDF roots ['/content/assets']
+     differing columns (max abs, n values differing / n): none (byte-identical file)
+ep24: physS1 699fe4266a0a965aaf4472a1bfcc8828  solved 7edd70e352dd31a0db11c89938d12d10 (psolve/ep24)  solved==G3 training copy True  solver input==physS1 True  solved==input False
+     object columns identical True (10 object_* columns); non-robot columns differing []; support stage identical True; URDF roots ['/content/assets']
+     differing columns (max abs, n values differing / n): {'robot_right_wrist_position': (0.0136, 90, 825), 'robot_right_wrist_wxyz': (0.0281, 120, 1100), 'robot_right_finger_joints': (0.3296, 660, 6050), 'robot_left_wrist_position': (0.0235, 90, 825), 'robot_left_wrist_wxyz': (0.0229, 120, 1100), 'robot_left_finger_joints': (0.3728, 660, 6050)}
+Solver offsets (ref_ps_solve.npz): frames edited ep2 312/343 (G2), ep12 180/181 (G2), ep18 0/353 (G1: 6 rollbacks, mini_dust_pan lost at f24, deadline at f288), ep24 30/275 (G1).
+
+== 2. Syntax
+bash -n OK  ops/jobs/recipe_screen.sh
+bash -n OK  tools/recipe_screen_tests/dry_run.sh
+py_compile OK  tools/recipe_screen.py
+py_compile OK  tools/recipe_screen_tests/dr_compare.py
+py_compile OK  tools/recipe_screen_tests/dr_patch_test.py
+py_compile OK  tools/recipe_screen_tests/dry_check.py
+py_compile OK  tools/recipe_screen_tests/dry_check_s.py
+py_compile OK  tools/recipe_screen_tests/eval_invariance.py
+py_compile OK  tools/recipe_screen_tests/schedules.py
+py_compile OK  tools/recipe_screen_tests/solved_refs_check.py
+py_compile OK  tools/recipe_screen_tests/stubs.py
+tools/recipe_screen.py and dry_check_s.py also parse under Python 3.11 (FlashCHORD venv) and 3.13.
+
+== 3. Backward compatibility of the verdict tool on summaries written by the pre-S code (dry4, job b34c09e5)
+Command: python tools/recipe_screen.py verdict S/rs/dry4/boxA/.../summary.json S/rs/dry4/boxB/.../summary.json --out S/rs/compat/merged_new_on_dry4.json
+Result: K_vs_C, D_vs_C, both reports and missing_cells identical to dry4's merged.json; only S_vs_C added (INVALID: the stub C files are not the registered physS1 md5s).
+
+== 4. Dry run of the whole job (phase 1: C/K/D boxes A/B as in section 8; phase 2: arm S)
+Command: bash tools/recipe_screen_tests/dry_run.sh S/rs/dry6 S/src/video_to_data/robotic_grounding/flash_chord S/venv/bin/python S/fcvenv/bin/python S/box2/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet S/rs/dry4
+Code (md5):
+  784f72e31062fa2cc27019ce5516d5ad  ops/jobs/recipe_screen.sh
+  7ecc19ca2f7718383d3f62b157338f41  tools/recipe_screen.py
+  4ddf31f17293daa14f4526081d62af56  tools/recipe_screen_tests/stubs.py
+  527d8afe490fb23c64cf039c8a62420f  tools/recipe_screen_tests/dry_run.sh
+  dff16555eec9b92023fb5eb0d671d457  tools/recipe_screen_tests/dry_check_s.py
+  df4568715ea1644e2d452595247400b2  tools/recipe_screen_tests/dry_check.py
+Earlier attempt dry5 (same command): phase 1 29 PASS; phase 2 failed in the stub (fake_solved assumed flat wrist columns; the CPU reference stores [x,y,z] per frame), fixed. It exercised two job paths by accident: a missing solved file -> its S cells not_run, job exit 0; the S pull retried 3x (120 s apart) before giving up.
+Output of dry6:
+start 2026-10-31T17:05:06Z
+box B job exit 0
+box A job exit 0
+merge exit 0
+PASS  both boxes finished (job exit 0) and the merge read 2 summaries  ['box', 'B', 'job', 'exit', '0', 'box', 'A', 'job', 'exit', '0']
+PASS  24 cells in the merge (12 per box)  24
+PASS  incremental box summaries: no failure, no temp file left  (0, 0)
+PASS  every cell launched a training (24 stub_train.json)  24
+PASS  K trainings: LR 6e-4 / 6e-4 / 3e-5, schedule_updates 136728, thresholds x2
+PASS  C and D trainings: no LR / threshold override (CURR_SCALE=0.4 in the job env was ignored)
+PASS  FC_DR_RESET / FC_DR_SEED: D trainings only (seed = training seed; FC_DR_RESET=9,9,9 in the job env was dropped)
+PASS  every training: 70,004,736 steps, its seed, the FDR recipe (curriculum v2d, force closure 6, FC_FDR_OBJ, FC_VOC_INERTIA)
+PASS  one reference directory per episode across arms, seeds and boxes  {'ep2': 1, 'ep18': 1, 'ep12': 1, 'ep24': 1}
+PASS  no evaluation process (ES, curve, NREP draws) saw FC_DR_RESET  461 evaluations: {'es_eval': 163, 'curve': 68, 'evaluate': 230}
+PASS  D/ep24-s43 crashed after 2 checkpoints -> train_failed, not present (checkpoints on disk are not scored)  ('train_failed', 2, ['training rc 1: stub training 20000768/70004736 stub: simulated crash (RuntimeError: CUDA error: an illegal memory access)'])
+PASS  K/ep2-s42 hung draw r7 killed by EVAL_TIMEOUT -> 9 of 10 draws, still present (>= 8)  ({'mean': 0.7934, 'sd': 0.2098, 'min': 0.4446, 'max': 1.1554, 'n': 9}, ['r7'])
+PASS  C/ep18-s42 hung ES watcher killed ES_TAIL s after its training; trained to the cap, scored by the curve  (['ES watcher killed 40 s after the training ended'], 7)
+PASS  only the hung ES watcher was killed (the others finished within ES_TAIL)  ['C/ep18-s42']
+PASS  early stopping ran: some trainings stopped before the cap (ES kill path)  {'C/ep2-s42': ('no new best for 20000768 steps at 40001536', 6), 'K/ep2-s42': ('no new best for 20000768 steps at 40001536', 6), 'D/ep2-s42': ('no new best for 20000768 steps at 40001536', 6), 'C/ep12-s42': ('two in a row >= 0.9 at 40001536', 6), 'K/ep12-s42': ('two in a row >= 0.9 at 40001536', 6), 'D/ep12-s42': ('two in a row >= 0.9 at 40001536', 6)}
+PASS  checkpoints chosen by sim_vs_ref (ep2 peak at 20M in the fake curve)
+PASS  every present cell has a config check as registered (D == C config hash)
+PASS  DR hook line in D trainings only
+PASS  K vs C = 'signal' (fake: mean +0.04, no episode <= -0.05)  ('signal', 0.0392)
+PASS  D vs C = 'INCOMPLETE' with the missing cell listed (not INVALID, not silently dropped)  ('INCOMPLETE', ['D/ep24-s43'], 'provisional', -0.01)
+PASS  missing cells listed  [{'cell': 'D/ep24-s43', 'status': 'train_failed', 'draws': 0}]
+PASS  reports present: seed selection per arm, sim_vs_ref vs AUC seed order  ({'C': 0.0025, 'K': 0.0058, 'D': 0.005}, '10/11')
+PASS  with the missing cell filled (fake): D vs C = 'signal' (sd -50 % on ep2 and ep12, mean -0.01 >= -0.02)  ('signal', -0.01)
+PASS  a cell on another reference -> INVALID for both verdicts  {'ep12': ["reference md5 differs between cells: ['00000000000000000000000000000000', '12d7f9d11427309859f75fd44d6afc03']"]}
+PASS  a K checkpoint without the K settings -> K vs C INVALID; D vs C unaffected  {'K/ep18-s42': ['learning_rate_peak 0.0003 != 0.0006']}
+PASS  a D checkpoint whose config differs from C -> D vs C INVALID  {'D/ep2-s42': ['resolved config differs from C (same ep, seed)']}
+PASS  a summary given twice: verdicts unchanged
+PASS  ... and its cells listed as duplicates (first kept)  12
+PASS  a box's results directory (no summary.json needed, e.g. a box that died) merges to the same verdicts
+0 FAIL
+sboxSX job exit 0
+sboxM job exit 0
+sboxS43 job exit 0
+sboxS42 job exit 0
+merge S (stub md5s) exit 0
+merge S (registered md5s) exit 0
+PASS  stand-ins: solved files differ from the base reference on ep2/12/24, equal it on ep18 (as the store), none is a decoy  {2: '01ea8959', 12: '575a5ca3', 18: '12d7f9d1', 24: '73e0a02d'}
+PASS  the 4 S boxes finished (job exit 0)  ['sboxSX', 'job', 'exit', '0', 'sboxM', 'job', 'exit', '0', 'sboxS43', 'job', 'exit', '0', 'sboxS42', 'job', 'exit', '0']
+PASS  8 S trainings on the two S boxes (4 each), no other arm  ['S/ep12-s42', 'S/ep12-s43', 'S/ep18-s42', 'S/ep18-s43', 'S/ep2-s42', 'S/ep2-s43', 'S/ep24-s42', 'S/ep24-s43']
+PASS  every S training read exactly one parquet, the solved file of its episode (psolve2 ep2/12, psolve ep18/24), in refs/screenS with its support stage  []
+PASS  train_cmd.txt of every S cell names refs/screenS/ep<N>/<hive> and never refs/glockt  'S/rs/dry6/sboxS42/refs/screenS/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave'
+PASS  S argv == C argv (same ep, seed; apart from task.parquet and output_dir) and S training env == C training env (no DR, FDR + VOC)  []
+PASS  args / env of C, K, D (seeds 42, 43): the new module prints exactly what the committed one (HEAD) prints  C/args/42:= C/env/42:= C/args/43:= C/env/43:= K/args/42:= K/env/42:=
+PASS  S args / env == C args / env (empty) in the module  ['\n', '\n', '\n']
+PASS  C / K / D trainings (boxes A, B) still read the physS1 file alone in refs/glockt  []
+PASS  C / K / D train_cmd.txt identical to the dry run of the pre-S code (dry4), root path aside  (24, [])
+PASS  C / K / D training argv and env as received by the training process: identical to dry4  (24, [])
+PASS  S box summary records S_ep<N> md5 / hive / src / in_md5 for the 4 episodes (and the physS1 ep<N> records)  {'S_ep12': ('575a5ca3', ['psolve2', 'ep12']), 'S_ep18': ('12d7f9d1', ['psolve', 'ep18']), 'S_ep2': ('01ea8959', ['psolve2', 'ep2']), 'S_ep24': ('73e0a02d', ['psolve', 'ep24']), 'ep12': ('12d7f9d1', []), 'ep18': ('12d7f9d1', []), 'ep2': ('12d7f9d1', []), 'ep24': ('12d7f9d1', [])}
+PASS  the solver input (ref_in.parquet) recorded = the box's physS1 reference, for every episode
+PASS  job log: S reference line per episode with 'solver input ... = this box's ... reference: yes'
+PASS  S box: refs/glockt holds the physS1 files untouched (G3's psolverl copies were not pulled)
+PASS  S box: only the registered sub-folders were pulled (no G1 ep2/ep12 output, no psolverl refs/glockt)
+PASS  S boxes: no training or evaluation saw FC_DR_RESET (FC_DR_RESET=9,9,9 in the job env dropped)  200
+PASS  8 S cells present, scored, ref_set solved, ref_md5 = the stand-in solved file, config as C, no DR line, trained on refs/screenS  {'S/ep2-s42': ('scored', '01ea8959'), 'S/ep12-s42': ('scored', '575a5ca3')}
+PASS  REF_MD5_CHECK=1 (default): the 4 stand-in solved files are refused (not the registered md5) and the S cells are not run  ['not_run', 'not_run', 'not_run', 'not_run']
+PASS  a mixed job (CELLS="C:12:42 S:12:42"): C on refs/glockt + physS1 file, S on refs/screenS + solved file  ['C/ep12-s42', 'S/ep12-s42']
+PASS  S vs C = 'signal' (fake deltas +0.10 / +0.03 / -0.01 / +0.02: mean +0.035, none <= -0.05) and the action starts eval solving  ('signal', 0.035, -0.01)
+PASS  per-episode draw sd reported for S and C (fake: C ep2 0.20, S ep2 0.12)  {'ep2': (0.2, 0.12), 'ep12': (0.03, 0.03), 'ep18': (0.06, 0.06), 'ep24': (0.02, 0.02)}
+PASS  per-seed S / C AUC and chosen checkpoints reported (ep2 per seed)
+PASS  box records in the verdict: the solver input equals the registered base reference (stub md5s)
+PASS  K_vs_C and D_vs_C (verdict, deltas, episodes, missing, invalid) and the C/K/D reports unchanged when the S boxes are merged in  ('signal', 'INCOMPLETE')
+PASS  verdict printout: S rows in the table and an 'S_vs_C: signal' line
+PASS  with the registered md5s (no --ref-md5), the stub files are caught: S vs C INVALID on every S and C cell  ['C/ep12-s42', 'C/ep12-s43', 'C/ep18-s42']
+PASS  a missing S cell -> S vs C 'INCOMPLETE', the cell listed, no mean; action stop  ['S/ep24-s43']
+PASS  a missing C cell -> S vs C 'INCOMPLETE' listing it  ['C/ep2-s43']
+PASS  one S box only (seed 43 missing) -> INCOMPLETE with the 4 seed-43 S cells  ['S/ep2-s43', 'S/ep12-s43', 'S/ep18-s43', 'S/ep24-s43']
+PASS  ep18 delta exactly -0.05 with a mean >= +0.03 -> 'no signal' (no delta <= -0.05)  (-0.05, 0.0375)
+PASS  mean delta +0.015 (< +0.03) -> 'no signal'  0.015
+PASS  S seeds of one episode on different files -> S vs C INVALID (S_ep12 listed); K / D unaffected  ['S/ep12-s43', 'S_ep12']
+PASS  S cells all on an unregistered file (consistent across seeds) -> INVALID
+PASS  a C cell on another file than the physS1 reference -> S vs C INVALID (and K / D INVALID as before)
+PASS  an S checkpoint not on C's config (K's LR) -> S vs C INVALID; K / D unaffected
+PASS  the DR hook active in an S training -> INVALID
+PASS  an S checkpoint trained on the physS1 tree (refs/glockt) -> INVALID  ['trained on S/rs/dry6/sboxS42/refs/glockt/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave, not on refs/screenS/ep24']
+PASS  an S summary given twice: S vs C unchanged
+PASS  results directories (boxes that died) merge to the same S vs C
+PASS  rule boundaries: mean exactly +0.03 signal, +0.0299 no signal; a delta of exactly -0.05 no signal, -0.0499 signal; harm-size no signal; a missing S or C cell INCOMPLETE (registered md5s pass)  [('signal', 'signal'), ('no signal', 'no signal'), ('no signal', 'no signal'), ('signal', 'signal'), ('no signal', 'no signal'), ('INCOMPLETE', 'INCOMPLETE'), ('INCOMPLETE', 'INCOMPLETE')]
+0 FAIL
+dry_run exit 0 2026-10-31T17:17:51Z
+
+Merged printout with the S boxes (S/rs/dry6/merged_S.txt, last lines):
+missing cells: ['D/ep24-s43 (train_failed, 0 draws)']
+S_vs_C: signal  mean delta 0.035  min delta -0.01  (provisional on complete episodes 0.035)  -> eval solving starts (owner pre-approval, physics-solver.md section 9); pack 10 swap rule decides what is packed
+   ep2: C 0.705 S 0.805 delta 0.1 draw sd C 0.2 S 0.12  s42: C 0.7 @20000768 S 0.8 @20000768  s43: C 0.71 @20000768 S 0.81 @20000768
+   ep12: C 0.885 S 0.915 delta 0.03 draw sd C 0.03 S 0.03  s42: C 0.88 @60002304 S 0.91 @60002304  s43: C 0.89 @60002304 S 0.92 @60002304
+   ep18: C 0.605 S 0.595 delta -0.01 draw sd C 0.06 S 0.06  s42: C 0.6 @10002432 S 0.59 @10002432  s43: C 0.61 @10002432 S 0.6 @10002432
+   ep24: C 0.225 S 0.245 delta 0.02 draw sd C 0.02 S 0.02  s42: C 0.22 @40001536 S 0.24 @40001536  s43: C 0.23 @40001536 S 0.25 @40001536
+
+== 5. Correction (17:25 UTC): the dry6 check 'args / env of C, K, D ... committed one (HEAD)' was void: the coordinator
+committed this work as a710b43 at 17:01, before dry6's checker ran, so HEAD already held the new module. dry_check_s.py now
+compares against BASE_COMMIT (default 2e25459, the running boxes' commit; 865dfbb and 107edd0 hold the same recipe_screen.py
+c1d36554 and job b34c09e5). Re-run of the checker on the same dry6 boxes (no new job run):
+Command: S/venv/bin/python tools/recipe_screen_tests/dry_check_s.py S/rs/dry6 <REF> S/rs/dry4   -> exit 0
+Code: dry_check_s.py e4ac24b6; other files as in section 4 (= a710b43).
+PASS  stand-ins: solved files differ from the base reference on ep2/12/24, equal it on ep18 (as the store), none is a decoy  {2: '01ea8959', 12: '575a5ca3', 18: '12d7f9d1', 24: '73e0a02d'}
+PASS  the 4 S boxes finished (job exit 0)  ['sboxSX', 'job', 'exit', '0', 'sboxM', 'job', 'exit', '0', 'sboxS43', 'job', 'exit', '0', 'sboxS42', 'job', 'exit', '0']
+PASS  8 S trainings on the two S boxes (4 each), no other arm  ['S/ep12-s42', 'S/ep12-s43', 'S/ep18-s42', 'S/ep18-s43', 'S/ep2-s42', 'S/ep2-s43', 'S/ep24-s42', 'S/ep24-s43']
+PASS  every S training read exactly one parquet, the solved file of its episode (psolve2 ep2/12, psolve ep18/24), in refs/screenS with its support stage  []
+PASS  train_cmd.txt of every S cell names refs/screenS/ep<N>/<hive> and never refs/glockt  'S/rs/dry6/sboxS42/refs/screenS/ep2/processed/sequence_id=t3_ep002/robot_name=sharpa_wave'
+PASS  S argv == C argv (same ep, seed; apart from task.parquet and output_dir) and S training env == C training env (no DR, FDR + VOC)  []
+PASS  args / env of C, K, D (seeds 42, 43): the new module prints exactly what the pre-S module (2e25459, md5 c1d36554) prints  C/args/42:= C/env/42:= C/args/43:= C/env/43:= K/args/42:= K/env/42:=
+PASS  S args / env == C args / env (empty) in the module  ['\n', '\n', '\n']
+PASS  C / K / D trainings (boxes A, B) still read the physS1 file alone in refs/glockt  []
+PASS  C / K / D train_cmd.txt identical to the dry run of the pre-S code (dry4), root path aside  (24, [])
+PASS  C / K / D training argv and env as received by the training process: identical to dry4  (24, [])
+PASS  S box summary records S_ep<N> md5 / hive / src / in_md5 for the 4 episodes (and the physS1 ep<N> records)  {'S_ep12': ('575a5ca3', ['psolve2', 'ep12']), 'S_ep18': ('12d7f9d1', ['psolve', 'ep18']), 'S_ep2': ('01ea8959', ['psolve2', 'ep2']), 'S_ep24': ('73e0a02d', ['psolve', 'ep24']), 'ep12': ('12d7f9d1', []), 'ep18': ('12d7f9d1', []), 'ep2': ('12d7f9d1', []), 'ep24': ('12d7f9d1', [])}
+PASS  the solver input (ref_in.parquet) recorded = the box's physS1 reference, for every episode
+PASS  job log: S reference line per episode with 'solver input ... = this box's ... reference: yes'
+PASS  S box: refs/glockt holds the physS1 files untouched (G3's psolverl copies were not pulled)
+PASS  S box: only the registered sub-folders were pulled (no G1 ep2/ep12 output, no psolverl refs/glockt)
+PASS  S boxes: no training or evaluation saw FC_DR_RESET (FC_DR_RESET=9,9,9 in the job env dropped)  200
+PASS  8 S cells present, scored, ref_set solved, ref_md5 = the stand-in solved file, config as C, no DR line, trained on refs/screenS  {'S/ep2-s42': ('scored', '01ea8959'), 'S/ep12-s42': ('scored', '575a5ca3')}
+PASS  REF_MD5_CHECK=1 (default): the 4 stand-in solved files are refused (not the registered md5) and the S cells are not run  ['not_run', 'not_run', 'not_run', 'not_run']
+PASS  a mixed job (CELLS="C:12:42 S:12:42"): C on refs/glockt + physS1 file, S on refs/screenS + solved file  ['C/ep12-s42', 'S/ep12-s42']
+PASS  S vs C = 'signal' (fake deltas +0.10 / +0.03 / -0.01 / +0.02: mean +0.035, none <= -0.05) and the action starts eval solving  ('signal', 0.035, -0.01)
+PASS  per-episode draw sd reported for S and C (fake: C ep2 0.20, S ep2 0.12)  {'ep2': (0.2, 0.12), 'ep12': (0.03, 0.03), 'ep18': (0.06, 0.06), 'ep24': (0.02, 0.02)}
+PASS  per-seed S / C AUC and chosen checkpoints reported (ep2 per seed)
+PASS  box records in the verdict: the solver input equals the registered base reference (stub md5s)
+PASS  K_vs_C and D_vs_C (verdict, deltas, episodes, missing, invalid) and the C/K/D reports unchanged when the S boxes are merged in  ('signal', 'INCOMPLETE')
+PASS  verdict printout: S rows in the table and an 'S_vs_C: signal' line
+PASS  with the registered md5s (no --ref-md5), the stub files are caught: S vs C INVALID on every S and C cell  ['C/ep12-s42', 'C/ep12-s43', 'C/ep18-s42']
+PASS  a missing S cell -> S vs C 'INCOMPLETE', the cell listed, no mean; action stop  ['S/ep24-s43']
+PASS  a missing C cell -> S vs C 'INCOMPLETE' listing it  ['C/ep2-s43']
+PASS  one S box only (seed 43 missing) -> INCOMPLETE with the 4 seed-43 S cells  ['S/ep2-s43', 'S/ep12-s43', 'S/ep18-s43', 'S/ep24-s43']
+PASS  ep18 delta exactly -0.05 with a mean >= +0.03 -> 'no signal' (no delta <= -0.05)  (-0.05, 0.0375)
+PASS  mean delta +0.015 (< +0.03) -> 'no signal'  0.015
+PASS  S seeds of one episode on different files -> S vs C INVALID (S_ep12 listed); K / D unaffected  ['S/ep12-s43', 'S_ep12']
+PASS  S cells all on an unregistered file (consistent across seeds) -> INVALID
+PASS  a C cell on another file than the physS1 reference -> S vs C INVALID (and K / D INVALID as before)
+PASS  an S checkpoint not on C's config (K's LR) -> S vs C INVALID; K / D unaffected
+PASS  the DR hook active in an S training -> INVALID
+PASS  an S checkpoint trained on the physS1 tree (refs/glockt) -> INVALID  ['trained on S/rs/dry6/sboxS42/refs/glockt/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave, not on refs/screenS/ep24']
+PASS  an S summary given twice: S vs C unchanged
+PASS  results directories (boxes that died) merge to the same S vs C
+PASS  rule boundaries: mean exactly +0.03 signal, +0.0299 no signal; a delta of exactly -0.05 no signal, -0.0499 signal; harm-size no signal; a missing S or C cell INCOMPLETE (registered md5s pass)  [('signal', 'signal'), ('no signal', 'no signal'), ('no signal', 'no signal'), ('signal', 'signal'), ('no signal', 'no signal'), ('INCOMPLETE', 'INCOMPLETE'), ('INCOMPLETE', 'INCOMPLETE')]
+0 FAIL

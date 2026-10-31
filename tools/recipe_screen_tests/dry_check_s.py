@@ -3,7 +3,8 @@ on the solved file alone in its own task tree, with C's arguments and environmen
 commands as the dry run of the code before arm S, and the same args / env as the committed module); the job refuses an
 unregistered solved file; the merge gives section 9's verdict on the FAKE numbers (signal / no signal / INCOMPLETE /
 INVALID), and the K_vs_C / D_vs_C verdicts do not change when S summaries are merged in.
-Usage: dry_check_s.py DRY_DIR REF.parquet [OLD_DRY_DIR]"""
+Usage: dry_check_s.py DRY_DIR REF.parquet [OLD_DRY_DIR]   (BASE_COMMIT env: the pre-S code to compare C / K / D against;
+default 2e25459, the commit the two running screen boxes use; 865dfbb holds the same recipe_screen.py)"""
 import copy, glob, hashlib, json, os, subprocess, sys
 
 D, REF = sys.argv[1], sys.argv[2]; OLD = sys.argv[3] if len(sys.argv) > 3 and sys.argv[3] else None
@@ -69,15 +70,17 @@ check('S argv == C argv (same ep, seed; apart from task.parquet and output_dir) 
       not diff and len(ts) == 8, diff[:2])
 # ---- C / K / D unchanged
 ok_args = True; info = []
-old_src = subprocess.run(['git', '-C', REPO, 'show', 'HEAD:tools/recipe_screen.py'], capture_output=True, text=True, check=True).stdout
-open(f'{D}/recipe_screen_HEAD.py', 'w').write(old_src)
+BASE = os.environ.get('BASE_COMMIT', '2e25459')
+old_src = subprocess.run(['git', '-C', REPO, 'show', f'{BASE}:tools/recipe_screen.py'], capture_output=True, text=True, check=True).stdout
+open(f'{D}/recipe_screen_base.py', 'w').write(old_src)
 for arm in 'CKD':
     for seed in SEEDS:
         for sub, extra in (('args', ['70004736']), ('env', [str(seed), '1.5,0.015,0.01'])):
-            o = subprocess.run([sys.executable, f'{D}/recipe_screen_HEAD.py', sub, arm, *extra], capture_output=True, text=True).stdout
+            o = subprocess.run([sys.executable, f'{D}/recipe_screen_base.py', sub, arm, *extra], capture_output=True, text=True).stdout
             n = subprocess.run([sys.executable, TOOL, sub, arm, *extra], capture_output=True, text=True).stdout
             ok_args &= (o == n); info.append(f'{arm}/{sub}/{seed}:{"=" if o == n else "DIFF"}')
-check('args / env of C, K, D (seeds 42, 43): the new module prints exactly what the committed one (HEAD) prints', ok_args, ' '.join(info[:6]))
+check(f'args / env of C, K, D (seeds 42, 43): the new module prints exactly what the pre-S module ({BASE}, md5 '
+      f'{hashlib.md5(old_src.encode()).hexdigest()[:8]}) prints', ok_args and old_src != open(TOOL).read(), ' '.join(info[:6]))
 s_ae = [subprocess.run([sys.executable, TOOL, sub, 'S', *extra], capture_output=True, text=True).stdout for sub, extra in
         (('args', ['70004736']), ('env', ['42', '1.5,0.015,0.01']), ('env', ['43', '1.5,0.015,0.01']))]
 c_ae = [subprocess.run([sys.executable, TOOL, sub, 'C', *extra], capture_output=True, text=True).stdout for sub, extra in

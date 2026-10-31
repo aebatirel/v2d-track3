@@ -5941,3 +5941,20 @@ Background agent, CPU only, $0, no ground truth read.
 - Plan: 2 boxes (evsolve1: 35 36 33 20 16 15 37; evsolve2: 3 5 38 32 6 8 10 14), 3.9–4.7 h each [E], ≈ $9–14 [E],
   worst ≈ $12–17. Launches only if §9 gives "signal" (owner pre-approved). Caveats: solved under 0.3 kg; eval 10 V4p
   path pending.
+
+### 2026-10-31 17:20 UTC — determined-wright: arm S built and CPU-tested (physics-solver.md §9)
+- Code (a710b43 + this commit): `tools/recipe_screen.py` (arm S = C with the solved references; registered md5s;
+  `S_vs_C` with §9's rule unchanged), `ops/jobs/recipe_screen.sh` (S refs from `SRCREF_S=20261030-psolverl-04301a2`,
+  alone in `refs/screenS/ep<N>` as G3's task dirs; md5 check), tests in `tools/recipe_screen_tests/`
+  (`arm_s_test_log.txt`, `solved_refs_check.py`).
+- Real files [M]: the S files are exactly what G3 trained on; their solver inputs are the screen's physS1 files
+  (b4807f41 / 96ddc1ca / f0f14155 / 699fe426); object columns identical on all 4 (only wrist/finger targets differ:
+  ep2 312/343 frames, ep12 180/181, ep24 30/275). **ep18's solved file is byte-identical to its input** (G1 edited
+  0 of 353 frames), so Δ(ep18) measures only seed and box noise; §9 counts it anyway.
+- CPU dry runs [fake numbers]: C/K/D 29/29 PASS (train commands identical to dry4), arm S 41/41 PASS (signal / no
+  signal / INCOMPLETE / INVALID and the ±0.03 / −0.05 boundaries; K_vs_C and D_vs_C unchanged). Re-checked here: S
+  args/env print empty, the same as C.
+- Plan [E]: 2 boxes ARMS=S SEEDS=42 | 43, ~2.9–3.9 h each, ≈ $6.5–11.5 (worst ≤ $15). The control is the C cells
+  of rscr42/rscr43 (non-concurrent).
+- The builder left three stray files at the container root (/exits_s.txt, /merged_S*.txt). Its delete was blocked by
+  the safety check, so they are left in place and reported to the owner. They are outside the repo.
