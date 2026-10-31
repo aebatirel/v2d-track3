@@ -435,3 +435,20 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   B's edge points (camera in the plate plane, view along z = float32 rounding of either sign) put a few hundred points
   on the -z side, so B read two-sided and failed the checks (`camera_side_two_sided_fail`), out of scope; fixture
   corrected to keep only the +z face (the w7 scenario). Re-running w6b + w7 now.
+
+## ORCHESTRATOR NOTE (31 Oct ~17:30 UTC): OWNER EXTENDS THE WAIVER TO EVERY COLLIDING PAIR
+- Owner, verbatim, this session: "but like we said it doesnt have to be a board it can be a cup of what ever like if 2
+  mesh collide we can carve it".
+- New scope (to be written as PREREG F-I5 before any run): any pair whose simulator colliders interpenetrate
+  persistently along our tracks may be CARVED. This covers cups, pot/lid, cup or pot in rack, sweeper/dust pan/rack, and
+  boards. Class O, the silhouette and the push preference no longer block a carve. The rigid-shift alternative is still
+  computed and reported, not used to veto.
+- Kept as acceptance, so a carve that breaks the physics is reported and not delivered:
+  - pieces keep-out;
+  - hands-off rest / sink;
+  - free travel;
+  - replay drift;
+  - overlap.
+- The ev10w evidence is to be addressed in the design: a widened cup cavity let the guest sink ~11 mm, and hands-off
+  went 40/43 -> 4/43.
+- Run as a separate workflow (collision-carve) that waits for the board-slot Build step before editing shared code.
