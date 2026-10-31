@@ -371,3 +371,4 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   p1_pending (amends F-I2.12 for this route only).
 - 16:16 PREREG F-I4 written (F-I4.0-F-I4.11; predictions P35-P39, T-I1 w1-w5). Next: INTERLOCK section 20 + pointers.
 - 16:18 INTERLOCK section 20 written (+ header and section-0 pointers). Committing F-I4 + section 20 now (no code changed, nothing run).
+- 16:19 committed and pushed c13f53c (PREREG F-I4, INTERLOCK 20, this log). Amend step done; no code changed, nothing run. Next step (build): platebody.py, --waiver-fi4 branch, P3 overlap clause, T-I1 w1-w5, then T-I11 (INTERLOCK 20.6).
