@@ -5462,3 +5462,21 @@ Advice given:
   20261026-c25s42-feb0407, md5 71ac95f3…); D patch md5 570a7f47793d with ENV_EP25 = FC_DR_RESET=1.5,0.015,0.01
   FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1; runs/perc2mckdr/ep25-s42/train.log: "… 2 objects, 44 finger joints, 4096 worlds,
   seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)" (tail as required).
+- 23:28 UTC **eval-10 V4p retrain: NO-SWAP [EQUAL FLOOR]** (run 20261031-e10v-caf38fb, commit caf38fb, instance 58578590,
+  $1.375/h; run_job.log: gpu RTX PRO 6000 WS driver 590.48.01, env restored, job rc 0 after 139 min; ledger actual $3.25).
+  verify VERIFIED (B0 DIFFERS, identity e2s V4p_track 0.007 / stored 1.751, own-reference checks 41/41, 10 confirmation
+  draws rc 0). Seeds: s42 best 50M n 10 sim_vs_ref 0.4524 ± 0.0166; s43 best 60M 0.4512 ± 0.0165; rule 2 chose 43
+  (sha256 bcc51063…). Curves: blue_cup lift 0 at all 7 checkpoints of BOTH seeds [M]. Clauses vs V: a FAIL new 0.4593 vs
+  packed 0.4632 (−0.004); b ok fail rate 1.0 vs 1.0; c ok median RPE 15.864 vs 16.040; s ok draw1 0.4565 ≥ 0.4217.
+  vs P: a FAIL 0.4486 vs 0.4525; b ok; c ok 15.672 vs 15.846; s ok. Both policies fail every draw (EQUAL FLOOR note).
+  [M] The ep11 gate PASS (seed 43 +0.271 vs mocap on the public twin) did not transfer to eval 10: the eval-10 policy never
+  lifts the cup. [H] eval 10's grasp-lock reference / initial state differs from ep11's in a way the gate did not cover;
+  not investigated tonight. Eval 10 stays as packed; pack 9b no longer includes eval 10. Files: ev10retrain/results/.
+- 23:33 UTC **masses v2: NOT ADOPTED** (PREREG masses-v2-20261031 §5, `tools/mass_verdict.py --rule v2`, exit 0):
+  mean delta +0.0034 < +0.03; 1/4 episodes > 0 (needs ≥ 3). ep24 0.3268 → 0.3652 (+0.0384; s42 −0.008, s43 +0.085);
+  ep11 0.5147 → 0.5002 (−0.0144; +0.037 / −0.066); ep13 0.5493 → 0.5473 (−0.002; +0.001 / −0.005); ep31 0.7505 → 0.7421
+  (−0.0085; −0.047 / +0.030). Both verify.json ok, no failures / missing, eval timeouts none; all four references
+  md5 + fingerprint = the table's. mv2b's final push FAILED at 23:11 (box retries in 60 min, then self-destroys); the 30
+  merge files were already in the store (pulled 30/30). Copied verify/summary/job.log of both boxes into results/.
+- 23:32 UTC S30a: `create 56216789 20261031-drS30s42-a1a7e25 'ARM=dr MODE=std EPS="30" SEEDS="42" bash ops/jobs/mass_eval.sh'`
+  → instance 58590659 (Poland, $1.271/h); ledger planned $3.00.

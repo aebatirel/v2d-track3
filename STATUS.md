@@ -10,6 +10,18 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 ~23:35 UTC: eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED; D arm running (5 boxes)
+- **Eval-10 V4p retrain** (`20261031-e10v-caf38fb`, VERIFIED, 10/10 confirmation draws rc 0): **NO-SWAP**, equal floor.
+  Neither seed ever lifts the blue cup (curve "lift 0" at every checkpoint, both seeds). The new policy scores 0.459 vs the
+  packed 0.463 on V and 0.449 vs 0.453 on P. Failure rate is 10/10 on both, RPE ~15.9 cm. The ep11 gate's transfer
+  (+0.142 on the public twin) did not carry to eval 10. Eval 10 stays as packed. Cost $3.25.
+- **Masses v2** (boxes mv2a2 + mv2b, both VERIFIED, no eval timeouts): **NOT ADOPTED**. Mean delta +0.0034 (bar +0.03);
+  1/4 episodes > 0 (needs 3). ep24 +0.038, ep11 −0.014, ep13 −0.002, ep31 −0.009. The placeholder 0.3 kg stays.
+  Record: `docs/research/work/masses-v2-20261031/results/`.
+- **D arm** (pack 9b): G (evals 14/16/33 grasp lock), S25 s42/s43, S30 s42 running; S30 s43 at ~23:45. Canary and
+  std-path D lines verified. Reading after all five + one confirmation box (`dr_eval_merge.py`).
+- Pack 9b = 9a+ plus any D cell that passes the rule (eval 10 is now out). Nothing is uploaded from this session.
+
 ## 2026-10-31 ~23:00 UTC: re-track test FAIL (P_o' per-episode C0b/E0b templates vs stored P_o, 20 public eps)
 - Pre-registered verdict (`docs/research/work/retrack-20261031/verdict.txt`): mean dR −0.170 (bar ≥ +0.01), dR > 0 on
   3/20 (bar ≥ 12), min dR −0.973 (bar ≥ −0.03), mean dRPE +1.32 cm (bar ≤ 0). Raw mean dR −0.169. Fails every clause.
