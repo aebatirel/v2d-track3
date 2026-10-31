@@ -5594,3 +5594,12 @@ Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on 
 - ~16:15 UTC focused-pascal: fresh draws of the packed policies with rollouts kept, as the pack-10 comparison set
   (PREREG uses them for (a), (b) and (c); H5 means as a cross-check). H5p7: pack 7's 20 policies, N=10, ≈ $2.5–3.5.
   H5e1: pack 8's eval-1 policy, ≈ $1.2–1.6. Launch ≈ 17:00–17:30 UTC; ≈ $4–5 total, stated to the owner by that lane.
+- ~16:10 UTC bold-albattani: C0 frame check sent to focused-pascal (cdo-sprint/C0/verify_handoff.md, commit 694dc73).
+  - pot YES; lid YES (borderline); rack YES with a caveat: 2.3° rotation vs library_v3, ~10 mm at the ends;
+  - blue cup NO (6.7 mm axial offset; already out of 9a);
+  - kit dry run: 0 warnings.
+  Reading: CD-O re-registers, so the rack's frame offset does not reduce the CD-O gain. It may cost AUC/RPE in the
+  rack episodes, but each board keeps its best.
+  AUC guard 40/51, verdict ≈ 16:30; shipping before it is recorded as a deviation from C0 PREREG §5. E0 (eval-built
+  meshes) moved to a self-destroying Vast CPU box (≈ $1–4). Eval-25 board-slot build started (owner waived the camera
+  rule for the slot, in that session); it needs an eval-25 re-run to take effect.
