@@ -5916,3 +5916,14 @@ Background agent, CPU only, $0, no ground truth read.
   - If "signal", eval solving (≈ $15 [E]) starts without asking again.
 - Agents building on CPU: arm S in the recipe screen, and `ops/jobs/eval_solve.sh`. Asked focused-pascal for pack 10's
   grasp-lock eval episodes and their reference/asset inputs.
+
+### 2026-10-31 16:55 UTC — determined-wright: masses v2 pre-registration reviewed, GO
+- Reviewed focused-pascal's PREREG (claude/focused-pascal-2nz9s1, 8c05528 + verdict fixes 74da763,
+  docs/research/work/masses-v2-20261031/).
+  - Selection by library_v3 baseline only: ep24 0.2406, ep11 0.5249 (twin11v3 frozen reference, not V4p), ep13 0.5428,
+    ep31 0.6951.
+  - The owner's rule is applied verbatim at reported precision. INCOMPLETE / INVALID handling is correct.
+- GO; ep31 accepted explicitly (the frozen-recipe preference matches the first check's builds). Caveat sent: ep11/ep13
+  sit at non-mass floors, so the "3 of 4 > 0" clause is near a coin flip there. Its §7 puts P(ADOPT) at ≈ 0.59 even with
+  +0.12 on ep24/ep31 [E]; with no effect, a false ADOPT is ≈ 0.13 [E]. ≈ $18 [E]; focused-pascal launches and keeps the
+  ledger lines.
