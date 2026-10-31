@@ -1855,6 +1855,29 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     as-built lathe R+ rule (F-I5.11 (3)) can carve far more than K inside R+ (19.5 cm3 removed for 0.39 cm3). Code fix
     found by D2 (cbed3cb): `decide_component` returned CARVE with an empty carve set (crash in `carve_solid`); an empty
     set is now a PUSH. No rule is changed by this entry; the open decisions are listed in INTERLOCK 21.10.
+  - **F-I5.14 T-I13 public runs as executed (written 19:17 UTC, before any T-I13 run; post hoc with respect to the
+    F-I5.12 / F-I5.13 results, which the author has read).** No decision of INTERLOCK 21.10 has been written, so the
+    public runs use **the rule as written**: F-I5.0-F-I5.10 as built (F-I5.11) with the cbed3cb fix (an empty carve set
+    is a PUSH); D2 (F-I5.13) is not used. (1) **Inputs** (GT-free, F-I5.8): the newest clean bundles, v6
+    (`runs/20261031-b4ext6-90c8cce`: ep11, ep2, ep12, ep13, ep31 extract rc 0, strace audit forbidden 0; the v6
+    identity / B.2a step has not run, so no IDENTITY_SWAP flag is present; under `--identity eval` it would only flag);
+    our M1 hands of the same run (`hands/public/epN/hands.npz`, copied into the dev run, sha256 in `in/SOURCES.sha256`);
+    CPU candidates rebuilt from the v6 bundles by `tools/interlock_cands.py` (producers and dev t0 unchanged); picks as in
+    the earlier dev runs: shell_t5p36 for every object except the ep2 lid (hull, as in drv2_t3); the F-I5 body is the
+    driver's default (the pick if it is a SHELL candidate, else the first shell_* candidate). P_sim = P_sel
+    (`sim_pose_fallback`). (2) **Command** per episode (dev run `runs-dev/20261031-fi5pub-3053a78`, one tag `fi5`):
+    `GMG_MODE=dev nice -n 5 python -m gmg.tools.interlock_dev --run <run> --ep N --bundle <v6>/epN --cands
+    <run>/cand/public/epN --pick <picks> --hands <run>/in/handsN/hands.npz --proxy-copies 16 --identity eval --waiver-fi5
+    --no-physcheck --tag fi5`; no `--video`: the silhouette cannot change an F-I5 decision (F-I5.4), so the reported
+    flag-off decision (F-I5.7 (iv)) is the no-silhouette one and is labelled so. (3) **Order:** ep12, ep13, ep31, ep11,
+    ep2 (owner priority relayed by the task; F-I5.9 listed ep11 first; the code is frozen, so the order changes no
+    outcome). (4) **Report-only addition (post hoc, decides nothing):** when an in-scope pair's carve stops before the
+    acceptance (caps fail or no feasible carve) and a hands-off static frame and the table exist, S is also run on the
+    default pieces and on the failed carve (`diag_S_rows`, the D2 rows mechanism, `collcarve.FI5(diag_sink=True)`,
+    on by default in `run_episode` only; T-I12 / D2 unaffected), so that every in-scope pair reports how the delivered
+    default holds the guest. Decisions, caps, acceptance and delivery are unchanged. (5) Predictions P41-P48 stand as
+    written. Expectation [E, from F-I5.12, not a new prediction]: cup nests may stop at the caps before S, by mechanisms
+    (i)-(iii) of F-I5.12. (6) Machine: this container (4 shared cores, load ~16); no rental.
 
 ## Revision 1 changelog
 

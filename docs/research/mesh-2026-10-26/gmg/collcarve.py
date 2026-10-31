@@ -238,16 +238,19 @@ class FI5:
     Diagnostic overrides (tests x4, x5 only; never in a delivery): c_override (m), no_overshoot. diag_rest: PREREG
     F-I5.13 diagnostic D2 (post hoc; never delivered): rest-anchored pocket, band edges at the carve's ends with <= 30 mm
     bands inside it (amended 18:41 before any D2 result), volume and reach caps reported only (topology still gates), S
-    also on default and failed carves."""
+    also on default and failed carves. diag_sink: PREREG F-I5.14 (post hoc, report only, written before the T-I13 public
+    runs): when an in-scope pair's carve stops before the acceptance (caps or no feasible carve), S rows on the default
+    and the failed carve are reported as diag_S_rows; nothing about the decision or the delivery changes."""
 
     def __init__(self, b, objects, hands=None, copies=None, log=None, physics=True, c_override=None,
-                 no_overshoot=False, poses=None, n_objects=None, diag_rest=False):
+                 no_overshoot=False, poses=None, n_objects=None, diag_rest=False, diag_sink=False):
         self.b, self.objects, self.hands = b, objects, hands
         self.copies = copies or 16
         self.log = log or (lambda *a: None)
         self.physics = physics
         self.c_override, self.no_overshoot = c_override, no_overshoot
         self.diag_rest = bool(diag_rest)
+        self.diag_sink = bool(diag_sink)
         self.poses = poses
         self.n_objects = n_objects or len(objects)
         self.results = {}
@@ -802,7 +805,8 @@ class FI5:
         if self.diag_rest and carved is not None:        # D2 (c): volume and reach reported, topology gates
             caps_gate = bool(W['caps'].get('ok_topology'))
             W['caps']['diag_gating'] = 'D2: topology only (volume and reach reported)'
-        if self.diag_rest and self.physics and not caps_gate and rest[1] and self.b.meta.get('table'):
+        if (self.diag_rest or self.diag_sink) and self.physics and not caps_gate and rest[1] and \
+                self.b.meta.get('table'):                # D2 / F-I5.14: report-only S rows, never deciding
             W['diag_S_rows'] = self._sink_rows(recv, guest, carved, rest[1])
         if carved is not None and caps_gate and self.physics:
             n_axis = IL.axes_of(ev_r.grid.centres(comp0.lin), comp0.run.d)[1][1]
@@ -924,13 +928,13 @@ def object_routes(b, objs, bodies, picks_mesh, out_dir, log, structure=None, pla
 
 
 def run_pairs(b, objects, fh=None, hands=None, identity='eval', copies=16, log=None, physics=True, c_override=None,
-              no_overshoot=False, pairs=None, diag_rest=False):
+              no_overshoot=False, pairs=None, diag_rest=False, diag_sink=False):
     """Collider sides of every pair (F-I5.1, make_side: the same constructor as the export path), decide_pair with the
     F-I5 branch. OBJECTS as in FI5. Returns (ctx, report)."""
     log = log or print
     objs = list(objects)
     ctx = FI5(b, objects, hands=hands, copies=copies, log=log, physics=physics, c_override=c_override,
-              no_overshoot=no_overshoot, diag_rest=diag_rest)
+              no_overshoot=no_overshoot, diag_rest=diag_rest, diag_sink=diag_sink)
     pairs = pairs or [(objs[i], objs[j]) for i in range(len(objs)) for j in range(i + 1, len(objs))]
     report = dict(pairs={}, overlap_track={}, decisions=[])
     for o, p in pairs:
@@ -954,9 +958,10 @@ def run_pairs(b, objects, fh=None, hands=None, identity='eval', copies=16, log=N
 
 
 def run_episode(b, ep, objs, cands, picks, bodies, fh, hands, out_dir, sim_dir, identity='eval', copies=16, log=None,
-                structure=None, plate=None, physics=True, split='public'):
+                structure=None, plate=None, physics=True, split='public', diag_sink=True):
     """tools/interlock_dev.py --waiver-fi5: default colliders (object_routes), run_pairs, delivery. Returns the F-I5
-    report (JSON-ready)."""
+    report (JSON-ready). diag_sink (PREREG F-I5.14, report only): S rows on the default and the failed carve of an
+    in-scope pair whose carve stops before the acceptance."""
     log = log or print
     t0 = time.time()
     objects = object_routes(b, objs, bodies, {o: cands[o][picks[o]] for o in objs}, out_dir, log, structure, plate)
@@ -968,7 +973,9 @@ def run_episode(b, ep, objs, cands, picks, bodies, fh, hands, out_dir, sim_dir, 
     if missing:
         report['do_not_use'] = f'no compliant default pieces: {missing}'
         return report
-    ctx, rp = run_pairs(b, objects, fh=fh, hands=hands, identity=identity, copies=copies, log=log, physics=physics)
+    ctx, rp = run_pairs(b, objects, fh=fh, hands=hands, identity=identity, copies=copies, log=log, physics=physics,
+                        diag_sink=diag_sink)
+    report['diag_sink'] = bool(diag_sink)
     report.update({k: v for k, v in rp.items() if not k.startswith('_')})
     if sim_dir:
         man = deliver(sim_dir, b, ep, split, ctx, {o: cands[o][picks[o]] for o in objs},

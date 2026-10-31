@@ -682,6 +682,20 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   copied to `build/I/results/fi5-tI12/` (JSON + logs + README, 632 KB). **Build step done**: code and hooks in place,
   T-I12 run (misses recorded), D2 diagnostic done; T-I13 real runs not started (they need the decisions in INTERLOCK
   21.10 or the rule as written, plus hands / candidates for ep11, ep2, ep12, ep13, ep31).
+- 19:15 (Public runs step, collision-carve workflow, T-I13 public) started. Read this log (last entry 19:11, Build done),
+  INTERLOCK 21 (incl. 21.10), PREREG F-I5-F-I5.13. No decision of INTERLOCK 21.10 has been written, so these runs use
+  **the rule as written** (F-I5 + F-I5.11 as built, code 3053a78; D2 is a diagnostic, not used). Inputs, GT-free: the
+  newest clean bundles **v6** (`runs/20261031-b4ext6-90c8cce`, all five episodes rc 0, strace audit forbidden 0; the v6
+  identity / B.2a step has not run, so no IDENTITY_SWAP flag exists in them; with `--identity eval` it would only flag);
+  hands = v6 M1 output (`hands/public/epN/hands.npz`, copied into the run as in i2probe); candidates rebuilt from the v6
+  bundles with `tools/interlock_cands.py` (same producers and dev_constants as the earlier dev runs), picks as in the
+  earlier dev runs (shell_t5p36; ep2 lid hull). New dev run `runs-dev/20261031-fi5pub-3053a78`. Run order (owner
+  priority, task text): ep12, ep13, ep31, ep11, ep2 (PREREG F-I5.9 listed ep11 first; the code is frozen, so the order
+  changes no outcome). Local container (load ~16 on 4 cores); no rental decided yet.
+- 19:17 PREREG F-I5.14 written (T-I13 public as executed: rule as written, v6 inputs, picks, command, order; report-only
+  `diag_S_rows` for in-scope pairs whose carve stops before the acceptance, `collcarve.FI5(diag_sink=True)`, on by
+  default in `run_episode` only, no decision change). Candidates building since 19:16 (`<run>/cands<N>.log`, all five in
+  parallel, nice 5). Committing + pushing before any T-I13 run.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
