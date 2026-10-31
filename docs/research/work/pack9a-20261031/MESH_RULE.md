@@ -41,3 +41,14 @@ blue cup is prepared only so that the owner can choose it.
   lid 4.12 → 4.01, rack 5.19 → 4.90, blue cup 3.70 → 3.31. The overlap with library_v3 is dominated by real shape
   difference (4–5 mm); the "rotation" relative to library_v3 is weakly determined (three methods give 1.9–2.5° for the
   rack) and improves the overlap by ≤ 0.4 mm.
+
+## Rule applied (~17:00 UTC by this session's reading order)
+- The mesh session's AUC-guard message (queued 16:10 UTC server clock) was read only after the rule and C0a above were
+  committed (a85c4a7, 9c2d00e); it was not read before. Its own rule was pre-registered at 081b37e before its scoring.
+- Guard, per object (public twins, registered scoring, one object swapped vs library_v3; 51 runs, 0 failures):
+  white_pot 9 twins mean dAUC +0.0030 (min −0.0159); white_pot_lid 2 twins +0.0055 (min 0.0000); plastic_dish_rack
+  5 twins +0.0158 (min −0.0092); blue_cup 5 twins +0.0241 (out of 9a regardless).
+- This rule: as-fitted C0 iff mean registered AUC ≥ library_v3's (mean dAUC ≥ 0) with no guard failure →
+  **white_pot: C0; white_pot_lid: C0; plastic_dish_rack: C0** (as fitted, bold-albattani 5cce3d2). C0a is not used.
+- Reading [H]: on public twins C0's placement (fitted to stereo in our track frame) does not hurt and on average helps the
+  pose scores, consistent with it correcting part of library_v3's template bias rather than adding a rotation error.
