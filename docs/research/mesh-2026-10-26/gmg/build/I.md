@@ -625,6 +625,28 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   lidpot running.
 - 18:43 correction: the two entries above first said 18:43 and 18:45 (guessed); replaced by the commit time of
   3dea95b (18:42 UTC). From here on log times are read from the clock.
+- 18:49 [M] **lidpot (flat lid slid 30 mm across a pot rim 0.6 mm too low, then resting; pre-registered rule; lathe
+  route skipped by the fixture; `t_oth2.log`, 18:41-18:48): in scope, NOT carved: `topology_fail`.** Routes: pot route 3
+  (57 CoACD pieces, gate max 0.2 cm3), lid route 3 (1 piece); overlap along the track max 4.73 cm3, median 0.0;
+  receiver = pot (containment 0.254 vs 0.005), INSERTION [18, 61], four passing components (49, 48, 4, 3 voxels),
+  c = 1.0 mm (sigma_sup 1.0: flat rim seat, as P45 expects), no overshoot; carve: route 3 on the carved body (46
+  pieces, gate 0.0, 141 s); caps: removed 11.95 cm3 = 2.6 % (but only 0.096 cm3 of it is K inside the body: re-running
+  CoACD on the carved body changes the whole decomposition), reach 0.044; **topology default 1 / Euler -6, carved
+  1 / 1**: the default CoACD pieces leave 7 tunnels on the 2 mm grid and the carve closes them, which the rule
+  ("keep the default's count and Euler number") counts as a failure. [H] intent-preserving reading: fail only on a new
+  component or a lower Euler number (more tunnels). Default delivered; S not run. Rigid shift trivially "cleared"
+  (overlap 0.0 on the sampled frames).
+- 18:51 [M] **D2 Q1 (x1-D2; code 3484d8d; `<scratch>/fi5/d2a.log`, 18:41-18:50): FALSIFIED as written: topology
+  fails, S on the failed carve passes.** Receiver A, c = 1.0 mm (sigma_sup 1.0), K = rest pose + 20.5 mm approach
+  channel (9 build frames were up to 0.94 mm deeper than the rest, not carved; lateral deviation of the frames from the
+  rest median 0.60 mm, max 1.79 mm); lathe carve at 16 sectors, 81 pieces, 48 'widen', 0 removed (the 10 mm
+  re-banding and the jitter envelope are gone). Caps: removed 36.6 cm3 = 36 % (predicted 20-30 %), reach 0.89,
+  **topology 1 / 1 -> 1 / -45** on the 2 mm grid. Diagnostic S rows (never delivered): carved (failed) f81 / f62
+  displacement 2.74 / 3.03 mm, drop 2.65 / 2.94 mm, tilt 0.49 / 0.51 deg, pass; **default rings: the guest is pushed up
+  4.55 / 4.42 mm, fail** (the track is 9.5 mm too deep). Q2 (x5-D2) gives the same numbers (its dips lie in check
+  frames). Running (diagnostic, never delivered): `<scratch>/fi5/diag/d2_topo.py` = the x1-D2 carve rebuilt with
+  physics off, thinnest remaining wall on radial rays (0.1 mm steps, 1 mm x 1 deg) and topology on 2 mm and 1 mm grids,
+  to tell a real hole from 2 mm aliasing of a wall thinned to about 2 mm.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
