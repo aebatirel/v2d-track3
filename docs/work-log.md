@@ -5071,3 +5071,10 @@ Advice given:
   remains for this session's batch (mass check ~$5–6, eval-10 static hold ~$5–8, perception box ~$1–2); an eval
   retrain with masses (~$20–25) would need a small extra top-up. Mass-check build (4e019af) sent to that session for
   review.
+- ~06:00 UTC mass-check build reviewed twice: own review NO-GO until F1 (a missing cell must read INCOMPLETE, not
+  INVALID); external review (determined-wright) NO-GO with 6 small CPU fixes (same F1; config-diff normalisation;
+  NaN-safe reference check; eval-timeout reporting with timeout -k 60; REQUIRE_REUSE guard; docs). Core design passed
+  both (one reference per episode, arms differ only in mass, evaluator loads each arm's URDFs). Cost re-estimated at
+  ≈ $6.5–11, central ≈ $8.7 (one training saturates the GPU; 4 waves + the ep2 reference build). ep2's reference is
+  built on the box with the frozen recipe (the stored ep2 reference was E3's older recipe). Fix + re-verify workflow
+  running (mass-check-fixes).
