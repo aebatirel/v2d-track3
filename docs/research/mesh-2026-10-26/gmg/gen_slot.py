@@ -126,10 +126,15 @@ def _icp(src, tgt_tree, tgt, R, t, s, iters, trim, scale=False):
     return R, t, s, d
 
 
-def place_by_depth(mesh, b, obj, seed=0):
-    """Scale + rigid fit of a generated mesh (any frame, any scale) to OBJ's observed samples (its frame).
+def place_by_depth(mesh, b, obj, seed=0, ref_mesh=None, near_m=0.006):
+    """Scale + rigid fit of a generated mesh (any frame, any scale) to OBJ's observed samples (its frame); with
+    REF_MESH (our pick) only the samples within NEAR_M of its surface are used (the OBSERVED grid of a clean bundle
+    also holds voxels far from the object: ep24 board 1's observed samples span 417 mm for a 235 mm board).
     Returns dict(mesh placed, R, t, s, residual_mm per start, flip margin in sigma, side_resolved)."""
     P = b.samples(obj)[0]
+    if ref_mesh is not None:
+        d, _, _ = IL.geom.Closest(ref_mesh).query(P)
+        P = P[d <= near_m]
     sig = b.sigma(obj)
     G = trimesh.sample.sample_surface(mesh, 20000, seed=seed)[0]
     cP, cG = P.mean(0), G.mean(0)

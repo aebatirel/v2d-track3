@@ -254,7 +254,7 @@ def main():
                 rows = []
                 for gp in gen_paths[t]:
                     gm = GS.decimate(GS.load_gen(gp), GS.k_('dec_faces'))
-                    pl = GS.place_by_depth(gm, b, t)
+                    pl = GS.place_by_depth(gm, b, t, ref_mesh=cands[t][picks[t]])
                     other = sides[p if t == o else o]
                     r_notch = max(GS.k_('notch_r_min'), float(np.median([c.info.get('s_min_mm', 8) for c in
                                                                         s.comps])) * 1e-3)
