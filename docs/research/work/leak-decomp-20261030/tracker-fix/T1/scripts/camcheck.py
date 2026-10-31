@@ -3,15 +3,14 @@
 S6 reads an object's travel in OUR world frame (world_T_cam @ cam_T_obj). A VO error moves every world-frame object, so a
 static object can "travel" (ep24: 2.4 cm VO step). This check asks the static background instead: it warps our frame-0
 rectified image, back-projected with our own frame-0 depth (det_f0.npz 'depth', half resolution, K/2), into frame t
-through our camera world_T_cam[t] shifted by a world translation delta, and finds the delta that best explains frame t
-(robust photometric residual: median absolute deviation of I0 - It on textured pixels, both images half resolution).
-Excluded: our tracked objects (rendered surface samples, dilated) at frame 0 and frame t, and our hands (hull of the
-21 joints, dilated and extended to the bottom image edge for the arm) at frame 0 and frame t.
-delta ~ 0: the camera holds, and a world-frame object step is the object's own (a real move, or a tracker error).
-delta ~ the object's step: the camera moved the world, and the object is static.
-Reading the delta: if our camera is offset by +s (world_T_cam = T(+s) @ true), world-frame objects appear shifted by +s,
-and the scan's minimum is at delta = +s. Components are given along u (the object's horizontal step direction at t),
-w = n x u, and n (our frame-0 table normal, up), all in our world (= camera 0).
+through world_T_cam[t] @ E, and fits the correction E (6-DoF, and translation only) that best explains frame t: robust
+photometric cost mean(log(1 + (r/10)^2)) of the median-centred residual r = I0 - It on textured pixels (top 40 % gradient),
+coarse to fine (Gaussian sigma 4, 2, 0 px), Powell from E = I. Excluded: our tracked objects (rendered surface samples,
+dilated) at frame 0 and frame t, and our hands (hull of the 21 joints, dilated and extended to the bottom image edge for
+the arm) at frame 0 and frame t. Readout: the object's step after the correction ("corrected step"). If it stays at the
+tracked step, the camera holds and the step is the object's own (a real move or a tracker error); if it drops to ~0, the
+camera moved the world and the object is static. Controls: public ep24 (known 2.4 cm VO step on static board 2) and
+ep11 (static blue cup, tracker lift, camera fine).
 Inputs: our perception outputs only (poses.npz, det_f0.npz, hands, the cam-c video, the public camera calibration for
 rectification, our meshes). No mocap, scans or observation.objects; every path goes through refine.assert_inference_input.
 Usage: python -I camcheck.py --poses P --det D --hands H --video V --calib C --meshes DIR --obj NAME --frames 10,46,...
@@ -22,6 +21,8 @@ import argparse, json, sys
 import cv2
 import numpy as np
 import trimesh
+from scipy.optimize import minimize
+from scipy.spatial.transform import Rotation as Rot
 
 REPO = '/home/user/v2d-track3'
 sys.path.insert(0, f'{REPO}/pipeline')
@@ -133,45 +134,72 @@ def main():
         v = float(dc @ n)
         hvec = dc - v * n
         hcm = float(np.linalg.norm(hvec) * 100)
-        u = hvec / np.linalg.norm(hvec) if hcm > 0.5 else np.cross(n, [1.0, 0, 0]) / np.linalg.norm(np.cross(n, [1.0, 0, 0]))
-        w = np.cross(n, u)
-        B = np.stack([u, w, n], 1)                          # world <- (u, w, n) coefficients
         badt = mask_objects(pts, {k: camT[k][t] for k in names}, K2, shape) | mask_hands(Hz, t, W[t], K2, shape)
         It = I[t]
 
-        def cost(coef):
-            d = B @ np.asarray(coef, float)
-            R, p_ = W[t][:3, :3], W[t][:3, 3] - d
-            Y = (Xw - p_) @ R
+        def E_of(p):                                         # p = (omega deg x3, tau cm x3), camera-t coordinates
+            E = np.eye(4)
+            E[:3, :3] = Rot.from_rotvec(np.radians(p[:3])).as_matrix()
+            E[:3, 3] = np.asarray(p[3:]) / 100
+            return E
+
+        def warp(p, Ib):
+            Wt = W[t] @ E_of(p)
+            Y = (Xw - Wt[:3, 3]) @ Wt[:3, :3]
             uv, z = proj(Y, K2)
             ok = (z > 0.05) & (uv[:, 0] >= 0) & (uv[:, 0] <= shape[1] - 1) & (uv[:, 1] >= 0) & (uv[:, 1] <= shape[0] - 1)
             ok[ok] &= ~badt[uv[ok, 1].round().astype(int), uv[ok, 0].round().astype(int)]
-            if ok.sum() < 0.2 * len(Xw):
-                return np.inf, 0.0, int(ok.sum())
-            s = bilinear(It, uv[ok, 0], uv[ok, 1])
-            r = i0[ok] - s
-            mad = float(np.median(np.abs(r - np.median(r))))
-            ncc = float(np.corrcoef(i0[ok], s)[0, 1])
-            return mad, ncc, int(ok.sum())
+            return ok, bilinear(Ib, uv[ok, 0], uv[ok, 1]) if ok.any() else np.zeros(0)
 
-        grid = np.arange(-8, 8.01, 2) / 100
-        best = min(((cost((x, y, zz))[0], (x, y, zz)) for x in grid for y in grid for zz in grid), key=lambda q: q[0])
-        fine = np.arange(-1.5, 1.51, 0.5) / 100
-        best = min(((cost((best[1][0] + x, best[1][1] + y, best[1][2] + zz))[0],
-                     (best[1][0] + x, best[1][1] + y, best[1][2] + zz)) for x in fine for y in fine for zz in fine),
-                   key=lambda q: q[0])
-        b = np.asarray(best[1])
-        c0, cb = cost((0, 0, 0)), cost(b)
-        line = {f'{x:+.1f}': round(cost((x / 100, 0, 0))[0], 3) for x in np.arange(-6, 6.01, 1.0)}
-        res['frames'][str(t)] = dict(
-            obj_step_cm=dict(horizontal=round(hcm, 2), vertical=round(v * 100, 2)),
-            camera_delta_cm=dict(u=round(b[0] * 100, 2), w=round(b[1] * 100, 2), n=round(b[2] * 100, 2),
-                                 norm=round(float(np.linalg.norm(b) * 100), 2)),
-            mad_at_zero=round(c0[0], 3), mad_at_best=round(cb[0], 3), ncc_at_zero=round(c0[1], 4), ncc_at_best=round(cb[1], 4),
-            px_used_at_zero=c0[2], cost_along_u=line)
-        print(f'{a.label} f{t}: {a.obj} step h {hcm:.2f} (along u) v {v * 100:+.2f} cm | camera delta u {b[0] * 100:+.2f} '
-              f'w {b[1] * 100:+.2f} n {b[2] * 100:+.2f} cm | MAD 0 {c0[0]:.2f} -> best {cb[0]:.2f}, NCC {c0[1]:.3f} -> '
-              f'{cb[1]:.3f}, px {c0[2]}', flush=True)
+        def cost(p, lev=0):
+            I0b, Itb = pyr[lev]
+            ok, s_ = warp(p, Itb)
+            if ok.sum() < 0.2 * len(Xw):
+                return 1e3
+            r = I0b.ravel()[idx][ok] - s_
+            r = r - np.median(r)
+            return float(np.mean(np.log1p((r / 10.0) ** 2)))
+
+        def stats(p):
+            ok, s_ = warp(p, It)
+            r = i0[ok] - s_
+            return float(np.median(np.abs(r - np.median(r)))), float(np.corrcoef(i0[ok], s_)[0, 1]), int(ok.sum())
+
+        pyr = [(cv2.GaussianBlur(I[0], (0, 0), sg), cv2.GaussianBlur(It, (0, 0), sg)) if sg else (I[0], It)
+               for sg in (4.0, 2.0, 0)]
+        fits = {}
+        for kind, free in (('translation', [3, 4, 5]), ('six_dof', [0, 1, 2, 3, 4, 5])):
+            p = np.zeros(6)
+            for lev in (0, 1, 2):
+                def f_(q, lev=lev, free=free, p0=p.copy()):
+                    pp = p0.copy()
+                    pp[free] = q
+                    return cost(pp, lev)
+                r_ = minimize(f_, p[free], method='Powell', options=dict(xtol=1e-3, ftol=1e-6, maxfev=3000))
+                p[free] = r_.x
+            Wc = W[t] @ E_of(p)
+            Oc = Wc @ camT[a.obj][t]
+            cc = Oc[:3, :3] @ cen[a.obj] + Oc[:3, 3]
+            d2 = cc - c[0]
+            v2 = float(d2 @ n)
+            dw = (Wc @ np.linalg.inv(W[t]))                  # the correction as a world transform
+            st0, stp = stats(np.zeros(6)), stats(p)
+            fits[kind] = dict(omega_deg=np.round(p[:3], 3).tolist(), tau_cm=np.round(p[3:], 2).tolist(),
+                              obj_world_shift_cm=round(float(np.linalg.norm(cc - c[t]) * 100), 2),
+                              corrected_obj_step_cm=dict(horizontal=round(float(np.linalg.norm(d2 - v2 * n) * 100), 2),
+                                                         vertical=round(v2 * 100, 2)),
+                              world_correction_translation_cm=np.round(dw[:3, 3] * 100, 2).tolist(),
+                              robust_cost=dict(zero=round(cost(np.zeros(6), 2), 4), fit=round(cost(p, 2), 4)),
+                              mad=dict(zero=round(st0[0], 3), fit=round(stp[0], 3)), ncc=dict(zero=round(st0[1], 4), fit=round(stp[1], 4)),
+                              px=dict(zero=st0[2], fit=stp[2]))
+        res['frames'][str(t)] = dict(obj_step_cm=dict(horizontal=round(hcm, 2), vertical=round(v * 100, 2)), fits=fits)
+        f6, f3 = fits['six_dof'], fits['translation']
+        print(f'{a.label} f{t}: {a.obj} tracked step h {hcm:.2f} v {v * 100:+.2f} cm | 6dof: omega {f6["omega_deg"]} deg, '
+              f'tau {f6["tau_cm"]} cm, object moves {f6["obj_world_shift_cm"]} cm -> corrected step h '
+              f'{f6["corrected_obj_step_cm"]["horizontal"]} v {f6["corrected_obj_step_cm"]["vertical"]}; cost '
+              f'{f6["robust_cost"]["zero"]}->{f6["robust_cost"]["fit"]}, NCC {f6["ncc"]["zero"]}->{f6["ncc"]["fit"]} | '
+              f'transl only: corrected step h {f3["corrected_obj_step_cm"]["horizontal"]} v '
+              f'{f3["corrected_obj_step_cm"]["vertical"]}, cost {f3["robust_cost"]["fit"]}', flush=True)
     json.dump(res, open(a.out, 'w'), indent=1)
 
 
