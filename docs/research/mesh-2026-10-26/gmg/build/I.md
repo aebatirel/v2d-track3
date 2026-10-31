@@ -645,7 +645,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   F-I4.15, platebody.py. Plan: F-I4.15 in platebody.py (new functions; rectangle path kept for fi4_rev 14), driver
   hooks only if needed, tests w1-w9 (+ w6c, w8, w8b, w9), full T-I1 waiver off, then T-I11 ep24 tag fi4o with physics
   (16 copies), then ep23 plate + body only (v6 bundle).
-- 18:40 [M] F-I4.15 build written (`platebody.py`: REV = 15; `_t_all_points` / `_apply_t_all` / `_m_seen_all`
+- 18:37 [M] F-I4.15 build written and committed (19c4309, 18:37:47 UTC; `platebody.py`: REV = 15; `_t_all_points` / `_apply_t_all` / `_m_seen_all`
   (F-I4.15.1); `plate_body_poly` (F-I4.15.2: frame = the F-I4.2 rectangle, outline re-rastered along its axes, outer
   ring via `mask_ring`, Douglas-Peucker 1.0 mm split at the farthest pair, `ring_simple`, FREE share of polygon and
   rectangle on a 2 mm grid); `slot_for_poly`, `crossing_extent_poly`, `slot_budget_poly` (F-I4.15.3, Weiler-Atherton
@@ -655,7 +655,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   owner_waiver block), `tests/test_interlock.py` (old Waiver class pinned to REV 14 so its F-I4.14 records stay
   comparable). New `tests/test_fi415.py` (WaiverR2: w1-w7 re-run with the tiling check, w6c, w8, w8b, w9). Note: an
   automatic WIP snapshot (6ed88f1, another agent) committed an in-progress copy of platebody.py / test_fi415.py.
-- 18:38 [M] first probes (no physics; `<scratch>/fi415/probe_w1.py`, `probe_w8.py`): w1 t = 10 mm CARVE both, t down
+- 18:30-18:36 [M] first probes (no physics; `<scratch>/fi415/probe_w1.py`, `probe_w8.py`): w1 t = 10 mm CARVE both, t down
   10.17 / 10.12 -> all points 9.73 / 9.72 mm, polygons 64 / 82 vertices, default prisms 32 / 42, slotted 38 / 51,
   cross-lap diff 5.7 mm, keep-out not yet run. **w8 (I-cross, t = 7, sigma 1) misses before physics**: polygons
   112 / 116 vertices (54 / 56 reflex: every 2 mm raster step on a noisy edge survives the 1 mm tolerance), default
@@ -663,3 +663,19 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   plane pair is tilted 3.4 deg (mid_n (0.002, -0.059, 0.998), t 5.11 mm) and F-I4.15.1 uses that normal as reference
   (all-point t 6.81 mm), so B's polygon prism holds 21.8 % FREE vs A's 3.6 %. End - waist 12 / 10 mm (true 11). These
   are recorded as synthetic misses (F-I4.15.6: reported, do not stop the round); no rule changed.
+- 18:38 launched in parallel (code 19c4309 clean for the gmg interlock files; machine: this container, 4 shared cores,
+  load ~24 from other agents' jobs): (1) T-I1 F-I4.15 suite `GMG_MODE=dev FI415_OUT=<scratch>/fi415/tests/test_fi415.json
+  nice -n 5 python tests/test_fi415.py` (log `<scratch>/fi415/tests/test_fi415.log`), 18:38:09; (2) **T-I11 ep24 tag
+  fi4o**, 18:38:27: the fi4b command with `--tag fi4o` (`GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_dev --run
+  <run> --ep 24 --bundle <scratch>/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24 --cands <run>/cand/public/ep24
+  --pick wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36 --video <scratch>/data/store/ep24_a.mp4 --calib
+  <scratch>/data/calib.json --hands <run>/in/hands24/hands.npz --proxy-copies 16 --identity eval --waiver-fi4
+  --no-physcheck --tag fi4o`, run 20261031-i2probe-626ce13, log <run>/drv24_fi4o.log, launch record
+  <run>/drv24_fi4o.launch). Parallel, not after the tests: the code is frozen at 19c4309, so no test outcome can
+  change the ep24 run; a code bug found by the tests would mean a new tag.
+- 18:39 ep23 candidates launched (F-I4.15.6 step 4 input): `GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_cands
+  --run <run> --bundle <scratch>/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep23 --ep 23` (same producer and
+  dev_constants as ep24's manifest_cands_ep24.json; pack.py / producers changed since only in ball metadata, not
+  geometry), log <run>/cands23_v6.log. New result scripts (not decision code): `build/I/fi415_ep23.py` (plate test +
+  body + default prisms + PNG, both boards), `build/I/fi415_png.py` (polygon / slotted prisms / slot box over RGB),
+  `build/I/fi415_summary.py` (one summary JSON per T-I11 run).
