@@ -30,6 +30,10 @@
 #   are refs/<PERC><BASE><SUF>, runs/<PERC>..., results/<PERC>... and results/hard_ab/ep<N>/<PERC>_<BASE><SUF>-s<SEED>,
 #   its log /content/hard_ab_<PERC>_ep<N><SUF>-s<SEED>.log; BASE_EVAL is off for it. Both arms of one episode may be
 #   listed together (they take turns on the GPU like any two entries).
+# EVAL_TIMEOUT=<s> (2026-10-31, ops/jobs/mass_eval.sh; as glock_public.sh): cut an official evaluation that runs longer,
+#   here and in pipeline_ep.sh's evaluations (main + checkpoint sweep): timeout -k 60, each evaluation folder gets
+#   eval_rc.txt (124 cut, 137 killed after the 60 s grace). NO_PUSH=1: no store push at the end (the calling job pushes
+#   once). Both off by default.
 # Summary: /content/results/hard_ab/summary.json; per-episode pipeline logs /content/hard_ab_ep<N><SUF>-s<SEED>.log.
 # Each rollout's summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -40,6 +44,8 @@ export MESH_DIR=${LIB:-$REPO_DIR/meshes/library_v2} ASSETS=/content/assets SPLIT
 [ $SPLIT = eval ] && BASE_EVAL=0
 FC=/content/v2d/robotic_grounding/flash_chord; O=/content/results/hard_ab; mkdir -p $O
 log "hard_ab code $(git -C $REPO_DIR rev-parse --short HEAD), pairs [$PAIRS], suffix $SUF seed $SEED CR $CR, NREP $NREP, TRAIN_ARGS [${TRAIN_ARGS:-}]" >> $J
+[ -n "${EVAL_TIMEOUT:-}${NO_PUSH:-}" ] && log "hard_ab: EVAL_TIMEOUT ${EVAL_TIMEOUT:-none}, NO_PUSH ${NO_PUSH:-0}" >> $J
+[ -n "${EVAL_TIMEOUT:-}" ] && export EVAL_TIMEOUT                 # pipeline_ep.sh's evaluations too
 pip install -q fast_simplification >> $J 2>&1 || true              # kit budget_mesh (score_registered --meshes)
 SCORE_MESH="--meshes $MESH_DIR"
 if [ "${ASSET_SRC:-ours}" = public ]; then   # 2026-10-22 owner test: the organisers' public assets (scans + their collision
@@ -101,11 +107,12 @@ evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluatio
   local ck=$1 d=$2 ep=$3 E6 i pids=()
   E6=$(printf %06d $ep); mkdir -p $d
   for i in $(seq 1 $NREP); do
-    ( mkdir -p $d/r$i; cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+    ( mkdir -p $d/r$i; cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout -k 60 $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
         evaluation.checkpoint=$ck evaluation.world_count=1 evaluation.reset_mode=explicit \
         evaluation.metrics_output=$d/r$i/episode_$E6.json evaluation.object_trajectories_output=$d/r$i/episode_$E6.parquet \
-        hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1 \
-      && python $P/qa.py policy $d/r$i $ep > /dev/null 2>&1 \
+        hydra.run.dir=$d/r$i/hydra logging.mode=disabled > $d/r$i/eval.log 2>&1
+      rc_=$?; [ -n "${EVAL_TIMEOUT:-}" ] && echo $rc_ > $d/r$i/eval_rc.txt   # 124 cut, 137 killed after the 60 s grace
+      [ $rc_ = 0 ] && python $P/qa.py policy $d/r$i $ep > /dev/null 2>&1 \
       && { [ $SPLIT = eval ] || python $P/score_registered.py $ep $d/r$i $SCORE_MESH > /dev/null 2>&1; } \
       && { [ $SPLIT = public ] && [ -z "$SCORE_MESH" ] && python $P/score_registered.py $ep $d/r$i --meshes $MESH_DIR \
              --out $d/r$i/score_registered_ours_ep$ep.json > /dev/null 2>&1 || true; } ) & pids+=($!)
@@ -197,4 +204,4 @@ for f in sorted(glob.glob(f'{sys.argv[1]}/ep*/*/summary.json')):
 print(json.dumps(out, indent=1))
 EOF
 log "hard_ab summary: $(tr -d '\n ' < $O/summary.json | cut -c1-1500)" >> $J
-bash $OPS/store.sh push-run > /dev/null 2>&1 || true
+[ "${NO_PUSH:-0}" = 1 ] || bash $OPS/store.sh push-run > /dev/null 2>&1 || true

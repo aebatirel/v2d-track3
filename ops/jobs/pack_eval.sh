@@ -111,6 +111,25 @@ if [ -n "${EVAL_ONLY:-}" ]; then   # EVAL_ONLY="EP ..." (2026-10-30, h5_reeval.s
   python -c "import json, sys; x = sorted(set(json.load(open(sys.argv[1]))) - set(sys.argv[2:]), key=int); print(f'pack_eval: EVAL_ONLY {sys.argv[2:]}, other episodes to evaluate: {x}'); sys.exit(1 if x else 0)" \
     $CK_EVAL $EVAL_ONLY >> $J 2>&1 || { log "pack_eval: episodes outside EVAL_ONLY would be evaluated; stopped" >> $J; exit 1; }
 fi
+# MASS_EPS="EP ..." (2026-10-31, masses eval retrain, docs/research/work/masses-eval-20261031/BUILD.md): the episodes
+# whose policies trained with the realistic masses of MASS_PROPS (default props_masses_only.json). Before the evaluator,
+# tools/mass_pack_check.py follows each to-be-evaluated checkpoint's saved config -> task.parquet -> URDFs (what the
+# kit evaluator loads; a missing URDF would be silently re-rooted onto FlashCHORD's assets) and refuses unless MASS_EPS
+# episodes load the props masses and every other evaluated episode the 0.3 kg placeholder. A grasp-lock retrain names
+# its own refs/mass1_sf/ep<N>/assets (pull RUN@refs/mass1_sf/ep<N>,refs/mass1s<seed>_glockt/ep<N>); a standard-learner
+# retrain names the shared /content/assets (MA_ARGS="--physics <props>" + its pieces, with KEEP_RESULTS and EVAL_ONLY).
+# Without MASS_EPS nothing changes, except that a masses run in PICK (run id "-mev") or --physics in MA_ARGS is refused.
+if [ -n "${MASS_EPS:-}" ]; then
+  python $REPO_DIR/tools/mass_pack_check.py --checkpoints $CK_EVAL --all $F/checkpoints.json \
+    --props ${MASS_PROPS:-$REPO_DIR/docs/research/physics-2026-10-30/props_masses_only.json} --mass-eps "$MASS_EPS" \
+    --table $REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json --out $F/mass_pack_check.json > $F/mass_pack_check.txt 2>&1
+  rc_=$?; log "pack_eval: $(cut -c1-1500 $F/mass_pack_check.txt)" >> $J
+  [ $rc_ = 0 ] || { log "pack_eval: REFUSED: an evaluated episode would not load the masses it trained with (MASS_EPS $MASS_EPS)" >> $J; exit 1; }
+else
+  case " ${PICK:-} ${MA_ARGS:-}" in *-mev*|*--physics*)
+    log "pack_eval: REFUSED: a masses run (-mev) or --physics needs MASS_EPS (the episodes trained with the realistic masses)" >> $J; exit 1 ;;
+  esac
+fi
 # 2026-10-26 (forensics): a pulled pack run brings its own results/submission; submit_pack.sh copies KEPT rollouts with
 # cp -n, so pack 3 silently kept the FIRST pack's seed-42 rollouts for 3/5/15/16 instead of pack 2's seed-43 ones.
 # Start from an empty submission folder, then verify every packed rollout names the intended checkpoint.

@@ -54,6 +54,10 @@
 # ignores SIGTERM is killed 60 s later; each evaluation folder then gets eval_rc.txt (its exit code: 124 cut, 137 killed
 # after the grace) so the cuts can be counted (tools/mass_verify.py). REQUIRE_REUSE=1 (with REUSE_REF=1): exit before
 # anything runs if any pair has no finished reference on this box (no silent rebuild). All four are off by default.
+# 2026-10-31 (masses eval retrain, ops/jobs/mass_eval.sh): a PERC prefix mass<A>s<seed> (tools/mass_arm.py's per-arm copy of
+# an eval episode's stored reference) is also allowed with SPLIT=eval, RUN local and REQUIRE_REUSE=1 only (no perception
+# and no reference stage runs on an eval episode); CURR_SCALE in ENV_EP<N> scales that episode's curriculum only (before,
+# CURR_SCALE was read once for the whole job, so ENV_EP<N>="CURR_SCALE=..." had no effect on training).
 # Summary: /content/results/glock_public/summary.json; per-episode logs /content/glock_ep<N>.log. Each rollout's
 # summary row also holds ref_auc / floor_auc (public): its reference and the static floor vs mocap.
 . /content/v2d-track3/ops/box/lib.sh
@@ -85,8 +89,10 @@ python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} ${MA_ARGS
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
 case " $PAIRS" in *:new:*) ensure_gdino $J ;; esac              # perception runs here: detection grounding term (2026-10-24:
                                                                  # missing on the 24 Oct eval boxes, so that term was off)
+curr_thresholds() { python -c "s = $1; t = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]; print('[' + ','.join(str(int(x * s)) for x in t) + ']')"; }
+CURR_SCALE_JOB=${CURR_SCALE:-}; TRAIN_ARGS_UNSCALED=$TRAIN_ARGS   # one() rescales an episode whose ENV_EP<N> sets CURR_SCALE
 if [ -n "${CURR_SCALE:-}" ]; then                               # curriculum thresholds scaled to the planned length
-  TRAIN_ARGS="$TRAIN_ARGS curriculum.thresholds=$(python -c "s = $CURR_SCALE; t = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 122880000, 137625600, 200007680, 250003456]; print('[' + ','.join(str(int(x * s)) for x in t) + ']')")"
+  TRAIN_ARGS="$TRAIN_ARGS curriculum.thresholds=$(curr_thresholds $CURR_SCALE)"
   log "curriculum thresholds scaled by $CURR_SCALE: TRAIN_ARGS [$TRAIN_ARGS]" >> $J
 fi
 E=$FC/src/flash_chord/configs/embodiment/sharpa_hands_mid.yaml   # kp 400 wrist (the checkpoint stores the resolved config)
@@ -155,14 +161,23 @@ EOF
 
 one() {
   local ep=$1 run=$2 base=$3 perc=${4:-perc2} pre="" tg=ep$1 O=$O R0 P0 hive G RD N RUN LG ck reuse=0 ev=ENV_EP$1
-  if [ "$perc" != perc2 ]; then                                    # e.g. the oracle twins: folders apart, public only
+  if [ "$perc" != perc2 ]; then                                    # e.g. the oracle twins: folders apart, public only;
+    if [ "$SPLIT" = eval ]; then                                   # an eval episode's mass-arm copy (mass_eval.sh): reuse only
+      [[ $perc =~ ^mass[0-9]+s[0-9]+$ ]] && [ "$run" = local ] && [ "${REQUIRE_REUSE:-0}" = 1 ] \
+        || { log "glock ep$ep: PERC $perc with SPLIT=eval needs a mass<A>s<seed> prefix, RUN local and REQUIRE_REUSE=1" >> $J; return 1; }
+    else
     [ "$SPLIT" = public ] && [ "$run" = local ] || { log "glock ep$ep: PERC $perc needs SPLIT=public and RUN local" >> $J; return 1; }
+    fi
     pre=${perc}_; tg="$perc ep$ep"; O=/content/results/${pre}glock_public
   fi
   LG=/content/${pre}glock_ep$ep.log
   if [ -n "${!ev:-}" ]; then                                        # per-episode settings (one() runs in its own subshell)
     eval "export ${!ev}" || { log "glock $tg: bad $ev" >> $J; return 1; }
     log "glock $tg: $ev = ${!ev}" >> $J
+    if [ "${CURR_SCALE:-}" != "$CURR_SCALE_JOB" ]; then             # this episode's curriculum (2026-10-31)
+      TRAIN_ARGS="$TRAIN_ARGS_UNSCALED${CURR_SCALE:+ curriculum.thresholds=$(curr_thresholds $CURR_SCALE)}"
+      log "glock $tg: curriculum thresholds scaled by ${CURR_SCALE:-1} for this episode: TRAIN_ARGS [$TRAIN_ARGS]" >> $J
+    fi
   fi
   if [ "${REUSE_REF:-0}" = 1 ] && ls /content/refs/${pre}glockt/ep$ep/processed/*/*/ref_gl_ilc.parquet > /dev/null 2>&1 \
       && [ -f $O/ep$ep/rest_check.json ]; then                     # finish an episode whose training failed on this box:

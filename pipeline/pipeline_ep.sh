@@ -110,11 +110,15 @@ CK=$(ls -v $RUN/policy_*.safetensors | tail -1)
 echo "[$(date +%T)] trained: $CK (code $(git -C $S rev-parse --short HEAD 2>/dev/null))"
 
 # 5) official evaluator, 1 world, trajectory export
-cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+#    EVAL_TIMEOUT=<s> (2026-10-31, opt-in; hard_ab.sh exports it): cut an evaluation that runs longer (timeout -k 60) and
+#    write its exit code to eval_rc.txt (124 cut, 137 killed after the grace); unset = unchanged
+cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout -k 60 $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
   evaluation.checkpoint=$CK evaluation.world_count=1 evaluation.reset_mode=explicit \
   evaluation.metrics_output=$RES/episode_$(printf %06d $EP).json \
   evaluation.object_trajectories_output=$RES/episode_$(printf %06d $EP).parquet \
-  hydra.run.dir=$RES/hydra logging.mode=disabled > $RES/eval.log 2>&1 || { echo "eval FAILED"; tail -15 $RES/eval.log; exit 1; }
+  hydra.run.dir=$RES/hydra logging.mode=disabled > $RES/eval.log 2>&1; rc_=$?
+[ -n "${EVAL_TIMEOUT:-}" ] && echo $rc_ > $RES/eval_rc.txt
+[ $rc_ = 0 ] || { echo "eval FAILED"; tail -15 $RES/eval.log; exit 1; }
 echo "[$(date +%T)] evaluated"
 # 5b) checkpoint sweep (CK_SWEEP = fractions of training, e.g. "0.4 0.6 0.8"; default off): evaluate earlier policies
 #     and keep the one that tracks OUR reference best (qa.py policy; no ground truth). The chosen rollout is copied
@@ -129,10 +133,12 @@ if [ -n "${CK_SWEEP:-}" ]; then
       C2=$(ls $RUN/policy_*.safetensors | python -c "import sys; L=[l.strip() for l in sys.stdin]; print(min(L, key=lambda f: abs(int(f.rsplit('_',1)[1].split('.')[0]) - $want)))")
       case "$seen" in *" $C2 "*) continue ;; esac; seen="$seen$C2 "
       D2=$RES/sweep/$(basename $C2 .safetensors); mkdir -p $D2
-      (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false .venv/bin/python scripts/evaluate_policy.py \
+      (cd $FC && MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false ${EVAL_TIMEOUT:+timeout -k 60 $EVAL_TIMEOUT} .venv/bin/python scripts/evaluate_policy.py \
         evaluation.checkpoint=$C2 evaluation.world_count=1 evaluation.reset_mode=explicit \
         evaluation.metrics_output=$D2/episode_$E6.json evaluation.object_trajectories_output=$D2/episode_$E6.parquet \
-        hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1) || continue
+        hydra.run.dir=$D2/hydra logging.mode=disabled > $D2/eval.log 2>&1); rc_=$?
+      [ -n "${EVAL_TIMEOUT:-}" ] && echo $rc_ > $D2/eval_rc.txt
+      [ $rc_ = 0 ] || continue
       v=$(python $S/qa.py policy $D2 $EP 2>/dev/null | python -c "import json,sys; print(json.loads(sys.stdin.read())['sim_vs_ref'])")
       echo "[$(date +%T)] sweep $(basename $C2): sim_vs_ref $v (best so far $best, floor $floor)"
       if python -c "import sys; sys.exit(0 if float('$v') > float('$best') else 1)"; then best=$v; bestck=$C2; fi
