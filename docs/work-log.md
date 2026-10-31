@@ -5894,3 +5894,8 @@ score.
   a morning summary at ~05:00 UTC; this chat's items were sent to it.
 - ~21:21 UTC keen-heisenberg is the single uploader for pack 9b (the owner's "Upload automatically" was given in its
   chat; focused-pascal's guard blocks relayed approvals). This session does not upload 9b unless keen-heisenberg asks.
+- 22:13 UTC determined-wright: recipe-screen verdicts complete after the C/ep24-s43 re-score (0.2333):
+  - K inconclusive (−0.002);
+  - D inconclusive (sd falls on 1 episode only);
+  - S no signal (ep2 −0.133).
+  Arm V (actor sees object velocity) is training on 2 boxes; verdict ≈ 00:30–01:00 UTC.
