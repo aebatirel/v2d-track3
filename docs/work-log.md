@@ -5658,3 +5658,10 @@ arm and a no-policy replay floor to stage B.
   - pack 9b upload: "Upload automatically".
 - Messages sent to focused-pascal, determined-wright, standings and bold-albattani (content in STATUS).
 - Check-in scheduled at 05:00 UTC (send_later).
+- ~21:20 UTC the score-status session verified both owner answers in this transcript; no conflict. Items for the
+  05:00 summary:
+  - pack 9a+ scores (AUC 0.81757, CD-O 0.332 rank 14, RPE 3.879, MPPE 2.897, rank sum 60 = 11th);
+  - the re-track test can launch tonight (Set B meshes landed ~21:12);
+  - the marker layer is closed;
+  - the eval rollout audit found one failure (eval 10).
+  - The owner asked that messages to them not bring up deadlines.
