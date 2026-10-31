@@ -5401,3 +5401,12 @@ arm and a no-policy replay floor to stage B.
 - Close neighbours: CD-O 0.372 is 15th, 0.338 is 14th, 0.297 is 10th; RPE 9th is 3.853 and 10th is 3.928; MP-SR 0.70 ties
   7th; SP-SR 0.90 ties 6th.
 - Vast: 2 boxes running (recipe screen 58531195 / 58532423, $2.76/h); credit $118.64.
+
+### 2026-10-31 ~15:15 UTC — owner on the spoon lever; spoon dropped from the big-lever list
+- Owner: a better spoon needs better perception; in the videos the spoon looks right, and the overlay is all we have.
+- Agreed reading: no GT-free check exists. Overlay: the costly error, frame-0 roll about the handle in the
+  spoon-anchored evals 32/33/35/36/37, barely changes a thin spoon's outline. Depth: the depth audit failed (AUROC 0.600).
+  Public test: the rest-averaged anchor gained +0.001 (A-f0, not adopted).
+- The spoon pool in the briefing (≈ 0.06–0.07, solved for) is likely overstated. The spoon README's measured jitter
+  (2–6° random roll) puts it at ≈ 0.03–0.15 per anchored episode, ≈ 0.01–0.04 on the board [E].
+- The lever list for the freeze is now: eval 10, meshes (CD-O and anchor registration). The rest is re-run insurance.
