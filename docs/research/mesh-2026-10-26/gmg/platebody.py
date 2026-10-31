@@ -45,6 +45,22 @@ PREREG F-I4.15 (post hoc, round 2, orchestrator decision 31 Oct ~18:05 UTC; REV 
   keepout_gate                        unchanged (in_body() now tests the polygon prism)
   The F-I4.12 centre is unchanged; the module text above about the component centroid (F-I4.3) is superseded by
   F-I4.12 (slot_for computes the partner-plane centre). REV = 14 reproduces the rectangle route (tests only).
+
+PREREG F-I4.16 (post hoc, round 3, orchestrator decision 31 Oct ~21:20 UTC; REV = 16, records carry fi4_rev 16; REV = 15
+reproduces F-I4.15 exactly, the polygon code is shared):
+  _outline / _body_of                 the two halves of plate_body_poly (frame + raw ring; body from a chosen ring)
+  ring_ladder                         Douglas-Peucker at 1.0, 1.5, 2.0, 3.0, 4.0 mm on the raw ring; a rung fits when the
+                                      ring is simple and its default and slotted prisms are <= floor(165 / objects);
+                                      every rung reported (vertices, reflex, prisms, area, d_max, end - waist)
+  plate_body_ladder                   the body on the smallest fitting rung (no rung fits: plate_body_over_cap; no rung
+                                      simple: the raw ring with outline_unsimplified, as F-I4.15.2 (c))
+  _slot_rect / _slot_poly_edge        the two halves of slot_for_poly: the slot footprint (w, c_L, bottom, box) in the
+                                      rectangle frame BEFORE the ladder; u_e, D, P from the chosen ring after it
+  coverage_report                     F-I4.16.5 polygon area / frame area, / partner area (same stock); no gate
+  slot_centre_report                  F-I4.16.4 the observed notch of a one-face board (below-face points, half-peak
+                                      run); flag slot_centre_disagrees when |u_obs - c_L| > 1 mm; report only
+  p_sim_overlap                       F-I4.16.4 P_sel -> P_sim check (eval only): slotted pieces at reference poses
+  manifest_fi416                      the F-I4.16 keys of the r0 manifest's owner_waiver block
 """
 from __future__ import annotations
 
@@ -75,9 +91,19 @@ C = dict(
     simplify_m=(0.001, 'generic:F-I4.15.9 Douglas-Peucker tolerance 1.0 mm (half the 2 mm raster pitch)'),
     shapes_max=(165, 'informed:F-I4.15.9 prisms per body <= floor(165 / objects) (the P5 cap, F-I1.14; as F-I5.4)'),
     part_vmax=(32, 'informed:F-I4.15.9 <= 32 vertices per polygon part = 64 per prism (MuJoCo maxv, F-I1.14)'),
+    ladder_mm=((1.0, 1.5, 2.0, 3.0, 4.0), 'generic:F-I4.16.8 Douglas-Peucker ladder, smallest fitting rung first (2 mm '
+               'raster: 1.0 = half a cell ... 4.0 = two cells)'),
+    centre_flag_m=(0.001, 'generic:F-I4.16.8 slot-centre flag |u_obs - c_L| > 1.0 mm (the clearance per side, F-I4.3)'),
+    centre_trim_m=(0.008, 'generic:F-I4.16.8 slot-centre depth band trimmed by 8 mm at each end (report only)'),
+    centre_win_m=(0.030, 'generic:F-I4.16.8 slot-centre window |u - c_L| <= 30 mm, 1 mm bins (report only)'),
+    centre_min_pts=(100, 'generic:F-I4.16.8 slot centre observable with >= 100 below-face points (report only)'),
+    centre_run_w=(3.0, 'generic:F-I4.16.8 slot centre observable when the half-peak run is <= 3 w wide (report only)'),
+    stock_dt_m=(0.001, 'generic:F-I4.16.8 same stock when the two all-point t differ by <= 1 mm (coverage report)'),
+    p_sim_flag_cm3=(0.3, 'informed:F-I4.16.8 P_sim overlap flag median > 0.3 cm3 (keep-out level per hull, F-I1.14)'),
 )
 
-REV = 15                # PREREG F-I4.15 (records carry fi4_rev); 14 = the F-I4.14 rectangle route (tests only)
+REV = 16                # PREREG F-I4.16 (records carry fi4_rev); 15 = F-I4.15 (commit 19c4309); 14 = the F-I4.14
+#                         rectangle route (tests only)
 
 
 def k_(name):
@@ -1061,14 +1087,11 @@ def in_body(body, X):
     return out
 
 
-def plate_body_poly(b, obj, info, ev):
-    """PREREG F-I4.15.2 (post hoc, replaces the F-I4.2 rectangle body): (a) the F-I4.2 raster and min-area rectangle
-    give the frame (a_L, a_W, a_T, centre, L, W; fill reported, no 0.9 gate); (b) the same slab points rasterised again
-    at 2 mm along (a_L, a_W) with cell edges on the rectangle's sides, same cell rules; (c) outer ring of the
-    component's cells, collinear vertices removed, Douglas-Peucker 1.0 mm split at the two farthest vertices; must be
-    simple, else the unsimplified ring (flag outline_unsimplified), else plate_outline_not_simple; (d) body = the
-    polygon extruded to +-t / 2 about the mid plane, no balls; (e) reported: areas, I-shape widths, vertex / reflex
-    counts, FREE share of the polygon body and of the full rectangle body at the same t."""
+def _outline(b, obj, info):
+    """F-I4.15.2 (a)-(c) up to the raw ring (shared by REV 15 and REV 16, unchanged code): (a) the F-I4.2 raster and
+    min-area rectangle give the frame; (b) the slab points rasterised again at 2 mm along (a_L, a_W) with cell edges
+    on the rectangle's sides, same cell rules; (c) the outer ring of the component's cells, collinear vertices removed.
+    Returns (out, ctx); ctx is None when there is no single outer ring (out['why'] set)."""
     fr0 = plate_body(b, obj, info)
     out = dict(obj=obj, fi4_rev=15, flags=['plate_body_no_markers'], balls=[],
                source='observed outline polygon (F-I4.15.2; no STRUCT plate candidate)',
@@ -1077,7 +1100,7 @@ def plate_body_poly(b, obj, info, ev):
                                                      'points_in_slab')}))
     if 'box' not in fr0:
         out.update(ok=False, why=fr0.get('why', 'empty_outline'))
-        return out
+        return out, None
     box = fr0['box']
     A = np.asarray(box['axes'], np.float64)
     c0 = np.asarray(box['centre'], np.float64)
@@ -1103,17 +1126,90 @@ def plate_body_poly(b, obj, info, ev):
     lab, nl = ndimage.label(M, structure=np.ones((3, 3)))
     if nl == 0:
         out.update(ok=False, why='empty_outline')
-        return out
+        return out, None
     comp = lab == int(np.argmax(np.bincount(lab.ravel())[1:])) + 1
     loops, pinch = mask_ring(comp)
     out['raster'] = dict(axes='rectangle (a_L, a_W)', cells=int(comp.sum()), cell_area_cm2=round(
         float(comp.sum()) * r * r * 1e4, 2), pinch_vertices=int(pinch), loops=len(loops))
     if len(loops) != 1:
         out.update(ok=False, why='plate_outline_not_simple')
-        return out
+        return out, None
     Rc = loops[0].astype(np.float64)
     raw = np.stack([((Rc[:, 0] + lo[0]) * r - L / 2) * 1e3, ((Rc[:, 1] + lo[1]) * r - W / 2) * 1e3], 1)
     raw = drop_collinear(raw)
+    frame_box = dict(axes=A.tolist(), centre=c0.tolist(), half=[L / 2, W / 2, t / 2])
+    return out, dict(A=A, c0=c0, L=L, W=W, t=t, r=r, comp=comp, raw=raw, frame_box=frame_box)
+
+
+def _widths(poly):
+    """F-I4.15.2 (e) widths of a CCW ring (mm): chords across a_W at 1 mm steps along a_L; waist = median over 30-70 %
+    of the length, ends = median over the outer 10 % at each end. Returns (dict, length along a_L)."""
+    u0, u1 = float(poly[:, 0].min()), float(poly[:, 0].max())
+    Lp = u1 - u0
+    us = np.arange(u0 + 0.5, u1, 1.0)
+    wid = chord_widths(poly, us)
+    fr = (us - u0) / Lp
+    waist = float(np.median(wid[(fr >= 0.3) & (fr <= 0.7)]))
+    e_lo, e_hi = wid[fr <= 0.1], wid[fr >= 0.9]
+    ends = float(np.median(np.concatenate([e_lo, e_hi])))
+    return dict(waist_30_70=round(waist, 1), ends_outer_10=round(ends, 1), end_lo=round(float(np.median(e_lo)), 1),
+                end_hi=round(float(np.median(e_hi)), 1), end_minus_waist=round(ends - waist, 1),
+                max=round(float(wid.max()), 1)), Lp
+
+
+def _reflex(poly):
+    nv = len(poly)
+    return int(sum(_cr(poly[q - 1], poly[q], poly[(q + 1) % nv]) < 0 for q in range(nv)))
+
+
+def _free_share(body, ev):
+    """F-I4.15.2 (e): FREE / UNKNOWN / OBSERVED shares of the polygon prism and of the full rectangle body (2 mm grid)."""
+    g = k_('grid_m')
+    X, _ = _frame_grid(body, g)
+    ins = in_body(body, X)
+    fp, frt = _state_shares(ev, X[ins]), _state_shares(ev, X)
+    return dict(grid_mm=g * 1e3, polygon=fp, rectangle=frt,
+                polygon_free_cm3=round(fp['free'] * fp['points'] * g ** 3 * 1e6, 2),
+                rectangle_free_cm3=round(frt['free'] * frt['points'] * g ** 3 * 1e6, 2),
+                ratio_polygon_to_rectangle=round(fp['free'] / frt['free'], 3) if frt['free'] > 0 else None)
+
+
+def _body_of(out, ctx, poly, used, tol, ev):
+    """F-I4.15.2 (d)-(e): body = the ring POLY (mm, frame coordinates) extruded to +-t / 2 about the mid plane, no
+    balls; areas, widths, vertex / reflex counts, FREE shares. Shared by REV 15 and REV 16 (unchanged code)."""
+    A, c0, L, W, t, r, comp, raw = (ctx[k] for k in ('A', 'c0', 'L', 'W', 't', 'r', 'comp', 'raw'))
+    if poly_area(poly) < 0:
+        poly = poly[::-1]
+    nv = len(poly)
+    refl = _reflex(poly)
+    wd, Lp = _widths(poly)
+    body = dict(axes=A.tolist(), centre=c0.tolist(), half=[L / 2, W / 2, t / 2], poly=(poly * 1e-3).tolist(),
+                t=t, frame='rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre')
+    area = poly_area(poly)
+    out.update(ok=True, box=body, L_mm=round(L * 1e3, 1), W_mm=round(W * 1e3, 1), t_mm=round(t * 1e3, 3),
+               polygon=dict(used=used, tolerance_mm=tol, vertices_raw=int(len(raw)), vertices=int(nv),
+                            reflex_vertices=refl, area_cm2=round(area * 1e-2, 2),
+                            area_vs_cells=round(area * 1e-6 / max(float(comp.sum()) * r * r, 1e-12), 4),
+                            extent_mm=[round(Lp, 1), round(float(poly[:, 1].max() - poly[:, 1].min()), 1)],
+                            poly_mm=np.round(poly, 3).tolist()),
+               widths_mm=wd, volume_cm3=round(area * t * 1e3 * 1e-3, 2))
+    out['free_share'] = _free_share(body, ev)
+    return out
+
+
+def plate_body_poly(b, obj, info, ev):
+    """PREREG F-I4.15.2 (post hoc, replaces the F-I4.2 rectangle body): (a) the F-I4.2 raster and min-area rectangle
+    give the frame (a_L, a_W, a_T, centre, L, W; fill reported, no 0.9 gate); (b) the same slab points rasterised again
+    at 2 mm along (a_L, a_W) with cell edges on the rectangle's sides, same cell rules; (c) outer ring of the
+    component's cells, collinear vertices removed, Douglas-Peucker 1.0 mm split at the two farthest vertices; must be
+    simple, else the unsimplified ring (flag outline_unsimplified), else plate_outline_not_simple; (d) body = the
+    polygon extruded to +-t / 2 about the mid plane, no balls; (e) reported: areas, I-shape widths, vertex / reflex
+    counts, FREE share of the polygon body and of the full rectangle body at the same t. (REV 15; split into _outline
+    and _body_of for F-I4.16, same computation.)"""
+    out, ctx = _outline(b, obj, info)
+    if ctx is None:
+        return out
+    raw = ctx['raw']
     tol = k_('simplify_m') * 1e3
     simp = dp_ring(raw, tol)
     if ring_simple(simp):
@@ -1124,39 +1220,242 @@ def plate_body_poly(b, obj, info, ev):
     else:
         out.update(ok=False, why='plate_outline_not_simple')
         return out
-    if poly_area(poly) < 0:
-        poly = poly[::-1]
-    nv = len(poly)
-    refl = int(sum(_cr(poly[q - 1], poly[q], poly[(q + 1) % nv]) < 0 for q in range(nv)))
-    u0, u1 = float(poly[:, 0].min()), float(poly[:, 0].max())
-    Lp = u1 - u0
-    us = np.arange(u0 + 0.5, u1, 1.0)
-    wid = chord_widths(poly, us)
-    fr = (us - u0) / Lp
-    waist = float(np.median(wid[(fr >= 0.3) & (fr <= 0.7)]))
-    e_lo, e_hi = wid[fr <= 0.1], wid[fr >= 0.9]
-    ends = float(np.median(np.concatenate([e_lo, e_hi])))
-    body = dict(axes=A.tolist(), centre=c0.tolist(), half=[L / 2, W / 2, t / 2], poly=(poly * 1e-3).tolist(),
-                t=t, frame='rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre')
-    area = poly_area(poly)
-    out.update(ok=True, box=body, L_mm=round(L * 1e3, 1), W_mm=round(W * 1e3, 1), t_mm=round(t * 1e3, 3),
-               polygon=dict(used=used, tolerance_mm=tol, vertices_raw=int(len(raw)), vertices=int(nv),
-                            reflex_vertices=refl, area_cm2=round(area * 1e-2, 2),
-                            area_vs_cells=round(area * 1e-6 / max(float(comp.sum()) * r * r, 1e-12), 4),
-                            extent_mm=[round(Lp, 1), round(float(poly[:, 1].max() - poly[:, 1].min()), 1)],
-                            poly_mm=np.round(poly, 3).tolist()),
-               widths_mm=dict(waist_30_70=round(waist, 1), ends_outer_10=round(ends, 1),
-                              end_lo=round(float(np.median(e_lo)), 1), end_hi=round(float(np.median(e_hi)), 1),
-                              end_minus_waist=round(ends - waist, 1), max=round(float(wid.max()), 1)),
-               volume_cm3=round(area * t * 1e3 * 1e-3, 2))
-    g = k_('grid_m')
-    X, _ = _frame_grid(body, g)
-    ins = in_body(body, X)
-    fp, frt = _state_shares(ev, X[ins]), _state_shares(ev, X)
-    out['free_share'] = dict(grid_mm=g * 1e3, polygon=fp, rectangle=frt,
-                             polygon_free_cm3=round(fp['free'] * fp['points'] * g ** 3 * 1e6, 2),
-                             rectangle_free_cm3=round(frt['free'] * frt['points'] * g ** 3 * 1e6, 2),
-                             ratio_polygon_to_rectangle=round(fp['free'] / frt['free'], 3) if frt['free'] > 0 else None)
+    return _body_of(out, ctx, poly, used, tol, ev)
+
+
+# ------------------------------------------------------------------------------------------------ F-I4.16 ladder
+def _rt(R):
+    """The ring as the body stores it (metres, list) and pieces_poly reads it back (mm): prisms are counted on this copy,
+    so the ladder's counts are the delivered pieces' counts."""
+    return np.asarray((np.asarray(R, np.float64) * 1e-3).tolist(), np.float64) * 1e3
+
+
+def ring_dmax(raw, R):
+    """F-I4.16.1 report: the largest distance (mm) of a raw-ring vertex to the boundary of the ring R."""
+    A = np.asarray(R, np.float64)
+    d = np.roll(A, -1, axis=0) - A
+    L2 = np.maximum(np.einsum('ij,ij->i', d, d), 1e-300)
+    X = np.asarray(raw, np.float64)[:, None, :]
+    s = np.clip(np.einsum('nmj,mj->nm', X - A[None], d) / L2, 0.0, 1.0)
+    Pq = A[None] + s[..., None] * d[None]
+    return float(np.sqrt(((X - Pq) ** 2).sum(2)).min(1).max())
+
+
+def _n_parts(R, vmax):
+    try:
+        return len(convex_partition(R, vmax))
+    except RuntimeError:
+        return None
+
+
+def _rung(raw, R, fp, cap, vmax, eps):
+    """One ladder rung: simple, counts, area, d_max, widths and whether it fits (F-I4.16.1 (i)-(iii))."""
+    row = dict(eps_mm=float(eps), simple=bool(ring_simple(R)), fits=False)
+    if not row['simple']:
+        return row, None
+    if poly_area(R) < 0:
+        R = R[::-1]
+    Rr = _rt(R)
+    wd, _ = _widths(R)
+    row.update(vertices=int(len(R)), reflex_vertices=_reflex(R), area_cm2=round(poly_area(R) * 1e-2, 2),
+               d_max_mm=round(ring_dmax(raw, R), 3), waist_mm=wd['waist_30_70'], ends_mm=wd['ends_outer_10'],
+               end_minus_waist_mm=wd['end_minus_waist'], default_prisms=_n_parts(Rr, vmax))
+    fits = row['default_prisms'] is not None and row['default_prisms'] <= cap
+    if fp is not None:
+        res = slotted_polygon(Rr, fp)
+        rings = res['rings']
+        ok_r = bool(rings) and res.get('why') is None and all(ring_simple(q) for q in rings)
+        cnt = [_n_parts(q, vmax) for q in rings] if ok_r else [None]
+        row.update(slotted_rings=len(rings), slotted_hole=bool(res['hole']), slotted_rings_simple=bool(ok_r),
+                   slotted_prisms=int(sum(cnt)) if all(c is not None for c in cnt) else None)
+        fits = fits and row['slotted_prisms'] is not None and row['slotted_prisms'] <= cap
+    row['fits'] = bool(fits)
+    return row, R
+
+
+def ring_ladder(raw, fp, cap, vmax=None):
+    """PREREG F-I4.16.1: Douglas-Peucker on the raw ring at each rung (1.0, 1.5, 2.0, 3.0, 4.0 mm, in order); a rung fits
+    when (i) the ring is simple, (ii) its default prisms <= CAP and (iii) with a footprint FP (u0, u1, v0, v1 mm) its
+    slotted prisms (every ring of ring minus FP) <= CAP. All rungs are evaluated and reported. Returns (rows, chosen):
+    chosen = (eps, ring) of the smallest fitting rung, or None."""
+    vmax = vmax or k_('part_vmax')
+    rows, chosen = [], None
+    for eps in k_('ladder_mm'):
+        row, R = _rung(raw, dp_ring(raw, float(eps)), fp, cap, vmax, eps)
+        rows.append(row)
+        if row['fits'] and chosen is None:
+            chosen = (float(eps), R)
+    return rows, chosen
+
+
+def plate_body_ladder(b, obj, info, ev, fp=None, cap=None, pre=None):
+    """PREREG F-I4.16.1: the F-I4.15.2 body on the smallest fitting ladder rung. FP = the slot footprint (mm) of
+    _footprint (None: a board without a slot, chosen on (i)-(ii) only); CAP = floor(165 / objects) by default; PRE =
+    (out, ctx) of _outline when already computed. No rung fits and some rung is simple: plate_body_over_cap; no rung
+    simple: the raw ring (flag outline_unsimplified) if it fits, else plate_body_over_cap, else
+    plate_outline_not_simple. Reports the ladder table, the chosen eps, the FREE share of the rung-1.0 body and the
+    outline coverage of the frame (F-I4.16.5)."""
+    if cap is None:
+        cap = k_('shapes_max') // max(1, len(b.objects))
+    out, ctx = pre if pre is not None else _outline(b, obj, info)
+    out = dict(out, flags=list(out['flags']))
+    out['fi4_rev'] = 16
+    if ctx is None:
+        return out
+    raw = ctx['raw']
+    vmax = k_('part_vmax')
+    rows, chosen = ring_ladder(raw, fp, cap, vmax)
+    lad = dict(rule='F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms '
+                    '<= cap', rungs_mm=[float(e) for e in k_('ladder_mm')], cap=int(cap), slotted=fp is not None,
+               footprint_mm=None if fp is None else [round(float(x), 3) for x in fp], vertices_raw=int(len(raw)),
+               rows=rows, chosen_eps_mm=None if chosen is None else chosen[0])
+    out['ladder'] = lad
+    if chosen is not None:
+        poly, used, tol = chosen[1], 'simplified', chosen[0]
+    elif any(r_['simple'] for r_ in rows):
+        out.update(ok=False, why='plate_body_over_cap')
+        return out
+    else:                                                  # F-I4.15.2 (c) fallback, unchanged
+        row, R = _rung(raw, raw.copy(), fp, cap, vmax, 0.0)
+        lad['raw_ring'] = row
+        if not row['simple']:
+            out.update(ok=False, why='plate_outline_not_simple')
+            return out
+        if not row['fits']:
+            out.update(ok=False, why='plate_body_over_cap')
+            return out
+        poly, used, tol = R, 'unsimplified', 0.0
+        out['flags'].append('outline_unsimplified')
+        lad['chosen_eps_mm'] = 'raw'
+    out = _body_of(out, ctx, poly, used, tol, ev)
+    pa = poly_area(np.asarray(out['box']['poly'], np.float64) * 1e3)
+    out['coverage'] = dict(frame=round(pa / (ctx['L'] * ctx['W'] * 1e6), 4), polygon_cm2=round(pa * 1e-2, 2),
+                           frame_cm2=round(ctx['L'] * ctx['W'] * 1e4, 2), rule='F-I4.16.5 (report only, no gate)')
+    if chosen is not None and chosen[0] != 1.0 and rows[0]['simple']:
+        R1 = dp_ring(raw, 1.0)
+        if poly_area(R1) < 0:
+            R1 = R1[::-1]
+        b1 = dict(out['box'], poly=(R1 * 1e-3).tolist())
+        lad['free_share_rung_1_0'] = _free_share(b1, ev)
+    else:
+        lad['free_share_rung_1_0'] = 'same body (rung 1.0 chosen)' if chosen is not None and chosen[0] == 1.0 else None
+    return out
+
+
+def coverage_report(bodies, plates):
+    """PREREG F-I4.16.5 (report only): per body coverage_frame (polygon area / L x W of its frame) and, for a same-stock
+    pair (one board's t is the partner prior, or the two all-point t differ by <= 1 mm), coverage_partner = polygon
+    area / the partner's polygon area. BODIES / PLATES: {name: body record / plate record}."""
+    names = list(bodies)
+    out = {}
+    if len(names) != 2:
+        return out
+    tp = [plates[n].get('t_source') == 'partner_prior' for n in names]
+    dt = abs(float(plates[names[0]]['t_m']) - float(plates[names[1]]['t_m']))
+    same = bool(any(tp) or dt <= k_('stock_dt_m'))
+    for n, m in (names, names[::-1]):
+        a = (bodies[n].get('polygon') or {}).get('area_cm2')
+        am = (bodies[m].get('polygon') or {}).get('area_cm2')
+        cf = (bodies[n].get('coverage') or {}).get('frame')
+        out[n] = dict(coverage_frame=cf, same_stock=same, same_stock_by='partner_prior' if any(tp) else
+                      f'all-point t differ by {dt * 1e3:.3f} mm', polygon_cm2=a, partner_polygon_cm2=am,
+                      coverage_partner=round(a / am, 4) if (same and a and am) else None,
+                      rule='F-I4.16.5 (report only, no gate)')
+    return out
+
+
+def slot_centre_report(info, body, slot, sigma, f_first, one_face):
+    """PREREG F-I4.16.4 (report only; the verifier's vobs2 (b) method): for a one-face board, the near points (6 mm, all
+    points) in the slab |w| <= t / 2 + 3 sigma from the frames before F_FIRST (the first frame of the pair's engaged
+    INSERTION run), in body coordinates (u along a_L, v along a_W, w along a_T, origin the body centre on the mid
+    plane); band v between u_e and the slot bottom trimmed by 8 mm at each end, window |u - c_L| <= 30 mm, 1 mm bins;
+    seen side = sign of the median w there; below-face points w x seen < 0. u_obs = the midpoint of the contiguous run
+    of bins >= half the peak that holds the peak. Observable iff >= 100 below-face points, the run touches neither end
+    of the window and is <= 3 w wide. Flag (slot_centre_disagrees) iff observable and |u_obs - c_L| > 1 mm."""
+    if not one_face:
+        return dict(applicable=False, why='two-sided board: the far face is seen directly (F-I4.16.4)')
+    A = np.asarray(body['axes'], np.float64)
+    c = np.asarray(body['centre'], np.float64)
+    t_mm = 2 * float(body['half'][2]) * 1e3
+    P, F = np.asarray(info['_P'], np.float64), np.asarray(info['_F'])
+    Q = (P - c) @ A.T * 1e3
+    slab = np.abs(Q[:, 2]) <= t_mm / 2 + k_('slab_sigma') * sigma * 1e3
+    c_L, w = slot['_c_L'] * 1e3, slot['_w'] * 1e3
+    tr, win = k_('centre_trim_m') * 1e3, k_('centre_win_m') * 1e3
+    vlo, vhi = sorted([slot['_u_e'] * 1e3, slot['_bot'] * 1e3])
+    vlo, vhi = vlo + tr, vhi - tr
+    sel = slab & (F < f_first) & (Q[:, 1] >= vlo) & (Q[:, 1] <= vhi) & (np.abs(Q[:, 0] - c_L) <= win)
+    out = dict(applicable=True, method='F-I4.16.4 below-face half-peak run (verify_slot2_1 vobs2 (b))',
+               frames_before=int(f_first), v_band_mm=[round(vlo, 2), round(vhi, 2)], window_mm=win,
+               points_in_band_window=int(sel.sum()), c_L_mm=round(c_L, 3), w_mm=round(w, 3))
+    if not sel.any():
+        out.update(observable=False, n_points=0, why='no points in the band and window')
+        return out
+    seen = float(np.sign(np.median(Q[sel, 2]))) or 1.0
+    below = sel & (Q[:, 2] * seen < 0)
+    face = sel & (Q[:, 2] * seen > 1.0)
+    bins = np.arange(c_L - win, c_L + win + 1e-3, 1.0)
+    hb = np.histogram(Q[below, 0], bins)[0]
+    hf = np.histogram(Q[face, 0], bins)[0]
+    kpk = int(np.argmax(hb))
+    hm = hb >= 0.5 * hb[kpk]
+    lo_k = hi_k = kpk
+    while lo_k > 0 and hm[lo_k - 1]:
+        lo_k -= 1
+    while hi_k < len(hm) - 1 and hm[hi_k + 1]:
+        hi_k += 1
+    u_obs = float((bins[lo_k] + bins[hi_k + 1]) / 2)
+    width = float(bins[hi_k + 1] - bins[lo_k])
+    n = int(below.sum())
+    touches = bool(lo_k == 0 or hi_k == len(hm) - 1)
+    observable = bool(n >= k_('centre_min_pts') and not touches and width <= k_('centre_run_w') * w)
+    delta = u_obs - c_L
+    out.update(seen_sign=seen, n_points=n, face_points=int(face.sum()), peak_u_mm=round(float((bins[kpk] +
+               bins[kpk + 1]) / 2), 2), run_mm=[round(float(bins[lo_k]), 2), round(float(bins[hi_k + 1]), 2)],
+               run_width_mm=round(width, 2), run_touches_window_end=touches, u_obs_mm=round(u_obs, 3),
+               delta_mm=round(delta, 3), observable=observable,
+               below_w_mm_p5_50_95=[round(float(np.percentile(Q[below, 2], q)), 2) for q in (5, 50, 95)] if n else None,
+               below_per_mm=hb.tolist(), face_per_mm=hf.tolist(), bins_from_mm=round(float(bins[0]), 3))
+    if observable and abs(delta) > k_('centre_flag_m') * 1e3:
+        out['slot_centre_disagrees'] = dict(delta_mm=round(delta, 3), n_points=n, u_obs_mm=round(u_obs, 3),
+                                            c_L_mm=round(c_L, 3))
+    return out
+
+
+def p_sim_overlap(hulls_o, hulls_p, rels, frames):
+    """PREREG F-I4.16.4 P_sel -> P_sim check (eval 25 only; INTERLOCK 20.9 item 3): the volume (cm3) of p's slotted pieces
+    inside o's at each frame, with rels[f] = T_{o<-p} from the reference poses (the P6 estimator, simphys.overlap_series).
+    Returns dict(median, max, frames_over 0.3 cm3, series, flag) ; flag = median > 0.3 cm3 (report only)."""
+    from gmg import simphys as PH
+    ser = PH.overlap_series(hulls_o, hulls_p, rels, frames)
+    v = np.asarray(list(ser.values()), np.float64)
+    thr = k_('p_sim_flag_cm3')
+    med = float(np.median(v)) if len(v) else None
+    out = dict(frames=len(v), median_cm3=None if med is None else round(med, 4),
+               max_cm3=round(float(v.max()), 4) if len(v) else None, frames_over=int((v > thr).sum()),
+               threshold_cm3=thr, series={int(k): round(float(x), 4) for k, x in ser.items()})
+    out['flag'] = bool(med is not None and med > thr)
+    return out
+
+
+def manifest_fi416(records):
+    """The F-I4.16 keys of the r0 manifest's owner_waiver block from the per-object waiver records (record['body'],
+    record['slot']): chosen eps and counts per board, coverage, and slot_centre_disagrees when flagged."""
+    out = dict(fi416={})
+    sc = {}
+    for x, rec in records.items():
+        bd, sl = rec.get('body') or {}, rec.get('slot') or {}
+        lad = bd.get('ladder') or {}
+        ch = lad.get('chosen_eps_mm')
+        row = next((r_ for r_ in lad.get('rows', []) if r_.get('eps_mm') == ch), None)
+        out['fi416'][x] = dict(chosen_eps_mm=ch, rung=None if row is None else {k: row.get(k) for k in (
+            'vertices', 'reflex_vertices', 'default_prisms', 'slotted_prisms', 'area_cm2', 'd_max_mm',
+            'end_minus_waist_mm')}, coverage=bd.get('coverage_report') or bd.get('coverage'),
+            slot_centre={k: v for k, v in (sl.get('slot_centre') or {}).items() if not k.endswith('per_mm')})
+        if (sl.get('slot_centre') or {}).get('slot_centre_disagrees'):
+            sc[x] = sl['slot_centre']['slot_centre_disagrees']
+    if sc:
+        out['slot_centre_disagrees'] = sc
     return out
 
 
@@ -1164,16 +1463,30 @@ def plate_body_poly(b, obj, info, ev):
 def slot_for_poly(side, comp, R_lin, body, t_partner, run, partner_plane=None):
     """PREREG F-I4.15.3: frame, d, entry side, c_L (F-I4.12, middle of the rectangle-based depth range), the slot
     bottom b and the slot box as F-I4.3 in the rectangle frame (slot_for); then the polygon's entry edge u_e (its
-    outermost coordinate along s_e a_W inside the band |u - c_L| <= w / 2) and D = s_e (u_e - b), P = D - 2 mm."""
+    outermost coordinate along s_e a_W inside the band |u - c_L| <= w / 2) and D = s_e (u_e - b), P = D - 2 mm.
+    (Split into _slot_rect and _slot_poly_edge for F-I4.16, same computation.)"""
     sl = slot_for(side, comp, R_lin, body, t_partner, run, partner_plane=partner_plane)
     if not sl['ok']:
         return sl
-    w, c_L, D_r, s_e, u_r = sl['_w'], sl['_c_L'], sl['_D'], sl['_s_e'], sl['_u_e']
+    return _slot_poly_edge(_slot_rect(sl), body)
+
+
+def _slot_rect(sl):
+    """F-I4.15.3 / F-I4.16.1: the rectangle-frame part of the slot (does not depend on the polygon): bottom b = u_rect -
+    s_e D_rect; records D_rect, P_rect, u_rect, bottom. The footprint (_footprint) is defined from here on."""
+    D_r, s_e, u_r = sl['_D'], sl['_s_e'], sl['_u_e']
     bot = u_r - s_e * D_r
-    R = np.asarray(body['poly'], np.float64) * 1e3
-    band = clip_rect(R, (c_L - w / 2) * 1e3, (c_L + w / 2) * 1e3, -np.inf, np.inf)
     sl.update(D_rect_mm=sl['D_mm'], P_rect_mm=sl['P_mm'], u_rect_mm=round(u_r * 1e3, 2),
               bottom_mm=round(bot * 1e3, 2))
+    sl['_u_rect'], sl['_bot'] = u_r, bot
+    return sl
+
+
+def _slot_poly_edge(sl, body):
+    """F-I4.15.3: the polygon's entry edge u_e inside the slot band, D = s_e (u_e - b), P = D - 2 mm."""
+    w, c_L, s_e, u_r, bot = sl['_w'], sl['_c_L'], sl['_s_e'], sl['_u_rect'], sl['_bot']
+    R = np.asarray(body['poly'], np.float64) * 1e3
+    band = clip_rect(R, (c_L - w / 2) * 1e3, (c_L + w / 2) * 1e3, -np.inf, np.inf)
     if len(band) < 3:
         sl.update(ok=False, why='slot_band_outside_polygon')
         return sl
@@ -1182,7 +1495,7 @@ def slot_for_poly(side, comp, R_lin, body, t_partner, run, partner_plane=None):
     sl.update(u_e_poly_mm=round(u_e * 1e3, 2), D_mm=round(D * 1e3, 2),
               P_mm=round((D - k_('depth_margin_m')) * 1e3, 2), entry_edge_shift_mm=round(s_e * (u_r - u_e) * 1e3, 2),
               depth_from='the polygon edge at the slot mouth (F-I4.15.3)')
-    sl['_D'], sl['_u_e'], sl['_u_rect'], sl['_bot'] = D, u_e, u_r, bot
+    sl['_D'], sl['_u_e'] = D, u_e
     return sl
 
 
@@ -1356,6 +1669,63 @@ def apply_waiver(b, so, sp, recs, links, round_k=0):
     return recs
 
 
+def _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap):
+    """PREREG F-I4.16.1: per board the outline (frame + raw ring); the slot footprint in the rectangle frame (the F-I4.3
+    / F-I4.12 slot checks run here, before the ladder); the ladder on the board's own ring and footprint; the body on
+    the chosen rung and its default prisms; the polygon edge at the mouth (slot_band_outside_polygon on the chosen
+    ring); the coverage (F-I4.16.5) and slot-centre (F-I4.16.4) reports. Fills BODIES, SLOTS, DEFAULTS and W (as the
+    F-I4.15 branch does); returns the failing gate name or None."""
+    pre = {s.name: _outline(b, s.name, pi[s.name]) for s, _, _ in S}
+    for s, _, _ in S:
+        bodies[s.name] = dict(pre[s.name][0], fi4_rev=16)
+    W['body'] = {n: dict(x) for n, x in bodies.items()}
+    for n, (o_, ctx) in pre.items():
+        if ctx is None:
+            return o_.get('why', 'plate_body')
+    for (s, c, r), (s2, _, _) in zip(S, S[::-1]):          # F-I4.3 / F-I4.12 in the rectangle frame
+        T = IL._asm_pose(s.intr, c.run)                     # T_{s<-s2}, the median assembled relative pose
+        n2 = T[:3, :3] @ np.asarray(pi[s2.name]['mid_n'], np.float64)
+        d2 = float(pi[s2.name]['mid_d']) + float(n2 @ T[:3, 3])
+        sl = slot_for(s, c, c.region(), pre[s.name][1]['frame_box'], pi[s2.name]['t_m'], c.run,
+                      partner_plane=(n2, d2))
+        slots[s.name] = _slot_rect(sl) if sl['ok'] else sl
+    W['slot'] = {n: {k: v for k, v in x.items() if not k.startswith('_')} for n, x in slots.items()}
+    for n, sl in slots.items():
+        if not sl['ok']:
+            return sl['why']
+    for s, c, r in S:                                       # the ladder, per board
+        bodies[s.name] = plate_body_ladder(b, s.name, pi[s.name], s.ev, fp=_footprint(slots[s.name]), cap=cap,
+                                           pre=pre[s.name])
+    W['body'] = {n: dict(x) for n, x in bodies.items()}
+    for n, bd in bodies.items():
+        if not bd['ok']:
+            return bd.get('why', 'plate_body')
+    for s, c, r in S:                                       # F-I4.15.4 default prisms of the chosen ring
+        R_mm = np.asarray(bodies[s.name]['box']['poly'], np.float64) * 1e3
+        defaults[s.name], dinf = pieces_poly(bodies[s.name]['box'], R_mm, cap)
+        W['body'][s.name]['default_pieces'] = dinf
+    if any(W['body'][n]['default_pieces']['over_cap'] for n in bodies):
+        return 'plate_body_over_cap'
+    for s, c, r in S:                                       # u_e, D, P from the chosen ring (F-I4.15.3)
+        slots[s.name] = _slot_poly_edge(slots[s.name], bodies[s.name]['box'])
+    W['slot'] = {n: {k: v for k, v in x.items() if not k.startswith('_')} for n, x in slots.items()}
+    for n, sl in slots.items():
+        if not sl['ok']:
+            return sl['why']
+    cov = coverage_report(bodies, pi)                       # F-I4.16.5, report only
+    for n in bodies:
+        W['body'][n]['coverage_report'] = cov.get(n)
+    f0 = int(co.run.frames[0])                              # F-I4.16.4, report only
+    for s, c, r in S:
+        rep = slot_centre_report(pi[s.name], bodies[s.name]['box'], slots[s.name], b.sigma(s.name), f0,
+                                 pi[s.name].get('t_source') == 'partner_prior')
+        slots[s.name]['slot_centre'] = rep
+        W['slot'][s.name]['slot_centre'] = rep
+        if rep.get('slot_centre_disagrees'):
+            W['slot'][s.name]['slot_centre_disagrees'] = rep['slot_centre_disagrees']
+    return None
+
+
 def _pair(b, so, sp, co, cp, ro, rp, round_k):
     S = [(so, co, ro), (sp, cp, rp)]
     pi0 = {s.name: _plate(s, b) for s, _, _ in S}
@@ -1406,34 +1776,41 @@ def _pair(b, so, sp, co, cp, ro, rp, round_k):
     if not all(g['not_pushable'] for g in gates.values()):
         return fail('push')
     poly = REV >= 15                                       # PREREG F-I4.15: polygon body, prisms, D from its edge
-    for s, c, r in S:
-        bd = plate_body_poly(b, s.name, pi[s.name], s.ev) if poly else plate_body(b, s.name, pi[s.name])
-        bodies[s.name] = bd
-    W['body'] = {n: {k: v for k, v in x.items()} for n, x in bodies.items()}
-    for n, bd in bodies.items():
-        if not bd['ok']:
-            return fail(bd.get('why', 'plate_body'))
+    cap = k_('shapes_max') // max(1, len(b.objects))
     defaults = {}
-    if poly:                                               # F-I4.15.4 default prisms, cap floor(165 / objects)
-        cap = k_('shapes_max') // max(1, len(b.objects))
+    if REV >= 16:                                          # PREREG F-I4.16: footprint first, then the ladder
+        gate = _bodies_slots_16(b, S, pi, bodies, slots, defaults, W, co, cap)
+        if gate is not None:
+            return fail(gate)
+    else:
         for s, c, r in S:
-            R_mm = np.asarray(bodies[s.name]['box']['poly'], np.float64) * 1e3
-            defaults[s.name], dinf = pieces_poly(bodies[s.name]['box'], R_mm, cap)
-            W['body'][s.name]['default_pieces'] = dinf
-        if any(W['body'][n]['default_pieces']['over_cap'] for n in bodies):
-            return fail('plate_body_over_cap')
-    # F-I4.3 slots
-    for (s, c, r), (s2, _, _) in zip(S, S[::-1]):
-        T = IL._asm_pose(s.intr, c.run)                     # T_{s<-s2}, the median assembled relative pose
-        n2 = T[:3, :3] @ np.asarray(pi[s2.name]['mid_n'], np.float64)
-        d2 = float(pi[s2.name]['mid_d']) + float(n2 @ T[:3, 3])
-        sl = (slot_for_poly if poly else slot_for)(s, c, c.region(), bodies[s.name]['box'], pi[s2.name]['t_m'], c.run,
-                                                   partner_plane=(n2, d2))
-        slots[s.name] = sl
-    W['slot'] = {n: {k: v for k, v in x.items() if not k.startswith('_')} for n, x in slots.items()}
-    for n, sl in slots.items():
-        if not sl['ok']:
-            return fail(sl['why'])
+            bd = plate_body_poly(b, s.name, pi[s.name], s.ev) if poly else plate_body(b, s.name, pi[s.name])
+            bodies[s.name] = bd
+        W['body'] = {n: {k: v for k, v in x.items()} for n, x in bodies.items()}
+        for n, bd in bodies.items():
+            if not bd['ok']:
+                return fail(bd.get('why', 'plate_body'))
+        defaults = {}
+        if poly:                                               # F-I4.15.4 default prisms, cap floor(165 / objects)
+            cap = k_('shapes_max') // max(1, len(b.objects))
+            for s, c, r in S:
+                R_mm = np.asarray(bodies[s.name]['box']['poly'], np.float64) * 1e3
+                defaults[s.name], dinf = pieces_poly(bodies[s.name]['box'], R_mm, cap)
+                W['body'][s.name]['default_pieces'] = dinf
+            if any(W['body'][n]['default_pieces']['over_cap'] for n in bodies):
+                return fail('plate_body_over_cap')
+        # F-I4.3 slots
+        for (s, c, r), (s2, _, _) in zip(S, S[::-1]):
+            T = IL._asm_pose(s.intr, c.run)                     # T_{s<-s2}, the median assembled relative pose
+            n2 = T[:3, :3] @ np.asarray(pi[s2.name]['mid_n'], np.float64)
+            d2 = float(pi[s2.name]['mid_d']) + float(n2 @ T[:3, 3])
+            sl = (slot_for_poly if poly else slot_for)(s, c, c.region(), bodies[s.name]['box'], pi[s2.name]['t_m'],
+                                                       c.run, partner_plane=(n2, d2))
+            slots[s.name] = sl
+        W['slot'] = {n: {k: v for k, v in x.items() if not k.startswith('_')} for n, x in slots.items()}
+        for n, sl in slots.items():
+            if not sl['ok']:
+                return fail(sl['why'])
     T_op = IL._asm_pose(so.intr, co.run)
     Wx, npts = (crossing_extent_poly if poly else crossing_extent)(bodies[so.name]['box'], bodies[sp.name]['box'],
                                                                     T_op, co.run.d)

@@ -106,6 +106,9 @@ def main():
     ap.add_argument('--fi5-body', default='', help='F-I5 body per object (obj=cid,...); default: the pick if it is a '
                                                    'SHELL candidate, else the first shell_* candidate, else the pick')
     ap.add_argument('--no-physcheck', action='store_true', help='skip step 5 (per-candidate physcheck)')
+    ap.add_argument('--fi4-pieces-only', action='store_true',
+                    help='PREREG F-I4.16.6 step 3 (off by default): when rung 1.0 is chosen on both boards, write the '
+                         'r0 record without physics (P2-P7 inherited from round 2 iff the pieces are byte-identical)')
     ap.add_argument('--identity', default='public', choices=('public', 'eval'),
                     help='public: IDENTITY_SWAP makes (c) absent (F-I1.2); eval: the identity test only flags (SPEC '
                          'section 7), i.e. what the same rule does on an eval episode')
@@ -263,7 +266,7 @@ def main():
             if any(r.get('_waiver') for r in recs):
                 # PREREG F-I4.6-F-I4.8: slotted vs unslotted plate bodies; no splitter, no CoACD, no DIAG
                 sim_objects.update(run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, a.proxy_copies,
-                                              out_dir, prep))
+                                              out_dir, prep, pieces_only=a.fi4_pieces_only))
             else:
                 built = {}
                 for x in (o, p):
@@ -401,11 +404,18 @@ def main():
                                            acceptance=acc, default_pieces='_default/<obj>/piece_XX.obj (unslotted '
                                                                           'plates)'),
                          p1_pending=bool(acc['pass_all_but_P1']))
+            if getattr(PB, 'REV', 14) >= 16:           # PREREG F-I4.16.4-F-I4.16.5: ladder, coverage, slot centre
+                extra['owner_waiver'].update(PB.manifest_fi416({x: v['record'] for x, v in wv.items()}))
             rule = 'F-I3.8 / F-I4.8'
+            only = acc.get('pass_all_but_P1') is None and acc.get('physics_not_run')   # F-I4.16.6 step 3
             for x, v in wv.items():
-                state['carved_cm3'][x] = v['record']['budget']['slot_cm3'] if acc['pass_all_but_P1'] else 0.0
+                state['carved_cm3'][x] = v['record']['budget']['slot_cm3'] if (acc['pass_all_but_P1'] or only) else 0.0
                 state['solid_ref_cm3'][x] = v['record']['budget']['body_cm3']
             state['delivered'] = 'carved_p1_pending' if acc['pass_all_but_P1'] else 'do_not_use (F-I4.7 failed)'
+            if only:
+                state['delivered'] = ('record_only (F-I4.16.6 step 3: physics not run; the delivered folder stays the '
+                                      'round-2 r0 iff every piece file is byte-identical)')
+                extra['p1_pending'] = None
         for so_ in sim_objects.values():
             so_.pop('waiver', None)
         man = SP.write_round(sim_dir, a.ep, split, 0, sim_objects, dict(source='P_sel', flag='sim_pose_fallback',
@@ -419,7 +429,7 @@ def main():
     log('done', report['sec'], 's')
 
 
-def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir, prep):
+def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir, prep, pieces_only=False):
     """PREREG F-I4.6-F-I4.8 for one in-scope pair that passed the decision gates: keep-out gate on the slotted plates,
     the F-I4.7 physics (carved = slotted plates, default = unslotted plates, poses P_sel = P_sim fallback, COPIES
     jittered copies), acceptance, and the sim_objects entries for write_round (visual = our pick, unchanged; pieces =
@@ -436,12 +446,24 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
         gates[x] = PB.keepout_gate(ev[x], wv['body'], wv['slot'], wv['slotted'], occ[x], sil_lin)
         log('F-I4 keep-out gate', x, json.dumps({k: v for k, v in gates[x].items() if k != 'hulls'}))
     run = W[o]['_comp'].run
-    phys = PH.pair_physics(b, o, p, W[o]['_waiver']['slotted'], W[p]['_waiver']['slotted'], run,
-                           {x: W[x]['_waiver']['slot_cm3'] for x in (o, p)}, W[o]['_waiver']['default'],
-                           W[p]['_waiver']['default'], copies, 'F-I4 waiver slot (slotted vs unslotted plates)', log=log)
     n_shapes = {x: len(W[x]['_waiver']['slotted']) for x in (o, p)}
     n_shapes.update({x: None for x in b.objects if x not in (o, p)})
-    acc = PB.acceptance(phys, gates, {k: v for k, v in n_shapes.items() if v is not None})
+    eps = {x: ((W[x]['waiver_fi4']['body'][x].get('ladder') or {}).get('chosen_eps_mm')) for x in (o, p)}
+    if pieces_only and all(e == 1.0 for e in eps.values()):  # PREREG F-I4.16.6 step 3 (option, off by default)
+        phys = dict(not_run=True)
+        acc = dict(tests=None, failing=None, pass_all_but_P1=None, chosen_eps_mm=eps,
+                   physics_not_run='--fi4-pieces-only (F-I4.16.6 step 3): rung 1.0 on both boards; P2-P7 inherited '
+                                   'from round 2 iff every piece file is byte-identical to round-2 r0',
+                   P1='pending (Embodiment jitter_check --k 16 on the delivered folder; F-I2.12, F-I4.8)')
+        log('F-I4.16 pieces only: physics not run', json.dumps(eps))
+    else:
+        if pieces_only:
+            log('F-I4.16 pieces only requested, but a rung other than 1.0 was chosen: physics runs', json.dumps(eps))
+        phys = PH.pair_physics(b, o, p, W[o]['_waiver']['slotted'], W[p]['_waiver']['slotted'], run,
+                               {x: W[x]['_waiver']['slot_cm3'] for x in (o, p)}, W[o]['_waiver']['default'],
+                               W[p]['_waiver']['default'], copies, 'F-I4 waiver slot (slotted vs unslotted plates)',
+                               log=log)
+        acc = PB.acceptance(phys, gates, {k: v for k, v in n_shapes.items() if v is not None})
     acc['shapes'] = n_shapes
     acc['sec'] = round(time.time() - t, 1)
     log('F-I4 acceptance', json.dumps(acc, default=IL._jdefault))
@@ -449,7 +471,8 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
     prep['acceptance_fi4'] = acc
     prep['pieces_gate'] = {x: {k: v for k, v in g.items() if k != 'hulls'} for x, g in gates.items()}
     jdump(phys, os.path.join(out_dir, f'physics_{o}_{p}.json'))
-    dnu = None if acc['pass_all_but_P1'] else f'F-I4.7 failing: {acc["failing"]} (F-I4.8: written for the record)'
+    dnu = None if (acc['pass_all_but_P1'] or acc.get('physics_not_run')) else \
+        f'F-I4.7 failing: {acc["failing"]} (F-I4.8: written for the record)'
     out = {}
     for x in (o, p):
         r = W[x]
@@ -463,7 +486,9 @@ def run_waiver(b, o, p, sides, recs, cands, picks, ev, sil, occ, copies, out_dir
                       gate=g, waiver=dict(record=rec, acceptance=acc),
                       sources=dict(sil=sil[x], gen=sides[x].gen, notches=sides[x].notches,
                                    notches_sil=sides[x].notches_sil, grid=ev[x].grid),
-                      carve=dict(delivered='carved (slotted plate, p1_pending)' if not dnu else 'do_not_use',
+                      carve=dict(delivered=('record_only (pieces, physics not run; F-I4.16.6 step 3)'
+                                            if acc.get('physics_not_run') else
+                                            'carved (slotted plate, p1_pending)' if not dnu else 'do_not_use'),
                                  decisions=[IL.public(rr) for rr in recs if rr['target'] == x],
                                  pieces_choice='slotted_plate (F-I4.6)', pieces_gate={k: v for k, v in g.items()
                                                                                       if k != 'hulls'},

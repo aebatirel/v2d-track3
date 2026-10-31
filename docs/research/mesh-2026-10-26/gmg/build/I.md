@@ -1137,6 +1137,32 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   label fix needed before the eval run (shared file, not changed). Written: `build/I/results/slot3-ev25/PREP.md`
   (+ mapping / assembly / candidate / bundle-summary JSON, scripts, provenance). Prep25 done; no F-I4 decision, no
   physics, meshes/carve/ev25 not read, no rental ($0).
+- 22:00 (Build + public runs step, board-slot round-3 workflow) started. F-I4.16 confirmed on origin (782db1c ancestor of
+  origin/claude/bold-albattani-6qmxsv). Read STATUS, CLAUDE.md, this log (round 2, round 3), PREREG F-I4.16 (all),
+  verify_slot2_1 N1 + `vobs2.py` (the slot-centre estimator), `platebody.py`, `tests/test_fi415.py`, the
+  `test_interlock` fixtures, `tools/interlock_dev.py` (run_waiver, write_round extra). Plan: platebody REV 16 (ladder
+  after the rectangle-frame slot footprint, per-rung table, coverage, slot-centre report, P_sim overlap function;
+  REV 15 path unchanged), a minimal driver hook (`--fi4-pieces-only`, off by default: F-I4.16.6 step 3; F-I4.16
+  fields in the r0 owner_waiver block), new `tests/test_fi416.py`; commit; then T-I1 (w10 x 9, physics cell, w10p, w10n,
+  w7 / w8 / w8b, w1 regression) and ep24 fi4p in parallel; then ep23. Load 0.4 at 22:00 (4 cores).
+- 22:13 F-I4.16 build written (to be committed before any F-I4.16 run): `platebody.py` REV = 16 (REV 15 path kept:
+  `plate_body_poly` split into `_outline` + `_body_of`, `slot_for_poly` into `_slot_rect` + `_slot_poly_edge`, same
+  computation); new `ring_ladder` / `_rung` (Douglas-Peucker at 1.0, 1.5, 2.0, 3.0, 4.0 mm on the raw ring; fits = simple
+  + default prisms <= cap + slotted prisms (every ring of ring minus footprint) <= cap; counts taken on the ring as
+  stored and read back, so they are the delivered counts), `plate_body_ladder` (smallest fitting rung; none fits ->
+  plate_body_over_cap; none simple -> raw ring / outline_unsimplified as F-I4.15.2 (c)), `ring_dmax`,
+  `coverage_report`, `slot_centre_report` (vobs2 (b) method, frames before co.run's first frame), `p_sim_overlap`,
+  `manifest_fi416`; `_pair` REV 16 branch `_bodies_slots_16` (outline -> rectangle-frame slot + F-I4.3 checks ->
+  ladder per board -> body -> default prisms -> polygon mouth edge -> coverage, slot centre; then crosslap, budget,
+  slotted prisms exactly as F-I4.15). Driver `tools/interlock_dev.py` (shared, minimal): `--fi4-pieces-only` (off by
+  default; F-I4.16.6 step 3: physics skipped only when rung 1.0 is chosen on both boards, r0 written as a record),
+  `manifest_fi416` keys in the r0 owner_waiver block. New `tests/test_fi416.py` (W10 k1-k9 with k5 physics,
+  W10Report w10p / w10n, ReRuns w7 / w8 / w8b via WaiverR2 at REV 16, Identity REV 15 vs REV 16 on w1 t 6-25, w4,
+  w6, w3 rods, w7 + w6c) and `build/I/fi416_ep23.py` (copy of fi415_ep23.py, body by `plate_body_ladder`, no slot).
+  Pre-commit code check [M] (no w10, real-episode or new-case number computed): w1 t = 10 mm at the old code (HEAD
+  eb97989), at REV 15 after the split and at REV 16: all 163 piece arrays byte-identical in the three runs; REV 15
+  records identical except timing fields; REV 16 chooses rung 1.0 on both boards and only adds fields (ladder,
+  coverage, slot_centre, fi4_rev 16). 38-41 s per run.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
