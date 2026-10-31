@@ -5409,3 +5409,17 @@ Advice given:
   public ep2 (0.36–0.61 M "nefc overflow" lines, requests up to 948) and ep12 (13k), control included; 0 overflow lines in
   50 stored scored draws (scoring unaffected). [H] dropped constraints may hurt learning on contact-rich scenes. Candidate
   (later, not tonight): grep packed eval train.logs; a sim.njmax=1024 training variant if an eval episode overflows heavily.
+- ~23:00 UTC **re-track test: FAIL** (PREREG retrack-20261031 incl. §11; code 8b3cf78; boxes rtkA 58580189 Spain
+  $1.431/h, rtkB 58580201 Denmark $1.473/h; both job rc 0 in 29/31 min, "environment restored from
+  pt2.11-cu130-py313-20261020", RTX PRO 6000 drivers 615.71.09 / 595.71.05 → valid). Pull: `rtk_pull.py` 84 files,
+  0 failed. Score: `leak_p1.py score --perc $S/retrack/pop_root --lib-ep-dir meshes/rtk_e0b_public` → `scores/R_Pop.json`
+  (mean R 0.7208, RPE 3.073 cm, MPPE 5.124 cm). Verdict (`verdict.json` / `verdict.txt`, exit 1):
+  mean dR −0.16974 (≥ +0.01 False), dR > 0 on 3/20 (≥ 12 False), min dR −0.9732 (≥ −0.03 False), mean dRPE
+  +1.3212 cm (≤ 0 False); raw mean dR −0.16909; 12/20 episodes changed; unchanged controls max |dR| 0.0118, max |dRPE|
+  1.88 cm (ep23, already a failure at 14.2 cm); camera difference ≤ 0.077 cm everywhere (no NOTE/INVALID).
+  [M] Losses come from the white_pot template (ep45 0.9795 → 0.0063, ep0 0.9620 → 0.0374 / RPE 1.38 → 17.30 cm, ep26
+  0.9717 → 0.4968, ep2 0.9866 → 0.7233, ep41/42/44 −0.02 to −0.05) and the ep11 blue+beige pair (0.8978 → 0.1927,
+  RPE 1.74 → 10.04 cm). Blue-cup-only episodes 13/21/22: +0.0114/+0.0151/+0.0101 — [H, post-hoc subset, not
+  pre-registered] blue-cup templates alone might help slightly; the falsifying test would be a pre-registered blue-cup-
+  only re-track. Not proposed tonight. Per PREREG §7: no eval re-track; nothing enters an eval pack. Ledger actual
+  $0.73 + $0.81 = $1.54 (planned $3.00).

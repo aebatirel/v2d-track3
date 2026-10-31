@@ -10,6 +10,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 ~23:00 UTC: re-track test FAIL (P_o' per-episode C0b/E0b templates vs stored P_o, 20 public eps)
+- Pre-registered verdict (`docs/research/work/retrack-20261031/verdict.txt`): mean dR −0.170 (bar ≥ +0.01), dR > 0 on
+  3/20 (bar ≥ 12), min dR −0.973 (bar ≥ −0.03), mean dRPE +1.32 cm (bar ≤ 0). Raw mean dR −0.169. Fails every clause.
+- Worst: white_pot templates (ep45 0.980 → 0.006, ep0 0.962 → 0.037 with RPE 1.4 → 17.3 cm, ep26 −0.47, ep2 −0.26)
+  and ep11's two cups (−0.71). Blue-cup-only episodes 13/21/22 +0.010 to +0.015 (post-hoc subset, not a result).
+- Boxes clean (exit 0, env pt2.11-cu130-py313-20261020, RTX PRO 6000); cost $1.54 measured. No eval re-track.
+
 ## 2026-10-31 20:51 UTC: ep11 gate PASS (Δ +0.142 vs mocap) — eval-10 V4p retrain launching
 - Seed 42 +0.013, seed 43 +0.271 (T 0.861); control stays at its static floor. Verified, no timeouts.
 - Eval-10 retrain (ops/jobs/ev10_v4p.sh, 2 seeds + 10 confirmation draws, swap rule on both references) next.
