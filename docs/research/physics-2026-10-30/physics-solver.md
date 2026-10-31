@@ -673,7 +673,10 @@ Loop mechanics on the GPU: resume worked (round B starts at 30,003,200 steps), t
    (sim_vs_ref 0.944 vs 0.729 at 10M) may be this schedule, or ep2's usual run-to-run chaos (one seed).
 3. After the loop rounds, O3 never beat its own round-A best on ep2, ep18 or ep24 (ep2 stays 0.42–0.50 after the 30M
    collapse; ep18 0.38–0.49 vs 0.587 at 10M). ep12 rose 0.888 → 0.946–0.949, but O1 reached 0.918 by 40M as well.
-4. The bank was tiny (4 states on ep2) and each round gave one window, so the loop acted weakly.
+4. The bank was tiny (4 states on ep2) and each round gave one window, so the loop acted weakly. The solver changed
+   0 frames in 4 of 8 turns (ep2 after 30M, ep18 both, ep24 after 30M; edited frames 0/47, 67/40, 0/0, 0/72 for
+   ep2/12/18/24): from the policy's already-slipping state its best plan scored no better than the incumbent
+   (J_best ≈ J_warm), so it early-stopped at the 6-iteration minimum (seg_solve.json mean_iters 6.0–6.7, 2 rollbacks).
 Verdict for the record: rule "signal" (more seeds, not adoption); interpretation: **no evidence that the loop helps**;
 new hypothesis **[H-lr]: a shorter LR horizon (LR reaching 1.5e-4 by ~30M) keeps the early peak** — falsified if O1 with
 `training.optimization.learning_rate_schedule_updates` set to the 30M-run value does not beat O1 on ep2 over ≥ 3 seeds.

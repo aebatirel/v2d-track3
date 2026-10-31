@@ -5662,3 +5662,8 @@ Background agent, CPU only, $0, no ground truth read.
   length); after the loop rounds O3 never beat its round-A best on ep2/18/24. Interpretation: no evidence the loop
   helps; new hypothesis H-lr (shorter LR horizon) logged, not run. Results: physics-solver.md §6.1 Results,
   gpu/rlloop_summary.json. Fixed ops/ledger.py append to be idempotent (skip if the row already landed).
+- 10:40 UTC 31 Oct: owner asked for the loop explained/visualised and a more aggressive version. Found from the store
+  (seg_solve.json, merge logs) that the solver changed 0 frames in 4 of 8 turns (no better plan from the slipping state,
+  early stop at 6 iterations). Published two private pages: "Solver–RL Loop" (schematic, curves, per-turn table, loop v2
+  proposal ~$10–15 est.) https://claude.ai/artifact/A254GDBKXmA7Kxig7ET2cU and "Physics Study Board"
+  https://claude.ai/artifact/Na4KEzWSQazQxzZ33KBKyZ. Vast credit measured $29.16 at 10:35 UTC (mass box running).
