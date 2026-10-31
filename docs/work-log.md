@@ -5066,3 +5066,8 @@ Advice given:
   P 0.551 ± 0.007 (+0.018); ep31 O 0.556 ± 0.091 vs P 0.554 ± 0.096 (+0.002); ep11 skipped (its refs name
   /content/assets_ev10). Reading: true object motion barely improves zero-action executability on ep13/ep31; the limit
   is the plan's physics (grip, hand-over), consistent with orcB ep13 O = P = 0.544 after RL.
+- 05:20 UTC session determined-wright launched (owner's choice, option 3) 58495839 `20261031-rlloop-ccf9058` (public
+  ep2/12/18/24, solver↔RL loop, $1.37/h, est. $5.5–7.5, max $8.3; ledger line added). Credit before it $41.17, so ≈ $33
+  remains for this session's batch (mass check ~$5–6, eval-10 static hold ~$5–8, perception box ~$1–2); an eval
+  retrain with masses (~$20–25) would need a small extra top-up. Mass-check build (4e019af) sent to that session for
+  review.
