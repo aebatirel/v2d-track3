@@ -1,0 +1,56 @@
+{
+ "src": "cand/ep22_water_pitcher_g1.glb",
+ "dst": "cand_a2/ep22_water_pitcher_g1.glb",
+ "link_m": 0.008,
+ "components": 3,
+ "kept": [
+  {
+   "faces": 17472,
+   "area_cm2": 688.3,
+   "centroid_mm": [
+    -2.6,
+    25.6,
+    29.5
+   ],
+   "extents_mm": [
+    143.9,
+    102.3,
+    92.1
+   ],
+   "watertight": true
+  },
+  {
+   "faces": 127692,
+   "area_cm2": 1699.6,
+   "centroid_mm": [
+    5.0,
+    18.5,
+    24.5
+   ],
+   "extents_mm": [
+    139.9,
+    267.4,
+    412.3
+   ],
+   "watertight": true
+  }
+ ],
+ "dropped": [
+  {
+   "faces": 6276,
+   "area_cm2": 82.3,
+   "centroid_mm": [
+    231.5,
+    226.8,
+    -181.3
+   ],
+   "extents_mm": [
+    46.8,
+    81.1,
+    44.4
+   ],
+   "watertight": true
+  }
+ ],
+ "unchanged": false
+}
