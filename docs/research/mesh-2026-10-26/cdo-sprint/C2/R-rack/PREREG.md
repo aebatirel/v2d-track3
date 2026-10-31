@@ -179,3 +179,29 @@ same points, each run's internal selection, the fitted s1e / kappa / gx, gy.
   the pick is committed and pushed.
 - One scoring. No option, bound, candidate set, threshold or twin set changes after this commit. Failures are
   reported, not retried with changed settings. Deviations found in implementation go to `RESULTS.md` before scoring.
+
+## 11. Amendment A1 (2026-10-31 ~19:55 UTC; before any C2/R candidate output was seen, before any scoring)
+
+**Why [M].** C0b's public run finished at 19:33 UTC. Its own rack candidates (C0b `cand/rack/candidates.jsonl`,
+GT-free) show that the C0b observed points break `prim_rack.py`: cup-holder tops of 82-320 mm (C0: 105 mm), lip
+heights up to 47.9 mm, 0-8 pegs instead of 13, 39-76 gmg balls per build, and obs_fidelity sums of 33-115 mm (C0's
+mesh on the obs_all points: ~6 mm). Measured here on the five C0b pass-B rack files (our points only; the box is the
+C0 rack frame, a diagnostic): 1.7 / 0.8 / 21.3 / 36.9 / 19.3 % of the voxel-downsampled points of episodes
+12 / 13 / 26 / 27 / 31 lie outside a rack-sized box, mostly 150-400 mm in front of the rack. This is the static clutter
+that C0b PREREG 3.4 named as a risk of the +-0.30 m cube ROI. With > 10 % clutter in the fidelity set, the trimmed
+fidelity measures clutter, not the rack, so the section 5 pick would not test H-R.
+
+**Change (inputs only).** Every C0b pass-B rack file is cleaned by `scripts/clean_pts.py` before the builds and the
+fidelity: points linked within 12 mm (obs_points `other_r`, AUDIT id 135, KEEP) on 4 mm voxels (the obs_points vote
+voxel, AUDIT id 142, A6) form connected components; keep the largest component and every component whose centroid lies
+inside its convex hull (rack parts that the removed table band disconnects, such as pegs on the unseen floor); drop the
+rest. Nothing else changes: options, candidate family, T, markers (C0b's per-episode gmg balls, unchanged), exclusions,
+fidelity formula, pick, gate, scoring, guard and adoption are sections 3-8 as written.
+- Measured effect of the rule [M]: kept 98.8 / 99.6 / 63.8 / 51.0 / 65.4 % of the points of 12 / 13 / 26 / 27 / 31;
+  afterwards >= 99.96 % of the kept points of 12, 13, 27, 31 and 88.0 % of ep26 lie in the rack-sized box (ep26
+  keeps an attached cluster ~136 mm high above the cup holder).
+- **Runs.** The box started at 19:35 UTC (`mesh-20261031-c2r-18e63eb`, uncleaned inputs) is reported only; nothing is
+  picked from it. The section 4 runs are repeated on the cleaned points, locally at nice 10 (`c2r_build.sh` with the
+  cleaned input dir; one box per track is already used). Its `selection.json` is the section 5 pick.
+- **Reported only:** C0b's own rack pick (ep13 full, fidelity 33.32 mm on uncleaned points) is not comparable on
+  fidelity; the C0 mesh and the C0b base run are reported on the cleaned points.
