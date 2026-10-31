@@ -886,7 +886,10 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     recomputes them (`engaged_runs(..., holdout=)`). (e) A3 = the carved pair passed P2-P7 here AND the Embodiment's
     jitter_check settle (`--k 16`) reports a pass; without that report A3 is pending and the round is not accepted.
     A4 = cumulative carve <= 10 % of the round-0 solid, >= 90 % of the round-0 default collider volume, topology kept,
-    <= 165 shapes, read from the round folder.
+    <= 165 shapes, read from the round folder. Measured on the synthetic cross (15:40 UTC) [M]: the export path's
+    round-1 carve is a voxel carve (its region holds class-O voxels), our splitter re-decomposes the carved solid and
+    partly refills it, the persistent check-frame intrusion falls only 435.3 -> 403.5 cm3 (-7 %), A1 fails and the
+    round is rejected: the acceptance test works, the splitter is the open problem (F-I3.8).
   - **F-I3.4 OFFSET carves have a budget (review B4b).** N + t at width w_sim is measured by (iv) (cumulative volume,
     reach <= 0.6 along d, topology of the carved sub-voxels) before the pair level decides; an OFFSET that fails it does
     not hold (`budget_iv_fail (N + t)`), so its linked partner cannot carve on it.
