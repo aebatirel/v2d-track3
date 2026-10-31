@@ -5922,3 +5922,12 @@ score.
   - D arm: 4 boxes running (G 14/16/33, S25 s42/s43, S30 s42); S30 s43 ≈ 23:45. Reading after all five plus one
     confirmation box.
 - Pack 9b: the only possible additions are passing D cells.
+- ~23:55 UTC E0b final hand-off (bold-albattani cdo-sprint/C0b/README.md, e5baab1; relayed by focused-pascal):
+  - shippable, scan-free and built from eval data: white_pot pot/ep3/thick (md5 073872f4…; evals 1, 3, 5, 6, 8, 28)
+    and beige_cup beige/ep8/g1 (md5 0d926da1…; evals 8, 10). Folders meshes/library_e0b(x).
+  - Public CD-O is worse than 9a+: pot 0.392 vs C0 0.342; beige 0.30 vs C1/T1 0.25. Both pass the public AUC guard.
+  - Recommendation on score: keep 9a+'s pot and beige. E0b is the provenance-cleaner option ("no scan-derived value";
+    one gmg-informed detector setting; 40 constants of unknown origin). The owner's compliance call.
+  - Sim flags if E0b is ever used: 17 of the pot's 32 marker balls sit below its base; the beige has three inside-out
+    shells. Lid, rack and blue cup not adopted. Eval 8's v3 vs v3x frame still open.
+  - Pack 9b keeps 9a+'s meshes unless the owner picks E0b.
