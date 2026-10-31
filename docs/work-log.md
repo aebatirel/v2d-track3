@@ -6192,3 +6192,26 @@ Background agent, CPU only, $0, no ground truth read.
   - Library_v3 without pieces: 56 / 40 contacts, nefc 240 / 175.
   - Largest per-world shares: hand self-contacts up to 21 (right) and 15–17 (left); hand–board up to 20; board–board
     up to 14; board–support up to 12.
+
+### 2026-10-31 22:24 UTC — determined-wright: training-time constraint overflow (njmax) on ep2/ep12 [M]; not in scoring
+- Found while checking the arm V boxes: V/ep2-s42's train.log has "nefc overflow - please increase njmax to 515…728".
+- **The control has it too, and more of it.** Store train.logs, overflow lines (largest request):
+
+  | cell | overflow lines | largest request |
+  |---|---|---|
+  | C/ep2-s42 | 613,729 | 948 |
+  | C/ep2-s43 | 357,932 | 896 |
+  | D/ep2-s42 | 342,071 | 879 |
+  | C/ep12-s42 | 13,367 | 667 |
+  | C/ep24-s42 | 0 | — |
+
+  sim=rl's njmax is 512 per world, so MuJoCo-Warp drops constraint rows in those world-steps. Not V-specific.
+- **Not in scoring.** The 50 stored scored draws of C/ep2-s42, C/ep2-s43, D/ep2-s42, S/ep2-s42 and C/ep12-s42 have 0
+  overflow lines in their eval.log, including the failed draws (0.33–0.54). Overflow therefore does not explain the
+  draw spread; the hypothesis "overflow in scored rollouts" is falsified for these cells.
+- [H-njmax-train]: dropped constraints in ~1 % of ep2's training world-steps (≈ 0.6 M lines over ~50 M world-steps)
+  corrupt the learning signal on the contact-rich pot + lid episode.
+  - Test: an arm with `sim.njmax=1024`, C otherwise, on ep2 (+ ep12), 2 seeds.
+  - The override would be stored in the checkpoint config, so the evaluator would rebuild with it (more memory, no
+    harm, since scoring never overflowed).
+  - Not run; the owner is asleep. To be offered.
