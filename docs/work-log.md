@@ -5727,3 +5727,8 @@ arm and a no-policy replay floor to stage B.
 - 22:23 UTC determined-wright: command-smoothing test A FAILS the pre-registered rule (§11). GL+ILC +0.002 to +0.014;
   solved plans −0.027 to +0.014. No RL follow-up. Synergy test B parked: it needs the CPU solver (hours per episode), and
   the solver is closed for eval after arm S; it can run if the owner wants.
+- 22:55 UTC focused-pascal: the re-track test FAILS every pre-registered clause. P_o' with per-episode C0b/E0b
+  templates (Set B) vs P_o on 20 public episodes, cost $1.54: mean dR −0.170, 3/20 positive, min −0.973, dRPE
+  +1.32 cm. The losses come from the white_pot template (ep45 0.980 → 0.006, ep0 → 0.037, ep26 −0.47, ep2 −0.26) and
+  the ep11 cup pair (0.898 → 0.193). There is no eval re-track, and nothing enters a pack (942dbfc).
+  - Still running: eval-10 V4p retrain (seed 43) and masses v2 box B. The D boxes launch after their review returns GO.
