@@ -650,3 +650,18 @@ scan number was seen; none bears on these choices.
     rule and its inputs are unchanged. The second batch (`runs/20261031-b4ext2-74fabc9`: ep2 and ep18 complete, ep0
     and ep31 started) was killed by a machine restart at about 06:58 UTC; it is kept as a stopped attempt. All 20
     episodes are rerun in one fresh run on one commit (the aux change touches no bundle file). No scan number seen.
+101. **(2026-10-31, B4, after seeing the ep31 bundle of run `20261031-b4ext3-8885ae0`) Seed fallback when no
+    3-D-separated frame exists.** Seen [M]: in ep31 the pass-1 census on provisional owned points finds 0 of 145
+    frames 3-D-separated (pass-1 3-D gap at most 2.1 mm in every frame: the static rack's and the sweeper's provisional
+    clouds hold each other's surfaces), so neither seed of SPEC section 7 pass 2 exists (rule A has no frames, rule B
+    needs frame 0 to be 3-D-separated); the seeded components were empty and both objects got no owned point (both
+    TRACK_FAIL, B.3 Jaccard 0). SPEC does not cover this case. Closest faithful choice: when o's seed is empty, (1) the
+    exclusive frame-0 det proposal is used without the frame-0 separation test (SPEC's own exclusivity rule, "a proposal
+    containing two objects' origins is not used", keeps a two-object proposal out; seed points as entry 86), flag
+    `seed_fallback:<o>`; (2) without a det dump or an exclusive proposal, o has no seed: its pass-3 candidates are not
+    restricted to a seeded component (pass-1 ownership among the keep-rule objects), there is no guard (no seed box),
+    the grid box is the provisional voxel box + 2 cm, flag `no_seed:<o>`; (3) the nearest-seed tie-break (b) needs a
+    seed for both compared objects, else the sample stays shared (rule c); before, a tied object without a seed lost
+    every tie to a seeded one (distance infinity). Episodes whose seeds are non-empty are unchanged by (1)-(3). The run
+    `20261031-b4ext3-8885ae0` (ep0, ep2, ep31 complete; ep18, ep23, ep24 started) is stopped and kept as a failed
+    attempt; all 20 episodes are rerun in a fresh run on the commit of this entry. No scan number seen.

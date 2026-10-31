@@ -20,7 +20,8 @@ carves) and the keep rule (hits >= 3, ratio >= 0.5). The passes of SPEC section 
   pass 1  provisional owners: the object with the highest r_o among objects whose keep rule passes at the sample;
           a tie within 2 binomial standard errors (Agresti-Caffo, see DEVIATIONS) is provisionally shared;
           contact census (M4) on the provisional owned points
-  pass 2  seeds and seeded components (8 mm connectivity) with the 1.5 x seed-box guard
+  pass 2  seeds and seeded components (8 mm connectivity) with the 1.5 x seed-box guard; without a 3-D-separated
+          frame, the exclusive frame-0 proposal, else no seed (DEVIATIONS 101)
   pass 3  final owners among the objects whose seeded component holds the sample; ties: co-moving tie-break
           (a) exclusive frame-0 det proposal, (b) nearest seed (< 0.5 x the other), (c) shared
   pass 4  final census (both saved; census_unstable if > 10 % of a pair's separated frames change), grids on the
@@ -468,44 +469,67 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         sep3 = sep3d_all(census1, o)
         info['sep3d_frames_pass1'] = len(sep3)
         seed = None
-        # (B) the frame-0 SAM2 proposal holding o's projected origin, exclusively, if frame 0 is 3-D-separated for o
-        if props is not None and 0 in sep3 and 0 in S and org0[o] is not None:
+
+        def det_seed(tag):
+            """The frame-0 SAM2 proposal holding o's projected origin, exclusively (proposals holding another tracked
+            object's projected origin are not used): o's provisional (owned or o-tied) frame-0 samples inside it."""
+            if props is None or 0 not in S or org0[o] is None:
+                return None
             hh, ww = props.shape[1:]
+
             def px(uv):
                 return int(np.floor(uv[1] / pscale)), int(np.floor(uv[0] / pscale))
             oi, oj = px(org0[o])
-            if 0 <= oi < hh and 0 <= oj < ww:
-                cand = np.nonzero(props[:, oi, oj])[0].tolist()
-                for q in objs:
-                    if q == o or org0[q] is None:
-                        continue
-                    qi, qj = px(org0[q])
-                    if 0 <= qi < hh and 0 <= qj < ww:
-                        cand = [i for i in cand if not props[i, qi, qj]]
-                s0 = S[0]
-                mine = (s0['own1'] == k) | ((s0['own1'] == SHARED) & ((s0['tied1'] >> k) & 1).astype(bool))
-                pv, pu = np.divmod(s0['pix'].astype(np.int64), IMG_W)
-                hi_, hj_ = np.minimum((pv / pscale).astype(np.int64), hh - 1), np.minimum((pu / pscale).astype(np.int64), ww - 1)
-                foot = np.zeros((hh, ww), bool)
-                foot[hi_[mine], hj_[mine]] = True
-                best, bi = 0.0, None
-                for i in cand:
-                    inter = int((props[i] & foot).sum())
-                    iou = inter / max(int((props[i] | foot).sum()), 1)
-                    if iou > best:
-                        best, bi = iou, i
-                info.update(det_candidates=len(cand), det_iou=round(best, 4), det_index=bi)
-                if bi is not None:
-                    insel = mine & props[bi][hi_, hj_]
-                    if insel.any():
-                        Ti = np.linalg.inv(FR.T_co[o][0])
-                        seed = s0['P'][insel].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
-                        info.update(seed='det_f0', det_mask=int(bi))
+            if not (0 <= oi < hh and 0 <= oj < ww):
+                return None
+            cand = np.nonzero(props[:, oi, oj])[0].tolist()
+            for q in objs:
+                if q == o or org0[q] is None:
+                    continue
+                qi, qj = px(org0[q])
+                if 0 <= qi < hh and 0 <= qj < ww:
+                    cand = [i for i in cand if not props[i, qi, qj]]
+            s0 = S[0]
+            mine = (s0['own1'] == k) | ((s0['own1'] == SHARED) & ((s0['tied1'] >> k) & 1).astype(bool))
+            pv, pu = np.divmod(s0['pix'].astype(np.int64), IMG_W)
+            hi_ = np.minimum((pv / pscale).astype(np.int64), hh - 1)
+            hj_ = np.minimum((pu / pscale).astype(np.int64), ww - 1)
+            foot = np.zeros((hh, ww), bool)
+            foot[hi_[mine], hj_[mine]] = True
+            best, bi = 0.0, None
+            for i in cand:
+                inter = int((props[i] & foot).sum())
+                iou = inter / max(int((props[i] | foot).sum()), 1)
+                if iou > best:
+                    best, bi = iou, i
+            info.update(det_candidates=len(cand), det_iou=round(best, 4), det_index=bi)
+            if bi is None:
+                return None
+            insel = mine & props[bi][hi_, hj_]
+            if not insel.any():
+                return None
+            Ti = np.linalg.inv(FR.T_co[o][0])
+            info.update(seed=tag, det_mask=int(bi))
+            return s0['P'][insel].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
+
+        # (B) the frame-0 proposal, if frame 0 is 3-D-separated for o
+        if 0 in sep3:
+            seed = det_seed('det_f0')
         if seed is None:
             # (A) provisional owned points of o's 3-D-separated frames within 0.30 m of the track origin
             pts = obj_points(k, 'own1', frames_sel=[t for t in sep3 if t in S])
             seed = pts[np.linalg.norm(pts, axis=1) <= c['seed_r']] if len(pts) else pts
             info['seed'] = 'sep3d_points'
+        if not len(seed):
+            # DEVIATIONS 101: neither seed of SPEC section 7 exists (no 3-D-separated frame in the pass-1 census, or
+            # no provisional point of o in those frames). The exclusive frame-0 proposal is used without the frame-0
+            # separation test (its exclusivity rule keeps a two-object proposal out); without one, o has no seed and
+            # no seeded-component restriction (flag no_seed)
+            sd = det_seed('det_f0_fallback') if 0 not in sep3 else None
+            if sd is not None:
+                seed = sd
+            else:
+                info['seed'] = 'none'
         info['seed_points'] = int(len(seed))
         # component voxel set: cube voxels holding provisional o-owned or o-tied samples
         cnt = np.zeros(n ** 3, np.int32)
@@ -530,6 +554,9 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
             cm[vset[np.isin(lab, labs)]] = True
             info['components_total'] = int(lab.max() + 1) if len(lab) else 0
             info['components_seeded'] = int(len(labs))
+        elif len(vset):
+            cm[vset] = True              # no seed (DEVIATIONS 101): no seeded-component restriction, no guard
+            info['no_seed'] = True
         nv = int(cm.sum())
         info['component_voxels'] = nv
         info['guard'] = False
@@ -550,6 +577,12 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
                 box = (glo, ghi)
             else:
                 box = (clo - c['grid_margin'], chi + c['grid_margin'])
+        elif nv:
+            ijk = np.stack(np.unravel_index(np.nonzero(cm)[0], (n, n, n)), 1)
+            ctr = -c['cube'] + (ijk + 0.5) * c['vox']
+            clo, chi = ctr.min(0) - c['vox'] / 2, ctr.max(0) + c['vox'] / 2
+            info.update(comp_box_mm=np.round((chi - clo) * 1e3, 1).tolist())
+            box = (clo - c['grid_margin'], chi + c['grid_margin'])
         else:
             box = None
         info['box'] = None if box is None else [np.round(box[0], 4).tolist(), np.round(box[1], 4).tolist()]
@@ -597,7 +630,9 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
                     Po = s['P'][sh[tk]].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
                     dist[np.nonzero(tk)[0], k] = trees[k].query(Po, k=1)[0]
                 order = np.sort(dist, 1)
-                win = order[:, 0] < c['near_seed'] * order[:, 1]
+                # the nearer seed must be below half the farther; a tied object without a seed (DEVIATIONS 101)
+                # gives no distance, so its samples stay shared (c)
+                win = np.isfinite(order[:, 1]) & (order[:, 0] < c['near_seed'] * order[:, 1])
                 if win.any():
                     own[sh[win]] = np.argmin(dist[win], 1)
                     how[sh[win]] = 2
@@ -724,6 +759,11 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         meta['sigma_info'][o] = inf
     timing['sigma_s'] = round(time.time() - t0_, 1)
     flags = []
+    for o in objs:
+        if seed_info[o].get('seed') == 'none':
+            flags.append(f'no_seed:{o}')
+        elif seed_info[o].get('seed') == 'det_f0_fallback':
+            flags.append(f'seed_fallback:{o}')
     for k, o in enumerate(objs):
         for q, p in enumerate(objs):
             if q == k:
