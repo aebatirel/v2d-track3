@@ -1,0 +1,42 @@
+{
+ "episode": 12,
+ "objects": [
+  "blue_cup",
+  "plastic_dish_rack"
+ ],
+ "frames": 181,
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c0b/c0b",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 176.31,
+   "anchor_shift_cm": 3.21,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "plastic_dish_rack": {
+   "rot_deg": 11.72,
+   "anchor_shift_cm": 2.81,
+   "axis": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "order": 0
+  }
+ },
+ "perception": {
+  "AUC": 0.2826,
+  "SP_SR": 0.0,
+  "MP_SR": 0.0,
+  "MPPE_cm": 6.0982,
+  "RPE_cm": 15.0527,
+  "per_obj_AUC": {
+   "blue_cup": 0.0,
+   "plastic_dish_rack": 0.5653
+  }
+ }
+}
