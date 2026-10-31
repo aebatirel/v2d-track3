@@ -57,6 +57,22 @@ def main():
     dflt = {o: load_pieces(os.path.join(r0, '_default', o)) for o in objs}
     dlv = {o: load_pieces(os.path.join(r0, o)) for o in objs}
     out = dict(ep=a.ep, T=T, objects=objs, routes={o: (f5['routes'][o] or {}).get('route') for o in objs}, pairs={})
+    # collider volume (union of the pieces, 2 mm samples) vs the F-I5 body (the SHELL candidate solid), report only
+    import trimesh
+    rep = json.load(open(os.path.join(od, 'report.json')))
+    vols = {}
+    for o in objs:
+        cid = (rep.get('fi5_body') or {}).get(o)
+        bm = trimesh.load(os.path.join(a.run, 'cand', 'public', f'ep{a.ep}', o, f'{cid}.glb'), force='mesh') \
+            if cid else None
+        cell = CC.k_('sample_m') ** 3 * 1e6
+        vols[o] = dict(body=cid, body_cm3=round(float(abs(bm.volume)) * 1e6, 2) if bm is not None else None,
+                       body_watertight=bool(bm.is_watertight) if bm is not None else None,
+                       default_pieces=None if dflt[o] is None else len(dflt[o]),
+                       default_cm3=None if dflt[o] is None else round(len(CC.collider_samples(dflt[o])) * cell, 2),
+                       delivered_pieces=None if dlv[o] is None else len(dlv[o]),
+                       delivered_cm3=None if dlv[o] is None else round(len(CC.collider_samples(dlv[o])) * cell, 2))
+    out['volumes'] = vols
     arrs = {}
     frames = list(range(0, T, 2))
     for key, W in (f5.get('pairs') or {}).items():

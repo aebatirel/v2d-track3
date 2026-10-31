@@ -730,6 +730,19 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   "handle" components are SHELL-candidate residuals (the blue cup has no handle), i.e. the 3 sigma / 0.3 cm3 handle test
   is too permissive for our noisy shells; falsifier: those components lie on the shell's outer surface within ~2 sigma
   of the profile in other sectors. Reported, no change.
+- 20:06 [M] **ep31 mini_sweeper default pieces = route 4 at 6 mm: 3 boxes, 3 cells (~0.65 cm3 [E])**: CoACD 0.02 gave 82
+  hulls (1383 s), only 2 over 0.3 cm3 (max 0.336 cm3, keep-out 3.9 cm3 in all), gate fail -> route 4; 2 / 4 mm boxes over
+  the cap, 6 mm keeps 3 cells. Mechanism common to all three objects so far [M, code + logs]: CoACD is called with
+  max_convex_hull = the piece cap (82) and returns exactly 82 hulls, so the keep-out repair ("split until <= 0.3 cm3 or
+  the cap is reached") never gets a split (0 steps); the gate then fails on a few hulls and route 4's coarse grids keep
+  only cells lying wholly inside thin walls. The delivered defaults pass the rule's gate but are not usable colliders
+  for thin objects [E until the delivered volumes are read]. Rule as written; reported.
+- 20:08 [M] **ep2 white_pot default pieces = route 4 at 6 mm (42 boxes, 109 cells)**: lathe accepted (2.39 sigma), rings
+  fine (12 sectors, 73 ring pieces, continuity 0 gaps on 82,080 rays), handle step 8 components (34.9, 12.9, 10.6 cm3:
+  plausibly the real handles; and 2.4, 0.4, 2.7, 3.8, 0.6 cm3) -> rings + handle hulls over 82 -> CoACD 82 hulls (539 s),
+  51 over 0.3 cm3 (max 4.23 cm3) -> 6 mm boxes. ep12 blue_cup handle step: 15 components, 22.1 cm3 in all from 3,184
+  shell points, 22 hulls. Four of four objects whose pieces are done (ep11 blue, ep12 blue, ep31 sweeper, ep2 pot) end
+  in 6 mm boxes. The runs continue (racks, lids / cups, then the pairs) under the rule as written.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
