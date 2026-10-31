@@ -115,11 +115,25 @@ def main():
                                         (s.get('identity_split') or {}).items()},
                                  cross={k: v for k, v in cj['results'][f'ep{ep}:{o}'].items() if k != 'chamfers_mm'}))
         flagged = [f'ep{x["ep"]}:{x["obj"]}' for x in rows if 'IDENTITY_SWAP' in x['flags']]
-        p22 = (flagged == ['ep23:wooden_piece_2'])
+        # P22 is about the cross-object test; split-test failures also mark IDENTITY_SWAP (SPEC section 7) and are
+        # listed apart
+        cross_flagged = [f'ep{x["ep"]}:{x["obj"]}' for x in rows
+                         if x['cross'].get('testable') and not x['cross'].get('pass_')]
+        split_flagged = [f'ep{x["ep"]}:{x["obj"]}' for x in rows
+                         if any(t and p is False for t, p in x['split'].values())]
+        not_testable = [f'ep{x["ep"]}:{x["obj"]}' for x in rows if not x['cross'].get('testable')]
+        lid_cup = [k for k in not_testable if k.split(':')[1] in ('white_pot_lid', 'beige_cup')]
+        p22 = dict(cross_flags_exactly_ep23_board2=(cross_flagged == ['ep23:wooden_piece_2']),
+                   lid_and_beige_cup_not_testable=sorted(lid_cup) == sorted(
+                       k for k in (f'ep{x["ep"]}:{x["obj"]}' for x in rows)
+                       if k.split(':')[1] in ('white_pot_lid', 'beige_cup')))
         json.dump(dict(prereg='B.15', P22_prediction='flags ep23 board 2 and no other public object-episode; lid and '
-                       'beige cup not testable', flagged=flagged, P22_supported=p22,
+                       'beige cup not testable', flagged=flagged, cross_flagged=cross_flagged,
+                       split_flagged=split_flagged, P22=p22,
+                       P22_supported=bool(p22['cross_flags_exactly_ep23_board2'] and
+                                          p22['lid_and_beige_cup_not_testable']),
                        track_fail=[f'ep{x["ep"]}:{x["obj"]}' for x in rows if 'TRACK_FAIL' in x['flags']],
-                       not_testable_cross=[f'ep{x["ep"]}:{x["obj"]}' for x in rows if not x['cross'].get('testable')],
+                       not_testable_cross=not_testable,
                        rows=rows), open(os.path.join(a.out, 'b15.json'), 'w'), indent=1)
     # strace audits
     if a.audit_glob:
