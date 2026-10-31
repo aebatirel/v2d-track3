@@ -5638,3 +5638,8 @@ Background agent, CPU only, $0, no ground truth read.
   20261031-rlloop-ccf9058 'bash ops/jobs/physics_rl_loop.sh'` → Vast contract 58495839 (RTX PRO 6000 WS, UK, $1.369/h
   all-in). Pre-registration: physics-solver.md §6.1. Ledger planned $8.3 (est. $5.5–7.5). Untested before the GPU:
   FlashSAC resume on a merged reference and the reset-state bank under graph capture (first exercised at round B, ~30M).
+- ~05:45 UTC 31 Oct: CPU review of the pack session's mass-transfer check (branch claude/focused-pascal-2nz9s1 at
+  4e019af) → NO-GO as built, sent to them. Same reference, per-arm masses, identical settings, no GT before scoring: OK.
+  Fix before launch: a missing cell gives INVALID instead of the pre-registered INCOMPLETE (reproduced with a fixture);
+  the config diff may give a false INVALID on path-bearing keys; pyarrow Table.equals fails on NaN columns; eval
+  timeouts dropped silently (stall may correlate with the mass arm). Fixture: scratchpad masscheck_review/test/.
