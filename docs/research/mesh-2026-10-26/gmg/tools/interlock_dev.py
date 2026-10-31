@@ -99,11 +99,19 @@ def main():
     ap.add_argument('--waiver-fi4', action='store_true',
                     help='PREREG F-I4 (owner waiver of the camera rule): plate-plate INSERTION pairs get the analytic '
                          'slot in the simulator copy (default off: F-I1..F-I3 only)')
+    ap.add_argument('--waiver-fi5', action='store_true',
+                    help='PREREG F-I5 (owner extended waiver: any colliding pair): cavity-preserving default pieces, '
+                         'collider intrusions, swept-partner carve with acceptance S + P2-P7, own round folder; the '
+                         'old simulator copy (splitter) is not built (default off: F-I1..F-I4 only)')
+    ap.add_argument('--fi5-body', default='', help='F-I5 body per object (obj=cid,...); default: the pick if it is a '
+                                                   'SHELL candidate, else the first shell_* candidate, else the pick')
     ap.add_argument('--no-physcheck', action='store_true', help='skip step 5 (per-candidate physcheck)')
     ap.add_argument('--identity', default='public', choices=('public', 'eval'),
                     help='public: IDENTITY_SWAP makes (c) absent (F-I1.2); eval: the identity test only flags (SPEC '
                          'section 7), i.e. what the same rule does on an eval episode')
     a = ap.parse_args()
+    if a.waiver_fi5:                                   # F-I5.4: the old splitter is not used in F-I5 runs
+        a.no_physics = True
     guard.set_run(a.run)
     t_start = time.time()
     split = 'public'
@@ -132,7 +140,8 @@ def main():
             if 'nmv' in r:
                 np.savez_compressed(os.path.join(out_dir, f'sil_{o}.npz'), nmv=r['nmv'], nmf=r['nmf'], occ=ev[o].occ)
     report = dict(ep=a.ep, bundle=a.bundle, tier=b.meta.get('tier'), picks=picks, constants=IL.constants_report(),
-                  identity_semantics=a.identity, owner_waiver_fi4=bool(a.waiver_fi4), sanity_flags={o: (b.meta.get('sanity') or {}).get(o, {}).get('flags')
+                  identity_semantics=a.identity, owner_waiver_fi4=bool(a.waiver_fi4),
+                  owner_waiver_fi5=bool(a.waiver_fi5), sanity_flags={o: (b.meta.get('sanity') or {}).get(o, {}).get('flags')
                                                                for o in objs},
                   sim_pose='P_sel (flag sim_pose_fallback: no provenance-checked replay reference for public dev)',
                   pairs={}, silhouette={o: ({k: v for k, v in (sil[o] or {}).items() if not k.startswith('_') and
@@ -355,6 +364,21 @@ def main():
     jdump(pcs, os.path.join(out_dir, 'physcheck.json'))
     jdump(all_dec, os.path.join(out_dir, 'decisions.json'))
     jdump(push, os.path.join(out_dir, 'push_list.json'))
+    if a.waiver_fi5:                                   # PREREG F-I5.6: its own round folder (flag-off decisions above)
+        from gmg import collcarve as CC
+        fb = dict(kv.split('=') for kv in a.fi5_body.split(',') if kv)
+        bodies = {}
+        for o in objs:
+            cid = fb.get(o) or (picks[o] if picks[o].startswith('shell') else
+                                next((c for c in sorted(cands[o]) if c.startswith('shell')), picks[o]))
+            bodies[o] = cands[o][cid]
+            report.setdefault('fi5_body', {})[o] = cid
+        sim5 = os.path.join(a.run, 'sim', split, f'ep{a.ep}' + (f'-{a.tag}' if a.tag else ''), 'r0')
+        rep5 = CC.run_episode(b, a.ep, objs, cands, picks, bodies, fh, hands, out_dir, sim5, identity=a.identity,
+                              copies=a.proxy_copies, log=log)
+        jdump(rep5, os.path.join(out_dir, 'fi5.json'))
+        report['fi5'] = {k: v for k, v in rep5.items() if k != 'decisions'}
+        report['sim_dir'] = rep5.get('sim_dir')
     if sim_objects and not a.no_physics:
         sim_dir = os.path.join(a.run, 'sim', split, f'ep{a.ep}' + (f'-{a.tag}' if a.tag else ''), 'r0')
         for x, so in sim_objects.items():                # sources (a), (b), notches travel with the round (F-I3.1)

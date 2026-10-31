@@ -81,6 +81,11 @@ CUP_LEAN = os.environ.get('PRIM_CUP_LEAN', '1') == '1'   # default True: cup-hol
                         # in the clean-up round obs_fidelity (GT-free) preferred the free lean at every T_WALL
                         # (1.5/2.5/4.0 mm: 6.044/5.935/5.921 vs 6.242/6.116/6.138 mm), so the default follows it
 JOINT_TOL = 1.25        # joint fit: episodes whose own fit has fidelity <= JOINT_TOL x the best
+# C0b options (PREREG cdo-sprint/C0b 3.2, 3.3; main() sets them): --t_wall replaces T_WALL everywhere, --s0_min_t sets
+# S0_MIN = T_WALL, --markers_dir replaces the marker path (markers_from, marker_parts, in_basin) by the gmg
+# markers.py balls of each episode (<dir>/ep<N>.json) attached by markers.attach. Unset = the behaviour above.
+GMG_MK = None           # dict(dir=..., sha=...) when --markers_dir is given
+C0B_USED = {}
 
 
 # ------------------------------------------------------------------------------------------------ io / frame
@@ -651,14 +656,18 @@ def fit(P, C, F, band, info=None, depth=None, up_fixed=None):
     return geo, fr, n
 
 
-def build(P, C, F, band, variants, prefix, fr_out=None, depth=None, up_fixed=None):
-    """Fit + mesh every requested variant; fr_out: optional transform of the final mesh (joint: mean frame)."""
+def build(P, C, F, band, variants, prefix, fr_out=None, depth=None, up_fixed=None, balls=None):
+    """Fit + mesh every requested variant; fr_out: optional transform of the final mesh (joint: mean frame).
+    balls (C0b, GMG_MK set): gmg balls in the FINAL mesh frame; attached with posts (markers.attach, stem rule on P
+    moved to the final frame) to every variant that does not end in nomk."""
     info = {}
     geo, fr, n = fit(P, C, F, band, info, depth, up_fixed)
     body = build_body(geo)
     body_tm = PL.from_mf(body)
     out = {}
     mk_parts, mk_info = [], []
+    if GMG_MK is not None:
+        return build_gmg(P, info, geo, fr, body, variants, prefix, fr_out, balls or [])
     if any(not v.endswith('nomk') for v in variants):
         # residual points: outside the body by > APP_D (in rack coordinates)
         x, y, h = to_rack(P, fr)
@@ -697,6 +706,47 @@ def build(P, C, F, band, variants, prefix, fr_out=None, depth=None, up_fixed=Non
     rep = dict(info=info, variants=out, frame={k: v.tolist() for k, v in fr.items()})
     json.dump(rep, open(prefix + '.json', 'w'), indent=1, default=float)
     return rep, geo, fr
+
+
+def build_gmg(P, info, geo, fr, body, variants, prefix, fr_out, balls):
+    """C0b mesh export: body (rack frame -> object frame -> fr_out), then the gmg balls (final frame) attached."""
+    from gmg import markers as MK
+    Pf = P if fr_out is None else P @ fr_out[:3, :3].T + fr_out[:3, 3]
+    info['markers'] = dict(source='gmg markers.py', settings_sha256=GMG_MK['sha'], n=len(balls), balls=balls)
+    info['n_markers'] = int(len(balls))
+    out = {}
+    for var in variants:
+        m = PL.from_mf(body)
+        m = rack_to_object(m, fr)
+        if fr_out is not None:
+            m.apply_transform(fr_out)
+        if not var.endswith('nomk') and balls:
+            m = MK.attach(m, balls, obs=dict(pts=Pf))
+            info.setdefault('attach', {})[var] = m.metadata.get('balls')
+        f = f'{prefix}_{var}.glb'
+        m.export(f)
+        out[var] = dict(path=f, faces=int(len(m.faces)), watertight=bool(m.is_watertight))
+    rep = dict(info=info, variants=out, frame={k: v.tolist() for k, v in fr.items()}, c0b=C0B_USED)
+    json.dump(rep, open(prefix + '.json', 'w'), indent=1, default=float)
+    return rep, geo, fr
+
+
+def gmg_episode_balls(obs_path):
+    """C0b: the gmg balls of this rack episode (object frame of its track) from GMG_MK['dir']/ep<N>.json."""
+    ep = os.path.basename(obs_path).split('_')[0]
+    J = json.load(open(os.path.join(GMG_MK['dir'], f'{ep}.json')))
+    if J.get('settings_sha256') != GMG_MK['sha']:
+        raise SystemExit(f'{ep}: markers settings sha {J.get("settings_sha256")} != frozen {GMG_MK["sha"]}')
+    return J['balls'].get(OBJ, [])
+
+
+def move_balls(balls, T):
+    out = []
+    for b in balls:
+        b = dict(b); c = np.asarray(b['c'], np.float64)
+        b['c'] = [float(v) for v in T[:3, :3] @ c + T[:3, 3]]
+        out.append(b)
+    return out
 
 
 # ------------------------------------------------------------------------------------------------ joint
@@ -770,7 +820,21 @@ def joint(obs_list, prefix, variants=('joint', 'joint_nomk'), depth=None):
     # episode e's frame = inv(T_e) applied to the reference frame; the mean frame:
     Tm = mean_rigid([np.linalg.inv(T) for T in Ts])
     up_m = np.mean(ups, 0); up_m /= np.linalg.norm(up_m)
-    rep, geo, fr = build(P, C, F, data[ref][3], list(variants), prefix, fr_out=Tm, depth=depth, up_fixed=up_m)
+    jballs, jball_rep = None, None
+    if GMG_MK is not None:
+        # C0b: each episode's balls -> reference frame (its ICP T) -> final frame (Tm); the detector's frozen overlap
+        # suppression (centre distance < r_a + r_b: more votes stays) on the pooled balls; no new detection
+        from gmg import markers as MK
+        pooled = []
+        for k, f in enumerate(obs_list):
+            pooled += move_balls(gmg_episode_balls(f), Tm @ Ts[k])
+        kept = MK._nms(MK.balls_from_json(pooled))
+        jballs = [MK.ball_dict(b) for b in kept]
+        jball_rep = dict(pooled=len(pooled), kept=len(jballs))
+    rep, geo, fr = build(P, C, F, data[ref][3], list(variants), prefix, fr_out=Tm, depth=depth, up_fixed=up_m,
+                         balls=jballs)
+    if jball_rep is not None:
+        rep['joint_balls'] = jball_rep
     rep['alignment'] = dict(reference=os.path.basename(obs_list[ref]), episodes=rep_al,
                             mean_frame_T=Tm.tolist(), up_mean=up_m.tolist(),
                             up_spread_deg=[float(math.degrees(math.acos(np.clip(u @ up_m, -1, 1)))) for u in ups])
@@ -807,7 +871,8 @@ def run(obs_dir, out_dir, episodes, variants=('full', 'nomk'), joint_variants=('
         prefix = f'{out_dir}/{OBJ}/ep{ep}'
         os.makedirs(os.path.dirname(prefix), exist_ok=True)
         P, C, F, band = load(f)
-        rep, geo, fr = build(P, C, F, band, list(variants), prefix, depth=depth)
+        rep, geo, fr = build(P, C, F, band, list(variants), prefix, depth=depth,
+                             balls=gmg_episode_balls(f) if GMG_MK is not None else None)
         for var, v in rep['variants'].items():
             cands.append(dict(object=OBJ, episode=str(ep), variant=var, path=os.path.abspath(v['path']),
                               faces=v['faces'], watertight=v['watertight'], n_markers=rep['info']['n_markers'],
@@ -863,10 +928,30 @@ def main():
     j.add_argument('--variants', default='joint,joint_nomk'); j.add_argument('--depth', type=float, default=None)
     r = sub.add_parser('run'); r.add_argument('--obs_dir', required=True); r.add_argument('--out', required=True)
     r.add_argument('--episodes', default='12,13,26,27,31')
+    for q in (b, j, r):
+        q.add_argument('--t_wall', type=float, default=None, help='C0b: wall / floor thickness T (m), replaces T_WALL')
+        q.add_argument('--s0_min_t', action='store_true', help='C0b: lip width lower bound S0_MIN = T')
+        q.add_argument('--markers_dir', default=None, help='C0b: gmg detect_episode outputs <dir>/ep<N>.json')
     a = p.parse_args()
+    global T_WALL, S0_MIN, GMG_MK
+    if a.t_wall is not None:
+        if a.t_wall < 0:
+            raise SystemExit('C0b: rack wall needs thickness.py (< 200 measurements) or t0_C0b (not fittable)')
+        T_WALL = C0B_USED['t_wall'] = float(a.t_wall)
+    if a.s0_min_t:
+        S0_MIN = C0B_USED['s0_min'] = T_WALL
+    if a.markers_dir is not None:
+        sys.path.insert(0, os.path.dirname(HERE))
+        from gmg import markers as MK
+        GMG_MK = dict(dir=a.markers_dir, sha=MK.SETTINGS_SHA256)
+        C0B_USED['markers_dir'] = a.markers_dir
+    if C0B_USED:
+        C0B_USED.update(cup_lean=CUP_LEAN, joint_tol=JOINT_TOL)
+        print(json.dumps(dict(c0b=C0B_USED)), flush=True)
     if a.cmd == 'build':
         P, C, F, band = load(a.obs)
-        rep, geo, fr = build(P, C, F, band, a.variants.split(','), a.prefix, depth=a.depth)
+        rep, geo, fr = build(P, C, F, band, a.variants.split(','), a.prefix, depth=a.depth,
+                             balls=gmg_episode_balls(a.obs) if GMG_MK is not None else None)
         inf = rep['info']
         print(json.dumps(dict(obs=os.path.basename(a.obs), H_r=round(inf['H_r'] * 1e3, 1), outline=inf['outline'],
                               cup=inf['cup'], pegs=[(len(r['xc']), round(r['H_p'] * 1e3, 1), [round(v * 1e3, 1) for v in r['a']],

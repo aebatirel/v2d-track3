@@ -414,3 +414,66 @@ def pair_physics(b, o, p, hulls_o, hulls_p, run, carve_cm3, default_o, default_p
                              'kept for the FlashCHORD check') if out['P2_P7_pass'] else \
         'a physical test failed: default pieces'
     return out
+
+
+# --------------------------------------------------------------------------- PREREG F-I5.5 S (collision carve)
+def sink_xml(host, guest, T_wh, T_wg, n_table, d_table, gp, dt=0.002):
+    """S scene (ev10w M3 setup): the receiver (host) FIXED at its pose (static geoms), the guest free, the table plane,
+    gravity along -n_table, plain MuJoCo defaults otherwise."""
+    g = -9.81 * np.asarray(n_table, float)
+    n = np.asarray(n_table, float); p0 = -d_table * n
+    z = n; x = np.cross([0, 1.0, 0], z) if abs(z[1]) < 0.9 else np.cross([1.0, 0, 0], z)
+    x /= np.linalg.norm(x); y = np.cross(z, x)
+    qp = _quat(np.stack([x, y, z], 1))
+    qh = _quat(T_wh[:3, :3]); th = T_wh[:3, 3]
+    qg = _quat(T_wg[:3, :3]); tg = T_wg[:3, 3]
+    return f'''<mujoco><option timestep="{dt}" gravity="{g[0]:.5f} {g[1]:.5f} {g[2]:.5f}"/>
+<asset>{_mesh_assets(host, 'a')}{_mesh_assets(guest, 'b')}</asset><worldbody>
+<geom type="plane" size="2 2 0.1" pos="{p0[0]:.6f} {p0[1]:.6f} {p0[2]:.6f}" quat="{qp[0]:.6f} {qp[1]:.6f} {qp[2]:.6f} {qp[3]:.6f}" friction="0.5"/>
+<body name="H" pos="{th[0]:.7f} {th[1]:.7f} {th[2]:.7f}" quat="{qh[0]:.7f} {qh[1]:.7f} {qh[2]:.7f} {qh[3]:.7f}">{_geoms(host, 'a')}</body>
+<body name="G" pos="{tg[0]:.7f} {tg[1]:.7f} {tg[2]:.7f}" quat="{qg[0]:.7f} {qg[1]:.7f} {qg[2]:.7f} {qg[3]:.7f}"><freejoint/>{_inertial(gp)}{_geoms(guest, 'b')}</body>
+</worldbody></mujoco>'''
+
+
+def sink_test(host, guest, T_wh, T_wg, table, gp, copies=None, secs=2.0, dt=0.002, disp_max=0.004, tilt_max=5.0,
+              seed=2):
+    """PREREG F-I5.5 S, hands-off rest / sink at one frame: receiver fixed at T_wh, guest free starting at its tracked
+    pose T_wg composed with each jitter (16 copies, 0.5 mm / 0.005 rad, common random numbers through SEED), table
+    (n, d) in world, 2 s at 2 ms. Per copy: displacement of the guest's centre of mass from its TRACKED position, its
+    vertical drop (dz, along -n), lateral part, tilt from the tracked orientation; NaN; below the receiver's lowest
+    point. Pass: mean displacement <= 4 mm, mean tilt <= 5 deg, no NaN copy, no copy below."""
+    import mujoco
+    n_t, d_t = np.asarray(table[0], float), float(table[1])
+    J = jitters(copies, seed=seed)
+    com = np.asarray(gp['com'], float)
+    x_tr = T_wg[:3, :3] @ com + T_wg[:3, 3]
+    R_tr = T_wg[:3, :3]
+    lowest = float(min((np.vstack(host) @ T_wh[:3, :3].T + T_wh[:3, 3]) @ n_t))
+    rows, nan = [], 0
+    for j in J:
+        Jm = np.eye(4); Jm[:3, :3] = Rot.from_rotvec(j[3:]).as_matrix(); Jm[:3, 3] = j[:3]
+        m = mujoco.MjModel.from_xml_string(sink_xml(host, guest, T_wh, T_wg @ Jm, n_t, d_t, gp, dt))
+        d = mujoco.MjData(m)
+        mujoco.mj_forward(m, d)
+        gid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, 'G')
+        for _ in range(int(round(secs / dt))):
+            mujoco.mj_step(m, d)
+        if not np.all(np.isfinite(d.qpos)):
+            nan += 1; continue
+        x = d.xipos[gid].copy()
+        R = d.xmat[gid].reshape(3, 3)
+        dv = x - x_tr
+        dz = float(-(dv @ n_t))
+        rows.append(dict(disp=float(np.linalg.norm(dv)), dz=dz, lateral=float(np.linalg.norm(dv + dz * n_t)),
+                         tilt=float(np.degrees(Rot.from_matrix(R_tr.T @ R).magnitude())),
+                         below=bool(x @ n_t < lowest)))
+    if not rows:
+        return dict(nan=nan, copies=0, pass_=False, reason='no finite copy')
+    M = {k: float(np.mean([r[k] for r in rows])) for k in ('disp', 'dz', 'lateral', 'tilt')}
+    below = int(sum(r['below'] for r in rows))
+    ok = M['disp'] <= disp_max and M['tilt'] <= tilt_max and nan == 0 and below == 0
+    return dict(disp_mm=round(M['disp'] * 1e3, 3), dz_mm=round(M['dz'] * 1e3, 3), lateral_mm=round(M['lateral'] * 1e3, 3),
+                tilt_deg=round(M['tilt'], 3), per_copy=[dict(disp_mm=round(r['disp'] * 1e3, 2), dz_mm=round(r['dz'] * 1e3, 2),
+                                                             lateral_mm=round(r['lateral'] * 1e3, 2),
+                                                             tilt_deg=round(r['tilt'], 2), below=r['below']) for r in rows],
+                copies=len(rows), nan=nan, below=below, pass_=bool(ok))

@@ -1183,12 +1183,15 @@ def _asm_pose(intr, run):
     return mean_pose([intr.rel[f] for f in fr])
 
 
-def decide_pair(b, so, sp, poses_sim=None, round_k=0, waiver_fi4=False):
+def decide_pair(b, so, sp, poses_sim=None, round_k=0, waiver_fi4=False, waiver_fi5=None):
     """F-I1.3 for one pair (both ordered directions): components of so (o <- p) and sp (p <- o). Returns the list of
     decision records (one per component), each with the carve solids for the simulator copy (width w_sim) and, at
     T2/T3/T2o, for submitted candidates (width w_sub). waiver_fi4 (PREREG F-I4, the owner's waiver of the camera rule,
     default off): after these decisions, linked plate-plate INSERTION pairs go through platebody.apply_waiver (analytic
-    slot in rec['_waiver'], simulator copy only); with the flag off nothing changes."""
+    slot in rec['_waiver'], simulator copy only); with the flag off nothing changes. waiver_fi5 (PREREG F-I5, the
+    owner's extended waiver, default None): a collcarve.FI5 context; SO / SP must then be built from COLLIDER
+    intrusions (collcarve.intrusions_colliders, or an Embodiment export); after these decisions FI5.apply() decides
+    every non-plate pair (receiver, swept-partner carve, acceptance; simulator copy only)."""
     if int(round_k) > K('max_rounds'):
         raise ValueError(f'round {round_k} > {K("max_rounds")} (F-I1.13)')
     out = []
@@ -1420,6 +1423,8 @@ def decide_pair(b, so, sp, poses_sim=None, round_k=0, waiver_fi4=False):
     if waiver_fi4:                                   # PREREG F-I4 (owner waiver), new path; off = F-I1..F-I3 only
         from gmg import platebody as PB
         PB.apply_waiver(b, so, sp, out, links, round_k=round_k)
+    if waiver_fi5 is not None:                       # PREREG F-I5 (owner's extended waiver), new path
+        waiver_fi5.apply(b, so, sp, out, links, round_k=round_k)
     return out
 
 

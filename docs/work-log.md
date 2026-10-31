@@ -5548,3 +5548,22 @@ diagnostic; nothing is picked for submission.
   before eval 25); 2-3 deg tilt test; ep25 gmg bundle and per-board mapping to the packed reference; default plate pieces'
   keep-out (F-I5 route); record items in INTERLOCK 20.9 item 5.
 - Hand-offs written for determined-wright (r0 state) and focused-pascal (eval-25 pieces need a rollout re-run).
+
+### 2026-10-31 ~18:05 UTC — board slot round 1 ended with no slot; round 2 launched
+- Board-slot workflow `wf_8acce122-d7b` done (INTERLOCK 20.9; commits up to eeb50da). No notch yet, eval 25 not run.
+  - Run 1: plate test found no plane pair (board 1's 9 mm band merges both faces; board 2 shows one face only).
+  - F-I4.14 (post hoc): camera-side face pair, else one-face with the partner's t. With it, the plate test passes
+    (t 6.21 mm).
+  - Run 2: the F-I4.2 rectangle body then fails: the boards are I-shaped (waist 130 / 125 mm, ends 137 / 136 mm) [M].
+  - The w6 falsifier fired: the downsampled thickness reads thin (6.21 vs 7.3-7.4 mm on all points).
+- **Orchestrator decision F-I4.15 (post hoc):**
+  - outline-following extruded body, convex prisms minus the slot box;
+  - t from the face estimator on all points;
+  - everything else in F-I4 unchanged;
+  - ep23 body check before eval 25.
+- Launched `board-slot-2` (`wf_3d11bbef-dee`, task wxs33t03z):
+  - amend;
+  - build with synthetic I-plate tests, ep24 with physics and ep23 body check;
+  - two verifiers;
+  - eval 25 with board identity mapped to the pack's ev25idfix reference and a new ep25 gmg bundle;
+  - report.

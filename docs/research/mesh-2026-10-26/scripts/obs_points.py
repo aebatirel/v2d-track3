@@ -13,6 +13,7 @@ Kept: samples whose voxel has >= MIN_HITS hit-frames and hit / (hit + free) >= M
 Output npz: pts (N,3) object frame, cam (N,3) camera centre in the object frame (for normal orientation), frame (N,).
 Usage: obs_points.py --poses P.npz --depth D.npy --hands H.npz --calib calib.json --obj NAME --roi ROI.glb --out O.npz
        [--others NAME=MESH,...] [--stride 2]
+C0b (PREREG cdo-sprint/C0b 3.4): --roi_cube 0.30 instead of --roi; --others_pts NAME=NPZ,... instead of --others.
 The ROI mesh only sets the box (bounds + margin); any mesh of ours or a box size works.
 """
 import argparse, json, os, sys, time
@@ -29,8 +30,14 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--poses', required=True); p.add_argument('--depth', required=True)
     p.add_argument('--hands', default=None); p.add_argument('--calib', required=True)
-    p.add_argument('--obj', required=True); p.add_argument('--roi', required=True); p.add_argument('--out', required=True)
+    p.add_argument('--obj', required=True); p.add_argument('--roi', default=None); p.add_argument('--out', required=True)
     p.add_argument('--others', default=''); p.add_argument('--other_r', type=float, default=0.012)
+    # C0b options (PREREG cdo-sprint/C0b section 3.4); unset = the behaviour above, byte for byte
+    p.add_argument('--roi_cube', type=float, default=None,
+                   help='C0b: ROI = cube of this half-side (m) about the track-frame origin, no margin (replaces --roi)')
+    p.add_argument('--others_pts', default='',
+                   help='C0b: NAME=NPZ,... co-object surface = 20,000 random points (seed 0) of its own observed '
+                        'points (an obs_points npz), posed by its track (replaces --others library meshes)')
     p.add_argument('--stride', type=int, default=2); p.add_argument('--margin', type=float, default=0.02)
     p.add_argument('--edge_thr', type=float, default=0.02); p.add_argument('--zmax', type=float, default=1.5)
     p.add_argument('--table_band', type=float, default=0.008)
@@ -41,6 +48,10 @@ def main():
     p.add_argument('--min_hits', type=int, default=3); p.add_argument('--min_ratio', type=float, default=0.5)
     p.add_argument('--pix_stride', type=int, default=1)
     a = p.parse_args()
+    if (a.roi is None) == (a.roi_cube is None):
+        p.error('exactly one of --roi / --roi_cube')
+    if a.others and a.others_pts:
+        p.error('--others and --others_pts are exclusive')
     t0 = time.time()
     K = rectified_K(a.calib)
     P = np.load(a.poses); T_co = P[f'cam_T_{a.obj}'].astype(np.float64); W_C = P['world_T_cam'].astype(np.float64)
@@ -53,7 +64,17 @@ def main():
             nm, path = spec.split('=', 1)
             pts = trimesh.sample.sample_surface(trimesh.load(path, force='mesh'), 20000, seed=0)[0]
             others.append((P[f'cam_T_{nm}'].astype(np.float64), cKDTree(pts), pts.min(0), pts.max(0)))
-    roi = trimesh.load(a.roi, force='mesh'); lo = roi.bounds[0] - a.margin; hi = roi.bounds[1] + a.margin
+    if a.others_pts:
+        from scipy.spatial import cKDTree
+        for spec in a.others_pts.split(','):
+            nm, path = spec.split('=', 1)
+            Q = np.load(path)['pts'].astype(np.float64)
+            pts = Q[np.random.default_rng(0).choice(len(Q), min(20000, len(Q)), replace=False)]
+            others.append((P[f'cam_T_{nm}'].astype(np.float64), cKDTree(pts), pts.min(0), pts.max(0)))
+    if a.roi_cube is not None:
+        lo = np.full(3, -float(a.roi_cube)); hi = np.full(3, float(a.roi_cube))
+    else:
+        roi = trimesh.load(a.roi, force='mesh'); lo = roi.bounds[0] - a.margin; hi = roi.bounds[1] + a.margin
     corners = np.array([[x, y, z] for x in (lo[0], hi[0]) for y in (lo[1], hi[1]) for z in (lo[2], hi[2])])
     shape = np.ceil((hi - lo) / a.vox).astype(int)
     axes = [lo[k] + (np.arange(shape[k]) + 0.5) * a.vox for k in range(3)]
@@ -73,10 +94,15 @@ def main():
         # ---- samples in the ROI box
         Cc = corners @ T[:3, :3].T + T[:3, 3]
         if (Cc[:, 2] < 0.05).any():
-            continue
-        u = K[0, 0] * Cc[:, 0] / Cc[:, 2] + K[0, 2]; v = K[1, 1] * Cc[:, 1] / Cc[:, 2] + K[1, 2]
-        u0, u1 = int(max(0, np.floor(u.min()))), int(min(W - 1, np.ceil(u.max())))
-        v0, v1 = int(max(0, np.floor(v.min()))), int(min(H - 1, np.ceil(v.max())))
+            if a.roi_cube is None:
+                continue
+            # C0b cube ROI: a 0.6 m cube about the object has corners behind / beside the camera in most frames, so
+            # its projected box is undefined; use the whole image (the 3-D cube test below still bounds the points)
+            u0, u1, v0, v1 = 0, W - 1, 0, H - 1
+        else:
+            u = K[0, 0] * Cc[:, 0] / Cc[:, 2] + K[0, 2]; v = K[1, 1] * Cc[:, 1] / Cc[:, 2] + K[1, 2]
+            u0, u1 = int(max(0, np.floor(u.min()))), int(min(W - 1, np.ceil(u.max())))
+            v0, v1 = int(max(0, np.floor(v.min()))), int(min(H - 1, np.ceil(v.max())))
         if u1 <= u0 or v1 <= v0:
             continue
         vv, uu = np.mgrid[v0:v1 + 1:a.pix_stride, u0:u1 + 1:a.pix_stride]
@@ -140,9 +166,18 @@ def main():
     h, f = hits[lin], free[lin]
     ok = (h >= a.min_hits) & (h >= a.min_ratio * (h + f))
     np.savez_compressed(a.out, pts=pts[ok], cam=cam[ok], frame=fr[ok], lo=lo, hi=hi, vox=a.vox,
-                        hits=hits.reshape(shape), free=free.reshape(shape), args=json.dumps(vars(a)))
+                        hits=hits.reshape(shape), free=free.reshape(shape), args=json.dumps(_args_record(a)))
     print(json.dumps(dict(obj=a.obj, frames=int(len(range(0, N, a.stride))), raw=int(len(pts)), kept=int(ok.sum()),
                           sec=round(time.time() - t0, 1))))
+
+
+def _args_record(a):
+    """vars(a) as before; the C0b options appear only when used (old command lines record the same args)."""
+    d = vars(a).copy()
+    for k in ('roi_cube', 'others_pts'):
+        if not d.get(k):
+            d.pop(k, None)
+    return d
 
 
 if __name__ == '__main__':

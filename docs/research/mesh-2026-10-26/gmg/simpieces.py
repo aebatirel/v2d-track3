@@ -397,7 +397,7 @@ def write_object(out_dir, obj, visual_mesh, hulls, carve_rec):
 
 
 CODE_FILES = ('interlock.py', 'simpieces.py', 'simphys.py', 'silhouette.py', 'gen_slot.py', 'physcheck.py',
-              'tools/interlock_dev.py', 'platebody.py')
+              'tools/interlock_dev.py', 'platebody.py', 'collcarve.py', 'cavpieces.py')
 
 
 def code_identity():
