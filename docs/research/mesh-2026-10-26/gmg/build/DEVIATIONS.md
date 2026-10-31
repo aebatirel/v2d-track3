@@ -690,3 +690,10 @@ scan number was seen; none bears on these choices.
     under the shared CPU). The two missing anchors (ep27, ep31) and all marker anchors were rerun on c56d473 (gmg,
     autokit, scripts and pipeline code identical to a11866e) with `OMP_NUM_THREADS=1` (speed only; single-threaded
     BLAS can change last-digit rounding, not a setting).
+102. **(2026-10-31, B4) Speed only, and how B.15 is reported.** `tools/b4_identity.py` computes the cross-test
+    registrations first (`track_sanity.cross_pairs`, a thread pool) and passes them to `cross_test`; the values equal
+    the serial loop (`tests/test_extract.CrossTests.test_cross_precomputed_threads`); in practice no speed-up (the ICP
+    loop holds the GIL; 1024 registrations in 2658 s). `tools/b4_report.py` lists the cross-test flags and the split-test
+    flags apart, because P22 is stated for the cross-object test, while SPEC section 7 marks IDENTITY_SWAP on either;
+    written after the identity log was seen (ep24 board 1 fails the split test). No rule or threshold changes. No scan
+    number seen.

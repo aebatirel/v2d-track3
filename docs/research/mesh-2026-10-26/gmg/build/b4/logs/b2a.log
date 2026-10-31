@@ -1,0 +1,12 @@
+{"ep": 2, "pair": "white_pot|white_pot_lid", "included": true, "testable": true, "pair_fail": true} [('white_pot', 95, 0.00427), ('white_pot_lid', 95, 0.01946)]
+{"ep": 11, "pair": "blue_cup|beige_cup", "included": true, "testable": true, "pair_fail": true} [('blue_cup', 18, 0.0745), ('beige_cup', 18, 0.03084)]
+{"ep": 24, "pair": "wooden_piece_1|wooden_piece_2", "included": true, "testable": true, "pair_fail": false} [('wooden_piece_1', 77, 0.00088), ('wooden_piece_2', 69, 0.00284)]
+{"ep": 26, "pair": "plastic_dish_rack|white_pot", "included": true, "testable": false, "pair_fail": false} [('plastic_dish_rack', 0, None), ('white_pot', 0, None)]
+{"ep": 27, "pair": "plastic_dish_rack|white_pot", "included": true, "testable": false, "pair_fail": false} [('plastic_dish_rack', 0, None), ('white_pot', 0, None)]
+{"ep": 12, "pair": "blue_cup|plastic_dish_rack", "included": true, "testable": true, "pair_fail": false} [('blue_cup', 53, 0.00846), ('plastic_dish_rack', 53, 0.00323)]
+{"ep": 13, "pair": "blue_cup|plastic_dish_rack", "included": true, "testable": true, "pair_fail": false} [('blue_cup', 47, 0.00011), ('plastic_dish_rack', 47, 0.00032)]
+{"ep": 31, "pair": "mini_sweeper|plastic_dish_rack", "included": true, "testable": true, "pair_fail": false} [('mini_sweeper', 75, 0.00134), ('plastic_dish_rack', 75, 0.0001)]
+{"ep": 18, "pair": "mini_sweeper|mini_dust_pan", "included": true, "testable": true, "pair_fail": false} [('mini_sweeper', 167, 0.0003), ('mini_dust_pan', 167, 0.00206)]
+{'ep': 23, 'pair': 'wooden_piece_1|wooden_piece_2', 'included': False, 'reason': 'ep23 only if both boards pass the identity tests', 'flags': ['IDENTITY_SWAP', 'IDENTITY_SWAP']}
+B.2a FAIL testable pairs 7 failing 2
+{"log": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/audit/b4-20261031-b4ext4-b61e8aa-b2a.strace", "policy": "gmg", "mode": "clean", "manifest": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/manifests/b2a.json", "events": 1957, "opens_ok": 1739, "forbidden": 0, "unlisted": 0, "unrecorded": 0, "writes_outside_run": 0, "network": 0, "local_sockets": 0, "system": 1270, "system_files": 15, "code_outside_interp": 23, "git": 37, "git_tree_reads": 1, "data_reads": 46, "det_reads": 0, "written": 3, "moves": 0, "links": 0, "symlinks": 0, "interp_dirs": 5, "cwd0": "/home/user/v2d-track3/docs/research/mesh-2026-10-26", "allow_net": false, "forbidden_opens": 0, "forbidden_attempted_failed": 0, "command": 6, "returncode": 0}

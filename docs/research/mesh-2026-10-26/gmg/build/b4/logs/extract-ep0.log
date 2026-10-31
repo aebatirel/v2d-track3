@@ -1,0 +1,9 @@
+[09:01:30] b4_extract ep0 objects ['white_pot', 'white_pot_lid'] det True start {'commit': '445d364afa33323e73b449e43c03618275241013', 'dirty': 'M docs/research/mesh-2026-10-26/gmg/build/I.md'}
+[09:06:50] hands 319.5 s: frames with hand 365 / 373
+[09:09:53] ep0 pass 0: 187 frames, 12433346 samples, voxels [130822, 309833], 182.9 s
+[09:12:54] extract timing {"table_s": 0.4, "pass0_samples_s": 163.0, "pass0_votes_s": 19.9, "pass0_s": 182.9, "pass0_voxels": [130822, 309833], "pass1_s": 24.4, "pass2_s": 5.9, "pass3_s": 1.4, "pass4_grids_s": 31.1, "sigma_s": 106.4, "total_s": 359.5}
+[09:13:18] sanity white_pot: 187/187 good, flags [], below 0.0, resid {'median': 0.973, 'p90': 1.052, 'max': 1.155}
+[09:13:18] sanity white_pot_lid: 30/32 good, flags [], below 0.0, resid {'median': 1.354, 'p90': 2.127, 'max': 61.235}
+[09:16:51] split test white_pot: {"white_pot_lid": [true, 4.229, 60.646, 60.488]}
+[09:16:56] split test white_pot_lid: {"white_pot": [true, 0.783, 44.787, 45.13]}
+[09:16:59] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep0 total 929.0 s
