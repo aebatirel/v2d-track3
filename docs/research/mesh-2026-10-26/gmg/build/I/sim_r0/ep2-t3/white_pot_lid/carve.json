@@ -1,0 +1,775 @@
+{
+ "delivered": "default",
+ "decisions": [
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "run": {
+    "frames": [
+     0,
+     60
+    ],
+    "n": 31,
+    "kind": "SEAT",
+    "travel_mm": 22.3,
+    "straightness": 0.696,
+    "d": [
+     -0.9991,
+     0.0389,
+     -0.0193
+    ],
+    "assembled": [
+     0,
+     58
+    ],
+    "n_assembled": 30,
+    "n_build": 20,
+    "n_check": 11,
+    "flags": []
+   },
+   "voxels": 1165,
+   "region_voxels": 606,
+   "cm3": 38.78,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 0.75,
+    "exit_share_far_end": 0.995,
+    "extent_along_d_mm": 26.2,
+    "plane_point": [
+     0.00126,
+     -0.00282,
+     0.02376
+    ],
+    "plane_normal": [
+     -0.4755,
+     -0.8506,
+     0.2246
+    ],
+    "carve_side": "entry of the partner pair (s > 0)",
+    "shared": true,
+    "kept_voxels": 559,
+    "carved_side_voxels": 606
+   },
+   "linked": true,
+   "flags": [
+    "interlock_push"
+   ],
+   "image_width_px": 11.65,
+   "image_width_info": {
+    "views": 164,
+    "p10_p90": [
+     11.0,
+     12.42
+    ]
+   },
+   "class_mix": {
+    "U": 40,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 566,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.934,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 187.59,
+    "entering_samples_mm": 98.28,
+    "partner_collider_mm": 185.59,
+    "w_sub_mm": 180.7,
+    "centre_n_mm": 42.65,
+    "axes_dnm": [
+     [
+      -0.9991,
+      0.0389,
+      -0.0193
+     ],
+     [
+      -0.0402,
+      -0.9964,
+      0.0744
+     ],
+     [
+      -0.0163,
+      0.0751,
+      0.997
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": false,
+     "reason": "silhouette gate failed"
+    },
+    "ab": null
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     0,
+     60
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 31.1,
+    "straightness": 0.587,
+    "d": [
+     0.7455,
+     0.654,
+     -0.1289
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 1132,
+   "region_voxels": 615,
+   "cm3": 39.36,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 0.941,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 133.6,
+    "plane_point": [
+     0.00019,
+     -0.01743,
+     0.0206
+    ],
+    "plane_normal": [
+     0.7455,
+     0.654,
+     -0.1289
+    ],
+    "carve_side": "entry (s < 0)",
+    "shared": true,
+    "kept_voxels": 517,
+    "carved_side_voxels": 615
+   },
+   "linked": true,
+   "flags": [
+    "interlock_push"
+   ],
+   "image_width_px": 11.81,
+   "image_width_info": {
+    "views": 164,
+    "p10_p90": [
+     11.65,
+     12.42
+    ]
+   },
+   "class_mix": {
+    "U": 31,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 584,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.95,
+   "step": 2,
+   "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape",
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 141.72,
+    "entering_samples_mm": 53.96,
+    "partner_collider_mm": 139.72,
+    "w_sub_mm": 135.17,
+    "centre_n_mm": -39.35,
+    "axes_dnm": [
+     [
+      0.7455,
+      0.654,
+      -0.1289
+     ],
+     [
+      -0.6665,
+      0.7294,
+      -0.1542
+     ],
+     [
+      -0.0068,
+      0.2009,
+      0.9796
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": false,
+     "reason": "silhouette gate failed"
+    },
+    "ab": null
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     272,
+     342
+    ],
+    "push_mm": null,
+    "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 31.1,
+    "straightness": 0.587,
+    "d": [
+     0.7455,
+     0.654,
+     -0.1289
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 4,
+   "region_voxels": 4,
+   "cm3": 0.26,
+   "nmin": 5,
+   "split": {
+    "through_column": false,
+    "exit_share_entry_end": 0.333,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 10.0
+   },
+   "linked": false,
+   "flags": [
+    "interlock_push"
+   ],
+   "image_width_px": 3.0,
+   "image_width_info": {
+    "views": 3,
+    "p10_p90": [
+     3.0,
+     3.0
+    ]
+   },
+   "gap_topology": {
+    "before": [
+     1,
+     -2
+    ],
+    "after": [
+     1,
+     -2
+    ]
+   },
+   "class_mix": {
+    "U": 0,
+    "SIL": 0,
+    "GAP": 4,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.0,
+   "swept_share": 0.0,
+   "run_kind": "SEAT",
+   "push_mm": 2.0,
+   "push_frames": 10,
+   "silgap_share": 1.0,
+   "i": false,
+   "ii": false,
+   "iii": true,
+   "ro": "PUSH (a pose correction within the prior removes it)",
+   "step": 4,
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 141.72,
+    "entering_samples_mm": 7.8,
+    "partner_collider_mm": 139.72,
+    "w_sub_mm": 135.17,
+    "centre_n_mm": 62.95,
+    "axes_dnm": [
+     [
+      0.7455,
+      0.654,
+      -0.1289
+     ],
+     [
+      -0.6665,
+      0.7294,
+      -0.1542
+     ],
+     [
+      -0.0068,
+      0.2009,
+      0.9796
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": false,
+     "reason": "silhouette gate failed"
+    },
+    "ab": null
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     272,
+     342
+    ],
+    "push_mm": 2.0,
+    "why": "PUSH (a pose correction within the prior removes it)"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  },
+  {
+   "target": "white_pot_lid",
+   "partner": "white_pot",
+   "run": {
+    "frames": [
+     272,
+     342
+    ],
+    "n": 36,
+    "kind": "SEAT",
+    "travel_mm": 31.1,
+    "straightness": 0.587,
+    "d": [
+     0.7455,
+     0.654,
+     -0.1289
+    ],
+    "assembled": [
+     312,
+     342
+    ],
+    "n_assembled": 16,
+    "n_build": 20,
+    "n_check": 16,
+    "flags": []
+   },
+   "voxels": 7,
+   "region_voxels": 7,
+   "cm3": 0.45,
+   "nmin": 5,
+   "split": {
+    "through_column": false,
+    "exit_share_entry_end": 0.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 8.5
+   },
+   "linked": true,
+   "flags": [
+    "interlock_push"
+   ],
+   "image_width_px": 3.47,
+   "image_width_info": {
+    "views": 20,
+    "p10_p90": [
+     3.47,
+     3.47
+    ]
+   },
+   "gap_topology": {
+    "before": [
+     1,
+     -2
+    ],
+    "after": [
+     1,
+     -2
+    ]
+   },
+   "class_mix": {
+    "U": 0,
+    "SIL": 0,
+    "GAP": 7,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.0,
+   "swept_share": 0.143,
+   "run_kind": "SEAT",
+   "push_mm": 4.0,
+   "push_frames": 12,
+   "silgap_share": 1.0,
+   "i": false,
+   "ii": false,
+   "iii": true,
+   "ro": "PUSH (a pose correction within the prior removes it)",
+   "step": 4,
+   "decision": "PUSH",
+   "widths": {
+    "w_sim_mm": 141.72,
+    "entering_samples_mm": 7.29,
+    "partner_collider_mm": 139.72,
+    "w_sub_mm": 135.17,
+    "centre_n_mm": 62.74,
+    "axes_dnm": [
+     [
+      0.7455,
+      0.654,
+      -0.1289
+     ],
+     [
+      -0.6665,
+      0.7294,
+      -0.1542
+     ],
+     [
+      -0.0068,
+      0.2009,
+      0.9796
+     ]
+    ]
+   },
+   "own_decision": "PUSH",
+   "sources": {
+    "a": {
+     "present": false,
+     "reason": "gen notch lost in remesh"
+    },
+    "b": {
+     "present": false,
+     "reason": "silhouette gate failed"
+    },
+    "ab": null
+   },
+   "push_list": {
+    "kind": "PUSH",
+    "frames": [
+     272,
+     342
+    ],
+    "push_mm": 4.0,
+    "why": "PUSH (a pose correction within the prior removes it)"
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false
+  }
+ ],
+ "pieces_report": {
+  "default": {
+   "n_pieces": 64,
+   "pitch_mm": 2.0,
+   "tol_cm3": 0.3,
+   "max": 64,
+   "max_piece_excess_cm3": 77.024,
+   "steps": 69,
+   "pieces": [
+    {
+     "verts": 64,
+     "excess_cm3": 4.544
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.928
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 77.024
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.336
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.8
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 4.192
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.52
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 22.104
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.704
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.032
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.752
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.208
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.776
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 21.264
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.2
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 14.2
+    },
+    {
+     "verts": 52,
+     "excess_cm3": 0.392
+    },
+    {
+     "verts": 49,
+     "excess_cm3": 0.824
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 4.04
+    },
+    {
+     "verts": 38,
+     "excess_cm3": 0.528
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 22.912
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.184
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.688
+    },
+    {
+     "verts": 30,
+     "excess_cm3": 1.784
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.88
+    },
+    {
+     "verts": 37,
+     "excess_cm3": 1.872
+    },
+    {
+     "verts": 55,
+     "excess_cm3": 1.76
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.664
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.088
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 4.104
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.56
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.696
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.768
+    },
+    {
+     "verts": 35,
+     "excess_cm3": 1.056
+    },
+    {
+     "verts": 59,
+     "excess_cm3": 1.312
+    },
+    {
+     "verts": 57,
+     "excess_cm3": 2.096
+    },
+    {
+     "verts": 53,
+     "excess_cm3": 0.4
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.36
+    },
+    {
+     "verts": 55,
+     "excess_cm3": 2.696
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.28
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.648
+    },
+    {
+     "verts": 49,
+     "excess_cm3": 4.344
+    },
+    {
+     "verts": 63,
+     "excess_cm3": 2.32
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 0.632
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.448
+    },
+    {
+     "verts": 56,
+     "excess_cm3": 7.36
+    },
+    {
+     "verts": 55,
+     "excess_cm3": 1.552
+    },
+    {
+     "verts": 29,
+     "excess_cm3": 1.848
+    },
+    {
+     "verts": 54,
+     "excess_cm3": 2.92
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 3.544
+    },
+    {
+     "verts": 59,
+     "excess_cm3": 0.64
+    },
+    {
+     "verts": 59,
+     "excess_cm3": 1.84
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.968
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 1.92
+    },
+    {
+     "verts": 27,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 64,
+     "excess_cm3": 2.4
+    },
+    {
+     "verts": 28,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 52,
+     "excess_cm3": 1.04
+    },
+    {
+     "verts": 35,
+     "excess_cm3": 2.4
+    },
+    {
+     "verts": 58,
+     "excess_cm3": 1.008
+    },
+    {
+     "verts": 52,
+     "excess_cm3": 1.92
+    },
+    {
+     "verts": 28,
+     "excess_cm3": 0.0
+    },
+    {
+     "verts": 30,
+     "excess_cm3": 0.16
+    },
+    {
+     "verts": 23,
+     "excess_cm3": 1.04
+    }
+   ]
+  },
+  "solid_cm3": 373.06,
+  "keepout_points": 55864
+ },
+ "flags": [
+  "sim_pose_fallback"
+ ],
+ "physics": null
+}

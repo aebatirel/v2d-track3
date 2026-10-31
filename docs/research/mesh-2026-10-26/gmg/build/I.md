@@ -208,3 +208,23 @@ store run logs (mkref unchanged before the freeze). Eval 10 intrusion result (ca
   a risk for B10, reported, not acted on). Default pieces of the partial cup shells fill the cavities (union
   697 / 666 cm3 vs solid 172 / 169 cm3; split stuck at the 32-piece cap) -> collider overlap along the track up to
   544 cm3 vs CoACD about 300 cm3: our decomposition is WORSE than CoACD here (open problem for B9).
+- 12:29-13:15 final dev runs (code 78570c3 = ed204a6 + run fixes; run `<scratch>/gmg/runs-dev/20261031-i2probe-626ce13`,
+  machine: this container, 4 shared cores, 15 GB; tier DEV, zero scan reads):
+  - ep24 evalsem (2044 s): `GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_dev --run <run> --ep 24 --bundle
+    <scratch>/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24 --cands <run>/cand/public/ep24 --pick
+    wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36 --video <scratch>/data/store/ep24_a.mp4 --calib
+    <scratch>/data/calib.json --hands <run>/in/hands24/hands.npz --gen "<4 SAM 3D board plys>" --diag --proxy-copies 16
+    --identity eval --tag evalsem` -> PUSH both boards (results in INTERLOCK 18.1).
+  - ep24 public semantics (`--tag final`, killed in physcheck at 12:28 after its decisions): IGNORE (c absent:
+    IDENTITY_SWAP on both boards) - the decisions were logged before the kill (`drv24_final.log`).
+  - ep2 t3 (2482 s; `--pick white_pot=shell_t5p36,white_pot_lid=hull`, ep2 video/hands/SAM 3D, public = eval here: no
+    flags) -> PUSH everywhere; ep11 evalsem (1830 s; blue cup IDENTITY_SWAP on public) -> PUSH, one 3-voxel U carve.
+  - Results copied by `build/I/collect.py` to `build/I/results/<tag>/` (stripped JSON) and `build/I/sim_r0/<tag>/`
+    (delivered r0 folders: default pieces everywhere); figures by `build/I/i_png.py` to `build/I/png/`; the RGB checks
+    by `<scratch>/interlock/bi/sil_frame.py`. T-I1 final: 16 tests OK, 1 expected failure
+    (`results/test_interlock_T-I1.log`).
+  - INTERLOCK.md section 18 written (results, open problems 1-7). Key numbers: DIAG slot replay 0.33 cm / 9.4 deg vs
+    default 1.85 cm / 113 deg (16 copies); P27a fails (0.580 on board 2), P27b passes (3.6 / 7.1 mm), P27c passes;
+    our default pieces overlap far more than CoACD on containers (ep2 425 vs 98 cm3, ep11 544 vs ~300 cm3).
+  - Started a probe of open problem 3 (keep-out not limited to 2 voxels from the surface) on ep2 / ep11:
+    `<scratch>/interlock/bi/keepout_variant.py`, logs `keepout_ep2.log`, `keepout_ep11.log`.

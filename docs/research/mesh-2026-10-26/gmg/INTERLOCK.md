@@ -979,3 +979,96 @@ and cannot be pushed out within 1 cm (our push proxy, or your validated `pushed_
 the budget; both halves of an interlocking pair are carved together or not at all; an observed notch (silhouette or
 placed SAM 3D) within 2 cm to the side of where the reference puts the partner is moved there (OFFSET) and the offset
 goes to the tracker. Everything else is PUSH: a pose correction for your fit or the tracker (`push_list.json`).
+
+## 18. BI2 dev results (31 Oct, CPU, no scan) — what the built stage does on ep24, ep2, ep11
+
+Runs: dev process (GMG_MODE=dev, tier DEV) on build 1's CLEAN B4 v4 bundles (`gmg/runs/20261031-b4ext4-b61e8aa`),
+candidates from build 1's CPU producers (shell, HULL), our tracks (P_sel), the ep<N>_a.mp4 videos, the clean run's
+hands, and the 29 Oct SAM 3D meshes (dev only; made from ep23 / ep2 / ep11 crops seeded with library_v3; placed by our
+depth, F-I2.10). Run folder `<scratch>/gmg/runs-dev/20261031-i2probe-626ce13`, code `78570c3` (driver
+`gmg/tools/interlock_dev.py`; commands in `build/I.md`). Results: `build/I/results/`, delivered r0 folders
+`build/I/sim_r0/`, figures `build/I/png/`. Zero scan reads. Labels: [M] measured here, [H] hypothesis.
+
+**Identity flags change the public outcome.** Build 1 wrote the B.15 cross identity test into the clean bundles at
+11:36: ep24 BOTH boards and ep11's blue cup are IDENTITY_SWAP (the two boards are near-identical shells). On public
+episodes F-I1.2 then makes source (c) absent: **public ep24 and ep11 get no region at all (IGNORE, uncarved
+copies).** On eval the identity test only flags (SPEC section 7); the `evalsem` runs below apply that eval semantics to
+the same public geometry, i.e. what the rule will do on eval 25 / 10 if the evidence looks the same.
+
+### 18.1 ep24 boards (eval semantics; picks = the shells after the V5 clarification)
+| | board 1 (wooden_piece_1) | board 2 (wooden_piece_2) |
+|---|---|---|
+| run (c) [M] | INSERTION f164-274, travel 122 mm, straightness 0.91, assembled f218-274 | f162-274, 128 mm, 0.92 |
+| motion region [M] | 127 voxels, a 25 mm band across the FULL width (131 mm), through-column, split by the shared plane: carve side 67 voxels, edge to 10 mm past the centre line | 222 voxels, 19 mm band, full width (128 mm); carve side 118 voxels, edge to -6 mm |
+| (a) SAM 3D, placed [M] | agrees: centroid 6.2 mm, axis 1.2 deg, 100 % of R in C_a; along the long axis 1.3-3.6 mm; flip unresolved (margin 0.00 sigma) | agrees: 9.0 mm, 2.2 deg, 73 %; along the long axis 7.1 mm; the SAM slot opens at the OTHER edge (side untestable: flip unresolved) |
+| (b) silhouette [M] | absent: no qualifying frame (a hand within 16 px in 33 of 34 separated frames) | gate passes (accuracy 0.917, false see-through 0.27 %) but sees wood in the region: SIL share 0.008 -> disagrees |
+| GAP image width [M] | 9.0 px median (p10 7.9) > 8 -> class O | n/a (testable silhouette says solid) |
+| decision | **PUSH** (class O 97 %); OFFSET with the SAM notch fails its topology test (the placed concavity is a 63 x 117 mm block) | **PUSH** (class O 65 %); its OFFSET holds alone (t 8.9 mm) but the linked partner has none -> both PUSH (`interlock_pair_fail`) |
+| simulator r0 | default pieces (32 + 32; CoACD 13-15) | |
+| submitted | no ICARVE (no T2 / T3 / T2o) | |
+
+Why no carve, in plain words: stereo saw wood across the slot (bridging); the silhouette that should see through it
+looks at the **brown wooden table** behind the slot, which the colour model cannot tell from the light board
+(`png/sil_ep24_b1.png`, `sil_ep24_b2.png`: the motion region lies exactly on the slot visible in the RGB frames); and
+the GAP width test sits just above its threshold (9.0 vs 8 px). [H] A depth-free see-through test (e.g. the table plane
+visible through the slot: the ray hits the table, not the board) would separate these cases; not pre-registered.
+
+**DIAG counterfactual** (forced split at the shared plane, never delivered or submitted; `results/ep24-evalsem/
+diag_*.json`): slotted shells packed watertight (3892 / 4000 faces), slot widths w_sub 12.6 / 14.6 mm, w_sim 21.7 /
+14.6 mm. Partner evidence inside the candidate at the assembled frames 7.0 -> 3.4 cm3 (board 1), 9.0 -> 5.2 cm3
+(board 2) (the rest is the partner's own unslotted half). Collider overlap at assembly (pieces) 6.9 -> 0.76 cm3,
+check frames 6.8 -> 0.73 cm3 (P6, P7 pass); P4 passes (95 / 97 % of the collider kept). **Replay proxy (MuJoCo, 16
+jittered copies): default 1.85 cm / 113 deg (the cross cannot close), carved 0.33 cm / 9.4 deg, contact off 0.03 cm /
+0.1 deg.** P3 fails on rotation (> 5 deg) and P2 fails across the slot (+n 13 mm free travel: w_sim 21.7 mm on board 1
+against a 12.6 mm evidence thickness; the partner-collider term of w_sim uses the partner's 1-99 % extent at the
+crossing, 19.7 mm, which includes its marker bump). The P1 pre-check fails for default and carved alike (the cross is
+held in the air at the assembled frame and drops about 2 cm with hands parked). So even a carve would not be delivered
+as built: [H] the slot width needs the partner's plate thickness, not its extent near the crossing.
+
+**P27 (clean geometry, dev process)** [M]: P27a entry-side share 0.646 / 0.580 -> **fails** (< 0.6 on board 2);
+P27b (a, c) offset along the long axis 3.6 / 7.1 mm -> passes (the dev obs_all estimate of 10.5-12.9 mm does not
+reproduce on the clean bundle); P27c observed share 0.93 / 0.61 -> passes. P28 is void (T-I2b pushed the boards).
+
+**Placement along the whole movement (5.1)** [M]: board 2 shell constant offset 0.5 mm, drift MAD 0.9 mm (one block
+of frames 130-140 at 230 mm, where its owned points are not its own); board 1 shell 87 mm constant, drift MAD 65 mm:
+its owned points in frames ~72-240 lie 125 mm from its candidate (frames 250-270: 0.7 mm) - the same ownership /
+identity problem that B.15 flags. Table (V4t) never applies (<= 5 % of frames over 1 %). VI: board 1's HULL is vetoed
+(13.1 vs 7.0 cm3), board 2's HULL ties its shell (8.96 vs 8.97 cm3).
+
+### 18.2 ep2 pot + lid (no identity flag; picks pot shell, lid HULL as in the B1 dev run)
+SEAT runs f0-60 and f272-342 (travel 22-36 mm, straightness 0.58-0.70) [M]. Pot <- lid regions 916 / 273 voxels,
+class O 68-74 % (the pot's silhouette gate passes, accuracy 0.985, and sees the rim solid) -> PUSH; lid <- pot (HULL)
+O 93-95 % -> PUSH; two small GAP regions (4 and 7 voxels) are pushable (2 and 4 mm) -> PUSH. No carve: **T-I5 holds**
+(no class-O carve). The lid's silhouette gate fails (false see-through 2.4 %). SAM 3D: the pot meshes lose their notch
+in the remesh (`gen_slot_lost_in_remesh`), the lid meshes are pot+lid shapes (diag 30 Oct) -> (a) absent or noise.
+**Collider overlap while seated: our default pieces up to 425 cm3 vs CoACD 98 cm3** [M] (`png/ep2_track.png`): the
+F-I1.8 keep-out counts free space only within 2 voxels of the surface, so hulls may span the pot's opening; see 18.4.
+
+### 18.3 ep11 cups (eval semantics; blue cup IDENTITY_SWAP on public)
+INSERTION f42-136, travel 190 mm, straightness 0.92 [M]. Regions 1214 (blue) and 782 (beige) voxels, class O 52 /
+62 % (testable-solid silhouette) -> PUSH both; (a) and (b) disagree. One 3-voxel U carve on the beige cup (T1,
+0.33 cm3) whose pair has no carve: default pieces delivered. **T-I6 holds** (no observed floor voxel carved). The
+partner occupancy includes SHARED voxels (F-I1.1), and on ep11 the cups share 2595 / 2256 voxels against 2390 / 2850
+OBSERVED [M]: the contact interface itself counts as intrusion and inflates the regions. VI at the assembled frames
+would veto both SHELLS (100.7 / 73.9 cm3) in favour of the partner-clipped HULLs (9.1 / 33.3 cm3) [M]: a HULL win
+that B10 must not take at face value. Default pieces fill the cups' cavities (union 697 / 666 cm3 vs solid 172 /
+169 cm3), collider overlap up to 544 cm3 vs CoACD about 300 cm3 [M].
+
+### 18.4 What this means and what is open
+- **The pre-registered rule carves nothing on these three public episodes** (and, by the B.15 flags, finds no region
+  at all on public ep24 / ep11). With eval semantics it PUSHES the boards: the evidence it is allowed to trust says
+  "solid" where the slot is. The physics of a slot is not the limit: a DIAG slot lets the cross close to 0.33 cm.
+- **Open problems, measured here** (none fixed in this step; each needs a dated F entry before use):
+  1. silhouette contrast against a same-coloured background (wooden table) [M] -> [H] a geometric see-through test;
+  2. w_sim uses the partner's extent near the crossing (19.7 mm with a marker bump vs 12.6 mm plate) -> P2 fails [M];
+  3. F-I1.8 keep-out limited to 2 voxels from the surface lets our default pieces fill open containers (pot, cups):
+     425 / 544 cm3 overlap vs CoACD 98 / ~300 cm3 [M]; a variant without the limit is being probed (`build/I.md`);
+  4. SHARED voxels in the partner occupancy count the contact interface (ep11, ep2) [M];
+  5. the placed SAM 3D concavity at r = 12.4-20 mm is a large block, not a slot (63-71 mm long on board 1) [M];
+  6. VI prefers partner-clipped HULLs where shells touch the partner (ep11, ep2 pot) [M];
+  7. FlashCHORD's P1 settle is not in this container; the plain-MuJoCo pre-check is uninformative when the pair is
+     held in the air at the assembled frame [M].
+- **Hand-off to the Embodiment session:** r0 folders (dev, default pieces, placeholder masses) in
+  `build/I/sim_r0/ep24-evalsem/`, `ep2-t3/`, `ep11-evalsem/` (layout of 17.1); their export can be validated and
+  carved with `interlock.carve_from_intrusions` today. On ep24 their reference will meet the same class-O evidence
+  unless their fit's validated `pushed_residual_m` or a new see-through source changes the classes.

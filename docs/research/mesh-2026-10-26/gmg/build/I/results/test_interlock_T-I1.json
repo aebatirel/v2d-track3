@@ -1,0 +1,726 @@
+{
+ "contract_valid": {
+  "ok": true,
+  "reasons": []
+ },
+ "contract_shifted": {
+  "ok": false,
+  "reasons": [
+   "fiducial round trip A > 0.5 mm",
+   "fiducials_world A off the reference pose at f_star by > 0.5 mm (geom frame?)",
+   "fiducial round trip B > 0.5 mm",
+   "fiducials_world B off the reference pose at f_star by > 0.5 mm (geom frame?)"
+  ]
+ },
+ "n2": {
+  "A": "PUSH",
+  "B": "PUSH"
+ },
+ "n3": {
+  "A": {
+   "decision": "PUSH",
+   "mix": {
+    "U": 0,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 40,
+    "O_testable_solid": 40
+   },
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ]
+  },
+  "B": {
+   "decision": "PUSH",
+   "mix": {
+    "U": 274,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 80,
+    "O_testable_solid": 0
+   },
+   "flags": [
+    "interlock_unresolved",
+    "interlock_push"
+   ]
+  }
+ },
+ "n4": {},
+ "n5": {
+  "A": "PUSH",
+  "B": "PUSH"
+ },
+ "n9": {
+  "A": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [],
+   "mix": {
+    "U": 2808,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": false,
+   "w_sim": 69.88,
+   "off": null
+  }
+ },
+ "o1": {
+  "A": {
+   "decision": "OFFSET",
+   "tier": "T1",
+   "flags": [
+    "o_displaced",
+    "interlock_disagree"
+   ],
+   "mix": {
+    "U": 28,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 32,
+    "O_testable_solid": 32
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.75,
+   "off": {
+    "t_mm": [
+     12.0,
+     -0.0,
+     -0.0
+    ],
+    "t_norm_mm": 12.0,
+    "t_along_d_mm": 0.0,
+    "share_R_in_N_t": 1.0,
+    "holds": true,
+    "topology": {
+     "before": [
+      1,
+      1
+     ],
+     "after": [
+      1,
+      1
+     ]
+    },
+    "o_displaced": 32
+   }
+  },
+  "B": {
+   "decision": "CARVE",
+   "tier": "T2",
+   "flags": [],
+   "mix": {
+    "U": 30,
+    "SIL": 36,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.8,
+   "off": null
+  }
+ },
+ "o2": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 17,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 19,
+    "O_testable_solid": 19
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.76,
+   "off": null
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 31,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 35,
+    "O_testable_solid": 35
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.77,
+   "off": null
+  }
+ },
+ "w": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_partner_too_thick",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 15,
+    "SIL": 0,
+    "GAP": 19,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": 5.0,
+   "split": true,
+   "w_sim": 60.37,
+   "off": null
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_partner_too_thick",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 30,
+    "SIL": 0,
+    "GAP": 36,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": 5.0,
+   "split": true,
+   "w_sim": 60.58,
+   "off": null
+  }
+ },
+ "n7": {
+  "slot_travel_mm": 0.5,
+  "through_travel_mm": 60.0
+ },
+ "n8": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 120,
+    "SIL": 96,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 26.46,
+   "off": null
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 240,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 162,
+    "O_testable_solid": 162
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 26.46,
+   "off": null
+  }
+ },
+ "s1": {
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 15,
+     "SIL": 19,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 11.75,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 30,
+     "SIL": 36,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 11.77,
+    "off": null
+   }
+  },
+  "13": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 60,
+     "SIL": 132,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 14.71,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 32,
+     "SIL": 74,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 14.71,
+    "off": null
+   }
+  },
+  "18": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 90,
+     "SIL": 85,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 21.68,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 180,
+     "SIL": 115,
+     "GAP": 0,
+     "O": 35,
+     "O_testable_solid": 35
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 21.22,
+    "off": null
+   }
+  },
+  "25": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 120,
+     "SIL": 96,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 26.46,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T2",
+    "flags": [],
+    "mix": {
+     "U": 240,
+     "SIL": 162,
+     "GAP": 0,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": null,
+    "split": true,
+    "w_sim": 26.46,
+    "off": null
+   }
+  }
+ },
+ "s1_t6": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 0,
+    "SIL": 64,
+    "GAP": 0,
+    "O": 32,
+    "O_testable_solid": 32
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 9.68,
+   "off": null
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 0,
+    "SIL": 64,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 9.25,
+   "off": null
+  }
+ },
+ "g": {
+  "A": {
+   "decision": "CARVE",
+   "tier": "T3",
+   "flags": [],
+   "mix": {
+    "U": 15,
+    "SIL": 19,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.75,
+   "off": null,
+   "sources": {
+    "a": {
+     "present": true,
+     "agree": true,
+     "centroid_mm": 1.5,
+     "axis_deg": 4.2,
+     "share_in_Ca": 1.0,
+     "side_open": true,
+     "side_tested": true,
+     "voxels": 80
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 34
+    },
+    "ab": null
+   }
+  },
+  "B": {
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "interlock_disagree"
+   ],
+   "mix": {
+    "U": 30,
+    "SIL": 36,
+    "GAP": 0,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.77,
+   "off": null,
+   "sources": {
+    "a": {
+     "present": true,
+     "agree": false,
+     "centroid_mm": 8.8,
+     "axis_deg": 2.9,
+     "share_in_Ca": 0.424,
+     "side_open": true,
+     "side_tested": true,
+     "voxels": 62
+    },
+    "b": {
+     "present": true,
+     "agree": true,
+     "sil_share": 1.0,
+     "testable": 66
+    },
+    "ab": null
+   }
+  }
+ },
+ "g_B_known_miss": "T1",
+ "n6": {
+  "A": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 15,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 19,
+    "O_testable_solid": 19
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.75,
+   "off": null
+  },
+  "B": {
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_disagree",
+    "interlock_push"
+   ],
+   "mix": {
+    "U": 30,
+    "SIL": 0,
+    "GAP": 0,
+    "O": 36,
+    "O_testable_solid": 36
+   },
+   "iw": null,
+   "split": true,
+   "w_sim": 11.77,
+   "off": null
+  }
+ },
+ "s0_sweep": {
+  "6": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 0,
+     "SIL": 0,
+     "GAP": 96,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 6.0,
+    "split": true,
+    "w_sim": 9.68,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 0,
+     "SIL": 0,
+     "GAP": 64,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 5.0,
+    "split": true,
+    "w_sim": 9.25,
+    "off": null
+   }
+  },
+  "10": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 15,
+     "SIL": 0,
+     "GAP": 19,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 5.0,
+    "split": true,
+    "w_sim": 11.75,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 30,
+     "SIL": 0,
+     "GAP": 36,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 5.0,
+    "split": true,
+    "w_sim": 11.77,
+    "off": null
+   }
+  },
+  "13": {
+   "A": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 60,
+     "SIL": 0,
+     "GAP": 132,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 8.0,
+    "split": true,
+    "w_sim": 14.71,
+    "off": null
+   },
+   "B": {
+    "decision": "CARVE",
+    "tier": "T1",
+    "flags": [],
+    "mix": {
+     "U": 32,
+     "SIL": 0,
+     "GAP": 74,
+     "O": 0,
+     "O_testable_solid": 0
+    },
+    "iw": 7.0,
+    "split": true,
+    "w_sim": 14.71,
+    "off": null
+   }
+  },
+  "18": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 90,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 85,
+     "O_testable_solid": 0
+    },
+    "iw": 11.0,
+    "split": true,
+    "w_sim": 21.68,
+    "off": null
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 180,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 150,
+     "O_testable_solid": 0
+    },
+    "iw": 13.0,
+    "split": true,
+    "w_sim": 21.22,
+    "off": null
+   }
+  },
+  "25": {
+   "A": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 120,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 96,
+     "O_testable_solid": 0
+    },
+    "iw": 15.0,
+    "split": true,
+    "w_sim": 26.46,
+    "off": null
+   },
+   "B": {
+    "decision": "PUSH",
+    "tier": "T0",
+    "flags": [
+     "interlock_push"
+    ],
+    "mix": {
+     "U": 240,
+     "SIL": 0,
+     "GAP": 0,
+     "O": 162,
+     "O_testable_solid": 0
+    },
+    "iw": 15.0,
+    "split": true,
+    "w_sim": 26.46,
+    "off": null
+   }
+  }
+ }
+}
