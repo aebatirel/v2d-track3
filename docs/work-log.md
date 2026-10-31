@@ -5558,3 +5558,23 @@ arm and a no-policy replay floor to stage B.
   - The perception sprint (focused-pascal, 31 Oct ~11:20 UTC) **falsified [H-spoon]** from the Roman analysis
     (S10 heldpose: proxy mean −0.018; the palm frame turns 10–50° relative to the object within a hold). S11 constant
     offset failed. S12 cup-nest passed on ep11 at reference level (+0.068 / +0.076); its rollout gate is running.
+
+### 31 Oct ~20:20 UTC — second meeting with Roman Klis analysed (no spend, nothing run)
+- Output: `docs/analysis/roman-meeting-20261031.md`.
+- **His proposals:**
+  - a per-object unscented Kalman filter for the "delay" (zero velocity at rest, hand-driven in contact);
+  - an object-separation pre-step (VLM);
+  - 6-DoF time series with uncertainty;
+  - a simpler 3-finger hand.
+- **Evidence read:**
+  - the standings rpe-decomp: the reference is ≈ 10 % of RPE and ≈ 16 % of MPPE over 70 public draws; constant offset
+    and frame-0 tilt dominate the reference error; jitter removers +0.001;
+  - the marker layer failed (ΔAUC −0.083);
+  - heldpose failed;
+  - the primitive hand gave no gain (22 Oct);
+  - the human hand was worse;
+  - the repo was found public (11:20 UTC, registration session).
+- **Reading:** the "delay" in the ep2 video is the robot's following error, not tracking. A UKF on today's sensors is
+  bounded by the small jitter share. Roman's help is best aimed at bias observability.
+- **Proposed:** answer Roman with the bias-vs-noise finding; make the 6-DoF time series he asked for ($0, public, mocap
+  as diagnostic only); no UKF build unless the plots show meaningful noise.
