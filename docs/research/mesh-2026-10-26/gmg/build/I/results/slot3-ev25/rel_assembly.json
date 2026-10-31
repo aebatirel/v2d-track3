@@ -1,0 +1,46 @@
+{
+ "mapped": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/tracks/eval/ep25/poses.npz",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/slot3ev25/dl_ref/perc2/ep25/poses.npz",
+ "wooden_piece_1": {
+  "all": {
+   "dt_mm_median": 7.307824617258119,
+   "dt_mm_p90": 9.871878526127276,
+   "dR_deg_median": 1.3479078563423923,
+   "dR_deg_p90": 3.4013961008005835
+  },
+  "f294_355": {
+   "dt_mm_median": 7.259677334943147,
+   "dt_mm_max": 10.068538119734502,
+   "dR_deg_median": 1.1203030284249231,
+   "dR_deg_max": 2.521130333904039
+  }
+ },
+ "wooden_piece_2": {
+  "all": {
+   "dt_mm_median": 4.857080510815596,
+   "dt_mm_p90": 6.808239057780087,
+   "dR_deg_median": 2.155003956377,
+   "dR_deg_p90": 3.3799188299697835
+  },
+  "f294_355": {
+   "dt_mm_median": 3.073118827493959,
+   "dt_mm_max": 6.736707997423627,
+   "dR_deg_median": 2.3623920458085452,
+   "dR_deg_max": 3.3826635108437837
+  }
+ },
+ "rel_b2_in_b1": {
+  "f294_355": {
+   "dt_mm_median": 7.934148342719656,
+   "dt_mm_max": 11.01495695951491,
+   "dt_xyz_mm_median": [
+    2.11,
+    -1.32,
+    -7.31
+   ],
+   "dR_deg_median": 2.47561599701568,
+   "dR_deg_max": 3.9407028641082693
+  },
+  "note": "board-1 frame of each track; difference mapped minus reference"
+ }
+}
