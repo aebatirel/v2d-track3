@@ -5708,3 +5708,9 @@ arm and a no-policy replay floor to stage B.
   doesnt intervine with the rules of the competiton. they can go crazy". Relayed verbatim to bold-albattani, with
   guard-rails: shared credit ($69.22 at 21:20 UTC; leave enough for e10v, mv2b, arm V and the D cells), submission
   changes via focused-pascal (this session uploads 9b), CLAUDE.md integrity rules.
+- 21:28 UTC bold-albattani proposed adding the C0 blue cup (`meshes/library_c0/blue_cup.glb`) to the 9a+ set:
+  CD-O ≈ −0.032 [D]; AUC guard +0.022 mean over 5 twins; MPPE −0.22 cm; RPE +0.17 cm. It fails its own rule's ep13
+  clause (−0.030 vs the −0.02 floor), and its selector was not pre-registered.
+  - Kept OUT of the automatic 9b upload: the owner's authorisation covers only 9a+ + V4p + passing D cells.
+  - Listed as an owner decision for the morning. The 05:00 trigger now states the content limit explicitly, plus a
+    "no mesh change" byte-diff check.
