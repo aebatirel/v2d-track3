@@ -398,3 +398,9 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 16:52 correction: the four entries above first carried guessed clock times (16:50, 16:55, 17:00-17:15, 17:17);
   replaced by the times from the commits and files (F-I4.12 pushed in 94eed1c at 16:35:26 UTC, build in 1756947 at
   16:50:33 UTC). Order unchanged: F-I4.12 was pushed before the tests that use it and before any real-data run.
+- 16:51 T-I11 launched (clean ep24, eval semantics, waiver on; code cd2383f = 1756947 clean for the gmg files;
+  machine: this container, 4 shared cores, load ~7): `GMG_MODE=dev GMG_RUN=<run> python -m gmg.tools.interlock_dev --run
+  <run> --ep 24 --bundle <scratch>/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24 --cands <run>/cand/public/ep24
+  --pick wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36 --video <scratch>/data/store/ep24_a.mp4 --calib
+  <scratch>/data/calib.json --hands <run>/in/hands24/hands.npz --proxy-copies 16 --identity eval --waiver-fi4
+  --no-physcheck --tag fi4evalsem` (run 20261031-i2probe-626ce13; no --gen; log <run>/drv24_fi4evalsem.log).
