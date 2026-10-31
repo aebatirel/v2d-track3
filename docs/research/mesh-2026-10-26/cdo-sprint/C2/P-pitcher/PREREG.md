@@ -284,7 +284,7 @@ the pre-registered GT-free rule.
 ## A2. Amendment (2026-10-31, 19:50 UTC; post hoc, after the A1 pick and before any scoring)
 
 **What was seen [M], with no ground truth read:**
-- **The A1 pick.** The section 4 rule over the 12 candidates picked  ().
+- **The A1 pick.** The section 4 rule over the 12 candidates picked `ep22_g1` (`results/pick_A1.json`).
   - Fidelity sum on ALL: ep22_g1 6.624 mm, ep21_g1 7.448, mergedr_g1 9.118, ep22r_g1 8.766, g0 variants 14.7-47.4.
   - merged_g1 and ep21r_g1 were excluded as not watertight.
   - library_v3 (reported only) scores 6.166.
@@ -292,18 +292,18 @@ the pre-registered GT-free rule.
   - the observed-surface splat: 1,700 cm2, 412 x 267 x 140 mm;
   - the lathe body: 688 cm2;
   - a third piece of 82 cm2, 47 x 81 x 44 mm, centred at (232, 227, -181) mm, about 38 cm from the object.
-- **The third piece is not the pitcher.** It is the cluster of 7,896 points at r 322-368 mm that  found
+- **The third piece is not the pitcher.** It is the cluster of 7,896 points at r 322-368 mm that `diag_pitcher.py` found
   in the ep22 pass-B points. It is static clutter or co-object residue that the 0.30 m cube admitted, the risk C0b
   PREREG 3.4 states.
   - In the kit CD-O, a far piece inflates the candidate's surface radius, so the mesh is shrunk by the scale
     normalisation, and its samples add chamfer error. So the A1 pick would test the cube's clutter, not H-P.
 
 **Rule (GT-free, generic).** The object is one connected rigid body.
--  keeps, in every candidate, only the mesh components linked to its largest-area component.
+- `scripts/keep_connected.py` keeps, in every candidate, only the mesh components linked to its largest-area component.
 - Two components are linked when the nearest distance between their vertices is <= 8 mm (2 vote voxels, C0b AUDIT
   id 142), followed transitively.
 - A single-component mesh is copied byte for byte.
-- The filtered candidates () are then judged by the unchanged section 4 rule: exclusions, then
+- The filtered candidates (`SCR/cdo_c2/P/cand_a2/`) are then judged by the unchanged section 4 rule: exclusions, then
   the lowest obs_fidelity sum on ALL, with fidelity re-run on every candidate.
 - The A1 pick is superseded and will not be scored.
 
