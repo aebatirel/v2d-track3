@@ -5540,3 +5540,5 @@ arm and a no-policy replay floor to stage B.
     (`run.sh reproduce`, policy weights per episode, hashes and commit matching the counted submission).
   - Not started: a task from another session needs the owner's own go-ahead here. Replied with that and with what
     already exists (drawdiv tooling, orcB rollouts).
+- ~15:26 UTC: the score-status session withdrew the request. It runs the RPE / MPPE diagnostic itself and reuses
+  `docs/analysis/drawdiv-20261031/` read-only from this branch. Nothing pending here for it.
