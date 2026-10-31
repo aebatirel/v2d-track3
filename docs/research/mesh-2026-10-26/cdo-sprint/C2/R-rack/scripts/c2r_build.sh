@@ -17,12 +17,13 @@ mkdir -p $OUT/logs $OUT/fid $OUT/check
 log() { echo "[$(date -u +%FT%TZ)] $*" | tee -a $OUT/c2r_build.log; }
 T=$($PY -c "import json; print(repr(json.load(open('$IN/params.json'))['targets']['rack/run']['t_wall_m']))") || { log "FAIL: no rack T"; exit 1; }
 [ "$T" = None ] && { log "FAIL: C0b rack T not fittable"; exit 1; }
-EPS=12,13,26,27,31
-OBS=$(for e in 12 13 26 27 31; do printf '%s,' $IN/pts/B/ep${e}_plastic_dish_rack.npz; done); OBS=${OBS%,}
+EPS=${C2R_EPS:-12,13,26,27,31}     # C2R_EPS / C2R_SETS: dry-run subsets only (logged as DRY)
+OBS=$(for e in ${EPS//,/ }; do printf '%s,' $IN/pts/B/ep${e}_plastic_dish_rack.npz; done); OBS=${OBS%,}
 log "C2/R build: commit $(git -C $REPO rev-parse HEAD) dirty=$(git -C $REPO status --porcelain -- docs/research/mesh-2026-10-26/scripts | wc -l) T=$T PAR=$PAR"
 declare -A FL=([base]="" [E]="--end_draft" [K]="--peg_kappa_free" [Q]="--cup_quad" [EK]="--end_draft --peg_kappa_free"
                [EQ]="--end_draft --cup_quad" [KQ]="--peg_kappa_free --cup_quad" [EKQ]="--end_draft --peg_kappa_free --cup_quad")
-SETS="base E K Q EK EQ KQ EKQ"
+SETS=${C2R_SETS:-"base E K Q EK EQ KQ EKQ"}
+[ -n "${C2R_EPS:-}${C2R_SETS:-}" ] && log "DRY: episodes $EPS sets $SETS"
 for k in $SETS; do
   echo "[ -s $OUT/cand/$k/selection.json ] || ( cd $OUT && PRIM_CUP_LEAN=1 nice -n 10 $PY -I $S/prim_rack.py run --obs_dir $IN/pts/B --out $OUT/cand/$k --episodes $EPS --t_wall $T --s0_min_t --markers_dir $IN/markers ${FL[$k]} > $OUT/logs/run_$k.log 2>&1 && echo OK $k || echo FAIL $k ) >> $OUT/logs/status_runs.txt"
 done > $OUT/logs/cmd_runs.txt

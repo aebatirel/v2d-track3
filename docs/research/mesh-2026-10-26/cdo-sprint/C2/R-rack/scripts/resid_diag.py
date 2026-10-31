@@ -107,22 +107,7 @@ def main():
     json.dump(out, open(os.path.join(a.out, f'{a.tag}.json'), 'w'), indent=1)
     np.savez_compressed(os.path.join(a.out, f'{a.tag}_pts.npz'), q=q.astype(np.float32), d=d.astype(np.float32),
                         side=side, e=e.astype(np.int8))
-    # maps
-    import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
-    sd = np.where(side, d, -d) * 1e3
-    fig, ax = plt.subplots(3, 1, figsize=(16, 13))
-    rng = np.random.default_rng(0)
-    sub = rng.choice(len(q), min(len(q), 400000), replace=False)
-    for axi, (i, j, nm) in zip(ax[:2], ((0, 1, 'top x-y'), (0, 2, 'front x-h'))):
-        o = sub[np.argsort(np.abs(sd[sub]))]
-        sc = axi.scatter(q[o, i] * 1e3, q[o, j] * 1e3, c=np.clip(sd[o], -15, 15), s=0.3, cmap='coolwarm', vmin=-15, vmax=15)
-        axi.set_aspect('equal'); axi.set_title(f'{a.tag} {nm} (signed distance to mesh, mm; red = outside)')
-        plt.colorbar(sc, ax=axi, fraction=0.02)
-    o = sub
-    axi = ax[2]
-    axi.scatter(q[o, 0] * 1e3, q[o, 2] * 1e3, c=q[o, 1] * 1e3, s=0.3, cmap='viridis')
-    axi.set_aspect('equal'); axi.set_title('front x-h, colour = y (mm)')
-    plt.tight_layout(); plt.savefig(os.path.join(a.out, f'{a.tag}_maps.png'), dpi=90)
+    # maps: rmap.py on the *_pts.npz dump (PIL; this venv has no matplotlib)
     print(json.dumps(dict(per_episode=per_ep, n_out=len(res['outside']), n_in=len(res['inside']))))
     for nm in ('outside', 'inside'):
         for c in res[nm][:25]:
