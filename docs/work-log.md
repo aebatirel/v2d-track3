@@ -5255,3 +5255,18 @@ Advice given:
   prep + review workflow wf_9536a849-812 running.
 - Masses v2 prep (wf_eec92e0b-27a) and the pack-10 combined retrain plan (costed ≈ $90–130 for the middle variant) in
   progress with the score-status session.
+
+## 2026-10-31 ~16:30 UTC — Masses v2 box A launched; pack 9a built (pot/lid/rack C0) and signed off
+- Masses v2: reviews (selection NO-GO until F1/F2 → fixed in 74da763: dead box → INCOMPLETE, NaN guard, the owner's
+  literal comparisons; mechanics GO); determined-wright PREREG review GO (accepts ep31). Box A launched: run
+  `20261031-mv2a-b5043ce` on offer 56700683 (California, $1.297/h), job `MV2_TAB=…/refs_v2.json MV2_EPS="24 13" bash
+  ops/jobs/mass_check.sh`, commit b5043ce; ledger planned $9.00. Box B (ep11 + ep31) staggered ~10 min.
+- Pack 9a: rule fixed before the guard (MESH_RULE.md a85c4a7) → as-fitted C0 for pot, lid, rack (guard mean dAUC
+  +0.003/+0.0055/+0.0158, 0 failures). Build `build_3obj/` sha256 9c19bb0c… (commit URL 50004a7, which holds the packed
+  C0 files in meshes/c0_pack9a/): differs from pack 8 only in 12 mesh payloads + the commit URL; offline validation
+  pass; frame flags (shape) signed off by the mesh session (lid: real registration 1.45–1.81° from identity, smaller
+  anchor shift than library_v3; C0 lid thickness matches the cameras' points). Post-hoc: aligning C0 onto library_v3
+  (C0a) lowers registered AUC on every object (rack would fail the guard), so the "rotation" vs library_v3 is mostly
+  library_v3's own frame error. Upload planned ~20:00–20:30 UTC (owner: "I want a pack today").
+- Pack-10 design inputs agreed with the score-status session: swap rule (fresh-draw mean vs packed H5 mean, failure
+  rate GT-free RPE > 5 cm, median RPE, + packed-draw guard −0.05); comparison set H5p7/H5e1 (JOBS_h5.txt) to launch next.
