@@ -696,6 +696,15 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   `diag_S_rows` for in-scope pairs whose carve stops before the acceptance, `collcarve.FI5(diag_sink=True)`, on by
   default in `run_episode` only, no decision change). Candidates building since 19:16 (`<run>/cands<N>.log`, all five in
   parallel, nice 5). Committing + pushing before any T-I13 run.
+- 19:17 pushed 1b9f0c1 (PREREG F-I5.14, `collcarve.FI5(diag_sink)`, committed 19:17:15 UTC).
+- 19:30 [M] candidates (v6 bundles, `tools/interlock_cands.py`, logs `<run>/cands<N>.log`, 19:15-19:29): shell_t5p36 + hull
+  for every object of ep12, ep13, ep31, ep11 (all watertight after packing); ep2 still building. **T-I13 launched**
+  (helper `<scratch>/fi5pub/launch.sh`; launch records `<run>/drv<N>_fi5.launch` with command, HEAD, `git status` of
+  gmg and sha256 of every gmg module; logs `<run>/drv<N>_fi5.log`; `<run>` = `runs-dev/20261031-fi5pub-3053a78`):
+  ep12 19:29:39, ep13 and ep31 19:29:4x, ep11 19:30:28, all with `--waiver-fi5 --identity eval --proxy-copies 16
+  --no-physcheck --tag fi5`, no `--video`. HEAD at launch cdc8b40 (another workflow's results commit after 1b9f0c1; no
+  gmg module differs from 1b9f0c1). Picks: ep12 / ep13 blue_cup, plastic_dish_rack = shell_t5p36; ep31 mini_sweeper,
+  plastic_dish_rack = shell_t5p36; ep11 blue_cup, beige_cup = shell_t5p36.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
