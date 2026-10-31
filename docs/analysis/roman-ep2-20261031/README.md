@@ -57,3 +57,32 @@ Observation-noise sigmas: low 1 mm / 0.2°, medium 3 mm / 0.6°, high 10 mm / 2�
 
 ep2 is an easy episode (reference AUC 0.987). Offsets are larger on others (pitcher, boards; see the standings
 rpe-decomp). This page is about delay vs noise, not about which share dominates the board.
+
+## All 20 public episodes (31 Oct ~21:40 UTC; `all20.py` → `all20.json`, `all20_table.txt`) [M]
+Same diagnostic set-up per episode: our P_o track vs mocap after a world fit and one constant body offset per object,
+so what remains is the varying error a filter could act on. Rotations are handled as sign-continuous quaternions with
+slerp advance. A first run filtered rotation vectors and broke on large rotations (pot flip, pours); that was an
+implementation artefact, fixed before this run.
+
+- **The delay is the same everywhere.** Over the 26 moving objects (excluding static racks and the ep23 board swap):
+  median 0.50 frame (IQR 0.41–0.55, range 0.20–1.10), i.e. ≈ 25 ms.
+- **Noise is small everywhere:** median 0.15 cm. Slow drift is larger: median 0.38 cm; 3.4 cm on the ep18 sweeper;
+  1.3–1.6 cm on the ep11/13 blue cup.
+- **Fixes, mean ADD on a 5 cm sphere relative to raw** (33 objects / 29 objects without ep0 and ep23):
+
+  | Fix | ADD change | Objects better / worse |
+  |---|---|---|
+  | **half-frame advance (S2)** | **−4.4 % / −7.9 %** | **32 / 1** (worst +0.01 cm) |
+  | causal per-object Kalman, low / medium / high observation noise | +1.3 / +3.5 / +7.8 % (+2.3 / +6.7 / +15.2 %) | mostly worse (adds lag) |
+  | delay-aware Kalman (predicts 0.545 frame ahead) | +4.3 % / +8.0 % | 11 / 16 |
+  | offline RTS smoother | −0.7 % / −0.8 % | 26 / 3 |
+  | advance + RTS | −4.0 % / −6.6 % | 29 / 3 |
+
+- **Reading:**
+  - The fix for "tracking vs motion capture" that holds in every episode is the constant half-frame advance. It is
+    built and adopted on public data (kit chain: +0.006 AUC, 17 of 20), but not wired into the eval pipeline.
+  - A Kalman filter in Roman's causal form makes the tracks worse. The offline smoother is within noise.
+  - The remaining drift and offsets need geometry (templates, frame-0 init), not filtering.
+- **Board value [E]:** the 30 Oct plan measured an after-the-fact half-frame shift of public rollouts at +0.0004 to
+  +0.0028. It pays through retrained references only, so it is worth adding only where eval references are rebuilt
+  anyway.

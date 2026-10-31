@@ -5592,3 +5592,9 @@ arm and a no-policy replay floor to stage B.
     - the delay / noise / Kalman numbers.
   - Corrected the earlier "error is mostly a fixed offset". Per the standings decomposition that holds for AUC (≈ 80 %
     of the reference AUC loss without ep23); about half for MPPE (1.18 → 0.55); not for RPE (1.00 → 0.77).
+- ~21:40 UTC all 20 public episodes (`docs/analysis/roman-ep2-20261031/all20.*`, CPU, $0, mocap diagnostic only):
+  - delay median 0.50 frame (IQR 0.41–0.55) over 26 moving objects, i.e. consistent;
+  - noise median 0.15 cm; drift median 0.38 cm;
+  - half-frame advance: better on 32 of 33 objects (−4.4 % ADD; −7.9 % without ep0/ep23);
+  - Roman's causal Kalman: worse (+1.3 to +7.8 %); delay-aware Kalman: worse; offline RTS: −0.7 %.
+  - Recommendation: wire S2 into eval references where they are rebuilt anyway; no Kalman filter.
