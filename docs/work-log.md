@@ -5682,3 +5682,11 @@ arm and a no-policy replay floor to stage B.
   - Dry run on 9a+'s file (sha256 e02736ea…): valid, 9,120 rows, 6 boards, 4 left today on each, nothing submitted.
   - The 05:00 UTC check-in trigger was updated to verify (swap-rule verdicts vs PREREG, sha256, rows, commit,
     script hashes, byte-diff), dry-run and upload 9b with a receipt if it passes; no GPU spend.
+- Clock correction: from about 20:00 UTC, the times in this session's entries and messages ran ahead; they were
+  estimated, not read from the clock. Git commit times are authoritative. The owner's two decisions were at 21:14:50 UTC
+  (verified by the score-status session).
+  - ~21:21 UTC determined-wright: arm V launches in ~15 min (2 boxes, ≈ $9 [E]); the FC_DR_SKIP_IMMEDIATE flag for
+    focused-pascal's standard-learner D cells by ~22:15 UTC (else reported absent); the per-episode CPU reset check
+    ~23:00 UTC; then the ep24 P1 check, then my command-smoothing (A) and synergy (B) CPU tests.
+  - ~21:21 UTC score-status: agrees this session is the single 9b uploader; asks that 9b's receipt sit beside its build
+    as 9a+'s does (results/submissions/<run>/build_*/).
