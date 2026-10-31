@@ -21,3 +21,4 @@ Bulk outputs: /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81a
 - 2026-10-31T16:00:59Z build OK so far: pot, lid, blue cup (4002 f after hole fill, <= 4096 budget), board 2 (watertight), pitcher. GT-free held tmean90 in->fit: pot 2.14->2.02, lid 2.23->2.31, blue 2.44->2.14, board2 2.23->2.10, pitcher 2.97->2.79.
 - 2026-10-31T16:02:51Z build all 10 OK (2 streams, 15:57:54-16:02:17Z clock). manifest.py -> build_manifest.json, score_manifest.tsv, meshes/*_t3fit.glb (sha256 in PREREG s4). GT-free held-out residual better on 8, worse on lid and beige. PREREG filled; next commit+push PREREG, then score.
 - 2026-10-31T16:02:59Z PREREG pushed at commit 2d2a8ee. Scoring started: venv python -I scripts/score.py score_manifest.tsv $S/cdo_c1/t3/scores.jsonl > $S/cdo_c1/t3/score.log (one process, nice 5).
+- 2026-10-31T16:09:08Z scoring [D] so far: pot 0.3112 / add_med 6.28 / 0 of 8 flips; lid 0.3598 / 39.65 / 0 of 6; blue cup 0.4100 / 4.53 / 0 of 7.
