@@ -5465,3 +5465,6 @@ arm and a no-policy replay floor to stage B.
     pack ≈ 2 Nov evening; 3–4 Nov for a fallback.
   - Cut-off for reference fixes: public gate passed and eval references built by ≈ 1 Nov 14:00 UTC.
 - Messages: focused-pascal, determined-wright, bold-albattani, Roman-meeting session (decomposition addendum).
+- ~15:30 UTC: the Roman-meeting session takes tasks only from the owner, so the RPE/MPPE decomposition runs in this
+  session instead (background agent, CPU, $0). Outputs go to docs/analysis/rpe-decomp-20261031/; first table ≈ 18:30 UTC;
+  candidates pre-registered in PREREG.md before scoring. Public episodes only; GT only for scoring.
