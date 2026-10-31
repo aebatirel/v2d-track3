@@ -5519,3 +5519,15 @@ arm and a no-policy replay floor to stage B.
   - Option 3 result (its physics-solver.md §6.1, fc6dcd2): the rule reads "signal" (+0.068), but 3 of 4 chosen
     checkpoints predate the loop, and round A is confounded by FlashSAC's learning-rate horizon (cosine over 30M vs 70M
     total steps). So there is no evidence yet that the loop helps. It awaits the ep2 drawdiv.
+- ~10:50 UTC budget request from Embodiment (the owner asked it for one budget up to the freeze). Reply sent (info only,
+  $0):
+  - (1) No GPU from this session.
+  - (2) Banked-draw headroom [E] (from h5_summary, pack 7/8 packed values; transfer 0.979; cap 0.97): if a recipe
+    raised every 10-draw mean except eval 10's by +0.03 / +0.05 / +0.10, the board gains ≈ +0.006 / +0.010 / +0.018.
+    Eval 10 at 0.90 alone ≈ +0.022. Ranked levers:
+    - eval-10 nest reference (bankable);
+    - spoon held pose (largest pool, low confidence);
+    - meshes / CD-O for the rank sum.
+    The recipe screen (≈ $55–65) is mostly insurance for re-runs and the held-out evaluation.
+  - (3) The ep2 drawdiv is not ready by 11:45 (mass check due ≈ 12:30–14:00). orcB magnitudes given instead: 10 µm at
+    f1–11, 5 mm at f5–25, 2 cm at contact events. Run mass/friction ±20 % as its own arm.
