@@ -5419,3 +5419,21 @@ diagnostic; nothing is picked for submission.
 - Packaged `meshes/library_e0` and `meshes/library_e0x` (library_c0 / c0x, with blue cup reset to v3 / v3x and the 4 E0
   picks), `cdo-sprint/E0/meshes/`, `E0/MANIFEST.json` (36 pairs; 17 E0, 19 unchanged), `E0/README.md`. md5: pot
   858fc4c6..., lid 08b65d4f..., rack 9b8adbe3..., blue cup b479269e.... Not scored: there is no eval ground truth.
+
+### 2026-10-31 ~17:05 UTC — board slot: synthetic tests pass, real ep24 plate test fails; workflow resumed with a fix step
+- F-I4 build (commits c13f53c, 94eed1c F-I4.12 post hoc after a synthetic centre miss, 1756947, cd2383f): T-I1 w1-w5 and
+  the controls pass [M]:
+  - slot centre within 0.1 mm;
+  - widths within 0.2 mm of partner thickness + 2 mm;
+  - depth sum within 2.6-4.3 mm of the crossing width;
+  - keep-out 0.0;
+  - w5 physics: lag 0.033 cm / 0.16 deg, overlap 0.0.
+  - t = 6 mm misses the width tolerance (expected failure, F-I4.13).
+- T-I11 on real public ep24 (tag fi4evalsem, --no-physcheck): the F-I4.1 plate test returns `plate: false, why:
+  no_plane_pair` for both boards (board 1 sigma 3.0 mm, board 2 0.74 mm). So the waiver never engaged and both boards
+  are PUSHED again. The default pieces gate still fails (0.72 / 2.0 cm3).
+- Edited the build step of `board-slot` (`wf_8acce122-d7b`) and resumed it (task wl0m1dkrt). It must:
+  - diagnose GT-free why no plane pair is found on real boards;
+  - write ONE post-hoc PREREG entry F-I4.14, decided without looking at the slot or physics outcomes;
+  - re-run the synthetic tests and T-I11 once with physics;
+  - report both runs.
