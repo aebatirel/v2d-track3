@@ -337,6 +337,169 @@ def _box(P):
     return P.min(0), P.max(0)
 
 
+def _tied_with(own, tied, k):
+    """Samples provisionally owned by k or shared with k in their tie set."""
+    return (own == k) | ((own == SHARED) & ((tied >> k) & 1).astype(bool))
+
+
+def det_candidates(props, pscale, org0, objs, o):
+    """Indices of the frame-0 proposals holding o's projected origin and no other tracked object's projected origin
+    (SPEC section 7 pass 2: one proposal per object; a proposal containing two objects' origins is not used). org0:
+    {obj: (u, v) full-resolution pixel of the projected frame-0 track origin, or None}."""
+    if props is None or org0.get(o) is None:
+        return []
+    hh, ww = props.shape[1:]
+
+    def px(uv):
+        return int(np.floor(uv[1] / pscale)), int(np.floor(uv[0] / pscale))
+    oi, oj = px(org0[o])
+    if not (0 <= oi < hh and 0 <= oj < ww):
+        return []
+    cand = np.nonzero(props[:, oi, oj])[0].tolist()
+    for q in objs:
+        if q == o or org0.get(q) is None:
+            continue
+        qi, qj = px(org0[q])
+        if 0 <= qi < hh and 0 <= qj < ww:
+            cand = [i for i in cand if not props[i, qi, qj]]
+    return cand
+
+
+def det_seed_select(props, pscale, cand, k, own1, tied1, pix, lin_k):
+    """Rule-B seed of object index k from the frame-0 samples (own1, tied1: pass-1 labels; pix: full-resolution linear
+    pixel; lin_k: cube voxel index in k's frame, -1 outside). The proposal = the candidate with the largest IoU with
+    k's provisional frame-0 footprint (owned or k-tied samples). Seed samples (DEVIATIONS B4-R2.1, round 2): every
+    sample of k's cube inside that proposal that is not provisionally owned by another object (k-owned, k-tied or
+    unowned); round 1 (DEVIATIONS 86) kept only the k-owned or k-tied ones. Returns (sel (n,) bool or None, info)."""
+    info = dict(det_candidates=len(cand))
+    if props is None or not len(cand):
+        info.update(det_iou=0.0, det_index=None)
+        return None, info
+    hh, ww = props.shape[1:]
+    pv, pu = np.divmod(pix.astype(np.int64), IMG_W)
+    hi_ = np.minimum((pv / pscale).astype(np.int64), hh - 1)
+    hj_ = np.minimum((pu / pscale).astype(np.int64), ww - 1)
+    mine = _tied_with(own1, tied1, k)
+    foot = np.zeros((hh, ww), bool)
+    foot[hi_[mine], hj_[mine]] = True
+    best, bi = 0.0, None
+    for i in cand:
+        inter = int((props[i] & foot).sum())
+        iou = inter / max(int((props[i] | foot).sum()), 1)
+        if iou > best:
+            best, bi = iou, i
+    info.update(det_iou=round(best, 4), det_index=bi)
+    if bi is None:
+        return None, info
+    inprop = props[bi][hi_, hj_] & (lin_k >= 0)
+    other = ~mine & (own1 != NONE)          # owned by another object, or shared without k in the tie set
+    sel = inprop & ~other
+    info.update(det_mask=int(bi), seed_in_proposal=int(inprop.sum()), seed_mine=int((inprop & mine).sum()),
+                seed_unowned=int((inprop & (own1 == NONE)).sum()), seed_other_excluded=int((inprop & other).sum()))
+    if not sel.any():
+        return None, info
+    return sel, info
+
+
+def seeded_component(vset, lab, seed, c, n):
+    """Cube voxels (bool, n**3) of every 8 mm component of VSET (linear indices, labels LAB) that holds a seed point's
+    voxel (seed: object-frame points). Returns (cm, labels used)."""
+    cm = np.zeros(n ** 3, bool)
+    if not len(seed) or not len(vset):
+        return cm, np.zeros(0, np.int64)
+    sv = np.floor((seed + c['cube']) / c['vox']).astype(np.int64)
+    ok = np.all((sv >= 0) & (sv < n), axis=1)
+    sl = (sv[ok, 0] * n + sv[ok, 1]) * n + sv[ok, 2]
+    pos = np.clip(np.searchsorted(vset, sl), 0, len(vset) - 1)
+    hit = vset[pos] == sl
+    labs = np.unique(lab[pos[hit]])
+    cm[vset[np.isin(lab, labs)]] = True
+    return cm, labs
+
+
+def crop_guard(cm, seed, c, n):
+    """SPEC section 7 pass 2 guard: if the component's box (voxel centres +- half a voxel) exceeds guard_k x the seed
+    box on any axis, the component is clipped to the seed box + max(guard_min, guard_frac x seed extent) per axis.
+    Without a guard the grid box is the component box + grid_margin. Returns (cm, box (lo, hi) or None, info)."""
+    info = dict(guard=False)
+    nv = int(cm.sum())
+    if not nv:
+        return cm, None, info
+    ijk = np.stack(np.unravel_index(np.nonzero(cm)[0], (n, n, n)), 1)
+    ctr = -c['cube'] + (ijk + 0.5) * c['vox']
+    clo, chi = ctr.min(0) - c['vox'] / 2, ctr.max(0) + c['vox'] / 2
+    cext = chi - clo
+    info['comp_box_mm'] = np.round(cext * 1e3, 1).tolist()
+    if not len(seed):
+        return cm, (clo - c['grid_margin'], chi + c['grid_margin']), info
+    slo, shi = _box(seed)
+    sext = shi - slo
+    info['seed_box_mm'] = np.round(sext * 1e3, 1).tolist()
+    if np.any(cext > c['guard_k'] * sext):
+        mg = np.maximum(c['guard_min'], c['guard_frac'] * sext)
+        glo, ghi = slo - mg, shi + mg
+        inb = np.all((ctr >= glo) & (ctr <= ghi), axis=1)
+        cm = cm.copy()
+        cm[np.nonzero(cm)[0][~inb]] = False
+        info.update(guard=True, guard_box_lo=glo.tolist(), guard_box_hi=ghi.tolist(),
+                    component_voxels_after_guard=int(cm.sum()))
+        return cm, (glo, ghi), info
+    return cm, (clo - c['grid_margin'], chi + c['grid_margin']), info
+
+
+def resolve_ties(own, tied, P_cam, T_co, trees, c, mask_hits=None):
+    """SPEC section 7 pass 3 co-moving tie-break of one frame. own, tied: pass-3 labels before the tie-break; P_cam:
+    camera-frame samples; T_co: per object cam_T_obj of the frame; trees: per object cKDTree of its seed centroids
+    (object frame) or None; mask_hits: optional (n, m) bool, sample inside object's chosen exclusive proposal (rule a,
+    Phase 1 frame 0 only). Order: (a) exactly one tied object's proposal holds the sample; (b) nearest seed, if the
+    nearer of the two nearest seeds is below near_seed x the farther (both objects need a seed, DEVIATIONS 101);
+    (c) shared. Returns (own, how) with how 1 mask, 2 seed, 3 shared, 0 not tied."""
+    own = own.copy()
+    m = len(T_co)
+    sh = np.nonzero(own == SHARED)[0]
+    how = np.zeros(len(own), np.int8)
+    if not len(sh):
+        return own, how
+    if mask_hits is not None:
+        inm = mask_hits[sh] & np.stack([((tied[sh] >> k) & 1).astype(bool) for k in range(m)], 1)
+        one = inm.sum(1) == 1
+        if one.any():
+            own[sh[one]] = np.argmax(inm[one], 1)
+            how[sh[one]] = 1
+        sh = sh[~one]
+    if len(sh):
+        dist = np.full((len(sh), m), np.inf)
+        for k in range(m):
+            tk = ((tied[sh] >> k) & 1).astype(bool)
+            if trees[k] is None or not tk.any():
+                continue
+            Ti = np.linalg.inv(T_co[k])
+            Po = P_cam[sh[tk]].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
+            dist[np.nonzero(tk)[0], k] = trees[k].query(Po, k=1)[0]
+        order = np.sort(dist, 1)
+        win = np.isfinite(order[:, 1]) & (order[:, 0] < c['near_seed'] * order[:, 1])
+        if win.any():
+            own[sh[win]] = np.argmin(dist[win], 1)
+            how[sh[win]] = 2
+        how[sh[~win]] = 3
+    return own, how
+
+
+def pair_flags(pt, c):
+    """Co-moving flags of an ordered pair from its pass-1 tie statistics PT (DEVIATIONS 87): co_moving if more than
+    comoving of o's pass-1 samples were tied with p; co_moving_unresolved if co_moving and rule (c) left more than half
+    of those tied samples shared; tie_break = the more frequent of mask and seed ('none' if neither decided any)."""
+    co_moving = pt['tied1_frac'] > c['comoving']
+    p3 = pt['pass3']
+    nres = p3['mask'] + p3['seed'] + p3['shared']
+    unresolved = bool(co_moving and p3['shared'] > 0.5 * max(pt['tied1'], 1))
+    if p3['mask'] + p3['seed'] == 0:
+        tbk = 'none'
+    else:
+        tbk = 'mask' if p3['mask'] >= p3['seed'] else 'seed'
+    return bool(co_moving), unresolved, tbk, int(nres)
+
+
 # ------------------------------------------------------------------------------------------------ main entry
 def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, vox=0.004, cube=0.30, stride=2,
                     seed_masks=None, aux_dir=None, log=print, roster=None):
@@ -471,46 +634,19 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         seed = None
 
         def det_seed(tag):
-            """The frame-0 SAM2 proposal holding o's projected origin, exclusively (proposals holding another tracked
-            object's projected origin are not used): o's provisional (owned or o-tied) frame-0 samples inside it."""
+            """The frame-0 SAM2 proposal holding o's projected origin, exclusively (det_candidates), as seed points
+            (det_seed_select: its samples in o's cube that no other object provisionally owns)."""
             if props is None or 0 not in S or org0[o] is None:
                 return None
-            hh, ww = props.shape[1:]
-
-            def px(uv):
-                return int(np.floor(uv[1] / pscale)), int(np.floor(uv[0] / pscale))
-            oi, oj = px(org0[o])
-            if not (0 <= oi < hh and 0 <= oj < ww):
-                return None
-            cand = np.nonzero(props[:, oi, oj])[0].tolist()
-            for q in objs:
-                if q == o or org0[q] is None:
-                    continue
-                qi, qj = px(org0[q])
-                if 0 <= qi < hh and 0 <= qj < ww:
-                    cand = [i for i in cand if not props[i, qi, qj]]
+            cand = det_candidates(props, pscale, org0, objs, o)
             s0 = S[0]
-            mine = (s0['own1'] == k) | ((s0['own1'] == SHARED) & ((s0['tied1'] >> k) & 1).astype(bool))
-            pv, pu = np.divmod(s0['pix'].astype(np.int64), IMG_W)
-            hi_ = np.minimum((pv / pscale).astype(np.int64), hh - 1)
-            hj_ = np.minimum((pu / pscale).astype(np.int64), ww - 1)
-            foot = np.zeros((hh, ww), bool)
-            foot[hi_[mine], hj_[mine]] = True
-            best, bi = 0.0, None
-            for i in cand:
-                inter = int((props[i] & foot).sum())
-                iou = inter / max(int((props[i] | foot).sum()), 1)
-                if iou > best:
-                    best, bi = iou, i
-            info.update(det_candidates=len(cand), det_iou=round(best, 4), det_index=bi)
-            if bi is None:
-                return None
-            insel = mine & props[bi][hi_, hj_]
-            if not insel.any():
+            sel, dinf = det_seed_select(props, pscale, cand, k, s0['own1'], s0['tied1'], s0['pix'], s0['lin'][k])
+            info.update(dinf)
+            if sel is None:
                 return None
             Ti = np.linalg.inv(FR.T_co[o][0])
-            info.update(seed=tag, det_mask=int(bi))
-            return s0['P'][insel].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
+            info.update(seed=tag)
+            return s0['P'][sel].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
 
         # (B) the frame-0 proposal, if frame 0 is 3-D-separated for o
         if 0 in sep3:
@@ -542,49 +678,18 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
                 np.add.at(cnt, li, 1)
         vset = np.nonzero(cnt)[0]
         lab = _components(vset, n)
-        cm = np.zeros(n ** 3, bool)
         if len(seed) and len(vset):
-            sv = np.floor((seed + c['cube']) / c['vox']).astype(np.int64)
-            ok = np.all((sv >= 0) & (sv < n), axis=1)
-            sl = (sv[ok, 0] * n + sv[ok, 1]) * n + sv[ok, 2]
-            pos = np.searchsorted(vset, sl)
-            pos = np.clip(pos, 0, len(vset) - 1)
-            hit = vset[pos] == sl
-            labs = np.unique(lab[pos[hit]])
-            cm[vset[np.isin(lab, labs)]] = True
+            cm, labs = seeded_component(vset, lab, seed, c, n)
             info['components_total'] = int(lab.max() + 1) if len(lab) else 0
             info['components_seeded'] = int(len(labs))
-        elif len(vset):
-            cm[vset] = True              # no seed (DEVIATIONS 101): no seeded-component restriction, no guard
-            info['no_seed'] = True
-        nv = int(cm.sum())
-        info['component_voxels'] = nv
-        info['guard'] = False
-        if nv and len(seed):
-            ijk = np.stack(np.unravel_index(np.nonzero(cm)[0], (n, n, n)), 1)
-            ctr = -c['cube'] + (ijk + 0.5) * c['vox']
-            clo, chi = ctr.min(0) - c['vox'] / 2, ctr.max(0) + c['vox'] / 2
-            slo, shi = _box(seed)
-            sext, cext = shi - slo, chi - clo
-            info.update(seed_box_mm=np.round(sext * 1e3, 1).tolist(), comp_box_mm=np.round(cext * 1e3, 1).tolist())
-            if np.any(cext > c['guard_k'] * sext):
-                mg = np.maximum(c['guard_min'], c['guard_frac'] * sext)
-                glo, ghi = slo - mg, shi + mg
-                inb = np.all((ctr >= glo) & (ctr <= ghi), axis=1)
-                cm[np.nonzero(cm)[0][~inb]] = False
-                info.update(guard=True, guard_box_lo=glo.tolist(), guard_box_hi=ghi.tolist(),
-                            component_voxels_after_guard=int(cm.sum()))
-                box = (glo, ghi)
-            else:
-                box = (clo - c['grid_margin'], chi + c['grid_margin'])
-        elif nv:
-            ijk = np.stack(np.unravel_index(np.nonzero(cm)[0], (n, n, n)), 1)
-            ctr = -c['cube'] + (ijk + 0.5) * c['vox']
-            clo, chi = ctr.min(0) - c['vox'] / 2, ctr.max(0) + c['vox'] / 2
-            info.update(comp_box_mm=np.round((chi - clo) * 1e3, 1).tolist())
-            box = (clo - c['grid_margin'], chi + c['grid_margin'])
         else:
-            box = None
+            cm = np.zeros(n ** 3, bool)
+            if len(vset):
+                cm[vset] = True          # no seed (DEVIATIONS 101): no seeded-component restriction, no guard
+                info['no_seed'] = True
+        info['component_voxels'] = int(cm.sum())
+        cm, box, ginf = crop_guard(cm, seed, c, n)
+        info.update(ginf)
         info['box'] = None if box is None else [np.round(box[0], 4).tolist(), np.round(box[1], 4).tolist()]
         comp_mask.append(cm.reshape(n, n, n))
         seeds.append(CT.centroids(seed) if len(seed) else np.zeros((0, 3)))
@@ -596,47 +701,25 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
     t0_ = time.time()
     trees = [cKDTree(sd) if len(sd) else None for sd in seeds]
     tb_counts = {}           # (k, q) -> counts of tie decisions
-    det_chosen = {objs[k]: seed_info[objs[k]].get('det_mask') for k in range(m)}
+    # rule (a) uses an object's chosen proposal only when its seed came from it (as round 1)
+    det_chosen = {o: (seed_info[o].get('det_mask') if str(seed_info[o].get('seed', '')).startswith('det_f0') else None)
+                  for o in objs}
     for t in frames:
         s = S[t]
         own, tied, _ = owners(s['lin'], grids, c, allow=comp_mask)
-        sh = np.nonzero(own == SHARED)[0]
-        how = np.zeros(len(own), np.int8)          # 1 mask, 2 seed, 3 shared (c)
-        if len(sh):
+        mask_hits = None
+        if t == 0 and props is not None and (own == SHARED).any():
             # (a) exclusive frame-0 proposals (Phase 1: frame 0 only)
-            if t == 0 and props is not None:
-                pv, pu = np.divmod(s['pix'][sh].astype(np.int64), IMG_W)
-                hh, ww = props.shape[1:]
-                hi_ = np.minimum((pv / pscale).astype(np.int64), hh - 1)
-                hj_ = np.minimum((pu / pscale).astype(np.int64), ww - 1)
-                inm = np.zeros((len(sh), m), bool)
-                for k, o in enumerate(objs):
-                    bi = det_chosen[o]
-                    if bi is not None:
-                        inm[:, k] = props[bi][hi_, hj_] & ((tied[sh] >> k) & 1).astype(bool)
-                one = inm.sum(1) == 1
-                if one.any():
-                    own[sh[one]] = np.argmax(inm[one], 1)
-                    how[sh[one]] = 1
-                sh = sh[~one]
-            # (b) nearest seed
-            if len(sh):
-                dist = np.full((len(sh), m), np.inf)
-                for k, o in enumerate(objs):
-                    tk = ((tied[sh] >> k) & 1).astype(bool)
-                    if trees[k] is None or not tk.any():
-                        continue
-                    Ti = np.linalg.inv(FR.T_co[o][t])
-                    Po = s['P'][sh[tk]].astype(np.float64) @ Ti[:3, :3].T + Ti[:3, 3]
-                    dist[np.nonzero(tk)[0], k] = trees[k].query(Po, k=1)[0]
-                order = np.sort(dist, 1)
-                # the nearer seed must be below half the farther; a tied object without a seed (DEVIATIONS 101)
-                # gives no distance, so its samples stay shared (c)
-                win = np.isfinite(order[:, 1]) & (order[:, 0] < c['near_seed'] * order[:, 1])
-                if win.any():
-                    own[sh[win]] = np.argmin(dist[win], 1)
-                    how[sh[win]] = 2
-                how[sh[~win]] = 3
+            pv, pu = np.divmod(s['pix'].astype(np.int64), IMG_W)
+            hh, ww = props.shape[1:]
+            hi_ = np.minimum((pv / pscale).astype(np.int64), hh - 1)
+            hj_ = np.minimum((pu / pscale).astype(np.int64), ww - 1)
+            mask_hits = np.zeros((len(own), m), bool)
+            for k, o in enumerate(objs):
+                if det_chosen[o] is not None:
+                    mask_hits[:, k] = props[det_chosen[o]][hi_, hj_]
+        # (a) mask, (b) nearest seed (a tied object without a seed gives no distance: shared), (c) shared
+        own, how = resolve_ties(own, tied, s['P'], [FR.T_co[o][t] for o in objs], trees, c, mask_hits=mask_hits)
         tied3 = np.where(own == SHARED, tied, 0).astype(np.uint8)
         s['own3'], s['tied3'], s['how3'] = own, tied3, how
     timing['pass3_s'] = round(time.time() - t0_, 1)
@@ -668,6 +751,14 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
     for key, rec in census4.items():
         a, b = set(census1[key]['separated']), set(rec['separated'])
         census_change[key] = round(len(a ^ b) / max(len(frames), 1), 4)
+    if m > 1:
+        # DIAGNOSTIC (round 2): gap between each frame's own owned points; no rule or flag reads it
+        camp = {o: {t: S[t]['P'][S[t]['own3'] == k] for t in frames if (S[t]['own3'] == k).any()}
+                for k, o in enumerate(objs)}
+        tg_ = time.time()
+        for key, rec in CT.frame_gaps(camp, frames, objs).items():
+            census4[key].update(rec)
+        timing['frame_gaps_s'] = round(time.time() - tg_, 1)
     # final grids on each object's crop box (a sub-lattice of the cube)
     sub = {}
     for k, o in enumerate(objs):
@@ -771,15 +862,7 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
             rec = census4[f'{o}|{p}']
             Xp = b.samples(p)[0]
             j, npairs = CT.jitter(P, o, p, Xp, rec['contact'], c['stride'])
-            pt = pair_tie[(k, q)]
-            co_moving = pt['tied1_frac'] > c['comoving']
-            p3 = pt['pass3']
-            nres = p3['mask'] + p3['seed'] + p3['shared']
-            unresolved = co_moving and p3['shared'] > 0.5 * max(pt['tied1'], 1)
-            if p3['mask'] + p3['seed'] == 0:
-                tbk = 'none'
-            else:
-                tbk = 'mask' if p3['mask'] >= p3['seed'] else 'seed'
+            co_moving, unresolved, tbk, nres = pair_flags(pair_tie[(k, q)], c)
             rec.update(j_mm=round(j * 1e3, 4), j_pairs=npairs, co_moving=bool(co_moving),
                        co_moving_unresolved=bool(unresolved), tie_break=tbk, tie_resolved=int(nres))
             rec['band_mm'] = round(b.band(o, p) * 1e3, 4)

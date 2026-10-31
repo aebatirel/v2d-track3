@@ -30,7 +30,10 @@ PAIRS = [(2, 'white_pot', 'white_pot_lid'), (11, 'blue_cup', 'beige_cup'), (24, 
 SHEET_CAP = 600000   # owned points fed to the reference sheet (random, seed 0; numerical)
 
 
-def direction(b, o, p, c):
+def direction(b, o, p, c, sep_frames=None, contact_frames=None):
+    """One direction (target o, partner p). sep_frames / contact_frames override the census' sep3d / contact
+    frame lists (round-2 DIAGNOSTIC only: the per-frame owned-point gap reading; the pre-registered test passes
+    neither)."""
     import numpy as np
     from autokit import shell as SH
     from gmg import geom, contact as CT
@@ -38,7 +41,11 @@ def direction(b, o, p, c):
     fr = np.asarray(obs['frame'])
     own = np.asarray(obs['own'])
     P = np.asarray(obs['pts'], np.float64)
-    rec = b.contact(o, p)
+    rec = dict(b.contact(o, p))
+    if sep_frames is not None:
+        rec['sep3d'] = list(sep_frames)
+    if contact_frames is not None:
+        rec['contact'] = list(contact_frames)
     have = set(np.unique(fr[own == 0]).tolist())
     sep = [f for f in rec['sep3d'] if f in have]
     out = dict(target=o, partner=p, sep3d_frames=len(sep), contact_frames=len(rec['contact']))
@@ -91,7 +98,7 @@ def main():
     a = ap.parse_args()
     if guard.mode() != 'clean':
         raise SystemExit('b4_b2a runs in GMG_MODE=clean only')
-    from gmg import bundle as BU
+    from gmg import bundle as BU, contact as CT
     run = guard.set_run(a.run)
     c = dict(min_frames=guard.constant('b2_reference_min_frames', 10, 'generic:PREREG A.6 B.2 reference minimum'),
              k_sigma=guard.constant('b2_far_sigma_k', 3.0, 'generic:PREREG B.2a more than 3 sigma from the sheet'),
@@ -112,10 +119,21 @@ def main():
         dirs = [direction(b, o, p, c), direction(b, p, o, c)]
         testable = [d for d in dirs if d.get('testable') and d.get('leakage') is not None]
         fail = any(d['leakage'] > c['thr'] for d in testable)
+        # round-2 DIAGNOSTIC (not the pre-registered test): reference from the frames whose OWN owned points are more
+        # than 20 mm apart (contact.frame_gaps), test frames = the census contact frames outside that set
+        fg = CT.frame_gaps_bundle(b)[f'{o}|{p}']
+        sepf = set(fg['sep3d_frame'])
+        cont = [f for f in b.contact(o, p)['contact'] if f not in sepf]
+        diag = [direction(b, o, p, c, sep_frames=sorted(sepf), contact_frames=cont),
+                direction(b, p, o, c, sep_frames=sorted(sepf), contact_frames=cont)]
         res.append(dict(ep=ep, pair=f'{o}|{p}', included=True, directions=dirs, testable=len(testable) > 0,
-                        pair_fail=bool(fail)))
-        print(json.dumps({k: v for k, v in res[-1].items() if k != 'directions'}),
-              [(d['target'], d.get('sep3d_frames'), d.get('leakage')) for d in dirs], flush=True)
+                        pair_fail=bool(fail),
+                        diag_frame_gap=dict(note='diagnostic, not PREREG B.2a: reference = frames with own-points gap '
+                                                 '> 20 mm; test = census contact frames outside them',
+                                            sep3d_frame=len(sepf), directions=diag)))
+        print(json.dumps({k: v for k, v in res[-1].items() if k not in ('directions', 'diag_frame_gap')}),
+              [(d['target'], d.get('sep3d_frames'), d.get('leakage')) for d in dirs],
+              'diag', [(d['target'], d.get('sep3d_frames'), d.get('leakage')) for d in diag], flush=True)
     inc = [r for r in res if r['included']]
     n_test = sum(r['testable'] for r in inc)
     n_fail = sum(r['pair_fail'] for r in inc)

@@ -4,6 +4,8 @@
   route_a_shell(obs, frames=None, cap=SHELL_CAP, seed=0) -> (samples (n,3) of the route-A sheet, info)
   register(A, B, n=REG_N) -> (T 4x4 moving A onto B, chamfer_mm): rigid best-of-24 PCA-start ICP, no scale, no
                              identity start
+  reg_chamfers(A, B) -> dict  identity-test distance: best of REG_SEEDS registrations, chamfer on the full shells
+                             (round 2); also the round-1 seed-0 value
   chamfer_mm(A, B) -> symmetric chamfer (mean of the two mean nearest distances) in mm
   split_test(bundle, obj, partner) -> dict        SPEC section 7: halves of o must match each other better than either
                                                   matches the partner's shell
@@ -222,8 +224,24 @@ def register(A, B, n=REG_N, seed=0):
     return T, best[0]
 
 
+REG_SEEDS = (0, 1, 2, 3)   # round 2: subsample seeds of the identity registrations (numerical; DEVIATIONS B4-R2.2)
+
+
+def reg_chamfers(A, B, seeds=REG_SEEDS):
+    """Identity-test distance of shell A to shell B (round 2, DEVIATIONS B4-R2.2): register() with each subsample
+    seed, each transform's symmetric chamfer evaluated on the full shells (all SHELL_SAMPLES points), the lowest wins.
+    Returns dict(mm = that value, seed0_mm = register(A, B, seed=0)'s own subsample chamfer, the round-1 value)."""
+    best, s0 = float('inf'), None
+    for sd in seeds:
+        T, ch = register(A, B, seed=sd)
+        if sd == 0:
+            s0 = ch
+        best = min(best, chamfer_mm(A @ T[:3, :3].T + T[:3, 3], B))
+    return dict(mm=best, seed0_mm=s0)
+
+
 def reg_chamfer(A, B):
-    return register(A, B)[1]
+    return reg_chamfers(A, B)['mm']
 
 
 def split_test(bundle, obj, partner, shells=None):
@@ -240,12 +258,14 @@ def split_test(bundle, obj, partner, shells=None):
         sp, _ = route_a_shell(bundle.obs(partner), bundle.good_frames(partner))
     if not len(s1) or not len(s2) or not len(sp):
         return dict(testable=False, reason='empty shell', h1=i1, h2=i2)
-    c12 = reg_chamfer(s1, s2)
-    c1p = reg_chamfer(s1, sp)
-    c2p = reg_chamfer(s2, sp)
+    r12, r1p, r2p = reg_chamfers(s1, s2), reg_chamfers(s1, sp), reg_chamfers(s2, sp)
+    c12, c1p, c2p = r12['mm'], r1p['mm'], r2p['mm']
+    s12, s1p, s2p = r12['seed0_mm'], r1p['seed0_mm'], r2p['seed0_mm']
     return dict(testable=True, pass_=bool(c12 < min(c1p, c2p)), chamfer_h1_h2_mm=round(c12, 3),
                 chamfer_h1_p_mm=round(c1p, 3), chamfer_h2_p_mm=round(c2p, 3), h1=i1, h2=i2,
-                frames_h1=h, frames_h2=len(good) - h)
+                frames_h1=h, frames_h2=len(good) - h,
+                seed0=dict(pass_=bool(s12 < min(s1p, s2p)), chamfer_h1_h2_mm=round(s12, 3),
+                           chamfer_h1_p_mm=round(s1p, 3), chamfer_h2_p_mm=round(s2p, 3)))
 
 
 def cross_pairs(shells, good_keys):
@@ -263,7 +283,8 @@ def cross_pairs(shells, good_keys):
 def cross_test(shells, key, good_keys, chamfers=None):
     """SPEC section 7 cross-object test. shells: {(ep, obj): samples}; key = (ep, obj); good_keys: the keys whose
     object passed track sanity (no TRACK_FAIL). Pass: the nearest other shell (registered chamfer) is o's own.
-    chamfers: optional {(key, other): registered chamfer mm} computed beforehand (same function, reg_chamfer)."""
+    chamfers: optional {(key, other): reg_chamfers dict or a float mm} computed beforehand. With reg_chamfers dicts
+    the round-1 seed-0 verdict is reported beside (seed0)."""
     ep, obj = key
     if key not in shells or not len(shells[key]):
         return dict(testable=False, reason='no shell')
@@ -271,10 +292,22 @@ def cross_test(shells, key, good_keys, chamfers=None):
     other = [k for k in good_keys if k[1] != obj and k in shells and len(shells[k])]
     if not own:
         return dict(testable=False, reason='no other good public episode of this object')
-    d = {f'ep{k[0]}:{k[1]}': round(chamfers[(key, k)] if chamfers is not None else reg_chamfer(shells[key], shells[k]), 3)
-         for k in own + other}
-    d_own = min(d[f'ep{k[0]}:{k[1]}'] for k in own)
-    d_oth = min(d[f'ep{k[0]}:{k[1]}'] for k in other) if other else float('inf')
-    near = min(d, key=d.get)
-    return dict(testable=True, pass_=bool(d_own < d_oth), nearest=near, d_own_mm=d_own, d_other_mm=d_oth,
-                chamfers_mm=d)
+    raw = {k: (chamfers[(key, k)] if chamfers is not None else reg_chamfers(shells[key], shells[k]))
+           for k in own + other}
+    name = (lambda k: f'ep{k[0]}:{k[1]}')
+    val = (lambda r, f: r[f] if isinstance(r, dict) else r)
+    out = dict(testable=True)
+    for field, tag in (('mm', None), ('seed0_mm', 'seed0')):
+        if tag and not all(isinstance(r, dict) and r.get(field) is not None for r in raw.values()):
+            continue
+        d = {name(k): round(val(raw[k], field), 3) for k in own + other}
+        d_own = min(d[name(k)] for k in own)
+        d_oth = min(d[name(k)] for k in other) if other else float('inf')
+        rec = dict(pass_=bool(d_own < d_oth), nearest=min(d, key=d.get), d_own_mm=d_own, d_other_mm=d_oth,
+                   chamfers_mm=d)
+        if tag:
+            out[tag] = {kk: vv for kk, vv in rec.items() if kk != 'chamfers_mm'}
+            out['chamfers_seed0_mm'] = d
+        else:
+            out.update(rec)
+    return out

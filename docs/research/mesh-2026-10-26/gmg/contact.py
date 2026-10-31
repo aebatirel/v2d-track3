@@ -192,6 +192,45 @@ def census_bundle(bundle):
     return census(cen, bundle.poses, bundle.frames(), np.asarray(bundle.meta['K'], np.float64))
 
 
+def frame_gaps(cam_pts, frames, names):
+    """DIAGNOSTIC only (round 2 of B4; no census rule reads it): per unordered pair and frame, the smallest distance
+    between the two objects' OWN owned points of that frame (camera frame, CEN_VOX centroids), instead of the census'
+    whole-episode clouds placed by the tracks. cam_pts: {obj: {frame: (n,3) camera-frame points}}. Returns
+    {"o|p": {d3_frame_mm: [per frame, None if either object has no owned point], sep3d_frame: [frames with gap > the
+    separated gap]}} for both orders."""
+    c = _consts()
+    out = {}
+    for i, o in enumerate(names):
+        for p in names[i + 1:]:
+            d3 = []
+            for f in frames:
+                A, B = cam_pts.get(o, {}).get(f), cam_pts.get(p, {}).get(f)
+                if A is None or B is None or not len(A) or not len(B):
+                    d3.append(None)
+                    continue
+                d3.append(float(cKDTree(centroids(A)).query(centroids(B), k=1)[0].min()))
+            rec = dict(d3_frame_mm=[None if x is None else round(x * 1e3, 2) for x in d3],
+                       sep3d_frame=[int(f) for f, x in zip(frames, d3) if x is not None and x > c['sep_d3']])
+            out[f'{o}|{p}'] = rec
+            out[f'{p}|{o}'] = dict(rec)
+    return out
+
+
+def frame_gaps_bundle(bundle):
+    """frame_gaps of a bundle's owned points (own == 0), each frame's points placed by that frame's track."""
+    cam = {}
+    for o in bundle.objects:
+        ob = bundle.obs(o)
+        P = np.asarray(ob['pts'], np.float64)
+        fr = np.asarray(ob['frame'])
+        own = np.asarray(ob.get('own', np.zeros(len(P), np.uint8)))
+        cam[o] = {}
+        for f in np.unique(fr[own == 0]).tolist():
+            T = bundle.poses[f'cam_T_{o}'][f].astype(np.float64)
+            cam[o][int(f)] = moved(P[(fr == f) & (own == 0)], T)
+    return frame_gaps(cam, bundle.frames(), bundle.objects)
+
+
 def separated_for(contact, target, others):
     """Frames in which TARGET is separated from every other tracked object (SPEC section 4)."""
     sets = [set(contact[f'{target}|{p}']['separated']) for p in others]
