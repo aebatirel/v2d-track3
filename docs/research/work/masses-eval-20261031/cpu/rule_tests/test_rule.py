@@ -162,6 +162,10 @@ check('F1_invalid_out', x and x['decision'].startswith('OUT'), x)
 sys.path.insert(0, f'{REPO}/tools'); from mass_eval_verify import rule2   # noqa: E402
 check('F1_rule2_ignores_n_below_8', rule2({'42': dict(n=7, mean=0.99, sd=0.0), '43': dict(n=8, mean=0.5, sd=0.1)}, ['42', '43']) == '43'
       and rule2({'42': dict(n=7, mean=0.99, sd=0.0)}, ['42', '43']) is None)
+check('R1_rule2_exact_0.005_gap_is_within', rule2({'42': dict(n=10, mean=0.905, sd=0.02), '43': dict(n=10, mean=0.9, sd=0.01)},
+      ['42', '43']) == '43' and all(rule2({'42': dict(n=10, mean=round(a / 1e4 + .005, 4), sd=0.02), '43': dict(n=10, mean=a / 1e4, sd=0.01)},
+      ['42', '43']) == '43' for a in range(5000, 9950)) and rule2({'42': dict(n=10, mean=0.9051, sd=0.02),
+      '43': dict(n=10, mean=0.9, sd=0.01)}, ['42', '43']) == '42')
 
 L = [f'{"PASS" if x["ok"] else "FAIL"} {x["name"]}' + ('' if x['ok'] else f': {x["detail"]}') for x in res]
 open(f'{OUT}/rule_tests.txt', 'w').write('\n'.join(L) + '\n')

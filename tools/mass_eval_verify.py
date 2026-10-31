@@ -95,7 +95,9 @@ def rule2(st, seeds):
     if not have:
         return None
     best = max(have, key=lambda s: st[s]['mean'])
-    close = [s for s in have if abs(st[s]['mean'] - st[best]['mean']) <= 0.005]
+    # the gap is rounded like the means (review R1, 31 Oct): unrounded, an exact 0.0050 gap of 4-decimal means read as
+    # larger in floating point and skipped the lower-sd tie-break PLAN asks for
+    close = [s for s in have if round(abs(st[s]['mean'] - st[best]['mean']), 4) <= 0.005]
     return min(close, key=lambda s: (st[s]['sd'], seeds.index(s)))
 
 
