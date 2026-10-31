@@ -5468,3 +5468,30 @@ arm and a no-policy replay floor to stage B.
 - ~15:30 UTC: the Roman-meeting session takes tasks only from the owner, so the RPE/MPPE decomposition runs in this
   session instead (background agent, CPU, $0). Outputs go to docs/analysis/rpe-decomp-20261031/; first table ≈ 18:30 UTC;
   candidates pre-registered in PREREG.md before scoring. Public episodes only; GT only for scoring.
+
+### 2026-10-31 ~15:30–15:40 UTC — lanes confirmed; PR #215 container guide read
+- focused-pascal owns pack builds. ETAs [E]:
+  - ep11 gate launch 16–17, result 20–23 UTC;
+  - eval-10 V4p retrain launch 17:30–18:30, policy + 10 draws 23:00–02:00;
+  - masses v2 launch 18–19, verdict 1 Nov 01–03.
+  Masses fold into the pack-10 retrain (no separate O2). 20-episode retrain, 2 seeds: one arm ≈ $55–90, two arms
+  ≈ $100–150; wall-clock 10–13 h (1 Nov 18:00 → 2 Nov 07–09).
+  Caveats: attribution; recipe tested on grasp-lock only (standard learner 1/16/19/25/28/30, frozen 3/5/15/16); each
+  part opt-in and verified in the job.
+- determined-wright: recipe-screen verdict ≈ 22:30 UTC. K settings and D patch given (commit ≥ 609582a). K+D together
+  untested. Nothing else from physics is ready (solver references failed their RL gate; loop no evidence; fit v2 on
+  hold).
+- bold-albattani: C0 by 1 Nov ≤ 12:00 with the public-twin AUC guard; C1 now runs on CPU ($0); the README keeps the
+  provenance caveat.
+- PR #215 kit (v2d_submission_kit/CONTAINER_SUBMISSION.md, fetched from pull/215/head; read only, nothing run):
+  - the container is due after the close, with the technical report;
+  - it holds the exact checkpoints, the pinned runtime, the rollouts, and for Track 3 "the reconstructed meshes packed
+    with the trajectories";
+  - "`run.sh reproduce` must roll out every episode's policy with the evaluator and pack a submission file";
+  - the reproduced score is expected "within your own run-to-run variation of the leaderboard score";
+  - the counted submission is the selected Final Submission, else the best-scoring one per board; if boards count
+    different files, the container covers each of them.
+  Reading [not an organiser ruling]: a mesh-only swap is reproducible if the container keeps the simulation assets and
+  the packed meshes; each board keeps its own best, so a CD-O-only gain does not lower the AUC board.
+- Proposed to focused-pascal: the recipe goes to grasp-lock episodes only, with a minus-recipe control there; costing
+  requested.
