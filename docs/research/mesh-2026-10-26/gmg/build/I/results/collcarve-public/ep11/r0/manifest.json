@@ -1,0 +1,966 @@
+{
+ "schema": "gmg-sim/2",
+ "episode": 11,
+ "split": "public",
+ "round": 0,
+ "p_sim": {
+  "source": "P_sel",
+  "flag": "sim_pose_fallback",
+  "tracks": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep11/poses.npz",
+   "sha256": "99d845e316714119623ff8df9f1368109aeb31ee5804281a72a00239a8568f75"
+  }
+ },
+ "objects": {
+  "blue_cup": {
+   "files": {
+    "piece_06.obj": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+    "piece_13.obj": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+    "piece_15.obj": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+    "piece_05.obj": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+    "piece_07.obj": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "blue_cup.glb": "98ee2d8b60cafbcb46bcacf53922cc1c000aa0b70571c53e9d365753d23910b8",
+    "piece_08.obj": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+    "piece_00.obj": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+    "piece_11.obj": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+    "piece_01.obj": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+    "piece_02.obj": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+    "piece_04.obj": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+    "inertia.json": "81e91747e2da33c83be9cdec557e261f99c78f8df3e38c2d54f0654be809848b",
+    "piece_10.obj": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+    "piece_03.obj": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+    "piece_12.obj": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+    "piece_14.obj": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+    "piece_09.obj": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+    "piece_16.obj": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6"
+   },
+   "fiducials": [
+    [
+     -0.031303020935793714,
+     -0.03278951238137479,
+     -0.08506584287937244
+    ],
+    [
+     0.043776502571453525,
+     -0.01759037074290045,
+     -0.09642559329965225
+    ],
+    [
+     -0.04579833096868354,
+     0.050210253708795116,
+     -0.06981689602783794
+    ],
+    [
+     0.0292811925385637,
+     0.06540939534726946,
+     -0.08117664644811776
+    ],
+    [
+     -0.010249216554028315,
+     -0.05035880253282154,
+     0.030576792116660388
+    ],
+    [
+     0.06483030695321892,
+     -0.035159660894347196,
+     0.019217041696380582
+    ],
+    [
+     -0.024744526586918142,
+     0.032640963557348364,
+     0.04582573896819488
+    ],
+    [
+     0.0503349969203291,
+     0.047840105195822706,
+     0.03446598854791507
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 17,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  },
+  "beige_cup": {
+   "files": {
+    "piece_06.obj": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+    "piece_13.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+    "piece_15.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+    "piece_18.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+    "piece_05.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+    "piece_07.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+    "carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+    "piece_08.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+    "piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+    "piece_11.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+    "piece_19.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+    "piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+    "piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+    "piece_04.obj": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+    "inertia.json": "ede9195697f7775aa75baa08d6262797f040a18924bba778e68dc33dd76ea6f1",
+    "piece_10.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+    "piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+    "piece_12.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+    "piece_14.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+    "piece_17.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+    "piece_09.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+    "piece_16.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+    "beige_cup.glb": "9bb98d74ce9db959b328055b13c577df8a5454e2cff4c767b4c67b393be84b4e"
+   },
+   "fiducials": [
+    [
+     -0.08068080056165569,
+     -0.03751402885667389,
+     0.09367448260121912
+    ],
+    [
+     -0.044834961948847396,
+     0.029375252955912454,
+     0.11154901228088193
+    ],
+    [
+     0.002598678904286854,
+     -0.08266283762920944,
+     0.09561851208991534
+    ],
+    [
+     0.038444517517095156,
+     -0.015773555816623087,
+     0.11349304176957815
+    ],
+    [
+     -0.05699817790779379,
+     -0.0016533622796815616,
+     -0.08801520436878624
+    ],
+    [
+     -0.021152339294985487,
+     0.06523591953290478,
+     -0.07014067468912341
+    ],
+    [
+     0.026281301558148763,
+     -0.0468021710522171,
+     -0.08607117488009002
+    ],
+    [
+     0.062127140170957065,
+     0.020087110760369238,
+     -0.06819664520042719
+    ]
+   ],
+   "gate": {
+    "choice": "4_voxels",
+    "report": {
+     "pass_": true,
+     "n": 20,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "do_not_use": null
+   }
+  }
+ },
+ "object_order": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "files": {
+  "props_gmg.json": "3fc15bbb8994f89f6254a9e5eb1c0efb2634f2bb299708a1f26c13e11ff407ee",
+  "beige_cup/piece_06.obj": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+  "beige_cup/piece_13.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+  "beige_cup/piece_15.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+  "beige_cup/piece_18.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+  "beige_cup/piece_05.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+  "beige_cup/piece_07.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+  "beige_cup/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "beige_cup/piece_08.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+  "beige_cup/piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+  "beige_cup/piece_11.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+  "beige_cup/piece_19.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+  "beige_cup/piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+  "beige_cup/piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+  "beige_cup/piece_04.obj": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+  "beige_cup/inertia.json": "ede9195697f7775aa75baa08d6262797f040a18924bba778e68dc33dd76ea6f1",
+  "beige_cup/piece_10.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+  "beige_cup/piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+  "beige_cup/piece_12.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+  "beige_cup/piece_14.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+  "beige_cup/piece_17.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+  "beige_cup/piece_09.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+  "beige_cup/piece_16.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+  "beige_cup/beige_cup.glb": "9bb98d74ce9db959b328055b13c577df8a5454e2cff4c767b4c67b393be84b4e",
+  "blue_cup/piece_06.obj": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+  "blue_cup/piece_13.obj": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+  "blue_cup/piece_15.obj": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+  "blue_cup/piece_05.obj": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+  "blue_cup/piece_07.obj": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+  "blue_cup/carve.json": "ff9e69390586ff6972e1a7d706dd141bd81bdd115e7c83ed379f6ed352e13853",
+  "blue_cup/blue_cup.glb": "98ee2d8b60cafbcb46bcacf53922cc1c000aa0b70571c53e9d365753d23910b8",
+  "blue_cup/piece_08.obj": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+  "blue_cup/piece_00.obj": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+  "blue_cup/piece_11.obj": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+  "blue_cup/piece_01.obj": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+  "blue_cup/piece_02.obj": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+  "blue_cup/piece_04.obj": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+  "blue_cup/inertia.json": "81e91747e2da33c83be9cdec557e261f99c78f8df3e38c2d54f0654be809848b",
+  "blue_cup/piece_10.obj": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+  "blue_cup/piece_03.obj": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+  "blue_cup/piece_12.obj": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+  "blue_cup/piece_14.obj": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+  "blue_cup/piece_09.obj": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+  "blue_cup/piece_16.obj": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6",
+  "_default/beige_cup/piece_06.obj": "e35474b84fb4c7d5703eabe7d297a2829515ff9aacc179e81844a9cdd602b464",
+  "_default/beige_cup/piece_13.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+  "_default/beige_cup/piece_15.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+  "_default/beige_cup/piece_18.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26",
+  "_default/beige_cup/piece_05.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+  "_default/beige_cup/piece_07.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+  "_default/beige_cup/piece_08.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+  "_default/beige_cup/piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+  "_default/beige_cup/piece_11.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+  "_default/beige_cup/piece_19.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+  "_default/beige_cup/piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+  "_default/beige_cup/piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+  "_default/beige_cup/piece_04.obj": "399f8c999af9d250e139f0727c53be094621ad9f862ad9d7ea459dc674da4e29",
+  "_default/beige_cup/piece_10.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+  "_default/beige_cup/piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+  "_default/beige_cup/piece_12.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+  "_default/beige_cup/piece_14.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+  "_default/beige_cup/piece_17.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+  "_default/beige_cup/piece_09.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+  "_default/beige_cup/piece_16.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+  "_default/blue_cup/piece_06.obj": "93f48737c00f72bac425e5273270786cb496c43a0c28a53ff3a2eab485aa5251",
+  "_default/blue_cup/piece_13.obj": "6b990d049359be498963565545710963c609da9c8b6f417af120b3b1c9345c26",
+  "_default/blue_cup/piece_15.obj": "bfdc3fdfefdfe6cd2acc2550c49ab87ae4904a219b5c6040974e9d464b30c818",
+  "_default/blue_cup/piece_05.obj": "efcb3cb5eb9cd5fabd55ed60e3eace69739a8728fca489117f6de890463f2477",
+  "_default/blue_cup/piece_07.obj": "f765417cbd060c577202b44d2db230429aa07ff70c0add21d72a57f078c194b4",
+  "_default/blue_cup/piece_08.obj": "4d3cf23bea905dfdc1cc5d008691106f27bcfdf373453bb557227fc3f2c7ad53",
+  "_default/blue_cup/piece_00.obj": "19c87c5739a1e1a54d7d1e3183dbda1829c720422521d9018c1ac7dd0cc766b8",
+  "_default/blue_cup/piece_11.obj": "219f209f2a64e8558e8459e2c1406ec47feae71bcf9fb4509e516f47315e1fd0",
+  "_default/blue_cup/piece_01.obj": "8aca424690e5319a2f607ae0f0d45991091416d42f2ef9d51ea4e0ff15602c1c",
+  "_default/blue_cup/piece_02.obj": "d5c410653510a9534f75149bc9b42847e6c7d716fff6059d61aa2049c14b3173",
+  "_default/blue_cup/piece_04.obj": "33327f06db2f8a26fd0d75231cc2e75f8ddf605e3c53bd0904975aebbcae7246",
+  "_default/blue_cup/piece_10.obj": "e3c3d9e090469d7d7511d9933c97760185811d68e414b39aa2d86e2e5878bb25",
+  "_default/blue_cup/piece_03.obj": "f29d8837d880e0b090e8a90bd1e50e5a2a953ab68d222e12ccf98dfe8fb87803",
+  "_default/blue_cup/piece_12.obj": "1e25784ae761a54133b924762b0433bc4006ae145a4e56fcb4a928ac96cdc691",
+  "_default/blue_cup/piece_14.obj": "19ce026ddb20c33641e4520d6d84219c37f365ba193c93f6925d4a0aecdb2ee2",
+  "_default/blue_cup/piece_09.obj": "c717a2315fdda45462d0ba02cfbad2153225e0e1a2b0203d6dda7d1df31fbd50",
+  "_default/blue_cup/piece_16.obj": "0763416a1068a0c457a297b0d03278e2b302ad0a9d8fa51a68edb586d8d5dff6",
+  "_fit/blue_cup.glb": "a02ea362c0310c5fc6f046ade7e523bbaad6ee6a9265717b8d40ff0135ea261a",
+  "_fit/beige_cup.glb": "4907ea89ab579ad1e88963c70a620cdb818e130d816f9fccb75dd6e70b4581e6",
+  "_carved_failed/blue_cup_beige_cup/why.json": "0e716fda4f517b99525534898f5cc564df219937523d95776fb7e8adcd6bcc4d",
+  "_carved_failed/blue_cup_beige_cup/piece_06.obj": "053f4dc11ed1f4fffc45b44abb7e1cdfba22e4b2236fa883f1ae7861a0036236",
+  "_carved_failed/blue_cup_beige_cup/piece_13.obj": "9bbe0211b6ac462c2f8b99f50632a581cd9a0bb8be8016577843cbc8a8c2f03e",
+  "_carved_failed/blue_cup_beige_cup/piece_15.obj": "56b66252c77628d06d137d5fb15f8f88b1a97e39f3eaf136bb7e07a4d9f556f6",
+  "_carved_failed/blue_cup_beige_cup/piece_05.obj": "448e2b8a56c96d21cc6b95adc324989caee12f462b7a53c119981d50bd05cfa4",
+  "_carved_failed/blue_cup_beige_cup/piece_07.obj": "176895bbe7b995d66745de8fb4e5728a19e272626f20332286748e8638aaf124",
+  "_carved_failed/blue_cup_beige_cup/piece_08.obj": "9d0c26283f40b0bc9eacb2daad6aa508f724b228ce88eb6ea238f46131cdba8a",
+  "_carved_failed/blue_cup_beige_cup/piece_00.obj": "dd47464b847842a5abb64e6ab03593e1e016c3513a203730110673f5d633ff99",
+  "_carved_failed/blue_cup_beige_cup/piece_11.obj": "f0d14f3c98e1162669aef7073ff8975290897856bb482d27067998e2dce3ba30",
+  "_carved_failed/blue_cup_beige_cup/piece_01.obj": "96257662a7e7c6954e669387ae64ae5e1ea848aaaebc54894c050bfb62557221",
+  "_carved_failed/blue_cup_beige_cup/piece_02.obj": "70c484780090c586b96b5d80df3efd20f1b090c7157730b0ba20234a33a51505",
+  "_carved_failed/blue_cup_beige_cup/piece_04.obj": "b3caac97cf7a3e21312b2d8ae4bf65fc34391e39a2c0ce5d85321bc317a7a9c2",
+  "_carved_failed/blue_cup_beige_cup/piece_10.obj": "65e014057f7ff14835a1edaa13ddbc4b7a7c7f186dde2afdf0c8d480dfa66206",
+  "_carved_failed/blue_cup_beige_cup/piece_03.obj": "7b57522cb89cc8b22f779ccb839ca2e7de6287641ef6854aeaa21f9d554f272a",
+  "_carved_failed/blue_cup_beige_cup/piece_12.obj": "eadd4db1d7af4c100cd5ae41a3fa48689a5871b8cb7e16451c2272e79e1b0c8f",
+  "_carved_failed/blue_cup_beige_cup/piece_14.obj": "ca3ef0d7b768b3e0e9dc363e7a2804e81e89dab09cb70a3112e727c23ceaba20",
+  "_carved_failed/blue_cup_beige_cup/piece_17.obj": "bbb19ddd84e2902c301cec0cf365313027c214d8906b870000f6ae8b0a1ce646",
+  "_carved_failed/blue_cup_beige_cup/piece_09.obj": "e9c12fdf2e4c928957ad674b5f324baad6deb65182f6c4f3456be0bd1d09836c",
+  "_carved_failed/blue_cup_beige_cup/piece_16.obj": "04daca9912373f78159f0179598c20089403a950907199f13f5a6710b41b1d26"
+ },
+ "fiducials": {
+  "blue_cup": [
+   [
+    -0.031303020935793714,
+    -0.03278951238137479,
+    -0.08506584287937244
+   ],
+   [
+    0.043776502571453525,
+    -0.01759037074290045,
+    -0.09642559329965225
+   ],
+   [
+    -0.04579833096868354,
+    0.050210253708795116,
+    -0.06981689602783794
+   ],
+   [
+    0.0292811925385637,
+    0.06540939534726946,
+    -0.08117664644811776
+   ],
+   [
+    -0.010249216554028315,
+    -0.05035880253282154,
+    0.030576792116660388
+   ],
+   [
+    0.06483030695321892,
+    -0.035159660894347196,
+    0.019217041696380582
+   ],
+   [
+    -0.024744526586918142,
+    0.032640963557348364,
+    0.04582573896819488
+   ],
+   [
+    0.0503349969203291,
+    0.047840105195822706,
+    0.03446598854791507
+   ]
+  ],
+  "beige_cup": [
+   [
+    -0.08068080056165569,
+    -0.03751402885667389,
+    0.09367448260121912
+   ],
+   [
+    -0.044834961948847396,
+    0.029375252955912454,
+    0.11154901228088193
+   ],
+   [
+    0.002598678904286854,
+    -0.08266283762920944,
+    0.09561851208991534
+   ],
+   [
+    0.038444517517095156,
+    -0.015773555816623087,
+    0.11349304176957815
+   ],
+   [
+    -0.05699817790779379,
+    -0.0016533622796815616,
+    -0.08801520436878624
+   ],
+   [
+    -0.021152339294985487,
+    0.06523591953290478,
+    -0.07014067468912341
+   ],
+   [
+    0.026281301558148763,
+    -0.0468021710522171,
+    -0.08607117488009002
+   ],
+   [
+    0.062127140170957065,
+    0.020087110760369238,
+    -0.06819664520042719
+   ]
+  ]
+ },
+ "code": {
+  "commit": "3926430171dde5915f9dbe41f49820474d2c9509",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "f3ea47dc22d4a9c98bdef6414531ef558ab826dd7ba851eb82e0fe4cf0d249fe",
+   "platebody.py": "a1ca8960b0d7980509e76ebcba18f873e2df4877064146ed57c39bff91a866b9",
+   "collcarve.py": "a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad",
+   "cavpieces.py": "2f5a3776425ef836063c42d09da889f72908f2b3169a80b673a69d5079ef8235"
+  }
+ },
+ "commit": "3926430171dde5915f9dbe41f49820474d2c9509",
+ "interlock": null,
+ "do_not_use": null,
+ "fiducial_definition": "8 corners of the PCA-oriented bounding box of all piece vertices, each coordinate 1 mm inward along each box axis (simpieces.fiducials)",
+ "note": "visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py --pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for phys_fit --props",
+ "owner_waiver_fi5": {
+  "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+  "quote": "but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it",
+  "scope": "every non-plate pair whose simulator colliders interpenetrate persistently, simulator copy only (F-I5.0)",
+  "routes": {
+   "blue_cup": "4_voxels",
+   "beige_cup": "4_voxels"
+  },
+  "pairs": {
+   "blue_cup|beige_cup": {
+    "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+    "pair": [
+     "blue_cup",
+     "beige_cup"
+    ],
+    "gates": {
+     "blue_cup<-beige_cup#0": {
+      "voxels": 3,
+      "run_kind": "SEAT",
+      "run": [
+       92,
+       136
+      ],
+      "n_build": 13,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 5,
+      "pass_": true
+     },
+     "blue_cup<-beige_cup#1": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       92,
+       136
+      ],
+      "n_build": 13,
+      "sweep_share": 0.0,
+      "observed_voxels": 2,
+      "persistent_nmin": 5,
+      "pass_": false,
+      "fail": "sweep"
+     },
+     "beige_cup<-blue_cup#2": {
+      "voxels": 11,
+      "run_kind": "SEAT",
+      "run": [
+       96,
+       136
+      ],
+      "n_build": 11,
+      "sweep_share": 1.0,
+      "observed_voxels": 6,
+      "persistent_nmin": 5,
+      "pass_": true
+     }
+    },
+    "in_scope": true,
+    "receiver": "beige_cup",
+    "guest": "blue_cup",
+    "receiver_info": {
+     "containment": {
+      "blue_cup": 0.4005,
+      "beige_cup": 0.6173
+     },
+     "frames": 14
+    },
+    "components": [
+     {
+      "gates": {
+       "voxels": 11,
+       "run_kind": "SEAT",
+       "run": [
+        96,
+        136
+       ],
+       "n_build": 11,
+       "sweep_share": 1.0,
+       "observed_voxels": 6,
+       "persistent_nmin": 5,
+       "pass_": true
+      },
+      "rest": {
+       "static_frames": 11,
+       "hands_off_static": 11,
+       "assembled_hands_off": 11,
+       "s_frames": [
+        126
+       ],
+       "flags": [],
+       "rest_source": "assembled"
+      },
+      "T_rest": [
+       [
+        -0.120466,
+        -0.992455,
+        0.022811,
+        0.002279
+       ],
+       [
+        0.992717,
+        -0.120413,
+        0.003669,
+        0.000277
+       ],
+       [
+        -0.000894,
+        0.023087,
+        0.999733,
+        0.000182
+       ],
+       [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+       ]
+      ],
+      "overshoot_frames": [
+       {
+        "f": 102,
+        "along_d_mm": 5.1,
+        "along_g_mm": 4.03
+       },
+       {
+        "f": 104,
+        "along_d_mm": 4.41,
+        "along_g_mm": 2.99
+       },
+       {
+        "f": 106,
+        "along_d_mm": 8.29,
+        "along_g_mm": 7.22
+       },
+       {
+        "f": 108,
+        "along_d_mm": 8.39,
+        "along_g_mm": 7.38
+       },
+       {
+        "f": 110,
+        "along_d_mm": 9.21,
+        "along_g_mm": 7.99
+       },
+       {
+        "f": 112,
+        "along_d_mm": 4.27,
+        "along_g_mm": 3.59
+       },
+       {
+        "f": 114,
+        "along_d_mm": 7.03,
+        "along_g_mm": 6.18
+       }
+      ],
+      "carve_frames": 4,
+      "build_frames_entered": 11,
+      "clearance": {
+       "surface_samples": 21996,
+       "in_Rplus": 1989,
+       "sigma_sup": 0.99919,
+       "c_mm": 1.0
+      },
+      "R_voxels": 11,
+      "Rplus_voxels": 85
+     }
+    ],
+    "carve": {
+     "route": "4_voxels",
+     "K_pieces": 68,
+     "cut_cm3": 2.361,
+     "carved_body_cm3": 169.024,
+     "ladder": [
+      {
+       "route": "4_voxels",
+       "report": {
+        "pitch_mm": 6.0,
+        "boxes": 18,
+        "cells": 29,
+        "cap": 82
+       },
+       "gate": {
+        "pass_": true,
+        "n": 18,
+        "max_cm3": 0.0,
+        "sum_cm3": 0.0,
+        "over_tol": 0,
+        "keepout_points": 0,
+        "keepout_cm3": 0.0
+       }
+      }
+     ],
+     "carved_route": "4_voxels",
+     "sec": 8.8
+    },
+    "caps": {
+     "removed_cm3": 0.678,
+     "carve_in_body_cm3": 0.414,
+     "cumulative_share": 0.0997,
+     "vol0_cm3": 6.8,
+     "reach": null,
+     "topology": {
+      "default": [
+       14,
+       14
+      ],
+      "carved": [
+       14,
+       14
+      ]
+     },
+     "ok_vol": true,
+     "ok_reach": true,
+     "ok_topology": true,
+     "pass_": true,
+     "fail": null
+    },
+    "report": {
+     "rigid_shift": {
+      "frames": 11,
+      "cleared_share": 1.0,
+      "per_frame": [
+       {
+        "f": 96,
+        "cm3": 0.26,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 98,
+        "cm3": 0.13,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 100,
+        "cm3": 0.26,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 102,
+        "cm3": 0.51,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 104,
+        "cm3": 0.45,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 106,
+        "cm3": 0.45,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 108,
+        "cm3": 0.51,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 110,
+        "cm3": 0.51,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 112,
+        "cm3": 0.26,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 114,
+        "cm3": 0.38,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       },
+       {
+        "f": 136,
+        "cm3": 0.19,
+        "cleared": true,
+        "t_mm": 0.0,
+        "tilt_deg": 0
+       }
+      ],
+      "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+     },
+     "carve_of_pose_error": true,
+     "one_sided": null,
+     "decision_f_i3_same_sides": {
+      "blue_cup<-beige_cup": "IGNORE",
+      "beige_cup<-blue_cup": "CARVE"
+     }
+    },
+    "acceptance": {
+     "S": {
+      "frames": [
+       {
+        "frame": 126,
+        "carved": {
+         "disp_mm": 31.56,
+         "dz_mm": 23.254,
+         "lateral_mm": 15.893,
+         "tilt_deg": 42.385,
+         "per_copy": [
+          {
+           "disp_mm": 4.23,
+           "dz_mm": 0.72,
+           "lateral_mm": 4.17,
+           "tilt_deg": 2.88,
+           "below": false
+          },
+          {
+           "disp_mm": 16.13,
+           "dz_mm": 2.25,
+           "lateral_mm": 15.98,
+           "tilt_deg": 85.66,
+           "below": false
+          },
+          {
+           "disp_mm": 112.54,
+           "dz_mm": 111.63,
+           "lateral_mm": 14.27,
+           "tilt_deg": 68.05,
+           "below": false
+          },
+          {
+           "disp_mm": 132.71,
+           "dz_mm": 121.14,
+           "lateral_mm": 54.18,
+           "tilt_deg": 88.95,
+           "below": false
+          },
+          {
+           "disp_mm": 16.53,
+           "dz_mm": 1.95,
+           "lateral_mm": 16.41,
+           "tilt_deg": 77.67,
+           "below": false
+          },
+          {
+           "disp_mm": 3.19,
+           "dz_mm": 0.61,
+           "lateral_mm": 3.13,
+           "tilt_deg": 4.24,
+           "below": false
+          },
+          {
+           "disp_mm": 15.72,
+           "dz_mm": 2.36,
+           "lateral_mm": 15.55,
+           "tilt_deg": 52.39,
+           "below": false
+          },
+          {
+           "disp_mm": 4.25,
+           "dz_mm": 0.74,
+           "lateral_mm": 4.18,
+           "tilt_deg": 2.88,
+           "below": false
+          },
+          {
+           "disp_mm": 4.1,
+           "dz_mm": 0.72,
+           "lateral_mm": 4.04,
+           "tilt_deg": 2.93,
+           "below": false
+          },
+          {
+           "disp_mm": 4.37,
+           "dz_mm": 0.61,
+           "lateral_mm": 4.32,
+           "tilt_deg": 2.82,
+           "below": false
+          },
+          {
+           "disp_mm": 14.93,
+           "dz_mm": 2.39,
+           "lateral_mm": 14.74,
+           "tilt_deg": 45.78,
+           "below": false
+          },
+          {
+           "disp_mm": 137.28,
+           "dz_mm": 121.02,
+           "lateral_mm": 64.8,
+           "tilt_deg": 92.57,
+           "below": false
+          },
+          {
+           "disp_mm": 3.23,
+           "dz_mm": 0.61,
+           "lateral_mm": 3.17,
+           "tilt_deg": 4.12,
+           "below": false
+          },
+          {
+           "disp_mm": 3.84,
+           "dz_mm": 0.7,
+           "lateral_mm": 3.78,
+           "tilt_deg": 3.13,
+           "below": false
+          },
+          {
+           "disp_mm": 17.08,
+           "dz_mm": 2.26,
+           "lateral_mm": 16.93,
+           "tilt_deg": 85.22,
+           "below": false
+          },
+          {
+           "disp_mm": 14.82,
+           "dz_mm": 2.35,
+           "lateral_mm": 14.64,
+           "tilt_deg": 58.86,
+           "below": false
+          }
+         ],
+         "copies": 16,
+         "nan": 0,
+         "below": 0,
+         "pass_": false
+        },
+        "default": {
+         "disp_mm": 80.472,
+         "dz_mm": 67.717,
+         "lateral_mm": 32.743,
+         "tilt_deg": 67.904,
+         "copies": 16,
+         "nan": 0,
+         "below": 0,
+         "pass_": false
+        }
+       }
+      ],
+      "pass_": false
+     },
+     "P2": {
+      "carved_mm": {
+       "+d": 0.5,
+       "+n": 60.0,
+       "-n": 60.0,
+       "gravity": 0.5
+      },
+      "default_mm": {
+       "+d": 1.0,
+       "+n": 60.0,
+       "-n": 60.0,
+       "gravity": 1.0
+      },
+      "overlap_at_pose_cm3": [
+       0.248,
+       0.072
+      ],
+      "pass_": true,
+      "pose": "T_rest"
+     },
+     "P3": {
+      "default": {
+       "lag_cm_asm": 0.356,
+       "lag_cm_asm_sd": 0.074,
+       "lag_deg_asm": 24.63,
+       "lag_cm_after_max": 0.388,
+       "copies": 16,
+       "nan": 0
+      },
+      "carved": {
+       "lag_cm_asm": 0.137,
+       "lag_cm_asm_sd": 0.125,
+       "lag_deg_asm": 12.31,
+       "lag_cm_after_max": 0.174,
+       "copies": 16,
+       "nan": 0
+      },
+      "nocollide": {
+       "lag_cm_asm": 0.021,
+       "lag_cm_asm_sd": 0.001,
+       "lag_deg_asm": 1.19,
+       "lag_cm_after_max": 0.049,
+       "copies": 16,
+       "nan": 0
+      },
+      "judge": {
+       "pass_": false,
+       "slot_not_limiting": false,
+       "overlap_asm_cm3": 0.072,
+       "overlap_ok": true
+      }
+     },
+     "P4": {
+      "removed_cm3": 0.68,
+      "carve_cm3": 0.41,
+      "default_cm3": 6.8,
+      "carved_cm3": 6.12,
+      "kept_share": 0.9,
+      "pass_": false
+     },
+     "P5": {
+      "shapes": 35,
+      "cap": 165,
+      "pass_": true
+     },
+     "P6": {
+      "frames": 36,
+      "n_worse": 0,
+      "worse": [],
+      "pass_": true,
+      "default_max": 0.46,
+      "carved_max": 0.332
+     },
+     "P7": {
+      "check_frames": 10,
+      "default_sum_cm3": 2.129,
+      "carved_sum_cm3": 0.708,
+      "pass_": true
+     },
+     "gate_carved": {
+      "pass_": true,
+      "n": 18,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     },
+     "gate_default": {
+      "pass_": true,
+      "n": 20,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     },
+     "tests": {
+      "S": false,
+      "P2": true,
+      "P3": false,
+      "P4": false,
+      "P5": true,
+      "P6": true,
+      "P7": true,
+      "gate": true
+     },
+     "failing": [
+      "S",
+      "P3",
+      "P4"
+     ],
+     "pass_all_but_P1": false,
+     "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I5.5)"
+    },
+    "deliver": "default"
+   }
+  },
+  "default_pieces": "_default/<obj>/piece_XX.obj"
+ },
+ "p1_pending": true
+}

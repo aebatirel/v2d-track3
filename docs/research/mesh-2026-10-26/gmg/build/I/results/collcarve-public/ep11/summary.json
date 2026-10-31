@@ -1,0 +1,540 @@
+{
+ "out_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/interlock/public/ep11-fi5",
+ "sec": 2715.9,
+ "fi5_sec": 2670.5,
+ "launch_code": {
+  "commit": "407a18e6af2224955960ee50cbf178254a5a0873",
+  "dirty": false,
+  "dirty_files": []
+ },
+ "picks": {
+  "blue_cup": "shell_t5p36",
+  "beige_cup": "shell_t5p36"
+ },
+ "fi5_body": {
+  "blue_cup": "shell_t5p36",
+  "beige_cup": "shell_t5p36"
+ },
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep11",
+ "identity": "eval",
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep11-fi5/r0",
+ "do_not_use": null,
+ "diag_sink": true,
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 17,
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 3.0126
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 17,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 2.992,
+      "over_tol": 36
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 2.992,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 687.6
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 17,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 17,
+      "cells": 30,
+      "cap": 82
+     }
+    }
+   ]
+  },
+  "beige_cup": {
+   "route": "4_voxels",
+   "n": 20,
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 2.6038
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 20,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "2_lathe",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 71,
+      "max_cm3": 3.248,
+      "over_tol": 16
+     },
+     "report": {
+      "n_sectors": 8,
+      "ring_pieces": 56,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 144720
+      }
+     }
+    },
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 2.248,
+      "over_tol": 29
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 2.248,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 613.4
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 20,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 20,
+      "cells": 32,
+      "cap": 82
+     }
+    }
+   ]
+  }
+ },
+ "overlap_track": {
+  "blue_cup|beige_cup": {
+   "max_cm3": 0.48,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions_fi5": [
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "fi5_guest_not_carved"
+   ],
+   "voxels": 3,
+   "decision_f_i3": "IGNORE",
+   "fi5_delivered": null
+  },
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [
+    "waiver_gate_fail:sweep",
+    "fi5_guest_not_carved"
+   ],
+   "voxels": 4,
+   "decision_f_i3": "IGNORE",
+   "fi5_delivered": null
+  },
+  {
+   "target": "beige_cup",
+   "partner": "blue_cup",
+   "decision": "CARVE",
+   "tier": "T1",
+   "flags": [
+    "owner_waiver_fi5"
+   ],
+   "voxels": 11,
+   "decision_f_i3": "CARVE",
+   "fi5_delivered": "default"
+  }
+ ],
+ "decisions_flag_off_no_silhouette": [
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 2165
+  },
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 5
+  },
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 2
+  },
+  {
+   "target": "beige_cup",
+   "partner": "blue_cup",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 1848
+  },
+  {
+   "target": "beige_cup",
+   "partner": "blue_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 1
+  },
+  {
+   "target": "beige_cup",
+   "partner": "blue_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 1
+  }
+ ],
+ "pairs": {
+  "blue_cup|beige_cup": {
+   "in_scope": true,
+   "scope": null,
+   "why": null,
+   "gates": {
+    "blue_cup<-beige_cup#0": {
+     "voxels": 3,
+     "run_kind": "SEAT",
+     "run": [
+      92,
+      136
+     ],
+     "n_build": 13,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "blue_cup<-beige_cup#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      92,
+      136
+     ],
+     "n_build": 13,
+     "sweep_share": 0.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "beige_cup<-blue_cup#2": {
+     "voxels": 11,
+     "run_kind": "SEAT",
+     "run": [
+      96,
+      136
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 6,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   },
+   "receiver": "beige_cup",
+   "guest": "blue_cup",
+   "containment": {
+    "blue_cup": 0.4005,
+    "beige_cup": 0.6173
+   },
+   "rest": {
+    "static_frames": 11,
+    "hands_off_static": 11,
+    "assembled_hands_off": 11,
+    "s_frames": [
+     126
+    ],
+    "flags": [],
+    "rest_source": "assembled"
+   },
+   "overshoot_frames": 7,
+   "carve_frames": 4,
+   "build_frames_entered": 11,
+   "R_voxels": 11,
+   "Rplus_voxels": 85,
+   "c_mm": 1.0,
+   "sigma_sup": 0.99919,
+   "carve": {
+    "route": "4_voxels",
+    "carved_route": "4_voxels",
+    "K_pieces": 68,
+    "n_sectors": null,
+    "pieces": null,
+    "cut_cm3": 2.361,
+    "why": null,
+    "sec": 8.8,
+    "removed_pieces": null
+   },
+   "caps": {
+    "removed_cm3": 0.678,
+    "carve_in_body_cm3": 0.414,
+    "cumulative_share": 0.0997,
+    "vol0_cm3": 6.8,
+    "reach": null,
+    "topology": {
+     "default": [
+      14,
+      14
+     ],
+     "carved": [
+      14,
+      14
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null,
+    "why": null
+   },
+   "rigid_shift": {
+    "frames": 11,
+    "cleared_share": 1.0,
+    "error": null,
+    "t_mm": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cm3": [
+     0.26,
+     0.13,
+     0.26,
+     0.51,
+     0.45,
+     0.45,
+     0.51,
+     0.51,
+     0.26,
+     0.38,
+     0.19
+    ]
+   },
+   "carve_of_pose_error": true,
+   "one_sided": null,
+   "decision_flag_off": {
+    "blue_cup<-beige_cup": "IGNORE",
+    "beige_cup<-blue_cup": "CARVE"
+   },
+   "deliver": "default",
+   "acceptance": {
+    "tests": {
+     "S": false,
+     "P2": true,
+     "P3": false,
+     "P4": false,
+     "P5": true,
+     "P6": true,
+     "P7": true,
+     "gate": true
+    },
+    "failing": [
+     "S",
+     "P3",
+     "P4"
+    ],
+    "S": {
+     "untestable": null,
+     "why": null,
+     "pass_": false,
+     "carved": [
+      {
+       "f": 126,
+       "disp_mm": 31.56,
+       "dz_mm": 23.254,
+       "lateral_mm": 15.893,
+       "tilt_deg": 42.385,
+       "pass_": false,
+       "nan": 0,
+       "below": 0
+      }
+     ],
+     "default": [
+      {
+       "f": 126,
+       "disp_mm": 80.472,
+       "dz_mm": 67.717,
+       "lateral_mm": 32.743,
+       "tilt_deg": 67.904,
+       "pass_": false,
+       "nan": 0,
+       "below": 0
+      }
+     ]
+    },
+    "P2": {
+     "carved_mm": {
+      "+d": 0.5,
+      "+n": 60.0,
+      "-n": 60.0,
+      "gravity": 0.5
+     },
+     "default_mm": {
+      "+d": 1.0,
+      "+n": 60.0,
+      "-n": 60.0,
+      "gravity": 1.0
+     },
+     "overlap_at_pose_cm3": [
+      0.248,
+      0.072
+     ],
+     "pass_": true,
+     "pose": "T_rest"
+    },
+    "P3": {
+     "judge": {
+      "pass_": false,
+      "slot_not_limiting": false,
+      "overlap_asm_cm3": 0.072,
+      "overlap_ok": true
+     },
+     "carved": {
+      "lag_cm_asm": 0.137,
+      "lag_cm_asm_sd": 0.125,
+      "lag_deg_asm": 12.31,
+      "lag_cm_after_max": 0.174,
+      "copies": 16,
+      "nan": 0
+     },
+     "default": {
+      "lag_cm_asm": 0.356,
+      "lag_cm_asm_sd": 0.074,
+      "lag_deg_asm": 24.63,
+      "lag_cm_after_max": 0.388,
+      "copies": 16,
+      "nan": 0
+     },
+     "nocollide": {
+      "lag_cm_asm": 0.021,
+      "lag_cm_asm_sd": 0.001,
+      "lag_deg_asm": 1.19,
+      "lag_cm_after_max": 0.049,
+      "copies": 16,
+      "nan": 0
+     }
+    },
+    "P4": {
+     "removed_cm3": 0.68,
+     "carve_cm3": 0.41,
+     "default_cm3": 6.8,
+     "carved_cm3": 6.12,
+     "kept_share": 0.9,
+     "pass_": false
+    },
+    "P5": {
+     "shapes": 35,
+     "cap": 165,
+     "pass_": true
+    },
+    "P6": {
+     "frames": 36,
+     "n_worse": 0,
+     "pass_": true,
+     "default_max": 0.46,
+     "carved_max": 0.332
+    },
+    "P7": {
+     "check_frames": 10,
+     "default_sum_cm3": 2.129,
+     "carved_sum_cm3": 0.708,
+     "pass_": true
+    },
+    "gate_carved": {
+     "pass_": true,
+     "n": 18,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "gate_default": {
+     "pass_": true,
+     "n": 20,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    }
+   }
+  }
+ }
+}

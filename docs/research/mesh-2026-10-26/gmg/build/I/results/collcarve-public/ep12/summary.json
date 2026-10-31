@@ -1,0 +1,359 @@
+{
+ "out_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/interlock/public/ep12-fi5",
+ "sec": 3510.5,
+ "fi5_sec": 3405.1,
+ "launch_code": {
+  "commit": "cdc8b4016a207653fad83f0d21fe55b406d52d99",
+  "dirty": false,
+  "dirty_files": []
+ },
+ "picks": {
+  "blue_cup": "shell_t5p36",
+  "plastic_dish_rack": "shell_t5p36"
+ },
+ "fi5_body": {
+  "blue_cup": "shell_t5p36",
+  "plastic_dish_rack": "shell_t5p36"
+ },
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep12",
+ "identity": "eval",
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep12-fi5/r0",
+ "do_not_use": null,
+ "diag_sink": true,
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 29,
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 1.598
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 29,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "2_lathe",
+     "skipped": null,
+     "error": null,
+     "gate": null,
+     "report": {
+      "n_sectors": 8,
+      "ring_pieces": 65,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 129240
+      },
+      "why": "lathe_over_cap (with the handle)"
+     }
+    },
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 4.864,
+      "over_tol": 36
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 4.864,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 1020.3
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 29,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 29,
+      "cells": 55,
+      "cap": 82
+     }
+    }
+   ]
+  },
+  "plastic_dish_rack": {
+   "route": "4_voxels",
+   "n": 45,
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 14.6123
+   },
+   "plate_like": false,
+   "gate": {
+    "pass_": true,
+    "n": 45,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0
+   },
+   "tried": [
+    {
+     "route": "3_coacd",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 6.608,
+      "over_tol": 75
+     },
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 6.608,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 286.8
+     }
+    },
+    {
+     "route": "4_voxels",
+     "skipped": null,
+     "error": null,
+     "gate": {
+      "pass_": true,
+      "n": 45,
+      "max_cm3": 0.0,
+      "over_tol": 0
+     },
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 45,
+      "cells": 108,
+      "cap": 82
+     }
+    }
+   ]
+  }
+ },
+ "overlap_track": {
+  "blue_cup|plastic_dish_rack": {
+   "max_cm3": 0.232,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions_fi5": [
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push",
+    "waiver_gate_fail:sweep"
+   ],
+   "voxels": 6,
+   "decision_f_i3": "PUSH",
+   "fi5_delivered": null
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push",
+    "waiver_gate_fail:sweep"
+   ],
+   "voxels": 9,
+   "decision_f_i3": "PUSH",
+   "fi5_delivered": null
+  }
+ ],
+ "decisions_flag_off_no_silhouette": [
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 38
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 6
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 152
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 8
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 2
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 22
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 2
+  },
+  {
+   "target": "blue_cup",
+   "partner": "plastic_dish_rack",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_pair_fail",
+    "interlock_push"
+   ],
+   "voxels": 3
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 211
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "interlock_push"
+   ],
+   "voxels": 6
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "decision": "PUSH",
+   "tier": "T0",
+   "flags": [
+    "budget_iv_fail",
+    "interlock_push"
+   ],
+   "voxels": 18
+  },
+  {
+   "target": "plastic_dish_rack",
+   "partner": "blue_cup",
+   "decision": "IGNORE",
+   "tier": "T0",
+   "flags": [],
+   "voxels": 2
+  }
+ ],
+ "pairs": {
+  "blue_cup|plastic_dish_rack": {
+   "in_scope": false,
+   "scope": null,
+   "why": "no persistent component passes the kept gates",
+   "gates": {
+    "blue_cup<-plastic_dish_rack#0": {
+     "voxels": 6,
+     "run_kind": "INSERTION",
+     "run": [
+      142,
+      180
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 5,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "plastic_dish_rack<-blue_cup#1": {
+     "voxels": 9,
+     "run_kind": "SEAT",
+     "run": [
+      142,
+      180
+     ],
+     "n_build": 10,
+     "sweep_share": 0.0,
+     "observed_voxels": 8,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "receiver": null,
+   "guest": null,
+   "containment": null,
+   "rest": null,
+   "overshoot_frames": 0,
+   "carve_frames": null,
+   "build_frames_entered": null,
+   "R_voxels": null,
+   "Rplus_voxels": null,
+   "c_mm": null,
+   "sigma_sup": null,
+   "carve": null,
+   "caps": null,
+   "rigid_shift": null,
+   "carve_of_pose_error": null,
+   "one_sided": null,
+   "decision_flag_off": null,
+   "deliver": null
+  }
+ }
+}

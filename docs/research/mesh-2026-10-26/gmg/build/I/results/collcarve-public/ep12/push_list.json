@@ -1,0 +1,101 @@
+[
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "blue_cup",
+  "partner": "plastic_dish_rack",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": 2.0,
+  "why": "PUSH (a pose correction within the prior removes it)"
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": null,
+  "why": "more than 25 % of R is class O (seen solid): the pose is wrong, not the shape"
+ },
+ {
+  "target": "plastic_dish_rack",
+  "partner": "blue_cup",
+  "kind": "PUSH",
+  "frames": [
+   116,
+   180
+  ],
+  "push_mm": 10.0,
+  "why": "PUSH (a pose correction within the prior removes it)"
+ }
+]

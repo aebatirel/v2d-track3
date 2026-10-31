@@ -20,6 +20,7 @@ def main():
     dj, sj, out = sys.argv[1:4]
     D = json.load(open(dj))
     Sm = json.load(open(sj))
+    DS = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}
     Z = np.load(dj[:-5] + '.npz')
     pairs = list(D['pairs'])
     fig, axs = plt.subplots(len(pairs), 3, figsize=(16, 4.6 * len(pairs)), squeeze=False,
@@ -32,8 +33,8 @@ def main():
         cols = ['#1f6fb4', '#d9631e']
         for j, (k, ser) in enumerate(sorted(P['overlap'].items())):
             side, name = k.split('|')
-            ax.plot(fr, ser, ls='-' if name == 'default' else '--', color=cols[0 if side.startswith(key.split('|')[0])
-                                                                             else 1],
+            ax.plot(fr, ser, ls='-' if name == 'default' else '--', color=cols[0 if side.split('<-')[0] ==
+                                                                             key.split('|')[0] else 1],
                     lw=1.4 if name == 'default' else 1.0, label=f'{side} ({name} pieces)')
         if P.get('run'):
             ax.axvspan(P['run'][0], P['run'][1], color='0.9', zorder=0, label='engaged run (receiver side)')
@@ -42,7 +43,9 @@ def main():
         for f in P.get('overshoot') or []:
             ax.axvline(f, color='red', lw=0.6, alpha=0.5)
         ax.set_xlabel('frame'); ax.set_ylabel('collider overlap (cm$^3$)')
-        rc = R.get('receiver')
+        dsp = (DS.get('pairs') or {}).get(key) or {}
+        rc = R.get('receiver') or dsp.get('receiver')
+        gname = R.get('guest') or dsp.get('guest')
         ttl = (f"ep{D['ep']} {key}: {'in scope' if R.get('in_scope') else 'out of scope'}"
                + (f", receiver {rc}" if rc else '') + f"; delivered: {R.get('deliver') or 'default'}")
         ax.set_title(ttl, fontsize=10)
@@ -61,16 +64,17 @@ def main():
                 if len(A):
                     ax.scatter(A[:, 1] * 1e3, -A[:, 0] * 1e3, s=s, c=c, lw=0,
                                label={'body_recv': f'{rc} body (SHELL surface)',
-                                      'body_guest': f"{R.get('guest')} body at rest",
+                                      'body_guest': f"{gname} body at rest",
                                       'recv_default': f'{rc} default pieces', 'recv_failed': f'{rc} failed carve',
                                       'recv_delivered': f'{rc} delivered carve',
-                                      'guest_rest': f"{R.get('guest')} pieces at rest"}[nm])
+                                      'guest_rest': f"{gname} pieces at rest"}[nm])
             ax.set_aspect('equal'); ax.set_xlabel('mm (receiver principal horizontal axis)')
             ax.set_ylabel('mm (up)')
-            ax.set_title('side view at the hands-off rest pose (pieces = 2 mm samples)', fontsize=9)
+            ax.set_title('side view at the hands-off rest pose' + (' (S frame; pair out of scope)' if not R.get('in_scope')
+                                                                  else '') + ' (pieces = 2 mm samples)', fontsize=8)
             ax.legend(fontsize=6, markerscale=6, loc='lower left')
         else:
-            ax.text(0.5, 0.5, 'no rest pose (out of scope or no hands-off frame)', ha='center', va='center',
+            ax.text(0.5, 0.5, 'no rest pose (no hands-off static frame)', ha='center', va='center',
                     fontsize=9, transform=ax.transAxes)
             ax.set_axis_off()
         ax = axs[i][2]
@@ -82,13 +86,19 @@ def main():
                                                   'carved (failed, not delivered)', acc.get('carved') or [])]
         elif dg:
             rows = [('default', dg.get('default') or []), ('failed carve (report only)', dg.get('carved_failed') or [])]
+        elif ((DS.get('pairs') or {}).get(key) or {}).get('S'):
+            rows = [('delivered default (diagnostic F-I5.14 (7))',
+                     [dict(f=r['frame'], **r['default']) for r in DS['pairs'][key]['S']])]
         if rows:
             fs = [r['f'] for r in rows[0][1]]
             x = np.arange(len(fs))
             for j, (nm, rr) in enumerate(rows):
                 vals = [r.get('disp_mm') or 0 for r in rr]
-                ax.bar(x[:len(vals)] + (j - 0.5) * 0.38, vals, 0.36, label=nm,
+                off = (j - 0.5) * 0.38 if len(rows) > 1 else 0.0
+                ax.bar(x[:len(vals)] + off, vals, 0.36, label=nm,
                        color=['0.55', '#2ca02c' if nm == 'carved' else '#d62728'][j])
+                for xi, v in zip(x, vals):
+                    ax.text(xi + off, v, f'{v:.1f}', ha='center', va='bottom', fontsize=7)
             ax.axhline(4.0, color='k', ls='--', lw=0.8, label='S bound 4 mm')
             ax.set_xticks(x); ax.set_xticklabels([f'f{f}' for f in fs])
             ax.set_ylabel('mean guest displacement, hands off (mm)')

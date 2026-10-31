@@ -99,13 +99,24 @@ def main():
             row['overshoot'] = [x['f'] for x in c0.get('overshoot_frames') or []]
             Tr = c0.get('T_rest')
             recv, guest = W['receiver'], W['guest']
+        else:
+            Tr, recv, guest = None, None, None
+        ds = os.path.join(a.run, 'fi5png', f'default_sink_ep{a.ep}.json')
+        if Tr is None and os.path.exists(ds):          # out of scope: the delivered-default S diagnostic's frame
+            dp = (json.load(open(ds)).get('pairs') or {}).get(key) or {}
+            if dp.get('s_frames'):
+                recv, guest = dp['receiver'], dp['guest']
+                row['s_frames'] = dp['s_frames']
+                Tr = IL.rel_pose(b.poses, recv, guest, dp['s_frames'][0])
+                row['pose_note'] = 'out of scope: relative pose at the first S frame of fi5_default_sink.py'
+        if True:
             if Tr is not None:
                 Tr = np.asarray(Tr)
                 # plane through the guest centroid at rest, spanned by gravity (receiver frame at the first S frame)
                 # and the receiver's principal horizontal axis (PCA of its default collider samples)
                 Xg = CC.collider_samples(dflt[guest])
                 cg = Xg.mean(0) @ Tr[:3, :3].T + Tr[:3, 3]
-                fs = row['s_frames'] or [row['run'][0]]
+                fs = row.get('s_frames') or [row['run'][0]]
                 f = fs[0]
                 Wr = b.poses['world_T_cam'][f].astype(float) @ b.poses[f'cam_T_{recv}'][f].astype(float)
                 n = np.asarray(b.meta['table']['n'], float) if b.meta.get('table') else np.array([0, 0, 1.0])

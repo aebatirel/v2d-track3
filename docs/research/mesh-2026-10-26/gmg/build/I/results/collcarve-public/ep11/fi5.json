@@ -1,0 +1,1190 @@
+{
+ "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+ "routes": {
+  "blue_cup": {
+   "route": "4_voxels",
+   "n": 17,
+   "gate": {
+    "pass_": true,
+    "n": 17,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": false,
+    "rotc_sigma": 3.0126
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 2.992,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 687.6
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 2.992,
+      "sum_cm3": 31.248,
+      "over_tol": 36,
+      "keepout_points": 3805,
+      "keepout_cm3": 30.44
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 17,
+      "cells": 30,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 17,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  },
+  "beige_cup": {
+   "route": "4_voxels",
+   "n": 20,
+   "gate": {
+    "pass_": true,
+    "n": 20,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "lathe_test": {
+    "accepted": true,
+    "rotc_sigma": 2.6038
+   },
+   "plate_like": false,
+   "tried": [
+    {
+     "route": "2_lathe",
+     "report": {
+      "profile": {
+       "bins": 102,
+       "h_span_mm": [
+        -72.5,
+        130.12
+       ],
+       "material_bins": 101,
+       "max_intervals": 1.0,
+       "wall_threshold_mm": 2.688,
+       "wall_bins": 101,
+       "solid_bins": 0,
+       "two_interval_bins": 0,
+       "r_out_mm": [
+        28.92,
+        47.64
+       ]
+      },
+      "n_sectors": 8,
+      "ring_pieces": 56,
+      "continuity": {
+       "ok": true,
+       "gaps": 0,
+       "checked": 144720
+      },
+      "handle": {
+       "points": 4087,
+       "components": [
+        {
+         "cm3": 2.416,
+         "pieces": 3
+        },
+        {
+         "cm3": 16.288,
+         "pieces": 5
+        },
+        {
+         "cm3": 1.248,
+         "pieces": 1
+        },
+        {
+         "cm3": 1.208,
+         "pieces": 1
+        },
+        {
+         "cm3": 0.632,
+         "pieces": 1
+        },
+        {
+         "cm3": 9.752,
+         "pieces": 4
+        }
+       ]
+      }
+     },
+     "gate": {
+      "pass_": false,
+      "n": 71,
+      "max_cm3": 3.248,
+      "sum_cm3": 25.72,
+      "over_tol": 16,
+      "keepout_points": 3212,
+      "keepout_cm3": 25.696
+     }
+    },
+    {
+     "route": "3_coacd",
+     "report": {
+      "steps": 0,
+      "stuck": 0,
+      "pieces": 82,
+      "max_excess_cm3": 2.248,
+      "cap": 82,
+      "coacd_pieces": 82,
+      "sec": 613.4
+     },
+     "gate": {
+      "pass_": false,
+      "n": 82,
+      "max_cm3": 2.248,
+      "sum_cm3": 22.96,
+      "over_tol": 29,
+      "keepout_points": 2820,
+      "keepout_cm3": 22.56
+     }
+    },
+    {
+     "route": "4_voxels",
+     "report": {
+      "pitch_mm": 6.0,
+      "boxes": 20,
+      "cells": 32,
+      "cap": 82
+     },
+     "gate": {
+      "pass_": true,
+      "n": 20,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0,
+      "keepout_points": 0,
+      "keepout_cm3": 0.0
+     }
+    }
+   ]
+  }
+ },
+ "diag_sink": true,
+ "pairs": {
+  "blue_cup|beige_cup": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "gates": {
+    "blue_cup<-beige_cup#0": {
+     "voxels": 3,
+     "run_kind": "SEAT",
+     "run": [
+      92,
+      136
+     ],
+     "n_build": 13,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "blue_cup<-beige_cup#1": {
+     "voxels": 4,
+     "run_kind": "SEAT",
+     "run": [
+      92,
+      136
+     ],
+     "n_build": 13,
+     "sweep_share": 0.0,
+     "observed_voxels": 2,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "beige_cup<-blue_cup#2": {
+     "voxels": 11,
+     "run_kind": "SEAT",
+     "run": [
+      96,
+      136
+     ],
+     "n_build": 11,
+     "sweep_share": 1.0,
+     "observed_voxels": 6,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   },
+   "in_scope": true,
+   "receiver": "beige_cup",
+   "guest": "blue_cup",
+   "receiver_info": {
+    "containment": {
+     "blue_cup": 0.4005,
+     "beige_cup": 0.6173
+    },
+    "frames": 14
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 11,
+      "run_kind": "SEAT",
+      "run": [
+       96,
+       136
+      ],
+      "n_build": 11,
+      "sweep_share": 1.0,
+      "observed_voxels": 6,
+      "persistent_nmin": 5,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 11,
+      "hands_off_static": 11,
+      "assembled_hands_off": 11,
+      "s_frames": [
+       126
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       -0.120466,
+       -0.992455,
+       0.022811,
+       0.002279
+      ],
+      [
+       0.992717,
+       -0.120413,
+       0.003669,
+       0.000277
+      ],
+      [
+       -0.000894,
+       0.023087,
+       0.999733,
+       0.000182
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [
+      {
+       "f": 102,
+       "along_d_mm": 5.1,
+       "along_g_mm": 4.03
+      },
+      {
+       "f": 104,
+       "along_d_mm": 4.41,
+       "along_g_mm": 2.99
+      },
+      {
+       "f": 106,
+       "along_d_mm": 8.29,
+       "along_g_mm": 7.22
+      },
+      {
+       "f": 108,
+       "along_d_mm": 8.39,
+       "along_g_mm": 7.38
+      },
+      {
+       "f": 110,
+       "along_d_mm": 9.21,
+       "along_g_mm": 7.99
+      },
+      {
+       "f": 112,
+       "along_d_mm": 4.27,
+       "along_g_mm": 3.59
+      },
+      {
+       "f": 114,
+       "along_d_mm": 7.03,
+       "along_g_mm": 6.18
+      }
+     ],
+     "carve_frames": 4,
+     "build_frames_entered": 11,
+     "clearance": {
+      "surface_samples": 21996,
+      "in_Rplus": 1989,
+      "sigma_sup": 0.99919,
+      "c_mm": 1.0
+     },
+     "R_voxels": 11,
+     "Rplus_voxels": 85
+    }
+   ],
+   "carve": {
+    "route": "4_voxels",
+    "K_pieces": 68,
+    "cut_cm3": 2.361,
+    "carved_body_cm3": 169.024,
+    "ladder": [
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 6.0,
+       "boxes": 18,
+       "cells": 29,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 18,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ],
+    "carved_route": "4_voxels",
+    "sec": 8.8
+   },
+   "caps": {
+    "removed_cm3": 0.678,
+    "carve_in_body_cm3": 0.414,
+    "cumulative_share": 0.0997,
+    "vol0_cm3": 6.8,
+    "reach": null,
+    "topology": {
+     "default": [
+      14,
+      14
+     ],
+     "carved": [
+      14,
+      14
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": true,
+    "ok_topology": true,
+    "pass_": true,
+    "fail": null
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 11,
+     "cleared_share": 1.0,
+     "per_frame": [
+      {
+       "f": 96,
+       "cm3": 0.26,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 98,
+       "cm3": 0.13,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 100,
+       "cm3": 0.26,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 102,
+       "cm3": 0.51,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 104,
+       "cm3": 0.45,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 106,
+       "cm3": 0.45,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 108,
+       "cm3": 0.51,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 110,
+       "cm3": 0.51,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 112,
+       "cm3": 0.26,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 114,
+       "cm3": 0.38,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 136,
+       "cm3": 0.19,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": true,
+    "one_sided": null,
+    "decision_f_i3_same_sides": {
+     "blue_cup<-beige_cup": "IGNORE",
+     "beige_cup<-blue_cup": "CARVE"
+    }
+   },
+   "acceptance": {
+    "S": {
+     "frames": [
+      {
+       "frame": 126,
+       "carved": {
+        "disp_mm": 31.56,
+        "dz_mm": 23.254,
+        "lateral_mm": 15.893,
+        "tilt_deg": 42.385,
+        "per_copy": [
+         {
+          "disp_mm": 4.23,
+          "dz_mm": 0.72,
+          "lateral_mm": 4.17,
+          "tilt_deg": 2.88,
+          "below": false
+         },
+         {
+          "disp_mm": 16.13,
+          "dz_mm": 2.25,
+          "lateral_mm": 15.98,
+          "tilt_deg": 85.66,
+          "below": false
+         },
+         {
+          "disp_mm": 112.54,
+          "dz_mm": 111.63,
+          "lateral_mm": 14.27,
+          "tilt_deg": 68.05,
+          "below": false
+         },
+         {
+          "disp_mm": 132.71,
+          "dz_mm": 121.14,
+          "lateral_mm": 54.18,
+          "tilt_deg": 88.95,
+          "below": false
+         },
+         {
+          "disp_mm": 16.53,
+          "dz_mm": 1.95,
+          "lateral_mm": 16.41,
+          "tilt_deg": 77.67,
+          "below": false
+         },
+         {
+          "disp_mm": 3.19,
+          "dz_mm": 0.61,
+          "lateral_mm": 3.13,
+          "tilt_deg": 4.24,
+          "below": false
+         },
+         {
+          "disp_mm": 15.72,
+          "dz_mm": 2.36,
+          "lateral_mm": 15.55,
+          "tilt_deg": 52.39,
+          "below": false
+         },
+         {
+          "disp_mm": 4.25,
+          "dz_mm": 0.74,
+          "lateral_mm": 4.18,
+          "tilt_deg": 2.88,
+          "below": false
+         },
+         {
+          "disp_mm": 4.1,
+          "dz_mm": 0.72,
+          "lateral_mm": 4.04,
+          "tilt_deg": 2.93,
+          "below": false
+         },
+         {
+          "disp_mm": 4.37,
+          "dz_mm": 0.61,
+          "lateral_mm": 4.32,
+          "tilt_deg": 2.82,
+          "below": false
+         },
+         {
+          "disp_mm": 14.93,
+          "dz_mm": 2.39,
+          "lateral_mm": 14.74,
+          "tilt_deg": 45.78,
+          "below": false
+         },
+         {
+          "disp_mm": 137.28,
+          "dz_mm": 121.02,
+          "lateral_mm": 64.8,
+          "tilt_deg": 92.57,
+          "below": false
+         },
+         {
+          "disp_mm": 3.23,
+          "dz_mm": 0.61,
+          "lateral_mm": 3.17,
+          "tilt_deg": 4.12,
+          "below": false
+         },
+         {
+          "disp_mm": 3.84,
+          "dz_mm": 0.7,
+          "lateral_mm": 3.78,
+          "tilt_deg": 3.13,
+          "below": false
+         },
+         {
+          "disp_mm": 17.08,
+          "dz_mm": 2.26,
+          "lateral_mm": 16.93,
+          "tilt_deg": 85.22,
+          "below": false
+         },
+         {
+          "disp_mm": 14.82,
+          "dz_mm": 2.35,
+          "lateral_mm": 14.64,
+          "tilt_deg": 58.86,
+          "below": false
+         }
+        ],
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": false
+       },
+       "default": {
+        "disp_mm": 80.472,
+        "dz_mm": 67.717,
+        "lateral_mm": 32.743,
+        "tilt_deg": 67.904,
+        "copies": 16,
+        "nan": 0,
+        "below": 0,
+        "pass_": false
+       }
+      }
+     ],
+     "pass_": false
+    },
+    "P2": {
+     "carved_mm": {
+      "+d": 0.5,
+      "+n": 60.0,
+      "-n": 60.0,
+      "gravity": 0.5
+     },
+     "default_mm": {
+      "+d": 1.0,
+      "+n": 60.0,
+      "-n": 60.0,
+      "gravity": 1.0
+     },
+     "overlap_at_pose_cm3": [
+      0.248,
+      0.072
+     ],
+     "pass_": true,
+     "pose": "T_rest"
+    },
+    "P3": {
+     "default": {
+      "lag_cm_asm": 0.356,
+      "lag_cm_asm_sd": 0.074,
+      "lag_deg_asm": 24.63,
+      "lag_cm_after_max": 0.388,
+      "copies": 16,
+      "nan": 0
+     },
+     "carved": {
+      "lag_cm_asm": 0.137,
+      "lag_cm_asm_sd": 0.125,
+      "lag_deg_asm": 12.31,
+      "lag_cm_after_max": 0.174,
+      "copies": 16,
+      "nan": 0
+     },
+     "nocollide": {
+      "lag_cm_asm": 0.021,
+      "lag_cm_asm_sd": 0.001,
+      "lag_deg_asm": 1.19,
+      "lag_cm_after_max": 0.049,
+      "copies": 16,
+      "nan": 0
+     },
+     "judge": {
+      "pass_": false,
+      "slot_not_limiting": false,
+      "overlap_asm_cm3": 0.072,
+      "overlap_ok": true
+     }
+    },
+    "P4": {
+     "removed_cm3": 0.68,
+     "carve_cm3": 0.41,
+     "default_cm3": 6.8,
+     "carved_cm3": 6.12,
+     "kept_share": 0.9,
+     "pass_": false
+    },
+    "P5": {
+     "shapes": 35,
+     "cap": 165,
+     "pass_": true
+    },
+    "P6": {
+     "frames": 36,
+     "n_worse": 0,
+     "worse": [],
+     "pass_": true,
+     "default_max": 0.46,
+     "carved_max": 0.332
+    },
+    "P7": {
+     "check_frames": 10,
+     "default_sum_cm3": 2.129,
+     "carved_sum_cm3": 0.708,
+     "pass_": true
+    },
+    "gate_carved": {
+     "pass_": true,
+     "n": 18,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "gate_default": {
+     "pass_": true,
+     "n": 20,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "tests": {
+     "S": false,
+     "P2": true,
+     "P3": false,
+     "P4": false,
+     "P5": true,
+     "P6": true,
+     "P7": true,
+     "gate": true
+    },
+    "failing": [
+     "S",
+     "P3",
+     "P4"
+    ],
+    "pass_all_but_P1": false,
+    "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I5.5)"
+   },
+   "deliver": "default"
+  }
+ },
+ "overlap_track": {
+  "blue_cup|beige_cup": {
+   "max_cm3": 0.48,
+   "median_cm3": 0.0
+  }
+ },
+ "decisions": [
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "run": {
+    "frames": [
+     92,
+     136
+    ],
+    "n": 23,
+    "kind": "SEAT",
+    "travel_mm": 14.8,
+    "straightness": 0.782,
+    "d": [
+     0.2277,
+     0.3347,
+     -0.9144
+    ],
+    "assembled": [
+     116,
+     136
+    ],
+    "n_assembled": 11,
+    "n_build": 13,
+    "n_check": 10,
+    "flags": []
+   },
+   "voxels": 3,
+   "region_voxels": 2,
+   "cm3": 0.13,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 1.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 8.6,
+    "plane_point": [
+     0.00867,
+     0.038,
+     0.00867
+    ],
+    "plane_normal": [
+     0.2277,
+     0.3347,
+     -0.9144
+    ],
+    "carve_side": "entry (s < 0)",
+    "shared": false,
+    "kept_voxels": 1,
+    "carved_side_voxels": 2
+   },
+   "linked": false,
+   "flags": [
+    "fi5_guest_not_carved"
+   ],
+   "step": 1,
+   "decision": "IGNORE",
+   "widths": {
+    "w_sim_mm": 39.38,
+    "entering_samples_mm": 3.97,
+    "partner_collider_mm": 37.38,
+    "w_sub_mm": 39.38,
+    "centre_n_mm": -33.8,
+    "axes_dnm": [
+     [
+      0.2277,
+      0.3347,
+      -0.9144
+     ],
+     [
+      -0.648,
+      -0.6489,
+      -0.3988
+     ],
+     [
+      -0.7269,
+      0.6833,
+      0.0692
+     ]
+    ]
+   },
+   "own_decision": "IGNORE",
+   "sources": {
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    },
+    "ab": null
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false,
+   "round": 0,
+   "waiver_fi5_gates": {
+    "voxels": 3,
+    "run_kind": "SEAT",
+    "run": [
+     92,
+     136
+    ],
+    "n_build": 13,
+    "sweep_share": 1.0,
+    "observed_voxels": 0,
+    "persistent_nmin": 5,
+    "pass_": true
+   },
+   "decision_f_i3": "IGNORE",
+   "tier_f_i3": "T0",
+   "waiver_fi5": {
+    "role": "guest",
+    "receiver": "beige_cup",
+    "note": "the guest is never carved by this pair"
+   }
+  },
+  {
+   "target": "blue_cup",
+   "partner": "beige_cup",
+   "run": {
+    "frames": [
+     92,
+     136
+    ],
+    "n": 23,
+    "kind": "SEAT",
+    "travel_mm": 14.8,
+    "straightness": 0.782,
+    "d": [
+     0.2277,
+     0.3347,
+     -0.9144
+    ],
+    "assembled": [
+     116,
+     136
+    ],
+    "n_assembled": 11,
+    "n_build": 13,
+    "n_check": 10,
+    "flags": []
+   },
+   "voxels": 4,
+   "region_voxels": 2,
+   "cm3": 0.13,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 1.0,
+    "exit_share_far_end": 0.667,
+    "extent_along_d_mm": 9.0,
+    "plane_point": [
+     0.022,
+     0.036,
+     0.004
+    ],
+    "plane_normal": [
+     0.2277,
+     0.3347,
+     -0.9144
+    ],
+    "carve_side": "entry (s < 0)",
+    "shared": false,
+    "kept_voxels": 2,
+    "carved_side_voxels": 2
+   },
+   "linked": false,
+   "flags": [
+    "waiver_gate_fail:sweep",
+    "fi5_guest_not_carved"
+   ],
+   "step": 1,
+   "decision": "IGNORE",
+   "widths": {
+    "w_sim_mm": 39.38,
+    "entering_samples_mm": 0.0,
+    "partner_collider_mm": 37.38,
+    "w_sub_mm": 39.38,
+    "centre_n_mm": -39.21,
+    "axes_dnm": [
+     [
+      0.2277,
+      0.3347,
+      -0.9144
+     ],
+     [
+      -0.648,
+      -0.6489,
+      -0.3988
+     ],
+     [
+      -0.7269,
+      0.6833,
+      0.0692
+     ]
+    ]
+   },
+   "own_decision": "IGNORE",
+   "sources": {
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    },
+    "ab": null
+   },
+   "tier": "T0",
+   "submitted": false,
+   "sim_carve": false,
+   "round": 0,
+   "waiver_fi5_gates": {
+    "voxels": 4,
+    "run_kind": "SEAT",
+    "run": [
+     92,
+     136
+    ],
+    "n_build": 13,
+    "sweep_share": 0.0,
+    "observed_voxels": 2,
+    "persistent_nmin": 5,
+    "pass_": false,
+    "fail": "sweep"
+   },
+   "decision_f_i3": "IGNORE",
+   "tier_f_i3": "T0",
+   "waiver_fi5": {
+    "role": "guest",
+    "receiver": "beige_cup",
+    "note": "the guest is never carved by this pair"
+   }
+  },
+  {
+   "target": "beige_cup",
+   "partner": "blue_cup",
+   "run": {
+    "frames": [
+     96,
+     136
+    ],
+    "n": 21,
+    "kind": "SEAT",
+    "travel_mm": 13.4,
+    "straightness": 0.745,
+    "d": [
+     0.3672,
+     -0.0237,
+     0.9298
+    ],
+    "assembled": [
+     116,
+     136
+    ],
+    "n_assembled": 11,
+    "n_build": 11,
+    "n_check": 10,
+    "flags": []
+   },
+   "voxels": 11,
+   "region_voxels": 6,
+   "cm3": 0.38,
+   "nmin": 5,
+   "split": {
+    "through_column": true,
+    "exit_share_entry_end": 1.0,
+    "exit_share_far_end": 1.0,
+    "extent_along_d_mm": 13.0,
+    "plane_point": [
+     -0.03618,
+     0.01109,
+     0.00564
+    ],
+    "plane_normal": [
+     0.3672,
+     -0.0237,
+     0.9298
+    ],
+    "carve_side": "entry (s < 0)",
+    "shared": false,
+    "kept_voxels": 5,
+    "carved_side_voxels": 6
+   },
+   "linked": false,
+   "flags": [
+    "owner_waiver_fi5"
+   ],
+   "image_width_px": 6.21,
+   "image_width_info": {
+    "views": 9,
+    "p10_p90": [
+     5.32,
+     7.49
+    ]
+   },
+   "gap_topology": {
+    "before": [
+     14,
+     14
+    ],
+    "after": [
+     14,
+     14
+    ]
+   },
+   "class_mix": {
+    "U": 2,
+    "SIL": 0,
+    "GAP": 4,
+    "O": 0,
+    "O_testable_solid": 0
+   },
+   "class_o_share": 0.0,
+   "ru_topology": {
+    "before": [
+     14,
+     14
+    ],
+    "after": [
+     14,
+     14
+    ]
+   },
+   "swept_share": 1.0,
+   "run_kind": "SEAT",
+   "push_mm": 4.0,
+   "push_frames": 10,
+   "silgap_share": 1.0,
+   "i": false,
+   "ii": false,
+   "iii": true,
+   "ro": "PUSH (a pose correction within the prior removes it)",
+   "step": 4,
+   "carve_voxels": 2,
+   "decision": "CARVE",
+   "widths": {
+    "w_sim_mm": 35.82,
+    "entering_samples_mm": 5.21,
+    "partner_collider_mm": 33.82,
+    "w_sub_mm": 35.82,
+    "centre_n_mm": 37.89,
+    "axes_dnm": [
+     [
+      0.3672,
+      -0.0237,
+      0.9298
+     ],
+     [
+      -0.8578,
+      0.3778,
+      0.3484
+     ],
+     [
+      -0.3596,
+      -0.9256,
+      0.1184
+     ]
+    ]
+   },
+   "budget": {
+    "carve_cm3": 0.19,
+    "vol_share": 0.0278,
+    "reach": 0.036,
+    "topology": {
+     "before": [
+      14,
+      14
+     ],
+     "after": [
+      14,
+      14
+     ]
+    },
+    "applies": true,
+    "ok": true,
+    "base_cm3": 6.91,
+    "carved_before_cm3": 0.0,
+    "note": "(iv) applies to R_O and OFFSET carves; an R_U-only carve has the topology guard only"
+   },
+   "own_decision": "CARVE",
+   "sources": {
+    "a": {
+     "present": false
+    },
+    "b": {
+     "present": false
+    },
+    "ab": null
+   },
+   "tier": "T1",
+   "submitted": false,
+   "sim_carve": false,
+   "round": 0,
+   "waiver_fi5_gates": {
+    "voxels": 11,
+    "run_kind": "SEAT",
+    "run": [
+     96,
+     136
+    ],
+    "n_build": 11,
+    "sweep_share": 1.0,
+    "observed_voxels": 6,
+    "persistent_nmin": 5,
+    "pass_": true
+   },
+   "decision_f_i3": "CARVE",
+   "tier_f_i3": "T1",
+   "push_list_fi5": {
+    "kind": "OVERSHOOT",
+    "frames": [
+     102,
+     104,
+     106,
+     108,
+     110,
+     112,
+     114
+    ]
+   },
+   "waiver_fi5": {
+    "role": "receiver",
+    "receiver": "beige_cup",
+    "guest": "blue_cup"
+   },
+   "fi5_delivered": "default"
+  }
+ ],
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep11-fi5/r0",
+ "do_not_use": null,
+ "sec": 2670.5
+}

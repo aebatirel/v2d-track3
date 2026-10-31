@@ -1,0 +1,665 @@
+{
+ "ep": 2,
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep2",
+ "tier": "P1",
+ "picks": {
+  "white_pot": "shell_t5p36",
+  "white_pot_lid": "hull"
+ },
+ "constants": {
+  "engaged_min_vox": {
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels"
+  },
+  "gap_bridge_frames": {
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged"
+  },
+  "transient_frames": {
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames"
+  },
+  "static_speed_m": {
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame"
+  },
+  "static_min_frames": {
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames"
+  },
+  "insert_travel_m": {
+   "value": 0.02,
+   "origin": "informed:F-I1.14 travel 20 mm (XCarve design 22 Oct)"
+  },
+  "insert_straightness": {
+   "value": 0.7,
+   "origin": "informed:F-I1.14 straightness 0.7 (XCarve design 22 Oct)"
+  },
+  "block_frames": {
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks"
+  },
+  "holdout_min_frames": {
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum"
+  },
+  "persist_min": {
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count"
+  },
+  "persist_share": {
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile"
+  },
+  "sweep_min_m": {
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)"
+  },
+  "sweep_k_j": {
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)"
+  },
+  "through_beyond_vox": {
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel"
+  },
+  "class_o_max": {
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O"
+  },
+  "swept_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority"
+  },
+  "push_prior_m": {
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm"
+  },
+  "push_prior_deg": {
+   "value": 3.0,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 3 deg"
+  },
+  "push_step_m": {
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)"
+  },
+  "push_cap_m": {
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)"
+  },
+  "push_frames_max": {
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy"
+  },
+  "silgap_share": {
+   "value": 0.75,
+   "origin": "generic:F-I1.3 (iii) 75 %"
+  },
+  "budget_vol": {
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %"
+  },
+  "budget_reach": {
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6"
+  },
+  "w_bridge_px": {
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]"
+  },
+  "depth_scale": {
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)"
+  },
+  "clearance_m": {
+   "value": 0.001,
+   "origin": "informed:F-I1.14 1 mm clearance (26 Oct pre-registered carve rule)"
+  },
+  "link_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %"
+  },
+  "agree_dist_m": {
+   "value": 0.01,
+   "origin": "generic:F-I1.14 = K-c 10 mm"
+  },
+  "agree_deg": {
+   "value": 15.0,
+   "origin": "generic:F-I1.14 = K-c 15 deg"
+  },
+  "agree_share": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority"
+  },
+  "min_testable": {
+   "value": 3,
+   "origin": "generic:INTERLOCK 3.4 fewer than 3 testable voxels = absent"
+  },
+  "offset_tmax_m": {
+   "value": 0.02,
+   "origin": "informed:F-I1.14 OFFSET t_max 20 mm (dev offset 10.5-12.9 mm seen)"
+  },
+  "offset_lateral": {
+   "value": 0.5,
+   "origin": "generic:F-I1.14 OFFSET lateral share 0.5"
+  },
+  "offset_grid_m": {
+   "value": 0.002,
+   "origin": "generic:F-I1.14 OFFSET 2 mm grid"
+  },
+  "sub_m": {
+   "value": 0.002,
+   "origin": "generic:INTERLOCK 3 2 mm refinement"
+  },
+  "fid_tol_m": {
+   "value": 0.0005,
+   "origin": "generic:F-I1.14 fiducials 0.5 mm"
+  },
+  "contain_share": {
+   "value": 0.99,
+   "origin": "generic:F-I1.14 99 % containment"
+  },
+  "contain_n": {
+   "value": 10000,
+   "origin": "generic:INTERLOCK 11.2 10,000 samples"
+  },
+  "max_rounds": {
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds"
+  }
+ },
+ "launch_code": {
+  "commit": "407a18e6af2224955960ee50cbf178254a5a0873",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "f3ea47dc22d4a9c98bdef6414531ef558ab826dd7ba851eb82e0fe4cf0d249fe",
+   "platebody.py": "a1ca8960b0d7980509e76ebcba18f873e2df4877064146ed57c39bff91a866b9",
+   "collcarve.py": "a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad",
+   "cavpieces.py": "2f5a3776425ef836063c42d09da889f72908f2b3169a80b673a69d5079ef8235"
+  }
+ },
+ "fi4_rev": null,
+ "identity_semantics": "eval",
+ "owner_waiver_fi4": false,
+ "owner_waiver_fi5": true,
+ "sanity_flags": {
+  "white_pot": [],
+  "white_pot_lid": []
+ },
+ "sim_pose": "P_sel (flag sim_pose_fallback: no provenance-checked replay reference for public dev)",
+ "pairs": {
+  "white_pot|white_pot_lid": {
+   "white_pot<-white_pot_lid": {
+    "contact_frames": 79,
+    "runs": [
+     {
+      "frames": [
+       0,
+       60
+      ],
+      "n": 31,
+      "kind": "SEAT",
+      "travel_mm": 22.8,
+      "straightness": 0.58,
+      "d": [
+       0.9592,
+       0.0215,
+       0.2818
+      ],
+      "assembled": [
+       0,
+       58
+      ],
+      "n_assembled": 30,
+      "n_build": 20,
+      "n_check": 11,
+      "flags": []
+     },
+     {
+      "frames": [
+       272,
+       342
+      ],
+      "n": 36,
+      "kind": "SEAT",
+      "travel_mm": 36.2,
+      "straightness": 0.576,
+      "d": [
+       -0.4765,
+       0.8758,
+       -0.0764
+      ],
+      "assembled": [
+       312,
+       342
+      ],
+      "n_assembled": 16,
+      "n_build": 20,
+      "n_check": 16,
+      "flags": []
+     }
+    ],
+    "components": [
+     {
+      "voxels": 916,
+      "swept": 559,
+      "cm3": 58.62
+     },
+     {
+      "voxels": 630,
+      "swept": 449,
+      "cm3": 40.32
+     },
+     {
+      "voxels": 2,
+      "swept": 0,
+      "cm3": 0.13
+     },
+     {
+      "voxels": 10,
+      "swept": 0,
+      "cm3": 0.64
+     },
+     {
+      "voxels": 3,
+      "swept": 1,
+      "cm3": 0.19
+     }
+    ],
+    "good_share": [
+     1.0,
+     1.0
+    ],
+    "track_ok": true,
+    "gate": {
+     "good_share": [
+      1.0,
+      1.0
+     ],
+     "flags": [],
+     "identity": "eval",
+     "track_ok": true
+    }
+   },
+   "white_pot_lid<-white_pot": {
+    "contact_frames": 79,
+    "runs": [
+     {
+      "frames": [
+       0,
+       60
+      ],
+      "n": 31,
+      "kind": "SEAT",
+      "travel_mm": 22.3,
+      "straightness": 0.696,
+      "d": [
+       -0.9991,
+       0.0389,
+       -0.0193
+      ],
+      "assembled": [
+       0,
+       58
+      ],
+      "n_assembled": 30,
+      "n_build": 20,
+      "n_check": 11,
+      "flags": []
+     },
+     {
+      "frames": [
+       272,
+       342
+      ],
+      "n": 36,
+      "kind": "SEAT",
+      "travel_mm": 31.1,
+      "straightness": 0.587,
+      "d": [
+       0.7455,
+       0.654,
+       -0.1289
+      ],
+      "assembled": [
+       312,
+       342
+      ],
+      "n_assembled": 16,
+      "n_build": 20,
+      "n_check": 16,
+      "flags": []
+     }
+    ],
+    "components": [
+     {
+      "voxels": 1165,
+      "swept": 882,
+      "cm3": 74.56
+     },
+     {
+      "voxels": 1132,
+      "swept": 691,
+      "cm3": 72.45
+     },
+     {
+      "voxels": 4,
+      "swept": 0,
+      "cm3": 0.26
+     },
+     {
+      "voxels": 7,
+      "swept": 1,
+      "cm3": 0.45
+     }
+    ],
+    "good_share": [
+     1.0,
+     1.0
+    ],
+    "track_ok": true,
+    "gate": {
+     "good_share": [
+      1.0,
+      1.0
+     ],
+     "flags": [],
+     "identity": "eval",
+     "track_ok": true
+    }
+   }
+  }
+ },
+ "silhouette": {
+  "white_pot": null,
+  "white_pot_lid": null
+ },
+ "fi5_body": {
+  "white_pot": "shell_t5p36",
+  "white_pot_lid": "shell_t5p36"
+ },
+ "fi5": {
+  "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+  "routes": {
+   "white_pot": {
+    "route": "4_voxels",
+    "n": 42,
+    "gate": {
+     "pass_": true,
+     "n": 42,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "lathe_test": {
+     "accepted": true,
+     "rotc_sigma": 2.3899
+    },
+    "plate_like": false,
+    "tried": [
+     {
+      "route": "2_lathe",
+      "report": {
+       "profile": {
+        "bins": 68,
+        "h_span_mm": [
+         -50.05,
+         85.7
+        ],
+        "material_bins": 60,
+        "max_intervals": 2.0,
+        "wall_threshold_mm": 4.101,
+        "wall_bins": 57,
+        "solid_bins": 3,
+        "two_interval_bins": 2,
+        "r_out_mm": [
+         8.41,
+         98.44
+        ]
+       },
+       "n_sectors": 12,
+       "ring_pieces": 73,
+       "continuity": {
+        "ok": true,
+        "gaps": 0,
+        "checked": 82080
+       },
+       "handle": {
+        "points": 8723,
+        "components": [
+         {
+          "cm3": 2.384,
+          "pieces": 1
+         },
+         {
+          "cm3": 34.944,
+          "pieces": 4
+         },
+         {
+          "cm3": 12.896,
+          "pieces": 3
+         },
+         {
+          "cm3": 10.568,
+          "pieces": 1
+         },
+         {
+          "cm3": 0.432,
+          "pieces": 1
+         },
+         {
+          "cm3": 2.744,
+          "pieces": 1
+         },
+         {
+          "cm3": 3.76,
+          "pieces": 1
+         },
+         {
+          "cm3": 0.576,
+          "pieces": 1
+         }
+        ]
+       },
+       "why": "lathe_over_cap (with the handle)"
+      }
+     },
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 0,
+       "stuck": 0,
+       "pieces": 82,
+       "max_excess_cm3": 4.232,
+       "cap": 82,
+       "coacd_pieces": 82,
+       "sec": 538.8
+      },
+      "gate": {
+       "pass_": false,
+       "n": 82,
+       "max_cm3": 4.232,
+       "sum_cm3": 69.432,
+       "over_tol": 51,
+       "keepout_points": 8621,
+       "keepout_cm3": 68.968
+      }
+     },
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 6.0,
+       "boxes": 42,
+       "cells": 109,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 42,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ]
+   },
+   "white_pot_lid": {
+    "route": "4_voxels",
+    "n": 25,
+    "gate": {
+     "pass_": true,
+     "n": 25,
+     "max_cm3": 0.0,
+     "sum_cm3": 0.0,
+     "over_tol": 0,
+     "keepout_points": 0,
+     "keepout_cm3": 0.0
+    },
+    "lathe_test": {
+     "accepted": true,
+     "rotc_sigma": 1.8551
+    },
+    "plate_like": false,
+    "tried": [
+     {
+      "route": "2_lathe",
+      "report": {
+       "profile": {
+        "bins": 41,
+        "h_span_mm": [
+         -39.53,
+         40.61
+        ],
+        "material_bins": 39,
+        "max_intervals": 3.0,
+        "why": "lathe_profile_complex (more than two radial intervals in a bin)"
+       },
+       "why": "lathe_profile_complex (more than two radial intervals in a bin)"
+      }
+     },
+     {
+      "route": "3_coacd",
+      "report": {
+       "steps": 0,
+       "stuck": 0,
+       "pieces": 82,
+       "max_excess_cm3": 1.304,
+       "cap": 82,
+       "coacd_pieces": 82,
+       "sec": 516.6
+      },
+      "gate": {
+       "pass_": false,
+       "n": 82,
+       "max_cm3": 1.304,
+       "sum_cm3": 14.912,
+       "over_tol": 16,
+       "keepout_points": 1811,
+       "keepout_cm3": 14.488
+      }
+     },
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 6.0,
+       "boxes": 25,
+       "cells": 78,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 25,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ]
+   }
+  },
+  "diag_sink": true,
+  "pairs": {
+   "white_pot|white_pot_lid": {
+    "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+    "pair": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "gates": {
+     "white_pot<-white_pot_lid#0": {
+      "voxels": 3,
+      "run_kind": "SEAT",
+      "run": [
+       48,
+       58
+      ],
+      "n_build": 6,
+      "sweep_share": 0.0,
+      "observed_voxels": 2,
+      "persistent_nmin": 5,
+      "pass_": false,
+      "fail": "sweep"
+     },
+     "white_pot_lid<-white_pot#1": {
+      "voxels": 4,
+      "run_kind": "SEAT",
+      "run": [
+       48,
+       58
+      ],
+      "n_build": 6,
+      "sweep_share": 0.0,
+      "observed_voxels": 2,
+      "persistent_nmin": 5,
+      "pass_": false,
+      "fail": "sweep"
+     }
+    },
+    "in_scope": false,
+    "why": "no persistent component passes the kept gates"
+   }
+  },
+  "overlap_track": {
+   "white_pot|white_pot_lid": {
+    "max_cm3": 0.16,
+    "median_cm3": 0.0
+   }
+  },
+  "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep2-fi5/r0",
+  "do_not_use": null,
+  "sec": 3534.1
+ },
+ "sim_dir": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-fi5pub-3053a78/sim/public/ep2-fi5/r0",
+ "sec": 3663.6,
+ "log": [
+  "19:32:53 ep 2 objects ['white_pot', 'white_pot_lid'] picks {'white_pot': 'shell_t5p36', 'white_pot_lid': 'hull'} cands {'white_pot': ['hull', 'shell_t5p36'], 'white_pot_lid': ['hull', 'shell_t5p36']}",
+  "19:34:04 white_pot <- white_pot_lid {\"contact_frames\": 79, \"runs\": [{\"frames\": [0, 60], \"n\": 31, \"kind\": \"SEAT\", \"travel_mm\": 22.8, \"straightness\": 0.58, \"d\": [0.9592, 0.0215, 0.2818], \"assembled\": [0, 58], \"n_assembled\": 30, \"n_build\": 20, \"n_check\": 11, \"flags\": []}, {\"frames\": [272, 342], \"n\": 36, \"kind\": \"SEAT\", \"travel_mm\": 36.2, \"straightness\": 0.576, \"d\": [-0.4765, 0.8758, -0.0764], \"assembled\": [312, 342], \"n_assembled\": 16, \"n_build\": 20, \"n_check\": 16, \"flags\": []}], \"components\": [{\"voxels\": 916, \"swept\": 559, \"cm3\": 58.62}, {\"voxels\": 630, \"swept\": 449, \"cm3\": 40.32}, {\"voxels\": 2, \"swept\": 0, \"cm3\": 0.13}, {\"voxels\"",
+  "19:34:13 white_pot_lid <- white_pot {\"contact_frames\": 79, \"runs\": [{\"frames\": [0, 60], \"n\": 31, \"kind\": \"SEAT\", \"travel_mm\": 22.3, \"straightness\": 0.696, \"d\": [-0.9991, 0.0389, -0.0193], \"assembled\": [0, 58], \"n_assembled\": 30, \"n_build\": 20, \"n_check\": 11, \"flags\": []}, {\"frames\": [272, 342], \"n\": 36, \"kind\": \"SEAT\", \"travel_mm\": 31.1, \"straightness\": 0.587, \"d\": [0.7455, 0.654, -0.1289], \"assembled\": [312, 342], \"n_assembled\": 16, \"n_build\": 20, \"n_check\": 16, \"flags\": []}], \"components\": [{\"voxels\": 1165, \"swept\": 882, \"cm3\": 74.56}, {\"voxels\": 1132, \"swept\": 691, \"cm3\": 72.45}, {\"voxels\": 4, \"swept\": 0, \"cm3\": 0.26}, {\"voxe",
+  "19:35:00 decision white_pot <- white_pot_lid PUSH T0 ['interlock_push'] {'mix': {'U': 290, 'SIL': 0, 'GAP': 0, 'O': 626, 'O_testable_solid': 0}, 'iw': 88.55, 'push': None, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot <- white_pot_lid PUSH T0 ['interlock_push'] {'mix': {'U': 76, 'SIL': 0, 'GAP': 0, 'O': 197, 'O_testable_solid': 0}, 'iw': 9.0, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot <- white_pot_lid IGNORE T0 [] {'mix': None, 'iw': None, 'push': None, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot <- white_pot_lid PUSH T0 ['interlock_push'] {'mix': {'U': 2, 'SIL': 0, 'GAP': 0, 'O': 8, 'O_testable_solid': 0}, 'iw': 5.0, 'push': None, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot <- white_pot_lid PUSH T0 ['interlock_push'] {'mix': {'U': 0, 'SIL': 0, 'GAP': 3, 'O': 0, 'O_testable_solid': 0}, 'iw': 3.0, 'push': 2.0, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot_lid <- white_pot PUSH T0 ['interlock_push'] {'mix': {'U': 40, 'SIL': 0, 'GAP': 0, 'O': 566, 'O_testable_solid': 0}, 'iw': 11.65, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot_lid <- white_pot PUSH T0 ['interlock_push'] {'mix': {'U': 31, 'SIL': 0, 'GAP': 0, 'O': 584, 'O_testable_solid': 0}, 'iw': 11.81, 'push': None, 'split': True, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot_lid <- white_pot PUSH T0 ['interlock_push'] {'mix': {'U': 0, 'SIL': 0, 'GAP': 4, 'O': 0, 'O_testable_solid': 0}, 'iw': 3.0, 'push': 2.0, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:35:00 decision white_pot_lid <- white_pot PUSH T0 ['interlock_push'] {'mix': {'U': 0, 'SIL': 0, 'GAP': 7, 'O': 0, 'O_testable_solid': 0}, 'iw': 3.47, 'push': 4.0, 'split': False, 'sources': {'a': None, 'b': None, 'ab': None}}",
+  "19:56:48 route 2 failed lathe_over_cap (with the handle)",
+  "20:06:36 F-I5 pieces white_pot 4_voxels n 42 [{\"route\": \"2_lathe\", \"report\": {\"profile\": {\"bins\": 68, \"h_span_mm\": [-50.05, 85.7], \"material_bins\": 60, \"max_intervals\": 2.0, \"wall_threshold_mm\": 4.101, \"wall_bins\": 57, \"solid_bins\": 3, \"two_interval_bins\": 2, \"r_out_mm\": [8.41, 98.44]}, \"n_sectors\": 12, \"ring_pieces\": 73, \"continuity\": {\"ok\": true, \"gaps\": 0, \"checked\": 82080}, \"handle\": {\"points\": 8723, \"components\": [{\"cm3\": 2.384, \"pieces\": 1}, {\"cm3\": 34.944, \"pieces\": 4}, {\"cm3\": 12.896, \"pieces\": 3}, {\"cm3\": 10.568, \"pieces\": 1}, {\"cm3\": 0.432, \"pieces\": 1}, {\"cm3\": 2.744, \"pieces\": 1}, {\"cm3\": 3.76, \"pieces\": 1}, {\"cm3\": 0.576, \"pieces\": 1}]}, \"why\": \"lathe_over_cap (with the handle)\"}}, {\"route\": \"3_coacd\", \"report\": {\"steps\": 0, \"stuck\": 0, \"pieces\": 82, \"max_excess_cm3\": 4.232, \"cap\": 82, \"coacd_pieces\": 82, \"sec\": 538.8}, \"gate\": {\"pass_\": false, \"n\": 82, \"max_cm3\": 4.232, \"sum_cm3\": 69.432, \"over_tol\": 51, \"keepout_points\": 8621, \"keepout_cm3\": 68.968}}, {\"route\": \"4_voxels\", \"report\": {\"pitch_mm\": 6.0, \"boxes\": 42, \"cells\": 109, \"cap\": 82}, \"gate\": {\"pass_\": true, \"n\": 42, \"max_cm3\": 0.0, \"sum_cm3\": 0.0, \"over_tol\": 0, \"keepout_points\": 0, \"keepout_cm3\": 0.0}}] 1896s",
+  "20:23:31 route 2 failed lathe_profile_complex (more than two radial intervals in a bin)",
+  "20:32:17 F-I5 pieces white_pot_lid 4_voxels n 25 [{\"route\": \"2_lathe\", \"report\": {\"profile\": {\"bins\": 41, \"h_span_mm\": [-39.53, 40.61], \"material_bins\": 39, \"max_intervals\": 3.0, \"why\": \"lathe_profile_complex (more than two radial intervals in a bin)\"}, \"why\": \"lathe_profile_complex (more than two radial intervals in a bin)\"}}, {\"route\": \"3_coacd\", \"report\": {\"steps\": 0, \"stuck\": 0, \"pieces\": 82, \"max_excess_cm3\": 1.304, \"cap\": 82, \"coacd_pieces\": 82, \"sec\": 516.6}, \"gate\": {\"pass_\": false, \"n\": 82, \"max_cm3\": 1.304, \"sum_cm3\": 14.912, \"over_tol\": 16, \"keepout_points\": 1811, \"keepout_cm3\": 14.488}}, {\"route\": \"4_voxels\", \"report\": {\"pitch_mm\": 6.0, \"boxes\": 25, \"cells\": 78, \"cap\": 82}, \"gate\": {\"pass_\": true, \"n\": 25, \"max_cm3\": 0.0, \"sum_cm3\": 0.0, \"over_tol\": 0, \"keepout_points\": 0, \"keepout_cm3\": 0.0}}] 1541s"
+ ]
+}
