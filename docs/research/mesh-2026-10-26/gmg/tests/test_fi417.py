@@ -330,10 +330,13 @@ class GateValidity(unittest.TestCase):
     def test_round2_r0(self):
         if not os.path.isdir(EP24_BUNDLE):
             self.skipTest(f'ep24 bundle not here: {EP24_BUNDLE}')
-        man = json.load(open(os.path.join(R2_R0, 'manifest.json')))
+        with open(os.path.join(R2_R0, 'manifest.json')) as fh:
+            man = json.load(fh)
         o, p = 'wooden_piece_1', 'wooden_piece_2'
-        ph = json.load(open(os.path.join(os.path.dirname(R2_R0), f'physics_{o}_{p}.json')))
-        dec = json.load(open(os.path.join(os.path.dirname(R2_R0), 'decisions.json')))
+        with open(os.path.join(os.path.dirname(R2_R0), f'physics_{o}_{p}.json')) as fh:
+            ph = json.load(fh)
+        with open(os.path.join(os.path.dirname(R2_R0), 'decisions.json')) as fh:
+            dec = json.load(fh)
         f1 = int(ph['P2']['frame'])
         f2 = None
         for r in dec:

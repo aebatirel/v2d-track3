@@ -300,6 +300,7 @@ def gate(scenes, sets, props=None, copies=None, delivered='delivered', control='
     ratio = dl['max_nefc'] / ct['max_nefc'] if ct['max_nefc'] > 0 else float('inf')
     ok = bool(dl['overflow_copies'] == 0 and ratio <= k_('ratio_max'))
     return dict(rule='PREREG F-I4.17.1 part 1 (plain MuJoCo, sim=rl options and limits)', sim_rl=cfg, options=opt,
+                delivered_set=delivered, control_set=control,
                 mujoco_version=__import__('mujoco').__version__, ratio_max=k_('ratio_max'),
                 scenes={s: dict(frame=sc['frame'], table_kind=sc.get('table_kind'),
                                 table_n=np.round(sc['table'][0], 6).tolist(), table_d=round(float(sc['table'][1]), 6))
@@ -400,7 +401,8 @@ def gate_pair(b, o, p, run, W, copies=None, extra_sets=None, replay=True, log=No
 def summary_line(res):
     """One line for DO_NOT_USE.json / logs."""
     s = res['summary']
-    return (f"delivered max nefc {s['delivered']['max_nefc']} / max ncon {s['delivered']['max_ncon']} (overflow copies "
-            f"{s['delivered']['overflow_copies']}), control max nefc {s['control']['max_nefc']}, ratio "
+    dk, ck = res.get('delivered_set', 'delivered'), res.get('control_set', 'control')
+    return (f"{dk} max nefc {s[dk]['max_nefc']} / max ncon {s[dk]['max_ncon']} (overflow copies "
+            f"{s[dk]['overflow_copies']}), {ck} max nefc {s[ck]['max_nefc']}, ratio "
             f"{res['ratio_delivered_to_control']} (<= {res['ratio_max']}), default max nefc "
             f"{(s.get('default') or {}).get('max_nefc')}")

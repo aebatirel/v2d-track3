@@ -1220,7 +1220,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   physics cell was killed at 22:17 (no result). Plan: platebody REV 17 (low-piece fit, box partition, fallback), new
   `gmg/contactgate.py` (part 1), minimal driver fields, `tests/test_fi417.py`; commit; then code checks, the gate
   validity check, w10 under REV 17, k5 physics + part 1, ep24 fi4q, ep23. Load 2.8 (4 cores; three other agents' jobs).
-- 23:08 F-I4.17 build written (committed before any F-I4.17 run): `platebody.py` REV = 17 (REV 16 / 15 reachable; the
+- 22:58 F-I4.17 build written (committed before any F-I4.17 run): `platebody.py` REV = 17 (REV 16 / 15 reachable; the
   only change on their path: `_outline`'s ctx also returns the raster offset `lo`; `_bodies_slots_16` takes `rev`):
   `low_piece_fit` (prefix-sum IoU over the cropped outline raster; waist alone, left end, right end, waist inside the
   ends' rows, <= 10 passes, ties fewer rectangles / smaller area / theta), `plate_body_low` (the F-I4.16 ladder body
@@ -1244,6 +1244,21 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   t = 10 under REV 17 (P134 holds: one rectangle, IoU 0.985 / 0.990, 3 slotted / 1 default box, keep-out 0.0, CARVE)
   [M, 48 s]. Part 2 cannot run here [M, 22:55]: `warp`, `newton`, `mujoco_warp`, `flash_chord` not importable in the
   venv; no FlashCHORD tree on the machine (find to depth 4) -> hand-off to determined-wright.
+- 22:59 pushed dc4a2a4 (build; committed 22:58:26 UTC; the "23:08" first written in the line above was a wrong stamp,
+  corrected to 22:58). Launched at dc4a2a4 (this container, `nice -n 5`; launch files `<scratch>/slot3b/launch/*.launch`
+  hold time, commit, dirty gmg files (another agent's cavpieces.py edit, not on this path) and command): the gate
+  validity check (`test_fi417.py GateValidity`) and the REV 16 identity (`fi417_identity.py`).
+- 23:02 [M] **Gate validity check (P125): part 1 flags the round-2 ep24 r0** (S1 = f246, S2 = f218, 16 copies, 2 s,
+  44 s): round-2 polygon prisms (57 / 77) max nefc **868** (S1; S2 512), max ncon 217, **overflow in 3 / 16 copies** at
+  S1 (nefc > 512), ratio to the one-box control **27.1** (control max nefc 32, ncon 8: 4 board-table + 4 board-board
+  contacts); round-2 default prisms (50 / 71) 880 / 220, 1 overflow copy (reported). Lowered diagnostic (pair moved down
+  16.7 / 17.0 mm so its lowest vertex is 1 mm above the table): prisms 868 / 408, default 448 / 412, control 40.
+  Control as 'delivered' passes (ratio 1.0). So part 1 is not weaker than MuJoCo-Warp on these pieces (P125 holds; it
+  also flags the round-2 default prisms in one copy, while MuJoCo-Warp did not overflow them: plain MuJoCo with multiccd
+  is at least as strict here [E]). The test then ERRORED in its failure-message line (`summary_line` read a fixed
+  'delivered' key; the set was named `r2_prisms`): a code defect in the message only, fixed (delivered / control names
+  carried in the record), committed next, and the check re-run for the record. Identity worker failed at import (the
+  3b7e6d0 tree lacked `pipeline/provenance.py`; now extracted too).
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
