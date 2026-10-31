@@ -1,5 +1,9 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31: owner sent the late-registration email; admin is the owner's
+- Registration, deadlines and organiser contact belong to the owner (`docs/context-and-decisions.md`, 31 Oct).
+  Agents focus only on recipe performance.
+
 ## 2026-10-31: being on the challenge-page leaderboard does NOT mean we are registered (Kaggle rules §8.d)
 - The challenge-page leaderboard is generated from Kaggle (`leaderboard.json`, `"source": "kaggle"`, 37 Track 3
   teams incl. plain Kaggle usernames). It still shows us as "Ahmet Ercan Batirel" (generated 31 Oct 08:54 UTC).

@@ -106,3 +106,6 @@ the answers that matter for future work. Dates are 2026.
 
 - 2026-10-27: the owner manages the leaderboard-freeze deadline; agents should not trade quality for the date or raise
   it as a planning constraint.
+- 2026-10-31 (owner): **registration, deadlines and organiser contact are the owner's to handle.** The owner sent
+  the late-registration email on 31 Oct. Agents work only on the recipe's performance and do not raise
+  registration, deadline or admin items as concerns.

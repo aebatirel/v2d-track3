@@ -5444,3 +5444,7 @@ arm and a no-policy replay floor to stage B.
     teams "may be excluded from Prizes and from the announcement of results, even if it appears on a leaderboard".
   - §9.a: the commit must be in a repo shared with the V2D organisers' account.
 - Told the owner: the late-registration email still needs to be sent, and the repo needs to be shared.
+
+### 31 Oct — owner sent the late-registration email; agent scope set
+- Owner: the email is sent. Registration and deadlines are the owner's to worry about; the agent works only on recipe
+  performance. Recorded in `docs/context-and-decisions.md`.
