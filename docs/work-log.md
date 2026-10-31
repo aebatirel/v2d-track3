@@ -5302,3 +5302,35 @@ Advice given:
 - Inputs to keep for the PR #215 container: pack 8's rollouts (runs 20261026-pack6-5203d42, 20261030-c33B-0202139,
   20261030-e1conf2-d41382e in the store), the packed meshes (meshes/c0_pack9a, meshes/c1_pack9aplus, pack 6's meshes),
   the checkpoints named in each rollout JSON. Nothing is to be deleted from those runs.
+
+## 2026-10-31 ~19:05 UTC — re-track test P_o' vs P_o built on CPU (public, per-episode meshes as templates); NOT launched
+- Owner asked how to improve perception; score-status session's proposal (agreed): track the 20 public episodes with the
+  mesh session's per-episode C0b/E0b meshes (GT-free, from each episode's own video; delivery ETA unknown, needed by
+  ~1 Nov 09:00 UTC) and compare with Phase 1's stored P_o (runs 20261030-orcP1{a,b,c}-87fc869; not re-run).
+- Built (workflow step, focused-pascal; files in docs/research/work/retrack-20261031/):
+  - `ops/jobs/perc_leak.sh` opt-in `LIB_EP_DIR` (per-episode template folder, delivered mesh else library_v3, recorded
+    per object; `-rtk` run ids only in that mode, no arm s); `tools/leak_p1.py` bundle/summary records + new `score`
+    (R lib convention with the tracked mesh, RPE, MPPE); new `tools/rtk_mesh_check.py` (delivery validator + box gate).
+  - Unset = byte-identical [M]: Phase 1's 3 exact job strings replayed before/after (397/451/398 files, 0 differ) and
+    the whole Phase-1 mock suite before/after (9/9 outputs identical); `score` unset = Phase 1's lib numbers on 20/20
+    episodes; library_v3 byte copies as per-episode meshes reproduce P_o exactly (mock tracks 33/33 objects, scores
+    20/20 episodes).
+  - PREREG.md (18:58–19:05 UTC, before any P_o' result): PASS iff mean dR >= +0.01, dR > 0 on >= 12/20, no dR < -0.03,
+    mean dRPE <= 0; unchanged episodes enter as 0 (clarification, can only make PASS harder); INCOMPLETE / INVALID
+    rules; noise floor (o vs o2, lib) R mean |d| 0.0017, max 0.0136; RPE 0.0019 / 0.0077 cm.
+  - rtk_verdict.py (14/14 fixtures on Phase 1's real P_o side), rtk_pull.py, Phase 1's 20 P_o bundles (single-file
+    downloads) in po_bundles/; perc_log_inference cut re-checked on a real Phase-1 log (ep13).
+- JOBS.txt: 2 boxes (ARMS=o, 10 episodes each), run ids <date>-rtk{A,B}-<sha7>, ~$1.6 (range $1.1-4.0; Phase 1's
+  measured $0.65-0.85 per box). Needs: the delivery (validated, committed under meshes/rtk_e0b_public/), the owner's go.
+
+## 2026-10-31 ~19:15 UTC — ep11 gate interim (seed 42 only; NOT a verdict); comparison boxes slow in setup
+- ep11 gate seed 42 [M, partial]: T (V4p) 0.6073 ± 0.053 (ckpt 70M, sim_vs_ref 0.623) vs C 0.5947 ± 0.000 (ckpt 10M,
+  sim_vs_ref 0.515; C sits exactly at its static floor 0.595) → Δ(42) +0.013. Seed 43 started 18:34. The pre-registered
+  rule needs the seed-mean Δ ≥ +0.05 (seed 43 would need ≈ +0.09); no reading until both seeds are in.
+- H5p7: setup (store pulls of every pack run) took until 18:29 (box up 16:45); draw 1 18:33–18:53 (pack 7 replay: eval 10
+  sim_vs_ref 0.4478), draws ~13 min each → done ≈ 20:50; actual will exceed the planned $3 (≈ $5–6 [E]). H5e1 was still in
+  pack_eval at 19:10 (setup ~2.5 h). Both progressing.
+- Masses v2: mv2a2 on its seed-43 wave (ep24, ep13); mv2b on seed 42 (ep11, ep31).
+- Owner (~18:45 UTC, via the score-status session): "Go retrack" (public re-track test when the per-episode clean meshes
+  land; CPU prep wf_91244bc7-640 running); spoon marker correction handled in the score-status session; owner asks not to
+  bring up deadlines in messages to them.
