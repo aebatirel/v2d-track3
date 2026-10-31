@@ -5046,3 +5046,19 @@ diagnostic; nothing is picked for submission.
   R1), adversarial review + revision, build of the CPU slot in new files (per-frame placement consistency, table and
   partner penetration along the track, rest consistency, collider overlap, new vetoes/flags, hand-off export of track
   violations), verification with fix loop. Runs alongside build 1 (separate files).
+
+## 2026-10-31 ~09:10 UTC: correction: the owner meant the boards' interlocking SLOT; interlock workflow replaces the placement one
+- Owner: "But dude how do you expect the wooden blocks to interlock in a physical simulation without the slot?" I had
+  read "placement slot" as a placement step. Stopped `wf_14b3ade4-0c8` (only its design agent had started; nothing
+  committed by it).
+- Checked [M, no scan]: SAM 3D's raw board meshes from the 29 Oct probe show the slot (a narrow notch from one edge to
+  about the middle) on all four runs, plus the marker posts and edge tabs; Pixal3D-MV mostly not. Render
+  `gmg/build/look/sam_boards.png`. Our gmg CPU shells/hulls fill it (stereo cannot see a ~1 cm slot; the 22-23 Oct
+  work found RGB silhouettes do, and that CoACD refills a carved slot unless the simulator copy is delivered as our own
+  convex pieces; `pipeline/interaction_carve.py slot` did that for eval 25 on library_v3 in the collision copy only).
+  The owner raised the same point on 22-23 Oct ("build the meshes according to how pieces interact").
+- Launched `wf_c5733176-d0b` (gmg-interlock-slot): a generic INTERLOCK stage (slots, seats, nesting cavities) from
+  generator shape placed in our frame, RGB silhouettes, and motion-required empty space (partner swept volume along our
+  track), cross-checked; physics along the track for every candidate (partner interpenetration, table, rest);
+  simulator copy as convex pieces CoACD cannot refill; a simulator interlock test on ep24; per-frame placement
+  consistency. Design (INTERLOCK.md + PREREG F amendment) -> adversarial review -> build in new files -> verify.
