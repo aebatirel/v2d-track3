@@ -5015,3 +5015,15 @@ diagnostic; nothing is picked for submission.
   the submitted mesh. Ranked mesh asks: registration-safe sweeper (flips 25/50 in their A1), beige cup base (+1.8 cm
   offset ep11), lid template frame (1.4-1.8 cm offset ep0). Offered to relay G0; replied that this session has HF and
   Vast access through the proxy and will post ledger lines itself.
+
+## 2026-10-31 ~08:10 UTC: owner asks about ep24; build 1 resumed (fourth time)
+- Owner: "How is the ep24 meshes". Rendered the B5 dev-pool candidates (run runs-dev/20261030-b5pool24-edba5b3, code
+  edba5b3, tier DEV, obs_all points) against our observed points: `gmg/build/look/ep24_candidates.png` [M, no scan].
+  Board 1: shell 3984 faces / 46 bodies and hull 4000 faces / 1 body both follow the slab; S1 picks the shell (flagged
+  flip-risk). Board 2: shell 3992 faces / 20 bodies follows the slab, but V5 (flip-risk veto, pre-registered) removes
+  it and S1 picks the HULL, which fills a 6.8 cm-thick box over a board our points show ~1-2 cm thick. Known open
+  problem (B5 notes, item 2); expected fix is STRUCT plate candidates (B8/B11) and trusted markers (B7) so a non-bulky,
+  non-flip-risk candidate exists. Nothing scored.
+- Build 1 cut by the limit again ~06:50 UTC (reset 08:00): B2 and B5 built, verifiers cut; B7 and B4 builds cut mid-way
+  (B4: extraction, hands, sanity, contact code done; clean run on 20 episodes in progress). Owner "Continue";
+  resumed 08:08 UTC (task wrf8rwrsj).
