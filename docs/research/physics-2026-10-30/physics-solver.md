@@ -1212,3 +1212,39 @@ all. A single-episode Δ of that size is within training noise.
 - **signal:** report to the owner and the pack-10 session. Adding V to pack 10 is a separate owner decision with its
   cost stated; the swap rule decides per episode.
 - **harm or inconclusive:** V is not used.
+
+## 11. Command smoothing test A (pre-registered 31 Oct 2026 ~21:55 UTC, CPU, $0, written before any result)
+
+**Request.** keen-heisenberg relayed the owner (21:10 UTC). [H-cmdsmooth]: the robot's own targets jitter (wrist
+0.3–1.1 cm and 1.5–10°, fingers 4–12°) much more than the object path (0.09–0.2 cm). A zero-lag forward–backward
+smoother on the plan's targets raises executability.
+
+**Smoother** (`tools/physics_solve/cmd_smooth.py`):
+- Model: a constant-velocity Kalman filter plus RTS (Rauch–Tung–Striebel) backward pass, per channel, at 20 fps. It is
+  keen-heisenberg's `all20.py kf(..., smooth=True)` model.
+- Settings: measurement σ 5 mm and process q 4.0 for the wrist position (their stated settings, "hand near" value
+  throughout). Wrist quaternion components (made sign-continuous, renormalised after) and finger joints use the same
+  q/σ² ratio, i.e. the same smoothing bandwidth; the smoother is scale-free at a fixed ratio.
+- Frame 0 is pinned to the original (the reset pose). The offset at frame 0 is blended to 0 over frames 1–4.
+- Smoothed columns: `robot_{left,right}_{wrist_position, wrist_wxyz, finger_joints}`. Every other column is
+  unchanged, including the object path.
+- **Deviation from the proposal:** the locked grasp is NOT recomputed from a smoothed object path; the object path
+  stays as is. Smoothing is done in the world frame. During a hold this pulls the jittering hand toward a smooth path,
+  close to the (already smooth) object's, which approximates the proposal.
+- `robot_*_frames` (the keypoint targets) are not recomputed. The zero-action test does not read them; an RL follow-up
+  would need forward kinematics first.
+
+**Test** (one setting, no tuning):
+- `tools/physics_solve/jitter_check.py --k 16 --seed 0`: the same noise draws for smoothed and unsmoothed (common
+  random numbers). CPU, FlashCHORD at the pin, EMB=sharpa_hands_mid.
+- Assets: the physS1 references use the scan assets with S1 masses, as in the screen.
+- Plan sets, ep2/12/18/24:
+  - **GL** = the screen's physS1 grasp-lock + ILC references;
+  - **SOL** = the solved references (arm S's files, md5s as §9).
+- Δ(ep) = jittered mean sim_vs_ref (copies 1–15), smoothed − unsmoothed.
+
+**Rule** (keen-heisenberg's, fixed). Per plan set: **pass** iff Δ ≥ +0.03 on ≥ 2 of 4 episodes and no Δ ≤ −0.03.
+Otherwise **fail**.
+
+**Meaning.** A pass is only a zero-action executability gain; G2 showed that this need not carry over to RL. It would
+justify an RL test (owner's go-ahead, cost stated). A fail stops this line.
