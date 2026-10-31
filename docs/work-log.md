@@ -5029,3 +5029,12 @@ Advice given:
   - Phase-1 scoring detail [M] (`phase1/RESULTS.md`): most of the template gain is a constant body offset (after a per-
     object constant offset P_s gains only +0.006 over P_o); a better template pays on the leaderboard only if it is
     also the submitted mesh (library_v3's kit registration taxes a physically correct track: L1 on P_s +0.028).
+- 04:55 UTC from session determined-wright (physics study, pre-registered "Round 3" rule): **realistic per-object masses
+  instead of the 0.3 kg placeholder improved grasp-lock policies vs mocap on 4 public episodes, mean +0.090** (ep2
+  +0.160, ep12 +0.103, ep18 +0.011, ep24 +0.084; seed means; scans as sim meshes) → adopted there. Ready:
+  `props_masses_only.json` (mass only; COM/inertia stay each mesh's) + `make_assets.py --physics` + a glock_public.sh
+  MA_ARGS hook on their branch. They asked who owns the eval retrain (~$20–25 for 20 evals).
+  - Reply sent: this session owns the eval retrain and packs; proposed first a pre-registered transfer check on our
+    library_v3 meshes (ep2 + ep12, masses vs 0.3 kg, 2 seeds, NREP 10, ≈ $5–6; adopt for eval if the seed-mean gain is
+    ≥ +0.03 on both and no seed drops > 0.05), then eval retrains swapped per episode only if the multi-draw mean ≥ the
+    packed draw. Needs the owner's top-up and go-ahead.
