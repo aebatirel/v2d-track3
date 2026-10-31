@@ -1,0 +1,2678 @@
+{
+ "white_pot": {
+  "pick": {
+   "label": "pot/ep3/fit",
+   "kind": "e0",
+   "episode": "3",
+   "variant": "fit",
+   "path": "/content/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+   "fid_all_sum_mm": 2.922,
+   "fid_all_obs_to_mesh_mm": 1.978,
+   "fid_all_mesh_to_obs_mm": 0.944,
+   "fid_ep": {
+    "ep3": 3.344,
+    "ep1": 3.648,
+    "ep5": 3.018,
+    "ep6": 3.138,
+    "ep8": 4.181,
+    "ep28": 3.291
+   },
+   "faces_raw": 15574,
+   "watertight_raw": true,
+   "bodies_raw": 3,
+   "budget": {
+    "faces": 4096,
+    "vertices": 2054,
+    "watertight": true,
+    "bodies": 3,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 6.475382691366273,
+   "surf_symmetric_median_mm": 3.199077261555793,
+   "axis_angle_deg": [
+    2.98507402886471,
+    3.391201789673773,
+    4.408808416624371
+   ],
+   "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+   "excluded": []
+  },
+  "recommendation": "E0",
+  "flags": [],
+  "c0": {
+   "label": "pot/C0",
+   "kind": "C0",
+   "episode": "public",
+   "variant": "C0",
+   "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+   "fid_all_sum_mm": 2.914,
+   "fid_all_obs_to_mesh_mm": 1.923,
+   "fid_all_mesh_to_obs_mm": 0.991,
+   "fid_ep": {
+    "ep1": 3.963,
+    "ep3": 3.624,
+    "ep5": 3.367,
+    "ep6": 3.45,
+    "ep8": 3.974,
+    "ep28": 2.895
+   },
+   "faces_raw": 16454,
+   "watertight_raw": true,
+   "bodies_raw": 5,
+   "budget": {
+    "faces": 4096,
+    "vertices": 2058,
+    "watertight": true,
+    "bodies": 5,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 5.436923189719203,
+   "surf_symmetric_median_mm": 2.728743047891517,
+   "axis_angle_deg": [
+    3.0125783356896303,
+    4.665902510012581,
+    4.601621908045129
+   ],
+   "sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+   "excluded": []
+  },
+  "library_v3": {
+   "label": "pot/library_v3",
+   "kind": "library_v3",
+   "episode": "public",
+   "variant": "library_v3",
+   "path": "/content/v2d-track3/meshes/library_v3/white_pot.glb",
+   "fid_all_sum_mm": 3.881,
+   "fid_all_obs_to_mesh_mm": 2.462,
+   "fid_all_mesh_to_obs_mm": 1.42,
+   "fid_ep": {
+    "ep1": 4.997,
+    "ep3": 5.291,
+    "ep5": 4.764,
+    "ep6": 4.967,
+    "ep8": 5.412,
+    "ep28": 4.438
+   },
+   "excluded": []
+  },
+  "c0_over_pick": 0.9972621492128679,
+  "library_over_pick": 1.3281998631074605,
+  "n_candidates": 24,
+  "n_eligible": 18,
+  "per_episode": {
+   "ep1": {
+    "own_best": "pot/ep1/fit",
+    "own_best_fid": 4.484,
+    "pick_fid": 3.648,
+    "c0_fid": 3.963,
+    "library_v3_fid": 4.997
+   },
+   "ep3": {
+    "own_best": "pot/ep3/fit",
+    "own_best_fid": 3.344,
+    "pick_fid": 3.344,
+    "c0_fid": 3.624,
+    "library_v3_fid": 5.291
+   },
+   "ep5": {
+    "own_best": "pot/ep5/fit",
+    "own_best_fid": 3.806,
+    "pick_fid": 3.018,
+    "c0_fid": 3.367,
+    "library_v3_fid": 4.764
+   },
+   "ep6": {
+    "own_best": "pot/ep6/fit",
+    "own_best_fid": 4.369,
+    "pick_fid": 3.138,
+    "c0_fid": 3.45,
+    "library_v3_fid": 4.967
+   },
+   "ep8": {
+    "own_best": "pot/ep8/fit",
+    "own_best_fid": 5.15,
+    "pick_fid": 4.181,
+    "c0_fid": 3.974,
+    "library_v3_fid": 5.412
+   },
+   "ep28": {
+    "own_best": "pot/ep28/thick",
+    "own_best_fid": 2.456,
+    "pick_fid": 3.291,
+    "c0_fid": 2.895,
+    "library_v3_fid": 4.438
+   }
+  },
+  "table": [
+   {
+    "label": "pot/ep1/fit",
+    "kind": "e0",
+    "episode": "1",
+    "variant": "fit",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep1_fit.glb",
+    "fid_all_sum_mm": 3.611,
+    "fid_all_obs_to_mesh_mm": 2.475,
+    "fid_all_mesh_to_obs_mm": 1.136,
+    "fid_ep": {
+     "ep1": 4.484,
+     "ep5": 3.797,
+     "ep3": 4.359,
+     "ep6": 4.009,
+     "ep8": 5.038,
+     "ep28": 3.956
+    },
+    "faces_raw": 15250,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.46925642049429,
+    "surf_symmetric_median_mm": 2.968348833753528,
+    "axis_angle_deg": [
+     2.519502195550129,
+     1.7792783179238483,
+     3.0775338931423395
+    ],
+    "sha256": "0a87bc270a1cb11e4e6bfa072c1289724e7b7cef0a00299a44d3372421b670f3",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep1/nostem",
+    "kind": "e0",
+    "episode": "1",
+    "variant": "nostem",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep1_nostem.glb",
+    "fid_all_sum_mm": 3.611,
+    "fid_all_obs_to_mesh_mm": 2.475,
+    "fid_all_mesh_to_obs_mm": 1.136,
+    "fid_ep": {
+     "ep1": 4.484,
+     "ep3": 4.359,
+     "ep5": 3.797,
+     "ep6": 4.009,
+     "ep8": 5.038,
+     "ep28": 3.956
+    },
+    "faces_raw": 15250,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.46925642049429,
+    "surf_symmetric_median_mm": 2.968348833753528,
+    "axis_angle_deg": [
+     2.519502195550129,
+     1.7792783179238483,
+     3.0775338931423395
+    ],
+    "sha256": "0a87bc270a1cb11e4e6bfa072c1289724e7b7cef0a00299a44d3372421b670f3",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep1/tsdf",
+    "kind": "e0",
+    "episode": "1",
+    "variant": "tsdf",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep1_tsdf.glb",
+    "fid_all_sum_mm": 3.544,
+    "fid_all_obs_to_mesh_mm": 2.338,
+    "fid_all_mesh_to_obs_mm": 1.206,
+    "fid_ep": {
+     "ep1": 4.533,
+     "ep3": 4.54,
+     "ep6": 4.127,
+     "ep5": 3.859,
+     "ep8": 5.256,
+     "ep28": 3.793
+    },
+    "faces_raw": 18377,
+    "watertight_raw": false,
+    "bodies_raw": 13,
+    "budget": {
+     "faces": 4095,
+     "vertices": 2111,
+     "watertight": false,
+     "bodies": 11,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 6.135596639271352,
+    "surf_symmetric_median_mm": 2.2606745096795153,
+    "axis_angle_deg": [
+     3.618478013213412,
+     3.92870790845507,
+     4.048094209825713
+    ],
+    "sha256": "99ad1ac5bf1b306a111d073523fe1d608b74f8db0f54b9999e41cceb79599275",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "pot/ep1/thick",
+    "kind": "e0",
+    "episode": "1",
+    "variant": "thick",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep1_thick.glb",
+    "fid_all_sum_mm": 3.692,
+    "fid_all_obs_to_mesh_mm": 2.226,
+    "fid_all_mesh_to_obs_mm": 1.466,
+    "fid_ep": {
+     "ep1": 4.913,
+     "ep5": 4.108,
+     "ep3": 4.667,
+     "ep6": 4.295,
+     "ep8": 5.187,
+     "ep28": 4.088
+    },
+    "faces_raw": 15540,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.717211391809118,
+    "surf_symmetric_median_mm": 2.602829374555644,
+    "axis_angle_deg": [
+     2.657843400006271,
+     2.1409992908508517,
+     3.3461579506101446
+    ],
+    "sha256": "e779e10cb48fcd7a97dee4f7dedba75421fadeaa9b5484b58b1fbc96bb785264",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep3/fit",
+    "kind": "e0",
+    "episode": "3",
+    "variant": "fit",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep3_fit.glb",
+    "fid_all_sum_mm": 2.922,
+    "fid_all_obs_to_mesh_mm": 1.978,
+    "fid_all_mesh_to_obs_mm": 0.944,
+    "fid_ep": {
+     "ep3": 3.344,
+     "ep1": 3.648,
+     "ep5": 3.018,
+     "ep6": 3.138,
+     "ep8": 4.181,
+     "ep28": 3.291
+    },
+    "faces_raw": 15574,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 6.475382691366273,
+    "surf_symmetric_median_mm": 3.199077261555793,
+    "axis_angle_deg": [
+     2.98507402886471,
+     3.391201789673773,
+     4.408808416624371
+    ],
+    "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep3/nostem",
+    "kind": "e0",
+    "episode": "3",
+    "variant": "nostem",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep3_nostem.glb",
+    "fid_all_sum_mm": 2.922,
+    "fid_all_obs_to_mesh_mm": 1.978,
+    "fid_all_mesh_to_obs_mm": 0.944,
+    "fid_ep": {
+     "ep3": 3.344,
+     "ep1": 3.648,
+     "ep5": 3.018,
+     "ep6": 3.138,
+     "ep8": 4.181,
+     "ep28": 3.291
+    },
+    "faces_raw": 15574,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 6.475382691366273,
+    "surf_symmetric_median_mm": 3.199077261555793,
+    "axis_angle_deg": [
+     2.98507402886471,
+     3.391201789673773,
+     4.408808416624371
+    ],
+    "sha256": "af321725727cb1d532e2890a0ad051d9bae65989cac6ed2bdf31f08320deb5c7",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep3/tsdf",
+    "kind": "e0",
+    "episode": "3",
+    "variant": "tsdf",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep3_tsdf.glb",
+    "fid_all_sum_mm": 3.103,
+    "fid_all_obs_to_mesh_mm": 2.028,
+    "fid_all_mesh_to_obs_mm": 1.075,
+    "fid_ep": {
+     "ep1": 4.088,
+     "ep3": 3.835,
+     "ep5": 3.374,
+     "ep6": 3.511,
+     "ep8": 4.691,
+     "ep28": 3.357
+    },
+    "faces_raw": 18801,
+    "watertight_raw": false,
+    "bodies_raw": 8,
+    "budget": {
+     "faces": 4095,
+     "vertices": 2122,
+     "watertight": false,
+     "bodies": 11,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 5.88345551847186,
+    "surf_symmetric_median_mm": 2.293482017507664,
+    "axis_angle_deg": [
+     3.6401483745889855,
+     3.877663786578587,
+     3.7890554564176218
+    ],
+    "sha256": "667abac9c1d3edd96efb7e16cb2bb78fea36eb5320997c32ed54a57ddf0e9a8e",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "pot/ep3/thick",
+    "kind": "e0",
+    "episode": "3",
+    "variant": "thick",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep3_thick.glb",
+    "fid_all_sum_mm": 3.077,
+    "fid_all_obs_to_mesh_mm": 1.955,
+    "fid_all_mesh_to_obs_mm": 1.123,
+    "fid_ep": {
+     "ep1": 4.137,
+     "ep5": 3.384,
+     "ep3": 3.739,
+     "ep6": 3.531,
+     "ep8": 4.426,
+     "ep28": 3.399
+    },
+    "faces_raw": 15574,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 6.6133451373271255,
+    "surf_symmetric_median_mm": 2.7297964373431842,
+    "axis_angle_deg": [
+     3.1057668778588274,
+     3.0773952387124806,
+     4.254619012055613
+    ],
+    "sha256": "088d24085a341a7422300655f723f611d53ee012c01222941033d4626642aab9",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep5/fit",
+    "kind": "e0",
+    "episode": "5",
+    "variant": "fit",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep5_fit.glb",
+    "fid_all_sum_mm": 3.487,
+    "fid_all_obs_to_mesh_mm": 2.317,
+    "fid_all_mesh_to_obs_mm": 1.17,
+    "fid_ep": {
+     "ep3": 4.499,
+     "ep1": 4.486,
+     "ep6": 3.938,
+     "ep8": 5.081,
+     "ep28": 3.422,
+     "ep5": 3.806
+    },
+    "faces_raw": 16124,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.811149369813088,
+    "surf_symmetric_median_mm": 2.903086907755452,
+    "axis_angle_deg": [
+     3.6202266621022634,
+     3.2740339336882345,
+     4.875531881738609
+    ],
+    "sha256": "c50f5203181c7ea0f080e714f9d11cebc87f3bad35df93a0d3d16b017e7de059",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep5/nostem",
+    "kind": "e0",
+    "episode": "5",
+    "variant": "nostem",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep5_nostem.glb",
+    "fid_all_sum_mm": 3.487,
+    "fid_all_obs_to_mesh_mm": 2.317,
+    "fid_all_mesh_to_obs_mm": 1.17,
+    "fid_ep": {
+     "ep1": 4.486,
+     "ep5": 3.806,
+     "ep3": 4.499,
+     "ep6": 3.938,
+     "ep8": 5.081,
+     "ep28": 3.422
+    },
+    "faces_raw": 16124,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.811149369813088,
+    "surf_symmetric_median_mm": 2.903086907755452,
+    "axis_angle_deg": [
+     3.6202266621022634,
+     3.2740339336882345,
+     4.875531881738609
+    ],
+    "sha256": "c50f5203181c7ea0f080e714f9d11cebc87f3bad35df93a0d3d16b017e7de059",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep5/tsdf",
+    "kind": "e0",
+    "episode": "5",
+    "variant": "tsdf",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep5_tsdf.glb",
+    "fid_all_sum_mm": 3.681,
+    "fid_all_obs_to_mesh_mm": 2.403,
+    "fid_all_mesh_to_obs_mm": 1.278,
+    "fid_ep": {
+     "ep1": 4.963,
+     "ep3": 5.017,
+     "ep5": 4.162,
+     "ep6": 4.343,
+     "ep8": 5.508,
+     "ep28": 3.427
+    },
+    "faces_raw": 18441,
+    "watertight_raw": false,
+    "bodies_raw": 10,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2108,
+     "watertight": false,
+     "bodies": 12,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.4061646350660295,
+    "surf_symmetric_median_mm": 2.2702640758132953,
+    "axis_angle_deg": [
+     3.0634783832208194,
+     4.010091168306519,
+     4.726624941553562
+    ],
+    "sha256": "2c40dac95e7384712c37a5795487073c4b241719022f253f8b855e5e90d0c279",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "pot/ep5/thick",
+    "kind": "e0",
+    "episode": "5",
+    "variant": "thick",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep5_thick.glb",
+    "fid_all_sum_mm": 3.901,
+    "fid_all_obs_to_mesh_mm": 2.338,
+    "fid_all_mesh_to_obs_mm": 1.563,
+    "fid_ep": {
+     "ep1": 5.286,
+     "ep3": 5.001,
+     "ep5": 4.412,
+     "ep8": 5.485,
+     "ep6": 4.613,
+     "ep28": 4.178
+    },
+    "faces_raw": 15844,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.852716398691877,
+    "surf_symmetric_median_mm": 2.814205217179892,
+    "axis_angle_deg": [
+     2.995368340953841,
+     3.3467266148536656,
+     4.490828619537774
+    ],
+    "sha256": "fc7de46c7280c08aa6d151e9f30bd24b7810c7650c7eb30f63f41dd9f9381eb6",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep6/fit",
+    "kind": "e0",
+    "episode": "6",
+    "variant": "fit",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep6_fit.glb",
+    "fid_all_sum_mm": 3.879,
+    "fid_all_obs_to_mesh_mm": 2.535,
+    "fid_all_mesh_to_obs_mm": 1.345,
+    "fid_ep": {
+     "ep1": 4.979,
+     "ep3": 5.138,
+     "ep5": 4.328,
+     "ep6": 4.369,
+     "ep28": 3.697,
+     "ep8": 5.828
+    },
+    "faces_raw": 16142,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.438827237259506,
+    "surf_symmetric_median_mm": 2.8374438908541357,
+    "axis_angle_deg": [
+     3.6081332054895587,
+     2.8488506362779065,
+     4.559815943809774
+    ],
+    "sha256": "a4fe7a05d678e1d752a53242c613550446d057505030ff2e3815bec58663985c",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep6/nostem",
+    "kind": "e0",
+    "episode": "6",
+    "variant": "nostem",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep6_nostem.glb",
+    "fid_all_sum_mm": 3.879,
+    "fid_all_obs_to_mesh_mm": 2.535,
+    "fid_all_mesh_to_obs_mm": 1.345,
+    "fid_ep": {
+     "ep1": 4.979,
+     "ep3": 5.138,
+     "ep6": 4.369,
+     "ep5": 4.328,
+     "ep8": 5.828,
+     "ep28": 3.697
+    },
+    "faces_raw": 16142,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.438827237259506,
+    "surf_symmetric_median_mm": 2.8374438908541357,
+    "axis_angle_deg": [
+     3.6081332054895587,
+     2.8488506362779065,
+     4.559815943809774
+    ],
+    "sha256": "a4fe7a05d678e1d752a53242c613550446d057505030ff2e3815bec58663985c",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep6/tsdf",
+    "kind": "e0",
+    "episode": "6",
+    "variant": "tsdf",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep6_tsdf.glb",
+    "fid_all_sum_mm": 4.062,
+    "fid_all_obs_to_mesh_mm": 2.63,
+    "fid_all_mesh_to_obs_mm": 1.432,
+    "fid_ep": {
+     "ep1": 5.426,
+     "ep3": 5.6,
+     "ep5": 4.639,
+     "ep6": 4.776,
+     "ep8": 6.209,
+     "ep28": 3.732
+    },
+    "faces_raw": 17862,
+    "watertight_raw": false,
+    "bodies_raw": 5,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2076,
+     "watertight": false,
+     "bodies": 5,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 8.636425742506265,
+    "surf_symmetric_median_mm": 2.425854350814739,
+    "axis_angle_deg": [
+     3.0805790810934,
+     3.7008712552538174,
+     4.550987125730363
+    ],
+    "sha256": "292f1f7e371c9010141d5c411b75217db08d818c64c58b721deaa9ec640eaf8c",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "pot/ep6/thick",
+    "kind": "e0",
+    "episode": "6",
+    "variant": "thick",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep6_thick.glb",
+    "fid_all_sum_mm": 4.473,
+    "fid_all_obs_to_mesh_mm": 2.538,
+    "fid_all_mesh_to_obs_mm": 1.935,
+    "fid_ep": {
+     "ep1": 5.95,
+     "ep3": 5.708,
+     "ep5": 5.076,
+     "ep6": 5.269,
+     "ep8": 6.322,
+     "ep28": 4.86
+    },
+    "faces_raw": 16170,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 8.967499255821476,
+    "surf_symmetric_median_mm": 2.8565271132756607,
+    "axis_angle_deg": [
+     3.351016447454789,
+     3.452250623182287,
+     4.791245247771223
+    ],
+    "sha256": "4f925a8fc083588ef7dd30c253b38db0d91491334799c6975db91d26a3d66244",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep8/fit",
+    "kind": "e0",
+    "episode": "8",
+    "variant": "fit",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep8_fit.glb",
+    "fid_all_sum_mm": 3.665,
+    "fid_all_obs_to_mesh_mm": 2.365,
+    "fid_all_mesh_to_obs_mm": 1.3,
+    "fid_ep": {
+     "ep1": 4.596,
+     "ep3": 4.483,
+     "ep5": 3.935,
+     "ep6": 4.174,
+     "ep8": 5.15,
+     "ep28": 3.882
+    },
+    "faces_raw": 15568,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.077166609362784,
+    "surf_symmetric_median_mm": 2.646078155810055,
+    "axis_angle_deg": [
+     2.28072661612049,
+     4.931826638254315,
+     5.3887894094841595
+    ],
+    "sha256": "3fde379e971d82ebbf266c9989a7b085949f446d6bbc4835e0776707683aa380",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep8/nostem",
+    "kind": "e0",
+    "episode": "8",
+    "variant": "nostem",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep8_nostem.glb",
+    "fid_all_sum_mm": 3.665,
+    "fid_all_obs_to_mesh_mm": 2.365,
+    "fid_all_mesh_to_obs_mm": 1.3,
+    "fid_ep": {
+     "ep1": 4.596,
+     "ep3": 4.483,
+     "ep6": 4.174,
+     "ep5": 3.935,
+     "ep8": 5.15,
+     "ep28": 3.882
+    },
+    "faces_raw": 15568,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.077166609362784,
+    "surf_symmetric_median_mm": 2.646078155810055,
+    "axis_angle_deg": [
+     2.28072661612049,
+     4.931826638254315,
+     5.3887894094841595
+    ],
+    "sha256": "3fde379e971d82ebbf266c9989a7b085949f446d6bbc4835e0776707683aa380",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep8/tsdf",
+    "kind": "e0",
+    "episode": "8",
+    "variant": "tsdf",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep8_tsdf.glb",
+    "fid_all_sum_mm": 3.762,
+    "fid_all_obs_to_mesh_mm": 2.373,
+    "fid_all_mesh_to_obs_mm": 1.389,
+    "fid_ep": {
+     "ep1": 4.922,
+     "ep3": 4.796,
+     "ep5": 4.124,
+     "ep28": 3.916,
+     "ep8": 5.554,
+     "ep6": 4.434
+    },
+    "faces_raw": 17954,
+    "watertight_raw": false,
+    "bodies_raw": 10,
+    "budget": {
+     "faces": 4095,
+     "vertices": 2116,
+     "watertight": false,
+     "bodies": 13,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 8.318795831663595,
+    "surf_symmetric_median_mm": 2.1525501192230596,
+    "axis_angle_deg": [
+     2.746635484753487,
+     5.162083128964211,
+     5.486187079157753
+    ],
+    "sha256": "8f84331856a3872b03acfe6f56689a934c394eb2b3f92486fd518460f97fb5be",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "pot/ep8/thick",
+    "kind": "e0",
+    "episode": "8",
+    "variant": "thick",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep8_thick.glb",
+    "fid_all_sum_mm": 4.414,
+    "fid_all_obs_to_mesh_mm": 2.556,
+    "fid_all_mesh_to_obs_mm": 1.857,
+    "fid_ep": {
+     "ep1": 5.86,
+     "ep3": 5.542,
+     "ep5": 5.039,
+     "ep6": 5.233,
+     "ep8": 5.884,
+     "ep28": 4.864
+    },
+    "faces_raw": 15282,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.34709336597319,
+    "surf_symmetric_median_mm": 2.979439402995536,
+    "axis_angle_deg": [
+     1.866313699129167,
+     4.696283695628141,
+     5.046795289856567
+    ],
+    "sha256": "6e282b77091ed3222d36636100b313bc1b77b9fdbf3e72b3ee8dc52625a8eed7",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep28/fit",
+    "kind": "e0",
+    "episode": "28",
+    "variant": "fit",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep28_fit.glb",
+    "fid_all_sum_mm": 3.745,
+    "fid_all_obs_to_mesh_mm": 2.764,
+    "fid_all_mesh_to_obs_mm": 0.981,
+    "fid_ep": {
+     "ep1": 5.282,
+     "ep3": 5.327,
+     "ep5": 4.835,
+     "ep6": 4.588,
+     "ep8": 5.405,
+     "ep28": 2.62
+    },
+    "faces_raw": 15944,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 4.20736089093778,
+    "surf_symmetric_median_mm": 3.230303695934732,
+    "axis_angle_deg": [
+     3.1634794266752375,
+     2.5666944701058236,
+     3.0396745809868353
+    ],
+    "sha256": "f4e9c0ca55111966086c2108814cfaf207424107b30c6f6a7646e7dc11db1bc5",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep28/nostem",
+    "kind": "e0",
+    "episode": "28",
+    "variant": "nostem",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep28_nostem.glb",
+    "fid_all_sum_mm": 3.743,
+    "fid_all_obs_to_mesh_mm": 2.764,
+    "fid_all_mesh_to_obs_mm": 0.979,
+    "fid_ep": {
+     "ep1": 5.272,
+     "ep3": 5.317,
+     "ep5": 4.824,
+     "ep6": 4.584,
+     "ep8": 5.392,
+     "ep28": 2.623
+    },
+    "faces_raw": 15836,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 4.143604919482791,
+    "surf_symmetric_median_mm": 3.208102379938677,
+    "axis_angle_deg": [
+     3.128100803580345,
+     2.57761878484917,
+     3.0128449389845957
+    ],
+    "sha256": "059d1df5e426ce912adcf1efe41f82e4850dfef1b42a7f9a538edba68332e264",
+    "excluded": []
+   },
+   {
+    "label": "pot/ep28/tsdf",
+    "kind": "e0",
+    "episode": "28",
+    "variant": "tsdf",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep28_tsdf.glb",
+    "fid_all_sum_mm": 3.72,
+    "fid_all_obs_to_mesh_mm": 2.653,
+    "fid_all_mesh_to_obs_mm": 1.067,
+    "fid_ep": {
+     "ep1": 5.324,
+     "ep3": 5.501,
+     "ep5": 4.902,
+     "ep6": 4.665,
+     "ep8": 5.573,
+     "ep28": 2.706
+    },
+    "faces_raw": 19505,
+    "watertight_raw": false,
+    "bodies_raw": 6,
+    "budget": {
+     "faces": 4095,
+     "vertices": 2110,
+     "watertight": false,
+     "bodies": 6,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.014969048775613,
+    "surf_symmetric_median_mm": 2.149590832598562,
+    "axis_angle_deg": [
+     2.200257140226653,
+     2.7671779962821668,
+     2.9713987918228058
+    ],
+    "sha256": "033b0e8e64c3107383f944fde92ad7275eced83af9e15b191a8b8f47cc44d9a6",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "pot/ep28/thick",
+    "kind": "e0",
+    "episode": "28",
+    "variant": "thick",
+    "path": "/content/results/e0/cand/white_pot/white_pot_ep28_thick.glb",
+    "fid_all_sum_mm": 3.382,
+    "fid_all_obs_to_mesh_mm": 2.345,
+    "fid_all_mesh_to_obs_mm": 1.037,
+    "fid_ep": {
+     "ep1": 4.903,
+     "ep3": 4.926,
+     "ep5": 4.428,
+     "ep6": 4.199,
+     "ep8": 5.047,
+     "ep28": 2.456
+    },
+    "faces_raw": 15944,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 3.9153992895924445,
+    "surf_symmetric_median_mm": 2.9471261224422447,
+    "axis_angle_deg": [
+     2.990736197321785,
+     2.4430832907941706,
+     3.012076796367689
+    ],
+    "sha256": "01a15662b3f34a453bccbccd2912c2aa46fe1ce56520fefb09ab0f20bfcccbdd",
+    "excluded": []
+   },
+   {
+    "label": "pot/C0",
+    "kind": "C0",
+    "episode": "public",
+    "variant": "C0",
+    "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_ep41_fit.glb",
+    "fid_all_sum_mm": 2.914,
+    "fid_all_obs_to_mesh_mm": 1.923,
+    "fid_all_mesh_to_obs_mm": 0.991,
+    "fid_ep": {
+     "ep1": 3.963,
+     "ep3": 3.624,
+     "ep5": 3.367,
+     "ep6": 3.45,
+     "ep8": 3.974,
+     "ep28": 2.895
+    },
+    "faces_raw": 16454,
+    "watertight_raw": true,
+    "bodies_raw": 5,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2058,
+     "watertight": true,
+     "bodies": 5,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 5.436923189719203,
+    "surf_symmetric_median_mm": 2.728743047891517,
+    "axis_angle_deg": [
+     3.0125783356896303,
+     4.665902510012581,
+     4.601621908045129
+    ],
+    "sha256": "355ad72e397e1080c0c8b066ac83efd1f6536eae6048497f11198fe8aaffc263",
+    "excluded": []
+   },
+   {
+    "label": "pot/library_v3",
+    "kind": "library_v3",
+    "episode": "public",
+    "variant": "library_v3",
+    "path": "/content/v2d-track3/meshes/library_v3/white_pot.glb",
+    "fid_all_sum_mm": 3.881,
+    "fid_all_obs_to_mesh_mm": 2.462,
+    "fid_all_mesh_to_obs_mm": 1.42,
+    "fid_ep": {
+     "ep1": 4.997,
+     "ep3": 5.291,
+     "ep5": 4.764,
+     "ep6": 4.967,
+     "ep8": 5.412,
+     "ep28": 4.438
+    },
+    "excluded": []
+   }
+  ],
+  "eval_pairs": [
+   {
+    "eval_episode": 1,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 3,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 5,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 6,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 8,
+    "slot": 1,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 28,
+    "slot": 1,
+    "object": "white_pot"
+   }
+  ]
+ },
+ "white_pot_lid": {
+  "pick": {
+   "label": "lid/ep1/t2.5_fit",
+   "kind": "e0",
+   "episode": "1",
+   "variant": "t2.5_fit",
+   "path": "/content/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_fit.glb",
+   "fid_all_sum_mm": 1.675,
+   "fid_all_obs_to_mesh_mm": 0.928,
+   "fid_all_mesh_to_obs_mm": 0.747,
+   "fid_ep": {
+    "ep1": 1.675
+   },
+   "faces_raw": 9488,
+   "watertight_raw": true,
+   "bodies_raw": 1,
+   "budget": {
+    "faces": 4096,
+    "vertices": 2048,
+    "watertight": true,
+    "bodies": 1,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 7.18777369664479,
+   "surf_symmetric_median_mm": 2.6574202320024005,
+   "axis_angle_deg": [
+    74.41253477867585,
+    74.42691451143031,
+    1.592997485354835
+   ],
+   "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+   "excluded": []
+  },
+  "recommendation": "E0",
+  "flags": [],
+  "c0": {
+   "label": "lid/C0",
+   "kind": "C0",
+   "episode": "public",
+   "variant": "C0",
+   "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v2.glb",
+   "fid_all_sum_mm": 1.772,
+   "fid_all_obs_to_mesh_mm": 1.024,
+   "fid_all_mesh_to_obs_mm": 0.748,
+   "fid_ep": {
+    "ep1": 1.772
+   },
+   "faces_raw": 9550,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "faces": 4096,
+    "vertices": 2050,
+    "watertight": true,
+    "bodies": 2,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 7.313375644072095,
+   "surf_symmetric_median_mm": 2.353262153115695,
+   "axis_angle_deg": [
+    38.238486669418855,
+    38.24451839112881,
+    0.7953637489048695
+   ],
+   "sha256": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+   "excluded": []
+  },
+  "library_v3": {
+   "label": "lid/library_v3",
+   "kind": "library_v3",
+   "episode": "public",
+   "variant": "library_v3",
+   "path": "/content/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+   "fid_all_sum_mm": 5.186,
+   "fid_all_obs_to_mesh_mm": 1.429,
+   "fid_all_mesh_to_obs_mm": 3.757,
+   "fid_ep": {
+    "ep1": 5.186
+   },
+   "excluded": []
+  },
+  "c0_over_pick": 1.057910447761194,
+  "library_over_pick": 3.0961194029850745,
+  "n_candidates": 2,
+  "n_eligible": 1,
+  "per_episode": {
+   "ep1": {
+    "own_best": "lid/ep1/t2.5_fit",
+    "own_best_fid": 1.675,
+    "pick_fid": 1.675,
+    "c0_fid": 1.772,
+    "library_v3_fid": 5.186
+   }
+  },
+  "table": [
+   {
+    "label": "lid/ep1/t2.5_fit",
+    "kind": "e0",
+    "episode": "1",
+    "variant": "t2.5_fit",
+    "path": "/content/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_fit.glb",
+    "fid_all_sum_mm": 1.675,
+    "fid_all_obs_to_mesh_mm": 0.928,
+    "fid_all_mesh_to_obs_mm": 0.747,
+    "fid_ep": {
+     "ep1": 1.675
+    },
+    "faces_raw": 9488,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2048,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.18777369664479,
+    "surf_symmetric_median_mm": 2.6574202320024005,
+    "axis_angle_deg": [
+     74.41253477867585,
+     74.42691451143031,
+     1.592997485354835
+    ],
+    "sha256": "e3dd5861a5081e440d31d67c7ce0881ebceb2049f06fb748cae5b495f09d43e2",
+    "excluded": []
+   },
+   {
+    "label": "lid/ep1/t2.5_tsdf",
+    "kind": "e0",
+    "episode": "1",
+    "variant": "t2.5_tsdf",
+    "path": "/content/results/e0/cand/white_pot_lid/white_pot_lid_ep1_t2.5_tsdf.glb",
+    "fid_all_sum_mm": 1.787,
+    "fid_all_obs_to_mesh_mm": 1.016,
+    "fid_all_mesh_to_obs_mm": 0.772,
+    "fid_ep": {
+     "ep1": 1.787
+    },
+    "faces_raw": 9089,
+    "watertight_raw": false,
+    "bodies_raw": 5,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2073,
+     "watertight": false,
+     "bodies": 5,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.241224532227421,
+    "surf_symmetric_median_mm": 2.4528409012045183,
+    "axis_angle_deg": [
+     66.71976987869901,
+     66.74151932779492,
+     1.78819510702446
+    ],
+    "sha256": "6ac30a7e900e8cd9637485d94073319a0d5d16485e8dacc8cbcd197f758c3fef",
+    "excluded": [
+     "not watertight"
+    ]
+   },
+   {
+    "label": "lid/C0",
+    "kind": "C0",
+    "episode": "public",
+    "variant": "C0",
+    "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v2.glb",
+    "fid_all_sum_mm": 1.772,
+    "fid_all_obs_to_mesh_mm": 1.024,
+    "fid_all_mesh_to_obs_mm": 0.748,
+    "fid_ep": {
+     "ep1": 1.772
+    },
+    "faces_raw": 9550,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 7.313375644072095,
+    "surf_symmetric_median_mm": 2.353262153115695,
+    "axis_angle_deg": [
+     38.238486669418855,
+     38.24451839112881,
+     0.7953637489048695
+    ],
+    "sha256": "0bac47f4b86e9ae36b082ffde7e04ce29bf1170481e02151d4cfbdb393c5a53b",
+    "excluded": []
+   },
+   {
+    "label": "lid/library_v3",
+    "kind": "library_v3",
+    "episode": "public",
+    "variant": "library_v3",
+    "path": "/content/v2d-track3/meshes/library_v3/white_pot_lid.glb",
+    "fid_all_sum_mm": 5.186,
+    "fid_all_obs_to_mesh_mm": 1.429,
+    "fid_all_mesh_to_obs_mm": 3.757,
+    "fid_ep": {
+     "ep1": 5.186
+    },
+    "excluded": []
+   }
+  ],
+  "eval_pairs": [
+   {
+    "eval_episode": 1,
+    "slot": 1,
+    "object": "white_pot_lid"
+   }
+  ]
+ },
+ "plastic_dish_rack": {
+  "pick": {
+   "label": "rack/joint/joint",
+   "kind": "e0",
+   "episode": "joint",
+   "variant": "joint",
+   "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+   "fid_all_sum_mm": 6.419,
+   "fid_all_obs_to_mesh_mm": 1.87,
+   "fid_all_mesh_to_obs_mm": 4.55,
+   "fid_ep": {
+    "ep14": 7.444,
+    "ep15": 8.721,
+    "ep16": 8.512,
+    "ep28": 8.824,
+    "ep30": 7.379
+   },
+   "faces_raw": 2638,
+   "watertight_raw": true,
+   "bodies_raw": 3,
+   "budget": {
+    "faces": 2638,
+    "vertices": 1325,
+    "watertight": true,
+    "bodies": 3,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 9.395544682052032,
+   "surf_symmetric_median_mm": 3.4287227109300824,
+   "axis_angle_deg": [
+    2.2683177351982446,
+    0.7597161496280531,
+    2.3273092711799777
+   ],
+   "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+   "excluded": []
+  },
+  "recommendation": "E0",
+  "flags": [],
+  "c0": {
+   "label": "rack/C0",
+   "kind": "C0",
+   "episode": "public",
+   "variant": "C0",
+   "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+   "fid_all_sum_mm": 6.245,
+   "fid_all_obs_to_mesh_mm": 1.844,
+   "fid_all_mesh_to_obs_mm": 4.402,
+   "fid_ep": {
+    "ep14": 7.212,
+    "ep15": 8.37,
+    "ep16": 8.139,
+    "ep28": 8.501,
+    "ep30": 7.339
+   },
+   "faces_raw": 2356,
+   "watertight_raw": true,
+   "bodies_raw": 3,
+   "budget": {
+    "faces": 2356,
+    "vertices": 1184,
+    "watertight": true,
+    "bodies": 3,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 11.46171886759938,
+   "surf_symmetric_median_mm": 3.427692218470331,
+   "axis_angle_deg": [
+    2.4459510875296644,
+    1.9618257355610536,
+    3.1239502475980125
+   ],
+   "sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+   "excluded": []
+  },
+  "library_v3": {
+   "label": "rack/library_v3",
+   "kind": "library_v3",
+   "episode": "public",
+   "variant": "library_v3",
+   "path": "/content/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+   "fid_all_sum_mm": 5.881,
+   "fid_all_obs_to_mesh_mm": 2.633,
+   "fid_all_mesh_to_obs_mm": 3.248,
+   "fid_ep": {
+    "ep14": 6.986,
+    "ep15": 7.737,
+    "ep16": 7.727,
+    "ep28": 7.464,
+    "ep30": 7.63
+   },
+   "excluded": []
+  },
+  "c0_over_pick": 0.9728929739834866,
+  "library_over_pick": 0.9161863218569871,
+  "n_candidates": 12,
+  "n_eligible": 12,
+  "per_episode": {
+   "ep14": {
+    "own_best": "rack/ep14/full",
+    "own_best_fid": 7.501,
+    "pick_fid": 7.444,
+    "c0_fid": 7.212,
+    "library_v3_fid": 6.986
+   },
+   "ep15": {
+    "own_best": "rack/ep15/full",
+    "own_best_fid": 9.743,
+    "pick_fid": 8.721,
+    "c0_fid": 8.37,
+    "library_v3_fid": 7.737
+   },
+   "ep16": {
+    "own_best": "rack/ep16/full",
+    "own_best_fid": 8.51,
+    "pick_fid": 8.512,
+    "c0_fid": 8.139,
+    "library_v3_fid": 7.727
+   },
+   "ep28": {
+    "own_best": "rack/ep28/full",
+    "own_best_fid": 8.812,
+    "pick_fid": 8.824,
+    "c0_fid": 8.501,
+    "library_v3_fid": 7.464
+   },
+   "ep30": {
+    "own_best": "rack/ep30/full",
+    "own_best_fid": 7.565,
+    "pick_fid": 7.379,
+    "c0_fid": 7.339,
+    "library_v3_fid": 7.63
+   }
+  },
+  "table": [
+   {
+    "label": "rack/ep14/full",
+    "kind": "e0",
+    "episode": "14",
+    "variant": "full",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep14_full.glb",
+    "fid_all_sum_mm": 6.674,
+    "fid_all_obs_to_mesh_mm": 1.968,
+    "fid_all_mesh_to_obs_mm": 4.706,
+    "fid_ep": {
+     "ep14": 7.501,
+     "ep16": 8.664,
+     "ep15": 8.882,
+     "ep28": 8.86,
+     "ep30": 7.919
+    },
+    "faces_raw": 2210,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 2210,
+     "vertices": 1107,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.182571712662217,
+    "surf_symmetric_median_mm": 3.625590297757543,
+    "axis_angle_deg": [
+     2.0228282822332235,
+     2.681436083090101,
+     3.3558175663972496
+    ],
+    "sha256": "9afc50ac828037bba4172129ee7d6eaa30d6686801e7a84867d423912c6b6b8e",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep14/nomk",
+    "kind": "e0",
+    "episode": "14",
+    "variant": "nomk",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep14_nomk.glb",
+    "fid_all_sum_mm": 6.674,
+    "fid_all_obs_to_mesh_mm": 1.968,
+    "fid_all_mesh_to_obs_mm": 4.706,
+    "fid_ep": {
+     "ep14": 7.501,
+     "ep15": 8.882,
+     "ep16": 8.664,
+     "ep28": 8.86,
+     "ep30": 7.919
+    },
+    "faces_raw": 2210,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 2210,
+     "vertices": 1107,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.182571712662217,
+    "surf_symmetric_median_mm": 3.625590297757543,
+    "axis_angle_deg": [
+     2.0228282822332235,
+     2.681436083090101,
+     3.3558175663972496
+    ],
+    "sha256": "9afc50ac828037bba4172129ee7d6eaa30d6686801e7a84867d423912c6b6b8e",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep15/full",
+    "kind": "e0",
+    "episode": "15",
+    "variant": "full",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep15_full.glb",
+    "fid_all_sum_mm": 7.553,
+    "fid_all_obs_to_mesh_mm": 1.929,
+    "fid_all_mesh_to_obs_mm": 5.624,
+    "fid_ep": {
+     "ep14": 8.846,
+     "ep15": 9.743,
+     "ep16": 9.502,
+     "ep28": 9.733,
+     "ep30": 8.562
+    },
+    "faces_raw": 2498,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 2498,
+     "vertices": 1253,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.520504894494858,
+    "surf_symmetric_median_mm": 3.823504662142205,
+    "axis_angle_deg": [
+     2.9296360770069128,
+     1.331175298192353,
+     3.2067122661954306
+    ],
+    "sha256": "7f44c55f79b73bc35fdc3ce1d2108352ccd8c25a2fe402da6b4c738a3972803f",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep15/nomk",
+    "kind": "e0",
+    "episode": "15",
+    "variant": "nomk",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep15_nomk.glb",
+    "fid_all_sum_mm": 7.611,
+    "fid_all_obs_to_mesh_mm": 1.95,
+    "fid_all_mesh_to_obs_mm": 5.661,
+    "fid_ep": {
+     "ep14": 8.901,
+     "ep15": 9.815,
+     "ep16": 9.571,
+     "ep28": 9.792,
+     "ep30": 8.626
+    },
+    "faces_raw": 1998,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 1998,
+     "vertices": 1001,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.633498527703242,
+    "surf_symmetric_median_mm": 3.8612096266175375,
+    "axis_angle_deg": [
+     2.87798110929876,
+     1.4439180980773716,
+     3.2037993477947397
+    ],
+    "sha256": "78ac6bbdefc2cddcafe3ae68619666c45de385b9eb72478745254c8ebea667ec",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep16/full",
+    "kind": "e0",
+    "episode": "16",
+    "variant": "full",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep16_full.glb",
+    "fid_all_sum_mm": 6.779,
+    "fid_all_obs_to_mesh_mm": 1.827,
+    "fid_all_mesh_to_obs_mm": 4.952,
+    "fid_ep": {
+     "ep14": 7.856,
+     "ep15": 8.818,
+     "ep16": 8.51,
+     "ep28": 8.81,
+     "ep30": 8.004
+    },
+    "faces_raw": 2602,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 2602,
+     "vertices": 1307,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 12.236395883787843,
+    "surf_symmetric_median_mm": 3.5950288191766053,
+    "axis_angle_deg": [
+     2.646071182513676,
+     0.32618647860964395,
+     2.6544300164144325
+    ],
+    "sha256": "083c63470b2c1000537b22aa8dd959714e58c24bf1335a983785003f71839a67",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep16/nomk",
+    "kind": "e0",
+    "episode": "16",
+    "variant": "nomk",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep16_nomk.glb",
+    "fid_all_sum_mm": 6.828,
+    "fid_all_obs_to_mesh_mm": 1.848,
+    "fid_all_mesh_to_obs_mm": 4.98,
+    "fid_ep": {
+     "ep14": 7.903,
+     "ep15": 8.877,
+     "ep16": 8.565,
+     "ep28": 8.885,
+     "ep30": 8.051
+    },
+    "faces_raw": 2202,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 2202,
+     "vertices": 1103,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 12.520675888145604,
+    "surf_symmetric_median_mm": 3.5859051102465958,
+    "axis_angle_deg": [
+     2.581475004577118,
+     0.32753798925566097,
+     2.5956239560278096
+    ],
+    "sha256": "9bece622e449d8359074a8b4449a617cc86779223eb492b4d0f61de8fb06f23e",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep28/full",
+    "kind": "e0",
+    "episode": "28",
+    "variant": "full",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep28_full.glb",
+    "fid_all_sum_mm": 7.131,
+    "fid_all_obs_to_mesh_mm": 2.13,
+    "fid_all_mesh_to_obs_mm": 5.001,
+    "fid_ep": {
+     "ep15": 9.662,
+     "ep14": 8.14,
+     "ep16": 9.474,
+     "ep28": 8.812,
+     "ep30": 8.48
+    },
+    "faces_raw": 1844,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 1844,
+     "vertices": 926,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 14.763925412057787,
+    "surf_symmetric_median_mm": 3.41536535617895,
+    "axis_angle_deg": [
+     1.4467834317766184,
+     5.179766499635584,
+     5.3737035920538
+    ],
+    "sha256": "e71cc32efd2ae0df05a0eb0c6f23927388f8cff0fed486fad60d5845b96ebf32",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep28/nomk",
+    "kind": "e0",
+    "episode": "28",
+    "variant": "nomk",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep28_nomk.glb",
+    "fid_all_sum_mm": 7.188,
+    "fid_all_obs_to_mesh_mm": 2.16,
+    "fid_all_mesh_to_obs_mm": 5.028,
+    "fid_ep": {
+     "ep14": 8.182,
+     "ep15": 9.726,
+     "ep16": 9.532,
+     "ep28": 8.874,
+     "ep30": 8.538
+    },
+    "faces_raw": 1644,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 1644,
+     "vertices": 824,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 14.687813418725497,
+    "surf_symmetric_median_mm": 3.4129008750789485,
+    "axis_angle_deg": [
+     1.4474999041365444,
+     5.253860452084856,
+     5.444726206235905
+    ],
+    "sha256": "7b60407dee25965639655a3ca861526346378e61d939d6fb5bad2648835bb98e",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep30/full",
+    "kind": "e0",
+    "episode": "30",
+    "variant": "full",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep30_full.glb",
+    "fid_all_sum_mm": 7.437,
+    "fid_all_obs_to_mesh_mm": 1.98,
+    "fid_all_mesh_to_obs_mm": 5.457,
+    "fid_ep": {
+     "ep14": 9.072,
+     "ep15": 10.18,
+     "ep16": 9.979,
+     "ep28": 10.679,
+     "ep30": 7.565
+    },
+    "faces_raw": 2618,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 2618,
+     "vertices": 1311,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.317403617750797,
+    "surf_symmetric_median_mm": 3.663843688930111,
+    "axis_angle_deg": [
+     2.2689092520316905,
+     1.780867426914856,
+     2.517882366907804
+    ],
+    "sha256": "d560ba16d1b9443e3d18421221e75e0040950680a1347373ca7d303acbb101b2",
+    "excluded": []
+   },
+   {
+    "label": "rack/ep30/nomk",
+    "kind": "e0",
+    "episode": "30",
+    "variant": "nomk",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/ep30_nomk.glb",
+    "fid_all_sum_mm": 7.488,
+    "fid_all_obs_to_mesh_mm": 2.001,
+    "fid_all_mesh_to_obs_mm": 5.486,
+    "fid_ep": {
+     "ep14": 9.105,
+     "ep15": 10.226,
+     "ep16": 10.008,
+     "ep28": 10.717,
+     "ep30": 7.627
+    },
+    "faces_raw": 1886,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 1886,
+     "vertices": 945,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.947492188915374,
+    "surf_symmetric_median_mm": 3.6701655028606748,
+    "axis_angle_deg": [
+     2.281868758236989,
+     2.1211748926846656,
+     2.677029106554084
+    ],
+    "sha256": "9072ec8d9c76b5640c09c33f13109bb255d14ca07cb40639ae8251d29eb8d8ce",
+    "excluded": []
+   },
+   {
+    "label": "rack/joint/joint",
+    "kind": "e0",
+    "episode": "joint",
+    "variant": "joint",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint.glb",
+    "fid_all_sum_mm": 6.419,
+    "fid_all_obs_to_mesh_mm": 1.87,
+    "fid_all_mesh_to_obs_mm": 4.55,
+    "fid_ep": {
+     "ep14": 7.444,
+     "ep15": 8.721,
+     "ep16": 8.512,
+     "ep28": 8.824,
+     "ep30": 7.379
+    },
+    "faces_raw": 2638,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 2638,
+     "vertices": 1325,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.395544682052032,
+    "surf_symmetric_median_mm": 3.4287227109300824,
+    "axis_angle_deg": [
+     2.2683177351982446,
+     0.7597161496280531,
+     2.3273092711799777
+    ],
+    "sha256": "fc67c59baa1cab06443bc1982bae9ebc1c72d1361283c192ac6c918a6412cd42",
+    "excluded": []
+   },
+   {
+    "label": "rack/joint/joint_nomk",
+    "kind": "e0",
+    "episode": "joint",
+    "variant": "joint_nomk",
+    "path": "/content/results/e0/cand/rack/t2.5_lean1/plastic_dish_rack/joint_joint_nomk.glb",
+    "fid_all_sum_mm": 6.432,
+    "fid_all_obs_to_mesh_mm": 1.874,
+    "fid_all_mesh_to_obs_mm": 4.558,
+    "fid_ep": {
+     "ep14": 7.457,
+     "ep15": 8.727,
+     "ep16": 8.505,
+     "ep28": 8.851,
+     "ep30": 7.404
+    },
+    "faces_raw": 2238,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 2238,
+     "vertices": 1121,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 10.046765520961982,
+    "surf_symmetric_median_mm": 3.428475698029011,
+    "axis_angle_deg": [
+     2.2078150615632706,
+     0.7889311736636676,
+     2.250332999472034
+    ],
+    "sha256": "227476d9129bd3433a9877ed9a2abb3370d953eadcf3d48edde245f723a05ac6",
+    "excluded": []
+   },
+   {
+    "label": "rack/C0",
+    "kind": "C0",
+    "episode": "public",
+    "variant": "C0",
+    "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
+    "fid_all_sum_mm": 6.245,
+    "fid_all_obs_to_mesh_mm": 1.844,
+    "fid_all_mesh_to_obs_mm": 4.402,
+    "fid_ep": {
+     "ep14": 7.212,
+     "ep15": 8.37,
+     "ep16": 8.139,
+     "ep28": 8.501,
+     "ep30": 7.339
+    },
+    "faces_raw": 2356,
+    "watertight_raw": true,
+    "bodies_raw": 3,
+    "budget": {
+     "faces": 2356,
+     "vertices": 1184,
+     "watertight": true,
+     "bodies": 3,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 11.46171886759938,
+    "surf_symmetric_median_mm": 3.427692218470331,
+    "axis_angle_deg": [
+     2.4459510875296644,
+     1.9618257355610536,
+     3.1239502475980125
+    ],
+    "sha256": "c22f504ccb8855418c0cb15e44ba4f394e5e2f8b696b17ce937ab7294743dc02",
+    "excluded": []
+   },
+   {
+    "label": "rack/library_v3",
+    "kind": "library_v3",
+    "episode": "public",
+    "variant": "library_v3",
+    "path": "/content/v2d-track3/meshes/library_v3/plastic_dish_rack.glb",
+    "fid_all_sum_mm": 5.881,
+    "fid_all_obs_to_mesh_mm": 2.633,
+    "fid_all_mesh_to_obs_mm": 3.248,
+    "fid_ep": {
+     "ep14": 6.986,
+     "ep15": 7.737,
+     "ep16": 7.727,
+     "ep28": 7.464,
+     "ep30": 7.63
+    },
+    "excluded": []
+   }
+  ],
+  "eval_pairs": [
+   {
+    "eval_episode": 14,
+    "slot": 1,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 15,
+    "slot": 0,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 16,
+    "slot": 0,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 28,
+    "slot": 0,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 30,
+    "slot": 1,
+    "object": "plastic_dish_rack"
+   }
+  ]
+ },
+ "blue_cup": {
+  "pick": {
+   "label": "cup/ep32/g1",
+   "kind": "e0",
+   "episode": "32",
+   "variant": "g1",
+   "path": "/content/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+   "fid_all_sum_mm": 2.646,
+   "fid_all_obs_to_mesh_mm": 1.438,
+   "fid_all_mesh_to_obs_mm": 1.208,
+   "fid_ep": {
+    "ep10": 7.748,
+    "ep14": 4.417,
+    "ep20": 5.895,
+    "ep32": 5.196,
+    "ep33": 4.073
+   },
+   "faces_raw": 23348,
+   "watertight_raw": true,
+   "bodies_raw": 2,
+   "budget": {
+    "faces": 4096,
+    "vertices": 2052,
+    "watertight": true,
+    "bodies": 2,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 4.0379846033061755,
+   "surf_symmetric_median_mm": 2.4834313460328676,
+   "axis_angle_deg": [
+    3.6250697024729615,
+    69.33273109639974,
+    69.43053571936186
+   ],
+   "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+   "excluded": []
+  },
+  "recommendation": "E0",
+  "flags": [],
+  "c0": {
+   "label": "cup/C0",
+   "kind": "C0",
+   "episode": "public",
+   "variant": "C0",
+   "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+   "fid_all_sum_mm": 2.723,
+   "fid_all_obs_to_mesh_mm": 1.585,
+   "fid_all_mesh_to_obs_mm": 1.138,
+   "fid_ep": {
+    "ep10": 7.689,
+    "ep14": 4.734,
+    "ep20": 5.741,
+    "ep32": 5.041,
+    "ep33": 3.9
+   },
+   "faces_raw": 30924,
+   "watertight_raw": true,
+   "bodies_raw": 5,
+   "budget": {
+    "faces": 4096,
+    "vertices": 2059,
+    "watertight": false,
+    "bodies": 11,
+    "faces_ok": true,
+    "vertices_ok": true
+   },
+   "centroid_offset_mm": 3.52503005837455,
+   "surf_symmetric_median_mm": 2.53249803740408,
+   "axis_angle_deg": [
+    3.1435421399432024,
+    14.959360427435948,
+    15.258285012783423
+   ],
+   "sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+   "excluded": []
+  },
+  "library_v3": {
+   "label": "cup/library_v3",
+   "kind": "library_v3",
+   "episode": "public",
+   "variant": "library_v3",
+   "path": "/content/v2d-track3/meshes/library_v3/blue_cup.glb",
+   "fid_all_sum_mm": 2.906,
+   "fid_all_obs_to_mesh_mm": 1.866,
+   "fid_all_mesh_to_obs_mm": 1.041,
+   "fid_ep": {
+    "ep10": 7.223,
+    "ep14": 4.125,
+    "ep20": 7.59,
+    "ep32": 5.765,
+    "ep33": 5.217
+   },
+   "excluded": []
+  },
+  "c0_over_pick": 1.029100529100529,
+  "library_over_pick": 1.0982615268329554,
+  "n_candidates": 11,
+  "n_eligible": 11,
+  "per_episode": {
+   "ep10": {
+    "own_best": "cup/ep10/g1",
+    "own_best_fid": 5.624,
+    "pick_fid": 7.748,
+    "c0_fid": 7.689,
+    "library_v3_fid": 7.223
+   },
+   "ep14": {
+    "own_best": "cup/ep14/g1",
+    "own_best_fid": 3.912,
+    "pick_fid": 4.417,
+    "c0_fid": 4.734,
+    "library_v3_fid": 4.125
+   },
+   "ep20": {
+    "own_best": "cup/ep20/g1",
+    "own_best_fid": 6.046,
+    "pick_fid": 5.895,
+    "c0_fid": 5.741,
+    "library_v3_fid": 7.59
+   },
+   "ep32": {
+    "own_best": "cup/ep32/g1",
+    "own_best_fid": 5.196,
+    "pick_fid": 5.196,
+    "c0_fid": 5.041,
+    "library_v3_fid": 5.765
+   },
+   "ep33": {
+    "own_best": "cup/ep33/g1",
+    "own_best_fid": 3.999,
+    "pick_fid": 4.073,
+    "c0_fid": 3.9,
+    "library_v3_fid": 5.217
+   }
+  },
+  "table": [
+   {
+    "label": "cup/ep10/g1",
+    "kind": "e0",
+    "episode": "10",
+    "variant": "g1",
+    "path": "/content/results/e0/cand/blue_cup/ep10_blue_cup_g1.glb",
+    "fid_all_sum_mm": 3.55,
+    "fid_all_obs_to_mesh_mm": 2.288,
+    "fid_all_mesh_to_obs_mm": 1.262,
+    "fid_ep": {
+     "ep10": 5.624,
+     "ep14": 4.319,
+     "ep20": 7.227,
+     "ep32": 7.335,
+     "ep33": 5.607
+    },
+    "faces_raw": 24660,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 10.340713864919348,
+    "surf_symmetric_median_mm": 2.28567947763181,
+    "axis_angle_deg": [
+     2.3535720133514895,
+     3.2949750859458997,
+     2.7295583301877304
+    ],
+    "sha256": "9ed2dd7056ac27fd58961bd498ca0680d07ad2dccf817b822a347bff36591f8f",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep10/g0",
+    "kind": "e0",
+    "episode": "10",
+    "variant": "g0",
+    "path": "/content/results/e0/cand/blue_cup/ep10_blue_cup_g0.glb",
+    "fid_all_sum_mm": 3.531,
+    "fid_all_obs_to_mesh_mm": 2.289,
+    "fid_all_mesh_to_obs_mm": 1.242,
+    "fid_ep": {
+     "ep10": 5.701,
+     "ep14": 4.249,
+     "ep20": 7.177,
+     "ep32": 7.321,
+     "ep33": 5.588
+    },
+    "faces_raw": 23616,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 9.0506319776598,
+    "surf_symmetric_median_mm": 2.2520954869479675,
+    "axis_angle_deg": [
+     1.4392094867504595,
+     27.619596526503845,
+     27.60229105270887
+    ],
+    "sha256": "c887227b36489ce8b93cc63197c6b634de31996767d192e9c7f575d02a0e4089",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep14/g1",
+    "kind": "e0",
+    "episode": "14",
+    "variant": "g1",
+    "path": "/content/results/e0/cand/blue_cup/ep14_blue_cup_g1.glb",
+    "fid_all_sum_mm": 2.892,
+    "fid_all_obs_to_mesh_mm": 1.421,
+    "fid_all_mesh_to_obs_mm": 1.471,
+    "fid_ep": {
+     "ep10": 8.131,
+     "ep14": 3.912,
+     "ep20": 7.633,
+     "ep32": 6.148,
+     "ep33": 5.325
+    },
+    "faces_raw": 48488,
+    "watertight_raw": true,
+    "bodies_raw": 4,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": false,
+     "bodies": 8,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 6.878035807728576,
+    "surf_symmetric_median_mm": 2.1428301364437905,
+    "axis_angle_deg": [
+     2.796247381286353,
+     18.298407785168433,
+     18.18556844571966
+    ],
+    "sha256": "556ee35ee048002b2b8a4c2e67d88802bb42000836a4fc4f1373a307886a3674",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep14/g0",
+    "kind": "e0",
+    "episode": "14",
+    "variant": "g0",
+    "path": "/content/results/e0/cand/blue_cup/ep14_blue_cup_g0.glb",
+    "fid_all_sum_mm": 2.824,
+    "fid_all_obs_to_mesh_mm": 1.516,
+    "fid_all_mesh_to_obs_mm": 1.308,
+    "fid_ep": {
+     "ep10": 8.409,
+     "ep14": 4.505,
+     "ep20": 6.476,
+     "ep32": 5.222,
+     "ep33": 4.312
+    },
+    "faces_raw": 22848,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 2.5224985303016765,
+    "surf_symmetric_median_mm": 2.2470997911719652,
+    "axis_angle_deg": [
+     4.008702480465471,
+     89.22354797337789,
+     89.09338223189093
+    ],
+    "sha256": "489fd9325b6d3d486aeec22dab0e0d79e28cbafaf7f2f322f6c6f38b60dc787d",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep20/g1",
+    "kind": "e0",
+    "episode": "20",
+    "variant": "g1",
+    "path": "/content/results/e0/cand/blue_cup/ep20_blue_cup_g1.glb",
+    "fid_all_sum_mm": 3.079,
+    "fid_all_obs_to_mesh_mm": 1.74,
+    "fid_all_mesh_to_obs_mm": 1.339,
+    "fid_ep": {
+     "ep10": 6.207,
+     "ep14": 4.33,
+     "ep20": 6.046,
+     "ep32": 6.314,
+     "ep33": 4.98
+    },
+    "faces_raw": 27610,
+    "watertight_raw": true,
+    "bodies_raw": 4,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2054,
+     "watertight": false,
+     "bodies": 5,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 5.116491374894109,
+    "surf_symmetric_median_mm": 2.361065794896573,
+    "axis_angle_deg": [
+     3.2175633613207797,
+     13.686481621235139,
+     13.842562419755978
+    ],
+    "sha256": "02c06b4be8ad2fb56eaa3a259cae9d9f65672fde3dce5fe5c7909ad5da68e322",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep20/g0",
+    "kind": "e0",
+    "episode": "20",
+    "variant": "g0",
+    "path": "/content/results/e0/cand/blue_cup/ep20_blue_cup_g0.glb",
+    "fid_all_sum_mm": 3.153,
+    "fid_all_obs_to_mesh_mm": 1.831,
+    "fid_all_mesh_to_obs_mm": 1.322,
+    "fid_ep": {
+     "ep10": 6.095,
+     "ep14": 4.439,
+     "ep20": 6.605,
+     "ep32": 6.347,
+     "ep33": 4.999
+    },
+    "faces_raw": 21504,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 5.392956434497188,
+    "surf_symmetric_median_mm": 2.355299347368881,
+    "axis_angle_deg": [
+     0.8566832642435429,
+     68.27042207147807,
+     68.26991916672473
+    ],
+    "sha256": "8afbf38678e8855a96027ef364e3eb1714d7cc2caceaa2ecac5168548f32d4b2",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep32/g1",
+    "kind": "e0",
+    "episode": "32",
+    "variant": "g1",
+    "path": "/content/results/e0/cand/blue_cup/ep32_blue_cup_g1.glb",
+    "fid_all_sum_mm": 2.646,
+    "fid_all_obs_to_mesh_mm": 1.438,
+    "fid_all_mesh_to_obs_mm": 1.208,
+    "fid_ep": {
+     "ep10": 7.748,
+     "ep14": 4.417,
+     "ep20": 5.895,
+     "ep32": 5.196,
+     "ep33": 4.073
+    },
+    "faces_raw": 23348,
+    "watertight_raw": true,
+    "bodies_raw": 2,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2052,
+     "watertight": true,
+     "bodies": 2,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 4.0379846033061755,
+    "surf_symmetric_median_mm": 2.4834313460328676,
+    "axis_angle_deg": [
+     3.6250697024729615,
+     69.33273109639974,
+     69.43053571936186
+    ],
+    "sha256": "e6c18b2ae40dcdebe5e635d19d41e4fe020f8605773249712341b8f32415ada5",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep32/g0",
+    "kind": "e0",
+    "episode": "32",
+    "variant": "g0",
+    "path": "/content/results/e0/cand/blue_cup/ep32_blue_cup_g0.glb",
+    "fid_all_sum_mm": 2.664,
+    "fid_all_obs_to_mesh_mm": 1.457,
+    "fid_all_mesh_to_obs_mm": 1.207,
+    "fid_ep": {
+     "ep10": 7.482,
+     "ep14": 4.461,
+     "ep20": 5.933,
+     "ep32": 5.262,
+     "ep33": 4.1
+    },
+    "faces_raw": 22464,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 3.539677446718936,
+    "surf_symmetric_median_mm": 2.5104236401913216,
+    "axis_angle_deg": [
+     2.8609480034987502,
+     6.8000807823243274,
+     7.268108558251175
+    ],
+    "sha256": "d35088445bf2fc67bc665f3d5ab2782d8c536b66582b3a6523e45b829ce5c851",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep33/g1",
+    "kind": "e0",
+    "episode": "33",
+    "variant": "g1",
+    "path": "/content/results/e0/cand/blue_cup/ep33_blue_cup_g1.glb",
+    "fid_all_sum_mm": 2.846,
+    "fid_all_obs_to_mesh_mm": 1.48,
+    "fid_all_mesh_to_obs_mm": 1.367,
+    "fid_ep": {
+     "ep10": 8.313,
+     "ep14": 4.665,
+     "ep20": 6.171,
+     "ep32": 5.136,
+     "ep33": 3.999
+    },
+    "faces_raw": 29968,
+    "watertight_raw": true,
+    "bodies_raw": 6,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2059,
+     "watertight": false,
+     "bodies": 9,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 3.3248396071299435,
+    "surf_symmetric_median_mm": 2.477546451993584,
+    "axis_angle_deg": [
+     2.801931311275021,
+     33.424155825911214,
+     33.44914951471002
+    ],
+    "sha256": "9f53a5526c219d3be1c4f043f3ccef58eb6e4b05af9ca306c9345ec207687b9b",
+    "excluded": []
+   },
+   {
+    "label": "cup/ep33/g0",
+    "kind": "e0",
+    "episode": "33",
+    "variant": "g0",
+    "path": "/content/results/e0/cand/blue_cup/ep33_blue_cup_g0.glb",
+    "fid_all_sum_mm": 3.024,
+    "fid_all_obs_to_mesh_mm": 1.622,
+    "fid_all_mesh_to_obs_mm": 1.402,
+    "fid_ep": {
+     "ep10": 7.272,
+     "ep14": 5.361,
+     "ep20": 6.297,
+     "ep32": 5.197,
+     "ep33": 4.275
+    },
+    "faces_raw": 21312,
+    "watertight_raw": true,
+    "bodies_raw": 1,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2050,
+     "watertight": true,
+     "bodies": 1,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 4.8624462770032055,
+    "surf_symmetric_median_mm": 2.5843393061208486,
+    "axis_angle_deg": [
+     3.417762752471372,
+     72.76795233133113,
+     72.76063926143448
+    ],
+    "sha256": "6691008cfba59d6b9bf7e38adc6ec4d94bc8d124e231c3bf01a9141f9d22db86",
+    "excluded": []
+   },
+   {
+    "label": "cup/merged/g1",
+    "kind": "e0",
+    "episode": "merged",
+    "variant": "g1",
+    "path": "/content/results/e0/cand/blue_cup/merged_blue_cup_g1.glb",
+    "fid_all_sum_mm": 3.007,
+    "fid_all_obs_to_mesh_mm": 1.493,
+    "fid_all_mesh_to_obs_mm": 1.514,
+    "fid_ep": {
+     "ep10": 9.073,
+     "ep14": 4.555,
+     "ep20": 6.227,
+     "ep32": 5.627,
+     "ep33": 4.696
+    },
+    "faces_raw": 59954,
+    "watertight_raw": true,
+    "bodies_raw": 7,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2065,
+     "watertight": false,
+     "bodies": 20,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 5.64173447758542,
+    "surf_symmetric_median_mm": 2.342894112534736,
+    "axis_angle_deg": [
+     2.6906152235922405,
+     18.17829478647447,
+     17.995016632069387
+    ],
+    "sha256": "194d71e0d395b1d4e7d87390fd9741da526db34542edc18915c33c487ef52db1",
+    "excluded": []
+   },
+   {
+    "label": "cup/C0",
+    "kind": "C0",
+    "episode": "public",
+    "variant": "C0",
+    "path": "/content/v2d-track3/docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
+    "fid_all_sum_mm": 2.723,
+    "fid_all_obs_to_mesh_mm": 1.585,
+    "fid_all_mesh_to_obs_mm": 1.138,
+    "fid_ep": {
+     "ep10": 7.689,
+     "ep14": 4.734,
+     "ep20": 5.741,
+     "ep32": 5.041,
+     "ep33": 3.9
+    },
+    "faces_raw": 30924,
+    "watertight_raw": true,
+    "bodies_raw": 5,
+    "budget": {
+     "faces": 4096,
+     "vertices": 2059,
+     "watertight": false,
+     "bodies": 11,
+     "faces_ok": true,
+     "vertices_ok": true
+    },
+    "centroid_offset_mm": 3.52503005837455,
+    "surf_symmetric_median_mm": 2.53249803740408,
+    "axis_angle_deg": [
+     3.1435421399432024,
+     14.959360427435948,
+     15.258285012783423
+    ],
+    "sha256": "81a201cb2332516191937c80fb4993cea38fed93ba2332674a2cb3d282f129f1",
+    "excluded": []
+   },
+   {
+    "label": "cup/library_v3",
+    "kind": "library_v3",
+    "episode": "public",
+    "variant": "library_v3",
+    "path": "/content/v2d-track3/meshes/library_v3/blue_cup.glb",
+    "fid_all_sum_mm": 2.906,
+    "fid_all_obs_to_mesh_mm": 1.866,
+    "fid_all_mesh_to_obs_mm": 1.041,
+    "fid_ep": {
+     "ep10": 7.223,
+     "ep14": 4.125,
+     "ep20": 7.59,
+     "ep32": 5.765,
+     "ep33": 5.217
+    },
+    "excluded": []
+   }
+  ],
+  "eval_pairs": [
+   {
+    "eval_episode": 10,
+    "slot": 0,
+    "object": "blue_cup"
+   },
+   {
+    "eval_episode": 14,
+    "slot": 0,
+    "object": "blue_cup"
+   },
+   {
+    "eval_episode": 20,
+    "slot": 0,
+    "object": "blue_cup"
+   },
+   {
+    "eval_episode": 32,
+    "slot": 0,
+    "object": "blue_cup"
+   },
+   {
+    "eval_episode": 33,
+    "slot": 0,
+    "object": "blue_cup"
+   }
+  ]
+ }
+}

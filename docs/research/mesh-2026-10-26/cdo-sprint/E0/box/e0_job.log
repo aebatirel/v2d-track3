@@ -1,0 +1,50 @@
+[2026-10-31T16:28:51Z] E0 job start: run mesh-20261031-e0-b05f001 commit b05f001001fe3d4a80659e32c1d1c9fa91f3276d dirty=0 cpus 2 workers 96 ram 251 GB disk 80G free; stride 2
+[2026-10-31T16:28:51Z] frozen public code: 7 files sha1 OK (prim_potlid c2627630 = results/prim/clean/code_state.txt)
+[2026-10-31T16:28:51Z] setup venvs
+[2026-10-31T16:29:01Z] setup: E0-SETUP-MAIN-OK E0-SETUP-MP-OK 
+[2026-10-31T16:29:51Z] progress (ok/fail): hands 0/0 obs 0/0 build 0/0 fid 0/0 check 0/0  files 5 load 1.28
+[2026-10-31T16:31:46Z] inputs: 45 files sha256 OK; depth {"depth_eps": [1, 3, 5, 6, 8, 10, 14, 15, 16, 20, 28, 30, 32, 33], "all_ok": true, "gb": 21.43, "sec": 129.5}
+[2026-10-31T16:31:48Z] stage hands: 14 tasks, 96 workers
+[2026-10-31T16:31:51Z] progress (ok/fail): hands 0/0 obs 0/0 build 0/0 fid 0/0 check 0/0  files 23 load 1.91
+[2026-10-31T16:33:51Z] progress (ok/fail): hands 11/0 obs 0/0 build 0/0 fid 0/0 check 0/0  files 57 load 13.78
+[2026-10-31T16:34:18Z] stage hands done: OK 14 FAIL 0 
+[2026-10-31T16:34:18Z] stage obs: 17 tasks, 96 workers
+[2026-10-31T16:34:51Z] progress (ok/fail): hands 14/0 obs 3/0 build 0/0 fid 0/0 check 0/0  files 88 load 18.35
+[2026-10-31T16:35:52Z] progress (ok/fail): hands 14/0 obs 10/0 build 0/0 fid 0/0 check 0/0  files 95 load 18.85
+[2026-10-31T16:36:52Z] progress (ok/fail): hands 14/0 obs 16/0 build 0/0 fid 0/0 check 0/0  files 101 load 11.46
+[2026-10-31T16:37:05Z] stage obs done: OK 17 FAIL 0 
+[2026-10-31T16:37:05Z] obs cup__ep10: {"obj": "blue_cup", "frames": 81, "raw": 482689, "kept": 401386, "sec": 21.9}
+[2026-10-31T16:37:05Z] obs cup__ep14: {"obj": "blue_cup", "frames": 79, "raw": 1220180, "kept": 967370, "sec": 23.8}
+[2026-10-31T16:37:05Z] obs cup__ep20: {"obj": "blue_cup", "frames": 101, "raw": 1230815, "kept": 1121154, "sec": 20.7}
+[2026-10-31T16:37:05Z] obs cup__ep32: {"obj": "blue_cup", "frames": 130, "raw": 1456403, "kept": 1069063, "sec": 31.8}
+[2026-10-31T16:37:05Z] obs cup__ep33: {"obj": "blue_cup", "frames": 174, "raw": 1831057, "kept": 1507092, "sec": 49.8}
+[2026-10-31T16:37:05Z] obs lid__ep1: {"obj": "white_pot_lid", "frames": 168, "raw": 1538205, "kept": 1497944, "sec": 57.4}
+[2026-10-31T16:37:05Z] obs pot__ep1: {"obj": "white_pot", "frames": 168, "raw": 3982198, "kept": 3275469, "sec": 146.4}
+[2026-10-31T16:37:05Z] obs pot__ep28: {"obj": "white_pot", "frames": 110, "raw": 6342056, "kept": 4648086, "sec": 96.6}
+[2026-10-31T16:37:05Z] obs pot__ep3: {"obj": "white_pot", "frames": 157, "raw": 5497430, "kept": 4968855, "sec": 164.4}
+[2026-10-31T16:37:05Z] obs pot__ep5: {"obj": "white_pot", "frames": 144, "raw": 5424002, "kept": 4203281, "sec": 143.0}
+[2026-10-31T16:37:05Z] obs pot__ep6: {"obj": "white_pot", "frames": 122, "raw": 3442327, "kept": 2822082, "sec": 118.9}
+[2026-10-31T16:37:05Z] obs pot__ep8: {"obj": "white_pot", "frames": 110, "raw": 2912666, "kept": 2560558, "sec": 110.5}
+[2026-10-31T16:37:05Z] obs rack__ep14: {"obj": "plastic_dish_rack", "frames": 79, "raw": 2379795, "kept": 2168519, "sec": 73.5}
+[2026-10-31T16:37:05Z] obs rack__ep15: {"obj": "plastic_dish_rack", "frames": 83, "raw": 2454234, "kept": 2267814, "sec": 61.5}
+[2026-10-31T16:37:05Z] obs rack__ep16: {"obj": "plastic_dish_rack", "frames": 87, "raw": 2364575, "kept": 2134248, "sec": 76.1}
+[2026-10-31T16:37:05Z] obs rack__ep28: {"obj": "plastic_dish_rack", "frames": 110, "raw": 2678504, "kept": 2405171, "sec": 81.1}
+[2026-10-31T16:37:05Z] obs rack__ep30: {"obj": "plastic_dish_rack", "frames": 132, "raw": 4197690, "kept": 3813918, "sec": 131.9}
+[2026-10-31T16:37:05Z] stage build: 20 tasks, 96 workers
+[2026-10-31T16:37:52Z] progress (ok/fail): hands 14/0 obs 17/0 build 13/0 fid 0/0 check 0/0  files 160 load 9.70
+[2026-10-31T16:38:52Z] progress (ok/fail): hands 14/0 obs 17/0 build 19/0 fid 0/0 check 0/0  files 238 load 6.44
+[2026-10-31T16:39:09Z] stage build done: OK 20 FAIL 0 
+[2026-10-31T16:39:09Z] candidates built: {('white_pot', 'e0'): 24, ('white_pot_lid', 'e0'): 2, ('plastic_dish_rack', 'e0'): 12, ('blue_cup', 'e0'): 11, ('white_pot', 'C0'): 1, ('white_pot', 'library_v3'): 1, ('white_pot_lid', 'C0'): 1, ('white_pot_lid', 'library_v3'): 1, ('plastic_dish_rack', 'C0'): 1, ('plastic_dish_rack', 'library_v3'): 1, ('blue_cup', 'C0'): 1, ('blue_cup', 'library_v3'): 1}
+[2026-10-31T16:39:09Z] stage fid: 352 tasks, 96 workers
+[2026-10-31T16:39:37Z] stage fid done: OK 352 FAIL 0 
+[2026-10-31T16:39:37Z] stage check: 53 tasks, 96 workers
+[2026-10-31T16:39:46Z] stage check done: OK 53 FAIL 0 
+[2026-10-31T16:39:46Z] select: {"object": "white_pot", "pick": "pot/ep3/fit", "fid": 2.922, "c0": 2.914, "lib": 3.881, "rec": "E0", "flags": [], "eligible": "18/24"} {"object": "white_pot_lid", "pick": "lid/ep1/t2.5_fit", "fid": 1.675, "c0": 1.772, "lib": 5.186, "rec": "E0", "flags": [], "eligible": "1/2"} {"object": "plastic_dish_rack", "pick": "rack/joint/joint", "fid": 6.419, "c0": 6.245, "lib": 5.881, "rec": "E0", "flags": [], "eligible": "12/12"} {"object": "blue_cup", "pick": "cup/ep32/g1", "fid": 2.646, "c0": 2.723, "lib": 2.906, "rec": "E0", "flags": [], "eligible": "11/11"} 
+[2026-10-31T16:39:46Z] SHA256SUMS: 1062 files, 530M; total 10 min
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+Found 1,072 files to upload
+Uploading... 768/1,072 files checked, 0/37 uploaded (0.00B transferred), 0 committed in 0 commit(s)
+Upload completed in 4 commits.
+pushed runs/mesh-20261031-e0-b05f001 (530M)
+[2026-10-31T16:40:22Z] E0 pushed to the store runs/mesh-20261031-e0-b05f001
+[2026-10-31T16:40:22Z] E0-DONE rc=0
