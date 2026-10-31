@@ -5628,3 +5628,9 @@ Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). 
   - H-spoon: the eval-only spoon; GT-free falsifier = silhouette check vs public objects;
   - H-gross: one or two grossly wrong eval references, e.g. an identity swap;
   - H-diffuse: all eval references worse; no GT-free falsifier.
+- ~16:34 UTC bold-albattani, URGENT: the C0 pot, lid and rack marker balls use a 7 mm radius prior (fit window
+  5–9.5 mm) taken from the public scans (flagged by a 29 Oct audit, missed in the hand-off). It is asking the owner
+  directly.
+  This session told focused-pascal: no 9a upload with the C0 meshes without the owner's explicit acceptance; by
+  default pack 8 alone at 20:00 UTC.
+  Asked bold-albattani: E0 must use no scan-derived priors (own measurements or a generic grid, sources in its PREREG).
