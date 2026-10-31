@@ -1924,6 +1924,20 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     `build/I/fi5_default_sink.py` (static contact runs >= 5 frames at < 2 mm per frame, receiver by containment as
     F-I5.3 (a), hands-off as F-I5.3 (b), up to 3 S frames, `simphys.sink_test` with the F-I5.10 constants). Question: is
     the delivered copy physically usable? No threshold is new; the 4 mm / 5 deg bound is S's.
+  - **F-I5.14 outcomes (T-I13 public, measured 19:29-20:53 UTC, gmg code 1b9f0c1; recorded 20:57 UTC; results
+    `build/I/results/collcarve-public/`).** No carve was delivered; the round folders must not be used. Every one of
+    the ten objects ended in route 4 at 6 mm (3-47 boxes, 1.8-9.3 % of its SHELL body volume): CoACD 0.02 returned the
+    cap's 82 hulls (80 once), leaving the keep-out repair no split, and 2-75 hulls failed the 0.3 cm3 gate; the lathe
+    route was built with continuous rings on four objects but failed through the handle-residual hulls (over the cap or
+    the gate), and was not accepted or not buildable on two (ep11 blue rotc 3.013 sigma; ep2 lid three radial
+    intervals). With these colliders the overlap along the tracks is 0.0-0.48 cm3: ep13 and ep31 have no component,
+    ep12 and ep2 fail the sweep share (0.0), ep11 (cups) is in scope (receiver beige, SEAT, c = 1.0 mm, 7 overshoot
+    frames), passes the caps (9.97 %) and fails S (carved 31.6 mm / 42 deg; default 80.5 mm / 68 deg), P3 and P4: default
+    delivered. Predictions: P41, P43, P45, P46, P47 falsified; P42 and P48 hold only trivially (near-empty colliders);
+    P44 void (box colliders have sigma_sup = 1); P49 not tested (no eval bundle). Diagnostic (7), S on the delivered
+    pieces: every pair fails, displacement 8.2-126.8 mm (ep11 80.5; ep12 126.8 / 8.2; ep13 90.6; ep31 84.2 / 86.7; ep2
+    84.8 / 88.0). As-built gap found: the rigid-shift report runs only for in-scope pairs (F-I5.7 says every pair).
+    No rule is changed by this entry; the decisions are listed in INTERLOCK 21.11.
 
 ## Revision 1 changelog
 

@@ -111,6 +111,10 @@ clearance computed from the slope it rests on (about 0.1 mm on a cup wall, so th
 widened eval-10 cup did). A carve is delivered only if, among other tests, the guest stays within 4 mm and 5 degrees of
 its tracked pose with the hands off. The pose correction that would remove the overlap instead is computed and shown,
 not used to block. Written down (PREREG F-I5) before any code or run.
+**Result on the public episodes (31 Oct ~20:57 UTC, section 21.11): nothing carved or delivered, and the copies these
+runs wrote must not be used.** The step that builds hollow-keeping pieces failed on all ten real objects and fell back
+to 6 mm boxes keeping 2-9 % of each object; on those pieces every hands-off test fails by 8-127 mm. The piece builder
+needs a decision before any carve can be judged (21.11).
 
 **Cost.** CPU only, no rental. The 16-copy physics checks take about 0.6-2.5 CPU-hours per carved pair on our 4 shared
 cores [E]. mujoco and coacd are installed in the gmg venv; FlashCHORD's settle is run by the Embodiment session with
@@ -1836,3 +1840,40 @@ depth limit.
   5. replacing the as-built per-piece R+ shortcut by an exact K-inside-R+ clip (code).
   Off-axis cups (3-5 mm, as on eval 10) need a cut of 3-5 mm plus clearance into a 4 mm wall, so no variant can keep
   the wall [E]: the pose correction (the push list) stays their remedy.
+
+### 21.11 Public runs T-I13 (31 Oct, 19:15-20:57 UTC; PREREG F-I5.14 and its outcomes)
+**In plain words.** We ran the collision carve as written on the five public episodes (cup in rack ep12 and ep13,
+sweeper and rack ep31, cups ep11, pot and lid ep2). **Nothing was carved and delivered, and the simulator copies these
+runs wrote must not be used.** The carve itself was hardly reached: the step before it, which turns each object into
+simulator pieces that keep a cup or pot hollow, failed on all ten real objects and fell back to coarse 6 mm boxes that
+keep only 2-9 % of each object. With such pieces the objects hardly touch (at most 0.5 cm3 of overlap along a whole
+episode), so four of the five pairs have nothing to carve, and the one pair that does (the ep11 cups) fails the
+physics test. When the hands let go, nothing stays put on these pieces: the inner cup falls 80 mm, the cups fall out of
+the rack (91-127 mm), the lid falls 81-87 mm into the pot and the sweeper 84-87 mm through the rack.
+
+| ep | pair | scope (rule as written) | delivered | S on the delivered pieces (diagnostic) |
+|---|---|---|---|---|
+| 12 | blue cup / rack | out: both components fail the sweep share (0.0) | default (6 mm boxes) | cup moves 126.8 mm (f176), 8.2 mm (f6): fail |
+| 13 | blue cup / rack | out: no collider overlap at all | default | 90.6 mm (f146): fail |
+| 31 | sweeper / rack | out: no collider overlap at all | default | 84.2 / 86.7 mm drop: fail |
+| 11 | blue / beige cup | in: receiver beige, c 1.0 mm, caps pass (9.97 %) | default (S, P3, P4 fail) | 80.5 mm (f126): fail |
+| 2 | pot / lid | out: sweep share 0.0 | default | lid 84.8 / 88.0 mm: fail |
+
+- Why the pieces fail [M, `build/I/results/collcarve-public/README.md`]: (1) CoACD is asked for at most the piece cap
+  (82) and returns exactly 82 hulls, so the keep-out repair cannot split, and 2-75 hulls per object hold more than 0.3
+  cm3 of seen-empty space; (2) the ring pieces of cups and the pot are continuous (0 gaps), but the "handle" step adds
+  hulls for 6-15 residual shell components per object (22-68 cm3), which push the set over the cap or fail the gate; the
+  ep11 blue cup misses the lathe test at 3.013 sigma (threshold 3) and the ep2 lid has three radial intervals; (3) the
+  box fallback keeps a 6 mm cell only when it lies wholly inside the body, which a 3-5 mm wall almost never does.
+- Predictions: P41, P43, P45, P46, P47 falsified; P42 and P48 hold only because the pieces are nearly empty; P44 void;
+  P49 not tested.
+- **Decisions needed before any further F-I5 run (orchestrator / owner; each a dated PREREG entry first):**
+  1. the default-pieces ladder: CoACD below the cap so the repair can work, and a bounded handle step [H, falsifiers in
+     the results README];
+  2. a physical delivery floor: no round folder whose delivered pieces keep less than a stated share of the body or fail
+     S on the delivered pieces (today the rule delivers them because they pass the keep-out gate);
+  3. the five decisions of 21.10, which are downstream of these.
+- As-built gap: the rigid-shift alternative is reported only for in-scope pairs (F-I5.7 says every pair); here the
+  overlaps are under its 2 cm3 level anyway.
+- Eval twins 10, 1, 14, 30: still blocked (no eval bundle) and not worth running until (1) and (2) are decided.
+- Cost: this container only (five runs in parallel, 45-83 min each under load 14-25), $0, no rental.

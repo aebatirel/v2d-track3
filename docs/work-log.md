@@ -5734,3 +5734,24 @@ diagnostic; nothing is picked for submission.
 - **Synthetic:** w1 (t = 6 width miss gone), w2-w6, w6c, w9 pass; w7, w8, w8b fail at the prism cap; one harness bug
   (w8 physics guard) fixed and re-run.
 - Predictions: P51, P52a/b, P53, P54, P56 hold; P55, P57, P58 fail. Cost: CPU only, $0; no rental.
+
+### 2026-10-31 20:57 UTC — collision carve F-I5, public runs T-I13 (collision-carve workflow, Public runs)
+- **Rule as written** (no INTERLOCK 21.10 decision taken), PREREG F-I5.14 written and pushed before the runs (19:17;
+  report-only addendum (7) at 20:30). Inputs GT-free: v6 clean bundles, v6 M1 hands, CPU candidates rebuilt from v6,
+  picks shell_t5p36 (ep2 lid hull), eval semantics. gmg code 1b9f0c1. Five runs in parallel on this container
+  (19:29-20:53, 45-83 min each, load 14-25); no rental, $0.
+- **Result: nothing carved or delivered; the round folders of these runs must not be used.**
+  - All ten objects end in the last pieces fallback, 6 mm voxel boxes, keeping 1.8-9.3 % of the SHELL body volume.
+    CoACD 0.02 returns the full 82-hull cap, so the keep-out repair cannot split (2-75 hulls over 0.3 cm3); the lathe
+    rings are continuous but the handle-residual hulls push them over the cap or the gate; ep11 blue rotc 3.013 sigma;
+    ep2 lid profile complex.
+  - Collider overlap along the tracks 0.0-0.48 cm3. ep13, ep31: no component. ep12, ep2: sweep share 0.0, out of scope.
+    ep11 cups: in scope (receiver beige, c = 1.0 mm), caps pass, S fails (carved 31.6 mm, default 80.5 mm), P3, P4 fail.
+  - S on the delivered pieces (diagnostic): every pair fails, 8.2-126.8 mm (cups fall out of the rack, the lid falls
+    81-87 mm into the pot, the sweeper 84-87 mm through the rack).
+- Predictions: P41, P43, P45, P46, P47 falsified; P42, P48 hold only trivially; P44 void; P49 not tested (no eval
+  bundle).
+- Decisions needed (INTERLOCK 21.11): fix the default-pieces ladder (CoACD below the cap, bounded handle step) and add
+  a physical delivery floor (collider share of the body, S on the delivered pieces); 21.10's five decisions follow.
+- Results: `gmg/build/I/results/collcarve-public/` (README, per-episode JSON and logs), figures
+  `gmg/build/I/png/fi5pub_ep*.png`.

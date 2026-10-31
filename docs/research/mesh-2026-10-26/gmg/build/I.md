@@ -809,6 +809,18 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   (0.188 vs 0.0), one hands-off static run [142, 150], **f146: the cup moves 90.6 mm (dz 28.9, lateral 85.1 mm, tilt
   115 deg)**. All five T-I13 public runs done (19:29-20:53, ~45-83 min each in parallel, load 15-25). Writing the
   results README, PREREG F-I5.14 outcomes, INTERLOCK 21.11 and the work-log entry next.
+- 20:56 correction (read from `fi5.json`): the 20:26 entry said ep13's blue_cup lathe set went "over the cap with the
+  handle hulls"; that was written before parsing the record. Measured: 8 sectors, 65 rings, 0 gaps on 131,760 rays,
+  10 handle components (29.8 cm3), and the set **failed the pieces gate** (22 hulls over 0.3 cm3), then CoACD (82
+  hulls, 31 over, max 5.18 cm3) -> 6 mm boxes (25 boxes, 50 cells). Results README written
+  (`build/I/results/collcarve-public/README.md`).
+- 20:58 PREREG F-I5.14 outcomes, INTERLOCK 21.11 (+ a section-0 result line), work-log entry written; results in
+  `build/I/results/collcarve-public/` (README with the tables from `fi5_public_table.py`; per episode fi5 / report /
+  decisions / structure / summary / figure data / delivered-sink JSON, driver + candidate logs, launch records, r0
+  manifests and failed carves; 972 KB), figures `build/I/png/fi5pub_ep{12,13,31,11,2}.png`. **Public runs step done**:
+  nothing carved or delivered; the round folders in `<scratch>/gmg/runs-dev/20261031-fi5pub-3053a78/sim/` are not to
+  be used; decisions needed are in INTERLOCK 21.11. Eval twins still blocked (no eval bundle). No rental; STATUS.md
+  left to the orchestrator.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
