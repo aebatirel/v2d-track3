@@ -1,0 +1,34 @@
+left hand: frame, valid, centroid horizontal shift from f35 (cm, along the cup step direction / total), min joint-to-cup-centre cm
+  f 30 1   0.00 /  0.05     4.5
+  f 35 1   0.00 /  0.00     4.3
+  f 38 1   0.20 /  0.29     4.0
+  f 40 1   0.77 /  0.87     4.2
+  f 42 1   1.98 /  2.04     4.2
+  f 44 1   3.23 /  3.31     4.1
+  f 46 1   3.95 /  4.02     4.0
+  f 48 1   4.06 /  4.12     3.8
+  f 50 1   4.07 /  4.13     4.1
+  f 55 1   3.92 /  3.98     4.3
+  f 60 1   3.81 /  3.85     4.0
+  f 80 1   3.82 /  3.83     4.1
+  f100 1   3.58 /  3.58     4.6
+  f120 1   2.76 /  2.80     5.8
+right hand: frame, valid, centroid horizontal shift from f35 (cm, along the cup step direction / total), min joint-to-cup-centre cm
+  f 30 1   0.29 /  0.48    16.7
+  f 35 1   0.00 /  0.00    16.8
+  f 38 1   0.39 /  0.92    18.0
+  f 40 1   0.23 /  1.56    19.1
+  f 42 1  -1.18 /  2.35    19.8
+  f 44 1  -4.38 /  4.81    20.6
+  f 46 1  -7.75 /  7.91    19.4
+  f 48 1 -10.03 / 10.13    18.4
+  f 50 1 -11.02 / 11.13    17.1
+  f 55 1 -11.82 / 12.01    15.7
+  f 60 1 -12.15 / 12.43    15.1
+  f 80 1 -12.92 / 13.07    10.1
+  f100 1 -10.64 / 10.84     5.9
+  f120 1  16.76 / 16.89    32.3
+cup track step along u: f38:0.24 f40:0.94 f42:2.17 f44:3.71 f46:4.56 f48:4.51 f50:4.69 f60:4.41 f100:4.32 f160:4.11
+pack6 track    h_end 4.13 v_end 1.78 hmax 4.91 | evdepth re-run h_end 4.13 v_end 1.78 hmax 4.91 vmax 3.69
+evdepth re-run blue cup h/v by frame: f0:0.0/0.0 f10:0.1/-0.2 f20:0.1/-0.0 f30:0.1/0.0 f40:1.0/0.3 f50:4.7/1.3 f60:4.4/0.8 f70:4.5/0.6 f80:4.6/0.4 f90:4.5/-0.3 f100:4.3/3.1 f110:4.2/3.4 f120:4.2/2.3 f130:4.1/1.6 f140:4.2/1.8 f150:4.2/2.1 f160:4.1/1.8
+camera identical? 2.210606096959833e-08

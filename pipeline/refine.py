@@ -45,10 +45,23 @@ Shared labels, from our own track (after S0) and our hands only, never ground tr
                 rack or pot, pot in a rack). table_supported = plane ok and |h| <= snap_max (2 cm) and
                 h - min_k h_k <= 0.5 cm and not on_other and not over_other.
 
-Steps (each switchable with --steps; always applied in the order S0, S1, S3, S4, S5, S2):
+Steps (each switchable with --steps; always applied in the order S0, S6, S1, S3, S4, S5, S2):
   S0 identity fix hook: pipeline/identity_fix.py (board knob darkness) on a copy, when the roster is the board pair
      and the video, calibration and both board meshes exist; otherwise skipped and logged. Its output is the input of
      every later step and of the labels.
+  S6 static hold (31 Oct; tracker-fix PLAN §2 M1, ep11 DIAG Fix 1) [H until its rollout gate T1]: an object whose own
+     perceived horizontal travel stays under --s6_hmax_cm (2 cm) over the whole episode, and, unless it is axisymmetric
+     (--s6_axisym: the cups, whose spin is free and unscored), whose rotation from frame 0 stays under --s6_rmax_deg
+     (10 deg), is declared static and takes its frame-0 pose on every frame. Travel is that of our mesh's vertex
+     centroid c(t) in the world frame, max_t |c(t) - c(0)| projected on the table plane; rotation is max_t of the
+     angle of R(t) R(0)^T. The plane is det_rules.table_plane on the frame-0 depth at half resolution (as perc2's
+     TRACK_GUARD, perc2.py:438), moved from camera 0 to the world frame; without depth or K, S6 uses the plane refine
+     already has (--table, or the mkref fit when S1/S3/S4 need one), and without any plane it skips. It is whole-episode
+     and offline, so it cannot run inside perc2's online loop. pose_opt.json lists the frozen objects and, per object,
+     the horizontal travel, vertical excursion (peak, frame, end), rotation and, for a frozen object, where the other
+     roster objects are at its peak (for the overlay QA: a static container lifted by a nested object vs an object
+     lifted straight up). The thresholds were set on the 20 public episodes (no fresh holdout). Planned order with the
+     other tracker fixes: S0, S7, S6, S9, S8, S2 (S7, S8, S9 not implemented).
   S1 support-gated snap (R1): a table_supported object's whole trajectory moves by -h along the plane normal (as
      mkref's per-object snap, but gated). Objects over or on another object, or more than 0.5 cm above the lowest
      bottom, are left alone. Later rest segments (>= 10 frames, after first_move, hand-free on >= 50 % of the frames,
@@ -108,7 +121,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-STEP_ORDER = ['S0', 'S1', 'S3', 'S4', 'S5', 'S2']
+STEP_ORDER = ['S0', 'S6', 'S1', 'S3', 'S4', 'S5', 'S2']   # tracker fixes S7 (before S6), S9, S8 (after it): not built
 DEFAULT_STEPS = 'S0,S1,S2,S3,S4'
 FORBIDDEN_SUBSTR = ('observation', '.parquet', 'score_registered', 'per_frame', 'quarantine_gt',
                     '_pf.npz', '/gt/', 'calib_gt')   # 30 Oct: depth-audit label files and calibration outputs
@@ -531,6 +544,75 @@ def step_S0(a, names, W_C, camT, out_dir):
     return new, rec
 
 
+def s6_plane(depth0, KR, W0, n_, d_, prec):
+    """S6's table plane (n, d, source) in the world frame, n up: det_rules.table_plane on the frame-0 depth at half
+    resolution with K/2, as perc2's TRACK_GUARD (perc2.py:438), moved from camera 0 to the world; else refine's plane."""
+    why = 'no frame-0 depth' if depth0 is None else 'no K' if KR is None else None
+    if why is None:
+        sys.path.insert(0, HERE)
+        import det_rules
+        pl = det_rules.table_plane(np.asarray(depth0)[::2, ::2].astype(np.float32), np.diag([0.5, 0.5, 1.0]) @ KR)
+        if pl is not None:
+            W0 = np.asarray(W0, np.float64)
+            n = W0[:3, :3] @ np.asarray(pl[0], float)             # camera 0: n.x + c = 0 -> world: n_w.x + c - n_w.t0 = 0
+            return n, float(pl[1]) - float(n @ W0[:3, 3]), ('det_rules.table_plane on the frame-0 depth '
+                                                            '(half resolution, as perc2 TRACK_GUARD)')
+        why = 'det_rules.table_plane found no plane'
+    if n_ is not None:
+        return n_, d_, f'refine plane ({prec.get("source")}; {why})'
+    return None, None, f'no plane: {why}, and refine has none'
+
+
+def step_S6(a, objs, O, plane):
+    """Static hold: freeze objects whose perceived horizontal travel (and, non-axisymmetric, rotation) stays small."""
+    from scipy.spatial.transform import Rotation
+    n, d, src = plane
+    axisym = sorted({s.strip() for s in a.s6_axisym.split(',') if s.strip()})
+    rec = dict(plane=dict(source=src), hmax_cm=a.s6_hmax_cm, rmax_deg=a.s6_rmax_deg, axisymmetric=axisym, frozen=[],
+               objects={})
+    if n is None:
+        rec['skipped'] = src
+        log('S6 skipped:', src)
+        return rec
+    n = np.asarray(n, float) / np.linalg.norm(n)
+    rec['plane'].update(n=np.round(n, 6).tolist(), d=round(float(d), 6))
+    T = len(O[0])
+    C = [O[j][:, :3, :3] @ o.V.mean(0) + O[j][:, :3, 3] for j, o in enumerate(objs)]   # perceived, before any freeze
+    for j, o in enumerate(objs):
+        dc = C[j] - C[j][0]
+        v = dc @ n                                                 # vertical, + up
+        h = np.linalg.norm(dc - v[:, None] * n[None], axis=1)      # horizontal travel
+        r = np.degrees(Rotation.from_matrix(np.einsum('tij,kj->tik', O[j][:, :3, :3], O[j][0, :3, :3])).magnitude())
+        tp = int(np.argmax(np.abs(v)))
+        sym = o.name in axisym
+        hcm, rdeg = float(h.max() * 100), float(r.max())
+        why = []
+        if not hcm < a.s6_hmax_cm:
+            why.append(f'horizontal travel {hcm:.2f} cm >= {a.s6_hmax_cm:g}')
+        if not sym and not rdeg < a.s6_rmax_deg:
+            why.append(f'rotation {rdeg:.1f} deg >= {a.s6_rmax_deg:g} (not axisymmetric)')
+        frz = not why
+        ro = dict(frozen=frz, axisymmetric=sym, hmax_cm=round(hcm, 3), hmax_frame=int(np.argmax(h)),
+                  vmax_cm=round(float(abs(v[tp]) * 100), 3), v_peak_cm=round(float(v[tp] * 100), 3), v_peak_frame=tp,
+                  v_end_cm=round(float(v[-1] * 100), 3), rmax_deg=round(rdeg, 3),
+                  reason='; '.join(why) or (f'static: horizontal travel {hcm:.2f} cm < {a.s6_hmax_cm:g}'
+                                            + ('' if sym else f', rotation {rdeg:.1f} deg < {a.s6_rmax_deg:g}')))
+        if frz:
+            oth = {}
+            for k, ok in enumerate(objs):
+                if k != j:
+                    e = C[k][tp] - C[j][tp]
+                    oth[ok.name] = dict(horizontal_cm=round(float(np.linalg.norm(e - (e @ n) * n) * 100), 3),
+                                        height_above_cm=round(float(e @ n * 100), 3))
+            ro['others_at_peak'] = oth
+            O[j] = np.repeat(O[j][:1], T, axis=0)
+            rec['frozen'].append(o.name)
+        rec['objects'][o.name] = ro
+        log(f'S6 {o.name}: {"FROZEN" if frz else "kept"}; horizontal {hcm:.2f} cm, vertical peak {v[tp] * 100:+.2f} cm '
+            f'at f{tp} (end {v[-1] * 100:+.2f}), rotation {rdeg:.1f} deg{" (axisymmetric)" if sym else ""}')
+    return rec
+
+
 def step_S1(a, objs, O, lab, n, d, plane_ok):
     rec = {}
     B = len(objs)
@@ -792,7 +874,7 @@ def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--in', dest='inp', required=True, help='perception dir (poses.npz, poses_world_vo.npz, vo.json, ...)')
     p.add_argument('--out', required=True, help='refined perception dir (new; never the input dir)')
-    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S5 (default {DEFAULT_STEPS}; applied in '
+    p.add_argument('--steps', default=DEFAULT_STEPS, help=f'comma list of S0..S6 (default {DEFAULT_STEPS}; applied in '
                                                            f'the order {",".join(STEP_ORDER)}); "none" = copy only')
     p.add_argument('--hands', default=None, help='default IN/hands_refined.npz, else IN/hands.npz')
     p.add_argument('--depth', default=None, help='frame-0 depth: default IN/depth0.npy, else frame 0 of IN/depths_fs0.5.npy')
@@ -836,6 +918,10 @@ def parse_args(argv=None):
                    '(vertical creep alone does not release; default 0 = object_events rule)')
     p.add_argument('--s4_deadband', default=None, help='[H] variant "CM,DEG": own motion releases only once the track '
                    'has left the held pose by more than CM or DEG (default off)')
+    # S6
+    p.add_argument('--s6_hmax_cm', type=float, default=2.0, help='S6: freeze when the horizontal travel stays under this')
+    p.add_argument('--s6_rmax_deg', type=float, default=10.0, help='S6: and (not axisymmetric) the rotation under this')
+    p.add_argument('--s6_axisym', default='blue_cup,beige_cup', help='S6: axisymmetric roster objects (no rotation test)')
     # S5
     p.add_argument('--s5_min', type=int, default=10)
     p.add_argument('--s5_blend', type=int, default=5)
@@ -953,6 +1039,7 @@ def main(argv=None):
                             f'{a.support_max * 100:.0f}] cm: no support plane, S1/S3 skip (mkref would use its fallback)')
     rec['plane'] = prec
     log('plane:', json.dumps({k: v for k, v in prec.items() if k != 'candidates'}))
+    plane6 = s6_plane(depth0, KR, W_C[0], n_, d_, prec) if 'S6' in a.step_set else None
 
     # ---------------- shared labels (our track after S0, our hands)
     Jh = Mh = None
@@ -1031,7 +1118,9 @@ def main(argv=None):
     for step in STEP_ORDER:
         if step not in a.step_set or step == 'S0':
             continue
-        if step == 'S1':
+        if step == 'S6':
+            steps['S6'] = step_S6(a, objs, O, plane6)
+        elif step == 'S1':
             if n_ is None:
                 steps['S1'] = dict(skipped='no table plane')
             else:
