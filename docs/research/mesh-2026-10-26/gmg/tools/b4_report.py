@@ -84,6 +84,19 @@ def main():
               verdict=('PASS' if len(hand) == 25 and nj >= 23 and no >= 23 else
                        'FAIL' if len(hand) == 25 else f'INCOMPLETE ({len(hand)} of 25 files)'),
               records=recs)
+    # diagnostic only (DEVIATIONS 100; not the pre-registered rule): the same counts if every in-cube sample counted
+    # as a hit (the obs_points.py vote with the clean filters), and the share of the lost voxels' re-voted hits that
+    # came from unowned samples
+    def _ad(r, k):
+        return (r.get('attribution_diag') or {}).get(k)
+    lost_tot = [sum((_ad(r, 'lost_hits_revote') or {}).values()) for r in hand]
+    b3['diagnostic'] = dict(
+        note='not the B.3 pass rule (DEVIATIONS 100)',
+        jaccard_all_samples_ge_095=sum(1 for r in hand if (_ad(r, 'jaccard_all_samples_diag') or 0) >= 0.95),
+        jaccard_owned_unowned_ge_095=sum(1 for r in hand if (_ad(r, 'jaccard_owned_unowned_diag') or 0) >= 0.95),
+        unowned_share_of_lost_hits={f"ep{r['ep']}:{r['obj']}": round((_ad(r, 'lost_hits_revote') or {}).get('unowned', 0)
+                                                                      / t, 3) if t else None
+                                    for r, t in zip(hand, lost_tot)})
     json.dump(b3, open(os.path.join(a.out, 'b3.json'), 'w'), indent=1)
     # B.15
     cross = os.path.join(a.run, 'identity', 'cross.json')
