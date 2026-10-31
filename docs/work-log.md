@@ -5132,3 +5132,8 @@ Advice given:
   3-arm public recipe screen (control / keep-the-peak / reset-nudge DR) on ep2/12/18/24 × 2 seeds + a 2-episode confirm,
   launched only when credit allows. The eval retrain has priority on credit. tools/intrusion.py (759032e, their branch)
   available for eval 10's cup-nest penetration check.
+- ~11:50 UTC (relayed by determined-wright): the owner topped up $100 for the lean plan; Vast credit $128.43
+  (determined-wright adds the ledger budget line). Allocation [E]: this session $24–39 first (mass-check remainder,
+  eval-10 fix + retrain, masses retrain O2 if adopted), later a smaller retrain with the recipe-screen winner
+  ($10–15); mesh lane $15–28; Embodiment screen $28–34 + confirm ~$10; buffer ~$10. Ledger planned line before
+  every box.
