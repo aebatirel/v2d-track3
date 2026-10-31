@@ -5552,3 +5552,29 @@ arm and a no-policy replay floor to stage B.
     thickness (flagged); obs_fidelity rule committed before any choice; eval-build fidelity reported beside C0's on the
     same eval observations; public single-episode CD-O distribution as context.
   - ETA: handover 1 Nov ~12:00 UTC for the 1 Nov pack; not tonight.
+
+### 2026-10-31 ~16:05 UTC — RPE/MPPE decomposition done (CPU, $0, public only): the RPE/MPPE boards are failure boards
+Files: docs/analysis/rpe-decomp-20261031/ (README.md, PREREG.md, tables.md, JSON, scripts). Verified by hand:
+- kit RPE (`metric_code/track_3/RPE.py:543–566`, PR #215 kit): mean over object pairs of the second object's position
+  in the first one's body frame; 0 for single-object episodes;
+- episodes are averaged plainly (`:877`).
+Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on all 20 episodes):
+- Reference level, P_o vs mocap (lib): RPE 1.66 / MPPE 1.90 / AUC 0.890 over 20 episodes; without ep23 (board swap)
+  1.00 / 1.18 / 0.935. Worst 3 (ep23, ep18, ep31) carry 61 % of RPE.
+- Ablations (GT substitution, diagnostic only):
+  - constant per-object offset: ΔAUC +0.050, ΔRPE −0.22;
+  - anchor frame-0 orientation: ΔAUC +0.026, ΔRPE 0;
+  - every still frame held at truth: ΔAUC +0.055, ΔRPE −0.12.
+  RPE has no single dominant reference error type.
+- Rollout level (7 public P-arm cells × 10 draws):
+  - the reference costs 1.2–2.1 cm RPE;
+  - successful draws total 1.4–3.5 cm, failed draws 10–77 cm;
+  - mean RPE 13.7, of which the reference is ~10 %;
+  - GT-free RPE (rollout vs our own reference) correlates r = 0.9998 with RPE vs mocap over 70 draws.
+- So: RPE/MPPE (and SR) are driven by failed rollouts, not by perception. Without failures our RPE would be
+  ≈ 1.6–2.4 [E] vs top six 1.10–1.73. This corrects my 15:10 inference that perception is 2–3× worse.
+- GT-free candidates K1 rest-hold and K2 initial-hold (PREREG block 1, 15:46:46 UTC, before scoring): both FAIL
+  (ΔAUC +0.001; ΔRPE +0.005 / 0.000). Not adopted.
+- Draw selection by GT-free MPPE (post hoc, public): RPE 13.7 → 6.4. NOT proposed for use. The owner's earlier rule is
+  "we cannot pick and choose" (note 14), and PR #215 expects reproduced scores within run-to-run variation. The
+  legitimate form is checkpoint selection with a GT-free failure penalty ([H-sel]; needs fresh draws).

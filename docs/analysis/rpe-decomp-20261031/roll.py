@@ -47,11 +47,9 @@ def lib_host(n, slot):  # library_v3 as host geometry (for sim vs reference)
     return dict(name=n, mesh=(v, f), anchor=c, radius=r, points=pts, axis=axis, order=order)
 
 
-def main():
-    rd, scratch, out = sys.argv[1:4]
-    L.load_kit(f'{scratch}/dl/kit/v2d_submission_kit'); t3 = f'{scratch}/t3'
-    res = {}
-    for spec in sys.argv[4:]:
+def cell(spec, scratch):
+        L.load_kit(f'{scratch}/dl/kit/v2d_submission_kit'); t3 = f'{scratch}/t3'
+        res = {}
         root, arm, ep = spec.split(':'); ep = int(ep); L.guard(ep); t0 = time.time()
         names = L.names_of(t3, ep)
         H = [L.host_geometry(t3, n, s) for s, n in enumerate(names)]
@@ -86,6 +84,15 @@ def main():
         print(f'{arm} ep{ep}: n={len(rows)} ref RPE {r["reference"]["RPE"]:.2f} MPPE {r["reference"]["MPPE"]:.2f} AUC {r["reference"]["AUC"]:.3f} | '
               f'total RPE {r["total_mean"]["RPE"]:.2f} MPPE {r["total_mean"]["MPPE"]:.2f} AUC {r["total_mean"]["AUC"]:.3f} | '
               f'policy RPE {r["policy_mean"]["RPE"]:.2f} MPPE {r["policy_mean"]["MPPE"]:.2f} AUC {r["policy_mean"]["AUC"]:.3f} ({time.time() - t0:.0f} s)', flush=True)
+        return res
+
+
+def main():
+    from concurrent.futures import ProcessPoolExecutor
+    scratch, out = sys.argv[2:4]; res = {}
+    with ProcessPoolExecutor(4) as ex:
+        for r in ex.map(cell, sys.argv[4:], [scratch] * len(sys.argv[4:])):
+            res.update(r)
     json.dump(dict(kind='rpe-decomp rollouts', note='ORACLE DIAGNOSTIC, public episodes only.', cells=res), open(out, 'w'), indent=1)
     print('wrote', out)
 
