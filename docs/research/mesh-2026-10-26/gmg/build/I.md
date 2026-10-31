@@ -105,3 +105,5 @@ P_sim for ep13 / ep31 = orcB perceived references `runs/20261030-orcB-38234d1/re
 provenance with the section-11 validator; the orcB mocap "O" arm stays refused); ep24 path to follow. They run A3
 (jitter_check --k 16) on our pieces dir. props_gmg.json must match `docs/research/physics-2026-10-30/props_masses_only.json`
 (on their branch origin/claude/determined-wright-3joens if not on ours).
+
+## ORCHESTRATOR NOTE (31 Oct 10:52 UTC): eval references + pack mesh set, see `build/focused-pascal-eval-refs-20261031.md`
