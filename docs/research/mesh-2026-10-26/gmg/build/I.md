@@ -1220,6 +1220,30 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   physics cell was killed at 22:17 (no result). Plan: platebody REV 17 (low-piece fit, box partition, fallback), new
   `gmg/contactgate.py` (part 1), minimal driver fields, `tests/test_fi417.py`; commit; then code checks, the gate
   validity check, w10 under REV 17, k5 physics + part 1, ep24 fi4q, ep23. Load 2.8 (4 cores; three other agents' jobs).
+- 23:08 F-I4.17 build written (committed before any F-I4.17 run): `platebody.py` REV = 17 (REV 16 / 15 reachable; the
+  only change on their path: `_outline`'s ctx also returns the raster offset `lo`; `_bodies_slots_16` takes `rev`):
+  `low_piece_fit` (prefix-sum IoU over the cropped outline raster; waist alone, left end, right end, waist inside the
+  ends' rows, <= 10 passes, ties fewer rectangles / smaller area / theta), `plate_body_low` (the F-I4.16 ladder body
+  computed first as report and fallback; IoU >= 0.90 -> U extruded, box kind `low_piece`; else `low_piece_iou_fail`
+  and the polygon), `box_partition` / `pieces_boxes` (slab method both directions, fewer boxes, tie A; 8-vertex
+  cuboids; tiling check), `pieces_body`, `manifest_fi417`. New **`gmg/contactgate_fi4.py`** (part 1: sim=rl values read
+  from `docs/research/work/15-verify/cfg_sim_rl.yaml`, sha256 checked = 695536b7...; settle scene with those options and
+  `<size njmax 512 nconmax 256>`; S1 / S2; synthetic table; control boxes; lowered diagnostic; P3 replay counts).
+  **File-name deviation:** F-I4.17.6 step 1 names `gmg/contactgate.py`, but the concurrent collision-carve F-I5.16 entry
+  (PREREG line ~3030, INTERLOCK 21.14) plans a new `gmg/contactgate.py` of its own, so this module is
+  `contactgate_fi4.py` (no change in substance). Driver (shared, minimal, REV >= 17 only): part 1 after P2-P7 in
+  `run_waiver` (`contact_gate_<o>_<p>.json`; a fail adds `contact_gate_part1` to failing and DO_NOT_USE names
+  `contact_budget` with the numbers), r0 manifest `owner_waiver` += `manifest_fi417` keys and the part-1 record,
+  `contact_budget_pending: true`, `contact_budget_part2` (pending, why not here, caveat); carve flags +=
+  `contact_budget_pending`. New `tests/test_fi417.py` (CodeChecks (ii)-(iv), W10 k1-k9 with part-1 counts and k5
+  physics + part 1, W10Report w10p / w10n, ReRuns w7 / w8 / w8b, W1 t = 10, GateValidity on the round-2 r0) and
+  `build/I/fi417_identity.py` (code check (i): 3b7e6d0 vs this code, both REV 16, w1 t = 10) and
+  `build/I/fi417_ep23.py`. Pre-commit smoke (code checks only, no freeze input, w10 / ep24 numbers not computed):
+  CodeChecks (ii)-(iv) pass (I-mask theta (3, 66, 10, 0, 69, 10, 0, 69) IoU 1.0; rectangle 1, T 2 rectangles; I + waist
+  slot 5 boxes / default 3, rectangle + slot 3 / 1, tiling 0.0 mm2; box on plane nefc = 4 ncon at every step) and W1
+  t = 10 under REV 17 (P134 holds: one rectangle, IoU 0.985 / 0.990, 3 slotted / 1 default box, keep-out 0.0, CARVE)
+  [M, 48 s]. Part 2 cannot run here [M, 22:55]: `warp`, `newton`, `mujoco_warp`, `flash_chord` not importable in the
+  venv; no FlashCHORD tree on the machine (find to depth 4) -> hand-off to determined-wright.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
