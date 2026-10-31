@@ -15,8 +15,8 @@
 ## 2026-10-31 ~20:32 UTC: recipe screen + solver re-test DONE (all boxes gone); no eval solving; owner: no D
 - **One cell is short of draws.** C/ep24-s43 has 4 of its 10 draws: 6 evaluator starts crashed (`pthread_create`
   EAGAIN, a box thread limit; infrastructure, not the policy). So all three verdicts are formally INCOMPLETE.
-- **K vs C:** inconclusive under any completion of that cell (3-episode mean Δ +0.002).
-- **D vs C:** not determined. ep12 +0.33 (both seeds, sd falls); ep2 −0.11 (sd 2.5× higher); ep18 −0.02. It flips to
+- **K vs C:** inconclusive (complete after the 22:13 UTC re-score: mean Δ −0.002).
+- **D vs C:** inconclusive after the re-score (C/ep24-s43 sd 0.0012, so no second sd fall). ep12 +0.33 (both seeds, sd falls); ep2 −0.11 (sd 2.5× higher); ep18 −0.02. It flips to
   "signal" only if C/ep24-s43's 10-draw sd ≥ 0.0116 (4 present draws: 0.0046). Re-scoring that cell costs ≈ $1 [E] and
   needs the owner's go-ahead.
 - **S vs C (§9):** no signal under any completion (Δ ep2 −0.133 ≤ −0.05; ep12 +0.223; ep18 −0.038; ep24 ≈ +0.007).

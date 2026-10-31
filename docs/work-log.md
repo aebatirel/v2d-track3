@@ -6146,3 +6146,11 @@ Background agent, CPU only, $0, no ground truth read.
   overlap 86 cm³; ep12/13 cup 15–23 mm inside the table; ep31 sweeper 45 mm above it). The remedy there is pose
   correction, not carving.
 - Test A (physics-solver.md §11) is running: 16 jitter checks on CPU (`cmds/`).
+
+### 2026-10-31 22:13 UTC — determined-wright: C/ep24-s43 re-scored; recipe screen verdicts complete
+- The V seed-43 box ran the §10 re-score first: C/ep24-s43 = **0.2333** (sd 0.0012, 10 draws, policy_20000768, md5
+  699fe426). The poll saw it at 22:12 UTC.
+- Merged with the live cell record (pulled with `vast.sh exec`): K vs C **inconclusive** (−0.0018), D vs C
+  **inconclusive** (sd falls on 1 episode), S vs C **no signal** (min −0.133). No INVALID.
+  `gpu/recipe_screen_KDS_complete.{json,txt}`; physics-solver.md §8.1.
+- The V cells are training on both boxes.

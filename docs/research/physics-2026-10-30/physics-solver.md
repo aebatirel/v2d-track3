@@ -1077,6 +1077,18 @@ Reused unchanged: `tools/early_stop.sh`, `tools/ckpt_curve.sh`, `tools/ckpt_curv
   - Picking the seed by sim_vs_ref gains +0.021 (C), +0.016 (K), +0.016 (D) AUC over the 2-seed mean.
   - sim_vs_ref orders the two seeds like AUC in 11 of 11 pairs.
 
+**Completed verdicts (31 Oct 22:13 UTC, after the §10 re-score).**
+- C/ep24-s43 re-scored on the V seed-43 box (Vast 58580297, run 20261031-rscrV43-0636f20): 10 fresh official
+  evaluations of the stored chosen checkpoint `policy_20000768`, AUC **0.2333** (sd 0.0012, n 10). The 4 surviving
+  draws had 0.2381 (sd 0.0046). Same reference md5 (699fe426); the selection was not redone.
+- Merge: the 4 box summaries + the live cell record, `gpu/recipe_screen_KDS_complete.{json,txt}`. No missing cells,
+  no INVALID.
+  - **K vs C: inconclusive.** Mean Δ −0.0018; ep24 Δ −0.013.
+  - **D vs C: inconclusive.** The sd falls ≥ 40 % on 1 episode (ep12) only; ep24's sd C 0.0019 vs D 0.0043.
+    Mean Δ +0.049.
+  - **S vs C (§9): no signal.** Mean Δ +0.015, min Δ −0.133 (ep2).
+- These are the screen's final pre-registered verdicts; the bounds in this section's verdict list held.
+
 **Post-hoc, not pre-registered [H].**
 - Script: `gpu/scripts/recipe_screen_posthoc_select.py`. Output: `gpu/recipe_screen_posthoc_select.txt`.
 - Per (episode, seed), the arm with the higher 10-draw sim_vs_ref also had the higher AUC:
