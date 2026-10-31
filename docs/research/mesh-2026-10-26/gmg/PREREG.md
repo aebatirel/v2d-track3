@@ -1247,6 +1247,22 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   - [H] Falsified if w6 does not recover t within 1 mm, if w7 does not carve, if the 30 mm cylinder of w3 becomes plate
     -like, or if on ep24 step 2 does not hold for board 1. Known limit: board 2's slot in board 1 is sized by a prior
     (board 2 = board 1's stock), not by a measurement; the depth of each slot is a prior as before (F-I4.3).
+  - **Outcomes (17:08-17:37 UTC, no rule change; code 9ad1af9) [M].** Synthetic T-I1 Waiver + Controls re-run (14
+    tests, 1081 s): OK with 3 expected failures. w1 identical to F-I4.13 (t = 6 width known miss; 10 / 13 / 18 pass;
+    t = 25 still out of scope, now via `camera_side_two_sided_fail`); w2-w5 and Controls pass (w5 lag 0.033 cm / 0.16
+    deg); w3: the 30 mm cylinder and the 16 mm rod stay out of scope. **w6 misses** (expected failure): at t = 10 mm
+    with sigma 3 mm the synthetic faces are not merged, step 1 still holds and reads 8.07 / 8.39 mm. Step 2 checked
+    directly (w6b): 5.81-5.82 / 9.57-9.66 / 17.12 mm for 6 / 10 / 18 mm (0.2-0.9 mm thin), one cell fails the rms check
+    (t = 18, sigma 1). **w7 passes** (one-face B, t from A, CARVE both, widths 12.17 mm, centres <= 0.21 mm). The first
+    w7 fixture kept B's edge points (float32 view along z of either sign) and made B 'two-sided'; corrected in the test
+    only. **T-I11 re-run (tag fi4b, 914 s):** board 1 plate by step 2, t = 6.21 mm; board 2 plate by step 3, t := 6.21
+    mm (P40 holds); in scope; sweep 1.0 / 1.0, push 19.0 / 22.0 mm pass; **F-I4.2 then fails on both boards**:
+    min-area-rectangle fill 0.895 / 0.868 < 0.9 (`plate_outline_not_rectangular`; rectangles 234.5 x 142.3 / 231.1 x
+    142.0 mm; the filled outline's 2-98 % extents are 220 x 124 / 216 x 124 mm: the outline flares by about 9 mm per side
+    at the ends of the long axis, which sets the rectangle's width). Both boards stay PUSH; no slot, no physics, no
+    F-I4 delivery. Stopped here: this step allowed one post-hoc entry (this one), so nothing is changed after the
+    failure. [H] for the next decision (not adopted): a body that does not let end flares set the width (e.g. the
+    rectangle of the 2-98 % outline, or fill measured on the 2-98 % box) would pass; it needs its own dated entry.
 
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
   only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,

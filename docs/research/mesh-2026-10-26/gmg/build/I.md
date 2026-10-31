@@ -500,3 +500,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 17:35 pushed d156571 (F-I5 + section 21, committed 17:34:08 UTC). Correction: the entry above first said 17:36 and
   F-I5 / the INTERLOCK header said 17:40, guessed times; replaced by the commit time 17:34 (follow-up commit, text
   otherwise unchanged). Design step done; no code edited, nothing run.
+- 17:31-17:37 [M] GT-free look at the fill failure (`<scratch>/interlock/fi4/diag15/diag_outline.py`, JSON + masks in
+  `build/I/results/slot-ep24/diag15/` and `build/I/png/ep24_fi4b_outline_*.png`; recomputes the run's fill exactly,
+  0.895 / 0.868): the filled outline's 2-98 % extents are 220 x 124 / 216 x 124 mm but its full extents 234 x 142 / 230
+  x 142 mm; the masks show the outline flaring by about 9 mm per side at both ends of the long axis (an "I" shape), and
+  those flares set the min-area rectangle's width (142 mm). Cause of the flares not established [H: marker balls or
+  bumps at the board ends; board 2's 1 % tail at -9.3 mm on the camera side is such a bump]. No rule change.
+  T-I1 Waiver + Controls re-run with F-I4.14 code (`<scratch>/interlock/fi4/f414/test_waiver.log`, 1081 s): OK, 14
+  tests, 3 expected failures (t = 6 width, w6, w6b); w1 values identical to F-I4.13; w3 cylinder and rod out of scope;
+  w5 lag 0.033 cm / 0.16 deg. Results and logs copied to `build/I/results/slot-ep24/` (fi4evalsem, fi4b, diag14,
+  diag15, tests). PREREG F-I4.14 outcomes and INTERLOCK 20.8 added. Board-slot step done (stopped at the F-I4.2 gate
+  failure, no tuning); the shared gmg files are released.

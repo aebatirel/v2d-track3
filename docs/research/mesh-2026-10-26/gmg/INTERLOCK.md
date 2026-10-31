@@ -1367,6 +1367,18 @@ naming the test, for the record. The submitted (CD-O) board mesh is unchanged.
   decision stays IGNORE. T-I11 runs with eval semantics, as in sections 18-19. Eval 25 runs later with its own
   reference and the identical code.
 
+### 20.8 Outcome on public ep24 (T-I11, 31 Oct; PREREG F-I4.14 outcomes) [M]
+- First run (tag fi4evalsem, 16:51-16:58 UTC): no plane pair on either board (F-I4.1) -> out of scope, both PUSH.
+  Diagnosis: board 1's faces are both seen but its 9 mm inlier band (sigma 3.0 mm) merges them into one plane; board 2
+  is seen from one side only.
+- F-I4.14 (post hoc, pushed dad65a1 before the re-run): camera-side face pair, else a one-face plate with the partner's
+  thickness (same-stock prior [E]).
+- Re-run (tag fi4b, 17:15-17:30 UTC): both boards plate-like (board 1 t = 6.21 mm measured; board 2 t := 6.21 mm prior),
+  in scope, sweep and push gates pass, then the outline body fails on both (rectangle fill 0.895 / 0.868 < 0.9: the
+  outline flares about 9 mm per side at the ends of the long axis). Both boards stay PUSH; no slot was built, no
+  physics ran on a slot, nothing is delivered under F-I4. Results: `build/I/results/slot-ep24/`, outline masks
+  `build/I/png/ep24_fi4b_outline_*.png`.
+
 ## 21. Collision carve for every colliding pair (owner's extended waiver, 31 Oct; PREREG F-I5; written before any code or run with it)
 
 **In plain words.** You extended the waiver ("but like we said it doesnt have to be a board it can be a cup of what
