@@ -55,3 +55,15 @@ carves change only the simulator assets (the reference is unchanged), so one ref
 - So Tier 2 depends on Masses v2 (verdict ~23:00–01:00) and, for references, on the re-track test (if it passes:
   every eval reference is rebuilt and scored against both references). Recipe-control arms are dropped, so the cost
   line "with a recipe winner" no longer applies: Tier 1 ≈ $20–33; Tier 1 + Tier 2 one arm ≈ $55–90 [E].
+
+## Update (31 Oct ~20:55 UTC): targeted D arm (owner, ~20:40 UTC via the score-status session: "sure add that whatev")
+- Extra arm D (determined-wright's `ops/box/patch_flashchord_dr.py`, `FC_DR_RESET=1.5,0.015,0.01`, `FC_DR_SEED=<seed>` in
+  the training env only; commit ≥ 609582a) on evals **14, 16, 25, 30, 33** only, on top of each episode's pack-10
+  configuration (carve/seat, masses if ADOPT, re-tracked reference if it passes): D vs no-D is the only difference.
+- 2 seeds each: 14, 16, 33 grasp-lock = 6 cells (≈ $6–9 [E]); 25, 30 standard learner = 4 cells (≈ $10–14 [E]); D on
+  the standard learner is untested (the per-episode swap rule protects them; stated in the PREREG).
+- Choice per episode: among the arms (no-D, D) and the packed policy, by the agreed GT-free swap rule (≥ 10 fresh draws:
+  mean sim_vs_ref, failure rate RPE > 5 cm, median RPE vs the packed policy; secondary −0.05 guard). The PREREG fixes how
+  the two arms are compared before any result (proposal: an arm is a candidate only if it passes the rule vs the packed
+  policy; between two passing arms, the higher fresh-draw mean sim_vs_ref, ties → no-D).
+- Cost lines become: Tier 1 + D ≈ $36–56; Tier 1 + D + Tier 2 (one arm) ≈ $71–113 [E].
