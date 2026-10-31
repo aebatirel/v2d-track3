@@ -566,6 +566,37 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   10954 from 18:24: x5, x2, x3, x4, x2b_5mm; logs `<scratch>/fi5/t_diag.log`, `t_cups.log`). Code at fae78de + WIP
   snapshots; the shared platebody.py is being edited by the board-slot round-2 Build (not mine, not touched). Next:
   re-read F-I5 / INTERLOCK 21 and the code, collect the x1-x5 results, then decide.
+- 18:34 [M] T-I12 results of the previous instance's runs (code fae78de + WIP snapshots; logs `<scratch>/fi5/t_cups.log`,
+  `t_diag.log`, `t_oth.log`, `t_ctl*.log`; JSON beside them), pre-registered rule, CC_COPIES 16:
+  - **x1 MISS, x2 MISS, x4 MISS, x5 MISS** (all in scope, receiver A by containment 0.78-0.88 vs 0.06-0.21, INSERTION
+    run [16, 89], sweep 0.87, c = 1.0 mm with sigma_sup = 1.0): every carve stops at the caps, so S never runs and the
+    default is delivered: x1 / x4 / x5 topology 1/1 -> 33/31, removed 74.7 cm3 = 74 % of 100.4, reach 0.91 (12 sectors,
+    62 infeasible pieces removed); x2 (3 mm offset) topology 1/1 -> 14/3, 35 %, reach 0.81 (16 sectors, 43 removed);
+    x2b (5 mm offset, the eval-10 case; no pre-registered outcome) topology 1/1 -> 1/0 (a hole through the wall), 35 %,
+    reach 0.81. x4 asserts S or P2 fails; nothing is simulated because the caps fail first. x5: no overshoot frame
+    flagged (the 6 dipped frames are not build frames entered after the jittered rest) and the caps fail.
+  - **x3 MISS**: receiver A, but A's component fails the sweep gate (0.378) and only B<-A components pass:
+    `receiver_no_region`, no carve, no S; default delivered (the expected outcome "S fails" is not reached).
+  - x1 diagnostics (never delivered): c forced 0.1 mm with jitter -> 8 sectors, 64 infeasible pieces removed, 78 %,
+    reach 1.0: `budget_iv_fail`. Without track jitter (c by the rule = 0.05 mm, sigma_sup 0.05; c forced 0.1 mm): the
+    big components fail the sweep (0.15 / 0.28, run SEAT [35, 89]); only 4-voxel components carve (8 'widen' options,
+    16 sectors, 0 removed, caps pass); **S fails for carved AND default**: the guest rises 4.6 mm (dz -4.64 / -4.59 mm,
+    tilt 0.03 deg): the track is 9.5 mm too deep and the uncarved rings push it out; P3, P4, P7 also fail.
+  - sweeper (holder with a blind hole, no pre-registered outcome): in scope, receiver = holder (containment 0.18 vs
+    0.007), c = 1.0 mm (floor), removed 2 %, topology kept, **reach 0.96 > 0.6: `budget_iv_fail`**, default delivered.
+  - rack: **process abort inside CoACD** (C++ assertion `d0 != d2`, intersection.h) while running route 3 on the carved
+    rack body; lidpot never ran. Code fix (18:33, no rule change): `cavpieces.coacd` runs CoACD in a forked child; an
+    abort raises and the ladder falls to route 4. Rack + lidpot re-running (`<scratch>/fi5/t_oth2.log`, from 18:34).
+  - Passing as stated: x6 / x10 (plate pair and flag off identical), x7 n2 / n4, x8 plate + folded sheet, x9 (0 gaps;
+    forced 1 mm ring caught), x11 (route 3, opening empty). x7 wander: MISS (in scope, recorded earlier).
+  Mechanisms [M unless marked]: (1) the swept union over 38 jittered frames (0.5 mm / 0.2 deg) plus c = 1 mm plus the
+  face-offset corner growth reaches r = 36.8 mm in a 33.7-37.7 mm wall, beyond the outer chord of a 12-sector piece
+  (37.7 cos 15 deg = 36.4 mm): the piece has no feasible option and is removed; (2) the 10 mm re-banding of the carved
+  wall over its full height pushes the piece count over the 82 cap (16 sectors -> 12 -> 8; 8 sectors lose 2.9 mm of
+  wall at mid-sector); (3) a wall-layer carve spans the whole wall height, so reach along the axis is 0.8-1.0 > 0.6 for
+  every INSERTION nest; (4) sigma_sup = 1 because R+ holds the guest's base corner; [H] physically consistent only
+  when the carve leaves a ledge under that corner (drop <= c). Next: write these outcomes + a post-hoc proposal into
+  PREREG before any further diagnostic, commit, push.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG

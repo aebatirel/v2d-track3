@@ -663,11 +663,41 @@ def gate(hulls, body, ev, k_inside=None):
 
 
 # ------------------------------------------------------------------------------------------------ route 3
-def coacd(body, cap):
-    import coacd as _c
-    parts = _c.run_coacd(_c.Mesh(np.asarray(body.vertices, np.float64), np.asarray(body.faces, np.int64)),
-                         threshold=k_('coacd_thr'), max_convex_hull=int(cap), preprocess_mode='auto')
-    return [np.asarray(v, np.float64) for v, f in parts if len(v) >= 4]
+def _coacd_child(conn, V, F, thr, cap):
+    try:
+        import coacd as _c
+        parts = _c.run_coacd(_c.Mesh(V, F), threshold=thr, max_convex_hull=int(cap), preprocess_mode='auto')
+        conn.send(('ok', [np.asarray(v, np.float64) for v, f in parts if len(v) >= 4]))
+    except Exception as e:                                          # noqa: BLE001
+        conn.send(('error', f'{type(e).__name__}: {e}'))
+    conn.close()
+
+
+def coacd(body, cap, timeout_s=3600):
+    """CoACD in a forked child process: CoACD 1.0.14 can abort the whole interpreter on a C++ assertion
+    (intersection.h `d0 != d2`, T-I12 rack fixture, 18:14 UTC); an abort or error raises here, so the route ladder falls
+    to route 4 instead of the run dying (code fix, no rule change)."""
+    import multiprocessing as mp
+    ctx = mp.get_context('fork')
+    a, b = ctx.Pipe(duplex=False)
+    p = ctx.Process(target=_coacd_child, args=(b, np.asarray(body.vertices, np.float64),
+                                               np.asarray(body.faces, np.int64), k_('coacd_thr'), int(cap)))
+    p.start()
+    b.close()
+    out = None
+    if a.poll(timeout_s):
+        try:
+            out = a.recv()
+        except EOFError:
+            out = None
+    p.join(5)
+    if p.is_alive():
+        p.kill(); p.join()
+    if out is None:
+        raise RuntimeError(f'coacd child died (exit code {p.exitcode})')
+    if out[0] != 'ok':
+        raise RuntimeError(f'coacd child: {out[1]}')
+    return out[1]
 
 
 def repair(hulls, points, body, ev, cap, k_inside=None, solid_points=None, log=None):
