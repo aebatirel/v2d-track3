@@ -5648,3 +5648,26 @@ Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). 
   methods and labels each generic / own-observation / scan-derived / unknown. Scan-derived and unknown items get an
   own-observation or generic value, with sources in a PREREG committed before any build. Then public checks and the eval
   rebuild E0b → meshes/library_e0b(x) for pack 10. The running E0 box uses the old constants: comparison only, won't ship.
+
+### 2026-10-31 ~17:10 UTC — GT-free gross-error screen of the eval references: H-gross weakened
+Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; fig/ contact sheets and overlays,
+4.1 MB, regenerable with overlay.py, kept out of git). CPU, $0, no GT read; no reference or pack changed.
+- Calibration (public, before PREREG):
+  - ep23's latched board separates clearly from 31 clean objects (step 22.3 vs ≤ 3.3 cm; 148° vs ≤ 28°; 29 frames
+    below −3 cm vs 0; depth-bad 0.342 vs ≤ 0.155);
+  - the plain swap is visible only to the knob rule.
+  Thresholds in PREREG at 16:41/16:43 UTC; first eval values at 16:44.
+- Result: no persistent gross error in any of the 36 eval reference objects (no identity swap, no table or object
+  penetration, no wrong frame-0 placement). Eval 10 cup identity is correct (blue darker on 8/8 frames).
+- Flags:
+  - eval 32 blue cup on the wrist at f21–33 (the rollout does not follow it);
+  - evals 14 and 33 blue cup lags the hand (≈ 11 / 45 frames);
+  - spoon steps of 5–9 cm in evals 32, 33 and 36;
+  - reference settle 3–5 cm below perception in evals 3, 6, 8, 20, 28, 32;
+  - eval 25 knob flag judged a false alarm post hoc (disclosed).
+  Total if fixed ≈ 0.15–0.2 cm of board RPE [E], ≈ 10–15 % of the 1.5 cm gap.
+- Disclosure: the cup identity window was changed after the grey percentiles printed (the pre-registered window was
+  empty); the verdict holds on every frame.
+- Reading: the remaining ≈ 1.3 cm points to H-diffuse, H-spoon or mesh registration, which this screen cannot see.
+  Fix ideas (cup-in-hand guard; settle cap with a depth check) are small (≤ 0.05 cm each, ≤ 0.1 cm total) and
+  untested. They are not proposed for pack 10 unless a public gate passes by 1 Nov 12:00.

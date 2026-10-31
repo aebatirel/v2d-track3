@@ -1,0 +1,126 @@
+{
+ "tool": "pipeline/depth_audit.py",
+ "argv": [
+  "/home/user/v2d-track3/pipeline/depth_audit.py",
+  "--poses",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/perc2/ep38/poses.npz",
+  "--depth",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep38/cache/depth/eval/ep38/depths_fs0.5.npy",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep38/hands_refined.npz",
+  "--meshes",
+  "/home/user/v2d-track3/meshes/library_v3",
+  "--out",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/depth/perc/ep38",
+  "--pylib",
+  "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/pylib",
+  "--no_rest",
+  "--force"
+ ],
+ "time_utc": "2026-10-31T16:56:39Z",
+ "mode": "perception",
+ "code": {
+  "refine_sha256": "1f6a2adfc4dbbdd058d294c78a9a9a59a74c97d2975decdce48a3c8f2c652e54",
+  "branch": "refs/heads/claude/standings-20261031",
+  "commit": "ca853eaaf896511045b6fa0243f8eb28b02164e1",
+  "depth_audit_sha256": "53fc8abf05e689d8242adb3695f999293b5de71687f1ef8ec0377a12467516f0"
+ },
+ "inputs": {
+  "poses": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/perc2/ep38/poses.npz",
+   "sha256": "e54645ad54c69fcf8b43b7fc04040db6508b2b602c85e5997055d34dc4036b28"
+  },
+  "depth": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dldepth_ep38/cache/depth/eval/ep38/depths_fs0.5.npy",
+   "sha256": "6cb417d7fb10c1161c713f732876d8eec98b6b3f310191156b286148a994090a"
+  },
+  "hands": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dl/runs/20261026-pack6-5203d42/refs/perc2mck/ep38/hands_refined.npz",
+   "sha256": "bf138a79b8795f13e66a8e40fc7fa1948141da1c89eed31f1cb8bb79cf3d60f5"
+  },
+  "meshes": {
+   "mini_dust_pan": {
+    "path": "/home/user/v2d-track3/meshes/library_v3/mini_dust_pan.glb",
+    "sha256": "412a665e36e6db89f66f150ffb05d9ce1c1d14ba192577b1336ca7b5fcd2e1a2"
+   }
+  }
+ },
+ "objects": [
+  "mini_dust_pan"
+ ],
+ "T": 263,
+ "frames_audited": 263,
+ "K": [
+  [
+   600.1995485633427,
+   0.0,
+   756.7832183837891
+  ],
+  [
+   0.0,
+   600.1995485633427,
+   486.368408203125
+  ],
+  [
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "depth_shape": [
+  263,
+  1000,
+  1600
+ ],
+ "params": {
+  "tau": 0.015,
+  "erode": 4,
+  "hand_r": 0.012,
+  "hidden_vis": 0.2,
+  "min_px": 50,
+  "ring_in": 8,
+  "ring_out": 40,
+  "rest_min": 5,
+  "rest_inl": 0.5,
+  "rest_tilt": 25.0,
+  "rest_dmax": 0.05,
+  "stride": 1
+ },
+ "global_plane": null,
+ "selftest": null,
+ "summary": {
+  "mini_dust_pan": {
+   "frames": 263,
+   "valid": 263,
+   "hidden": 0,
+   "behind_p10_p50_p90": [
+    0.0,
+    0.0039,
+    0.0179
+   ],
+   "behind_mean": 0.0087,
+   "share_behind_gt_0p2": 0.0,
+   "front_p10_p50_p90": [
+    0.0,
+    0.0035,
+    0.0408
+   ],
+   "med_r_cm_p10_p50_p90": [
+    -0.2046,
+    0.0742,
+    0.2264
+   ],
+   "vis_frac_p10_p50_p90": [
+    0.8432,
+    0.9387,
+    0.9987
+   ],
+   "hand_frac_mean": 0.09,
+   "rest_frames": 0,
+   "rest_h_measured": 0,
+   "rest_h_cm_p10_p50_p90": null,
+   "moving_frames": 140
+  }
+ },
+ "seconds": 6.8
+}
