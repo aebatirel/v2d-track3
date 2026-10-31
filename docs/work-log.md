@@ -5683,3 +5683,14 @@ diagnostic; nothing is picked for submission.
   focused-pascal when verified.
 - The score session starts a GT-free marker-correction layer (spoon first), with marker layouts from our own video.
   Note 17 A1's scan catalogue is scan-derived. C0b already replaces the 7 mm ball prior with markers.py detections.
+
+### 2026-10-31 ~19:05 UTC — spoon diagnostic (evals 32, 33, 16): carving helps eval 33's deepest frames only
+- Report: `cdo-sprint/spoon-diag/README.md` (2681d8b). GT-free; our reference spoon poses only.
+- **Eval 33:** the packed library_v3 blue cup is >= 50 % solid up to 66 mm above the base (pieces 75 mm). The spoon is
+  in the cup in 66 frames, deepest 128.7 mm below the rim. The worst intrusion is 9.8 / 85 cm3, 19 mm deep. In 33 of
+  66 frames there is no block. A cavity-preserving cup lets the spoon reach the full depth.
+- **Eval 32:** not blocked (<= 3.2 cm3, 6 mm).
+- **Eval 16:** no rack seat is filled (<= 1 cm3). From f120 our reference holds the spoon 1-8 mm off the rack with
+  nothing under it. The flip on release is likely a spoon-pose issue [H], which the marker-correction layer addresses.
+- Relayed to the score session and focused-pascal. The collision-carve eval stage continues (eval 33 carve; 32 and 16
+  unchanged by carving).
