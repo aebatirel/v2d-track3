@@ -107,3 +107,18 @@ provenance with the section-11 validator; the orcB mocap "O" arm stays refused);
 (on their branch origin/claude/determined-wright-3joens if not on ours).
 
 ## ORCHESTRATOR NOTE (31 Oct 10:52 UTC): eval references + pack mesh set, see `build/focused-pascal-eval-refs-20261031.md`
+
+## ORCHESTRATOR NOTE (31 Oct 10:55 UTC): intrusion.py exists (determined-wright 759032e); resolve their 5 open points
+See the third message in `build/embodiment-reply-20261031.md`. Decisions (orchestrator, record in INTERLOCK.md section 11
+as a dated "11.8 Resolutions" note and in DEVIATIONS if code-relevant):
+1. manifest.json: adopt their layout `objects.<obj>.{files, fiducials}`; define the fiducials exactly (which 8 points,
+   and "1 mm inward" = along the inward normal of the union surface, or drop it) in simpieces.py + INTERLOCK 11.2.
+2. Reference poses for validate step 1: add a dedicated guard role for OUR reference parquets (store refs/ of our runs,
+   reading only the object-pose columns the reference writer produced; the public dataset parquets stay refused), OR take
+   the f_star pose from the provenance chain's poses.npz (role tracks). Choose one, test it, keep public parquets refused.
+3. Provenance: existing references have no chain. Accept a RECONSTRUCTED provenance (run id, commit, job log lines and
+   input sha256 from the store run folder), flagged `prov_reconstructed`, as long as the chain shows no mocap / scan /
+   align / library_v1..v4 object-motion source; future references get mkref-written `.prov.json` (Embodiment side).
+   Remove `poses_world_vo.npz` from the required list if mkref does not read it.
+4. `--fit_commit` is fine. 5. Approximate pushed_residual_m is fine; it only feeds PUSH, and our proxy remains.
+Then make the validator pass on their real ep24 export (r0 built from our pieces) as part of the dev run.

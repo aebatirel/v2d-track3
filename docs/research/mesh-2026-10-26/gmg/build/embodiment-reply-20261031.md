@@ -29,3 +29,21 @@ They will build the export against our interface once it is reviewed.
   against the same reference, base vs carved. We send the pieces dir; they report back.
 - **Props:** `docs/research/physics-2026-10-30/props_masses_only.json` (mass only; COM from the mesh; inertia scaled by
   mass), via `make_assets --physics`: the adopted set; `props_gmg.json` must match it.
+
+## Third message, 31 Oct 10:50 UTC: tools/intrusion.py done (commit 759032e on claude/determined-wright-3joens)
+- Tests in `tools/intrusion_tests/`, all pass. CLI: `intrusion.py REF.parquet SIM_DIR OUT.npz [--round K] [--pitch_mm 2]
+  [--surf_mm 0.5] [--prov PROV.json] [--fit PHYS_FIT_OUT --fit_commit SHA]`; writes OUT.npz + OUT.json, never overwrites;
+  any refusal exits non-zero and writes nothing.
+- depth_m = distance to the union surface from 0.5 mm surface samples (<= ~0.35 mm deep bias); depth_lb_m (max per piece)
+  also exported. rel_T from reference body poses, never geom poses.
+- Real ep24 run (perceived ref, collision_decomp pieces): 5.2 s, 124 intruding frame-pairs (max 0.92 cm3).
+- **Open points that block a validator pass:**
+  1. manifest.json layout unspecified; they assumed `objects.<obj>.{files, fiducials}`; "1 mm inward" ambiguous (they
+     accept both readings).
+  2. Our validate step 1 needs the reference pose at f_star, but guard.py refuses any `.parquet` path.
+  3. No current reference has a provenance chain: mkref writes no `.prov.json` and does not record `--poses`; section 11
+     lists `poses_world_vo.npz`, which mkref does not read. The validator would refuse every reference today. Proposed:
+     mkref writes the `.prov.json`; who does it?
+  4. phys_fit.json stores no commit/argv; they rebuild argv and need `--fit_commit`.
+  5. pushed_residual_m is approximate: exact per direction on the 2 mm grid, minimised over ~70 directions.
+- The owner chose the lean budget; the mesh lane ($15-28) is in it.
