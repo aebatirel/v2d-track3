@@ -1319,6 +1319,27 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
     F-I4.17.6 step 8 the fi4q r0 is a record and is not sent for P1 / part 2 (part 1 failed).
   - Predictions: P120 holds (3 rectangles, IoU 0.958 / 0.952), P121 holds (5 / 3 boxes, CARVE), P122 holds (0.074 cm /
     0.68 deg), **P123 fails** (ratio 3.875), P124 holds (default 112 between 32 and 124), P126 not measured.
+- 23:24 [M] Reports (not freeze inputs; launched 23:12 / 23:16 at a130449, nice 10):
+  - **w10p** (P130 holds): A (30 % occluded) IoU **0.741** < 0.90 -> `low_piece_iou_fail`, F-I4.16 polygon at rung
+    1.5 mm (81 slotted / 66 default prisms); B low-piece IoU 0.985 (5 / 3 boxes); both CARVE, keep-out 0.0, w 9.80 /
+    9.73. Part-1 counts (report): delivered 308 rows (ratio 6.42 to the control's 48), default **1596 rows, 20 / 32
+    copies overflow** (A's 66 polygon prisms).
+  - **w10n** (P131 holds): t 7.37 / 7.83 mm, low-piece IoU 0.985 / 0.980, 5 / 3 boxes, CARVE; part-1 ratio 2.09 (92
+    vs 44; report).
+  - **w1 t = 10 under REV 17** (P134 holds): one rectangle on both, IoU 0.985 / 0.990, 3 slotted / 1 default box,
+    CARVE, keep-out 0.0.
+  - **ep23** (`build/I/fi417_ep23.py`, 349 s; report only, no adoption): board 1 (one face, t := 10.785 mm partner
+    prior) low-piece IoU **0.814** -> polygon fallback, smallest fitting rung **1.5 mm** (105 vertices, 64 default prisms;
+    rung 1.0 still 85 > 82); coverage 0.742 of its frame, 0.712 of board 2's polygon. Board 2 (the wrong-board track,
+    reported only) low-piece IoU 0.932, 3 boxes. P133 holds (not independent).
+  - ReRuns: w7 ok so far; w8 / w8b (with physics) and the waiver-off test_interlock suite (18 / 24 so far, all as
+    before) still running.
+- 23:26 [M] **ReRuns under REV 17** (530 s; report only): w7 ok (A rectangle, IoU 0.985, 3 boxes; B one face, IoU 0.946,
+  5 boxes); **w8 FAILS one inherited F-I4.15.7 check: A's slot centre -2.17 mm** (tolerance 2 mm; c_L 2.35 mm, from the
+  F-I4.12 rectangle-frame rule, which F-I4.17 does not change; round 2 never built w8, so no earlier centre exists);
+  otherwise w8 CARVEs both (low-piece IoU 0.981 / 0.980, 5 / 3 boxes, w 8.81) and passes P2-P7 (P3 0.104 cm / 1.6
+  deg); w8b passes everything (IoU 0.977 / 0.977, P3 0.033 cm / 0.17 deg). P132 holds (IoU >= 0.90 and CARVE in all
+  three). The waiver-off test_interlock suite is at 19 / 24, all as recorded in round 2 so far.
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and

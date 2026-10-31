@@ -1,0 +1,2190 @@
+{
+ "ep": 23,
+ "bundle": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext6-90c8cce/bundle/public/ep23",
+ "cands": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep23",
+ "pick": "shell_t5p36",
+ "fi4_rev": 17,
+ "code": {
+  "commit": "ced42fd2771b1a228885fc880d50e1fa7e417570",
+  "dirty": true,
+  "dirty_files": [
+   "M docs/research/mesh-2026-10-26/gmg/collcarve.py"
+  ],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "11b746537993c5f8854c578c2cab8182514888c03acb03363cb592f2737dbd7b",
+   "platebody.py": "da173d6b979a5b4f819b73419c5d9fe7a38fe12b504ee2520d653743e99df468",
+   "collcarve.py": "621fa98fc359fc23fcc42c048aabe4b82c9e0c8739ece72cf4574268d90711f7",
+   "cavpieces.py": "d9af2ec03be5ef50dbe45c3c2a2eb2a27f160556ca200cc76ff4c370857725ff"
+  }
+ },
+ "cap": 82,
+ "note": "plate test and body only (F-I4.17.6 step 6, report only); board 2 track = wrong board: reported, not adopted",
+ "boards": {
+  "wooden_piece_1": {
+   "plate": {
+    "obj": "wooden_piece_1",
+    "sigma_mm": 0.991,
+    "points": {
+     "owned": 122330,
+     "in_box": 122330,
+     "within_6mm": 122323
+    },
+    "plate": true,
+    "n_down": 10499,
+    "pairs": [],
+    "why_f_i4_1": "no_plane_pair",
+    "camera_side": {
+     "method": "camera_side (F-I4.14)",
+     "slab_points": 10499,
+     "plus": 10499,
+     "minus": 0,
+     "plus_frames": 62,
+     "minus_frames": 0,
+     "inplane_extents_mm": [
+      210.6,
+      106.6
+     ],
+     "kind": "one_face",
+     "ok": true,
+     "seen_sign": 1,
+     "m_seen": 0.004617974591926321,
+     "extent_n_1_99_mm": 13.12,
+     "checks": {
+      "thin_extent": true,
+      "plate_extents": true
+     },
+     "mid_n": [
+      -0.9994313434573204,
+      0.017850682009668075,
+      0.02860669269394075
+     ],
+     "m_seen_all_points": 122323
+    },
+    "sec": 38.4,
+    "t_m": 0.010785037509169234,
+    "mid_n": [
+     -0.9994313434573204,
+     0.017850682009668075,
+     0.02860669269394075
+    ],
+    "mid_d": -0.00043517848369121516,
+    "t_source": "partner_prior",
+    "flags": [
+     "plate_t_partner_prior"
+    ],
+    "pair": {
+     "method": "one_face (F-I4.14 step 3)",
+     "thickness_mm": 10.785,
+     "t_from": "wooden_piece_2",
+     "seen_sign": 1
+    }
+   },
+   "planes": [
+    {
+     "n_pts": 9339,
+     "rms_mm": 1.0762,
+     "two_sided_share": 0.0
+    }
+   ],
+   "body": {
+    "obj": "wooden_piece_1",
+    "fi4_rev": 17,
+    "flags": [
+     "plate_body_no_markers",
+     "low_piece_iou_fail"
+    ],
+    "balls": [],
+    "source": "observed outline polygon (F-I4.15.2; no STRUCT plate candidate)",
+    "frame": {
+     "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+     "L_mm": 224.0,
+     "W_mm": 124.0,
+     "fill": 0.742,
+     "component_cells": 5150,
+     "cells": 5150,
+     "points_in_slab": 91790
+    },
+    "raster": {
+     "axes": "rectangle (a_L, a_W)",
+     "cells": 5150,
+     "cell_area_cm2": 206.0,
+     "pinch_vertices": 0,
+     "loops": 1
+    },
+    "ladder": {
+     "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+     "rungs_mm": [
+      1.0,
+      1.5,
+      2.0,
+      3.0,
+      4.0
+     ],
+     "cap": 82,
+     "slotted": false,
+     "footprint_mm": null,
+     "vertices_raw": 168,
+     "rows": [
+      {
+       "eps_mm": 1.0,
+       "simple": true,
+       "fits": false,
+       "vertices": 140,
+       "reflex_vertices": 68,
+       "area_cm2": 206.0,
+       "d_max_mm": 0.894,
+       "waist_mm": 108.0,
+       "ends_mm": 74.0,
+       "end_minus_waist_mm": -34.0,
+       "default_prisms": 85
+      },
+      {
+       "eps_mm": 1.5,
+       "simple": true,
+       "fits": true,
+       "vertices": 105,
+       "reflex_vertices": 51,
+       "area_cm2": 205.96,
+       "d_max_mm": 1.488,
+       "waist_mm": 108.0,
+       "ends_mm": 73.3,
+       "end_minus_waist_mm": -34.7,
+       "default_prisms": 64
+      },
+      {
+       "eps_mm": 2.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 76,
+       "reflex_vertices": 35,
+       "area_cm2": 207.16,
+       "d_max_mm": 2.0,
+       "waist_mm": 107.9,
+       "ends_mm": 73.9,
+       "end_minus_waist_mm": -34.0,
+       "default_prisms": 39
+      },
+      {
+       "eps_mm": 3.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 55,
+       "reflex_vertices": 26,
+       "area_cm2": 206.68,
+       "d_max_mm": 2.971,
+       "waist_mm": 108.0,
+       "ends_mm": 74.6,
+       "end_minus_waist_mm": -33.4,
+       "default_prisms": 28
+      },
+      {
+       "eps_mm": 4.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 42,
+       "reflex_vertices": 20,
+       "area_cm2": 206.38,
+       "d_max_mm": 3.841,
+       "waist_mm": 106.1,
+       "ends_mm": 77.3,
+       "end_minus_waist_mm": -28.9,
+       "default_prisms": 21
+      }
+     ],
+     "chosen_eps_mm": 1.5,
+     "free_share_rung_1_0": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 25750,
+       "free": 0.0427,
+       "unknown": 0.7068,
+       "observed": 0.2505,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 34720,
+       "free": 0.1693,
+       "unknown": 0.6444,
+       "observed": 0.1863,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 8.8,
+      "rectangle_free_cm3": 47.02,
+      "ratio_polygon_to_rectangle": 0.252
+     }
+    },
+    "ok": true,
+    "box": {
+     "axes": [
+      [
+       0.028314330459378725,
+       -0.016421508171374166,
+       0.9994641728246264
+      ],
+      [
+       0.01831088216697788,
+       0.999705800333862,
+       0.01590673986396482
+      ],
+      [
+       -0.9994313434573204,
+       0.017850682009668075,
+       0.02860669269394075
+      ]
+     ],
+     "centre": [
+      0.0005648032061858997,
+      0.0039582119522628785,
+      0.002050106287955144
+     ],
+     "half": [
+      0.112,
+      0.062,
+      0.005392518754584617
+     ],
+     "poly": [
+      [
+       -0.112,
+       0.0020000000000000018
+      ],
+      [
+       -0.10400000000000002,
+       -0.005999999999999998
+      ],
+      [
+       -0.10400000000000002,
+       -0.011999999999999997
+      ],
+      [
+       -0.11,
+       -0.011999999999999997
+      ],
+      [
+       -0.11,
+       -0.034
+      ],
+      [
+       -0.106,
+       -0.034
+      ],
+      [
+       -0.106,
+       -0.03
+      ],
+      [
+       -0.10200000000000002,
+       -0.03
+      ],
+      [
+       -0.10200000000000002,
+       -0.025999999999999995
+      ],
+      [
+       -0.098,
+       -0.025999999999999995
+      ],
+      [
+       -0.098,
+       -0.018000000000000006
+      ],
+      [
+       -0.09,
+       -0.018000000000000006
+      ],
+      [
+       -0.09,
+       -0.005999999999999998
+      ],
+      [
+       -0.08600000000000001,
+       -0.005999999999999998
+      ],
+      [
+       -0.08600000000000001,
+       0.006000000000000005
+      ],
+      [
+       -0.08,
+       0.006000000000000005
+      ],
+      [
+       -0.078,
+       0.0040000000000000036
+      ],
+      [
+       -0.078,
+       -0.009999999999999995
+      ],
+      [
+       -0.07400000000000001,
+       -0.009999999999999995
+      ],
+      [
+       -0.07400000000000001,
+       -0.013999999999999999
+      ],
+      [
+       -0.07,
+       -0.013999999999999999
+      ],
+      [
+       -0.07,
+       -0.018000000000000006
+      ],
+      [
+       -0.066,
+       -0.018000000000000006
+      ],
+      [
+       -0.066,
+       -0.024
+      ],
+      [
+       -0.062,
+       -0.024
+      ],
+      [
+       -0.062,
+       -0.041999999999999996
+      ],
+      [
+       -0.07,
+       -0.041999999999999996
+      ],
+      [
+       -0.07,
+       -0.038
+      ],
+      [
+       -0.07400000000000001,
+       -0.038
+      ],
+      [
+       -0.078,
+       -0.041999999999999996
+      ],
+      [
+       -0.078,
+       -0.046
+      ],
+      [
+       -0.08,
+       -0.046
+      ],
+      [
+       -0.078,
+       -0.062
+      ],
+      [
+       -0.07200000000000002,
+       -0.062
+      ],
+      [
+       -0.07200000000000002,
+       -0.057999999999999996
+      ],
+      [
+       -0.039999999999999994,
+       -0.057999999999999996
+      ],
+      [
+       -0.039999999999999994,
+       -0.06
+      ],
+      [
+       -0.020000000000000004,
+       -0.057999999999999996
+      ],
+      [
+       -0.020000000000000004,
+       -0.06
+      ],
+      [
+       -0.009999999999999995,
+       -0.06
+      ],
+      [
+       -0.007999999999999993,
+       -0.056
+      ],
+      [
+       0.05600000000000001,
+       -0.056
+      ],
+      [
+       0.05600000000000001,
+       -0.052000000000000005
+      ],
+      [
+       0.074,
+       -0.052000000000000005
+      ],
+      [
+       0.076,
+       -0.048
+      ],
+      [
+       0.082,
+       -0.048
+      ],
+      [
+       0.09200000000000001,
+       -0.036000000000000004
+      ],
+      [
+       0.10400000000000001,
+       -0.034
+      ],
+      [
+       0.10400000000000001,
+       -0.032
+      ],
+      [
+       0.09999999999999999,
+       -0.032
+      ],
+      [
+       0.09400000000000001,
+       -0.025999999999999995
+      ],
+      [
+       0.09400000000000001,
+       -0.013999999999999999
+      ],
+      [
+       0.09799999999999999,
+       -0.009999999999999995
+      ],
+      [
+       0.10400000000000001,
+       -0.009999999999999995
+      ],
+      [
+       0.106,
+       -0.019999999999999997
+      ],
+      [
+       0.11,
+       -0.019999999999999997
+      ],
+      [
+       0.11,
+       0.02200000000000001
+      ],
+      [
+       0.112,
+       0.02200000000000001
+      ],
+      [
+       0.112,
+       0.025999999999999995
+      ],
+      [
+       0.11,
+       0.025999999999999995
+      ],
+      [
+       0.11,
+       0.062
+      ],
+      [
+       0.09999999999999999,
+       0.062
+      ],
+      [
+       0.09999999999999999,
+       0.057999999999999996
+      ],
+      [
+       0.09600000000000002,
+       0.057999999999999996
+      ],
+      [
+       0.09600000000000002,
+       0.05
+      ],
+      [
+       0.09000000000000001,
+       0.05
+      ],
+      [
+       0.08800000000000002,
+       0.05600000000000001
+      ],
+      [
+       0.08,
+       0.05600000000000001
+      ],
+      [
+       0.08,
+       0.054000000000000006
+      ],
+      [
+       0.03399999999999999,
+       0.054000000000000006
+      ],
+      [
+       0.03599999999999999,
+       0.05
+      ],
+      [
+       0.044,
+       0.05
+      ],
+      [
+       0.044,
+       0.04000000000000001
+      ],
+      [
+       0.03799999999999999,
+       0.04000000000000001
+      ],
+      [
+       0.03799999999999999,
+       0.032
+      ],
+      [
+       0.032000000000000015,
+       0.025999999999999995
+      ],
+      [
+       0.032000000000000015,
+       0.02200000000000001
+      ],
+      [
+       0.013999999999999999,
+       0.02200000000000001
+      ],
+      [
+       0.009999999999999995,
+       0.027999999999999997
+      ],
+      [
+       0.006000000000000005,
+       0.027999999999999997
+      ],
+      [
+       0.0040000000000000036,
+       0.05200000000000001
+      ],
+      [
+       -0.007999999999999993,
+       0.05200000000000001
+      ],
+      [
+       -0.009999999999999995,
+       0.048
+      ],
+      [
+       -0.018000000000000006,
+       0.048
+      ],
+      [
+       -0.018000000000000006,
+       0.05200000000000001
+      ],
+      [
+       -0.039999999999999994,
+       0.05200000000000001
+      ],
+      [
+       -0.039999999999999994,
+       0.054000000000000006
+      ],
+      [
+       -0.048,
+       0.054000000000000006
+      ],
+      [
+       -0.048,
+       0.05200000000000001
+      ],
+      [
+       -0.054,
+       0.05200000000000001
+      ],
+      [
+       -0.054,
+       0.054000000000000006
+      ],
+      [
+       -0.064,
+       0.054000000000000006
+      ],
+      [
+       -0.064,
+       0.05200000000000001
+      ],
+      [
+       -0.098,
+       0.05200000000000001
+      ],
+      [
+       -0.098,
+       0.05600000000000001
+      ],
+      [
+       -0.10400000000000002,
+       0.062
+      ],
+      [
+       -0.112,
+       0.062
+      ],
+      [
+       -0.112,
+       0.046
+      ],
+      [
+       -0.108,
+       0.046
+      ],
+      [
+       -0.108,
+       0.034
+      ],
+      [
+       -0.10400000000000002,
+       0.034
+      ],
+      [
+       -0.10400000000000002,
+       0.018000000000000006
+      ],
+      [
+       -0.108,
+       0.018000000000000006
+      ],
+      [
+       -0.108,
+       0.013999999999999999
+      ],
+      [
+       -0.112,
+       0.010000000000000009
+      ]
+     ],
+     "t": 0.010785037509169234,
+     "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre",
+     "kind": "polygon"
+    },
+    "L_mm": 224.0,
+    "W_mm": 124.0,
+    "t_mm": 10.785,
+    "polygon": {
+     "used": "simplified",
+     "tolerance_mm": 1.5,
+     "vertices_raw": 168,
+     "vertices": 105,
+     "reflex_vertices": 51,
+     "area_cm2": 205.96,
+     "area_vs_cells": 0.9998,
+     "extent_mm": [
+      224.0,
+      124.0
+     ],
+     "poly_mm": [
+      [
+       -112.0,
+       2.0
+      ],
+      [
+       -104.0,
+       -6.0
+      ],
+      [
+       -104.0,
+       -12.0
+      ],
+      [
+       -110.0,
+       -12.0
+      ],
+      [
+       -110.0,
+       -34.0
+      ],
+      [
+       -106.0,
+       -34.0
+      ],
+      [
+       -106.0,
+       -30.0
+      ],
+      [
+       -102.0,
+       -30.0
+      ],
+      [
+       -102.0,
+       -26.0
+      ],
+      [
+       -98.0,
+       -26.0
+      ],
+      [
+       -98.0,
+       -18.0
+      ],
+      [
+       -90.0,
+       -18.0
+      ],
+      [
+       -90.0,
+       -6.0
+      ],
+      [
+       -86.0,
+       -6.0
+      ],
+      [
+       -86.0,
+       6.0
+      ],
+      [
+       -80.0,
+       6.0
+      ],
+      [
+       -78.0,
+       4.0
+      ],
+      [
+       -78.0,
+       -10.0
+      ],
+      [
+       -74.0,
+       -10.0
+      ],
+      [
+       -74.0,
+       -14.0
+      ],
+      [
+       -70.0,
+       -14.0
+      ],
+      [
+       -70.0,
+       -18.0
+      ],
+      [
+       -66.0,
+       -18.0
+      ],
+      [
+       -66.0,
+       -24.0
+      ],
+      [
+       -62.0,
+       -24.0
+      ],
+      [
+       -62.0,
+       -42.0
+      ],
+      [
+       -70.0,
+       -42.0
+      ],
+      [
+       -70.0,
+       -38.0
+      ],
+      [
+       -74.0,
+       -38.0
+      ],
+      [
+       -78.0,
+       -42.0
+      ],
+      [
+       -78.0,
+       -46.0
+      ],
+      [
+       -80.0,
+       -46.0
+      ],
+      [
+       -78.0,
+       -62.0
+      ],
+      [
+       -72.0,
+       -62.0
+      ],
+      [
+       -72.0,
+       -58.0
+      ],
+      [
+       -40.0,
+       -58.0
+      ],
+      [
+       -40.0,
+       -60.0
+      ],
+      [
+       -20.0,
+       -58.0
+      ],
+      [
+       -20.0,
+       -60.0
+      ],
+      [
+       -10.0,
+       -60.0
+      ],
+      [
+       -8.0,
+       -56.0
+      ],
+      [
+       56.0,
+       -56.0
+      ],
+      [
+       56.0,
+       -52.0
+      ],
+      [
+       74.0,
+       -52.0
+      ],
+      [
+       76.0,
+       -48.0
+      ],
+      [
+       82.0,
+       -48.0
+      ],
+      [
+       92.0,
+       -36.0
+      ],
+      [
+       104.0,
+       -34.0
+      ],
+      [
+       104.0,
+       -32.0
+      ],
+      [
+       100.0,
+       -32.0
+      ],
+      [
+       94.0,
+       -26.0
+      ],
+      [
+       94.0,
+       -14.0
+      ],
+      [
+       98.0,
+       -10.0
+      ],
+      [
+       104.0,
+       -10.0
+      ],
+      [
+       106.0,
+       -20.0
+      ],
+      [
+       110.0,
+       -20.0
+      ],
+      [
+       110.0,
+       22.0
+      ],
+      [
+       112.0,
+       22.0
+      ],
+      [
+       112.0,
+       26.0
+      ],
+      [
+       110.0,
+       26.0
+      ],
+      [
+       110.0,
+       62.0
+      ],
+      [
+       100.0,
+       62.0
+      ],
+      [
+       100.0,
+       58.0
+      ],
+      [
+       96.0,
+       58.0
+      ],
+      [
+       96.0,
+       50.0
+      ],
+      [
+       90.0,
+       50.0
+      ],
+      [
+       88.0,
+       56.0
+      ],
+      [
+       80.0,
+       56.0
+      ],
+      [
+       80.0,
+       54.0
+      ],
+      [
+       34.0,
+       54.0
+      ],
+      [
+       36.0,
+       50.0
+      ],
+      [
+       44.0,
+       50.0
+      ],
+      [
+       44.0,
+       40.0
+      ],
+      [
+       38.0,
+       40.0
+      ],
+      [
+       38.0,
+       32.0
+      ],
+      [
+       32.0,
+       26.0
+      ],
+      [
+       32.0,
+       22.0
+      ],
+      [
+       14.0,
+       22.0
+      ],
+      [
+       10.0,
+       28.0
+      ],
+      [
+       6.0,
+       28.0
+      ],
+      [
+       4.0,
+       52.0
+      ],
+      [
+       -8.0,
+       52.0
+      ],
+      [
+       -10.0,
+       48.0
+      ],
+      [
+       -18.0,
+       48.0
+      ],
+      [
+       -18.0,
+       52.0
+      ],
+      [
+       -40.0,
+       52.0
+      ],
+      [
+       -40.0,
+       54.0
+      ],
+      [
+       -48.0,
+       54.0
+      ],
+      [
+       -48.0,
+       52.0
+      ],
+      [
+       -54.0,
+       52.0
+      ],
+      [
+       -54.0,
+       54.0
+      ],
+      [
+       -64.0,
+       54.0
+      ],
+      [
+       -64.0,
+       52.0
+      ],
+      [
+       -98.0,
+       52.0
+      ],
+      [
+       -98.0,
+       56.0
+      ],
+      [
+       -104.0,
+       62.0
+      ],
+      [
+       -112.0,
+       62.0
+      ],
+      [
+       -112.0,
+       46.0
+      ],
+      [
+       -108.0,
+       46.0
+      ],
+      [
+       -108.0,
+       34.0
+      ],
+      [
+       -104.0,
+       34.0
+      ],
+      [
+       -104.0,
+       18.0
+      ],
+      [
+       -108.0,
+       18.0
+      ],
+      [
+       -108.0,
+       14.0
+      ],
+      [
+       -112.0,
+       10.0
+      ]
+     ]
+    },
+    "widths_mm": {
+     "waist_30_70": 108.0,
+     "ends_outer_10": 73.3,
+     "end_lo": 70.0,
+     "end_hi": 74.5,
+     "end_minus_waist": -34.7,
+     "max": 112.0
+    },
+    "volume_cm3": 222.13,
+    "free_share": {
+     "grid_mm": 2.0,
+     "polygon": {
+      "points": 25745,
+      "free": 0.0429,
+      "unknown": 0.7066,
+      "observed": 0.2505,
+      "outside_grid": 0.0
+     },
+     "rectangle": {
+      "points": 34720,
+      "free": 0.1693,
+      "unknown": 0.6444,
+      "observed": 0.1863,
+      "outside_grid": 0.0
+     },
+     "polygon_free_cm3": 8.84,
+     "rectangle_free_cm3": 47.02,
+     "ratio_polygon_to_rectangle": 0.253
+    },
+    "coverage": {
+     "frame": 0.7415,
+     "polygon_cm2": 205.96,
+     "frame_cm2": 277.76,
+     "rule": "F-I4.16.5 (report only, no gate)"
+    },
+    "body_kind": "f_i416_polygon_fallback",
+    "low_piece": {
+     "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+     "raster_cells": [
+      112,
+      62
+     ],
+     "crop_offset_cells": [
+      1,
+      0
+     ],
+     "raster_cm2": 206.0,
+     "theta_cells": [
+      3,
+      57,
+      6,
+      3,
+      62,
+      37,
+      3,
+      58
+     ],
+     "rectangles": [
+      {
+       "name": "waist",
+       "cells": [
+        0,
+        112,
+        3,
+        57
+       ],
+       "u_mm": [
+        -112.0,
+        112.0
+       ],
+       "v_mm": [
+        -56.0,
+        52.0
+       ]
+      },
+      {
+       "name": "end_left",
+       "cells": [
+        0,
+        6,
+        3,
+        62
+       ],
+       "u_mm": [
+        -112.0,
+        -100.0
+       ],
+       "v_mm": [
+        -56.0,
+        62.0
+       ]
+      },
+      {
+       "name": "end_right",
+       "cells": [
+        75,
+        112,
+        3,
+        58
+       ],
+       "u_mm": [
+        38.0,
+        112.0
+       ],
+       "v_mm": [
+        -56.0,
+        54.0
+       ]
+      }
+     ],
+     "n_rect": 3,
+     "iou": 0.814302,
+     "passes": 3,
+     "converged": true,
+     "fn_cells": 94,
+     "fp_cells": 1059,
+     "fn_cm2": 3.76,
+     "fp_cm2": 42.36,
+     "end_max_cells": 37,
+     "end_minus_waist_mm": {
+      "end_left": 10.0,
+      "end_right": 2.0
+     },
+     "iou_min": 0.9,
+     "iou_pass": false,
+     "ring_ok": true
+    },
+    "f_i416_polygon": {
+     "ok": true,
+     "why": null,
+     "chosen_eps_mm": 1.5,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.5,
+      "vertices_raw": 168,
+      "vertices": 105,
+      "reflex_vertices": 51,
+      "area_cm2": 205.96,
+      "area_vs_cells": 0.9998,
+      "extent_mm": [
+       224.0,
+       124.0
+      ]
+     },
+     "free_share_polygon": {
+      "points": 25745,
+      "free": 0.0429,
+      "unknown": 0.7066,
+      "observed": 0.2505,
+      "outside_grid": 0.0
+     },
+     "coverage": {
+      "frame": 0.7415,
+      "polygon_cm2": 205.96,
+      "frame_cm2": 277.76,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "widths_mm": {
+      "waist_30_70": 108.0,
+      "ends_outer_10": 73.3,
+      "end_lo": 70.0,
+      "end_hi": 74.5,
+      "end_minus_waist": -34.7,
+      "max": 112.0
+     }
+    }
+   },
+   "default_pieces": {
+    "n": 64,
+    "cap": 82,
+    "over_cap": false,
+    "max_vertices_per_prism": 10,
+    "all_convex": true,
+    "ring_area_mm2": 20596.0,
+    "parts_area_mm2": 20596.0,
+    "tiling_diff_mm2": 0.0,
+    "tiling_ok": true,
+    "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+   },
+   "body_built": true,
+   "chosen_eps_mm": 1.5,
+   "body_kind": "f_i416_polygon_fallback",
+   "low_piece": {
+    "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+    "raster_cells": [
+     112,
+     62
+    ],
+    "crop_offset_cells": [
+     1,
+     0
+    ],
+    "raster_cm2": 206.0,
+    "theta_cells": [
+     3,
+     57,
+     6,
+     3,
+     62,
+     37,
+     3,
+     58
+    ],
+    "rectangles": [
+     {
+      "name": "waist",
+      "cells": [
+       0,
+       112,
+       3,
+       57
+      ],
+      "u_mm": [
+       -112.0,
+       112.0
+      ],
+      "v_mm": [
+       -56.0,
+       52.0
+      ]
+     },
+     {
+      "name": "end_left",
+      "cells": [
+       0,
+       6,
+       3,
+       62
+      ],
+      "u_mm": [
+       -112.0,
+       -100.0
+      ],
+      "v_mm": [
+       -56.0,
+       62.0
+      ]
+     },
+     {
+      "name": "end_right",
+      "cells": [
+       75,
+       112,
+       3,
+       58
+      ],
+      "u_mm": [
+       38.0,
+       112.0
+      ],
+      "v_mm": [
+       -56.0,
+       54.0
+      ]
+     }
+    ],
+    "n_rect": 3,
+    "iou": 0.814302,
+    "passes": 3,
+    "converged": true,
+    "fn_cells": 94,
+    "fp_cells": 1059,
+    "fn_cm2": 3.76,
+    "fp_cm2": 42.36,
+    "end_max_cells": 37,
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 2.0
+    },
+    "iou_min": 0.9,
+    "iou_pass": false,
+    "ring_ok": true
+   },
+   "png": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/fi417_ep23/ep23_fi417_wooden_piece_1.png",
+   "png_frames": [
+    [
+     72,
+     "separated"
+    ],
+    [
+     72,
+     "middle good frame"
+    ]
+   ],
+   "coverage_report": {
+    "coverage_frame": 0.7415,
+    "same_stock": true,
+    "same_stock_by": "partner_prior",
+    "polygon_cm2": 205.96,
+    "partner_polygon_cm2": 289.32,
+    "coverage_partner": 0.7119,
+    "rule": "F-I4.16.5 (report only, no gate)"
+   }
+  },
+  "wooden_piece_2": {
+   "plate": {
+    "obj": "wooden_piece_2",
+    "sigma_mm": 0.69,
+    "points": {
+     "owned": 822688,
+     "in_box": 822688,
+     "within_6mm": 819327
+    },
+    "plate": true,
+    "n_down": 29703,
+    "pairs": [
+     {
+      "faces": [
+       0,
+       1
+      ],
+      "thickness_mm": 10.6945,
+      "overlap": 0.95,
+      "mid_n": [
+       0.9998372558825461,
+       0.016625015184259333,
+       -0.0070050424255038435
+      ],
+      "mid_d": 0.002423957390414741,
+      "parallel_deg": 0.708
+     },
+     {
+      "faces": [
+       1,
+       2
+      ],
+      "thickness_mm": 7.4706,
+      "overlap": 0.8072,
+      "mid_n": [
+       -0.9997114208390325,
+       0.011694125777346452,
+       -0.02098386204458762
+      ],
+      "mid_d": -0.001787274702956259,
+      "parallel_deg": 3.943
+     },
+     {
+      "faces": [
+       1,
+       3
+      ],
+      "thickness_mm": 9.076,
+      "overlap": 0.6489,
+      "mid_n": [
+       -0.9998838989306348,
+       -0.015237172440093311,
+       0.00013128329244503043
+      ],
+      "mid_d": -0.0017346500112367393,
+      "parallel_deg": 0.134
+     }
+    ],
+    "pair": {
+     "faces": [
+      0,
+      1
+     ],
+     "thickness_mm": 10.6945,
+     "overlap": 0.95,
+     "mid_n": [
+      0.9998372558825461,
+      0.016625015184259333,
+      -0.0070050424255038435
+     ],
+     "mid_d": 0.002423957390414741,
+     "parallel_deg": 0.708
+    },
+    "t_m": 0.010785037509169234,
+    "mid_n": [
+     0.9998372558825461,
+     0.016625015184259333,
+     -0.0070050424255038435
+    ],
+    "mid_d": 0.0024864020908135593,
+    "t_source": "plane_pair",
+    "sec": 234.3,
+    "t_down_mm": 10.694,
+    "t_all": {
+     "method": "camera_side_all_points (F-I4.15.1)",
+     "slab_points": 817698,
+     "plus": 287828,
+     "minus": 529870,
+     "plus_frames": 43,
+     "minus_frames": 122,
+     "ok": true,
+     "t_m": 0.010785037509169234,
+     "t_mm": 10.785,
+     "mid_n": [
+      0.9998372558825461,
+      0.016625015184259333,
+      -0.0070050424255038435
+     ],
+     "mid_d": 0.0024864020908135593,
+     "faces": [
+      {
+       "n_pts": 287828,
+       "frames": 43,
+       "frame_range": [
+        0,
+        90
+       ],
+       "median_offset_mm": 5.393,
+       "per_frame_median_offset_mm_5_50_95": [
+        0.444,
+        5.394,
+        10.47
+       ]
+      },
+      {
+       "n_pts": 529870,
+       "frames": 122,
+       "frame_range": [
+        78,
+        324
+       ],
+       "median_offset_mm": -5.393,
+       "per_frame_median_offset_mm_5_50_95": [
+        -6.006,
+        -5.312,
+        -4.302
+       ]
+      }
+     ],
+     "checks": {
+      "sides": true,
+      "material_between": true,
+      "window": true
+     }
+    },
+    "fi4_rev": 15,
+    "t_estimator": "all near points (F-I4.15.1)"
+   },
+   "planes": [
+    {
+     "n_pts": 10998,
+     "rms_mm": 0.9998,
+     "two_sided_share": 0.0011
+    },
+    {
+     "n_pts": 7959,
+     "rms_mm": 0.9176,
+     "two_sided_share": 0.0224
+    },
+    {
+     "n_pts": 658,
+     "rms_mm": 1.0293,
+     "two_sided_share": 0.3146
+    },
+    {
+     "n_pts": 361,
+     "rms_mm": 0.431,
+     "two_sided_share": 0.0083
+    }
+   ],
+   "body": {
+    "obj": "wooden_piece_2",
+    "fi4_rev": 17,
+    "flags": [
+     "plate_body_no_markers"
+    ],
+    "balls": [],
+    "source": "low-piece body: <= 3 frame-aligned rectangles fitted to the outline raster (F-I4.17.2)",
+    "frame": {
+     "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+     "L_mm": 228.4,
+     "W_mm": 163.5,
+     "fill": 0.761,
+     "component_cells": 7103,
+     "cells": 7103,
+     "points_in_slab": 748909
+    },
+    "raster": {
+     "axes": "rectangle (a_L, a_W)",
+     "cells": 7080,
+     "cell_area_cm2": 283.2,
+     "pinch_vertices": 0,
+     "loops": 1
+    },
+    "ok": true,
+    "box": {
+     "axes": [
+      [
+       0.006524820464408266,
+       0.028766035514284694,
+       0.9995648762930289
+      ],
+      [
+       0.01681928854521502,
+       -0.9994479096335708,
+       0.02865287877192692
+      ],
+      [
+       0.9998372558825461,
+       0.016625015184259333,
+       -0.0070050424255038435
+      ]
+     ],
+     "centre": [
+      0.0027261140372943815,
+      -0.011621875069063833,
+      0.006574469527453355
+     ],
+     "half": [
+      0.11422321741321427,
+      0.08174341817598735,
+      0.005392518754584617
+     ],
+     "poly": [
+      [
+       -0.11422321741321427,
+       -0.07974341817598735
+      ],
+      [
+       -0.09422321741321428,
+       -0.07974341817598735
+      ],
+      [
+       -0.09422321741321428,
+       -0.07374341817598734
+      ],
+      [
+       0.11377678258678574,
+       -0.07374341817598734
+      ],
+      [
+       0.11377678258678574,
+       0.060256581824012674
+      ],
+      [
+       0.06777678258678572,
+       0.060256581824012674
+      ],
+      [
+       0.06777678258678572,
+       0.05025658182401266
+      ],
+      [
+       -0.09422321741321428,
+       0.05025658182401266
+      ],
+      [
+       -0.09422321741321428,
+       0.05425658182401266
+      ],
+      [
+       -0.11422321741321427,
+       0.05425658182401266
+      ]
+     ],
+     "t": 0.010785037509169234,
+     "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre",
+     "kind": "low_piece",
+     "rects_mm": [
+      {
+       "name": "waist",
+       "u_mm": [
+        -114.223,
+        113.777
+       ],
+       "v_mm": [
+        -73.743,
+        50.257
+       ]
+      },
+      {
+       "name": "end_left",
+       "u_mm": [
+        -114.223,
+        -94.223
+       ],
+       "v_mm": [
+        -79.743,
+        54.257
+       ]
+      },
+      {
+       "name": "end_right",
+       "u_mm": [
+        67.777,
+        113.777
+       ],
+       "v_mm": [
+        -73.743,
+        60.257
+       ]
+      }
+     ]
+    },
+    "L_mm": 228.4,
+    "W_mm": 163.5,
+    "t_mm": 10.785,
+    "polygon": {
+     "used": "low_piece",
+     "tolerance_mm": 0.0,
+     "vertices_raw": 112,
+     "vertices": 10,
+     "reflex_vertices": 3,
+     "area_cm2": 289.32,
+     "area_vs_cells": 1.0216,
+     "extent_mm": [
+      228.0,
+      140.0
+     ],
+     "poly_mm": [
+      [
+       -114.223,
+       -79.743
+      ],
+      [
+       -94.223,
+       -79.743
+      ],
+      [
+       -94.223,
+       -73.743
+      ],
+      [
+       113.777,
+       -73.743
+      ],
+      [
+       113.777,
+       60.257
+      ],
+      [
+       67.777,
+       60.257
+      ],
+      [
+       67.777,
+       50.257
+      ],
+      [
+       -94.223,
+       50.257
+      ],
+      [
+       -94.223,
+       54.257
+      ],
+      [
+       -114.223,
+       54.257
+      ]
+     ]
+    },
+    "widths_mm": {
+     "waist_30_70": 124.0,
+     "ends_outer_10": 134.0,
+     "end_lo": 134.0,
+     "end_hi": 134.0,
+     "end_minus_waist": 10.0,
+     "max": 134.0
+    },
+    "volume_cm3": 312.03,
+    "free_share": {
+     "grid_mm": 2.0,
+     "polygon": {
+      "points": 36165,
+      "free": 0.0896,
+      "unknown": 0.414,
+      "observed": 0.4964,
+      "outside_grid": 0.0
+     },
+     "rectangle": {
+      "points": 46740,
+      "free": 0.2621,
+      "unknown": 0.3466,
+      "observed": 0.3913,
+      "outside_grid": 0.0
+     },
+     "polygon_free_cm3": 25.92,
+     "rectangle_free_cm3": 98.0,
+     "ratio_polygon_to_rectangle": 0.342
+    },
+    "body_kind": "low_piece",
+    "low_piece": {
+     "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+     "raster_cells": [
+      114,
+      81
+     ],
+     "crop_offset_cells": [
+      1,
+      0
+     ],
+     "raster_cm2": 283.2,
+     "theta_cells": [
+      4,
+      66,
+      10,
+      1,
+      68,
+      23,
+      4,
+      71
+     ],
+     "rectangles": [
+      {
+       "name": "waist",
+       "cells": [
+        0,
+        114,
+        4,
+        66
+       ],
+       "u_mm": [
+        -114.223,
+        113.777
+       ],
+       "v_mm": [
+        -73.743,
+        50.257
+       ]
+      },
+      {
+       "name": "end_left",
+       "cells": [
+        0,
+        10,
+        1,
+        68
+       ],
+       "u_mm": [
+        -114.223,
+        -94.223
+       ],
+       "v_mm": [
+        -79.743,
+        54.257
+       ]
+      },
+      {
+       "name": "end_right",
+       "cells": [
+        91,
+        114,
+        4,
+        71
+       ],
+       "u_mm": [
+        67.777,
+        113.777
+       ],
+       "v_mm": [
+        -73.743,
+        60.257
+       ]
+      }
+     ],
+     "n_rect": 3,
+     "iou": 0.9321,
+     "passes": 3,
+     "converged": true,
+     "fn_cells": 175,
+     "fp_cells": 328,
+     "fn_cm2": 7.0,
+     "fp_cm2": 13.12,
+     "end_max_cells": 38,
+     "end_minus_waist_mm": {
+      "end_left": 10.0,
+      "end_right": 10.0
+     },
+     "iou_min": 0.9,
+     "iou_pass": true,
+     "ring_ok": true
+    },
+    "ladder": {
+     "rule": "F-I4.16.1 Douglas-Peucker ladder, smallest rung with a simple ring and default and slotted prisms <= cap",
+     "rungs_mm": [
+      1.0,
+      1.5,
+      2.0,
+      3.0,
+      4.0
+     ],
+     "cap": 82,
+     "slotted": false,
+     "footprint_mm": null,
+     "vertices_raw": 112,
+     "rows": [
+      {
+       "eps_mm": 1.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 102,
+       "reflex_vertices": 49,
+       "area_cm2": 283.2,
+       "d_max_mm": 0.97,
+       "waist_mm": 126.0,
+       "ends_mm": 134.0,
+       "end_minus_waist_mm": 8.0,
+       "default_prisms": 56
+      },
+      {
+       "eps_mm": 1.5,
+       "simple": true,
+       "fits": true,
+       "vertices": 77,
+       "reflex_vertices": 37,
+       "area_cm2": 282.82,
+       "d_max_mm": 1.455,
+       "waist_mm": 126.6,
+       "ends_mm": 134.0,
+       "end_minus_waist_mm": 7.4,
+       "default_prisms": 44
+      },
+      {
+       "eps_mm": 2.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 45,
+       "reflex_vertices": 20,
+       "area_cm2": 283.52,
+       "d_max_mm": 2.0,
+       "waist_mm": 128.1,
+       "ends_mm": 135.4,
+       "end_minus_waist_mm": 7.3,
+       "default_prisms": 23
+      },
+      {
+       "eps_mm": 3.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 36,
+       "reflex_vertices": 18,
+       "area_cm2": 282.86,
+       "d_max_mm": 2.828,
+       "waist_mm": 128.1,
+       "ends_mm": 132.8,
+       "end_minus_waist_mm": 4.8,
+       "default_prisms": 20
+      },
+      {
+       "eps_mm": 4.0,
+       "simple": true,
+       "fits": true,
+       "vertices": 20,
+       "reflex_vertices": 9,
+       "area_cm2": 284.78,
+       "d_max_mm": 4.0,
+       "waist_mm": 126.4,
+       "ends_mm": 134.4,
+       "end_minus_waist_mm": 7.9,
+       "default_prisms": 11
+      }
+     ],
+     "chosen_eps_mm": 1.0,
+     "free_share_rung_1_0": "same body (rung 1.0 chosen)"
+    },
+    "f_i416_polygon": {
+     "ok": true,
+     "why": null,
+     "chosen_eps_mm": 1.0,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 112,
+      "vertices": 102,
+      "reflex_vertices": 49,
+      "area_cm2": 283.2,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       228.0,
+       162.0
+      ]
+     },
+     "free_share_polygon": {
+      "points": 35400,
+      "free": 0.0907,
+      "unknown": 0.3947,
+      "observed": 0.5147,
+      "outside_grid": 0.0
+     },
+     "coverage": {
+      "frame": 0.7583,
+      "polygon_cm2": 283.2,
+      "frame_cm2": 373.48,
+      "rule": "F-I4.16.5 (report only, no gate)"
+     },
+     "widths_mm": {
+      "waist_30_70": 126.0,
+      "ends_outer_10": 134.0,
+      "end_lo": 128.6,
+      "end_hi": 142.0,
+      "end_minus_waist": 8.0,
+      "max": 152.0
+     }
+    },
+    "coverage": {
+     "frame": 0.7747,
+     "polygon_cm2": 289.32,
+     "frame_cm2": 373.48,
+     "body": "U (low-piece)",
+     "rule": "F-I4.16.5 (report only, no gate)"
+    },
+    "free_share_reports": {
+     "low_piece": {
+      "points": 36165,
+      "free": 0.0896,
+      "unknown": 0.414,
+      "observed": 0.4964,
+      "outside_grid": 0.0
+     },
+     "f_i416_polygon": {
+      "points": 35400,
+      "free": 0.0907,
+      "unknown": 0.3947,
+      "observed": 0.5147,
+      "outside_grid": 0.0
+     },
+     "rectangle": {
+      "points": 46740,
+      "free": 0.2621,
+      "unknown": 0.3466,
+      "observed": 0.3913,
+      "outside_grid": 0.0
+     }
+    }
+   },
+   "default_pieces": {
+    "n": 3,
+    "cap": 82,
+    "over_cap": false,
+    "max_vertices_per_prism": 8,
+    "all_convex": true,
+    "ring_area_mm2": 28932.0,
+    "parts_area_mm2": 28932.0,
+    "tiling_diff_mm2": 0.0,
+    "tiling_ok": true,
+    "method": "slab partition, both directions, fewer boxes (F-I4.17.2)",
+    "direction": "A (cuts along a_W)",
+    "n_A": 3,
+    "n_B": 4,
+    "ring_vertices": 10,
+    "ring_reflex": 3,
+    "smallest_side_mm": 20.0,
+    "boxes_mm": [
+     [
+      -114.223,
+      -94.223,
+      -79.743,
+      54.257
+     ],
+     [
+      -94.223,
+      67.777,
+      -73.743,
+      50.257
+     ],
+     [
+      67.777,
+      113.777,
+      -73.743,
+      60.257
+     ]
+    ]
+   },
+   "body_built": true,
+   "chosen_eps_mm": 1.0,
+   "body_kind": "low_piece",
+   "low_piece": {
+    "rule": "F-I4.17.2 <= 3 frame-aligned rectangles (waist + ends), max IoU with the outline raster; exhaustive stages, <= 10 passes",
+    "raster_cells": [
+     114,
+     81
+    ],
+    "crop_offset_cells": [
+     1,
+     0
+    ],
+    "raster_cm2": 283.2,
+    "theta_cells": [
+     4,
+     66,
+     10,
+     1,
+     68,
+     23,
+     4,
+     71
+    ],
+    "rectangles": [
+     {
+      "name": "waist",
+      "cells": [
+       0,
+       114,
+       4,
+       66
+      ],
+      "u_mm": [
+       -114.223,
+       113.777
+      ],
+      "v_mm": [
+       -73.743,
+       50.257
+      ]
+     },
+     {
+      "name": "end_left",
+      "cells": [
+       0,
+       10,
+       1,
+       68
+      ],
+      "u_mm": [
+       -114.223,
+       -94.223
+      ],
+      "v_mm": [
+       -79.743,
+       54.257
+      ]
+     },
+     {
+      "name": "end_right",
+      "cells": [
+       91,
+       114,
+       4,
+       71
+      ],
+      "u_mm": [
+       67.777,
+       113.777
+      ],
+      "v_mm": [
+       -73.743,
+       60.257
+      ]
+     }
+    ],
+    "n_rect": 3,
+    "iou": 0.9321,
+    "passes": 3,
+    "converged": true,
+    "fn_cells": 175,
+    "fp_cells": 328,
+    "fn_cm2": 7.0,
+    "fp_cm2": 13.12,
+    "end_max_cells": 38,
+    "end_minus_waist_mm": {
+     "end_left": 10.0,
+     "end_right": 10.0
+    },
+    "iou_min": 0.9,
+    "iou_pass": true,
+    "ring_ok": true
+   },
+   "png": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/fi417_ep23/ep23_fi417_wooden_piece_2.png",
+   "png_frames": [
+    [
+     228,
+     "separated"
+    ],
+    [
+     198,
+     "middle good frame"
+    ]
+   ],
+   "coverage_report": {
+    "coverage_frame": 0.7747,
+    "same_stock": true,
+    "same_stock_by": "partner_prior",
+    "polygon_cm2": 289.32,
+    "partner_polygon_cm2": 205.96,
+    "coverage_partner": 1.4047,
+    "rule": "F-I4.16.5 (report only, no gate)"
+   }
+  }
+ },
+ "sec": 348.6
+}
