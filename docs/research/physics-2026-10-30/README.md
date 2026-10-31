@@ -316,3 +316,8 @@ Mean Δ +0.090, none negative → **adopt realistic masses** by the pre-register
 ep12's S1 mean rests on one seed; per-box reference variance is large (S0 ep24 seed 43 collapsed to 0.066). Adoption
 for the leaderboard pipeline needs the per-object masses on OUR meshes (library_v3: same mass per object, COM/inertia
 from our mesh) and a wooden-spoon estimate (no scan) — an owner decision before any pack.
+- **For the leaderboard pipeline (31 Oct):** `props_masses_only.json` — the adopted masses as mass-only entries (COM and
+  inertia shape stay this mesh's own, as submitted so far; `make_assets.py --physics` now accepts com_m null);
+  wooden_spoon 0.05 kg stated prior (no scan; 30–70 g typical). Checked: library_v3 assets get the masses, COM unchanged.
+  Use: `MA_ARGS="--physics docs/research/physics-2026-10-30/props_masses_only.json"` (glock_public.sh). Retraining the
+  eval policies needs a top-up and the pack session's coordination; any upload is the owner's decision.

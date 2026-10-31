@@ -80,7 +80,8 @@ def main():
                'COM/inertia are a uniform triangle-surface estimate over this mesh.')
         if 'physics' in phys.get(n, {}):                 # plausible physics (object_physics.py) instead of the placeholder
             ph = phys[n]['physics']
-            mass, c = ph['mass_kg'], np.array(ph['com_m'])
+            mass = ph['mass_kg']
+            c = np.array(ph['com_m']) if ph.get('com_m') is not None else c   # None: keep this mesh's COM (mass-only)
             I = np.array(ph['inertia_kgm2']) if ph.get('inertia_kgm2') is not None else I * mass / a.mass   # None: keep
             # this mesh's shell inertia shape (a COM-only change, e.g. the physics study's COM transplant)
             src = (f"Plausible physics (pipeline/object_physics.py, {a.physics}): {ph['model']} model, "
