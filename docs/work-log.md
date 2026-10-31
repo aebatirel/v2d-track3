@@ -5112,3 +5112,11 @@ Advice given:
   STEPS are not comparable mid-training (the mass check keeps STEPS identical across arms: unaffected); its option-3
   solver↔RL "signal" (+0.068) is confounded by that (3 of 4 chosen checkpoints from a 30M first round). Its idempotent
   ledger append fix (no duplicate lines after a timed-out upload) merged here.
+- ~10:40 UTC **masses eval retrain prep done** (workflow wf_87d03dc2-f7d; `docs/research/work/masses-eval-20261031/`):
+  per-episode inventory of the 20 packed policies (run, learner, reference md5/fingerprint, asset source, pull list),
+  expected-gain ranking [E] and options, pre-registered gates (transfer check ADOPT; sim_vs_ref must move with the truth
+  metric; scope by effect size) and adoption rule (swap only if the multi-draw mean ≥ the packed draw). Options [E]:
+  O1 glock top 4 (20, 8, 33, 15) ≈ $11, ≈ +0.0045 LB; O2 + eval 1 ≈ $17 (reviewer: $15.5–26), ≈ +0.0055; O3 + spoon
+  wave (5, 32, 6, 3) ≈ $27.5, ≈ +0.0086. Small because the packed draws are partly lucky and must be beaten.
+  Review: conditional GO; fixes F1–F7 (seed handling, support-stage check, cost ranges, rule script, docs, timeouts,
+  pull-files) running (workflow mass-eval-fixes).
