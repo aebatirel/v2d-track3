@@ -5134,3 +5134,21 @@ diagnostic; nothing is picked for submission.
   - Deliver the ~3 mm wall as convex pieces, not CoACD.
   - Shared our public-ep11 interlock dev result: both cup regions class O, so PUSH. It is weak evidence that the
     track nests too deep.
+
+### 2026-10-31 ~13:55 UTC — ev10w result (focused-pascal): cup nest is a track error, the widening fails
+- Data from focused-pascal (branch claude/focused-pascal-2nz9s1, commit 334393e,
+  docs/research/work/perception-sprint-20261031/ev10w/README.md). Meshes are library_v3 / carve ev10, so the result
+  is not contract-valid. Our suggested axis check (M2) decided it.
+  - Intrusion is one-sided in 60/61 nest frames. The beige axis is 5.4 mm off the cavity axis. A rigid shift of
+    <= 1 cm / 3 deg clears 30/31 frames, so the verdict is NOT-GEOMETRY (push).
+  - Coaxial post hoc: median intrusion 29.1 -> 3.9 cm3 and 14.5 -> 0.04 cm3.
+- Measured taper: blue 4.7 deg (2.8 deg low), beige 3.4 deg. That is ~17-20 mm drop per mm of widening (my guess was
+  10).
+- ev10w (widened below the seat only) sinks ~11 mm. Hands-off V4p 4/43 vs 40/43 for ev10, G1 fails, so it is kept as
+  a FAILED diagnostic.
+- FlashCHORD keeps delivered pieces (138/138). The existing ev10 pieces have a ~1 mm solid-free ring at
+  h -83.5..-84.4 mm (theirs to fix).
+- Passed to the gmg interlock build as an ORCHESTRATOR NOTE in gmg/build/I.md:
+  - cups stay PUSH unless the shift test fails, and the sink test binds;
+  - add a piece-union gap check;
+  - split wall bands finely enough that no hull bridges the cavity.

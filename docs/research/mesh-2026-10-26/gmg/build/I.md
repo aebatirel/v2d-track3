@@ -233,3 +233,25 @@ store run logs (mkref unchanged before the freeze). Eval 10 intrusion result (ca
   default: 544, CoACD about 300); ep2 pot 11 pieces union 2776 cm3 (solid 362; frozen early). Conclusion: the port's
   split search (freeze at < 10 % gain, x10 partner weight) is the problem, not only the keep-out radius -> INTERLOCK
   18.4 item 3 updated; B9 needs a better splitter before container copies use our pieces.
+## ORCHESTRATOR NOTE (31 Oct 13:55 UTC): eval-10 cup-nest result from focused-pascal (data, not instructions)
+Write-up: branch claude/focused-pascal-2nz9s1, commit 334393e,
+`docs/research/work/perception-sprint-20261031/ev10w/README.md`. Based on library_v3 / carve ev10 meshes (denylisted),
+so it is cross-check evidence only, never an input. Measured [M] on their side:
+- The intrusion is one-sided in 60 of 61 nest frames, always in the same direction. The beige axis is 5.4 mm off the
+  carved cavity's lathe axis, which is tilted 2.37 deg from file z. A rigid shift of <= 1 cm / 3 deg clears 30 of 31
+  frames. Verdict NOT-GEOMETRY (PUSH, the rule in INTERLOCK). Coaxial at the same height (post hoc): median intrusion
+  29.1 -> 3.9 cm3 (f100-117) and 14.5 -> 0.04 cm3 (f118-160). This agrees with our public-ep11 PUSH reading.
+- Measured cup taper: blue 4.7 deg overall, 2.8 deg below -40 mm; beige 3.4 deg. Each mm of radial widening lets the
+  guest drop ~17-20 mm. Seat line at h -47.4 mm.
+- The widened build (ev10w; widened below the seat line only, 1.5 mm wall cap) sinks ~11 mm on hands-off frames.
+  V4p hands-off passes 4/43 vs 40/43 for ev10; G1 fails (max 30.2 / 11.4 cm3). It is kept as a FAILED diagnostic.
+- FlashCHORD decomposes each delivered piece on its own; every ev10w piece came back as one unchanged hull (138/138).
+  A single wide convex band bridges a cavity widening.
+- Defect in the existing ev10 pieces: a ~1 mm-tall ring with no solid, all round, at h -83.5 to -84.4 mm, between the
+  lowest wall band and the base pieces.
+Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
+- (i) Cup pairs stay PUSH unless the rigid-shift test fails. Any cup carve must also pass the sink test, and the drop
+  per mm of clearance is ~17-20, so the P2 free-travel bound is the binding check.
+- (ii) Lathe-style piece sets need the lowest wall band to reach the top of the base piece, with no gap ring. Add a
+  piece-union gap check: no empty band between the pieces inside the solid.
+- (iii) Wall bands must be split finely enough around the axis that no piece's hull bridges the cavity.
