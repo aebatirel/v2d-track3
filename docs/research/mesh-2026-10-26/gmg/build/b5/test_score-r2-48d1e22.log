@@ -3,4 +3,34 @@ test_flip_units (__main__.AmbiguityCopyTests.test_flip_units) ... ok
 test_kit_symmetry_from_kit_config (__main__.AmbiguityCopyTests.test_kit_symmetry_from_kit_config) ... ok
 test_a_fused_double_cup (__main__.B14.test_a_fused_double_cup) ... ok
 test_b_filled_cup (__main__.B14.test_b_filled_cup) ... ok
-test_c_lid_with_phantom_pot (__main__.B14.test_c_lid_with_phantom_pot) ... 
+test_c_lid_with_phantom_pot (__main__.B14.test_c_lid_with_phantom_pot) ... ok
+test_d_kit_lid_passes (__main__.B14.test_d_kit_lid_passes) ... ok
+test_a_cylinder_missing_base_charged_on_heldout_base_rays (__main__.B5Synthetic.test_a_cylinder_missing_base_charged_on_heldout_base_rays) ... ok
+test_b_phantom_under_disc_high_fsv_far (__main__.B5Synthetic.test_b_phantom_under_disc_high_fsv_far) ... ok
+test_c2_candidate_objects_untrusted_balls (__main__.B5Synthetic.test_c2_candidate_objects_untrusted_balls)
+B5 round 2 (verifier's break input): standard Candidate objects. Balls not trusted and no ball-free mesh ... ok
+test_c_slab_flip_risk_without_balls_not_with_trusted_balls (__main__.B5Synthetic.test_c_slab_flip_risk_without_balls_not_with_trusted_balls) ... ok
+test_d_tie_order_deterministic_on_scored_pool (__main__.B5Synthetic.test_d_tie_order_deterministic_on_scored_pool) ... ok
+test_v3_reference_shell_and_v1_flag (__main__.B5Synthetic.test_v3_reference_shell_and_v1_flag)
+B5 round 2: the V3 reference s is the shell at t0 whatever the input order; several SHELL rows need ... ok
+test_block_without_points_in_a_replicate_is_dropped (__main__.BootstrapEmptyResampleTests.test_block_without_points_in_a_replicate_is_dropped)
+B5 round 2: a replicate whose resampled frames of a block hold no held-out point drops that block (as the ... ok
+test_moving_blocks (__main__.BootstrapTests.test_moving_blocks) ... ok
+test_paired_replicates (__main__.BootstrapTests.test_paired_replicates) ... ok
+test_fixed_partial_rebuilt (__main__.FoldTests.test_fixed_partial_rebuilt) ... ok
+test_removes_views_within_8_deg (__main__.GenHoldoutTests.test_removes_views_within_8_deg) ... ok
+test_static_episode_skips_and_flags (__main__.GenHoldoutTests.test_static_episode_skips_and_flags) ... ok
+test_closest (__main__.GeomTests.test_closest) ... ok
+test_inside_matches_gwn (__main__.GeomTests.test_inside_matches_gwn) ... ok
+test_rays_match_bruteforce (__main__.GeomTests.test_rays_match_bruteforce) ... ok
+test_volume_samples (__main__.GeomTests.test_volume_samples) ... ok
+test_rules (__main__.HullCoarsenTests.test_rules) ... ok
+test_copy_matches_kit (__main__.KitDecodeTests.test_copy_matches_kit) ... ok
+test_blocks_and_heldout_sets (__main__.PlanTests.test_blocks_and_heldout_sets) ... ok
+test_clauses (__main__.V2LogicTests.test_clauses) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 1045.110s
+
+OK
+1045 s
