@@ -29,6 +29,7 @@ def main():
     ap.add_argument('--run', required=True)
     ap.add_argument('--dev-run', required=True)
     ap.add_argument('--out', required=True)
+    ap.add_argument('--audit-glob', default=None, help='strace audit reports (<log>.audit.json) of the run')
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     eps = sorted(int(os.path.basename(d)[2:]) for d in glob.glob(os.path.join(a.run, 'bundle', 'public', 'ep*')))
@@ -106,6 +107,20 @@ def main():
                        track_fail=[f'ep{x["ep"]}:{x["obj"]}' for x in rows if 'TRACK_FAIL' in x['flags']],
                        not_testable_cross=[f'ep{x["ep"]}:{x["obj"]}' for x in rows if not x['cross'].get('testable')],
                        rows=rows), open(os.path.join(a.out, 'b15.json'), 'w'), indent=1)
+    # strace audits
+    if a.audit_glob:
+        aud = {}
+        keys = ('events', 'forbidden_opens', 'forbidden_attempted_failed', 'returncode', 'opens_ok', 'system',
+                'code_outside_interp', 'git', 'git_tree_reads')
+        for f in sorted(glob.glob(a.audit_glob)):
+            d = json.load(open(f))
+            aud[os.path.basename(f)] = dict({k: d.get(k) for k in keys},
+                                            **{k: len(d.get(k) or []) for k in ('forbidden', 'unlisted', 'unrecorded',
+                                                                                 'writes_outside_run', 'network',
+                                                                                 'data_reads', 'written')})
+        json.dump(dict(audits=aud, total_forbidden_opens=int(sum(v['forbidden_opens'] or 0 for v in aud.values())),
+                       all_rc0=all(v['returncode'] == 0 for v in aud.values())),
+                  open(os.path.join(a.out, 'audits.json'), 'w'), indent=1)
     # bundle manifest
     files = []
     for sub in ('bundle', 'hands', 'manifests', 'identity', 'validate', 'logs'):
