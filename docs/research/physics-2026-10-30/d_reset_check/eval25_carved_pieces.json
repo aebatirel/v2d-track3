@@ -1,0 +1,114 @@
+{
+ "25c": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   4,
+   24,
+   27,
+   36,
+   38
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.462,
+   "p90": 1.728,
+   "max": 5.79,
+   "share_gt_1cm": 0.25
+  },
+  "after_hold_diff_cm": {
+   "median": 2.34,
+   "max": 22.29,
+   "share_gt_1cm": 0.719
+  },
+  "nodr_hold_motion_cm": {
+   "median": 0.83,
+   "max": 6.67,
+   "share_gt_1cm": 0.375
+  },
+  "worst_worlds": [
+   {
+    "world": 2,
+    "frame": 156,
+    "hold_end_diff_cm": 5.79,
+    "nodr_hold_motion_cm": 5.72
+   },
+   {
+    "world": 7,
+    "frame": 175,
+    "hold_end_diff_cm": 3.46,
+    "nodr_hold_motion_cm": 5.74
+   },
+   {
+    "world": 24,
+    "frame": 170,
+    "hold_end_diff_cm": 3.06,
+    "nodr_hold_motion_cm": 6.67
+   }
+  ],
+  "ref_md5": "71ac95f3764170f29f02fa657e7c057c",
+  "objects": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "embodiment": "default"
+ },
+ "25": {
+  "worlds": 32,
+  "same_upstream_frames": true,
+  "finite": true,
+  "frames": [
+   0,
+   4,
+   24,
+   27,
+   36,
+   38
+  ],
+  "reset_offset_cm_max": 0.219,
+  "hold_end_diff_cm": {
+   "median": 0.6,
+   "p90": 2.115,
+   "max": 6.7,
+   "share_gt_1cm": 0.344
+  },
+  "after_hold_diff_cm": {
+   "median": 2.278,
+   "max": 19.04,
+   "share_gt_1cm": 0.625
+  },
+  "nodr_hold_motion_cm": {
+   "median": 0.588,
+   "max": 7.48,
+   "share_gt_1cm": 0.219
+  },
+  "worst_worlds": [
+   {
+    "world": 24,
+    "frame": 170,
+    "hold_end_diff_cm": 6.7,
+    "nodr_hold_motion_cm": 4.14
+   },
+   {
+    "world": 2,
+    "frame": 156,
+    "hold_end_diff_cm": 2.85,
+    "nodr_hold_motion_cm": 7.48
+   },
+   {
+    "world": 7,
+    "frame": 175,
+    "hold_end_diff_cm": 2.52,
+    "nodr_hold_motion_cm": 6.6
+   }
+  ],
+  "ref_md5": "71ac95f3764170f29f02fa657e7c057c",
+  "objects": [
+   "wooden_piece_1",
+   "wooden_piece_2"
+  ],
+  "embodiment": "default"
+ }
+}

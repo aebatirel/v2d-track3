@@ -10,7 +10,8 @@ objects that start nested or touching pop apart.
 - Assets:
   - grasp-lock evals use their packed assets (`refs/sf/ep<N>/assets`);
   - standard-learner evals use library_v3 built with `pipeline/make_assets.py` (as `hard_ab.sh`); library_v3 is
-    unchanged for these objects since ee7ba8e.
+    unchanged for these objects since ee7ba8e;
+  - eval 25 also uses `--pieces meshes/carve/ev25`, its packed carve; see the correction below.
   - The local copies have only `object_urdf_paths` remapped (`scripts/prep.py`).
 - Run (`scripts/run_all.sh`): FlashCHORD at the evaluator pin with the box patch set (VOC fix + FDR + DR; scratchpad
   copy `rs/fc_box`), `FC_VOC_INERTIA=1 FC_FDR_OBJ=1 FC_FDR_TIPS=1`, 32 worlds,
@@ -36,7 +37,8 @@ objects that start nested or touching pop apart.
 |---|---|---|---|---|---|---|
 | eval 14 | blue_cup, plastic_dish_rack | 0.63 | 1.57 | 3.15 | 31 % | 2.20 |
 | eval 16 | plastic_dish_rack, wooden_spoon | 0.16 | 2.08 | 4.00 | 25 % | 0.49 |
-| eval 25 | wooden_piece_1, wooden_piece_2 | 0.60 | 2.12 | **6.70** (frame 170) | 34 % | 0.59 |
+| eval 25, **packed pieces** (`--pieces meshes/carve/ev25`) | wooden_piece_1, wooden_piece_2 | 0.46 | 1.73 | **5.79** (frame 156) | 25 % | 0.83 |
+| eval 25, library_v3 without pieces (first run; NOT the packed assets) | wooden_piece_1, wooden_piece_2 | 0.60 | 2.12 | 6.70 (frame 170) | 34 % | 0.59 |
 | eval 30 | mini_sweeper, plastic_dish_rack | 1.05 | 1.94 | 3.28 | 56 % | 1.28 |
 | eval 33 | blue_cup, wooden_spoon | 0.57 | 1.51 | 2.60 | 28 % | 1.42 |
 | public 2 (screen: D −0.11) | white_pot, white_pot_lid | 1.09 | 2.77 | 3.39 | 50 % | 2.11 |
@@ -52,8 +54,12 @@ objects that start nested or touching pop apart.
 ## Reading
 - **No D eval episode is outside the range of the public episodes D was screened on.** Their medians (0.16–1.05 cm) and
   shares (25–56 %) sit inside the public range (0–1.09 cm, 3–53 %).
-- **The largest single pop is eval 25: 6.7 cm**, one world sampled at frame 170 during the board assembly. That is
-  about 1.5× the public maximum (4.4 cm). Its median is ordinary.
+- **The largest single pop is eval 25: 5.8 cm** with the packed carve pieces (frame 156; 6.7 cm at frame 170 without
+  them), about 1.3× the public maximum (4.4 cm). Its median is ordinary.
+- **Correction, 21:56 UTC.** The first eval-25 run used library_v3 without the packed carve pieces. focused-pascal's
+  packed_refs.json gives `pieces: meshes/carve/ev25` for eval 25 (none for 14/16/30/33). Re-run with
+  `make_assets.py meshes/library_v3 OUT --pieces meshes/carve/ev25`, 42 collision entries per board URDF:
+  `eval25_carved_pieces.json`.
 - **This metric does not predict D's effect.** Public ep12 (D +0.33) and ep2 (D −0.11) look alike here. Read it as
   "no pathological start", not as a forecast.
 - **The no-DR baseline already moves** 0.5–2.2 cm (median) during the hold on most episodes. The nudge adds a comparable
