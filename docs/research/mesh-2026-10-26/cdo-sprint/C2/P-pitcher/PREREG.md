@@ -1,6 +1,6 @@
 # C2 / Track P (water_pitcher): pre-registration
 
-Written 2026-10-31, 18:32-18:45 UTC, before any candidate is built and before any scoring. No scan, mocap, parquet
+Written 2026-10-31, 18:20-18:33 UTC (commit 5982c31 at 18:33), before any candidate is built and before any scoring. No scan, mocap, parquet
 pose or `*_align` file was read for this track. Step log: `NOTES.md`. Rules: the C2 brief (as C0b: GT-free
 construction and choice, no scan-derived or unknown-origin constant, one scoring per picked mesh, C0's AUC guard).
 `SCR` = `/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad`. Repo paths are
@@ -234,7 +234,7 @@ a new ledger line and a dated NOTES entry.
   - `ledger-of-past-mesh-work.md` quotes scan-scored numbers for the pitcher (wall 2.2 mm, extents). None of these
     enters a setting: every setting is a C0b value or a measured own-observation statistic.
 
-## A1. Amendment (2026-10-31, ~18:50 UTC; before any candidate is built, smoke-tested or scored)
+## A1. Amendment (2026-10-31, 18:34-18:38 UTC, commit 07d2536 at 18:38; times corrected 18:40 from guessed values; before any candidate is built, smoke-tested or scored)
 
 **What was seen [M].** A preview of `scripts/diag_pitcher.py` was run on the older `SCR/obs_all` pitcher points
 (library_v3 ROI and carving). Those points are not used for any build; the C0b points were still being made.
