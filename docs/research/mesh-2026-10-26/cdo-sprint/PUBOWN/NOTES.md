@@ -28,3 +28,14 @@
 - 2026-10-31T21:04:45Z VERIFY [M] 1-thread local rerun of rack ep12: bytes differ from the default-thread local run (full 4c42f44b vs 5de37db2; 41 numeric fields differ, max rel 13 % on a 0.8 mm attach gap) but the same gross fit (n_lip 69, 4 lip segments, 201x328x647 mm). So the rack is not bitwise reproducible even on one machine across thread counts; the box's 16 m result is a structural flip at the lip plane.
 - 2026-10-31T21:06:16Z VERIFY verify.md drafted (sections 1-4, 6-8); waiting for fc2 to fill section 5.
 - 2026-10-31T21:08:49Z VERIFY [M] E0 frame_check on 48 non-rack candidates: gate decision equal to pubown_gate_alt for all 46 gated (beige ungated); racks 10/10 fail on the deterministic centroid alone; Set B re-derived 20/20 = MANIFEST alt_e0_gated. verify.md complete; committing only verify.md.
+
+## 2026-10-31 ~23:05 UTC: re-track test verdict (focused-pascal, data) and a GT-free look at the pot templates
+- Verdict (focused-pascal, commit 942dbfc on their branch, `docs/research/work/retrack-20261031/verdict.json`): Set B as
+  FoundationPose templates FAILS every clause: mean dR -0.170 (bar >= +0.01), 3/20 positive, min -0.973, mean dRPE +1.32 cm.
+  Pots: ep45 -0.973, ep0 -0.925, ep26 -0.475, ep2 -0.263, ep41 -0.052, ep42 -0.018, ep43 -0.003, ep44 -0.017; ep11 blue+beige
+  -0.705; blue cup only ep13/21/22 +0.011 / +0.015 / +0.010 (post-hoc subset, a hypothesis).
+- Orchestrator look, mesh files only [M]: stray parts / centroid offset do not predict the drop (ep44: 7 far parts, 6 % area,
+  62 mm centroid offset, -0.017; ep0: one part, 3.7 mm, -0.925). All own-video templates have NO colour (trimesh visual kind
+  None) while library_v3 has grey vertex colours (173 +- 30). Volumes 408-778 cm3 vs library 625; ep45 widest (167 vs 131 mm).
+  [H] uncoloured templates hurt RGB render-and-compare; falsifier: re-track ep45/ep0 with the same meshes painted uniform grey.
+  Offered to focused-pascal; not run.
