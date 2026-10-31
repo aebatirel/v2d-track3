@@ -5513,3 +5513,9 @@ arm and a no-policy replay floor to stage B.
     sweeper–rack seat priority).
   - Promised: the same analysis on the high-spread ep2 from `20261031-mass-2ed46ea` once it finishes. No Turkish summary
     for Prof. İnceoğlu yet (owner).
+- ~10:15 UTC reply from Embodiment: drawdiv taken as input for the next loop design. (1a) a union of failure windows
+  over jittered copies (catches the late ep31 window); (1b) bank jitter concentrated at window starts; the
+  deterministic ep13 cup failure is a solver target, not a variance target.
+  - Option 3 result (its physics-solver.md §6.1, fc6dcd2): the rule reads "signal" (+0.068), but 3 of 4 chosen
+    checkpoints predate the loop, and round A is confounded by FlashSAC's learning-rate horizon (cosine over 30M vs 70M
+    total steps). So there is no evidence yet that the loop helps. It awaits the ep2 drawdiv.
