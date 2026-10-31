@@ -5963,3 +5963,9 @@ Background agent, CPU only, $0, no ground truth read.
 - Ledger planned `20261031-rscrS42-cc9c32f` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
   56213818 20261031-rscrS42-cc9c32f 'ARMS=S SEEDS=42 bash ops/jobs/recipe_screen.sh'` → Vast 58559935, RTX PRO 6000
   WS, Greece, $1.444/h. Box 2 (SEEDS=43) follows ~10 min later.
+
+### 2026-10-31 17:32 UTC — determined-wright: arm S box 2 of 2 rented
+- Box 1 (58559935) started its job at 17:31 UTC (code cc9c32f, arms [S], seeds [42], S refs from psolverl, md5 check on).
+- Ledger planned `20261031-rscrS43-d6787a8` $6. Command: `ops/vast.sh ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  56921483 20261031-rscrS43-d6787a8 'ARMS=S SEEDS=43 bash ops/jobs/recipe_screen.sh'` (d6787a8 = cc9c32f + one log
+  line) → Vast 58560711, RTX PRO 6000 Max-Q, Michigan, $1.34/h. Both S boxes end ~21:00–21:30 UTC [E].

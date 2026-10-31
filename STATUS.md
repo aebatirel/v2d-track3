@@ -8,6 +8,9 @@
 - R5-lite (31 Oct, CPU): true vs perceived object motion, zero action, jittered: ep13 0.569 vs 0.551, ep31 0.556 vs 0.554 → the zero-action limit is grip/contact physics, not perception (physics README).
 
 - Option 3 (31 Oct, run 20261031-rlloop-ccf9058, ≈ $6.48): rule says "signal" (O3 − O1 +0.068) but 3 of 4 chosen checkpoints are pre-loop and round A is confounded by the LR-schedule horizon → no evidence the loop helps (physics-solver.md §6.1 Results). Next candidates (owner decides): H-lr test; keen-heisenberg's bank growth ideas; intrusion export for the mesh session's carve loop (building on CPU).
+- Solver clean re-test (§9, owner "Test + auto eval"): arm S boxes 58559935 (seed 42, run 20261031-rscrS42-cc9c32f) and
+  58560711 (seed 43, 20261031-rscrS43-d6787a8), rented 17:22 / 17:32 UTC, ≈ $10 [E]. Control = screen C cells. On "signal",
+  launch `ops/jobs/eval_solve.sh` (2 boxes, 15 grasp-lock evals, ≈ $9–14 [E]) without asking; hand off to focused-pascal.
 - Mass transfer check (focused-pascal, 13:05 UTC): NOT ADOPTED (ep2 Δ +0.157 SE 0.105; ep12 Δ −0.013 SE 0.007 misses +0.03).
   Eval stays at 0.3 kg for now. Owner approved "Masses v2" 14:55 UTC: 4 headroom public episodes, 2 seeds, ≈ $18–20; ADOPT iff
   mean Δ ≥ +0.03, ≥ 3/4 positive, no Δ ≤ −0.05. Proposed that focused-pascal runs it; I review its PREREG.
