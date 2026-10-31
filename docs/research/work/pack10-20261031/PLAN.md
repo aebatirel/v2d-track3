@@ -48,3 +48,10 @@ Per episode, over ≥ 10 fresh official draws, GT-free: (a) mean sim_vs_ref ≥ 
 policy's; (c) median GT-free RPE not worse; secondary: new packed draw (draw 1 by position) ≥ old packed draw − 0.05.
 Where the reference changed (eval 10; solver-solved references), (a)–(c) hold against BOTH references. New collision
 carves change only the simulator assets (the reference is unchanged), so one reference suffices there.
+
+## Update (31 Oct ~20:35 UTC)
+- Owner chose "No D" (in determined-wright's session): no recipe change in pack 10 (K inconclusive, D not used).
+- Physics solver re-test: no signal → no eval solving; solved references are not for eval.
+- So Tier 2 depends on Masses v2 (verdict ~23:00–01:00) and, for references, on the re-track test (if it passes:
+  every eval reference is rebuilt and scored against both references). Recipe-control arms are dropped, so the cost
+  line "with a recipe winner" no longer applies: Tier 1 ≈ $20–33; Tier 1 + Tier 2 one arm ≈ $55–90 [E].
