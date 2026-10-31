@@ -343,3 +343,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 15:41 e0fit (their intrusion.py --fit on the plumbing fit, 2598 s): their fit check OK; pushed_residual finite on
   352 / 482 rows, median 65 mm on the intruding rows; our validator VALID with pushed_residual KEPT; decisions PUSH /
   PUSH T0 (class O decides at step 2). Results copied to `build/I/results/contract_ep24/`.
+
+## ORCHESTRATOR NOTE (31 Oct ~16:05 UTC): OWNER WAIVER of the camera rule for the board slot; round-1 workflow stopped
+- Owner, verbatim, in session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC: "Okay I waive that camera rule". It answers
+  my report that the pre-registered rule PUSHES the ep24 boards because stereo calls the slot "observed solid" (class
+  O) and the RGB silhouette cannot confirm it (hand in the way on board 1; not testable on board 2).
+- Scope (my reading, to be written as PREREG F-I4 before any run):
+  - Plate-plate INSERTION pairs only (the boards).
+  - Class O and an absent or failing silhouette no longer block a CARVE.
+  - Every other gate stays: INSERTION, persistence, partner moves through, rigid-shift push test, budget, topology,
+    physics acceptance, pieces keep-out.
+  - Cups, pot and lid are unchanged: the ev10w result says cup intrusions are track errors.
+- The interlock workflow `wf_c7bae0ea-5c5` was stopped during its round-1 test re-run (work committed at 58adcd0). A
+  focused board-slot workflow continues from here.
