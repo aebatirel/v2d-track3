@@ -5515,3 +5515,16 @@ arm and a no-policy replay floor to stage B.
   public-twin AUC guard is asked as information, not a gate.
 - Asked bold-albattani for C0 by ~19:00 UTC; focused-pascal builds, preflights and uploads before ~21:00 UTC.
   Fallback: pack 8 alone if C0 is not in by ~20:00 UTC. Eval 10 goes into the next pack.
+
+### 2026-10-31 ~15:50 UTC — owner: rebuild meshes on the eval episodes with the better method
+- Owner, verbatim: "Like if the method of mesh creation better just recreate the knes in the eval and use that".
+- Facts (bold-albattani README §8–§9): library_v3 and C0 are built from public episodes and reused for eval.
+  - Eval builds need the eval depth cache (missing). Fix: ops/jobs/eval_perc.sh, one GPU, ≈ 4 min/episode,
+    ≈ $2–4 [E]; then obs_points → prim_* / lathe_obs → obs_fidelity on CPU.
+  - Frame-0-only lathes failed on public (CD-O 1.1–1.3 cm).
+- Asked bold-albattani:
+  - run eval_perc.sh on all 20 eval episodes (owner's go);
+  - build eval candidates with the C0/C1 methods;
+  - choose per object by the GT-free obs_fidelity rule, written before choosing;
+  - report the public single-episode build distribution vs scan as context.
+  Tonight's pack keeps C0 unless the eval builds are verified by ~19:00 UTC; otherwise they go into the 1 Nov pack.
