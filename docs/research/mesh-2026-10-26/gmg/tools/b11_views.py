@@ -254,6 +254,11 @@ def main():
     if guard.mode() != 'dev':
         raise SystemExit('b11_views: dev only (GMG_MODE=dev): it reads obs_all dev bundles and dev_hands')
     guard.set_run(a.run)
+    # the manifest takes HEAD when it is written; record the code state at the start too (another agent may commit
+    # to the shared checkout while this runs)
+    start = dict(start_commit=guard._git('rev-parse', 'HEAD'),
+                 start_code_dirty_files=(guard._git('status', '--porcelain', '--', *[
+                     os.path.relpath(d, guard.CFG['repo']) for d in guard.CODE_DIRS]) or '').splitlines())
     out = os.path.join(a.run, 'b11')
     os.makedirs(out, exist_ok=True)
     geo = GI.camera_geometry(os.path.join(guard.CFG['data'], 'data', 'calib.json'))
@@ -271,7 +276,7 @@ def main():
     allp = all(v['pass_'] for v in summ.values())
     with open(os.path.join(out, 'summary.json'), 'w') as f:
         json.dump(dict(prereg='B.11', pass_=allp, episodes=summ, refine=a.refine), f, indent=1)
-    guard.write_manifest(os.path.join(a.run, 'manifest.json'), extra=dict(step='B2', prereg='B.11', pass_=allp))
+    guard.write_manifest(os.path.join(a.run, 'manifest.json'), extra=dict(step='B2', prereg='B.11', pass_=allp, **start))
     log(f'B.11 {"PASS" if allp else "FAIL"}: {json.dumps(summ)}')
 
 
