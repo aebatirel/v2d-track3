@@ -1,0 +1,1593 @@
+{
+ "note": "GT-free ICP proxy of the masking re-track (option a); heights relative to the S12 pre-nest pose P*.",
+ "window": {
+  "outer": "blue_cup",
+  "inner": "beige_cup",
+  "start": 42,
+  "end": 137,
+  "rho_cm_median": 0.46,
+  "zeta_cm_median": 1.81,
+  "pre_frame": 33,
+  "pre_height_cm": 8.78,
+  "pre_bottom_minus_f0_cm": 0.05,
+  "outer_lift_in_window_cm": {
+   "max": 5.359,
+   "end": 2.417
+  },
+  "hold_end": 137,
+  "released_by": "episode end",
+  "applied": true,
+  "outer_change_cm": {
+   "height_mean": -2.367,
+   "height_min": -5.359
+  }
+ },
+ "band_cm": 3.0,
+ "chains": {
+  "raw": [
+   {
+    "f": 43,
+    "points": 4377,
+    "v_cm": 0.91,
+    "h_cm": 2.21,
+    "track_v_cm": 1.2,
+    "res_mm": 3.74,
+    "step_cm": 2.39,
+    "rejected": false
+   },
+   {
+    "f": 46,
+    "points": 6269,
+    "v_cm": 1.82,
+    "h_cm": 2.55,
+    "track_v_cm": 0.31,
+    "res_mm": 4.51,
+    "step_cm": 0.98,
+    "rejected": false
+   },
+   {
+    "f": 49,
+    "points": 6021,
+    "v_cm": 1.89,
+    "h_cm": 2.85,
+    "track_v_cm": 0.2,
+    "res_mm": 4.24,
+    "step_cm": 0.34,
+    "rejected": false
+   },
+   {
+    "f": 52,
+    "points": 5969,
+    "v_cm": 2.42,
+    "h_cm": 2.65,
+    "track_v_cm": 0.58,
+    "res_mm": 4.62,
+    "step_cm": 0.57,
+    "rejected": false
+   },
+   {
+    "f": 55,
+    "points": 5924,
+    "v_cm": 2.43,
+    "h_cm": 2.66,
+    "track_v_cm": 0.42,
+    "res_mm": 4.38,
+    "step_cm": 0.05,
+    "rejected": false
+   },
+   {
+    "f": 58,
+    "points": 5978,
+    "v_cm": 2.45,
+    "h_cm": 2.67,
+    "track_v_cm": 0.61,
+    "res_mm": 4.58,
+    "step_cm": 0.02,
+    "rejected": false
+   },
+   {
+    "f": 61,
+    "points": 6113,
+    "v_cm": 3.83,
+    "h_cm": 2.32,
+    "track_v_cm": 0.15,
+    "res_mm": 4.92,
+    "step_cm": 1.44,
+    "rejected": false
+   },
+   {
+    "f": 64,
+    "points": 7098,
+    "v_cm": 5.27,
+    "h_cm": 2.4,
+    "track_v_cm": 1.59,
+    "res_mm": 5.76,
+    "step_cm": 1.52,
+    "rejected": false
+   },
+   {
+    "f": 67,
+    "points": 7582,
+    "v_cm": 5.1,
+    "h_cm": 1.95,
+    "track_v_cm": 5.36,
+    "res_mm": 5.43,
+    "step_cm": 0.52,
+    "rejected": false
+   },
+   {
+    "f": 69,
+    "points": 7303,
+    "v_cm": 4.38,
+    "h_cm": 1.93,
+    "track_v_cm": 4.84,
+    "res_mm": 5.13,
+    "step_cm": 0.73,
+    "rejected": false
+   },
+   {
+    "f": 72,
+    "points": 7229,
+    "v_cm": 3.86,
+    "h_cm": 1.9,
+    "track_v_cm": 4.13,
+    "res_mm": 5.21,
+    "step_cm": 0.52,
+    "rejected": false
+   },
+   {
+    "f": 75,
+    "points": 7120,
+    "v_cm": 3.8,
+    "h_cm": 2.04,
+    "track_v_cm": 4.09,
+    "res_mm": 5.26,
+    "step_cm": 0.17,
+    "rejected": false
+   },
+   {
+    "f": 78,
+    "points": 7133,
+    "v_cm": 3.94,
+    "h_cm": 2.05,
+    "track_v_cm": 3.97,
+    "res_mm": 4.69,
+    "step_cm": 0.15,
+    "rejected": false
+   },
+   {
+    "f": 81,
+    "points": 7154,
+    "v_cm": 3.77,
+    "h_cm": 1.93,
+    "track_v_cm": 3.76,
+    "res_mm": 4.94,
+    "step_cm": 0.21,
+    "rejected": false
+   },
+   {
+    "f": 84,
+    "points": 7034,
+    "v_cm": 3.77,
+    "h_cm": 2.16,
+    "track_v_cm": 3.73,
+    "res_mm": 4.53,
+    "step_cm": 0.28,
+    "rejected": false
+   },
+   {
+    "f": 87,
+    "points": 7198,
+    "v_cm": 3.54,
+    "h_cm": 1.97,
+    "track_v_cm": 3.46,
+    "res_mm": 5.46,
+    "step_cm": 0.36,
+    "rejected": false
+   },
+   {
+    "f": 90,
+    "points": 7345,
+    "v_cm": 3.37,
+    "h_cm": 1.95,
+    "track_v_cm": 3.56,
+    "res_mm": 4.43,
+    "step_cm": 0.37,
+    "rejected": false
+   },
+   {
+    "f": 93,
+    "points": 7674,
+    "v_cm": 3.14,
+    "h_cm": 1.57,
+    "track_v_cm": 3.17,
+    "res_mm": 4.93,
+    "step_cm": 0.45,
+    "rejected": false
+   },
+   {
+    "f": 95,
+    "points": 7764,
+    "v_cm": 3.48,
+    "h_cm": 1.68,
+    "track_v_cm": 3.38,
+    "res_mm": 4.65,
+    "step_cm": 0.35,
+    "rejected": false
+   },
+   {
+    "f": 98,
+    "points": 7733,
+    "v_cm": 3.41,
+    "h_cm": 1.85,
+    "track_v_cm": 3.33,
+    "res_mm": 4.55,
+    "step_cm": 0.19,
+    "rejected": false
+   },
+   {
+    "f": 101,
+    "points": 7853,
+    "v_cm": 3.04,
+    "h_cm": 2.49,
+    "track_v_cm": 2.69,
+    "res_mm": 5.36,
+    "step_cm": 0.74,
+    "rejected": false
+   },
+   {
+    "f": 104,
+    "points": 5486,
+    "v_cm": 3.35,
+    "h_cm": 0.5,
+    "track_v_cm": 2.19,
+    "res_mm": 1.76,
+    "step_cm": 2.17,
+    "rejected": false
+   },
+   {
+    "f": 107,
+    "points": 5585,
+    "v_cm": 3.56,
+    "h_cm": 0.53,
+    "track_v_cm": 1.72,
+    "res_mm": 1.83,
+    "step_cm": 0.25,
+    "rejected": false
+   },
+   {
+    "f": 110,
+    "points": 5548,
+    "v_cm": 4.03,
+    "h_cm": 0.6,
+    "track_v_cm": 1.74,
+    "res_mm": 1.67,
+    "step_cm": 0.48,
+    "rejected": false
+   },
+   {
+    "f": 113,
+    "points": 5510,
+    "v_cm": 4.46,
+    "h_cm": 0.64,
+    "track_v_cm": 1.95,
+    "res_mm": 1.73,
+    "step_cm": 0.43,
+    "rejected": false
+   },
+   {
+    "f": 116,
+    "points": 5536,
+    "v_cm": 4.11,
+    "h_cm": 0.48,
+    "track_v_cm": 2.07,
+    "res_mm": 1.78,
+    "step_cm": 0.41,
+    "rejected": false
+   },
+   {
+    "f": 119,
+    "points": 5580,
+    "v_cm": 4.08,
+    "h_cm": 0.53,
+    "track_v_cm": 2.47,
+    "res_mm": 1.82,
+    "step_cm": 0.06,
+    "rejected": false
+   },
+   {
+    "f": 122,
+    "points": 5564,
+    "v_cm": 3.34,
+    "h_cm": 0.44,
+    "track_v_cm": 2.28,
+    "res_mm": 1.93,
+    "step_cm": 0.75,
+    "rejected": false
+   },
+   {
+    "f": 124,
+    "points": 5660,
+    "v_cm": 4.31,
+    "h_cm": 0.49,
+    "track_v_cm": 2.41,
+    "res_mm": 2.03,
+    "step_cm": 0.97,
+    "rejected": false
+   },
+   {
+    "f": 127,
+    "points": 5472,
+    "v_cm": 3.43,
+    "h_cm": 0.35,
+    "track_v_cm": 2.27,
+    "res_mm": 1.68,
+    "step_cm": 0.89,
+    "rejected": false
+   },
+   {
+    "f": 130,
+    "points": 5603,
+    "v_cm": 3.17,
+    "h_cm": 0.4,
+    "track_v_cm": 2.32,
+    "res_mm": 1.83,
+    "step_cm": 0.27,
+    "rejected": false
+   },
+   {
+    "f": 133,
+    "points": 5576,
+    "v_cm": 3.4,
+    "h_cm": 0.47,
+    "track_v_cm": 2.44,
+    "res_mm": 1.77,
+    "step_cm": 0.25,
+    "rejected": false
+   },
+   {
+    "f": 136,
+    "points": 5535,
+    "v_cm": 3.83,
+    "h_cm": 0.43,
+    "track_v_cm": 2.42,
+    "res_mm": 1.61,
+    "step_cm": 0.44,
+    "rejected": false
+   }
+  ],
+  "objmask": [
+   {
+    "f": 43,
+    "points": 3881,
+    "v_cm": 0.24,
+    "h_cm": 2.42,
+    "track_v_cm": 1.2,
+    "res_mm": 3.81,
+    "step_cm": 2.43,
+    "rejected": false
+   },
+   {
+    "f": 46,
+    "points": 5566,
+    "v_cm": 0.05,
+    "h_cm": 3.42,
+    "track_v_cm": 0.31,
+    "res_mm": 4.27,
+    "step_cm": 1.03,
+    "rejected": false
+   },
+   {
+    "f": 49,
+    "points": 6035,
+    "v_cm": -0.25,
+    "h_cm": 3.92,
+    "track_v_cm": 0.2,
+    "res_mm": 4.7,
+    "step_cm": 0.6,
+    "rejected": false
+   },
+   {
+    "f": 52,
+    "points": 6249,
+    "v_cm": -0.86,
+    "h_cm": 4.08,
+    "track_v_cm": 0.58,
+    "res_mm": 5.55,
+    "step_cm": 0.63,
+    "rejected": false
+   },
+   {
+    "f": 55,
+    "points": 6344,
+    "v_cm": -1.14,
+    "h_cm": 3.96,
+    "track_v_cm": 0.42,
+    "res_mm": 5.44,
+    "step_cm": 0.31,
+    "rejected": false
+   },
+   {
+    "f": 58,
+    "points": 5904,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 0.61,
+    "res_mm": 4.95,
+    "step_cm": 2.64,
+    "rejected": false
+   },
+   {
+    "f": 61,
+    "points": 6287,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 0.15,
+    "res_mm": 6.47,
+    "step_cm": 3.94,
+    "rejected": true
+   },
+   {
+    "f": 64,
+    "points": 6224,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 1.59,
+    "res_mm": 6.3,
+    "step_cm": 3.89,
+    "rejected": true
+   },
+   {
+    "f": 67,
+    "points": 6139,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 5.36,
+    "res_mm": 6.04,
+    "step_cm": 4.12,
+    "rejected": true
+   },
+   {
+    "f": 69,
+    "points": 6194,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 4.84,
+    "res_mm": 6.51,
+    "step_cm": 4.14,
+    "rejected": true
+   },
+   {
+    "f": 72,
+    "points": 6017,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 4.13,
+    "res_mm": 5.56,
+    "step_cm": 4.31,
+    "rejected": true
+   },
+   {
+    "f": 75,
+    "points": 6123,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 4.09,
+    "res_mm": 5.85,
+    "step_cm": 4.62,
+    "rejected": true
+   },
+   {
+    "f": 78,
+    "points": 6032,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 3.97,
+    "res_mm": 6.39,
+    "step_cm": 3.78,
+    "rejected": true
+   },
+   {
+    "f": 81,
+    "points": 6141,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 3.76,
+    "res_mm": 6.3,
+    "step_cm": 3.54,
+    "rejected": true
+   },
+   {
+    "f": 84,
+    "points": 6081,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 3.73,
+    "res_mm": 6.14,
+    "step_cm": 4.34,
+    "rejected": true
+   },
+   {
+    "f": 87,
+    "points": 6060,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 3.46,
+    "res_mm": 5.18,
+    "step_cm": 4.49,
+    "rejected": true
+   },
+   {
+    "f": 90,
+    "points": 6151,
+    "v_cm": -3.44,
+    "h_cm": 5.1,
+    "track_v_cm": 3.56,
+    "res_mm": 6.14,
+    "step_cm": 3.75,
+    "rejected": true
+   },
+   {
+    "f": 93,
+    "points": 6249,
+    "v_cm": -4.81,
+    "h_cm": 7.52,
+    "track_v_cm": 3.17,
+    "res_mm": 5.77,
+    "step_cm": 2.79,
+    "rejected": false
+   },
+   {
+    "f": 95,
+    "points": 7466,
+    "v_cm": -5.2,
+    "h_cm": 8.96,
+    "track_v_cm": 3.38,
+    "res_mm": 6.04,
+    "step_cm": 1.5,
+    "rejected": false
+   },
+   {
+    "f": 98,
+    "points": 8706,
+    "v_cm": -5.2,
+    "h_cm": 8.96,
+    "track_v_cm": 3.33,
+    "res_mm": 6.33,
+    "step_cm": 4.11,
+    "rejected": true
+   },
+   {
+    "f": 101,
+    "points": 8347,
+    "v_cm": -5.2,
+    "h_cm": 8.96,
+    "track_v_cm": 2.69,
+    "res_mm": 6.87,
+    "step_cm": 5.44,
+    "rejected": true
+   },
+   {
+    "f": 104,
+    "points": 8056,
+    "v_cm": -6.48,
+    "h_cm": 9.97,
+    "track_v_cm": 2.19,
+    "res_mm": 5.76,
+    "step_cm": 1.88,
+    "rejected": false
+   },
+   {
+    "f": 107,
+    "points": 8996,
+    "v_cm": -6.15,
+    "h_cm": 12.69,
+    "track_v_cm": 1.72,
+    "res_mm": 6.21,
+    "step_cm": 2.91,
+    "rejected": false
+   },
+   {
+    "f": 110,
+    "points": 9510,
+    "v_cm": -6.09,
+    "h_cm": 11.58,
+    "track_v_cm": 1.74,
+    "res_mm": 5.79,
+    "step_cm": 2.02,
+    "rejected": false
+   },
+   {
+    "f": 113,
+    "points": 10948,
+    "v_cm": -6.42,
+    "h_cm": 12.56,
+    "track_v_cm": 1.95,
+    "res_mm": 6.34,
+    "step_cm": 1.29,
+    "rejected": false
+   },
+   {
+    "f": 116,
+    "points": 11484,
+    "v_cm": -6.42,
+    "h_cm": 13.9,
+    "track_v_cm": 2.07,
+    "res_mm": 6.58,
+    "step_cm": 1.37,
+    "rejected": false
+   },
+   {
+    "f": 119,
+    "points": 12703,
+    "v_cm": -6.16,
+    "h_cm": 15.11,
+    "track_v_cm": 2.47,
+    "res_mm": 6.65,
+    "step_cm": 1.26,
+    "rejected": false
+   },
+   {
+    "f": 122,
+    "points": 12566,
+    "v_cm": -6.31,
+    "h_cm": 15.69,
+    "track_v_cm": 2.28,
+    "res_mm": 6.1,
+    "step_cm": 0.79,
+    "rejected": false
+   },
+   {
+    "f": 124,
+    "points": 11969,
+    "v_cm": -6.09,
+    "h_cm": 15.71,
+    "track_v_cm": 2.41,
+    "res_mm": 5.82,
+    "step_cm": 0.22,
+    "rejected": false
+   },
+   {
+    "f": 127,
+    "points": 11266,
+    "v_cm": -6.16,
+    "h_cm": 15.39,
+    "track_v_cm": 2.27,
+    "res_mm": 5.64,
+    "step_cm": 0.36,
+    "rejected": false
+   },
+   {
+    "f": 130,
+    "points": 11410,
+    "v_cm": -6.06,
+    "h_cm": 14.85,
+    "track_v_cm": 2.32,
+    "res_mm": 5.67,
+    "step_cm": 0.72,
+    "rejected": false
+   },
+   {
+    "f": 133,
+    "points": 11082,
+    "v_cm": -6.2,
+    "h_cm": 14.54,
+    "track_v_cm": 2.44,
+    "res_mm": 5.51,
+    "step_cm": 0.35,
+    "rejected": false
+   },
+   {
+    "f": 136,
+    "points": 11234,
+    "v_cm": -6.1,
+    "h_cm": 14.31,
+    "track_v_cm": 2.42,
+    "res_mm": 5.91,
+    "step_cm": 0.28,
+    "rejected": false
+   }
+  ],
+  "objhand": [
+   {
+    "f": 43,
+    "points": 0,
+    "skipped": true
+   },
+   {
+    "f": 46,
+    "points": 0,
+    "skipped": true
+   },
+   {
+    "f": 49,
+    "points": 0,
+    "skipped": true
+   },
+   {
+    "f": 52,
+    "points": 0,
+    "skipped": true
+   },
+   {
+    "f": 55,
+    "points": 3,
+    "skipped": true
+   },
+   {
+    "f": 58,
+    "points": 3,
+    "skipped": true
+   },
+   {
+    "f": 61,
+    "points": 5,
+    "skipped": true
+   },
+   {
+    "f": 64,
+    "points": 10,
+    "skipped": true
+   },
+   {
+    "f": 67,
+    "points": 8,
+    "skipped": true
+   },
+   {
+    "f": 69,
+    "points": 17,
+    "skipped": true
+   },
+   {
+    "f": 72,
+    "points": 22,
+    "skipped": true
+   },
+   {
+    "f": 75,
+    "points": 13,
+    "skipped": true
+   },
+   {
+    "f": 78,
+    "points": 7,
+    "skipped": true
+   },
+   {
+    "f": 81,
+    "points": 8,
+    "skipped": true
+   },
+   {
+    "f": 84,
+    "points": 10,
+    "skipped": true
+   },
+   {
+    "f": 87,
+    "points": 7,
+    "skipped": true
+   },
+   {
+    "f": 90,
+    "points": 7,
+    "skipped": true
+   },
+   {
+    "f": 93,
+    "points": 408,
+    "v_cm": 0.31,
+    "h_cm": 1.36,
+    "track_v_cm": 3.17,
+    "res_mm": 0.81,
+    "step_cm": 1.39,
+    "rejected": false
+   },
+   {
+    "f": 95,
+    "points": 98,
+    "skipped": true
+   },
+   {
+    "f": 98,
+    "points": 88,
+    "skipped": true
+   },
+   {
+    "f": 101,
+    "points": 455,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.69,
+    "res_mm": 4.34,
+    "step_cm": 0.77,
+    "rejected": false
+   },
+   {
+    "f": 104,
+    "points": 2866,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.19,
+    "res_mm": 6.21,
+    "step_cm": 4.59,
+    "rejected": true
+   },
+   {
+    "f": 107,
+    "points": 2892,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 1.72,
+    "res_mm": 6.56,
+    "step_cm": 4.2,
+    "rejected": true
+   },
+   {
+    "f": 110,
+    "points": 2929,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 1.74,
+    "res_mm": 6.89,
+    "step_cm": 4.86,
+    "rejected": true
+   },
+   {
+    "f": 113,
+    "points": 2766,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 1.95,
+    "res_mm": 6.09,
+    "step_cm": 6.08,
+    "rejected": true
+   },
+   {
+    "f": 116,
+    "points": 3029,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.07,
+    "res_mm": 6.43,
+    "step_cm": 4.54,
+    "rejected": true
+   },
+   {
+    "f": 119,
+    "points": 3029,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.47,
+    "res_mm": 6.37,
+    "step_cm": 4.5,
+    "rejected": true
+   },
+   {
+    "f": 122,
+    "points": 3099,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.28,
+    "res_mm": 6.5,
+    "step_cm": 4.19,
+    "rejected": true
+   },
+   {
+    "f": 124,
+    "points": 3049,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.41,
+    "res_mm": 6.5,
+    "step_cm": 4.22,
+    "rejected": true
+   },
+   {
+    "f": 127,
+    "points": 3057,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.27,
+    "res_mm": 6.57,
+    "step_cm": 4.28,
+    "rejected": true
+   },
+   {
+    "f": 130,
+    "points": 3114,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.32,
+    "res_mm": 6.44,
+    "step_cm": 4.18,
+    "rejected": true
+   },
+   {
+    "f": 133,
+    "points": 3087,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.44,
+    "res_mm": 6.37,
+    "step_cm": 4.33,
+    "rejected": true
+   },
+   {
+    "f": 136,
+    "points": 3008,
+    "v_cm": 0.12,
+    "h_cm": 2.03,
+    "track_v_cm": 2.42,
+    "res_mm": 6.4,
+    "step_cm": 4.26,
+    "rejected": true
+   }
+  ],
+  "raw_t": [
+   {
+    "f": 43,
+    "points": 4002,
+    "v_cm": 0.97,
+    "h_cm": 2.08,
+    "track_v_cm": 1.2,
+    "res_mm": 3.29,
+    "step_cm": 2.3,
+    "rejected": false
+   },
+   {
+    "f": 46,
+    "points": 5755,
+    "v_cm": 1.86,
+    "h_cm": 2.5,
+    "track_v_cm": 0.31,
+    "res_mm": 3.92,
+    "step_cm": 1.01,
+    "rejected": false
+   },
+   {
+    "f": 49,
+    "points": 5867,
+    "v_cm": 1.99,
+    "h_cm": 2.77,
+    "track_v_cm": 0.2,
+    "res_mm": 4.07,
+    "step_cm": 0.33,
+    "rejected": false
+   },
+   {
+    "f": 52,
+    "points": 5872,
+    "v_cm": 2.41,
+    "h_cm": 2.64,
+    "track_v_cm": 0.58,
+    "res_mm": 4.49,
+    "step_cm": 0.44,
+    "rejected": false
+   },
+   {
+    "f": 55,
+    "points": 5918,
+    "v_cm": 2.45,
+    "h_cm": 2.66,
+    "track_v_cm": 0.42,
+    "res_mm": 4.37,
+    "step_cm": 0.07,
+    "rejected": false
+   },
+   {
+    "f": 58,
+    "points": 5975,
+    "v_cm": 2.45,
+    "h_cm": 2.67,
+    "track_v_cm": 0.61,
+    "res_mm": 4.58,
+    "step_cm": 0.02,
+    "rejected": false
+   },
+   {
+    "f": 61,
+    "points": 6112,
+    "v_cm": 3.84,
+    "h_cm": 2.31,
+    "track_v_cm": 0.15,
+    "res_mm": 4.91,
+    "step_cm": 1.45,
+    "rejected": false
+   },
+   {
+    "f": 64,
+    "points": 7106,
+    "v_cm": 5.27,
+    "h_cm": 2.38,
+    "track_v_cm": 1.59,
+    "res_mm": 5.77,
+    "step_cm": 1.51,
+    "rejected": false
+   },
+   {
+    "f": 67,
+    "points": 7585,
+    "v_cm": 5.09,
+    "h_cm": 1.95,
+    "track_v_cm": 5.36,
+    "res_mm": 5.43,
+    "step_cm": 0.52,
+    "rejected": false
+   },
+   {
+    "f": 69,
+    "points": 7304,
+    "v_cm": 4.39,
+    "h_cm": 1.92,
+    "track_v_cm": 4.84,
+    "res_mm": 5.14,
+    "step_cm": 0.71,
+    "rejected": false
+   },
+   {
+    "f": 72,
+    "points": 7230,
+    "v_cm": 3.87,
+    "h_cm": 1.88,
+    "track_v_cm": 4.13,
+    "res_mm": 5.21,
+    "step_cm": 0.52,
+    "rejected": false
+   },
+   {
+    "f": 75,
+    "points": 7124,
+    "v_cm": 3.8,
+    "h_cm": 2.04,
+    "track_v_cm": 4.09,
+    "res_mm": 5.24,
+    "step_cm": 0.18,
+    "rejected": false
+   },
+   {
+    "f": 78,
+    "points": 7132,
+    "v_cm": 3.93,
+    "h_cm": 2.05,
+    "track_v_cm": 3.97,
+    "res_mm": 4.69,
+    "step_cm": 0.14,
+    "rejected": false
+   },
+   {
+    "f": 81,
+    "points": 7154,
+    "v_cm": 3.7,
+    "h_cm": 1.95,
+    "track_v_cm": 3.76,
+    "res_mm": 4.94,
+    "step_cm": 0.25,
+    "rejected": false
+   },
+   {
+    "f": 84,
+    "points": 7033,
+    "v_cm": 3.76,
+    "h_cm": 2.15,
+    "track_v_cm": 3.73,
+    "res_mm": 4.53,
+    "step_cm": 0.26,
+    "rejected": false
+   },
+   {
+    "f": 87,
+    "points": 7198,
+    "v_cm": 3.53,
+    "h_cm": 1.97,
+    "track_v_cm": 3.46,
+    "res_mm": 5.46,
+    "step_cm": 0.36,
+    "rejected": false
+   },
+   {
+    "f": 90,
+    "points": 7345,
+    "v_cm": 3.35,
+    "h_cm": 1.97,
+    "track_v_cm": 3.56,
+    "res_mm": 4.42,
+    "step_cm": 0.37,
+    "rejected": false
+   },
+   {
+    "f": 93,
+    "points": 7673,
+    "v_cm": 3.14,
+    "h_cm": 1.57,
+    "track_v_cm": 3.17,
+    "res_mm": 4.93,
+    "step_cm": 0.45,
+    "rejected": false
+   },
+   {
+    "f": 95,
+    "points": 7764,
+    "v_cm": 3.43,
+    "h_cm": 1.71,
+    "track_v_cm": 3.38,
+    "res_mm": 4.64,
+    "step_cm": 0.32,
+    "rejected": false
+   },
+   {
+    "f": 98,
+    "points": 7769,
+    "v_cm": 3.42,
+    "h_cm": 1.84,
+    "track_v_cm": 3.33,
+    "res_mm": 4.59,
+    "step_cm": 0.14,
+    "rejected": false
+   },
+   {
+    "f": 101,
+    "points": 7856,
+    "v_cm": 3.03,
+    "h_cm": 2.49,
+    "track_v_cm": 2.69,
+    "res_mm": 5.36,
+    "step_cm": 0.76,
+    "rejected": false
+   },
+   {
+    "f": 104,
+    "points": 5436,
+    "v_cm": 3.3,
+    "h_cm": 0.5,
+    "track_v_cm": 2.19,
+    "res_mm": 1.73,
+    "step_cm": 2.17,
+    "rejected": false
+   },
+   {
+    "f": 107,
+    "points": 5578,
+    "v_cm": 3.55,
+    "h_cm": 0.53,
+    "track_v_cm": 1.72,
+    "res_mm": 1.82,
+    "step_cm": 0.28,
+    "rejected": false
+   },
+   {
+    "f": 110,
+    "points": 5549,
+    "v_cm": 4.03,
+    "h_cm": 0.6,
+    "track_v_cm": 1.74,
+    "res_mm": 1.66,
+    "step_cm": 0.49,
+    "rejected": false
+   },
+   {
+    "f": 113,
+    "points": 5510,
+    "v_cm": 4.46,
+    "h_cm": 0.64,
+    "track_v_cm": 1.95,
+    "res_mm": 1.73,
+    "step_cm": 0.43,
+    "rejected": false
+   },
+   {
+    "f": 116,
+    "points": 5536,
+    "v_cm": 4.11,
+    "h_cm": 0.48,
+    "track_v_cm": 2.07,
+    "res_mm": 1.79,
+    "step_cm": 0.41,
+    "rejected": false
+   },
+   {
+    "f": 119,
+    "points": 5581,
+    "v_cm": 4.07,
+    "h_cm": 0.54,
+    "track_v_cm": 2.47,
+    "res_mm": 1.83,
+    "step_cm": 0.07,
+    "rejected": false
+   },
+   {
+    "f": 122,
+    "points": 5565,
+    "v_cm": 3.35,
+    "h_cm": 0.44,
+    "track_v_cm": 2.28,
+    "res_mm": 1.94,
+    "step_cm": 0.74,
+    "rejected": false
+   },
+   {
+    "f": 124,
+    "points": 5658,
+    "v_cm": 4.31,
+    "h_cm": 0.49,
+    "track_v_cm": 2.41,
+    "res_mm": 2.03,
+    "step_cm": 0.97,
+    "rejected": false
+   },
+   {
+    "f": 127,
+    "points": 5472,
+    "v_cm": 3.42,
+    "h_cm": 0.35,
+    "track_v_cm": 2.27,
+    "res_mm": 1.67,
+    "step_cm": 0.91,
+    "rejected": false
+   },
+   {
+    "f": 130,
+    "points": 5602,
+    "v_cm": 3.18,
+    "h_cm": 0.4,
+    "track_v_cm": 2.32,
+    "res_mm": 1.84,
+    "step_cm": 0.24,
+    "rejected": false
+   },
+   {
+    "f": 133,
+    "points": 5557,
+    "v_cm": 3.36,
+    "h_cm": 0.47,
+    "track_v_cm": 2.44,
+    "res_mm": 1.76,
+    "step_cm": 0.2,
+    "rejected": false
+   },
+   {
+    "f": 136,
+    "points": 5543,
+    "v_cm": 3.84,
+    "h_cm": 0.43,
+    "track_v_cm": 2.42,
+    "res_mm": 1.62,
+    "step_cm": 0.48,
+    "rejected": false
+   }
+  ],
+  "objmask_t": [
+   {
+    "f": 43,
+    "points": 3506,
+    "v_cm": 0.44,
+    "h_cm": 2.43,
+    "track_v_cm": 1.2,
+    "res_mm": 3.27,
+    "step_cm": 2.47,
+    "rejected": false
+   },
+   {
+    "f": 46,
+    "points": 4865,
+    "v_cm": -0.33,
+    "h_cm": 3.86,
+    "track_v_cm": 0.31,
+    "res_mm": 3.39,
+    "step_cm": 1.65,
+    "rejected": false
+   },
+   {
+    "f": 49,
+    "points": 5236,
+    "v_cm": -0.39,
+    "h_cm": 4.02,
+    "track_v_cm": 0.2,
+    "res_mm": 3.63,
+    "step_cm": 0.22,
+    "rejected": false
+   },
+   {
+    "f": 52,
+    "points": 5220,
+    "v_cm": -0.66,
+    "h_cm": 3.9,
+    "track_v_cm": 0.58,
+    "res_mm": 3.9,
+    "step_cm": 0.3,
+    "rejected": false
+   },
+   {
+    "f": 55,
+    "points": 5148,
+    "v_cm": -0.71,
+    "h_cm": 3.89,
+    "track_v_cm": 0.42,
+    "res_mm": 3.66,
+    "step_cm": 0.05,
+    "rejected": false
+   },
+   {
+    "f": 58,
+    "points": 4616,
+    "v_cm": -1.63,
+    "h_cm": 3.29,
+    "track_v_cm": 0.61,
+    "res_mm": 3.27,
+    "step_cm": 1.32,
+    "rejected": false
+   },
+   {
+    "f": 61,
+    "points": 4041,
+    "v_cm": -3.39,
+    "h_cm": 4.78,
+    "track_v_cm": 0.15,
+    "res_mm": 2.72,
+    "step_cm": 2.31,
+    "rejected": false
+   },
+   {
+    "f": 64,
+    "points": 4415,
+    "v_cm": -4.59,
+    "h_cm": 6.7,
+    "track_v_cm": 1.59,
+    "res_mm": 3.16,
+    "step_cm": 2.34,
+    "rejected": false
+   },
+   {
+    "f": 67,
+    "points": 4860,
+    "v_cm": -4.66,
+    "h_cm": 7.92,
+    "track_v_cm": 5.36,
+    "res_mm": 3.28,
+    "step_cm": 1.24,
+    "rejected": false
+   },
+   {
+    "f": 69,
+    "points": 5160,
+    "v_cm": -5.07,
+    "h_cm": 9.64,
+    "track_v_cm": 4.84,
+    "res_mm": 3.26,
+    "step_cm": 1.76,
+    "rejected": false
+   },
+   {
+    "f": 72,
+    "points": 5769,
+    "v_cm": -5.57,
+    "h_cm": 10.86,
+    "track_v_cm": 4.13,
+    "res_mm": 3.22,
+    "step_cm": 1.33,
+    "rejected": false
+   },
+   {
+    "f": 75,
+    "points": 5868,
+    "v_cm": -5.37,
+    "h_cm": 11.36,
+    "track_v_cm": 4.09,
+    "res_mm": 2.97,
+    "step_cm": 0.58,
+    "rejected": false
+   },
+   {
+    "f": 78,
+    "points": 5814,
+    "v_cm": -5.33,
+    "h_cm": 11.39,
+    "track_v_cm": 3.97,
+    "res_mm": 3.12,
+    "step_cm": 0.12,
+    "rejected": false
+   },
+   {
+    "f": 81,
+    "points": 5794,
+    "v_cm": -5.51,
+    "h_cm": 11.4,
+    "track_v_cm": 3.76,
+    "res_mm": 3.23,
+    "step_cm": 0.18,
+    "rejected": false
+   },
+   {
+    "f": 84,
+    "points": 5740,
+    "v_cm": -5.53,
+    "h_cm": 11.44,
+    "track_v_cm": 3.73,
+    "res_mm": 3.28,
+    "step_cm": 0.04,
+    "rejected": false
+   },
+   {
+    "f": 87,
+    "points": 5654,
+    "v_cm": -5.71,
+    "h_cm": 11.34,
+    "track_v_cm": 3.46,
+    "res_mm": 3.13,
+    "step_cm": 0.21,
+    "rejected": false
+   },
+   {
+    "f": 90,
+    "points": 5614,
+    "v_cm": -5.56,
+    "h_cm": 10.99,
+    "track_v_cm": 3.56,
+    "res_mm": 3.18,
+    "step_cm": 0.38,
+    "rejected": false
+   },
+   {
+    "f": 93,
+    "points": 5749,
+    "v_cm": -5.43,
+    "h_cm": 11.1,
+    "track_v_cm": 3.17,
+    "res_mm": 3.16,
+    "step_cm": 0.26,
+    "rejected": false
+   },
+   {
+    "f": 95,
+    "points": 5818,
+    "v_cm": -5.49,
+    "h_cm": 11.23,
+    "track_v_cm": 3.38,
+    "res_mm": 3.55,
+    "step_cm": 0.22,
+    "rejected": false
+   },
+   {
+    "f": 98,
+    "points": 5769,
+    "v_cm": -5.12,
+    "h_cm": 10.95,
+    "track_v_cm": 3.33,
+    "res_mm": 3.08,
+    "step_cm": 0.47,
+    "rejected": false
+   },
+   {
+    "f": 101,
+    "points": 5929,
+    "v_cm": -5.54,
+    "h_cm": 11.66,
+    "track_v_cm": 2.69,
+    "res_mm": 3.37,
+    "step_cm": 0.91,
+    "rejected": false
+   },
+   {
+    "f": 104,
+    "points": 2434,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.19,
+    "res_mm": 2.34,
+    "step_cm": 1.68,
+    "rejected": false
+   },
+   {
+    "f": 107,
+    "points": 416,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 1.72,
+    "res_mm": 1.47,
+    "step_cm": 4.76,
+    "rejected": true
+   },
+   {
+    "f": 110,
+    "points": 414,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 1.74,
+    "res_mm": 2524.55,
+    "step_cm": 265.62,
+    "rejected": true
+   },
+   {
+    "f": 113,
+    "points": 411,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 1.95,
+    "res_mm": 1.46,
+    "step_cm": 7.38,
+    "rejected": true
+   },
+   {
+    "f": 116,
+    "points": 385,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.07,
+    "res_mm": 3727.73,
+    "step_cm": 624.41,
+    "rejected": true
+   },
+   {
+    "f": 119,
+    "points": 381,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.47,
+    "res_mm": 2149.22,
+    "step_cm": 222.97,
+    "rejected": true
+   },
+   {
+    "f": 122,
+    "points": 376,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.28,
+    "res_mm": 6166.56,
+    "step_cm": 707.98,
+    "rejected": true
+   },
+   {
+    "f": 124,
+    "points": 371,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.41,
+    "res_mm": 254.23,
+    "step_cm": 38.79,
+    "rejected": true
+   },
+   {
+    "f": 127,
+    "points": 368,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.27,
+    "res_mm": 6955.9,
+    "step_cm": 702.12,
+    "rejected": true
+   },
+   {
+    "f": 130,
+    "points": 392,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.32,
+    "res_mm": 5743.57,
+    "step_cm": 594.6,
+    "rejected": true
+   },
+   {
+    "f": 133,
+    "points": 393,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.44,
+    "res_mm": 9460.83,
+    "step_cm": 1067.05,
+    "rejected": true
+   },
+   {
+    "f": 136,
+    "points": 392,
+    "v_cm": -4.24,
+    "h_cm": 12.11,
+    "track_v_cm": 2.42,
+    "res_mm": 6332.7,
+    "step_cm": 847.61,
+    "rejected": true
+   }
+  ]
+ }
+}

@@ -103,6 +103,12 @@ writing or changing any eval reference.
     `3b353b5f…`, heldpose `9a5b9c0e…`).
   - The first public run was made before the per-frame aux arrays were added. Its 160 outputs are byte-identical to the
     final run (checked).
+- **One deviation from the §0 text**, decided while implementing and before any scoring:
+  - §0 says unmeasured frames inside a hold keep the tracker. The code instead screw-interpolates the palm frame between
+    the measured neighbours, and interpolates v_P linearly, so that w does not jump to 0 and back.
+  - This affects 204 of the 4372 hold frames (4.7 %, Po).
+  - [E] It is too small to change the verdict: the rule is missed by 0.023 on the proxy mean and by 0.044 on the worst
+    episode.
 - **Tests:**
   - `python tests/test_refine_s10.py`: 5/5 pass. They cover:
     - S10 is opt-in and runs after S2;
@@ -288,8 +294,8 @@ S10 run on the stored eval tracks behind packs 6/7 (`results/eval_change.json`).
 - **Ruled out [M]:** posing a held object as palm frame × a constant grasp, in any of the three forms tested.
   - This holds whether G is estimated at onset or fitted to mocap (§4), gated by visibility or not, and with full pose
     or translation only.
-  - On the public thin-object proxies, the tracker during holds is already at a median of about 0.5–0.9 cm. Our palm
-    frame is not good enough to beat it.
+  - On the public thin-object proxies, the tracker's median error inside holds is already 0.34–1.41 cm per object.
+    Our palm frame is not good enough to beat it.
   - LB value of S10 as built: negative. Do not spend a rollout gate or eval retrains on it.
 - **Where the proxies' large tracker errors are (post hoc, oracle; `scripts/hp_where.py`, `results/hp_where.json`)
   [M]:**
@@ -306,6 +312,11 @@ S10 run on the stored eval tracks behind packs 6/7 (`results/eval_change.json`).
     data either.
   - Falsifier for any future hand-based variant: the oracle floor of §4 must first beat the tracker on the low-visibility
     hold frames.
+  - A residual-gated "rigid hold only" lock (apply only when the tracker stays within about 1 cm / 5° of palm x G over
+    the hold) is the one form the floor does not rule out: ep11's cups have a 2.8–4.2° true spread.
+    - Its public support is a single episode, and these data are now seen, so it is not proposed here.
+    - Falsifier: on a fresh pre-registration it opens on fewer than 2 public holds outside ep11, or harms any episode by
+      more than 0.005.
 - **Lead for the eval-10 experiment [H]:**
   - On ep11, locking the held blue cup to the hand gave +0.0185 (gated) and +0.035 (replace) lib. It suppressed the
     cup's lift while the left hand holds it during the nest.
