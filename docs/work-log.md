@@ -5834,3 +5834,13 @@ score.
 - 20:31 UTC determined-wright: the owner chose "No D" in its chat. Pack 10 stays on the current recipe, and the
   D-beside-C proposal is withdrawn. Told focused-pascal: Tier 2 now depends on masses v2 (and on the re-track for
   references).
+
+### 2026-10-31 ~20:40 UTC — owner: targeted D arm in pack 10
+- Asked whether DR would have made sense. My reading:
+  - draw variance is real (H5: 0.8755 vs packed 0.9164; evals 1/14/25/30/33 sd 0.14–0.26), and PR #215 expects
+    reproduced scores within run-to-run variation;
+  - but the screen did not show D lowering spread (ep12 +0.33 both seeds, ep2 −0.11 with more spread);
+  - the variance cuts so far came from geometry (eval 1 carve: sd 0.239 → 0.017).
+  Proposed: a D arm on the unstable episodes only (14, 16, 25, 30, 33), ≈ $6–10 [E], with the swap rule choosing.
+- Owner, verbatim: "sure add that whatev". Sent to focused-pascal (pack-10 cell list) and determined-wright (settings,
+  standard-learner caveat for 25/30).
