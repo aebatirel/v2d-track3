@@ -6057,6 +6057,6 @@ Background agent, CPU only, $0, no ground truth read.
 - focused-pascal's reply (queued 20:25 UTC, sent before it saw "No D"): offered the masses-v2 mass0 cells as a library_v3
   check set for a D falsifier (≈ $6–10 [E]). Not run, because the owner declined D.
 - Lane total for the screen and the re-test: $8.22 + $7.73 + $3.30 + $3.88 = $23.13 (actuals, estimates).
-- 20:40 UTC: push board v4 published (same URL). Only the physics lane changed: the screen and re-test cards, the
+- 20:34 UTC: push board v4 published (same URL). Only the physics lane changed: the screen and re-test cards, the
   final table with arm S, the timeline and two road entries. Other lanes stay as of 19:20 TRT, as the header says.
   Copy in `docs/research/physics-2026-10-30/pages/push-board.html`.
