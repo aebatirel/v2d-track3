@@ -6,10 +6,13 @@
 # git BASE (default HEAD = 2ed46ea's versions, the ones the first check ran), NEW = the working tree. Compares the job log
 # (timestamps and mock paths normalised), what was trained / evaluated / built (audit logs), every file written under
 # results/ runs/ refs/, the store traffic, and summary.json / verify.json / verdict.txt byte for byte (mock paths
-# normalised). usage: equiv_default.sh WORK
+# normalised). Both versions run at the SAME mock path, one after the other (the mock re-points parquet asset paths to
+# the mock root, so a different root would change every reference md5 and checkpoint hash). The job log is compared as
+# written and as a sorted multiset (two trainings share the GPU slots, so their lines may interleave differently).
+# usage: equiv_default.sh WORK
 W=$1; V1=/home/user/v2d-track3/docs/research/work/masses-transfer-20261031/cpu/mock; R=/home/user/v2d-track3; rm -rf $W; mkdir -p $W
 for ver in old new; do
-  MR=$W/$ver; bash $V1/setup.sh $MR > /dev/null
+  MR=$W/mock; bash $V1/setup.sh $MR > /dev/null
   if [ $ver = old ]; then
     for f in ops/jobs/mass_check.sh tools/mass_verdict.py; do
       /usr/bin/git -C $R show ${BASE:-HEAD}:$f | sed "s#/content#$MR/content#g" > $MR/content/v2d-track3/$f
@@ -27,7 +30,8 @@ for ver in old new; do
     norm $MR/content/results/mass_check/$f | python3 -c "import sys, re; print(re.sub(r'\"created\": \"[^\"]*\"', '\"created\": T', sys.stdin.read()), end='')" > $W/$ver.$f
   done
 done
-for k in joblog audit files hf summary.json verify.json verdict.txt verify.txt; do
+for v in old new; do sort $W/$v.joblog > $W/$v.joblog_sorted; done
+for k in joblog joblog_sorted audit files hf summary.json verify.json verdict.txt verify.txt; do
   if cmp -s $W/old.$k $W/new.$k; then echo "$k: IDENTICAL ($(wc -l < $W/new.$k) lines)"; else echo "$k: DIFFERS"; diff $W/old.$k $W/new.$k | head -20; fi
 done
 echo "scripts old vs new (they must differ, the outputs must not):"; paste $W/old.scripts $W/new.scripts | awk '{print $2, $1, "->", $3}'
