@@ -154,7 +154,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 <div class="wrap">
 
 <header>
-  <span class="eyebrow">V2D Challenge · Track 3 · as of 31 Oct, 19:20 TRT</span>
+  <span class="eyebrow">V2D Challenge · Track 3 · as of 31 Oct, 19:20 TRT · physics lane updated 23:35 TRT</span>
   <h1>We are 11th. 10th is two rank points away.</h1>
   <p class="lede">The final place is the sum of our ranks on six leaderboards, lowest wins. Below: where we stand on each board, what every session is running right now, what each run has to show, and when it lands. All times are Turkish time (TRT, UTC+3).</p>
   <div class="summary">
@@ -227,17 +227,11 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   <h2 id="run-h">What is running right now</h2>
   <div class="legend"><span class="lg-gpu">GPU box, billing</span><span class="lg-cpu">CPU work, free</span><span class="lg-next">queued, needs launch</span></div>
   <div class="jobs">
-    <div class="job gpu">
-      <div class="hd"><h3>Recipe screen, seed 42</h3><span class="tag t-run">4 of 12 cells</span></div>
-      <span class="who">physics session · Vast 58531195 · $1.27/h</span>
-      <p>Three training recipes on 4 public episodes: the current one (C), a higher learning rate with slower assist fade (K), and randomized start positions (D).</p>
-      <p class="pass"><b>K passes</b> if its average score beats C by +0.03 with no episode down more than 0.05. <b>D passes</b> if run-to-run spread falls 40% on 2 of 4 episodes without losing more than 0.02.</p>
-    </div>
-    <div class="job gpu">
-      <div class="hd"><h3>Recipe screen, seed 43</h3><span class="tag t-run">8 of 12 cells</span></div>
-      <span class="who">physics session · Vast 58532423 · $1.49/h</span>
-      <p>Same three recipes, second seed. Both boxes end 00:00–01:00 TRT; the merged verdict follows about 01:30 TRT.</p>
-      <p class="pass">A winner goes into pack 10 for the grasp-lock episodes only, with a control version kept. K and D are not combined unless you accept that risk.</p>
+    <div class="job">
+      <div class="hd"><h3>Recipe screen + solver re-test</h3><span class="tag t-wait">finished 23:26 TRT</span></div>
+      <span class="who">physics session · 4 boxes, all self-destroyed · $23.13 total [E]</span>
+      <p>Nothing adopted. K: no gain. D: +0.33 on ep12 but worse and less steady on ep2; you chose not to use it. Solved references: ep2 down 0.13, so eval solving was not started.</p>
+      <p class="pass">Results table below. One control cell lost 6 of its 10 runs to a box thread limit, so the rules read "incomplete"; that cannot change K or the solver outcome.</p>
     </div>
     <div class="job gpu">
       <div class="hd"><h3>Eval 10 rollout gate</h3><span class="tag t-run">result 22:00–00:00</span></div>
@@ -286,32 +280,34 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
     <li><time>31 Oct 20:00–20:30</time><span class="t">Fresh runs of the packed policies launch. <small>The comparison set for pack 10.</small></span></li>
     <li><time>31 Oct 22:00–00:00</time><span class="t">Eval 10 gate result. <small>Pass: eval 10 retrained with V4p.</small></span></li>
     <li class="key"><time>31 Oct 23:30</time><span class="t">Pack 9a upload: new pot, lid and rack meshes. <small>Fallback pack 8 at 23:00. Expected 10th overall [E].</small></span></li>
-    <li><time>1 Nov 00:00–01:30</time><span class="t">Recipe screen boxes finish; verdict about 01:30. <small>Sent to both pack sessions with each recipe's run-to-run spread.</small></span></li>
+    <li><time>31 Oct 23:26</time><span class="t">Recipe screen and solver re-test finished. <small>Nothing adopted; no eval solving. Sent to both pack sessions.</small></span></li>
     <li><time>1 Nov ~15:00</time><span class="t">Eval-built meshes handed over.</span></li>
     <li><time>1 Nov 17:00</time><span class="t">Cut-off: reference fixes must have passed their public test and be built for eval.</span></li>
-    <li class="key"><time>1 Nov ~21:00</time><span class="t">Pack 10 retrain starts. <small>Carries whatever passed: masses v2, recipe K or D, eval 10 V4p, eval-built and C1 meshes.</small></span></li>
+    <li class="key"><time>1 Nov ~21:00</time><span class="t">Pack 10 retrain starts. <small>Carries whatever passed: masses v2, eval 10 V4p, eval-built and C1 meshes. No recipe change (K no gain, D declined).</small></span></li>
     <li class="key"><time>2 Nov evening</time><span class="t">Pack 10 lands. <small>3–4 Nov kept for a fallback.</small></span></li>
     <li class="key"><time>5 Nov 01:00</time><span class="t">Leaderboard freezes. <small>Then the organisers re-run every policy in a container (PR #215) and expect scores within each team's own run-to-run variation.</small></span></li>
   </ol>
 </section>
 
 <section aria-labelledby="scr-h">
-  <h2 id="scr-h">Recipe screen so far (interim, not a verdict)</h2>
-  <p class="lede">12 of 24 cells, registered AUC against mocap, 10 runs each, mean ± spread. Read nothing into single cells yet: the rules apply to the full set of 4 episodes and 2 seeds.</p>
+  <h2 id="scr-h">Recipe screen and solver re-test: final</h2>
+  <p class="lede">Registered AUC against mocap, 10 runs per cell, mean ± spread. C = current recipe, K = higher learning rate, D = random start nudges, S = solver-corrected references (otherwise C).</p>
   <div class="tblwrap">
     <table>
-      <thead><tr><th>Episode · seed</th><th>C, current</th><th>K, higher LR</th><th>D, random starts</th></tr></thead>
+      <thead><tr><th>Episode · seed</th><th>C, current</th><th>K, higher LR</th><th>D, random starts</th><th>S, solved refs</th></tr></thead>
       <tbody>
-        <tr><td>ep2 · 42</td><td class="n">0.955 ± 0.029</td><td class="n">0.965 ± 0.009</td><td class="n sdw">0.743 ± 0.269</td></tr>
-        <tr><td>ep2 · 43</td><td class="n sdw">0.869 ± 0.174</td><td class="n">0.959 ± 0.020</td><td class="n sdw">0.862 ± 0.236</td></tr>
-        <tr><td>ep12 · 42</td><td class="n">0.576 ± 0.066</td><td class="pend">running</td><td class="pend">running</td></tr>
-        <tr><td>ep12 · 43</td><td class="n">0.612 ± 0.014</td><td class="n">0.582 ± 0.024</td><td class="n">0.919 ± 0.022</td></tr>
-        <tr><td>ep18 · 43</td><td class="n">0.624 ± 0.002</td><td class="n">0.620 ± 0.009</td><td class="pend">running</td></tr>
-        <tr><td>ep18 · 42, ep24 · both</td><td class="pend">queued</td><td class="pend">queued</td><td class="pend">queued</td></tr>
+        <tr><td>ep2 · 42</td><td class="n">0.955 ± 0.029</td><td class="n">0.965 ± 0.009</td><td class="n sdw">0.743 ± 0.269</td><td class="n sdw">0.751 ± 0.211</td></tr>
+        <tr><td>ep2 · 43</td><td class="n sdw">0.869 ± 0.174</td><td class="n">0.959 ± 0.020</td><td class="n sdw">0.862 ± 0.236</td><td class="n sdw">0.808 ± 0.225</td></tr>
+        <tr><td>ep12 · 42</td><td class="n">0.576 ± 0.066</td><td class="n">0.519 ± 0.067</td><td class="n">0.924 ± 0.021</td><td class="n">0.832 ± 0.070</td></tr>
+        <tr><td>ep12 · 43</td><td class="n">0.612 ± 0.014</td><td class="n">0.582 ± 0.024</td><td class="n">0.919 ± 0.022</td><td class="n">0.802 ± 0.082</td></tr>
+        <tr><td>ep18 · 42</td><td class="n">0.620 ± 0.015</td><td class="n">0.623 ± 0.006</td><td class="n">0.603 ± 0.053</td><td class="n">0.553 ± 0.099</td></tr>
+        <tr><td>ep18 · 43</td><td class="n">0.624 ± 0.002</td><td class="n">0.620 ± 0.009</td><td class="n">0.600 ± 0.059</td><td class="n">0.616 ± 0.014</td></tr>
+        <tr><td>ep24 · 42</td><td class="n">0.234 ± 0.003</td><td class="n">0.191 ± 0.022</td><td class="n">0.233 ± 0.006</td><td class="n">0.249 ± 0.005</td></tr>
+        <tr><td>ep24 · 43</td><td class="n">0.238 ± 0.005 <small>(4 runs)</small></td><td class="n">0.251 ± 0.013</td><td class="n">0.230 ± 0.003</td><td class="n">0.237 ± 0.014</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lede">Red marks a spread above 0.1, the kind of instability the organisers' re-run would expose. D's 0.919 on ep12 came from its 60M-step checkpoint; C and K also trained to 60M on that seed, but their best checkpoints there scored lower.</p>
+  <p class="lede">Red marks a spread above 0.1. ep18's solved reference was identical to the normal one, so S and C on ep18 are the same setup trained twice: they differ by up to 0.07 from training luck alone. Our own GT-free score picked the better of C and D in 7 of 7 cases (found after the fact, a hypothesis).</p>
 </section>
 
 <section aria-labelledby="road-h">
@@ -319,12 +315,14 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   <ul class="road">
     <li><span class="d">30 Oct 09:28</span><div class="b"><h3>Pack 7 uploaded, our best AUC</h3><p>0.81460, but the field moved past us. Small swaps of single policies could not close the gap; we went after large levers instead.</p></div></li>
     <li><span class="d">30 Oct</span><div class="b"><h3>Oracle twins: what limits the hardest evals</h3><p>Eval 10 is perception-limited (true motion 0.940, ours 0.595). Eval 14 is a robot-learning limit, not perception. This made the eval 10 cup-nest fix our biggest single perception lever.</p></div></li>
-    <li><span class="d">30 Oct</span><div class="b"><h3>Physics solver <span class="tag t-good">strong start</span> <span class="tag t-bad">late collapse</span></h3><p>Motions solved in physics let the robot follow far better with no learning at all (0.76 / 0.83 against 0.52 / 0.58). Training from them learned much faster, then collapsed late on ep2, so it did not pass.</p></div></li>
-    <li><span class="d">31 Oct morning</span><div class="b"><h3>Solver–training loop <span class="tag t-bad">not credited</span></h3><p>ep2 rose to 0.835 from 0.585 and the pot stays upright (video in chat), but the best checkpoints came from before the loop ran, so the gain is not the loop's. It pointed at learning-rate schedule and assist fade as suspects, which the recipe screen now tests.</p></div></li>
+    <li><span class="d">30 Oct</span><div class="b"><h3>Physics solver <span class="tag t-good">strong start</span> <span class="tag t-wait">not settled</span></h3><p>Motions solved in physics let the robot follow our reference far better with no learning at all (0.76 / 0.83 against 0.52 / 0.58, 2 episodes). Training from them learned much faster on 3 of 4 episodes. The final test failed on ep2 only, from one seed (42) that also collapses with normal references, so the verdict is weak. A clean re-test with 2 seeds was never run.</p></div></li>
+    <li><span class="d">31 Oct morning</span><div class="b"><h3>Solver–training loop <span class="tag t-wait">loop untested</span></h3><p>ep2 rose to 0.835 from 0.585 and the pot stays upright (video in chat). The best checkpoints came before the loop ran, and the solver changed nothing in 4 of 8 turns, so the loop itself was barely exercised. The gain may come from the solved motions plus a shorter learning-rate schedule; one seed, so unproven either way.</p></div></li>
     <li><span class="d">31 Oct morning</span><div class="b"><h3>Perception sprint</h3><p>Of the tracker fixes, only the eval 10 cup-nest fix passed its public test. Offset and held-pose fixes failed and were dropped. The widened-cup idea was tested and falsified: the overlap is a 5 mm pose error, not cup shape.</p></div></li>
     <li><span class="d">31 Oct 13:56</span><div class="b"><h3>You added $100 <span class="tag t-good">lean plan funded</span></h3><p>Money split across the leaderboard lane, meshes, the recipe screen and a buffer. Every rental is stated with its cost before launch.</p></div></li>
     <li><span class="d">31 Oct 16:05</span><div class="b"><h3>Realistic masses <span class="tag t-bad">not adopted</span> → fair re-test</h3><p>ep2 gained +0.157 but ep12, already at 0.92, could not clear the +0.03 bar. You pointed out the test was unfair to a near-perfect episode; masses v2 re-tests on episodes with room to grow.</p></div></li>
     <li><span class="d">31 Oct 18:10–18:50</span><div class="b"><h3>Your push: "get me into that top tier"</h3><p>Every planned improvement goes into one combined pack 10, with a quick pack 9a tonight. The shape board is the anchor; the error boards need fewer failed runs.</p></div></li>
+    <li><span class="d">31 Oct 23:26</span><div class="b"><h3>Solver clean re-test <span class="tag t-bad">no signal</span></h3><p>The test you asked for: solved references against normal ones, 2 seeds, only the reference differing. ep12 gained +0.22, but ep2 lost 0.13 on both seeds, so the solver stays out of eval. This settles the "strong start, not settled" item above.</p></div></li>
+    <li><span class="d">31 Oct 23:29</span><div class="b"><h3>Recipe screen <span class="tag t-wait">nothing adopted</span></h3><p>K gave no gain. D lifted ep12 from 0.59 to 0.92 but made ep2 worse and less steady. You chose not to add D to pack 10.</p></div></li>
   </ul>
 </section>
 
