@@ -55,6 +55,10 @@ def main():
     if guard.mode() != 'dev':
         raise SystemExit('b7_dev runs in GMG_MODE=dev only')
     run = guard.set_run(a.run)
+    # the code state at the START of the run (the manifest records HEAD and the dirty files at the end)
+    code_dirs = [os.path.relpath(d, guard.CFG['repo']) for d in guard.CODE_DIRS]
+    start = dict(commit=guard._git('rev-parse', 'HEAD'),
+                 dirty_files=(guard._git('status', '--porcelain', '--', *code_dirs) or '').splitlines())
     from gmg import bundle as B, markers as MK, structure as ST
     eps = [int(x) for x in a.eps.split(',') if x]
     anchors = {}
@@ -63,7 +67,7 @@ def main():
     out_dir = os.path.join(run, 'b7')
     os.makedirs(out_dir, exist_ok=True)
     summary = dict(schema='gmg-b7-dev/1', run=os.path.basename(run), tier='DEV', anchors=ANCHORS,
-                   marker_settings_sha256=MK.SETTINGS_SHA256, episodes={})
+                   marker_settings_sha256=MK.SETTINGS_SHA256, code_at_start=start, episodes={})
     for ep in eps:
         t0 = time.time()
         b = B.from_obs_all(ep)
@@ -94,7 +98,9 @@ def main():
                 r_consensus_mm=res['markers']['r_consensus_mm'], n_balls=res['markers']['n_balls'],
                 unimodal=res['markers']['unimodal'],
                 radii_mm={o: [x['r_mm'] for x in v] for o, v in res['markers']['balls'].items()},
-                passes={o: [x['pass_'] for x in v] for o, v in res['markers']['balls'].items()}))
+                passes={o: [x['pass_'] for x in v] for o, v in res['markers']['balls'].items()},
+                normal_dev_deg={o: [x['normal_dev_deg'] for x in v] for o, v in res['markers']['balls'].items()},
+                outside_ratio={o: [x['outside_ratio'] for x in v] for o, v in res['markers']['balls'].items()}))
         with open(os.path.join(run, 'b7_summary.json'), 'w') as f:
             json.dump(summary, f, indent=1, default=float)
         del b

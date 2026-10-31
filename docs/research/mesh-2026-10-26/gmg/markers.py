@@ -34,6 +34,11 @@ window"; frozen at B7 before any dev run):
      per object at the consensus radius +-10 %: votes and the robust fit are bounded to that window (a free fit that
      leaves it is refitted with the radius clamped to the window and the centre free); its accepted balls are added
      where they do not overlap a ball already kept.
+  8. diagnostics per candidate and ball (reported only, NEVER used for acceptance; B7 notes, DEVIATIONS): the
+     normal deviation and the outside ratio of corner_stats(). B7 synthetic finding: the frozen acceptance tests also
+     accept sharp box corners and edges as balls (fit residual 0.8-1.4 sigma <= 1.5 sigma, cap 120-210 deg, convex
+     0.87-0.93); these two statistics separate them on the synthetic scene, but adding a test would change the
+     pre-registered detector, which this build step may not do (scan-catalogue numbers on markers are known).
   Posts (stems) depend on the host surface, so they are decided in attach() against the candidate mesh, by the stem
   rule of parts.fit_ball (>= 15 observed points in the cylinder from the ball to the nearest host surface point
   within 0.6 r of its axis, and at least twice as many as in either control cylinder one ball diameter to the side).
@@ -106,6 +111,8 @@ def consts():
     for k, v in FROZEN.items():
         guard.constant(f'marker_{k}', v, o[k])
     guard.constant('marker_settings_sha256', SETTINGS_SHA256, 'generic:hash of the frozen marker settings (B7)')
+    guard.constant('marker_diag_pca_radius_m', 0.003, 'generic:diagnostic only (corner_stats normals, 2 x 1.5 mm voxel)')
+    guard.constant('marker_diag_max_inliers', 300, 'generic:diagnostic only (corner_stats subsample)')
     return dict(FROZEN)
 
 
@@ -124,6 +131,8 @@ class Ball:
     n_fit: int = 0               # inlier voxel points of the fit
     fit: str = 'free'            # 'free' or 'ransac_only'
     pass_: int = 1               # detector pass (1 free window, 2 consensus window)
+    normal_dev_deg: object = None    # diagnostic only (corner_stats), never used for acceptance
+    outside_ratio: object = None     # diagnostic only (corner_stats), never used for acceptance
 
 
 def ball_dict(b):
@@ -183,6 +192,8 @@ def batch_free_fit(Q, M, window=None):
             bad = ~(np.all(np.isfinite(c), 1) & np.isfinite(r)) | (r <= 0)
             ok = ok & ~bad
             c = np.where(np.isfinite(c), c, 0.0); r = np.where(np.isfinite(r) & (r > 0), r, 1.0)
+            if not ok.any() or float(np.nanmax(np.abs(step[ok]))) < 1e-10:   # converged (speed only; same fixed point)
+                break
         return c, r, ok
 
     for rnd in range(2):
@@ -260,6 +271,7 @@ def _votes(Pv, V, Fv, tree, seeds, sigma, window, K, chunk=1000):
         nbs = tree.query_ball_point(Pv[seeds[todo]], R)
         lens = np.array([len(x) for x in nbs])
         sel = np.nonzero(lens >= K['vote_min_pts'])[0]
+        sel = sel[np.argsort(lens[sel], kind='stable')]         # chunks of similar size: less padding (speed only)
         for s0 in range(0, len(sel), chunk):
             part = sel[s0:s0 + chunk]
             nmax = int(lens[part].max())
@@ -332,9 +344,10 @@ def _robust(cl, Pv, V, Fv, tree, raw_tree, P, C, F, sigma, window, T, K, seed):
         fr = np.zeros(0, np.int64)
     half = T / 2.0
     halves = [int(np.sum(fr < half)), int(np.sum(fr >= half))]
+    ndev, outr = corner_stats(Pv, V, tree, c, r, tol, np.random.default_rng(seed))
     ball = Ball(c=[float(x) for x in c], r=float(r), frames=int(len(fr)), resid=float(res), cap_deg=round(cap, 3),
                 votes=len(cl['m']), convex=round(convex, 4), iso=float(sup['iso']), halves=halves, n_fit=int(len(sel)),
-                fit=how)
+                fit=how, normal_dev_deg=ndev, outside_ratio=outr)
     info.update(ball_dict(ball))
     why = None
     if not lo <= r <= hi:
@@ -353,6 +366,37 @@ def _robust(cl, Pv, V, Fv, tree, raw_tree, P, C, F, sigma, window, T, K, seed):
         info['rejected'] = why
         return None, info
     return ball, info
+
+
+def corner_stats(Pv, V, tree, c, r, tol, rng, n_max=300, pca_r=0.003):
+    """DIAGNOSTIC ONLY (reported, never used for acceptance; B7 notes and DEVIATIONS): two GT-free statistics that
+    separate a sphere from a sharp corner or edge that a sphere fit also explains within the frozen residual limit
+    (synthetic finding, B7). normal_dev_deg: median angle between the local surface normal (PCA of the voxel points
+    within 3 mm) and the fitted radial direction over at most 300 fit inliers (the normal-compatibility test of
+    Schnabel et al. 2007's efficient RANSAC; a sphere's normals are radial, a corner's faces are flat).
+    outside_ratio: camera-facing points at r + band < d < 2 r from the centre per camera-facing point within the band
+    (a ball stands clear of its surroundings except for its post; a corner's faces continue past the fitted sphere)."""
+    nb = np.asarray(tree.query_ball_point(c, 2 * r), np.int64)
+    if len(nb) == 0:
+        return None, None
+    X = Pv[nb]; D = X - c; d = np.linalg.norm(D, axis=1)
+    face = np.einsum('ij,ij->i', D, V[nb]) > 0
+    inl = np.nonzero(face & (np.abs(d - r) < tol))[0]
+    out = int(np.sum(face & (d > r + tol)))
+    outr = round(out / max(len(inl), 1), 4)
+    if len(inl) > n_max:
+        inl = np.sort(rng.choice(inl, n_max, replace=False))
+    devs = []
+    for q in tree.query_ball_point(X[inl], pca_r):
+        devs.append(q)
+    ang = []
+    for j, q in zip(inl, devs):
+        if len(q) < 6:
+            continue
+        Y = Pv[q]; Y = Y - Y.mean(0)
+        n = np.linalg.eigh(Y.T @ Y)[1][:, 0]
+        ang.append(math.degrees(math.acos(min(1.0, abs(float(n @ D[j])) / max(d[j], 1e-12)))))
+    return (round(float(np.median(ang)), 3) if ang else None), outr
 
 
 def _nms(balls, keep_first=()):
