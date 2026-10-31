@@ -14,7 +14,8 @@
   twice. They differ by up to 0.07 AUC per seed: pure training nondeterminism.
 - **Post-hoc [H]:** in every C-vs-D pair, the arm with the higher 10-draw sim_vs_ref (GT-free) also had the higher AUC
   (7/7). "Train C and D per episode, keep the higher sim_vs_ref" → +0.094 mean on public cells (all from ep12).
-  Offered for pack 10; owner chose **"No D"** (20:29 UTC). Pack 10 stays on the current recipe.
+  Offered for pack 10; owner chose **"No D"** (20:29 UTC). Then, ~20:40 UTC in the score-status chat, the owner approved a
+  targeted D (evals 14, 16, 25, 30, 33; swap rule decides; focused-pascal builds it). Settings + caveats sent 20:57 UTC.
 - Spend on this lane: rscr42 $8.22, rscr43 $7.73, rscrS42 $3.30, rscrS43 $3.88 = $23.13 (actuals, estimates). No boxes
   of this session are running.
 

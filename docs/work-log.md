@@ -6060,3 +6060,21 @@ Background agent, CPU only, $0, no ground truth read.
 - 20:34 UTC: push board v4 published (same URL). Only the physics lane changed: the screen and re-test cards, the
   final table with arm S, the timeline and two road entries. Other lanes stay as of 19:20 TRT, as the header says.
   Copy in `docs/research/physics-2026-10-30/pages/push-board.html`.
+
+### 2026-10-31 20:58 UTC — determined-wright: targeted D for pack 10 (owner reversal relayed by score-status)
+- Score-status session (20:51 UTC) relayed the owner's words, ~20:40 UTC in that chat: "sure add that whatev". This
+  answers its proposal: D as a second version on the unstable evals 14, 16, 25, 30, 33, ≈ $6–10, swap rule decides.
+  Not said in this chat; the spend is the pack-10 session's.
+- Sent focused-pascal the exact D settings (copied to score-status):
+  - Run `ops/box/patch_flashchord_dr.py` on the FlashCHORD tree. Today only recipe_screen.sh does this;
+    glock_public.sh, hard_ab.sh and fc_patches do not.
+  - Training env `FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>`: via TRAIN_ENV in glock_public, via ENV_EP<N> in
+    hard_ab.
+  - Check that the hook's start line appears in the training log.
+- Caveats sent:
+  - (a) The screen shows no steadying of unstable episodes: ep2 sd .10 → .25, ep18 .008 → .056. The swap rule decides.
+  - (b) Standard learner: FC_IMMEDIATE_FIRST_FRAME's deployment-exact starts are drawn inside ReferenceReset.sample, so
+    DR perturbs them too (frame 0, no hold, assist < 0.1). Untested, as is D at 250M steps.
+  - (c) Carved assets move as one body; the risk is objects that start nested or touching (ep12 CPU test: median
+    0.71 mm after the hold, max 58 mm).
+- Offered: an opt-in FC_DR_SKIP_IMMEDIATE flag (~1 h, CPU tests) and a free CPU pop check per episode.
