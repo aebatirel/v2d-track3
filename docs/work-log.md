@@ -6155,7 +6155,7 @@ Background agent, CPU only, $0, no ground truth read.
   `gpu/recipe_screen_KDS_complete.{json,txt}`; physics-solver.md §8.1.
 - The V cells are training on both boxes.
 
-### 2026-10-31 22:20 UTC — determined-wright: P1 settle on bold-albattani's r0 (ep24 boards) — FAIL for carved and default
+### 2026-10-31 22:15 UTC — determined-wright: P1 settle on bold-albattani's r0 (ep24 boards) — FAIL for carved and default
 - A CPU helper ran INTERLOCK §6.2 P1 (16 jittered copies, frame 246 plus 258/270) on our physS1 ep24 reference (md5
   699fe426), r0 from cdc8b40 vs `_default`. Record: `docs/research/physics-2026-10-30/p1_ep24/` (RESULT.md,
   result.json, scripts, commands). I reviewed it and re-checked the contact limits in `configs/sim/rl.yaml`.
