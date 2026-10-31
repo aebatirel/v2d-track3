@@ -5844,3 +5844,10 @@ score.
   Proposed: a D arm on the unstable episodes only (14, 16, 25, 30, 33), ≈ $6–10 [E], with the swap rule choosing.
 - Owner, verbatim: "sure add that whatev". Sent to focused-pascal (pack-10 cell list) and determined-wright (settings,
   standard-learner caveat for 25/30).
+- ~20:52 UTC focused-pascal: targeted D arm in PLAN.md (2 seeds on 14, 16, 25, 30, 33) ≈ $16–23 extra [E] (my $6–10 was
+  low).
+  - Totals: Tier 1 + D ≈ $36–56; with Tier 2 ≈ $71–113.
+  - Arm choice (PREREG before results): an arm must pass the swap rule; between two passing arms the higher fresh-draw
+    mean wins; a tie goes to no-D.
+- Vast 20:53 UTC: credit $70.43; 3 boxes ($4.44/h): mv2b (masses v2), h5p7 labelled "PUSH-FAILED, destr…", h5e1.
+  Flagged h5p7 to focused-pascal: it is the swap rule's comparison set.
