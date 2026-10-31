@@ -130,6 +130,16 @@ else
     log "pack_eval: REFUSED: a masses run (-mev) or --physics needs MASS_EPS (the episodes trained with the realistic masses)" >> $J; exit 1 ;;
   esac
 fi
+# DR_EPS="EP ..." (2026-10-31, pack 9b D arm, docs/research/work/pack9b-20261031/PREREG.md section 3; opt-in, unset =
+# nothing runs): tools/dr_pack_check.py before the evaluator: every evaluated episode resolves its URDFs verbatim at the
+# 0.3 kg placeholder; each DR_EPS episode loads the packed reference (md5 + fingerprint) and its table pieces, and is not
+# the packed checkpoint.
+if [ -n "${DR_EPS:-}" ]; then
+  python $REPO_DIR/tools/dr_pack_check.py --checkpoints $CK_EVAL --all $F/checkpoints.json --dr-eps "$DR_EPS" \
+    --table $REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json --out $F/dr_pack_check.json > $F/dr_pack_check.txt 2>&1
+  rc_=$?; log "pack_eval: $(cut -c1-1500 $F/dr_pack_check.txt)" >> $J
+  [ $rc_ = 0 ] || { log "pack_eval: REFUSED: a D candidate or an evaluated episode would not load what it trained with (DR_EPS $DR_EPS)" >> $J; exit 1; }
+fi
 # 2026-10-26 (forensics): a pulled pack run brings its own results/submission; submit_pack.sh copies KEPT rollouts with
 # cp -n, so pack 3 silently kept the FIRST pack's seed-42 rollouts for 3/5/15/16 instead of pack 2's seed-43 ones.
 # Start from an empty submission folder, then verify every packed rollout names the intended checkpoint.

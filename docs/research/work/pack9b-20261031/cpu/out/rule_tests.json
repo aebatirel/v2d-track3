@@ -1,0 +1,438 @@
+{
+ "n": 45,
+ "passed": 45,
+ "cases": [
+  {
+   "case": "pass",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "why": [
+    "every clause holds"
+   ],
+   "note": ""
+  },
+  {
+   "case": "a_fails (mean 0.80 < 0.865; s fails too)",
+   "want": "NO-SWAP",
+   "got": "NO-SWAP",
+   "ok": true,
+   "why": [
+    "fails: ['a', 's']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "b_fails (2/10 > 1/10)",
+   "want": "NO-SWAP",
+   "got": "NO-SWAP",
+   "ok": true,
+   "why": [
+    "fails: ['b']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "c_fails (median 2.6 > 2.5)",
+   "want": "NO-SWAP",
+   "got": "NO-SWAP",
+   "ok": true,
+   "why": [
+    "fails: ['c']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "s_fails (draw 1 0.85 < 0.9094-0.05)",
+   "want": "NO-SWAP",
+   "got": "NO-SWAP",
+   "ok": true,
+   "why": [
+    "fails: ['s']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "s_boundary (draw 1 = bar, holds)",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "why": [
+    "every clause holds"
+   ],
+   "note": ""
+  },
+  {
+   "case": "a_tie (equal means, holds)",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "why": [
+    "every clause holds"
+   ],
+   "note": ""
+  },
+  {
+   "case": "a_fails_alone (0.86 < 0.865)",
+   "want": "NO-SWAP",
+   "got": "NO-SWAP",
+   "ok": true,
+   "why": [
+    "fails: ['a']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "incomplete_conf_9",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "9 scored confirmation draws (< 10; top up the same checkpoint, PREREG 6)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "incomplete_packed_9",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "9 scored packed-policy draws (< 10; top up the packed checkpoint, PREREG 6)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "incomplete_no_old",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "old packed draw scored 0 times (1 needed)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "incomplete_merge",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "training: INCOMPLETE (seeds [43] missing)",
+    "{\"43\": \"retrain\"}"
+   ],
+   "note": ""
+  },
+  {
+   "case": "incomplete_no_merge_entry",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "no merge entry (the episode was not trained or not merged)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_training_out",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "training: OUT (a box INVALID: packed policy stays)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_one_pack_check",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "pack-side check files: 1 of 2 (before draw 1 and before draws 2..N; PREREG 3)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_pack_check_refused",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "h5: dr_pack_check refused: ['x']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_pack_check_other_sha",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "h5: ep14 evaluated checkpoint eeeeeeeeeeee, the candidate is dddddddddddd"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_pack_check_not_dr",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "h5: ep14 not checked as a D candidate (dr_eps [16])"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_conf_sha (packed checkpoint in conf)",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "conf/r5: checkpoint 05b13510629e != dddddddddddd"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_packed_sha",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "packed/r3: checkpoint dddddddddddd != 05b13510629e"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_old_sha",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "old/r0: checkpoint ffffffffffff != 05b13510629e"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_own_ref",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "conf/r7: own-reference check not ok (own P)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_ref_md5",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "reference P md5 across score files ['00000000000000000000000000000000'] != the packed reference 10d5f3ba6b7368ed30dad9d0c9c30df1"
+   ],
+   "note": ""
+  },
+  {
+   "case": "invalid_ref_md5_two_files",
+   "want": "INVALID",
+   "got": "INVALID",
+   "ok": true,
+   "why": [
+    "reference P md5 across score files ['00000000000000000000000000000000', '10d5f3ba6b7368ed30dad9d0c9c30df1'] != the packed reference 10d5f3ba6b7368ed30dad9d0c9c30df1"
+   ],
+   "note": ""
+  },
+  {
+   "case": "nan_in_a_draw_10 (not scored -> 9 -> INCOMPLETE)",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "9 scored confirmation draws (< 10; top up the same checkpoint, PREREG 6)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "nan_in_a_draw_11 (10 scored -> decided)",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "why": [
+    "every clause holds"
+   ],
+   "note": ""
+  },
+  {
+   "case": "inf_old_draw (not scored -> INCOMPLETE)",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "old packed draw scored 0 times (1 needed)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "nan_clause_value (clauses_of -> None -> INVALID)",
+   "want": "None",
+   "got": "None",
+   "ok": true,
+   "why": [
+    "clause c is not finite (nan, 2.0)"
+   ]
+  },
+  {
+   "case": "draw1_failed_call (r1 unscored -> draw 1 = r2)",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "why": [
+    "every clause holds"
+   ],
+   "note": ""
+  },
+  {
+   "case": "draw1_failed_call_then_low (r2 0.80 < bar -> NO-SWAP)",
+   "want": "NO-SWAP",
+   "got": "NO-SWAP",
+   "ok": true,
+   "why": [
+    "fails: ['s']"
+   ],
+   "note": ""
+  },
+  {
+   "case": "draw1_missing_file_9_left (INCOMPLETE)",
+   "want": "INCOMPLETE",
+   "got": "INCOMPLETE",
+   "ok": true,
+   "why": [
+    "9 scored confirmation draws (< 10; top up the same checkpoint, PREREG 6)"
+   ],
+   "note": ""
+  },
+  {
+   "case": "equal_floor (PASS on two floors, note in CLI)",
+   "want": "PASS",
+   "got": "PASS",
+   "ok": true,
+   "why": [
+    "every clause holds"
+   ],
+   "note": ""
+  },
+  {
+   "case": "cli (14 PASS, 16 INVALID, 25/30/33 INCOMPLETE; pack9b = [14])",
+   "want": "{'14': 'PASS', '16': 'INVALID', '25': 'INCOMPLETE', '30': 'INCOMPLETE', '33': 'INCOMPLETE'}",
+   "got": "{'14': 'PASS', '16': 'INVALID', '25': 'INCOMPLETE', '30': 'INCOMPLETE', '33': 'INCOMPLETE'}",
+   "ok": true,
+   "why": [
+    "ep14 PASS :: every clause holds :: a ok margin 0.065 | b ok margin 0.1 | c ok margin 0.5 | s ok margin 0.0706 :: new 0.93 (n 10, RPE med 2.0, fails 0) vs packed 0.865 (n 10, RPE med 2.5, fails 1)",
+    "ep16 INVALID :: training: OUT (a box INVALID: packed policy stays)"
+   ]
+  },
+  {
+   "case": "dline_glock_ok",
+   "want": "True",
+   "got": "True",
+   "ok": true,
+   "why": []
+  },
+  {
+   "case": "dline_std_ok",
+   "want": "True",
+   "got": "True",
+   "ok": true,
+   "why": []
+  },
+  {
+   "case": "dline_two_builds_ok",
+   "want": "True",
+   "got": "True",
+   "ok": true,
+   "why": []
+  },
+  {
+   "case": "dline_missing",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "no \"v2d FC_DR_RESET\" line in /tmp/drv_j8g2xm2g/train_36.log (the D hook did not run in this training)"
+   ]
+  },
+  {
+   "case": "dline_wrong_seed",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "D line seed 43 != the cell seed 42 (/tmp/drv_j8g2xm2g/train_37.log)"
+   ]
+  },
+  {
+   "case": "dline_std_without_tail",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in /tmp/drv_j8g2xm2g/train_38.log: ..."
+   ]
+  },
+  {
+   "case": "dline_glock_with_tail",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "D line with an unexpected tail (no FC_DR_SKIP_IMMEDIATE expected) in /tmp/drv_j8g2xm2g/train_39.log: ...; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)"
+   ]
+  },
+  {
+   "case": "dline_wrong_bounds",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "unexpected D line in /tmp/drv_j8g2xm2g/train_40.log: v2d FC_DR_RESET: sampled resets perturbed by +-3.0 mm, +-0.015 rad (rotation vector per axis), fingers +-0.01 rad; 2 objects, 44 finger joints, 4096 worlds, seed 42"
+   ]
+  },
+  {
+   "case": "dline_wrong_objects",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "D line names 3 objects, the reference has 2 (/tmp/drv_j8g2xm2g/train_41.log)"
+   ]
+  },
+  {
+   "case": "dline_old_patch_format_std (609582a: no tail)",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "D line without the skip-immediate tail (FC_DR_SKIP_IMMEDIATE=1 expected) in /tmp/drv_j8g2xm2g/train_42.log: ..."
+   ]
+  },
+  {
+   "case": "dline_no_log",
+   "want": "False",
+   "got": "False",
+   "ok": true,
+   "why": [
+    "training log /tmp/drv_j8g2xm2g/no_such.log missing"
+   ]
+  },
+  {
+   "case": "expected_hook (repo patch writes v2d_dr.py with the skip flag)",
+   "want": "md5",
+   "got": "d92ed77113adfd1aadeedda70a9d7bde",
+   "ok": true,
+   "why": [
+    "rc/flash_chord/lifecycle/v2d_dr.py\npatched: /tmp/drhook_vv_qz001/src/flash_chord/lifecycle/reset.py\n"
+   ]
+  }
+ ]
+}

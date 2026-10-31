@@ -29,15 +29,44 @@
 # hard_ab/ep<N>/mcks-s<seed>, results/mass_eval); nothing a pack pulls by default is changed. One store push at the end.
 #   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-mevG1-<sha7> \
 #     'MODE=glock EPS="20 8" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
+# ARM=dr (2026-10-31, pack 9b D arm; docs/research/work/pack9b-20261031/{PREREG,BUILD}.md, JOBS.txt; opt-in, unset = the
+# masses retrain above, unchanged): the same pulls and checks of the packed reference, then the packed recipe with
+# start-state randomisation in training INSTEAD of masses: no mass_arm, no --physics, the 0.3 kg placeholder everywhere.
+#   - ops/box/patch_flashchord_dr.py (md5 pinned below: determined-wright 4e5c8a0) after the jobs' other patches
+#     (FC_DR_PATCH=1 in glock_public.sh / hard_ab.sh); FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed> in the TRAINING
+#     process (grasp lock: TRAIN_ENV; standard learner: ENV_EP<N>, plus FC_DR_SKIP_IMMEDIATE=1);
+#   - grasp lock: tools/dr_arm.py makes per-seed BYTE copies refs/drs<seed>_glockt/ep<N> of the packed reference (same
+#     URDF paths: the packed asset copy), PAIRS <N>:local:mck:drs<seed>; standard learner: hard_ab.sh SUF=dr (refs/
+#     perc2mckdr, the CR=0 byte copy), MA_ARGS empty;
+#   - tools/dr_eval_verify.py (as mass_eval_verify.py, plus the D training-log line) -> results/dr_eval/{verify,summary}.json;
+#   - run ids carry "-dr" (refused otherwise); every folder is new (refs/drs*, results/drs*_glock_public, results/hard_ab/
+#     ep<N>/mckdr-s<seed>, results/perc2mckdr, results/dr_eval); nothing a pack pulls by default is changed.
+#   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-drG-<sha7> \
+#     'ARM=dr MODE=glock EPS="14 16 33" SEEDS="42 43" bash ops/jobs/mass_eval.sh'
 . /content/v2d-track3/ops/box/lib.sh
-T=$REPO_DIR/tools; J=${J:-/content/job.log}; ME=/content/results/mass_eval; mkdir -p $ME/packed
+T=$REPO_DIR/tools; J=${J:-/content/job.log}; ARM=${ARM:-}; ME=/content/results/mass_eval; [ "$ARM" = dr ] && ME=/content/results/dr_eval
+mkdir -p $ME/packed
 TAB=$REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json
 PROPS=$REPO_DIR/docs/research/physics-2026-10-30/props_masses_only.json; PROPS_MD5=d55089307ff2ced3e3244c95be22c9d6
-case "${RUN_ID:-}" in *-mev*) ;; *) log "mass_eval: RUN_ID '${RUN_ID:-}' must contain -mev" >> $J; exit 1 ;; esac
+APRE=mass1s                                                     # the per-seed reference prefix (ARM=dr: drs)
+case "$ARM" in
+  '') ;;
+  dr)                                                           # (2026-10-31) pack 9b D arm; fixed here, never from the env
+    case "${RUN_ID:-}" in *-dr*) ;; *) log "mass_eval ARM=dr: RUN_ID '${RUN_ID:-}' must contain -dr" >> $J; exit 1 ;; esac
+    DR_PATCH_MD5=570a7f47793d02ba5b0bf3d5e6fd6eac                 # ops/box/patch_flashchord_dr.py of determined-wright 4e5c8a0
+    [ "$(md5sum < $REPO_DIR/ops/box/patch_flashchord_dr.py | cut -c1-32)" = $DR_PATCH_MD5 ] \
+      || { log "mass_eval ARM=dr: ops/box/patch_flashchord_dr.py md5 is not $DR_PATCH_MD5 (the 4e5c8a0 port the PREREG names)" >> $J; exit 1; }
+    for v in FC_DR_RESET FC_DR_SEED FC_DR_SKIP_IMMEDIATE FC_DR_PATCH TRAIN_ENV; do
+      [ -n "${!v:-}" ] && log "mass_eval ARM=dr: ignoring $v=${!v} from the environment" >> $J; unset $v
+    done
+    DR_RESET=1.5,0.015,0.01; APRE=drs ;;
+  *) log "mass_eval: ARM '$ARM' unknown (unset = masses, dr = start-state randomisation)" >> $J; exit 1 ;;
+esac
+[ "$ARM" = dr ] || case "${RUN_ID:-}" in *-mev*) ;; *) log "mass_eval: RUN_ID '${RUN_ID:-}' must contain -mev" >> $J; exit 1 ;; esac
 MODE=${MODE:-}; EPS=${EPS:-}; SEEDS=${SEEDS:-}
 [ -n "$MODE" ] && [ -n "$EPS" ] && [ -n "$SEEDS" ] || { log "mass_eval: MODE, EPS and SEEDS are required" >> $J; exit 1; }
 [ "$(md5sum < $PROPS | cut -c1-32)" = $PROPS_MD5 ] || { log "mass_eval: $PROPS md5 is not $PROPS_MD5" >> $J; exit 1; }
-cp $PROPS $ME/props_used.json
+[ "$ARM" = dr ] || cp $PROPS $ME/props_used.json
 tab() { python -c "import json, sys; print(json.load(open(sys.argv[1]))['episodes'][sys.argv[2]][sys.argv[3]])" $TAB $1 $2; }
 # the box's LIB and PIECES from the table (refused: an episode of the other mode; std episodes with different pieces or
 # libraries in the one shared /content/assets; eval 8 (v3x beige cup) with eval 10 (whose assets are /content/assets, v3))
@@ -62,6 +91,7 @@ EOF
 [ -z "$BOX_ERR" ] && [ -n "$BOX_LIB" ] || { log "mass_eval: REFUSED: ${BOX_ERR:-no box settings}" >> $J; exit 1; }
 LIB=$REPO_DIR/meshes/$BOX_LIB; PIECES=${BOX_PIECES:+$REPO_DIR/$BOX_PIECES}
 log "mass_eval code $(git -C $REPO_DIR rev-parse --short HEAD), mode $MODE, episodes [$EPS], seeds [$SEEDS], props $PROPS ($PROPS_MD5), LIB $LIB, PIECES ${PIECES:-none}, table $TAB ($(md5sum < $TAB | cut -c1-12))" >> $J
+[ "$ARM" = dr ] && log "mass_eval ARM=dr: NO masses (props NOT used: 0.3 kg placeholder everywhere); start-state randomisation FC_DR_RESET=$DR_RESET FC_DR_SEED=<seed>$([ $MODE = std ] && echo ' FC_DR_SKIP_IMMEDIATE=1') in the training process; patch ops/box/patch_flashchord_dr.py md5 $DR_PATCH_MD5; folders $ME, $([ $MODE = glock ] && echo 'refs/drs<seed>_glockt, results/drs<seed>_glock_public' || echo 'refs/perc2mckdr, results/hard_ab/ep<N>/mckdr-s<seed>')" >> $J
 
 pull() {  # $1 episode: the table's pull_files (review F7, 2026-10-31): the store files under its pull sub-folders as the
   # 29 Oct store listing has them, ONE single-file download each (store.sh pull-files: retried, no store listing; before,
@@ -135,16 +165,22 @@ if [ $MODE = glock ]; then
   python $REPO_DIR/pipeline/make_assets.py $LIB /content/assets ${PIECES:+--pieces $PIECES} >> $J 2>&1 || { log "mass_eval: make_assets FAILED" >> $J; exit 1; }
   PAIRS_E=""; MANS=""
   for e in $OK_EPS; do
+    if [ "$ARM" = dr ]; then                                       # byte copies of the packed reference, one per seed
+      python $T/dr_arm.py --ep $e --base mck --seeds "$SEEDS" --table $TAB --out $ME/arms_ep$e.json > $ME/arms_ep$e.txt 2>&1 \
+        || { log "mass_eval ep$e: dr_arm FAILED ($(tail -2 $ME/arms_ep$e.txt | tr '\n' ' ' | cut -c1-300)); episode dropped (INCOMPLETE)" >> $J; continue; }
+    else
     python $T/mass_arm.py --ep $e --base mck --arms "mass1:$PROPS" --seeds "$SEEDS" --out $ME/arms_ep$e.json > $ME/arms_ep$e.txt 2>&1 \
       || { log "mass_eval ep$e: mass_arm FAILED ($(tail -2 $ME/arms_ep$e.txt | tr '\n' ' ' | cut -c1-300)); episode dropped (INCOMPLETE)" >> $J; continue; }
+    fi
     log "mass_eval ep$e: $(tail -1 $ME/arms_ep$e.txt | cut -c1-700)" >> $J
     PAIRS_E="$PAIRS_E $e"; MANS="$MANS $ME/arms_ep$e.json"
   done
   [ -n "$PAIRS_E" ] || { log "mass_eval: no arm copy" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
   for s in $SEEDS; do                                              # one invocation per seed; its episodes in waves of 2
-    P=""; for e in $PAIRS_E; do P="$P $e:local:mck:mass1s$s"; done
+    P=""; for e in $PAIRS_E; do P="$P $e:local:mck:$APRE$s"; done
     label "mass eval: seed $s [$P ]"; log "mass_eval: seed $s, PAIRS [${P# }]" >> $J
-    ( REUSE_REF=1 REQUIRE_REUSE=1 SEED=$s PAIRS="${P# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "mass_eval: seed $s returned $?" >> $J
+    ( [ "$ARM" = dr ] && export FC_DR_PATCH=1 TRAIN_ENV="FC_DR_RESET=$DR_RESET FC_DR_SEED=$s"   # training process only
+      REUSE_REF=1 REQUIRE_REUSE=1 SEED=$s PAIRS="${P# }" bash $REPO_DIR/ops/jobs/glock_public.sh ) || log "mass_eval: seed $s returned $?" >> $J
   done
   VARGS="--manifests \"${MANS# }\""
 else
@@ -155,8 +191,14 @@ else
   P=""; for e in $OK_EPS; do P="$P $e:local:mck"; done
   for s in $SEEDS; do
     label "mass eval: std seed $s [$P ]"; log "mass_eval: std seed $s, PAIRS [${P# }]" >> $J
+    if [ "$ARM" = dr ]; then                                       # SUF dr: refs/perc2mckdr (the CR=0 byte copy); no masses
+      ( for e in $OK_EPS; do export ENV_EP$e="FC_DR_RESET=$DR_RESET FC_DR_SEED=$s FC_DR_SKIP_IMMEDIATE=1"; done
+        SPLIT=eval PDIR_ROOT=/content/perc2 SUF=dr CR=0 BASE_EVAL=0 NREP=10 SEED=$s LIB=$LIB PIECES=$PIECES MA_ARGS= FC_DR_PATCH=1 \
+          EVAL_TIMEOUT=1200 NO_PUSH=1 PAIRS="${P# }" bash $REPO_DIR/ops/jobs/hard_ab.sh ) || log "mass_eval: std seed $s returned $?" >> $J
+    else
     ( SPLIT=eval PDIR_ROOT=/content/perc2 SUF=s CR=0 BASE_EVAL=0 NREP=10 SEED=$s LIB=$LIB PIECES=$PIECES MA_ARGS="--physics $PROPS" \
         EVAL_TIMEOUT=1200 NO_PUSH=1 PAIRS="${P# }" bash $REPO_DIR/ops/jobs/hard_ab.sh ) || log "mass_eval: std seed $s returned $?" >> $J
+    fi
   done
   # the same /content/assets at the 0.3 kg placeholder: the yardstick for COM, inertia shape and collision pieces
   python $REPO_DIR/pipeline/make_assets.py $LIB $ME/assets_03 ${PIECES:+--pieces $PIECES} >> $J 2>&1 || log "mass_eval: 0.3 kg twin build FAILED" >> $J
@@ -164,11 +206,17 @@ else
 fi
 
 label "mass eval: verify"
+if [ "$ARM" = dr ]; then                                           # (2026-10-31) as mass_eval_verify.py, no masses, + D log line
+  eval python $T/dr_eval_verify.py --mode $MODE --eps \"$OK_EPS\" --seeds \"$SEEDS\" --table $TAB --run $RUN_ID \
+    --packed $ME/packed $VARGS --fc /content/v2d/robotic_grounding/flash_chord --out $ME/verify.json --summary $ME/summary.json > $ME/verify.txt 2>&1
+  log "mass_eval ARM=dr RESULT: $(cut -c1-2500 $ME/verify.txt | tr '\n' ' ')" >> $J
+else
 eval python $T/mass_eval_verify.py --mode $MODE --eps \"$OK_EPS\" --seeds \"$SEEDS\" --props $PROPS --table $TAB --run $RUN_ID \
   --packed $ME/packed $VARGS --out $ME/verify.json --summary $ME/summary.json > $ME/verify.txt 2>&1
 log "mass_eval RESULT: $(cut -c1-2500 $ME/verify.txt | tr '\n' ' ')" >> $J
+fi
 [ "$OK_EPS" = "$EPS" ] || log "mass_eval: episodes dropped before training: [$(for e in $EPS; do case " $OK_EPS " in *" $e "*) ;; *) printf '%s ' $e ;; esac; done)] (INCOMPLETE)" >> $J
-for c in /content/results/mass1s*_glock_public/ep*/best/policy.safetensors $(python -c "
+for c in /content/results/$APRE*_glock_public/ep*/best/policy.safetensors $(python -c "
 import json, sys
 for e, x in json.load(open(sys.argv[1]))['episodes'].items():
     for s in x['seeds'].values():
@@ -178,7 +226,8 @@ done > $ME/ckpt_meta.txt 2>&1
 # the store paths a pack would pull for these candidates (the reference and asset copies, each cell's chosen checkpoint): a
 # later pack-side single-file pull can use this list instead of a store listing (review F7; push-run uploads every file
 # under refs/ and keeps every checkpoint a results file names)
-{ ( cd /content && find refs/mass1_sf refs/mass1s*_glockt refs/perc2mcks -type f 2> /dev/null )
+FD="refs/mass1_sf refs/mass1s*_glockt refs/perc2mcks"; [ "$ARM" = dr ] && FD="refs/drs*_glockt refs/perc2mckdr"
+{ ( cd /content && find $FD -type f 2> /dev/null )
   python -c "
 import json, os, sys
 for x in json.load(open(sys.argv[1]))['episodes'].values():

@@ -23,6 +23,8 @@
 # the extra runs add only their own folders, e.g. RUN@refs/mass1_sf/ep20,refs/mass1s42_glockt/ep20); MASS_EPS / MA_ARGS
 # reach pack_eval.sh (tools/mass_pack_check.py before draw 1) and the same check runs before draws 2..N; PACKED_TXT is the
 # summary.txt of the pack on the board (default pack 6's, as before) for the packed column of h5_summary.json.
+# D-arm candidates (2026-10-31, docs/research/work/pack9b-20261031/PREREG.md section 3): DR_EPS="EP ..." reaches
+# pack_eval.sh (tools/dr_pack_check.py before draw 1) and the same check runs before draws 2..N; unset, nothing runs.
 . /content/v2d-track3/ops/box/lib.sh
 J=${J:-/content/job.log}; N=${N:-10}; H=/content/results/h5; mkdir -p $H
 python $REPO_DIR/tools/no_oracle.py ${PICK_EXTRA:-} ${KEEP_RESULTS:-} ${ASSET_PIECES_EXTRA:-} ${RUNS_EXTRA:-} >> $J 2>&1 \
@@ -62,6 +64,12 @@ if [ -n "${MASS_EPS:-}" ]; then                                    # draws 2..N 
     --table $REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json --out $H/mass_pack_check.json > $H/mass_pack_check.txt 2>&1 \
     || { log "h5: REFUSED before draws 2..$N: $(cut -c1-600 $H/mass_pack_check.txt)" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
   log "h5: draws 2..$N $(cut -c1-600 $H/mass_pack_check.txt)" >> $J   # kept in draw 1 is checked here first)
+fi
+if [ -n "${DR_EPS:-}" ]; then                                      # (2026-10-31, pack 9b D arm) draws 2..N load what draw 1's
+  python $REPO_DIR/tools/dr_pack_check.py --checkpoints $CK --all /content/results/final_eval/checkpoints.json --dr-eps "$DR_EPS" \
+    --table $REPO_DIR/docs/research/work/masses-eval-20261031/packed_refs.json --out $H/dr_pack_check.json > $H/dr_pack_check.txt 2>&1 \
+    || { log "h5: REFUSED before draws 2..$N: $(cut -c1-600 $H/dr_pack_check.txt)" >> $J; bash $OPS/store.sh push-run > /dev/null 2>&1; exit 1; }
+  log "h5: draws 2..$N $(cut -c1-600 $H/dr_pack_check.txt)" >> $J   # check saw (pack_eval.sh DR_EPS)
 fi
 for i in $(seq 2 $N); do
   label "H5: draw $i of $N"
