@@ -23,6 +23,8 @@ class Candidate:
     report: dict = dataclasses.field(default_factory=dict)
     # the same candidate without its balls (set when markers.attach adds balls to mesh). score.score_pool measures
     # the V5 / A.5 self-ambiguity on it when the object's balls are not trusted; without it that value is unknown.
+    # A base_mesh means balls: score_pool takes the count from balls or from the markers.attach report on mesh
+    # (mesh.metadata['balls'], kept by pack.pack) and raises when both are missing (B5 round 3).
     base_mesh: object = None
 
     def meta(self):

@@ -5,13 +5,15 @@
       are taken from it); or its rows (each carries them under 'pool'); or candidate metas (Candidate objects or
       dicts: cid, cls, n_params) with feats {cid: feature row}. kit_symmetric and gen_view_overlap are REQUIRED
       when the input does not carry them (hand-made rows), and must agree with it when it does (B5 round 2: a
-      silent default False applied V5 to kit-symmetric objects).
+      silent default False applied V5 to kit-symmetric objects). Rows of which only some carry a pool tag raise
+      (B5 round 3); the pool flags travel in the row tags too.
       Feature keys used: E, E_reps (the paired bootstrap replicates of A.4), v1/v2/v3/v4 (dicts with 'veto'; V3
       counts only when applied, i.e. tau is set), amb (self-ambiguity with TRUSTED balls only: amb_mm, amb_floor_mm,
       flip_risk, flip_units; flip_risk None = unknown, e.g. untrusted balls without a ball-free mesh: neither safe
       nor risky for V5, last on key 2, the pick is flagged flip_risk_unknown), trusted_markers (number of trusted
       balls attached).
-      variant: dict(K, b_tie, prior) (PREREG A.7 menu; default V0 = (3, 1, on)). K is used by score.plan, not here.
+      variant: dict(K, b_tie, prior) (PREREG A.7 menu; default V0 = (3, 1, on)). K is used by score.plan; pick
+      checks it against the pool's K (score_pool dict or row tags) and raises on a mismatch (B5 round 3).
       status: dict(track_fail, identity_swap, low_coverage, gpu_ran) for the fallback ladder (SPEC section 13).
   Returns dict(cid, variant, best, tie_set, order, keys, trace, fallback, flags).
 
@@ -62,24 +64,35 @@ def _get(c, k, default=None):
 
 
 def _pool_flags(cands, feats, kit_symmetric, gen_view_overlap):
-    """(rows-or-metas, kit_symmetric, gen_view_overlap, pool flags) from a score_pool dict, its rows or a hand-made
-    list; raises if a flag is neither carried by the input nor given, or if a given one contradicts the input."""
-    pool_flags = []
+    """(rows-or-metas, kit_symmetric, gen_view_overlap, pool flags, pool K) from a score_pool dict, its rows or a
+    hand-made list; raises if a flag is neither carried by the input nor given, if a given one contradicts the input,
+    if rows come from different pools, or if only some rows carry a pool tag (B5 round 3: one untagged row must not
+    switch the check off). Pool flags and K come from the dict or from the row tags (score_pool writes both)."""
+    pool_flags, K = [], None
     if isinstance(cands, dict):
         if 'rows' not in cands:
             raise ValueError('select: a dict input must be the score_pool output (with rows)')
         carried = dict(kit_symmetric=bool(cands['kit_symmetric']), gen_view_overlap=bool(cands['gen_view_overlap']))
         pool_flags = list(cands.get('flags') or [])
+        K = cands.get('K')
         cands = cands['rows']
     else:
         tags = [_get(c, 'pool') if feats is None else _get(feats.get(_get(c, 'cid')) or {}, 'pool') for c in cands]
+        tagged = [t for t in tags if isinstance(t, dict)]
         carried = None
-        if tags and all(isinstance(t, dict) for t in tags):
-            seen = {(bool(t['kit_symmetric']), bool(t['gen_view_overlap'])) for t in tags}
-            if len(seen) != 1 or len({t.get('obj') for t in tags}) != 1:
-                raise ValueError(f'select: rows from different pools ({sorted(seen)})')
+        if tagged and len(tagged) != len(tags):
+            raise ValueError(f'select: {len(tagged)} of {len(tags)} rows carry a pool tag; pass the rows of one '
+                             f'score_pool (all tagged) or hand-made rows only (none tagged, with both keywords)')
+        if tagged:
+            seen = {(bool(t['kit_symmetric']), bool(t['gen_view_overlap'])) for t in tagged}
+            if (len(seen) != 1 or len({t.get('obj') for t in tagged}) != 1
+                    or len({t.get('K') for t in tagged}) != 1):
+                raise ValueError(f'select: rows from different pools ({sorted(seen)}, objects '
+                                 f'{sorted({str(t.get("obj")) for t in tagged})}, K {sorted({str(t.get("K")) for t in tagged})})')
             ks, gv = seen.pop()
             carried = dict(kit_symmetric=ks, gen_view_overlap=gv)
+            K = tagged[0].get('K')
+            pool_flags = sorted({f for t in tagged for f in (t.get('flags') or [])})
     given = dict(kit_symmetric=kit_symmetric, gen_view_overlap=gen_view_overlap)
     out = {}
     for k, v in given.items():
@@ -92,7 +105,7 @@ def _pool_flags(cands, feats, kit_symmetric, gen_view_overlap):
             if v is not None and bool(v) != carried[k]:
                 raise ValueError(f'select: {k}={v} contradicts the pool ({carried[k]})')
             out[k] = carried[k]
-    return list(cands), out['kit_symmetric'], out['gen_view_overlap'], pool_flags
+    return list(cands), out['kit_symmetric'], out['gen_view_overlap'], pool_flags, K
 
 
 def _rows(cands, feats):
@@ -194,10 +207,14 @@ def fallback(rows, status, trace):
 def pick(cands, feats=None, variant=None, *, kit_symmetric=None, gen_view_overlap=None, status=None):
     """PREREG A.5 (module docstring). Deterministic: the result does not depend on the order of CANDS."""
     consts()
-    cands, kit_symmetric, gen_view_overlap, pool_flags = _pool_flags(cands, feats, kit_symmetric, gen_view_overlap)
+    cands, kit_symmetric, gen_view_overlap, pool_flags, pool_K = _pool_flags(cands, feats, kit_symmetric,
+                                                                             gen_view_overlap)
     variant = dict(VARIANT_V0 if variant is None else variant)
     if variant not in [dict(m) for m in MENU]:
         raise ValueError(f'select: variant {variant} is not in the PREREG A.7 menu')
+    if pool_K is not None and int(pool_K) != int(variant['K']):
+        raise ValueError(f'select: variant K = {variant["K"]} but the pool was scored with K = {pool_K} (score_pool '
+                         f'K and the variant must agree; PREREG A.7)')
     rows = sorted(_rows(cands, feats), key=lambda r: str(r['cid']))
     st = dict(track_fail=False, identity_swap=False, low_coverage=False, gpu_ran=False) | dict(status or {})
     trace, flags = [], list(pool_flags)

@@ -284,6 +284,56 @@ class InputTests(unittest.TestCase):
         self.assertEqual(S.pick(cands, feats)['cid'], 'risky')               # tags read from feats too
         self.assertEqual(pick(rows)['cid'], 'safe')                          # not kit-symmetric: V5 applies
 
+    def test_partly_tagged_rows_raise(self):
+        """B5 round 3 (verifier's break input 2): one untagged row must not switch off the pool check. Two rows of a
+        kit-symmetric pool plus one untagged row, with a contradicting keyword, raised nothing and let V5 change the
+        pick; now partly tagged input raises whatever the keywords."""
+        tag = dict(obj='blue_cup', K=3, kit_symmetric=True, gen_view_overlap=False, flags=[])
+        rows = [dict(row('safe', 'HULL', 2.0), pool=dict(tag)),
+                dict(row('risky', 'SHELL', 1.0, units=0, risk=True), pool=dict(tag))]
+        self.assertEqual(S.pick(rows)['cid'], 'risky')                       # all tagged: kit-symmetric, no V5
+        mixed = rows + [row('extra', 'HULL', 9.0)]
+        for kw in (dict(kit_symmetric=False, gen_view_overlap=False), dict(kit_symmetric=True, gen_view_overlap=False),
+                   {}):
+            with self.assertRaises(ValueError):
+                S.pick(mixed, **kw)
+        cands = [dict(cid=r['cid'], cls=r['cls'], n_params=0) for r in mixed]
+        feats = {r['cid']: r for r in mixed}
+        with self.assertRaises(ValueError):                                  # the feats path alike
+            S.pick(cands, feats, kit_symmetric=False, gen_view_overlap=False)
+
+    def test_variant_K_must_match_pool(self):
+        """B5 round 3 (verifier's probe 3): a K = 3 pool picked with a K = 5 variant was accepted and recorded K = 5
+        (mislabelled A.7 variants); now the variant's K is checked against the pool dict and the row tags."""
+        tag = dict(obj='x', K=3, kit_symmetric=False, gen_view_overlap=False, flags=[])
+        pool = dict(obj='x', K=3, kit_symmetric=False, gen_view_overlap=False, flags=[],
+                    rows=[dict(row('a', 'SHELL', 1.0), pool=dict(tag)), dict(row('b', 'HULL', 2.0), pool=dict(tag))])
+        v5 = dict(K=5, b_tie=1, prior=True)
+        for inp in (pool, pool['rows']):
+            with self.assertRaises(ValueError):
+                S.pick(inp, variant=v5)
+            self.assertEqual(S.pick(inp)['variant']['K'], 3)                 # V0 (K = 3) matches
+            self.assertEqual(S.pick(inp, variant=dict(K=3, b_tie=2, prior=False))['cid'], 'a')
+        tag5 = dict(tag, K=5)
+        rows5 = [dict(r, pool=dict(tag5)) for r in pool['rows']]
+        self.assertEqual(S.pick(rows5, variant=v5)['variant']['K'], 5)
+        with self.assertRaises(ValueError):
+            S.pick(rows5)                                                    # V0 is K = 3
+        with self.assertRaises(ValueError):                                  # rows of a K = 3 and a K = 5 pool
+            S.pick([pool['rows'][0], rows5[1]])
+        self.assertEqual(pick([row('a', 'SHELL', 1.0)], variant=v5)['cid'], 'a')   # hand-made rows: no pool K
+
+    def test_pool_flags_travel_in_row_tags(self):
+        """B5 round 3 (builder's open problem 7): score_pool writes the pool flags into every row's tag, so the pick
+        on the rows alone carries them too."""
+        tag = dict(obj='x', K=3, kit_symmetric=False, gen_view_overlap=False,
+                   flags=['gen_input_frames_missing', 'v3_no_shell_reference'])
+        rows = [dict(row('a', 'SHELL', 1.0), pool=dict(tag)), dict(row('b', 'HULL', 2.0), pool=dict(tag))]
+        p = S.pick(rows)
+        self.assertIn('gen_input_frames_missing', p['flags']); self.assertIn('v3_no_shell_reference', p['flags'])
+        pool = dict(obj='x', K=3, kit_symmetric=False, gen_view_overlap=False, flags=list(tag['flags']), rows=rows)
+        self.assertEqual(sorted(S.pick(pool)['flags']), sorted(p['flags']))
+
     def test_unknown_flip_risk_is_neither_safe_nor_risky(self):
         """B5 round 2: amb unknown (untrusted balls, no ball-free mesh; score.amb_unknown) does not make V5 apply,
         is not removed by it, ranks last on key 2, and a pick with it is flagged flip_risk_unknown."""

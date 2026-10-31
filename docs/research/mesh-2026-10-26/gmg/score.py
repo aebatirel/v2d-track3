@@ -14,8 +14,9 @@ Held-out time blocks and folds (PREREG A.2, A.4)
   train_frames(plan, k)                 the good frames outside block k (fold k's build frames)
   view_dirs(bundle, obj, frames)        unit direction from the object's centre (median owned point) to the camera
                                         centre, object frame; the view of a frame
-  build_folds(producer, ctx, plan)      fold candidates c_k = producer.produce(ctx, frames=train_frames(plan, k)),
-                                        matched by cid; a producer that cannot rebuild leaves its candidates fixed
+  build_folds(producer, ctx, plan, post=None)   fold candidates c_k = producer.produce(ctx, frames=train_frames(plan,
+                                        k)), matched by cid; a producer that cannot rebuild leaves its candidates
+                                        fixed; post = the caller's marker attach applied to every fold mesh (A.2)
   fold_meshes(cand, folds, K)           [c_1..c_K] for one candidate: its fold rebuilds, or its all-frames mesh in
                                         every fold ('fixed': fixed meshes, X0 replay, producers without a fold build)
   evidence(meshes, bundle, obj, blocks, fsv)   PREREG A.4 ray score: c_k cast against H_k; R_k, E, per-frame sums
@@ -297,13 +298,17 @@ def train_frames(pl, k):
     return [f for f in pl['frames'] if f not in out]
 
 
-def build_folds(producer, ctx, pl):
+def build_folds(producer, ctx, pl, post=None):
     """Fold rebuilds of every candidate of PRODUCER: produce(ctx, frames=train_frames(pl, k)) for k = 1..K, matched
     to the all-frames candidates by cid. Returns {cid: [mesh or None per fold]} and a status dict. A producer that
     cannot rebuild on a frame subset (NotImplementedError) returns {} with status 'fixed' (its candidates are then
-    scored with their all-frames mesh in every fold, fold_meshes)."""
+    scored with their all-frames mesh in every fold, fold_meshes).
+    post: optional callable mesh -> mesh applied to every fold mesh, the hook for PREREG A.2 "markers attached to
+    every fold candidate alike": pass the same attach (and pack) the shipped mesh got, e.g.
+    post=lambda m: markers.attach(m, episode_balls, obs). score_pool flags a row fold_balls_missing when its shipped
+    mesh has balls and a rebuilt fold mesh does not carry the same markers.attach report."""
     folds, status = {}, dict(producer=getattr(producer, '__name__', str(producer)), K=pl['K'], state='rebuilt',
-                             missing={})
+                             missing={}, post=None if post is None else getattr(post, '__name__', str(post)))
     for k in range(pl['K']):
         try:
             cands = producer.produce(ctx, frames=train_frames(pl, k))
@@ -311,7 +316,7 @@ def build_folds(producer, ctx, pl):
             status.update(state='fixed', reason=str(e))
             return {}, status
         for c in cands:
-            folds.setdefault(c.cid, [None] * pl['K'])[k] = c.mesh
+            folds.setdefault(c.cid, [None] * pl['K'])[k] = c.mesh if post is None else post(c.mesh)
     for cid, ms in folds.items():
         miss = [k for k, m in enumerate(ms) if m is None]
         if miss:
@@ -808,12 +813,27 @@ def _get(c, k, default=None):
     return c.get(k, default) if isinstance(c, dict) else getattr(c, k, default)
 
 
+def _attach_report(mesh):
+    """The markers.attach per-ball report on MESH (metadata['balls']; pack.pack keeps it), or None when absent."""
+    md = getattr(mesh, 'metadata', None)
+    if not isinstance(md, dict) or 'balls' not in md or md['balls'] is None:
+        return None
+    return list(md['balls'])
+
+
 def _ball_count(x, mesh):
-    """Number of balls on the candidate: the declared count (Candidate.balls), or the per-ball report markers.attach
-    leaves in mesh.metadata['balls'] when that is larger (a ball mesh whose count was not carried over)."""
+    """(count, from_metadata) of the balls on the candidate: the declared count (Candidate.balls), or the length of
+    the markers.attach report in mesh.metadata['balls'] when that is larger (a ball mesh whose count was not carried
+    over; pack.pack keeps the report). A candidate with a base_mesh (balls attached) whose count is 0 and whose mesh
+    carries no report raises (B5 round 3): the count is unknowable, and treating it as 0 would measure V5 on the
+    mesh with untrusted balls or drop the trusted markers of A.5 key 3. Called before any scoring."""
     nd = int(_get(x, 'balls', 0) or 0)
-    md = getattr(mesh, 'metadata', None) or {}
-    nm = len(md.get('balls') or []) if isinstance(md, dict) else 0
+    rep = _attach_report(mesh)
+    nm = 0 if rep is None else len(rep)
+    if _get(x, 'base_mesh') is not None and max(nd, nm) == 0 and rep is None:
+        raise ValueError(f'score_pool: candidate {_get(x, "cid")!r} has a base_mesh (balls attached) but a ball count '
+                         f'of 0 and no markers.attach report on its mesh (mesh.metadata["balls"]); set '
+                         f'Candidate.balls or pass the mesh with its report (pack.pack keeps it)')
     return max(nd, nm), nm > nd
 
 
@@ -825,13 +845,14 @@ def amb_unknown(kind, reason):
 
 
 def _amb_rows(row, mesh, base, kind, trusted):
-    """PREREG A.3 V5 and A.5 key 2: the self-ambiguity with TRUSTED balls only, else ball-free.
+    """PREREG A.3 V5 and A.5 key 2: the self-ambiguity with TRUSTED balls only, else ball-free. A candidate has balls
+    when its count is > 0 OR it has a base_mesh (B5 round 3: a base_mesh is never ignored).
       no balls                         -> the shipped mesh (ball-free)
       balls, trusted                   -> the shipped mesh (with its trusted balls); amb_noball on base_mesh if given
       balls, untrusted, base_mesh      -> base_mesh (ball-free)
       balls, untrusted, no base_mesh   -> unknown (amb_unknown): the ball-free shape is not available and the mesh
                                           with untrusted balls must not stand in for it (B5 round 2 fix)."""
-    if row['balls'] == 0:
+    if row['balls'] == 0 and base is None:
         row['amb'] = row['amb_noball'] = self_ambiguity(mesh, kind)
         row['amb_source'] = 'shipped mesh (no balls)'
     elif trusted:
@@ -848,13 +869,41 @@ def _amb_rows(row, mesh, base, kind, trusted):
         row['flags'].append('amb_unknown_untrusted_balls_no_base')
 
 
+def _fold_balls_missing(nballs, fm, fstate):
+    """True when the shipped mesh has balls and a rebuilt fold mesh does not carry a markers.attach report of the
+    same length (PREREG A.2: markers attached to every fold candidate alike; build_folds(post=...))."""
+    if nballs == 0 or fstate == 'fixed':
+        return False
+    for m in fm:
+        if len(getattr(m, 'faces', [])) == 0:
+            continue                                         # 'partial': no candidate on that fold
+        rep = _attach_report(m)
+        if rep is None or len(rep) != nballs:
+            return True
+    return False
+
+
+def _check_shell_args(cands, shell_cid, shell_fsv, t0_mm):
+    """B5 round 3: a SHELL candidate that carries t_mm may be an A.1 t0-alternate (0.6 or 1.6 x t0); without
+    shell_fsv, shell_cid or t0_mm the pool cannot tell, so t0_mm is required (raises before any scoring)."""
+    if shell_fsv is not None or shell_cid is not None or t0_mm is not None:
+        return
+    tm = [_get(x, 'cid') for x in cands if _get(x, 'cls') == 'SHELL' and _get(x, 't_mm') is not None]
+    if tm:
+        raise ValueError(f'score_pool: SHELL candidates {sorted(map(str, tm))} carry t_mm and none of t0_mm, '
+                         f'shell_cid, shell_fsv is given: pass t0_mm (the main run) or shell_fsv (A.1 t0-alternate '
+                         f're-runs) so that an alternate shell cannot become the V3 reference')
+
+
 def _shell_reference(rows, shell_cid, shell_fsv, t0_mm):
     """The reference s of V3 (PREREG A.3: the route-A shell at t0 of the same episode). shell_fsv (its fsv_far,
     measured in the main run) wins; else the row SHELL_CID; else the SHELL row whose t_mm is t0_mm; else the pool's
-    only SHELL row. Several SHELL rows and no way to tell which is at t0 raise (A.1 t0-alternate re-runs hold a shell
-    at 0.6 or 1.6 x t0: pass shell_fsv of the t0 shell). Returns (cid, fsv, source)."""
+    only SHELL row, if it carries no t_mm (a SHELL row with t_mm and none of the three raises: _check_shell_args).
+    Several SHELL rows and no way to tell which is at t0 raise (A.1 t0-alternate re-runs hold a shell at 0.6 or
+    1.6 x t0: pass shell_fsv of the t0 shell). Returns (cid, fsv, source)."""
     if shell_fsv is not None:
         return shell_cid, float(shell_fsv), 'given shell_fsv'
+    _check_shell_args(rows, shell_cid, shell_fsv, t0_mm)
     shells = [r for r in rows if r['cls'] == 'SHELL']
     if shell_cid is not None:
         r = next((r for r in rows if r['cid'] == shell_cid), None)
@@ -888,13 +937,30 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
     folds: {cid: [c_1..c_K]} fold rebuilds (build_folds); a candidate without one is scored 'fixed'.
     tau: V3 threshold (None before B13: V3 reported, not applied). V3 reference s (the route-A shell at t0):
     shell_fsv (its fsv_far from the main run; for the A.1 t0-alternate re-runs), else shell_cid, else the SHELL row
-    with t_mm == t0_mm, else the only SHELL row; several SHELL rows otherwise raise. kind: the kit symmetry ('kit' =
-    look it up). trusted: the object's balls passed the B.4 repeatability test. Self-ambiguity (V5, A.5 key 2) with
-    trusted balls only: untrusted balls -> measured on base_mesh; untrusted balls and no base_mesh -> unknown
-    (neither safe nor risky for V5, last on the flip key; row flag amb_unknown_untrusted_balls_no_base)."""
+    with t_mm == t0_mm, else the only SHELL row if it has no t_mm; several SHELL rows, or a SHELL row with t_mm, and
+    none of the three raise (B5 round 3: the producers' SHELL carries t_mm, so pass t0_mm). kind: the kit symmetry
+    ('kit' = look it up; an explicit value that contradicts the kit config raises). trusted: the object's balls
+    passed the B.4 repeatability test. Self-ambiguity (V5, A.5 key 2) with trusted balls only: untrusted balls ->
+    measured on base_mesh; untrusted balls and no base_mesh -> unknown (neither safe nor risky for V5, last on the
+    flip key; row flag amb_unknown_untrusted_balls_no_base). A candidate with balls is one whose count (Candidate.balls
+    or the markers.attach report in mesh.metadata['balls'], which pack.pack keeps) is > 0 or that has a base_mesh; a
+    base_mesh with a count of 0 and no report raises. Folds: a shipped mesh with balls whose rebuilt fold meshes lack
+    the same attach report is flagged fold_balls_missing (build_folds(post=...) attaches them).
+    Every row carries the pool tag (obj, K, kit_symmetric, gen_view_overlap, flags), so select.pick on the rows alone
+    sees what it sees on the pool dict."""
     c = consts()
     K = int(c['K'] if K is None else K)
-    kind = kit_symmetry(obj) if kind == 'kit' else kind
+    kit = kit_symmetry(obj)
+    if kind == 'kit':
+        kind = kit
+    elif kind != kit:
+        raise ValueError(f'score_pool: kind={kind!r} contradicts the kit config for {obj!r} ({kit!r}); pass '
+                         f"kind='kit' (PREREG A.3: kit-symmetric objects skip V5)")
+    cids = [_get(x, 'cid') for x in cands]
+    if len(set(cids)) != len(cids):
+        raise ValueError(f'score_pool: duplicate cids {sorted({str(c) for c in cids if cids.count(c) > 1})}')
+    nb = {_get(x, 'cid'): _ball_count(x, _get(x, 'mesh')) for x in cands}   # input contract, before any scoring
+    _check_shell_args(cands, shell_cid, shell_fsv, t0_mm)
     gen = [x for x in cands if _get(x, 'cls') in ('GEN', 'FUSE')]
     gviews = sorted({int(f) for x in gen for f in (_get(x, 'gen_input_frames') or [])})
     pool_flags = ['gen_input_frames_missing'] if any(not _get(x, 'gen_input_frames') for x in gen) else []
@@ -903,7 +969,7 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
     obs = bundle.obs(obj)
     far = far_free_grid(obs)
     s = bundle.sigma(obj)
-    pool_tag = dict(obj=obj, kit_symmetric=kind is not None, gen_view_overlap=bool(pl['gen_view_overlap']))
+    pool_tag = dict(obj=obj, K=K, kit_symmetric=kind is not None, gen_view_overlap=bool(pl['gen_view_overlap']))
     rows = []
     for x in cands:
         cid, mesh = _get(x, 'cid'), _get(x, 'mesh')
@@ -917,9 +983,11 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
             v1r = v1(mesh)
             v1r['source'] = 'in-memory mesh'
             flags.append('v1_in_memory')
-        nballs, from_meta = _ball_count(x, mesh)
+        nballs, from_meta = nb[cid]
         if from_meta:
             flags.append('balls_count_from_mesh_metadata')
+        if _fold_balls_missing(nballs, fm, fstate):
+            flags.append('fold_balls_missing')
         t_mm = _get(x, 't_mm')
         row = dict(cid=cid, cls=_get(x, 'cls'), producer=_get(x, 'producer'), n_params=int(_get(x, 'n_params', 0)),
                    t_mm=None if t_mm is None else float(t_mm), balls=nballs, E=ev['E'], E_blocks=ev['R_blocks'],
@@ -939,6 +1007,7 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
     for r in rows:
         r['fsv_far_shell'] = fsv_s
         r['v3'] = v3(r['fsv_far'], fsv_s, tau)
+        r['pool']['flags'] = list(pool_flags)
     return dict(obj=obj, K=K, kind=kind, kit_symmetric=kind is not None, trusted_balls=bool(trusted),
                 gen_view_overlap=bool(pl['gen_view_overlap']), holdout=pl['holdout'], removed_frames=pl['removed'],
                 blocks=[dict(frames=len(b['frames']), kept=len(b['kept']), points=int(len(b['idx'])),

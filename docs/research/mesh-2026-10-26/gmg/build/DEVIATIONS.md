@@ -857,3 +857,33 @@ B4-R2.5. **Run v5** (`<DATA>/gmg/runs/20261031-b4ext5-a776e8e`, all 20 public ep
     contact-frame pot+lid blob is recorded as an open problem for the orchestrator / owner (no PREREG F entry: scan-free
     but post-hoc, and K-a numbers have been seen). Seeds: PREREG B.12's 0 and 1 (the 29 Oct probe used 42 and 7).
     No scan or eval number seen.
+B5-R3.1. **(2026-10-31, B5 round 3) Ball count on the packed path; a base_mesh is never ignored.** (Numbered B5-R3.x
+    because the plain numbers 111-113 are taken twice.) Round 2's `score_pool` still measured the V5 / A.5 key 2
+    self-ambiguity on the mesh WITH untrusted balls when the candidate came through the documented path
+    markers.attach -> pack.pack -> Candidate(mesh=packed, base_mesh=...): `pack.pack` rebuilt the Trimesh and dropped
+    the attach report `mesh.metadata['balls']`, nothing set `Candidate.balls`, and `_amb_rows` checked the count (0)
+    before `base_mesh` (verifier's round-2 break input 1, synthetic). Now: (i) `pack.pack` keeps the attach report on
+    the packed mesh (set after the GLB export, so the file is byte-identical to before) and returns its length as
+    `info['balls']`; (ii) a candidate has balls when its count is > 0 OR it has a `base_mesh`; (iii) a `base_mesh`
+    with a count of 0 and no attach report on the mesh raises (checked before any scoring): the count is unknowable,
+    and guessing it would either measure V5 with untrusted balls or drop the trusted markers of A.5 key 3. An
+    interpretation of A.3 V5 / A.5 keys 2-3 as frozen; no pre-registered test, threshold or constant changes. No scan
+    or eval number seen.
+B5-R3.2. **(2026-10-31, B5 round 3) Markers on fold candidates (PREREG A.2 "attached to every fold candidate
+    alike").** `score.build_folds(producer, ctx, plan, post=None)`: `post` is the caller's attach (and pack) applied
+    to every fold mesh; a row whose shipped mesh has balls and whose rebuilt fold meshes lack an attach report of the
+    same length is flagged `fold_balls_missing`. The attach itself stays the caller's duty (B8 / B10: the episode's
+    balls are an episode-level input); the hook and the flag make it visible. Code contract only; no constant
+    changes. No scan or eval number seen.
+B5-R3.3. **(2026-10-31, B5 round 3) Stricter input contracts (select.pick, score_pool).** (i) `pick` raises when only
+    some rows carry a pool tag (round 2 checked the tags only when every row had one, so one untagged row switched
+    the check off; verifier's break input 2). (ii) `pick` raises when the variant's K differs from the pool's K (the
+    score_pool dict's `K`, or the row tags, which now carry K): a K = 3 pool picked with a K = 5 variant would
+    mislabel the A.7 LOOO variants. (iii) The pool flags travel in every row's tag, so a pick on the rows alone
+    carries them (round-2 open problem 7). (iv) `score_pool` raises when an explicit `kind` contradicts the kit
+    config (`kind='kit'` looks it up): an explicit `kind=None` for a kit-symmetric object would apply V5 to it.
+    (v) V3 reference: a SHELL row that carries `t_mm`, with none of `t0_mm`, `shell_cid`, `shell_fsv`, raises (it may
+    be an A.1 t0-alternate at 0.6 or 1.6 x t0); the producers' SHELL carries `t_mm`, so main runs pass `t0_mm`.
+    `build/b5/dev_pool.py` (the round-1 dev check, a recorded run) passed none of them; it is kept as run and would
+    need `t0_mm=` if re-run. Code contracts only; no pre-registered test, threshold or constant changes. No scan or
+    eval number seen.

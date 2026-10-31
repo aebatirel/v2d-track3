@@ -321,6 +321,30 @@ def slab_episode():
     return _SYN['slab']
 
 
+def plain_slab_episode():
+    """The PLAIN slab (no balls) seen as in slab_episode: B5 round 3, the verifier's break input 1 (false balls)."""
+    if 'plain_slab' not in _SYN:
+        _SYN['plain_slab'] = SY.episode(AM.slab(), SY.ring(50, 8) + SY.ring(20, 8, 22.5) + SY.ring(-30, 8),
+                                        name='slab')
+    return _SYN['plain_slab']
+
+
+def _attached_slab():
+    """The real markers.attach of four balls (r 10 mm, at the fixture's ball centres) onto the plain slab; without obs
+    attach adds no posts. Its per-ball report is in metadata['balls']."""
+    from gmg import markers as MK
+    _, C = AM.balls_on_posts()
+    balls = [MK.Ball(c=[float(v) for v in c], r=AM.BALL_R, frames=10, resid=0.0, cap_deg=180.0) for c in C]
+    return MK.attach(AM.slab(), balls)
+
+
+def _with_report(mesh, n):
+    """A copy of MESH carrying an attach-style report of N balls (metadata['balls'])."""
+    m = mesh.copy()
+    m.metadata['balls'] = [dict(r_mm=10.0)] * n
+    return m
+
+
 def static_episode():
     """24 views within about 1 deg of one direction (a static episode)."""
     if 'static' not in _SYN:
@@ -535,6 +559,78 @@ class FoldTests(unittest.TestCase):
         self.assertEqual((st['state'], st['missing']), ('rebuilt', {}))
         self.assertEqual(SC.fold_meshes(SY.cylinder(), folds['t'], 3)[1], 'rebuilt')
 
+    def test_post_hook_attaches_balls_to_folds(self):
+        """B5 round 3: PREREG A.2 'markers attached to every fold candidate alike'. build_folds(post=...) applies the
+        caller's attach to every fold mesh; a shipped ball mesh whose folds lack the balls is flagged."""
+        b = cyl_episode()
+        pl = SC.plan(b, 'cyl', 3)
+        ctx = dict(bundle=b, obj='cyl')
+
+        def attach2(m):
+            return _with_report(m, 2)
+        withb, st = SC.build_folds(_Toy('t', 'STRUCT', 'always'), ctx, pl, post=attach2)
+        self.assertEqual(st['post'], 'attach2')
+        self.assertEqual([len(m.metadata['balls']) for m in withb['t']], [2, 2, 2])
+        nob, st0 = SC.build_folds(_Toy('t', 'STRUCT', 'always'), ctx, pl)
+        self.assertIsNone(st0['post'])
+        shipped = _with_report(SY.cylinder(), 2)
+        cands = [Candidate(cid=c, producer='P-T', cls='STRUCT', mesh=shipped, params={}, base_mesh=SY.cylinder())
+                 for c in ('with', 'without')]
+        pool = SC.score_pool(cands, b, 'cyl', folds={'with': withb['t'], 'without': nob['t']}, kind=None, amb=False)
+        r = {x['cid']: x for x in pool['rows']}
+        self.assertEqual(r['with']['balls'], 2)
+        self.assertNotIn('fold_balls_missing', r['with']['flags'])
+        self.assertIn('fold_balls_missing', r['without']['flags'])
+        self.assertEqual(r['with']['pool']['K'], 3)
+        self.assertEqual(r['with']['pool']['flags'], pool['flags'])
+
+
+class InputContractTests(unittest.TestCase):
+    """B5 round 3: score_pool's input contract, checked before any scoring (so bundle=None reaches no data)."""
+
+    def test_kind_contradicting_kit_raises(self):
+        self.assertEqual(SC.kit_symmetry('blue_cup'), 'axial')
+        for obj, kind in (('blue_cup', None), ('blue_cup', 'half'), ('slab', 'axial')):
+            with self.assertRaises(ValueError):
+                SC.score_pool([], None, obj, kind=kind)
+        dup = [dict(cid='a', cls='SHELL', mesh=SY.disc()), dict(cid='a', cls='HULL', mesh=SY.disc())]
+        with self.assertRaises(ValueError):                         # duplicate cids
+            SC.score_pool(dup, None, 'disc', kind=None)
+
+    def test_shell_with_t_mm_needs_t0(self):
+        cands = [dict(cid='shell_alt', cls='SHELL', mesh=SY.disc(), n_params=0, t_mm=3.2),
+                 dict(cid='struct', cls='STRUCT', mesh=SY.disc(), n_params=2)]
+        with self.assertRaises(ValueError):                         # an A.1 alternate must not become the reference
+            SC.score_pool(cands, None, 'disc', kind=None)
+        SC._check_shell_args(cands, None, 0.1, None)                # shell_fsv given
+        SC._check_shell_args(cands, None, None, 2.0)                # t0_mm given
+        SC._check_shell_args([dict(cands[0], t_mm=None)], None, None, None)   # SHELL without t_mm: the only SHELL
+
+    def test_base_mesh_needs_a_ball_count(self):
+        slab, balls = AM.slab(), AM.slab_with_balls()
+
+        def cand(mesh, n=0):
+            return Candidate(cid='c', producer='P-T', cls='STRUCT', mesh=mesh, params={}, base_mesh=slab, balls=n)
+        with self.assertRaises(ValueError):                         # base_mesh, count 0, no attach report
+            SC.score_pool([cand(balls)], None, 'slab', kind=None)
+        self.assertEqual(SC._ball_count(cand(balls, 4), balls), (4, False))
+        self.assertEqual(SC._ball_count(cand(_with_report(balls, 4)), _with_report(balls, 4)), (4, True))
+        none = _with_report(slab, 0)                                # attach found nothing: its report is []
+        self.assertEqual(SC._ball_count(cand(none), none), (0, False))
+        plain = Candidate(cid='p', producer='P-T', cls='STRUCT', mesh=slab, params={})
+        self.assertEqual(SC._ball_count(plain, slab), (0, False))   # no base_mesh, no report: ball-free
+
+    def test_fold_balls_missing(self):
+        cyl = SY.cylinder()
+        empty = trimesh.Trimesh(np.zeros((0, 3)), np.zeros((0, 3), np.int64), process=False)
+        r2, r0 = _with_report(cyl, 2), _with_report(cyl, 0)
+        self.assertFalse(SC._fold_balls_missing(2, [r2, r2, r2], 'rebuilt'))
+        self.assertTrue(SC._fold_balls_missing(2, [r2, cyl, r2], 'rebuilt'))
+        self.assertTrue(SC._fold_balls_missing(2, [r2, r0, r2], 'rebuilt'))
+        self.assertFalse(SC._fold_balls_missing(2, [r2, empty, r2], 'partial'))
+        self.assertFalse(SC._fold_balls_missing(2, [cyl] * 3, 'fixed'))
+        self.assertFalse(SC._fold_balls_missing(0, [cyl] * 3, 'rebuilt'))
+
 
 class B5Synthetic(unittest.TestCase):
     """SPEC 24 B5 pass condition, synthetic tests (the fourth, the deterministic tie order, is also in
@@ -711,6 +807,62 @@ class B5Synthetic(unittest.TestCase):
                 self.assertEqual(p['keys']['slab_balls'][1], 'inf')            # last on the flip-safety key
                 self.assertIn('flip_risk_unknown' if p['cid'] == 'slab_balls' else 'flip_risk', p['flags'])
         _record_b5('B5-c2 Candidate objects, untrusted balls', out)
+
+    def test_c3_packed_ball_mesh_false_balls(self):
+        """B5 round 3 (verifier's round-2 break input 1, on the documented path): markers.attach -> pack.pack ->
+        Candidate(mesh=packed, base_mesh=plain slab) with Candidate.balls left at 0. The episode observes the PLAIN
+        slab, so the balls are false. pack.pack keeps the attach report, so the count is 4 and base_mesh is used:
+        untrusted -> measured ball-free (flip-risk), V5 cannot apply, the pick is the plain slab flagged flip_risk.
+        Trusted -> measured with the balls and trusted_markers = 4 (A.5 key 3). The same packed mesh reloaded from
+        its GLB (no report) with no count raises."""
+        import tempfile
+        from gmg import pack as PK
+        slab, nb = AM.slab(), len(AM.BALLS)
+        att = _attached_slab()
+        self.assertEqual(len(att.metadata['balls']), nb)
+        os.makedirs(os.path.dirname(B5_OUT), exist_ok=True)
+        d = tempfile.mkdtemp(prefix='b5r3-pack-', dir=os.path.dirname(B5_OUT))
+        packed, info = PK.pack(att, os.path.join(d, 'slab_falseballs.glb'))
+        self.assertEqual(info['balls'], nb)
+        self.assertEqual(len(packed.metadata['balls']), nb)            # pack keeps the report (was lost)
+        reloaded = trimesh.load(info['path'], force='mesh')
+        self.assertIsNone(SC._attach_report(reloaded))                  # the GLB does not carry it
+        b = plain_slab_episode()
+
+        def cands(mesh, **kw):
+            return [Candidate(cid='slab_falseballs', producer='P-T', cls='STRUCT', mesh=mesh, params={}, n_params=6,
+                              base_mesh=slab, **kw),
+                    Candidate(cid='slab_plain', producer='P-T', cls='STRUCT', mesh=slab, params={}, n_params=6)]
+        with self.assertRaises(ValueError):
+            SC.score_pool(cands(reloaded), b, 'slab', kind=None)        # no count anywhere: unknowable, raises
+        self.assertEqual(SC._ball_count(cands(reloaded, balls=info['balls'])[0], reloaded), (nb, False))
+        out = {}
+        for trusted in (False, True):
+            pool = SC.score_pool(cands(packed), b, 'slab', kind=None, trusted=trusted)
+            r = {x['cid']: x for x in pool['rows']}
+            p = SEL.pick(pool)
+            v5 = [t for t in p['trace'] if t['step'] == 'V5'][0]
+            fb, pl_ = r['slab_falseballs'], r['slab_plain']
+            out[f'trusted={trusted}'] = dict(rows={k: _row_summary(v) | dict(flags=v['flags'], amb_source=v['amb_source'],
+                                                                         balls=v['balls']) for k, v in r.items()},
+                                             pick={k: p[k] for k in ('cid', 'best', 'tie_set', 'order', 'flags')},
+                                             v5=v5, pack_info={k: info[k] for k in ('faces', 'balls')})
+            self.assertEqual(fb['balls'], nb)
+            self.assertIn('balls_count_from_mesh_metadata', fb['flags'])
+            self.assertTrue(fb['amb_noball']['flip_risk'] if trusted else fb['amb']['flip_risk'])
+            self.assertTrue(pl_['amb']['flip_risk'])
+            self.assertGreater(fb['E'], pl_['E'])                        # the false balls are not observed
+            if not trusted:
+                self.assertEqual(fb['amb_source'], 'base_mesh (balls not trusted: ball-free)')
+                self.assertEqual(fb['trusted_markers'], 0)
+                self.assertFalse(v5['applied'])
+                self.assertEqual(p['cid'], 'slab_plain')
+                self.assertIn('flip_risk', p['flags'])
+            else:
+                self.assertEqual(fb['amb_source'], 'shipped mesh with its trusted balls')
+                self.assertEqual(fb['trusted_markers'], nb)              # A.5 key 3 sees the trusted markers
+                self.assertEqual(v5['applied'], fb['amb']['flip_risk'] is False)
+        _record_b5('B5-c3 packed ball mesh, false balls', out)
 
     def test_v3_reference_shell_and_v1_flag(self):
         """B5 round 2: the V3 reference s is the shell at t0 whatever the input order; several SHELL rows need
