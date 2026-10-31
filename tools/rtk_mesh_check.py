@@ -45,7 +45,7 @@ TSV = os.path.join(REPO, 'docs', 'research', 'work', 'leak-decomp-20261030', 'ph
 MESH_SUFFIX = ('.glb', '.gltf', '.obj', '.ply', '.stl', '.off')
 SIDECAR = ('.json', '.md', '.txt')
 TOP_OK = {'MANIFEST.json', 'VALIDATION.json'}
-TIER_WORDS = re.compile(r'scan|mocap|oracle|ground[ -]?truth|\bGT\b', re.I)
+TIER_WORDS = re.compile(r'\b(?:scan\w*|mocap|oracle|ground[ -]?truth|GT)\b(?![ -]?free)', re.I)   # review 31 Oct: 'GT-free' is not a hit
 MAX_FACES = 300_000
 
 

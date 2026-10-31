@@ -204,3 +204,26 @@ here in the lib convention (`scores/R_Po2_noise.json`):
   unchanged P_o track: R 0.9866 → 0.9626 [M, mechanics only].
 - `po_bundles/`: the 20 Phase-1 P_o bundles (single-file downloads, 31 Oct ~18:55 UTC).
 - After the run: `scores/R_Pop.json`, `verdict.{json,txt}`, then RESULTS.md.
+
+
+## 11. Amendments (31 Oct 2026 ~20:30 UTC, review, before any P_o' result; no delivery exists, nothing launched)
+- **Amendment 1 (review F1):** "Unchanged episodes enter as 0" is not one-sided: it also removes unchanged episodes'
+  negative drift from criteria 1, 3 and 4. PASS now requires criteria 1–4 to hold both on the measured dR_e / dRPE_e of
+  all 20 episodes (the agreed rule, literally) and with unchanged episodes entered as 0. `rtk_verdict.py` reports
+  `criteria.measured`, `pass_measured` and `pass_zeroed`. The §3 sentence "It can only make PASS harder" is withdrawn.
+- **Amendment 2 (review F2):** more than one bundle or poses file per episode in the pull folder is INVALID ("keep only
+  the scored run"); the camera comes from the bundle's own `perc2/`; the score's `track_md5` must equal that run's
+  `poses_world_vo.npz`.
+- **Amendment 3 (review F3):** `rtk_pull.py` also pulls each run's `run_job.log`; INVALID unless it shows `environment
+  restored from pt2.11-cu130-py313-20261020` and an RTX PRO 6000 GPU line (driver recorded).
+- **Amendment 4 (review, recommended):** camera tolerance P_o' vs P_o: INVALID above 0.5 cm / 0.25°, NOTE above
+  0.1 cm / 0.05° (Phase 1's measured cross-box/commit maximum 0.077 cm / 0.03°; thresholds [H]).
+- **Amendment 5 (review, recommended):** `leak_p1.py score --lib-ep-dir` is explicit only (an exported LIB_EP_DIR no
+  longer changes P_o's scoring); the validator's provenance-tier word check no longer flags "GT-free".
+- Fixtures: the review's patched verdict tool passes the 14 original + 6 new fixtures (20/20).
+- **Open before any rerun is read (review, recommended):** "a repeat failure counts as harm (R_e = 0)" has no mechanical
+  input yet in `rtk_verdict.py` (it would print INCOMPLETE). Definition fixed now: perc2 started on both the original run
+  and the rerun (`run.json` present with rc ≠ 0 or no poses) after the inputs check → R_e = 0; anything earlier is
+  infrastructure and is rerun. A `--failed EP,...` option implementing this must be committed before a rerun is read.
+- Fixtures after the amendments: 21/21 (`mock/verdict_tests.py` → `mock/out/verdict_tests.txt`; F8 now a NOTE at 2 mm,
+  F8b INVALID at 6 mm).

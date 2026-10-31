@@ -162,8 +162,9 @@ The 14 fixtures are built on Phase 1's **real** P_o side: the 20 downloaded bund
 2. **Coverage.** If the delivery is E0's scope (pot, lid, rack, blue cup), 5 episodes stay unchanged and enter as 0.
    - Criterion 2 then needs 12 of the 15 changed episodes (80 %), and criterion 1 a mean of +0.0133 on them.
    - The pitcher, Phase 1's largest template lever, is out of scope (PREREG §9).
-   - This was agreed as is. The "unchanged enters 0" clarification is mine [H]: it only makes PASS harder.
-     The orchestrator or owner may veto it before any result.
+   - This was agreed as is. The "unchanged enters 0" clarification is mine [H]. The review showed it is NOT one-sided
+     (it also drops unchanged episodes' negative drift); PREREG §11 amendment 1 now requires criteria 1–4 both on the
+     measured dR of all 20 episodes and with unchanged episodes entered as 0.
 3. **Cross-box GPU noise is unmeasured** (Phase 1 measured within-box only).
    - P_o' runs on other boxes than P_o did. The unchanged episodes and objects measure it in this run.
    - The camera tolerance 0.1 cm / 0.05° is [H] (Phase 1's cross-box max was 0.077 cm / 0.03°).

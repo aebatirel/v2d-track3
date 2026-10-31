@@ -88,3 +88,10 @@ T3=$S/map/scoring/t3, KIT=$S/map/scoring/kit/v2d_submission_kit, R=docs/research
      INCOMPLETE: rerun only the listed episodes (JOBS "Rerun after INCOMPLETE"), pull, re-score, re-run the verdict.
   4. ledger actual lines; STATUS.md and the work log (the provenance tier verbatim); the owner decides what PASS buys
      (PREREG §7). Nothing from this test enters an eval pack (results/leak_p1 paths are refused by tools/no_oracle.py).
+
+REVIEW ADDITIONS (31 Oct ~20:40 UTC, before any launch)
+- Before launch: hold if any delivered mesh's frame report says the kit-registration proxy rotates the body by > 45°
+  (almost surely an export error); ask the mesh session first.
+- After the boxes: rtk_pull.py also pulls runs/<rid>/run_job.log; check each for "environment restored from
+  pt2.11-cu130-py313-20261020", no "snapshot restore FAILED", and an "] gpu:" line naming an RTX PRO 6000 (record the driver);
+  otherwise INVALID (PREREG §11 amendment 3).

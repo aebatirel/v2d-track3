@@ -10,7 +10,8 @@ Cases and the expected verdict (exit code of rtk_verdict.py):
   F5  F1 with RPE +0.05 cm on the 13                                           -> FAIL (RPE)
   F6  F1 without ep45's P_o' score                                             -> INCOMPLETE (rerun [45])
   F7  F1 + ep12's P_o' depth frame-0 sha changed                               -> INVALID
-  F8  F1 + ep2's P_o' camera moved 2 mm                                        -> INVALID
+  F8  F1 + ep2's P_o' camera moved 2 mm (amendment 4: NOTE only, 0.1-0.5 cm)    -> PASS
+  F8b F1 + ep2's P_o' camera moved 6 mm (amendment 4: > 0.5 cm)                -> INVALID
   F9  F1 + ep11's P_o' template md5 != VALIDATION.json                         -> INVALID
   F10 F1 + an unchanged episode (ep18) dR +0.05                                -> PASS (enters as 0) + control NOTE
   F11 F1 + a mesh without provenance tier                                      -> INVALID
@@ -20,7 +21,7 @@ import copy, glob, hashlib, json, os, shutil, subprocess, sys
 import numpy as np
 
 W, POB, POP, RPO, V3, REPO = sys.argv[1:7]
-V = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'rtk_verdict.py')
+V = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'rtk_verdict.py')
 PY = sys.executable
 E0 = {'white_pot', 'white_pot_lid', 'plastic_dish_rack', 'blue_cup'}
 HEAD = subprocess.run(['git', '-C', REPO, 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()
@@ -112,7 +113,15 @@ def cam2(d, pop):
     np.savez(f'{d}/pop_p/ep2/perc2/poses.npz', **z)
 
 
-oks.append(run('F8', 'INVALID', mutate=cam2, **base))
+oks.append(run('F8', 'PASS', mutate=cam2, **base))
+
+
+def cam6(d, pop):
+    z = dict(np.load(f'{d}/pop_p/ep2/perc2/poses.npz')); z['world_T_cam'] = z['world_T_cam'].copy(); z['world_T_cam'][:, 0, 3] += 0.006
+    np.savez(f'{d}/pop_p/ep2/perc2/poses.npz', **z)
+
+
+oks.append(run('F8b', 'INVALID', mutate=cam6, **base))
 
 
 def tpl11(d, pop):
@@ -133,4 +142,27 @@ oks.append(run('F11', 'INVALID', mutate=notier, **base))
 oks.append(run('F12', 'INVALID', mutate=lambda d, pop: pop['episodes']['13']['meshes']['blue_cup'].update(md5='1' * 32), **base))
 oks.append(run('F13', 'INVALID', commit='1234567890abcdef1234567890abcdef12345678', **base))
 print(f'verdict fixtures: {sum(oks)}/{len(oks)} as expected')
-sys.exit(0 if all(oks) else 1)
+
+UNCH = [18, 23, 24, 39, 40]
+def unch(delta):
+    def f(d, pop):
+        for e in UNCH:
+            pop['episodes'][str(e)]['AUC'] = round(pop['episodes'][str(e)]['AUC'] + delta, 4)
+    return f
+oks.append(run('G1 unchanged ep23 dR -0.05', 'FAIL', mutate=lambda d, pop: pop['episodes']['23'].update(AUC=round(pop['episodes']['23']['AUC'] - 0.05, 4)), **base))
+oks.append(run('G2 unchanged 5 x -0.002', 'FAIL', d_r=lambda i, e: 0.016 if i < 13 else -0.001, d_rpe=base['d_rpe'], mutate=unch(-0.002)))
+oks.append(run('G4 unchanged ep23 +0.9 (board swap resolved by noise), changed all -0.001', 'FAIL', d_r=lambda i, e: -0.001, d_rpe=base['d_rpe'],
+               mutate=lambda d, pop: pop['episodes']['23'].update(AUC=round(pop['episodes']['23']['AUC'] + 0.9, 4))))
+PO = '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/leak/p1/oracle_roots/Po'
+def layout(d, pop):  # rtk_pull layout: perc2/ next to bundle.json
+    for e in Bpo:
+        shutil.copytree(f'{d}/pop_p/ep{e}/perc2', f'{d}/pop_b/ep{e}/perc2'); shutil.copyfile(f'{PO}/ep{e}/poses_world_vo.npz', f'{d}/pop_b/ep{e}/perc2/poses_world_vo.npz')
+oks.append(run('H1 rtk_pull layout, tracks = scored', 'PASS', mutate=layout, **base))
+def wrongtrack(d, pop):
+    layout(d, pop); shutil.copyfile(f'{PO}/ep13/poses_world_vo.npz', f'{d}/pop_b/ep12/perc2/poses_world_vo.npz')
+oks.append(run('H2 ep12 scored track is not the bundle run', 'INVALID', mutate=wrongtrack, **base))
+def dup(d, pop):
+    os.makedirs(f'{d}/pop_b/zz-rtkR1/ep12'); b = json.load(open(f'{d}/pop_b/ep12/bundle.json')); b['ok'] = False
+    json.dump(b, open(f'{d}/pop_b/zz-rtkR1/ep12/bundle.json', 'w'))
+oks.append(run('H3 two bundles for ep12 (failed original + rerun)', 'INVALID', mutate=dup, **base))
+print(f'verdict fixtures (patched): {sum(oks)}/{len(oks)} as expected')

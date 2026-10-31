@@ -1,7 +1,7 @@
 """Pull the P_o' outputs of the re-track boxes (2026-10-31), ONE hf_hub_download per file: never a store listing,
 never --include (HF 429; JOBS.txt "After the boxes"). Per run id: runs/<rid>/results/leak_p1/summary.json first, then
-per episode in it bundle.json, perc2/poses_world_vo.npz, perc2/poses.npz, perc2/run.json (41 files for a 10-episode
-box). P_o needs no pull: Phase 1's bundles are in po_bundles/ (this folder) and its tracks on this VM
+per episode in it bundle.json, perc2/poses_world_vo.npz, perc2/poses.npz, perc2/run.json (43 files for a 10-episode
+box, with run_job.log and job.log). P_o needs no pull: Phase 1's bundles are in po_bundles/ (this folder) and its tracks on this VM
 (scratchpad leak/p1/runs/20261030-orcP1{a,b,c}-87fc869/...).
 usage: python3 -I rtk_pull.py OUT RUN_ID [RUN_ID ...] [--dry-run]     (--dry-run prints the paths after the summaries)
 """
@@ -30,6 +30,8 @@ for rid in rids:
     if not get(f'{base}/summary.json'):
         bad += 1; continue
     s = json.load(open(f'{out}/{base}/summary.json'))
+    for f in ('run_job.log', 'job.log'):                                 # env-snapshot restore + gpu line (PREREG §5 e)
+        n += 1; bad += not get(f'runs/{rid}/{f}')
     for ep in s['episodes']:
         for f in ('bundle.json', 'perc2/poses_world_vo.npz', 'perc2/poses.npz', 'perc2/run.json'):
             n += 1

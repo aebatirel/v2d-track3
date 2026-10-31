@@ -16,11 +16,12 @@ missing, failed or not ok: rerun those only) > PASS / FAIL by the rule:
   (nothing delivered for it) enters the rule with dR_e = dRPE_e = 0 (its measured values are the cross-box control).
 Exit 0 PASS, 1 FAIL, 2 INCOMPLETE, 3 INVALID.
 """
-import argparse, glob, json, math, os, subprocess, sys
+import argparse, glob, hashlib, json, math, os, subprocess, sys
 import numpy as np
 
 PUBLIC = [0, 2, 11, 12, 13, 18, 21, 22, 23, 24, 26, 27, 31, 39, 40, 41, 42, 43, 44, 45]
-CAM_CM, CAM_DEG = 0.1, 0.05          # camera tolerance P_o' vs P_o [H]: Phase 1 cross-box/commit max 0.077 cm, 0.03 deg
+CAM_CM, CAM_DEG = 0.5, 0.25          # INVALID above this (review 31 Oct, amendment 2): camera P_o' vs P_o [H]
+CAM_NOTE_CM, CAM_NOTE_DEG = 0.1, 0.05   # NOTE above this: Phase 1 cross-box/commit max 0.077 cm, 0.03 deg
 NOISE = dict(R_mean_abs=0.0017, R_max_abs=0.0136, RPE_mean_abs_cm=0.0019, RPE_max_abs_cm=0.0077)   # o vs o2, lib [M]
 CODE = ['pipeline/perc2.py', 'pipeline/det_rules.py', 'ops/box/']                     # what perc2 / the box run
 
@@ -31,7 +32,7 @@ def find(root, pat):
         parts = p.split(os.sep)
         ep = [x for x in parts if x.startswith('ep') and x[2:].isdigit()]
         if ep:
-            out.setdefault(int(ep[-1][2:]), p)
+            out.setdefault(int(ep[-1][2:]), []).append(p)
     return out
 
 
@@ -55,6 +56,11 @@ def main():
     Bpo, Bpop = find(a.po_bundles, 'bundle.json'), find(a.pop_bundles, 'bundle.json')
     Ppo, Ppop = find(a.po_poses, 'perc2/poses.npz'), find(a.pop_poses, 'perc2/poses.npz')
     inval, incomp, rows, notes = [], [], {}, []
+    for nm, D in (('P_o bundles', Bpo), ("P_o' bundles", Bpop), ('P_o poses', Ppo), ("P_o' poses", Ppop)):
+        for e, ps in D.items():                                        # a rerun next to its failed original: ambiguous
+            if len(ps) > 1:
+                inval.append(f'ep{e}: {len(ps)} {nm} under the root (keep only the run that is scored): {ps}')
+    Bpo, Bpop, Ppo, Ppop = ({e: ps[-1] for e, ps in D.items()} for D in (Bpo, Bpop, Ppo, Ppop))
     try:
         V = json.load(open(f'{a.delivery}/VALIDATION.json'))
     except Exception as x:
@@ -113,9 +119,15 @@ def main():
                 bad.append(f'{n}: template {tp.get("source")} {tp["md5"][:8]} != {"delivered" if rel in vfiles else "library_v3"} {want[:8]}')
             if tp['md5'] != to['md5']:
                 changed.append(n)
-        ct, cr = cam_diff(Ppo[e], Ppop[e])
+        own = os.path.join(os.path.dirname(Bpop[e]), 'perc2')
+        wvo = f'{own}/poses_world_vo.npz'
+        if os.path.isfile(wvo) and hashlib.md5(open(wvo, 'rb').read()).hexdigest() != SPop[k].get('track_md5'):
+            bad.append(f"P_o' scored track {str(SPop[k].get('track_md5'))[:8]} is not this bundle's poses_world_vo.npz")
+        ct, cr = cam_diff(Ppo[e], f'{own}/poses.npz' if os.path.isfile(f'{own}/poses.npz') else Ppop[e])
         if not (ct <= CAM_CM and cr <= CAM_DEG):
             bad.append(f'camera differs {ct:.3f} cm / {cr:.3f} deg (> {CAM_CM} cm / {CAM_DEG} deg)')
+        elif ct > CAM_NOTE_CM or cr > CAM_NOTE_DEG:
+            notes.append(f'ep{e}: camera differs {ct:.3f} cm / {cr:.3f} deg (above the {CAM_NOTE_CM} cm / {CAM_NOTE_DEG} deg note level)')
         if bad:
             inval.append(f'ep{e}: ' + '; '.join(bad))
         so, sp = SPo[k], SPop[k]
@@ -135,14 +147,18 @@ def main():
                              commit=V.get('commit')), noise_floor_within_box=NOISE, episodes=rows)
     if len(ok) == 20:
         dr = np.array([r['rule_dR'] for r in ok]); dp = np.array([r['rule_dRPE'] for r in ok])
+        mr = np.array([r['dR'] for r in ok]); mp = np.array([r['dRPE'] for r in ok])     # measured (the agreed rule)
         unch = [r for r in ok if not r['changed']]
         crit = dict(mean_dR=round(float(dr.mean()), 5), n_dR_pos=int((dr > 0).sum()), min_dR=round(float(dr.min()), 4),
                     mean_dRPE=round(float(dp.mean()), 5), n_changed=len(ok) - len(unch),
+                    measured=dict(mean_dR=round(float(mr.mean()), 5), n_dR_pos=int((mr > 0).sum()),
+                                  min_dR=round(float(mr.min()), 4), mean_dRPE=round(float(mp.mean()), 5)),
                     raw_mean_dR=round(float(np.mean([r['dR'] for r in ok])), 5),
                     control_unchanged=dict(n=len(unch), max_abs_dR=max([abs(r['dR']) for r in unch], default=None),
                                            max_abs_dRPE=max([abs(r['dRPE']) for r in unch], default=None)))
-        crit['pass'] = dict(mean_dR=crit['mean_dR'] >= 0.01, n_pos=crit['n_dR_pos'] >= 12, floor=crit['min_dR'] >= -0.03,
-                            rpe=crit['mean_dRPE'] <= 0)
+        ok4 = lambda c: dict(mean_dR=c['mean_dR'] >= 0.01, n_pos=c['n_dR_pos'] >= 12, floor=c['min_dR'] >= -0.03, rpe=c['mean_dRPE'] <= 0)
+        z, m = ok4(crit), ok4(crit['measured'])                          # PASS only if both hold: never easier than agreed
+        crit['pass'] = {c: z[c] and m[c] for c in z}; crit['pass_zeroed'], crit['pass_measured'] = z, m
         res['criteria'] = crit
         if unch and crit['control_unchanged']['max_abs_dR'] > NOISE['R_max_abs']:
             notes.append(f'cross-box control: an unchanged episode moved |dR| {crit["control_unchanged"]["max_abs_dR"]} > the '

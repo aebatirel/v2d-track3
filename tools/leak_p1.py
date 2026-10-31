@@ -293,7 +293,7 @@ def score(argv):
     p.add_argument('--perc', required=True, help='ROOT with ep<N>/poses_world_vo.npz')
     p.add_argument('--t3', required=True); p.add_argument('--kit', required=True)
     p.add_argument('--lib', default=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'meshes', 'library_v3'))
-    p.add_argument('--lib-ep-dir', default=os.environ.get('LIB_EP_DIR') or None)
+    p.add_argument('--lib-ep-dir', default=None)   # explicit only (review 31 Oct: an exported LIB_EP_DIR must not change P_o's score)
     p.add_argument('--episodes', default=','.join(map(str, PUBLIC))); p.add_argument('--out')
     p.add_argument('--jobs', type=int, default=2)
     a = p.parse_args(argv)
