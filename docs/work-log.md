@@ -5027,3 +5027,22 @@ diagnostic; nothing is picked for submission.
 - Build 1 cut by the limit again ~06:50 UTC (reset 08:00): B2 and B5 built, verifiers cut; B7 and B4 builds cut mid-way
   (B4: extraction, hands, sanity, contact code done; clean run on 20 episodes in progress). Owner "Continue";
   resumed 08:08 UTC (task wrf8rwrsj).
+
+## 2026-10-31 ~08:50 UTC: owner asks for a placement slot; placement + physics workflow launched
+- Owner: "We don't have the placement slot in any of that. I remember SAM in its first try managed to capture that also
+  with the movement and physical possibility check; shouldn't we be able to have that slot? Look at the other
+  sessions also."
+- What the frozen gmg design has: CPU-core candidates are built in our tracked frame (no placement step); generator
+  placement M11 (SPEC 15) only at build step B15, with PREREG K-c (SAM 3D layout mapped by inv(cam_T_obj), inter-view
+  consistency), K-d and G0 (layout-only placement); physics only as below-table, the V2 partner veto and one rest check
+  on the simulator copy. Missing: an explicit slot that checks placement over the whole movement and physical
+  possibility along our track for every candidate.
+- Other sessions read (data): focused-pascal leak study + tracker-fix plan (body-frame offsets: lid 1.4-1.8 cm ep0,
+  beige base +1.8 cm ep11; sweeper flips; lid seat / upright snap / rack depenetration ideas); keen-heisenberg
+  `docs/analysis/arda-feedback-20261031.md` section 7 (collider overlap between objects along our reference drives the
+  largest simulator spreads; the 0.219 lid lies 84 % inside the pot hull; board 2 HULL would become eval 25's sim
+  board); determined-wright physics study + `pipeline/phys_fit.py` (no-penetration reference fit).
+- Launched `wf_14b3ade4-0c8` (gmg-placement-slot): design (PLACEMENT.md + PREREG section F amendment, allowed before
+  R1), adversarial review + revision, build of the CPU slot in new files (per-frame placement consistency, table and
+  partner penetration along the track, rest consistency, collider overlap, new vetoes/flags, hand-off export of track
+  violations), verification with fix loop. Runs alongside build 1 (separate files).
