@@ -79,7 +79,17 @@ Lathe arguments are C0b's: `--tie 1.0 --floor base_t --tmax 0.008 --tmin 0.0015`
 | ep22_g0 / merged_g0 / ep21_g0 | lathe_obs | 17 k | yes | 37.675 / 41.548 / 47.416 |
 | library_v3 (reported only) | | 31,832 | yes | 6.166 |
 
-- **Per-episode fidelity** (reported only): `results/fid_report.json`.
+- **Per-episode fidelity** (reported only, `results/fid_report.json`), shown as ep21 / ep22 points, mm:
+
+  | Mesh | ep21 | ep22 |
+  |---|---|---|
+  | pick ep22_g1 | 7.034 | 7.458 |
+  | ep21_g1 | 7.580 | 8.853 |
+  | ep22r_g1 | 9.593 | 9.995 |
+  | library_v3 | 6.341 | 7.299 |
+
+  The ep22 build explains ep21's points better than the ep21 build does. No candidate beats library_v3 on either
+  episode alone.
 - **A2's change:** the connectivity filter dropped the same far piece (82-85 cm2 at (231, 227, -181) mm) from ep22_g1,
   ep22r_g1, merged_g1 and mergedr_g1. It did not change the ranking.
 
