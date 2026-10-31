@@ -72,17 +72,44 @@ def fetch(a):
     log(f'fetched {n} files from {store} runs/{a.store_run}')
 
 
+CORE_VOX = 0.008                    # SPEC section 7 M2 seeded component: 8 mm connectivity
+
+
+def core_points(P):
+    """Owned points of the largest 26-connected component of their 8 mm voxels (the clean bundle's owned points can
+    hold a stray cluster far from the object: about 5 % of the ep2 lid's lie 200-330 mm from its median [M]).
+    Returns (points, share kept)."""
+    from scipy import ndimage
+    ij = np.floor((P - P.min(0)) / CORE_VOX).astype(np.int64)
+    occ = np.zeros(ij.max(0) + 1, bool)
+    occ[tuple(ij.T)] = True
+    lab, n = ndimage.label(occ, structure=np.ones((3, 3, 3), bool))
+    if n <= 1:
+        return P, 1.0
+    pl = lab[tuple(ij.T)]
+    k = int(np.argmax(np.bincount(pl)[1:])) + 1
+    keep = pl == k
+    return P[keep], float(keep.mean())
+
+
 def pca_extents(mesh, P):
-    """Extents of MESH (surface samples) and of the points P along P's PCA axes (0.5-99.5 percentiles)."""
+    """Extents of MESH (surface samples) and of the owned points along the owned points' PCA axes (0.5-99.5
+    percentiles), for all owned points and for their largest 8 mm-connected component (core)."""
     import trimesh
-    c = P.mean(0)
-    U = np.linalg.svd(P - c, full_matrices=False)[2]
     S, _ = trimesh.sample.sample_surface(mesh, 50000, seed=0)
-    pr = lambda X: np.percentile((X - c) @ U.T, [0.5, 99.5], axis=0)  # noqa: E731
-    ep, em = pr(P), pr(np.asarray(S))
-    return dict(axes=U.round(4).tolist(), owned_mm=np.round((ep[1] - ep[0]) * 1e3, 1).tolist(),
-                mesh_mm=np.round((em[1] - em[0]) * 1e3, 1).tolist(),
-                ratio=np.round((em[1] - em[0]) / np.maximum(ep[1] - ep[0], 1e-9), 3).tolist())
+    S = np.asarray(S)
+    out = {}
+    for name, Q in (('all', P), ('core', core_points(P)[0])):
+        c = Q.mean(0)
+        U = np.linalg.svd(Q - c, full_matrices=False)[2]
+        pr = lambda X: np.percentile((X - c) @ U.T, [0.5, 99.5], axis=0)  # noqa: E731
+        ep, em = pr(Q), pr(S)
+        out[name] = dict(axes=U.round(4).tolist(), owned_mm=np.round((ep[1] - ep[0]) * 1e3, 1).tolist(),
+                         mesh_mm=np.round((em[1] - em[0]) * 1e3, 1).tolist(),
+                         ratio=np.round((em[1] - em[0]) / np.maximum(ep[1] - ep[0], 1e-9), 3).tolist())
+    out['core_share'] = round(core_points(P)[1], 4)
+    out['ratio'] = out['core']['ratio']
+    return out
 
 
 def render_panels(mesh, P, inp_dir, rec, side=300):
@@ -202,7 +229,7 @@ def report(a):
                 raise
             row['placement_FI19'] = dict(error=f'{type(e).__name__}: {e}')
         try:
-            row['_panels'] = render_panels(m, P, inp, r)
+            row['_panels'] = render_panels(m, core_points(P)[0], inp, r)
         except Exception as e:                                          # noqa: BLE001
             if isinstance(e, guard.GuardError):
                 raise
@@ -248,8 +275,8 @@ def report(a):
                      f"outside grid {x['outside_grid']:.2f}"]
             mr.append((x['_panels'], lines))
         hdr = [f"G0 ep2 {o}: SAM 3D with our depth pointmap, placed by its layout only, remeshed (M10)",
-               "panels: placed mesh projected into the input view (green; cyan = input mask) | owned points (grey) "
-               "and mesh (green), PCA 0-1 | PCA 0-2"]
+               "panels: placed mesh projected into the input view (green; cyan = input mask) | owned points of the "
+               "largest 8 mm component (grey) and mesh surface (green), PCA 0-1 | PCA 0-2"]
         B11.save_png(os.path.join(out, f'montage_{o}.png'), B11.montage(mr, hdr))
     guard.write_manifest(os.path.join(a.run, 'manifest.json'), extra=dict(step='B3', prereg='B.12', outcome=outcome,
                                                                          **start))
