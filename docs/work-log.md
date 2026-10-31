@@ -5433,3 +5433,21 @@ arm and a no-policy replay floor to stage B.
   - C2: generate-then-fit, $0 CPU public test first.
   - Owner decision needed: provenance. The C0 meshes come from library_v3-anchored tracks (same tier as library_v3).
     The lid's 2.5 mm wall equals a value that once leaked from the scans; the clean-up passed at 1.5, 2.5 and 4.0 mm.
+
+### 2026-10-31 ~15:55 UTC — top-teams search result; organiser PR #215; tracker bet withdrawn
+- Search (background agent, read only; notes in this session's scratchpad): no top Track 3 team has published a method.
+  Kaggle forums and code tabs of all V2D competitions are empty; profiles are blank. richchentw's first scored upload
+  (22 Oct) was already AUC 0.903 / RPE 1.50. RPE/MPPE ratio: top six 0.88–1.03, ours 1.35.
+  The only public Track 3 pipeline found (rborah-cmu/ego2sim-nvidia-v2d; rank unknown): SGBM+MoGe depth, stereo VO, SAM2,
+  WiLoR, FoundationPose, FlashSAC retrained at 2× budget when own-reference MPPE > 3 cm.
+- Verified at the source (WebFetch of the PR page): nvidia-isaac/video_to_data PR #215 (MVerghese; open, approved
+  31 Oct): "Leaderboard results are provisional until each team's submission container is checked." Tracks 2 and 3:
+  "policy weights for every sequence, plus a `run.sh reproduce` entry point that rolls out every policy and packs the
+  file"; evaluator/script/checkpoint hashes and commit "must match" the counted Kaggle submissions; mismatches "can
+  delay or invalidate prizes". The container is submitted with the technical report. No deadline given.
+- Reading: perc2 already runs FoundationPose + FoundationStereo + SAM2, so the "better tracker" bet proposed at 15:30 is
+  withdrawn: there is no off-the-shelf swap. Asked the Roman-meeting session (session_01D9UJC7JP3bbasvhFUrxyf7) for a
+  $0 CPU RPE/MPPE error decomposition on public data (per episode; anchor orientation, constant offset, static init,
+  jitter) with 1–3 GT-free fix candidates, by ≈ 1 Nov 06:00 UTC.
+- PR #215 raises the value of stable checkpoints (H5: packed 0.9164 vs 10-draw mean 0.8755) and of keeping the exact
+  checkpoints of whichever pack is counted.
