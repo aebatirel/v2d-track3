@@ -1,5 +1,24 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~21:30 UTC: orchestrator: per-episode sets handed off (Set B); board slot round 3 started; F-I5 eval stopped
+- **PUBOWN (per-public-episode own-video meshes for the re-track test):** one Vast box, about $0.15 [E], self-destroyed.
+  7 of 20 Set A picks are broken in frame (all 5 racks, up to 16.3 m long; blue cup g1 on ep12/13/21/22; pot ep27).
+  **Decision, before any re-track score: Set B** (`alt_e0_gated`, E0's pre-registered frame gate): 14 own-episode
+  meshes (8 pots, 5 blue cups, beige ep11), library_v3 elsewhere. Sent to the score-status session and focused-pascal
+  with the caveats (stray balls on ep2/44/45 pots, ep11 cup appendages, pooled t0, P1-tier gate reference). Record:
+  `cdo-sprint/PUBOWN/MANIFEST.json`, `verify.md`.
+- **Board slot round 3 (workflow board-slot-3):** orchestrator decision F-I4.16 (post hoc): Douglas-Peucker ladder
+  1.0/1.5/2.0/3.0/4.0 mm for the prism cap (generic: the raster pitch is 2 mm); new synthetic freeze family w10 replaces
+  ep23 (spent); ep24 regression; slot-centre (observed notch vs analytic) and outline-coverage reports, report only;
+  eval-25 bundle and board mapping prepared in parallel; eval 25 runs only if the freeze holds.
+- **Hand-offs relayed:** P1 request for the ep24 r0 to determined-wright; eval-25 status to focused-pascal (keep
+  `meshes/carve/ev25` for now).
+- **Collision carve (F-I5):** the public runs delivered nothing (pieces ladder failed on all 10 objects). The eval step
+  of that workflow is cancelled by the orchestrator; a round-2 rule (pieces ladder, physical delivery floor, the 21.10
+  decisions) comes next, public first.
+- **C0b result to weigh (owner, compliance):** the scan-free rebuild adopts only pot and beige, and both are less
+  accurate than what pack 9a+ already carries (pot CD-O 0.392 vs C0 0.342; beige 0.30 vs C1/T1 0.25, public [D]).
+
 ## 2026-10-31 ~21:15 UTC: board slot round 2 closed: verified, ep24 slot goes to P1; eval 25 not run (CPU, $0)
 - **Verified:** two verifiers (`gmg/build/I/verify_slot2_0.md`, `verify_slot2_1.md`), no blocking item. The delivered
   ep24 prisms, slot and P3 reproduce [M]. Board 2's slot is about 3.5 mm off the slot seen in our frames (it follows

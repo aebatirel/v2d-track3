@@ -5776,3 +5776,16 @@ diagnostic; nothing is picked for submission.
   > P1 request, public ep24 boards (gmg F-I4.15 slot, simulator copy only). Folder `docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep24/fi4o/r0`, branch claude/bold-albattani-6qmxsv (committed in cdc8b40, unchanged since). `manifest.json` (gmg-sim/2, sha256 271f9899...) reads `delivered: carved_p1_pending`, `p1_pending: true`; no DO_NOT_USE. Top level: slotted collision pieces `wooden_piece_{1,2}/piece_XX.obj` (57 / 77 convex prisms, t 7.40 mm); `<obj>.glb` = unchanged submitted mesh; `_fit/<obj>.glb` for phys_fit --meshes; `props_gmg.json` (0.3 kg placeholder) for --props. `_default/` holds the unslotted control pieces (50 / 71). Please run `jitter_check --k 16` on r0 with your reference poses and report pass/fail, drift and intrusion per board (the control too, if your tool takes it). A fail marks the folder do-not-use. Caveats: board 2's slot sits about 3.5 mm off the slot seen in our frames; 48 pieces are under 2 mm wide.
 - **Hand-off text, pack builder (focused-pascal):**
   > Eval 25 board slot: there is no GT-free replacement for `meshes/carve/ev25`; keep it in the pack. Our outline-prism rule (F-I4.15) built a slot on public ep24 (P2-P7 pass on our tracks, P1 pending with the Embodiment session) but did not freeze: on ep23, board 1 needs 85 prisms against a cap of 82. Before any eval-25 slot: a new dated rule entry, a fresh freeze check, an ep25 gmg bundle and a per-board mapping of our tracks to the packed reference. When eval-25 slot pieces exist, they will differ from `meshes/carve/ev25` in width (partner thickness + 2 mm; 9.4 mm on ep24), depth, centre and piece split, so adopting them needs an eval-25 rollout re-run, not a pack-only swap. We have not read `meshes/carve/ev25`; the comparison comes only after our pieces exist. Nothing to do now. Record: INTERLOCK 20.12.
+
+### 2026-10-31 21:30 UTC — orchestrator: PUBOWN Set B hand-off; board slot round 3 launched; F-I5 eval step cancelled
+- PUBOWN workflow done (box mesh-20261031-pubown-ed7171c, instance 58572720, ~$0.15 [E], destroyed; verify 76f9023, no
+  blocking). Orchestrator picked Set B (`alt_e0_gated`) before any re-track score exists; Set A only for per-object
+  diagnostics. Messages sent to the score-status session (session_01D9UJC7rdn1DZrNM1rKyE7b) and focused-pascal.
+- Board slot round 2 closed (5b3bbea). Relayed: P1 request (ep24 r0, cdc8b40) to determined-wright; eval-25 status to
+  focused-pascal.
+- Orchestrator decision F-I4.16 (post hoc, after the ep23 85 > 82 and w7/w8 cap misses): DP ladder 1.0-4.0 mm, smallest
+  fitting eps; freeze condition (b) = new synthetic family w10 (9 full cells + w10p), seeds new; (a) = ep24 regression;
+  ep23 report only; slot-centre and coverage reports only; eval 25 iff (a) and (b). Workflow board-slot-3
+  (wf_e425946b-d24) launched ~21:20 UTC with Prep25 (mapping + ep25 bundle) in parallel.
+- Collision carve: the workflow's Eval step replaced by a no-run record (script edited; resume after its verifiers
+  finish). Reason: T-I13 delivered nothing usable, so eval runs under this rule cannot pass. Round 2 (F-I5.15) next.
