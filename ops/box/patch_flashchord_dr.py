@@ -24,6 +24,13 @@ Mechanics (appended hook in lifecycle/reset.py, like patch_flashchord_voc.py's):
 worlds, ReferenceReset.prepare_explicit clears the mark, reset_worlds perturbs marked worlds of its reset mask (and
 clears the mark), then repeats newton.eval_fk; flags and counters are allocated in ReferenceResetTable.build (before
 any graph capture). Combines with patch_flashchord_states.py in either order (no shared anchor).
+FC_DR_SKIP_IMMEDIATE=1 (2026-10-31, opt-in; pack 10's standard-learner D cells): leave the deployment-exact starts of
+ops/box/patch_flashchord.py's FC_IMMEDIATE_FIRST_FRAME unperturbed. Those starts are drawn inside ReferenceReset.sample
+(frame 0, finger factor 1, no hold, curriculum assist), so without the flag DR marks and perturbs them like every other
+sampled reset. A world counts as such a start iff, right after the upstream sample, reset_frame == 0, finger_scale ==
+1.0 and steps_since_reset == voc_decay_steps (an upstream sampled reset always has finger_scale = U(0,1) x openness < 1
+and steps_since_reset = 0; only the FC_IMMEDIATE_FIRST_FRAME branch writes that triple). Its mark is cleared, so the
+world is reset exactly as without DR; a per-world counter of skipped starts is kept for tests. Unset: as before.
 Usage: python patch_flashchord_dr.py <flash_chord dir>
 """
 import os, sys
@@ -59,7 +66,19 @@ def parse(text):
 BOUNDS = parse(os.environ.get("FC_DR_RESET", ""))
 ON = BOUNDS is not None
 SEED = int(os.environ.get("FC_DR_SEED", "0") or 0)
+SKIP_IMMEDIATE = os.environ.get("FC_DR_SKIP_IMMEDIATE", "").strip() not in ("", "0")
 _CACHE = {}
+_SKIPS = {}
+
+
+def skips(world_count, device, create=False):
+    """int32 [W]: deployment-exact starts left unperturbed so far (FC_DR_SKIP_IMMEDIATE)."""
+    key = (int(world_count), str(wp.get_device(device)))
+    if key not in _SKIPS:
+        if not create:
+            raise RuntimeError("v2d_dr.skips: not allocated; ReferenceResetTable.build allocates it before capture")
+        _SKIPS[key] = wp.zeros(int(world_count), dtype=wp.int32, device=device)
+    return _SKIPS[key]
 
 
 def arrays(world_count, device, create=False):
@@ -78,6 +97,24 @@ def mark_kernel(reset_mask: wp.array(dtype=wp.int32), value: int, flag: wp.array
     w = wp.tid()
     if reset_mask[w] != 0:
         flag[w] = value
+
+
+@wp.kernel
+def skip_immediate_kernel(
+    reset_mask: wp.array(dtype=wp.int32),
+    reset_frame: wp.array(dtype=wp.int32),
+    finger_scale: wp.array(dtype=wp.float32),
+    steps_since_reset: wp.array(dtype=wp.int32),
+    voc_decay_steps: int,
+    flag: wp.array(dtype=wp.int32),
+    skipped: wp.array(dtype=wp.int32),
+) -> None:
+    w = wp.tid()
+    if reset_mask[w] == 0:
+        return
+    if reset_frame[w] == 0 and finger_scale[w] == 1.0 and steps_since_reset[w] == voc_decay_steps:
+        flag[w] = 0
+        skipped[w] = skipped[w] + 1
 
 
 @wp.kernel
@@ -144,9 +181,12 @@ def install(ns):
             if ids != tuple(range(ids[0], ids[0] + 7)):
                 raise ValueError(f"FC_DR_RESET: object {binding.name!r} free joint coords {ids} are not 7 contiguous")
         arrays(table.world_count, table.reset_frame.device, create=True)
+        skips(table.world_count, table.reset_frame.device, create=True)
         print(f"v2d FC_DR_RESET: sampled resets perturbed by +-{BOUNDS[0]} mm, +-{rot_rad} rad (rotation vector per "
               f"axis), fingers +-{joint_rad} rad; {table.num_objects} objects, {table.finger_q_ids.shape[0]} finger joints, "
-              f"{table.world_count} worlds, seed {SEED}", flush=True)
+              f"{table.world_count} worlds, seed {SEED}"
+              + ("; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)" if SKIP_IMMEDIATE else ""),
+              flush=True)
         return table
 
     table_cls.build = classmethod(build)
@@ -156,6 +196,10 @@ def install(ns):
         sample0(self, reset_mask, curriculum_voc_scale)
         flag = arrays(self.world_count, self.reset_frame.device)[0]
         wp.launch(mark_kernel, dim=self.world_count, inputs=[reset_mask, 1], outputs=[flag])
+        if SKIP_IMMEDIATE:                               # the FC_IMMEDIATE_FIRST_FRAME starts keep their exact state
+            wp.launch(skip_immediate_kernel, dim=self.world_count,
+                      inputs=[reset_mask, self.reset_frame, self.finger_scale, self.steps_since_reset, self.config.voc_decay_steps],
+                      outputs=[flag, skips(self.world_count, self.reset_frame.device)])
 
     def prepare_explicit(self, reset_mask, curriculum_voc_scale):
         explicit0(self, reset_mask, curriculum_voc_scale)
