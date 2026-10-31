@@ -119,8 +119,8 @@ Steps (each switchable with --steps; always applied in the order S0, S6, S11, S1
      perceived onset, as F1). Pre-registration: docs/research/work/perception-sprint-20261031/offset/README.md.
   S12 cup-nest constraint (31 Oct; perception sprint "mask10", pipeline/nest.py) [H until its public gate]: opt-in,
      after S11 and before S2. When one --s12_cups cup is lowered into another (coaxial within --s12_coax_cm, inner above,
-     overlapping in height), the OUTER cup is held at its pre-nest pose (--s12_mode hold) or at its pre-nest height
-     (height) until the window ends or the outer moves sideways by --s12_release_cm (the stack is carried); guard: the
+     overlapping in height), the OUTER cup is held at its pre-nest pose (--s12_mode hold), at its pre-nest height
+     (height) or at its frame-0 height (support, post hoc) until the window ends or the outer moves sideways by --s12_release_cm (the stack is carried); guard: the
      outer's bottom must be at its frame-0 height before the nest; optional depth veto (--s12_depth). --s12_inner floor
      also puts the inner cup's bottom on the outer's cavity floor (from --s12_pieces or our mesh). Frame 0 is never
      changed. Pre-registration: docs/research/work/perception-sprint-20261031/mask10/README.md.
@@ -986,7 +986,7 @@ def parse_args(argv=None):
     p.add_argument('--s11_spread_deg', type=float, default=3.0)
     # S12 cup nest (pipeline/nest.py)
     p.add_argument('--s12_cups', default='blue_cup,beige_cup', help='S12: the cups that can nest')
-    p.add_argument('--s12_mode', choices=['hold', 'height'], default='hold')
+    p.add_argument('--s12_mode', choices=['hold', 'height', 'support'], default='hold')
     p.add_argument('--s12_inner', choices=['none', 'floor'], default='none')
     p.add_argument('--s12_coax_cm', type=float, default=2.5)
     p.add_argument('--s12_enter_cm', type=float, default=2.0)

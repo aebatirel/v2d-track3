@@ -8,7 +8,8 @@
 # props_masses_only.json (mass-only, md5 asserted) in the simulator, for training and evaluation:
 #   MODE=glock EPS="20 8" SEEDS="42 43": per episode its stored grasp-lock reference refs/glockt/ep<N> with its asset
 #     copy refs/sf/ep<N>/assets (eval 10: /content/assets, library_v3 + pieces ev10, built here at 0.3 kg) and base
-#     refs/perc2mck/ep<N> are pulled, md5 and fingerprint checked; tools/mass_arm.py --arms "mass1:<props>" copies the
+#     refs/perc2mck/ep<N> are pulled (the table's pull_files: single-file downloads, no store listing), md5 and
+#     fingerprint checked, and the base's support stage must be the packed reference's (md5); tools/mass_arm.py --arms "mass1:<props>" copies the
 #     asset folder to refs/mass1_sf/ep<N>/assets (masses rewritten, COM kept, inertia x m / 0.3) and the parquet per seed
 #     to refs/mass1s<seed>_glockt/ep<N> (only object_urdf_paths differs). Then per seed ONE glock_public.sh invocation over
 #     the episodes (waves of TRAIN_SLOTS 2) with SPLIT=eval REUSE_REF=1 REQUIRE_REUSE=1 (nothing is rebuilt; it exits if a
@@ -62,13 +63,22 @@ EOF
 LIB=$REPO_DIR/meshes/$BOX_LIB; PIECES=${BOX_PIECES:+$REPO_DIR/$BOX_PIECES}
 log "mass_eval code $(git -C $REPO_DIR rev-parse --short HEAD), mode $MODE, episodes [$EPS], seeds [$SEEDS], props $PROPS ($PROPS_MD5), LIB $LIB, PIECES ${PIECES:-none}, table $TAB ($(md5sum < $TAB | cut -c1-12))" >> $J
 
-pull() {  # $1 run, $2 PULL_SUB: up to 3 tries (HF 429), as mass_check.sh
-  local i
-  for i in 1 2 3; do
-    PULL_SUB="$2" timeout 2400 bash $OPS/store.sh pull-run $1 >> $J 2>&1 && return 0
-    log "mass_eval: pull-run $1 [$2] try $i failed" >> $J; sleep $((120 * i))
+pull() {  # $1 episode: the table's pull_files (review F7, 2026-10-31): the store files under its pull sub-folders as the
+  # 29 Oct store listing has them, ONE single-file download each (store.sh pull-files: retried, no store listing; before,
+  # each sub-folder was a pull-run --include, i.e. a listing of the whole store), then placed under /content exactly as
+  # pull-run places them (runs/<src>/<rel> -> /content/<rel>, an existing file is kept). Logs and images (*.txt, *.jpg,
+  # *_log.json; nothing reads them here) may fail (pull-files refuses an empty file); any other file failing drops the episode.
+  local e=$1 src f r miss=""
+  src=$(tab $e source_run)
+  for f in $(python -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['episodes'][sys.argv[2]]['pull_files']))" $TAB $e); do
+    if ! bash $OPS/store.sh pull-files $f 2>> $J > /dev/null; then   # its retries and failures go to the log
+      case $f in *.txt|*.jpg|*_log.json) log "mass_eval ep$e: optional file $f not pulled (a log or image)" >> $J; continue ;; esac
+      miss="$miss $f"; continue
+    fi
+    r=${f#runs/$src/}; mkdir -p /content/$(dirname $r); [ -e /content/$r ] || cp /content/hfstore/$f /content/$r
   done
-  return 1
+  [ -z "$miss" ] || { log "mass_eval ep$e: pull-files FAILED for [${miss# }]" >> $J; return 1; }
+  log "mass_eval ep$e: pulled $(python -c "import json, sys; print(len(json.load(open(sys.argv[1]))['episodes'][sys.argv[2]]['pull_files']))" $TAB $e) files of $src (pull_files, no store listing)" >> $J
 }
 fpmd5() {  # md5 and mass_arm fingerprint of one parquet
   echo "$(md5sum $1 | cut -c1-32) $(python -c "import sys; sys.path.insert(0, '$T'); import mass_arm, pyarrow.parquet as pq; print(mass_arm.traj_fingerprint(pq.read_table(sys.argv[1])))" $1)"
@@ -76,8 +86,8 @@ fpmd5() {  # md5 and mass_arm fingerprint of one parquet
 label "mass eval: pulling references [$EPS]"
 OK_EPS=""
 for e in $EPS; do
-  src=$(tab $e source_run); sub=$(python -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['episodes'][sys.argv[2]]['pull']))" $TAB $e)
-  pull $src "$sub" || { log "mass_eval ep$e: pull of $src FAILED; episode dropped (INCOMPLETE)" >> $J; continue; }
+  src=$(tab $e source_run)
+  pull $e || { log "mass_eval ep$e: pull of $src FAILED; episode dropped (INCOMPLETE)" >> $J; continue; }
   if [ $MODE = glock ]; then
     files=$(python -c "import json, sys; print(' '.join(json.load(open(sys.argv[1]))['episodes'][sys.argv[2]]['result_files']))" $TAB $e)
     mkdir -p /content/results/glock_public/ep$e; okf=1
@@ -95,6 +105,14 @@ for e in $EPS; do
   got=$(fpmd5 $R); want="$(tab $e md5) $(tab $e traj_fingerprint)"
   echo "ep$e $MODE $src $got $R" >> $ME/stored_refs.txt
   [ "$got" = "$want" ] || { log "mass_eval ep$e: REFUSED: stored reference $R is $got, the packed policy's is $want; dropped" >> $J; continue; }
+  if [ $MODE = glock ]; then   # (review F2) the support stage: glock_public.sh copies refs/perc2mck/ep<N>/reconstructed_stage into
+    # the arm copy (FlashCHORD reads <reference>/../../reconstructed_stage/<seq>_support.usda); it must be the packed
+    # reference's (refs/glockt/ep<N>/reconstructed_stage): same file names, same md5
+    sg=$(cd /content/refs/glockt/ep$e/reconstructed_stage 2> /dev/null && md5sum *.usda 2> /dev/null | sort -k2)
+    sp=$(cd /content/refs/perc2mck/ep$e/reconstructed_stage 2> /dev/null && md5sum *.usda 2> /dev/null | sort -k2)
+    echo "ep$e stage packed [$(echo $sg)] base [$(echo $sp)]" >> $ME/stored_refs.txt
+    [ -n "$sg" ] && [ "$sg" = "$sp" ] || { log "mass_eval ep$e: REFUSED: support stage of refs/perc2mck/ep$e [$(echo $sp)] is not the packed reference's refs/glockt/ep$e [$(echo $sg)]; dropped" >> $J; continue; }
+  fi
   rec=$(tab $e recipe_checkpoint)                                  # header of the packed checkpoint (recipe diff, verify)
   bash $OPS/store.sh pull-files $rec >> $J 2>&1 && cp /content/hfstore/$rec $ME/packed/ep$e.safetensors \
     || log "mass_eval ep$e: packed checkpoint $rec not pulled (verify: INCOMPLETE until it is read on CPU)" >> $J
@@ -157,4 +175,15 @@ for e, x in json.load(open(sys.argv[1]))['episodes'].items():
         print(s.get('checkpoint') or '') if sys.argv[2] == 'std' else None" $ME/summary.json $MODE 2> /dev/null); do
   [ -s "$c" ] && /content/v2d/robotic_grounding/flash_chord/.venv/bin/python $T/ckpt_meta.py $c
 done > $ME/ckpt_meta.txt 2>&1
+# the store paths a pack would pull for these candidates (the reference and asset copies, each cell's chosen checkpoint): a
+# later pack-side single-file pull can use this list instead of a store listing (review F7; push-run uploads every file
+# under refs/ and keeps every checkpoint a results file names)
+{ ( cd /content && find refs/mass1_sf refs/mass1s*_glockt refs/perc2mcks -type f 2> /dev/null )
+  python -c "
+import json, os, sys
+for x in json.load(open(sys.argv[1]))['episodes'].values():
+    for s in x['seeds'].values():
+        if s.get('checkpoint'):
+            print(os.path.relpath(os.path.realpath(s['checkpoint']), os.path.realpath('/content')))" $ME/summary.json 2> /dev/null
+} | sort -u | sed "s#^#runs/$RUN_ID/#" > $ME/files.txt
 bash $OPS/store.sh push-run > /dev/null 2>&1 || log "mass_eval: push FAILED (self_destroy retries)" >> $J

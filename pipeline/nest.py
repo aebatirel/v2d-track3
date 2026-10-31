@@ -22,7 +22,10 @@ Rule (per ordered pair outer j / inner i of the --s12_cups objects; heights alon
              --s12_ramp frames (SE(3) screw). A window that runs to the last frame needs no ramp.
   hold       --s12_mode hold (V1, the task's "keep the outer cup at its pre-nest pose"): O_j(t) = P*;
              --s12_mode height (V1h): O_j(t) = the tracked pose moved along n so that its centroid height is P*'s
-             (horizontal motion and rotation kept).
+             (horizontal motion and rotation kept);
+             --s12_mode support (V4, added 31 Oct after the pre-registered run and after seeing eval 10's GT-free track,
+             POST HOC [H]): as height, but to the outer's FRAME-0 centroid height (G1 already requires it to stand at its
+             frame-0 support; a cup that slides on the table keeps that height).
   depth veto (optional, --s12_depth: the full depths_fs0.5.npy or a grid npz {frames, depth}): on the depth frames in
              the window, the outer's visible pixels (our renders at the tracked and the held pose, other objects in
              front removed, our hands removed (--s12_hand_cm), points within --s12_table_cm of the table removed) are
@@ -219,12 +222,13 @@ def step_S12(a, objs, O, plane, lab, W_C, KR, H, dsrc, checked, log):
                     log(f'S12 window {w}')
                     continue
                 Ph = O_in[jo].copy()
+                href = hgt[jo][0] if a.s12_mode == 'support' else hgt[jo][tstar]
                 for t in range(ts, th):
                     if a.s12_mode == 'hold':
                         Ph[t] = Pst
                     else:
                         Ph[t] = O_in[jo][t].copy()
-                        Ph[t][:3, 3] += n * (hgt[jo][tstar] - hgt[jo][t])
+                        Ph[t][:3, 3] += n * (href - hgt[jo][t])
                 if dsrc is not None and dsrc.frames and KR is not None:
                     veto, vinfo = depth_veto(jo, (ts, th), objs, O_in, Ph, W_C, KR, H, dsrc, (n, d), a, log)
                     w['depth_veto'] = dict(vetoed=veto, frames=vinfo)

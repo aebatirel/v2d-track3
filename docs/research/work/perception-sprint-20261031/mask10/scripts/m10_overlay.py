@@ -6,7 +6,7 @@ our mesh surface samples drawn for
   yellow   beige cup, our track (S2)
 Each tile is a crop around the cups, labelled with the blue cup's height from frame 0 along our table normal for the
 three blue poses (track / V1 / V3p). Reads our perception outputs, our meshes and the video only (no ground truth).
-Usage: python -I m10_overlay.py S2_DIR V1_DIR V3P_DIR VIDEO CALIB MESHES OUT.png FRAMES TITLE"""
+Usage: python -I m10_overlay.py S2_DIR V1_DIR V3P_DIR VIDEO CALIB MESHES OUT.png FRAMES TITLE [LABEL_OF_THIRD]"""
 import json, sys
 
 import cv2
@@ -21,6 +21,7 @@ from track_overlay import rectify_maps  # noqa: E402
 
 def main():
     s2, v1, v3p, video, calib, meshes, out, frames, title = sys.argv[1:10]
+    lab3 = sys.argv[10] if len(sys.argv) > 10 else 'V3p'
     frames = [int(x) for x in frames.split(',')]
     for f in (s2, v1, v3p, video, calib, meshes):
         assert_inference_input(f)
@@ -74,7 +75,7 @@ def main():
         inw = any(w['start'] <= t < w.get('hold_end', w['end']) for w in win)
         cv2.rectangle(crop, (0, 0), (420, 58), (0, 0, 0), -1)
         cv2.putText(crop, f'f{t}{"  [S12 window]" if inw else ""}', (8, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
-        cv2.putText(crop, f'blue v: trk {hv["trk"][t] * 100:+.1f}  V1 {hv["v1"][t] * 100:+.1f}  V3p {hv["v3p"][t] * 100:+.1f} cm',
+        cv2.putText(crop, f'blue v: trk {hv["trk"][t] * 100:+.1f}  V1 {hv["v1"][t] * 100:+.1f}  {lab3} {hv["v3p"][t] * 100:+.1f} cm',
                     (8, 48), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
         tiles.append(crop)
     while len(tiles) % 4:
@@ -83,7 +84,7 @@ def main():
     leg = np.zeros((70, grid.shape[1], 3), np.uint8)
     cv2.putText(leg, title, (10, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 1)
     for k, (txt, col) in enumerate((('blue, our track', (0, 0, 255)), ('blue, S12 V1 hold', (255, 255, 0)),
-                                    ('blue, V3p physics only', (255, 0, 255)), ('beige, our track', (0, 220, 255)))):
+                                    (f'blue, {lab3}', (255, 0, 255)), ('beige, our track', (0, 220, 255)))):
         cv2.circle(leg, (14 + k * 420, 52), 7, col, -1)
         cv2.putText(leg, txt, (28 + k * 420, 58), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
     cv2.imwrite(out, np.vstack([leg, grid]))

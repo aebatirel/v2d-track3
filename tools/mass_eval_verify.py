@@ -19,13 +19,20 @@ stays, PLAN section 5 rule 3):
   - the evaluated rollouts name the chosen checkpoint (checkpoint_sha256);
   - recipe: the saved config equals the packed checkpoint's (--packed DIR/ep<N>.safetensors, header only) in every key
     except output_dir, task.parquet, reference.parquet and the seed keys (reset.seed, env.reset.seed, training.seed);
-    e.g. eval 33's curriculum.thresholds must be the CURR_SCALE 0.4 ones of its packed checkpoint.
-Not failures: a cell without a chosen checkpoint (missing) and a packed checkpoint that could not be read make the
-episode INCOMPLETE (re-run this tool on CPU once the files are there); evaluations cut by EVAL_TIMEOUT (eval_rc.txt 124 /
-137) are counted per cell.
+    e.g. eval 33's curriculum.thresholds must be the CURR_SCALE 0.4 ones of its packed checkpoint;
+  - support stage (review F2): the stage FlashCHORD resolves for the trained reference (<reference>/../../
+    reconstructed_stage/<seq>[_<robot>]_support.usda, assets/registry.py support_usda_for_parquet) exists and has the md5
+    of the packed reference's stage (grasp lock: the pulled refs/glockt/ep<N>/reconstructed_stage; standard learner: the
+    pulled base refs/perc2mck/ep<N>/reconstructed_stage, of which the packed refs/perc2mcks copy is a byte copy).
+Not failures (the episode is INCOMPLETE): a cell without a chosen checkpoint (missing); a standard-learner cell whose
+main evaluation was cut by EVAL_TIMEOUT (results/perc2mcks/ep<N>-s<seed>/eval_rc.txt 124 / 137: no sweep, so no
+selection.json; review F6); a cell with fewer than 8 scored training-box rollouts (thin; review F1); a packed checkpoint
+or packed stage that could not be read (unchecked: re-run this tool on CPU once the files are there). Missing and thin
+seeds are listed under retrain_seeds: per PLAN section 5 rule 2 (amended 31 Oct) only those seeds are retrained, on a
+new box, same reference and commit. Evaluations cut by EVAL_TIMEOUT are also counted per cell.
 Summary per episode and seed: n, mean, sd (ddof 1), min of the NREP training-box rollouts (sim_vs_ref). Candidate
-(rule 2): the seed with the higher mean; within 0.005, the lower sd; still tied, the first seed listed (42). Only a
-VERIFIED episode has a candidate. The confirmation strings (h5_reeval.sh RUNS_EXTRA / PICK_EXTRA / MASS_EPS ...) are
+(rule 2): over the seeds with n >= 8, the higher mean; within 0.005, the lower sd; still tied, the first seed listed
+(42). Only a VERIFIED episode has a candidate. The confirmation strings (h5_reeval.sh RUNS_EXTRA / PICK_EXTRA / MASS_EPS ...) are
 printed for the candidates; the confirmation and the swap rule (rules 4-6) come after this box.
 Usage: mass_eval_verify.py --mode glock|std --eps "20 8" --seeds "42 43" --props P.json --table packed_refs.json
        --run RUN_ID --out V.json --summary S.json [--manifests "M20.json M8.json"] [--packed DIR] [--assets03 DIR]
@@ -42,6 +49,23 @@ from mass_pack_check import localize                                            
 ALLOWED = {'output_dir', 'task.parquet', 'reference.parquet', 'reset.seed', 'env.reset.seed', 'training.seed'}
 H5_PIECES = ('meshes/carve/ev25', 'meshes/carve/ev10')         # already in h5_reeval.sh's ASSET_PIECES
 COLL = re.compile(r'<collision>')
+MIN_N = 8                                                       # PLAN section 5 rule 2 (amended 31 Oct) and rule 4
+
+
+def support_stage(parquet):
+    """The support USDA FlashCHORD resolves for a reference parquet (assets/registry.py support_usda_for_parquet, its
+    colocated branch): <sequence_id=...>/../../reconstructed_stage/<seq>_<robot>_support.usda or <seq>_support.usda.
+    (name, path or None)."""
+    p = os.path.realpath(parquet); parts = p.split('/')
+    seq = next((x.split('=', 1)[1] for x in reversed(parts) if x.startswith('sequence_id=')), None)
+    rob = next((x.split('=', 1)[1] for x in reversed(parts) if x.startswith('robot_name=')), None)
+    if seq is None:
+        return None, None
+    i = max(k for k, x in enumerate(parts) if x.startswith('sequence_id='))
+    sd = '/'.join(parts[:i - 1]) + '/reconstructed_stage'
+    names = ([f'{seq}_{rob}_support.usda'] if rob else []) + [f'{seq}_support.usda']
+    hit = next((n for n in names if os.path.isfile(f'{sd}/{n}')), None)
+    return (hit or names[-1]), (f'{sd}/{hit}' if hit else None)
 
 
 def files_md5(root):
@@ -65,8 +89,9 @@ def stats(rows):
 
 def rule2(st, seeds):
     """PLAN section 5 rule 2: the seed with the higher training-box mean; within 0.005 the lower sd; still tied, the
-    first seed listed (42). st = {seed: stats}; seeds without rollouts are ignored. None if no seed has any."""
-    have = [s for s in seeds if st.get(s, {}).get('n', 0) > 0]
+    first seed listed (42). st = {seed: stats}; a seed with fewer than MIN_N (8) scored rollouts counts as missing (rule 2
+    as amended 31 Oct, review F1: the callers then make the episode INCOMPLETE). None if no seed has MIN_N."""
+    have = [s for s in seeds if st.get(s, {}).get('n', 0) >= MIN_N]
     if not have:
         return None
     best = max(have, key=lambda s: st[s]['mean'])
@@ -105,7 +130,7 @@ def main():
     V = dict(mode=a.mode, run=a.run, episodes={}, rule='docs/research/work/masses-eval-20261031/PLAN.md section 5')
     S = dict(mode=a.mode, run=a.run, episodes={})
     for e in eps:
-        T = tab[e]; fails, missing, cells, unchecked = [], [], {}, []
+        T = tab[e]; fails, missing, cells, unchecked, timed_out = [], [], {}, [], []
         if T['mode'] != a.mode:
             fails.append(f'ep{e}: table mode {T["mode"]} != --mode {a.mode}')
         M = man.get(e)
@@ -132,6 +157,12 @@ def main():
                                         curve=timeouts(curve))
             if not ck or not os.path.exists(ck):
                 row['missing'] = True; missing.append(key); continue
+            if a.mode == 'std':                                  # review F6: main evaluation cut -> no sweep, no choice
+                rcf = f'{C}/results/perc2mcks/ep{e}-s{s}/eval_rc.txt'
+                rc = open(rcf).read().strip() if os.path.exists(rcf) else ''
+                if rc in TIMEOUT_RC and not os.path.exists(f'{C}/results/perc2mcks/ep{e}-s{s}/selection.json'):
+                    row.update(missing=True, main_eval_timeout=rc, checkpoint_fallback=ck)
+                    missing.append(key); timed_out.append(key); continue
             try:
                 row['checkpoint'] = ck
                 if a.mode == 'std':
@@ -175,6 +206,17 @@ def main():
                     if len(COLL.findall(stxt)) != loaded[n]['collisions']:
                         fails.append(f'{key}: {n}: {loaded[n]["collisions"]} collision pieces, source {len(COLL.findall(stxt))}')
                 row['loaded_urdfs'] = loaded
+                sname, spath = support_stage(rp)                  # review F2: the support stage the training read
+                pst = f'{C}/refs/{"glockt" if a.mode == "glock" else "perc2mck"}/ep{e}/reconstructed_stage/{sname}'
+                row['support_stage'] = dict(file=spath, md5=md5(spath) if spath else None, packed=pst,
+                                            packed_md5=md5(pst) if os.path.isfile(pst) else None)
+                if not spath:
+                    fails.append(f'{key}: no support stage {sname} next to {rp} (FlashCHORD reads one)')
+                elif not os.path.isfile(pst):
+                    unchecked.append(f'{key}: packed support stage {pst} not on this box (stage not compared)')
+                elif row['support_stage']['md5'] != row['support_stage']['packed_md5']:
+                    fails.append(f'{key}: support stage {spath} ({row["support_stage"]["md5"][:12]}) is not the packed '
+                                 f'reference\'s {pst} ({row["support_stage"]["packed_md5"][:12]})')
                 if srcroot and os.path.isdir(srcroot):
                     if files_md5(root) != files_md5(srcroot):
                         fails.append(f'{key}: mesh files under {root} differ from the 0.3 kg source {srcroot}')
@@ -207,15 +249,27 @@ def main():
                         fails.append(f'{key}: recipe differs from the packed checkpoint in {bad[:8]}')
             except Exception as x:
                 row['error'] = f'{type(x).__name__}: {str(x)[:200]}'; fails.append(f'{key}: {row["error"]}')
-        status = 'INVALID' if fails else ('INCOMPLETE' if missing or unchecked or len(missing) == len(seeds) else 'VERIFIED')
-        V['episodes'][e] = dict(status=status, failures=fails, missing=missing, unchecked=unchecked, cells=cells)
+        thin = [f'ep{e}/s{s}' for s in seeds if not cells[s].get('missing') and 'error' not in cells[s]
+                and cells[s].get('stats', {}).get('n', 0) < MIN_N]     # review F1: n < 8 counts as missing
+        status = 'INVALID' if fails else ('INCOMPLETE' if missing or unchecked or thin else 'VERIFIED')
+        retrain = [s for s in seeds if f'ep{e}/s{s}' in missing + thin] if status != 'INVALID' else []
+        V['episodes'][e] = dict(status=status, failures=fails, missing=missing, thin=thin, main_eval_timeout=timed_out,
+                                unchecked=unchecked, retrain_seeds=retrain, cells=cells)
         st = {s: c.get('stats', dict(n=0)) for s, c in cells.items()}
         cand = rule2(st, seeds)
+        note = ''
+        if status == 'INVALID':
+            note = 'no candidate: INVALID (rule 3, the packed policy stays)'
+        elif status == 'INCOMPLETE':
+            note = ('no candidate until VERIFIED' + (f'; retrain only seeds {retrain} on a new box (same reference and '
+                                                     f'commit; rule 2 as amended 31 Oct)' if retrain else '')
+                    + ('; re-run this tool once the unchecked files are there' if unchecked else ''))
         ent = dict(status=status, seeds={s: dict(st[s], eval_timeouts=cells[s]['eval_timeouts'],
-                                                 checkpoint=cells[s].get('checkpoint')) for s in seeds},
-                   rule2_candidate=cand if status != 'INVALID' else None,
-                   note=('' if status == 'VERIFIED' else 'no candidate for confirmation until VERIFIED'
-                         + ('' if status == 'INVALID' else ' (re-run this tool once the missing files are there)')))
+                                                 checkpoint=cells[s].get('checkpoint'),
+                                                 **({'main_eval_timeout': cells[s]['main_eval_timeout']} if 'main_eval_timeout' in cells[s] else {}))
+                                         for s in seeds},
+                   rule2_candidate=cand if status == 'VERIFIED' else None, missing=missing, thin=thin,
+                   unchecked=unchecked, retrain_seeds=retrain, min_n=MIN_N, note=note)
         if status == 'VERIFIED' and cand:
             if a.mode == 'glock':
                 ent['runs_extra'] = f'{a.run}@refs/mass1_sf/ep{e},refs/mass1s{cand}_glockt/ep{e}'
@@ -241,6 +295,9 @@ def main():
         s_ = S['episodes'][e]
         print(f'ep{e} {x["status"]}' + (f' ({len(x["failures"])} failures: ' + ' | '.join(x['failures'][:4]) + ')' if x['failures'] else '')
               + (f' missing {x["missing"]}' if x['missing'] else '') + (f' unchecked {x["unchecked"]}' if x['unchecked'] else '')
+              + (f' main evaluation cut {x["main_eval_timeout"]}' if x['main_eval_timeout'] else '')
+              + (f' thin (n < {MIN_N}) {x["thin"]}' if x['thin'] else '')
+              + (f' retrain seeds {x["retrain_seeds"]}' if x['retrain_seeds'] else '')
               + ' :: ' + '; '.join(f's{s} n {v.get("n")} mean {v.get("mean")} sd {v.get("sd")} min {v.get("min")} cut {v["eval_timeouts"]["best"]["cut"]}/{v["eval_timeouts"]["curve"]["cut"]}'
                                    for s, v in s_['seeds'].items())
               + f' :: candidate {s_["rule2_candidate"]}'
