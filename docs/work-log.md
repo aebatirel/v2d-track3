@@ -5892,3 +5892,13 @@ Background agent, CPU only, $0, no ground truth read.
 - Caveat: ep2 is O3's best episode (ep12/ep18 about equal, ep24 −0.03). §6.1 explains why the gain cannot be credited
   to the loop itself.
 - Video is not in git (CLAUDE.md); it is in the session scratchpad `vid/out/ep2_current_vs_physics.mp4`.
+
+### 2026-10-31 16:25 UTC — determined-wright: cross-session push board for the owner
+- Owner asked for one page covering everything running in all chats: the scores each run is after and the history
+  behind it. Sources: the STATUS.md and work logs of focused-pascal, bold-albattani, standings-20261031 and
+  keen-heisenberg (fetched 16:15 UTC); Vast show; credit $114.27 (16:13 UTC); both screen boxes' job logs.
+- Artifact "Track 3 Push Board": https://claude.ai/artifact/VA364pepzf3LQg9SXLEW4u (private). Copy in
+  `docs/research/physics-2026-10-30/pages/push-board.html`. Times are TRT.
+- Recipe screen interim (box-local, 12 of 24 cells; not a verdict): ep2 s42 C .955±.029 K .965±.009 D .743±.269;
+  ep2 s43 C .869±.174 K .959±.020 D .862±.236; ep12 s42 C .576±.066; ep12 s43 C .612±.014 K .582±.024 D .919±.022;
+  ep18 s43 C .624±.002 K .620±.009.
