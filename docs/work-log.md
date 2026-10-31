@@ -5766,3 +5766,17 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   Caveats: the meshes are fused along library_v3-seeded tracks (one iteration, not an independent template);
   single-episode quality varies (public pot CD-O median 0.416, range 0.31–0.65 [D]).
   The schedule fits the 09:00 need; the GPU test still waits for the owner's go.
+
+### 2026-10-31 ~18:45 UTC — owner: "Go retrack"; spoon via its markers; no deadline talk
+- Owner, verbatim: "Okay lets fix the perception as you said also for spoon the solution is the market on top of it.
+  Those are very easy to track compared to other. Also like I said you dont need to mention the deadline there is
+  pleanty of time and thats for me to worry. Go retrack".
+- Re-track chain approved: public P_o' vs P_o test (≈ $2–3.5) when the per-public-episode clean meshes land
+  (~1 Nov 04–06 UTC), then the eval re-track if it passes (≈ $2–4). Sent to focused-pascal and bold-albattani.
+- Markers: note 17 (7 Oct) concluded HYBRID (markers as a correction layer: +0.02 to +0.10 board AUC, central +0.04
+  [E]). That layer was never built into the pipeline (pipeline/ uses no marker detections except identity_fix's
+  board knobs). The spoon has 3 markers (note 13; layout from video). Started a background agent in this session:
+  GT-free marker correction layer, spoon first, layouts from our own video only (the note-17 catalogue is
+  scan-derived), public validation on mocap-bearing objects with a pre-registered rule, before any eval use. Output
+  docs/analysis/markers-20261031/.
+- Owner preference (repeat of 26 Oct): do not raise deadlines with the owner; time planning is the owner's.
