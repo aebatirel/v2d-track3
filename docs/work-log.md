@@ -5284,3 +5284,11 @@ Advice given:
   (sha256 9c19bb0c…); uploader dry run OK (5 left on each board; nothing submitted). The real upload call was blocked by
   this session's permission guard: the owner's standing rule "dont send anything to kaggle without my approval" and the
   approval reached this session only relayed. Asked the owner to reply "upload 9a" (or "pack 8") here; not retried.
+
+## 2026-10-31 ~18:15 UTC — pack 9a+ to be uploaded by the score-status session (owner's word there)
+- Owner, to the "New score status" session (~17:20 UTC): "Upload which you think of the highest score potential". That
+  session chose `results/submissions/20261031-track3i-candidate/build_9aplus/` (pack 8 + C0 pot/lid/rack + C1 beige cup on
+  evals 8 and 10 + C1 dust pan; sha256 e02736ea…, commit URL d7ecaef; [E] CD-O 0.333) and uploads it from ITS session to
+  avoid a double submission. This session does not upload. Receipt and the six scores will be recorded here when sent.
+- Eval-10 V4p retrain prep (CPU) running: workflow wf_7c1ef6a1-020 (PREREG with the agreed swap rule scored against both
+  references, job ops/jobs/ev10_v4p.sh, mock, reviews); launch only after an ep11 gate PASS and the owner's go.
