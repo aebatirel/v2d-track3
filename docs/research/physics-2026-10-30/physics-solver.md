@@ -640,6 +640,45 @@ the bank under graph capture (allocated before capture, like the drop patch's ar
 - Setup + references ~25 min; tail ~30 min.
 - **Total ≈ 4–5 h ≈ $5.5–7.5** at $1.3–1.5/h; worst case ~5.5 h ≈ $8.3, within the ~$10 cap.
 
+
+### 6.1 Results (run `20261031-rlloop-ccf9058`, code ccf9058, 31 Oct 05:18–10:02 UTC, ≈ $6.48 [E]) [M]
+Summary: `gpu/rlloop_summary.json`. Registered AUC vs mocap of the chosen checkpoint, 5 evaluations, mean ± sd:
+
+| episode | O3 (loop) | its checkpoint | O1 (control) | its checkpoint | O3 − O1 | G3 |
+|---|---|---|---|---|---|---|
+| ep2 | 0.835 ± 0.189 | 20M (round A) | 0.585 ± 0.237 | 10M | +0.251 | 0.584 |
+| ep12 | 0.904 ± 0.036 | 50M (end of round B) | 0.893 ± 0.026 | 40M (ES at 50M) | +0.011 | 0.892 |
+| ep18 | 0.620 ± 0.007 | 10M (round A) | 0.579 ± 0.095 | 40M (ES at 60M) | +0.041 | 0.622 |
+| ep24 | 0.224 ± 0.004 | 20M (round A) | 0.254 ± 0.037 | 50M | −0.030 | 0.244 |
+
+Pre-registered readings: **primary O3 − O1 = +0.068 → "signal"** (no episode ≤ −0.05); O1 − G3 −0.008 inconclusive;
+O3 − G3 +0.060 signal; O3 vs round-1 S1 +0.026 (report only); H-teach "supported" (first failure later on 3 of 4: ep12
+f124 → none, ep18 f20 → f40, ep24 f16 → f19; ep2 f62 → f61).
+
+O3 sim_vs_ref per checkpoint (3 evaluations; rounds: A = 10–30M on R0, B = 40–50M on R1, C = 60–70M on R2):
+ep2 0.944 0.966 0.488 | 0.473 0.498 | 0.422 0.493; ep12 0.723 0.756 0.888 | 0.946 0.949 | 0.941 0.938;
+ep18 0.587 0.436 0.339 | 0.490 0.400 | 0.378 0.418; ep24 0.199 0.229 0.168 | 0.193 0.162 | 0.149 0.214.
+Loop mechanics on the GPU: resume worked (round B starts at 30,003,200 steps), the reset-state bank loaded (ep2 round B:
+4 states, share 0.25), one window per round per episode, solves + merges 5–8 min each.
+
+**Reading (post-hoc, labelled as such): the "signal" is not the loop's.**
+1. 3 of 4 chosen O3 checkpoints come from round A, before any solver feedback. Only ep12 chose a post-loop checkpoint
+   (+0.011 over O1, within the 0.03 bar).
+2. **Confound found after the run (design flaw):** FlashSAC's learning rate follows a cosine 3e-4 → 1.5e-4 over the run's
+   own `total_environment_steps` (`reference_flash_sac.yaml` `learning_rate_schedule_updates: null` → total optimiser
+   updates, `training/flash_sac/config.py` `learning_rate_schedule_updates`, `update.py` cosine). Round A was a 30M run, O1 a 70M run, so at
+   10M / 20M / 30M round A's LR was ≈ 2.63e-4 / 1.88e-4 / 1.5e-4 against O1's ≈ 2.93e-4 / 2.72e-4 / 2.42e-4.
+   If the resumed schedule step is kept, each resume also re-stretches the schedule (LR back up to ≈ 2.0e-4 at the
+   start of round B). So round A is not "the control's first 30M"; the ep2 gap
+   (sim_vs_ref 0.944 vs 0.729 at 10M) may be this schedule, or ep2's usual run-to-run chaos (one seed).
+3. After the loop rounds, O3 never beat its own round-A best on ep2, ep18 or ep24 (ep2 stays 0.42–0.50 after the 30M
+   collapse; ep18 0.38–0.49 vs 0.587 at 10M). ep12 rose 0.888 → 0.946–0.949, but O1 reached 0.918 by 40M as well.
+4. The bank was tiny (4 states on ep2) and each round gave one window, so the loop acted weakly.
+Verdict for the record: rule "signal" (more seeds, not adoption); interpretation: **no evidence that the loop helps**;
+new hypothesis **[H-lr]: a shorter LR horizon (LR reaching 1.5e-4 by ~30M) keeps the early peak** — falsified if O1 with
+`training.optimization.learning_rate_schedule_updates` set to the 30M-run value does not beat O1 on ep2 over ≥ 3 seeds.
+Not run; needs the owner's go-ahead.
+
 ## 7. Commands (exact)
 
 From the FlashCHORD dir (`scratchpad/src/video_to_data/robotic_grounding/flash_chord`), with

@@ -34,6 +34,8 @@ def append(row, msg, tries=5):
     concurrent writer makes it fail and we re-read and retry instead of overwriting."""
     for i in range(tries):
         rows, head = read()
+        if row in rows:      # an earlier try did land (upload committed, then raised, e.g. a timeout): never append twice
+            return
         with tempfile.NamedTemporaryFile('w', suffix='.jsonl', delete=False) as f:
             f.write(''.join(json.dumps(r) + '\n' for r in rows + [row]))
         try:

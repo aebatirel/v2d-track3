@@ -5655,3 +5655,10 @@ Background agent, CPU only, $0, no ground truth read.
   GT-free `tools/intrusion.py` (per frame/pair penetrating samples in the target's frame + depth, plus phys_fit v1's
   residual after pose correction); carved sim copies in the existing make_assets `--pieces DIR/<obj>/piece_*.obj` layout
   (CoACD keeps each piece, so slots are not refilled). Waiting for their reviewed interface; nothing built yet.
+- 10:15 UTC 31 Oct [M] Option 3 run `20261031-rlloop-ccf9058` done (job 09:57Z, box gone ~10:02Z, ≈ $6.48 [E]; ledger
+  actual recorded — 4 identical lines from a timed-out-then-retried append). AUC vs mocap O3 / O1: ep2 0.835 / 0.585,
+  ep12 0.904 / 0.893, ep18 0.620 / 0.579, ep24 0.224 / 0.254 → pre-registered primary +0.068 "signal". Post-hoc: 3 of 4
+  O3 checkpoints are from round A (pre-loop), and round A is confounded by FlashSAC's cosine LR horizon (30M vs 70M run
+  length); after the loop rounds O3 never beat its round-A best on ep2/18/24. Interpretation: no evidence the loop
+  helps; new hypothesis H-lr (shorter LR horizon) logged, not run. Results: physics-solver.md §6.1 Results,
+  gpu/rlloop_summary.json. Fixed ops/ledger.py append to be idempotent (skip if the row already landed).
