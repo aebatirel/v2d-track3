@@ -5,3 +5,4 @@
 - 2026-10-31T16:50:48Z [M] cup floor check (scratchpad c0b_audit/floorcheck.py): low=2 -> hfloor=base+t; pre-15:56 rule would give floor +106.9 mm. library_v3 is on ops/provenance/denylist.json yet is ROI/others/--lib input for C0 and E0. Next: write AUDIT.json/.md generator.
 - 2026-10-31T16:54:50Z wrote scripts/audit_gen.py (items + generator), copied floorcheck.py/tiecheck.py [M: TIE not binding for the C0 cup]. Next: AUDIT.md text + run generator.
 - 2026-10-31T16:57:12Z AUDIT.md + AUDIT.json written (163 records: G 62, O 14, S 16 [S-value 8, S-dev 4, S-input 4], U 71 [U-suspect 16]); committing C0b/{AUDIT.md,AUDIT.json,NOTES.md,scripts/}.
+- 2026-10-31T16:57:26Z committed + pushed 9451062 (AUDIT.md, AUDIT.json, NOTES.md, scripts/). Audit step DONE.
