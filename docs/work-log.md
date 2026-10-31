@@ -5383,3 +5383,16 @@ diagnostic; nothing is picked for submission.
 - **Corrections:**
   - the PREREG header says ~15:40; it was committed at 15:32:36;
   - verify_0 dates the ball audit 29 Oct; it is 27 Oct (29 Oct is the comment fix 14eaf37).
+
+### 2026-10-31 ~16:50-16:58 UTC — C0 workflow done; scan-derived marker-ball prior found; owner: "Ship 9a, flagged"
+- The C0 workflow (`wf_b71021a8-698`) finished: README, MANIFEST status, AUC_RESULTS, verify_0/1.
+- verify_0 blocking B1: the pot, lid and rack marker balls use MK_R0 = 7 mm and a 5-9.5 mm free-fit window, both from
+  the public-scan marker catalogue (prim_potlid.py:67, "SCAN-DERIVED"). The 29 Oct stage-1b audit had declared these
+  passes provisional. I missed it at hand-off. Measured balls: pot 7.00 x3 / 6.94; lid 7.00; rack 7.00 / 5.22 mm.
+- Told focused-pascal and the score session to hold the 9a upload, then asked the owner directly (AskUserQuestion).
+  Owner chose **"Ship 9a, flagged"**. Relayed; the flag goes into the pack-9a README.
+- Pack-9a configuration over the 15 twins, from the stored runs (verify_1): mean dAUC +0.0079, min -0.0092, dRPE
+  -0.121 cm.
+- Next: GT-free rebuilds (C0b public + E0b eval) with balls from gmg markers.py (frozen A.6 settings) or none,
+  thickness from our own observations, and a provenance audit of every constant in prim_potlid / prim_rack / lathe_obs /
+  obs_points.

@@ -232,3 +232,12 @@ single rack on ep12/13, base on 11/21/22. Reported only, not a selection. Source
   - No rebuild for F1 (needs a decision).
   - No message to the owner, score session or focused-pascal from this stage (the orchestrator relays).
   - No new scoring of any kind in stage 4. `pack9a_config.json` only recombines stored run JSONs.
+
+## Owner decision on F1 (31 Oct 2026, ~16:55 UTC)
+I asked the owner in session_01W8Softjo2xx7o6ofSiheuQ whether pack 9a ships with the C0 pot, lid and rack, given the
+scan-derived marker-ball prior. Answer: **"Ship 9a, flagged"**.
+
+The flag goes into the pack-9a README next to the 2.5 mm wall note (relayed to focused-pascal and the score session).
+
+For pack 10: GT-free rebuilds, with the ball radius from our own marker detector (gmg markers.py) or no balls, and wall
+thickness from our own observations. They go through the same AUC guard (workflow cdo-sprint-c0b).
