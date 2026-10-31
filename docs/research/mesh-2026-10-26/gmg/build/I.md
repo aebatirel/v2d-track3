@@ -122,3 +122,35 @@ as a dated "11.8 Resolutions" note and in DEVIATIONS if code-relevant):
    Remove `poses_world_vo.npz` from the required list if mkref does not read it.
 4. `--fit_commit` is fine. 5. Approximate pushed_residual_m is fine; it only feeds PUSH, and our proxy remains.
 Then make the validator pass on their real ep24 export (r0 built from our pieces) as part of the dev run.
+- 10:00-11:05 BI1 code written (new files only): `interlock.py` (region builder, decide_pair, OFFSET, agree/tiers,
+  carve solids, ICARVE, export writer, validate, carve_from_intrusions, load_sim, round_accept, CLI), `silhouette.py`,
+  `gen_slot.py`, `physcheck.py`, `simpieces.py`, `simphys.py`, `tools/interlock_dev.py` (dev driver),
+  `tools/interlock_cands.py` (CPU candidates for a clean bundle via build 1's producers), `tests/test_interlock.py`.
+  Implementation notes: `geom.inside` falls back to the exact float32 winding sum for ALL points on one disagreement
+  (tens of minutes on 2 mm grids) -> `interlock.fast_inside` (median of 3-axis signed crossings for watertight
+  meshes). The headless OpenCV has no `cv2.ml` -> numpy EM for the GMMs. Convex-hull cavities by half-spaces
+  (Delaunay find_simplex took 580 s).
+- [M, dev, b5pool24 obs_all bundle] decide_pair on HULLs and shells: both boards INSERTION (154.9 / 148.1 mm,
+  straightness 0.91), components 542/472 voxels (hull), 296/165 (shell); image widths 15.7/15.0 px (hull),
+  11.2/13.1 px (shell) > 8 -> class O 97-100 % -> PUSH (step 2); push median 29 mm (not pushable). Silhouette on the
+  dev bundle: gate fails on both (board 1 accuracy 0.904 but false see-through 2.65 %; board 2 accuracy 0.898).
+- [M, dev process on the CLEAN B4 v4 bundle, run `gmg/runs-dev/20261031-i2probe-626ce13`] candidates from build 1's
+  producers (shell 3832/3940 faces, hull 3866/3862, all watertight packed). Board 1: no qualifying silhouette frame
+  (33 of 34 separated good frames have a hand within 16 px). Board 2: gate PASSES (held-out accuracy 0.917, false
+  see-through 0.27 %, 9 frames). Runs: board 1 <- 2 INSERTION f164-274, 122.3 mm, 0.908; board 2 <- 1 f162-274,
+  127.7 mm, 0.915. SAM 3D placement by depth: the clean OBSERVED samples of board 1 span 417 mm (grid voxels far from
+  the board) -> placement now uses the samples within 6 mm of our pick; residual 1.3 mm, flip margin 0.0-0.01 sigma
+  (side unresolved, as expected for a near-symmetric board).
+- T-I1 (synthetic) first runs found 5 misses, each fixed and logged as PREREG F-I2 (code/measurement fixes, no rule
+  threshold changed): (1) across axis n = the component's thinnest axis picked the TARGET's thickness when the target
+  is the thinner plate (w_sim 24.5 mm for a 6 mm partner) -> n from the partner's evidence near the crossing;
+  (2) the partner's evidence is its observed surface (interior UNKNOWN), so the region is hollow and its image width
+  too small (t = 18 mm gave 8.0 px, pre-registered 10.8) -> image width on the region closed in 3-D;
+  (3) a 4 mm voxel straddling the slot edge is "seen solid" by its centre pixel (s1 t = 6 mm: 36 of 96 voxels O) ->
+  silhouette votes also on the 2 mm sub-grid, a voxel is SIL if any sub-voxel is; (4) a hollow cup region leaves the
+  unseen core as a separate component (topology guard -> PUSH) -> unseen orphan components inside R's hull are carved
+  with R; (5) carve width w was not applied to non-plate regions -> width applied to every carve solid. Sweep s0 now
+  passes as pre-registered (GAP + CARVE for 6/10/13 mm, class O + PUSH for 18/25 mm; widths 9.3-14.7 mm).
+
+## ORCHESTRATOR NOTE (31 Oct 10:55 UTC): resolutions accepted by Embodiment; WE reconstruct reference provenance from
+store run logs (mkref unchanged before the freeze). Eval 10 intrusion result (carved ev10 vs library cups) will arrive.

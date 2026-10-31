@@ -47,3 +47,9 @@ They will build the export against our interface once it is reviewed.
   4. phys_fit.json stores no commit/argv; they rebuild argv and need `--fit_commit`.
   5. pushed_residual_m is approximate: exact per direction on the 2 mm grid, minimised over ~70 directions.
 - The owner chose the lean budget; the mesh lane ($15-28) is in it.
+
+## Fourth message, 31 Oct 10:52 UTC
+- All five resolutions accepted. mkref stays unchanged before the freeze (it is in the leaderboard pipeline): the gmg
+  reconstructs provenance from the run logs; a sidecar `.prov.json` writer can come after the freeze.
+- They are running intrusion.py on eval 10's packed reference now (carved ev10 cups vs plain library_v3 cups, for
+  focused-pascal's nest fix) and will copy us the result (same stacked-cups case as our carve loop).
