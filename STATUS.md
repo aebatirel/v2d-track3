@@ -9,7 +9,8 @@
 
 - Option 3 (31 Oct, run 20261031-rlloop-ccf9058, ≈ $6.48): rule says "signal" (O3 − O1 +0.068) but 3 of 4 chosen checkpoints are pre-loop and round A is confounded by the LR-schedule horizon → no evidence the loop helps (physics-solver.md §6.1 Results). Next candidates (owner decides): H-lr test; keen-heisenberg's bank growth ideas; intrusion export for the mesh session's carve loop (building on CPU).
 - Mass transfer check (focused-pascal, 13:05 UTC): NOT ADOPTED (ep2 Δ +0.157 SE 0.105; ep12 Δ −0.013 SE 0.007 misses +0.03).
-  Eval stays at 0.3 kg; masses retrain off. Open option: masses with references rebuilt under them (own prereg).
+  Eval stays at 0.3 kg for now. Owner approved "Masses v2" 14:55 UTC: 4 headroom public episodes, 2 seeds, ≈ $18–20; ADOPT iff
+  mean Δ ≥ +0.03, ≥ 3/4 positive, no Δ ≤ −0.05. Proposed that focused-pascal runs it; I review its PREREG.
 - Eval-10 nest diagnostic (31 Oct 13:00 UTC, CPU, GT-free): library_v3 blue cup has a 66 mm false floor; carved ev10 fixes
   the floor; my "cavity ~6 mm too narrow" reading was WRONG (vertical axis used; falsified by focused-pascal 13:55 UTC: the
   intrusion is a ~5 mm beige pose offset from the tilted cavity axis). The blue cup's rise is not contact.

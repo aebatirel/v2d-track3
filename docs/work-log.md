@@ -5860,3 +5860,11 @@ Background agent, CPU only, $0, no ground truth read.
   "nefc overflow" warnings appear in every arm (K: 3.96M lines), so they are not specific to D.
 - Training round ~1.3 h per cell pair → boxes end ~21:00–22:00 UTC [E].
 - The background poll from 12:57 UTC was lost when this session's worker restarted. Checked by hand at 14:43 UTC.
+
+### 2026-10-31 14:55 UTC — determined-wright: owner approved "Masses v2" re-test
+- Owner's point: the mass check tested only 2 episodes, and ep12 (0.92–0.93) had almost no room for a +0.03 gain.
+  Owner chose "Run re-test (Recommended)": 4 public headroom episodes (not ep2/ep12, chosen by low current library_v3
+  baseline before any run), 0.3 kg vs realistic masses, seeds 42/43, NREP 10, the mass check's shared-reference design.
+  Rule: ADOPT iff mean Δ over the 4 ≥ +0.03 AND ≥ 3 of 4 Δ > 0 AND no Δ(ep) ≤ −0.05; missing cells → INCOMPLETE.
+  ≈ $18–20 [E], 2 boxes, ~7 h. If ADOPT, the eval masses retrain (~$16–26) needs its own owner go-ahead.
+- Proposed to focused-pascal to run it in its lane with its job and verdict tool; I review the PREREG first.
