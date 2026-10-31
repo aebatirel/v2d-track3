@@ -656,6 +656,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   28.8 cm3 = 29 %, reach 0.80. S rows (diagnostic): default rings push the guest 2.97 / 2.92 mm sideways (displacement
   3.03 / 2.95 mm, passes S's 4 mm); the failed carve 2.25 / 2.55 mm (drop 2.16 / 2.44 mm, tilt 2.9 / 3.2 deg). Q2
   (x5-D2) FALSIFIED as written, same numbers as Q1. Waiting: x2c (Q5), sweeper (Q6), the x1-D2 topology diagnostic.
+- 19:05 [M] **x1-D2 topology diagnostic** (`<scratch>/fi5/diag/d2_topo.py`, log + JSON beside it, 18:50-19:00; never
+  delivered): the carved host on a **1 mm grid has the default's topology (1 component, Euler 1)**; on the 2 mm grid
+  1 / -45. Thinnest remaining wall on 31,320 radial rays: min 1.7 mm, 1st percentile 1.8, median 2.0 mm; no ray under
+  0.5 mm, none empty. So the 2 mm topology failure of x1-D2 is aliasing of a wall thinned to 1.7-2.0 mm, not a hole
+  (F-I5.3 (e) says a wall below about one sub-voxel fails; here it is about one sub-voxel). Q1 / Q2 stay falsified as
+  written (the pre-written test is the 2 mm rule), with this mechanism. **x2c-D2 (Q5) crashed** in the shared
+  F-I1..F-I3 path before the F-I5 branch: `decide_component` returned CARVE with an empty carve set (no R_O voxel, no
+  carvable U voxel) and `carve_solid` failed on `sd.min()`. Code fix cbed3cb (`interlock.py`, 3 lines: an empty carve
+  set is a PUSH; cases that ran before are unchanged). x2c-D2 relaunched 19:05 (`<scratch>/fi5/d2c.log`). Sweeper-D2
+  (Q6) running (its carve: route 3, 27 pieces, gate 0.08 cm3).
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
