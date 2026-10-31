@@ -6126,7 +6126,7 @@ Background agent, CPU only, $0, no ground truth read.
   - pack 9b uploads automatically once its rule and checks pass.
 - Credit $69.22 at 21:20 UTC, shared by all lanes.
 
-### 2026-10-31 21:48 UTC — determined-wright: D reset check delivered; regression dry run 70/70; P1 helper started
+### 2026-10-31 21:47 UTC — determined-wright: D reset check delivered; regression dry run 70/70; P1 helper started
 - Regression dry run `rs/dry8` at the default stub clock: **70/70 PASS**, exit 0. dry7's one FAIL was the 4 s stub clock.
 - **D reset check** (`docs/research/physics-2026-10-30/d_reset_check/`, 8fb5152): CPU, box patch set, 32 worlds, DR vs
   no DR with the same upstream frames, on the 5 packed D evals (md5s = packed_refs.json) and the 4 public screen
