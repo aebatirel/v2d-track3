@@ -5215,3 +5215,12 @@ Advice given:
   ev10's 41; hands-off beige sinks 11.6 mm). One build defect (v0 band edges between bins -> 2 mm wall gaps) found by
   the wall probe and fixed (v1); v0 readings kept as invalid.
 - Next [H, not run]: coaxial / physics seat of the beige on the hands-on nest frames f100-117 (V4p side), ev10 unchanged.
+
+## 2026-10-31 ~14:00 UTC — ev10w falsified; ep11 rollout gate prep started
+- ev10w (H-nest-a) result committed in 334393e: FAILS G1 (max 30.2 cm³ gl10A2, 11.4 V4p) and G2 (beige sinks ~11 mm on
+  hands-off frames); NOT-GEOMETRY by M2 (one-sided 60/61, beige axis 5.4 mm off the cavity's lathe axis; rigid shift
+  ≤ 1 cm / 3° clears 30/31). Independent review NO-GO as a gate arm. Review fixes F1/F2/F3/F5 applied in the README.
+  Results sent to determined-wright and bold-albattani.
+- Started CPU workflow wf_0f7cb69b-fa2: ep11 rollout gate (C = P_o + S2 vs T = + S12 V4p; gl10A2 grasp-lock recipe;
+  meshes/carve/ev10; seeds 42/43; NREP 10; PASS iff seed-mean Δ ≥ +0.05 vs mocap and no T seed below its C seed by
+  > 0.05). PREREG, job script, CPU mock, integrity + mechanics reviews. No GPU until the owner's go.
