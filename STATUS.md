@@ -7,6 +7,8 @@
 
 - R5-lite (31 Oct, CPU): true vs perceived object motion, zero action, jittered: ep13 0.569 vs 0.551, ep31 0.556 vs 0.554 → the zero-action limit is grip/contact physics, not perception (physics README).
 
+- RUNNING (31 Oct 05:18 UTC): option 3 solver↔RL loop + option-1 control, run 20261031-rlloop-ccf9058, Vast 58495839, est. $5.5–7.5 (max 8.3), ~4–5 h; pre-registered physics-solver.md §6.1.
+
 ## 2026-10-30 ~23:10 UTC: solver G2 strong at zero action; G3 RL learns faster but final scores not better
 - G2 (full-scale search, ep2/ep12): jittered zero-action 0.763 / 0.832 vs current recipe 0.524 / 0.578.
 - G3 (RL from solved refs): at 30M far ahead (0.965 / 0.761 / 0.523 / 0.191 vs 0.483 / 0.549 / 0.529 / 0.112) but final AUC

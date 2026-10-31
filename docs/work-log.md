@@ -5633,3 +5633,8 @@ Background agent, CPU only, $0, no ground truth read.
   - O1 − G3 and O3 − G3;
   - [H-teach].
 - Estimate ≈ 4–5 h, ≈ $5.5–7.5 (worst ≈ $8.3). Nothing rented by the agent.
+- 05:18 UTC 31 Oct: owner chose "Launch now" for option 3 (in parallel with the pack session's batch). Run
+  `20261031-rlloop-ccf9058`: `ops/vast.sh V2D_COMMIT=ccf9058 ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create 56426318
+  20261031-rlloop-ccf9058 'bash ops/jobs/physics_rl_loop.sh'` → Vast contract 58495839 (RTX PRO 6000 WS, UK, $1.369/h
+  all-in). Pre-registration: physics-solver.md §6.1. Ledger planned $8.3 (est. $5.5–7.5). Untested before the GPU:
+  FlashSAC resume on a merged reference and the reset-state bank under graph capture (first exercised at round B, ~30M).
