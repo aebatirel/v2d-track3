@@ -5335,3 +5335,17 @@ diagnostic; nothing is picked for submission.
   rotation and scale error"):
   - 21 single-swap registered-AUC runs, `cdo-sprint/C0a-diag/run_c0a.sh`, outputs `<scratch>/cdo_c0/runs_c0a`.
   - Not used for 9a: focused-pascal's pre-registered MESH_RULE picked as-fitted C0 because every mean dAUC >= 0.
+
+### 2026-10-31 ~16:45 UTC — C0a diagnostic: aligning C0 onto library_v3 hurts registered AUC
+- 21/21 runs. Mean dAUC C0 vs C0a:
+
+  | Object | C0 | C0a |
+  |---|---|---|
+  | pot | +0.0030 | +0.0006 |
+  | lid | +0.0055 | +0.0055 |
+  | rack | +0.0158 | -0.0046 (min -0.036, would fail the guard) |
+  | blue cup | +0.0241 | +0.0097 |
+
+- So the few-degree rotation against library_v3 is library_v3's frame error. Do not align eval-built meshes to
+  library_v3.
+- Write-up: `cdo-sprint/C0a-diag/README.md`. Sent to focused-pascal and the score session as a post-hoc diagnostic.
