@@ -5634,3 +5634,10 @@ Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). 
   This session told focused-pascal: no 9a upload with the C0 meshes without the owner's explicit acceptance; by
   default pack 8 alone at 20:00 UTC.
   Asked bold-albattani: E0 must use no scan-derived priors (own measurements or a generic grid, sources in its PREREG).
+- 16:35 UTC owner decision, verified in bold-albattani's transcript (list_events; AskUserQuestion answer at
+  16:35:04Z): "Ship 9a, flagged". Pack 9a = pot, lid and rack (C0/C0a by focused-pascal's MESH_RULE). The scan-derived
+  marker-ball radius (7 mm, 5–9.5 mm window) is flagged in the pack README beside the 2.5 mm walls; the blue cup is held
+  back. Supersedes this session's 20:00 pack-8-only default.
+  AUC guard (51/51) [D], pack-9a configuration over 15 public twins: mean ΔAUC +0.0079, min −0.0092, ΔRPE −0.121 cm.
+  E0 box 58555214 created 16:25 UTC (run mesh-20261031-e0-b05f001). E0's pot/lid/rack share the marker-ball issue;
+  pack 10 gets GT-free ball rebuilds.
