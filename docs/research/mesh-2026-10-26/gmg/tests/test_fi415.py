@@ -159,6 +159,7 @@ def p3_of(b, recs, copies=16, label='T-I1 F-I4.15'):
 class WaiverR2(TI.Waiver):
     """F-I4.15.7: w1-w7 re-run with the F-I4.15 code (inherits test_interlock.Waiver: w2, w3, w4 unchanged; w6 and w7
     use the overridden _w1). Results land in test_interlock.RESULTS and are copied into this module's output."""
+    REV = 15
 
     def _w1(self, thicknesses, prep=None, key='w1'):
         res, miss, wmiss = {}, {}, {}

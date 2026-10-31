@@ -140,6 +140,7 @@ def main():
             if 'nmv' in r:
                 np.savez_compressed(os.path.join(out_dir, f'sil_{o}.npz'), nmv=r['nmv'], nmf=r['nmf'], occ=ev[o].occ)
     report = dict(ep=a.ep, bundle=a.bundle, tier=b.meta.get('tier'), picks=picks, constants=IL.constants_report(),
+                  launch_code=SP.code_identity(), fi4_rev=getattr(PB, 'REV', 14) if a.waiver_fi4 else None,
                   identity_semantics=a.identity, owner_waiver_fi4=bool(a.waiver_fi4),
                   owner_waiver_fi5=bool(a.waiver_fi5), sanity_flags={o: (b.meta.get('sanity') or {}).get(o, {}).get('flags')
                                                                for o in objs},
@@ -393,7 +394,8 @@ def main():
         extra, rule = None, 'F-I3.8'
         if wv:                                         # PREREG F-I4.8: owner_waiver block, p1_pending
             acc = next(iter(wv.values()))['acceptance']
-            extra = dict(owner_waiver=dict(rule=PB.WAIVER_REF, quote=PB.WAIVER_QUOTE, scope='plate-plate INSERTION '
+            extra = dict(owner_waiver=dict(rule=PB.WAIVER_REF, fi4_rev=getattr(PB, 'REV', 14), quote=PB.WAIVER_QUOTE,
+                                           scope='plate-plate INSERTION '
                                            'pairs, simulator copy only (F-I4.0)', objects={x: v['record'] for x, v in
                                                                                          wv.items()},
                                            acceptance=acc, default_pieces='_default/<obj>/piece_XX.obj (unslotted '

@@ -679,7 +679,21 @@ def _decisions(recs):
 
 class Waiver(unittest.TestCase):
     """PREREG F-I4.10 (owner waiver of the camera rule; F-I4.12 slot centre): w1-w5, plus the build task's extra
-    thicknesses 13 and 25 mm (reported). Synthetic owned points carry two-sided camera centres."""
+    thicknesses 13 and 25 mm (reported). Synthetic owned points carry two-sided camera centres. Runs the F-I4.14
+    rectangle route (platebody.REV = 14), so its recorded outcomes stay comparable; the F-I4.15 re-run of w1-w7 is
+    tests/test_fi415.py (WaiverR2, REV = 15)."""
+    REV = 14
+
+    @classmethod
+    def setUpClass(cls):
+        from gmg import platebody as PB
+        cls._rev0 = PB.REV
+        PB.REV = cls.REV
+
+    @classmethod
+    def tearDownClass(cls):
+        from gmg import platebody as PB
+        PB.REV = cls._rev0
 
     def _w1(self, thicknesses, prep=None, key='w1'):
         """Runs the w1 case at each thickness and returns {t: summary}, the per-t misses and the width misses.

@@ -645,3 +645,21 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   F-I4.15, platebody.py. Plan: F-I4.15 in platebody.py (new functions; rectangle path kept for fi4_rev 14), driver
   hooks only if needed, tests w1-w9 (+ w6c, w8, w8b, w9), full T-I1 waiver off, then T-I11 ep24 tag fi4o with physics
   (16 copies), then ep23 plate + body only (v6 bundle).
+- 18:40 [M] F-I4.15 build written (`platebody.py`: REV = 15; `_t_all_points` / `_apply_t_all` / `_m_seen_all`
+  (F-I4.15.1); `plate_body_poly` (F-I4.15.2: frame = the F-I4.2 rectangle, outline re-rastered along its axes, outer
+  ring via `mask_ring`, Douglas-Peucker 1.0 mm split at the farthest pair, `ring_simple`, FREE share of polygon and
+  rectangle on a 2 mm grid); `slot_for_poly`, `crossing_extent_poly`, `slot_budget_poly` (F-I4.15.3, Weiler-Atherton
+  polygon minus footprint); `pieces_poly` (F-I4.15.4: ear clipping + Hertel-Mehlhorn, <= 32 vertices per part, cap
+  floor(165 / objects)); `in_body` (keep-out gate unchanged otherwise); 2-D geometry self-contained (no shapely in the
+  venv). Shared files, minimal: `tools/interlock_dev.py` (+ `launch_code`, `fi4_rev` in the report and the
+  owner_waiver block), `tests/test_interlock.py` (old Waiver class pinned to REV 14 so its F-I4.14 records stay
+  comparable). New `tests/test_fi415.py` (WaiverR2: w1-w7 re-run with the tiling check, w6c, w8, w8b, w9). Note: an
+  automatic WIP snapshot (6ed88f1, another agent) committed an in-progress copy of platebody.py / test_fi415.py.
+- 18:38 [M] first probes (no physics; `<scratch>/fi415/probe_w1.py`, `probe_w8.py`): w1 t = 10 mm CARVE both, t down
+  10.17 / 10.12 -> all points 9.73 / 9.72 mm, polygons 64 / 82 vertices, default prisms 32 / 42, slotted 38 / 51,
+  cross-lap diff 5.7 mm, keep-out not yet run. **w8 (I-cross, t = 7, sigma 1) misses before physics**: polygons
+  112 / 116 vertices (54 / 56 reflex: every 2 mm raster step on a noisy edge survives the 1 mm tolerance), default
+  prisms 68 / 70, slotted 72 / **83 > cap 82** on B -> `plate_body_over_cap`, old decision stands; also B's step-1
+  plane pair is tilted 3.4 deg (mid_n (0.002, -0.059, 0.998), t 5.11 mm) and F-I4.15.1 uses that normal as reference
+  (all-point t 6.81 mm), so B's polygon prism holds 21.8 % FREE vs A's 3.6 %. End - waist 12 / 10 mm (true 11). These
+  are recorded as synthetic misses (F-I4.15.6: reported, do not stop the round); no rule changed.
