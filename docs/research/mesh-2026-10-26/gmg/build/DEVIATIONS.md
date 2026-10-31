@@ -600,3 +600,17 @@ scan number was seen; none bears on these choices.
     voxel has no partner evidence (pocc = 0 and shared = 0) and the number of lost voxels with partner evidence. The
     B.3 verdict stays the pre-registered one. Seen before adding it: the ep2 trial values (pot Jaccard 0.907, lid
     0.918; 532 of the pot's 1005 lost voxels and 286 of the lid's 351 carry partner evidence) [M, dev comparison].
+82. **(2026-10-31, B7) Marker settings version 2 after dev run 1 (informed by a GT-free dev result).** Dev run 1
+    (3f7f661; group A at ep27, group B through ep2; stopped at 05:57 UTC) gave on ep2 38 "balls", all with robust-fit
+    radii 9.7-13.2 mm although their vote clusters had radii 4.8-10.9 mm (lid: mostly 4.8-5.9 mm), caps 96-191 deg,
+    normal deviation 35-71 deg and outside ratio 0.5-4: the RANSAC fit on the points within 2 r_cl of the cluster
+    centre grew a large sphere through the ball and the host surface around it (a ball on a short post has its host
+    inside 2 r; the synthetic posts were 15 mm long, so the synthetic tests did not show it). Second, the second pass
+    window (consensus 12.0 mm +-10 %) reached 13.2 mm, outside the A.6 window. Changes: the robust fit uses the points
+    within r_cl + 3 sigma (the voted sphere and its noise band), and the second-pass window is intersected with the
+    A.6 window. Both are implementation settings of `marker_settings.json` (v1 sha 8a4d5ed7..., v2 sha 488ac3b6...,
+    history kept in the file), not PREREG A.6 values (unchanged). Origin: informed (the dev result above). Disclosure:
+    the scan-catalogue marker numbers (SPEC section 10: about 7 mm, about 5 balls) were known; the change was chosen
+    from the failure mode (fit radius running to the window's upper bound, host points in the fit), not from a radius
+    value, and nothing snaps to a size. The stopped run's outputs are kept (`build/b7/runs/20261031-b7devb-3f7f661/`,
+    ep2 only). No scan or eval number was seen.

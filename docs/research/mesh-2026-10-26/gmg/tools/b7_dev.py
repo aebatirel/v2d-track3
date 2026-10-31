@@ -51,6 +51,7 @@ def main():
     ap.add_argument('--eps', default=','.join(str(e) for e, _ in ANCHORS))
     ap.add_argument('--partners', action='store_true', help='structure for every tracked object, not only anchors')
     ap.add_argument('--no-markers', action='store_true')
+    ap.add_argument('--no-structure', action='store_true')
     a = ap.parse_args()
     if guard.mode() != 'dev':
         raise SystemExit('b7_dev runs in GMG_MODE=dev only')
@@ -73,6 +74,8 @@ def main():
         b = B.from_obs_all(ep)
         tb = round(time.time() - t0, 1)
         objs = b.objects if a.partners else [o for o in b.objects if o in anchors.get(ep, [])]
+        if a.no_structure:
+            objs = []
         res = dict(ep=ep, objects=b.objects, anchors=anchors.get(ep, []), bundle_s=tb,
                    sigma_mm={o: b.meta['sigma_mm'][o] for o in b.objects}, structure={}, markers=None)
         for o in objs:

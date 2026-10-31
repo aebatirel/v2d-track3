@@ -21,8 +21,10 @@ window"; frozen at B7 before any dev run):
   3. votes are clustered in seed order (a vote joins the first cluster whose centre is within 0.6 max(r, r_cl));
      clusters with >= 3 votes are candidates.
   4. robust fit per candidate: parts.sphere_fit_ransac (radius window, inlier band 3 sigma = the noise band, on the
-     voxel points within 2 r_cl of the cluster centre), then parts.sphere_fit_free on its inliers (kept if its radius
-     stays in the window; otherwise the RANSAC sphere, flag ransac_only).
+     voxel points within r_cl + 3 sigma of the cluster centre: the voted sphere and its band; settings v2, B7 dev run 1
+     showed that a 2 r_cl neighbourhood lets the fit grow into the host surface around a ball on a short post), then
+     parts.sphere_fit_free on its inliers (kept if its radius stays in the window; otherwise the RANSAC sphere, flag
+     ransac_only).
   5. acceptance (SPEC section 10 / PREREG A.6): radius in the window; median residual <= 1.5 sigma; >= 3 frames;
      observed cap >= 90 deg (full opening angle of the cap whose spread equals the inliers' spread, spread =
      (1 - cos a) / 2 for half-angle a, so cap = 2 a); convex towards the cameras (>= 0.8 of the points within the
@@ -31,7 +33,7 @@ window"; frozen at B7 before any dev run):
   6. overlap suppression (obs-first ball_nms.py): two balls may not overlap (centre distance < r_a + r_b); the one
      with more votes stays (ties: lower residual).
   7. one radius consensus per episode: the median of the accepted radii pooled over all its objects. A second pass
-     per object at the consensus radius +-10 %: votes and the robust fit are bounded to that window (a free fit that
+     per object at the consensus radius +-10 % (intersected with the A.6 window, settings v2): votes and the robust fit are bounded to that window (a free fit that
      leaves it is refitted with the radius clamped to the window and the centre free); its accepted balls are added
      where they do not overlap a ball already kept.
   8. diagnostics per candidate and ball (reported only, NEVER used for acceptance; B7 notes, DEVIATIONS): the
@@ -82,7 +84,9 @@ FROZEN = dict(
     cluster_rel=0.6,                      # ball_probe
     cluster_min_votes=3,                  # ball_probe SUPMIN
     fit_band_sigma=3.0,                   # noise band (A.6 / SPEC 8): RANSAC inlier band, frames/halves/convex band
-    fit_nbhd_rel=2.0,                     # robust fit on the points within 2 r of the cluster centre
+    fit_nbhd='r_cluster + fit band',      # v2: robust fit on the points within r_cl + 3 sigma of the cluster centre
+                                          # (v1: 2 r_cl, which let the fit absorb the host surface: B7 dev run 1)
+    settings_version=2,
     ransac_hypotheses=400,                # parts.sphere_fit_ransac default
     ransac_top=5,                         # parts.sphere_fit_ransac default
     consensus='median of accepted radii pooled over the episode objects',
@@ -105,6 +109,8 @@ def consts():
     o['seeds'] = 'informed:ball detector seed count (PREREG A.6: changed once after a first run)'
     for k in ('fit_band_sigma',):
         o[k] = 'generic:PREREG A.6 noise band 3 sigma'
+    o['fit_nbhd'] = 'informed:B7 dev run 1 (ep2: robust fits grew from vote radii 5-7 mm to 10-12.5 mm through host points)'
+    o['settings_version'] = 'generic:settings file version'
     for k in ('ransac_hypotheses', 'ransac_top', 'stem_min', 'stem_r_rel', 'sphere_segments'):
         o[k] = 'generic:autokit parts default'
     o['unimodal_band'] = 'generic:PREREG B.4 unimodal radius band (reported only)'
@@ -311,7 +317,7 @@ def _robust(cl, Pv, V, Fv, tree, raw_tree, P, C, F, sigma, window, T, K, seed):
     PT = _parts()
     lo, hi = window
     tol = K['fit_band_sigma'] * sigma
-    nb = np.asarray(tree.query_ball_point(cl['c'], K['fit_nbhd_rel'] * cl['r']), np.int64)
+    nb = np.asarray(tree.query_ball_point(cl['c'], cl['r'] + tol), np.int64)   # the voted sphere and its band
     info = dict(c_vote=[round(float(x), 5) for x in cl['c']], r_vote_mm=round(cl['r'] * 1e3, 3), votes=len(cl['m']),
                 n_nbhd=int(len(nb)))
     if len(nb) < 10:
@@ -460,7 +466,8 @@ def detect_episode(bundle, sigma=None, objects=None):
     if rc is not None:
         guard.constant(f'marker_r_consensus_m_ep{bundle.meta.get("ep")}_{bundle.meta.get("split")}', rc,
                        'fitted:own accepted ball radii of this episode (SPEC section 10 consensus)')
-        win = (rc * (1 - K['second_pass_rel']), rc * (1 + K['second_pass_rel']))
+        lo, hi = K['radius_window_m']                                  # the A.6 window bounds every pass (v2)
+        win = (max(lo, rc * (1 - K['second_pass_rel'])), min(hi, rc * (1 + K['second_pass_rel'])))
         for o in objects:
             b2, d2 = detect_object(bundle.obs(o), sig[o], T, window=win, pass_=2, keep_first=balls[o])
             per[o]['pass2'] = d2

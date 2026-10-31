@@ -1,6 +1,6 @@
 {
- "schema": "gmg-marker-settings/1",
- "note": "Marker-ball detector settings FROZEN at build step B7 (2026-10-31) before the first dev run (PREREG A.6 \"ball radius window\" and \"ball detector\"; SPEC section 10). The other entries are the obs-first ball_probe / ball_nms / autokit parts settings SPEC section 10 names. A change needs a PREREG F amendment. markers.FROZEN must equal \"settings\" (tests/test_markers.py Frozen).",
+ "schema": "gmg-marker-settings/2",
+ "note": "Marker-ball detector settings. PREREG A.6 values (\"ball radius window\", \"ball detector\"; SPEC section 10) are frozen and unchanged since v1. Version 2 (2026-10-31, B7) changes two implementation settings after B7 dev run 1 (ep2, GT-free, informed; DEVIATIONS 82): the robust fit uses the points within r_cl + 3 sigma of the vote cluster centre (v1: 2 r_cl, which let the fit grow into the host surface), and the second pass window is intersected with the A.6 window (v1 allowed 13.2 mm). markers.FROZEN must equal \"settings\" (tests/test_markers.py Frozen).",
  "prereg_a6": {
   "radius_window_m": [
    0.0015,
@@ -44,7 +44,8 @@
   "cluster_rel": 0.6,
   "cluster_min_votes": 3,
   "fit_band_sigma": 3.0,
-  "fit_nbhd_rel": 2.0,
+  "fit_nbhd": "r_cluster + fit band",
+  "settings_version": 2,
   "ransac_hypotheses": 400,
   "ransac_top": 5,
   "consensus": "median of accepted radii pooled over the episode objects",
@@ -54,6 +55,55 @@
   "sphere_segments": 24,
   "unimodal_band": 0.15
  },
- "settings_sha256": "8a4d5ed7cba4ee90f508287e1fb022203dbbc365dbee042c047ade2b7e312e9a",
- "sha256_rule": "sha256 of json.dumps(settings, sort_keys=True)"
+ "settings_sha256": "488ac3b638aa7e68c12843a5b761ed8882106bc78d8307d9e3059932502aa128",
+ "sha256_rule": "sha256 of json.dumps(settings, sort_keys=True)",
+ "history": [
+  {
+   "version": 1,
+   "commit": "3f7f661",
+   "settings_sha256": "8a4d5ed7cba4ee90f508287e1fb022203dbbc365dbee042c047ade2b7e312e9a",
+   "settings": {
+    "radius_window_m": [
+     0.0015,
+     0.0125
+    ],
+    "seeds": 15000,
+    "min_frames": 3,
+    "resid_max_sigma": 1.5,
+    "cap_min_deg": 90.0,
+    "both_halves": true,
+    "second_pass_rel": 0.1,
+    "convex_min": 0.8,
+    "vote_vox_m": 0.0015,
+    "max_points": 1500000,
+    "vote_nbhd_m": [
+     0.006,
+     0.009,
+     0.013,
+     0.017
+    ],
+    "vote_min_pts": 25,
+    "vote_inlier_min": 0.6,
+    "vote_res_sigma": 1.5,
+    "vote_res_rel": 0.12,
+    "vote_convex_min": 0.8,
+    "vote_spread_min": 0.12,
+    "vote_iso_min": 0.35,
+    "vote_min_frames": 3,
+    "cluster_rel": 0.6,
+    "cluster_min_votes": 3,
+    "fit_band_sigma": 3.0,
+    "fit_nbhd_rel": 2.0,
+    "ransac_hypotheses": 400,
+    "ransac_top": 5,
+    "consensus": "median of accepted radii pooled over the episode objects",
+    "nms": "centre distance < r_a + r_b: the ball with more votes stays",
+    "stem_min": 15,
+    "stem_r_rel": 0.6,
+    "sphere_segments": 24,
+    "unimodal_band": 0.15
+   },
+   "superseded_by": "version 2 after B7 dev run 1 (stopped; DEVIATIONS 82)"
+  }
+ ]
 }
