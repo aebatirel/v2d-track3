@@ -1,6 +1,6 @@
 # E0 public context: how single-episode builds of the C0 methods scored on the public scans
 
-Written 2026-10-31 (~17:10 UTC) for the CD-O sprint, candidate E0 (C0's methods rebuilt on each eval episode).
+Written 2026-10-31 15:56 UTC (machine clock) for the CD-O sprint, candidate E0 (C0's methods rebuilt on each eval episode).
 Machine-readable copy: `context_public.json` (same folder).
 
 - **What this is:** numbers that already exist from the 26-27 Oct public rounds, regrouped. **No new scoring**, no scan
