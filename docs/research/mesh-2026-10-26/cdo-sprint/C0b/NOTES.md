@@ -15,3 +15,4 @@
 - 2026-10-31T17:27:43Z [prereg] wrote scripts/prereg_table.py -> REPLACEMENTS.json/.md (87 S+U records: KEEP 40, MK 16, TH 8, A6 7, GEN 5, LIB 4, A6B 2, NEVER 2, RULE 2, INPUT 1). Writing PREREG.md.
 - 2026-10-31T17:30:28Z [prereg] PREREG.md written (13 sections, table embedded); checking, then commit.
 - 2026-10-31T17:31:38Z [prereg] PREREG.md final (sections 1-13; 87-row replacement table; beige cup per orchestrator item 8); committing PREREG.md, REPLACEMENTS.{json,md}, scripts/{prereg_table,extent_check}.py, NOTES.md.
+- 2026-10-31T17:31:48Z [prereg] committed + pushed 8174998 (PREREG.md, REPLACEMENTS.json/.md, scripts/prereg_table.py, scripts/extent_check.py, NOTES.md). PREREG step DONE. Next (other agents): code options + regression check, box job.
