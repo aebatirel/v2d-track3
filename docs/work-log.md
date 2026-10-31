@@ -6215,3 +6215,14 @@ Background agent, CPU only, $0, no ground truth read.
   - The override would be stored in the checkpoint config, so the evaluator would rebuild with it (more memory, no
     harm, since scoring never overflowed).
   - Not run; the owner is asleep. To be offered.
+
+### 2026-10-31 23:36 UTC — determined-wright: D cells live (focused-pascal); arm V interim
+- focused-pascal (23:35 UTC): the targeted D cells run on 5 boxes (commit a1a7e25).
+  - The D log line is verified on both paths: grasp lock eval 14 without the skip tail; standard learner eval 25
+    with "; skip immediate starts"; patch md5 570a7f47793d on both.
+  - Their other results tonight: masses v2 NOT ADOPTED (+0.0034, 1/4 positive); eval-10 V4p retrain NO-SWAP (equal
+    floor); re-track FAIL. Record: their 28a03df.
+- Arm V interim, box-local (not a verdict):
+  - V/ep12: s42 .548 (sd .023; C .576), s43 .587 (sd .019; C .612);
+  - V/ep2-s43: .757 (sd .311; C .869, sd .174).
+  - Remaining: V/ep2-s42, ep18 ×2, ep24 ×2.
