@@ -5448,3 +5448,11 @@ arm and a no-policy replay floor to stage B.
 ### 31 Oct — owner sent the late-registration email; agent scope set
 - Owner: the email is sent. Registration and deadlines are the owner's to worry about; the agent works only on recipe
   performance. Recorded in `docs/context-and-decisions.md`.
+
+### 31 Oct ~11:20 UTC — repo found public; key scan clean
+- GitHub API: `aebatirel/v2d-track3` is public (updated_at 11:02 UTC), with 0 forks and 0 stars. Collaborators are
+  still aebatirel, ardai and BortuceKhan.
+- Scanned every remote branch tip and the full history for private-key headers, hf_/KGAT_/ghp_/github_pat_/sk-ant-
+  tokens, AWS keys and hard-coded *_API_KEY/HF_TOKEN values: no matches.
+- Advised the owner: make the repo private and add `Nvidia-V2D-Challenge` as a collaborator (rules §9.a). Do not
+  rename it; that hides nothing, and the submission commit URLs depend on GitHub's redirect.
