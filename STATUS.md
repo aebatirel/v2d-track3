@@ -8,6 +8,13 @@
 - R5-lite (31 Oct, CPU): true vs perceived object motion, zero action, jittered: ep13 0.569 vs 0.551, ep31 0.556 vs 0.554 → the zero-action limit is grip/contact physics, not perception (physics README).
 
 - Option 3 (31 Oct, run 20261031-rlloop-ccf9058, ≈ $6.48): rule says "signal" (O3 − O1 +0.068) but 3 of 4 chosen checkpoints are pre-loop and round A is confounded by the LR-schedule horizon → no evidence the loop helps (physics-solver.md §6.1 Results). Next candidates (owner decides): H-lr test; keen-heisenberg's bank growth ideas; intrusion export for the mesh session's carve loop (building on CPU).
+- Recipe screen (31 Oct ~12:05 UTC, CPU only, NOT launched): arms C (control) / K (LR 6e-4→3e-5, pinned horizon, assist fade ×2) /
+  D (training-only start-state randomization, `ops/box/patch_flashchord_dr.py`) × ep2/12/18/24 × seeds 42/43 on the physS1
+  references; job `ops/jobs/recipe_screen.sh`, merge `tools/recipe_screen.py verdict`; CPU tests pass; pre-registered in
+  physics-solver.md §8. Estimate 2 boxes ≈ $20–28 [E], worst ≤ $33. K's horizon stays as registered (136,728 updates,
+  the same clock as C; the actor's clock runs at half speed in both arms, so K's actor LR stays ≥ 3.18e-4; chosen
+  checkpoints sit at 10–20M where the tail barely matters). Reviewed and committed 12:10 UTC; waits for the owner's
+  go-ahead and for the pack session's eval work to go first.
 
 - Budget (31 Oct ~10:50 UTC): owner chose LEAN ($87–121 total to the freeze; owner topped up $100 at ~10:56 UTC → credit $128.43). My lane: 3-arm recipe screen (control / keep-the-peak: LR 6e-4→3e-5 + slower VOC fade / training-only reset-nudge DR) on ep2/12/18/24 × 2 seeds, 10 draws per pick (~$28–34 est.), + 2-episode confirm (~$10); being built on CPU, launch only when credit allows (pack session's eval retrain has priority). tools/intrusion.py done (759032e).
 

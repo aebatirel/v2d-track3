@@ -747,3 +747,282 @@ together on one GPU (≈ 7.6 s of box time per frame), no deadline hit; mean ite
 - Reading [H]: the solved plan gives RL a large head start that the frozen schedule (assist decay to 0 by 123M of the
   scaled curriculum, mixed resets) does not preserve. Testable: early stopping / shorter curriculum from the solved
   reference, and seeds 43/44 on ep2 (seed 42 collapsed in both reference types).
+
+## 8. Recipe screen: keep-the-peak (K) and start-state randomization (D) against the control (pre-registered 31 Oct 2026 ~12:05 UTC, written before any GPU result)
+
+Nothing in this section has been run on a GPU. Markers: [M] measured (CPU, this container, or earlier GPU runs as
+cited), [E] estimate, [H] hypothesis.
+
+**Why** (public episodes, one seed each, [M]):
+- Good checkpoints appear early and are then lost:
+  - O3 ep2 sim_vs_ref per checkpoint 10M..70M = 0.944 0.966 0.488 0.473 0.498 0.422 0.493. The collapse came right
+    after the assist dropped 0.25 → 0.1 (CURR_SCALE 0.4 stages at 19.7M / 25.6M).
+  - Round-1 S1 seed 42 ran the unscaled curriculum. Its ep2 collapsed after 20M (0.487 / 0.862 / 0.483 ...), just past
+    the first drop, 1.0 → 0.75 at 19.66M.
+  - G3 ep2 peaked at 30M (0.965) and collapsed after the drop 0.75 → 0.5 at 34.4M.
+  - ep18's best checkpoint was at 10M (O3, round 1).
+- Repeated official draws of one checkpoint differ:
+  - ~10 µm in frames 1–11, 5 mm by frames 5–25, and splits of 2 cm at contact events (another session's measurement);
+  - the 10-draw AUC sd on ep2 is ~0.19–0.24.
+- §6.1 found an LR-horizon confound. Pinning the horizon removes it.
+
+**Hypotheses** (the falsifying readouts are the rules below):
+- [H-keep] (arm K): a higher-then-lower learning rate on a pinned horizon, together with an assist fade twice as slow,
+  keeps the early peak and raises the chosen checkpoint's AUC. Falsified if K vs C is not "signal".
+- [H-dr] (arm D): small perturbations of the start state at training resets make the policy less sensitive to the
+  small start differences that the scored draws amplify, which cuts the draw-to-draw spread (cf. initial-state
+  randomisation in Tobin et al. 2017; OpenAI et al. 2019). Falsified if D vs C is not "signal".
+
+**Fixed for every arm, seed and box** (the frozen glock_public recipe of rounds 1–3, plus early stopping):
+- **Reference:** one stored reference per episode, the same file for every cell (md5 recorded per cell).
+  - Store paths: `runs/20261030-physS1-6a814df/refs/glockt/ep<N>/processed/sequence_id=t3_ep<NNN>/robot_name=sharpa_wave/ref_gl_ilc.parquet`
+    plus `…/ep<N>/reconstructed_stage/`, for N = 2, 12, 18, 24.
+  - How they were built: round 1's S1 box (commit 6a814df, `ARM=S1 bash ops/jobs/physics_arms.sh`) ran grasp lock +
+    ILC + EVOLVE under the S1 masses, with SF 0 and the round-1 GL_ARGS.
+  - Their base references are the 24 Oct ones: `20261024-ev3-2c1e4dd` perc2mck/ep2, `20261024-ev2-2c1e4dd`
+    perc2mc/ep12, ev3 perc2mc/ep18 and ev3 perc2mc/ep24.
+  - G1 started from the same files (`gpu/psolve_G1_summary.json`: input `20261030-physS1-6a814df` for all four
+    episodes).
+  - Round-1 S1 seed 42 trained on them and scored 0.736 / 0.885 / 0.625 / 0.232.
+  - Zero-action sim_vs_ref on that box: 0.601 / 0.604 / 0.542 / 0.194.
+  - Rounds 2–3 trained their S1 seeds on per-box rebuilds (p2s1: ep2 only; p3ms1: ep12/18/24). No other store run
+    holds all four episodes.
+- **Assets:** NVIDIA's public scans with the S1 masses (`MA_ARGS="--physics docs/research/physics-2026-10-30/props_public_scans.json"`,
+  as `physics_rl_loop.sh`).
+- **Training:** FDR rewards + VOC fix (`ops/box/lib.sh` fc_patches), embodiment `sharpa_hands_mid` (kp 400 wrist),
+  `task.motion_speed=1.0`. Seeds 42 and 43.
+- **Steps:** cap `training.total_environment_steps=70004736` for every arm.
+- **Early stopping on:** `tools/early_stop.sh` with target 0.9, patience 20M, from 20M, 2 evaluations per checkpoint
+  (option 1's settings).
+- **Checkpoint choice, as in rounds 1–3 and O1:**
+  - checkpoints that the early-stop watcher reached (from 20M) are scored by its 2 evaluations;
+  - every other checkpoint (10M, and any written after the watcher's last scan) gets `ckpt_curve.sh` with 3
+    evaluations;
+  - the best by sim_vs_ref against our reference wins (no ground truth).
+- **Scoring:** NREP = 10 official evaluations of the chosen checkpoint, each scored by sim_vs_ref and by registered
+  AUC vs mocap (`score_registered.py --meshes` on the scans). Ground truth is read only here, after inference.
+
+**Arms** (single source: `tools/recipe_screen.py`; the job takes its overrides from there):
+
+| arm | training-side change | goes into the checkpoint config? |
+|---|---|---|
+| C | none: curriculum thresholds unscaled (the v2d copy of `tracking_250m_mixed_reset`); LR 3e-4 → 1.5e-4 cosine, horizon = the run's own 136,728 updates | — |
+| K | `training.optimization.learning_rate_initial=0.0006 …learning_rate_peak=0.0006 …learning_rate_end=3e-05 …learning_rate_schedule_updates=136728` (= int(70,004,736 / 4,096) × 8, pinned) and `curriculum.thresholds` × 2 = [39321600, 68812800, 98304000, 127795200, …] | yes, but the evaluator never uses them (below) |
+| D | the training process only gets `FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>` (`ops/box/patch_flashchord_dr.py`) | no: C's and D's resolved configs are identical (CPU check below; on the box the merge compares their config hashes) |
+
+**What K changes, from FlashCHORD's own config code** [M] (`tools/recipe_screen_tests/schedules.py` on the box patch
+set; global updates = 8 per 4,096-world collection after the replay warm-up):
+
+| env steps | C critic LR | C actor LR | K critic LR | K actor LR | C VOC | K VOC |
+|---|---|---|---|---|---|---|
+| 10M | 2.93e-4 | 2.98e-4 | 5.74e-4 | 5.93e-4 | 1.0 | 1.0 |
+| 20M | 2.73e-4 | 2.93e-4 | 4.97e-4 | 5.73e-4 | 0.75 | 1.0 |
+| 30M | 2.43e-4 | 2.84e-4 | 3.84e-4 | 5.40e-4 | 0.75 | 1.0 |
+| 40M | 2.10e-4 | 2.72e-4 | 2.57e-4 | 4.95e-4 | 0.5 | 0.75 |
+| 50M | 1.79e-4 | 2.58e-4 | 1.42e-4 | 4.41e-4 | 0.25 | 0.75 |
+| 60M | 1.58e-4 | 2.42e-4 | 6.06e-5 | 3.81e-4 | 0.25 | 0.75 |
+| 70M (cap) | 1.50e-4 | 2.26e-4 | 3.0e-5 | 3.18e-4 | 0.1 | 0.5 |
+
+- **Stage starts:**
+  - C: 0.75 at 19.66M, 0.5 at 34.41M, 0.25 at 49.15M, 0.1 at 63.90M.
+  - K: 0.75 at 39.32M, 0.5 at 68.81M, 0.25 at 98.30M, 0.1 at 127.80M.
+  - So K holds VOC ≥ 0.25 until 127.8M, against C's 63.9M (twice as long). Within the cap, K never goes below 0.5.
+- **Finding [M] (an open point for the owner, not changed here):** FlashSAC runs three LR clocks.
+  - The critic clock counts every optimizer update. The actor and temperature clocks advance only on actor updates,
+    which happen on every second update (`actor_update_period` 2; `learner.py` `schedule_step + 1` inside the actor
+    update).
+  - The horizon still counts all updates, so by the cap the actor's cosine only reaches its midpoint.
+  - C's actor ends at 2.26e-4. K's actor ends at 3.18e-4 and stays above C's 3e-4 peak throughout. In K, "then low"
+    holds for the critic only.
+  - §6.1 quoted the critic clock.
+  - The alternative pin is 68,364 updates. The actor would then reach 3e-5 at 70M, but the critic would reach it at
+    35M and stay there.
+  - **Registered: 136,728, as specified.** A change is a one-line edit of `tools/recipe_screen.py` plus an amendment
+    of this section before any launch.
+- **The evaluator ignores K's keys** [M, code read]:
+  - `harness.apply_evaluation_composition` sets `env.voc_scale` 0, VOC max force/torque 0 and `voc_decay_steps` 0. It
+    also forces a frame-0 start, reset seed 42 and no auto-reset.
+  - The checkpoint's curriculum stage is replaced by a VOC-0 copy (`_evaluation_curriculum_stage`). Its objective
+    weights only feed rewards, and its reset probabilities do nothing under an explicit reset.
+  - Inference reads only `training.network`, the compute dtype, the seed and the device (`create_actor_template`).
+    `training.optimization.*` is read only by the learner.
+- **The same, checked by running it on the CPU** [M] (`tools/recipe_screen_tests/eval_invariance.py`):
+  - The unchanged official harness evaluated a stored FlashSAC ep12 checkpoint and two copies whose metadata differ in
+    exactly K's keys:
+    - copy 1: K's LR fields, schedule 136,728 updates, thresholds × 2 and `curriculum_stage` 1;
+    - copy 2: `curriculum_stage` 3.
+  - The object trajectories are bit-identical (362 rows), and every metric is identical except the echoed
+    `environment_steps`.
+
+**D's patch** (`ops/box/patch_flashchord_dr.py`):
+- **Placement:** a hook appended to `lifecycle/reset.py`, in the manner of the VOC patch, plus `lifecycle/v2d_dr.py`.
+  With `FC_DR_RESET` unset it imports and wraps nothing.
+- **Mechanism:**
+  - `ReferenceReset.sample` marks the sampled worlds and `prepare_explicit` clears the mark.
+  - `reset_worlds`, after the reset kernel has written the state (with the state-bank patch, also after a banked state
+    is loaded), perturbs the marked worlds of its mask and repeats `eval_fk` before the first step.
+  - Flags and counters are allocated in `ReferenceResetTable.build`, before any graph capture.
+- **Noise:**
+  - Each object's free joint: uniform ±1.5 mm per world axis, plus a world-frame rotation whose rotation vector has
+    each component uniform in ±0.015 rad (so the angle is ≤ 0.026 rad).
+  - Every finger joint of both hands: ±0.01 rad, clamped to its limits. The floating wrists are not perturbed.
+  - The noise comes from its own per-world Warp stream, seeded with `FC_DR_SEED`. The upstream draws (frames, finger
+    openings, bank) are unchanged.
+- **CPU tests** [M] (`tools/recipe_screen_tests/dr_patch_test.py` + `dr_compare.py`): ep12 S1 grasp-lock reference,
+  8 worlds, FlashCHORD at the evaluator pin, patched copies in the scratchpad. 40 checks, 0 FAIL:
+
+| check | result |
+|---|---|
+| FC_DR_RESET unset vs stock: two sampled resets, 40 zero-action steps (incl. the 20-step VOC-1 hold), explicit reset to frame 0, 5 steps | bit-identical |
+| same, full box patch set (VOC + FDR + DR, FC_VOC_INERTIA / FC_FDR_* set) vs the set without DR | bit-identical |
+| DR on: upstream reset frames and finger openings | unchanged |
+| object position offsets | within ±1.5 mm per axis, all nonzero (max 1.447 / 1.491 mm, mean \|Δ\| 0.66 / 0.77 mm on the two resets) |
+| object rotation | ≤ √3 × 0.015 (max 0.0208 rad, mean 0.0131) |
+| finger offsets | within ±0.01 rad (max 0.00999; 35 of 352 at a joint limit) |
+| wrists and the 21 other coordinates | unchanged |
+| per-world and per-reset draws | differ (every world, every reset); seed 43 ≠ seed 42; "1.5 0.015 0.01" ≡ "1.5,0.015,0.01" |
+| explicit reset to frame 0 after two perturbed episodes | bit-identical to stock and to the reference row; mark cleared; 2 perturbed resets counted per world |
+| the evaluator's own sequence (sampled reset, explicit frame-0 reset, 5 steps) with DR on in the process | bit-identical to stock |
+| control: in stock FlashCHORD, one extra step of history before an explicit reset changes the following steps (MuJoCo warm start) | yes (max \|Δq\| 0.032), so steps after an explicit reset are compared only within the evaluator's sequence |
+| with the state-bank patch: DR unset ≡ bank alone (share 0.5, 2 of 8 worlds banked); no bank + DR ≡ DR alone; bank + DR: same frames and bank draws, offsets within bounds, explicit reset untouched | all PASS |
+| patch order DR → states vs states → DR | identical `reset.py`; bank + DR runs bit-exact |
+
+- **How much of the perturbation survives** [M, CPU, box physics, zero action, same frames, DR vs no DR]: the object
+  offset has a median of 1.39 mm right after the reset and 0.71 mm (max 58 mm) at the end of the 20-step VOC-1 hold.
+  Twenty steps later, at VOC 0 in this test, the median is 8.6 mm (max 199 mm). So the hold halves the nudge but does
+  not erase it, and contacts then amplify it, as in the scored draws.
+- **Caveat:** in training, the assist after the hold is the curriculum's (≥ 0.25 for most of C's run), which damps
+  this growth. The finger noise is small next to the stock reset's random finger opening (0–0.7 of the reference).
+
+**Readouts per (arm, episode, seed) cell:**
+- the chosen checkpoint and its NREP draws: registered AUC vs mocap (mean, sd with ddof 0, worst draw, n) and
+  sim_vs_ref (mean, sd);
+- the per-checkpoint curve, the early-stop reason, the trained checkpoints;
+- the checkpoint config check: steps, seed, LR fields, thresholds, FDR weights, DR strings, config hash;
+- whether the DR hook's start line appears in the training log;
+- the reference md5.
+
+A cell counts as present iff its training ended (exit 0 or an early stop), a checkpoint was chosen, and ≥ 8 of its 10
+draws were scored.
+
+**Pre-registered rules** (computed by `tools/recipe_screen.py verdict` over the merged box summaries; seed-mean = the
+mean over seeds 42 and 43 of the cell values):
+- **K vs C:**
+  - **signal** iff the mean over the 4 episodes of (seed-mean AUC K − seed-mean AUC C) is ≥ +0.03 and no episode is
+    ≤ −0.05;
+  - **harm** iff that mean is ≤ −0.03 or any episode is ≤ −0.10;
+  - otherwise **inconclusive**.
+- **D vs C:**
+  - **signal** iff the 10-draw AUC sd (seed-mean) falls by ≥ 40 % on ≥ 2 of the 4 episodes, AND the 4-episode mean of
+    (seed-mean AUC D − C) is ≥ −0.02;
+  - **harm** iff that mean is ≤ −0.03;
+  - otherwise **inconclusive**.
+  - An sd of 0 for C cannot fall.
+- **Missing cells:**
+  - they are listed;
+  - any missing cell needed by a verdict makes it **INCOMPLETE**, never INVALID and never silently dropped;
+  - provisional means on the complete episodes are printed, but they are not a verdict.
+- **INVALID** only for a design violation:
+  - a present cell on another reference file;
+  - a checkpoint config that is not its arm's;
+  - D's config differing from C's;
+  - the DR hook active in a C/K training, or absent in a D training.
+- **Reported, no rule:**
+  - per arm, the AUC of the seed picked by its 10-draw sim_vs_ref against the 2-seed mean (the value of choosing
+    between seeds without ground truth), and the oracle best of 2;
+  - how often sim_vs_ref orders the two seeds the same way AUC does;
+  - every cell's worst draw.
+- **What the verdicts mean:**
+  - One reference per episode, so the screen measures recipe effects on these references, not reference-build
+    variance (README round 2).
+  - K bundles two changes; a K signal would need a split arm to say which part helps.
+  - A signal buys a confirmation on more episodes or seeds, not adoption.
+
+**Robustness built into the job** (`ops/jobs/recipe_screen.sh`):
+- every official evaluation runs under `timeout 1200 s`, and the curve under 1,500 s;
+- the early-stop watcher gets 1,200 s after its training ends;
+- a training that exits non-zero without an early stop is a failed cell: truncated runs are never compared;
+- the box summary is rewritten after every cell, and the merge also reads a results directory, so a box that dies
+  still contributes its finished cells;
+- the stall watchdog (30 min) and self-destroy are the box's (`ops/box/run_job.sh`, `watchdog.sh`), checked unchanged.
+
+**Dry run** (CPU, `tools/recipe_screen_tests/dry_run.sh`; fake numbers, for the mechanics only) [M]:
+- **Setup:** the real job script, `early_stop.sh`, `recipe_screen.py` and the DR patch applied to a copy of
+  `reset.py`, on two "boxes" (SEEDS=42 | SEEDS=43). Training, evaluation, scoring and the store are stubbed.
+- **Faults injected:**
+  - a D training crashes after 2 checkpoints;
+  - one best-checkpoint draw hangs;
+  - one early-stop watcher hangs;
+  - `FC_DR_RESET` and `CURR_SCALE` are set in the job environment.
+- **Results:**
+  - both jobs exit 0; 24 cells;
+  - K overrides reach K only;
+  - `FC_DR_RESET` reaches D trainings only, and none of the evaluations (461 recorded processes);
+  - the job's stray `FC_DR_RESET`/`CURR_SCALE` were dropped;
+  - early stopping killed trainings;
+  - the crash became `train_failed` (its checkpoints were not scored), the hung draw left 9 of 10 draws (present),
+    and the hung watcher was killed after ES_TAIL;
+  - merged verdicts on the fake numbers: K vs C "signal" (+0.039), D vs C "INCOMPLETE" with `D/ep24-s43` listed;
+  - with the cell filled: "signal";
+  - reference or config tampering gave INVALID, a duplicate summary was ignored, and the directory input merged
+    identically.
+- The checker (`dry_check.py`) reports 29 PASS, 0 FAIL on runs `dry3` and `dry4`. dry4 ran the final job script
+  (`b34c09e5`).
+- Details in the 31 Oct work-log entry.
+- A boundary unit test of the rules: K − C exactly +0.03 gives signal, +0.0299 inconclusive and −0.03 harm. An sd
+  fall of exactly 40 % with a mean of exactly −0.02 gives signal; −0.0201 gives inconclusive, −0.03 harm, and a 39 %
+  fall inconclusive.
+
+**Box plans, time and cost** [E]:
+- **Inputs:**
+  - speed ~30M env steps per ~37 min per training slot, 2 slots per RTX PRO 6000 box, $1.37–1.45/h (the rlloop box
+    measured 42 min per 30M with the slots shared);
+  - early-stopped runs average ~55M (O1's four: 60/50/60/70M);
+  - per box, setup ~25 min and tail ~15 min, plus up to half a training of slot imbalance;
+  - D's extra kernel and second `eval_fk` per reset step: < 1 % [E, untested on GPU].
+
+| plan | per box | wall | total, typical (ES) | total, worst (every run to 70M at 42 min / 30M) |
+|---|---|---|---|---|
+| **2 boxes: `SEEDS=42` / `SEEDS=43`** (12 cells each; every arm comparison within a box) — recommended | 7.5–9.8 h | ≈ 8–10 h | **$20–28** | ≤ $33 |
+| 3 boxes: `ARMS=C` / `ARMS=K` / `ARMS=D` (8 cells each) | 5.2–7.0 h | ≈ 5–7 h | $21–30 | ≤ $35 |
+
+**Launch** (after the owner's go-ahead; commit the exact code first; a ledger planned line per box before each create):
+```bash
+python3 ops/ledger.py add planned 20261031-rscr42-<sha7> 14 "recipe screen box A (SEEDS=42), physics-solver.md 8"
+ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261031-rscr42-<sha7> 'SEEDS=42 bash ops/jobs/recipe_screen.sh'
+python3 ops/ledger.py add planned 20261031-rscr43-<sha7> 14 "recipe screen box B (SEEDS=43), physics-solver.md 8"
+ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> 20261031-rscr43-<sha7> 'SEEDS=43 bash ops/jobs/recipe_screen.sh'
+# 3-box variant: run ids 20261031-rscrC/-rscrK/-rscrD-<sha7>, jobs 'ARMS=C bash ops/jobs/recipe_screen.sh' (K, D alike), ~$10 planned each
+# after both boxes are gone (CPU): fetch each run's results/recipe_screen/ (summary.json, */*/cell.json), then
+hf download $HF_STORE --repo-type dataset --include "runs/20261031-rscr4?-<sha7>/results/recipe_screen/*" --local-dir <dir>
+python3 tools/recipe_screen.py verdict <dir>/runs/20261031-rscr42-<sha7>/results/recipe_screen/summary.json \
+    <dir>/runs/20261031-rscr43-<sha7>/results/recipe_screen/summary.json --out docs/research/physics-2026-10-30/gpu/recipe_screen_merged.json
+```
+
+**Code** (uncommitted when this was written; md5 prefixes):
+
+| file | md5 |
+|---|---|
+| `ops/jobs/recipe_screen.sh` | `b34c09e5` |
+| `ops/box/patch_flashchord_dr.py` | `5e204e57` |
+| `tools/recipe_screen.py` | `c1d36554` |
+| `tools/recipe_screen_tests/`: dr_patch_test | `9239a0c9` |
+| dr_compare | `54be26d4` |
+| schedules | `bd94d508` |
+| eval_invariance | `4135c84e` |
+| stubs | `75e5767f` |
+| dry_run.sh | `bbea0dcd` |
+| dry_check | `df456871` |
+
+Reused unchanged: `tools/early_stop.sh`, `tools/ckpt_curve.sh`, `tools/ckpt_curve_summary.py`, `ops/box/lib.sh`,
+`run_job.sh`, `watchdog.sh`. The commit used for the launch is recorded in each box's job log and summary.
+
+**Not testable on CPU:**
+- FlashSAC training itself: Warp graph capture crashes on the CPU. So the DR patch has not run under CUDA graph
+  capture. Its arrays are allocated in the table builder before capture, like the state-bank patch's, which ran under
+  capture on the GPU on 31 Oct.
+- K's LR and schedule inside a real training: the config resolution and the LR function were checked, not a run.
+- Real early-stop, curve, evaluation and scoring timings, and the hung-process timeouts on the GPU.
+- The store pull of the physS1 references: the paths come from the G1 summary and the job scripts, and the md5 is
+  recorded on the box.
+- The box speed with D's extra kernels.

@@ -5698,3 +5698,103 @@ Background agent, CPU only, $0, no ground truth read.
 - Correction (10:58 UTC 31 Oct, from the ledger/notification timestamps): my entries since ~10:20 UTC carried clock
   estimates up to ~1 h late. Actual times: loop pages published ~10:25, LR/DR proposal ~10:35, budget replies 10:44–10:46,
   combined budget ~10:48, lean chosen ~10:50, top-up recorded 10:56 UTC (not 11:05 / 11:30 / 11:50).
+
+### 31 Oct ~11:00–12:05 UTC — recipe screen C / K / D: built, CPU-tested and pre-registered (physics-solver.md §8; no GPU run)
+- Task (coordinator, owner's LR/DR idea, lean budget): 3 arms × public ep2/12/18/24 × seeds 42/43 = 24 trainings.
+  - All cells share ONE stored reference per episode: `runs/20261030-physS1-6a814df/refs/glockt/ep<N>`. These are
+    round 1's S1 GL+ILC+EVOLVE references, also G1's input (`gpu/psolve_G1_summary.json`); no other store run holds
+    all four.
+  - S1 scan masses, cap 70,004,736 steps, ES 0.9 / 20M / 20M / 2 for every arm, NREP 10.
+  - Nothing rented. Files are left uncommitted for the coordinator.
+- **New files:**
+  - `ops/jobs/recipe_screen.sh` (box job; knobs SEEDS / ARMS / CELLS for 2- or 3-box packing);
+  - `ops/box/patch_flashchord_dr.py` (training-only start-state randomization, FC_DR_RESET / FC_DR_SEED);
+  - `tools/recipe_screen.py` (arm definitions, cell records, config check, box summary, merge + pre-registered
+    verdicts; a missing cell gives INCOMPLETE);
+  - `tools/recipe_screen_tests/` (dr_patch_test.py, dr_compare.py, schedules.py, eval_invariance.py, stubs.py,
+    dry_run.sh, dry_check.py).
+- **Machine and inputs:**
+  - this cloud container (4 CPU); FlashCHORD at the evaluator pin, `S=<scratchpad>`,
+    `FC=$S/src/video_to_data/robotic_grounding/flash_chord`, venv `$S/fcvenv`;
+  - patched copies `$S/rs/fc_{dr,s,sdr,dsr,box,boxref}` (symlink farms with real copies of the edited packages);
+  - `REF=$S/box2/refs/glockt/ep12/processed/sequence_id=t3_ep012/robot_name=sharpa_wave/ref_gl_ilc.parquet` (CPU S1
+    grasp-lock ep12 reference, scratchpad assets).
+- **DR patch** [M]:
+  - Command:
+    `cd $FC && EMB=sharpa_hands_mid USE_COPY=<copy> [FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=42] [FC_STATE_RESET=$S/loop/bank12.npz FC_STATE_RESET_P=0.5] [MODE=evalseq|EXTRA=1] $S/fcvenv/bin/python tools/recipe_screen_tests/dr_patch_test.py $REF $S/rs/out/<name>.npz`
+    (18 configurations), then `dr_compare.py $S/rs/out` → **40 checks, 0 FAIL**.
+  - Unset: bit-identical to stock, alone and with the box patch set.
+  - On, the draws stay in bounds:
+    - object position max 1.447 mm, mean |Δ| 0.66 mm;
+    - rotation max 0.0208 rad;
+    - fingers max 0.00999 rad;
+    - wrists and other coordinates unchanged.
+  - The draws are new per world, per reset and per seed. Upstream frames and finger openings are unchanged.
+  - Explicit resets and the evaluator's reset sequence with DR on are bit-identical to stock.
+  - With the state bank: equivalent either way, in either patch order.
+  - Survival of the nudge: median 1.39 mm → 0.71 mm at the end of the 20-step VOC-1 hold, then 8.6 mm 20 steps later
+    (zero action, VOC 0).
+  - Control: stock's steps after an explicit reset depend on the history (warm start, max |Δq| 0.032), so the steps
+    after an explicit reset are compared within the evaluator's sequence only.
+- **K settings in FlashCHORD's config code** [M]:
+  - Command: `cd $FC && JAX_PLATFORMS=cpu $S/fcvenv/bin/python tools/recipe_screen_tests/schedules.py $S/rs/fc_box <ep12 task dir> $S/rs/schedules.json`.
+  - The v2d curriculum thresholds equal the tool's constants. C and D resolve to identical configs. C vs K differ only
+    in the 4 LR keys and the thresholds (top level and training.curriculum).
+  - The horizon is 136,728 updates for both C (null → total) and K (pinned).
+  - LR at 10/20/30/70M (critic | actor):
+    - C: 2.93/2.73/2.43/1.50e-4 | 2.98/2.93/2.84/2.26e-4;
+    - K: 5.74/4.97/3.84/0.30e-4 | 5.93/5.73/5.40/3.18e-4.
+  - VOC at the checkpoints:
+    - C: 1 / .75 / .75 / .5 / .25 / .25 / .1;
+    - K: 1 / 1 / 1 / .75 / .75 / .75 / .5.
+  - **Finding:** the actor and temperature clocks advance once per actor update (period 2), so the actor's cosine
+    reaches only its midpoint by the cap. K's actor LR stays above C's peak, and "low" holds for the critic only. §6.1's
+    LR numbers were the critic clock. This is an open point for the owner; the registered value is the spec.
+- **Evaluator invariance** [M]:
+  - Command: `cd $FC && EMB=sharpa_hands_mid $S/fcvenv/bin/python tools/recipe_screen_tests/eval_invariance.py $S/box3/runs/loop/ep12-s42/policy_30003200.safetensors $REF $S/rs/evinv`.
+    The checkpoint is a stored FlashSAC ep12 checkpoint (250M-step config).
+  - The unchanged harness ran on CPU (1 world, explicit, graph capture skipped as in trace_rollout) on the base copy
+    and on copies with K's keys / curriculum_stage 1 and 3.
+  - Result: object trajectories bit-identical (362 rows), and every metric identical except the echoed
+    environment_steps. About 30 s per evaluation.
+- **Dry run of the whole job** [M]:
+  - Command: `bash tools/recipe_screen_tests/dry_run.sh $S/rs/dry4 $FC $S/venv/bin/python $S/fcvenv/bin/python $REF`.
+    Two boxes (SEEDS=42 | 43); training, evaluation, scoring and the store stubbed with FAKE numbers; the real job,
+    `early_stop.sh`, `recipe_screen.py` and the DR patch.
+  - Faults injected:
+    - a crash of D/ep24-s43 after 2 checkpoints;
+    - a hung draw (K/ep2-s42 r7);
+    - a hung early-stop watcher (C/ep18-s42);
+    - stray `FC_DR_RESET` / `CURR_SCALE` in the job environment.
+  - `dry_check.py`: 29 PASS, 0 FAIL.
+    - Arms reached the right processes. `FC_DR_RESET` reached D trainings only and none of 461 evaluations.
+    - The crash → `train_failed`. The hung draw → 9/10 draws, still present. The watcher was killed after ES_TAIL;
+      only that one.
+    - Merge: K vs C "signal" (+0.039), D vs C INCOMPLETE listing `D/ep24-s43`; with that cell filled, "signal".
+    - Reference / config tampering → INVALID, duplicates ignored, a results directory merges identically.
+  - Bugs found by earlier dry runs and fixed:
+    - the reference-dir check needed root-relative paths (dry1);
+    - ES_TAIL must exceed the watcher's own 25 s cycle in the dry run;
+    - `$BASHPID` in a redirection expands in the child, so the incremental summary's temp name never matched (dry2,
+      fixed with a named local).
+  - Also a boundary unit test of the rules: the bounds are inclusive as written, with float tolerance.
+- **Estimate** [E] (30M env steps / 37–42 min per slot, ES ~55–60M, 2 slots, $1.37–1.45/h):
+  - 2 boxes (SEEDS=42 | 43): 7.5–9.8 h each, $20–28, worst (no early stop) ≤ $33;
+  - 3 boxes (ARMS=C | K | D): 5–7 h, $21–30, worst ≤ $35.
+  - Launch commands are in physics-solver.md §8. A ledger planned line per box goes first.
+- **Open for the owner before launch:**
+  - go-ahead and plan (2 or 3 boxes);
+  - K's horizon: 136,728 (registered; the actor LR stays high) or 68,364 (actor low by 70M, critic low from 35M).
+
+### 2026-10-31 12:10 UTC — determined-wright: recipe screen reviewed and committed (not launched)
+- Reviewed the builder's job (`ops/jobs/recipe_screen.sh`), DR patch (`ops/box/patch_flashchord_dr.py`), merge/verdict
+  tool (`tools/recipe_screen.py`) and CPU tests (`tools/recipe_screen_tests/`). Re-ran here: `bash -n` on both shell
+  scripts, `py_compile` on every Python file, `recipe_screen.py args K 70004736` / `env D 42 …` print the registered
+  arguments. Builder's CPU results (not re-run): DR patch 40/40 checks, evaluator invariance bit-identical, dry run of
+  the whole job 29/29.
+- Decision (agent): K keeps the registered horizon 136,728 updates (same as C's own). Upstream advances the actor's LR
+  clock every second update in both arms, so K's actor never decays below 3.18e-4; the alternative 68,364 would hold
+  the critic at the 3e-5 floor from 35M on, a different experiment. Chosen checkpoints have been at 10–20M, where the
+  schedule tail matters little.
+- Not launched: needs the owner's go-ahead (2 boxes split by seed, ≈ $20–28 [E], ≤ $33) and the pack session's eval
+  work first.
