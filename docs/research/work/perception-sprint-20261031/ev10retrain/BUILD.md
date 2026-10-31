@@ -122,9 +122,29 @@ listings; the fake store holds the real input files and MOCK H5p7 rollouts of th
 `run_all.sh` / `check_all.sh` → `cpu/out/mock_checks.txt`, `mock_check_<n>.txt`, `mock_<n>/`. Mock numbers are NOT
 evidence about V4p.
 
+Final run on the final code, 18:33–19:33 UTC (`cpu/out/mock_checks.txt`; 11 scenarios, 247 checks, all pass):
+
 | scenario | injected | outcome | checks |
 |---|---|---|---|
-| (filled from `cpu/out/mock_checks.txt`, section 9) | | | |
+| pass | MOCK_POLICY=copy (the new policy tracks V) | **SWAP-ELIGIBLE**: vs V 0.9999 / RPE med 0.35 cm / 0 fails vs packed 0.4555 / 15.84 / 10; vs P 0.9628 / 1.07 / 0 vs 0.4474 / 15.80 / 10; seed 43 by rule 2; VERIFIED, own-reference checks 41/41 | 28/28 |
+| floor | the new policy fails like the packed one (cups at frame 0) | **SWAP-ELIGIBLE [EQUAL FLOOR]** (margins 0.0008 / 0.0014; section 9 item 3) | 28/28 |
+| worse | floor + the beige knocked 10 cm from f40 | **NO-SWAP** (c fails on V and P: median RPE 17.47 vs 15.84 cm) [EQUAL FLOOR] | 28/28 |
+| invalid | one extra config key in seed 43's training | **INVALID** (config differs from the packed gl10A2 checkpoint in `training.mock_extra_setting`) | 24/24 |
+| incomplete | seed 43's training exits 1 | **INCOMPLETE** (no chosen seed; no confirmation run) | 20/20 |
+| rerun | a new box: `RERUN_FROM=<incomplete> SEEDS_TODO="43"` | **SWAP-ELIGIBLE** over both seeds; only seed 43 trained; 81 single-file pulls, 0 failed, 0 listings | 19/19 |
+| topup | the 3rd official draw exits 1 | **SWAP-ELIGIBLE** (11 calls: rc 0 ×10, rc 1 ×1; 10 scored draws) | 28/28 |
+| nopacked | the H5p7 run not in the store (404) | **INCOMPLETE** on the box (packed 0 scored; the summary pull gave up after ~50 s); `cpu_after.sh` then scored the H5p7 draws from the store → **SWAP-ELIGIBLE** (`cpu/out/mock_nopacked_cpu_after/`) | 24/24 |
+| differs | `OPENBLAS_CORETYPE=Haswell` (a non-SkylakeX box) | B0 **DIFFERS** 0.90 mm / 1.31°, the job goes on with the box's track (mkref read its md5) → **SWAP-ELIGIBLE** | 28/28 |
+| b0stop | the committed expectation replaced by the stored track | **STOP** before any reference (B0 MISMATCH) | 10/10 |
+| badinput | a corrupted stored track served by the store | **STOP** before anything (md5) | 10/10 |
+
+Every scenario: no store listing, every download single-file, exactly one store upload (the final push), hands_mp /
+hand_refine / perc2 / score_registered never ran, nothing written under refs/glockt/ep10, refs/perc2mck/ep10,
+results/glock_public/ep10 or refs/glock/ep10. Verdict scenarios also check: each seed trained once on its own copy of
+V, seed and steps, 0.3 kg URDFs under /content/assets, every CLI training key equal to the packed config (10 keys),
+mkref on the box's V4p track with the eval-10 cache and the stored hands under SPLIT=eval, the grasp-lock stages with
+gl10A2's GL_ARGS and kp 400, CR `--rest_settle 1`, ≥ 10 official draws of the chosen checkpoint on the pristine
+evaluator, the scored sets, VERIFIED. Scoring dominates the mock's time (~4–8 min per scenario on 2–3 cores).
 
 ## 8. What the box rebuilds that this VM cannot
 E2S IK, contacts, contact retargeting (rest settle), grasp lock, ILC, re-plan, training, evaluation. The reference-level
@@ -137,7 +157,7 @@ the real V adds contact retargeting and grasp lock].
 1. **Re-run pulls of guessed paths** (first re-run mock, 18:27 UTC): the re-run pulled every possible best/ and
    confirmation file by name; an absent one costs `store.sh pull-files` 5 tries with 60–240 s waits (~10 min per file),
    so the re-run box sat in retries (the run was stopped; its log lines went to the job log, so the stall watchdog would
-   not have caught it). Fixed: `finish()` writes `rerun_results.txt` (the result files that exist) and a re-run pulls only
+   not have caught it; the retry line: `cpu/out/mock_rerun_v1_defect_joblog.txt`). Fixed: `finish()` writes `rerun_results.txt` (the result files that exist) and a re-run pulls only
    `rerun_files.txt` + `rerun_results.txt` entries.
 2. **The same cost for the optional H5p7 pulls** if the comparison set has not finished: now gated on its
    `h5_summary.json` (h5_reeval.sh writes it last) with `PULL_RETRY_S=5` (~1 min per absent file). Mock `nopacked`

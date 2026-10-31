@@ -1,0 +1,226 @@
+{
+ "label": "INCOMPLETE",
+ "why": [
+  "0 scored packed-policy draws (< 10)"
+ ],
+ "clauses": {},
+ "sides": {
+  "V": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9992,
+     "sd": 0.0021,
+     "min": 0.9934,
+     "max": 1.0,
+     "median": 1.0
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 0.3523,
+     "sd": 0.0125,
+     "min": 0.3276,
+     "max": 0.3706,
+     "median": 0.3525
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 0.4706,
+     "sd": 0.128,
+     "min": 0.3454,
+     "max": 0.767,
+     "median": 0.4149
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.9991,
+     "sd": 0.0022,
+     "min": 0.993,
+     "max": 1.0,
+     "median": 1.0
+    },
+    "fail_rate": 0.0,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {
+     "blue_cup": 0.9991,
+     "beige_cup": 0.9992
+    }
+   },
+   "packed": {
+    "n": 0,
+    "sim_vs_ref": null,
+    "RPE": null,
+    "MPPE": null,
+    "AUC": null,
+    "fail_rate": null,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {}
+   }
+  },
+  "P": {
+   "new": {
+    "n": 10,
+    "sim_vs_ref": {
+     "n": 10,
+     "mean": 0.9611,
+     "sd": 0.0074,
+     "min": 0.9429,
+     "max": 0.9686,
+     "median": 0.9627
+    },
+    "RPE": {
+     "n": 10,
+     "mean": 1.0728,
+     "sd": 0.0093,
+     "min": 1.0616,
+     "max": 1.0893,
+     "median": 1.0738
+    },
+    "MPPE": {
+     "n": 10,
+     "mean": 0.9446,
+     "sd": 0.1223,
+     "min": 0.8359,
+     "max": 1.2624,
+     "median": 0.9143
+    },
+    "AUC": {
+     "n": 10,
+     "mean": 0.962,
+     "sd": 0.0078,
+     "min": 0.9431,
+     "max": 0.9709,
+     "median": 0.9628
+    },
+    "fail_rate": 0.0,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {
+     "blue_cup": 0.9445,
+     "beige_cup": 0.9794
+    }
+   },
+   "packed": {
+    "n": 0,
+    "sim_vs_ref": null,
+    "RPE": null,
+    "MPPE": null,
+    "AUC": null,
+    "fail_rate": null,
+    "fails": 0,
+    "audit_fails": 0,
+    "objects": {}
+   }
+  }
+ },
+ "secondary_literal_own_reference": {
+  "new_draw1_vs_V": 1.0,
+  "old_packed_draw_vs_P": 0.4563,
+  "holds": true
+ },
+ "equal_floor_note": null,
+ "gate_prereg_s5_crosscheck": {
+  "new_mean_vs_V": 0.9992,
+  "bar": 0.456,
+  "holds": true
+ },
+ "choice": {
+  "chosen": "43",
+  "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+  "sha256": "06058d2ddeeb9fb571e6cb5370ddbaa24fe45607783a4f4409bba6a0ab4afd90",
+  "seeds": {
+   "42": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs42_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs42_glock_public/ep10/best/policy.safetensors",
+    "sha256": "9b0673fb380bc641d88e476cd496765474e660870440e5fa23e76761af98190f",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs42_glock/ep10-s42/policy_70004736.safetensors",
+    "mean": 0.9995,
+    "sd": 0.001,
+    "min": 0.9973,
+    "max": 1.0,
+    "values": [
+     1.0,
+     0.9998,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.9973,
+     0.9981,
+     1.0,
+     0.9998
+    ]
+   },
+   "43": {
+    "n": 10,
+    "results": "<MR>/content/results/perc2e10vs43_glock_public/ep10",
+    "checkpoint": "<MR>/content/results/perc2e10vs43_glock_public/ep10/best/policy.safetensors",
+    "sha256": "06058d2ddeeb9fb571e6cb5370ddbaa24fe45607783a4f4409bba6a0ab4afd90",
+    "chosen_by_curve": "<MR>/content/runs/perc2e10vs43_glock/ep10-s43/policy_70004736.safetensors",
+    "mean": 1.0,
+    "sd": 0.0001,
+    "min": 0.9998,
+    "max": 1.0,
+    "values": [
+     1.0,
+     1.0,
+     0.9998,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   }
+  },
+  "incomplete_seeds": []
+ },
+ "verify": {
+  "ok": true,
+  "failures": [],
+  "confirmation": {
+   "draws": 10,
+   "checked": 10,
+   "chosen": "43",
+   "sha256": "06058d2ddeeb9fb571e6cb5370ddbaa24fe45607783a4f4409bba6a0ab4afd90",
+   "eval_rc": {
+    "0": 10
+   }
+  },
+  "b0_band": "IDENTICAL"
+ },
+ "counts": {
+  "conf": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "old": {
+   "own": "P",
+   "n_files": 1,
+   "n_scored": 1
+  },
+  "packed": {
+   "own": "P",
+   "n_files": 0,
+   "n_scored": 0
+  },
+  "train42": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  },
+  "train43": {
+   "own": "V",
+   "n_files": 10,
+   "n_scored": 10
+  }
+ },
+ "rule": "docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 5"
+}
