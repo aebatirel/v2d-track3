@@ -15,7 +15,7 @@ Candidates (parameters fixed in PREREG.md before any score was read):
 Hands: a side that is not valid at frame t uses its last valid joints within CARRY frames, else it is absent.
 Cups (axis symmetry, a prior on the object class): deviation is measured as tilt of the cup axis (our mesh's distinct
 principal axis); spin is unobservable for them and not scored.
-Usage: python -I cand.py RDLIB_DIR SCRATCH OUT_JSON [--episodes ...] [--jobs 4]
+Usage: python -I cand.py RDLIB_DIR SCRATCH INPUTS_TSV OUT_JSON [--episodes ...] [--jobs 4] [--dry]
 """
 import argparse, json, os, sys, time
 import numpy as np
@@ -139,17 +139,19 @@ def run(ep, a):
     cand = {}
     cand['K1'], log1, free = rest_hold(P4, names, pts, axes, J)
     cand['K2'], log2, _ = rest_hold(P4, names, pts, axes, J, initial_only=True)
+    res = dict(ep=ep, names=names, frames=T, free_frac=[round(float(free[:, s].mean()), 3) for s in range(len(names))],
+               runs_K1=log1, runs_K2=log2, scores={})
+    if a.dry:                                                   # transform only: no ground truth is read
+        print(f'ep{ep} {names}: free {res["free_frac"]}  K1 held ' + '; '.join(f'{r["obj"]} {r["frames"]} {r["dev_cm"]}cm {r["dev_deg"]}deg {"H" if r["held"] else "-"}' for r in log1), flush=True)
+        return res
     # ---- scoring
     H = [L.host_geometry(t3, n, s) for s, n in enumerate(names)]
     G = L.ref_anchor(L.mocap7(t3, ep, names, T), H)
     REG = [L.kit_reg(LIB, n, H[s], ep, s) for s, n in enumerate(names)]
-    res = dict(ep=ep, names=names, frames=T, free_frac=[round(float(free[:, s].mean()), 3) for s in range(len(names))],
-               runs_K1=log1, runs_K2=log2, scores={})
     for k, X in [('base', P4)] + list(cand.items()):
         m = L.score(L.convert(L.to7(X), REG), G, H)
         res['scores'][k] = {q: round(m[q], 4) for q in ('AUC', 'MPPE', 'RPE')}
         res['scores'][k]['obj_AUC'] = [round(x, 4) for x in m['obj_AUC']]
-    # GT-informed oracle beside it (diagnostic only): frames K1 holds, set to the truth in the kit world
     res['seconds'] = round(time.time() - t0, 1)
     s = res['scores']
     print(f'ep{ep} {names}: base {s["base"]["RPE"]:.3f}/{s["base"]["MPPE"]:.3f}/{s["base"]["AUC"]:.4f}  K1 {s["K1"]["RPE"]:.3f}/{s["K1"]["MPPE"]:.3f}/{s["K1"]["AUC"]:.4f}  '
@@ -162,6 +164,7 @@ def main():
     p.add_argument('rdlib'); p.add_argument('scratch'); p.add_argument('inputs'); p.add_argument('out')
     p.add_argument('--episodes', default='0,2,11,12,13,18,21,22,23,24,26,27,31,39,40,41,42,43,44,45')
     p.add_argument('--jobs', type=int, default=4)
+    p.add_argument('--dry', action='store_true', help='run the GT-free transform only (no scoring, no ground truth)')
     a = p.parse_args()
     eps = [int(e) for e in a.episodes.split(',')]
     res = {}
