@@ -127,3 +127,47 @@ option was merged upstream on 22 Oct, after the evaluator pin.
    official draws per arm, rule as in §2. The top-variance episodes 30 and 14 go through geometry instead (carves, as
    eval 1).
 4. Transfer learning: record as future work for the report.
+
+## 7. Suggestions for the sessions building now (31 Oct ~08:40 UTC; nothing sent yet)
+Read from their branches: determined-wright f256680 (option 3 solver↔RL loop running, `20261031-rlloop-ccf9058`),
+focused-pascal 14ae515 (mass transfer check running), bold-albattani 1a86cde (gmg build 1).
+
+**Embodiment (option 3, solver↔RL loop with a reset-state bank). For its next round, not the pre-registered run:**
+1. **Find failures over jittered copies, not one deterministic rollout.**
+   - `failures.py` reads one evaluator-like rollout, so the bank learns one failure mode. Draws of one checkpoint fail
+     differently (H5 sd up to 0.255; Arda's expectation).
+   - Use `jitter_check.py`-style copies (common random numbers) → an onset-frame distribution → windows from it.
+   - Free by-product: Arda's "where does the error start" answer on public episodes.
+2. **Jitter the banked states at reset:** object pose about ±1 mm / ±0.01 rad, plus small velocity noise.
+   - This is domain randomisation where the draws diverge, inside the existing training-only patch
+     (inert unless set; explicit evaluation resets untouched).
+   - [H-bankDR] falsified unless the 10-draw sd falls ≥ 40 % on 2 of 3 episodes with the mean ≤ 0.02 lower.
+3. **Point the solver at physics-limited episodes:**
+   - ep13 (eval 14's twin: 0.544 with true or perceived motion; R5-lite: grip and hand-over physics), including a
+     one-hand alternative to the hand-over (Roman);
+   - the twins of the contact-sensitive variance episodes (25, 16, 3).
+   - Not ep11: it is reference-limited.
+4. **Report the draw sd next to the mean** in O3 vs O1. Spread is what an organiser re-run sees.
+
+**Control (packs, mass check, eval 10):**
+1. **Geometry first for the largest remaining spreads:** eval 30 (sd 0.255; sweeper inside our rack mesh) and eval 14
+   (0.199; cup pushed into the rack mesh). The eval-1 carve proved the mechanism (0.239 → 0.017, 20 official draws).
+   The eval-30 carve v3 (v2 dropped the sweeper through the rack) needs a CPU test first.
+2. **Keep rollout files in multi-draw jobs.** `h5_reeval.sh` deletes them. With trajectories kept, Arda's
+   frame-by-frame good-vs-bad comparison costs nothing extra (check whether `mass_check.sh` keeps them).
+3. **Eval 10 is reference-limited** (ep11 0.940 true vs 0.595 ours; copyability 0.964 vs 0.518), and S6 does not fire
+   there.
+   - The tool aimed at "our reference nests the cup deeper than the shapes allow" is Embodiment's queued physics fit v2
+     (honest contacts, no penetration).
+   - Proposed link: phys_fit v2 on ep11, judged on jittered zero-action executability and mocap AUC; only then eval 10.
+     Upper bound ≈ +0.017 LB [E].
+
+**Mesh (gmg):**
+1. **Collision overlaps between objects drive the largest draw spreads** (30, 14, 1; eval-10 nesting too).
+   - Add an acceptance check on the simulator copy: the overlap volume between objects' CoACD colliders along our own
+     reference, at rest and in contact phases. This is GT-free, and the forensics `hull_census` already computes it.
+   - The SPEC checks partner samples for the packed mesh and a rest pose against the table, not inter-object collider
+     overlap along the track. The good 0.219 lid lies 84 % inside the pot's convex hull.
+2. **Board 2's HULL fallback** (a 6.8 cm box over a 1–2 cm board) would also become eval 25's simulator board, the
+   slot-insertion episode with sd 0.099. Flag HULL picks for objects in assembly or nesting contact, or keep the carved
+   library copy for the simulator in that case.

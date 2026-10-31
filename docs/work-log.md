@@ -5452,3 +5452,14 @@ arm and a no-policy replay floor to stage B.
   - [H-screen], CPU, $0;
   - a training-only robustness patch with a CPU evaluation-unchanged check;
   - [H-DR] GPU A/B on 25/16/3, ≈ $8–12, owner go-ahead.
+- ~08:40 UTC (owner: "look at the other sessions, anything that can help?"): read determined-wright (option 3 running),
+  focused-pascal (mass check running) and bold-albattani (gmg build 1).
+  - Suggestions written to `docs/analysis/arda-feedback-20261031.md` §7:
+    - failures over jittered copies;
+    - jittered bank resets [H-bankDR];
+    - solver on physics-limited ep13 and the contact-sensitive twins;
+    - carves for evals 30 / 14;
+    - keep rollout files;
+    - phys_fit v2 on ep11 for eval 10;
+    - a gmg collider-overlap check, and a HULL flag for boards.
+  - Not sent; the owner decides.
