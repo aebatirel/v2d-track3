@@ -1160,7 +1160,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   leave a radial gap of up to rho (1/cos(pi/N) - 1) (0.78 mm at 40 mm, 16 sectors), which a 3 deg taper turns into up to
   ~15 mm of sink for an uncarved perfect nest; a 2 mm box reference has the same problem (+-1 mm radial steps). Hence a
   64-sector ring reference for lathe objects. Writing PREREG F-I5.15 + INTERLOCK 21.13 next.
-- 22:03 (Design) PREREG F-I5.15 ((1) rings: per-sector tangent inner / chordal outer faces from 1 deg x 1 mm rays, cap
+- 22:02 (Design) PREREG F-I5.15 ((1) rings: per-sector tangent inner / chordal outer faces from 1 deg x 1 mm rays, cap
   rule over N_s {8..32} x greedy bands, w_min 1.5 mm, continuity against the SHELL; (2) CoACD floor(cap/2) + repair;
   (3) precheck (a) table 4 mm, (b) support 4 mm, (c) overlap carvable on faithful SHELLs; (4) 64-sector / 2 mm-box
   reference, floor f_keep 0.5 + S where S_ref passes, DO_NOT_USE.json incl. the five round-1 folders; (5) nest synthetic
@@ -1171,3 +1171,6 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   order, limits) + header and section-0 pointers written. No code edited, nothing run, no rental, $0. Committing my
   lines only (PREREG.md, INTERLOCK.md, this log; the board-slot round-3 22:00 lines in this file are another agent's,
   left unstaged).
+- 22:03 pushed f00e657 (PREREG F-I5.15, INTERLOCK 21.13 + pointers, this log; committed 22:02:24 UTC, so the "22:03"
+  first written in those three places was corrected to 22:02 in a follow-up commit, text otherwise unchanged). Design
+  step done: no code edited, nothing run, $0. The Build step may start from f00e657.

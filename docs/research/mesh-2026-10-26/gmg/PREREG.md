@@ -2280,7 +2280,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     folders must not be used" is a recommendation from diagnostic (7), not an outcome of this rule, under which they are
     deliverable; they carry no do-not-use marker. The eval twins (P49) were not run (orchestrator, ~21:30 UTC).
   - **F-I5.15 Round 2: cavity-safe rings, CoACD below the cap, a pose precheck, a faithful reference and a physical
-    delivery floor, and the five INTERLOCK 21.10 decisions (post hoc; written 31 Oct 21:33-22:03 UTC in a design
+    delivery floor, and the five INTERLOCK 21.10 decisions (post hoc; written 31 Oct 21:33-22:02 UTC in a design
     step, no code edited and nothing run for it; committed and pushed before any code or run uses it).** Basis: the
     orchestrator's decision of 31 Oct ~21:50 UTC (items 1-7, relayed by the round-2 workflow task), under the owner's
     waiver (F-I5.0) and the owner's mandate of 31 Oct 21:22 UTC ("anything that improves the score within the

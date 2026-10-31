@@ -120,7 +120,7 @@ tested our tracked poses are themselves impossible (the ep11 cups overlap by hal
 table, the sweeper floats 45 mm above it), so even 2 mm copies of our shapes fail the hands-off test; and the ring
 pieces fail the hollowness test on their own. The eval episodes were not run. Round 2 (F-I5.15) comes next, public
 episodes first.
-**Round 2, written down (31 Oct ~22:03 UTC, section 21.13, PREREG F-I5.15; before any code or run).** Ring pieces
+**Round 2, written down (31 Oct ~22:02 UTC, section 21.13, PREREG F-I5.15; before any code or run).** Ring pieces
 whose faces cannot enter the cup's opening, with as much wall as the piece cap allows (room for 16 slices on a 20 cm
 cup);
 CoACD asked for half the cap so its repair can split; a check of every test frame for impossible poses (guest inside
