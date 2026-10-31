@@ -87,8 +87,9 @@ def params(plan, env):
             d.update({('t_fallback_m' if o == 'white_pot' else 't_lid_m'): t, 't_src': src})
             out['targets'][f'{SHORT[o]}/ep{e}'] = d
     fr = [obs_file(plan, env, 'plastic_dish_rack', e) for e in ce['plastic_dish_rack']]
-    t, src = chain([th(f) for f in fr], t0)
-    out['targets']['rack/run'] = dict(obs=fr, t_wall_m=t, t_src=src + ' pooled over the run episodes')
+    if fr:
+        t, src = chain([th(f) for f in fr], t0)
+        out['targets']['rack/run'] = dict(obs=fr, t_wall_m=t, t_src=src + ' pooled over the run episodes')
     for e in ce['blue_cup']:
         f = obs_file(plan, env, 'blue_cup', e)
         t, src = chain([th(f)], t0)
@@ -247,11 +248,12 @@ def main():
                             '--c0b', '--sigma', f'{d["sigma_m"]:.6g}', '--t_lid', fmt(d['t_lid_m']),
                             '--bar_t0', fmt(d['bar_t0_m']), '--lid_win', tb, '--markers_json', f'{R}/markers/ep{e}.json']
                     out.append(wrap('build', f'lid/ep{e}/{tb}_{v}', py(env, f'{S}/prim_potlid.py', *args), env))
-        d = P['rack/run']
-        cmd = 'PRIM_CUP_LEAN=1 ' + py(env, f'{S}/prim_rack.py', 'run', '--obs_dir', p['B'], '--out', f'{R}/cand/rack',
+        d = P.get('rack/run')
+        cmd = '' if d is None else 'PRIM_CUP_LEAN=1 ' + py(env, f'{S}/prim_rack.py', 'run', '--obs_dir', p['B'], '--out', f'{R}/cand/rack',
                                       '--episodes', ','.join(str(e) for e in ce['plastic_dish_rack']),
                                       '--t_wall', fmt(d['t_wall_m']), '--s0_min_t', '--markers_dir', f'{R}/markers')
-        out.append(wrap('build', 'rack/run', cmd, env))
+        if d is not None:
+            out.append(wrap('build', 'rack/run', cmd, env))
         for e in ce['blue_cup']:
             d = P[f'cup/ep{e}']
             for v, extra in CUP_VARIANTS.items():
