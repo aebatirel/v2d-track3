@@ -5644,3 +5644,7 @@ Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). 
 - ~16:40 UTC focused-pascal: pack 9a is built, staged and dry-run validated (5 uploads left per board). Its upload
   call was blocked by that session's permission guard, because the owner's approval reached it only by relay. It asked
   the owner directly in its own chat to reply "upload 9a" (or "pack 8"). This session does not upload in its place.
+- ~16:38 UTC bold-albattani: workflow cdo-sprint-c0b (cdo-sprint/C0b/) audits every constant and prior of the mesh
+  methods and labels each generic / own-observation / scan-derived / unknown. Scan-derived and unknown items get an
+  own-observation or generic value, with sources in a PREREG committed before any build. Then public checks and the eval
+  rebuild E0b → meshes/library_e0b(x) for pack 10. The running E0 box uses the old constants: comparison only, won't ship.
