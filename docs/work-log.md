@@ -5235,3 +5235,23 @@ Advice given:
 - determined-wright proposed that I run it with mass_check.sh and the verdict tool; they review the PREREG before launch.
   CPU prep workflow wf_eec92e0b-27a started (baseline table, selection, PREREG, opt-in v2 rule, mock, two reviews).
 - In parallel: ep11 rollout gate prep (wf_0f7cb69b-fa2). Box creates will be staggered.
+
+## 2026-10-31 ~15:55 UTC — ep11 rollout gate LAUNCHED; pack 9a for tonight in preparation
+- Owner (15:20 UTC, via the "New score status" session): "get me into that top tier, I'm giving you everything you
+  need" — read there as the go for the eval-10 lane; 15:25 "Lets do all the improvements that we planned and lets
+  prepare a pack"; 15:40 "I want a pack today". Standings (that session, 14:48–14:58): 11th on the six-board rank sum
+  (AUC 8, SP-SR 7, MP-SR 8, RPE 11, MPPE 10, CD-O 18).
+- ep11 gate reviews: integrity GO (with F1 decouple), mechanics GO. Fixes applied in 137ec62: NaN/inf AUC not scored,
+  non-finite Δ → INVALID; local stats/r4 (no import from mass_verdict.py); arm-identity check BEFORE training
+  (`e11g_verify.py identity_pre`; UNTESTABLE stop if both cups' trained references < 0.5 cm apart over the S12 window
+  [H threshold]); beige arms-apart reported; CPU diagnostic before B0; PREREG §7 amendments (sections 1–6 sha
+  unchanged 7e5194e7…); STOP cost with the 30-min hold; expected B0 DIFFERS for T on many CPUs (measured on CPU).
+  Verdict fixtures 17/17; mock suite 8/8 scenarios (271 checks) on the fixed code (663b7df).
+- **Launched** Vast 58552489, run `20261031-e11g-663b7df` (RTX PRO 6000 Max-Q, Australia, $1.069/h), commit 663b7df,
+  job `bash ops/jobs/ep11_gate.sh`; ledger planned $5.00. Expected 3.2–5.3 h, $3.5–6 [E].
+- Pack 9a for tonight (owner "I want a pack today"): pack 8 + C0 meshes (white_pot, white_pot_lid, plastic_dish_rack;
+  bold-albattani 5cce3d2); blue cup held back (its selector was written after scoring: CLAUDE.md). Frame
+  confirmation from the mesh session due ~19:00; fallback pack 8 alone at 20:00; upload target ~20:30 UTC. CPU repack
+  prep + review workflow wf_9536a849-812 running.
+- Masses v2 prep (wf_eec92e0b-27a) and the pack-10 combined retrain plan (costed ≈ $90–130 for the middle variant) in
+  progress with the score-status session.
