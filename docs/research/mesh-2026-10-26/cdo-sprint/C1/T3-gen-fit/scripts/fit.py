@@ -44,10 +44,11 @@ DEFAULT = dict(
     ds_vox=0.002,             # observed points: voxel-average at 2 mm (uniform density, light denoise)
     nrm_k=16,                 # neighbours for observed-normal PCA
     holdout_block=10, holdout_mod=5, holdout_res=2,   # 20 % of 10-frame blocks held out
-    alphas=[100.0, 50.0, 25.0, 12.0, 6.0, 3.0, 1.5, 0.75],
-    gamma=1.0, max_it=8, tol=2e-4,                    # tol in normalised units (bbox diagonal = 1)
-    cap_m=0.010, trim_q=0.9, cos_vis=0.2, beta=0.1, w_t2s=1.0, w_s2t=0.0, knn=64, eps=1e-4,
-    mesh_samples=40000,       # coarse enough that knn=64 reaches the other face of a thin wall (~10 mm patch)
+    alphas=[100.0, 50.0, 25.0, 12.0, 6.0, 3.0],
+    gamma=1.0, max_it=5, tol=2e-4,                    # tol in normalised units (bbox diagonal = 1)
+    cap_m=0.010, trim_q=0.9, cos_vis=0.2, beta=0.1, w_t2s=1.0, w_s2t=0.0, knn=32, eps=1e-4,
+    mesh_samples=20000,       # coarse enough that knn=32 reaches the other face of a thin wall (6-9 mm patch)
+    obs_per_it=40000,         # random subset of the (voxel-averaged) training points per iteration (speed)
     stop_stage=None,          # index into alphas of the last stage kept (None = all)
     out_faces=4000, close_hole_max=200,
 )
@@ -221,15 +222,17 @@ def nicp(V0, F, P, UP, cfg, log, stage_cb=None):
             # t2s
             S, fid, b = sample_bary(V, F, cfg['mesh_samples'], seed=100 * si + it)
             fn = face_normals(V, F)
-            dtk, kk_ = cKDTree(S).query(P, k=kn)
-            vt = (dtk <= cap) & (np.einsum('nki,ni->nk', fn[fid[kk_]], UP) >= cosv)
+            sub = np.random.default_rng(1000 * si + it).choice(len(P), min(len(P), cfg['obs_per_it']), replace=False)
+            Pi, Ui = P[sub], UP[sub]
+            dtk, kk_ = cKDTree(S).query(Pi, k=kn)
+            vt = (dtk <= cap) & (np.einsum('nki,ni->nk', fn[fid[kk_]], Ui) >= cosv)
             ft = np.argmax(vt, 1); okt = vt.any(1)
-            dt = dtk[np.arange(len(P)), ft]; k = kk_[np.arange(len(P)), ft]
+            dt = dtk[np.arange(len(Pi)), ft]; k = kk_[np.arange(len(Pi)), ft]
             if okt.sum() > 10:
                 okt &= dt <= np.quantile(dt[okt], cfg['trim_q'])
             kk = k[okt]
             B = sp.csr_matrix((b[kk].ravel(), (np.repeat(np.arange(len(kk)), 3), F[fid[kk]].ravel())), shape=(len(kk), n))
-            Ut = proj_target(S[kk], P[okt], fn[fid[kk]], beta)
+            Ut = proj_target(S[kk], Pi[okt], fn[fid[kk]], beta)
             Dt = B @ D
             ws = cfg['w_s2t']                                         # per-row weights; totals in units of n
             wt = cfg['w_t2s'] * np.sqrt(n / max(okt.sum(), 1))
@@ -239,8 +242,8 @@ def nicp(V0, F, P, UP, cfg, log, stage_cb=None):
             X_new = np.asarray(X_new).reshape(4 * n, 3)
             dv = np.abs(D @ X_new - V).max()
             X = X_new
-            log(f'  stage {si} alpha {alpha:g} it {it}: s2t {int(ok.sum())}/{n} t2s {int(okt.sum())}/{len(P)} '
-                f'med_s2t {np.median(d[ok]) if ok.any() else -1:.5f} max_dv {dv:.5f}')
+            log(f'  stage {si} alpha {alpha:g} it {it}: s2t {int(ok.sum())}/{n} t2s {int(okt.sum())}/{len(Pi)} '
+                f'med_s2t {np.median(d[ok]) if ok.any() else -1:.5f} med_t2s {np.median(dt[okt]) if okt.any() else -1:.5f} max_dv {dv:.5f}')
             if dv < cfg['tol']:
                 break
         Vs = D @ X
