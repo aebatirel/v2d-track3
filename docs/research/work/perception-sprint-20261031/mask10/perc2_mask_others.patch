@@ -1,0 +1,137 @@
+--- /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/perc2patch/perc2_orig.py	2026-10-31 10:38:29.662432755 +0000
++++ /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/perc2patch/perc2.py	2026-10-31 10:41:45.629094284 +0000
+@@ -456,38 +456,103 @@
+     order = ([int(mine)] if mine is not None else []) + [int(j) for j in np.argsort(-Si[a]) if Si[a, j] > -10 and int(j) != mine and int(j) not in taken]
+     return [pr[j] for j in order[:GUARD_K]]
+ GLOG = {}
+-for a, n in enumerate(names):
+-    t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
+-    P = [est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
+-    if TRACK_GUARD and not plausible(n, P[0], 0):
+-        low0 = low5(n, P[0], 0)
+-        for m in candidates(0, a)[1:]:
+-            g['f0_retries'] += 1; q = est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=m, iteration=REG_ITERS)
+-            if plausible(n, q, 0):
+-                P[0] = q; break
+-        else:
+-            set_last(est, P[0])                                         # none plausible: keep the original choice
+-        log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
+-    last_ok, last_try = (0 if plausible(n, P[0], 0) else None), -10 ** 6
++MASK_OTHERS = os.environ.get('MASK_OTHERS', '0') == '1'  # mask10 option (a), 31 Oct 2026 [H until its GPU test]: hide
++MASK_DIL = int(os.environ.get('MASK_DIL', 3))             # the OTHER roster objects (rendered at their frame i-1 poses)
++MASK_HULL = os.environ.get('MASK_HULL', '0') == '1'       # render the others' convex hulls (fills partial templates)
++MASK_MODE = os.environ.get('MASK_MODE', 'depth')          # depth: hide only pixels whose measured depth matches the other
++MASK_TOL = float(os.environ.get('MASK_TOL', 0.01))        # object's render (within MASK_TOL m) better than this one's
++if MASK_OTHERS:                                           # from each object's track_one input (pipeline/occluder_mask.py);
++    import occluder_mask                                  # frame-major loop; MASK_OTHERS=0 runs the loop below unchanged
++    MT = {n: make_mesh_tensors(meshes[n].convex_hull if MASK_HULL else meshes[n]) for n in names}
++    def masked_inputs(i, cur):
++        """Per object: frame i's gray image and depth with the pixels whose front-most render (all objects at their
++        poses in cur, camera frame) is ANOTHER object hidden (depth 0, gray = the frame's median)."""
++        D = []
++        for n in names:
++            _, dr_, _ = nvdiffrast_render(K=KR, H=RSZ[1], W=RSZ[0], ob_in_cams=torch.as_tensor(cur[n][None]).float().cuda(),
++                                          glctx=glctx, mesh_tensors=MT[n])
++            D.append(dr_[0].cpu().numpy())
++        M = occluder_mask.occluder_masks(np.stack(D), MASK_DIL, depths[i] if MASK_MODE == 'depth' else None, MASK_TOL)
++        out = {}
++        for a, n in enumerate(names):
++            d, gimg = occluder_mask.apply_mask(depths[i], rc[i], M[a])
++            out[n] = (rgb(gimg), d, int(M[a].sum()))
++        return out
++    ST, MLOG = {}, {n: [0] for n in names}
++    for a, n in enumerate(names):                          # frame 0: registration and guard retry exactly as below
++        t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
++        P = [est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
++        if TRACK_GUARD and not plausible(n, P[0], 0):
++            low0 = low5(n, P[0], 0)
++            for m in candidates(0, a)[1:]:
++                g['f0_retries'] += 1; q = est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=m, iteration=REG_ITERS)
++                if plausible(n, q, 0):
++                    P[0] = q; break
++            else:
++                set_last(est, P[0])
++            log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
++        ST[n] = dict(P=P, g=g, last_ok=(0 if plausible(n, P[0], 0) else None), last_try=-10 ** 6, t0=t0)
+     for i in range(1, N):
+-        X = est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
+-        if TRACK_GUARD and not plausible(n, X, i):
+-            g['implausible'] += 1; got = None
+-            if i - last_try >= GUARD_EVERY:
+-                last_try = i; g['redetect'] += 1
+-                for m in candidates(i, a):
+-                    q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
+-                    if plausible(n, q, i):
+-                        got = q; break
+-            if got is not None:
+-                X = got; g['reacquired'] += 1; log('track guard', n, f'f{i}: re-acquired')
+-            elif last_ok is not None:
+-                X = np.linalg.inv(W_C[i]) @ (W_C[last_ok] @ P[last_ok])        # hold the last plausible pose (world)
+-                set_last(est, X); g['held'] += 1
+-        if not TRACK_GUARD or plausible(n, X, i):
+-            last_ok = i
+-        P.append(X)
+-    poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1), 'guard', g if TRACK_GUARD else 'off')
++        MI = masked_inputs(i, {n: ST[n]['P'][-1] for n in names})   # every object at its frame i-1 pose
++        for a, n in enumerate(names):
++            s_ = ST[n]; est = ests[n]; g = s_['g']; P = s_['P']
++            rgb_m, dep_m, npx = MI[n]; MLOG[n].append(npx)
++            X = est.track_one(rgb=rgb_m, depth=dep_m, K=KR, iteration=TRACK_ITERS)
++            if TRACK_GUARD and not plausible(n, X, i):     # guard as below; re-detection/registration on the raw frame
++                g['implausible'] += 1; got = None
++                if i - s_['last_try'] >= GUARD_EVERY:
++                    s_['last_try'] = i; g['redetect'] += 1
++                    for m in candidates(i, a):
++                        q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
++                        if plausible(n, q, i):
++                            got = q; break
++                if got is not None:
++                    X = got; g['reacquired'] += 1; log('track guard', n, f'f{i}: re-acquired')
++                elif s_['last_ok'] is not None:
++                    X = np.linalg.inv(W_C[i]) @ (W_C[s_['last_ok']] @ P[s_['last_ok']])
++                    set_last(est, X); g['held'] += 1
++            if not TRACK_GUARD or plausible(n, X, i):
++                s_['last_ok'] = i
++            P.append(X)
++    for n in names:
++        poses[n] = np.stack(ST[n]['P']); log('tracked (masked others)', n, 'sec', round(time.time() - ST[n]['t0'], 1),
++                                             'guard', ST[n]['g'] if TRACK_GUARD else 'off',
++                                             'masked px median', int(np.median(MLOG[n][1:])) if N > 1 else 0)
++    json.dump({'mask_others': True, 'mask_dil_px': MASK_DIL, 'mask_hull': MASK_HULL, 'mask_mode': MASK_MODE,
++               'mask_tol_m': MASK_TOL, 'masked_px': MLOG}, open(f'{OUT}/mask_others.json', 'w'))
++else:
++    for a, n in enumerate(names):
++        t0 = time.time(); est = ests[n]; g = GLOG.setdefault(n, dict(f0_retries=0, implausible=0, redetect=0, reacquired=0, held=0))
++        P = [est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=MASK[n], iteration=REG_ITERS)]
++        if TRACK_GUARD and not plausible(n, P[0], 0):
++            low0 = low5(n, P[0], 0)
++            for m in candidates(0, a)[1:]:
++                g['f0_retries'] += 1; q = est.register(K=KR, rgb=rgb(rc[0]), depth=depths[0], ob_mask=m, iteration=REG_ITERS)
++                if plausible(n, q, 0):
++                    P[0] = q; break
++            else:
++                set_last(est, P[0])                                         # none plausible: keep the original choice
++            log('track guard', n, 'frame-0 registration implausible (low5 %.3f m)' % low0, '->', 'replaced' if plausible(n, P[0], 0) else 'kept', g['f0_retries'], 'retries')
++        last_ok, last_try = (0 if plausible(n, P[0], 0) else None), -10 ** 6
++        for i in range(1, N):
++            X = est.track_one(rgb=rgb(rc[i]), depth=depths[i], K=KR, iteration=TRACK_ITERS)
++            if TRACK_GUARD and not plausible(n, X, i):
++                g['implausible'] += 1; got = None
++                if i - last_try >= GUARD_EVERY:
++                    last_try = i; g['redetect'] += 1
++                    for m in candidates(i, a):
++                        q = est.register(K=KR, rgb=rgb(rc[i]), depth=depths[i], ob_mask=m, iteration=REG_ITERS)
++                        if plausible(n, q, i):
++                            got = q; break
++                if got is not None:
++                    X = got; g['reacquired'] += 1; log('track guard', n, f'f{i}: re-acquired')
++                elif last_ok is not None:
++                    X = np.linalg.inv(W_C[i]) @ (W_C[last_ok] @ P[last_ok])        # hold the last plausible pose (world)
++                    set_last(est, X); g['held'] += 1
++            if not TRACK_GUARD or plausible(n, X, i):
++                last_ok = i
++            P.append(X)
++        poses[n] = np.stack(P); log('tracked', n, 'sec', round(time.time() - t0, 1), 'guard', g if TRACK_GUARD else 'off')
+ if TRACK_GUARD:
+     json.dump(GLOG, open(f'{OUT}/track_guard.json', 'w'), indent=1)
+ np.savez(f'{OUT}/poses.npz', world_T_cam=W_C, **{f'cam_T_{n}': poses[n] for n in names})

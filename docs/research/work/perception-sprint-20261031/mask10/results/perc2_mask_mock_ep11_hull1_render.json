@@ -1,0 +1,112 @@
+{
+ "frames": [
+  0,
+  63,
+  64,
+  129,
+  130
+ ],
+ "mask_hull": true,
+ "mask_mode": "render",
+ "objects": {
+  "blue_cup": [
+   {
+    "frame": 63,
+    "masked_depth_px": 23289,
+    "gray_changed_px": 23036
+   },
+   {
+    "frame": 64,
+    "masked_depth_px": 25417,
+    "gray_changed_px": 25243
+   },
+   {
+    "frame": 129,
+    "masked_depth_px": 24617,
+    "gray_changed_px": 24252
+   },
+   {
+    "frame": 130,
+    "masked_depth_px": 21921,
+    "gray_changed_px": 21848
+   }
+  ],
+  "beige_cup": [
+   {
+    "frame": 63,
+    "masked_depth_px": 21518,
+    "gray_changed_px": 20917
+   },
+   {
+    "frame": 64,
+    "masked_depth_px": 19906,
+    "gray_changed_px": 19701
+   },
+   {
+    "frame": 129,
+    "masked_depth_px": 21010,
+    "gray_changed_px": 20719
+   },
+   {
+    "frame": 130,
+    "masked_depth_px": 22061,
+    "gray_changed_px": 21940
+   }
+  ]
+ },
+ "poses_shape": {
+  "blue_cup": [
+   5,
+   4,
+   4
+  ],
+  "beige_cup": [
+   5,
+   4,
+   4
+  ]
+ },
+ "own_silhouette_hidden_frac": [
+  {
+   "obj": "blue_cup",
+   "frame": 63,
+   "frac": 0.0
+  },
+  {
+   "obj": "beige_cup",
+   "frame": 63,
+   "frac": 0.0
+  },
+  {
+   "obj": "blue_cup",
+   "frame": 64,
+   "frac": 0.811
+  },
+  {
+   "obj": "beige_cup",
+   "frame": 64,
+   "frac": 0.594
+  },
+  {
+   "obj": "blue_cup",
+   "frame": 129,
+   "frac": 0.81
+  },
+  {
+   "obj": "beige_cup",
+   "frame": 129,
+   "frac": 0.663
+  },
+  {
+   "obj": "blue_cup",
+   "frame": 130,
+   "frac": 0.885
+  },
+  {
+   "obj": "beige_cup",
+   "frame": 130,
+   "frac": 0.896
+  }
+ ],
+ "mask_check_all_equal": true
+}

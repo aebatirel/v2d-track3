@@ -6,7 +6,7 @@ Pre-registered rule (README §0): ep11 Δlib >= +0.05, and |Δlib| <= 0.002 and 
 a variant passes when it passes on both arms.
 ep11 mechanism readings (* convention, after the kit's frame-0 scene alignment): per-object ADD and blue-cup height
 error by the DIAG's phases, beige-minus-blue height at f130 vs mocap.
-Usage: python -I m10_score.py OUT_JSON
+Usage: python -I m10_score.py OUT_JSON   (M10_EPS=11: re-score ep11 only, no verdict)
 """
 import json, os, sys, time
 from concurrent.futures import ProcessPoolExecutor
@@ -112,9 +112,14 @@ def main():
     if os.environ.get('SPLIT', 'public') != 'public':
         sys.exit('public episodes only')
     res = {}
+    eps = [int(x) for x in os.environ.get('M10_EPS', ','.join(map(str, XF.PUBLIC))).split(',')]
     with ProcessPoolExecutor(4) as ex:
-        for ep, r in ex.map(episode, XF.PUBLIC):
+        for ep, r in ex.map(episode, eps):
             res[str(ep)] = r
+    if eps != XF.PUBLIC:                       # partial re-score (e.g. ep11 after a fix): no verdict here, see m10_verdict.py
+        json.dump(dict(note='partial ORACLE re-score', episodes=res), open(sys.argv[1], 'w'), indent=1)
+        print('wrote', sys.argv[1])
+        return
     verdict = {}
     for v in VARS[2:]:
         verdict[v] = {}

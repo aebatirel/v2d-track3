@@ -84,8 +84,8 @@ class CupGeom:
         # the open end is the wider one (cups taper toward the base)
         rad = np.linalg.norm((self.V - c) - h[:, None] * ax, axis=1)
         lo, hi = h < np.quantile(h, 0.15), h > np.quantile(h, 0.85)
-        if np.median(rad[lo]) > np.median(rad[hi]):
-            ax = -ax                                           # +ax points from the open end to the base
+        if np.median(rad[hi]) > np.median(rad[lo]):            # the + end is the wider (open) one:
+            ax = -ax                                           # flip so that +ax points from the open end to the base
             h = -h
         self.axis, self.c = ax, c
         loc, _, _ = mesh.ray.intersects_location([c - ax * 0.3], [ax], multiple_hits=True)
