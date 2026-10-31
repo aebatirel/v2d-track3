@@ -6037,3 +6037,9 @@ Background agent, CPU only, $0, no ground truth read.
     cells. All of the gain is ep12 (+0.35 / +0.31, with a lower draw sd); everywhere else it keeps C.
   - Falsifier: train D on more public episodes (for example masses-v2's ep11/13/31). The selector fails if
     sim_vs_ref picks D where its AUC is lower by > 0.02, or if D wins on none of them.
+
+### 2026-10-31 20:31 UTC — determined-wright: owner decision "No D" for pack 10
+- Asked the owner whether pack 10 should also train D per eval episode, keeping the higher sim_vs_ref (≈ $14–20 [E]).
+- Answer: **"No D"**. Pack 10 stays on the current recipe.
+- Told focused-pascal and the score-status session; the D proposal is withdrawn.
+- No re-score of C/ep24-s43 (≈ $1, not asked for), so the §8 verdicts stay formally INCOMPLETE, with the bounds above.

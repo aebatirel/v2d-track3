@@ -13,7 +13,7 @@
   twice. They differ by up to 0.07 AUC per seed: pure training nondeterminism.
 - **Post-hoc [H]:** in every C-vs-D pair, the arm with the higher 10-draw sim_vs_ref (GT-free) also had the higher AUC
   (7/7). "Train C and D per episode, keep the higher sim_vs_ref" → +0.094 mean on public cells (all from ep12).
-  Candidate for pack 10; offered to focused-pascal and the owner.
+  Offered for pack 10; owner chose **"No D"** (20:31 UTC). Pack 10 stays on the current recipe.
 - Spend today on this lane: rscr42 $8.22, rscr43 $7.73, rscrS42 $3.30 (actuals, estimates); rscrS43 running ($1.34/h).
 
 ## 2026-10-31 ~03:15 UTC: realistic masses ADOPTED by the pre-registered rule (round 3)
