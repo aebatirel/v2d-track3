@@ -1247,7 +1247,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   - [H] Falsified if w6 does not recover t within 1 mm, if w7 does not carve, if the 30 mm cylinder of w3 becomes plate
     -like, or if on ep24 step 2 does not hold for board 1. Known limit: board 2's slot in board 1 is sized by a prior
     (board 2 = board 1's stock), not by a measurement; the depth of each slot is a prior as before (F-I4.3).
-  - **Outcomes (17:08-17:37 UTC, no rule change; code 9ad1af9) [M].** Synthetic T-I1 Waiver + Controls re-run (14
+  - **Outcomes (17:08-17:35 UTC, no rule change; code 9ad1af9) [M].** Synthetic T-I1 Waiver + Controls re-run (14
     tests, 1081 s): OK with 3 expected failures. w1 identical to F-I4.13 (t = 6 width known miss; 10 / 13 / 18 pass;
     t = 25 still out of scope, now via `camera_side_two_sided_fail`); w2-w5 and Controls pass (w5 lag 0.033 cm / 0.16
     deg); w3: the 30 mm cylinder and the 16 mm rod stay out of scope. **w6 misses** (expected failure): at t = 10 mm
