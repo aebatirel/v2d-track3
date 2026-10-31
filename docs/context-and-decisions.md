@@ -110,3 +110,10 @@ the answers that matter for future work. Dates are 2026.
   ahead in all". Agents no longer wait for approval before each rental batch. They still state the plan and its
   expected cost in the work log before renting, use the shared Vast spend ledger, make every machine self-destroy, and
   log the actual cost and results afterwards.
+
+- **2026-10-31 ~18:45 UTC (relayed by the score session), owner, verbatim:** "Okay lets fix the perception as you said
+  also for spoon the solution is the market on top of it. Those are very easy to track compared to other. Also like I
+  said you dont need to mention the deadline there is pleanty of time and thats for me to worry. Go retrack".
+  - Do not bring up deadlines in messages to the owner.
+  - Go-ahead for the perception re-track test with per-public-episode clean meshes.
+  - Spoon tracking via its top marker.

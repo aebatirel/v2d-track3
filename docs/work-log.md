@@ -5676,3 +5676,10 @@ diagnostic; nothing is picked for submission.
     cross-episode pick);
   - one box (cap $2), with a MANIFEST and frame/kit checks;
   - one verifier.
+
+### 2026-10-31 ~19:00 UTC — owner: "Go retrack"; do not mention deadlines to the owner
+- Relayed owner quote recorded in docs/context-and-decisions.md.
+- The pub-own-meshes workflow (`wf_56ac223f-44f`) delivers the per-public-episode clean mesh sets. They are handed to
+  focused-pascal when verified.
+- The score session starts a GT-free marker-correction layer (spoon first), with marker layouts from our own video.
+  Note 17 A1's scan catalogue is scan-derived. C0b already replaces the 7 mm ball prior with markers.py detections.
