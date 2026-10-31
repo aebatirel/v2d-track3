@@ -5022,3 +5022,10 @@ Advice given:
   S6 static hold (eval 10, central +0.007 LB [E]), a $0 GT-free eval screen, robust VO (eval 25), one GPU perception
   box for masking / occlusion-aware registration / an area gate. Tests T1–T5 pre-registered in that PLAN.
   - Started (CPU, $0): workflow tracker-fixes-cpu (S6 + T1 reference test, eval screen, T5 VO on ep24, review).
+- 04:50 UTC 31 Oct (after a usage-limit gap ~00:30–04:45): the tracker-fixes CPU workflow (S6 + T1 reference test, GT-free
+  eval screen, T5 VO on ep24) and the Tier A finish were cut by the limit. Partial S6 work (opt-in step in refine.py,
+  DEFAULT_STEPS unchanged, unit test) committed as WIP e50ec1e; tracker-fixes resumed (wf_7cf6d53f-37e). Tier A finish
+  deferred until the fixes are done, to stay under the usage window. Vast credit $16.17, 0 boxes running (all sessions).
+  - Phase-1 scoring detail [M] (`phase1/RESULTS.md`): most of the template gain is a constant body offset (after a per-
+    object constant offset P_s gains only +0.006 over P_o); a better template pays on the leaderboard only if it is
+    also the submitted mesh (library_v3's kit registration taxes a physically correct track: L1 on P_s +0.028).
