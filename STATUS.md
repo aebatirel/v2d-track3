@@ -1,5 +1,18 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~16:50 UTC: C0 done (stage 4); pack 9a ships pot, lid and rack; marker-ball flag needs an owner answer
+- **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/C0/README.md`. MANIFEST `cdo-sprint/C0/MANIFEST.json`
+  (sha256 5a87a853...8cb7c).
+- **AUC guard [D]** (frozen rule, 51/51 runs): all 4 objects ADOPTED.
+- **What ships** (pack 9a, focused-pascal 50004a7): pot, lid and rack, on 12 of 36 pairs.
+  - The blue cup is held back unless the owner includes it, because its selector was not pre-registered. This is a
+    deviation from PREREG section 5.
+  - Shipped configuration on the twins [D]: mean dAUC +0.0079, min -0.0092, dRPE -0.121 cm.
+  - [E] board CD-O 0.402 -> 0.367 (0.334 with the blue cup).
+- **Open, before the ~20:30 UTC upload:** pot, lid and rack carry marker balls from the scan-derived 7 mm prior
+  (verify_0 B1). Ship as is, or rebuild without balls or with generic balls (GT-free)? E0's frozen `prim_potlid.py`
+  has the same prior.
+
 ## 2026-10-31 ~15:40 UTC: CD-O sprint for the leaderboard (owner via the score session; CPU, $0 so far)
 - **Request** (owner's score session, 15:15 UTC): CD-O is our worst board (0.402, 18th of 20; rank = sum of six board
   ranks; 0.338 -> 14th, 0.297 -> 10th, 0.282 -> 6th). Wanted: an eval mesh-set candidate, chosen GT-free, by ~2 Nov

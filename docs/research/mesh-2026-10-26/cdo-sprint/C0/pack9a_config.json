@@ -1,0 +1,417 @@
+{
+ "note": "[D] pack-9a configuration (pot, lid, rack swapped; blue cup library_v3) rebuilt from stored runs; reported only, not a selection",
+ "all_15": {
+  "n": 15,
+  "eps": [
+   0,
+   2,
+   11,
+   12,
+   13,
+   21,
+   22,
+   26,
+   27,
+   31,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "mean_dAUC": 0.007893333333333327,
+  "min_dAUC": -0.009199999999999986,
+  "max_dAUC": 0.06119999999999992,
+  "mean_dSP_SR": 0.0,
+  "min_dSP_SR": 0.0,
+  "max_dSP_SR": 0.0,
+  "mean_dMP_SR": 0.0,
+  "min_dMP_SR": 0.0,
+  "max_dMP_SR": 0.0,
+  "mean_dMPPE_cm": -0.05876000000000003,
+  "min_dMPPE_cm": -0.29710000000000003,
+  "max_dMPPE_cm": 0.18040000000000012,
+  "mean_dRPE_cm": -0.1204533333333334,
+  "min_dRPE_cm": -0.5711,
+  "max_dRPE_cm": 0.09640000000000004,
+  "argmin_dAUC_ep": 12
+ },
+ "touched": {
+  "n": 12,
+  "eps": [
+   0,
+   2,
+   12,
+   13,
+   26,
+   27,
+   31,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "mean_dAUC": 0.009866666666666657,
+  "min_dAUC": -0.009199999999999986,
+  "max_dAUC": 0.06119999999999992,
+  "mean_dSP_SR": 0.0,
+  "min_dSP_SR": 0.0,
+  "max_dSP_SR": 0.0,
+  "mean_dMP_SR": 0.0,
+  "min_dMP_SR": 0.0,
+  "max_dMP_SR": 0.0,
+  "mean_dMPPE_cm": -0.07345000000000003,
+  "min_dMPPE_cm": -0.29710000000000003,
+  "max_dMPPE_cm": 0.18040000000000012,
+  "mean_dRPE_cm": -0.15056666666666677,
+  "min_dRPE_cm": -0.5711,
+  "max_dRPE_cm": 0.09640000000000004,
+  "argmin_dAUC_ep": 12
+ },
+ "per_twin": [
+  {
+   "ep": 0,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "dAUC": 0.0001000000000000445,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.18660000000000032,
+   "dRPE_cm": -0.3943000000000012,
+   "per_obj_AUC_base": {
+    "white_pot": 0.9925,
+    "white_pot_lid": 0.0
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.9926,
+    "white_pot_lid": 0.0
+   }
+  },
+  {
+   "ep": 2,
+   "objects": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot",
+    "white_pot_lid"
+   ],
+   "dAUC": -0.0040000000000000036,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.006100000000000105,
+   "dRPE_cm": -0.5711,
+   "per_obj_AUC_base": {
+    "white_pot": 0.9923,
+    "white_pot_lid": 0.9723
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.9931,
+    "white_pot_lid": 0.9636
+   }
+  },
+  {
+   "ep": 11,
+   "objects": [
+    "blue_cup",
+    "beige_cup"
+   ],
+   "run": "base",
+   "swapped_9a": [],
+   "dAUC": 0.0,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9334
+   },
+   "per_obj_AUC_9a": {
+    "blue_cup": 0.8622,
+    "beige_cup": 0.9334
+   }
+  },
+  {
+   "ep": 12,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "run": "single_plastic_dish_rack",
+   "swapped_9a": [
+    "plastic_dish_rack"
+   ],
+   "dAUC": -0.009199999999999986,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.18040000000000012,
+   "dRPE_cm": 0.09640000000000004,
+   "per_obj_AUC_base": {
+    "blue_cup": 0.9347,
+    "plastic_dish_rack": 0.9997
+   },
+   "per_obj_AUC_9a": {
+    "blue_cup": 0.9399,
+    "plastic_dish_rack": 0.9762
+   }
+  },
+  {
+   "ep": 13,
+   "objects": [
+    "blue_cup",
+    "plastic_dish_rack"
+   ],
+   "run": "single_plastic_dish_rack",
+   "swapped_9a": [
+    "plastic_dish_rack"
+   ],
+   "dAUC": 0.005599999999999938,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.04499999999999993,
+   "dRPE_cm": -0.16379999999999995,
+   "per_obj_AUC_base": {
+    "blue_cup": 0.9329,
+    "plastic_dish_rack": 0.9882
+   },
+   "per_obj_AUC_9a": {
+    "blue_cup": 0.9395,
+    "plastic_dish_rack": 0.9928
+   }
+  },
+  {
+   "ep": 21,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "run": "base",
+   "swapped_9a": [],
+   "dAUC": 0.0,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6835
+   },
+   "per_obj_AUC_9a": {
+    "blue_cup": 0.9815,
+    "water_pitcher": 0.6835
+   }
+  },
+  {
+   "ep": 22,
+   "objects": [
+    "blue_cup",
+    "water_pitcher"
+   ],
+   "run": "base",
+   "swapped_9a": [],
+   "dAUC": 0.0,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.7497
+   },
+   "per_obj_AUC_9a": {
+    "blue_cup": 0.9924,
+    "water_pitcher": 0.7497
+   }
+  },
+  {
+   "ep": 26,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "dAUC": 0.012300000000000089,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.10660000000000003,
+   "dRPE_cm": -0.2522,
+   "per_obj_AUC_base": {
+    "plastic_dish_rack": 0.9937,
+    "white_pot": 0.9367
+   },
+   "per_obj_AUC_9a": {
+    "plastic_dish_rack": 0.9937,
+    "white_pot": 0.9612
+   }
+  },
+  {
+   "ep": 27,
+   "objects": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "plastic_dish_rack",
+    "white_pot"
+   ],
+   "dAUC": 0.026800000000000046,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.25070000000000003,
+   "dRPE_cm": -0.3446999999999999,
+   "per_obj_AUC_base": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.9223
+   },
+   "per_obj_AUC_9a": {
+    "plastic_dish_rack": 1.0,
+    "white_pot": 0.9759
+   }
+  },
+  {
+   "ep": 31,
+   "objects": [
+    "mini_sweeper",
+    "plastic_dish_rack"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "plastic_dish_rack"
+   ],
+   "dAUC": 0.06119999999999992,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.17710000000000004,
+   "dRPE_cm": -0.17710000000000004,
+   "per_obj_AUC_base": {
+    "mini_sweeper": 0.9119,
+    "plastic_dish_rack": 0.6879
+   },
+   "per_obj_AUC_9a": {
+    "mini_sweeper": 0.9119,
+    "plastic_dish_rack": 0.8103
+   }
+  },
+  {
+   "ep": 41,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot"
+   ],
+   "dAUC": -0.0017000000000000348,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.0027000000000000357,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "white_pot": 0.991
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.9893
+   }
+  },
+  {
+   "ep": 42,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot"
+   ],
+   "dAUC": 0.0004999999999999449,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.03520000000000001,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "white_pot": 0.9915
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.992
+   }
+  },
+  {
+   "ep": 43,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot"
+   ],
+   "dAUC": 0.02959999999999996,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.29710000000000003,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "white_pot": 0.9482
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.9778
+   }
+  },
+  {
+   "ep": 44,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot"
+   ],
+   "dAUC": 0.0008000000000000229,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": -0.027900000000000036,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "white_pot": 0.9967
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.9975
+   }
+  },
+  {
+   "ep": 45,
+   "objects": [
+    "white_pot"
+   ],
+   "run": "c0",
+   "swapped_9a": [
+    "white_pot"
+   ],
+   "dAUC": -0.0036000000000000476,
+   "dSP_SR": 0.0,
+   "dMP_SR": 0.0,
+   "dMPPE_cm": 0.0028000000000000247,
+   "dRPE_cm": 0.0,
+   "per_obj_AUC_base": {
+    "white_pot": 0.9795
+   },
+   "per_obj_AUC_9a": {
+    "white_pot": 0.9759
+   }
+  }
+ ]
+}

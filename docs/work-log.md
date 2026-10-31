@@ -5349,3 +5349,37 @@ diagnostic; nothing is picked for submission.
 - So the few-degree rotation against library_v3 is library_v3's frame error. Do not align eval-built meshes to
   library_v3.
 - Write-up: `cdo-sprint/C0a-diag/README.md`. Sent to focused-pascal and the score session as a post-hoc diagnostic.
+
+### 2026-10-31 ~16:30-16:50 UTC — C0 stage 4: fixes and report (CPU, $0, no new scoring)
+- Workflow `cdo-sprint-c0` stage 4. Report: `docs/research/mesh-2026-10-26/cdo-sprint/C0/README.md`. Step log:
+  `cdo-sprint/C0/NOTES.md`.
+- **Final set.**
+  - The AUC guard (frozen rule) ADOPTED all 4 objects.
+  - **C0-final for packing = pot, lid and rack** (pack 9a, focused-pascal 50004a7, 12 pairs).
+  - The blue cup is held back unless the owner includes it (score-session decision, 16:20 UTC). This is recorded as a
+    deviation from PREREG section 5, made for integrity, not on scores.
+- **Fixed verify_0 B1** (documents only; no mesh change).
+  - Pot, lid and rack carry marker balls from the scan-derived prior: MK_R0 = 7 mm and the 5-9.5 mm window in
+    `prim_potlid.py` (audit, this log 27 Oct ~17:20 UTC).
+  - Measured [M]: pot 3 x 7.00 mm + 6.94 mm, where the build record shows free fits of 11.96/27.88/3.67 mm replaced by
+    7 mm; lid 7.00 mm; rack 7.00 + 5.22 mm.
+  - The flag is now in `MANIFEST.json`, `AUC_RESULTS.md`, `meshes/library_c0*/README.md` and the C0 README.
+- **Fixed verify_0 B2.**
+  - `MANIFEST.json` gets `status`, `c0_final` (guard verdict vs packing set), `pack_9a` and `in_pack_9a` per pair.
+  - The frozen PREREG version is kept in `status_history` (sha256 22209582…).
+  - No frozen field changed (checked).
+  - New sha256 5a87a853…8cb7c.
+- **Pack-9a configuration from the stored runs [D]** (`scripts/pack9a_config.py` -> `pack9a_config.json`):
+  - over 15 twins: mean dAUC +0.0079, min -0.0092 (ep12), dMPPE -0.059 cm, dRPE -0.121 cm, dSP/dMP-SR 0;
+  - over the 12 twins with pot, lid or rack: +0.0099.
+- **[E] board CD-O for pack 9a: 0.402 -> 0.367** (0.334 only with the blue cup).
+- **For the owner and score session before the pack 9a upload (~20:30 UTC):**
+  1. Ship pot, lid and rack with the scan-derived balls, or rebuild them without balls or with generic balls (GT-free,
+     CPU)?
+  2. Blue cup: include it or wait for E0?
+  3. Compliance tier.
+- **For E0:** its frozen `prim_potlid.py` still has MK_R0 = 7 mm, so its pot, lid and rack inherit B1 unless they are
+  built without balls or with generic balls.
+- **Corrections:**
+  - the PREREG header says ~15:40; it was committed at 15:32:36;
+  - verify_0 dates the ball audit 29 Oct; it is 27 Oct (29 Oct is the comment fix 14eaf37).

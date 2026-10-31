@@ -7,6 +7,20 @@ pushed as 081b37e before any ground truth was read.
 plastic_dish_rack, blue_cup}, so C0-final is the full C0 set. The verdict comes from `scripts/guard_eval.py`, and the
 full output is in `guard_result.json`.
 
+> **Stage 4 addendum (2026-10-31 ~16:40 UTC; see `README.md`).** The guard verdict above is unchanged. What ships is
+> not the full set:
+> - **C0-final for packing = {white_pot, white_pot_lid, plastic_dish_rack}** (pack 9a, focused-pascal 50004a7). The
+>   blue cup is held back unless the owner includes it, because its GT-free selector was written after its lathes
+>   were scored. This is a deviation from PREREG §5 ("no other selection"), made for integrity, not on scores.
+> - **New flag (verify_0 B1):** pot, lid and rack carry marker balls built with the scan-derived radius prior
+>   MK_R0 = 7 mm and the 5-9.5 mm free-fit window of `prim_potlid.py`. It was missing from §5 below.
+> - **Twin numbers of the shipped configuration** [D] (stored runs, `pack9a_config.json`): mean dAUC +0.0079 over 15
+>   twins (+0.0099 over the 12 that contain pot, lid or rack), min -0.0092 (ep12), dMPPE -0.059 cm, dRPE -0.121 cm,
+>   dSP-SR and dMP-SR 0. The joint ep13 -0.0240 needs the blue cup and does not occur in pack 9a.
+> - **[E] CD-O of the shipped set: 0.402 -> 0.367 cm**, not the 0.334 of §4 (which needs the blue cup).
+> - Corrections: PREREG.md was committed at 15:32:36 UTC and pushed at 15:32:38 (its header says "~15:40"); the
+>   load during the runs was ~11-13.
+
 Tags: [M] measured, [D] diagnostic (scored against public ground truth), [E] estimate, [H] hypothesis. Every pose
 number in this file is [D]: public twins, our perception tracks, and the public scans standing in for the hidden ones.
 
@@ -127,6 +141,9 @@ C0-final is all four objects, so the estimate is `cdo_estimate.json` `adopted_su
 - The blue-cup mesh is not watertight after `budget_mesh` (11 bodies).
 - Pot, lid and rack have floating parts.
 - Compliance and provenance tier of public-built meshes reused for eval is an owner question.
+- (Added in stage 4, verify_0 B1.) Pot, lid and rack carry marker balls built with the scan-derived radius prior
+  MK_R0 = 7 mm and free-fit window 5-9.5 mm (`prim_potlid.py`, audit in the work log 27 Oct ~17:20 UTC). Their
+  27 Oct scan passes are provisional until rebuilt with a generic ball rule.
 
 **Flags new in stage 2:**
 - the joint ep13 delta (-0.0240) lies below the per-object min threshold, which the rule does not apply to the joint

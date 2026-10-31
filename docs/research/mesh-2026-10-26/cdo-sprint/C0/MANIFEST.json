@@ -1,6 +1,98 @@
 {
  "candidate": "C0",
- "status": "assembled, AUC guard pre-registered (PREREG.md), not adopted",
+ "status": "AUC guard done (guard_result.json: all 4 ADOPTED under the frozen rule). C0-final FOR PACKING = white_pot, white_pot_lid, plastic_dish_rack (pack 9a, 12 pairs); blue_cup held back unless the owner includes it (deviation from PREREG section 5, see c0_final). Pot, lid and rack carry the scan-derived marker-ball prior (flags). See README.md.",
+ "status_history": [
+  {
+   "commit": "081b37e460d28fa3540bb1a77fad9934208ef58e",
+   "sha256": "22209582f5698543a9220ff1dcdaeeb3e4605dcef30bea56761d9596950c55b5",
+   "status": "assembled, AUC guard pre-registered (PREREG.md), not adopted"
+  }
+ ],
+ "c0_final": {
+  "auc_guard_verdict": [
+   "white_pot",
+   "white_pot_lid",
+   "plastic_dish_rack",
+   "blue_cup"
+  ],
+  "auc_guard_source": "guard_result.json (scripts/guard_eval.py, PREREG.md 081b37e)",
+  "for_packing": [
+   "white_pot",
+   "white_pot_lid",
+   "plastic_dish_rack"
+  ],
+  "held_back": {
+   "blue_cup": "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5."
+  },
+  "deviation_from_prereg": "PREREG section 5 says 'C0-final = the adopted objects. There is no other selection.' The packing set drops the adopted blue cup for an integrity reason (selector not pre-registered), not for a score reason. Nothing was added, and no mesh was re-selected."
+ },
+ "pack_9a": {
+  "n_swapped": 12,
+  "swapped_pairs": [
+   {
+    "eval_episode": 1,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 1,
+    "slot": 1,
+    "object": "white_pot_lid"
+   },
+   {
+    "eval_episode": 3,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 5,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 6,
+    "slot": 0,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 8,
+    "slot": 1,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 14,
+    "slot": 1,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 15,
+    "slot": 0,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 16,
+    "slot": 0,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 28,
+    "slot": 0,
+    "object": "plastic_dish_rack"
+   },
+   {
+    "eval_episode": 28,
+    "slot": 1,
+    "object": "white_pot"
+   },
+   {
+    "eval_episode": 30,
+    "slot": 1,
+    "object": "plastic_dish_rack"
+   }
+  ],
+  "built_by": "focused-pascal, commit 50004a7 (2026-10-31 16:20 UTC): pack 8 plus byte copies of the C0 pot, lid and rack; blue cup and all other pairs unchanged"
+ },
+ "provenance_note": "'tier P1, same tier as library_v3' means: fitted to our stereo points along library_v3-anchored tracks. library_v3 itself was fused along scan-templated tracks, which is an open organiser / owner question (verify_handoff N4). The 22 Oct owner decision says eval meshes are re-fused per eval episode; these are public-built meshes reused for eval, as library_v3 is.",
  "rule": "packed mesh only; simulator copies and rollouts unchanged",
  "n_pairs": 36,
  "n_swapped": 17,
@@ -24,7 +116,11 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": []
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
+   "in_pack_9a": true
   },
   "white_pot_lid": {
    "mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/white_pot_lid_ep2_fit_v2.glb",
@@ -46,8 +142,11 @@
     }
    },
    "flags": [
-    "T_LID 2.5 mm equals the value that leaked from scan measurements into the first brief (scan lid wall 1.8 mm); the clean-up round passed at 1.5/2.5/4.0 mm (worst 0.224 / 5.06 mm) and 2.5 is kept as the grid midpoint, not chosen by fidelity (fidelity prefers the thinnest sheet: 1.436 < 1.686 < 2.259)"
-   ]
+    "T_LID 2.5 mm equals the value that leaked from scan measurements into the first brief (scan lid wall 1.8 mm); the clean-up round passed at 1.5/2.5/4.0 mm (worst 0.224 / 5.06 mm) and 2.5 is kept as the grid midpoint, not chosen by fidelity (fidelity prefers the thinnest sheet: 1.436 < 1.686 < 2.259)",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 1 floating ball at 7.00 mm; build record: 1 free fit at 7.35 mm (inside the window) and 2 balls at the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
+   "in_pack_9a": true
   },
   "plastic_dish_rack": {
    "mesh": "docs/research/mesh-2026-10-26/results/prim/meshes/plastic_dish_rack_joint_v2.glb",
@@ -69,8 +168,11 @@
     }
    },
    "flags": [
-    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
-   ]
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: balls at 7.00 mm (prior; free fit was 9.51 mm, just outside the window) and 5.22 mm (free, inside the window).",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
+   "in_pack_9a": true
   },
   "blue_cup": {
    "mesh": "docs/research/mesh-2026-10-26/cdo-sprint/C0/meshes/ep21_blue_cup_g1.glb",
@@ -93,8 +195,13 @@
    },
    "flags": [
     "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
-    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
-   ]
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness",
+    "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag.",
+    "FRAME: rigid ICP C0 -> library_v3 moves 6.67 mm / 2.6 deg, about 6.45 mm of it along the cup axis (verify_handoff B1, verify_0 N5); 'same object frame as library_v3' is not confirmed for this mesh.",
+    "REGISTRATION: on twin ep21 the kit registration lands at 146.9 deg (1 of 5 seeds for this mesh, 0 of 5 for library_v3; verify_1 N4). [H] spin about the cup axis; the test reads the scan and was not run."
+   ],
+   "in_pack_9a": false
   }
  },
  "pairs": [
@@ -123,9 +230,13 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": [],
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
    "replaces": "meshes/library_v3/white_pot.glb",
-   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 1,
@@ -153,10 +264,13 @@
     }
    },
    "flags": [
-    "T_LID 2.5 mm equals the value that leaked from scan measurements into the first brief (scan lid wall 1.8 mm); the clean-up round passed at 1.5/2.5/4.0 mm (worst 0.224 / 5.06 mm) and 2.5 is kept as the grid midpoint, not chosen by fidelity (fidelity prefers the thinnest sheet: 1.436 < 1.686 < 2.259)"
+    "T_LID 2.5 mm equals the value that leaked from scan measurements into the first brief (scan lid wall 1.8 mm); the clean-up round passed at 1.5/2.5/4.0 mm (worst 0.224 / 5.06 mm) and 2.5 is kept as the grid midpoint, not chosen by fidelity (fidelity prefers the thinnest sheet: 1.436 < 1.686 < 2.259)",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 1 floating ball at 7.00 mm; build record: 1 free fit at 7.35 mm (inside the window) and 2 balls at the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
    ],
    "replaces": "meshes/library_v3/white_pot_lid.glb",
-   "replaces_sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37"
+   "replaces_sha256": "cf899059a23e3fef033fddf72dbe448220fbb2c518fae603a8fcd107487f7b37",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 3,
@@ -183,9 +297,13 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": [],
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
    "replaces": "meshes/library_v3/white_pot.glb",
-   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 3,
@@ -197,7 +315,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 5,
@@ -224,9 +343,13 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": [],
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
    "replaces": "meshes/library_v3/white_pot.glb",
-   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 5,
@@ -238,7 +361,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 6,
@@ -265,9 +389,13 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": [],
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
    "replaces": "meshes/library_v3/white_pot.glb",
-   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 6,
@@ -279,7 +407,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 8,
@@ -297,7 +426,8 @@
     "add_eval_mm": 5.395,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 8,
@@ -324,9 +454,13 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": [],
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
    "replaces": "meshes/library_v3x/white_pot.glb",
-   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 10,
@@ -355,10 +489,15 @@
    },
    "flags": [
     "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
-    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness",
+    "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag.",
+    "FRAME: rigid ICP C0 -> library_v3 moves 6.67 mm / 2.6 deg, about 6.45 mm of it along the cup axis (verify_handoff B1, verify_0 N5); 'same object frame as library_v3' is not confirmed for this mesh.",
+    "REGISTRATION: on twin ep21 the kit registration lands at 146.9 deg (1 of 5 seeds for this mesh, 0 of 5 for library_v3; verify_1 N4). [H] spin about the cup axis; the test reads the scan and was not run."
    ],
    "replaces": "meshes/library_v3/blue_cup.glb",
-   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 10,
@@ -376,7 +515,8 @@
     "add_eval_mm": 6.55,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 14,
@@ -405,10 +545,15 @@
    },
    "flags": [
     "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
-    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness",
+    "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag.",
+    "FRAME: rigid ICP C0 -> library_v3 moves 6.67 mm / 2.6 deg, about 6.45 mm of it along the cup axis (verify_handoff B1, verify_0 N5); 'same object frame as library_v3' is not confirmed for this mesh.",
+    "REGISTRATION: on twin ep21 the kit registration lands at 146.9 deg (1 of 5 seeds for this mesh, 0 of 5 for library_v3; verify_1 N4). [H] spin about the cup axis; the test reads the scan and was not run."
    ],
    "replaces": "meshes/library_v3/blue_cup.glb",
-   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 14,
@@ -436,10 +581,13 @@
     }
    },
    "flags": [
-    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: balls at 7.00 mm (prior; free fit was 9.51 mm, just outside the window) and 5.22 mm (free, inside the window).",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
    ],
    "replaces": "meshes/library_v3/plastic_dish_rack.glb",
-   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 15,
@@ -467,10 +615,13 @@
     }
    },
    "flags": [
-    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: balls at 7.00 mm (prior; free fit was 9.51 mm, just outside the window) and 5.22 mm (free, inside the window).",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
    ],
    "replaces": "meshes/library_v3/plastic_dish_rack.glb",
-   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 15,
@@ -482,7 +633,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 16,
@@ -510,10 +662,13 @@
     }
    },
    "flags": [
-    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: balls at 7.00 mm (prior; free fit was 9.51 mm, just outside the window) and 5.22 mm (free, inside the window).",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
    ],
    "replaces": "meshes/library_v3/plastic_dish_rack.glb",
-   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 16,
@@ -525,7 +680,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 19,
@@ -543,7 +699,8 @@
     "add_eval_mm": 25.56,
     "flips_all": 1
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 19,
@@ -561,7 +718,8 @@
     "add_eval_mm": 5.61,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 20,
@@ -590,10 +748,15 @@
    },
    "flags": [
     "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
-    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness",
+    "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag.",
+    "FRAME: rigid ICP C0 -> library_v3 moves 6.67 mm / 2.6 deg, about 6.45 mm of it along the cup axis (verify_handoff B1, verify_0 N5); 'same object frame as library_v3' is not confirmed for this mesh.",
+    "REGISTRATION: on twin ep21 the kit registration lands at 146.9 deg (1 of 5 seeds for this mesh, 0 of 5 for library_v3; verify_1 N4). [H] spin about the cup axis; the test reads the scan and was not run."
    ],
    "replaces": "meshes/library_v3/blue_cup.glb",
-   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 20,
@@ -611,7 +774,8 @@
     "add_eval_mm": 7.63,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 25,
@@ -629,7 +793,8 @@
     "add_eval_mm": 2.39,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 25,
@@ -647,7 +812,8 @@
     "add_eval_mm": 3.56,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 28,
@@ -675,10 +841,13 @@
     }
    },
    "flags": [
-    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: balls at 7.00 mm (prior; free fit was 9.51 mm, just outside the window) and 5.22 mm (free, inside the window).",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
    ],
    "replaces": "meshes/library_v3/plastic_dish_rack.glb",
-   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 28,
@@ -705,9 +874,13 @@
      "sha1_16": "69c8aa6b527a921c"
     }
    },
-   "flags": [],
+   "flags": [
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: 4 exact spheres, 3 at 7.00 mm (prior) and 1 at 6.94 mm (free fit inside the window); the build record shows free fits of 11.96, 27.88 and 3.67 mm replaced by the 7 mm prior.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
+   ],
    "replaces": "meshes/library_v3/white_pot.glb",
-   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481"
+   "replaces_sha256": "ec165ea7f3960d4589105bf0e7b26ab6b5e7bfe120f9c7f649bb167ef3fb9481",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 30,
@@ -725,7 +898,8 @@
     "add_eval_mm": 25.56,
     "flips_all": 1
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   },
   {
    "eval_episode": 30,
@@ -753,10 +927,13 @@
     }
    },
    "flags": [
-    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5"
+    "T_WALL 2.5 mm equals the scan rack wall median that leaked into the first brief; clean-up round passed at 1.5/2.5/4.0 mm (worst 0.458 / 6.23 mm); single-seed ADD reaches 6.08 mm at 2.5",
+    "MARKER BALLS (verify_0 B1): prim_potlid.py markers_from (also used by prim_rack.py) falls back to a fixed ball radius MK_R0 = 7 mm and accepts a free sphere fit only inside 5-9.5 mm. Both values are SCAN-DERIVED (spoon template note 17 = marker catalogue fitted on the public scans; stage-1 audit, work log entry 2026-10-27 ~17:20 UTC, blocker 1; code comment corrected on 29 Oct in 14eaf37). The audit made this object's 27 Oct scan pass provisional until rebuilt with a generic ball rule; stage 1b closed on 30 Oct without that rebuild, so this mesh carries the prior. In this mesh [M, verify_0]: balls at 7.00 mm (prior; free fit was 9.51 mm, just outside the window) and 5.22 mm (free, inside the window).",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag."
    ],
    "replaces": "meshes/library_v3/plastic_dish_rack.glb",
-   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39"
+   "replaces_sha256": "e9bdc82e1f6dca400326602009135f231bf62a9933d9da69e26985f8a9d7fd39",
+   "in_pack_9a": true
   },
   {
    "eval_episode": 32,
@@ -785,10 +962,15 @@
    },
    "flags": [
     "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
-    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness",
+    "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag.",
+    "FRAME: rigid ICP C0 -> library_v3 moves 6.67 mm / 2.6 deg, about 6.45 mm of it along the cup axis (verify_handoff B1, verify_0 N5); 'same object frame as library_v3' is not confirmed for this mesh.",
+    "REGISTRATION: on twin ep21 the kit registration lands at 146.9 deg (1 of 5 seeds for this mesh, 0 of 5 for library_v3; verify_1 N4). [H] spin about the cup axis; the test reads the scan and was not run."
    ],
    "replaces": "meshes/library_v3/blue_cup.glb",
-   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 32,
@@ -800,7 +982,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 33,
@@ -829,10 +1012,15 @@
    },
    "flags": [
     "obs_fidelity.py was written on 26 Oct AFTER the five blue-cup lathes had been scored against the scan (work log 2026-10-26 ~16:40 UTC); the pick is GT-free but the selector was not pre-registered before those scores (Spearman 0.5, n=5)",
-    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness"
+    "after the kit budget_mesh the mesh is not watertight (11 bodies; raw mesh watertight, 5 bodies); library_v3 blue_cup is not watertight after budget either; the kit never checks watertightness",
+    "HELD BACK from packing (pack 9a): the AUC guard ADOPTED the blue cup, but its obs_fidelity selector was written after its lathes were scored against the scan and picks the lowest-CD-O of the 12 blue-cup lathe records, so it does not meet 'picked GT-free under pre-registered rules'. Decision by the score session and focused-pascal, 31 Oct ~16:20 UTC; included only if the owner says so. Deviation from PREREG section 5.",
+    "SELECTION QUALIFIER: the C0 object set was chosen with [D] public-scan scores. Pot, lid and rack passed a scan pass-rule pre-registered on 27 Oct; the blue cup had no such rule. Do not call C0 'chosen GT-free' without this qualifier and the marker-ball flag.",
+    "FRAME: rigid ICP C0 -> library_v3 moves 6.67 mm / 2.6 deg, about 6.45 mm of it along the cup axis (verify_handoff B1, verify_0 N5); 'same object frame as library_v3' is not confirmed for this mesh.",
+    "REGISTRATION: on twin ep21 the kit registration lands at 146.9 deg (1 of 5 seeds for this mesh, 0 of 5 for library_v3; verify_1 N4). [H] spin about the cup axis; the test reads the scan and was not run."
    ],
    "replaces": "meshes/library_v3/blue_cup.glb",
-   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8"
+   "replaces_sha256": "fbb1bfd031a9edc41a187cfe5f6fea5125f0f7f30f0025c612fe548f6d9f33c8",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 33,
@@ -844,7 +1032,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 35,
@@ -856,7 +1045,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 36,
@@ -868,7 +1058,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 37,
@@ -880,7 +1071,8 @@
    "source_path": "meshes/library_v3/wooden_spoon.glb",
    "provenance_tier": "unchanged from pack 7",
    "public_D": null,
-   "note": "wooden_spoon has no public scan; no [D] CD-O"
+   "note": "wooden_spoon has no public scan; no [D] CD-O",
+   "in_pack_9a": false
   },
   {
    "eval_episode": 38,
@@ -898,7 +1090,8 @@
     "add_eval_mm": 5.61,
     "flips_all": 0
    },
-   "note": null
+   "note": null,
+   "in_pack_9a": false
   }
  ]
 }
