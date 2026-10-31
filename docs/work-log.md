@@ -5475,3 +5475,14 @@ arm and a no-policy replay floor to stage B.
     - jittered bank resets;
     - ep13 one-hand.
   - Drafts written for those two sessions; not sent.
+- ~10:10 UTC (owner: "send these messages and the other messages to the respective chats"): three messages delivered,
+  each queued for after the recipient's current turn:
+  - Embodiment (session_01D9UJC7MhytodZodnDDAU3z):
+    - jittered failure finding;
+    - jittered bank resets [H-bankDR];
+    - ep13 one-hand carry, then the twins of 25/16/3;
+    - report the draw sd.
+  - Control (session_01LhbGHrt6epRs52jSRX48AU): keep the per-draw rollout parquets in h5_reeval / mass_eval. Offered to
+    run the good-vs-failed draw analysis here once run ids exist.
+  - Mesh (session_01W8Softjo2xx7o6ofSiheuQ): §7 is already covered by INTERLOCK v2. Order the work by H5 spread: the
+    eval-30 sweeper–rack and eval-14 cup–rack seats carry more spread than the board slot (eval 1 already fixed).
