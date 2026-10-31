@@ -5395,3 +5395,13 @@ Advice given:
 - Default behaviour byte-identical (80/80 runs, 240/240 npz sha256); tests 7/7 + existing s6/s10/s12 pass. S13 stays as
   an unused opt-in; S2 remains the only adopted time fix. Note: the source's cross-validation record disagrees with its
   README (σ 16 vs 8 mm on one half); the params were tuned on these same 20 episodes, so the gate is not a holdout.
+- ~22:16 UTC determined-wright (from the mesh lane's ep24 board-slot P1 run, 3c7fd32): (1) [M] contact budget — FlashCHORD
+  sim=rl allows nconmax 256 / njmax 512 per world (the evaluator inherits it); the mesh lane's carved r0 board pieces
+  (57/77 hulls) overflow it in 16/16 one-world copies (500–670 contacts, up to ~2030 rows → dropped contacts, boards fall
+  through); packed meshes/carve/ev25 showed no overflow in 64 D reset-check runs. Rule for any NEW carve into pack 10: a
+  one-world rollout under sim=rl must show no "broadphase overflow" / "nefc overflow" warning. (2) [H] board hover — the
+  public ep24 reference holds the assembled boards 27–36 mm above the table at f246–274 (fits the 3 cm library_v3 board
+  thickness at frame 0); eval 25 may carry the same; falsifier: GT-free depth check of the board bottom edges vs the
+  table plane on eval 25. Neither affects tonight's D cells (packed configuration).
+- Recipe screen complete (determined-wright, c20c94a): K inconclusive, D inconclusive (mean +0.049; sd falls on ep12
+  only), S no signal; the targeted D cells still rest on the per-episode swap rule.
