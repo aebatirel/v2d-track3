@@ -5598,3 +5598,7 @@ Background agent, CPU only, $0, no ground truth read.
 ### 31 Oct ~03:15 UTC — round 3 result: realistic masses adopted (pre-registered rule); usage-limit pause overnight
 - Owner hit the usage limit; resumed 03:02 UTC. Round-3 boxes: p3ms0 done (job exit 0, $3.28); p3ms1 watchdog-destroyed
   after a 30-min stall in ep12's checkpoint evaluation ($3.88; ep12 seed 43 missing). Mean Δ +0.090 → adopt.
+- ~04:55 UTC 31 Oct: owner topped up; credit $41.17 (0 instances). Pack session (focused-pascal) owns the eval retrain with
+  the adopted masses; it proposed a pre-registered library_v3 transfer check (ep2 + ep12, 2 seeds, ~$5–6) and will get the
+  owner's go-ahead itself. Commits for it: merge claude/determined-wright-3joens tip (ff5ca7d). Option 3 being built on CPU
+  by the solver agent.
