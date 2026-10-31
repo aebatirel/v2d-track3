@@ -5629,3 +5629,10 @@ arm and a no-policy replay floor to stage B.
   - A literal in-loop filter would need training with observation noise plus a policy-architecture or evaluator code
     change (off-limits before the freeze); it would matter on a real robot.
   - Page v3 states this framing.
+- ~23:00 UTC robot-side checks (`docs/analysis/robot-side-20261031/`, CPU, $0):
+  - the robot's wrist targets jitter 0.2–1.1 cm and 1.5–10°; commanded wrist acceleration is 2–5× the smooth motion
+    (up to 11.7 m/s²); finger targets jitter 4–38°;
+  - the solver's plans are among the jerkiest;
+  - finger synergies: poses need 7 / 10 components (80 / 90 %), but the solver's edits need 3 / 6.
+  - Hypotheses: [H-cmdsmooth] a zero-lag Kalman smoother on robot targets; [H-syn] synergy-space solver sampling.
+    Pre-registered falsifiers in the README.
