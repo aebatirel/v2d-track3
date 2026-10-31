@@ -5983,3 +5983,57 @@ Background agent, CPU only, $0, no ground truth read.
   | ep24 | .238±.005 | .251±.013 | .230±.003 |
 
 - No verdict until the seed-42 box (10/12 at 18:26) and the two arm-S boxes finish.
+
+### 2026-10-31 20:24 UTC — determined-wright: recipe screen all 24 cells in; solver re-test 7 of 8; verdicts (interim)
+- Boxes finished and self-destroyed:
+  - rscr42 (58531195): job exit 0 at 18:43 UTC. Ledger actual $8.22 (6.47 h × $1.271/h, estimate).
+  - rscrS42 (58559935): job exit 0 at 19:38 UTC. Ledger actual $3.30 (2.28 h × $1.444/h, estimate).
+  - rscrS43 (58560711) is still running its last cell (S/ep24-s43). Poll `bu7fslt4n` watches it.
+- The poll `b3wmrva5m` timed out after 110 min with no problem flagged (two boxes gone, one running).
+- Summaries were pulled from the store into scratchpad `rs/real/runs/<run>/`. Merge on CPU:
+  `python3 tools/recipe_screen.py verdict <rscr42>/results/recipe_screen/summary.json <rscr43>/… <rscrS42>/… --out
+  scratchpad rs/merged_partial3.json`.
+- **One control cell is not present: C/ep24-s43 has 4 of 10 draws.**
+  - The 6 missing draws (r1 r2 r3 r7 r8 r9) crashed at evaluator start, at 16:41 UTC on the rscr43 box. The error is
+    `env.cc:93 Check failed: ret == 0 (11 vs. 0) Thread tf_foreach creation via pthread_create() failed`: errno 11
+    (EAGAIN), a thread/process limit on the box, hit while other cells were training.
+  - This is an infrastructure crash, not a policy failure. Per §8 the cell is missing, so K vs C, D vs C and S vs C are
+    formally INCOMPLETE.
+- Cells, AUC mean (draw sd, ddof 0), 10 draws unless noted:
+
+  | ep | seed | C | K | D | S |
+  |---|---|---|---|---|---|
+  | 2 | 42 | .955 (.029) | .965 (.009) | .743 (.269) | .751 (.211) |
+  | 2 | 43 | .869 (.174) | .959 (.020) | .862 (.236) | .808 (.225) |
+  | 12 | 42 | .576 (.066) | .519 (.067) | .924 (.021) | .832 (.070) |
+  | 12 | 43 | .612 (.014) | .582 (.024) | .919 (.022) | .802 (.082) |
+  | 18 | 42 | .620 (.015) | .623 (.006) | .603 (.053) | .553 (.099) |
+  | 18 | 43 | .624 (.002) | .620 (.009) | .600 (.059), 9 draws | .616 (.014) |
+  | 24 | 42 | .234 (.003) | .191 (.022) | .233 (.006) | .249 (.005) |
+  | 24 | 43 | .238 (.005), 4 draws: missing | .251 (.013) | .230 (.003) | pending |
+
+- **Bounds: can the missing C/ep24-s43 draws change a verdict?**
+  - **K vs C: inconclusive under any completion.** On the 3 complete episodes: ep2 +0.050, ep12 −0.043, ep18 −0.001.
+    - Signal would need Δ(ep24) ≥ +0.115, i.e. C's ep24 seed-mean ≤ 0.106: impossible.
+    - Harm would need Δ(ep24) ≤ −0.10, i.e. C/ep24-s43 ≥ 0.41. Its 4 present draws are 0.234–0.246, so the 6 missing
+      draws would have to average ≥ 0.53. No ep24 draw in the screen exceeds 0.29.
+  - **D vs C: not determined.**
+    - The sd falls by ≥ 40 % on ep12 only. The 3-episode mean Δ is +0.066 (ep2 −0.110, ep12 +0.327, ep18 −0.020).
+    - The verdict becomes "signal" iff C/ep24-s43's 10-draw sd is ≥ 0.0116. Its 4 present draws have sd 0.0046; the
+      other C ep24 seed has sd 0.0026.
+    - Otherwise "inconclusive". Completing it means re-scoring that checkpoint, a box of about $1 [E] that needs the
+      owner's go-ahead.
+  - **S vs C: no signal under any completion.** Δ(ep2) = (.751 + .808)/2 − (.955 + .869)/2 = **−0.132**, which is
+    ≤ −0.05. The other episodes: Δ(ep12) +0.223, Δ(ep18) −0.038.
+    - Per §9 both "no signal" and INCOMPLETE mean stop. **Eval solving does not start;** solved references are not used.
+- **ep18 is a free replicate.** S's ep18 reference is byte-identical to C's (md5 f0f14155…). S/ep18 and C/ep18 are the
+  same reference, seed and recipe, so their difference is pure training nondeterminism: seed 42 0.553 (sd .099) vs 0.620
+  (sd .015); seed 43 0.616 vs 0.624. A re-run of one cell can move it by up to 0.07 AUC and change its draw sd 6×.
+- **Post-hoc, not pre-registered (hypothesis): sim_vs_ref picks the better arm.**
+  - Script: scratchpad `rs/posthoc_select.py`.
+  - For each (episode, seed), the arm with the higher 10-draw sim_vs_ref (vs our reference, GT-free) also had the higher
+    AUC: C vs D 7/7, C vs K 7/7, K vs D 7/8, C vs S 3/4. The misses are all ep24 pairs within 0.02.
+  - A per-cell selector "train C and D, keep the one with the higher sim_vs_ref" would gain +0.094 AUC mean over 7
+    cells. All of the gain is ep12 (+0.35 / +0.31, with a lower draw sd); everywhere else it keeps C.
+  - Falsifier: train D on more public episodes (for example masses-v2's ep11/13/31). The selector fails if
+    sim_vs_ref picks D where its AUC is lower by > 0.02, or if D wins on none of them.
