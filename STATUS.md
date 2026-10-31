@@ -1,5 +1,12 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~16:10 UTC: RPE/MPPE gap = failed rollouts, not perception; pack 9a tonight; packs 9b/10 on 1–2 Nov
+- Decomposition (public, CPU): reference RPE 1.66 (1.00 w/o ep23) vs top six 1.10–1.73; failed draws 10–77 cm vs
+  1.4–3.5 when successful; GT-free RPE vs our reference tracks mocap RPE (r 0.9998). K1/K2 reference fixes FAIL.
+- Pack 9a = pack 8 + C0 pot/lid/rack (blue cup held back), upload ≈ 20:30 UTC (focused-pascal). Eval-built meshes for 1 Nov.
+- Organiser PR #215: results provisional until a reproduce container is checked after the close.
+- Running: eval-10 gate + V4p retrain, recipe screen (verdict ≈ 22:30), masses v2, GT-free audit of packed eval rollouts.
+
 ## 2026-10-31 ~15:00 UTC: standings — 11th on the final ranking (sum of six board ranks); CD-O 18th is the anchor
 - No new upload; pack 7 AUC 0.81460 is 8th on AUC. Board ranks: AUC 8, SP-SR 7, MP-SR 8, RPE 11, MPPE 10, CD-O 18.
 - Rank sum 62 → 11th (10th 60, 9th 53, 8th 49, 7th 48). CD-O ≤ 0.338 → 14th; ≤ 0.297 → 10th. Details: work log 31 Oct 15:00.
