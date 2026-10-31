@@ -1776,6 +1776,64 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     default). Voxel grids 2 / 4 / 6 / 8 mm **generic**. Piece cap floor(165 / objects) and the 0.3 cm3, weight-10
     keep-out **informed** (F-I1.14). Rigid-shift report (1 cm / 3 deg, 2 cm3, the tilt grid, 75 % one-sided) **informed**
     (ev10w M2); `carve_of_pose_error` 75 % **generic**. Every other threshold: as in F-I1.14 and F-I4.11.
+  - **F-I5.11 As built (decided while building, 17:36-18:33 UTC, before any real run; recorded 18:45 UTC).** Code
+    `gmg/collcarve.py`, `gmg/cavpieces.py`, `simphys.sink_test`, the `waiver_fi5` hook in `interlock.decide_pair`, the
+    `--waiver-fi5` driver branch, `tests/test_collcarve.py` (T-I12 lives in this new file: `tests/test_interlock.py` was
+    being edited by the board-slot workflow). Deviations from the text above, none of them a threshold:
+    (1) lathe profile radii by casting rays from the axis through the SHELL mesh (3 azimuths per sector, median), not
+    from the 2 mm sub-samples (which sit up to ~1 mm inside the surfaces); (2) the lathe carve works per piece, not per
+    (sector, bin): each piece holding a posed K piece takes the option that keeps the most volume among a new linear
+    inner face r(h) = alpha + beta h (linear programme over the vertices of K inside the piece, exact clearance), a new
+    outer face, or its top or bottom trimmed to K's extreme height; a piece with no feasible option (K within 0.2 mm of
+    its outer face) is removed and the caps then decide; carved wall ranges are re-banded at <= 10 mm and the 16 / 12 / 8
+    sector fallback applies to the carved set; (3) in the lathe route the R+ restriction is applied per K-in-piece set
+    (a set with no vertex or centroid in R+ is ignored, a set with one is carved whole: slightly more than K inside R+);
+    the other routes use the exact boolean K inside R+; (4) K inside a piece by exact vertex enumeration (vertices of each
+    inside the other plus edge-facet crossings); (5) CoACD runs in a forked child (CoACD 1.0.14 aborted the interpreter
+    on a C++ assertion on the T-I12 rack fixture); an abort is a route-3 error and the ladder falls to route 4.
+  - **F-I5.12 T-I12 outcomes (synthetic, 17:59-18:32 UTC, code fae78de and the WIP snapshots after it; logs in
+    `build/I.md`).** **P50 is falsified**: x1, x2, x3, x4, x5 and the x7 wander control miss; x6, x7 n2 / n4, x8 (both),
+    x9, x10, x11 pass as stated. Measured: every cup case (x1, x2, x4, x5 and the extra x2b, 5 mm offset) is in scope
+    (receiver = host by containment 0.78-0.88 vs 0.06-0.21, INSERTION, sweep 0.87, c = 1.0 mm because sigma_sup = 1.0)
+    and **stops at the caps before any physics**: topology 1/1 -> 33/31 (x1, x4, x5), 14/3 (x2), 1/0 (x2b); removed
+    35-74 % of the receiver collider (cap 10 %); reach 0.81-0.91 (cap 0.6). x3: the receiver's component fails the sweep
+    gate (0.378), `receiver_no_region`, no carve and no S. Sweeper fixture (holder with a blind hole): reach 0.96 >
+    0.6, default. No cup case reached S, so P43's question (does the carve keep the guest at its tracked pose) is not
+    answered by the pre-registered rule. Mechanisms [M]: (i) the swept union over raw build frames includes the track
+    jitter (0.5 mm / 0.2 deg per frame in T-I12) and, with c = 1 mm and the face-offset corner growth, reaches up to
+    r = 36.8 mm in a 33.7-37.7 mm wall, beyond the outer chord of a 12-sector piece (36.4 mm): no feasible option, the
+    piece is removed; (ii) re-banding the carved wall at 10 mm over its full height exceeds the 82-piece cap, so the
+    carve falls to 12 or 8 sectors (an 8-sector chord sits 2.9 mm inside a 37.7 mm outer radius); (iii) a wall-layer
+    carve of a nest spans the whole wall height, so reach along the axis is 0.8-1.0 for every INSERTION nest; (iv)
+    sigma_sup = 1 because R+ holds the guest's base corner (P44 anticipated this case: c = 1.0 mm). Without track jitter
+    (diagnostic) the nest's main components fail the sweep gate (0.15 / 0.28, run SEAT) and S fails for the carved
+    and the default pieces alike (the 9.5 mm-too-deep guest is pushed up 4.6 mm). No rule is changed by this entry.
+  - **F-I5.13 Diagnostic D2, rest-anchored pocket (post hoc, written 18:45 UTC after F-I5.12, before D2 runs; NOT a
+    rule: never delivered, decides nothing; for the orchestrator / owner).** Question: does a pocket cut at the guest's
+    hands-off rest pose keep a nested guest where our track puts it (P43's question), once the noise of the raw frames
+    is not carved? D2 = F-I5 with three changes: (a) when T_rest exists, K per guest piece g = the convex hull of
+    T_rest . offset_c(g) and of the same copy translated along d by s_min, where s_min = min(0, min over the build
+    frames entering R of s_f) and s_f = the guest centroid's offset from its rest position along d (deeper positive):
+    the rest pose plus the straight approach channel along d; the frames' lateral and rotational deviations from the
+    rest and every frame deeper than the rest are not carved (the overshoot rule becomes moot); without T_rest, F-I5.3
+    (c) unchanged; (b) the lathe carve keeps the default band layout and sector count (no 10 mm re-banding); (c) the
+    volume and reach caps are computed and reported but do not gate; topology still gates; when topology fails, S is
+    still run on the default and the failed carve (diagnostic rows). Gates, receiver, c rule, S, P2-P7 and the pieces
+    gate as F-I5. Cases: x1, x5, x2, x2b (5 mm, the eval-10 offset), sweeper, and a new fixture x2c (x2 with a 1 mm
+    offset). Predictions [H], each with its falsifier:
+    - **Q1** x1-D2: topology kept; removed about 20-30 % of the receiver collider (a 1 mm clearance layer over about
+      17,600 mm2 of wall plus the 0.5 mm radial error: the 10 % cap would fail); S passes (the guest drops about c onto
+      the ledge cut under its base corner) | S fails.
+    - **Q2** x5-D2: as Q1, the dipped frames are not carved | S fails or a dipped frame is carved.
+    - **Q3** x2-D2 (3 mm offset in a 4 mm wall, c = 1 mm): topology fails (wall pierced) | topology kept.
+    - **Q4** x2b-D2 (5 mm offset): topology fails; no carve can hold a 5 mm off-axis cup in a 4 mm wall, the pose
+      correction (F-I5.7 shift) is the remedy | topology kept.
+    - **Q5** x2c-D2 (1 mm offset): topology kept, S passes | either fails.
+    - **Q6** sweeper-D2: reach about 0.96 reported; S passes (the stick drops <= c onto its cut floor) | S fails.
+    Use: if Q1, Q2, Q5, Q6 hold, the remaining blockers for cups and holders are the 10 % volume cap and the 0.6 reach
+    cap (F-I1.14 numbers made for board slots): a policy decision for the orchestrator / owner, to be written as a
+    dated entry before any real run uses it. If Q1 or Q5 fails, a rest-anchored pocket does not keep a nested cup and
+    the cups need the pose correction instead of a carve.
 
 ## Revision 1 changelog
 

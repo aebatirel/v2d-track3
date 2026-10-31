@@ -1761,3 +1761,25 @@ settle (P1) stays with the Embodiment session's `jitter_check` before any pack u
 - **Simulator parity.** S runs plain MuJoCo 3.17.0; FlashCHORD's simulator (the Newton / Warp stack) may differ; P1 by
   the Embodiment session remains required before packing.
 - **Eval** needs eval bundles that do not exist yet; P_sim provenance may fall back to our eval tracks.
+
+### 21.10 Build and synthetic tests (31 Oct, 17:36-18:45 UTC; PREREG F-I5.11-F-I5.13)
+**In plain words.** The code is built and wired in behind the `--waiver-fi5` flag (nothing changes without it). On the
+synthetic tests the rule as written **carves no cup**: every nested-cup case stops at the size and shape limits
+before the physics test is reached, so the default rings (which already keep the cups hollow) would be delivered. The
+three reasons, all measured: the cut follows every jittery frame of the track and so becomes wider than the cup; the
+finer bands it asks for push the piece count over the cap, so the rings fall to 12 or 8 slices whose flat faces sit
+up to 3 mm inside the round wall; and the board-slot limits (at most 10 % of the volume, at most 60 % of the depth)
+are always exceeded by a thin layer cut along a whole cup wall. A 5 mm off-axis cup (the eval-10 case) cannot be held
+by any carve: the cut would go through the 4 mm wall. The holder fixture (a stick in a blind hole) also stops at the
+depth limit.
+
+- Pieces work as designed [M]: cups get 65 ring pieces with no empty ring (0 gaps on 64,440 rays; a forced 1 mm ring is
+  caught), an open box keeps its opening empty, a flat plate never takes the ring route, a folded sheet falls to CoACD.
+- Plate pairs and the flag-off path are unchanged [M] (identical records).
+- A CoACD crash (an internal assertion that killed the whole process) is now contained: CoACD runs in a child process
+  and the object falls to exact boxes.
+- Next, diagnostic only (PREREG F-I5.13, never delivered): cut the pocket at the guest's hands-off rest pose plus its
+  straight approach channel, keep the normal ring layout, and let the size limits report instead of block, to answer
+  the physics question (does the guest stay where the track puts it?). Its predictions are written before it runs.
+  If it holds, the open decision for you is whether the 10 % / 60 % limits (made for board slots) should apply to cup
+  walls and holders.

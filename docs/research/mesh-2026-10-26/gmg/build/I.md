@@ -597,6 +597,8 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   every INSERTION nest; (4) sigma_sup = 1 because R+ holds the guest's base corner; [H] physically consistent only
   when the carve leaves a ledge under that corner (drop <= c). Next: write these outcomes + a post-hoc proposal into
   PREREG before any further diagnostic, commit, push.
+- 18:46 PREREG F-I5.11 (as built), F-I5.12 (T-I12 outcomes, P50 falsified), F-I5.13 (diagnostic D2, rest-anchored
+  pocket, post hoc, never delivered; predictions Q1-Q6) and INTERLOCK 21.10 written; committing + pushing before D2 runs.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
