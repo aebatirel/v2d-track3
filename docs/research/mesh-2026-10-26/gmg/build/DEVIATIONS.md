@@ -665,3 +665,28 @@ scan number was seen; none bears on these choices.
     every tie to a seeded one (distance infinity). Episodes whose seeds are non-empty are unchanged by (1)-(3). The run
     `20261031-b4ext3-8885ae0` (ep0, ep2, ep31 complete; ep18, ep23, ep24 started) is stopped and kept as a failed
     attempt; all 20 episodes are rerun in a fresh run on the commit of this entry. No scan number seen.
+102. **(2026-10-31, B7) Numbering note.** The B7 entry "82" (marker settings version 2) shares its number with B4's
+    entry 82 (dev-only guard role `clean_run`); B7 notes, commit messages and the `markers.py` origin string cite the
+    marker one as "DEVIATIONS 82". Read it as "B7-82". No content change.
+103. **(2026-10-31, B7) Marker dev runs on the anchor objects only** (supersedes the marker half of entry 81). SPEC
+    section 10 pools the radius consensus over all tracked objects of an episode; the B7 marker dev runs detect on the
+    C.2 anchor object of each episode only (`b7_dev.py --marker-objects anchors`), so the consensus is the anchor
+    object's own (one anchor object per episode). Reason: compute (ep2 with both objects took 1845 s; the B7 processes
+    share 4 cores with another agent's batch). The B7 task asks for the 10 anchor dev PAIRS, which this covers; ep2
+    also has the full-episode run (`b7mkchk-a1bc5f7`: pot and lid, consensus pooled), which is the lid's B7 record.
+    Seen before choosing: ep2's full-episode result (dev, GT-free). Dev outputs only; nothing downstream reads them.
+    No scan or eval number seen.
+104. **(2026-10-31, B7) GT-free visual ball check** (`tools/b7_ball_crops.py`, a dev diagnostic outside every run):
+    each detected ball is moved by OUR track into the camera, projected into the colour camera ego_cam_a and cropped
+    in the 3 frames whose raw owned points support it most. Inputs: obs_all (dev), tracks, calib, the public colour
+    videos (ego_cam_a; those of ep12, 18, 21, 24, 27 and 40 were downloaded from the public HF dataset into
+    `<scratchpad>/data/store/`, camera a only, no parquet, mesh or scan). Read visually by the agent and reported for
+    the owner; NOT used to change any detector setting (marker settings v2, sha 488ac3b6..., stay frozen) or to pick
+    anything. Findings in `build/B7.md` [M, dev, visual].
+105. **(2026-10-31, B7) Runs after the machine restart.** The 06:36 UTC runs died at about 07:00 UTC. The structure run
+    `b7struct-0eb8016` (8 of 10 anchors, no manifest) is kept with an audit analysed without a manifest (flagged only:
+    dev-role obs_all reads, det_f0 opens and writes into its own run folder; no GT path, no network); its 8 results
+    are used as they are (structure code unchanged since f286e79; a full audited rerun would cost several CPU-hours
+    under the shared CPU). The two missing anchors (ep27, ep31) and all marker anchors were rerun on c56d473 (gmg,
+    autokit, scripts and pipeline code identical to a11866e) with `OMP_NUM_THREADS=1` (speed only; single-threaded
+    BLAS can change last-digit rounding, not a setting).
