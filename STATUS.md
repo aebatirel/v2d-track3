@@ -5,6 +5,8 @@
 - Applying them to the leaderboard pipeline (our meshes, spoon estimate) is the owner's decision; not done yet.
 - Next (owner's queue): option 3 (solver↔RL loop) build on CPU; physics fit v2 afterwards.
 
+- R5-lite (31 Oct, CPU): true vs perceived object motion, zero action, jittered: ep13 0.569 vs 0.551, ep31 0.556 vs 0.554 → the zero-action limit is grip/contact physics, not perception (physics README).
+
 ## 2026-10-30 ~23:10 UTC: solver G2 strong at zero action; G3 RL learns faster but final scores not better
 - G2 (full-scale search, ep2/ep12): jittered zero-action 0.763 / 0.832 vs current recipe 0.524 / 0.578.
 - G3 (RL from solved refs): at 30M far ahead (0.965 / 0.761 / 0.523 / 0.191 vs 0.483 / 0.549 / 0.529 / 0.112) but final AUC

@@ -5602,3 +5602,7 @@ Background agent, CPU only, $0, no ground truth read.
   the adopted masses; it proposed a pre-registered library_v3 transfer check (ep2 + ep12, 2 seeds, ~$5–6) and will get the
   owner's go-ahead itself. Commits for it: merge claude/determined-wright-3joens tip (ff5ca7d). Option 3 being built on CPU
   by the solver agent.
+- ~05:10 UTC 31 Oct [M] R5-lite (CPU, scratchpad, code 97de901): orcB O (mocap motion) vs P (perceived) references, zero
+  action, `tools/physics_solve/jitter_check.py --k 16 --seed 0` (KIT=$S/dl/kit/x/v2d_submission_kit): ep13 0.569 ± 0.008
+  vs 0.551 ± 0.007; ep31 0.556 ± 0.091 vs 0.554 ± 0.096; ep11 skipped (assets_ev10 missing). True motion barely helps
+  zero-action executability; result sent to the pack session. Table: physics README "R5-lite".
