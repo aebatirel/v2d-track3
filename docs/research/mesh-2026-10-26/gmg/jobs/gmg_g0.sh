@@ -30,8 +30,12 @@ if ! grep -q TUNNEL-OK /content/tunnel.log 2> /dev/null && [ -s /root/rexec_acce
     --commit-message "access $RUN_ID" > /dev/null && log "access record republished" || log "access record upload FAILED"
 fi
 label "G0: inputs"
+# python allow_patterns, not the CLI's --include (the 29 Oct probe saw the CLI drop its first --include pattern; a
+# dropped pattern here would mean the whole store)
 for i in 1 2 3 4; do
-  hf download "$HF_STORE" --repo-type dataset --include "runs/$RUN_ID/inputs/*" --local-dir $IN > /dev/null 2>&1 && break
+  /venv/main/bin/python -c "import sys; from huggingface_hub import snapshot_download as s
+s(sys.argv[1], repo_type='dataset', local_dir=sys.argv[2], allow_patterns=[f'runs/{sys.argv[3]}/inputs/*'])" \
+    "$HF_STORE" $IN "$RUN_ID" > /dev/null 2>&1 && break
   log "inputs download retry $i"; sleep $((i * 15))
 done
 D=$IN/runs/$RUN_ID/inputs
@@ -42,9 +46,10 @@ label "G0: setup env C"
 bash $G/g0_setup.sh $R/setup.log || { log "G0-SETUP-FAIL: $(grep -aoE 'C-[A-Z0-9-]+(FAIL|INCOMPLETE)[^ ]*' $R/setup.log | sort -u | tr '\n' ' ')"; exit 1; }
 log "G0-SETUP-OK: $(grep -aoE 'C-[A-Z0-9-]+-(OK|FAIL)' $R/setup.log | sort -u | tr '\n' ' ')"
 label "G0: SAM 3D runs"
-unset HF_TOKEN GH_TOKEN
 CK=/content/w/sam3d/runs/mesh-20261029-gen-f3fbeb0/weights/sam-3d-objects/checkpoints
-(cd /content/ext/sam-3d-objects && /content/genv3/bin/python $G/g0_sam3d.py --ckpt $CK/pipeline.yaml --inputs $D \
+# third-party code runs without the store token, the GitHub token or the instance key (subshell only)
+(unset HF_TOKEN GH_TOKEN CONTAINER_API_KEY; export HF_HOME=/content/hfcache
+ cd /content/ext/sam-3d-objects && /content/genv3/bin/python $G/g0_sam3d.py --ckpt $CK/pipeline.yaml --inputs $D \
   --out $R/sam3d) > $R/sam3d.log 2>&1
 rc=$?
 grep -E '^\{' $R/sam3d.log | tail -20

@@ -33,8 +33,10 @@ Method (pure numpy / scipy / scikit-image; GT-free geometry, no file access):
   8. autokit.program.fit_budget(mesh, [], 4000), checked with the kit decode (float32 vertices, the gmg's copy of the
      kit's budget_mesh, zero-area faces dropped: V1) and accepted only if the decimation changed the area by at most
      AREA_TOL. If no budget in BUDGET_RETRY is accepted (a dense, high-genus marching-cubes surface can defeat the
-     decimator), steps 5-8 are redone on a coarser grid (PITCH_FALLBACK, flag pitch_fallback), whose surface decimates
-     more gently. If nothing is accepted, the last try is returned (info accepted False; it may still be watertight).
+     decimator), the FALLBACK rungs are tried in order: the solid closed by 1 then 2 nodes (fills the small tunnels and
+     slits), then a 2x / 3x pitch grid with the thin-part shell; a rung counts only if its coverage (at its own pitch)
+     stays >= min(COVER_MIN, base coverage) - COVER_DROP (flags fallback_close / fallback_thin). If nothing is
+     accepted, the decoded-watertight try with the best coverage is returned (flag budget_unaccepted).
 
 The constants with a model meaning are registered with the guard (pitch, budget); the others are numerical (caps,
 band, padding, retry ladders) and documented here.
@@ -66,7 +68,12 @@ COVER_SAMPLES = 20_000      # input surface samples for the coverage
 BUDGET_RETRY = (0, 8, 24, 64, 128, 256)   # budget reductions tried until the kit decode stays watertight
 AREA_TOL = 0.05             # a budgeted mesh is accepted only if the decimation changed the surface area by <= 5 %
                             # (fit_budget's last resort can return a far coarser mesh: -25 % area on a noisy surface)
-PITCH_FALLBACK = (2.0, 3.0, 4.0)          # pitch multiples tried when no budget decodes watertight
+FALLBACK = (('close', 1, 1.0), ('close', 2, 1.0), ('thin', 0, 2.0), ('thin', 0, 3.0))
+                            # rungs tried when no budget is accepted: morphological closing of the solid by 1 or 2
+                            # nodes at the same pitch (fills the small tunnels and slits that defeat the decimator),
+                            # then a 2x / 3x pitch grid with the thin-part shell (walls thinner than a coarse node
+                            # would vanish otherwise)
+COVER_DROP = 0.02           # a fallback rung must keep coverage >= min(COVER_MIN, base coverage) - this
 SEED = 0
 
 
@@ -301,8 +308,10 @@ def _budget(out, budget, pool):
     return None, tries
 
 
-def _surface(mq, lo, shape, pitch, info, thin_h=None):
-    """Occupancy -> signed distance -> marching cubes -> largest component -> (mesh or None, samples)."""
+def _surface(mq, lo, shape, pitch, info, thin_h=None, close=0):
+    """Occupancy -> signed distance -> marching cubes -> largest component -> (mesh or None, samples). THIN_H: union
+    with a shell of that half-thickness around the input surface; CLOSE: binary closing of the solid by that many
+    nodes (6-connected structure)."""
     t = time.time()
     d, P, band = _distance(mq, lo, shape, pitch, info)
     info['t_udf_s'] = round(time.time() - t, 2)
@@ -312,6 +321,13 @@ def _surface(mq, lo, shape, pitch, info, thin_h=None):
         sdf = np.minimum(sdf, d - thin_h)
         ins2 = _cleanup(sdf < 0, dict())
         sdf = np.where(ins2, -np.abs(sdf), np.abs(sdf))
+    if close:
+        from scipy import ndimage
+        ins = sdf < 0
+        ins2 = ndimage.binary_closing(np.pad(ins, close + 1), iterations=int(close))[(slice(close + 1, -close - 1),) * 3]
+        ins2 = _cleanup(ins2 | ins, dict())
+        info['closed_added_nodes'] = int(ins2.sum() - ins.sum())
+        sdf = np.where(ins2, -np.maximum(np.abs(sdf), 1e-6), np.maximum(np.abs(sdf), 1e-6))
     t = time.time()
     out = _mc(sdf, lo, pitch)
     if out is not None:
@@ -362,26 +378,40 @@ def watertight(mesh, pitch=PITCH, budget=BUDGET):
     info['budget_tries'] = tries
     if len(tries) > 1:
         flags.append('budget_retry')
+    base_cov = cov
     if mb is None:
-        for k in PITCH_FALLBACK:
+        for kind, it, k in FALLBACK:
             p2 = pitch * k
-            lo2, shape2 = _grid(m, p2)
+            lo2, shape2 = (lo, shape) if k == 1.0 else _grid(m, p2)
             i2 = dict(flags=[])
-            out2, _ = _surface(mq, lo2, shape2, p2, i2, thin_h=(THIN_H * p2) if 'thin_union' in flags else None)
+            th = (THIN_H * p2) if (kind == 'thin' or 'thin_union' in flags) else None
+            out2, _ = _surface(mq, lo2, shape2, p2, i2, thin_h=th, close=it if kind == 'close' else 0)
+            rung = dict(kind=kind, close=it, pitch_m=p2)
             if out2 is None:
+                info.setdefault('fallback_tries', []).append(rung)
                 continue
+            c2 = _coverage(P, out2, p2)
+            rung.update(faces_mc=int(len(out2.faces)), coverage=round(c2, 4), closed_added_nodes=i2.get('closed_added_nodes'))
+            if c2 < min(COVER_MIN, base_cov) - COVER_DROP:
+                rung['skipped'] = 'coverage'
+                info.setdefault('fallback_tries', []).append(rung)
+                continue
+            n0 = len(pool)
             mb2, tries2 = _budget(out2, budget, pool)
-            info.setdefault('pitch_fallback_tries', []).append(dict(pitch_m=p2, faces_mc=int(len(out2.faces)),
-                                                                    tries=tries2))
+            for _, r_ in pool[n0:]:
+                r_['coverage'] = round(c2, 4)
+                r_['rung'] = f'{kind}{it if kind == "close" else ""}@{p2 * 1e3:.1f}mm'
+            rung['tries'] = tries2
+            info.setdefault('fallback_tries', []).append(rung)
             if mb2 is not None:
-                flags.append('pitch_fallback')
+                flags.append('fallback_' + kind)
                 mb, out = mb2, out2
-                info['pitch_final_m'] = p2
-                info['coverage_fallback'] = round(_coverage(P, out2, pitch), 4)
+                info.update(pitch_final_m=p2, coverage_final=round(c2, 4), fallback=rung)
                 break
-    if mb is None:                                # nothing accepted: the decoded-watertight try with the least area
-        flags.append('budget_unaccepted')         # change, else the least area change overall
-        mb, _ = min(pool, key=lambda x: (not x[1]['decode_watertight'], abs(x[1]['solid_area_change'] or 0)))
+    if mb is None:                                # nothing accepted: the decoded-watertight try with the best coverage,
+        flags.append('budget_unaccepted')         # then the least area change
+        mb, _ = min(pool, key=lambda x: (not x[1]['decode_watertight'], -(x[1].get('coverage') or base_cov),
+                                         abs(x[1]['solid_area_change'] or 0)))
     final = next(r for m_, r in pool if m_ is mb)
     info['t_budget_s'] = round(time.time() - t, 2)
     info.update(faces_out=int(len(mb.faces)), vertices_out=int(len(mb.vertices)), watertight=bool(mb.is_watertight),
