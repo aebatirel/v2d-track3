@@ -1,3 +1,23 @@
+# Track 3 pack-9a+ — UPLOADED 31 Oct 2026 18:13 UTC (build_9aplus) — AUC 0.81757, our best
+
+**Uploaded by the score-status session** (owner's word there, ~17:20 UTC: "Upload which you think of the highest score
+potential"); file `build_9aplus/track3_submission.parquet` sha256 e02736ea3c7e33ffcee5ada4a6a1dbc8ad4e72cd2889abdaa9968b8d3af6a7d8,
+commit URL d7ecaef; submissions 57847040 / 45 / 47 / 49 / 52 / 54; receipt and UPLOAD.md in `build_9aplus/`.
+
+| Board | pack 7 (30 Oct) | **pack 9a+** | rank |
+|---|---|---|---|
+| AUC | 0.81460 | **0.81757** | 8 |
+| SP-SR | 0.85 | 0.85 | 8 |
+| MP-SR | 0.65 | 0.65 | 8 |
+| RPE (cm) | 3.93179 | **3.87853** | 11 |
+| MPPE (cm) | 2.92126 | **2.89663** | 11 |
+| CD-O (cm) | 0.40188 | **0.33234** | 14 |
+
+Rank sum 60 → 11th (score-status session). The rollouts are pack 8's (pack 7 + eval 1 carve), so the AUC/RPE/MPPE gains
+come from the packed meshes through the scorer's mesh registration (and eval 1). CD-O measured 0.332 vs the mesh
+session's estimate 0.333. Reading rule as for pack 7: a board result is a transfer measurement only; nothing is chosen or
+reverted on eval scores.
+
 # Track 3 pack-9a candidate, 31 Oct 2026: pack 8 with the mesh session's C0 pot, lid and rack
 
 **Owner decision (31 Oct ~16:35 UTC, "Ship 9a, flagged", given in the mesh session and relayed by it): upload pack 9a as
