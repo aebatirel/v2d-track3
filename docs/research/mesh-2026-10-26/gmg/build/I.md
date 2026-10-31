@@ -1112,6 +1112,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   this log, work log; committed 21:36:31 UTC, on origin at 21:36:48; the "21:37" stamps in those texts are that
   commit time rounded to the minute). Only my lines were staged. Amend step done: no code edited, nothing run, $0.
   The Build step may start from 782db1c.
+
 - 21:38 [M] ev_extract progress: hands (M1, MediaPipe, cam_a video `data/eval/ep25_a.mp4`, 356 frames 2028x1520 at
   20 fps) 280.6 s, 353 / 356 frames with a hand; pass 0 178 frames, 9.21 M samples, voxels 112,831 / 137,302, 221 s.
   Disk free ~0.6 GB while the eval depth is local (another agent is writing too); extraction continues.
@@ -1146,3 +1147,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   orchestrator's decision of ~21:50 UTC (items 1-7) as PREREG F-I5.15 + INTERLOCK 21.13 after a prior-work review;
   commit + push before any code. No code, no run. Highest prediction so far P70 (F-I4.16, 782db1c), so round 2 starts at
   P71. Next: the review (CoACD paper + README, V-HACD, MuJoCo docs, cavity-preserving decomposition, Factory / SDF).
+- 21:47 (Design) review so far [R unless marked]: CoACD README (max_convex_hull "may introduce convex hull with a
+  concavity larger than the threshold", only with merge; preprocess `auto` runs only on non-manifold input) and paper
+  (arXiv 2205.02961: concavity = max(H_b, H_i), the hollow-shell example; the merge step uses an approximate H_i);
+  V-HACD `VHACD.h` (FLOOD_FILL default, "meshes with holes can fail"; SURFACE_ONLY "skins with hollow centers"; 64
+  hulls, 400k voxels); MuJoCo computation chapter (convex geoms only except SDF plugins; CoACD named for decomposition;
+  multiccd); Factory (Narang et al., RSS 2022: convex decompositions give spatial artifacts and bad contact normals on
+  tight parts; SDF contacts). [M] all ten round-1 SHELL bodies (shell_t5p36, ~3,900 faces) are watertight volumes
+  (`<scratch>/cc2_watertight.py`), so CoACD's preprocess was not the cause of the cavity filling; the forced merge to
+  the cap is. [M] roster: ep11 is the only public episode with two cups. Ledger shown (budget $325, actual $131.91,
+  $42 planned open). Geometry found while designing [E]: tangent (circumscribed) receiver rings and inscribed guest rings
+  leave a radial gap of up to rho (1/cos(pi/N) - 1) (0.78 mm at 40 mm, 16 sectors), which a 3 deg taper turns into up to
+  ~15 mm of sink for an uncarved perfect nest; a 2 mm box reference has the same problem (+-1 mm radial steps). Hence a
+  64-sector ring reference for lathe objects. Writing PREREG F-I5.15 + INTERLOCK 21.13 next.
