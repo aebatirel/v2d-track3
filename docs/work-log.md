@@ -5824,3 +5824,10 @@ score.
   - Reading: cam a removes the M1 visibility bottleneck, but single-frame marker fixes stay ~1 cm off, no better than
     our tracks. No new gate; the marker layer is closed for now.
   Files: cama.py, diag_cama.py/json, m1_share.py/json, PREREG block 4, README follow-up.
+- 20:25 UTC determined-wright (work log 20:24 on its branch, 3df1560):
+  - recipe screen formally INCOMPLETE (C/ep24-s43 lost 6/10 draws to a box thread limit);
+  - K vs C inconclusive (mean ≈ 0; K steadier on ep2: sd 0.009/0.020 vs 0.029/0.174);
+  - D vs C undetermined: ep12 +0.33 on both seeds, ep2 −0.11;
+  - solver re-test (S vs C): NO SIGNAL (ep2 −0.13), so eval solving is NOT started (physics solver closed).
+  Post-hoc [H]: GT-free sim_vs_ref picked the higher-AUC arm in 7/7 C-vs-D pairs. Proposal: train D beside C on the
+  eval episodes and keep the better per episode (pack-10 swap rule), ≈ $14–20 [E], pending the owner.
