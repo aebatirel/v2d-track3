@@ -174,3 +174,17 @@ The question, arms, recipe, metric, rule and bars are unchanged. Added, all in t
 - **INCOMPLETE re-run mechanics:** `RERUN_FROM=<run> CELLS="<arm>:<seed> ..."` trains only those cells on the first run's
   stored references (the seed copies must equal its manifest), on the same commit; the other cells' summaries and chosen
   checkpoints are pulled for the config diff and the verdict; their eval timeouts come from the first run's verify.json.
+
+- **Review amendments (31 Oct ~15:40 UTC, before any box; mechanics only, stricter):**
+  - A non-finite AUC (NaN / inf) is not a scored rollout (it counts toward neither the cell mean nor the 8-rollout
+    minimum); a non-finite Δ or Δ(s) makes the run INVALID. Before this, a NaN in a T cell read as PASS.
+  - The arm-identity checks also run BEFORE training, right after the arm copies (`e11g_verify.py identity_pre`): an arm
+    that fails them stops the job before any training. The job also stops as UNTESTABLE if the two arms' trained
+    references are within 0.5 cm of each other for BOTH cups over the S12 window (median), i.e. contact retargeting
+    left no S12 difference to test. The 0.5 cm threshold is a reviewer's proposal [H]; no gate reading either way.
+  - The beige cup's arms-apart distance is reported beside the blue cup's.
+  - The verdict tool no longer imports helpers from `tools/mass_verdict.py` (another lane edits it); its local copies
+    are identical in behaviour. Verdict fixtures 17/17 (three NaN cases added).
+  - Expected B0 reading: CPU review rebuilt T under 10 OpenBLAS kernel types; it is IDENTICAL on SkylakeX/Cooperlake
+    and DIFFERS (worst 0.78 mm / 0.65° beige, blue 0.0 mm) on Haswell/Zen and others, inside the go band. So T is
+    expected to read DIFFERS on many boxes (likely AMD); C stays IDENTICAL.

@@ -58,7 +58,7 @@ poses, not just their md5.
 - So the job builds `/content/e11g_vr` (numpy 2.5.4, scipy 1.18.1, trimesh 5.2.0, rtree 1.4.1) and `/content/e11g_vp`
   (numpy 2.4.6, scipy 1.18.0, trimesh 4.12.2, mujoco 3.8.1) with `python -m venv` + pip, falling back to `uv` (uv 0.13.4
   is in the box env). The physics settle depends on the numpy/trimesh versions at the sub-mm level, not on numpy's SIMD
-  dispatch. A box CPU could still differ [H]; the DIFFERS band (≤ 5 mm, ≤ 2°, T only) lets the gate go on with the box's
+  dispatch. A box CPU can differ [M, review: T is IDENTICAL on SkylakeX/Cooperlake OpenBLAS kernels and DIFFERS by ≤ 0.78 mm / 0.65° on Haswell/Zen and 6 others, so expect DIFFERS on many boxes]; the DIFFERS band (≤ 5 mm, ≤ 2°, T only) lets the gate go on with the box's
   own V4p track, flagged. C (pure numpy) must be IDENTICAL or NUMERIC (≤ 0.01 mm, ≤ 0.001°, camera byte-identical).
 - **Finding for any later V4p use on a box (eval-10 retrain):** the box's main python cannot run S12 (no rtree). The
   retrain must rebuild eval 10's V4p track the same way (pinned venvs) or on CPU.
@@ -182,7 +182,7 @@ tree's path; `cpu/out/mock_rerun/` is that run.
 ## 9. Risks and open items
 1. **Box reproducibility of T** [H]: pinned venvs reproduce mask10 byte for byte here, also with AVX-512 dispatch off;
    another CPU could still move the settle at the sub-mm level → DIFFERS (go, flagged); > 5 mm / 2° → the job stops
-   after setup (~$0.5–1.5).
+   after setup (~$1.2–2.2 with run_job.sh's 30-min FAIL_HOLD; review F3).
 2. **pip / uv on the box**: the venvs need PyPI (other jobs `pip install` there). If both methods fail the job stops at
    setup.
 3. **Contact retargeting's rest settle** may partly fix C's lifted blue cup on the hands-off frames, shrinking the arm

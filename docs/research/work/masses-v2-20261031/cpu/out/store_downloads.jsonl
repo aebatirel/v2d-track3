@@ -1,0 +1,31 @@
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass0s42_glock_public/ep2/best/summary.json", "ok": true, "tries": 1, "size": 1903}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass0s43_glock_public/ep2/best/summary.json", "ok": true, "tries": 1, "size": 1902}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass1s42_glock_public/ep2/best/summary.json", "ok": true, "tries": 1, "size": 1898}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass1s43_glock_public/ep2/best/summary.json", "ok": true, "tries": 1, "size": 1903}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass0s42_glock_public/ep12/best/summary.json", "ok": true, "tries": 1, "size": 1904}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass0s43_glock_public/ep12/best/summary.json", "ok": true, "tries": 1, "size": 1904}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass1s42_glock_public/ep12/best/summary.json", "ok": true, "tries": 1, "size": 1903}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass1s43_glock_public/ep12/best/summary.json", "ok": true, "tries": 1, "size": 1903}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass_check/arms_ep2.json", "ok": true, "tries": 1, "size": 4933}
+{"op": "get", "path": "runs/20261031-mass-2ed46ea/results/mass_check/arms_ep12.json", "ok": true, "tries": 1, "size": 4977}
+{"op": "get", "path": "runs/20261024-ev3-2c1e4dd/refs/glockt/ep24/processed/sequence_id=t3_ep024/robot_name=sharpa_wave/ref_gl_ilc.parquet", "ok": true, "tries": 1, "size": 1419137}
+{"op": "get", "path": "runs/20261024-ev3-2c1e4dd/refs/sf/ep24/assets/urdf/wooden_piece_1_rigid.urdf", "ok": true, "tries": 1, "size": 961}
+{"op": "get", "path": "runs/20261024-ev3-2c1e4dd/refs/sf/ep24/assets/urdf/wooden_piece_2_rigid.urdf", "ok": true, "tries": 1, "size": 960}
+{"op": "get", "path": "runs/20261024-ev3-2c1e4dd/results/glock_public/ep24/rest_check.json", "ok": true, "tries": 1, "size": 255}
+{"op": "get", "path": "runs/20261025-twin11v3-0e8aebb/refs/glockt/ep11/processed/sequence_id=t3_ep011/robot_name=sharpa_wave/ref_gl_ilc.parquet", "ok": true, "tries": 1, "size": 812578}
+{"op": "get", "path": "runs/20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/urdf/beige_cup_rigid.urdf", "ok": true, "tries": 1, "size": 939}
+{"op": "get", "path": "runs/20261025-twin11v3-0e8aebb/refs/sf/ep11/assets/urdf/blue_cup_rigid.urdf", "ok": true, "tries": 1, "size": 932}
+{"op": "get", "path": "runs/20261025-twin11v3-0e8aebb/results/glock_public/ep11/rest_check.json", "ok": true, "tries": 1, "size": 249}
+{"op": "get", "path": "runs/20261024-ev30rp-07eef1a/refs/sf/ep31/assets/urdf/mini_sweeper_rigid.urdf", "ok": true, "tries": 1, "size": 954}
+{"op": "get", "path": "runs/20261024-ev30rp-07eef1a/refs/sf/ep31/assets/urdf/plastic_dish_rack_rigid.urdf", "ok": true, "tries": 1, "size": 976}
+{"op": "get", "path": "runs/20261024-ev30rp-07eef1a/results/glock_public/ep31/rest_check.json", "ok": true, "tries": 1, "size": 259}
+{"op": "get", "path": "runs/20261030-orcB-38234d1/refs/glockt/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/ref_gl_ilc.parquet", "ok": true, "tries": 1, "size": 672590}
+{"op": "get", "path": "runs/20261030-orcB-38234d1/refs/sf/ep13/assets/urdf/blue_cup_rigid.urdf", "ok": true, "tries": 1, "size": 932}
+{"op": "get", "path": "runs/20261030-orcB-38234d1/refs/sf/ep13/assets/urdf/plastic_dish_rack_rigid.urdf", "ok": true, "tries": 1, "size": 976}
+{"op": "get", "path": "runs/20261030-orcB-38234d1/results/glock_public/ep13/rest_check.json", "ok": true, "tries": 1, "size": 252}
+{"op": "head", "path": "runs/20261030-orcB-38234d1/refs/perc2mck/ep13/processed/sequence_id=t3_ep013/robot_name=sharpa_wave/0d7b4754b12b4f4aad38b344b3f82c5f-0.parquet", "ok": true, "tries": 1, "size": 963688, "etag": "23ec16c5550576ae"}
+{"op": "head", "path": "runs/20261030-orcB-38234d1/refs/perc2mck/ep13/reconstructed_stage/t3_ep013_support.usda", "ok": true, "tries": 1, "size": 510, "etag": "aa89a716c51eb0e8"}
+{"op": "head", "path": "runs/20261030-orcB-38234d1/refs/sf/ep13/assets/mesh/blue_cup/blue_cup.glb", "ok": true, "tries": 1, "size": 216508, "etag": "24c1a484e9689989"}
+{"op": "head", "path": "runs/20261030-orcB-38234d1/refs/sf/ep13/assets/mesh/plastic_dish_rack/plastic_dish_rack.glb", "ok": true, "tries": 1, "size": 592984, "etag": "2324612751dd3cb9"}
+{"op": "head", "path": "runs/20261030-orcB-38234d1/results/glock_public/ep13/zero_score.txt", "ok": true, "tries": 1, "size": 51, "etag": "ffb16f7f0a366680"}
+{"op": "head", "path": "runs/20261030-orcB-38234d1/results/glock_public/ep13/support_fill.json", "ok": true, "tries": 1, "size": 3161, "etag": "5fa703656b8661c2"}

@@ -22,8 +22,27 @@ Usage: e11g_verdict.py --content /content --arms "e11c e11t" --seeds "42 43" --g
 """
 import argparse, glob, json, math, os, sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from mass_verdict import stats, r4                     # noqa: E402  (mean / sd ddof 1 / min / max; rounding)
+
+
+def stats(v):
+    """mean / sd (ddof 1) / min / max; local copy of tools/mass_verdict.py's (review F1, 31 Oct: no import from a file
+    another lane edits)."""
+    if not v:
+        return None
+    m = sum(v) / len(v)
+    sd = math.sqrt(sum((x - m) ** 2 for x in v) / (len(v) - 1)) if len(v) > 1 else 0.0
+    return dict(n=len(v), mean=m, sd=sd, min=min(v), max=max(v))
+
+
+def r4(d):
+    return {k: (round(v, 4) if isinstance(v, float) else v) for k, v in d.items()} if d else d
+
+
+def fin(x):
+    """a scored value: a finite number (review F1, 31 Oct: a NaN / inf AUC is not a scored rollout; NaN comparisons are
+    always False, so a NaN in T read as PASS)"""
+    return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
+
 
 GAIN, DROP, EP = 0.05, 0.05, 11
 EPS = 1e-9                                            # an exact +0.05 / -0.05 counts as met (float sums of 4-decimal AUCs)
@@ -48,6 +67,8 @@ def verdict(rows, seeds, control, treatment, verify_ok, min_n):
                            + ([f'also missing or < {min_n} scored rollouts: {missing}'] if missing else [])), per
     if missing:
         return 'INCOMPLETE', [f'missing or < {min_n} scored rollouts: {missing} (re-run only these cells on the stored references)'], per
+    if not all(fin(v) for v in [per['delta'], *ps.values()]):
+        return 'INVALID', ['non-finite reading'], per
     reasons, ok = [], True
     if per['delta'] < GAIN - EPS:
         ok = False; reasons.append(f'delta {per["delta"]:+.4f} < +{GAIN}')
@@ -68,7 +89,7 @@ def per_object(O):
         except Exception:
             continue
         for n in OBJS:
-            if n in po:
+            if n in po and fin(po[n]):
                 v[n].append(float(po[n]))
     return {n: (round(sum(x) / len(x), 4) if x else None) for n, x in v.items()} | {'n_files': max(len(x) for x in v.values())}
 
@@ -89,9 +110,9 @@ def main():
             if os.path.exists(f) and f'{arm}/s{s}' not in vmiss:
                 d = json.load(open(f)); rr = d.get('rollouts', [])
                 row = dict(checkpoint=d.get('checkpoint'), n_rollouts=len(rr), errors=sum(1 for x in rr if 'error' in x),
-                           auc=stats([x['auc'] for x in rr if 'auc' in x]), sim_vs_ref=stats([x['sim_vs_ref'] for x in rr if 'sim_vs_ref' in x]),
-                           ref_auc=stats([x['ref_auc'] for x in rr if 'ref_auc' in x]), floor_auc=stats([x['floor_auc'] for x in rr if 'floor_auc' in x]),
-                           auc_rollouts=[round(x['auc'], 4) for x in rr if 'auc' in x], per_object_auc=per_object(O))
+                           auc=stats([x['auc'] for x in rr if fin(x.get('auc'))]), sim_vs_ref=stats([x['sim_vs_ref'] for x in rr if fin(x.get('sim_vs_ref'))]),
+                           ref_auc=stats([x['ref_auc'] for x in rr if fin(x.get('ref_auc'))]), floor_auc=stats([x['floor_auc'] for x in rr if fin(x.get('floor_auc'))]),
+                           auc_rollouts=[round(x['auc'], 4) for x in rr if fin(x.get('auc'))], per_object_auc=per_object(O))
             rows[(arm, s)] = row
             cells[f'{arm}/s{s}'] = None if row is None else {k: (r4(v) if isinstance(v, dict) else v) for k, v in row.items()}
     label, reasons, per = verdict(rows, seeds, control, treatment, bool(V.get('ok')), a.min_n)

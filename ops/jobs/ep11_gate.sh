@@ -140,6 +140,7 @@ mkvenv() {  # $1 dir, then pinned packages: python -m venv + pip, else uv (the b
 VR=/content/e11g_vr; VP=/content/e11g_vp
 mkvenv $VR numpy==2.5.4 scipy==1.18.1 trimesh==5.2.0 rtree==1.4.1 || stop "refine venv FAILED"
 mkvenv $VP numpy==2.4.6 scipy==1.18.0 trimesh==4.12.2 mujoco==3.8.1 || stop "physics venv FAILED"
+{ lscpu | grep 'Model name'; $VP/bin/python -c 'import numpy; numpy.show_runtime()'; } > $G/cpu.txt 2>&1 || true   # B0 diagnostic (review F2)
 bash $T/e11g_tracks.sh $IN $G/tracks $VR/bin/python $VP/bin/python >> $J 2>&1 || stop "refined tracks FAILED (see $G/tracks/logs)"
 python $T/e11g_verify.py b0 --tracks $G/tracks --expect $GD/expect --out $G/b0.json > $G/b0.txt 2>&1; rc=$?
 log "ep11_gate B0: $(cut -c1-800 $G/b0.txt)" >> $J
@@ -177,6 +178,12 @@ label "ep11 gate: grasp-lock references"
 python $T/e11g_verify.py arms --content /content --arms "$ARMS" --seeds "$SEEDS" --base $BASE --out $G/arms.json > $G/arms.txt 2>&1 \
   || stop "arm copies FAILED ($(tail -2 $G/arms.txt | tr '\n' ' ' | cut -c1-300))"
 log "ep11_gate arms: $(tail -1 $G/arms.txt | cut -c1-900)" >> $J
+# arm identity BEFORE training (review F3/F4, 31 Oct; PREREG section 7): the same content checks verify runs at the end,
+# here so that an arm mix-up costs no training; UNTESTABLE if contact retargeting left the two trained references within
+# 0.5 cm of each other for BOTH cups over the S12 window (the gate could not measure S12) [threshold: review proposal, H]
+python $T/e11g_verify.py identity_pre --content /content --arms "$ARMS" --base $BASE --tracks $G/tracks --out $G/identity_pre.json \
+  > $G/identity_pre.txt 2>&1 || stop "arm identity before training FAILED or UNTESTABLE ($(tail -2 $G/identity_pre.txt | tr '\n' ' ' | cut -c1-400))"
+log "ep11_gate identity before training: $(tail -1 $G/identity_pre.txt | cut -c1-600)" >> $J
 ( cd /content && for a in $ARMS; do                                  # what an INCOMPLETE re-run pulls (one file each)
     find refs/perc2$a$BASE/ep11 refs/perc2${a}_glockt/ep11 -type f ! -name 'depths_*'
     for f in rest_check.json zero_score.txt; do echo results/perc2${a}_glock_public/ep11/$f; done

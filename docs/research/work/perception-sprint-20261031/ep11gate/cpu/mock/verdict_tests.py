@@ -58,6 +58,10 @@ cases = [
     ('invalid_verify_failed_and_missing', dict(cells={('e11c', s): cell(F) for s in SEEDS} | {('e11t', '42'): cell(0.9), ('e11t', '43'): None},
                                                verify_ok=False, vmissing=['e11t/s43']), 'INVALID'),
     ('invalid_no_verify_json', dict(cells={('e11c', s): cell(F) for s in SEEDS} | {('e11t', s): cell(0.9) for s in SEEDS}, no_verify=True), 'INVALID'),
+    # review F1 (31 Oct): a NaN AUC is not a scored rollout (before the fix, a NaN in T read as PASS with delta nan)
+    ('nan_one_rollout_not_scored', dict(cells={('e11c', s): cell(F) for s in SEEDS} | {('e11t', '42'): cell(0.7), ('e11t', '43'): [0.7] * 9 + [float('nan')]}), 'PASS'),
+    ('nan_three_rollouts_incomplete', dict(cells={('e11c', s): cell(F) for s in SEEDS} | {('e11t', '42'): cell(0.7), ('e11t', '43'): [float('nan')] * 3 + [0.7] * 7}), 'INCOMPLETE'),
+    ('nan_whole_T_cell_incomplete', dict(cells={('e11c', s): cell(F) for s in SEEDS} | {('e11t', '42'): cell(0.7), ('e11t', '43'): cell(float('nan'))}), 'INCOMPLETE'),
     ('pass_no_per_object_files', dict(cells={('e11c', s): cell(F) for s in SEEDS} | {('e11t', s): cell(0.7) for s in SEEDS}, per_obj=False), 'PASS'),
 ]
 res, bad = [], 0

@@ -242,6 +242,9 @@ def identity(C, arms, base, tracks):
         a0, a1 = list(trained)
         out['arms_apart_blue_cm'] = dict(window=med_cm(trained[a0]['blue_cup'], trained[a1]['blue_cup']),
                                          hands_off_f101_136=med_cm(trained[a0]['blue_cup'], trained[a1]['blue_cup'], 101, 137))
+        # review F4 (31 Oct): the beige cup too (rest settle can bring the blue cups together while the beige still differs)
+        out['arms_apart_beige_cm'] = dict(window=med_cm(trained[a0]['beige_cup'], trained[a1]['beige_cup']),
+                                          hands_off_f101_136=med_cm(trained[a0]['beige_cup'], trained[a1]['beige_cup'], 101, 137))
     return out
 
 
@@ -355,19 +358,41 @@ def cmd_verify(a):
     sys.exit(0 if out['ok'] else 1)
 
 
+UNTESTABLE_CM = 0.5   # review proposal (31 Oct) [H]: both cups' trained references this close over the S12 window = no S12 left
+
+
+def cmd_identity_pre(a):
+    """Arm identity before training (review F3/F4, 31 Oct; PREREG section 7): identity() on the trained-reference stages
+    that exist after the arm copies. Exit 1 (the job stops before any training) if an arm fails its content checks, or
+    UNTESTABLE: both cups' trained references within UNTESTABLE_CM of each other over the S12 window."""
+    arms = a.arms.split()
+    r = identity(a.content.rstrip('/'), arms, a.base, a.tracks)
+    bad = [x for x in arms if not (r.get(x) or {}).get('ok')]
+    apart = [(r.get(k) or {}).get('window') for k in ('arms_apart_blue_cm', 'arms_apart_beige_cm')]
+    untestable = None not in apart and all(x < UNTESTABLE_CM for x in apart)
+    ok = not bad and not untestable and None not in apart
+    r['pre_training'] = dict(bad_arms=bad, untestable=untestable, untestable_cm=UNTESTABLE_CM, ok=ok)
+    json.dump(r, open(a.out, 'w'), indent=1, default=str)
+    print(('GO' if ok else 'UNTESTABLE' if untestable else 'STOP') + f': bad arms {bad}, apart window blue/beige cm {apart}')
+    sys.exit(0 if ok else 1)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest='cmd', required=True)
     b = sp.add_parser('b0'); b.add_argument('--tracks', required=True); b.add_argument('--expect', required=True); b.add_argument('--out', required=True)
     r = sp.add_parser('arms')
     v = sp.add_parser('verify')
+    i = sp.add_parser('identity_pre')
     for p in (r, v):
         p.add_argument('--content', default='/content'); p.add_argument('--arms', default='e11c e11t'); p.add_argument('--seeds', default='42 43')
         p.add_argument('--base', default='mck'); p.add_argument('--out', required=True)
+    i.add_argument('--content', default='/content'); i.add_argument('--arms', default='e11c e11t'); i.add_argument('--base', default='mck')
+    i.add_argument('--tracks', required=True); i.add_argument('--out', required=True)
     r.add_argument('--expect_manifest', default=None)
     v.add_argument('--steps', type=int, required=True); v.add_argument('--gate', required=True); v.add_argument('--prior', default=None)
     a = ap.parse_args()
-    dict(b0=cmd_b0, arms=cmd_arms, verify=cmd_verify)[a.cmd](a)
+    dict(b0=cmd_b0, arms=cmd_arms, verify=cmd_verify, identity_pre=cmd_identity_pre)[a.cmd](a)
 
 
 if __name__ == '__main__':

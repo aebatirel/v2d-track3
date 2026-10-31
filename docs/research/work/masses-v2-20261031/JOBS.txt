@@ -1,0 +1,95 @@
+MASSES v2: launch job strings (prepared 31 Oct 2026 ~16:30 UTC; NOTHING LAUNCHED)
+Owner approval: 31 Oct 14:55 UTC (relayed by determined-wright, origin/claude/determined-wright-3joens 7e3311c):
+"Run re-test", ~$18-20, 2 boxes, ~7 h. Before launch: the physics session's PREREG review (GO), and a credit check.
+Pre-registration: docs/research/work/masses-v2-20261031/PREREG.md (selection + rule fixed there; commit it unchanged)
+Selection evidence: baselines.md / baselines.json. Reference table: refs_v2.json. Build notes and CPU evidence: BUILD.md, cpu/
+
+Before the launch (orchestrator):
+  1. commit + push. SHA=<that commit>, S7=${SHA:0:7}, D=$(date -u +%Y%m%d). The commit contains:
+     - ops/jobs/mass_check.sh (opt-in MV2_TAB mode; the default is byte-identical in effect, cpu/out/equiv_default.txt);
+     - tools/mass_verdict.py (opt-in --rule v2 / --partial; v1 unchanged, cpu/out/v1_unchanged.txt);
+     - docs/research/work/masses-v2-20261031/ (all of it, refs_v2.json included: the box reads the table from the repo).
+  2. the reviewer's GO on PREREG.md (determined-wright); the owner's go-ahead is the 14:55 UTC approval above (~$18-20);
+     check the Vast credit (ops/vast.sh show + the ledger) covers ~$24 (the high estimate).
+  3. ledger lines (LEDGER_SESSION=focused-pascal, so the line is not "unknown-session" as in the first check):
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-mv2a-$S7 9.00 "Masses v2 box A: public ep24 + ep13, 0.3 kg vs props masses, seeds 42/43, NREP 10 (PREREG masses-v2-20261031)" owner
+       LEDGER_SESSION=focused-pascal python3 ops/ledger.py add planned $D-mv2b-$S7 9.00 "Masses v2 box B: public ep11 + ep31, 0.3 kg vs props masses, seeds 42/43, NREP 10 (PREREG masses-v2-20261031)" owner
+  4. offers: TWO RTX PRO 6000 (96 GB, Max-Q / WS / S), on demand, <= $1.55/h; snapshot pt2.11-cu130-py313-20261020 (as the
+     first check). Launch box B ~10 min after box A: the setups both pull the env snapshot (HF 429).
+     Each box self-destroys when its job ends (run_job.sh); the stall watchdog (30 min without progress) protects the
+     spend; there is no fixed time limit.
+
+Run ids: $D-mv2a-$S7 and $D-mv2b-$S7   (mass_check.sh in MV2 mode refuses a run id without "-mv2")
+Job strings (everything else is fixed inside mass_check.sh + refs_v2.json: arms, recipe, seeds 42 43, NREP 10, PAR 2,
+TRAIN_SLOTS 2, EVAL_TIMEOUT 1200, the reference files and their md5 + fingerprint):
+
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer A> $D-mv2a-$S7 'MV2_TAB=docs/research/work/masses-v2-20261031/refs_v2.json MV2_EPS="24 13" bash ops/jobs/mass_check.sh'
+ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer B> $D-mv2b-$S7 'MV2_TAB=docs/research/work/masses-v2-20261031/refs_v2.json MV2_EPS="11 31" bash ops/jobs/mass_check.sh'
+
+What each box runs (in order):
+  - pulls: the table's 9 required + 2 optional files per episode, ONE single-file download each (store.sh pull-files,
+    5 tries, no store listing): 22 downloads per box, 0 listings (the first check made 4 listings + 1 download);
+  - per episode: md5 + fingerprint of refs/glockt/ep<N>/.../ref_gl_ilc.parquet must equal refs_v2.json, else the episode
+    is REFUSED and dropped (its cells missing -> INCOMPLETE; never rebuilt, never swapped);
+  - tools/mass_arm.py per episode: refs/mass{0,1}_sf/ep<N>/assets, refs/mass{0,1}s{42,43}_glockt/ep<N> (only
+    object_urdf_paths differs; mass1 URDFs carry props_masses_only.json masses, inertia x m/0.3, COM kept);
+  - seed 42: glock_public.sh REUSE_REF=1 REQUIRE_REUSE=1 NO_PUSH=1, PAIRS "<e1>:local:<base>:mass0s42 <e1>:...:mass1s42
+    <e2>:...:mass0s42 <e2>:...:mass1s42" (2 waves of 2 trainings), then seed 43 the same; 70,004,736 steps, curve
+    (3 evaluations per checkpoint) -> chosen checkpoint (sim_vs_ref, no ground truth) -> NREP 10 official evaluations,
+    each scored sim_vs_ref + registered ADD-AUC vs mocap (library_v3); EVAL_TIMEOUT 1200 (timeout -k 60);
+  - tools/mass_verify.py -> results/mass_check/verify.json; tools/mass_verdict.py --rule v2 --partial ->
+    results/mass_check/summary.json and the job.log line "mass_check v2 BOX RESULT ... PARTIAL" (a box reading, NOT
+    the verdict);
+  - ONE store push (the platform's interim and final self-destroy pushes remain).
+
+EXPECTED COST [estimates]. Basis [M]: the first check (20261031-mass-2ed46ea, same job, same recipe, RTX PRO 6000
+Max-Q $1.45/h): 6.25 h of box time for 8 cells, including an ~18 min on-box reference build (06:51:49 -> 07:09:47) and
+4 waves of 2 trainings at ~85 min each (seed 42 block 07:09:51 -> 09:59:42, seed 43 block 09:59:42 -> 12:49:28: 170 min
+per 2 waves, curve and 10 evaluations included). v2 boxes have the same 8 cells and NO build. Episode lengths 275 + 190
+(box A) and 137 + 290 (box B) frames vs 343 + 181 in the first check; rack episodes (ep13, ep31) have the heavier
+contact, as ep12 had. A wave is taken as 75-100 min (central 85).
+
+| stage                                   | low h | central h | high h |
+|-----------------------------------------|-------|-----------|--------|
+| boot + setup (snapshot restore)         | 0.2   | 0.3       | 0.75   |
+| 22 single-file pulls (HF 429 risk)      | 0.05  | 0.1       | 0.3    |
+| 4 waves x 2 trainings (+ curve, evals)  | 5.0   | 5.67      | 6.67   |
+| verify, verdict, push                   | 0.05  | 0.1       | 0.2    |
+| total per box                           | 5.3   | 6.2       | 7.9    |
+
+| per box          | low    | central | high    |
+|------------------|--------|---------|---------|
+| hours            | 5.3    | 6.2     | 7.9     |
+| $/h              | 1.30   | 1.45    | 1.55    |
+| $ per box        | 6.9    | 9.0     | 12.2    |
+| $ two boxes      | 13.8   | 18.0    | 24.5    |
+
+  => ~$14-25, central ~$18 for both boxes (the owner's ~$18-20); ledger planned $9.00 per box. Wall time ~6-8 h
+     (the two boxes run in parallel). An INCOMPLETE re-run costs ~$1.5-3 per missing (episode, seed) pair (one wave of 2
+     trainings + setup) [E].
+
+After both boxes (CPU, $0; this session):
+  1. download exactly what the merge reads (one hf_hub_download per file, no listing; 30 files):
+       python3 -I docs/research/work/masses-v2-20261031/scripts/pull_results.py <DL> $D-mv2a-$S7:24,13 $D-mv2b-$S7:11,31
+  2. read each box's job.log: the "mass_check v2 ep<N>: pulled ... reference md5 + fingerprint = the table's" lines (or
+     REFUSED), the eval-timeout counts, and the BOX RESULT line.
+  3. the verdict (PREREG section 5), written straight into the results folder:
+       mkdir -p docs/research/work/masses-v2-20261031/results
+       python3 -I tools/mass_verdict.py --rule v2 --eps "24 11 13 31" --seeds "42 43" --control mass0 --treatment mass1 \
+         --content "<DL>/runs/$D-mv2a-$S7 <DL>/runs/$D-mv2b-$S7" \
+         --verify "<DL>/runs/$D-mv2a-$S7/results/mass_check/verify.json <DL>/runs/$D-mv2b-$S7/results/mass_check/verify.json" \
+         --manifests "<DL>/runs/$D-mv2a-$S7/results/mass_check/arms_ep24.json <DL>/runs/$D-mv2a-$S7/results/mass_check/arms_ep13.json <DL>/runs/$D-mv2b-$S7/results/mass_check/arms_ep11.json <DL>/runs/$D-mv2b-$S7/results/mass_check/arms_ep31.json" \
+         --out docs/research/work/masses-v2-20261031/results/summary.json | tee docs/research/work/masses-v2-20261031/results/verdict.txt
+     Exit 2 = a pair qualifies in two boxes: no verdict (procedural error; see PREREG 5.3).
+  4. write the reading in the work log (per episode, per seed, the three clauses, the eval timeouts), close the ledger
+     with actual lines, copy both boxes' verify.json / summary.json / job.log into results/.
+  5. INCOMPLETE (a missing cell, a REFUSED episode, or < 8 scored rollouts) -> re-run ONLY the missing (episode, seed)
+     pairs, both arms, on a new box, from the v2 run's own stored reference files (same table paths, md5-checked):
+       ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> $D-mv2r-$S7 \
+         'SEEDS="<s>" SRC_EP<N>=<that v2 run id>:<base>:reuse MV2_TAB=docs/research/work/masses-v2-20261031/refs_v2.json MV2_EPS="<N>" bash ops/jobs/mass_check.sh'
+     (base: ep24 mcs, ep11 / ep13 / ep31 mck; a ledger planned line first; the owner's go-ahead covers it only if within
+     the approved ~$18-20 total, else ask.) Then pull its files (pull_results.py <DL> $D-mv2r-$S7:<N> --seeds "<s>") and
+     apply step 3 once with the re-run box appended to --content / --verify / --manifests (same order). Never a swap.
+  6. INVALID -> no reading; find the cause in verify.json, fix, and ask the owner before re-running.
+  7. ADOPT -> nothing launches automatically: the eval masses retrain (mass_eval.sh, O1/O2, ~$16-26 [E]) needs its own
+     owner go-ahead. NOT ADOPTED -> the placeholder stays; record it.
