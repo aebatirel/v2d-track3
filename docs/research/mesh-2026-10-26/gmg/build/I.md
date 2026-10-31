@@ -705,6 +705,15 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   --no-physcheck --tag fi5`, no `--video`. HEAD at launch cdc8b40 (another workflow's results commit after 1b9f0c1; no
   gmg module differs from 1b9f0c1). Picks: ep12 / ep13 blue_cup, plastic_dish_rack = shell_t5p36; ep31 mini_sweeper,
   plastic_dish_rack = shell_t5p36; ep11 blue_cup, beige_cup = shell_t5p36.
+- 19:33 ep2 candidates done (19:32:40); **ep2 launched 19:32:48** (white_pot = shell_t5p36, white_pot_lid = hull as in
+  drv2_t3; F-I5 body of the lid = its shell_t5p36 by the driver default). All five runs past the flag-off decisions
+  (19:31-19:33; no silhouette) and in the F-I5 default-pieces step (structure lathe test per object first). Flag-off
+  notes so far [M]: ep13 rack <- cup is `c_absent_track` (good share 0.4, eval semantics), ep31 sweeper <- rack
+  `one_sided_region`.
+- 19:44 [M] structure lathe test (F-I5.4 route choice, `structure_<obj>.json` in each out dir; ~10 min per object under
+  load ~20-24): **ep11 blue_cup rotc 3.013 sigma -> lathe NOT accepted** (threshold 3 sigma; B7 dev bundle gave 1.61),
+  so it goes to route 3 (CoACD 0.02 + repair): **P41 falsified as written** (a cup leaves the lathe route); no change.
+  ep12 blue_cup 1.598 sigma -> lathe; ep31 mini_sweeper 3.068 -> route 3. CoACD children running for ep11, ep12, ep31.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
