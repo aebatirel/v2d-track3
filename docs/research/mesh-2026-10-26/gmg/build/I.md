@@ -801,6 +801,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   drops 84.1 mm (tilt 26.0 deg); f8: 86.7 mm (24.5 deg)**: it falls through the rack's boxes to the table. **P47
   falsified** (the delivered copy lets the sweeper drop > 4 mm). Figure `build/I/png/fi5pub_ep31.png`. ep13 still in
   its rack pieces step.
+- 20:55 [M] **ep13 done (20:52:13, `done 4940.1 s`, code 407a18e): out of scope (collider overlap along the track 0.0
+  / 0.0 cm3, no component), default delivered.** Rack: CoACD returned 80 hulls (< cap), the repair made 2 splits and
+  hit the cap, 66 hulls still over 0.3 cm3 (max 3.53 cm3) -> 6 mm boxes (24 boxes). Delivered colliders: cup 25 boxes =
+  10.8 cm3 for 221.3 cm3 (4.9 %), rack 24 boxes = 11.0 cm3 for 285.3 cm3 (3.9 %). Flag-off (no silhouette): all IGNORE
+  (`c_absent_track`, good share 0.38 / 0.40 under eval semantics). Delivered-default S (diagnostic): receiver rack
+  (0.188 vs 0.0), one hands-off static run [142, 150], **f146: the cup moves 90.6 mm (dz 28.9, lateral 85.1 mm, tilt
+  115 deg)**. All five T-I13 public runs done (19:29-20:53, ~45-83 min each in parallel, load 15-25). Writing the
+  results README, PREREG F-I5.14 outcomes, INTERLOCK 21.11 and the work-log entry next.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
