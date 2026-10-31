@@ -5732,3 +5732,12 @@ arm and a no-policy replay floor to stage B.
   +1.32 cm. The losses come from the white_pot template (ep45 0.980 → 0.006, ep0 → 0.037, ep26 −0.47, ep2 −0.26) and
   the ep11 cup pair (0.898 → 0.193). There is no eval re-track, and nothing enters a pack (942dbfc).
   - Still running: eval-10 V4p retrain (seed 43) and masses v2 box B. The D boxes launch after their review returns GO.
+- 23:35 UTC focused-pascal (28a03df):
+  - **Eval-10 V4p: NO-SWAP.** The cup is never lifted in either seed; new vs packed 0.459 vs 0.463 (V) and 0.449 vs
+    0.453 (P), both failing 10/10. The ep11 gate gain did not transfer [H: a reference or initial-state difference the
+    gate did not cover].
+  - **Masses v2: NOT ADOPTED** (mean +0.0034; 1/4 positive).
+  - **Re-track: FAIL.**
+  - **D arm:** 5 boxes (G: 14/16/33; S25 ×2; S30 ×2), the last launching ~23:45; reading after ~2.5–4 h of training plus
+    one confirmation box. Pack 9b = 9a+ plus passing D cells only.
+  - Credit $56.52 at 22:58 UTC. Tonight's actuals: e10v $3.25, h5p7 $5.85, h5e1 $6.95, mv2a2 $6.20, rtkA/B $1.54.
