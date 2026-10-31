@@ -5277,3 +5277,24 @@ diagnostic; nothing is picked for submission.
   - Two verifiers.
   - Eval 25 with the identity-correct tracks; r0 compared with the packed meshes/carve/ev25.
   - Report, plus hand-off texts for determined-wright and focused-pascal.
+
+### 2026-10-31 ~16:10 UTC — C0 hand-off verifier done; frame yes/no sent for pack 9a
+- Verifier report `cdo-sprint/C0/verify_handoff.md` (commit 694dc73): no blocking item for pot, lid and rack.
+  - Rigid ICP C0 -> library_v3:
+
+    | Object | ICP shift | Verdict |
+    |---|---|---|
+    | pot | 2.49 mm / 0.80 deg | YES |
+    | lid | 3.03 mm / 1.24 deg | YES, borderline |
+    | rack | 2.09 mm with a real 2.3 deg rotation (~10 mm at the ends; public worst-seed rotation 1.75 -> 3.29 deg while ADD improves 6.0 -> 5.37) | YES with caveat |
+    | blue cup | 6.67 mm / 2.67 deg, mostly axial | NO (conditional blocker B1; it is held back anyway) |
+
+  - Byte identity holds. Roster 36 pairs; 12 swaps for 9a (pot evals 1, 3, 5, 6, 8, 28; lid 1; rack 14, 15, 16, 28,
+    30).
+  - Kit dry run: 0 MESH WARNING, validation passed, CD-O rows finite.
+  - Non-blocking:
+    - shipping before the AUC verdict is a deviation from C0 PREREG section 5;
+    - provenance wording should say library_v3 was built along scan-templated tracks;
+    - pin fast_simplification 0.2.0 in pack_eval.sh;
+    - the C0 README is still to come (stage 4).
+- Sent the frame yes/no to focused-pascal and the score session. AUC guard 40/51 runs, 0 failures.
