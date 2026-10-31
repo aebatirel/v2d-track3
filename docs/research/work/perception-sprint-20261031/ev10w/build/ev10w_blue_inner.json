@@ -1,0 +1,232 @@
+{
+ "rule": "r_in = min(max(r - wall, R_g + 1 mm), r - min_wall) below the seat line (PREREG exception case)",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/dl/runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "frames": [
+  100,
+  160
+ ],
+ "seat_hd_mm": -47.4,
+ "s_seat_mm": 38.38,
+ "wall_mm": 3.0,
+ "min_wall_mm": 1.5,
+ "band_edges_mm": [
+  -23.61,
+  38.39,
+  48.39,
+  58.39,
+  68.39
+ ],
+ "bins": [
+  {
+   "s_mm": 38.4,
+   "h_diag_mm": -47.4,
+   "r_out_mm": 36.54,
+   "r_in_ev10_mm": 33.54,
+   "Rg_mm": 40.82,
+   "want_mm": 41.82,
+   "r_in_mm": 35.04,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 40.4,
+   "h_diag_mm": -49.4,
+   "r_out_mm": 36.43,
+   "r_in_ev10_mm": 33.43,
+   "Rg_mm": 40.83,
+   "want_mm": 41.83,
+   "r_in_mm": 34.93,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 42.4,
+   "h_diag_mm": -51.4,
+   "r_out_mm": 36.4,
+   "r_in_ev10_mm": 33.4,
+   "Rg_mm": 40.83,
+   "want_mm": 41.83,
+   "r_in_mm": 34.9,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 44.4,
+   "h_diag_mm": -53.4,
+   "r_out_mm": 36.35,
+   "r_in_ev10_mm": 33.35,
+   "Rg_mm": 40.83,
+   "want_mm": 41.83,
+   "r_in_mm": 34.85,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 46.4,
+   "h_diag_mm": -55.4,
+   "r_out_mm": 36.35,
+   "r_in_ev10_mm": 33.35,
+   "Rg_mm": 40.76,
+   "want_mm": 41.76,
+   "r_in_mm": 34.85,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 48.4,
+   "h_diag_mm": -57.4,
+   "r_out_mm": 36.35,
+   "r_in_ev10_mm": 33.35,
+   "Rg_mm": 40.69,
+   "want_mm": 41.69,
+   "r_in_mm": 34.85,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 50.4,
+   "h_diag_mm": -59.4,
+   "r_out_mm": 36.52,
+   "r_in_ev10_mm": 33.52,
+   "Rg_mm": 40.63,
+   "want_mm": 41.63,
+   "r_in_mm": 35.02,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 52.4,
+   "h_diag_mm": -61.4,
+   "r_out_mm": 36.56,
+   "r_in_ev10_mm": 33.56,
+   "Rg_mm": 40.68,
+   "want_mm": 41.68,
+   "r_in_mm": 35.06,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 54.4,
+   "h_diag_mm": -63.4,
+   "r_out_mm": 36.56,
+   "r_in_ev10_mm": 33.56,
+   "Rg_mm": 40.73,
+   "want_mm": 41.73,
+   "r_in_mm": 35.06,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 56.4,
+   "h_diag_mm": -65.4,
+   "r_out_mm": 36.56,
+   "r_in_ev10_mm": 33.56,
+   "Rg_mm": 40.67,
+   "want_mm": 41.67,
+   "r_in_mm": 35.06,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 58.4,
+   "h_diag_mm": -67.4,
+   "r_out_mm": 36.49,
+   "r_in_ev10_mm": 33.49,
+   "Rg_mm": 40.56,
+   "want_mm": 41.56,
+   "r_in_mm": 34.99,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 60.4,
+   "h_diag_mm": -69.4,
+   "r_out_mm": 36.44,
+   "r_in_ev10_mm": 33.44,
+   "Rg_mm": 40.59,
+   "want_mm": 41.59,
+   "r_in_mm": 34.94,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 62.4,
+   "h_diag_mm": -71.4,
+   "r_out_mm": 36.39,
+   "r_in_ev10_mm": 33.39,
+   "Rg_mm": 40.79,
+   "want_mm": 41.79,
+   "r_in_mm": 34.89,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 64.4,
+   "h_diag_mm": -73.4,
+   "r_out_mm": 36.19,
+   "r_in_ev10_mm": 33.19,
+   "Rg_mm": 41.02,
+   "want_mm": 42.02,
+   "r_in_mm": 34.69,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 66.4,
+   "h_diag_mm": -75.4,
+   "r_out_mm": 35.97,
+   "r_in_ev10_mm": 32.97,
+   "Rg_mm": 41.19,
+   "want_mm": 42.19,
+   "r_in_mm": 34.47,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 68.4,
+   "h_diag_mm": -77.4,
+   "r_out_mm": 35.75,
+   "r_in_ev10_mm": 32.75,
+   "Rg_mm": 41.39,
+   "want_mm": 42.39,
+   "r_in_mm": 34.25,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 70.4,
+   "h_diag_mm": -79.4,
+   "r_out_mm": 35.53,
+   "r_in_ev10_mm": 32.53,
+   "Rg_mm": 39.68,
+   "want_mm": 40.68,
+   "r_in_mm": 34.03,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 72.4,
+   "h_diag_mm": -81.4,
+   "r_out_mm": 35.1,
+   "r_in_ev10_mm": 32.1,
+   "Rg_mm": 39.76,
+   "want_mm": 40.76,
+   "r_in_mm": 33.6,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  },
+  {
+   "s_mm": 74.4,
+   "h_diag_mm": -83.4,
+   "r_out_mm": 34.44,
+   "r_in_ev10_mm": 31.44,
+   "Rg_mm": 39.84,
+   "want_mm": 40.84,
+   "r_in_mm": 32.94,
+   "wall_mm": 1.5,
+   "cap_binds": true
+  }
+ ],
+ "cap_binds_bins": 19,
+ "n_bins": 19
+}

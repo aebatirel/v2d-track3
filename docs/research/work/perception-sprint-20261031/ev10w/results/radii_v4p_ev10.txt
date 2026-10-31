@@ -1,0 +1,16 @@
+frame 110 beige lowest point h -54.6 mm
+  h -50 mm: beige outer r median/max 35.3/35.8 mm | blue cavity r median/min 32.2/28.0 mm
+  h -40 mm: beige outer r median/max 35.3/36.4 mm | blue cavity r median/min 33.2/29.0 mm
+  h -20 mm: beige outer r median/max 36.1/37.4 mm | blue cavity r median/min 35.2/31.5 mm
+  h +0 mm: beige outer r median/max 36.6/38.0 mm | blue cavity r median/min 37.2/34.5 mm
+  h +20 mm: beige outer r median/max 36.8/38.9 mm | blue cavity r median/min 39.5/37.0 mm
+  h +40 mm: beige outer r median/max 38.3/39.9 mm | blue cavity r median/min 40.0/39.0 mm
+frame 140 beige lowest point h -71.9 mm
+  h -70 mm: beige outer r median/max 33.4/36.9 mm | blue cavity r median/min 31.2/26.0 mm
+  h -60 mm: beige outer r median/max 34.6/37.0 mm | blue cavity r median/min 31.8/27.0 mm
+  h -50 mm: beige outer r median/max 35.8/37.6 mm | blue cavity r median/min 32.2/28.0 mm
+  h -40 mm: beige outer r median/max 37.2/38.0 mm | blue cavity r median/min 33.2/29.0 mm
+  h -20 mm: beige outer r median/max 36.7/38.2 mm | blue cavity r median/min 35.2/31.5 mm
+  h +0 mm: beige outer r median/max 36.9/38.9 mm | blue cavity r median/min 37.2/34.5 mm
+  h +20 mm: beige outer r median/max 38.4/39.6 mm | blue cavity r median/min 39.5/37.0 mm
+  h +40 mm: beige outer r median/max 39.8/40.3 mm | blue cavity r median/min 40.0/39.0 mm

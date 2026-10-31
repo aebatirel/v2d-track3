@@ -1,0 +1,335 @@
+{
+ "DIAGNOSTIC": "POST HOC coaxial-projection intrusion (ev10w/scripts/coaxial_I.py); not a PREREG gate",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/dl/runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "carve": "/home/user/v2d-track3/meshes/carve/ev10",
+ "summary": {
+  "f100-117": {
+   "frames": 18,
+   "coaxial_le2": 2,
+   "coaxial_median": 3.916,
+   "coaxial_max": 6.936,
+   "tracked_median": 29.112000000000002
+  },
+  "f118-160": {
+   "frames": 43,
+   "coaxial_le2": 41,
+   "coaxial_median": 0.04,
+   "coaxial_max": 2.656,
+   "tracked_median": 14.48
+  },
+  "f100-160": {
+   "frames": 61,
+   "coaxial_le2": 43,
+   "coaxial_median": 0.344,
+   "coaxial_max": 6.936,
+   "tracked_median": 17.568
+  }
+ },
+ "rows": [
+  {
+   "frame": 100,
+   "I_tracked": 27.824,
+   "I_coaxial": 0.712
+  },
+  {
+   "frame": 101,
+   "I_tracked": 18.472,
+   "I_coaxial": 0.216
+  },
+  {
+   "frame": 102,
+   "I_tracked": 28.64,
+   "I_coaxial": 2.824
+  },
+  {
+   "frame": 103,
+   "I_tracked": 25.664,
+   "I_coaxial": 2.184
+  },
+  {
+   "frame": 104,
+   "I_tracked": 27.28,
+   "I_coaxial": 4.28
+  },
+  {
+   "frame": 105,
+   "I_tracked": 36.4,
+   "I_coaxial": 6.936
+  },
+  {
+   "frame": 106,
+   "I_tracked": 34.056,
+   "I_coaxial": 6.592
+  },
+  {
+   "frame": 107,
+   "I_tracked": 30.848,
+   "I_coaxial": 3.776
+  },
+  {
+   "frame": 108,
+   "I_tracked": 32.208,
+   "I_coaxial": 6.056
+  },
+  {
+   "frame": 109,
+   "I_tracked": 35.112,
+   "I_coaxial": 5.088
+  },
+  {
+   "frame": 110,
+   "I_tracked": 28.752,
+   "I_coaxial": 3.144
+  },
+  {
+   "frame": 111,
+   "I_tracked": 27.512,
+   "I_coaxial": 2.744
+  },
+  {
+   "frame": 112,
+   "I_tracked": 34.312,
+   "I_coaxial": 5.384
+  },
+  {
+   "frame": 113,
+   "I_tracked": 29.472,
+   "I_coaxial": 3.328
+  },
+  {
+   "frame": 114,
+   "I_tracked": 27.856,
+   "I_coaxial": 4.232
+  },
+  {
+   "frame": 115,
+   "I_tracked": 36.024,
+   "I_coaxial": 4.056
+  },
+  {
+   "frame": 116,
+   "I_tracked": 28.472,
+   "I_coaxial": 2.064
+  },
+  {
+   "frame": 117,
+   "I_tracked": 34.28,
+   "I_coaxial": 6.616
+  },
+  {
+   "frame": 118,
+   "I_tracked": 22.792,
+   "I_coaxial": 2.464
+  },
+  {
+   "frame": 119,
+   "I_tracked": 23.472,
+   "I_coaxial": 0.384
+  },
+  {
+   "frame": 120,
+   "I_tracked": 14.48,
+   "I_coaxial": 0.04
+  },
+  {
+   "frame": 121,
+   "I_tracked": 14.232,
+   "I_coaxial": 1.28
+  },
+  {
+   "frame": 122,
+   "I_tracked": 17.848,
+   "I_coaxial": 1.76
+  },
+  {
+   "frame": 123,
+   "I_tracked": 29.704,
+   "I_coaxial": 2.656
+  },
+  {
+   "frame": 124,
+   "I_tracked": 32.568,
+   "I_coaxial": 1.712
+  },
+  {
+   "frame": 125,
+   "I_tracked": 17.16,
+   "I_coaxial": 1.072
+  },
+  {
+   "frame": 126,
+   "I_tracked": 16.136,
+   "I_coaxial": 0.464
+  },
+  {
+   "frame": 127,
+   "I_tracked": 19.016,
+   "I_coaxial": 0.608
+  },
+  {
+   "frame": 128,
+   "I_tracked": 16.184,
+   "I_coaxial": 0.064
+  },
+  {
+   "frame": 129,
+   "I_tracked": 16.112,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 130,
+   "I_tracked": 9.968,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 131,
+   "I_tracked": 6.232,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 132,
+   "I_tracked": 11.616,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 133,
+   "I_tracked": 6.96,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 134,
+   "I_tracked": 5.368,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 135,
+   "I_tracked": 6.432,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 136,
+   "I_tracked": 4.904,
+   "I_coaxial": 0.008
+  },
+  {
+   "frame": 137,
+   "I_tracked": 3.136,
+   "I_coaxial": 0.032
+  },
+  {
+   "frame": 138,
+   "I_tracked": 5.664,
+   "I_coaxial": 0.016
+  },
+  {
+   "frame": 139,
+   "I_tracked": 4.76,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 140,
+   "I_tracked": 9.632,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 141,
+   "I_tracked": 17.568,
+   "I_coaxial": 0.08
+  },
+  {
+   "frame": 142,
+   "I_tracked": 19.08,
+   "I_coaxial": 0.344
+  },
+  {
+   "frame": 143,
+   "I_tracked": 19.712,
+   "I_coaxial": 0.84
+  },
+  {
+   "frame": 144,
+   "I_tracked": 17.848,
+   "I_coaxial": 0.496
+  },
+  {
+   "frame": 145,
+   "I_tracked": 16.824,
+   "I_coaxial": 0.328
+  },
+  {
+   "frame": 146,
+   "I_tracked": 18.8,
+   "I_coaxial": 0.256
+  },
+  {
+   "frame": 147,
+   "I_tracked": 15.224,
+   "I_coaxial": 0.016
+  },
+  {
+   "frame": 148,
+   "I_tracked": 16.544,
+   "I_coaxial": 0.176
+  },
+  {
+   "frame": 149,
+   "I_tracked": 14.736,
+   "I_coaxial": 0.368
+  },
+  {
+   "frame": 150,
+   "I_tracked": 20.912,
+   "I_coaxial": 0.368
+  },
+  {
+   "frame": 151,
+   "I_tracked": 22.344,
+   "I_coaxial": 0.312
+  },
+  {
+   "frame": 152,
+   "I_tracked": 11.344,
+   "I_coaxial": 0.072
+  },
+  {
+   "frame": 153,
+   "I_tracked": 13.464,
+   "I_coaxial": 0.04
+  },
+  {
+   "frame": 154,
+   "I_tracked": 8.904,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 155,
+   "I_tracked": 9.648,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 156,
+   "I_tracked": 8.816,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 157,
+   "I_tracked": 8.816,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 158,
+   "I_tracked": 7.36,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 159,
+   "I_tracked": 7.936,
+   "I_coaxial": 0.0
+  },
+  {
+   "frame": 160,
+   "I_tracked": 9.376,
+   "I_coaxial": 0.0
+  }
+ ]
+}

@@ -1,0 +1,497 @@
+{
+ "DIAGNOSTIC": "GT-free taper and coaxial seat line (ev10w/scripts/taper_seat.py)",
+ "taper": {
+  "blue_outer": {
+   "full": {
+    "band_s_mm": [
+     -83.6,
+     76.4
+    ],
+    "dr_ds": -0.0828,
+    "taper_deg": 4.73,
+    "sink_mm_per_mm_widening": 12.1
+   },
+   "upper_hd_gt_m40": {
+    "band_s_mm": [
+     -83.6,
+     31.0
+    ],
+    "dr_ds": -0.0899,
+    "taper_deg": 5.14
+   },
+   "lower_hd_lt_m40": {
+    "band_s_mm": [
+     31.0,
+     76.4
+    ],
+    "dr_ds": -0.0492,
+    "taper_deg": 2.82,
+    "sink_mm_per_mm_widening": 20.3
+   }
+  },
+  "beige_outer": {
+   "full": {
+    "band_s_mm": [
+     -50.1,
+     109.9
+    ],
+    "dr_ds": -0.0545,
+    "taper_deg": 3.12
+   },
+   "lower_60mm": {
+    "band_s_mm": [
+     49.9,
+     109.9
+    ],
+    "dr_ds": -0.0594,
+    "taper_deg": 3.4,
+    "sink_mm_per_mm_widening": 16.8
+   },
+   "upper": {
+    "band_s_mm": [
+     -50.1,
+     49.9
+    ],
+    "dr_ds": -0.0564,
+    "taper_deg": 3.23
+   }
+  }
+ },
+ "seat": {
+  "f100_160_median_hd_mm": -47.4,
+  "f118_160_median_hd_mm": -47.0,
+  "f100_117_median_hd_mm": -47.8,
+  "seat_excess_mm_median": -0.2
+ },
+ "rows": [
+  {
+   "frame": 100,
+   "seat_hd_mm": -49.9,
+   "seat_excess_mm": 0.1,
+   "beige_bottom_hd_mm": -81.0,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 101,
+   "seat_hd_mm": -47.8,
+   "seat_excess_mm": -0.07,
+   "beige_bottom_hd_mm": -76.9,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 102,
+   "seat_hd_mm": -48.8,
+   "seat_excess_mm": 0.13,
+   "beige_bottom_hd_mm": -81.9,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 103,
+   "seat_hd_mm": -49.8,
+   "seat_excess_mm": 0.1,
+   "beige_bottom_hd_mm": -80.9,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 104,
+   "seat_hd_mm": -47.4,
+   "seat_excess_mm": 0.28,
+   "beige_bottom_hd_mm": -84.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 105,
+   "seat_hd_mm": -48.2,
+   "seat_excess_mm": 0.32,
+   "beige_bottom_hd_mm": -85.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 106,
+   "seat_hd_mm": -48.2,
+   "seat_excess_mm": 0.32,
+   "beige_bottom_hd_mm": -85.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 107,
+   "seat_hd_mm": -46.9,
+   "seat_excess_mm": 0.23,
+   "beige_bottom_hd_mm": -84.0,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 108,
+   "seat_hd_mm": -48.0,
+   "seat_excess_mm": 0.31,
+   "beige_bottom_hd_mm": -85.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 109,
+   "seat_hd_mm": -47.7,
+   "seat_excess_mm": 0.3,
+   "beige_bottom_hd_mm": -84.8,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 110,
+   "seat_hd_mm": -47.0,
+   "seat_excess_mm": 0.24,
+   "beige_bottom_hd_mm": -84.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 111,
+   "seat_hd_mm": -47.0,
+   "seat_excess_mm": 0.23,
+   "beige_bottom_hd_mm": -84.0,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 112,
+   "seat_hd_mm": -47.9,
+   "seat_excess_mm": 0.3,
+   "beige_bottom_hd_mm": -85.0,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 113,
+   "seat_hd_mm": -47.1,
+   "seat_excess_mm": 0.25,
+   "beige_bottom_hd_mm": -84.2,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 114,
+   "seat_hd_mm": -47.7,
+   "seat_excess_mm": 0.29,
+   "beige_bottom_hd_mm": -84.8,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 115,
+   "seat_hd_mm": -47.6,
+   "seat_excess_mm": 0.29,
+   "beige_bottom_hd_mm": -84.7,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 116,
+   "seat_hd_mm": -46.6,
+   "seat_excess_mm": 0.2,
+   "beige_bottom_hd_mm": -83.7,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 117,
+   "seat_hd_mm": -48.1,
+   "seat_excess_mm": 0.32,
+   "beige_bottom_hd_mm": -85.2,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 118,
+   "seat_hd_mm": -48.6,
+   "seat_excess_mm": 0.12,
+   "beige_bottom_hd_mm": -81.7,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 119,
+   "seat_hd_mm": -48.4,
+   "seat_excess_mm": 0.04,
+   "beige_bottom_hd_mm": -79.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 120,
+   "seat_hd_mm": -47.7,
+   "seat_excess_mm": -0.2,
+   "beige_bottom_hd_mm": -74.8,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 121,
+   "seat_hd_mm": -47.5,
+   "seat_excess_mm": -0.09,
+   "beige_bottom_hd_mm": -76.6,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 122,
+   "seat_hd_mm": -49.5,
+   "seat_excess_mm": 0.02,
+   "beige_bottom_hd_mm": -78.6,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 123,
+   "seat_hd_mm": -50.1,
+   "seat_excess_mm": 0.1,
+   "beige_bottom_hd_mm": -81.2,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 124,
+   "seat_hd_mm": -49.0,
+   "seat_excess_mm": 0.06,
+   "beige_bottom_hd_mm": -80.0,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 125,
+   "seat_hd_mm": -48.1,
+   "seat_excess_mm": -0.06,
+   "beige_bottom_hd_mm": -77.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 126,
+   "seat_hd_mm": -47.4,
+   "seat_excess_mm": -0.09,
+   "beige_bottom_hd_mm": -76.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 127,
+   "seat_hd_mm": -47.4,
+   "seat_excess_mm": -0.21,
+   "beige_bottom_hd_mm": -74.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 128,
+   "seat_hd_mm": -48.3,
+   "seat_excess_mm": -0.5,
+   "beige_bottom_hd_mm": -71.4,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 129,
+   "seat_hd_mm": -47.3,
+   "seat_excess_mm": -0.55,
+   "beige_bottom_hd_mm": -70.4,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 130,
+   "seat_hd_mm": -33.6,
+   "seat_excess_mm": -1.0,
+   "beige_bottom_hd_mm": -64.7,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 131,
+   "seat_hd_mm": -33.2,
+   "seat_excess_mm": -1.21,
+   "beige_bottom_hd_mm": -60.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 132,
+   "seat_hd_mm": -33.4,
+   "seat_excess_mm": -1.08,
+   "beige_bottom_hd_mm": -62.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 133,
+   "seat_hd_mm": -33.4,
+   "seat_excess_mm": -1.2,
+   "beige_bottom_hd_mm": -60.4,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 134,
+   "seat_hd_mm": -33.7,
+   "seat_excess_mm": -0.99,
+   "beige_bottom_hd_mm": -64.8,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 135,
+   "seat_hd_mm": -34.5,
+   "seat_excess_mm": -1.05,
+   "beige_bottom_hd_mm": -63.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 136,
+   "seat_hd_mm": -46.0,
+   "seat_excess_mm": -0.83,
+   "beige_bottom_hd_mm": -67.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 137,
+   "seat_hd_mm": -45.9,
+   "seat_excess_mm": -0.85,
+   "beige_bottom_hd_mm": -67.0,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 138,
+   "seat_hd_mm": -33.5,
+   "seat_excess_mm": -1.0,
+   "beige_bottom_hd_mm": -64.6,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 139,
+   "seat_hd_mm": -32.9,
+   "seat_excess_mm": -1.04,
+   "beige_bottom_hd_mm": -63.9,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 140,
+   "seat_hd_mm": -37.3,
+   "seat_excess_mm": -0.93,
+   "beige_bottom_hd_mm": -66.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 141,
+   "seat_hd_mm": -48.0,
+   "seat_excess_mm": -0.51,
+   "beige_bottom_hd_mm": -71.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 142,
+   "seat_hd_mm": -47.2,
+   "seat_excess_mm": -0.41,
+   "beige_bottom_hd_mm": -72.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 143,
+   "seat_hd_mm": -48.4,
+   "seat_excess_mm": -0.16,
+   "beige_bottom_hd_mm": -75.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 144,
+   "seat_hd_mm": -47.6,
+   "seat_excess_mm": -0.2,
+   "beige_bottom_hd_mm": -74.7,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 145,
+   "seat_hd_mm": -47.0,
+   "seat_excess_mm": -0.26,
+   "beige_bottom_hd_mm": -74.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 146,
+   "seat_hd_mm": -46.2,
+   "seat_excess_mm": -0.33,
+   "beige_bottom_hd_mm": -73.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 147,
+   "seat_hd_mm": -48.3,
+   "seat_excess_mm": -0.64,
+   "beige_bottom_hd_mm": -69.4,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 148,
+   "seat_hd_mm": -46.4,
+   "seat_excess_mm": -0.32,
+   "beige_bottom_hd_mm": -73.4,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 149,
+   "seat_hd_mm": -46.6,
+   "seat_excess_mm": -0.3,
+   "beige_bottom_hd_mm": -73.6,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 150,
+   "seat_hd_mm": -48.0,
+   "seat_excess_mm": -0.18,
+   "beige_bottom_hd_mm": -75.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 151,
+   "seat_hd_mm": -48.2,
+   "seat_excess_mm": -0.17,
+   "beige_bottom_hd_mm": -75.2,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 152,
+   "seat_hd_mm": -48.0,
+   "seat_excess_mm": -0.51,
+   "beige_bottom_hd_mm": -71.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 153,
+   "seat_hd_mm": -47.4,
+   "seat_excess_mm": -0.7,
+   "beige_bottom_hd_mm": -68.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 154,
+   "seat_hd_mm": -34.1,
+   "seat_excess_mm": -1.06,
+   "beige_bottom_hd_mm": -63.2,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 155,
+   "seat_hd_mm": -33.0,
+   "seat_excess_mm": -1.22,
+   "beige_bottom_hd_mm": -60.1,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 156,
+   "seat_hd_mm": -32.3,
+   "seat_excess_mm": -1.45,
+   "beige_bottom_hd_mm": -57.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 157,
+   "seat_hd_mm": -32.4,
+   "seat_excess_mm": -1.44,
+   "beige_bottom_hd_mm": -57.5,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 158,
+   "seat_hd_mm": -31.8,
+   "seat_excess_mm": -1.48,
+   "beige_bottom_hd_mm": -56.9,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 159,
+   "seat_hd_mm": -32.2,
+   "seat_excess_mm": -1.45,
+   "beige_bottom_hd_mm": -57.3,
+   "min_excess_band_mm": -5.52
+  },
+  {
+   "frame": 160,
+   "seat_hd_mm": -32.0,
+   "seat_excess_mm": -1.47,
+   "beige_bottom_hd_mm": -57.1,
+   "min_excess_band_mm": -5.52
+  }
+ ],
+ "s_floor_mm": 76.39,
+ "floor_hd_mm": -85.4
+}

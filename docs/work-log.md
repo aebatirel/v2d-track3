@@ -5199,3 +5199,19 @@ Advice given:
   all-round + minimal clearing rigid shift (≤ 1 cm / 3° → track error, don't carve), M3 does-not-sink settle (≤ 4 mm,
   ≤ 5° tilt), M4 convex pieces delivered without re-decomposition. CPU workflow wf_29f730f3-67c (pre-register, reproduce
   baseline, build, falsify, review) running; no GPU.
+
+## 2026-10-31 ~13:35 UTC — ev10w (widened eval-10 blue-cup cavity): NOT-GEOMETRY; ev10w fails both gates, not used
+- Pre-registered in `docs/research/work/perception-sprint-20261031/ev10w/PREREG.md` (12:58 UTC, committed 3f058d2) before
+  any ev10w number. CPU only, $0; GT-free. Results: `.../ev10w/README.md`, `results/`; mesh `meshes/carve/ev10w/`.
+- Reproduced the Embodiment session's ev10 diagnostic on the packed gl10A2 reference (md5 1a5003d9) exactly: per-frame
+  volumes to 2e-6 cm3, floor gap to 0.005 mm, radii_A.txt byte-identical (their push search not re-run).
+- M2: the f100-160 intrusion is one-sided in 60/61 frames; the beige axis sits 4-7 mm off the blue cavity's lathe axis
+  (tilt 1.6 deg median); a rigid beige motion <= 1 cm / 3 deg brings it <= 2 cm3 in 30/31 frames -> NOT-GEOMETRY.
+  Their radii.py measures about a vertical axis up to ~5.7 mm off the (2.37 deg tilted) cavity axis, which inflates the
+  "too narrow" reading. Post hoc, coaxial beige in ev10: f118-160 median 0.04 cm3 (track 14.5).
+- ev10w (exception case, widen below the seat line h < -47.4 mm; H-nest-a's R_g + 1 mm lies outside the blue's outer
+  wall, so the 1.5 mm wall cap binds everywhere; built with a new opt-in `lathe_collision.py --inner`, default output
+  byte-identical, 106/106 files): G1 FAIL (gl10A2 max 30.2 cm3, V4p 11.4), G2 FAIL (settle 29/61 vs 55 needed and vs
+  ev10's 41; hands-off beige sinks 11.6 mm). One build defect (v0 band edges between bins -> 2 mm wall gaps) found by
+  the wall probe and fixed (v1); v0 readings kept as invalid.
+- Next [H, not run]: coaxial / physics seat of the beige on the hands-on nest frames f100-117 (V4p side), ev10 unchanged.

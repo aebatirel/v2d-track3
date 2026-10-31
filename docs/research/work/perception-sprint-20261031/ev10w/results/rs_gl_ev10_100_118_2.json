@@ -1,0 +1,292 @@
+{
+ "DIAGNOSTIC": "GT-free M2 rigid-shift search (ev10w/scripts/rigid_shift.py)",
+ "ref": "/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/ev10w/dl/runs/20261026-gl10A2-5e0e100/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+ "carve": "/home/user/v2d-track3/meshes/carve/ev10",
+ "frames": "100:118:2",
+ "grid_mm": 0.5,
+ "grid_build_s": 58.5,
+ "rotations": 25,
+ "coarse_translations": 515,
+ "rows": [
+  {
+   "frame": 100,
+   "I_grid_ref": 27.784,
+   "I_exact_ref": 27.824,
+   "min_I_within_bound": 8.072,
+   "argmin": {
+    "shift_mm": 9.76,
+    "tilt_deg": 3.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     -1.0,
+     2.0,
+     -9.5
+    ]
+   },
+   "clear_le2": null,
+   "clear_0": null,
+   "translation_only_min_I": 19.688
+  },
+  {
+   "frame": 102,
+   "I_grid_ref": 28.952,
+   "I_exact_ref": 28.64,
+   "min_I_within_bound": 0.736,
+   "argmin": {
+    "shift_mm": 9.62,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     0.0,
+     4.5,
+     -8.5
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.824,
+    "shift_mm": 5.7,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     0.0,
+     4.5,
+     -3.5
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 6.032
+  },
+  {
+   "frame": 104,
+   "I_grid_ref": 27.288,
+   "I_exact_ref": 27.28,
+   "min_I_within_bound": 1.224,
+   "argmin": {
+    "shift_mm": 9.66,
+    "tilt_deg": 3.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.0,
+     3.5,
+     -9.0
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.856,
+    "shift_mm": 8.06,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.0,
+     4.0,
+     -7.0
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 8.112
+  },
+  {
+   "frame": 106,
+   "I_grid_ref": 34.168,
+   "I_exact_ref": 34.056,
+   "min_I_within_bound": 1.384,
+   "argmin": {
+    "shift_mm": 9.9,
+    "tilt_deg": 1.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     1.0,
+     4.0,
+     -9.0
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.992,
+    "shift_mm": 7.92,
+    "tilt_deg": 1.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.5,
+     4.5,
+     -6.5
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 4.304
+  },
+  {
+   "frame": 108,
+   "I_grid_ref": 32.232,
+   "I_exact_ref": 32.208,
+   "min_I_within_bound": 1.296,
+   "argmin": {
+    "shift_mm": 9.63,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.5,
+     4.5,
+     -8.5
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 2.0,
+    "shift_mm": 7.52,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.5,
+     4.5,
+     -6.0
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 7.776
+  },
+  {
+   "frame": 110,
+   "I_grid_ref": 28.504,
+   "I_exact_ref": 28.752,
+   "min_I_within_bound": 1.176,
+   "argmin": {
+    "shift_mm": 9.66,
+    "tilt_deg": 3.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.0,
+     3.5,
+     -9.0
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.856,
+    "shift_mm": 7.5,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.0,
+     4.5,
+     -6.0
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 8.28
+  },
+  {
+   "frame": 112,
+   "I_grid_ref": 34.512,
+   "I_exact_ref": 34.312,
+   "min_I_within_bound": 1.336,
+   "argmin": {
+    "shift_mm": 9.73,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     1.5,
+     4.5,
+     -8.5
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.952,
+    "shift_mm": 7.65,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     1.5,
+     4.5,
+     -6.0
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 8.976
+  },
+  {
+   "frame": 114,
+   "I_grid_ref": 28.008,
+   "I_exact_ref": 27.856,
+   "min_I_within_bound": 0.568,
+   "argmin": {
+    "shift_mm": 9.77,
+    "tilt_deg": 3.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     1.5,
+     3.5,
+     -9.0
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.728,
+    "shift_mm": 6.04,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 225,
+    "t_lathe_mm": [
+     0.5,
+     4.0,
+     -4.5
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 6.92
+  },
+  {
+   "frame": 116,
+   "I_grid_ref": 28.528,
+   "I_exact_ref": 28.472,
+   "min_I_within_bound": 0.256,
+   "argmin": {
+    "shift_mm": 9.86,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.5,
+     4.0,
+     -9.0
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.984,
+    "shift_mm": 5.72,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.5,
+     3.5,
+     -4.5
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 6.552
+  },
+  {
+   "frame": 118,
+   "I_grid_ref": 22.744,
+   "I_exact_ref": 22.792,
+   "min_I_within_bound": 0.704,
+   "argmin": {
+    "shift_mm": 9.96,
+    "tilt_deg": 3.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.0,
+     3.0,
+     -9.5
+    ]
+   },
+   "clear_le2": {
+    "I_cm3": 1.864,
+    "shift_mm": 5.7,
+    "tilt_deg": 2.0,
+    "tilt_az_deg": 180,
+    "t_lathe_mm": [
+     0.0,
+     3.5,
+     -4.5
+    ]
+   },
+   "clear_0": null,
+   "translation_only_min_I": 6.024
+  }
+ ]
+}
