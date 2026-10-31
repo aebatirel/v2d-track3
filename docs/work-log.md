@@ -5077,3 +5077,16 @@ diagnostic; nothing is picked for submission.
   carve -> re-fit loop with a fixed round count.
 - Sent the Embodiment session a heads-up with this proposal and asked whether per-frame intrusion export is feasible and
   which sim-copy format they want; the exact interface follows once INTERLOCK.md is reviewed.
+
+## 2026-10-31 ~10:05 UTC: interlock design v2 reviewed; interface sent to Embodiment; priorities from keen-heisenberg
+- `wf_c7bae0ea-5c5`: design (INTERLOCK.md, 922 lines, + PREREG F-I1) -> review (fail) -> revision v2 -> build running.
+  Section 11 is the Embodiment contract (ownership, `gmg-intrusion/2` export schema sampling the union of collision
+  pieces in file coordinates with fiducial round trip and provenance blocks, validator, `carve_from_intrusions`, the
+  carve rule restated, iteration with held-out acceptance A1-A4, max 3 rounds).
+- Embodiment replied 08:46 (export feasible as standalone `tools/intrusion.py`; sim-copy layout for `make_assets.py
+  --pieces`; jittered means; min frame count + relative-motion test): saved in `gmg/build/embodiment-reply-20261031.md`,
+  adopted. Sent them the section-11 interface at ~10:05.
+- keen-heisenberg (09:58, at the owner's request): spread ranking on eval (H5): eval 30 sweeper<->rack sd 0.255, eval
+  14 cup<->rack 0.199, eval 25 boards 0.099 (already slot-carved), eval 1 lid<->pot fixed by a carve. Saved in
+  `gmg/build/keen-heisenberg-priority-20261031.md`; told the build agent to run ep31 and ep13 (rack seat twins) after
+  ep24.
