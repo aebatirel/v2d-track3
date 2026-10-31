@@ -5495,3 +5495,13 @@ arm and a no-policy replay floor to stage B.
   the packed meshes; each board keeps its own best, so a CD-O-only gain does not lower the AUC board.
 - Proposed to focused-pascal: the recipe goes to grasp-lock episodes only, with a minus-recipe control there; costing
   requested.
+- ~15:35 UTC focused-pascal: learner split corrected. 15 grasp-lock (3, 5, 6, 8, 10, 14, 15, 16, 20, 32, 33, 35, 36,
+  37, 38); 5 standard (1, 19, 25, 28, 30). Source: docs/research/work/masses-eval-20261031/packed_refs.json on its
+  branch.
+  Middle-variant cost [E]:
+  - grasp-lock 15 eps × 2 arms × 2 seeds = 60 cells, $60–90;
+  - standard 5 × 1 arm × 2 seeds, $24–34;
+  - confirmation $4–8;
+  - total ≈ $90–130 (central $110), 2 staggered waves, ≈ 11–14 h.
+  Cheaper: one-seed control −$15–22; no control −$30–45. pack_eval.sh records the sim assets (assets_md5.txt). The ep11
+  gate launches within ~30 min.
