@@ -1160,3 +1160,14 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   leave a radial gap of up to rho (1/cos(pi/N) - 1) (0.78 mm at 40 mm, 16 sectors), which a 3 deg taper turns into up to
   ~15 mm of sink for an uncarved perfect nest; a 2 mm box reference has the same problem (+-1 mm radial steps). Hence a
   64-sector ring reference for lathe objects. Writing PREREG F-I5.15 + INTERLOCK 21.13 next.
+- 22:03 (Design) PREREG F-I5.15 ((1) rings: per-sector tangent inner / chordal outer faces from 1 deg x 1 mm rays, cap
+  rule over N_s {8..32} x greedy bands, w_min 1.5 mm, continuity against the SHELL; (2) CoACD floor(cap/2) + repair;
+  (3) precheck (a) table 4 mm, (b) support 4 mm, (c) overlap carvable on faithful SHELLs; (4) 64-sector / 2 mm-box
+  reference, floor f_keep 0.5 + S where S_ref passes, DO_NOT_USE.json incl. the five round-1 folders; (5) nest synthetic
+  only, eval 10 the only real one; (6) D2 geometry, c from the wall band in [0.05, 1.0] mm, 1 mm topology (C, T), wall
+  integrity w_min 1.5 mm + s_rm 0.5, exact clip; (7) off-axis rule; (8) records; (9) T-I14 / T-I15 / T-I16, P71-P92;
+  (10) constants; (11) run order and cost: build + T-I14 here, then one Vast CPU box for T-I15 / T-I16 / L0, [E] $0.5-1.5,
+  cap $3; (12) integrity) and INTERLOCK 21.13 (plain words, review table, rules, constants table, predictions, run
+  order, limits) + header and section-0 pointers written. No code edited, nothing run, no rental, $0. Committing my
+  lines only (PREREG.md, INTERLOCK.md, this log; the board-slot round-3 22:00 lines in this file are another agent's,
+  left unstaged).

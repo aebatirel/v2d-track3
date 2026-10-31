@@ -2279,6 +2279,210 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     their own (chord inset r_in(1 - cos(pi/N_s)), 8 sectors forced by the cap), not through the handle hulls. "The round
     folders must not be used" is a recommendation from diagnostic (7), not an outcome of this rule, under which they are
     deliverable; they carry no do-not-use marker. The eval twins (P49) were not run (orchestrator, ~21:30 UTC).
+  - **F-I5.15 Round 2: cavity-safe rings, CoACD below the cap, a pose precheck, a faithful reference and a physical
+    delivery floor, and the five INTERLOCK 21.10 decisions (post hoc; written 31 Oct 21:33-22:03 UTC in a design
+    step, no code edited and nothing run for it; committed and pushed before any code or run uses it).** Basis: the
+    orchestrator's decision of 31 Oct ~21:50 UTC (items 1-7, relayed by the round-2 workflow task), under the owner's
+    waiver (F-I5.0) and the owner's mandate of 31 Oct 21:22 UTC ("anything that improves the score within the
+    competition rules"). **Post hoc** with respect to every round-1 result, all read by the author: F-I5.12-F-I5.14 with
+    outcomes and the verification note, INTERLOCK 21.10-21.12, `build/I/verify_cc_0.md`, `build/I/verify_cc_1.md` (B1:
+    each ring wall piece is the hull of the profile at the sector edges, so its inner face sits r_in (1 - cos(pi/N_s))
+    inside the cavity, -2.9 to -3.4 mm at the 8 sectors the 82-piece cap forced on the 186-204 mm cups, -12.5 mm for the
+    pot, and the continuity check tests the pieces' own chords; B2: S fails at all eight public S frames on faithful
+    SHELL 2 mm boxes because the tracked poses are impossible: ep11 cups overlap 86 cm3, the ep12 / ep13 cup 15-23 mm
+    inside our table plane, the ep31 sweeper 45 mm above it; B3: both ep11 cup SHELLs are bottomless and stand on the
+    table co-located), `build/I/results/collcarve-public/README.md` (CoACD asked for <= the cap returned exactly the cap
+    on 9 of 10 objects, so the keep-out repair could not split). Also read for this entry: the prior-work review of
+    INTERLOCK 21.13.1 (CoACD paper and README, V-HACD `VHACD.h`, the MuJoCo collision chapter, Factory (RSS 2022),
+    focused-pascal's `pipeline/lathe_collision.py` at 334393e, Andres et al. 1997), the public roster (object names
+    only) and one GT-free measurement made for it [M]: all ten round-1 SHELL bodies (shell_t5p36) are watertight volumes,
+    so CoACD's `auto` preprocessing did not run. No number of a run under this entry exists when it is committed.
+    Where F-I5.0-F-I5.14 and this entry differ, this entry wins for runs that select round 2 (a new option of the F-I5
+    driver); `--waiver-fi5` alone keeps F-I5 as built (F-I5.11) and the flag off keeps F-I1-F-I4. Plate pairs keep F-I4.
+    Design text, tables, the review and the plain-language summary: INTERLOCK 21.13.
+    - **(1) Cavity-safe ring pieces (route 2; replaces F-I5.4's wall pieces, its 16 / 12 / 8 fallback and its
+      continuity check).** (a) Construction rays from the structure axis through the SHELL every 1 deg in azimuth and
+      every 1 mm in height; per ray the innermost radial interval [r_in, r_out] (the F-I5.11 (1) method); wall / solid
+      bins as F-I5.4; a sector with hits on fewer than half of its rays at a height takes the median profile there
+      (completion by revolution). (b) Wall piece of sector s (half-angle theta = pi / N_s, mid azimuth phi_m), band
+      [h0, h1]: inner face = the plane at distance rho_in(h) from the axis along phi_m, rho_in linear in h and the least
+      such function with rho_in(h) >= r_in(phi, h) cos(phi - phi_m) at every construction ray of the sector and band
+      (vertices at rho_in / cos(theta) on the edges: the inner polygon circumscribes the measured cavity, tangent at
+      mid-sector for a round one); outer face = vertices at R_out(h) on the two edges (a chord), R_out linear in h and
+      the greatest such function with R_out(h) cos(theta) / cos(phi - phi_m) <= r_out(phi, h) at every construction ray;
+      piece = hull of the 8 vertices. Min wall left = min over h0, h1 of R_out cos(theta) - rho_in and R_out - rho_in /
+      cos(theta). (c) Base (solid runs): centre disc (r / 2) plus N_s rim sectors (F-I5.4), top at or below the SHELL's
+      cavity floor and bottom at or above its bottom surface on the sector's axial construction rays (1 mm in radius,
+      1 deg); the lowest wall band of every sector starts exactly at that sector's base top. (d) **Cap rule:** N_s in
+      {8, 12, 16, 20, 24, 32}; wall band edges common to the sectors of a wall run, chosen greedily (one band per wall
+      run, then repeatedly split the band whose best 1 mm split gains the most ring volume); base bands <= 30 mm; pieces
+      n = N_s B_w + B_s (N_s + 1) + n_h (n_h = handle hulls, F-I5.4's handle step, computed on the candidate's rings);
+      for each N_s the largest B_w with n <= cap = floor(165 / objects); feasible if every piece's min wall left >=
+      w_min = 1.5 mm; the feasible candidates (<= 6) are tried in order of exact ring volume, largest first, and the
+      first that passes the continuity check (e) and the pieces gate (F-I5.4, unchanged) is used; none: route 3. Every
+      candidate tried is logged. (e) **Continuity check against the SHELL:** rays from the axis every 0.5 mm in height
+      over each wall run and every 1 deg in azimuth (offset 0.5 deg from the construction azimuths) and axial rays
+      through the base every 1 mm in radius and 1 deg, intersected exactly with the SHELL (parity intervals) and with
+      the union of the pieces; a ray is a gap when the SHELL has a wall (or base) interval on it and the pieces cover
+      less than half of its length; rejected (`lathe_wall_gap`) when gaps exceed 1 % of the rays holding a SHELL
+      interval or more than half of the azimuths at one height; no base interval on any axial ray: `shell_bottomless`,
+      reported, not rejected. (f) **Reported per set:** intrusion (the SHELL's inner wall radius minus the pieces' first
+      radius along a ray, positive = inside the cavity) on the construction rays, which must be <= 1e-6 m (by
+      construction; else `ring_intrusion`, a code error, the set rejected), and on the continuity rays; min wall left;
+      exact ring and set volumes; share of the SHELL volume inside the set.
+    - **(2) CoACD route (route 3).** max_convex_hull = floor(cap / 2) (41 at cap 82), threshold 0.02, preprocess auto
+      (F-I5.4), then the keep-out repair up to the cap (F-I5.4, no gain stop). Route 4 unchanged.
+    - **(3) Pose precheck at every S frame (new; before S and before any carve).** Faithful colliders = the SHELL
+      bodies' 2 mm cells (centre inside) merged into boxes, no cap (verify_cc_1 B2). At each S frame of a pair (the
+      F-I5.5 acceptance frames and the floor frames of (4)), with our tracked poses: (a) **table**: fails if the guest's
+      lowest faithful point is more than s_max = 4 mm below our table plane; (b) **support**: fails if the guest's
+      faithful collider is more than s_max from both the table plane and the receiver's faithful collider; (c)
+      **overlap**: V_ov = the guest's faithful cells inside the receiver's, reported; if V_ov > 0, fails unless the
+      receiver's SHELL minus the guest's SHELL at that pose (exact boolean) passes the topology rule (6.3) and the wall
+      integrity rule (6.4) against the uncut SHELL. Origin: s_max is S's own bound (F-I1.14), so (a) and (b) are
+      necessary conditions for S; (c) asks whether any carve these rules allow could remove the overlap. The exact
+      SHELL-mesh values of (a) and (b) are reported too. A failing frame is `pose_impossible`: out of carve scope at that
+      frame, S not required there, entered in `push_list_fi5r2.json` (pair, frame, check, numbers, the F-I5.7 shift when
+      computed) for the pose lanes. T_rest = the mean pose over the hands-off static segments whose S frame passes; none
+      passes: the pair is not carved (`pose_impossible_all`), default delivered. Also evaluated, report only, at round
+      1's S frames (ep12 f6, f176; ep13 f146; ep31 f282, f8; ep11 f126; ep2 f24, f328).
+    - **(4) Faithful reference and the physical delivery floor.** (a) Reference collider (never delivered): a route-2
+      object = the rings of (1) at N_s = 64 with bands <= 10 mm and no cap, plus its handle hulls; any other object =
+      the 2 mm boxes of (3); carved receivers: the same carve on the 64-sector rings (lathe) or the 2 mm boxes of the
+      carved SHELL (boolean). Reason (geometry, before any run [E]): on a 3 deg taper a radial gap delta becomes about
+      19 delta of drop; 2 mm boxes stand up to 1 mm off the surface, and a tangent receiver ring against an inscribed
+      guest ring leaves up to rho (1/cos(pi/N) - 1) (0.66 mm at 33.7 mm and 16 sectors; 0.04 mm at 64). (b) S_ref = S
+      (the F-I5.5 setup and its 16 jitters) on the references of both objects. (c) **Floor**, per object and round
+      folder: (i) the delivered pieces keep >= f_keep = 0.5 of the SHELL's exact volume (union of the pieces intersected
+      with the SHELL, exact manifold boolean); (ii) at every floor S frame of every pair that passes the precheck and
+      where S_ref passes, S on the delivered pieces passes (4 mm, 5 deg). Floor S frames: for every pair, in or out of
+      carve scope, the middle frames of up to 3 longest hands-off static segments (F-I5.3 (b)) of its static stretches
+      (F-I1.1) in which the faithful colliders are within s_max of each other; receiver by containment (F-I5.3 (a)) on the
+      faithful colliders; no such frame: `s_floor_vacuous`, reported. (d) A failure of (i) or (ii) anywhere writes
+      `DO_NOT_USE.json` in the round folder (this rule; per object the share, per pair and frame the precheck, S_ref and
+      S numbers); a default failing the pieces gate still makes it do-not-use (F-I5.6). (e) The five round-1 public
+      folders (`runs-dev/20261031-fi5pub-3053a78/sim/public/ep*-fi5/r0`) get a `DO_NOT_USE.json` labelled post hoc
+      (this rule applied from diagnostic F-I5.14 (7) and verify_cc_1 B2; their boxes keep 1.8-9.3 % < 0.5; a file added,
+      nothing overwritten; verify_cc_0 N1), with copies beside their manifests in
+      `build/I/results/collcarve-public/ep*/r0/`.
+    - **(5) A true nesting case.** [M] ep11 is the only public episode with two cups (roster); with the v6 inputs it is
+      not a nest (B3). [R, another lane, not an input] the C1/T1 census on library-anchored tracks (tier P1) puts the
+      beige cup inside the blue one from t >= 62-68; [H] ep11 holds a real nest that our tracks and SHELLs do not
+      represent. Therefore the nest is tested synthetically only (T-I14), and eval 10 (beige in blue, 3-5 mm off axis)
+      is the only real nest, with no usable public twin. L0 (report only): per ep11 cup the 99th-percentile height above
+      our table of its owned v6 points over the hands-off static frames of the assembled stretch.
+    - **(6) The five decisions of INTERLOCK 21.10.** (6.1) **Carve geometry = D2** (F-I5.13 (a)) as the rule: per guest
+      piece g, K = hull(T_rest offset_c(g), shift(s_min d) T_rest offset_c(g)), s_min = min(0, min s_f over the build
+      frames entering R); T_rest from (3); without T_rest the pair is not carved (`no_rest`). Lathe carve: each sector's
+      carve bottom and top become forced band edges (D2 (b) as amended) and the cap rule (1d) is re-run with them. (6.2)
+      **Clearance** c = 0.5 x s_max x sigma_wall, floored at c_min = 0.05 mm, capped at c_max = 1.0 mm, rounded down to
+      0.05 mm; sigma_wall = the 99th percentile of max(0, n . g) over the guest's union-boundary surface samples (0.5 mm)
+      inside R+ at T_rest in its wall band. Union boundary: a sample on a facet inside or on another piece (non-strict,
+      1e-7 m) is dropped. Wall band = samples outside the base cap; base cap = samples within max(3 sigma_g, 2 mm) of the
+      guest's lowest point along g at T_rest, plus the samples on a route-2 guest's base pieces. No wall-band sample in
+      R+: the base cap's samples are used (a seat, c = 1 mm). (6.3) **Topology on a 1 mm grid** (cell centres inside the
+      union of pieces, exact half-space test, default and carved on one grid): components C (26-connected) and tunnels T
+      = C + V - chi (chi the Euler number at 26-connectivity, V = 6-connected background components - 1); fails
+      (`topology_fail`) only if C or T increases. (6.4) **Wall integrity replaces the 10 % volume and 0.6 reach caps for
+      non-plate receivers:** (a) rays from the surface samples (0.5 mm) of K inside R+ that lie inside the default
+      receiver collider, along K's outward facet normal: where the default wall chord through the sample is >= w_min =
+      1.5 mm, the carved receiver's material from the sample outward is >= w_min; (b) removed exact volume <= s_rm = 0.5
+      of the default collider's exact volume; failure `wall_integrity_fail`, default delivered. P4 keeps only its
+      over-removal clause (removed <= 1.5 x the carve inside the default collider); its ">= 90 % kept" clause is replaced
+      by (b). (6.5) **Exact clip:** K inside R+ = the convex fragments of each K piece clipped by the maximal boxes of R+;
+      used by the lathe carve (LP over the fragments' vertices) and the boolean route; replaces F-I5.11 (3).
+    - **(7) Off-axis nests.** Guest and receiver both route 2, the guest's axis at its lowest wall height inside the
+      receiver's cavity at T_rest: a nest; e_ax = that axis offset; t_min = the receiver's thinnest default wall left
+      over the overlap heights. If e_ax + c > t_min - w_min: not carved (`off_axis_nest`), default delivered, the rigid
+      shift on the push list (pose correction is the remedy; eval 10). Other breaches: (6.4).
+    - **(8) Records (code fixes, no rule change; INTERLOCK 21.12 item 8):** `sources/` in F-I5 rounds (V0 N2); the
+      carved receiver runs routes 2, 3, 4 (V0 N3); `decision_flag_off` from `decisions.json` and `decision_f_i3` renamed
+      `decision_f_i3_logic_on_colliders` (V0 N4); F-I5.7 for every pair, one-sidedness from the structure axis when
+      route 2 failed, the shift on the push list (V0 N5); per-copy S rows of every variant (V1 N1); exact volumes, centres
+      of mass and inertia from the hulls (V1 N2); guest records tier T1 with `owner_waiver_fi5` and all three quotes in
+      the manifest (V0 N12); `launch_code` at launch and diagnostic launch times logged (V0 N9, N10); a table line in the
+      side views (V1 N9). Unchanged: the moves-through sweep gate (F-I5.2; INTERLOCK 21.12 item 6 is not decided), the
+      receiver rule, P2, P3, P5-P7, the keep-out gate, P1 with the Embodiment session, the 0.3 kg placeholder mass.
+    - **(9) Tests and predictions (numbered after F-I4.16's P70; [H] unless marked; falsifier after "|").** **T-I14**
+      synthetic (`tests/test_collcarve2.py`, round 2 on unless stated): n1 = T-I12 x1 geometry (3 deg taper, 4 mm host
+      wall, bottomed host, guest 0.5 mm radially too deep at a hands-off rest, coaxial insertion, sectors half offset); n2
+      = n1 with no pose error (diagnostic: both cups forced to 16 sectors, aligned and half offset); n3, n4, n5 = n1 with
+      1, 3, 5 mm lateral offset; n6 = n1 with 6 build frames 10 mm deeper; p1-p4 precheck fixtures; f1-f3 floor fixtures;
+      r1-r3 ring fixtures; the P89 controls; the P91 diagnostic. **T-I15** held-out pieces check (no pair): the
+      lathe-candidate objects of the other public episodes (pots ep0, 26, 27, 41-45; lid ep0; blue cups ep21, 22; dust
+      pans ep18, 39, 40) and the racks ep26, ep27. **T-I16** public pairs ep11, ep2, ep12, ep13, ep31 (eval semantics).
+      - **P71** every route-2 object of T-I15 and T-I16: max intrusion <= 1e-6 m on the construction rays and <= 0.3 mm
+        on the continuity rays | above either bound on any object.
+      - **P72** every route-2 cup and pot: the cap rule picks N_s >= 12 with min wall >= 1.5 mm | 8 sectors or no
+        feasible set on any of them.
+      - **P73** ep11 beige and ep12 blue: the default sets (rings plus handle hulls) pass the continuity check and the
+        pieces gate (INTERLOCK 21.12 item 1's falsifier) | either fails.
+      - **P74** every route-2 default set of T-I15 and T-I16 keeps >= 0.5 of its SHELL volume | any below.
+      - **P75** the five racks (ep12, ep13, ep31; held-out ep26, ep27) still fail route 3 and end in route 4 | any rack
+        passes route 3.
+      - **P76** the ep31 sweeper and the ep2 lid pass route 3 | either fails.
+      - **P77** [E, from verify_cc_1's numbers] at round 1's S frames the precheck fails: ep12 f6 (a), ep13 f146 (a),
+        ep31 f282 and f8 (b), ep11 f126 (c) | any passes, or fails another check.
+      - **P78** ep2: every S frame passes (a) and (b) (the lid about 60 mm above the table, resting on the pot) | any
+        fails (a) or (b).
+      - **P79** no public pair gets a carve delivered | any does.
+      - **P80** the ep12, ep13 and ep31 folders are DO_NOT_USE (not independent of P75) | any is usable.
+      - **P81** n1: carved and delivered; c = 0.10 mm [E: 0.5 x 4 mm x sin 3 deg, rounded down]; S <= 4 mm and 5 deg;
+        topology kept; min wall >= 1.5 mm; removed <= 0.5; P2-P7 and the floor pass | any fails.
+      - **P82** n3 carved and delivered; n4 and n5 not carved (`off_axis_nest` or `wall_integrity_fail`), default
+        delivered, shift on the push list | n3 not delivered, or n4 / n5 carved.
+      - **P83** [E, geometry] n2: aligned 16-sector default rings let the guest drop >= 4 mm (about 12.6 mm =
+        33.7 mm x (1/cos(pi/16) - 1) / tan 3 deg); half a sector offset, mean drop <= 2 mm; on the 64-sector references,
+        mean drop <= 2 mm | aligned < 4 mm, half offset > 2 mm, or 64-sector > 2 mm.
+      - **P84** n6: no dipped frame carved, delivered as n1 | a dipped frame carved, or S fails.
+      - **P85** p1 (guest 10 mm into the table) fails (a); p2 (guest 10 mm above everything) fails (b); p3 (co-located,
+        wall-crossing cups on the table) fails (c); p4 (n1 at rest) passes | any misclassified.
+      - **P86** f1 (6 mm boxes) -> DO_NOT_USE (share); f2 (n1's delivery) -> no marker; f3 (a delivered set failing S
+        where S_ref passes) -> DO_NOT_USE | any differs.
+      - **P87** r1 (round-1 construction, 8-sector chords, 5.4 mm-wall cup) -> intrusion > 0 on construction rays and gaps
+        > 1 %; r2 (forced 1 mm ring above the base) -> ring gap; r3 (analytic tapered cup) -> intrusion <= 1e-6 m and min
+        wall within 0.05 mm of the formula | any not as stated.
+      - **P88** n1 carved: S on the 2 mm SHELL-box reference differs from S on the 64-sector reference by > 4 mm or gives
+        the other verdict | both within 4 mm and the same verdict.
+      - **P89** controls unchanged: flag off (x10), plate pairs (x6), x7 (n2 resting, n4 TRANSIENT, wander), x8, x11; the
+        T-I12 cup-in-rack-slot fixture carved and delivered under round 2 | any differs.
+      - **P90** L0: ep11's two cup rims differ by >= 5 mm at the rest frames | within 5 mm.
+      - **P91** the round-1 x1 sigma_sup = 1 came from shared band faces: with union-boundary samples (base cap kept)
+        sigma < 0.2 | sigma >= 0.2 (the base corner, as F-I5.12 (iv) said).
+      - **P92** a dust pan (ep18, ep39, ep40) accepted by the lathe test fails route 2 (gate or continuity) and falls to
+        route 3 | a dust pan delivered as rings.
+      These tests gate or fix steps; none is a failure criterion of the gmg (D.3).
+    - **(10) Constants and origins.** Construction rays 1 deg x 1 mm, sector set {8, 12, 16, 20, 24, 32}, greedy 1 mm band
+      splits, base bands <= 30 mm, intrusion 1e-6 m, continuity rays 0.5 mm x 1 deg (offset 0.5 deg) and axial 1 mm x 1
+      deg, covered >= 50 %, gaps <= 1 % and <= 50 % of a height's azimuths, reference rings 64 sectors and <= 10 mm bands,
+      floor S frames <= 3 within 4 mm, c_min 0.05 mm (the rounding unit), base cap max(3 sigma_g, 2 mm),
+      internal-face 1e-7 m, s_rm 0.5, the L0 5 mm: **generic**. w_min 1.5 mm: **generic** (one cell of the 1 mm grid
+      samples a wall without holes, the naive digital plane of Andres et al. 1997, plus half a cell for curvature and
+      sampling; D2's thinnest intact wall 1.7 mm [M]). f_keep 0.5: **informed** (between verify_cc_1's 8-sector rings,
+      45-49 % of body cells, and its 16-sector rings, 51-68 %; round-1 boxes 1.8-9.3 % [M]). Precheck 4 mm (a) and (b),
+      S (4 mm, 5 deg, 16 copies, 2 s, 2 ms), c_max = c_0 1.0 mm, the half factor and the 99th percentile, the 0.3 cm3 /
+      weight-10 keep-out, the piece cap floor(165 / objects), P4's 1.5: **informed** (F-I1.14, F-I5.10, unchanged).
+      max_convex_hull floor(cap / 2), the faithful 2 mm boxes and the 1 mm topology grid: **the orchestrator's decision**
+      (31 Oct ~21:50 UTC). The off-axis inequality: geometry of this entry. Every other constant: F-I5.10, F-I1.14,
+      F-I4.11.
+    - **(11) Run order, inputs, machine, cost.** (i) Build on this container (new code in `gmg/cavpieces.py`,
+      `gmg/collcarve.py`, a round-2 driver option, in a new driver file if the shared `tools/interlock_dev.py` is busy,
+      `tests/test_collcarve2.py`), then the post-hoc markers of (4e) and T-I14 here; deviations found while building
+      (none a threshold) are recorded as F-I5.15 as-built before any real run; code frozen, committed and pushed. (ii)
+      T-I15, T-I16 and L0 on one self-destroying Vast CPU box (32-64 vCPU, $0.3-0.6/h; runbook, ledger
+      `LEDGER_SESSION=mesh-bold` planned before create and actual after, stall watchdog 30 min, results copied off
+      before destroy, destroy confirmed); [E] 1.5-2.5 h, about $0.5-1.5; cap $3 for the round. (iii) Inputs (GT-free,
+      F-I5.8): the v6 clean bundles `runs/20261031-b4ext6-90c8cce` (all 20 public episodes), our v6 M1 hands, SHELL
+      candidates rebuilt from v6 with `tools/interlock_cands.py` (picks as F-I5.14 (1); dev tier, t0_dev, PREREG A.1),
+      our table plane, P_sim = P_sel (`sim_pose_fallback`); command = the F-I5.14 (2) command plus the round-2 option and
+      `--tag fi5r2`, each launch (command, machine, commit, outputs) logged in `build/I.md`. (iv) Results to
+      `build/I/results/collcarve-r2/`, outcomes under this entry, two verifiers, the report. (v) Eval twins 10, 1, 14, 30
+      are not in this round: they need eval bundles (`tools/ev_extract.py`), an orchestrator go after the public
+      verification, the clean t0, and the precheck alone first; nothing tuned on eval.
+    - **(12) Integrity.** As F-I5.8: no scan, mocap, dataset-parquet `pose`, `*_align`, library geometry as shape
+      evidence or scan-derived constant; the C1/T1 census in (5) is another lane's [R] note, not an input. Public
+      development only; constants fixed here before any run; failures reported with numbers; any later change is a new
+      dated entry labelled post hoc.
 
 ## Revision 1 changelog
 
