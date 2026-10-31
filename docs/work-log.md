@@ -5458,3 +5458,7 @@ Advice given:
   (same V2D_COMMIT / ENV_SNAPSHOT) → instance 58588731 (Romania, $1.377/h); ledger planned $3.00.
 - 23:23 UTC S25b: `create 58257843 20261031-drS25s43-a1a7e25 'ARM=dr MODE=std EPS="25" SEEDS="43" bash ops/jobs/mass_eval.sh'`
   → instance 58589859 (United Kingdom, $1.348/h); ledger planned $3.00.
+- 23:24–23:27 UTC S25a std-path checks [M]: env restored 23:24:17; "packed references checked for [25]" 23:25:42 (ep25 std
+  20261026-c25s42-feb0407, md5 71ac95f3…); D patch md5 570a7f47793d with ENV_EP25 = FC_DR_RESET=1.5,0.015,0.01
+  FC_DR_SEED=42 FC_DR_SKIP_IMMEDIATE=1; runs/perc2mckdr/ep25-s42/train.log: "… 2 objects, 44 finger joints, 4096 worlds,
+  seed 42; skip immediate starts (FC_DR_SKIP_IMMEDIATE: deployment-exact starts not perturbed)" (tail as required).
