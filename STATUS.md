@@ -1,5 +1,22 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~23:55 UTC: C0b / E0b (scan-free C0 rebuild) closed for pack 10: pot and beige adopted, both flagged; owner decisions B1 / B2 (Vast ~$1.17)
+- **Adopted (WIN and AUC guard, PREREG 8174998):** white_pot and beige_cup. Their eval-built E0b picks ship in
+  `meshes/library_e0b` (v3 base) and `meshes/library_e0bx` (v3x base, eval 8). Merge them one by one into pack 9a+.
+  - Pot md5 073872f4...; public CD-O 0.392 [D] (C0 0.342); guard +0.0009 / -0.0107.
+  - Beige md5 0d926da1...; public CD-O 0.30 [D] (T1 0.25); guard +0.0139.
+- **Not adopted:** the lid (every public build failed), the rack (CD-O 1.63 [D], guard fail) and the blue cup (1.68,
+  guard fail). For these C0 (flagged) or library_v3 stays, by the owner's choice. The cause is cube-ROI clutter [M].
+- **Owner decisions before any contact, mass or simulator use** (no written rule; every option is post hoc):
+  - B1: 17 of the shipped pot's 32 balls hang below its base (lowest point -60.2 vs -43.3 mm without balls [M]).
+    Options: ship it flagged, ship the ep3 nomk build, or keep C0 / library_v3.
+  - B2: the shipped beige has 3 inside-out shells (net 23.5 cm3; 16 bodies after the budget [M]). Options: re-orient
+    the shells, or ship the ep8 g0 build.
+  - Both are now flagged in `MANIFEST_E0b.json` (amended, flags only) and `E0b/README.md`.
+- **Wording:** "no scan-derived value; the ball detector carries one gmg-informed setting; 40 constants of unknown
+  origin kept" (verify_0 N1). Both adopted meshes are less accurate than what 9a+ carries; the trade is the owner's.
+- **Report:** `docs/research/mesh-2026-10-26/cdo-sprint/C0b/README.md`. Verifiers: `C0b/verify_0.md` and `verify_1.md`.
+
 ## 2026-10-31 ~22:00 UTC: CD-O sprint C2 (scan-free pitcher, rack) closed: nothing adopted, board stays 0.33234 (CPU, ~$0.02)
 - **Pitcher (eval 20):** H-P falsified. The obs-lathe + splat pick scored CD-O 1.160 cm against library_v3's 0.894
   [D]; add_med 11.17 mm fails its 9.97 mm gate. The object is an elephant-shaped watering can seen from one side only.

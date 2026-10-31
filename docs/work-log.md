@@ -5951,3 +5951,42 @@ diagnostic; nothing is picked for submission.
   w8 slot-centre miss -2.17 mm (inherited check; P2-P7 pass). Part 2 (budget.py, <= 380 rows) cannot run here (no
   FlashCHORD / warp / newton / mujoco_warp). Cost: this container only, no rental, $0. Log: gmg `build/I.md` "Board
   slot round 3"; results `build/I/results/slot3-ep24/`, `slot3-ep23/`, `slot3-tests/`.
+
+### 2026-10-31 23:55 UTC — CD-O sprint C0b / E0b closed: scan-free rebuild, pot and beige adopted for pack 10; B1 / B2 to the owner
+- **Chain.** Audit 9451062 (163 constants; 16 scan-derived, 71 unknown) -> PREREG 8174998 -> public box
+  `mesh-20261031-c0b-00e8584` (Vast 58564958, 66 min, $0.68, self-destroyed) -> picks 9f99ae0 before scoring ->
+  one scoring per pick plus C0's AUC guard (15 C0 base runs reused) -> adoption d84bc87 -> eval box
+  `mesh-20261031-e0b-c8f1c33` (Vast 58580656, 39 min, $0.49 [E], self-destroyed) -> E0b package 94742e4 -> verify_0
+  04748dc, verify_1 64542d7 -> this report.
+- **Replacements.** gmg `markers.py` (frozen A.6, no radius prior) for the 7 mm / 5-9.5 mm ball path. An
+  own-observation thickness chain with t0_C0b 4.559 mm for the 2.5 / 4 / 3 mm walls. A ±0.30 m cube and own-point
+  carving for the library_v3 ROI and co-objects. 3 sigma, relative and A.6b windows for the U-suspect windows. TIE 1.0
+  and `--floor base_t` for the lathe. 40 U values kept and declared generic post hoc.
+- **Result [D].** Adopted (WIN and guard):
+  - white_pot: public CD-O 0.3924, guard +0.0009 / -0.0107;
+  - beige_cup: 0.3007 / 0.2983, guard +0.0139.
+
+  Not adopted:
+  - the lid, whose 16/16 builds failed on cube clutter;
+  - the rack, 1.632, guard fail;
+  - the blue cup, 1.677, guard fail.
+
+  All three section-12 predictions were falsified. Both adopted objects are less accurate than pack 9a+'s (C0 pot
+  0.342; T1 beige 0.25).
+- **Ships.** E0b eval picks under PREREG 9 (e):
+  - pot `pot/ep3/thick`, md5 073872f4d0bdd0935a27fa985ae0063d;
+  - beige `beige/ep8/g1`, md5 0d926da1b444f4982de50ceb0e90ade7;
+
+  in `meshes/library_e0b` and `meshes/library_e0bx`. They are merged one by one; neither folder is a drop-in for 9a+.
+- **Verification.** verify_0 found no blocking item. Corrections: the detector seed count is gmg-informed, the
+  dry-run outputs were not deleted, and the split single-scoring check left no duplicate. verify_1 found two blocking
+  items, both needing owner decisions, with every option post hoc:
+  - B1 [M], pot: 17 of 32 balls lie below the base, lowest -60.2 mm vs -43.3 mm without balls;
+  - B2 [M], beige: 3 inside-out shells, net 23.5 cm3, 16 bodies after the budget.
+
+  I re-measured both GT-free and got the same numbers. No written rule resolves them, so nothing was re-run.
+  Disclosure flags were added to `C0b/MANIFEST_E0b.json` (amended in place, flags only; the prior sha256 4ebbe5bc...
+  and commit 94742e4 are recorded under `amendments`; script `C0b/scripts/amend_manifest_flags.py`) and to
+  `E0b/README.md`.
+- **Machine.** Shared cloud VM, CPU only, $0 for this step. No Vast box is open from C0b / E0b. Report:
+  `docs/research/mesh-2026-10-26/cdo-sprint/C0b/README.md`.

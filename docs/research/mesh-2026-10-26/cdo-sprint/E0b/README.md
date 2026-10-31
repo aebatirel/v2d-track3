@@ -31,6 +31,32 @@ without ground truth, [E] estimate, [H] hypothesis. No eval ground truth exists,
 - **Not a drop-in for pack 9a+.** Pack 9a+ ships the C0 pot, lid and rack, the C1 beige lathe and the C1 dust pan. Merge
   the objects one by one.
 
+### Flags added after verification (2026-10-31 ~23:55 UTC; disclosure only, meshes unchanged)
+Verifiers: `../C0b/verify_0.md` (integrity) and `../C0b/verify_1.md` (frame, kit, bytes). Both shipped meshes need an
+owner decision before any contact, mass or simulator use. No PREREG rule covers this, so nothing was re-run or swapped.
+The same flags are in `../C0b/MANIFEST_E0b.json` (pairs and `objects.<o>.flags`; the change is recorded under
+`amendments`; prior sha256 `4ebbe5bc...`, commit 94742e4).
+- **white_pot (B1) [M].** 17 of the 32 marker balls lie below the pot's own base.
+  - On the build axis the lowest point is -60.2 mm. The same ep3 build without balls (`nomk`) ends at -43.3 mm, and
+    library_v3 at -39.3 mm.
+  - 7.2 % of the surface lies below -44 mm.
+  - The balls add about 192 cm3 to a 207 cm3 body.
+  - [H] These are fingers or table clutter, not markers.
+  - **Not for contact or simulator use** (SR, contact_retarget, collision carve) until the owner decides. The options,
+    all post hoc: ship it flagged; ship `pot/ep3/nomk` (fidelity 3.377 vs 3.275 mm); or keep C0's pot or library_v3.
+- **beige_cup (B2) [M].** The mesh has three inside-out appendage shells (-30.5, -29.3 and -15.9 cm3; main body
+  +99.1 cm3).
+  - Its net signed volume is 23.5 cm3, against 157.8 for library_v3 and 66.4 for T1.
+  - After the kit budget it is 16 bodies and not watertight. library_v3 and v3x stay 2 watertight bodies.
+  - **Not for mass, inertia, inside/outside or simulator use** until the owner decides. The options, both post hoc:
+    re-orient the three shells (the surface does not change); or ship the same build's `g0` (one body, watertight after
+    the budget, fidelity 4.343 vs 3.322 mm).
+- **Constant origins (verify_0 N1).** No scan-derived value reaches either mesh. But the frozen gmg ball detector has
+  one gmg-informed setting: its seed count was raised from 5,000 to 15,000 after a first run, by agents who knew the
+  scan catalogue. 40 KEEP constants of unknown origin also remain. Describe the pack as "no scan-derived value; the
+  ball detector carries one gmg-informed setting".
+- **"Kit budget OK"** covers face and vertex counts only (verify_1 N1).
+
 ### Picks of the non-adopted objects (information only; library_v3 stays)
 | Object | E0b pick | fid ALL mm | Note |
 |---|---|---|---|
