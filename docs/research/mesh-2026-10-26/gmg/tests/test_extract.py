@@ -73,6 +73,25 @@ class VoteTests(unittest.TestCase):
         _, (hl0,) = EJ.vote(D, lab, np.eye(4), axes, K, C)
         self.assertEqual(len(hl0), 0)
 
+    def test_label_categories(self):
+        # the B.3 diagnostic votes with 4 label categories: each hit goes to the category of its pixel, category 1
+        # alone is the pass-rule vote, and the categories add up to the all-samples vote
+        K = np.array([[600.0, 0, 800], [0, 600.0, 500], [0, 0, 1]])
+        vv, uu = np.mgrid[0:1000, 0:1600]
+        D = (0.45 + 0.0002 * uu + 0.0001 * vv).astype(np.float32)
+        lab = np.random.default_rng(1).integers(0, 5, D.shape).astype(np.int8)
+        c = dict(C, cube=0.06)
+        axes, n = EJ._cube_axes(c)
+        T = np.eye(4)
+        T[:3, 3] = [0.0, 0.0, 0.62]
+        fl4, hl4 = EJ.vote(D, lab, T, axes, K, c, nlab=4)
+        fl1, (hl1,) = EJ.vote(D, (lab == 1).astype(np.int8), T, axes, K, c)
+        _, (hla,) = EJ.vote(D, (lab > 0).astype(np.int8), T, axes, K, c)
+        self.assertEqual(sorted(fl4.tolist()), sorted(fl1.tolist()))
+        self.assertEqual(sorted(hl4[0].tolist()), sorted(hl1.tolist()))
+        self.assertEqual(sorted(np.concatenate(hl4).tolist()), sorted(hla.tolist()))
+        self.assertTrue(all(len(h) > 0 for h in hl4))
+
 
 class VotePointsTests(unittest.TestCase):
     def test_same_as_lattice_vote(self):

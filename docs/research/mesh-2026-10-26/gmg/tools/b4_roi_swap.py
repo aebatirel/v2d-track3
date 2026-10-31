@@ -47,10 +47,11 @@ def main():
     objs = meta['objects']
     c = EJ.consts(meta['vox'], 0.30, meta['stride'])
     own = guard.load_npz(os.path.join(os.path.realpath(a.clean_run), 'aux', split, f'ep{ep}', 'owners.npz'),
-                         'clean_run', keys=['frame', 'pix', 'code', 'objects', 'W'])
+                         'clean_run', keys=['frame', 'pix', 'code', 'tied', 'objects', 'W'])
     if list(np.asarray(own['objects'])) != objs:
         raise ValueError('owners.npz objects differ from the bundle')
     ofr, opix, ocode = np.asarray(own['frame']), np.asarray(own['pix']), np.asarray(own['code'])
+    otied = np.asarray(own['tied'])
     W = int(own['W'])
     tracks = os.path.join(D, 'data', 'sweep', f'ep{ep}', 'poses.npz')
     P = guard.load_npz(tracks, 'tracks')
@@ -76,23 +77,33 @@ def main():
         old[o] = dict(k=k, lo=lo, hi=hi, vox=vx, shape=shp, axes=axes,
                       st=BU.state_grid(np.asarray(z['hits']), np.asarray(z['free'])),
                       hands=bool(args.get('hands')), hits=np.zeros(int(np.prod(shp)), np.int32),
-                      free=np.zeros(int(np.prod(shp)), np.int32))
+                      free=np.zeros(int(np.prod(shp)), np.int32), old_hits=np.asarray(z['hits']).ravel(),
+                      cat=np.zeros((4, int(np.prod(shp))), np.int32))
     # re-vote the clean labels on the old lattices
     order = np.argsort(ofr, kind='stable')
-    ofr, opix, ocode = ofr[order], opix[order], ocode[order]
+    ofr, opix, ocode, otied = ofr[order], opix[order], ocode[order], otied[order]
     starts = np.searchsorted(ofr, frames)
     ends = np.searchsorted(ofr, frames, side='right')
     for i, t in enumerate(frames):
         Dt = EJ.filtered_depth(Dm[t], c['edge'])
         pix, code = opix[starts[i]:ends[i]], ocode[starts[i]:ends[i]]
+        tied = otied[starts[i]:ends[i]]
         pv, pu = np.divmod(pix.astype(np.int64), W)
         for o, r in old.items():
+            # label categories (the B.3 pass rule uses 1 only; 2-4 feed the diagnostic, DEVIATIONS 100):
+            # 1 owned by o, 2 shared with o in the tie set, 3 owned by another object or shared without o,
+            # 4 unowned (no object's keep rule passes at the sample's voxel, or outside every seeded component)
+            k = r['k']
+            ink = ((tied >> k) & 1).astype(bool)
+            cat = np.where(code == k, 1, np.where(code == EJ.NONE, 4,
+                                                  np.where((code == EJ.SHARED) & ink, 2, 3))).astype(np.int8)
             lab = np.zeros(Dt.shape, np.int8)
-            sel = code == r['k']
-            lab[pv[sel], pu[sel]] = 1
-            fl, (hl,) = EJ.vote(Dt, lab, P[f'cam_T_{o}'][t].astype(np.float64), r['axes'], K, c)
+            lab[pv, pu] = cat
+            fl, hl = EJ.vote(Dt, lab, P[f'cam_T_{o}'][t].astype(np.float64), r['axes'], K, c, nlab=4)
             r['free'][fl] += 1
-            r['hits'][hl] += 1
+            r['hits'][hl[0]] += 1
+            for q in range(4):
+                r['cat'][q][hl[q]] += 1
     for o, r in old.items():
         new_st = BU.state_grid(r['hits'].reshape(r['shape']), r['free'].reshape(r['shape']))
         A, B = r['st'] == 2, new_st == 2
@@ -117,6 +128,25 @@ def main():
         ijk = np.argwhere(st == 2)
         ctr = np.asarray(z['lo'], np.float64) + (ijk + 0.5) * float(z['vox'])
         out = ~np.all((ctr >= r['lo']) & (ctr <= r['hi']), axis=1)
+        # diagnostic (DEVIATIONS 100): where the old hits of the lost voxels went, and the Jaccard if other sample
+        # categories counted as hits (all in-cube samples = the obs_points.py vote with the clean filters)
+        lost = (A & ~B).ravel()
+        cat = r['cat']
+        fr_ = r['free'].reshape(r['shape'])
+
+        def jac_with(qs):
+            Bq = BU.state_grid(np.clip(cat[list(qs)].sum(0), 0, 65535).reshape(r['shape']).astype(np.uint16),
+                               np.clip(fr_, 0, 65535).astype(np.uint16)) == 2
+            uq = int((A | Bq).sum())
+            return round(int((A & Bq).sum()) / uq, 4) if uq else float('nan')
+        diag = dict(lost_hits_old=int(r['old_hits'][lost].sum()),
+                    lost_hits_revote={nm: int(cat[q][lost].sum()) for q, nm in
+                                      enumerate(('owned', 'shared_with_o', 'other_object', 'unowned'))},
+                    lost_median_old_hits=float(np.median(r['old_hits'][lost])) if lost.any() else None,
+                    kept_median_old_hits=float(np.median(r['old_hits'][(A & B).ravel()])) if (A & B).any() else None,
+                    jaccard_all_samples_diag=jac_with((0, 1, 2, 3)),
+                    jaccard_owned_unowned_diag=jac_with((0, 3)),
+                    jaccard_owned_shared_unowned_diag=jac_with((0, 1, 3)))
         rec = dict(ep=ep, obj=o, hands_in_obs_all=r['hands'], jaccard=round(jac, 4), old_observed=int(A.sum()),
                    new_observed_on_old_lattice=int(B.sum()), intersection=inter,
                    clean_observed=int(len(ctr)), clean_observed_outside_old_box=int(out.sum()),
@@ -124,7 +154,8 @@ def main():
                    old_only=int((A & ~B).sum()), new_only=int((B & ~A).sum()),
                    old_only_partner_evidence=int((A & ~B & part).sum()),
                    jaccard_no_partner_evidence_diag=round(jac_np, 4),
-                   pass_jaccard=bool(jac >= 0.95), pass_outside=bool(len(out) and out.mean() <= 0.05))
+                   pass_jaccard=bool(jac >= 0.95), pass_outside=bool(len(out) and out.mean() <= 0.05),
+                   attribution_diag=diag)
         recs.append(rec)
         print(json.dumps(rec), flush=True)
     os.makedirs(os.path.join(run, 'b3'), exist_ok=True)

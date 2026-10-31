@@ -637,3 +637,16 @@ scan number was seen; none bears on these choices.
     (before the cross test, whose references are the non-TRACK_FAIL object-episodes); both readings are stored per
     object (`sanity.track_fail_readings`) and reported. Disclosure for B.15 / P22: P22 predicts that the lid is not
     testable; that outcome now rests on this reading, chosen after the ep0 lid was seen. No scan number seen.
+100. **(2026-10-31, B4, after seeing the B.3 records of ep0, ep2 and ep18) B.3 attribution diagnostic; fresh batch.**
+    Seen [M, dev comparison]: Jaccard ep0 pot 0.931 (781 lost voxels, 3 with partner evidence), ep0 lid 0.351 (34 old
+    OBSERVED voxels: the lost lid track), ep2 pot 0.907, ep2 lid 0.918, ep18 sweeper 0.649 and dust pan 0.782 (ep18's
+    obs_all files had no hands removed). The lost voxels are mostly old OBSERVED voxels with few hits. Hypothesis [H]:
+    an obs_points.py hit at voxel V comes from a pixel whose sample may lie in a neighbouring voxel; SPEC section 7
+    gives that sample an owner only if some object's keep rule passes at the sample's own voxel, so V loses the hit
+    (literal SPEC behaviour, not changed). To test it without changing any rule, the aux file `owners.npz` now holds
+    every in-cube sample (code NONE = unowned) and `tools/b4_roi_swap.py` reports, per file, the re-voted hits of the
+    lost voxels by pixel category (owned, shared with o, other object, unowned) and diagnostic Jaccards with other
+    categories counted (`attribution_diag`). Falsified if the lost voxels' hits are mostly not "unowned". The B.3 pass
+    rule and its inputs are unchanged. The second batch (`runs/20261031-b4ext2-74fabc9`: ep2 and ep18 complete, ep0
+    and ep31 started) was killed by a machine restart at about 06:58 UTC; it is kept as a stopped attempt. All 20
+    episodes are rerun in one fresh run on one commit (the aux change touches no bundle file). No scan number seen.

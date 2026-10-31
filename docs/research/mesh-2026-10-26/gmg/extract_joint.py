@@ -27,7 +27,8 @@ carves) and the keep rule (hits >= 3, ratio >= 0.5). The passes of SPEC section 
           final crop box (hits from owned samples only, free from all rays, shared, pocc), sigma, jitter j, table
 
 Outputs: the bundle of SPEC section 6 (episode.json and <obj>.npz) and, with aux_dir, owners.npz: the final owner of
-every owned or shared sample (frame, pixel, code), for the ROI-swap validation (PREREG B.3, a dev process).
+every in-cube sample (frame, pixel, code: object index, SHARED -2 or NONE -1), for the ROI-swap validation (PREREG
+B.3, a dev process).
 """
 from __future__ import annotations
 
@@ -769,12 +770,13 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         os.makedirs(aux_dir, exist_ok=True)
         fr_l, pix_l, code_l, tied_l = [], [], [], []
         for t in frames:
+            # every in-cube sample of the frame (the unowned ones with code NONE), so the B.3 diagnostic can tell
+            # where an old hit went (DEVIATIONS 100)
             s = S[t]
-            sel = s['own3'] != NONE
-            fr_l.append(np.full(int(sel.sum()), t, np.int16))
-            pix_l.append(s['pix'][sel])
-            code_l.append(s['own3'][sel])
-            tied_l.append(s['tied3'][sel])
+            fr_l.append(np.full(len(s['pix']), t, np.int16))
+            pix_l.append(s['pix'])
+            code_l.append(s['own3'])
+            tied_l.append(s['tied3'])
         np.savez_compressed(os.path.join(aux_dir, 'owners.npz'), frame=np.concatenate(fr_l),
                             pix=np.concatenate(pix_l), code=np.concatenate(code_l), tied=np.concatenate(tied_l),
                             objects=np.array(objs), W=IMG_W, H=IMG_H)
