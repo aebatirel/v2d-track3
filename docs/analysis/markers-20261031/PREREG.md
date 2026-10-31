@@ -57,3 +57,18 @@ worse than −0.020; primary variant decides; per-object kit AUC).
 **FAIL.** Primary variant over the 16 units: mean ΔAUC **−0.083** (rule >= +0.010), **1/16** improved (rule >= 60 %),
 worst **−0.407** (white_pot_lid ep2, rule >= −0.020). All secondary variants fail too: novote −0.080 (1/16),
 nocarry −0.041 (2/16), fused −0.039 (1/16, worst −0.088). The layer is not adopted; no eval use follows.
+
+## Block 4 — precondition check for adding ego_cam_a (written 2026-10-31, before any cam-a computation)
+
+Follow-up asked by the coordinator after block 3. Post-hoc diagnostic on PUBLIC frames only; mocap is used only to
+score (as `diag_fix.py`). New files only; the block-2 scripts stay unchanged.
+**What is computed.** ego_cam_a (colour, ~2x resolution) is added as a third view to the marker fixes, with the
+calibration AS GIVEN (colour extrinsic to the stereo pair as in the calibration file; no refit). Per object (white_pot,
+white_pot_lid, blue_cup if cheap), on the same frames: track error vs fix error (diag_fix metric: mean host-point
+distance after one oracle rigid fit of the base track), split by 2-marker and 3-marker fixes, for b/c-only fixes and
+for a+b/c fixes. Spoon (eval, GT-free): share of frames where M1 is detected once cam a is added, at rest and in hand.
+**Precondition for running a NEW public gate later:** BOTH
+1. a+b/c 3-marker fixes beat the track (median error lower than the track's on the same frames) on >= 2 of the 3
+   objects (an object with no a+b/c 3-marker fix frames counts as not beating);
+2. M1 is detected in >= 30 % of spoon rest frames (pooled over the 10 eval spoon episodes) with cam a added.
+If the precondition fails: stop and report. If it passes: stop and report; the gate is not run here.
