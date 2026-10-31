@@ -1,0 +1,3121 @@
+{
+ "schema": "gmg-sim/2",
+ "episode": 24,
+ "split": "public",
+ "round": 0,
+ "p_sim": {
+  "source": "P_sel",
+  "flag": "sim_pose_fallback",
+  "tracks": {
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60"
+  }
+ },
+ "objects": {
+  "wooden_piece_1": {
+   "files": {
+    "wooden_piece_1.glb": "3a949482d5dad09688825b14aa42443101e5eb622f30fac8396bb8e0e0bb604b",
+    "piece_06.obj": "9b616420c2a87deec57fb7bf7d3a64d7f65b32432fc78974152904d333c1f1b4",
+    "piece_13.obj": "015e98d266e07daeefd6cf3b4f6a0b1e6f89e6b055768c401200b0301f7f8260",
+    "piece_50.obj": "c48f9f5cc67b19d61971faf73385b9a3b2b33e19655766e2d8f3ef3e4ba257d5",
+    "piece_34.obj": "1b48a2ab9474f0f91d2bff727e34fe4344dbff7383a2964650feaa859a31040f",
+    "piece_54.obj": "84ffc6767f920853bd49a1eacc38c6f93041524873005b0035cf20523de7956a",
+    "piece_55.obj": "211cefdb334d8406e601e2620f873269be46c62075e0c2b381a03f8e01767f40",
+    "piece_41.obj": "e62b747850a2893247437d26d737dc1f5d7adc9d869e18363b6ea580098c8658",
+    "piece_15.obj": "61e98f7200115a863483923dc6160ef38185a2a15abbdd4d3a3ed30d51eacac6",
+    "piece_18.obj": "b713bb2c209a3e994c31ddb850c6c39b346f3e93139c9d2d21cf4e81f5a7e6ea",
+    "piece_53.obj": "4c1f993c784dbcceaa265be747a0f9490114326946e5c1c624e8e8361c317564",
+    "piece_05.obj": "8a37d43146733a35816047f78819d99e85350e5e0e5fe57bc5db4648137ff9c9",
+    "piece_43.obj": "33f0faa5fe8a35bc665f537221448900a63c8e812575409919b8779fffd84831",
+    "piece_07.obj": "da85ba879364c71b34faf197189aa015ed6d956468262bb5dd9f6ad10161bdf2",
+    "piece_20.obj": "69f2ca04f3d0c7fca18e486d55ae28a19742e4559feb825fd991d77328d886ed",
+    "piece_44.obj": "85d1f1dc2412fdffb3966cd47d2541bdfbc0872379e47687a24bbd0718014e8e",
+    "piece_37.obj": "1bafdc921f56684ed0d0c2d7f0b021f4f45592bb54a98b26934c3f721eee094a",
+    "carve.json": "9c1915cbd7138fe621d83593392d6ad93de9c9fd0b9ce2f671d1d2e2dbde8c31",
+    "piece_29.obj": "c103f2ed9a95ce72313246abd8a08fe2a7fcf59e079d6eb704c52d6aa214972e",
+    "piece_33.obj": "158e52ceef2b44f5d1ac1a3add5077c4e8b364bedff4fbee9efdb9dfdb9ef9d2",
+    "piece_08.obj": "86eb96ecfb55c2bf58ec5d702e43f7f5c1f4256b332a604176bad4d040cbad7e",
+    "piece_56.obj": "74cd81c971a7877f824c7a0a2ec2c60c3ba1eadb5c1625fb05d0b5c356ab5374",
+    "piece_49.obj": "23124d362c186ed41f3d3a1695beba36f123e68da342aa6796862582c9e36623",
+    "piece_52.obj": "a921dbc5acd7ff867b22f1597b23b50cf6c3464e856be4da420b0b82e6c5c8a2",
+    "piece_39.obj": "f6b961eed177add82e5ffc44f5236215946e0d9329cced11ff9dc90adc65478f",
+    "piece_00.obj": "82905078c8bfa8c04e493223bc3cb5a2737f4e9b0e1bb82c414e936f9efa588e",
+    "piece_46.obj": "6af3e5a1b09543ad1861b11a1a34d0691a8484f0bad536215b7bb731fdf7e527",
+    "piece_11.obj": "178abd5d284bfb011fc9c5c48f0b06190b9259e743ac68ccb97573f01188bdab",
+    "piece_19.obj": "046b24fa185e7b949cb1f8ea212689db7d1f4e6c2354dd4b40ceb07277b753bb",
+    "piece_45.obj": "c91d7ac1275eefdca9c0b040268b85ce81cf3d6d4681fe69e427a1513b35b6c8",
+    "piece_51.obj": "b5728424d5450bc6504bb77eebbc0bce12f4da8c15b3a660ab1fc1baa2114fb1",
+    "piece_23.obj": "16f737803df1554a7df276acf03e1b9cd62890c8e953f03c617fc6098cf51467",
+    "piece_40.obj": "bd16cb3e47001ea92951eb851afe5985a4a5723c2b63eba599b3dad725697dfc",
+    "piece_01.obj": "9935af8d4a0912be3ff031f3119886d86a0b1e72043311fa50e6c9673415fd9d",
+    "piece_21.obj": "676167f114431fdd061b134fe1f1176d92a95617fa9bd9221305b7a9d2bf04e5",
+    "piece_31.obj": "8b7f818b7a03e74f367b6b80b419424c63e05206d8899152596f84f88daa4f06",
+    "piece_32.obj": "aeb848552746f641ee2fa42488ed86276575760dbb7249ecfd02413b121c1d09",
+    "piece_02.obj": "108d04d4ed2b918796c861f52275a9b2ac41c7742da47b4d76c8d5c75422ef71",
+    "piece_28.obj": "7b5d6f9514114665be6d30effea0917c7f9481fc55dc56ff613a1b29728d11ac",
+    "piece_04.obj": "a813b94ad9da0d14025db427c3211aa46ebd43f232f07fe23451928255ef2d4d",
+    "inertia.json": "1a77606d5747f7be53cc747d3cdfa660ed556996357f5982da4f0e4a6766fcfe",
+    "piece_38.obj": "fcb550ee0af37c4a83335ec38c8437a4b7ea283af24b7f7f2b2cb3f94c2caf0b",
+    "piece_10.obj": "309afd5b14ac937973fa83d2356ee100c45b5bf20067de01b458294a77cbe183",
+    "piece_24.obj": "79a8d9f34969ed58c960d5c0e0509d9bc92517b8e86f07b81bd0bf340ac85825",
+    "piece_36.obj": "f2475ce20d030598e2e5625d5db5f701b7542b4b254fc223d0d68118c8cf06e3",
+    "piece_30.obj": "c5f16f65a970f5ab30bcf599c01a4dd186513a7ee6112c1b61f49f2892408cb8",
+    "piece_03.obj": "b6dcc1faa389304425848927a782934d6531cf8fb56a9b567fbceec482a34e8a",
+    "piece_12.obj": "34119bb84b71e656bb4251ea2162c7db480c806102a0938bb17e1cd4d4329f14",
+    "piece_14.obj": "2301324f02f9e88b910fea842004d2c33ffb3d97967d868809128a289716003b",
+    "piece_22.obj": "f67562202eb7da7ac74dc67e1b44cc58dbd2be92c07f850d1bff3914a231c224",
+    "piece_48.obj": "ba34a2e595f2e1d243de7c030115eb2e58eb464de27f3682ae2c67ea381869d5",
+    "piece_17.obj": "0348d9c60b75f14be77557e11e22df26c8783bb4ee1a0d40ecd36b3dfa0cdac5",
+    "piece_25.obj": "cfa9b0ded0dac042bc890742c4b12adbc534f7acb1ed8fe009751ba7b554ef47",
+    "piece_35.obj": "54b8b43516ecdade438a3ac187abef16846f3c8520e546f40c71f6d25bcb9241",
+    "piece_09.obj": "15f63694a000bcf6861b4868ad85a44a087e120dc30a8491b03c5641a03468fe",
+    "piece_26.obj": "98c72623873d753c1184466b75df03c6c28063016bcd9f7914fe17c7aaef4d38",
+    "piece_42.obj": "06621ebaeea47037476de620851d0c0683f3b2c8f6ce42c109f3b1054bdf5f9f",
+    "piece_27.obj": "570d97d38244573f5fd4d95695aa1f0e4eb52f7eca34d5f3878de2ba3b99ad45",
+    "piece_47.obj": "c35ebfcd4baf8f2231bcf395ce65290892a248d1684bc5b6f3c56d90a8a4b6d8",
+    "piece_16.obj": "a27919f922052f93501dbc24458d6ff8b2e2660d3509f6173ab3e4ee0e7cdd44"
+   },
+   "fiducials": [
+    [
+     -0.000939349606036088,
+     0.06652772092150303,
+     -0.1240542203521384
+    ],
+    [
+     0.0044617698484902425,
+     0.06650902595363808,
+     -0.12404691651408653
+    ],
+    [
+     -0.0014947165501385026,
+     -0.08858165951108607,
+     -0.11038492446335241
+    ],
+    [
+     0.003906402904387828,
+     -0.08860035447895101,
+     -0.11037762062530054
+    ],
+    [
+     -0.0011880076834966734,
+     0.08745366633878829,
+     0.11338831937862975
+    ],
+    [
+     0.004213111771029657,
+     0.08743497137092335,
+     0.11339562321668162
+    ],
+    [
+     -0.001743374627599088,
+     -0.06765571409380079,
+     0.12705761526741574
+    ],
+    [
+     0.003657744826927243,
+     -0.06767440906166573,
+     0.1270649191054676
+    ]
+   ],
+   "gate": {
+    "choice": "slotted_plate",
+    "report": {
+     "slotted_plate": {
+      "n": 57,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     }
+    },
+    "do_not_use": null
+   }
+  },
+  "wooden_piece_2": {
+   "files": {
+    "piece_06.obj": "97763d8513aa9ffe1ab8b0e47996a851090c884808a6d8a2a24b4986d0943802",
+    "piece_13.obj": "02073d270db8fe6a6bccc61ffed3cb06e76fb349114349e6a4b5b0820617467d",
+    "piece_50.obj": "e36f095feac1aa8950d3c9e6d5980c565768295dbc7d02de5f6098ef4081ab0f",
+    "piece_62.obj": "dbcd2f1cee7ad25a2cf7d67dd8f0073f61d1a0de3e9b02616c817d5794fb188b",
+    "piece_34.obj": "0ef93ab2b2d7ef03cd7783edeba6107ba1850c6ecfc2258c9725a072eb99cbc8",
+    "piece_69.obj": "0a6b6405d1b5d4feefa9897ad989d6612926ccba78c954d96736201dc98bee59",
+    "piece_54.obj": "ad23ba4e37729028306d238a966b9dd30f32b865b5510673af4e32e407fe0a3c",
+    "piece_55.obj": "0318773a1fe1e3ed7c207fff95cf13e9c1686f40c1b026433efd08f77096345c",
+    "piece_41.obj": "39e7acf0d726698ea81f030a864f80c623434c584e11a634a79c6a7fbebd22d7",
+    "piece_15.obj": "32df1f08a585efe0305d335a7d02988d5c3c42f64cca4f25b489da533b3aac38",
+    "piece_18.obj": "79704478a027cd47a335bc968ec7130bc1d72bbe638a5814e7e7e308d15e5969",
+    "piece_53.obj": "5699e8ca747c3d3610340071d861674b47c01c97f717ae030aaaa39a1820e2cc",
+    "piece_05.obj": "ca3aea1eb0da03c484a7773855ba7c62449a21c9a5b046f540a7ab07b8d6ed21",
+    "piece_76.obj": "8cead483df3e138c59a30cfe3e1749fb41ebf067e709e3fff55c54bdd3889da3",
+    "piece_58.obj": "a6fba286718c061c7a7ba34b98eb860ee5e57e4149ccca83ba1c2ae29f1800d1",
+    "piece_43.obj": "22d9934d0c5ab01890760396a42f48b1ed40f2915ea1719c5de86da269d23fcc",
+    "piece_73.obj": "27b59e979073cecd7e532b2084949fae89e632385c38f048cb6e0e7b1319bfd4",
+    "piece_07.obj": "735c47945a159b5786942a297d04fe04913b756d9e0e5facf964e55569e39b85",
+    "piece_20.obj": "6f5af99fccad1b1ead579deecf1b7ddc753ad4cdcd0d004373569d6a81efb395",
+    "piece_44.obj": "46616dcfa26131d241fbd04128aac26f54cfb05effb11ed995f5ddc6ce1a3f26",
+    "piece_37.obj": "5acb9a25d1f1ed6cd6bef0e7bfab649dd59c884b073f8712ff446609630f0663",
+    "carve.json": "ad014ccb230f7d2d7741174cb3e93c4df9a0a4cd2e6cb7411cf3bae6c407a7f5",
+    "piece_29.obj": "e294762da448a7423aff47ef56531c3ee01fdbbe1aa7f21e57f57768047b614b",
+    "piece_33.obj": "bd433413f9e47b84e92b6c9403f2b50c653b94611a3f722aa118b678129792a8",
+    "piece_08.obj": "59c627648e0455d9e45b3a9bcf3b23147abe1c4e6bb69ad4a0ee88b64f499f8b",
+    "piece_64.obj": "111007f709300bc711f5a7173989d317b3e8b41d4972d3853c9ab479e40e06d7",
+    "piece_56.obj": "7110669c11f88eec119f3084c4e1a2be357b089f400a90d8a30d6bca667e59e2",
+    "piece_57.obj": "408a0517225b0324179fbd4e2affc8b736f9d1d1cce533b2071c9402bf07707e",
+    "piece_71.obj": "eb84fc919816bde6dd0cc00f9b12c6a426a19dfdbdddf668af139ef531899bd6",
+    "piece_49.obj": "02535bc78eef07589c2a8a28af49fd55288022d3290914d3d761c4d173792fcf",
+    "piece_52.obj": "5b07f0a3cf7f21b44de8354c5d6972d640fb75192d6a2825ca1ef006fb3874d6",
+    "piece_39.obj": "765aaa5b174973e9aa5d693624e26d0e8cc8bf19b452edb6c574e701c053d9ec",
+    "piece_60.obj": "1861438cd88faf81c65199151e173d4f9f36f2cb7796eb8d8b98995f00ad2727",
+    "piece_00.obj": "51a6275ed299840e5f262c0945d9161c2a02da40fda505057b64acf6a11e7de5",
+    "piece_72.obj": "38e1ae67e55dce0fd239f4f667392dbd0337ae977fca7249d7ba3b4b015f5c72",
+    "piece_46.obj": "6a434f013dba3c40fd3dc65e090fe485e327ea0d242d9f7d472b9460e1d76ff0",
+    "piece_11.obj": "63e0d9320bf6334efa0cebba2407d14bb872551fef2dadec6edce38a3140273c",
+    "piece_19.obj": "faf153cead6865ca44d58fe535e97c9fa4890d218f58e6f3d2189044fe882721",
+    "piece_45.obj": "2fa92911a2c4c00b964ebde352af18903fc9ab4b8ff5da9dbde93009014eaa54",
+    "piece_68.obj": "eecb5543184864e2b36182fb71bcef695ee15e67971eaeb1d9fb20bb94439059",
+    "piece_67.obj": "c5ad2ed49e0b87a4e723608fd30151d0edf9806da30e671fb10c545b795d9b95",
+    "piece_51.obj": "43d7e4f4a2b338e4e1f5ee2aa88f01b46945d84d2b6b7c8f4354b9210f0c216e",
+    "wooden_piece_2.glb": "60b5fc1f58e548aa1bfeb3ba7bdd9f07d8443ea2db2464c2ada1ec8e079ab198",
+    "piece_23.obj": "8577308f426417501b285f5ff717ac3a8ca385a3e1fd24b171f28652cdcc8916",
+    "piece_75.obj": "644d56be9d1bad9bd2a46e37f22c9ff9e3c38283bc5916f5f82264bf9d7a807f",
+    "piece_40.obj": "3735f8b4faf97a72879172a471efada0b274c79c61b3ada7d55653a68609c4e5",
+    "piece_70.obj": "695a34e729a151df76213c1662ba6e982e513e8314da4ce730c7285a06e51514",
+    "piece_01.obj": "2c97c94594c31742a37ef69c7b6a821051201222d3b7a4bfc20c4cc4d763db8c",
+    "piece_21.obj": "1834eb183997e8abf4b854f203ed2f950009dd4793c28a03e495a3399a6cc391",
+    "piece_31.obj": "7fb412e21398fcfca3a2ea2ee8f6953bdb8e41115257cd7d8c9182164c8cf41f",
+    "piece_32.obj": "66135d70e9ecf1f2a8ca417cfc5528701c882a179da80825accc4f13515c3848",
+    "piece_02.obj": "aa7e5cbde6d9fa98f2d59bf84e2bea65c46dd58444f68258ad43258efa79efc5",
+    "piece_28.obj": "eab8b27c59f13947b7479ff399ba91a626e8ac84e55cef2f94efb3339bb7961b",
+    "piece_04.obj": "555294a78fc05dc4ff76497d45638159806fe3fd4920f5bbc5d51eb53073e148",
+    "inertia.json": "6b36d410ac3c28176f193adcb064c82c0e59ecb30cf04986e5fc9ac8815f4ca4",
+    "piece_38.obj": "2cd26da50e07ed43258cb453385001e52ea05ca127d5bc342b26f6b090fb630a",
+    "piece_10.obj": "a8c1466bb29edb1da2b7057b547ac4726ebba93a59322f43ac69eeed9fa2058d",
+    "piece_24.obj": "207f99b89c4cb50b61d74db00b97679614b78f2fb82173fb7b891c1c31185bc9",
+    "piece_36.obj": "58a6bbccba156e3dc8cf028f02aee3e1070ecab3205a3a42e9e6a82a08d7842c",
+    "piece_30.obj": "02012199864b4613bf9d7259430da31e6bc3b2055dc63358508809d460b5f655",
+    "piece_03.obj": "8d3d889c477f73e5678744a0784f60da419622b05837ce256bbe60419b7207cc",
+    "piece_12.obj": "41c0191da60c39e444ed690e9ab5fb23737aeb79f4c264cd7849ec37fb11be5d",
+    "piece_65.obj": "ad8f0736487685e284bc00d1fd4ed91aa7bdfc78706acd0164c516777fd5ae4b",
+    "piece_14.obj": "52de204da72452491223181a16187105771422bb760c63d8ccdaafd7eeba4f34",
+    "piece_22.obj": "63bf9f2559d9d5a92fdcd30002be249c933c6a73054ccba4309508951f613aa6",
+    "piece_48.obj": "264f5b6c23c2df64d06345b38c9cff8451a3741984c59667259c3421fa9f9815",
+    "piece_17.obj": "f95f58b1203e52397a3a9c5a68a9eea6b1b1e34eebe3f9155098a941937be4dc",
+    "piece_25.obj": "ebe1d5859f5a44629412e44dc80151fa18969cbfd23cf8e94748febbe2bcb222",
+    "piece_35.obj": "ef6954bf9d7198c2ed793a0b4f5632d0ea609b720362898f8db43fde7e3d70b2",
+    "piece_09.obj": "28d383c922addde7bf493f42648c79891575ae7c22e80694ef91a068740cba59",
+    "piece_59.obj": "0e6baa033466f60cc1e1c2f59da25dbbb4843ac80e2e09caf3c73b5740a0eef8",
+    "piece_66.obj": "27a086df5059ce178303191225a85a0733c8f8dab96dcdfcffa0788ce1476ceb",
+    "piece_26.obj": "c9ff5435e8f0aa88270850db29123d030e5a2e5539d7b42ea0c5a1410fe3a26a",
+    "piece_42.obj": "dfc469fc58c3b81bdeca261c4e12f53a7482f8be3ce488643791824c8325216d",
+    "piece_27.obj": "faaf35e8e9125c9ab4c42b788fd82867a75ba8af1dab5094fad9b1c546fac82d",
+    "piece_47.obj": "670f3f9da6fcc4e7d009057a46b07ce52d2c4ee447ce8b523ffb3f4c81640c59",
+    "piece_63.obj": "f604b955e7e7a7f5d2c454ae60cc341af7d0b98d3e68a4b473f395d4e3055042",
+    "piece_61.obj": "d1d8bfb275451e48ea08abaff0afe498d83567655eb753b82ee3467b493a7655",
+    "piece_16.obj": "cb0262e7199b49991a9471a4eb6555c3452feedd61d5824fc9fc1a762bfff517",
+    "piece_74.obj": "81ad1d5eee8b14480f012df3e385df0f5350f85f9829b35954b4e2d50b75a0dc"
+   },
+   "fiducials": [
+    [
+     0.0054331511431113776,
+     -0.09621365488592484,
+     0.11023582725151823
+    ],
+    [
+     3.2678677905114925e-05,
+     -0.09625381145976325,
+     0.11031184574968239
+    ],
+    [
+     0.0044945487112687844,
+     0.06540732264306921,
+     0.12893190995979867
+    ],
+    [
+     -0.000905923753937478,
+     0.0653671660692308,
+     0.12900792845796283
+    ],
+    [
+     0.0018999740867609825,
+     -0.06886949327709461,
+     -0.12632208953328228
+    ],
+    [
+     -0.00350049837844528,
+     -0.06890964985093302,
+     -0.1262460710351181
+    ],
+    [
+     0.0009613716549183894,
+     0.09275148425189944,
+     -0.10762600682500183
+    ],
+    [
+     -0.004439100810287872,
+     0.09271132767806103,
+     -0.10754998832683767
+    ]
+   ],
+   "gate": {
+    "choice": "slotted_plate",
+    "report": {
+     "slotted_plate": {
+      "n": 77,
+      "max_cm3": 0.0,
+      "sum_cm3": 0.0,
+      "over_tol": 0
+     }
+    },
+    "do_not_use": null
+   }
+  }
+ },
+ "object_order": [
+  "wooden_piece_1",
+  "wooden_piece_2"
+ ],
+ "files": {
+  "props_gmg.json": "367dd86ab6e856e0e3ff9ab575d59bcf1a65673098c3039b9253d3a8abd6a37c",
+  "wooden_piece_1/wooden_piece_1.glb": "3a949482d5dad09688825b14aa42443101e5eb622f30fac8396bb8e0e0bb604b",
+  "wooden_piece_1/piece_06.obj": "9b616420c2a87deec57fb7bf7d3a64d7f65b32432fc78974152904d333c1f1b4",
+  "wooden_piece_1/piece_13.obj": "015e98d266e07daeefd6cf3b4f6a0b1e6f89e6b055768c401200b0301f7f8260",
+  "wooden_piece_1/piece_50.obj": "c48f9f5cc67b19d61971faf73385b9a3b2b33e19655766e2d8f3ef3e4ba257d5",
+  "wooden_piece_1/piece_34.obj": "1b48a2ab9474f0f91d2bff727e34fe4344dbff7383a2964650feaa859a31040f",
+  "wooden_piece_1/piece_54.obj": "84ffc6767f920853bd49a1eacc38c6f93041524873005b0035cf20523de7956a",
+  "wooden_piece_1/piece_55.obj": "211cefdb334d8406e601e2620f873269be46c62075e0c2b381a03f8e01767f40",
+  "wooden_piece_1/piece_41.obj": "e62b747850a2893247437d26d737dc1f5d7adc9d869e18363b6ea580098c8658",
+  "wooden_piece_1/piece_15.obj": "61e98f7200115a863483923dc6160ef38185a2a15abbdd4d3a3ed30d51eacac6",
+  "wooden_piece_1/piece_18.obj": "b713bb2c209a3e994c31ddb850c6c39b346f3e93139c9d2d21cf4e81f5a7e6ea",
+  "wooden_piece_1/piece_53.obj": "4c1f993c784dbcceaa265be747a0f9490114326946e5c1c624e8e8361c317564",
+  "wooden_piece_1/piece_05.obj": "8a37d43146733a35816047f78819d99e85350e5e0e5fe57bc5db4648137ff9c9",
+  "wooden_piece_1/piece_43.obj": "33f0faa5fe8a35bc665f537221448900a63c8e812575409919b8779fffd84831",
+  "wooden_piece_1/piece_07.obj": "da85ba879364c71b34faf197189aa015ed6d956468262bb5dd9f6ad10161bdf2",
+  "wooden_piece_1/piece_20.obj": "69f2ca04f3d0c7fca18e486d55ae28a19742e4559feb825fd991d77328d886ed",
+  "wooden_piece_1/piece_44.obj": "85d1f1dc2412fdffb3966cd47d2541bdfbc0872379e47687a24bbd0718014e8e",
+  "wooden_piece_1/piece_37.obj": "1bafdc921f56684ed0d0c2d7f0b021f4f45592bb54a98b26934c3f721eee094a",
+  "wooden_piece_1/carve.json": "9c1915cbd7138fe621d83593392d6ad93de9c9fd0b9ce2f671d1d2e2dbde8c31",
+  "wooden_piece_1/piece_29.obj": "c103f2ed9a95ce72313246abd8a08fe2a7fcf59e079d6eb704c52d6aa214972e",
+  "wooden_piece_1/piece_33.obj": "158e52ceef2b44f5d1ac1a3add5077c4e8b364bedff4fbee9efdb9dfdb9ef9d2",
+  "wooden_piece_1/piece_08.obj": "86eb96ecfb55c2bf58ec5d702e43f7f5c1f4256b332a604176bad4d040cbad7e",
+  "wooden_piece_1/piece_56.obj": "74cd81c971a7877f824c7a0a2ec2c60c3ba1eadb5c1625fb05d0b5c356ab5374",
+  "wooden_piece_1/piece_49.obj": "23124d362c186ed41f3d3a1695beba36f123e68da342aa6796862582c9e36623",
+  "wooden_piece_1/piece_52.obj": "a921dbc5acd7ff867b22f1597b23b50cf6c3464e856be4da420b0b82e6c5c8a2",
+  "wooden_piece_1/piece_39.obj": "f6b961eed177add82e5ffc44f5236215946e0d9329cced11ff9dc90adc65478f",
+  "wooden_piece_1/piece_00.obj": "82905078c8bfa8c04e493223bc3cb5a2737f4e9b0e1bb82c414e936f9efa588e",
+  "wooden_piece_1/piece_46.obj": "6af3e5a1b09543ad1861b11a1a34d0691a8484f0bad536215b7bb731fdf7e527",
+  "wooden_piece_1/piece_11.obj": "178abd5d284bfb011fc9c5c48f0b06190b9259e743ac68ccb97573f01188bdab",
+  "wooden_piece_1/piece_19.obj": "046b24fa185e7b949cb1f8ea212689db7d1f4e6c2354dd4b40ceb07277b753bb",
+  "wooden_piece_1/piece_45.obj": "c91d7ac1275eefdca9c0b040268b85ce81cf3d6d4681fe69e427a1513b35b6c8",
+  "wooden_piece_1/piece_51.obj": "b5728424d5450bc6504bb77eebbc0bce12f4da8c15b3a660ab1fc1baa2114fb1",
+  "wooden_piece_1/piece_23.obj": "16f737803df1554a7df276acf03e1b9cd62890c8e953f03c617fc6098cf51467",
+  "wooden_piece_1/piece_40.obj": "bd16cb3e47001ea92951eb851afe5985a4a5723c2b63eba599b3dad725697dfc",
+  "wooden_piece_1/piece_01.obj": "9935af8d4a0912be3ff031f3119886d86a0b1e72043311fa50e6c9673415fd9d",
+  "wooden_piece_1/piece_21.obj": "676167f114431fdd061b134fe1f1176d92a95617fa9bd9221305b7a9d2bf04e5",
+  "wooden_piece_1/piece_31.obj": "8b7f818b7a03e74f367b6b80b419424c63e05206d8899152596f84f88daa4f06",
+  "wooden_piece_1/piece_32.obj": "aeb848552746f641ee2fa42488ed86276575760dbb7249ecfd02413b121c1d09",
+  "wooden_piece_1/piece_02.obj": "108d04d4ed2b918796c861f52275a9b2ac41c7742da47b4d76c8d5c75422ef71",
+  "wooden_piece_1/piece_28.obj": "7b5d6f9514114665be6d30effea0917c7f9481fc55dc56ff613a1b29728d11ac",
+  "wooden_piece_1/piece_04.obj": "a813b94ad9da0d14025db427c3211aa46ebd43f232f07fe23451928255ef2d4d",
+  "wooden_piece_1/inertia.json": "1a77606d5747f7be53cc747d3cdfa660ed556996357f5982da4f0e4a6766fcfe",
+  "wooden_piece_1/piece_38.obj": "fcb550ee0af37c4a83335ec38c8437a4b7ea283af24b7f7f2b2cb3f94c2caf0b",
+  "wooden_piece_1/piece_10.obj": "309afd5b14ac937973fa83d2356ee100c45b5bf20067de01b458294a77cbe183",
+  "wooden_piece_1/piece_24.obj": "79a8d9f34969ed58c960d5c0e0509d9bc92517b8e86f07b81bd0bf340ac85825",
+  "wooden_piece_1/piece_36.obj": "f2475ce20d030598e2e5625d5db5f701b7542b4b254fc223d0d68118c8cf06e3",
+  "wooden_piece_1/piece_30.obj": "c5f16f65a970f5ab30bcf599c01a4dd186513a7ee6112c1b61f49f2892408cb8",
+  "wooden_piece_1/piece_03.obj": "b6dcc1faa389304425848927a782934d6531cf8fb56a9b567fbceec482a34e8a",
+  "wooden_piece_1/piece_12.obj": "34119bb84b71e656bb4251ea2162c7db480c806102a0938bb17e1cd4d4329f14",
+  "wooden_piece_1/piece_14.obj": "2301324f02f9e88b910fea842004d2c33ffb3d97967d868809128a289716003b",
+  "wooden_piece_1/piece_22.obj": "f67562202eb7da7ac74dc67e1b44cc58dbd2be92c07f850d1bff3914a231c224",
+  "wooden_piece_1/piece_48.obj": "ba34a2e595f2e1d243de7c030115eb2e58eb464de27f3682ae2c67ea381869d5",
+  "wooden_piece_1/piece_17.obj": "0348d9c60b75f14be77557e11e22df26c8783bb4ee1a0d40ecd36b3dfa0cdac5",
+  "wooden_piece_1/piece_25.obj": "cfa9b0ded0dac042bc890742c4b12adbc534f7acb1ed8fe009751ba7b554ef47",
+  "wooden_piece_1/piece_35.obj": "54b8b43516ecdade438a3ac187abef16846f3c8520e546f40c71f6d25bcb9241",
+  "wooden_piece_1/piece_09.obj": "15f63694a000bcf6861b4868ad85a44a087e120dc30a8491b03c5641a03468fe",
+  "wooden_piece_1/piece_26.obj": "98c72623873d753c1184466b75df03c6c28063016bcd9f7914fe17c7aaef4d38",
+  "wooden_piece_1/piece_42.obj": "06621ebaeea47037476de620851d0c0683f3b2c8f6ce42c109f3b1054bdf5f9f",
+  "wooden_piece_1/piece_27.obj": "570d97d38244573f5fd4d95695aa1f0e4eb52f7eca34d5f3878de2ba3b99ad45",
+  "wooden_piece_1/piece_47.obj": "c35ebfcd4baf8f2231bcf395ce65290892a248d1684bc5b6f3c56d90a8a4b6d8",
+  "wooden_piece_1/piece_16.obj": "a27919f922052f93501dbc24458d6ff8b2e2660d3509f6173ab3e4ee0e7cdd44",
+  "wooden_piece_2/piece_06.obj": "97763d8513aa9ffe1ab8b0e47996a851090c884808a6d8a2a24b4986d0943802",
+  "wooden_piece_2/piece_13.obj": "02073d270db8fe6a6bccc61ffed3cb06e76fb349114349e6a4b5b0820617467d",
+  "wooden_piece_2/piece_50.obj": "e36f095feac1aa8950d3c9e6d5980c565768295dbc7d02de5f6098ef4081ab0f",
+  "wooden_piece_2/piece_62.obj": "dbcd2f1cee7ad25a2cf7d67dd8f0073f61d1a0de3e9b02616c817d5794fb188b",
+  "wooden_piece_2/piece_34.obj": "0ef93ab2b2d7ef03cd7783edeba6107ba1850c6ecfc2258c9725a072eb99cbc8",
+  "wooden_piece_2/piece_69.obj": "0a6b6405d1b5d4feefa9897ad989d6612926ccba78c954d96736201dc98bee59",
+  "wooden_piece_2/piece_54.obj": "ad23ba4e37729028306d238a966b9dd30f32b865b5510673af4e32e407fe0a3c",
+  "wooden_piece_2/piece_55.obj": "0318773a1fe1e3ed7c207fff95cf13e9c1686f40c1b026433efd08f77096345c",
+  "wooden_piece_2/piece_41.obj": "39e7acf0d726698ea81f030a864f80c623434c584e11a634a79c6a7fbebd22d7",
+  "wooden_piece_2/piece_15.obj": "32df1f08a585efe0305d335a7d02988d5c3c42f64cca4f25b489da533b3aac38",
+  "wooden_piece_2/piece_18.obj": "79704478a027cd47a335bc968ec7130bc1d72bbe638a5814e7e7e308d15e5969",
+  "wooden_piece_2/piece_53.obj": "5699e8ca747c3d3610340071d861674b47c01c97f717ae030aaaa39a1820e2cc",
+  "wooden_piece_2/piece_05.obj": "ca3aea1eb0da03c484a7773855ba7c62449a21c9a5b046f540a7ab07b8d6ed21",
+  "wooden_piece_2/piece_76.obj": "8cead483df3e138c59a30cfe3e1749fb41ebf067e709e3fff55c54bdd3889da3",
+  "wooden_piece_2/piece_58.obj": "a6fba286718c061c7a7ba34b98eb860ee5e57e4149ccca83ba1c2ae29f1800d1",
+  "wooden_piece_2/piece_43.obj": "22d9934d0c5ab01890760396a42f48b1ed40f2915ea1719c5de86da269d23fcc",
+  "wooden_piece_2/piece_73.obj": "27b59e979073cecd7e532b2084949fae89e632385c38f048cb6e0e7b1319bfd4",
+  "wooden_piece_2/piece_07.obj": "735c47945a159b5786942a297d04fe04913b756d9e0e5facf964e55569e39b85",
+  "wooden_piece_2/piece_20.obj": "6f5af99fccad1b1ead579deecf1b7ddc753ad4cdcd0d004373569d6a81efb395",
+  "wooden_piece_2/piece_44.obj": "46616dcfa26131d241fbd04128aac26f54cfb05effb11ed995f5ddc6ce1a3f26",
+  "wooden_piece_2/piece_37.obj": "5acb9a25d1f1ed6cd6bef0e7bfab649dd59c884b073f8712ff446609630f0663",
+  "wooden_piece_2/carve.json": "ad014ccb230f7d2d7741174cb3e93c4df9a0a4cd2e6cb7411cf3bae6c407a7f5",
+  "wooden_piece_2/piece_29.obj": "e294762da448a7423aff47ef56531c3ee01fdbbe1aa7f21e57f57768047b614b",
+  "wooden_piece_2/piece_33.obj": "bd433413f9e47b84e92b6c9403f2b50c653b94611a3f722aa118b678129792a8",
+  "wooden_piece_2/piece_08.obj": "59c627648e0455d9e45b3a9bcf3b23147abe1c4e6bb69ad4a0ee88b64f499f8b",
+  "wooden_piece_2/piece_64.obj": "111007f709300bc711f5a7173989d317b3e8b41d4972d3853c9ab479e40e06d7",
+  "wooden_piece_2/piece_56.obj": "7110669c11f88eec119f3084c4e1a2be357b089f400a90d8a30d6bca667e59e2",
+  "wooden_piece_2/piece_57.obj": "408a0517225b0324179fbd4e2affc8b736f9d1d1cce533b2071c9402bf07707e",
+  "wooden_piece_2/piece_71.obj": "eb84fc919816bde6dd0cc00f9b12c6a426a19dfdbdddf668af139ef531899bd6",
+  "wooden_piece_2/piece_49.obj": "02535bc78eef07589c2a8a28af49fd55288022d3290914d3d761c4d173792fcf",
+  "wooden_piece_2/piece_52.obj": "5b07f0a3cf7f21b44de8354c5d6972d640fb75192d6a2825ca1ef006fb3874d6",
+  "wooden_piece_2/piece_39.obj": "765aaa5b174973e9aa5d693624e26d0e8cc8bf19b452edb6c574e701c053d9ec",
+  "wooden_piece_2/piece_60.obj": "1861438cd88faf81c65199151e173d4f9f36f2cb7796eb8d8b98995f00ad2727",
+  "wooden_piece_2/piece_00.obj": "51a6275ed299840e5f262c0945d9161c2a02da40fda505057b64acf6a11e7de5",
+  "wooden_piece_2/piece_72.obj": "38e1ae67e55dce0fd239f4f667392dbd0337ae977fca7249d7ba3b4b015f5c72",
+  "wooden_piece_2/piece_46.obj": "6a434f013dba3c40fd3dc65e090fe485e327ea0d242d9f7d472b9460e1d76ff0",
+  "wooden_piece_2/piece_11.obj": "63e0d9320bf6334efa0cebba2407d14bb872551fef2dadec6edce38a3140273c",
+  "wooden_piece_2/piece_19.obj": "faf153cead6865ca44d58fe535e97c9fa4890d218f58e6f3d2189044fe882721",
+  "wooden_piece_2/piece_45.obj": "2fa92911a2c4c00b964ebde352af18903fc9ab4b8ff5da9dbde93009014eaa54",
+  "wooden_piece_2/piece_68.obj": "eecb5543184864e2b36182fb71bcef695ee15e67971eaeb1d9fb20bb94439059",
+  "wooden_piece_2/piece_67.obj": "c5ad2ed49e0b87a4e723608fd30151d0edf9806da30e671fb10c545b795d9b95",
+  "wooden_piece_2/piece_51.obj": "43d7e4f4a2b338e4e1f5ee2aa88f01b46945d84d2b6b7c8f4354b9210f0c216e",
+  "wooden_piece_2/wooden_piece_2.glb": "60b5fc1f58e548aa1bfeb3ba7bdd9f07d8443ea2db2464c2ada1ec8e079ab198",
+  "wooden_piece_2/piece_23.obj": "8577308f426417501b285f5ff717ac3a8ca385a3e1fd24b171f28652cdcc8916",
+  "wooden_piece_2/piece_75.obj": "644d56be9d1bad9bd2a46e37f22c9ff9e3c38283bc5916f5f82264bf9d7a807f",
+  "wooden_piece_2/piece_40.obj": "3735f8b4faf97a72879172a471efada0b274c79c61b3ada7d55653a68609c4e5",
+  "wooden_piece_2/piece_70.obj": "695a34e729a151df76213c1662ba6e982e513e8314da4ce730c7285a06e51514",
+  "wooden_piece_2/piece_01.obj": "2c97c94594c31742a37ef69c7b6a821051201222d3b7a4bfc20c4cc4d763db8c",
+  "wooden_piece_2/piece_21.obj": "1834eb183997e8abf4b854f203ed2f950009dd4793c28a03e495a3399a6cc391",
+  "wooden_piece_2/piece_31.obj": "7fb412e21398fcfca3a2ea2ee8f6953bdb8e41115257cd7d8c9182164c8cf41f",
+  "wooden_piece_2/piece_32.obj": "66135d70e9ecf1f2a8ca417cfc5528701c882a179da80825accc4f13515c3848",
+  "wooden_piece_2/piece_02.obj": "aa7e5cbde6d9fa98f2d59bf84e2bea65c46dd58444f68258ad43258efa79efc5",
+  "wooden_piece_2/piece_28.obj": "eab8b27c59f13947b7479ff399ba91a626e8ac84e55cef2f94efb3339bb7961b",
+  "wooden_piece_2/piece_04.obj": "555294a78fc05dc4ff76497d45638159806fe3fd4920f5bbc5d51eb53073e148",
+  "wooden_piece_2/inertia.json": "6b36d410ac3c28176f193adcb064c82c0e59ecb30cf04986e5fc9ac8815f4ca4",
+  "wooden_piece_2/piece_38.obj": "2cd26da50e07ed43258cb453385001e52ea05ca127d5bc342b26f6b090fb630a",
+  "wooden_piece_2/piece_10.obj": "a8c1466bb29edb1da2b7057b547ac4726ebba93a59322f43ac69eeed9fa2058d",
+  "wooden_piece_2/piece_24.obj": "207f99b89c4cb50b61d74db00b97679614b78f2fb82173fb7b891c1c31185bc9",
+  "wooden_piece_2/piece_36.obj": "58a6bbccba156e3dc8cf028f02aee3e1070ecab3205a3a42e9e6a82a08d7842c",
+  "wooden_piece_2/piece_30.obj": "02012199864b4613bf9d7259430da31e6bc3b2055dc63358508809d460b5f655",
+  "wooden_piece_2/piece_03.obj": "8d3d889c477f73e5678744a0784f60da419622b05837ce256bbe60419b7207cc",
+  "wooden_piece_2/piece_12.obj": "41c0191da60c39e444ed690e9ab5fb23737aeb79f4c264cd7849ec37fb11be5d",
+  "wooden_piece_2/piece_65.obj": "ad8f0736487685e284bc00d1fd4ed91aa7bdfc78706acd0164c516777fd5ae4b",
+  "wooden_piece_2/piece_14.obj": "52de204da72452491223181a16187105771422bb760c63d8ccdaafd7eeba4f34",
+  "wooden_piece_2/piece_22.obj": "63bf9f2559d9d5a92fdcd30002be249c933c6a73054ccba4309508951f613aa6",
+  "wooden_piece_2/piece_48.obj": "264f5b6c23c2df64d06345b38c9cff8451a3741984c59667259c3421fa9f9815",
+  "wooden_piece_2/piece_17.obj": "f95f58b1203e52397a3a9c5a68a9eea6b1b1e34eebe3f9155098a941937be4dc",
+  "wooden_piece_2/piece_25.obj": "ebe1d5859f5a44629412e44dc80151fa18969cbfd23cf8e94748febbe2bcb222",
+  "wooden_piece_2/piece_35.obj": "ef6954bf9d7198c2ed793a0b4f5632d0ea609b720362898f8db43fde7e3d70b2",
+  "wooden_piece_2/piece_09.obj": "28d383c922addde7bf493f42648c79891575ae7c22e80694ef91a068740cba59",
+  "wooden_piece_2/piece_59.obj": "0e6baa033466f60cc1e1c2f59da25dbbb4843ac80e2e09caf3c73b5740a0eef8",
+  "wooden_piece_2/piece_66.obj": "27a086df5059ce178303191225a85a0733c8f8dab96dcdfcffa0788ce1476ceb",
+  "wooden_piece_2/piece_26.obj": "c9ff5435e8f0aa88270850db29123d030e5a2e5539d7b42ea0c5a1410fe3a26a",
+  "wooden_piece_2/piece_42.obj": "dfc469fc58c3b81bdeca261c4e12f53a7482f8be3ce488643791824c8325216d",
+  "wooden_piece_2/piece_27.obj": "faaf35e8e9125c9ab4c42b788fd82867a75ba8af1dab5094fad9b1c546fac82d",
+  "wooden_piece_2/piece_47.obj": "670f3f9da6fcc4e7d009057a46b07ce52d2c4ee447ce8b523ffb3f4c81640c59",
+  "wooden_piece_2/piece_63.obj": "f604b955e7e7a7f5d2c454ae60cc341af7d0b98d3e68a4b473f395d4e3055042",
+  "wooden_piece_2/piece_61.obj": "d1d8bfb275451e48ea08abaff0afe498d83567655eb753b82ee3467b493a7655",
+  "wooden_piece_2/piece_16.obj": "cb0262e7199b49991a9471a4eb6555c3452feedd61d5824fc9fc1a762bfff517",
+  "wooden_piece_2/piece_74.obj": "81ad1d5eee8b14480f012df3e385df0f5350f85f9829b35954b4e2d50b75a0dc",
+  "_default/wooden_piece_1/piece_06.obj": "a17f1f638996f0f9c59d356c87f524ffdee8573a458bd9996c49ec9f342a4704",
+  "_default/wooden_piece_1/piece_13.obj": "86eb96ecfb55c2bf58ec5d702e43f7f5c1f4256b332a604176bad4d040cbad7e",
+  "_default/wooden_piece_1/piece_34.obj": "6e3543e1455a0067df8b351ef95f2963c59475e85b82e603c95edd6ceac054af",
+  "_default/wooden_piece_1/piece_41.obj": "b68dacfa6b64e4fb07e9b9fa6a8e78e47bda1d3264701437e4a34da0179d65c6",
+  "_default/wooden_piece_1/piece_15.obj": "309afd5b14ac937973fa83d2356ee100c45b5bf20067de01b458294a77cbe183",
+  "_default/wooden_piece_1/piece_18.obj": "14f01c2d202a88dfdbde0cddf8a91c695f966accb6523898a683298cd4cc917f",
+  "_default/wooden_piece_1/piece_05.obj": "59dd6068c90ab8e9fef7d479c960cfffdd17007c94aeb8f399c68d0ccaa63168",
+  "_default/wooden_piece_1/piece_43.obj": "0f3a5f00f60d4c127497143e4d3ffa70d51c1413bfc860d9d5f879d157895885",
+  "_default/wooden_piece_1/piece_07.obj": "9935af8d4a0912be3ff031f3119886d86a0b1e72043311fa50e6c9673415fd9d",
+  "_default/wooden_piece_1/piece_20.obj": "d3752c259a39e312fe813e73ec24ef18ad671228b1c71317e8ccdefbdc1f1ed9",
+  "_default/wooden_piece_1/piece_44.obj": "b2b3c8da14cf8ba01a1b0822f70b237546f694fde76fff4128c12bc1f43876ae",
+  "_default/wooden_piece_1/piece_37.obj": "2f9ef02ab2876a58b46a5ee266c6ccaa3e9775d5a5432c22d49c6efac15bada5",
+  "_default/wooden_piece_1/piece_29.obj": "0b80668f8aed84b050d1437c447398cf98208a5d612421fb0aaadb865c0983e1",
+  "_default/wooden_piece_1/piece_33.obj": "11c31a8d97aa3aad4a3ab69d35926dac32e97124fc5770319ab9afc8c78e5028",
+  "_default/wooden_piece_1/piece_08.obj": "d9aa32e37facf2202af4fa59f73f2bab82ba3be3011343352df71ee3fe145090",
+  "_default/wooden_piece_1/piece_49.obj": "cecb9fb3a37cfd24e3eb8b05b33aaaf034b42522f2511b1a67567c422f911a95",
+  "_default/wooden_piece_1/piece_39.obj": "a827d4d7e08c017b0b104a96d61d3dc01c9ab5aa8309c5428df29d081f7e480d",
+  "_default/wooden_piece_1/piece_00.obj": "570d97d38244573f5fd4d95695aa1f0e4eb52f7eca34d5f3878de2ba3b99ad45",
+  "_default/wooden_piece_1/piece_46.obj": "2fff068d2427f4807fbe4e21f1554445950a82af684848468231c48d3e42e968",
+  "_default/wooden_piece_1/piece_11.obj": "8a37d43146733a35816047f78819d99e85350e5e0e5fe57bc5db4648137ff9c9",
+  "_default/wooden_piece_1/piece_19.obj": "e320aabf41fc997ab02cdb83658f9bea1221b89e1511df736980f693a7817954",
+  "_default/wooden_piece_1/piece_45.obj": "cb29644341c6a4173b746c4db4ec8e4575785e09105a0864c539d723b313712e",
+  "_default/wooden_piece_1/piece_23.obj": "1a3b42674773d268374060334843af9e1c02fca4b4ba22a500b7ad18a911eebe",
+  "_default/wooden_piece_1/piece_40.obj": "bcf74598e3a807707430d91b99f1f6047cc337f460e3c6f9c5301fed61b3a329",
+  "_default/wooden_piece_1/piece_01.obj": "7b5d6f9514114665be6d30effea0917c7f9481fc55dc56ff613a1b29728d11ac",
+  "_default/wooden_piece_1/piece_21.obj": "6b6151f431a85ad28bc6f68bdb6c3fc2a0e1c1637c1b69b076f60c74aac96bc8",
+  "_default/wooden_piece_1/piece_31.obj": "48db119b09a894efe2782182abad0954c870b3fad07bc6e194b82ce95fcb90f7",
+  "_default/wooden_piece_1/piece_32.obj": "8348fab735d5c94e8254bfe8c6e18551be36d5ec56a3406e28acea2a0486720d",
+  "_default/wooden_piece_1/piece_02.obj": "c103f2ed9a95ce72313246abd8a08fe2a7fcf59e079d6eb704c52d6aa214972e",
+  "_default/wooden_piece_1/piece_28.obj": "b97c4c0e034ab3a476fcb4bb4a5dd56ed1bdbb775a87e1a3d87fc426fae33ad8",
+  "_default/wooden_piece_1/piece_04.obj": "8b7f818b7a03e74f367b6b80b419424c63e05206d8899152596f84f88daa4f06",
+  "_default/wooden_piece_1/piece_38.obj": "feaf2a42b2fa909577bd0ba63f23ea00f061aa48b00ba4b17b16a7daddef62ec",
+  "_default/wooden_piece_1/piece_10.obj": "2ddc4d78b05193567cbcb6e15be54d75215ad99920bc7c9b385c7a785e1c3d75",
+  "_default/wooden_piece_1/piece_24.obj": "cfa9b0ded0dac042bc890742c4b12adbc534f7acb1ed8fe009751ba7b554ef47",
+  "_default/wooden_piece_1/piece_36.obj": "99949f887319ec8f8997b7d829b5d8f4b4808427a4c2619c7104f7c82acb0863",
+  "_default/wooden_piece_1/piece_30.obj": "a0cbd709c5333a35c10a3736c5a565bd97e54fe5530e3a594e3d877a8c94abe5",
+  "_default/wooden_piece_1/piece_03.obj": "c5f16f65a970f5ab30bcf599c01a4dd186513a7ee6112c1b61f49f2892408cb8",
+  "_default/wooden_piece_1/piece_12.obj": "9b616420c2a87deec57fb7bf7d3a64d7f65b32432fc78974152904d333c1f1b4",
+  "_default/wooden_piece_1/piece_14.obj": "08354cf94c5f73a3a4e0d0eaaa0230a73333a7d5978e4fe74f5ebfc15e5e5910",
+  "_default/wooden_piece_1/piece_22.obj": "16f737803df1554a7df276acf03e1b9cd62890c8e953f03c617fc6098cf51467",
+  "_default/wooden_piece_1/piece_48.obj": "74cd81c971a7877f824c7a0a2ec2c60c3ba1eadb5c1625fb05d0b5c356ab5374",
+  "_default/wooden_piece_1/piece_17.obj": "3a27a0d6c8a3cf4d484493a081be9714b48db6f0cfb9eedba6297bcc6197a8b8",
+  "_default/wooden_piece_1/piece_25.obj": "98c72623873d753c1184466b75df03c6c28063016bcd9f7914fe17c7aaef4d38",
+  "_default/wooden_piece_1/piece_35.obj": "8e8069ee89634860e9e2d9881ad8f30394c123c136eebdb0328bdf0df9d9cc51",
+  "_default/wooden_piece_1/piece_09.obj": "b6dcc1faa389304425848927a782934d6531cf8fb56a9b567fbceec482a34e8a",
+  "_default/wooden_piece_1/piece_26.obj": "f8788f4697dbb4c7b548ea6cf8dc3acfed229fddae0f8b29fa66f9bbf01251fb",
+  "_default/wooden_piece_1/piece_42.obj": "80295ba872292f78c88351b4e70c4b4ca7a5bc9337f87b7163c885688a752ff1",
+  "_default/wooden_piece_1/piece_27.obj": "81090ce26dc2c68b6ffd015a33dc97f2cd137da994c587a3cd79c6a51b0e5e62",
+  "_default/wooden_piece_1/piece_47.obj": "50e7e247163eb198661482d23421d2804f465e6ae2aeeb44da7d6b8e238ae927",
+  "_default/wooden_piece_1/piece_16.obj": "5067557abbd6c7cb27f359a2b410193d66dd27ba7f688f2f8dbeec473eb9f406",
+  "_default/wooden_piece_2/piece_06.obj": "2c97c94594c31742a37ef69c7b6a821051201222d3b7a4bfc20c4cc4d763db8c",
+  "_default/wooden_piece_2/piece_13.obj": "32df1f08a585efe0305d335a7d02988d5c3c42f64cca4f25b489da533b3aac38",
+  "_default/wooden_piece_2/piece_50.obj": "763a885e42741bc2003e0f2f14829d7acd3962b58cdd0cb1b64a702604b90589",
+  "_default/wooden_piece_2/piece_62.obj": "8aee532f12b9c301d502da9aa5aadee739f25736ce8cdf763c26fafa033b0dc8",
+  "_default/wooden_piece_2/piece_34.obj": "4262e357e6d0271ce4967988bfef462be8b1361c6082925960a8d5aa083b3e88",
+  "_default/wooden_piece_2/piece_69.obj": "8cead483df3e138c59a30cfe3e1749fb41ebf067e709e3fff55c54bdd3889da3",
+  "_default/wooden_piece_2/piece_54.obj": "3b1351d46a0b0ef42baa79920e6298a67c6cf5a93ad0b33d79c4a3e1958ab740",
+  "_default/wooden_piece_2/piece_55.obj": "43954fce72ae6fd43fe04ee9830d1d5413d1e28060642de870e22ebf609b05f8",
+  "_default/wooden_piece_2/piece_41.obj": "49b447c6a0516dd46d658a8a55fd27e39e16afbefcb74a51d9da6177ab64a0ae",
+  "_default/wooden_piece_2/piece_15.obj": "f95f58b1203e52397a3a9c5a68a9eea6b1b1e34eebe3f9155098a941937be4dc",
+  "_default/wooden_piece_2/piece_18.obj": "be258a2a0c851e1dc974c82ff98cf6f7bf4ac3125aa8404faafb73bf520afefb",
+  "_default/wooden_piece_2/piece_53.obj": "9b8ef5402d03b08c6c78caf242a6aa4cddd3783d63e564e3e1f6804bd3bebaf1",
+  "_default/wooden_piece_2/piece_05.obj": "f03230f6cd6ff1e39b5262ddf975e2338aaabc8c7f647e5dff50fdd42669f248",
+  "_default/wooden_piece_2/piece_58.obj": "4f53b0e4956de224b1de3fce0f8b8d5154f1a51fb4fb121f31e9d58a2974622a",
+  "_default/wooden_piece_2/piece_43.obj": "647da13b7018fd92649f6f47340743b9b2f1fcfd7b18416ea7edcd5cd6b47061",
+  "_default/wooden_piece_2/piece_07.obj": "c9dd0f1b3c586c3c83135ea4481eb6cd8c03c5d14a35d5ac9e2313620865d5c4",
+  "_default/wooden_piece_2/piece_20.obj": "29fecd8cbed5c78c30ef336e5ad9c5c17d3b3c51b43612a9b61dfafdd4801233",
+  "_default/wooden_piece_2/piece_44.obj": "f203e7379f67e0dba930e82fcd5ce12f2b70a125c95c74418f9101e0dba05baa",
+  "_default/wooden_piece_2/piece_37.obj": "1716a8f04d3f5da11c4a88573a7c81fd7babd24d20b78e82860cd4846c181de6",
+  "_default/wooden_piece_2/piece_29.obj": "c60edf4ab56cb3e1a7c87b13f71d99187c138294fef05b2794c34cce8757f654",
+  "_default/wooden_piece_2/piece_33.obj": "4cc4454f9aa080f404809dbf3cfd95155ef39347018dc4ea2330225f79476c38",
+  "_default/wooden_piece_2/piece_08.obj": "e5d14aa760ad1f67ffe5d606e01137f220798bff4e697ef792830d15115b8233",
+  "_default/wooden_piece_2/piece_64.obj": "81ad1d5eee8b14480f012df3e385df0f5350f85f9829b35954b4e2d50b75a0dc",
+  "_default/wooden_piece_2/piece_56.obj": "205972b89dbd713936ed59e74ef9136a8c640a0f6ed178690bcb01827871427b",
+  "_default/wooden_piece_2/piece_57.obj": "62df3f83fa6aeee74cb50af9090bbdfde848766ca518f8ff7fcc8d83b17863d2",
+  "_default/wooden_piece_2/piece_49.obj": "3f1c79c3a2bb95181e68f937e430ab1285c1c870ac26b2cd4d25116fdb40fc4e",
+  "_default/wooden_piece_2/piece_52.obj": "8af8e82796c86fdce4081577f725a12bae549cb5632d56b47b85551a9b9002e1",
+  "_default/wooden_piece_2/piece_39.obj": "c20315fc6f1ae3530a72796e77c9dd46e0f3568bc2163cd4c96d02091ae60917",
+  "_default/wooden_piece_2/piece_60.obj": "48a8819dbcb508be8028f3a2b5f77fd71e25ea28e75b90fe2f93208a9e4ad8c5",
+  "_default/wooden_piece_2/piece_00.obj": "5ee7231d87d20dd601224cc751f36aa7787c1ea4d5ff4b2b63b2027546195f27",
+  "_default/wooden_piece_2/piece_46.obj": "5e828139ba78045a7df2034eb2c5c2eee50526ca30731bcedcdb2250b7c1bdf9",
+  "_default/wooden_piece_2/piece_11.obj": "02073d270db8fe6a6bccc61ffed3cb06e76fb349114349e6a4b5b0820617467d",
+  "_default/wooden_piece_2/piece_19.obj": "9479c6303824e4263e68ff27b53291ed47092922db7bf48b199208b33b3fe550",
+  "_default/wooden_piece_2/piece_45.obj": "4d08d5e47249345c45ad9ae90da81625750b2bb69cf3dab07f4af8767452a879",
+  "_default/wooden_piece_2/piece_68.obj": "87ed5079d5667f2272a3b7db1bb08cdf6d7363981cb0437f023e8beb45e9870b",
+  "_default/wooden_piece_2/piece_67.obj": "10051a49ad37baa4cd056937ad4ddecb69ce313118b802425581249df929a36f",
+  "_default/wooden_piece_2/piece_51.obj": "5d987351438549cc60e08b69d7e4885a779904312730377b25229c3b79b110ae",
+  "_default/wooden_piece_2/piece_23.obj": "9b0e525a758ee8ecbe5a14791fa3e5e706119a14559a64551b889ce4aa299773",
+  "_default/wooden_piece_2/piece_40.obj": "afc9921f44555377bf7937bbd21dafb3967cbcf5e0feb25970e78ed6678dba53",
+  "_default/wooden_piece_2/piece_70.obj": "7fe58151aeaec6cffa461722d1b75fa72d4e809e84b3867137587282b1c8ec2b",
+  "_default/wooden_piece_2/piece_01.obj": "2a4deb14925a4ac6f30fa6a4156de7e0fd4d36861e0732b78595eeb347000dfa",
+  "_default/wooden_piece_2/piece_21.obj": "d150dd451b4d4ed9a6c93fbc31fb104ae558992b504bd6f766836c05fa9f3359",
+  "_default/wooden_piece_2/piece_31.obj": "807c29bc775554f87a43b585ceb3126af26f4a49d72a89a6abaef1eb2f057dc9",
+  "_default/wooden_piece_2/piece_32.obj": "e81813006b15ad73146623f02a29d9fb0a08c1dd307619aa6ef352da43d4dcc4",
+  "_default/wooden_piece_2/piece_02.obj": "0ef93ab2b2d7ef03cd7783edeba6107ba1850c6ecfc2258c9725a072eb99cbc8",
+  "_default/wooden_piece_2/piece_28.obj": "01a4a4f0ec1d437f5e3ddd9c9fe6ed59b7657c524f388216e1e12d9a9a714063",
+  "_default/wooden_piece_2/piece_04.obj": "8ab71f8bb029d09b014f587c2253c43033de9beae909c880df0577f0c1f5d279",
+  "_default/wooden_piece_2/piece_38.obj": "9c38ef7a3d2ce2bc45974701100e1a650c9c6a437ca096bee7292b9133eaa7ad",
+  "_default/wooden_piece_2/piece_10.obj": "4896f63716dabcbccae89aa3fc477cf770788a79d75d0af5b5c475146319d608",
+  "_default/wooden_piece_2/piece_24.obj": "faaf35e8e9125c9ab4c42b788fd82867a75ba8af1dab5094fad9b1c546fac82d",
+  "_default/wooden_piece_2/piece_36.obj": "8e36b425362e5b7325688ce21b0a5974af19b50056db925116a4145115777591",
+  "_default/wooden_piece_2/piece_30.obj": "2d115b67fc5d12fadc821d84b36a2e4fc3b56143dc210b9db111cecdee1c214f",
+  "_default/wooden_piece_2/piece_03.obj": "9a66d11720cc0301211c8c3c107c56df705037be25bc5c142ca8d19b517aa8b0",
+  "_default/wooden_piece_2/piece_12.obj": "52de204da72452491223181a16187105771422bb760c63d8ccdaafd7eeba4f34",
+  "_default/wooden_piece_2/piece_65.obj": "c1af44a036e3f7ee484bbada0cfae3b172ddfacf8d0e341608582bbcd1f56fca",
+  "_default/wooden_piece_2/piece_14.obj": "cb0262e7199b49991a9471a4eb6555c3452feedd61d5824fc9fc1a762bfff517",
+  "_default/wooden_piece_2/piece_22.obj": "81bca887e19bb5e6f65c7db823c6e69d5c3166494d47c5b58bd8b771c6808953",
+  "_default/wooden_piece_2/piece_48.obj": "e7c57f77f52dcfee4eae8524c7ccfc6ea1f19981bffcf63680b8c82c7b8d69fd",
+  "_default/wooden_piece_2/piece_17.obj": "79704478a027cd47a335bc968ec7130bc1d72bbe638a5814e7e7e308d15e5969",
+  "_default/wooden_piece_2/piece_25.obj": "eab8b27c59f13947b7479ff399ba91a626e8ac84e55cef2f94efb3339bb7961b",
+  "_default/wooden_piece_2/piece_35.obj": "56476d777d33e510bdbeeaa07cadbee23d905b79a52d02bb90f833353880e469",
+  "_default/wooden_piece_2/piece_09.obj": "7407228ec1cb50b3061f983e973e5a43edacbde65e8c12b8b4336f6421f45aa0",
+  "_default/wooden_piece_2/piece_59.obj": "0a6b6405d1b5d4feefa9897ad989d6612926ccba78c954d96736201dc98bee59",
+  "_default/wooden_piece_2/piece_66.obj": "21e822fc84d033dfe88bc9ae3a05e40fccc4d67ee5a20c7838fc18da132f8224",
+  "_default/wooden_piece_2/piece_26.obj": "e294762da448a7423aff47ef56531c3ee01fdbbe1aa7f21e57f57768047b614b",
+  "_default/wooden_piece_2/piece_42.obj": "e5405ad8ae27613a22f53d3901a3f4788bd47e1ad7662ad6e0a06bddf30a00f1",
+  "_default/wooden_piece_2/piece_27.obj": "7fb412e21398fcfca3a2ea2ee8f6953bdb8e41115257cd7d8c9182164c8cf41f",
+  "_default/wooden_piece_2/piece_47.obj": "8a554d05a92cd6305dcf545733d5458923bb2f6952da9a1a1346e52a42205243",
+  "_default/wooden_piece_2/piece_63.obj": "27b59e979073cecd7e532b2084949fae89e632385c38f048cb6e0e7b1319bfd4",
+  "_default/wooden_piece_2/piece_61.obj": "39ddb926c3149c4517b56ef57c84431bc247eaedd134d7a760f02efe49845c71",
+  "_default/wooden_piece_2/piece_16.obj": "e1cdbf339217948e18a5c4ee00d147466f56220ab544f4a324a2c49664f90e77",
+  "sources/wooden_piece_1.npz": "1e1421158f3c9f4165836a9b67629d19be203bd263fa4e9056a79176f4a52246",
+  "sources/wooden_piece_2.npz": "20e47faa07f8960e216578f2307ccef6b76d5958ed4398a153a6876db75ce9a3",
+  "_fit/wooden_piece_1.glb": "d474c5d2a09b12daa577fcc359c7203a16dbe6807f418b9b729bcf61e0500b9d",
+  "_fit/wooden_piece_2.glb": "49b542496af4ddcc071c8c802efed6cec35abed0d6cdec830a4b5cd6e8285469"
+ },
+ "fiducials": {
+  "wooden_piece_1": [
+   [
+    -0.000939349606036088,
+    0.06652772092150303,
+    -0.1240542203521384
+   ],
+   [
+    0.0044617698484902425,
+    0.06650902595363808,
+    -0.12404691651408653
+   ],
+   [
+    -0.0014947165501385026,
+    -0.08858165951108607,
+    -0.11038492446335241
+   ],
+   [
+    0.003906402904387828,
+    -0.08860035447895101,
+    -0.11037762062530054
+   ],
+   [
+    -0.0011880076834966734,
+    0.08745366633878829,
+    0.11338831937862975
+   ],
+   [
+    0.004213111771029657,
+    0.08743497137092335,
+    0.11339562321668162
+   ],
+   [
+    -0.001743374627599088,
+    -0.06765571409380079,
+    0.12705761526741574
+   ],
+   [
+    0.003657744826927243,
+    -0.06767440906166573,
+    0.1270649191054676
+   ]
+  ],
+  "wooden_piece_2": [
+   [
+    0.0054331511431113776,
+    -0.09621365488592484,
+    0.11023582725151823
+   ],
+   [
+    3.2678677905114925e-05,
+    -0.09625381145976325,
+    0.11031184574968239
+   ],
+   [
+    0.0044945487112687844,
+    0.06540732264306921,
+    0.12893190995979867
+   ],
+   [
+    -0.000905923753937478,
+    0.0653671660692308,
+    0.12900792845796283
+   ],
+   [
+    0.0018999740867609825,
+    -0.06886949327709461,
+    -0.12632208953328228
+   ],
+   [
+    -0.00350049837844528,
+    -0.06890964985093302,
+    -0.1262460710351181
+   ],
+   [
+    0.0009613716549183894,
+    0.09275148425189944,
+    -0.10762600682500183
+   ],
+   [
+    -0.004439100810287872,
+    0.09271132767806103,
+    -0.10754998832683767
+   ]
+  ]
+ },
+ "code": {
+  "commit": "74025530b0754c7f21ef9b1615581143fea4cc0e",
+  "dirty": false,
+  "dirty_files": [],
+  "sha256": {
+   "interlock.py": "9aaf517c097ee6e1bb1b9701615033a5191fb8e80ef2c2e0d2166a3b5cb834c1",
+   "simpieces.py": "248623ea46ca9c664e617d671ebf203f367fd18200e4eb18971ba08f4a196b78",
+   "simphys.py": "12013ff2cef9587f68ec1de97fa9ec583e6a5e9e780b2a301e920886db2d62a1",
+   "silhouette.py": "4a181cced9a51314ecefc99798be4884bbec1921f1b173266eb2b4a1bb891ba8",
+   "gen_slot.py": "faf1d6c6b4f2a2b24aff039ac6cb02edaf3ad17a2fe2e5970bc8cb17b9c88dd4",
+   "physcheck.py": "138cfcd9f7be45fad65e5b4f543d87adf52572d3f0291869a1a23cc309a82e21",
+   "tools/interlock_dev.py": "f3ea47dc22d4a9c98bdef6414531ef558ab826dd7ba851eb82e0fe4cf0d249fe",
+   "platebody.py": "a1ca8960b0d7980509e76ebcba18f873e2df4877064146ed57c39bff91a866b9",
+   "collcarve.py": "a27f7b950fbee73e83b0727fd1a7f2854d9c9118212c0902fadc3d1aa6b728ad",
+   "cavpieces.py": "2f5a3776425ef836063c42d09da889f72908f2b3169a80b673a69d5079ef8235"
+  }
+ },
+ "commit": "74025530b0754c7f21ef9b1615581143fea4cc0e",
+ "interlock": {
+  "round": 0,
+  "holdout": {},
+  "carved_cm3": {
+   "wooden_piece_1": 4.672,
+   "wooden_piece_2": 4.147
+  },
+  "solid_ref_cm3": {
+   "wooden_piece_1": 220.52,
+   "wooden_piece_2": 212.53
+  },
+  "default_collider_cm3": {
+   "wooden_piece_1": 215.853,
+   "wooden_piece_2": 208.385
+  },
+  "delivered": "carved_p1_pending"
+ },
+ "do_not_use": null,
+ "fiducial_definition": "8 corners of the PCA-oriented bounding box of all piece vertices, each coordinate 1 mm inward along each box axis (simpieces.fiducials)",
+ "note": "visual <obj>.glb = submitted mesh (geometry only); collisions = piece_XX.obj (make_assets.py --pieces); _fit/<obj>.glb = union of the pieces for phys_fit --meshes; props_gmg.json for phys_fit --props",
+ "owner_waiver": {
+  "rule": "PREREG F-I4 (c13f53c); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct ~16:00 UTC: \"Okay I waive that camera rule\"",
+  "fi4_rev": 15,
+  "quote": "Okay I waive that camera rule",
+  "scope": "plate-plate INSERTION pairs, simulator copy only (F-I4.0)",
+  "objects": {
+   "wooden_piece_1": {
+    "slot": {
+     "w_mm": 9.4,
+     "t_partner_mm": 7.4,
+     "c_L_mm": 3.97,
+     "entry_sign_aW": -1,
+     "d_dot_aW": 0.9975,
+     "angle_d_aW_deg": 4.04,
+     "samples": 6146,
+     "assembled_build_frames": 13,
+     "c_L_component_mm": -0.43,
+     "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+     "c_L_shift_mm": 4.4,
+     "ok": true,
+     "P99_mm": 75.9,
+     "cap_mm": 75.55,
+     "split": {
+      "applied": true,
+      "shared": true,
+      "carve_sign": 1,
+      "entry_edge_on_carve_side": true,
+      "plane_vs_aW_cos": 0.9975,
+      "raw_depth_mm": 75.55
+     },
+     "P_mm": 65.55,
+     "D_mm": 67.55,
+     "box": {
+      "axes": [
+       [
+        -0.0013373188670015859,
+        0.004319047131644944,
+        0.9999897786528233
+       ],
+       [
+        -0.0034670947861305023,
+        -0.9999846825356576,
+        0.004314388462385666
+       ],
+       [
+        0.9999930953921593,
+        -0.0034612896346606766,
+        0.001352272928458704
+       ]
+      ],
+      "centre": [
+       0.0014679204743650316,
+       0.03187841567019748,
+       0.004169623953924949
+      ],
+      "half": [
+       0.004700578373697778,
+       0.04027497001283372,
+       0.006700578373697778
+      ]
+     },
+     "depth_is": "prior [E] (split share of the constrained depth sum)",
+     "D_rect_mm": 77.55,
+     "P_rect_mm": 75.55,
+     "u_rect_mm": -71.17,
+     "bottom_mm": 6.38,
+     "u_e_poly_mm": -61.17,
+     "entry_edge_shift_mm": 10.0,
+     "depth_from": "the polygon edge at the slot mouth (F-I4.15.3)",
+     "angle_partner_normal_aL_deg": 2.06
+    },
+    "body": {
+     "obj": "wooden_piece_1",
+     "fi4_rev": 15,
+     "flags": [
+      "plate_body_no_markers"
+     ],
+     "balls": [],
+     "source": "observed outline polygon (F-I4.15.2; no STRUCT plate candidate)",
+     "frame": {
+      "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+      "L_mm": 234.5,
+      "W_mm": 142.3,
+      "fill": 0.895,
+      "component_cells": 7470,
+      "cells": 7470,
+      "points_in_slab": 1746819
+     },
+     "raster": {
+      "axes": "rectangle (a_L, a_W)",
+      "cells": 7449,
+      "cell_area_cm2": 297.96,
+      "pinch_vertices": 0,
+      "loops": 1
+     },
+     "ok": true,
+     "box": {
+      "axes": [
+       [
+        -0.0013373188670015859,
+        0.004319047131644944,
+        0.9999897786528233
+       ],
+       [
+        -0.0034670947861305023,
+        -0.9999846825356576,
+        0.004314388462385666
+       ],
+       [
+        0.9999930953921593,
+        -0.0034612896346606766,
+        0.001352272928458704
+       ]
+      ],
+      "centre": [
+       0.0013557255783757914,
+       -0.002030244191874287,
+       0.0003437900786298852
+      ],
+      "half": [
+       0.11723255788877159,
+       0.07116699333702547,
+       0.0037005783736977775
+      ],
+      "poly": [
+       [
+        -0.11723255788877159,
+        0.01283300666297453
+       ],
+       [
+        -0.11523255788877158,
+        0.01283300666297453
+       ],
+       [
+        -0.11523255788877158,
+        -0.007166993337025474
+       ],
+       [
+        -0.11323255788877158,
+        -0.007166993337025474
+       ],
+       [
+        -0.11323255788877158,
+        -0.06916699333702547
+       ],
+       [
+        -0.11123255788877158,
+        -0.06916699333702547
+       ],
+       [
+        -0.11123255788877158,
+        -0.07116699333702547
+       ],
+       [
+        -0.0892325578887716,
+        -0.07116699333702547
+       ],
+       [
+        -0.0892325578887716,
+        -0.06916699333702547
+       ],
+       [
+        -0.08723255788877159,
+        -0.06916699333702547
+       ],
+       [
+        -0.08723255788877159,
+        -0.06716699333702547
+       ],
+       [
+        -0.08323255788877158,
+        -0.06516699333702547
+       ],
+       [
+        -0.08323255788877158,
+        -0.06316699333702547
+       ],
+       [
+        -0.04523255788877158,
+        -0.06316699333702547
+       ],
+       [
+        -0.04523255788877158,
+        -0.06116699333702547
+       ],
+       [
+        0.006767442111228414,
+        -0.06116699333702547
+       ],
+       [
+        0.006767442111228414,
+        -0.059166993337025485
+       ],
+       [
+        0.022767442111228428,
+        -0.059166993337025485
+       ],
+       [
+        0.022767442111228428,
+        -0.06116699333702547
+       ],
+       [
+        0.07676744211122842,
+        -0.06116699333702547
+       ],
+       [
+        0.07676744211122842,
+        -0.06316699333702547
+       ],
+       [
+        0.08876744211122843,
+        -0.06316699333702547
+       ],
+       [
+        0.08876744211122843,
+        -0.06516699333702547
+       ],
+       [
+        0.09476744211122841,
+        -0.06516699333702547
+       ],
+       [
+        0.09476744211122841,
+        -0.06716699333702547
+       ],
+       [
+        0.10076744211122843,
+        -0.06716699333702547
+       ],
+       [
+        0.10076744211122843,
+        -0.06916699333702547
+       ],
+       [
+        0.10476744211122842,
+        -0.06916699333702547
+       ],
+       [
+        0.10476744211122842,
+        -0.07116699333702547
+       ],
+       [
+        0.10676744211122842,
+        -0.07116699333702547
+       ],
+       [
+        0.10676744211122842,
+        -0.06916699333702547
+       ],
+       [
+        0.11276744211122842,
+        -0.06916699333702547
+       ],
+       [
+        0.11276744211122842,
+        -0.06516699333702547
+       ],
+       [
+        0.11476744211122844,
+        -0.06516699333702547
+       ],
+       [
+        0.11476744211122844,
+        -0.06116699333702547
+       ],
+       [
+        0.11676744211122844,
+        -0.06116699333702547
+       ],
+       [
+        0.11676744211122844,
+        -0.033166993337025476
+       ],
+       [
+        0.11476744211122844,
+        -0.033166993337025476
+       ],
+       [
+        0.11476744211122844,
+        -0.009166993337025475
+       ],
+       [
+        0.11676744211122844,
+        -0.009166993337025475
+       ],
+       [
+        0.11676744211122844,
+        -0.007166993337025474
+       ],
+       [
+        0.11476744211122844,
+        -0.007166993337025474
+       ],
+       [
+        0.11476744211122844,
+        0.022833006662974525
+       ],
+       [
+        0.11276744211122842,
+        0.022833006662974525
+       ],
+       [
+        0.11276744211122842,
+        0.04883300666297452
+       ],
+       [
+        0.11476744211122844,
+        0.04883300666297452
+       ],
+       [
+        0.11476744211122844,
+        0.06083300666297453
+       ],
+       [
+        0.11676744211122844,
+        0.06083300666297453
+       ],
+       [
+        0.11676744211122844,
+        0.06283300666297453
+       ],
+       [
+        0.11476744211122844,
+        0.06283300666297453
+       ],
+       [
+        0.11276744211122842,
+        0.06683300666297454
+       ],
+       [
+        0.10676744211122842,
+        0.06683300666297454
+       ],
+       [
+        0.10676744211122842,
+        0.06883300666297454
+       ],
+       [
+        0.09876744211122843,
+        0.06883300666297454
+       ],
+       [
+        0.09876744211122843,
+        0.06683300666297454
+       ],
+       [
+        0.06876744211122843,
+        0.06683300666297454
+       ],
+       [
+        0.06676744211122841,
+        0.06283300666297453
+       ],
+       [
+        0.03676744211122841,
+        0.06283300666297453
+       ],
+       [
+        0.03676744211122841,
+        0.06483300666297453
+       ],
+       [
+        0.032767442111228416,
+        0.06483300666297453
+       ],
+       [
+        0.032767442111228416,
+        0.06683300666297454
+       ],
+       [
+        0.03076744211122841,
+        0.06683300666297454
+       ],
+       [
+        0.03076744211122841,
+        0.06483300666297453
+       ],
+       [
+        0.022767442111228428,
+        0.06483300666297453
+       ],
+       [
+        0.022767442111228428,
+        0.06683300666297454
+       ],
+       [
+        0.020767442111228426,
+        0.06683300666297454
+       ],
+       [
+        0.020767442111228426,
+        0.06483300666297453
+       ],
+       [
+        0.01276744211122842,
+        0.06483300666297453
+       ],
+       [
+        0.01276744211122842,
+        0.06683300666297454
+       ],
+       [
+        0.0027674421112284103,
+        0.06683300666297454
+       ],
+       [
+        0.0027674421112284103,
+        0.06883300666297454
+       ],
+       [
+        -0.053232557888771584,
+        0.06883300666297454
+       ],
+       [
+        -0.053232557888771584,
+        0.06683300666297454
+       ],
+       [
+        -0.08123255788877158,
+        0.06683300666297454
+       ],
+       [
+        -0.08123255788877158,
+        0.06283300666297453
+       ],
+       [
+        -0.08723255788877159,
+        0.06283300666297453
+       ],
+       [
+        -0.08723255788877159,
+        0.06683300666297454
+       ],
+       [
+        -0.09723255788877158,
+        0.06683300666297454
+       ],
+       [
+        -0.09723255788877158,
+        0.07083300666297454
+       ],
+       [
+        -0.11123255788877158,
+        0.07083300666297454
+       ],
+       [
+        -0.11123255788877158,
+        0.06683300666297454
+       ],
+       [
+        -0.11323255788877158,
+        0.06683300666297454
+       ],
+       [
+        -0.11323255788877158,
+        0.030833006662974533
+       ],
+       [
+        -0.11523255788877158,
+        0.030833006662974533
+       ],
+       [
+        -0.11523255788877158,
+        0.024833006662974527
+       ],
+       [
+        -0.11723255788877159,
+        0.024833006662974527
+       ]
+      ],
+      "t": 0.007401156747395555,
+      "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre"
+     },
+     "L_mm": 234.5,
+     "W_mm": 142.3,
+     "t_mm": 7.401,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 92,
+      "vertices": 86,
+      "reflex_vertices": 41,
+      "area_cm2": 297.96,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       234.0,
+       142.0
+      ],
+      "poly_mm": [
+       [
+        -117.233,
+        12.833
+       ],
+       [
+        -115.233,
+        12.833
+       ],
+       [
+        -115.233,
+        -7.167
+       ],
+       [
+        -113.233,
+        -7.167
+       ],
+       [
+        -113.233,
+        -69.167
+       ],
+       [
+        -111.233,
+        -69.167
+       ],
+       [
+        -111.233,
+        -71.167
+       ],
+       [
+        -89.233,
+        -71.167
+       ],
+       [
+        -89.233,
+        -69.167
+       ],
+       [
+        -87.233,
+        -69.167
+       ],
+       [
+        -87.233,
+        -67.167
+       ],
+       [
+        -83.233,
+        -65.167
+       ],
+       [
+        -83.233,
+        -63.167
+       ],
+       [
+        -45.233,
+        -63.167
+       ],
+       [
+        -45.233,
+        -61.167
+       ],
+       [
+        6.767,
+        -61.167
+       ],
+       [
+        6.767,
+        -59.167
+       ],
+       [
+        22.767,
+        -59.167
+       ],
+       [
+        22.767,
+        -61.167
+       ],
+       [
+        76.767,
+        -61.167
+       ],
+       [
+        76.767,
+        -63.167
+       ],
+       [
+        88.767,
+        -63.167
+       ],
+       [
+        88.767,
+        -65.167
+       ],
+       [
+        94.767,
+        -65.167
+       ],
+       [
+        94.767,
+        -67.167
+       ],
+       [
+        100.767,
+        -67.167
+       ],
+       [
+        100.767,
+        -69.167
+       ],
+       [
+        104.767,
+        -69.167
+       ],
+       [
+        104.767,
+        -71.167
+       ],
+       [
+        106.767,
+        -71.167
+       ],
+       [
+        106.767,
+        -69.167
+       ],
+       [
+        112.767,
+        -69.167
+       ],
+       [
+        112.767,
+        -65.167
+       ],
+       [
+        114.767,
+        -65.167
+       ],
+       [
+        114.767,
+        -61.167
+       ],
+       [
+        116.767,
+        -61.167
+       ],
+       [
+        116.767,
+        -33.167
+       ],
+       [
+        114.767,
+        -33.167
+       ],
+       [
+        114.767,
+        -9.167
+       ],
+       [
+        116.767,
+        -9.167
+       ],
+       [
+        116.767,
+        -7.167
+       ],
+       [
+        114.767,
+        -7.167
+       ],
+       [
+        114.767,
+        22.833
+       ],
+       [
+        112.767,
+        22.833
+       ],
+       [
+        112.767,
+        48.833
+       ],
+       [
+        114.767,
+        48.833
+       ],
+       [
+        114.767,
+        60.833
+       ],
+       [
+        116.767,
+        60.833
+       ],
+       [
+        116.767,
+        62.833
+       ],
+       [
+        114.767,
+        62.833
+       ],
+       [
+        112.767,
+        66.833
+       ],
+       [
+        106.767,
+        66.833
+       ],
+       [
+        106.767,
+        68.833
+       ],
+       [
+        98.767,
+        68.833
+       ],
+       [
+        98.767,
+        66.833
+       ],
+       [
+        68.767,
+        66.833
+       ],
+       [
+        66.767,
+        62.833
+       ],
+       [
+        36.767,
+        62.833
+       ],
+       [
+        36.767,
+        64.833
+       ],
+       [
+        32.767,
+        64.833
+       ],
+       [
+        32.767,
+        66.833
+       ],
+       [
+        30.767,
+        66.833
+       ],
+       [
+        30.767,
+        64.833
+       ],
+       [
+        22.767,
+        64.833
+       ],
+       [
+        22.767,
+        66.833
+       ],
+       [
+        20.767,
+        66.833
+       ],
+       [
+        20.767,
+        64.833
+       ],
+       [
+        12.767,
+        64.833
+       ],
+       [
+        12.767,
+        66.833
+       ],
+       [
+        2.767,
+        66.833
+       ],
+       [
+        2.767,
+        68.833
+       ],
+       [
+        -53.233,
+        68.833
+       ],
+       [
+        -53.233,
+        66.833
+       ],
+       [
+        -81.233,
+        66.833
+       ],
+       [
+        -81.233,
+        62.833
+       ],
+       [
+        -87.233,
+        62.833
+       ],
+       [
+        -87.233,
+        66.833
+       ],
+       [
+        -97.233,
+        66.833
+       ],
+       [
+        -97.233,
+        70.833
+       ],
+       [
+        -111.233,
+        70.833
+       ],
+       [
+        -111.233,
+        66.833
+       ],
+       [
+        -113.233,
+        66.833
+       ],
+       [
+        -113.233,
+        30.833
+       ],
+       [
+        -115.233,
+        30.833
+       ],
+       [
+        -115.233,
+        24.833
+       ],
+       [
+        -117.233,
+        24.833
+       ]
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 130.0,
+      "ends_outer_10": 137.0,
+      "end_lo": 142.0,
+      "end_hi": 136.0,
+      "end_minus_waist": 7.0,
+      "max": 142.0
+     },
+     "volume_cm3": 220.52,
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 29796,
+       "free": 0.0408,
+       "unknown": 0.0581,
+       "observed": 0.9011,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 33228,
+       "free": 0.1292,
+       "unknown": 0.0606,
+       "observed": 0.8102,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 9.73,
+      "rectangle_free_cm3": 34.34,
+      "ratio_polygon_to_rectangle": 0.316
+     },
+     "default_pieces": {
+      "n": 50,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 29796.0,
+      "parts_area_mm2": 29796.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 57,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 29164.763,
+      "parts_area_mm2": 29164.763,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     }
+    },
+    "budget": {
+     "slot_cm3": 4.672,
+     "body_cm3": 220.52,
+     "vol_share": 0.0212,
+     "reach": 0.443,
+     "footprint_mm": [
+      -0.73,
+      8.67,
+      -74.17,
+      6.38
+     ],
+     "one_simple_polygon": true,
+     "area_consistent": true,
+     "bottom_inside": true,
+     "D_lt_W": true,
+     "prong_area_mm2": [
+      7626.7,
+      7198.5
+     ],
+     "topology": true,
+     "rings": 1,
+     "hole": false,
+     "nudge_mm": 0.0,
+     "ok": true
+    },
+    "crosslap": {
+     "W_x_mm": 128.23,
+     "grid_points": 913,
+     "D_sum_mm": 134.11,
+     "diff_mm": 5.88,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "plate": {
+     "obj": "wooden_piece_1",
+     "sigma_mm": 3.0,
+     "points": {
+      "owned": 2535338,
+      "in_box": 1759879,
+      "within_6mm": 1759844
+     },
+     "plate": true,
+     "n_down": 36675,
+     "planes": [
+      {
+       "n": [
+        1.0,
+        -0.0035,
+        0.0014
+       ],
+       "n_pts": 26022,
+       "rms_mm": 3.7109,
+       "two_sided_share": 0.4874
+      }
+     ],
+     "pairs": [],
+     "why_f_i4_1": "no_plane_pair",
+     "camera_side": {
+      "method": "camera_side (F-I4.14)",
+      "slab_points": 36675,
+      "plus": 19431,
+      "minus": 17244,
+      "plus_frames": 38,
+      "minus_frames": 101,
+      "inplane_extents_mm": [
+       215.9,
+       121.2
+      ],
+      "kind": "two_sided",
+      "ok": true,
+      "checks": {
+       "antiparallel": true,
+       "material_between": true,
+       "window": true,
+       "overlap": true,
+       "rms": true,
+       "plate_extents": true
+      },
+      "t_mm": 6.212,
+      "t_m": 0.006211937893189805,
+      "overlap": 0.968,
+      "angle_deg": 1.3,
+      "faces": [
+       {
+        "n_pts": 19431,
+        "frames": 38,
+        "m": 4.19,
+        "rms_m": 2.491
+       },
+       {
+        "n_pts": 17244,
+        "frames": 101,
+        "m": -2.022,
+        "rms_m": 1.662
+       }
+      ],
+      "mid_n": [
+       0.9999930953921593,
+       -0.0034612896346606766,
+       0.001352272928458704
+      ],
+      "mid_d": 0.0010838013548156492
+     },
+     "t_m": 0.007401156747395555,
+     "mid_n": [
+      0.9999930953921593,
+      -0.0034612896346606766,
+      0.001352272928458704
+     ],
+     "mid_d": 0.0013632083788159013,
+     "t_source": "camera_side_pair",
+     "flags": [
+      "plate_pair_camera_side"
+     ],
+     "pair": {
+      "method": "camera_side (F-I4.14)",
+      "thickness_mm": 6.212,
+      "overlap": 0.968
+     },
+     "sec": 195.5,
+     "t_down_mm": 6.212,
+     "t_all": {
+      "method": "camera_side_all_points (F-I4.15.1)",
+      "slab_points": 1759844,
+      "plus": 736196,
+      "minus": 1023648,
+      "plus_frames": 38,
+      "minus_frames": 101,
+      "ok": true,
+      "t_m": 0.007401156747395555,
+      "t_mm": 7.401,
+      "mid_n": [
+       0.9999930953921593,
+       -0.0034612896346606766,
+       0.001352272928458704
+      ],
+      "mid_d": 0.0013632083788159013,
+      "faces": [
+       {
+        "n_pts": 736196,
+        "frames": 38,
+        "frame_range": [
+         0,
+         74
+        ],
+        "median_offset_mm": 3.701,
+        "per_frame_median_offset_mm_5_50_95": [
+         2.41,
+         3.55,
+         4.695
+        ]
+       },
+       {
+        "n_pts": 1023648,
+        "frames": 101,
+        "frame_range": [
+         74,
+         274
+        ],
+        "median_offset_mm": -3.701,
+        "per_frame_median_offset_mm_5_50_95": [
+         -4.612,
+         -3.748,
+         -3.063
+        ]
+       }
+      ],
+      "checks": {
+       "sides": true,
+       "material_between": true,
+       "window": true
+      }
+     },
+     "fi4_rev": 15,
+     "t_estimator": "all near points (F-I4.15.1)"
+    },
+    "gates": {
+     "region_voxels": 67,
+     "run_kind": "INSERTION",
+     "sweep_share": 1.0,
+     "sweep": true,
+     "not_pushable": true,
+     "push_mm": 19.0,
+     "push_frames": 30,
+     "reused": false
+    }
+   },
+   "wooden_piece_2": {
+    "slot": {
+     "w_mm": 9.4,
+     "t_partner_mm": 7.4,
+     "c_L_mm": 1.36,
+     "entry_sign_aW": -1,
+     "d_dot_aW": 0.9986,
+     "angle_d_aW_deg": 3.03,
+     "samples": 7070,
+     "assembled_build_frames": 12,
+     "c_L_component_mm": 1.5,
+     "centre_from": "partner's plate mid plane at the median assembled pose (F-I4.12)",
+     "c_L_shift_mm": -0.14,
+     "ok": true,
+     "P99_mm": 64.56,
+     "cap_mm": 66.19,
+     "split": {
+      "applied": true,
+      "shared": true,
+      "carve_sign": -1,
+      "entry_edge_on_carve_side": true,
+      "plane_vs_aW_cos": 0.9994,
+      "raw_depth_mm": 66.19
+     },
+     "P_mm": 64.56,
+     "D_mm": 66.56,
+     "box": {
+      "axes": [
+       [
+        -0.014118025234927112,
+        0.0058366455741488375,
+        -0.9998833006565856
+       ],
+       [
+        0.007351794517144372,
+        -0.9999553275870344,
+        -0.005940870953362026
+       ],
+       [
+        -0.9998733082150176,
+        -0.007434809933588312,
+        0.014074484729743014
+       ]
+      ],
+      "centre": [
+       0.00019867624188875323,
+       0.0372425542953613,
+       0.0007460773653613223
+      ],
+      "half": [
+       0.004700578373697778,
+       0.03478075586185417,
+       0.006700578373697778
+      ]
+     },
+     "depth_is": "prior [E] (split share of the constrained depth sum)",
+     "D_rect_mm": 66.56,
+     "P_rect_mm": 64.56,
+     "u_rect_mm": -71.0,
+     "bottom_mm": -4.44,
+     "u_e_poly_mm": -71.0,
+     "entry_edge_shift_mm": -0.0,
+     "depth_from": "the polygon edge at the slot mouth (F-I4.15.3)",
+     "angle_partner_normal_aL_deg": 1.51
+    },
+    "body": {
+     "obj": "wooden_piece_2",
+     "fi4_rev": 15,
+     "flags": [
+      "plate_body_no_markers"
+     ],
+     "balls": [],
+     "source": "observed outline polygon (F-I4.15.2; no STRUCT plate candidate)",
+     "frame": {
+      "method": "F-I4.2 min-area rectangle of the outline (frame only, F-I4.15.2 (a))",
+      "L_mm": 231.1,
+      "W_mm": 142.0,
+      "fill": 0.868,
+      "component_cells": 7122,
+      "cells": 7122,
+      "points_in_slab": 1310948
+     },
+     "raster": {
+      "axes": "rectangle (a_L, a_W)",
+      "cells": 7179,
+      "cell_area_cm2": 287.16,
+      "pinch_vertices": 0,
+      "loops": 1
+     },
+     "ok": true,
+     "box": {
+      "axes": [
+       [
+        -0.014118025234927112,
+        0.0058366455741488375,
+        -0.9998833006565856
+       ],
+       [
+        0.007351794517144372,
+        -0.9999553275870344,
+        -0.005940870953362026
+       ],
+       [
+        -0.9998733082150176,
+        -0.007434809933588312,
+        0.014074484729743014
+       ]
+      ],
+      "centre": [
+       0.0005061640979071448,
+       -0.001979878711740028,
+       0.0018713452239340947
+      ],
+      "half": [
+       0.11555477012293908,
+       0.0709970122246289,
+       0.0037005783736977775
+      ],
+      "poly": [
+       [
+        -0.11555477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.11355477012293907,
+        -0.0669970122246289
+       ],
+       [
+        -0.11355477012293907,
+        -0.0689970122246289
+       ],
+       [
+        -0.10955477012293907,
+        -0.0689970122246289
+       ],
+       [
+        -0.10955477012293907,
+        -0.07099701222462891
+       ],
+       [
+        -0.10155477012293908,
+        -0.07099701222462891
+       ],
+       [
+        -0.10155477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.09555477012293907,
+        -0.0669970122246289
+       ],
+       [
+        -0.09555477012293907,
+        -0.0689970122246289
+       ],
+       [
+        -0.0915547701229391,
+        -0.0689970122246289
+       ],
+       [
+        -0.0915547701229391,
+        -0.0669970122246289
+       ],
+       [
+        -0.08555477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.08555477012293908,
+        -0.0689970122246289
+       ],
+       [
+        -0.08355477012293908,
+        -0.0689970122246289
+       ],
+       [
+        -0.08355477012293908,
+        -0.0669970122246289
+       ],
+       [
+        -0.07355477012293907,
+        -0.0669970122246289
+       ],
+       [
+        -0.07355477012293907,
+        -0.06299701222462889
+       ],
+       [
+        -0.06955477012293908,
+        -0.06299701222462889
+       ],
+       [
+        -0.06955477012293908,
+        -0.05899701222462891
+       ],
+       [
+        -0.02555477012293908,
+        -0.05899701222462891
+       ],
+       [
+        -0.02555477012293908,
+        -0.060997012224628895
+       ],
+       [
+        -0.021554770122939076,
+        -0.060997012224628895
+       ],
+       [
+        -0.021554770122939076,
+        -0.05899701222462891
+       ],
+       [
+        -0.013554770122939071,
+        -0.05899701222462891
+       ],
+       [
+        -0.013554770122939071,
+        -0.0669970122246289
+       ],
+       [
+        -0.01155477012293907,
+        -0.0669970122246289
+       ],
+       [
+        -0.01155477012293907,
+        -0.06499701222462889
+       ],
+       [
+        -0.00955477012293908,
+        -0.06499701222462889
+       ],
+       [
+        -0.00955477012293908,
+        -0.05899701222462891
+       ],
+       [
+        -0.0015547701229390728,
+        -0.05899701222462891
+       ],
+       [
+        -0.0015547701229390728,
+        -0.060997012224628895
+       ],
+       [
+        0.002445229877060931,
+        -0.06299701222462889
+       ],
+       [
+        0.00444522987706092,
+        -0.07099701222462891
+       ],
+       [
+        0.0064452298770609215,
+        -0.07099701222462891
+       ],
+       [
+        0.0064452298770609215,
+        -0.0669970122246289
+       ],
+       [
+        0.014445229877060928,
+        -0.0669970122246289
+       ],
+       [
+        0.014445229877060928,
+        -0.06499701222462889
+       ],
+       [
+        0.020445229877060933,
+        -0.06499701222462889
+       ],
+       [
+        0.020445229877060933,
+        -0.0669970122246289
+       ],
+       [
+        0.06444522987706092,
+        -0.0669970122246289
+       ],
+       [
+        0.06444522987706092,
+        -0.06499701222462889
+       ],
+       [
+        0.07044522987706092,
+        -0.06499701222462889
+       ],
+       [
+        0.07044522987706092,
+        -0.0669970122246289
+       ],
+       [
+        0.07844522987706093,
+        -0.0669970122246289
+       ],
+       [
+        0.07844522987706093,
+        -0.06499701222462889
+       ],
+       [
+        0.08444522987706093,
+        -0.06499701222462889
+       ],
+       [
+        0.08444522987706093,
+        -0.0669970122246289
+       ],
+       [
+        0.10244522987706092,
+        -0.0669970122246289
+       ],
+       [
+        0.10244522987706092,
+        -0.0689970122246289
+       ],
+       [
+        0.10844522987706093,
+        -0.0689970122246289
+       ],
+       [
+        0.10844522987706093,
+        -0.07099701222462891
+       ],
+       [
+        0.11044522987706093,
+        -0.07099701222462891
+       ],
+       [
+        0.11044522987706093,
+        -0.06299701222462889
+       ],
+       [
+        0.11444522987706095,
+        -0.06299701222462889
+       ],
+       [
+        0.11444522987706095,
+        -0.0569970122246289
+       ],
+       [
+        0.11044522987706093,
+        -0.0569970122246289
+       ],
+       [
+        0.11044522987706093,
+        -0.038997012224628896
+       ],
+       [
+        0.11444522987706095,
+        -0.036997012224628895
+       ],
+       [
+        0.11444522987706095,
+        -0.03499701222462889
+       ],
+       [
+        0.11244522987706093,
+        -0.03499701222462889
+       ],
+       [
+        0.11244522987706093,
+        -0.0269970122246289
+       ],
+       [
+        0.11444522987706095,
+        -0.0269970122246289
+       ],
+       [
+        0.11444522987706095,
+        0.0010029877753711114
+       ],
+       [
+        0.11244522987706093,
+        0.0010029877753711114
+       ],
+       [
+        0.11244522987706093,
+        0.011002987775371106
+       ],
+       [
+        0.11444522987706095,
+        0.011002987775371106
+       ],
+       [
+        0.11444522987706095,
+        0.06700298777537111
+       ],
+       [
+        0.10644522987706093,
+        0.06700298777537111
+       ],
+       [
+        0.10644522987706093,
+        0.07100298777537113
+       ],
+       [
+        0.09444522987706092,
+        0.07100298777537113
+       ],
+       [
+        0.09444522987706092,
+        0.06900298777537112
+       ],
+       [
+        0.09044522987706094,
+        0.06700298777537111
+       ],
+       [
+        0.09044522987706094,
+        0.06500298777537111
+       ],
+       [
+        0.08844522987706094,
+        0.06500298777537111
+       ],
+       [
+        0.08844522987706094,
+        0.06300298777537111
+       ],
+       [
+        0.05044522987706093,
+        0.06300298777537111
+       ],
+       [
+        0.05044522987706093,
+        0.06100298777537111
+       ],
+       [
+        0.03644522987706092,
+        0.06100298777537111
+       ],
+       [
+        0.03644522987706092,
+        0.059002987775371114
+       ],
+       [
+        0.030445229877060914,
+        0.059002987775371114
+       ],
+       [
+        0.030445229877060914,
+        0.06100298777537111
+       ],
+       [
+        -0.03155477012293907,
+        0.06100298777537111
+       ],
+       [
+        -0.03155477012293907,
+        0.059002987775371114
+       ],
+       [
+        -0.04155477012293908,
+        0.059002987775371114
+       ],
+       [
+        -0.04155477012293908,
+        0.06100298777537111
+       ],
+       [
+        -0.04355477012293907,
+        0.06100298777537111
+       ],
+       [
+        -0.04355477012293907,
+        0.059002987775371114
+       ],
+       [
+        -0.05355477012293908,
+        0.059002987775371114
+       ],
+       [
+        -0.05355477012293908,
+        0.06100298777537111
+       ],
+       [
+        -0.07155477012293908,
+        0.06100298777537111
+       ],
+       [
+        -0.07155477012293908,
+        0.06300298777537111
+       ],
+       [
+        -0.08555477012293908,
+        0.06300298777537111
+       ],
+       [
+        -0.08555477012293908,
+        0.06500298777537111
+       ],
+       [
+        -0.08955477012293908,
+        0.06500298777537111
+       ],
+       [
+        -0.08955477012293908,
+        0.06700298777537111
+       ],
+       [
+        -0.10155477012293908,
+        0.06700298777537111
+       ],
+       [
+        -0.10155477012293908,
+        0.06900298777537112
+       ],
+       [
+        -0.10755477012293908,
+        0.06900298777537112
+       ],
+       [
+        -0.10755477012293908,
+        0.06700298777537111
+       ],
+       [
+        -0.11155477012293907,
+        0.06500298777537111
+       ],
+       [
+        -0.11155477012293907,
+        0.06100298777537111
+       ],
+       [
+        -0.11355477012293907,
+        0.06100298777537111
+       ],
+       [
+        -0.11355477012293907,
+        0.055002987775371104
+       ],
+       [
+        -0.11155477012293907,
+        0.055002987775371104
+       ],
+       [
+        -0.11155477012293907,
+        0.02900298777537111
+       ],
+       [
+        -0.10955477012293907,
+        0.02900298777537111
+       ],
+       [
+        -0.10955477012293907,
+        0.025002987775371105
+       ],
+       [
+        -0.10555477012293908,
+        0.023002987775371103
+       ],
+       [
+        -0.10555477012293908,
+        0.013002987775371108
+       ],
+       [
+        -0.10755477012293908,
+        0.013002987775371108
+       ],
+       [
+        -0.10755477012293908,
+        0.011002987775371106
+       ],
+       [
+        -0.10955477012293907,
+        0.011002987775371106
+       ],
+       [
+        -0.10955477012293907,
+        0.007002987775371103
+       ],
+       [
+        -0.11155477012293907,
+        0.007002987775371103
+       ],
+       [
+        -0.11155477012293907,
+        -0.014997012224628898
+       ],
+       [
+        -0.11355477012293907,
+        -0.014997012224628898
+       ],
+       [
+        -0.11355477012293907,
+        -0.022997012224628896
+       ],
+       [
+        -0.11155477012293907,
+        -0.022997012224628896
+       ],
+       [
+        -0.11155477012293907,
+        -0.030997012224628896
+       ],
+       [
+        -0.11355477012293907,
+        -0.030997012224628896
+       ],
+       [
+        -0.11355477012293907,
+        -0.0409970122246289
+       ],
+       [
+        -0.11155477012293907,
+        -0.0409970122246289
+       ],
+       [
+        -0.11155477012293907,
+        -0.0469970122246289
+       ],
+       [
+        -0.11355477012293907,
+        -0.0469970122246289
+       ],
+       [
+        -0.11355477012293907,
+        -0.06299701222462889
+       ],
+       [
+        -0.11555477012293908,
+        -0.06299701222462889
+       ]
+      ],
+      "t": 0.007401156747395555,
+      "frame": "rectangle frame of F-I4.15.2 (a): u along a_L, v along a_W, origin its centre"
+     },
+     "L_mm": 231.1,
+     "W_mm": 142.0,
+     "t_mm": 7.401,
+     "polygon": {
+      "used": "simplified",
+      "tolerance_mm": 1.0,
+      "vertices_raw": 138,
+      "vertices": 126,
+      "reflex_vertices": 61,
+      "area_cm2": 287.16,
+      "area_vs_cells": 1.0,
+      "extent_mm": [
+       230.0,
+       142.0
+      ],
+      "poly_mm": [
+       [
+        -115.555,
+        -66.997
+       ],
+       [
+        -113.555,
+        -66.997
+       ],
+       [
+        -113.555,
+        -68.997
+       ],
+       [
+        -109.555,
+        -68.997
+       ],
+       [
+        -109.555,
+        -70.997
+       ],
+       [
+        -101.555,
+        -70.997
+       ],
+       [
+        -101.555,
+        -66.997
+       ],
+       [
+        -95.555,
+        -66.997
+       ],
+       [
+        -95.555,
+        -68.997
+       ],
+       [
+        -91.555,
+        -68.997
+       ],
+       [
+        -91.555,
+        -66.997
+       ],
+       [
+        -85.555,
+        -66.997
+       ],
+       [
+        -85.555,
+        -68.997
+       ],
+       [
+        -83.555,
+        -68.997
+       ],
+       [
+        -83.555,
+        -66.997
+       ],
+       [
+        -73.555,
+        -66.997
+       ],
+       [
+        -73.555,
+        -62.997
+       ],
+       [
+        -69.555,
+        -62.997
+       ],
+       [
+        -69.555,
+        -58.997
+       ],
+       [
+        -25.555,
+        -58.997
+       ],
+       [
+        -25.555,
+        -60.997
+       ],
+       [
+        -21.555,
+        -60.997
+       ],
+       [
+        -21.555,
+        -58.997
+       ],
+       [
+        -13.555,
+        -58.997
+       ],
+       [
+        -13.555,
+        -66.997
+       ],
+       [
+        -11.555,
+        -66.997
+       ],
+       [
+        -11.555,
+        -64.997
+       ],
+       [
+        -9.555,
+        -64.997
+       ],
+       [
+        -9.555,
+        -58.997
+       ],
+       [
+        -1.555,
+        -58.997
+       ],
+       [
+        -1.555,
+        -60.997
+       ],
+       [
+        2.445,
+        -62.997
+       ],
+       [
+        4.445,
+        -70.997
+       ],
+       [
+        6.445,
+        -70.997
+       ],
+       [
+        6.445,
+        -66.997
+       ],
+       [
+        14.445,
+        -66.997
+       ],
+       [
+        14.445,
+        -64.997
+       ],
+       [
+        20.445,
+        -64.997
+       ],
+       [
+        20.445,
+        -66.997
+       ],
+       [
+        64.445,
+        -66.997
+       ],
+       [
+        64.445,
+        -64.997
+       ],
+       [
+        70.445,
+        -64.997
+       ],
+       [
+        70.445,
+        -66.997
+       ],
+       [
+        78.445,
+        -66.997
+       ],
+       [
+        78.445,
+        -64.997
+       ],
+       [
+        84.445,
+        -64.997
+       ],
+       [
+        84.445,
+        -66.997
+       ],
+       [
+        102.445,
+        -66.997
+       ],
+       [
+        102.445,
+        -68.997
+       ],
+       [
+        108.445,
+        -68.997
+       ],
+       [
+        108.445,
+        -70.997
+       ],
+       [
+        110.445,
+        -70.997
+       ],
+       [
+        110.445,
+        -62.997
+       ],
+       [
+        114.445,
+        -62.997
+       ],
+       [
+        114.445,
+        -56.997
+       ],
+       [
+        110.445,
+        -56.997
+       ],
+       [
+        110.445,
+        -38.997
+       ],
+       [
+        114.445,
+        -36.997
+       ],
+       [
+        114.445,
+        -34.997
+       ],
+       [
+        112.445,
+        -34.997
+       ],
+       [
+        112.445,
+        -26.997
+       ],
+       [
+        114.445,
+        -26.997
+       ],
+       [
+        114.445,
+        1.003
+       ],
+       [
+        112.445,
+        1.003
+       ],
+       [
+        112.445,
+        11.003
+       ],
+       [
+        114.445,
+        11.003
+       ],
+       [
+        114.445,
+        67.003
+       ],
+       [
+        106.445,
+        67.003
+       ],
+       [
+        106.445,
+        71.003
+       ],
+       [
+        94.445,
+        71.003
+       ],
+       [
+        94.445,
+        69.003
+       ],
+       [
+        90.445,
+        67.003
+       ],
+       [
+        90.445,
+        65.003
+       ],
+       [
+        88.445,
+        65.003
+       ],
+       [
+        88.445,
+        63.003
+       ],
+       [
+        50.445,
+        63.003
+       ],
+       [
+        50.445,
+        61.003
+       ],
+       [
+        36.445,
+        61.003
+       ],
+       [
+        36.445,
+        59.003
+       ],
+       [
+        30.445,
+        59.003
+       ],
+       [
+        30.445,
+        61.003
+       ],
+       [
+        -31.555,
+        61.003
+       ],
+       [
+        -31.555,
+        59.003
+       ],
+       [
+        -41.555,
+        59.003
+       ],
+       [
+        -41.555,
+        61.003
+       ],
+       [
+        -43.555,
+        61.003
+       ],
+       [
+        -43.555,
+        59.003
+       ],
+       [
+        -53.555,
+        59.003
+       ],
+       [
+        -53.555,
+        61.003
+       ],
+       [
+        -71.555,
+        61.003
+       ],
+       [
+        -71.555,
+        63.003
+       ],
+       [
+        -85.555,
+        63.003
+       ],
+       [
+        -85.555,
+        65.003
+       ],
+       [
+        -89.555,
+        65.003
+       ],
+       [
+        -89.555,
+        67.003
+       ],
+       [
+        -101.555,
+        67.003
+       ],
+       [
+        -101.555,
+        69.003
+       ],
+       [
+        -107.555,
+        69.003
+       ],
+       [
+        -107.555,
+        67.003
+       ],
+       [
+        -111.555,
+        65.003
+       ],
+       [
+        -111.555,
+        61.003
+       ],
+       [
+        -113.555,
+        61.003
+       ],
+       [
+        -113.555,
+        55.003
+       ],
+       [
+        -111.555,
+        55.003
+       ],
+       [
+        -111.555,
+        29.003
+       ],
+       [
+        -109.555,
+        29.003
+       ],
+       [
+        -109.555,
+        25.003
+       ],
+       [
+        -105.555,
+        23.003
+       ],
+       [
+        -105.555,
+        13.003
+       ],
+       [
+        -107.555,
+        13.003
+       ],
+       [
+        -107.555,
+        11.003
+       ],
+       [
+        -109.555,
+        11.003
+       ],
+       [
+        -109.555,
+        7.003
+       ],
+       [
+        -111.555,
+        7.003
+       ],
+       [
+        -111.555,
+        -14.997
+       ],
+       [
+        -113.555,
+        -14.997
+       ],
+       [
+        -113.555,
+        -22.997
+       ],
+       [
+        -111.555,
+        -22.997
+       ],
+       [
+        -111.555,
+        -30.997
+       ],
+       [
+        -113.555,
+        -30.997
+       ],
+       [
+        -113.555,
+        -40.997
+       ],
+       [
+        -111.555,
+        -40.997
+       ],
+       [
+        -111.555,
+        -46.997
+       ],
+       [
+        -113.555,
+        -46.997
+       ],
+       [
+        -113.555,
+        -62.997
+       ],
+       [
+        -115.555,
+        -62.997
+       ]
+      ]
+     },
+     "widths_mm": {
+      "waist_30_70": 126.0,
+      "ends_outer_10": 135.9,
+      "end_lo": 134.0,
+      "end_hi": 138.0,
+      "end_minus_waist": 9.9,
+      "max": 140.0
+     },
+     "volume_cm3": 212.53,
+     "free_share": {
+      "grid_mm": 2.0,
+      "polygon": {
+       "points": 28716,
+       "free": 0.0189,
+       "unknown": 0.4941,
+       "observed": 0.487,
+       "outside_grid": 0.0
+      },
+      "rectangle": {
+       "points": 32944,
+       "free": 0.1033,
+       "unknown": 0.4671,
+       "observed": 0.4296,
+       "outside_grid": 0.0
+      },
+      "polygon_free_cm3": 4.34,
+      "rectangle_free_cm3": 27.22,
+      "ratio_polygon_to_rectangle": 0.183
+     },
+     "default_pieces": {
+      "n": 71,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 28716.0,
+      "parts_area_mm2": 28716.0,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     },
+     "slotted_pieces": {
+      "n": 77,
+      "cap": 82,
+      "over_cap": false,
+      "max_vertices_per_prism": 10,
+      "all_convex": true,
+      "ring_area_mm2": 28155.694,
+      "parts_area_mm2": 28155.694,
+      "tiling_diff_mm2": 0.0,
+      "tiling_ok": true,
+      "method": "ear clipping + Hertel-Mehlhorn (F-I4.15.4)"
+     }
+    },
+    "budget": {
+     "slot_cm3": 4.147,
+     "body_cm3": 212.53,
+     "vol_share": 0.0195,
+     "reach": 0.46,
+     "footprint_mm": [
+      -3.34,
+      6.06,
+      -74.0,
+      -4.44
+     ],
+     "one_simple_polygon": true,
+     "area_consistent": true,
+     "bottom_inside": true,
+     "D_lt_W": true,
+     "prong_area_mm2": [
+      6396.2,
+      6658.4
+     ],
+     "topology": true,
+     "rings": 1,
+     "hole": false,
+     "nudge_mm": 0.0,
+     "ok": true
+    },
+    "crosslap": {
+     "W_x_mm": 128.23,
+     "grid_points": 913,
+     "D_sum_mm": 134.11,
+     "diff_mm": 5.88,
+     "window_mm": 10.0,
+     "ok": true
+    },
+    "plate": {
+     "obj": "wooden_piece_2",
+     "sigma_mm": 0.74,
+     "points": {
+      "owned": 1460641,
+      "in_box": 1408262,
+      "within_6mm": 1408169
+     },
+     "plate": true,
+     "n_down": 22304,
+     "planes": [
+      {
+       "n": [
+        -0.9999,
+        -0.0074,
+        0.0141
+       ],
+       "n_pts": 13795,
+       "rms_mm": 1.1232,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9999,
+        0.0073,
+        0.0098
+       ],
+       "n_pts": 1319,
+       "rms_mm": 0.5591,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9995,
+        0.0281,
+        0.0107
+       ],
+       "n_pts": 429,
+       "rms_mm": 0.6362,
+       "two_sided_share": 0.0
+      },
+      {
+       "n": [
+        -0.9996,
+        0.0259,
+        0.0079
+       ],
+       "n_pts": 342,
+       "rms_mm": 0.6544,
+       "two_sided_share": 0.0
+      }
+     ],
+     "pairs": [],
+     "why_f_i4_1": "no_plane_pair",
+     "camera_side": {
+      "method": "camera_side (F-I4.14)",
+      "slab_points": 22304,
+      "plus": 22304,
+      "minus": 0,
+      "plus_frames": 119,
+      "minus_frames": 0,
+      "inplane_extents_mm": [
+       214.9,
+       121.8
+      ],
+      "kind": "one_face",
+      "ok": true,
+      "seen_sign": 1,
+      "m_seen": 0.003612763632559454,
+      "extent_n_1_99_mm": 14.77,
+      "checks": {
+       "thin_extent": true,
+       "plate_extents": true
+      },
+      "mid_n": [
+       -0.9998733082150176,
+       -0.007434809933588312,
+       0.014074484729743014
+      ],
+      "m_seen_all_points": 1408169
+     },
+     "sec": 149.3,
+     "t_m": 0.007401156747395555,
+     "mid_n": [
+      -0.9998733082150176,
+      -0.007434809933588312,
+      0.014074484729743014
+     ],
+     "mid_d": -0.0004650417293824041,
+     "t_source": "partner_prior",
+     "flags": [
+      "plate_t_partner_prior"
+     ],
+     "pair": {
+      "method": "one_face (F-I4.14 step 3)",
+      "thickness_mm": 7.401,
+      "t_from": "wooden_piece_1",
+      "seen_sign": 1
+     }
+    },
+    "gates": {
+     "region_voxels": 118,
+     "run_kind": "INSERTION",
+     "sweep_share": 1.0,
+     "sweep": true,
+     "not_pushable": true,
+     "push_mm": 22.0,
+     "push_frames": 30,
+     "reused": false
+    }
+   }
+  },
+  "acceptance": {
+   "tests": {
+    "P2": true,
+    "P3": true,
+    "P4_wooden_piece_1": true,
+    "P4_wooden_piece_2": true,
+    "P5": true,
+    "P6": true,
+    "P7": true,
+    "keepout_wooden_piece_1": true,
+    "keepout_wooden_piece_2": true
+   },
+   "P5": {
+    "shapes": 134,
+    "cap": 165,
+    "pass_": true
+   },
+   "failing": [],
+   "pass_all_but_P1": true,
+   "P1": "pending (Embodiment jitter_check --k 16 on the delivered folder; F-I2.12, F-I4.8)",
+   "shapes": {
+    "wooden_piece_1": 57,
+    "wooden_piece_2": 77
+   },
+   "sec": 1938.3
+  },
+  "default_pieces": "_default/<obj>/piece_XX.obj (unslotted plates)"
+ },
+ "p1_pending": true
+}

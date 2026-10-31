@@ -1,0 +1,2496 @@
+{
+ "schema": "gmg-manifest/3",
+ "spec": "SPEC v1 rev 1 (freeze fd814f6)",
+ "mode": "dev",
+ "tier": "DEV",
+ "created_utc": "2026-10-31T19:22:03Z",
+ "commit": "74025530b0754c7f21ef9b1615581143fea4cc0e",
+ "code_dirty": true,
+ "code_dirty_files": [
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_png.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_png_data.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/fi5_public_summary.py",
+  "?? docs/research/mesh-2026-10-26/gmg/build/I/results/slot2-ep23/"
+ ],
+ "code_dirs": [
+  "docs/research/mesh-2026-10-26/gmg",
+  "docs/research/mesh-2026-10-26/autokit",
+  "docs/research/mesh-2026-10-26/scripts",
+  "pipeline"
+ ],
+ "host": "vm",
+ "python": "3.13.17",
+ "argv": [
+  "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tools/interlock_dev.py",
+  "--run",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13",
+  "--ep",
+  "24",
+  "--bundle",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24",
+  "--cands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep24",
+  "--pick",
+  "wooden_piece_1=shell_t5p36,wooden_piece_2=shell_t5p36",
+  "--video",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+  "--calib",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+  "--hands",
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+  "--proxy-copies",
+  "16",
+  "--identity",
+  "eval",
+  "--waiver-fi4",
+  "--no-physcheck",
+  "--tag",
+  "fi4o"
+ ],
+ "cwd": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+ "pid": 22219,
+ "roots": {
+  "data": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad",
+  "repo": "/home/user/v2d-track3",
+  "gmg": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg",
+  "mr": "/home/user/v2d-track3/docs/research/mesh-2026-10-26",
+  "kit": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/kit/v2d_submission_kit",
+  "weights": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/weights",
+  "run": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13"
+ },
+ "runs_root": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev",
+ "run_marker": {
+  "mode": "dev",
+  "tier": "DEV",
+  "run": "20261031-i2probe-626ce13",
+  "root": "runs-dev",
+  "pid": 26444,
+  "schema": "gmg-run-marker/2",
+  "created_utc": "2026-10-31T10:23:17Z"
+ },
+ "own_tier": "DEV",
+ "fixture_roots": [],
+ "denylist": {
+  "sources": [
+   {
+    "path": "/home/user/v2d-track3/ops/provenance/denylist.json",
+    "sha256": "bfcbf38a58142e8253aa13489fef9dbbdcc2d04970e94e73dd598dadbe42b487",
+    "globs": 16,
+    "sha": 67
+   }
+  ],
+  "globs": 16,
+  "sha256": 67
+ },
+ "det_registry": {
+  "path": "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/det_registry.json",
+  "present": true,
+  "sha256": "b50702941d6538d14c0acc924c48dbc0f0d54008c355a54af385bdd8fd6f0fc9",
+  "files": 15,
+  "sha256_known": 15,
+  "signature_keys": [
+   "chosen",
+   "gdino",
+   "reprop",
+   "score_rules",
+   "sim",
+   "template_extent",
+   "template_intensity",
+   "verify",
+   "verify_matched"
+  ]
+ },
+ "guarded_opens": {
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz": 1,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz": 4,
+  "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz": 4
+ },
+ "hook": {
+  "installed": true,
+  "blocked": 0
+ },
+ "inputs": [
+  {
+   "role": "calib",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/calib.json",
+   "sha256": "23e2d9c46369292cdda492a777e7a6083815369a25d1af4bb82560669fde5d52",
+   "bytes": 16640,
+   "tier": "P0"
+  },
+  {
+   "role": "video",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/store/ep24_a.mp4",
+   "sha256": "30d08191dbe3f02880d4950197ab6a1d1d6c97de7483255835152c1ee1a5d3b3",
+   "bytes": 31443302,
+   "tier": "P0"
+  },
+  {
+   "role": "tracks",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/data/sweep/ep24/poses.npz",
+   "sha256": "e694dae35df475b63057d040b827e22bb8c8cce8f36c2a508a97f481b7106b60",
+   "bytes": 71220,
+   "tier": "P1",
+   "keys": [
+    "cam_T_wooden_piece_1",
+    "cam_T_wooden_piece_2",
+    "world_T_cam"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "own",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs-dev/20261031-i2probe-626ce13/in/hands24/hands.npz",
+   "sha256": "b21f0eaa1a276737a6ec0a86dee0f30971b142f2b921a8ae1a183dae1e34021f",
+   "bytes": 205692,
+   "tier": "DEV",
+   "keys": [
+    "Da",
+    "KR",
+    "Ka",
+    "T",
+    "T_rect_a",
+    "a_offset",
+    "chir_left",
+    "chir_right",
+    "depth_ok_left",
+    "depth_ok_right",
+    "dz_med_left",
+    "dz_med_right",
+    "filled_left",
+    "filled_right",
+    "joints_left",
+    "joints_right",
+    "measured_left",
+    "measured_right",
+    "n_depth_inl_left",
+    "n_depth_inl_right",
+    "n_depth_left",
+    "n_depth_right",
+    "n_det",
+    "rms_px_left",
+    "rms_px_right",
+    "scale_left",
+    "scale_right",
+    "score_left",
+    "score_right",
+    "size_a",
+    "swap",
+    "uv_a_left",
+    "uv_a_right",
+    "valid_left",
+    "valid_right",
+    "wl_mirror",
+    "world_frame"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/episode.json",
+   "sha256": "df9393261b3a9e0975833ce18a6df311bb642bb272ccd6fff418b1bec064f522",
+   "bytes": 45765,
+   "tier": "DEV"
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_1.npz",
+   "sha256": "a0f0976d53905189875d9b3b697b8e39d3eccbe60046e27391918f8903569b19",
+   "bytes": 28119499,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  },
+  {
+   "role": "clean_run",
+   "path": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz",
+   "realpath": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-b4ext4-b61e8aa/bundle/public/ep24/wooden_piece_2.npz",
+   "sha256": "3edfbd1da7f363302ee7a8c56c429b46a4d2115e81bd18d16c69667570b73fb6",
+   "bytes": 16391151,
+   "tier": "DEV",
+   "keys": [
+    "args",
+    "cam",
+    "frame",
+    "free",
+    "hi",
+    "hits",
+    "lo",
+    "own",
+    "pocc",
+    "pts",
+    "shared",
+    "state",
+    "vox"
+   ],
+   "keys_not_read": []
+  }
+ ],
+ "constants": [
+  {
+   "name": "sil.hand_mask_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.2 hands <= 25 % of the mask",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.hand_px",
+   "value": 16,
+   "origin": "generic:F-I1.2 no hand pixel within 16 px",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.max_frames",
+   "value": 24,
+   "origin": "generic:numerical cap of qualifying frames used (evenly spaced)",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.tex_win",
+   "value": 5,
+   "origin": "generic:F-I1.14 5 x 5 texture",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.pos_inset_px",
+   "value": 3,
+   "origin": "generic:F-I1.2 positives >= 3 px from the outline",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.max_pixels",
+   "value": 60000,
+   "origin": "generic:numerical cap of training pixels per class",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.holdout",
+   "value": 0.2,
+   "origin": "generic:F-I1.14 20 % pixel split",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.gmm_k",
+   "value": 3,
+   "origin": "generic:F-I1.14 GMM 3 components",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.interior_hits",
+   "value": 10,
+   "origin": "generic:F-I1.2 strongly observed: hits >= 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "sil.acc_min",
+   "value": 0.9,
+   "origin": "generic:F-I1.2 held-out pixel accuracy >= 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/silhouette.py:54"
+  },
+  {
+   "name": "il.engaged_min_vox",
+   "value": 3,
+   "origin": "generic:F-I1.14 engaged >= 3 voxels",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.gap_bridge_frames",
+   "value": 2,
+   "origin": "generic:F-I1.1 gaps <= 2 stride frames bridged",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.transient_frames",
+   "value": 5,
+   "origin": "generic:F-I1.14 TRANSIENT < 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_speed_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 static < 2 mm per frame",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.static_min_frames",
+   "value": 5,
+   "origin": "generic:F-I1.1 static stretch >= 5 frames",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.block_frames",
+   "value": 10,
+   "origin": "generic:F-I1.14 10-frame build/check blocks",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.holdout_min_frames",
+   "value": 20,
+   "origin": "generic:F-I1.14 20-frame minimum",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_min",
+   "value": 5,
+   "origin": "generic:F-I1.14 Embodiment minimum frame count",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.persist_share",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 quartile",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_min_m",
+   "value": 0.008,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.sweep_k_j",
+   "value": 3.0,
+   "origin": "generic:F-I1.14 sweep max(8 mm, 3 j)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.max_rounds",
+   "value": 3,
+   "origin": "generic:F-I1.13 at most 3 rounds",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.link_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 linking share 50 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.through_beyond_vox",
+   "value": 1,
+   "origin": "generic:F-I1.14 through-column test 1 voxel",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.depth_scale",
+   "value": 0.5,
+   "origin": "sensor:depth input at half the 1600 x 1000 rectified resolution (depths_fs0.5)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.w_bridge_px",
+   "value": 8.0,
+   "origin": "generic:F-I1.14 w_bridge 8 depth pixels [H]",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.class_o_max",
+   "value": 0.25,
+   "origin": "generic:F-I1.14 25 % class O",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.min_testable",
+   "value": 3,
+   "origin": "generic:INTERLOCK 3.4 fewer than 3 testable voxels = absent",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.agree_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.offset_grid_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.14 OFFSET 2 mm grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.offset_lateral",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 OFFSET lateral share 0.5",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "pb.near_m",
+   "value": 0.006,
+   "origin": "generic:F-I2.10 owned points within 6 mm of the pick",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "struct_vox_m",
+   "value": 0.002,
+   "origin": "generic:obs-first sym_probe / rot_probe voxel downsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:58"
+  },
+  {
+   "name": "struct_max_points",
+   "value": 60000,
+   "origin": "generic:obs-first probe cap (numerical)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:59"
+  },
+  {
+   "name": "rot_consistency_trim",
+   "value": 0.8,
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:60"
+  },
+  {
+   "name": "rot_consistency_angles_deg",
+   "value": [
+    45,
+    90,
+    135
+   ],
+   "origin": "generic:lathe_obs.rot_consistency default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:61"
+  },
+  {
+   "name": "rot_consistency_subsample",
+   "value": 20000,
+   "origin": "generic:lathe_obs.fit_axis subsample",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:62"
+  },
+  {
+   "name": "sym_accept_rotc_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (rotational consistency)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:63"
+  },
+  {
+   "name": "sym_accept_resid_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 symmetry acceptance (mirror residual)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:64"
+  },
+  {
+   "name": "sym_accept_observed_share",
+   "value": 0.7,
+   "origin": "generic:PREREG A.6 symmetry acceptance (observed share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:65"
+  },
+  {
+   "name": "sym_accept_free_share",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6 symmetry acceptance (free share)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:66"
+  },
+  {
+   "name": "noise_band_sigma",
+   "value": 3.0,
+   "origin": "generic:PREREG A.6 / SPEC section 8 noise band 3 sigma",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:67"
+  },
+  {
+   "name": "sym_moved_min_share",
+   "value": 0.5,
+   "origin": "generic:a symmetry must move at least half the points",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:68"
+  },
+  {
+   "name": "sym_resid_trim",
+   "value": 0.8,
+   "origin": "generic:obs-first sym_probe trimmed mean",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:69"
+  },
+  {
+   "name": "mirror_search_normals",
+   "value": 400,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:70"
+  },
+  {
+   "name": "sym_search_subsample",
+   "value": 6000,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:71"
+  },
+  {
+   "name": "sym_eval_subsample",
+   "value": 20000,
+   "origin": "generic:obs-first sym_probe evaluation",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:72"
+  },
+  {
+   "name": "mirror_distinct_deg",
+   "value": 20.0,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:73"
+  },
+  {
+   "name": "mirror_top",
+   "value": 3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:74"
+  },
+  {
+   "name": "mirror_search_min_observed",
+   "value": 0.3,
+   "origin": "generic:obs-first sym_probe search",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:75"
+  },
+  {
+   "name": "mirror_search_free_weight_m",
+   "value": 0.02,
+   "origin": "generic:obs-first sym_probe ranking weight",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:76"
+  },
+  {
+   "name": "sym_perturb_deg",
+   "value": [
+    4.0,
+    1.5
+   ],
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:77"
+  },
+  {
+   "name": "sym_perturb_n",
+   "value": 12,
+   "origin": "generic:obs-first sym_probe refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:78"
+  },
+  {
+   "name": "sym_nm_step",
+   "value": 2.0,
+   "origin": "generic:numerical refinement (initial simplex 2 deg / 2 mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:79"
+  },
+  {
+   "name": "sym_nm_xatol",
+   "value": 0.02,
+   "origin": "generic:numerical refinement (deg / mm)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:80"
+  },
+  {
+   "name": "sym_nm_maxfev",
+   "value": 400,
+   "origin": "generic:numerical refinement",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:81"
+  },
+  {
+   "name": "sym_pairing_iters",
+   "value": 4,
+   "origin": "generic:numerical refinement (sym_probe refine_offset passes)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:82"
+  },
+  {
+   "name": "axis_search_rim_w_s",
+   "value": 0.05,
+   "origin": "generic:PREREG A.6b E1 (lathe.rim_w) = 0.05 s",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:83"
+  },
+  {
+   "name": "plane_min_pts",
+   "value": 300,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:84"
+  },
+  {
+   "name": "plane_max",
+   "value": 4,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:85"
+  },
+  {
+   "name": "plane_seeds",
+   "value": 200,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:86"
+  },
+  {
+   "name": "plane_deg",
+   "value": 30.0,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:87"
+  },
+  {
+   "name": "plane_conn_vox_m",
+   "value": 0.003,
+   "origin": "generic:autokit parts plate_set default",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:88"
+  },
+  {
+   "name": "slab_two_face_thickness_m",
+   "value": [
+    0.003,
+    0.025
+   ],
+   "origin": "informed:slab two-face thickness (PREREG A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:89"
+  },
+  {
+   "name": "plane_pair_overlap_min",
+   "value": 0.5,
+   "origin": "generic:footprints of a plate's two faces overlap",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:90"
+  },
+  {
+   "name": "repeat_orders",
+   "value": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "origin": "generic:discrete rotations C2..C6",
+   "where": "docs/research/mesh-2026-10-26/gmg/structure.py:91"
+  },
+  {
+   "name": "pb.frames_min",
+   "value": 3,
+   "origin": "generic:F-I4.11 >= 3 frames per outline cell (= OBSERVED hits >= 3, A.6)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "il.push_step_m",
+   "value": 0.002,
+   "origin": "generic:numerical 2 mm (one sub-voxel)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the push search (6 x the prior)",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_frames_max",
+   "value": 12,
+   "origin": "generic:numerical subsample of the build frames for the push proxy",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.push_prior_m",
+   "value": 0.01,
+   "origin": "generic:F-I1.14 phys_fit v1 prior 10 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.swept_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.14 50 % majority",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "pb.slab_sigma",
+   "value": 3.0,
+   "origin": "generic:F-I4.11 outline slab margin 3 sigma (A.6 noise band)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.raster_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.11 outline raster 2 mm (= the carve sub-grid)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.fill_min",
+   "value": 0.9,
+   "origin": "generic:F-I4.11 rectangle fill share 0.9",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.simplify_m",
+   "value": 0.001,
+   "origin": "generic:F-I4.15.9 Douglas-Peucker tolerance 1.0 mm (half the 2 mm raster pitch)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.grid_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.3 W_x on a 2 mm grid",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.depth_margin_m",
+   "value": 0.002,
+   "origin": "generic:F-I4.11 depth margin 2.0 mm at the slot bottom",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.extend_m",
+   "value": 0.003,
+   "origin": "generic:carve_solid 3 mm extension past the entry edge and the faces",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "pb.consist_m",
+   "value": 0.01,
+   "origin": "generic:F-I4.11 cross-lap consistency window 10 mm (= K-c)",
+   "where": "docs/research/mesh-2026-10-26/gmg/platebody.py:86"
+  },
+  {
+   "name": "il.budget_vol",
+   "value": 0.1,
+   "origin": "generic:F-I1.14 budget 10 %",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "il.budget_reach",
+   "value": 0.6,
+   "origin": "generic:F-I1.14 reach 0.6",
+   "where": "docs/research/mesh-2026-10-26/gmg/interlock.py:105"
+  },
+  {
+   "name": "sp.pitch_m",
+   "value": 0.002,
+   "origin": "generic:F-I1.8 solid at 1.5-2 mm",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.near_vox",
+   "value": 2,
+   "origin": "generic:F-I1.8 keep-out within 2 voxels of the surface",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "sp.lam",
+   "value": 10.0,
+   "origin": "generic:collision_decomp.py partner weight 10",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  },
+  {
+   "name": "ph.mc_points",
+   "value": 200000,
+   "origin": "generic:F-I1.8 200,000 points in the guest box",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.travel_cap_m",
+   "value": 0.06,
+   "origin": "generic:numerical cap of the travel search",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.travel_step_m",
+   "value": 0.0005,
+   "origin": "generic:F-I1.8 0.5 mm steps",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.travel_thr_cm3",
+   "value": 0.05,
+   "origin": "generic:F-I1.8 0.05 cm3",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.p7_share",
+   "value": 0.5,
+   "origin": "generic:F-I1.8 P7 half the default",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.jit_m",
+   "value": 0.0005,
+   "origin": "generic:F-I1.8 jitter 0.5 mm (jitter_check.py settings)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.jit_rad",
+   "value": 0.005,
+   "origin": "generic:F-I1.8 jitter 0.005 rad",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.fps",
+   "value": 20.0,
+   "origin": "kit:reference frame rate 20 Hz",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "ph.sub",
+   "value": 25,
+   "origin": "generic:interaction_carve.py 25 substeps (2 ms)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simphys.py:62"
+  },
+  {
+   "name": "sp.mass_kg",
+   "value": 0.3,
+   "origin": "generic:F-I1.14 placeholder mass 0.3 kg (make_assets default; owner decision D-I1 open)",
+   "where": "docs/research/mesh-2026-10-26/gmg/simpieces.py:57"
+  }
+ ],
+ "refusals": [],
+ "outputs": [
+  {
+   "path": "interlock/public/ep24-fi4o/T_asm.npy",
+   "sha256": "a0c835c274ef48b10b9a4289b68baa3d6d0be2769a41871ae95db3e515c3c877",
+   "bytes": 256,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/decisions.json",
+   "sha256": "b52d70748a13cf1d9c1eb9d6e29e21f198b310a7916191faef8191a5ba4ebd75",
+   "bytes": 92954,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/physcheck.json",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/physics_wooden_piece_1_wooden_piece_2.json",
+   "sha256": "469e9a7b83ce69e24d9a14d85797ea315cb9667f09b8814f3f5621fd47e3da04",
+   "bytes": 5364,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/push_list.json",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "bytes": 2,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/report.json",
+   "sha256": "6cea436275c2c282a3d47af0e0cda651b6ea92a772ee171f4e991b4b320ee62a",
+   "bytes": 20039,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/sil_wooden_piece_2.npz",
+   "sha256": "c32554412ac36d01419524b8b69959fc3f6259bcc9def87b1529ba189c09a899",
+   "bytes": 3829,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/voxels_wooden_piece_1.npz",
+   "sha256": "25dc3ca2842730e05707c9b9e0e859ed326588321072440b47d9290b4f481b7f",
+   "bytes": 3448,
+   "how": "python"
+  },
+  {
+   "path": "interlock/public/ep24-fi4o/voxels_wooden_piece_2.npz",
+   "sha256": "b79d0ceef6c35bc586468af749b219f46ed97c7e03219934ba292ff42a87644a",
+   "bytes": 3197,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_00.obj",
+   "sha256": "570d97d38244573f5fd4d95695aa1f0e4eb52f7eca34d5f3878de2ba3b99ad45",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_01.obj",
+   "sha256": "7b5d6f9514114665be6d30effea0917c7f9481fc55dc56ff613a1b29728d11ac",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_02.obj",
+   "sha256": "c103f2ed9a95ce72313246abd8a08fe2a7fcf59e079d6eb704c52d6aa214972e",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_03.obj",
+   "sha256": "c5f16f65a970f5ab30bcf599c01a4dd186513a7ee6112c1b61f49f2892408cb8",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_04.obj",
+   "sha256": "8b7f818b7a03e74f367b6b80b419424c63e05206d8899152596f84f88daa4f06",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_05.obj",
+   "sha256": "59dd6068c90ab8e9fef7d479c960cfffdd17007c94aeb8f399c68d0ccaa63168",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_06.obj",
+   "sha256": "a17f1f638996f0f9c59d356c87f524ffdee8573a458bd9996c49ec9f342a4704",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_07.obj",
+   "sha256": "9935af8d4a0912be3ff031f3119886d86a0b1e72043311fa50e6c9673415fd9d",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_08.obj",
+   "sha256": "d9aa32e37facf2202af4fa59f73f2bab82ba3be3011343352df71ee3fe145090",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_09.obj",
+   "sha256": "b6dcc1faa389304425848927a782934d6531cf8fb56a9b567fbceec482a34e8a",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_10.obj",
+   "sha256": "2ddc4d78b05193567cbcb6e15be54d75215ad99920bc7c9b385c7a785e1c3d75",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_11.obj",
+   "sha256": "8a37d43146733a35816047f78819d99e85350e5e0e5fe57bc5db4648137ff9c9",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_12.obj",
+   "sha256": "9b616420c2a87deec57fb7bf7d3a64d7f65b32432fc78974152904d333c1f1b4",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_13.obj",
+   "sha256": "86eb96ecfb55c2bf58ec5d702e43f7f5c1f4256b332a604176bad4d040cbad7e",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_14.obj",
+   "sha256": "08354cf94c5f73a3a4e0d0eaaa0230a73333a7d5978e4fe74f5ebfc15e5e5910",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_15.obj",
+   "sha256": "309afd5b14ac937973fa83d2356ee100c45b5bf20067de01b458294a77cbe183",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_16.obj",
+   "sha256": "5067557abbd6c7cb27f359a2b410193d66dd27ba7f688f2f8dbeec473eb9f406",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_17.obj",
+   "sha256": "3a27a0d6c8a3cf4d484493a081be9714b48db6f0cfb9eedba6297bcc6197a8b8",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_18.obj",
+   "sha256": "14f01c2d202a88dfdbde0cddf8a91c695f966accb6523898a683298cd4cc917f",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_19.obj",
+   "sha256": "e320aabf41fc997ab02cdb83658f9bea1221b89e1511df736980f693a7817954",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_20.obj",
+   "sha256": "d3752c259a39e312fe813e73ec24ef18ad671228b1c71317e8ccdefbdc1f1ed9",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_21.obj",
+   "sha256": "6b6151f431a85ad28bc6f68bdb6c3fc2a0e1c1637c1b69b076f60c74aac96bc8",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_22.obj",
+   "sha256": "16f737803df1554a7df276acf03e1b9cd62890c8e953f03c617fc6098cf51467",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_23.obj",
+   "sha256": "1a3b42674773d268374060334843af9e1c02fca4b4ba22a500b7ad18a911eebe",
+   "bytes": 324,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_24.obj",
+   "sha256": "cfa9b0ded0dac042bc890742c4b12adbc534f7acb1ed8fe009751ba7b554ef47",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_25.obj",
+   "sha256": "98c72623873d753c1184466b75df03c6c28063016bcd9f7914fe17c7aaef4d38",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_26.obj",
+   "sha256": "f8788f4697dbb4c7b548ea6cf8dc3acfed229fddae0f8b29fa66f9bbf01251fb",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_27.obj",
+   "sha256": "81090ce26dc2c68b6ffd015a33dc97f2cd137da994c587a3cd79c6a51b0e5e62",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_28.obj",
+   "sha256": "b97c4c0e034ab3a476fcb4bb4a5dd56ed1bdbb775a87e1a3d87fc426fae33ad8",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_29.obj",
+   "sha256": "0b80668f8aed84b050d1437c447398cf98208a5d612421fb0aaadb865c0983e1",
+   "bytes": 527,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_30.obj",
+   "sha256": "a0cbd709c5333a35c10a3736c5a565bd97e54fe5530e3a594e3d877a8c94abe5",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_31.obj",
+   "sha256": "48db119b09a894efe2782182abad0954c870b3fad07bc6e194b82ce95fcb90f7",
+   "bytes": 542,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_32.obj",
+   "sha256": "8348fab735d5c94e8254bfe8c6e18551be36d5ec56a3406e28acea2a0486720d",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_33.obj",
+   "sha256": "11c31a8d97aa3aad4a3ab69d35926dac32e97124fc5770319ab9afc8c78e5028",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_34.obj",
+   "sha256": "6e3543e1455a0067df8b351ef95f2963c59475e85b82e603c95edd6ceac054af",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_35.obj",
+   "sha256": "8e8069ee89634860e9e2d9881ad8f30394c123c136eebdb0328bdf0df9d9cc51",
+   "bytes": 539,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_36.obj",
+   "sha256": "99949f887319ec8f8997b7d829b5d8f4b4808427a4c2619c7104f7c82acb0863",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_37.obj",
+   "sha256": "2f9ef02ab2876a58b46a5ee266c6ccaa3e9775d5a5432c22d49c6efac15bada5",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_38.obj",
+   "sha256": "feaf2a42b2fa909577bd0ba63f23ea00f061aa48b00ba4b17b16a7daddef62ec",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_39.obj",
+   "sha256": "a827d4d7e08c017b0b104a96d61d3dc01c9ab5aa8309c5428df29d081f7e480d",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_40.obj",
+   "sha256": "bcf74598e3a807707430d91b99f1f6047cc337f460e3c6f9c5301fed61b3a329",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_41.obj",
+   "sha256": "b68dacfa6b64e4fb07e9b9fa6a8e78e47bda1d3264701437e4a34da0179d65c6",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_42.obj",
+   "sha256": "80295ba872292f78c88351b4e70c4b4ca7a5bc9337f87b7163c885688a752ff1",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_43.obj",
+   "sha256": "0f3a5f00f60d4c127497143e4d3ffa70d51c1413bfc860d9d5f879d157895885",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_44.obj",
+   "sha256": "b2b3c8da14cf8ba01a1b0822f70b237546f694fde76fff4128c12bc1f43876ae",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_45.obj",
+   "sha256": "cb29644341c6a4173b746c4db4ec8e4575785e09105a0864c539d723b313712e",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_46.obj",
+   "sha256": "2fff068d2427f4807fbe4e21f1554445950a82af684848468231c48d3e42e968",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_47.obj",
+   "sha256": "50e7e247163eb198661482d23421d2804f465e6ae2aeeb44da7d6b8e238ae927",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_48.obj",
+   "sha256": "74cd81c971a7877f824c7a0a2ec2c60c3ba1eadb5c1625fb05d0b5c356ab5374",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_1/piece_49.obj",
+   "sha256": "cecb9fb3a37cfd24e3eb8b05b33aaaf034b42522f2511b1a67567c422f911a95",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_00.obj",
+   "sha256": "5ee7231d87d20dd601224cc751f36aa7787c1ea4d5ff4b2b63b2027546195f27",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_01.obj",
+   "sha256": "2a4deb14925a4ac6f30fa6a4156de7e0fd4d36861e0732b78595eeb347000dfa",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_02.obj",
+   "sha256": "0ef93ab2b2d7ef03cd7783edeba6107ba1850c6ecfc2258c9725a072eb99cbc8",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_03.obj",
+   "sha256": "9a66d11720cc0301211c8c3c107c56df705037be25bc5c142ca8d19b517aa8b0",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_04.obj",
+   "sha256": "8ab71f8bb029d09b014f587c2253c43033de9beae909c880df0577f0c1f5d279",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_05.obj",
+   "sha256": "f03230f6cd6ff1e39b5262ddf975e2338aaabc8c7f647e5dff50fdd42669f248",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_06.obj",
+   "sha256": "2c97c94594c31742a37ef69c7b6a821051201222d3b7a4bfc20c4cc4d763db8c",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_07.obj",
+   "sha256": "c9dd0f1b3c586c3c83135ea4481eb6cd8c03c5d14a35d5ac9e2313620865d5c4",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_08.obj",
+   "sha256": "e5d14aa760ad1f67ffe5d606e01137f220798bff4e697ef792830d15115b8233",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_09.obj",
+   "sha256": "7407228ec1cb50b3061f983e973e5a43edacbde65e8c12b8b4336f6421f45aa0",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_10.obj",
+   "sha256": "4896f63716dabcbccae89aa3fc477cf770788a79d75d0af5b5c475146319d608",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_11.obj",
+   "sha256": "02073d270db8fe6a6bccc61ffed3cb06e76fb349114349e6a4b5b0820617467d",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_12.obj",
+   "sha256": "52de204da72452491223181a16187105771422bb760c63d8ccdaafd7eeba4f34",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_13.obj",
+   "sha256": "32df1f08a585efe0305d335a7d02988d5c3c42f64cca4f25b489da533b3aac38",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_14.obj",
+   "sha256": "cb0262e7199b49991a9471a4eb6555c3452feedd61d5824fc9fc1a762bfff517",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_15.obj",
+   "sha256": "f95f58b1203e52397a3a9c5a68a9eea6b1b1e34eebe3f9155098a941937be4dc",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_16.obj",
+   "sha256": "e1cdbf339217948e18a5c4ee00d147466f56220ab544f4a324a2c49664f90e77",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_17.obj",
+   "sha256": "79704478a027cd47a335bc968ec7130bc1d72bbe638a5814e7e7e308d15e5969",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_18.obj",
+   "sha256": "be258a2a0c851e1dc974c82ff98cf6f7bf4ac3125aa8404faafb73bf520afefb",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_19.obj",
+   "sha256": "9479c6303824e4263e68ff27b53291ed47092922db7bf48b199208b33b3fe550",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_20.obj",
+   "sha256": "29fecd8cbed5c78c30ef336e5ad9c5c17d3b3c51b43612a9b61dfafdd4801233",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_21.obj",
+   "sha256": "d150dd451b4d4ed9a6c93fbc31fb104ae558992b504bd6f766836c05fa9f3359",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_22.obj",
+   "sha256": "81bca887e19bb5e6f65c7db823c6e69d5c3166494d47c5b58bd8b771c6808953",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_23.obj",
+   "sha256": "9b0e525a758ee8ecbe5a14791fa3e5e706119a14559a64551b889ce4aa299773",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_24.obj",
+   "sha256": "faaf35e8e9125c9ab4c42b788fd82867a75ba8af1dab5094fad9b1c546fac82d",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_25.obj",
+   "sha256": "eab8b27c59f13947b7479ff399ba91a626e8ac84e55cef2f94efb3339bb7961b",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_26.obj",
+   "sha256": "e294762da448a7423aff47ef56531c3ee01fdbbe1aa7f21e57f57768047b614b",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_27.obj",
+   "sha256": "7fb412e21398fcfca3a2ea2ee8f6953bdb8e41115257cd7d8c9182164c8cf41f",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_28.obj",
+   "sha256": "01a4a4f0ec1d437f5e3ddd9c9fe6ed59b7657c524f388216e1e12d9a9a714063",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_29.obj",
+   "sha256": "c60edf4ab56cb3e1a7c87b13f71d99187c138294fef05b2794c34cce8757f654",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_30.obj",
+   "sha256": "2d115b67fc5d12fadc821d84b36a2e4fc3b56143dc210b9db111cecdee1c214f",
+   "bytes": 318,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_31.obj",
+   "sha256": "807c29bc775554f87a43b585ceb3126af26f4a49d72a89a6abaef1eb2f057dc9",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_32.obj",
+   "sha256": "e81813006b15ad73146623f02a29d9fb0a08c1dd307619aa6ef352da43d4dcc4",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_33.obj",
+   "sha256": "4cc4454f9aa080f404809dbf3cfd95155ef39347018dc4ea2330225f79476c38",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_34.obj",
+   "sha256": "4262e357e6d0271ce4967988bfef462be8b1361c6082925960a8d5aa083b3e88",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_35.obj",
+   "sha256": "56476d777d33e510bdbeeaa07cadbee23d905b79a52d02bb90f833353880e469",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_36.obj",
+   "sha256": "8e36b425362e5b7325688ce21b0a5974af19b50056db925116a4145115777591",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_37.obj",
+   "sha256": "1716a8f04d3f5da11c4a88573a7c81fd7babd24d20b78e82860cd4846c181de6",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_38.obj",
+   "sha256": "9c38ef7a3d2ce2bc45974701100e1a650c9c6a437ca096bee7292b9133eaa7ad",
+   "bytes": 535,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_39.obj",
+   "sha256": "c20315fc6f1ae3530a72796e77c9dd46e0f3568bc2163cd4c96d02091ae60917",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_40.obj",
+   "sha256": "afc9921f44555377bf7937bbd21dafb3967cbcf5e0feb25970e78ed6678dba53",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_41.obj",
+   "sha256": "49b447c6a0516dd46d658a8a55fd27e39e16afbefcb74a51d9da6177ab64a0ae",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_42.obj",
+   "sha256": "e5405ad8ae27613a22f53d3901a3f4788bd47e1ad7662ad6e0a06bddf30a00f1",
+   "bytes": 532,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_43.obj",
+   "sha256": "647da13b7018fd92649f6f47340743b9b2f1fcfd7b18416ea7edcd5cd6b47061",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_44.obj",
+   "sha256": "f203e7379f67e0dba930e82fcd5ce12f2b70a125c95c74418f9101e0dba05baa",
+   "bytes": 534,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_45.obj",
+   "sha256": "4d08d5e47249345c45ad9ae90da81625750b2bb69cf3dab07f4af8767452a879",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_46.obj",
+   "sha256": "5e828139ba78045a7df2034eb2c5c2eee50526ca30731bcedcdb2250b7c1bdf9",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_47.obj",
+   "sha256": "8a554d05a92cd6305dcf545733d5458923bb2f6952da9a1a1346e52a42205243",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_48.obj",
+   "sha256": "e7c57f77f52dcfee4eae8524c7ccfc6ea1f19981bffcf63680b8c82c7b8d69fd",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_49.obj",
+   "sha256": "3f1c79c3a2bb95181e68f937e430ab1285c1c870ac26b2cd4d25116fdb40fc4e",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_50.obj",
+   "sha256": "763a885e42741bc2003e0f2f14829d7acd3962b58cdd0cb1b64a702604b90589",
+   "bytes": 421,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_51.obj",
+   "sha256": "5d987351438549cc60e08b69d7e4885a779904312730377b25229c3b79b110ae",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_52.obj",
+   "sha256": "8af8e82796c86fdce4081577f725a12bae549cb5632d56b47b85551a9b9002e1",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_53.obj",
+   "sha256": "9b8ef5402d03b08c6c78caf242a6aa4cddd3783d63e564e3e1f6804bd3bebaf1",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_54.obj",
+   "sha256": "3b1351d46a0b0ef42baa79920e6298a67c6cf5a93ad0b33d79c4a3e1958ab740",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_55.obj",
+   "sha256": "43954fce72ae6fd43fe04ee9830d1d5413d1e28060642de870e22ebf609b05f8",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_56.obj",
+   "sha256": "205972b89dbd713936ed59e74ef9136a8c640a0f6ed178690bcb01827871427b",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_57.obj",
+   "sha256": "62df3f83fa6aeee74cb50af9090bbdfde848766ca518f8ff7fcc8d83b17863d2",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_58.obj",
+   "sha256": "4f53b0e4956de224b1de3fce0f8b8d5154f1a51fb4fb121f31e9d58a2974622a",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_59.obj",
+   "sha256": "0a6b6405d1b5d4feefa9897ad989d6612926ccba78c954d96736201dc98bee59",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_60.obj",
+   "sha256": "48a8819dbcb508be8028f3a2b5f77fd71e25ea28e75b90fe2f93208a9e4ad8c5",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_61.obj",
+   "sha256": "39ddb926c3149c4517b56ef57c84431bc247eaedd134d7a760f02efe49845c71",
+   "bytes": 524,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_62.obj",
+   "sha256": "8aee532f12b9c301d502da9aa5aadee739f25736ce8cdf763c26fafa033b0dc8",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_63.obj",
+   "sha256": "27b59e979073cecd7e532b2084949fae89e632385c38f048cb6e0e7b1319bfd4",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_64.obj",
+   "sha256": "81ad1d5eee8b14480f012df3e385df0f5350f85f9829b35954b4e2d50b75a0dc",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_65.obj",
+   "sha256": "c1af44a036e3f7ee484bbada0cfae3b172ddfacf8d0e341608582bbcd1f56fca",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_66.obj",
+   "sha256": "21e822fc84d033dfe88bc9ae3a05e40fccc4d67ee5a20c7838fc18da132f8224",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_67.obj",
+   "sha256": "10051a49ad37baa4cd056937ad4ddecb69ce313118b802425581249df929a36f",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_68.obj",
+   "sha256": "87ed5079d5667f2272a3b7db1bb08cdf6d7363981cb0437f023e8beb45e9870b",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_69.obj",
+   "sha256": "8cead483df3e138c59a30cfe3e1749fb41ebf067e709e3fff55c54bdd3889da3",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_default/wooden_piece_2/piece_70.obj",
+   "sha256": "7fe58151aeaec6cffa461722d1b75fa72d4e809e84b3867137587282b1c8ec2b",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_fit/wooden_piece_1.glb",
+   "sha256": "d474c5d2a09b12daa577fcc359c7203a16dbe6807f418b9b729bcf61e0500b9d",
+   "bytes": 8044,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/_fit/wooden_piece_2.glb",
+   "sha256": "49b542496af4ddcc071c8c802efed6cec35abed0d6cdec830a4b5cd6e8285469",
+   "bytes": 12028,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/manifest.json",
+   "sha256": "271f9899d464eaf64eaa8737c518c7fc613d8d04e091f221334df237b964f600",
+   "bytes": 90498,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/props_gmg.json",
+   "sha256": "367dd86ab6e856e0e3ff9ab575d59bcf1a65673098c3039b9253d3a8abd6a37c",
+   "bytes": 1680,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/sources/wooden_piece_1.npz",
+   "sha256": "1e1421158f3c9f4165836a9b67629d19be203bd263fa4e9056a79176f4a52246",
+   "bytes": 1611,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/sources/wooden_piece_2.npz",
+   "sha256": "20e47faa07f8960e216578f2307ccef6b76d5958ed4398a153a6876db75ce9a3",
+   "bytes": 21822,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/carve.json",
+   "sha256": "9c1915cbd7138fe621d83593392d6ad93de9c9fd0b9ce2f671d1d2e2dbde8c31",
+   "bytes": 53828,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/inertia.json",
+   "sha256": "1a77606d5747f7be53cc747d3cdfa660ed556996357f5982da4f0e4a6766fcfe",
+   "bytes": 411,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_00.obj",
+   "sha256": "82905078c8bfa8c04e493223bc3cb5a2737f4e9b0e1bb82c414e936f9efa588e",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_01.obj",
+   "sha256": "9935af8d4a0912be3ff031f3119886d86a0b1e72043311fa50e6c9673415fd9d",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_02.obj",
+   "sha256": "108d04d4ed2b918796c861f52275a9b2ac41c7742da47b4d76c8d5c75422ef71",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_03.obj",
+   "sha256": "b6dcc1faa389304425848927a782934d6531cf8fb56a9b567fbceec482a34e8a",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_04.obj",
+   "sha256": "a813b94ad9da0d14025db427c3211aa46ebd43f232f07fe23451928255ef2d4d",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_05.obj",
+   "sha256": "8a37d43146733a35816047f78819d99e85350e5e0e5fe57bc5db4648137ff9c9",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_06.obj",
+   "sha256": "9b616420c2a87deec57fb7bf7d3a64d7f65b32432fc78974152904d333c1f1b4",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_07.obj",
+   "sha256": "da85ba879364c71b34faf197189aa015ed6d956468262bb5dd9f6ad10161bdf2",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_08.obj",
+   "sha256": "86eb96ecfb55c2bf58ec5d702e43f7f5c1f4256b332a604176bad4d040cbad7e",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_09.obj",
+   "sha256": "15f63694a000bcf6861b4868ad85a44a087e120dc30a8491b03c5641a03468fe",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_10.obj",
+   "sha256": "309afd5b14ac937973fa83d2356ee100c45b5bf20067de01b458294a77cbe183",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_11.obj",
+   "sha256": "178abd5d284bfb011fc9c5c48f0b06190b9259e743ac68ccb97573f01188bdab",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_12.obj",
+   "sha256": "34119bb84b71e656bb4251ea2162c7db480c806102a0938bb17e1cd4d4329f14",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_13.obj",
+   "sha256": "015e98d266e07daeefd6cf3b4f6a0b1e6f89e6b055768c401200b0301f7f8260",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_14.obj",
+   "sha256": "2301324f02f9e88b910fea842004d2c33ffb3d97967d868809128a289716003b",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_15.obj",
+   "sha256": "61e98f7200115a863483923dc6160ef38185a2a15abbdd4d3a3ed30d51eacac6",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_16.obj",
+   "sha256": "a27919f922052f93501dbc24458d6ff8b2e2660d3509f6173ab3e4ee0e7cdd44",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_17.obj",
+   "sha256": "0348d9c60b75f14be77557e11e22df26c8783bb4ee1a0d40ecd36b3dfa0cdac5",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_18.obj",
+   "sha256": "b713bb2c209a3e994c31ddb850c6c39b346f3e93139c9d2d21cf4e81f5a7e6ea",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_19.obj",
+   "sha256": "046b24fa185e7b949cb1f8ea212689db7d1f4e6c2354dd4b40ceb07277b753bb",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_20.obj",
+   "sha256": "69f2ca04f3d0c7fca18e486d55ae28a19742e4559feb825fd991d77328d886ed",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_21.obj",
+   "sha256": "676167f114431fdd061b134fe1f1176d92a95617fa9bd9221305b7a9d2bf04e5",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_22.obj",
+   "sha256": "f67562202eb7da7ac74dc67e1b44cc58dbd2be92c07f850d1bff3914a231c224",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_23.obj",
+   "sha256": "16f737803df1554a7df276acf03e1b9cd62890c8e953f03c617fc6098cf51467",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_24.obj",
+   "sha256": "79a8d9f34969ed58c960d5c0e0509d9bc92517b8e86f07b81bd0bf340ac85825",
+   "bytes": 324,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_25.obj",
+   "sha256": "cfa9b0ded0dac042bc890742c4b12adbc534f7acb1ed8fe009751ba7b554ef47",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_26.obj",
+   "sha256": "98c72623873d753c1184466b75df03c6c28063016bcd9f7914fe17c7aaef4d38",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_27.obj",
+   "sha256": "570d97d38244573f5fd4d95695aa1f0e4eb52f7eca34d5f3878de2ba3b99ad45",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_28.obj",
+   "sha256": "7b5d6f9514114665be6d30effea0917c7f9481fc55dc56ff613a1b29728d11ac",
+   "bytes": 322,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_29.obj",
+   "sha256": "c103f2ed9a95ce72313246abd8a08fe2a7fcf59e079d6eb704c52d6aa214972e",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_30.obj",
+   "sha256": "c5f16f65a970f5ab30bcf599c01a4dd186513a7ee6112c1b61f49f2892408cb8",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_31.obj",
+   "sha256": "8b7f818b7a03e74f367b6b80b419424c63e05206d8899152596f84f88daa4f06",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_32.obj",
+   "sha256": "aeb848552746f641ee2fa42488ed86276575760dbb7249ecfd02413b121c1d09",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_33.obj",
+   "sha256": "158e52ceef2b44f5d1ac1a3add5077c4e8b364bedff4fbee9efdb9dfdb9ef9d2",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_34.obj",
+   "sha256": "1b48a2ab9474f0f91d2bff727e34fe4344dbff7383a2964650feaa859a31040f",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_35.obj",
+   "sha256": "54b8b43516ecdade438a3ac187abef16846f3c8520e546f40c71f6d25bcb9241",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_36.obj",
+   "sha256": "f2475ce20d030598e2e5625d5db5f701b7542b4b254fc223d0d68118c8cf06e3",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_37.obj",
+   "sha256": "1bafdc921f56684ed0d0c2d7f0b021f4f45592bb54a98b26934c3f721eee094a",
+   "bytes": 545,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_38.obj",
+   "sha256": "fcb550ee0af37c4a83335ec38c8437a4b7ea283af24b7f7f2b2cb3f94c2caf0b",
+   "bytes": 526,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_39.obj",
+   "sha256": "f6b961eed177add82e5ffc44f5236215946e0d9329cced11ff9dc90adc65478f",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_40.obj",
+   "sha256": "bd16cb3e47001ea92951eb851afe5985a4a5723c2b63eba599b3dad725697dfc",
+   "bytes": 544,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_41.obj",
+   "sha256": "e62b747850a2893247437d26d737dc1f5d7adc9d869e18363b6ea580098c8658",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_42.obj",
+   "sha256": "06621ebaeea47037476de620851d0c0683f3b2c8f6ce42c109f3b1054bdf5f9f",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_43.obj",
+   "sha256": "33f0faa5fe8a35bc665f537221448900a63c8e812575409919b8779fffd84831",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_44.obj",
+   "sha256": "85d1f1dc2412fdffb3966cd47d2541bdfbc0872379e47687a24bbd0718014e8e",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_45.obj",
+   "sha256": "c91d7ac1275eefdca9c0b040268b85ce81cf3d6d4681fe69e427a1513b35b6c8",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_46.obj",
+   "sha256": "6af3e5a1b09543ad1861b11a1a34d0691a8484f0bad536215b7bb731fdf7e527",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_47.obj",
+   "sha256": "c35ebfcd4baf8f2231bcf395ce65290892a248d1684bc5b6f3c56d90a8a4b6d8",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_48.obj",
+   "sha256": "ba34a2e595f2e1d243de7c030115eb2e58eb464de27f3682ae2c67ea381869d5",
+   "bytes": 429,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_49.obj",
+   "sha256": "23124d362c186ed41f3d3a1695beba36f123e68da342aa6796862582c9e36623",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_50.obj",
+   "sha256": "c48f9f5cc67b19d61971faf73385b9a3b2b33e19655766e2d8f3ef3e4ba257d5",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_51.obj",
+   "sha256": "b5728424d5450bc6504bb77eebbc0bce12f4da8c15b3a660ab1fc1baa2114fb1",
+   "bytes": 427,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_52.obj",
+   "sha256": "a921dbc5acd7ff867b22f1597b23b50cf6c3464e856be4da420b0b82e6c5c8a2",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_53.obj",
+   "sha256": "4c1f993c784dbcceaa265be747a0f9490114326946e5c1c624e8e8361c317564",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_54.obj",
+   "sha256": "84ffc6767f920853bd49a1eacc38c6f93041524873005b0035cf20523de7956a",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_55.obj",
+   "sha256": "211cefdb334d8406e601e2620f873269be46c62075e0c2b381a03f8e01767f40",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/piece_56.obj",
+   "sha256": "74cd81c971a7877f824c7a0a2ec2c60c3ba1eadb5c1625fb05d0b5c356ab5374",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_1/wooden_piece_1.glb",
+   "sha256": "3a949482d5dad09688825b14aa42443101e5eb622f30fac8396bb8e0e0bb604b",
+   "bytes": 70188,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/carve.json",
+   "sha256": "ad014ccb230f7d2d7741174cb3e93c4df9a0a4cd2e6cb7411cf3bae6c407a7f5",
+   "bytes": 52306,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/inertia.json",
+   "sha256": "6b36d410ac3c28176f193adcb064c82c0e59ecb30cf04986e5fc9ac8815f4ca4",
+   "bytes": 410,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_00.obj",
+   "sha256": "51a6275ed299840e5f262c0945d9161c2a02da40fda505057b64acf6a11e7de5",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_01.obj",
+   "sha256": "2c97c94594c31742a37ef69c7b6a821051201222d3b7a4bfc20c4cc4d763db8c",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_02.obj",
+   "sha256": "aa7e5cbde6d9fa98f2d59bf84e2bea65c46dd58444f68258ad43258efa79efc5",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_03.obj",
+   "sha256": "8d3d889c477f73e5678744a0784f60da419622b05837ce256bbe60419b7207cc",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_04.obj",
+   "sha256": "555294a78fc05dc4ff76497d45638159806fe3fd4920f5bbc5d51eb53073e148",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_05.obj",
+   "sha256": "ca3aea1eb0da03c484a7773855ba7c62449a21c9a5b046f540a7ab07b8d6ed21",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_06.obj",
+   "sha256": "97763d8513aa9ffe1ab8b0e47996a851090c884808a6d8a2a24b4986d0943802",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_07.obj",
+   "sha256": "735c47945a159b5786942a297d04fe04913b756d9e0e5facf964e55569e39b85",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_08.obj",
+   "sha256": "59c627648e0455d9e45b3a9bcf3b23147abe1c4e6bb69ad4a0ee88b64f499f8b",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_09.obj",
+   "sha256": "28d383c922addde7bf493f42648c79891575ae7c22e80694ef91a068740cba59",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_10.obj",
+   "sha256": "a8c1466bb29edb1da2b7057b547ac4726ebba93a59322f43ac69eeed9fa2058d",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_11.obj",
+   "sha256": "63e0d9320bf6334efa0cebba2407d14bb872551fef2dadec6edce38a3140273c",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_12.obj",
+   "sha256": "41c0191da60c39e444ed690e9ab5fb23737aeb79f4c264cd7849ec37fb11be5d",
+   "bytes": 324,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_13.obj",
+   "sha256": "02073d270db8fe6a6bccc61ffed3cb06e76fb349114349e6a4b5b0820617467d",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_14.obj",
+   "sha256": "52de204da72452491223181a16187105771422bb760c63d8ccdaafd7eeba4f34",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_15.obj",
+   "sha256": "32df1f08a585efe0305d335a7d02988d5c3c42f64cca4f25b489da533b3aac38",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_16.obj",
+   "sha256": "cb0262e7199b49991a9471a4eb6555c3452feedd61d5824fc9fc1a762bfff517",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_17.obj",
+   "sha256": "f95f58b1203e52397a3a9c5a68a9eea6b1b1e34eebe3f9155098a941937be4dc",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_18.obj",
+   "sha256": "79704478a027cd47a335bc968ec7130bc1d72bbe638a5814e7e7e308d15e5969",
+   "bytes": 326,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_19.obj",
+   "sha256": "faf153cead6865ca44d58fe535e97c9fa4890d218f58e6f3d2189044fe882721",
+   "bytes": 324,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_20.obj",
+   "sha256": "6f5af99fccad1b1ead579deecf1b7ddc753ad4cdcd0d004373569d6a81efb395",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_21.obj",
+   "sha256": "1834eb183997e8abf4b854f203ed2f950009dd4793c28a03e495a3399a6cc391",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_22.obj",
+   "sha256": "63bf9f2559d9d5a92fdcd30002be249c933c6a73054ccba4309508951f613aa6",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_23.obj",
+   "sha256": "8577308f426417501b285f5ff717ac3a8ca385a3e1fd24b171f28652cdcc8916",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_24.obj",
+   "sha256": "207f99b89c4cb50b61d74db00b97679614b78f2fb82173fb7b891c1c31185bc9",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_25.obj",
+   "sha256": "ebe1d5859f5a44629412e44dc80151fa18969cbfd23cf8e94748febbe2bcb222",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_26.obj",
+   "sha256": "c9ff5435e8f0aa88270850db29123d030e5a2e5539d7b42ea0c5a1410fe3a26a",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_27.obj",
+   "sha256": "faaf35e8e9125c9ab4c42b788fd82867a75ba8af1dab5094fad9b1c546fac82d",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_28.obj",
+   "sha256": "eab8b27c59f13947b7479ff399ba91a626e8ac84e55cef2f94efb3339bb7961b",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_29.obj",
+   "sha256": "e294762da448a7423aff47ef56531c3ee01fdbbe1aa7f21e57f57768047b614b",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_30.obj",
+   "sha256": "02012199864b4613bf9d7259430da31e6bc3b2055dc63358508809d460b5f655",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_31.obj",
+   "sha256": "7fb412e21398fcfca3a2ea2ee8f6953bdb8e41115257cd7d8c9182164c8cf41f",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_32.obj",
+   "sha256": "66135d70e9ecf1f2a8ca417cfc5528701c882a179da80825accc4f13515c3848",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_33.obj",
+   "sha256": "bd433413f9e47b84e92b6c9403f2b50c653b94611a3f722aa118b678129792a8",
+   "bytes": 320,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_34.obj",
+   "sha256": "0ef93ab2b2d7ef03cd7783edeba6107ba1850c6ecfc2258c9725a072eb99cbc8",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_35.obj",
+   "sha256": "ef6954bf9d7198c2ed793a0b4f5632d0ea609b720362898f8db43fde7e3d70b2",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_36.obj",
+   "sha256": "58a6bbccba156e3dc8cf028f02aee3e1070ecab3205a3a42e9e6a82a08d7842c",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_37.obj",
+   "sha256": "5acb9a25d1f1ed6cd6bef0e7bfab649dd59c884b073f8712ff446609630f0663",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_38.obj",
+   "sha256": "2cd26da50e07ed43258cb453385001e52ea05ca127d5bc342b26f6b090fb630a",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_39.obj",
+   "sha256": "765aaa5b174973e9aa5d693624e26d0e8cc8bf19b452edb6c574e701c053d9ec",
+   "bytes": 316,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_40.obj",
+   "sha256": "3735f8b4faf97a72879172a471efada0b274c79c61b3ada7d55653a68609c4e5",
+   "bytes": 314,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_41.obj",
+   "sha256": "39e7acf0d726698ea81f030a864f80c623434c584e11a634a79c6a7fbebd22d7",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_42.obj",
+   "sha256": "dfc469fc58c3b81bdeca261c4e12f53a7482f8be3ce488643791824c8325216d",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_43.obj",
+   "sha256": "22d9934d0c5ab01890760396a42f48b1ed40f2915ea1719c5de86da269d23fcc",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_44.obj",
+   "sha256": "46616dcfa26131d241fbd04128aac26f54cfb05effb11ed995f5ddc6ce1a3f26",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_45.obj",
+   "sha256": "2fa92911a2c4c00b964ebde352af18903fc9ab4b8ff5da9dbde93009014eaa54",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_46.obj",
+   "sha256": "6a434f013dba3c40fd3dc65e090fe485e327ea0d242d9f7d472b9460e1d76ff0",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_47.obj",
+   "sha256": "670f3f9da6fcc4e7d009057a46b07ce52d2c4ee447ce8b523ffb3f4c81640c59",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_48.obj",
+   "sha256": "264f5b6c23c2df64d06345b38c9cff8451a3741984c59667259c3421fa9f9815",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_49.obj",
+   "sha256": "02535bc78eef07589c2a8a28af49fd55288022d3290914d3d761c4d173792fcf",
+   "bytes": 423,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_50.obj",
+   "sha256": "e36f095feac1aa8950d3c9e6d5980c565768295dbc7d02de5f6098ef4081ab0f",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_51.obj",
+   "sha256": "43d7e4f4a2b338e4e1f5ee2aa88f01b46945d84d2b6b7c8f4354b9210f0c216e",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_52.obj",
+   "sha256": "5b07f0a3cf7f21b44de8354c5d6972d640fb75192d6a2825ca1ef006fb3874d6",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_53.obj",
+   "sha256": "5699e8ca747c3d3610340071d861674b47c01c97f717ae030aaaa39a1820e2cc",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_54.obj",
+   "sha256": "ad23ba4e37729028306d238a966b9dd30f32b865b5510673af4e32e407fe0a3c",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_55.obj",
+   "sha256": "0318773a1fe1e3ed7c207fff95cf13e9c1686f40c1b026433efd08f77096345c",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_56.obj",
+   "sha256": "7110669c11f88eec119f3084c4e1a2be357b089f400a90d8a30d6bca667e59e2",
+   "bytes": 538,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_57.obj",
+   "sha256": "408a0517225b0324179fbd4e2affc8b736f9d1d1cce533b2071c9402bf07707e",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_58.obj",
+   "sha256": "a6fba286718c061c7a7ba34b98eb860ee5e57e4149ccca83ba1c2ae29f1800d1",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_59.obj",
+   "sha256": "0e6baa033466f60cc1e1c2f59da25dbbb4843ac80e2e09caf3c73b5740a0eef8",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_60.obj",
+   "sha256": "1861438cd88faf81c65199151e173d4f9f36f2cb7796eb8d8b98995f00ad2727",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_61.obj",
+   "sha256": "d1d8bfb275451e48ea08abaff0afe498d83567655eb753b82ee3467b493a7655",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_62.obj",
+   "sha256": "dbcd2f1cee7ad25a2cf7d67dd8f0073f61d1a0de3e9b02616c817d5794fb188b",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_63.obj",
+   "sha256": "f604b955e7e7a7f5d2c454ae60cc341af7d0b98d3e68a4b473f395d4e3055042",
+   "bytes": 431,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_64.obj",
+   "sha256": "111007f709300bc711f5a7173989d317b3e8b41d4972d3853c9ab479e40e06d7",
+   "bytes": 419,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_65.obj",
+   "sha256": "ad8f0736487685e284bc00d1fd4ed91aa7bdfc78706acd0164c516777fd5ae4b",
+   "bytes": 525,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_66.obj",
+   "sha256": "27a086df5059ce178303191225a85a0733c8f8dab96dcdfcffa0788ce1476ceb",
+   "bytes": 538,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_67.obj",
+   "sha256": "c5ad2ed49e0b87a4e723608fd30151d0edf9806da30e671fb10c545b795d9b95",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_68.obj",
+   "sha256": "eecb5543184864e2b36182fb71bcef695ee15e67971eaeb1d9fb20bb94439059",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_69.obj",
+   "sha256": "0a6b6405d1b5d4feefa9897ad989d6612926ccba78c954d96736201dc98bee59",
+   "bytes": 433,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_70.obj",
+   "sha256": "695a34e729a151df76213c1662ba6e982e513e8314da4ce730c7285a06e51514",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_71.obj",
+   "sha256": "eb84fc919816bde6dd0cc00f9b12c6a426a19dfdbdddf668af139ef531899bd6",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_72.obj",
+   "sha256": "38e1ae67e55dce0fd239f4f667392dbd0337ae977fca7249d7ba3b4b015f5c72",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_73.obj",
+   "sha256": "27b59e979073cecd7e532b2084949fae89e632385c38f048cb6e0e7b1319bfd4",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_74.obj",
+   "sha256": "81ad1d5eee8b14480f012df3e385df0f5350f85f9829b35954b4e2d50b75a0dc",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_75.obj",
+   "sha256": "644d56be9d1bad9bd2a46e37f22c9ff9e3c38283bc5916f5f82264bf9d7a807f",
+   "bytes": 417,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/piece_76.obj",
+   "sha256": "8cead483df3e138c59a30cfe3e1749fb41ebf067e709e3fff55c54bdd3889da3",
+   "bytes": 425,
+   "how": "python"
+  },
+  {
+   "path": "sim/public/ep24-fi4o/r0/wooden_piece_2/wooden_piece_2.glb",
+   "sha256": "60b5fc1f58e548aa1bfeb3ba7bdd9f07d8443ea2db2464c2ada1ec8e079ab198",
+   "bytes": 71892,
+   "how": "python"
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+5c5327703fce2af152d3255a64b010c4ae447231f7ec11161c8d0f6284713aa2  <scratch>/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep23/wooden_piece_1/shell_t5p36.glb
+673159e199ee3246ba44ae20f5735dfe78cd64e143f0f18a28ad7a7ada814fc4  <scratch>/gmg/runs-dev/20261031-i2probe-626ce13/cand/public/ep23/wooden_piece_2/shell_t5p36.glb

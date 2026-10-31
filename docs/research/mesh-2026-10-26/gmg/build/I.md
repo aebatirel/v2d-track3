@@ -792,3 +792,38 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   P58 (<= 16 prisms) fails; P5 shapes 134 <= 165. Physics (P2-P7, 16 copies) running since 18:50.
 - 19:00 [M] T-I1 F-I4.15 suite so far: w1 (t = 10, 13, 18; 25 out of scope) ok; **w1 t = 6 width now passes** (the
   F-I4.13 known miss; t from all points); w2, w3 ok; w4 running.
+- 19:22 [M] **T-I11 ep24 tag fi4o done (2612.7 s; physics 1938 s; code that ran = 19c4309: launch_code in report.json
+  has the 19c4309 sha256 of platebody / interlock / simphys / driver; the r0 manifest's code block was taken at write
+  time, 19:21, after another agent's 3-line interlock.py crash guard cbed3cb (19:05), which this process had not
+  loaded)**. Results `build/I/results/slot2-ep24/fi4o/` (decisions, report, summary_fi415.json, physics, PNGs, r0).
+  - Decisions: **both CARVE (T1, simulator copy only)**; F-I3 decision PUSH / PUSH. Board 1 plate step 2, t 6.212 mm
+    (downsample) -> **7.401 mm all points**; board 2 one face, t := 7.401 mm (`plate_t_partner_prior`).
+  - Body (polygon): board 1 rectangle frame 234.5 x 142.3 (fill 0.895), polygon 92 -> 86 vertices (41 reflex),
+    297.96 cm2, 220.5 cm3; widths waist 130 / ends 137 mm (end - waist 7.0); FREE share **4.08 % vs rectangle 12.92 %
+    (ratio 0.316)**. Board 2 frame 231.1 x 142.0 (fill 0.868), polygon 138 -> 126 vertices (61 reflex), 287.16 cm2,
+    212.5 cm3; waist 126 / ends 135.9 (9.9); FREE **1.89 % vs 10.33 % (0.183)**.
+  - Prisms: default 50 / 71, slotted **57 / 77** (cap 82; tiling exact, all convex, <= 10 vertices per prism).
+  - Slot: w 9.40 mm (= 7.40 + 2) both; c_L 3.97 mm (board 1; component centroid -0.43, shift 4.4) / 1.36 mm (board 2;
+    centroid 1.50); D from the polygon edge 67.55 / 66.56 mm (from the rectangle 77.55 / 66.56: board 1's entry edge is
+    10.0 mm inside the rectangle, board 2's polygon reaches the rectangle edge at the slot mouth, shift 0.0); P99 75.9 /
+    64.56, split caps 75.55 / 66.19 (both depths priors); cross-lap D sum 134.11 vs W_x 128.23 mm, **diff 5.88 mm**
+    (<= 10); angles d-a_W 4.04 / 3.03 deg, partner normal-a_L 2.06 / 1.51 deg.
+  - Budget: 4.67 / 4.15 cm3, share 2.12 % / 1.95 %, reach 0.443 / 0.460, topology ok (one simple polygon, bottom inside,
+    prongs 7627 / 7199 and 6396 / 6658 mm2). Kept gates: sweep 1.0 / 1.0, push 19.0 / 22.0 mm.
+  - Keep-out: 0.0 cm3 per hull on both (42,680 / 25,127 keep-out points).
+  - **P2-P7 (16 copies) all pass**: P2 travel carved 0.5 / 0.5 / 0.0 / 2.0 mm (gravity / +d / +n / -n; default 60 mm
+    cap), overlap at the pose 0.017 cm3 (default 6.84); P3 carved lag **0.078 cm / 0.74 deg** (lag after max 0.347 cm,
+    no NaN), default 2.805 cm / 103.66 deg, no-collide 0.032 cm / 0.09 deg, overlap at the assembled frames 0.04 cm3;
+    P4 removed 4.54 / 4.32 cm3 vs slot 4.67 / 4.15, kept 0.98 / 0.98; P5 134 shapes <= 165; P6 0 worse frames of 84
+    (assembled median 0.04 vs default 6.79 cm3); P7 check-frame sum 3.80 vs default 146.45 cm3. Plain-MuJoCo P1
+    pre-check (does not decide) fails for carved (drift 2.27 / 2.00 cm, tilt 0.84 / 1.66 deg) and default (1.95 / 2.08
+    cm, 9.9 / 8.0 deg).
+  - **Delivered: r0 `carved_p1_pending`, p1_pending true, no DO_NOT_USE**; `_default/` holds the unslotted prisms;
+    owner_waiver block fi4_rev 15. P1 stays the Embodiment's jitter_check --k 16.
+  - Predictions: P51 holds (by construction), P52a holds, P52b holds, P53 holds (I-shape 7.0 / 9.9 mm >= 4; FREE
+    ratio 0.316 / 0.183 <= 1/3), P54 holds (7.401; not independent), **P58 fails** (57 / 77 > 16 prisms).
+  - Freeze: (a) holds; (b) fails (ep23 board 1 body over the cap, 18:44 entry) -> **F-I4.15 is NOT frozen for eval 25;
+    eval 25 is not run under it** (F-I4.15.6 step 5). Nothing tuned.
+- 19:23 T-I1 waiver-off suite launched (all classes but Waiver: Sweep Silhouette Offset Sources Partner Controls Pieces
+  Agreement Contract Iteration PiecesGate; HEAD 7402553 incl. cbed3cb; log `<scratch>/fi415/tests/test_interlock_waiveroff.log`).
+  F-I4.15 suite so far: w1, w1 t6, w2, w3, w4, w5 ok; w6 running.
