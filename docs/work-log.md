@@ -5798,3 +5798,9 @@ Background agent, CPU only, $0, no ground truth read.
   schedule tail matters little.
 - Not launched: needs the owner's go-ahead (2 boxes split by seed, ≈ $20–28 [E], ≤ $33) and the pack session's eval
   work first.
+
+### 2026-10-31 12:13 UTC — determined-wright: owner approved the recipe screen launch
+- Owner answer: "Go, after pack (Recommended)": rent 2 boxes (SEEDS=42 | SEEDS=43, commit 609582a or later), ≈ $21–27 [E],
+  ≤ $33, once focused-pascal's eval-10 / masses work is launched or it confirms no conflict. Asked focused-pascal at
+  12:15 UTC. Candidate offers 56216787 ($1.27/h, PL), 48367592 / 57986770 ($1.38/h). Ledger planned lines go in
+  before each create.
