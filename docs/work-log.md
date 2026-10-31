@@ -5671,3 +5671,13 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
 - Reading: the remaining ≈ 1.3 cm points to H-diffuse, H-spoon or mesh registration, which this screen cannot see.
   Fix ideas (cup-in-hand guard; settle cap with a depth check) are small (≤ 0.05 cm each, ≤ 0.1 cm total) and
   untested. They are not proposed for pack 10 unless a public gate passes by 1 Nov 12:00.
+- ~17:09 UTC bold-albattani C1 results (cdo-sprint/C1/README.md, commits 3e12ad1, fe3ef45; pre-registered, scored
+  once, AUC-guarded, verified):
+  - ADOPTED: beige cup T1 obs-lathe on ep11, CD-O [D] eval 10 0.856 → 0.248 and eval 8 0.730 → 0.255, AUC guard
+    +0.008 (one twin), board ≈ −0.030 [E];
+  - ADOPTED: dust pan T2 (SAM 3D pick placed in the library_v3 frame), 0.331 → 0.260, guard +0.012, ≈ −0.004 [E];
+  - not adopted: generate-then-fit (fails the AUC guard), generated pitcher and beige picks (15–28 mm pose offsets).
+  - [E] board CD-O: 9a 0.367 → with C1 0.333 → plus blue cup 0.300.
+  - Correction from that session: eval 10 is packed with library_v3; only eval 8 uses v3x.
+  Default: C1 objects go into the scan-free C0b/E0b rebuild for pack 10. Optional "9a+" (9a + T1 + T2, flagged) asked
+  to be staged by focused-pascal; the owner chooses "upload 9a" or "upload 9a+" in that chat.
