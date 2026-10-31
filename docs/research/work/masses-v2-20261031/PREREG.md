@@ -40,8 +40,11 @@ a verify failure makes the run INVALID.
    - (a) it trained the current training recipe: glock_public.sh, 70,004,736 steps, FDR + VOC, kp 400, seed 42, with the
      checkpoint chosen on the mean sim_vs_ref of 3 evaluations (CURVE_REP 3);
    - (b) its code is at or after 2c1e4dd (24 Oct, the frozen recipe's validation);
-   - (c) it simulated library_v3 meshes, with the support-fill copies at the current default (SF_ARC=1) and no carve
-     pieces or other libraries;
+   - (c) it simulated library_v3 meshes, with no carve pieces, no other library, and no support-fill setting that a
+     later pre-registered test superseded (twin21base's SF_ARC=0 was the losing arm of the arc-foot test of 25 Oct).
+     References built before the arc-foot fallback existed (ev3, ev30rp, twin11v3) qualify as they are. Whether today's
+     support fill would add a foot to their unstable starts (ep11's beige cup, ep24's board 2 at f62, ep31's sweeper) is
+     not known. Each stored file is used unchanged, by both arms;
    - (d) the objects were at 0.3 kg;
    - (e) at least 5 official rollouts were scored as registered ADD-AUC vs mocap;
    - (f) its finished reference is in the store in the layout mass_check.sh reuses: base processed parquet and stage,
@@ -99,7 +102,8 @@ trains on the file that produced the baseline. No reference is built on a box.
     stored frozen reference, and ep2 rebuilt with the frozen recipe.
 - **Admitting pre-frozen runs (dropping step 2b) would add ep26 (0.3827) at rank 2 and push ep31 out.** It is not
   admitted, because ep26's number is not the current recipe's:
-  - its checkpoint was chosen on one noisy evaluation (on 23 Oct, E2's ep21 single-evaluation pick read 0.831 and averaged 0.27);
+  - its checkpoint was chosen on one noisy evaluation (on 23 Oct, E2's ep21 single-evaluation pick read 0.831 and
+    averaged 0.27 over 5);
   - it came from older code;
   - it used a re-plan of a pot ejected at the start, which the current recipe does not run.
 

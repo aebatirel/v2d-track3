@@ -3,7 +3,8 @@
 # tools/mass_verdict.py (--rule v2) must leave the FIRST check's job unchanged. Runs the first check's CPU mock
 # (docs/research/work/masses-transfer-20261031/cpu/mock: setup.sh, stub.py, run_mock.sh, check.py; unchanged) twice on its
 # JOBS.txt string 'bash ops/jobs/mass_check.sh' (RUN_ID 20261031-mass-mocksha): OLD = mass_check.sh + mass_verdict.py of
-# git BASE (default HEAD = 2ed46ea's versions, the ones the first check ran), NEW = the working tree. Compares the job log
+# git BASE (default 2ed46ea: the commit the first check ran; NOT HEAD, which may already hold the new files as a WIP
+# commit), NEW = the working tree. The run aborts if OLD and NEW scripts are byte-identical (nothing would be compared). Compares the job log
 # (timestamps and mock paths normalised), what was trained / evaluated / built (audit logs), every file written under
 # results/ runs/ refs/, the store traffic, and summary.json / verify.json / verdict.txt byte for byte (mock paths
 # normalised). Both versions run at the SAME mock path, one after the other (the mock re-points parquet asset paths to
@@ -15,10 +16,11 @@ for ver in old new; do
   MR=$W/mock; bash $V1/setup.sh $MR > /dev/null
   if [ $ver = old ]; then
     for f in ops/jobs/mass_check.sh tools/mass_verdict.py; do
-      /usr/bin/git -C $R show ${BASE:-HEAD}:$f | sed "s#/content#$MR/content#g" > $MR/content/v2d-track3/$f
+      /usr/bin/git -C $R show ${BASE:-2ed46ea}:$f | sed "s#/content#$MR/content#g" > $MR/content/v2d-track3/$f
     done
   fi
   md5sum $MR/content/v2d-track3/ops/jobs/mass_check.sh $MR/content/v2d-track3/tools/mass_verdict.py | sed "s#$MR#MR#g" > $W/$ver.scripts
+  [ $ver = new ] && cmp -s $W/old.scripts $W/new.scripts && { echo 'ABORT: old and new scripts are identical'; exit 1; }
   bash $V1/run_mock.sh $MR 'bash ops/jobs/mass_check.sh'; echo "$ver rc $(cat $MR/rc.txt)"
   /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/map/scoring/venv/bin/python -I $V1/check.py $MR $W/$ver.check.json 2>&1 | tail -1 || true
   norm() { sed -e "s#$MR#MR#g" -e 's/^\[[0-9T:Z-]*\] //' -e 's/"t": [0-9.e+]*/"t": T/' -e 's/pulled_[0-9]*/pulled_T/g' -e 's/prev_[0-9]*/prev_T/g' "$@"; }
