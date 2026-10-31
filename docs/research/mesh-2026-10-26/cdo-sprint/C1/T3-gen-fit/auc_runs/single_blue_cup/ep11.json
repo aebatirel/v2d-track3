@@ -1,0 +1,42 @@
+{
+ "episode": 11,
+ "objects": [
+  "blue_cup",
+  "beige_cup"
+ ],
+ "frames": 137,
+ "meshes": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t3/auc/single_blue_cup",
+ "registration": {
+  "blue_cup": {
+   "rot_deg": 75.23,
+   "anchor_shift_cm": 0.15,
+   "axis": [
+    -0.026,
+    0.004,
+    1.0
+   ],
+   "order": 360
+  },
+  "beige_cup": {
+   "rot_deg": 145.26,
+   "anchor_shift_cm": 0.59,
+   "axis": [
+    0.011,
+    0.03,
+    0.999
+   ],
+   "order": 360
+  }
+ },
+ "perception": {
+  "AUC": 0.9021,
+  "SP_SR": 1.0,
+  "MP_SR": 1.0,
+  "MPPE_cm": 1.4763,
+  "RPE_cm": 2.1788,
+  "per_obj_AUC": {
+   "blue_cup": 0.859,
+   "beige_cup": 0.9453
+  }
+ }
+}
