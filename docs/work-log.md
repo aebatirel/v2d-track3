@@ -5727,3 +5727,11 @@ Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; f
   - The final list and cost go to the owner tomorrow morning for one go-ahead, after tonight's verdicts.
   - Its estimate: eval 10 to ~0.9 ≈ +0.022; 32/33/14/16/30/25 at +0.05 each ≈ +0.015; plausible pack-10 target
     ≈ 0.85–0.86 [E].
+- ~18:29 UTC bold-albattani on the pack-10 collision assets:
+  - spoon-into-cup diagnostic running tonight; library_v3's blue cup has its lower ~37 % filled [D], consistent with
+    "the spoon stays beside the rim";
+  - fix = cavity-preserving cup pieces from the collision-carve workflow (owner waiver "if 2 mesh collide we can carve
+    it"), accepted by a physics check on the eval episode (no public twin);
+  - rack seats validated first on ep12/13/31, then evals 14, 16, 30;
+  - board slot round 2 running (I-shaped boards), at risk for 12:00.
+  Which items make 12:00 is reported by 1 Nov ~09:00 UTC. Deliveries are logged in gmg/build/I/collcarve_deliveries.md.
