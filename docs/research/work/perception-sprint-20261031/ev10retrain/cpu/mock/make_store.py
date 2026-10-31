@@ -31,4 +31,5 @@ for r in range(1, 11):
     tab = pa.Table.from_pandas(pd.DataFrame(rows), preserve_index=False)
     pq.write_table(tab.replace_schema_metadata({b'flash_chord.checkpoint_sha256': sha.encode(), b'mock': b'1'}), f'{d}/episode_000010.parquet')
     json.dump(dict(mock=1, checkpoint_sha256=sha), open(f'{d}/episode_000010.json', 'w'))
+json.dump({'10': dict(n=10, mock=True)}, open(f'{ST}/runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json', 'w'))   # pushed last by h5_reeval.sh
 print('fake store at', ST, 'with', len(files), 'input files and 10 mock H5p7 rollouts')

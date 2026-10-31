@@ -133,8 +133,19 @@ hands-off frames f122–160, and V − P blue-cup height). The mock's stage-(a) 
 window / hands-off) and 0.33 / 1.23 cm (beige) from P, blue −0.68 cm lower over the window [M on the mock stand-in only;
 the real V adds contact retargeting and grasp lock].
 
-## 9. Results of the mock suite
-(see `cpu/out/mock_checks.txt`; summarised in the session's report)
+## 9. Defects and findings from the mock (fixed before the final mock run; nothing launched)
+1. **Re-run pulls of guessed paths** (first re-run mock, 18:27 UTC): the re-run pulled every possible best/ and
+   confirmation file by name; an absent one costs `store.sh pull-files` 5 tries with 60–240 s waits (~10 min per file),
+   so the re-run box sat in retries (the run was stopped; its log lines went to the job log, so the stall watchdog would
+   not have caught it). Fixed: `finish()` writes `rerun_results.txt` (the result files that exist) and a re-run pulls only
+   `rerun_files.txt` + `rerun_results.txt` entries.
+2. **The same cost for the optional H5p7 pulls** if the comparison set has not finished: now gated on its
+   `h5_summary.json` (h5_reeval.sh writes it last) with `PULL_RETRY_S=5` (~1 min per absent file). Mock `nopacked`
+   (the H5p7 run hidden) checks this path and the CPU completion after the box (`cpu/mock/cpu_after.sh`).
+3. **Equal floor** (mock `floor`): a new policy that fails every draw like the packed one read SWAP-ELIGIBLE under the
+   agreed rule ((b) ties at 1.0, (a) / (c) within noise on both references). The rule is unchanged; the verdict now
+   reports an EQUAL FLOOR note (PREREG section 10). Verdict fixture `equal_floor_passes` documents it (21/21).
+4. Test-side only: two verdict fixtures mutated the wrong draws at first (fixed; the tool was right).
 
 ## 10. Changes
 | file | change |

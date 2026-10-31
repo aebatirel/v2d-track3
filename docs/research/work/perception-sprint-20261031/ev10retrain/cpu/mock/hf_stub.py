@@ -5,7 +5,8 @@ MR/hf.log:
                                 (1,030,400,128 B, 161 x 1000 x 1600) whose frame 0 is the store's real frame 0 (range read)
   download with --include or several files -> kind 'LISTING' (the real CLI lists the whole store): refused
   upload LOCAL PATH          -> kind 'upload'; LOCAL is copied into the fake store at PATH (so a re-run box can pull it)
-Fault injection: MOCK_BADPOSES=1 serves a corrupted eval-10 stored track (md5 mismatch)."""
+Fault injection: MOCK_BADPOSES=1 serves a corrupted eval-10 stored track (md5 mismatch); MOCK_HIDE (regex) answers 404
+(e.g. 'h5p7': the pack-10 comparison set not finished yet)."""
 import json, os, shutil, sys
 MR, ST, F0 = os.environ['MOCK_MR'], os.environ['MOCK_STORE'], os.environ['MOCK_DEPTH_F0']
 a = sys.argv[1:]
@@ -45,6 +46,8 @@ if f == 'cache/depth/eval/ep10/depths_fs0.5.npy':
     with open(dst, 'wb') as g:
         Fm.write_array_header_1_0(g, dict(descr='<f4', fortran_order=False, shape=(161, 1000, 1600)))
         g.write(d0.astype('<f4').tobytes()); g.truncate(1030400128)
+elif os.environ.get('MOCK_HIDE') and __import__('re').search(os.environ['MOCK_HIDE'], f):
+    logit(kind='file', path=f, result='404 (hidden by MOCK_HIDE)'); sys.exit(f'hf stub: {f} hidden (404)')
 elif os.path.isfile(f'{ST}/{f}'):
     shutil.copyfile(f'{ST}/{f}', dst)
     if os.environ.get('MOCK_BADPOSES') and f == 'runs/20261026-pack6-5203d42/perc2/ep10/poses.npz':

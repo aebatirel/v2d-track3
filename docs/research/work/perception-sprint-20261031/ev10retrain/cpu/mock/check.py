@@ -23,8 +23,8 @@ def jl(f):
 rc = open(f'{MR}/rc.txt').read().strip()
 hf = jl(f'{MR}/hf.log'); dl = [x for x in hf if x['kind'] == 'file']; up = [x for x in hf if x['kind'] == 'upload']
 ok('no store listing (single-file downloads only)', not [x for x in hf if x['kind'] == 'LISTING'], len(dl))
-bad_dl = [x['path'] for x in dl if x.get('result') != 'ok' and not (RERUN and '/conf/r' in x['path'])]
-ok('every download succeeded (re-run: absent confirmation draws are optional)', not bad_dl, bad_dl[:4])
+bad_dl = [x['path'] for x in dl if x.get('result') != 'ok' and 'MOCK_HIDE' not in x.get('result', '')]
+ok('every download succeeded (files hidden by MOCK_HIDE excepted)', not bad_dl, bad_dl[:4])
 ok('exactly one store upload (the final push)', len(up) == 1, up)
 ok('hands_mp / hand_refine / perc2 / score_registered never ran', not os.path.exists(f'{MR}/UNEXPECTED.log'), jl(f'{MR}/UNEXPECTED.log')[:2])
 ok('nothing written under the packed names refs/glockt/ep10, refs/perc2mck/ep10, results/glock_public/ep10',

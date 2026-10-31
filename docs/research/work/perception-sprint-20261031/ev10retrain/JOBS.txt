@@ -52,8 +52,8 @@ What it runs on the box (in order; PREREG section 3):
   - the packed policy's H5p7 eval-10 draws: runs/20261031-h5p7-1a7cdff/results/h5/r1..r10/ep10/episode_000010.{parquet,json}
     (20 single-file pulls; a missing one is logged, the packed side is then completed on CPU);
   - tools/e10v_score.py (sets conf, old, packed, train42, train43; vs V and P) -> score.json; tools/e10v_verify.py verify ->
-    verify.json; tools/e10v_verdict.py -> summary.json; RESULT line in job.log (label first, eval rc right after);
-    ckpt_meta.txt; ONE store push at the end (plus the platform's 30-min interim pushes and its final self-destroy push).
+    verify.json; tools/e10v_verdict.py -> summary.json; RESULT line in job.log (label first, an EQUAL FLOOR note if both
+    policies fail >= 90 % of draws, eval rc right after); rerun_results.txt; ckpt_meta.txt; ONE store push at the end (plus the platform's 30-min interim pushes and its final self-destroy push).
 
 EXPECTED COST [estimates]. Basis [M], from the runs' job logs:
   - gl10A2 (eval 10, same recipe, one training alone, 26 Oct): setup 8 min, reference stages 4.5 min, 70M training
@@ -86,7 +86,8 @@ INCOMPLETE re-run (PREREG section 6; on THIS run's stored reference; SAME commit
   ops/vast.sh V2D_COMMIT=$SHA ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e10v-${S7}r 'RERUN_FROM=<first run id> SEEDS_TODO="43" bash ops/jobs/ev10_v4p.sh'
   (SEEDS_TODO = the seeds choice.json lists under incomplete_seeds; empty = only top up the confirmation draws. The box
    pulls rerun_files.txt and the files it lists (the V4p base reference and V, the track, b0/build/arms/identity json,
-   P, the packed checkpoint, the old draw), each finished seed's best/ and the earlier confirmation draws, one download
+   P, the packed checkpoint, the old draw) and the files rerun_results.txt lists (each finished seed's best/ and the
+   earlier confirmation draws: only files the first run pushed, so no pull waits on store.sh's retries), one download
    each; re-makes the seed copies (they must equal the first manifest), trains SEEDS_TODO, re-applies rule 2, adds
    confirmation draws of the chosen checkpoint until 10 are scored (draws of another checkpoint go to conf_prev/), then
    score / verify / verdict.)

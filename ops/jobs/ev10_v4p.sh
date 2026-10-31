@@ -28,8 +28,8 @@
 # input (before training and before the confirmation). Run ids carry -e10v- (refused otherwise).
 # INCOMPLETE re-run (PREREG section 6; on THIS run's stored reference, same commit):
 #   RERUN_FROM=<run id> SEEDS_TODO="43" bash ops/jobs/ev10_v4p.sh   (SEEDS_TODO may be empty: confirmation top-up only)
-#   pulls rerun_files.txt of that run (reference, track, manifests, each finished seed's best/ results and the earlier
-#   confirmation draws), trains SEEDS_TODO, re-applies rule 2, adds confirmation draws of the chosen checkpoint until 10
+#   pulls rerun_files.txt of that run (reference, track, manifests) and the files its rerun_results.txt lists (each finished
+#   seed's best/ results, the earlier confirmation draws; only files that exist), trains SEEDS_TODO, re-applies rule 2, adds confirmation draws of the chosen checkpoint until 10
 #   are scored (draws of another checkpoint are set aside under conf_prev/), then score / verify / verdict.
 #   ops/vast.sh V2D_COMMIT=<sha> ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create <offer> <date>-e10v-<sha7> 'bash ops/jobs/ev10_v4p.sh'
 . /content/v2d-track3/ops/box/lib.sh
@@ -114,12 +114,16 @@ confirm() {  # draws of the chosen checkpoint on the pristine evaluator until NC
 finish() {  # score, verify, verdict, push
   local sets
   label "ev10 v4p: scoring, verify, verdict"
-  if [ -n "$H5P7_RUN" ]; then                                       # the packed policy's fresh draws (else CPU after)
+  # the packed policy's fresh draws (else scored on CPU after): only once that run has finished (its h5_summary.json is
+  # pushed last), and with short retries, so an absent file costs ~1 min, not store.sh's default ~10 min per file
+  if [ -n "$H5P7_RUN" ] && PULL_RETRY_S=5 bash $OPS/store.sh pull-files runs/$H5P7_RUN/results/h5/h5_summary.json >> $J 2>&1; then
     for i in $(seq 1 10); do for x in parquet json; do
       f=runs/$H5P7_RUN/results/h5/r$i/ep10/episode_000010.$x
-      bash $OPS/store.sh pull-files $f >> $J 2>&1 && mkdir -p $G/packed_h5/r$i/ep10 && cp $HS/$f $G/packed_h5/r$i/ep10/ \
-        || log "ev10_v4p: $f not pulled (the packed side is then scored on CPU after)" >> $J
+      PULL_RETRY_S=5 bash $OPS/store.sh pull-files $f >> $J 2>&1 && mkdir -p $G/packed_h5/r$i/ep10 && cp $HS/$f $G/packed_h5/r$i/ep10/ \
+        || log "ev10_v4p: $f not pulled (the packed side is then completed on CPU after)" >> $J
     done; done
+  else
+    log "ev10_v4p: ${H5P7_RUN:-H5P7_RUN} has no h5_summary.json in the store (not finished?): the packed side is scored on CPU after" >> $J
   fi
   V=$(ls /content/refs/${PRE}_glockt/ep$EP/processed/*/*/ref_gl_ilc.parquet 2> /dev/null | head -1)
   sets="--set conf:V:$G/conf/r*/ep$EP/episode_0000$EP.parquet --set old:P:$G/old/r1/episode_0000$EP.parquet --set packed:P:$G/packed_h5/r*/ep10/episode_000010.parquet"
@@ -132,6 +136,9 @@ finish() {  # score, verify, verdict, push
   log "ev10_v4p verify: $(cut -c1-1500 $G/verify.txt)" >> $J
   python $T/e10v_verdict.py --score $G/score.json --verify $G/verify.json --choice $G/choice.json --out $G/summary.json > $G/verdict.txt 2>&1
   log "ev10_v4p RESULT: $(cut -c1-2500 $G/verdict.txt)" >> $J
+  ( cd /content && find results/${PRE}s*_glock_public/ep$EP/best -maxdepth 2 -type f \( -name summary.json -o -name policy.safetensors \
+      -o -name qa_policy.json -o -name "episode_0000$EP.*" \) 2> /dev/null; find results/ev10_v4p/conf -mindepth 2 -maxdepth 3 -type f \
+      \( -name qa_policy.json -o -name "episode_0000$EP.*" -o -name eval_rc.txt \) 2> /dev/null ) | sort > $G/rerun_results.txt   # what a re-run pulls
   for c in /content/results/${PRE}s*_glock_public/ep$EP/best/policy.safetensors; do   # stored config of each chosen checkpoint
     [ -f $c ] && /content/v2d/robotic_grounding/flash_chord/.venv/bin/python $T/ckpt_meta.py $c
   done > $G/ckpt_meta.txt 2>&1
@@ -150,16 +157,16 @@ if [ -n "${RERUN_FROM:-}" ]; then   # ----- INCOMPLETE re-run on RERUN_FROM's st
   label "ev10 v4p re-run: pulling $RERUN_FROM"
   bash $OPS/store.sh pull-files runs/$RERUN_FROM/results/ev10_v4p/rerun_files.txt >> $J 2>&1 || stop "rerun_files.txt of $RERUN_FROM missing"
   mapfile -t RF < $HS/runs/$RERUN_FROM/results/ev10_v4p/rerun_files.txt
-  for s in $SEEDS; do                                               # finished seeds keep their best/ (not re-trained)
-    case " ${SEEDS_TODO:-} " in *" $s "*) continue ;; esac
-    RF+=(results/${PRE}s${s}_glock_public/ep$EP/best/summary.json results/${PRE}s${s}_glock_public/ep$EP/best/policy.safetensors)
-    for i in $(seq 1 $NREP); do for x in qa_policy.json episode_0000$EP.json episode_0000$EP.parquet; do
-      RF+=(results/${PRE}s${s}_glock_public/ep$EP/best/r$i/$x); done; done
-  done
-  for i in $(seq 1 $((NCONF + 3))); do for x in qa_policy.json episode_0000$EP.json episode_0000$EP.parquet; do
-    RF+=(results/ev10_v4p/conf/r$i/ep$EP/$x); done; RF+=(results/ev10_v4p/conf/r$i/eval_rc.txt); done
+  # the result files that run pushed (finish(): finished seeds' best/, confirmation draws), listed there: only files that
+  # exist are pulled (a guessed absent path costs store.sh's 5 retries, ~10 min each: CPU mock, 31 Oct)
+  bash $OPS/store.sh pull-files runs/$RERUN_FROM/results/ev10_v4p/rerun_results.txt >> $J 2>&1 \
+    && while read -r f; do
+         s_=$(echo $f | sed -n "s#^results/${PRE}s\([0-9]*\)_glock_public/.*#\1#p")
+         [ -n "$s_" ] && case " ${SEEDS_TODO:-} " in *" $s_ "*) continue ;; esac   # a seed to retrain starts clean
+         RF+=("$f")
+       done < $HS/runs/$RERUN_FROM/results/ev10_v4p/rerun_results.txt
   for f in "${RF[@]}"; do
-    bash $OPS/store.sh pull-files runs/$RERUN_FROM/$f >> $J 2>&1 || continue
+    bash $OPS/store.sh pull-files runs/$RERUN_FROM/$f >> $J 2>&1 || { log "ev10_v4p: re-run pull of $f failed" >> $J; continue; }
     mkdir -p /content/$(dirname $f) && cp -n $HS/runs/$RERUN_FROM/$f /content/$f
   done
   python $T/e10v_verify.py arms --content /content --seeds "$SEEDS" --out $G/arms_rerun.json --expect_manifest $G/arms.json > $G/arms_rerun.txt 2>&1 \
