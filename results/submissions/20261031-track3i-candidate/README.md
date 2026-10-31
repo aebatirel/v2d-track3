@@ -1,5 +1,11 @@
 # Track 3 pack-9a candidate, 31 Oct 2026: pack 8 with the mesh session's C0 pot, lid and rack
 
+**ON HOLD (31 Oct ~16:35 UTC): integrity flag from the mesh session.** The C0 pot, lid and rack contain marker balls whose
+radius (MK_R0 = 7 mm fallback; free-fit window 5–9.5 mm) traces to the PUBLIC SCANS (prim_potlid.py:67 "SCAN-DERIVED"; the
+29 Oct stage-1b audit called these passes provisional until rebuilt with a generic ball rule, which never happened).
+Owner decision needed: (a) ship as built with this flag disclosed, or (b) hold the three meshes (pack 8 alone tonight;
+GT-free rebuilds for pack 10). Default if no owner answer by 20:00 UTC: (b) pack 8 alone.
+
 **NOT UPLOADED YET.** Owner: "I want a pack today" (31 Oct ~15:40 UTC, via the score-status session); planned upload
 ~20:00–20:30 UTC to all six boards unless the owner stops it. Fallback: pot + rack only (`build_2obj/`), or pack 8.
 
