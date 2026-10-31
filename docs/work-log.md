@@ -5402,7 +5402,7 @@ arm and a no-policy replay floor to stage B.
   7th; SP-SR 0.90 ties 6th.
 - Vast: 2 boxes running (recipe screen 58531195 / 58532423, $2.76/h); credit $118.64.
 
-### 2026-10-31 ~15:15 UTC — owner on the spoon lever; spoon dropped from the big-lever list
+### 2026-10-31 ~15:05 UTC — owner on the spoon lever; spoon dropped from the big-lever list
 - Owner: a better spoon needs better perception; in the videos the spoon looks right, and the overlay is all we have.
 - Agreed reading: no GT-free check exists. Overlay: the costly error, frame-0 roll about the handle in the
   spoon-anchored evals 32/33/35/36/37, barely changes a thin spoon's outline. Depth: the depth audit failed (AUROC 0.600).
@@ -5411,7 +5411,7 @@ arm and a no-policy replay floor to stage B.
   (2–6° random roll) puts it at ≈ 0.03–0.15 per anchored episode, ≈ 0.01–0.04 on the board [E].
 - The lever list for the freeze is now: eval 10, meshes (CD-O and anchor registration). The rest is re-run insurance.
 
-### 2026-10-31 ~15:30 UTC — owner: "get me into that top tier"; this session coordinates the push
+### 2026-10-31 ~15:10 UTC — owner: "get me into that top tier"; this session coordinates the push
 - Owner, verbatim: "Look other people achieved it, I dont care if you are using domain randomization physics based
   learning or just a better perception model get me into that top tier, Im giving you everything you need if others
   done it so can you!"
@@ -5422,10 +5422,10 @@ arm and a no-policy replay floor to stage B.
   20-policy retrain if it passes (≈ $50–80 [E]); total push ≈ $150–200 [E]. Asked the owner for a ceiling (suggested
   ≤ $250 more) and for this session to coordinate. No answer yet.
 - Sent to focused-pascal (session_01LhbGHrt6epRs52jSRX48AU): the owner's statement as the go-ahead for the ep11 gate.
-  Its reply (15:25): gate launch ≈ 16–17 UTC (≈ $4–6, 6–7 h); eval-10 V4p retrain prepared and launched in parallel
+  Its reply (queued 15:16 UTC): gate launch ≈ 16–17 UTC (≈ $4–6, 6–7 h); eval-10 V4p retrain prepared and launched in parallel
   (≈ $3–5 at risk if the gate fails), with a GT-free guard scoring against both references; masses v2 after the gate.
-- Sent to bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ): the CD-O board data and a 2 Nov 18:00 UTC ask. Its reply
-  (15:25):
+- Sent to bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ): the CD-O board data and a 2 Nov 18:00 UTC ask. Its reply (queued
+  15:20 UTC):
   - board model: 36 eval pairs, spoon 10/36; library_v3 0.491 on non-spoon pairs + spoon ~0.18 reproduces 0.402;
   - C0 (≈ 1 Nov 12:00, $0): pot, lid, rack and blue-cup meshes already built and scored, CD-O ≈ 0.335 [E] (≈ 14th);
     each passes a public-twin AUC check before hand-off;
@@ -5434,7 +5434,7 @@ arm and a no-policy replay floor to stage B.
   - Owner decision needed: provenance. The C0 meshes come from library_v3-anchored tracks (same tier as library_v3).
     The lid's 2.5 mm wall equals a value that once leaked from the scans; the clean-up passed at 1.5, 2.5 and 4.0 mm.
 
-### 2026-10-31 ~15:55 UTC — top-teams search result; organiser PR #215; tracker bet withdrawn
+### 2026-10-31 ~15:20 UTC — top-teams search result; organiser PR #215; tracker bet withdrawn
 - Search (background agent, read only; notes in this session's scratchpad): no top Track 3 team has published a method.
   Kaggle forums and code tabs of all V2D competitions are empty; profiles are blank. richchentw's first scored upload
   (22 Oct) was already AUC 0.903 / RPE 1.50. RPE/MPPE ratio: top six 0.88–1.03, ours 1.35.
@@ -5451,3 +5451,17 @@ arm and a no-policy replay floor to stage B.
   jitter) with 1–3 GT-free fix candidates, by ≈ 1 Nov 06:00 UTC.
 - PR #215 raises the value of stable checkpoints (H5: packed 0.9164 vs 10-draw mean 0.8755) and of keeping the exact
   checkpoints of whichever pack is counted.
+
+### 2026-10-31 ~15:30 UTC — owner: "do all the improvements ... prepare a pack"; two-pack schedule sent to the lanes
+- Owner, verbatim: "Lets do all the improvements that we planned and lets prepare a pack so that we see where we stand,
+  like better perception better mesh better physics. Where are we on that when will that be available"
+- Read as: go for every planned improvement, including the C0 mesh provenance question (owner told; objection forwarded
+  if any). Uploads still need the owner's explicit OK at the time.
+- Schedule proposed to the lanes (each asked to confirm ETAs):
+  - Pack 9 (interim), build ≈ 1 Nov 14:00–18:00 UTC: pack 8 + eval-10 V4p (if the gate passes) + C0 meshes (if the
+    public-twin AUC check passes). focused-pascal builds.
+  - Pack 10 (combined): one eval retrain from ≈ 1 Nov 18:00 UTC with whatever has passed its public gate (masses v2,
+    recipe K/D, GT-free reference fixes, eval-10 V4p, C1 meshes); per-episode GT-free choice vs the packed policy;
+    pack ≈ 2 Nov evening; 3–4 Nov for a fallback.
+  - Cut-off for reference fixes: public gate passed and eval references built by ≈ 1 Nov 14:00 UTC.
+- Messages: focused-pascal, determined-wright, bold-albattani, Roman-meeting session (decomposition addendum).
