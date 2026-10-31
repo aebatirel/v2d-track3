@@ -74,6 +74,29 @@ class VoteTests(unittest.TestCase):
         self.assertEqual(len(hl0), 0)
 
 
+class VotePointsTests(unittest.TestCase):
+    def test_same_as_lattice_vote(self):
+        # a tilted wall and a random object pose: vote_points on lattice centres == the dense lattice vote
+        K = np.array([[600.0, 0, 800], [0, 600.0, 500], [0, 0, 1]])
+        vv, uu = np.mgrid[0:1000, 0:1600]
+        D = (0.45 + 0.0002 * uu + 0.0001 * vv).astype(np.float32)
+        lab = (np.random.default_rng(0).random(D.shape) > 0.3).astype(np.int8)
+        from scipy.spatial.transform import Rotation as Rot
+        T = np.eye(4)
+        T[:3, :3] = Rot.from_euler('xyz', [10, 20, 30], degrees=True).as_matrix()
+        T[:3, 3] = [0.02, -0.01, 0.6]
+        c = dict(C, cube=0.06)
+        axes, n = EJ._cube_axes(c)
+        fl, (hl,) = EJ.vote(D, lab, T, axes, K, c)
+        u = np.arange(n ** 3)
+        ijk = np.stack(np.unravel_index(u, (n, n, n)), 1)
+        X = (-c['cube'] + (ijk + 0.5) * c['vox']).astype(np.float32)
+        fi, hi = EJ.vote_points(D, lab, T, X, K, c)
+        self.assertEqual(sorted(fl.tolist()), sorted(fi.tolist()))
+        self.assertEqual(sorted(hl.tolist()), sorted(hi.tolist()))
+        self.assertGreater(len(hl), 0)
+
+
 class ComponentTests(unittest.TestCase):
     def test_8mm(self):
         n = 150

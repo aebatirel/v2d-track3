@@ -11,8 +11,12 @@ guarded in-process, so the strace audit of the production run covers its opens. 
 folder (role own) and are registered with guard.register_output, so the run's provenance ledger lists them.
 
 The venv: env GMG_MP_PYTHON, default <DATA>/mpvenv/bin/python (created with
-  uv venv --python /usr/bin/python3.12 <DATA>/mpvenv
-  uv pip install --python <DATA>/mpvenv/bin/python mediapipe==0.10.14 opencv-python-headless numpy scipy).
+  UV_LINK_MODE=copy uv venv --python /usr/bin/python3.12 <DATA>/mpvenv
+  UV_LINK_MODE=copy uv pip install --python <DATA>/mpvenv/bin/python mediapipe==0.10.14 opencv-python-headless numpy
+  scipy; uv pip uninstall sounddevice; MPLCONFIGDIR=<DATA>/mpvenv/mplconfig python -c 'import mediapipe,
+  matplotlib.font_manager as f; f.fontManager'): files copied, not hard-linked (the audit refuses data files with more
+  than one link); sounddevice removed (its import probes for portaudio with ldconfig and gcc, writing to /tmp); the
+  matplotlib font cache prebuilt inside the venv (DEVIATIONS 97).
 hands_mp.py runs with its own defaults (a_offset 1, legacy API, greedy linker): the settings of the existing sweep.
 """
 from __future__ import annotations
@@ -59,8 +63,13 @@ def run_hands(split, ep, video_a, depth, calib, poses, out, log=None):
     cmd = [py, '-I', hands_mp_script(), '--ep', str(int(ep)), '--split', split, '--t3', os.path.dirname(cal),
            '--depth', dep, '--poses', pos, '--video_a', vid, '--out', out]
     t0 = time.time()
-    env = {k: v for k, v in os.environ.items() if k in ('PATH', 'HOME', 'LANG', 'LC_ALL', 'TMPDIR')}
-    env.update(OMP_NUM_THREADS=os.environ.get('OMP_NUM_THREADS', '2'), PYTHONDONTWRITEBYTECODE='1')
+    env = {k: v for k, v in os.environ.items() if k in ('PATH', 'HOME', 'LANG', 'LC_ALL')}
+    # the child's temporary files stay inside the run; matplotlib (imported by mediapipe's drawing utils) reads the
+    # font cache prebuilt in the venv (<venv>/mplconfig) instead of ~/.cache (DEVIATIONS 97)
+    tmp = os.path.join(out, 'tmp')
+    os.makedirs(tmp, exist_ok=True)
+    env.update(OMP_NUM_THREADS=os.environ.get('OMP_NUM_THREADS', '2'), PYTHONDONTWRITEBYTECODE='1', TMPDIR=tmp,
+               MPLCONFIGDIR=os.path.join(os.path.dirname(os.path.dirname(py)), 'mplconfig'))
     res = subprocess.run(cmd, capture_output=True, text=True, env=env, cwd=out)
     if log:
         with open(log, 'a') as f:
@@ -68,6 +77,10 @@ def run_hands(split, ep, video_a, depth, calib, poses, out, log=None):
             f.write(res.stderr[-20000:])
     if res.returncode != 0:
         raise RuntimeError(f'hands_mp.py ep{ep} failed ({res.returncode}): {res.stderr[-2000:]}')
+    try:
+        os.rmdir(tmp)
+    except OSError:
+        pass
     paths = []
     for name in ('hands.npz', 'hands_log.json', 'hands_overlay.jpg'):
         p = os.path.join(out, name)

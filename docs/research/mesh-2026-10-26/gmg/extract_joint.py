@@ -234,6 +234,27 @@ def vote(Dt, label, T, axes, K, c, nlab=1):
     return free_lin, hits
 
 
+def vote_points(Dt, label, T, X, K, c):
+    """vote() on an arbitrary list of voxel centres X (n,3) float32 (object frame): (free_idx, hit_idx) indices into X
+    with the same rule (hit only at a pixel whose label is set)."""
+    R = T[:3, :3].astype(np.float32)
+    t = T[:3, 3].astype(np.float32)
+    Xc = X @ R.T + t
+    H, W = Dt.shape
+    idx = np.nonzero(Xc[:, 2] > c['zmin'])[0]
+    z = Xc[idx, 2]
+    pu = np.rint(K[0, 0] * Xc[idx, 0] / z + K[0, 2]).astype(np.int32)
+    pv = np.rint(K[1, 1] * Xc[idx, 1] / z + K[1, 2]).astype(np.int32)
+    ins = (pu >= 0) & (pu < W) & (pv >= 0) & (pv < H)
+    idx, z, pu, pv = idx[ins], z[ins], pu[ins], pv[ins]
+    dv = Dt[pv, pu]
+    good = np.isfinite(dv) & (dv > c['zmin'])
+    idx, z, pu, pv, dv = idx[good], z[good], pu[good], pv[good], dv[good]
+    sdf = dv - z
+    near = np.abs(sdf) < c['hit']
+    return idx[sdf > c['free']], idx[near][label[pv[near], pu[near]] > 0]
+
+
 def _cube_axes(c):
     n = int(round(2 * c['cube'] / c['vox']))
     a = -c['cube'] + (np.arange(n) + 0.5) * c['vox']
@@ -357,27 +378,53 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
     FR = Frames(D, P, objs, K, segs, table, c)
     axes, n = _cube_axes(c)
 
-    # ---------------- pass 0: per-frame samples + persistence votes on each object's cube
+    # ---------------- pass 0: per-frame samples, then persistence votes on each object's cube. The votes are counted
+    # only at the cube voxels that hold a sample (the only voxels pass 1-3 look up); the counts there are the dense
+    # vote's. The final grids' free counts are voted in pass 4 on the final box (same rule).
     t0_ = time.time()
-    grids = [dict(hits=np.zeros(n ** 3, np.int32), free=np.zeros(n ** 3, np.int32)) for _ in objs]
     S = {}
+    okbits = {}
     tables = {}
     for t in frames:
         s = FR.samples(t)
         if s['nc'] is not None:
             tables[t] = (s['nc'].tolist(), s['cc'])
-        lab = s['okimg'].astype(np.int8)
-        for k, o in enumerate(objs):
-            fl, (hl,) = vote(s['Dt'], lab, FR.T_co[o][t], axes, K, c)
-            grids[k]['free'][fl] += 1
-            grids[k]['hits'][hl] += 1
+        okbits[t] = np.packbits(s['okimg'])
         S[t] = dict(pix=s['pix'], P=s['P'], lin=s['lin'])
-    for g in grids:
+    timing['pass0_samples_s'] = round(time.time() - t0_, 1)
+    t1_ = time.time()
+    U, XU = [], []
+    for k in range(m):
+        li = np.concatenate([S[t]['lin'][k] for t in frames]) if frames else np.zeros(0, np.int32)
+        u = np.unique(li[li >= 0]).astype(np.int64)
+        U.append(u)
+        ijk = np.stack(np.unravel_index(u, (n, n, n)), 1)
+        XU.append((-c['cube'] + (ijk + 0.5) * c['vox']).astype(np.float32))
+    hu = [np.zeros(len(u), np.int32) for u in U]
+    fu = [np.zeros(len(u), np.int32) for u in U]
+    for t in frames:
+        Dt = FR.depth(t)
+        okimg = np.unpackbits(okbits[t], count=IMG_H * IMG_W).reshape(IMG_H, IMG_W)
+        for k, o in enumerate(objs):
+            if len(U[k]):
+                fi, hi = vote_points(Dt, okimg, FR.T_co[o][t], XU[k], K, c)
+                fu[k][fi] += 1
+                hu[k][hi] += 1
+    del okbits
+    grids = []
+    for k in range(m):
+        g = dict(hits=np.zeros(n ** 3, np.int32), free=np.zeros(n ** 3, np.int32))
+        g['hits'][U[k]] = hu[k]
+        g['free'][U[k]] = fu[k]
         g['hits'] = g['hits'].reshape(n, n, n)
         g['free'] = g['free'].reshape(n, n, n)
+        grids.append(g)
+    timing['pass0_votes_s'] = round(time.time() - t1_, 1)
     timing['pass0_s'] = round(time.time() - t0_, 1)
+    timing['pass0_voxels'] = [int(len(u)) for u in U]
     n_samples = int(sum(len(S[t]['pix']) for t in frames))
-    log(f'ep{ep} pass 0: {len(frames)} frames, {n_samples} samples, {timing["pass0_s"]} s')
+    log(f'ep{ep} pass 0: {len(frames)} frames, {n_samples} samples, voxels {timing["pass0_voxels"]}, '
+        f'{timing["pass0_s"]} s')
 
     # ---------------- pass 1: provisional owners + census
     t0_ = time.time()
@@ -597,7 +644,8 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         shp = tuple(int(x) for x in np.maximum(i1 - i0, 0))
         sub[o] = dict(i0=i0, i1=i1, shape=shp, lo=-c['cube'] + i0 * c['vox'],
                       axes=tuple(-c['cube'] + (np.arange(i0[d], i1[d]) + 0.5) * c['vox'] for d in range(3)),
-                      hits=np.zeros(int(np.prod(shp)), np.int32), shared=np.zeros(int(np.prod(shp)), np.int32))
+                      hits=np.zeros(int(np.prod(shp)), np.int32), shared=np.zeros(int(np.prod(shp)), np.int32),
+                      free=np.zeros(int(np.prod(shp)), np.int32))
     for t in frames:
         Dt = FR.depth(t)
         s = S[t]
@@ -611,7 +659,8 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
             shd = (s['own3'] == SHARED) & ((s['tied3'] >> k) & 1).astype(bool)
             lab[pv[ow], pu[ow]] = 1
             lab[pv[shd], pu[shd]] = 2
-            _, (h1, h2) = vote(Dt, lab, FR.T_co[o][t], sb['axes'], K, c, nlab=2)
+            fl, (h1, h2) = vote(Dt, lab, FR.T_co[o][t], sb['axes'], K, c, nlab=2)
+            sb['free'][fl] += 1
             sb['hits'][h1] += 1
             sb['shared'][h2] += 1
     obs = {}
@@ -620,7 +669,7 @@ def extract_episode(split, ep, depth, poses, calib, hands, objects, out_dir, *, 
         shp = sb['shape']
         i0, i1 = sb['i0'], sb['i1']
         hits = np.clip(sb['hits'].reshape(shp), 0, 65535).astype(np.uint16)
-        free = np.clip(grids[k]['free'][i0[0]:i1[0], i0[1]:i1[1], i0[2]:i1[2]], 0, 65535).astype(np.uint16)
+        free = np.clip(sb['free'].reshape(shp), 0, 65535).astype(np.uint16)
         pts, cam, fr, ow = [], [], [], []
         for t in frames:
             s = S[t]

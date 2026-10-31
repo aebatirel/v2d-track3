@@ -614,3 +614,16 @@ scan number was seen; none bears on these choices.
     from the failure mode (fit radius running to the window's upper bound, host points in the fit), not from a radius
     value, and nothing snaps to a size. The stopped run's outputs are kept (`build/b7/runs/20261031-b7devb-3f7f661/`,
     ep2 only). No scan or eval number was seen.
+97. **(2026-10-31, B4) M1 environment for a clean audit** (supersedes the venv of entry 92). The first audited batch
+    (`runs/20261031-b4ext-0eb8016`, ep0 complete, ep2 and ep18 stopped) failed the strace audit with 57 forbidden
+    opens, all from the MediaPipe child, none a data input: 37 venv files with 2 hard links (uv links package files
+    from its cache; the audit refuses data files with more than one link), `/sbin/ldconfig` and gcc/ld temp files in
+    `/tmp` (sounddevice's import probes for portaudio with `ctypes.util.find_library`), and matplotlib's font cache in
+    `~/.cache`. Fix: venv rebuilt with `UV_LINK_MODE=copy` (0 files with more than one link), `sounddevice` uninstalled
+    (mediapipe's hands do not need it; import verified), the matplotlib font cache prebuilt in `<venv>/mplconfig` and
+    passed as MPLCONFIGDIR, the child's TMPDIR set inside the run (`hands/<split>/ep<N>/tmp`, removed when empty). The
+    stopped run is kept (scratchpad) as a failed attempt; its outputs are not used.
+98. **(2026-10-31, B4) Speed only: pass-0 votes at the sampled voxels.** Pass 0 now counts hits/free only at the cube
+    voxels that hold a sample (the only voxels passes 1-3 read) and the final grids' free counts are voted in the pass-4
+    sweep on the final box. The counts are those of the dense vote (`tests/test_extract.VotePointsTests`; on ep2 frames
+    0 and 150, 0 mismatches over 800k voxels [M]). No result changes.
