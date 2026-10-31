@@ -5430,3 +5430,25 @@ arm and a no-policy replay floor to stage B.
     - realistic masses adopted (+0.090);
     - oracle twins: eval 10 is perception-limited, eval 14 is not.
   - New hypothesis [H-onehand]: a one-hand plan for ep13 / eval 14 (≈ $3). Not started.
+
+### 31 Oct ~07:40 UTC — Prof. Arda İnceoğlu's chat feedback on the Learner Notebook analysed; no spend, nothing run
+- Output: `docs/analysis/arda-feedback-20261031.md`. Read the notebook artifact (Part 1 table, Parts 8–10),
+  `docs/analysis/h5-20261029/h5_summary.json`, `ops/jobs/h5_reeval.sh`, notes 01/14/26, the critic report and the
+  grasp-search capabilities note.
+- **His points:**
+  - variance matters;
+  - no domain randomisation or observation noise;
+  - compare a good and a failed draw frame by frame, perturbing several components;
+  - the reference caps RL;
+  - transfer learning.
+- **Findings:**
+  - Draw spread by cause [E]: the top three (30, 1, 14) come with collision overlaps. Eval 1 was cured by a carve
+    (sd 0.239 → 0.017 [M]); eval 33 by CURR_SCALE 0.4 (0.137 → 0.008 [M]).
+  - Domain randomisation is untested and fits the contact-sensitive episodes 25, 16, 3 and 32.
+  - `h5_reeval.sh` deleted the per-draw rollout files, so a frame-by-frame comparison needs new rollouts.
+  - Config-set randomisation can replay into the scored rollout (the evaluator rebuilds from the checkpoint config),
+    so any noise must be a training-only patch.
+- **Proposed** (rules in the note; none started):
+  - [H-screen], CPU, $0;
+  - a training-only robustness patch with a CPU evaluation-unchanged check;
+  - [H-DR] GPU A/B on 25/16/3, ≈ $8–12, owner go-ahead.

@@ -1,5 +1,19 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~07:40 UTC: Prof. İnceoğlu's feedback on the Learner Notebook analysed (no spend, nothing run)
+Analysis: `docs/analysis/arda-feedback-20261031.md`.
+- **His points:** the draw variance matters; training has no domain randomisation or observation noise; compare a
+  good and a failed draw frame by frame; the reference caps RL; transfer learning.
+- **Findings:**
+  - The three largest spreads (evals 30, 1, 14) come with collision overlaps; eval 1 was cured by a carve
+    (sd 0.239 → 0.017) [M].
+  - Domain randomisation is untested. It fits the contact-sensitive episodes (25, 16, 3, 32).
+  - The H5 study did not keep its rollout files, so the frame-by-frame comparison needs new rollouts.
+- **Proposed:**
+  - $0 CPU perturbation screen;
+  - a training-only robustness patch (config-set randomisation can replay into the scored rollout);
+  - a GPU A/B on evals 25, 16 and 3 (≈ $8–12), owner go-ahead.
+
 ## 2026-10-30 ~12:20 UTC: meeting with Roman Klis analysed (no spend, nothing run)
 Analysis: `docs/analysis/roman-meeting-20261030.md`.
 - **Roman's advice:** decompose; hands first; a human-sized hand; a human twin, then the robot follows it; make the
