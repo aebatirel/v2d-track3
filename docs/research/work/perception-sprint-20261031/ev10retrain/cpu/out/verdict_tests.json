@@ -1,7 +1,7 @@
 {
  "ok": true,
- "n": 20,
- "passed": 20,
+ "n": 21,
+ "passed": 21,
  "cases": [
   {
    "case": "pass",
@@ -256,6 +256,17 @@
    "why": [
     "fails: ['a_V', 'c_V', 'a_P']",
     "both-reference disagreement on clause(s) ['c'] (holds on ['P'])"
+   ],
+   "ok": true
+  },
+  {
+   "case": "equal_floor_passes",
+   "expect": "SWAP-ELIGIBLE",
+   "got": "SWAP-ELIGIBLE",
+   "failing_clauses": [],
+   "expected_failing": [],
+   "why": [
+    "every clause holds on both references"
    ],
    "ok": true
   }

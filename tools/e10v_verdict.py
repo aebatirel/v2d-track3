@@ -17,7 +17,9 @@ Labels:
                  scored on both references, or draw 1 is not scored;
   SWAP-ELIGIBLE  every clause on both references holds;
   NO-SWAP        otherwise (a both-reference disagreement is NO-SWAP and is named as such).
-Reported, not gating: per set and reference n / mean / sd / min / max of sim_vs_ref, RPE, MPPE, AUC, failure counts,
+Reported, not gating: an EQUAL FLOOR note when both policies fail >= 90 % of their draws on both references (the rule
+then compares two floors: (b) ties and (a) / (c) are within noise, so it can read SWAP-ELIGIBLE with an expected effect
+of ~0; CPU mock 'floor', 31 Oct); per set and reference n / mean / sd / min / max of sim_vs_ref, RPE, MPPE, AUC, failure counts,
 audit.py's own flag, per-object AUC means; each clause's sides and margin; the gate PREREG section 5 cross-check
 (mean sim_vs_ref_V(N) >= 0.456); the training-box seed summaries and the chosen seed; evaluation return codes.
 Usage: e10v_verdict.py --score S1.json [--score S2.json ...] --verify V.json --choice C.json --out SUMMARY.json [--min_n 10]
@@ -120,9 +122,15 @@ def main():
     lit = dict(new_draw1_vs_V=d1['vs']['V']['sim_vs_ref'] if d1 else None, old_packed_draw_vs_P=OLD_PACKED_P,
                holds=bool(d1 and d1['vs']['V']['sim_vs_ref'] >= OLD_PACKED_P - SEC_DROP - TOL))
     n_v = (sides.get('V') or {}).get('new', {}).get('sim_vs_ref') or {}
+    # reported, not gating (31 Oct, mock 'floor'): the rule's (b) ties when both policies fail every draw, and (a) / (c)
+    # then compare two floors within noise, so an equally failing policy can read SWAP-ELIGIBLE (expected LB effect ~0)
+    fl = {X: (sides[X]['new'].get('fail_raw'), sides[X]['packed'].get('fail_raw')) for X in sides}
+    equal_floor = bool(fl) and all(a_ is not None and b_ is not None and a_ >= 0.9 and b_ >= 0.9 for a_, b_ in fl.values())
     out = dict(label=label, why=why, clauses=clauses, sides={X: {k: {kk: vv for kk, vv in v.items() if not kk.endswith('_raw')} for k, v in s.items()}
                                                              for X, s in sides.items()},
                secondary_literal_own_reference=lit,
+               equal_floor_note=('both policies fail >= 90 % of their draws on both references: the rule compares two floors; '
+                                 'a SWAP-ELIGIBLE here has an expected leaderboard effect of about 0') if equal_floor else None,
                gate_prereg_s5_crosscheck=dict(new_mean_vs_V=n_v.get('mean'), bar=0.456, holds=(n_v.get('mean') or -1) >= 0.456 - TOL),
                choice={k: (choice or {}).get(k) for k in ('chosen', 'checkpoint', 'sha256', 'seeds', 'incomplete_seeds')},
                verify=dict(ok=(verify or {}).get('ok'), failures=(verify or {}).get('failures'), confirmation=(verify or {}).get('confirmation'),
@@ -131,7 +139,7 @@ def main():
                rule='docs/research/work/perception-sprint-20261031/ev10retrain/PREREG.md section 5')
     json.dump(out, open(a.out, 'w'), indent=1, default=str)
     rc = ((verify or {}).get('confirmation') or {}).get('eval_rc')
-    print(f'{label} (eval rc of the confirmation draws: {rc}) :: ' + '; '.join(why) + ' :: ' + ' | '.join(
+    print(f'{label}{" [EQUAL FLOOR: both policies fail >= 90 % of draws; expected effect ~0]" if equal_floor else ""} (eval rc of the confirmation draws: {rc}) :: ' + '; '.join(why) + ' :: ' + ' | '.join(
         f"{k} {'ok' if v['holds'] else 'FAIL'} " + ' '.join(f'{kk} {vv}' for kk, vv in v.items() if kk not in ('holds',)) for k, v in clauses.items())
           + ' :: ' + ' | '.join(f"{X}: new {(s['new'].get('sim_vs_ref') or {}).get('mean')} (n {s['new']['n']}, RPE med {(s['new'].get('RPE') or {}).get('median')}, "
                                 f"fails {s['new'].get('fails')}) vs packed {(s['packed'].get('sim_vs_ref') or {}).get('mean')} (n {s['packed']['n']}, RPE med "

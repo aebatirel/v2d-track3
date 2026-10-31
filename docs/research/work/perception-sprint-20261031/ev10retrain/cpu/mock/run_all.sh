@@ -1,7 +1,8 @@
 #!/bin/bash
 # All eval-10 V4p retrain mock scenarios (CPU, ~5-8 min each with 2 scoring workers); one check.py line each into OUT/mock_checks.txt.
 #   pass        MOCK_POLICY=copy (the new policy tracks V)                       -> SWAP-ELIGIBLE
-#   noswap      MOCK_POLICY=floor (the new policy leaves the cups at frame 0)     -> NO-SWAP
+#   floor       MOCK_POLICY=floor (the new policy fails like the packed one)      -> SWAP-ELIGIBLE [EQUAL FLOOR] (documents the rule)
+#   worse       MOCK_POLICY=worse (floor + the beige knocked away)                -> NO-SWAP
 #   invalid     one extra config key in seed 43's training                        -> INVALID (config diff vs the packed checkpoint)
 #   incomplete  seed 43's training fails                                          -> INCOMPLETE (no confirmation)
 #   rerun       a new box: RERUN_FROM=<incomplete's run> SEEDS_TODO=43            -> SWAP-ELIGIBLE over both seeds
@@ -17,10 +18,11 @@ run() {  # $1 name, then env assignments
   bash $M/setup.sh $W/$n > /dev/null
   ( cd /tmp && env "$@" nice -n 5 bash $M/run_mock.sh $W/$n "$JOB" )
 }
-for sc in ${@:-pass noswap invalid incomplete rerun topup b0stop badinput}; do
+for sc in ${@:-pass floor worse invalid incomplete rerun topup b0stop badinput}; do
   case $sc in
     pass) run pass MOCK_POLICY=copy ;;
-    noswap) run noswap MOCK_POLICY=floor ;;
+    floor) run floor MOCK_POLICY=floor ;;
+    worse) run worse MOCK_POLICY=worse ;;
     invalid) run invalid MOCK_POLICY=copy MOCK_CFG_EXTRA='perc2e10vs43_glock/' ;;
     incomplete) run incomplete MOCK_POLICY=copy MOCK_FAIL_TRAIN='perc2e10vs43_glock/' ;;
     rerun) rm -rf $W/rerun $W/incomplete_run1; mv $W/incomplete $W/incomplete_run1   # the re-run box keeps the first box's paths

@@ -187,3 +187,17 @@ for each reference X ∈ {V, P}:
 ## 9. Cost (details in JOBS.txt) [E]
 One RTX PRO 6000 box: setup + reference ≈ 0.6 h, two trainings one after the other ≈ 2 × 1.2 h, 10 confirmation draws
 ≈ 0.3 h, scoring + push ≈ 0.1 h → ≈ 3.4–4.5 h, ≈ $4.5–6.5 at $1.3–1.5/h.
+
+## 10. Build amendments (31 Oct ~18:20 UTC; before any eval-10 V4p result; sections 1–9 unchanged, sha256 `15e33e68…`)
+No box has run; the only numbers since are CPU rebuilds, the depth-rule check, scorer checks and mock outputs (BUILD.md).
+The question, design, rule (section 5) and bars are unchanged.
+- **Section 4's "≲ 10 %" was too optimistic [E corrected, mock 'floor'].** When the new policy fails every draw like the
+  packed one, (b) ties at 1.0 = 1.0 (ties hold) and (a) / (c) compare two floors within noise on both references, which are
+  positively correlated; in the CPU mock such a policy read SWAP-ELIGIBLE (margins 0.001 / 0.03 cm). The agreed rule is
+  kept as it is. Reported with the label, not gating: an **EQUAL FLOOR** note when both policies fail ≥ 90 % of their draws
+  on both references. Such a swap has an expected leaderboard effect of about 0 (both at the static floor); the
+  secondary bounds the packed draw's downside at −0.05. The owner decides any upload in any case (section 7).
+- mkref's depth by the section 3.2 rule: **D2** (the eval-10 cache's frame 0 reproduces the packed table frame exactly;
+  BUILD.md section 3).
+- The identity check of section 6 also runs right after the grasp-lock stages, before any training (the job stops there
+  on failure: no training is spent on a wrong reference).

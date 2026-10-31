@@ -9,7 +9,8 @@ grasp_lock.py / wrist_ilc.py (copy), trace_rollout.py, trace_score.py, rest_chec
 FlashCHORD train_flash_sac.py (the saved config = the PACKED gl10A2 checkpoint's config with this run's output_dir,
 task / reference parquet, seeds and steps; every other CLI key is compared with the packed config: mismatches are audited),
 evaluate_policy.py and the kit's run_policy_evaluation.py (both write REAL flash_chord rollout parquets: reference columns =
-the loaded reference, achieved = MOCK_POLICY copy (reference + 2 mm noise) or floor (objects left at frame 0)).
+the loaded reference, achieved = MOCK_POLICY copy (reference + 2 mm noise), floor (objects left at frame 0, as the packed policy)
+or worse (floor, and the beige cup knocked 10 cm away from f40)).
 hands_mp.py / hand_refine.py / perc2.py / score_registered.py must never run (audited as UNEXPECTED).
 Fault injection: MOCK_FAIL_TRAIN (regex on output_dir: training exits 1), MOCK_CFG_EXTRA (regex: one extra config key),
 MOCK_CONF_FAIL_DRAW (the n-th run_policy_evaluation.py call exits 1 without output)."""
@@ -109,8 +110,11 @@ def same(a, b):
 def rollout(path, names, ref, ck, task, seedkey):
     """a REAL flash_chord_object_trajectories_v1 parquet: reference columns = the loaded reference, achieved per MOCK_POLICY"""
     T, B = ref.shape[:2]; rng = np.random.default_rng(int(hashlib.md5(seedkey.encode()).hexdigest()[:8], 16))
-    if os.environ.get('MOCK_POLICY', 'copy') == 'floor':
+    mode = os.environ.get('MOCK_POLICY', 'copy')
+    if mode in ('floor', 'worse'):
         ach = np.repeat(ref[:1], T, 0).copy(); ach[..., :3] += rng.normal(0, 0.0005, ach[..., :3].shape)
+        if mode == 'worse':
+            ach[40:, 1, 0] += 0.10                                         # the beige cup knocked 10 cm away from f40
     else:
         ach = ref.copy(); ach[..., :3] += rng.normal(0, 0.002, ach[..., :3].shape)
     rows = []

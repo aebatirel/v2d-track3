@@ -95,6 +95,14 @@ def floor(s, v, c):
     for i, r in enumerate(s['conf']['rollouts']):
         r['vs']['V'].update(sim_vs_ref=0.448 + 0.0001 * i, RPE=15.8); r['vs']['P'].update(sim_vs_ref=0.449, RPE=16.0)
 case('new_at_floor', 'NO-SWAP', m(floor))
+# equal floor (CPU mock 'floor'): both policies fail every draw; (b) ties at 1.0 and (a) / (c) compare two floors within
+# noise -> the agreed rule reads SWAP-ELIGIBLE (reported with an EQUAL FLOOR note; expected effect ~0)
+def equal_floor(s, v, c):
+    for i, r in enumerate(s['conf']['rollouts']):
+        q = s['packed']['rollouts'][i]
+        r['vs']['V'].update(sim_vs_ref=q['vs']['V']['sim_vs_ref'] + 0.0005, RPE=q['vs']['V']['RPE'] - 0.01)
+        r['vs']['P'].update(sim_vs_ref=q['vs']['P']['sim_vs_ref'] + 0.0005, RPE=q['vs']['P']['RPE'] - 0.01)
+case('equal_floor_passes', 'SWAP-ELIGIBLE', m(equal_floor), [])
 ok = all(x['ok'] for x in cases)
 json.dump(dict(ok=ok, n=len(cases), passed=sum(x['ok'] for x in cases), cases=cases), open(OUT, 'w'), indent=1)
 for x in cases:
