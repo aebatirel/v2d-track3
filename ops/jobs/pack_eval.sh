@@ -20,6 +20,8 @@ python $REPO_DIR/tools/no_oracle.py ${RUNS:-} ${PICK:-} ${KEEP_RESULTS:-} ${ASSE
   || { log "pack_eval: REFUSED: an input is an oracle twin (mocap-derived; tools/no_oracle.py)" >> $J; exit 1; }
 pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit packer budget_mesh (2026-10-24: missing, pack failed)
 # Standard-learner references (hard_ab.sh, refs/perc2mcks) name /content/assets/... (make_assets.py on the training box);
+# MA_ARGS (2026-10-31): the same make_assets.py arguments the standard learners were trained with, e.g. --physics
+# docs/research/physics-2026-10-30/props_masses_only.json (realistic masses); unset = the 0.3 kg placeholder.
 # grasp-lock references carry their own copies (refs/sf/ep<N>/assets). Rebuild the same assets from ASSET_LIB, the
 # library the standard learners were trained with (2026-10-25: the first pack with standard-learner policies).
 # ASSET_PIECES (2026-10-26): the collision pieces a carved standard learner was trained with (pipeline/interaction_carve.py,
@@ -32,7 +34,7 @@ if [ -n "${ASSET_PIECES:-}" ] && [ "$(echo $ASSET_PIECES | wc -w)" -gt 1 ]; then
   log "pack_eval: merged collision pieces: $(ls $PM | tr '\n' ' ')" >> $J; ASSET_PIECES=$PM
 fi
 [ -d /content/assets ] || python $REPO_DIR/pipeline/make_assets.py ${ASSET_LIB:-$REPO_DIR/meshes/library_v3} /content/assets \
-  ${ASSET_PIECES:+--pieces $ASSET_PIECES} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
+  ${ASSET_PIECES:+--pieces $ASSET_PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "pack_eval: make_assets FAILED" >> $J; exit 1; }
 # record of the collision copy the evaluated episodes saw (2026-10-30; the head of job.log can be overwritten)
 ( cd /content/assets && find . -type f | sort | xargs md5sum; grep -c "<collision>" urdf/*_rigid.urdf ) > $F/assets_md5.txt 2>&1 || true
 for x in ${RUNS:?RUNS missing}; do             # RUN or RUN@sub1,sub2 (2026-10-25: only those sub-folders, e.g. RUN@refs)

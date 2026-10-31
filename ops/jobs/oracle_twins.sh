@@ -49,7 +49,7 @@ for e in $EPS; do
   pc=$(v=ENV_EP$e; eval "${!v:-}"; echo "${PIECES:-}"); case $pc in /*|"") ;; *) pc=$REPO_DIR/$pc ;; esac
   r=/content/assets${pc:+_$(basename $pc)}; ROOT[$e]=$r
   case "$made" in *" $r "*) continue ;; esac
-  python $P/make_assets.py $MESH_DIR $r ${pc:+--pieces $pc} >> $J 2>&1 || { log "oracle_twins: make_assets $r FAILED" >> $J; exit 1; }
+  python $P/make_assets.py $MESH_DIR $r ${pc:+--pieces $pc} ${MA_ARGS:-} >> $J 2>&1 || { log "oracle_twins: make_assets $r FAILED" >> $J; exit 1; }
   made="$made$r "; log "oracle_twins: assets $r from $MESH_DIR${pc:+, collision pieces $pc ($(ls $pc | tr '\n' ' '))}" >> $J
 done
 

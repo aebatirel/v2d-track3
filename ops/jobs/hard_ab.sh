@@ -48,7 +48,8 @@ if [ "${ASSET_SRC:-ours}" = public ]; then   # 2026-10-22 owner test: the organi
   SCORE_MESH=""                              # registered against the scans themselves (~identity); our-mesh score kept too
   log "assets: PUBLIC scans + collision meshes ($(ls $ASSETS/urdf | wc -l) urdfs)" >> $J
 else
-  python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
+# MA_ARGS (2026-10-31): extra make_assets.py arguments, e.g. --physics <props.json> (realistic masses; physics study).
+  python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
   [ -n "${PIECES:-}" ] && log "assets: collision copy from convex pieces $PIECES ($(ls $PIECES | tr '\n' ' '))" >> $J
 fi
 if [ -n "${FC_OBJECT_KEYPOINT_SCALE:-}${FC_IMMEDIATE_FIRST_FRAME:-}" ] \

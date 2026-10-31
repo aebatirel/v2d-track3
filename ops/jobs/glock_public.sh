@@ -63,7 +63,7 @@ pip install -q fast_simplification manifold3d >> $J 2>&1 || true   # kit budget_
 # PIECES (2026-10-26): collision-copy pieces (e.g. meshes/carve/ev10, the hybrid cups) for the simulator copy, as in
 # hard_ab.sh; use with SF=0 (support_fill would rebuild those objects' collision from the library mesh). References
 # without SF name /content/assets (fix_assets), so they train and evaluate on the pieces.
-python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
+python $P/make_assets.py $MESH_DIR $ASSETS ${PIECES:+--pieces $PIECES} ${MA_ARGS:-} >> $J 2>&1 || { log "make_assets FAILED" >> $J; exit 1; }
 [ -n "${PIECES:-}" ] && log "glock_public: collision pieces from $PIECES ($(ls $PIECES | tr '\n' ' '))" >> $J
 fc_patches $J || exit 1                                          # FDR rewards + VOC fix; sets TRAIN_ARGS (curriculum, weights)
 case " $PAIRS" in *:new:*) ensure_gdino $J ;; esac              # perception runs here: detection grounding term (2026-10-24:
