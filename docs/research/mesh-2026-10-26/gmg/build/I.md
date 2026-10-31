@@ -410,7 +410,7 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   r1evalsem (board 1 PUSH; board 2 PUSH interlock_disagree); pieces gate 0.72 / 2.0 cm3 (do-not-use). Next: GT-free
   diagnosis of the missing plane pair (density along the thinnest axis, faces seen per frame), then ONE post-hoc
   PREREG entry F-I4.14, re-run w1-w5, then T-I11 once more (new tag).
-- 17:08 [M] GT-free diagnosis of no_plane_pair (`<scratch>/interlock/fi4/diag14/diag_plane.py`, JSON
+- 17:03 [M] GT-free diagnosis of no_plane_pair (`<scratch>/interlock/fi4/diag14/diag_plane.py`, JSON
   `diag_plane.json`; our bundle points, cameras, frames, sigma and our pick only; no slot or physics output read):
   board 1 (sigma 3.0 mm -> 3 sigma band 9.0 mm): BOTH faces seen (42 % of points from the +n side, 38 frames; 58 %
   from the -n side, 101 frames); per-frame median offsets along the thinnest axis +3.88 mm (MAD 0.45) and -3.16 mm
@@ -420,8 +420,10 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   Board 2 (sigma 0.74): ONE face only (0 % of points from the +n side, 117 frames all from -n); 4 parallel planes
   all seen from the same side (offsets -2.5 / 0 / +2.3 / +3.0 mm); 1-99 % extent along n 12.65 mm (1 % tail at
   -9.3 mm on the camera side = bump; 5-95 % 4.6 mm). Its thickness is not observable two-sided in this episode.
-- 17:20 PREREG F-I4.14 written (post hoc, decided from the diagnosis only; no ep24 slot / physics output exists or
+- 17:06 PREREG F-I4.14 written (post hoc, decided from the diagnosis only; no ep24 slot / physics output exists or
   was read): plate test order (1) F-I4.1 plane pair unchanged, (2) camera-side face pair (split the slab points by
   camera side, median offset per face, antiparallel 30 deg, t in 3-25 mm, overlap 0.5, rms <= 3 sigma, both in-plane
   extents >= 2 (t + 2 mm)), (3) one-face plate with t = the partner's measured t (same-stock prior [E]); new
   synthetic w6 (sigma 3 mm merges faces) and w7 (one-face B). Committing + pushing before any code runs with it.
+- 17:07 correction: the two entries above and F-I4.14 first carried guessed clock times (17:08, 17:10-17:20, 17:20);
+  replaced by the file and commit times (diagnosis JSON 17:03, F-I4.14 pushed in dad65a1 at 17:06 UTC). Order unchanged.

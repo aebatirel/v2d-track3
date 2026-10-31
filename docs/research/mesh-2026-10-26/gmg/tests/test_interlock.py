@@ -623,9 +623,11 @@ WAIVER_W1 = (6, 10, 18)          # PREREG F-I4.10 w1 (pre-registered thicknesses
 WAIVER_EXTRA = (13, 25)         # the build task's extra thicknesses (reported; 25 mm is the slab window's upper end)
 
 
-def _waiver_case(t_mm, offset=(0, 0, 0), sil=None, notches=None, waiver=True, mesh_b=None, cand_b=None):
+def _waiver_case(t_mm, offset=(0, 0, 0), sil=None, notches=None, waiver=True, mesh_b=None, cand_b=None, prep=None):
     t = t_mm * 1e-3
     b, _ = cross_episode(t, offset=offset, two_sided=True, mesh_b=mesh_b)
+    if prep is not None:                                     # F-I4.14 w6 / w7: change the bundle before the pair runs
+        prep(b)
     cand = dict(A=plate(t), B=cand_b if cand_b is not None else plate(t))
     sl = None
     if sil == 'see':
@@ -653,7 +655,9 @@ def _waiver_summary(recs, sides):
         row = dict(decision=r['decision'], tier=r['tier'], flags=r['flags'], submitted=r.get('submitted'),
                    old=r.get('decision_f_i3'), in_scope=w.get('in_scope'), gate_fail=w.get('gate_fail'),
                    plate_t_mm=None if not (w.get('plate') or {}).get(x, {}).get('plate') else
-                   round(w['plate'][x]['t_m'] * 1e3, 2), crosslap=w.get('crosslap'))
+                   round(w['plate'][x]['t_m'] * 1e3, 2), crosslap=w.get('crosslap'),
+                   t_source=((w.get('plate') or {}).get(x) or {}).get('t_source'),
+                   plate_why=((w.get('plate') or {}).get(x) or {}).get('why'))
         if r.get('_waiver'):
             wv = r['_waiver']
             c0 = np.asarray(wv['body']['centre']); aL = np.asarray(wv['body']['axes'][0])
@@ -677,13 +681,14 @@ class Waiver(unittest.TestCase):
     """PREREG F-I4.10 (owner waiver of the camera rule; F-I4.12 slot centre): w1-w5, plus the build task's extra
     thicknesses 13 and 25 mm (reported). Synthetic owned points carry two-sided camera centres."""
 
-    def _w1(self, thicknesses):
-        """Runs the w1 case at each thickness and returns {t: summary}, the per-t misses and the width misses."""
+    def _w1(self, thicknesses, prep=None, key='w1'):
+        """Runs the w1 case at each thickness and returns {t: summary}, the per-t misses and the width misses.
+        PREP (F-I4.14 w6 / w7) changes the bundle first; KEY names the RESULTS entry."""
         from gmg import platebody as PB
         from gmg.tools.interlock_dev import partner_occ_lin
         res, miss, wmiss = {}, {}, {}
         for t_mm in thicknesses:
-            b, cand, recs, sides = _waiver_case(t_mm)
+            b, cand, recs, sides = _waiver_case(t_mm, prep=prep)
             s = _waiver_summary(recs, sides)
             for x in ('A', 'B'):
                 r = next((r for r in recs if r['target'] == x and r.get('_waiver')), None)
@@ -696,7 +701,7 @@ class Waiver(unittest.TestCase):
                                     occ)
                 s[x]['keepout'] = g['report']['slotted_plate']
             res[t_mm] = s
-            RESULTS.setdefault('w1', {})[t_mm] = s
+            RESULTS.setdefault(key, {})[t_mm] = s
             if t_mm == 25 and any(not s[o].get('in_scope') for o in s):
                 # the slab window's upper end: out of scope is a permitted outcome, then the decision is the old one
                 if any(s[o]['old'] is not None for o in s):
@@ -722,7 +727,7 @@ class Waiver(unittest.TestCase):
                 m.append(f'crosslap {cl}')
             if m:
                 miss[t_mm] = m
-        RESULTS['w1_misses'] = dict(other=miss, width=wmiss)
+        RESULTS[f'{key}_misses'] = dict(other=miss, width=wmiss)
         return res, miss, wmiss
 
     def test_w1_plates(self):
@@ -740,6 +745,30 @@ class Waiver(unittest.TestCase):
         7.24 / 7.30 mm, so the slot is 9.30 / 9.24 mm wide against 8 +- 1 mm."""
         res, miss, wmiss = self._w1((6,))
         self.assertEqual(wmiss, {}, wmiss)
+
+    def test_w6_inflated_sigma(self):
+        """F-I4.14 w6 (post hoc): t = 10 mm, two-sided, object-episode sigma 3.0 mm (the F-I4.1 inlier band 9 mm merges
+        the faces, as on ep24 board 1): plate within 1 mm (slot width within 1 mm of t + 2), CARVE both, the w1 checks."""
+        def prep(b):
+            b.meta['sigma_mm'] = dict(A=3.0, B=3.0)
+        res, miss, wmiss = self._w1((10,), prep=prep, key='w6')
+        RESULTS['w6_sources'] = {o: r.get('t_source') for o, r in res[10].items()}
+        self.assertEqual(miss, {}, miss)
+        self.assertEqual(wmiss, {}, wmiss)
+
+    def test_w7_one_face(self):
+        """F-I4.14 w7 (post hoc): t = 10 mm, two-sided for A, B's -z face removed from its owned points (one face seen,
+        as ep24 board 2): B plate by step 3 with A's thickness (t_source partner_prior), CARVE both, the w1 checks."""
+        def prep(b):
+            ob = b._obs['B']
+            keep = (np.asarray(ob['cam'])[:, 2] - np.asarray(ob['pts'])[:, 2]) >= 0
+            for kk in ('pts', 'cam', 'frame', 'own'):
+                ob[kk] = np.asarray(ob[kk])[keep]
+        res, miss, wmiss = self._w1((10,), prep=prep, key='w7')
+        RESULTS['w7_sources'] = {o: r.get('t_source') for o, r in res[10].items()}
+        self.assertEqual(miss, {}, miss)
+        self.assertEqual(wmiss, {}, wmiss)
+        self.assertEqual(res[10]['B'].get('t_source'), 'partner_prior', res[10]['B'])
 
     def test_w2_waiver_off(self):
         """w2: waiver off = every decision as before, also on the two-sided bundles (the camera centres are not read

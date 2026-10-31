@@ -5464,3 +5464,22 @@ diagnostic; nothing is picked for submission.
   - provenance O1, including the lathe_obs constants flagged by C0b;
   - joint ep11 / ep18 runs are needed if the blue cup or a sweeper swap joins the pack.
 - Nothing was sent to focused-pascal or packed.
+
+### 2026-10-31 ~17:15 UTC — C1 done: beige-cup obs-lathe and placed dust-pan pick adopted; C0b extended to the beige cup
+- C1 workflow (`wf_a717f699-b68`): report `cdo-sprint/C1/README.md` (3e12ad1, fe3ef45); no blocking verifier items.
+  - **T1 beige obs-lathe** (ep11, lathe_obs defaults, M_sep separated-frame mask), sha 60e398b0:
+    - CD-O 0.856 -> 0.248 (eval 10) and 0.730 -> 0.255 (eval 8) [D];
+    - add_med 5.70 mm, 0/32 flips;
+    - ep11 AUC guard +0.008, PASS. ADOPTED.
+    - H-BL survives.
+  - **T2 SAM 3D dust pan placed on the library_v3 surface**, sha 2fb147b5:
+    - CD-O 0.331 -> 0.260, add_med 4.83 mm;
+    - AUC guard mean +0.012, PASS. ADOPTED.
+    - Pitcher and beige picks fail on ADD (28 / 15 mm).
+  - **T3 generate-then-fit:** 3 CD-O wins (pot, blue cup, dust pan), all fail the AUC guard (min dAUC ~ -0.04). Nothing
+    adopted. H-GF is not falsified, but the fit created no new win.
+  - [E] board: 9a 0.367 -> 0.333 with C1; 0.300 with the blue cup too.
+- C0b (`wf_cda9cf8c-c1c`) was stopped during its Amend step and resumed (task wkbbca4ts), with the beige cup added
+  (scan-free rebuild of the T1 lathe, one scoring, ep11 guard, eval builds on evals 8 and 10).
+  - The C0b audit (9451062) found 163 constants: 16 scan-derived and 71 of unknown origin (16 suspect).
+- Sent the C1 summary to the score session (cc focused-pascal) for pack-10 planning.

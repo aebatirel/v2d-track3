@@ -10,7 +10,12 @@ failing silhouette no longer block the carve; every other gate stays.
 
   plate_info(b, obj, mesh)            F-I4.1 plane-pair test (structure._points / _planes: the B7 code) on the object's
                                       owned points within 6 mm of its pick; plate pair = largest footprint overlap
-                                      (ties: more inliers); thickness t and the mid plane
+                                      (ties: more inliers); thickness t and the mid plane. F-I4.14 (post hoc, after
+                                      T-I11 found no plane pair on either ep24 board): else the camera-side face pair
+                                      (_camera_side: slab points of the largest plane split by camera side, median
+                                      offset per face), else a one-face plate candidate
+  resolve_one_face(info, partner)     F-I4.14 step 3: a one-face plate takes the partner's measured t (same-stock prior
+                                      [E], flag plate_t_partner_prior); mid plane = seen face moved t / 2 off the cameras
   plate_body(b, obj, info)            F-I4.2 extrusion of the observed outline (min-area rectangle, fill >= 0.9) at t;
                                       no marker balls (flag plate_body_no_markers); a STRUCT plate candidate is not
                                       built in this repository yet (none exists for ep24)
@@ -83,9 +88,88 @@ def _near_points(b, obj, mesh):
     return P[k], Cm[k], fr[k], dict(owned=int(ok.sum()), in_box=int(inb.sum()), within_6mm=int(k.sum()))
 
 
+def _down_idx(P, K):
+    """Indices of structure._points' 2 mm first-point-per-voxel downsample (and its rng(0) cap), so the frames of the
+    downsampled points are known (structure._points drops them)."""
+    k = np.floor(P / K['vox']).astype(np.int64)
+    _, idx = np.unique(k, axis=0, return_index=True)
+    if len(idx) > K['max_pts']:
+        s = np.random.default_rng(0).choice(len(idx), K['max_pts'], replace=False)
+        idx = idx[s]
+    return idx
+
+
+def _face(X, C, F, a, e1, e2):
+    """One camera-side face (F-I4.14 step 2): PCA normal oriented to its cameras, median offset along a, rms about its own
+    plane, 2-98 % box in (e1, e2), frames."""
+    c = X.mean(0)
+    V = np.linalg.eigh(np.cov((X - c).T))[1]
+    nf = V[:, 0]
+    if np.median((C - X) @ nf) < 0:
+        nf = -nf
+    u, v = X @ e1, X @ e2
+    return dict(n_pts=int(len(X)), frames=int(len(np.unique(F))), normal=nf, m=float(np.median(X @ a)),
+                rms_m=float(np.std((X - c) @ nf)),
+                box=(float(np.percentile(u, 2)), float(np.percentile(u, 98)), float(np.percentile(v, 2)),
+                     float(np.percentile(v, 98))))
+
+
+def _camera_side(Pd, Cd, Fd, plane0, sigma, K):
+    """PREREG F-I4.14 steps 2-3 (post hoc): split the slab points of the largest F-I4.1 plane by the side their camera is
+    on. Returns dict(kind 'two_sided' | 'one_face' | None, ok, t_m, mid_n, mid_d, checks, ...)."""
+    a = np.asarray(plane0['n'], np.float64); a /= np.linalg.norm(a)
+    e1 = np.asarray(plane0['e1'], np.float64); e2 = np.asarray(plane0['e2'], np.float64)
+    da = float(plane0['d'])
+    s = Pd @ a
+    k = np.abs(s - da) <= K['slab'][1]
+    X, C, F = Pd[k], Cd[k], Fd[k]
+    view = np.einsum('ij,j->i', C - X, a)
+    Sp, Sm = view > 0, view < 0
+    fmin = k_('frames_min')
+    u, v = X @ e1, X @ e2
+    ext = [float(np.percentile(u, 98) - np.percentile(u, 2)), float(np.percentile(v, 98) - np.percentile(v, 2))]
+    out = dict(method='camera_side (F-I4.14)', slab_points=int(k.sum()), plus=int(Sp.sum()), minus=int(Sm.sum()),
+               plus_frames=int(len(np.unique(F[Sp]))), minus_frames=int(len(np.unique(F[Sm]))),
+               inplane_extents_mm=[round(x * 1e3, 1) for x in ext], kind=None, ok=False)
+    good = [int(S.sum()) >= K['plane_min'] and len(np.unique(F[S])) >= fmin for S in (Sp, Sm)]
+    if all(good):
+        fp, fm = _face(X[Sp], C[Sp], F[Sp], a, e1, e2), _face(X[Sm], C[Sm], F[Sm], a, e1, e2)
+        t = fp['m'] - fm['m']
+        cos_pm = float(fp['normal'] @ fm['normal'])
+        ba, bb = fp['box'], fm['box']
+        iu = max(0.0, min(ba[1], bb[1]) - max(ba[0], bb[0])); iv = max(0.0, min(ba[3], bb[3]) - max(ba[2], bb[2]))
+        area = min((ba[1] - ba[0]) * (ba[3] - ba[2]), (bb[1] - bb[0]) * (bb[3] - bb[2]))
+        ov = float(iu * iv / max(area, 1e-12))
+        w = t + 2 * IL.K('clearance_m')
+        chk = dict(antiparallel=bool(cos_pm <= -math.cos(math.radians(K['plane_deg']))),
+                   material_between=bool(t > 0), window=bool(K['slab'][0] <= t <= K['slab'][1]),
+                   overlap=bool(ov >= K['pair_overlap']),
+                   rms=bool(fp['rms_m'] <= K['band'] * sigma and fm['rms_m'] <= K['band'] * sigma),
+                   plate_extents=bool(min(ext) >= 2 * w))
+        out.update(kind='two_sided', ok=all(chk.values()), checks=chk, t_mm=round(t * 1e3, 3), t_m=float(t),
+                   overlap=round(ov, 4), angle_deg=round(math.degrees(math.acos(max(-1.0, min(1.0, -cos_pm)))), 2),
+                   faces=[{kk: (round(vv * 1e3, 3) if kk in ('m', 'rms_m') else vv) for kk, vv in f.items()
+                           if kk not in ('normal', 'box')} for f in (fp, fm)],
+                   mid_n=a.tolist(), mid_d=float(0.5 * (fp['m'] + fm['m'])))
+        return out
+    if any(good):
+        seen = +1 if good[0] else -1
+        S = Sp if seen > 0 else Sm
+        ext_n = float(np.percentile(s[k], 99) - np.percentile(s[k], 1))
+        thin = bool(ext_n <= K['slab'][1])
+        out.update(kind='one_face', ok=thin, seen_sign=seen, m_seen=float(np.median(X[S] @ a)),
+                   extent_n_1_99_mm=round(ext_n * 1e3, 2), checks=dict(thin_extent=thin), mid_n=a.tolist(),
+                   _ext_min=min(ext))
+        return out
+    out['why'] = 'no side with >= plane_min points from >= 3 frames'
+    return out
+
+
 def plate_info(b, obj, mesh):
     """F-I4.1: the structure plane-pair test (structure._points + structure._planes, the B7 code path) on OBJ's owned
-    points within 6 mm of its pick. Returns dict(plate bool, t_m, mid_n, mid_d, pair, pairs, planes summary, points)."""
+    points within 6 mm of its pick. F-I4.14 (post hoc): if no plane pair, the camera-side face pair (step 2), else a
+    one-face plate candidate whose thickness the pair resolves from the partner (step 3, resolve_one_face).
+    Returns dict(plate bool, t_m, mid_n, mid_d, pair, pairs, planes summary, points, t_source)."""
     from gmg import structure as ST
     import time
     t0 = time.time()
@@ -100,17 +184,62 @@ def plate_info(b, obj, mesh):
         out.update(why='too_few_points', sec=round(time.time() - t0, 1))
         return out
     planes, pairs, sinfo = ST._planes(Pd, Cd, sigma, K)
-    out['planes'] = [dict(n=np.round(p['n'], 4).tolist(), n_pts=p['n_pts'], rms_mm=p['rms_mm']) for p in planes]
+    out['planes'] = [dict(n=np.round(p['n'], 4).tolist(), n_pts=p['n_pts'], rms_mm=p['rms_mm'],
+                          two_sided_share=p['two_sided_share']) for p in planes]
     out['pairs'] = pairs
+    out['_P'], out['_F'] = P, fr
     if not pairs:
-        out.update(why='no_plane_pair', sec=round(time.time() - t0, 1))
+        out['why_f_i4_1'] = 'no_plane_pair'
+        if not planes:
+            out.update(why='no_plane', sec=round(time.time() - t0, 1))
+            return out
+        idx = _down_idx(P, K)
+        assert np.array_equal(P[idx], Pd), 'downsample index mismatch'
+        cs = _camera_side(Pd, Cd, fr[idx], planes[0], sigma, K)
+        out['camera_side'] = {k: v for k, v in cs.items() if not k.startswith('_')}
+        out['_e1'] = np.asarray(planes[0]['e1'], np.float64)
+        if cs['kind'] == 'two_sided' and cs['ok']:
+            out.update(plate=True, t_m=cs['t_m'], mid_n=cs['mid_n'], mid_d=cs['mid_d'], t_source='camera_side_pair',
+                       flags=['plate_pair_camera_side'], pair=dict(method=cs['method'], thickness_mm=cs['t_mm'],
+                                                                   overlap=cs['overlap']), sec=round(time.time() - t0, 1))
+            return out
+        if cs['kind'] == 'one_face' and cs['ok']:
+            out.update(why='one_face_pending_partner', _one_face=cs, sec=round(time.time() - t0, 1))
+            return out
+        out.update(why='no_plane_pair' if cs['kind'] is None else f'camera_side_{cs["kind"]}_fail',
+                   sec=round(time.time() - t0, 1))
         return out
     best = max(pairs, key=lambda q: (q['overlap'], planes[q['faces'][0]]['n_pts'] + planes[q['faces'][1]]['n_pts']))
     mid_n = np.asarray(best['mid_n'], np.float64)
     out.update(plate=True, pair=best, t_m=float(best['thickness_mm']) * 1e-3, mid_n=mid_n.tolist(),
-               mid_d=float(best['mid_d']), sec=round(time.time() - t0, 1))
-    out['_P'], out['_F'] = P, fr
+               mid_d=float(best['mid_d']), t_source='plane_pair', sec=round(time.time() - t0, 1))
     out['_e1'] = np.asarray(planes[best['faces'][0]]['e1'], np.float64)
+    return out
+
+
+def resolve_one_face(info, partner):
+    """F-I4.14 step 3: a one-face plate candidate takes the partner's MEASURED thickness (plane pair or camera-side pair;
+    same-stock prior [E], flag plate_t_partner_prior); mid plane = the seen face moved t / 2 away from its cameras;
+    plate-like extents >= 2 (t + 2 mm). Returns a new dict (the cached info is not changed)."""
+    cs = info.get('_one_face')
+    if info.get('plate') or cs is None:
+        return info
+    out = dict(info)
+    if not partner.get('plate') or partner.get('t_source') not in ('plane_pair', 'camera_side_pair'):
+        out['why'] = 'one_face_no_partner_t'
+        return out
+    t = float(partner['t_m'])
+    w = t + 2 * IL.K('clearance_m')
+    ext_ok = bool(cs['_ext_min'] >= 2 * w)
+    out['camera_side'] = dict(out.get('camera_side') or {}, checks=dict(cs['checks'], plate_extents=ext_ok))
+    if not ext_ok:
+        out['why'] = 'one_face_not_plate_extents'
+        return out
+    out.update(plate=True, t_m=t, mid_n=cs['mid_n'], mid_d=float(cs['m_seen'] - cs['seen_sign'] * t / 2),
+               t_source='partner_prior', flags=['plate_t_partner_prior'],
+               pair=dict(method='one_face (F-I4.14 step 3)', thickness_mm=round(t * 1e3, 3),
+                         t_from=partner['obj'], seen_sign=cs['seen_sign']))
+    out.pop('why', None)
     return out
 
 
@@ -439,7 +568,10 @@ def apply_waiver(b, so, sp, recs, links, round_k=0):
 
 def _pair(b, so, sp, co, cp, ro, rp, round_k):
     S = [(so, co, ro), (sp, cp, rp)]
-    pi = {s.name: _plate(s, b) for s, _, _ in S}
+    pi0 = {s.name: _plate(s, b) for s, _, _ in S}
+    pi = {so.name: resolve_one_face(pi0[so.name], pi0[sp.name]),       # F-I4.14 step 3
+          sp.name: resolve_one_face(pi0[sp.name], pi0[so.name])}
+    so._plate_fi4_resolved, sp._plate_fi4_resolved = pi[so.name], pi[sp.name]
     W = dict(rule=WAIVER_REF, plate={n: {k: v for k, v in x.items() if not k.startswith('_')} for n, x in pi.items()})
     in_scope = all(pi[s.name]['plate'] for s, _, _ in S) and all(c.run.kind == 'INSERTION' for _, c, _ in S)
     W['in_scope'] = bool(in_scope)
@@ -450,8 +582,9 @@ def _pair(b, so, sp, co, cp, ro, rp, round_k):
         for _, _, r in S:
             r['waiver_fi4'] = W
         return
-    for _, _, r in S:
+    for s_, _, r in S:
         r['flags'].append('owner_waiver_fi4')
+        r['flags'] += [f for f in pi[s_.name].get('flags', []) if f not in r['flags']]     # F-I4.14 plate flags
 
     def fail(gate, push=False, why=''):
         W['gate_fail'] = gate

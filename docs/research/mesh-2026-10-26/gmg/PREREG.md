@@ -1189,7 +1189,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
   frames 0.0 cm3; default 6.07 cm / 91 deg; P2-P7 pass) pass. Controls n2-n5, n9 pass with the waiver off.
 
 - **2026-10-31, F-I4.14 (post hoc): plate test that works on real plates (camera-side face pair; one-face plate with
-  the partner's thickness).** Written 17:10-17:20 UTC after T-I11 (tag `fi4evalsem`, code cd2383f, 16:51-16:58 UTC)
+  the partner's thickness).** Written 17:03-17:06 UTC (pushed in dad65a1 at 17:06 UTC; the first text said 17:10-17:20, a guessed time, corrected) after T-I11 (tag `fi4evalsem`, code cd2383f, 16:51-16:58 UTC)
   found **no plane pair on either ep24 board** (F-I4.1 `no_plane_pair`), so the waiver never engaged and both boards
   were PUSHED again. Committed and pushed **before** any run that uses it. Labelled post hoc: it changes F-I4.1 after a
   real-data scope failure (not an acceptance failure). Decided from the GT-free diagnosis below only; no slot

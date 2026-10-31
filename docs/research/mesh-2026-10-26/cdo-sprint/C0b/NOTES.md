@@ -7,3 +7,5 @@
 - 2026-10-31T16:57:12Z AUDIT.md + AUDIT.json written (163 records: G 62, O 14, S 16 [S-value 8, S-dev 4, S-input 4], U 71 [U-suspect 16]); committing C0b/{AUDIT.md,AUDIT.json,NOTES.md,scripts/}.
 - 2026-10-31T16:57:26Z committed + pushed 9451062 (AUDIT.md, AUDIT.json, NOTES.md, scripts/). Audit step DONE.
 - 2026-10-31T16:58:08Z [prereg agent] start: write C0b/PREREG.md (replacements, candidates, pick, scoring, AUC guard, adoption, E0b) before any build.
+- 2026-10-31T17:01:20Z [prereg] read C0 PREREG/README/verify_0, AUDIT.md, gmg PREREG A.1/A.6/B.4, markers.py, thickness.py, B7 marker dev results (frozen detector: mostly false balls on pot/lid/rack/cup dev files), t0_dev per-episode (lid, rack: 0 two-sided measurements), E0 PREREG/NOTES. Next: obs_points options, C0 selection rules, mesh_metric, then write PREREG.
+- 2026-10-31T17:08:49Z [prereg agent, amended task: + beige cup (item 8)] resume from 17:01 line; re-reading sources to write PREREG.md.

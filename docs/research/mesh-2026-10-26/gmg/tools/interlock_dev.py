@@ -208,10 +208,10 @@ def main():
                 prep[f'gen_{t}'] = dict(runs=rows, used=row['path'])
         recs = IL.decide_pair(b, sides[o], sides[p], waiver_fi4=a.waiver_fi4)
         for t in (o, p):
-            pinfo = getattr(sides[t], '_plate_fi4', None)
+            pinfo = getattr(sides[t], '_plate_fi4_resolved', None) or getattr(sides[t], '_plate_fi4', None)
             if pinfo is not None:
                 log('plate F-I4.1', t, json.dumps({k: v for k, v in pinfo.items() if not k.startswith('_') and
-                                                  k not in ('planes',)}, default=IL._jdefault)[:900])
+                                                  k not in ('planes',)}, default=IL._jdefault)[:2400])
         if sides[o].runs:
             np.save(os.path.join(out_dir, 'T_asm.npy'), IL._asm_pose(sides[o].intr, sides[o].runs[0]))
         for t in (o, p):                                   # voxel sets for the figures (build/I/i_png.py)
