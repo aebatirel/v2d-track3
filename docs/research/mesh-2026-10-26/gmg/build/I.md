@@ -666,6 +666,22 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   carvable U voxel) and `carve_solid` failed on `sd.min()`. Code fix cbed3cb (`interlock.py`, 3 lines: an empty carve
   set is a PUSH; cases that ran before are unchanged). x2c-D2 relaunched 19:05 (`<scratch>/fi5/d2c.log`). Sweeper-D2
   (Q6) running (its carve: route 3, 27 pieces, gate 0.08 cm3).
+- 19:10 [M] **D2 Q5 (x2c-D2, 1 mm offset; code cbed3cb; `d2c.log`, 19:05-19:09): FALSIFIED (topology 1 / 1 -> 2 / -14
+  on 2 mm).** c = 1.0 mm, removed 19.5 cm3 = 19 % while K inside R+ holds only 0.39 cm3 of the default collider: the
+  as-built lathe R+ rule (F-I5.11 (3): a K-in-piece set with one vertex in R+ is carved whole) carves the 1 mm clearance
+  layer along the whole wall. Reach 0.57. S rows (diagnostic): **default rings 1.11 / 1.03 mm (pass)**, failed carve
+  2.53 / 2.75 mm (drop 2.50 / 2.70 mm, pass). **D2 Q6 (sweeper-D2; `d2b.log`, 18:55-19:05): not testable as written**:
+  no T_rest for the component used (`diag_rest` null), so D2 changes nothing for this route-3 pair and S is
+  `sink_untestable`; caps pass (2.1 %, reach 0.569, topology kept), acceptance fails P2 (gravity 5.0 mm, default 3.0,
+  bound 4.0) and P4 (removed 4.08 cm3 > 1.5 x 2.26 cm3 of K in the body): default. Note: the 18:12 sweeper run's
+  "reach 0.96" came from an earlier reach measure (extent of the removed collider samples, before the K-inside-R+
+  measure the text asks for); at the current code the pre-registered rule gives the D2 numbers above (caps pass, P2 and
+  P4 fail, default). D2 done: Q3, Q4 hold; Q1, Q2, Q5 falsified (2 mm topology); Q6 not testable. No D2 carve would be
+  delivered; none is.
+- 19:11 PREREG F-I5.13 outcomes, INTERLOCK 21.10 (D2 result in plain words + open decisions), work-log entry, results
+  copied to `build/I/results/fi5-tI12/` (JSON + logs + README, 632 KB). **Build step done**: code and hooks in place,
+  T-I12 run (misses recorded), D2 diagnostic done; T-I13 real runs not started (they need the decisions in INTERLOCK
+  21.10 or the rule as written, plus hands / candidates for ep11, ep2, ep12, ep13, ep31).
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG

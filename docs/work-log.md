@@ -5694,3 +5694,31 @@ diagnostic; nothing is picked for submission.
   nothing under it. The flip on release is likely a spoon-pose issue [H], which the marker-correction layer addresses.
 - Relayed to the score session and focused-pascal. The collision-carve eval stage continues (eval 33 carve; 32 and 16
   unchanged by carving).
+
+### 2026-10-31 19:11 UTC — collision carve F-I5 (owner waiver, all pairs): build + synthetic tests (collision-carve workflow, Build step)
+- **Built** (flag `--waiver-fi5`; F-I1..F-I4 unchanged without it): `gmg/collcarve.py`, `gmg/cavpieces.py`,
+  `simphys.sink_test`, the `decide_pair` hook, the driver branch, `tests/test_collcarve.py`. Code fixes this step:
+  - CoACD runs in a forked child (it aborted the process on a C++ assertion);
+  - an empty carve set is a PUSH (`interlock.py`, 3 lines).
+- **T-I12 (synthetic):** P50 falsified, as recorded in PREREG F-I5.12.
+  - **No nested-cup case reaches the sink test.** All of x1-x5 and the 5 mm offset stop at the caps first:
+    - the jitter envelope of the swept frames;
+    - 12- or 8-sector fallback after the 10 mm re-banding;
+    - reach 0.8-0.9;
+    - c = 1 mm from the guest's base corner.
+  - **The rack fixture is carved and delivered** (S 0.7-0.8 mm, every test passes).
+  - **Lid/pot and sweeper: default delivered.**
+    - Lid/pot fails topology, because the default CoACD pot has tunnels on the 2 mm grid.
+    - The sweeper fails P2 (gravity 5.0 mm) and P4.
+  - Controls, plate pair, flag-off, routes and the empty-ring check pass.
+- **Diagnostic D2** (F-I5.13: rest-anchored pocket; post hoc, never delivered).
+  - Every cup carve keeps the guest within 2.3-3.0 mm and 3.4 deg with the hands off, even 5 mm off-axis.
+  - The default rings move it by about the track error: 4.5 mm up, 5 mm sideways.
+  - None passes the shape test as written:
+    - x1: the wall is thinned to 1.7-2.0 mm, and the 2 mm grid reads that as holes (a 1 mm grid shows no hole);
+    - the 3 mm and 5 mm offsets cut through the wall [E];
+    - 19-36 % of the receiver collider is removed.
+- **Open decisions** (INTERLOCK 21.10): the carve geometry, c for nests, the topology grid or rule, the 10 % and 0.6
+  limits for non-plates, and an exact R+ clip.
+- **Not done:** T-I13 real runs (public ep11/2/12/13/31) and the eval twins.
+- Results: `gmg/build/I/results/fi5-tI12/`.

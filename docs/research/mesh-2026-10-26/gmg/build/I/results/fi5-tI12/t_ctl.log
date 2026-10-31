@@ -1,0 +1,21 @@
+test_x7_n2_resting (__main__.Controls.test_x7_n2_resting) ... 18:02:02 pieces A 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:02:03 pieces B 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+ok
+test_x7_n4_transient (__main__.Controls.test_x7_n4_transient) ... 18:02:13 pieces A 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:02:14 pieces B 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+ok
+test_x7_wander (__main__.Controls.test_x7_wander) ... 18:02:18 pieces A 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:02:18 pieces B 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:02:26 F-I5 A <- B [{"gates": {"voxels": 780, "run_kind": "SLIDE", "run": [0, 39], "n_build": 20, "sweep_share": 1.0, "observed_voxels": 760, "persistent_nmin": 5, "pass_": true}, "rest": {"static_frames": 0, "hands_off_static": 0, "assembled_hands_off": 0, "s_frames": [], "flags": ["hands_absent"], "rest_source": null}, "T_rest": null, "overshoot_frames": [], "carve_frames": 20, "build_frames_entered": 20, "clearance": {"surface_samples": 102412, "in_Rplus": 35930, "sigma_sup": 1.0, "c_mm": 1.0}, "R_voxels": 780, "Rplus_voxels": 2796}]
+18:02:39 F-I5 carve A {"route": "4_voxels", "K_pieces": 20, "cut_cm3": 149.124, "carved_body_cm3": 617.56, "ladder": [{"route": "4_voxels", "report": {"pitch_mm": 2.0, "boxes": 15, "cells": 77195, "cap": 82}, "gate": {"pass_": true, "n": 15, "max_cm3": 0.0, "sum_cm3": 0.0, "over_tol": 0, "keepout_points": 0, "keepout_cm3": 0.0}}], "carved_route": "4_voxels", "sec": 13.6}
+ok
+test_x6_plate_pair_and_x10_flag_off (__main__.Plates.test_x6_plate_pair_and_x10_flag_off)
+x6: a plate pair is left to F-I4 (records identical with and without the F-I5 context); x10: decide_pair ... 18:02:45 pieces A 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:02:45 pieces B 4_voxels 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+ok
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/fi5/t_ctl.json
+
+----------------------------------------------------------------------
+Ran 4 tests in 155.106s
+
+OK

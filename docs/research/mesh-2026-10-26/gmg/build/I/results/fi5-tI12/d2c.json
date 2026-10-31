@@ -1,0 +1,1363 @@
+{
+ "d2_x2c": {
+  "routes": {
+   "A": "2_lathe",
+   "B": "2_lathe"
+  },
+  "pieces": {
+   "A": 65,
+   "B": 65
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.168,
+    "sum_cm3": 4.816,
+    "over_tol": 0,
+    "keepout_points": 601,
+    "keepout_cm3": 4.808
+   },
+   "B": {
+    "pass_": true,
+    "n": 65,
+    "max_cm3": 0.144,
+    "sum_cm3": 3.664,
+    "over_tol": 0,
+    "keepout_points": 458,
+    "keepout_cm3": 3.664
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 9.136,
+    "median_cm3": 3.76
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#1": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#2": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#3": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#4": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#5": {
+     "voxels": 405,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.594,
+     "observed_voxels": 217,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "A<-B#6": {
+     "voxels": 6,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.833,
+     "observed_voxels": 6,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "A<-B#7": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#8": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#9": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#10": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#11": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.667,
+     "observed_voxels": 3,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#12": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#13": {
+     "voxels": 378,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.543,
+     "observed_voxels": 289,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#14": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#15": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.8104,
+     "B": 0.0508
+    },
+    "frames": 37
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 405,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       89
+      ],
+      "n_build": 40,
+      "sweep_share": 0.594,
+      "observed_voxels": 217,
+      "persistent_nmin": 10,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 63,
+      "hands_off_static": 30,
+      "assembled_hands_off": 18,
+      "s_frames": [
+       81,
+       62
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       0.999998,
+       3.7e-05,
+       0.001846,
+       0.00105
+      ],
+      [
+       -3.7e-05,
+       1.0,
+       -0.000338,
+       -0.00017
+      ],
+      [
+       -0.001846,
+       0.000338,
+       0.999998,
+       0.019963
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 37,
+     "build_frames_entered": 37,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 97631,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 405,
+     "Rplus_voxels": 1948,
+     "diag_rest": {
+      "s_min_mm": -19.11,
+      "frames_deeper_than_rest": 8,
+      "deepest_mm": 0.55,
+      "lateral_dev_mm_median_max": [
+       0.54,
+       1.79
+      ],
+      "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"
+     }
+    },
+    {
+     "gates": {
+      "voxels": 6,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       89
+      ],
+      "n_build": 40,
+      "sweep_share": 0.833,
+      "observed_voxels": 6,
+      "persistent_nmin": 10,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 63,
+      "hands_off_static": 30,
+      "assembled_hands_off": 18,
+      "s_frames": [
+       81,
+       62
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       0.999998,
+       3.7e-05,
+       0.001846,
+       0.00105
+      ],
+      [
+       -3.7e-05,
+       1.0,
+       -0.000338,
+       -0.00017
+      ],
+      [
+       -0.001846,
+       0.000338,
+       0.999998,
+       0.019963
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 12,
+     "build_frames_entered": 12,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 4363,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 6,
+     "Rplus_voxels": 78,
+     "diag_rest": {
+      "s_min_mm": -17.54,
+      "frames_deeper_than_rest": 4,
+      "deepest_mm": 0.45,
+      "lateral_dev_mm_median_max": [
+       0.61,
+       1.3
+      ],
+      "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"
+     }
+    },
+    {
+     "gates": {
+      "voxels": 3,
+      "run_kind": "INSERTION",
+      "run": [
+       18,
+       89
+      ],
+      "n_build": 40,
+      "sweep_share": 1.0,
+      "observed_voxels": 0,
+      "persistent_nmin": 10,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 63,
+      "hands_off_static": 30,
+      "assembled_hands_off": 18,
+      "s_frames": [
+       81,
+       62
+      ],
+      "flags": [],
+      "rest_source": "assembled"
+     },
+     "T_rest": [
+      [
+       0.999998,
+       3.7e-05,
+       0.001846,
+       0.00105
+      ],
+      [
+       -3.7e-05,
+       1.0,
+       -0.000338,
+       -0.00017
+      ],
+      [
+       -0.001846,
+       0.000338,
+       0.999998,
+       0.019963
+      ],
+      [
+       0.0,
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "overshoot_frames": [],
+     "carve_frames": 14,
+     "build_frames_entered": 14,
+     "clearance": {
+      "surface_samples": 258551,
+      "in_Rplus": 2896,
+      "sigma_sup": 0.05152,
+      "c_mm": 0.1
+     },
+     "R_voxels": 3,
+     "Rplus_voxels": 51,
+     "diag_rest": {
+      "s_min_mm": -9.55,
+      "frames_deeper_than_rest": 5,
+      "deepest_mm": 0.45,
+      "lateral_dev_mm_median_max": [
+       0.61,
+       1.3
+      ],
+      "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"
+     }
+    }
+   ],
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 195,
+    "n_sectors": 16,
+    "carved_ranges_mm": {
+     "0": [
+      18.98,
+      65.31
+     ],
+     "7": [
+      18.95,
+      95.0
+     ],
+     "8": [
+      18.93,
+      95.0
+     ],
+     "9": [
+      18.91,
+      95.0
+     ],
+     "10": [
+      18.9,
+      95.0
+     ],
+     "11": [
+      18.9,
+      95.0
+     ],
+     "12": [
+      18.9,
+      95.0
+     ],
+     "13": [
+      18.91,
+      95.0
+     ],
+     "14": [
+      18.93,
+      95.0
+     ],
+     "15": [
+      18.95,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 28,
+     "options": {
+      "widen": 28
+     },
+     "removed_pieces": 0,
+     "rounds": 2,
+     "infeasible": 0,
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 75,
+    "sec": 2.4
+   },
+   "caps": {
+    "removed_cm3": 19.527,
+    "carve_in_body_cm3": 0.393,
+    "cumulative_share": 0.1945,
+    "vol0_cm3": 100.4,
+    "reach": 0.568,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      2,
+      -14
+     ]
+    },
+    "ok_vol": false,
+    "ok_reach": true,
+    "ok_topology": false,
+    "pass_": false,
+    "fail": "topology_fail",
+    "diag_gating": "D2: topology only (volume and reach reported)"
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 12,
+     "cleared_share": 1.0,
+     "per_frame": [
+      {
+       "f": 18,
+       "cm3": 1.54,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 23,
+       "cm3": 2.37,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 1
+      },
+      {
+       "f": 38,
+       "cm3": 0.77,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 41,
+       "cm3": 1.6,
+       "cleared": true,
+       "t_mm": 0.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 44,
+       "cm3": 2.5,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 47,
+       "cm3": 3.78,
+       "cleared": true,
+       "t_mm": 4.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 61,
+       "cm3": 9.09,
+       "cleared": true,
+       "t_mm": 4.5,
+       "tilt_deg": 1
+      },
+      {
+       "f": 64,
+       "cm3": 3.78,
+       "cleared": true,
+       "t_mm": 6.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 67,
+       "cm3": 8.64,
+       "cleared": true,
+       "t_mm": 2.8,
+       "tilt_deg": 1
+      },
+      {
+       "f": 80,
+       "cm3": 8.51,
+       "cleared": true,
+       "t_mm": 4.5,
+       "tilt_deg": 0
+      },
+      {
+       "f": 84,
+       "cm3": 9.15,
+       "cleared": true,
+       "t_mm": 6.3,
+       "tilt_deg": 0
+      },
+      {
+       "f": 87,
+       "cm3": 5.89,
+       "cleared": true,
+       "t_mm": 8.2,
+       "tilt_deg": 1
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": true,
+    "one_sided": {
+     "frames": 37,
+     "one_sided_share": 1.0
+    },
+    "decision_f_i3_same_sides": {
+     "A<-B": "PUSH",
+     "B<-A": "IGNORE"
+    }
+   },
+   "diag_S_rows": [
+    {
+     "frame": 81,
+     "default": {
+      "disp_mm": 1.11,
+      "dz_mm": -0.386,
+      "lateral_mm": 0.996,
+      "tilt_deg": 0.314,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     },
+     "carved_failed": {
+      "disp_mm": 2.532,
+      "dz_mm": 2.501,
+      "lateral_mm": 0.377,
+      "tilt_deg": 0.968,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     }
+    },
+    {
+     "frame": 62,
+     "default": {
+      "disp_mm": 1.028,
+      "dz_mm": -0.2,
+      "lateral_mm": 0.967,
+      "tilt_deg": 0.38,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     },
+     "carved_failed": {
+      "disp_mm": 2.747,
+      "dz_mm": 2.696,
+      "lateral_mm": 0.51,
+      "tilt_deg": 0.721,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     }
+    }
+   ],
+   "deliver": "default",
+   "diag_D2_would_pass_all_but_P1": false,
+   "diagnostic": "override set: never delivered"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 405,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.594,
+     "observed_voxels": 217,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 6,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.833,
+     "observed_voxels": 6,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "A",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "topology_fail"
+    ],
+    "gates": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.667,
+     "observed_voxels": 3,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 378,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.543,
+     "observed_voxels": 289,
+     "persistent_nmin": 10,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "IGNORE",
+    "flags": [
+     "waiver_gate_fail:transient_or_size",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   }
+  ],
+  "sec": 201.3,
+  "summary": {
+   "in_scope": true,
+   "receiver": "A",
+   "deliver": "default",
+   "containment": {
+    "A": 0.8104,
+    "B": 0.0508
+   },
+   "c_mm": 1.0,
+   "sigma_sup": 1.0,
+   "overshoot": 0,
+   "caps": {
+    "removed_cm3": 19.527,
+    "carve_in_body_cm3": 0.393,
+    "cumulative_share": 0.1945,
+    "vol0_cm3": 100.4,
+    "reach": 0.568,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      2,
+      -14
+     ]
+    },
+    "ok_vol": false,
+    "ok_reach": true,
+    "ok_topology": false,
+    "pass_": false,
+    "fail": "topology_fail",
+    "diag_gating": "D2: topology only (volume and reach reported)"
+   },
+   "tests": null,
+   "failing": null,
+   "S": [],
+   "P2": null,
+   "P2_default": null,
+   "shift": 1.0,
+   "one_sided": 1.0,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#1": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#2": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#3": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#4": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#5": {
+     "voxels": 405,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.594,
+     "observed_voxels": 217,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "A<-B#6": {
+     "voxels": 6,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.833,
+     "observed_voxels": 6,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "A<-B#7": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "A<-B#8": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 1.0,
+     "observed_voxels": 0,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#9": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#10": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#11": {
+     "voxels": 3,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.667,
+     "observed_voxels": 3,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#12": {
+     "voxels": 1,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#13": {
+     "voxels": 378,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "sweep_share": 0.543,
+     "observed_voxels": 289,
+     "persistent_nmin": 10,
+     "pass_": true
+    },
+    "B<-A#14": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    },
+    "B<-A#15": {
+     "voxels": 2,
+     "run_kind": "INSERTION",
+     "run": [
+      18,
+      89
+     ],
+     "n_build": 40,
+     "pass_": false,
+     "fail": "transient_or_size"
+    }
+   },
+   "carve": {
+    "route": "2_lathe",
+    "K_pieces": 195,
+    "n_sectors": 16,
+    "carved_ranges_mm": {
+     "0": [
+      18.98,
+      65.31
+     ],
+     "7": [
+      18.95,
+      95.0
+     ],
+     "8": [
+      18.93,
+      95.0
+     ],
+     "9": [
+      18.91,
+      95.0
+     ],
+     "10": [
+      18.9,
+      95.0
+     ],
+     "11": [
+      18.9,
+      95.0
+     ],
+     "12": [
+      18.9,
+      95.0
+     ],
+     "13": [
+      18.91,
+      95.0
+     ],
+     "14": [
+      18.93,
+      95.0
+     ],
+     "15": [
+      18.95,
+      95.0
+     ]
+    },
+    "lathe": {
+     "conflicts": 28,
+     "options": {
+      "widen": 28
+     },
+     "removed_pieces": 0,
+     "rounds": 2,
+     "infeasible": 0,
+     "unresolved_after_rounds": 0
+    },
+    "pieces": 75,
+    "sec": 2.4
+   },
+   "diag_rest": {
+    "s_min_mm": -19.11,
+    "frames_deeper_than_rest": 8,
+    "deepest_mm": 0.55,
+    "lateral_dev_mm_median_max": [
+     0.54,
+     1.79
+    ],
+    "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"
+   },
+   "diag_S_rows": [
+    {
+     "frame": 81,
+     "default": {
+      "disp_mm": 1.11,
+      "dz_mm": -0.386,
+      "lateral_mm": 0.996,
+      "tilt_deg": 0.314,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     },
+     "carved_failed": {
+      "disp_mm": 2.532,
+      "dz_mm": 2.501,
+      "lateral_mm": 0.377,
+      "tilt_deg": 0.968,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     }
+    },
+    {
+     "frame": 62,
+     "default": {
+      "disp_mm": 1.028,
+      "dz_mm": -0.2,
+      "lateral_mm": 0.967,
+      "tilt_deg": 0.38,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     },
+     "carved_failed": {
+      "disp_mm": 2.747,
+      "dz_mm": 2.696,
+      "lateral_mm": 0.51,
+      "tilt_deg": 0.721,
+      "copies": 16,
+      "nan": 0,
+      "below": 0,
+      "pass_": true
+     }
+    }
+   ],
+   "would_pass": false,
+   "diagnostic": "override set: never delivered"
+  },
+  "note": "DIAGNOSTIC D2 (PREREG F-I5.13, never delivered)"
+ }
+}

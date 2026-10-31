@@ -1,0 +1,534 @@
+{
+ "x7_n2": {
+  "routes": {
+   "A": "4_voxels",
+   "B": "4_voxels"
+  },
+  "pieces": {
+   "A": 1,
+   "B": 1
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "B": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 38.4,
+    "median_cm3": 38.4
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 800,
+     "run_kind": "SEAT",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 0.0,
+     "observed_voxels": 800,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#1": {
+     "voxels": 800,
+     "run_kind": "SEAT",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 0.0,
+     "observed_voxels": 476,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 800,
+     "run_kind": "SEAT",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 0.0,
+     "observed_voxels": 800,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "waiver_gate_fail:sweep"
+    ],
+    "gates": {
+     "voxels": 800,
+     "run_kind": "SEAT",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 0.0,
+     "observed_voxels": 476,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   }
+  ],
+  "sec": 9.5,
+  "summary": {
+   "in_scope": false,
+   "gates": {
+    "A<-B#0": {
+     "voxels": 800,
+     "run_kind": "SEAT",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 0.0,
+     "observed_voxels": 800,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    },
+    "B<-A#1": {
+     "voxels": 800,
+     "run_kind": "SEAT",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 0.0,
+     "observed_voxels": 476,
+     "persistent_nmin": 5,
+     "pass_": false,
+     "fail": "sweep"
+    }
+   }
+  }
+ },
+ "x7_n4": {
+  "routes": {
+   "A": "4_voxels",
+   "B": "4_voxels"
+  },
+  "pieces": {
+   "A": 1,
+   "B": 1
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "B": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 51.2,
+    "median_cm3": 0.0
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {},
+   "in_scope": false,
+   "why": "no persistent component passes the kept gates"
+  },
+  "decisions": [],
+  "sec": 2.9
+ },
+ "x7_wander": {
+  "routes": {
+   "A": "4_voxels",
+   "B": "4_voxels"
+  },
+  "pieces": {
+   "A": 1,
+   "B": 1
+  },
+  "gate_default": {
+   "A": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   },
+   "B": {
+    "pass_": true,
+    "n": 1,
+    "max_cm3": 0.0,
+    "sum_cm3": 0.0,
+    "over_tol": 0,
+    "keepout_points": 0,
+    "keepout_cm3": 0.0
+   }
+  },
+  "overlap_track": {
+   "A|B": {
+    "max_cm3": 22.4,
+    "median_cm3": 12.8
+   }
+  },
+  "result": {
+   "rule": "PREREG F-I5 (d156571, 6b16c2f); owner, session_01W8Softjo2xx7o6ofSiheuQ, 31 Oct (recorded 17:13 UTC): \"but like we said it doesnt have to be a board it can be a cup of what ever like if 2 mesh collide we can carve it\"",
+   "pair": [
+    "A",
+    "B"
+   ],
+   "gates": {
+    "A<-B#0": {
+     "voxels": 780,
+     "run_kind": "SLIDE",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 1.0,
+     "observed_voxels": 760,
+     "persistent_nmin": 5,
+     "pass_": true
+    },
+    "B<-A#1": {
+     "voxels": 400,
+     "run_kind": "SLIDE",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 1.0,
+     "observed_voxels": 400,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   },
+   "in_scope": true,
+   "receiver": "A",
+   "guest": "B",
+   "receiver_info": {
+    "containment": {
+     "A": 0.05,
+     "B": 0.019
+    },
+    "frames": 20,
+    "tie_speed_m_per_frame": {
+     "A": 0.0,
+     "B": 0.062925
+    }
+   },
+   "components": [
+    {
+     "gates": {
+      "voxels": 780,
+      "run_kind": "SLIDE",
+      "run": [
+       0,
+       39
+      ],
+      "n_build": 20,
+      "sweep_share": 1.0,
+      "observed_voxels": 760,
+      "persistent_nmin": 5,
+      "pass_": true
+     },
+     "rest": {
+      "static_frames": 0,
+      "hands_off_static": 0,
+      "assembled_hands_off": 0,
+      "s_frames": [],
+      "flags": [
+       "hands_absent"
+      ],
+      "rest_source": null
+     },
+     "T_rest": null,
+     "overshoot_frames": [],
+     "carve_frames": 20,
+     "build_frames_entered": 20,
+     "clearance": {
+      "surface_samples": 102412,
+      "in_Rplus": 35930,
+      "sigma_sup": 1.0,
+      "c_mm": 1.0
+     },
+     "R_voxels": 780,
+     "Rplus_voxels": 2796
+    }
+   ],
+   "carve": {
+    "route": "4_voxels",
+    "K_pieces": 20,
+    "cut_cm3": 149.124,
+    "carved_body_cm3": 617.56,
+    "ladder": [
+     {
+      "route": "4_voxels",
+      "report": {
+       "pitch_mm": 2.0,
+       "boxes": 15,
+       "cells": 77195,
+       "cap": 82
+      },
+      "gate": {
+       "pass_": true,
+       "n": 15,
+       "max_cm3": 0.0,
+       "sum_cm3": 0.0,
+       "over_tol": 0,
+       "keepout_points": 0,
+       "keepout_cm3": 0.0
+      }
+     }
+    ],
+    "carved_route": "4_voxels",
+    "sec": 13.6
+   },
+   "caps": {
+    "removed_cm3": 64.638,
+    "cumulative_share": 0.0958,
+    "vol0_cm3": 675.0,
+    "reach": 0.857,
+    "topology": {
+     "default": [
+      1,
+      1
+     ],
+     "carved": [
+      1,
+      1
+     ]
+    },
+    "ok_vol": true,
+    "ok_reach": false,
+    "ok_topology": true,
+    "pass_": false,
+    "fail": "budget_iv_fail"
+   },
+   "report": {
+    "rigid_shift": {
+     "frames": 12,
+     "cleared_share": 1.0,
+     "per_frame": [
+      {
+       "f": 0,
+       "cm3": 25.6,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 2,
+       "cm3": 19.2,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 3,
+       "cm3": 19.2,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 5,
+       "cm3": 25.6,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 7,
+       "cm3": 19.58,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 9,
+       "cm3": 20.48,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 20,
+       "cm3": 25.6,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 22,
+       "cm3": 25.6,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 24,
+       "cm3": 14.34,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 26,
+       "cm3": 19.2,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 27,
+       "cm3": 20.48,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      },
+      {
+       "f": 29,
+       "cm3": 25.6,
+       "cleared": true,
+       "t_mm": 2.0,
+       "tilt_deg": 0
+      }
+     ],
+     "note": "report only (F-I5.7); 1 mm occupancy grid of the receiver, 4 mm guest samples"
+    },
+    "carve_of_pose_error": true,
+    "one_sided": null,
+    "decision_f_i3_same_sides": {
+     "A<-B": "PUSH",
+     "B<-A": "PUSH"
+    }
+   },
+   "deliver": "default"
+  },
+  "decisions": [
+   {
+    "target": "A",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "owner_waiver_fi5",
+     "budget_iv_fail"
+    ],
+    "gates": {
+     "voxels": 780,
+     "run_kind": "SLIDE",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 1.0,
+     "observed_voxels": 760,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   },
+   {
+    "target": "B",
+    "decision": "PUSH",
+    "flags": [
+     "interlock_push",
+     "fi5_guest_not_carved"
+    ],
+    "gates": {
+     "voxels": 400,
+     "run_kind": "SLIDE",
+     "run": [
+      0,
+      39
+     ],
+     "n_build": 20,
+     "sweep_share": 1.0,
+     "observed_voxels": 400,
+     "persistent_nmin": 5,
+     "pass_": true
+    }
+   }
+  ],
+  "sec": 26.9
+ },
+ "x6_x10": {
+  "n": 2,
+  "decisions": [
+   "CARVE",
+   "CARVE"
+  ],
+  "same_off": true,
+  "same_plate": true,
+  "scope": "plate pair: F-I4 decides (F-I5.0); nothing changed here"
+ }
+}

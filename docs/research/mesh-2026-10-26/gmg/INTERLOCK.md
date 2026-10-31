@@ -1783,3 +1783,20 @@ depth limit.
   the physics question (does the guest stay where the track puts it?). Its predictions are written before it runs.
   If it holds, the open decision for you is whether the 10 % / 60 % limits (made for board slots) should apply to cup
   walls and holders.
+- **D2 result (19:10 UTC, diagnostic, nothing delivered; PREREG F-I5.13 outcomes).** The physics answer is yes: cut
+  at the rest pose, every nested-cup carve keeps the inner cup within 2.3-3.0 mm and 3.4 degrees of where the track puts
+  it with the hands off, even 5 mm off-axis. The uncarved rings move it by about the track's error (up 4.5 mm when the
+  track is 9.5 mm too deep, sideways 5 mm at a 5 mm offset, 1 mm at a 1 mm offset). But none of these carves passes the
+  shape test as written: the 1 mm clearance thins a 4 mm wall to about 2 mm, which the 2 mm test grid reads as holes
+  (on a 1 mm grid the x1 carve is intact; thinnest wall 1.7 mm); for the 3 mm and 5 mm offsets the cut reaches 4-6 mm
+  into a 4 mm wall, so they very likely go through it [E, not re-checked on 1 mm]. They also remove 19-36 % of the cup's collider (limit 10 %).
+- **Open decisions (orchestrator / owner; each would be a dated PREREG entry before any real run uses it):**
+  1. the carve geometry: rest pose plus approach channel (D2) instead of every raw frame;
+  2. the clearance for nests: c = 1 mm comes from the guest's base corner, and it is what thins the wall; a
+     wall-slope c (about 0.1 mm [E]) would leave about 0.9 mm more wall;
+  3. the topology test grid (1 mm) or rule (fail only on new components or more tunnels: the lid/pot default already
+     has tunnels on 2 mm);
+  4. whether the 10 % volume and 0.6 reach limits apply to cup walls and holders;
+  5. replacing the as-built per-piece R+ shortcut by an exact K-inside-R+ clip (code).
+  Off-axis cups (3-5 mm, as on eval 10) need a cut of 3-5 mm plus clearance into a 4 mm wall, so no variant can keep
+  the wall [E]: the pose correction (the push list) stays their remedy.

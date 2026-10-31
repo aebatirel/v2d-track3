@@ -1841,6 +1841,20 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     cap (F-I1.14 numbers made for board slots): a policy decision for the orchestrator / owner, to be written as a
     dated entry before any real run uses it. If Q1 or Q5 fails, a rest-anchored pocket does not keep a nested cup and
     the cups need the pose correction instead of a carve.
+  - **F-I5.13 outcomes (measured 18:41-19:09 UTC, code 3484d8d and cbed3cb; recorded 19:10 UTC; nothing delivered).**
+    Q3 (x2, 3 mm) and Q4 (x2b, 5 mm) **hold**: topology fails (5 / -10, 1 / -11; a 3-5 mm offset plus c = 1 mm in a 4 mm
+    wall [E]; not re-checked on a 1 mm grid). Q1 (x1),
+    Q2 (x5) and Q5 (x2c, 1 mm) are **falsified as written**: topology fails on the 2 mm grid (1 / -45, 1 / -45, 2 / -14).
+    For x1 a diagnostic shows the same carve keeps the default topology on a 1 mm grid with a thinnest wall of 1.7 mm
+    (median 2.0 mm, no ray under 0.5 mm): the failure is 2 mm aliasing of a wall thinned by c = 1 mm, not a hole. Q6
+    (sweeper) is not testable as written (no T_rest, S untestable; P2 gravity 5.0 mm and P4 fail). Removed volume 19-36 %
+    of the receiver collider, reach 0.57-0.89 on the cups. **S rows (diagnostic, never deciding): every cup carve keeps
+    the guest within 4 mm and 5 deg** (displacement 2.25-3.03 mm, drop 1.6-2.9 mm, tilt <= 3.4 deg), including the 5 mm
+    off-axis guest; **the default rings** move a 9.5 mm-too-deep guest up by 4.4-4.6 mm (fail), a 5 mm off-axis guest
+    sideways by 4.9-5.0 mm (fail), a 3 mm one by 3.0 mm and a 1 mm one by 1.0-1.1 mm (pass). x2c also showed that the
+    as-built lathe R+ rule (F-I5.11 (3)) can carve far more than K inside R+ (19.5 cm3 removed for 0.39 cm3). Code fix
+    found by D2 (cbed3cb): `decide_component` returned CARVE with an empty carve set (crash in `carve_solid`); an empty
+    set is now a PUSH. No rule is changed by this entry; the open decisions are listed in INTERLOCK 21.10.
 
 ## Revision 1 changelog
 

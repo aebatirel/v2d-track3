@@ -1,0 +1,226 @@
+test_q2_x5 (__main__.D2.test_q2_x5) ... 18:42:13 pieces A 2_lathe 65 {'pass_': True, 'n': 65, 'max_cm3': 0.168, 'sum_cm3': 4.816, 'over_tol': 0, 'keepout_points': 601, 'keepout_cm3': 4.808}
+18:42:21 pieces B 2_lathe 65 {'pass_': True, 'n': 65, 'max_cm3': 0.144, 'sum_cm3': 3.664, 'over_tol': 0, 'keepout_points': 458, 'keepout_cm3': 3.664}
+18:43:11 F-I5 A <- B [{"gates": {"voxels": 800, "run_kind": "INSERTION", "run": [16, 89], "n_build": 40, "sweep_share": 0.869, "observed_voxels": 434, "persistent_nmin": 10, "pass_": true}, "rest": {"static_frames": 65, "hands_off_static": 30, "assembled_hands_off": 18, "s_frames": [81, 62], "flags": [], "rest_source": "assembled"}, "T_rest": [[0.999998, 3.7e-05, 0.001846, 5e-05], [-3.7e-05, 1.0, -0.000338, -0.00017], [-0.001846, 0.000338, 0.999998, 0.010463], [0.0, 0.0, 0.0, 1.0]], "overshoot_frames": [], "carve_frames": 38, "build_frames_entered": 38, "clearance": {"surface_samples": 258551, "in_Rplus": 209983, "sigma_sup": 1.0, "c_mm": 1.0}, "R_voxels": 800, "Rplus_voxels": 4337, "diag_rest": {"s_min_mm": -20.53, "frames_deeper_than_rest": 9, "deepest_mm": 0.93, "lateral_dev_mm_median_max": [0.61, 1.79], "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"}}]
+18:43:16 F-I5 carve A {"route": "2_lathe", "K_pieces": 65, "n_sectors": 16, "carved_ranges_mm": {"0": [9.47, 95.0], "1": [9.5, 95.0], "2": [9.51, 95.0], "3": [9.52, 95.0], "4": [9.51, 95.0], "5": [9.5, 95.0], "6": [9.48, 95.0], "7": [9.45, 95.0], "8": [9.43, 95.0], "9": [9.41, 95.0], "10": [9.4, 95.0], "11": [9.4, 95.0], "12": [9.4, 95.0], "13": [9.41, 95.0], "14": [9.43, 95.0], "15": [9.45, 95.0]}, "lathe": {"conflicts": 48, "options": {"widen": 48}, "removed_pieces": 0, "rounds": 2, "infeasible": 0, "unresolved_after_rounds": 0}, "pieces": 81, "sec": 4.8}
+18:48:33 S (D2 diag rows) A <- B 81 {"frame": 81, "default": {"disp_mm": 4.562, "dz_mm": -4.553, "lateral_mm": 0.297, "tilt_deg": 0.314, "copies": 16, "nan": 0, "below": 0, "pass_": false}, "carved_failed": {"disp_mm": 2.744, "dz_mm": 2.653, "lateral_mm": 0.653, "tilt_deg": 0.487, "copies": 16, "nan": 0, "below": 0, "pass_": true}}
+18:50:36 S (D2 diag rows) A <- B 62 {"frame": 62, "default": {"disp_mm": 4.432, "dz_mm": -4.415, "lateral_mm": 0.38, "tilt_deg": 0.38, "copies": 16, "nan": 0, "below": 0, "pass_": false}, "carved_failed": {"disp_mm": 3.029, "dz_mm": 2.94, "lateral_mm": 0.7, "tilt_deg": 0.514, "copies": 16, "nan": 0, "below": 0, "pass_": true}}
+18:50:36 d2_x5 {"in_scope": true, "receiver": "A", "deliver": "default", "containment": {"A": 0.8847, "B": 0.0649}, "c_mm": 1.0, "sigma_sup": 1.0, "overshoot": 0, "caps": {"removed_cm3": 36.573, "carve_in_body_cm3": 28.18, "cumulative_share": 0.3643, "vol0_cm3": 100.4, "reach": 0.892, "topology": {"default": [1, 1], "carved": [1, -45]}, "ok_vol": false, "ok_reach": false, "ok_topology": false, "pass_": false, "fail": "topology_fail", "diag_gating": "D2: topology only (volume and reach reported)"}, "tests": null, "failing": null, "S": [], "P2": null, "P2_default": null, "shift": 0.5, "one_sided": 0.816, "diag_rest": {"s_min_mm": -20.53, "frames_deeper_than_rest": 9, "deepest_mm": 0.93, "lateral_dev_mm_median_max": [0.61, 1.79], "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"}, "diag_S_rows": [{"frame": 81, "default": {"disp_mm": 4.562, "dz_mm": -4.553, "lateral_mm": 0.297, "tilt_deg": 0.314, "copies": 16, "nan": 0, "below": 0, "pass_": false}, "carved_failed": {"disp_mm": 2.744, "dz_mm": 2.653, "lateral_mm": 0.653, "tilt_deg": 0.487, "copies": 16, "nan": 0, "below": 0, "pass_": true}}, {"frame": 62, "default": {"disp_mm": 4.432, "dz_mm": -4.415, "lateral_mm": 0.38, "tilt_deg": 0.38, "copies": 16, "nan": 0, "below": 0, "pass_": false}, "carved_failed": {"disp_mm": 3.029, "dz_mm": 2.94, "lateral_mm": 0.7, "tilt_deg": 0.514, "copies": 16, "nan": 0, "below": 0, "pass_": true}}], "would_pass": false, "diagnostic": "override set: never delivered"}
+FAIL
+test_q3_x2 (__main__.D2.test_q3_x2) ... 18:50:45 pieces A 2_lathe 65 {'pass_': True, 'n': 65, 'max_cm3': 0.168, 'sum_cm3': 4.816, 'over_tol': 0, 'keepout_points': 601, 'keepout_cm3': 4.808}
+18:50:50 pieces B 2_lathe 65 {'pass_': True, 'n': 65, 'max_cm3': 0.144, 'sum_cm3': 3.664, 'over_tol': 0, 'keepout_points': 458, 'keepout_cm3': 3.664}
+18:51:11 F-I5 A <- B [{"gates": {"voxels": 636, "run_kind": "INSERTION", "run": [16, 89], "n_build": 40, "sweep_share": 0.871, "observed_voxels": 394, "persistent_nmin": 10, "pass_": true}, "rest": {"static_frames": 65, "hands_off_static": 30, "assembled_hands_off": 18, "s_frames": [81, 62], "flags": [], "rest_source": "assembled"}, "T_rest": [[0.999998, 3.7e-05, 0.001846, 0.00305], [-3.7e-05, 1.0, -0.000338, -0.00017], [-0.001846, 0.000338, 0.999998, 0.019963], [0.0, 0.0, 0.0, 1.0]], "overshoot_frames": [], "carve_frames": 40, "build_frames_entered": 40, "clearance": {"surface_samples": 258551, "in_Rplus": 107884, "sigma_sup": 1.0, "c_mm": 1.0}, "R_voxels": 636, "Rplus_voxels": 2291, "diag_rest": {"s_min_mm": -20.54, "frames_deeper_than_rest": 9, "deepest_mm": 0.94, "lateral_dev_mm_median_max": [0.59, 1.79], "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"}}]
+18:51:14 F-I5 carve A {"route": "2_lathe", "K_pieces": 65, "n_sectors": 16, "carved_ranges_mm": {"0": [18.98, 91.22], "7": [18.96, 95.0], "8": [18.93, 95.0], "9": [18.91, 95.0], "10": [18.9, 95.0], "11": [18.9, 95.0], "12": [18.9, 95.0], "13": [18.91, 95.0], "14": [18.93, 95.0], "15": [18.96, 95.0]}, "lathe": {"conflicts": 29, "options": {"widen": 17, "trim_top": 4}, "removed_pieces": 8, "rounds": 2, "infeasible": 8, "infeasible_rows": [{"kind": "wall", "s": 10, "h_mm": [47.5, 77.19], "K_h_mm": [47.5, 77.19], "K_r_mm": [33.0, 38.83]}, {"kind": "wall", "s": 10, "h_mm": [77.19, 95.0], "K_h_mm": [77.19, 95.0], "K_r_mm": [34.55, 39.8]}, {"kind": "wall", "s": 11, "h_mm": [47.5, 77.19], "K_h_mm": [47.5, 77.19], "K_r_mm": [33.12, 39.02]}, {"kind": "wall", "s": 11, "h_mm": [77.19, 95.0], "K_h_mm": [77.19, 95.0], "K_r_mm": [34.68, 39.91]}, {"kind": "wall", "s": 12, "h_mm": [47.5, 77.19], "K_h_mm": [47.5, 77.19], "K_r_mm": [33.08, 39.02]}, {"kind": "wall", "s": 12, "h_mm": [77.19, 95.0], "K_h_mm": [77.19, 95.0], "K_r_mm": [34.63, 39.91]}, {"kind": "wall", "s": 13, "h_mm": [47.5, 77.19], "K_h_mm": [47.5, 77.19], "K_r_mm": [32.97, 38.62]}, {"kind": "wall", "s": 13, "h_mm": [77.19, 95.0], "K_h_mm": [77.19, 95.0], "K_r_mm": [34.52, 39.58]}], "unresolved_after_rounds": 0}, "pieces": 68, "sec": 2.3}
+18:53:31 S (D2 diag rows) A <- B 81 {"frame": 81, "default": {"disp_mm": 3.032, "dz_mm": -0.57, "lateral_mm": 2.966, "tilt_deg": 0.314, "copies": 16, "nan": 0, "below": 0, "pass_": true}, "carved_failed": {"disp_mm": 2.25, "dz_mm": 2.16, "lateral_mm": 0.573, "tilt_deg": 2.885, "copies": 16, "nan": 0, "below": 0, "pass_": true}}
+18:54:30 S (D2 diag rows) A <- B 62 {"frame": 62, "default": {"disp_mm": 2.951, "dz_mm": -0.375, "lateral_mm": 2.918, "tilt_deg": 0.38, "copies": 16, "nan": 0, "below": 0, "pass_": true}, "carved_failed": {"disp_mm": 2.548, "dz_mm": 2.441, "lateral_mm": 0.708, "tilt_deg": 3.181, "copies": 16, "nan": 0, "below": 0, "pass_": true}}
+18:54:30 d2_x2 {"in_scope": true, "receiver": "A", "deliver": "default", "containment": {"A": 0.7922, "B": 0.1332}, "c_mm": 1.0, "sigma_sup": 1.0, "overshoot": 0, "caps": {"removed_cm3": 28.776, "carve_in_body_cm3": 24.97, "cumulative_share": 0.2866, "vol0_cm3": 100.4, "reach": 0.799, "topology": {"default": [1, 1], "carved": [5, -10]}, "ok_vol": false, "ok_reach": false, "ok_topology": false, "pass_": false, "fail": "topology_fail", "diag_gating": "D2: topology only (volume and reach reported)"}, "tests": null, "failing": null, "S": [], "P2": null, "P2_default": null, "shift": 1.0, "one_sided": 1.0, "diag_rest": {"s_min_mm": -20.54, "frames_deeper_than_rest": 9, "deepest_mm": 0.94, "lateral_dev_mm_median_max": [0.59, 1.79], "note": "DIAGNOSTIC D2 (F-I5.13): K = rest pose + approach channel along d; never delivered"}, "diag_S_rows": [{"frame": 81, "default": {"disp_mm": 3.032, "dz_mm": -0.57, "lateral_mm": 2.966, "tilt_deg": 0.314, "copies": 16, "nan": 0, "below": 0, "pass_": true}, "carved_failed": {"disp_mm": 2.25, "dz_mm": 2.16, "lateral_mm": 0.573, "tilt_deg": 2.885, "copies": 16, "nan": 0, "below": 0, "pass_": true}}, {"frame": 62, "default": {"disp_mm": 2.951, "dz_mm": -0.375, "lateral_mm": 2.918, "tilt_deg": 0.38, "copies": 16, "nan": 0, "below": 0, "pass_": true}, "carved_failed": {"disp_mm": 2.548, "dz_mm": 2.441, "lateral_mm": 0.708, "tilt_deg": 3.181, "copies": 16, "nan": 0, "below": 0, "pass_": true}}], "would_pass": false, "diagnostic": "override set: never delivered"}
+ok
+test_q6_sweeper (__main__.D2.test_q6_sweeper) ... /usr/lib/python3.13/multiprocessing/popen_fork.py:73: DeprecationWarning: This process (pid=26074) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+[2026-10-31 18:54:31.155] [CoACD] [info] threshold               0.02
+[2026-10-31 18:54:31.160] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:54:31.160] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:54:31.160] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:54:31.160] [CoACD] [info] pca                     false
+[2026-10-31 18:54:31.160] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:54:31.160] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:54:31.160] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:54:31.160] [CoACD] [info] merge                   true
+[2026-10-31 18:54:31.160] [CoACD] [info] decimate                false
+[2026-10-31 18:54:31.160] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:54:31.160] [CoACD] [info] extrude                 false
+[2026-10-31 18:54:31.160] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:54:31.160] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:54:31.160] [CoACD] [info] seed                    0
+[2026-10-31 18:54:31.160] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:54:31.161] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:54:31.161] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:54:31.161] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:54:31.161] [CoACD] [info] Manifold Check Time: 0.000573s
+[2026-10-31 18:54:31.161] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:54:31.161] [CoACD] [info] # Points: 16
+[2026-10-31 18:54:31.161] [CoACD] [info] # Triangles: 28
+[2026-10-31 18:54:31.161] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:54:31.161] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:54:31.204] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:32.068] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:32.068] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-31 18:54:32.092] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:54:32.096] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:33.492] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:33.492] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-31 18:54:33.492] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:33.500] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:54:33.504] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:54:33.516] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:54:35.581] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:35.584] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-31 18:54:35.608] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:54:35.612] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:54:35.620] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:35.624] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:54:36.076] [CoACD] [info] Processing [12.5%]
+[2026-10-31 18:54:37.206] [CoACD] [info] Processing [87.5%]
+[2026-10-31 18:54:37.403] [CoACD] [info] Processing [62.5%]
+[2026-10-31 18:54:37.504] [CoACD] [info] Processing [37.5%]
+[2026-10-31 18:54:38.112] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:38.112] [CoACD] [info] iter 4 ---- waiting pool: 10
+[2026-10-31 18:54:38.120] [CoACD] [info] Processing [60.0%]
+[2026-10-31 18:54:38.120] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:38.136] [CoACD] [info] Processing [80.0%]
+[2026-10-31 18:54:38.255] [CoACD] [info] Processing [40.0%]
+[2026-10-31 18:54:38.419] [CoACD] [info] Processing [20.0%]
+[2026-10-31 18:54:39.028] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:39.028] [CoACD] [info] iter 5 ---- waiting pool: 2
+[2026-10-31 18:54:39.036] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:54:39.048] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:39.172] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:39.172] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:54:43.344] [CoACD] [info] Compute Time: 12.182889402996807s
+[2026-10-31 18:54:43.344] [CoACD] [info] # Convex Hulls: 14
+18:54:45 pieces A 3_coacd 14 {'pass_': True, 'n': 14, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+[2026-10-31 18:54:45.196] [CoACD] [info] threshold               0.02
+[2026-10-31 18:54:45.196] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:54:45.196] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:54:45.196] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:54:45.196] [CoACD] [info] pca                     false
+[2026-10-31 18:54:45.196] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:54:45.196] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:54:45.196] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:54:45.196] [CoACD] [info] merge                   true
+[2026-10-31 18:54:45.196] [CoACD] [info] decimate                false
+[2026-10-31 18:54:45.196] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:54:45.196] [CoACD] [info] extrude                 false
+[2026-10-31 18:54:45.196] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:54:45.196] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:54:45.196] [CoACD] [info] seed                    0
+[2026-10-31 18:54:45.196] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:54:45.197] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:54:45.197] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:54:45.197] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:54:45.197] [CoACD] [info] Manifold Check Time: 0.000314s
+[2026-10-31 18:54:45.197] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:54:45.197] [CoACD] [info] # Points: 8
+[2026-10-31 18:54:45.197] [CoACD] [info] # Triangles: 12
+[2026-10-31 18:54:45.197] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:54:45.197] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:54:45.236] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:54:45.301] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:54:45.301] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:54:45.301] [CoACD] [info] Compute Time: 0.10408350299985614s
+[2026-10-31 18:54:45.301] [CoACD] [info] # Convex Hulls: 1
+18:54:45 pieces B 3_coacd 1 {'pass_': True, 'n': 1, 'max_cm3': 0.0, 'sum_cm3': 0.0, 'over_tol': 0, 'keepout_points': 0, 'keepout_cm3': 0.0}
+18:55:02 F-I5 A <- B [{"gates": {"voxels": 38, "run_kind": "SLIDE", "run": [42, 52], "n_build": 11, "sweep_share": 1.0, "observed_voxels": 38, "persistent_nmin": 5, "pass_": true}, "rest": {"static_frames": 0, "hands_off_static": 0, "assembled_hands_off": 0, "s_frames": [], "flags": [], "rest_source": null}, "T_rest": null, "overshoot_frames": [], "carve_frames": 8, "build_frames_entered": 8, "clearance": {"surface_samples": 67212, "in_Rplus": 5331, "sigma_sup": 1.0, "c_mm": 1.0}, "R_voxels": 38, "Rplus_voxels": 207}, {"gates": {"voxels": 15, "run_kind": "SEAT", "run": [27, 37], "n_build": 11, "sweep_share": 1.0, "observed_voxels": 15, "persistent_nmin": 5, "pass_": true}, "rest": {"static_frames": 5, "hands_off_static": 0, "assembled_hands_off": 0, "s_frames": [], "flags": [], "rest_source": null}, "T_rest": null, "overshoot_frames": [], "carve_frames": 7, "build_frames_entered": 7, "clearance": {"surface_samples": 67212, "in_Rplus": 2572, "sigma_sup": 0.00107, "c_mm": 0.0, "flag_c_zero": "c_zero"}, "R_voxels": 15, "Rplus_voxels": 105}]
+[2026-10-31 18:55:03.071] [CoACD] [info] threshold               0.02
+[2026-10-31 18:55:03.071] [CoACD] [info] max # convex hull       82
+[2026-10-31 18:55:03.071] [CoACD] [info] preprocess mode         auto
+[2026-10-31 18:55:03.071] [CoACD] [info] preprocess resolution   50
+[2026-10-31 18:55:03.071] [CoACD] [info] pca                     false
+[2026-10-31 18:55:03.072] [CoACD] [info] mcts max depth          3
+[2026-10-31 18:55:03.072] [CoACD] [info] mcts nodes              20
+[2026-10-31 18:55:03.072] [CoACD] [info] mcts iterations         150
+[2026-10-31 18:55:03.072] [CoACD] [info] merge                   true
+[2026-10-31 18:55:03.072] [CoACD] [info] decimate                false
+[2026-10-31 18:55:03.072] [CoACD] [info] max_ch_vertex           256
+[2026-10-31 18:55:03.072] [CoACD] [info] extrude                 false
+[2026-10-31 18:55:03.072] [CoACD] [info] extrude margin          0.01
+[2026-10-31 18:55:03.072] [CoACD] [info] approximate mode        ch
+[2026-10-31 18:55:03.072] [CoACD] [info] seed                    0
+[2026-10-31 18:55:03.072] [CoACD] [info]  - Manifold Check
+[2026-10-31 18:55:03.072] [CoACD] [info] [1/3] Edge check finish
+[2026-10-31 18:55:03.074] [CoACD] [info] [2/3] Self-intersection check finish
+[2026-10-31 18:55:03.074] [CoACD] [info] [3/3] Triangle orientation check finish. Reversed: false
+[2026-10-31 18:55:03.074] [CoACD] [info] Manifold Check Time: 0.002047s
+[2026-10-31 18:55:03.074] [CoACD] [info] Mesh Manifoldness: true
+[2026-10-31 18:55:03.074] [CoACD] [info] # Points: 71
+[2026-10-31 18:55:03.074] [CoACD] [info] # Triangles: 138
+[2026-10-31 18:55:03.074] [CoACD] [info]  - Decomposition (MCTS)
+[2026-10-31 18:55:03.074] [CoACD] [info] iter 0 ---- waiting pool: 1
+[2026-10-31 18:55:03.096] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:03.784] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:03.784] [CoACD] [info] iter 1 ---- waiting pool: 2
+[2026-10-31 18:55:03.784] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:03.796] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:04.900] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:04.900] [CoACD] [info] iter 2 ---- waiting pool: 4
+[2026-10-31 18:55:04.900] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:04.904] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:04.908] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:55:04.916] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:55:06.628] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:06.628] [CoACD] [info] iter 3 ---- waiting pool: 8
+[2026-10-31 18:55:06.632] [CoACD] [info] Processing [25.0%]
+[2026-10-31 18:55:06.636] [CoACD] [info] Processing [75.0%]
+[2026-10-31 18:55:06.640] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:06.644] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:08.159] [CoACD] [info] Processing [87.5%]
+[2026-10-31 18:55:08.171] [CoACD] [info] Processing [62.5%]
+[2026-10-31 18:55:08.198] [CoACD] [info] Processing [12.5%]
+[2026-10-31 18:55:08.431] [CoACD] [info] Processing [37.5%]
+[2026-10-31 18:55:09.343] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:09.343] [CoACD] [info] iter 4 ---- waiting pool: 12
+[2026-10-31 18:55:09.360] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:09.364] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:09.394] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:55:09.681] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:55:10.133] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:55:10.525] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:55:10.975] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:10.975] [CoACD] [info] iter 5 ---- waiting pool: 6
+[2026-10-31 18:55:10.975] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:10.979] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:55:10.984] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:55:10.988] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:55:11.066] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:12.054] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:55:12.320] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:12.320] [CoACD] [info] iter 6 ---- waiting pool: 6
+[2026-10-31 18:55:12.328] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:55:12.332] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:55:12.336] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:12.340] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:55:12.711] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:55:13.182] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:13.582] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:13.582] [CoACD] [info] iter 7 ---- waiting pool: 6
+[2026-10-31 18:55:13.600] [CoACD] [info] Processing [66.7%]
+[2026-10-31 18:55:13.604] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:13.608] [CoACD] [info] Processing [33.3%]
+[2026-10-31 18:55:13.616] [CoACD] [info] Processing [83.3%]
+[2026-10-31 18:55:13.622] [CoACD] [info] Processing [16.7%]
+[2026-10-31 18:55:13.623] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:13.947] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:13.947] [CoACD] [info] iter 8 ---- waiting pool: 2
+[2026-10-31 18:55:13.972] [CoACD] [info] Processing [0.0%]
+[2026-10-31 18:55:13.980] [CoACD] [info] Processing [50.0%]
+[2026-10-31 18:55:14.020] [CoACD] [info] Processing [100.0%]
+[2026-10-31 18:55:14.020] [CoACD] [info]  - Merge Convex Hulls
+[2026-10-31 18:55:17.816] [CoACD] [info] Compute Time: 14.741758561998722s
+[2026-10-31 18:55:17.816] [CoACD] [info] # Convex Hulls: 24
+18:55:21 F-I5 carve A {"route": "3_coacd", "K_pieces": 15, "cut_cm3": 6.93, "carved_body_cm3": 194.346, "ladder": [{"route": "3_coacd", "report": {"steps": 3, "stuck": 0, "pieces": 27, "max_excess_cm3": 0.08, "cap": 82, "coacd_pieces": 24, "sec": 18.1}, "gate": {"pass_": true, "n": 27, "max_cm3": 0.08, "sum_cm3": 0.08, "over_tol": 0, "keepout_points": 1, "keepout_cm3": 0.08}}], "carved_route": "3_coacd", "sec": 19.0}
+19:05:44 F-I5 acceptance A <- B {"S": true, "P2": false, "P3": true, "P4": false, "P5": true, "P6": true, "P7": true, "gate": true} ['P2', 'P4']
+19:05:44 d2_sweeper {"in_scope": true, "receiver": "A", "deliver": "default", "containment": {"A": 0.18, "B": 0.0072}, "c_mm": 1.0, "sigma_sup": 1.0, "overshoot": 0, "caps": {"removed_cm3": 4.076, "carve_in_body_cm3": 2.263, "cumulative_share": 0.0212, "vol0_cm3": 192.39, "reach": 0.569, "topology": {"default": [1, 1], "carved": [1, 1]}, "ok_vol": true, "ok_reach": true, "ok_topology": true, "pass_": true, "fail": null, "diag_gating": "D2: topology only (volume and reach reported)"}, "tests": {"S": true, "P2": false, "P3": true, "P4": false, "P5": true, "P6": true, "P7": true, "gate": true}, "failing": ["P2", "P4"], "S": [], "P2": {"+d": 5.0, "+n": 2.0, "-n": 3.0, "gravity": 5.0}, "P2_default": {"+d": 3.0, "+n": 0.0, "-n": 4.0, "gravity": 3.0}, "shift": 1.0, "one_sided": null, "diag_rest": null, "diag_S_rows": null, "would_pass": false, "diagnostic": "override set: never delivered"}
+FAIL
+results -> /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/fi5/d2b.json
+
+======================================================================
+FAIL: test_q2_x5 (__main__.D2.test_q2_x5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_collcarve.py", line 386, in test_q2_x5
+    self.assertTrue(self._topo(s), s['caps']); self.assertTrue(self._S(s), s['S'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'removed_cm3': 36.573, 'carve_in_body_cm3': 28.18, 'cumulative_share': 0.3643, 'vol0_cm3': 100.4, 'reach': 0.892, 'topology': {'default': [1, 1], 'carved': [1, -45]}, 'ok_vol': False, 'ok_reach': False, 'ok_topology': False, 'pass_': False, 'fail': 'topology_fail', 'diag_gating': 'D2: topology only (volume and reach reported)'}
+
+======================================================================
+FAIL: test_q6_sweeper (__main__.D2.test_q6_sweeper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/v2d-track3/docs/research/mesh-2026-10-26/gmg/tests/test_collcarve.py", line 415, in test_q6_sweeper
+    self.assertTrue(self._S(s), s['S'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : []
+
+----------------------------------------------------------------------
+Ran 3 tests in 1425.917s
+
+FAILED (failures=2)
