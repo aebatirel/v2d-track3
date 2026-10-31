@@ -5577,3 +5577,25 @@ diagnostic; nothing is picked for submission.
   (P53), not gated.
 - Predictions P51-P58. Freeze for eval 25 only if ep24 carves both boards and passes all tests but P1, and ep23 board 1
   gives a plate and a body.
+
+### 2026-10-31 ~18:20 UTC — KAGGLE: pack 9a+ CD-O 0.33234 (from 0.40188), rank 18 -> 14; AUC +0.003
+- From the score session (data): pack 9a+ (build_9aplus) was uploaded; the owner said "upload which you think of the
+  highest score potential".
+- Board results:
+
+  | Board | Before | After |
+  |---|---|---|
+  | CD-O | 0.40188 | **0.33234** (my public-scan estimate was 0.333) |
+  | AUC | | 0.81757 (+0.003) |
+  | RPE | | 3.879 (-0.053) |
+  | MPPE | | 2.897 (-0.025) |
+
+  SR unchanged.
+- **The public-twin AUC guard held on eval.**
+- **Implied spoon:** (0.33234 x 36 - 10.156) / 10 = 0.181, using the public-scan values of the shipped non-spoon
+  meshes.
+- **Remaining weighted sum** (non-spoon, 9a+): rack 2.28, pot 2.05, blue cup (library) 2.62, pitcher 0.89, sweeper
+  0.63, dust pan 0.52, beige 0.50, lid 0.22, boards 0.44.
+- **Next:**
+  - blue cup via C0b (-1.16 -> ~0.300 board);
+  - then pitcher and rack.

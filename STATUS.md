@@ -1,5 +1,29 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~18:20 UTC: pack 9a+ uploaded — CD-O 0.40188 -> 0.33234 (rank 18 -> 14), pose boards slightly better
+- **Pack 9a+** (uploaded by the eval lane; owner: "upload which you think of the highest score potential"):
+  - pack 8 plus the C0 pot / lid / rack (prim fits);
+  - the C1 beige-cup obs-lathe (evals 8, 10);
+  - the C1 dust pan (SAM 3D pick placed in the library frame);
+  - packed meshes only.
+- **Kaggle:**
+
+  | Board | Before | After |
+  |---|---|---|
+  | CD-O | 0.40188 | **0.33234** (estimate was 0.333 [E]) |
+  | AUC | | 0.81757 (+0.003) |
+  | RPE | | 3.879 (-0.053) |
+  | MPPE | | 2.897 (-0.025) |
+
+  SR unchanged. The public-twin AUC guard predicted "not worse, slightly better"; that held on eval. The public-scan
+  CD-O proxy predicted the board within 0.001.
+- **Flags carried:** tier P1 provenance; scan-derived marker-ball radius and 2.5 mm walls (owner: "Ship 9a, flagged");
+  lathe_obs developed in a scan-reading loop.
+- **Next CD-O gains** (pack 10):
+  - the scan-free C0b/E0b rebuild, including the blue cup (~ -0.03 [E]);
+  - then the pitcher (0.894) and rack (0.456), the largest remaining weighted terms.
+  - The implied spoon CD-O is ~0.18 (10 of 36 pairs; it cannot be measured without tuning on eval).
+
 ## 2026-10-31 ~18:00 UTC: board slot under the camera-rule waiver: no notch built; eval 25 not run (CPU, $0)
 - **Answer to the owner:** no. No slot was built, physics-tested or delivered on public ep24 or eval 25 [M].
   Report: `docs/research/mesh-2026-10-26/gmg/INTERLOCK.md` section 20.9; log `gmg/build/I.md`.
