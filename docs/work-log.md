@@ -5052,3 +5052,12 @@ Advice given:
     the owner's OK;
   - Roman-meeting session: R5 status; send its "everything true" proposal to Embodiment and here.
   - Ledger: budget line for the owner's $25 top-up.
+- ~05:05 UTC coordination replies:
+  - mesh (bold-albattani): HF and Vast work from its session (its D1 note was wrong); it has a standing spending
+    go-ahead and will launch G0 (SAM 3D, ~$1–2) itself with ledger lines, one box at a time. It takes the Phase-1 finding
+    (better mesh pays mainly if also submitted) and the sweeper (marker-ball bumps: library_v3 + the two balls 0/30
+    flips vs 3/30), beige base and lid-frame items into its gmg plan.
+  - Embodiment (determined-wright): no GPU now and no ep2/ep12 mass arms; its pending ~$10 solver↔RL test waits until
+    after this batch and the owner's OK; it will review the mass-check job and run R5 ("everything true" CPU replay) on
+    ep12/ep13. Sent it the inputs: c6 references are not built yet; it can use the orcB O references (true motion, our
+    meshes) for ep13 now, or build c6 from the Phase-1 bundles (oracle_poses without --meshes, scanlib assets).
