@@ -427,3 +427,16 @@ entries changes a pre-registered test, threshold or constant, so none goes in PR
     partner footprints can miss partner pixels next to the contact; the 10 mm margin covers part of that. The
     owner-relevant ep2 views are separated frames (lid-to-pot gap >= 186 px on cam_a [M, dev]), where this does not
     matter. B.11 should run again on clean bundles (B4) or on the G0 box before SAM 3D (PREREG B.11, B.12).
+73. **(2026-10-31, B2) Audit environment of runs that load SAM2 (transformers).** The first final B.11 run
+    (`runs-dev/20261030-b2views-fd7b357`) had forbidden 0, unlisted 0, network 0 but 7 writes outside the run folder,
+    all library side effects, none a data read: a stale `.pyc` written under a temporary name (the audit exempts only
+    names ending in `.pyc`), Python `tempfile`'s writability probe in `/tmp`, `filelock._strict`'s import-time
+    hard-link probe (`/tmp/tmp*/probe-source`, `probe-link`; filelock comes in with transformers) and one POSIX
+    semaphore in `/dev/shm` (a multiprocessing lock). Audited runs that load SAM2 therefore run with
+    `PYTHONDONTWRITEBYTECODE=1`, `TMPDIR` = a per-run folder outside the run folder (`<scratchpad>/gmg/tmp/<run>`; inside
+    the run folder the filelock probe's hard link would count as forbidden), progress bars off
+    (`HF_HUB_DISABLE_PROGRESS_BARS=1`, `TQDM_DISABLE=1`) and `--allow-write '<that TMPDIR>/**' --allow-write
+    '/dev/shm/sem.*'`. Reads stay fully checked (the allow-list only exempts writes). `b11_views` also records the HEAD
+    commit at its start in the manifest (`extra.start_commit`), because the manifest takes HEAD when it is written and
+    another agent committed B7 files to the shared checkout during that run (manifest commit f286e79 = fd7b357 plus
+    `structure.py` and `build/B7.md`, neither imported by B2). No scan or eval number involved; no PREREG value changed.
