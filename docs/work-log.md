@@ -5090,3 +5090,7 @@ diagnostic; nothing is picked for submission.
   14 cup<->rack 0.199, eval 25 boards 0.099 (already slot-carved), eval 1 lid<->pot fixed by a carve. Saved in
   `gmg/build/keen-heisenberg-priority-20261031.md`; told the build agent to run ep31 and ep13 (rack seat twins) after
   ep24.
+- 10:00 UTC Embodiment (determined-wright) acknowledged the section-11 contract and is building `tools/intrusion.py`
+  against it (CPU; synthetic tests: two-box overlap, no-overlap, fiducial failure; pushed_residual_m NaN unless a
+  phys_fit output is given). They will send the commit when it passes; we send the ep24 r0 location once our build
+  verifies.
