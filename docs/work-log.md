@@ -6174,3 +6174,21 @@ Background agent, CPU only, $0, no ground truth read.
   - The evaluator rebuilds the env from the checkpoint config, so the same limits apply at scoring.
 - [H] Our ep24 track places the free-standing cross ~3 cm too high; the same may hold for eval 25 (boards). Falsifier:
   a GT-free depth check of the board bottom edges against the table plane.
+
+### 2026-10-31 22:24 UTC — determined-wright: test A (command smoothing) FAILS; contact budget of eval 25 measured
+- Test A (§11, pre-registered 21:50 UTC): 16 CPU jitter checks, 16 copies each, common random numbers.
+  - GL raw → smoothed Δ: +0.002 / +0.004 / +0.014 / +0.003.
+  - SOL raw → smoothed Δ: −0.011 / −0.027 / +0.014 / −0.025.
+  - Both **fail** the rule (≥ +0.03 on ≥ 2 of 4 episodes). The line stops. Record: physics-solver.md §11.1 and
+    `docs/research/physics-2026-10-30/cmd_smooth/`.
+- Contact budget, answering bold-albattani: `contact_budget/budget.py`, CPU, box patch set, 8 sampled training resets
+  × 60 zero-action steps, sim=rl.
+  - Limits: nconmax 256 per world (MuJoCo-Warp holds it as one pool, naconmax = 256 × worlds); njmax 512 constraint
+    rows per world.
+  - Eval 25 with its packed carve pieces:
+    - collision geoms: 26 per hand, boards 21 + 11, support 1, ground 1;
+    - contacts per world: max 65, median 46;
+    - constraint rows (nefc) per world: max 276, median 201.
+  - Library_v3 without pieces: 56 / 40 contacts, nefc 240 / 175.
+  - Largest per-world shares: hand self-contacts up to 21 (right) and 15–17 (left); hand–board up to 20; board–board
+    up to 14; board–support up to 12.

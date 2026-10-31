@@ -1260,3 +1260,26 @@ Otherwise **fail**.
 
 **Meaning.** A pass is only a zero-action executability gain; G2 showed that this need not carry over to RL. It would
 justify an RL test (owner's go-ahead, cost stated). A fail stops this line.
+
+### 11.1 Results (31 Oct 2026, 22:21 UTC, CPU) [M]
+
+- Inputs:
+  - plans: `cmd_smooth/scripts/prep_a.py` (the physS1 GL and psolverl SOL files, md5s as registered, with only the asset
+    paths remapped);
+  - smoother: `tools/physics_solve/cmd_smooth.py` at the registered settings;
+  - jitter check: `jitter_check.py --k 16 --seed 0`, KIT `dl/kit/x/v2d_submission_kit`, scratchpad `cmds/`.
+- Per-run JSONs: `cmd_smooth/jitter/`. Summary: `cmd_smooth/testA_result.json`.
+
+| plan set | ep2 | ep12 | ep18 | ep24 | verdict |
+|---|---|---|---|---|---|
+| GL: raw → smoothed (jittered mean sim_vs_ref) | .5505 → .5521 (+0.002) | .5787 → .5828 (+0.004) | .4523 → .4667 (+0.014) | .1903 → .1931 (+0.003) | **fail** (no Δ ≥ +0.03) |
+| SOL: raw → smoothed | .7711 → .7601 (−0.011) | .7755 → .7481 (−0.027) | .4523 → .4667 (+0.014) | .2203 → .1956 (−0.025) | **fail** |
+
+- ep18's GL and SOL files are byte-identical (§9.1), so those two rows match, as expected.
+- **Reading:**
+  - On the GL plans, smoothing the targets helps slightly on all 4 episodes (+0.002 to +0.014), far below the
+    registered +0.03.
+  - On the solver's plans it hurts 3 of 4 episodes (−0.011 to −0.027). [H] The solver tuned those exact targets, and
+    smoothing undoes part of that tuning.
+- **Action (as registered): this line stops.** Test A is not followed by an RL test.
+
