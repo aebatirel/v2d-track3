@@ -5578,3 +5578,8 @@ Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on 
 - Draw selection by GT-free MPPE (post hoc, public): RPE 13.7 → 6.4. NOT proposed for use. The owner's earlier rule is
   "we cannot pick and choose" (note 14), and PR #215 expects reproduced scores within run-to-run variation. The
   legitimate form is checkpoint selection with a GT-free failure penalty ([H-sel]; needs fresh draws).
+- ~16:05 UTC focused-pascal: the pack-10 per-episode rule gets GT-free RPE/MPPE vs our reference and a failure rate
+  (draws with RPE > X ≈ 5 cm) next to the sim_vs_ref mean. It is pre-registered before any retrain result. No
+  best-of-N: packed rollouts stay draw 1 by position. ep11 gate running (Vast 58552489, run 20261031-e11g-663b7df,
+  $1.07/h), result ≈ 19–21 UTC. My comment: compare 10-draw means (new vs packed policy's H5 mean), not the packed single
+  draw, with an optional as-scored guard as a secondary condition.
