@@ -5544,3 +5544,11 @@ arm and a no-policy replay floor to stage B.
 - Decision (this session, by CLAUDE.md's write-the-rule-first rule): pack 9a defaults to pot + lid + rack. The blue cup
   is held back unless the owner explicitly accepts it. Cost [E]: CD-O ≈ 0.367 vs ≈ 0.335 (~15th vs ~14th). The blue
   cup is rebuilt from eval episodes with a pre-committed rule for the 1 Nov pack. Told focused-pascal and bold-albattani.
+- ~15:45 UTC focused-pascal: pack 9a default is 3 meshes (pot, lid, rack from library_c0 at 5cce3d2); the blue cup only
+  on the owner's explicit include before the build. Frame confirmation still blocks; the swap tool also checks frames.
+- ~15:45 UTC bold-albattani, correction: the eval depth cache already exists (cache/depth/eval/ep*/depths_fs0.5.npy,
+  batch 1, 29 Oct, $2.95), so eval mesh builds are CPU only, $0.
+  - Plan: per-episode builds on eval tracks (pot, lid, rack, blue cup, C1 objects); 2.5 mm grid midpoint as the default
+    thickness (flagged); obs_fidelity rule committed before any choice; eval-build fidelity reported beside C0's on the
+    same eval observations; public single-episode CD-O distribution as context.
+  - ETA: handover 1 Nov ~12:00 UTC for the 1 Nov pack; not tonight.
