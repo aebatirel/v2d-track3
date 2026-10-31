@@ -5542,3 +5542,12 @@ arm and a no-policy replay floor to stage B.
     already exists (drawdiv tooling, orcB rollouts).
 - ~15:26 UTC: the score-status session withdrew the request. It runs the RPE / MPPE diagnostic itself and reuses
   `docs/analysis/drawdiv-20261031/` read-only from this branch. Nothing pending here for it.
+- ~19:35 UTC owner forwarded Roman's question on the Embodiment session's ep2 video ("left is old one, right is with the
+  physical augmentation? What kind?").
+  - Checked (`ops/jobs/physics_rl_loop.sh` lines 7 and 126; physics-solver.md §6.1): **both** sides of that video start
+    from the same physics-solved reference (G2) with realistic (S1) masses. Left = O1 control, right = O3 loop. The
+    caption "current recipe vs physics-solved references" is therefore misleading.
+  - The right's checkpoint (20M) predates any loop edit. The gap is the LR-horizon confound plus ep2's draw spread
+    (left stored draws 0.32–0.92, right 0.46–0.96).
+  - The clean solved-vs-normal test is arm S (§9), running. Drafted for the owner an inventory of the physical elements
+    in use and tested, to answer Roman.
