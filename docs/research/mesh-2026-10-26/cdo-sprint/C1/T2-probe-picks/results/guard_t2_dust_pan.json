@@ -1,0 +1,192 @@
+{
+ "rule": {
+  "mean_dAUC_min": -0.005,
+  "min_dAUC_min": -0.02,
+  "mean_dMPPE_cm_max": 0.2,
+  "mean_dRPE_cm_max": 0.2
+ },
+ "objects": {
+  "mini_dust_pan": {
+   "twins": [
+    18,
+    39,
+    40
+   ],
+   "missing": [],
+   "guard_pass": true,
+   "checks": {
+    "mean_dAUC": true,
+    "min_dAUC": true,
+    "mean_dMPPE": true,
+    "mean_dRPE": true,
+    "complete": true
+   },
+   "mean_dAUC": 0.012400000000000003,
+   "min_dAUC": -0.0013999999999999568,
+   "max_dAUC": 0.023299999999999987,
+   "mean_dSP_SR": 0.0,
+   "min_dSP_SR": 0.0,
+   "max_dSP_SR": 0.0,
+   "mean_dMP_SR": 0.0,
+   "min_dMP_SR": 0.0,
+   "max_dMP_SR": 0.0,
+   "mean_dMPPE_cm": -0.1277,
+   "min_dMPPE_cm": -0.25240000000000007,
+   "max_dMPPE_cm": 0.041300000000000114,
+   "mean_dRPE_cm": 0.0015333333333333126,
+   "min_dRPE_cm": 0.0,
+   "max_dRPE_cm": 0.0045999999999999375,
+   "per_twin": [
+    {
+     "ep": 18,
+     "base_source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/auc/runs/base/ep18.json",
+     "dAUC": -0.0013999999999999568,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": 0.041300000000000114,
+     "dRPE_cm": 0.0045999999999999375,
+     "base": {
+      "AUC": 0.9642,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.0107,
+      "RPE_cm": 1.5864
+     },
+     "swap": {
+      "AUC": 0.9628,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.052,
+      "RPE_cm": 1.591
+     },
+     "per_obj_AUC_base": {
+      "mini_sweeper": 0.9952,
+      "mini_dust_pan": 0.9333
+     },
+     "per_obj_AUC_swap": {
+      "mini_sweeper": 0.9952,
+      "mini_dust_pan": 0.9304
+     },
+     "registration_base": {
+      "rot_deg": 2.44,
+      "anchor_shift_cm": 0.59,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "registration_swap": {
+      "rot_deg": 1.15,
+      "anchor_shift_cm": 0.48,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    {
+     "ep": 39,
+     "base_source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/auc/runs/base/ep39.json",
+     "dAUC": 0.01529999999999998,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.17200000000000004,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.9602,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 1.0277,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.9755,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.8557,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "mini_dust_pan": 0.9602
+     },
+     "per_obj_AUC_swap": {
+      "mini_dust_pan": 0.9755
+     },
+     "registration_base": {
+      "rot_deg": 2.41,
+      "anchor_shift_cm": 0.6,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "registration_swap": {
+      "rot_deg": 1.15,
+      "anchor_shift_cm": 0.47,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    },
+    {
+     "ep": 40,
+     "base_source": "/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/cdo_c1/t2/auc/runs/base/ep40.json",
+     "dAUC": 0.023299999999999987,
+     "dSP_SR": 0.0,
+     "dMP_SR": 0.0,
+     "dMPPE_cm": -0.25240000000000007,
+     "dRPE_cm": 0.0,
+     "base": {
+      "AUC": 0.957,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.9009,
+      "RPE_cm": 0.0
+     },
+     "swap": {
+      "AUC": 0.9803,
+      "SP_SR": 1.0,
+      "MP_SR": 1.0,
+      "MPPE_cm": 0.6485,
+      "RPE_cm": 0.0
+     },
+     "per_obj_AUC_base": {
+      "mini_dust_pan": 0.957
+     },
+     "per_obj_AUC_swap": {
+      "mini_dust_pan": 0.9803
+     },
+     "registration_base": {
+      "rot_deg": 2.47,
+      "anchor_shift_cm": 0.57,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     },
+     "registration_swap": {
+      "rot_deg": 0.85,
+      "anchor_shift_cm": 0.45,
+      "axis": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "order": 0
+     }
+    }
+   ]
+  }
+ }
+}
