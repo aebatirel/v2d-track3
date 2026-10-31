@@ -9,8 +9,14 @@
 - **For focused-pascal's targeted D cells** (evals 14/16/25/30/33, tonight):
   - FC_DR_SKIP_IMMEDIATE=1 for the standard-learner evals 25/30: 4e5c8a0, CPU 17/17 PASS.
   - Pending from me: the per-episode CPU reset check on the packed assets.
-- Queue: the reset check → bold-albattani's ep24 P1 jitter check → keen-heisenberg's command-smoothing (A) and
-  synergy (B) CPU tests. Solver v2: waiting on the owner (recommended skip).
+- Delivered tonight (CPU, $0):
+  - D reset check (no eval outside the public range; eval 25 re-run with its packed carve);
+  - P1 on bold-albattani's ep24 r0: FAIL for carved and default, caused by our ~3 cm board hover; plus a sim=rl
+    contact overflow, so r0 is now do-not-use (26b8c6b on their branch);
+  - eval-25 contact budget: nefc max 276 of 512;
+  - test A command smoothing: FAIL (GL +0.002 to +0.014; SOL mostly negative).
+- Not done: synergy test B (it needs CPU solver runs taking hours; past the cut-off). Solver v2: waiting on the
+  owner (recommended skip).
 
 ## 2026-10-31 ~20:32 UTC: recipe screen + solver re-test DONE (all boxes gone); no eval solving; owner: no D
 - **One cell is short of draws.** C/ep24-s43 has 4 of its 10 draws: 6 evaluator starts crashed (`pthread_create`
