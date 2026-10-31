@@ -743,6 +743,25 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   51 over 0.3 cm3 (max 4.23 cm3) -> 6 mm boxes. ep12 blue_cup handle step: 15 components, 22.1 cm3 in all from 3,184
   shell points, 22 hulls. Four of four objects whose pieces are done (ep11 blue, ep12 blue, ep31 sweeper, ep2 pot) end
   in 6 mm boxes. The runs continue (racks, lids / cups, then the pairs) under the rule as written.
+- 20:14 [M] ep11 beige_cup default pieces = route 4 at 6 mm (20 boxes, 32 cells): lathe accepted, rings fine (8 sectors,
+  56 ring pieces, 0 gaps on 144,720 rays) but with 6 handle components (16.3, 9.8, 2.4, 1.2, 1.2, 0.6 cm3) the 71 pieces
+  fail the gate (16 hulls over 0.3 cm3, max 3.25 cm3); CoACD 82 hulls, 29 over (max 2.25 cm3). **ep11 pair in scope**
+  (both colliders now 6 mm boxes): receiver = beige_cup, component of 11 voxels, run SEAT [96, 136] (sweep 1.0), rest from
+  11 assembled hands-off frames, S frame 126, **7 of 11 build frames are overshoot frames** (4.3-9.2 mm past the rest
+  along d), 4 carved, c = 1.0 mm (sigma_sup 0.999). Carve and acceptance running.
+- 20:17 [M] **ep11 done (20:15:47 driver `done 2715.9 s`; code 407a18e = 1b9f0c1 for every gmg module, clean): CARVE
+  decided, acceptance FAILS (S, P3, P4) -> default delivered**, and the delivered default does not hold the guest.
+  Colliders: blue 17 boxes = 6.48 cm3 for a 178.0 cm3 SHELL body (3.6 %), beige 20 boxes = 6.91 cm3 for 170.4 cm3
+  (4.1 %). Collider overlap along the track max 0.48 cm3 (P42 holds, trivially: the colliders are nearly empty).
+  Receiver beige (containment 0.617 vs 0.401), SEAT [96, 136], 7 overshoot frames, c = 1.0 mm; carve route 4 (cut 2.36
+  cm3; 18 boxes); caps pass (removed 0.678 cm3 = 9.97 % of 6.8, topology 14 / 14 kept). **S at f126: carved 31.6 mm /
+  42.4 deg, default 80.5 mm / 67.9 deg (dz 67.7 mm): the guest falls through the box colliders.** P2 pass (gravity 0.5
+  / 1.0 mm at T_rest; +-n 60 mm both); P3 fail (lag 0.137 cm / 12.3 deg; default 0.356 cm / 24.6 deg); P4 fail (removed
+  0.68 > 1.5 x 0.41 cm3); P5 35 shapes; P6 0 worse (max 0.46 -> 0.33); P7 2.13 -> 0.71 cm3; gates 0.0. Rigid shift
+  clears 11 / 11 frames at 0 mm (every frame already <= 2 cm3): `carve_of_pose_error` true, trivially. **P43 falsified
+  (S fails on ep11)**; P44: c = 1.0 mm (base in the pocket, the stated alternative); P48 holds only trivially.
+  Summary `<scratch>/fi5pub/out/summary_ep11.json`, figure `build/I/png/fi5pub_ep11.png` (side view now: every 2 mm
+  collider sample and the SHELL bodies).
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG

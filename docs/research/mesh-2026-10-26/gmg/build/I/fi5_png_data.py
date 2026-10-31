@@ -31,14 +31,17 @@ def load_pieces(d):
     return [np.asarray(trimesh.load(f, force='mesh').vertices) for f in fs] or None
 
 
-def section(H, T, c, u, v, w, slab):
-    if H is None:
-        return np.zeros((0, 2))
-    X = CC.collider_samples(H, 0.001)
+def section(H, T, c, u, v, w, slab, X=None):
+    """Side-view projection onto (u, v) of the points of H (2 mm samples inside the pieces, or X) within SLAB of the
+    plane through c (slab None: all points, a projection)."""
+    if X is None:
+        if H is None:
+            return np.zeros((0, 2))
+        X = CC.collider_samples(H, 0.002)
     if T is not None:
         X = X @ T[:3, :3].T + T[:3, 3]
     Y = X - c
-    m = np.abs(Y @ w) <= slab
+    m = np.abs(Y @ w) <= slab if slab is not None else np.ones(len(Y), bool)
     return np.c_[Y[m] @ u, Y[m] @ v]
 
 
@@ -115,15 +118,24 @@ def main():
                     v = np.cross(u, [1.0, 0, 0]) if abs(u[0]) < 0.9 else np.cross(u, [0, 1.0, 0])
                 v /= np.linalg.norm(v)
                 w = np.cross(u, v)
-                slab = 0.0015
+                slab = None                                # side-view projection of every sample
                 arrs[f'{key}|recv_default'] = section(dflt[recv], None, cg, u, v, w, slab)
                 arrs[f'{key}|recv_delivered'] = section(dlv[recv], None, cg, u, v, w, slab)
                 fc = os.path.join(r0, '_carved_failed', f'{o}_{p}')
                 arrs[f'{key}|recv_failed'] = section(load_pieces(fc) if os.path.isdir(fc) else None, None, cg, u,
                                                      v, w, slab)
                 arrs[f'{key}|guest_rest'] = section(dflt[guest], Tr, cg, u, v, w, slab)
+                for x, T_ in ((recv, None), (guest, Tr)):     # the F-I5 body (SHELL candidate) the pieces stand for
+                    cid = (rep.get('fi5_body') or {}).get(x)
+                    if cid:
+                        bm = trimesh.load(os.path.join(a.run, 'cand', 'public', f'ep{a.ep}', x, f'{cid}.glb'),
+                                          force='mesh')
+                        Xb = np.asarray(trimesh.sample.sample_surface(bm, 6000, seed=0)[0])
+                        arrs[f'{key}|body_{"recv" if x == recv else "guest"}'] = section(None, T_, cg, u, v, w, None,
+                                                                                         X=Xb)
                 row['section'] = dict(axes='u = gravity (down), v = the receiver principal horizontal axis (receiver frame)',
-                                      slab_mm=slab * 2e3, centre='guest collider centroid at T_rest', s_frame=int(f))
+                                      projection='side view of every 2 mm collider sample and of 6000 body surface '
+                                                 'samples', centre='guest collider centroid at T_rest', s_frame=int(f))
         out['pairs'][key] = row
     os.makedirs(os.path.join(a.run, 'fi5png'), exist_ok=True)
     with open(os.path.join(a.run, 'fi5png', f'ep{a.ep}.json'), 'w') as fh:

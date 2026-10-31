@@ -50,19 +50,24 @@ def main():
         ax = axs[i][1]
         k0 = key.replace('|', '__')
         if f'{k0}__recv_default' in Z.files:
-            for nm, c, s in (('recv_default', '0.65', 1.5), ('recv_failed', '#d62728', 0.6),
-                             ('recv_delivered', '#2ca02c', 0.6), ('guest_rest', '#1f6fb4', 1.0)):
+            for nm, c, s in (('body_recv', '0.85', 0.3), ('body_guest', '#aec7e8', 0.3),
+                             ('recv_default', '0.45', 2.0), ('recv_failed', '#d62728', 0.8),
+                             ('recv_delivered', '#2ca02c', 0.8), ('guest_rest', '#1f6fb4', 1.2)):
+                if f'{k0}__{nm}' not in Z.files:
+                    continue
                 A = Z[f'{k0}__{nm}']
                 if nm == 'recv_delivered' and not str(R.get('deliver', '')).startswith('carved'):
                     continue
                 if len(A):
                     ax.scatter(A[:, 1] * 1e3, -A[:, 0] * 1e3, s=s, c=c, lw=0,
-                               label={'recv_default': f'{rc} default pieces', 'recv_failed': f'{rc} failed carve',
+                               label={'body_recv': f'{rc} body (SHELL surface)',
+                                      'body_guest': f"{R.get('guest')} body at rest",
+                                      'recv_default': f'{rc} default pieces', 'recv_failed': f'{rc} failed carve',
                                       'recv_delivered': f'{rc} delivered carve',
-                                      'guest_rest': f"{R.get('guest')} at rest"}[nm])
+                                      'guest_rest': f"{R.get('guest')} pieces at rest"}[nm])
             ax.set_aspect('equal'); ax.set_xlabel('mm (receiver principal horizontal axis)')
             ax.set_ylabel('mm (up)')
-            ax.set_title('3 mm slab section at the hands-off rest pose', fontsize=9)
+            ax.set_title('side view at the hands-off rest pose (pieces = 2 mm samples)', fontsize=9)
             ax.legend(fontsize=6, markerscale=6, loc='lower left')
         else:
             ax.text(0.5, 0.5, 'no rest pose (out of scope or no hands-off frame)', ha='center', va='center',
@@ -73,7 +78,8 @@ def main():
         dg = R.get('diag_S_rows') or {}
         rows = []
         if acc.get('default'):
-            rows = [('default', acc['default']), ('carved', acc.get('carved') or [])]
+            rows = [('default', acc['default']), ('carved' if str(R.get('deliver', '')).startswith('carved') else
+                                                  'carved (failed, not delivered)', acc.get('carved') or [])]
         elif dg:
             rows = [('default', dg.get('default') or []), ('failed carve (report only)', dg.get('carved_failed') or [])]
         if rows:
