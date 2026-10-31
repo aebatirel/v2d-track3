@@ -5718,3 +5718,9 @@ arm and a no-policy replay floor to stage B.
   mean ΔR −0.00011 vs +0.005, 9 better / 7 worse; the effect is below the scorer's resolution. Not adopted.
   - It also caught my error: the cross-validation halves chose σ 16 mm (A) and 8 mm (B), not the same cell.
     Corrected in the README.
+- 21:47 UTC determined-wright: both D items delivered to focused-pascal.
+  - FC_DR_SKIP_IMMEDIATE=1 (4e5c8a0, CPU test 17/17 PASS).
+  - Reset check on the packed eval assets (8fb5152): every D eval sits inside the public screen's range (median
+    0.16–1.05 cm, 25–56 % of worlds > 1 cm at hold end, vs public 0–1.09 cm and 3–53 %); no NaN; eval 25 had one
+    6.7 cm pop at f170.
+  - Arm V running (2 boxes, results ~00:30 UTC). Next: the P1 check for bold-albattani, then command-smoothing test A.
