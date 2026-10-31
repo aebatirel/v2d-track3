@@ -710,11 +710,13 @@ scan number was seen; none bears on these choices.
     shifted by 0.382 pitch (nodes exactly on CAD planes gave zero-volume slivers); exact distances only within 2
     pitches of the surface; thin-part retry (union with a 0.75-pitch shell) when < 90 % of the input surface lies
     within one pitch of the result; budget ladder 4000, 3992, ..., 3744 checked with the kit decode (float32 vertices,
-    zero-area faces dropped) and accepted only with |area change| <= 5 %, then marching cubes at 2x / 3x / 4x pitch
-    (pitch_fallback); none accepted -> the decoded-watertight try with the least area change (budget_unaccepted).
-    Seen before (c)'s area tolerance and pitch fallback, and before (a)'s parity and (b): the GT-free remesh outcomes of
-    3-6 of the 104 B.10 meshes (dev trial runs `runs-dev/20261031-b10try*`, kept). B.10's threshold is unchanged; the
-    final B.10 run covers all 104 with the final code. No scan or eval number seen.
+    zero-area faces dropped) and accepted only with |area change| <= 5 %; then the fallback rungs (the solid closed by 1,
+    then 2 nodes; a 2x, then 3x pitch grid with the thin shell), each counted only if its coverage stays within 0.02 of
+    min(0.90, base coverage) (a first 3 mm rung without the shell kept 14 % of a thin-walled pot); none accepted -> the
+    decoded-watertight try with the best coverage (budget_unaccepted). Seen before (c)'s area tolerance and fallback
+    rungs, and before (a)'s parity and (b): the GT-free remesh outcomes of 1-6 of the 104 B.10 meshes (dev trial runs
+    `runs-dev/20261031-b10try*`, kept). B.10's threshold is unchanged; the final B.10 run (a1402f0) covers all 104 with
+    the final code. No scan or eval number seen.
 107. **(2026-10-31, B3) G0 inputs are prepared on the local CPU, not on the box** (SPEC section 18 G0 row: "SAM2 masks
     for ep2; the mask test of PREREG B.11 runs on the box first"). PREREG B.11 allows the local CPU when SAM2 runs there
     (it does, B2); `tools/g0_inputs.py` re-runs M9 and B.11 on the CLEAN ep2 bundle of B4 (PREREG B.12: clean if B4 has
@@ -781,8 +783,8 @@ scan number was seen; none bears on these choices.
     because the frozen t0 of B13 does not exist yet); a run passes if fsv_far(c) - fsv_far(SHELL) <= 0.05 and V2 does
     not veto against the partner; K-a / K-b pass if at least half of the target's primary runs pass. Reported only:
     PCA extents of the placed mesh against the owned points' extents, on all owned points and on their largest 8 mm
-    component (about 5 % of the clean ep2 lid's owned points lie 200-330 mm from its median [M], which inflates the
-    all-points extent; seen in the dry run), share outside the grid, `physcheck.placement` (F-I1.9), montage.
+    component (1.8 % of the clean ep2 lid's owned points lie outside it, up to 330 mm from the median [M], which
+    inflates the all-points extent; seen in the dry run), share outside the grid, `physcheck.placement` (F-I1.9), montage.
 
 ## B4 round 2 (2026-10-31, fixes after B4 verification round 1)
 
@@ -847,3 +849,11 @@ B4-R2.5. **Run v5** (`<DATA>/gmg/runs/20261031-b4ext5-a776e8e`, all 20 public ep
     numbers are post-hoc [M] (after the v4 numbers were seen) and are reported beside v4, never in place of it. Which
     bundle set later steps consume (v4 as pre-registered, or v5 without the known crop defect) is left to the
     orchestrator / owner; the C.2 anchor table is given for both.
+112. **(2026-10-31, B3) G0 post-hoc diagnostics (not pre-registered).** After the B.12 report (all 8 runs fail the
+    fsv_far term, all pass V2), `tools/g0_diag.py` re-aligns each layout-placed mesh to the target's owned core by a
+    trimmed ICP from the layout start (variant similarity; then variant rigid_extent, added after the first gave lid
+    scales x1.32-1.38) and recomputes the B.9 measures. Reported beside the frozen outcome, never instead of it; the
+    B.12 outcome (NOT SUPPORTED) and every PREREG threshold are unchanged. The finding that K-a's measure would pass the
+    contact-frame pot+lid blob is recorded as an open problem for the orchestrator / owner (no PREREG F entry: scan-free
+    but post-hoc, and K-a numbers have been seen). Seeds: PREREG B.12's 0 and 1 (the 29 Oct probe used 42 and 7).
+    No scan or eval number seen.

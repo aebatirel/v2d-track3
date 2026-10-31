@@ -152,7 +152,7 @@ def main():
                               f"thin axis mm owned {x['thin_axis_mm']['owned']} mesh {x['thin_axis_mm']['mesh']}"])
               for x in rows if x['obj'] == o and x['_panels'] is not None]
         hdr = [f"G0 ep2 {o}: POST-HOC diagnostic (not B.12): layout placement re-aligned to our owned points by a "
-               "trimmed similarity ICP", "panels: aligned mesh in the input view | owned core (grey) + mesh (green) "
+               f"trimmed ICP ({a.variant})", "panels: aligned mesh in the input view | owned core (grey) + mesh (green) "
                "PCA 0-1 | PCA 0-2"]
         B11.save_png(os.path.join(out, f'montage_{o}.png'), B11.montage(mr, hdr))
     guard.write_manifest(os.path.join(a.run, 'manifest_diag.json' if a.variant == 'similarity' else

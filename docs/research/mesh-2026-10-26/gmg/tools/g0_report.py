@@ -77,7 +77,8 @@ CORE_VOX = 0.008                    # SPEC section 7 M2 seeded component: 8 mm c
 
 def core_points(P):
     """Owned points of the largest 26-connected component of their 8 mm voxels (the clean bundle's owned points can
-    hold a stray cluster far from the object: about 5 % of the ep2 lid's lie 200-330 mm from its median [M]).
+    hold a stray cluster far from the object: 1.8 % of the clean ep2 lid's lie outside this component, up to 330 mm
+    from its median [M]).
     Returns (points, share kept)."""
     from scipy import ndimage
     ij = np.floor((P - P.min(0)) / CORE_VOX).astype(np.int64)

@@ -1,0 +1,19 @@
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[2026-10-31T13:06:51Z] C-UV-OK
+[2026-10-31T13:06:58Z] C-CODE-OK
+[2026-10-31T13:07:38Z] C-TORCH-OK
+[2026-10-31T13:07:47Z] C-BASIC-OK
+[2026-10-31T13:07:50Z] C-MOGE-OK
+[2026-10-31T13:08:29Z] C-P3D-OK
+[2026-10-31T13:10:08Z] C-EXTRA-OK
+[2026-10-31T13:10:08Z] C-KAOLIN-STUB-OK
+[2026-10-31T13:10:17Z] C-WEIGHTS-DONE 15 files 12G
+2026-10-31 13:10:24.424 | INFO     | sam3d_objects.pipeline.inference_pipeline:set_attention_backend:17 - GPU name is NVIDIA A40
+2026-10-31 13:10:30.641 | INFO     | sam3d_objects.model.backbone.tdfy_dit.modules.sparse:__from_env:39 - [SPARSE] Backend: spconv, Attention: sdpa
+2026-10-31 13:10:36.801 | INFO     | sam3d_objects.model.backbone.tdfy_dit.modules.attention:__from_env:30 - [ATTENTION] Using backend: sdpa
+[SPARSE][CONV] spconv algo: auto
+2026-10-31 13:10:40.536 | WARNING  | sam3d_objects.data.dataset.tdfy.preprocessor:__post_init__:51 - No rgb pointmap normalizer provided, using scale + shift 
+2026-10-31 13:10:40.537 | WARNING  | sam3d_objects.data.dataset.tdfy.preprocessor:__post_init__:51 - No rgb pointmap normalizer provided, using scale + shift 
+import ok 2.6.0+cu124 NVIDIA A40 0.7.8
+[2026-10-31T13:10:42Z] C-IMPORT-OK
+[2026-10-31T13:10:42Z] C-SETUP-DONE
