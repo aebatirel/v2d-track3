@@ -5270,3 +5270,17 @@ Advice given:
   library_v3's own frame error. Upload planned ~20:00–20:30 UTC (owner: "I want a pack today").
 - Pack-10 design inputs agreed with the score-status session: swap rule (fresh-draw mean vs packed H5 mean, failure
   rate GT-free RPE > 5 cm, median RPE, + packed-draw guard −0.05); comparison set H5p7/H5e1 (JOBS_h5.txt) to launch next.
+
+## 2026-10-31 ~16:45 UTC — boxes launched; ep11 gate past setup; pack 9a waits for the owner's own go in this chat
+- ep11 gate (58552489): inputs ok 16:07; **B0 GO** (C IDENTICAL; T DIFFERS 0.78 mm / 0.65°, as measured on CPU for
+  non-SkylakeX kernels); references built; arms OK; **identity before training GO** (arms apart: blue 2.404 cm, beige
+  0.0 cm over the S12 window); seed-42 wave started 16:18.
+- Masses v2: box A 20261031-mv2a-b5043ce's host went offline before the container started (16:29–16:42) → destroyed,
+  ledger actual $0, relaunched as **20261031-mv2a2-b5043ce** (58556486, Japan $1.508/h); box B **20261031-mv2b-b5043ce**
+  (58556043, Romania $1.375/h). Commit b5043ce.
+- Pack-10 comparison set: **20261031-h5p7-1a7cdff** (58556438, India $1.389/h, ledger $3.00) and
+  **20261031-h5e1-1a7cdff** (58556552, Oregon $1.681/h, ledger $1.50); job strings in docs/research/work/pack10-20261031/JOBS_h5.txt.
+- Pack 9a: owner chose "Ship 9a, flagged" in the mesh session (16:35); disclosure added to the README; parquet staged
+  (sha256 9c19bb0c…); uploader dry run OK (5 left on each board; nothing submitted). The real upload call was blocked by
+  this session's permission guard: the owner's standing rule "dont send anything to kaggle without my approval" and the
+  approval reached this session only relayed. Asked the owner to reply "upload 9a" (or "pack 8") here; not retried.
