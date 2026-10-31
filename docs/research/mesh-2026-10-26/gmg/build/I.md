@@ -427,3 +427,11 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   synthetic w6 (sigma 3 mm merges faces) and w7 (one-face B). Committing + pushing before any code runs with it.
 - 17:07 correction: the two entries above and F-I4.14 first carried guessed clock times (17:08, 17:10-17:20, 17:20);
   replaced by the file and commit times (diagnosis JSON 17:03, F-I4.14 pushed in dad65a1 at 17:06 UTC). Order unchanged.
+- 17:08-17:10 [M] F-I4.14 build (platebody `_camera_side`, `_down_idx`, `resolve_one_face`; plate flags on the records;
+  driver logs the resolved plate info) + T-I1 w6 / w7 (log `<scratch>/interlock/fi4/f414/test_w67.log`, 99 s): **w6
+  MISS**: at t = 10 mm with sigma 3.0 the synthetic faces are NOT merged; step 1 (F-I4.1 plane pair) still holds but
+  reads 8.07 / 8.39 mm (band-biased), widths 10.39 / 10.07 vs 12 +- 1 -> kept as an expected failure (no rule change);
+  step 2's estimator is now checked directly (new test w6b: t = 6 / 10 / 18 mm at sigma 1 and 3). **w7 fixture bug**:
+  B's edge points (camera in the plate plane, view along z = float32 rounding of either sign) put a few hundred points
+  on the -z side, so B read two-sided and failed the checks (`camera_side_two_sided_fail`), out of scope; fixture
+  corrected to keep only the +z face (the w7 scenario). Re-running w6b + w7 now.
