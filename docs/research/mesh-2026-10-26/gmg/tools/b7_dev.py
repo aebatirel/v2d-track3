@@ -52,6 +52,8 @@ def main():
     ap.add_argument('--partners', action='store_true', help='structure for every tracked object, not only anchors')
     ap.add_argument('--no-markers', action='store_true')
     ap.add_argument('--no-structure', action='store_true')
+    ap.add_argument('--marker-objects', choices=('all', 'anchors'), default='all',
+                    help='anchors: detect on the anchor object(s) only, consensus pooled over them (compute; B7 notes)')
     a = ap.parse_args()
     if guard.mode() != 'dev':
         raise SystemExit('b7_dev runs in GMG_MODE=dev only')
@@ -86,7 +88,8 @@ def main():
                              default=float), flush=True)
         if not a.no_markers:
             t = time.time()
-            mk = MK.detect_episode(b)
+            mk = MK.detect_episode(b, objects=None if a.marker_objects == 'all' else
+                                   [o for o in b.objects if o in anchors.get(ep, [])])
             mk['sec'] = round(time.time() - t, 1)
             res['markers'] = mk
             print(json.dumps(dict(ep=ep, r_consensus_mm=mk['r_consensus_mm'], n_balls=mk['n_balls'],
@@ -100,6 +103,7 @@ def main():
             markers=None if res['markers'] is None else dict(
                 r_consensus_mm=res['markers']['r_consensus_mm'], n_balls=res['markers']['n_balls'],
                 unimodal=res['markers']['unimodal'],
+                objects=res['markers']['objects'],
                 radii_mm={o: [x['r_mm'] for x in v] for o, v in res['markers']['balls'].items()},
                 passes={o: [x['pass_'] for x in v] for o, v in res['markers']['balls'].items()},
                 normal_dev_deg={o: [x['normal_dev_deg'] for x in v] for o, v in res['markers']['balls'].items()},
