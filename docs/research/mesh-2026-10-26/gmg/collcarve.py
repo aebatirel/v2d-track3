@@ -1117,8 +1117,8 @@ def carvable_mesh(recv, guest_in_r):
         out['samples_used'] = int(len(P))
     ok_a, wmin_left = True, None
     if len(P):
-        eps = 1e-6
-        ri = trimesh.ray.ray_triangle.RayMeshIntersector(recv)
+        eps = 5e-5                 # rays start 0.05 mm off the sample (trimesh reports hits at t ~ 0 on the sample's
+        ri = trimesh.ray.ray_triangle.RayMeshIntersector(recv)   # own face; added back to the lengths)
         rc = trimesh.ray.ray_triangle.RayMeshIntersector(cut) if len(cut.faces) else None
 
         def first(rr, O, D):
@@ -1256,11 +1256,12 @@ def _contig(LO, HI, t0, tol=1e-7):
     return end
 
 
-def wall_integrity(default_h, carved_h, Kf, w_min=None, s_rm=None):
+def wall_integrity(default_h, carved_h, Kf, w_min=None, s_rm=None, K_full=None):
     """F-I5.15 (6.4) on the pieces: (a) from every union-boundary sample (0.5 mm) of K inside R+ (the fragments) that
     lies inside the default receiver collider, along K's outward normal: where the default chord through the sample is
     >= w_min, the carved material from the sample outward is >= w_min; (b) removed exact volume <= s_rm x the default's
-    exact volume."""
+    exact volume. K_FULL (the unclipped K pieces): samples strictly inside K_FULL lie on the faces the R+ boxes cut,
+    not on K's surface, and are dropped (as built, F-I5.17)."""
     import trimesh
     w_min = CP.k2_('w_min_m') if w_min is None else w_min
     s_rm = k2_('s_rm') if s_rm is None else s_rm
@@ -1272,6 +1273,10 @@ def wall_integrity(default_h, carved_h, Kf, w_min=None, s_rm=None):
     out.update(default_cm3=round(vd * 1e6, 3), removed_cm3=round(vr * 1e6, 3), removed_share=round(vr / max(vd, 1e-15), 4))
     ok_b = vr <= s_rm * vd
     P, N, _ = union_boundary_samples(Kf)
+    if K_full is not None and len(P):
+        strict = CP.Hulls(K_full).inside(P, tol=-k2_('internal_m'))
+        out['samples_on_clip_faces'] = int(strict.sum())
+        P, N = P[~strict], N[~strict]
     Hd = CP.Hulls(default_h)
     m = Hd.inside(P, tol=0.0)
     P, N = P[m], N[m]
@@ -1333,9 +1338,10 @@ class FI5R2(FI5):
     """Round-2 context (PREREG F-I5.15 / F-I5.16). objects: as FI5, plus per object 'faithful' (Faithful of the body)
     and 'ref' (reference hulls); route-2 objects carry lathe = (Profile2, layout) and handle_hulls."""
 
-    def __init__(self, b, objects, **kw):
+    def __init__(self, b, objects, full_ref=False, **kw):
         super().__init__(b, objects, **kw)
         self.rev = 2
+        self.full_ref = bool(full_ref)              # True: S_ref also where S on the delivered pieces passes
         self.push = []
         self._pre, self._sink = {}, {}
         for o, v in objects.items():
@@ -1363,15 +1369,15 @@ class FI5R2(FI5):
 
     def sink(self, host, guest_h, recv, guest, f, tag):
         """S (F-I5.5 setup, 16 copies) of guest pieces GUEST_H on host pieces HOST at frame f, cached by tag."""
-        from gmg import simphys as PH
-        key = (tag, recv, guest, int(f))
+        key = (id(host), id(guest_h), recv, guest, int(f))
         if key not in self._sink:
             Wr = _world(self.b, recv, f, self.poses)
             Wg = Wr @ IL.rel_pose(self.poses or self.b.poses, recv, guest, f)
             gp = CP.exact_props(guest_h, 0.3)
             t = time.time()
-            r = PH.sink_test(host, guest_h, Wr, Wg, self.table(), gp, copies=self.copies, secs=k_('s_secs'),
-                             dt=k_('s_dt'), disp_max=k_('s_disp_m'), tilt_max=k_('s_tilt_deg'))
+            r = sink_test2(host, guest_h, Wr, Wg, self.table(), gp, copies=self.copies, secs=k_('s_secs'),
+                           dt=k_('s_dt'), disp_max=k_('s_disp_m'), tilt_max=k_('s_tilt_deg'))
+            r['tag'] = tag
             r['sec'] = round(time.time() - t, 1)
             r['pieces'] = [len(host), len(guest_h)]
             self._sink[key] = r
@@ -1500,12 +1506,12 @@ class FI5R2(FI5):
         if ok_frames and self.table() is not None:
             rows = []
             for f in ok_frames:
-                sc = self.sink(carved, guest_h, recv, guest, f, f'carved:{id(carved)}')
+                sc = self.sink(carved, guest_h, recv, guest, f, 'carved')
                 sd = self.sink(default_r, guest_h, recv, guest, f, 'default')
-                sr = self.sink(ref_c, og['ref'], recv, guest, f, f'ref_carved:{id(carved)}')
-                rows.append(dict(frame=int(f), carved=sc, default=sd, ref=sr))
+                rows.append(dict(frame=int(f), carved=sc, default=sd))
             out['S'] = dict(frames=rows, pass_=bool(all(r['carved']['pass_'] for r in rows)),
-                            ref_pass=bool(all(r['ref']['pass_'] for r in rows)))
+                            note='S_ref (the 64-sector / 2 mm-box references) runs in the floor wherever S on the '
+                                 'delivered pieces fails (the floor verdict depends on it only there)')
         else:
             out['S'] = dict(untestable=True, flag='sink_untestable', pass_=True,
                             why='no precheck-passing hands-off static frame' if not ok_frames else 'no table plane')
@@ -1622,7 +1628,7 @@ class FI5R2(FI5):
         run0 = rcomps[0][0].run
         asm0 = list(run0.assembled or run0.build[-5:] or run0.frames[-5:])
         W['settle_frame'] = int(asm0[len(asm0) // 2]) if asm0 else None      # G1 settle scene (F-I5.16 (1c))
-        Kall, comp_rows, rest = [], [], None
+        Kall, Kfull, comp_rows, rest = [], [], [], None
         cg = self.Xs[guest].mean(0)
         for comp, r, g in rcomps:
             S_frames, segs, rinf = self._rest2(rside, comp, guest)
@@ -1668,6 +1674,7 @@ class FI5R2(FI5):
                                       remedy='pose correction (F-I5.15 (7))'))
                 continue
             Kall += Kf
+            Kfull += K
             if rest is None:
                 rest = (T_rest, ok_frames, comp, g_dir, c)
         W['components'] = comp_rows
@@ -1692,7 +1699,7 @@ class FI5R2(FI5):
             caps = dict(pass_=False, fail='no compliant carved pieces')
         else:
             caps['topology'] = topology_1mm(self.objects[recv]['hulls'], carved)
-            caps['wall'] = wall_integrity(self.objects[recv]['hulls'], carved, Kall)
+            caps['wall'] = wall_integrity(self.objects[recv]['hulls'], carved, Kall, K_full=Kfull)
             caps['pass_'] = bool(caps['topology']['pass_'] and caps['wall']['pass_'])
             caps['fail'] = caps['topology']['fail'] or caps['wall']['fail']
         W['caps'] = caps
@@ -1715,6 +1722,7 @@ class FI5R2(FI5):
         W['deliver'] = 'carved (p1_pending)' if deliver else 'default'
         W['_carved'] = carved
         W['_Kf'] = Kall
+        W['_Kfull'] = Kfull
         if deliver:
             ob = self.objects[recv]
             ob['carved'] = carved
@@ -1823,10 +1831,15 @@ def floor_and_gate(ctx, visuals, synthetic=False, r0_dir=None, log=None):
             row = dict(frame=int(f), precheck=pre)
             if pre['pass_']:
                 ob_r, ob_g = ctx.objects[recv], ctx.objects[guest]
-                ref_r = ob_r.get('carved_ref') if ob_r.get('carved') is not None and ob_r.get('carved_ref') else ob_r['ref']
-                sr = ctx.sink(ref_r, ob_g['ref'], recv, guest, f, f'ref:{id(ref_r)}')
-                sd = ctx.sink(delivered(ob_r), delivered(ob_g), recv, guest, f, f'delivered:{id(delivered(ob_r))}')
-                row.update(S_ref=sr, S=sd, floor_fail=bool(sr['pass_'] and not sd['pass_']))
+                sd = ctx.sink(delivered(ob_r), delivered(ob_g), recv, guest, f, 'delivered')
+                if sd['pass_'] and not ctx.full_ref:
+                    sr = dict(pass_=None, status='not_needed (S on the delivered pieces passes; the floor verdict '
+                                                 'does not depend on S_ref)')
+                else:
+                    ref_r = ob_r['carved_ref'] if ob_r.get('carved') is not None and ob_r.get('carved_ref') else \
+                        ob_r['ref']
+                    sr = ctx.sink(ref_r, ob_g['ref'], recv, guest, f, 'reference')
+                row.update(S_ref=sr, S=sd, floor_fail=bool(sr['pass_'] is True and not sd['pass_']))
                 if row['floor_fail']:
                     floor['fails'].append(dict(kind='S', pair=[recv, guest], frame=int(f),
                                                S_disp_mm=sd.get('disp_mm'), S_ref_disp_mm=sr.get('disp_mm')))
@@ -2044,3 +2057,61 @@ def run_episode2(b, ep, objs, cands, picks, bodies, fh, hands, out_dir, sim_dir,
     report['push_list'] = ctx.push
     report['sec'] = round(time.time() - t0, 1)
     return report
+
+
+def sink_test2(host, guest, T_wh, T_wg, table, gp, copies=None, secs=2.0, dt=0.002, disp_max=0.004, tilt_max=5.0,
+               seed=2, memory='2G', max_wall_s=None):
+    """simphys.sink_test (PREREG F-I5.5 S; same scene, jitters, measures and pass rule) with a larger MuJoCo arena
+    (<size memory>): the 64-sector references of F-I5.15 (4a) overflow the default arena in plain MuJoCo ([M] 23:15
+    UTC: ncon 7,090, nefc 28,360 on the x1 cup pair). Also records per copy the max ncon / nefc and the wall time;
+    MAX_WALL_S stops after the copy that exceeds it (flag 'stopped_wall', fewer copies; such a row decides nothing)."""
+    import mujoco
+    from gmg import simphys as PH
+    n_t, d_t = np.asarray(table[0], float), float(table[1])
+    J = PH.jitters(copies, seed=seed)
+    com = np.asarray(gp['com'], float)
+    x_tr = T_wg[:3, :3] @ com + T_wg[:3, 3]
+    R_tr = T_wg[:3, :3]
+    lowest = float(min((np.vstack(host) @ T_wh[:3, :3].T + T_wh[:3, 3]) @ n_t))
+    rows, nan = [], 0
+    t0 = time.time()
+    stopped = False
+    for j in J:
+        Jm = np.eye(4); Jm[:3, :3] = Rot.from_rotvec(j[3:]).as_matrix(); Jm[:3, 3] = j[:3]
+        xml = PH.sink_xml(host, guest, T_wh, T_wg @ Jm, n_t, d_t, gp, dt).replace(
+            '<mujoco>', f'<mujoco><size memory="{memory}"/>', 1)
+        m = mujoco.MjModel.from_xml_string(xml)
+        d = mujoco.MjData(m)
+        mujoco.mj_forward(m, d)
+        gid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, 'G')
+        mc = me = 0
+        tc = time.time()
+        for _ in range(int(round(secs / dt))):
+            mujoco.mj_step(m, d)
+            mc = max(mc, int(d.ncon)); me = max(me, int(d.nefc))
+        if not np.all(np.isfinite(d.qpos)):
+            nan += 1; continue
+        x = d.xipos[gid].copy()
+        R = d.xmat[gid].reshape(3, 3)
+        dv = x - x_tr
+        dz = float(-(dv @ n_t))
+        rows.append(dict(disp=float(np.linalg.norm(dv)), dz=dz, lateral=float(np.linalg.norm(dv + dz * n_t)),
+                         tilt=float(np.degrees(Rot.from_matrix(R_tr.T @ R).magnitude())),
+                         below=bool(x @ n_t < lowest), ncon=mc, nefc=me, sec=round(time.time() - tc, 1)))
+        if max_wall_s is not None and time.time() - t0 > max_wall_s and len(rows) < len(J):
+            stopped = True
+            break
+    if not rows:
+        return dict(nan=nan, copies=0, pass_=False, reason='no finite copy')
+    M = {k: float(np.mean([r[k] for r in rows])) for k in ('disp', 'dz', 'lateral', 'tilt')}
+    below = int(sum(r['below'] for r in rows))
+    ok = M['disp'] <= disp_max and M['tilt'] <= tilt_max and nan == 0 and below == 0 and not stopped
+    out = dict(disp_mm=round(M['disp'] * 1e3, 3), dz_mm=round(M['dz'] * 1e3, 3), lateral_mm=round(M['lateral'] * 1e3, 3),
+               tilt_deg=round(M['tilt'], 3),
+               per_copy=[dict(disp_mm=round(r['disp'] * 1e3, 2), dz_mm=round(r['dz'] * 1e3, 2),
+                              lateral_mm=round(r['lateral'] * 1e3, 2), tilt_deg=round(r['tilt'], 2), below=r['below'],
+                              max_ncon=r['ncon'], max_nefc=r['nefc'], sec=r['sec']) for r in rows],
+               copies=len(rows), nan=nan, below=below, pass_=bool(ok), memory=memory)
+    if stopped:
+        out.update(flag='stopped_wall', decides=False)
+    return out

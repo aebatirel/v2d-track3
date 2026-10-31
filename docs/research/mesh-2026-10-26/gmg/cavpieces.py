@@ -1344,7 +1344,27 @@ def piece_volume(p):
     return (p['h1'] - p['h0']) * (p['R'] ** 2 - p['rc'] ** 2) * math.sin(th) * math.cos(th)
 
 
+def _face_planes(prof, p):
+    """The inner face {x . u >= rho(h)} and the outer chord {x . u <= R(h) cos(theta)} of a wall piece as half-spaces
+    n . x + d <= 0 in the object frame."""
+    th = math.pi / p['n_s']
+    fm = (2 * p['s'] + 1) * th
+    u = math.cos(fm) * prof.e1 + math.sin(fm) * prof.e2
+    a, c0 = prof.a, prof.c
+    dh = max(p['h1'] - p['h0'], 1e-12)
+    si = (p['rho1'] - p['rho0']) / dh
+    so = (p['R1'] - p['R0']) / dh * math.cos(th)
+    n_in = -u + si * a
+    d_in = u @ c0 - si * (a @ c0) + p['rho0'] - si * p['h0']
+    n_out = u - so * a
+    d_out = -(u @ c0) + so * (a @ c0) - p['R0'] * math.cos(th) + so * p['h0']
+    return np.array([np.r_[n_in, d_in], np.r_[n_out, d_out]])
+
+
 def piece_verts(prof, p):
+    """Vertices of a piece. A wall piece is the hull of its 8 face vertices; where its wall would be negative (the
+    outer chord inside the tangent inner face) it is clipped by both face planes, and None when nothing is left (so a
+    piece never reaches into the cavity, whatever the candidate; such a candidate fails check (i))."""
     th = math.pi / p['n_s']
     if p['kind'] == 'wall':
         fm = (2 * p['s'] + 1) * th
@@ -1354,7 +1374,10 @@ def piece_verts(prof, p):
             for f in (fm - th, fm + th):
                 rows += [(h, rho / c, f), (h, R, f)]
         h, r, f = np.array(rows).T
-        return prof.to_obj(h, r, f)
+        V = prof.to_obj(h, r, f)
+        if piece_wall_min(p) < 0:
+            return clip_vertices(V, _face_planes(prof, p))
+        return V
     if p['kind'] in ('base1', 'disc'):
         r = p['R'] if p['kind'] == 'base1' else p['rc']
         f = 2 * th * np.arange(p['n_s'])
@@ -1440,17 +1463,21 @@ def build_layout(prof, n_s, base, edges, forced=None):
                 p = _wall_piece(prof, n_s, s, h0, h1, i)
                 if p is not None:
                     pieces.append(p)
+    nd = len(pieces)
+    n_nominal = nd                                        # N_s B_w + base pieces (the search order, F-I5.16 (2))
+    walls_all = [piece_wall_min(p) for p in pieces if p['kind'] == 'wall']
+    pieces = [p for p in pieces if p['kind'] != 'wall' or piece_wall_min(p) >= 0 or piece_verts(prof, p) is not None]
     n_wall = sum(p['kind'] == 'wall' for p in pieces)
-    vol = sum(piece_volume(p) for p in pieces)
-    walls = [piece_wall_min(p) for p in pieces if p['kind'] == 'wall']
-    return dict(n_s=int(n_s), base=base, edges={int(k): [float(x) for x in v] for k, v in edges.items()},
+    vol = sum(max(piece_volume(p), 0.0) for p in pieces)
+    walls = walls_all
+    return dict(n_s=int(n_s), base=base, dropped_negative_wall=nd - len(pieces), edges={int(k): [float(x) for x in v] for k, v in edges.items()},
                 forced={int(k): [float(x) for x in v] for k, v in (forced or {}).items()}, pieces=pieces,
-                n_r=len(pieces), n_wall=n_wall, ring_cm3=vol * 1e6, min_wall_mm=(min(walls) * 1e3 if walls else None),
+                n_r=n_nominal, n_pieces=len(pieces), n_wall=n_wall, ring_cm3=vol * 1e6, min_wall_mm=(min(walls) * 1e3 if walls else None),
                 base_info=binfo)
 
 
 def layout_hulls(prof, lay):
-    return [reduce(piece_verts(prof, p)) for p in lay['pieces']]
+    return [reduce(V) for V in (piece_verts(prof, p) for p in lay['pieces']) if V is not None]
 
 
 def greedy_edges(prof, n_s, max_bands, start_of_run):
@@ -1519,17 +1546,12 @@ def _sector_start(lay, prof, phi):
 def _wall_rays(prof, lay, H, phis, rin, rout):
     """Radial rays of the wall runs at heights H (>= the ray's sector wall start) x azimuths: (O, D, a, b, h, phi)."""
     runs, _ = prof.runs()
-    st = {}
-    for p in lay['pieces']:
-        if p['kind'] == 'wall':
-            k = (p['run'], p['s'])
-            st[k] = min(st.get(k, np.inf), p['h0'])
-    sec = _sector_start(lay, prof, phis)
+    st = _wall_starts(prof, lay['n_s'], lay['base'])     # from the SHELL (base tops), never from the pieces
     rows, cols = [], []
     for i, r in enumerate(runs):
         if r['kind'] != 'wall':
             continue
-        lo = np.array([st.get((i, int(s)), r['lo']) for s in sec])
+        lo = np.full(len(phis), st.get(i, r['lo']))
         m = (H[:, None] >= lo[None, :]) & (H[:, None] <= r['hi'])
         a, b = np.nonzero(m)
         rows.append(a); cols.append(b)
