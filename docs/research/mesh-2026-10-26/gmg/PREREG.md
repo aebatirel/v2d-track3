@@ -1249,7 +1249,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     (board 2 = board 1's stock), not by a measurement; the depth of each slot is a prior as before (F-I4.3).
 
 - **2026-10-31, F-I5: collision carve for every colliding pair under the owner's extended waiver (simulator copy
-  only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:40 UTC in a design step (no code edited,
+  only; cavity-preserving pieces; hands-off sink test).** Written 17:14-17:34 UTC in a design step (no code edited,
   nothing run for it) and committed and pushed **before any code or run uses it**. Still before any gmg scoring round
   (zero gmg scan scorings exist; no scan number was read for this entry). **Post hoc** with respect to results the
   author has read: INTERLOCK sections 18-20 (every pre-registered decision so far is PUSH; our default pieces fill the

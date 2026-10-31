@@ -493,7 +493,10 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   F-I4; the old path wrote its r0 again (pieces gate 0.72 / 2.0 cm3, do-not-use). This is a gate failure after the
   one allowed post-hoc fix: stopping here, no tuning; reporting. P40 (board 1 by step 2, t in 5-9 mm; board 2 by
   step 3) holds; P36 (CARVE both) fails at F-I4.2.
-- 17:36 PREREG F-I5 (F-I5.0-F-I5.10; predictions P41-P50; synthetic T-I12 x1-x11; real runs T-I13) and INTERLOCK
+- 17:34 PREREG F-I5 (F-I5.0-F-I5.10; predictions P41-P50; synthetic T-I12 x1-x11; real runs T-I13) and INTERLOCK
   section 21 (+ header and section-0 pointers) written. Nothing run, no code edited. Committing + pushing now (only
   PREREG.md, INTERLOCK.md, this log). Next (build step, after the board-slot build has released the shared files):
   collcarve.py, cavpieces.py, simphys.sink_test, the --waiver-fi5 branch, T-I12; then T-I13 in the F-I5.9 order.
+- 17:35 pushed d156571 (F-I5 + section 21, committed 17:34:08 UTC). Correction: the entry above first said 17:36 and
+  F-I5 / the INTERLOCK header said 17:40, guessed times; replaced by the commit time 17:34 (follow-up commit, text
+  otherwise unchanged). Design step done; no code edited, nothing run.

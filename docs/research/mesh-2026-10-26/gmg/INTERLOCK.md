@@ -7,7 +7,7 @@ ep11, section 18) and **corrected after the verifier's review of the build** (ro
 19). Outcome so far: on the dev runs the rule pushes every pair (no carve); the Embodiment contract now runs on their
 real tool (section 19). **Amended 31 Oct ~16:20 UTC under the owner's waiver of the camera rule** for plate-plate
 insertions, simulator copy only (PREREG F-I4, section 20; written and pushed before any run with it). **Extended 31 Oct
-~17:40 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
+~17:34 UTC to every pair whose simulator colliders collide persistently** (owner: "if 2 mesh collide we can carve it"; PREREG
 F-I5, section 21; written and pushed before any code or run with it). This file adds a stage to the frozen gmg design
 (`SPEC.md`, `PREREG.md`, freeze `fd814f6`). SPEC.md is not edited; the one SPEC rule this stage overrides is named in
 section 8 and in PREREG F-I1.0. The selection-rule changes are pre-registered as PREREG section F entry **F-I1**
