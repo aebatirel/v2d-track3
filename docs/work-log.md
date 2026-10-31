@@ -5094,3 +5094,13 @@ diagnostic; nothing is picked for submission.
   against it (CPU; synthetic tests: two-box overlap, no-overlap, fiducial failure; pushed_residual_m NaN unless a
   phys_fit output is given). They will send the commit when it passes; we send the ep24 r0 location once our build
   verifies.
+
+## 2026-10-31 ~10:50 UTC: budget coordination with determined-wright (one budget to the 4 Nov freeze)
+- Asked by determined-wright (owner wants one budget). Shared ledger [M]: budget $225, actual $93.21, open plan
+  20261031-mass-2ed46ea $9.
+- Replied: mesh-side GPU to the freeze about $15-28 [E] (G0 $1-2, G1 $1.5-3.5, G2 $4-8 if G1 passes, G4 $4-8 if R1
+  adopts the gmg, G3 $3-5 only on the owner's call, optional CPU box $1-3); carve loop and physical tests CPU $0; mesh
+  spend so far $7.31 [M]. Timeline [E]: ep24 r0 pieces 31 Oct 18-24 UTC, then ep31 and ep13; carved eval sim copies for
+  evals 25/30/14 about 1-2 Nov, retrain no earlier than 2 Nov. Asked them for: P_sim reference paths (ep24/31/13, evals
+  25/30/14), the mesh set in their current packs, the FlashCHORD CPU venv + jitter_check command (or they run it), and
+  the props file for make_assets.
