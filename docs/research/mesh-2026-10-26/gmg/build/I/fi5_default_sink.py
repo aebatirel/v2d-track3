@@ -4,8 +4,8 @@ F-I5.5 runs no S). Answers "does the delivered simulator copy hold the objects w
 off?".
 
   GMG_MODE=dev python fi5_default_sink.py --run RUN --ep N --bundle BUNDLE_DIR [--tag fi5] [--copies 16]
-Per pair: contact frames (bundle contact census); static frames = runs of >= 5 consecutive contact frames in which the
-partner's collider centroid moves < 2 mm per frame relative to the object (F-I1.1 static rule); receiver = the object
+Per pair: contact frames (bundle contact census); static frames = interlock._static_stretches of the contact frames
+(F-I1.1: >= 5 frames, the partner's collider centroid moving < 2 mm per frame relative to the object); receiver = the object
 whose pieces' convex hull holds the larger share of the other's 2 mm collider samples at the median relative pose of
 those frames (F-I5.3 (a); tie < 0.1 -> the object that moves less); hands-off = no M1 hand joint within 30 mm of the
 guest's collider (F-I5.3 (b)); S frames = the middle frame of the up to 3 longest hands-off static runs; S as F-I5.5
@@ -70,9 +70,9 @@ def main():
             o, p = objs[i], objs[j]
             cf = sorted(int(f) for f in b.contact(o, p)['contact'])
             cg = Xs[p].mean(0)
-            pos = {f: IL.rel_pose(b.poses, o, p, f)[:3, :3] @ cg + IL.rel_pose(b.poses, o, p, f)[:3, 3] for f in cf}
-            stat = [f for f in cf if f - 1 in pos and np.linalg.norm(pos[f] - pos[f - 1]) < 0.002]
-            sruns = runs_of(stat, 5)
+            path = np.array([IL.rel_pose(b.poses, o, p, f)[:3, :3] @ cg + IL.rel_pose(b.poses, o, p, f)[:3, 3]
+                             for f in cf])
+            sruns = IL._static_stretches(cf, path) if len(cf) >= 2 else []   # F-I1.1 (bundle frame stride)
             sfr = [f for r in sruns for f in r]
             row = dict(contact_frames=len(cf), static_runs=[[r[0], r[-1]] for r in sruns])
             if not sfr:
@@ -96,7 +96,16 @@ def main():
             guest = p if recv == o else o
             row.update(receiver=recv, guest=guest, containment={o: round(s_o, 4), p: round(s_p, 4)})
             hoff, flags = CC._hands_off(b, guest, sfr, Xs[guest], hands)
-            hruns = sorted(runs_of([f for f in sfr if f in hoff], 5), key=lambda r: -len(r))
+            hruns = []
+            for st in sruns:                                 # hands-off runs of consecutive stretch frames (FI5._rest)
+                cur = []
+                for f in list(st) + [None]:
+                    if f is not None and f in hoff:
+                        cur.append(f); continue
+                    if len(cur) >= IL.K('static_min_frames'):
+                        hruns.append(cur)
+                    cur = []
+            hruns.sort(key=lambda r: -len(r))
             S_frames = [r[len(r) // 2] for r in hruns[:3]]
             row.update(hands_off_static=len([f for f in sfr if f in hoff]), s_frames=S_frames, flags=flags)
             if not S_frames or not tb:

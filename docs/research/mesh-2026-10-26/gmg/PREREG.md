@@ -1917,7 +1917,7 @@ Board estimate [E], assuming the spoon stays near 0.18: R1 about 0.33, R2 about 
     default holds the guest. Decisions, caps, acceptance and delivery are unchanged. (5) Predictions P41-P48 stand as
     written. Expectation [E, from F-I5.12, not a new prediction]: cup nests may stop at the caps before S, by mechanisms
     (i)-(iii) of F-I5.12. (6) Machine: this container (4 shared cores, load ~16); no rental.
-    (7) **Addendum, 20:32 UTC (post hoc: written after the ep11 and ep12 results, before it runs; report only, decides
+    (7) **Addendum, 20:30 UTC (post hoc: written after the ep11 and ep12 results, before it runs; report only, decides
     nothing, never delivered):** the delivered round folders hold 6 mm voxel-box colliders of 3.6-6.5 % of the SHELL
     body volume [M], and S runs only inside the acceptance of an in-scope pair. So S is also run on the pieces each
     round folder delivers (and its `_default/` pieces when they differ), for every pair, in or out of scope:

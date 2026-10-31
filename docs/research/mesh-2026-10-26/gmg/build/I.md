@@ -771,6 +771,16 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   no receiver, no carve, no S, no rigid shift. Collider overlap along the track max 0.232 cm3. Delivered defaults: blue
   cup 29 boxes = 11.88 cm3 for a 230.0 cm3 SHELL body (5.2 %), rack 45 boxes = 23.33 cm3 for 357.2 cm3 (6.5 %).
   Figure `build/I/png/fi5pub_ep12.png`.
+- 20:30 PREREG F-I5.14 (7) addendum pushed (5ffeb9f; first written as 20:32, a guessed time, corrected to the commit
+  time 20:30): post-hoc, report-only S on the pieces each round folder delivers, every pair (`build/I/fi5_default_sink.py`).
+  Script fix before any S result (20:30:57): its first version tested adjacency as f - 1 and found no static run with
+  the bundle's frame stride 2; it now uses `interlock._static_stretches` (F-I1.1) and FI5._rest's hands-off segments.
+- 20:32 [M] **delivered-default S (diagnostic, decides nothing)**: ep11 receiver beige (containment 0.493 vs 0.403),
+  static runs [68, 100], [118, 134], 9 hands-off static frames, S f126: guest displacement 80.5 mm, dz 67.7 mm, tilt 67.9
+  deg (the same number as the F-I5 acceptance's default row). **ep12 cup in rack**: receiver rack (0.249 vs 0.019),
+  static runs [2, 10], [170, 180], S f176 (assembled): 126.8 mm, dz 60.4 mm, lateral 111.4 mm, tilt 99.9 deg (the cup
+  falls out of the rack); f6: 8.2 mm (pushed up 6.1 mm), tilt 3.8 deg. Both fail S (4 mm, 5 deg): the delivered
+  default copies of ep11 and ep12 do not hold the objects.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
