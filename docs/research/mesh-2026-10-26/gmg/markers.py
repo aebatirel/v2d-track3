@@ -109,7 +109,8 @@ def consts():
     o['seeds'] = 'informed:ball detector seed count (PREREG A.6: changed once after a first run)'
     for k in ('fit_band_sigma',):
         o[k] = 'generic:PREREG A.6 noise band 3 sigma'
-    o['fit_nbhd'] = 'informed:B7 dev run 1 (ep2: robust fits grew from vote radii 5-7 mm to 10-12.5 mm through host points)'
+    o['fit_nbhd'] = ('informed:ball detector (implementation setting, B7 dev run 1: ep2 robust fits grew from vote radii '
+                     '5-7 mm to 10-13 mm through host points; DEVIATIONS 82)')
     o['settings_version'] = 'generic:settings file version'
     for k in ('ransac_hypotheses', 'ransac_top', 'stem_min', 'stem_r_rel', 'sphere_segments'):
         o[k] = 'generic:autokit parts default'
