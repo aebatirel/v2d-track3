@@ -5463,3 +5463,15 @@ arm and a no-policy replay floor to stage B.
     - phys_fit v2 on ep11 for eval 10;
     - a gmg collider-overlap check, and a HULL flag for boards.
   - Not sent; the owner decides.
+- ~10:00 UTC re-read of the sessions before sending anything:
+  - **mesh (gmg):** the INTERLOCK v2 stage already takes over the collider-overlap point (its E13 cites §7) and the
+    board-2 HULL fix (F-I1). Nothing to send there. Open owner decision D-I1: may simulator copies use the adopted
+    masses?
+  - **control:** its perception sprint already holds the hand-anchored held pose (`heldpose`) and the eval-10 nest fix
+    (`mask10`). Still useful: keep the per-draw rollout files in `h5_reeval.sh` / `mass_eval.sh`.
+  - **Embodiment:** option 3 is nearly done (O3 / O1: ep2 0.835 / 0.585 from a round-A checkpoint, i.e. noise; ep12
+    0.904 / 0.893 post-solver; ep24 0.224 / 0.254; bank only 4 states). Still useful, for the next round:
+    - jittered failure finding;
+    - jittered bank resets;
+    - ep13 one-hand.
+  - Drafts written for those two sessions; not sent.
