@@ -6138,3 +6138,11 @@ Background agent, CPU only, $0, no ground truth read.
 - bold-albattani's P1 request (r0 slot2-ep24 boards; INTERLOCK §6.2 settle with 16 jittered copies): a CPU helper is
   running it in scratchpad `p1ep24/`. I review before replying; ETA promised ~23:30 UTC.
 - keen-heisenberg's command-smoothing (A) and synergy (B) CPU tests are queued next.
+- 21:54 UTC, D reset check correction (eval 25 only). focused-pascal (21:27 UTC) pointed out that packed_refs.json gives
+  eval 25 `pieces: meshes/carve/ev25`. Re-run with `make_assets.py ... --pieces meshes/carve/ev25`: median 0.46 cm,
+  25 % > 1 cm, max 5.79 cm, no NaN. The first run, without pieces, had 0.60 / 34 % / 6.70. Conclusion unchanged; sent.
+- bold-albattani (21:31 UTC): no eval r0 folders exist from F-I5, and the public F-I5 boxes are not to be used. The
+  ep24 P1 request stands. Their data: at hands-off frames the tracked poses are physically impossible (ep11 cups
+  overlap 86 cm³; ep12/13 cup 15–23 mm inside the table; ep31 sweeper 45 mm above it). The remedy there is pose
+  correction, not carving.
+- Test A (physics-solver.md §11) is running: 16 jitter checks on CPU (`cmds/`).
