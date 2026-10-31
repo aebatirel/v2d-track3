@@ -1,11 +1,16 @@
 """The frozen GT-free selection rule S1 (module M14 of SPEC section 7; PREREG A.5 exactly; build step B5).
 
-  pick(cands, feats=None, variant=None, *, kit_symmetric=False, gen_view_overlap=False, status=None) -> dict
-      cands: candidate metas (Candidate objects or dicts: cid, cls, n_params) and feats {cid: feature row} from
-      score.score_pool; or feats=None and cands = the score_pool rows themselves (they carry cid, cls, n_params).
+  pick(cands, feats=None, variant=None, *, kit_symmetric=None, gen_view_overlap=None, status=None) -> dict
+      cands: the pool dict score.score_pool returns (preferred: kit_symmetric, gen_view_overlap and the pool flags
+      are taken from it); or its rows (each carries them under 'pool'); or candidate metas (Candidate objects or
+      dicts: cid, cls, n_params) with feats {cid: feature row}. kit_symmetric and gen_view_overlap are REQUIRED
+      when the input does not carry them (hand-made rows), and must agree with it when it does (B5 round 2: a
+      silent default False applied V5 to kit-symmetric objects).
       Feature keys used: E, E_reps (the paired bootstrap replicates of A.4), v1/v2/v3/v4 (dicts with 'veto'; V3
       counts only when applied, i.e. tau is set), amb (self-ambiguity with TRUSTED balls only: amb_mm, amb_floor_mm,
-      flip_risk, flip_units), trusted_markers (number of trusted balls attached).
+      flip_risk, flip_units; flip_risk None = unknown, e.g. untrusted balls without a ball-free mesh: neither safe
+      nor risky for V5, last on key 2, the pick is flagged flip_risk_unknown), trusted_markers (number of trusted
+      balls attached).
       variant: dict(K, b_tie, prior) (PREREG A.7 menu; default V0 = (3, 1, on)). K is used by score.plan, not here.
       status: dict(track_fail, identity_swap, low_coverage, gpu_ran) for the fallback ladder (SPEC section 13).
   Returns dict(cid, variant, best, tie_set, order, keys, trace, fallback, flags).
@@ -54,6 +59,40 @@ def consts():
 
 def _get(c, k, default=None):
     return c.get(k, default) if isinstance(c, dict) else getattr(c, k, default)
+
+
+def _pool_flags(cands, feats, kit_symmetric, gen_view_overlap):
+    """(rows-or-metas, kit_symmetric, gen_view_overlap, pool flags) from a score_pool dict, its rows or a hand-made
+    list; raises if a flag is neither carried by the input nor given, or if a given one contradicts the input."""
+    pool_flags = []
+    if isinstance(cands, dict):
+        if 'rows' not in cands:
+            raise ValueError('select: a dict input must be the score_pool output (with rows)')
+        carried = dict(kit_symmetric=bool(cands['kit_symmetric']), gen_view_overlap=bool(cands['gen_view_overlap']))
+        pool_flags = list(cands.get('flags') or [])
+        cands = cands['rows']
+    else:
+        tags = [_get(c, 'pool') if feats is None else _get(feats.get(_get(c, 'cid')) or {}, 'pool') for c in cands]
+        carried = None
+        if tags and all(isinstance(t, dict) for t in tags):
+            seen = {(bool(t['kit_symmetric']), bool(t['gen_view_overlap'])) for t in tags}
+            if len(seen) != 1 or len({t.get('obj') for t in tags}) != 1:
+                raise ValueError(f'select: rows from different pools ({sorted(seen)})')
+            ks, gv = seen.pop()
+            carried = dict(kit_symmetric=ks, gen_view_overlap=gv)
+    given = dict(kit_symmetric=kit_symmetric, gen_view_overlap=gen_view_overlap)
+    out = {}
+    for k, v in given.items():
+        if carried is None:
+            if v is None:
+                raise ValueError(f'select: {k} is required (True / False) when the input does not carry it; pass the '
+                                 f'score_pool dict, its rows, or {k}=...')
+            out[k] = bool(v)
+        else:
+            if v is not None and bool(v) != carried[k]:
+                raise ValueError(f'select: {k}={v} contradicts the pool ({carried[k]})')
+            out[k] = carried[k]
+    return list(cands), out['kit_symmetric'], out['gen_view_overlap'], pool_flags
 
 
 def _rows(cands, feats):
@@ -122,7 +161,8 @@ def _se_diff(r, best):
     if a is None or b is None:
         raise ValueError(f'select: {r["cid"]} or {best["cid"]} lacks E_reps (the paired bootstrap of A.4)')
     d = np.asarray(a, np.float64) - np.asarray(b, np.float64)
-    return float(np.std(d))
+    d = d[np.isfinite(d)]                    # replicates where E is undefined for either (score.se_diff alike)
+    return float(np.std(d)) if len(d) else float('nan')
 
 
 def fallback(rows, status, trace):
@@ -151,15 +191,16 @@ def fallback(rows, status, trace):
     return None, 'PRIOR_PUBLIC', ['fallback', 'prior_public', 'needs_owner_O2']
 
 
-def pick(cands, feats=None, variant=None, *, kit_symmetric=False, gen_view_overlap=False, status=None):
+def pick(cands, feats=None, variant=None, *, kit_symmetric=None, gen_view_overlap=None, status=None):
     """PREREG A.5 (module docstring). Deterministic: the result does not depend on the order of CANDS."""
     consts()
+    cands, kit_symmetric, gen_view_overlap, pool_flags = _pool_flags(cands, feats, kit_symmetric, gen_view_overlap)
     variant = dict(VARIANT_V0 if variant is None else variant)
     if variant not in [dict(m) for m in MENU]:
         raise ValueError(f'select: variant {variant} is not in the PREREG A.7 menu')
     rows = sorted(_rows(cands, feats), key=lambda r: str(r['cid']))
     st = dict(track_fail=False, identity_swap=False, low_coverage=False, gpu_ran=False) | dict(status or {})
-    trace, flags = [], []
+    trace, flags = [], list(pool_flags)
     if gen_view_overlap:
         flags.append('gen_view_overlap')
     if st['low_coverage']:
@@ -234,4 +275,6 @@ def pick(cands, feats=None, variant=None, *, kit_symmetric=False, gen_view_overl
     out['cid'] = pk['cid']
     if not kit_symmetric and _flip_risk(pk) is True:
         flags.append('flip_risk')
+    if not kit_symmetric and _flip_risk(pk) is None:
+        flags.append('flip_risk_unknown')
     return out

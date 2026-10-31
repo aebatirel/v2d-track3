@@ -453,6 +453,30 @@ class BootstrapTests(unittest.TestCase):
         self.assertGreater(float(np.std(e1)), 0.0)
 
 
+class BootstrapEmptyResampleTests(unittest.TestCase):
+    def test_block_without_points_in_a_replicate_is_dropped(self):
+        """B5 round 2: a replicate whose resampled frames of a block hold no held-out point drops that block (as the
+        point estimate drops a block without points), instead of scoring it R_k = 0 (a perfect fit)."""
+        sigma = 0.001
+        ev = dict(per_frame=[{4: (0.009, 3)},                          # block 1: points in frame 4 only, R 3.0
+                             {10: (0.001, 1), 12: (0.001, 1)}])        # block 2: R 1.0
+        reps = [[np.array([2, 4, 6]), np.array([10, 12])],               # block 1 resample holds frame 4
+                [np.array([2, 2, 6]), np.array([10, 10])],               # ... does not: block 1 dropped
+                [np.array([6, 6, 6]), np.array([8, 8])]]                 # neither block: E undefined
+        e = SC.e_reps(ev, 0.0, sigma, reps)
+        self.assertAlmostEqual(e[0], 2.0); self.assertAlmostEqual(e[1], 1.0); self.assertTrue(np.isnan(e[2]))
+        self.assertAlmostEqual(SC.se_diff(e, e - 1.0), 0.0)            # NaN replicates skipped
+        self.assertAlmostEqual(SC.se_diff([1.0, 2.0, np.nan], [0.0, 0.0, 0.0]), 0.5)
+        self.assertTrue(np.isnan(SC.se_diff([np.nan], [0.0])))
+        blocks = [dict(frames=list(range(0, 40, 2)), kept=list(range(0, 40, 2)))]      # 20 frames, L = 3
+        reps = SC.bootstrap_reps(blocks)
+        ev1 = dict(per_frame=[{20: (0.03, 10)}])                         # every point in one frame: R 3.0
+        e = SC.e_reps(ev1, 0.0, sigma, reps)
+        hit = np.array([20 in set(r[0].tolist()) for r in reps])
+        self.assertTrue((~hit).any() and hit.any())
+        self.assertTrue(np.allclose(e[hit], 3.0)); self.assertTrue(np.isnan(e[~hit]).all())   # never 0
+
+
 class GenHoldoutTests(unittest.TestCase):
     def test_removes_views_within_8_deg(self):
         b = cyl_episode()
@@ -482,7 +506,12 @@ class GenHoldoutTests(unittest.TestCase):
         self.assertTrue(pool['gen_view_overlap'])
         p = SEL.pick(pool['rows'], gen_view_overlap=pool['gen_view_overlap'])
         self.assertEqual(p['order'], ['shell', 'gen'])            # generated E is optimistic: SHELL before GEN
-        self.assertEqual(SEL.pick(pool['rows'])['order'], ['gen', 'shell'])
+        self.assertEqual(SEL.pick(pool)['order'], ['shell', 'gen'])         # the flag travels with the pool (round 2)
+        self.assertEqual(SEL.pick(pool['rows'])['order'], ['shell', 'gen'])  # ... and with its rows
+        with self.assertRaises(ValueError):
+            SEL.pick(pool['rows'], gen_view_overlap=False)
+        untagged = [dict(r, pool=None) for r in pool['rows']]
+        self.assertEqual(SEL.pick(untagged, kit_symmetric=False, gen_view_overlap=False)['order'], ['gen', 'shell'])
 
 
 class FoldTests(unittest.TestCase):
@@ -627,6 +656,96 @@ class B5Synthetic(unittest.TestCase):
                 self.assertFalse(v5['applied'])
                 self.assertIn('flip_risk', p['flags'])
         _record_b5('B5-c slab flip risk', out)
+
+    def test_c2_candidate_objects_untrusted_balls(self):
+        """B5 round 2 (verifier's break input): standard Candidate objects. Balls not trusted and no ball-free mesh
+        -> the self-ambiguity is unknown (never measured on the mesh with untrusted balls): V5 cannot apply, the pick
+        is flagged flip_risk or flip_risk_unknown. With Candidate.base_mesh it is measured ball-free (flip-risk).
+        Trusted balls -> measured with them: V5 removes the ball-free slab. A ball mesh whose count is only in
+        mesh.metadata['balls'] (markers.attach) counts as having balls."""
+        slab, balls = AM.slab(), AM.slab_with_balls()
+        b = slab_episode()
+        nb = len(AM.BALLS)
+
+        def cands(base=False, meta_only=False):
+            m = balls.copy()
+            if meta_only:
+                m.metadata['balls'] = [dict(r_mm=10.0)] * nb
+            return [Candidate(cid='slab_balls', producer='P-T', cls='STRUCT', mesh=m, params={}, n_params=6,
+                              balls=0 if meta_only else nb, base_mesh=slab if base else None),
+                    Candidate(cid='slab_plain', producer='P-T', cls='STRUCT', mesh=slab, params={}, n_params=6)]
+        out = {}
+        cases = (('untrusted, no base', {}, False), ('untrusted, metadata count', dict(meta_only=True), False),
+                 ('untrusted, base_mesh', dict(base=True), False), ('trusted, no base', {}, True))
+        for name, kw, trusted in cases:
+            pool = SC.score_pool(cands(**kw), b, 'slab', kind=None, trusted=trusted)
+            r = {x['cid']: x for x in pool['rows']}
+            p = SEL.pick(pool)
+            v5 = [t for t in p['trace'] if t['step'] == 'V5'][0]
+            out[name] = dict(rows={k: _row_summary(v) | dict(flags=v['flags'], amb_source=v['amb_source'],
+                                                             balls=v['balls']) for k, v in r.items()},
+                             pick={k: p[k] for k in ('cid', 'tie_set', 'order', 'flags')}, v5=v5)
+            self.assertEqual(r['slab_balls']['balls'], nb)
+            self.assertTrue(r['slab_plain']['amb']['flip_risk'])
+            self.assertIn('v1_in_memory', r['slab_plain']['flags'])
+            if trusted:
+                self.assertFalse(r['slab_balls']['amb']['flip_risk'])
+                self.assertTrue(v5['applied']); self.assertEqual(v5['removed'], ['slab_plain'])
+                self.assertEqual(p['cid'], 'slab_balls')
+                self.assertNotIn('flip_risk', p['flags']); self.assertNotIn('flip_risk_unknown', p['flags'])
+                continue
+            self.assertFalse(v5['applied'])
+            self.assertNotIn('slab_plain', v5.get('removed', []))
+            self.assertTrue(set(p['flags']) & {'flip_risk', 'flip_risk_unknown'})
+            if kw.get('base'):
+                self.assertTrue(r['slab_balls']['amb']['flip_risk'])          # ball-free: flip-risk
+                self.assertIn('flip_risk', p['flags'])
+            else:
+                self.assertIsNone(r['slab_balls']['amb']['flip_risk'])        # unknown, not 'safe'
+                self.assertTrue(r['slab_balls']['amb']['unknown'])
+                self.assertIsNone(r['slab_balls']['amb_noball'])
+                self.assertIn('amb_unknown_untrusted_balls_no_base', r['slab_balls']['flags'])
+                self.assertEqual(v5['unknown'], ['slab_balls'])
+                if kw.get('meta_only'):
+                    self.assertIn('balls_count_from_mesh_metadata', r['slab_balls']['flags'])
+                self.assertEqual(p['keys']['slab_balls'][1], 'inf')            # last on the flip-safety key
+                self.assertIn('flip_risk_unknown' if p['cid'] == 'slab_balls' else 'flip_risk', p['flags'])
+        _record_b5('B5-c2 Candidate objects, untrusted balls', out)
+
+    def test_v3_reference_shell_and_v1_flag(self):
+        """B5 round 2: the V3 reference s is the shell at t0 whatever the input order; several SHELL rows need
+        shell_cid, shell_fsv or t0_mm; V1 computed in memory is flagged."""
+        b = disc_episode()
+        disc = SY.disc()
+        ph = SY.phantom_under(disc)
+        v1ok = dict(veto=False, watertight=True, source='packer')
+        cands = [dict(cid='shell_t2', cls='SHELL', mesh=disc, n_params=0, t_mm=2.0, v1=v1ok),
+                 dict(cid='shell_t3p2', cls='SHELL', mesh=ph, n_params=0, t_mm=3.2, v1=v1ok),
+                 dict(cid='struct', cls='STRUCT', mesh=ph, n_params=2)]
+        with self.assertRaises(ValueError):
+            SC.score_pool(cands, b, 'disc', kind=None, amb=False)
+        with self.assertRaises(ValueError):
+            SC.score_pool(cands, b, 'disc', kind=None, amb=False, shell_cid='struct')
+        ref = None
+        for order in (cands, cands[::-1]):
+            for kw in (dict(t0_mm=2.0), dict(shell_cid='shell_t2')):
+                pool = SC.score_pool(order, b, 'disc', kind=None, amb=False, **kw)
+                r = {x['cid']: x for x in pool['rows']}
+                self.assertEqual(pool['shell_cid'], 'shell_t2')
+                self.assertEqual(r['struct']['fsv_far_shell'], r['shell_t2']['fsv_far'])
+                ref = r['shell_t2']['fsv_far'] if ref is None else ref
+                self.assertEqual(r['shell_t2']['fsv_far'], ref)
+                self.assertIn('v1_in_memory', r['struct']['flags'])
+                self.assertNotIn('v1_in_memory', r['shell_t2']['flags'])
+        alt = SC.score_pool(cands[1:], b, 'disc', kind=None, amb=False, shell_fsv=ref)   # an A.1 t0-alternate pool
+        self.assertEqual(alt['shell_ref'], 'given shell_fsv')
+        self.assertEqual({x['fsv_far_shell'] for x in alt['rows']}, {ref})
+        with self.assertRaises(ValueError):
+            SC.score_pool(cands[1:], b, 'disc', kind=None, amb=False, t0_mm=2.0)       # no shell at t0 in the pool
+        none = SC.score_pool(cands[2:], b, 'disc', kind=None, amb=False)
+        self.assertIn('v3_no_shell_reference', none['flags'])
+        self.assertIsNone(none['rows'][0]['v3']['diff'])
+        _record_b5('B5-v3 reference shell', dict(fsv_shell_t2=ref, fsv_struct=r['struct']['fsv_far']))
 
     def test_d_tie_order_deterministic_on_scored_pool(self):
         b = cyl_episode()

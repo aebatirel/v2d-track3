@@ -35,11 +35,13 @@ Vetoes and features
                                         _axial_rotations; ICP 40 iterations, trim 0.9)
   self_ambiguity(mesh, kind=None)       ambiguity + the V5 rule: flip_risk = amb - floor < floor; flip_units =
                                         floor((amb - floor) / floor) (A.5 key 2). The caller passes the mesh with
-                                        TRUSTED balls only (base mesh when the object's balls are not trusted).
+                                        TRUSTED balls only (base mesh when the object's balls are not trusted);
+                                        score_pool does this and reports unknown (amb_unknown) when the balls are
+                                        untrusted and no ball-free base_mesh exists
   kit_symmetry(obj)                     'axial' / 'half' / None from the kit config (config/tracks.json, role kit)
   obs_flip_margin(mesh, obs, kind)      diagnostic: ICP of our owned points onto the candidate from the kit's 24 PCA
                                         starts; o2m residual of the best flipped solution minus the identity-start one
-  score_pool(cands, bundle, obj, ...)   all features of one pool, rows ready for select.pick
+  score_pool(cands, bundle, obj, ...)   all features of one pool; select.pick(pool) takes it as is
 """
 from __future__ import annotations
 
@@ -426,7 +428,11 @@ def bootstrap_reps(blocks):
 
 def e_reps(ev, fsv, sigma, reps):
     """E of one candidate on every bootstrap replicate (ratio estimator per block: summed cost / summed count of the
-    resampled frames), plus 10 fsv_far (constant across replicates)."""
+    resampled frames), plus 10 fsv_far (constant across replicates). A block whose resampled frames hold no held-out
+    point has no R_k in that replicate and is dropped from its mean over blocks, as the point estimate drops a block
+    without held-out points (nanmean); a replicate with no block left is NaN (se_diff skips it). The per-frame point
+    counts are the same for every candidate (every held-out ray gets a cost), so the drops stay paired. (B5 round 2:
+    the earlier form scored such a block R_k = 0, a perfect fit.)"""
     c = consts()
     out = np.empty(len(reps))
     for i, r in enumerate(reps):
@@ -436,14 +442,19 @@ def e_reps(ev, fsv, sigma, reps):
                 continue
             a = sum(pf.get(int(f), (0.0, 0))[0] for f in fl)
             b = sum(pf.get(int(f), (0.0, 0))[1] for f in fl)
-            Rk.append(a / max(b, 1) / sigma)
+            if b == 0:
+                continue
+            Rk.append(a / b / sigma)
         out[i] = (float(np.mean(Rk)) if Rk else float('nan')) + c['fsv_w'] * fsv
     return out
 
 
 def se_diff(reps_c, reps_best):
-    """PREREG A.4 SE_diff(c) = SD over the paired replicates of E(c) - E(best) (numpy population SD)."""
-    return float(np.std(np.asarray(reps_c, np.float64) - np.asarray(reps_best, np.float64)))
+    """PREREG A.4 SE_diff(c) = SD over the paired replicates of E(c) - E(best) (numpy population SD), over the
+    replicates where both are defined (NaN if none)."""
+    d = np.asarray(reps_c, np.float64) - np.asarray(reps_best, np.float64)
+    d = d[np.isfinite(d)]
+    return float(np.std(d)) if len(d) else float('nan')
 
 
 # ------------------------------------------------------------------------------------------------ V2
@@ -797,17 +808,90 @@ def _get(c, k, default=None):
     return c.get(k, default) if isinstance(c, dict) else getattr(c, k, default)
 
 
-def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=None, kind='kit', trusted=False,
-               amb=True, flip_margin=False):
-    """Every feature of one pool (PREREG A.2-A.4), rows ready for select.pick.
+def _ball_count(x, mesh):
+    """Number of balls on the candidate: the declared count (Candidate.balls), or the per-ball report markers.attach
+    leaves in mesh.metadata['balls'] when that is larger (a ball mesh whose count was not carried over)."""
+    nd = int(_get(x, 'balls', 0) or 0)
+    md = getattr(mesh, 'metadata', None) or {}
+    nm = len(md.get('balls') or []) if isinstance(md, dict) else 0
+    return max(nd, nm), nm > nd
+
+
+def amb_unknown(kind, reason):
+    """The self-ambiguity of a candidate that cannot be measured as PREREG A.3 V5 / A.5 key 2 require ('trusted balls
+    only'): neither safe nor risky for V5 (select.pick counts only True / False), last on the flip-safety key."""
+    return dict(amb_mm=None, amb45_mm=None, amb_floor_mm=None, amb_rel=None, flip_risk=None, flip_units=None,
+                kind=kind, unknown=True, reason=reason)
+
+
+def _amb_rows(row, mesh, base, kind, trusted):
+    """PREREG A.3 V5 and A.5 key 2: the self-ambiguity with TRUSTED balls only, else ball-free.
+      no balls                         -> the shipped mesh (ball-free)
+      balls, trusted                   -> the shipped mesh (with its trusted balls); amb_noball on base_mesh if given
+      balls, untrusted, base_mesh      -> base_mesh (ball-free)
+      balls, untrusted, no base_mesh   -> unknown (amb_unknown): the ball-free shape is not available and the mesh
+                                          with untrusted balls must not stand in for it (B5 round 2 fix)."""
+    if row['balls'] == 0:
+        row['amb'] = row['amb_noball'] = self_ambiguity(mesh, kind)
+        row['amb_source'] = 'shipped mesh (no balls)'
+    elif trusted:
+        row['amb'] = self_ambiguity(mesh, kind)
+        row['amb_noball'] = self_ambiguity(base, kind) if base is not None else None
+        row['amb_source'] = 'shipped mesh with its trusted balls'
+    elif base is not None:
+        row['amb'] = row['amb_noball'] = self_ambiguity(base, kind)
+        row['amb_source'] = 'base_mesh (balls not trusted: ball-free)'
+    else:
+        row['amb'] = amb_unknown(kind, 'balls not trusted and no ball-free base_mesh supplied')
+        row['amb_noball'] = None
+        row['amb_source'] = 'unknown'
+        row['flags'].append('amb_unknown_untrusted_balls_no_base')
+
+
+def _shell_reference(rows, shell_cid, shell_fsv, t0_mm):
+    """The reference s of V3 (PREREG A.3: the route-A shell at t0 of the same episode). shell_fsv (its fsv_far,
+    measured in the main run) wins; else the row SHELL_CID; else the SHELL row whose t_mm is t0_mm; else the pool's
+    only SHELL row. Several SHELL rows and no way to tell which is at t0 raise (A.1 t0-alternate re-runs hold a shell
+    at 0.6 or 1.6 x t0: pass shell_fsv of the t0 shell). Returns (cid, fsv, source)."""
+    if shell_fsv is not None:
+        return shell_cid, float(shell_fsv), 'given shell_fsv'
+    shells = [r for r in rows if r['cls'] == 'SHELL']
+    if shell_cid is not None:
+        r = next((r for r in rows if r['cid'] == shell_cid), None)
+        if r is None or r['cls'] != 'SHELL':
+            raise ValueError(f'score_pool: shell_cid {shell_cid!r} is not a SHELL candidate of the pool')
+        return r['cid'], r['fsv_far'], 'shell_cid'
+    if t0_mm is not None:
+        at = [r for r in shells if r.get('t_mm') is not None and abs(float(r['t_mm']) - float(t0_mm)) <= 1e-3]
+        if len(at) != 1:
+            raise ValueError(f'score_pool: {len(at)} SHELL candidates at t0 = {t0_mm} mm (t_mm of the SHELL rows: '
+                             f'{[r.get("t_mm") for r in shells]}); pass shell_cid or shell_fsv')
+        return at[0]['cid'], at[0]['fsv_far'], f't_mm == t0_mm {t0_mm}'
+    if len(shells) > 1:
+        raise ValueError(f'score_pool: {len(shells)} SHELL candidates ({sorted(r["cid"] for r in shells)}) and no '
+                         f'shell_cid, shell_fsv or t0_mm: the V3 reference (the shell at t0) is ambiguous')
+    if shells:
+        return shells[0]['cid'], shells[0]['fsv_far'], 'the only SHELL row'
+    return None, None, 'none (no SHELL candidate; V3 diff undefined, no veto)'
+
+
+def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=None, shell_fsv=None, t0_mm=None,
+               kind='kit', trusted=False, amb=True, flip_margin=False):
+    """Every feature of one pool (PREREG A.2-A.4), rows ready for select.pick (pass the returned pool dict itself:
+    pick then takes kit_symmetric and gen_view_overlap from it; every row also carries them under 'pool').
 
     cands: Candidate objects or dicts with cid, cls, n_params, mesh (all-frames, as shipped: packed, with every
-    observed ball), and optionally base_mesh (the same without balls), balls (count), v1 (the packer's V1 dict; else
-    V1 is computed on the in-memory mesh), gen_input_frames (GEN / FUSE: frames fed to the generator).
+    observed ball), and optionally base_mesh (the same without balls; Candidate.base_mesh), balls (count; a larger
+    count in mesh.metadata['balls'], as markers.attach leaves it, is used too), t_mm, v1 (the packer's V1 dict on the
+    packed file; else V1 is computed on the in-memory mesh and the row is flagged v1_in_memory: pass packed meshes
+    and the packer's v1), gen_input_frames (GEN / FUSE: frames fed to the generator).
     folds: {cid: [c_1..c_K]} fold rebuilds (build_folds); a candidate without one is scored 'fixed'.
-    tau: V3 threshold (None before B13: V3 reported, not applied). shell_cid: the reference s of V3 (default: the
-    pool's SHELL candidate). kind: the kit symmetry ('kit' = look it up). trusted: the object's balls passed the B.4
-    repeatability test (else the ambiguity is measured without balls: base_mesh)."""
+    tau: V3 threshold (None before B13: V3 reported, not applied). V3 reference s (the route-A shell at t0):
+    shell_fsv (its fsv_far from the main run; for the A.1 t0-alternate re-runs), else shell_cid, else the SHELL row
+    with t_mm == t0_mm, else the only SHELL row; several SHELL rows otherwise raise. kind: the kit symmetry ('kit' =
+    look it up). trusted: the object's balls passed the B.4 repeatability test. Self-ambiguity (V5, A.5 key 2) with
+    trusted balls only: untrusted balls -> measured on base_mesh; untrusted balls and no base_mesh -> unknown
+    (neither safe nor risky for V5, last on the flip key; row flag amb_unknown_untrusted_balls_no_base)."""
     c = consts()
     K = int(c['K'] if K is None else K)
     kind = kit_symmetry(obj) if kind == 'kit' else kind
@@ -819,6 +903,7 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
     obs = bundle.obs(obj)
     far = far_free_grid(obs)
     s = bundle.sigma(obj)
+    pool_tag = dict(obj=obj, kit_symmetric=kind is not None, gen_view_overlap=bool(pl['gen_view_overlap']))
     rows = []
     for x in cands:
         cid, mesh = _get(x, 'cid'), _get(x, 'mesh')
@@ -826,33 +911,36 @@ def score_pool(cands, bundle, obj, *, K=None, folds=None, tau=None, shell_cid=No
         fm, fstate = fold_meshes(mesh, (folds or {}).get(cid), K)
         ev = evidence(fm, bundle, obj, pl['blocks'], fs['fsv_far'] or 0.0)
         er = e_reps(ev, fs['fsv_far'] or 0.0, s, reps)
+        flags = list(_get(x, 'flags', []) or [])
         v1r = _get(x, 'v1')
         if v1r is None:
             v1r = v1(mesh)
             v1r['source'] = 'in-memory mesh'
+            flags.append('v1_in_memory')
+        nballs, from_meta = _ball_count(x, mesh)
+        if from_meta:
+            flags.append('balls_count_from_mesh_metadata')
+        t_mm = _get(x, 't_mm')
         row = dict(cid=cid, cls=_get(x, 'cls'), producer=_get(x, 'producer'), n_params=int(_get(x, 'n_params', 0)),
-                   balls=int(_get(x, 'balls', 0) or 0), E=ev['E'], E_blocks=ev['R_blocks'], E_se=float(np.std(er)),
-                   E_reps=er, ray=ev['ray'], ray_blocks=ev['per_block'], fold=fstate, fsv_far=fs['fsv_far'],
-                   fsv_outside_grid=fs['outside_grid'], v1=v1r, v2=v2(mesh, bundle, obj),
-                   v4=below_table(mesh, bundle, obj), flags=list(_get(x, 'flags', []) or []))
+                   t_mm=None if t_mm is None else float(t_mm), balls=nballs, E=ev['E'], E_blocks=ev['R_blocks'],
+                   E_se=float(np.nanstd(er)) if np.isfinite(er).any() else float('nan'), E_reps=er, ray=ev['ray'],
+                   ray_blocks=ev['per_block'], fold=fstate, fsv_far=fs['fsv_far'], fsv_outside_grid=fs['outside_grid'],
+                   v1=v1r, v2=v2(mesh, bundle, obj), v4=below_table(mesh, bundle, obj), flags=flags,
+                   pool=dict(pool_tag))
         row['trusted_markers'] = row['balls'] if trusted else 0
         if amb:
-            base = _get(x, 'base_mesh')
-            if base is None and row['balls'] and not trusted:
-                row['flags'].append('amb_includes_untrusted_balls')     # no ball-free mesh was supplied
-            noball = self_ambiguity(base if base is not None else mesh, kind)
-            row['amb_noball'] = noball
-            row['amb'] = self_ambiguity(mesh, kind) if (trusted and row['balls'] and base is not None) else noball
+            _amb_rows(row, mesh, _get(x, 'base_mesh'), kind, trusted)
         if flip_margin:
             row['obs_flip_margin'] = obs_flip_margin(mesh, obs, kind)
         rows.append(row)
-    scid = shell_cid or next((r['cid'] for r in rows if r['cls'] == 'SHELL'), None)
-    fsv_s = next((r['fsv_far'] for r in rows if r['cid'] == scid), None)
+    scid, fsv_s, s_src = _shell_reference(rows, shell_cid, shell_fsv, t0_mm)
+    if fsv_s is None:
+        pool_flags.append('v3_no_shell_reference')
     for r in rows:
         r['fsv_far_shell'] = fsv_s
         r['v3'] = v3(r['fsv_far'], fsv_s, tau)
     return dict(obj=obj, K=K, kind=kind, kit_symmetric=kind is not None, trusted_balls=bool(trusted),
-                gen_view_overlap=pl['gen_view_overlap'], holdout=pl['holdout'], removed_frames=pl['removed'],
+                gen_view_overlap=bool(pl['gen_view_overlap']), holdout=pl['holdout'], removed_frames=pl['removed'],
                 blocks=[dict(frames=len(b['frames']), kept=len(b['kept']), points=int(len(b['idx'])),
                              L=block_length(len(b['kept'])) if b['kept'] else None) for b in pl['blocks']],
-                shell_cid=scid, tau=tau, rows=rows, plan=pl, flags=pool_flags)
+                shell_cid=scid, shell_fsv=fsv_s, shell_ref=s_src, tau=tau, rows=rows, plan=pl, flags=pool_flags)

@@ -21,6 +21,9 @@ class Candidate:
     built_on_frames: str = 'all'
     flags: list = dataclasses.field(default_factory=list)
     report: dict = dataclasses.field(default_factory=dict)
+    # the same candidate without its balls (set when markers.attach adds balls to mesh). score.score_pool measures
+    # the V5 / A.5 self-ambiguity on it when the object's balls are not trusted; without it that value is unknown.
+    base_mesh: object = None
 
     def meta(self):
         return dict(cid=self.cid, producer=self.producer, cls=self.cls, params=self.params, n_params=self.n_params,
