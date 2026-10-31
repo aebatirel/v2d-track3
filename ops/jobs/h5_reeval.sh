@@ -30,6 +30,10 @@ python $REPO_DIR/tools/no_oracle.py ${PICK_EXTRA:-} ${KEEP_RESULTS:-} ${ASSET_PI
 C=/content/v2d-track3/meshes/carve
 [ -n "${ASSET_PIECES_EXTRA:-}" ] && { [ -z "${KEEP_RESULTS:-}" ] || [ -z "${EVAL_ONLY:-}" ]; } \
   && { log "h5: ASSET_PIECES_EXTRA needs KEEP_RESULTS and EVAL_ONLY (shared /content/assets)" >> $J; exit 1; }
+case " ${MA_ARGS:-}" in *--physics*)                              # (2026-10-31) masses in the shared /content/assets: the
+  [ -n "${KEEP_RESULTS:-}" ] && [ -n "${EVAL_ONLY:-}" ] && [ -n "${MASS_EPS:-}" ] \
+    || { log "h5: MA_ARGS --physics needs KEEP_RESULTS, EVAL_ONLY and MASS_EPS (shared /content/assets)" >> $J; exit 1; } ;;   # same rule
+esac
 export RUNS="20261026-fr32s46b-5e0e100@refs/glockt/ep32,refs/sf/ep32 20261026-gl10A2-5e0e100@refs/glockt/ep10,refs/glock/ep10 20261026-c25s42-feb0407@refs/perc2mcks 20261026-fr3233s43-6a8a0e2@refs/glockt/ep33,refs/sf/ep33 20261025-evb0810-ee7ba8e@refs/glockt/ep8,refs/sf/ep8 20261025-evb1420-ee7ba8e@refs/glockt/ep14,refs/sf/ep14,refs/glockt/ep20,refs/sf/ep20 20261025-fr3233-043275f@refs/glockt/ep32,refs/sf/ep32 20261025-std0116-ee7ba8e@refs/perc2mcks 20261025-std1928-ee7ba8e@refs/perc2mcks 20261025-std30-ee7ba8e@refs/perc2mcks 20261024-pack-31ef267${RUNS_EXTRA:+ $RUNS_EXTRA}"
 export PICK="3:20261024-seed43-61101f5 5:20261024-seed43-61101f5 15:20261024-seed43-61101f5 16:20261024-seed43-61101f5 1:20261025-std0116-ee7ba8e:final 8:20261025-evb0810-ee7ba8e:final 14:20261025-evb1420-ee7ba8e:final 20:20261025-evb1420-ee7ba8e:final 19:20261025-std1928-ee7ba8e:final 28:20261025-std1928-ee7ba8e:final 25:20261026-c25s42-feb0407:ck=runs/perc2mcks/ep25-s42/policy_250003456.safetensors 30:20261025-std30-ee7ba8e:final 32:20261026-fr32s46b-5e0e100 33:20261026-fr3233s43-6a8a0e2 10:20261026-gl10A2-5e0e100 ${PICK_EXTRA:-}"
 export EP_LIB="8:/content/v2d-track3/meshes/library_v3x" ASSET_PIECES="$C/ev25 $C/ev10${ASSET_PIECES_EXTRA:+ $ASSET_PIECES_EXTRA}"
@@ -69,7 +73,9 @@ for i in $(seq 2 $N); do
   for p in $O/results/episode_*.parquet; do
     e=$((10#$(basename $p .parquet | cut -d_ -f2))); mkdir -p $O/ep$e; cp ${p%.parquet}.* $O/ep$e/
     python $REPO_DIR/pipeline/qa.py policy $O/ep$e $e > /dev/null 2>&1 || true
-    rm -f $O/ep$e/*.parquet                                        # keep the scores, not 200 rollout files
+    # rollouts kept by default (31 Oct, Prof. Inceoglu's good-vs-failed draw comparison: where draws of one checkpoint part
+    # ways, GT-free on CPU; ~50-100 kB per episode); KEEP_ROLLOUTS=0 keeps only the scores, as before
+    [ "${KEEP_ROLLOUTS:-1}" = 1 ] || rm -f $O/ep$e/*.parquet
   done
   rm -rf $O/results
   log "h5: draw $i done" >> $J
