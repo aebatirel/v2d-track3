@@ -86,3 +86,19 @@ implementation artefact, fixed before this run.
 - **Board value [E]:** the 30 Oct plan measured an after-the-fact half-frame shift of public rollouts at +0.0004 to
   +0.0028. It pays through retrained references only, so it is worth adding only where eval references are rebuilt
   anyway.
+
+## Zero-lag (offline forward–backward) smoothing, best case (`rtssweep.py` → `rtssweep.json`) [M]
+The owner asked whether the Kalman filter's lag can be removed, since processing is offline. Yes: the
+Rauch–Tung–Striebel smoother runs the same filter backwards and has no lag.
+
+Swept 96 settings (observation noise 0.5–4 mm, process noise, contact gating, with and without the half-frame advance)
+on all 33 objects:
+- **smoother alone:** best −1.5 % ADD (31 objects better, 0 worse);
+- **with the half-frame advance:** best −5.1 % (32 better, 0 worse), against −4.4 % for the advance alone.
+
+The best cell is at the grid edge (4 mm observation noise, lowest process noise, still objects ×0.01). It was tuned on
+these public episodes, so it is an upper bound until a pre-registered test on fresh settings. Scope: these filters act
+on perception (our tracked object paths, the robot's training target), not on the policy, which reads exact simulator
+state.
+
+Shared page for Roman: https://claude.ai/artifact/6ZSVt1Fz17nXR8gzEKx7mo (private until the owner shares it).

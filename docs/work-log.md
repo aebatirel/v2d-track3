@@ -5598,3 +5598,6 @@ arm and a no-policy replay floor to stage B.
   - half-frame advance: better on 32 of 33 objects (−4.4 % ADD; −7.9 % without ep0/ep23);
   - Roman's causal Kalman: worse (+1.3 to +7.8 %); delay-aware Kalman: worse; offline RTS: −0.7 %.
   - Recommendation: wire S2 into eval references where they are rebuilt anyway; no Kalman filter.
+- ~22:10 UTC zero-lag smoother sweep (owner: "can't we address the Kalman lag offline?"): RTS best −1.5 % alone,
+  −5.1 % with the half-frame advance (vs −4.4 %), 0 objects worse. Tuned on public, so an upper bound. Page for Roman
+  published: https://claude.ai/artifact/6ZSVt1Fz17nXR8gzEKx7mo (private; ep2 video embedded).
