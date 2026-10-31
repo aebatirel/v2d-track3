@@ -1,0 +1,10 @@
+[21:27:45] ev_extract ep25 objects ['wooden_piece_1', 'wooden_piece_2'] map {'wooden_piece_1': ('wooden_piece_2', 'Rx180'), 'wooden_piece_2': ('wooden_piece_1', 'I')} start {'commit': 'fc952de2efb1e856e61d7768b458849b76811999', 'dirty': 'M docs/research/mesh-2026-10-26/gmg/INTERLOCK.md\n M docs/research/mesh-2026-10-26/gmg/PREREG.md\n M docs/research/mesh-2026-10-26/gmg/build/I.md'}
+[21:27:45] mapped tracks /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/tracks/eval/ep25/poses.npz {"wooden_piece_1": {"source": "wooden_piece_2", "rot": "Rx180", "rot_diag": [1, -1, -1]}, "wooden_piece_2": {"source": "wooden_piece_1", "rot": "I", "rot_diag": [1, 1, 1]}}
+[21:32:26] hands 280.6 s: frames with hand 353 / 356
+[21:36:07] ep25 pass 0: 178 frames, 9210442 samples, voxels [112831, 137302], 221.2 s
+[21:44:49] extract timing {"table_s": 0.3, "pass0_samples_s": 202.0, "pass0_votes_s": 19.2, "pass0_s": 221.2, "pass0_voxels": [112831, 137302], "pass1_s": 148.9, "pass2_s": 2.3, "pass3_s": 1.1, "frame_gaps_s": 9.5, "pass4_grids_s": 304.8, "sigma_s": 61.1, "total_s": 742.9}
+[21:44:58] sanity wooden_piece_1: 120/178 good, flags [], below 0.1573, resid {'median': 1.045, 'p90': 9.872, 'max': 13.293}
+[21:45:05] sanity wooden_piece_2: 174/178 good, flags [], below 0.0, resid {'median': 1.005, 'p90': 1.105, 'max': 5.731}
+[21:46:33] split test wooden_piece_1: {"wooden_piece_2": [false, 3.532, 3.56, 3.084]}
+[21:47:14] split test wooden_piece_2: {"wooden_piece_1": [true, 1.836, 2.587, 2.522]}
+[21:47:16] bundle /tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25 total 1171.1 s

@@ -1112,6 +1112,30 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   this log, work log; committed 21:36:31 UTC, on origin at 21:36:48; the "21:37" stamps in those texts are that
   commit time rounded to the minute). Only my lines were staged. Amend step done: no code edited, nothing run, $0.
   The Build step may start from 782db1c.
+- 21:38 [M] ev_extract progress: hands (M1, MediaPipe, cam_a video `data/eval/ep25_a.mp4`, 356 frames 2028x1520 at
+  20 fps) 280.6 s, 353 / 356 frames with a hand; pass 0 178 frames, 9.21 M samples, voxels 112,831 / 137,302, 221 s.
+  Disk free ~0.6 GB while the eval depth is local (another agent is writing too); extraction continues.
+- 21:47 [M] **ev25 clean extraction done** (rc 0, 1171 s; strace audit forbidden 0, unlisted 0, writes outside 0,
+  network 0): bundle `<scratch>/gmg/runs/20261031-ev25ext-5bf54bc/bundle/eval/ep25`, 178 frames (stride 2), 9.21 M
+  samples. Board 1 (ref names; = our evperc wp2 @ Rx180): 120 / 178 good, sigma 2.03 mm, below table 0.157, block
+  residual p90 9.87 mm, split test false (3.53 mm). Board 2: 174 / 178, sigma 0.98 mm, split true (1.84 mm). No
+  flags. Eval depth deleted at 21:47 (store copy stays).
+- 21:48 interlock_cands on it failed in dev run `20261031-ev25prep-5bf54bc` (kept, marker only): the guard admits a
+  tracks file only from data/sweep, data/eval (frozen sha256) or the CURRENT run's tracks/, so no other run can load a
+  bundle whose tracks are the mapped track in the clean run. Fix in my own file (no shared code): `ev_extract.py
+  --rehome` (dev; commit 765dc6f) regenerates the mapped track in the consumer dev run (same frozen source and map:
+  sha256 49adcb73... identical) and copies the object npz / shell files byte for byte (role clean_run; `cmp` identical);
+  only episode.json's tracks entry, tier DEV and a rehomed_from record differ. Run 21:50:20-21:50:25 under the strace
+  audit (all zero), dev run `<scratch>/gmg/runs-dev/20261031-ev25prep-765dc6f`; hands copied to its `in/hands25/`.
+- 21:52 [M] candidates (`interlock_cands`, dev, 82 s): shell_t5p36 3912 / 3944 faces, 288.0 / 166.1 cm3, extents
+  38.1 x 144.6 x 233.5 / 36.7 x 142.5 x 235.7 mm (x = thickness axis, z = length, as on ep24); hulls 3880 / 3856; all
+  watertight packed. Clarification of the 21:27 entry: board 1's z is its length axis. Added [M]: the packed parquet
+  vs the reference track at f294-355 differs by 5.7 mm in board 2 relative to board 1 (along board 1's width y, from
+  the per-object mkref z snaps), and our mapped track vs the parquet by 9.8 mm / 2.5 deg; the item-3 P_sel -> P_sim
+  check should place pieces at the parquet poses. `interlock_dev` hard-codes split 'public' (out_dir, write_round):
+  label fix needed before the eval run (shared file, not changed). Written: `build/I/results/slot3-ev25/PREP.md`
+  (+ mapping / assembly / candidate / bundle-summary JSON, scripts, provenance). Prep25 done; no F-I4 decision, no
+  physics, meshes/carve/ev25 not read, no rental ($0).
 
 ## Collision carve round 2 (PREREG F-I5.15, INTERLOCK 21.13) (agent of the collision-carve round-2 workflow, Design step, started 31 Oct 21:33 UTC)
 - 21:38 (Design step) started 21:33. Read STATUS, CLAUDE.md, INTERLOCK 21-21.12, PREREG F-I5-F-I5.14 (incl. outcomes and
@@ -1122,6 +1146,3 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   orchestrator's decision of ~21:50 UTC (items 1-7) as PREREG F-I5.15 + INTERLOCK 21.13 after a prior-work review;
   commit + push before any code. No code, no run. Highest prediction so far P70 (F-I4.16, 782db1c), so round 2 starts at
   P71. Next: the review (CoACD paper + README, V-HACD, MuJoCo docs, cavity-preserving decomposition, Factory / SDF).
-- 21:38 [M] ev_extract progress: hands (M1, MediaPipe, cam_a video `data/eval/ep25_a.mp4`, 356 frames 2028x1520 at
-  20 fps) 280.6 s, 353 / 356 frames with a hand; pass 0 178 frames, 9.21 M samples, voxels 112,831 / 137,302, 221 s.
-  Disk free ~0.6 GB while the eval depth is local (another agent is writing too); extraction continues.
