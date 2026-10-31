@@ -67,3 +67,14 @@ carves change only the simulator assets (the reference is unchanged), so one ref
   the two arms are compared before any result (proposal: an arm is a candidate only if it passes the rule vs the packed
   policy; between two passing arms, the higher fresh-draw mean sim_vs_ref, ties → no-D).
 - Cost lines become: Tier 1 + D ≈ $36–56; Tier 1 + D + Tier 2 (one arm) ≈ $71–113 [E].
+
+## Update (31 Oct ~21:15 UTC)
+- ep11 gate PASSED (Δ +0.142); eval-10 V4p retrain running (20261031-e10v-caf38fb) — its reference chain ends with S2.
+- D arm settings (determined-wright): `ops/box/patch_flashchord_dr.py` after fc_patches (opt-in in glock_public.sh /
+  hard_ab.sh), `FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>` via TRAIN_ENV (grasp-lock) or ENV_EP<N> (standard);
+  verify the "v2d FC_DR_RESET" log line in D cells and its absence in controls. For evals 25/30 (standard learner):
+  `FC_DR_SKIP_IMMEDIATE=1` (requested opt-in, so D does not perturb the deployment-exact starts). CPU reset test (share of
+  worlds whose objects move > 1 cm under D) per episode once the carves exist.
+- Reference-side additions (keen-heisenberg): S2 for every eval reference that is rebuilt anyway (V4p already has it; a
+  passing re-track rebuilds all with S2); an RTS smoother step after S2 only if it passes its own public gate
+  (mean ΔR ≥ +0.005, no episode drop > 0.02; pre-registered). The masses arm keeps the packed references.
