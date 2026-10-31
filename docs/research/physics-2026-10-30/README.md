@@ -301,3 +301,18 @@ the available seeds (ep2: 42/43/44 from rounds 1–2; ep12/18/24: 42 + 43). Δ =
 - **adopt realistic masses:** mean Δ over the four episodes ≥ +0.03 and no episode ≤ −0.05;
 - **reject:** mean Δ ≤ −0.03 or any episode ≤ −0.10;
 - otherwise **inconclusive** (keep the placeholder).
+
+### Round 3 result (31 Oct; boxes p3ms0 job exit 0 at 01:23 UTC, $3.28; p3ms1 watchdog-destroyed 01:47 UTC after a
+### 30-min stall in ep12's checkpoint evaluation, $3.88; estimates) [M]
+Seed 43 (registered AUC vs mocap, 5 evals): S0 ep12 0.702, ep18 0.631, ep24 0.066; S1 ep18 0.601, ep24 0.210, **ep12
+missing** (trained 7 checkpoints, then the evaluation stalled; no result). Seed means per episode:
+| episode | S0 | S1 | Δ |
+|---|---|---|---|
+| ep2 | 0.738 (3 seeds) | 0.898 (3 seeds) | +0.160 |
+| ep12 | 0.782 (0.862, 0.702) | 0.885 (seed 42 only) | +0.103 |
+| ep18 | 0.602 (0.573, 0.631) | 0.613 (0.625, 0.601) | +0.011 |
+| ep24 | 0.137 (0.207, 0.066) | 0.221 (0.232, 0.210) | +0.084 |
+Mean Δ +0.090, none negative → **adopt realistic masses** by the pre-registered rule (without ep12: +0.085). Caveats:
+ep12's S1 mean rests on one seed; per-box reference variance is large (S0 ep24 seed 43 collapsed to 0.066). Adoption
+for the leaderboard pipeline needs the per-object masses on OUR meshes (library_v3: same mass per object, COM/inertia
+from our mesh) and a wooden-spoon estimate (no scan) — an owner decision before any pack.

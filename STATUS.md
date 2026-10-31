@@ -1,5 +1,10 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-10-31 ~03:15 UTC: realistic masses ADOPTED by the pre-registered rule (round 3)
+- Seed means S1 − S0: ep2 +0.160, ep12 +0.103 (S1 seed 43 lost to a stalled box), ep18 +0.011, ep24 +0.084 → mean +0.090.
+- Applying them to the leaderboard pipeline (our meshes, spoon estimate) is the owner's decision; not done yet.
+- Next (owner's queue): option 3 (solver↔RL loop) build on CPU; physics fit v2 afterwards.
+
 ## 2026-10-30 ~23:10 UTC: solver G2 strong at zero action; G3 RL learns faster but final scores not better
 - G2 (full-scale search, ep2/ep12): jittered zero-action 0.763 / 0.832 vs current recipe 0.524 / 0.578.
 - G3 (RL from solved refs): at 30M far ahead (0.965 / 0.761 / 0.523 / 0.191 vs 0.483 / 0.549 / 0.529 / 0.112) but final AUC

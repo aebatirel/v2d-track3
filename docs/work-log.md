@@ -5594,3 +5594,7 @@ Background agent, CPU only, $0, no ground truth read.
   `20261030-p3ms0-2298cd3` (TX offer 31194553; the first S0 offer had vanished, nothing rented), `ARM=S0|S1
   PAIRS=ep12/18/24 SEEDS=43 bash ops/jobs/physics_arms.sh`, commit 2298cd3; ledger planned $3.60 each (the p3ms0 planned
   line was written 4× by ledger retries on the slow store; one actual line closes it). Credit $23.35 before launch.
+
+### 31 Oct ~03:15 UTC — round 3 result: realistic masses adopted (pre-registered rule); usage-limit pause overnight
+- Owner hit the usage limit; resumed 03:02 UTC. Round-3 boxes: p3ms0 done (job exit 0, $3.28); p3ms1 watchdog-destroyed
+  after a 30-min stall in ep12's checkpoint evaluation ($3.88; ep12 seed 43 missing). Mean Δ +0.090 → adopt.
