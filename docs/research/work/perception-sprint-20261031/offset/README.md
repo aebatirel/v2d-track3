@@ -97,3 +97,186 @@ Written 31 Oct ~09:58 UTC, after the main arms were scored (§3: all three varia
 - **Reading rule:** template-limited [H-TPL] is supported if a variant recovers ≥ 25 % of the P_s ceiling (mean ΔR\* ≥
   +0.0056 over 20 episodes) with median recovered geometric share > 0; the depth re-fit itself is uninformative if the
   mean ΔR\* ≤ 0 and the median geometric share ≤ 0; anything else is inconclusive.
+
+## 3. Results [M] (scored 31 Oct 09:41–09:49 UTC, after all 160 refine outputs existed; oracle arm 09:52–10:02)
+
+### 3.0 Owner summary
+1. **No variant passes; S11 is not adopted [M].** Every variant fails on both arms: the means are −0.006 to +0.0005 lib
+   (bar +0.010), and every variant has episodes far below −0.010 (ep12 −0.064 to −0.067, ep39 −0.105 to −0.128, ep40
+   −0.017 to −0.039, ep13 −0.055 for V1).
+2. **[H-OFF] is falsified for all three variants [M].** The corrections are small (median 0.27–0.31 cm and 1.5–1.8°;
+   largest 1.2 cm / 5.4°) and point nowhere in particular relative to the oracle constant offset: over the objects with an
+   oracle offset ≥ 0.5 cm, the median recovered share is −0.01 to −0.045, and only 40–46 % of them move closer
+   (`geo_share.json`). The oracle offsets on the same objects average 1.3–1.5 cm.
+3. **Share of the constant-offset ceiling recovered: about none [M].** Main arms: −12 % to +1 % of R_trk − R_lib
+   (0.050) in lib; +1 % to −17 % of R_trk − R\* (0.054–0.055) in \*. Against Phase 1's 0.025 (\*, without ep0 and
+   ep23): V1 +0.0018 (+7 %), V2 −0.010 (−40 %), V3 −0.004 (−16 %).
+4. **With the true shapes (oracle arm P_s), the depth re-fit still does not pay [M].** V1 −0.0021 \* (−9 % of the P_s
+   ceiling 0.0222), V2 −0.0099, V3 −0.0059; geometrically V1 moves 13 of 17 objects slightly toward the oracle offset
+   (median recovered +0.075), V2/V3 do not (−0.003). By the §2 rule: V2/V3 "the depth re-fit itself is uninformative";
+   V1 inconclusive (a small geometric pull with no score gain). So the failure is not only our templates.
+5. **What the constant offset is not [M/H].** It is not a disagreement between our mesh and our own depth that a robust
+   re-fit can see: our tracks already sit within ~0.3 cm / ~1.5° of the depth optimum, while the oracle offsets are
+   ~1.4 cm. A side reading: the adopted S2 already recovers 25 % of the P_s ceiling (+0.0056 of 0.0222; ep12 +0.062,
+   ep45 +0.031, ep26 +0.014), because in P_s the frame-0 registration disagrees with the next tracked frames by up to
+   7.8° (ep12 rack; later steps ≤ 0.3°, `f01_Ps.txt`). On our P_o tracks such 0→1 steps are smaller (≤ 4°, mostly
+   ≤ 2°), and frame-0 smoothing was already tested and dropped (ep0 F3: +0.0003).
+6. **Eval: nothing changes.** No variant passes, S11 stays opt-in (not in `DEFAULT_STEPS`), and no eval file was read.
+   The one large public gain (ep31, V2/V3 +0.065 to +0.099 lib) is the known frame-0 anchor tilt (M2); the GT-free eval
+   screen (`../../leak-decomp-20261030/tracker-fix/SCREEN.md`) found no eval with that mode (eval 30's anchor coverage
+   0.855 vs 0.52 on ep31).
+7. **Cost:** $0. CPU on this VM (shared with the heldpose experiment): 20 × 48 frames of our depth cache by HTTP range
+   reads (≈ 6.1 GB read, 733 MB kept as half-resolution float16, ≈ 6 min, no 429); 240 refine runs ≈ 18 + 8 min;
+   oracle scoring ≈ 8 + 3 min; diagnostics ≈ 5 min.
+
+### 3.1 Verdicts (pre-registered rule; lib decisive) [M]
+
+| variant | arm | mean ΔR lib | better / worse / 0 | worst (ep) | rule | mean ΔR \* | ΔR \* w/o ep0, ep23 | share of trk ceiling lib / \* | vs 0.025 |
+|---|---|---|---|---|---|---|---|---|---|
+| V1 mf/whole (primary) | Po | −0.0058 | 7 / 11 / 2 | −0.0640 (ep12) | **fail** | +0.0004 | +0.0018 | −12 % of 0.0505 / +1 % of 0.0550 | +7 % |
+| V1 mf/whole (primary) | refineP | −0.0049 | 9 / 10 / 1 | −0.0637 (ep12) | **fail** | +0.0003 | +0.0018 | −10 % of 0.0507 / +1 % of 0.0536 | +7 % |
+| V2 f0/whole | Po | −0.0014 | 11 / 7 / 2 | −0.1046 (ep39) | **fail** | −0.0085 | −0.0096 | −3 % / −15 % | −39 % |
+| V2 f0/whole | refineP | −0.0030 | 11 / 8 / 1 | −0.1046 (ep39) | **fail** | −0.0092 | −0.0100 | −6 % / −17 % | −41 % |
+| V3 f0/prefix | Po | +0.0005 | 12 / 7 / 1 | −0.1281 (ep39) | **fail** | −0.0031 | −0.0036 | +1 % / −6 % | −15 % |
+| V3 f0/prefix | refineP | −0.0011 | 11 / 8 / 1 | −0.1281 (ep39) | **fail** | −0.0039 | −0.0040 | −2 % / −7 % | −16 % |
+
+Baseline check: the S2 baseline re-run with the new code is byte-identical to T1's S2 outputs on 20/20 episodes in both
+arms.
+
+### 3.2 Per episode, ΔR = R(S11,S2) − R(S2), lib / \* [M] (`scores/off_tables.md`)
+
+| ep | objects | Po S2 lib / \* | refineP S2 lib / \* | Po V1 | Po V2 | Po V3 | refineP V1 | refineP V2 | refineP V3 |
+|---|---|---|---|---|---|---|---|---|---|
+| 0 | white_pot + white_pot_lid | 0.9669 / 0.9629 | 0.9672 / 0.9657 | −0.0012 / −0.0250 | +0.0027 / +0.0036 | +0.0019 / +0.0028 | +0.0008 / −0.0274 | +0.0001 / −0.0042 | −0.0003 / −0.0045 |
+| 2 | white_pot + white_pot_lid | 0.9911 / 0.9824 | 0.9871 / 0.9823 | +0.0048 / −0.0009 | −0.0172 / −0.0034 | −0.0184 / −0.0043 | +0.0075 / −0.0015 | −0.0080 / +0.0010 | −0.0095 / +0.0010 |
+| 11 | blue_cup + beige_cup | 0.9012 / 0.8814 | 0.9012 / 0.8814 | −0.0084 / −0.0100 | +0.0016 / +0.0068 | +0.0032 / +0.0123 | −0.0084 / −0.0100 | +0.0016 / +0.0068 | +0.0032 / +0.0123 |
+| 12 | blue_cup + plastic_dish_rack | 0.9763 / 0.9739 | 0.9760 / 0.9739 | **−0.0640** / −0.0045 | **−0.0671** / −0.0100 | **−0.0645** / −0.0053 | **−0.0637** / −0.0045 | **−0.0668** / −0.0107 | **−0.0641** / −0.0057 |
+| 13 | blue_cup + plastic_dish_rack | 0.9623 / 0.9051 | 0.9648 / 0.9038 | **−0.0569** / +0.0238 | −0.0084 / −0.0299 | −0.0037 / −0.0189 | **−0.0554** / +0.0242 | −0.0095 / −0.0293 | −0.0046 / −0.0193 |
+| 18 | mini_sweeper + mini_dust_pan | 0.9162 / 0.9217 | 0.9680 / 0.9718 | −0.0007 / −0.0048 | +0.0038 / −0.0032 | +0.0126 / −0.0013 | −0.0027 / −0.0042 | +0.0015 / −0.0045 | +0.0110 / −0.0027 |
+| 21 | blue_cup + water_pitcher | 0.8389 / 0.8438 | 0.8389 / 0.8438 | +0.0040 / +0.0097 | +0.0383 / +0.0060 | +0.0630 / +0.0485 | +0.0040 / +0.0097 | +0.0383 / +0.0060 | +0.0630 / +0.0485 |
+| 22 | blue_cup + water_pitcher | 0.8704 / 0.8618 | 0.8704 / 0.8598 | +0.0271 / +0.0330 | +0.0220 / +0.0071 | +0.0301 / +0.0145 | +0.0268 / +0.0350 | +0.0213 / +0.0078 | +0.0271 / +0.0159 |
+| 23 | wooden_piece_1 + wooden_piece_2 | 0.0425 / 0.0429 | 0.0425 / 0.0429 | +0.0000 / +0.0000 | +0.0000 / +0.0000 | +0.0000 / +0.0000 | +0.0002 / +0.0000 | +0.0000 / +0.0000 | +0.0000 / +0.0000 |
+| 24 | wooden_piece_1 + wooden_piece_2 | 0.8091 / 0.8069 | 0.8091 / 0.8069 | −0.0069 / −0.0072 | +0.0089 / +0.0098 | +0.0035 / +0.0054 | −0.0069 / −0.0072 | +0.0089 / +0.0098 | +0.0035 / +0.0054 |
+| 26 | plastic_dish_rack + white_pot | 0.9717 / 0.9652 | 0.9678 / 0.9610 | +0.0160 / +0.0166 | +0.0085 / −0.0004 | +0.0022 / +0.0000 | +0.0186 / +0.0188 | +0.0081 / +0.0002 | +0.0010 / −0.0015 |
+| 27 | plastic_dish_rack + white_pot | 0.9634 / 0.9362 | 0.9627 / 0.9339 | +0.0135 / +0.0157 | +0.0071 / +0.0049 | +0.0212 / +0.0167 | +0.0148 / +0.0176 | +0.0073 / +0.0077 | +0.0208 / +0.0187 |
+| 31 | mini_sweeper + plastic_dish_rack | 0.8239 / 0.8673 | 0.8550 / 0.8723 | −0.0131 / +0.0054 | +0.0960 / +0.0518 | +0.0991 / +0.0434 | −0.0037 / +0.0026 | +0.0647 / +0.0471 | +0.0674 / +0.0398 |
+| 39 | mini_dust_pan | 0.9759 / 0.9914 | 0.9759 / 0.9914 | +0.0000 / +0.0000 | **−0.1046** / −0.0866 | **−0.1281** / −0.1099 | +0.0000 / +0.0000 | **−0.1046** / −0.0866 | **−0.1281** / −0.1099 |
+| 40 | mini_dust_pan | 0.9584 / 0.9784 | 0.9584 / 0.9784 | **−0.0394** / −0.0284 | **−0.0166** / −0.0149 | **−0.0380** / −0.0282 | **−0.0394** / −0.0284 | **−0.0166** / −0.0149 | **−0.0380** / −0.0282 |
+| 41 | white_pot | 0.9927 / 0.9893 | 0.9927 / 0.9893 | +0.0023 / +0.0015 | +0.0010 / +0.0023 | +0.0029 / +0.0002 | +0.0023 / +0.0015 | +0.0010 / +0.0023 | +0.0029 / +0.0002 |
+| 42 | white_pot | 0.9990 / 0.9708 | 0.9993 / 0.9784 | −0.0017 / −0.0073 | +0.0000 / −0.0131 | +0.0005 / −0.0131 | −0.0015 / −0.0086 | −0.0005 / −0.0219 | +0.0002 / −0.0224 |
+| 43 | white_pot | 0.9486 / 0.9465 | 0.9479 / 0.9469 | +0.0132 / +0.0038 | +0.0094 / −0.0985 | +0.0363 / −0.0224 | +0.0130 / +0.0019 | +0.0072 / −0.0997 | +0.0362 / −0.0226 |
+| 44 | white_pot | 0.9970 / 0.9995 | 0.9970 / 0.9995 | −0.0023 / −0.0003 | −0.0113 / −0.0003 | −0.0103 / −0.0003 | −0.0023 / −0.0003 | −0.0113 / −0.0003 | −0.0103 / −0.0003 |
+| 45 | white_pot | 0.9823 / 0.9843 | 0.9823 / 0.9843 | −0.0028 / −0.0136 | −0.0017 / −0.0015 | −0.0030 / −0.0020 | −0.0028 / −0.0136 | −0.0017 / −0.0015 | −0.0030 / −0.0020 |
+
+### 3.3 What S11 did, GT-free (`scores/s11_gtfree_summary.json`) [M]
+| arm, variant | objects corrected | median change | largest | not corrected (reason) |
+|---|---|---|---|---|
+| Po V1 / refineP V1 | 28 / 33 each | 0.27 cm, 1.5° | 0.58 cm, 4.0° | 5: rotation spread > 3° (ep18, ep31 sweepers; ep26, ep27 pots; ep39 dust pan) |
+| Po V2, V3 | 29 / 33 | 0.31 cm, 1.8° | 1.20 cm, 5.4° | 4: < 150 points (ep0 lid, ep23 board 1, ep24 board 2, ep26 rack) |
+| refineP V2, V3 | 29 / 33 | 0.29 cm, 1.8° | 1.20 cm, 5.2° | 4: as Po |
+
+- V1 consensus is tight: the racks take 48/48 frames with a rotation spread of ~1°, i.e. our rack mesh and our depth
+  disagree consistently by 0.3–0.5 cm / 0.8–2.9° in every rack episode.
+- The two arms give nearly the same corrections (V1: the magnitudes differ on 16 of 33 objects, by ≤ 0.06 cm and
+  ≤ 0.35°), because the arms are near-replicate tracks on the same depth. They are not independent tests.
+- Removing the occluders fixed what made F1 reject the pots under the lid: ep0/ep2 pot F1 7.8–8.3° / 2.5 cm (rejected),
+  V2 0.85–1.4° / 0.1–0.2 cm (accepted). It did not make the corrections helpful (ep2 −0.008 to −0.018 lib).
+
+### 3.4 Geometric share against the oracle constant offset (`scores/geo_share.json`; cups on their axis points) [M]
+
+| variant | arm | objects (d0 ≥ 0.5 cm, corrected) | mean d0 → mean d1 (cm) | median recovered | closer | [H-OFF] |
+|---|---|---|---|---|---|---|
+| V1 | Po | 23 | 1.459 → 1.469 | −0.013 | 43 % | falsified |
+| V1 | refineP | 24 | 1.480 → 1.501 | −0.021 | 42 % | falsified |
+| V2 | Po | 24 | 1.303 → 1.372 | −0.010 | 46 % | falsified |
+| V2 | refineP | 25 | 1.320 → 1.398 | −0.045 | 40 % | falsified |
+| V3 | Po | 24 | 1.303 → 1.372 | −0.010 | 46 % | falsified |
+| V3 | refineP | 25 | 1.320 → 1.398 | −0.045 | 40 % | falsified |
+
+### 3.5 Oracle arm P_s, scan templates (`scores/oracle_ps_scores.json`; rule §2) [M]
+
+| variant | mean ΔR\* (20) | w/o ep0, ep23 | better / worse | worst | share of P_s ceiling 0.0222 (0.0246) | geometric: n, median recovered, closer | §2 reading |
+|---|---|---|---|---|---|---|---|
+| V1 | −0.0021 | −0.0020 | 6 / 10 | −0.0337 (ep12) | −9 % (−8 %) | 17, +0.075, 77 % | inconclusive (small pull, no gain) |
+| V2 | −0.0099 | −0.0110 | 3 / 15 | −0.0628 (ep18) | −44 % (−45 %) | 16, −0.003, 50 % | depth re-fit uninformative |
+| V3 | −0.0059 | −0.0065 | 4 / 12 | −0.0501 (ep18) | −27 % (−27 %) | 16, −0.003, 50 % | depth re-fit uninformative |
+
+- The S2 baseline on P_s vs the raw P_s track: +0.0056 \* mean (25 % of the 0.0222 ceiling; ep12 +0.0615, ep45 +0.0308,
+  ep26 +0.0136, ep31 −0.0156, ep24 −0.0063). After S2 the P_s ceiling left is ≈ 0.0166 (trk of the raw track − S2).
+- Per episode (ΔR\* V1 / V2 / V3): ep12 −0.034 / −0.019 / −0.000; ep18 −0.003 / −0.063 / −0.050; ep31 +0.022 / +0.028 /
+  +0.029; ep45 −0.004 / −0.025 / −0.028; ep43 +0.002 / −0.032 / −0.018; ep22 −0.003 / −0.028 / −0.006; the rest within
+  ±0.024 (`scores/oracle_ps_score.log`).
+
+### 3.6 Mechanism readings [M unless marked]
+- **Small anchor rotations are what the scorer punishes.** ep12's rack is the scene's rotation anchor (the cup in slot 0
+  has an axis). All three variants turn it by 1.9–2.3° (V1: 48/48 frames, spread 1.1°), and ep12 loses 0.064–0.067 lib in
+  both arms. F1's "every object" variant lost −0.085 there by the same route.
+- **The table exclusion broke the thin dust pan (a design flaw found after scoring).** On ep39 the 0.8 cm table band
+  removes 56 % of the dust pan's det-mask points (3,659 → 1,602), leaving mostly the handle; V2 turns it 5.2° (F1, without
+  the band: 1.6°) and ep39 loses 0.105–0.128. V1 skips ep39 (rotation spread 3.2°). ep40 loses with all variants.
+- **Where it helps, it helps through the frame-0 anchor, not through a truer pose.** ep31 (+0.065 to +0.099 lib, V2/V3)
+  is the M2 frame-0 sweeper tilt (occluders removed: 663 of the 714 mask pixels kept, change 4.6°; F1 7.1°). ep21's
+  pitcher gains +0.038 / +0.063 lib (V2 / V3) while moving away from the oracle offset (recovered −0.38): the pitcher is
+  the rotation anchor there, so the gain is a different frame-0 scene rotation, not a better pose.
+- **Does our depth prefer the oracle-corrected pose?** (`scripts/diag_depth_truth.py`, P_o; the scan mesh at our track vs
+  at our track with the oracle body offset X_trk; median absolute depth residual over frame 0 and ≤ 12 rest frames):
+  overall a tie (oracle better on 16 of 33 objects, ours on 15; medians 0.69 vs 0.66 cm). By class: racks 5/5 and the
+  pitcher 2/2 prefer the oracle offset (rack 1.02 → 0.67 cm); cups prefer our track 5 of 6 (0.53 vs 1.22 cm); pots 6/5;
+  thin objects 2/3. Caveat: X_trk is chosen to maximise the AUC under the kit's frame-0 alignment, so it is the
+  scorer-optimal offset, not a geometric truth.
+- [H] For racks and the pitcher the oracle offset is partly a shape (template) effect that depth can see with the true
+  shape; for cups and pots the AUC-optimal offset is mostly a scene-alignment effect (slot-0 translation, anchor
+  rotation at frame 0) that no per-object depth fit can see. Experiment that would falsify it: refit X_trk with the
+  geometric LS fit only (`trk_ls`, no AUC step) and repeat the depth comparison; if cups then also prefer the oracle
+  offset, the split is not alignment-driven.
+
+### 3.7 What this leaves [E/H]
+- Depth re-fitting of our own meshes is not a route to the constant-offset share: three forms, two arms, plus the true
+  shapes, all ≈ 0 or negative. Together with F1 (`PREREG_f0icp.md`) and the depth audit (30 Oct, AUROC 0.600), this is
+  the third negative result for depth-only pose correction on these data.
+- The constant-offset ceiling on our tracks (0.050 lib) is not one mechanism. Its large parts are already attributed
+  elsewhere: ep24 camera (T5, fixed on public, no eval target), ep31 frame-0 anchor tilt (M2, no eval target), ep21/22
+  pitcher template (L2, eval 20), ep0/ep23 outliers. The template lever (L2: +0.012–0.017 LB [E], only if the improved
+  mesh is also submitted, Phase 1 Reading 3) remains the larger perception lever.
+- Not tried, and the only depth-free variant left [H]: a GT-free consistency fix between frame 0 and the first tracked
+  frames for the scene anchor (P_s shows 0→1 steps up to 7.8°). It overlaps with S2 (which already takes 25 % of the P_s
+  ceiling) and with the dropped F3; on P_o the steps are ≤ 4°. Expected value small [E].
+
+## 4. Eval exposure
+- **No eval episode changes.** No variant passed, so S11 was not run on eval and no eval file was opened. S11 stays
+  opt-in and outside `DEFAULT_STEPS`; no build calls it.
+- If a gated form were ever proposed for ep31-type anchors (M2), the eval screen already shows no eval with that mode.
+
+## 5. Commands, inputs, code
+Paths: `S` = the session scratchpad, `PY=$S/map/scoring/venv/bin/python`, `D` = this folder. Code: run from the working
+tree on b74ef87; `pipeline/offsetfix.py` sha256 1610649f…, `pipeline/refine.py` 3b353b5f… (with the parallel heldpose
+S10 hook; the same refine bytes in all 240 runs, checked from each `pose_opt.json`; `runs/code_sha256.txt`). Both files
+are byte-identical in the WIP commit 2cca69d.
+1. Depth grid (GT-free, our stereo depth): `$PY -I $D/scripts/fetch_depth.py $S/offset/depth <eps>` (two processes,
+   10 episodes each). The full-resolution frame 0 read from the store is sha256-equal to `refine/in/ep<N>/depth0.npy`
+   on 20/20 episodes; the kept half-resolution float16 copy is within 0.5 mm of it.
+2. Inference: `bash $D/scripts/off_run.sh` (160 jobs in `runs/jobs.txt`, 4 at a time, `OMP_NUM_THREADS=1`; outputs
+   `$S/offset/runs/<arm>/<variant>/ep<N>/`). No traceback, no FAIL.
+3. GT-free summary: `$PY -I $D/scripts/off_gtfree_summary.py $S/offset/runs $D/scores/s11_gtfree_summary.json`.
+4. Oracle scoring: `SPLIT=public OMP_NUM_THREADS=1 $PY -I $D/scripts/off_score.py $S/offset/off_scores.json` (copied to
+   `scores/`), then `$PY -I $D/scripts/off_tables.py scores/off_scores.json > scores/off_tables.md`,
+   `$PY -I $D/scripts/geo_share.py $S/offset/runs scores/geo_share.json`.
+5. Diagnostics (oracle): `$PY -I $D/scripts/diag_depth_truth.py scores/diag_depth_truth.json`; GT-free
+   `$PY -I $D/scripts/f01.py {Po,Ps} > scores/f01_{Po,Ps}.txt`; pre-registration-time `scripts/diag_dir.py Po`.
+6. Oracle arm: `bash $D/scripts/oracle_ps_run.sh` (80 jobs, `runs/oracle_jobs.txt`; outputs `$S/offset/oracle/`), then
+   `SPLIT=public $PY -I $D/scripts/oracle_ps_score.py scores/oracle_ps_scores.json`.
+7. QA images (GT-free; `scripts/qa_pixels.py`): `qa/ep12_f0_blue.png` (used pixels green, other objects blue, hands
+   red) and `qa/ep31_f0_sweeper_det_crop.png` (det mask minus the rendered rack).
+
+Integrity: every refine input passed `refine.assert_inference_input` (depth grid, det_f0, hands, poses, meshes; the
+oracle arm's scan links are an oracle input by design and are kept under `$S/offset/oracle/`). Mocap and the trk fits were
+read only by `off_score.py`, `geo_share.py`, `diag_depth_truth.py`, `oracle_ps_score.py` and the pre-registration-time
+`diag_dir.py`. Eval data were not read.
+
+## 6. Caveats
+- No fresh holdout: the 20 public episodes were also the F1 test set, and the two arms are near-replicates.
+- The oracle "constant offset" (X_trk) is AUC-optimal under the kit's frame-0 alignment, not a geometric truth; the
+  geometric shares and the depth comparison inherit that.
+- The table-band flaw (§3.6) hurts thin flat objects; a variant without it was not run (it would still fail on ep12,
+  whose loss is the rack's anchor rotation).
+- S11 runs before S2; the prefix variant does not commute exactly with S2.

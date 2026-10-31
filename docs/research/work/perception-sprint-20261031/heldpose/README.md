@@ -88,15 +88,17 @@ writing or changing any eval reference.
    - The hand lock removes part of the blue cup's track lift while the left hand holds it (f60–100).
    - ΔR_lib is +0.0185 (S10g) and +0.035 (S10r). The blue cup's own gain is +0.037 / +0.078.
    - This is one episode and was not a pre-registered target.
-   - On eval 10, S10r would move the blue cup by 2.1–3.4 cm only in f90–120. The lift that stays after the hands leave
+   - On eval 10, S10r would move the blue cup by up to 3.4 cm, and by ≥ 2 cm only in f90–120. The lift that stays after the hands leave
      (f120–160, `../../leak-decomp-20261030/tracker-fix/SCREEN.md`) is outside any hold, so S10 cannot reach it.
    - This is a lead for the eval-10 nest experiment, not a result of this one.
 
 ## 2. Commands, machine, code
 
 - **Machine:** this Claude cloud VM (4 cores, shared with other sprint sessions), CPU only, $0.
-- **Code:** `pipeline/heldpose.py` (new) and the S10 hook in `pipeline/refine.py`. HEAD was b74ef87 plus an uncommitted
-  working tree. The S11 session's lines were also in `refine.py` at run time; S11 is opt-in and was not used here.
+- **Code:** `pipeline/heldpose.py` (new) and the S10 hook in `pipeline/refine.py`. At run time HEAD was b74ef87 plus an
+  uncommitted working tree. The S11 session's lines were also in `refine.py`; S11 is opt-in and was not used here.
+  - The exact bytes that ran (refine `3b353b5f…`, heldpose `9a5b9c0e…`, plus `tests/test_refine_s10.py`) were later
+    committed by the orchestrator in the WIP commit 48d1fbd (checked by sha256).
   - sha256 of every run: `results/code_version_public.txt` and `results/code_version_eval.txt` (refine
     `3b353b5f…`, heldpose `9a5b9c0e…`).
   - The first public run was made before the per-frame aux arrays were added. Its 160 outputs are byte-identical to the
@@ -123,6 +125,10 @@ writing or changing any eval reference.
     `results/hp_scores_slim.json`; log: `results/hp_score.log`. The full file with per-frame arrays is
     `scratchpad/heldpose/hp_scores.json`.
   - `scripts/hp_floor.py`: post-hoc oracle floor, Po arm. Output: `results/hp_floor.json`.
+  - `scripts/hp_where.py`: post-hoc location of the thin objects' tracker errors > 3 cm. Output:
+    `results/hp_where.json`.
+  - Both use the scoring venv: `$S/map/scoring/venv/bin/python -I scripts/<name>.py ...`, with
+    S = `/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad`.
 - **Eval, GT-free:**
   - `scripts/hp_eval.sh` ran S2 and S10 g/r/t on the stored eval perception behind packs 6/7. Sources are as in the eval
     screen; input sha256 in `results/eval_inputs_sha256.txt`.
@@ -177,7 +183,7 @@ per-object AUCs depend on slot 0 through the kit's scene alignment, so these are
 | sweeper | 2 | −0.013 | −0.131 | −0.039 | ep18 −0.025, ep31 −0.001 |
 | dust pan | 3 | −0.020 | −0.317 | −0.141 | ep39 −0.054 |
 | cups | 6 | −0.002 | −0.148 | −0.100 | ep11 blue +0.037 (nest), ep22 blue −0.046 |
-| pot / lid | 11 | −0.005 | −0.351 | −0.118 | pots held by the handles with two hands: the residual to the prediction has a median of 5–11 cm |
+| pot / lid | 11 | −0.005 | −0.351 | −0.118 | per pot hold, the median residual of the tracker to the prediction is 2–11 cm |
 | pitcher | 2 | 0.000 | −0.118 | −0.025 | the gate never opens (v_P ≥ 0.97) |
 | boards | 4 | +0.000 | −0.112 | −0.052 | |
 | rack | 5 | 0.000 | 0.000 | 0.000 | never held with co-motion (S10 finds no hold) |
@@ -196,12 +202,54 @@ alignment, on S10 hold frames; v_P = GT-free visibility at the prediction) [M]:
 | | ≥ 0.8 | 1670 | 0.82 | 6.89 | 0.7 % |
 | Po, all | all | 4372 | 0.96 | 5.40 | 6.8 % |
 
-refineP is the same to within 0.03 cm. The tracker is accurate during holds on the public data (median < 1 cm). The
+refineP is the same to within 0.07 cm. The tracker is accurate during holds on the public data (median < 1 cm). The
 hand-based prediction is 3–7× worse in every visibility bin.
 
 ## 4. Mechanism: the constant-grasp floor on our palm frame (post hoc, oracle; `scripts/hp_floor.py`) [M]
 
-FLOOR_PLACEHOLDER
+**What it computes.**
+- For every S10 hold on the Po arm, per hold frame, after the kit's conversion and scene alignment (\* convention):
+  - the tracker's error;
+  - the error of S10's onset-G prediction P;
+  - the error of the oracle-G floor P\* = A W(t) G\*.
+- G\* is ONE grasp transform per hold fitted to mocap (chordal mean rotation, mean translation of inv(A W) M). A is the
+  kit's scene alignment.
+- P\* is the best any constant-grasp lock on our palm frame could do. Its error is palm-frame noise plus real in-hand
+  motion.
+- rel spread = median deviation of inv(A W(t)) M(t) from its hold mean: how far the true object moves relative to our
+  palm frame.
+- Summary values are frame-weighted means of per-hold medians (`results/hp_floor.json`).
+
+| holds (Po) | holds / frames | tracker (cm) | onset-G P (cm) | oracle-G floor P\* (cm) | P\* better than tracker | rel spread (deg / cm) |
+|---|---|---|---|---|---|---|
+| sweeper + dust pan | 10 / 1053 | **0.88** | 4.50 | **3.13** | 10.5 % of frames | 19.0 / 2.9 |
+| cups | 8 / 576 | 0.89 | 3.69 | 3.34 | 23.4 % | 20.4 / 2.8 |
+| pot / lid | 19 / 1818 | 0.95 | 7.00 | 4.43 | 6.0 % | 16.1 / 4.1 |
+
+Per hold, thin objects and cups:
+
+| ep, object | tracker | P | P\* | rel spread |
+|---|---|---|---|---|
+| ep18 sweeper | 0.64 / 0.28 | 3.2 / 3.1 | 2.5 / 2.3 | 15–17° |
+| ep31 sweeper | 1.40 | 1.87 | 1.60 | 10.4° |
+| ep18 / 39 / 40 dust pan | 0.5–1.2 | 3.9–14.6 | 2.9–9.4 | 13–50° |
+| ep12, 13, 21, 22 blue cup | 0.45–0.91 | 3.0–8.5 | 2.2–12.5 | 18–53° |
+| **ep11 blue cup** | 1.00 | **0.92** | **0.41** | **2.8°, 0.37 cm** |
+| **ep11 beige cup** | 1.93 | **1.44** | **1.16** | **4.2°, 1.1 cm** |
+
+Readings:
+1. Even with the grasp fitted to mocap, a constant grasp on our palm frame is 2.5–4.7× worse than the tracker on the
+   thin objects. So [H-HP] fails because of the palm frame and in-hand motion, not because of the onset estimate.
+   - The true object turns by a median of 10–50° relative to our palm frame within a hold.
+   - That includes MediaPipe/hand-fit orientation noise: GT-free, the palm frame steps p90 3–15° per frame and flips on
+     single frames.
+   - It also includes real regrasps: the dust pan's handle is shifted between both hands, and the sweeper rolls in the
+     fist while sweeping.
+2. The only holds where the lock wins are ep11's two cups, where the true grasp is rigid in our palm frame (2.8° /
+   4.2° spread). This is the cup nest of the eval-10 twin, where the tracker is known to lift the static-looking cup
+   (tracker-fix ep11 DIAG).
+3. A GT-free gate that found such rigid holds (for example, low tracker-vs-palm residual) is a post-hoc idea [H]. Its
+   only public positive is one episode, so it is not a candidate on these data. See §6.
 
 ## 5. Eval (GT-free estimate only; no eval reference changed) [M on our tracks]
 

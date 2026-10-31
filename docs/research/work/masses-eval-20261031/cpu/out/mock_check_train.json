@@ -392,7 +392,7 @@
   },
   "S1a_T8_candidates": {
    "ok": true,
-   "detail": "{'RUNS_EXTRA': '20261101-mevS1s42-mocksha@refs/perc2mcks/ep1', 'PICK_EXTRA': '1:20261101-mevS1s42-mocksha:ck=runs/perc2mcks/ep1-s42/policy_250003456.safetensors', 'MASS_EPS': '1', 'EVAL_ONLY': '1', 'EPS_ONLY': '1', 'MA_ARGS': '--physics /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json', 'ASSET_PIECES_EXTRA': '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/meshes/carve/ev01', 'note': 'strings for ops"
+   "detail": "{'RUNS_EXTRA': '20261101-mevS1s42-mocksha@refs/perc2mcks/ep1', 'PICK_EXTRA': '1:20261101-mevS1s42-mocksha:ck=runs/perc2mcks/ep1-s42/policy_250003456.safetensors', 'MASS_EPS': '1', 'EVAL_ONLY': '1', 'EPS_ONLY': '1', 'MA_ARGS': '--physics MS/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json', 'ASSET_PIECES_EXTRA': 'MS/box/content/v2d-track3/meshes/carve/ev01', 'note': 'strings for ops"
   },
   "S1b_ep1_T1_one_training_per_seed": {
    "ok": true,
@@ -448,7 +448,7 @@
   },
   "S1b_T8_candidates": {
    "ok": true,
-   "detail": "{'RUNS_EXTRA': '20261101-mevS1s43-mocksha@refs/perc2mcks/ep1', 'PICK_EXTRA': '1:20261101-mevS1s43-mocksha:ck=runs/perc2mcks/ep1-s43/policy_214286336.safetensors', 'MASS_EPS': '1', 'EVAL_ONLY': '1', 'EPS_ONLY': '1', 'MA_ARGS': '--physics /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json', 'ASSET_PIECES_EXTRA': '/tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/meval/final/box/content/v2d-track3/meshes/carve/ev01', 'note': 'strings for ops"
+   "detail": "{'RUNS_EXTRA': '20261101-mevS1s43-mocksha@refs/perc2mcks/ep1', 'PICK_EXTRA': '1:20261101-mevS1s43-mocksha:ck=runs/perc2mcks/ep1-s43/policy_214286336.safetensors', 'MASS_EPS': '1', 'EVAL_ONLY': '1', 'EPS_ONLY': '1', 'MA_ARGS': '--physics MS/box/content/v2d-track3/docs/research/physics-2026-10-30/props_masses_only.json', 'ASSET_PIECES_EXTRA': 'MS/box/content/v2d-track3/meshes/carve/ev01', 'note': 'strings for ops"
   }
  },
  "note": "mock scores are synthetic (stub.py): plumbing, not masses"

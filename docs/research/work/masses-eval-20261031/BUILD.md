@@ -72,7 +72,7 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
 ## Findings and deviations from the plan (for the orchestrator)
 1. **The plan's `ENV_EP33="CURR_SCALE=0.4"` would have trained eval 33 with the default curriculum.** glock_public.sh read
    CURR_SCALE once, job-wide, before ENV_EP<N> is applied (arm B had it job-wide). Fixed by the opt-in per-episode hook;
-   the table supplies it. The mock proves it twice: G2's eval 33 saves rcB's scaled thresholds, and negative test N12
+   the table supplies it. The mock shows both sides: G2's eval 33 saves rcB's scaled thresholds, and negative test N12
    (ENV cleared) gives `ep33 INVALID ... recipe differs ... curriculum.thresholds` [M, mock].
 2. **Cost: eval 8 trains about 1.8× slower** [M basis: evb0810 ep8 70M at 6.5k steps/s with two trainings on the GPU,
    the v5 beige cup's 32 pieces; ep11 v3x twin 1.6 h vs 0.9 h]. G1 is re-estimated at 4.5-6.5 h, $6.3-9.6 (central
@@ -87,7 +87,7 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
    (white_pot 1 collision vs 53 pieces), not silently wrong.
 5. **Pack-side defaults kept**: `pack_eval.sh`'s `PICK ck=` and `KEEP_RESULTS` downloads still use `--include` (a store
    listing each), as before; the confirmation of 6 candidates adds about 12 listings for RUNS_EXTRA + 6 for PICK.
-6. **LIB is cosmetic for grasp-lock episodes** (their URDFs are their own copies; mesh paths are unused, item above), so
+6. **LIB is cosmetic for grasp-lock episodes** (their URDFs are their own copies; mesh paths are unused, pack section), so
    G1's library_v3x changes nothing for eval 20; it matters only for `/content/assets` (std, eval 10).
 7. **Rule 2 across boxes.** The plan runs eval 1's two seeds on two boxes (S1a, S1b), so neither box can apply rule 2;
    `tools/mass_eval_merge.py` does it when C1 is built (and drops any episode with an INVALID box). Mock: P7.
@@ -104,28 +104,38 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
 - **`run_all.sh`**: G1 (20 + 8), G2 (33 + 15), G4 (10), S1a (1, s42), S1b (1, s43), then `tools/mass_eval_merge.py` over
   the five pushed `summary.json` files and the confirmation box C1 it specifies (h5_reeval.sh, N 3, KEEP_RESULTS = pack
   7's sources, all six candidates).
-  - `check_train.py`: CHECK_TRAIN_RESULT (`cpu/out/mock_check_train.json`): per episode and seed one training on the packed reference
-    (real fingerprint; glock only `object_urdf_paths` differs, std byte-identical), props masses loaded at training and in
+  - `check_train.py`: **112 / 112 checks pass** (`cpu/out/mock_check_train.json`), 6 episodes, 11 trainings, 5 boxes:
+    per episode and seed one training on the packed reference (real fingerprint; glock only `object_urdf_paths`
+    differs, std byte-identical), props masses loaded at training and in
     every one of the box's evaluations, from `refs/mass1_sf/ep<N>/` or `/content/assets`; steps and seeds; eval 33 on
     rcB's thresholds; references and asset folders unchanged; `/content/assets` 0.3 kg on glock boxes, props + 53 / 107
-    ev01 pieces on S1; one push per box; downloads exactly the table's; no reference stage; VERIFIED with only allowed
+    ev01 pieces on S1a / S1b; one push per box; downloads exactly the table's; no reference stage; VERIFIED with only allowed
     config differences against the real packed configs; candidates and strings.
-  - `check_pack.py`: CHECK_PACK_RESULT (`cpu/out/mock_check_pack.json`): the 14 unchanged episodes' packed rollouts byte-identical to
-    pack 6's real files and naming pack 7's checkpoint sha256; the kit evaluator ran exactly the 6 candidates in each of
+  - `check_pack.py`: **26 / 26 checks pass** (`cpu/out/mock_check_pack.json`): the 14 unchanged episodes' packed
+    rollouts byte-identical to pack 6's real files and naming pack 7's checkpoint sha256; the kit evaluator ran
+    exactly the 6 candidates in each of
     the 3 draws; each loaded its training box's checkpoint, the real fingerprint and the props masses from its own folder
     (eval 1 from `/content/assets` with ev01); mass_pack_check passed before draw 1 and before draws 2..3; h5_summary's
-    packed column = pack 7's summary.
-- **`neg.sh`**: NEG_RESULT (`cpu/out/neg.txt`). Pack side, each refused before the kit evaluator ran: N1 MA_ARGS left out (eval 1
-  would load 0.3 kg), N2 a `refs/mass1_sf` folder not pulled (URDF not a file), N3 MASS_EPS left out (`-mev` pick), N4 eval 1
+    packed column = pack 7's summary; the merge chose eval 1's seed by rule 2 over S1a / S1b (P7; mock: s42 0.902 ± 0.011
+    vs s43 0.893 ± 0.012, synthetic).
+- **`neg.sh`**: **14 / 14 refused as expected** (`cpu/out/neg.txt`, `neg.json`). Pack side, each refused before the kit
+  evaluator ran: N1 MA_ARGS left out (eval 1 would load 0.3 kg), N2 a `refs/mass1_sf` folder not pulled (URDF not a file),
+  N3 MASS_EPS left out (h5's `--physics` guard), N3b MASS_EPS and MA_ARGS left out (pack_eval's `-mev` guard), N4 eval 1
   missing from MASS_EPS (would load props), N5 KEEP_RESULTS left out, N6 an unchanged std episode (19) in the masses
-  `/content/assets`, N13 ASSET_PIECES_EXTRA ev01 left out (eval 1 on the plain pot). Training side: N7 eval 8 with 10, N8 eval 1 with 28, N9 wrong mode, N10 run id without `-mev`,
-  N11 a stored reference that is not the packed one (dropped, nothing trained), N12 eval 33 without its curriculum
+  `/content/assets`, N13 ASSET_PIECES_EXTRA ev01 left out (eval 1 on the plain pot). Training side: N7 eval 8 with 10,
+  N8 eval 1 with 28, N9 wrong mode, N10 run id without `-mev`, N11 a stored reference that is not the packed one
+  (dropped, nothing trained), N12 eval 33 without its curriculum
   (INVALID).
-- **Equivalence, hooks off** (old = 14ae515, the last commit before this build): EQUIV_RESULT
+- **Equivalence, hooks off** (old = 14ae515, the last commit before this build; `cpu/out/equiv*.txt`): **identical** job
+  logs, loads (audits), written files (names + md5), exit codes and store traffic for
+  - E2 `hard_ab.sh` + `pipeline_ep.sh` on the eval-1 carve path (1 training, 7 evaluations, 1 upload);
+  - E3 `pack_eval.sh` + `h5_reeval.sh` rebuilding pack 7 (all 20 rollouts kept, draws 2..3 for evals 3 and 19, 4 uploads);
+  - `glock_public.sh` + `ckpt_curve.sh` with the transfer check's own equivalence job strings
+    (`masses-transfer-20261031/cpu/mock/equiv.sh BASE=14ae515`: 2 trainings, 52 evaluations, 2 uploads).
 - `bash -n` passes on every script; the new Python compiles.
 - **Mock limits.** Stub physics and scores; synthetic sf assets, so the 0.3 kg-source check of real support-filled URDFs
   is exercised only on the box (mass_arm refuses a non-placeholder source); the real resolved config may hold keys the
-  template does not (gate 3); the hf stub copies files but has no HF 429.
+  template does not (finding 3, JOBS.txt gate 1); the hf stub copies files but has no HF 429.
 
 ## Not done here
 No commit, launch, download or Kaggle action; no STATUS / work-log entry (the orchestrator's). Reviews pending.
