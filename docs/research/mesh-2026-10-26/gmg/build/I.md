@@ -552,3 +552,12 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
 - 17:56 (report step, board-slot workflow) started: read I.md (all), INTERLOCK 0, 2, 20-20.8, eval-refs note, STATUS, work log; inspected the ep24 r0 folders (fi4b, fi4evalsem, r1evalsem: pieces, props and fiducials byte-identical). Task: INTERLOCK 20.9 (results, delivered, open items), work-log entry, STATUS section, commit + push; hand-off texts for determined-wright and focused-pascal. No code, no run.
 - 17:58 (report step) INTERLOCK 20.9 (results, delivered, open items) + header and section-0 result lines, STATUS section, work-log entry written; committing + pushing (only INTERLOCK.md, build/I.md, STATUS.md, docs/work-log.md).
 - 17:58 pushed bad0906 (INTERLOCK 20.9, STATUS, work log, this log). The entry above first said 18:00 (guessed); corrected to the commit time. Report step done; no code, no run.
+- 17:59 [M] T-I12 first runs (log `<scratch>/fi5/t_*.log`): x9 passes (builder 0 gaps; forced 1 mm ring caught),
+  x8 plate never takes the lathe route, x8 folded sheet: lathe pieces fail the gate (max 5.70 cm3, 32 hulls over) and
+  fall to route 3 (CoACD 2 pieces, gate 0.0), x11 open box: route 3, 18 CoACD pieces, keep-out 0.0, opening empty.
+  **x1, first fixture (slow phase 12 mm over 24 frames + 50 rest frames): the receiver's sweep share reads 0.494 < 0.5
+  -> `waiver_gate_fail:sweep`, no carve** (guest side 0.501 passes; receiver = A by containment 0.904 vs 0.093;
+  collider overlap along the track max 13.0 cm3, median 9.5 cm3 with the lathe colliders). Kept as recorded case x1a.
+  Finding [M]: the moves-through gate depends on the share of moving build frames in the run; a long hands-off rest
+  after a short in-contact insertion fails it (risk for the real cups, P43). x1 fixture changed (fixture only, no rule
+  or threshold change, labelled post hoc): in-contact slow phase 20 mm over 40 frames, 34 rest frames. Re-running.
