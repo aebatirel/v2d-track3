@@ -416,8 +416,8 @@ def main():
             expected = sorted(check.get('payload_changed', []), key=lambda s: (int(s.split(':')[0]), s))
             if cdo_changed != expected:
                 hard.append(f'CD-O rows changed for {cdo_changed}, expected exactly the changed payloads {expected}')
-        except SystemExit as error:
-            hard.append(f'uploader offline validation failed: {error}')
+        except (SystemExit, Exception) as error:                      # noqa: BLE001 - any failure here is hard
+            hard.append(f'uploader offline validation failed: {type(error).__name__}: {error}')
         check['sha256'] = digest(parquet, 'sha256')
         check['base_sha256'] = digest(args.base, 'sha256')
         check['bytes'] = os.path.getsize(parquet)
