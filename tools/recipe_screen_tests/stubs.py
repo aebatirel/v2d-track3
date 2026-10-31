@@ -22,10 +22,11 @@ THR = [19660800, 34406400, 49152000, 63897600, 78643200, 93388800, 108134400, 12
 # fake design: K beats C by +0.04 on average (none <= -0.05); D is 0.01 lower with a 50 % smaller draw sd on ep2 and ep12
 BASE = {2: 0.70, 12: 0.88, 18: 0.60, 24: 0.22}
 ARM_D = {'C': {2: 0.0, 12: 0.0, 18: 0.0, 24: 0.0}, 'K': {2: 0.10, 12: 0.02, 18: 0.03, 24: 0.01}, 'D': {2: -0.02, 12: 0.0, 18: -0.01, 24: -0.01},
-         'S': {2: 0.10, 12: 0.03, 18: -0.01, 24: 0.02}}   # S vs C (fake): mean +0.035, lowest -0.01 -> "signal"
+         'S': {2: 0.10, 12: 0.03, 18: -0.01, 24: 0.02},   # S vs C (fake): mean +0.035, lowest -0.01 -> "signal"
+         'V': {2: 0.06, 12: 0.04, 18: -0.02, 24: 0.04}}   # V vs C (fake, 2026-10-31 section 10): mean +0.03, lowest -0.02 -> "signal"
 SD = {2: 0.20, 12: 0.03, 18: 0.06, 24: 0.02}
 SD_X = {'C': {2: 1, 12: 1, 18: 1, 24: 1}, 'K': {2: 1, 12: 1, 18: 1, 24: 1}, 'D': {2: 0.5, 12: 0.5, 18: 0.9, 24: 1.0},
-        'S': {2: 0.6, 12: 1, 18: 1, 24: 1}}
+        'S': {2: 0.6, 12: 1, 18: 1, 24: 1}, 'V': {2: 0.8, 12: 1, 18: 1, 24: 1}}
 Z = [-1.5, -1.0, -0.5, -0.25, 0.0, 0.0, 0.25, 0.5, 1.0, 1.5]
 _m = sum(Z) / len(Z); _s = (sum((z - _m) ** 2 for z in Z) / len(Z)) ** 0.5
 Z = [(z - _m) / _s for z in Z]                                     # mean 0, population sd 1: 10 draws give BASE, SD exactly
@@ -34,7 +35,7 @@ PROFILE = {2: [0.90, 0.95, 0.50, 0.50, 0.50, 0.48, 0.47], 12: [0.70, 0.80, 0.92,
 
 
 def cell_of(path):
-    m = re.search(r'/(C|K|D|S)/ep(\d+)-s(\d+)', path)
+    m = re.search(r'/(C|K|D|S|V)/ep(\d+)-s(\d+)', path)
     return (m.group(1), int(m.group(2)), int(m.group(3))) if m else (None, None, None)
 
 
@@ -78,7 +79,9 @@ def train():
     obj = dict(force_closure=dict(enabled=b(a.get('objective.force_closure.enabled', 'false')), weight=float(a.get('objective.force_closure.weight', 0))),
                contact_wrench_support=dict(weight=float(a.get('objective.contact_wrench_support.weight', 10))),
                unintended_contact=dict(weight=float(a.get('objective.unintended_contact.weight', -10))))
+    vel = b(a.get('observation.object_body_velocity.enabled', 'false'))   # arm V's override (section 10), resolved as FlashCHORD does
     cfg = dict(output_dir=run, reset=dict(seed=seed), task=dict(parquet=a['task.parquet'].strip("'")), objective=obj,
+               observation=dict(object_body_velocity=dict(enabled=vel)), env=dict(observation=dict(object_body_velocity=dict(enabled=vel))),
                curriculum=dict(thresholds=thr), training=dict(total_environment_steps=steps, optimization=o, curriculum=dict(thresholds=thr)))
     import numpy as np
     from safetensors.numpy import save_file

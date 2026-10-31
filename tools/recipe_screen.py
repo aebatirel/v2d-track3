@@ -27,7 +27,7 @@ Subcommands:
   summary RESULTS_DIR [--run ID] [--commit SHA] [--cells "arm:ep:seed ..."] [--meta K=V ...]   the box summary
   verdict SUMMARY.json|RESULTS_DIR ... [--out MERGED.json] [--ref-md5 MD5.json]   merge box summaries (or a box's
                                  results/recipe_screen directory: its cell.json files) and compute the pre-registered
-                                 verdicts (K_vs_C, D_vs_C: section 8; S_vs_C: section 9). --ref-md5 replaces REF_MD5
+                                 verdicts (K_vs_C, D_vs_C: section 8; S_vs_C: section 9; V_vs_C: section 10). --ref-md5 replaces REF_MD5
                                  ({"base": {"2": md5, ...}, "solved": {...}}; the CPU dry run's stub files only)
 No ground truth is read here: AUC values come from the job's scoring (pipeline/score_registered.py, after inference)."""
 import glob, hashlib, json, math, os, re, sys
@@ -40,7 +40,9 @@ K_LR = dict(learning_rate_initial=6e-4, learning_rate_peak=6e-4, learning_rate_e
 K_CURR = 2.0
 ARMS, EPS, SEEDS = ('C', 'K', 'D'), (2, 12, 18, 24), (42, 43)   # the section-8 screen (its verdicts use these arms only)
 S_ARM = 'S'                                  # section 9: C's recipe on the physics-solved references (verdict S_vs_C)
-REF_SET = dict(C='base', K='base', D='base', S='solved')
+V_ARM = 'V'                                  # section 10: C's recipe + the actor sees object body velocity (verdict V_vs_C)
+V_OVERRIDE = 'observation.object_body_velocity.enabled=true'
+REF_SET = dict(C='base', K='base', D='base', S='solved', V='base')
 REF_TREE = dict(base='glockt', solved='screenS')    # the job's task trees: $CROOT/refs/<tree>/ep<N>/<hive>/ref_gl_ilc.parquet
 SOLVED_SUB = {2: 'refs/psolve2/ep2', 12: 'refs/psolve2/ep12', 18: 'refs/psolve/ep18', 24: 'refs/psolve/ep24'}  # G3's choice
 # Registered reference files (md5 of the parquet the training reads), measured on the CPU from the store, 31 Oct 2026:
@@ -66,6 +68,8 @@ def k_thresholds():
 def arm_overrides(arm, steps):
     if arm in ('C', 'D', 'S'):
         return []
+    if arm == V_ARM:
+        return [V_OVERRIDE]
     if arm == 'K':
         o = 'training.optimization.'
         return [f'{o}{k}={v}' for k, v in K_LR.items()] + [f'{o}learning_rate_schedule_updates={total_updates(steps)}',
@@ -78,7 +82,7 @@ def arm_env(arm, seed, dr):
         if not re.fullmatch(r'[0-9.,]+', dr):
             raise SystemExit(f'DR_RESET must be pos_mm,rot_rad,joint_rad without spaces, got {dr!r}')
         return [f'FC_DR_RESET={dr}', f'FC_DR_SEED={int(seed)}']
-    if arm in ('C', 'K', 'S'):
+    if arm in ('C', 'K', 'S', V_ARM):
         return []
     raise SystemExit(f'unknown arm {arm!r}')
 
@@ -115,6 +119,8 @@ def ckcfg(ck, out, run=None):
                       unintended_weight=c.get('objective', {}).get('unintended_contact', {}).get('weight')),
              dr_strings=sorted(set(re.findall(r'(?i)fc_dr\w*|v2d_dr\w*|dr_reset\w*', text))),
              task_parquet=str(c.get('task', {}).get('parquet')),
+             actor_object_velocity=(((c.get('env') or {}).get('observation') or c.get('observation') or {})
+                                    .get('object_body_velocity') or {}).get('enabled'),
              cfg_sha256=hashlib.sha256(norm.encode()).hexdigest()[:16])
     json.dump(d, open(out, 'w'), indent=1)
     return d
@@ -182,6 +188,10 @@ def config_problems(rec, steps):
         bad.append(f"DR strings in the config: {c['dr_strings']}")
     if rec.get('dr_active') is not None and bool(rec['dr_active']) != (rec['arm'] == 'D'):
         bad.append(f"DR hook {'active' if rec['dr_active'] else 'not active'} in a {rec['arm']} training")
+    if rec['arm'] == V_ARM and c.get('actor_object_velocity') is not True:      # section 10: V must carry the override
+        bad.append(f"actor object velocity {c.get('actor_object_velocity')} in a V checkpoint config (must be True)")
+    elif rec['arm'] != V_ARM and c.get('actor_object_velocity'):                  # (older C/K/D/S records lack the field)
+        bad.append(f"actor object velocity on in a {rec['arm']} checkpoint config")
     f = c.get('fdr', {})
     if (f.get('force_closure_enabled'), f.get('force_closure_weight'), f.get('wrench_weight'), f.get('unintended_weight')) != (True, 6, 3, -2):
         bad.append(f'FDR settings {f}')
@@ -207,7 +217,7 @@ def verdicts(cells, steps, ref_md5=None, refs=None):
         if p:
             invalid[k] = p
     for e in EPS:                                   # one stored reference per episode across all arms, seeds, boxes
-        md5 = {r['ref_md5'] for k, r in present.items() if r['ep'] == e and r['arm'] in ARMS}   # (S: its own set, S_vs_C)
+        md5 = {r['ref_md5'] for k, r in present.items() if r['ep'] == e and r['arm'] in ARMS + (V_ARM,)}   # (S: its own set)
         if len(md5) > 1:
             invalid[f'ep{e}'] = [f'reference md5 differs between cells: {sorted(md5)}']
     for e in EPS:                                   # D adds no config field: its config equals C's (same ep, seed)
@@ -285,7 +295,48 @@ def verdicts(cells, steps, ref_md5=None, refs=None):
     out['report_sim_vs_ref_ranks_seeds_like_auc'] = dict(agree=sum(x['same_order'] for x in ok), of=len(ok), cells=agree)
     out['missing_cells'] = missing
     out['S_vs_C'] = s_vs_c(cells, present, invalid, auc_m, sd_m, ref_md5 or REF_MD5, refs)
+    out['V_vs_C'] = v_vs_c(cells, present, invalid, auc_m, sd_m, ref_md5 or REF_MD5)
     return out
+
+
+def v_vs_c(cells, present, invalid, auc_m, sd_m, exp):
+    """Section 10's fixed rule: V (the actor sees object body velocity) vs the screen's C cells, both on the physS1 references."""
+    pair = ('C', V_ARM)
+    m_ = [dict(cell=key(a, e, s), status=(cells.get(key(a, e, s)) or {}).get('status', 'not in any summary'),
+               draws=((cells.get(key(a, e, s)) or {}).get('auc') or {}).get('n', 0))
+          for e in EPS for s in SEEDS for a in pair if key(a, e, s) not in present]
+    inv = {k: list(v) for k, v in invalid.items() if k.startswith('ep') or k.split('/')[0] in pair}
+    for e in EPS:
+        for s in SEEDS:
+            r = present.get(key(V_ARM, e, s))
+            if r and r.get('ref_md5') != exp['base'][e]:
+                inv.setdefault(key(V_ARM, e, s), []).append(f"reference md5 {r.get('ref_md5')} is not the registered base reference {exp['base'][e]}")
+    r4 = lambda x: None if x is None else round(x, 4)  # noqa: E731
+    one = lambda r: None if not r else dict(auc=r['auc']['mean'], auc_sd=r['auc']['sd'], auc_worst=r['auc']['min'], draws=r['auc']['n'],  # noqa: E731
+                                            sim_vs_ref=(r.get('sim_vs_ref') or {}).get('mean'), checkpoint_steps=r.get('checkpoint_steps'),
+                                            early_stop=r.get('early_stop'), notes=r.get('notes'))
+    per = {}
+    for e in EPS:
+        c, v_ = auc_m('C', e), auc_m(V_ARM, e)
+        per[f'ep{e}'] = dict(C=r4(c), V=r4(v_), delta=None if c is None or v_ is None else r4(v_ - c),
+                             draw_sd_C=r4(sd_m('C', e)), draw_sd_V=r4(sd_m(V_ARM, e)),
+                             seeds={f's{sd}': {a: one(present.get(key(a, e, sd))) for a in pair} for sd in SEEDS})
+    ds = [(auc_m(V_ARM, e) - auc_m('C', e)) for e in EPS if auc_m(V_ARM, e) is not None and auc_m('C', e) is not None]
+    rule = ('delta(ep) = seed-mean AUC(V) - seed-mean AUC(C) over seeds 42 / 43; signal iff the mean of delta over episodes '
+            '2 / 12 / 18 / 24 >= +0.03 and no delta(ep) <= -0.05; harm iff that mean <= -0.03 or any delta(ep) <= -0.10; '
+            'otherwise inconclusive; any missing V or C cell -> INCOMPLETE')
+    if inv:
+        v = 'INVALID'
+    elif m_:
+        v = 'INCOMPLETE'
+    else:
+        mu, lo = sum(ds) / len(ds), min(ds)             # TOL: a bound hit exactly is not lost to float rounding
+        v = 'signal' if mu >= 0.03 - TOL and lo > -0.05 + TOL else 'harm' if mu <= -0.03 + TOL or lo <= -0.10 + TOL else 'inconclusive'
+    act = ('report to the owner and the pack-10 session; adding V to pack 10 is a separate owner decision (cost stated)'
+           if v == 'signal' else 'V is not used' if v in ('harm', 'inconclusive') else 'no verdict')
+    return dict(rule=rule, verdict=v, action=act, missing=[x['cell'] for x in m_], missing_detail=m_, invalid=inv,
+                mean_delta=None if m_ or not ds else r4(sum(ds) / len(ds)), min_delta=None if m_ or not ds else r4(min(ds)),
+                provisional_mean_delta_on_complete_episodes=r4(sum(ds) / len(ds)) if ds else None, episodes=per)
 
 
 def s_vs_c(cells, present, invalid, auc_m, sd_m, exp, refs=None):
@@ -349,7 +400,7 @@ def s_vs_c(cells, present, invalid, auc_m, sd_m, exp, refs=None):
 
 def table(cells):
     lines = ['cell          status   ckpt   draws  AUC mean   sd     worst   svr mean  sd     ES stop']
-    arms = ARMS + ((S_ARM,) if any(k.startswith(S_ARM + '/') for k in cells) else ())   # S rows only when S cells exist
+    arms = ARMS + tuple(x for x in (S_ARM, V_ARM) if any(k.startswith(x + '/') for k in cells))   # S / V rows only when they exist
     for e in EPS:
         for s in SEEDS:
             for a in arms:
@@ -470,6 +521,14 @@ def main(a):
         for e, d in x['episodes'].items():
             print(f"   {e}: C {d['C']} S {d['S']} delta {d['delta']} draw sd C {d['draw_sd_C']} S {d['draw_sd_S']}  "
                   + '  '.join(f"{sd}: C {(q['C'] or {}).get('auc')} @{(q['C'] or {}).get('checkpoint_steps')} S {(q['S'] or {}).get('auc')} @{(q['S'] or {}).get('checkpoint_steps')}"
+                              for sd, q in d['seeds'].items()))
+        x = v['V_vs_C']
+        print(f"V_vs_C: {x['verdict']}  mean delta {x['mean_delta']}  min delta {x['min_delta']}  (provisional on complete episodes "
+              f"{x['provisional_mean_delta_on_complete_episodes']})" + (f"  missing {x['missing']}" if x['missing'] else '')
+              + (f"  INVALID {x['invalid']}" if x['invalid'] else '') + f"  -> {x['action']}")
+        for e, d in x['episodes'].items():
+            print(f"   {e}: C {d['C']} V {d['V']} delta {d['delta']} draw sd C {d['draw_sd_C']} V {d['draw_sd_V']}  "
+                  + '  '.join(f"{sd}: C {(q['C'] or {}).get('auc')} @{(q['C'] or {}).get('checkpoint_steps')} V {(q['V'] or {}).get('auc')} @{(q['V'] or {}).get('checkpoint_steps')}"
                               for sd, q in d['seeds'].items()))
         if dup:
             print('duplicates (first kept):', dup)

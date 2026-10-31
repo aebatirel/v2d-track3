@@ -22,6 +22,14 @@
 #      (tools/recipe_screen.py refmd5) is not used. C/K/D keep the physS1 references (SRCREF, refs/glockt) as before; the
 #      physS1 block runs on every box (an S box records the physS1 md5s and their zero action too, diagnostic only).
 #      Box plan: 2 boxes ARMS=S SEEDS=42 | ARMS=S SEEDS=43; the control is the screen's C cells (verdict S_vs_C).
+#   V  (2026-10-31, physics-solver.md section 10) C exactly plus ONE training override, observation.object_body_velocity.
+#      enabled=true (the actor also sees the objects' world linear + angular velocity; stored in the checkpoint's resolved
+#      config, which the evaluator rebuilds; CPU check docs/research/physics-2026-10-30/v_obs/). physS1 references.
+#      Box plan: 2 boxes ARMS=V SEEDS=42 | ARMS=V SEEDS=43 RESCORE=...; the control is the screen's C cells (V_vs_C).
+# RESCORE="arm:ep:seed:STORE_RUN ..." (section 10): before any training, NREP fresh official evaluations of the chosen
+#   checkpoint STORE_RUN stored for that cell (results/recipe_screen/<arm>/ep<N>-s<seed>/best/policy.safetensors),
+#   scored and recorded like a trained cell (selection not redone; notes say so); the merge takes it in place of the
+#   stored record when that one is not present (< 8 draws). Its episode must be in EPS (its reference md5 is recorded).
 # The evaluator rebuilds the env from the checkpoint config and runs VOC 0 (harness.apply_evaluation_composition):
 # K's keys only reach the learner and the training curriculum (CPU check: tools/recipe_screen_tests/eval_invariance.py).
 # Cells = ARMS x EPS x SEEDS (or CELLS="arm:ep:seed ..."), trained in that order (episode-major) in TRAIN_SLOTS (2)
@@ -34,14 +42,14 @@
 # Robustness: every official evaluation runs under `timeout EVAL_TIMEOUT` and the curve under CURVE_TIMEOUT; the ES
 # watcher gets ES_TAIL s after its training ends; a training that exits non-zero without an early stop is a failed
 # cell (no truncated runs compared). The box's stall watchdog and self-destroy are ops/box/run_job.sh's.
-# Knobs: ARMS EPS SEEDS CELLS SRCREF SRCREF_S REF_MD5_CHECK STEPS NREP CURVE_REP PAR ES_TARGET ES_PATIENCE ES_MIN ES_N
+# Knobs: ARMS EPS SEEDS CELLS RESCORE SRCREF SRCREF_S REF_MD5_CHECK STEPS NREP CURVE_REP PAR ES_TARGET ES_PATIENCE ES_MIN ES_N
 #   DR_RESET EVAL_TIMEOUT CURVE_TIMEOUT ES_TAIL TRAIN_SLOTS SLOT_POLL CELL_GAP ZERO PIP; CROOT (default /content; the CPU
 #   dry run's root; REF_MD5_CHECK=0 only there, for its stub files).
 CROOT=${CROOT:-/content}
 . $CROOT/v2d-track3/ops/box/lib.sh
 R=$REPO_DIR; T=$R/tools; P=$R/pipeline; J=${J:-$CROOT/job.log}
 FC=${FC:-$CROOT/v2d/robotic_grounding/flash_chord}; O=$CROOT/results/recipe_screen; mkdir -p $O/refs
-ARMS=${ARMS:-"C K D"}; EPS=${EPS:-"2 12 18 24"}; SEEDS=${SEEDS:-"42 43"}; CELLS=${CELLS:-}
+ARMS=${ARMS:-"C K D"}; EPS=${EPS:-"2 12 18 24"}; SEEDS=${SEEDS:-"42 43"}; CELLS=${CELLS:-}; RESCORE=${RESCORE:-}
 SRCREF=${SRCREF:-20261030-physS1-6a814df}; SRCREF_S=${SRCREF_S:-20261030-psolverl-04301a2}; REF_MD5_CHECK=${REF_MD5_CHECK:-1}; STEPS=${STEPS:-70004736}; NREP=${NREP:-10}; CURVE_REP=${CURVE_REP:-3}; PAR=${PAR:-3}
 ES_TARGET=${ES_TARGET:-0.9}; ES_PATIENCE=${ES_PATIENCE:-20000000}; ES_MIN=${ES_MIN:-20000000}; ES_N=${ES_N:-2}
 DR_RESET=${DR_RESET:-1.5,0.015,0.01}; EVAL_TIMEOUT=${EVAL_TIMEOUT:-1200}; CURVE_TIMEOUT=${CURVE_TIMEOUT:-1500}; ES_TAIL=${ES_TAIL:-1200}
@@ -53,7 +61,7 @@ for v in FC_DR_RESET FC_DR_SEED FC_STATE_RESET FC_DROP_START FC_OBJECT_KEYPOINT_
 done                                                             # variables go to the training command, never exported
 export EMB=sharpa_hands_mid OMP_NUM_THREADS=1
 PY=python; FCPY=$FC/.venv/bin/python
-log "recipe_screen code $(git -C $R rev-parse --short HEAD 2> /dev/null), arms [$ARMS], eps [$EPS], seeds [$SEEDS], cells [${CELLS:-all}], refs $SRCREF (S: $SRCREF_S, md5 check $REF_MD5_CHECK), steps $STEPS, NREP $NREP, CURVE_REP $CURVE_REP, ES $ES_TARGET/$ES_PATIENCE/$ES_MIN/$ES_N, DR_RESET $DR_RESET, K [$($PY $T/recipe_screen.py args K $STEPS)]" >> $J
+log "recipe_screen code $(git -C $R rev-parse --short HEAD 2> /dev/null), arms [$ARMS], eps [$EPS], seeds [$SEEDS], cells [${CELLS:-all}], rescore [${RESCORE:-none}], refs $SRCREF (S: $SRCREF_S, md5 check $REF_MD5_CHECK), steps $STEPS, NREP $NREP, CURVE_REP $CURVE_REP, ES $ES_TARGET/$ES_PATIENCE/$ES_MIN/$ES_N, DR_RESET $DR_RESET, K [$($PY $T/recipe_screen.py args K $STEPS)]" >> $J
 label "recipe_screen: setup"
 
 # ---- assets (S1 masses on the scans, as rounds 1-3), embodiment, FlashCHORD patches (FDR + VOC fix, then the DR patch)
@@ -101,10 +109,10 @@ train_slot() {  # at most TRAIN_SLOTS FlashSAC trainings at once (40 GB each on 
 rmdir $CROOT/train_slot_* 2> /dev/null                           # stale slots of a job stopped on this box
 write_summary() {  # the box summary (box-local verdicts), rewritten atomically after every cell and at the end
   local tmp=$O/.summary.$BASHPID.$RANDOM                         # (named here: a redirection expands in the child)
-  $PY $T/recipe_screen.py summary $O --run ${RUN_ID:-?} --commit "$(git -C $R rev-parse --short HEAD 2> /dev/null)" --steps $STEPS --cells "$LIST" \
+  $PY $T/recipe_screen.py summary $O --run ${RUN_ID:-?} --commit "$(git -C $R rev-parse --short HEAD 2> /dev/null)" --steps $STEPS --cells "$LIST ${RSLIST:-}" \
     --meta "arms=$ARMS" --meta "eps=$EPS" --meta "seeds=$SEEDS" --meta "srcref=$SRCREF" --meta "nrep=$NREP" --meta "curve_rep=$CURVE_REP" \
     --meta "es=$ES_TARGET/$ES_PATIENCE/$ES_MIN/$ES_N" --meta "dr_reset=$DR_RESET" --meta "train_args=$TRAIN_ARGS" \
-    --meta "srcref_s=$SRCREF_S" --meta "ref_md5_check=$REF_MD5_CHECK" > $tmp \
+    --meta "srcref_s=$SRCREF_S" --meta "ref_md5_check=$REF_MD5_CHECK" --meta "rescore=$RESCORE" > $tmp \
     && mv $tmp $O/summary.json || { rm -f $tmp; log "recipe_screen: summary FAILED" >> $J; }
 }
 evalrep() {  # $1 checkpoint, $2 output dir, $3 episode: NREP official evaluations, each scored (as physics_rl_loop.sh)
@@ -197,6 +205,31 @@ if [ $NEED_S = 1 ]; then
     log "recipe_screen S ep$e: reference $SRCREF_S $sub/$hive/ref_ps.parquet -> ${SD#$CROOT/}/$hive/ref_gl_ilc.parquet md5 $m (registered: $([ "$m" = "$want" ] && echo yes || echo "NO, $want")); solver input md5 ${min:-none} (= this box's $SRCREF reference: $([ -n "$min" ] && [ "$min" = "$(cat $O/refs/ep$e.md5 2> /dev/null)" ] && echo yes || echo NO))$([ "$ZERO" = 1 ] && echo "; zero action $(grep -a 'zero_action:' $O/refs/S_ep$e.zero_score.txt | tr -s ' ' | cut -c1-80)")" >> $J
   done
 fi
+
+# ---- re-scores (section 10): stored chosen checkpoints, NREP fresh official evaluations each, before any training
+RSLIST=""
+for x in $RESCORE; do
+  IFS=: read -r a e s srun <<< "$x"; OC=$O/$a/ep$e-s$s
+  f=runs/$srun/results/recipe_screen/$a/ep$e-s$s/best/policy.safetensors
+  [ -n "$srun" ] && [ -s $O/refs/ep$e.md5 ] || { log "recipe_screen RESCORE $x: bad item or no reference record for ep$e (skipped)" >> $J; continue; }
+  RSLIST="$RSLIST $a:$e:$s"; mkdir -p $OC; for d in curve best; do [ -d $OC/$d ] && mv $OC/$d $OC/$d.prev_$(date +%s); done
+  echo rescoring > $OC/status; cp $O/refs/ep$e.md5 $OC/ref_md5
+  echo "rescore: $NREP fresh official evaluations of $srun's stored chosen checkpoint ($f); selection not redone (physics-solver.md section 10)" > $OC/notes
+  label "recipe_screen: rescore $a/ep$e-s$s"; t0=$(date +%s)
+  if bash $OPS/store.sh pull-files $f >> $J 2>&1 && [ -s $CROOT/hfstore/$f ]; then
+    mkdir -p $CROOT/rescore/$a/ep$e-s$s                               # its training-time name, from the checkpoint's metadata
+    n=$($FCPY -c "from safetensors import safe_open; print(int(dict(safe_open('$CROOT/hfstore/$f', 'np').metadata())['user.environment_steps']))" 2>> $OC/notes)
+    ck=$CROOT/rescore/$a/ep$e-s$s/policy_${n:-unknown}.safetensors
+    cp $CROOT/hfstore/$f $ck; $FCPY $T/recipe_screen.py ckcfg $ck $OC/config_check.json >> $OC/notes 2>&1 || echo "config check FAILED" >> $OC/notes
+    evalrep $ck $OC/best $e; cp $ck $OC/best/policy.safetensors
+    if $PY -c "import json, sys; sys.exit(0 if json.load(open('$OC/best/summary.json')).get('auc') else 1)" 2> /dev/null; then echo scored > $OC/status; else echo eval_failed > $OC/status; fi
+  else
+    echo no_checkpoint > $OC/status; echo "rescore: pull of $f FAILED" >> $OC/notes
+  fi
+  echo "{\"rescore_start\": $t0, \"rescore_end\": $(date +%s)}" > $OC/times.json
+  $PY $T/recipe_screen.py cell $a $e $s $OC $CROOT/rescore/$a/ep$e-s$s > $OC/cell.json
+  log "recipe_screen $a/ep$e-s$s RESCORE RESULT ($srun): $($PY -c "import json; d=json.load(open('$OC/cell.json')); print(d['status'], 'AUC', d['auc'], 'svr', d['sim_vs_ref'], 'ckpt', d['checkpoint'])" 2>&1 | tail -1)" >> $J
+done
 
 # ---- cells
 LIST=$CELLS
