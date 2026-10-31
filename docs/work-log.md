@@ -5816,3 +5816,11 @@ score.
     markers [H].
 - Not adopted. Untested next idea: add ego_cam_a (≈ 2× resolution) as a third view, only worth a new pre-registration
   if a post-hoc check shows 3-marker fixes beating the track on public lid/pot frames.
+- ~20:30 UTC marker follow-up: ego_cam_a as a third view FAILS the precondition (PREREG block 4 at 19:44 UTC, before
+  computing; outcome at 19:51).
+  - Condition 1, 0/3 objects (need 2): a+b/c 3-marker fixes vs track, median cm on the same frames: pot 3.35 vs 0.41;
+    lid 1.21 vs 1.11; blue cup 1.04 vs 0.95 (better on 46 % of frames).
+  - Condition 2 MET: spoon M1 visible in 82.5 % of rest frames and 64.8 % in hand with cam a (b/c alone: 43.4 / 34.6 %).
+  - Reading: cam a removes the M1 visibility bottleneck, but single-frame marker fixes stay ~1 cm off, no better than
+    our tracks. No new gate; the marker layer is closed for now.
+  Files: cama.py, diag_cama.py/json, m1_share.py/json, PREREG block 4, README follow-up.

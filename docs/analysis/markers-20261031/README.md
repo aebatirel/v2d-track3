@@ -111,3 +111,25 @@ Runtime: scans 1–6 min per (episode, object) on one core, ≈ 50 CPU-min in to
   pass a public gate with this detector.
 - The 5° roll disagreement between our track mean and our template's marker model is a GT-free fact. Which side is
   right needs ground truth, or an organiser answer on the spoon scan.
+
+## Follow-up: ego_cam_a as a third view (precondition check, PREREG block 4) — FAILS
+
+Calibration as given (cam-a extrinsic → ego_cam_b, chained as `pipeline/hands_mp.py`). The cam-a frame offset was
+chosen GT-free per episode: +1 frame in 17 of 18 runs, +2 for public ep21. After the joint fit, the cam-a reprojection
+residual is 0.6–1.3 px median. Scripts: `cama.py` (GT-free), `diag_cama.py` (oracle scoring), `m1_share.py` (GT-free).
+
+| object (public eps) | b/c 2-marker: track / fix cm | b/c 3+ : track / fix | a+b/c 2-marker: track / fix | a+b/c 3+ : track / fix (frames) |
+|---|---|---|---|---|
+| white_pot (0, 2, 41, 42, 43) | 0.36 / 2.04 | 0.51 / 1.31 | 0.40 / 1.96 | 0.41 / **3.35** (378) |
+| white_pot_lid (0, 2) | 0.97 / 2.09 | 1.13 / 1.18 | 0.99 / 2.82 | 1.11 / **1.21** (632) |
+| blue_cup (21, 22) | 0.88 / 1.09 | 1.26 / 1.51 | 0.74 / 1.30 | 0.95 / **1.04** (331) |
+
+- Cam a multiplies the 3-marker fixes: pot 60 → 378 frames, cup 99 → 331. But no object's a+b/c 3-marker fix beats
+  the track. Precondition 1 is met on 0 of 3 objects (needed 2), so the precondition fails and no gate is run.
+- The pot gets worse with more 3-marker fixes (3.35 cm). [H] Its pooled 3-marker layout is itself biased or
+  mislabelled. Falsifier: per-episode layouts bring the pot's a+b/c 3-marker error below its b/c 1.31 cm.
+- **Spoon M1 (GT-free, 10 eval episodes pooled):** at rest 43.4 % b/c only → 82.5 % with cam a; in hand 34.6 % →
+  64.8 %. Precondition 2 is met, so the M1 bottleneck is solved by cam a.
+- What remains is fix accuracy. Even 3-view, 3-marker fixes are ≈ 1 cm per frame, no better than our public tracks.
+  Caveat: an M1 "detection" in cam a is a circle inside a 12 mm window that survives a 4 px residual check, so some
+  may be look-alikes.

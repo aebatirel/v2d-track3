@@ -72,3 +72,11 @@ for a+b/c fixes. Spoon (eval, GT-free): share of frames where M1 is detected onc
    objects (an object with no a+b/c 3-marker fix frames counts as not beating);
 2. M1 is detected in >= 30 % of spoon rest frames (pooled over the 10 eval spoon episodes) with cam a added.
 If the precondition fails: stop and report. If it passes: stop and report; the gate is not run here.
+
+## Block 4 outcome (2026-10-31 19:51 UTC; `diag_cama.json`, `m1_share.json`)
+
+**Precondition FAILS → stop; no new gate.**
+1. a+b/c 3-marker fixes beat the track on **0 of 3** objects (median cm, fix vs track on the same frames):
+   blue_cup 1.04 vs 0.95, white_pot_lid 1.21 vs 1.11, white_pot 3.35 vs 0.41. (Needed >= 2.)
+2. M1 seen in **82.5 %** of spoon rest frames with cam a (43.4 % b/c only); 64.8 % in hand (34.6 %). (Needed >= 30 %:
+   met.)
