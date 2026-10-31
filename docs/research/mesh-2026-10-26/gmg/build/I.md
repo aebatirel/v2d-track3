@@ -50,3 +50,7 @@ carve rule.
   reordered (O share > 25 % -> PUSH first), push test = median over the frames R is entered, R_O needs >= 75 % SIL/GAP
   and carves only those; GAP no longer needs (a) (stereo-solid narrow notch, silhouette absent, topology kept) but
   submitted candidates still need T2/T3; V4t conditional like V5. Next: commit + push.
+- 09:20 committed and pushed `2eb8397` (INTERLOCK.md, PREREG F-I1, build/I probes). Design step done; next per the
+  workflow: adversarial review of INTERLOCK.md / F-I1, then build BI1 (interlock.py, silhouette.py, physcheck.py,
+  simpieces.py, gen_slot.py, tests/test_interlock.py) in new files only. Open: clean ep24 bundle (B4 batch v4, stream
+  3) for T-I2; FlashCHORD venv absent from this container (proxy test needs `mujoco` in the gmg venv).
