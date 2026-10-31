@@ -5120,3 +5120,9 @@ Advice given:
   wave (5, 32, 6, 3) ≈ $27.5, ≈ +0.0086. Small because the packed draws are partly lucky and must be beaten.
   Review: conditional GO; fixes F1–F7 (seed handling, support-stage check, cost ranges, rule script, docs, timeouts,
   pull-files) running (workflow mass-eval-fixes).
+- 10:50 UTC budget coordination (owner asked determined-wright for one budget to the freeze). Replied with this
+  session's plan [E]: mass check remainder ~$4–6; masses eval retrain only if ADOPT: O2 ~$16–26 (O3 +~$10 if spoon
+  pilots pass; full 20 not planned); eval-10 perception fix ~$4–7 if its CPU test passes; Phase 2 of the leak plan
+  dropped. Core ~$25–35, max ~$45. Their draft (public recipe screen ~$35–45 + confirm ~$20 + optional loop ~$12) plus
+  mine ≈ $100–120 against $29 credit: the owner would need ~$70–90 more. Proposed order: masses retrain first on the
+  current recipe; their recipe winner into a second, smaller retrain on the top episodes.
