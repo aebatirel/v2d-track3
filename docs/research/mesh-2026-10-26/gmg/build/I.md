@@ -228,3 +228,8 @@ store run logs (mkref unchanged before the freeze). Eval 10 intrusion result (ca
     our default pieces overlap far more than CoACD on containers (ep2 425 vs 98 cm3, ep11 544 vs ~300 cm3).
   - Started a probe of open problem 3 (keep-out not limited to 2 voxels from the surface) on ep2 / ep11:
     `<scratch>/interlock/bi/keepout_variant.py`, logs `keepout_ep2.log`, `keepout_ep11.log`.
+- 13:25 keep-out variant probe [M] (no 2-voxel limit; `keepout_variant.py`): ep11 blue 32 pieces union 453 cm3,
+  beige 14 pieces union 793 cm3 (solids 172 / 170), collider overlap along the track median 273 / max 307 cm3 (F-I1.8
+  default: 544, CoACD about 300); ep2 pot 11 pieces union 2776 cm3 (solid 362; frozen early). Conclusion: the port's
+  split search (freeze at < 10 % gain, x10 partner weight) is the problem, not only the keep-out radius -> INTERLOCK
+  18.4 item 3 updated; B9 needs a better splitter before container copies use our pieces.

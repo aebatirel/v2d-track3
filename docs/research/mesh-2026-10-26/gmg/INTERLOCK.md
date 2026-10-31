@@ -1062,12 +1062,20 @@ that B10 must not take at face value. Default pieces fill the cups' cavities (un
   1. silhouette contrast against a same-coloured background (wooden table) [M] -> [H] a geometric see-through test;
   2. w_sim uses the partner's extent near the crossing (19.7 mm with a marker bump vs 12.6 mm plate) -> P2 fails [M];
   3. F-I1.8 keep-out limited to 2 voxels from the surface lets our default pieces fill open containers (pot, cups):
-     425 / 544 cm3 overlap vs CoACD 98 / ~300 cm3 [M]; a variant without the limit is being probed (`build/I.md`);
+     425 / 544 cm3 overlap vs CoACD 98 / ~300 cm3 [M]. A probe without the limit does not fix it [M]: ep11 overlap
+     max 307 cm3 (union 453 / 793 cm3 vs solid 172 / 170), ep2 pot union 2776 cm3 after only 11 pieces: the port's
+     split search freezes pieces whose best plane removes < 10 % of the weighted excess (collision_decomp.py's rule),
+     and the partner-occupancy weight (x10) keeps the excess far above 0.3 cm3, so B9 needs a better splitter (or
+     CoACD's pieces checked against our keep-out) before simulator copies of containers use our pieces;
   4. SHARED voxels in the partner occupancy count the contact interface (ep11, ep2) [M];
   5. the placed SAM 3D concavity at r = 12.4-20 mm is a large block, not a slot (63-71 mm long on board 1) [M];
   6. VI prefers partner-clipped HULLs where shells touch the partner (ep11, ep2 pot) [M];
   7. FlashCHORD's P1 settle is not in this container; the plain-MuJoCo pre-check is uninformative when the pair is
      held in the air at the assembled frame [M].
+- **Pre-registered tests touched here:** T-I1 (16 OK, 1 expected failure = logged P26 miss; s2 and rendered-image
+  silhouettes not run); T-I2a (board 1 absent, board 2 passes the gate but disagrees); T-I2b (PUSH both, eval
+  semantics; IGNORE on public); T-I2c / P27 above; T-I3 / P28 void (no carve); T-I4 / P29 void (no ICARVE exists);
+  T-I5 holds on ep2; T-I6 holds on ep11; T-I7 to T-I10 not run in this step.
 - **Hand-off to the Embodiment session:** r0 folders (dev, default pieces, placeholder masses) in
   `build/I/sim_r0/ep24-evalsem/`, `ep2-t3/`, `ep11-evalsem/` (layout of 17.1); their export can be validated and
   carved with `interlock.carve_from_intrusions` today. On ep24 their reference will meet the same class-O evidence
