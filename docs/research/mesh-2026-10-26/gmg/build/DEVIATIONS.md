@@ -627,3 +627,13 @@ scan number was seen; none bears on these choices.
     voxels that hold a sample (the only voxels passes 1-3 read) and the final grids' free counts are voted in the pass-4
     sweep on the final box. The counts are those of the dense vote (`tests/test_extract.VotePointsTests`; on ep2 frames
     0 and 150, 0 mismatches over 800k voxels [M]). No result changes.
+99. **(2026-10-31, B4, after seeing the ep0 bundle of the stopped run) TRACK_FAIL counts all extraction frames**
+    (supersedes the denominator of entry 90). SPEC: "fewer than 30 % of its frames, or fewer than 20 frames, are
+    good". Entry 90 read "its frames" as the frames holding the object's owned points; a track that loses its object
+    then hides, because frames without owned points drop out of the denominator. Seen [M]: the ep0 lid has owned points
+    in 32 of 187 extraction frames (3094 owned points, 21 OBSERVED voxels, sigma clamped at 3 mm), 30 of them good:
+    not TRACK_FAIL under entry 90, TRACK_FAIL (30 / 187 = 16 %) under the literal reading, which is applied here: the
+    tracked object's frames are every frame of its track. Applied uniformly to all 20 episodes by `tools/b4_identity.py`
+    (before the cross test, whose references are the non-TRACK_FAIL object-episodes); both readings are stored per
+    object (`sanity.track_fail_readings`) and reported. Disclosure for B.15 / P22: P22 predicts that the lid is not
+    testable; that outcome now rests on this reading, chosen after the ep0 lid was seen. No scan number seen.

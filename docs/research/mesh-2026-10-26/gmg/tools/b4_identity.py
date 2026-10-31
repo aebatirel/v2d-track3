@@ -5,7 +5,7 @@ b4_extract from the object's good frames, shell_<obj>.npy) is registered (rigid 
 every other good object-episode's shell (no TRACK_FAIL); the test passes if the nearest is one of o's own other
 episodes; not testable if o has no other good public episode. A failure of the cross test or of any split test (saved
 by b4_extract) marks o IDENTITY_SWAP. Writes RUN/identity/cross.json and updates each episode.json (sanity
-identity_cross, flags), then the run ledger (manifest).
+identity_cross, flags; TRACK_FAIL over all extraction frames, DEVIATIONS 99), then the run ledger (manifest).
 Usage: GMG_MODE=clean python gmg/tools/b4_identity.py --run <DATA>/gmg/runs/<clean run> [--eps 0,2,...]
 """
 import argparse
@@ -36,10 +36,24 @@ def main():
     t0 = time.time()
     eps = [int(x) for x in a.eps.split(',')]
     metas, shells, good = {}, {}, []
+    frac = guard.constant('sanity_fail_frac', 0.30, 'informed:PREREG A.6 track sanity (TRACK_FAIL < 30 % good)')
+    fmin = guard.constant('sanity_fail_min_frames', 20, 'informed:PREREG A.6 track sanity (TRACK_FAIL < 20 good frames)')
     for ep in eps:
         bdir = os.path.join(run, 'bundle', 'public', f'ep{ep}')
         m = guard.load_json(os.path.join(bdir, 'episode.json'), 'own')
         metas[ep] = m
+        n_all = len(range(0, int(m['T']), int(m['stride'])))
+        for o in m['objects']:
+            # DEVIATIONS 99: TRACK_FAIL over all extraction frames of the track ("its frames"); the frames-with-points
+            # reading of b4_extract (DEVIATIONS 90) is kept alongside
+            san = m['sanity'][o]
+            old = 'TRACK_FAIL' in san['flags']
+            new = san['n_good'] < frac * n_all or san['n_good'] < fmin
+            san['track_fail_readings'] = dict(frames_with_points=bool(old), all_frames=bool(new),
+                                              n_good=san['n_good'], n_frames_with_points=san['n_frames'],
+                                              n_extraction_frames=n_all,
+                                              good_frac_all_frames=round(san['n_good'] / max(n_all, 1), 4))
+            san['flags'] = [f for f in san['flags'] if f != 'TRACK_FAIL'] + (['TRACK_FAIL'] if new else [])
         for o in m['objects']:
             p = guard.open_input(os.path.join(bdir, f'shell_{o}.npy'), 'own')
             shells[(ep, o)] = np.load(p).astype(np.float64)

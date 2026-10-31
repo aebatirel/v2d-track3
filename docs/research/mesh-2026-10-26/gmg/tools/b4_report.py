@@ -97,6 +97,7 @@ def main():
             for o, d in r['obj'].items():
                 s = d['sanity']
                 rows.append(dict(ep=ep, obj=o, flags=s['flags'], n_good=s['n_good'], n_frames=s['n_frames'],
+                                 track_fail_readings=s.get('track_fail_readings'),
                                  split={p: (v.get('testable'), v.get('pass_')) for p, v in
                                         (s.get('identity_split') or {}).items()},
                                  cross={k: v for k, v in cj['results'][f'ep{ep}:{o}'].items() if k != 'chamfers_mm'}))
