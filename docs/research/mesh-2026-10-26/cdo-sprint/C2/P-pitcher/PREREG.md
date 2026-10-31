@@ -233,3 +233,50 @@ a new ledger line and a dated NOTES entry.
   - the brief quoted library_v3's [D] scores (0.894, 7.97 mm) and the generator range (0.38-0.77);
   - `ledger-of-past-mesh-work.md` quotes scan-scored numbers for the pitcher (wall 2.2 mm, extents). None of these
     enters a setting: every setting is a C0b value or a measured own-observation statistic.
+
+## A1. Amendment (2026-10-31, ~18:50 UTC; before any candidate is built, smoke-tested or scored)
+
+**What was seen [M].** A preview of `scripts/diag_pitcher.py` was run on the older `SCR/obs_all` pitcher points
+(library_v3 ROI and carving). Those points are not used for any build; the C0b points were still being made.
+- `lathe_obs.fit_axis` chooses a direction about 87 deg from the pitcher's resting up, roughly the object-frame x axis:
+  ep21 (0.994, 0.091, 0.057), ep22 (0.995, 0.063, 0.077). Its rotational consistency is 9.2 / 9.0 mm.
+- Only 17-24 % of the 24 sectors are seen per height bin.
+- 66-77 % of the points lie outside that lathe.
+
+A lathe about a near-horizontal axis cannot be the body H-P describes, whose axis is the vertical axis the can stands
+on.
+
+**GT-free axis prior.** A vessel stands on its base, so its body axis is the support normal at rest.
+`scripts/rest_axis.py` measures that normal from our own data:
+- inputs: our sweep track, our depth's frame-0 table plane (`table_plane_ep.py`), and support_fill's still windows,
+  kept when the origin is within 10 mm of its lowest height;
+- statistic: the mean of R_obj^T n over those frames.
+
+| Source | axis_dir (object frame) | frames | spread max / median |
+|---|---|---|---|
+| ep21 | (0.0315, 0.6279, 0.7777) | 8 | 2.20 / 0.84 deg |
+| ep22 | (0.0454, 0.6132, 0.7886) | 9 | 0.54 / 0.36 deg |
+| merged | (0.0389, 0.6201, 0.7835) | 17 | 2.06 / 0.91 deg |
+
+`REST_DH` = 10 mm (2.5 vote voxels) and support_fill's 3 mm / 2 deg / 10-frame still windows are its own constants
+(support_fill, 23-25 Oct; not scan-derived). All rest candidates passed the 10 mm test in both episodes.
+
+**Change.** Six candidates are added, so there are 12 in all.
+- Each of the six in section 3 is rebuilt with the axis direction fixed to its source's rest-up (`ep21r_g1`,
+  `ep21r_g0`, `ep22r_*`, `mergedr_*`).
+- `scripts/lathe_axis.py` runs lathe_obs.py unchanged, except that `fit_axis` evaluates only that direction:
+  - placement by `lathe_obs._place` (line-complex least squares with the direction fixed);
+  - centre at the points' mean height;
+  - rotational consistency reported.
+- All other arguments are identical: the C0b lathe_args, sigma and t_fallback.
+- The shared `lathe_obs.py` is not edited.
+
+**Unchanged:**
+- the pick rule (section 4, now over 12 candidates, lowest obs_fidelity sum on ALL);
+- one scoring;
+- the gates, guard and adoption rule;
+- H-P's falsification test, which applies to whichever candidate is picked.
+
+**Reason this is not tuning.** No candidate has been built and nothing has been scored. The prior is a physical
+statement measured on our own observations. The original six candidates stay in the pool. The pick is still made by
+the pre-registered GT-free rule.

@@ -19,7 +19,7 @@ FID = f'{R}/docs/research/mesh-2026-10-26/scripts/obs_fidelity.py'
 KIT = f'{S}/kit/v2d_submission_kit'
 OBS = {'ALL': f'{W}/pts/B/ep21_water_pitcher.npz,{W}/pts/B/ep22_water_pitcher.npz',
        'ep21': f'{W}/pts/B/ep21_water_pitcher.npz', 'ep22': f'{W}/pts/B/ep22_water_pitcher.npz'}
-LABELS = [f'{s}_{v}' for s in ('ep21', 'ep22', 'merged') for v in ('g1', 'g0')]
+LABELS = [f'{s}_{v}' for s in ('ep21', 'ep22', 'merged', 'ep21r', 'ep22r', 'mergedr') for v in ('g1', 'g0')]   # A1: +r
 
 
 def fid(obs, mesh):

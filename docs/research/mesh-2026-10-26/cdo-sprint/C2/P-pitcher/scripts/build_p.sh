@@ -6,7 +6,9 @@
 #      thickness rows (gmg thickness.py via c0b_prep.py thick) per episode file;
 #   3. params_p.py: app_d = 3 sigma; t_fallback = thickness chain (C0b PREREG 3.3 steps 2-4);
 #   4. lathe_obs.py with the C0b lathe arguments (--tie 1.0 --floor base_t --t_fallback T --tmax 0.008 --tmin 0.0015
-#      --app_d 3 sigma), variants g1 (appendages 1) and g0 (--appendages 0), per source ep21, ep22, merged.
+#      --app_d 3 sigma), variants g1 (appendages 1) and g0 (--appendages 0), per source ep21, ep22, merged;
+#      amendment A1: each also with the axis direction fixed to the observed resting up (lathe_axis.py,
+#      diag/rest_axis_<src>.json from rest_axis.py), labels <src>r_<variant>.
 # Usage: build_p.sh [prep|build|all]
 set -u
 S=/tmp/claude-0/-home-user-v2d-track3/90d4009c-b597-536b-9d55-58f81afca135/scratchpad
@@ -41,7 +43,11 @@ if [ "$what" = build ] || [ "$what" = all ]; then
       extra=(); [ $v = g0 ] && extra=(--appendages 0)
       ( t=$(date +%s); nice -n 5 $PY $MR/scripts/lathe_obs.py $obs $W/cand/${src}_water_pitcher_$v.glb "${largs[@]}" "${extra[@]}" \
           > $W/logs/build/${src}_$v.log 2>&1 && echo "OK $src $v $(( $(date +%s) - t ))s" || echo "FAIL $src $v (see logs/build/${src}_$v.log)" ) &
+      # amendment A1: the same build with the axis direction fixed to our observed resting up (rest_axis.py)
+      ( t=$(date +%s); nice -n 5 $PY $HERE/lathe_axis.py --axis_json $W/diag/rest_axis_$src.json $obs \
+          $W/cand/${src}r_water_pitcher_$v.glb "${largs[@]}" "${extra[@]}" \
+          > $W/logs/build/${src}r_$v.log 2>&1 && echo "OK ${src}r $v $(( $(date +%s) - t ))s" || echo "FAIL ${src}r $v (see logs/build/${src}r_$v.log)" ) &
     done
+    wait
   done
-  wait
 fi
