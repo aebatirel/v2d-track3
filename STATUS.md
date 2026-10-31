@@ -10,6 +10,13 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-10-31 ~11:20 UTC: perception sprint — only the eval-10 cup-nest fix passes; owner topped up $100 (lean plan)
+- Offset fix (S11) and held-pose fix (S10) FAILED their pre-registered rules on 20 public episodes → dropped.
+- Cup-nest fix (S12) passes on ep11 (0.901 → 0.969–0.978 reference); eval-10 version V4p needs an ep11 rollout gate
+  (≈ $10 with the eval-10 retrain), value ≈ +0.007 LB central [E].
+- Mass transfer check (58502738) result ≈ 12:30–14:00 UTC decides the masses eval retrain (O2, ≈ $16–26).
+- Credit $128.43 after the owner's $100 top-up; lean-budget lanes agreed with the Embodiment and mesh sessions.
+
 ## 2026-10-31 ~06:35 UTC: tracker fixes measured on CPU; mass check in final fixes; coordination with other sessions
 - S6 static hold: fails its no-harm rule by 0.0003 and does nothing on eval 10 (the cup really slides in our track) →
   dropped. Robust VO fixes ep24 (0.81 → 0.994) but no eval has that failure. Eval screen: the only remaining eval target

@@ -30,7 +30,7 @@ REAL = json.load(open(f'{REPO}/docs/research/work/masses-eval-20261031/packed_re
 props = {n: v['physics']['mass_kg'] for n, v in json.load(open(f'{REPO}/docs/research/physics-2026-10-30/props_masses_only.json')).items()
          if isinstance(v, dict) and 'physics' in v}
 BOXES = dict(G1=('glock', [20, 8], [42, 43], '20261101-mevG1-mocksha'), G2=('glock', [33, 15], [42, 43], '20261101-mevG2-mocksha'),
-             G4=('glock', [10], [42], '20261101-mevG4-mocksha'), S1a=('std', [1], [42], '20261101-mevS1s42-mocksha'),
+             G4=('glock', [10], [42, 43], '20261101-mevG4-mocksha'), S1a=('std', [1], [42], '20261101-mevS1s42-mocksha'),
              S1b=('std', [1], [43], '20261101-mevS1s43-mocksha'),
              G1v=('glock', [20], [42, 43], '20261101-mevG1v20-mocksha'))   # review F3: the cheaper EPS="20" variant of G1
 res, fails = {}, []

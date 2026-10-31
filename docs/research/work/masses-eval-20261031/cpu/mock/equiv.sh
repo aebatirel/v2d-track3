@@ -5,7 +5,9 @@
 # evaluators loaded (audits without timestamps), the files written (names + md5) and the store traffic.
 #   E2 hard_ab.sh + pipeline/pipeline_ep.sh: the carve_rerun / std_learner path on eval 1 (no EVAL_TIMEOUT, no NO_PUSH)
 #   E3 pack_eval.sh + h5_reeval.sh: pack 7 rebuilt (KEEP_RESULTS pack 6 + c33B, PICK_EXTRA 33:rcB; no MASS_EPS,
-#      RUNS_EXTRA, PACKED_TXT), draws 2..3 for evals 3 and 19
+#      RUNS_EXTRA, PACKED_TXT), draws 2..3 for evals 3 and 19. Expected since ab55e8c (31 Oct 09:59, KEEP_ROLLOUTS
+#      defaults to 1, a separate intended change): new = old except draws 2..N keep their rollout parquets;
+#   E3k the same with KEEP_ROLLOUTS=0 (2026-10-31, review F5): must be identical in every respect
 # (glock_public.sh: masses-transfer-20261031/cpu/mock/equiv.sh with BASE=HEAD, its public job strings.)
 # usage: equiv.sh MS OUT_DIR   (MS from setup.sh; the boxes run as MS/box in turn)
 MS=$1; OUT=$2; M=$(cd $(dirname $0) && pwd); mkdir -p $OUT; R=$OUT/equiv.txt; : > $R
@@ -34,5 +36,6 @@ run() {  # $1 name, $2 old files, $3 job
 }
 run E2 "ops/jobs/hard_ab.sh pipeline/pipeline_ep.sh" "$E2"
 run E3 "ops/jobs/pack_eval.sh ops/jobs/h5_reeval.sh" "$E3"
+run E3k "ops/jobs/pack_eval.sh ops/jobs/h5_reeval.sh" "KEEP_ROLLOUTS=0 $E3"
 mv $MS/box $MS/done_equiv_last
 cat $R

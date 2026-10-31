@@ -1,5 +1,8 @@
 # Masses eval retrain: build notes (31 Oct 2026, CPU only; nothing launched, downloaded or committed here)
 
+Review fixes F1-F7 of the build review (conditional GO) applied ~11:15 UTC: section "Review fixes" below; their CPU evidence
+is in `cpu/out_f1f7/` (the reviewed build's outputs stay in `cpu/out/`).
+
 **What this prepares.** The eval retrain of `PLAN.md`, ready to launch the moment the transfer check
 (`20261031-mass-2ed46ea`) ADOPTs and the owner says go: one job per training box, the confirmation box, and the pack side,
 so that a later pack evaluates each retrained episode with the masses it trained with and leaves every other episode as
@@ -10,6 +13,7 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
 - **New:** `ops/jobs/mass_eval.sh` (one box: `MODE=glock|std EPS=... SEEDS=...`), `tools/mass_eval_verify.py` (B3: verification,
   training-box summary, rule-2 candidate, confirmation strings), `tools/mass_pack_check.py` (pack-side mass check),
   `tools/mass_eval_merge.py` (CPU: the boxes' summaries -> one confirmation job, rule 2 across boxes),
+  `tools/mass_eval_rule.py` (CPU: PLAN section 5 rules 4-9 on C1's results; review F4) + `cpu/rule_tests/test_rule.py`,
   this folder's `packed_refs.json` + `packed_refs_make.py` (per-episode facts the box reads), `JOBS.txt` (job strings per
   box, gates, costs), `cpu/mock/*`, `cpu/out/*`.
 - **Changed, opt-in only (off by default, old = new when unset: `cpu/out/equiv*.txt`):**
@@ -32,8 +36,11 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
     Eval 1's base `refs/perc2mck/ep1` (c01s43's pull of pack-31ef267) has md5 7f230466, the packed `refs/perc2mcks` file's.
   - [M] The 29 Oct store listing has every pulled sub-folder and result file (gl10A2 ep10 has no support_fill.json; eval 30's
     packed reference is std30's / ev30rp's, not pack-31ef267's older one).
-- **Grasp lock (15 evals).** Pull → md5 + fingerprint must be the packed ones (else the episode is dropped, nothing
-  trains) → `/content/assets` at 0.3 kg → `tools/mass_arm.py --arms "mass1:<props>"` → per seed one
+  - (review F7) `pull_files`: the listing's files under each pull sub-folder (20-43 per episode; `packed_refs_make.py
+    <repo> <listing>`, listing md5 484a8906…, 134,909 paths). Regenerating the table changed no other field [M].
+- **Grasp lock (15 evals).** Pull (the table's `pull_files`, one single-file download each, no store listing) → md5 +
+  fingerprint must be the packed ones and the base's support stage the packed reference's (else the episode is dropped,
+  nothing trains) → `/content/assets` at 0.3 kg → `tools/mass_arm.py --arms "mass1:<props>"` → per seed one
   `glock_public.sh SPLIT=eval REUSE_REF=1 REQUIRE_REUSE=1 NO_PUSH=1` over the box's episodes (waves of TRAIN_SLOTS 2),
   70,004,736 steps, CURVE_REP 3, NREP 10, EVAL_TIMEOUT 1200. Nothing of the reference stages can run.
   - Eval 10's reference names `/content/assets` (library_v3 + ev10, SF 0): the box builds it at 0.3 kg, mass_arm copies
@@ -76,7 +83,8 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
    (ENV cleared) gives `ep33 INVALID ... recipe differs ... curriculum.thresholds` [M, mock].
 2. **Cost: eval 8 trains about 1.8× slower** [M basis: evb0810 ep8 70M at 6.5k steps/s with two trainings on the GPU,
    the v5 beige cup's 32 pieces; ep11 v3x twin 1.6 h vs 0.9 h]. G1 is re-estimated at 4.5-6.5 h, $6.3-9.6 (central
-   ~$7.5, plan $4.7) [E]; O2 ≈ $20 ($15.5-24.8) instead of $17.2. Eval 10's 24-26 Oct trainings ran at 2.4-8.9k steps/s
+   ~$7.5, plan $4.7) [E]; O2 ≈ $20 ($15.5-24.8) instead of $17.2. **Superseded by review F3** (JOBS.txt): G1 4.5-7.6 h,
+   $6.3-11.2; O2 ≈ $21 ($15.5-26.4); the cheaper G1v (eval 20 only) $2.7-4.4. Eval 10's 24-26 Oct trainings ran at 2.4-8.9k steps/s
    (nefc overflow): G4's cost is unknown.
 3. **New gate before any launch** (JOBS.txt gate 1, one targeted download): diff the saved config of one checkpoint the
    transfer box trained today against a packed one. If the box's FlashCHORD resolves any extra key, B3 would make every
@@ -86,13 +94,85 @@ reference. Markers: [M] measured, [E] estimate, [H] hypothesis.
    would have matched, but the table now has an explicit `shared_assets` field. B3's piece count made that run INVALID
    (white_pot 1 collision vs 53 pieces), not silently wrong.
 5. **Pack-side defaults kept**: `pack_eval.sh`'s `PICK ck=` and `KEEP_RESULTS` downloads still use `--include` (a store
-   listing each), as before; the confirmation of 6 candidates adds about 12 listings for RUNS_EXTRA + 6 for PICK.
+   listing each), as before; the confirmation of 6 candidates adds about 12 listings for RUNS_EXTRA + 6 for PICK. (Review
+   F7: counted in the mocks' C1 hf logs, below; the training boxes now list nothing.)
 6. **LIB is cosmetic for grasp-lock episodes** (their URDFs are their own copies; mesh paths are unused, pack section), so
    G1's library_v3x changes nothing for eval 20; it matters only for `/content/assets` (std, eval 10).
 7. **Rule 2 across boxes.** The plan runs eval 1's two seeds on two boxes (S1a, S1b), so neither box can apply rule 2;
    `tools/mass_eval_merge.py` does it when C1 is built (and drops any episode with an INVALID box). Mock: P7.
 8. **The confirmation's rule application (rules 4-9) and the pack-9 CPU repack (B7) are not built.** h5_summary.json
    carries n, mean, sd (ddof 1), min and the packed draw (PACKED_TXT) per candidate; the rule is a few lines on CPU.
+   (Review F4: the rule script is built now; B7 is designed below, not built.)
+
+## Review fixes (31 Oct ~11:15 UTC; build review: conditional GO with F1-F8)
+- **F1, missing or thin seeds (rule-relevant).** `mass_eval_verify.rule2` counts a seed only with n ≥ 8 scored rollouts
+  (`MIN_N`). A box lists missing (no checkpoint) and thin (n < 8) seeds as `retrain_seeds`, and the episode is
+  INCOMPLETE with no candidate. `mass_eval_merge.py` takes a seed from a VERIFIED box, or from an INCOMPLETE box whose
+  only gaps are other seeds. If either pre-registered seed is still missing, the episode is INCOMPLETE ("retrain only
+  those seeds on a new box, same reference and commit"), with per-seed advice; the "[single seed]" candidate is gone.
+  PLAN section 5 has the dated amendment (no threshold changed).
+  - Evidence: fixtures F1_* (`cpu/rule_tests`); N17 (a real G1 box with 3 of eval 20's seed-43 rollouts removed);
+    the first re-run of the mock, whose box G4 trains eval 10 with seed 42 only, gave
+    `ep10: INCOMPLETE (seeds ['43'] …) :: s43: not trained on any box` (`cpu/out_f1f7/run1_merge.txt`). G4 now
+    trains both seeds, so C1 still covers eval 10.
+- **F2, support stage.** `mass_eval.sh` (glock mode, after the fingerprint check) refuses an episode, before any training,
+  if the base's `refs/perc2mck/ep<N>/reconstructed_stage/*.usda` (what glock_public.sh copies into the arm copy) differ
+  in names or md5 from the packed `refs/glockt/ep<N>` ones. B3 (`mass_eval_verify.py`) also resolves the stage the
+  training read, as FlashCHORD does (`<ref>/../../reconstructed_stage/<seq>[_<robot>]_support.usda`), and compares its
+  md5 with the packed stage: a difference is INVALID, a missing packed copy unchecked (INCOMPLETE). [M, listing] All 15
+  grasp-lock episodes have exactly one `<seq>_support.usda` in both `refs/glockt` and `refs/perc2mck`. [H] Their md5s
+  match on the real store (glock_public.sh copies the stage from perc2mck when it builds glockt); no local copy can
+  check it. If they do not match, the box refuses that episode before training, so the box costs only its setup.
+  - Evidence: N14 (refused, no training), N15 (INVALID), check_train T9 (each training read the packed stage).
+- **F3, cost.** JOBS.txt: G1 4.5-7.6 h, $6.3-11.2; O1 ≈ $15.0 ($10.7-19.6); O2 ≈ $21.0 ($15.5-26.4). G1v
+  (`EPS="20"`) costs $2.7-4.4, so O2 with G1v ≈ $15.9 ($11.9-19.6). Eval 8 costs about $12 ($8-15) per +0.001 LB,
+  against about $3 for the rest of O2 [E]. G1v is mocked as box G1v. PLAN section 4 has a dated pointer (F8).
+- **F4, rule script.** `tools/mass_eval_rule.py` applies rules 4-9 (and the rule-10 report) to C1's `h5_summary.json`
+  and `c1_merge.json`, using the section 1 levels and bars. They are fixed in the script and checked against their files:
+  H5 md5 cff23c68…, pack 7 / pack 8 summary md5s, c33B 0.9344 ± 0.0076, e1conf2 0.9241 ± 0.017. `--board pack7|pack8`
+  chooses the bar set. Its readings of the rule text are written into the PLAN amendment: eval 1's rule-6 bar, the
+  0.914 / 0.9144 rounding window in rule 9 (reported AMBIGUOUS), and pilots that have no reading. It refuses, with exit 2,
+  when C1's packed column is not the board pack's or when C1 evaluated a non-candidate.
+  - Evidence: `cpu/rule_tests/test_rule.py`, 41 / 41 fixture cases pass (`cpu/out_f1f7/rule_tests.txt`). They cover
+    the levels and thresholds as written in PLAN, swap, keep, insurance at its bounds, eval 1's 0.9241 bar under packs
+    7 and 8, rule 4 INCOMPLETE, every rule-9 outcome, the refusals, the CLI exit codes and the F1 merge cases. The mock
+    also runs the script on C1's real outputs (check_pack P8): with N 3 < 8, every candidate is INCOMPLETE.
+- **F5.** The equivalence line below now reads "identical except h5 draws 2..N keep rollout parquets (ab55e8c, intended)";
+  E3k (`KEEP_ROLLOUTS=0`) is identical in every respect.
+- **F6, cut main evaluation.** A standard-learner cell with `results/perc2mcks/ep<N>-s<s>/eval_rc.txt` 124 / 137 and
+  no `selection.json` is missing (INCOMPLETE, `retrain_seeds`). Before, it was INVALID ("not the sweep's choice").
+  Evidence: N16, and N16b, where the reviewed build's tool (2d2b76e) said INVALID on the same files.
+- **F7, store listings.** Training boxes now pull only the table's `pull_files` with `store.sh pull-files` (single-file
+  downloads; a log or image may fail, anything else drops the episode).
+  - [M, mock hf logs] G1 86 downloads and 0 listings (before: 6 listings); G1v 39 / 0; G2 62 / 0; G4 23 / 0; S1a and
+    S1b 26 / 0 each (before: 2 listings each). The store holds exactly the listed files in every pulled sub-folder
+    (setup asserts it), and check_train T6 asserts the box downloads exactly that list.
+  - The boxes also write `results/mass_eval/files.txt`: the store paths a pack would pull for their candidates
+    (check_train T10).
+  - Remaining listings, all on the pack side (`pack_eval.sh --include`; not changed here, because every pack job shares
+    them and the equivalence baseline would move). [M, mock C1 hf log] 51 for five candidates: pack 6's base 36 (RUNS
+    19, PICK 15, KEEP_RESULTS 2) and the masses additions 15. The reviewer's mock with six candidates had 54. A later
+    opt-in single-file hook fed by `files.txt` could remove the additions. Not built.
+- **B7, pack-9 CPU repack: design only (not built; build and review it before any pack-9 proposal).**
+  - Inputs:
+    - `c1_rule.json`: its BOARD SWAP episodes, plus INSURANCE ones only on the owner's written yes;
+    - the board pack's `checkpoints.json` (each episode's run, checkpoint, sha256 and rollout source);
+    - C1's draw-1 files `runs/<C1>/results/submission/results/episode_<N>.{json,parquet}` for the swaps;
+    - every other episode's rollout pair from its recorded source (pack 6, c33B, e1conf2 runs);
+    - pack 6's `meshes/`. All downloads are single files by exact path.
+  - Steps (pack 7's method, `results/submissions/20261030-track3g-candidate/README.md`):
+    - assemble the 20 rollout pairs into one results folder, then run the pristine kit's `tools/pack_submission.py` and
+      its preflight.
+  - Checks, all of which must pass:
+    - unchanged episodes are byte-identical to their sources;
+    - each swapped episode's `checkpoint_sha256` is the merge's chosen checkpoint, and its reference fingerprint is
+      the packed one;
+    - each swap is C1's `results/submission` draw 1, never an `r<i>`;
+    - `tools/no_oracle.py` passes on every input;
+    - the parquet diff against the board pack shows only the swapped episodes' rows, their checkpoint hashes and the
+      commit URL.
+  - Output: `results/submissions/<date>-track3i-candidate/` with README (provenance), `checkpoints.json`,
+    `summary.txt` and the parquet with its sha256. The owner decides any upload.
 
 ## CPU evidence (`cpu/`; mock scores are synthetic, not evidence about masses)
 - **Mock** (`cpu/mock`): one fake store shared by fresh boxes at the same `/content` path (`setup.sh`, `run_box.sh`).

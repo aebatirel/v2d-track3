@@ -221,6 +221,9 @@ ep2 and ep12. Spoon results are therefore reported apart, and the stratum starts
 | **O3 recommended** (O2 + wave 2: 5, 32, 6, 3) | + G3, C2 | **$27.5 ($19.6–33.9)** | +0.0086 | 3.2 |
 | O4 all 20 × 2 seeds | + G4, G5, S2–S4, C3 | $67.1 ($49–80) | +0.0093 | 7.2 (the additions: ≈ $57 per +0.001) |
 
+- **Cost update, 31 Oct ~11:15 UTC (build review F3, F8; the table above is kept as written).** Eval 8 trains about 1.8×
+  slower [M basis: evb0810], so G1 is 4.5–7.6 h, $6.3–11.2, and O2 ≈ $21 ($15.5–26.4). A cheaper G1 without eval 8
+  (G1v, eval 20 only) costs $2.7–4.4 and gives O2 ≈ $15.9 ($11.9–19.6) [E]. JOBS.txt holds the figures for the owner's GO.
 - **Credit** [E]: ≈ $33 at 06:35 UTC (STATUS) minus the transfer check (central $8.7, $6.5–11) leaves ≈ $24 ($22–27).
   - O2 fits. O3 may need a small top-up (central ≈ +$4, up to ≈ +$12). O4 needs ≈ +$45.
   - Check the Vast balance before the GO; other sessions also spend.
@@ -277,6 +280,32 @@ ep2 and ep12. Spoon results are therefore reported apart, and the stratum starts
     - Δ vs level (masses + seed + code), the SE of the mean, and evaluation timeouts;
     - the config diff against the packed checkpoint and the masses loaded.
     - The spoon and masses strata are summarised apart.
+
+**Amendment, 31 Oct 2026 ~11:15 UTC (review F1, F2, F4, F6 of the build review; written before any transfer-check or
+retrain result was read; no retrain had been launched; no threshold above is changed).**
+- **Rule 2, missing or thin seeds (clarification, review F1).** A seed counts only with a checkpoint its training box
+  verified and at least 8 scored training-box rollouts (of NREP 10). If either seed of an episode is missing, has n < 8,
+  or has no sweep choice because its main evaluation was cut by EVAL_TIMEOUT (eval_rc 124 / 137, review F6), the
+  episode is INCOMPLETE: no candidate and no single-seed fallback.
+  - Only the missing seeds are retrained, on a new box, with the same reference and the same commit; the other seed's
+    verified cell stands. Rule 2 is then applied once over both seeds.
+  - This is the transfer check's own INCOMPLETE rule (`masses-transfer-20261031/PREREG.md` section 3).
+  - Code: `tools/mass_eval_verify.py` (`rule2` counts n ≥ 8; `retrain_seeds`), `tools/mass_eval_merge.py`.
+- **Rule 3, verification (mechanics, review F2).** B3 also checks the support stage the training read (FlashCHORD's
+  `<reference>/../../reconstructed_stage/<seq>_support.usda`): its md5 must be the packed reference's. The box refuses
+  an episode before training if the base's stage differs from the packed `refs/glockt` one.
+- **Rules 4–9, how they are applied (mechanics, review F4).** By `tools/mass_eval_rule.py`, committed before C1, on C1's
+  `h5_summary.json` and the merge's `c1_merge.json`, with the levels and bars of section 1 fixed in that script and
+  asserted against their files. Its reading of the text above:
+  - comparisons at the 4 decimals written here; "≥" and "≤" include the bound, "below" in rule 9 is strict;
+  - eval 1's "bar" in rule 6 is rule 5's whole condition (the packed draw and ≥ 0.9241); expected board effects are
+    measured from the packed draw;
+  - rule 9's "level − 0.02" for eval 33 is 0.9344 − 0.02 = 0.9144, which rule 9 writes rounded as 0.914. A mean in
+    [0.914, 0.9144) is reported AMBIGUOUS and left to the owner;
+  - a pilot without a confirmation reading (INCOMPLETE: wait for the repeat; OUT in training: rule 9 does not cover
+    it) gives no rule-9 reading, and the owner decides if it cannot be read;
+  - nothing is applied when C1 evaluated an episode that is not a merge candidate, or when C1's packed column is not
+    the draw of the pack on the board.
 
 ## 6. Build items (next step, CPU only; nothing exists yet)
 - **B1 `ops/jobs/mass_eval.sh`** (new), one job string per box.

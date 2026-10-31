@@ -5137,3 +5137,21 @@ Advice given:
   eval-10 fix + retrain, masses retrain O2 if adopted), later a smaller retrain with the recipe-screen winner
   ($10–15); mesh lane $15–28; Embodiment screen $28–34 + confirm ~$10; buffer ~$10. Ledger planned line before
   every box.
+- ~11:20 UTC **perception sprint results** (workflow wf_4b3b77e0-018; `docs/research/work/perception-sprint-20261031/`;
+  CPU, $0; every rule pre-registered in each README; scores re-checked on 2 episodes each, 37/37 reproduce):
+  - **offset (S11, constant per-object offset via occluder-masked depth ICP): FAILED** all three variants on both arms
+    (best mean ΔR_lib +0.0005 / −0.0011; ep39 −0.128 from the table-plane exclusion eating the thin dust pan). It
+    recovers ≈ none of the constant-offset share, even with the true scan meshes (oracle arm −0.002 to −0.010).
+    Dropped.
+  - **heldpose (S10, pose = wrist × grasp while held, spoon proxy): FAILED** (proxy mean −0.018; ep39 −0.054). During
+    holds the tracker is already good (median 0.34–1.41 cm); our palm frame turns 10–50° relative to the object
+    within a hold, so even a mocap-fitted grasp is worse (3.1 cm vs the tracker's 0.9 cm). Dropped. Lead: ep11 +0.019
+    (rigid grasp) goes to the nest work.
+  - **mask10 (S12 cup-nest rule): PASSES on ep11** at reference level: V1 hold 0.901 → 0.969 (+0.068), V3 hold +
+    MuJoCo seat +0.076 (bar +0.05); other 19 public episodes byte-identical (none has two cups). On eval 10 the
+    pre-registered V1/V3 hold the blue cup inside its 4.5 cm slide (+1.53 cm high); a post-hoc V4p (blue cup at its
+    frame-0 table height, sideways slide kept, beige seated by physics) fixes eval 10's track (penetration frames
+    81 → 23) and scores +0.070 on ep11, but needs its own test (ep11 has no slide).
+  - Plan: ep11 rollout gate (control vs V4p, 2 seeds, pass ≥ +0.05 vs mocap), then rebuild only eval 10's reference;
+    with masses, eval 10 trains as a masses-only arm and a masses+nest arm (same seeds) so the effects separate.
+    ≈ $10 [E]; value +0.004–0.012 LB, central +0.007 [E]. Masking re-track: not before the freeze.

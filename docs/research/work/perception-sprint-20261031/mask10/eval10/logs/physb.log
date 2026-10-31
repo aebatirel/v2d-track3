@@ -1,0 +1,2 @@
+nest_physics both: window blue_cup <- beige_cup [53, 161), settled 39 frames; dz {'blue_cup': {'median': -1.917, 'min': -2.585, 'max': -1.459}, 'beige_cup': {'median': -1.865, 'min': -2.589, 'max': -1.461}}
+wrote /tmp/claude-0/-home-user-v2d-track3/68c88876-77c0-55d9-bea4-03de8a3f6ee7/scratchpad/mask10/eval10/raw_phys 9.2 s

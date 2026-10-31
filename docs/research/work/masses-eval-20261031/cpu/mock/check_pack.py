@@ -10,7 +10,9 @@ strings of the training boxes, KEEP_RESULTS = pack 7's sources). usage: check_pa
   P4 tools/mass_pack_check.py ran before draw 1 and before draws 2..N and passed;
   P5 h5_summary.json: the candidates with n = N each, packed column = pack 7's summary.txt (PACKED_TXT);
   P6 the pack's checkpoints.json: unchanged episodes = pack 7's checkpoints (sha256), candidates = the PICK_EXTRA ones;
-  P7 tools/mass_eval_merge.py: six candidates; eval 1's seed is rule 2 over the two S1 boxes' 10-rollout stats.
+  P7 tools/mass_eval_merge.py: six candidates; eval 1's seed is rule 2 over the two S1 boxes' 10-rollout stats;
+  P8 (review F4) tools/mass_eval_rule.py on C1's real outputs: every candidate is read, and with N 3 < 8 rule 4 makes each
+     INCOMPLETE (only the confirmation would be repeated); the spoon pilots then have no reading.
 """
 import glob, hashlib, json, os, sys
 MS, OUT = sys.argv[1], sys.argv[2]
@@ -81,6 +83,11 @@ s1 = {s: json.load(open(f'{MS}/done_{b}/content/results/mass_eval/summary.json')
 sys.path.insert(0, f'{REPO}/tools'); from mass_eval_verify import rule2   # noqa: E402
 ok('P7_merge_rule2_across_boxes', sorted(CAND, key=int) == ['1', '8', '10', '15', '20', '33'] and MG['1']['seed'] == rule2(s1, ['42', '43'])
    and CAND['1'] == ('S1a' if MG['1']['seed'] == '42' else 'S1b'), {s: (v['mean'], v['sd']) for s, v in s1.items()})
+if len(sys.argv) > 4:
+    RU = json.load(open(sys.argv[4]))
+    ok('P8_rule_applied_rule4_incomplete', 'refused' not in RU and sorted(RU['episodes'], key=int) == sorted(CAND, key=int)
+       and all(x['verdict'] == 'INCOMPLETE' and x['rule'] == '4' and x['confirmation']['n'] == N for x in RU['episodes'].values())
+       and RU['spoon_stratum'].startswith('NO READING'), {e: (x['verdict'], x.get('confirmation', {}).get('n')) for e, x in RU.get('episodes', {}).items()})
 out = dict(ok=not fails, failures=fails, checks=res, draws=draws, note='mock scores are synthetic (stub.py): plumbing, not masses')
 json.dump(out, open(OUT, 'w'), indent=1)
 print(('ALL PACK CHECKS PASS' if not fails else f'{len(fails)} FAILED: ' + ' | '.join(fails[:8])) + f' ({len(res)} checks)')
