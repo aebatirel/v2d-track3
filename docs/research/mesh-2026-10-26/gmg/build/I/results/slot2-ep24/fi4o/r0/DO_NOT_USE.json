@@ -1,0 +1,8 @@
+{
+  "do_not_use": true,
+  "written": "2026-10-31T22:35Z",
+  "by": "orchestrator (mesh session bold-albattani), under F-I4.8 (P1 fail -> do-not-use)",
+  "reason": "determined-wright P1 (docs/research/physics-2026-10-30/p1_ep24/, branch claude/determined-wright-3joens, 3c7fd32): FAIL for carved and _default at their reference (the reference holds the cross 27-36 mm above the table). Independently, under sim=rl (nconmax 256, njmax 512 per world) the carved scene overflows in 16/16 copies (500-670 contacts, up to ~2030 constraint rows; boards fall 10-46 cm through the table). 57 / 77 prisms per board are not deliverable.",
+  "diagnostic_only": "lowered rigidly to 1 mm above the table, carved passed every numeric criterion (drift 0.79 / 0.38 cm, tilt 3.0 / 2.2 deg, signed sink -4.8 mm); default failed tilt (16-18 deg).",
+  "replacement": "board-slot round 3, PREREG F-I4.17: low-piece rectilinear body (<= ~7 boxes per board) + contact-budget gate under sim=rl"
+}
