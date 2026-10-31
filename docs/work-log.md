@@ -5868,3 +5868,14 @@ Background agent, CPU only, $0, no ground truth read.
   Rule: ADOPT iff mean Δ over the 4 ≥ +0.03 AND ≥ 3 of 4 Δ > 0 AND no Δ(ep) ≤ −0.05; missing cells → INCOMPLETE.
   ≈ $18–20 [E], 2 boxes, ~7 h. If ADOPT, the eval masses retrain (~$16–26) needs its own owner go-ahead.
 - Proposed to focused-pascal to run it in its lane with its job and verdict tool; I review the PREREG first.
+
+### 2026-10-31 15:30 UTC — determined-wright: pack 10 coordination
+- "New score status" session (session_01D9UJC7rdn1DZrNM1rKyE7b) relayed the owner's ask (~15:10 and 15:25 UTC): put every
+  planned improvement into one pack. Pack 10 = one combined eval retrain from ≈ 1 Nov 18:00 UTC, built by
+  focused-pascal; it lands ≈ 2 Nov evening. Context: organiser PR nvidia-isaac/video_to_data#215 makes results
+  provisional until a reproduce container re-rolls every policy, so draw stability now counts toward the final standing.
+- Answered (copied to focused-pascal):
+  - Recipe-screen verdict ~22:30 UTC tonight [E].
+  - Exact K/D settings for a retrain, as in §8 and `tools/recipe_screen.py`; both are independent of the masses assets.
+  - Caveats [H]: transfer from public scans to library_v3; K+D together untested.
+  - Nothing else from physics is ready: G3 harm on ep2; loop no evidence; fit v2 on hold.
