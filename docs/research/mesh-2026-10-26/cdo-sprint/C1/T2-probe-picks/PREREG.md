@@ -88,7 +88,7 @@ and translation matter; "distinct" starts are those whose cup-axis tilt differs 
 | 2 | water_pitcher | `water_pitcher_k174_s42_lib.glb` | `ba38d40931c5fcdba0535101deeabf70672588375b2ede50b9da5b697a71a253` | `c3a24a14838e92bd` |
 | 3 | beige_cup | `beige_cup_k6_s42_lib.glb` | `8c6e063d7cf331246b3a4d813c7fc0bb192869d083b77f8d490f3eba52871fbf` | `ff6a0c1efed4c9b3` |
 
-The placed GLBs (4.3-7.2 MB) stay in scratch; they are rebuilt bit-for-bit by `place.py` from the frozen probe output
+The placed GLBs (4.3-7.2 MB) stay in scratch; they are rebuilt bit-for-bit by `place.py` from the frozen probe output (verified for the dust pan: same sha256)
 (HF store run folder `mesh-20261029-gen-f3fbeb0`). If one is adopted, it is copied to the HF store and git (< 10 MB).
 
 **Command** (refuses to run if the output already holds the mesh's sha):
