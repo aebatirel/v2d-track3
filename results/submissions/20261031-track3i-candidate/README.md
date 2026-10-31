@@ -7,6 +7,18 @@ the 29 Oct stage-1b audit); owner accepted for pack 9a on 31 Oct. GT-free rebuil
 detector, or no balls) are planned for pack 10. Measured in the shipped files: pot balls 7.00/7.00/7.00/6.94 mm, lid
 7.00 mm, rack 7.00 and 5.22 mm. Also disclosed: 2.5 mm lid and rack walls (scan-informed, accepted earlier).
 
+**Optional 9a+ (staged 31 Oct ~17:30 UTC, CPU; NOT UPLOADED; only on the owner's own word in focused-pascal's chat).**
+9a + the mesh session's C1 meshes (bold-albattani 3e12ad1/fe3ef45; byte copies in `meshes/c1_pack9aplus/`; same provenance
+tier as C0, no MK_R0 balls):
+- `build_9aplus_e10/` (**signed-off variant**): beige_cup T1 on **eval 10 only** + mini_dust_pan T2 on evals 19, 38;
+  sha256 `6743f01d0fdc5c5019289f11a04808130758b159aed7fe8a98f57590b3976ee4`, commit URL e82b0c6 (holds the C1 files and the
+  `--only-episodes` tool option); differs from 9a in 3 mesh payloads + the commit URL; offline validation pass; 0 warnings.
+  Mesh session: dust pan YES (ICP 1.34°/0.25 mm vs library_v3; guard ep18/39/40 mean dAUC +0.012); beige eval 10 YES
+  (ep11 guard +0.008; beige per-object AUC 0.933 → 0.949; the 13° ICP is mostly spin about the kit-declared symmetry axis
+  and library_v3's broken two-piece beige); **beige eval 8 NOT verified** (no public twin tracked with v3x; ICP to v3x
+  11.9°/8.5 mm) → left out. [E] CD-O 0.346 (9a: 0.367).
+- `build_9aplus/` (both beige pairs + dust pan; sha256 e02736ea…, commit URL d7ecaef): NOT signed off for eval 8.
+
 **NOT UPLOADED YET.** Owner: "I want a pack today" (31 Oct ~15:40 UTC, via the score-status session); planned upload
 ~20:00–20:30 UTC to all six boards unless the owner stops it. Fallback: pot + rack only (`build_2obj/`), or pack 8.
 
