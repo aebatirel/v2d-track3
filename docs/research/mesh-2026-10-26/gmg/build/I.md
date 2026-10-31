@@ -1274,3 +1274,6 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   review table, gate, search, eval precheck, constants, predictions, run order, limits) + header and section-0
   pointers. No code edited, nothing run, no rental, $0. Committing PREREG.md, INTERLOCK.md and this log (only my lines
   are in their diffs).
+- 22:47 pushed 217aa1f (PREREG F-I5.16, INTERLOCK 21.14 + pointers, this log; committed 22:46:38 UTC). Design 2 step
+  done: no code edited, nothing run, $0. The Build step may start from 217aa1f (F-I5.15 at f00e657 / 22c88fd plus
+  F-I5.16).
