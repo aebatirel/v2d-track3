@@ -5898,3 +5898,18 @@ diagnostic; nothing is picked for submission.
   mesh-20261031-e0b-c8f1c33 (E0b markers, A40, $0.601/h).
 - Verifier note for the C0b/E0b owners: every lathe_obs splat is inside out (negative signed volume), including the
   C0 blue cup and the C1/C0b beige cups; CD-O/AUC do not depend on face orientation, simulator/COM use would.
+
+### 2026-10-31 22:35 UTC — orchestrator: P1 on the ep24 slot fails; contact-budget overflow under sim=rl; both rounds amended
+- determined-wright P1 (their `docs/research/physics-2026-10-30/p1_ep24/`, 3c7fd32): FAIL for carved and default at their
+  reference (cross held 27-36 mm above the table, their pose). Lowered to 1 mm (diagnostic): carved passes (drift 0.79 /
+  0.38 cm, tilt 3.0 / 2.2 deg), default fails tilt 16-18 deg. **Under sim=rl (nconmax 256, njmax 512 per world) the
+  carved 57 / 77-prism scene overflows in 16/16 copies** (500-670 contacts, ~2030 rows; boards fall through the table);
+  default 416-425 rows.
+- Round-2 ep24 r0 marked DO_NOT_USE (26b8c6b).
+- Board-slot round 3 stopped (~22:16), orphaned heavy runs pid 1997 / 2001 killed (logged in I.md), script amended with
+  orchestrator decision 2 -> PREREG F-I4.17 (low-piece rectilinear body <= 3 rectangles minus the slot, ~7 boxes per board;
+  contact-budget gate under sim=rl: no overflow and nefc <= 2 x a one-box-per-board control; freeze = w10 under the new
+  body + ep24 regression with physics and the gate), resumed as task wnjf2a087.
+- Collision-carve round 2 stopped (~22:17) and amended -> PREREG F-I5.16 (same contact gate, bound 1.5 x the packed default
+  pieces; ring layout = smallest cavity-safe layout that keeps a wall floor; eval precheck also reports the packed
+  pieces' ncon / nefc under sim=rl), resumed as task w6yrvudqw.
