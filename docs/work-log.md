@@ -5892,3 +5892,5 @@ score.
   Also: the owner approved arm V (actor sees object velocity, ≈ $7–9) in determined-wright's chat. Credit $69.22
   at 21:14 UTC. No carves or eval-25 slot were delivered tonight, so pack-10 Tier 1 may shrink. keen-heisenberg writes
   a morning summary at ~05:00 UTC; this chat's items were sent to it.
+- ~21:21 UTC keen-heisenberg is the single uploader for pack 9b (the owner's "Upload automatically" was given in its
+  chat; focused-pascal's guard blocks relayed approvals). This session does not upload 9b unless keen-heisenberg asks.
