@@ -5062,3 +5062,18 @@ diagnostic; nothing is picked for submission.
   track), cross-checked; physics along the track for every candidate (partner interpenetration, table, rest);
   simulator copy as convex pieces CoACD cannot refill; a simulator interlock test on ep24; per-frame placement
   consistency. Design (INTERLOCK.md + PREREG F amendment) -> adversarial review -> build in new files -> verify.
+
+## 2026-10-31 ~08:55 UTC: owner: let the Embodiment session's frame-by-frame physics fix carve meshes on entry
+- Owner: "can the embodiment sesh when they are doing frame by frame physical fixes also make minor mesh fixes where if
+  the two pieces need to interlock it can carve into the next one when it enters it, or when the cups are stacked they
+  carve themselves into another".
+- Embodiment session = `determined-wright` (session_01D9UJC7..., `pipeline/phys_fit.py`: per-frame pose corrections in a
+  1 cm / 3 deg prior so the trajectory is explainable by contact forces; only table penetration penalised).
+- Stopped `wf_c5733176-d0b` (design agent ~10 min in, nothing committed) and relaunched it as `wf_c7bae0ea-5c5`
+  (gmg-interlock-slot-v2) with the contract added: their fit exports per-frame intrusions in the target's own frame;
+  one shared gmg carve rule decides CARVE (persistent at the same place in the target frame, not observed-solid in our
+  depth, within a depth/volume budget) vs PUSH (pose/track error, e.g. ep11 cup below its observed bottom); carves go
+  to the simulator copy as convex pieces CoACD cannot refill, to the submitted mesh only if the slot cross-check agrees;
+  carve -> re-fit loop with a fixed round count.
+- Sent the Embodiment session a heads-up with this proposal and asked whether per-frame intrusion export is feasible and
+  which sim-copy format they want; the exact interface follows once INTERLOCK.md is reviewed.
