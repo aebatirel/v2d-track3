@@ -1,0 +1,27 @@
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/det_f0.npz --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/log.txt --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/masks_f0.jpg --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/poses.npz --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/poses_world_vo.npz --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/result.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/perc2/ep1/vo.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/contact_retarget.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/contact_retarget_log.txt --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/e2s_raw/sequence_id=t3_ep001/robot_name=sharpa_wave/9a1dc040827d4383a8d1c50b9897ddb1-0.parquet --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/e2s_reference.parquet --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hand_refine_log.txt --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands.npz --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands_log.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands_log.txt --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands_overlay.jpg --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands_refined.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/hands_refined.npz --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/loaded/sequence_id=t3_ep001/robot_name=sharpa_wave/ef935d731d754749b02e270da1ffc326-0.parquet --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/mkref_log.txt --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/qa_ref.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/reconstructed_stage/t3_ep001_support.usda --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/ref_summary.json --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261024-pack-31ef267/refs/perc2mck/ep1/table_frame.npz --repo-type dataset --local-dir MS/box/content/hfstore
+hf download mock/store runs/20261030-c01s43-328139c/runs/perc2mcks/ep1-s43/policy_250003456.safetensors --repo-type dataset --local-dir MS/box/content/hfstore
+hf upload mock/store MS/box/content/push/20261101-mevS1s42-mocksha runs/20261101-mevS1s42-mocksha --repo-type dataset --commit-message run 20261101-mevS1s42-mocksha: T

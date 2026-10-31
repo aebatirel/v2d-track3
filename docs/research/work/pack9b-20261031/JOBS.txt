@@ -70,6 +70,8 @@ exact job string, box id, run id, commit, per episode status, n / mean / sd / mi
 ledger `actual` line (LEDGER_SESSION=focused-pascal python3 ops/ledger.py add actual <run id> <usd> "<note>").
 
 ---------------- C: official confirmation (after ALL training boxes are read; PREREG section 3) ----------------
+Packed side ready [M, 22:38 UTC]: runs/20261031-h5p7-1a7cdff/results/h5/h5_summary.json has n 10 for 14 16 25 30 33
+(only n and one rollout's sha were read, not the means).
 Built on CPU from the five summaries (one single-file download per box):
   python3 -I tools/dr_eval_merge.py --table docs/research/work/masses-eval-20261031/packed_refs.json --out <dir>/c_merge.json \
     <dir>/runs/$D-drG-$S7/results/dr_eval/summary.json <dir>/runs/$D-drS25s42-$S7/results/dr_eval/summary.json \

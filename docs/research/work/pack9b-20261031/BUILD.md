@@ -192,9 +192,10 @@ read. Markers: [M] measured, [E] estimate, [H] hypothesis.
 4. **The confirmation waits for all five training boxes.** The grasp-lock box is the long one (~3.5–5.5 h [E]); the
    standard boxes take ~2.0–2.3 h. A dead or INCOMPLETE box delays C, or C can be built without that episode: the
    merge drops it, and the remaining candidates can be confirmed first.
-5. **H5p7 must hold 10 scored draws per episode with rollouts.** The packed side is `20261031-h5p7-1a7cdff` (r1..r10).
-   Check it before C: one single-file download of its `results/h5/h5_summary.json` (n per episode). Below 10, the
-   PREREG's packed top-up applies.
+5. **H5p7, the packed side, is complete for these episodes** [M, 22:38 UTC, two single-file downloads]. Its
+   `results/h5/h5_summary.json` has n = 10 for each of 14, 16, 25, 30 and 33. `r10/ep33/episode_000033.json` names
+   rcB's sha256 df90b216…, the table's packed checkpoint. Only the n values and that sha were read, not the means. The
+   rollout parquets are fetched at verdict time; the verdict reads INCOMPLETE if fewer than 10 score.
 6. **Store listings remain only on C:** 47 = pack 6's base 36 + RUNS_EXTRA 5 + PICK_EXTRA 6 [M, mock hf log], as the
    masses C1 / H5p7 boxes ran them. The training boxes list nothing.
 7. **Mock limits.** Physics and scores are stubbed. The stand-in reset.py carries only the patch's anchors, so the
