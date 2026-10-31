@@ -773,3 +773,13 @@ scan number was seen; none bears on these choices.
     `v3_no_shell_reference`. (iii) V1 computed on the in-memory mesh (no packer v1 supplied) flags the row
     `v1_in_memory` (A.3 V1 is defined on the shipped, packed mesh; B10 passes the packer's v1). Code contracts only;
     no pre-registered test, threshold or constant changes. No scan or eval number seen.
+111. **(2026-10-31, B3) How the G0 report computes K-a / K-b (PREREG B.12 with the B.9 definitions)**, fixed before
+    the box ran (`tools/g0_report.py` at 937f9d7, dry-run on a fake box output whose "generated" mesh was the SHELL
+    itself): placement = the box's camA_T_mesh (SAM 3D layout, library compose_transform) times inv(camA_T_obj[k])
+    only; remesh M10 then `pack.pack`; fsv_far and V2 from `score.py` on the clean ep2 bundle read by a dev process;
+    the reference SHELL is `producers/shell.py` on the same bundle at the dev t0 (5.36 mm, `dev_constants.json`,
+    because the frozen t0 of B13 does not exist yet); a run passes if fsv_far(c) - fsv_far(SHELL) <= 0.05 and V2 does
+    not veto against the partner; K-a / K-b pass if at least half of the target's primary runs pass. Reported only:
+    PCA extents of the placed mesh against the owned points' extents, on all owned points and on their largest 8 mm
+    component (about 5 % of the clean ep2 lid's owned points lie 200-330 mm from its median [M], which inflates the
+    all-points extent; seen in the dry run), share outside the grid, `physcheck.placement` (F-I1.9), montage.
