@@ -647,6 +647,15 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   frames). Running (diagnostic, never delivered): `<scratch>/fi5/diag/d2_topo.py` = the x1-D2 carve rebuilt with
   physics off, thinnest remaining wall on radial rays (0.1 mm steps, 1 mm x 1 deg) and topology on 2 mm and 1 mm grids,
   to tell a real hole from 2 mm aliasing of a wall thinned to about 2 mm.
+- 18:54 [M] **D2 Q4 (x2b-D2, 5 mm off-axis, the eval-10 case; `d2a.log`, 18:50-18:54): holds (topology fails).**
+  Removed 30.6 cm3 = 30 %, reach 0.80, topology 1 / 1 -> 1 / -11; c = 1.0 mm. Diagnostic S rows (never delivered):
+  **default rings push the guest 4.96 / 4.91 mm sideways back towards the axis (displacement 5.02 / 4.94 mm, fail)**;
+  the failed carve holds it at 2.57 / 2.80 mm (drop 1.64 / 1.91 mm, lateral 1.97 / 2.04 mm, tilt 3.28 / 3.41 deg),
+  which would pass S. So on a 5 mm one-sided pose error the uncarved rings move the guest by about the error itself.
+- 18:55 [M] **D2 Q3 (x2-D2, 3 mm offset; `d2b.log`, 18:50-18:54): holds (topology fails: 1 / 1 -> 5 / -10).** Removed
+  28.8 cm3 = 29 %, reach 0.80. S rows (diagnostic): default rings push the guest 2.97 / 2.92 mm sideways (displacement
+  3.03 / 2.95 mm, passes S's 4 mm); the failed carve 2.25 / 2.55 mm (drop 2.16 / 2.44 mm, tilt 2.9 / 3.2 deg). Q2
+  (x5-D2) FALSIFIED as written, same numbers as Q1. Waiting: x2c (Q5), sweeper (Q6), the x1-D2 topology diagnostic.
 
 ## Board slot round 2 (outline body, PREREG F-I4.15) (agent of the board-slot round-2 workflow, Amend step, started 31 Oct 18:00 UTC)
 - 18:00 read I.md "Board slot (owner waiver)" (all) and the orchestrator notes, INTERLOCK 20-20.9 and 21.1-21.2, PREREG
