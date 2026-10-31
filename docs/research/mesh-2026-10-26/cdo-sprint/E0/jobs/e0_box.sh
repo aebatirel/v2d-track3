@@ -31,6 +31,7 @@ fi
 ROOT=${E0_ROOT:-/content}; W=$ROOT/e0w; R=$ROOT/results/e0; IN=$W/inputs; DEPTH=$W/depth
 NPROC=${E0_NPROC:-$(nproc)}; STRIDE=${E0_STRIDE:-2}
 PY=${E0_PY:-$W/venv/bin/python}; MPPY=${E0_MPPY:-$W/mpvenv/bin/python}
+CODE=$JOBD/frozen   # obs_points, prim_potlid, prim_rack, lathe_obs, obs_fidelity, recon_mesh, hands_mp as of 2971a10
 export OMP_NUM_THREADS=${OMP_NUM_THREADS:-2} OPENBLAS_NUM_THREADS=${OPENBLAS_NUM_THREADS:-2} MKL_NUM_THREADS=${MKL_NUM_THREADS:-2}
 export HF_HUB_DISABLE_PROGRESS_BARS=1 HF_XET_CHUNK_CACHE_SIZE_BYTES=0 PYTHONDONTWRITEBYTECODE=1
 mkdir -p $W $R/{logs/{hands,obs,build,fid,check},status,hands,obs,axis,commands} $R/cand/{white_pot,white_pot_lid,blue_cup,rack} \
@@ -68,6 +69,8 @@ finish() {
   exit $1
 }
 progress & PROG=$!
+(cd $CODE && sha1sum -c --quiet SHA1SUMS) && log "frozen public code: $(wc -l < $CODE/SHA1SUMS) files sha1 OK (prim_potlid c2627630 = results/prim/clean/code_state.txt)" \
+  || fail "frozen code sha1 mismatch"
 
 # 0. environment
 if [ "${E0_SETUP:-1}" = 1 ]; then
@@ -85,7 +88,7 @@ label "E0 inputs"
 log "inputs: $(grep -c . $IN/SHA256SUMS) files sha256 OK; depth $(tail -1 $R/logs/fetch.log)"
 cp $IN/plan.json $IN/SHA256SUMS $R/ && mv $R/SHA256SUMS $R/inputs_SHA256SUMS
 cat > $R/env.json << JSON
-{"PY": "$PY", "MPPY": "$MPPY", "REPO": "$REPO_DIR", "R": "$R", "IN": "$IN", "DEPTH": "$DEPTH", "KIT": "$IN/kit",
+{"PY": "$PY", "MPPY": "$MPPY", "REPO": "$REPO_DIR", "CODE": "$CODE", "R": "$R", "IN": "$IN", "DEPTH": "$DEPTH", "KIT": "$IN/kit",
  "STRIDE": "$STRIDE", "EPS": "${E0_EPS:-}"}
 JSON
 T() { "$PY" -I $JOBD/e0_tasks.py $1 --plan $IN/plan.json --env $R/env.json > $R/commands/$1.txt || fail "task list $1"; }

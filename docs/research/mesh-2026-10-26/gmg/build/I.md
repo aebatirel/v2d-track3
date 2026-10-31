@@ -356,3 +356,8 @@ Implications for BI2 / T-I6 / simpieces (for the build agent to weigh):
   - Cups, pot and lid are unchanged: the ev10w result says cup intrusions are track errors.
 - The interlock workflow `wf_c7bae0ea-5c5` was stopped during its round-1 test re-run (work committed at 58adcd0). A
   focused board-slot workflow continues from here.
+
+## Board slot (owner waiver) (agent of the board-slot workflow, Amend step, started 31 Oct 16:03 UTC)
+- 16:03 read I.md (all), INTERLOCK 0-3, 6, 11, 14, 18, 19, PREREG F-I1..F-I3, interlock.py (to decide_pair). Task:
+  write PREREG F-I4 + INTERLOCK section 20 (waiver scope, slot geometry from GT-free evidence, plate body, analytic
+  pieces, acceptance, delivery), commit + push BEFORE any code runs with it. No run in this step.

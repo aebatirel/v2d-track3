@@ -4,7 +4,8 @@ round's lid and rack commands, lathe_obs.py defaults = the 'g1' lathe; PREREG.md
 Each line: cd to the run folder, run, log to logs/<stage>/<label>.log, append 'OK|FAIL <label> <sec>s' to status/<stage>.txt.
 Usage: e0_tasks.py STAGE --plan plan.json --env env.json > tasks.txt     STAGE in hands, obs, merge, build, fid, check
        e0_tasks.py candidates --plan plan.json --env env.json              (json list of built candidates + references)
-env.json: {"PY", "MPPY", "REPO", "R" (results), "IN" (inputs), "DEPTH", "KIT", "STRIDE"}
+env.json: {"PY", "MPPY", "REPO", "CODE" (jobs/frozen: the public scripts as of commit 2971a10), "R" (results),
+          "IN" (inputs), "DEPTH", "KIT", "STRIDE", "EPS"}
 """
 import glob, json, os, shlex, sys
 
@@ -39,7 +40,7 @@ def main():
     a = dict(zip(sys.argv[2::2], sys.argv[3::2]))
     plan = json.load(open(a['--plan'])); env = json.load(open(a['--env']))
     REPO, R, IN, DEPTH = env['REPO'], env['R'], env['IN'], env['DEPTH']
-    S = f'{REPO}/docs/research/mesh-2026-10-26/scripts'; JOB = f'{REPO}/docs/research/mesh-2026-10-26/cdo-sprint/E0/jobs'
+    S = f'{env["CODE"]}/docs/research/mesh-2026-10-26/scripts'; JOB = f'{REPO}/docs/research/mesh-2026-10-26/cdo-sprint/E0/jobs'
     LIB = f'{REPO}/meshes/library_v3'
     by_obj = plan['episodes_by_object']
     only = set(int(e) for e in env.get('EPS', '').split()) if env.get('EPS') else None
@@ -49,7 +50,7 @@ def main():
     if stage == 'hands':
         # pipeline_ep.sh step 2 (how the public G1 refs hands.npz were made): hands_mp.py on the cam_a video, eval split
         for e in eps:
-            cmd = ' '.join([q(env['MPPY']), '-I', q(f'{REPO}/pipeline/hands_mp.py'), '--ep', str(e), '--split', 'eval',
+            cmd = ' '.join([q(env['MPPY']), '-I', q(f'{env["CODE"]}/pipeline/hands_mp.py'), '--ep', str(e), '--split', 'eval',
                             '--t3', q(IN), '--depth', q(f'{DEPTH}/ep{e}/depths_fs0.5.npy'),
                             '--poses', q(f'{IN}/eval/ep{e}/poses.npz'), '--video_a', q(f'{IN}/eval/ep{e}_a.mp4'),
                             '--out', q(f'{R}/hands/ep{e}')])
