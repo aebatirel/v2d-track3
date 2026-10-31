@@ -5675,3 +5675,11 @@ Background agent, CPU only, $0, no ground truth read.
   action noise; no config field, as the evaluator rebuilds from the config) cuts draw spread ≥ 40 % with mean ≥ −0.02.
   Proposed test: 3 arms × ep2/ep18 × 2 seeds, ~$9–11 est.; not built or run, awaiting the owner (budget clash with the
   eval retrain noted).
+- 11:05 UTC 31 Oct: combined budget to the freeze (owner asked; replies from focused-pascal, bold-albattani,
+  keen-heisenberg at ~10:45). Leaderboard lane $34–49 (mass check rest, eval-10 fix ≈ +0.022 board [E], masses retrain
+  O2, spoon wave); mesh lane $15–28; my lane: recipe screen $38–45 + confirm ~$20 + second eval retrain $10–15 (run by
+  the pack session); buffer $15–20. Full $132–177 (top-up $105–150), lean $87–121 (top-up $60–90); credit $29.16.
+  Board math (keen-heisenberg): a +0.03 recipe lift ≈ +0.006 board, so the screen is insurance (readouts: 10-draw sd and
+  worst draw). Dropped mass/friction DR (the scored rollout uses our own assets: no dynamics gap). Sequencing agreed with
+  the pack session: masses retrain first with the current recipe, winner into a second smaller retrain. Board page v2
+  (copies in docs/research/physics-2026-10-30/pages/).
