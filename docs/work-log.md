@@ -6502,3 +6502,7 @@ Background agent, CPU only, $0, no ground truth read.
   - Single nominal trajectories looked very different mid-solve (f52: GRASP 4.3 cm vs anneal 18.7 cm off): a reminder
     that only the jittered means are the measure.
   - Remaining (pre-registered, running): O2 anneal (started 15:38), O2 grasp, then test A (P, O × 2).
+- 16:52 UTC: ep13 arm 3/8 done [M]: **O2 anneal** (two-hand oracle input, our solver): jittered mean **0.6507 ± 0.092**
+  (14 / 16 copies 0.65–0.70; two at 0.40–0.41), nominal 0.6957; its input O2 0.6041 ± 0.093; floor 0.5727. Replay vs
+  truth bit-identical (190 frames). Nominal trajectory: cup within ~2 cm through the hand-over (f76: 1.6 cm), lost at the
+  placement (~31 cm off by f108). Arm 4 (O2 grasp) started 16:52.
