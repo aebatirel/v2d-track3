@@ -10781,3 +10781,6 @@ score.
   Relaunched below with the same job strings.
 - 21:05 UTC 1 Nov **batch 2 relaunched** (code f38b324, same job strings): 20261101-pfC-f38b324 (58712560, Michigan $1.34/h),
   20261101-pfD-f38b324 (58712562, Spain WS $1.38/h; the Texas host of the CLONE-FAIL avoided).
+- 21:06 UTC 1 Nov GRASP: repair (b) hold_filter public gate **FAIL** (pre-registered; ff2d078): M1 ref-vs-mocap ΔAUC
+  mean +0.0017 (holds), M2 zero-action symmetric sim_vs_ref mean −0.018 (needs ≥ +0.02). Not used anywhere; guard_bridge
+  stays for 14 / 32 / 33. GRASP lane done for tonight.
