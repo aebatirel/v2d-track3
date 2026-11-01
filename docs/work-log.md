@@ -5663,3 +5663,19 @@ Advice given:
   one script (single-file downloads of C's 50 rollouts + json + dr_pack_check ×2 + h5_summary; dr_score per episode
   with sets conf / packed (H5p7) / old vs P; dr_verdict with the scratch c_merge.json). Dry run of the scorer on the
   packed side of eval 14 (10 H5p7 draws + the old draw): runs in 30 s; output not used for anything.
+- 04:15 UTC njmax build delivered (subagent, worktree branch worktree-agent-ac592c6308cf07a10 head b7202b0; PREREG first in
+  086de63, sha256 33add65e…): ops/jobs/ev10_nj.sh (wrapper; ev10_v4p.sh byte-identical), tools/e10nj.py,
+  tools/e10nj_solver_check.py, opt-in EVAL_NJ_DIAG in glock_public.sh (one added alternative in the eval PERC guard),
+  no_oracle.py refuses e10nj / ev10_nj names and any checkpoint whose stored sim limits are not 512 / 256,
+  pack_swap_rollouts.py also passes each swap's reference_parquet to no_oracle. CPU: cksim 9/9, solver at the pin
+  512/256 vs 1024/512 vs copy 512/256, guard 15/15 (pack 7's 20 checkpoints still accepted), glock_public equivalence
+  5,184 cases 0 differences, mocks 181/181. I reviewed the glock_public / no_oracle / pack_swap_rollouts diffs, merged
+  (451b82d) and re-ran the 9a+ byte-for-byte repack self-test on the merged code: still e02736ea….
+  **Correction [M, subagent from e10v's curve.json]**: the "blue_cup: lift 0" label tracks the blue cup, which rests on
+  the table; the reference lifts the BEIGE cup 23.5 cm into it. Beige r1 lift was 0.0–0.3 cm at 13 of 14 e10v checkpoints,
+  2.5 cm once (a knock, s42 60M). So "the cup is never lifted" stands, but it is the beige cup. PREREG L = beige r1 lift
+  ≥ 5.0 cm at ≥ 1 checkpoint (my call on the owner's "lift > 0": the literal blue-cup clause is degenerate).
+- 04:17 UTC **njmax diagnostic launched**: `ops/vast.sh V2D_COMMIT=451b82d… ENV_SNAPSHOT=pt2.11-cu130-py313-20261020 create
+  58237198 20261101-e10nj-451b82d 'bash ops/jobs/ev10_nj.sh'` → instance 58615195 (India, $1.392/h, 38 cpu / 998 GB);
+  ledger planned $3.50 (PREREG $1.8 / $3.0 / $5.8; the high case assumes 35 % slower training at 1024, unmeasured).
+  Credit $31.95 before launch.

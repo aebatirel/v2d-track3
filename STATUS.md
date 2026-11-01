@@ -10,9 +10,20 @@ Also read `docs/context-and-decisions.md` for the owner's goals, preferences and
 - CPU: oracle references score 0.969 / 1.000 / 0.969 vs mocap; P 0.896 / 0.896 / 0.793. Mocks of all job strings pass.
 - Cost B ≈ $5.2–8.0 (central $6.3). Pack guard `tools/no_oracle.py` keeps oracle runs out of every eval pack.
 
+## 2026-11-01 ~04:20 UTC: D confirmation running; eval-10 njmax-1024 diagnostic launched (never packed)
+- D arm: all five training boxes VERIFIED ($17.24); merge chose 14 s43, 16 s43, 25 s42, 30 s42, 33 s42; confirmation box
+  `20261101-drC-a1a7e25` (58608674) on draw 3 of 10 at 04:16; then after_c.sh → verdict → pack 9b record (~05:00–05:30).
+- Eval 10: training overflows the 512 constraint rows ~6 M times per run (packed run 8.37 M; ep11 gate ~100); scoring
+  never overflows. Owner's go (relayed): one diagnostic at njmax 1024, DIAGNOSTIC ONLY (changed evaluation physics; guard
+  in tools/no_oracle.py). Box `20261101-e10nj-451b82d` (58615195, India $1.392/h), PREREG eval10-njmax-20261101 (086de63).
+- Owner (relayed, 02:50): "I give you permission for everything" — score-serving GPU batches go ahead with plan + cost +
+  PREREG first; uploads stay with the session where the owner gave the word. Carve round 2: no new pieces; overlaps at
+  evals 10/1/14/30 are reference-pose problems. Credit $31.95 at 04:16.
+
 ## 2026-10-31 ~23:35 UTC: eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED; D arm running (5 boxes)
 - **Eval-10 V4p retrain** (`20261031-e10v-caf38fb`, VERIFIED, 10/10 confirmation draws rc 0): **NO-SWAP**, equal floor.
-  Neither seed ever lifts the blue cup (curve "lift 0" at every checkpoint, both seeds). The new policy scores 0.459 vs the
+  The moved (beige) cup is never lifted: curve.json beige r1 lift 0.0–0.3 cm at 13 of 14 checkpoints, 2.5 cm once (a knock);
+  the job log's "blue_cup: lift 0" label tracks the blue cup, which stays on the table by design (correction 1 Nov, 04:20). The new policy scores 0.459 vs the
   packed 0.463 on V and 0.449 vs 0.453 on P. Failure rate is 10/10 on both, RPE ~15.9 cm. The ep11 gate's transfer
   (+0.142 on the public twin) did not carry to eval 10. Eval 10 stays as packed. Cost $3.25.
 - **Masses v2** (boxes mv2a2 + mv2b, both VERIFIED, no eval timeouts): **NOT ADOPTED**. Mean delta +0.0034 (bar +0.03);
