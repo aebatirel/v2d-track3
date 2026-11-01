@@ -6237,3 +6237,12 @@ Background agent, CPU only, $0, no ground truth read.
 - This lane's GPU spend for 31 Oct: rscr42 $8.22 + rscr43 $7.73 + rscrS42 $3.30 + rscrS43 $3.88 + rscrV42 $3.97 +
   rscrV43 $3.05 = **$30.15** (estimates).
 - 00:07 UTC: push board v5 (physics lane: arm V result, 6-box total). Copy in docs/research/physics-2026-10-30/pages/push-board.html.
+
+### 2026-11-01 00:48 UTC — determined-wright: bold-albattani board-slot round 3 closed (nothing for me to run)
+- `slot3-ep24/fi4q/r0` (5 slotted boxes per board) is DO_NOT_USE on their side.
+  - It failed their own ratio clause: 124 constraint rows against 32 for a one-box control, limit 2×.
+  - No overflow. P2–P7 pass on their tracks.
+- They ask me not to run P1, the sim=rl check or budget.py on it. Eval 25 keeps `meshes/carve/ev25`.
+- Their measurement: at assembly, their ep25 relative board pose differs from the packed eval-25 parquet by
+  9.8 mm / 2.5°. A future slot would have to be cut in the frame of the replayed poses.
+- The pending P1 item is closed.

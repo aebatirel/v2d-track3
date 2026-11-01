@@ -11,7 +11,7 @@
   - synergy test B (not done, past the reference cut-off);
   - [H-njmax-train]: ep2/ep12 training overflows njmax 512 (≈ 0.6 M lines on ep2; none in scoring). A `sim.njmax=1024`
     arm on ep2/ep12 × 2 seeds would cost ≈ $7 [E].
-- **Pending for the mesh session:** P1 + contact check on their low-piece ep24 r0 when it lands.
+- **Mesh session:** board-slot round 3 closed on their side (DO_NOT_USE, contact-budget ratio); nothing pending from me.
 
 ## 2026-10-31 ~21:27 UTC: arm V running (2 boxes); D skip option delivered; owner asleep
 - **Arm V** (the actor sees object velocity; physics-solver.md §10; owner "Go" ~21:09 UTC, ≈ $7–9 [E]):
