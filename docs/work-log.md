@@ -6136,3 +6136,21 @@ arm and a no-policy replay floor to stage B.
   - Instances: 58625218 e10cs (s43 training, $1.389/h) and 58631864 e20b1 (setup, $1.408/h).
   - Credit $26.82.
   - The 10:30 check (trig_01Ltr9dX9Kt5Lx9WbYiiSasC) covers both results.
+- 08:21 UTC 1 Nov focused-pascal: **"pack 10 ready"**: results/submissions/20261101-track3k-candidate/build_10
+  (0e2d245f).
+  - Content: 9a+ with eval 10's ev10cs5 stock-limit retrain, seed 43 (ca7c4e3a…), draw 1 of run 20261101-e10cs-50c2d90.
+  - Verdict (PREREG 13c4133, committed 05:40, before launch): SWAP-ELIGIBLE [EQUAL FLOOR], INCLUDE.
+    - vs V: 0.5322 vs 0.4632 (+0.069); vs P: 0.5116 vs 0.4525 (+0.059); n 10 / 10.
+    - Every clause holds on both references. Both policies fail 10 / 10 at the 5 cm bar.
+    - Draw 1 vs the replaced 9a+ rollout: 0.512 vs 0.472 (V). The beige cup moves 10.4 cm (packed 0.7).
+  - [E] ≈ +0.002 AUC. Retrain cost $2.85; credit ≈ $24.
+- 08:25–08:35 UTC verification by this session [M], all pass:
+  - sha256 e1bef1e5…; 9,120 rows;
+  - byte diff vs 9a+ (e02736ea): only e000010's 322 pose rows + checkpoint (76a12265 → ca7c4e3a), plus
+    code_commit_url a187a8c on every row; object_mesh_b64 identical;
+  - kit hashes match; code commit a187a8c on origin;
+  - cells.json shows sim.njmax 512; confirmation draws had 0 overflow lines;
+  - seed choice per rule (s43 0.5096 > s42 0.4768);
+  - dry run valid (19 uploads left per board); CD-O equals the staged file.
+  - **The upload call was blocked by the session's auto-mode permission classifier.** Not retried; the owner was asked
+    to confirm.
