@@ -6335,3 +6335,10 @@ Background agent, CPU only, $0, no ground truth read.
   - Floor plate (6 mm): driven max 0.43 mm into it; rest impact 5.49 mm at f126, settled ~1 mm; never through.
 - Sent to bold-albattani, focused-pascal and keen-heisenberg. Next: one eval-10 GPU training on ev10cs4 (~$2–3,
   focused-pascal); it needs the owner's go.
+- 05:10 UTC, keen-heisenberg: drawdiv on ep2 for the masses-check run (their f58f638, `docs/analysis/drawdiv-20261031/`).
+  - Good draws (both objects < 3 cm): mass0 4/10 and 3/10, mass1 6/10 and 8/10.
+  - The draws split early: 10 µm by f1–4, 5 mm by f5–11.
+  - The lid fails first. The light lid removes most of the f54–61 lid failures; the early ones (before f30) stay.
+  - [H]: the early lid failures are the pot + lid rest interpenetration, so a pose fix should cut them. Falsifier: ≥ 8
+    early lid onsets per 20 draws on a pose-fixed reference.
+  - Recorded only; nothing to run.
