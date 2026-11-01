@@ -5736,3 +5736,10 @@ Advice given:
   0.02 on the episode (new − packed on both V and P)**; disclose bold-albattani's failed "blue kept volume" gate (0.384;
   every cavity-safe set fails it) with the acceptance reason (drop / nest tests cover that risk); ~$3.5 [E]; reserve
   ≥ $10 (credit $29.93 at 05:06). "pack 10 ready: <path>" if it passes; keen-heisenberg verifies and uploads.
+- 05:11 UTC bold-albattani: ev10cs4 frozen by md5 (ev10-cavsafe/ev10cs4/FROZEN.md, fa2ec41; build 7e4bc6a) with known
+  trades [M]: blue kept volume 0.384 < 0.80 gate (fails; accepted on drop / nest); 6 mm cavity floor 3 mm above the
+  visual bottom (overlap at insertion f109 17.1 cm³ vs 9.5 with 3 mm); thin release margin (5.49 of 6 mm in FlashCHORD;
+  plain-MuJoCo drops cross in 2–8 of 16 copies); beige settles 1.3–24.4 mm deeper than the reference (plain MuJoCo) [H:
+  read as tracking error]; blue outer faces ≤ 3.9 mm outside its lathe, beige pieces 8 + ≤ 5.4 mm inside, blue COM
+  12.8 mm toward the base; pose floor unchanged (visual overlap 80.6 cm³ median f124–f160); v2–v4 designed after v1's
+  numbers, each version's gates committed before measuring. Passed to the build agent for the PREREG / provenance note.
