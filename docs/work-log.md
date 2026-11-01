@@ -6076,3 +6076,25 @@ arm and a no-policy replay floor to stage B.
   - Launch after determined-wright's clean 32×60 budget check AND a committed PREREG. ~$3–6 [E]. Runs in parallel
     with ev10cs5 above the $10 reserve.
   - ev10cs5 seed 42 training since 06:29. ep2 A/B skipped.
+- 06:53 UTC 1 Nov bold-albattani: **f0 settle survey** (a6923c5; CPU, $0, ground-truth-free, report-only).
+  - Method: all 20 packed eval references, plain-MuJoCo hands-free 2 s settle, 16 jittered copies.
+  - Ranked findings:
+    1. eval 20 pitcher 195 mm / 94.6°, falls 16 / 16 (CoM outside the footprint at f0; b1 fixes it);
+    2. eval 19 sweeper 90.2 mm / 88.8°, falls 16 / 16 (stands on its bristles; std-mode reference, so support_fill
+       never ran);
+    3. eval 20 blue cup 48.7 mm (held above the table at f0; expected);
+    4. eval 30 sweeper 23.9 mm / 25°, 13 / 16 fall (12.2 cm³ inside the rack pieces);
+    5. eval 10 beige 6.5 mm / 4° (a corner of the ev10 pieces below its support; ev10cs4 / 5 not yet settled at f0);
+    6. eval 1 lid 4.3 mm / 1.6° (across the ev01 carve's gap).
+    The other 30 objects stay ≤ 3.3 mm / 5.1°.
+  - Pots on evals 3 / 5 / 6 / 8 move 17.5–65 mm and spoons on 16 / 33 move ~24° / 24.5 mm in FlashCHORD zero-action
+    checks, but not hands-free. [H] The replayed hands touch them.
+  - Packed means for context (H5, Oct 29): eval 19 0.921 ± 0.034, eval 20 0.888 ± 0.043, eval 3 0.904 ± 0.072,
+    eval 16 0.813 ± 0.077.
+- 06:57 UTC actions (all CPU, $0):
+  - bold-albattani settles ev10cs5 at f0 / first H30 / f124 (report-only for the running retrain);
+  - eval-19 support_fill test cleared as a pre-registered CPU step (gate: < 5° tip in ≥ 15 / 16 copies, visual md5
+    unchanged; focused-pascal's tool). A GPU retrain only after ev10cs5 and eval 20 are funded, under the ≥ +0.02 rule;
+  - determined-wright runs a FlashCHORD zero-action replay with the hands parked away (falsifier: objects within
+    5 mm / 2°), after the eval-20 budget.py.
+  - Eval 30 sweeper-in-rack parked (no usable rack set).
