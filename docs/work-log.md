@@ -10099,3 +10099,627 @@ Background agent, CPU only, $0, no ground truth read.
 ### 2026-11-01 09:05 UTC — wrap-up (owner request via keen-heisenberg): nothing running, final report sent
 - All background agents finished; no processes running; working tree committed and pushed. STATUS top section written.
 - Final report sent to keen-heisenberg (finished items, open items, top 3 improvements, CD-O-only variant view).
+### 2026-10-31 ~15:00 UTC — standings check (owner asked; read-only, $0)
+- Kaggle API, all six Track 3 boards, 14:48–14:58 UTC. No new upload since pack 7 (AUC 0.81460, 30 Oct 06:28 UTC).
+- Our ranks [M]: AUC 8th (0.81460), SP-SR 7th (0.85, tied with DSAIL and Purple), MP-SR 8th (0.65), RPE 11th (3.932),
+  MPPE 10th (2.921), CD-O 18th of 20 (0.402; leaders 0.213 / 0.239 / 0.250).
+- Final rank = lowest sum of the six board ranks (FAQ; next-steps-2026-10-30/PLAN.md). Sum of ranks [M]:
+  richchentw 6, DDD 17, rlwrld 22, Zihao Guo 25, SRL 31, Purple 38, sam&alex 48, SoySauceChicken 49, DSAIL 53,
+  Sambhav 60, **Imitation.Tech 62 (11th)**, Zimo Li 73. (Teams missing a board were given rank 21 on it; no team above
+  us is missing one, so this assumption does not change our place.)
+- Close neighbours: CD-O 0.372 is 15th, 0.338 is 14th, 0.297 is 10th; RPE 9th is 3.853 and 10th is 3.928; MP-SR 0.70 ties
+  7th; SP-SR 0.90 ties 6th.
+- Vast: 2 boxes running (recipe screen 58531195 / 58532423, $2.76/h); credit $118.64.
+
+### 2026-10-31 ~15:05 UTC — owner on the spoon lever; spoon dropped from the big-lever list
+- Owner: a better spoon needs better perception; in the videos the spoon looks right, and the overlay is all we have.
+- Agreed reading: no GT-free check exists. Overlay: the costly error, frame-0 roll about the handle in the
+  spoon-anchored evals 32/33/35/36/37, barely changes a thin spoon's outline. Depth: the depth audit failed (AUROC 0.600).
+  Public test: the rest-averaged anchor gained +0.001 (A-f0, not adopted).
+- The spoon pool in the briefing (≈ 0.06–0.07, solved for) is likely overstated. The spoon README's measured jitter
+  (2–6° random roll) puts it at ≈ 0.03–0.15 per anchored episode, ≈ 0.01–0.04 on the board [E].
+- The lever list for the freeze is now: eval 10, meshes (CD-O and anchor registration). The rest is re-run insurance.
+
+### 2026-10-31 ~15:10 UTC — owner: "get me into that top tier"; this session coordinates the push
+- Owner, verbatim: "Look other people achieved it, I dont care if you are using domain randomization physics based
+  learning or just a better perception model get me into that top tier, Im giving you everything you need if others
+  done it so can you!"
+- Gap to the top 5 (boards, 14:58 UTC): RPE 1.1–1.7 vs our 3.93 cm; CD-O 0.21–0.25 vs 0.402; MP-SR 0.80–1.0 vs 0.65;
+  rank sum 6–31 vs 62.
+- Started: a background web/Kaggle-forum search on what the top teams do (read only).
+- Proposed to the owner: a tracker test on 20 public episodes (≈ $5–10), then eval perception, references and a
+  20-policy retrain if it passes (≈ $50–80 [E]); total push ≈ $150–200 [E]. Asked the owner for a ceiling (suggested
+  ≤ $250 more) and for this session to coordinate. No answer yet.
+- Sent to focused-pascal (session_01LhbGHrt6epRs52jSRX48AU): the owner's statement as the go-ahead for the ep11 gate.
+  Its reply (queued 15:16 UTC): gate launch ≈ 16–17 UTC (≈ $4–6, 6–7 h); eval-10 V4p retrain prepared and launched in parallel
+  (≈ $3–5 at risk if the gate fails), with a GT-free guard scoring against both references; masses v2 after the gate.
+- Sent to bold-albattani (session_01W8Softjo2xx7o6ofSiheuQ): the CD-O board data and a 2 Nov 18:00 UTC ask. Its reply (queued
+  15:20 UTC):
+  - board model: 36 eval pairs, spoon 10/36; library_v3 0.491 on non-spoon pairs + spoon ~0.18 reproduces 0.402;
+  - C0 (≈ 1 Nov 12:00, $0): pot, lid, rack and blue-cup meshes already built and scored, CD-O ≈ 0.335 [E] (≈ 14th);
+    each passes a public-twin AUC check before hand-off;
+  - C1 (2 Nov 18:00, at risk, ≈ $3–8 GPU): generated beige cup, pitcher and dust pan, ≈ 0.31–0.32 [H];
+  - C2: generate-then-fit, $0 CPU public test first.
+  - Owner decision needed: provenance. The C0 meshes come from library_v3-anchored tracks (same tier as library_v3).
+    The lid's 2.5 mm wall equals a value that once leaked from the scans; the clean-up passed at 1.5, 2.5 and 4.0 mm.
+
+### 2026-10-31 ~15:20 UTC — top-teams search result; organiser PR #215; tracker bet withdrawn
+- Search (background agent, read only; notes in this session's scratchpad): no top Track 3 team has published a method.
+  Kaggle forums and code tabs of all V2D competitions are empty; profiles are blank. richchentw's first scored upload
+  (22 Oct) was already AUC 0.903 / RPE 1.50. RPE/MPPE ratio: top six 0.88–1.03, ours 1.35.
+  The only public Track 3 pipeline found (rborah-cmu/ego2sim-nvidia-v2d; rank unknown): SGBM+MoGe depth, stereo VO, SAM2,
+  WiLoR, FoundationPose, FlashSAC retrained at 2× budget when own-reference MPPE > 3 cm.
+- Verified at the source (WebFetch of the PR page): nvidia-isaac/video_to_data PR #215 (MVerghese; open, approved
+  31 Oct): "Leaderboard results are provisional until each team's submission container is checked." Tracks 2 and 3:
+  "policy weights for every sequence, plus a `run.sh reproduce` entry point that rolls out every policy and packs the
+  file"; evaluator/script/checkpoint hashes and commit "must match" the counted Kaggle submissions; mismatches "can
+  delay or invalidate prizes". The container is submitted with the technical report. No deadline given.
+- Reading: perc2 already runs FoundationPose + FoundationStereo + SAM2, so the "better tracker" bet proposed at 15:30 is
+  withdrawn: there is no off-the-shelf swap. Asked the Roman-meeting session (session_01D9UJC7JP3bbasvhFUrxyf7) for a
+  $0 CPU RPE/MPPE error decomposition on public data (per episode; anchor orientation, constant offset, static init,
+  jitter) with 1–3 GT-free fix candidates, by ≈ 1 Nov 06:00 UTC.
+- PR #215 raises the value of stable checkpoints (H5: packed 0.9164 vs 10-draw mean 0.8755) and of keeping the exact
+  checkpoints of whichever pack is counted.
+
+### 2026-10-31 ~15:30 UTC — owner: "do all the improvements ... prepare a pack"; two-pack schedule sent to the lanes
+- Owner, verbatim: "Lets do all the improvements that we planned and lets prepare a pack so that we see where we stand,
+  like better perception better mesh better physics. Where are we on that when will that be available"
+- Read as: go for every planned improvement, including the C0 mesh provenance question (owner told; objection forwarded
+  if any). Uploads still need the owner's explicit OK at the time.
+- Schedule proposed to the lanes (each asked to confirm ETAs):
+  - Pack 9 (interim), build ≈ 1 Nov 14:00–18:00 UTC: pack 8 + eval-10 V4p (if the gate passes) + C0 meshes (if the
+    public-twin AUC check passes). focused-pascal builds.
+  - Pack 10 (combined): one eval retrain from ≈ 1 Nov 18:00 UTC with whatever has passed its public gate (masses v2,
+    recipe K/D, GT-free reference fixes, eval-10 V4p, C1 meshes); per-episode GT-free choice vs the packed policy;
+    pack ≈ 2 Nov evening; 3–4 Nov for a fallback.
+  - Cut-off for reference fixes: public gate passed and eval references built by ≈ 1 Nov 14:00 UTC.
+- Messages: focused-pascal, determined-wright, bold-albattani, Roman-meeting session (decomposition addendum).
+- ~15:30 UTC: the Roman-meeting session takes tasks only from the owner, so the RPE/MPPE decomposition runs in this
+  session instead (background agent, CPU, $0). Outputs go to docs/analysis/rpe-decomp-20261031/; first table ≈ 18:30 UTC;
+  candidates pre-registered in PREREG.md before scoring. Public episodes only; GT only for scoring.
+
+### 2026-10-31 ~15:30–15:40 UTC — lanes confirmed; PR #215 container guide read
+- focused-pascal owns pack builds. ETAs [E]:
+  - ep11 gate launch 16–17, result 20–23 UTC;
+  - eval-10 V4p retrain launch 17:30–18:30, policy + 10 draws 23:00–02:00;
+  - masses v2 launch 18–19, verdict 1 Nov 01–03.
+  Masses fold into the pack-10 retrain (no separate O2). 20-episode retrain, 2 seeds: one arm ≈ $55–90, two arms
+  ≈ $100–150; wall-clock 10–13 h (1 Nov 18:00 → 2 Nov 07–09).
+  Caveats: attribution; recipe tested on grasp-lock only (standard learner 1/16/19/25/28/30, frozen 3/5/15/16); each
+  part opt-in and verified in the job.
+- determined-wright: recipe-screen verdict ≈ 22:30 UTC. K settings and D patch given (commit ≥ 609582a). K+D together
+  untested. Nothing else from physics is ready (solver references failed their RL gate; loop no evidence; fit v2 on
+  hold).
+- bold-albattani: C0 by 1 Nov ≤ 12:00 with the public-twin AUC guard; C1 now runs on CPU ($0); the README keeps the
+  provenance caveat.
+- PR #215 kit (v2d_submission_kit/CONTAINER_SUBMISSION.md, fetched from pull/215/head; read only, nothing run):
+  - the container is due after the close, with the technical report;
+  - it holds the exact checkpoints, the pinned runtime, the rollouts, and for Track 3 "the reconstructed meshes packed
+    with the trajectories";
+  - "`run.sh reproduce` must roll out every episode's policy with the evaluator and pack a submission file";
+  - the reproduced score is expected "within your own run-to-run variation of the leaderboard score";
+  - the counted submission is the selected Final Submission, else the best-scoring one per board; if boards count
+    different files, the container covers each of them.
+  Reading [not an organiser ruling]: a mesh-only swap is reproducible if the container keeps the simulation assets and
+  the packed meshes; each board keeps its own best, so a CD-O-only gain does not lower the AUC board.
+- Proposed to focused-pascal: the recipe goes to grasp-lock episodes only, with a minus-recipe control there; costing
+  requested.
+- ~15:35 UTC focused-pascal: learner split corrected. 15 grasp-lock (3, 5, 6, 8, 10, 14, 15, 16, 20, 32, 33, 35, 36,
+  37, 38); 5 standard (1, 19, 25, 28, 30). Source: docs/research/work/masses-eval-20261031/packed_refs.json on its
+  branch.
+  Middle-variant cost [E]:
+  - grasp-lock 15 eps × 2 arms × 2 seeds = 60 cells, $60–90;
+  - standard 5 × 1 arm × 2 seeds, $24–34;
+  - confirmation $4–8;
+  - total ≈ $90–130 (central $110), 2 staggered waves, ≈ 11–14 h.
+  Cheaper: one-seed control −$15–22; no control −$30–45. pack_eval.sh records the sim assets (assets_md5.txt). The ep11
+  gate launches within ~30 min.
+
+### 2026-10-31 ~15:40 UTC — owner: "I want a pack today" → pack 9a tonight
+- Owner, verbatim: "I want a pack today". Read with the earlier "prepare a pack so that we see where we stand" as approval
+  to upload tonight's pack once built and preflighted (owner told; stop honoured if sent).
+- Pack 9a = pack 8 (20261030-track3h-candidate: pack 7 + fresh eval-1 rollout) + C0 packed meshes (pot, lid, rack,
+  blue cup). Rollouts and sim assets unchanged.
+- Each board keeps its own best (PR #215 kit; pack 5 precedent), so AUC cannot drop below 0.81460 on the board. The
+  public-twin AUC guard is asked as information, not a gate.
+- Asked bold-albattani for C0 by ~19:00 UTC; focused-pascal builds, preflights and uploads before ~21:00 UTC.
+  Fallback: pack 8 alone if C0 is not in by ~20:00 UTC. Eval 10 goes into the next pack.
+
+### 2026-10-31 ~15:50 UTC — owner: rebuild meshes on the eval episodes with the better method
+- Owner, verbatim: "Like if the method of mesh creation better just recreate the knes in the eval and use that".
+- Facts (bold-albattani README §8–§9): library_v3 and C0 are built from public episodes and reused for eval.
+  - Eval builds need the eval depth cache (missing). Fix: ops/jobs/eval_perc.sh, one GPU, ≈ 4 min/episode,
+    ≈ $2–4 [E]; then obs_points → prim_* / lathe_obs → obs_fidelity on CPU.
+  - Frame-0-only lathes failed on public (CD-O 1.1–1.3 cm).
+- Asked bold-albattani:
+  - run eval_perc.sh on all 20 eval episodes (owner's go);
+  - build eval candidates with the C0/C1 methods;
+  - choose per object by the GT-free obs_fidelity rule, written before choosing;
+  - report the public single-episode build distribution vs scan as context.
+  Tonight's pack keeps C0 unless the eval builds are verified by ~19:00 UTC; otherwise they go into the 1 Nov pack.
+- ~15:43 UTC focused-pascal confirms pack 9a:
+  - now: CPU repack check (rebuild pack 8 byte for byte except the commit URL);
+  - at C0's arrival: swap only the packed meshes, then row-diff checks, mesh md5s, kit preflight;
+  - upload by ~20:30 UTC; fallback pack 8 at 20:00.
+  Blocking condition: each C0 mesh must be in the library_v3 body frame it replaces. The mesh README §9 says they lie
+  in the same object frame (median 2–4 mm from library meshes without registration); bold-albattani to confirm.
+  focused-pascal tells the owner in its own channel what goes up and when.
+- ~15:44 UTC bold-albattani:
+  - C0 at commit 5cce3d2 (meshes/library_c0, library_c0x; 4 swapped files, others byte-identical to v3/v3x);
+  - hand-off verifier running; C0 to focused-pascal ≈ 17:30, latest 18:30 UTC;
+  - AUC guard (51 runs, 15 twins) running; it gates the final selection, not tonight.
+  Flags kept in the C0 README: same provenance tier as library_v3; lid and rack 2.5 mm walls equal once-leaked values
+  (pass at 1.5/2.5/4.0); the blue-cup selector was written AFTER its lathes were scored.
+- Decision (this session, by CLAUDE.md's write-the-rule-first rule): pack 9a defaults to pot + lid + rack. The blue cup
+  is held back unless the owner explicitly accepts it. Cost [E]: CD-O ≈ 0.367 vs ≈ 0.335 (~15th vs ~14th). The blue
+  cup is rebuilt from eval episodes with a pre-committed rule for the 1 Nov pack. Told focused-pascal and bold-albattani.
+- ~15:45 UTC focused-pascal: pack 9a default is 3 meshes (pot, lid, rack from library_c0 at 5cce3d2); the blue cup only
+  on the owner's explicit include before the build. Frame confirmation still blocks; the swap tool also checks frames.
+- ~15:45 UTC bold-albattani, correction: the eval depth cache already exists (cache/depth/eval/ep*/depths_fs0.5.npy,
+  batch 1, 29 Oct, $2.95), so eval mesh builds are CPU only, $0.
+  - Plan: per-episode builds on eval tracks (pot, lid, rack, blue cup, C1 objects); 2.5 mm grid midpoint as the default
+    thickness (flagged); obs_fidelity rule committed before any choice; eval-build fidelity reported beside C0's on the
+    same eval observations; public single-episode CD-O distribution as context.
+  - ETA: handover 1 Nov ~12:00 UTC for the 1 Nov pack; not tonight.
+
+### 2026-10-31 ~16:05 UTC — RPE/MPPE decomposition done (CPU, $0, public only): the RPE/MPPE boards are failure boards
+Files: docs/analysis/rpe-decomp-20261031/ (README.md, PREREG.md, tables.md, JSON, scripts). Verified by hand:
+- kit RPE (`metric_code/track_3/RPE.py:543–566`, PR #215 kit): mean over object pairs of the second object's position
+  in the first one's body frame; 0 for single-object episodes;
+- episodes are averaged plainly (`:877`).
+Readings [M] (agent's numbers; the agent reports that AUC reproduces phase-1 on all 20 episodes):
+- Reference level, P_o vs mocap (lib): RPE 1.66 / MPPE 1.90 / AUC 0.890 over 20 episodes; without ep23 (board swap)
+  1.00 / 1.18 / 0.935. Worst 3 (ep23, ep18, ep31) carry 61 % of RPE.
+- Ablations (GT substitution, diagnostic only):
+  - constant per-object offset: ΔAUC +0.050, ΔRPE −0.22;
+  - anchor frame-0 orientation: ΔAUC +0.026, ΔRPE 0;
+  - every still frame held at truth: ΔAUC +0.055, ΔRPE −0.12.
+  RPE has no single dominant reference error type.
+- Rollout level (7 public P-arm cells × 10 draws):
+  - the reference costs 1.2–2.1 cm RPE;
+  - successful draws total 1.4–3.5 cm, failed draws 10–77 cm;
+  - mean RPE 13.7, of which the reference is ~10 %;
+  - GT-free RPE (rollout vs our own reference) correlates r = 0.9998 with RPE vs mocap over 70 draws.
+- So: RPE/MPPE (and SR) are driven by failed rollouts, not by perception. Without failures our RPE would be
+  ≈ 1.6–2.4 [E] vs top six 1.10–1.73. This corrects my 15:10 inference that perception is 2–3× worse.
+- GT-free candidates K1 rest-hold and K2 initial-hold (PREREG block 1, 15:46:46 UTC, before scoring): both FAIL
+  (ΔAUC +0.001; ΔRPE +0.005 / 0.000). Not adopted.
+- Draw selection by GT-free MPPE (post hoc, public): RPE 13.7 → 6.4. NOT proposed for use. The owner's earlier rule is
+  "we cannot pick and choose" (note 14), and PR #215 expects reproduced scores within run-to-run variation. The
+  legitimate form is checkpoint selection with a GT-free failure penalty ([H-sel]; needs fresh draws).
+- ~16:05 UTC focused-pascal: the pack-10 per-episode rule gets GT-free RPE/MPPE vs our reference and a failure rate
+  (draws with RPE > X ≈ 5 cm) next to the sim_vs_ref mean. It is pre-registered before any retrain result. No
+  best-of-N: packed rollouts stay draw 1 by position. ep11 gate running (Vast 58552489, run 20261031-e11g-663b7df,
+  $1.07/h), result ≈ 19–21 UTC. My comment: compare 10-draw means (new vs packed policy's H5 mean), not the packed single
+  draw, with an optional as-scored guard as a secondary condition.
+- ~16:10 UTC focused-pascal fixes the pack-10 swap rule (to be pre-registered with the audit priorities ≈ 19:00).
+  GT-free, ≥ 10 fresh official draws; all of:
+  - (a) mean sim_vs_ref ≥ the packed policy's H5 mean;
+  - (b) failure rate (GT-free RPE > 5 cm) ≤ the packed policy's;
+  - (c) median GT-free RPE not worse;
+  - secondary: the new packed draw 1 is not below the old packed draw by > 0.05.
+  Eval 10 is scored against both references.
+  Gap flagged: H5 kept no rollouts, so (b)/(c) need fresh draws of the packed policies with rollouts kept (≈ $2 [E]).
+- ~16:15 UTC focused-pascal: fresh draws of the packed policies with rollouts kept, as the pack-10 comparison set
+  (PREREG uses them for (a), (b) and (c); H5 means as a cross-check). H5p7: pack 7's 20 policies, N=10, ≈ $2.5–3.5.
+  H5e1: pack 8's eval-1 policy, ≈ $1.2–1.6. Launch ≈ 17:00–17:30 UTC; ≈ $4–5 total, stated to the owner by that lane.
+- ~16:10 UTC bold-albattani: C0 frame check sent to focused-pascal (cdo-sprint/C0/verify_handoff.md, commit 694dc73).
+  - pot YES; lid YES (borderline); rack YES with a caveat: 2.3° rotation vs library_v3, ~10 mm at the ends;
+  - blue cup NO (6.7 mm axial offset; already out of 9a);
+  - kit dry run: 0 warnings.
+  Reading: CD-O re-registers, so the rack's frame offset does not reduce the CD-O gain. It may cost AUC/RPE in the
+  rack episodes, but each board keeps its best.
+  AUC guard 40/51, verdict ≈ 16:30; shipping before it is recorded as a deviation from C0 PREREG §5. E0 (eval-built
+  meshes) moved to a self-destroying Vast CPU box (≈ $1–4). Eval-25 board-slot build started (owner waived the camera
+  rule for the slot, in that session); it needs an eval-25 re-run to take effect.
+- ~16:15 UTC focused-pascal (the owner asked it "Cant you fix the rotation and scale error"):
+  - scale is a non-issue (the kit rescales the submitted mesh to the scan for CD-O and the pose boards);
+  - built C0a = C0 ICP-aligned onto library_v3 (keeps the CD-O gain, pose boards behave like pack 8);
+  - rule fixed before data (docs/research/work/pack9a-20261031/MESH_RULE.md on its branch): as-fitted C0 per object iff
+    the public AUC guard shows it ≥ library_v3, else C0a; C0a for all three if the guard is not in by 19:15 UTC;
+  - blue cup stays out pending the owner.
+
+### 2026-10-31 ~16:45 UTC — GT-free audit of the packed eval rollouts: one failure (eval 10); ≈ 1.5 cm of board RPE is reference-side
+Files: docs/analysis/evalaudit-20261031/ (README.md, evalaudit.json, audit.py). CPU, $0, no GT read.
+- The method reproduces the stored sim-vs-reference RPE/MPPE/AUC exactly on 70/70 public draws. The failure flag (fixed
+  before any eval scoring) catches all 33 public failures (10.1–76.8 cm) and none of the 37 successes.
+- Pack 7 vs our own reference [M]: mean RPE 2.450 (recomputed here), MPPE 1.561, AUC 0.911. Board: 3.932 / 2.921 /
+  0.8146.
+- Only eval 10 fails: the beige cup is left behind; RPE 15.76, contributing 0.79 cm of the mean. Fixing it alone
+  → board RPE ≈ 3.24 [E].
+- Borderline, not failures: eval 32 (cup knocked, RPE 3.69), eval 14 (3.39), eval 1 (2.89 / 2.46 in pack 8). The other
+  12 two-object episodes score 1.30–2.79.
+- So ≈ 1.48 cm of the board RPE (≈ 1.85 cm per two-object episode) is our eval reference and/or mesh registration vs
+  the hidden truth. On public, reference RPE is 1.66 (1.00 without ep23).
+- This CORRECTS my 16:10 reading ("RPE gap = failed rollouts, not perception"). That holds on public twins. On eval,
+  the reference/registration side carries ≈ 60 % of the gap to a failure-free ~2.4.
+- Hypotheses (README; untested):
+  - H-spoon: the eval-only spoon; GT-free falsifier = silhouette check vs public objects;
+  - H-gross: one or two grossly wrong eval references, e.g. an identity swap;
+  - H-diffuse: all eval references worse; no GT-free falsifier.
+- ~16:34 UTC bold-albattani, URGENT: the C0 pot, lid and rack marker balls use a 7 mm radius prior (fit window
+  5–9.5 mm) taken from the public scans (flagged by a 29 Oct audit, missed in the hand-off). It is asking the owner
+  directly.
+  This session told focused-pascal: no 9a upload with the C0 meshes without the owner's explicit acceptance; by
+  default pack 8 alone at 20:00 UTC.
+  Asked bold-albattani: E0 must use no scan-derived priors (own measurements or a generic grid, sources in its PREREG).
+- 16:35 UTC owner decision, verified in bold-albattani's transcript (list_events; AskUserQuestion answer at
+  16:35:04Z): "Ship 9a, flagged". Pack 9a = pot, lid and rack (C0/C0a by focused-pascal's MESH_RULE). The scan-derived
+  marker-ball radius (7 mm, 5–9.5 mm window) is flagged in the pack README beside the 2.5 mm walls; the blue cup is held
+  back. Supersedes this session's 20:00 pack-8-only default.
+  AUC guard (51/51) [D], pack-9a configuration over 15 public twins: mean ΔAUC +0.0079, min −0.0092, ΔRPE −0.121 cm.
+  E0 box 58555214 created 16:25 UTC (run mesh-20261031-e0-b05f001). E0's pot/lid/rack share the marker-ball issue;
+  pack 10 gets GT-free ball rebuilds.
+- ~16:40 UTC focused-pascal: pack 9a is built, staged and dry-run validated (5 uploads left per board). Its upload
+  call was blocked by that session's permission guard, because the owner's approval reached it only by relay. It asked
+  the owner directly in its own chat to reply "upload 9a" (or "pack 8"). This session does not upload in its place.
+- ~16:38 UTC bold-albattani: workflow cdo-sprint-c0b (cdo-sprint/C0b/) audits every constant and prior of the mesh
+  methods and labels each generic / own-observation / scan-derived / unknown. Scan-derived and unknown items get an
+  own-observation or generic value, with sources in a PREREG committed before any build. Then public checks and the eval
+  rebuild E0b → meshes/library_e0b(x) for pack 10. The running E0 box uses the old constants: comparison only, won't ship.
+
+### 2026-10-31 ~17:10 UTC — GT-free gross-error screen of the eval references: H-gross weakened
+Files: docs/analysis/evalgross-20261031/ (README.md, PREREG.md, JSON, scripts; fig/ contact sheets and overlays,
+4.1 MB, regenerable with overlay.py, kept out of git). CPU, $0, no GT read; no reference or pack changed.
+- Calibration (public, before PREREG):
+  - ep23's latched board separates clearly from 31 clean objects (step 22.3 vs ≤ 3.3 cm; 148° vs ≤ 28°; 29 frames
+    below −3 cm vs 0; depth-bad 0.342 vs ≤ 0.155);
+  - the plain swap is visible only to the knob rule.
+  Thresholds in PREREG at 16:41/16:43 UTC; first eval values at 16:44.
+- Result: no persistent gross error in any of the 36 eval reference objects (no identity swap, no table or object
+  penetration, no wrong frame-0 placement). Eval 10 cup identity is correct (blue darker on 8/8 frames).
+- Flags:
+  - eval 32 blue cup on the wrist at f21–33 (the rollout does not follow it);
+  - evals 14 and 33 blue cup lags the hand (≈ 11 / 45 frames);
+  - spoon steps of 5–9 cm in evals 32, 33 and 36;
+  - reference settle 3–5 cm below perception in evals 3, 6, 8, 20, 28, 32;
+  - eval 25 knob flag judged a false alarm post hoc (disclosed).
+  Total if fixed ≈ 0.15–0.2 cm of board RPE [E], ≈ 10–15 % of the 1.5 cm gap.
+- Disclosure: the cup identity window was changed after the grey percentiles printed (the pre-registered window was
+  empty); the verdict holds on every frame.
+- Reading: the remaining ≈ 1.3 cm points to H-diffuse, H-spoon or mesh registration, which this screen cannot see.
+  Fix ideas (cup-in-hand guard; settle cap with a depth check) are small (≤ 0.05 cm each, ≤ 0.1 cm total) and
+  untested. They are not proposed for pack 10 unless a public gate passes by 1 Nov 12:00.
+- ~17:09 UTC bold-albattani C1 results (cdo-sprint/C1/README.md, commits 3e12ad1, fe3ef45; pre-registered, scored
+  once, AUC-guarded, verified):
+  - ADOPTED: beige cup T1 obs-lathe on ep11, CD-O [D] eval 10 0.856 → 0.248 and eval 8 0.730 → 0.255, AUC guard
+    +0.008 (one twin), board ≈ −0.030 [E];
+  - ADOPTED: dust pan T2 (SAM 3D pick placed in the library_v3 frame), 0.331 → 0.260, guard +0.012, ≈ −0.004 [E];
+  - not adopted: generate-then-fit (fails the AUC guard), generated pitcher and beige picks (15–28 mm pose offsets).
+  - [E] board CD-O: 9a 0.367 → with C1 0.333 → plus blue cup 0.300.
+  - Correction from that session: eval 10 is packed with library_v3; only eval 8 uses v3x.
+  Default: C1 objects go into the scan-free C0b/E0b rebuild for pack 10. Optional "9a+" (9a + T1 + T2, flagged) asked
+  to be staged by focused-pascal; the owner chooses "upload 9a" or "upload 9a+" in that chat.
+- ~17:17 UTC focused-pascal staged 9a+ (sha256 6743f01d…, commit URL e82b0c6): pack 9a + beige cup T1 on eval 10
+  only (eval 8 unverified, left out) + dust pan T2 on evals 19 and 38 (base files confirmed library_v3). Offline
+  validation passes. CD-O [E] 0.346 vs 0.367 for 9a. Waits for the owner's "upload 9a" / "upload 9a+" / "pack 8" in
+  its chat.
+
+### 2026-10-31 18:13–18:18 UTC — PACK 9a+ UPLOADED (owner: "Upload which you think of the highest score potential")
+- Chosen: build_9aplus (both beige pairs + dust pan + C0 pot/lid/rack), sha256 e02736ea…, commit URL d7ecaef. It has
+  the highest CD-O potential, and each board keeps its best. focused-pascal was told first and did not upload.
+- Checks: sha256 match; script hashes match the kit (packer 49b13052…, uploader d31d4a7c…); commit on origin; dry run
+  valid (5 left per board).
+- Submissions 57847040 / 45 / 47 / 49 / 52 / 54. Receipt and UPLOAD.md:
+  results/submissions/20261031-track3i-candidate/build_9aplus/ (this branch).
+- Scores [M]:
+  - AUC 0.81757 (best so far; pack 7 0.81460);
+  - SP-SR 0.85, MP-SR 0.65 (unchanged);
+  - RPE 3.87853 (3.93179);
+  - MPPE 2.89663 (2.92126);
+  - CD-O 0.33234 (0.40188; estimate was 0.333).
+- Boards at 18:18 UTC: AUC 8, SP-SR 8, MP-SR 8, RPE 11, MPPE 11, CD-O 14 (was 18). Rank sum 60 (was 62), still 11th.
+  Sambhav rose to 48. 10th DSAIL 57, 9th SoySauceChicken 52, 8th sam&alex 51.
+
+### 2026-10-31 ~18:30 UTC — owner: carves for every weak episode; "approach 0.9"
+- Owner, verbatim: "I think we can improve in all of these with the new method and carving method for the board. I
+  remember blue cup and spoon the spoon doesnt enter the cup proper and for some rack things we know off. I think if we
+  can get almost perfect on our perception we can approach to 0.9 ehich with the new methods I think is possible since
+  we know where the objects will be".
+- Asked bold-albattani, GT-free, by 1 Nov 12:00: carved blue-cup collision so the spoon can enter (evals 32, 33; check
+  intrusion first); rack seats (evals 14, 16, 30); eval-25 board slot. Asked focused-pascal to plan pack-10 cells with
+  these assets plus the solver (if it signals), masses (if adopted) and the recipe verdict, with cost.
+- Ceiling arithmetic given to the owner [E]: board ≈ (rollout-vs-reference) × (reference-vs-truth).
+  - Pack 7: S 0.911 (GT-free, measured) and board 0.8146, so eval reference-level AUC R ≈ 0.89–0.90 [E].
+  - Perfect tracking alone (S → 1) gives ≈ 0.89–0.90.
+  - Eval 10 fixed (S ≈ 0.935) gives ≈ 0.84.
+  - 0.9 needs near-perfect tracking on all 20 episodes plus references at least as good as now.
+- ~18:28 UTC focused-pascal pack-10 draft (docs/research/work/pack10-20261031/PLAN.md on its branch, c43d535) [E]:
+  - Tier 1 (always): 2 seeds each, the per-episode swap rule, ≈ $20–33:
+    - eval 10 (V4p if the gate passes);
+    - 32 and 33 (carved blue cup);
+    - 14 and 16 (rack seats);
+    - 30 (standard learner, rack seat);
+    - 25 (standard learner, new board slot).
+  - Tier 2 (only for global changes that pass: masses, solver, recipe): the other 13 evals, ≈ $55–90 (one arm) or
+    ≈ $95–130 with a minus-recipe control.
+  - The final list and cost go to the owner tomorrow morning for one go-ahead, after tonight's verdicts.
+  - Its estimate: eval 10 to ~0.9 ≈ +0.022; 32/33/14/16/30/25 at +0.05 each ≈ +0.015; plausible pack-10 target
+    ≈ 0.85–0.86 [E].
+- ~18:29 UTC bold-albattani on the pack-10 collision assets:
+  - spoon-into-cup diagnostic running tonight; library_v3's blue cup has its lower ~37 % filled [D], consistent with
+    "the spoon stays beside the rim";
+  - fix = cavity-preserving cup pieces from the collision-carve workflow (owner waiver "if 2 mesh collide we can carve
+    it"), accepted by a physics check on the eval episode (no public twin);
+  - rack seats validated first on ep12/13/31, then evals 14, 16, 30;
+  - board slot round 2 running (I-shaped boards), at risk for 12:00.
+  Which items make 12:00 is reported by 1 Nov ~09:00 UTC. Deliveries are logged in gmg/build/I/collcarve_deliveries.md.
+
+### 2026-10-31 ~18:35 UTC — owner: "how can we improve our perception … what is our solution?"
+- Summary given to the owner (all from committed results):
+  - FAILED: S11 constant-offset depth ICP (≈ 0, even with true meshes); S10 held pose (−0.018); S6 static hold (no eval
+    effect); K1 rest-hold / K2 initial-hold (+0.001); A-f0 rest-averaged anchor (+0.001); S1/S3 refine stages;
+    GT-free depth audit (AUROC 0.600).
+  - PASSED: S2 timing advance (adopted); robust VO (fixes ep24; no eval case); S12 cup-nest (eval 10, in gate);
+    better submitted meshes (pack 9a+: AUC +0.003, RPE −0.053 measured).
+  - Error structure: public reference RPE ≈ 1.0 cm without ep23. The remaining loss is mostly constant per-object body
+    offsets that follow the template shape (L2). The eval reference side carries ≈ 1.5 cm RPE, invisible GT-free.
+- Proposed solution [H]: re-track with better template meshes (clean C0b/E0b method, each episode's own video), with
+  the same meshes submitted. Public test first (P_o' vs P_o, pre-registered). If it passes: eval re-track, rebuild
+  references, pack-10 Tier-2 retrain. Feasibility questions sent to focused-pascal and bold-albattani; no spend until
+  the owner says go.
+- ~18:32 UTC focused-pascal, re-track feasibility:
+  - job ops/jobs/perc_leak.sh needs a per-episode template opt-in (LIB_EP_DIR), and tools/leak_p1.py the same switch;
+    ~1–2 h CPU;
+  - public test (P_o' + o2 repeat) ≈ $2–3.5, ≈ 1–1.5 h wall clock [E from Phase 1: 3 boxes, $2.30];
+  - eval re-track ≈ $2–4, ≈ 1 h;
+  - latest public result ~1 Nov 12:00–13:00, so C0b per-public-episode meshes by ~08:00–09:00.
+  A pass makes all 20 pack-10 references new (Tier 2).
+  Told to build the CPU prep tonight; GPU waits for the owner's go.
+- ~18:32 UTC bold-albattani, per-public-episode clean mesh sets:
+  - feasible as the E0b analogue on public episodes (one box, ~15–20 min, ~$0.2 [E]), after C0b's scan-free options
+    are frozen;
+  - ETA in the store ~1 Nov 04:00–06:00 UTC, with a manifest and per-mesh frame checks;
+  - covered: pot, lid, rack, blue cup, beige cup (pitcher only if the C2 lathe passes); dust pan, sweeper and boards
+    stay library_v3.
+  Caveats: the meshes are fused along library_v3-seeded tracks (one iteration, not an independent template);
+  single-episode quality varies (public pot CD-O median 0.416, range 0.31–0.65 [D]).
+  The schedule fits the 09:00 need; the GPU test still waits for the owner's go.
+
+### 2026-10-31 ~18:45 UTC — owner: "Go retrack"; spoon via its markers; no deadline talk
+- Owner, verbatim: "Okay lets fix the perception as you said also for spoon the solution is the market on top of it.
+  Those are very easy to track compared to other. Also like I said you dont need to mention the deadline there is
+  pleanty of time and thats for me to worry. Go retrack".
+- Re-track chain approved: public P_o' vs P_o test (≈ $2–3.5) when the per-public-episode clean meshes land
+  (~1 Nov 04–06 UTC), then the eval re-track if it passes (≈ $2–4). Sent to focused-pascal and bold-albattani.
+- Markers: note 17 (7 Oct) concluded HYBRID (markers as a correction layer: +0.02 to +0.10 board AUC, central +0.04
+  [E]). That layer was never built into the pipeline (pipeline/ uses no marker detections except identity_fix's
+  board knobs). The spoon has 3 markers (note 13; layout from video). Started a background agent in this session:
+  GT-free marker correction layer, spoon first, layouts from our own video only (the note-17 catalogue is
+  scan-derived), public validation on mocap-bearing objects with a pre-registered rule, before any eval use. Output
+  docs/analysis/markers-20261031/.
+- Owner preference (repeat of 26 Oct): do not raise deadlines with the owner; time planning is the owner's.
+- ~18:58 UTC bold-albattani spoon diagnostic (cdo-sprint/spoon-diag/README.md, commit 2681d8b; GT-free):
+  - eval 33: library_v3 blue cup ≥ 50 % solid up to 66 mm (75 mm in its collision pieces). It blocks the spoon only
+    in the deepest scoop frames (≤ 9.8 cm³, 19 mm deep); 33/66 in-cup frames are unblocked. A carve gives a partial
+    benefit [H]; the rest looks like policy/grasp behaviour.
+  - eval 32: not blocked (spoon ≤ 73 mm below the rim); a carve changes nothing.
+  - eval 16: no rack seat filled. From f120 our reference holds the spoon 1–8 mm from the rack plates with nothing
+    under it, so it is unsupported on release. That is a spoon-pose problem, and the lever is the marker layer.
+  Forwarded to the marker agent.
+- 19:10 UTC marker layer checkpoint 1 (docs/analysis/markers-20261031/; CPU, GT-free):
+  - detector: gradient circle Hough + black-base contrast, stereo on rectified c/b rows, guided second pass; nothing
+    learned, no GT.
+  - spoon census, layout-consistent sets (all / rest / hand):
+    - ≥ 2 markers: 68/94/66 % (eval 35), 56/94/51 % (36), 72/83/64 % (37);
+    - ≥ 3 markers: 16/27/16 %, 10/15/10 %, 7/1/11 %.
+    M1, the lateral neck marker and the roll lever, is the bottleneck.
+  - layout from our video: triangle 55.3/154.2/196.5 mm (video-built template 53.5/153.2/194.6), fit rms 1.6–2.2 mm.
+  - PREREG block 1 written 18:52 UTC. Next: correction layer, then public validation.
+
+### 2026-10-31 ~20:15 UTC — GT-free marker correction layer FAILS its public gate (not adopted)
+Files: docs/analysis/markers-20261031/ (README, PREREG blocks 1–3, public_validation.json, diag_fix.json,
+eval_sizes.json, scripts). CPU, $0. PREREG rule at 18:52; method frozen with script hashes at 19:38, before the first
+score.
+- Public validation (kit registered chain, per-object AUC, 16 units: pot eps 0, 2, 26, 27, 41–45; lid 0, 2; blue cup 11,
+  12, 13, 21, 22): primary mean ΔAUC −0.083, 1/16 improved, worst −0.407 (lid ep2 via the pot anchor). Raw fixes only:
+  −0.039. All variants FAIL (rule ≥ +0.010, ≥ 60 %, no unit < −0.020). Episode RPE rises in 8 of 9 touched episodes.
+- Untestable: wooden pieces, pitcher, sweeper (< 2 markers found); rack and beige cup had only 2 (rule needs 3).
+- Why (post-hoc vs mocap): our public tracks (pot 0.26–0.42 cm) beat single-frame b/c stereo marker fixes (1.0–2.2 cm;
+  markers 12–16 px). Note 17's gains assumed an emulated 10 mm / 5° prior.
+- Spoon (eval, GT-free):
+  - ≥ 2 markers in 34–73 % of frames (73–89 % at rest in 8/10 episodes); ≥ 3 in 2–18 %;
+  - layout from video 54.9 / 195.9 / 154.3 mm, residual 2.0 mm;
+  - tracker roll vs the template's marker model disagree by ~5°, undecidable without GT;
+  - eval 16 f ≥ 120: the layer would push the spoon 19.7 mm below the table (impossible), probably locking onto rack
+    markers [H].
+- Not adopted. Untested next idea: add ego_cam_a (≈ 2× resolution) as a third view, only worth a new pre-registration
+  if a post-hoc check shows 3-marker fixes beating the track on public lid/pot frames.
+- ~20:30 UTC marker follow-up: ego_cam_a as a third view FAILS the precondition (PREREG block 4 at 19:44 UTC, before
+  computing; outcome at 19:51).
+  - Condition 1, 0/3 objects (need 2): a+b/c 3-marker fixes vs track, median cm on the same frames: pot 3.35 vs 0.41;
+    lid 1.21 vs 1.11; blue cup 1.04 vs 0.95 (better on 46 % of frames).
+  - Condition 2 MET: spoon M1 visible in 82.5 % of rest frames and 64.8 % in hand with cam a (b/c alone: 43.4 / 34.6 %).
+  - Reading: cam a removes the M1 visibility bottleneck, but single-frame marker fixes stay ~1 cm off, no better than
+    our tracks. No new gate; the marker layer is closed for now.
+  Files: cama.py, diag_cama.py/json, m1_share.py/json, PREREG block 4, README follow-up.
+- 20:25 UTC determined-wright (work log 20:24 on its branch, 3df1560):
+  - recipe screen formally INCOMPLETE (C/ep24-s43 lost 6/10 draws to a box thread limit);
+  - K vs C inconclusive (mean ≈ 0; K steadier on ep2: sd 0.009/0.020 vs 0.029/0.174);
+  - D vs C undetermined: ep12 +0.33 on both seeds, ep2 −0.11;
+  - solver re-test (S vs C): NO SIGNAL (ep2 −0.13), so eval solving is NOT started (physics solver closed).
+  Post-hoc [H]: GT-free sim_vs_ref picked the higher-AUC arm in 7/7 C-vs-D pairs. Proposal: train D beside C on the
+  eval episodes and keep the better per episode (pack-10 swap rule), ≈ $14–20 [E], pending the owner.
+- 20:31 UTC determined-wright: the owner chose "No D" in its chat. Pack 10 stays on the current recipe, and the
+  D-beside-C proposal is withdrawn. Told focused-pascal: Tier 2 now depends on masses v2 (and on the re-track for
+  references).
+
+### 2026-10-31 ~20:40 UTC — owner: targeted D arm in pack 10
+- Asked whether DR would have made sense. My reading:
+  - draw variance is real (H5: 0.8755 vs packed 0.9164; evals 1/14/25/30/33 sd 0.14–0.26), and PR #215 expects
+    reproduced scores within run-to-run variation;
+  - but the screen did not show D lowering spread (ep12 +0.33 both seeds, ep2 −0.11 with more spread);
+  - the variance cuts so far came from geometry (eval 1 carve: sd 0.239 → 0.017).
+  Proposed: a D arm on the unstable episodes only (14, 16, 25, 30, 33), ≈ $6–10 [E], with the swap rule choosing.
+- Owner, verbatim: "sure add that whatev". Sent to focused-pascal (pack-10 cell list) and determined-wright (settings,
+  standard-learner caveat for 25/30).
+- ~20:52 UTC focused-pascal: targeted D arm in PLAN.md (2 seeds on 14, 16, 25, 30, 33) ≈ $16–23 extra [E] (my $6–10 was
+  low).
+  - Totals: Tier 1 + D ≈ $36–56; with Tier 2 ≈ $71–113.
+  - Arm choice (PREREG before results): an arm must pass the swap rule; between two passing arms the higher fresh-draw
+    mean wins; a tie goes to no-D.
+- Vast 20:53 UTC: credit $70.43; 3 boxes ($4.44/h): mv2b (masses v2), h5p7 labelled "PUSH-FAILED, destr…", h5e1.
+  Flagged h5p7 to focused-pascal: it is the swap rule's comparison set.
+- 20:55 UTC determined-wright sent focused-pascal the D settings and caveats:
+  - add the patch to glock_public / hard_ab; env FC_DR_RESET=1.5,0.015,0.01 FC_DR_SEED=<seed>;
+  - on the screen D raised ep2's draw sd 0.10 → 0.25, so it is not shown to steady episodes; the swap rule decides;
+  - on the standard learner (25, 30) DR also perturbs the deployment-exact starts (untested);
+  - carved-asset risk: objects that start nested or touching.
+  It offered a free CPU check per episode and an opt-in flag to skip the deployment-exact starts.
+
+### 2026-10-31 ~21:10 UTC — ep11 rollout gate PASSES (eval-10 cup-nest reference V4p)
+- focused-pascal: VERIFIED, no timeouts. Registered AUC vs mocap Δ +0.142 (bar +0.05).
+  - seed 42: C 0.5947 / T 0.6073 (+0.013);
+  - seed 43: C 0.5899 / T 0.8613 (+0.271);
+  - per object: beige +0.321, blue −0.037;
+  - the control never leaves its static floor (chosen checkpoint 10M on both seeds).
+  Seed spread is large: one seed carries the gain.
+- Eval-10 V4p retrain launched: run 20261031-e10v-caf38fb, Spain $1.377/h, ledger $6, ≈ 3–4.7 h, 2 seeds + 10
+  confirmation draws. Swap only if the rule holds on both references. Result ≈ 00:30–02:00 UTC. If SWAP-ELIGIBLE: pack
+  9b = 9a+ with the new eval-10 rollout (draw 1 by position); upload on the owner's word.
+- H5p7 comparison set: all 10 draws × 20 episodes with rollouts are in the store (only the final summary push failed;
+  rebuildable on CPU). H5e1 finished.
+- Masses v2: box A (ep24, ep13) done, partial Δ ep24 +0.038, ep13 ≈ 0 (not a verdict). Box B on its seed-43 wave;
+  merged verdict ≈ 23:00–01:00.
+- ~21:12 UTC bold-albattani: per-public-episode clean mesh sets ready early.
+  - Store runs/mesh-20261031-pubown-ed7171c/results/pubown/; MANIFEST at
+    cdo-sprint/PUBOWN/MANIFEST.json (76f9023); C0b tree 00e8584; one CPU box, ≈ 21 min, ≈ $0.15; no GT read.
+  - Use Set B (alt_e0_gated, chosen before any re-track score): 14 own-episode meshes. Pots ep0, 2, 26, 41–45; blue cup
+    ep11 g1 and ep12/13/21/22 g0; beige ep11. Everything else stays library_v3 (racks are not reproducible across
+    machines, the lid builder failed 16/16).
+  - Set A keeps 7 frame-broken meshes; diagnostics only.
+  - Caveats: ep11 blue cup carries extra bodies; stray marker balls far from the pot in ep2/44/45; ep13 g0 rests on one
+    number; the gate's frame reference is library_v3 (P1 tier); the pick is in-sample; few meshes are watertight after
+    budget_mesh.
+  focused-pascal copied; it launches the approved public re-track test.
+- ~21:15 UTC keen-heisenberg relayed two owner decisions made in its chat, verified here in its transcript
+  (AskUserQuestion answers at 21:14:50Z):
+  - start the targeted D cells (evals 14, 16, 25, 30, 33; 2 seeds; ≈ $16–23) TONIGHT on the current packed
+    configuration, as morning-pack candidates via the swap rule;
+  - pack 9b (= 9a+ + eval-10 V4p if it passes + passing D cells) uploads AUTOMATICALLY once every swapped episode
+    passes the pre-registered swap rule and the pack checks pass.
+  Also: the owner approved arm V (actor sees object velocity, ≈ $7–9) in determined-wright's chat. Credit $69.22
+  at 21:14 UTC. No carves or eval-25 slot were delivered tonight, so pack-10 Tier 1 may shrink. keen-heisenberg writes
+  a morning summary at ~05:00 UTC; this chat's items were sent to it.
+- ~21:21 UTC keen-heisenberg is the single uploader for pack 9b (the owner's "Upload automatically" was given in its
+  chat; focused-pascal's guard blocks relayed approvals). This session does not upload 9b unless keen-heisenberg asks.
+- 22:13 UTC determined-wright: recipe-screen verdicts complete after the C/ep24-s43 re-score (0.2333):
+  - K inconclusive (−0.002);
+  - D inconclusive (sd falls on 1 episode only);
+  - S no signal (ep2 −0.133).
+  Arm V (actor sees object velocity) is training on 2 boxes; verdict ≈ 00:30–01:00 UTC.
+
+### 2026-10-31 ~23:00 UTC — re-track test FAILS every pre-registered clause (no pack change)
+- focused-pascal: P_o' (per-episode Set B meshes as FoundationPose templates) vs P_o on 20 public episodes:
+  - mean ΔR −0.170 (bar ≥ +0.01); 3/20 positive (bar ≥ 12); min ΔR −0.973; mean ΔRPE +1.32 cm.
+  - Cause [M]: the white_pot and two-cup templates break tracking (ep45 0.980 → 0.006, ep0 0.962 → 0.037, ep11 0.898 →
+    0.193).
+  - Valid run: code 8b3cf78, both boxes exit 0; measured cost $1.54.
+  - Record: docs/research/work/retrack-20261031/verdict.txt (942dbfc on its branch).
+- Reading: the own-video meshes help when only submitted (pack 9a+: CD-O and AUC up), but as tracking templates
+  these builds (stray marker balls, extra bodies, not watertight) derail FoundationPose. The 18:35 re-track proposal
+  is falsified as built. A re-track with cleaner templates (e.g. the submitted C0/C1 picks) would be a new hypothesis
+  with its own in-sample caveat; not proposed tonight.
+
+### 2026-10-31 ~23:35 UTC — eval-10 V4p retrain NO-SWAP; masses v2 NOT ADOPTED
+- focused-pascal (commit 28a03df on its branch):
+  - Eval 10, VERIFIED, 10/10 confirmation draws: NO-SWAP on an equal floor. Neither seed ever lifts the blue cup (lift
+    0 at every checkpoint). New vs packed: 0.459 vs 0.463 on V, 0.449 vs 0.453 on P; both fail 10/10 draws at RPE
+    ~15.9 cm. The ep11 gate gain did not transfer. Eval 10 stays as packed. Cost $3.25.
+  - Masses v2, both boxes VERIFIED: NOT ADOPTED. Mean Δ +0.0034 (bar +0.03), 1/4 positive (needs 3): ep24 +0.038,
+    ep11 −0.014, ep13 −0.002, ep31 −0.009.
+  - D arm: 4 boxes running (G 14/16/33, S25 s42/s43, S30 s42); S30 s43 ≈ 23:45. Reading after all five plus one
+    confirmation box.
+- Pack 9b: the only possible additions are passing D cells.
+- ~23:55 UTC E0b final hand-off (bold-albattani cdo-sprint/C0b/README.md, e5baab1; relayed by focused-pascal):
+  - shippable, scan-free and built from eval data: white_pot pot/ep3/thick (md5 073872f4…; evals 1, 3, 5, 6, 8, 28)
+    and beige_cup beige/ep8/g1 (md5 0d926da1…; evals 8, 10). Folders meshes/library_e0b(x).
+  - Public CD-O is worse than 9a+: pot 0.392 vs C0 0.342; beige 0.30 vs C1/T1 0.25. Both pass the public AUC guard.
+  - Recommendation on score: keep 9a+'s pot and beige. E0b is the provenance-cleaner option ("no scan-derived value";
+    one gmg-informed detector setting; 40 constants of unknown origin). The owner's compliance call.
+  - Sim flags if E0b is ever used: 17 of the pot's 32 marker balls sit below its base; the beige has three inside-out
+    shells. Lid, rack and blue cup not adopted. Eval 8's v3 vs v3x frame still open.
+  - Pack 9b keeps 9a+'s meshes unless the owner picks E0b.
+- 00:05 UTC (1 Nov) determined-wright: arm V (actor sees object velocity) inconclusive, not used (mean Δ −0.024: ep2
+  −0.049, ep12 −0.026, ep18 −0.013, ep24 −0.007). Recipe screen complete: K, D and V inconclusive; S no signal. No
+  recipe change for pack 10 from that lane. Its 31 Oct GPU spend ≈ $30.15 [E] over 6 boxes; none running.
+- 02:53 UTC (1 Nov) keen-heisenberg (single uploader) records the owner in its chat:
+  - 02:43 "Okay go": one eval-10 njmax-1024 diagnostic, never packed;
+  - 02:50 verbatim "I give you permission for everything", answering the plan to fix the collision overlaps behind
+    evals 10, 30 and 14 (mesh chat builds on CPU, determined-wright runs budget.py, focused-pascal retrains and confirms
+    under the swap rule, then packs).
+  Its reading: covers GPU work and Kaggle uploads of packs where every swapped episode passes its pre-registered swap
+  rule and the pack checks pass. Not covered: njmax-1024 policies, the C0 blue cup, anything that reads GT or is tuned
+  on eval results. Pack checks at 05:00 (9b), 07:30 and 10:30 UTC.
+- 04:04 UTC focused-pascal: pack 9b record ≈ 05:30 UTC (the D confirmation box 20261101-drC-a1a7e25 spent ~50 min on
+  store pulls; dr_pack_check passed at 04:02). All five D training boxes VERIFIED; candidates 14 s43, 16 s43, 25 s42,
+  30 s42, 33 s42. Next: "pack 9b ready" with sha256 and per-episode verdicts, or "no 9b". Upload stays with
+  keen-heisenberg.
+- 04:55 UTC focused-pascal: PACK 9b READY.
+  - File: results/submissions/20261101-track3j-candidate/build_9b/track3_submission.parquet, sha256 a6c4105a…; code
+    commit dd24ed4; record 874c9d3 on its branch.
+  - One swap: eval 33 → D policy (drG seed 42, sha256 7c5eb060…), draw 1 of confirmation box 20261101-drC-a1a7e25.
+    The other 19 episodes and all meshes are byte-identical to 9a+.
+  - Swap rule (PREREG 2ce1872; 10 official draws vs 10 fresh packed draws, GT-free):
+    - eval 33 PASS: 0.9358 vs 0.9234, 0 fails each; draw 1 0.9419 vs 0.9401; official min 0.903 vs packed 0.847;
+    - NO-SWAP: eval 14 (0.686 vs 0.727; fails 8 vs 4), 16 (0.831 vs 0.850), 25 (0.858 vs 0.878), 30 (0.816 vs 0.897).
+  - Checks pass (diff limited to ep33 rows + checkpoint, meshes identical, validate_submission, CD-O derived file
+    identical, no_oracle, clean evaluator).
+  - [E] ≈ +0.0001 AUC (within noise); the value is robustness on eval 33. D arm cost $19.41 measured.
+  - Upload is keen-heisenberg's (the single uploader).
+- 05:03 UTC keen-heisenberg: PACK 9b UPLOADED (04:57–05:02 UTC; owner's "Upload automatically" and "I give you
+  permission for everything"). Submissions 57860700/01/03/04/07/08; receipt on claude/keen-heisenberg-engcwz
+  results/submissions/20261101-track3j-candidate/build_9b/ (157ed61).
+  - Scores: AUC 0.81677 (9a+ 0.81757); SP-SR 0.85 =; MP-SR 0.65 =; RPE 3.88283 (3.87853); MPPE 2.90186 (2.89663);
+    CD-O 0.33234 =.
+  - 9a+ remains our best on every board; the eval-33 swap's proxy gain was noise on the board.
+- 05:05 UTC boards (Kaggle API): AUC 8, SP-SR 9 (was 8; tie order), MP-SR 8, RPE 11, MPPE 11, CD-O 14. Rank sum 61,
+  still 11th (10th DSAIL 58, 9th SoySauceChicken 54, 8th sam&alex 51).
+- 08:17 UTC focused-pascal: PACK 10 READY (results/submissions/20261101-track3k-candidate/build_10/ on its branch;
+  sha256 e1bef1e5…0e2a; code commit a187a8c9). It is 9a+ with eval 10's legal retrain (ev10cs5 carve pieces, stock
+  njmax limits): GT-free proxy +0.069 vs V and +0.059 vs P, INCLUDE under the +0.02 bar. All checks pass.
+  keen-heisenberg uploads.
+
+### 2026-11-01 08:38–08:50 UTC — PACK 10 UPLOADED (owner: "Upload it", 08:38, in keen-heisenberg's chat)
+- Pack 10 = 9a+ with eval 10's ev10cs5 stock-limit retrain; sha e1bef1e5…, code a187a8c; submissions 57866069 / 71 / 72 /
+  75 / 77 / 79. Record build_10/UPLOAD.md on claude/keen-heisenberg-engcwz (5b0f081).
+- Scores: AUC 0.81915 (NEW BEST; 9a+ 0.81757); SP-SR 0.80 (best stays 0.85); MP-SR 0.65 =; RPE 3.68275 (NEW BEST; 3.87853);
+  MPPE 2.84759 (NEW BEST; 2.89663); CD-O 0.33234 =.
+- Boards 08:50 UTC: AUC 8, SP-SR 10 (others moved up: Sambhav 0.95; Purple and Gravity Aligned 0.90), MP-SR 8, RPE 10
+  (was 11), MPPE 11, CD-O 14. Rank sum 61, 11th (10th DSAIL 59). Ties do not penalise later uploads: at 0.85 we rank
+  above DSAIL despite the later timestamp.
+- Counting: each board shows the best submission; per the PR #215 kit, the counted one is the selected Final
+  Submission, else the best per board, and the container covers each counted file. Advised keen-heisenberg not to
+  select now and to choose per board near the close.
+- 08:58 UTC wrap-up (owner's request via keen-heisenberg): neighbour table and next-rank gaps sent.
+  - Best rank-per-effort: CD-O (bunched 0.312–0.338; −0.021 cm → +3 ranks; packed-mesh-only, $0). The held-back blue
+    cup ≈ board 0.30 [E] needs the owner's compliance call or a clean passing build.
+  - Then one more SP-SR/MP-SR episode (+1 to +3 each).
+  - Nothing running in this session. Open: Final Submission selection per board near the close; the PR #215
+    container after the close; merging session branches into main (stale since 30 Oct).
+- 11:38 UTC focused-pascal: PACK 11 READY (results/submissions/20261101-track3l-candidate/build_11/; sha256
+  3c428350…055ec; code 50312319).
+  - Pack 10 with eval 10 = the njmax-1024-trained policy evaluated at stock 512/256 (ck512 aaa077eb…): GT-free proxy
+    +0.371 (V) / +0.361 (P) over pack 10's eval-10 policy; 0/10 fails vs 10/10.
+  - Only ep10's rows differ; all checks pass. keen-heisenberg verifies and uploads.
+  Flagged to keen-heisenberg: its own record of the owner's 02:43 / 02:50 words excludes njmax-1024 policies ("never
+  packed"), so packing needs a fresh explicit owner OK (training-side simulator setting ≠ evaluator pin; disclose in
+  the technical report).
+
+### 2026-11-01 11:39–11:47 UTC — PACK 11 UPLOADED (owner's direct go, keen-heisenberg's chat)
+- Pack 10 with eval 10's ck512 policy (trained with njmax 1024, training only; evaluated at stock 512/256;
+  disclosed). sha 3c428350…; code 5031231; submissions 57870406 / 08 / 11 / 15 / 17 / 20. Record build_11/UPLOAD.md
+  on claude/keen-heisenberg-engcwz.
+- Scores: AUC 0.83921 (best; pack 10 0.81915); SP-SR 0.85; MP-SR 0.70 (best); RPE 3.17899 (best); MPPE 2.54531 (best);
+  CD-O 0.33234. Beats or ties every earlier pack on every board: the natural single Final Submission.
+- Boards 11:47 UTC: AUC 8, SP-SR 10, MP-SR 8 (tie at 0.70 with DSAIL 7th), RPE 10, MPPE 10, CD-O 14. Rank sum 60, 11th;
+  10th DSAIL 59.
+- One point from 10th. Swaps with DSAIL count double: AUC +0.0047 (DSAIL 0.84391), MPPE −0.20 cm, or MP-SR one more
+  episode. Or CD-O −0.012 for +1 (tie at 59).
+- 11:47 UTC keen-heisenberg on the njmax scope check: covered by a fresh explicit owner OK.
+  - 09:08: the owner argued that only the final policy's evaluation setting must stay stock; training at 1024 is a
+    training choice.
+  - 09:11: "I give give you go" for packing that policy evaluated at stock 512/256.
+  - The guard exception was approved in focused-pascal's session.
+  Recorded in its 09:11 work-log entry and build_11/UPLOAD.md, with the disclosure for the technical report and the
+  container. Pack 11 agreed as the single Final Submission near the close.

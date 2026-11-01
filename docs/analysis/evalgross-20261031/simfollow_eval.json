@@ -1,0 +1,167 @@
+[
+ {
+  "ep": 32,
+  "obj": "blue_cup",
+  "window": [
+   21,
+   34
+  ],
+  "sim_minus_ref_cm_in": 13.1,
+  "sim_minus_ref_cm_out": 2.2,
+  "sim_minus_ref_cm_max_in": 21.1
+ },
+ {
+  "ep": 14,
+  "obj": "blue_cup",
+  "window": [
+   35,
+   46
+  ],
+  "sim_minus_ref_cm_in": 2.4,
+  "sim_minus_ref_cm_out": 2.0,
+  "sim_minus_ref_cm_max_in": 5.7
+ },
+ {
+  "ep": 33,
+  "obj": "blue_cup",
+  "window": [
+   46,
+   91
+  ],
+  "sim_minus_ref_cm_in": 1.4,
+  "sim_minus_ref_cm_out": 0.9,
+  "sim_minus_ref_cm_max_in": 3.8
+ },
+ {
+  "ep": 32,
+  "obj": "wooden_spoon",
+  "window": [
+   91,
+   117
+  ],
+  "sim_minus_ref_cm_in": 1.8,
+  "sim_minus_ref_cm_out": 1.0,
+  "sim_minus_ref_cm_max_in": 4.3
+ },
+ {
+  "ep": 32,
+  "obj": "wooden_spoon",
+  "window": [
+   199,
+   221
+  ],
+  "sim_minus_ref_cm_in": 0.9,
+  "sim_minus_ref_cm_out": 1.1,
+  "sim_minus_ref_cm_max_in": 1.3
+ },
+ {
+  "ep": 33,
+  "obj": "wooden_spoon",
+  "window": [
+   251,
+   282
+  ],
+  "sim_minus_ref_cm_in": 1.5,
+  "sim_minus_ref_cm_out": 1.3,
+  "sim_minus_ref_cm_max_in": 4.1
+ },
+ {
+  "ep": 33,
+  "obj": "wooden_spoon",
+  "window": [
+   183,
+   217
+  ],
+  "sim_minus_ref_cm_in": 1.4,
+  "sim_minus_ref_cm_out": 1.3,
+  "sim_minus_ref_cm_max_in": 3.4
+ },
+ {
+  "ep": 3,
+  "obj": "white_pot",
+  "window": [
+   81,
+   231
+  ],
+  "sim_minus_ref_cm_in": 1.9,
+  "sim_minus_ref_cm_out": 0.8,
+  "sim_minus_ref_cm_max_in": 6.9
+ },
+ {
+  "ep": 6,
+  "obj": "white_pot",
+  "window": [
+   51,
+   135
+  ],
+  "sim_minus_ref_cm_in": 1.1,
+  "sim_minus_ref_cm_out": 0.7,
+  "sim_minus_ref_cm_max_in": 3.7
+ },
+ {
+  "ep": 8,
+  "obj": "beige_cup",
+  "window": [
+   94,
+   103
+  ],
+  "sim_minus_ref_cm_in": 0.4,
+  "sim_minus_ref_cm_out": 0.7,
+  "sim_minus_ref_cm_max_in": 0.8
+ },
+ {
+  "ep": 20,
+  "obj": "blue_cup",
+  "window": [
+   83,
+   123
+  ],
+  "sim_minus_ref_cm_in": 0.7,
+  "sim_minus_ref_cm_out": 0.9,
+  "sim_minus_ref_cm_max_in": 1.6
+ },
+ {
+  "ep": 28,
+  "obj": "white_pot",
+  "window": [
+   171,
+   219
+  ],
+  "sim_minus_ref_cm_in": 1.8,
+  "sim_minus_ref_cm_out": 1.7,
+  "sim_minus_ref_cm_max_in": 2.6
+ },
+ {
+  "ep": 25,
+  "obj": "wooden_piece_1",
+  "window": [
+   36,
+   118
+  ],
+  "sim_minus_ref_cm_in": 2.8,
+  "sim_minus_ref_cm_out": 1.1,
+  "sim_minus_ref_cm_max_in": 4.9
+ },
+ {
+  "ep": 30,
+  "obj": "plastic_dish_rack",
+  "window": [
+   74,
+   169
+  ],
+  "sim_minus_ref_cm_in": 1.2,
+  "sim_minus_ref_cm_out": 0.7,
+  "sim_minus_ref_cm_max_in": 1.5
+ },
+ {
+  "ep": 19,
+  "obj": "mini_sweeper",
+  "window": [
+   43,
+   98
+  ],
+  "sim_minus_ref_cm_in": 2.2,
+  "sim_minus_ref_cm_out": 0.8,
+  "sim_minus_ref_cm_max_in": 4.0
+ }
+]

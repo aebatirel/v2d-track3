@@ -1,0 +1,302 @@
+[
+ {
+  "ep": 0,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep0/poses.npz",
+  "plane": {
+   "n": [
+    -0.09437,
+    -0.75473,
+    -0.64921
+   ],
+   "d": 0.53055
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 2,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep2/poses.npz",
+  "plane": {
+   "n": [
+    -0.07513,
+    -0.73948,
+    -0.66897
+   ],
+   "d": 0.53239
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 11,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep11/poses.npz",
+  "plane": {
+   "n": [
+    -0.09551,
+    -0.76936,
+    -0.63164
+   ],
+   "d": 0.53254
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 12,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep12/poses.npz",
+  "plane": {
+   "n": [
+    -0.10402,
+    -0.78997,
+    -0.60425
+   ],
+   "d": 0.53477
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 13,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep13/poses.npz",
+  "plane": {
+   "n": [
+    -0.12453,
+    -0.77031,
+    -0.62539
+   ],
+   "d": 0.53248
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 18,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep18/poses.npz",
+  "plane": {
+   "n": [
+    -0.07325,
+    -0.74268,
+    -0.66563
+   ],
+   "d": 0.54256
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 21,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep21/poses.npz",
+  "plane": {
+   "n": [
+    -0.07571,
+    -0.70489,
+    -0.70527
+   ],
+   "d": 0.53285
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 22,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep22/poses.npz",
+  "plane": {
+   "n": [
+    -0.06579,
+    -0.77551,
+    -0.6279
+   ],
+   "d": 0.53709
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 23,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep23/poses.npz",
+  "plane": {
+   "n": [
+    -0.07435,
+    -0.72342,
+    -0.68639
+   ],
+   "d": 0.53102
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 24,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep24/poses.npz",
+  "plane": {
+   "n": [
+    -0.10667,
+    -0.72366,
+    -0.68187
+   ],
+   "d": 0.52921
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 26,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep26/poses.npz",
+  "plane": {
+   "n": [
+    -0.06432,
+    -0.75648,
+    -0.65084
+   ],
+   "d": 0.53675
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 27,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep27/poses.npz",
+  "plane": {
+   "n": [
+    -0.05544,
+    -0.6812,
+    -0.72999
+   ],
+   "d": 0.51604
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 31,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-guard-fe3f407/results/sweep/guard/ep31/poses.npz",
+  "plane": {
+   "n": [
+    -0.07514,
+    -0.67269,
+    -0.7361
+   ],
+   "d": 0.52561
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 39,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep39/poses.npz",
+  "plane": {
+   "n": [
+    -0.08998,
+    -0.63577,
+    -0.76661
+   ],
+   "d": 0.5053
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 40,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep40/poses.npz",
+  "plane": {
+   "n": [
+    -0.05736,
+    -0.66133,
+    -0.7479
+   ],
+   "d": 0.51031
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 41,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep41/poses.npz",
+  "plane": {
+   "n": [
+    -0.04857,
+    -0.69427,
+    -0.71807
+   ],
+   "d": 0.5185
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 42,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep42/poses.npz",
+  "plane": {
+   "n": [
+    -0.04964,
+    -0.71868,
+    -0.69357
+   ],
+   "d": 0.52358
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 43,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep43/poses.npz",
+  "plane": {
+   "n": [
+    -0.04558,
+    -0.68347,
+    -0.72856
+   ],
+   "d": 0.51671
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 44,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep44/poses.npz",
+  "plane": {
+   "n": [
+    -0.06187,
+    -0.69011,
+    -0.72105
+   ],
+   "d": 0.51939
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ },
+ {
+  "ep": 45,
+  "split": "public",
+  "kind": "perc",
+  "poses": "/tmp/claude-0/-home-user-v2d-track3/6190fffb-f3a1-5d0e-84bd-7370ece99c2f/scratchpad/eg/dlpub/runs/20261025-sweep-a894083/results/sweep/base/ep45/poses.npz",
+  "plane": {
+   "n": [
+    -0.04879,
+    -0.71541,
+    -0.697
+   ],
+   "d": 0.52145
+  },
+  "meshes": "/home/user/v2d-track3/meshes/library_v3"
+ }
+]

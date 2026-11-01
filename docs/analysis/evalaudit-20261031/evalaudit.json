@@ -1,0 +1,2797 @@
+{
+ "kind": "evalaudit",
+ "note": "GT-free: sim vs our own reference, kit chain (rdlib), library meshes as host",
+ "rule": {
+  "KP_CM": 5.0,
+  "FAIL_FRAC": 0.2,
+  "LEFT_MOVE": 5.0,
+  "LEFT_RATIO": 0.3,
+  "FLUNG_CM": 15.0
+ },
+ "packs": {
+  "p7": {
+   "1": {
+    "names": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "frames": 335,
+    "AUC": 0.9145,
+    "MPPE": 1.3612,
+    "RPE": 2.8863,
+    "rpe_max_frame_cm": 15.05,
+    "rpe_frac_frames_over_5cm": 0.122,
+    "fail": false,
+    "reason": "marginal: white_pot off in 7 % of frames, ends 0.9 cm; per-frame RPE > 5 cm in 12 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "white_pot",
+      "AUC": 0.8938,
+      "MPPE": 1.511,
+      "frac_kp_over_5cm": 0.072,
+      "max_kp_cm": 9.31,
+      "end_kp_cm": 0.87,
+      "end_pos_err_cm": 0.87,
+      "max_pos_err_cm": 9.3,
+      "ref_travel_cm": 18.08,
+      "sim_travel_cm": 16.92,
+      "path_dev_cm": 4.78,
+      "first_off_frac": 0.439,
+      "min_dz_cm": -2.89,
+      "fail": false
+     },
+     {
+      "name": "white_pot_lid",
+      "AUC": 0.9351,
+      "MPPE": 1.211,
+      "frac_kp_over_5cm": 0.009,
+      "max_kp_cm": 5.69,
+      "end_kp_cm": 1.24,
+      "end_pos_err_cm": 1.2,
+      "max_pos_err_cm": 5.64,
+      "ref_travel_cm": 22.85,
+      "sim_travel_cm": 21.87,
+      "path_dev_cm": 2.53,
+      "first_off_frac": 0.758,
+      "min_dz_cm": -4.29,
+      "fail": false
+     }
+    ],
+    "ep": 1,
+    "learner": "standard (std0116)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+    "checkpoint_sha256": "f83e6ca0a9addff954b948b8edb3d79cf1021d4e9a26498c41b16681f409466a",
+    "packed_sim_vs_ref": 0.9196,
+    "qa_sim_vs_ref": 0.9196,
+    "evaluator": {
+     "add_auc": 0.9145,
+     "relative_position_error_cm": 2.887,
+     "mppe_cm": 2.19,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "3": {
+    "names": [
+     "white_pot",
+     "wooden_spoon"
+    ],
+    "frames": 313,
+    "AUC": 0.9377,
+    "MPPE": 1.1411,
+    "RPE": 2.0913,
+    "rpe_max_frame_cm": 9.88,
+    "rpe_frac_frames_over_5cm": 0.118,
+    "fail": false,
+    "reason": "marginal: per-frame RPE > 5 cm in 12 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "white_pot",
+      "AUC": 0.8998,
+      "MPPE": 1.383,
+      "frac_kp_over_5cm": 0.038,
+      "max_kp_cm": 8.24,
+      "end_kp_cm": 0.19,
+      "end_pos_err_cm": 0.17,
+      "max_pos_err_cm": 8.21,
+      "ref_travel_cm": 8.99,
+      "sim_travel_cm": 9.72,
+      "path_dev_cm": 1.88,
+      "first_off_frac": 0.22,
+      "min_dz_cm": -8.0,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9756,
+      "MPPE": 0.899,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 2.67,
+      "end_kp_cm": 1.48,
+      "end_pos_err_cm": 1.47,
+      "max_pos_err_cm": 2.67,
+      "ref_travel_cm": 28.96,
+      "sim_travel_cm": 29.31,
+      "path_dev_cm": 1.92,
+      "first_off_frac": null,
+      "min_dz_cm": -1.16,
+      "fail": false
+     }
+    ],
+    "ep": 3,
+    "learner": "grasp lock (seed43)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep3/processed/sequence_id=t3_ep003/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "737c7b9eb8bc36bb191cbe65c5e3ed07973a1e06b6b20c63f7cd2502b223ad67",
+    "packed_sim_vs_ref": 0.9418,
+    "qa_sim_vs_ref": 0.9418,
+    "evaluator": {
+     "add_auc": 0.9443,
+     "relative_position_error_cm": 2.091,
+     "mppe_cm": 1.525,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "5": {
+    "names": [
+     "white_pot",
+     "wooden_spoon"
+    ],
+    "frames": 288,
+    "AUC": 0.9586,
+    "MPPE": 1.0467,
+    "RPE": 1.6867,
+    "rpe_max_frame_cm": 4.59,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "white_pot",
+      "AUC": 0.9429,
+      "MPPE": 1.145,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 3.32,
+      "end_kp_cm": 0.39,
+      "end_pos_err_cm": 0.38,
+      "max_pos_err_cm": 3.27,
+      "ref_travel_cm": 24.61,
+      "sim_travel_cm": 25.17,
+      "path_dev_cm": 2.61,
+      "first_off_frac": null,
+      "min_dz_cm": -1.17,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9742,
+      "MPPE": 0.948,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.86,
+      "end_kp_cm": 1.15,
+      "end_pos_err_cm": 1.08,
+      "max_pos_err_cm": 1.83,
+      "ref_travel_cm": 31.52,
+      "sim_travel_cm": 31.35,
+      "path_dev_cm": 1.71,
+      "first_off_frac": null,
+      "min_dz_cm": -0.86,
+      "fail": false
+     }
+    ],
+    "ep": 5,
+    "learner": "grasp lock (seed43)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep5/processed/sequence_id=t3_ep005/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "cd7594a8c751b9e7fa11e4a752259d6ddb85fda92c6569553b9a69ae86e9c82f",
+    "packed_sim_vs_ref": 0.9595,
+    "qa_sim_vs_ref": 0.9595,
+    "evaluator": {
+     "add_auc": 0.9626,
+     "relative_position_error_cm": 1.687,
+     "mppe_cm": 1.271,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "6": {
+    "names": [
+     "white_pot",
+     "wooden_spoon"
+    ],
+    "frames": 243,
+    "AUC": 0.966,
+    "MPPE": 0.8887,
+    "RPE": 1.6538,
+    "rpe_max_frame_cm": 5.29,
+    "rpe_frac_frames_over_5cm": 0.004,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "white_pot",
+      "AUC": 0.9599,
+      "MPPE": 0.909,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 3.77,
+      "end_kp_cm": 0.66,
+      "end_pos_err_cm": 0.65,
+      "max_pos_err_cm": 3.65,
+      "ref_travel_cm": 15.2,
+      "sim_travel_cm": 15.2,
+      "path_dev_cm": 1.83,
+      "first_off_frac": null,
+      "min_dz_cm": -3.27,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9722,
+      "MPPE": 0.868,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 2.32,
+      "end_kp_cm": 0.97,
+      "end_pos_err_cm": 0.94,
+      "max_pos_err_cm": 2.3,
+      "ref_travel_cm": 27.62,
+      "sim_travel_cm": 28.29,
+      "path_dev_cm": 1.72,
+      "first_off_frac": null,
+      "min_dz_cm": -1.34,
+      "fail": false
+     }
+    ],
+    "ep": 6,
+    "learner": "grasp lock (pack1)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep6/processed/sequence_id=t3_ep006/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "020e75dd4447270ae092269ba6199f68b712b8989d436d82263cfcf5c1a9b2eb",
+    "packed_sim_vs_ref": 0.9713,
+    "qa_sim_vs_ref": 0.9713,
+    "evaluator": {
+     "add_auc": 0.9669,
+     "relative_position_error_cm": 1.654,
+     "mppe_cm": 1.108,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "8": {
+    "names": [
+     "beige_cup",
+     "white_pot"
+    ],
+    "frames": 219,
+    "AUC": 0.9782,
+    "MPPE": 0.7516,
+    "RPE": 1.4813,
+    "rpe_max_frame_cm": 4.94,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "beige_cup",
+      "AUC": 0.9792,
+      "MPPE": 0.772,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.93,
+      "end_kp_cm": 0.89,
+      "end_pos_err_cm": 0.89,
+      "max_pos_err_cm": 1.86,
+      "ref_travel_cm": 21.06,
+      "sim_travel_cm": 21.85,
+      "path_dev_cm": 1.8,
+      "first_off_frac": null,
+      "min_dz_cm": -1.48,
+      "fail": false
+     },
+     {
+      "name": "white_pot",
+      "AUC": 0.9772,
+      "MPPE": 0.732,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 2.69,
+      "end_kp_cm": 0.29,
+      "end_pos_err_cm": 0.29,
+      "max_pos_err_cm": 2.69,
+      "ref_travel_cm": 9.85,
+      "sim_travel_cm": 10.94,
+      "path_dev_cm": 2.38,
+      "first_off_frac": null,
+      "min_dz_cm": -1.99,
+      "fail": false
+     }
+    ],
+    "ep": 8,
+    "learner": "grasp lock (eval_both)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep8/processed/sequence_id=t3_ep008/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "cb6277bfc3b7f37d499ed7af262ebe1407f434dd0f778ef29d235cb59b5fa500",
+    "packed_sim_vs_ref": 0.9783,
+    "qa_sim_vs_ref": 0.9783,
+    "evaluator": {
+     "add_auc": 0.9765,
+     "relative_position_error_cm": 2.347,
+     "mppe_cm": 1.072,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3x"
+   },
+   "10": {
+    "names": [
+     "blue_cup",
+     "beige_cup"
+    ],
+    "frames": 161,
+    "AUC": 0.4577,
+    "MPPE": 8.5438,
+    "RPE": 15.7575,
+    "rpe_max_frame_cm": 27.44,
+    "rpe_frac_frames_over_5cm": 0.758,
+    "fail": true,
+    "reason": "beige_cup: left behind (sim travel 0.7 of ref 25.1 cm)",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "blue_cup",
+      "AUC": 0.6755,
+      "MPPE": 3.375,
+      "frac_kp_over_5cm": 0.118,
+      "max_kp_cm": 5.51,
+      "end_kp_cm": 3.81,
+      "end_pos_err_cm": 3.8,
+      "max_pos_err_cm": 5.5,
+      "ref_travel_cm": 5.65,
+      "sim_travel_cm": 1.02,
+      "path_dev_cm": 0.87,
+      "first_off_frac": 0.609,
+      "min_dz_cm": -3.64,
+      "fail": false
+     },
+     {
+      "name": "beige_cup",
+      "AUC": 0.2399,
+      "MPPE": 13.713,
+      "frac_kp_over_5cm": 0.758,
+      "max_kp_cm": 25.32,
+      "end_kp_cm": 15.79,
+      "end_pos_err_cm": 15.77,
+      "max_pos_err_cm": 25.32,
+      "ref_travel_cm": 25.13,
+      "sim_travel_cm": 0.69,
+      "path_dev_cm": 0.6,
+      "first_off_frac": 0.242,
+      "min_dz_cm": -23.15,
+      "fail": true,
+      "reason": "left behind (sim travel 0.7 of ref 25.1 cm)"
+     }
+    ],
+    "ep": 10,
+    "learner": "grasp lock, carved cups (gl10A2)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep10/processed/sequence_id=t3_ep010/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "76a12265ebf77bf24af73ff4a25877c2553e54e5912b30f02d805630e272cbb9",
+    "packed_sim_vs_ref": 0.4563,
+    "qa_sim_vs_ref": 0.4563,
+    "evaluator": {
+     "add_auc": 0.454,
+     "relative_position_error_cm": 16.271,
+     "mppe_cm": 13.996,
+     "success_rate": 0.0,
+     "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "14": {
+    "names": [
+     "blue_cup",
+     "plastic_dish_rack"
+    ],
+    "frames": 158,
+    "AUC": 0.8968,
+    "MPPE": 1.4554,
+    "RPE": 3.3857,
+    "rpe_max_frame_cm": 8.34,
+    "rpe_frac_frames_over_5cm": 0.278,
+    "fail": false,
+    "reason": "marginal: blue_cup off in 6 % of frames, ends 3.2 cm; per-frame RPE > 5 cm in 28 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "blue_cup",
+      "AUC": 0.8137,
+      "MPPE": 2.216,
+      "frac_kp_over_5cm": 0.057,
+      "max_kp_cm": 9.67,
+      "end_kp_cm": 3.23,
+      "end_pos_err_cm": 3.03,
+      "max_pos_err_cm": 9.61,
+      "ref_travel_cm": 26.58,
+      "sim_travel_cm": 29.0,
+      "path_dev_cm": 7.91,
+      "first_off_frac": 0.285,
+      "min_dz_cm": -7.35,
+      "fail": false
+     },
+     {
+      "name": "plastic_dish_rack",
+      "AUC": 0.9798,
+      "MPPE": 0.695,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.96,
+      "end_kp_cm": 1.62,
+      "end_pos_err_cm": 1.6,
+      "max_pos_err_cm": 1.94,
+      "ref_travel_cm": 0.99,
+      "sim_travel_cm": 1.5,
+      "path_dev_cm": 1.62,
+      "first_off_frac": null,
+      "min_dz_cm": -1.09,
+      "fail": false
+     }
+    ],
+    "ep": 14,
+    "learner": "grasp lock (eval_both)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep14/processed/sequence_id=t3_ep014/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "05b13510629eb5333fc7756b1d927275db0926005af35d09ad96e4648d9cd27e",
+    "packed_sim_vs_ref": 0.9094,
+    "qa_sim_vs_ref": 0.9094,
+    "evaluator": {
+     "add_auc": 0.8932,
+     "relative_position_error_cm": 4.853,
+     "mppe_cm": 2.267,
+     "success_rate": 0.0,
+     "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "15": {
+    "names": [
+     "plastic_dish_rack",
+     "wooden_spoon"
+    ],
+    "frames": 166,
+    "AUC": 0.9597,
+    "MPPE": 0.9745,
+    "RPE": 1.5059,
+    "rpe_max_frame_cm": 3.31,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "plastic_dish_rack",
+      "AUC": 1.0,
+      "MPPE": 0.323,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 0.81,
+      "end_kp_cm": 0.64,
+      "end_pos_err_cm": 0.64,
+      "max_pos_err_cm": 0.81,
+      "ref_travel_cm": 0.5,
+      "sim_travel_cm": 0.75,
+      "path_dev_cm": 0.63,
+      "first_off_frac": null,
+      "min_dz_cm": -0.24,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9194,
+      "MPPE": 1.626,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.08,
+      "end_kp_cm": 3.86,
+      "end_pos_err_cm": 2.64,
+      "max_pos_err_cm": 3.02,
+      "ref_travel_cm": 42.55,
+      "sim_travel_cm": 42.82,
+      "path_dev_cm": 2.31,
+      "first_off_frac": null,
+      "min_dz_cm": -2.81,
+      "fail": false
+     }
+    ],
+    "ep": 15,
+    "learner": "grasp lock (seed43)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep15/processed/sequence_id=t3_ep015/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "e459bb2140134981823ba0c0169b20b08b95beb91b5a3a7755cc537faf9e8cd6",
+    "packed_sim_vs_ref": 0.9465,
+    "qa_sim_vs_ref": 0.9465,
+    "evaluator": {
+     "add_auc": 0.9526,
+     "relative_position_error_cm": 1.506,
+     "mppe_cm": 1.702,
+     "success_rate": 0.0,
+     "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "16": {
+    "names": [
+     "plastic_dish_rack",
+     "wooden_spoon"
+    ],
+    "frames": 173,
+    "AUC": 0.8994,
+    "MPPE": 1.3629,
+    "RPE": 1.5763,
+    "rpe_max_frame_cm": 4.25,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "marginal: wooden_spoon off in 10 % of frames, ends 7.2 cm",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "plastic_dish_rack",
+      "AUC": 0.9382,
+      "MPPE": 0.814,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.92,
+      "end_kp_cm": 1.92,
+      "end_pos_err_cm": 1.86,
+      "max_pos_err_cm": 1.87,
+      "ref_travel_cm": 0.79,
+      "sim_travel_cm": 1.73,
+      "path_dev_cm": 1.57,
+      "first_off_frac": null,
+      "min_dz_cm": -0.47,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.8605,
+      "MPPE": 1.912,
+      "frac_kp_over_5cm": 0.098,
+      "max_kp_cm": 7.15,
+      "end_kp_cm": 7.15,
+      "end_pos_err_cm": 2.33,
+      "max_pos_err_cm": 3.73,
+      "ref_travel_cm": 38.03,
+      "sim_travel_cm": 37.93,
+      "path_dev_cm": 2.87,
+      "first_off_frac": 0.902,
+      "min_dz_cm": -2.02,
+      "fail": false
+     }
+    ],
+    "ep": 16,
+    "learner": "grasp lock (seed43)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep16/processed/sequence_id=t3_ep016/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "df4d4473220a61cd1c8d67ee2f6ccacc167790dc35db9ae1de68ff0a4aa40b34",
+    "packed_sim_vs_ref": 0.9079,
+    "qa_sim_vs_ref": 0.9079,
+    "evaluator": {
+     "add_auc": 0.9003,
+     "relative_position_error_cm": 1.576,
+     "mppe_cm": 1.956,
+     "success_rate": 0.0,
+     "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "19": {
+    "names": [
+     "mini_sweeper",
+     "mini_dust_pan"
+    ],
+    "frames": 235,
+    "AUC": 0.9253,
+    "MPPE": 1.3609,
+    "RPE": 2.629,
+    "rpe_max_frame_cm": 6.81,
+    "rpe_frac_frames_over_5cm": 0.068,
+    "fail": false,
+    "reason": "marginal: per-frame RPE > 5 cm in 7 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "mini_sweeper",
+      "AUC": 0.9426,
+      "MPPE": 1.23,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.39,
+      "end_kp_cm": 0.69,
+      "end_pos_err_cm": 0.38,
+      "max_pos_err_cm": 4.31,
+      "ref_travel_cm": 10.77,
+      "sim_travel_cm": 11.05,
+      "path_dev_cm": 3.1,
+      "first_off_frac": null,
+      "min_dz_cm": -2.47,
+      "fail": false
+     },
+     {
+      "name": "mini_dust_pan",
+      "AUC": 0.908,
+      "MPPE": 1.492,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.83,
+      "end_kp_cm": 0.46,
+      "end_pos_err_cm": 0.42,
+      "max_pos_err_cm": 4.71,
+      "ref_travel_cm": 14.7,
+      "sim_travel_cm": 16.13,
+      "path_dev_cm": 4.29,
+      "first_off_frac": null,
+      "min_dz_cm": -4.41,
+      "fail": false
+     }
+    ],
+    "ep": 19,
+    "learner": "standard (std1928)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/perc2mcks/ep19/processed/sequence_id=t3_ep019/robot_name=sharpa_wave/afc53914ae7542d7b565119fc4892688-0.parquet",
+    "checkpoint_sha256": "fdc4c491e2d457a2d385d39be17f8223a90b0621f5c1d388b530567b9294e486",
+    "packed_sim_vs_ref": 0.9278,
+    "qa_sim_vs_ref": 0.9278,
+    "evaluator": {
+     "add_auc": 0.9242,
+     "relative_position_error_cm": 2.608,
+     "mppe_cm": 1.821,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "20": {
+    "names": [
+     "blue_cup",
+     "water_pitcher"
+    ],
+    "frames": 202,
+    "AUC": 0.8869,
+    "MPPE": 1.7877,
+    "RPE": 1.2986,
+    "rpe_max_frame_cm": 6.44,
+    "rpe_frac_frames_over_5cm": 0.025,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "blue_cup",
+      "AUC": 0.9168,
+      "MPPE": 1.566,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.48,
+      "end_kp_cm": 1.42,
+      "end_pos_err_cm": 1.42,
+      "max_pos_err_cm": 4.46,
+      "ref_travel_cm": 7.73,
+      "sim_travel_cm": 8.83,
+      "path_dev_cm": 3.42,
+      "first_off_frac": null,
+      "min_dz_cm": -2.44,
+      "fail": false
+     },
+     {
+      "name": "water_pitcher",
+      "AUC": 0.8571,
+      "MPPE": 2.009,
+      "frac_kp_over_5cm": 0.015,
+      "max_kp_cm": 6.7,
+      "end_kp_cm": 1.41,
+      "end_pos_err_cm": 1.4,
+      "max_pos_err_cm": 6.57,
+      "ref_travel_cm": 34.11,
+      "sim_travel_cm": 34.85,
+      "path_dev_cm": 6.36,
+      "first_off_frac": 0.144,
+      "min_dz_cm": -0.68,
+      "fail": false
+     }
+    ],
+    "ep": 20,
+    "learner": "grasp lock (eval_both)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep20/processed/sequence_id=t3_ep020/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "61dcd7a6339677ac8cf612a11a3b9bf8cd7939a358a438c111d34e213faea7ff",
+    "packed_sim_vs_ref": 0.8948,
+    "qa_sim_vs_ref": 0.8948,
+    "evaluator": {
+     "add_auc": 0.9479,
+     "relative_position_error_cm": 3.027,
+     "mppe_cm": 1.412,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "25": {
+    "names": [
+     "wooden_piece_1",
+     "wooden_piece_2"
+    ],
+    "frames": 356,
+    "AUC": 0.8825,
+    "MPPE": 1.6928,
+    "RPE": 2.7849,
+    "rpe_max_frame_cm": 15.09,
+    "rpe_frac_frames_over_5cm": 0.138,
+    "fail": false,
+    "reason": "marginal: wooden_piece_2 off in 5 % of frames, ends 2.2 cm; per-frame RPE > 5 cm in 14 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "wooden_piece_1",
+      "AUC": 0.8948,
+      "MPPE": 1.612,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.96,
+      "end_kp_cm": 1.76,
+      "end_pos_err_cm": 1.66,
+      "max_pos_err_cm": 4.94,
+      "ref_travel_cm": 19.48,
+      "sim_travel_cm": 21.1,
+      "path_dev_cm": 3.52,
+      "first_off_frac": null,
+      "min_dz_cm": -3.93,
+      "fail": false
+     },
+     {
+      "name": "wooden_piece_2",
+      "AUC": 0.8703,
+      "MPPE": 1.774,
+      "frac_kp_over_5cm": 0.051,
+      "max_kp_cm": 8.81,
+      "end_kp_cm": 2.17,
+      "end_pos_err_cm": 1.86,
+      "max_pos_err_cm": 8.79,
+      "ref_travel_cm": 24.81,
+      "sim_travel_cm": 23.93,
+      "path_dev_cm": 7.25,
+      "first_off_frac": 0.492,
+      "min_dz_cm": -7.09,
+      "fail": false
+     }
+    ],
+    "ep": 25,
+    "learner": "standard, carve s42 (c25s42)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/perc2mcks/ep25/processed/sequence_id=t3_ep025/robot_name=sharpa_wave/2057d9f10b3a421ebbfd847c1219d1a0-0.parquet",
+    "checkpoint_sha256": "7edd445b741f206e79bcab18f7f2a3d6b971e2b0172eaef181255c639a385ce3",
+    "packed_sim_vs_ref": 0.8937,
+    "qa_sim_vs_ref": 0.8937,
+    "evaluator": {
+     "add_auc": 0.883,
+     "relative_position_error_cm": 2.793,
+     "mppe_cm": 2.364,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "28": {
+    "names": [
+     "plastic_dish_rack",
+     "white_pot"
+    ],
+    "frames": 220,
+    "AUC": 0.9161,
+    "MPPE": 1.3695,
+    "RPE": 1.8744,
+    "rpe_max_frame_cm": 5.89,
+    "rpe_frac_frames_over_5cm": 0.023,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "plastic_dish_rack",
+      "AUC": 0.9878,
+      "MPPE": 0.743,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.31,
+      "end_kp_cm": 0.86,
+      "end_pos_err_cm": 0.85,
+      "max_pos_err_cm": 1.3,
+      "ref_travel_cm": 0.77,
+      "sim_travel_cm": 0.74,
+      "path_dev_cm": 0.53,
+      "first_off_frac": null,
+      "min_dz_cm": -0.31,
+      "fail": false
+     },
+     {
+      "name": "white_pot",
+      "AUC": 0.8443,
+      "MPPE": 1.996,
+      "frac_kp_over_5cm": 0.045,
+      "max_kp_cm": 6.53,
+      "end_kp_cm": 2.7,
+      "end_pos_err_cm": 2.68,
+      "max_pos_err_cm": 6.39,
+      "ref_travel_cm": 42.4,
+      "sim_travel_cm": 42.61,
+      "path_dev_cm": 5.78,
+      "first_off_frac": 0.245,
+      "min_dz_cm": -1.79,
+      "fail": false
+     }
+    ],
+    "ep": 28,
+    "learner": "standard (std1928)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/perc2mcks/ep28/processed/sequence_id=t3_ep028/robot_name=sharpa_wave/4327c2f4a8b7432f9128481b2d45c34f-0.parquet",
+    "checkpoint_sha256": "09b3ec5d532309746c30e93b93ec8e6c39282aeefd75c702ebae8cbfd7ec5e2f",
+    "packed_sim_vs_ref": 0.929,
+    "qa_sim_vs_ref": 0.929,
+    "evaluator": {
+     "add_auc": 0.9273,
+     "relative_position_error_cm": 1.837,
+     "mppe_cm": 1.796,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "30": {
+    "names": [
+     "mini_sweeper",
+     "plastic_dish_rack"
+    ],
+    "frames": 263,
+    "AUC": 0.9078,
+    "MPPE": 1.4574,
+    "RPE": 2.7902,
+    "rpe_max_frame_cm": 8.3,
+    "rpe_frac_frames_over_5cm": 0.114,
+    "fail": false,
+    "reason": "marginal: per-frame RPE > 5 cm in 11 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "mini_sweeper",
+      "AUC": 0.8781,
+      "MPPE": 1.954,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.65,
+      "end_kp_cm": 2.75,
+      "end_pos_err_cm": 2.53,
+      "max_pos_err_cm": 4.64,
+      "ref_travel_cm": 24.87,
+      "sim_travel_cm": 23.28,
+      "path_dev_cm": 2.03,
+      "first_off_frac": null,
+      "min_dz_cm": -4.22,
+      "fail": false
+     },
+     {
+      "name": "plastic_dish_rack",
+      "AUC": 0.9375,
+      "MPPE": 0.961,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.57,
+      "end_kp_cm": 0.89,
+      "end_pos_err_cm": 0.83,
+      "max_pos_err_cm": 1.55,
+      "ref_travel_cm": 1.39,
+      "sim_travel_cm": 1.14,
+      "path_dev_cm": 0.8,
+      "first_off_frac": null,
+      "min_dz_cm": -1.45,
+      "fail": false
+     }
+    ],
+    "ep": 30,
+    "learner": "standard (std30)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/perc2mcks/ep30/processed/sequence_id=t3_ep030/robot_name=sharpa_wave/a2eb7d276dd84fe6bed9251b46e93770-0.parquet",
+    "checkpoint_sha256": "bc9fccad9310625dd8bdb0e230b3fc72d2b72f520540daf72559e8c7edf27565",
+    "packed_sim_vs_ref": 0.9229,
+    "qa_sim_vs_ref": 0.9229,
+    "evaluator": {
+     "add_auc": 0.9207,
+     "relative_position_error_cm": 2.776,
+     "mppe_cm": 1.983,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "32": {
+    "names": [
+     "blue_cup",
+     "wooden_spoon"
+    ],
+    "frames": 259,
+    "AUC": 0.8148,
+    "MPPE": 2.5889,
+    "RPE": 3.6878,
+    "rpe_max_frame_cm": 34.98,
+    "rpe_frac_frames_over_5cm": 0.174,
+    "fail": false,
+    "reason": "marginal: blue_cup off in 12 % of frames, ends 7.6 cm; per-frame RPE > 5 cm in 17 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "blue_cup",
+      "AUC": 0.7799,
+      "MPPE": 2.959,
+      "frac_kp_over_5cm": 0.12,
+      "max_kp_cm": 21.49,
+      "end_kp_cm": 7.62,
+      "end_pos_err_cm": 7.6,
+      "max_pos_err_cm": 21.01,
+      "ref_travel_cm": 16.27,
+      "sim_travel_cm": 29.28,
+      "path_dev_cm": 18.3,
+      "first_off_frac": 0.062,
+      "min_dz_cm": -12.9,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.8497,
+      "MPPE": 2.219,
+      "frac_kp_over_5cm": 0.015,
+      "max_kp_cm": 6.11,
+      "end_kp_cm": 1.65,
+      "end_pos_err_cm": 1.63,
+      "max_pos_err_cm": 6.1,
+      "ref_travel_cm": 27.49,
+      "sim_travel_cm": 27.57,
+      "path_dev_cm": 4.56,
+      "first_off_frac": 0.336,
+      "min_dz_cm": -0.75,
+      "fail": false
+     }
+    ],
+    "ep": 32,
+    "learner": "grasp lock frozen s46",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep32/processed/sequence_id=t3_ep032/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "7bfea035010eb67913070651b75c8acce1b8e22f7e2193f741ab186819357d94",
+    "packed_sim_vs_ref": 0.8656,
+    "qa_sim_vs_ref": 0.8656,
+    "evaluator": {
+     "add_auc": 0.8591,
+     "relative_position_error_cm": 7.567,
+     "mppe_cm": 3.035,
+     "success_rate": 0.0,
+     "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "33": {
+    "names": [
+     "blue_cup",
+     "wooden_spoon"
+    ],
+    "frames": 348,
+    "AUC": 0.9412,
+    "MPPE": 1.164,
+    "RPE": 1.9032,
+    "rpe_max_frame_cm": 14.21,
+    "rpe_frac_frames_over_5cm": 0.055,
+    "fail": false,
+    "reason": "marginal: per-frame RPE > 5 cm in 5 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "blue_cup",
+      "AUC": 0.9585,
+      "MPPE": 1.01,
+      "frac_kp_over_5cm": 0.009,
+      "max_kp_cm": 6.65,
+      "end_kp_cm": 0.49,
+      "end_pos_err_cm": 0.48,
+      "max_pos_err_cm": 6.39,
+      "ref_travel_cm": 9.79,
+      "sim_travel_cm": 10.4,
+      "path_dev_cm": 3.23,
+      "first_off_frac": 0.261,
+      "min_dz_cm": -2.78,
+      "fail": false
+     },
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9239,
+      "MPPE": 1.318,
+      "frac_kp_over_5cm": 0.02,
+      "max_kp_cm": 5.95,
+      "end_kp_cm": 0.3,
+      "end_pos_err_cm": 0.27,
+      "max_pos_err_cm": 5.94,
+      "ref_travel_cm": 29.17,
+      "sim_travel_cm": 29.15,
+      "path_dev_cm": 3.86,
+      "first_off_frac": 0.267,
+      "min_dz_cm": -5.1,
+      "fail": false
+     }
+    ],
+    "ep": 33,
+    "learner": "grasp lock arm B (rcB)",
+    "source": "runs/20261030-c33B-0202139/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep33/processed/sequence_id=t3_ep033/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "df90b2162885a17c83ea69ce90067ec567b89434adbcdedc0fba19d4b0c07ccb",
+    "packed_sim_vs_ref": 0.9401,
+    "qa_sim_vs_ref": 0.9401,
+    "evaluator": {
+     "add_auc": 0.94,
+     "relative_position_error_cm": 2.806,
+     "mppe_cm": 1.606,
+     "success_rate": 0.0,
+     "termination_cause_fraction": {
+      "object": 1.0,
+      "wrist": 1.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "35": {
+    "names": [
+     "wooden_spoon"
+    ],
+    "frames": 421,
+    "AUC": 0.9844,
+    "MPPE": 0.817,
+    "RPE": 0.0,
+    "rpe_max_frame_cm": 0.0,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9844,
+      "MPPE": 0.817,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.79,
+      "end_kp_cm": 0.32,
+      "end_pos_err_cm": 0.31,
+      "max_pos_err_cm": 1.68,
+      "ref_travel_cm": 23.87,
+      "sim_travel_cm": 24.11,
+      "path_dev_cm": 1.47,
+      "first_off_frac": null,
+      "min_dz_cm": -1.23,
+      "fail": false
+     }
+    ],
+    "ep": 35,
+    "learner": "grasp lock (pack1)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep35/processed/sequence_id=t3_ep035/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "e0515c33783b740c7e6b94b066d4199710752c2d2e6d1f192ae05c6175720061",
+    "packed_sim_vs_ref": 0.9829,
+    "qa_sim_vs_ref": 0.9829,
+    "evaluator": {
+     "add_auc": 0.9966,
+     "relative_position_error_cm": 0.0,
+     "mppe_cm": 0.546,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "36": {
+    "names": [
+     "wooden_spoon"
+    ],
+    "frames": 407,
+    "AUC": 0.9936,
+    "MPPE": 0.6306,
+    "RPE": 0.0,
+    "rpe_max_frame_cm": 0.0,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9936,
+      "MPPE": 0.631,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 2.79,
+      "end_kp_cm": 0.5,
+      "end_pos_err_cm": 0.46,
+      "max_pos_err_cm": 2.75,
+      "ref_travel_cm": 24.48,
+      "sim_travel_cm": 24.64,
+      "path_dev_cm": 1.33,
+      "first_off_frac": null,
+      "min_dz_cm": -2.74,
+      "fail": false
+     }
+    ],
+    "ep": 36,
+    "learner": "grasp lock (pack1)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep36/processed/sequence_id=t3_ep036/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "d1b402c803398aeae8bf0effaf8e1026a6d637770a762b1571cdcb90f6527076",
+    "packed_sim_vs_ref": 0.9912,
+    "qa_sim_vs_ref": 0.9912,
+    "evaluator": {
+     "add_auc": 0.992,
+     "relative_position_error_cm": 0.0,
+     "mppe_cm": 0.656,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "37": {
+    "names": [
+     "wooden_spoon"
+    ],
+    "frames": 151,
+    "AUC": 0.9979,
+    "MPPE": 0.4641,
+    "RPE": 0.0,
+    "rpe_max_frame_cm": 0.0,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "wooden_spoon",
+      "AUC": 0.9979,
+      "MPPE": 0.464,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.13,
+      "end_kp_cm": 0.35,
+      "end_pos_err_cm": 0.33,
+      "max_pos_err_cm": 1.12,
+      "ref_travel_cm": 31.57,
+      "sim_travel_cm": 31.7,
+      "path_dev_cm": 1.02,
+      "first_off_frac": null,
+      "min_dz_cm": -0.59,
+      "fail": false
+     }
+    ],
+    "ep": 37,
+    "learner": "grasp lock (pack1)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep37/processed/sequence_id=t3_ep037/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "ec709d3d50fd84ce352d59c867cbcd648c70b12b9d91e3933510dbe6652bd25e",
+    "packed_sim_vs_ref": 0.9979,
+    "qa_sim_vs_ref": 0.9979,
+    "evaluator": {
+     "add_auc": 1.0,
+     "relative_position_error_cm": 0.0,
+     "mppe_cm": 0.397,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   },
+   "38": {
+    "names": [
+     "mini_dust_pan"
+    ],
+    "frames": 263,
+    "AUC": 0.9998,
+    "MPPE": 0.3675,
+    "RPE": 0.0,
+    "rpe_max_frame_cm": 0.0,
+    "rpe_frac_frames_over_5cm": 0.0,
+    "fail": false,
+    "reason": "",
+    "marginal": false,
+    "objects": [
+     {
+      "name": "mini_dust_pan",
+      "AUC": 0.9998,
+      "MPPE": 0.367,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 1.12,
+      "end_kp_cm": 0.49,
+      "end_pos_err_cm": 0.48,
+      "max_pos_err_cm": 1.11,
+      "ref_travel_cm": 26.13,
+      "sim_travel_cm": 26.47,
+      "path_dev_cm": 0.84,
+      "first_off_frac": null,
+      "min_dz_cm": -0.59,
+      "fail": false
+     }
+    ],
+    "ep": 38,
+    "learner": "grasp lock (pack1)",
+    "source": "runs/20261026-pack6-5203d42/results/submission",
+    "reference_parquet": "/workspace/refs/glockt/ep38/processed/sequence_id=t3_ep038/robot_name=sharpa_wave/ref_gl_ilc.parquet",
+    "checkpoint_sha256": "6c0aa63e7a24df26e94cb63e4a0d021ed66779be0df5ef26d42625ce4d954bfe",
+    "packed_sim_vs_ref": 0.9998,
+    "qa_sim_vs_ref": 0.9998,
+    "evaluator": {
+     "add_auc": 0.9998,
+     "relative_position_error_cm": 0.0,
+     "mppe_cm": 0.365,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   }
+  },
+  "p8": {
+   "1": {
+    "names": [
+     "white_pot",
+     "white_pot_lid"
+    ],
+    "frames": 335,
+    "AUC": 0.916,
+    "MPPE": 1.3477,
+    "RPE": 2.4641,
+    "rpe_max_frame_cm": 16.74,
+    "rpe_frac_frames_over_5cm": 0.134,
+    "fail": false,
+    "reason": "marginal: white_pot off in 8 % of frames, ends 0.7 cm; per-frame RPE > 5 cm in 13 % of frames",
+    "marginal": true,
+    "objects": [
+     {
+      "name": "white_pot",
+      "AUC": 0.8813,
+      "MPPE": 1.536,
+      "frac_kp_over_5cm": 0.075,
+      "max_kp_cm": 8.52,
+      "end_kp_cm": 0.71,
+      "end_pos_err_cm": 0.71,
+      "max_pos_err_cm": 8.47,
+      "ref_travel_cm": 18.08,
+      "sim_travel_cm": 18.72,
+      "path_dev_cm": 5.58,
+      "first_off_frac": 0.496,
+      "min_dz_cm": -2.15,
+      "fail": false
+     },
+     {
+      "name": "white_pot_lid",
+      "AUC": 0.9507,
+      "MPPE": 1.159,
+      "frac_kp_over_5cm": 0.0,
+      "max_kp_cm": 4.06,
+      "end_kp_cm": 1.46,
+      "end_pos_err_cm": 1.45,
+      "max_pos_err_cm": 3.9,
+      "ref_travel_cm": 22.85,
+      "sim_travel_cm": 23.08,
+      "path_dev_cm": 2.24,
+      "first_off_frac": null,
+      "min_dz_cm": -1.58,
+      "fail": false
+     }
+    ],
+    "ep": 1,
+    "learner": "standard, carve s43 (c01s43)",
+    "source": "runs/20261030-e1conf2-d41382e/results/submission",
+    "reference_parquet": "/workspace/refs/perc2mcks/ep1/processed/sequence_id=t3_ep001/robot_name=sharpa_wave/64333b0b8cec4bb397290b3ca3d6f399-0.parquet",
+    "checkpoint_sha256": "5625b86a5118426770358c5fd9a6cc65ad30038c44eb5502630cddd917e66521",
+    "packed_sim_vs_ref": 0.9232,
+    "qa_sim_vs_ref": 0.9232,
+    "evaluator": {
+     "add_auc": 0.9209,
+     "relative_position_error_cm": 2.475,
+     "mppe_cm": 2.02,
+     "success_rate": 1.0,
+     "termination_cause_fraction": {
+      "object": 0.0,
+      "wrist": 0.0
+     }
+    },
+    "mesh_library": "library_v3"
+   }
+  }
+ },
+ "public_check": {
+  "note": "GT-free numbers recomputed here vs roll_rollouts.json (rpe-decomp-20261031): policy = sim vs our reference (same path), total = sim vs mocap (copied from roll_rollouts.json, not recomputed here)",
+  "cells": {
+   "glock_public/ep11": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.5347,
+       "MPPE": 8.3248,
+       "RPE": 14.5684
+      },
+      "roll_policy": {
+       "AUC": 0.5347,
+       "MPPE": 8.3248,
+       "RPE": 14.5684
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.7978,
+       "RPE": 14.5626
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.1 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.5315,
+       "MPPE": 8.3817,
+       "RPE": 14.6268
+      },
+      "roll_policy": {
+       "AUC": 0.5315,
+       "MPPE": 8.3817,
+       "RPE": 14.6268
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.8839,
+       "RPE": 14.6194
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.3 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.5338,
+       "MPPE": 8.3328,
+       "RPE": 14.6844
+      },
+      "roll_policy": {
+       "AUC": 0.5338,
+       "MPPE": 8.3328,
+       "RPE": 14.6844
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.8402,
+       "RPE": 14.6886
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.3 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.5347,
+       "MPPE": 8.323,
+       "RPE": 14.5697
+      },
+      "roll_policy": {
+       "AUC": 0.5347,
+       "MPPE": 8.323,
+       "RPE": 14.5697
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.797,
+       "RPE": 14.564
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.1 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.537,
+       "MPPE": 8.3124,
+       "RPE": 14.5613
+      },
+      "roll_policy": {
+       "AUC": 0.537,
+       "MPPE": 8.3124,
+       "RPE": 14.5613
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.807,
+       "RPE": 14.5581
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.1 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.5351,
+       "MPPE": 8.3195,
+       "RPE": 14.5663
+      },
+      "roll_policy": {
+       "AUC": 0.5351,
+       "MPPE": 8.3195,
+       "RPE": 14.5663
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.7976,
+       "RPE": 14.5614
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.1 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.5347,
+       "MPPE": 8.3229,
+       "RPE": 14.571
+      },
+      "roll_policy": {
+       "AUC": 0.5347,
+       "MPPE": 8.3229,
+       "RPE": 14.571
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.7967,
+       "RPE": 14.5654
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.1 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.5338,
+       "MPPE": 8.4306,
+       "RPE": 14.4862
+      },
+      "roll_policy": {
+       "AUC": 0.5338,
+       "MPPE": 8.4306,
+       "RPE": 14.4862
+      },
+      "roll_total": {
+       "AUC": 0.5947,
+       "MPPE": 7.896,
+       "RPE": 14.4934
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.3 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.5347,
+       "MPPE": 8.3307,
+       "RPE": 14.5653
+      },
+      "roll_policy": {
+       "AUC": 0.5347,
+       "MPPE": 8.3307,
+       "RPE": 14.5653
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.8019,
+       "RPE": 14.5595
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.3 of ref 24.9 cm)"
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.5347,
+       "MPPE": 8.3223,
+       "RPE": 14.5705
+      },
+      "roll_policy": {
+       "AUC": 0.5347,
+       "MPPE": 8.3223,
+       "RPE": 14.5705
+      },
+      "roll_total": {
+       "AUC": 0.5951,
+       "MPPE": 7.7972,
+       "RPE": 14.5656
+      },
+      "fail": true,
+      "reason": "beige_cup: left behind (sim travel 0.1 of ref 24.9 cm)"
+     }
+    ]
+   },
+   "glock_public/ep13": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.5738,
+       "MPPE": 29.2848,
+       "RPE": 44.4099
+      },
+      "roll_policy": {
+       "AUC": 0.5738,
+       "MPPE": 29.2848,
+       "RPE": 44.4099
+      },
+      "roll_total": {
+       "AUC": 0.5436,
+       "MPPE": 29.9666,
+       "RPE": 43.1541
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (66 cm off the reference path)"
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.5735,
+       "MPPE": 37.5793,
+       "RPE": 64.2895
+      },
+      "roll_policy": {
+       "AUC": 0.5735,
+       "MPPE": 37.5793,
+       "RPE": 64.2895
+      },
+      "roll_total": {
+       "AUC": 0.5416,
+       "MPPE": 37.7733,
+       "RPE": 63.3877
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (81 cm off the reference path)"
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.5737,
+       "MPPE": 27.919,
+       "RPE": 40.2105
+      },
+      "roll_policy": {
+       "AUC": 0.5737,
+       "MPPE": 27.919,
+       "RPE": 40.2105
+      },
+      "roll_total": {
+       "AUC": 0.5429,
+       "MPPE": 28.6057,
+       "RPE": 39.1865
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (80 cm off the reference path)"
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.5738,
+       "MPPE": 36.2301,
+       "RPE": 57.8878
+      },
+      "roll_policy": {
+       "AUC": 0.5738,
+       "MPPE": 36.2301,
+       "RPE": 57.8878
+      },
+      "roll_total": {
+       "AUC": 0.5434,
+       "MPPE": 36.8394,
+       "RPE": 56.7987
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (79 cm off the reference path)"
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.5737,
+       "MPPE": 44.9019,
+       "RPE": 77.5443
+      },
+      "roll_policy": {
+       "AUC": 0.5737,
+       "MPPE": 44.9019,
+       "RPE": 77.5443
+      },
+      "roll_total": {
+       "AUC": 0.5424,
+       "MPPE": 45.4813,
+       "RPE": 76.7796
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (104 cm off the reference path)"
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.5734,
+       "MPPE": 12.4183,
+       "RPE": 20.7347
+      },
+      "roll_policy": {
+       "AUC": 0.5734,
+       "MPPE": 12.4183,
+       "RPE": 20.7347
+      },
+      "roll_total": {
+       "AUC": 0.5426,
+       "MPPE": 12.7389,
+       "RPE": 20.1209
+      },
+      "fail": true,
+      "reason": "blue_cup: dropped/lost (off from 15 % of the episode, ends 28.1 cm off, 10.7 cm off the path)"
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.5738,
+       "MPPE": 26.6312,
+       "RPE": 45.1351
+      },
+      "roll_policy": {
+       "AUC": 0.5738,
+       "MPPE": 26.6312,
+       "RPE": 45.1351
+      },
+      "roll_total": {
+       "AUC": 0.5444,
+       "MPPE": 26.9951,
+       "RPE": 44.6513
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (70 cm off the reference path)"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.5737,
+       "MPPE": 37.0707,
+       "RPE": 59.8086
+      },
+      "roll_policy": {
+       "AUC": 0.5737,
+       "MPPE": 37.0707,
+       "RPE": 59.8086
+      },
+      "roll_total": {
+       "AUC": 0.5429,
+       "MPPE": 37.5731,
+       "RPE": 58.5633
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (79 cm off the reference path)"
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.5737,
+       "MPPE": 30.0001,
+       "RPE": 55.6134
+      },
+      "roll_policy": {
+       "AUC": 0.5737,
+       "MPPE": 30.0001,
+       "RPE": 55.6134
+      },
+      "roll_total": {
+       "AUC": 0.5419,
+       "MPPE": 30.1015,
+       "RPE": 55.562
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (67 cm off the reference path)"
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.5737,
+       "MPPE": 38.6101,
+       "RPE": 64.4381
+      },
+      "roll_policy": {
+       "AUC": 0.5737,
+       "MPPE": 38.6101,
+       "RPE": 64.4381
+      },
+      "roll_total": {
+       "AUC": 0.5423,
+       "MPPE": 38.9589,
+       "RPE": 63.2594
+      },
+      "fail": true,
+      "reason": "blue_cup: flung (82 cm off the reference path)"
+     }
+    ]
+   },
+   "glock_public/ep31": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.7366,
+       "MPPE": 2.7425,
+       "RPE": 3.0149
+      },
+      "roll_policy": {
+       "AUC": 0.7366,
+       "MPPE": 2.7425,
+       "RPE": 3.0149
+      },
+      "roll_total": {
+       "AUC": 0.7612,
+       "MPPE": 2.4221,
+       "RPE": 2.4488
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 6 % of frames, ends 1.8 cm; per-frame RPE > 5 cm in 14 % of frames"
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.7139,
+       "MPPE": 2.8059,
+       "RPE": 3.8857
+      },
+      "roll_policy": {
+       "AUC": 0.7139,
+       "MPPE": 2.8059,
+       "RPE": 3.8857
+      },
+      "roll_total": {
+       "AUC": 0.8244,
+       "MPPE": 2.0898,
+       "RPE": 3.3374
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 8 % of frames, ends 1.8 cm; per-frame RPE > 5 cm in 28 % of frames"
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.7456,
+       "MPPE": 2.7562,
+       "RPE": 2.9966
+      },
+      "roll_policy": {
+       "AUC": 0.7456,
+       "MPPE": 2.7562,
+       "RPE": 2.9966
+      },
+      "roll_total": {
+       "AUC": 0.7883,
+       "MPPE": 2.2366,
+       "RPE": 2.2742
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 11 % of frames, ends 1.5 cm; per-frame RPE > 5 cm in 19 % of frames"
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.7448,
+       "MPPE": 2.6698,
+       "RPE": 3.4493
+      },
+      "roll_policy": {
+       "AUC": 0.7448,
+       "MPPE": 2.6698,
+       "RPE": 3.4493
+      },
+      "roll_total": {
+       "AUC": 0.8468,
+       "MPPE": 1.9418,
+       "RPE": 2.6151
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 7 % of frames, ends 1.2 cm; per-frame RPE > 5 cm in 20 % of frames"
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.7206,
+       "MPPE": 2.8825,
+       "RPE": 3.5117
+      },
+      "roll_policy": {
+       "AUC": 0.7206,
+       "MPPE": 2.8825,
+       "RPE": 3.5117
+      },
+      "roll_total": {
+       "AUC": 0.7675,
+       "MPPE": 2.4918,
+       "RPE": 2.9166
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 7 % of frames, ends 1.6 cm; per-frame RPE > 5 cm in 22 % of frames"
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.7347,
+       "MPPE": 2.788,
+       "RPE": 3.3364
+      },
+      "roll_policy": {
+       "AUC": 0.7347,
+       "MPPE": 2.788,
+       "RPE": 3.3364
+      },
+      "roll_total": {
+       "AUC": 0.7872,
+       "MPPE": 2.2266,
+       "RPE": 2.5148
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 7 % of frames, ends 2.9 cm; per-frame RPE > 5 cm in 19 % of frames"
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.6707,
+       "MPPE": 3.1386,
+       "RPE": 3.5275
+      },
+      "roll_policy": {
+       "AUC": 0.6707,
+       "MPPE": 3.1386,
+       "RPE": 3.5275
+      },
+      "roll_total": {
+       "AUC": 0.6941,
+       "MPPE": 2.8377,
+       "RPE": 3.2671
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 19 % of frames, ends 1.9 cm; per-frame RPE > 5 cm in 17 % of frames"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.7371,
+       "MPPE": 2.7008,
+       "RPE": 3.4624
+      },
+      "roll_policy": {
+       "AUC": 0.7371,
+       "MPPE": 2.7008,
+       "RPE": 3.4624
+      },
+      "roll_total": {
+       "AUC": 0.8227,
+       "MPPE": 1.901,
+       "RPE": 2.745
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 7 % of frames, ends 1.3 cm; per-frame RPE > 5 cm in 23 % of frames"
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.7386,
+       "MPPE": 2.8039,
+       "RPE": 3.2892
+      },
+      "roll_policy": {
+       "AUC": 0.7386,
+       "MPPE": 2.8039,
+       "RPE": 3.2892
+      },
+      "roll_total": {
+       "AUC": 0.7931,
+       "MPPE": 2.2494,
+       "RPE": 2.5613
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 8 % of frames, ends 2.6 cm; per-frame RPE > 5 cm in 18 % of frames"
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.6912,
+       "MPPE": 3.091,
+       "RPE": 3.9612
+      },
+      "roll_policy": {
+       "AUC": 0.6912,
+       "MPPE": 3.091,
+       "RPE": 3.9612
+      },
+      "roll_total": {
+       "AUC": 0.7446,
+       "MPPE": 2.5099,
+       "RPE": 3.4402
+      },
+      "fail": false,
+      "reason": "marginal: mini_sweeper off in 16 % of frames, ends 5.1 cm; per-frame RPE > 5 cm in 30 % of frames"
+     }
+    ]
+   },
+   "mass0s42_glock_public/ep2": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.1765,
+       "MPPE": 12.7332,
+       "RPE": 17.7229
+      },
+      "roll_policy": {
+       "AUC": 0.1765,
+       "MPPE": 12.7332,
+       "RPE": 17.7229
+      },
+      "roll_total": {
+       "AUC": 0.1817,
+       "MPPE": 12.8424,
+       "RPE": 17.123
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 17 % of the episode, ends 19.4 cm off, 12.8 cm off the path); white_pot_lid: dropped/lost (off from 17 % of the episode, ends 18.9 cm off, 9.0 cm off the path)"
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.9605,
+       "MPPE": 0.9115,
+       "RPE": 1.8394
+      },
+      "roll_policy": {
+       "AUC": 0.9605,
+       "MPPE": 0.9115,
+       "RPE": 1.8394
+      },
+      "roll_total": {
+       "AUC": 0.9668,
+       "MPPE": 0.8968,
+       "RPE": 1.7971
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.3641,
+       "MPPE": 7.8956,
+       "RPE": 13.2439
+      },
+      "roll_policy": {
+       "AUC": 0.3641,
+       "MPPE": 7.8956,
+       "RPE": 13.2439
+      },
+      "roll_total": {
+       "AUC": 0.3664,
+       "MPPE": 7.7562,
+       "RPE": 12.8642
+      },
+      "fail": true,
+      "reason": "white_pot_lid: dropped/lost (off from 18 % of the episode, ends 17.1 cm off, 11.6 cm off the path)"
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.3139,
+       "MPPE": 12.9449,
+       "RPE": 18.0859
+      },
+      "roll_policy": {
+       "AUC": 0.3139,
+       "MPPE": 12.9449,
+       "RPE": 18.0859
+      },
+      "roll_total": {
+       "AUC": 0.3138,
+       "MPPE": 12.6758,
+       "RPE": 17.8199
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 18 % of the episode, ends 7.0 cm off, 8.7 cm off the path); white_pot_lid: dropped/lost (off from 19 % of the episode, ends 6.3 cm off, 13.4 cm off the path)"
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.4288,
+       "MPPE": 10.0671,
+       "RPE": 18.3355
+      },
+      "roll_policy": {
+       "AUC": 0.4288,
+       "MPPE": 10.0671,
+       "RPE": 18.3355
+      },
+      "roll_total": {
+       "AUC": 0.4308,
+       "MPPE": 9.8731,
+       "RPE": 17.946
+      },
+      "fail": true,
+      "reason": "white_pot: left behind (sim travel 3.1 of ref 12.7 cm); white_pot_lid: left behind (sim travel 6.4 of ref 27.6 cm)"
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.9568,
+       "MPPE": 1.0203,
+       "RPE": 2.0441
+      },
+      "roll_policy": {
+       "AUC": 0.9568,
+       "MPPE": 1.0203,
+       "RPE": 2.0441
+      },
+      "roll_total": {
+       "AUC": 0.9563,
+       "MPPE": 0.9809,
+       "RPE": 1.9397
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.1471,
+       "MPPE": 11.9429,
+       "RPE": 19.4239
+      },
+      "roll_policy": {
+       "AUC": 0.1471,
+       "MPPE": 11.9429,
+       "RPE": 19.4239
+      },
+      "roll_total": {
+       "AUC": 0.1524,
+       "MPPE": 11.8828,
+       "RPE": 18.8248
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 20 % of the episode, ends 6.0 cm off, 9.2 cm off the path); white_pot_lid: flung (18 cm off the reference path)"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.9121,
+       "MPPE": 1.4599,
+       "RPE": 2.7332
+      },
+      "roll_policy": {
+       "AUC": 0.9121,
+       "MPPE": 1.4599,
+       "RPE": 2.7332
+      },
+      "roll_total": {
+       "AUC": 0.9126,
+       "MPPE": 1.542,
+       "RPE": 2.8928
+      },
+      "fail": false,
+      "reason": "marginal: white_pot_lid off in 6 % of frames, ends 1.1 cm; per-frame RPE > 5 cm in 8 % of frames"
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.2555,
+       "MPPE": 10.1846,
+       "RPE": 19.3026
+      },
+      "roll_policy": {
+       "AUC": 0.2555,
+       "MPPE": 10.1846,
+       "RPE": 19.3026
+      },
+      "roll_total": {
+       "AUC": 0.2659,
+       "MPPE": 10.0626,
+       "RPE": 18.9369
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 36 % of the episode, ends 9.9 cm off, 6.8 cm off the path); white_pot_lid: dropped/lost (off from 17 % of the episode, ends 22.8 cm off, 13.0 cm off the path)"
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.9673,
+       "MPPE": 0.8313,
+       "RPE": 1.8476
+      },
+      "roll_policy": {
+       "AUC": 0.9673,
+       "MPPE": 0.8313,
+       "RPE": 1.8476
+      },
+      "roll_total": {
+       "AUC": 0.9731,
+       "MPPE": 0.8517,
+       "RPE": 1.8485
+      },
+      "fail": false,
+      "reason": ""
+     }
+    ]
+   },
+   "mass0s43_glock_public/ep2": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.1674,
+       "MPPE": 12.4045,
+       "RPE": 18.1316
+      },
+      "roll_policy": {
+       "AUC": 0.1674,
+       "MPPE": 12.4045,
+       "RPE": 18.1316
+      },
+      "roll_total": {
+       "AUC": 0.1731,
+       "MPPE": 12.2269,
+       "RPE": 17.6914
+      },
+      "fail": true,
+      "reason": "white_pot: flung (18 cm off the reference path); white_pot_lid: dropped/lost (off from 18 % of the episode, ends 11.6 cm off, 9.9 cm off the path)"
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.6109,
+       "MPPE": 6.5296,
+       "RPE": 10.2341
+      },
+      "roll_policy": {
+       "AUC": 0.6109,
+       "MPPE": 6.5296,
+       "RPE": 10.2341
+      },
+      "roll_total": {
+       "AUC": 0.6142,
+       "MPPE": 6.5955,
+       "RPE": 10.0924
+      },
+      "fail": true,
+      "reason": "white_pot_lid: dropped/lost (off from 17 % of the episode, ends 31.2 cm off, 7.1 cm off the path)"
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.9435,
+       "MPPE": 1.0969,
+       "RPE": 2.1857
+      },
+      "roll_policy": {
+       "AUC": 0.9435,
+       "MPPE": 1.0969,
+       "RPE": 2.1857
+      },
+      "roll_total": {
+       "AUC": 0.9341,
+       "MPPE": 1.1534,
+       "RPE": 2.3707
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.4088,
+       "MPPE": 10.4426,
+       "RPE": 18.742
+      },
+      "roll_policy": {
+       "AUC": 0.4088,
+       "MPPE": 10.4426,
+       "RPE": 18.742
+      },
+      "roll_total": {
+       "AUC": 0.4058,
+       "MPPE": 10.2925,
+       "RPE": 18.4262
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 34 % of the episode, ends 3.0 cm off, 4.8 cm off the path); white_pot_lid: dropped/lost (off from 15 % of the episode, ends 4.3 cm off, 7.9 cm off the path)"
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.6865,
+       "MPPE": 6.0084,
+       "RPE": 11.8138
+      },
+      "roll_policy": {
+       "AUC": 0.6865,
+       "MPPE": 6.0084,
+       "RPE": 11.8138
+      },
+      "roll_total": {
+       "AUC": 0.6706,
+       "MPPE": 6.0833,
+       "RPE": 11.9351
+      },
+      "fail": true,
+      "reason": "white_pot_lid: dropped/lost (off from 17 % of the episode, ends 31.8 cm off, 6.5 cm off the path)"
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.3708,
+       "MPPE": 11.2288,
+       "RPE": 18.7951
+      },
+      "roll_policy": {
+       "AUC": 0.3708,
+       "MPPE": 11.2288,
+       "RPE": 18.7951
+      },
+      "roll_total": {
+       "AUC": 0.377,
+       "MPPE": 10.9873,
+       "RPE": 18.4373
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 34 % of the episode, ends 5.2 cm off, 5.0 cm off the path); white_pot_lid: dropped/lost (off from 11 % of the episode, ends 4.3 cm off, 8.3 cm off the path)"
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.5956,
+       "MPPE": 6.2463,
+       "RPE": 10.923
+      },
+      "roll_policy": {
+       "AUC": 0.5956,
+       "MPPE": 6.2463,
+       "RPE": 10.923
+      },
+      "roll_total": {
+       "AUC": 0.6354,
+       "MPPE": 6.1017,
+       "RPE": 10.8837
+      },
+      "fail": true,
+      "reason": "white_pot_lid: dropped/lost (off from 18 % of the episode, ends 27.6 cm off, 6.5 cm off the path)"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.8656,
+       "MPPE": 1.7882,
+       "RPE": 2.8851
+      },
+      "roll_policy": {
+       "AUC": 0.8656,
+       "MPPE": 1.7882,
+       "RPE": 2.8851
+      },
+      "roll_total": {
+       "AUC": 0.856,
+       "MPPE": 1.8656,
+       "RPE": 2.8273
+      },
+      "fail": false,
+      "reason": "marginal: white_pot_lid off in 6 % of frames, ends 1.5 cm; per-frame RPE > 5 cm in 13 % of frames"
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.951,
+       "MPPE": 1.0003,
+       "RPE": 1.783
+      },
+      "roll_policy": {
+       "AUC": 0.951,
+       "MPPE": 1.0003,
+       "RPE": 1.783
+      },
+      "roll_total": {
+       "AUC": 0.9494,
+       "MPPE": 1.1096,
+       "RPE": 1.8348
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.1877,
+       "MPPE": 9.092,
+       "RPE": 14.9499
+      },
+      "roll_policy": {
+       "AUC": 0.1877,
+       "MPPE": 9.092,
+       "RPE": 14.9499
+      },
+      "roll_total": {
+       "AUC": 0.1938,
+       "MPPE": 8.8842,
+       "RPE": 14.482
+      },
+      "fail": true,
+      "reason": "white_pot: dropped/lost (off from 18 % of the episode, ends 11.4 cm off, 11.8 cm off the path); white_pot_lid: dropped/lost (off from 18 % of the episode, ends 3.6 cm off, 7.9 cm off the path)"
+     }
+    ]
+   },
+   "mass0s42_glock_public/ep12": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.9173,
+       "MPPE": 1.3555,
+       "RPE": 1.7106
+      },
+      "roll_policy": {
+       "AUC": 0.9173,
+       "MPPE": 1.3555,
+       "RPE": 1.7106
+      },
+      "roll_total": {
+       "AUC": 0.8981,
+       "MPPE": 1.464,
+       "RPE": 1.8979
+      },
+      "fail": false,
+      "reason": "marginal: blue_cup off in 1 % of frames, ends 5.1 cm"
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.9403,
+       "MPPE": 1.2283,
+       "RPE": 1.8277
+      },
+      "roll_policy": {
+       "AUC": 0.9403,
+       "MPPE": 1.2283,
+       "RPE": 1.8277
+      },
+      "roll_total": {
+       "AUC": 0.9007,
+       "MPPE": 1.4927,
+       "RPE": 1.9808
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.9598,
+       "MPPE": 1.0897,
+       "RPE": 1.7831
+      },
+      "roll_policy": {
+       "AUC": 0.9598,
+       "MPPE": 1.0897,
+       "RPE": 1.7831
+      },
+      "roll_total": {
+       "AUC": 0.9265,
+       "MPPE": 1.3733,
+       "RPE": 1.941
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.9206,
+       "MPPE": 1.3719,
+       "RPE": 2.1217
+      },
+      "roll_policy": {
+       "AUC": 0.9206,
+       "MPPE": 1.3719,
+       "RPE": 2.1217
+      },
+      "roll_total": {
+       "AUC": 0.9088,
+       "MPPE": 1.4601,
+       "RPE": 2.3069
+      },
+      "fail": false,
+      "reason": "marginal: blue_cup off in 10 % of frames, ends 10.1 cm; per-frame RPE > 5 cm in 10 % of frames"
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.9617,
+       "MPPE": 1.0161,
+       "RPE": 1.8709
+      },
+      "roll_policy": {
+       "AUC": 0.9617,
+       "MPPE": 1.0161,
+       "RPE": 1.8709
+      },
+      "roll_total": {
+       "AUC": 0.9487,
+       "MPPE": 1.1866,
+       "RPE": 1.9913
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.9734,
+       "MPPE": 0.9118,
+       "RPE": 1.4271
+      },
+      "roll_policy": {
+       "AUC": 0.9734,
+       "MPPE": 0.9118,
+       "RPE": 1.4271
+      },
+      "roll_total": {
+       "AUC": 0.9541,
+       "MPPE": 1.1208,
+       "RPE": 1.5682
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.9026,
+       "MPPE": 1.4792,
+       "RPE": 2.5202
+      },
+      "roll_policy": {
+       "AUC": 0.9026,
+       "MPPE": 1.4792,
+       "RPE": 2.5202
+      },
+      "roll_total": {
+       "AUC": 0.8995,
+       "MPPE": 1.5042,
+       "RPE": 2.7784
+      },
+      "fail": false,
+      "reason": "marginal: blue_cup off in 17 % of frames, ends 5.3 cm; per-frame RPE > 5 cm in 20 % of frames"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.9656,
+       "MPPE": 0.9823,
+       "RPE": 2.041
+      },
+      "roll_policy": {
+       "AUC": 0.9656,
+       "MPPE": 0.9823,
+       "RPE": 2.041
+      },
+      "roll_total": {
+       "AUC": 0.9397,
+       "MPPE": 1.2772,
+       "RPE": 2.1967
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.9663,
+       "MPPE": 0.9836,
+       "RPE": 2.09
+      },
+      "roll_policy": {
+       "AUC": 0.9663,
+       "MPPE": 0.9836,
+       "RPE": 2.09
+      },
+      "roll_total": {
+       "AUC": 0.9525,
+       "MPPE": 1.1723,
+       "RPE": 2.2922
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.9599,
+       "MPPE": 1.0157,
+       "RPE": 1.5648
+      },
+      "roll_policy": {
+       "AUC": 0.9599,
+       "MPPE": 1.0157,
+       "RPE": 1.5648
+      },
+      "roll_total": {
+       "AUC": 0.9491,
+       "MPPE": 1.17,
+       "RPE": 1.7216
+      },
+      "fail": false,
+      "reason": ""
+     }
+    ]
+   },
+   "mass0s43_glock_public/ep12": {
+    "max_abs_diff_vs_roll_policy": 0.0,
+    "draws": [
+     {
+      "draw": "r1",
+      "ours": {
+       "AUC": 0.9732,
+       "MPPE": 0.9289,
+       "RPE": 1.706
+      },
+      "roll_policy": {
+       "AUC": 0.9732,
+       "MPPE": 0.9289,
+       "RPE": 1.706
+      },
+      "roll_total": {
+       "AUC": 0.9377,
+       "MPPE": 1.2965,
+       "RPE": 1.8673
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r2",
+      "ours": {
+       "AUC": 0.9515,
+       "MPPE": 1.0726,
+       "RPE": 1.2024
+      },
+      "roll_policy": {
+       "AUC": 0.9515,
+       "MPPE": 1.0726,
+       "RPE": 1.2024
+      },
+      "roll_total": {
+       "AUC": 0.9277,
+       "MPPE": 1.3295,
+       "RPE": 1.3869
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r3",
+      "ours": {
+       "AUC": 0.957,
+       "MPPE": 1.0257,
+       "RPE": 1.5268
+      },
+      "roll_policy": {
+       "AUC": 0.957,
+       "MPPE": 1.0257,
+       "RPE": 1.5268
+      },
+      "roll_total": {
+       "AUC": 0.9282,
+       "MPPE": 1.3292,
+       "RPE": 1.7004
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r4",
+      "ours": {
+       "AUC": 0.9736,
+       "MPPE": 0.9032,
+       "RPE": 1.9832
+      },
+      "roll_policy": {
+       "AUC": 0.9736,
+       "MPPE": 0.9032,
+       "RPE": 1.9832
+      },
+      "roll_total": {
+       "AUC": 0.9392,
+       "MPPE": 1.2905,
+       "RPE": 2.2519
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r5",
+      "ours": {
+       "AUC": 0.9052,
+       "MPPE": 1.4327,
+       "RPE": 3.0582
+      },
+      "roll_policy": {
+       "AUC": 0.9052,
+       "MPPE": 1.4327,
+       "RPE": 3.0582
+      },
+      "roll_total": {
+       "AUC": 0.8805,
+       "MPPE": 1.7436,
+       "RPE": 3.4772
+      },
+      "fail": false,
+      "reason": "marginal: blue_cup off in 12 % of frames, ends 8.8 cm; per-frame RPE > 5 cm in 13 % of frames"
+     },
+     {
+      "draw": "r6",
+      "ours": {
+       "AUC": 0.9392,
+       "MPPE": 1.2303,
+       "RPE": 1.8727
+      },
+      "roll_policy": {
+       "AUC": 0.9392,
+       "MPPE": 1.2303,
+       "RPE": 1.8727
+      },
+      "roll_total": {
+       "AUC": 0.9045,
+       "MPPE": 1.5837,
+       "RPE": 2.0382
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r7",
+      "ours": {
+       "AUC": 0.9209,
+       "MPPE": 1.3395,
+       "RPE": 2.5745
+      },
+      "roll_policy": {
+       "AUC": 0.9209,
+       "MPPE": 1.3395,
+       "RPE": 2.5745
+      },
+      "roll_total": {
+       "AUC": 0.8905,
+       "MPPE": 1.6036,
+       "RPE": 2.8453
+      },
+      "fail": false,
+      "reason": "marginal: blue_cup off in 14 % of frames, ends 7.2 cm; per-frame RPE > 5 cm in 14 % of frames"
+     },
+     {
+      "draw": "r8",
+      "ours": {
+       "AUC": 0.9596,
+       "MPPE": 1.0356,
+       "RPE": 1.6762
+      },
+      "roll_policy": {
+       "AUC": 0.9596,
+       "MPPE": 1.0356,
+       "RPE": 1.6762
+      },
+      "roll_total": {
+       "AUC": 0.9325,
+       "MPPE": 1.3242,
+       "RPE": 1.7871
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r9",
+      "ours": {
+       "AUC": 0.9591,
+       "MPPE": 1.0123,
+       "RPE": 1.5865
+      },
+      "roll_policy": {
+       "AUC": 0.9591,
+       "MPPE": 1.0123,
+       "RPE": 1.5865
+      },
+      "roll_total": {
+       "AUC": 0.924,
+       "MPPE": 1.3612,
+       "RPE": 1.739
+      },
+      "fail": false,
+      "reason": ""
+     },
+     {
+      "draw": "r10",
+      "ours": {
+       "AUC": 0.956,
+       "MPPE": 1.064,
+       "RPE": 2.486
+      },
+      "roll_policy": {
+       "AUC": 0.956,
+       "MPPE": 1.064,
+       "RPE": 2.486
+      },
+      "roll_total": {
+       "AUC": 0.9309,
+       "MPPE": 1.3182,
+       "RPE": 2.7428
+      },
+      "fail": false,
+      "reason": "marginal: per-frame RPE > 5 cm in 7 % of frames"
+     }
+    ]
+   }
+  }
+ }
+}
