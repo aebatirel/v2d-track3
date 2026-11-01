@@ -6389,3 +6389,11 @@ Background agent, CPU only, $0, no ground truth read.
     ends within 1 mm of the table.
   - Flag: at f192 the pitcher falls hands-free in both sets (b1 12 cm vs packed 6.8 cm); probably an in-hand frame.
   - Not a blocker. Sent to focused-pascal, bold-albattani and keen-heisenberg.
+- 07:06 UTC: rest probe for keen-heisenberg (`rest_probe/`, 2a809d6).
+  - Hands vs parked, zero-action, on the packed evals 3/5/6/8/16/33.
+  - The hands touch the objects inside the rest windows. On evals 5 / 8 / 33 the motion is far larger with the hands:
+    pot 26 vs 3 mm, pot 42 vs 9 mm, spoon 87 vs 11 mm. The first touches are fingertips at f3 / f13 and the palm at
+    f24.
+  - Eval 16's spoon rotates more when parked (29°): not the hands.
+  - Eval 3's 65 mm (pack, GPU) does not reproduce on CPU.
+  - A first run had a body-name parsing bug (`track3_<obj>_object`); it was fixed before reporting.
