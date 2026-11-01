@@ -5787,3 +5787,11 @@ Advice given:
   Open question for the owner (not acted on): the 512 copy is evaluated with stock physics (only the training used
   1024); whether a policy TRAINED at njmax 1024 and evaluated at stock limits is acceptable is a rules question for the
   organisers. The legal route tonight is the ev10cs5 retrain at stock limits (build in progress).
+- 05:52 UTC overflow triage of all 20 packed eval policies' training logs [M: sizes via one batched get_paths_info, no
+  listing, no download; lines ≈ (bytes − ~19 KB) / 45 B per "nefc overflow - please increase njmax to NNN" line, an
+  estimate]: eval 10 runs/20261026-gl10A2-5e0e100/runs/glock/ep10-s42 376.6 MB ≈ 8.37 M (matches determined-wright's
+  count); eval 33 (rcB s43) 952 KB ≈ 21 k; eval 32 (fr32s46b s46) 910 KB ≈ 20 k; eval 14 (evb1420 glock s42) 227 KB ≈
+  4.6 k; eval 20 (evb1420 glock s42) 74 KB ≈ 1.2 k; the other 15 ≈ 19 KB = 0. Only eval 10 is in the ≳ 10⁵ class
+  (determined-wright's candidate threshold); ~2×10⁴ is what D's G ep33 had while learning 0.94. → the njmax / clean-pieces
+  lever is eval 10 only; no other eval gets an overflow retrain. Packing a 1024-trained checkpoint stays excluded (owner's
+  condition) even though determined-wright reads it as legal; that question goes to the owner / organisers.
