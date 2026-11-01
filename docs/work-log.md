@@ -6296,3 +6296,20 @@ Background agent, CPU only, $0, no ground truth read.
   - Paired large-sample runs (packed / ev10cs3 / ev10cs at 32 × 60) are running. Packed at 32 × 60: hold-window nefc
     max 661, median 599, every step over 512 in at least one world; explicit max 1,680.
   - Nothing has been reported to the other sessions about cs2 / cs3 yet.
+- 03:42 UTC: paired 32 × 60 budget for eval 10, hold window (steps < 20). "Share" = share of steps whose worst of 32
+  worlds exceeds 512 rows.
+
+  | | packed | ev10cs | ev10cs3 |
+  |---|---|---|---|
+  | sampled, hold window: max / median / share | 661 / 599 / 100 % | 598 / 548 / 75 % | **534 / 495 / 15 %** |
+  | explicit (f0/111/116/124/142/160), hold window: max / share | 918 / 33 % | 699 / 19 % | **477 / 0 %** |
+  | explicit, after the hold: max / share | 1,680 / 39 % | 627 / 16 % | 533 / 3 % |
+  | overflow lines, sampled / explicit | 380 / 9,723 | 104 / 7,086 | 110 / 576 |
+
+  ev10cs3 is clearly better than packed but not clean. The after-hold window is the zero-action collapse and is noisy.
+- 04:25 UTC: bold-albattani's rack candidates (e863636). Evals 30 and 14 keep the packed racks; eval 30 uses no
+  candidate at all. They asked for budget.py on c1-ev14 (62 rack pieces) and c2-ev14 (54).
+  - Built from the packed eval-14 assets: the refs/sf rack mesh plus the candidate pieces, the blue cup as packed,
+    0.3 kg.
+  - The large-sample controls on packed evals 30 and 14 had never run: my wait loop's `pgrep -f` matched its own
+    command line. Fixed and restarted, together with c1 / c2 at both sample sizes.
