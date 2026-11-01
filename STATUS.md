@@ -1,6 +1,6 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
-## 2026-11-01 ~12:55 UTC: GRASP-mode test on public ep13 (branch `claude/grasp-ep13-20261101`, CPU, $0): built, dev sweep running
+## 2026-11-01 ~12:30 UTC: GRASP-mode test on public ep13 (branch `claude/grasp-ep13-20261101`, CPU, $0): built, dev sweep running
 - Goal (owner): can a GRASP-style sampler make ep13 (eval 14's twin: hand-over + flip, control-limited) feasible?
 - Built and checked: `solve.py --method grasp` + `tools/physics_solve/grasp_window.py` (GRASP's own MIT optimiser maths,
   no SPIDER code). The default path is bit-identical to the old solver; GRASP-mode output replays bit-identically to its

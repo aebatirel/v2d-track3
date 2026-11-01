@@ -6437,7 +6437,7 @@ Background agent, CPU only, $0, no ground truth read.
   λ ≈ 0.02 in 2 stages. Dev sweep on ep31 f16–48 at the comparison scale (32 × 4 worlds, 8 batches per replan):
   anneal (iters 8, anneal 0.80 = G1/G2's final noise factor 0.216 over 8 iterations) J_best/J_warm 0.985, 2/8 improved,
   466 s; GRASP configs (ESS 0.9 / 0.5, moves 2 / 1) running.
-- ~12:50 UTC: exactness of GRASP mode [M]: the official zero-action replay of the ep31 smoke output (`--method grasp`,
+- ~12:30 UTC: exactness of GRASP mode [M]: the official zero-action replay of the ep31 smoke output (`--method grasp`,
   `--stop 44`) is bit-identical to the solver's committed truth trajectory (45 frames, max |Δq| 0.0; 23 frames carry
   non-zero offsets, max wrist offset 0.75 cm). Run scripts for ep13 written (`scripts/run_ep13.sh`, `jitter_inputs.sh`,
   `gate.py`); PREREG draft written, not yet frozen (GRASP settings pending the ep31 dev sweep). GRASP page [L]: 94.2 %
