@@ -10724,7 +10724,7 @@ score.
   Recorded in its 09:11 work-log entry and build_11/UPLOAD.md, with the disclosure for the technical report and the
   container. Pack 11 agreed as the single Final Submission near the close.
 
-- ~20:20 UTC 1 Nov **perfect-following session (claude/perfect-following-20261101): steps 1–2 done, CPU, $0.**
+- ~20:10 UTC 1 Nov **perfect-following session (claude/perfect-following-20261101): steps 1–2 done, CPU, $0.**
   - Merged focused-pascal / grasp-ep13 / determined-wright / bold-albattani / standings into the branch (only docs conflicts;
     STATUS kept from keen-heisenberg, work log union-merged).
   - CPU env: FlashCHORD 8c778f9 venv, kit, public dataset in the session scratchpad. Credit $122.85, 0 instances.
@@ -10734,7 +10734,7 @@ score.
     322 cm/s jump at f33), 16 f112–120 (spoon moves after release, no robot tip f122–173), 25 f41 / f173, 1 f129+, 3 f66.
   - Messages to the GRASP session (20:00, 20:18): split agreed as proposed by me (they: repair a then b as a tool with its
     public gate; me: GPU, hand assignment, ep13 RL test).
-- ~20:55 UTC 1 Nov **perfect-following: batch 1 plan (GPU), pre-registered** in docs/research/work/pf-hands-20261101/PREREG.md
+- ~20:30 UTC 1 Nov **perfect-following: batch 1 plan (GPU), pre-registered** in docs/research/work/pf-hands-20261101/PREREG.md
   before any result. Job ops/jobs/pf_arms.sh (new), verdicts tools/pf_verdict.py (new; CPU mock-tested on the H5p7 eval-14
   draws: choose / dr_score / eval and a synthetic public table), glock_public.sh opt-in EVAL_PF + per-prefix GL_ARGS_pf*.
   - Fixed first: the branch merge had interleaved two versions of ops/jobs/glock_public.sh and pipeline/pipeline_ep.sh
@@ -10743,3 +10743,8 @@ score.
   - Boxes: pfA = public ep13 arms s / 2h × seeds 42 / 43 (≈ 3 h, ≈ $4.5–5 [E]); pfB = evals 14 and 16, arm 2h × seeds 42 / 43,
     gate + 10 fresh official draws + swap rule + inclusion bar (≈ 3.7 h, ≈ $5–6 [E]). Batch ≈ $10–11 [E] of the $110.
   - Eval adoption needs both the public PASS and the episode's swap rule.
+- 20:31 UTC 1 Nov **batch 1 launched** (code 21ab92e, ENV_SNAPSHOT pt2.11-cu130-py313-20261020, ledger planned $5 + $6):
+  - 20261101-pfA-21ab92e, instance 58708760 (RTX PRO 6000 Max-Q, UK, $1.43/h): `EP=13 SPLIT=public ARMS="s 2h"
+    SRC_RUN=20261030-orcB-38234d1 bash ops/jobs/pf_arms.sh`;
+  - 20261101-pfB-21ab92e, instance 58708762 (RTX PRO 6000 WS, South Korea, $1.49/h): `EP="14 16" SPLIT=eval ARMS=2h bash
+    ops/jobs/pf_arms.sh`.

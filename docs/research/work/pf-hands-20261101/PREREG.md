@@ -1,4 +1,4 @@
-# Hand-assignment arms (perfect-following lane), pre-registered 1 Nov 2026 ~20:55 UTC, before any GPU result
+# Hand-assignment arms (perfect-following lane), pre-registered 1 Nov 2026 ~20:30 UTC, before any GPU result
 
 Session: perfect-following (session_01D9UJC8Nz9EEFNmz2yzimzN). Job: `ops/jobs/pf_arms.sh`; verdicts: `tools/pf_verdict.py`.
 Evidence that motivates it (docs/analysis/perfect-following-20261101/README.md) [M]:
