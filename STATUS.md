@@ -9,8 +9,9 @@
 - **Open for the owner:**
   - solver v2 (recommended skip);
   - synergy test B (not done, past the reference cut-off);
-  - [H-njmax-train]: ep2/ep12 training overflows njmax 512 (≈ 0.6 M lines on ep2; none in scoring). A `sim.njmax=1024`
-    arm on ep2/ep12 × 2 seeds would cost ≈ $7 [E].
+  - [H-njmax-train]: training overflows njmax 512 on ep2/ep12 (≈ 0.6 M lines on ep2) and on eval 10's packed carve
+    (8.4 M lines; nefc max 536 under sampled resets). No overflow in any scored draw. A `sim.njmax=1024` arm on
+    ep2/ep12 × 2 seeds would cost ≈ $7 [E]; eval 10 is the obvious eval candidate.
 - **Mesh session:** board-slot round 3 closed on their side (DO_NOT_USE, contact-budget ratio); nothing pending from me.
 
 ## 2026-10-31 ~21:27 UTC: arm V running (2 boxes); D skip option delivered; owner asleep

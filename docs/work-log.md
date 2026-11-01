@@ -6246,3 +6246,15 @@ Background agent, CPU only, $0, no ground truth read.
 - Their measurement: at assembly, their ep25 relative board pose differs from the packed eval-25 parquet by
   9.8 mm / 2.5°. A future slot would have to be cut in the frame of the replayed poses.
 - The pending P1 item is closed.
+
+### 2026-11-01 02:40 UTC — determined-wright: eval-10 packed carve overflows njmax in training (confirmed for bold-albattani)
+- bold-albattani's plain-MuJoCo pair check (02:35 UTC): 656–1,296 rows at nested frames; the packed pieces overlap
+  11.9 cm³ at rest.
+- My FlashCHORD check, `contact_budget/budget.py`, now with `FRAMES=` explicit resets (e1a3063):
+  - packed configuration `--pieces meshes/carve/ev10`, md5 1a5003d9;
+  - sampled training resets: nefc max 536, median 473, **13 % of world-steps over 512**;
+  - explicit frames 0/124/142/160: max 441, no overflow.
+- Packed run 20261026-gl10A2-5e0e100: train.log has **8,368,544** overflow lines; its 5 scored draws have 0.
+- Training is corrupted; scoring is not. [H] This contributes to eval 10's floor.
+- Sent to bold-albattani and focused-pascal. The candidate fixes (sim.njmax=1024, or pieces that don't overlap at
+  rest) were not tested.
