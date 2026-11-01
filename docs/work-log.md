@@ -5982,3 +5982,20 @@ arm and a no-policy replay floor to stage B.
   - Answered 05:16: the 02:50 permission covers it; the go went to focused-pascal at 05:14 with the stated conditions.
 - 05:10 UTC 1 Nov bold-albattani: ev10cs4 frozen (FROZEN.md fa2ec41, md5 of every file at build commit 7e4bc6a; any
   change goes to a new folder). The public pose-fix test stays their main item.
+- 05:47 UTC 1 Nov focused-pascal: **eval-10 njmax-1024 diagnostic SUPPORTED on every pre-registered clause** [M].
+  - Run 20261101-e10nj-451b82d; PREREG 086de63, committed 03:17, before the 04:20 launch.
+  - O: 0 overflow lines in training (e10v ~6 M per seed).
+  - L: beige lifted 23.9 cm max (e10v 2.5 / 0.3 cm).
+  - A: official sim_vs_ref vs V at 1024 = 0.913 (n 10, 0.869–0.933); e10v re-scored on the same box 0.459; vs P 0.881.
+  - 512 readout (VALID): the same checkpoint at stock 512 / 256 scores 0.903 vs V, 0.873 vs P, with 0 overflow in
+    every official draw.
+  - Guard refused 6/6; never packed. Cost $2.06 measured; credit $28.95.
+  - Meaning: eval 10's floor was training-time contact overflow, for both the packed policy and e10v. [E] ~+0.45 on the
+    proxy for one of 20 episodes; up to ~+0.02 AUC if the board follows (unverified).
+  - Open for the owner / organisers: is a policy trained at njmax 1024 and evaluated at stock limits acceptable? The
+    checkpoint's saved config records 1024, and the evaluator rebuilds sim from it, so packing would need the config
+    at stock. That is the grey part.
+  - The fully stock route runs next: the eval-10 retrain on ev10cs5 at 512. The pre-stated piece rule is met
+    (determined-wright be1e893: 0 / 0 overflow, byte identity). If it passes the swap rule, it goes into pack 10.
+  - My recommendation to the owner: wait for ev10cs5; in parallel, optionally ask the organisers (paste-ready
+    question given).
