@@ -5855,3 +5855,17 @@ arm and a no-policy replay floor to stage B.
   - So for evals 30 / 14 the overlap matters through noise-decided separation (draw variance), not dropped
     contacts. Their gates are overlap, settle and kept volume.
   - It will run budget.py on each mesh candidate within ~10 min of it landing.
+- 03:08 UTC 1 Nov owner asked whether anything was uploaded. **Answer: no upload since pack 9a+** (31 Oct; AUC
+  0.81757, SP-SR 0.850, MP-SR 0.650, RPE 3.879; receipt on claude/standings-20261031).
+  - D arm (focused-pascal, 03:02–03:03): all 10 cells VERIFIED; five training boxes $17.24 measured.
+  - Merge candidates: ep14 s43, ep16 s43, ep25 s42, ep30 s42, ep33 s42. Confirmation box C (instance 58608674,
+    $1.377/h, planned $1.75) launched 03:03.
+  - Early read [E: training-box means vs the Oct-29 H5 packed 10-draw means; clause (s) floor = old packed draw −
+    0.05; the verdict uses PREREG §4 on box C's draws]:
+    - ep14: 0.697 vs 0.615, floor 0.859;
+    - ep16: 0.841 vs 0.813, floor 0.858;
+    - ep25: 0.816 vs 0.850, floor 0.844;
+    - ep30: 0.837 vs 0.798, floor 0.873;
+    - ep33: 0.943 vs 0.934 (pack-7 rcB), floor 0.890.
+  - ep33 looks most likely to pass; ep16 and ep30 depend on draw 1; ep14 and ep25 are unlikely.
+  - G's logs show moderate overflow (ep14 ~1.6–1.9×10⁴, ep33 ~3×10⁴, ep16 0) that does not track the weak cells.
