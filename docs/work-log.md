@@ -5743,3 +5743,8 @@ Advice given:
   read as tracking error]; blue outer faces ≤ 3.9 mm outside its lathe, beige pieces 8 + ≤ 5.4 mm inside, blue COM
   12.8 mm toward the base; pose floor unchanged (visual overlap 80.6 cm³ median f124–f160); v2–v4 designed after v1's
   numbers, each version's gates committed before measuring. Passed to the build agent for the PREREG / provenance note.
+- 05:12 UTC bold-albattani: standby **ev10cs5** = ev10cs4 with only the blue floor plate at 8 mm (determined-wright's nest
+  test 05:17: release max depth 4.0 vs 5.5 mm, i.e. ~4 mm margin vs ~0.5; driven tracking 0.12 vs 0.14 cm). My call
+  (nothing launched; design-test numbers only, no eval result): prefer ev10cs5, pre-stated in the PREREG — used if it
+  arrives with every other piece byte-identical to ev10cs4 by md5 and determined-wright's 32×60 recheck shows 0 / 0
+  overflow, both by 06:30 UTC; else ev10cs4 (fa2ec41). Build agent told to parameterise the pieces; recheck requested.
