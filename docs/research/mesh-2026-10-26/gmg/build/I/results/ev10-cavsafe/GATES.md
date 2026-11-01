@@ -1,6 +1,6 @@
 # ev10-cavsafe: gates and design, fixed before any candidate number
 
-Written 1 Nov 2026, 02:55 UTC, and committed before the candidate pieces were built or measured. The gates are the
+Written 1 Nov 2026, 02:54 UTC (commit 98ddccf), and committed before the candidate pieces were built or measured. The gates are the
 orchestrator's (relayed at about 02:52 UTC; the owner approved collision-overlap fixes at 02:50 UTC). Definitions,
 frame sets and tolerances are added here and fixed now. Tags: [M] measured, [E] estimate, [H] hypothesis.
 
@@ -98,7 +98,7 @@ The same code runs for the packed ev10 and for the candidate. That code is the p
   - Falsifier: candidate median <= 1.0 cm3 and max <= 3.0 cm3.
 - **Gate 3 passes** by construction. Falsifier: any sampled depth > 0.001 mm.
 
-## Amendment A1 (1 Nov, 03:12 UTC, after building, before any gate number)
+## Amendment A1 (1 Nov, 02:59 UTC, after building, before any gate number; time corrected from a mistyped 03:12)
 
 **What happened.** Building R1 + R2 with the blue cup's outer points unchanged failed the tool's own validity check:
 the mid-sector wall (outer chord minus the inner tangent f) is negative at two bins.

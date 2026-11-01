@@ -13,7 +13,7 @@ the old tool's, vertex for vertex (checked: rebuild of meshes/carve/ev10, Hausdo
                 minorant f (LP: max sum(f), f <= r, f concave in h); the outer points stay at the sector edges, so the
                 mid-sector chord is inside f <= r: no piece leaves the solid { rho <= r(h) }. Inner points unchanged
                 (r - t).
-  --outer_circ  (receiver; amendment A1 of GATES.md, 03:10 UTC, before any gate number) the outer points too are placed
+  --outer_circ  (receiver; amendment A1 of GATES.md, 02:59 UTC, before any gate number) the outer points too are placed
                 at r / cos(pi / SEG) at the sector edges, so the wall polygon circumscribes the lathe wall on both faces
                 (the mirror of ev10, which inscribes both). Needed because with the outer points unchanged the
                 mid-sector wall r cos(pi / SEG) - f is negative at 2 bins (mouth lip -1.30 mm, bottom corner -0.30 mm).
