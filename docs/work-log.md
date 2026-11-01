@@ -5515,3 +5515,6 @@ Advice given:
   (e02736ea…); synthetic ep14 swap passes (316 pose + 316 checkpoint rows, CD-O unchanged); 7 refusals behave, incl. a
   swap without flash_chord metadata (found while testing: the kit packer reads the hashes from the rollout parquet's
   metadata before the .json, so the tool now checks the swap's metadata checkpoint and evaluator hashes).
+- ~01:00 UTC pre-staged the packed side of the D verdict (single-file downloads, no listing; 60/60): H5p7 r1..r10 for
+  evals 14 16 25 30 33 (50), the old packed draws (pack6 ×4, c33B ep33), and the five packed references P (md5 = the
+  packed_refs.json table on all five). Not scored yet; dr_score runs once C's draws exist (same call scores all sets).
