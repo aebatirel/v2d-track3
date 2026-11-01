@@ -6228,3 +6228,7 @@ diagnostic; nothing is picked for submission.
   E1 f0: 90.2 mm / 88.8 deg (16/16 fall) -> 0.01 mm / 0.01 deg; E1 f2: 92.4 / 90.1 -> 1.70 / 1.53; E2 visual md5
   unchanged; 23 pieces vs 19; plain-MuJoCo rows 160 vs 196. Collision-only overlay; eval 30 shares mini_sweeper, so
   eval 19 needs its own asset copy. Relayed; budget.py requested; retrain only with the owner's go and credit.
+
+### 2026-11-01 09:05 UTC — wrap-up (owner request via keen-heisenberg): nothing running, final report sent
+- All background agents finished; no processes running; working tree committed and pushed. STATUS top section written.
+- Final report sent to keen-heisenberg (finished items, open items, top 3 improvements, CD-O-only variant view).

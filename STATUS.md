@@ -1,5 +1,17 @@
 # Status (2026-10-21, evening; times TRT = UTC+3)
 
+## 2026-11-01 ~09:05 UTC: mesh lane wrap-up (owner asked to close loops; nothing running, all pushed)
+- **Finished tonight [M unless marked]:** ev10 cavity-safe pieces v1-v5. ev10cs4/cs5 pass FlashCHORD 32x60 with 0 / 0
+  overflow lines and the nest test (0.14 cm vs packed 1.02); the njmax-1024 diagnostic confirmed overflow as eval 10's
+  blocker (sim_vs_ref 0.459 -> 0.913, diagnostic only). The ev10cs5 retrain at stock limits is running in focused-pascal's
+  lane. Eval-20 pitcher b1 (falls 195 mm -> 8.5 mm at f0) and eval-19 sweeper support_fill (89 deg -> 0.01 deg) are frozen,
+  awaiting budget.py and credit. Mesh review artifact (595 meshes, scan outline). Methodology summary in the work log.
+- **Closed, no delivery:** board slot rounds 1-3 (eval 25 NO); collision carve rounds 1-2; rack slots for 14/30; posefix
+  (gate failed; overlaps are partly mesh shape); re-base (not needed: the sim uses the library_v3 pot); PUBOWN re-track;
+  C2 pitcher / rack; C0b/E0b (adopted pot / beige less accurate than 9a+).
+- **Open (owner):** C0 blue cup (CD-O ~-0.032 [E]); E0b compliance; grey-template re-track ($1); eval-19 / eval-20
+  retrains; ev10 beige corner clip [H].
+
 ## 2026-11-01 ~05:00 UTC: ev10 cavity-safe v4 (`ev10cs4`, 24 / 21 pieces) delivered for FlashCHORD 32x60 (CPU, $0)
 - **v4** = v3 + 2 wall bands per cup + beige base 1 + 4 + a 6 mm blue floor. The floor came from the pre-registered
   drop check of the 3 mm build (A4 in `gmg/build/I/results/ev10-cavsafe/GATES.md`, committed before building).
