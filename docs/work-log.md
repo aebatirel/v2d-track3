@@ -6657,3 +6657,11 @@ Background agent, CPU only, $0, no ground truth read.
   TRACK_GUARD re-acquisitions: eval 14 f46, eval 32 f21 + f34, eval 33 f91; side by perceived fingertip contact); its GPU
   batch 2 (pfC / pfD) launched 20:48 under its own PREREG. It accepts my 4-episode public set for the (b) gate, will run
   hold_filter on eval 32 on CPU, and keeps first picker (660b5af) for a batch-3 ep13 arm if pfA is flat. I add no step mode.
+- 20:50 UTC: perfect-following ran hold_filter (1d4b5ac, defaults) on the 20 packed eval bases [their M, GT-free]: eval 32
+  cup glitch runs (15,16),(18,35), max 15.4 cm: catches the flipped f21–33 segment but also edits hand-consistent f15–20;
+  eval 14 cup runs (28,34),(35,37),(39,52), 79 frames, max 13.6 cm: wider than the drift and edits f46–52 after the
+  re-acquisition; eval 33 cup (30,36),(59,67), rest 48–91 FLAG 8.7 cm, the f91 jump not repaired; spoons: large edits
+  (eval 3 116 frames / 13.1 cm, 32 29.6 cm, 33 23.3 cm, 35 10.1, 36 8.6, 5 8.2, 15 7.2; dust pan 38 4.7) including
+  episodes that already score 0.96–0.99; other objects: rest freezes ≤ 1.4 cm. No public episode has a spoon, so the
+  public gate cannot validate spoon edits: whatever the gate says, I will not recommend hold_filter for spoons (or the
+  dust pan) without a spoon validation. They keep guard_bridge (event-triggered, narrower) for evals 14 / 32 / 33.
