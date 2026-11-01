@@ -10803,3 +10803,7 @@ score.
 - 23:02 UTC 1 Nov interim [M] (training box, vs own reference): eval 16 two-hand s43 0.696 (both seeds < packed 0.850);
   eval 14 bridged two-hand s42 0.680 (vs bridged single-hand s42 0.880); **eval 33 bridged single-hand s42 0.406 ± 0.042**
   (packed 0.923) — a large failure, cause not yet known (the bridge + 6-frame ramp at f86–90, or the recipe on this box).
+  - eval 33 cause [M]: in the rebuilt reference (support_fill → lock → ILC → replan from the base on this box) the SPOON is
+    unstable before its grasp (rest check: 77 mm / 20° by f32; replan kept, zero action 0.195), unrelated to the cup
+    bridge (f86–90). So the rebuild differs from the packed eval-33 reference (built by run fr3233s43 with its own
+    settings); a confound of the rebuild, not evidence about the bridge [I].
