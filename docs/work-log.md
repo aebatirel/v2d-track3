@@ -5769,3 +5769,6 @@ Advice given:
   headroom; at 4096 worlds the worst world may occasionally exceed 512. → **pre-stated rule met: the retrain uses
   ev10cs5** (05:24 < 06:30). The PREREG's overflow check (> 1,000 lines → "pieces not clean in training", reported)
   covers the headroom risk.
+- 05:25 UTC njmax diagnostic interim [M, exec; not a reading]: training 04:34 → 05:17 (43 min for 70M steps at 1024; not
+  slower than e10v); train.log "nefc overflow" lines **0**; curve sim_vs_ref 10M 0.553, 20M 0.493, 30M 0.631, 40M 0.490 …
+  (e10v ~0.44–0.46). The PREREG label waits for lift.json (beige), the 10 official draws at 1024 and the 512 copy.
