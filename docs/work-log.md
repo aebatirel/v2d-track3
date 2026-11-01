@@ -6323,3 +6323,15 @@ Background agent, CPU only, $0, no ground truth read.
   ev10cs3 + `sim.njmax=1024` is untested; it needs the owner's go.
 - Record: `contact_budget/README.md` "Large-sample standard", runs in `runs_32x60/` and `runs_8x30/` (6b04fba). Sent
   to bold-albattani, focused-pascal and keen-heisenberg.
+
+### 2026-11-01 05:08 UTC — determined-wright: ev10cs4 clears the budget gate and the FlashCHORD nest test
+- ev10cs4 (bold-albattani 7e4bc6a, 24 / 21 pieces), contact budget at 32 × 60 (6e32856): **0 / 0 overflow lines**;
+  hold max 448; overall max 459. Packed: 380 / 9,723.
+- FlashCHORD nest test (`docs/research/physics-2026-10-30/ev10_nest_test/`, 4f5ff63): carve_fc_test (+ relT) under
+  sim=rl, packed vs ev10cs4.
+  - Driven, beige relative to blue: 0.14 cm / 1.1° median vs packed 1.02 cm / 7.0°.
+  - Free rest from f124: 1.59 vs 1.28 cm.
+  - 0 overflow, 0 NaN.
+  - Floor plate (6 mm): driven max 0.43 mm into it; rest impact 5.49 mm at f126, settled ~1 mm; never through.
+- Sent to bold-albattani, focused-pascal and keen-heisenberg. Next: one eval-10 GPU training on ev10cs4 (~$2–3,
+  focused-pascal); it needs the owner's go.
