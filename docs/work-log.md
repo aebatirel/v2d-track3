@@ -6513,3 +6513,7 @@ Background agent, CPU only, $0, no ground truth read.
   about equally; from our perceived motion all three P2 arms lose it by f15–17. Result files copied to
   `docs/research/grasp-ep13-20261101/results/` (jitter JSONs, run logs, solve JSONs, gate_testB.json). Test A running
   (P anneal started 18:10).
+- 18:41 UTC: ep13 arm 5/8 done [M]: **P anneal** (test A, the twins' perceived input): the solver beat the warm start in
+  0 of 37 active windows (4 rollbacks used), so the output has 0 edited frames and equals the input: jittered 0.5542 ±
+  0.004 (copy for copy identical to P_input), nominal 0.5406; floor 0.5561. Replay bit-identical. Solve 30 min. As
+  expected from the parked left hand. Arm 6 (P grasp) started 18:41.
